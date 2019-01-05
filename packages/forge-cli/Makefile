@@ -15,7 +15,7 @@ travis-init: install
 
 install:
 	@echo "Install software required for this repo..."
-	@npm install -g mustache nexe
+	@npm install -g mustache
 
 dep:
 	@echo "Install dependencies required for this repo..."
