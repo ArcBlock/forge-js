@@ -1,0 +1,18 @@
+sudo: false
+language: javascript
+install: true
+branches:
+  only:
+  - master
+before_script: make travis-init
+script: make travis
+deploy:
+  provider: releases
+  skip_cleanup: true
+  api_key:
+    secure:
+  file_glob: true
+  file: src/_build/releases/*
+  on:
+    repo: ArcBlock/forge-cli
+    branch: master
