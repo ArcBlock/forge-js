@@ -1,8 +1,5 @@
 // eslint-disable-next-line import/no-unresolved
-const {
-  cli,
-  action
-} = require('core/cli');
+const { cli, action } = require('core/cli');
 const {
   execute,
   run

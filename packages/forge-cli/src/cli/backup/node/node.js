@@ -2,7 +2,8 @@ const inquirer = require('inquirer');
 
 inquirer.registerPrompt('autocomplete', require('inquirer-autocomplete-prompt'));
 
-const questions = [{
+const questions = [
+  {
     type: 'confirm',
     name: 'node',
     message: 'Found a local node (0xdeadbeef), is this the one for backup?',

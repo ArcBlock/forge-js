@@ -7,12 +7,8 @@ branches:
 before_script: make travis-init
 script: make travis
 deploy:
-  provider: releases
-  skip_cleanup: true
-  api_key:
-    secure:
-  file_glob: true
-  file: src/_build/releases/*
+  provider: script
+  script: git clone https://$GITHUB_TOKEN@github.com/$TRAVIS_REPO_SLUG.git $TRAVIS_REPO_SLUG;
+    cd $TRAVIS_REPO_SLUG; make travis-deploy
   on:
-    repo: ArcBlock/forge-cli
     branch: master
