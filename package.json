@@ -6,7 +6,7 @@
   ],
   "devDependencies": {
     "husky": "^0.14.3",
-    "lerna": "^3.0.6",
+    "lerna": "^3.3.2",
     "lint-staged": "^7.2.2",
     "prettier": "^1.6.1",
     "remark-cli": "^5.0.0",
