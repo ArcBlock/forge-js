@@ -2322,3 +2322,5 @@ proto.forge_abi.CreateAssetTx.prototype.hasData = function() {
 };
 
 goog.object.extend(exports, proto.forge_abi);
+
+module.exports = proto.forge_abi;

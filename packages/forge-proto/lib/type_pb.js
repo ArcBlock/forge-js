@@ -3378,3 +3378,5 @@ proto.forge_abi.StateType = {
 };
 
 goog.object.extend(exports, proto.forge_abi);
+
+module.exports = proto.forge_abi;

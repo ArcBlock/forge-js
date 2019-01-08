@@ -9978,3 +9978,5 @@ proto.forge_vendor.Evidence.prototype.setTotalVotingPower = function(value) {
 };
 
 goog.object.extend(exports, proto.forge_vendor);
+
+module.exports = proto.forge_abi;

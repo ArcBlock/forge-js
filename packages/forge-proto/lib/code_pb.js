@@ -42,3 +42,5 @@ proto.forge_abi.StatusCode = {
 };
 
 goog.object.extend(exports, proto.forge_abi);
+
+module.exports = proto.forge_abi;

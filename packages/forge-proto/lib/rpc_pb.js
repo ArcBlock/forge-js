@@ -5818,3 +5818,5 @@ proto.forge_abi.ResponseSearch.prototype.clearTxsList = function() {
 };
 
 goog.object.extend(exports, proto.forge_abi);
+
+module.exports = proto.forge_abi;

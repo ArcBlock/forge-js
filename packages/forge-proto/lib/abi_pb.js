@@ -1416,3 +1416,5 @@ proto.forge_abi.ResponseUpdateState.prototype.hasAppState = function() {
 };
 
 goog.object.extend(exports, proto.forge_abi);
+
+module.exports = proto.forge_abi;

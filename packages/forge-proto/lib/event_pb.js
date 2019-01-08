@@ -1165,3 +1165,5 @@ proto.forge_abi.TopicType = {
 };
 
 goog.object.extend(exports, proto.forge_abi);
+
+module.exports = proto.forge_abi;
