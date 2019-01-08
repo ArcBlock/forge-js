@@ -27,7 +27,7 @@
     "prettier": "^1.6.1",
     "rimraf": "^2.6.2"
   },
-  "homepage": "https://github.com/ArcBlock/forge-js",
+  "homepage": "https://github.com/ArcBlock/forge-js/tree/master/packages/forge-node",
   "keywords": [
     "forge",
     "blockchain",
@@ -43,7 +43,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/ArcBlock/forge-js"
+    "url": "https://github.com/ArcBlock/forge-js/tree/master/packages/forge-node"
   },
   "scripts": {
     "lint": "eslint src",

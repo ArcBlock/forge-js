@@ -20,7 +20,7 @@
     "graphql-request": "^1.8.2",
     "prettier": "^1.6.1"
   },
-  "homepage": "https://github.com/ArcBlock/forge-js",
+  "homepage": "https://github.com/ArcBlock/forge-js/tree/master/packages/forge-proto",
   "keywords": [
     "forge",
     "blockchain",
@@ -35,7 +35,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/ArcBlock/forge-js"
+    "url": "https://github.com/ArcBlock/forge-js/tree/master/packages/forge-proto"
   },
   "scripts": {
     "lint": "eslint src",
