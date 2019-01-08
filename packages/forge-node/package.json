@@ -14,8 +14,9 @@
     "wangshijun <shijun@arcblock.io> (https://ocap.arcblock.io)"
   ],
   "dependencies": {
-    "@arcblock/forge-proto": "^0.1.0",
-    "babel-polyfill": "^6.26.0"
+    "@arcblock/forge-proto": "latest",
+    "google-protobuf": "^3.6.1",
+    "grpc": "^1.17.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
