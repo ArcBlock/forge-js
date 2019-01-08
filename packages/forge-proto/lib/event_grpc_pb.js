@@ -29,8 +29,7 @@ function deserialize_forge_abi_ResponseSubscribe(buffer_arg) {
   return event_pb.ResponseSubscribe.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-
-var EventRpcService = exports.EventRpcService = {
+var EventRpcService = (exports.EventRpcService = {
   subscribe: {
     path: '/forge_abi.EventRpc/subscribe',
     requestStream: false,
@@ -42,6 +41,6 @@ var EventRpcService = exports.EventRpcService = {
     responseSerialize: serialize_forge_abi_ResponseSubscribe,
     responseDeserialize: deserialize_forge_abi_ResponseSubscribe,
   },
-};
+});
 
 exports.EventRpcClient = grpc.makeGenericClientConstructor(EventRpcService);

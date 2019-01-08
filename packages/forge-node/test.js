@@ -1,5 +1,5 @@
-var messages = require('@arcblock/forge-proto/rpc_pb');
-var services = require('@arcblock/forge-proto/rpc_grpc_pb');
+var messages = require('@arcblock/forge-proto/lib/rpc_pb');
+var services = require('@arcblock/forge-proto/lib/rpc_grpc_pb');
 
 var grpc = require('grpc');
 

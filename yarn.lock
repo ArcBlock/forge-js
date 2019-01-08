@@ -2,6 +2,11 @@
 # yarn lockfile v1
 
 
+"@arcblock/forge-proto@latest":
+  version "0.1.0"
+  resolved "https://registry.npmjs.org/@arcblock/forge-proto/-/forge-proto-0.1.0.tgz#6706a857acafc5f4854be4ad71a3ffec8b0a3bc7"
+  integrity sha512-lrdAs1vdsNCRONhLKvxGhOIg5fRnPAl0lUSadf7c1lF+nvGFNBXCaJZLw86ZAmRsuowgFUnevx5jbgEWmCglng==
+
 "@babel/code-frame@^7.0.0-beta.35":
   version "7.0.0-rc.1"
   resolved "https://registry.yarnpkg.com/@babel/code-frame/-/code-frame-7.0.0-rc.1.tgz#5c2154415d6c09959a71845ef519d11157e95d10"
@@ -1810,6 +1815,11 @@ camelcase@^4.0.0, camelcase@^4.1.0:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/camelcase/-/camelcase-4.1.0.tgz#d545635be1e33c542649c69173e5de6acfae34dd"
   integrity sha1-1UVjW+HjPFQmScaRc+Xeas+uNN0=
+
+camelcase@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.npmjs.org/camelcase/-/camelcase-5.0.0.tgz#03295527d58bd3cd4aa75363f35b2e8d97be2f42"
+  integrity sha512-faqwZqnWxbxn+F1d399ygeamQNy3lPp/H9H6rNrqYh4FSVCtcY+3cub1MxA8o9mDd55mM8Aghuu/kuyYA6VTsA==
 
 caniuse-lite@^1.0.30000844:
   version "1.0.30000877"
