@@ -38,6 +38,7 @@
     "url": "https://github.com/ArcBlock/forge-js/tree/master/packages/forge-proto"
   },
   "scripts": {
+    "copy": "cp $FORGE_SDK_PROTO_GEN_DIR/*.js .",
     "lint": "eslint src",
     "precommit": "yarn lint",
     "prepush": "yarn lint"
