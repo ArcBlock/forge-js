@@ -1,3 +1,6 @@
+## 0.2.0 (January 08, 2019)
+
+
 ## 0.15.4 (December 19, 2018)
   - (chore): upgrade ocap schema
   - update readme
