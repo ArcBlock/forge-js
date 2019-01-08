@@ -1,0 +1,9 @@
+.tmp.mk
+node_modules
+.idea
+.DS_Store
+.nyc_output
+coverage
+libd
+lib
+dist

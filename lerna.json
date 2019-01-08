@@ -1,0 +1,11 @@
+{
+  "version": "0.1.0",
+  "useWorkspaces": true,
+  "npmClient": "yarn",
+  "ignoreChanges": [
+    "**/tools/**",
+    "**/docs/**",
+    "**/test/**",
+    "**/*.md"
+  ]
+}

@@ -1,0 +1,24 @@
+sudo: false
+language: node_js
+node_js:
+  - '10'
+install: false
+cache:
+  yarn: true
+  directories:
+    - 'node_modules'
+branches:
+  only:
+    - master
+before_script: make travis-init
+script: make travis
+deploy:
+  - provider: script
+    skip_cleanup: true
+    script: bash ./tools/publish.sh
+    on:
+      branch: master
+env:
+  global:
+    - secure: 'qoUuXfloyohbFX7yusha83hgvRpN0Z4wgDzJ+3+aR7okI+Fpc0B+NTzFPkV3ihlPXgBbDSUztPBMrM5bOT/+c8JB4UmeGvqcwwGn4+eAETSiEIHpzk7NAE9vnN74Us1+pW5FCVuswgcxrnEe3i+UgKNL8rEUVmFR9fD3lr92Sxh2w+0K3M8ywXNuRleNEfDDM4jvVs48aKlz2jtpgbL+s6ZBskkqUXAJc+rCvaWqF3zFKfw8jwImCOM8yrEwXgpSt/jZQIK03Cs1U+vxxFiPsnmbVVWxEdgh+Wlf/nUnv+wEQmni8A2pz0Vpsi5AB/rAPm42eJAhXrR4udfTNNyj4eBulhmbwvgOjC7+UVn8WIu06FSGNHcbKViHPuoge2lRcdlPysw7068xlq+bHtMjegywqnCWOydgiGTTthZlAnV60JsmMLGJahpXYMCMO5GRi8Zhyjf7DeU0Xw/IQEMKxpXCgztzDDzjdpRJ9b44KvxobuB05XbLFgPbEPcfFg9AuQamZhBgOUAYzj1h3IUwdd5riKaDdY5nvO5qn9qjBXC9k8IB4xx+hl86IXDoux2aApshvNK/ldoo68J3/zyu9lAhgliA9YJolNqmYzoa1DLeF5mQ12tNEB6simtP3j70paVgAccrxqN6magaCuxgrS9C3P60r/RBZAbB3MwkoDU='
+    - secure: 'pShgSfE+nMlwxcXQvhCSfyTi9zmqGTjFDfdGA4Jh7FFwdjnhT4xYqqNdRBSSor8bMy2LoJvujm3h+w4DTiuktQHhqFpATEo8uxI7Fdy8zItD5OPIaE/X0Da+ALFEUcl09PPqX9CPlzmhU91ErF8GeW+A3Voy4xaSwyp0W9S5YGTD8QIsngnMaFvJGS8mLLFJtxNap2d4MYcaGYYWbjZLPj4WqdBeJDtVMyeD2DoNLQh3FkGDvS/z+teSgPqBzZdeSjBKBzm2SOEuAKkJa7ZSqcvAQQO5ruKJfbj6BRBoVKyHj4pHPh3VFyEfmqjLO4D1N/TM/0SN6zJvHproHFbCKyIB+T1JbZvlK5j6z9FWQtxmJqb6KRyCPba1RD0pCn+sROisQquVNF62l+3R/6Dt5oPTbVWNAkveBB9Za01VzYB+bRD8h0gAiWArbWxSY4JqaZTVzE4mEwuD+wm9l55GSYHnhPZatOIelryCqcjdDzSN79uR/Upw25TM184Fwv7mBQkaKS0GrfrQPxMI0YsmFa5uy58qPq0CApcovP7lKH4mA/UTtdE0z0l+PPYo2n2GRPlqy9YO+zhkpeiLKSRjei35XF0pCMLaWNocRMc7yTqTrhbzlu2esQIbq9vBm5DRMyM1pezWaoRPoIwM00ylsTRP2GI9OYThJHOc7KwJfxY='

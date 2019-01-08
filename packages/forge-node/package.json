@@ -1,0 +1,58 @@
+{
+  "name": "@arcblock/forge-node",
+  "description": "Node.js SDK for Forge Framework by ArcBlock",
+  "version": "0.1.0",
+  "author": "wangshijun <shijun@arcblock.io> (https://ocap.arcblock.io)",
+  "bugs": {
+    "url": "https://github.com/ArcBlock/forge-js/issues",
+    "email": "shijun@arcblock.io"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "contributors": [
+    "wangshijun <shijun@arcblock.io> (https://ocap.arcblock.io)"
+  ],
+  "dependencies": {
+    "@arcblock/forge-proto": "^0.1.0",
+    "babel-polyfill": "^6.26.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "eslint": "^5.3.0",
+    "eslint-config-prettier": "latest",
+    "eslint-plugin-prettier": "latest",
+    "jest": "^23.5.0",
+    "prettier": "^1.6.1",
+    "rimraf": "^2.6.2"
+  },
+  "homepage": "https://github.com/ArcBlock/forge-js",
+  "keywords": [
+    "forge",
+    "blockchain",
+    "arcblock",
+    "sdk",
+    "nodejs"
+  ],
+  "license": "MIT",
+  "main": "./dist/node.js",
+  "files": [
+    "dist",
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ArcBlock/forge-js"
+  },
+  "scripts": {
+    "lint": "eslint src",
+    "clean": "rimraf lib && rimraf dist",
+    "build": "babel ./src --out-dir ./dist --source-maps --copy-files",
+    "generate-docs": "node tools/generate-docs.js",
+    "precommit": "CI=1 yarn test",
+    "prepush": "CI=1 yarn test",
+    "test": "yarn lint && node tools/jest.js",
+    "coverage": "yarn test -- --coverage"
+  }
+}

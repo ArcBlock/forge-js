@@ -1,0 +1,45 @@
+{
+  "name": "@arcblock/forge-proto",
+  "description": "Static modules generated from forge-sdk protobuf files",
+  "version": "0.1.0",
+  "author": "wangshijun <shijun@arcblock.io> (https://www.arcblock.io)",
+  "bugs": {
+    "url": "https://github.com/ArcBlock/forge-js/issues",
+    "email": "shijun@arcblock.io"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "contributors": [
+    "wangshijun <shijun@arcblock.io> (https://www.arcblock.io)"
+  ],
+  "devDependencies": {
+    "eslint": "^5.3.0",
+    "eslint-config-prettier": "latest",
+    "eslint-plugin-prettier": "latest",
+    "graphql-request": "^1.8.2",
+    "prettier": "^1.6.1"
+  },
+  "homepage": "https://github.com/ArcBlock/forge-js",
+  "keywords": [
+    "forge",
+    "blockchain",
+    "arcblock",
+    "sdk",
+    "nodejs"
+  ],
+  "license": "MIT",
+  "main": "src/index.js",
+  "files": [
+    "src"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ArcBlock/forge-js"
+  },
+  "scripts": {
+    "lint": "eslint src",
+    "precommit": "yarn lint",
+    "prepush": "yarn lint"
+  }
+}
