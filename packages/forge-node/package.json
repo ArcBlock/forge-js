@@ -16,6 +16,7 @@
   "dependencies": {
     "@arcblock/forge-proto": "latest",
     "camelcase": "^5.0.0",
+    "debug": "^4.1.1",
     "google-protobuf": "^3.6.1",
     "grpc": "^1.17.0"
   },
