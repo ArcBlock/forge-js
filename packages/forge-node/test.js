@@ -9,7 +9,6 @@ const rpcClients = require('@arcblock/forge-proto/lib/rpc_grpc_pb');
 // const eventTypes = require('@arcblock/forge-proto/lib/event_pb');
 const eventClients = require('@arcblock/forge-proto/lib/event_grpc_pb');
 const codeTypes = require('@arcblock/forge-proto/lib/code_pb');
-// const abi = require('@arcblock/forge-proto/lib/rpc.pb').forge_abi;
 const debug = require('debug')(require('./package.json').name);
 
 const constants = Object.freeze({
@@ -20,13 +19,6 @@ const constants = Object.freeze({
   UpgradeAction: types.UpgradeAction,
   UpgradeType: types.UpgradeType,
 });
-
-// const encoders = Object.keys(abi).filter(x => x.includes('Request')).reduce((memo, x) => {
-//   memo[x] = abi[x];
-//   return memo;
-// }, {});
-
-// console.log(encoders);
 
 const specs = Object.assign({}, rpcClients, eventClients);
 const clients = Object.keys(specs)
@@ -143,6 +135,17 @@ const sdk = Object.keys(specs)
     const res = await sdk.getChainInfo();
     debug('chainInfo', res.info);
 
+    const type = new types.WalletType();
+    type.setPk(constants.KeyType.SECP256K1);
+    type.setHash(constants.HashType.KECCAK);
+    type.setAddress(constants.EncodingType.BASE16);
+    const wallet = await sdk.createWallet({
+      passphrase: '123456',
+      moniker: 'wangshijun',
+      type: type,
+    });
+    debug('walletInfo', wallet);
+
     const stream = sdk.getBlock({ height: 11 });
     stream
       .on('data', function({ block }) {
@@ -155,35 +158,3 @@ const sdk = Object.keys(specs)
     console.error('error', err);
   }
 })();
-
-// Send transaction
-// function createWallet() {
-//   const walletType = new types.WalletType();
-//   walletType.setPk(constants.KeyType.SECP256K1);
-//   walletType.setHash(constants.HashType.KECCAK);
-//   walletType.setAddress(constants.EncodingType.BASE16);
-
-//   const request = new rpcTypes.RequestCreateWallet();
-//   request.setPassphrase('123456');
-//   request.setType(walletType);
-//   request.setMoniker('wangshijun');
-
-//   const client = new rpcClients.WalletRpcClient(
-//     '127.0.0.1:28210',
-//     grpc.credentials.createInsecure()
-//   );
-
-//   client.create_wallet(request, (err, response) => {
-//     if (err) {
-//       return console.error(err);
-//     }
-//     const { code, token, wallet } = response.toObject();
-//     if (code) {
-//       throw new Error('wallet create error', code);
-//     }
-//     console.log('sessionToken:', token);
-//     console.log('walletInfo:', wallet);
-//   });
-// }
-
-// createWallet();
