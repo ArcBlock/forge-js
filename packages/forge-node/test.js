@@ -1,23 +1,11 @@
 /* eslint no-console:"off" */
-const ForgeRpc = require('./src/rpc');
 const { enums } = require('@arcblock/forge-proto');
 const debug = require('debug')(require('./package.json').name);
-
-const walletInfo = {
-  passphrase: '123456',
-  moniker: 'wangshijun',
-  type: {
-    pk: enums.KeyType.SECP256K1,
-    hash: enums.HashType.KECCAK,
-    address: enums.EncodingType.BASE16,
-  },
-};
-
-console.log(enums, walletInfo);
+const ForgeRpc = require('./src/rpc');
 
 (async () => {
   try {
-    const sdk = new ForgeRpc({});
+    const sdk = new ForgeRpc({ enableBinaryDecoding: true });
 
     // ChainRpc
     const res = await sdk.getChainInfo();
@@ -33,8 +21,16 @@ console.log(enums, walletInfo);
       });
 
     // WalletRpc
-    // const wallet = await sdk.createWallet(walletInfo);
-    // debug('walletInfo', wallet);
+    const wallet = await sdk.createWallet({
+      passphrase: '123456',
+      moniker: 'wangshijun',
+      type: {
+        pk: enums.KeyType.SECP256K1,
+        hash: enums.HashType.KECCAK,
+        address: enums.EncodingType.BASE16,
+      },
+    });
+    debug('walletInfo', wallet);
 
     // StateRpc
     const account = await sdk.getAccountState({

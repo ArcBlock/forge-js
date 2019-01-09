@@ -1,6 +1,6 @@
-const { get } = require('lodash');
 const grpc = require('grpc');
 const camelcase = require('camelcase');
+const { get } = require('lodash');
 const { EventEmitter } = require('events');
 const {
   enums,
@@ -11,8 +11,8 @@ const {
   vendorTypes,
   spec,
 } = require('@arcblock/forge-proto');
-
 const debug = require('debug')(`${require('../package.json').name}:grpc`);
+const { decodeBinary } = require('./util');
 
 // TODO: Due to limitations of protobuf, some types of data are base64 encoded from response
 // - BigUint & BigSint
@@ -22,7 +22,7 @@ const debug = require('debug')(`${require('../package.json').name}:grpc`);
 
 class ForgeRpc {
   constructor(config) {
-    this.config = config;
+    this.config = Object.assign({ enableBinaryDecoding: false }, config || {});
     this.initRpcClients();
     this.initRpcMethods();
   }
@@ -174,14 +174,14 @@ class ForgeRpc {
         return reject(err);
       }
 
-      const res = response.toObject(true);
+      const res = response.toObject();
       if (res.code) {
         return reject(
           new Error(`gRPC response error: ${messages.StatusCode[res.code]}, method: ${method}`)
         );
       }
 
-      return resolve(res);
+      return resolve(decodeBinary(res, this.config.enableBinaryDecoding));
     };
   }
 
@@ -197,8 +197,8 @@ class ForgeRpc {
     const emitter = new EventEmitter();
 
     stream
-      .on('data', function(response) {
-        const res = response.toObject(true);
+      .on('data', response => {
+        const res = response.toObject();
         if (res.code) {
           emitter.emit(
             'error',
@@ -208,7 +208,7 @@ class ForgeRpc {
           );
           return;
         }
-        emitter.emit('data', res);
+        emitter.emit('data', decodeBinary(res, this.config.enableBinaryDecoding));
       })
       .on('error', err => {
         emitter.emit('error', err);
