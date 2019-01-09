@@ -23,28 +23,36 @@ const config = parseConfig('./test.toml');
     //   });
 
     // WalletRpc
-    const { token, wallet } = await sdk.createWallet({
+    const walletType = {
+      pk: enums.KeyType.SECP256K1,
+      hash: enums.HashType.KECCAK,
+      address: enums.EncodingType.BASE16,
+    };
+    const sender = await sdk.createWallet({
       passphrase: '123456',
       moniker: 'wangshijun',
-      type: {
-        pk: enums.KeyType.SECP256K1,
-        hash: enums.HashType.KECCAK,
-        address: enums.EncodingType.BASE16,
-      },
+      type: walletType,
     });
-    debug('walletInfo', { wallet, token });
+    debug('walletInfo.sender', sender);
+
+    const receiver = await sdk.createWallet({
+      passphrase: '123456',
+      moniker: 'tyrchain',
+      type: walletType,
+    });
+    debug('walletInfo.receiver', receiver);
 
     const itx = {
       type: 'TransferTx',
       value: {
-        to: 'f7063a4b6060adaccbda72c9cae73a0dcd3fd2d87',
+        to: receiver.wallet.address,
         value: 100,
       },
     };
 
     const { tx } = await sdk.createTx({
-      from: wallet.address,
-      token,
+      from: sender.wallet.address,
+      token: sender.token,
       nonce: 2,
       itx,
     });
@@ -53,7 +61,7 @@ const config = parseConfig('./test.toml');
     tx.itx = itx;
     const { hash } = await sdk.sendTx({
       tx,
-      token,
+      token: sender.token,
       commit: true,
     });
     debug('txInfo.sent', { hash });
