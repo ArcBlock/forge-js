@@ -382,9 +382,10 @@ function deserialize_forge_abi_ResponseStoreFile(buffer_arg) {
   return rpc_pb.ResponseStoreFile.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+
 // forge RPC definition
 //
-var ChainRpcService = (exports.ChainRpcService = {
+var ChainRpcService = exports.ChainRpcService = {
   // tx related
   create_tx: {
     path: '/forge_abi.ChainRpc/create_tx',
@@ -453,10 +454,10 @@ var ChainRpcService = (exports.ChainRpcService = {
     responseSerialize: serialize_forge_abi_ResponseSearch,
     responseDeserialize: deserialize_forge_abi_ResponseSearch,
   },
-});
+};
 
 exports.ChainRpcClient = grpc.makeGenericClientConstructor(ChainRpcService);
-var WalletRpcService = (exports.WalletRpcService = {
+var WalletRpcService = exports.WalletRpcService = {
   // wallet related
   create_wallet: {
     path: '/forge_abi.WalletRpc/create_wallet',
@@ -513,10 +514,10 @@ var WalletRpcService = (exports.WalletRpcService = {
     responseSerialize: serialize_forge_abi_ResponseRemoveWallet,
     responseDeserialize: deserialize_forge_abi_ResponseRemoveWallet,
   },
-});
+};
 
 exports.WalletRpcClient = grpc.makeGenericClientConstructor(WalletRpcService);
-var StateRpcService = (exports.StateRpcService = {
+var StateRpcService = exports.StateRpcService = {
   // state related
   get_account_state: {
     path: '/forge_abi.StateRpc/get_account_state',
@@ -562,10 +563,10 @@ var StateRpcService = (exports.StateRpcService = {
     responseSerialize: serialize_forge_abi_ResponseGetForgeState,
     responseDeserialize: deserialize_forge_abi_ResponseGetForgeState,
   },
-});
+};
 
 exports.StateRpcClient = grpc.makeGenericClientConstructor(StateRpcService);
-var FileRpcService = (exports.FileRpcService = {
+var FileRpcService = exports.FileRpcService = {
   // filesystem related
   store_file: {
     path: '/forge_abi.FileRpc/store_file',
@@ -589,6 +590,6 @@ var FileRpcService = (exports.FileRpcService = {
     responseSerialize: serialize_forge_abi_ResponseLoadFile,
     responseDeserialize: deserialize_forge_abi_ResponseLoadFile,
   },
-});
+};
 
 exports.FileRpcClient = grpc.makeGenericClientConstructor(FileRpcService);

@@ -5,7 +5,10 @@
         "Request": {
           "oneofs": {
             "value": {
-              "oneof": ["verifyTx", "updateState"]
+              "oneof": [
+                "verifyTx",
+                "updateState"
+              ]
             }
           },
           "fields": {
@@ -22,7 +25,10 @@
         "Response": {
           "oneofs": {
             "value": {
-              "oneof": ["verifyTx", "updateState"]
+              "oneof": [
+                "verifyTx",
+                "updateState"
+              ]
             }
           },
           "fields": {
