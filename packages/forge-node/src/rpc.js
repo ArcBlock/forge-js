@@ -1,18 +1,9 @@
 const grpc = require('grpc');
 const camelcase = require('camelcase');
-const { get } = require('lodash');
 const { EventEmitter } = require('events');
-const {
-  enums,
-  messages,
-  rpcs,
-  clients,
-  types,
-  vendorTypes,
-  spec,
-} = require('@arcblock/forge-proto');
+const { messages, rpcs, clients, types, vendorTypes, spec } = require('@arcblock/forge-proto');
 const debug = require('debug')(`${require('../package.json').name}:ForgeRpc`);
-const { decodeBinary } = require('./util');
+const { decodeBinary, createMessage } = require('./util');
 
 // TODO: Due to limitations of protobuf, some types of data are base64 encoded from response
 // - BigUint & BigSint
@@ -112,55 +103,9 @@ class ForgeRpc {
       throw new Error(`Unsupported messageSpec: ${type}`);
     }
 
-    const params = _params || {};
-    const request = this.createMessage(RequestMessage, messageSpec.fields, params);
+    const request = createMessage(type, _params || {});
     debug('createRequest', { type, request: request.toObject() });
     return request;
-  }
-
-  createMessage(Message, fields, params) {
-    const message = new Message();
-    const enumTypes = Object.keys(enums);
-    Object.keys(fields).forEach(key => {
-      const value = params[key];
-      const { type, rule } = fields[key]; // FIXME: support repeated
-      if (value === undefined) {
-        return;
-      }
-
-      const set = camelcase(`set_${key}`);
-      // enum types
-      if (enumTypes.includes(type)) {
-        message[set](value);
-        return;
-      }
-
-      // FIXME: google builtin types
-      if (type === 'google.protobuf.Timestamp') {
-        return;
-      }
-      if (type === 'google.protobuf.Any') {
-        return;
-      }
-
-      const SubMessage = get(types, type) || get(vendorTypes, type);
-      // complex types
-      if (SubMessage) {
-        const subMessageSpec = get(spec, type);
-        if (!subMessageSpec || !subMessageSpec.fields) {
-          throw new Error(`Unsupported subMessageSpec: ${type}`);
-        }
-
-        const subMessage = this.createMessage(SubMessage, subMessageSpec.fields, value);
-        message[set](subMessage);
-        return;
-      }
-
-      // primitive types
-      message[set](value);
-    });
-
-    return message;
   }
 
   /**
