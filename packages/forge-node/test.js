@@ -2,10 +2,12 @@
 const { enums } = require('@arcblock/forge-proto');
 const debug = require('debug')(require('./package.json').name);
 const ForgeRpc = require('./src/rpc');
+const { parseConfig } = require('./src/util');
+const config = parseConfig('./test.toml');
 
 (async () => {
   try {
-    const sdk = new ForgeRpc({ enableBinaryDecoding: true });
+    const sdk = new ForgeRpc(Object.assign({}, config.forge, config.forge.sdk || {}));
 
     // ChainRpc
     const res = await sdk.getChainInfo();

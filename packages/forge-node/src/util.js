@@ -1,8 +1,22 @@
+const fs = require('fs');
 const util = require('util');
+const toml = require('toml');
+const camelize = require('camelize');
 
 const { isUint8Array } = util.types;
 
-// FIXME: this code is fragile to changes
+function parseConfig(configPath) {
+  if (!fs.existsSync(configPath)) {
+    throw new Error(`config file not found: ${configPath}`);
+  }
+  try {
+    return camelize(toml.parse(fs.readFileSync(configPath)));
+  } catch (err) {
+    throw new Error(`config file parse failed: ${configPath}`);
+  }
+}
+
+// TODO: this code is fragile because hard-coded fields
 function decodeBinary(data, experimental = false) {
   if (isUint8Array(data)) {
     return Buffer.from(data).toString();
@@ -29,4 +43,5 @@ function decodeBinary(data, experimental = false) {
 
 module.exports = {
   decodeBinary,
+  parseConfig,
 };

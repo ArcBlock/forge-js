@@ -11,27 +11,31 @@ const {
   vendorTypes,
   spec,
 } = require('@arcblock/forge-proto');
-const debug = require('debug')(`${require('../package.json').name}:grpc`);
+const debug = require('debug')(`${require('../package.json').name}:ForgeRpc`);
 const { decodeBinary } = require('./util');
 
 // TODO: Due to limitations of protobuf, some types of data are base64 encoded from response
 // - BigUint & BigSint
-// - bytes
 // - google.protobuf.Timestamp
 // - google.protobuf.Any
 
 class ForgeRpc {
   constructor(config) {
     this.config = Object.assign({ enableBinaryDecoding: false }, config || {});
+    debug('new', this.config);
+    if (!this.config.sockGrpc) {
+      throw new Error('ForgeRpc requires a valid `sockGrpc` to start');
+    }
+
     this.initRpcClients();
     this.initRpcMethods();
   }
 
   initRpcClients() {
+    const socket = this.config.sockGrpc.split('//').pop();
     this.clients = Object.keys(clients).reduce((acc, x) => {
-      // TODO: use forge.socket_grpc from config
-      acc[x] = new clients[x]('127.0.0.1:28210', grpc.credentials.createInsecure());
-
+      debug('initRpcClient', x);
+      acc[x] = new clients[x](socket, grpc.credentials.createInsecure());
       return acc;
     }, {});
   }
@@ -45,7 +49,7 @@ class ForgeRpc {
     const rpc = client[method].bind(client);
     const { requestStream = false, responseStream = false, requestType } = rpcs[group][method];
 
-    debug('generate', { method, requestStream, responseStream });
+    debug('initRpcMethod', { method, requestStream, responseStream });
 
     let fn = null;
     // unary call, return Promise

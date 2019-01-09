@@ -1,0 +1,87 @@
+[app]
+name = "forge_kv"
+version = "0.1.0"
+
+path = "/tmp/.forge_kv/app"
+executable = "rel/bin/kvstore foreground"
+logfile = "logs/app.log"
+sock_grpc = ""
+sock_tcp = "tcp://127.0.0.1:9527"
+
+[forge]
+decimal = 16
+proto_version = 1
+path = "/tmp/.forge_kv/core"
+# State db path
+db = "data"
+keystore = "keystore"
+logfile = "logs/forge.log"
+
+# sock_grpc = "unix://socks/forge_grpc.sock"
+sock_grpc = "tcp://127.0.0.1:28210"
+
+consensus_engine = "tendermint"
+storage_engine = "ipfs"
+hash = "sha3"
+encoding = "base64"
+unlock_ttl = 300
+
+[forge.limit]
+# max grace period is 10
+grace_peroid = 10
+
+[forge.account]
+# for ethereum compatibility, use secp256k1
+public_key_format = "ed25519"
+# for ethereum compatibility, use keccak_256
+public_key_hash_format = "sha3_256"
+# for ethereum compatibility, use base16
+address_format = "base58"
+
+[forge.transaction]
+disabled_tx = ["SysUpgradeTx"]
+
+[forge.web]
+enabled = false
+
+[forge.sdk]
+enable_binary_decoding = true
+
+[tendermint]
+version = "0.27.3-01"
+moniker = "forge_kv"
+path = "/tmp/.forge_kv/tendermint"
+
+# relative paths to "path"
+logfile = "logs/tendermint.log"
+
+sock_proxy_app = "unix://socks/tm_proxy_app.sock"
+sock_rpc = "unix://socks/tm_rpc.sock"
+sock_grpc = "unix://socks/tm_grpc.sock"
+# sock_rpc = "tcp://0.0.0.0:29210"
+# sock_grpc = "tcp://0.0.0.0:29211"
+sock_p2p = "tcp://0.0.0.0:26656"
+sock_prof = ""
+
+
+[tendermint.genesis]
+genesis_time = "2018-11-05T19:22:08.938749Z"
+chain_id = 1
+max_bytes = 22020096
+max_gas = -1
+app_hash = ""
+
+[[tendermint.genesis.validators]]
+
+[ipfs]
+version = "0.4.18"
+path = "/tmp/.forge_kv/ipfs"
+logfile = "logs/ipfs.log"
+storage_max = "10GB"
+bootstrap = []
+
+#ipfs_cluster_version = "0.7.0"
+#ipfs_cluster_ctl_version = "0.7.0"
+
+"max_file_size.admin" = "100M"
+"max_file_size.account" = "1M"
