@@ -18,6 +18,8 @@ console.log(enums, walletInfo);
 (async () => {
   try {
     const sdk = new ForgeRpc({});
+
+    // ChainRpc
     const res = await sdk.getChainInfo();
     debug('chainInfo', res.info);
 
@@ -30,8 +32,17 @@ console.log(enums, walletInfo);
         console.error('error', err);
       });
 
-    const wallet = await sdk.createWallet(walletInfo);
-    debug('walletInfo', wallet);
+    // WalletRpc
+    // const wallet = await sdk.createWallet(walletInfo);
+    // debug('walletInfo', wallet);
+
+    // StateRpc
+    const account = await sdk.getAccountState({
+      address: 'f525b15c6f31041aa17f1e3e0a436c3c114343956',
+    });
+    account.on('data', function({ state }) {
+      debug('accountInfo:', state);
+    });
   } catch (err) {
     console.error('error', err);
   }

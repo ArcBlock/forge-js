@@ -1,4 +1,3 @@
-/* eslint no-console:"off" */
 const { get } = require('lodash');
 const grpc = require('grpc');
 const camelcase = require('camelcase');
@@ -14,6 +13,12 @@ const {
 } = require('@arcblock/forge-proto');
 
 const debug = require('debug')(`${require('../package.json').name}:grpc`);
+
+// TODO: Due to limitations of protobuf, some types of data are base64 encoded from response
+// - BigUint & BigSint
+// - bytes
+// - google.protobuf.Timestamp
+// - google.protobuf.Any
 
 class ForgeRpc {
   constructor(config) {
@@ -169,7 +174,7 @@ class ForgeRpc {
         return reject(err);
       }
 
-      const res = response.toObject();
+      const res = response.toObject(true);
       if (res.code) {
         return reject(
           new Error(`gRPC response error: ${messages.StatusCode[res.code]}, method: ${method}`)
@@ -193,7 +198,7 @@ class ForgeRpc {
 
     stream
       .on('data', function(response) {
-        const res = response.toObject();
+        const res = response.toObject(true);
         if (res.code) {
           emitter.emit(
             'error',
