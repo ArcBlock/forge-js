@@ -18,7 +18,8 @@
     "camelcase": "^5.0.0",
     "debug": "^4.1.1",
     "google-protobuf": "^3.6.1",
-    "grpc": "^1.17.0"
+    "grpc": "^1.17.0",
+    "lodash": "^4.17.11"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
