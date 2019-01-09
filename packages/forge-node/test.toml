@@ -45,7 +45,7 @@ disabled_tx = ["SysUpgradeTx"]
 enabled = false
 
 [forge.sdk]
-enable_binary_decoding = true
+enable_binary_decoding = false
 
 [tendermint]
 version = "0.27.3-01"

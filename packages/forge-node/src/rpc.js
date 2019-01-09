@@ -2,13 +2,8 @@ const grpc = require('grpc');
 const camelcase = require('camelcase');
 const { EventEmitter } = require('events');
 const { messages, rpcs, clients, types, vendorTypes, spec } = require('@arcblock/forge-proto');
-const debug = require('debug')(`${require('../package.json').name}:ForgeRpc`);
 const { decodeBinary, createMessage } = require('./util');
-
-// TODO: Due to limitations of protobuf, some types of data are base64 encoded from response
-// - BigUint & BigSint
-// - google.protobuf.Timestamp
-// - google.protobuf.Any
+const debug = require('debug')(`${require('../package.json').name}:ForgeRpc`);
 
 class ForgeRpc {
   constructor(config) {
