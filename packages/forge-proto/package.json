@@ -45,5 +45,8 @@
     "lint": "eslint index.js",
     "precommit": "yarn lint",
     "prepush": "yarn lint"
+  },
+  "dependencies": {
+    "debug": "^4.1.1"
   }
 }

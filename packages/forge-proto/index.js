@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const { get } = require('lodash');
+const debug = require('debug')(`${require('./package.json').name}`);
 
 // extract spec
 const compactSpec = object => {
@@ -56,12 +57,11 @@ const processJs = baseDir => {
 };
 
 // extract rpc descriptors
-const processJson = filePath => {
+const processJson = (filePath, packageName) => {
   const json = fs.existsSync(filePath) ? require(filePath) : json;
   const spec = compactSpec(json);
-  Object.assign(spec, spec.forge_abi);
 
-  const { forge_abi: abi } = spec;
+  const { [packageName]: abi } = spec;
 
   // extract messages and enums
   const messages = {};
@@ -86,21 +86,42 @@ const processJson = filePath => {
       return rpcs;
     }, {});
 
+  Object.assign(spec, spec[packageName]);
   return { messages, enums, rpcs, spec };
 };
 
+const extraTypes = {};
+const extraSpec = {};
 const { types, vendorTypes, clients } = processJs(path.resolve(__dirname, './lib/'));
-const { messages, enums, rpcs, spec } = processJson(path.resolve(__dirname, './lib/spec.json'));
+const { messages, enums, rpcs, spec } = processJson(
+  path.resolve(__dirname, './lib/spec.json'),
+  'forge_abi'
+);
 
-function getMessageType(type) {
-  return get(types, type) || get(vendorTypes, type);
-}
+// Append app specific proto definition into search space
+const addSource = (baseDir, packageName) => {
+  if (!fs.existsSync(baseDir)) {
+    throw new Error('baseDir does not exists');
+  }
 
-function getMessageFields(type) {
-  return (get(spec, type) || {}).fields;
-}
+  const jsResult = processJs(baseDir);
+  Object.assign(extraTypes, jsResult.types);
+  debug('addSource.types', jsResult.types);
 
-module.exports = Object.freeze({
+  if (fs.existsSync(path.join(baseDir, 'spec.json'))) {
+    const jsonResult = processJson(path.join(baseDir, 'spec.json'), packageName);
+    Object.assign(extraSpec, jsonResult.spec[packageName]);
+    debug('addSource.spec', jsonResult.spec[packageName]);
+  }
+};
+
+// Search for a type and its fields descriptor
+const getMessageType = type => ({
+  fn: get(types, type) || get(vendorTypes, type) || get(extraTypes, type),
+  fields: (get(spec, type) || get(extraSpec, type) || {}).fields,
+});
+
+module.exports = {
   enums,
   messages,
   rpcs: Object.keys(clients).reduce((acc, x) => {
@@ -111,9 +132,5 @@ module.exports = Object.freeze({
   processJs,
   processJson,
   getMessageType,
-  getMessageFields,
-});
-
-// console.log({ rpc: rpcs.ChainRpc, client: clients.ChainRpc, service: services.ChainRpcService });
-// console.log({ rpcs, clients, service: services.ChainRpcService });
-// console.log(spec);
+  addSource,
+};
