@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const { get } = require('lodash');
 
 // extract spec
 const compactSpec = object => {
@@ -91,17 +92,26 @@ const processJson = filePath => {
 const { types, vendorTypes, clients } = processJs(path.resolve(__dirname, './lib/'));
 const { messages, enums, rpcs, spec } = processJson(path.resolve(__dirname, './lib/spec.json'));
 
+function getMessageType(type) {
+  return get(types, type) || get(vendorTypes, type);
+}
+
+function getMessageFields(type) {
+  return (get(spec, type) || {}).fields;
+}
+
 module.exports = Object.freeze({
   enums,
   messages,
-  rpcs,
-  clients,
-  types,
-  vendorTypes,
-  spec,
-  compactSpec,
+  rpcs: Object.keys(clients).reduce((acc, x) => {
+    acc[x] = clients[x];
+    acc[x].methods = rpcs[x];
+    return acc;
+  }, {}),
   processJs,
   processJson,
+  getMessageType,
+  getMessageFields,
 });
 
 // console.log({ rpc: rpcs.ChainRpc, client: clients.ChainRpc, service: services.ChainRpcService });

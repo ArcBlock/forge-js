@@ -1,7 +1,7 @@
 const grpc = require('grpc');
 const camelcase = require('camelcase');
 const { EventEmitter } = require('events');
-const { messages, rpcs, clients, types, vendorTypes, spec } = require('@arcblock/forge-proto');
+const { messages, rpcs, getMessageType, getMessageFields } = require('@arcblock/forge-proto');
 const { decodeBinary, createMessage } = require('./util');
 const debug = require('debug')(`${require('../package.json').name}:ForgeRpc`);
 
@@ -19,21 +19,25 @@ class ForgeRpc {
 
   initRpcClients() {
     const socket = this.config.sockGrpc.split('//').pop();
-    this.clients = Object.keys(clients).reduce((acc, x) => {
+    this.clients = Object.keys(rpcs).reduce((acc, x) => {
       debug('initRpcClient', x);
-      acc[x] = new clients[x](socket, grpc.credentials.createInsecure());
+      acc[x] = new rpcs[x](socket, grpc.credentials.createInsecure());
       return acc;
     }, {});
   }
 
   initRpcMethods() {
-    Object.keys(rpcs).forEach(x => Object.keys(rpcs[x]).forEach(m => this.initRpcMethod(x, m)));
+    Object.keys(rpcs).forEach(x =>
+      Object.keys(rpcs[x].methods).forEach(m => this.initRpcMethod(x, m))
+    );
   }
 
   initRpcMethod(group, method) {
     const client = this.clients[group];
     const rpc = client[method].bind(client);
-    const { requestStream = false, responseStream = false, requestType } = rpcs[group][method];
+    const { requestStream = false, responseStream = false, requestType } = rpcs[group].methods[
+      method
+    ];
 
     debug('initRpcMethod', { method, requestStream, responseStream });
 
@@ -89,13 +93,13 @@ class ForgeRpc {
    * @memberof ForgeRpc
    */
   createRequest(type, _params) {
-    const RequestMessage = types[type] || vendorTypes[type];
+    const RequestMessage = getMessageType(type);
     if (!RequestMessage) {
-      throw new Error(`Unsupported requestType: ${type}`);
+      throw new Error(`Unsupported messageType: ${type}`);
     }
-    const messageSpec = spec[type];
-    if (!messageSpec) {
-      throw new Error(`Unsupported messageSpec: ${type}`);
+    const fields = getMessageFields(type);
+    if (!fields) {
+      throw new Error(`Unsupported messageFields: ${type}`);
     }
 
     const request = createMessage(type, _params || {});

@@ -3,8 +3,7 @@ const util = require('util');
 const toml = require('toml');
 const camelize = require('camelize');
 const camelcase = require('camelcase');
-const { get } = require('lodash');
-const { enums, types, vendorTypes, spec } = require('@arcblock/forge-proto');
+const { enums, getMessageType, getMessageFields } = require('@arcblock/forge-proto');
 const { Any } = require('google-protobuf/google/protobuf/any_pb.js');
 const debug = require('debug')(`${require('../package.json').name}:util`);
 
@@ -45,14 +44,6 @@ function decodeBinary(data, experimental = false) {
   });
 
   return data;
-}
-
-function getMessageType(type) {
-  return get(types, type) || get(vendorTypes, type);
-}
-
-function getMessageFields(type) {
-  return (get(spec, type) || {}).fields;
 }
 
 /**
@@ -137,8 +128,6 @@ function createMessage(type, params) {
 module.exports = {
   decodeBinary,
   parseConfig,
-  getMessageType,
-  getMessageFields,
   createMessage,
   createTypeUrl,
 };
