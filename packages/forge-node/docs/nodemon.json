@@ -1,0 +1,7 @@
+{
+  "watch": ["../", "app.js"],
+  "script": "app.js",
+  "ext": "js",
+  "env": { "NODE_ENV": "development" },
+  "stdout": true
+}

@@ -8260,6 +8260,11 @@ validate-npm-package-name@^3.0.0:
   dependencies:
     builtins "^1.0.3"
 
+varint@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.npmjs.org/varint/-/varint-5.0.0.tgz#d826b89f7490732fabc0c0ed693ed475dcb29ebf"
+  integrity sha1-2Ca4n3SQcy+rwMDtaT7Uddyynr8=
+
 verror@1.10.0:
   version "1.10.0"
   resolved "https://registry.yarnpkg.com/verror/-/verror-1.10.0.tgz#3a105ca17053af55d6e270c1f8288682e18da400"

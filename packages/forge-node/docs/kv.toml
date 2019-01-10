@@ -4,7 +4,7 @@ version = "0.1.0"
 
 # This must be an absolute path
 path = "/Users/wangshijun/Develop/arcblock/forge-js/packages/forge-node/docs"
-executable = "bin/www"
+executable = "app.js"
 logfile = "logs/app.log"
 sock_grpc = ""
 sock_tcp = "tcp://127.0.0.1:9528"
