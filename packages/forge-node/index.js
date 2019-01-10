@@ -1,9 +1,10 @@
-const util = require('./lib/util');
-
 module.exports = Object.assign(
   {
     ForgeRpc: require('./lib/rpc'),
-    AppServer: require('./lib/server'),
+    TCPServer: require('./lib/server/tcp'),
   },
-  util
+  require('./lib/util/config'),
+  require('./lib/util/message'),
+  require('./lib/util/varint'),
+  require('./lib/util/socket_data')
 );

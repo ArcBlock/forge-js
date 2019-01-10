@@ -1,8 +1,7 @@
 /* eslint no-console:"off" */
 const net = require('net');
-const fs = require('fs');
-const debug = require('debug')(`${require('../package.json').name}:AppServer`);
-const { encode, decode } = require('./socket_data');
+const debug = require('debug')(`${require('../../package.json').name}:AppServer`);
+const { encode, decode } = require('../util/socket_data');
 
 function parseHostPort(value) {
   const [host, port] = value
@@ -36,10 +35,8 @@ function createServer(config, txHandlers) {
 
         const response = encode(
           {
-            value: {
-              verifyTx: {
-                status: 0,
-              },
+            verifyTx: {
+              status: 0,
             },
           },
           'Response'

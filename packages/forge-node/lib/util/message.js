@@ -1,25 +1,11 @@
-const fs = require('fs');
 const util = require('util');
-const toml = require('toml');
-const camelize = require('camelize');
 const camelcase = require('camelcase');
 const { enums, getMessageType } = require('@arcblock/forge-proto');
 const { Any } = require('google-protobuf/google/protobuf/any_pb.js');
-const debug = require('debug')(`${require('../package.json').name}:util`);
+const debug = require('debug')(`${require('../../package.json').name}:util`);
 
 const enumTypes = Object.keys(enums);
 const { isUint8Array } = util.types;
-
-function parseConfig(configPath) {
-  if (!fs.existsSync(configPath)) {
-    throw new Error(`config file not found: ${configPath}`);
-  }
-  try {
-    return camelize(toml.parse(fs.readFileSync(configPath)));
-  } catch (err) {
-    throw new Error(`config file parse failed: ${configPath}`);
-  }
-}
 
 function decodeBinary(data, experimental = false) {
   if (isUint8Array(data)) {
@@ -65,7 +51,7 @@ function createTypeUrl(type) {
 }
 
 function createMessage(type, params) {
-  const { fn: Message, fields } = getMessageType(type);
+  const { fn: Message, fields, oneofs } = getMessageType(type);
   if (!Message || !fields) {
     console.error({ type, params, fields, Message }); // eslint-disable-line
     throw new Error(`Unsupported messageType: ${type}`);
@@ -129,7 +115,6 @@ function createMessage(type, params) {
 
 module.exports = {
   decodeBinary,
-  parseConfig,
   createMessage,
   createTypeUrl,
 };

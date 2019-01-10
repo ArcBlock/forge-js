@@ -3,15 +3,13 @@ const encodeVarint = v => {
     return [v];
   }
 
-  const binary = v.toString(2);
+  const binary = v.toString(2).padStart(8, '0');
   return [parseInt(`1${binary.substr(-7)}`, 2)].concat(encodeVarint(v >> 7));
 };
 
-const pad2Byte = str => str.padStart(8, '0');
-
 const decodeVarint = buffer => {
   const firstByte = buffer[0];
-  const firstBinary = pad2Byte(firstByte.toString(2));
+  const firstBinary = firstByte.toString(2).padStart(8, '0');
   const leading = firstBinary.slice(0, 1);
   const int = parseInt(firstBinary.slice(-7), 2);
   const rest = buffer.slice(1);
@@ -58,6 +56,7 @@ module.exports = {
   decodeZigzag,
 };
 
+// TODO: move these code to unit tests
 // console.log(encodeVarint(127));
 // console.log(encodeVarint(128));
 // console.log(encodeVarint(1000));
