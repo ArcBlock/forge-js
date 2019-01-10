@@ -36,6 +36,11 @@ const config = parseConfig(path.resolve(__dirname, './kv.toml'));
       moniker: 'wangshijun',
       type: walletType,
     });
+    // const result = await sdk.loadWallet({
+    //   address: sender.wallet.address,
+    //   passphrase: '123456',
+    // });
+    // console.log({ sender, result });
     // const receiver = await sdk.createWallet({
     //   passphrase: '123456',
     //   moniker: 'tyrchain',
@@ -75,6 +80,7 @@ const config = parseConfig(path.resolve(__dirname, './kv.toml'));
     const { tx: signedTx } = await sdk.createTx({
       from: sender.wallet.address,
       token: sender.token,
+      // token: result.token,
       nonce: 2,
       itx: kvTx,
     });

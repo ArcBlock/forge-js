@@ -2,8 +2,8 @@
 name = "forge_kv_node"
 version = "0.1.0"
 
-path = "/tmp/.forge_kv_node/app"
-executable = "node server.js"
+path = "/Users/wangshijun/Develop/arcblock/forge-js/packages/forge-node/docs"
+executable = "bin/www"
 logfile = "logs/app.log"
 sock_grpc = ""
 sock_tcp = "tcp://127.0.0.1:9528"
