@@ -2,8 +2,8 @@
 const path = require('path');
 const debug = require('debug')(require('../package.json').name);
 const { enums } = require('@arcblock/forge-proto');
-const { ForgeRpc, parseConfig } = require('../');
-const config = parseConfig(path.resolve(__dirname, './test.toml'));
+const { ForgeRpc, parseConfig } = require('..');
+const config = parseConfig(path.resolve(__dirname, './kv.toml'));
 
 (async () => {
   try {

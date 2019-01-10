@@ -1,17 +1,17 @@
 [app]
-name = "forge_kv"
+name = "forge_kv_node"
 version = "0.1.0"
 
-path = "/tmp/.forge_kv/app"
+path = "/tmp/.forge_kv_node/app"
 executable = "rel/bin/kvstore foreground"
 logfile = "logs/app.log"
 sock_grpc = ""
-sock_tcp = "tcp://127.0.0.1:9527"
+sock_tcp = "tcp://127.0.0.1:9528"
 
 [forge]
 decimal = 16
 proto_version = 1
-path = "/tmp/.forge_kv/core"
+path = "/tmp/.forge_kv_node/core"
 # State db path
 db = "data"
 keystore = "keystore"
@@ -49,8 +49,8 @@ enable_binary_decoding = false
 
 [tendermint]
 version = "0.27.3-01"
-moniker = "forge_kv"
-path = "/tmp/.forge_kv/tendermint"
+moniker = "forge_kv_node"
+path = "/tmp/.forge_kv_node/tendermint"
 
 # relative paths to "path"
 logfile = "logs/tendermint.log"
@@ -75,7 +75,7 @@ app_hash = ""
 
 [ipfs]
 version = "0.4.18"
-path = "/tmp/.forge_kv/ipfs"
+path = "/tmp/.forge_kv_node/ipfs"
 logfile = "logs/ipfs.log"
 storage_max = "10GB"
 bootstrap = []
