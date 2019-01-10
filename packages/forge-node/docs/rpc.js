@@ -36,47 +36,58 @@ const config = parseConfig(path.resolve(__dirname, './kv.toml'));
       moniker: 'wangshijun',
       type: walletType,
     });
-    debug('walletInfo.sender', sender);
+    // const receiver = await sdk.createWallet({
+    //   passphrase: '123456',
+    //   moniker: 'tyrchain',
+    //   type: walletType,
+    // });
 
-    const receiver = await sdk.createWallet({
-      passphrase: '123456',
-      moniker: 'tyrchain',
-      type: walletType,
-    });
-    debug('walletInfo.receiver', receiver);
+    // ForgeCore: Transfer
+    // const transferTx = {
+    //   type: 'TransferTx',
+    //   value: {
+    //     to: receiver.wallet.address,
+    //     value: 100,
+    //   },
+    // };
+    // const { tx } = await sdk.createTx({
+    //   from: sender.wallet.address,
+    //   token: sender.token,
+    //   nonce: 2,
+    //   itx: transferTx,
+    // });
+    // const { hash: transferHash } = await sdk.sendTx({
+    //   tx,
+    //   token: sender.token,
+    //   commit: true,
+    // });
+    // debug('txInfo.sent', { transferHash });
 
-    const itx = {
-      type: 'TransferTx',
+    // Application: KvTx
+    const kvTx = {
+      typeUrl: 'KV/kv',
+      type: 'KvTx',
       value: {
-        to: receiver.wallet.address,
-        value: 100,
+        key: Buffer.from('random'),
+        value: Buffer.from('value'),
       },
     };
-
-    const { tx } = await sdk.createTx({
+    const { tx: signedTx } = await sdk.createTx({
       from: sender.wallet.address,
       token: sender.token,
       nonce: 2,
-      itx,
+      itx: kvTx,
     });
-    debug('txInfo.create', { tx });
-
-    tx.itx = itx;
-    const { hash } = await sdk.sendTx({
-      tx,
-      token: sender.token,
-      commit: true,
-    });
-    debug('txInfo.sent', { hash });
-    return;
+    const { hash: kvHash } = await sdk.sendTx({ tx: signedTx, token: sender.token, commit: true });
+    debug('txInfo.sent', { kvHash });
 
     // StateRpc
-    // const account = await sdk.getAccountState({
-    //   address: 'f525b15c6f31041aa17f1e3e0a436c3c114343956',
-    // });
-    // account.on('data', function({ state }) {
-    //   debug('accountInfo:', state);
-    // });
+    const account = await sdk.getAccountState({
+      address: sender.wallet.address,
+    });
+    account.on('data', function({ state }) {
+      debug('accountInfo:', state);
+    });
   } catch (err) {
     console.error('error', err);
   }

@@ -104,7 +104,7 @@ class ForgeRpc {
     }
 
     const request = createMessage(type, _params || {});
-    debug('createRequest', { type, fields, request: request.toObject() });
+    debug('createRequest', { type, request: request.toObject() });
     return request;
   }
 

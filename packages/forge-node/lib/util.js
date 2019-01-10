@@ -61,11 +61,16 @@ function createTypeUrl(type) {
     return `fs/${type}`;
   }
 
-  return '';
+  return type;
 }
 
 function createMessage(type, params) {
   const { fn: Message, fields } = getMessageType(type);
+  if (!Message || !fields) {
+    console.error({ type, params, fields, Message }); // eslint-disable-line
+    throw new Error(`Unsupported messageType: ${type}`);
+  }
+
   const message = new Message();
   Object.keys(fields).forEach(key => {
     const value = params[key];
@@ -77,7 +82,7 @@ function createMessage(type, params) {
     const set = camelcase(`set_${key}`);
     // enum types
     if (enumTypes.includes(subType)) {
-      debug('createMessage.Enum', { type, subType, key });
+      // debug('createMessage.Enum', { type, subType, key });
       message[set](value);
       return;
     }
@@ -90,13 +95,13 @@ function createMessage(type, params) {
 
     if (subType === 'google.protobuf.Any') {
       const anyMessage = new Any();
-      if (value.typeUrl && value.value) {
+      if (value.typeUrl && value.value && !value.type) {
         // avoid duplicate serialization
         anyMessage.setTypeUrl(value.typeUrl);
-        anyMessage.setValue(value);
+        anyMessage.setValue(Buffer.from(value.value, 'base64'));
       } else {
-        const { value: anyValue, type: anyType } = value;
-        const typeUrl = createTypeUrl(anyType);
+        const { value: anyValue, type: anyType, typeUrl: _typeUrl } = value;
+        const typeUrl = _typeUrl || createTypeUrl(anyType);
         const anyValueBinary = createMessage(anyType, anyValue);
         debug('createMessage.Any', { type, subType, key, anyValue, anyType, typeUrl });
         anyMessage.setTypeUrl(typeUrl);
