@@ -137,5 +137,8 @@ function createMessage(type, params) {
 module.exports = {
   decodeBinary,
   parseConfig,
+  getMessageType,
+  getMessageFields,
   createMessage,
+  createTypeUrl,
 };

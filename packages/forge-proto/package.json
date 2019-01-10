@@ -29,9 +29,10 @@
     "nodejs"
   ],
   "license": "MIT",
-  "main": "src/index.js",
+  "main": "index.js",
   "files": [
-    "src"
+    "index.js",
+    "lib"
   ],
   "repository": {
     "type": "git",
@@ -41,7 +42,7 @@
     "copy": "npm run copy:js && npm run copy:json",
     "copy:js": "rm -f lib/*.js && cp $FORGE_SDK_PROTO_GEN_DIR/*.js lib/ && sh ./tools/patch.sh",
     "copy:json": "rm -f lib/*.json && cp $FORGE_SDK_PROTO_GEN_DIR/*.json lib/",
-    "lint": "eslint src",
+    "lint": "eslint index.js",
     "precommit": "yarn lint",
     "prepush": "yarn lint"
   }
