@@ -3,7 +3,7 @@ name = "forge_kv_node"
 version = "0.1.0"
 
 path = "/tmp/.forge_kv_node/app"
-executable = "rel/bin/kvstore foreground"
+executable = "node server.js"
 logfile = "logs/app.log"
 sock_grpc = ""
 sock_tcp = "tcp://127.0.0.1:9528"

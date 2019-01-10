@@ -1,0 +1,14 @@
+syntax = "proto3";
+package kvstore_abi;
+
+// import "github.com/tendermint/tendermint/libs/common/types.proto";
+import "vendor.proto";
+
+message KvTx {
+  bytes key = 2;
+  bytes value = 3;
+}
+
+message AccountKvState {
+  repeated forge_vendor.KVPair store = 1;
+}
