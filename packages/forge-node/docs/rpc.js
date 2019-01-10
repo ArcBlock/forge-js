@@ -9,6 +9,9 @@ const config = parseConfig(path.resolve(__dirname, './kv.toml'));
   try {
     const sdk = new ForgeRpc(Object.assign({}, config.forge, config.forge.sdk || {}));
 
+    // Append application specific proto for use
+    sdk.addSource(path.resolve(__dirname, 'gen/'), 'kvstore_abi');
+
     // ChainRpc
     // const res = await sdk.getChainInfo();
     // debug('chainInfo', res.info);

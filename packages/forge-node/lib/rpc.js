@@ -1,7 +1,7 @@
 const grpc = require('grpc');
 const camelcase = require('camelcase');
 const { EventEmitter } = require('events');
-const { messages, rpcs, getMessageType, getMessageFields } = require('@arcblock/forge-proto');
+const { messages, rpcs, getMessageType, addSource } = require('@arcblock/forge-proto');
 const { decodeBinary, createMessage } = require('./util');
 const debug = require('debug')(`${require('../package.json').name}:ForgeRpc`);
 
@@ -15,6 +15,8 @@ class ForgeRpc {
 
     this.initRpcClients();
     this.initRpcMethods();
+
+    this.addSource = addSource;
   }
 
   initRpcClients() {
@@ -93,17 +95,16 @@ class ForgeRpc {
    * @memberof ForgeRpc
    */
   createRequest(type, _params) {
-    const RequestMessage = getMessageType(type);
-    if (!RequestMessage) {
+    const { fn: Message, fields } = getMessageType(type);
+    if (!Message) {
       throw new Error(`Unsupported messageType: ${type}`);
     }
-    const fields = getMessageFields(type);
     if (!fields) {
       throw new Error(`Unsupported messageFields: ${type}`);
     }
 
     const request = createMessage(type, _params || {});
-    debug('createRequest', { type, request: request.toObject() });
+    debug('createRequest', { type, fields, request: request.toObject() });
     return request;
   }
 

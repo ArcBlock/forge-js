@@ -3,7 +3,7 @@ const util = require('util');
 const toml = require('toml');
 const camelize = require('camelize');
 const camelcase = require('camelcase');
-const { enums, getMessageType, getMessageFields } = require('@arcblock/forge-proto');
+const { enums, getMessageType } = require('@arcblock/forge-proto');
 const { Any } = require('google-protobuf/google/protobuf/any_pb.js');
 const debug = require('debug')(`${require('../package.json').name}:util`);
 
@@ -65,10 +65,8 @@ function createTypeUrl(type) {
 }
 
 function createMessage(type, params) {
-  const Message = getMessageType(type);
+  const { fn: Message, fields } = getMessageType(type);
   const message = new Message();
-
-  const fields = getMessageFields(type);
   Object.keys(fields).forEach(key => {
     const value = params[key];
     const { type: subType } = fields[key]; // TODO: check for repeated support
@@ -108,8 +106,7 @@ function createMessage(type, params) {
       return;
     }
 
-    const SubMessage = getMessageType(subType);
-    const subFields = getMessageFields(subType);
+    const { fn: SubMessage, fields: subFields } = getMessageType(subType);
     // complex types
     if (SubMessage && subFields) {
       debug(`createMessage.${subType}`, { type, subType, key });
