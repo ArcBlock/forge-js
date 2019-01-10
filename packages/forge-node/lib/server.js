@@ -1,7 +1,8 @@
 /* eslint no-console:"off" */
 const net = require('net');
-const varint = require('varint');
+const fs = require('fs');
 const debug = require('debug')(`${require('../package.json').name}:AppServer`);
+const { encode, decode } = require('./socket_data');
 
 function parseHostPort(value) {
   const [host, port] = value
@@ -27,8 +28,28 @@ function createServer(config, txHandlers) {
     console.log('Client connected', socket.address());
 
     socket.on('data', data => {
-      const bytes = varint.decode(data);
-      console.log('onData', { data, bytes });
+      try {
+        const bytes = decode(data, 'Request');
+        console.log('data.buffer', data);
+        console.log('data.base64', data.toString('base64'));
+        console.log('data.decoded', bytes);
+
+        const response = encode(
+          {
+            value: {
+              verifyTx: {
+                status: 0,
+              },
+            },
+          },
+          'Response'
+        );
+        socket.write(response);
+      } catch (err) {
+        console.log('error', { data, err });
+      }
+
+      // socket.write(encode({ }))
     });
 
     socket.on('end', () => {
