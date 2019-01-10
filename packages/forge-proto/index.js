@@ -116,10 +116,14 @@ const addSource = (baseDir, packageName) => {
 };
 
 // Search for a type and its fields descriptor
-const getMessageType = type => ({
-  fn: get(types, type) || get(vendorTypes, type) || get(extraTypes, type),
-  fields: (get(spec, type) || get(extraSpec, type) || {}).fields,
-});
+const getMessageType = type => {
+  const { fields, oneofs } = (get(spec, type) || get(extraSpec, type) || {});
+  return {
+    fn: get(types, type) || get(vendorTypes, type) || get(extraTypes, type),
+    fields,
+    oneofs,
+  };
+};
 
 module.exports = {
   enums,
