@@ -5,10 +5,7 @@
         "Request": {
           "oneofs": {
             "value": {
-              "oneof": [
-                "verifyTx",
-                "updateState"
-              ]
+              "oneof": ["verifyTx", "updateState"]
             }
           },
           "fields": {
@@ -25,10 +22,7 @@
         "Response": {
           "oneofs": {
             "value": {
-              "oneof": [
-                "verifyTx",
-                "updateState"
-              ]
+              "oneof": ["verifyTx", "updateState"]
             }
           },
           "fields": {
@@ -273,7 +267,7 @@
               "id": 3
             },
             "address": {
-              "type": "bytes",
+              "type": "string",
               "id": 4
             }
           }
@@ -317,7 +311,7 @@
               "id": 9
             },
             "address": {
-              "type": "bytes",
+              "type": "string",
               "id": 10
             },
             "votingPower": {
@@ -329,7 +323,7 @@
         "Validator": {
           "fields": {
             "address": {
-              "type": "bytes",
+              "type": "string",
               "id": 1
             },
             "power": {
@@ -362,7 +356,7 @@
               "id": 1
             },
             "dataHash": {
-              "type": "bytes",
+              "type": "string",
               "id": 2
             },
             "actions": {
@@ -384,7 +378,7 @@
         "AbciContext": {
           "fields": {
             "txHash": {
-              "type": "bytes",
+              "type": "string",
               "id": 1
             },
             "blockHeight": {
@@ -400,7 +394,7 @@
         "Transaction": {
           "fields": {
             "from": {
-              "type": "bytes",
+              "type": "string",
               "id": 1
             },
             "nonce": {
@@ -487,7 +481,7 @@
               "id": 1
             },
             "hash": {
-              "type": "bytes",
+              "type": "string",
               "id": 2
             }
           }
@@ -532,7 +526,7 @@
               "id": 3
             },
             "address": {
-              "type": "bytes",
+              "type": "string",
               "id": 4
             },
             "pk": {
@@ -552,11 +546,11 @@
               "id": 8
             },
             "genesisTx": {
-              "type": "bytes",
+              "type": "string",
               "id": 9
             },
             "renaissanceTx": {
-              "type": "bytes",
+              "type": "string",
               "id": 10
             },
             "genesisTime": {
@@ -568,12 +562,12 @@
               "id": 12
             },
             "migratedTo": {
-              "type": "bytes",
+              "type": "string",
               "id": 13
             },
             "migratedFrom": {
               "rule": "repeated",
-              "type": "bytes",
+              "type": "string",
               "id": 14
             },
             "power": {
@@ -589,11 +583,11 @@
         "AssetState": {
           "fields": {
             "address": {
-              "type": "bytes",
+              "type": "string",
               "id": 1
             },
             "owner": {
-              "type": "bytes",
+              "type": "string",
               "id": 2
             },
             "moniker": {
@@ -601,11 +595,11 @@
               "id": 3
             },
             "genesisTx": {
-              "type": "bytes",
+              "type": "string",
               "id": 9
             },
             "renaissanceTx": {
-              "type": "bytes",
+              "type": "string",
               "id": 10
             },
             "genesisTime": {
@@ -625,7 +619,7 @@
         "ChannelState": {
           "fields": {
             "address": {
-              "type": "bytes",
+              "type": "string",
               "id": 1
             },
             "totalConfirmed": {
@@ -651,11 +645,11 @@
               "id": 6
             },
             "genesisTx": {
-              "type": "bytes",
+              "type": "string",
               "id": 9
             },
             "renaissanceTx": {
-              "type": "bytes",
+              "type": "string",
               "id": 10
             },
             "genesisTime": {
@@ -690,19 +684,14 @@
               "type": "string",
               "id": 4
             },
-            "admins": {
-              "rule": "repeated",
-              "type": "string",
-              "id": 13
-            },
             "tasks": {
               "keyType": "uint64",
               "type": "UpgradeTasks",
-              "id": 14
+              "id": 13
             },
             "data": {
               "type": "google.protobuf.Any",
-              "id": 15
+              "id": 14
             }
           }
         },
@@ -859,7 +848,7 @@
               "id": 1
             },
             "from": {
-              "type": "bytes",
+              "type": "string",
               "id": 2
             },
             "nonce": {
@@ -871,7 +860,7 @@
               "id": 4
             },
             "token": {
-              "type": "bytes",
+              "type": "string",
               "id": 5
             }
           }
@@ -899,7 +888,7 @@
               "id": 2
             },
             "token": {
-              "type": "bytes",
+              "type": "string",
               "id": 3
             },
             "commit": {
@@ -983,7 +972,7 @@
               "id": 1
             },
             "token": {
-              "type": "bytes",
+              "type": "string",
               "id": 2
             },
             "wallet": {
@@ -1011,7 +1000,7 @@
               "id": 1
             },
             "token": {
-              "type": "bytes",
+              "type": "string",
               "id": 2
             }
           }
@@ -1043,7 +1032,7 @@
               "id": 1
             },
             "token": {
-              "type": "bytes",
+              "type": "string",
               "id": 2
             },
             "wallet": {
@@ -1206,7 +1195,7 @@
               "id": 1
             },
             "hash": {
-              "type": "bytes",
+              "type": "string",
               "id": 2
             }
           }
@@ -1214,7 +1203,7 @@
         "RequestLoadFile": {
           "fields": {
             "hash": {
-              "type": "bytes",
+              "type": "string",
               "id": 1
             }
           }
@@ -1371,7 +1360,7 @@
         "TransferTx": {
           "fields": {
             "to": {
-              "type": "bytes",
+              "type": "string",
               "id": 1
             },
             "value": {
@@ -1380,7 +1369,7 @@
             },
             "assets": {
               "rule": "repeated",
-              "type": "bytes",
+              "type": "string",
               "id": 3
             },
             "confirmation": {
@@ -1397,7 +1386,7 @@
             },
             "assets": {
               "rule": "repeated",
-              "type": "bytes",
+              "type": "string",
               "id": 2
             }
           }
@@ -1405,7 +1394,7 @@
         "ExchangeTx": {
           "fields": {
             "to": {
-              "type": "bytes",
+              "type": "string",
               "id": 1
             },
             "sender": {
@@ -1437,11 +1426,11 @@
         "ConfirmTx": {
           "fields": {
             "sender": {
-              "type": "bytes",
+              "type": "string",
               "id": 1
             },
             "hash": {
-              "type": "bytes",
+              "type": "string",
               "id": 2
             }
           }
@@ -1449,11 +1438,11 @@
         "RevokeTx": {
           "fields": {
             "receiver": {
-              "type": "bytes",
+              "type": "string",
               "id": 1
             },
             "hash": {
-              "type": "bytes",
+              "type": "string",
               "id": 2
             }
           }
@@ -1473,7 +1462,7 @@
         "AccountUpgradeTx": {
           "fields": {
             "to": {
-              "type": "bytes",
+              "type": "string",
               "id": 1
             },
             "role": {

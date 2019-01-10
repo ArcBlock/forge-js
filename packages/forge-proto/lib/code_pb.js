@@ -38,7 +38,8 @@ proto.forge_abi.StatusCode = {
   STORAGE_RPC_ERROR: 25,
   NOENT: 26,
   ACCOUNT_MIGRATED: 27,
-  INTERNAL: 500
+  CHANNEL_IS_FULL: 28,
+  INTERNAL: 500,
 };
 
 goog.object.extend(exports, proto.forge_abi);
