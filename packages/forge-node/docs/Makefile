@@ -3,6 +3,7 @@ TOP_DIR=.
 CWD=`pwd`
 FORGE_KV_PATH=/tmp/.forge_kv_node
 FORGE_BIN=~/Develop/arcblock/forge/_build/staging/rel/forge/bin/forge
+# NOTE: FORGE_CONFIG must be an absolute path
 CONFIG_PATH=$(CWD)/kv.toml
 
 TM_BIN_PATH=`which tendermint`
