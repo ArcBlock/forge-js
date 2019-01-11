@@ -63,25 +63,3 @@ module.exports = {
   encodeZigzag,
   decodeZigzag,
 };
-
-// TODO: move these code to unit tests
-// console.log(encodeVarint(127));
-// console.log(encodeVarint(128));
-// console.log(encodeVarint(1000));
-// console.log(encodeVarint(Math.pow(2,15)));
-// console.log(encodeVarint(2));
-
-// console.log(encodeZigzag(1));
-// console.log(encodeZigzag(-1));
-// console.log(encodeZigzag(128));
-// console.log(encodeZigzag(-128));
-// console.log(encodeZigzag(2));
-
-// console.log(decodeVarint([127]));
-// console.log(decodeVarint([128, 1]));
-// console.log(decodeVarint([232, 7]));
-
-// console.log(decodeZigzag([2]));
-// console.log(decodeZigzag([1]));
-// console.log(decodeZigzag([128,2]));
-// console.log(decodeZigzag([255,1]));

@@ -1,27 +1,4 @@
-const path = require('path');
-const { parseConfig, createMessage } = require('../lib/util');
-
-describe('#parseConfig', () => {
-  test('should be a function', () => {
-    expect(typeof parseConfig).toEqual('function');
-  });
-
-  test('should throw error if invalid file', () => {
-    try {
-      parseConfig('./tmp/file');
-    } catch (err) {
-      expect(err).toBeTruthy();
-    }
-  });
-
-  test('should parse config as expected', () => {
-    const config = parseConfig(path.resolve(__dirname, '../docs/kv.toml'));
-    expect(config.app).toBeTruthy();
-    expect(config.forge.decimal).toBeTruthy();
-    expect(config.forge.sdk).toBeTruthy();
-    expect(config.forge.web).toBeTruthy();
-  });
-});
+const { createMessage } = require('../../');
 
 describe('#createMessage', () => {
   test('should create simple message', () => {

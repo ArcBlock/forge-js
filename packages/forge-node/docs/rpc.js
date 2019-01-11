@@ -13,17 +13,17 @@ const config = parseConfig(path.resolve(__dirname, './kv.toml'));
     sdk.addSource(path.resolve(__dirname, 'gen/'), 'kvstore_abi');
 
     // ChainRpc
-    // const res = await sdk.getChainInfo();
-    // debug('chainInfo', res.info);
+    const res = await sdk.getChainInfo();
+    debug('chainInfo', res.info);
 
-    // const stream = sdk.getBlock({ height: 11 });
-    // stream
-    //   .on('data', function({ block }) {
-    //     debug('blockInfo:', block);
-    //   })
-    //   .on('error', err => {
-    //     console.error('error', err);
-    //   });
+    const stream = sdk.getBlock({ height: 11 });
+    stream
+      .on('data', function({ block }) {
+        debug('blockInfo:', block);
+      })
+      .on('error', err => {
+        console.error('error', err);
+      });
 
     // WalletRpc
     const walletType = {

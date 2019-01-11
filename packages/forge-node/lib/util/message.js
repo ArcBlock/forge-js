@@ -51,7 +51,7 @@ function createTypeUrl(type) {
 }
 
 function createMessage(type, params) {
-  const { fn: Message, fields, oneofs } = getMessageType(type);
+  const { fn: Message, fields } = getMessageType(type);
   if (!Message || !fields) {
     console.error({ type, params, fields, Message }); // eslint-disable-line
     throw new Error(`Unsupported messageType: ${type}`);
