@@ -43,7 +43,7 @@ address_format = "base58"
 disabled_tx = ["SysUpgradeTx"]
 
 [forge.web]
-enabled = false
+enabled = true
 
 [forge.sdk]
 enable_binary_decoding = false

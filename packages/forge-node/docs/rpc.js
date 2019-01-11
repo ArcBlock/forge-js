@@ -2,7 +2,7 @@
 const path = require('path');
 const debug = require('debug')(require('../package.json').name);
 const { enums } = require('@arcblock/forge-proto');
-const { ForgeRpc, ForgeApp, parseConfig } = require('..');
+const { ForgeRpc, ForgeApp, parseConfig } = require('../');
 const config = parseConfig(path.resolve(__dirname, './kv.toml'));
 
 // Append application specific proto for use
@@ -14,6 +14,21 @@ ForgeApp.addProtobuf({
     AccountKvState: 'KV/kv_state',
   },
 });
+
+// console.log(
+//   createMessage('RequestCreateTx', {
+//     from: '1234',
+//     token: 'abcd',
+//     nonce: 2,
+//     itx: {
+//       type: 'TransferTx',
+//       value: {
+//         to: '1234',
+//         value: 100,
+//       },
+//     },
+//   }).toObject());
+// return;
 
 (async () => {
   try {

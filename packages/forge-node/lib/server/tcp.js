@@ -1,7 +1,7 @@
 /* eslint no-console:"off" */
 const net = require('net');
 const { enums } = require('@arcblock/forge-proto');
-const { encode, decode } = require('../util/socket_data');
+const { encode, decode, decodeItx } = require('../util/socket_data');
 // const debug = require('debug')(`${require('../../package.json').name}:TCPServer`);
 const debug = console.log;
 
@@ -17,7 +17,6 @@ function parseHostPort(value) {
  * Create new TCP Server to handle transactions from forge-core
  *
  * TODO: make txHandlers to accept more handlers on each request type
- * TODO: decode tx.itx to be used in txHandlers
  *
  * @param {*} config
  * @returns net.Server
@@ -46,6 +45,7 @@ function createServer(config, txHandlers = {}) {
       if (typeof handler === 'function') {
         try {
           // NOTE: tx handlers should not throw error, but return enums.StatusCode
+          decodeItx(payload[type]);
           result = handler(payload[type]);
           debug('dispatchRequest.result', { type, result });
         } catch (err) {
