@@ -1,4 +1,8 @@
 const encodeVarint = v => {
+  if (typeof v !== 'number') {
+    throw new Error('encodeZigzag require v to be a valid number');
+  }
+
   if (v < 128) {
     return [v];
   }
@@ -31,6 +35,10 @@ const decodeVarint = buffer => {
 };
 
 const encodeZigzag = v => {
+  if (typeof v !== 'number') {
+    throw new Error('encodeZigzag require v to be a valid number');
+  }
+
   if (v >= 0) {
     return encodeVarint(v << 1);
   }
@@ -61,11 +69,13 @@ module.exports = {
 // console.log(encodeVarint(128));
 // console.log(encodeVarint(1000));
 // console.log(encodeVarint(Math.pow(2,15)));
+// console.log(encodeVarint(2));
 
 // console.log(encodeZigzag(1));
 // console.log(encodeZigzag(-1));
 // console.log(encodeZigzag(128));
 // console.log(encodeZigzag(-128));
+// console.log(encodeZigzag(2));
 
 // console.log(decodeVarint([127]));
 // console.log(decodeVarint([128, 1]));

@@ -6,9 +6,15 @@ const encode = (data, type) => {
   const message = createMessage(type, data);
   const messageBuffer = Buffer.from(message.serializeBinary());
   const length = messageBuffer.byteLength;
-  const lengthBuffer = Buffer.from([length]);
-  const encoded = encodeZigzag(lengthBuffer);
+  const encoded = encodeZigzag(length);
   const encodedBuffer = Buffer.from(encoded);
+  // console.log({
+  //   message,
+  //   messageBuffer: Uint8Array.from(messageBuffer),
+  //   length,
+  //   encoded,
+  //   encodedBuffer: Uint8Array.from(encodedBuffer),
+  // });
   return Buffer.concat([encodedBuffer, messageBuffer]);
 };
 
@@ -62,3 +68,4 @@ module.exports = {
 //   'Response'
 // );
 // console.log(encoded);
+// console.log(Uint8Array.from(encoded));
