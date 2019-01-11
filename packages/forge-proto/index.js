@@ -18,8 +18,17 @@ const compactSpec = object => {
   return object;
 };
 
-// extract types and services
-const processJs = baseDir => {
+/**
+ * extract types and services from javascript code
+ *
+ * @param {FilePath} baseDir
+ * @returns Object
+ */
+function processJs(baseDir) {
+  if (!fs.existsSync(baseDir)) {
+    throw new Error('ForgeProto.processJs.baseDir: folder does not exist');
+  }
+
   const types = {};
   const vendorTypes = {};
   const services = {};
@@ -54,10 +63,39 @@ const processJs = baseDir => {
     }, {});
 
   return { types, vendorTypes, services, clients };
-};
+}
 
-// extract rpc descriptors
-const processJson = (filePath, packageName) => {
+/**
+ * Generate type_url field for google.protobuf.Any
+ *
+ * @param {*} type
+ * @returns String
+ */
+function createTypeUrls(abi) {
+  return Object.keys(abi).reduce((typeUrls, type) => {
+    let typeUrl = type;
+    if (!/^Request/.test(type) && !/^Response/.test(type)) {
+      if (/Tx$/.test(type)) {
+        typeUrl = `ft/${type.replace(/Tx$/, '')}`;
+      }
+      if (/State$/.test(type)) {
+        typeUrl = `fs/${type}`;
+      }
+    }
+
+    typeUrls[type] = typeUrl;
+    return typeUrls;
+  }, {});
+}
+
+/**
+ * extract rpc descriptors
+ *
+ * @param {*} filePath
+ * @param {*} packageName
+ * @returns Object
+ */
+function processJson(filePath, packageName) {
   const json = fs.existsSync(filePath) ? require(filePath) : json;
   const spec = compactSpec(json);
 
@@ -86,20 +124,24 @@ const processJson = (filePath, packageName) => {
       return rpcs;
     }, {});
 
+  // extract typeUrls
+  const typeUrls = createTypeUrls(abi);
+
   Object.assign(spec, spec[packageName]);
-  return { messages, enums, rpcs, spec };
-};
+  return { messages, enums, rpcs, spec, typeUrls };
+}
 
 const extraTypes = {};
 const extraSpec = {};
+const extraTypeUrls = {};
 const { types, vendorTypes, clients } = processJs(path.resolve(__dirname, './lib/'));
-const { messages, enums, rpcs, spec } = processJson(
+const { messages, enums, rpcs, spec, typeUrls } = processJson(
   path.resolve(__dirname, './lib/spec.json'),
   'forge_abi'
 );
 
 // Append app specific proto definition into search space
-const addSource = ({ baseDir, packageName }) => {
+function addSource({ baseDir, packageName, typeUrls: _typeUrls }) {
   if (!fs.existsSync(baseDir)) {
     throw new Error('baseDir does not exists');
   }
@@ -111,19 +153,38 @@ const addSource = ({ baseDir, packageName }) => {
   if (fs.existsSync(path.join(baseDir, 'spec.json'))) {
     const jsonResult = processJson(path.join(baseDir, 'spec.json'), packageName);
     Object.assign(extraSpec, jsonResult.spec[packageName]);
+    Object.assign(extraTypeUrls, createTypeUrls(jsonResult.spec[packageName]), _typeUrls);
+    // console.log({ typeUrls, extraTypeUrls });
     debug('addSource.spec', jsonResult.spec[packageName]);
   }
-};
+}
 
 // Search for a type and its fields descriptor
-const getMessageType = type => {
+function getMessageType(type) {
   const { fields, oneofs } = get(spec, type) || get(extraSpec, type) || {};
   return {
     fn: get(types, type) || get(vendorTypes, type) || get(extraTypes, type),
     fields,
     oneofs,
   };
-};
+}
+
+function toTypeUrl(type) {
+  return get(typeUrls, type) || get(extraTypeUrls, type);
+}
+
+function fromTypeUrl(url) {
+  let found = Object.entries(typeUrls).find(([, value]) => value === url);
+  if (found) {
+    return found[0];
+  }
+  found = Object.entries(extraTypeUrls).find(([, value]) => value === url);
+  if (found) {
+    return found[0];
+  }
+
+  return null;
+}
 
 module.exports = {
   enums,
@@ -136,5 +197,7 @@ module.exports = {
   processJs,
   processJson,
   getMessageType,
+  toTypeUrl,
+  fromTypeUrl,
   addSource,
 };

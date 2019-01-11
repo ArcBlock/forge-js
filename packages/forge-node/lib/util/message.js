@@ -1,6 +1,6 @@
 const util = require('util');
 const camelcase = require('camelcase');
-const { enums, getMessageType } = require('@arcblock/forge-proto');
+const { enums, getMessageType, toTypeUrl } = require('@arcblock/forge-proto');
 const { Any } = require('google-protobuf/google/protobuf/any_pb.js');
 const debug = require('debug')(`${require('../../package.json').name}:util`);
 
@@ -30,24 +30,6 @@ function decodeBinary(data, experimental = false) {
   });
 
   return data;
-}
-
-/**
- * Generate type_url field for google.protobuf.Any
- *
- * @param {*} type
- * @returns String
- */
-function createTypeUrl(type) {
-  if (/Tx$/.test(type)) {
-    return `ft/${type.replace(/Tx$/, '')}`;
-  }
-
-  if (/State$/.test(type)) {
-    return `fs/${type}`;
-  }
-
-  return type;
 }
 
 function createMessage(type, params) {
@@ -86,8 +68,8 @@ function createMessage(type, params) {
         anyMessage.setTypeUrl(value.typeUrl);
         anyMessage.setValue(Buffer.from(value.value, 'base64'));
       } else {
-        const { value: anyValue, type: anyType, typeUrl: _typeUrl } = value;
-        const typeUrl = _typeUrl || createTypeUrl(anyType);
+        const { value: anyValue, type: anyType } = value;
+        const typeUrl = toTypeUrl(anyType);
         const anyValueBinary = createMessage(anyType, anyValue);
         debug('createMessage.Any', { type, subType, key, anyValue, anyType, typeUrl });
         anyMessage.setTypeUrl(typeUrl);
@@ -116,5 +98,4 @@ function createMessage(type, params) {
 module.exports = {
   decodeBinary,
   createMessage,
-  createTypeUrl,
 };

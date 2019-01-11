@@ -9,6 +9,10 @@ const config = parseConfig(path.resolve(__dirname, './kv.toml'));
 ForgeApp.addProtobuf({
   baseDir: path.resolve(__dirname, 'gen/'),
   packageName: 'kvstore_abi',
+  typeUrls: {
+    KvTx: 'KV/kv',
+    AccountKvState: 'KV/kv_state',
+  },
 });
 
 (async () => {
@@ -73,7 +77,6 @@ ForgeApp.addProtobuf({
 
     // Application: KvTx
     const kvTx = {
-      typeUrl: 'KV/kv',
       type: 'KvTx',
       value: {
         key: Buffer.from('random'),

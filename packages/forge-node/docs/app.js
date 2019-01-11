@@ -11,6 +11,10 @@ const debug = console.log;
 ForgeApp.addProtobuf({
   baseDir: path.resolve(__dirname, 'gen/'),
   packageName: 'kvstore_abi',
+  typeUrls: {
+    KvTx: 'KV/kv',
+    AccountKvState: 'KV/kv_state',
+  },
 });
 
 const server = ForgeApp.createServer(config.app, {
