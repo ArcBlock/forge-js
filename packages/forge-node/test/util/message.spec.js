@@ -1,4 +1,4 @@
-const { createMessage } = require('../../');
+const { createMessage, decodeAny } = require('../../');
 
 describe('#createMessage', () => {
   test('should create simple message', () => {
@@ -61,6 +61,66 @@ describe('#createMessage', () => {
     expect(states[1].address).toEqual('states2');
   });
 
+  test('should support complex repeated fields', () => {
+    const params = {
+      code: 0,
+      states: [{ address: 'states1', nonce: 24 }],
+    };
+
+    const message = createMessage('ResponseUpdateState', params);
+    expect(message.getCode()).toEqual(params.code);
+    const states = message.getStatesList().map(x => x.toObject());
+    expect(states[0].address).toEqual('states1');
+  });
+
+  test('should support nested complex repeated fields', () => {
+    const params = {
+      updateState: {
+        code: 0,
+        states: [
+          {
+            address: 'states1',
+            nonce: 24,
+            data: {
+              type: 'AccountKvState',
+              value: {
+                store: [{ key: '123', value: '456' }, { key: '234', value: '567' }],
+              },
+            },
+          },
+          {
+            address: 'states2',
+            nonce: 32,
+            data: {
+              type: 'AccountKvState',
+              value: {
+                store: [{ key: '123', value: '456' }, { key: '234', value: '567' }],
+              },
+            },
+          },
+        ],
+      },
+    };
+
+    const message = createMessage('Response', params);
+    const states = message
+      .getUpdateState()
+      .getStatesList()
+      .map(x => x.toObject());
+    expect(states.length).toEqual(2);
+    const stores = states.map(x => decodeAny(x.data).value.storeList);
+    stores.forEach(store => {
+      expect(store.length).toEqual(2);
+      expect(store[0].key).toBeTruthy();
+      expect(store[0].value).toBeTruthy();
+      expect(store[1].key).toBeTruthy();
+      expect(store[1].value).toBeTruthy();
+    });
+    // TODO: check key value match
+    // console.log(require('util').inspect(stores, { depth: 5 }));
+  });
+
   // TODO: support timestamp
   // TODO: support biguint/bigsint
+  // TODO: support encodeAny and decodeAny
 });

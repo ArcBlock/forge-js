@@ -1,3 +1,4 @@
+/* eslint no-console:"off" */
 const util = require('util');
 const camelcase = require('camelcase');
 const { enums, getMessageType, toTypeUrl, fromTypeUrl } = require('@arcblock/forge-proto');
@@ -41,6 +42,11 @@ function decodeBinary(data, experimental = false) {
  * @returns Message
  */
 function createMessage(type, params) {
+  if (!type && !params) {
+    console.log({ type, params });
+    return;
+  }
+
   const { fn: Message, fields } = getMessageType(type);
   if (!Message || !fields) {
     console.error({ type, params, fields, Message }); // eslint-disable-line
@@ -48,6 +54,13 @@ function createMessage(type, params) {
   }
 
   const message = new Message();
+
+  // Fast return on empty data
+  if (!params) {
+    return message;
+  }
+
+  // Attach each field to message
   Object.keys(fields).forEach(key => {
     const value = params[key];
     const { type: subType, rule } = fields[key];
@@ -57,42 +70,46 @@ function createMessage(type, params) {
 
     const fn = camelcase(rule === 'repeated' ? `add_${key}` : `set_${key}`);
     if (typeof message[fn] !== 'function') {
-      throw new Error(`Unexpected field names ${JSON.stringify({ type, key, subType, fn })}`);
+      throw new Error(`Unexpected field names ${JSON.stringify({ type, key, subType, fn, rule })}`);
     }
 
     const values = rule === 'repeated' ? value : [value];
-    values.forEach(v => {
-      // enum types
-      if (enumTypes.includes(subType)) {
-        // debug('createMessage.Enum', { type, subType, key });
+    try {
+      values.forEach(v => {
+        // enum types
+        if (enumTypes.includes(subType)) {
+          // debug('createMessage.Enum', { type, subType, key });
+          message[fn](v);
+          return;
+        }
+
+        // FIXME: google builtin types: Timestamp
+        if (subType === 'google.protobuf.Timestamp') {
+          message[fn](v);
+          return;
+        }
+
+        if (subType === 'google.protobuf.Any') {
+          message[fn](encodeAny(v));
+          return;
+        }
+
+        const { fn: SubMessage, fields: subFields } = getMessageType(subType);
+        // complex types
+        if (SubMessage && subFields) {
+          debug(`createMessage.${subType}`, { type, subType, key });
+          const subMessage = createMessage(subType, v);
+          message[fn](subMessage);
+          return;
+        }
+
+        // primitive types
         message[fn](v);
-        return;
-      }
-
-      // FIXME: google builtin types: Timestamp
-      if (subType === 'google.protobuf.Timestamp') {
-        message[fn](v);
-        return;
-      }
-
-      if (subType === 'google.protobuf.Any') {
-        const anyMessage = encodeAny(v);
-        message[fn](anyMessage);
-        return;
-      }
-
-      const { fn: SubMessage, fields: subFields } = getMessageType(subType);
-      // complex types
-      if (SubMessage && subFields) {
-        debug(`createMessage.${subType}`, { type, subType, key });
-        const subMessage = createMessage(subType, v);
-        message[fn](subMessage);
-        return;
-      }
-
-      // primitive types
-      message[fn](v);
-    });
+      });
+    } catch (err) {
+      debug('createMessage.processField.error', { type, key, subType, fn, rule, values, err });
+      throw err;
+    }
   });
 
   return message;
