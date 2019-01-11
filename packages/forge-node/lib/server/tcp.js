@@ -1,7 +1,6 @@
 /* eslint no-console:"off" */
 const net = require('net');
-const { enums } = require('@arcblock/forge-proto');
-const { encode, decode, decodeItx } = require('../util/socket_data');
+const { encode, decode, decodePayload } = require('../util/socket_data');
 // const debug = require('debug')(`${require('../../package.json').name}:TCPServer`);
 const debug = console.log;
 
@@ -33,44 +32,61 @@ function createServer(config, txHandlers = {}) {
     console.log('Client connected', socket.address());
 
     const sendResponse = response => {
-      const encodedResponse = encode(response, 'Response');
-      debug('sendResponse', { response, encoded: encodedResponse });
-      socket.write(encodedResponse);
+      try {
+        const encodedResponse = encode(response, 'Response');
+        debug('sendResponse', { response, encoded: encodedResponse });
+        socket.write(encodedResponse);
+      } catch (err) {
+        debug('sendResponse.error', { response, err });
+      }
     };
 
     // Identify request here and hook into txHandlers
-    const dispatchRequest = (payload, type) => {
+    const dispatchRequest = async (payload, type) => {
+      debug('x'.repeat(80));
+      debug('dispatchRequest.start', { type });
       const handler = txHandlers[type];
+      const defaultResults = {
+        verifyTx: { result: 0 },
+        updateState: { code: 0 },
+      };
+
       let result = {};
       if (typeof handler === 'function') {
         try {
           // NOTE: tx handlers should not throw error, but return enums.StatusCode
-          decodeItx(payload[type]);
-          result = handler(payload[type]);
+          decodePayload(payload[type]);
+          result = await handler(...Object.values(payload[type]));
           debug('dispatchRequest.result', { type, result });
         } catch (err) {
-          console.error('dispatchRequest.error', { payload, type, err });
+          debug('dispatchRequest.error', { payload, type, err });
+          result = defaultResults[type];
         }
+      } else {
+        debug('dispatchRequest.fallback', { type });
+        result = defaultResults[type];
       }
-      // Fallback on success if no handler provided
+
       // NOTE: Handler returned data will be attached to response here
-      sendResponse({ [type]: Object.assign({ status: enums.StatusCode.OK }, result || {}) });
+      sendResponse({ [type]: result });
     };
 
     socket.on('data', buffer => {
       try {
+        debug('');
+        debug('='.repeat(80));
         const payload = decode(buffer, 'Request');
         debug('request', { buffer, bufferB64: buffer.toString('base64'), payload });
         Object.keys(payload)
           .filter(x => !!payload[x])
           .forEach(x => dispatchRequest(payload, x));
       } catch (err) {
-        console.log('TCPServer.onData.error', { buffer: buffer.toString('base64'), err });
+        debug('TCPServer.onData.error', { buffer: buffer.toString('base64'), err });
       }
     });
 
     socket.on('end', () => {
-      console.log('Client disconnected', socket.address());
+      debug('Client disconnected', socket.address());
     });
   });
 

@@ -32,38 +32,37 @@ ForgeApp.addProtobuf({
 
 (async () => {
   try {
-    const sdk = new ForgeRpc(Object.assign({}, config.forge, config.forge.sdk || {}));
+    const client = new ForgeRpc(Object.assign({}, config.forge, config.forge.sdk || {}));
+    const sender = 'fa2ebd8b2aabf79b40789bc0fc9f46055adb2b68a';
+    const passphrase = '123456';
+    const { token } = await client.loadWallet({ address: sender, passphrase });
 
     // ChainRpc
-    const res = await sdk.getChainInfo();
-    debug('chainInfo', res.info);
+    // const res = await client.getChainInfo();
+    // debug('chainInfo', res.info);
 
-    const stream = sdk.getBlock({ height: 11 });
-    stream
-      .on('data', function({ block }) {
-        debug('blockInfo:', block);
-      })
-      .on('error', err => {
-        console.error('error', err);
-      });
+    // const stream = client.getBlock({ height: 11 });
+    // stream
+    //   .on('data', function({ block }) {
+    //     debug('blockInfo:', block);
+    //   })
+    //   .on('error', err => {
+    //     console.error('error', err);
+    //   });
 
-    // WalletRpc
-    const walletType = {
-      pk: enums.KeyType.SECP256K1,
-      hash: enums.HashType.KECCAK,
-      address: enums.EncodingType.BASE16,
-    };
-    const sender = await sdk.createWallet({
-      passphrase: '123456',
-      moniker: 'wangshijun',
-      type: walletType,
-    });
-    // const result = await sdk.loadWallet({
-    //   address: sender.wallet.address,
+    // // WalletRpc
+    // const walletType = {
+    //   pk: enums.KeyType.SECP256K1,
+    //   hash: enums.HashType.KECCAK,
+    //   address: enums.EncodingType.BASE16,
+    // };
+    // const sender = await client.createWallet({
     //   passphrase: '123456',
+    //   moniker: 'wangshijun',
+    //   type: walletType,
     // });
     // console.log({ sender, result });
-    // const receiver = await sdk.createWallet({
+    // const receiver = await client.createWallet({
     //   passphrase: '123456',
     //   moniker: 'tyrchain',
     //   type: walletType,
@@ -77,43 +76,46 @@ ForgeApp.addProtobuf({
     //     value: 100,
     //   },
     // };
-    // const { tx } = await sdk.createTx({
+    // const { tx } = await client.createTx({
     //   from: sender.wallet.address,
     //   token: sender.token,
     //   nonce: 2,
     //   itx: transferTx,
     // });
-    // const { hash: transferHash } = await sdk.sendTx({
+    // const { hash: transferHash } = await client.sendTx({
     //   tx,
     //   token: sender.token,
     //   commit: true,
     // });
     // debug('txInfo.sent', { transferHash });
 
-    // Application: KvTx
-    const kvTx = {
-      type: 'KvTx',
-      value: {
-        key: Buffer.from('random'),
-        value: Buffer.from('value'),
-      },
-    };
-    const { tx: signedTx } = await sdk.createTx({
-      from: sender.wallet.address,
-      token: sender.token,
-      // token: result.token,
-      nonce: 2,
-      itx: kvTx,
+    const account = await client.getAccountState({
+      // address: sender.wallet.address,
+      address: sender,
     });
-    const { hash: kvHash } = await sdk.sendTx({ tx: signedTx, token: sender.token, commit: true });
-    debug('txInfo.sent', { kvHash });
-
-    // StateRpc
-    const account = await sdk.getAccountState({
-      address: sender.wallet.address,
-    });
-    account.on('data', function({ state }) {
+    account.on('data', async ({ state }) => {
       debug('accountInfo:', state);
+      const kvTx = {
+        type: 'KvTx',
+        value: {
+          key: Buffer.from('random'),
+          value: Buffer.from('value'),
+        },
+      };
+      const { tx: signedTx } = await client.createTx({
+        // from: sender.wallet.address,
+        // token: sender.token,
+        from: sender,
+        token,
+        nonce: state.nonce,
+        itx: kvTx,
+      });
+      const { hash: kvHash } = await client.sendTx({
+        tx: signedTx,
+        token: sender.token,
+        commit: true,
+      });
+      debug('txInfo.sent', { kvHash });
     });
   } catch (err) {
     console.error('error', err);

@@ -1,5 +1,5 @@
-const { getMessageType, fromTypeUrl } = require('@arcblock/forge-proto');
-const { createMessage } = require('./message');
+const { getMessageType } = require('@arcblock/forge-proto');
+const { createMessage, decodeAny } = require('./message');
 const { encodeZigzag, decodeZigzag } = require('./varint');
 
 function encode(data, type) {
@@ -50,24 +50,19 @@ function decode(buffer, type) {
 }
 
 /**
- * Decode tx.itx for direct use
+ * Decode any fields in payload for direct use
  *
  * @param {Object} payload
  * @returns payload
  */
-function decodeItx(payload) {
-  if (!payload.tx || !payload.tx.itx || !payload.tx.itx.typeUrl || !payload.tx.itx.value) {
-    return payload;
+function decodePayload(payload) {
+  if (payload.tx && payload.tx.itx && payload.tx.itx.typeUrl && payload.tx.itx.value) {
+    payload.tx.itx = decodeAny(payload.tx.itx);
   }
 
-  const { typeUrl, value } = payload.tx.itx;
-  const type = fromTypeUrl(typeUrl);
-  const { fn: Message } = getMessageType(type);
-  const decoded = Message.deserializeBinary(Buffer.from(value, 'base64'));
-  payload.tx.itx = {
-    type,
-    value: decoded.toObject(),
-  };
+  if (payload.sender && payload.sender.data) {
+    payload.sender.data = decodeAny(payload.sender.data);
+  }
 
   return payload;
 }
@@ -81,5 +76,5 @@ module.exports = {
   encode,
   decode,
   decodeStream,
-  decodeItx,
+  decodePayload,
 };

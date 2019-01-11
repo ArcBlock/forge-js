@@ -1,8 +1,9 @@
 const util = require('util');
 const camelcase = require('camelcase');
-const { enums, getMessageType, toTypeUrl } = require('@arcblock/forge-proto');
+const { enums, getMessageType, toTypeUrl, fromTypeUrl } = require('@arcblock/forge-proto');
 const { Any } = require('google-protobuf/google/protobuf/any_pb.js');
 const debug = require('debug')(`${require('../../package.json').name}:util`);
+// const debug = console.log;
 
 const enumTypes = Object.keys(enums);
 const { isUint8Array } = util.types;
@@ -32,6 +33,13 @@ function decodeBinary(data, experimental = false) {
   return data;
 }
 
+/**
+ * Create an encoded Typed message with specified data
+ *
+ * @param {*} type
+ * @param {*} params
+ * @returns Message
+ */
 function createMessage(type, params) {
   const { fn: Message, fields } = getMessageType(type);
   if (!Message || !fields) {
@@ -42,60 +50,104 @@ function createMessage(type, params) {
   const message = new Message();
   Object.keys(fields).forEach(key => {
     const value = params[key];
-    const { type: subType } = fields[key]; // TODO: check for repeated support
+    const { type: subType, rule } = fields[key];
     if (value === undefined) {
       return;
     }
 
-    const set = camelcase(`set_${key}`);
-    // enum types
-    if (enumTypes.includes(subType)) {
-      // debug('createMessage.Enum', { type, subType, key });
-      message[set](value);
-      return;
+    const fn = camelcase(rule === 'repeated' ? `add_${key}` : `set_${key}`);
+    if (typeof message[fn] !== 'function') {
+      throw new Error(`Unexpected field names ${JSON.stringify({ type, key, subType, fn })}`);
     }
 
-    // FIXME: google builtin types: Timestamp
-    if (subType === 'google.protobuf.Timestamp') {
-      message[set](value);
-      return;
-    }
-
-    if (subType === 'google.protobuf.Any') {
-      const anyMessage = new Any();
-      if (value.typeUrl && value.value && !value.type) {
-        // avoid duplicate serialization
-        anyMessage.setTypeUrl(value.typeUrl);
-        anyMessage.setValue(Buffer.from(value.value, 'base64'));
-      } else {
-        const { value: anyValue, type: anyType } = value;
-        const typeUrl = toTypeUrl(anyType);
-        const anyValueBinary = createMessage(anyType, anyValue);
-        debug('createMessage.Any', { type, subType, key, anyValue, anyType, typeUrl });
-        anyMessage.setTypeUrl(typeUrl);
-        anyMessage.setValue(anyValueBinary.serializeBinary());
+    const values = rule === 'repeated' ? value : [value];
+    values.forEach(v => {
+      // enum types
+      if (enumTypes.includes(subType)) {
+        // debug('createMessage.Enum', { type, subType, key });
+        message[fn](v);
+        return;
       }
-      message[set](anyMessage);
-      return;
-    }
 
-    const { fn: SubMessage, fields: subFields } = getMessageType(subType);
-    // complex types
-    if (SubMessage && subFields) {
-      debug(`createMessage.${subType}`, { type, subType, key });
-      const subMessage = createMessage(subType, value);
-      message[set](subMessage);
-      return;
-    }
+      // FIXME: google builtin types: Timestamp
+      if (subType === 'google.protobuf.Timestamp') {
+        message[fn](v);
+        return;
+      }
 
-    // primitive types
-    message[set](value);
+      if (subType === 'google.protobuf.Any') {
+        const anyMessage = encodeAny(v);
+        message[fn](anyMessage);
+        return;
+      }
+
+      const { fn: SubMessage, fields: subFields } = getMessageType(subType);
+      // complex types
+      if (SubMessage && subFields) {
+        debug(`createMessage.${subType}`, { type, subType, key });
+        const subMessage = createMessage(subType, v);
+        message[fn](subMessage);
+        return;
+      }
+
+      // primitive types
+      message[fn](v);
+    });
   });
 
   return message;
 }
 
+/**
+ * Decode an google.protobuf.Any%{ typeUrl, value } => { type, value }
+ *
+ * @param {*} data encoded data object
+ * @returns Object%{type, value}
+ */
+function decodeAny(data) {
+  if (!data) {
+    return;
+  }
+
+  const { typeUrl, value } = data;
+  const type = fromTypeUrl(typeUrl);
+  const { fn: Message } = getMessageType(type);
+  const buffer = Buffer.isBuffer(value) ? value : Buffer.from(value, 'base64');
+  const decoded = Message.deserializeBinary(buffer);
+  return { type, value: decoded.toObject() };
+}
+
+/**
+ * Encode { type, value } => google.protobuf.Any%{ typeUrl, value }
+ * Does nothing on already encoded message
+ *
+ * @param {*} data
+ * @returns Object
+ */
+function encodeAny(data) {
+  if (!data) {
+    return;
+  }
+
+  const anyMessage = new Any();
+  if (data.typeUrl && data.value && !data.type) {
+    // avoid duplicate serialization
+    anyMessage.setTypeUrl(data.typeUrl);
+    anyMessage.setValue(Buffer.from(data.value, 'base64'));
+  } else {
+    const { value: anyValue, type: anyType } = data;
+    const typeUrl = toTypeUrl(anyType);
+    const anyValueBinary = createMessage(anyType, anyValue);
+    anyMessage.setTypeUrl(typeUrl);
+    anyMessage.setValue(anyValueBinary.serializeBinary());
+  }
+
+  return anyMessage;
+}
+
 module.exports = {
   decodeBinary,
   createMessage,
+  decodeAny,
+  encodeAny,
 };

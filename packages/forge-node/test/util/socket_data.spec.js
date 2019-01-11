@@ -1,4 +1,4 @@
-const { encode, decode, decodeItx } = require('../../lib/util/socket_data');
+const { encode, decode, decodePayload } = require('../../lib/util/socket_data');
 const encoded =
   'lgcKyAMKkQEKKWZkNWY1NTZiOTA0MzI3MjM2NjUzNjNmZmI1MGRkZmJmNWM3ZmQ5MjY4EAIaRjBEAiBKFpCXqzA4hqXxpe4CeWKuWNUN5nqYqFagwpTeiNZotAIgD3qLWb5iQyxRXzTrP6SUctROTeIwaq0bKrOn7KpDV7wgAToYCgVLVi9rdhIPEgZyYW5kb20aBXZhbHVlErECCgoKCA3gtrOnZAAAEAIYASIpZmQ1ZjU1NmI5MDQzMjcyMzY2NTM2M2ZmYjUwZGRmYmY1YzdmZDkyNjgqQQRwfqJbwpk4OipEaGYBQeLbBGMY6QlTt1iIeLSrv+dxFQ4B+SgHODpE8ImRZ1eO6AzYTI9+A61a7j6fsSwUQNoPMgIIAToKd2FuZ3NoaWp1bkpAQjkwQkVDMjgzQTEwOUFBQjY2RjBCMjE0ODQ4ODVERkY0NzRDNUQ1N0VFRTlBQUY1OEEyNjYzOENDN0M4MURGRVJAQjkwQkVDMjgzQTEwOUFBQjY2RjBCMjE0ODQ4ODVERkY0NzRDNUQ1N0VFRTlBQUY1OEEyNjYzOENDN0M4MURGRVoMCIHb3OEFEJOv6bYBYgwIgdvc4QUQk6/ptgF4gAE=';
 
@@ -40,9 +40,9 @@ describe('#decode', () => {
   });
 });
 
-describe('#decodeItx', () => {
+describe('#decodePayload', () => {
   test('should be a function', () => {
-    expect(typeof decodeItx).toEqual('function');
+    expect(typeof decodePayload).toEqual('function');
   });
 
   test('should decode as expected', () => {
@@ -55,7 +55,7 @@ describe('#decodeItx', () => {
         token: 'abcd',
       },
     };
-    const { tx } = decodeItx(payload);
+    const { tx } = decodePayload(payload);
     expect(tx.itx.type).toEqual('TransferTx');
     expect(typeof tx.itx.value).toEqual('object');
     expect(tx.itx.value.to).toEqual('1234');
