@@ -1,7 +1,9 @@
 /* eslint no-console:"off" */
 const net = require('net');
-const debug = require('debug')(`${require('../../package.json').name}:AppServer`);
+const { enums } = require('@arcblock/forge-proto');
 const { encode, decode } = require('../util/socket_data');
+// const debug = require('debug')(`${require('../../package.json').name}:TCPServer`);
+const debug = console.log;
 
 function parseHostPort(value) {
   const [host, port] = value
@@ -14,39 +16,57 @@ function parseHostPort(value) {
 /**
  * Create new TCP Server to handle transactions from forge-core
  *
+ * TODO: make txHandlers to accept more handlers on each request type
+ * TODO: decode tx.itx to be used in txHandlers
+ *
  * @param {*} config
  * @returns net.Server
  */
-function createServer(config, txHandlers) {
+function createServer(config, txHandlers = {}) {
   const { host, port } = parseHostPort(config.sockTcp);
 
   const server = net.createServer();
 
   server.on('connection', socket => {
+    // TODO: do we need to set encoding for this connection
     // socket.setEncoding('binary');
+
     console.log('Client connected', socket.address());
 
-    socket.on('data', data => {
-      try {
-        const bytes = decode(data, 'Request');
-        console.log('data.buffer', data);
-        console.log('data.base64', data.toString('base64'));
-        console.log('data.decoded', bytes);
+    const sendResponse = response => {
+      const encodedResponse = encode(response, 'Response');
+      debug('sendResponse', { response, encoded: encodedResponse });
+      socket.write(encodedResponse);
+    };
 
-        const response = encode(
-          {
-            verifyTx: {
-              status: 0,
-            },
-          },
-          'Response'
-        );
-        socket.write(response);
-      } catch (err) {
-        console.log('error', { data, err });
+    // Identify request here and hook into txHandlers
+    const dispatchRequest = (payload, type) => {
+      const handler = txHandlers[type];
+      let result = {};
+      if (typeof handler === 'function') {
+        try {
+          // NOTE: tx handlers should not throw error, but return enums.StatusCode
+          result = handler(payload[type]);
+          debug('dispatchRequest.result', { type, result });
+        } catch (err) {
+          console.error('dispatchRequest.error', { payload, type, err });
+        }
       }
+      // Fallback on success if no handler provided
+      // NOTE: Handler returned data will be attached to response here
+      sendResponse({ [type]: Object.assign({ status: enums.StatusCode.OK }, result || {}) });
+    };
 
-      // socket.write(encode({ }))
+    socket.on('data', buffer => {
+      try {
+        const payload = decode(buffer, 'Request');
+        debug('request', { buffer, bufferB64: buffer.toString('base64'), payload });
+        Object.keys(payload)
+          .filter(x => !!payload[x])
+          .forEach(x => dispatchRequest(payload, x));
+      } catch (err) {
+        console.log('TCPServer.onData.error', { buffer: buffer.toString('base64'), err });
+      }
     });
 
     socket.on('end', () => {
