@@ -2,15 +2,18 @@
 const path = require('path');
 const debug = require('debug')(require('../package.json').name);
 const { enums } = require('@arcblock/forge-proto');
-const { ForgeRpc, parseConfig } = require('..');
+const { ForgeRpc, ForgeApp, parseConfig } = require('..');
 const config = parseConfig(path.resolve(__dirname, './kv.toml'));
+
+// Append application specific proto for use
+ForgeApp.addProtobuf({
+  baseDir: path.resolve(__dirname, 'gen/'),
+  packageName: 'kvstore_abi',
+});
 
 (async () => {
   try {
     const sdk = new ForgeRpc(Object.assign({}, config.forge, config.forge.sdk || {}));
-
-    // Append application specific proto for use
-    sdk.addSource(path.resolve(__dirname, 'gen/'), 'kvstore_abi');
 
     // ChainRpc
     const res = await sdk.getChainInfo();

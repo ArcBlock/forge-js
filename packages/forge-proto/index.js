@@ -99,7 +99,7 @@ const { messages, enums, rpcs, spec } = processJson(
 );
 
 // Append app specific proto definition into search space
-const addSource = (baseDir, packageName) => {
+const addSource = ({ baseDir, packageName }) => {
   if (!fs.existsSync(baseDir)) {
     throw new Error('baseDir does not exists');
   }
@@ -117,7 +117,7 @@ const addSource = (baseDir, packageName) => {
 
 // Search for a type and its fields descriptor
 const getMessageType = type => {
-  const { fields, oneofs } = (get(spec, type) || get(extraSpec, type) || {});
+  const { fields, oneofs } = get(spec, type) || get(extraSpec, type) || {};
   return {
     fn: get(types, type) || get(vendorTypes, type) || get(extraTypes, type),
     fields,

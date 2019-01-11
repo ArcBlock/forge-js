@@ -1,7 +1,7 @@
 module.exports = Object.assign(
   {
     ForgeRpc: require('./lib/rpc'),
-    TCPServer: require('./lib/server/tcp'),
+    ForgeApp: require('./lib/app'),
   },
   require('./lib/util/config'),
   require('./lib/util/message'),

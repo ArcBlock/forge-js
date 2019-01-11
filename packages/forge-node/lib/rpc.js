@@ -1,7 +1,7 @@
 const grpc = require('grpc');
 const camelcase = require('camelcase');
 const { EventEmitter } = require('events');
-const { messages, rpcs, getMessageType, addSource } = require('@arcblock/forge-proto');
+const { messages, rpcs, getMessageType } = require('@arcblock/forge-proto');
 const { decodeBinary, createMessage } = require('./util/message');
 const debug = require('debug')(`${require('../package.json').name}:ForgeRpc`);
 
@@ -15,8 +15,6 @@ class ForgeRpc {
 
     this.initRpcClients();
     this.initRpcMethods();
-
-    this.addSource = addSource;
   }
 
   initRpcClients() {
