@@ -2,10 +2,10 @@ SHELL=/bin/bash
 TOP_DIR=.
 CWD=`pwd`
 FORGE_KV_PATH=/tmp/.forge_kv_node
-FORGE_BIN=~/Develop/arcblock/forge/_build/staging/rel/forge/bin/forge
 # NOTE: FORGE_CONFIG must be an absolute path
 CONFIG_PATH=$(CWD)/kv.toml
 
+FORGE_BIN_PATH=`which forge`
 TM_BIN_PATH=`which tendermint`
 IPFS_BIN_PATH=`which ipfs`
 
@@ -22,7 +22,7 @@ prepare: clean
 
 run:
 	@echo "Running forge for kv app..."
-	@FORGE_CONFIG=${CONFIG_PATH} ${FORGE_BIN} console
+	@FORGE_CONFIG=${CONFIG_PATH} ${FORGE_BIN_PATH} console
 
 clean:
 	@echo "Cleaning the build..."

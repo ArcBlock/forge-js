@@ -1,13 +1,11 @@
 #!/usr/bin/env node
 
 /* eslint no-console:"off" */
-process.env.DEBUG = '@arcblock/*';
 const path = require('path');
-const { ForgeApp, parseConfig } = require('../../');
 const { enums, fromTypeUrl } = require('@arcblock/forge-proto');
+const { ForgeApp, parseConfig } = require('@arcblock/forge-node');
 
-const debug = require('debug')(`${require('../../package.json').name}:App`);
-const config = parseConfig(path.resolve(__dirname, './kv.toml'));
+const config = parseConfig(path.resolve(__dirname, './forge.toml'));
 
 ForgeApp.addProtobuf({
   baseDir: path.resolve(__dirname, 'gen/'),
@@ -23,7 +21,7 @@ const { OK, INSUFFICIENT_DATA, INVALID_SENDER_STATE } = enums.StatusCode;
 const server = ForgeApp.createServer(config.app, {
   async verifyTx(tx, senderState) {
     const kvPair = tx.itx.value;
-    debug('TxHandler.verifyTx', kvPair);
+    console.log('TxHandler.verifyTx', kvPair);
 
     if (!kvPair.key) {
       return { result: INSUFFICIENT_DATA };
@@ -57,12 +55,12 @@ const server = ForgeApp.createServer(config.app, {
    */
   async updateState(tx, senderState) {
     const kvPair = tx.itx.value;
-    debug('TxHandler.updateState', { kvPair, store: senderState.data.value });
+    console.log('TxHandler.updateState', { kvPair, store: senderState.data.value });
 
     // compose new store
     const { typeUrl, value: prev } = senderState.data || {};
     const storeList = ((prev ? prev.storeList : []) || []).concat([kvPair]);
-    debug('TxHandler.updateState.store', require('util').inspect(storeList, { depth: 8 }));
+    console.log('TxHandler.updateState.store', require('util').inspect(storeList, { depth: 8 }));
 
     // reset account state to new store
     senderState.data = {

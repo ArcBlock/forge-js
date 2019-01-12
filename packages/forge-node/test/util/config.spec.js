@@ -15,7 +15,7 @@ describe('#parseConfig', () => {
   });
 
   test('should parse config as expected', () => {
-    const config = parseConfig(path.resolve(__dirname, '../../examples/kvstore/kv.toml'));
+    const config = parseConfig(path.resolve(__dirname, '../../../../examples/kvstore/forge.toml'));
     expect(config.app).toBeTruthy();
     expect(config.forge.decimal).toBeTruthy();
     expect(config.forge.sdk).toBeTruthy();
