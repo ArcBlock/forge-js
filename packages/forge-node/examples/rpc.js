@@ -85,7 +85,7 @@ ForgeApp.addProtobuf({
         type: 'KvTx',
         value: {
           key: `key_${Math.round(Math.random() * 10000)}`,
-          value: 'value',
+          value: `value_${Math.round(Math.random() * 1000000)}`,
         },
       };
       console.log('accountInfo.kvTx:', kvTx);
