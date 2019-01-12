@@ -1,0 +1,41 @@
+{
+  "nested": {
+    "kvstore_abi": {
+      "nested": {
+        "KvTx": {
+          "fields": {
+            "key": {
+              "type": "string",
+              "id": 2
+            },
+            "value": {
+              "type": "string",
+              "id": 3
+            }
+          }
+        },
+        "KVPair": {
+          "fields": {
+            "key": {
+              "type": "string",
+              "id": 1
+            },
+            "value": {
+              "type": "string",
+              "id": 2
+            }
+          }
+        },
+        "AccountKvState": {
+          "fields": {
+            "store": {
+              "rule": "repeated",
+              "type": "KVPair",
+              "id": 1
+            }
+          }
+        }
+      }
+    }
+  }
+}
