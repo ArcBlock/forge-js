@@ -26,16 +26,51 @@ npm install @arcblock/forge-node
 yarn add @arcblock/forge-node
 ```
 
-
 ## Usage
 
-```js
-const OCAPClient = require('@arcblock/forge-node');
+### 0. Make sure you get forge installed
 
+**This step is required**
+
+### 1. Prepare Example App
+
+**This step is optional**
+
+```shell
+cd examples/kvstore
+make init     # install dependency
+make prepare  # setup tendermint and ipfs
+make run      # start forge app
+```
+
+### 2. Call Rpc
+
+```js
+const { ForgeRpc, parseConfig } = require('@arcblock/forge-node');
+
+const { forge, app } = parseConfig('./examples/kvstore/kv.toml'); // standard forge app config
+const rpcConfig = Object.assign({}, forge, forge.sdk);
+const client = new ForgeRpc(rpcConfig);
+(async () => {
+  // fetch forge change info
+  const { info } = await client.getChainInfo();
+  console.log('chainInfo', info);
+
+  // get block info
+  const stream = client.getBlock({ height: 11 });
+  stream
+    .on('data', function({ block }) {
+      console.log('blockInfo:', block);
+    })
+    .on('error', err => {
+      console.error('error', err);
+    });
+})();
 ```
 
 ## Documentation
 
+TODO: auto generate all apis
 
 ## Contributors
 

@@ -13,6 +13,7 @@ init:
 	@echo "Install dependencies for example..."
 	@npm install -g grpc-tools
 	@npm install -g protobufjs
+	@npm install
 
 prepare: clean
 	@mkdir -p $(FORGE_KV_PATH)/{tendermint,ipfs}/bin
