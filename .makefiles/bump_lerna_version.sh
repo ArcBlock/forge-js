@@ -6,3 +6,4 @@ ver_pattern="\"version\": \"$cur_ver\"" # strict match to avoid accidently chang
 ver_replacement="\"version\": \"$new_ver\""
 cat lerna.json | sed "s/$ver_pattern/$ver_replacement/g" > lerna.json.tmp
 mv lerna.json.tmp lerna.json
+git add lerna.json
