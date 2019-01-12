@@ -6,3 +6,4 @@ ver_pattern="\"version\": \"$cur_ver\"" # strict match to avoid accidently chang
 ver_replacement="\"version\": \"$new_ver\""
 cat package.json | sed "s/$ver_pattern/$ver_replacement/g" > package.json.tmp
 mv package.json.tmp package.json
+git add package.json

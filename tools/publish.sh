@@ -3,6 +3,7 @@ git config --local user.email "wangshijun2010@gmail.com"
 
 git remote remove origin
 git remote add origin "https://$GITHUB_TOKEN@github.com/$TRAVIS_REPO_SLUG.git"
+git remote -v
 
 changed=$(lerna changed)
 if [ "$changed" != "" ]; then
