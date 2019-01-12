@@ -1,8 +1,7 @@
 /* eslint no-console:"off" */
 const net = require('net');
 const { encode, decode, decodePayload } = require('../util/socket_data');
-// const debug = require('debug')(`${require('../../package.json').name}:TCPServer`);
-const debug = console.log;
+const debug = require('debug')(`${require('../../package.json').name}:TCPServer`);
 
 function parseHostPort(value) {
   const [host, port] = value
@@ -44,7 +43,6 @@ function createServer(config, txHandlers = {}) {
     // Identify request here and hook into txHandlers
     const dispatchRequest = async (payload, type) => {
       debug('x'.repeat(80));
-      debug('dispatchRequest.start', { type });
       const handler = txHandlers[type];
       const defaultResults = {
         verifyTx: { result: 0 },
@@ -73,7 +71,6 @@ function createServer(config, txHandlers = {}) {
 
     socket.on('data', buffer => {
       try {
-        debug('');
         debug('='.repeat(80));
         const payload = decode(buffer, 'Request');
         debug('request', { buffer, bufferB64: buffer.toString('base64'), payload });

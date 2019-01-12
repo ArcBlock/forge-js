@@ -120,6 +120,17 @@ describe('#createMessage', () => {
     // console.log(require('util').inspect(stores, { depth: 5 }));
   });
 
+  test('should support timestamp fields', () => {
+    const params = {
+      address: '123456',
+      genesisTime: { seconds: 1547179509, nanos: 471813322 },
+    };
+
+    const message = createMessage('AccountState', params);
+    const timestamp = message.getGenesisTime().toObject();
+    expect(timestamp).toEqual(params.genesisTime);
+  });
+
   // TODO: support timestamp
   // TODO: support biguint/bigsint
   // TODO: support encodeAny and decodeAny

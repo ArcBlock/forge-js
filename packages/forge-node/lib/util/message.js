@@ -2,9 +2,9 @@
 const util = require('util');
 const camelcase = require('camelcase');
 const { enums, getMessageType, toTypeUrl, fromTypeUrl } = require('@arcblock/forge-proto');
-const { Any } = require('google-protobuf/google/protobuf/any_pb.js');
+const { Any } = require('google-protobuf/google/protobuf/any_pb');
+const { Timestamp } = require('google-protobuf/google/protobuf/timestamp_pb');
 const debug = require('debug')(`${require('../../package.json').name}:util`);
-// const debug = console.log;
 
 const enumTypes = Object.keys(enums);
 const { isUint8Array } = util.types;
@@ -18,10 +18,7 @@ function decodeBinary(data, experimental = false) {
     if (isUint8Array(data[x])) {
       data[x] = Buffer.from(data[x]);
       if (experimental) {
-        data[x] = data[x].toString(
-          // TODO: this code is fragile because hard-coded fields
-          ['appHash', 'blockHash', 'signature', 'pk', 'token'].includes(x) ? 'hex' : 'utf8'
-        );
+        data[x] = data[x].toString(['signature', 'pk'].includes(x) ? 'hex' : 'utf8');
       }
       return;
     }
@@ -83,9 +80,9 @@ function createMessage(type, params) {
           return;
         }
 
-        // FIXME: google builtin types: Timestamp
         if (subType === 'google.protobuf.Timestamp') {
-          message[fn](v);
+          debug(`createMessage.${subType}`, { v });
+          message[fn](encodeTimestamp(v));
           return;
         }
 
@@ -162,9 +159,23 @@ function encodeAny(data) {
   return anyMessage;
 }
 
+function encodeTimestamp(value) {
+  if (!value) {
+    return;
+  }
+
+  const timestamp = new Timestamp();
+  const { seconds, nanos } = value;
+  timestamp.setSeconds(seconds);
+  timestamp.setNanos(nanos);
+
+  return timestamp;
+}
+
 module.exports = {
   decodeBinary,
   createMessage,
   decodeAny,
   encodeAny,
+  encodeTimestamp,
 };

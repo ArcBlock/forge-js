@@ -1,8 +1,8 @@
 /* eslint no-console:"off" */
 const path = require('path');
-const debug = require('debug')(require('../package.json').name);
-const { enums } = require('@arcblock/forge-proto');
-const { ForgeRpc, ForgeApp, parseConfig } = require('../');
+// const debug = require('debug')(require('../package.json').name);
+// const { enums } = require('@arcblock/forge-proto');
+const { ForgeRpc, ForgeApp, parseConfig, decodeAny } = require('../');
 const config = parseConfig(path.resolve(__dirname, './kv.toml'));
 
 // Append application specific proto for use
@@ -14,21 +14,6 @@ ForgeApp.addProtobuf({
     AccountKvState: 'KV/kv_state',
   },
 });
-
-// console.log(
-//   createMessage('RequestCreateTx', {
-//     from: '1234',
-//     token: 'abcd',
-//     nonce: 2,
-//     itx: {
-//       type: 'TransferTx',
-//       value: {
-//         to: '1234',
-//         value: 100,
-//       },
-//     },
-//   }).toObject());
-// return;
 
 (async () => {
   try {
@@ -94,14 +79,17 @@ ForgeApp.addProtobuf({
       address: sender,
     });
     account.on('data', async ({ state }) => {
-      debug('accountInfo:', state);
+      state.data = decodeAny(state.data);
+      console.log('accountInfo.storeList:', state.data.value.storeList);
       const kvTx = {
         type: 'KvTx',
         value: {
-          key: Buffer.from('random'),
-          value: Buffer.from('value'),
+          key: `key_${Math.round(Math.random() * 10000)}`,
+          value: 'value',
         },
       };
+      console.log('accountInfo.kvTx:', kvTx);
+
       const { tx: signedTx } = await client.createTx({
         // from: sender.wallet.address,
         // token: sender.token,
@@ -115,7 +103,7 @@ ForgeApp.addProtobuf({
         token: sender.token,
         commit: true,
       });
-      debug('txInfo.sent', { kvHash });
+      console.log('txInfo.sent', { kvHash });
     });
   } catch (err) {
     console.error('error', err);

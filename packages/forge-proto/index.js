@@ -154,7 +154,6 @@ function addSource({ baseDir, packageName, typeUrls: _typeUrls }) {
     const jsonResult = processJson(path.join(baseDir, 'spec.json'), packageName);
     Object.assign(extraSpec, jsonResult.spec[packageName]);
     Object.assign(extraTypeUrls, createTypeUrls(jsonResult.spec[packageName]), _typeUrls);
-    // console.log({ typeUrls, extraTypeUrls });
     debug('addSource.spec', jsonResult.spec[packageName]);
   }
 }

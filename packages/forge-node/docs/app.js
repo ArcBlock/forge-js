@@ -1,13 +1,12 @@
 #!/usr/bin/env node
 
 /* eslint no-console:"off" */
-process.env.DEBUG = '*';
+process.env.DEBUG = '@arcblock/*';
 const path = require('path');
 const { ForgeApp, parseConfig } = require('../');
-const { enums } = require('@arcblock/forge-proto');
+const { enums, fromTypeUrl } = require('@arcblock/forge-proto');
 
-// const debug = require('debug')(`${require('../package.json').name}:App`);
-const debug = console.log;
+const debug = require('debug')(`${require('../package.json').name}:App`);
 const config = parseConfig(path.resolve(__dirname, './kv.toml'));
 
 ForgeApp.addProtobuf({
@@ -34,7 +33,6 @@ const server = ForgeApp.createServer(config.app, {
     }
 
     if (senderState.data) {
-      debug('TxHandler.verifyTx.existence');
       const { key } = kvPair;
       const { value: data } = senderState.data;
       if (Array.isArray(data.store) && data.store.any(x => x.key === key)) {
@@ -45,17 +43,35 @@ const server = ForgeApp.createServer(config.app, {
     return { result: OK };
   },
 
+  /**
+   * Update data.store on account state
+   *
+   * If we have saved any value in the account state previously, it's structure should be
+   * { data: { typeUrl: 'KV/kv_store', value: Buffer }}, a `store` field should exist on value
+   *
+   * FIXME: due to grpc-node issue, repeated fields `x` will be renamed to `xList`
+   *
+   * @param {*} tx
+   * @param {*} senderState
+   * @returns
+   */
   async updateState(tx, senderState) {
     const kvPair = tx.itx.value;
+    debug('TxHandler.updateState', { kvPair, store: senderState.data.value });
 
-    debug('TxHandler.updateState', { kvPair, data: senderState.data });
-    const { value: oldData } = senderState.data || {};
-    let store = (oldData ? oldData.store : []) || [];
-    store.push(kvPair);
+    // compose new store
+    const { typeUrl, value: prev } = senderState.data || {};
+    const storeList = ((prev ? prev.storeList : []) || []).concat([kvPair]);
+    debug('TxHandler.updateState.store', require('util').inspect(storeList, { depth: 8 }));
 
-    senderState.data = oldData ? Object.assign(oldData, { store }) : { store };
-    debug('TxHandler.updateState.final', senderState.data);
+    // reset account state to new store
+    senderState.data = {
+      type: fromTypeUrl(typeUrl) || 'AccountKvState',
+      value: { store: storeList },
+    };
+
     return { code: OK, states: [senderState] };
   },
 });
+
 server.start();

@@ -8,13 +8,6 @@ function encode(data, type) {
   const length = messageBuffer.byteLength;
   const encoded = encodeZigzag(length);
   const encodedBuffer = Buffer.from(encoded);
-  // console.log({
-  //   message,
-  //   messageBuffer: Uint8Array.from(messageBuffer),
-  //   length,
-  //   encoded,
-  //   encodedBuffer: Uint8Array.from(encodedBuffer),
-  // });
   return Buffer.concat([encodedBuffer, messageBuffer]);
 }
 
