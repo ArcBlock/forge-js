@@ -3,11 +3,11 @@ const path = require('path');
 // const debug = require('debug')(require('../package.json').name);
 // const { enums } = require('@arcblock/forge-proto');
 const { ForgeRpc, ForgeApp, parseConfig, decodeAny } = require('../');
-const config = parseConfig(path.resolve(__dirname, './kv.toml'));
+const config = parseConfig(path.resolve(__dirname, './kvstore/kv.toml'));
 
 // Append application specific proto for use
 ForgeApp.addProtobuf({
-  baseDir: path.resolve(__dirname, 'gen/'),
+  baseDir: path.resolve(__dirname, './kvstore/gen/'),
   packageName: 'kvstore_abi',
   typeUrls: {
     KvTx: 'KV/kv',

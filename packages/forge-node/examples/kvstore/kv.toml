@@ -3,7 +3,7 @@ name = "forge_kv_node"
 version = "0.1.0"
 
 # This must be an absolute path
-path = "/Users/wangshijun/Develop/arcblock/forge-js/packages/forge-node/docs"
+path = "/Users/wangshijun/Develop/arcblock/forge-js/packages/forge-node/examples/kvstore"
 executable = "app.js"
 logfile = "logs/app.log"
 sock_grpc = ""

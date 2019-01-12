@@ -3,10 +3,10 @@
 /* eslint no-console:"off" */
 process.env.DEBUG = '@arcblock/*';
 const path = require('path');
-const { ForgeApp, parseConfig } = require('../');
+const { ForgeApp, parseConfig } = require('../../');
 const { enums, fromTypeUrl } = require('@arcblock/forge-proto');
 
-const debug = require('debug')(`${require('../package.json').name}:App`);
+const debug = require('debug')(`${require('../../package.json').name}:App`);
 const config = parseConfig(path.resolve(__dirname, './kv.toml'));
 
 ForgeApp.addProtobuf({
