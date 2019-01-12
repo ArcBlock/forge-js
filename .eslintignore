@@ -1,0 +1,2 @@
+packages/forge-proto/lib/*.js
+packages/forge-node/docs/gen/*.js

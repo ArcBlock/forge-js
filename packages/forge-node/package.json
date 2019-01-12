@@ -15,12 +15,16 @@
   ],
   "dependencies": {
     "@arcblock/forge-proto": "latest",
+    "camelcase": "^5.0.0",
+    "camelize": "^1.0.0",
+    "debug": "^4.1.1",
     "google-protobuf": "^3.6.1",
-    "grpc": "^1.17.0"
+    "grpc": "^1.17.0",
+    "lodash": "^4.17.11",
+    "toml": "^2.3.5",
+    "varint": "^5.0.0"
   },
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-preset-env": "^1.7.0",
     "eslint": "^5.3.0",
     "eslint-config-prettier": "latest",
     "eslint-plugin-prettier": "latest",
@@ -37,9 +41,9 @@
     "nodejs"
   ],
   "license": "MIT",
-  "main": "./dist/node.js",
+  "main": "./index.js",
   "files": [
-    "dist",
+    "index.js",
     "lib"
   ],
   "repository": {
@@ -47,13 +51,11 @@
     "url": "https://github.com/ArcBlock/forge-js/tree/master/packages/forge-node"
   },
   "scripts": {
-    "lint": "eslint src",
-    "clean": "rimraf lib && rimraf dist",
-    "build": "babel ./src --out-dir ./dist --source-maps --copy-files",
+    "lint": "eslint lib index.js",
     "generate-docs": "node tools/generate-docs.js",
     "precommit": "CI=1 yarn test",
     "prepush": "CI=1 yarn test",
-    "test": "yarn lint && node tools/jest.js",
-    "coverage": "yarn test -- --coverage"
+    "test": "node tools/jest.js",
+    "coverage": "npm run lint && yarn test -- --coverage"
   }
 }

@@ -105,8 +105,8 @@ proto.forge_vendor.KVPair.prototype.toObject = function(opt_includeInstance) {
  */
 proto.forge_vendor.KVPair.toObject = function(includeInstance, msg) {
   var f, obj = {
-    key: msg.getKey_asB64(),
-    value: msg.getValue_asB64()
+    key: msg.getKey(),
+    value: msg.getValue()
   };
 
   if (includeInstance) {
@@ -323,8 +323,8 @@ proto.forge_vendor.ProofOp.prototype.toObject = function(opt_includeInstance) {
 proto.forge_vendor.ProofOp.toObject = function(includeInstance, msg) {
   var f, obj = {
     type: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    key: msg.getKey_asB64(),
-    data: msg.getData_asB64()
+    key: msg.getKey(),
+    data: msg.getData()
   };
 
   if (includeInstance) {
@@ -850,7 +850,7 @@ proto.forge_vendor.RequestBroadcastTx.prototype.toObject = function(opt_includeI
  */
 proto.forge_vendor.RequestBroadcastTx.toObject = function(includeInstance, msg) {
   var f, obj = {
-    tx: msg.getTx_asB64()
+    tx: msg.getTx()
   };
 
   if (includeInstance) {
@@ -2604,7 +2604,7 @@ proto.forge_vendor.RequestInitChain.toObject = function(includeInstance, msg) {
     consensusParams: (f = msg.getConsensusParams()) && proto.forge_vendor.ConsensusParams.toObject(includeInstance, f),
     validatorsList: jspb.Message.toObjectList(msg.getValidatorsList(),
     proto.forge_vendor.ValidatorUpdate.toObject, includeInstance),
-    appStateBytes: msg.getAppStateBytes_asB64()
+    appStateBytes: msg.getAppStateBytes()
   };
 
   if (includeInstance) {
@@ -2926,7 +2926,7 @@ proto.forge_vendor.RequestQuery.prototype.toObject = function(opt_includeInstanc
  */
 proto.forge_vendor.RequestQuery.toObject = function(includeInstance, msg) {
   var f, obj = {
-    data: msg.getData_asB64(),
+    data: msg.getData(),
     path: jspb.Message.getFieldWithDefault(msg, 2, ""),
     height: jspb.Message.getFieldWithDefault(msg, 3, 0),
     prove: jspb.Message.getFieldWithDefault(msg, 4, false)
@@ -3182,7 +3182,7 @@ proto.forge_vendor.RequestBeginBlock.prototype.toObject = function(opt_includeIn
  */
 proto.forge_vendor.RequestBeginBlock.toObject = function(includeInstance, msg) {
   var f, obj = {
-    hash: msg.getHash_asB64(),
+    hash: msg.getHash(),
     header: (f = msg.getHeader()) && proto.forge_vendor.Header.toObject(includeInstance, f),
     lastCommitInfo: (f = msg.getLastCommitInfo()) && proto.forge_vendor.LastCommitInfo.toObject(includeInstance, f),
     byzantineValidatorsList: jspb.Message.toObjectList(msg.getByzantineValidatorsList(),
@@ -3482,7 +3482,7 @@ proto.forge_vendor.RequestCheckTx.prototype.toObject = function(opt_includeInsta
  */
 proto.forge_vendor.RequestCheckTx.toObject = function(includeInstance, msg) {
   var f, obj = {
-    tx: msg.getTx_asB64()
+    tx: msg.getTx()
   };
 
   if (includeInstance) {
@@ -3648,7 +3648,7 @@ proto.forge_vendor.RequestDeliverTx.prototype.toObject = function(opt_includeIns
  */
 proto.forge_vendor.RequestDeliverTx.toObject = function(includeInstance, msg) {
   var f, obj = {
-    tx: msg.getTx_asB64()
+    tx: msg.getTx()
   };
 
   if (includeInstance) {
@@ -5155,7 +5155,7 @@ proto.forge_vendor.ResponseInfo.toObject = function(includeInstance, msg) {
     version: jspb.Message.getFieldWithDefault(msg, 2, ""),
     appVersion: jspb.Message.getFieldWithDefault(msg, 3, 0),
     lastBlockHeight: jspb.Message.getFieldWithDefault(msg, 4, 0),
-    lastBlockAppHash: msg.getLastBlockAppHash_asB64()
+    lastBlockAppHash: msg.getLastBlockAppHash()
   };
 
   if (includeInstance) {
@@ -5837,8 +5837,8 @@ proto.forge_vendor.ResponseQuery.toObject = function(includeInstance, msg) {
     log: jspb.Message.getFieldWithDefault(msg, 3, ""),
     info: jspb.Message.getFieldWithDefault(msg, 4, ""),
     index: jspb.Message.getFieldWithDefault(msg, 5, 0),
-    key: msg.getKey_asB64(),
-    value: msg.getValue_asB64(),
+    key: msg.getKey(),
+    value: msg.getValue(),
     proof: (f = msg.getProof()) && proto.forge_vendor.Proof.toObject(includeInstance, f),
     height: jspb.Message.getFieldWithDefault(msg, 9, 0),
     codespace: jspb.Message.getFieldWithDefault(msg, 10, "")
@@ -6432,7 +6432,7 @@ proto.forge_vendor.ResponseCheckTx.prototype.toObject = function(opt_includeInst
 proto.forge_vendor.ResponseCheckTx.toObject = function(includeInstance, msg) {
   var f, obj = {
     code: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    data: msg.getData_asB64(),
+    data: msg.getData(),
     log: jspb.Message.getFieldWithDefault(msg, 3, ""),
     info: jspb.Message.getFieldWithDefault(msg, 4, ""),
     gasWanted: jspb.Message.getFieldWithDefault(msg, 5, 0),
@@ -6813,7 +6813,7 @@ proto.forge_vendor.ResponseDeliverTx.prototype.toObject = function(opt_includeIn
 proto.forge_vendor.ResponseDeliverTx.toObject = function(includeInstance, msg) {
   var f, obj = {
     code: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    data: msg.getData_asB64(),
+    data: msg.getData(),
     log: jspb.Message.getFieldWithDefault(msg, 3, ""),
     info: jspb.Message.getFieldWithDefault(msg, 4, ""),
     gasWanted: jspb.Message.getFieldWithDefault(msg, 5, 0),
@@ -7444,7 +7444,7 @@ proto.forge_vendor.ResponseCommit.prototype.toObject = function(opt_includeInsta
  */
 proto.forge_vendor.ResponseCommit.toObject = function(includeInstance, msg) {
   var f, obj = {
-    data: msg.getData_asB64()
+    data: msg.getData()
   };
 
   if (includeInstance) {
@@ -8533,15 +8533,15 @@ proto.forge_vendor.Header.toObject = function(includeInstance, msg) {
     numTxs: jspb.Message.getFieldWithDefault(msg, 5, 0),
     totalTxs: jspb.Message.getFieldWithDefault(msg, 6, 0),
     lastBlockId: (f = msg.getLastBlockId()) && proto.forge_vendor.BlockID.toObject(includeInstance, f),
-    lastCommitHash: msg.getLastCommitHash_asB64(),
-    dataHash: msg.getDataHash_asB64(),
-    validatorsHash: msg.getValidatorsHash_asB64(),
-    nextValidatorsHash: msg.getNextValidatorsHash_asB64(),
-    consensusHash: msg.getConsensusHash_asB64(),
-    appHash: msg.getAppHash_asB64(),
-    lastResultsHash: msg.getLastResultsHash_asB64(),
-    evidenceHash: msg.getEvidenceHash_asB64(),
-    proposerAddress: msg.getProposerAddress_asB64()
+    lastCommitHash: msg.getLastCommitHash(),
+    dataHash: msg.getDataHash(),
+    validatorsHash: msg.getValidatorsHash(),
+    nextValidatorsHash: msg.getNextValidatorsHash(),
+    consensusHash: msg.getConsensusHash(),
+    appHash: msg.getAppHash(),
+    lastResultsHash: msg.getLastResultsHash(),
+    evidenceHash: msg.getEvidenceHash(),
+    proposerAddress: msg.getProposerAddress()
   };
 
   if (includeInstance) {
@@ -9509,7 +9509,7 @@ proto.forge_vendor.BlockID.prototype.toObject = function(opt_includeInstance) {
  */
 proto.forge_vendor.BlockID.toObject = function(includeInstance, msg) {
   var f, obj = {
-    hash: msg.getHash_asB64(),
+    hash: msg.getHash(),
     partsHeader: (f = msg.getPartsHeader()) && proto.forge_vendor.PartSetHeader.toObject(includeInstance, f)
   };
 
@@ -9720,7 +9720,7 @@ proto.forge_vendor.PartSetHeader.prototype.toObject = function(opt_includeInstan
 proto.forge_vendor.PartSetHeader.toObject = function(includeInstance, msg) {
   var f, obj = {
     total: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    hash: msg.getHash_asB64()
+    hash: msg.getHash()
   };
 
   if (includeInstance) {
@@ -9912,7 +9912,7 @@ proto.forge_vendor.Validator.prototype.toObject = function(opt_includeInstance) 
  */
 proto.forge_vendor.Validator.toObject = function(includeInstance, msg) {
   var f, obj = {
-    address: msg.getAddress_asB64(),
+    address: msg.getAddress(),
     power: jspb.Message.getFieldWithDefault(msg, 3, 0)
   };
 
@@ -10480,7 +10480,7 @@ proto.forge_vendor.PubKey.prototype.toObject = function(opt_includeInstance) {
 proto.forge_vendor.PubKey.toObject = function(includeInstance, msg) {
   var f, obj = {
     type: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    data: msg.getData_asB64()
+    data: msg.getData()
   };
 
   if (includeInstance) {
@@ -10910,3 +10910,5 @@ proto.forge_vendor.Evidence.prototype.setTotalVotingPower = function(value) {
 
 
 goog.object.extend(exports, proto.forge_vendor);
+
+module.exports = proto.forge_vendor;

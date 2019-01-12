@@ -1,5 +1,6 @@
 // For a detailed explanation regarding each configuration property, visit:
 // https://jestjs.io/docs/en/configuration.html
+const path = require('path');
 
 module.exports = {
   // All imported modules in your tests should be mocked automatically
@@ -49,7 +50,7 @@ module.exports = {
   // forceCoverageMatch: [],
 
   // A path to a module which exports an async function that is triggered once before all test suites
-  // globalSetup: null,
+  setupFiles: [path.resolve('./tools/jest-setup.js')],
 
   // A path to a module which exports an async function that is triggered once after all test suites
   // globalTeardown: null,
@@ -133,10 +134,7 @@ module.exports = {
   // testLocationInResults: false,
 
   // The glob patterns Jest uses to detect test files
-  // testMatch: [
-  //   "**/__tests__/**/*.js?(x)",
-  //   "**/?(*.)+(spec|test).js?(x)"
-  // ],
+  testMatch: ['**/__tests__/**/*.js?(x)', '**/?(*.)+(spec).js?(x)'],
 
   // An array of regexp pattern strings that are matched against all test paths, matched tests are skipped
   // testPathIgnorePatterns: [
