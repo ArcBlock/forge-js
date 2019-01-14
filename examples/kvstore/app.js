@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-
 /* eslint no-console:"off" */
 const path = require('path');
 const { enums, fromTypeUrl } = require('@arcblock/forge-proto');
@@ -62,7 +61,10 @@ const server = ForgeApp.createServer(config.app, {
    */
   async updateState(tx, senderState) {
     const kvPair = tx.itx.value;
-    console.log('TxHandler.updateState', { kvPair, store: senderState.data.value });
+    console.log('TxHandler.updateState', {
+      kvPair,
+      store: senderState.data ? senderState.data.value : [],
+    });
 
     // compose new store
     const { typeUrl, value: prev } = senderState.data || {};

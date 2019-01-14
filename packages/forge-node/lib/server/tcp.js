@@ -36,7 +36,7 @@ function createServer(config, txHandlers = {}) {
         debug('sendResponse', { response, encoded: encodedResponse });
         socket.write(encodedResponse);
       } catch (err) {
-        debug('sendResponse.error', { response, err });
+        console.log('sendResponse.error', { response, err });
       }
     };
 
@@ -55,13 +55,13 @@ function createServer(config, txHandlers = {}) {
           // NOTE: tx handlers should not throw error, but return enums.StatusCode
           decodePayload(payload[type]);
           result = await handler(...Object.values(payload[type]));
-          debug('dispatchRequest.result', { type, result });
+          console.log('dispatchRequest.result', { type, result });
         } catch (err) {
-          debug('dispatchRequest.error', { payload, type, err });
+          console.log('dispatchRequest.error', { payload, type, err });
           result = defaultResults[type];
         }
       } else {
-        debug('dispatchRequest.fallback', { type });
+        console.log('dispatchRequest.fallback', { type });
         result = defaultResults[type];
       }
 

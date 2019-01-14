@@ -52,10 +52,7 @@ const client = new ForgeRpc(Object.assign({}, forge, forge.sdk || {}));
     const account = await client.getAccountState({ address });
     account.on('data', async ({ state }) => {
       state.data = decodeAny(state.data);
-      debug(
-        'accountInfo.storeList:',
-        state.data && state.data.value ? state.data.value.storeList : []
-      );
+      debug('accountInfo.storeList:', state.data.value ? state.data.value.storeList : []);
       const kvTx = {
         type: 'KvTx',
         value: {

@@ -120,7 +120,7 @@ function createMessage(type, params) {
  */
 function decodeAny(data) {
   if (!data) {
-    return;
+    return { type: 'Unknown', value: '' };
   }
 
   const { typeUrl, value } = data;
