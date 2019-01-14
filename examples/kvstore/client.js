@@ -56,7 +56,9 @@ addProtobuf({
         type: 'KvTx',
         value: {
           key: `key_${Math.round(Math.random() * 10000)}`,
+          // key: '',
           value: `value_${Math.round(Math.random() * 1000000)}`,
+          // value: '',
         },
       };
       debug('accountInfo.kvTx:', kvTx);

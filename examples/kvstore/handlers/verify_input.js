@@ -1,6 +1,6 @@
 /* eslint no-console:"off" */
 const { enums } = require('@arcblock/forge-proto');
-const { OK, INSUFFICIENT_DATA, INVALID_SENDER_STATE } = enums.StatusCode;
+const { INSUFFICIENT_DATA } = enums.StatusCode;
 
 /**
  * Each app server must implement `verifyTx` handler
@@ -9,7 +9,7 @@ const { OK, INSUFFICIENT_DATA, INVALID_SENDER_STATE } = enums.StatusCode;
  * @param {*} senderState
  * @returns verify result
  */
-module.exports = async function([tx, senderState]) {
+module.exports = async function([tx]) {
   const kvPair = tx.itx.value;
   console.log('TxHandler.verifyTx', kvPair);
 
@@ -19,14 +19,4 @@ module.exports = async function([tx, senderState]) {
   if (!kvPair.value) {
     return { result: INSUFFICIENT_DATA };
   }
-
-  if (senderState.data) {
-    const { key } = kvPair;
-    const { value: data } = senderState.data;
-    if (Array.isArray(data.store) && data.store.any(x => x.key === key)) {
-      return { result: INVALID_SENDER_STATE };
-    }
-  }
-
-  return { result: OK };
 };

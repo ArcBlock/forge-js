@@ -15,6 +15,7 @@ addProtobuf({
 });
 
 const server = TcpServer.create(config.app);
-server.addHandler('verifyTx', require('./handlers/verify'));
+server.addHandler('verifyTx', require('./handlers/verify_input'));
+server.addHandler('verifyTx', require('./handlers/verify_state'));
 server.addHandler('updateState', require('./handlers/update'));
 server.start();
