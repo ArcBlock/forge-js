@@ -37,3 +37,8 @@ tail -f logs/app.log
 ```shell
 DEBUG=@arcblock/* node rpc.js
 ```
+
+## TODO
+
+- [ ] add example for subscribe
+- [ ] list all supported rpc methods
