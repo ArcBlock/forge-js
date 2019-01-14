@@ -1,9 +1,7 @@
 ## 0.3.3 (January 14, 2019)
   - chore: make kvstore app work as expected
-  - chore: make kvstore app work
   - feat: support listing all supported rpc methods
   - chore: update simple app
-  - chore: make simple app work
   - chore: make simple app work
   - chore: make examples as packages
   - chore: update readme
