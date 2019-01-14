@@ -128,8 +128,6 @@ describe('#createMessage', () => {
     const timestamp = message.getGenesisTime().toObject();
     expect(timestamp).toEqual(params.genesisTime);
   });
-
-  // TODO: support biguint/bigsint
 });
 
 describe('#decodeAny', () => {
