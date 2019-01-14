@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-
 /* eslint no-console:"off" */
 const path = require('path');
 const { enums, fromTypeUrl } = require('@arcblock/forge-proto');
@@ -19,6 +18,13 @@ ForgeApp.addProtobuf({
 const { OK, INSUFFICIENT_DATA, INVALID_SENDER_STATE } = enums.StatusCode;
 
 const server = ForgeApp.createServer(config.app, {
+  /**
+   * Each app server must implement `verifyTx` handler
+   *
+   * @param {*} tx
+   * @param {*} senderState
+   * @returns verify result
+   */
   async verifyTx(tx, senderState) {
     const kvPair = tx.itx.value;
     console.log('TxHandler.verifyTx', kvPair);
@@ -55,7 +61,10 @@ const server = ForgeApp.createServer(config.app, {
    */
   async updateState(tx, senderState) {
     const kvPair = tx.itx.value;
-    console.log('TxHandler.updateState', { kvPair, store: senderState.data.value });
+    console.log('TxHandler.updateState', {
+      kvPair,
+      store: senderState.data ? senderState.data.value : [],
+    });
 
     // compose new store
     const { typeUrl, value: prev } = senderState.data || {};

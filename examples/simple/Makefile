@@ -5,14 +5,14 @@ DATA_PATH=/tmp/.forge_simple
 # NOTE: FORGE_CONFIG must be an absolute path
 CONFIG_PATH=$(CWD)/forge.toml
 
-FORGE_BIN_PATH=`which forge`
+FORGE_BIN_PATH=/Users/wangshijun/Develop/arcblock/forge/_build/staging/rel/forge/bin/forge # your local forge build
+# FORGE_BIN_PATH=/Users/wangshijun/Downloads/forge/bin/forge # downloaded from github release
 TM_BIN_PATH=`which tendermint`
 IPFS_BIN_PATH=`which ipfs`
 
 init:
 	@echo "Install dependencies for example..."
-	@npm install -g yarn
-	@yarn
+	@npm install
 
 prepare: clean
 	@mkdir -p $(DATA_PATH)/{tendermint,ipfs}/bin
@@ -23,6 +23,10 @@ run:
 	@echo "Running forge for kv app..."
 	@FORGE_CONFIG=${CONFIG_PATH} ${FORGE_BIN_PATH} console
 
+logs:
+	@echo "Streaming logs for forge-core and forge-app..."
+	@tail -f $(DATA_PATH)/app/logs/app.log $(DATA_PATH)/core/logs/core.log
+
 clean:
-	@echo "Cleaning the build..."
+	@echo "Cleaning the data dir ${DATA_PATH}..."
 	@rm -rf $(DATA_PATH)

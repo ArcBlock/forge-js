@@ -4,20 +4,27 @@ const { enums } = require('@arcblock/forge-proto');
 const { ForgeRpc, parseConfig } = require('@arcblock/forge-node');
 const { forge } = parseConfig(path.resolve(__dirname, './forge.toml'));
 const client = new ForgeRpc(Object.assign({}, forge, forge.sdk || {}));
+const debug = (...args) => {
+  console.log('x'.repeat(80));
+  console.log(...args);
+  console.log('');
+};
+
+debug('Supported RPC methods', client.listRpcMethods());
 
 (async () => {
   try {
     // ChainRpc
     const res = await client.getChainInfo();
-    console.log('chainInfo', res.info);
+    debug('chainInfo', res.info);
 
     const stream = client.getBlock({ height: 11 });
     stream
       .on('data', function({ block }) {
-        console.log('blockInfo:', block);
+        debug('blockInfo:', block);
       })
       .on('error', err => {
-        console.error('error', err);
+        debug('error', err);
       });
 
     // WalletRpc
@@ -33,7 +40,7 @@ const client = new ForgeRpc(Object.assign({}, forge, forge.sdk || {}));
     });
     const receiver = await client.createWallet({
       passphrase: '123456',
-      moniker: 'tyrchain',
+      moniker: 'tyrchen',
       type: walletType,
     });
 
@@ -55,13 +62,13 @@ const client = new ForgeRpc(Object.assign({}, forge, forge.sdk || {}));
       token: sender.token,
       commit: true,
     });
-    console.log('txInfo.sent', { transferHash });
+    debug('txInfo.sent', { transferHash });
 
     const account = await client.getAccountState({
       address: sender.wallet.address,
     });
     account.on('data', async ({ state }) => {
-      console.log('accountInfo', state);
+      debug('accountInfo', state);
     });
   } catch (err) {
     console.error('error', err);

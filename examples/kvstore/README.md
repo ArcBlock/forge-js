@@ -15,13 +15,18 @@
 
 https://github.com/ArcBlock/forge/releases
 
-### 1. start forge and forge-app
+### 1. update `Makefile` to use your forge binary
+
+```makefile
+FORGE_BIN_PATH=/YOUR_FORGE_RELEASE_DIR/forge/bin/forge
+```
+
+### 2. start forge and forge-app
 
 > forge-app is managed by forge process manager
 
 ```shell
 make init     # install dependency
-make prepare  # setup tendermint and ipfs
 make run      # start forge app
 ```
 
@@ -29,7 +34,9 @@ make run      # start forge app
 tail -f logs/app.log
 ```
 
-### 2. send requests to forge
+### 3. send requests to forge
+
+This script will create wallet and send `KvTx` to forge-app, you can run it multiple times to see the `AccountState.data` changes.
 
 ```shell
 DEBUG=@arcblock/* node rpc.js

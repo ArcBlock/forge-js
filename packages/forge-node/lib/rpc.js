@@ -35,9 +35,8 @@ class ForgeRpc {
   initRpcMethod(group, method) {
     const client = this.clients[group];
     const rpc = client[method].bind(client);
-    const { requestStream = false, responseStream = false, requestType } = rpcs[group].methods[
-      method
-    ];
+    const spec = rpcs[group].methods[method];
+    const { requestStream = false, responseStream = false, requestType } = spec;
 
     debug('initRpcMethod', { method, requestStream, responseStream });
 
@@ -81,7 +80,19 @@ class ForgeRpc {
       };
     }
 
+    fn.rpc = true;
+    fn.meta = { group, requestStream, responseStream };
+
     this[camelcase(method)] = fn;
+  }
+
+  listRpcMethods() {
+    return Object.keys(this)
+      .filter(x => typeof this[x] === 'function' && this[x].rpc)
+      .reduce((acc, x) => {
+        acc[x] = this[x].meta;
+        return acc;
+      }, {});
   }
 
   /**
