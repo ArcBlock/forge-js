@@ -18,7 +18,6 @@ describe('#parseConfig', () => {
     const config = parseConfig(path.resolve(__dirname, '../../../../examples/kvstore/forge.toml'));
     expect(config.app).toBeTruthy();
     expect(config.forge.decimal).toBeTruthy();
-    expect(config.forge.sdk).toBeTruthy();
     expect(config.forge.web).toBeTruthy();
   });
 });

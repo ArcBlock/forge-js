@@ -25,7 +25,7 @@ run:
 
 logs:
 	@echo "Streaming logs for forge-core and forge-app..."
-	@tail -f $(DATA_PATH)/app/logs/app.log $()/core/logs/core.log
+	@tail -f $(DATA_PATH)/app/logs/app.log $(DATA_PATH)/core/logs/core.log
 
 clean:
 	@echo "Cleaning the data dir ${DATA_PATH}..."

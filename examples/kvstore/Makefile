@@ -1,11 +1,12 @@
 SHELL=/bin/bash
 TOP_DIR=.
 CWD=`pwd`
-FORGE_KV_PATH=/tmp/.forge_kv_node
+DATA_PATH=/tmp/.forge_kvstore_nodejs
 # NOTE: FORGE_CONFIG must be an absolute path
-CONFIG_PATH=$(CWD)/kv.toml
+CONFIG_PATH=$(CWD)/forge.toml
 
-FORGE_BIN_PATH=`which forge`
+FORGE_BIN_PATH=/Users/wangshijun/Develop/arcblock/forge/_build/staging/rel/forge/bin/forge # your local forge build
+# FORGE_BIN_PATH=/Users/wangshijun/Downloads/forge/bin/forge # downloaded from github release
 TM_BIN_PATH=`which tendermint`
 IPFS_BIN_PATH=`which ipfs`
 
@@ -16,17 +17,25 @@ init:
 	@npm install
 
 prepare: clean
-	@mkdir -p $(FORGE_KV_PATH)/{tendermint,ipfs}/bin
-	@[ -f "${TM_BIN_PATH}" ] && cp -f $(TM_BIN_PATH) $(FORGE_KV_PATH)/tendermint/bin
-	@[ -f "${IPFS_BIN_PATH}" ] && cp -f $(IPFS_BIN_PATH) $(FORGE_KV_PATH)/ipfs/bin
+	@mkdir -p $(DATA_PATH)/{tendermint,ipfs}/bin
+	@[ -f "${TM_BIN_PATH}" ] && cp -f $(TM_BIN_PATH) $(DATA_PATH)/tendermint/bin
+	@[ -f "${IPFS_BIN_PATH}" ] && cp -f $(IPFS_BIN_PATH) $(DATA_PATH)/ipfs/bin
 
 run:
 	@echo "Running forge for kv app..."
 	@FORGE_CONFIG=${CONFIG_PATH} ${FORGE_BIN_PATH} console
 
+logs:
+	@echo "Streaming logs for forge-app..."
+	@tail -f logs/app.log
+
+test:
+	@echo "Running RPC requests against forge-app..."
+	@DEBUG=@arcblock/* node rpc.js
+
 clean:
 	@echo "Cleaning the build..."
-	@rm -rf $(FORGE_KV_PATH)
+	@rm -rf $(DATA_PATH)
 
 rebuild-proto: rebuild-proto-js rebuild-proto-json
 	@echo "Rebuilding proto files..."
@@ -43,3 +52,5 @@ rebuild-proto-json:
 	@rm -f $(TOP_DIR)/gen_json/*.json && mkdir -p $(TOP_DIR)/gen
 	@pbjs -t json -o $(TOP_DIR)/gen/spec.json $(TOP_DIR)/*.proto
 	@echo "New protobuf spec json created."
+
+.PHONY: logs run test

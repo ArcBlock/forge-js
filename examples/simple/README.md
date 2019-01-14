@@ -19,7 +19,7 @@ https://github.com/ArcBlock/forge/releases
 FORGE_BIN_PATH=/YOUR_FORGE_RELEASE_DIR/forge/bin/forge
 ```
 
-### 1. start forge and forge-app
+### 2. start forge and forge-app
 
 > forge-app is the dummy server in forge-core
 
@@ -32,7 +32,7 @@ make run      # start forge app
 tail -f logs/app.log
 ```
 
-### 2. send requests to forge
+### 3. send requests to forge
 
 ```shell
 DEBUG=@arcblock/* node rpc.js
