@@ -74,4 +74,4 @@ TODO: auto generate all apis
 
 ## License
 
-[MIT](LICENSE) © [wangshijun](https://ocap.arcblock.io)
+[MIT](LICENSE) © [ArcBlock](https://www.arcblock.io)
