@@ -1,3 +1,6 @@
+## 0.3.4 (January 14, 2019)
+
+
 ## 0.3.3 (January 14, 2019)
   - chore: make kvstore app work as expected
   - feat: support listing all supported rpc methods
