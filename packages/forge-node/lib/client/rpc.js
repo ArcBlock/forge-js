@@ -2,15 +2,15 @@ const grpc = require('grpc');
 const camelcase = require('camelcase');
 const { EventEmitter } = require('events');
 const { messages, rpcs, getMessageType } = require('@arcblock/forge-proto');
-const { formatMessage, createMessage } = require('./util/message');
-const debug = require('debug')(`${require('../package.json').name}:ForgeRpc`);
+const { formatMessage, createMessage } = require('../util/message');
+const debug = require('debug')(`${require('../../package.json').name}:Client`);
 
-class ForgeRpc {
+class Client {
   constructor(config) {
     this.config = config || {};
     debug('new', this.config);
     if (!this.config.forge.sockGrpc) {
-      throw new Error('ForgeRpc requires a valid `forge.sockGrpc` to start');
+      throw new Error('Client requires a valid `forge.sockGrpc` to start');
     }
 
     this.initRpcClients();
@@ -103,7 +103,7 @@ class ForgeRpc {
    * @param {String} requestType
    * @param {Object} [params={}]
    * @returns
-   * @memberof ForgeRpc
+   * @memberof Client
    */
   _createRequest(type, _params) {
     const { fn: Message, fields } = getMessageType(type);
@@ -126,7 +126,7 @@ class ForgeRpc {
    * @param {*} resolve
    * @param {*} reject
    * @returns
-   * @memberof ForgeRpc
+   * @memberof Client
    */
   _createResponseHandler({ method, resolve, reject, responseType }) {
     return (err, response) => {
@@ -141,7 +141,7 @@ class ForgeRpc {
         );
       }
 
-      this._attachPrettyFn(res, responseType);
+      this._attachFormatFn(res, responseType);
       return resolve(res);
     };
   }
@@ -152,7 +152,7 @@ class ForgeRpc {
    * @param {*} method
    * @param {*} stream
    * @returns
-   * @memberof ForgeRpc
+   * @memberof Client
    */
   _createStreamHandler({ method, stream, responseType }) {
     const emitter = new EventEmitter();
@@ -170,7 +170,7 @@ class ForgeRpc {
           return;
         }
 
-        this._attachPrettyFn(res, responseType);
+        this._attachFormatFn(res, responseType);
         emitter.emit('data', res);
       })
       .on('error', err => {
@@ -181,14 +181,14 @@ class ForgeRpc {
   }
 
   /**
-   * Attach an pretty method to each response
+   * Attach an $format method to each response
    *
    * @param {*} data
    * @param {*} responseType
-   * @memberof ForgeRpc
+   * @memberof Client
    */
-  _attachPrettyFn(data, responseType) {
-    Object.defineProperty(data, '$pretty', {
+  _attachFormatFn(data, responseType) {
+    Object.defineProperty(data, '$format', {
       writable: false,
       enumerable: false,
       configurable: false,
@@ -197,4 +197,4 @@ class ForgeRpc {
   }
 }
 
-module.exports = ForgeRpc;
+module.exports = Client;

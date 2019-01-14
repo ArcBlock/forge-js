@@ -2,11 +2,11 @@
 /* eslint no-console:"off" */
 const path = require('path');
 const { enums, fromTypeUrl } = require('@arcblock/forge-proto');
-const { ForgeApp, parseConfig } = require('@arcblock/forge-node');
+const { TcpServer, parseConfig, addProtobuf } = require('@arcblock/forge-node');
 
 const config = parseConfig(path.resolve(__dirname, './forge.toml'));
 
-ForgeApp.addProtobuf({
+addProtobuf({
   baseDir: path.resolve(__dirname, 'gen/'),
   packageName: 'kvstore_abi',
   typeUrls: {
@@ -17,7 +17,7 @@ ForgeApp.addProtobuf({
 
 const { OK, INSUFFICIENT_DATA, INVALID_SENDER_STATE } = enums.StatusCode;
 
-const server = ForgeApp.createServer(config.app, {
+const server = TcpServer.createServer(config.app, {
   /**
    * Each app server must implement `verifyTx` handler
    *

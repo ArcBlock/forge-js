@@ -47,11 +47,11 @@
     "url": "https://github.com/ArcBlock/forge-js/tree/master/packages/forge-node"
   },
   "scripts": {
-    "lint": "eslint lib index.js",
+    "lint": "eslint lib index.js test",
     "generate-docs": "node tools/generate-docs.js",
     "precommit": "CI=1 yarn test",
     "prepush": "CI=1 yarn test",
-    "test": "node tools/jest.js",
+    "test": "npm run lint && node tools/jest.js",
     "coverage": "npm run lint && yarn test -- --coverage"
   }
 }
