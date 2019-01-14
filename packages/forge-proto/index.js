@@ -79,7 +79,7 @@ function createTypeUrls(abi) {
         typeUrl = `ft/${type.replace(/Tx$/, '')}`;
       }
       if (/State$/.test(type)) {
-        typeUrl = `fs/${type}`;
+        typeUrl = `fs/${type.replace(/State$/, '')}`;
       }
     }
 
@@ -169,7 +169,7 @@ function getMessageType(type) {
 }
 
 function toTypeUrl(type) {
-  return get(typeUrls, type) || get(extraTypeUrls, type);
+  return get(typeUrls, type) || get(extraTypeUrls, type) || type;
 }
 
 function fromTypeUrl(url) {
@@ -182,7 +182,7 @@ function fromTypeUrl(url) {
     return found[0];
   }
 
-  return null;
+  return url;
 }
 
 module.exports = {
