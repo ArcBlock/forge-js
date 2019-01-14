@@ -1,3 +1,6 @@
+## 0.3.6 (January 14, 2019)
+  - fix: licence
+
 ## 0.3.5 (January 14, 2019)
   - feat: support attach more handlers on each type
   - feat: support attach more handlers on each type
