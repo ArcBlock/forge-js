@@ -4,8 +4,8 @@
 
 ## Files
 
-- `simple.toml`, configuration for forge-core and the app
-- `rpc.js`, Send transactions to the app
+- [`forge.toml`](./forge.toml), configuration for forge-core and the app
+- [`client.js`](./client.js), Send transactions to the app
 
 ## Getting Started
 
@@ -35,7 +35,7 @@ tail -f logs/app.log
 ### 3. send requests to forge
 
 ```shell
-DEBUG=@arcblock/* node rpc.js
+DEBUG=@arcblock/* node client.js
 ```
 
 ## TODO

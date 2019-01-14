@@ -3,7 +3,7 @@ name = "forge_kvstore_nodejs"
 version = "0.1.0"
 
 path = "/Users/wangshijun/Develop/arcblock/forge-js/examples/kvstore"
-executable = "app.js"
+executable = "server.js"
 logfile = "logs/app.log"
 sock_tcp = "tcp://127.0.0.1:9528"
 

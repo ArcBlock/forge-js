@@ -31,7 +31,7 @@ logs:
 
 test:
 	@echo "Running RPC requests against forge-app..."
-	@DEBUG=@arcblock/* node rpc.js
+	@DEBUG=@arcblock/* node client.js
 
 clean:
 	@echo "Cleaning the build..."

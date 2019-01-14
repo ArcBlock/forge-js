@@ -4,10 +4,10 @@
 
 ## Files
 
-- `kv.toml`, configuration for forge-core and the app
-- `app.js`, Create an forge-app server, and process `KVPair` transaction `verify` and `update` requests from forge
-- `rpc.js`, Send `KVPair` transaction to the app
-- `kv.proto`, protobuf definition for the KVStore app
+- [`forge.toml`](./forge.toml), configuration for forge-core and the app
+- [`server.js`](./server.js), Create an forge-app server, and process `KVPair` transaction `verify` and `update` requests from forge
+- [`client.js`](./client.js), Send `KVPair` transaction to the app
+- [`kv.proto`](./kv.proto), protobuf definition for the KVStore app
 
 ## Getting Started
 
@@ -39,5 +39,5 @@ tail -f logs/app.log
 This script will create wallet and send `KvTx` to forge-app, you can run it multiple times to see the `AccountState.data` changes.
 
 ```shell
-DEBUG=@arcblock/* node rpc.js
+DEBUG=@arcblock/* node client.js
 ```
