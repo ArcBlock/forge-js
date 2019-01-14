@@ -1,4 +1,4 @@
-const { createMessage, decodeAny } = require('../../');
+const { createMessage, decodeAny, encodeAny, formatMessage } = require('../../lib/util/message');
 
 describe('#createMessage', () => {
   test('should create simple message', () => {
@@ -111,13 +111,11 @@ describe('#createMessage', () => {
     const stores = states.map(x => decodeAny(x.data).value.storeList);
     stores.forEach(store => {
       expect(store.length).toEqual(2);
-      expect(store[0].key).toBeTruthy();
-      expect(store[0].value).toBeTruthy();
-      expect(store[1].key).toBeTruthy();
-      expect(store[1].value).toBeTruthy();
+      expect(store[0].key).toEqual('123');
+      expect(store[0].value).toEqual('456');
+      expect(store[1].key).toEqual('234');
+      expect(store[1].value).toEqual('567');
     });
-    // TODO: check key value match
-    // console.log(require('util').inspect(stores, { depth: 5 }));
   });
 
   test('should support timestamp fields', () => {
@@ -130,8 +128,78 @@ describe('#createMessage', () => {
     const timestamp = message.getGenesisTime().toObject();
     expect(timestamp).toEqual(params.genesisTime);
   });
+});
 
-  // TODO: support timestamp
-  // TODO: support biguint/bigsint
-  // TODO: support encodeAny and decodeAny
+describe('#decodeAny', () => {
+  test('should be a function', () => {
+    expect(typeof decodeAny).toEqual('function');
+  });
+
+  test('should support empty value', () => {
+    const message = decodeAny(null);
+    expect(typeof message).toEqual('object');
+    expect(message.type).toEqual('Unknown');
+    expect(message.value).toEqual('');
+  });
+});
+
+describe('#encodeAny', () => {
+  test('should be a function', () => {
+    expect(typeof encodeAny).toEqual('function');
+  });
+
+  test('should support empty value', () => {
+    const message = encodeAny({
+      type: 'TransferTx',
+      value: { to: '' },
+    }).toObject();
+    expect(typeof message).toEqual('object');
+    expect(message.typeUrl).toEqual('ft/Transfer');
+    expect(message.value).toEqual('');
+  });
+
+  test('should support non-empty value', () => {
+    const message = encodeAny({
+      type: 'TransferTx',
+      value: { to: 'abc' },
+    }).toObject();
+    expect(typeof message).toEqual('object');
+    expect(message.typeUrl).toEqual('ft/Transfer');
+    expect(message.value).toEqual('CgNhYmM=');
+  });
+});
+
+describe('#formatMessage', () => {
+  test('should be a function', () => {
+    expect(typeof formatMessage).toEqual('function');
+  });
+
+  test('should decode nested data as expected', () => {
+    const message = formatMessage('AccountState', {
+      balance: { value: Uint8Array.from([13, 224, 182, 179, 167, 100, 0, 0]) },
+      pk: Uint8Array.from([125, 100, 32]),
+      address: '123',
+      type: {
+        pk: 1,
+        hash: 0,
+        address: 0,
+      },
+      genesisTime: { seconds: 1547461548, nanos: 207882515 },
+    });
+    expect(message.balance).toEqual('1000000000000000000');
+    expect(message.pk).toEqual('fWQg');
+    expect(message.type.pk).toEqual('SECP256K1');
+    expect(message.type.hash).toEqual('KECCAK');
+    expect(message.type.address).toEqual('BASE16');
+    expect(message.genesisTime).toEqual('2019-01-14T10:25:48.208Z');
+  });
+
+  test('should decode nested data as expected', () => {
+    const message = formatMessage('ChainInfo', {
+      appHash: Uint8Array.from([125, 100, 32]),
+      blockHash: Uint8Array.from([125, 100, 32]),
+    });
+    expect(message.appHash).toEqual('7d6420');
+    expect(message.blockHash).toEqual('7d6420');
+  });
 });

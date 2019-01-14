@@ -14,11 +14,7 @@
     "wangshijun <shijun@arcblock.io> (https://www.arcblock.io)"
   ],
   "devDependencies": {
-    "eslint": "^5.3.0",
-    "eslint-config-prettier": "latest",
-    "eslint-plugin-prettier": "latest",
-    "graphql-request": "^1.8.2",
-    "prettier": "^1.6.1"
+    "jest": "^23.5.0"
   },
   "homepage": "https://github.com/ArcBlock/forge-js/tree/master/packages/forge-proto",
   "keywords": [
@@ -42,9 +38,11 @@
     "copy": "npm run copy:js && npm run copy:json",
     "copy:js": "rm -f lib/*.js && cp $FORGE_SDK_PROTO_GEN_DIR/*.js lib/ && sh ./tools/patch.sh",
     "copy:json": "rm -f lib/*.json && cp $FORGE_SDK_PROTO_GEN_DIR/*.json lib/",
-    "lint": "eslint index.js",
-    "precommit": "yarn lint",
-    "prepush": "yarn lint"
+    "lint": "eslint test index.js",
+    "precommit": "CI=1 npm run test",
+    "prepush": "CI=1 npm run test",
+    "test": "npm run lint && node tools/jest.js",
+    "coverage": "npm run lint && npm run test -- --coverage"
   },
   "dependencies": {
     "debug": "^4.1.1"

@@ -1,7 +1,7 @@
 {
-  "watch": ["../", "app.js"],
-  "script": "app.js",
-  "ext": "js",
-  "env": { "NODE_ENV": "development" },
+  "watch": ["server.js", "../../packages/forge-proto", "../../packages/forge-node"],
+  "script": "server.js",
+  "ext": "js json",
+  "env": { "NODE_ENV": "development", "DEBUG": "@arcblock/*" },
   "stdout": true
 }

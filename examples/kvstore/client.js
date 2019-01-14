@@ -2,8 +2,8 @@
 const fs = require('fs');
 const path = require('path');
 const { enums } = require('@arcblock/forge-proto');
-const { ForgeRpc, ForgeApp, parseConfig, decodeAny } = require('@arcblock/forge-node');
-const { forge } = parseConfig(path.resolve(__dirname, './forge.toml'));
+const { RpcClient, addProtobuf, parseConfig, decodeAny } = require('@arcblock/forge-node');
+const client = new RpcClient(parseConfig(path.resolve(__dirname, './forge.toml')));
 const debug = (...args) => {
   console.log('x'.repeat(80));
   console.log(...args);
@@ -11,7 +11,7 @@ const debug = (...args) => {
 };
 
 // Append application specific proto for use
-ForgeApp.addProtobuf({
+addProtobuf({
   baseDir: path.resolve(__dirname, './gen/'),
   packageName: 'kvstore_abi',
   typeUrls: {
@@ -20,7 +20,6 @@ ForgeApp.addProtobuf({
   },
 });
 
-const client = new ForgeRpc(Object.assign({}, forge, forge.sdk || {}));
 // debug('Supported RPC methods', client.listRpcMethods());
 
 (async () => {
@@ -42,7 +41,7 @@ const client = new ForgeRpc(Object.assign({}, forge, forge.sdk || {}));
       });
       fs.writeFileSync('./address.json', JSON.stringify(sender.wallet.address));
       address = sender.wallet.address;
-      debug('Create wallet address on forge chain', address);
+      debug('Create wallet on forge chain', sender.$format());
     }
 
     // unlock the wallet

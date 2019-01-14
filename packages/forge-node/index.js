@@ -1,5 +1,7 @@
+const { addSource } = require('@arcblock/forge-proto');
 const { parseConfig } = require('./lib/util/config');
 const {
+  formatMessage,
   createMessage,
   encodeAny,
   decodeAny,
@@ -14,12 +16,15 @@ const {
 } = require('./lib/util/socket_data');
 
 module.exports = Object.assign({
-  ForgeRpc: require('./lib/rpc'),
-  ForgeApp: require('./lib/app'),
+  RpcClient: require('./lib/client/rpc'),
+  TcpServer: require('./lib/server/tcp'),
+
+  addProtobuf: addSource,
 
   parseConfig,
 
   createMessage,
+  formatMessage,
   encodeAny,
   decodeAny,
   decodeBinary,

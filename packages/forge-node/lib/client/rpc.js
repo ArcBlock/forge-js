@@ -2,15 +2,15 @@ const grpc = require('grpc');
 const camelcase = require('camelcase');
 const { EventEmitter } = require('events');
 const { messages, rpcs, getMessageType } = require('@arcblock/forge-proto');
-const { decodeBinary, createMessage } = require('./util/message');
-const debug = require('debug')(`${require('../package.json').name}:ForgeRpc`);
+const { formatMessage, createMessage } = require('../util/message');
+const debug = require('debug')(`${require('../../package.json').name}:Client`);
 
-class ForgeRpc {
+class Client {
   constructor(config) {
-    this.config = Object.assign({ enableBinaryDecoding: false }, config || {});
+    this.config = config || {};
     debug('new', this.config);
-    if (!this.config.sockGrpc) {
-      throw new Error('ForgeRpc requires a valid `sockGrpc` to start');
+    if (!this.config.forge.sockGrpc) {
+      throw new Error('Client requires a valid `forge.sockGrpc` to start');
     }
 
     this.initRpcClients();
@@ -18,7 +18,7 @@ class ForgeRpc {
   }
 
   initRpcClients() {
-    const socket = this.config.sockGrpc.split('//').pop();
+    const socket = this.config.forge.sockGrpc.split('//').pop();
     this.clients = Object.keys(rpcs).reduce((acc, x) => {
       debug('initRpcClient', x);
       acc[x] = new rpcs[x](socket, grpc.credentials.createInsecure());
@@ -36,25 +36,24 @@ class ForgeRpc {
     const client = this.clients[group];
     const rpc = client[method].bind(client);
     const spec = rpcs[group].methods[method];
-    const { requestStream = false, responseStream = false, requestType } = spec;
-
-    debug('initRpcMethod', { method, requestStream, responseStream });
+    const { requestStream = false, responseStream = false, requestType, responseType } = spec;
+    debug('initRpcMethod', { method, requestStream, responseStream, requestType, responseType });
 
     let fn = null;
     // unary call, return Promise
     if (requestStream === false && responseStream === false) {
       fn = params =>
         new Promise((resolve, reject) => {
-          const request = this.createRequest(requestType, params);
-          rpc(request, this.createResponseHandler(method, resolve, reject));
+          const request = this._createRequest(requestType, params);
+          rpc(request, this._createResponseHandler({ method, resolve, reject, responseType }));
         });
 
       // response streaming: return EventEmitter
     } else if (requestStream === false && responseStream) {
       fn = params => {
-        const request = this.createRequest(requestType, params);
+        const request = this._createRequest(requestType, params);
         const stream = rpc(request);
-        const emitter = this.createStreamHandler(method, stream);
+        const emitter = this._createStreamHandler({ method, stream, responseType });
         return emitter;
       };
 
@@ -62,8 +61,10 @@ class ForgeRpc {
     } else if (requestStream && responseStream === false) {
       fn = params =>
         new Promise((resolve, reject) => {
-          const request = this.createRequest(requestType, params);
-          const stream = rpc(this.createResponseHandler(method, resolve, reject));
+          const request = this._createRequest(requestType, params);
+          const stream = rpc(
+            this._createResponseHandler({ method, resolve, reject, responseType })
+          );
           stream.write(request);
           stream.end();
         });
@@ -71,9 +72,9 @@ class ForgeRpc {
       // request & response streaming: return EventEmitter
     } else {
       fn = params => {
-        const request = this.createRequest(requestType, params);
+        const request = this._createRequest(requestType, params);
         const stream = rpc();
-        const emitter = this.createStreamHandler(method, stream);
+        const emitter = this._createStreamHandler({ method, stream, responseType });
         stream.write(request);
         stream.end();
         return emitter;
@@ -82,6 +83,7 @@ class ForgeRpc {
 
     fn.rpc = true;
     fn.meta = { group, requestStream, responseStream };
+    fn.format = data => formatMessage(responseType, data);
 
     this[camelcase(method)] = fn;
   }
@@ -101,9 +103,9 @@ class ForgeRpc {
    * @param {String} requestType
    * @param {Object} [params={}]
    * @returns
-   * @memberof ForgeRpc
+   * @memberof Client
    */
-  createRequest(type, _params) {
+  _createRequest(type, _params) {
     const { fn: Message, fields } = getMessageType(type);
     if (!Message) {
       throw new Error(`Unsupported messageType: ${type}`);
@@ -113,7 +115,7 @@ class ForgeRpc {
     }
 
     const request = createMessage(type, _params || {});
-    debug('createRequest', { type, request: request.toObject() });
+    debug('_createRequest', { type, request: request.toObject() });
     return request;
   }
 
@@ -124,9 +126,9 @@ class ForgeRpc {
    * @param {*} resolve
    * @param {*} reject
    * @returns
-   * @memberof ForgeRpc
+   * @memberof Client
    */
-  createResponseHandler(method, resolve, reject) {
+  _createResponseHandler({ method, resolve, reject, responseType }) {
     return (err, response) => {
       if (err) {
         return reject(err);
@@ -139,7 +141,8 @@ class ForgeRpc {
         );
       }
 
-      return resolve(decodeBinary(res, this.config.enableBinaryDecoding));
+      this._attachFormatFn(res, responseType);
+      return resolve(res);
     };
   }
 
@@ -149,9 +152,9 @@ class ForgeRpc {
    * @param {*} method
    * @param {*} stream
    * @returns
-   * @memberof ForgeRpc
+   * @memberof Client
    */
-  createStreamHandler(method, stream) {
+  _createStreamHandler({ method, stream, responseType }) {
     const emitter = new EventEmitter();
 
     stream
@@ -166,7 +169,9 @@ class ForgeRpc {
           );
           return;
         }
-        emitter.emit('data', decodeBinary(res, this.config.enableBinaryDecoding));
+
+        this._attachFormatFn(res, responseType);
+        emitter.emit('data', res);
       })
       .on('error', err => {
         emitter.emit('error', err);
@@ -174,6 +179,22 @@ class ForgeRpc {
 
     return emitter;
   }
+
+  /**
+   * Attach an $format method to each response
+   *
+   * @param {*} data
+   * @param {*} responseType
+   * @memberof Client
+   */
+  _attachFormatFn(data, responseType) {
+    Object.defineProperty(data, '$format', {
+      writable: false,
+      enumerable: false,
+      configurable: false,
+      value: () => formatMessage(responseType, data),
+    });
+  }
 }
 
-module.exports = ForgeRpc;
+module.exports = Client;

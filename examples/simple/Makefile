@@ -20,7 +20,7 @@ prepare: clean
 	@[ -f "${IPFS_BIN_PATH}" ] && cp -f $(IPFS_BIN_PATH) $(DATA_PATH)/ipfs/bin
 
 run:
-	@echo "Running forge for kv app..."
+	@echo "Running forge for simple app..."
 	@FORGE_CONFIG=${CONFIG_PATH} ${FORGE_BIN_PATH} console
 
 logs:
