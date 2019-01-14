@@ -9,7 +9,7 @@ const debug = require('debug')(`${require('../../package.json').name}:util`);
 const enumTypes = Object.keys(enums);
 const { isUint8Array } = util.types;
 
-function decodeBinary(data, experimental = false) {
+function formatMessage(data, experimental = false) {
   if (isUint8Array(data)) {
     return Buffer.from(data).toString();
   }
@@ -23,7 +23,7 @@ function decodeBinary(data, experimental = false) {
       return;
     }
     if (data[x] && typeof data[x] === 'object') {
-      data[x] = decodeBinary(data[x], experimental);
+      data[x] = formatMessage(data[x], experimental);
       return;
     }
   });
@@ -173,7 +173,7 @@ function encodeTimestamp(value) {
 }
 
 module.exports = {
-  decodeBinary,
+  formatMessage,
   createMessage,
   decodeAny,
   encodeAny,

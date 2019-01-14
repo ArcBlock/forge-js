@@ -1,4 +1,4 @@
-const { createMessage, decodeAny } = require('../../');
+const { createMessage, decodeAny, encodeAny, formatMessage } = require('../../lib/util/message');
 
 describe('#createMessage', () => {
   test('should create simple message', () => {
@@ -111,13 +111,11 @@ describe('#createMessage', () => {
     const stores = states.map(x => decodeAny(x.data).value.storeList);
     stores.forEach(store => {
       expect(store.length).toEqual(2);
-      expect(store[0].key).toBeTruthy();
-      expect(store[0].value).toBeTruthy();
-      expect(store[1].key).toBeTruthy();
-      expect(store[1].value).toBeTruthy();
+      expect(store[0].key).toEqual('123');
+      expect(store[0].value).toEqual('456');
+      expect(store[1].key).toEqual('234');
+      expect(store[1].value).toEqual('567');
     });
-    // TODO: check key value match
-    // console.log(require('util').inspect(stores, { depth: 5 }));
   });
 
   test('should support timestamp fields', () => {
@@ -131,7 +129,44 @@ describe('#createMessage', () => {
     expect(timestamp).toEqual(params.genesisTime);
   });
 
-  // TODO: support timestamp
   // TODO: support biguint/bigsint
-  // TODO: support encodeAny and decodeAny
+});
+
+describe('#decodeAny', () => {
+  test('should be a function', () => {
+    expect(typeof decodeAny).toEqual('function');
+  });
+
+  test('should support empty value', () => {
+    const message = decodeAny(null);
+    expect(typeof message).toEqual('object');
+    expect(message.type).toEqual('Unknown');
+    expect(message.value).toEqual('');
+  });
+});
+
+describe('#encodeAny', () => {
+  test('should be a function', () => {
+    expect(typeof decodeAny).toEqual('function');
+  });
+
+  test('should support empty value', () => {
+    const message = encodeAny({
+      type: 'TransferTx',
+      value: { to: '' },
+    }).toObject();
+    expect(typeof message).toEqual('object');
+    expect(message.typeUrl).toEqual('ft/Transfer');
+    expect(message.value).toEqual('');
+  });
+
+  test('should support non-empty value', () => {
+    const message = encodeAny({
+      type: 'TransferTx',
+      value: { to: 'abc' },
+    }).toObject();
+    expect(typeof message).toEqual('object');
+    expect(message.typeUrl).toEqual('ft/Transfer');
+    expect(message.value).toEqual('CgNhYmM=');
+  });
 });
