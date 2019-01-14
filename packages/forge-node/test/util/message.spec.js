@@ -238,6 +238,12 @@ describe('#encodeBigInt & decodeBitIng', () => {
     expect(typeof decodeBigInt).toEqual('function');
   });
 
+  test('should encode encoded properly', () => {
+    let params = { value: Uint8Array.from([13, 224, 182, 179, 167, 100, 0, 0]) };
+    let encoded = encodeBigInt(params, 'BigUint').toObject();
+    expect(encoded.value).toEqual(params.value);
+  });
+
   test('should support reverse op', () => {
     let value = '1234567890';
     let encoded = encodeBigInt(value, 'BigUint').toObject();

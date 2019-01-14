@@ -238,8 +238,17 @@ function decodeTimestamp(data) {
 }
 
 function encodeBigInt(value, type) {
+  console.log('encodeBigInt', { value, type });
   const { fn: BigInt } = getMessageType(type);
   const message = new BigInt();
+  if (value && value.value && isUint8Array(value.value)) {
+    message.setValue(value.value);
+    if (type === 'BigSint') {
+      message.setMinus(value.minus);
+    }
+    return message;
+  }
+
   const number = BN(typeof value === 'number' ? Math.abs(value) : value.replace(/^(-|\+)/, ''));
   message.setValue(Uint8Array.from(Buffer.from(number.toString(16), 'hex')));
   if (type === 'BigSint') {
