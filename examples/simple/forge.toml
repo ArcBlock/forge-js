@@ -5,6 +5,7 @@ version = "0.1.0"
 path = "/tmp/.forge_simple/app"
 executable = ""
 logfile = "logs/app.log"
+error_logfile = "logs/error.log"
 sock_tcp = "tcp://127.0.0.1:28211"
 
 [forge]

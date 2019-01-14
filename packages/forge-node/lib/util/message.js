@@ -22,6 +22,10 @@ function formatMessage(type, data) {
     return data;
   }
 
+  if (typeof data !== 'object') {
+    return data;
+  }
+
   const result = {};
   const { fields } = getMessageType(type);
   Object.keys(fields).forEach(key => {
@@ -42,8 +46,7 @@ function formatMessage(type, data) {
     }
 
     if (['BigUint', 'BigSint'].includes(subType)) {
-      const symbol = value.minus ? '-' : '';
-      result[key] = `${symbol}${BN(Buffer.from(value.value).toString('hex'), 16).toString()}`;
+      result[key] = decodeBigInt(value);
       return;
     }
 
@@ -58,13 +61,7 @@ function formatMessage(type, data) {
     }
 
     if (subType === 'google.protobuf.Timestamp') {
-      if (value && value.seconds) {
-        const date = new Date();
-        date.setTime(value.seconds * 1e3 + Math.ceil(value.nanos / 1e6));
-        result[key] = date.toISOString();
-      } else {
-        result[key] = '';
-      }
+      result[key] = decodeTimestamp(value);
       return;
     }
 
@@ -130,6 +127,11 @@ function createMessage(type, params) {
         if (enumTypes.includes(subType)) {
           // debug('createMessage.Enum', { type, subType, key });
           message[fn](v);
+          return;
+        }
+
+        if (['BigUint', 'BigSint'].includes(subType)) {
+          message[fn](encodeBigInt(v, subType));
           return;
         }
 
@@ -225,10 +227,48 @@ function encodeTimestamp(value) {
   return timestamp;
 }
 
+function decodeTimestamp(data) {
+  if (data && data.seconds) {
+    const date = new Date();
+    date.setTime(data.seconds * 1e3 + Math.ceil(data.nanos / 1e6));
+    return date.toISOString();
+  }
+
+  return '';
+}
+
+function encodeBigInt(value, type) {
+  const { fn: BigInt } = getMessageType(type);
+  const message = new BigInt();
+  if (value && value.value && isUint8Array(value.value)) {
+    message.setValue(value.value);
+    if (type === 'BigSint') {
+      message.setMinus(value.minus);
+    }
+    return message;
+  }
+
+  const number = BN(typeof value === 'number' ? Math.abs(value) : value.replace(/^(-|\+)/, ''));
+  message.setValue(Uint8Array.from(Buffer.from(number.toString(16), 'hex')));
+  if (type === 'BigSint') {
+    message.setMinus(typeof value === 'number' ? value < 0 : /^-/.test(value));
+  }
+
+  return message;
+}
+
+function decodeBigInt(data) {
+  const symbol = data.minus ? '-' : '';
+  return `${symbol}${BN(Buffer.from(data.value).toString('hex'), 16).toString(10)}`;
+}
+
 module.exports = {
   formatMessage,
   createMessage,
   decodeAny,
   encodeAny,
   encodeTimestamp,
+  decodeTimestamp,
+  encodeBigInt,
+  decodeBigInt,
 };

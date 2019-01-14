@@ -1,4 +1,11 @@
-const { createMessage, decodeAny, encodeAny, formatMessage } = require('../../lib/util/message');
+const {
+  createMessage,
+  formatMessage,
+  decodeAny,
+  encodeAny,
+  encodeBigInt,
+  decodeBigInt,
+} = require('../../lib/util/message');
 
 describe('#createMessage', () => {
   test('should create simple message', () => {
@@ -128,6 +135,62 @@ describe('#createMessage', () => {
     const timestamp = message.getGenesisTime().toObject();
     expect(timestamp).toEqual(params.genesisTime);
   });
+
+  test('should support bigInt fields', () => {
+    let message = createMessage('TransferTx', { value: 123456 }).toObject();
+    expect(message.value.minus).toEqual(false);
+    expect(Buffer.from(message.value.value).toString('hex')).toEqual('1e24');
+
+    message = createMessage('TransferTx', { value: -123456 }).toObject();
+    expect(message.value.minus).toEqual(true);
+    expect(Buffer.from(message.value.value).toString('hex')).toEqual('1e24');
+  });
+});
+
+describe('#formatMessage', () => {
+  test('should be a function', () => {
+    expect(typeof formatMessage).toEqual('function');
+  });
+
+  test('should decode nested data as expected', () => {
+    const message = formatMessage('AccountState', {
+      balance: { value: Uint8Array.from([13, 224, 182, 179, 167, 100, 0, 0]) },
+      pk: Uint8Array.from([125, 100, 32]),
+      address: '123',
+      type: {
+        pk: 1,
+        hash: 0,
+        address: 0,
+      },
+      genesisTime: { seconds: 1547461548, nanos: 207882515 },
+      migratedFrom: ['123456', '234567'],
+    });
+    expect(message.balance).toEqual('1000000000000000000');
+    expect(message.pk).toEqual('fWQg');
+    expect(message.type.pk).toEqual('SECP256K1');
+    expect(message.type.hash).toEqual('KECCAK');
+    expect(message.type.address).toEqual('BASE16');
+    expect(message.genesisTime).toEqual('2019-01-14T10:25:48.208Z');
+    expect(message.migratedFrom[0]).toEqual('123456');
+  });
+
+  test('should decode repeated data as expected', () => {
+    const message = formatMessage('ChannelState', {
+      address: '123456',
+      waiting: [{ height: 123 }, { height: 230, hash: 'abcd' }],
+    });
+    expect(message.address).toEqual('123456');
+    expect(message.waiting[0].height).toEqual(123);
+  });
+
+  test('should decode nested data as expected', () => {
+    const message = formatMessage('ChainInfo', {
+      appHash: Uint8Array.from([125, 100, 32]),
+      blockHash: Uint8Array.from([125, 100, 32]),
+    });
+    expect(message.appHash).toEqual('7d6420');
+    expect(message.blockHash).toEqual('7d6420');
+  });
 });
 
 describe('#decodeAny', () => {
@@ -169,37 +232,27 @@ describe('#encodeAny', () => {
   });
 });
 
-describe('#formatMessage', () => {
+describe('#encodeBigInt & decodeBitIng', () => {
   test('should be a function', () => {
-    expect(typeof formatMessage).toEqual('function');
+    expect(typeof encodeBigInt).toEqual('function');
+    expect(typeof decodeBigInt).toEqual('function');
   });
 
-  test('should decode nested data as expected', () => {
-    const message = formatMessage('AccountState', {
-      balance: { value: Uint8Array.from([13, 224, 182, 179, 167, 100, 0, 0]) },
-      pk: Uint8Array.from([125, 100, 32]),
-      address: '123',
-      type: {
-        pk: 1,
-        hash: 0,
-        address: 0,
-      },
-      genesisTime: { seconds: 1547461548, nanos: 207882515 },
-    });
-    expect(message.balance).toEqual('1000000000000000000');
-    expect(message.pk).toEqual('fWQg');
-    expect(message.type.pk).toEqual('SECP256K1');
-    expect(message.type.hash).toEqual('KECCAK');
-    expect(message.type.address).toEqual('BASE16');
-    expect(message.genesisTime).toEqual('2019-01-14T10:25:48.208Z');
+  test('should encode encoded properly', () => {
+    let params = { value: Uint8Array.from([13, 224, 182, 179, 167, 100, 0, 0]) };
+    let encoded = encodeBigInt(params, 'BigUint').toObject();
+    expect(encoded.value).toEqual(params.value);
   });
 
-  test('should decode nested data as expected', () => {
-    const message = formatMessage('ChainInfo', {
-      appHash: Uint8Array.from([125, 100, 32]),
-      blockHash: Uint8Array.from([125, 100, 32]),
-    });
-    expect(message.appHash).toEqual('7d6420');
-    expect(message.blockHash).toEqual('7d6420');
+  test('should support reverse op', () => {
+    let value = '1234567890';
+    let encoded = encodeBigInt(value, 'BigUint').toObject();
+    let decoded = decodeBigInt(encoded);
+    expect(value).toEqual(decoded);
+
+    value = '12345678900000000000000000000';
+    encoded = encodeBigInt(value, 'BigUint').toObject();
+    decoded = decodeBigInt(encoded);
+    expect(value).toEqual(decoded);
   });
 });

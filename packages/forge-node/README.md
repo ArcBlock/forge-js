@@ -34,23 +34,14 @@ yarn add @arcblock/forge-node
 
 ### 1. Prepare Example App
 
-**This step is optional**
-
-```shell
-cd examples/kvstore
-make init     # install dependency
-make prepare  # setup tendermint and ipfs
-make run      # start forge app
-```
+Checkout our [examples](../../examples) folder
 
 ### 2. Call Rpc
 
 ```js
-const { ForgeRpc, parseConfig } = require('@arcblock/forge-node');
+const { RpcClient, parseConfig } = require('@arcblock/forge-node');
 
-const { forge, app } = parseConfig('./examples/kvstore/kv.toml'); // standard forge app config
-const rpcConfig = Object.assign({}, forge, forge.sdk);
-const client = new ForgeRpc(rpcConfig);
+const client = new RpcClient(parseConfig('./forge.toml'));
 (async () => {
   // fetch forge change info
   const { info } = await client.getChainInfo();

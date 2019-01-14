@@ -3,7 +3,7 @@ TOP_DIR=.
 CWD=`pwd`
 DATA_PATH=/tmp/.forge_kvstore_nodejs
 # NOTE: FORGE_CONFIG must be an absolute path
-CONFIG_PATH=$(CWD)/forge.toml
+CONFIG_PATH=$(CWD)/config/forge.toml
 
 FORGE_BIN_PATH=/Users/wangshijun/Develop/arcblock/forge/_build/staging/rel/forge/bin/forge # your local forge build
 # FORGE_BIN_PATH=/Users/wangshijun/Downloads/forge/bin/forge # downloaded from github release
@@ -41,16 +41,17 @@ rebuild-proto: rebuild-proto-js rebuild-proto-json
 	@echo "Rebuilding proto files..."
 
 rebuild-proto-js:
-	@rm -f $(TOP_DIR)/gen/*.js && mkdir -p $(TOP_DIR)/gen
-	@grpc_tools_node_protoc --js_out=import_style=commonjs,binary:$(TOP_DIR)/gen --grpc_out=$(TOP_DIR)/gen --plugin=protoc-gen-grpc=`which grpc_tools_node_protoc_plugin` $(TOP_DIR)/*.proto
+	@rm -f $(TOP_DIR)/protobufs/gen/*.js && mkdir -p $(TOP_DIR)/protobufs/gen
+	@grpc_tools_node_protoc --js_out=import_style=commonjs,binary:$(TOP_DIR)/protobufs/gen --grpc_out=$(TOP_DIR)/protobufs/gen --plugin=protoc-gen-grpc=`which grpc_tools_node_protoc_plugin` $(TOP_DIR)/protobufs/*.proto
+	@mv $(TOP_DIR)/protobufs/gen/protobufs/*.js $(TOP_DIR)/protobufs/gen && rm -rf $(TOP_DIR)/protobufs/gen/protobufs
 	@echo "New protobuf files for javascript created."
-	@sed -i -E "s/get([a-zA-Z0-9]+)_asB64\(\)/get\1()/" $(TOP_DIR)/gen/*.js
+	@sed -i -E "s/get([a-zA-Z0-9]+)_asB64\(\)/get\1()/" $(TOP_DIR)/protobufs/gen/*.js
 	@echo "New protobuf files for javascript patched."
 
 # Generate protobuf spec in json format to use in languages that can geneate code on run-time
 rebuild-proto-json:
-	@rm -f $(TOP_DIR)/gen_json/*.json && mkdir -p $(TOP_DIR)/gen
-	@pbjs -t json -o $(TOP_DIR)/gen/spec.json $(TOP_DIR)/*.proto
+	@rm -f $(TOP_DIR)/protobufs/gen/*.json && mkdir -p $(TOP_DIR)/protobufs/gen
+	@pbjs -t json -o $(TOP_DIR)/protobufs/gen/spec.json $(TOP_DIR)/protobufs/*.proto
 	@echo "New protobuf spec json created."
 
 .PHONY: logs run test

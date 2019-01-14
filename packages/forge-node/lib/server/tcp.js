@@ -1,7 +1,10 @@
 /* eslint no-console:"off" */
 const net = require('net');
+const { enums } = require('@arcblock/forge-proto');
 const { encode, decode, decodePayload } = require('../util/socket_data');
 const debug = require('debug')(`${require('../../package.json').name}:TCPServer`);
+
+const { OK } = enums.StatusCode;
 
 function parseHostPort(value) {
   const [host, port] = value
@@ -11,21 +14,31 @@ function parseHostPort(value) {
   return { host, port };
 }
 
+async function executeHandlers(handlers, req, statusField) {
+  let res = {};
+  for (const handler of handlers) {
+    res = await handler(req, res);
+    if (res[statusField] !== OK) {
+      return res;
+    }
+  }
+
+  return res;
+}
+
 /**
  * Create new TCP Server to handle transactions from forge-core
- *
- * TODO: make txHandlers to accept more handlers on each request type
  *
  * @param {*} config
  * @returns net.Server
  */
-function createServer(config, txHandlers = {}) {
+function create(config) {
   const { host, port } = parseHostPort(config.sockTcp);
+  const txHandlers = {};
 
   const server = net.createServer();
 
   server.on('connection', socket => {
-    // TODO: do we need to set encoding for this connection
     // socket.setEncoding('binary');
 
     console.log('Client connected', socket.address());
@@ -43,18 +56,26 @@ function createServer(config, txHandlers = {}) {
     // Identify request here and hook into txHandlers
     const dispatchRequest = async (payload, type) => {
       debug('x'.repeat(80));
-      const handler = txHandlers[type];
+      const handlers = txHandlers[type];
       const defaultResults = {
-        verifyTx: { result: 0 },
-        updateState: { code: 0 },
+        verifyTx: { result: OK },
+        updateState: { code: OK },
+      };
+      const statusFields = {
+        verifyTx: 'result',
+        updateState: 'code',
       };
 
       let result = {};
-      if (typeof handler === 'function') {
+      if (Array.isArray(handlers) ** handlers.length) {
         try {
           // NOTE: tx handlers should not throw error, but return enums.StatusCode
           decodePayload(payload[type]);
-          result = await handler(...Object.values(payload[type]));
+          result = await executeHandlers(
+            handlers,
+            Object.values(payload[type]),
+            statusFields[type]
+          );
           console.log('dispatchRequest.result', { type, result });
         } catch (err) {
           console.log('dispatchRequest.error', { payload, type, err });
@@ -112,6 +133,31 @@ function createServer(config, txHandlers = {}) {
   });
 
   return {
+    addHandler(type, handler) {
+      if (typeof handler !== 'function') {
+        return;
+      }
+
+      if (typeof txHandlers[type] === 'undefined') {
+        txHandlers[type] = [];
+      }
+
+      txHandlers[type].push(handler);
+      return this;
+    },
+
+    removeHandler(type, handler) {
+      if (!txHandlers[type]) {
+        return false;
+      }
+
+      const index = txHandlers[type].indexOf(handler);
+      if (index > -1) {
+        txHandlers[type].splice(index, 1);
+        return true;
+      }
+    },
+
     start(done) {
       server.listen(port, host, () => {
         const addr = server.address();
@@ -125,4 +171,4 @@ function createServer(config, txHandlers = {}) {
   };
 }
 
-module.exports = { createServer };
+module.exports = { create };

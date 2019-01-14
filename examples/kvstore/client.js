@@ -3,7 +3,7 @@ const fs = require('fs');
 const path = require('path');
 const { enums } = require('@arcblock/forge-proto');
 const { RpcClient, addProtobuf, parseConfig, decodeAny } = require('@arcblock/forge-node');
-const client = new RpcClient(parseConfig(path.resolve(__dirname, './forge.toml')));
+const client = new RpcClient(parseConfig(path.resolve(__dirname, './config/forge.toml')));
 const debug = (...args) => {
   console.log('x'.repeat(80));
   console.log(...args);
@@ -12,7 +12,7 @@ const debug = (...args) => {
 
 // Append application specific proto for use
 addProtobuf({
-  baseDir: path.resolve(__dirname, './gen/'),
+  baseDir: path.resolve(__dirname, './protobufs/gen/'),
   packageName: 'kvstore_abi',
   typeUrls: {
     KvTx: 'KV/kv',
@@ -56,7 +56,9 @@ addProtobuf({
         type: 'KvTx',
         value: {
           key: `key_${Math.round(Math.random() * 10000)}`,
+          // key: '',
           value: `value_${Math.round(Math.random() * 1000000)}`,
+          // value: '',
         },
       };
       debug('accountInfo.kvTx:', kvTx);

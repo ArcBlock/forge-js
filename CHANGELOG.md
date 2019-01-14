@@ -1,3 +1,10 @@
+## 0.3.5 (January 14, 2019)
+  - feat: support attach more handlers on each type
+  - feat: support attach more handlers on each type
+  - feat: better support for bigint encoding and decoding
+  - feat: better support for repeated fields
+  - chore: update readme
+
 ## 0.3.4 (January 14, 2019)
 
 
