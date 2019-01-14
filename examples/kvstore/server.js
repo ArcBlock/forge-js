@@ -3,10 +3,10 @@
 const path = require('path');
 const { TcpServer, parseConfig, addProtobuf } = require('@arcblock/forge-node');
 
-const config = parseConfig(path.resolve(__dirname, './forge.toml'));
+const config = parseConfig(path.resolve(__dirname, './config/forge.toml'));
 
 addProtobuf({
-  baseDir: path.resolve(__dirname, 'gen/'),
+  baseDir: path.resolve(__dirname, './protobufs/gen/'),
   packageName: 'kvstore_abi',
   typeUrls: {
     KvTx: 'KV/kv',

@@ -12,6 +12,7 @@ const { INSUFFICIENT_DATA } = enums.StatusCode;
 module.exports = async function([tx]) {
   const kvPair = tx.itx.value;
   console.log('TxHandler.verifyTx', kvPair);
+  console.error('xxxxxxxx ERRORRROR');
 
   if (!kvPair.key) {
     return { result: INSUFFICIENT_DATA };

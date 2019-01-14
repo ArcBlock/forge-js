@@ -6,6 +6,7 @@ path = "/Users/wangshijun/Develop/arcblock/forge-js/examples/kvstore"
 # executable = "nodemon --exitcrash --spawn --config nodemon.json"
 executable = "server.js"
 logfile = "logs/app.log"
+error_logfile = "logs/error.log"
 sock_tcp = "tcp://127.0.0.1:9528"
 
 [forge]
