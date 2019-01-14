@@ -33,7 +33,7 @@ const client = new ForgeRpc(Object.assign({}, forge, forge.sdk || {}));
     });
     const receiver = await client.createWallet({
       passphrase: '123456',
-      moniker: 'tyrchain',
+      moniker: 'tyrchen',
       type: walletType,
     });
 

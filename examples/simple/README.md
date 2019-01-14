@@ -13,13 +13,18 @@
 
 https://github.com/ArcBlock/forge/releases
 
+### 1. update `Makefile` to use your forge binary
+
+```makefile
+FORGE_BIN_PATH=/YOUR_FORGE_RELEASE_DIR/forge/bin/forge
+```
+
 ### 1. start forge and forge-app
 
 > forge-app is the dummy server in forge-core
 
 ```shell
 make init     # install dependency
-make prepare  # setup tendermint and ipfs
 make run      # start forge app
 ```
 
