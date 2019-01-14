@@ -5,8 +5,10 @@ const {
   createMessage,
   encodeAny,
   decodeAny,
-  decodeBinary,
   encodeTimestamp,
+  decodeTimestamp,
+  encodeBigInt,
+  decodeBigInt,
 } = require('./lib/util/message');
 const { encodeVarint, decodeVarint, encodeZigzag, decodeZigzag } = require('./lib/util/varint');
 const {
@@ -27,8 +29,10 @@ module.exports = Object.assign({
   formatMessage,
   encodeAny,
   decodeAny,
-  decodeBinary,
   encodeTimestamp,
+  decodeTimestamp,
+  encodeBigInt,
+  decodeBigInt,
 
   encodeVarint,
   decodeVarint,

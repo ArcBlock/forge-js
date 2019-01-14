@@ -130,10 +130,10 @@ function createMessage(type, params) {
           return;
         }
 
-        // if (['BigUint', 'BigSint'].includes(subType)) {
-        //   message[fn](encodeBigInt(v));
-        //   return;
-        // }
+        if (['BigUint', 'BigSint'].includes(subType)) {
+          message[fn](encodeBigInt(v, subType));
+          return;
+        }
 
         if (subType === 'google.protobuf.Timestamp') {
           debug(`createMessage.${subType}`, { v });
@@ -237,11 +237,21 @@ function decodeTimestamp(data) {
   return '';
 }
 
-function encodeBigInt(value) {}
+function encodeBigInt(value, type) {
+  const { fn: BigInt } = getMessageType(type);
+  const message = new BigInt();
+  const number = BN(typeof value === 'number' ? Math.abs(value) : value.replace(/^(-|\+)/, ''));
+  message.setValue(Uint8Array.from(Buffer.from(number.toString(16), 'hex')));
+  if (type === 'BigSint') {
+    message.setMinus(typeof value === 'number' ? value < 0 : /^-/.test(value));
+  }
+
+  return message;
+}
 
 function decodeBigInt(data) {
   const symbol = data.minus ? '-' : '';
-  return `${symbol}${BN(Buffer.from(data.value).toString('hex'), 16).toString()}`;
+  return `${symbol}${BN(Buffer.from(data.value).toString('hex'), 16).toString(10)}`;
 }
 
 module.exports = {

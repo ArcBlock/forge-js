@@ -1,4 +1,11 @@
-const { createMessage, formatMessage, decodeAny, encodeAny } = require('../../lib/util/message');
+const {
+  createMessage,
+  formatMessage,
+  decodeAny,
+  encodeAny,
+  encodeBigInt,
+  decodeBigInt,
+} = require('../../lib/util/message');
 
 describe('#createMessage', () => {
   test('should create simple message', () => {
@@ -128,6 +135,16 @@ describe('#createMessage', () => {
     const timestamp = message.getGenesisTime().toObject();
     expect(timestamp).toEqual(params.genesisTime);
   });
+
+  test('should support bigInt fields', () => {
+    let message = createMessage('TransferTx', { value: 123456 }).toObject();
+    expect(message.value.minus).toEqual(false);
+    expect(Buffer.from(message.value.value).toString('hex')).toEqual('1e24');
+
+    message = createMessage('TransferTx', { value: -123456 }).toObject();
+    expect(message.value.minus).toEqual(true);
+    expect(Buffer.from(message.value.value).toString('hex')).toEqual('1e24');
+  });
 });
 
 describe('#formatMessage', () => {
@@ -212,5 +229,24 @@ describe('#encodeAny', () => {
     expect(typeof message).toEqual('object');
     expect(message.typeUrl).toEqual('ft/Transfer');
     expect(message.value).toEqual('CgNhYmM=');
+  });
+});
+
+describe('#encodeBigInt & decodeBitIng', () => {
+  test('should be a function', () => {
+    expect(typeof encodeBigInt).toEqual('function');
+    expect(typeof decodeBigInt).toEqual('function');
+  });
+
+  test('should support reverse op', () => {
+    let value = '1234567890';
+    let encoded = encodeBigInt(value, 'BigUint').toObject();
+    let decoded = decodeBigInt(encoded);
+    expect(value).toEqual(decoded);
+
+    value = '12345678900000000000000000000';
+    encoded = encodeBigInt(value, 'BigUint').toObject();
+    decoded = decodeBigInt(encoded);
+    expect(value).toEqual(decoded);
   });
 });
