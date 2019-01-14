@@ -238,7 +238,6 @@ function decodeTimestamp(data) {
 }
 
 function encodeBigInt(value, type) {
-  console.log('encodeBigInt', { value, type });
   const { fn: BigInt } = getMessageType(type);
   const message = new BigInt();
   if (value && value.value && isUint8Array(value.value)) {
