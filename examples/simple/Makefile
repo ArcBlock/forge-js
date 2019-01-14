@@ -5,7 +5,8 @@ DATA_PATH=/tmp/.forge_simple
 # NOTE: FORGE_CONFIG must be an absolute path
 CONFIG_PATH=$(CWD)/forge.toml
 
-FORGE_BIN_PATH=/Users/wangshijun/Develop/arcblock/forge/_build/staging/rel/forge/bin/forge
+FORGE_BIN_PATH=/Users/wangshijun/Develop/arcblock/forge/_build/staging/rel/forge/bin/forge # your local forge build
+# FORGE_BIN_PATH=/Users/wangshijun/Downloads/forge/bin/forge # downloaded from github release
 TM_BIN_PATH=`which tendermint`
 IPFS_BIN_PATH=`which ipfs`
 
