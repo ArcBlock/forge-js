@@ -3,7 +3,7 @@ const fs = require('fs');
 const path = require('path');
 const { enums } = require('@arcblock/forge-proto');
 const { ForgeRpc, ForgeApp, parseConfig, decodeAny } = require('@arcblock/forge-node');
-const { forge } = parseConfig(path.resolve(__dirname, './forge.toml'));
+const client = new ForgeRpc(parseConfig(path.resolve(__dirname, './forge.toml')));
 const debug = (...args) => {
   console.log('x'.repeat(80));
   console.log(...args);
@@ -20,7 +20,6 @@ ForgeApp.addProtobuf({
   },
 });
 
-const client = new ForgeRpc(Object.assign({}, forge, forge.sdk || {}));
 // debug('Supported RPC methods', client.listRpcMethods());
 
 (async () => {

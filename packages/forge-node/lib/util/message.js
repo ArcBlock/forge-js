@@ -1,34 +1,87 @@
 /* eslint no-console:"off" */
 const util = require('util');
 const camelcase = require('camelcase');
-const { enums, getMessageType, toTypeUrl, fromTypeUrl } = require('@arcblock/forge-proto');
+const BN = require('bignumber.js');
+const {
+  enums,
+  messages,
+  getMessageType,
+  toTypeUrl,
+  fromTypeUrl,
+} = require('@arcblock/forge-proto');
 const { Any } = require('google-protobuf/google/protobuf/any_pb');
 const { Timestamp } = require('google-protobuf/google/protobuf/timestamp_pb');
+
 const debug = require('debug')(`${require('../../package.json').name}:util`);
 
 const enumTypes = Object.keys(enums);
 const { isUint8Array } = util.types;
 
-function formatMessage(data, experimental = false) {
-  if (isUint8Array(data)) {
-    return Buffer.from(data).toString();
+function formatMessage(type, data) {
+  if (!type) {
+    return data;
   }
 
-  Object.keys(data).forEach(x => {
-    if (isUint8Array(data[x])) {
-      data[x] = Buffer.from(data[x]);
-      if (experimental) {
-        data[x] = data[x].toString(['signature', 'pk'].includes(x) ? 'hex' : 'utf8');
+  const result = {};
+  const { fields } = getMessageType(type);
+  Object.keys(fields).forEach(key => {
+    const value = data[key];
+    const { type: subType, rule } = fields[key];
+    if (value === undefined) {
+      return;
+    }
+
+    if (rule === 'repeated') {
+      result[key] = value.map(x => formatMessage(subType, x));
+      return;
+    }
+
+    if (enumTypes.includes(subType)) {
+      result[key] = messages[subType][value];
+      return;
+    }
+
+    if (['BigUint', 'BigSint'].includes(subType)) {
+      const symbol = value.minus ? '-' : '';
+      result[key] = `${symbol}${BN(Buffer.from(value.value).toString('hex'), 16).toString()}`;
+      return;
+    }
+
+    if (isUint8Array(value)) {
+      if (['appHash', 'blockHash'].includes(key)) {
+        result[key] = Buffer.from(value).toString('hex');
+      }
+      if (['signature', 'pk', 'sk'].includes(key)) {
+        result[key] = Buffer.from(value).toString('base64');
       }
       return;
     }
-    if (data[x] && typeof data[x] === 'object') {
-      data[x] = formatMessage(data[x], experimental);
+
+    if (subType === 'google.protobuf.Timestamp') {
+      if (value && value.seconds) {
+        const date = new Date();
+        date.setTime(value.seconds * 1e3 + Math.ceil(value.nanos / 1e6));
+        result[key] = date.toISOString();
+      } else {
+        result[key] = '';
+      }
       return;
     }
+
+    if (subType === 'google.protobuf.Any') {
+      result[key] = value ? value.value : {};
+      return;
+    }
+
+    if (value && typeof value === 'object') {
+      result[key] = formatMessage(subType, value);
+      return;
+    }
+
+    result[key] = value;
   });
 
-  return data;
+  return result;
 }
 
 /**

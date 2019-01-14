@@ -1,5 +1,6 @@
 const { parseConfig } = require('./lib/util/config');
 const {
+  formatMessage,
   createMessage,
   encodeAny,
   decodeAny,
@@ -20,6 +21,7 @@ module.exports = Object.assign({
   parseConfig,
 
   createMessage,
+  formatMessage,
   encodeAny,
   decodeAny,
   decodeBinary,

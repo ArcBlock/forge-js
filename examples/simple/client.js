@@ -2,8 +2,7 @@
 const path = require('path');
 const { enums } = require('@arcblock/forge-proto');
 const { ForgeRpc, parseConfig } = require('@arcblock/forge-node');
-const { forge } = parseConfig(path.resolve(__dirname, './forge.toml'));
-const client = new ForgeRpc(Object.assign({}, forge, forge.sdk || {}));
+const client = new ForgeRpc(parseConfig(path.resolve(__dirname, './forge.toml')));
 const debug = (...args) => {
   console.log('x'.repeat(80));
   console.log(...args);
@@ -16,7 +15,7 @@ debug('Supported RPC methods', client.listRpcMethods());
   try {
     // ChainRpc
     const res = await client.getChainInfo();
-    debug('chainInfo', res.info);
+    debug('chainInfo', res.$pretty());
 
     const stream = client.getBlock({ height: 11 });
     stream
@@ -67,8 +66,8 @@ debug('Supported RPC methods', client.listRpcMethods());
     const account = await client.getAccountState({
       address: sender.wallet.address,
     });
-    account.on('data', async ({ state }) => {
-      debug('accountInfo', state);
+    account.on('data', async data => {
+      debug('accountInfo', data.$pretty());
     });
   } catch (err) {
     console.error('error', err);
