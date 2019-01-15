@@ -14,6 +14,8 @@ function parseHostPort(value) {
   return { host, port };
 }
 
+// TODO: support middleware like `next` syntax
+// TODO: add test case for tcp server
 async function executeHandlers(handlers, req) {
   let res = {};
   for (const handler of handlers) {
@@ -40,8 +42,7 @@ function create(config) {
 
   server.on('connection', socket => {
     // socket.setEncoding('binary');
-
-    console.log('Client connected', socket.address());
+    debug('Client connected', socket.address());
 
     const sendResponse = response => {
       try {
@@ -49,7 +50,7 @@ function create(config) {
         debug('sendResponse', { response, encoded: encodedResponse });
         socket.write(encodedResponse);
       } catch (err) {
-        console.log('sendResponse.error', { response, err });
+        console.error('sendResponse.error', { response, err });
       }
     };
 
@@ -63,7 +64,7 @@ function create(config) {
       };
 
       let result = {};
-      if (Array.isArray(handlers) ** handlers.length) {
+      if (Array.isArray(handlers) && handlers.length) {
         try {
           // NOTE: tx handlers should not throw error, but return enums.StatusCode
           decodePayload(payload[type]);
@@ -86,17 +87,17 @@ function create(config) {
       try {
         debug('='.repeat(80));
         const payload = decode(buffer, 'Request');
-        debug('request', { buffer, bufferB64: buffer.toString('base64'), payload });
+        console.log('request', { buffer, bufferB64: buffer.toString('base64'), payload });
         Object.keys(payload)
           .filter(x => !!payload[x])
           .forEach(x => dispatchRequest(payload, x));
       } catch (err) {
-        debug('TCPServer.onData.error', { buffer: buffer.toString('base64'), err });
+        console.error('TCPServer.onData.error', { buffer: buffer.toString('base64'), err });
       }
     });
 
     socket.on('end', () => {
-      debug('Client disconnected', socket.address());
+      console.log('Client disconnected', socket.address());
     });
   });
 
@@ -124,7 +125,10 @@ function create(config) {
     /* eslint-enable indent */
   });
 
-  return {
+  return Object.freeze({
+    host,
+    port,
+
     addHandler(type, handler) {
       if (typeof handler !== 'function') {
         return;
@@ -160,7 +164,11 @@ function create(config) {
         }
       });
     },
-  };
+
+    close(done) {
+      server.close(done);
+    },
+  });
 }
 
 module.exports = { create };
