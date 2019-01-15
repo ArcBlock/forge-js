@@ -97,6 +97,7 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
         migratedTo: jspb.Message.getFieldWithDefault(msg, 13, ''),
         migratedFromList: jspb.Message.getRepeatedField(msg, 14),
         power: jspb.Message.getFieldWithDefault(msg, 15, 0),
+        numAssets: jspb.Message.getFieldWithDefault(msg, 16, 0),
         data: (f = msg.getData()) && google_protobuf_any_pb.Any.toObject(includeInstance, f),
       };
 
@@ -202,6 +203,10 @@ proto.forge_abi.AccountState.deserializeBinaryFromReader = function(msg, reader)
         var value = /** @type {number} */ (reader.readUint64());
         msg.setPower(value);
         break;
+      case 16:
+        var value = /** @type {number} */ (reader.readUint64());
+        msg.setNumAssets(value);
+        break;
       case 50:
         var value = new google_protobuf_any_pb.Any();
         reader.readMessage(value, google_protobuf_any_pb.Any.deserializeBinaryFromReader);
@@ -293,6 +298,10 @@ proto.forge_abi.AccountState.serializeBinaryToWriter = function(message, writer)
   f = message.getPower();
   if (f !== 0) {
     writer.writeUint64(15, f);
+  }
+  f = message.getNumAssets();
+  if (f !== 0) {
+    writer.writeUint64(16, f);
   }
   f = message.getData();
   if (f != null) {
@@ -589,6 +598,19 @@ proto.forge_abi.AccountState.prototype.getPower = function() {
 /** @param {number} value */
 proto.forge_abi.AccountState.prototype.setPower = function(value) {
   jspb.Message.setField(this, 15, value);
+};
+
+/**
+ * optional uint64 num_assets = 16;
+ * @return {number}
+ */
+proto.forge_abi.AccountState.prototype.getNumAssets = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 16, 0));
+};
+
+/** @param {number} value */
+proto.forge_abi.AccountState.prototype.setNumAssets = function(value) {
+  jspb.Message.setField(this, 16, value);
 };
 
 /**

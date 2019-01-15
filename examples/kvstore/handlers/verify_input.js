@@ -15,9 +15,9 @@ module.exports = async function([tx]) {
   console.error('xxxxxxxx ERRORRROR');
 
   if (!kvPair.key) {
-    return { result: INSUFFICIENT_DATA };
+    return { code: INSUFFICIENT_DATA };
   }
   if (!kvPair.value) {
-    return { result: INSUFFICIENT_DATA };
+    return { code: INSUFFICIENT_DATA };
   }
 };

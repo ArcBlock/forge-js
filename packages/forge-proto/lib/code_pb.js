@@ -39,6 +39,7 @@ proto.forge_abi.StatusCode = {
   NOENT: 26,
   ACCOUNT_MIGRATED: 27,
   CHANNEL_IS_FULL: 28,
+  REVOKED_TX: 29,
   INTERNAL: 500,
 };
 

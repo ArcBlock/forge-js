@@ -15,9 +15,9 @@ module.exports = async function([tx, senderState]) {
     const { key } = kvPair;
     const { value: data } = senderState.data;
     if (Array.isArray(data.store) && data.store.any(x => x.key === key)) {
-      return { result: INVALID_SENDER_STATE };
+      return { code: INVALID_SENDER_STATE };
     }
   }
 
-  return { result: OK };
+  return { code: OK };
 };
