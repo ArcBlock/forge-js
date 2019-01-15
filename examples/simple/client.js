@@ -52,7 +52,7 @@ debug('Supported RPC methods', client.listRpcMethods());
         type: 'TransferTx',
         value: {
           to: receiver.wallet.address,
-          value: 100,
+          value: client.toArc(100),
         },
       },
     });
