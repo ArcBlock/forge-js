@@ -1,8 +1,14 @@
 const grpc = require('grpc');
 const camelcase = require('camelcase');
+const BN = require('bignumber.js');
 const { EventEmitter } = require('events');
 const { messages, rpcs, getMessageType } = require('@arcblock/forge-proto');
-const { formatMessage, createMessage } = require('../util/message');
+const {
+  formatMessage,
+  createMessage,
+  attachFormatFn,
+  attachExampleFn,
+} = require('../util/message');
 const debug = require('debug')(`${require('../../package.json').name}:Client`);
 
 class Client {
@@ -15,6 +21,22 @@ class Client {
 
     this.initRpcClients();
     this.initRpcMethods();
+  }
+
+  /**
+   * Arc is the smallest, infungible unit used for Forge Apps. If app define decimal as 16,
+   * then 1 token (e.g. ABT) = 10^16 arc. When sending transfer tx or exchange tx,
+   * the value shall be created with Arc.
+   */
+  fromArc(value) {
+    return BN(value, 10)
+      .div(BN(`1e${this.config.decimal || 16}`))
+      .toString(10);
+  }
+  toArc(value) {
+    return BN(value, 10)
+      .times(BN(`1e${this.config.decimal || 16}`))
+      .toString(10);
   }
 
   initRpcClients() {
@@ -83,7 +105,9 @@ class Client {
 
     fn.rpc = true;
     fn.meta = { group, requestStream, responseStream };
-    fn.format = data => formatMessage(responseType, data);
+    fn.$format = data => formatMessage(responseType, data);
+    attachExampleFn(requestType, fn, '$requestExample');
+    attachExampleFn(responseType, fn, '$responseExample');
 
     this[camelcase(method)] = fn;
   }
@@ -141,7 +165,7 @@ class Client {
         );
       }
 
-      this._attachFormatFn(res, responseType);
+      attachFormatFn(responseType, res);
       return resolve(res);
     };
   }
@@ -170,7 +194,7 @@ class Client {
           return;
         }
 
-        this._attachFormatFn(res, responseType);
+        attachFormatFn(responseType, res);
         emitter.emit('data', res);
       })
       .on('error', err => {
@@ -178,22 +202,6 @@ class Client {
       });
 
     return emitter;
-  }
-
-  /**
-   * Attach an $format method to each response
-   *
-   * @param {*} data
-   * @param {*} responseType
-   * @memberof Client
-   */
-  _attachFormatFn(data, responseType) {
-    Object.defineProperty(data, '$format', {
-      writable: false,
-      enumerable: false,
-      configurable: false,
-      value: () => formatMessage(responseType, data),
-    });
   }
 }
 

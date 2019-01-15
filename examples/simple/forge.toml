@@ -77,7 +77,7 @@ seed_peers = ""
 timeout_commit = "100ms"
 
 # create empty blocks in 5s interval
-create_empty_blocks = true
+create_empty_blocks = false
 
 
 [tendermint.genesis]

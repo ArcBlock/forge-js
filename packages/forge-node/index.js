@@ -3,6 +3,7 @@ const { parseConfig } = require('./lib/util/config');
 const {
   formatMessage,
   createMessage,
+  fakeMessage,
   encodeAny,
   decodeAny,
   encodeTimestamp,
@@ -27,6 +28,7 @@ module.exports = Object.assign({
 
   createMessage,
   formatMessage,
+  fakeMessage,
   encodeAny,
   decodeAny,
   encodeTimestamp,

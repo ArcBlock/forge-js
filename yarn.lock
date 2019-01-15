@@ -2115,6 +2115,10 @@ extsprintf@^1.2.0:
   version "1.4.0"
   resolved "https://registry.npmjs.org/extsprintf/-/extsprintf-1.4.0.tgz#e2689f8f356fad62cca65a3a91c5df5f9551692f"
 
+faker@Marak/faker.js, faker@Marak/faker.js#d3ce6f1a2a9359574e7f31f14d4901648047c45a:
+  version "4.1.0"
+  resolved "https://codeload.github.com/Marak/faker.js/tar.gz/d3ce6f1a2a9359574e7f31f14d4901648047c45a"
+
 fast-deep-equal@^2.0.1:
   version "2.0.1"
   resolved "https://registry.npmjs.org/fast-deep-equal/-/fast-deep-equal-2.0.1.tgz#7b05218ddf9667bf7f370bf7fdb2cb15fdd0aa49"

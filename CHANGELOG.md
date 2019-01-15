@@ -1,3 +1,12 @@
+## 0.4.0 (January 15, 2019)
+  - feat: support auto generation of api docs (12 seconds ago)
+
+## 0.3.8 (January 15, 2019)
+  - bump version (31 seconds ago)
+  - feat: support fromArc and toArc op (4 minutes ago)
+  - feat: support starting Node REPL with and forge-rpc-client instance (33 minutes ago)
+  - feat: support faking message and generate request/response example (34 minutes ago)
+
 ## 0.3.7 (January 15, 2019)
 
 
