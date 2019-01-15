@@ -35,7 +35,7 @@ const scalarTypes = {
   float: faker.random.float,
   double: faker.random.float,
 
-  string: faker.random.words,
+  string: faker.random.word,
   bytes: length => Uint8Array.from(range(1, length).map(() => Math.ceil(faker.random.number()))),
   enums: type => {
     const values = Object.values(enums[type]);
