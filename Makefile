@@ -13,7 +13,7 @@ init: install dep
 travis-init: install dep
 	@echo "Initialize software required for travis (normally ubuntu software)"
 	@cd packages/forge-proto && yarn link
-	@cd packages/forge-node && yarn link @arblock/forge-proto
+	@cd packages/forge-node && yarn link @arcblock/forge-proto
 
 install:
 	@echo "Install software required for this repo..."
