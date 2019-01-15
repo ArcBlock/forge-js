@@ -1,4 +1,3 @@
-/* eslint no-console:"off" */
 const path = require('path');
 const net = require('net');
 const { TcpServer, parseConfig } = require('../../');
@@ -37,7 +36,6 @@ describe('TcpServer', () => {
 
     socket.on('data', data => {
       const decoded = decode(data, 'Response');
-      console.log({ data, decoded });
       expect(decoded.verifyTx.code).toEqual(0);
       socket.end();
     });
@@ -57,7 +55,6 @@ describe('TcpServer', () => {
 
     socket.on('data', data => {
       const decoded = decode(data, 'Response');
-      console.log({ data, decoded });
       expect(decoded.verifyTx.code).toEqual(1);
       socket.end();
     });
