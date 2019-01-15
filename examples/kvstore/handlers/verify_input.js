@@ -1,6 +1,6 @@
 /* eslint no-console:"off" */
 const { enums } = require('@arcblock/forge-proto');
-const { INSUFFICIENT_DATA } = enums.StatusCode;
+const { OK, INSUFFICIENT_DATA } = enums.StatusCode;
 
 /**
  * Each app server must implement `verifyTx` handler
@@ -21,5 +21,5 @@ module.exports = async function([tx]) {
     return { code: INSUFFICIENT_DATA };
   }
 
-  return { code: -1 };
+  return { code: OK };
 };
