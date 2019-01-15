@@ -6,8 +6,10 @@
   "bin": {
     "arcli": "src/index.js"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
-    "install": "node bin/install",
     "precommit": "npm run lint",
     "prepush": "npm run lint",
     "lint": "eslint src"

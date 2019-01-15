@@ -1,6 +1,0 @@
-#!/usr/bin/env node
-
-const Validate = require('git-validate-tyrchen');
-
-// setup lint and prehook
-Validate.configureHook('pre-commit', ['lint', 'test']);
