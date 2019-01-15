@@ -14,11 +14,11 @@ function parseHostPort(value) {
   return { host, port };
 }
 
-async function executeHandlers(handlers, req, statusField) {
+async function executeHandlers(handlers, req) {
   let res = {};
   for (const handler of handlers) {
     res = await handler(req, res);
-    if (res[statusField] !== OK) {
+    if (res.code !== OK) {
       return res;
     }
   }
@@ -58,12 +58,8 @@ function create(config) {
       debug('x'.repeat(80));
       const handlers = txHandlers[type];
       const defaultResults = {
-        verifyTx: { result: OK },
+        verifyTx: { code: OK },
         updateState: { code: OK },
-      };
-      const statusFields = {
-        verifyTx: 'result',
-        updateState: 'code',
       };
 
       let result = {};
@@ -71,11 +67,7 @@ function create(config) {
         try {
           // NOTE: tx handlers should not throw error, but return enums.StatusCode
           decodePayload(payload[type]);
-          result = await executeHandlers(
-            handlers,
-            Object.values(payload[type]),
-            statusFields[type]
-          );
+          result = await executeHandlers(handlers, Object.values(payload[type]));
           console.log('dispatchRequest.result', { type, result });
         } catch (err) {
           console.log('dispatchRequest.error', { payload, type, err });

@@ -1,3 +1,6 @@
+## 0.3.7 (January 15, 2019)
+
+
 ## 0.3.6 (January 14, 2019)
   - fix: licence
 

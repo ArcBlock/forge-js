@@ -55,7 +55,7 @@
         },
         "ResponseVerifyTx": {
           "fields": {
-            "result": {
+            "code": {
               "type": "StatusCode",
               "id": 1
             }
@@ -144,6 +144,7 @@
             "noent": 26,
             "account_migrated": 27,
             "channel_is_full": 28,
+            "revoked_tx": 29,
             "internal": 500
           }
         },
@@ -573,6 +574,10 @@
             "power": {
               "type": "uint64",
               "id": 15
+            },
+            "numAssets": {
+              "type": "uint64",
+              "id": 16
             },
             "data": {
               "type": "google.protobuf.Any",
