@@ -1,7 +1,5 @@
 ## 0.5.0 (January 15, 2019)
   - chore: rename forge-node => forge-sdk
-  - chore: rename forge-node => forge-sdk
-  - chore: rename forge-node => forge-sdk
   - remove nexe as dependency.
   - fix travis
   - init the forge cli skeleton.

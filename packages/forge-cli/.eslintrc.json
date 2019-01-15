@@ -1,8 +1,0 @@
-{
-    "extends": "airbnb-base",
-    "rules": {
-	"no-console": 0,
-	"comma-dangle": "off",
-	"function-paren-newline": "off"
-    }
-}

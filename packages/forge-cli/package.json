@@ -8,18 +8,20 @@
   },
   "scripts": {
     "install": "node bin/install",
-    "lint": "node node_modules/eslint/bin/eslint.js ."
+    "precommit": "npm run lint",
+    "prepush": "npm run lint",
+    "lint": "eslint src"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/arcblock/forge-cli.git"
+    "url": "git+https://github.com/arcblock/forge-js.git"
   },
   "author": "Tyr Chen",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/arcblock/forge-cli/issues"
+    "url": "https://github.com/arcblock/forge-js/packages/forge-cli/issues"
   },
-  "homepage": "https://github.com/arcblock/forge-cli#readme",
+  "homepage": "https://github.com/arcblock/forge-js/packages/forge-cli#readme",
   "dependencies": {
     "app-module-path": "^2.2.0",
     "chalk": "^2.4.1",
@@ -35,18 +37,5 @@
     "ramda": "^0.25.0",
     "shelljs": "^0.8.1",
     "slugify": "^1.3.0"
-  },
-  "devDependencies": {
-    "babel-eslint": "*",
-    "eslint": "^4.19.1",
-    "eslint-config-airbnb-base": "^12.1.0",
-    "eslint-config-tyrchen": "*",
-    "eslint-plugin-import": "^2.11.0",
-    "eslint-plugin-react": "*",
-    "git-validate-tyrchen": "*"
-  },
-  "pre-commit": [
-    "lint",
-    "test"
-  ]
+  }
 }

@@ -1,3 +1,4 @@
+/* eslint no-console:"off" */
 const inquirer = require('inquirer');
 const path = require('path');
 const shell = require('shelljs');
@@ -14,12 +15,14 @@ const questions = [
     type: 'text',
     name: 'name',
     message: 'name of the cli (use ":" to differentiate action and object. e.g. create:repo):',
-    validate: (input) => {
-      if (!input
-	  || input.length < 6
-	  || (input.match(/:/g) || []).length !== 1
-	|| (input.match(/[^_a-z:]/g) || []).length !== 0) {
-	return 'input shall contain only 1 ":" and lowercase characters and at least 6 chars';
+    validate: input => {
+      if (
+        !input ||
+        input.length < 6 ||
+        (input.match(/:/g) || []).length !== 1 ||
+        (input.match(/[^_a-z:]/g) || []).length !== 0
+      ) {
+        return 'input shall contain only 1 ":" and lowercase characters and at least 6 chars';
       }
       return true;
     },
@@ -28,7 +31,7 @@ const questions = [
     type: 'text',
     name: 'description',
     message: 'Please write concise description:',
-    validate: (input) => {
+    validate: input => {
       if (!input || input.length < 10) return 'Description should be more than 10 characters long';
       return true;
     },
@@ -61,7 +64,7 @@ function createArcli(cliName, description) {
 }
 
 function run() {
-  inquirer.prompt(questions).then((answers) => {
+  inquirer.prompt(questions).then(answers => {
     const { name, description } = answers;
     createArcli(name, description);
   });

@@ -1,3 +1,4 @@
+/* eslint no-console:"off" */
 const path = require('path');
 
 const allCommands = [];
@@ -30,7 +31,7 @@ function initCli(program) {
   // this will mutate allCommands
   const allCli = path.join(__dirname, '../cli/index.js');
   requireCli(allCli);
-  allCommands.forEach((item) => {
+  allCommands.forEach(item => {
     program
       .command(item.command)
       .description(item.desc)
