@@ -1,6 +1,9 @@
 /* eslint no-console:"off" */
 const util = require('util');
 const camelcase = require('camelcase');
+const faker = require('faker');
+const range = require('lodash/range');
+const random = require('lodash/random');
 const BN = require('bignumber.js');
 const {
   enums,
@@ -11,12 +14,103 @@ const {
 } = require('@arcblock/forge-proto');
 const { Any } = require('google-protobuf/google/protobuf/any_pb');
 const { Timestamp } = require('google-protobuf/google/protobuf/timestamp_pb');
-
 const debug = require('debug')(`${require('../../package.json').name}:util`);
 
 const enumTypes = Object.keys(enums);
 const { isUint8Array } = util.types;
 
+// Utility map to generate random data when compose fake message
+const scalarTypes = {
+  sint32: faker.random.number,
+  uint32: faker.random.number,
+  sfixed32: faker.random.number,
+
+  sint64: faker.random.number,
+  uint64: faker.random.number,
+  sfixed64: faker.random.number,
+
+  BigUint: () => faker.random.number().toString(),
+  BigSint: () => faker.random.number().toString(),
+
+  float: faker.random.float,
+  double: faker.random.float,
+
+  string: faker.random.words,
+  bytes: length => Uint8Array.from(range(1, length).map(() => Math.ceil(faker.random.number()))),
+  enums: type => {
+    const values = Object.values(enums[type]);
+    return values[random(0, values.length - 1)];
+  },
+};
+
+/**
+ * Generated a fake message for a type, the message can be RPC request/response
+ *
+ * @param {String} type
+ */
+function fakeMessage(type) {
+  if (!type) {
+    return;
+  }
+
+  if (scalarTypes[type]) {
+    return scalarTypes[type]();
+  }
+
+  const { fields } = getMessageType(type);
+  if (!fields) {
+    return;
+  }
+
+  const result = {};
+  Object.keys(fields).forEach(key => {
+    const { type: subType, rule } = fields[key];
+    if (rule === 'repeated') {
+      result[key] = [1, 2].map(() => fakeMessage(subType));
+      return;
+    }
+
+    if (enumTypes.includes(subType)) {
+      result[key] = scalarTypes.enums(subType);
+      return;
+    }
+
+    if (['hash', 'appHash', 'txHash', 'address', 'from', 'to', 'proposer'].includes(key)) {
+      result[key] = faker.git.commitSha();
+      return;
+    }
+
+    if (scalarTypes[subType]) {
+      result[key] = scalarTypes[subType];
+    }
+
+    if (subType === 'google.protobuf.Timestamp') {
+      result[key] = new Date().toISOString();
+      return;
+    }
+
+    if (subType === 'google.protobuf.Any') {
+      result[key] = {
+        type: 'WalletType',
+        value: fakeMessage('WalletType'),
+      };
+      return;
+    }
+
+    // Other complex types
+    result[key] = fakeMessage(subType);
+  });
+
+  return result;
+}
+
+/**
+ * Format an message from RPC to UI friendly
+ *
+ * @param {*} type
+ * @param {*} data
+ * @returns object [almost same structure as input]
+ */
 function formatMessage(type, data) {
   if (!type) {
     return data;
@@ -82,7 +176,7 @@ function formatMessage(type, data) {
 }
 
 /**
- * Create an encoded Typed message with specified data
+ * Create an protobuf encoded Typed message with specified data, ready to send to rpc server
  *
  * @param {*} type
  * @param {*} params
@@ -191,7 +285,7 @@ function decodeAny(data) {
  * Does nothing on already encoded message
  *
  * @param {*} data
- * @returns Object
+ * @returns google.protobuf.Any
  */
 function encodeAny(data) {
   if (!data) {
@@ -214,19 +308,41 @@ function encodeAny(data) {
   return anyMessage;
 }
 
+/**
+ * Convert an { seconds, nanos } | date-string to google.protobuf.Timestamp object
+ *
+ * @param {String|Object} value
+ * @returns google.protobuf.Timestamp
+ */
 function encodeTimestamp(value) {
   if (!value) {
     return;
   }
 
   const timestamp = new Timestamp();
-  const { seconds, nanos } = value;
-  timestamp.setSeconds(seconds);
-  timestamp.setNanos(nanos);
+  if (typeof value === 'string') {
+    const millionSeconds = Date.parse(value);
+    if (isNaN(millionSeconds) === false) {
+      timestamp.setSeconds(Math.floor(millionSeconds / 1e3));
+      timestamp.setNanos(Math.floor((millionSeconds % 1e3) * 1e6));
+    }
+  } else {
+    const { seconds, nanos = 0 } = value;
+    timestamp.setSeconds(seconds);
+    timestamp.setNanos(nanos);
+  }
 
   return timestamp;
 }
 
+/**
+ * Decode google.protobuf.Timestamp message to ISO Date String
+ *
+ * FIXME: node strictly equal because we rounded the `nanos` field
+ *
+ * @param {*} data
+ * @returns String
+ */
 function decodeTimestamp(data) {
   if (data && data.seconds) {
     const date = new Date();
@@ -237,6 +353,13 @@ function decodeTimestamp(data) {
   return '';
 }
 
+/**
+ * Encode BigUint and BigSint types defined in forge-sdk, double encoding is avoided
+ *
+ * @param {*} value
+ * @param {*} type
+ * @returns Message
+ */
 function encodeBigInt(value, type) {
   const { fn: BigInt } = getMessageType(type);
   const message = new BigInt();
@@ -257,18 +380,60 @@ function encodeBigInt(value, type) {
   return message;
 }
 
+/**
+ * Convert BigUint and BigSint to string representation of numbers
+ *
+ * @link https://stackoverflow.com/questions/23948278/how-to-convert-byte-array-into-a-signed-big-integer-in-javascript
+ * @param {*} data
+ * @returns String
+ */
 function decodeBigInt(data) {
   const symbol = data.minus ? '-' : '';
   return `${symbol}${BN(Buffer.from(data.value).toString('hex'), 16).toString(10)}`;
 }
 
+/**
+ * Attach an $format method to rpc response
+ *
+ * @param {Object} data
+ * @param {String} type
+ * @memberof Client
+ */
+function attachFormatFn(type, data, key = '$format') {
+  Object.defineProperty(data, key, {
+    writable: false,
+    enumerable: false,
+    configurable: false,
+    value: () => formatMessage(type, data),
+  });
+}
+
+/**
+ * Attach an example method to
+ *
+ * @param {Object} data
+ * @param {String} type
+ * @memberof Client
+ */
+function attachExampleFn(type, host, key) {
+  Object.defineProperty(host, key, {
+    writable: false,
+    enumerable: false,
+    configurable: false,
+    value: () => fakeMessage(type),
+  });
+}
+
 module.exports = {
   formatMessage,
   createMessage,
+  fakeMessage,
   decodeAny,
   encodeAny,
   encodeTimestamp,
   decodeTimestamp,
   encodeBigInt,
   decodeBigInt,
+  attachFormatFn,
+  attachExampleFn,
 };

@@ -2,7 +2,12 @@ const grpc = require('grpc');
 const camelcase = require('camelcase');
 const { EventEmitter } = require('events');
 const { messages, rpcs, getMessageType } = require('@arcblock/forge-proto');
-const { formatMessage, createMessage } = require('../util/message');
+const {
+  formatMessage,
+  createMessage,
+  attachFormatFn,
+  attachExampleFn,
+} = require('../util/message');
 const debug = require('debug')(`${require('../../package.json').name}:Client`);
 
 class Client {
@@ -84,6 +89,8 @@ class Client {
     fn.rpc = true;
     fn.meta = { group, requestStream, responseStream };
     fn.format = data => formatMessage(responseType, data);
+    attachExampleFn(requestType, fn, '$requestExample');
+    attachExampleFn(responseType, fn, '$responseExample');
 
     this[camelcase(method)] = fn;
   }
@@ -141,7 +148,7 @@ class Client {
         );
       }
 
-      this._attachFormatFn(res, responseType);
+      attachFormatFn(responseType, res);
       return resolve(res);
     };
   }
@@ -170,7 +177,7 @@ class Client {
           return;
         }
 
-        this._attachFormatFn(res, responseType);
+        attachFormatFn(responseType, res);
         emitter.emit('data', res);
       })
       .on('error', err => {
@@ -178,22 +185,6 @@ class Client {
       });
 
     return emitter;
-  }
-
-  /**
-   * Attach an $format method to each response
-   *
-   * @param {*} data
-   * @param {*} responseType
-   * @memberof Client
-   */
-  _attachFormatFn(data, responseType) {
-    Object.defineProperty(data, '$format', {
-      writable: false,
-      enumerable: false,
-      configurable: false,
-      value: () => formatMessage(responseType, data),
-    });
   }
 }
 

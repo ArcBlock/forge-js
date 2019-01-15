@@ -1,8 +1,11 @@
 const {
   createMessage,
   formatMessage,
+  fakeMessage,
   decodeAny,
   encodeAny,
+  encodeTimestamp,
+  decodeTimestamp,
   encodeBigInt,
   decodeBigInt,
 } = require('../../lib/util/message');
@@ -193,6 +196,43 @@ describe('#formatMessage', () => {
   });
 });
 
+describe('#fakeMessage', () => {
+  test('should be a function', () => {
+    expect(typeof fakeMessage).toEqual('function');
+  });
+
+  test('should return undefined on invalid type', () => {
+    expect(fakeMessage()).toBeUndefined();
+    expect(fakeMessage('NotExist')).toBeUndefined();
+  });
+
+  test('should support simple type', () => {
+    const message = fakeMessage('WalletType');
+    expect(message.pk).not.toBeUndefined();
+    expect(message.hash).not.toBeUndefined();
+    expect(message.address).not.toBeUndefined();
+  });
+
+  test('should support timestamp type', () => {
+    const message = fakeMessage('AbciContext');
+    expect(message.blockHeight).toBeGreaterThan(0);
+    expect(Date.parse(message.blockTime) > 0).toBeTruthy();
+  });
+
+  test('should support repeated type', () => {
+    const message = fakeMessage('BlockInfo');
+    // console.log(require('util').inspect(message, { depth: 5 }));
+    expect(message.height).toBeGreaterThan(0);
+    expect(Date.parse(message.time) > 0).toBeTruthy();
+    expect(Array.isArray(message.txs)).toBeTruthy();
+    const tx = message.txs[0];
+    expect(tx.from).toBeTruthy();
+    expect(tx.nonce).toBeTruthy();
+    expect(tx.itx.type).toBeTruthy();
+    expect(tx.itx.value).toBeTruthy();
+  });
+});
+
 describe('#decodeAny', () => {
   test('should be a function', () => {
     expect(typeof decodeAny).toEqual('function');
@@ -254,5 +294,34 @@ describe('#encodeBigInt & decodeBitIng', () => {
     encoded = encodeBigInt(value, 'BigUint').toObject();
     decoded = decodeBigInt(encoded);
     expect(value).toEqual(decoded);
+  });
+});
+
+describe('#encodeTimestamp & decodeTimestamp', () => {
+  test('should be a function', () => {
+    expect(typeof encodeTimestamp).toEqual('function');
+    expect(typeof decodeTimestamp).toEqual('function');
+  });
+
+  test('should encode timestamp properly', () => {
+    const date = new Date();
+    expect(encodeTimestamp()).toBeFalsy();
+    expect(encodeTimestamp(date.toISOString()).getSeconds()).toEqual(
+      Math.floor(date.getTime() / 1e3)
+    );
+    expect(encodeTimestamp({ seconds: 1 }).getSeconds()).toEqual(1);
+  });
+
+  test('should decode timestamp properly', () => {
+    let params = { value: Uint8Array.from([13, 224, 182, 179, 167, 100, 0, 0]) };
+    let encoded = encodeBigInt(params, 'BigUint').toObject();
+    expect(encoded.value).toEqual(params.value);
+  });
+
+  test('should support reverse op', () => {
+    const dateStr = new Date().toISOString();
+    const encoded = encodeTimestamp(dateStr).toObject();
+    const decoded = decodeTimestamp(encoded);
+    expect(decoded).toEqual(dateStr);
   });
 });
