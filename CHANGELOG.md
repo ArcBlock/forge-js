@@ -1,3 +1,6 @@
+## 0.4.0 (January 15, 2019)
+  - feat: support auto generation of api docs (12 seconds ago)
+
 ## 0.3.8 (January 15, 2019)
   - bump version (31 seconds ago)
   - feat: support fromArc and toArc op (4 minutes ago)
