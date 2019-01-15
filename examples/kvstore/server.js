@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /* eslint no-console:"off" */
 const path = require('path');
-const { TcpServer, parseConfig, addProtobuf } = require('@arcblock/forge-node');
+const { TcpServer, parseConfig, addProtobuf } = require('@arcblock/forge-sdk');
 
 const config = parseConfig(path.resolve(__dirname, './config/forge.toml'));
 

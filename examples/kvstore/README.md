@@ -1,6 +1,6 @@
 # KV Store App
 
-> This is an example app powered by forge and forge-node-sdk, it's purpose is very simple, accept `KVPair` transactions and store them in AccountState.data.
+> This is an example app powered by forge and forge-sdk, it's purpose is very simple, accept `KVPair` transactions and store them in AccountState.data.
 
 ## Files
 

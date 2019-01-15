@@ -2,7 +2,7 @@
 const fs = require('fs');
 const path = require('path');
 const { enums } = require('@arcblock/forge-proto');
-const { RpcClient, addProtobuf, parseConfig, decodeAny } = require('@arcblock/forge-node');
+const { RpcClient, addProtobuf, parseConfig, decodeAny } = require('@arcblock/forge-sdk');
 const client = new RpcClient(parseConfig(path.resolve(__dirname, './config/forge.toml')));
 const debug = (...args) => {
   console.log('x'.repeat(80));

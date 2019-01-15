@@ -1,6 +1,6 @@
 # Simple Forge App
 
-> This is an simple app powered by forge and forge-node-sdk, it just uses forge-core and send standard transactions supported by forge core.
+> This is an simple app powered by forge and forge-sdk, it just uses forge-core and send standard transactions supported by forge core.
 
 ## Files
 

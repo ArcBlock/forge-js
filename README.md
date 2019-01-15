@@ -6,6 +6,5 @@
 
 ## Packages Included
 
-- [@arcblock/forge-node v0.4.0](./packages/forge-node)
+- [@arcblock/forge-sdk v0.4.0](./packages/forge-sdk)
 - [@arcblock/forge-proto v0.4.0](./packages/forge-proto)
-
