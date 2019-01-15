@@ -17,7 +17,7 @@ debug('Supported RPC methods', client.listRpcMethods());
     const res = await client.getChainInfo();
     debug('chainInfo', res.$format());
 
-    const stream = client.getBlock({ height: 11 });
+    const stream = client.getBlock({ height: 1 });
     stream
       .on('data', function({ block }) {
         debug('blockInfo:', block);
