@@ -34,6 +34,7 @@ const generateMethodDocs = (title, methods) => `
 > Binary data in RPC response are \`UInt8Array\` instance and can be safely encoded to base64 string
 
 ${Object.keys(methods)
+  .sort()
   .map(x => {
     const method = client[x];
     const { responseStream } = method.meta;
