@@ -1,2 +1,2 @@
 packages/forge-proto/lib/*.js
-packages/forge-node/docs/gen/*.js
+packages/forge-sdk/docs/gen/*.js

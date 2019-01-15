@@ -1,5 +1,5 @@
 {
-  "name": "@arcblock/forge-node",
+  "name": "@arcblock/forge-sdk",
   "description": "Node.js SDK for Forge Framework by ArcBlock",
   "version": "0.4.0",
   "author": "wangshijun <shijun@arcblock.io> (https://ocap.arcblock.io)",
@@ -29,7 +29,7 @@
   "devDependencies": {
     "jest": "^23.5.0"
   },
-  "homepage": "https://github.com/ArcBlock/forge-js/tree/master/packages/forge-node",
+  "homepage": "https://github.com/ArcBlock/forge-js/tree/master/packages/forge-sdk",
   "keywords": [
     "forge",
     "blockchain",
@@ -45,7 +45,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/ArcBlock/forge-js/tree/master/packages/forge-node"
+    "url": "https://github.com/ArcBlock/forge-js/tree/master/packages/forge-sdk"
   },
   "scripts": {
     "lint": "eslint lib index.js test",

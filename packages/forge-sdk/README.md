@@ -1,4 +1,4 @@
-# [**@arcblock/forge-node**](https://github.com/arcblock/forge-js)
+# [**@arcblock/forge-sdk**](https://github.com/arcblock/forge-js)
 
 [![build status](https://img.shields.io/travis/ArcBlock/forge-js.svg)](https://travis-ci.org/ArcBlock/forge-js)
 [![code coverage](https://img.shields.io/codecov/c/github/ArcBlock/forge-js.svg)](https://codecov.io/gh/ArcBlock/forge-js)
@@ -10,22 +10,24 @@
 
 ## Table of Contents
 
-* [Install](#install)
-* [Usage](#usage)
-  * [0. Make sure you get forge installed](#0-make-sure-you-get-forge-installed)
-  * [1. Prepare Example App](#1-prepare-example-app)
-  * [2. Call Rpc](#2-call-rpc)
-* [Documentation](#documentation)
-* [Contributors](#contributors)
-* [License](#license)
+- [**@arcblock/forge-sdk**](#arcblockforge-sdk)
+  - [Table of Contents](#table-of-contents)
+  - [Install](#install)
+  - [Usage](#usage)
+    - [0. Make sure you get forge installed](#0-make-sure-you-get-forge-installed)
+    - [1. Prepare Example App](#1-prepare-example-app)
+    - [2. Call Rpc](#2-call-rpc)
+  - [Documentation](#documentation)
+  - [Contributors](#contributors)
+  - [License](#license)
 
 
 ## Install
 
 ```sh
-npm install @arcblock/forge-node
+npm install @arcblock/forge-sdk
 // or
-yarn add @arcblock/forge-node
+yarn add @arcblock/forge-sdk
 ```
 
 
@@ -42,7 +44,7 @@ Checkout our [examples](../../examples) folder
 ### 2. Call Rpc
 
 ```js
-const { RpcClient, parseConfig } = require('@arcblock/forge-node');
+const { RpcClient, parseConfig } = require('@arcblock/forge-sdk');
 
 const client = new RpcClient(parseConfig('./forge.toml'));
 (async () => {

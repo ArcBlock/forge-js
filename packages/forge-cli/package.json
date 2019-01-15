@@ -1,0 +1,43 @@
+{
+  "name": "forge-cli",
+  "version": "0.1.0",
+  "description": "a general set of CLI for arcblock Forge framework",
+  "main": "src/index.js",
+  "bin": {
+    "arcli": "src/index.js"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "precommit": "npm run lint",
+    "prepush": "npm run lint",
+    "lint": "eslint src"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arcblock/forge-js.git"
+  },
+  "author": "Tyr Chen",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/arcblock/forge-js/packages/forge-cli/issues"
+  },
+  "homepage": "https://github.com/arcblock/forge-js/packages/forge-cli#readme",
+  "dependencies": {
+    "app-module-path": "^2.2.0",
+    "chalk": "^2.4.1",
+    "commander": "^2.15.1",
+    "fuzzy": "^0.1.3",
+    "glob": "^7.1.2",
+    "inquirer": "^5.2.0",
+    "inquirer-autocomplete-prompt": "^0.12.2",
+    "markdown-table": "^1.1.2",
+    "moment": "^2.22.2",
+    "mustache": "^2.3.0",
+    "npm": "^6.1.0",
+    "ramda": "^0.25.0",
+    "shelljs": "^0.8.1",
+    "slugify": "^1.3.0"
+  }
+}
