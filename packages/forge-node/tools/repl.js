@@ -5,7 +5,8 @@
  **/
 
 const path = require('path');
-const { RpcClient, parseConfig } = require('@arcblock/forge-node');
+const sdk = require('@arcblock/forge-node');
+const { RpcClient, parseConfig } = sdk;
 const client = new RpcClient(
   parseConfig(path.resolve(__dirname, '../../../examples/simple/forge.toml'))
 );
@@ -17,3 +18,4 @@ const debug = (...args) => {
 
 global.debug = debug;
 global.client = client;
+global.sdk = sdk;

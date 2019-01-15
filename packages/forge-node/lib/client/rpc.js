@@ -1,5 +1,6 @@
 const grpc = require('grpc');
 const camelcase = require('camelcase');
+const BN = require('bignumber.js');
 const { EventEmitter } = require('events');
 const { messages, rpcs, getMessageType } = require('@arcblock/forge-proto');
 const {
@@ -20,6 +21,22 @@ class Client {
 
     this.initRpcClients();
     this.initRpcMethods();
+  }
+
+  /**
+   * Arc is the smallest, infungible unit used for Forge Apps. If app define decimal as 16,
+   * then 1 token (e.g. ABT) = 10^16 arc. When sending transfer tx or exchange tx,
+   * the value shall be created with Arc.
+   */
+  fromArc(value) {
+    return BN(value, 10)
+      .div(BN(`1e${this.config.decimal || 16}`))
+      .toString(10);
+  }
+  toArc(value) {
+    return BN(value, 10)
+      .times(BN(`1e${this.config.decimal || 16}`))
+      .toString(10);
   }
 
   initRpcClients() {
@@ -88,7 +105,7 @@ class Client {
 
     fn.rpc = true;
     fn.meta = { group, requestStream, responseStream };
-    fn.format = data => formatMessage(responseType, data);
+    fn.$format = data => formatMessage(responseType, data);
     attachExampleFn(requestType, fn, '$requestExample');
     attachExampleFn(responseType, fn, '$responseExample');
 
