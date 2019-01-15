@@ -1,6 +1,6 @@
 {
   "name": "@arcblock/forge-cli",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "a general set of CLI for arcblock Forge framework",
   "main": "src/index.js",
   "bin": {
