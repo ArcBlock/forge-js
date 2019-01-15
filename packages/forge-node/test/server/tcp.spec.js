@@ -1,3 +1,4 @@
+/* eslint no-console:"off" */
 const path = require('path');
 const net = require('net');
 const { TcpServer, parseConfig } = require('../../');
