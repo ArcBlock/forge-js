@@ -42,7 +42,7 @@
     "precommit": "CI=1 npm run test",
     "prepush": "CI=1 npm run test",
     "test": "npm run lint && node tools/jest.js",
-    "coverage": "npm run lint && npm run test -- --coverage"
+    "coverage": "npm run lint && npm run test -- --coverage --collectCoverageFrom=index.js --collectCoverageFrom=!lib/*.js"
   },
   "dependencies": {
     "debug": "^4.1.1"
