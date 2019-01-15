@@ -4,12 +4,13 @@
   "description": "a general set of CLI for arcblock Forge framework",
   "main": "src/index.js",
   "bin": {
-    "arcli": "src/index.js"
+    "forge": "bin/forge"
   },
   "publishConfig": {
     "access": "public"
   },
   "scripts": {
+    "preinstall": "npm install -g download-github-release",
     "precommit": "npm run lint",
     "prepush": "npm run lint",
     "lint": "eslint src"
@@ -25,20 +26,25 @@
   },
   "homepage": "https://github.com/arcblock/forge-js/packages/forge-cli#readme",
   "dependencies": {
+    "@arcblock/forge-sdk": "^0.5.1",
     "app-module-path": "^2.2.0",
     "chalk": "^2.4.1",
     "commander": "^2.15.1",
+    "debug": "^4.1.1",
     "fuzzy": "^0.1.3",
     "glob": "^7.1.2",
     "inquirer": "^5.2.0",
     "inquirer-autocomplete-prompt": "^0.12.2",
     "markdown-table": "^1.1.2",
+    "mkdirp": "^0.5.1",
     "moment": "^2.22.2",
     "mustache": "^2.3.0",
     "npm": "^6.1.0",
+    "ora": "^3.0.0",
     "ramda": "^0.25.0",
     "shelljs": "^0.8.1",
-    "slugify": "^1.3.0"
+    "slugify": "^1.3.0",
+    "toml": "^2.3.5"
   },
   "gitHead": "d090b5c38082e7b6265e70af81d0a7340e5f1596"
 }

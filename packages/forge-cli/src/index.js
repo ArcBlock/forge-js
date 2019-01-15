@@ -2,16 +2,12 @@
 
 // Add the root project directory to the app module search path:
 require('app-module-path').addPath(__dirname);
-
-const fs = require('fs');
-const path = require('path');
 const program = require('commander');
 
 // eslint-disable-next-line import/no-unresolved
+require('core/init');
 const { initCli } = require('core/cli');
-
-const versionFile = path.join(__dirname, '../version');
-const version = fs.readFileSync(versionFile, { encoding: 'utf-8' });
+const { version } = require('../package.json');
 
 program.version(version);
 
