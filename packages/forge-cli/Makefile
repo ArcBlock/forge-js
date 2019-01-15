@@ -62,6 +62,4 @@ deploy:
 	@echo "Deploy software into local machine..."
 	@npm uninstall -g .;npm install -g .
 
-include .makefiles/*.mk
-
 .PHONY: build init travis-init install dep pre-build post-build all test doc precommit travis clean watch run travis-deploy
