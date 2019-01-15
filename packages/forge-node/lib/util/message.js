@@ -57,14 +57,20 @@ function fakeMessage(type) {
     return scalarTypes[type]();
   }
 
-  const { fields } = getMessageType(type);
+  const { fields, oneofs } = getMessageType(type);
   if (!fields) {
     return;
   }
 
+  let selectedFields = fields;
+  if (oneofs && oneofs.value && Array.isArray(oneofs.value.oneof)) {
+    const selectedField = oneofs.value.oneof[0];
+    selectedFields = { [selectedField]: fields[selectedField] };
+  }
+
   const result = {};
-  Object.keys(fields).forEach(key => {
-    const { type: subType, rule } = fields[key];
+  Object.keys(selectedFields).forEach(key => {
+    const { type: subType, rule } = selectedFields[key];
     if (rule === 'repeated') {
       result[key] = [1, 2].map(() => fakeMessage(subType));
       return;

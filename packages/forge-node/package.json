@@ -50,6 +50,7 @@
   "scripts": {
     "lint": "eslint lib index.js test",
     "generate-docs": "node tools/generate-docs.js",
+    "format-docs": "remark . -o",
     "precommit": "CI=1 yarn test",
     "prepush": "CI=1 yarn test",
     "repl": "node -r ./tools/repl.js",

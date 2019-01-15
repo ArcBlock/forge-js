@@ -22,7 +22,13 @@
   },
   "remarkConfig": {
     "plugins": [
-      "preset-github"
+      "preset-github",
+      [
+        "validate-links",
+        {
+          "repository": "ArcBlock/forge-js"
+        }
+      ]
     ]
   },
   "lint-staged": {

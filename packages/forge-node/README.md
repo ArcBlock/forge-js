@@ -7,15 +7,17 @@
 
 > Node.js SDK for Forge Framework by ArcBlock
 
+
 ## Table of Contents
 
-  - [Table of Contents](#table-of-contents)
-  - [Notes](#notes)
-  - [Install](#install)
-  - [Usage](#usage)
-  - [Documentation](#documentation)
-  - [Contributors](#contributors)
-  - [License](#license)
+* [Install](#install)
+* [Usage](#usage)
+  * [0. Make sure you get forge installed](#0-make-sure-you-get-forge-installed)
+  * [1. Prepare Example App](#1-prepare-example-app)
+  * [2. Call Rpc](#2-call-rpc)
+* [Documentation](#documentation)
+* [Contributors](#contributors)
+* [License](#license)
 
 
 ## Install
@@ -25,6 +27,7 @@ npm install @arcblock/forge-node
 // or
 yarn add @arcblock/forge-node
 ```
+
 
 ## Usage
 
@@ -59,9 +62,11 @@ const client = new RpcClient(parseConfig('./forge.toml'));
 })();
 ```
 
+
 ## Documentation
 
-TODO: auto generate all apis
+For complete API documentation please refer [API.md](./API.md)
+
 
 ## Contributors
 
@@ -74,4 +79,4 @@ TODO: auto generate all apis
 
 ## License
 
-[MIT](LICENSE) © [ArcBlock](https://www.arcblock.io)
+[MIT](LICENSE) © [wangshijun](https://ocap.arcblock.io)
