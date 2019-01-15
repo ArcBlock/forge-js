@@ -1,3 +1,6 @@
+## 0.5.1 (January 15, 2019)
+
+
 ## 0.5.0 (January 15, 2019)
   - chore: rename forge-node => forge-sdk
   - remove nexe as dependency.

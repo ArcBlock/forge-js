@@ -46,5 +46,6 @@
   },
   "dependencies": {
     "debug": "^4.1.1"
-  }
+  },
+  "gitHead": "d090b5c38082e7b6265e70af81d0a7340e5f1596"
 }
