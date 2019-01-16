@@ -29,11 +29,11 @@ function setupEnv(args, requirements) {
 }
 
 function ensureForgeRelease(args, exitOn404 = true) {
-  if (args.forgeReleaseDir) {
-    if (fs.existsSync(args.forgeReleaseDir)) {
-      const forgeBinPath = path.join(args.forgeReleaseDir, './bin/forge');
+  if (args.releaseDir) {
+    if (fs.existsSync(args.releaseDir)) {
+      const forgeBinPath = path.join(args.releaseDir, './bin/forge');
       if (fs.existsSync(forgeBinPath) && fs.statSync(forgeBinPath).isFile()) {
-        config.cli.forgeReleaseDir = args.forgeReleaseDir;
+        config.cli.releaseDir = args.releaseDir;
         config.cli.forgeBinPath = forgeBinPath;
         shell.echo(`Using forge bin path ${forgeBinPath}`);
         return true;
@@ -53,7 +53,7 @@ function ensureForgeRelease(args, exitOn404 = true) {
     const releaseDir = requiredDirs.release;
     const forgeBinPath = path.join(releaseDir, './bin/forge');
     if (fs.existsSync(forgeBinPath) && fs.statSync(forgeBinPath).isFile()) {
-      config.cli.forgeReleaseDir = releaseDir;
+      config.cli.releaseDir = releaseDir;
       config.cli.forgeBinPath = forgeBinPath;
       shell.echo(`Using forge bin path ${forgeBinPath}`);
       return true;
@@ -77,21 +77,19 @@ function ensureForgeRelease(args, exitOn404 = true) {
  */
 function ensureRpcClient(args) {
   const configPath =
-    args.forgeConfigPath ||
-    process.env.FORGE_CONFIG ||
-    findReleaseConfig(config.cli.forgeReleaseDir);
+    args.configPath || process.env.FORGE_CONFIG || findReleaseConfig(config.cli.releaseDir);
   if (configPath && fs.existsSync(configPath)) {
     const forgeConfig = parseConfig(configPath);
     shell.echo(`${symbols.success} using forge config from ${configPath}`);
     createRpcClient(forgeConfig);
-  } else if (args.forgeSocketGrpc) {
+  } else if (args.socketGrpc) {
     const forgeConfig = {
       forge: {
         decimal: 16,
-        sockGrpc: args.forgeSocketGrpc,
+        sockGrpc: args.socketGrpc,
       },
     };
-    shell.echo(`${symbols.info} using forge-cli with remote node ${args.forgeSocketGrpc}`);
+    shell.echo(`${symbols.info} using forge-cli with remote node ${args.socketGrpc}`);
     createRpcClient(forgeConfig);
   } else {
     shell.echo(`${symbols.error} forge-cli requires an forge config file to start`);
@@ -104,12 +102,12 @@ function ensureRpcClient(args) {
  *
  * @returns String
  */
-function findReleaseConfig(forgeReleaseDir) {
-  if (!forgeReleaseDir) {
+function findReleaseConfig(releaseDir) {
+  if (!releaseDir) {
     return '';
   }
 
-  const libDir = path.join(forgeReleaseDir, 'lib');
+  const libDir = path.join(releaseDir, 'lib');
   if (!fs.existsSync(libDir) || !fs.statSync(libDir).isDirectory()) {
     return '';
   }

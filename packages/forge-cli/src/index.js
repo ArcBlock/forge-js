@@ -11,20 +11,20 @@ const { version } = require('../package.json');
 program
   .version(version)
   .option(
-    '-r, --forge-release-dir',
+    '-r, --release-dir',
     'Forge release directory path (unzipped), use your own copy forge release'
   )
   .option(
-    '-t, --forge-release-tarball',
+    '-t, --release-tarball',
     'Forge release tarball (unzipped), we take care of the rest'
   )
   .option(
-    '-c, --forge-config-path',
+    '-c, --config-path',
     'Forge config used when starting forge node and initializing gRPC clients'
   )
   .option(
-    '-g, --forge-socket-grpc',
-    'Socket gRPC endpoint to connect, with this you can use forge-cli without a local node'
+    '-g, --socket-grpc',
+    'Socket gRPC endpoint to connect, with this you can use forge-cli with a remote node'
   );
 
 initCli(program);

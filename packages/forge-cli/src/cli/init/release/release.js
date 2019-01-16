@@ -13,6 +13,7 @@ const { GITHUB_TOKEN } = process.env;
 const client = github.client(GITHUB_TOKEN);
 
 // TODO: release dir rewrite warning and confirm
+// TODO: guess forge release name and confirm with user
 
 function fetchRelease() {
   return new Promise((resolve, reject) => {
@@ -43,7 +44,6 @@ function fetchRelease() {
   });
 }
 
-// TODO: fetch must be installed to make download happen
 function downloadAsset(release, asset) {
   return new Promise((resolve, reject) => {
     const assetOutput = `/tmp/${asset.name}`;
@@ -117,16 +117,11 @@ function copyReleaseConfig() {
 
 async function main() {
   try {
-    const { forgeReleaseTarball } = args;
-    console.log('forge init', args);
+    const { releaseTarball } = args;
     let releaseFilePath = '';
-    if (
-      forgeReleaseTarball &&
-      fs.existsSync(forgeReleaseTarball) &&
-      fs.statSync(forgeReleaseTarball).isFile()
-    ) {
-      shell.echo(`${symbols.info} use existing forge release tarball: ${forgeReleaseTarball}`);
-      releaseFilePath = forgeReleaseTarball;
+    if (releaseTarball && fs.existsSync(releaseTarball) && fs.statSync(releaseTarball).isFile()) {
+      shell.echo(`${symbols.info} use existing forge release tarball: ${releaseTarball}`);
+      releaseFilePath = releaseTarball;
     } else {
       ensureGithubToken();
       ensureFetchCLI();
