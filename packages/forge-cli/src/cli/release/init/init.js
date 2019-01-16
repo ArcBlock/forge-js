@@ -7,13 +7,23 @@ const chalk = require('chalk');
 const github = require('octonode');
 const args = require('yargs').argv;
 const { symbols, getSpinner } = require('core/ui');
-const { requiredDirs, findReleaseConfig } = require('core/env');
+const { requiredDirs, ensureForgeRelease, findReleaseConfig } = require('core/env');
 const { GITHUB_TOKEN } = process.env;
 
 const client = github.client(GITHUB_TOKEN);
 
-// TODO: release dir rewrite warning and confirm
+// TODO: config file formats
+// TODO: release dir cleanup
 // TODO: guess forge release name and confirm with user
+
+function releaseDirExists() {
+  if (ensureForgeRelease({}, false)) {
+    shell.echo(`${symbols.error} forge release dir already exists and not empty`);
+    return true;
+  }
+
+  return false;
+}
 
 function fetchRelease() {
   return new Promise((resolve, reject) => {
@@ -117,6 +127,11 @@ function copyReleaseConfig() {
 
 async function main() {
   try {
+    if (releaseDirExists()) {
+      process.exit(1);
+      return;
+    }
+
     const { releaseTarball } = args;
     let releaseFilePath = '';
     if (releaseTarball && fs.existsSync(releaseTarball) && fs.statSync(releaseTarball).isFile()) {

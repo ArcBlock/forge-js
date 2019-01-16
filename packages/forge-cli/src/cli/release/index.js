@@ -1,0 +1,1 @@
+exports.core = require('./init');
