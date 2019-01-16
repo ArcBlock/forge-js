@@ -76,10 +76,11 @@ function ensureForgeRelease(args, exitOn404 = true) {
  * @param {*} args
  */
 function ensureRpcClient(args) {
-  const configPath =
-    args.configPath || process.env.FORGE_CONFIG || findReleaseConfig(config.cli.releaseDir);
+  const releaseConfig = path.join(path.dirname(requiredDirs.release), 'forge_release.toml');
+  const configPath = args.configPath || process.env.FORGE_CONFIG || releaseConfig;
   if (configPath && fs.existsSync(configPath)) {
     const forgeConfig = parseConfig(configPath);
+    config.cli.forgeConfigPath = configPath;
     shell.echo(`${symbols.success} using forge config from ${configPath}`);
     createRpcClient(forgeConfig);
   } else if (args.socketGrpc) {
