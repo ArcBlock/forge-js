@@ -1,40 +1,34 @@
+const inquirer = require('inquirer');
 const shell = require('shelljs');
-const { symbols, getSpinner } = require('core/ui');
+const { symbols } = require('core/ui');
 const { config } = require('core/env');
 
-// const questions = [
-//   {
-//     type: 'text',
-//     name: 'PARAMETER_1',  // For primtive type parameter
-//     message: 'Please write concise description:',
-//     validate: input => {
-//       if (!input || input.length < 10) return 'Description should be more than 10 characters long';
-//       return true;
-//     },
-//   },
-//   {
-//     type: 'autocomplete',
-//     name: 'PARAMETER_2',  // For array type parameter
-//     message: 'Choose from a list:',
-//     source: (anwsers, inp) => {
-//       const input = inp || '';
-//       return new Promise((resolve) => {
-//         const result = fuzzy.filter(input, templates);
-//         resolve(result.map(item => item.original));
-//       });
-//     },
-//   },
-// ];
+const questions = [
+  {
+    type: 'list',
+    name: 'mode',
+    message: 'Select forge start mode',
+    default: 'start',
+    choices: [
+      new inquirer.Separator(),
+      { value: 'start', name: 'Start forge as a daemon' },
+      { value: 'foreground', name: 'Start forge in the foreground' },
+      { value: 'console', name: 'Start forge with a console attached' },
+    ],
+  },
+];
 
-function main() {
+function main({ mode = 'start' } = {}) {
   const { forgeBinPath, forgeConfigPath } = config.cli;
   if (!forgeBinPath) {
     shell.echo(`${symbols.error} forgeBinPath not found, abort!`);
     return;
   }
 
-  shell.exec(`FORGE_CONFIG=${forgeConfigPath} ${forgeBinPath} console`);
+  shell.exec(`FORGE_CONFIG=${forgeConfigPath} ${forgeBinPath} ${mode}`);
 }
 
-exports.run = main;
 exports.execute = main;
+exports.run = () => {
+  inquirer.prompt(questions).then(main);
+};
