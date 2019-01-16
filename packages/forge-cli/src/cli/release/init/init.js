@@ -7,7 +7,7 @@ const chalk = require('chalk');
 const github = require('octonode');
 const args = require('yargs').argv;
 const { symbols, getSpinner } = require('core/ui');
-const { requiredDirs, ensureForgeRelease, findReleaseConfig } = require('core/env');
+const { config, requiredDirs, ensureForgeRelease, findReleaseConfig } = require('core/env');
 const { GITHUB_TOKEN } = process.env;
 
 const client = github.client(GITHUB_TOKEN);
@@ -19,6 +19,9 @@ const client = github.client(GITHUB_TOKEN);
 function releaseDirExists() {
   if (ensureForgeRelease({}, false)) {
     shell.echo(`${symbols.error} forge release dir already exists and not empty`);
+    if (config.cli.forgeBinPath) {
+      shell.exec(`${config.cli.forgeBinPath} describe`);
+    }
     return true;
   }
 
