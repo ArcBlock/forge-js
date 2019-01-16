@@ -1,48 +1,47 @@
-const fuzzy = require('fuzzy');
-const inquirer = require('inquirer');
 const shell = require('shelljs');
+const inquirer = require('inquirer');
+const { client } = require('core/env');
+const { symbols } = require('core/ui');
+const pretty = require('json-stringify-pretty-compact');
 
 inquirer.registerPrompt('autocomplete', require('inquirer-autocomplete-prompt'));
 
-const questions = [
-  {
-    type: 'text',
-    name: 'PARAMETER_1', // For primtive type parameter
-    message: 'Please write concise description:',
-    validate: input => {
-      if (!input || input.length < 10) return 'Description should be more than 10 characters long';
-      return true;
-    },
-  },
-  {
-    type: 'autocomplete',
-    name: 'PARAMETER_2', // For array type parameter
-    message: 'Choose from a list:',
-    source: (anwsers, inp) => {
-      const input = inp || '';
-      return new Promise(resolve => {
-        const result = fuzzy.filter(input, templates);
-        resolve(result.map(item => item.original));
-      });
-    },
-  },
-];
+async function getAccountState(address) {
+  const streamChild = await client.getAccountState({ address: address });
+  streamChild
+    .on('data', function({ code, state }) {
+      if (code === 0) {
+        const { moniker, address, role } = state;
+        shell.echo(`${symbols.success} get account success: ${pretty({ moniker, address, role })}`);
+      } else {
+        shell.echo(`${symbols.error} error,code: ${code}`);
+      }
+    })
+    .on('error', err => {
+      shell.echo(`${symbols.error} error: ${err}`);
+    });
+}
 
 // Execute the cli silently.
-function execute(data) {
-  const { PARAMETER_1, PARAMETER_2 } = data;
-  // PLEASE REMOVE ME
-  // your action function call here. e.g.
-  // your_action(PARAMETER_1, PARAMETER_2);
+async function execute() {
+  try {
+    const stream = await client.listWallets({});
+    stream
+      .on('data', function(result) {
+        getAccountState(result.address);
+      })
+      .on('error', err => {
+        shell.echo(`${symbols.error} error: ${err}`);
+      });
+  } catch (err) {
+    shell.echo(`${symbols.error} error: ${err}`);
+  }
 }
 
 // Run the cli interactively
 function run() {
-  inquirer.prompt(questions).then(answers => {
-    const { PARAMETER_1, PARAMETER_2 } = answers;
-    // PLEASE REMOVE ME
-    // your action function call here. e.g.
-    // your_action(PARAMETER_1, PARAMETER_2);
+  inquirer.prompt([]).then(() => {
+    execute();
   });
 }
 
