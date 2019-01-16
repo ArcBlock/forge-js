@@ -26,7 +26,7 @@ function source(answers, input, type) {
 const questions = [
   {
     type: 'text',
-    name: 'passphrase', // For primtive type parameter
+    name: 'passphrase',
     message: 'Please input passphrase:',
     validate: input => {
       if (!input) return 'The passphrase should not empty';
@@ -36,7 +36,7 @@ const questions = [
   },
   {
     type: 'text',
-    name: 'moniker', // For primtive type parameter
+    name: 'moniker',
     message: 'Please input moniker:',
     validate: input => {
       if (!input) return 'The moniker should not empty';
@@ -48,7 +48,7 @@ const questions = [
   {
     type: 'autocomplete',
     name: 'pk',
-    message: 'Please select a pk type?',
+    message: 'Please select a public_key type?',
     source: function(answersSoFar, input) {
       return source(answersSoFar, input, 'KeyType');
     },
@@ -64,7 +64,7 @@ const questions = [
   {
     type: 'autocomplete',
     name: 'encoding',
-    message: 'Please select a encoding type?',
+    message: 'Please select a address encoding type?',
     source: function(answersSoFar, input) {
       return source(answersSoFar, input, 'EncodingType');
     },

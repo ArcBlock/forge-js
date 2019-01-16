@@ -2,7 +2,7 @@ const shell = require('shelljs');
 const inquirer = require('inquirer');
 const { client } = require('core/env');
 const { symbols } = require('core/ui');
-const pretty = require('json-stringify-pretty-compact');
+const { enums, messages } = require('@arcblock/forge-proto');
 
 inquirer.registerPrompt('autocomplete', require('inquirer-autocomplete-prompt'));
 
@@ -12,7 +12,12 @@ async function getAccountState(address) {
     .on('data', function({ code, state }) {
       if (code === 0) {
         const { moniker, address, role } = state;
-        shell.echo(`${symbols.success} get account success: ${pretty({ moniker, address, role })}`);
+        shell.echo(
+          `${moniker.padEnd(20, ' ')}${address.padEnd(50, ' ')}${messages.AccountRole[role].padEnd(
+            10,
+            ' '
+          )}`
+        );
       } else {
         shell.echo(`${symbols.error} error,code: ${code}`);
       }
@@ -24,6 +29,9 @@ async function getAccountState(address) {
 
 // Execute the cli silently.
 async function execute() {
+  shell.echo(`${symbols.success} get account success: `);
+  shell.echo(`${'moniker'.padEnd(20, ' ')}${'address'.padEnd(50, ' ')}${'role'.padEnd(10, ' ')}`);
+  shell.echo(`${''.padEnd(80, '-')}`);
   try {
     const stream = await client.listWallets({});
     stream
