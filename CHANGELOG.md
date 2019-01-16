@@ -1,3 +1,21 @@
+## 0.5.2 (January 16, 2019)
+  - chore: add examples for entry cli
+  - chore: remove useless .gitkeep
+  - chore: refactor ensureForgeRelease command support end
+  - forge node related commands (#19)
+  - chore: half baked forge-init
+  - fix: new Buffer warning from generated js
+  - chore: add error handling for chain-info request in forge-cli
+  - feat: better forge-cli startup logic
+  - feat: pretty chain info output
+  - fix: ensure required dirs for env
+  - feat: add chain info command
+  - chore: make env setup work
+  - chore: use sdk.toArc in transfer example
+  - fix: simple app client.js query param
+  - chore: update readme
+  - chore: basic cli setup
+
 ## 0.5.1 (January 15, 2019)
 
 
