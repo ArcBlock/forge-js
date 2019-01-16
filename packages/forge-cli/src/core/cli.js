@@ -12,11 +12,12 @@ const allCommands = [];
  * @param {String} desc documentation of the cli
  * @param {Function} handler cli handler
  */
-function cli(command, desc, handler) {
+function cli(command, desc, handler, { requirements = {} } = {}) {
   allCommands.push({
     command,
     desc,
     handler,
+    requirements,
   });
 }
 
@@ -33,13 +34,13 @@ function initCli(program) {
   // this will mutate allCommands
   const allCli = path.join(__dirname, '../cli/index.js');
   requireCli(allCli);
-  allCommands.forEach(item => {
+  allCommands.forEach(x => {
     program
-      .command(item.command)
-      .description(item.desc)
+      .command(x.command)
+      .description(x.desc)
       .action(() => {
-        setupEnv(args);
-        item.handler();
+        setupEnv(args, x.requirements);
+        x.handler();
       });
   });
 }

@@ -1,10 +1,19 @@
-/* eslint-disable */
 const fuzzy = require('fuzzy');
 const inquirer = require('inquirer');
 const shell = require('shelljs');
-const { release, cache } = require('../../../core/env');
+const { release, cache } = require('core/env');
+const { symbols, getSpinner } = require('core/ui');
 
 inquirer.registerPrompt('autocomplete', require('inquirer-autocomplete-prompt'));
+
+function downloadRelease() {
+  const spinner = getSpinner('Install github release downloader...');
+  spinner.start();
+  shell.exec('npm install -g download-github-release');
+  spinner.text = 'Download github release...';
+  shell.exec('download-github-release -s darwin ArcBlock forge');
+  spinner.stopAndPersist();
+}
 
 const questions = [
   {

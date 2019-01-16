@@ -36,22 +36,34 @@ const questions = [
       return true;
     },
   },
+  {
+    type: 'confirm',
+    name: 'requireRelease',
+    message: 'Does this command require an forge-core release to work?',
+    format: x => (x ? 1 : 0),
+  },
+  {
+    type: 'confirm',
+    name: 'requireRpcClient',
+    message: 'Does this command require an rpc client to work?',
+    format: x => (x ? 1 : 0),
+  },
 ];
 
 function regenerateIndex(p) {
   const dirs = getDirs(p);
   const indexFile = path.join(p, 'index.js');
-  console.log(`Regenerateing ${indexFile}`);
+  console.log(`Regenerating ${indexFile}`);
 
   const output = dirs.map(name => `exports.${name} = require('./${name}');`).join('\n');
   shell.exec(`echo "${output}" > ${indexFile}`);
 }
 
-function createArcli(cliName, description) {
+function createArcli({ name: cliName, description, requireRelease, requireRpcClient }) {
   const [action, name] = cliName.split(':');
   const targetPath = path.join(cliPath, `${action}/${name}`);
   const templatePath = path.join(__dirname, 'templates');
-  const env = `NAME="${name}" ACTION=${action} DESCRIPTION="${description}"`;
+  const env = `NAME="${name}" ACTION=${action} DESCRIPTION="${description}" REQUIRE_RELEASE=${requireRelease} REQUIRE_RPC_CLIENT=${requireRpcClient}`;
 
   shell.exec(`mkdir -p ${targetPath}`);
   shell.exec(`rsync -rt ${templatePath}/ ${targetPath}/`);
@@ -65,14 +77,14 @@ function createArcli(cliName, description) {
 
 function run() {
   inquirer.prompt(questions).then(answers => {
-    const { name, description } = answers;
-    createArcli(name, description);
+    const { name, description, requireRelease, requireRpcClient } = answers;
+    createArcli({ name, description, requireRelease, requireRpcClient });
   });
 }
 
 function execute(data) {
-  const { name, description } = data;
-  createArcli(name, description);
+  const { name, description, requireRelease, requireRpcClient } = data;
+  createArcli({ name, description, requireRelease, requireRpcClient });
 }
 
 exports.run = run;

@@ -1,1 +1,1 @@
-exports.core = require('./core');
+exports.core = require('./release');

@@ -2,6 +2,14 @@
 const { cli, action } = require('core/cli');
 const { execute, run } = require('./info');
 
-cli('chain:info', 'get the blockchain info from the running node', input =>
-  action(execute, run, input)
+cli(
+  'chain:info',
+  'get the blockchain info from the running node',
+  input => action(execute, run, input),
+  {
+    requirements: {
+      forgeRelease: false,
+      rpcClient: true,
+    },
+  }
 );

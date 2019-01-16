@@ -2190,6 +2190,11 @@ execa@^1.0.0:
     signal-exit "^3.0.0"
     strip-eof "^1.0.0"
 
+executing-npm-path@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.npmjs.org/executing-npm-path/-/executing-npm-path-0.1.0.tgz#37199c565eb1f703533beca5eebb7f14ed082d2c"
+  integrity sha512-NG/Pw0xD4KBcb5ilpZa57n7U17obIvZX1TCBLdv9M7Jd3wSsfU8BtMSy+EFkx9hhJsnIBBEmaPQd12dXWaxlHA==
+
 exit@^0.1.2:
   version "0.1.2"
   resolved "https://registry.npmjs.org/exit/-/exit-0.1.2.tgz#0632638f8d877cc82107d30a0fff1a17cba1cd0c"
@@ -2336,6 +2341,20 @@ fb-watchman@^2.0.0:
   resolved "https://registry.npmjs.org/fb-watchman/-/fb-watchman-2.0.0.tgz#54e9abf7dfa2f26cd9b1636c588c1afc05de5d58"
   dependencies:
     bser "^2.0.0"
+
+fettuccine-class@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.npmjs.org/fettuccine-class/-/fettuccine-class-1.0.5.tgz#205504b41114205dc8effdad97260ebdd0fe0161"
+  integrity sha512-z/+JFd3gySy2idYvF9M5MoBnrKu/5y2tahLjZvy74Dez+v2IwVAxAy+4yt0+EKnglXUityzmHxlU9fS6oYJeMQ==
+  dependencies:
+    load-request-from-cwd-or-npm "^2.0.1"
+
+fettuccine@^1.0.2:
+  version "1.0.4"
+  resolved "https://registry.npmjs.org/fettuccine/-/fettuccine-1.0.4.tgz#23bf0a924a5ad14c101ccf24902a933102a0ab1b"
+  integrity sha512-i8canp2nXFyrOImErmQgwrVwKxkiTTmfTmwETBb6Nvtotw2DDEehuqQqbIZWxFJL7+Ss5GXWOzZxsF3E0UCixQ==
+  dependencies:
+    fettuccine-class "^1.0.5"
 
 figgy-pudding@^3.0.0, figgy-pudding@^3.1.0, figgy-pudding@^3.4.1, figgy-pudding@^3.5.1:
   version "3.5.1"
@@ -2628,6 +2647,27 @@ getpass@^0.1.1:
   resolved "https://registry.npmjs.org/getpass/-/getpass-0.1.7.tgz#5eff8e3e684d569ae4cb2b1282604e8ba62149fa"
   dependencies:
     assert-plus "^1.0.0"
+
+gh-get@^1.0.1:
+  version "1.1.0"
+  resolved "https://registry.npmjs.org/gh-get/-/gh-get-1.1.0.tgz#b25ccaece8e3c90ac7468541e09e02af00b6828e"
+  integrity sha1-slzK7OjjyQrHRoVB4J4CrwC2go4=
+  dependencies:
+    fettuccine "^1.0.2"
+    ghify-request-options "^1.0.0"
+
+gh-latest-release@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.npmjs.org/gh-latest-release/-/gh-latest-release-1.0.0.tgz#15ee8027650e74b10043922bd3fba54676c90ecf"
+  integrity sha1-Fe6AJ2UOdLEAQ5Ir0/ulRnbJDs8=
+  dependencies:
+    gh-get "^1.0.1"
+    parse-user-repo "^1.0.0"
+
+ghify-request-options@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.npmjs.org/ghify-request-options/-/ghify-request-options-1.0.0.tgz#eba7e38e2d6769f6266cee64d221f9b900116a6c"
+  integrity sha1-66fjji1nafYmbO5k0iH5uQARamw=
 
 git-raw-commits@2.0.0:
   version "2.0.0"
@@ -3067,6 +3107,13 @@ inquirer@^6.1.0, inquirer@^6.2.0:
     string-width "^2.1.0"
     strip-ansi "^5.0.0"
     through "^2.3.6"
+
+inspect-with-kind@^1.0.3, inspect-with-kind@^1.0.4:
+  version "1.0.5"
+  resolved "https://registry.npmjs.org/inspect-with-kind/-/inspect-with-kind-1.0.5.tgz#fce151d4ce89722c82ca8e9860bb96f9167c316c"
+  integrity sha512-MAQUJuIo7Xqk8EVNP+6d3CKq9c80hi4tjIbIAT6lmGW9W6WzlHiu9PS8uSuUYU+Do+j1baiFp3H25XEVxDIG2g==
+  dependencies:
+    kind-of "^6.0.2"
 
 interpret@^1.0.0:
   version "1.2.0"
@@ -4201,6 +4248,16 @@ listr@^0.14.1:
     p-map "^2.0.0"
     rxjs "^6.3.3"
 
+load-from-cwd-or-npm@^2.2.1:
+  version "2.2.2"
+  resolved "https://registry.npmjs.org/load-from-cwd-or-npm/-/load-from-cwd-or-npm-2.2.2.tgz#86d21082f13c7cb4969ddeb90d0261c18b671e42"
+  integrity sha512-Ox0Cl1RfKMKrwqhBqYADWeFspY28bhlaJVe08GJqYtVYoE0kyAnWBOnw3V/+HDoeWb7o33X/ZUcvamIlJ4O4Gg==
+  dependencies:
+    inspect-with-kind "^1.0.4"
+    npm-cli-dir "^2.0.1"
+    optional "^0.1.4"
+    resolve-from-npm "^2.0.4"
+
 load-json-file@^1.0.0:
   version "1.1.0"
   resolved "https://registry.npmjs.org/load-json-file/-/load-json-file-1.1.0.tgz#956905708d58b4bab4c2261b04f59f31c99374c0"
@@ -4226,6 +4283,13 @@ load-plugin@^2.0.0:
   dependencies:
     npm-prefix "^1.2.0"
     resolve-from "^4.0.0"
+
+load-request-from-cwd-or-npm@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.npmjs.org/load-request-from-cwd-or-npm/-/load-request-from-cwd-or-npm-2.0.1.tgz#27a87ec70e56f20708280c8f42bc3b4ca3793a6e"
+  integrity sha512-RMDblVBrhyatt2KBScYzbPZrg2KGOryEdcAXIF3Jh3nqcE1awqUtJABwkPv1UrC802QFFxn/mn10m9dHN+fXrQ==
+  dependencies:
+    load-from-cwd-or-npm "^2.2.1"
 
 local-or-home-npmrc@^1.1.0:
   version "1.1.0"
@@ -4949,6 +5013,22 @@ npm-cache-filename@~1.0.2:
   resolved "https://registry.npmjs.org/npm-cache-filename/-/npm-cache-filename-1.0.2.tgz#ded306c5b0bfc870a9e9faf823bc5f283e05ae11"
   integrity sha1-3tMGxbC/yHCp6fr4I7xfKD4FrhE=
 
+npm-cli-dir@^2.0.1, npm-cli-dir@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.npmjs.org/npm-cli-dir/-/npm-cli-dir-2.0.2.tgz#291fec5eb6eb722868011aee5f5ac028c184a573"
+  integrity sha512-ibO7mB5Na7yv4fFTi39y3dKeK0D51ttyldqqOZKR9GU0Qwr0FFycQhXIliwqzNCVRkNi/iTG0D9WIVt7pP+vGQ==
+  dependencies:
+    npm-cli-path "^2.0.1"
+
+npm-cli-path@^2.0.1:
+  version "2.0.5"
+  resolved "https://registry.npmjs.org/npm-cli-path/-/npm-cli-path-2.0.5.tgz#a7853c21ef77ffb71abff94d48ea07301e35e600"
+  integrity sha512-Mdd8f1l0o7KUkL8Mty5XbaJVD6hQ/Kq10AFgyjhHg6d/0KHXc4p/O6hPWXSmoJ/RXyzPKIqDCXM1zq46i+Yfeg==
+  dependencies:
+    executing-npm-path "^0.1.0"
+    real-executable-path "^2.0.2"
+    win-user-installed-npm-cli-path "^2.0.2"
+
 npm-install-checks@~3.0.0:
   version "3.0.0"
   resolved "https://registry.npmjs.org/npm-install-checks/-/npm-install-checks-3.0.0.tgz#d4aecdfd51a53e3723b7b2f93b2ee28e307bc0d7"
@@ -5294,6 +5374,11 @@ optimist@^0.6.1:
     minimist "~0.0.1"
     wordwrap "~0.0.2"
 
+optional@^0.1.4:
+  version "0.1.4"
+  resolved "https://registry.npmjs.org/optional/-/optional-0.1.4.tgz#cdb1a9bedc737d2025f690ceeb50e049444fd5b3"
+  integrity sha512-gtvrrCfkE08wKcgXaVwQVgwEQ8vel2dc5DDBn9RLQZ3YtmtkBss6A2HY6BnJH4N/4Ku97Ri/SF8sNWE2225WJw==
+
 optionator@^0.8.1, optionator@^0.8.2:
   version "0.8.2"
   resolved "https://registry.npmjs.org/optionator/-/optionator-0.8.2.tgz#364c5e409d3f4d6301d6c0b4c05bba50180aeb64"
@@ -5576,6 +5661,11 @@ parse-latin@^4.0.0:
     nlcst-to-string "^2.0.0"
     unist-util-modify-children "^1.0.0"
     unist-util-visit-children "^1.0.0"
+
+parse-user-repo@^1.0.0:
+  version "1.0.1"
+  resolved "https://registry.npmjs.org/parse-user-repo/-/parse-user-repo-1.0.1.tgz#6073f85d569b189881259b0d62ae91bcf4f5d353"
+  integrity sha1-YHP4XVabGJiBJZsNYq6RvPT101M=
 
 parse5@4.0.0:
   version "4.0.0"
@@ -5992,6 +6082,22 @@ readdirp@^2.0.0:
     graceful-fs "^4.1.11"
     micromatch "^3.1.10"
     readable-stream "^2.0.2"
+
+real-executable-path-callback@^2.1.2:
+  version "2.1.2"
+  resolved "https://registry.npmjs.org/real-executable-path-callback/-/real-executable-path-callback-2.1.2.tgz#fa3afe80f19344628c0f74575655dbdaf1a67133"
+  integrity sha512-dyOgKEhLKNg9tgFPs354X5fQpaAsUT+3dTO3JYoNLdPhMmRDjwwre6zHw58biFMVeFx9yxwI6MC7iMDfxSuMJA==
+  dependencies:
+    inspect-with-kind "^1.0.4"
+    is-plain-obj "^1.1.0"
+    which "^1.3.0"
+
+real-executable-path@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.npmjs.org/real-executable-path/-/real-executable-path-2.0.2.tgz#121ee5bb7d09e55c2ddd5f2bd38b9f0d9c6b5f24"
+  integrity sha512-fRv44zvrzFeItoj/f/SNBqO/VWUHSZeqQ28oPOzd6weXaiRG6OVGu7UrHe6pY8JlXeoe/7gWYv6kOFHmHk4EFw==
+  dependencies:
+    real-executable-path-callback "^2.1.2"
 
 realpath-native@^1.0.0:
   version "1.0.2"
@@ -6776,6 +6882,15 @@ resolve-cwd@^2.0.0:
   resolved "https://registry.npmjs.org/resolve-cwd/-/resolve-cwd-2.0.0.tgz#00a9f7387556e27038eae232caa372a6a59b665a"
   dependencies:
     resolve-from "^3.0.0"
+
+resolve-from-npm@^2.0.4:
+  version "2.0.4"
+  resolved "https://registry.npmjs.org/resolve-from-npm/-/resolve-from-npm-2.0.4.tgz#d331f8b7fc40a710281fdf8ff7daeaf223717495"
+  integrity sha512-JrwN+SRILVjq/mdPNd6bhoOvYMBFf0CYqvfAgaDGB9dWjyr3XDAe40O2WcxToYWMmbQabM4FM6hHVLcSxBPKOQ==
+  dependencies:
+    inspect-with-kind "^1.0.3"
+    npm-cli-dir "^2.0.2"
+    resolve-from "^4.0.0"
 
 resolve-from@^3.0.0:
   version "3.0.0"
@@ -8132,6 +8247,11 @@ widest-line@^2.0.0:
   integrity sha512-Ba5m9/Fa4Xt9eb2ELXt77JxVDV8w7qQrH0zS/TWSJdLyAwQjWoOzpzj5lwVftDz6n/EOu3tNACS84v509qwnJA==
   dependencies:
     string-width "^2.1.1"
+
+win-user-installed-npm-cli-path@^2.0.2:
+  version "2.0.4"
+  resolved "https://registry.npmjs.org/win-user-installed-npm-cli-path/-/win-user-installed-npm-cli-path-2.0.4.tgz#698282e619f21e672cdbf674ee7b85c2082a7e73"
+  integrity sha512-i+fSInL3Li47P9gGcJabtgvl2+hLmZwMsh4664WWuI1F/pQPtv4XerrOyg8poxvDv4o/QwB60f20MKtIX/CCxQ==
 
 window-size@^0.1.4:
   version "0.1.4"

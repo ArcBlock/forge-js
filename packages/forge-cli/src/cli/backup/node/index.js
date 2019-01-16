@@ -6,4 +6,10 @@ cli(
   'backup:node',
   'allow forge admin to backup the current node',
   input => action(execute, run, input),
+  {
+    requirements: {
+      forgeRelease: true,
+      rpcClient: false,
+    },
+  }
 );

@@ -1,15 +1,15 @@
 // eslint-disable-next-line import/no-unresolved
 const { cli, action } = require('core/cli');
-const { execute, run } = require('./list');
+const { execute, run } = require('./release');
 
 cli(
-  'account:list',
-  'list all accounts stored in this node (nickname, hash, pub_key, role)',
+  'init',
+  'download and setup latest forge-core release to this machine',
   input => action(execute, run, input),
   {
     requirements: {
       forgeRelease: false,
-      rpcClient: true,
+      rpcClient: false,
     },
   }
 );

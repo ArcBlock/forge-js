@@ -5,22 +5,30 @@ const shell = require('shelljs');
 const { RpcClient, parseConfig } = require('@arcblock/forge-sdk');
 const debug = require('debug')(require('../../package.json').name);
 
-const { symbols, getSpinner } = require('./ui');
+const { symbols } = require('./ui');
 
-const dataDir = path.resolve(os.homedir(), '.forge-cli');
 const requiredDirs = {
-  cache: path.join(dataDir, 'cache'),
-  release: path.join(dataDir, 'release'),
+  cache: path.join(os.homedir(), '.forge-cli/cache'),
+  release: path.join(os.homedir(), '.forge-cli/release'),
 };
 
 const client = {}; // global shared rpc client
 const config = { cli: {} }; // global shared forge-cli run time config
 
-function setupEnv(args) {
-  debug('setupEnv.args', args);
+function setupEnv(args, requirements) {
+  debug('setupEnv.args', { args, requirements });
   ensureRequiredDirs();
 
-  // forge bin path
+  if (requirements.forgeRelease) {
+    ensureForgeRelease(args);
+  }
+
+  if (requirements.rpcClient) {
+    ensureRpcClient(args);
+  }
+}
+
+function ensureForgeRelease(args, exitOn404 = true) {
   if (args.forgeReleaseDir) {
     if (fs.existsSync(args.forgeReleaseDir)) {
       const forgeBinPath = path.join(args.forgeReleaseDir, './bin/forge');
@@ -28,13 +36,18 @@ function setupEnv(args) {
         config.cli.forgeReleaseDir = args.forgeReleaseDir;
         config.cli.forgeBinPath = forgeBinPath;
         shell.echo(`Using forge bin path ${forgeBinPath}`);
+        return true;
       } else {
-        shell.echo(`${symbols.warning} --forge-release-dir is invalid, non forge bin found`);
-        process.exit(1);
+        shell.echo(`${symbols.error} --forge-release-dir is invalid, non forge bin found`);
+        if (exitOn404) {
+          process.exit(1);
+        }
       }
     } else {
-      shell.echo(`${symbols.warning} --forge-release-dir does not exist`);
-      process.exit(1);
+      shell.echo(`${symbols.error} --forge-release-dir does not exist`);
+      if (exitOn404) {
+        process.exit(1);
+      }
     }
   } else {
     const releaseDir = requiredDirs.release;
@@ -43,17 +56,26 @@ function setupEnv(args) {
       config.cli.forgeReleaseDir = releaseDir;
       config.cli.forgeBinPath = forgeBinPath;
       shell.echo(`Using forge bin path ${forgeBinPath}`);
+      return true;
     } else {
-      shell.echo(
-        `${
-          symbols.warning
-        } forge release not found under ${releaseDir}, If you are maintaining a node with forge-cli, please run \`forge init:core\` first`
-      );
+      shell.echo(`${symbols.error} forge release not found under ${releaseDir}`);
+      shell.echo(`${symbols.info}, to get a forge-core release, run \`forge init\` first`);
+      if (exitOn404) {
+        process.exit(1);
+      }
     }
   }
 
-  // RPC Client
-  // configure file priority: cli > env > release bundled
+  return false;
+}
+
+/**
+ * Ensure we have an global rpc client <forge-sdk instance> before command run
+ * Configure file priority: cli > env > release bundled
+ *
+ * @param {*} args
+ */
+function ensureRpcClient(args) {
   const configPath = args.forgeConfigPath || process.env.FORGE_CONFIG || findReleaseConfig();
   if (configPath && fs.existsSync(configPath)) {
     const forgeConfig = parseConfig(configPath);
@@ -66,7 +88,7 @@ function setupEnv(args) {
         sockGrpc: args.forgeSocketGrpc,
       },
     };
-    shell.echo(`${symbols.warning} using forge-cli with remote node ${args.forgeSocketGrpc}`);
+    shell.echo(`${symbols.info} using forge-cli with remote node ${args.forgeSocketGrpc}`);
     createRpcClient(forgeConfig);
   } else {
     shell.echo(`${symbols.error} forge-cli requires an forge config file to start`);
@@ -147,15 +169,6 @@ function readCache(key) {
   }
 }
 
-function downloadRelease() {
-  const spinner = getSpinner('Install github release downloader...');
-  spinner.start();
-  shell.exec('npm install -g download-github-release');
-  spinner.text = 'Download github release...';
-  shell.exec('download-github-release -s darwin ArcBlock forge');
-  spinner.stopAndPersist();
-}
-
 module.exports = {
   client,
   config,
@@ -163,10 +176,10 @@ module.exports = {
     write: writeCache,
     read: readCache,
   },
-  release: {
-    download: downloadRelease,
-  },
 
   setupEnv,
+  requiredDirs,
   ensureRequiredDirs,
+  ensureForgeRelease,
+  ensureRpcClient,
 };
