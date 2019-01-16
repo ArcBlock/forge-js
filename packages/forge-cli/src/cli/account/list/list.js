@@ -13,7 +13,7 @@ async function getAccountState(address) {
       if (code === 0) {
         const { moniker, address, role } = state;
         shell.echo(
-          `${moniker.padEnd(20, ' ')}${address.padEnd(50, ' ')}${messages.AccountRole[role].padEnd(
+          `${moniker.padEnd(20, ' ').padStart(23,' ')}${address.padEnd(50, ' ')}${messages.AccountRole[role].padEnd(
             10,
             ' '
           )}`
@@ -30,8 +30,9 @@ async function getAccountState(address) {
 // Execute the cli silently.
 async function execute() {
   shell.echo(`${symbols.success} get account success: `);
-  shell.echo(`${'moniker'.padEnd(20, ' ')}${'address'.padEnd(50, ' ')}${'role'.padEnd(10, ' ')}`);
-  shell.echo(`${''.padEnd(80, '-')}`);
+  shell.echo(`${''.padEnd(82, '-')}`);
+  shell.echo(`${'moniker'.padEnd(20, ' ').padStart(23,' ')}${'address'.padEnd(50, ' ')}${'role'.padEnd(10, ' ')}`);
+  shell.echo(`${''.padEnd(82, '-')}`);
   try {
     const stream = await client.listWallets({});
     stream
