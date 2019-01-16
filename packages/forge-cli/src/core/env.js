@@ -58,17 +58,15 @@ function setupEnv(args) {
 function ensureRequiredDirs() {
   Object.keys(requiredDirs).forEach(x => {
     const dir = requiredDirs[x];
-    const stat = fs.statSync(dir);
-    if (!stat.isDirectory()) {
+    if (fs.existsSync(dir) && fs.statSync(dir).isDirectory()) {
+      debug(`${checkMark} ${x} dir already initialized: ${dir}`);
+    } else {
       try {
-        shell.rm(dir);
         shell.mkdir('-p', dir);
         shell.echo(`${checkMark} initialized ${x} dir for forge-cli: ${dir}`);
       } catch (err) {
         shell.echo(`${crossMark} failed to initialize ${x} dir for forge-cli: ${dir}`, err);
       }
-    } else {
-      debug(`${checkMark} ${x} dir already initialized: ${dir}`);
     }
   });
 }
