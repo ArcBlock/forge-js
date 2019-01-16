@@ -19,7 +19,10 @@ const config = { cli: {} }; // global shared forge-cli run time config
 function setupEnv(args, requirements) {
   debug('setupEnv.args', { args, requirements });
 
-  shell.echo(new inquirer.Separator().line);
+  const hasRequirements = Object.keys(requirements).some(x => requirements[x]);
+  if (hasRequirements) {
+    shell.echo(new inquirer.Separator().line);
+  }
   ensureRequiredDirs();
 
   if (requirements.forgeRelease) {
@@ -30,11 +33,13 @@ function setupEnv(args, requirements) {
     ensureRpcClient(args);
   }
 
-  shell.echo(new inquirer.Separator().line);
+  if (hasRequirements) {
+    shell.echo(new inquirer.Separator().line);
+  }
 }
 
 /**
- *
+ * Ensure we have a forge release to work with, in which we find forge bin
  *
  * @param {*} args
  * @param {boolean} [exitOn404=true]

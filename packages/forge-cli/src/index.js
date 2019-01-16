@@ -2,6 +2,7 @@
 
 // Add the root project directory to the app module search path:
 require('app-module-path').addPath(__dirname);
+const chalk = require('chalk');
 const program = require('commander');
 
 // eslint-disable-next-line import/no-unresolved
@@ -31,4 +32,25 @@ initCli(program);
 
 program.parse(process.argv);
 
-if (program.args.length === 0) program.help();
+if (program.args.length === 0) program.help(text => {
+  return `${text}
+Examples:
+
+  Be sure to run initialize before any other commands
+  > ${chalk.cyan('forge init')}
+
+  Init with downloaded forge release tarball, will extract to ~/.forge-cli/release
+  > ${chalk.cyan('forge init --release-tarball ~/Downloads/forge_darwin_amd64.tgz')}
+
+  Start node with custom forge release folder
+  > ${chalk.cyan('forge start --release-dir ~/Downloads/forge/')}
+  > ${chalk.cyan('FORGE_RELEASE_DIR=~/Downloads/forge/ forge start')}
+
+  Start node with custom forge config
+  > ${chalk.cyan('forge start --config-path ~/Downloads/forge/forge_release.toml')}
+  > ${chalk.cyan('FORGE_CONFIG=~/Downloads/forge/forge_release.toml forge start')}
+
+  Connect to a remote forge node without starting one
+  > ${chalk.cyan('forge chain:info --socket-grpc "tcp://10.0.0.1:9527"')}
+  `;
+});
