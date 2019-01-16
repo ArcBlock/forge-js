@@ -1,6 +1,7 @@
 const fs = require('fs');
 const os = require('os');
 const path = require('path');
+const inquirer = require('inquirer');
 const shell = require('shelljs');
 const { RpcClient, parseConfig } = require('@arcblock/forge-sdk');
 const debug = require('debug')(require('../../package.json').name);
@@ -17,6 +18,8 @@ const config = { cli: {} }; // global shared forge-cli run time config
 
 function setupEnv(args, requirements) {
   debug('setupEnv.args', { args, requirements });
+
+  shell.echo(new inquirer.Separator().line);
   ensureRequiredDirs();
 
   if (requirements.forgeRelease) {
@@ -26,43 +29,41 @@ function setupEnv(args, requirements) {
   if (requirements.rpcClient) {
     ensureRpcClient(args);
   }
+
+  shell.echo(new inquirer.Separator().line);
 }
 
+/**
+ *
+ *
+ * @param {*} args
+ * @param {boolean} [exitOn404=true]
+ * @returns
+ */
 function ensureForgeRelease(args, exitOn404 = true) {
-  if (args.releaseDir) {
-    if (fs.existsSync(args.releaseDir)) {
-      const forgeBinPath = path.join(args.releaseDir, './bin/forge');
-      if (fs.existsSync(forgeBinPath) && fs.statSync(forgeBinPath).isFile()) {
-        config.cli.releaseDir = args.releaseDir;
-        config.cli.forgeBinPath = forgeBinPath;
-        shell.echo(`${symbols.success} Using forge bin path ${forgeBinPath}`);
-        return true;
-      } else {
-        shell.echo(`${symbols.error} --forge-release-dir is invalid, non forge bin found`);
-        if (exitOn404) {
-          process.exit(1);
-        }
-      }
+  const envReleaseDir = process.env.FORGE_RELEASE_DIR;
+  const cliReleaseDir = requiredDirs.release;
+  const argReleaseDir = args.releaseDir;
+
+  const releaseDir = argReleaseDir || envReleaseDir || cliReleaseDir;
+  if (fs.existsSync(releaseDir)) {
+    const forgeBinPath = path.join(releaseDir, './bin/forge');
+    if (fs.existsSync(forgeBinPath) && fs.statSync(forgeBinPath).isFile()) {
+      config.cli.releaseDir = releaseDir;
+      config.cli.forgeBinPath = forgeBinPath;
+      shell.echo(`${symbols.success} Using forge release dir: ${releaseDir}`);
+      shell.echo(`${symbols.success} Using forge executable: ${forgeBinPath}`);
+      return true;
     } else {
-      shell.echo(`${symbols.error} --forge-release-dir does not exist`);
+      shell.echo(`${symbols.error} forge release dir invalid, non forge executable found`);
       if (exitOn404) {
         process.exit(1);
       }
     }
   } else {
-    const releaseDir = requiredDirs.release;
-    const forgeBinPath = path.join(releaseDir, './bin/forge');
-    if (fs.existsSync(forgeBinPath) && fs.statSync(forgeBinPath).isFile()) {
-      config.cli.releaseDir = releaseDir;
-      config.cli.forgeBinPath = forgeBinPath;
-      shell.echo(`${symbols.success} Using forge bin path ${forgeBinPath}`);
-      return true;
-    } else {
-      shell.echo(`${symbols.error} forge release not found under ${releaseDir}`);
-      shell.echo(`${symbols.info}, to get a forge-core release, run \`forge init\` first`);
-      if (exitOn404) {
-        process.exit(1);
-      }
+    shell.echo(`${symbols.error} forge release dir does not exist`);
+    if (exitOn404) {
+      process.exit(1);
     }
   }
 
@@ -81,7 +82,7 @@ function ensureRpcClient(args) {
   if (configPath && fs.existsSync(configPath)) {
     const forgeConfig = parseConfig(configPath);
     config.cli.forgeConfigPath = configPath;
-    shell.echo(`${symbols.success} using forge config from ${configPath}`);
+    shell.echo(`${symbols.success} Using forge config: ${configPath}`);
     createRpcClient(forgeConfig);
   } else if (args.socketGrpc) {
     const forgeConfig = {
@@ -150,7 +151,7 @@ function createRpcClient(forgeConfig) {
 }
 
 function runNativeForgeCommand(subCommand) {
-  return function () {
+  return function() {
     const { forgeBinPath, forgeConfigPath } = config.cli;
     if (!forgeBinPath) {
       shell.echo(`${symbols.error} forgeBinPath not found, abort!`);
