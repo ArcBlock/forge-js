@@ -1,15 +1,16 @@
 // eslint-disable-next-line import/no-unresolved
 const { cli, action } = require('core/cli');
-const { execute, run } = require('./release');
+const { execute, run } = require('./reboot');
 
 cli(
-  'init',
-  'download and setup latest forge-core release to this machine',
+  'reboot',
+  'Restart the forge daemon',
   input => action(execute, run, input),
   {
     requirements: {
-      forgeRelease: false,
-      rpcClient: false,
+      forgeRelease: true,
+      rpcClient: true,
     },
+    options: [],
   }
 );

@@ -29,13 +29,13 @@ function setupEnv(args, requirements) {
 }
 
 function ensureForgeRelease(args, exitOn404 = true) {
-  if (args.forgeReleaseDir) {
-    if (fs.existsSync(args.forgeReleaseDir)) {
-      const forgeBinPath = path.join(args.forgeReleaseDir, './bin/forge');
+  if (args.releaseDir) {
+    if (fs.existsSync(args.releaseDir)) {
+      const forgeBinPath = path.join(args.releaseDir, './bin/forge');
       if (fs.existsSync(forgeBinPath) && fs.statSync(forgeBinPath).isFile()) {
-        config.cli.forgeReleaseDir = args.forgeReleaseDir;
+        config.cli.releaseDir = args.releaseDir;
         config.cli.forgeBinPath = forgeBinPath;
-        shell.echo(`Using forge bin path ${forgeBinPath}`);
+        shell.echo(`${symbols.success} Using forge bin path ${forgeBinPath}`);
         return true;
       } else {
         shell.echo(`${symbols.error} --forge-release-dir is invalid, non forge bin found`);
@@ -53,9 +53,9 @@ function ensureForgeRelease(args, exitOn404 = true) {
     const releaseDir = requiredDirs.release;
     const forgeBinPath = path.join(releaseDir, './bin/forge');
     if (fs.existsSync(forgeBinPath) && fs.statSync(forgeBinPath).isFile()) {
-      config.cli.forgeReleaseDir = releaseDir;
+      config.cli.releaseDir = releaseDir;
       config.cli.forgeBinPath = forgeBinPath;
-      shell.echo(`Using forge bin path ${forgeBinPath}`);
+      shell.echo(`${symbols.success} Using forge bin path ${forgeBinPath}`);
       return true;
     } else {
       shell.echo(`${symbols.error} forge release not found under ${releaseDir}`);
@@ -76,19 +76,21 @@ function ensureForgeRelease(args, exitOn404 = true) {
  * @param {*} args
  */
 function ensureRpcClient(args) {
-  const configPath = args.forgeConfigPath || process.env.FORGE_CONFIG || findReleaseConfig();
+  const releaseConfig = path.join(path.dirname(requiredDirs.release), 'forge_release.toml');
+  const configPath = args.configPath || process.env.FORGE_CONFIG || releaseConfig;
   if (configPath && fs.existsSync(configPath)) {
     const forgeConfig = parseConfig(configPath);
+    config.cli.forgeConfigPath = configPath;
     shell.echo(`${symbols.success} using forge config from ${configPath}`);
     createRpcClient(forgeConfig);
-  } else if (args.forgeSocketGrpc) {
+  } else if (args.socketGrpc) {
     const forgeConfig = {
       forge: {
         decimal: 16,
-        sockGrpc: args.forgeSocketGrpc,
+        sockGrpc: args.socketGrpc,
       },
     };
-    shell.echo(`${symbols.info} using forge-cli with remote node ${args.forgeSocketGrpc}`);
+    shell.echo(`${symbols.info} using forge-cli with remote node ${args.socketGrpc}`);
     createRpcClient(forgeConfig);
   } else {
     shell.echo(`${symbols.error} forge-cli requires an forge config file to start`);
@@ -101,13 +103,12 @@ function ensureRpcClient(args) {
  *
  * @returns String
  */
-function findReleaseConfig() {
-  const { forgeReleaseDir } = config.cli;
-  if (!forgeReleaseDir) {
+function findReleaseConfig(releaseDir) {
+  if (!releaseDir) {
     return '';
   }
 
-  const libDir = path.join(forgeReleaseDir, 'lib');
+  const libDir = path.join(releaseDir, 'lib');
   if (!fs.existsSync(libDir) || !fs.statSync(libDir).isDirectory()) {
     return '';
   }
@@ -148,6 +149,18 @@ function createRpcClient(forgeConfig) {
   debug(`${symbols.info} rpc client created!`);
 }
 
+function runNativeForgeCommand(subCommand) {
+  return function () {
+    const { forgeBinPath, forgeConfigPath } = config.cli;
+    if (!forgeBinPath) {
+      shell.echo(`${symbols.error} forgeBinPath not found, abort!`);
+      return;
+    }
+
+    return shell.exec(`FORGE_CONFIG=${forgeConfigPath} ${forgeBinPath} ${subCommand}`);
+  };
+}
+
 function writeCache(key, data) {
   try {
     fs.writeFileSync(path.join(requiredDirs.cache, `${key}.json`), JSON.stringify(data));
@@ -179,7 +192,9 @@ module.exports = {
 
   setupEnv,
   requiredDirs,
+  findReleaseConfig,
   ensureRequiredDirs,
   ensureForgeRelease,
   ensureRpcClient,
+  runNativeForgeCommand,
 };
