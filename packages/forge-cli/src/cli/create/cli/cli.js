@@ -39,13 +39,19 @@ const questions = [
   {
     type: 'confirm',
     name: 'requireRelease',
-    message: 'Does this command require an forge-core release to work?',
+    message: 'Does this command require a forge core release to work?',
     format: x => (x ? 1 : 0),
   },
   {
     type: 'confirm',
     name: 'requireRpcClient',
-    message: 'Does this command require an rpc client to work?',
+    message: 'Does this command require a rpc client to work?',
+    format: x => (x ? 1 : 0),
+  },
+  {
+    type: 'confirm',
+    name: 'requireWallet',
+    message: 'Does this command require a unlocked wallet? (address + token)',
     format: x => (x ? 1 : 0),
   },
 ];
@@ -59,11 +65,17 @@ function regenerateIndex(p) {
   shell.exec(`echo "${output}" > ${indexFile}`);
 }
 
-function createArcli({ name: cliName, description, requireRelease, requireRpcClient }) {
+function createCli({
+  name: cliName,
+  description,
+  requireRelease,
+  requireRpcClient,
+  requireWallet,
+}) {
   const [action, name] = cliName.split(':');
   const targetPath = path.join(cliPath, `${action}/${name}`);
   const templatePath = path.join(__dirname, 'templates');
-  const env = `NAME="${name}" ACTION=${action} DESCRIPTION="${description}" REQUIRE_RELEASE=${requireRelease} REQUIRE_RPC_CLIENT=${requireRpcClient}`;
+  const env = `NAME="${name}" ACTION=${action} DESCRIPTION="${description}" REQUIRE_RELEASE=${requireRelease} REQUIRE_RPC_CLIENT=${requireRpcClient} REQUIRE_WALLET=${requireWallet}`;
 
   shell.exec(`mkdir -p ${targetPath}`);
   shell.exec(`rsync -rt ${templatePath}/ ${targetPath}/`);
@@ -77,15 +89,9 @@ function createArcli({ name: cliName, description, requireRelease, requireRpcCli
 
 function run() {
   inquirer.prompt(questions).then(answers => {
-    const { name, description, requireRelease, requireRpcClient } = answers;
-    createArcli({ name, description, requireRelease, requireRpcClient });
+    createCli(answers);
   });
 }
 
-function execute(data) {
-  const { name, description, requireRelease, requireRpcClient } = data;
-  createArcli({ name, description, requireRelease, requireRpcClient });
-}
-
 exports.run = run;
-exports.execute = execute;
+exports.execute = createCli;
