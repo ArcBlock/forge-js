@@ -11,7 +11,7 @@ function serialize_forge_abi_RequestSubscribe(arg) {
   if (!(arg instanceof event_pb.RequestSubscribe)) {
     throw new Error('Expected argument of type forge_abi.RequestSubscribe');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_forge_abi_RequestSubscribe(buffer_arg) {
@@ -22,15 +22,14 @@ function serialize_forge_abi_ResponseSubscribe(arg) {
   if (!(arg instanceof event_pb.ResponseSubscribe)) {
     throw new Error('Expected argument of type forge_abi.ResponseSubscribe');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_forge_abi_ResponseSubscribe(buffer_arg) {
   return event_pb.ResponseSubscribe.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-
-var EventRpcService = exports.EventRpcService = {
+var EventRpcService = (exports.EventRpcService = {
   subscribe: {
     path: '/forge_abi.EventRpc/subscribe',
     requestStream: false,
@@ -42,6 +41,6 @@ var EventRpcService = exports.EventRpcService = {
     responseSerialize: serialize_forge_abi_ResponseSubscribe,
     responseDeserialize: deserialize_forge_abi_ResponseSubscribe,
   },
-};
+});
 
 exports.EventRpcClient = grpc.makeGenericClientConstructor(EventRpcService);

@@ -9,7 +9,7 @@ function serialize_forge_vendor_RequestBeginBlock(arg) {
   if (!(arg instanceof vendor_pb.RequestBeginBlock)) {
     throw new Error('Expected argument of type forge_vendor.RequestBeginBlock');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_forge_vendor_RequestBeginBlock(buffer_arg) {
@@ -20,7 +20,7 @@ function serialize_forge_vendor_RequestCheckTx(arg) {
   if (!(arg instanceof vendor_pb.RequestCheckTx)) {
     throw new Error('Expected argument of type forge_vendor.RequestCheckTx');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_forge_vendor_RequestCheckTx(buffer_arg) {
@@ -31,7 +31,7 @@ function serialize_forge_vendor_RequestCommit(arg) {
   if (!(arg instanceof vendor_pb.RequestCommit)) {
     throw new Error('Expected argument of type forge_vendor.RequestCommit');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_forge_vendor_RequestCommit(buffer_arg) {
@@ -42,7 +42,7 @@ function serialize_forge_vendor_RequestDeliverTx(arg) {
   if (!(arg instanceof vendor_pb.RequestDeliverTx)) {
     throw new Error('Expected argument of type forge_vendor.RequestDeliverTx');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_forge_vendor_RequestDeliverTx(buffer_arg) {
@@ -53,7 +53,7 @@ function serialize_forge_vendor_RequestEcho(arg) {
   if (!(arg instanceof vendor_pb.RequestEcho)) {
     throw new Error('Expected argument of type forge_vendor.RequestEcho');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_forge_vendor_RequestEcho(buffer_arg) {
@@ -64,7 +64,7 @@ function serialize_forge_vendor_RequestEndBlock(arg) {
   if (!(arg instanceof vendor_pb.RequestEndBlock)) {
     throw new Error('Expected argument of type forge_vendor.RequestEndBlock');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_forge_vendor_RequestEndBlock(buffer_arg) {
@@ -75,7 +75,7 @@ function serialize_forge_vendor_RequestFlush(arg) {
   if (!(arg instanceof vendor_pb.RequestFlush)) {
     throw new Error('Expected argument of type forge_vendor.RequestFlush');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_forge_vendor_RequestFlush(buffer_arg) {
@@ -86,7 +86,7 @@ function serialize_forge_vendor_RequestInfo(arg) {
   if (!(arg instanceof vendor_pb.RequestInfo)) {
     throw new Error('Expected argument of type forge_vendor.RequestInfo');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_forge_vendor_RequestInfo(buffer_arg) {
@@ -97,7 +97,7 @@ function serialize_forge_vendor_RequestInitChain(arg) {
   if (!(arg instanceof vendor_pb.RequestInitChain)) {
     throw new Error('Expected argument of type forge_vendor.RequestInitChain');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_forge_vendor_RequestInitChain(buffer_arg) {
@@ -108,7 +108,7 @@ function serialize_forge_vendor_RequestQuery(arg) {
   if (!(arg instanceof vendor_pb.RequestQuery)) {
     throw new Error('Expected argument of type forge_vendor.RequestQuery');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_forge_vendor_RequestQuery(buffer_arg) {
@@ -119,7 +119,7 @@ function serialize_forge_vendor_RequestSetOption(arg) {
   if (!(arg instanceof vendor_pb.RequestSetOption)) {
     throw new Error('Expected argument of type forge_vendor.RequestSetOption');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_forge_vendor_RequestSetOption(buffer_arg) {
@@ -130,7 +130,7 @@ function serialize_forge_vendor_ResponseBeginBlock(arg) {
   if (!(arg instanceof vendor_pb.ResponseBeginBlock)) {
     throw new Error('Expected argument of type forge_vendor.ResponseBeginBlock');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_forge_vendor_ResponseBeginBlock(buffer_arg) {
@@ -141,7 +141,7 @@ function serialize_forge_vendor_ResponseCheckTx(arg) {
   if (!(arg instanceof vendor_pb.ResponseCheckTx)) {
     throw new Error('Expected argument of type forge_vendor.ResponseCheckTx');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_forge_vendor_ResponseCheckTx(buffer_arg) {
@@ -152,7 +152,7 @@ function serialize_forge_vendor_ResponseCommit(arg) {
   if (!(arg instanceof vendor_pb.ResponseCommit)) {
     throw new Error('Expected argument of type forge_vendor.ResponseCommit');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_forge_vendor_ResponseCommit(buffer_arg) {
@@ -163,7 +163,7 @@ function serialize_forge_vendor_ResponseDeliverTx(arg) {
   if (!(arg instanceof vendor_pb.ResponseDeliverTx)) {
     throw new Error('Expected argument of type forge_vendor.ResponseDeliverTx');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_forge_vendor_ResponseDeliverTx(buffer_arg) {
@@ -174,7 +174,7 @@ function serialize_forge_vendor_ResponseEcho(arg) {
   if (!(arg instanceof vendor_pb.ResponseEcho)) {
     throw new Error('Expected argument of type forge_vendor.ResponseEcho');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_forge_vendor_ResponseEcho(buffer_arg) {
@@ -185,7 +185,7 @@ function serialize_forge_vendor_ResponseEndBlock(arg) {
   if (!(arg instanceof vendor_pb.ResponseEndBlock)) {
     throw new Error('Expected argument of type forge_vendor.ResponseEndBlock');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_forge_vendor_ResponseEndBlock(buffer_arg) {
@@ -196,7 +196,7 @@ function serialize_forge_vendor_ResponseFlush(arg) {
   if (!(arg instanceof vendor_pb.ResponseFlush)) {
     throw new Error('Expected argument of type forge_vendor.ResponseFlush');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_forge_vendor_ResponseFlush(buffer_arg) {
@@ -207,7 +207,7 @@ function serialize_forge_vendor_ResponseInfo(arg) {
   if (!(arg instanceof vendor_pb.ResponseInfo)) {
     throw new Error('Expected argument of type forge_vendor.ResponseInfo');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_forge_vendor_ResponseInfo(buffer_arg) {
@@ -218,7 +218,7 @@ function serialize_forge_vendor_ResponseInitChain(arg) {
   if (!(arg instanceof vendor_pb.ResponseInitChain)) {
     throw new Error('Expected argument of type forge_vendor.ResponseInitChain');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_forge_vendor_ResponseInitChain(buffer_arg) {
@@ -229,7 +229,7 @@ function serialize_forge_vendor_ResponseQuery(arg) {
   if (!(arg instanceof vendor_pb.ResponseQuery)) {
     throw new Error('Expected argument of type forge_vendor.ResponseQuery');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_forge_vendor_ResponseQuery(buffer_arg) {
@@ -240,7 +240,7 @@ function serialize_forge_vendor_ResponseSetOption(arg) {
   if (!(arg instanceof vendor_pb.ResponseSetOption)) {
     throw new Error('Expected argument of type forge_vendor.ResponseSetOption');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_forge_vendor_ResponseSetOption(buffer_arg) {

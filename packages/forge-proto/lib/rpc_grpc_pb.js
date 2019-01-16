@@ -12,7 +12,7 @@ function serialize_forge_abi_RequestCreateTx(arg) {
   if (!(arg instanceof rpc_pb.RequestCreateTx)) {
     throw new Error('Expected argument of type forge_abi.RequestCreateTx');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_forge_abi_RequestCreateTx(buffer_arg) {
@@ -23,7 +23,7 @@ function serialize_forge_abi_RequestCreateWallet(arg) {
   if (!(arg instanceof rpc_pb.RequestCreateWallet)) {
     throw new Error('Expected argument of type forge_abi.RequestCreateWallet');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_forge_abi_RequestCreateWallet(buffer_arg) {
@@ -34,7 +34,7 @@ function serialize_forge_abi_RequestGetAccountState(arg) {
   if (!(arg instanceof rpc_pb.RequestGetAccountState)) {
     throw new Error('Expected argument of type forge_abi.RequestGetAccountState');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_forge_abi_RequestGetAccountState(buffer_arg) {
@@ -45,7 +45,7 @@ function serialize_forge_abi_RequestGetAssetState(arg) {
   if (!(arg instanceof rpc_pb.RequestGetAssetState)) {
     throw new Error('Expected argument of type forge_abi.RequestGetAssetState');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_forge_abi_RequestGetAssetState(buffer_arg) {
@@ -56,7 +56,7 @@ function serialize_forge_abi_RequestGetBlock(arg) {
   if (!(arg instanceof rpc_pb.RequestGetBlock)) {
     throw new Error('Expected argument of type forge_abi.RequestGetBlock');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_forge_abi_RequestGetBlock(buffer_arg) {
@@ -67,7 +67,7 @@ function serialize_forge_abi_RequestGetChainInfo(arg) {
   if (!(arg instanceof rpc_pb.RequestGetChainInfo)) {
     throw new Error('Expected argument of type forge_abi.RequestGetChainInfo');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_forge_abi_RequestGetChainInfo(buffer_arg) {
@@ -78,7 +78,7 @@ function serialize_forge_abi_RequestGetChannelState(arg) {
   if (!(arg instanceof rpc_pb.RequestGetChannelState)) {
     throw new Error('Expected argument of type forge_abi.RequestGetChannelState');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_forge_abi_RequestGetChannelState(buffer_arg) {
@@ -89,7 +89,7 @@ function serialize_forge_abi_RequestGetForgeState(arg) {
   if (!(arg instanceof rpc_pb.RequestGetForgeState)) {
     throw new Error('Expected argument of type forge_abi.RequestGetForgeState');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_forge_abi_RequestGetForgeState(buffer_arg) {
@@ -100,7 +100,7 @@ function serialize_forge_abi_RequestGetTx(arg) {
   if (!(arg instanceof rpc_pb.RequestGetTx)) {
     throw new Error('Expected argument of type forge_abi.RequestGetTx');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_forge_abi_RequestGetTx(buffer_arg) {
@@ -111,7 +111,7 @@ function serialize_forge_abi_RequestListWallets(arg) {
   if (!(arg instanceof rpc_pb.RequestListWallets)) {
     throw new Error('Expected argument of type forge_abi.RequestListWallets');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_forge_abi_RequestListWallets(buffer_arg) {
@@ -122,7 +122,7 @@ function serialize_forge_abi_RequestLoadFile(arg) {
   if (!(arg instanceof rpc_pb.RequestLoadFile)) {
     throw new Error('Expected argument of type forge_abi.RequestLoadFile');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_forge_abi_RequestLoadFile(buffer_arg) {
@@ -133,7 +133,7 @@ function serialize_forge_abi_RequestLoadWallet(arg) {
   if (!(arg instanceof rpc_pb.RequestLoadWallet)) {
     throw new Error('Expected argument of type forge_abi.RequestLoadWallet');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_forge_abi_RequestLoadWallet(buffer_arg) {
@@ -144,7 +144,7 @@ function serialize_forge_abi_RequestRecoverWallet(arg) {
   if (!(arg instanceof rpc_pb.RequestRecoverWallet)) {
     throw new Error('Expected argument of type forge_abi.RequestRecoverWallet');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_forge_abi_RequestRecoverWallet(buffer_arg) {
@@ -155,7 +155,7 @@ function serialize_forge_abi_RequestRemoveWallet(arg) {
   if (!(arg instanceof rpc_pb.RequestRemoveWallet)) {
     throw new Error('Expected argument of type forge_abi.RequestRemoveWallet');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_forge_abi_RequestRemoveWallet(buffer_arg) {
@@ -166,7 +166,7 @@ function serialize_forge_abi_RequestSearch(arg) {
   if (!(arg instanceof rpc_pb.RequestSearch)) {
     throw new Error('Expected argument of type forge_abi.RequestSearch');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_forge_abi_RequestSearch(buffer_arg) {
@@ -177,7 +177,7 @@ function serialize_forge_abi_RequestSendTx(arg) {
   if (!(arg instanceof rpc_pb.RequestSendTx)) {
     throw new Error('Expected argument of type forge_abi.RequestSendTx');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_forge_abi_RequestSendTx(buffer_arg) {
@@ -188,7 +188,7 @@ function serialize_forge_abi_RequestStoreFile(arg) {
   if (!(arg instanceof rpc_pb.RequestStoreFile)) {
     throw new Error('Expected argument of type forge_abi.RequestStoreFile');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_forge_abi_RequestStoreFile(buffer_arg) {
@@ -199,7 +199,7 @@ function serialize_forge_abi_ResponseCreateTx(arg) {
   if (!(arg instanceof rpc_pb.ResponseCreateTx)) {
     throw new Error('Expected argument of type forge_abi.ResponseCreateTx');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_forge_abi_ResponseCreateTx(buffer_arg) {
@@ -210,7 +210,7 @@ function serialize_forge_abi_ResponseCreateWallet(arg) {
   if (!(arg instanceof rpc_pb.ResponseCreateWallet)) {
     throw new Error('Expected argument of type forge_abi.ResponseCreateWallet');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_forge_abi_ResponseCreateWallet(buffer_arg) {
@@ -221,7 +221,7 @@ function serialize_forge_abi_ResponseGetAccountState(arg) {
   if (!(arg instanceof rpc_pb.ResponseGetAccountState)) {
     throw new Error('Expected argument of type forge_abi.ResponseGetAccountState');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_forge_abi_ResponseGetAccountState(buffer_arg) {
@@ -232,7 +232,7 @@ function serialize_forge_abi_ResponseGetAssetState(arg) {
   if (!(arg instanceof rpc_pb.ResponseGetAssetState)) {
     throw new Error('Expected argument of type forge_abi.ResponseGetAssetState');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_forge_abi_ResponseGetAssetState(buffer_arg) {
@@ -243,7 +243,7 @@ function serialize_forge_abi_ResponseGetBlock(arg) {
   if (!(arg instanceof rpc_pb.ResponseGetBlock)) {
     throw new Error('Expected argument of type forge_abi.ResponseGetBlock');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_forge_abi_ResponseGetBlock(buffer_arg) {
@@ -254,7 +254,7 @@ function serialize_forge_abi_ResponseGetChainInfo(arg) {
   if (!(arg instanceof rpc_pb.ResponseGetChainInfo)) {
     throw new Error('Expected argument of type forge_abi.ResponseGetChainInfo');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_forge_abi_ResponseGetChainInfo(buffer_arg) {
@@ -265,7 +265,7 @@ function serialize_forge_abi_ResponseGetChannelState(arg) {
   if (!(arg instanceof rpc_pb.ResponseGetChannelState)) {
     throw new Error('Expected argument of type forge_abi.ResponseGetChannelState');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_forge_abi_ResponseGetChannelState(buffer_arg) {
@@ -276,7 +276,7 @@ function serialize_forge_abi_ResponseGetForgeState(arg) {
   if (!(arg instanceof rpc_pb.ResponseGetForgeState)) {
     throw new Error('Expected argument of type forge_abi.ResponseGetForgeState');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_forge_abi_ResponseGetForgeState(buffer_arg) {
@@ -287,7 +287,7 @@ function serialize_forge_abi_ResponseGetTx(arg) {
   if (!(arg instanceof rpc_pb.ResponseGetTx)) {
     throw new Error('Expected argument of type forge_abi.ResponseGetTx');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_forge_abi_ResponseGetTx(buffer_arg) {
@@ -298,7 +298,7 @@ function serialize_forge_abi_ResponseListWallet(arg) {
   if (!(arg instanceof rpc_pb.ResponseListWallet)) {
     throw new Error('Expected argument of type forge_abi.ResponseListWallet');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_forge_abi_ResponseListWallet(buffer_arg) {
@@ -309,7 +309,7 @@ function serialize_forge_abi_ResponseLoadFile(arg) {
   if (!(arg instanceof rpc_pb.ResponseLoadFile)) {
     throw new Error('Expected argument of type forge_abi.ResponseLoadFile');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_forge_abi_ResponseLoadFile(buffer_arg) {
@@ -320,7 +320,7 @@ function serialize_forge_abi_ResponseLoadWallet(arg) {
   if (!(arg instanceof rpc_pb.ResponseLoadWallet)) {
     throw new Error('Expected argument of type forge_abi.ResponseLoadWallet');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_forge_abi_ResponseLoadWallet(buffer_arg) {
@@ -331,7 +331,7 @@ function serialize_forge_abi_ResponseRecoverWallet(arg) {
   if (!(arg instanceof rpc_pb.ResponseRecoverWallet)) {
     throw new Error('Expected argument of type forge_abi.ResponseRecoverWallet');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_forge_abi_ResponseRecoverWallet(buffer_arg) {
@@ -342,7 +342,7 @@ function serialize_forge_abi_ResponseRemoveWallet(arg) {
   if (!(arg instanceof rpc_pb.ResponseRemoveWallet)) {
     throw new Error('Expected argument of type forge_abi.ResponseRemoveWallet');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_forge_abi_ResponseRemoveWallet(buffer_arg) {
@@ -353,7 +353,7 @@ function serialize_forge_abi_ResponseSearch(arg) {
   if (!(arg instanceof rpc_pb.ResponseSearch)) {
     throw new Error('Expected argument of type forge_abi.ResponseSearch');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_forge_abi_ResponseSearch(buffer_arg) {
@@ -364,7 +364,7 @@ function serialize_forge_abi_ResponseSendTx(arg) {
   if (!(arg instanceof rpc_pb.ResponseSendTx)) {
     throw new Error('Expected argument of type forge_abi.ResponseSendTx');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_forge_abi_ResponseSendTx(buffer_arg) {
@@ -375,17 +375,16 @@ function serialize_forge_abi_ResponseStoreFile(arg) {
   if (!(arg instanceof rpc_pb.ResponseStoreFile)) {
     throw new Error('Expected argument of type forge_abi.ResponseStoreFile');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_forge_abi_ResponseStoreFile(buffer_arg) {
   return rpc_pb.ResponseStoreFile.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-
 // forge RPC definition
 //
-var ChainRpcService = exports.ChainRpcService = {
+var ChainRpcService = (exports.ChainRpcService = {
   // tx related
   create_tx: {
     path: '/forge_abi.ChainRpc/create_tx',
@@ -454,10 +453,10 @@ var ChainRpcService = exports.ChainRpcService = {
     responseSerialize: serialize_forge_abi_ResponseSearch,
     responseDeserialize: deserialize_forge_abi_ResponseSearch,
   },
-};
+});
 
 exports.ChainRpcClient = grpc.makeGenericClientConstructor(ChainRpcService);
-var WalletRpcService = exports.WalletRpcService = {
+var WalletRpcService = (exports.WalletRpcService = {
   // wallet related
   create_wallet: {
     path: '/forge_abi.WalletRpc/create_wallet',
@@ -514,10 +513,10 @@ var WalletRpcService = exports.WalletRpcService = {
     responseSerialize: serialize_forge_abi_ResponseRemoveWallet,
     responseDeserialize: deserialize_forge_abi_ResponseRemoveWallet,
   },
-};
+});
 
 exports.WalletRpcClient = grpc.makeGenericClientConstructor(WalletRpcService);
-var StateRpcService = exports.StateRpcService = {
+var StateRpcService = (exports.StateRpcService = {
   // state related
   get_account_state: {
     path: '/forge_abi.StateRpc/get_account_state',
@@ -563,10 +562,10 @@ var StateRpcService = exports.StateRpcService = {
     responseSerialize: serialize_forge_abi_ResponseGetForgeState,
     responseDeserialize: deserialize_forge_abi_ResponseGetForgeState,
   },
-};
+});
 
 exports.StateRpcClient = grpc.makeGenericClientConstructor(StateRpcService);
-var FileRpcService = exports.FileRpcService = {
+var FileRpcService = (exports.FileRpcService = {
   // filesystem related
   store_file: {
     path: '/forge_abi.FileRpc/store_file',
@@ -590,6 +589,6 @@ var FileRpcService = exports.FileRpcService = {
     responseSerialize: serialize_forge_abi_ResponseLoadFile,
     responseDeserialize: deserialize_forge_abi_ResponseLoadFile,
   },
-};
+});
 
 exports.FileRpcClient = grpc.makeGenericClientConstructor(FileRpcService);
