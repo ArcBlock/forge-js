@@ -5,7 +5,8 @@ const shell = require('shelljs');
 const { RpcClient, parseConfig } = require('@arcblock/forge-sdk');
 const debug = require('debug')(require('../../package.json').name);
 
-const { crossMark, checkMark, warnMark, getSpinner } = require('./ui');
+const { symbols, getSpinner } = require('./ui');
+
 const dataDir = path.resolve(os.homedir(), '.forge-cli');
 const requiredDirs = {
   cache: path.join(dataDir, 'cache'),
@@ -24,68 +25,114 @@ function setupEnv(args) {
     if (fs.existsSync(args.forgeReleaseDir)) {
       const forgeBinPath = path.join(args.forgeReleaseDir, './bin/forge');
       if (fs.existsSync(forgeBinPath) && fs.statSync(forgeBinPath).isFile()) {
+        config.cli.forgeReleaseDir = args.forgeReleaseDir;
         config.cli.forgeBinPath = forgeBinPath;
-        debug(`Using forge bin path ${forgeBinPath}`);
+        shell.echo(`Using forge bin path ${forgeBinPath}`);
       } else {
-        shell.echo(`${warnMark} --forge-release-dir is invalid, non forge bin found`);
+        shell.echo(`${symbols.warning} --forge-release-dir is invalid, non forge bin found`);
         process.exit(1);
       }
     } else {
-      shell.echo(`${warnMark} --forge-release-dir does not exist`);
+      shell.echo(`${symbols.warning} --forge-release-dir does not exist`);
       process.exit(1);
     }
   } else {
     const releaseDir = requiredDirs.release;
     const forgeBinPath = path.join(releaseDir, './bin/forge');
     if (fs.existsSync(forgeBinPath) && fs.statSync(forgeBinPath).isFile()) {
+      config.cli.forgeReleaseDir = releaseDir;
       config.cli.forgeBinPath = forgeBinPath;
-      debug(`Using forge bin path ${forgeBinPath}`);
+      shell.echo(`Using forge bin path ${forgeBinPath}`);
     } else {
-      shell.echo(`${warnMark} forge release not found under ${releaseDir}`);
       shell.echo(
-        'If you are maintaining a node with forge-cli, please run `forge init:core` first'
+        `${
+          symbols.warning
+        } forge release not found under ${releaseDir}, If you are maintaining a node with forge-cli, please run \`forge init:core\` first`
       );
     }
   }
 
   // RPC Client
-  const configPath = args.forgeConfigPath || process.env.FORGE_CONFIG;
+  // configure file priority: cli > env > release bundled
+  const configPath = args.forgeConfigPath || process.env.FORGE_CONFIG || findReleaseConfig();
   if (configPath && fs.existsSync(configPath)) {
-    createRpcClient(configPath);
+    const forgeConfig = parseConfig(configPath);
+    shell.echo(`${symbols.success} using forge config from ${configPath}`);
+    createRpcClient(forgeConfig);
+  } else if (args.forgeSocketGrpc) {
+    const forgeConfig = {
+      forge: {
+        decimal: 16,
+        sockGrpc: args.forgeSocketGrpc,
+      },
+    };
+    shell.echo(`${symbols.warning} using forge-cli with remote node ${args.forgeSocketGrpc}`);
+    createRpcClient(forgeConfig);
+  } else {
+    shell.echo(`${symbols.error} forge-cli requires an forge config file to start`);
+    process.exit();
   }
 }
 
+/**
+ * Search forge release config under forge_sdk/prev folder
+ *
+ * @returns String
+ */
+function findReleaseConfig() {
+  const { forgeReleaseDir } = config.cli;
+  if (!forgeReleaseDir) {
+    return '';
+  }
+
+  const libDir = path.join(forgeReleaseDir, 'lib');
+  if (!fs.existsSync(libDir) || !fs.statSync(libDir).isDirectory()) {
+    return '';
+  }
+
+  const sdkDir = fs.readdirSync(libDir).find(x => /^forge_sdk/.test(x));
+  if (sdkDir) {
+    const releaseConfigPath = path.join(libDir, sdkDir, 'priv/forge_release.toml');
+    if (fs.existsSync(releaseConfigPath) && fs.statSync(releaseConfigPath).isFile()) {
+      return releaseConfigPath;
+    }
+  }
+
+  return '';
+}
+
+/**
+ * Ensure we have required directories done
+ */
 function ensureRequiredDirs() {
   Object.keys(requiredDirs).forEach(x => {
     const dir = requiredDirs[x];
     if (fs.existsSync(dir) && fs.statSync(dir).isDirectory()) {
-      debug(`${checkMark} ${x} dir already initialized: ${dir}`);
+      debug(`${symbols.info} ${x} dir already initialized: ${dir}`);
     } else {
       try {
         shell.mkdir('-p', dir);
-        shell.echo(`${checkMark} initialized ${x} dir for forge-cli: ${dir}`);
+        shell.echo(`${symbols.success} initialized ${x} dir for forge-cli: ${dir}`);
       } catch (err) {
-        shell.echo(`${crossMark} failed to initialize ${x} dir for forge-cli: ${dir}`, err);
+        shell.echo(`${symbols.success} failed to initialize ${x} dir for forge-cli: ${dir}`, err);
       }
     }
   });
 }
 
-function createRpcClient(configPath) {
-  const forgeConfig = parseConfig(configPath);
-  debug(`${checkMark} using forge config from ${configPath}`);
+function createRpcClient(forgeConfig) {
   Object.assign(client, new RpcClient(forgeConfig));
   Object.assign(config, forgeConfig);
-  debug(`${checkMark} rpc client created!`);
+  debug(`${symbols.info} rpc client created!`);
 }
 
 function writeCache(key, data) {
   try {
     fs.writeFileSync(path.join(requiredDirs.cache, `${key}.json`), JSON.stringify(data));
-    debug(`${checkMark} cache ${key} write success!`);
+    debug(`${symbols.success} cache ${key} write success!`);
     return true;
   } catch (err) {
-    shell.echo(`${checkMark} cache ${key} write failed!`, err);
+    shell.echo(`${symbols.error} cache ${key} write failed!`, err);
     return false;
   }
 }
@@ -95,7 +142,7 @@ function readCache(key) {
     const filePath = path.join(requiredDirs.cache, `${key}.json`);
     return JSON.parse(fs.readFileSync(filePath));
   } catch (err) {
-    shell.echo(`${checkMark} cache ${key} read failed!`, err);
+    shell.echo(`${symbols.error} cache ${key} read failed!`, err);
     return null;
   }
 }

@@ -14,7 +14,14 @@ program
     '-r, --forge-release-dir',
     'Forge release directory path (unzipped), use your own copy forge release'
   )
-  .option('-c, --forge-config-path', 'Forge config used when starting forge node and rpc clients');
+  .option(
+    '-c, --forge-config-path',
+    'Forge config used when starting forge node and initializing gRPC clients'
+  )
+  .option(
+    '-g, --forge-socket-grpc',
+    'Socket gRPC endpoint to connect, with this you can use forge-cli without a local node'
+  );
 
 initCli(program);
 

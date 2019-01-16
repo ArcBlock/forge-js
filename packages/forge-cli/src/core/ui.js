@@ -1,20 +1,13 @@
-const chalk = require('chalk');
 const ora = require('ora');
+const symbols = require('log-symbols');
 
 // TODO: random spinner style
 // const spinners = require('cli-spinners');
 
 // TODO: getProgress bar
 
-// Symbols
-const crossMark = chalk.red('✘');
-const checkMark = chalk.green('✔︎');
-const warnMark = chalk.yellow('�');
-
 module.exports = {
-  crossMark,
-  checkMark,
-  warnMark,
+  symbols,
   getSpinner: opts => {
     const spinner = ora(opts);
     return spinner;
