@@ -40,7 +40,8 @@ function execute(data) {
 
 // Run the cli interactively
 function run() {
-  release.download();
+  shell.echo('Download forge release from github');
+  // release.download();
   // inquirer.prompt(questions).then(answers => {
   //   const { PARAMETER_1, PARAMETER_2 } = answers;
   //   // PLEASE REMOVE ME

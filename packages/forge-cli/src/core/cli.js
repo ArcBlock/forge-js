@@ -1,5 +1,7 @@
 /* eslint no-console:"off" */
 const path = require('path');
+const args = require('yargs').argv;
+const { setupEnv } = require('./env');
 
 const allCommands = [];
 
@@ -35,7 +37,10 @@ function initCli(program) {
     program
       .command(item.command)
       .description(item.desc)
-      .action(item.handler);
+      .action(() => {
+        setupEnv(args);
+        item.handler();
+      });
   });
 }
 

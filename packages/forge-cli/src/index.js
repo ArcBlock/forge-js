@@ -5,11 +5,16 @@ require('app-module-path').addPath(__dirname);
 const program = require('commander');
 
 // eslint-disable-next-line import/no-unresolved
-require('core/init');
 const { initCli } = require('core/cli');
 const { version } = require('../package.json');
 
-program.version(version);
+program
+  .version(version)
+  .option(
+    '-r, --forge-release-dir',
+    'Forge release directory path (unzipped), use your own copy forge release'
+  )
+  .option('-c, --forge-config-path', 'Forge config used when starting forge node and rpc clients');
 
 initCli(program);
 

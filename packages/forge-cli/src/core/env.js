@@ -1,83 +1,127 @@
 const fs = require('fs');
+const os = require('os');
 const path = require('path');
-const mkdirp = require('mkdirp');
 const shell = require('shelljs');
 const { RpcClient, parseConfig } = require('@arcblock/forge-sdk');
+const debug = require('debug')(require('../../package.json').name);
 
-const { crossMark, checkMark, getSpinner } = require('./ui');
-
-const dataDir = path.resolve('~/.forge-cli');
+const { crossMark, checkMark, warnMark, getSpinner } = require('./ui');
+const dataDir = path.resolve(os.homedir(), '.forge-cli');
 const requiredDirs = {
   cache: path.join(dataDir, 'cache'),
   release: path.join(dataDir, 'release'),
 };
 
-const ensureRequiredDirs = () => {
-  Object.keys(requiredDirs).forEach(x => {
-    if (!fs.existsSync(requiredDirs[x])) {
-      try {
-        mkdirp.sync(requiredDirs[x]);
-        console.log(`${checkMark} initialized ${x} dir!`);
-      } catch (err) {
-        console.log(`${crossMark} initializing ${x} dir!`, err);
+const client = {}; // global shared rpc client
+const config = { cli: {} }; // global shared forge-cli run time config
+
+function setupEnv(args) {
+  debug('setupEnv.args', args);
+  ensureRequiredDirs();
+
+  // forge bin path
+  if (args.forgeReleaseDir) {
+    if (fs.existsSync(args.forgeReleaseDir)) {
+      const forgeBinPath = path.join(args.forgeReleaseDir, './bin/forge');
+      if (fs.existsSync(forgeBinPath) && fs.statSync(forgeBinPath).isFile()) {
+        config.cli.forgeBinPath = forgeBinPath;
+        debug(`Using forge bin path ${forgeBinPath}`);
+      } else {
+        shell.echo(`${warnMark} --forge-release-dir is invalid, non forge bin found`);
+        process.exit(1);
       }
     } else {
-      console.log(`${checkMark} ${x} dir already initialized!`);
+      shell.echo(`${warnMark} --forge-release-dir does not exist`);
+      process.exit(1);
+    }
+  } else {
+    const releaseDir = requiredDirs.release;
+    const forgeBinPath = path.join(releaseDir, './bin/forge');
+    if (fs.existsSync(forgeBinPath) && fs.statSync(forgeBinPath).isFile()) {
+      config.cli.forgeBinPath = forgeBinPath;
+      debug(`Using forge bin path ${forgeBinPath}`);
+    } else {
+      shell.echo(`${warnMark} forge release not found under ${releaseDir}`);
+      shell.echo(
+        'If you are maintaining a node with forge-cli, please run `forge init:core` first'
+      );
+    }
+  }
+
+  // RPC Client
+  const configPath = args.forgeConfigPath || process.env.FORGE_CONFIG;
+  if (configPath && fs.existsSync(configPath)) {
+    createRpcClient(configPath);
+  }
+}
+
+function ensureRequiredDirs() {
+  Object.keys(requiredDirs).forEach(x => {
+    const dir = requiredDirs[x];
+    const stat = fs.statSync(dir);
+    if (!stat.isDirectory()) {
+      try {
+        shell.rm(dir);
+        shell.mkdir('-p', dir);
+        shell.echo(`${checkMark} initialized ${x} dir for forge-cli: ${dir}`);
+      } catch (err) {
+        shell.echo(`${crossMark} failed to initialize ${x} dir for forge-cli: ${dir}`, err);
+      }
+    } else {
+      debug(`${checkMark} ${x} dir already initialized: ${dir}`);
     }
   });
-};
+}
 
-let client;
-const createRpcClient = () => {
-  client = new RpcClient(parseConfig(process.env.FORGE_CONFIG));
-  console.log(`${checkMark} rpc client created!`);
-};
+function createRpcClient(configPath) {
+  const forgeConfig = parseConfig(configPath);
+  debug(`${checkMark} using forge config from ${configPath}`);
+  Object.assign(client, new RpcClient(forgeConfig));
+  Object.assign(config, forgeConfig);
+  debug(`${checkMark} rpc client created!`);
+}
 
-const writeCache = (key, data) => {
+function writeCache(key, data) {
   try {
     fs.writeFileSync(path.join(requiredDirs.cache, `${key}.json`), JSON.stringify(data));
-    console.log(`${checkMark} cache ${key} write success!`);
+    debug(`${checkMark} cache ${key} write success!`);
     return true;
   } catch (err) {
-    console.log(`${checkMark} cache ${key} write failed!`, err);
+    shell.echo(`${checkMark} cache ${key} write failed!`, err);
     return false;
   }
-};
+}
 
-const readCache = key => {
+function readCache(key) {
   try {
     const filePath = path.join(requiredDirs.cache, `${key}.json`);
     return JSON.parse(fs.readFileSync(filePath));
   } catch (err) {
-    console.log(`${checkMark} cache ${key} read failed!`, err);
+    shell.echo(`${checkMark} cache ${key} read failed!`, err);
     return null;
   }
-};
+}
 
-const downloadRelease = async () => {
+function downloadRelease() {
   const spinner = getSpinner('Install github release downloader...');
   spinner.start();
   shell.exec('npm install -g download-github-release');
   spinner.text = 'Download github release...';
   shell.exec('download-github-release -s darwin ArcBlock forge');
   spinner.stopAndPersist();
-};
-
-const selectRelease = async () => {};
-
-const unzipRelease = async () => {};
+}
 
 module.exports = {
-  ensureRequiredDirs,
-  createRpcClient,
   client,
+  config,
   cache: {
     write: writeCache,
     read: readCache,
   },
   release: {
     download: downloadRelease,
-    select: selectRelease,
-    unzip: unzipRelease,
   },
+
+  setupEnv,
+  ensureRequiredDirs,
 };
