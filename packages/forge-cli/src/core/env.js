@@ -76,7 +76,10 @@ function ensureForgeRelease(args, exitOn404 = true) {
  * @param {*} args
  */
 function ensureRpcClient(args) {
-  const configPath = args.forgeConfigPath || process.env.FORGE_CONFIG || findReleaseConfig();
+  const configPath =
+    args.forgeConfigPath ||
+    process.env.FORGE_CONFIG ||
+    findReleaseConfig(config.cli.forgeReleaseDir);
   if (configPath && fs.existsSync(configPath)) {
     const forgeConfig = parseConfig(configPath);
     shell.echo(`${symbols.success} using forge config from ${configPath}`);
@@ -101,8 +104,7 @@ function ensureRpcClient(args) {
  *
  * @returns String
  */
-function findReleaseConfig() {
-  const { forgeReleaseDir } = config.cli;
+function findReleaseConfig(forgeReleaseDir) {
   if (!forgeReleaseDir) {
     return '';
   }
@@ -179,6 +181,7 @@ module.exports = {
 
   setupEnv,
   requiredDirs,
+  findReleaseConfig,
   ensureRequiredDirs,
   ensureForgeRelease,
   ensureRpcClient,

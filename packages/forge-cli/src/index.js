@@ -15,6 +15,10 @@ program
     'Forge release directory path (unzipped), use your own copy forge release'
   )
   .option(
+    '-t, --forge-release-tarball',
+    'Forge release tarball (unzipped), we take care of the rest'
+  )
+  .option(
     '-c, --forge-config-path',
     'Forge config used when starting forge node and initializing gRPC clients'
   )
