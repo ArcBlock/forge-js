@@ -6,18 +6,29 @@ const { messages } = require('@arcblock/forge-proto');
 
 inquirer.registerPrompt('autocomplete', require('inquirer-autocomplete-prompt'));
 
-async function getAccountState(address) {
-  const streamChild = await client.getAccountState({ address: address });
+async function getAccountState(argAddress, argRole) {
+  const streamChild = await client.getAccountState({ address: argAddress });
   streamChild
     .on('data', function({ code, state }) {
       if (code === 0) {
         const { moniker, address, role } = state;
-        shell.echo(
-          `${moniker.padEnd(20, ' ').padStart(23, ' ')}${address.padEnd(
-            50,
-            ' '
-          )}${messages.AccountRole[role].padEnd(10, ' ')}`
-        );
+        if (!argRole || argRole === 'all') {
+          shell.echo(
+            `${moniker.padEnd(20, ' ').padStart(23, ' ')}${address.padEnd(
+              50,
+              ' '
+            )}${messages.AccountRole[role].padEnd(10, ' ')}`
+          );
+        } else {
+          if (argRole === messages.AccountRole[role].toLowerCase()) {
+            shell.echo(
+              `${moniker.padEnd(20, ' ').padStart(23, ' ')}${address.padEnd(
+                50,
+                ' '
+              )}${messages.AccountRole[role].padEnd(10, ' ')}`
+            );
+          }
+        }
       } else {
         shell.echo(`${symbols.error} error,code: ${code}`);
       }
@@ -28,8 +39,7 @@ async function getAccountState(address) {
 }
 
 // Execute the cli silently.
-async function execute({ args: [role = 'normal'], opts }) {
-  shell.echo(`XXXXXXXXXXXXXXXXXXXX: ${role}`, opts);
+async function execute({ args: [role = 'all'] }) {
   shell.echo(`${symbols.success} get account success: `);
   shell.echo(`${''.padEnd(82, '-')}`);
   shell.echo(
@@ -43,7 +53,7 @@ async function execute({ args: [role = 'normal'], opts }) {
     const stream = await client.listWallets({});
     stream
       .on('data', function(result) {
-        getAccountState(result.address);
+        getAccountState(result.address, role);
       })
       .on('error', err => {
         shell.echo(`${symbols.error} error: ${err}`);
