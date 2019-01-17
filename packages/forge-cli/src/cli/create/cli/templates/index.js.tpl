@@ -10,6 +10,7 @@ cli(
     requirements: {
       forgeRelease: {{ requireRelease }},
       rpcClient: {{ requireRpcClient }},
+      wallet: {{ requireWallet }},
     },
     options: [],
   }

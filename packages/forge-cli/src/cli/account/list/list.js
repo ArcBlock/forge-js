@@ -2,7 +2,7 @@ const shell = require('shelljs');
 const inquirer = require('inquirer');
 const { client } = require('core/env');
 const { symbols } = require('core/ui');
-const { enums, messages } = require('@arcblock/forge-proto');
+const { messages } = require('@arcblock/forge-proto');
 
 inquirer.registerPrompt('autocomplete', require('inquirer-autocomplete-prompt'));
 

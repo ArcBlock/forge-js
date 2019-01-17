@@ -1,5 +1,8 @@
 ## 0.5.2 (January 16, 2019)
-  - finish create wallet
+  - chore: add examples for entry cli
+  - chore: remove useless .gitkeep
+  - chore: refactor ensureForgeRelease command support end
+  - forge node related commands (#19)
   - chore: half baked forge-init
   - fix: new Buffer warning from generated js
   - chore: add error handling for chain-info request in forge-cli

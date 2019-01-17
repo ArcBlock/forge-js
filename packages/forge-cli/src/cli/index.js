@@ -2,4 +2,5 @@ exports.account = require('./account');
 exports.backup = require('./backup');
 exports.chain = require('./chain');
 exports.create = require('./create');
-exports.init = require('./init');
+exports.node = require('./node');
+exports.release = require('./release');
