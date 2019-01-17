@@ -3,7 +3,7 @@ const { cli, action } = require('core/cli');
 const { execute, run } = require('./delete');
 
 cli(
-  'account:delete [address]',
+  'account:delete <address>',
   'delete an account by address',
   input => action(execute, run, input),
   {

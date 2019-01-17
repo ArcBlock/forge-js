@@ -3,7 +3,7 @@ const { cli, action } = require('core/cli');
 const { execute, run } = require('./info');
 
 cli(
-  'block:info [height]',
+  'block:info <height>',
   'get the block info from the running node',
   input => action(execute, run, input),
   {

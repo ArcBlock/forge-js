@@ -4,10 +4,6 @@ const { symbols } = require('core/ui');
 const pretty = require('json-stringify-pretty-compact');
 
 async function execute({ args: [address] }) {
-  if (!address) {
-    shell.echo(`${symbols.error} Please input an account address and try again.`);
-    return;
-  }
   try {
     const stream = await client.getAccountState({ address: address });
     stream

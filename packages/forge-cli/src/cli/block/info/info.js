@@ -4,10 +4,6 @@ const { symbols } = require('core/ui');
 const pretty = require('json-stringify-pretty-compact');
 
 async function execute({ args: [argHeight] }) {
-  if (!argHeight) {
-    shell.echo(`${symbols.error} Please input a block height and try again.`);
-    return;
-  }
   if (!/^[1-9]\d*$/.test(argHeight)) {
     shell.echo(`${symbols.error} Please input a right block height and try again.`);
     return;
