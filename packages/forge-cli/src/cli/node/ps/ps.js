@@ -1,11 +1,13 @@
 // const inquirer = require('inquirer');
 const shell = require('shelljs');
+const chalk = require('chalk');
 const pidUsageTree = require('pidusage-tree');
 const pidInfo = require('find-process');
 const Table = require('cli-table-redemption');
 const prettyTime = require('pretty-ms');
 const prettyBytes = require('pretty-bytes');
 const { config } = require('core/env');
+const { symbols } = require('core/ui');
 
 // const { symbols } = require('core/ui');
 // const { enums } = require('@arcblock/forge-proto');
@@ -16,8 +18,16 @@ async function main() {
     silent: true,
   });
 
+  const pidNumber = Number(pid);
+  if (!pidNumber) {
+    shell.echo(
+      `${symbols.warning} forge daemon not started yet, start with ${chalk.cyan('forge start')}`
+    );
+    shell.echo('');
+    process.exit(0);
+  }
+
   try {
-    const pidNumber = Number(pid);
     const processes = await pidUsageTree(pidNumber);
     const results = await Promise.all(
       Object.values(processes).map(async x => {
