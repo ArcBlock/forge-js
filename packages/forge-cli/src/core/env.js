@@ -16,7 +16,7 @@ const requiredDirs = {
 const client = {}; // global shared rpc client
 const config = { cli: {} }; // global shared forge-cli run time config
 
-function setupEnv(args, requirements) {
+async function setupEnv(args, requirements) {
   debug('setupEnv.args', { args, requirements });
 
   const hasRequirements = Object.keys(requirements).some(x => requirements[x]);
@@ -26,11 +26,15 @@ function setupEnv(args, requirements) {
   ensureRequiredDirs();
 
   if (requirements.forgeRelease) {
-    ensureForgeRelease(args);
+    await ensureForgeRelease(args);
   }
 
-  if (requirements.rpcClient) {
-    ensureRpcClient(args);
+  if (requirements.wallet || requirements.rpcClient) {
+    await ensureRpcClient(args);
+  }
+
+  if (requirements.wallet) {
+    await ensureWallet(args);
   }
 
   if (hasRequirements) {
@@ -94,6 +98,7 @@ function ensureRpcClient(args) {
       forge: {
         decimal: 16,
         sockGrpc: args.socketGrpc,
+        unlockTtl: 300,
       },
     };
     shell.echo(`${symbols.info} using forge-cli with remote node ${args.socketGrpc}`);
@@ -102,6 +107,58 @@ function ensureRpcClient(args) {
     shell.echo(`${symbols.error} forge-cli requires an forge config file to start`);
     process.exit();
   }
+}
+
+/**
+ * Ensure we have an unlocked wallet before run actual command { address, token }
+ */
+async function ensureWallet() {
+  const wallet = readCache('wallet');
+  if (wallet && wallet.expireAt && wallet.expireAt > Date.now()) {
+    shell.echo(`${symbols.success} Use cached wallet ${wallet.address}`);
+    config.cli.wallet = wallet;
+    return;
+  }
+
+  debug(`${symbols.warning} no unlocked wallet found!`);
+
+  const cachedAddress = wallet ? wallet.address : '';
+  const questions = [
+    {
+      type: 'confirm',
+      name: 'useCachedAddress',
+      message: `Use cached wallet <${cachedAddress}>?`,
+      when: !!cachedAddress,
+    },
+    {
+      type: 'text',
+      name: 'address',
+      default: answers => (answers.useCachedAddress ? cachedAddress : ''),
+      when: answers => !cachedAddress || !answers.useCachedAddress,
+      message: 'Please enter wallet address:',
+      validate: input => {
+        if (!input) return 'The address should not empty';
+        return true;
+      },
+    },
+    {
+      type: 'text',
+      name: 'passphrase',
+      message: 'Please enter passphrase of the wallet:',
+      validate: input => {
+        if (!input) return 'The passphrase should not empty';
+        if (!/^.{6,15}$/.test(input)) return 'The passphrase must be 6~15 chars long';
+        return true;
+      },
+    },
+  ];
+
+  const { address: userAddress, passphrase, useCachedAddress } = await inquirer.prompt(questions);
+  const address = useCachedAddress ? cachedAddress : userAddress;
+  const { token } = await client.loadWallet({ address, passphrase });
+  writeCache('wallet', { address, token, expireAt: Date.now() + config.forge.unlockTtl * 1e3 });
+  config.cli.wallet = { address, token };
+  shell.echo(`${symbols.success} Use unlocked wallet ${address}`);
 }
 
 /**
