@@ -5,3 +5,4 @@ exports.chain = require('./chain');
 exports.create = require('./create');
 exports.node = require('./node');
 exports.release = require('./release');
+exports.tx = require('./tx');

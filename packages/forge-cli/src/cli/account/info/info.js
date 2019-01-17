@@ -8,8 +8,12 @@ async function execute({ args: [address] }) {
     const stream = await client.getAccountState({ address: address });
     stream
       .on('data', function(result) {
-        shell.echo(`${symbols.success} get account info success: `);
-        shell.echo(`${pretty(result)}`);
+        if (result && result.code === 0) {
+          shell.echo(`${symbols.success} get account info success: `);
+          shell.echo(`${pretty(result.state)}`);
+        } else {
+          shell.echo(`${symbols.error} get account info error: ${pretty(result)}`);
+        }
       })
       .on('error', err => {
         shell.echo(`${symbols.error} error: ${err}`);

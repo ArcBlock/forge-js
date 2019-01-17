@@ -10,7 +10,7 @@ async function getAccountState(argAddress) {
   const streamChild = await client.getAccountState({ address: argAddress });
   streamChild
     .on('data', function({ code, state }) {
-      if (code === 0) {
+      if (state && code === 0) {
         const { moniker, address } = state;
         shell.echo(`${moniker.padEnd(20, ' ').padStart(23, ' ')}${address.padEnd(45, ' ')}`);
       } else {
