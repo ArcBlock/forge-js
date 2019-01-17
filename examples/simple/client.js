@@ -10,6 +10,7 @@ const debug = (...args) => {
 };
 
 debug('Supported RPC methods', client.listRpcMethods());
+debug('Supported Tx methods', client.listTxMethods());
 
 (async () => {
   try {
