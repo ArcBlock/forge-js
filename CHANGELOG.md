@@ -1,3 +1,6 @@
+## 0.5.4 (January 17, 2019)
+  - update forge-proto
+
 ## 0.5.3 (January 17, 2019)
   - support tx shortcut methods: `client.sendTransferTx`
 

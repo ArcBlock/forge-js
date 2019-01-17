@@ -35,6 +35,7 @@ test:
 
 clean:
 	@echo "Cleaning the build..."
+	@rm address.json
 	@rm -rf $(DATA_PATH)
 
 rebuild-proto: rebuild-proto-js rebuild-proto-json
