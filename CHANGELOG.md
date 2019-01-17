@@ -1,3 +1,6 @@
+## 0.5.3 (January 17, 2019)
+  - support tx shortcut methods: `client.sendTransferTx`
+
 ## 0.5.2 (January 16, 2019)
   - chore: add examples for entry cli
   - chore: remove useless .gitkeep

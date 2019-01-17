@@ -1,8 +1,8 @@
 [app]
-name = "forge"
+name = "forge_simple"
 version = "0.1.0"
 
-path = "~/.forge_release/app"
+path = "~/.forge_simple/app"
 executable = ""
 logfile = "logs/app.log"
 sock_tcp = "tcp://127.0.0.1:28211"
@@ -10,7 +10,7 @@ sock_tcp = "tcp://127.0.0.1:28211"
 [forge]
 decimal = 16
 proto_version = 1
-path = "~/.forge_release/core"
+path = "~/.forge_simple/core"
 # State db path
 db = "data"
 # index db path
@@ -47,7 +47,7 @@ enabled = false
 [tendermint]
 version = "0.27.3-01"
 moniker = "forge"
-path = "~/.forge_release/tendermint"
+path = "~/.forge_simple/tendermint"
 # relative paths to "path"
 logfile = "logs/tendermint.log"
 
@@ -98,10 +98,13 @@ app_hash = ""
 
 [ipfs]
 version = "0.4.18"
-path = "~/.forge_release/ipfs"
+path = "~/.forge_simple/ipfs"
 logfile = "logs/ipfs.log"
 storage_max = "10GB"
 bootstrap = []
 
 #ipfs_cluster_version = "0.7.0"
 #ipfs_cluster_ctl_version = "0.7.0"
+
+max_file_size.admin = "100M"
+max_file_size.account = "1M"

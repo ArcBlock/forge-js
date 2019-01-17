@@ -13,10 +13,10 @@ async function getAccountState(address) {
       if (code === 0) {
         const { moniker, address, role } = state;
         shell.echo(
-          `${moniker.padEnd(20, ' ').padStart(23,' ')}${address.padEnd(50, ' ')}${messages.AccountRole[role].padEnd(
-            10,
+          `${moniker.padEnd(20, ' ').padStart(23, ' ')}${address.padEnd(
+            50,
             ' '
-          )}`
+          )}${messages.AccountRole[role].padEnd(10, ' ')}`
         );
       } else {
         shell.echo(`${symbols.error} error,code: ${code}`);
@@ -31,7 +31,12 @@ async function getAccountState(address) {
 async function execute() {
   shell.echo(`${symbols.success} get account success: `);
   shell.echo(`${''.padEnd(82, '-')}`);
-  shell.echo(`${'moniker'.padEnd(20, ' ').padStart(23,' ')}${'address'.padEnd(50, ' ')}${'role'.padEnd(10, ' ')}`);
+  shell.echo(
+    `${'moniker'.padEnd(20, ' ').padStart(23, ' ')}${'address'.padEnd(50, ' ')}${'role'.padEnd(
+      10,
+      ' '
+    )}`
+  );
   shell.echo(`${''.padEnd(82, '-')}`);
   try {
     const stream = await client.listWallets({});

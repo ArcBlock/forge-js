@@ -10,6 +10,7 @@ const debug = (...args) => {
 };
 
 debug('Supported RPC methods', client.listRpcMethods());
+debug('Supported Tx methods', client.listTxMethods());
 
 (async () => {
   try {
@@ -43,7 +44,7 @@ debug('Supported RPC methods', client.listRpcMethods());
       type: walletType,
     });
 
-    // ForgeCore: Transfer
+    // Send transaction the hard way
     const { tx } = await client.createTx({
       from: sender.wallet.address,
       token: sender.token,
@@ -52,7 +53,7 @@ debug('Supported RPC methods', client.listRpcMethods());
         type: 'TransferTx',
         value: {
           to: receiver.wallet.address,
-          value: client.toArc(100),
+          value: client.toArc(10),
         },
       },
     });
@@ -61,12 +62,23 @@ debug('Supported RPC methods', client.listRpcMethods());
       token: sender.token,
       commit: true,
     });
-    debug('txInfo.sent', { transferHash });
+    debug('txInfo.sent.multiStep', { transferHash });
 
-    const account = await client.getAccountState({
+    // Send transaction the easy way
+    const hash = await client.sendTransferTx({
+      from: sender.wallet.address,
+      token: sender.token,
+      itx: {
+        to: receiver.wallet.address,
+        value: client.toArc(20),
+      },
+    });
+    debug('txInfo.sent.oneShot', { hash });
+
+    const account = client.getAccountState({
       address: sender.wallet.address,
     });
-    account.on('data', async data => {
+    account.on('data', data => {
       debug('accountInfo', data.$format());
     });
   } catch (err) {
