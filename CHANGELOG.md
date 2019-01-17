@@ -1,5 +1,6 @@
 ## 0.5.8 (January 17, 2019)
-
+  - support `forge tx:sign` command
+  - support `forge tx:send` command
 
 ## 0.5.7 (January 17, 2019)
   - support `forge ps` command
