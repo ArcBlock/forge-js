@@ -2,7 +2,7 @@ const grpc = require('grpc');
 const camelcase = require('camelcase');
 const BN = require('bignumber.js');
 const { EventEmitter } = require('events');
-const { messages, rpcs, getMessageType } = require('@arcblock/forge-proto');
+const { messages, transactions, rpcs, getMessageType } = require('@arcblock/forge-proto');
 const {
   formatMessage,
   createMessage,
@@ -19,8 +19,9 @@ class Client {
       throw new Error('Client requires a valid `forge.sockGrpc` to start');
     }
 
-    this.initRpcClients();
-    this.initRpcMethods();
+    this._initRpcClients();
+    this._initRpcMethods();
+    this._initTxMethods();
   }
 
   /**
@@ -39,7 +40,12 @@ class Client {
       .toString(10);
   }
 
-  initRpcClients() {
+  /**
+   * Initialize grpc-node clients for each rpc service, lazy connection under the surface
+   *
+   * @memberof Client
+   */
+  _initRpcClients() {
     const socket = this.config.forge.sockGrpc.split('//').pop();
     this.clients = Object.keys(rpcs).reduce((acc, x) => {
       debug('initRpcClient', x);
@@ -48,18 +54,22 @@ class Client {
     }, {});
   }
 
-  initRpcMethods() {
+  /**
+   * Initialize standard rpc methods defined in protobuf
+   *
+   * @memberof Client
+   */
+  _initRpcMethods() {
     Object.keys(rpcs).forEach(x =>
-      Object.keys(rpcs[x].methods).forEach(m => this.initRpcMethod(x, m))
+      Object.keys(rpcs[x].methods).forEach(m => this._initRpcMethod(x, m))
     );
   }
-
-  initRpcMethod(group, method) {
+  _initRpcMethod(group, method) {
     const client = this.clients[group];
     const rpc = client[method].bind(client);
     const spec = rpcs[group].methods[method];
     const { requestStream = false, responseStream = false, requestType, responseType } = spec;
-    debug('initRpcMethod', { method, requestStream, responseStream, requestType, responseType });
+    debug('_initRpcMethod', { method, requestStream, responseStream, requestType, responseType });
 
     let fn = null;
     // unary call, return Promise
@@ -112,6 +122,12 @@ class Client {
     this[camelcase(method)] = fn;
   }
 
+  /**
+   * List standard rpc methods
+   *
+   * @returns Object
+   * @memberof Client
+   */
   listRpcMethods() {
     return Object.keys(this)
       .filter(x => typeof this[x] === 'function' && this[x].rpc)
@@ -119,6 +135,81 @@ class Client {
         acc[x] = this[x].meta;
         return acc;
       }, {});
+  }
+
+  /**
+   * Generate shortcut methods for creating and sending transactions on all supported itx
+   * With these shortcut methods, developers can sign/send with just one call
+   *
+   * @memberof Client
+   */
+  _initTxMethods() {
+    const requiredRpcMethods = ['getAccountState', 'createTx', 'sendTx'];
+    if (requiredRpcMethods.every(x => typeof this[x] === 'function' && this[x].rpc)) {
+      transactions.forEach(x => this._initTxMethod(x));
+    }
+  }
+  _initTxMethod(x) {
+    const method = camelcase(`send_${x}`);
+    debug('_initTxMethod', method);
+    const fn = params =>
+      new Promise(async (resolve, reject) => {
+        try {
+          params.itx = { type: x, value: params.itx };
+          params.nonce = await this._getNonce(params);
+
+          const { tx } = await this.createTx(params);
+          const { hash } = await this.sendTx({
+            tx,
+            token: params.token,
+            wallet: params.wallet,
+            commit: params.commit,
+          });
+
+          resolve(hash);
+        } catch (err) {
+          console.error(err); // eslint-disable-line
+          reject(new Error(`Tx failed ${method} with error: ${err.message}`));
+        }
+      });
+
+    fn.tx = true;
+    fn.itx = x;
+    this[method] = fn;
+  }
+
+  /**
+   * List standard rpc methods
+   *
+   * @returns Object
+   * @memberof Client
+   */
+  listTxMethods() {
+    return Object.keys(this)
+      .filter(x => typeof this[x] === 'function' && this[x].tx)
+      .reduce((acc, x) => {
+        acc[x] = this[x].itx;
+        return acc;
+      }, {});
+  }
+
+  /**
+   * Ensure we have an correct nonce set before sending transaction
+   *
+   * @param {*} params
+   * @returns
+   * @memberof Client
+   */
+  _getNonce(params) {
+    if (typeof params.nonce === 'number') {
+      return params.nonce;
+    }
+
+    return new Promise((resolve, reject) => {
+      const stream = this.getAccountState({ address: params.from });
+      stream.on('data', ({ state }) => resolve(state.nonce));
+      stream.on('error', err => reject(err));
+    });
   }
 
   /**

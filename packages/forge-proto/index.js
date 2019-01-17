@@ -3,6 +3,8 @@ const path = require('path');
 const { get } = require('lodash');
 const debug = require('debug')(`${require('./package.json').name}`);
 
+const txTypePattern = /Tx$/;
+
 // extract spec
 const compactSpec = object => {
   if (object.nested) {
@@ -62,7 +64,9 @@ function processJs(baseDir) {
       return clients;
     }, {});
 
-  return { types, vendorTypes, services, clients };
+  const transactions = Object.keys(types).filter(x => txTypePattern.test(x));
+
+  return { types, vendorTypes, services, clients, transactions };
 }
 
 /**
@@ -134,7 +138,7 @@ function processJson(filePath, packageName) {
 const extraTypes = {};
 const extraSpec = {};
 const extraTypeUrls = {};
-const { types, vendorTypes, clients } = processJs(path.resolve(__dirname, './lib/'));
+const { types, vendorTypes, clients, transactions } = processJs(path.resolve(__dirname, './lib/'));
 const { messages, enums, rpcs, spec, typeUrls } = processJson(
   path.resolve(__dirname, './lib/spec.json'),
   'forge_abi'
@@ -149,6 +153,9 @@ function addSource({ baseDir, packageName, typeUrls: _typeUrls }) {
   const jsResult = processJs(baseDir);
   Object.assign(extraTypes, jsResult.types);
   debug('addSource.types', jsResult.types);
+  Object.keys(jsResult.types)
+    .filter(x => txTypePattern.test(x))
+    .forEach(x => transactions.push(x));
 
   if (fs.existsSync(path.join(baseDir, 'spec.json'))) {
     const jsonResult = processJson(path.join(baseDir, 'spec.json'), packageName);
@@ -188,6 +195,7 @@ function fromTypeUrl(url) {
 module.exports = {
   enums,
   messages,
+  transactions,
   rpcs: Object.keys(clients).reduce((acc, x) => {
     acc[x] = clients[x];
     acc[x].methods = rpcs[x];

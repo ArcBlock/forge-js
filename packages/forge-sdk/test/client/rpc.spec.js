@@ -24,8 +24,20 @@ describe('#listRpcMethods', () => {
   });
 
   test('should support reverse op', () => {
-    const method = client.listRpcMethods();
-    expect(typeof method.getBlock).toEqual('object');
+    const methods = client.listRpcMethods();
+    expect(typeof methods.getBlock).toEqual('object');
+  });
+});
+
+describe('#listTxMethods', () => {
+  test('should be function', () => {
+    expect(typeof client.listTxMethods).toEqual('function');
+  });
+
+  test('should support reverse op', () => {
+    const methods = client.listTxMethods();
+    expect(typeof methods.sendTransferTx).toEqual('function');
+    expect(typeof methods.sendTransferTx.itx).toEqual('TransferTx');
   });
 });
 
