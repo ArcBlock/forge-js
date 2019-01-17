@@ -10,16 +10,14 @@
 
 ## Table of Contents
 
-- [**@arcblock/forge-sdk**](#arcblockforge-sdk)
-  - [Table of Contents](#table-of-contents)
-  - [Install](#install)
-  - [Usage](#usage)
-    - [0. Make sure you get forge installed](#0-make-sure-you-get-forge-installed)
-    - [1. Prepare Example App](#1-prepare-example-app)
-    - [2. Call Rpc](#2-call-rpc)
-  - [Documentation](#documentation)
-  - [Contributors](#contributors)
-  - [License](#license)
+* [Install](#install)
+* [Usage](#usage)
+  * [0. Make sure you get forge installed](#0-make-sure-you-get-forge-installed)
+  * [1. Prepare Example App](#1-prepare-example-app)
+  * [2. Call Rpc](#2-call-rpc)
+* [Documentation](#documentation)
+* [Contributors](#contributors)
+* [License](#license)
 
 
 ## Install

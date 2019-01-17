@@ -131,12 +131,14 @@ describe('#createMessage', () => {
   test('should support timestamp fields', () => {
     const params = {
       address: '123456',
-      genesisTime: { seconds: 1547179509, nanos: 471813322 },
+      context: {
+        genesisTime: { seconds: 1547179509, nanos: 471813322 },
+      },
     };
 
-    const message = createMessage('AccountState', params);
-    const timestamp = message.getGenesisTime().toObject();
-    expect(timestamp).toEqual(params.genesisTime);
+    const message = createMessage('AccountState', params).toObject();
+    const timestamp = message.context.genesisTime;
+    expect(timestamp).toEqual(params.context.genesisTime);
   });
 
   test('should support bigInt fields', () => {
@@ -165,7 +167,9 @@ describe('#formatMessage', () => {
         hash: 0,
         address: 0,
       },
-      genesisTime: { seconds: 1547461548, nanos: 207882515 },
+      context: {
+        genesisTime: { seconds: 1547461548, nanos: 207882515 },
+      },
       migratedFrom: ['123456', '234567'],
     });
     expect(message.balance).toEqual('1000000000000000000');
@@ -173,17 +177,24 @@ describe('#formatMessage', () => {
     expect(message.type.pk).toEqual('SECP256K1');
     expect(message.type.hash).toEqual('KECCAK');
     expect(message.type.address).toEqual('BASE16');
-    expect(message.genesisTime).toEqual('2019-01-14T10:25:48.208Z');
+    expect(message.context.genesisTime).toEqual('2019-01-14T10:25:48.208Z');
     expect(message.migratedFrom[0]).toEqual('123456');
   });
 
+  // FIXME: circular queue need custom encoding and decoding
   test('should decode repeated data as expected', () => {
     const message = formatMessage('ChannelState', {
       address: '123456',
-      waiting: [{ height: 123 }, { height: 230, hash: 'abcd' }],
+      waiting: {
+        items: [{ from: 'abcd' }],
+        type_url: 'Transaction',
+        maxItems: 10,
+        circular: false,
+        fifo: false,
+      },
     });
     expect(message.address).toEqual('123456');
-    expect(message.waiting[0].height).toEqual(123);
+    expect(message.waiting.maxItems).toEqual(10);
   });
 
   test('should decode nested data as expected', () => {

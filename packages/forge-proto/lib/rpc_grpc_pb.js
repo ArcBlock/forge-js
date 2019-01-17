@@ -30,6 +30,17 @@ function deserialize_forge_abi_RequestCreateWallet(buffer_arg) {
   return rpc_pb.RequestCreateWallet.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_forge_abi_RequestDeclareNode(arg) {
+  if (!(arg instanceof rpc_pb.RequestDeclareNode)) {
+    throw new Error('Expected argument of type forge_abi.RequestDeclareNode');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_forge_abi_RequestDeclareNode(buffer_arg) {
+  return rpc_pb.RequestDeclareNode.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_forge_abi_RequestGetAccountState(arg) {
   if (!(arg instanceof rpc_pb.RequestGetAccountState)) {
     throw new Error('Expected argument of type forge_abi.RequestGetAccountState');
@@ -94,6 +105,17 @@ function serialize_forge_abi_RequestGetForgeState(arg) {
 
 function deserialize_forge_abi_RequestGetForgeState(buffer_arg) {
   return rpc_pb.RequestGetForgeState.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_forge_abi_RequestGetStakeState(arg) {
+  if (!(arg instanceof rpc_pb.RequestGetStakeState)) {
+    throw new Error('Expected argument of type forge_abi.RequestGetStakeState');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_forge_abi_RequestGetStakeState(buffer_arg) {
+  return rpc_pb.RequestGetStakeState.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_forge_abi_RequestGetTx(arg) {
@@ -217,6 +239,17 @@ function deserialize_forge_abi_ResponseCreateWallet(buffer_arg) {
   return rpc_pb.ResponseCreateWallet.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_forge_abi_ResponseDeclareNode(arg) {
+  if (!(arg instanceof rpc_pb.ResponseDeclareNode)) {
+    throw new Error('Expected argument of type forge_abi.ResponseDeclareNode');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_forge_abi_ResponseDeclareNode(buffer_arg) {
+  return rpc_pb.ResponseDeclareNode.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_forge_abi_ResponseGetAccountState(arg) {
   if (!(arg instanceof rpc_pb.ResponseGetAccountState)) {
     throw new Error('Expected argument of type forge_abi.ResponseGetAccountState');
@@ -281,6 +314,17 @@ function serialize_forge_abi_ResponseGetForgeState(arg) {
 
 function deserialize_forge_abi_ResponseGetForgeState(buffer_arg) {
   return rpc_pb.ResponseGetForgeState.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_forge_abi_ResponseGetStakeState(arg) {
+  if (!(arg instanceof rpc_pb.ResponseGetStakeState)) {
+    throw new Error('Expected argument of type forge_abi.ResponseGetStakeState');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_forge_abi_ResponseGetStakeState(buffer_arg) {
+  return rpc_pb.ResponseGetStakeState.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_forge_abi_ResponseGetTx(arg) {
@@ -513,6 +557,17 @@ var WalletRpcService = (exports.WalletRpcService = {
     responseSerialize: serialize_forge_abi_ResponseRemoveWallet,
     responseDeserialize: deserialize_forge_abi_ResponseRemoveWallet,
   },
+  declare_node: {
+    path: '/forge_abi.WalletRpc/declare_node',
+    requestStream: false,
+    responseStream: false,
+    requestType: rpc_pb.RequestDeclareNode,
+    responseType: rpc_pb.ResponseDeclareNode,
+    requestSerialize: serialize_forge_abi_RequestDeclareNode,
+    requestDeserialize: deserialize_forge_abi_RequestDeclareNode,
+    responseSerialize: serialize_forge_abi_ResponseDeclareNode,
+    responseDeserialize: deserialize_forge_abi_ResponseDeclareNode,
+  },
 });
 
 exports.WalletRpcClient = grpc.makeGenericClientConstructor(WalletRpcService);
@@ -550,6 +605,17 @@ var StateRpcService = (exports.StateRpcService = {
     requestDeserialize: deserialize_forge_abi_RequestGetChannelState,
     responseSerialize: serialize_forge_abi_ResponseGetChannelState,
     responseDeserialize: deserialize_forge_abi_ResponseGetChannelState,
+  },
+  get_stake_state: {
+    path: '/forge_abi.StateRpc/get_stake_state',
+    requestStream: true,
+    responseStream: true,
+    requestType: rpc_pb.RequestGetStakeState,
+    responseType: rpc_pb.ResponseGetStakeState,
+    requestSerialize: serialize_forge_abi_RequestGetStakeState,
+    requestDeserialize: deserialize_forge_abi_RequestGetStakeState,
+    responseSerialize: serialize_forge_abi_ResponseGetStakeState,
+    responseDeserialize: deserialize_forge_abi_ResponseGetStakeState,
   },
   get_forge_state: {
     path: '/forge_abi.StateRpc/get_forge_state',

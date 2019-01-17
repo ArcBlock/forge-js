@@ -145,6 +145,8 @@
             "account_migrated": 27,
             "channel_is_full": 28,
             "revoked_tx": 29,
+            "unsupported_stake": 30,
+            "insufficient_stake": 31,
             "internal": 500
           }
         },
@@ -171,12 +173,6 @@
           "values": {
             "base16": 0,
             "base58": 1
-          }
-        },
-        "AccountRole": {
-          "values": {
-            "normal": 0,
-            "admin": 1
           }
         },
         "UpgradeType": {
@@ -211,10 +207,19 @@
         },
         "StateType": {
           "values": {
-            "account": 0,
-            "asset": 1,
-            "channel": 2,
-            "forge": 3
+            "state_account": 0,
+            "state_asset": 1,
+            "state_channel": 2,
+            "state_forge": 3,
+            "state_stake": 4
+          }
+        },
+        "StakeType": {
+          "values": {
+            "stake_node": 0,
+            "stake_user": 1,
+            "stake_asset": 2,
+            "stake_chain": 3
           }
         },
         "BigUint": {
@@ -318,6 +323,10 @@
             "votingPower": {
               "type": "uint32",
               "id": 11
+            },
+            "totalTxs": {
+              "type": "uint64",
+              "id": 12
             }
           }
         },
@@ -340,13 +349,34 @@
               "id": 1
             },
             "maxGas": {
-              "type": "uint64",
+              "type": "sint64",
               "id": 2
+            },
+            "maxValidators": {
+              "type": "uint32",
+              "id": 3
+            },
+            "maxCandidates": {
+              "type": "uint32",
+              "id": 4
             },
             "pubKeyTypes": {
               "rule": "repeated",
               "type": "string",
-              "id": 3
+              "id": 5
+            },
+            "validators": {
+              "rule": "repeated",
+              "type": "Validator",
+              "id": 6
+            },
+            "validatorChanged": {
+              "type": "bool",
+              "id": 7
+            },
+            "paramChanged": {
+              "type": "bool",
+              "id": 8
             }
           }
         },
@@ -472,6 +502,10 @@
               "rule": "repeated",
               "type": "Transaction",
               "id": 6
+            },
+            "totalTxs": {
+              "type": "uint64",
+              "id": 7
             }
           }
         },
@@ -512,6 +546,62 @@
             }
           }
         },
+        "StateContext": {
+          "fields": {
+            "genesisTx": {
+              "type": "string",
+              "id": 1
+            },
+            "renaissanceTx": {
+              "type": "string",
+              "id": 2
+            },
+            "genesisTime": {
+              "type": "google.protobuf.Timestamp",
+              "id": 3
+            },
+            "renaissanceTime": {
+              "type": "google.protobuf.Timestamp",
+              "id": 4
+            }
+          }
+        },
+        "StakeContext": {
+          "fields": {
+            "totalStakes": {
+              "type": "BigUint",
+              "id": 1
+            },
+            "totalReceivedStakes": {
+              "type": "BigUint",
+              "id": 2
+            },
+            "recentStakes": {
+              "type": "CircularQueue",
+              "id": 3
+            },
+            "recentReceivedStakes": {
+              "type": "CircularQueue",
+              "id": 4
+            }
+          }
+        },
+        "StakeSummary": {
+          "fields": {
+            "totalStakes": {
+              "type": "BigUint",
+              "id": 1
+            },
+            "totalUnstakes": {
+              "type": "BigUint",
+              "id": 2
+            },
+            "context": {
+              "type": "StateContext",
+              "id": 3
+            }
+          }
+        },
         "AccountState": {
           "fields": {
             "balance": {
@@ -542,25 +632,9 @@
               "type": "string",
               "id": 7
             },
-            "role": {
-              "type": "AccountRole",
+            "context": {
+              "type": "StateContext",
               "id": 8
-            },
-            "genesisTx": {
-              "type": "string",
-              "id": 9
-            },
-            "renaissanceTx": {
-              "type": "string",
-              "id": 10
-            },
-            "genesisTime": {
-              "type": "google.protobuf.Timestamp",
-              "id": 11
-            },
-            "renaissanceTime": {
-              "type": "google.protobuf.Timestamp",
-              "id": 12
             },
             "migratedTo": {
               "type": "string",
@@ -571,12 +645,12 @@
               "type": "string",
               "id": 14
             },
-            "power": {
+            "numAssets": {
               "type": "uint64",
               "id": 15
             },
-            "numAssets": {
-              "type": "uint64",
+            "stake": {
+              "type": "StakeContext",
               "id": 16
             },
             "data": {
@@ -599,21 +673,13 @@
               "type": "string",
               "id": 3
             },
-            "genesisTx": {
-              "type": "string",
-              "id": 9
+            "stake": {
+              "type": "StakeContext",
+              "id": 13
             },
-            "renaissanceTx": {
-              "type": "string",
-              "id": 10
-            },
-            "genesisTime": {
-              "type": "google.protobuf.Timestamp",
-              "id": 11
-            },
-            "renaissanceTime": {
-              "type": "google.protobuf.Timestamp",
-              "id": 12
+            "context": {
+              "type": "StateContext",
+              "id": 14
             },
             "data": {
               "type": "google.protobuf.Any",
@@ -640,30 +706,16 @@
               "id": 4
             },
             "waiting": {
-              "rule": "repeated",
-              "type": "TransactionInfo",
+              "type": "CircularQueue",
               "id": 5
             },
             "confirmed": {
-              "rule": "repeated",
-              "type": "TxStatus",
+              "type": "CircularQueue",
               "id": 6
             },
-            "genesisTx": {
-              "type": "string",
-              "id": 9
-            },
-            "renaissanceTx": {
-              "type": "string",
-              "id": 10
-            },
-            "genesisTime": {
-              "type": "google.protobuf.Timestamp",
-              "id": 11
-            },
-            "renaissanceTime": {
-              "type": "google.protobuf.Timestamp",
-              "id": 12
+            "context": {
+              "type": "StateContext",
+              "id": 14
             },
             "data": {
               "type": "google.protobuf.Any",
@@ -673,30 +725,51 @@
         },
         "ForgeState": {
           "fields": {
-            "latestBlock": {
-              "type": "uint64",
+            "consensus": {
+              "type": "ConsensusParams",
               "id": 1
-            },
-            "latestAppHash": {
-              "type": "bytes",
-              "id": 2
-            },
-            "consensusEngine": {
-              "type": "string",
-              "id": 3
-            },
-            "storageEngine": {
-              "type": "string",
-              "id": 4
             },
             "tasks": {
               "keyType": "uint64",
               "type": "UpgradeTasks",
-              "id": 13
+              "id": 2
+            },
+            "stakeSummary": {
+              "keyType": "uint32",
+              "type": "StakeSummary",
+              "id": 3
             },
             "data": {
               "type": "google.protobuf.Any",
+              "id": 15
+            }
+          }
+        },
+        "StakeState": {
+          "fields": {
+            "address": {
+              "type": "string",
+              "id": 1
+            },
+            "to": {
+              "type": "string",
+              "id": 2
+            },
+            "value": {
+              "type": "BigUint",
+              "id": 3
+            },
+            "message": {
+              "type": "string",
+              "id": 4
+            },
+            "context": {
+              "type": "StateContext",
               "id": 14
+            },
+            "data": {
+              "type": "google.protobuf.Any",
+              "id": 15
             }
           }
         },
@@ -715,10 +788,12 @@
             "consensus_upgrade": 21,
             "declare_file": 22,
             "sys_upgrade": 23,
+            "stake": 24,
             "account_state": 129,
             "asset_state": 130,
             "channel_state": 131,
-            "forge_state": 132
+            "forge_state": 132,
+            "stake_state": 133
           }
         },
         "RequestSubscribe": {
@@ -1077,6 +1152,21 @@
             }
           }
         },
+        "RequestDeclareNode": {
+          "fields": {}
+        },
+        "ResponseDeclareNode": {
+          "fields": {
+            "code": {
+              "type": "StatusCode",
+              "id": 1
+            },
+            "wallet": {
+              "type": "WalletInfo",
+              "id": 3
+            }
+          }
+        },
         "RequestGetAccountState": {
           "fields": {
             "address": {
@@ -1149,6 +1239,22 @@
             }
           }
         },
+        "RequestGetStakeState": {
+          "fields": {
+            "address": {
+              "type": "string",
+              "id": 1
+            },
+            "key": {
+              "type": "string",
+              "id": 2
+            },
+            "appHash": {
+              "type": "string",
+              "id": 3
+            }
+          }
+        },
         "ResponseGetChannelState": {
           "fields": {
             "code": {
@@ -1157,6 +1263,18 @@
             },
             "state": {
               "type": "ChannelState",
+              "id": 2
+            }
+          }
+        },
+        "ResponseGetStakeState": {
+          "fields": {
+            "code": {
+              "type": "StatusCode",
+              "id": 1
+            },
+            "state": {
+              "type": "StakeState",
               "id": 2
             }
           }
@@ -1319,6 +1437,10 @@
             "remove_wallet": {
               "requestType": "RequestRemoveWallet",
               "responseType": "ResponseRemoveWallet"
+            },
+            "declare_node": {
+              "requestType": "RequestDeclareNode",
+              "responseType": "ResponseDeclareNode"
             }
           }
         },
@@ -1340,6 +1462,12 @@
               "requestType": "RequestGetChannelState",
               "requestStream": true,
               "responseType": "ResponseGetChannelState",
+              "responseStream": true
+            },
+            "get_stake_state": {
+              "requestType": "RequestGetStakeState",
+              "requestStream": true,
+              "responseType": "ResponseGetStakeState",
               "responseStream": true
             },
             "get_forge_state": {
@@ -1464,18 +1592,6 @@
             }
           }
         },
-        "AccountUpgradeTx": {
-          "fields": {
-            "to": {
-              "type": "string",
-              "id": 1
-            },
-            "role": {
-              "type": "AccountRole",
-              "id": 2
-            }
-          }
-        },
         "ConsensusUpgradeTx": {
           "fields": {
             "validators": {
@@ -1512,6 +1628,38 @@
               "id": 1
             }
           }
+        },
+        "StakeTx": {
+          "fields": {
+            "to": {
+              "type": "string",
+              "id": 1
+            },
+            "value": {
+              "type": "BigUint",
+              "id": 2
+            },
+            "message": {
+              "type": "string",
+              "id": 3
+            },
+            "data": {
+              "type": "google.protobuf.Any",
+              "id": 15
+            }
+          }
+        },
+        "StakeForNode": {
+          "fields": {}
+        },
+        "stakeForUser": {
+          "fields": {}
+        },
+        "stakeForAsset": {
+          "fields": {}
+        },
+        "stakeForChain": {
+          "fields": {}
         }
       }
     },
