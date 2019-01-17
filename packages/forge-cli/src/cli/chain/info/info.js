@@ -1,7 +1,6 @@
 const shell = require('shelljs');
-const pretty = require('json-stringify-pretty-compact');
 const { client } = require('core/env');
-const { symbols } = require('core/ui');
+const { symbols, pretty } = require('core/ui');
 
 async function getChainInfo() {
   try {
