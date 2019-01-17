@@ -3,6 +3,7 @@ const { client } = require('core/env');
 const { symbols } = require('core/ui');
 const pretty = require('json-stringify-pretty-compact');
 
+// FIXME
 async function execute({ args: [address] }) {
   if (!address) {
     shell.echo(`${symbols.error} Please input an account address and try again.`);
