@@ -3,20 +3,16 @@ const { client } = require('core/env');
 const { symbols } = require('core/ui');
 const pretty = require('json-stringify-pretty-compact');
 
-async function execute({ args: [argHeight] }) {
-  if (!argHeight) {
-    shell.echo(`${symbols.error} Please input a block height and try again.`);
-    return;
-  }
-  if (!/^[1-9]\d*$/.test(argHeight)) {
-    shell.echo(`${symbols.error} Please input a right block height and try again.`);
+async function execute({ args: [address] }) {
+  if (!address) {
+    shell.echo(`${symbols.error} Please input an account address and try again.`);
     return;
   }
   try {
-    const stream = await client.getBlock({ height: argHeight });
+    const stream = await client.getAccountState({ address: address });
     stream
       .on('data', function(result) {
-        shell.echo(`${symbols.success} get block info success: `);
+        shell.echo(`${symbols.success} get account info success: `);
         shell.echo(`${pretty(result)}`);
       })
       .on('error', err => {
