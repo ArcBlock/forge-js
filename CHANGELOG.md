@@ -1,3 +1,6 @@
+## 0.5.7 (January 17, 2019)
+  - support `forge ps` command
+
 ## 0.5.6 (January 17, 2019)
   - add account clis
 

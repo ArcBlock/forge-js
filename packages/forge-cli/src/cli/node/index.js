@@ -1,3 +1,4 @@
+exports.ps = require('./ps');
 exports.reboot = require('./reboot');
 exports.start = require('./start');
 exports.status = require('./status');
