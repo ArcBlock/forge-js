@@ -19,10 +19,6 @@ const config = { cli: {} }; // global shared forge-cli run time config
 async function setupEnv(args, requirements) {
   debug('setupEnv.args', { args, requirements });
 
-  const hasRequirements = Object.keys(requirements).some(x => requirements[x]);
-  if (hasRequirements) {
-    shell.echo(new inquirer.Separator().line);
-  }
   ensureRequiredDirs();
 
   if (requirements.forgeRelease) {
@@ -35,10 +31,6 @@ async function setupEnv(args, requirements) {
 
   if (requirements.wallet) {
     await ensureWallet(args);
-  }
-
-  if (hasRequirements) {
-    shell.echo(new inquirer.Separator().line);
   }
 }
 
@@ -60,8 +52,8 @@ function ensureForgeRelease(args, exitOn404 = true) {
     if (fs.existsSync(forgeBinPath) && fs.statSync(forgeBinPath).isFile()) {
       config.cli.releaseDir = releaseDir;
       config.cli.forgeBinPath = forgeBinPath;
-      shell.echo(`${symbols.success} Using forge release dir: ${releaseDir}`);
-      shell.echo(`${symbols.success} Using forge executable: ${forgeBinPath}`);
+      debug(`${symbols.success} Using forge release dir: ${releaseDir}`);
+      debug(`${symbols.success} Using forge executable: ${forgeBinPath}`);
       return true;
     } else {
       shell.echo(`${symbols.error} forge release dir invalid, non forge executable found`);
@@ -91,7 +83,7 @@ function ensureRpcClient(args) {
   if (configPath && fs.existsSync(configPath)) {
     const forgeConfig = parseConfig(configPath);
     config.cli.forgeConfigPath = configPath;
-    shell.echo(`${symbols.success} Using forge config: ${configPath}`);
+    debug(`${symbols.success} Using forge config: ${configPath}`);
     createRpcClient(forgeConfig);
   } else if (args.socketGrpc) {
     const forgeConfig = {
@@ -101,7 +93,7 @@ function ensureRpcClient(args) {
         unlockTtl: 300,
       },
     };
-    shell.echo(`${symbols.info} using forge-cli with remote node ${args.socketGrpc}`);
+    debug(`${symbols.info} using forge-cli with remote node ${args.socketGrpc}`);
     createRpcClient(forgeConfig);
   } else {
     shell.echo(`${symbols.error} forge-cli requires an forge config file to start`);
@@ -115,7 +107,7 @@ function ensureRpcClient(args) {
 async function ensureWallet() {
   const wallet = readCache('wallet');
   if (wallet && wallet.expireAt && wallet.expireAt > Date.now()) {
-    shell.echo(`${symbols.success} Use cached wallet ${wallet.address}`);
+    debug(`${symbols.success} Use cached wallet ${wallet.address}`);
     config.cli.wallet = wallet;
     return;
   }
@@ -158,7 +150,7 @@ async function ensureWallet() {
   const { token } = await client.loadWallet({ address, passphrase });
   writeCache('wallet', { address, token, expireAt: Date.now() + config.forge.unlockTtl * 1e3 });
   config.cli.wallet = { address, token };
-  shell.echo(`${symbols.success} Use unlocked wallet ${address}`);
+  debug(`${symbols.success} Use unlocked wallet ${address}`);
 }
 
 /**
