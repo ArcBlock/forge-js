@@ -1,48 +1,100 @@
 const fuzzy = require('fuzzy');
-const inquirer = require('inquirer');
 const shell = require('shelljs');
-
+const inquirer = require('inquirer');
+const { client } = require('core/env');
+const { symbols } = require('core/ui');
+const { enums } = require('@arcblock/forge-proto');
+const pretty = require('json-stringify-pretty-compact');
 inquirer.registerPrompt('autocomplete', require('inquirer-autocomplete-prompt'));
+
+function source(answers, input, type) {
+  const origins = [];
+  for (let item in enums[type]) {
+    origins.push(item);
+  }
+  input = input || '';
+  return new Promise(function(resolve) {
+    var fuzzyResult = fuzzy.filter(input, origins);
+    resolve(
+      fuzzyResult.map(function(el) {
+        return el.original;
+      })
+    );
+  });
+}
 
 const questions = [
   {
     type: 'text',
-    name: 'PARAMETER_1', // For primtive type parameter
-    message: 'Please write concise description:',
+    name: 'passphrase',
+    message: 'Please input passphrase:',
     validate: input => {
-      if (!input || input.length < 10) return 'Description should be more than 10 characters long';
+      if (!input) return 'The passphrase should not empty';
+      if (!/^.{6,15}$/.test(input)) return 'The passphrase format validation error';
+      return true;
+    },
+  },
+  {
+    type: 'text',
+    name: 'moniker',
+    message: 'Please input moniker:',
+    validate: input => {
+      if (!input) return 'The moniker should not empty';
+      if (!/^[a-zA-Z0-9][a-zA-Z0-9_]{3,15}$/.test(input))
+        return 'The moniker format validation error';
       return true;
     },
   },
   {
     type: 'autocomplete',
-    name: 'PARAMETER_2', // For array type parameter
-    message: 'Choose from a list:',
-    source: (anwsers, inp) => {
-      const input = inp || '';
-      return new Promise(resolve => {
-        const result = fuzzy.filter(input, templates);
-        resolve(result.map(item => item.original));
-      });
+    name: 'pk',
+    message: 'Please select a public_key type?',
+    source: function(answersSoFar, input) {
+      return source(answersSoFar, input, 'KeyType');
+    },
+  },
+  {
+    type: 'autocomplete',
+    name: 'hash',
+    message: 'Please select a hash type?',
+    source: function(answersSoFar, input) {
+      return source(answersSoFar, input, 'HashType');
+    },
+  },
+  {
+    type: 'autocomplete',
+    name: 'encoding',
+    message: 'Please select a address encoding type?',
+    source: function(answersSoFar, input) {
+      return source(answersSoFar, input, 'EncodingType');
     },
   },
 ];
 
 // Execute the cli silently.
-function execute(data) {
-  const { PARAMETER_1, PARAMETER_2 } = data;
-  // PLEASE REMOVE ME
-  // your action function call here. e.g.
-  // your_action(PARAMETER_1, PARAMETER_2);
+async function execute(data) {
+  try {
+    const { passphrase, moniker, pk, hash, encoding } = data;
+    const walletType = {
+      pk: enums.KeyType[pk],
+      hash: enums.HashType[hash],
+      address: enums.EncodingType[encoding],
+    };
+    const newWallet = await client.createWallet({
+      passphrase: passphrase,
+      moniker: moniker,
+      type: walletType,
+    });
+    shell.echo(`${symbols.success} wallet create success: ${pretty(newWallet)}`);
+  } catch (err) {
+    console.error('error', err);
+  }
 }
 
 // Run the cli interactively
 function run() {
   inquirer.prompt(questions).then(answers => {
-    const { PARAMETER_1, PARAMETER_2 } = answers;
-    // PLEASE REMOVE ME
-    // your action function call here. e.g.
-    // your_action(PARAMETER_1, PARAMETER_2);
+    execute(answers);
   });
 }
 

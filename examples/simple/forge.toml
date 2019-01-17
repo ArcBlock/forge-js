@@ -1,17 +1,16 @@
 [app]
-name = "forge_simple"
+name = "forge"
 version = "0.1.0"
 
-path = "/tmp/.forge_simple/app"
+path = "~/.forge_release/app"
 executable = ""
 logfile = "logs/app.log"
-error_logfile = "logs/error.log"
 sock_tcp = "tcp://127.0.0.1:28211"
 
 [forge]
 decimal = 16
 proto_version = 1
-path = "/tmp/.forge_simple/core"
+path = "~/.forge_release/core"
 # State db path
 db = "data"
 # index db path
@@ -48,18 +47,18 @@ enabled = false
 [tendermint]
 version = "0.27.3-01"
 moniker = "forge"
-path = "/tmp/.forge_simple/tendermint"
+path = "~/.forge_release/tendermint"
 # relative paths to "path"
 logfile = "logs/tendermint.log"
 
 # socket to proxy app
-sock_proxy_app = "unix://socks/tm_proxy_app.sock"
+sock_proxy_app = "tcp://127.0.0.1:28220"
 
 # socket for tendermint json rpc
-sock_rpc = "unix://socks/tm_rpc.sock"
+sock_rpc = "tcp://127.0.0.1:28221"
 
 # socket for tendermint grpc (right now just use it for send tx and commit immediately)
-sock_grpc = "unix://socks/tm_grpc.sock"
+sock_grpc = "tcp://127.0.0.1:28222"
 
 # socket for tendermint p2p. Normally this shall be opened to the public network
 sock_p2p = "tcp://0.0.0.0:26656"
@@ -74,7 +73,7 @@ persistent_peers = ""
 seed_peers = ""
 
 # timeout for commiting a new block
-timeout_commit = "100ms"
+timeout_commit = "5s"
 
 # create empty blocks in 5s interval
 create_empty_blocks = false
@@ -88,18 +87,21 @@ max_gas = -1
 app_hash = ""
 
 # note that if you don't give this information we will use self as validator
-# Please do not remove this section if its empty
 [[tendermint.genesis.validators]]
+# address = "0E809370DA2630582010B8B3D42055FA961E2D50"
+# name = "forge"
+# power = "10"
+
+# [tendermint.genesis.validators.pub_key]
+# type = "tendermint/PubKeyEd25519"
+# value = "PKT4iI+l7Kg6ns3WL/cGOXPCMhLJrC+aNbIMOqCtAVo="
 
 [ipfs]
 version = "0.4.18"
-path = "/tmp/.forge_simple/ipfs"
+path = "~/.forge_release/ipfs"
 logfile = "logs/ipfs.log"
 storage_max = "10GB"
 bootstrap = []
 
 #ipfs_cluster_version = "0.7.0"
 #ipfs_cluster_ctl_version = "0.7.0"
-
-"max_file_size.admin" = "100M"
-"max_file_size.account" = "1M"
