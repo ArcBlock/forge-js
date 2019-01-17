@@ -10,7 +10,7 @@ async function execute({ args: [address] }) {
       .on('data', function(result) {
         if (result && result.code === 0) {
           shell.echo(`${symbols.success} get account info success: `);
-          shell.echo(`${pretty(result.state)}`);
+          shell.echo(`${pretty(result.$format().state)}`);
         } else {
           shell.echo(`${symbols.error} get account info error: ${pretty(result)}`);
         }

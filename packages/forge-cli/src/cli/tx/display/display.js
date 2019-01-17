@@ -10,7 +10,7 @@ async function execute({ args: [hash] }) {
       .on('data', function(result) {
         if (result && result.code === 0) {
           shell.echo(`${symbols.success} get tx success: `);
-          shell.echo(`${pretty(result.info.tx)}`);
+          shell.echo(`${pretty(result.$format().info.tx)}`);
         } else {
           shell.echo(`${symbols.error} get tx error: ${pretty(result)}`);
         }
