@@ -166,7 +166,10 @@ function formatMessage(type, data) {
     }
 
     if (subType === 'google.protobuf.Any') {
-      result[key] = value ? value.value : {};
+      if (value) {
+        const decoded = decodeAny(value);
+        result[key] = formatMessage(decoded.type, decoded.value);
+      }
       return;
     }
 

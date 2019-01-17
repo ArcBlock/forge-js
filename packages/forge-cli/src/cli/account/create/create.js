@@ -1,9 +1,8 @@
 const fuzzy = require('fuzzy');
 const shell = require('shelljs');
-const util = require('util');
 const inquirer = require('inquirer');
 const { config, client, cache } = require('core/env');
-const { symbols } = require('core/ui');
+const { symbols, pretty } = require('core/ui');
 const { enums } = require('@arcblock/forge-proto');
 inquirer.registerPrompt('autocomplete', require('inquirer-autocomplete-prompt'));
 
@@ -82,7 +81,7 @@ async function execute(data) {
     };
     const res = await client.createWallet({ passphrase, moniker, type: walletType });
     shell.echo(`${symbols.success} wallet create success!`);
-    shell.echo(util.inspect(res.$format().wallet, { depth: 5, colors: true, compact: false }));
+    shell.echo(pretty(res.$format().wallet));
 
     // Unlock current wallet and save to disk cache
     const { token } = await client.loadWallet({ address: res.wallet.address, passphrase });
