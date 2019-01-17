@@ -12,12 +12,13 @@ const allCommands = [];
  * @param {String} desc documentation of the cli
  * @param {Function} handler cli handler
  */
-function cli(command, desc, handler, { requirements = {} } = {}) {
+function cli(command, desc, handler, { requirements = {}, options = [] } = {}) {
   allCommands.push({
     command,
     desc,
     handler,
     requirements,
+    options,
   });
 }
 
@@ -35,17 +36,21 @@ function initCli(program) {
   const allCli = path.join(__dirname, '../cli/index.js');
   requireCli(allCli);
   allCommands.forEach(x => {
-    program
+    const command = program
       .command(x.command)
       .description(x.desc)
-      .action(() => {
-        setupEnv(args, x.requirements);
-        x.handler();
-      });
+      .allowUnknownOption();
+
+    (x.options || []).forEach(x => command.option(...x));
+
+    command.action(async (...params) => {
+      await setupEnv(args, x.requirements);
+      await x.handler({ args: params.filter(x => typeof x === 'string'), opts: command.opts() });
+    });
   });
 }
 
-function action(execute, run, input) {
+async function action(execute, run, input) {
   if (typeof input === 'string') {
     let data = null;
     try {
@@ -57,7 +62,8 @@ function action(execute, run, input) {
 
     if (data) return execute(data);
   }
-  return run();
+
+  return run(input);
 }
 
 exports.initCli = initCli;

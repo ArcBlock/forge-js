@@ -28,7 +28,8 @@ async function getAccountState(address) {
 }
 
 // Execute the cli silently.
-async function execute() {
+async function execute({ args: [role = 'normal'], opts }) {
+  shell.echo(`XXXXXXXXXXXXXXXXXXXX: ${role}`, opts);
   shell.echo(`${symbols.success} get account success: `);
   shell.echo(`${''.padEnd(82, '-')}`);
   shell.echo(
@@ -53,11 +54,5 @@ async function execute() {
 }
 
 // Run the cli interactively
-function run() {
-  inquirer.prompt([]).then(() => {
-    execute();
-  });
-}
-
-exports.run = run;
+exports.run = execute;
 exports.execute = execute;
