@@ -1,3 +1,6 @@
+## 0.5.6 (January 17, 2019)
+  - add account clis
+
 ## 0.5.5 (January 17, 2019)
   - feat: support ensureWallet when bootstrap cli
   - fix: forge start in console mode cannot accept stdin
