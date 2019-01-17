@@ -15,6 +15,7 @@
   ],
   "dependencies": {
     "@arcblock/forge-proto": "latest",
+    "@iarna/toml": "^2.2.1",
     "bignumber.js": "^8.0.2",
     "camelcase": "^5.0.0",
     "camelize": "^1.0.0",
@@ -23,7 +24,6 @@
     "google-protobuf": "^3.6.1",
     "grpc": "^1.17.0",
     "lodash": "^4.17.11",
-    "toml": "^2.3.5",
     "varint": "^5.0.0"
   },
   "devDependencies": {

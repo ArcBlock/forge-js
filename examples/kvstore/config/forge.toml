@@ -102,5 +102,5 @@ bootstrap = []
 #ipfs_cluster_version = "0.7.0"
 #ipfs_cluster_ctl_version = "0.7.0"
 
-"max_file_size.admin" = "100M"
-"max_file_size.account" = "1M"
+max_file_size.admin = "100M"
+max_file_size.account = "1M"

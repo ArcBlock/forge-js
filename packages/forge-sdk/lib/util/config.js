@@ -1,5 +1,5 @@
 const fs = require('fs');
-const toml = require('toml');
+const toml = require('@iarna/toml');
 const camelize = require('camelize');
 
 function parseConfig(configPath) {
