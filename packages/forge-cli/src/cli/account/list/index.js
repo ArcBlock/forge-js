@@ -4,7 +4,7 @@ const { execute, run } = require('./list');
 
 cli(
   'account:list',
-  'list all accounts stored in this node (nickname, hash, pub_key, role)',
+  'list all accounts stored in this node (monitor, address, role)',
   input => action(execute, run, input),
   {
     requirements: {
