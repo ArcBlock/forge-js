@@ -1,3 +1,8 @@
+## 0.5.5 (January 17, 2019)
+  - feat: support ensureWallet when bootstrap cli
+  - fix: forge start in console mode cannot accept stdin
+  - chore: pass arguments and options to handler
+
 ## 0.5.4 (January 17, 2019)
   - update forge-proto
 
