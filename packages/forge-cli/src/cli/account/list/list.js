@@ -2,22 +2,17 @@ const shell = require('shelljs');
 const inquirer = require('inquirer');
 const { client } = require('core/env');
 const { symbols } = require('core/ui');
-const { messages } = require('@arcblock/forge-proto');
+// const { messages } = require('@arcblock/forge-proto');
 
 inquirer.registerPrompt('autocomplete', require('inquirer-autocomplete-prompt'));
 
-async function getAccountState(address) {
-  const streamChild = await client.getAccountState({ address: address });
+async function getAccountState(argAddress) {
+  const streamChild = await client.getAccountState({ address: argAddress });
   streamChild
     .on('data', function({ code, state }) {
-      if (code === 0) {
-        const { moniker, address, role } = state;
-        shell.echo(
-          `${moniker.padEnd(20, ' ').padStart(23, ' ')}${address.padEnd(
-            50,
-            ' '
-          )}${messages.AccountRole[role].padEnd(10, ' ')}`
-        );
+      if (state && code === 0) {
+        const { moniker, address } = state;
+        shell.echo(`${moniker.padEnd(20, ' ').padStart(23, ' ')}${address.padEnd(45, ' ')}`);
       } else {
         shell.echo(`${symbols.error} error,code: ${code}`);
       }
@@ -28,17 +23,11 @@ async function getAccountState(address) {
 }
 
 // Execute the cli silently.
-async function execute({ args: [role = 'normal'], opts }) {
-  shell.echo(`XXXXXXXXXXXXXXXXXXXX: ${role}`, opts);
+async function execute() {
   shell.echo(`${symbols.success} get account success: `);
-  shell.echo(`${''.padEnd(82, '-')}`);
-  shell.echo(
-    `${'moniker'.padEnd(20, ' ').padStart(23, ' ')}${'address'.padEnd(50, ' ')}${'role'.padEnd(
-      10,
-      ' '
-    )}`
-  );
-  shell.echo(`${''.padEnd(82, '-')}`);
+  shell.echo(`${''.padEnd(68, '-')}`);
+  shell.echo(`${'moniker'.padEnd(20, ' ').padStart(23, ' ')}${'address'.padEnd(45, ' ')}`);
+  shell.echo(`${''.padEnd(68, '-')}`);
   try {
     const stream = await client.listWallets({});
     stream
