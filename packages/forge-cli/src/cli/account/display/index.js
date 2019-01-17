@@ -2,7 +2,7 @@
 const { cli, action } = require('core/cli');
 const { execute, run } = require('./display');
 
-cli('tx <hash>', 'get a tx detail and display', input => action(execute, run, input), {
+cli('account <address>', 'get an account info by address', input => action(execute, run, input), {
   requirements: {
     forgeRelease: false,
     rpcClient: true,

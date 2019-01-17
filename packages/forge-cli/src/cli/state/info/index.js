@@ -3,13 +3,15 @@ const { cli, action } = require('core/cli');
 const { execute, run } = require('./info');
 
 cli(
-  'chain:info',
-  'get the blockchain info from the running node',
+  'state [type]',
+  'list the information from various components, chain|forge',
   input => action(execute, run, input),
   {
     requirements: {
-      forgeRelease: false,
+      forgeRelease: true,
       rpcClient: true,
+      wallet: false,
     },
+    options: [],
   }
 );

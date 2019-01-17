@@ -1,1 +1,1 @@
-exports.info = require('./info');
+exports.display = require('./display');
