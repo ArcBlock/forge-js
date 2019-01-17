@@ -24,7 +24,6 @@ async function getAccountState(argAddress) {
 
 // Execute the cli silently.
 async function execute() {
-  shell.echo(`${symbols.success} get account success: `);
   shell.echo(`${''.padEnd(68, '-')}`);
   shell.echo(`${'moniker'.padEnd(20, ' ').padStart(23, ' ')}${'address'.padEnd(45, ' ')}`);
   shell.echo(`${''.padEnd(68, '-')}`);

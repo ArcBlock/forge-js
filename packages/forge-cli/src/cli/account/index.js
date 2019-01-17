@@ -1,4 +1,4 @@
 exports.create = require('./create');
 exports.delete = require('./delete');
-exports.info = require('./info');
+exports.display = require('./display');
 exports.list = require('./list');
