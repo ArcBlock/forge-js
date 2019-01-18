@@ -129,8 +129,8 @@ function formatMessage(type, data) {
   const result = {};
   const { fields } = getMessageType(type);
   Object.keys(fields).forEach(key => {
-    const value = data[key];
     const { type: subType, rule } = fields[key];
+    const value = data[rule === 'repeated' ? camelcase(`${key}_list`) : key] || data[key];
     if (value === undefined) {
       return;
     }
