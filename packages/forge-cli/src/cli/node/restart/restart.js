@@ -3,7 +3,7 @@ const chalk = require('chalk');
 const { getForgeProcesses } = require('core/env');
 const { symbols, getSpinner } = require('core/ui');
 
-async function main({ args: [app] }) {
+async function main({ args: [app = 'forge'] }) {
   const processes = await getForgeProcesses();
 
   if (!processes.length) {
