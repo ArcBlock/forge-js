@@ -4,6 +4,10 @@ const path = require('path');
 const chalk = require('chalk');
 const inquirer = require('inquirer');
 const shell = require('shelljs');
+const pidUsageTree = require('pidusage-tree');
+const pidInfo = require('find-process');
+const prettyTime = require('pretty-ms');
+const prettyBytes = require('pretty-bytes');
 const { RpcClient, parseConfig } = require('@arcblock/forge-sdk');
 const debug = require('debug')(require('../../package.json').name);
 
@@ -233,6 +237,48 @@ function runNativeForgeCommand(subCommand) {
   };
 }
 
+async function getForgeProcesses() {
+  const { forgeBinPath, forgeConfigPath } = config.cli;
+  const { stdout: pid } = shell.exec(`FORGE_CONFIG=${forgeConfigPath} ${forgeBinPath} pid`, {
+    silent: true,
+  });
+
+  const pidNumber = Number(pid);
+  if (!pidNumber) {
+    return [];
+  }
+
+  try {
+    const processes = await pidUsageTree(pidNumber);
+    const results = await Promise.all(
+      Object.values(processes).map(async x => {
+        try {
+          const [info] = await pidInfo('pid', x.pid);
+          Object.assign(x, info);
+        } catch (err) {
+          console.error(`Error getting pid info: ${x.pid}`, err);
+        }
+
+        return x;
+      })
+    );
+
+    // FIXME: support finding the app process
+    return results
+      .filter(x => /(forge|tendermint|ipfs)/.test(x.name))
+      .map(x => ({
+        name: x.name,
+        pid: x.pid,
+        uptime: prettyTime(x.elapsed),
+        memory: prettyBytes(x.memory),
+        cpu: x.cpu,
+      }));
+  } catch (err) {
+    console.error(err);
+    return [];
+  }
+}
+
 function writeCache(key, data) {
   try {
     fs.writeFileSync(path.join(requiredDirs.cache, `${key}.json`), JSON.stringify(data));
@@ -269,4 +315,5 @@ module.exports = {
   ensureForgeRelease,
   ensureRpcClient,
   runNativeForgeCommand,
+  getForgeProcesses,
 };
