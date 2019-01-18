@@ -15,6 +15,10 @@ describe('#fromArc & toArc', () => {
     const encoded = client.toArc(value);
     const decoded = client.fromArc(encoded);
     expect(decoded).toEqual(value);
+    expect(client.toArc(100)).toEqual(client.toArc('100'));
+    expect(client.toArc(-100)).toEqual(client.toArc('-100'));
+    expect(client.toArc(10000000000)).toEqual(client.toArc('10000000000'));
+    expect(client.toArc(9.87643)).toEqual(client.toArc('9.87643'));
   });
 });
 
