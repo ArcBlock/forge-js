@@ -40,31 +40,6 @@ async function setupEnv(args, requirements) {
   }
 }
 
-function getPlatform() {
-  return new Promise((resolve, reject) => {
-    getos((err, info) => {
-      if (err) {
-        console.error(err);
-        return reject(err);
-      }
-
-      if (info.os === 'darwin') {
-        return resolve(info.os);
-      }
-
-      if (info.os === 'linux') {
-        if (/ubuntu/i.test(info.dist)) {
-          return resolve('ubuntu');
-        }
-
-        return resolve('linux');
-      }
-
-      return resolve(info.os);
-    });
-  });
-}
-
 /**
  * Ensure we have a forge release to work with, in which we find forge bin
  *
@@ -303,6 +278,31 @@ async function getForgeProcesses() {
     console.error(err);
     return [];
   }
+}
+
+function getPlatform() {
+  return new Promise((resolve, reject) => {
+    getos((err, info) => {
+      if (err) {
+        console.error(err);
+        return reject(err);
+      }
+
+      if (info.os === 'darwin') {
+        return resolve(info.os);
+      }
+
+      if (info.os === 'linux') {
+        if (/ubuntu/i.test(info.dist)) {
+          return resolve('ubuntu');
+        }
+
+        return resolve('linux');
+      }
+
+      return resolve(info.os);
+    });
+  });
 }
 
 function writeCache(key, data) {
