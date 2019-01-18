@@ -1507,9 +1507,10 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
     var f,
       obj = {
         address: jspb.Message.getFieldWithDefault(msg, 1, ''),
-        to: jspb.Message.getFieldWithDefault(msg, 2, ''),
-        value: (f = msg.getValue()) && type_pb.BigUint.toObject(includeInstance, f),
-        message: jspb.Message.getFieldWithDefault(msg, 4, ''),
+        from: jspb.Message.getFieldWithDefault(msg, 2, ''),
+        to: jspb.Message.getFieldWithDefault(msg, 3, ''),
+        balance: (f = msg.getBalance()) && type_pb.BigUint.toObject(includeInstance, f),
+        message: jspb.Message.getFieldWithDefault(msg, 5, ''),
         context: (f = msg.getContext()) && type_pb.StateContext.toObject(includeInstance, f),
         data: (f = msg.getData()) && google_protobuf_any_pb.Any.toObject(includeInstance, f),
       };
@@ -1552,14 +1553,18 @@ proto.forge_abi.StakeState.deserializeBinaryFromReader = function(msg, reader) {
         break;
       case 2:
         var value = /** @type {string} */ (reader.readString());
-        msg.setTo(value);
+        msg.setFrom(value);
         break;
       case 3:
-        var value = new type_pb.BigUint();
-        reader.readMessage(value, type_pb.BigUint.deserializeBinaryFromReader);
-        msg.setValue(value);
+        var value = /** @type {string} */ (reader.readString());
+        msg.setTo(value);
         break;
       case 4:
+        var value = new type_pb.BigUint();
+        reader.readMessage(value, type_pb.BigUint.deserializeBinaryFromReader);
+        msg.setBalance(value);
+        break;
+      case 5:
         var value = /** @type {string} */ (reader.readString());
         msg.setMessage(value);
         break;
@@ -1604,17 +1609,21 @@ proto.forge_abi.StakeState.serializeBinaryToWriter = function(message, writer) {
   if (f.length > 0) {
     writer.writeString(1, f);
   }
-  f = message.getTo();
+  f = message.getFrom();
   if (f.length > 0) {
     writer.writeString(2, f);
   }
-  f = message.getValue();
+  f = message.getTo();
+  if (f.length > 0) {
+    writer.writeString(3, f);
+  }
+  f = message.getBalance();
   if (f != null) {
-    writer.writeMessage(3, f, type_pb.BigUint.serializeBinaryToWriter);
+    writer.writeMessage(4, f, type_pb.BigUint.serializeBinaryToWriter);
   }
   f = message.getMessage();
   if (f.length > 0) {
-    writer.writeString(4, f);
+    writer.writeString(5, f);
   }
   f = message.getContext();
   if (f != null) {
@@ -1640,58 +1649,71 @@ proto.forge_abi.StakeState.prototype.setAddress = function(value) {
 };
 
 /**
- * optional string to = 2;
+ * optional string from = 2;
  * @return {string}
  */
-proto.forge_abi.StakeState.prototype.getTo = function() {
+proto.forge_abi.StakeState.prototype.getFrom = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ''));
 };
 
 /** @param {string} value */
-proto.forge_abi.StakeState.prototype.setTo = function(value) {
+proto.forge_abi.StakeState.prototype.setFrom = function(value) {
   jspb.Message.setField(this, 2, value);
 };
 
 /**
- * optional BigUint value = 3;
+ * optional string to = 3;
+ * @return {string}
+ */
+proto.forge_abi.StakeState.prototype.getTo = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ''));
+};
+
+/** @param {string} value */
+proto.forge_abi.StakeState.prototype.setTo = function(value) {
+  jspb.Message.setField(this, 3, value);
+};
+
+/**
+ * optional BigUint balance = 4;
  * @return {?proto.forge_abi.BigUint}
  */
-proto.forge_abi.StakeState.prototype.getValue = function() {
+proto.forge_abi.StakeState.prototype.getBalance = function() {
   return /** @type{?proto.forge_abi.BigUint} */ (jspb.Message.getWrapperField(
     this,
     type_pb.BigUint,
-    3
+    4
   ));
 };
 
 /** @param {?proto.forge_abi.BigUint|undefined} value */
-proto.forge_abi.StakeState.prototype.setValue = function(value) {
-  jspb.Message.setWrapperField(this, 3, value);
+proto.forge_abi.StakeState.prototype.setBalance = function(value) {
+  jspb.Message.setWrapperField(this, 4, value);
 };
 
-proto.forge_abi.StakeState.prototype.clearValue = function() {
-  this.setValue(undefined);
+proto.forge_abi.StakeState.prototype.clearBalance = function() {
+  this.setBalance(undefined);
 };
 
 /**
  * Returns whether this field is set.
  * @return {!boolean}
  */
-proto.forge_abi.StakeState.prototype.hasValue = function() {
-  return jspb.Message.getField(this, 3) != null;
+proto.forge_abi.StakeState.prototype.hasBalance = function() {
+  return jspb.Message.getField(this, 4) != null;
 };
 
 /**
- * optional string message = 4;
+ * optional string message = 5;
  * @return {string}
  */
 proto.forge_abi.StakeState.prototype.getMessage = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ''));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ''));
 };
 
 /** @param {string} value */
 proto.forge_abi.StakeState.prototype.setMessage = function(value) {
-  jspb.Message.setField(this, 4, value);
+  jspb.Message.setField(this, 5, value);
 };
 
 /**

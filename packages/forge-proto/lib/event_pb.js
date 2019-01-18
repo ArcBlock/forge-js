@@ -203,7 +203,7 @@ if (goog.DEBUG && !COMPILED) {
  * @const
  */
 proto.forge_abi.ResponseSubscribe.oneofGroups_ = [
-  [2, 3, 4, 5, 6, 7, 8, 16, 17, 19, 20, 21, 22, 23, 129, 130, 131, 132],
+  [2, 3, 4, 5, 6, 7, 8, 16, 17, 19, 20, 21, 22, 23, 24, 129, 130, 131, 132, 133],
 ];
 
 /**
@@ -225,10 +225,12 @@ proto.forge_abi.ResponseSubscribe.ValueCase = {
   CONSENSUS_UPGRADE: 21,
   DECLARE_FILE: 22,
   SYS_UPGRADE: 23,
+  STAKE: 24,
   ACCOUNT_STATE: 129,
   ASSET_STATE: 130,
   CHANNEL_STATE: 131,
   FORGE_STATE: 132,
+  STAKE_STATE: 133,
 };
 
 /**
@@ -287,12 +289,14 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
           (f = msg.getConsensusUpgrade()) && type_pb.Transaction.toObject(includeInstance, f),
         declareFile: (f = msg.getDeclareFile()) && type_pb.Transaction.toObject(includeInstance, f),
         sysUpgrade: (f = msg.getSysUpgrade()) && type_pb.Transaction.toObject(includeInstance, f),
+        stake: (f = msg.getStake()) && type_pb.Transaction.toObject(includeInstance, f),
         accountState:
           (f = msg.getAccountState()) && type_pb.Transaction.toObject(includeInstance, f),
         assetState: (f = msg.getAssetState()) && type_pb.Transaction.toObject(includeInstance, f),
         channelState:
           (f = msg.getChannelState()) && type_pb.Transaction.toObject(includeInstance, f),
         forgeState: (f = msg.getForgeState()) && type_pb.Transaction.toObject(includeInstance, f),
+        stakeState: (f = msg.getStakeState()) && type_pb.Transaction.toObject(includeInstance, f),
       };
 
     if (includeInstance) {
@@ -400,6 +404,11 @@ proto.forge_abi.ResponseSubscribe.deserializeBinaryFromReader = function(msg, re
         reader.readMessage(value, type_pb.Transaction.deserializeBinaryFromReader);
         msg.setSysUpgrade(value);
         break;
+      case 24:
+        var value = new type_pb.Transaction();
+        reader.readMessage(value, type_pb.Transaction.deserializeBinaryFromReader);
+        msg.setStake(value);
+        break;
       case 129:
         var value = new type_pb.Transaction();
         reader.readMessage(value, type_pb.Transaction.deserializeBinaryFromReader);
@@ -419,6 +428,11 @@ proto.forge_abi.ResponseSubscribe.deserializeBinaryFromReader = function(msg, re
         var value = new type_pb.Transaction();
         reader.readMessage(value, type_pb.Transaction.deserializeBinaryFromReader);
         msg.setForgeState(value);
+        break;
+      case 133:
+        var value = new type_pb.Transaction();
+        reader.readMessage(value, type_pb.Transaction.deserializeBinaryFromReader);
+        msg.setStakeState(value);
         break;
       default:
         reader.skipField();
@@ -507,6 +521,10 @@ proto.forge_abi.ResponseSubscribe.serializeBinaryToWriter = function(message, wr
   if (f != null) {
     writer.writeMessage(23, f, type_pb.Transaction.serializeBinaryToWriter);
   }
+  f = message.getStake();
+  if (f != null) {
+    writer.writeMessage(24, f, type_pb.Transaction.serializeBinaryToWriter);
+  }
   f = message.getAccountState();
   if (f != null) {
     writer.writeMessage(129, f, type_pb.Transaction.serializeBinaryToWriter);
@@ -522,6 +540,10 @@ proto.forge_abi.ResponseSubscribe.serializeBinaryToWriter = function(message, wr
   f = message.getForgeState();
   if (f != null) {
     writer.writeMessage(132, f, type_pb.Transaction.serializeBinaryToWriter);
+  }
+  f = message.getStakeState();
+  if (f != null) {
+    writer.writeMessage(133, f, type_pb.Transaction.serializeBinaryToWriter);
   }
 };
 
@@ -1006,6 +1028,40 @@ proto.forge_abi.ResponseSubscribe.prototype.hasSysUpgrade = function() {
 };
 
 /**
+ * optional Transaction stake = 24;
+ * @return {?proto.forge_abi.Transaction}
+ */
+proto.forge_abi.ResponseSubscribe.prototype.getStake = function() {
+  return /** @type{?proto.forge_abi.Transaction} */ (jspb.Message.getWrapperField(
+    this,
+    type_pb.Transaction,
+    24
+  ));
+};
+
+/** @param {?proto.forge_abi.Transaction|undefined} value */
+proto.forge_abi.ResponseSubscribe.prototype.setStake = function(value) {
+  jspb.Message.setOneofWrapperField(
+    this,
+    24,
+    proto.forge_abi.ResponseSubscribe.oneofGroups_[0],
+    value
+  );
+};
+
+proto.forge_abi.ResponseSubscribe.prototype.clearStake = function() {
+  this.setStake(undefined);
+};
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.forge_abi.ResponseSubscribe.prototype.hasStake = function() {
+  return jspb.Message.getField(this, 24) != null;
+};
+
+/**
  * optional Transaction account_state = 129;
  * @return {?proto.forge_abi.Transaction}
  */
@@ -1139,6 +1195,40 @@ proto.forge_abi.ResponseSubscribe.prototype.clearForgeState = function() {
  */
 proto.forge_abi.ResponseSubscribe.prototype.hasForgeState = function() {
   return jspb.Message.getField(this, 132) != null;
+};
+
+/**
+ * optional Transaction stake_state = 133;
+ * @return {?proto.forge_abi.Transaction}
+ */
+proto.forge_abi.ResponseSubscribe.prototype.getStakeState = function() {
+  return /** @type{?proto.forge_abi.Transaction} */ (jspb.Message.getWrapperField(
+    this,
+    type_pb.Transaction,
+    133
+  ));
+};
+
+/** @param {?proto.forge_abi.Transaction|undefined} value */
+proto.forge_abi.ResponseSubscribe.prototype.setStakeState = function(value) {
+  jspb.Message.setOneofWrapperField(
+    this,
+    133,
+    proto.forge_abi.ResponseSubscribe.oneofGroups_[0],
+    value
+  );
+};
+
+proto.forge_abi.ResponseSubscribe.prototype.clearStakeState = function() {
+  this.setStakeState(undefined);
+};
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.forge_abi.ResponseSubscribe.prototype.hasStakeState = function() {
+  return jspb.Message.getField(this, 133) != null;
 };
 
 /**
