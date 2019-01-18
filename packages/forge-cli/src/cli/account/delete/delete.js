@@ -1,21 +1,12 @@
 const shell = require('shelljs');
 const { createRpcClient } = require('core/env');
 const { symbols } = require('core/ui');
-const pretty = require('json-stringify-pretty-compact');
 
-// FIXME
 async function execute({ args: [address] }) {
   try {
     const client = createRpcClient();
-    const stream = await client.removeWallet({ address: address });
-    stream
-      .on('data', function(result) {
-        shell.echo(`${symbols.success} remove account success: `);
-        shell.echo(`${pretty(result)}`);
-      })
-      .on('error', err => {
-        shell.echo(`${symbols.error} error: ${err}`);
-      });
+    await client.removeWallet({ address: address });
+    shell.echo(`${symbols.success} remove account success: ${address}`);
   } catch (err) {
     shell.echo(`${symbols.error} error: ${err}`);
   }
