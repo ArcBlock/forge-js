@@ -2,25 +2,19 @@
 const fs = require('fs');
 const path = require('path');
 const { enums } = require('@arcblock/forge-proto');
-const { RpcClient, addProtobuf, parseConfig, decodeAny } = require('@arcblock/forge-sdk');
+const { RpcClient, parseConfig, decodeAny } = require('@arcblock/forge-sdk');
+require('./config/setup');
+
 const client = new RpcClient(parseConfig(path.resolve(__dirname, './config/forge.toml')));
+
 const debug = (...args) => {
-  console.log('x'.repeat(80));
-  console.log(...args);
   console.log('');
+  console.log('-'.repeat(80));
+  console.log('');
+  console.log(...args);
 };
-
-// Append application specific proto for use
-addProtobuf({
-  baseDir: path.resolve(__dirname, './protobufs/gen/'),
-  packageName: 'kvstore_abi',
-  typeUrls: {
-    KvTx: 'KV/kv',
-    AccountKvState: 'KV/kv_state',
-  },
-});
-
-// debug('Supported RPC methods', client.listRpcMethods());
+const delay = (timeout = 1000) => new Promise(resolve => setTimeout(resolve, timeout));
+const random = prefix => `${prefix}_${Math.round(Math.random() * 1000000)}`;
 
 (async () => {
   try {
@@ -32,7 +26,7 @@ addProtobuf({
     } else {
       const sender = await client.createWallet({
         passphrase: '123456',
-        moniker: 'wangshijun',
+        moniker: random('wangshijun'),
         type: {
           pk: enums.KeyType.SECP256K1,
           hash: enums.HashType.KECCAK,
@@ -42,6 +36,7 @@ addProtobuf({
       fs.writeFileSync('./address.json', JSON.stringify(sender.wallet.address));
       address = sender.wallet.address;
       debug('Create wallet on forge chain', sender.$format());
+      await delay();
     }
 
     // unlock the wallet
@@ -55,9 +50,9 @@ addProtobuf({
       const kvTx = {
         type: 'KvTx',
         value: {
-          key: `key_${Math.round(Math.random() * 10000)}`,
+          key: random('key'),
           // key: '',
-          value: `value_${Math.round(Math.random() * 1000000)}`,
+          value: random('value'),
           // value: '',
         },
       };
