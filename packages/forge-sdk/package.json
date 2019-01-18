@@ -57,5 +57,5 @@
     "test": "npm run lint && node tools/jest.js",
     "coverage": "npm run lint && yarn test -- --coverage"
   },
-  "gitHead": "d090b5c38082e7b6265e70af81d0a7340e5f1596"
+  "gitHead": "87990c8b5e215107fc587c1ced0d6b3e2cd2483e"
 }
