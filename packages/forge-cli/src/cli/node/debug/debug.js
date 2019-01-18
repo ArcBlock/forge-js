@@ -1,5 +1,5 @@
 const shell = require('shelljs');
-const { runNativeForgeCommand } = require('core/env');
+const { config, requiredDirs, runNativeForgeCommand } = require('core/env');
 const { hr } = require('core/ui');
 
 const describe = runNativeForgeCommand('describe');
@@ -12,11 +12,23 @@ function main() {
 
   shell.echo('');
   shell.echo(hr);
-  shell.echo('Forge CLI Info');
+  shell.echo('Forge CLI Version');
   shell.echo(hr);
   shell.exec('forge --version');
-  shell.echo('');
 
+  shell.echo('');
+  shell.echo(hr);
+  shell.echo('Forge CLI Env');
+  shell.echo(hr);
+  shell.echo('Required Dirs:');
+  shell.echo(`  cache: ${requiredDirs.cache}`);
+  shell.echo(`  release: ${requiredDirs.release}`);
+  shell.echo(hr);
+  shell.echo('Runtime config:');
+  shell.echo(`  forgeBinPath: ${config.cli.forgeBinPath}`);
+  shell.echo(`  forgeConfigPath: ${config.cli.forgeConfigPath}`);
+
+  shell.echo('');
   shell.echo(hr);
   shell.echo('Forge Release Info');
   shell.echo(hr);

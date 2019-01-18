@@ -10,6 +10,7 @@ cli(
     requirements: {
       forgeRelease: true,
       rpcClient: true,
+      wallet: false,
     },
     options: [],
   }

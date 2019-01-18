@@ -1,3 +1,11 @@
+## 0.6.1 (January 18, 2019)
+  - chore: tweak env ensure utili fns
+  - feat: support ubuntu detect
+  - chore: organize code
+  - feat: add forge console command
+  - chore: update readme for forge-cli
+  - chore: disable unused sub commands
+
 ## 0.6.0 (January 18, 2019)
   - support `forge debug` command
   - support `forge restart ipfs` command

@@ -1,5 +1,6 @@
 const fs = require('fs');
 const os = require('os');
+const getos = require('getos');
 const path = require('path');
 const chalk = require('chalk');
 const inquirer = require('inquirer');
@@ -279,6 +280,31 @@ async function getForgeProcesses() {
   }
 }
 
+function getPlatform() {
+  return new Promise((resolve, reject) => {
+    getos((err, info) => {
+      if (err) {
+        console.error(err);
+        return reject(err);
+      }
+
+      if (info.os === 'darwin') {
+        return resolve(info.os);
+      }
+
+      if (info.os === 'linux') {
+        if (/ubuntu/i.test(info.dist)) {
+          return resolve('ubuntu');
+        }
+
+        return resolve('linux');
+      }
+
+      return resolve(info.os);
+    });
+  });
+}
+
 function writeCache(key, data) {
   try {
     fs.writeFileSync(path.join(requiredDirs.cache, `${key}.json`), JSON.stringify(data));
@@ -316,4 +342,5 @@ module.exports = {
   ensureRpcClient,
   runNativeForgeCommand,
   getForgeProcesses,
+  getPlatform,
 };
