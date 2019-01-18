@@ -108,3 +108,9 @@ bootstrap = []
 
 max_file_size.admin = "100M"
 max_file_size.account = "1M"
+
+[cache]
+dc_dump_limit = 50
+dump_log_write_threshold = 50_000
+cache_mnesia_table_timeout = 15_000
+path = "~/.forge_simple/cache/mnesia_data_dir"
