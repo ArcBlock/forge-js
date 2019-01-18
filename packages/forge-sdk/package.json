@@ -1,7 +1,7 @@
 {
   "name": "@arcblock/forge-sdk",
   "description": "Node.js SDK for Forge Framework by ArcBlock",
-  "version": "0.6.2",
+  "version": "0.6.3",
   "author": "wangshijun <shijun@arcblock.io> (https://ocap.arcblock.io)",
   "bugs": {
     "url": "https://github.com/ArcBlock/forge-js/issues",
@@ -14,7 +14,7 @@
     "wangshijun <shijun@arcblock.io> (https://ocap.arcblock.io)"
   ],
   "dependencies": {
-    "@arcblock/forge-proto": "^0.6.2",
+    "@arcblock/forge-proto": "^0.6.3",
     "@iarna/toml": "^2.2.1",
     "bignumber.js": "^8.0.2",
     "camelcase": "^5.0.0",
