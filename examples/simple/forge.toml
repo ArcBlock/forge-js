@@ -82,7 +82,7 @@ persistent_peers = ""
 seed_peers = ""
 
 # timeout for commiting a new block
-timeout_commit = "5s"
+timeout_commit = "200ms"
 
 # create empty blocks in 5s interval
 create_empty_blocks = false
