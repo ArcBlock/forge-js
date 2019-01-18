@@ -1,8 +1,13 @@
 const fs = require('fs');
 const os = require('os');
 const path = require('path');
+const chalk = require('chalk');
 const inquirer = require('inquirer');
 const shell = require('shelljs');
+const pidUsageTree = require('pidusage-tree');
+const pidInfo = require('find-process');
+const prettyTime = require('pretty-ms');
+const prettyBytes = require('pretty-bytes');
 const { RpcClient, parseConfig } = require('@arcblock/forge-sdk');
 const debug = require('debug')(require('../../package.json').name);
 
@@ -19,10 +24,6 @@ const config = { cli: {} }; // global shared forge-cli run time config
 async function setupEnv(args, requirements) {
   debug('setupEnv.args', { args, requirements });
 
-  const hasRequirements = Object.keys(requirements).some(x => requirements[x]);
-  if (hasRequirements) {
-    shell.echo(new inquirer.Separator().line);
-  }
   ensureRequiredDirs();
 
   if (requirements.forgeRelease) {
@@ -35,10 +36,6 @@ async function setupEnv(args, requirements) {
 
   if (requirements.wallet) {
     await ensureWallet(args);
-  }
-
-  if (hasRequirements) {
-    shell.echo(new inquirer.Separator().line);
   }
 }
 
@@ -60,8 +57,8 @@ function ensureForgeRelease(args, exitOn404 = true) {
     if (fs.existsSync(forgeBinPath) && fs.statSync(forgeBinPath).isFile()) {
       config.cli.releaseDir = releaseDir;
       config.cli.forgeBinPath = forgeBinPath;
-      shell.echo(`${symbols.success} Using forge release dir: ${releaseDir}`);
-      shell.echo(`${symbols.success} Using forge executable: ${forgeBinPath}`);
+      debug(`${symbols.success} Using forge release dir: ${releaseDir}`);
+      debug(`${symbols.success} Using forge executable: ${forgeBinPath}`);
       return true;
     } else {
       shell.echo(`${symbols.error} forge release dir invalid, non forge executable found`);
@@ -70,7 +67,15 @@ function ensureForgeRelease(args, exitOn404 = true) {
       }
     }
   } else {
-    shell.echo(`${symbols.error} forge release dir does not exist`);
+    shell.echo(`${symbols.error} forge release dir does not exist
+
+Init with downloaded forge release tarball, will extract to ~/.forge-cli/release
+> ${chalk.cyan('forge init --release-tarball ~/Downloads/forge_darwin_amd64.tgz')}
+
+Start node with custom forge release folder
+> ${chalk.cyan('forge start --release-dir ~/Downloads/forge/')}
+> ${chalk.cyan('FORGE_RELEASE_DIR=~/Downloads/forge/ forge start')}
+    `);
     if (exitOn404) {
       process.exit(1);
     }
@@ -91,7 +96,7 @@ function ensureRpcClient(args) {
   if (configPath && fs.existsSync(configPath)) {
     const forgeConfig = parseConfig(configPath);
     config.cli.forgeConfigPath = configPath;
-    shell.echo(`${symbols.success} Using forge config: ${configPath}`);
+    debug(`${symbols.success} Using forge config: ${configPath}`);
     createRpcClient(forgeConfig);
   } else if (args.socketGrpc) {
     const forgeConfig = {
@@ -101,10 +106,18 @@ function ensureRpcClient(args) {
         unlockTtl: 300,
       },
     };
-    shell.echo(`${symbols.info} using forge-cli with remote node ${args.socketGrpc}`);
+    debug(`${symbols.info} using forge-cli with remote node ${args.socketGrpc}`);
     createRpcClient(forgeConfig);
   } else {
-    shell.echo(`${symbols.error} forge-cli requires an forge config file to start`);
+    shell.echo(`${symbols.error} forge-cli requires an forge config file to start
+
+If you have not setup any forge core release on this machine, run this first:
+> ${chalk.cyan('forge init')}
+
+Or you can run forge-cli with custom config path
+> ${chalk.cyan('forge start --config-path ~/Downloads/forge/forge_release.toml')}
+> ${chalk.cyan('FORGE_CONFIG=~/Downloads/forge/forge_release.toml forge start')}
+    `);
     process.exit();
   }
 }
@@ -115,7 +128,7 @@ function ensureRpcClient(args) {
 async function ensureWallet() {
   const wallet = readCache('wallet');
   if (wallet && wallet.expireAt && wallet.expireAt > Date.now()) {
-    shell.echo(`${symbols.success} Use cached wallet ${wallet.address}`);
+    debug(`${symbols.success} Use cached wallet ${wallet.address}`);
     config.cli.wallet = wallet;
     return;
   }
@@ -158,7 +171,7 @@ async function ensureWallet() {
   const { token } = await client.loadWallet({ address, passphrase });
   writeCache('wallet', { address, token, expireAt: Date.now() + config.forge.unlockTtl * 1e3 });
   config.cli.wallet = { address, token };
-  shell.echo(`${symbols.success} Use unlocked wallet ${address}`);
+  debug(`${symbols.success} Use unlocked wallet ${address}`);
 }
 
 /**
@@ -224,6 +237,48 @@ function runNativeForgeCommand(subCommand) {
   };
 }
 
+async function getForgeProcesses() {
+  const { forgeBinPath, forgeConfigPath } = config.cli;
+  const { stdout: pid } = shell.exec(`FORGE_CONFIG=${forgeConfigPath} ${forgeBinPath} pid`, {
+    silent: true,
+  });
+
+  const pidNumber = Number(pid);
+  if (!pidNumber) {
+    return [];
+  }
+
+  try {
+    const processes = await pidUsageTree(pidNumber);
+    const results = await Promise.all(
+      Object.values(processes).map(async x => {
+        try {
+          const [info] = await pidInfo('pid', x.pid);
+          Object.assign(x, info);
+        } catch (err) {
+          console.error(`Error getting pid info: ${x.pid}`, err);
+        }
+
+        return x;
+      })
+    );
+
+    // FIXME: support finding the app process
+    return results
+      .filter(x => /(forge|tendermint|ipfs)/.test(x.name))
+      .map(x => ({
+        name: x.name,
+        pid: x.pid,
+        uptime: prettyTime(x.elapsed),
+        memory: prettyBytes(x.memory),
+        cpu: x.cpu,
+      }));
+  } catch (err) {
+    console.error(err);
+    return [];
+  }
+}
+
 function writeCache(key, data) {
   try {
     fs.writeFileSync(path.join(requiredDirs.cache, `${key}.json`), JSON.stringify(data));
@@ -260,4 +315,5 @@ module.exports = {
   ensureForgeRelease,
   ensureRpcClient,
   runNativeForgeCommand,
+  getForgeProcesses,
 };

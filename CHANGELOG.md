@@ -1,3 +1,8 @@
+## 0.6.0 (January 18, 2019)
+  - support `forge debug` command
+  - support `forge restart ipfs` command
+  - tons of improvements to forge-cli
+
 ## 0.5.8 (January 17, 2019)
   - support `forge tx:sign` command
   - support `forge tx:send` command

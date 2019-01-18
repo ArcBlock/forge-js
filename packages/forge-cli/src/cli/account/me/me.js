@@ -1,0 +1,13 @@
+const shell = require('shelljs');
+const { config } = require('core/env');
+const { symbols, hr } = require('core/ui');
+
+async function execute() {
+  const { wallet } = config.cli;
+  shell.echo(hr);
+  shell.echo(`${symbols.success} Current wallet: ${wallet.address}`);
+  shell.echo(hr);
+}
+
+exports.run = execute;
+exports.execute = execute;

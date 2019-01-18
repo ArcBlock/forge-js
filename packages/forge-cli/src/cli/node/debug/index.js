@@ -1,10 +1,10 @@
 // eslint-disable-next-line import/no-unresolved
 const { cli, action } = require('core/cli');
-const { execute, run } = require('./status');
+const { execute, run } = require('./debug');
 
 cli(
-  'status',
-  'Print current forge release info and forge node status',
+  'debug',
+  'Print current forge-release, forge-cli and its dependency version',
   input => action(execute, run, input),
   {
     requirements: {
