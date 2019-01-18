@@ -1,3 +1,18 @@
+## 0.6.2 (January 18, 2019)
+  - [forge-cli] feat: support application specific setup scripts
+  - [forge-cli] feat: support --verbose option for all command
+  - [forge-sdk] fix: make kvstore app working with forge@v0.10.14
+  - [forge-cli] fix: `forge account:delete` not working
+  - [forge-cli] fix: support client.fromArc and client.toArc methods in itx editor
+  - [simple-app] chore: make rpc client work with latest forge
+  - [forge-sdk] fix: formatMessage not handle repeated fields correctly
+  - [forge-sdk] feat: support streaming request for rpc call
+  - chore: update kvstore app name
+  - chore: cleanup dependencies
+  - chore: upgrade forge-proto to align with forge@v0.10.14
+  - chore: update config file to latest version
+  - chore: update readme
+
 ## 0.6.1 (January 18, 2019)
   - chore: tweak env ensure utili fns
   - feat: support ubuntu detect
