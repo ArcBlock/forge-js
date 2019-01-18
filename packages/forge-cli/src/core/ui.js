@@ -11,7 +11,8 @@ const symbols = require('log-symbols');
 module.exports = {
   symbols,
   hr: new inquirer.Separator().line,
-  pretty: data => util.inspect(data, { depth: 8, colors: true, compact: false }),
+  pretty: (data, options) =>
+    util.inspect(data, Object.assign({ depth: 8, colors: true, compact: false }, options)),
   getSpinner: opts => {
     const spinner = ora(opts);
     return spinner;

@@ -27,7 +27,7 @@ const questions = [
     type: 'editor',
     name: 'itx',
     message: 'Please enter the inner transaction:',
-    default: answers => pretty(fakeMessage(answers.type)),
+    default: answers => pretty(fakeMessage(answers.type), { colors: false }),
     validate: x => {
       try {
         safeEval(x);
