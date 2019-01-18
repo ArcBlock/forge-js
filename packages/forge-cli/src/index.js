@@ -22,8 +22,12 @@ program
     'Forge config used when starting forge node and initializing gRPC clients'
   )
   .option(
-    '-g, --socket-grpc',
-    'Socket gRPC endpoint to connect, with this you can use forge-cli with a remote node'
+    '-r, --release-dir',
+    'Forge release directory path (unzipped), use your own copy forge release'
+  )
+  .option(
+    '-s, --setup-script',
+    'Path to a javascript file that loads application specific protobuf files into forge-sdk'
   );
 
 initCli(program);

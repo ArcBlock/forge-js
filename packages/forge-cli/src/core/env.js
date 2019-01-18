@@ -1,10 +1,10 @@
 const fs = require('fs');
 const os = require('os');
-const getos = require('getos');
 const path = require('path');
+const getos = require('getos');
 const chalk = require('chalk');
-const inquirer = require('inquirer');
 const shell = require('shelljs');
+const inquirer = require('inquirer');
 const pidUsageTree = require('pidusage-tree');
 const pidInfo = require('find-process');
 const prettyTime = require('pretty-ms');
@@ -29,6 +29,8 @@ async function setupEnv(args, requirements) {
   if (requirements.forgeRelease) {
     await ensureForgeRelease(args);
   }
+
+  ensureSetupScript(args);
 
   if (requirements.wallet || requirements.rpcClient) {
     await ensureRpcClient(args);
@@ -173,6 +175,19 @@ async function ensureWallet() {
   writeCache('wallet', { address, token, expireAt: Date.now() + config.forge.unlockTtl * 1e3 });
   config.cli.wallet = { address, token };
   debug(`${symbols.success} Use unlocked wallet ${address}`);
+}
+
+/**
+ * If we have application specific protobuf, we need to load that into sdk
+ *
+ * @param {*} args
+ */
+function ensureSetupScript(args) {
+  const setupScript = args.setupScript || process.env.FORGE_SDK_SETUP_SCRIPT;
+  if (setupScript && fs.existsSync(setupScript) && fs.statSync(setupScript).isFile()) {
+    debug(`${symbols.warning} loading custom scripts: ${setupScript}`);
+    require(path.resolve(setupScript));
+  }
 }
 
 /**
@@ -325,7 +340,7 @@ function readCache(key) {
     const filePath = path.join(requiredDirs.cache, `${key}.json`);
     return JSON.parse(fs.readFileSync(filePath));
   } catch (err) {
-    shell.echo(`${symbols.error} cache ${key} read failed!`, err);
+    shell.echo(`${symbols.error} cache ${key} read failed!`);
     return null;
   }
 }

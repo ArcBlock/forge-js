@@ -284,6 +284,10 @@ function decodeAny(data) {
   const { typeUrl, value } = data;
   const type = fromTypeUrl(typeUrl);
   const { fn: Message } = getMessageType(type);
+  if (!Message) {
+    return data;
+  }
+
   const buffer = Buffer.isBuffer(value) ? value : Buffer.from(value, 'base64');
   const decoded = Message.deserializeBinary(buffer);
   return { type, value: decoded.toObject() };
