@@ -20,7 +20,7 @@ function releaseDirExists() {
   if (ensureForgeRelease({}, false)) {
     shell.echo(`${symbols.error} forge release dir already exists and not empty`);
     if (config.cli.forgeBinPath) {
-      shell.exec(`${config.cli.forgeBinPath} describe`);
+      shell.exec('forge debug');
     }
     return true;
   }

@@ -5,3 +5,4 @@ exports.reboot = require('./reboot');
 exports.restart = require('./restart');
 exports.start = require('./start');
 exports.stop = require('./stop');
+exports.init = require('./init');
