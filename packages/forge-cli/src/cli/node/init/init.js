@@ -90,7 +90,7 @@ function downloadAsset(release, asset) {
 }
 
 function ensureFetchCLI() {
-  const { stdout } = shell.exec('which fetch');
+  const { stdout } = shell.exec('which fetch', { silent: true });
   if (!stdout) {
     shell.echo(`${symbols.error} fetch command not found!`);
     shell.echo(
