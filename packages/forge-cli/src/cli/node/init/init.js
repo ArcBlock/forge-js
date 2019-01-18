@@ -7,7 +7,13 @@ const chalk = require('chalk');
 const github = require('octonode');
 const args = require('yargs').argv;
 const { symbols, getSpinner } = require('core/ui');
-const { config, requiredDirs, ensureForgeRelease, findReleaseConfig } = require('core/env');
+const {
+  config,
+  requiredDirs,
+  ensureForgeRelease,
+  findReleaseConfig,
+  getPlatform,
+} = require('core/env');
 const { GITHUB_TOKEN } = process.env;
 
 const client = github.client(GITHUB_TOKEN);
@@ -28,7 +34,7 @@ function releaseDirExists() {
   return false;
 }
 
-function fetchRelease() {
+function fetchRelease(platform) {
   return new Promise((resolve, reject) => {
     const spinner = getSpinner('Fetching forge release info...');
     spinner.start();
@@ -41,7 +47,7 @@ function fetchRelease() {
         return reject(err);
       }
 
-      const pattern = new RegExp(`_${process.platform}_`, 'i');
+      const pattern = new RegExp(`_${platform}_`, 'i');
       const release = releases.find(x => x.assets.some(a => pattern.test(a.name)));
       if (release) {
         spinner.succeed(
@@ -50,7 +56,7 @@ function fetchRelease() {
         const asset = release.assets.find(x => pattern.test(x.name));
         resolve({ release, asset });
       } else {
-        spinner.fail(`No suitable forge release found for platform ${process.platform}`);
+        spinner.fail(`No suitable forge release found for platform ${platform}`);
         reject(new Error('No compatible release found'));
       }
     });
@@ -130,6 +136,9 @@ function copyReleaseConfig() {
 
 async function main() {
   try {
+    const platform = await getPlatform();
+    shell.echo(`${symbols.info} detected platform is: ${platform}`);
+
     if (releaseDirExists()) {
       process.exit(1);
       return;
@@ -143,7 +152,7 @@ async function main() {
     } else {
       ensureGithubToken();
       ensureFetchCLI();
-      const { release, asset } = await fetchRelease();
+      const { release, asset } = await fetchRelease(platform);
       releaseFilePath = await downloadAsset(release, asset);
     }
 
