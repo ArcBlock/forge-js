@@ -1,5 +1,5 @@
 {
-  "name": "@arcblock/forge-app-kv",
+  "name": "@arcblock/forge-app-kvstore",
   "version": "0.1.0",
   "description": "",
   "main": "app.js",
