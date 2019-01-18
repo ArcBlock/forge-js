@@ -1,3 +1,4 @@
+exports.console = require('./console');
 exports.debug = require('./debug');
 exports.ps = require('./ps');
 exports.reboot = require('./reboot');
