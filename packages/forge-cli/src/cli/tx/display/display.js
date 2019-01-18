@@ -1,9 +1,10 @@
 const shell = require('shelljs');
-const { client } = require('core/env');
+const { createRpcClient } = require('core/env');
 const { symbols, pretty } = require('core/ui');
 
 async function execute({ args: [hash] }) {
   try {
+    const client = createRpcClient();
     const stream = await client.getTx({ hash: hash });
     stream
       .on('data', function(result) {

@@ -1,8 +1,8 @@
 const fuzzy = require('fuzzy');
 const shell = require('shelljs');
 const inquirer = require('inquirer');
-const { config, client, cache } = require('core/env');
-const { symbols, pretty } = require('core/ui');
+const { config, createRpcClient, cache } = require('core/env');
+const { symbols, hr, pretty } = require('core/ui');
 const { enums } = require('@arcblock/forge-proto');
 inquirer.registerPrompt('autocomplete', require('inquirer-autocomplete-prompt'));
 
@@ -73,6 +73,7 @@ const questions = [
 // Execute the cli silently.
 async function execute(data) {
   try {
+    const client = createRpcClient();
     const { passphrase, moniker, pk, hash, encoding } = data;
     const walletType = {
       pk: enums.KeyType[pk],
@@ -80,7 +81,9 @@ async function execute(data) {
       address: enums.EncodingType[encoding],
     };
     const res = await client.createWallet({ passphrase, moniker, type: walletType });
-    shell.echo(`${symbols.success} wallet create success!`);
+    shell.echo(hr);
+    shell.echo(`${symbols.success} account create success!`);
+    shell.echo(hr);
     shell.echo(pretty(res.$format().wallet));
 
     // Unlock current wallet and save to disk cache
@@ -90,7 +93,10 @@ async function execute(data) {
       address: res.wallet.address,
       expireAt: Date.now() + config.forge.unlockTtl * 1e3,
     });
-    shell.echo(`${symbols.success} wallet unlocked!`);
+    shell.echo(hr);
+    shell.echo(`${symbols.success} account unlocked!`);
+    shell.echo(hr);
+    shell.exec(`forge account ${res.wallet.address}`);
   } catch (err) {
     console.error('error', err);
   }

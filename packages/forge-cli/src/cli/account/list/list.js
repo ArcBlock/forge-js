@@ -1,11 +1,12 @@
 const shell = require('shelljs');
 const inquirer = require('inquirer');
-const { client } = require('core/env');
+const { createRpcClient } = require('core/env');
 const { symbols } = require('core/ui');
 
 inquirer.registerPrompt('autocomplete', require('inquirer-autocomplete-prompt'));
 
 async function getAccountState(argAddress) {
+  const client = createRpcClient();
   const streamChild = await client.getAccountState({ address: argAddress });
   streamChild
     .on('data', function({ code, state }) {
@@ -23,6 +24,7 @@ async function getAccountState(argAddress) {
 
 // Execute the cli silently.
 async function execute() {
+  const client = createRpcClient();
   shell.echo(`${''.padEnd(68, '-')}`);
   shell.echo(`${'moniker'.padEnd(20, ' ').padStart(23, ' ')}${'address'.padEnd(45, ' ')}`);
   shell.echo(`${''.padEnd(68, '-')}`);

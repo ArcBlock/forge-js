@@ -1,11 +1,12 @@
 const shell = require('shelljs');
-const { client } = require('core/env');
+const { createRpcClient } = require('core/env');
 const { symbols } = require('core/ui');
 const pretty = require('json-stringify-pretty-compact');
 
 // FIXME
 async function execute({ args: [address] }) {
   try {
+    const client = createRpcClient();
     const stream = await client.removeWallet({ address: address });
     stream
       .on('data', function(result) {

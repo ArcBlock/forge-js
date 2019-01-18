@@ -5,7 +5,7 @@ const safeEval = require('safe-eval');
 const { transactions } = require('@arcblock/forge-proto');
 const { fakeMessage } = require('@arcblock/forge-sdk');
 const { symbols, pretty } = require('core/ui');
-const { client, config } = require('core/env');
+const { createRpcClient, config } = require('core/env');
 const debug = require('debug')(require('../../../../package.json').name);
 
 inquirer.registerPrompt('autocomplete', require('inquirer-autocomplete-prompt'));
@@ -30,7 +30,7 @@ const questions = [
     default: answers => pretty(fakeMessage(answers.type), { colors: false }),
     validate: x => {
       try {
-        safeEval(x, { client });
+        safeEval(x, { client: createRpcClient() });
       } catch (err) {
         return err.message || err.toString();
       }
@@ -41,6 +41,7 @@ const questions = [
 ];
 
 function main(data) {
+  const client = createRpcClient();
   const { type, itx: itxStr } = data;
   const itx = safeEval(itxStr, { client });
   const { wallet } = config.cli;

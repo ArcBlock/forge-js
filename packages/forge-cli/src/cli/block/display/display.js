@@ -1,5 +1,5 @@
 const shell = require('shelljs');
-const { client } = require('core/env');
+const { createRpcClient } = require('core/env');
 const { symbols, pretty } = require('core/ui');
 
 async function execute({ args: [argHeight] }) {
@@ -8,6 +8,7 @@ async function execute({ args: [argHeight] }) {
     return;
   }
   try {
+    const client = createRpcClient();
     const stream = await client.getBlock({ height: argHeight });
     stream
       .on('data', function(result) {

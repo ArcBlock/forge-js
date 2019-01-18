@@ -7,6 +7,7 @@ async function execute() {
   shell.echo(hr);
   shell.echo(`${symbols.success} Current wallet: ${wallet.address}`);
   shell.echo(hr);
+  shell.exec(`forge account ${wallet.address}`);
 }
 
 exports.run = execute;
