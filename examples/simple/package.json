@@ -1,12 +1,12 @@
 {
   "name": "@arcblock/forge-app-simple",
-  "version": "0.1.0",
+  "version": "0.6.2",
   "description": "> This is an simple app powered by forge and forge-sdk, it just uses forge-core and send standard transactions supported by forge core.",
   "main": "rpc.js",
   "scripts": {},
   "dependencies": {
-    "@arcblock/forge-sdk": "^0.6.0",
-    "@arcblock/forge-proto": "^0.6.0"
+    "@arcblock/forge-proto": "^0.6.2",
+    "@arcblock/forge-sdk": "^0.6.2"
   },
   "keywords": [],
   "author": "wangshijun <wangshijun2010@gmail.com> (http://github.com/wangshijun)",

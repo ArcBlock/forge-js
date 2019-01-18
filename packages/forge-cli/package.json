@@ -1,6 +1,6 @@
 {
   "name": "@arcblock/forge-cli",
-  "version": "0.6.1",
+  "version": "0.6.2",
   "description": "a general set of CLI for arcblock Forge framework",
   "main": "src/index.js",
   "bin": {
@@ -25,8 +25,8 @@
   },
   "homepage": "https://github.com/arcblock/forge-js/packages/forge-cli#readme",
   "dependencies": {
-    "@arcblock/forge-proto": "^0.6.0",
-    "@arcblock/forge-sdk": "^0.6.0",
+    "@arcblock/forge-proto": "^0.6.2",
+    "@arcblock/forge-sdk": "^0.6.2",
     "app-module-path": "^2.2.0",
     "chalk": "^2.4.1",
     "cli-table-redemption": "^1.0.1",
