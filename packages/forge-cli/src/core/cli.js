@@ -1,7 +1,12 @@
 /* eslint no-console:"off" */
 const path = require('path');
+const debug = require('debug');
 const args = require('yargs').argv;
 const { setupEnv } = require('./env');
+
+if (args.verbose) {
+  debug.enable('@arcblock/forge-cli');
+}
 
 const allCommands = [];
 

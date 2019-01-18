@@ -5,7 +5,7 @@
         "Request": {
           "oneofs": {
             "value": {
-              "oneof": ["verifyTx", "updateState"]
+              "oneof": ["verifyTx", "updateState", "info"]
             }
           },
           "fields": {
@@ -16,13 +16,17 @@
             "updateState": {
               "type": "RequestUpdateState",
               "id": 2
+            },
+            "info": {
+              "type": "RequestInfo",
+              "id": 3
             }
           }
         },
         "Response": {
           "oneofs": {
             "value": {
-              "oneof": ["verifyTx", "updateState"]
+              "oneof": ["verifyTx", "updateState", "info"]
             }
           },
           "fields": {
@@ -33,6 +37,10 @@
             "updateState": {
               "type": "ResponseUpdateState",
               "id": 2
+            },
+            "info": {
+              "type": "ResponseInfo",
+              "id": 3
             }
           }
         },
@@ -105,6 +113,23 @@
             }
           }
         },
+        "RequestInfo": {
+          "fields": {
+            "forgeVersion": {
+              "type": "string",
+              "id": 1
+            }
+          }
+        },
+        "ResponseInfo": {
+          "fields": {
+            "typeUrls": {
+              "rule": "repeated",
+              "type": "string",
+              "id": 1
+            }
+          }
+        },
         "ForgeAppRpc": {
           "methods": {
             "process_one": {
@@ -147,6 +172,9 @@
             "revoked_tx": 29,
             "unsupported_stake": 30,
             "insufficient_stake": 31,
+            "invalid_stake_state": 32,
+            "expired_wallet_token": 33,
+            "banned_unstake": 34,
             "internal": 500
           }
         },
@@ -572,17 +600,21 @@
               "type": "BigUint",
               "id": 1
             },
-            "totalReceivedStakes": {
+            "totalUnstakes": {
               "type": "BigUint",
               "id": 2
             },
+            "totalReceivedStakes": {
+              "type": "BigUint",
+              "id": 3
+            },
             "recentStakes": {
               "type": "CircularQueue",
-              "id": 3
+              "id": 4
             },
             "recentReceivedStakes": {
               "type": "CircularQueue",
-              "id": 4
+              "id": 15
             }
           }
         },
@@ -599,6 +631,126 @@
             "context": {
               "type": "StateContext",
               "id": 3
+            }
+          }
+        },
+        "UnconfirmedTxs": {
+          "fields": {
+            "nTxs": {
+              "type": "uint32",
+              "id": 1
+            },
+            "txs": {
+              "rule": "repeated",
+              "type": "Transaction",
+              "id": 2
+            }
+          }
+        },
+        "NetInfo": {
+          "fields": {
+            "listening": {
+              "type": "bool",
+              "id": 1
+            },
+            "listeners": {
+              "rule": "repeated",
+              "type": "string",
+              "id": 2
+            },
+            "nPeers": {
+              "type": "uint32",
+              "id": 3
+            },
+            "peers": {
+              "rule": "repeated",
+              "type": "PeerInfo",
+              "id": 4
+            }
+          }
+        },
+        "PeerInfo": {
+          "fields": {
+            "nodeInfo": {
+              "type": "NodeInfo",
+              "id": 1
+            }
+          }
+        },
+        "NodeInfo": {
+          "fields": {
+            "id": {
+              "type": "string",
+              "id": 1
+            },
+            "network": {
+              "type": "string",
+              "id": 2
+            },
+            "version": {
+              "type": "string",
+              "id": 3
+            },
+            "moniker": {
+              "type": "string",
+              "id": 4
+            },
+            "ip": {
+              "type": "string",
+              "id": 5
+            },
+            "geoInfo": {
+              "type": "GeoInfo",
+              "id": 6
+            }
+          }
+        },
+        "GeoInfo": {
+          "fields": {
+            "city": {
+              "type": "string",
+              "id": 1
+            },
+            "country": {
+              "type": "string",
+              "id": 2
+            },
+            "latitude": {
+              "type": "float",
+              "id": 3
+            },
+            "longitude": {
+              "type": "float",
+              "id": 4
+            }
+          }
+        },
+        "ValidatorsInfo": {
+          "fields": {
+            "blockHeight": {
+              "type": "uint64",
+              "id": 1
+            },
+            "validators": {
+              "rule": "repeated",
+              "type": "ValidatorInfo",
+              "id": 2
+            }
+          }
+        },
+        "ValidatorInfo": {
+          "fields": {
+            "address": {
+              "type": "string",
+              "id": 1
+            },
+            "votingPower": {
+              "type": "uint32",
+              "id": 3
+            },
+            "proposerPriority": {
+              "type": "string",
+              "id": 4
             }
           }
         },
@@ -751,17 +903,21 @@
               "type": "string",
               "id": 1
             },
-            "to": {
+            "from": {
               "type": "string",
               "id": 2
             },
-            "value": {
-              "type": "BigUint",
+            "to": {
+              "type": "string",
               "id": 3
+            },
+            "balance": {
+              "type": "BigUint",
+              "id": 4
             },
             "message": {
               "type": "string",
-              "id": 4
+              "id": 5
             },
             "context": {
               "type": "StateContext",
@@ -826,10 +982,12 @@
                 "consensusUpgrade",
                 "declareFile",
                 "sysUpgrade",
+                "stake",
                 "accountState",
                 "assetState",
                 "channelState",
-                "forgeState"
+                "forgeState",
+                "stakeState"
               ]
             }
           },
@@ -894,6 +1052,10 @@
               "type": "Transaction",
               "id": 23
             },
+            "stake": {
+              "type": "Transaction",
+              "id": 24
+            },
             "accountState": {
               "type": "Transaction",
               "id": 129
@@ -909,6 +1071,10 @@
             "forgeState": {
               "type": "Transaction",
               "id": 132
+            },
+            "stakeState": {
+              "type": "Transaction",
+              "id": 133
             }
           }
         },
@@ -1383,6 +1549,56 @@
             }
           }
         },
+        "RequestGetUnconfirmedTxs": {
+          "fields": {
+            "limit": {
+              "type": "uint32",
+              "id": 1
+            }
+          }
+        },
+        "ResponseGetUnconfirmedTxs": {
+          "fields": {
+            "code": {
+              "type": "StatusCode",
+              "id": 1
+            },
+            "unconfirmedTxs": {
+              "type": "UnconfirmedTxs",
+              "id": 2
+            }
+          }
+        },
+        "RequestGetNetInfo": {
+          "fields": {}
+        },
+        "ResponseGetNetInfo": {
+          "fields": {
+            "code": {
+              "type": "StatusCode",
+              "id": 1
+            },
+            "netInfo": {
+              "type": "NetInfo",
+              "id": 2
+            }
+          }
+        },
+        "RequestGetValidatorsInfo": {
+          "fields": {}
+        },
+        "ResponseGetValidatorsInfo": {
+          "fields": {
+            "code": {
+              "type": "StatusCode",
+              "id": 1
+            },
+            "validatorsInfo": {
+              "type": "ValidatorsInfo",
+              "id": 2
+            }
+          }
+        },
         "ChainRpc": {
           "methods": {
             "create_tx": {
@@ -1405,6 +1621,10 @@
               "responseType": "ResponseGetBlock",
               "responseStream": true
             },
+            "get_unconfirmed_txs": {
+              "requestType": "RequestGetUnconfirmedTxs",
+              "responseType": "ResponseGetUnconfirmedTxs"
+            },
             "get_chain_info": {
               "requestType": "RequestGetChainInfo",
               "responseType": "ResponseGetChainInfo"
@@ -1412,6 +1632,14 @@
             "search": {
               "requestType": "RequestSearch",
               "responseType": "ResponseSearch"
+            },
+            "get_net_info": {
+              "requestType": "RequestGetNetInfo",
+              "responseType": "ResponseGetNetInfo"
+            },
+            "get_validators_info": {
+              "requestType": "RequestGetValidatorsInfo",
+              "responseType": "ResponseGetValidatorsInfo"
             }
           }
         },
@@ -1636,7 +1864,7 @@
               "id": 1
             },
             "value": {
-              "type": "BigUint",
+              "type": "BigSint",
               "id": 2
             },
             "message": {

@@ -93,21 +93,26 @@ class Client {
     } else if (requestStream && responseStream === false) {
       fn = params =>
         new Promise((resolve, reject) => {
-          const request = this._createRequest(requestType, params);
           const stream = rpc(
             this._createResponseHandler({ method, resolve, reject, responseType })
           );
-          stream.write(request);
+          (Array.isArray(params) ? params : [params]).forEach(x => {
+            const request = this._createRequest(requestType, x);
+            stream.write(request);
+          });
           stream.end();
         });
 
       // request & response streaming: return EventEmitter
     } else {
       fn = params => {
-        const request = this._createRequest(requestType, params);
         const stream = rpc();
         const emitter = this._createStreamHandler({ method, stream, responseType });
-        stream.write(request);
+        (Array.isArray(params) ? params : [params]).forEach(x => {
+          debug('stream request', { method, requestType, x });
+          const request = this._createRequest(requestType, x);
+          stream.write(request);
+        });
         stream.end();
         return emitter;
       };

@@ -1,8 +1,8 @@
 const shell = require('shelljs');
-const { client } = require('core/env');
+const { createRpcClient } = require('core/env');
 const { symbols, pretty, hr } = require('core/ui');
 
-async function getChainInfo() {
+async function getChainInfo(client) {
   try {
     const res = await client.getChainInfo();
     shell.echo(`${symbols.success} Chain Info`);
@@ -13,7 +13,7 @@ async function getChainInfo() {
   }
 }
 
-async function getForgeInfo() {
+async function getForgeInfo(client) {
   try {
     const res = await client.getForgeState();
     shell.echo(`${symbols.success} Forge State`);
@@ -25,15 +25,17 @@ async function getForgeInfo() {
 }
 
 async function main({ args: [mode = 'all'] }) {
+  const client = createRpcClient();
+
   if (mode === 'chain') {
-    await getChainInfo();
+    await getChainInfo(client);
   }
   if (mode === 'forge') {
-    await getForgeInfo();
+    await getForgeInfo(client);
   }
   if (mode === 'all') {
-    await getChainInfo();
-    await getForgeInfo();
+    await getChainInfo(client);
+    await getForgeInfo(client);
   }
 }
 

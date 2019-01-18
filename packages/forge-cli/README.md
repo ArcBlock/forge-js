@@ -25,10 +25,12 @@ Usage: forge [options] [command]
 
 Options:
   -V, --version             output the version number
+  -v, --verbose             Output runtime logs when execute the command, used for debug
   -r, --release-dir         Forge release directory path (unzipped), use your own copy forge release
   -t, --release-tarball     Forge release tarball (unzipped), we take care of the rest
   -c, --config-path         Forge config used when starting forge node and initializing gRPC clients
   -g, --socket-grpc         Socket gRPC endpoint to connect, with this you can use forge-cli with a remote node
+  -s, --setup-script        Path to a javascript file that loads application specific protobuf files into forge-sdk
   -h, --help                output usage information
 
 Commands:
@@ -38,13 +40,15 @@ Commands:
   account:list [role]       list all accounts stored in this node, role=[all], default role is all
   me                        Print current unlocked wallet
   block <height>            get the block info from the running node
+  config                    Read and display forge config
+  console                   Attach the current TTY to forge console
   debug                     Print current forge-release, forge-cli and its dependency version
+  init                      download and setup latest forge-core release to this machine
   ps                        list application status for forge (includes tendermint and ipfs)
   reboot                    Restart the forge daemon
   restart <app>             restart the forge managed applications: core/app/tendermint/ipfs
   start                     start forge-core and forge-app
   stop                      stop the forge daemon (forge-core, forge-app, consensus engine, storage engine)
-  init                      download and setup latest forge-core release to this machine
   state [type]              list the information from various components, chain|forge
   tx <hash>                 get a tx detail and display
   tx:send                   send a signed tx to the network

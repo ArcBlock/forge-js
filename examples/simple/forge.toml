@@ -42,7 +42,16 @@ address_format = "base58"
 disabled_tx = ["SysUpgradeTx"]
 
 [forge.web]
-enabled = false
+enabled = true
+
+[forge.stake]
+
+[forge.stake.timeout]
+# for general stake, we do T+1
+general = 86400
+# for node stake, we do T+7
+stake_for_node = 604800
+
 
 [tendermint]
 version = "0.27.3-01"
@@ -73,11 +82,20 @@ persistent_peers = ""
 seed_peers = ""
 
 # timeout for commiting a new block
-timeout_commit = "5s"
+timeout_commit = "200ms"
 
 # create empty blocks in 5s interval
 create_empty_blocks = false
 
+# set if this node runs in a seed mode
+seed_mode = false
+
+log_level = "consensus:info,main:info,state:info,*:error"
+
+max_num_inbound_peers = 40
+max_num_outbound_peers = 10
+
+upnp = false
 
 [tendermint.genesis]
 genesis_time = "2018-11-05T19:22:08.938749Z"
@@ -108,3 +126,9 @@ bootstrap = []
 
 max_file_size.admin = "100M"
 max_file_size.account = "1M"
+
+[cache]
+dc_dump_limit = 50
+dump_log_write_threshold = 50_000
+cache_mnesia_table_timeout = 15_000
+path = "~/.forge_simple/cache/mnesia_data_dir"

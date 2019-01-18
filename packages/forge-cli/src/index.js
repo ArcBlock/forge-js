@@ -11,10 +11,7 @@ const { version } = require('../package.json');
 
 program
   .version(version)
-  // .option(
-  //   '-v, --verbose',
-  //   'Output runtime logs when execute the command, used for debug'
-  // )
+  .option('-v, --verbose', 'Output runtime logs when execute the command, used for debug')
   .option(
     '-r, --release-dir',
     'Forge release directory path (unzipped), use your own copy forge release'
@@ -27,6 +24,10 @@ program
   .option(
     '-g, --socket-grpc',
     'Socket gRPC endpoint to connect, with this you can use forge-cli with a remote node'
+  )
+  .option(
+    '-s, --setup-script',
+    'Path to a javascript file that loads application specific protobuf files into forge-sdk'
   );
 
 initCli(program);

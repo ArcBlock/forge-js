@@ -14,7 +14,7 @@
     "wangshijun <shijun@arcblock.io> (https://ocap.arcblock.io)"
   ],
   "dependencies": {
-    "@arcblock/forge-proto": "latest",
+    "@arcblock/forge-proto": "^0.6.0",
     "@iarna/toml": "^2.2.1",
     "bignumber.js": "^8.0.2",
     "camelcase": "^5.0.0",

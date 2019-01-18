@@ -107,6 +107,17 @@ function deserialize_forge_abi_RequestGetForgeState(buffer_arg) {
   return rpc_pb.RequestGetForgeState.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_forge_abi_RequestGetNetInfo(arg) {
+  if (!(arg instanceof rpc_pb.RequestGetNetInfo)) {
+    throw new Error('Expected argument of type forge_abi.RequestGetNetInfo');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_forge_abi_RequestGetNetInfo(buffer_arg) {
+  return rpc_pb.RequestGetNetInfo.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_forge_abi_RequestGetStakeState(arg) {
   if (!(arg instanceof rpc_pb.RequestGetStakeState)) {
     throw new Error('Expected argument of type forge_abi.RequestGetStakeState');
@@ -127,6 +138,28 @@ function serialize_forge_abi_RequestGetTx(arg) {
 
 function deserialize_forge_abi_RequestGetTx(buffer_arg) {
   return rpc_pb.RequestGetTx.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_forge_abi_RequestGetUnconfirmedTxs(arg) {
+  if (!(arg instanceof rpc_pb.RequestGetUnconfirmedTxs)) {
+    throw new Error('Expected argument of type forge_abi.RequestGetUnconfirmedTxs');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_forge_abi_RequestGetUnconfirmedTxs(buffer_arg) {
+  return rpc_pb.RequestGetUnconfirmedTxs.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_forge_abi_RequestGetValidatorsInfo(arg) {
+  if (!(arg instanceof rpc_pb.RequestGetValidatorsInfo)) {
+    throw new Error('Expected argument of type forge_abi.RequestGetValidatorsInfo');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_forge_abi_RequestGetValidatorsInfo(buffer_arg) {
+  return rpc_pb.RequestGetValidatorsInfo.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_forge_abi_RequestListWallets(arg) {
@@ -316,6 +349,17 @@ function deserialize_forge_abi_ResponseGetForgeState(buffer_arg) {
   return rpc_pb.ResponseGetForgeState.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_forge_abi_ResponseGetNetInfo(arg) {
+  if (!(arg instanceof rpc_pb.ResponseGetNetInfo)) {
+    throw new Error('Expected argument of type forge_abi.ResponseGetNetInfo');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_forge_abi_ResponseGetNetInfo(buffer_arg) {
+  return rpc_pb.ResponseGetNetInfo.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_forge_abi_ResponseGetStakeState(arg) {
   if (!(arg instanceof rpc_pb.ResponseGetStakeState)) {
     throw new Error('Expected argument of type forge_abi.ResponseGetStakeState');
@@ -336,6 +380,28 @@ function serialize_forge_abi_ResponseGetTx(arg) {
 
 function deserialize_forge_abi_ResponseGetTx(buffer_arg) {
   return rpc_pb.ResponseGetTx.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_forge_abi_ResponseGetUnconfirmedTxs(arg) {
+  if (!(arg instanceof rpc_pb.ResponseGetUnconfirmedTxs)) {
+    throw new Error('Expected argument of type forge_abi.ResponseGetUnconfirmedTxs');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_forge_abi_ResponseGetUnconfirmedTxs(buffer_arg) {
+  return rpc_pb.ResponseGetUnconfirmedTxs.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_forge_abi_ResponseGetValidatorsInfo(arg) {
+  if (!(arg instanceof rpc_pb.ResponseGetValidatorsInfo)) {
+    throw new Error('Expected argument of type forge_abi.ResponseGetValidatorsInfo');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_forge_abi_ResponseGetValidatorsInfo(buffer_arg) {
+  return rpc_pb.ResponseGetValidatorsInfo.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_forge_abi_ResponseListWallet(arg) {
@@ -428,6 +494,11 @@ function deserialize_forge_abi_ResponseStoreFile(buffer_arg) {
 
 // forge RPC definition
 //
+// Notice: when you define a new RPC, please follow the naming convention. Your
+// function name is snake case, and req / req are PASCAL case of the function
+// name, prefixed with Request / Response. e.g. rpc get_abc(RequestGetAbc)
+// returns (ResponseGetAbc). If you break this, RPC builder would complain.
+//
 var ChainRpcService = (exports.ChainRpcService = {
   // tx related
   create_tx: {
@@ -474,6 +545,17 @@ var ChainRpcService = (exports.ChainRpcService = {
     responseSerialize: serialize_forge_abi_ResponseGetBlock,
     responseDeserialize: deserialize_forge_abi_ResponseGetBlock,
   },
+  get_unconfirmed_txs: {
+    path: '/forge_abi.ChainRpc/get_unconfirmed_txs',
+    requestStream: false,
+    responseStream: false,
+    requestType: rpc_pb.RequestGetUnconfirmedTxs,
+    responseType: rpc_pb.ResponseGetUnconfirmedTxs,
+    requestSerialize: serialize_forge_abi_RequestGetUnconfirmedTxs,
+    requestDeserialize: deserialize_forge_abi_RequestGetUnconfirmedTxs,
+    responseSerialize: serialize_forge_abi_ResponseGetUnconfirmedTxs,
+    responseDeserialize: deserialize_forge_abi_ResponseGetUnconfirmedTxs,
+  },
   // utility
   get_chain_info: {
     path: '/forge_abi.ChainRpc/get_chain_info',
@@ -496,6 +578,28 @@ var ChainRpcService = (exports.ChainRpcService = {
     requestDeserialize: deserialize_forge_abi_RequestSearch,
     responseSerialize: serialize_forge_abi_ResponseSearch,
     responseDeserialize: deserialize_forge_abi_ResponseSearch,
+  },
+  get_net_info: {
+    path: '/forge_abi.ChainRpc/get_net_info',
+    requestStream: false,
+    responseStream: false,
+    requestType: rpc_pb.RequestGetNetInfo,
+    responseType: rpc_pb.ResponseGetNetInfo,
+    requestSerialize: serialize_forge_abi_RequestGetNetInfo,
+    requestDeserialize: deserialize_forge_abi_RequestGetNetInfo,
+    responseSerialize: serialize_forge_abi_ResponseGetNetInfo,
+    responseDeserialize: deserialize_forge_abi_ResponseGetNetInfo,
+  },
+  get_validators_info: {
+    path: '/forge_abi.ChainRpc/get_validators_info',
+    requestStream: false,
+    responseStream: false,
+    requestType: rpc_pb.RequestGetValidatorsInfo,
+    responseType: rpc_pb.ResponseGetValidatorsInfo,
+    requestSerialize: serialize_forge_abi_RequestGetValidatorsInfo,
+    requestDeserialize: deserialize_forge_abi_RequestGetValidatorsInfo,
+    responseSerialize: serialize_forge_abi_ResponseGetValidatorsInfo,
+    responseDeserialize: deserialize_forge_abi_ResponseGetValidatorsInfo,
   },
 });
 

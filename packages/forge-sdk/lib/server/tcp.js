@@ -15,7 +15,6 @@ function parseHostPort(value) {
 }
 
 // TODO: support middleware like `next` syntax
-// TODO: add test case for tcp server
 async function executeHandlers(handlers, req) {
   let res = {};
   for (const handler of handlers) {

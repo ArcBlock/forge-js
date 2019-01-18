@@ -1,10 +1,10 @@
 const fs = require('fs');
 const os = require('os');
-const getos = require('getos');
 const path = require('path');
+const getos = require('getos');
 const chalk = require('chalk');
-const inquirer = require('inquirer');
 const shell = require('shelljs');
+const inquirer = require('inquirer');
 const pidUsageTree = require('pidusage-tree');
 const pidInfo = require('find-process');
 const prettyTime = require('pretty-ms');
@@ -19,7 +19,6 @@ const requiredDirs = {
   release: path.join(os.homedir(), '.forge-cli/release'),
 };
 
-const client = {}; // global shared rpc client
 const config = { cli: {} }; // global shared forge-cli run time config
 
 async function setupEnv(args, requirements) {
@@ -30,6 +29,8 @@ async function setupEnv(args, requirements) {
   if (requirements.forgeRelease) {
     await ensureForgeRelease(args);
   }
+
+  ensureSetupScript(args);
 
   if (requirements.wallet || requirements.rpcClient) {
     await ensureRpcClient(args);
@@ -98,7 +99,7 @@ function ensureRpcClient(args) {
     const forgeConfig = parseConfig(configPath);
     config.cli.forgeConfigPath = configPath;
     debug(`${symbols.success} Using forge config: ${configPath}`);
-    createRpcClient(forgeConfig);
+    Object.assign(config, forgeConfig);
   } else if (args.socketGrpc) {
     const forgeConfig = {
       forge: {
@@ -108,7 +109,7 @@ function ensureRpcClient(args) {
       },
     };
     debug(`${symbols.info} using forge-cli with remote node ${args.socketGrpc}`);
-    createRpcClient(forgeConfig);
+    Object.assign(config, forgeConfig);
   } else {
     shell.echo(`${symbols.error} forge-cli requires an forge config file to start
 
@@ -167,12 +168,26 @@ async function ensureWallet() {
     },
   ];
 
+  const client = createRpcClient();
   const { address: userAddress, passphrase, useCachedAddress } = await inquirer.prompt(questions);
   const address = useCachedAddress ? cachedAddress : userAddress;
   const { token } = await client.loadWallet({ address, passphrase });
   writeCache('wallet', { address, token, expireAt: Date.now() + config.forge.unlockTtl * 1e3 });
   config.cli.wallet = { address, token };
   debug(`${symbols.success} Use unlocked wallet ${address}`);
+}
+
+/**
+ * If we have application specific protobuf, we need to load that into sdk
+ *
+ * @param {*} args
+ */
+function ensureSetupScript(args) {
+  const setupScript = args.setupScript || process.env.FORGE_SDK_SETUP_SCRIPT;
+  if (setupScript && fs.existsSync(setupScript) && fs.statSync(setupScript).isFile()) {
+    debug(`${symbols.warning} loading custom scripts: ${setupScript}`);
+    require(path.resolve(setupScript));
+  }
 }
 
 /**
@@ -220,10 +235,14 @@ function ensureRequiredDirs() {
   });
 }
 
-function createRpcClient(forgeConfig) {
-  Object.assign(client, new RpcClient(forgeConfig));
-  Object.assign(config, forgeConfig);
-  debug(`${symbols.info} rpc client created!`);
+let client = null;
+function createRpcClient() {
+  if (client) {
+    return client;
+  }
+
+  client = new RpcClient(config);
+  return client;
 }
 
 function runNativeForgeCommand(subCommand) {
@@ -321,13 +340,12 @@ function readCache(key) {
     const filePath = path.join(requiredDirs.cache, `${key}.json`);
     return JSON.parse(fs.readFileSync(filePath));
   } catch (err) {
-    shell.echo(`${symbols.error} cache ${key} read failed!`, err);
+    shell.echo(`${symbols.error} cache ${key} read failed!`);
     return null;
   }
 }
 
 module.exports = {
-  client,
   config,
   cache: {
     write: writeCache,
@@ -343,4 +361,5 @@ module.exports = {
   runNativeForgeCommand,
   getForgeProcesses,
   getPlatform,
+  createRpcClient,
 };

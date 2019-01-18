@@ -2033,7 +2033,7 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
     var f,
       obj = {
         to: jspb.Message.getFieldWithDefault(msg, 1, ''),
-        value: (f = msg.getValue()) && type_pb.BigUint.toObject(includeInstance, f),
+        value: (f = msg.getValue()) && type_pb.BigSint.toObject(includeInstance, f),
         message: jspb.Message.getFieldWithDefault(msg, 3, ''),
         data: (f = msg.getData()) && google_protobuf_any_pb.Any.toObject(includeInstance, f),
       };
@@ -2075,8 +2075,8 @@ proto.forge_abi.StakeTx.deserializeBinaryFromReader = function(msg, reader) {
         msg.setTo(value);
         break;
       case 2:
-        var value = new type_pb.BigUint();
-        reader.readMessage(value, type_pb.BigUint.deserializeBinaryFromReader);
+        var value = new type_pb.BigSint();
+        reader.readMessage(value, type_pb.BigSint.deserializeBinaryFromReader);
         msg.setValue(value);
         break;
       case 3:
@@ -2121,7 +2121,7 @@ proto.forge_abi.StakeTx.serializeBinaryToWriter = function(message, writer) {
   }
   f = message.getValue();
   if (f != null) {
-    writer.writeMessage(2, f, type_pb.BigUint.serializeBinaryToWriter);
+    writer.writeMessage(2, f, type_pb.BigSint.serializeBinaryToWriter);
   }
   f = message.getMessage();
   if (f.length > 0) {
@@ -2147,18 +2147,18 @@ proto.forge_abi.StakeTx.prototype.setTo = function(value) {
 };
 
 /**
- * optional BigUint value = 2;
- * @return {?proto.forge_abi.BigUint}
+ * optional BigSint value = 2;
+ * @return {?proto.forge_abi.BigSint}
  */
 proto.forge_abi.StakeTx.prototype.getValue = function() {
-  return /** @type{?proto.forge_abi.BigUint} */ (jspb.Message.getWrapperField(
+  return /** @type{?proto.forge_abi.BigSint} */ (jspb.Message.getWrapperField(
     this,
-    type_pb.BigUint,
+    type_pb.BigSint,
     2
   ));
 };
 
-/** @param {?proto.forge_abi.BigUint|undefined} value */
+/** @param {?proto.forge_abi.BigSint|undefined} value */
 proto.forge_abi.StakeTx.prototype.setValue = function(value) {
   jspb.Message.setWrapperField(this, 2, value);
 };
