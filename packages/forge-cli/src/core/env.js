@@ -1,6 +1,7 @@
 const fs = require('fs');
 const os = require('os');
 const path = require('path');
+const chalk = require('chalk');
 const inquirer = require('inquirer');
 const shell = require('shelljs');
 const { RpcClient, parseConfig } = require('@arcblock/forge-sdk');
@@ -62,7 +63,15 @@ function ensureForgeRelease(args, exitOn404 = true) {
       }
     }
   } else {
-    shell.echo(`${symbols.error} forge release dir does not exist`);
+    shell.echo(`${symbols.error} forge release dir does not exist
+
+Init with downloaded forge release tarball, will extract to ~/.forge-cli/release
+> ${chalk.cyan('forge init --release-tarball ~/Downloads/forge_darwin_amd64.tgz')}
+
+Start node with custom forge release folder
+> ${chalk.cyan('forge start --release-dir ~/Downloads/forge/')}
+> ${chalk.cyan('FORGE_RELEASE_DIR=~/Downloads/forge/ forge start')}
+    `);
     if (exitOn404) {
       process.exit(1);
     }
@@ -96,7 +105,15 @@ function ensureRpcClient(args) {
     debug(`${symbols.info} using forge-cli with remote node ${args.socketGrpc}`);
     createRpcClient(forgeConfig);
   } else {
-    shell.echo(`${symbols.error} forge-cli requires an forge config file to start`);
+    shell.echo(`${symbols.error} forge-cli requires an forge config file to start
+
+If you have not setup any forge core release on this machine, run this first:
+> ${chalk.cyan('forge init')}
+
+Or you can run forge-cli with custom config path
+> ${chalk.cyan('forge start --config-path ~/Downloads/forge/forge_release.toml')}
+> ${chalk.cyan('FORGE_CONFIG=~/Downloads/forge/forge_release.toml forge start')}
+    `);
     process.exit();
   }
 }

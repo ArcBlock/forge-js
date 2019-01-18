@@ -9,9 +9,6 @@ const prettyBytes = require('pretty-bytes');
 const { config } = require('core/env');
 const { symbols } = require('core/ui');
 
-// const { symbols } = require('core/ui');
-// const { enums } = require('@arcblock/forge-proto');
-
 async function main() {
   const { forgeBinPath, forgeConfigPath } = config.cli;
   const { stdout: pid } = shell.exec(`FORGE_CONFIG=${forgeConfigPath} ${forgeBinPath} pid`, {
