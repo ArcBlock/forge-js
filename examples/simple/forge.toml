@@ -24,7 +24,7 @@ consensus_engine = "tendermint"
 storage_engine = "ipfs"
 hash = "sha3"
 encoding = "base64"
-unlock_ttl = 300
+unlock_ttl = 3600
 
 [forge.limit]
 # max grace period is 10

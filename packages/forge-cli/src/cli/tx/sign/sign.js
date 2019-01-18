@@ -30,7 +30,7 @@ const questions = [
     default: answers => pretty(fakeMessage(answers.type), { colors: false }),
     validate: x => {
       try {
-        safeEval(x);
+        safeEval(x, { client });
       } catch (err) {
         return err.message || err.toString();
       }
@@ -42,7 +42,7 @@ const questions = [
 
 function main(data) {
   const { type, itx: itxStr } = data;
-  const itx = safeEval(itxStr);
+  const itx = safeEval(itxStr, { client });
   const { wallet } = config.cli;
 
   return new Promise(resolve => {
