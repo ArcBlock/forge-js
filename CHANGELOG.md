@@ -1,3 +1,7 @@
+## 0.6.3 (January 18, 2019)
+  - v0.6.2
+  - fix: public config
+
 ## 0.6.2 (January 18, 2019)
   - [forge-cli] feat: support application specific setup scripts
   - [forge-cli] feat: support --verbose option for all command
