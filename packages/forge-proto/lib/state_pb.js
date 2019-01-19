@@ -592,6 +592,7 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
         address: jspb.Message.getFieldWithDefault(msg, 1, ''),
         owner: jspb.Message.getFieldWithDefault(msg, 2, ''),
         moniker: jspb.Message.getFieldWithDefault(msg, 3, ''),
+        readonly: jspb.Message.getFieldWithDefault(msg, 4, false),
         stake: (f = msg.getStake()) && type_pb.StakeContext.toObject(includeInstance, f),
         context: (f = msg.getContext()) && type_pb.StateContext.toObject(includeInstance, f),
         data: (f = msg.getData()) && google_protobuf_any_pb.Any.toObject(includeInstance, f),
@@ -640,6 +641,10 @@ proto.forge_abi.AssetState.deserializeBinaryFromReader = function(msg, reader) {
       case 3:
         var value = /** @type {string} */ (reader.readString());
         msg.setMoniker(value);
+        break;
+      case 4:
+        var value = /** @type {boolean} */ (reader.readBool());
+        msg.setReadonly(value);
         break;
       case 13:
         var value = new type_pb.StakeContext();
@@ -695,6 +700,10 @@ proto.forge_abi.AssetState.serializeBinaryToWriter = function(message, writer) {
   if (f.length > 0) {
     writer.writeString(3, f);
   }
+  f = message.getReadonly();
+  if (f) {
+    writer.writeBool(4, f);
+  }
   f = message.getStake();
   if (f != null) {
     writer.writeMessage(13, f, type_pb.StakeContext.serializeBinaryToWriter);
@@ -746,6 +755,21 @@ proto.forge_abi.AssetState.prototype.getMoniker = function() {
 /** @param {string} value */
 proto.forge_abi.AssetState.prototype.setMoniker = function(value) {
   jspb.Message.setField(this, 3, value);
+};
+
+/**
+ * optional bool readonly = 4;
+ * Note that Boolean fields may be set to 0/1 when serialized from a Java server.
+ * You should avoid comparisons like {@code val === true/false} in those cases.
+ * @return {boolean}
+ */
+proto.forge_abi.AssetState.prototype.getReadonly = function() {
+  return /** @type {boolean} */ (jspb.Message.getFieldWithDefault(this, 4, false));
+};
+
+/** @param {boolean} value */
+proto.forge_abi.AssetState.prototype.setReadonly = function(value) {
+  jspb.Message.setField(this, 4, value);
 };
 
 /**

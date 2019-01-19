@@ -45,6 +45,7 @@ proto.forge_abi.StatusCode = {
   INVALID_STAKE_STATE: 32,
   EXPIRED_WALLET_TOKEN: 33,
   BANNED_UNSTAKE: 34,
+  INVALID_ASSET: 35,
   INTERNAL: 500,
 };
 

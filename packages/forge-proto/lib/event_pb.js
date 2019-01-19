@@ -221,7 +221,7 @@ proto.forge_abi.ResponseSubscribe.ValueCase = {
   BEGIN_BLOCK: 16,
   END_BLOCK: 17,
   DECLARE: 19,
-  ACCOUNT_UPGRADE: 20,
+  UPDATE_ASSET: 20,
   CONSENSUS_UPGRADE: 21,
   DECLARE_FILE: 22,
   SYS_UPGRADE: 23,
@@ -283,8 +283,7 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
           (f = msg.getBeginBlock()) && vendor_pb.RequestBeginBlock.toObject(includeInstance, f),
         endBlock: (f = msg.getEndBlock()) && vendor_pb.RequestEndBlock.toObject(includeInstance, f),
         declare: (f = msg.getDeclare()) && type_pb.Transaction.toObject(includeInstance, f),
-        accountUpgrade:
-          (f = msg.getAccountUpgrade()) && type_pb.Transaction.toObject(includeInstance, f),
+        updateAsset: (f = msg.getUpdateAsset()) && type_pb.Transaction.toObject(includeInstance, f),
         consensusUpgrade:
           (f = msg.getConsensusUpgrade()) && type_pb.Transaction.toObject(includeInstance, f),
         declareFile: (f = msg.getDeclareFile()) && type_pb.Transaction.toObject(includeInstance, f),
@@ -387,7 +386,7 @@ proto.forge_abi.ResponseSubscribe.deserializeBinaryFromReader = function(msg, re
       case 20:
         var value = new type_pb.Transaction();
         reader.readMessage(value, type_pb.Transaction.deserializeBinaryFromReader);
-        msg.setAccountUpgrade(value);
+        msg.setUpdateAsset(value);
         break;
       case 21:
         var value = new type_pb.Transaction();
@@ -505,7 +504,7 @@ proto.forge_abi.ResponseSubscribe.serializeBinaryToWriter = function(message, wr
   if (f != null) {
     writer.writeMessage(19, f, type_pb.Transaction.serializeBinaryToWriter);
   }
-  f = message.getAccountUpgrade();
+  f = message.getUpdateAsset();
   if (f != null) {
     writer.writeMessage(20, f, type_pb.Transaction.serializeBinaryToWriter);
   }
@@ -892,10 +891,10 @@ proto.forge_abi.ResponseSubscribe.prototype.hasDeclare = function() {
 };
 
 /**
- * optional Transaction account_upgrade = 20;
+ * optional Transaction update_asset = 20;
  * @return {?proto.forge_abi.Transaction}
  */
-proto.forge_abi.ResponseSubscribe.prototype.getAccountUpgrade = function() {
+proto.forge_abi.ResponseSubscribe.prototype.getUpdateAsset = function() {
   return /** @type{?proto.forge_abi.Transaction} */ (jspb.Message.getWrapperField(
     this,
     type_pb.Transaction,
@@ -904,7 +903,7 @@ proto.forge_abi.ResponseSubscribe.prototype.getAccountUpgrade = function() {
 };
 
 /** @param {?proto.forge_abi.Transaction|undefined} value */
-proto.forge_abi.ResponseSubscribe.prototype.setAccountUpgrade = function(value) {
+proto.forge_abi.ResponseSubscribe.prototype.setUpdateAsset = function(value) {
   jspb.Message.setOneofWrapperField(
     this,
     20,
@@ -913,15 +912,15 @@ proto.forge_abi.ResponseSubscribe.prototype.setAccountUpgrade = function(value) 
   );
 };
 
-proto.forge_abi.ResponseSubscribe.prototype.clearAccountUpgrade = function() {
-  this.setAccountUpgrade(undefined);
+proto.forge_abi.ResponseSubscribe.prototype.clearUpdateAsset = function() {
+  this.setUpdateAsset(undefined);
 };
 
 /**
  * Returns whether this field is set.
  * @return {!boolean}
  */
-proto.forge_abi.ResponseSubscribe.prototype.hasAccountUpgrade = function() {
+proto.forge_abi.ResponseSubscribe.prototype.hasUpdateAsset = function() {
   return jspb.Message.getField(this, 20) != null;
 };
 
@@ -1244,7 +1243,7 @@ proto.forge_abi.TopicType = {
   BEGIN_BLOCK: 16,
   END_BLOCK: 17,
   DECLARE: 19,
-  ACCOUNT_UPGRADE: 20,
+  UPDATE_ASSET: 20,
   CONSENSUS_UPGRADE: 21,
   DECLARE_FILE: 22,
   SYS_UPGRADE: 23,
