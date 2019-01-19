@@ -268,7 +268,7 @@ describe('#encodeAny', () => {
       value: { to: '' },
     }).toObject();
     expect(typeof message).toEqual('object');
-    expect(message.typeUrl).toEqual('ft/Transfer');
+    expect(message.typeUrl).toEqual('fg:t:transfer');
     expect(message.value).toEqual('');
   });
 
@@ -278,7 +278,7 @@ describe('#encodeAny', () => {
       value: { to: 'abc' },
     }).toObject();
     expect(typeof message).toEqual('object');
-    expect(message.typeUrl).toEqual('ft/Transfer');
+    expect(message.typeUrl).toEqual('fg:t:transfer');
     expect(message.value).toEqual('CgNhYmM=');
   });
 });

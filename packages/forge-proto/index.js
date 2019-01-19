@@ -1,9 +1,11 @@
 const fs = require('fs');
 const path = require('path');
+const decamelize = require('decamelize');
 const { get } = require('lodash');
 const debug = require('debug')(`${require('./package.json').name}`);
 
 const txTypePattern = /Tx$/;
+const lowerUnder = x => decamelize(x).toLowerCase();
 
 // extract spec
 const compactSpec = object => {
@@ -80,10 +82,19 @@ function createTypeUrls(abi) {
     let typeUrl = type;
     if (!/^Request/.test(type) && !/^Response/.test(type)) {
       if (/Tx$/.test(type)) {
-        typeUrl = `ft/${type.replace(/Tx$/, '')}`;
+        typeUrl = `fg:t:${lowerUnder(type.replace(/Tx$/, ''))}`;
       }
       if (/State$/.test(type)) {
-        typeUrl = `fs/${type.replace(/State$/, '')}`;
+        typeUrl = `fg:s:${lowerUnder(type.replace(/State$/, ''))}`;
+      }
+      if (/^StakeFor/.test(type)) {
+        typeUrl = `fg:x:${lowerUnder(`Stake${type.replace(/^StakeFor/, '')}`)}`;
+      }
+      if (['TransactionInfo', 'TxStatus'].includes(type)) {
+        typeUrl = `fg:x:${lowerUnder(type)}`;
+      }
+      if (type === 'DummyCodec') {
+        typeUrl = 'fg:x:address';
       }
     }
 

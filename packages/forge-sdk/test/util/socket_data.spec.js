@@ -48,7 +48,7 @@ describe('#decodePayload', () => {
   test('should decode as expected', () => {
     const payload = {
       tx: {
-        itx: { typeUrl: 'ft/Transfer', value: 'CgQxMjM0EgA=' },
+        itx: { typeUrl: 'fg:t:transfer', value: 'CgQxMjM0EgA=' },
         from: '1234',
         nonce: 2,
         wallet: undefined,

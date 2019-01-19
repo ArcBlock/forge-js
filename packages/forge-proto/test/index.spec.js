@@ -47,8 +47,12 @@ describe('#toTypeUrl', () => {
   });
 
   test('should return correct type_url', () => {
-    expect(toTypeUrl('AccountState')).toEqual('fs/Account');
-    expect(toTypeUrl('TransferTx')).toEqual('ft/Transfer');
+    expect(toTypeUrl('AccountState')).toEqual('fg:s:account');
+    expect(toTypeUrl('TransferTx')).toEqual('fg:t:transfer');
+    expect(toTypeUrl('StakeTx')).toEqual('fg:t:stake');
+    expect(toTypeUrl('StakeForNode')).toEqual('fg:x:stake_node');
+    expect(toTypeUrl('TransactionInfo')).toEqual('fg:x:transaction_info');
+    expect(toTypeUrl('TxStatus')).toEqual('fg:x:tx_status');
     expect(toTypeUrl('RequestCreateTx')).toEqual('RequestCreateTx');
   });
 });
@@ -59,8 +63,11 @@ describe('#fromTypeUrl', () => {
   });
 
   test('should return correct type', () => {
-    expect(fromTypeUrl('fs/Account')).toEqual('AccountState');
-    expect(fromTypeUrl('ft/Transfer')).toEqual('TransferTx');
+    expect(fromTypeUrl('fg:s:account')).toEqual('AccountState');
+    expect(fromTypeUrl('fg:t:transfer')).toEqual('TransferTx');
+    expect(fromTypeUrl('fg:x:stake_node')).toEqual('StakeForNode');
+    expect(fromTypeUrl('fg:x:transaction_info')).toEqual('TransactionInfo');
+    // expect(fromTypeUrl('fg:x:address')).toEqual('DummyCodec');
     expect(fromTypeUrl('RequestCreateTx')).toEqual('RequestCreateTx');
   });
 });
