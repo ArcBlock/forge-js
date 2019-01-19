@@ -1,3 +1,7 @@
+## 0.6.4 (January 19, 2019)
+  - chore: upgrade forge-proto to align with forge@v0.10.15
+  - chore: update readme
+
 ## 0.6.3 (January 18, 2019)
   - v0.6.2
   - fix: public config
