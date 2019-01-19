@@ -17,13 +17,14 @@ const allCommands = [];
  * @param {String} desc documentation of the cli
  * @param {Function} handler cli handler
  */
-function cli(command, desc, handler, { requirements = {}, options = [] } = {}) {
+function cli(command, desc, handler, { requirements = {}, options = [], alias } = {}) {
   allCommands.push({
     command,
     desc,
     handler,
     requirements,
     options,
+    alias,
   });
 }
 
@@ -45,6 +46,10 @@ function initCli(program) {
       .command(x.command)
       .description(x.desc)
       .allowUnknownOption();
+
+    if (x.alias) {
+      command.alias(x.alias);
+    }
 
     (x.options || []).forEach(x => command.option(...x));
 

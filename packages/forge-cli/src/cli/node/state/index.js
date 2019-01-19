@@ -1,10 +1,10 @@
 // eslint-disable-next-line import/no-unresolved
 const { cli, action } = require('core/cli');
-const { execute, run } = require('./info');
+const { execute, run } = require('./state');
 
 cli(
   'state [type]',
-  'list the information from various components, chain|forge',
+  'List the information of the chain and the node, chain|core|net|validator',
   input => action(execute, run, input),
   {
     requirements: {
@@ -13,5 +13,6 @@ cli(
       wallet: false,
     },
     options: [],
+    alias: 'status',
   }
 );

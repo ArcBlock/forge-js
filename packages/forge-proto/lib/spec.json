@@ -175,6 +175,7 @@
             "invalid_stake_state": 32,
             "expired_wallet_token": 33,
             "banned_unstake": 34,
+            "invalid_asset": 35,
             "internal": 500
           }
         },
@@ -825,6 +826,10 @@
               "type": "string",
               "id": 3
             },
+            "readonly": {
+              "type": "bool",
+              "id": 4
+            },
             "stake": {
               "type": "StakeContext",
               "id": 13
@@ -940,7 +945,7 @@
             "begin_block": 16,
             "end_block": 17,
             "declare": 19,
-            "account_upgrade": 20,
+            "update_asset": 20,
             "consensus_upgrade": 21,
             "declare_file": 22,
             "sys_upgrade": 23,
@@ -978,7 +983,7 @@
                 "beginBlock",
                 "endBlock",
                 "declare",
-                "accountUpgrade",
+                "updateAsset",
                 "consensusUpgrade",
                 "declareFile",
                 "sysUpgrade",
@@ -1036,7 +1041,7 @@
               "type": "Transaction",
               "id": 19
             },
-            "accountUpgrade": {
+            "updateAsset": {
               "type": "Transaction",
               "id": 20
             },
@@ -1851,9 +1856,33 @@
         },
         "CreateAssetTx": {
           "fields": {
+            "moniker": {
+              "type": "string",
+              "id": 1
+            },
             "data": {
               "type": "google.protobuf.Any",
+              "id": 2
+            },
+            "readonly": {
+              "type": "bool",
+              "id": 3
+            }
+          }
+        },
+        "UpdateAssetTx": {
+          "fields": {
+            "address": {
+              "type": "string",
               "id": 1
+            },
+            "moniker": {
+              "type": "string",
+              "id": 2
+            },
+            "data": {
+              "type": "google.protobuf.Any",
+              "id": 3
             }
           }
         },
