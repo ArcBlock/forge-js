@@ -5,7 +5,8 @@ const { get } = require('lodash');
 const debug = require('debug')(`${require('./package.json').name}`);
 
 const txTypePattern = /Tx$/;
-const stakeTypePattern = /^StakeFor/;
+const stateTypePattern = /State$/;
+const stakeTypePattern = /^StakeFor/i;
 const lowerUnder = x => decamelize(x).toLowerCase();
 
 // extract spec
@@ -83,14 +84,14 @@ function createTypeUrls(abi) {
   return Object.keys(abi).reduce((typeUrls, type) => {
     let typeUrl = type;
     if (!/^Request/.test(type) && !/^Response/.test(type)) {
-      if (/Tx$/.test(type)) {
-        typeUrl = `fg:t:${lowerUnder(type.replace(/Tx$/, ''))}`;
+      if (txTypePattern.test(type)) {
+        typeUrl = `fg:t:${lowerUnder(type.replace(txTypePattern, ''))}`;
       }
-      if (/State$/.test(type)) {
-        typeUrl = `fg:s:${lowerUnder(type.replace(/State$/, ''))}`;
+      if (stateTypePattern.test(type)) {
+        typeUrl = `fg:s:${lowerUnder(type.replace(stateTypePattern, ''))}`;
       }
-      if (/^StakeFor/.test(type)) {
-        typeUrl = `fg:x:${lowerUnder(`Stake${type.replace(/^StakeFor/, '')}`)}`;
+      if (stakeTypePattern.test(type)) {
+        typeUrl = `fg:x:${lowerUnder(`Stake${type.replace(stakeTypePattern, '')}`)}`;
       }
       if (['TransactionInfo', 'TxStatus'].includes(type)) {
         typeUrl = `fg:x:${lowerUnder(type)}`;
