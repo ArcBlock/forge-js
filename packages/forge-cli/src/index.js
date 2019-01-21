@@ -48,5 +48,5 @@ Examples:
 program.parse(process.argv);
 
 if (program.args.length === 0) {
-  program.outputHelp();
+  program.help();
 }

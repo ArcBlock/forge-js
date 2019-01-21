@@ -268,6 +268,7 @@ async function getForgeProcesses() {
     return [];
   }
 
+  debug(`${symbols.info} forge pid: ${pidNumber}`);
   try {
     const processes = await pidUsageTree(pidNumber);
     const results = await Promise.all(
@@ -275,6 +276,7 @@ async function getForgeProcesses() {
         try {
           const [info] = await pidInfo('pid', x.pid);
           Object.assign(x, info);
+          debug(`${symbols.info} forge managed process info: `, x);
         } catch (err) {
           console.error(`Error getting pid info: ${x.pid}`, err);
         }
@@ -287,7 +289,7 @@ async function getForgeProcesses() {
     return results
       .filter(x => /(forge|tendermint|ipfs)/.test(x.name))
       .map(x => ({
-        name: x.name,
+        name: x.name.replace(path.extname(x.name), ''),
         pid: x.pid,
         uptime: prettyTime(x.elapsed),
         memory: prettyBytes(x.memory),
