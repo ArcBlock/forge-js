@@ -9,6 +9,7 @@ cli(
   {
     requirements: {
       forgeRelease: true,
+      runningNode: true,
       rpcClient: true,
     },
     options: [],

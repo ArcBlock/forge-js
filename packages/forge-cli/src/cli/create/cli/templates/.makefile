@@ -2,7 +2,7 @@ MUSTACHE=mustache
 TPL_FILES = $(shell find . -name "*.tpl")
 TARGET_FILES=$(TPL_FILES:%.tpl=%)
 
-TPL_DATA = '{"name": "$(NAME)", "action": "${ACTION}", "description": "${DESCRIPTION}", "requireRelease": "${REQUIRE_RELEASE}", "requireRpcClient": "${REQUIRE_RPC_CLIENT}", "requireWallet": "${REQUIRE_WALLET}"}'
+TPL_DATA = '{"name": "$(NAME)", "action": "${ACTION}", "description": "${DESCRIPTION}", "requireRelease": "${REQUIRE_RELEASE}", "requireRpcClient": "${REQUIRE_RPC_CLIENT}", "requireWallet": "${REQUIRE_WALLET}", "requireRunningNode": "${REQUIRE_RUNNING_NODE}"}'
 
 mustache: $(TARGET_FILES) rename
 
