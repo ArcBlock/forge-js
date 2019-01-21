@@ -4,6 +4,7 @@ const path = require('path');
 const getos = require('getos');
 const chalk = require('chalk');
 const shell = require('shelljs');
+const semver = require('semver');
 const inquirer = require('inquirer');
 const pidUsageTree = require('pidusage-tree');
 const pidInfo = require('find-process');
@@ -58,6 +59,7 @@ function ensureForgeRelease(args, exitOn404 = true) {
     const forgeBinPath = path.join(releaseDir, './bin/forge');
     if (fs.existsSync(forgeBinPath) && fs.statSync(forgeBinPath).isFile()) {
       config.cli.releaseDir = releaseDir;
+      config.cli.releaseVersion = findReleaseVersion(releaseDir);
       config.cli.forgeBinPath = forgeBinPath;
       debug(`${symbols.success} Using forge release dir: ${releaseDir}`);
       debug(`${symbols.success} Using forge executable: ${forgeBinPath}`);
@@ -195,25 +197,50 @@ function ensureSetupScript(args) {
  *
  * @returns String
  */
-function findReleaseConfig(releaseDir) {
+function createFileFinder(keyword, filePath) {
+  return function(releaseDir) {
+    if (!releaseDir) {
+      return '';
+    }
+
+    const libDir = path.join(releaseDir, 'lib');
+    if (!fs.existsSync(libDir) || !fs.statSync(libDir).isDirectory()) {
+      return '';
+    }
+
+    const pattern = new RegExp(`^${keyword}`, 'i');
+    const sdkDir = fs.readdirSync(libDir).find(x => pattern.test(x));
+    if (sdkDir) {
+      const releaseFile = path.join(libDir, sdkDir, filePath);
+      if (fs.existsSync(releaseFile) && fs.statSync(releaseFile).isFile()) {
+        return releaseFile;
+      }
+    }
+
+    return '';
+  };
+}
+const findReleaseConfig = createFileFinder('forge_sdk', 'priv/forge_release.toml');
+
+/**
+ * Find version of current forge release
+ *
+ * @param {*} releaseDir
+ * @returns String
+ */
+function findReleaseVersion(releaseDir) {
   if (!releaseDir) {
     return '';
   }
 
-  const libDir = path.join(releaseDir, 'lib');
-  if (!fs.existsSync(libDir) || !fs.statSync(libDir).isDirectory()) {
+  const parentDir = path.join(releaseDir, 'releases');
+  if (!fs.existsSync(parentDir) || !fs.statSync(parentDir).isDirectory()) {
     return '';
   }
 
-  const sdkDir = fs.readdirSync(libDir).find(x => /^forge_sdk/.test(x));
-  if (sdkDir) {
-    const releaseConfigPath = path.join(libDir, sdkDir, 'priv/forge_release.toml');
-    if (fs.existsSync(releaseConfigPath) && fs.statSync(releaseConfigPath).isFile()) {
-      return releaseConfigPath;
-    }
-  }
-
-  return '';
+  return fs
+    .readdirSync(parentDir)
+    .find(x => fs.statSync(path.join(parentDir, x)).isDirectory() && semver.valid(x));
 }
 
 /**
@@ -268,6 +295,7 @@ async function getForgeProcesses() {
     return [];
   }
 
+  debug(`${symbols.info} forge pid: ${pidNumber}`);
   try {
     const processes = await pidUsageTree(pidNumber);
     const results = await Promise.all(
@@ -275,6 +303,7 @@ async function getForgeProcesses() {
         try {
           const [info] = await pidInfo('pid', x.pid);
           Object.assign(x, info);
+          debug(`${symbols.info} forge managed process info: `, x);
         } catch (err) {
           console.error(`Error getting pid info: ${x.pid}`, err);
         }
@@ -287,11 +316,11 @@ async function getForgeProcesses() {
     return results
       .filter(x => /(forge|tendermint|ipfs)/.test(x.name))
       .map(x => ({
-        name: x.name,
+        name: x.name.replace(path.extname(x.name), ''),
         pid: x.pid,
         uptime: prettyTime(x.elapsed),
         memory: prettyBytes(x.memory),
-        cpu: x.cpu,
+        cpu: `${x.cpu.toFixed(2)} %`,
       }));
   } catch (err) {
     console.error(err);
@@ -352,9 +381,12 @@ module.exports = {
     read: readCache,
   },
 
+  debug,
   setupEnv,
   requiredDirs,
   findReleaseConfig,
+  findReleaseVersion,
+  createFileFinder,
   ensureRequiredDirs,
   ensureForgeRelease,
   ensureRpcClient,

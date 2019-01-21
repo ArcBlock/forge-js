@@ -3,14 +3,13 @@
 // Add the root project directory to the app module search path:
 require('app-module-path').addPath(__dirname);
 const chalk = require('chalk');
+const shell = require('shelljs');
 const program = require('commander');
 
 // eslint-disable-next-line import/no-unresolved
 const { initCli } = require('core/cli');
-const { version } = require('../package.json');
 
 program
-  .version(version)
   .option('-v, --verbose', 'Output runtime logs when execute the command, used for debug')
   .option(
     '-r, --release-dir',
@@ -32,16 +31,20 @@ program
 
 initCli(program);
 
-program.parse(process.argv);
-
-if (program.args.length === 0)
-  program.help(text => {
-    return `${text}
+program.on('--help', () => {
+  shell.echo(`
 Examples:
 
   Be sure to initialize before running any other commands
   > ${chalk.cyan('forge init')}
 
   Connect to a remote forge node without starting one
-  > ${chalk.cyan('forge chain:info --socket-grpc "tcp://10.0.0.1:9527"')}`;
-  });
+  > ${chalk.cyan('forge chain:info --socket-grpc "tcp://10.0.0.1:9527"')}
+  `);
+});
+
+program.parse(process.argv);
+
+if (program.args.length === 0) {
+  program.help();
+}
