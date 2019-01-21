@@ -8,10 +8,8 @@ const program = require('commander');
 
 // eslint-disable-next-line import/no-unresolved
 const { initCli } = require('core/cli');
-const { version } = require('../package.json');
 
 program
-  .version(version)
   .option('-v, --verbose', 'Output runtime logs when execute the command, used for debug')
   .option(
     '-r, --release-dir',
