@@ -7,7 +7,7 @@
 * Linux/Mac Command Line, iTerm is recommended.
 * Node.js: npm/yarn, please install using [nvm](https://github.com/creationix/nvm).
 
-## install
+## Install
 
 ```shell
 npm install -g @arcblock/forge-cli
@@ -16,6 +16,8 @@ npm install -g @arcblock/forge-cli
 Now `forge` command is available to all new shell sessions.
 
 ## Usage
+
+> v0.6.5 is a breaking change release, please `rm -rf ~/.forge-cli` before run `forge init`.
 
 Run `forge` and get available options and subcommands.
 
