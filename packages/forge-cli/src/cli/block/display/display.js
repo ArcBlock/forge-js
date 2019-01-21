@@ -1,5 +1,6 @@
 const shell = require('shelljs');
-const { createRpcClient } = require('core/env');
+const chalk = require('chalk');
+const { createRpcClient, debug } = require('core/env');
 const { symbols, pretty } = require('core/ui');
 
 async function execute({ args: [argHeight] }) {
@@ -12,17 +13,23 @@ async function execute({ args: [argHeight] }) {
     const stream = await client.getBlock({ height: argHeight });
     stream
       .on('data', function(result) {
-        if (result && result.code === 0) {
-          shell.echo(`${pretty(result.$format().block)}`);
-        } else {
-          shell.echo(`${symbols.error} get block info error: ${pretty(result)}`);
-        }
+        shell.echo(`${pretty(result.$format().block)}`);
       })
       .on('error', err => {
-        shell.echo(`${symbols.error} error: ${err}`);
+        debug(err);
+        shell.echo(
+          `${symbols.error} block not found, maybe invalid height, run ${chalk.cyan(
+            'forge status chain'
+          )} to check latest height?`
+        );
       });
   } catch (err) {
-    shell.echo(`${symbols.error} error: ${err}`);
+    debug(err);
+    shell.echo(
+      `${symbols.error} block not found, maybe invalid height, run ${chalk.cyan(
+        'forge status chain'
+      )} to check latest height?`
+    );
   }
 }
 

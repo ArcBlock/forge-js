@@ -1,5 +1,5 @@
 const shell = require('shelljs');
-const { createRpcClient } = require('core/env');
+const { createRpcClient, debug } = require('core/env');
 const { symbols, pretty } = require('core/ui');
 
 async function execute({ args: [hash] }) {
@@ -15,10 +15,12 @@ async function execute({ args: [hash] }) {
         }
       })
       .on('error', err => {
-        shell.echo(`${symbols.error} error: ${err}`);
+        debug.error(err, err.errno, err.errcode);
+        shell.echo(`${symbols.error} transaction not found, maybe a invalid hash?`);
       });
   } catch (err) {
-    shell.echo(`${symbols.error} error: ${err}`);
+    debug.error(err);
+    shell.echo(`${symbols.error} transaction not found, check invalid hash?`);
   }
 }
 
