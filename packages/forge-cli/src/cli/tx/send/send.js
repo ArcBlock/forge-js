@@ -3,7 +3,7 @@ const chalk = require('chalk');
 const inquirer = require('inquirer');
 const shell = require('shelljs');
 const safeEval = require('safe-eval');
-const { transactions } = require('@arcblock/forge-proto');
+const { enums } = require('@arcblock/forge-proto');
 const { fakeMessage } = require('@arcblock/forge-sdk');
 const { symbols, hr, pretty } = require('core/ui');
 const { createRpcClient, config } = require('core/env');
@@ -11,7 +11,7 @@ const debug = require('debug')(require('../../../../package.json').name);
 
 inquirer.registerPrompt('autocomplete', require('inquirer-autocomplete-prompt'));
 
-const fakeMessages = transactions.reduce((acc, x) => {
+const fakeMessages = enums.SupportedTxs.reduce((acc, x) => {
   acc[x] = pretty(fakeMessage(x), { colors: false });
   return acc;
 }, {});
@@ -24,7 +24,7 @@ const questions = [
     source: (_, input) =>
       Promise.resolve(
         fuzzy
-          .filter(input || '', transactions)
+          .filter(input || '', enums.SupportedTxs)
           .map(x => x.original)
           .sort()
       ),

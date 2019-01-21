@@ -5,6 +5,8 @@ const { get } = require('lodash');
 const debug = require('debug')(`${require('./package.json').name}`);
 
 const txTypePattern = /Tx$/;
+const stateTypePattern = /State$/;
+const stakeTypePattern = /^StakeFor/i;
 const lowerUnder = x => decamelize(x).toLowerCase();
 
 // extract spec
@@ -67,8 +69,9 @@ function processJs(baseDir) {
     }, {});
 
   const transactions = Object.keys(types).filter(x => txTypePattern.test(x));
+  const stakes = Object.keys(types).filter(x => stakeTypePattern.test(x));
 
-  return { types, vendorTypes, services, clients, transactions };
+  return { types, vendorTypes, services, clients, transactions, stakes };
 }
 
 /**
@@ -81,14 +84,14 @@ function createTypeUrls(abi) {
   return Object.keys(abi).reduce((typeUrls, type) => {
     let typeUrl = type;
     if (!/^Request/.test(type) && !/^Response/.test(type)) {
-      if (/Tx$/.test(type)) {
-        typeUrl = `fg:t:${lowerUnder(type.replace(/Tx$/, ''))}`;
+      if (txTypePattern.test(type)) {
+        typeUrl = `fg:t:${lowerUnder(type.replace(txTypePattern, ''))}`;
       }
-      if (/State$/.test(type)) {
-        typeUrl = `fg:s:${lowerUnder(type.replace(/State$/, ''))}`;
+      if (stateTypePattern.test(type)) {
+        typeUrl = `fg:s:${lowerUnder(type.replace(stateTypePattern, ''))}`;
       }
-      if (/^StakeFor/.test(type)) {
-        typeUrl = `fg:x:${lowerUnder(`Stake${type.replace(/^StakeFor/, '')}`)}`;
+      if (stakeTypePattern.test(type)) {
+        typeUrl = `fg:x:${lowerUnder(`Stake${type.replace(stakeTypePattern, '')}`)}`;
       }
       if (['TransactionInfo', 'TxStatus'].includes(type)) {
         typeUrl = `fg:x:${lowerUnder(type)}`;
@@ -149,11 +152,16 @@ function processJson(filePath, packageName) {
 const extraTypes = {};
 const extraSpec = {};
 const extraTypeUrls = {};
-const { types, vendorTypes, clients, transactions } = processJs(path.resolve(__dirname, './lib/'));
+const { types, vendorTypes, clients, transactions, stakes } = processJs(
+  path.resolve(__dirname, './lib/')
+);
 const { messages, enums, rpcs, spec, typeUrls } = processJson(
   path.resolve(__dirname, './lib/spec.json'),
   'forge_abi'
 );
+
+enums.SupportedTxs = transactions;
+enums.SupportedStakes = stakes;
 
 // Append app specific proto definition into search space
 function addSource({ baseDir, packageName, typeUrls: _typeUrls }) {
@@ -206,7 +214,6 @@ function fromTypeUrl(url) {
 module.exports = {
   enums,
   messages,
-  transactions,
   rpcs: Object.keys(clients).reduce((acc, x) => {
     acc[x] = clients[x];
     acc[x].methods = rpcs[x];
