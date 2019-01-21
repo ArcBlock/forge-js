@@ -108,8 +108,8 @@ async function ensureRunningNode() {
 
   const pidNumber = Number(pid);
   if (!pidNumber) {
-    shell.echo(`${symbols.error} forge is not running!`);
-    shell.echo(`${symbols.info} Please run ${chalk.cyan('forge start')} to start the node first`);
+    shell.echo(`${symbols.error} forge is not started yet!`);
+    shell.echo(`${symbols.info} Please run ${chalk.cyan('forge start')} first!`);
     process.exit(0);
   }
 
