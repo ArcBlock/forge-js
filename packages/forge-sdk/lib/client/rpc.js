@@ -256,9 +256,7 @@ class Client {
 
       const res = response.toObject();
       if (res.code) {
-        return reject(
-          new Error(`gRPC response error: ${messages.StatusCode[res.code]}, method: ${method}`)
-        );
+        return reject(this._createResponseError(res.code, method));
       }
 
       attachFormatFn(responseType, res);
@@ -281,12 +279,7 @@ class Client {
       .on('data', response => {
         const res = response.toObject();
         if (res.code) {
-          emitter.emit(
-            'error',
-            new Error(
-              `gRPC stream response error: ${messages.StatusCode[res.code]}, method: ${method}`
-            )
-          );
+          emitter.emit('error', this._createResponseError(res.code, method));
           return;
         }
 
@@ -298,6 +291,13 @@ class Client {
       });
 
     return emitter;
+  }
+
+  _createResponseError(code, method) {
+    const error = new Error(`gRPC response error: ${messages.StatusCode[code]}, method: ${method}`);
+    error.errcode = messages.StatusCode[code];
+    error.errno = code;
+    return error;
   }
 }
 

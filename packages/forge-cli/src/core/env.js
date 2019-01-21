@@ -374,6 +374,12 @@ function readCache(key) {
   }
 }
 
+debug.error = (...args) => {
+  if (debug.enabled) {
+    console.error(...args);
+  }
+};
+
 module.exports = {
   config,
   cache: {
