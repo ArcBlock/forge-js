@@ -320,7 +320,7 @@ async function getForgeProcesses() {
         pid: x.pid,
         uptime: prettyTime(x.elapsed),
         memory: prettyBytes(x.memory),
-        cpu: x.cpu,
+        cpu: `${x.cpu.toFixed(2)} %`,
       }));
   } catch (err) {
     console.error(err);
