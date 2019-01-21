@@ -300,7 +300,7 @@ function createRpcClient() {
   return client;
 }
 
-function runNativeForgeCommand(subCommand) {
+function runNativeForgeCommand(subCommand, options = {}) {
   return function() {
     const { forgeBinPath, forgeConfigPath } = config.cli;
     if (!forgeBinPath) {
@@ -308,7 +308,9 @@ function runNativeForgeCommand(subCommand) {
       return;
     }
 
-    return shell.exec(`FORGE_CONFIG=${forgeConfigPath} ${forgeBinPath} ${subCommand}`);
+    const command = `FORGE_CONFIG=${forgeConfigPath} ${forgeBinPath} ${subCommand}`;
+    debug('runNativeForgeCommand', command);
+    return shell.exec(command, options);
   };
 }
 

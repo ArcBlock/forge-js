@@ -1,15 +1,18 @@
 // eslint-disable-next-line import/no-unresolved
 const { cli, action } = require('core/cli');
-const { execute, run } = require('./node');
+const { execute, run } = require('./web');
 
 cli(
-  'backup:node',
-  'allow forge admin to backup the current node',
+  'web <action>',
+  'Start or stop the web UI of running forge node',
   input => action(execute, run, input),
   {
     requirements: {
       forgeRelease: true,
-      rpcClient: false,
+      runningNode: true,
+      rpcClient: true,
+      wallet: false,
     },
+    options: [],
   }
 );
