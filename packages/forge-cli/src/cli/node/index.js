@@ -10,3 +10,4 @@ exports.start = require('./start');
 exports.state = require('./state');
 exports.stop = require('./stop');
 exports.version = require('./version');
+exports.web = require('./web');
