@@ -1,3 +1,12 @@
+## 0.6.5 (January 21, 2019)
+  - [forge-cli] support simulator related commands #41
+  - [forge-cli] support simulator in initialize process
+  - [forge-cli] start web service from cli #44 (#56)
+  - declare and stake support (#55)
+  - require a running node for some command (#54)
+  - better error message if the tx/block not exist #45 (#53)
+  - improve `forge version` (#52)
+
 ## 0.6.4 (January 19, 2019)
   - chore: upgrade forge-proto to align with forge@v0.10.15
   - chore: update readme

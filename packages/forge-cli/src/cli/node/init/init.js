@@ -1,14 +1,13 @@
 // const wget = require('wget');
 // const progress = require('progress');
-const fs = require('fs');
 const path = require('path');
 const shell = require('shelljs');
 const chalk = require('chalk');
 const github = require('octonode');
-const args = require('yargs').argv;
 const { symbols, getSpinner } = require('core/ui');
 const {
   config,
+  debug,
   requiredDirs,
   ensureForgeRelease,
   findReleaseConfig,
@@ -18,9 +17,7 @@ const { GITHUB_TOKEN } = process.env;
 
 const client = github.client(GITHUB_TOKEN);
 
-// TODO: config file formats
 // TODO: release dir cleanup
-// TODO: guess forge release name and confirm with user
 
 function releaseDirExists() {
   if (ensureForgeRelease({}, false)) {
@@ -42,19 +39,21 @@ function fetchRelease(platform) {
     const repo = client.repo('ArcBlock/forge');
     repo.releases((err, releases) => {
       if (err) {
-        console.trace(err);
+        debug.error(err);
         spinner.fail(`Forge release info fetched error: ${err.message}`);
         return reject(err);
       }
 
-      const pattern = new RegExp(`_${platform}_`, 'i');
-      const release = releases.find(x => x.assets.some(a => pattern.test(a.name)));
+      const forgePattern = new RegExp(`forge_${platform}_`, 'i');
+      const simulatorPattern = new RegExp(`simulator_${platform}_`, 'i');
+      const release = releases.find(x => x.assets.some(a => forgePattern.test(a.name)));
       if (release) {
         spinner.succeed(
           `Latest forge release is ${release.tag_name}(#${release.id} on ${release.created_at})`
         );
-        const asset = release.assets.find(x => pattern.test(x.name));
-        resolve({ release, asset });
+        const forgeAsset = release.assets.find(x => forgePattern.test(x.name));
+        const simulatorAsset = release.assets.find(x => simulatorPattern.test(x.name));
+        resolve({ release, forgeAsset, simulatorAsset });
       } else {
         spinner.fail(`No suitable forge release found for platform ${platform}`);
         reject(new Error('No compatible release found'));
@@ -67,7 +66,7 @@ function downloadAsset(release, asset) {
   return new Promise((resolve, reject) => {
     const assetOutput = `/tmp/${asset.name}`;
     shell.exec(`rm -f ${assetOutput}`);
-    const spinner = getSpinner(`Download forge release ${asset.name}...`);
+    const spinner = getSpinner(`Download release asset ${asset.name}...`);
     spinner.start();
     shell.exec(
       `fetch --repo="https://github.com/arcblock/forge" \
@@ -75,15 +74,15 @@ function downloadAsset(release, asset) {
       --release-asset="${asset.name}" \
       --github-oauth-token="${GITHUB_TOKEN}" \
       /tmp`,
-      { async: true },
+      { async: true, silent: true },
       (code, _, stderr) => {
         if (code === 0) {
-          spinner.succeed(`Forge release downloaded to ${assetOutput}`);
+          spinner.succeed(`${asset.name} downloaded to ${assetOutput}`);
           return resolve(assetOutput);
         }
 
         spinner.fail(stderr);
-        reject(new Error('release download failed'));
+        reject(new Error(`${asset.name} download failed`));
       }
     );
   });
@@ -113,23 +112,26 @@ function ensureGithubToken() {
   }
 }
 
-function expandReleaseTarball(filePath) {
+function expandReleaseTarball(filePath, subFolder) {
   const fileName = path.basename(filePath);
-  shell.exec(`cp ${filePath} ${requiredDirs.release}/`);
-  shell.exec(`cd ${requiredDirs.release} && tar -zxf ${fileName} && rm -f ${fileName}`);
+  const targetDir = path.join(requiredDirs.release, subFolder);
+  shell.exec(`mkdir -p ${targetDir}`);
+  shell.exec(`cp ${filePath} ${targetDir}`);
+  shell.exec(`cd ${targetDir} && tar -zxf ${fileName} && rm -f ${fileName}`);
+  shell.echo(`${symbols.success} Expand release asset ${filePath} to ${targetDir}`);
 }
 
 function copyReleaseConfig() {
   const configPath = findReleaseConfig(requiredDirs.release);
   if (configPath) {
     const baseDir = path.dirname(requiredDirs.release);
-    shell.echo(`${symbols.success} extract forge config from ${configPath}`);
+    shell.echo(`${symbols.success} Extract forge config from ${configPath}`);
     shell.exec(`cp ${configPath} ${baseDir}/`);
     shell.echo(
-      `${symbols.success} forge config written to ${baseDir}/${path.basename(configPath)}`
+      `${symbols.success} Forge config written to ${baseDir}/${path.basename(configPath)}`
     );
   } else {
-    shell.echo(`${symbols.error} forge config not found under release folder`);
+    shell.echo(`${symbols.error} Forge config not found under release folder`);
     process.exit(1);
   }
 }
@@ -137,34 +139,32 @@ function copyReleaseConfig() {
 async function main() {
   try {
     const platform = await getPlatform();
-    shell.echo(`${symbols.info} detected platform is: ${platform}`);
+    shell.echo(`${symbols.info} Detected platform is: ${platform}`);
 
     if (releaseDirExists()) {
       process.exit(1);
       return;
     }
 
-    const { releaseTarball } = args;
-    let releaseFilePath = '';
-    if (releaseTarball && fs.existsSync(releaseTarball) && fs.statSync(releaseTarball).isFile()) {
-      shell.echo(`${symbols.info} use existing forge release tarball: ${releaseTarball}`);
-      releaseFilePath = releaseTarball;
-    } else {
-      ensureGithubToken();
-      ensureFetchCLI();
-      const { release, asset } = await fetchRelease(platform);
-      releaseFilePath = await downloadAsset(release, asset);
-    }
-
-    expandReleaseTarball(releaseFilePath);
+    ensureGithubToken();
+    ensureFetchCLI();
+    const { release, forgeAsset, simulatorAsset } = await fetchRelease(platform);
+    const forgeTarball = await downloadAsset(release, forgeAsset);
+    // const forgeTarball = `/tmp/${forgeAsset.name}`;
+    expandReleaseTarball(forgeTarball, 'forge');
     copyReleaseConfig();
+
+    const simulatorTarball = await downloadAsset(release, simulatorAsset);
+    // const simulatorTarball = `/tmp/${simulatorAsset.name}`;
+    expandReleaseTarball(simulatorTarball, 'simulator');
+
     shell.echo(`${symbols.success} Congratulations! forge initialized successfully!`);
     shell.echo('');
     shell.echo(`Now you can start a forge node with ${chalk.cyan('forge start')}`);
     shell.echo('');
   } catch (err) {
-    console.error(err);
-    shell.echo(`${symbols.error} forge initialize failed, please try again later`);
+    debug.error(err);
+    shell.echo(`${symbols.error} Forge initialize failed, please try again later`);
   }
 }
 
