@@ -68,7 +68,12 @@ function ensureForgeRelease(args, exitOn404 = true) {
 
   const releaseDir = argReleaseDir || envReleaseDir || cliReleaseDir;
   if (fs.existsSync(releaseDir)) {
-    const forgeBinPath = path.join(releaseDir, './bin/forge');
+    const simulatorBinPath = path.join(releaseDir, './simulator/bin/forge');
+    if (fs.existsSync(simulatorBinPath) && fs.statSync(simulatorBinPath).isFile()) {
+      config.cli.simulatorBinPath = simulatorBinPath;
+    }
+
+    const forgeBinPath = path.join(releaseDir, './forge/bin/forge');
     if (fs.existsSync(forgeBinPath) && fs.statSync(forgeBinPath).isFile()) {
       config.cli.releaseDir = releaseDir;
       config.cli.releaseVersion = findReleaseVersion(releaseDir);
@@ -84,9 +89,6 @@ function ensureForgeRelease(args, exitOn404 = true) {
     }
   } else {
     shell.echo(`${symbols.error} forge release dir does not exist
-
-Init with downloaded forge release tarball, will extract to ~/.forge-cli/release
-> ${chalk.cyan('forge init --release-tarball ~/Downloads/forge_darwin_amd64.tgz')}
 
 Start node with custom forge release folder
 > ${chalk.cyan('forge start --release-dir ~/Downloads/forge/')}
@@ -231,7 +233,7 @@ function createFileFinder(keyword, filePath) {
       return '';
     }
 
-    const libDir = path.join(releaseDir, 'lib');
+    const libDir = path.join(releaseDir, 'forge/lib');
     if (!fs.existsSync(libDir) || !fs.statSync(libDir).isDirectory()) {
       return '';
     }
