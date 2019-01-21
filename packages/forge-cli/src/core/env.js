@@ -22,19 +22,31 @@ const requiredDirs = {
 
 const config = { cli: {} }; // global shared forge-cli run time config
 
+/**
+ * Setup running env for various commands, the check order for each requirement is important
+ * Since a running node requires a release directory
+ * An unlocked wallet requires a valid config
+ *
+ * @param {*} args
+ * @param {*} requirements
+ */
 async function setupEnv(args, requirements) {
   debug('setupEnv.args', { args, requirements });
 
   ensureRequiredDirs();
 
-  if (requirements.forgeRelease) {
+  if (requirements.forgeRelease || requirements.runningNode) {
     await ensureForgeRelease(args);
   }
 
   ensureSetupScript(args);
 
-  if (requirements.wallet || requirements.rpcClient) {
+  if (requirements.wallet || requirements.rpcClient || requirements.runningNode) {
     await ensureRpcClient(args);
+  }
+
+  if (requirements.runningNode) {
+    await ensureRunningNode(args);
   }
 
   if (requirements.wallet) {
@@ -86,6 +98,22 @@ Start node with custom forge release folder
   }
 
   return false;
+}
+
+async function ensureRunningNode() {
+  const { forgeBinPath, forgeConfigPath } = config.cli;
+  const { stdout: pid } = shell.exec(`FORGE_CONFIG=${forgeConfigPath} ${forgeBinPath} pid`, {
+    silent: true,
+  });
+
+  const pidNumber = Number(pid);
+  if (!pidNumber) {
+    shell.echo(`${symbols.error} forge is not running!`);
+    shell.echo(`${symbols.info} Please run ${chalk.cyan('forge start')} to start the node first`);
+    process.exit(0);
+  }
+
+  return true;
 }
 
 /**
