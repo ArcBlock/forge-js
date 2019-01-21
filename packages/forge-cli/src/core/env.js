@@ -68,7 +68,7 @@ function ensureForgeRelease(args, exitOn404 = true) {
 
   const releaseDir = argReleaseDir || envReleaseDir || cliReleaseDir;
   if (fs.existsSync(releaseDir)) {
-    const simulatorBinPath = path.join(releaseDir, './simulator/bin/forge');
+    const simulatorBinPath = path.join(releaseDir, './simulator/bin/simulator');
     if (fs.existsSync(simulatorBinPath) && fs.statSync(simulatorBinPath).isFile()) {
       config.cli.simulatorBinPath = simulatorBinPath;
     }
@@ -316,6 +316,20 @@ function runNativeForgeCommand(subCommand, options = {}) {
   };
 }
 
+function runNativeSimulatorCommand(subCommand, options = {}) {
+  return function() {
+    const { simulatorBinPath, forgeConfigPath } = config.cli;
+    if (!simulatorBinPath) {
+      shell.echo(`${symbols.error} simulatorBinPath not found, abort!`);
+      return;
+    }
+
+    const command = `FORGE_CONFIG=${forgeConfigPath} ${simulatorBinPath} ${subCommand}`;
+    debug('runNativeSimulatorCommand', command);
+    return shell.exec(command, options);
+  };
+}
+
 async function getForgeProcesses() {
   const { forgeBinPath, forgeConfigPath } = config.cli;
   const { stdout: pid } = shell.exec(`FORGE_CONFIG=${forgeConfigPath} ${forgeBinPath} pid`, {
@@ -429,6 +443,7 @@ module.exports = {
   ensureForgeRelease,
   ensureRpcClient,
   runNativeForgeCommand,
+  runNativeSimulatorCommand,
   getForgeProcesses,
   getPlatform,
   createRpcClient,
