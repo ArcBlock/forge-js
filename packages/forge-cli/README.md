@@ -24,10 +24,8 @@ Run `forge` and get available options and subcommands.
 Usage: forge [options] [command]
 
 Options:
-  -V, --version             output the version number
   -v, --verbose             Output runtime logs when execute the command, used for debug
   -r, --release-dir         Forge release directory path (unzipped), use your own copy forge release
-  -t, --release-tarball     Forge release tarball (unzipped), we take care of the rest
   -c, --config-path         Forge config used when starting forge node and initializing gRPC clients
   -g, --socket-grpc         Socket gRPC endpoint to connect, with this you can use forge-cli with a remote node
   -s, --setup-script        Path to a javascript file that loads application specific protobuf files into forge-sdk
@@ -43,16 +41,21 @@ Commands:
   config                    Read and display forge config
   console                   Attach the current TTY to forge console
   debug                     Print current forge-release, forge-cli and its dependency version
+  declare:node              Declare the current node to be a validator candidate
   init                      download and setup latest forge-core release to this machine
   ps                        list application status for forge (includes tendermint and ipfs)
   reboot                    Restart the forge daemon
   restart <app>             restart the forge managed applications: core/app/tendermint/ipfs
+  simulate [action]         Start/stop simulator and generate some random data
   start                     start forge-core and forge-app
+  state|status [type]       List the information of the chain and the node, chain|core|net|validator
   stop                      stop the forge daemon (forge-core, forge-app, consensus engine, storage engine)
-  state [type]              list the information from various components, chain|forge
+  version                   Output version for all components, including forge-cli, forge, storage and consensus engine
+  web <action>              Start or stop the web UI of running forge node
   tx <hash>                 get a tx detail and display
   tx:send                   send a signed tx to the network
   tx:sign                   sign a transaction (base64) according to sender’s wallet
+  stake                     Stake token to various entities: node&#x2F;user&#x2F;asset
 
 Examples:
 
