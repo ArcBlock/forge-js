@@ -44,6 +44,12 @@ const questions = [
   },
   {
     type: 'confirm',
+    name: 'requireRunningNode',
+    message: 'Does this command require a running forge node to work?',
+    format: x => (x ? 1 : 0),
+  },
+  {
+    type: 'confirm',
     name: 'requireRpcClient',
     message: 'Does this command require a rpc client to work?',
     format: x => (x ? 1 : 0),
@@ -69,13 +75,14 @@ function createCli({
   name: cliName,
   description,
   requireRelease,
+  requireRunningNode,
   requireRpcClient,
   requireWallet,
 }) {
   const [action, name] = cliName.split(':');
   const targetPath = path.join(cliPath, `${action}/${name}`);
   const templatePath = path.join(__dirname, 'templates');
-  const env = `NAME="${name}" ACTION=${action} DESCRIPTION="${description}" REQUIRE_RELEASE=${requireRelease} REQUIRE_RPC_CLIENT=${requireRpcClient} REQUIRE_WALLET=${requireWallet}`;
+  const env = `NAME="${name}" ACTION=${action} DESCRIPTION="${description}" REQUIRE_RELEASE=${requireRelease} REQUIRE_RPC_CLIENT=${requireRpcClient} REQUIRE_RUNNING_NODE=${requireRunningNode} REQUIRE_WALLET=${requireWallet}`;
 
   shell.exec(`mkdir -p ${targetPath}`);
   shell.exec(`rsync -rt ${templatePath}/ ${targetPath}/`);
