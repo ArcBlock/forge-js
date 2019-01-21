@@ -2,7 +2,7 @@ const grpc = require('grpc');
 const camelcase = require('camelcase');
 const BN = require('bignumber.js');
 const { EventEmitter } = require('events');
-const { messages, transactions, rpcs, getMessageType } = require('@arcblock/forge-proto');
+const { messages, enums, rpcs, getMessageType } = require('@arcblock/forge-proto');
 const {
   formatMessage,
   createMessage,
@@ -151,7 +151,7 @@ class Client {
   _initTxMethods() {
     const requiredRpcMethods = ['getAccountState', 'createTx', 'sendTx'];
     if (requiredRpcMethods.every(x => typeof this[x] === 'function' && this[x].rpc)) {
-      transactions.forEach(x => this._initTxMethod(x));
+      enums.SupportedTxs.forEach(x => this._initTxMethod(x));
     }
   }
   _initTxMethod(x) {

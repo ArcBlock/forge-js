@@ -5,6 +5,8 @@ describe('#enums', () => {
     expect(enums).toBeTruthy();
     expect(enums.StatusCode).toBeTruthy();
     expect(enums.StatusCode.OK).toEqual(0);
+    expect(Array.isArray(enums.SupportedTxs)).toBeTruthy();
+    expect(Array.isArray(enums.SupportedStakes)).toBeTruthy();
   });
 });
 

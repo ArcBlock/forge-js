@@ -5,6 +5,7 @@ const { get } = require('lodash');
 const debug = require('debug')(`${require('./package.json').name}`);
 
 const txTypePattern = /Tx$/;
+const stakeTypePattern = /^StakeFor/;
 const lowerUnder = x => decamelize(x).toLowerCase();
 
 // extract spec
@@ -67,8 +68,9 @@ function processJs(baseDir) {
     }, {});
 
   const transactions = Object.keys(types).filter(x => txTypePattern.test(x));
+  const stakes = Object.keys(types).filter(x => stakeTypePattern.test(x));
 
-  return { types, vendorTypes, services, clients, transactions };
+  return { types, vendorTypes, services, clients, transactions, stakes };
 }
 
 /**
@@ -149,11 +151,16 @@ function processJson(filePath, packageName) {
 const extraTypes = {};
 const extraSpec = {};
 const extraTypeUrls = {};
-const { types, vendorTypes, clients, transactions } = processJs(path.resolve(__dirname, './lib/'));
+const { types, vendorTypes, clients, transactions, stakes } = processJs(
+  path.resolve(__dirname, './lib/')
+);
 const { messages, enums, rpcs, spec, typeUrls } = processJson(
   path.resolve(__dirname, './lib/spec.json'),
   'forge_abi'
 );
+
+enums.SupportedTxs = transactions;
+enums.SupportedStakes = stakes;
 
 // Append app specific proto definition into search space
 function addSource({ baseDir, packageName, typeUrls: _typeUrls }) {
@@ -206,7 +213,6 @@ function fromTypeUrl(url) {
 module.exports = {
   enums,
   messages,
-  transactions,
   rpcs: Object.keys(clients).reduce((acc, x) => {
     acc[x] = clients[x];
     acc[x].methods = rpcs[x];
