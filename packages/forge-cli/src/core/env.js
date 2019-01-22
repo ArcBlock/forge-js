@@ -263,7 +263,7 @@ function findReleaseVersion(releaseDir) {
     return '';
   }
 
-  const parentDir = path.join(releaseDir, 'releases');
+  const parentDir = path.join(releaseDir, 'forge/releases');
   if (!fs.existsSync(parentDir) || !fs.statSync(parentDir).isDirectory()) {
     return '';
   }
