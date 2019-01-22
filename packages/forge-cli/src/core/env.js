@@ -83,19 +83,19 @@ function ensureForgeRelease(args, exitOn404 = true) {
       debug(`${symbols.success} Using forge executable: ${forgeBinPath}`);
       return true;
     } else {
-      shell.echo(`${symbols.error} forge release dir invalid, non forge executable found`);
       if (exitOn404) {
+        shell.echo(`${symbols.error} forge release dir invalid, non forge executable found`);
         process.exit(1);
       }
     }
   } else {
-    shell.echo(`${symbols.error} forge release dir does not exist
-
-Start node with custom forge release folder
-> ${chalk.cyan('forge start --release-dir ~/Downloads/forge/')}
-> ${chalk.cyan('FORGE_RELEASE_DIR=~/Downloads/forge/ forge start')}
-    `);
     if (exitOn404) {
+      shell.echo(`${symbols.error} forge release dir does not exist
+
+  Start node with custom forge release folder
+  > ${chalk.cyan('forge start --release-dir ~/Downloads/forge/')}
+  > ${chalk.cyan('FORGE_RELEASE_DIR=~/Downloads/forge/ forge start')}
+      `);
       process.exit(1);
     }
   }
