@@ -405,7 +405,7 @@ function writeCache(key, data) {
     debug(`${symbols.success} cache ${key} write success!`);
     return true;
   } catch (err) {
-    shell.echo(`${symbols.error} cache ${key} write failed!`, err);
+    debug.error(`${symbols.error} cache ${key} write failed!`, err);
     return false;
   }
 }
@@ -415,7 +415,7 @@ function readCache(key) {
     const filePath = path.join(requiredDirs.cache, `${key}.json`);
     return JSON.parse(fs.readFileSync(filePath));
   } catch (err) {
-    shell.echo(`${symbols.error} cache ${key} read failed!`);
+    debug.error(`${symbols.error} cache ${key} read failed!`);
     return null;
   }
 }

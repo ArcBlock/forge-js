@@ -5,9 +5,8 @@ const { symbols } = require('core/ui');
 
 inquirer.registerPrompt('autocomplete', require('inquirer-autocomplete-prompt'));
 
-async function getAccountState(argAddress) {
+async function getAccountState(argAddress, cached) {
   const client = createRpcClient();
-  const cached = cache.read('wallet');
 
   const streamChild = await client.getAccountState({ address: argAddress });
   streamChild
@@ -33,6 +32,8 @@ async function getAccountState(argAddress) {
 // Execute the cli silently.
 async function execute() {
   const client = createRpcClient();
+  const cached = cache.read('wallet');
+
   shell.echo(`${''.padEnd(80, '-')}`);
   shell.echo(
     `${'moniker'.padEnd(20, ' ').padStart(23, ' ')}${'address'.padEnd(45, ' ')}${'selected'.padEnd(
@@ -45,7 +46,7 @@ async function execute() {
     const stream = await client.listWallets({});
     stream
       .on('data', function(result) {
-        getAccountState(result.address);
+        getAccountState(result.address, cached);
       })
       .on('error', err => {
         shell.echo(`${symbols.error} error: ${err}`);
