@@ -17,7 +17,12 @@ const allCommands = [];
  * @param {String} desc documentation of the cli
  * @param {Function} handler cli handler
  */
-function cli(command, desc, handler, { requirements = {}, options = [], alias } = {}) {
+function cli(
+  command,
+  desc,
+  handler,
+  { requirements = {}, options = [], alias, handlers = {} } = {}
+) {
   allCommands.push({
     command,
     desc,
@@ -25,6 +30,7 @@ function cli(command, desc, handler, { requirements = {}, options = [], alias } 
     requirements,
     options,
     alias,
+    handlers,
   });
 }
 
@@ -52,6 +58,10 @@ function initCli(program) {
     }
 
     (x.options || []).forEach(x => command.option(...x));
+
+    if (Object.keys(x.handlers).length) {
+      Object.keys(x.handlers).forEach(k => command.on(k, x.handlers[k]));
+    }
 
     command.action(async (...params) => {
       await setupEnv(args, x.requirements);
