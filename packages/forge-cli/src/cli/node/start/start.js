@@ -1,5 +1,6 @@
 const inquirer = require('inquirer');
 const shell = require('shelljs');
+const chalk = require('chalk');
 const { execSync } = require('child_process');
 const { symbols } = require('core/ui');
 const { config } = require('core/env');
@@ -19,6 +20,22 @@ const questions = [
   },
 ];
 
+function isStarted() {
+  const { forgeBinPath, forgeConfigPath } = config.get('cli');
+  const { stdout: pid } = shell.exec(`FORGE_CONFIG=${forgeConfigPath} ${forgeBinPath} pid`, {
+    silent: true,
+  });
+
+  const pidNumber = Number(pid);
+  if (pidNumber) {
+    shell.echo(`${symbols.info} forge is already started!`);
+    shell.echo(`${symbols.info} Please run ${chalk.cyan('forge stop')} first!`);
+    return true;
+  }
+
+  return false;
+}
+
 function main({ mode = 'console' } = {}) {
   const { forgeBinPath, forgeConfigPath } = config.get('cli');
   if (!forgeBinPath) {
@@ -34,7 +51,16 @@ function main({ mode = 'console' } = {}) {
   }
 }
 
-exports.execute = main;
+exports.execute = () => {
+  if (isStarted()) {
+    return;
+  }
+  main();
+};
+
 exports.run = () => {
+  if (isStarted()) {
+    return;
+  }
   inquirer.prompt(questions).then(main);
 };
