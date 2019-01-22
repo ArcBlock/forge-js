@@ -3,6 +3,9 @@
   "description": "Static modules generated from forge-sdk protobuf files",
   "version": "0.6.6",
   "author": "wangshijun <shijun@arcblock.io> (https://www.arcblock.io)",
+  "engines": {
+    "node": ">=0.10.0"
+  },
   "bugs": {
     "url": "https://github.com/ArcBlock/forge-js/issues",
     "email": "shijun@arcblock.io"
