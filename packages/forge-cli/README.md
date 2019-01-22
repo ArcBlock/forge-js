@@ -67,9 +67,6 @@ Examples:
   Connect to a remote forge node without starting one
   $ forge chain:info --socket-grpc "tcp://10.0.0.1:9527"
 
-  Init with downloaded forge release tarball, will extract to ~/.forge-cli/release
-  $ forge init --release-tarball ~/Downloads/forge_darwin_amd64.tgz
-
   Start node with custom forge release folder
   $ forge start --release-dir ~/Downloads/forge/
   $ FORGE_RELEASE_DIR=~/Downloads/forge/ forge start
@@ -84,7 +81,8 @@ Examples:
 ```shell
 git clone git@github.com:ArcBlock/forge-cli.git
 make init
-make deploy
+cd packages/forge-cli
+ln -s ./bin/forge /usr/local/bin/forge
 ```
 
-Or you can add `bin` folder to your `$PATH`.
+Or you can add `./bin` folder to your `$PATH`.

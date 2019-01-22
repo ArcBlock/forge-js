@@ -23,6 +23,7 @@ install:
 dep:
 	@echo "Install dependencies required for this repo..."
 	@lerna bootstrap
+	@lerna link
 
 pre-build: install dep
 	@echo "Running scripts before the build..."
