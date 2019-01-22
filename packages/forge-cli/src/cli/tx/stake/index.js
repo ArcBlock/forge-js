@@ -4,7 +4,7 @@ const { execute, run } = require('./stake');
 
 cli(
   'stake',
-  'Stake token to various entities: node&#x2F;user&#x2F;asset',
+  'Stake token to various entities: node/user/asset',
   input => action(execute, run, input),
   {
     requirements: {
