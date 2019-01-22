@@ -15,7 +15,7 @@ function parseBlockHeight(input, latest) {
     }
   }
 
-  const tmp = input.split(',');
+  const tmp = input.split(',').filter(x => !!x);
   debug('parseBlockHeight', { input, tmp });
   if (!tmp.length) {
     shell.echo(`${symbols.info} query latest block at ${latest}`);
