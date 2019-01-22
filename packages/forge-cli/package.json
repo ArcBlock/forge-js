@@ -32,6 +32,7 @@
     "@arcblock/forge-sdk": "^0.6.6",
     "app-module-path": "^2.2.0",
     "chalk": "^2.4.1",
+    "cli-progress": "^2.1.1",
     "cli-table-redemption": "^1.0.1",
     "commander": "^2.19.0",
     "debug": "^4.1.1",

@@ -1,6 +1,8 @@
 const ora = require('ora');
 const util = require('util');
+const chalk = require('chalk');
 const inquirer = require('inquirer');
+const progress = require('cli-progress');
 const symbols = require('log-symbols');
 
 // https://github.com/sindresorhus/cli-spinners/blob/master/spinners.json
@@ -76,13 +78,18 @@ const spinners = [
   'layer',
 ];
 
-// TODO: getProgress bar
-
 module.exports = {
   symbols,
   hr: new inquirer.Separator().line,
   pretty: (data, options) =>
     util.inspect(data, Object.assign({ depth: 8, colors: true, compact: false }, options)),
+  getProgress: ({ title, unit = 'MB' }) =>
+    new progress.Bar({
+      format: `${title} |${chalk.cyan('{bar}')} {percentage}% || {value}/{total} ${unit}`,
+      barCompleteChar: '\u2588',
+      barIncompleteChar: '\u2591',
+      hideCursor: true,
+    }),
   getSpinner: opts => {
     const random = Math.floor(Math.random() * spinners.length);
     const spinner = ora(Object.assign({ spinner: spinners[random] }, opts || {}));

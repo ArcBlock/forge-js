@@ -1,11 +1,11 @@
 // const wget = require('wget');
-// const progress = require('progress');
+const fs = require('fs');
 const path = require('path');
 const shell = require('shelljs');
 const chalk = require('chalk');
 const github = require('octonode');
 const findProcess = require('find-process');
-const { symbols, getSpinner } = require('core/ui');
+const { symbols, getSpinner, getProgress } = require('core/ui');
 const {
   config,
   debug,
@@ -77,10 +77,23 @@ function fetchRelease(platform) {
 
 function downloadAsset(release, asset) {
   return new Promise((resolve, reject) => {
+    debug('Download asset', asset);
     const assetOutput = `/tmp/${asset.name}`;
     shell.exec(`rm -f ${assetOutput}`);
-    const spinner = getSpinner(`Download release asset ${asset.name}...`);
-    spinner.start();
+    const progress = getProgress({
+      title: `${symbols.info} Downloading ${asset.name}`,
+      unit: 'MB',
+    });
+    progress.start((asset.size / 1024 / 1024).toFixed(2), 0);
+
+    // update progress bar
+    const timer = setInterval(() => {
+      if (fs.existsSync(assetOutput)) {
+        const stat = fs.statSync(assetOutput);
+        progress.update((stat.size / 1024 / 1024).toFixed(2));
+      }
+    }, 500);
+
     shell.exec(
       `fetch --repo="https://github.com/arcblock/forge" \
       --tag="${release.tag_name}" \
@@ -89,12 +102,15 @@ function downloadAsset(release, asset) {
       /tmp`,
       { async: true, silent: true },
       (code, _, stderr) => {
+        clearInterval(timer);
+        progress.stop();
+
         if (code === 0) {
-          spinner.succeed(`Downloaded ${asset.name} to ${assetOutput}`);
+          shell.echo(`${symbols.success} Downloaded ${asset.name} to ${assetOutput}`);
           return resolve(assetOutput);
         }
 
-        spinner.fail(stderr);
+        shell.echo(`${symbols.error} ${stderr}`);
         reject(new Error(`${asset.name} download failed`));
       }
     );
