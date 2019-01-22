@@ -2,6 +2,7 @@ const shell = require('shelljs');
 const { runNativeForgeCommand, debug } = require('core/env');
 const { symbols } = require('core/ui');
 
+const webUrl = 'http://localhost:8210';
 const startWebUI = runNativeForgeCommand('rpc "Application.start(:cover)"', { silent: true });
 const stopWebUI = runNativeForgeCommand('rpc "Application.stop(:cover)"', { silent: true });
 
@@ -17,6 +18,7 @@ async function main({ args: [action] }) {
   if (action === 'start') {
     const { stdout, stderr } = startWebUI();
     processOutput(stdout || stderr, action);
+    shell.echo(`${symbols.info} running at: ${webUrl}`);
   }
   if (action === 'stop') {
     const { stdout, stderr } = stopWebUI();
@@ -24,7 +26,8 @@ async function main({ args: [action] }) {
     processOutput(stdout || stderr, action);
   }
   if (action === 'open') {
-    shell.exec('open http://localhost:8210');
+    shell.echo(`Opening ${webUrl}...`);
+    shell.exec(`open ${webUrl}`);
   }
 }
 

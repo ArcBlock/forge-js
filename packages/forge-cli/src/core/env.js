@@ -17,8 +17,8 @@ const debug = require('debug')(require('../../package.json').name);
 const { symbols } = require('./ui');
 
 const requiredDirs = {
-  cache: path.join(os.homedir(), '.forge-cli/cache'),
-  release: path.join(os.homedir(), '.forge-cli/release'),
+  cache: path.join(os.homedir(), '.forge_cli/cache'),
+  release: path.join(os.homedir(), '.forge_cli/release'),
 };
 
 const config = { cli: {} }; // global shared forge-cli run time config
@@ -83,19 +83,19 @@ function ensureForgeRelease(args, exitOn404 = true) {
       debug(`${symbols.success} Using forge executable: ${forgeBinPath}`);
       return true;
     } else {
-      shell.echo(`${symbols.error} forge release dir invalid, non forge executable found`);
       if (exitOn404) {
+        shell.echo(`${symbols.error} forge release dir invalid, non forge executable found`);
         process.exit(1);
       }
     }
   } else {
-    shell.echo(`${symbols.error} forge release dir does not exist
-
-Start node with custom forge release folder
-> ${chalk.cyan('forge start --release-dir ~/Downloads/forge/')}
-> ${chalk.cyan('FORGE_RELEASE_DIR=~/Downloads/forge/ forge start')}
-    `);
     if (exitOn404) {
+      shell.echo(`${symbols.error} forge release dir does not exist
+
+  Start node with custom forge release folder
+  > ${chalk.cyan('forge start --release-dir ~/Downloads/forge/')}
+  > ${chalk.cyan('FORGE_RELEASE_DIR=~/Downloads/forge/ forge start')}
+      `);
       process.exit(1);
     }
   }

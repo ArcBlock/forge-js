@@ -1,3 +1,21 @@
+## 0.6.7 (January 22, 2019)
+  - feat: make `forge block` easier to use. #68
+  - fix: tell user url of webui #60
+  - feat: support `forge logs` command #62
+  - fix: simulate not working as expected
+  - chore: support add custom handlers on each command
+  - chore: support add custom handlers on each command
+  - fix: show help on unsupported command #61
+  - chore: improve reinitialization tip
+  - feat: add progressbar for downloading process #32
+  - fix: ensure forge has been stopped before reinitialize #58
+  - fix: ensureForgeRelease logging properly disabled in silent mode
+  - fix: ensure forge has been stopped before reinitialize
+  - fix: getSpinner text option not properly set
+  - chore: rename .forge-cli => .forge_cli
+  - fix: help text contain encoded strings for `stake` #70
+  - fix: check node.js version before `forge init` #73
+
 ## 0.6.6 (January 22, 2019)
   - chore: upgrade forge-proto to align with forge@v0.11.0
   - chore: update README.md

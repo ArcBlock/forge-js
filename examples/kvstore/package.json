@@ -7,6 +7,9 @@
   "keywords": [],
   "author": "wangshijun <wangshijun2010@gmail.com> (http://github.com/wangshijun)",
   "license": "MIT",
+  "engines": {
+    "node": ">=0.10.0"
+  },
   "publishConfig": {
     "access": "public"
   },

@@ -1,4 +1,5 @@
-// eslint-disable-next-line import/no-unresolved
+const shell = require('shelljs');
+const chalk = require('chalk');
 const { cli, action } = require('core/cli');
 const { execute, run } = require('./restart');
 
@@ -14,5 +15,14 @@ cli(
       wallet: false,
     },
     options: [],
+    handlers: {
+      '--help': () => {
+        shell.echo(`
+Examples:
+  - ${chalk.cyan('forge restart ipfs')} restart ipfs
+  - ${chalk.cyan('forge restart tendermint')} restart tendermint
+        `);
+      },
+    },
   }
 );

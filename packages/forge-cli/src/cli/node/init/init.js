@@ -1,10 +1,11 @@
 // const wget = require('wget');
-// const progress = require('progress');
+const fs = require('fs');
 const path = require('path');
 const shell = require('shelljs');
 const chalk = require('chalk');
 const github = require('octonode');
-const { symbols, getSpinner } = require('core/ui');
+const findProcess = require('find-process');
+const { symbols, hr, getSpinner, getProgress } = require('core/ui');
 const {
   config,
   debug,
@@ -19,11 +20,31 @@ const client = github.client(GITHUB_TOKEN);
 
 // TODO: release dir cleanup
 
+async function isForgeStopped() {
+  const processes = await findProcess('name', 'forge.sh');
+  debug('Running forge process', processes);
+  if (processes.length) {
+    shell.echo(`${symbols.error} forge is running, reinitialize will break things!`);
+    shell.echo(`${symbols.info} To reinitialize, please run ${chalk.cyan('forge stop')} first!`);
+    return false;
+  }
+
+  return true;
+}
+
 function releaseDirExists() {
   if (ensureForgeRelease({}, false)) {
-    shell.echo(`${symbols.error} forge release dir already exists and not empty`);
+    shell.echo(`${symbols.warning} forge already initialized!`);
+    shell.echo(
+      `${symbols.warning} to upgrade forge release, please run ${chalk.cyan(
+        'rm -rf ~/.forge_cli'
+      )} first`
+    );
+    shell.echo(hr);
+    shell.echo(chalk.cyan('Current forge release'));
+    shell.echo(hr);
     if (config.get('cli.forgeBinPath')) {
-      shell.exec('forge debug');
+      shell.exec('forge version');
     }
     return true;
   }
@@ -64,10 +85,23 @@ function fetchRelease(platform) {
 
 function downloadAsset(release, asset) {
   return new Promise((resolve, reject) => {
+    debug('Download asset', asset);
     const assetOutput = `/tmp/${asset.name}`;
     shell.exec(`rm -f ${assetOutput}`);
-    const spinner = getSpinner(`Download release asset ${asset.name}...`);
-    spinner.start();
+    const progress = getProgress({
+      title: `${symbols.info} Downloading ${asset.name}`,
+      unit: 'MB',
+    });
+    progress.start((asset.size / 1024 / 1024).toFixed(2), 0);
+
+    // update progress bar
+    const timer = setInterval(() => {
+      if (fs.existsSync(assetOutput)) {
+        const stat = fs.statSync(assetOutput);
+        progress.update((stat.size / 1024 / 1024).toFixed(2));
+      }
+    }, 500);
+
     shell.exec(
       `fetch --repo="https://github.com/arcblock/forge" \
       --tag="${release.tag_name}" \
@@ -76,12 +110,15 @@ function downloadAsset(release, asset) {
       /tmp`,
       { async: true, silent: true },
       (code, _, stderr) => {
+        clearInterval(timer);
+        progress.stop();
+
         if (code === 0) {
-          spinner.succeed(`${asset.name} downloaded to ${assetOutput}`);
+          shell.echo(`${symbols.success} Downloaded ${asset.name} to ${assetOutput}`);
           return resolve(assetOutput);
         }
 
-        spinner.fail(stderr);
+        shell.echo(`${symbols.error} ${stderr}`);
         reject(new Error(`${asset.name} download failed`));
       }
     );
@@ -91,7 +128,7 @@ function downloadAsset(release, asset) {
 function ensureFetchCLI() {
   const { stdout } = shell.exec('which fetch', { silent: true });
   if (!stdout) {
-    shell.echo(`${symbols.error} fetch command not found!`);
+    shell.echo(`${symbols.error} Fetch command not found!`);
     shell.echo(
       `${symbols.error} Please install at: https://github.com/gruntwork-io/fetch/releases`
     );
@@ -137,17 +174,22 @@ function copyReleaseConfig() {
 }
 
 async function main() {
+  const isStopped = await isForgeStopped();
+  if (!isStopped) {
+    return process.exit(1);
+  }
+
   try {
     const platform = await getPlatform();
     shell.echo(`${symbols.info} Detected platform is: ${platform}`);
 
     if (releaseDirExists()) {
-      process.exit(1);
-      return;
+      return process.exit(1);
     }
 
     ensureGithubToken();
     ensureFetchCLI();
+
     const { release, forgeAsset, simulatorAsset } = await fetchRelease(platform);
     const forgeTarball = await downloadAsset(release, forgeAsset);
     // const forgeTarball = `/tmp/${forgeAsset.name}`;
