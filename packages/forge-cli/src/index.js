@@ -8,6 +8,7 @@ const program = require('commander');
 
 // eslint-disable-next-line import/no-unresolved
 const { initCli } = require('core/cli');
+const { symbols, hr } = require('core/ui');
 
 program
   .option('-v, --verbose', 'Output runtime logs when execute the command, used for debug')
@@ -40,6 +41,14 @@ Examples:
   Connect to a remote forge node without starting one
   > ${chalk.cyan('forge chain:info --socket-grpc "tcp://10.0.0.1:9527"')}
   `);
+});
+
+program.on('command:*', function() {
+  shell.echo(hr);
+  shell.echo(`${symbols.error} Unsupported command: ${chalk.cyan(program.args.join(' '))}`);
+  shell.echo(hr);
+  program.help();
+  process.exit(1);
 });
 
 program.parse(process.argv);
