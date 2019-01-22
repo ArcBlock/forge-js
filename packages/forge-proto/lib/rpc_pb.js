@@ -3379,12 +3379,25 @@ proto.forge_abi.ResponseDeclareNode.prototype.hasWallet = function() {
  * @constructor
  */
 proto.forge_abi.RequestGetAccountState = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+  jspb.Message.initialize(
+    this,
+    opt_data,
+    0,
+    -1,
+    proto.forge_abi.RequestGetAccountState.repeatedFields_,
+    null
+  );
 };
 goog.inherits(proto.forge_abi.RequestGetAccountState, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   proto.forge_abi.RequestGetAccountState.displayName = 'proto.forge_abi.RequestGetAccountState';
 }
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.forge_abi.RequestGetAccountState.repeatedFields_ = [2];
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
   /**
@@ -3414,7 +3427,7 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
     var f,
       obj = {
         address: jspb.Message.getFieldWithDefault(msg, 1, ''),
-        key: jspb.Message.getFieldWithDefault(msg, 2, ''),
+        keysList: jspb.Message.getRepeatedField(msg, 2),
         appHash: jspb.Message.getFieldWithDefault(msg, 3, ''),
       };
 
@@ -3456,7 +3469,7 @@ proto.forge_abi.RequestGetAccountState.deserializeBinaryFromReader = function(ms
         break;
       case 2:
         var value = /** @type {string} */ (reader.readString());
-        msg.setKey(value);
+        msg.addKeys(value);
         break;
       case 3:
         var value = /** @type {string} */ (reader.readString());
@@ -3493,9 +3506,9 @@ proto.forge_abi.RequestGetAccountState.serializeBinaryToWriter = function(messag
   if (f.length > 0) {
     writer.writeString(1, f);
   }
-  f = message.getKey();
+  f = message.getKeysList();
   if (f.length > 0) {
-    writer.writeString(2, f);
+    writer.writeRepeatedString(2, f);
   }
   f = message.getAppHash();
   if (f.length > 0) {
@@ -3517,16 +3530,28 @@ proto.forge_abi.RequestGetAccountState.prototype.setAddress = function(value) {
 };
 
 /**
- * optional string key = 2;
- * @return {string}
+ * repeated string keys = 2;
+ * @return {!Array.<string>}
  */
-proto.forge_abi.RequestGetAccountState.prototype.getKey = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ''));
+proto.forge_abi.RequestGetAccountState.prototype.getKeysList = function() {
+  return /** @type {!Array.<string>} */ (jspb.Message.getRepeatedField(this, 2));
 };
 
-/** @param {string} value */
-proto.forge_abi.RequestGetAccountState.prototype.setKey = function(value) {
-  jspb.Message.setField(this, 2, value);
+/** @param {!Array.<string>} value */
+proto.forge_abi.RequestGetAccountState.prototype.setKeysList = function(value) {
+  jspb.Message.setField(this, 2, value || []);
+};
+
+/**
+ * @param {!string} value
+ * @param {number=} opt_index
+ */
+proto.forge_abi.RequestGetAccountState.prototype.addKeys = function(value, opt_index) {
+  jspb.Message.addToRepeatedField(this, 2, value, opt_index);
+};
+
+proto.forge_abi.RequestGetAccountState.prototype.clearKeysList = function() {
+  this.setKeysList([]);
 };
 
 /**
@@ -3722,12 +3747,25 @@ proto.forge_abi.ResponseGetAccountState.prototype.hasState = function() {
  * @constructor
  */
 proto.forge_abi.RequestGetAssetState = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+  jspb.Message.initialize(
+    this,
+    opt_data,
+    0,
+    -1,
+    proto.forge_abi.RequestGetAssetState.repeatedFields_,
+    null
+  );
 };
 goog.inherits(proto.forge_abi.RequestGetAssetState, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   proto.forge_abi.RequestGetAssetState.displayName = 'proto.forge_abi.RequestGetAssetState';
 }
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.forge_abi.RequestGetAssetState.repeatedFields_ = [2];
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
   /**
@@ -3757,7 +3795,7 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
     var f,
       obj = {
         address: jspb.Message.getFieldWithDefault(msg, 1, ''),
-        key: jspb.Message.getFieldWithDefault(msg, 2, ''),
+        keysList: jspb.Message.getRepeatedField(msg, 2),
         appHash: jspb.Message.getFieldWithDefault(msg, 3, ''),
       };
 
@@ -3799,7 +3837,7 @@ proto.forge_abi.RequestGetAssetState.deserializeBinaryFromReader = function(msg,
         break;
       case 2:
         var value = /** @type {string} */ (reader.readString());
-        msg.setKey(value);
+        msg.addKeys(value);
         break;
       case 3:
         var value = /** @type {string} */ (reader.readString());
@@ -3836,9 +3874,9 @@ proto.forge_abi.RequestGetAssetState.serializeBinaryToWriter = function(message,
   if (f.length > 0) {
     writer.writeString(1, f);
   }
-  f = message.getKey();
+  f = message.getKeysList();
   if (f.length > 0) {
-    writer.writeString(2, f);
+    writer.writeRepeatedString(2, f);
   }
   f = message.getAppHash();
   if (f.length > 0) {
@@ -3860,16 +3898,28 @@ proto.forge_abi.RequestGetAssetState.prototype.setAddress = function(value) {
 };
 
 /**
- * optional string key = 2;
- * @return {string}
+ * repeated string keys = 2;
+ * @return {!Array.<string>}
  */
-proto.forge_abi.RequestGetAssetState.prototype.getKey = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ''));
+proto.forge_abi.RequestGetAssetState.prototype.getKeysList = function() {
+  return /** @type {!Array.<string>} */ (jspb.Message.getRepeatedField(this, 2));
 };
 
-/** @param {string} value */
-proto.forge_abi.RequestGetAssetState.prototype.setKey = function(value) {
-  jspb.Message.setField(this, 2, value);
+/** @param {!Array.<string>} value */
+proto.forge_abi.RequestGetAssetState.prototype.setKeysList = function(value) {
+  jspb.Message.setField(this, 2, value || []);
+};
+
+/**
+ * @param {!string} value
+ * @param {number=} opt_index
+ */
+proto.forge_abi.RequestGetAssetState.prototype.addKeys = function(value, opt_index) {
+  jspb.Message.addToRepeatedField(this, 2, value, opt_index);
+};
+
+proto.forge_abi.RequestGetAssetState.prototype.clearKeysList = function() {
+  this.setKeysList([]);
 };
 
 /**
@@ -4065,12 +4115,25 @@ proto.forge_abi.ResponseGetAssetState.prototype.hasState = function() {
  * @constructor
  */
 proto.forge_abi.RequestGetChannelState = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+  jspb.Message.initialize(
+    this,
+    opt_data,
+    0,
+    -1,
+    proto.forge_abi.RequestGetChannelState.repeatedFields_,
+    null
+  );
 };
 goog.inherits(proto.forge_abi.RequestGetChannelState, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   proto.forge_abi.RequestGetChannelState.displayName = 'proto.forge_abi.RequestGetChannelState';
 }
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.forge_abi.RequestGetChannelState.repeatedFields_ = [2];
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
   /**
@@ -4100,7 +4163,7 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
     var f,
       obj = {
         address: jspb.Message.getFieldWithDefault(msg, 1, ''),
-        key: jspb.Message.getFieldWithDefault(msg, 2, ''),
+        keysList: jspb.Message.getRepeatedField(msg, 2),
         appHash: jspb.Message.getFieldWithDefault(msg, 3, ''),
       };
 
@@ -4142,7 +4205,7 @@ proto.forge_abi.RequestGetChannelState.deserializeBinaryFromReader = function(ms
         break;
       case 2:
         var value = /** @type {string} */ (reader.readString());
-        msg.setKey(value);
+        msg.addKeys(value);
         break;
       case 3:
         var value = /** @type {string} */ (reader.readString());
@@ -4179,9 +4242,9 @@ proto.forge_abi.RequestGetChannelState.serializeBinaryToWriter = function(messag
   if (f.length > 0) {
     writer.writeString(1, f);
   }
-  f = message.getKey();
+  f = message.getKeysList();
   if (f.length > 0) {
-    writer.writeString(2, f);
+    writer.writeRepeatedString(2, f);
   }
   f = message.getAppHash();
   if (f.length > 0) {
@@ -4203,16 +4266,28 @@ proto.forge_abi.RequestGetChannelState.prototype.setAddress = function(value) {
 };
 
 /**
- * optional string key = 2;
- * @return {string}
+ * repeated string keys = 2;
+ * @return {!Array.<string>}
  */
-proto.forge_abi.RequestGetChannelState.prototype.getKey = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ''));
+proto.forge_abi.RequestGetChannelState.prototype.getKeysList = function() {
+  return /** @type {!Array.<string>} */ (jspb.Message.getRepeatedField(this, 2));
 };
 
-/** @param {string} value */
-proto.forge_abi.RequestGetChannelState.prototype.setKey = function(value) {
-  jspb.Message.setField(this, 2, value);
+/** @param {!Array.<string>} value */
+proto.forge_abi.RequestGetChannelState.prototype.setKeysList = function(value) {
+  jspb.Message.setField(this, 2, value || []);
+};
+
+/**
+ * @param {!string} value
+ * @param {number=} opt_index
+ */
+proto.forge_abi.RequestGetChannelState.prototype.addKeys = function(value, opt_index) {
+  jspb.Message.addToRepeatedField(this, 2, value, opt_index);
+};
+
+proto.forge_abi.RequestGetChannelState.prototype.clearKeysList = function() {
+  this.setKeysList([]);
 };
 
 /**
@@ -4225,180 +4300,6 @@ proto.forge_abi.RequestGetChannelState.prototype.getAppHash = function() {
 
 /** @param {string} value */
 proto.forge_abi.RequestGetChannelState.prototype.setAppHash = function(value) {
-  jspb.Message.setField(this, 3, value);
-};
-
-/**
- * Generated by JsPbCodeGenerator.
- * @param {Array=} opt_data Optional initial data array, typically from a
- * server response, or constructed directly in Javascript. The array is used
- * in place and becomes part of the constructed object. It is not cloned.
- * If no data is provided, the constructed object will be empty, but still
- * valid.
- * @extends {jspb.Message}
- * @constructor
- */
-proto.forge_abi.RequestGetStakeState = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
-};
-goog.inherits(proto.forge_abi.RequestGetStakeState, jspb.Message);
-if (goog.DEBUG && !COMPILED) {
-  proto.forge_abi.RequestGetStakeState.displayName = 'proto.forge_abi.RequestGetStakeState';
-}
-
-if (jspb.Message.GENERATE_TO_OBJECT) {
-  /**
-   * Creates an object representation of this proto suitable for use in Soy templates.
-   * Field names that are reserved in JavaScript and will be renamed to pb_name.
-   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
-   * For the list of reserved names please see:
-   *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
-   * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
-   *     for transitional soy proto support: http://goto/soy-param-migration
-   * @return {!Object}
-   */
-  proto.forge_abi.RequestGetStakeState.prototype.toObject = function(opt_includeInstance) {
-    return proto.forge_abi.RequestGetStakeState.toObject(opt_includeInstance, this);
-  };
-
-  /**
-   * Static version of the {@see toObject} method.
-   * @param {boolean|undefined} includeInstance Whether to include the JSPB
-   *     instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @param {!proto.forge_abi.RequestGetStakeState} msg The msg instance to transform.
-   * @return {!Object}
-   * @suppress {unusedLocalVariables} f is only used for nested messages
-   */
-  proto.forge_abi.RequestGetStakeState.toObject = function(includeInstance, msg) {
-    var f,
-      obj = {
-        address: jspb.Message.getFieldWithDefault(msg, 1, ''),
-        key: jspb.Message.getFieldWithDefault(msg, 2, ''),
-        appHash: jspb.Message.getFieldWithDefault(msg, 3, ''),
-      };
-
-    if (includeInstance) {
-      obj.$jspbMessageInstance = msg;
-    }
-    return obj;
-  };
-}
-
-/**
- * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.forge_abi.RequestGetStakeState}
- */
-proto.forge_abi.RequestGetStakeState.deserializeBinary = function(bytes) {
-  var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.forge_abi.RequestGetStakeState();
-  return proto.forge_abi.RequestGetStakeState.deserializeBinaryFromReader(msg, reader);
-};
-
-/**
- * Deserializes binary data (in protobuf wire format) from the
- * given reader into the given message object.
- * @param {!proto.forge_abi.RequestGetStakeState} msg The message object to deserialize into.
- * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.forge_abi.RequestGetStakeState}
- */
-proto.forge_abi.RequestGetStakeState.deserializeBinaryFromReader = function(msg, reader) {
-  while (reader.nextField()) {
-    if (reader.isEndGroup()) {
-      break;
-    }
-    var field = reader.getFieldNumber();
-    switch (field) {
-      case 1:
-        var value = /** @type {string} */ (reader.readString());
-        msg.setAddress(value);
-        break;
-      case 2:
-        var value = /** @type {string} */ (reader.readString());
-        msg.setKey(value);
-        break;
-      case 3:
-        var value = /** @type {string} */ (reader.readString());
-        msg.setAppHash(value);
-        break;
-      default:
-        reader.skipField();
-        break;
-    }
-  }
-  return msg;
-};
-
-/**
- * Serializes the message to binary data (in protobuf wire format).
- * @return {!Uint8Array}
- */
-proto.forge_abi.RequestGetStakeState.prototype.serializeBinary = function() {
-  var writer = new jspb.BinaryWriter();
-  proto.forge_abi.RequestGetStakeState.serializeBinaryToWriter(this, writer);
-  return writer.getResultBuffer();
-};
-
-/**
- * Serializes the given message to binary data (in protobuf wire
- * format), writing to the given BinaryWriter.
- * @param {!proto.forge_abi.RequestGetStakeState} message
- * @param {!jspb.BinaryWriter} writer
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.forge_abi.RequestGetStakeState.serializeBinaryToWriter = function(message, writer) {
-  var f = undefined;
-  f = message.getAddress();
-  if (f.length > 0) {
-    writer.writeString(1, f);
-  }
-  f = message.getKey();
-  if (f.length > 0) {
-    writer.writeString(2, f);
-  }
-  f = message.getAppHash();
-  if (f.length > 0) {
-    writer.writeString(3, f);
-  }
-};
-
-/**
- * optional string address = 1;
- * @return {string}
- */
-proto.forge_abi.RequestGetStakeState.prototype.getAddress = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ''));
-};
-
-/** @param {string} value */
-proto.forge_abi.RequestGetStakeState.prototype.setAddress = function(value) {
-  jspb.Message.setField(this, 1, value);
-};
-
-/**
- * optional string key = 2;
- * @return {string}
- */
-proto.forge_abi.RequestGetStakeState.prototype.getKey = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ''));
-};
-
-/** @param {string} value */
-proto.forge_abi.RequestGetStakeState.prototype.setKey = function(value) {
-  jspb.Message.setField(this, 2, value);
-};
-
-/**
- * optional string app_hash = 3;
- * @return {string}
- */
-proto.forge_abi.RequestGetStakeState.prototype.getAppHash = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ''));
-};
-
-/** @param {string} value */
-proto.forge_abi.RequestGetStakeState.prototype.setAppHash = function(value) {
   jspb.Message.setField(this, 3, value);
 };
 
@@ -4581,6 +4482,205 @@ proto.forge_abi.ResponseGetChannelState.prototype.hasState = function() {
  * @extends {jspb.Message}
  * @constructor
  */
+proto.forge_abi.RequestGetStakeState = function(opt_data) {
+  jspb.Message.initialize(
+    this,
+    opt_data,
+    0,
+    -1,
+    proto.forge_abi.RequestGetStakeState.repeatedFields_,
+    null
+  );
+};
+goog.inherits(proto.forge_abi.RequestGetStakeState, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.forge_abi.RequestGetStakeState.displayName = 'proto.forge_abi.RequestGetStakeState';
+}
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.forge_abi.RequestGetStakeState.repeatedFields_ = [2];
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+  /**
+   * Creates an object representation of this proto suitable for use in Soy templates.
+   * Field names that are reserved in JavaScript and will be renamed to pb_name.
+   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+   * For the list of reserved names please see:
+   *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+   * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+   *     for transitional soy proto support: http://goto/soy-param-migration
+   * @return {!Object}
+   */
+  proto.forge_abi.RequestGetStakeState.prototype.toObject = function(opt_includeInstance) {
+    return proto.forge_abi.RequestGetStakeState.toObject(opt_includeInstance, this);
+  };
+
+  /**
+   * Static version of the {@see toObject} method.
+   * @param {boolean|undefined} includeInstance Whether to include the JSPB
+   *     instance for transitional soy proto support:
+   *     http://goto/soy-param-migration
+   * @param {!proto.forge_abi.RequestGetStakeState} msg The msg instance to transform.
+   * @return {!Object}
+   * @suppress {unusedLocalVariables} f is only used for nested messages
+   */
+  proto.forge_abi.RequestGetStakeState.toObject = function(includeInstance, msg) {
+    var f,
+      obj = {
+        address: jspb.Message.getFieldWithDefault(msg, 1, ''),
+        keysList: jspb.Message.getRepeatedField(msg, 2),
+        appHash: jspb.Message.getFieldWithDefault(msg, 3, ''),
+      };
+
+    if (includeInstance) {
+      obj.$jspbMessageInstance = msg;
+    }
+    return obj;
+  };
+}
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.forge_abi.RequestGetStakeState}
+ */
+proto.forge_abi.RequestGetStakeState.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.forge_abi.RequestGetStakeState();
+  return proto.forge_abi.RequestGetStakeState.deserializeBinaryFromReader(msg, reader);
+};
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.forge_abi.RequestGetStakeState} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.forge_abi.RequestGetStakeState}
+ */
+proto.forge_abi.RequestGetStakeState.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+      case 1:
+        var value = /** @type {string} */ (reader.readString());
+        msg.setAddress(value);
+        break;
+      case 2:
+        var value = /** @type {string} */ (reader.readString());
+        msg.addKeys(value);
+        break;
+      case 3:
+        var value = /** @type {string} */ (reader.readString());
+        msg.setAppHash(value);
+        break;
+      default:
+        reader.skipField();
+        break;
+    }
+  }
+  return msg;
+};
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.forge_abi.RequestGetStakeState.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.forge_abi.RequestGetStakeState.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.forge_abi.RequestGetStakeState} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.forge_abi.RequestGetStakeState.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getAddress();
+  if (f.length > 0) {
+    writer.writeString(1, f);
+  }
+  f = message.getKeysList();
+  if (f.length > 0) {
+    writer.writeRepeatedString(2, f);
+  }
+  f = message.getAppHash();
+  if (f.length > 0) {
+    writer.writeString(3, f);
+  }
+};
+
+/**
+ * optional string address = 1;
+ * @return {string}
+ */
+proto.forge_abi.RequestGetStakeState.prototype.getAddress = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ''));
+};
+
+/** @param {string} value */
+proto.forge_abi.RequestGetStakeState.prototype.setAddress = function(value) {
+  jspb.Message.setField(this, 1, value);
+};
+
+/**
+ * repeated string keys = 2;
+ * @return {!Array.<string>}
+ */
+proto.forge_abi.RequestGetStakeState.prototype.getKeysList = function() {
+  return /** @type {!Array.<string>} */ (jspb.Message.getRepeatedField(this, 2));
+};
+
+/** @param {!Array.<string>} value */
+proto.forge_abi.RequestGetStakeState.prototype.setKeysList = function(value) {
+  jspb.Message.setField(this, 2, value || []);
+};
+
+/**
+ * @param {!string} value
+ * @param {number=} opt_index
+ */
+proto.forge_abi.RequestGetStakeState.prototype.addKeys = function(value, opt_index) {
+  jspb.Message.addToRepeatedField(this, 2, value, opt_index);
+};
+
+proto.forge_abi.RequestGetStakeState.prototype.clearKeysList = function() {
+  this.setKeysList([]);
+};
+
+/**
+ * optional string app_hash = 3;
+ * @return {string}
+ */
+proto.forge_abi.RequestGetStakeState.prototype.getAppHash = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ''));
+};
+
+/** @param {string} value */
+proto.forge_abi.RequestGetStakeState.prototype.setAppHash = function(value) {
+  jspb.Message.setField(this, 3, value);
+};
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
 proto.forge_abi.ResponseGetStakeState = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
@@ -4751,12 +4851,25 @@ proto.forge_abi.ResponseGetStakeState.prototype.hasState = function() {
  * @constructor
  */
 proto.forge_abi.RequestGetForgeState = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+  jspb.Message.initialize(
+    this,
+    opt_data,
+    0,
+    -1,
+    proto.forge_abi.RequestGetForgeState.repeatedFields_,
+    null
+  );
 };
 goog.inherits(proto.forge_abi.RequestGetForgeState, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   proto.forge_abi.RequestGetForgeState.displayName = 'proto.forge_abi.RequestGetForgeState';
 }
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.forge_abi.RequestGetForgeState.repeatedFields_ = [1];
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
   /**
@@ -4785,7 +4898,7 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
   proto.forge_abi.RequestGetForgeState.toObject = function(includeInstance, msg) {
     var f,
       obj = {
-        key: jspb.Message.getFieldWithDefault(msg, 1, ''),
+        keysList: jspb.Message.getRepeatedField(msg, 1),
         appHash: jspb.Message.getFieldWithDefault(msg, 2, ''),
       };
 
@@ -4823,7 +4936,7 @@ proto.forge_abi.RequestGetForgeState.deserializeBinaryFromReader = function(msg,
     switch (field) {
       case 1:
         var value = /** @type {string} */ (reader.readString());
-        msg.setKey(value);
+        msg.addKeys(value);
         break;
       case 2:
         var value = /** @type {string} */ (reader.readString());
@@ -4856,9 +4969,9 @@ proto.forge_abi.RequestGetForgeState.prototype.serializeBinary = function() {
  */
 proto.forge_abi.RequestGetForgeState.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getKey();
+  f = message.getKeysList();
   if (f.length > 0) {
-    writer.writeString(1, f);
+    writer.writeRepeatedString(1, f);
   }
   f = message.getAppHash();
   if (f.length > 0) {
@@ -4867,16 +4980,28 @@ proto.forge_abi.RequestGetForgeState.serializeBinaryToWriter = function(message,
 };
 
 /**
- * optional string key = 1;
- * @return {string}
+ * repeated string keys = 1;
+ * @return {!Array.<string>}
  */
-proto.forge_abi.RequestGetForgeState.prototype.getKey = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ''));
+proto.forge_abi.RequestGetForgeState.prototype.getKeysList = function() {
+  return /** @type {!Array.<string>} */ (jspb.Message.getRepeatedField(this, 1));
 };
 
-/** @param {string} value */
-proto.forge_abi.RequestGetForgeState.prototype.setKey = function(value) {
-  jspb.Message.setField(this, 1, value);
+/** @param {!Array.<string>} value */
+proto.forge_abi.RequestGetForgeState.prototype.setKeysList = function(value) {
+  jspb.Message.setField(this, 1, value || []);
+};
+
+/**
+ * @param {!string} value
+ * @param {number=} opt_index
+ */
+proto.forge_abi.RequestGetForgeState.prototype.addKeys = function(value, opt_index) {
+  jspb.Message.addToRepeatedField(this, 1, value, opt_index);
+};
+
+proto.forge_abi.RequestGetForgeState.prototype.clearKeysList = function() {
+  this.setKeysList([]);
 };
 
 /**

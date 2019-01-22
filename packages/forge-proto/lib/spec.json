@@ -176,6 +176,7 @@
             "expired_wallet_token": 33,
             "banned_unstake": 34,
             "invalid_asset": 35,
+            "invalid_tx_size": 36,
             "internal": 500
           }
         },
@@ -1344,7 +1345,8 @@
               "type": "string",
               "id": 1
             },
-            "key": {
+            "keys": {
+              "rule": "repeated",
               "type": "string",
               "id": 2
             },
@@ -1372,7 +1374,8 @@
               "type": "string",
               "id": 1
             },
-            "key": {
+            "keys": {
+              "rule": "repeated",
               "type": "string",
               "id": 2
             },
@@ -1400,23 +1403,8 @@
               "type": "string",
               "id": 1
             },
-            "key": {
-              "type": "string",
-              "id": 2
-            },
-            "appHash": {
-              "type": "string",
-              "id": 3
-            }
-          }
-        },
-        "RequestGetStakeState": {
-          "fields": {
-            "address": {
-              "type": "string",
-              "id": 1
-            },
-            "key": {
+            "keys": {
+              "rule": "repeated",
               "type": "string",
               "id": 2
             },
@@ -1438,6 +1426,23 @@
             }
           }
         },
+        "RequestGetStakeState": {
+          "fields": {
+            "address": {
+              "type": "string",
+              "id": 1
+            },
+            "keys": {
+              "rule": "repeated",
+              "type": "string",
+              "id": 2
+            },
+            "appHash": {
+              "type": "string",
+              "id": 3
+            }
+          }
+        },
         "ResponseGetStakeState": {
           "fields": {
             "code": {
@@ -1452,7 +1457,8 @@
         },
         "RequestGetForgeState": {
           "fields": {
-            "key": {
+            "keys": {
+              "rule": "repeated",
               "type": "string",
               "id": 1
             },
