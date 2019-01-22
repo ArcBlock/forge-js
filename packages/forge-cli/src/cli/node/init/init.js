@@ -19,6 +19,20 @@ const client = github.client(GITHUB_TOKEN);
 
 // TODO: release dir cleanup
 
+function ensureForgeStopped() {
+  const { forgeBinPath, forgeConfigPath } = config.get('cli');
+  const { stdout: pid } = shell.exec(`FORGE_CONFIG=${forgeConfigPath} ${forgeBinPath} pid`, {
+    silent: true,
+  });
+
+  const pidNumber = Number(pid);
+  if (pidNumber) {
+    shell.echo(`${symbols.error} forge is running, reinitialize will break things!`);
+    shell.echo(`${symbols.info} To reinitialize, please run ${chalk.cyan('forge stop')} first!`);
+    process.exit(0);
+  }
+}
+
 function releaseDirExists() {
   if (ensureForgeRelease({}, false)) {
     shell.echo(`${symbols.error} forge release dir already exists and not empty`);
@@ -146,8 +160,10 @@ async function main() {
       return;
     }
 
+    ensureForgeStopped();
     ensureGithubToken();
     ensureFetchCLI();
+
     const { release, forgeAsset, simulatorAsset } = await fetchRelease(platform);
     const forgeTarball = await downloadAsset(release, forgeAsset);
     // const forgeTarball = `/tmp/${forgeAsset.name}`;
