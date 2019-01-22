@@ -1,19 +1,55 @@
 const shell = require('shelljs');
 const chalk = require('chalk');
+const { range } = require('lodash');
 const { createRpcClient, debug } = require('core/env');
-const { symbols, pretty } = require('core/ui');
+const { symbols, hr, pretty } = require('core/ui');
 
-async function execute({ args: [argHeight] }) {
-  if (!/^[1-9]\d*$/.test(argHeight)) {
-    shell.echo(`${symbols.error} Please input a right block height and try again.`);
-    return;
+function parseBlockHeight(input, latest) {
+  if (input.indexOf('...') > 0) {
+    const [lower, upper] = input.split('...').map(x => Number(x));
+    debug('parseBlockHeight', { input, lower, upper, latest });
+    if (lower && upper) {
+      return range(lower, upper)
+        .concat(upper)
+        .filter(x => x > 0 && x <= latest);
+    }
   }
+
+  const tmp = input.split(',');
+  debug('parseBlockHeight', { input, tmp });
+  if (!tmp.length) {
+    shell.echo(`${symbols.info} query latest block at ${latest}`);
+    return [latest];
+  }
+
+  return tmp
+    .map(x => Number(x))
+    .map(x => (x > 0 ? x : latest + x))
+    .filter(x => x > 0 && x <= latest);
+}
+
+async function execute(args) {
+  console.log('getBlocks', args);
+  const {
+    args: [height = ''],
+    opts = {},
+  } = args;
+  const client = createRpcClient();
   try {
-    const client = createRpcClient();
-    const stream = await client.getBlock({ height: argHeight });
+    const { info } = await client.getChainInfo({});
+    const heights = parseBlockHeight(height, info.blockHeight);
+    debug('Query Blocks on height', heights);
+
+    const stream = await client.getBlock(heights.map(x => ({ height: x })));
     stream
       .on('data', function(result) {
-        shell.echo(`${pretty(result.$format().block)}`);
+        const { block } = result.$format();
+        if (!opts.showTxs) {
+          delete block.txs;
+        }
+        shell.echo(hr);
+        shell.echo(`Block#${result.block.height} ${pretty(block)}`);
+        shell.echo('');
       })
       .on('error', err => {
         debug.error(err);
