@@ -5,7 +5,7 @@ const shell = require('shelljs');
 const chalk = require('chalk');
 const github = require('octonode');
 const findProcess = require('find-process');
-const { symbols, getSpinner, getProgress } = require('core/ui');
+const { symbols, hr, getSpinner, getProgress } = require('core/ui');
 const {
   config,
   debug,
@@ -34,9 +34,17 @@ async function isForgeStopped() {
 
 function releaseDirExists() {
   if (ensureForgeRelease({}, false)) {
-    shell.echo(`${symbols.error} forge release dir already exists and not empty`);
+    shell.echo(`${symbols.warning} forge already initialized!`);
+    shell.echo(
+      `${symbols.warning} to upgrade forge release, please run ${chalk.cyan(
+        'rm -rf ~/.forge_cli'
+      )} first`
+    );
+    shell.echo(hr);
+    shell.echo(chalk.cyan('Current forge release'));
+    shell.echo(hr);
     if (config.get('cli.forgeBinPath')) {
-      shell.exec('forge debug');
+      shell.exec('forge version');
     }
     return true;
   }
