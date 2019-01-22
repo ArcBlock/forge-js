@@ -28,12 +28,7 @@ function parseBlockHeight(input, latest) {
     .filter(x => x > 0 && x <= latest);
 }
 
-async function execute(args) {
-  console.log('getBlocks', args);
-  const {
-    args: [height = ''],
-    opts = {},
-  } = args;
+async function execute({ args: [height = ''], opts = {} }) {
   const client = createRpcClient();
   try {
     const { info } = await client.getChainInfo({});
