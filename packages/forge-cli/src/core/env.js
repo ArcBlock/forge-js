@@ -17,8 +17,8 @@ const debug = require('debug')(require('../../package.json').name);
 const { symbols } = require('./ui');
 
 const requiredDirs = {
-  cache: path.join(os.homedir(), '.forge-cli/cache'),
-  release: path.join(os.homedir(), '.forge-cli/release'),
+  cache: path.join(os.homedir(), '.forge_cli/cache'),
+  release: path.join(os.homedir(), '.forge_cli/release'),
 };
 
 const config = { cli: {} }; // global shared forge-cli run time config
