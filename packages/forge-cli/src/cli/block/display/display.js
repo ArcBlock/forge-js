@@ -1,6 +1,6 @@
 const shell = require('shelljs');
 const chalk = require('chalk');
-const { range } = require('lodash');
+const { range, uniq } = require('lodash');
 const { createRpcClient, debug } = require('core/env');
 const { symbols, hr, pretty } = require('core/ui');
 
@@ -32,7 +32,7 @@ async function execute({ args: [height = ''], opts = {} }) {
   const client = createRpcClient();
   try {
     const { info } = await client.getChainInfo({});
-    const heights = parseBlockHeight(height, info.blockHeight);
+    const heights = uniq(parseBlockHeight(height, info.blockHeight));
     debug('Query Blocks on height', heights);
 
     const stream = await client.getBlock(heights.map(x => ({ height: x })));
