@@ -86,6 +86,9 @@ module.exports = {
   getSpinner: opts => {
     const random = Math.floor(Math.random() * spinners.length);
     const spinner = ora(Object.assign({ spinner: spinners[random] }, opts || {}));
+    if (typeof opts === 'string') {
+      spinner.text = opts;
+    }
     return spinner;
   },
 };
