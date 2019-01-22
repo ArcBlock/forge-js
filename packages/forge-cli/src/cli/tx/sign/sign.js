@@ -49,7 +49,7 @@ function main(data) {
   const client = createRpcClient();
   const { type, itx: itxStr } = data;
   const itx = safeEval(itxStr, { client });
-  const { wallet } = config.cli;
+  const wallet = config.get('cli.wallet');
 
   shell.echo(hr);
   shell.echo(pretty(itx));

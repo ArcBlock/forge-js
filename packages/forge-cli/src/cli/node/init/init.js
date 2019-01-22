@@ -22,7 +22,7 @@ const client = github.client(GITHUB_TOKEN);
 function releaseDirExists() {
   if (ensureForgeRelease({}, false)) {
     shell.echo(`${symbols.error} forge release dir already exists and not empty`);
-    if (config.cli.forgeBinPath) {
+    if (config.get('cli.forgeBinPath')) {
       shell.exec('forge debug');
     }
     return true;

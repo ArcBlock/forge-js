@@ -25,8 +25,8 @@ function main() {
   shell.echo(`  release: ${requiredDirs.release}`);
   shell.echo(hr);
   shell.echo('Runtime config:');
-  shell.echo(`  forgeBinPath: ${config.cli.forgeBinPath}`);
-  shell.echo(`  forgeConfigPath: ${config.cli.forgeConfigPath}`);
+  shell.echo(`  forgeBinPath: ${config.get('cli.forgeBinPath')}`);
+  shell.echo(`  forgeConfigPath: ${config.get('cli.forgeConfigPath')}`);
 
   shell.echo('');
   shell.echo(hr);

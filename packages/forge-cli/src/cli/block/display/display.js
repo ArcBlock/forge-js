@@ -16,7 +16,7 @@ async function execute({ args: [argHeight] }) {
         shell.echo(`${pretty(result.$format().block)}`);
       })
       .on('error', err => {
-        debug(err);
+        debug.error(err);
         shell.echo(
           `${symbols.error} block not found, maybe invalid height, run ${chalk.cyan(
             'forge status chain'
@@ -24,7 +24,7 @@ async function execute({ args: [argHeight] }) {
         );
       });
   } catch (err) {
-    debug(err);
+    debug.error(err);
     shell.echo(
       `${symbols.error} block not found, maybe invalid height, run ${chalk.cyan(
         'forge status chain'

@@ -39,6 +39,7 @@
     "inquirer": "^5.2.0",
     "inquirer-autocomplete-prompt": "^0.12.2",
     "json-stringify-pretty-compact": "^1.2.0",
+    "lodash": "^4.17.11",
     "log-symbols": "^2.2.0",
     "markdown-table": "^1.1.2",
     "moment": "^2.22.2",

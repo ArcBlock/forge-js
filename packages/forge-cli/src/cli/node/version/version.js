@@ -1,11 +1,11 @@
 const shell = require('shelljs');
 const { version: forgeCliVersion } = require('../../../../package.json');
-const { config, debug, createFileFinder } = require('core/env');
+const { config, debug, createFileFinder, getPlatform } = require('core/env');
 const { symbols } = require('core/ui');
 
 async function main() {
-  const { releaseDir, releaseVersion } = config.cli;
-  const { storageEngine, consensusEngine } = config.forge;
+  const { releaseDir, releaseVersion } = config.get('cli');
+  const { storageEngine, consensusEngine } = config.get('forge');
   const storageEnginePath = createFileFinder('storage', `priv/${storageEngine}/${storageEngine}`)(
     releaseDir
   );
@@ -15,7 +15,7 @@ async function main() {
   )(releaseDir);
 
   // core
-  shell.echo(`${symbols.success} forge-core version ${releaseVersion}`);
+  shell.echo(`${symbols.success} forge-core version ${releaseVersion} on ${await getPlatform()}`);
   shell.echo(`${symbols.success} forge-cli version ${forgeCliVersion}`);
 
   // tendermint
@@ -42,8 +42,9 @@ async function main() {
     }
   }
 
-  if (config.app && config.app.name && config.app.version) {
-    shell.echo(`${symbols.success} app: ${config.app.name} version ${config.app.version}`);
+  const app = config.get('app');
+  if (app && app.name && app.version) {
+    shell.echo(`${symbols.success} app: ${app.name} version ${app.version}`);
   }
 }
 

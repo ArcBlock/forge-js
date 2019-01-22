@@ -53,7 +53,7 @@ async function main(answers) {
   debug('stake', answers);
 
   const { type, target, amount, message } = answers;
-  const { address, token } = config.cli.wallet;
+  const { address, token } = config.get('cli.wallet');
   const client = createRpcClient();
 
   try {

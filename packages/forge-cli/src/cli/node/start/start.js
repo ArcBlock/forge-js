@@ -20,7 +20,7 @@ const questions = [
 ];
 
 function main({ mode = 'console' } = {}) {
-  const { forgeBinPath, forgeConfigPath } = config.cli;
+  const { forgeBinPath, forgeConfigPath } = config.get('cli');
   if (!forgeBinPath) {
     shell.echo(`${symbols.error} forgeBinPath not found, abort!`);
     return;

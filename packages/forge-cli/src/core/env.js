@@ -10,6 +10,7 @@ const pidUsageTree = require('pidusage-tree');
 const pidInfo = require('find-process');
 const prettyTime = require('pretty-ms');
 const prettyBytes = require('pretty-bytes');
+const { get, set } = require('lodash');
 const { RpcClient, parseConfig } = require('@arcblock/forge-sdk');
 const debug = require('debug')(require('../../package.json').name);
 
@@ -427,7 +428,10 @@ debug.error = (...args) => {
 };
 
 module.exports = {
-  config,
+  config: {
+    get: (key, defaultValue) => get(config, key, defaultValue),
+    set: (key, value) => set(config, key, value),
+  },
   cache: {
     write: writeCache,
     read: readCache,
