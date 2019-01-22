@@ -4,6 +4,7 @@ const path = require('path');
 const shell = require('shelljs');
 const chalk = require('chalk');
 const github = require('octonode');
+const findProcess = require('find-process');
 const { symbols, getSpinner } = require('core/ui');
 const {
   config,
@@ -19,18 +20,16 @@ const client = github.client(GITHUB_TOKEN);
 
 // TODO: release dir cleanup
 
-function ensureForgeStopped() {
-  const { forgeBinPath, forgeConfigPath } = config.get('cli');
-  const { stdout: pid } = shell.exec(`FORGE_CONFIG=${forgeConfigPath} ${forgeBinPath} pid`, {
-    silent: true,
-  });
-
-  const pidNumber = Number(pid);
-  if (pidNumber) {
+async function isForgeStopped() {
+  const processes = await findProcess('name', 'forge.sh');
+  debug('Running forge process', processes);
+  if (processes.length) {
     shell.echo(`${symbols.error} forge is running, reinitialize will break things!`);
     shell.echo(`${symbols.info} To reinitialize, please run ${chalk.cyan('forge stop')} first!`);
-    process.exit(0);
+    return false;
   }
+
+  return true;
 }
 
 function releaseDirExists() {
@@ -91,7 +90,7 @@ function downloadAsset(release, asset) {
       { async: true, silent: true },
       (code, _, stderr) => {
         if (code === 0) {
-          spinner.succeed(`${asset.name} downloaded to ${assetOutput}`);
+          spinner.succeed(`Downloaded ${asset.name} to ${assetOutput}`);
           return resolve(assetOutput);
         }
 
@@ -105,7 +104,7 @@ function downloadAsset(release, asset) {
 function ensureFetchCLI() {
   const { stdout } = shell.exec('which fetch', { silent: true });
   if (!stdout) {
-    shell.echo(`${symbols.error} fetch command not found!`);
+    shell.echo(`${symbols.error} Fetch command not found!`);
     shell.echo(
       `${symbols.error} Please install at: https://github.com/gruntwork-io/fetch/releases`
     );
@@ -151,16 +150,19 @@ function copyReleaseConfig() {
 }
 
 async function main() {
+  const isStopped = await isForgeStopped();
+  if (!isStopped) {
+    return process.exit(1);
+  }
+
   try {
     const platform = await getPlatform();
     shell.echo(`${symbols.info} Detected platform is: ${platform}`);
 
     if (releaseDirExists()) {
-      process.exit(1);
-      return;
+      return process.exit(1);
     }
 
-    ensureForgeStopped();
     ensureGithubToken();
     ensureFetchCLI();
 
