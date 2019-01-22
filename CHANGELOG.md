@@ -1,3 +1,12 @@
+## 0.6.6 (January 22, 2019)
+  - chore: upgrade forge-proto to align with forge@v0.11.0
+  - chore: update README.md
+  - chore: check forge pid before start
+  - chore: refactor config related ops
+  - chore: update readme and make init
+  - fix: cache.read should not throw error on not found
+  - fix: `forge version` not output forge-core version
+
 ## 0.6.5 (January 21, 2019)
   - [forge-cli] support simulator related commands #41
   - [forge-cli] support simulator in initialize process
