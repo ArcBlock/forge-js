@@ -364,15 +364,19 @@ async function getForgeProcesses() {
       })
     );
 
-    // FIXME: support finding the app process
+    // Find app process with app command
+    const command = config.app.executable;
+    const pattern = new RegExp(command, 'i');
+
     return results
-      .filter(x => /(forge|tendermint|ipfs)/.test(x.name))
+      .filter(x => /(forge|tendermint|ipfs)/.test(x.name) || (command && pattern.test(x.cmd)))
       .map(x => ({
         name: x.name.replace(path.extname(x.name), ''),
         pid: x.pid,
         uptime: prettyTime(x.elapsed),
         memory: prettyBytes(x.memory),
         cpu: `${x.cpu.toFixed(2)} %`,
+        // cmd: x.cmd,
       }));
   } catch (err) {
     console.error(err);
