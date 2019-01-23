@@ -75,12 +75,15 @@ async function execute(data) {
   try {
     const client = createRpcClient();
     const { passphrase, moniker, pk, hash, encoding } = data;
-    const walletType = {
-      pk: enums.KeyType[pk],
-      hash: enums.HashType[hash],
-      address: enums.EncodingType[encoding],
-    };
-    const res = await client.createWallet({ passphrase, moniker, type: walletType });
+    const res = await client.createWallet({
+      passphrase,
+      moniker,
+      type: {
+        pk: enums.KeyType[pk],
+        hash: enums.HashType[hash],
+        address: enums.EncodingType[encoding],
+      },
+    });
     shell.echo(hr);
     shell.echo(`${symbols.success} account create success!`);
     shell.echo(hr);
