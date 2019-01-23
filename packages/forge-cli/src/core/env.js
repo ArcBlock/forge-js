@@ -430,6 +430,10 @@ function readCache(key) {
   }
 }
 
+function sleep(timeout = 1000) {
+  return new Promise(resolve => setTimeout(resolve, timeout));
+}
+
 debug.error = (...args) => {
   if (debug.enabled) {
     console.error(...args);
@@ -447,6 +451,7 @@ module.exports = {
   },
 
   debug,
+  sleep,
   setupEnv,
   requiredDirs,
   findReleaseConfig,

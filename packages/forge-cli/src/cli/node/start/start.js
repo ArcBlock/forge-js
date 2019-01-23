@@ -20,7 +20,7 @@ const questions = [
   },
 ];
 
-function isStarted() {
+function isStarted(silent = false) {
   const { forgeBinPath, forgeConfigPath } = config.get('cli');
   const { stdout: pid } = shell.exec(`FORGE_CONFIG=${forgeConfigPath} ${forgeBinPath} pid`, {
     silent: true,
@@ -28,15 +28,17 @@ function isStarted() {
 
   const pidNumber = Number(pid);
   if (pidNumber) {
-    shell.echo(`${symbols.info} forge is already started!`);
-    shell.echo(`${symbols.info} Please run ${chalk.cyan('forge stop')} first!`);
+    if (silent === false) {
+      shell.echo(`${symbols.info} forge is already started!`);
+      shell.echo(`${symbols.info} Please run ${chalk.cyan('forge stop')} first!`);
+    }
     return true;
   }
 
   return false;
 }
 
-function main({ mode = 'console' } = {}) {
+async function main({ mode = 'console' } = {}) {
   const { forgeBinPath, forgeConfigPath } = config.get('cli');
   if (!forgeBinPath) {
     shell.echo(`${symbols.error} forgeBinPath not found, abort!`);
@@ -49,6 +51,27 @@ function main({ mode = 'console' } = {}) {
   } else {
     shell.exec(command);
   }
+
+  if (mode === 'start') {
+    await waitUntilStarted();
+    shell.echo(`${symbols.success} forge daemon successfully started`);
+    shell.exec('forge ps');
+  }
+}
+
+function waitUntilStarted() {
+  return new Promise(resolve => {
+    if (isStarted(true)) {
+      return resolve();
+    }
+
+    const timer = setInterval(() => {
+      if (isStarted(true)) {
+        clearInterval(timer);
+        return resolve();
+      }
+    }, 800);
+  });
 }
 
 exports.execute = () => {
