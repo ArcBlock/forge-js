@@ -6,7 +6,7 @@ const { execute, run } = require('./logs');
 cli('logs [type]', 'Show logs for various forge components', input => action(execute, run, input), {
   requirements: {
     forgeRelease: true,
-    runningNode: true,
+    runningNode: false,
     rpcClient: true,
     wallet: false,
   },
