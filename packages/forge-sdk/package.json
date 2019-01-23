@@ -19,13 +19,13 @@
   "dependencies": {
     "@arcblock/forge-proto": "^0.6.7",
     "@iarna/toml": "^2.2.1",
-    "bignumber.js": "^8.0.2",
     "camelcase": "^5.0.0",
     "camelize": "^1.0.0",
     "debug": "^4.1.1",
     "faker": "Marak/faker.js#d3ce6f1a2a9359574e7f31f14d4901648047c45a",
     "google-protobuf": "^3.6.1",
     "grpc": "^1.17.0",
+    "jsbn": "^1.1.0",
     "lodash": "^4.17.11",
     "varint": "^5.0.0"
   },

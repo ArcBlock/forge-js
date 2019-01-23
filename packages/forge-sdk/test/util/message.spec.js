@@ -1,3 +1,4 @@
+const { BigInteger } = require('jsbn');
 const {
   createMessage,
   formatMessage,
@@ -144,11 +145,20 @@ describe('#createMessage', () => {
   test('should support bigInt fields', () => {
     let message = createMessage('TransferTx', { value: 123456 }).toObject();
     expect(message.value.minus).toEqual(false);
-    expect(Buffer.from(message.value.value).toString('hex')).toEqual('1e24');
+    expect(Buffer.from(message.value.value).toString('hex')).toEqual('01e240');
 
     message = createMessage('TransferTx', { value: -123456 }).toObject();
     expect(message.value.minus).toEqual(true);
-    expect(Buffer.from(message.value.value).toString('hex')).toEqual('1e24');
+    expect(Buffer.from(message.value.value).toString('hex')).toEqual('01e240');
+  });
+
+  test('should support really big number fields', () => {
+    const v = new BigInteger('100', 10);
+    const d = new BigInteger('10').pow(16);
+    const bigNumber = v.multiply(d).toString('10');
+    const message = createMessage('TransferTx', { value: bigNumber }).toObject();
+    const decoded = formatMessage('TransferTx', message);
+    expect(decoded.value).toEqual(bigNumber);
   });
 });
 
@@ -301,7 +311,7 @@ describe('#encodeBigInt & decodeBitIng', () => {
     let decoded = decodeBigInt(encoded);
     expect(value).toEqual(decoded);
 
-    value = '12345678900000000000000000000';
+    value = '123456789000000000000000000000000';
     encoded = encodeBigInt(value, 'BigUint').toObject();
     decoded = decodeBigInt(encoded);
     expect(value).toEqual(decoded);
