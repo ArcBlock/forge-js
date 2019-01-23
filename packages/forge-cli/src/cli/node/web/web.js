@@ -1,3 +1,4 @@
+/* eslint no-case-declarations:"off" */
 const shell = require('shelljs');
 const { runNativeForgeCommand, debug } = require('core/env');
 const { symbols } = require('core/ui');
@@ -14,21 +15,30 @@ function processOutput(output, action) {
   }
 }
 
-async function main({ args: [action] }) {
-  if (action === 'start') {
-    const { stdout, stderr } = startWebUI();
-    processOutput(stdout || stderr, action);
-    shell.echo(`${symbols.info} running at: ${webUrl}`);
+async function main({ args: [action = 'none'] }) {
+  /* eslint-disable indent */
+  switch (action) {
+    case 'none':
+      shell.exec('forge web -h');
+      break;
+    case 'start':
+      const { stdout, stderr } = startWebUI();
+      processOutput(stdout || stderr, action);
+      shell.echo(`${symbols.info} running at: ${webUrl}`);
+      break;
+    case 'stop':
+      const { stdout2, stderr2 } = stopWebUI();
+      debug('stop', { stdout2, stderr2 });
+      processOutput(stdout2 || stderr2, action);
+      break;
+    case 'open':
+      shell.echo(`Opening ${webUrl}...`);
+      shell.exec(`open ${webUrl}`);
+      break;
+    default:
+      break;
   }
-  if (action === 'stop') {
-    const { stdout, stderr } = stopWebUI();
-    debug('stop', { stdout, stderr });
-    processOutput(stdout || stderr, action);
-  }
-  if (action === 'open') {
-    shell.echo(`Opening ${webUrl}...`);
-    shell.exec(`open ${webUrl}`);
-  }
+  /* eslint-enable indent */
 }
 
 exports.run = main;

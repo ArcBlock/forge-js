@@ -4,7 +4,7 @@ const { cli, action } = require('core/cli');
 const { execute, run } = require('./web');
 
 cli(
-  'web <action>',
+  'web [action]',
   'Start or stop the web UI of running forge node',
   input => action(execute, run, input),
   {
