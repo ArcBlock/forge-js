@@ -2271,11 +2271,6 @@ expect@^23.6.0:
     jest-message-util "^23.4.0"
     jest-regex-util "^23.3.0"
 
-express-test-util@^1.1.5:
-  version "1.1.5"
-  resolved "https://registry.npmjs.org/express-test-util/-/express-test-util-1.1.5.tgz#398df3799897f85e4a11d4ef941146ef468765aa"
-  integrity sha1-OY3zeZiX+F5KEdTvlBFG70aHZao=
-
 extend-shallow@^2.0.1:
   version "2.0.1"
   resolved "https://registry.npmjs.org/extend-shallow/-/extend-shallow-2.0.1.tgz#51af7d614ad9a9f610ea1bafbb989d6b1c56890f"

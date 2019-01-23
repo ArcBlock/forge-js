@@ -30,7 +30,6 @@
     "varint": "^5.0.0"
   },
   "devDependencies": {
-    "express-test-util": "^1.1.5",
     "jest": "^23.5.0"
   },
   "homepage": "https://github.com/ArcBlock/forge-js/tree/master/packages/forge-sdk",

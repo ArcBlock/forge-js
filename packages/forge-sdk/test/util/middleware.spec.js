@@ -1,32 +1,26 @@
 /* eslint no-unused-expressions:"off" */
-const util = require('express-test-util');
-
 const Runner = require('../../lib/util/middleware');
 
 describe('middleware', function() {
-  const req = util.mockRequest();
-  const res = util.mockResponse();
+  const req = {};
+  const res = {};
 
   const fn1 = function(req, res, next) {
-    // eslint-disable-line
     this.foo = true;
     next();
   };
 
   const fn2 = function(req, res, next) {
-    // eslint-disable-line
     this.bar = true;
     next();
   };
 
   const fn3 = function(req, res, next) {
-    // eslint-disable-line
     this.baz = true;
     next();
   };
 
   const fn4 = function(req, res, next) {
-    // eslint-disable-line
     setTimeout(() => {
       this.bar = false;
       next();
@@ -34,7 +28,6 @@ describe('middleware', function() {
   };
 
   const fn5 = function(req, res, next) {
-    // eslint-disable-line
     next(new Error('test error'));
   };
 
