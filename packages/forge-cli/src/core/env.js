@@ -84,7 +84,11 @@ function ensureForgeRelease(args, exitOn404 = true) {
       return true;
     } else {
       if (exitOn404) {
-        shell.echo(`${symbols.error} forge release dir invalid, non forge executable found`);
+        shell.echo(
+          `${symbols.error} forge release binary not found, please run ${chalk.cyan(
+            'forge init'
+          )} first`
+        );
         process.exit(1);
       }
     }
@@ -92,7 +96,8 @@ function ensureForgeRelease(args, exitOn404 = true) {
     if (exitOn404) {
       shell.echo(`${symbols.error} forge release dir does not exist
 
-  Start node with custom forge release folder
+  You can either run ${chalk.cyan('forge init')} to get the latest forge release.
+  Or start node with custom forge release folder
   > ${chalk.cyan('forge start --release-dir ~/Downloads/forge/')}
   > ${chalk.cyan('FORGE_RELEASE_DIR=~/Downloads/forge/ forge start')}
       `);
