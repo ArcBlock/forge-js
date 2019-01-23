@@ -4,7 +4,7 @@ const camelcase = require('camelcase');
 const faker = require('faker');
 const range = require('lodash/range');
 const random = require('lodash/random');
-const BN = require('bignumber.js');
+const { BigInteger } = require('jsbn');
 const {
   enums,
   messages,
@@ -384,8 +384,10 @@ function encodeBigInt(value, type) {
     return message;
   }
 
-  const number = BN(typeof value === 'number' ? Math.abs(value) : value.replace(/^(-|\+)/, ''));
-  message.setValue(Uint8Array.from(Buffer.from(number.toString(16), 'hex')));
+  const number = new BigInteger(
+    typeof value === 'number' ? Math.abs(value).toString() : value.replace(/^(-|\+)/, '')
+  );
+  message.setValue(Uint8Array.from(number.toByteArray()));
   if (type === 'BigSint') {
     message.setMinus(typeof value === 'number' ? value < 0 : /^-/.test(value));
   }
@@ -402,7 +404,8 @@ function encodeBigInt(value, type) {
  */
 function decodeBigInt(data) {
   const symbol = data.minus ? '-' : '';
-  return `${symbol}${BN(Buffer.from(data.value).toString('hex'), 16).toString(10)}`;
+  const valueHex = Buffer.from(data.value).toString('hex');
+  return `${symbol}${new BigInteger(valueHex, 16).toString(10)}`;
 }
 
 /**
