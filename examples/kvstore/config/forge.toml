@@ -62,13 +62,13 @@ path = "/tmp/.forge_kvstore_nodejs/tendermint"
 logfile = "logs/tendermint.log"
 
 # socket to proxy app
-sock_proxy_app = "unix://socks/tm_proxy_app.sock"
+sock_proxy_app = "tcp://127.0.0.1:28220"
 
 # socket for tendermint json rpc
-sock_rpc = "unix://socks/tm_rpc.sock"
+sock_rpc = "tcp://127.0.0.1:28221"
 
 # socket for tendermint grpc (right now just use it for send tx and commit immediately)
-sock_grpc = "unix://socks/tm_grpc.sock"
+sock_grpc = "tcp://127.0.0.1:28222"
 
 # socket for tendermint p2p. Normally this shall be opened to the public network
 sock_p2p = "tcp://0.0.0.0:26656"

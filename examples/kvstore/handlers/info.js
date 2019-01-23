@@ -7,13 +7,14 @@ const { OK } = enums.StatusCode;
  *
  * @returns verify result
  */
-module.exports = async function([forgeVersion]) {
-  console.log('TxHandler.info', forgeVersion);
-  return {
+module.exports = async function(req, res, next) {
+  console.log('TxHandler.info', req.forgeVersion);
+  Object.assign(res, {
     code: OK,
     typeUrls: Object.values({
       KvTx: 'KV/kv',
       AccountKvState: 'KV/kv_state',
     }),
-  };
+  });
+  next();
 };
