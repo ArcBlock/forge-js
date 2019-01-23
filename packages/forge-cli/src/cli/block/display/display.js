@@ -5,6 +5,15 @@ const { createRpcClient, debug } = require('core/env');
 const { symbols, hr, pretty } = require('core/ui');
 
 function parseBlockHeight(input, latest) {
+  if (input === 'first') {
+    return [1];
+  }
+
+  if (input === 'last' || input === 'latest') {
+    return [latest];
+  }
+
+  // range
   if (input.indexOf('...') > 0) {
     const [lower, upper] = input.split('...').map(x => Number(x));
     debug('parseBlockHeight', { input, lower, upper, latest });
@@ -15,6 +24,7 @@ function parseBlockHeight(input, latest) {
     }
   }
 
+  // number
   const tmp = input.split(',').filter(x => !!x);
   debug('parseBlockHeight', { input, tmp });
   if (!tmp.length) {
@@ -22,6 +32,7 @@ function parseBlockHeight(input, latest) {
     return [latest];
   }
 
+  // list
   return tmp
     .map(x => Number(x))
     .map(x => (x > 0 ? x : latest + x))
