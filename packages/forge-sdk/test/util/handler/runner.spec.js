@@ -1,5 +1,5 @@
 /* eslint no-unused-expressions:"off" */
-const Runner = require('../../lib/util/middleware');
+const Runner = require('../../../lib/util/handler/runner');
 
 describe('middleware', function() {
   const req = {};

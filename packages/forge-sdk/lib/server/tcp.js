@@ -2,6 +2,8 @@
 const net = require('net');
 const { enums } = require('@arcblock/forge-proto');
 const { encode, decode, decodePayload } = require('../util/socket_data');
+const HandlerManager = require('../util/handler/manager');
+
 const debug = require('debug')(`${require('../../package.json').name}:TCPServer`);
 
 const { OK } = enums.StatusCode;
@@ -14,19 +16,6 @@ function parseHostPort(value) {
   return { host, port };
 }
 
-// TODO: support middleware like `next` syntax
-async function executeHandlers(handlers, req) {
-  let res = {};
-  for (const handler of handlers) {
-    res = await handler(req, res);
-    if (res.code !== OK) {
-      return res;
-    }
-  }
-
-  return res;
-}
-
 /**
  * Create new TCP Server to handle transactions from forge-core
  *
@@ -35,7 +24,7 @@ async function executeHandlers(handlers, req) {
  */
 function create(config) {
   const { host, port } = parseHostPort(config.sockTcp);
-  const txHandlers = {};
+  const manager = new HandlerManager();
 
   const server = net.createServer();
 
@@ -55,38 +44,43 @@ function create(config) {
 
     // Identify request here and hook into txHandlers
     const dispatchRequest = async (payload, type) => {
-      debug('x'.repeat(80));
-      const handlers = txHandlers[type];
       const defaultResults = {
         verifyTx: { code: OK },
         updateState: { code: OK },
       };
 
-      let result = {};
-      if (Array.isArray(handlers) && handlers.length) {
-        try {
-          // NOTE: tx handlers should not throw error, but return enums.StatusCode
-          decodePayload(payload[type]);
-          result = await executeHandlers(handlers, Object.values(payload[type]));
-          console.log('dispatchRequest.result', { type, result });
-        } catch (err) {
-          console.log('dispatchRequest.error', { payload, type, err });
-          result = defaultResults[type];
+      // TODO: compose type base on itx
+      try {
+        decodePayload(payload[type]);
+        const result = {};
+        const request = payload[type];
+        if (payload[type].tx && payload[type].tx.itx) {
+          request.itx = payload[type].tx.itx;
         }
-      } else {
-        console.log('dispatchRequest.fallback', { type });
-        result = defaultResults[type];
-      }
+        debug('dispatchRequest.itx', request.itx);
 
-      // NOTE: Handler returned data will be attached to response here
-      sendResponse({ [type]: result });
+        // Use Tx type as namespace for handlers, eg: KvTx.verifyTx, KvTx.updateState
+        const handlerKey = request.itx ? `${request.itx.type}.${type}` : type;
+        if (manager.has(handlerKey)) {
+          manager.run(handlerKey, request, result, () => {
+            debug('dispatchRequest.result', { type: handlerKey, result });
+            sendResponse({ [type]: result });
+          });
+        } else {
+          debug('dispatchRequest.fallback', { type });
+          sendResponse({ [type]: defaultResults[type] });
+        }
+      } catch (err) {
+        debug('dispatchRequest.error', { payload, type, err });
+        sendResponse({ [type]: defaultResults[type] });
+      }
     };
 
     socket.on('data', buffer => {
       try {
-        debug('='.repeat(80));
+        debug('-'.repeat(80));
         const payload = decode(buffer, 'Request');
-        console.log('request', { buffer, bufferB64: buffer.toString('base64'), payload });
+        debug('request', { buffer, bufferB64: buffer.toString('base64'), payload });
         Object.keys(payload)
           .filter(x => !!payload[x])
           .forEach(x => dispatchRequest(payload, x));
@@ -111,11 +105,11 @@ function create(config) {
     /* eslint-disable indent */
     switch (err.code) {
       case 'EACCES':
-        console.err(`${bind} requires elevated privileges`);
+        console.error(`${bind} requires elevated privileges`);
         process.exit(1);
         break;
       case 'EADDRINUSE':
-        console.err(`${bind} is already in use`);
+        console.error(`${bind} is already in use`);
         process.exit(1);
         break;
       default:
@@ -128,30 +122,8 @@ function create(config) {
     host,
     port,
 
-    addHandler(type, handler) {
-      if (typeof handler !== 'function') {
-        return;
-      }
-
-      if (typeof txHandlers[type] === 'undefined') {
-        txHandlers[type] = [];
-      }
-
-      txHandlers[type].push(handler);
-      return this;
-    },
-
-    removeHandler(type, handler) {
-      if (!txHandlers[type]) {
-        return false;
-      }
-
-      const index = txHandlers[type].indexOf(handler);
-      if (index > -1) {
-        txHandlers[type].splice(index, 1);
-        return true;
-      }
-    },
+    addHandler: manager.add.bind(manager),
+    removeHandler: manager.remove.bind(manager),
 
     start(done) {
       server.listen(port, host, () => {

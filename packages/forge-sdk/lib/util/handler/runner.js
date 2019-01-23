@@ -5,7 +5,7 @@ const noop = function() {};
  *
  * NOTE: errors thrown by any middleware will be passed through to the final callback
  */
-class Middleware {
+class HandlerRunner {
   /**
    * save req and res as context
    */
@@ -33,14 +33,14 @@ class Middleware {
    * @return this
    */
   use(fn) {
-    if (fn instanceof Array) {
+    if (Array.isArray(fn)) {
       fn.forEach(f => this.use(f));
       return this;
     }
 
     /* istanbul ignore if */
     if (typeof fn !== 'function') {
-      throw new TypeError('Middleware Runner requires function arguments for #use');
+      throw new TypeError('HandlerRunner.use requires arguments to be function');
     }
 
     const instance = this;
@@ -77,4 +77,4 @@ class Middleware {
   }
 }
 
-module.exports = Middleware;
+module.exports = HandlerRunner;
