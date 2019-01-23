@@ -1,5 +1,5 @@
 const shell = require('shelljs');
-const { createRpcClient } = require('core/env');
+const { createRpcClient, debug } = require('core/env');
 const { symbols, pretty } = require('core/ui');
 
 async function execute({ args: [address] }) {
@@ -8,6 +8,7 @@ async function execute({ args: [address] }) {
     const stream = await client.getAccountState({ address: address });
     stream
       .on('data', function(result) {
+        debug('accountState', result.state.stake.recentStakes);
         if (result && result.code === 0) {
           shell.echo(`${pretty(result.$format().state)}`);
         } else {

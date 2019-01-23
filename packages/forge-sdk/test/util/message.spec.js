@@ -7,6 +7,8 @@ const {
   encodeAny,
   encodeTimestamp,
   decodeTimestamp,
+  encodeCircularQueue,
+  decodeCircularQueue,
   encodeBigInt,
   decodeBigInt,
 } = require('../../lib/util/message');
@@ -345,4 +347,13 @@ describe('#encodeTimestamp & decodeTimestamp', () => {
     const decoded = decodeTimestamp(encoded);
     expect(decoded).toEqual(dateStr);
   });
+});
+
+describe('#decodeCircularQueue & encodeCircularQueue', () => {
+  test('should be a function', () => {
+    expect(typeof encodeCircularQueue).toEqual('function');
+    expect(typeof decodeCircularQueue).toEqual('function');
+  });
+
+  test('should encode circular queue properly', () => {});
 });

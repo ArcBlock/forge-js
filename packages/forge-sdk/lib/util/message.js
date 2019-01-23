@@ -175,6 +175,10 @@ function formatMessage(type, data) {
 
     if (value && typeof value === 'object') {
       result[key] = formatMessage(subType, value);
+      if (subType === 'CircularQueue') {
+        result[key] = decodeCircularQueue(result[key]);
+      }
+
       return;
     }
 
@@ -254,6 +258,11 @@ function createMessage(type, params) {
         if (SubMessage && subFields) {
           debug(`createMessage.${subType}`, { type, subType, key });
           const subMessage = createMessage(subType, v);
+          // TODO: test this
+          // if (subType === 'CircularQueue') {
+          //   encodeCircularQueue(subMessage);
+          // }
+
           message[fn](subMessage);
           return;
         }
@@ -319,6 +328,31 @@ function encodeAny(data) {
   }
 
   return anyMessage;
+}
+
+// TODO: support more operations on CircularQueue, not needed by now
+function decodeCircularQueue(data) {
+  const { typeUrl, items = [] } = data;
+  const type = fromTypeUrl(typeUrl);
+  const { fn: Message } = getMessageType(type);
+  if (!Message) {
+    return data;
+  }
+
+  data.items = items.map(x => decodeAny(type, x));
+
+  return type;
+}
+function encodeCircularQueue(data) {
+  const { typeUrl, items = [] } = data;
+  const type = fromTypeUrl(typeUrl);
+  const { fn: Message } = getMessageType(type);
+  if (!Message) {
+    return data;
+  }
+
+  data.items = items.map(x => decodeAny(type, x));
+  return data;
 }
 
 /**
@@ -448,6 +482,8 @@ module.exports = {
   encodeAny,
   encodeTimestamp,
   decodeTimestamp,
+  decodeCircularQueue,
+  encodeCircularQueue,
   encodeBigInt,
   decodeBigInt,
   attachFormatFn,
