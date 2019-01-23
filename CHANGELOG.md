@@ -1,3 +1,13 @@
+## 0.6.8 (January 23, 2019)
+  - chore: improve forge start/stop command
+  - chore: make `forge restart` more developer friendly
+  - feat: support finding the forge-app process #29 (#86)
+  - tcp server handler namespace and connect style  middleware (#85)
+  - fix: bigint encoding for really large numbers (#84)
+  - chore: cleanup code
+  - fix and improve (#81)
+  - chore: update readme
+
 ## 0.6.7 (January 22, 2019)
   - feat: make `forge block` easier to use. #68
   - fix: tell user url of webui #60
