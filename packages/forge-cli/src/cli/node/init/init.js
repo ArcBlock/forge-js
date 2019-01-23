@@ -92,7 +92,8 @@ function downloadAsset(release, asset) {
       title: `${symbols.info} Downloading ${asset.name}`,
       unit: 'MB',
     });
-    progress.start((asset.size / 1024 / 1024).toFixed(2), 0);
+    const total = (asset.size / 1024 / 1024).toFixed(2);
+    progress.start(total, 0);
 
     // update progress bar
     const timer = setInterval(() => {
@@ -111,6 +112,7 @@ function downloadAsset(release, asset) {
       { async: true, silent: true },
       (code, _, stderr) => {
         clearInterval(timer);
+        progress.update(total);
         progress.stop();
 
         if (code === 0) {
