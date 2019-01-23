@@ -14,23 +14,25 @@ const { OK } = enums.StatusCode;
  * @param {*} senderState
  * @returns
  */
-module.exports = async function([tx, senderState]) {
-  const kvPair = tx.itx.value;
+module.exports = async function(req, res, next) {
+  const { itx, sender } = req;
+  const kvPair = itx.value;
   console.log('TxHandler.updateState', {
     kvPair,
-    store: senderState.data ? senderState.data.value : [],
+    store: sender.data ? sender.data.value : [],
   });
 
   // compose new store
-  const { typeUrl, value: prev } = senderState.data || {};
+  const { typeUrl, value: prev } = sender.data || {};
   const storeList = ((prev ? prev.storeList : []) || []).concat([kvPair]);
   console.log('TxHandler.updateState.store', require('util').inspect(storeList, { depth: 8 }));
 
   // reset account state to new store
-  senderState.data = {
+  sender.data = {
     type: fromTypeUrl(typeUrl) || 'AccountKvState',
     value: { store: storeList },
   };
 
-  return { code: OK, states: [senderState] };
+  Object.assign(res, { code: OK, states: [sender] });
+  next();
 };
