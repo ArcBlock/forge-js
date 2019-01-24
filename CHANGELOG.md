@@ -1,3 +1,19 @@
+## 0.6.9 (January 24, 2019)
+  - upgrade forge protobuf and several improvements (#88)
+  - chore: upgrade forge-proto to latest forge
+  - fix: listWallets => listWallet
+  - fix: transactions are not correctly filtered in forge-proto
+  - fix: update forge config with latest release
+  - fix: forge web related commands with latest forge
+  - chore: improve `forge tx` error
+  - fix: remove useless tip
+  - chore: organize forge-cli code
+  - feat: elimiate GITHUB_TOKEN and fetch dependency #34
+  - chore: improve texture and help text
+  - feat: align forge release version with forge-sdk/forge-proto/forge-cli #37
+  - fix: display graceful error message when unlock wallet failed #66
+  - chore: add docs, user can switch to different chains apps easily with #72
+
 ## 0.6.8 (January 23, 2019)
   - chore: improve forge start/stop command
   - chore: make `forge restart` more developer friendly
