@@ -37,6 +37,9 @@ Examples:
 
   Be sure to initialize before running any other commands
   > ${chalk.cyan('forge init')}
+
+  Curious about how to use a subcommand?
+  > ${chalk.cyan('forge xxx -h')}
   `);
 });
 
