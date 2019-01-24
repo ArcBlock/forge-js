@@ -19,9 +19,9 @@ cli(
       '--help': () => {
         shell.echo(`
 Examples:
-  - ${chalk.cyan('forge web start')} start the web UI
-  - ${chalk.cyan('forge web stop')} stop the web UI
-  - ${chalk.cyan('forge web open')} open the web UI in default browser
+  - ${chalk.cyan('forge web start')}      start the web UI
+  - ${chalk.cyan('forge web stop')}       stop the web UI
+  - ${chalk.cyan('forge web open')}       open the web UI in default browser
         `);
       },
     },
