@@ -81,7 +81,7 @@ function ensureForgeRelease(args, exitOn404 = true) {
       config.cli.forgeBinPath = forgeBinPath;
       debug(`${symbols.success} Using forge release dir: ${releaseDir}`);
       debug(`${symbols.success} Using forge executable: ${forgeBinPath}`);
-      return true;
+      return releaseDir;
     } else {
       if (exitOn404) {
         shell.echo(

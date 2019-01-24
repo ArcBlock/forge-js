@@ -5,7 +5,7 @@
 ## Requirements
 
 * Linux/Mac Command Line, iTerm is recommended.
-* Node.js: npm/yarn, please install using [nvm](https://github.com/creationix/nvm).
+* Node.js: npm/yarn, please install using [nvm](https://github.com/creationix/nvm), v10+
 
 ## Install
 
@@ -17,7 +17,7 @@ Now `forge` command is available to all new shell sessions.
 
 ## Usage
 
-> v0.6.5 is a breaking change release, please `rm -rf ~/.forge-cli` before run `forge init`.
+> v0.6.5 is a breaking change release, please `rm -rf ~/.forge_cli` before run `forge init`.
 
 Run `forge` and get available options and subcommands.
 
@@ -34,38 +34,37 @@ Options:
   -h, --help                output usage information
 
 Commands:
-  account:create            interactively create an account, guarded by a passphrase
-  account:delete <address>  delete an account by address
-  account <address>         get an account info by address
-  account:list [role]       list all accounts stored in this node, role=[all], default role is all
+  account:create            Interactively create an account, guarded by a passphrase
+  account:delete <address>  Delete an account by address
+  account <address>         Get an account info by address
+  account:list [role]       List all accounts stored in this node, role=[all], default role is all
   me                        Print current unlocked wallet
-  block <height>            get the block info from the running node
+  block [height]            Get the block info from the running node
+  create:cli                Create a new forge CLI in the current repo
+  version                   Output version for all components, including forge-cli, forge, storage and consensus engine
   config                    Read and display forge config
   console                   Attach the current TTY to forge console
   debug                     Print current forge-release, forge-cli and its dependency version
   declare:node              Declare the current node to be a validator candidate
-  init                      download and setup latest forge-core release to this machine
-  ps                        list application status for forge (includes tendermint and ipfs)
+  init                      Download and setup latest forge-core release on this machine
+  logs [type]               Show logs for various forge components
+  ps                        List application status for forge (includes tendermint and ipfs)
   reboot                    Restart the forge daemon
-  restart <app>             restart the forge managed applications: core/app/tendermint/ipfs
+  restart [app]             Restart the forge managed applications: core/app/tendermint/ipfs
   simulate [action]         Start/stop simulator and generate some random data
   start                     start forge-core and forge-app
   state|status [type]       List the information of the chain and the node, chain|core|net|validator
-  stop                      stop the forge daemon (forge-core, forge-app, consensus engine, storage engine)
-  version                   Output version for all components, including forge-cli, forge, storage and consensus engine
-  web <action>              Start or stop the web UI of running forge node
-  tx <hash>                 get a tx detail and display
-  tx:send                   send a signed tx to the network
-  tx:sign                   sign a transaction (base64) according to sender’s wallet
-  stake                     Stake token to various entities: node&#x2F;user&#x2F;asset
+  stop                      Stop the forge daemon (forge-core, forge-app, consensus engine, storage engine)
+  web [action]              Start or stop the web UI of running forge node
+  tx [hash]                 Get a tx detail and display
+  tx:send                   Send a signed tx to the network
+  tx:sign                   Sign a transaction (base64) according to sender’s wallet
+  stake                     Stake token to various entities: node/user/asset
 
 Examples:
 
   Be sure to initialize before running any other commands
   $ forge init
-
-  Connect to a remote forge node without starting one
-  $ forge chain:info --socket-grpc "tcp://10.0.0.1:9527"
 
   Start node with custom forge release folder
   $ forge start --release-dir ~/Downloads/forge/
