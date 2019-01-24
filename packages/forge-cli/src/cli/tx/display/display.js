@@ -3,6 +3,10 @@ const { createRpcClient, debug } = require('core/env');
 const { symbols, pretty } = require('core/ui');
 
 async function execute({ args: [hash] }) {
+  if (!hash) {
+    shell.exec('forge tx -h');
+    return;
+  }
   try {
     const client = createRpcClient();
     const stream = await client.getTx({ hash: hash });
