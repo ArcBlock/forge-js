@@ -229,10 +229,16 @@ async function ensureWallet() {
   const client = createRpcClient();
   const { address: userAddress, passphrase, useCachedAddress } = await inquirer.prompt(questions);
   const address = useCachedAddress ? cachedAddress : userAddress;
-  const { token } = await client.loadWallet({ address, passphrase });
-  writeCache('wallet', { address, token, expireAt: Date.now() + config.forge.unlockTtl * 1e3 });
-  config.cli.wallet = { address, token };
-  debug(`${symbols.success} Use unlocked wallet ${address}`);
+  try {
+    const { token } = await client.loadWallet({ address, passphrase });
+    writeCache('wallet', { address, token, expireAt: Date.now() + config.forge.unlockTtl * 1e3 });
+    config.cli.wallet = { address, token };
+    debug(`${symbols.success} Use unlocked wallet ${address}`);
+  } catch (err) {
+    debug.error('Wallet Unlock Error', err);
+    shell.echo(`${symbols.error} wallet unlock failed, please check wallet address and passphrase`);
+    process.exit(1);
+  }
 }
 
 /**
