@@ -3,10 +3,6 @@
 'use strict';
 var grpc = require('grpc');
 var rpc_pb = require('./rpc_pb.js');
-var google_protobuf_any_pb = require('google-protobuf/google/protobuf/any_pb.js');
-var code_pb = require('./code_pb.js');
-var type_pb = require('./type_pb.js');
-var state_pb = require('./state_pb.js');
 
 function serialize_forge_abi_RequestCreateTx(arg) {
   if (!(arg instanceof rpc_pb.RequestCreateTx)) {
@@ -162,15 +158,15 @@ function deserialize_forge_abi_RequestGetValidatorsInfo(buffer_arg) {
   return rpc_pb.RequestGetValidatorsInfo.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_forge_abi_RequestListWallets(arg) {
-  if (!(arg instanceof rpc_pb.RequestListWallets)) {
-    throw new Error('Expected argument of type forge_abi.RequestListWallets');
+function serialize_forge_abi_RequestListWallet(arg) {
+  if (!(arg instanceof rpc_pb.RequestListWallet)) {
+    throw new Error('Expected argument of type forge_abi.RequestListWallet');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_forge_abi_RequestListWallets(buffer_arg) {
-  return rpc_pb.RequestListWallets.deserializeBinary(new Uint8Array(buffer_arg));
+function deserialize_forge_abi_RequestListWallet(buffer_arg) {
+  return rpc_pb.RequestListWallet.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_forge_abi_RequestLoadFile(arg) {
@@ -248,6 +244,28 @@ function serialize_forge_abi_RequestStoreFile(arg) {
 
 function deserialize_forge_abi_RequestStoreFile(buffer_arg) {
   return rpc_pb.RequestStoreFile.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_forge_abi_RequestSubscribe(arg) {
+  if (!(arg instanceof rpc_pb.RequestSubscribe)) {
+    throw new Error('Expected argument of type forge_abi.RequestSubscribe');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_forge_abi_RequestSubscribe(buffer_arg) {
+  return rpc_pb.RequestSubscribe.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_forge_abi_RequestUnsubscribe(arg) {
+  if (!(arg instanceof rpc_pb.RequestUnsubscribe)) {
+    throw new Error('Expected argument of type forge_abi.RequestUnsubscribe');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_forge_abi_RequestUnsubscribe(buffer_arg) {
+  return rpc_pb.RequestUnsubscribe.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_forge_abi_ResponseCreateTx(arg) {
@@ -492,6 +510,28 @@ function deserialize_forge_abi_ResponseStoreFile(buffer_arg) {
   return rpc_pb.ResponseStoreFile.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_forge_abi_ResponseSubscribe(arg) {
+  if (!(arg instanceof rpc_pb.ResponseSubscribe)) {
+    throw new Error('Expected argument of type forge_abi.ResponseSubscribe');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_forge_abi_ResponseSubscribe(buffer_arg) {
+  return rpc_pb.ResponseSubscribe.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_forge_abi_ResponseUnsubscribe(arg) {
+  if (!(arg instanceof rpc_pb.ResponseUnsubscribe)) {
+    throw new Error('Expected argument of type forge_abi.ResponseUnsubscribe');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_forge_abi_ResponseUnsubscribe(buffer_arg) {
+  return rpc_pb.ResponseUnsubscribe.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 // forge RPC definition
 //
 // Notice: when you define a new RPC, please follow the naming convention. Your
@@ -604,77 +644,59 @@ var ChainRpcService = (exports.ChainRpcService = {
 });
 
 exports.ChainRpcClient = grpc.makeGenericClientConstructor(ChainRpcService);
-var WalletRpcService = (exports.WalletRpcService = {
-  // wallet related
-  create_wallet: {
-    path: '/forge_abi.WalletRpc/create_wallet',
-    requestStream: false,
-    responseStream: false,
-    requestType: rpc_pb.RequestCreateWallet,
-    responseType: rpc_pb.ResponseCreateWallet,
-    requestSerialize: serialize_forge_abi_RequestCreateWallet,
-    requestDeserialize: deserialize_forge_abi_RequestCreateWallet,
-    responseSerialize: serialize_forge_abi_ResponseCreateWallet,
-    responseDeserialize: deserialize_forge_abi_ResponseCreateWallet,
-  },
-  load_wallet: {
-    path: '/forge_abi.WalletRpc/load_wallet',
-    requestStream: false,
-    responseStream: false,
-    requestType: rpc_pb.RequestLoadWallet,
-    responseType: rpc_pb.ResponseLoadWallet,
-    requestSerialize: serialize_forge_abi_RequestLoadWallet,
-    requestDeserialize: deserialize_forge_abi_RequestLoadWallet,
-    responseSerialize: serialize_forge_abi_ResponseLoadWallet,
-    responseDeserialize: deserialize_forge_abi_ResponseLoadWallet,
-  },
-  recover_wallet: {
-    path: '/forge_abi.WalletRpc/recover_wallet',
-    requestStream: false,
-    responseStream: false,
-    requestType: rpc_pb.RequestRecoverWallet,
-    responseType: rpc_pb.ResponseRecoverWallet,
-    requestSerialize: serialize_forge_abi_RequestRecoverWallet,
-    requestDeserialize: deserialize_forge_abi_RequestRecoverWallet,
-    responseSerialize: serialize_forge_abi_ResponseRecoverWallet,
-    responseDeserialize: deserialize_forge_abi_ResponseRecoverWallet,
-  },
-  list_wallets: {
-    path: '/forge_abi.WalletRpc/list_wallets',
+var EventRpcService = (exports.EventRpcService = {
+  subscribe: {
+    path: '/forge_abi.EventRpc/subscribe',
     requestStream: false,
     responseStream: true,
-    requestType: rpc_pb.RequestListWallets,
-    responseType: rpc_pb.ResponseListWallet,
-    requestSerialize: serialize_forge_abi_RequestListWallets,
-    requestDeserialize: deserialize_forge_abi_RequestListWallets,
-    responseSerialize: serialize_forge_abi_ResponseListWallet,
-    responseDeserialize: deserialize_forge_abi_ResponseListWallet,
+    requestType: rpc_pb.RequestSubscribe,
+    responseType: rpc_pb.ResponseSubscribe,
+    requestSerialize: serialize_forge_abi_RequestSubscribe,
+    requestDeserialize: deserialize_forge_abi_RequestSubscribe,
+    responseSerialize: serialize_forge_abi_ResponseSubscribe,
+    responseDeserialize: deserialize_forge_abi_ResponseSubscribe,
   },
-  remove_wallet: {
-    path: '/forge_abi.WalletRpc/remove_wallet',
+  unsubscribe: {
+    path: '/forge_abi.EventRpc/unsubscribe',
     requestStream: false,
     responseStream: false,
-    requestType: rpc_pb.RequestRemoveWallet,
-    responseType: rpc_pb.ResponseRemoveWallet,
-    requestSerialize: serialize_forge_abi_RequestRemoveWallet,
-    requestDeserialize: deserialize_forge_abi_RequestRemoveWallet,
-    responseSerialize: serialize_forge_abi_ResponseRemoveWallet,
-    responseDeserialize: deserialize_forge_abi_ResponseRemoveWallet,
-  },
-  declare_node: {
-    path: '/forge_abi.WalletRpc/declare_node',
-    requestStream: false,
-    responseStream: false,
-    requestType: rpc_pb.RequestDeclareNode,
-    responseType: rpc_pb.ResponseDeclareNode,
-    requestSerialize: serialize_forge_abi_RequestDeclareNode,
-    requestDeserialize: deserialize_forge_abi_RequestDeclareNode,
-    responseSerialize: serialize_forge_abi_ResponseDeclareNode,
-    responseDeserialize: deserialize_forge_abi_ResponseDeclareNode,
+    requestType: rpc_pb.RequestUnsubscribe,
+    responseType: rpc_pb.ResponseUnsubscribe,
+    requestSerialize: serialize_forge_abi_RequestUnsubscribe,
+    requestDeserialize: deserialize_forge_abi_RequestUnsubscribe,
+    responseSerialize: serialize_forge_abi_ResponseUnsubscribe,
+    responseDeserialize: deserialize_forge_abi_ResponseUnsubscribe,
   },
 });
 
-exports.WalletRpcClient = grpc.makeGenericClientConstructor(WalletRpcService);
+exports.EventRpcClient = grpc.makeGenericClientConstructor(EventRpcService);
+var FileRpcService = (exports.FileRpcService = {
+  // filesystem related
+  store_file: {
+    path: '/forge_abi.FileRpc/store_file',
+    requestStream: true,
+    responseStream: false,
+    requestType: rpc_pb.RequestStoreFile,
+    responseType: rpc_pb.ResponseStoreFile,
+    requestSerialize: serialize_forge_abi_RequestStoreFile,
+    requestDeserialize: deserialize_forge_abi_RequestStoreFile,
+    responseSerialize: serialize_forge_abi_ResponseStoreFile,
+    responseDeserialize: deserialize_forge_abi_ResponseStoreFile,
+  },
+  load_file: {
+    path: '/forge_abi.FileRpc/load_file',
+    requestStream: false,
+    responseStream: true,
+    requestType: rpc_pb.RequestLoadFile,
+    responseType: rpc_pb.ResponseLoadFile,
+    requestSerialize: serialize_forge_abi_RequestLoadFile,
+    requestDeserialize: deserialize_forge_abi_RequestLoadFile,
+    responseSerialize: serialize_forge_abi_ResponseLoadFile,
+    responseDeserialize: deserialize_forge_abi_ResponseLoadFile,
+  },
+});
+
+exports.FileRpcClient = grpc.makeGenericClientConstructor(FileRpcService);
 var StateRpcService = (exports.StateRpcService = {
   // state related
   get_account_state: {
@@ -735,30 +757,74 @@ var StateRpcService = (exports.StateRpcService = {
 });
 
 exports.StateRpcClient = grpc.makeGenericClientConstructor(StateRpcService);
-var FileRpcService = (exports.FileRpcService = {
-  // filesystem related
-  store_file: {
-    path: '/forge_abi.FileRpc/store_file',
-    requestStream: true,
+var WalletRpcService = (exports.WalletRpcService = {
+  // wallet related
+  create_wallet: {
+    path: '/forge_abi.WalletRpc/create_wallet',
+    requestStream: false,
     responseStream: false,
-    requestType: rpc_pb.RequestStoreFile,
-    responseType: rpc_pb.ResponseStoreFile,
-    requestSerialize: serialize_forge_abi_RequestStoreFile,
-    requestDeserialize: deserialize_forge_abi_RequestStoreFile,
-    responseSerialize: serialize_forge_abi_ResponseStoreFile,
-    responseDeserialize: deserialize_forge_abi_ResponseStoreFile,
+    requestType: rpc_pb.RequestCreateWallet,
+    responseType: rpc_pb.ResponseCreateWallet,
+    requestSerialize: serialize_forge_abi_RequestCreateWallet,
+    requestDeserialize: deserialize_forge_abi_RequestCreateWallet,
+    responseSerialize: serialize_forge_abi_ResponseCreateWallet,
+    responseDeserialize: deserialize_forge_abi_ResponseCreateWallet,
   },
-  load_file: {
-    path: '/forge_abi.FileRpc/load_file',
+  load_wallet: {
+    path: '/forge_abi.WalletRpc/load_wallet',
+    requestStream: false,
+    responseStream: false,
+    requestType: rpc_pb.RequestLoadWallet,
+    responseType: rpc_pb.ResponseLoadWallet,
+    requestSerialize: serialize_forge_abi_RequestLoadWallet,
+    requestDeserialize: deserialize_forge_abi_RequestLoadWallet,
+    responseSerialize: serialize_forge_abi_ResponseLoadWallet,
+    responseDeserialize: deserialize_forge_abi_ResponseLoadWallet,
+  },
+  recover_wallet: {
+    path: '/forge_abi.WalletRpc/recover_wallet',
+    requestStream: false,
+    responseStream: false,
+    requestType: rpc_pb.RequestRecoverWallet,
+    responseType: rpc_pb.ResponseRecoverWallet,
+    requestSerialize: serialize_forge_abi_RequestRecoverWallet,
+    requestDeserialize: deserialize_forge_abi_RequestRecoverWallet,
+    responseSerialize: serialize_forge_abi_ResponseRecoverWallet,
+    responseDeserialize: deserialize_forge_abi_ResponseRecoverWallet,
+  },
+  list_wallet: {
+    path: '/forge_abi.WalletRpc/list_wallet',
     requestStream: false,
     responseStream: true,
-    requestType: rpc_pb.RequestLoadFile,
-    responseType: rpc_pb.ResponseLoadFile,
-    requestSerialize: serialize_forge_abi_RequestLoadFile,
-    requestDeserialize: deserialize_forge_abi_RequestLoadFile,
-    responseSerialize: serialize_forge_abi_ResponseLoadFile,
-    responseDeserialize: deserialize_forge_abi_ResponseLoadFile,
+    requestType: rpc_pb.RequestListWallet,
+    responseType: rpc_pb.ResponseListWallet,
+    requestSerialize: serialize_forge_abi_RequestListWallet,
+    requestDeserialize: deserialize_forge_abi_RequestListWallet,
+    responseSerialize: serialize_forge_abi_ResponseListWallet,
+    responseDeserialize: deserialize_forge_abi_ResponseListWallet,
+  },
+  remove_wallet: {
+    path: '/forge_abi.WalletRpc/remove_wallet',
+    requestStream: false,
+    responseStream: false,
+    requestType: rpc_pb.RequestRemoveWallet,
+    responseType: rpc_pb.ResponseRemoveWallet,
+    requestSerialize: serialize_forge_abi_RequestRemoveWallet,
+    requestDeserialize: deserialize_forge_abi_RequestRemoveWallet,
+    responseSerialize: serialize_forge_abi_ResponseRemoveWallet,
+    responseDeserialize: deserialize_forge_abi_ResponseRemoveWallet,
+  },
+  declare_node: {
+    path: '/forge_abi.WalletRpc/declare_node',
+    requestStream: false,
+    responseStream: false,
+    requestType: rpc_pb.RequestDeclareNode,
+    responseType: rpc_pb.ResponseDeclareNode,
+    requestSerialize: serialize_forge_abi_RequestDeclareNode,
+    requestDeserialize: deserialize_forge_abi_RequestDeclareNode,
+    responseSerialize: serialize_forge_abi_ResponseDeclareNode,
+    responseDeserialize: deserialize_forge_abi_ResponseDeclareNode,
   },
 });
 
-exports.FileRpcClient = grpc.makeGenericClientConstructor(FileRpcService);
+exports.WalletRpcClient = grpc.makeGenericClientConstructor(WalletRpcService);
