@@ -43,7 +43,7 @@ async function execute() {
   );
   shell.echo(`${''.padEnd(80, '-')}`);
   try {
-    const stream = await client.listWallets({});
+    const stream = await client.listWallet({});
     stream
       .on('data', function(result) {
         getAccountState(result.address, cached);

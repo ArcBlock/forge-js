@@ -4,7 +4,7 @@ const { execute, run } = require('./ps');
 
 cli(
   'ps',
-  'list application status for forge (includes tendermint and ipfs)',
+  'List application status for forge (includes tendermint and ipfs)',
   input => action(execute, run, input),
   {
     requirements: {

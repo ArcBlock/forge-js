@@ -12,9 +12,10 @@ const prettyTime = require('pretty-ms');
 const prettyBytes = require('pretty-bytes');
 const { get, set } = require('lodash');
 const { RpcClient, parseConfig } = require('@arcblock/forge-sdk');
-const debug = require('debug')(require('../../package.json').name);
+const { name, version, engines } = require('../../package.json');
+const debug = require('debug')(name);
 
-const { symbols } = require('./ui');
+const { symbols, hr } = require('./ui');
 
 const requiredDirs = {
   cache: path.join(os.homedir(), '.forge_cli/cache'),
@@ -76,12 +77,31 @@ function ensureForgeRelease(args, exitOn404 = true) {
 
     const forgeBinPath = path.join(releaseDir, './forge/bin/forge');
     if (fs.existsSync(forgeBinPath) && fs.statSync(forgeBinPath).isFile()) {
+      const releaseVersion = findReleaseVersion(releaseDir);
       config.cli.releaseDir = releaseDir;
-      config.cli.releaseVersion = findReleaseVersion(releaseDir);
+      config.cli.releaseVersion = releaseVersion;
       config.cli.forgeBinPath = forgeBinPath;
       debug(`${symbols.success} Using forge release dir: ${releaseDir}`);
       debug(`${symbols.success} Using forge executable: ${forgeBinPath}`);
-      return true;
+
+      if (semver.satisfies(releaseVersion, engines.forge)) {
+        return releaseDir;
+      }
+      if (exitOn404) {
+        shell.echo(
+          `${symbols.error} forge-cli@${version} requires forge@${
+            engines.forge
+          } to work, but got ${releaseVersion}!`
+        );
+        shell.echo(
+          `${symbols.info} if you want to use forge-cli@${version}, please following below steps:`
+        );
+        shell.echo(hr);
+        shell.echo(`1. stop running forge instance: ${chalk.cyan('forge stop')}`);
+        shell.echo(`2. cleanup forge release dir: ${chalk.cyan('rm -rf ~/.forge_cli')}`);
+        shell.echo(`3. install latest version of forge: ${chalk.cyan('forge init')}`);
+        process.exit(1);
+      }
     } else {
       if (exitOn404) {
         shell.echo(
@@ -209,10 +229,16 @@ async function ensureWallet() {
   const client = createRpcClient();
   const { address: userAddress, passphrase, useCachedAddress } = await inquirer.prompt(questions);
   const address = useCachedAddress ? cachedAddress : userAddress;
-  const { token } = await client.loadWallet({ address, passphrase });
-  writeCache('wallet', { address, token, expireAt: Date.now() + config.forge.unlockTtl * 1e3 });
-  config.cli.wallet = { address, token };
-  debug(`${symbols.success} Use unlocked wallet ${address}`);
+  try {
+    const { token } = await client.loadWallet({ address, passphrase });
+    writeCache('wallet', { address, token, expireAt: Date.now() + config.forge.unlockTtl * 1e3 });
+    config.cli.wallet = { address, token };
+    debug(`${symbols.success} Use unlocked wallet ${address}`);
+  } catch (err) {
+    debug.error('Wallet Unlock Error', err);
+    shell.echo(`${symbols.error} wallet unlock failed, please check wallet address and passphrase`);
+    process.exit(1);
+  }
 }
 
 /**

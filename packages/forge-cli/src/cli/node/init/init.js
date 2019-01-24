@@ -3,7 +3,6 @@ const fs = require('fs');
 const path = require('path');
 const shell = require('shelljs');
 const chalk = require('chalk');
-const github = require('octonode');
 const findProcess = require('find-process');
 const { symbols, hr, getSpinner, getProgress } = require('core/ui');
 const {
@@ -14,9 +13,6 @@ const {
   findReleaseConfig,
   getPlatform,
 } = require('core/env');
-const { GITHUB_TOKEN } = process.env;
-
-const client = github.client(GITHUB_TOKEN);
 
 // TODO: release dir cleanup
 
@@ -33,8 +29,9 @@ async function isForgeStopped() {
 }
 
 function releaseDirExists() {
-  if (ensureForgeRelease({}, false)) {
-    shell.echo(`${symbols.warning} forge already initialized!`);
+  const releaseDir = ensureForgeRelease({}, false);
+  if (releaseDir) {
+    shell.echo(`${symbols.warning} forge already initialized: ${releaseDir}`);
     shell.echo(
       `${symbols.warning} to upgrade forge release, please run ${chalk.cyan(
         'rm -rf ~/.forge_cli'
@@ -52,38 +49,56 @@ function releaseDirExists() {
   return false;
 }
 
-function fetchRelease(platform) {
-  return new Promise((resolve, reject) => {
-    const spinner = getSpinner('Fetching forge release info...');
-    spinner.start();
+function fetchReleaseVersion() {
+  const spinner = getSpinner('Fetching forge release version...');
+  spinner.start();
 
-    const repo = client.repo('ArcBlock/forge');
-    repo.releases((err, releases) => {
-      if (err) {
-        debug.error(err);
-        spinner.fail(`Forge release info fetched error: ${err.message}`);
-        return reject(err);
-      }
+  try {
+    const url = 'http://releases.arcblock.io/forge/latest.json';
+    const { code, stdout, stderr } = shell.exec(`curl "${url}"`, { silent: true });
+    // debug('fetchReleaseVersion', { code, stdout, stderr, url });
+    if (code === 0) {
+      const { latest: version } = JSON.parse(stdout.trim()) || {};
+      spinner.succeed(`Latest forge release version: v${version}`);
+      return version;
+    }
+    spinner.fail(`Release version fetch error: ${stderr}`);
+  } catch (err) {
+    spinner.fail(`Release version fetch error: ${err.message}`);
+  }
 
-      const forgePattern = new RegExp(`forge_${platform}_`, 'i');
-      const simulatorPattern = new RegExp(`simulator_${platform}_`, 'i');
-      const release = releases.find(x => x.assets.some(a => forgePattern.test(a.name)));
-      if (release) {
-        spinner.succeed(
-          `Latest forge release is ${release.tag_name}(#${release.id} on ${release.created_at})`
-        );
-        const forgeAsset = release.assets.find(x => forgePattern.test(x.name));
-        const simulatorAsset = release.assets.find(x => simulatorPattern.test(x.name));
-        resolve({ release, forgeAsset, simulatorAsset });
-      } else {
-        spinner.fail(`No suitable forge release found for platform ${platform}`);
-        reject(new Error('No compatible release found'));
-      }
-    });
-  });
+  process.exit(1);
 }
 
-function downloadAsset(release, asset) {
+function fetchAssetInfo(platform, version, key) {
+  const name = `${key}_${platform}_amd64.tgz`;
+  const url = `http://releases.arcblock.io/forge/${version}/${name}`;
+  const defaultSize = {
+    forge: 60 * 1024 * 1024,
+    simulator: 20 * 1024 * 1024,
+  };
+
+  const spinner = getSpinner(`Fetching release asset info: ${name}...`);
+  spinner.start();
+
+  try {
+    const { code, stdout, stderr } = shell.exec(`curl -I --silent "${url}"`, { silent: true });
+    // debug('fetchAssetInfo', { url, platform, version, code, stdout, stderr });
+    if (code === 0) {
+      spinner.succeed(`Release asset info fetch success ${name}`);
+      const header = stdout.split('\r\n').find(x => x.indexOf('Content-Length:') === 0);
+      const size = header ? Number(header.split(':').pop().trim()) : defaultSize[key]; // prettier-ignore
+      return { key, name, url, size, header };
+    }
+    spinner.fail(`Release asset info error: ${stderr}`);
+  } catch (err) {
+    spinner.fail(`Release asset info error: ${err.message}`);
+  }
+
+  process.exit(1);
+}
+
+function downloadAsset(asset) {
   return new Promise((resolve, reject) => {
     debug('Download asset', asset);
     const assetOutput = `/tmp/${asset.name}`;
@@ -104,11 +119,7 @@ function downloadAsset(release, asset) {
     }, 500);
 
     shell.exec(
-      `fetch --repo="https://github.com/arcblock/forge" \
-      --tag="${release.tag_name}" \
-      --release-asset="${asset.name}" \
-      --github-oauth-token="${GITHUB_TOKEN}" \
-      /tmp`,
+      `curl ${asset.url} --silent --out /tmp/${asset.name}`,
       { async: true, silent: true },
       (code, _, stderr) => {
         clearInterval(timer);
@@ -125,30 +136,6 @@ function downloadAsset(release, asset) {
       }
     );
   });
-}
-
-function ensureFetchCLI() {
-  const { stdout } = shell.exec('which fetch', { silent: true });
-  if (!stdout) {
-    shell.echo(`${symbols.error} Fetch command not found!`);
-    shell.echo(
-      `${symbols.error} Please install at: https://github.com/gruntwork-io/fetch/releases`
-    );
-    process.exit(1);
-  }
-}
-
-function ensureGithubToken() {
-  if (!process.env.GITHUB_TOKEN) {
-    shell.echo(`${symbols.error} GITHUB_TOKEN environment variable not set!`);
-    shell.echo(
-      `${symbols.info} Generate new GITHUB_TOKEN at: https://github.com/settings/tokens/new`
-    );
-    shell.echo(
-      `${symbols.info} Then run command ${chalk.green('GITHUB_TOKEN=<TOKEN> forge init')}`
-    );
-    process.exit(1);
-  }
 }
 
 function expandReleaseTarball(filePath, subFolder) {
@@ -182,23 +169,24 @@ async function main() {
   }
 
   try {
-    const platform = await getPlatform();
-    shell.echo(`${symbols.info} Detected platform is: ${platform}`);
-
     if (releaseDirExists()) {
       return process.exit(1);
     }
 
-    ensureGithubToken();
-    ensureFetchCLI();
+    const platform = await getPlatform();
+    shell.echo(`${symbols.info} Detected platform is: ${platform}`);
 
-    const { release, forgeAsset, simulatorAsset } = await fetchRelease(platform);
-    const forgeTarball = await downloadAsset(release, forgeAsset);
+    const version = fetchReleaseVersion();
+    const forgeAsset = fetchAssetInfo(platform, version, 'forge');
+    debug('forgeAsset', forgeAsset);
+    const forgeTarball = await downloadAsset(forgeAsset);
     // const forgeTarball = `/tmp/${forgeAsset.name}`;
     expandReleaseTarball(forgeTarball, 'forge');
     copyReleaseConfig();
 
-    const simulatorTarball = await downloadAsset(release, simulatorAsset);
+    const simulatorAsset = fetchAssetInfo(platform, version, 'simulator');
+    debug('simulatorAsset', simulatorAsset);
+    const simulatorTarball = await downloadAsset(simulatorAsset);
     // const simulatorTarball = `/tmp/${simulatorAsset.name}`;
     expandReleaseTarball(simulatorTarball, 'simulator');
 

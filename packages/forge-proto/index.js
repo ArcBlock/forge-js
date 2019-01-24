@@ -7,6 +7,8 @@ const debug = require('debug')(`${require('./package.json').name}`);
 const txTypePattern = /Tx$/;
 const stateTypePattern = /State$/;
 const stakeTypePattern = /^StakeFor/i;
+const requestTypePattern = /^Request/i;
+const responseTypePattern = /^Response/i;
 const lowerUnder = x => decamelize(x).toLowerCase();
 
 // extract spec
@@ -68,7 +70,9 @@ function processJs(baseDir) {
       return clients;
     }, {});
 
-  const transactions = Object.keys(types).filter(x => txTypePattern.test(x));
+  const transactions = Object.keys(types).filter(
+    x => txTypePattern.test(x) && !requestTypePattern.test(x) && !responseTypePattern.test(x)
+  );
   const stakes = Object.keys(types).filter(x => stakeTypePattern.test(x));
 
   return { types, vendorTypes, services, clients, transactions, stakes };
@@ -83,7 +87,7 @@ function processJs(baseDir) {
 function createTypeUrls(abi) {
   return Object.keys(abi).reduce((typeUrls, type) => {
     let typeUrl = type;
-    if (!/^Request/.test(type) && !/^Response/.test(type)) {
+    if (!requestTypePattern.test(type) && !responseTypePattern.test(type)) {
       if (txTypePattern.test(type)) {
         typeUrl = `fg:t:${lowerUnder(type.replace(txTypePattern, ''))}`;
       }

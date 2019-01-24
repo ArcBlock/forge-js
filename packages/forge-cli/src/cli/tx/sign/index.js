@@ -4,7 +4,7 @@ const { execute, run } = require('./sign');
 
 cli(
   'tx:sign',
-  'sign a transaction (base64) according to sender’s wallet',
+  'Sign a transaction (base64) according to sender’s wallet',
   input => action(execute, run, input),
   {
     requirements: {

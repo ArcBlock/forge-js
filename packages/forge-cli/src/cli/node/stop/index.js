@@ -4,7 +4,7 @@ const { execute, run } = require('./stop');
 
 cli(
   'stop',
-  'stop the forge daemon (forge-core, forge-app, consensus engine, storage engine)',
+  'Stop the forge daemon (forge-core, forge-app, consensus engine, storage engine)',
   input => action(execute, run, input),
   {
     requirements: {

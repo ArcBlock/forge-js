@@ -4,7 +4,8 @@
   "version": "0.6.8",
   "author": "wangshijun <shijun@arcblock.io> (https://ocap.arcblock.io)",
   "engines": {
-    "node": ">=0.10.0"
+    "node": ">=0.10.0",
+    "forge": ">=0.11.1"
   },
   "bugs": {
     "url": "https://github.com/ArcBlock/forge-js/issues",

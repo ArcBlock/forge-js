@@ -4,7 +4,7 @@ const { execute, run } = require('./init');
 
 cli(
   'init',
-  'download and setup latest forge-core release to this machine',
+  'Download and setup latest forge-core release on this machine',
   input => action(execute, run, input),
   {
     requirements: {

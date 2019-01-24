@@ -52,6 +52,9 @@ general = 86400
 # for node stake, we do T+7
 stake_for_node = 604800
 
+[forge.rpc]
+whitelist = "*"
+
 
 [tendermint]
 version = "0.27.3-01"

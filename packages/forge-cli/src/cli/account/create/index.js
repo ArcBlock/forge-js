@@ -4,7 +4,7 @@ const { execute, run } = require('./create');
 
 cli(
   'account:create',
-  'interactively create an account, guarded by a passphrase',
+  'Interactively create an account, guarded by a passphrase',
   input => action(execute, run, input),
   {
     requirements: {

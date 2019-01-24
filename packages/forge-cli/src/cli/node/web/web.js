@@ -4,14 +4,18 @@ const { runNativeForgeCommand, debug } = require('core/env');
 const { symbols } = require('core/ui');
 
 const webUrl = 'http://localhost:8210';
-const startWebUI = runNativeForgeCommand('rpc "Application.start(:cover)"', { silent: true });
-const stopWebUI = runNativeForgeCommand('rpc "Application.stop(:cover)"', { silent: true });
+const startWebUI = runNativeForgeCommand('rpc "Application.start(:forge_web)"', { silent: true });
+const stopWebUI = runNativeForgeCommand('rpc "Application.stop(:forge_web)"', { silent: true });
 
 function processOutput(output, action) {
   if (/:error/.test(output)) {
-    shell.echo(`${symbols.error} web ${action} failed: ${output.trim()}`);
+    if (/:already_started/.test(output)) {
+      shell.echo(`${symbols.warning} forge web already started`);
+    } else {
+      shell.echo(`${symbols.error} forge web ${action} failed: ${output.trim()}`);
+    }
   } else {
-    shell.echo(`${symbols.success} forge web ui ${action} success!`);
+    shell.echo(`${symbols.success} forge web ${action} success!`);
   }
 }
 

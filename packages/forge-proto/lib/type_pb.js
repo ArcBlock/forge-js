@@ -14,7 +14,7 @@ var global = Function('return this')();
 var google_protobuf_timestamp_pb = require('google-protobuf/google/protobuf/timestamp_pb.js');
 var google_protobuf_any_pb = require('google-protobuf/google/protobuf/any_pb.js');
 var vendor_pb = require('./vendor_pb.js');
-var code_pb = require('./code_pb.js');
+var enum_pb = require('./enum_pb.js');
 goog.exportSymbol('proto.forge_abi.AbciContext', null, global);
 goog.exportSymbol('proto.forge_abi.BigSint', null, global);
 goog.exportSymbol('proto.forge_abi.BigUint', null, global);
@@ -22,26 +22,19 @@ goog.exportSymbol('proto.forge_abi.BlockInfo', null, global);
 goog.exportSymbol('proto.forge_abi.ChainInfo', null, global);
 goog.exportSymbol('proto.forge_abi.CircularQueue', null, global);
 goog.exportSymbol('proto.forge_abi.ConsensusParams', null, global);
-goog.exportSymbol('proto.forge_abi.EncodingType', null, global);
 goog.exportSymbol('proto.forge_abi.GeoInfo', null, global);
-goog.exportSymbol('proto.forge_abi.HashType', null, global);
-goog.exportSymbol('proto.forge_abi.KeyType', null, global);
 goog.exportSymbol('proto.forge_abi.NetInfo', null, global);
 goog.exportSymbol('proto.forge_abi.NodeInfo', null, global);
 goog.exportSymbol('proto.forge_abi.PeerInfo', null, global);
 goog.exportSymbol('proto.forge_abi.StakeContext', null, global);
 goog.exportSymbol('proto.forge_abi.StakeSummary', null, global);
-goog.exportSymbol('proto.forge_abi.StakeType', null, global);
 goog.exportSymbol('proto.forge_abi.StateContext', null, global);
-goog.exportSymbol('proto.forge_abi.StateType', null, global);
 goog.exportSymbol('proto.forge_abi.Transaction', null, global);
 goog.exportSymbol('proto.forge_abi.TransactionInfo', null, global);
 goog.exportSymbol('proto.forge_abi.TxStatus', null, global);
 goog.exportSymbol('proto.forge_abi.UnconfirmedTxs', null, global);
-goog.exportSymbol('proto.forge_abi.UpgradeAction', null, global);
 goog.exportSymbol('proto.forge_abi.UpgradeTask', null, global);
 goog.exportSymbol('proto.forge_abi.UpgradeTasks', null, global);
-goog.exportSymbol('proto.forge_abi.UpgradeType', null, global);
 goog.exportSymbol('proto.forge_abi.Validator', null, global);
 goog.exportSymbol('proto.forge_abi.ValidatorInfo', null, global);
 goog.exportSymbol('proto.forge_abi.ValidatorsInfo', null, global);
@@ -5794,92 +5787,6 @@ proto.forge_abi.ValidatorInfo.prototype.getProposerPriority = function() {
 /** @param {string} value */
 proto.forge_abi.ValidatorInfo.prototype.setProposerPriority = function(value) {
   jspb.Message.setField(this, 4, value);
-};
-
-/**
- * @enum {number}
- */
-proto.forge_abi.KeyType = {
-  ED25519: 0,
-  SECP256K1: 1,
-};
-
-/**
- * @enum {number}
- */
-proto.forge_abi.HashType = {
-  KECCAK: 0,
-  SHA3: 1,
-  SHA2: 2,
-  KECCAK_384: 6,
-  SHA3_384: 7,
-  SHA2_384: 9,
-  KECCAK_512: 13,
-  SHA3_512: 14,
-  SHA2_512: 15,
-};
-
-/**
- * @enum {number}
- */
-proto.forge_abi.EncodingType = {
-  BASE16: 0,
-  BASE58: 1,
-};
-
-/**
- * @enum {number}
- */
-proto.forge_abi.UpgradeType = {
-  CONFIG_APP: 0,
-  CONFIG_FORGE: 1,
-  CONFIG_DFS: 2,
-  CONFIG_CONSENSUS: 3,
-  CONFIG_P2P: 4,
-  EXE_APP: 10,
-  EXE_FORGE: 11,
-  EXE_DFS: 12,
-  EXE_CONSENSUS: 13,
-  EXE_P2P: 14,
-};
-
-/**
- * @enum {number}
- */
-proto.forge_abi.UpgradeAction = {
-  VERIFY: 0,
-  BACKUP: 1,
-  REPLACE: 2,
-  RESTART_APP: 10,
-  RESTART_DFS: 11,
-  RESTART_CONSENSUS: 12,
-  RESTART_P2P: 13,
-  RESTART_FORGE: 14,
-  ROLLBACK_IF_FAIL: 30,
-  RESTART_ALL_IF_FAIL: 31,
-  CRASH_IF_FAIL: 33,
-  DROP_ADDRESS_BOOK: 50,
-};
-
-/**
- * @enum {number}
- */
-proto.forge_abi.StateType = {
-  STATE_ACCOUNT: 0,
-  STATE_ASSET: 1,
-  STATE_CHANNEL: 2,
-  STATE_FORGE: 3,
-  STATE_STAKE: 4,
-};
-
-/**
- * @enum {number}
- */
-proto.forge_abi.StakeType = {
-  STAKE_NODE: 0,
-  STAKE_USER: 1,
-  STAKE_ASSET: 2,
-  STAKE_CHAIN: 3,
 };
 
 goog.object.extend(exports, proto.forge_abi);
