@@ -1,14 +1,17 @@
 const shell = require('shelljs');
-const { symbols } = require('core/ui');
+const { symbols, getSpinner } = require('core/ui');
 const { runNativeForgeCommand } = require('core/env');
 
 const stop = runNativeForgeCommand('stop', { silent: true });
 function main() {
+  shell.echo(`${symbols.success} Sending kill signal to forge daemon...`);
+  const spinner = getSpinner('Waiting for forge daemon to stop...');
+  spinner.start();
   const { code, stderr } = stop();
   if (code === 0) {
-    shell.echo(`${symbols.success} forge daemon stopped!`);
+    spinner.succeed('Forge daemon stopped!');
   } else {
-    shell.echo(`${symbols.error} forge daemon stop failed ${stderr}!`);
+    spinner.fail(`Forge daemon stop failed ${stderr}!`);
   }
 }
 
