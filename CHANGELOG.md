@@ -1,3 +1,15 @@
+## 0.7.0 (January 25, 2019)
+  - fix: disable `forge create:cli` for release
+  - fix: `forge xxx -h` colors in shelljs.exec
+  - feat: support open forge graphql playground with `forge web open`
+  - fix: improve errmsg for declare as node
+  - feat: support display web status in `forge status` #65
+  - chore: add subscribe example for forge-sdk #87
+  - feat: support `forge block -f` display blocks until user stop it. #91
+  - fix: start forge web before `forge web open` #90
+  - chore: remove `forge console` command, since it does not works on all start modes #47
+  - feat: add spinner for `forge stop`
+
 ## 0.6.9 (January 24, 2019)
   - upgrade forge protobuf and several improvements (#88)
   - chore: upgrade forge-proto to latest forge
