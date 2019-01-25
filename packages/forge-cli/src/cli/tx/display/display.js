@@ -4,7 +4,7 @@ const { symbols, pretty } = require('core/ui');
 
 async function execute({ args: [hash] }) {
   if (!hash) {
-    shell.exec('forge tx -h');
+    shell.exec('forge tx -h --color always');
     return;
   }
   try {

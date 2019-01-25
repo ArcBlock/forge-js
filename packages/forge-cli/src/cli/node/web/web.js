@@ -22,7 +22,7 @@ async function main({ args: [action = 'none'], opts }) {
   /* eslint-disable indent */
   switch (action) {
     case 'none':
-      shell.exec('forge web -h');
+      shell.exec('forge web -h --color always');
       break;
     case 'start':
       const { stdout, stderr } = startWebUI();
