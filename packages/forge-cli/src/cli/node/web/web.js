@@ -1,10 +1,8 @@
 /* eslint no-case-declarations:"off" */
 const shell = require('shelljs');
-const { runNativeForgeCommand, debug } = require('core/env');
+const { runNativeForgeCommand, isForgeWebStarted, webUrl, debug } = require('core/env');
 const { symbols } = require('core/ui');
 
-const webPort = '8210';
-const webUrl = `http://localhost:${webPort}`;
 const startWebUI = runNativeForgeCommand('rpc "Application.start(:forge_web)"', { silent: true });
 const stopWebUI = runNativeForgeCommand('rpc "Application.stop(:forge_web)"', { silent: true });
 
@@ -18,15 +16,6 @@ function processOutput(output, action) {
   } else {
     shell.echo(`${symbols.success} forge web ${action} success!`);
   }
-}
-
-function isStarted() {
-  const { stdout } = shell.exec(`lsof -i :${webPort} | grep ${webPort}`);
-  if (/beam\.smp/.test(stdout) && /LISTEN/.test(stdout)) {
-    return true;
-  }
-
-  return false;
 }
 
 async function main({ args: [action = 'none'] }) {
@@ -46,7 +35,7 @@ async function main({ args: [action = 'none'] }) {
       processOutput(stdout2 || stderr2, action);
       break;
     case 'open':
-      if (isStarted() === false) {
+      if (isForgeWebStarted() === false) {
         shell.echo(`${symbols.info} forge web not started yet`);
         const { stdout, stderr } = startWebUI();
         processOutput(stdout || stderr, 'start');

@@ -22,6 +22,8 @@ const requiredDirs = {
   release: path.join(os.homedir(), '.forge_cli/release'),
 };
 
+const webPort = '8210';
+const webUrl = `http://localhost:${webPort}`;
 const config = { cli: {} }; // global shared forge-cli run time config
 
 /**
@@ -460,6 +462,15 @@ function sleep(timeout = 1000) {
   return new Promise(resolve => setTimeout(resolve, timeout));
 }
 
+function isForgeWebStarted() {
+  const { stdout } = shell.exec(`lsof -i :${webPort} | grep ${webPort}`, { silent: true });
+  if (/beam\.smp/.test(stdout) && /LISTEN/.test(stdout)) {
+    return true;
+  }
+
+  return false;
+}
+
 debug.error = (...args) => {
   if (debug.enabled) {
     console.error(...args);
@@ -476,6 +487,9 @@ module.exports = {
     read: readCache,
   },
 
+  webPort,
+  webUrl,
+
   debug,
   sleep,
   setupEnv,
@@ -491,4 +505,5 @@ module.exports = {
   getForgeProcesses,
   getPlatform,
   createRpcClient,
+  isForgeWebStarted,
 };
