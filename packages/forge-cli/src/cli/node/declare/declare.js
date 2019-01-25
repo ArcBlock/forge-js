@@ -2,7 +2,6 @@ const shell = require('shelljs');
 const { createRpcClient, debug } = require('core/env');
 const { symbols, pretty } = require('core/ui');
 
-// TODO: this command is incomplete due to: https://github.com/ArcBlock/forge/issues/221
 async function main() {
   const client = createRpcClient();
   try {
@@ -11,7 +10,12 @@ async function main() {
     shell.echo(pretty(res.$format()));
   } catch (err) {
     debug.error(err);
-    shell.echo(`${symbols.error} declare current running node as validator candidate failed!`);
+    shell.echo(`${symbols.error} declare node as validator candidate failed!`);
+    shell.echo(
+      `${
+        symbols.warning
+      } If you are running forge in standalone mode, it is automatically declared on initialization (since it is the only validator), you do not need to declare!`
+    );
   }
 }
 

@@ -12,12 +12,16 @@ cli(
       forgeRelease: false,
       rpcClient: true,
     },
-    options: [['-d, --show-txs', 'Show transaction details']],
+    options: [
+      ['-d, --show-txs', 'Show transaction details'],
+      ['-f, --stream', 'Streaming new blocks on the chain'],
+    ],
     handlers: {
       '--help': () => {
         shell.echo(`
 Examples:
   - ${chalk.cyan('forge block')}                display latest block, txs not printed
+  - ${chalk.cyan('forge block -f')}             Streaming for new blocks generated
   - ${chalk.cyan('forge block --show-txs')}     display latest block, txs printed
   - ${chalk.cyan('forge block 123')}            display block at height 123
   - ${chalk.cyan('forge block last')}           display latest block

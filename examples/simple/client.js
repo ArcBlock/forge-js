@@ -1,5 +1,6 @@
 /* eslint no-console:"off" */
 const path = require('path');
+const onExit = require('death');
 const { enums } = require('@arcblock/forge-proto');
 const { RpcClient, parseConfig } = require('@arcblock/forge-sdk');
 const client = new RpcClient(parseConfig(path.resolve(__dirname, './forge.toml')));
@@ -31,9 +32,33 @@ const getAccountState = address => {
     const res = await client.getChainInfo();
     debug('chainInfo', res.$format());
 
-    const stream = client.getBlock({ height: res.info.blockHeight - 1 });
-    stream.on('data', function({ block }) {
-      debug('blockInfo:', block);
+    // Subscribe: listen for new blocks
+    let topic = '';
+    client
+      .subscribe({ type: enums.TopicType.END_BLOCK, filter: '' })
+      .on('error', console.error)
+      .on('data', function(res) {
+        if (res.topic) {
+          console.log(`Subscribe success, topic: ${res.topic}`);
+          console.log('Waiting for new blocks...');
+          topic = res.topic;
+          return;
+        }
+
+        if (res.endBlock && res.endBlock.height) {
+          client
+            .getBlock(res.endBlock)
+            .on('data', ({ block }) => debug('Streaming.blockInfo:', block))
+            .on('error', console.error);
+        }
+      });
+
+    onExit(async () => {
+      if (topic) {
+        console.log('Unsubscribing...');
+        await client.unsubscribe({ topic });
+        process.exit();
+      }
     });
 
     // WalletRpc

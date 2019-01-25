@@ -78,8 +78,8 @@ describe('middleware', function() {
       expect(this.foo).toEqual(true);
       expect(this.bar).toEqual(false);
       expect(this.baz).toEqual(true);
-      expect(Date.now() - startTime).toBeGreaterThan(50);
-      expect(Date.now() - startTime).toBeLessThan(100);
+      expect(Date.now() - startTime).toBeGreaterThanOrEqual(50);
+      expect(Date.now() - startTime).toBeLessThanOrEqual(100);
       done();
     });
   });

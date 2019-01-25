@@ -12,7 +12,8 @@
   },
   "dependencies": {
     "@arcblock/forge-proto": "^0.6.9",
-    "@arcblock/forge-sdk": "^0.6.9"
+    "@arcblock/forge-sdk": "^0.6.9",
+    "death": "^1.1.0"
   },
   "keywords": [],
   "author": "wangshijun <wangshijun2010@gmail.com> (http://github.com/wangshijun)",

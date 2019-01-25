@@ -1,5 +1,6 @@
 const shell = require('shelljs');
-const { createRpcClient } = require('core/env');
+const chalk = require('chalk');
+const { createRpcClient, webUrl, isForgeWebStarted } = require('core/env');
 const { symbols, pretty, hr } = require('core/ui');
 
 function makeInfoReporter(method, title, key) {
@@ -10,7 +11,7 @@ function makeInfoReporter(method, title, key) {
     try {
       const res = await client[method]();
       shell.echo(hr);
-      shell.echo(`${symbols.success} ${title}`);
+      shell.echo(`${symbols.success} ${chalk.cyan(title)}`);
       shell.echo(hr);
       shell.echo(pretty(res.$format()[key]));
       shell.echo('');
@@ -29,6 +30,21 @@ const getValidatorsInfo = makeInfoReporter(
   'validatorsInfo'
 );
 
+function getWebInfo() {
+  shell.echo(hr);
+  shell.echo(`${symbols.success} ${chalk.cyan('Forge Web')}`);
+  shell.echo(hr);
+  if (isForgeWebStarted()) {
+    shell.echo(`${symbols.info} forge web started at:     ${webUrl}`);
+    shell.echo(`${symbols.info} graphql endpoint at:      ${webUrl}/api`);
+    shell.echo(`${symbols.info} graphql playground at:    ${webUrl}/api/playground`);
+  } else {
+    shell.echo(`${symbols.warn} forge web not started`);
+    shell.echo(`${symbols.info} start forge web with ${chalk.cyan('forge web start')}`);
+  }
+  shell.echo('');
+}
+
 async function main({ args: [type = 'all'] }) {
   const client = createRpcClient();
 
@@ -44,11 +60,15 @@ async function main({ args: [type = 'all'] }) {
   if (type === 'validator' || type === 'validators') {
     await getValidatorsInfo(client);
   }
+  if (type === 'web') {
+    await getWebInfo(client);
+  }
   if (type === 'all') {
     await getChainInfo(client);
     await getForgeInfo(client);
     await getNetInfo(client);
     await getValidatorsInfo(client);
+    await getWebInfo(client);
   }
 }
 

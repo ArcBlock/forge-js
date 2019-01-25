@@ -4,7 +4,7 @@ const fs = require('fs');
 const path = require('path');
 const util = require('util');
 const sdk = require('../');
-const pretty = data => util.inspect(data, { depth: 8 });
+const pretty = data => util.inspect(data, { depth: 8, colors: false, compact: false });
 const { enums } = require('@arcblock/forge-proto');
 const { RpcClient, parseConfig } = sdk;
 const client = new RpcClient(

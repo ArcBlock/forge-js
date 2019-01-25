@@ -5,7 +5,7 @@ const { symbols, getSpinner } = require('core/ui');
 
 async function main({ args: [app = 'none'] }) {
   if (app === 'none') {
-    shell.exec('forge restart -h');
+    shell.exec('forge restart -h --color always');
     process.exit(0);
   }
 
