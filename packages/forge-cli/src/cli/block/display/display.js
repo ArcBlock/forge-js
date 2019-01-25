@@ -76,8 +76,8 @@ async function fetchBlocks(client, heights, opts) {
 
 async function streamingBlocks(client, opts) {
   let topic = '';
-  const stream = client.subscribe({ type: enums.TopicType.END_BLOCK, filter: '' });
-  stream
+  client
+    .subscribe({ type: enums.TopicType.END_BLOCK, filter: '' })
     .on('data', function(res) {
       debug('streamingBlocks.data', res);
       if (res.topic) {
