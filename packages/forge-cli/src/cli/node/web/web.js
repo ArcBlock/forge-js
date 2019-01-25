@@ -18,7 +18,7 @@ function processOutput(output, action) {
   }
 }
 
-async function main({ args: [action = 'none'] }) {
+async function main({ args: [action = 'none'], opts }) {
   /* eslint-disable indent */
   switch (action) {
     case 'none':
@@ -27,7 +27,9 @@ async function main({ args: [action = 'none'] }) {
     case 'start':
       const { stdout, stderr } = startWebUI();
       processOutput(stdout || stderr, action);
-      shell.echo(`${symbols.info} running at: ${webUrl}`);
+      shell.echo(`${symbols.info} forge web running at:     ${webUrl}`);
+      shell.echo(`${symbols.info} graphql endpoint at:      ${webUrl}/api`);
+      shell.echo(`${symbols.info} graphql playground at:    ${webUrl}/api/playground`);
       break;
     case 'stop':
       const { stdout2, stderr2 } = stopWebUI();
@@ -37,12 +39,11 @@ async function main({ args: [action = 'none'] }) {
     case 'open':
       if (isForgeWebStarted() === false) {
         shell.echo(`${symbols.info} forge web not started yet`);
-        const { stdout, stderr } = startWebUI();
-        processOutput(stdout || stderr, 'start');
-        shell.echo(`${symbols.info} running at: ${webUrl}`);
+        await main({ args: ['start'] });
       }
-      shell.echo(`Opening ${webUrl}...`);
-      shell.exec(`open ${webUrl}`);
+      const url = opts.graphql ? `${webUrl}/api/playground` : webUrl;
+      shell.echo(`Opening ${url}...`);
+      shell.exec(`open ${url}`);
       break;
     default:
       break;
