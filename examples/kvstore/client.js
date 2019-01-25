@@ -43,7 +43,7 @@ const random = prefix => `${prefix}_${Math.round(Math.random() * 1000000)}`;
     const { token } = await client.loadWallet({ address, passphrase: '123456' });
     debug('Unlock wallet on forge chain', token);
 
-    const account = await client.getAccountState({ address });
+    const account = client.getAccountState({ address });
     account.on('data', async ({ state }) => {
       state.data = decodeAny(state.data);
       debug('accountInfo.storeList:', state.data.value ? state.data.value.storeList : []);

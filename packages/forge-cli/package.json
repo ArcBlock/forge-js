@@ -36,6 +36,7 @@
     "cli-progress": "^2.1.1",
     "cli-table-redemption": "^1.0.1",
     "commander": "^2.19.0",
+    "death": "^1.1.0",
     "debug": "^4.1.1",
     "find-process": "^1.2.1",
     "fuzzy": "^0.1.3",

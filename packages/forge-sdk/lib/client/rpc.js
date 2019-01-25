@@ -255,6 +255,7 @@ class Client {
       }
 
       const res = response.toObject();
+      debug('Rpc Response', method, res);
       if (res.code) {
         return reject(this._createResponseError(res.code, method));
       }
