@@ -35,5 +35,12 @@
   },
   "bugs": {
     "url": "https://github.com/ArcBlock/forge-js/issues"
+  },
+  "dependencies": {
+    "crypto-js": "^3.1.9-1",
+    "elliptic": "^6.4.1",
+    "interface": "^1.2.1",
+    "js-sha3": "^0.8.0",
+    "randombytes": "^2.0.6"
   }
 }
