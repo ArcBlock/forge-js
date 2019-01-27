@@ -13,7 +13,7 @@ class Kecakf1600Hasher {
     [224, 256, 384, 512].forEach(x => {
       const name = `sha${x}`;
       const hasher = data => sha3(data, { outputLength: x });
-      const fn = (data, outputEncoding = 'hex', round = 2) => {
+      const fn = (data, round = 1, outputEncoding = 'hex') => {
         if (round === 1) {
           return hasher(data).toString(encoders[outputEncoding]);
         }

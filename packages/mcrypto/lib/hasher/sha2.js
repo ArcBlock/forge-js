@@ -17,7 +17,7 @@ class Sha2Hasher {
     [224, 256, 384, 512].forEach(x => {
       const name = `sha${x}`;
       const hasher = hashFns[name];
-      const fn = (data, outputEncoding = 'hex', round = 2) => {
+      const fn = (data, round = 2, outputEncoding = 'hex') => {
         if (round === 1) {
           return hasher(data).toString(encoders[outputEncoding]);
         }

@@ -5,7 +5,7 @@ class Sha3Hasher {
     [224, 256, 384, 512].forEach(x => {
       const name = `sha${x}`;
       const hasher = sha3[`sha3_${x}`];
-      const fn = (data, outputEncoding = 'hex', round = 1) => {
+      const fn = (data, round = 1, outputEncoding = 'hex') => {
         if (round === 1) {
           // TODO: outputEncoding other than hex
           return hasher(data).toString();
