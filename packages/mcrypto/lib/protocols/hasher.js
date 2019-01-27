@@ -1,3 +1,3 @@
-const interface = require('interface');
+const Interface = require('interface');
 
-module.exports = interface.create('sha224', 'sha256', 'sha384', 'sha512');
+module.exports = Interface.create('sha224', 'sha256', 'sha384', 'sha512');

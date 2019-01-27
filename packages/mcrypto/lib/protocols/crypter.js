@@ -1,3 +1,3 @@
-const interface = require('interface');
+const Interface = require('interface');
 
-module.exports = interface.create('encrypt', 'decrypt');
+module.exports = Interface.create('encrypt', 'decrypt');

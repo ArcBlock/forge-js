@@ -1,3 +1,3 @@
-const interface = require('interface');
+const Interface = require('interface');
 
-module.exports = interface.create('genKeyPair', 'getPublicKey', 'sign', 'verify');
+module.exports = Interface.create('genKeyPair', 'getPublicKey', 'sign', 'verify');
