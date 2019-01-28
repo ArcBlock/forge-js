@@ -11,7 +11,7 @@ class Ed25519Signer extends Signer {
     super();
   }
 
-  genKeyPair(size = 32) {
+  genKeyPair(size = 64) {
     return ed25519.keyFromSecret(randomBytes(size));
   }
 

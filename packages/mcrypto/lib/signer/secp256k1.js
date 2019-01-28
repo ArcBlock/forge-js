@@ -12,16 +12,19 @@ class Secp256k1Signer extends Signer {
     return secp256k1.genKeyPair();
   }
 
-  getPublicKey(privateKey) {
-    return secp256k1.keyFromPrivate(privateKey).getPublic();
+  getPublicKey(privateKey, compressed = true) {
+    return secp256k1
+      .keyFromPrivate(privateKey, 'hex')
+      .getPublic(compressed)
+      .encode('hex');
   }
 
   sign(data, privateKey) {
-    return secp256k1.keyFromPrivate(privateKey).sign(data);
+    return secp256k1.keyFromPrivate(privateKey, 'hex').sign(data);
   }
 
   verify(hash, signature, publicKey) {
-    return secp256k1.keyFromPublic(publicKey).verify(hash, signature);
+    return secp256k1.keyFromPublic(publicKey, 'hex').verify(hash, signature);
   }
 }
 
