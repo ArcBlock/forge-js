@@ -52,7 +52,7 @@
     "url": "https://github.com/ArcBlock/forge-js/tree/master/packages/forge-sdk"
   },
   "scripts": {
-    "lint": "eslint lib index.js test",
+    "lint": "eslint lib index.js tests",
     "generate-docs": "node tools/generate-docs.js",
     "format-docs": "remark . -o",
     "precommit": "CI=1 yarn test",
