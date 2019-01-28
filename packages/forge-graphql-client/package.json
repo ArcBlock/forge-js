@@ -20,8 +20,7 @@
   ],
   "dependencies": {
     "@arcblock/sdk-util": "^0.13.0",
-    "babel-polyfill": "^6.26.0",
-    "js-cookie": "^2.2.0"
+    "babel-polyfill": "^6.26.0"
   },
   "devDependencies": {
     "axios-mock-adapter": "^1.15.0",
