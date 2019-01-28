@@ -75,10 +75,12 @@ const docs = Object.keys(map).map(x =>
   )
 );
 
-const docFile = path.join(__dirname, '../docs/auth.md');
+const docFile = path.join(__dirname, '../docs/API.md');
 fs.writeFileSync(
   docFile,
   `# Forge GraphQL API List\n
+
+> Updated on ${new Date().toISOString()}
 
 ## Table of Contents
 
