@@ -19,7 +19,7 @@
     "lib"
   ],
   "dependencies": {
-    "@arcblock/sdk-util": "^0.16.0",
+    "@arcblock/sdk-util": "^0.16.1",
     "babel-polyfill": "^6.26.0"
   },
   "devDependencies": {

@@ -1,6 +1,6 @@
 # Forge GraphQL API List
 
-> Updated on 2019-01-28T09:21:20.399Z
+> Updated on 2019-01-28T11:14:07.473Z
 
 
 ## Table of Contents
@@ -49,7 +49,8 @@
 
 ```graphql
 {
-  getAccountState {
+  getAccountState(address: "abc", appHash: "abc", keys: ["abc"]) {
+    code
     state {
       address
       migratedFrom
@@ -103,6 +104,11 @@
           value
         }
       }
+      type {
+        address
+        hash
+        pk
+      }
     }
   }
 }
@@ -120,7 +126,8 @@
 
 ```graphql
 {
-  getAssetState {
+  getAssetState(address: "abc", appHash: "abc", keys: ["abc"]) {
+    code
     state {
       address
       moniker
@@ -182,7 +189,8 @@
 
 ```graphql
 {
-  getBlock {
+  getBlock(height: 123) {
+    code
     block {
       appHash
       height
@@ -216,6 +224,7 @@ No arguments
 ```graphql
 {
   getChainInfo {
+    code
     info {
       address
       appHash
@@ -246,7 +255,8 @@ No arguments
 
 ```graphql
 {
-  getChannelState {
+  getChannelState(address: "abc", appHash: "abc", keys: ["abc"]) {
+    code
     state {
       address
       maxConfirmed
@@ -298,7 +308,8 @@ No arguments
 
 ```graphql
 {
-  getForgeState {
+  getForgeState(appHash: "abc", keys: ["abc"]) {
+    code
     state {
       consensus {
         maxBytes
@@ -338,7 +349,9 @@ No arguments
         key
         value {
           item {
+            actions
             dataHash
+            type
           }
         }
       }
@@ -358,6 +371,7 @@ No arguments
 ```graphql
 {
   getNetInfo {
+    code
     netInfo {
       listeners
       listening
@@ -394,7 +408,8 @@ No arguments
 
 ```graphql
 {
-  getStakeState {
+  getStakeState(address: "abc", appHash: "abc", keys: ["abc"]) {
+    code
     state {
       address
       from
@@ -428,7 +443,8 @@ No arguments
 
 ```graphql
 {
-  getTx {
+  getTx(hash: "abc") {
+    code
     info {
       hash
       height
@@ -462,7 +478,8 @@ No arguments
 
 ```graphql
 {
-  getUnconfirmedTxs {
+  getUnconfirmedTxs(limit: 123) {
+    code
     unconfirmedTxs {
       nTxs
       txs {
@@ -491,6 +508,7 @@ No arguments
 ```graphql
 {
   getValidatorsInfo {
+    code
     validatorsInfo {
       blockHeight
       validators {
@@ -515,6 +533,7 @@ No arguments
 {
   listWallet {
     address
+    code
   }
 }
 ```
@@ -529,8 +548,9 @@ No arguments
 
 ```graphql
 {
-  loadFile {
+  loadFile(hash: "abc") {
     chunk
+    code
   }
 }
 ```
@@ -546,7 +566,8 @@ No arguments
 
 ```graphql
 {
-  loadWallet {
+  loadWallet(address: "abc", passphrase: "abc") {
+    code
     token
   }
 }
@@ -563,7 +584,8 @@ No arguments
 
 ```graphql
 {
-  search {
+  search(key: "abc", value: "abc") {
+    code
     txs {
       hash
       height
@@ -601,7 +623,8 @@ No arguments
 
 ```graphql
 subscription {
-  subscribe {
+  subscribe(filter: "abc", type: "abc") {
+    code
     topic
     accountMigrate {
       chainId
@@ -847,7 +870,8 @@ subscription {
 
 ```graphql
 mutation {
-  createTx {
+  createTx(from: "abc", itx: "abc", nonce: 123, token: "abc", wallet: "abc") {
+    code
     tx {
       chainId
       from
@@ -874,12 +898,18 @@ mutation {
 
 ```graphql
 mutation {
-  createWallet {
+  createWallet(moniker: "abc", passphrase: "abc", type: "abc") {
+    code
     token
     wallet {
       address
       pk
       sk
+      type {
+        address
+        hash
+        pk
+      }
     }
   }
 }
@@ -911,10 +941,16 @@ No arguments
 ```graphql
 mutation {
   declareNode {
+    code
     wallet {
       address
       pk
       sk
+      type {
+        address
+        hash
+        pk
+      }
     }
   }
 }
@@ -933,12 +969,18 @@ mutation {
 
 ```graphql
 mutation {
-  recoverWallet {
+  recoverWallet(data: "abc", moniker: "abc", passphrase: "abc", type: "abc") {
+    code
     token
     wallet {
       address
       pk
       sk
+      type {
+        address
+        hash
+        pk
+      }
     }
   }
 }
@@ -954,7 +996,9 @@ mutation {
 
 ```graphql
 mutation {
-  removeWallet
+  removeWallet(address: "abc") {
+    code
+  }
 }
 ```
 
@@ -971,7 +1015,8 @@ mutation {
 
 ```graphql
 mutation {
-  sendTx {
+  sendTx(commit: true, token: "abc", tx: "abc", wallet: "abc") {
+    code
     hash
   }
 }
@@ -987,7 +1032,8 @@ mutation {
 
 ```graphql
 mutation {
-  storeFile {
+  storeFile(chunk: "abc") {
+    code
     hash
   }
 }
@@ -1003,6 +1049,8 @@ mutation {
 
 ```graphql
 mutation {
-  unsubscribe
+  unsubscribe(topic: "abc") {
+    code
+  }
 }
 ```

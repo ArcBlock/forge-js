@@ -3,6 +3,7 @@
 const fs = require('fs');
 const path = require('path');
 const { print, parse } = require('graphql');
+const { randomArg, randomArgs } = require('@arcblock/sdk-util/lib/util');
 const Client = require('../src/client');
 
 const genSectionDoc = (title, methods) => {
@@ -48,16 +49,31 @@ const map = {
   Mutations: client.getMutations(),
 };
 
-const paging = { size: 10 };
+const { types } = client._getSchema();
+const typesMap = types.reduce((map, x) => {
+  map[x.name] = x;
+  return map;
+}, {});
+
 const getResultFormat = m => {
   const args = client[m].args;
   const argValues = Object.values(args)
-    .filter(x => x.type.kind === 'NON_NULL')
+    // .filter(x => x.type.kind === 'NON_NULL') // Uncomment this to random only required fields
     .reduce((obj, x) => {
-      if (x.name === 'paging') {
-        obj.paging = paging;
+      if (x.type.ofType) {
+        if (x.type.kind === 'LIST') {
+          obj[x.name] = [randomArg(x.type.ofType, typesMap)];
+        } else if (x.type.ofType.kind === 'SCALAR') {
+          obj[x.name] = randomArg(x.type.ofType, typesMap);
+        } else if (['INPUT_OBJECT', 'OBJECT'].includes(x.type.ofType.kind)) {
+          obj[x.name] = randomArgs(typesMap[x.type.ofType.name], typesMap);
+        } else {
+          console.log('ignoreX', x);
+        }
       } else {
-        obj[x.name] = x.type.ofType.name === 'String' ? 'abc' : 123;
+        if (x.type.kind === 'SCALAR') {
+          obj[x.name] = randomArg(x.type, typesMap);
+        }
       }
 
       return obj;
