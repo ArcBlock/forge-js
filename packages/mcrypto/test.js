@@ -66,6 +66,7 @@ console.log('-'.repeat(80));
 
 // ED25519
 // https://github.com/indutny/elliptic/blob/master/lib/elliptic/eddsa/index.js
+// https://github.com/potatosalad/erlang-libdecaf
 (() => {
   const debugKeyPair = keyPair => {
     console.log('PRI.V', keyPair.priv());
