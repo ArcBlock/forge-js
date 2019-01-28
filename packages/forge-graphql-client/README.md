@@ -1,11 +1,31 @@
 # `forge-graphql-client`
 
-> TODO: description
+> Graphql Client for Forge, provided gRPC similar features to interact with a forge-powered app.
 
 ## Usage
 
-```
-const forgeGraphqlClient = require('forge-graphql-client');
+```js
+const GraphqlClient = require('@arcblock/forge-graphql-client');
+const client = new GraphqlClient('http://localhost:8210/api');
+console.log({
+  queries: client.getQueries(),
+  subscriptions: client.getSubscriptions(),
+  mutations: client.getMutations(),
+});
 
-// TODO: DEMONSTRATE API
+// Query Data
+(async () => {
+  const { getChainInfo } = await client.getChainInfo();
+  const { getForgeState } = await client.getForgeState();
+  const { getBlock } = await client.getBlock({ height: 2 });
+  console.log('getChainInfo', getChainInfo);
+  console.log('getForgeState', getForgeState);
+  console.log('getBlock', getBlock);
+})();
+
+// Mutation
+// TODO:
+
+// Subscription
+// TODO:
 ```
