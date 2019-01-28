@@ -65,27 +65,37 @@ console.log('-'.repeat(80));
 console.log('-'.repeat(80));
 
 // ED25519
+// https://github.com/indutny/elliptic/blob/master/lib/elliptic/eddsa/index.js
 (() => {
-  const privateKey = randomBytes(64);
-  const keyPair = ed25519.keyFromSecret(privateKey);
-  // const keyPair = ed25519.keyFromSecret(privateKey.toString('hex'));
-  console.log(privateKey.toString('hex').toUpperCase());
+  const debugKeyPair = keyPair => {
+    console.log('PRI.V', keyPair.priv());
+    console.log('PUB.V', keyPair.pub());
+    // console.log('HAS.V', keyPair.hash());
+    console.log('PRI.BYTES', keyPair.privBytes().toString());
+    console.log('PUB.BYTES', keyPair.pubBytes().toString());
+    console.log('PRI.HEX', Buffer.from(keyPair.privBytes()).toString('hex'));
+    console.log('PUB.HEX', Buffer.from(keyPair.pubBytes()).toString('hex'));
+  };
+
+  const secretKey = randomBytes(64);
+  const keyPair = ed25519.keyFromSecret(secretKey);
+  // const keyPair = ed25519.keyFromSecret(secretKey.toString('hex'));
+  console.log(secretKey.toString('hex').toUpperCase());
   console.log(keyPair.getPublic('hex').toUpperCase());
+  debugKeyPair(keyPair);
   return;
   // const privateKey = '3CFC222CA96DFE0ED32011B5F5C4FE94C2BA00123931018722A613E9EC96E0E1722F492E240C5B0C71E4D20CA2FB4A4A4C349C2B5750CBD77608F7F069CCEF91';
   // const keyPair = ed25519.keyFromSecret(privateKey.toLowerCase());
   // console.log('PRI', privateKey);
   // console.log('PUB', keyPair.getPublic('hex'));
-  // console.log('PRI.V', keyPair.priv());
-  // console.log('PUB.V', keyPair.pub());
-  // console.log('HAS.V', keyPair.hash());
-  // console.log('PRI.BYTES', keyPair.privBytes());
-  // console.log('PUB.BYTES', keyPair.pubBytes());
-  // console.log('PRI.HEX', Buffer.from(keyPair.privBytes()).toString('hex'));
-  // console.log('PUB.HEX', Buffer.from(keyPair.pubBytes()).toString('hex'));
+  // debugKeyPair(keyPair);
 
   // console.log('SIG', keyPair.sign('1234').toHex());
 
   // console.log(privateKey.toLowerCase());
   // console.log(secp256k1.keyFromPrivate(privateKey.toLowerCase(), 'hex').getPublic(true, 'hex'));
 })();
+
+// { pk, sk } = Mcrypto.keypair(%Mcrypto.Signer.Ed25519{})
+// Mcrypto.sign!(%Mcrypto.Signer.Ed25519{}, "1234", sk) |> Base.encode16
+// sk |> Base.encode16
