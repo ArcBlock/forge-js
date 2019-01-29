@@ -10,7 +10,6 @@ import { detectLocale } from './libs/util';
 
 addLocaleData(localeData);
 
-// TODO: Layout component with sidebar/login
 export const App = () => (
   <div className="wrapper">
     <div className="main">
@@ -26,7 +25,6 @@ export const App = () => (
 const WrappedApp = withI18n(withRouter(withTracker(App)));
 const Router = process.env.NODE_ENV === 'production' ? BrowserRouter : HashRouter;
 const { locale, messages } = detectLocale();
-console.log({ locale, messages });
 
 export default () => (
   <Router>
