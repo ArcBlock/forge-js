@@ -1,3 +1,11 @@
+## 0.7.2 (January 29, 2019)
+  - v0.7.1
+  - v0.7.1
+  - fix: publish config
+
+## 0.7.1 (January 29, 2019)
+  - support graphql client (#100)
+
 ## 0.7.0 (January 25, 2019)
   - fix: disable `forge create:cli` for release
   - fix: `forge xxx -h` colors in shelljs.exec

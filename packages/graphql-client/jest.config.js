@@ -5,6 +5,6 @@ module.exports = {
   browser: false,
   clearMocks: true,
   coverageDirectory: 'coverage',
+  setupFiles: ['<rootDir>/tools/jest-before-each.js'],
   testEnvironment: 'node',
-  testMatch: ['**/__tests__/**/*.js?(x)', '**/?(*.)+(spec).js?(x)'],
 };
