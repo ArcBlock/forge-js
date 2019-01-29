@@ -268,12 +268,14 @@ function createFileFinder(keyword, filePath) {
     }
 
     const libDir = path.join(releaseDir, 'forge/lib');
+    debug('createFileFinder', { keyword, filePath, libDir });
     if (!fs.existsSync(libDir) || !fs.statSync(libDir).isDirectory()) {
       return '';
     }
 
     const pattern = new RegExp(`^${keyword}`, 'i');
     const sdkDir = fs.readdirSync(libDir).find(x => pattern.test(x));
+    debug('createFileFinder', { keyword, filePath, sdkDir });
     if (sdkDir) {
       const releaseFile = path.join(libDir, sdkDir, filePath);
       if (fs.existsSync(releaseFile) && fs.statSync(releaseFile).isFile()) {
