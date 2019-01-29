@@ -239,8 +239,8 @@ const Header = styled.div`
     margin-left: ${props => props.theme.spacing.unit * 2}px;
     margin-top: 10px;
     img {
-      height: 36px;
-      width: 36px;
+      height: 32px;
+      width: 32px;
     }
   }
 
