@@ -7,7 +7,7 @@ const localeData = [
 
 module.exports = {
   localeData,
-  languages: [{ value: 'en', text: 'ENG' }, { value: 'zh', text: '中文' }],
+  languages: [{ value: 'en', text: 'English' }, { value: 'zh', text: '简体中文' }],
   translations: {
     en: require('../locales/en'),
     zh: require('../locales/zh'),

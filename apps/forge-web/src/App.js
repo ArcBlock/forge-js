@@ -1,28 +1,39 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter, HashRouter, Route, Switch, withRouter } from 'react-router-dom';
+import { IntlProvider } from 'react-intl';
+// import Cookie from 'js-cookie';
+// import browserLang from 'browser-lang';
+import { addLocaleData } from 'react-intl';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+import { localeData, translations } from './libs/locale';
+
+import PageDashboard from './pages/dashboard';
+import withTracker from './components/withTracker';
+import withI18n from './components/withI18n';
+
+addLocaleData(localeData);
+
+// TODO: sidebar
+export const App = () => (
+  <div className="wrapper">
+    <div className="main">
+      <div className="content">
+        <Switch>
+          <Route exact path="/" component={PageDashboard} />
+        </Switch>
       </div>
-    );
-  }
-}
+    </div>
+  </div>
+);
 
-export default App;
+const WrappedApp = withI18n(withRouter(withTracker(App)));
+const Router = process.env.NODE_ENV === 'production' ? BrowserRouter : HashRouter;
+const locale = 'en';
+
+export default () => (
+  <Router>
+    <IntlProvider locale={locale} messages={translations[locale]}>
+      <WrappedApp />
+    </IntlProvider>
+  </Router>
+);
