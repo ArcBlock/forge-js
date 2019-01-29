@@ -1,4 +1,3 @@
-/* eslint import/prefer-default-export:"off" */
 export const COOKIE_LANGUAGE = 'aba_lang';
 
 export const sizes = {

@@ -1,4 +1,3 @@
-/* eslint-disable global-require */
 import localeEN from 'react-intl/locale-data/en';
 import localeZH from 'react-intl/locale-data/zh';
 
