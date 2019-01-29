@@ -19,7 +19,7 @@ describe('GraphqlClient', () => {
     expect(client.getSubscriptions().length).toBeGreaterThan(0);
   });
 
-  test('should support getBlock', async () => {
+  test.skip('should support getBlock', async () => {
     const { getBlock } = await client.getBlock({ height: 2 });
     expect(getBlock.code).toEqual('OK');
     expect(getBlock.block.height).toEqual(2);

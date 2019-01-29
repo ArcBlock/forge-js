@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@arcblock/sdk-util@^0.16.1":
-  version "0.16.1"
-  resolved "https://registry.npmjs.org/@arcblock/sdk-util/-/sdk-util-0.16.1.tgz#bba4625c8447d90c7096b915715634709081d9ee"
-  integrity sha512-Lx6n3x1iu5nlsF0lAW0cUt4WmzF8wHJ1s7BA/HYpgXfoQLYf0qOTuR0uTjMLyJyG7W3jcC3jLjlhclVNl7YPMw==
+"@arcblock/sdk-util@^0.16.3":
+  version "0.16.3"
+  resolved "https://registry.npmjs.org/@arcblock/sdk-util/-/sdk-util-0.16.3.tgz#ea6f2c6d4d8e32391827112b7b614ef695d39f53"
+  integrity sha512-8wscofsp03n5Jc99j+9hPbc0QWTNdQnQUHvifGOP6CKr8BMmdWlgDLYyv6ORvP6RWbmnhf64fiQwqcCz6s4uZg==
   dependencies:
     axios "^0.18.0"
     debug "^3.1.0"

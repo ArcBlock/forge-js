@@ -19,10 +19,11 @@
     "lib"
   ],
   "dependencies": {
-    "@arcblock/sdk-util": "^0.16.1",
+    "@arcblock/sdk-util": "^0.16.3",
     "babel-polyfill": "^6.26.0"
   },
   "devDependencies": {
+    "axios": "^0.18.0",
     "axios-mock-adapter": "^1.15.0",
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.7.0",
