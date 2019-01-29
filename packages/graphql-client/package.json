@@ -1,6 +1,6 @@
 {
   "name": "@arcblock/forge-graphql-client",
-  "version": "0.7.1",
+  "version": "0.7.2",
   "description": "GraphQL Client for forge core",
   "keywords": [
     "graphql",
