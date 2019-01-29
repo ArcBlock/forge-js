@@ -72,6 +72,7 @@ class Dashboard extends React.Component {
     );
   }
 
+  // FIXME: the header content should be dynamic
   renderAppBar() {
     const { classes, session } = this.props;
     const { anchorEl } = this.state;
