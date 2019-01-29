@@ -41,6 +41,10 @@
               "rule": "repeated",
               "type": "AccountState",
               "id": 3
+            },
+            "context": {
+              "type": "AbciContext",
+              "id": 4
             }
           }
         },
@@ -65,9 +69,14 @@
               "type": "AssetState",
               "id": 4
             },
+            "stakes": {
+              "rule": "repeated",
+              "type": "StakeState",
+              "id": 5
+            },
             "appState": {
               "type": "ForgeState",
-              "id": 5
+              "id": 15
             }
           }
         },
@@ -346,7 +355,7 @@
               "type": "string",
               "id": 3
             },
-            "version": {
+            "consensusVersion": {
               "type": "string",
               "id": 4
             },
@@ -381,6 +390,24 @@
             "totalTxs": {
               "type": "uint64",
               "id": 12
+            },
+            "version": {
+              "type": "string",
+              "id": 13
+            },
+            "dataVersion": {
+              "type": "string",
+              "id": 14
+            },
+            "forgeAppsVersion": {
+              "keyType": "string",
+              "type": "string",
+              "id": 15
+            },
+            "supportedTxs": {
+              "rule": "repeated",
+              "type": "string",
+              "id": 16
             }
           }
         },
@@ -770,6 +797,10 @@
               "type": "string",
               "id": 1
             },
+            "pubKey": {
+              "type": "forge_vendor.PubKey",
+              "id": 2
+            },
             "votingPower": {
               "type": "uint32",
               "id": 3
@@ -777,6 +808,35 @@
             "proposerPriority": {
               "type": "string",
               "id": 4
+            },
+            "name": {
+              "type": "string",
+              "id": 5
+            }
+          }
+        },
+        "GenesisInfo": {
+          "fields": {
+            "genesisTime": {
+              "type": "string",
+              "id": 1
+            },
+            "chainId": {
+              "type": "string",
+              "id": 2
+            },
+            "consensusParams": {
+              "type": "forge_vendor.ConsensusParams",
+              "id": 3
+            },
+            "validators": {
+              "rule": "repeated",
+              "type": "ValidatorInfo",
+              "id": 4
+            },
+            "appHash": {
+              "type": "string",
+              "id": 5
             }
           }
         },
@@ -815,6 +875,7 @@
               "id": 8
             },
             "migratedTo": {
+              "rule": "repeated",
               "type": "string",
               "id": 13
             },
@@ -920,6 +981,14 @@
               "keyType": "uint32",
               "type": "StakeSummary",
               "id": 3
+            },
+            "version": {
+              "type": "string",
+              "id": 4
+            },
+            "dataVersion": {
+              "type": "string",
+              "id": 5
             },
             "data": {
               "type": "google.protobuf.Any",
@@ -1618,6 +1687,21 @@
             }
           }
         },
+        "RequestGetConfig": {
+          "fields": {}
+        },
+        "ResponseGetConfig": {
+          "fields": {
+            "code": {
+              "type": "StatusCode",
+              "id": 1
+            },
+            "config": {
+              "type": "string",
+              "id": 2
+            }
+          }
+        },
         "ChainRpc": {
           "methods": {
             "create_tx": {
@@ -1659,6 +1743,10 @@
             "get_validators_info": {
               "requestType": "RequestGetValidatorsInfo",
               "responseType": "ResponseGetValidatorsInfo"
+            },
+            "get_config": {
+              "requestType": "RequestGetConfig",
+              "responseType": "ResponseGetConfig"
             }
           }
         },
@@ -1762,15 +1850,6 @@
             }
           }
         },
-        "ConsensusUpgradeTx": {
-          "fields": {
-            "validators": {
-              "rule": "repeated",
-              "type": "Validator",
-              "id": 1
-            }
-          }
-        },
         "ConfirmTx": {
           "fields": {
             "sender": {
@@ -1780,6 +1859,15 @@
             "hash": {
               "type": "string",
               "id": 2
+            }
+          }
+        },
+        "ConsensusUpgradeTx": {
+          "fields": {
+            "validators": {
+              "rule": "repeated",
+              "type": "Validator",
+              "id": 1
             }
           }
         },
@@ -1795,6 +1883,22 @@
             },
             "readonly": {
               "type": "bool",
+              "id": 3
+            }
+          }
+        },
+        "DeclareTx": {
+          "fields": {
+            "moniker": {
+              "type": "string",
+              "id": 1
+            },
+            "pk": {
+              "type": "bytes",
+              "id": 2
+            },
+            "type": {
+              "type": "WalletType",
               "id": 3
             }
           }
@@ -1832,22 +1936,6 @@
             },
             "receiver": {
               "type": "ExchangeInfo",
-              "id": 3
-            }
-          }
-        },
-        "DeclareTx": {
-          "fields": {
-            "moniker": {
-              "type": "string",
-              "id": 1
-            },
-            "pk": {
-              "type": "bytes",
-              "id": 2
-            },
-            "type": {
-              "type": "WalletType",
               "id": 3
             }
           }

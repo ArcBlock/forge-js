@@ -49,7 +49,7 @@ if (goog.DEBUG && !COMPILED) {
  * @private {!Array<number>}
  * @const
  */
-proto.forge_abi.AccountState.repeatedFields_ = [14];
+proto.forge_abi.AccountState.repeatedFields_ = [13, 14];
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
   /**
@@ -86,7 +86,7 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
         type: (f = msg.getType()) && type_pb.WalletType.toObject(includeInstance, f),
         moniker: jspb.Message.getFieldWithDefault(msg, 7, ''),
         context: (f = msg.getContext()) && type_pb.StateContext.toObject(includeInstance, f),
-        migratedTo: jspb.Message.getFieldWithDefault(msg, 13, ''),
+        migratedToList: jspb.Message.getRepeatedField(msg, 13),
         migratedFromList: jspb.Message.getRepeatedField(msg, 14),
         numAssets: jspb.Message.getFieldWithDefault(msg, 15, 0),
         stake: (f = msg.getStake()) && type_pb.StakeContext.toObject(includeInstance, f),
@@ -162,7 +162,7 @@ proto.forge_abi.AccountState.deserializeBinaryFromReader = function(msg, reader)
         break;
       case 13:
         var value = /** @type {string} */ (reader.readString());
-        msg.setMigratedTo(value);
+        msg.addMigratedTo(value);
         break;
       case 14:
         var value = /** @type {string} */ (reader.readString());
@@ -241,9 +241,9 @@ proto.forge_abi.AccountState.serializeBinaryToWriter = function(message, writer)
   if (f != null) {
     writer.writeMessage(8, f, type_pb.StateContext.serializeBinaryToWriter);
   }
-  f = message.getMigratedTo();
+  f = message.getMigratedToList();
   if (f.length > 0) {
-    writer.writeString(13, f);
+    writer.writeRepeatedString(13, f);
   }
   f = message.getMigratedFromList();
   if (f.length > 0) {
@@ -436,16 +436,28 @@ proto.forge_abi.AccountState.prototype.hasContext = function() {
 };
 
 /**
- * optional string migrated_to = 13;
- * @return {string}
+ * repeated string migrated_to = 13;
+ * @return {!Array.<string>}
  */
-proto.forge_abi.AccountState.prototype.getMigratedTo = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 13, ''));
+proto.forge_abi.AccountState.prototype.getMigratedToList = function() {
+  return /** @type {!Array.<string>} */ (jspb.Message.getRepeatedField(this, 13));
 };
 
-/** @param {string} value */
-proto.forge_abi.AccountState.prototype.setMigratedTo = function(value) {
-  jspb.Message.setField(this, 13, value);
+/** @param {!Array.<string>} value */
+proto.forge_abi.AccountState.prototype.setMigratedToList = function(value) {
+  jspb.Message.setField(this, 13, value || []);
+};
+
+/**
+ * @param {!string} value
+ * @param {number=} opt_index
+ */
+proto.forge_abi.AccountState.prototype.addMigratedTo = function(value, opt_index) {
+  jspb.Message.addToRepeatedField(this, 13, value, opt_index);
+};
+
+proto.forge_abi.AccountState.prototype.clearMigratedToList = function() {
+  this.setMigratedToList([]);
 };
 
 /**
@@ -1263,6 +1275,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
         stakeSummaryMap: (f = msg.getStakeSummaryMap())
           ? f.toObject(includeInstance, proto.forge_abi.StakeSummary.toObject)
           : [],
+        version: jspb.Message.getFieldWithDefault(msg, 4, ''),
+        dataVersion: jspb.Message.getFieldWithDefault(msg, 5, ''),
         data: (f = msg.getData()) && google_protobuf_any_pb.Any.toObject(includeInstance, f),
       };
 
@@ -1327,6 +1341,14 @@ proto.forge_abi.ForgeState.deserializeBinaryFromReader = function(msg, reader) {
           );
         });
         break;
+      case 4:
+        var value = /** @type {string} */ (reader.readString());
+        msg.setVersion(value);
+        break;
+      case 5:
+        var value = /** @type {string} */ (reader.readString());
+        msg.setDataVersion(value);
+        break;
       case 15:
         var value = new google_protobuf_any_pb.Any();
         reader.readMessage(value, google_protobuf_any_pb.Any.deserializeBinaryFromReader);
@@ -1382,6 +1404,14 @@ proto.forge_abi.ForgeState.serializeBinaryToWriter = function(message, writer) {
       jspb.BinaryWriter.prototype.writeMessage,
       proto.forge_abi.StakeSummary.serializeBinaryToWriter
     );
+  }
+  f = message.getVersion();
+  if (f.length > 0) {
+    writer.writeString(4, f);
+  }
+  f = message.getDataVersion();
+  if (f.length > 0) {
+    writer.writeString(5, f);
   }
   f = message.getData();
   if (f != null) {
@@ -1454,6 +1484,32 @@ proto.forge_abi.ForgeState.prototype.getStakeSummaryMap = function(opt_noLazyCre
 
 proto.forge_abi.ForgeState.prototype.clearStakeSummaryMap = function() {
   this.getStakeSummaryMap().clear();
+};
+
+/**
+ * optional string version = 4;
+ * @return {string}
+ */
+proto.forge_abi.ForgeState.prototype.getVersion = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ''));
+};
+
+/** @param {string} value */
+proto.forge_abi.ForgeState.prototype.setVersion = function(value) {
+  jspb.Message.setField(this, 4, value);
+};
+
+/**
+ * optional string data_version = 5;
+ * @return {string}
+ */
+proto.forge_abi.ForgeState.prototype.getDataVersion = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ''));
+};
+
+/** @param {string} value */
+proto.forge_abi.ForgeState.prototype.setDataVersion = function(value) {
+  jspb.Message.setField(this, 5, value);
 };
 
 /**
