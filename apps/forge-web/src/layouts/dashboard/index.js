@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import Gravatar from 'react-gravatar';
 import Helmet from 'react-helmet';
 import qs from 'querystring';
-import { Link } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 
 import { withStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -30,10 +30,12 @@ import Sidebar from './sidebar';
 import { colors } from '../../libs/constant';
 import { version } from '../../../package.json';
 
+// TODO: attach language switcher on top
 class Dashboard extends React.Component {
   static propTypes = {
     children: PropTypes.any.isRequired,
     classes: PropTypes.object.isRequired,
+    match: PropTypes.object.isRequired,
     session: PropTypes.object,
     title: PropTypes.string,
   };
@@ -62,7 +64,10 @@ class Dashboard extends React.Component {
         {this.renderDrawer()}
         <main className={classes.content}>
           <div className={classes.appBarSpacer} />
-          <Content>{children}</Content>
+          <Content>
+            {this.renderSecondaryNav()}
+            {children}
+          </Content>
           <Version>
             v{version} <span className="highlight">beta</span>
           </Version>
@@ -70,6 +75,12 @@ class Dashboard extends React.Component {
         {this.renderSecurityDialog()}
       </div>
     );
+  }
+
+  renderSecondaryNav() {
+    const { match } = this.props;
+    console.log(match);
+    return null;
   }
 
   // FIXME: the header content should be dynamic
@@ -195,17 +206,12 @@ const Content = styled.div`
 `;
 
 const Version = styled.div`
-  color: #ffffff;
   position: absolute;
   right: 24px;
   bottom: 24px;
   margin: 0;
   font-size: 12px;
   z-index: 99;
-
-  .highlight {
-    color: #ffffff;
-  }
 `;
 
 const Header = styled.div`
@@ -246,6 +252,7 @@ const Header = styled.div`
 
 const drawerWidth = 100;
 
+// TODO: eliminate this kind of styling, low priority
 const styles = theme => ({
   root: {
     display: 'flex',
@@ -331,4 +338,4 @@ const styles = theme => ({
   },
 });
 
-export default withStyles(styles)(Dashboard);
+export default withStyles(styles)(withRouter(Dashboard));

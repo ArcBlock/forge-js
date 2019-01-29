@@ -7,16 +7,16 @@ import Layout from '../../layouts/dashboard';
 import withI18n from '../../components/withI18n';
 import withRoot from '../../components/withRoot';
 
-class Dashboard extends Page {
+class NodeStatus extends Page {
   render() {
     return (
-      <Layout title="Dashboard" cookies={this.cookies}>
+      <Layout title="Explorer" cookies={this.cookies}>
         <Typography component="h3" variant="h3">
-          Dashboard charts and ranks here...
+          NodeStatus here...
         </Typography>
       </Layout>
     );
   }
 }
 
-export default withRoot(withI18n(Dashboard));
+export default withRoot(withI18n(NodeStatus));

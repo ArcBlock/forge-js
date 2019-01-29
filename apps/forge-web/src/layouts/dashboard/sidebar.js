@@ -45,7 +45,7 @@ const images = {
 
 class Sidebar extends React.Component {
   static propTypes = {
-    location: PropTypes.object.isRequired,
+    match: PropTypes.object.isRequired,
   };
 
   render() {
@@ -77,7 +77,8 @@ class Sidebar extends React.Component {
   }
 
   isSelected = name => {
-    const path = this.props.location.pathname;
+    console.log(this.props.match);
+    const path = this.props.match.url;
     return name.length > 1 ? path.startsWith(name) : path === name;
   };
 }
