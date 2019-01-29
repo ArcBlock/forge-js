@@ -5,7 +5,7 @@ const { symbols } = require('core/ui');
 
 async function main() {
   const { releaseDir, releaseVersion } = config.get('cli');
-  const { storageEngine, consensusEngine } = config.get('forge');
+  const { storageEngine = 'ipfs', consensusEngine = 'tendermint' } = config.get('forge');
   const storageEnginePath = createFileFinder('storage', `priv/${storageEngine}/${storageEngine}`)(
     releaseDir
   );

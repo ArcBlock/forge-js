@@ -233,7 +233,11 @@ async function ensureWallet() {
   const address = useCachedAddress ? cachedAddress : userAddress;
   try {
     const { token } = await client.loadWallet({ address, passphrase });
-    writeCache('wallet', { address, token, expireAt: Date.now() + config.forge.unlockTtl * 1e3 });
+    writeCache('wallet', {
+      address,
+      token,
+      expireAt: Date.now() + (config.forge.unlockTtl || 300) * 1e3,
+    });
     config.cli.wallet = { address, token };
     debug(`${symbols.success} Use unlocked wallet ${address}`);
   } catch (err) {
@@ -268,12 +272,14 @@ function createFileFinder(keyword, filePath) {
     }
 
     const libDir = path.join(releaseDir, 'forge/lib');
+    debug('createFileFinder', { keyword, filePath, libDir });
     if (!fs.existsSync(libDir) || !fs.statSync(libDir).isDirectory()) {
       return '';
     }
 
     const pattern = new RegExp(`^${keyword}`, 'i');
     const sdkDir = fs.readdirSync(libDir).find(x => pattern.test(x));
+    debug('createFileFinder', { keyword, filePath, sdkDir });
     if (sdkDir) {
       const releaseFile = path.join(libDir, sdkDir, filePath);
       if (fs.existsSync(releaseFile) && fs.statSync(releaseFile).isFile()) {

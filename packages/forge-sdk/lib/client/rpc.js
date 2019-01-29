@@ -173,8 +173,7 @@ class Client {
 
           resolve(hash);
         } catch (err) {
-          console.error(err); // eslint-disable-line
-          reject(new Error(`Tx failed ${method} with error: ${err.message}`));
+          reject(err);
         }
       });
 
