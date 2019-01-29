@@ -92,8 +92,13 @@ async function main(answers) {
     shell.echo(`${symbols.info} run ${chalk.cyan(`forge tx ${hash}`)} to check tx state`);
     shell.echo(`${symbols.info} If tx not found, you can try some time later`);
   } catch (err) {
-    debug.error('stake error', err);
-    shell.echo(`${symbols.error} stake failed, if you are unstaking, ensure not froze`);
+    if (err.errcode === 'INVALID_RECEIVER_STATE') {
+      shell.echo(`${symbols.error} stake failed, please check stake target address`);
+    } else if (err.errcode === 'BANNED_UNSTAKE') {
+      shell.echo(`${symbols.error} stake failed, ensure you can unstake at this time`);
+    } else {
+      shell.echo(`${symbols.error} stake failed`);
+    }
   }
 }
 
