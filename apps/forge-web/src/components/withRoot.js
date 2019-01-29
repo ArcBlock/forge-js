@@ -8,7 +8,7 @@ const theme = createMuiTheme({
   palette: {
     primary: { main: '#4cbbb9', contrastText: '#ffffff' },
     secondary: { main: '#EF476F', contrastText: '#ffffff' },
-    background: { paper: '#ffffff', default: '#fbfbfb' },
+    background: { paper: '#ffffff', default: '#f7f8f8' },
   },
   typography: {
     useNextVariants: true,
@@ -37,6 +37,11 @@ const theme = createMuiTheme({
         borderRadius: 0,
         letterSpacing: '1.5px',
         boxShadow: 'none',
+      },
+    },
+    MuiAppBar: {
+      root: {
+        height: 80,
       },
     },
   },

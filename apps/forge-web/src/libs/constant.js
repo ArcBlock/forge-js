@@ -15,7 +15,7 @@ export const colors = {
   white: '#F8F8F8',
   dark: '#4A707C',
   gray: '#404040',
-  background: '#fbfbfb',
+  background: '#f7f8f8',
   yellow: '#FFD166',
   green: '#06D6A0',
   red: '#EF476F',

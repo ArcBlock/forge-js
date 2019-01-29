@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import classNames from 'classnames';
 import Gravatar from 'react-gravatar';
-import Cookie from 'js-cookie';
 import Helmet from 'react-helmet';
 import qs from 'querystring';
 
@@ -24,35 +23,29 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
-import MenuIcon from '@material-ui/icons/Menu';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 
 import Sidebar from './sidebar';
 import { colors } from '../../libs/constant';
 import { version } from '../../../package.json';
 
-const COOKIE_MENU_OPEN = 'menu_open';
-
 class Dashboard extends React.Component {
   static propTypes = {
     children: PropTypes.any.isRequired,
     classes: PropTypes.object.isRequired,
-    cookies: PropTypes.any.isRequired,
     session: PropTypes.object,
     title: PropTypes.string,
   };
 
   static defaultProps = {
     title: 'ArcBlock',
-    session: { loading: true },
+    session: { user: { email: 'wangshijun2010@gmail.com' } },
   };
 
   constructor(props) {
     super(props);
 
     this.state = {
-      open: props.cookies ? !!Number(props.cookies[COOKIE_MENU_OPEN]) : true,
       anchorEl: null,
     };
   }
@@ -79,19 +72,10 @@ class Dashboard extends React.Component {
 
   renderAppBar() {
     const { classes, session, title } = this.props;
-    const { open, anchorEl } = this.state;
+    const { anchorEl } = this.state;
     return (
-      <AppBar
-        position="absolute"
-        className={classNames(classes.appBar, open && classes.appBarShift)}>
-        <Toolbar disableGutters={!open} className={classes.toolbar}>
-          <IconButton
-            color="inherit"
-            aria-label="Open drawer"
-            onClick={this.onDrawerOpen}
-            className={classNames(classes.menuButton, open && classes.menuButtonHidden)}>
-            <MenuIcon />
-          </IconButton>
+      <AppBar position="absolute" className={classes.appBar}>
+        <Toolbar disableGutters={false} className={classes.toolbar}>
           <Typography
             component="h2"
             variant="headline"
@@ -130,24 +114,11 @@ class Dashboard extends React.Component {
 
   renderDrawer() {
     const { classes } = this.props;
-    const { open } = this.state;
     return (
-      <Drawer
-        variant="permanent"
-        classes={{
-          paper: classNames(classes.drawerPaper, !open && classes.drawerPaperClose),
-        }}
-        open={open}>
-        <div className={classes.toolbarIcon}>
-          <a href="https://www.arcblock.io">
-            <Logo />
-          </a>
-          <IconButton onClick={this.onDrawerClose}>
-            <ChevronLeftIcon />
-          </IconButton>
-        </div>
+      <Drawer variant="permanent" classes={{ paper: classNames(classes.drawerPaper) }} open={true}>
+        <div className={classes.toolbarIcon} />
         <Divider />
-        <Sidebar open={open} />
+        <Sidebar open={true} />
       </Drawer>
     );
   }
@@ -183,18 +154,6 @@ class Dashboard extends React.Component {
     );
   }
 
-  onDrawerOpen = () => {
-    this.setState({ open: true }, this.updateCookie);
-  };
-
-  onDrawerClose = () => {
-    this.setState({ open: false }, this.updateCookie);
-  };
-
-  updateCookie = () => {
-    Cookie.set(COOKIE_MENU_OPEN, this.state.open ? 1 : 0, { expires: 30, path: '/' });
-  };
-
   onDialogClose = () => {
     window.location.href = `/auth/login?${qs.stringify({
       login_redirect: window.location.toString(),
@@ -226,14 +185,6 @@ const Content = styled.div`
   flex-direction: column;
 `;
 
-const Logo = styled.div`
-  width: 136px;
-  height: 40px;
-  background: transparent url('/static/logo.svg') center center no-repeat;
-  background-size: contain;
-  cursor: pointer;
-`;
-
 const Version = styled.div`
   color: #ffffff;
   position: absolute;
@@ -248,7 +199,7 @@ const Version = styled.div`
   }
 `;
 
-const drawerWidth = 240;
+const drawerWidth = 100;
 
 const styles = theme => ({
   root: {
@@ -268,6 +219,8 @@ const styles = theme => ({
   },
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
+    background: theme.palette.background.default,
+    boxShadow: '0 0 0 0 transparent',
     transition: theme.transitions.create(['width', 'margin'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -298,6 +251,9 @@ const styles = theme => ({
     position: 'relative',
     whiteSpace: 'nowrap',
     width: drawerWidth,
+    background: theme.palette.background.default,
+    boxShadow: '2px 16px 10px 0 rgba(0, 0, 0, 0.05)',
+    border: 0,
     transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,

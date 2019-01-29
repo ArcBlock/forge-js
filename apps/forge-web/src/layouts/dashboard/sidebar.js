@@ -1,60 +1,67 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 import { withRouter, Link } from 'react-router-dom';
 
-import Divider from '@material-ui/core/Divider';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import ListSubheader from '@material-ui/core/ListSubheader';
+import dashboardIcon from './images/dashboard.png';
+import dashboardIconActive from './images/dashboard-active.png';
+import appIcon from './images/app.png';
+import appIconActive from './images/app-active.png';
+import nodeIcon from './images/node.png';
+import nodeIconActive from './images/node-active.png';
+import developerIcon from './images/developer.png';
+import developerIconActive from './images/developer-active.png';
+import tasksIcon from './images/tasks.png';
+import tasksIconActive from './images/tasks-active.png';
 
-import SettingsIcon from '@material-ui/icons/Settings';
-import PeopleIcon from '@material-ui/icons/People';
-import BuildIcon from '@material-ui/icons/Build';
-import CodeIcon from '@material-ui/icons/Code';
-import WalletIcon from '@material-ui/icons/AccountBalanceWallet';
-import KeyIcon from '@material-ui/icons/VpnKey';
-import HelpIcon from '@material-ui/icons/Help';
-import BillingIcon from '@material-ui/icons/Money';
+const images = {
+  dashboard: {
+    default: dashboardIcon,
+    active: dashboardIconActive,
+  },
+  app: {
+    default: appIcon,
+    active: appIconActive,
+  },
+  node: {
+    default: nodeIcon,
+    active: nodeIconActive,
+  },
+  tasks: {
+    default: tasksIcon,
+    active: tasksIconActive,
+  },
+  developer: {
+    default: developerIcon,
+    active: developerIconActive,
+  },
+};
 
 class Sidebar extends React.Component {
   static propTypes = {
     location: PropTypes.object.isRequired,
-    open: PropTypes.bool.isRequired,
   };
 
   render() {
     return (
-      <div>
-        <Divider />
-        <List style={{ padding: 0 }}>
-          {this.props.open && <ListSubheader>Account Info</ListSubheader>}
-          {this.renderMenuItem('/users/profile', <PeopleIcon />, 'Profile')}
-          {this.renderMenuItem('/users/settings', <SettingsIcon />, 'Settings')}
-          {this.renderMenuItem('/users/api_keys', <KeyIcon />, 'API Keys')}
-          {this.renderMenuItem('/users/assets', <WalletIcon />, 'Assets')}
-          {this.renderMenuItem('/users/billing', <BillingIcon />, 'Billing')}
-        </List>
-        <Divider />
-        <List style={{ padding: 0 }}>
-          {this.props.open && <ListSubheader>Developer Resource</ListSubheader>}
-          {this.renderMenuItem('/resources/sdk', <CodeIcon />, 'SDK')}
-          {this.renderMenuItem('/resources/tools', <BuildIcon />, 'Tools')}
-          {this.renderMenuItem('/resources/docs', <HelpIcon />, 'Documentation')}
-        </List>
-      </div>
+      <MenuItems>
+        {this.renderMenuItem('/', 'dashboard', 'Dashboard')}
+        {this.renderMenuItem('/node/explorer', 'node', 'Node Management')}
+        {this.renderMenuItem('/app', 'app', 'Application Management')}
+        {this.renderMenuItem('/tasks', 'tasks', 'Tasks')}
+        {this.renderMenuItem('/developer', 'developer', 'Developer Tools')}
+      </MenuItems>
     );
   }
 
-  renderMenuItem(url, icon, title) {
+  renderMenuItem(url, name, title) {
+    const active = this.isSelected(url);
     return (
-      <Link to={url}>
-        <ListItem button selected={this.isSelected(url)}>
-          <ListItemIcon>{icon}</ListItemIcon>
-          <ListItemText primary={title} />
-        </ListItem>
-      </Link>
+      <MenuItem active={active}>
+        <Link to={url} title={title}>
+          <img alt={name} src={images[name][active ? 'active' : 'default']} />
+        </Link>
+      </MenuItem>
     );
   }
 
@@ -63,5 +70,36 @@ class Sidebar extends React.Component {
     return name.length > 1 ? path.startsWith(name) : path === name;
   };
 }
+
+const MenuItems = styled.div`
+  margin-top: 30px;
+`;
+
+const gradient = 'linear-gradient(32deg, rgba(144, 255, 230, 0.1), rgba(144, 255, 230, 0))';
+const MenuItem = styled.div`
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 200ms ease-in-out;
+  background: ${props => (props.active ? gradient : '')};
+  border-left: 2px solid
+    ${props => (props.active ? props.theme.palette.primary.main : 'transparent')};
+
+  &:hover {
+    background: ${gradient};
+    border-left-color: ${props => props.theme.palette.primary.main};
+  }
+
+  a {
+    display: block;
+    padding: 20px 0;
+  }
+
+  img {
+    height: 36px;
+    width: 36px;
+  }
+`;
 
 export default withRouter(Sidebar);
