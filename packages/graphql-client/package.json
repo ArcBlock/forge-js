@@ -9,6 +9,9 @@
     "blockchain",
     "arcblock"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "author": "wangshijun <wangshijun2010@gmail.com>",
   "homepage": "https://github.com/arcblock/forge-js/packages/forge-graphql-client",
   "license": "MIT",
