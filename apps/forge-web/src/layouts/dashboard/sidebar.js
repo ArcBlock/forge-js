@@ -13,6 +13,8 @@ import developerIcon from './images/developer.png';
 import developerIconActive from './images/developer-active.png';
 import tasksIcon from './images/tasks.png';
 import tasksIconActive from './images/tasks-active.png';
+import settingsIcon from './images/setting.png';
+import settingsIconActive from './images/setting-active.png';
 
 const images = {
   dashboard: {
@@ -35,6 +37,10 @@ const images = {
     default: developerIcon,
     active: developerIconActive,
   },
+  settings: {
+    default: settingsIcon,
+    active: settingsIconActive,
+  },
 };
 
 class Sidebar extends React.Component {
@@ -45,11 +51,16 @@ class Sidebar extends React.Component {
   render() {
     return (
       <MenuItems>
-        {this.renderMenuItem('/', 'dashboard', 'Dashboard')}
-        {this.renderMenuItem('/node/explorer', 'node', 'Node Management')}
-        {this.renderMenuItem('/app', 'app', 'Application Management')}
-        {this.renderMenuItem('/tasks', 'tasks', 'Tasks')}
-        {this.renderMenuItem('/developer', 'developer', 'Developer Tools')}
+        <div className="menu-top-items">
+          {this.renderMenuItem('/', 'dashboard', 'Dashboard')}
+          {this.renderMenuItem('/node/explorer', 'node', 'Node Management')}
+          {this.renderMenuItem('/app', 'app', 'Application Management')}
+          {this.renderMenuItem('/tasks', 'tasks', 'Tasks')}
+          {this.renderMenuItem('/developer', 'developer', 'Developer Tools')}
+        </div>
+        <div className="menu-top-items">
+          {this.renderMenuItem('/settings', 'settings', 'Settings')}
+        </div>
       </MenuItems>
     );
   }
@@ -72,7 +83,11 @@ class Sidebar extends React.Component {
 }
 
 const MenuItems = styled.div`
+  flex: 1;
   margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 `;
 
 const gradient = 'linear-gradient(32deg, rgba(144, 255, 230, 0.1), rgba(144, 255, 230, 0))';

@@ -39,6 +39,7 @@ class Dashboard extends React.Component {
 
   static defaultProps = {
     title: 'ArcBlock',
+    // FIXME: auth and session
     session: { user: { email: 'wangshijun2010@gmail.com' } },
   };
 
@@ -76,12 +77,7 @@ class Dashboard extends React.Component {
     return (
       <AppBar position="absolute" className={classes.appBar}>
         <Toolbar disableGutters={false} className={classes.toolbar}>
-          <Typography
-            component="h2"
-            variant="headline"
-            color="inherit"
-            noWrap
-            className={classes.title}>
+          <Typography component="h2" color="inherit" noWrap className={classes.title}>
             Developer Console <ChevronRightIcon /> {title}
           </Typography>
           {session.user && [
