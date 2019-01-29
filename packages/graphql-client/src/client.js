@@ -1,4 +1,5 @@
 const BaseClient = require('@arcblock/sdk-util');
+const md5 = require('blueimp-md5');
 const schema = require('./schema.json');
 
 class GraphqlClient extends BaseClient {
@@ -18,6 +19,10 @@ class GraphqlClient extends BaseClient {
 
   _getIgnoreFields() {
     return [];
+  }
+
+  _getQueryId(query) {
+    return md5(query);
   }
 }
 
