@@ -77,7 +77,6 @@ class Sidebar extends React.Component {
   }
 
   isSelected = name => {
-    console.log(this.props.location);
     const { pathname } = this.props.location;
     return name.length > 1 ? pathname.startsWith(name) : pathname === name;
   };
