@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, HashRouter, Route, Switch, withRouter } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, withRouter } from 'react-router-dom';
 import { IntlProvider, addLocaleData } from 'react-intl';
 
 import withTracker from './components/withTracker';
@@ -33,7 +33,6 @@ export const App = () => (
 );
 
 const WrappedApp = withI18n(withRouter(withTracker(App)));
-const Router = process.env.NODE_ENV === 'production' ? BrowserRouter : HashRouter;
 const { locale, messages } = detectLocale();
 
 export default () => (
