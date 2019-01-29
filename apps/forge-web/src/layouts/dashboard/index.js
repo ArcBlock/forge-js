@@ -5,6 +5,7 @@ import classNames from 'classnames';
 import Gravatar from 'react-gravatar';
 import Helmet from 'react-helmet';
 import qs from 'querystring';
+import { Link } from 'react-router-dom';
 
 import { withStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -23,7 +24,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import logo from './images/logo.png';
 
 import Sidebar from './sidebar';
 import { colors } from '../../libs/constant';
@@ -72,14 +73,26 @@ class Dashboard extends React.Component {
   }
 
   renderAppBar() {
-    const { classes, session, title } = this.props;
+    const { classes, session } = this.props;
     const { anchorEl } = this.state;
     return (
       <AppBar position="absolute" className={classes.appBar}>
         <Toolbar disableGutters={false} className={classes.toolbar}>
-          <Typography component="h2" color="inherit" noWrap className={classes.title}>
-            Developer Console <ChevronRightIcon /> {title}
-          </Typography>
+          <Header>
+            <div className="header-image">
+              <Link to="/">
+                <img alt="Node" src={logo} />
+              </Link>
+            </div>
+            <div className="header-title">
+              <Typography component="h2" noWrap className="header-title__primary">
+                node01.bbs.net (38.88.166.250)
+              </Typography>
+              <Typography component="p" noWrap className="header-title__secondary">
+                ABT Chain Node V1.0.1 DBlog V0.99
+              </Typography>
+            </div>
+          </Header>
           {session.user && [
             <IconButton
               color="inherit"
@@ -88,7 +101,7 @@ class Dashboard extends React.Component {
               aria-haspopup="true"
               onClick={this.onMenuOpen}>
               <Gravatar
-                style={{ borderRadius: '20px', width: '40px', height: '40px' }}
+                style={{ borderRadius: '20px', width: '50px', height: '50px' }}
                 email={session.user.email}
                 title={session.user.email}
               />
@@ -119,7 +132,6 @@ class Dashboard extends React.Component {
     );
   }
 
-  // FIXME: auth related staff not working for now!
   renderSecurityDialog() {
     const { session } = this.props;
     if (session.loading || session.user) {
@@ -195,6 +207,42 @@ const Version = styled.div`
   }
 `;
 
+const Header = styled.div`
+  display: flex;
+
+  .header-image {
+    margin-right: ${props => props.theme.spacing.unit * 3}px;
+    margin-left: ${props => props.theme.spacing.unit * 2}px;
+    margin-top: 10px;
+    img {
+      height: 36px;
+      width: 36px;
+    }
+  }
+
+  .header-title {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  .header-title__primary {
+    font-size: 24px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    color: #222222;
+    text-transform: uppercase;
+  }
+
+  .header-title__secondary {
+    font-size: 14px;
+    line-height: 1.71;
+    letter-spacing: 1px;
+    color: #9b9b9b;
+  }
+`;
+
 const drawerWidth = 100;
 
 const styles = theme => ({
@@ -205,6 +253,8 @@ const styles = theme => ({
     paddingRight: 24,
     background: theme.palette.background.default,
     color: theme.palette.text.primary,
+    display: 'flex',
+    justifyContent: 'space-between',
   },
   toolbarIcon: {
     display: 'flex',
