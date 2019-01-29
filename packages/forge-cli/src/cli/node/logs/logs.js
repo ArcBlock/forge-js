@@ -12,10 +12,13 @@ function resolveLogPath(folder, file) {
 // TODO: log file path construction use consensus and storage engine config
 function findLogFiles() {
   return {
-    app: resolveLogPath(config.get('app.path'), config.get('app.logfile')),
-    core: resolveLogPath(config.get('forge.path'), config.get('forge.logfile')),
-    ipfs: resolveLogPath(config.get('ipfs.path'), config.get('ipfs.logfile')),
-    tendermint: resolveLogPath(config.get('tendermint.path'), config.get('tendermint.logfile')),
+    app: resolveLogPath(config.get('app.path'), config.get('app.logfile', 'logs/app.log')),
+    core: resolveLogPath(config.get('forge.path'), config.get('forge.logfile', 'logs/forge.log')),
+    ipfs: resolveLogPath(config.get('ipfs.path'), config.get('ipfs.logfile', 'logs/ipfs.log')),
+    tendermint: resolveLogPath(
+      config.get('tendermint.path'),
+      config.get('tendermint.logfile', 'logs/tendermint.log')
+    ),
   };
 }
 
