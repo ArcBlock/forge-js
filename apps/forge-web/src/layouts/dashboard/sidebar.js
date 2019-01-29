@@ -52,7 +52,7 @@ class Sidebar extends React.Component {
     return (
       <MenuItems>
         <div className="menu-top-items">
-          {this.renderMenuItem('/', 'dashboard', 'Dashboard')}
+          {this.renderMenuItem('/dashboard', 'dashboard', 'Dashboard')}
           {this.renderMenuItem('/node/explorer', 'node', 'Node Management')}
           {this.renderMenuItem('/app', 'app', 'Application Management')}
           {this.renderMenuItem('/tasks', 'tasks', 'Tasks')}
@@ -66,7 +66,7 @@ class Sidebar extends React.Component {
   }
 
   renderMenuItem(url, name, title) {
-    const active = this.isSelected(url);
+    const active = this.isSelected(url, name);
     return (
       <MenuItem active={active}>
         <Link to={url} title={title}>
@@ -76,9 +76,10 @@ class Sidebar extends React.Component {
     );
   }
 
-  isSelected = name => {
+  isSelected = (url, name) => {
     const { pathname } = this.props.location;
-    return name.length > 1 ? pathname.startsWith(name) : pathname === name;
+    const pattern = new RegExp(`^/${name}`);
+    return pattern.test(pathname);
   };
 }
 

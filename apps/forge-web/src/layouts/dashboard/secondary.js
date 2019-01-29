@@ -50,8 +50,8 @@ const MenuItems = styled.div`
   box-sizing: border-box;
 
   .secondary-title {
-    margin: 20px;
-    border-bottom: 1px solid #9b9b9b;
+    margin: 32px 20px 20px;
+    border-bottom: 1px solid ${props => props.theme.typography.color.gray};
     line-height: 0.1em;
     text-align: center;
     box-sizing: border-box;
@@ -60,7 +60,7 @@ const MenuItems = styled.div`
       font-size: 14px;
       font-weight: 500;
       letter-spacing: 2px;
-      color: #9b9b9b;
+      color: ${props => props.theme.typography.color.gray};
       background: ${props => props.theme.palette.background.default};
       text-transform: uppercase;
       padding: 0 35px;
@@ -68,6 +68,7 @@ const MenuItems = styled.div`
   }
 `;
 
+// prettier-ignore
 const MenuItem = styled.div`
   list-style: none;
   display: flex;
@@ -86,7 +87,8 @@ const MenuItem = styled.div`
     display: block;
     padding: 16px 0;
     letter-spacing: 1px;
-    color: ${props => (props.active ? props.theme.palette.primary.main : '#444')};
+    color: ${({ active, theme: { palette, typography } }) =>
+    (active ? palette.primary.main : typography.color.main)};
   }
 `;
 
