@@ -24,12 +24,15 @@
   },
   "scripts": {
     "lint": "eslint src",
-    "precommit": "CI=1 yarn test",
-    "prepush": "CI=1 yarn test",
+    "precommit": "npm run lint && CI=1 yarn test",
+    "prepush": "npm run lint && CI=1 yarn test",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
   },
   "repository": {
     "type": "git",
