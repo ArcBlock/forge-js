@@ -1,0 +1,32 @@
+{
+  "env": {
+    "development": {
+      "presets": [
+        [
+          "babel-preset-env",
+          {
+            "targets": {
+              "node": "8"
+            }
+          }
+        ]
+      ],
+      "plugins": []
+    },
+    "browser": {
+      "presets": [
+        [
+          "babel-preset-env",
+          {
+            "targets": {
+              "browsers": "last 2 versions, ie 10-11"
+            },
+            "modules": false
+          }
+        ]
+      ],
+      "plugins": []
+    }
+  },
+  "sourceMaps": true
+}
