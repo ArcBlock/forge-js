@@ -3,8 +3,11 @@ const path = require('path');
 
 const packages = fs.readdirSync(path.join(__dirname, '../packages'));
 const packageList = packages.map(x => {
-  const packageJson = require(path.join(__dirname, '../packages', x, 'package.json'));
-  return `- [${packageJson.name} v${packageJson.version}](./packages/${x})`;
+  const packageFile = path.join(__dirname, '../packages', x, 'package.json');
+  if (fs.existsSync(packageFile)) {
+    const packageJson = require(packageFile);
+    return `- [${packageJson.name} v${packageJson.version}](./packages/${x})`;
+  }
 });
 
 const readmeFile = path.join(__dirname, '../README.md');
