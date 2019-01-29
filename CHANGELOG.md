@@ -1,5 +1,12 @@
+## 0.7.3 (January 30, 2019)
+  - fix: format validation error #103
+  - fix: wrong node address will crash cli in `forge stake` #105
+  - fix: sensible logs path for `forge logs` #101
+  - fix: stake related improvement #103 #104 #106 #107 #108
+  - fix: `forge version` with tendermint and ipfs
+  - chore: update readme
+
 ## 0.7.2 (January 29, 2019)
-  - v0.7.1
   - v0.7.1
   - fix: publish config
 
