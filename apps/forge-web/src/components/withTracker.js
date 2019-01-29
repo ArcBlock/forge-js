@@ -1,7 +1,8 @@
-// 用高阶组件的方法实现整 APP 的页面统计，代码借鉴：https://github.com/react-ga/react-ga/issues/122
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import ReactGA from 'react-ga';
 import ABA from '@arcblock/analytics-js';
+import { withRouter } from 'react-router-dom';
 
 export default (WrappedComponent, options = {}) => {
   const trackPage = page => {
@@ -15,6 +16,10 @@ export default (WrappedComponent, options = {}) => {
   };
 
   class TrackedComponent extends Component {
+    static propTypes = {
+      location: PropTypes.object.isRequired,
+    };
+
     componentDidMount() {
       const page = this.props.location.pathname;
       trackPage(page);
@@ -34,5 +39,5 @@ export default (WrappedComponent, options = {}) => {
     }
   }
 
-  return TrackedComponent;
+  return withRouter(TrackedComponent);
 };

@@ -1,7 +1,6 @@
 import React from 'react';
 import { BrowserRouter, HashRouter, Route, Switch, withRouter } from 'react-router-dom';
-import { IntlProvider } from 'react-intl';
-import { addLocaleData } from 'react-intl';
+import { IntlProvider, addLocaleData } from 'react-intl';
 
 import PageDashboard from './pages/dashboard';
 import withTracker from './components/withTracker';

@@ -1,3 +1,4 @@
+/* eslint import/prefer-default-export:"off" */
 import Cookie from 'js-cookie';
 import browserLang from 'browser-lang';
 import { languages, translations } from './locale';

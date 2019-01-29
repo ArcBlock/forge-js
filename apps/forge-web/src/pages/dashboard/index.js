@@ -1,13 +1,14 @@
 import React from 'react';
 
 import Page from '../../components/page';
+import Layout from '../../layouts/dashboard';
 import withI18n from '../../components/withI18n';
 import withRoot from '../../components/withRoot';
 
 class Dashboard extends Page {
   render() {
     return (
-      <div className="App">
+      <Layout title="Dashboard" cookies={this.cookies}>
         <header className="App-header">
           <p>
             Edit <code>src/App.js</code> and save to reload.
@@ -20,7 +21,7 @@ class Dashboard extends Page {
             Learn React
           </a>
         </header>
-      </div>
+      </Layout>
     );
   }
 }
