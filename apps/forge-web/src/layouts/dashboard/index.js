@@ -3,9 +3,8 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import classNames from 'classnames';
 import Gravatar from 'react-gravatar';
-import Helmet from 'react-helmet';
 import qs from 'querystring';
-import { withRouter, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import { withStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -27,6 +26,9 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import logo from './images/logo.png';
 
 import Sidebar from './sidebar';
+import withI18n from '../../components/withI18n';
+import withRoot from '../../components/withRoot';
+import withTracker from '../../components/withTracker';
 import { colors } from '../../libs/constant';
 import { version } from '../../../package.json';
 
@@ -37,11 +39,9 @@ class Dashboard extends React.Component {
     classes: PropTypes.object.isRequired,
     match: PropTypes.object.isRequired,
     session: PropTypes.object,
-    title: PropTypes.string,
   };
 
   static defaultProps = {
-    title: 'ArcBlock',
     // FIXME: auth and session
     session: { user: { email: 'wangshijun2010@gmail.com' } },
   };
@@ -55,11 +55,10 @@ class Dashboard extends React.Component {
   }
 
   render() {
-    const { children, title, classes } = this.props;
+    const { children, classes } = this.props;
 
     return (
       <div className={classes.root}>
-        <Helmet title={title} />
         {this.renderAppBar()}
         {this.renderDrawer()}
         <main className={classes.content}>
@@ -338,4 +337,4 @@ const styles = theme => ({
   },
 });
 
-export default withStyles(styles)(withRouter(Dashboard));
+export default withStyles(styles)(withTracker(withRoot(withI18n(Dashboard))));
