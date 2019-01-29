@@ -18,6 +18,5 @@ const data = {
   },
 };
 
-console.log('setup before each scripts');
 mock.onPost(url).reply(200, { data });
 mock.onGet(url).reply(200, { data });
