@@ -19,20 +19,16 @@ import { detectLocale } from './libs/util';
 addLocaleData(localeData);
 
 export const App = () => (
-  <div className="wrapper">
-    <div className="main">
-      <div className="content">
-        <Switch>
-          <Route exact path="/" component={PageDashboard} />
-          <Route exact path="/app" component={PageApplication} />
-          <Route exact path="/node/explorer" component={PageExplorer} />
-          <Route exact path="/node/status" component={PageStatus} />
-          <Route exact path="/developer" component={PageDeveloper} />
-          <Route exact path="/tasks" component={PageTasks} />
-          <Route exact path="/settings" component={PageSettings} />
-        </Switch>
-      </div>
-    </div>
+  <div>
+    <Switch>
+      <Route exact path="/" component={PageDashboard} />
+      <Route exact path="/app" component={PageApplication} />
+      <Route exact path="/node/explorer" component={PageExplorer} />
+      <Route exact path="/node/status" component={PageStatus} />
+      <Route exact path="/developer" component={PageDeveloper} />
+      <Route exact path="/tasks" component={PageTasks} />
+      <Route exact path="/settings" component={PageSettings} />
+    </Switch>
   </div>
 );
 

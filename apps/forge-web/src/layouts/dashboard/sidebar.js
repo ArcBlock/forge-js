@@ -109,12 +109,12 @@ const MenuItem = styled.div`
 
   a {
     display: block;
-    padding: 20px 0;
+    padding: 22px 0;
   }
 
   img {
-    height: 36px;
-    width: 36px;
+    height: 32px;
+    width: 32px;
   }
 `;
 
