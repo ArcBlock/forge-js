@@ -94,7 +94,7 @@ async function execute(data) {
     cache.write('wallet', {
       token,
       address: res.wallet.address,
-      expireAt: Date.now() + config.get('forge.unlockTtl') * 1e3,
+      expireAt: Date.now() + config.get('forge.unlockTtl', 300) * 1e3,
     });
     shell.echo(hr);
     shell.echo(`${symbols.success} account unlocked!`);

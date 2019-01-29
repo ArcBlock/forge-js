@@ -233,7 +233,11 @@ async function ensureWallet() {
   const address = useCachedAddress ? cachedAddress : userAddress;
   try {
     const { token } = await client.loadWallet({ address, passphrase });
-    writeCache('wallet', { address, token, expireAt: Date.now() + config.forge.unlockTtl * 1e3 });
+    writeCache('wallet', {
+      address,
+      token,
+      expireAt: Date.now() + (config.forge.unlockTtl || 300) * 1e3,
+    });
     config.cli.wallet = { address, token };
     debug(`${symbols.success} Use unlocked wallet ${address}`);
   } catch (err) {

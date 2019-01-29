@@ -8,46 +8,59 @@ const { enums } = require('@arcblock/forge-proto');
 
 inquirer.registerPrompt('autocomplete', require('inquirer-autocomplete-prompt'));
 
-const questions = [
-  {
-    type: 'autocomplete',
-    name: 'type',
-    message: 'Choose stake type:',
-    source: (_, inp) =>
-      new Promise(resolve => {
-        resolve(fuzzy.filter(inp || '', enums.SupportedStakes).map(item => item.original));
-      }),
-  },
-  {
-    type: 'text',
-    name: 'target',
-    message: 'Address to stake for?',
-    validate: input => {
-      if (!input) {
-        return 'The target address to stake can not be empty!';
-      }
-
-      return true;
+async function getQuestions(state) {
+  return [
+    {
+      type: 'autocomplete',
+      name: 'type',
+      message: 'Choose stake type:',
+      source: (_, inp) =>
+        new Promise(resolve => {
+          resolve(fuzzy.filter(inp || '', enums.SupportedStakes).map(item => item.original));
+        }),
     },
-  },
-  {
-    type: 'number',
-    name: 'amount',
-    message: 'tokens to stake (minimum 1 token)',
-    validate: input => {
-      if (input <= 0) {
-        return 'The minimum amount to stake is 1 token';
-      }
+    {
+      type: 'text',
+      name: 'target',
+      message: 'Address to stake for?',
+      validate: input => {
+        if (!input) {
+          return 'The target address to stake can not be empty!';
+        }
 
-      return true;
+        return true;
+      },
     },
-  },
-  {
-    type: 'text',
-    name: 'message',
-    message: `Message to attach to the stake tx? ${chalk.gray('(optional)')}`,
-  },
-];
+    {
+      type: 'number',
+      name: 'amount',
+      message: `tokens to (un)stake (minimum 1 token, ${state.balance} available, ${
+        state.stake.totalStakes
+      } staked)`,
+      validate: input => {
+        const value = Number(input);
+        if (!value || (value > 0 && value < 1) || (value < 0 && value > -1)) {
+          return 'The minimum amount to stake is 1 token';
+        }
+
+        if (value > 0 && value > state.balance) {
+          return 'Stake amount exceeds account balance';
+        }
+
+        if (value < 0 && Math.abs(value) > state.stake.totalStakes) {
+          return 'Unstake amount exceeds staked total';
+        }
+
+        return true;
+      },
+    },
+    {
+      type: 'text',
+      name: 'message',
+      message: `Message to attach to the stake tx? ${chalk.gray('(optional)')}`,
+    },
+  ];
+}
 
 async function main(answers) {
   debug('stake', answers);
@@ -77,14 +90,41 @@ async function main(answers) {
       `${symbols.info} run ${chalk.cyan('forge status')} to check forge and chain state change`
     );
     shell.echo(`${symbols.info} run ${chalk.cyan(`forge tx ${hash}`)} to check tx state`);
+    shell.echo(`${symbols.info} If tx not found, you can try some time later`);
   } catch (err) {
     debug.error('stake error', err);
-    shell.echo(`${symbols.error} stake failed`);
+    shell.echo(`${symbols.error} stake failed, if you are unstaking, ensure not froze`);
   }
 }
 
+function getState() {
+  return new Promise(resolve => {
+    const client = createRpcClient();
+    const { address } = config.get('cli.wallet');
+    const stream = client.getAccountState({ address });
+    stream
+      .on('data', function(result) {
+        if (result && result.code === 0) {
+          const { state } = result.$format();
+          debug('getState', result.$format().state);
+          state.balance = client.fromArc(state.balance);
+          state.stake.totalStakes = client.fromArc(state.stake.totalStakes);
+
+          resolve(state);
+        } else {
+          resolve({ balance: 0, stake: { totalStakes: 0 } });
+        }
+      })
+      .on('error', () => {
+        resolve({ balance: 0, stake: { totalStakes: 0 } });
+      });
+  });
+}
+
 // Run the cli interactively
-function run() {
+async function run() {
+  const state = await getState();
+  const questions = await getQuestions(state);
   inquirer.prompt(questions).then(main);
 }
 
