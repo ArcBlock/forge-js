@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 
 import Typography from '@material-ui/core/Typography';
 
@@ -11,10 +12,16 @@ class Dashboard extends Page {
   render() {
     return (
       <Layout title="Dashboard" cookies={this.cookies}>
-        <Typography component="h3">Dashboard charts and ranks here...</Typography>
+        <Container>
+          <Typography component="h3">Dashboard here...</Typography>
+        </Container>
       </Layout>
     );
   }
 }
+
+const Container = styled.div`
+  padding: ${props => props.theme.spacing.unit * 3}px;
+`;
 
 export default withRoot(withI18n(Dashboard));

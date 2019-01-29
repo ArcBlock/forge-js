@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 
 import Typography from '@material-ui/core/Typography';
 
@@ -7,14 +8,20 @@ import Layout from '../../layouts/page';
 import withI18n from '../../components/withI18n';
 import withRoot from '../../components/withRoot';
 
-class App extends Page {
+class Application extends Page {
   render() {
     return (
-      <Layout title="App" cookies={this.cookies}>
-        <Typography component="h3">Application management feature here...</Typography>
+      <Layout title="Application" cookies={this.cookies}>
+        <Container>
+          <Typography component="h3">Application here...</Typography>
+        </Container>
       </Layout>
     );
   }
 }
 
-export default withRoot(withI18n(App));
+const Container = styled.div`
+  padding: ${props => props.theme.spacing.unit * 3}px;
+`;
+
+export default withRoot(withI18n(Application));
