@@ -113,8 +113,8 @@ const MenuItem = styled.div`
   }
 
   img {
-    height: 32px;
     width: 32px;
+    object-fit: contain;
   }
 `;
 
