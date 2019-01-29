@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Cookie from 'js-cookie';
 
 export default class Page extends React.Component {
   static contextTypes = {
@@ -9,6 +10,12 @@ export default class Page extends React.Component {
   static propTypes = {
     intl: PropTypes.object.isRequired,
   };
+
+  constructor(props) {
+    super(props);
+
+    this.cookies = Cookie.get();
+  }
 
   /**
    * Translate a message
