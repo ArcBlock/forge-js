@@ -9,7 +9,7 @@
     "babel-polyfill": "^6.26.0",
     "browser-lang": "^0.0.1",
     "flat": "^4.1.0",
-    "graphql": "^14.1.1",
+    "graphql": "0.13.2",
     "hoist-non-react-statics": "^3.3.0",
     "js-cookie": "^2.2.0",
     "prop-types": "^15.6.2",
@@ -26,11 +26,11 @@
     "lint": "eslint src",
     "precommit": "npm run lint && CI=1 yarn test",
     "prepush": "npm run lint && CI=1 yarn test",
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test"
   },
+  "config-overrides-path": "tools/config.js",
   "eslintConfig": {
     "extends": "react-app"
   },
@@ -56,5 +56,8 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "react-app-rewired": "^2.0.3"
+  }
 }
