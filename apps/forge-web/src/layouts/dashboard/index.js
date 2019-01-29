@@ -26,6 +26,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import logo from './images/logo.png';
 
 import Sidebar from './sidebar';
+import SecondaryLinks from './secondary';
 import withI18n from '../../components/withI18n';
 import withRoot from '../../components/withRoot';
 import withTracker from '../../components/withTracker';
@@ -37,7 +38,7 @@ class Dashboard extends React.Component {
   static propTypes = {
     children: PropTypes.any.isRequired,
     classes: PropTypes.object.isRequired,
-    match: PropTypes.object.isRequired,
+    location: PropTypes.object.isRequired,
     session: PropTypes.object,
   };
 
@@ -56,17 +57,21 @@ class Dashboard extends React.Component {
 
   render() {
     const { children, classes } = this.props;
+    const { title, links } = this.getSecondaryLinks();
+    const hasSecondaryLinks = !!links.length;
 
     return (
       <div className={classes.root}>
         {this.renderAppBar()}
         {this.renderDrawer()}
         <main className={classes.content}>
-          <div className={classes.appBarSpacer} />
-          <Content>
-            {this.renderSecondaryNav()}
-            {children}
-          </Content>
+          {hasSecondaryLinks && (
+            <Content direction="row">
+              <SecondaryLinks links={links} title={title} />
+              <Content direction="column">{children}</Content>
+            </Content>
+          )}
+          {!hasSecondaryLinks && <Content direction="column">{children}</Content>}
           <Version>
             v{version} <span className="highlight">beta</span>
           </Version>
@@ -76,10 +81,21 @@ class Dashboard extends React.Component {
     );
   }
 
-  renderSecondaryNav() {
-    const { match } = this.props;
-    console.log(match);
-    return null;
+  getSecondaryLinks() {
+    const { pathname } = this.props.location;
+    if (/^\/node\//.test(pathname)) {
+      return {
+        title: 'Node',
+        links: [
+          { link: '/node/status', title: 'Status' },
+          { link: '/node/explorer', title: 'Block Explorer' },
+          { link: '/node/query', title: 'Query' },
+          { link: '/node/storage', title: 'Storage' },
+        ],
+      };
+    }
+
+    return { title: '', links: [] };
   }
 
   // FIXME: the header content should be dynamic
@@ -199,9 +215,11 @@ class Dashboard extends React.Component {
 
 const Content = styled.div`
   width: 100%;
+  height: ${props => (props.direction === 'row' ? '100%' : 'auto')};
   flex: 1 0 auto;
   display: flex;
-  flex-direction: column;
+  flex-direction: ${props => props.direction};
+  box-sizing: border-box;
 `;
 
 const Version = styled.div`
@@ -326,7 +344,7 @@ const styles = theme => ({
   appBarSpacer: theme.mixins.toolbar,
   content: {
     flexGrow: 1,
-    padding: theme.spacing.unit * 3,
+    paddingTop: 80,
     height: '100vh',
     overflow: 'auto',
     boxSizing: 'border-box',
