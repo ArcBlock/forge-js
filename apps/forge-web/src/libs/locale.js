@@ -1,15 +1,10 @@
 /* eslint-disable global-require */
+import localeEN from 'react-intl/locale-data/en';
+import localeZH from 'react-intl/locale-data/zh';
 
-const localeData = [
-  ...require('react-intl/locale-data/en'),
-  ...require('react-intl/locale-data/zh'),
-];
+import en from '../locales/en';
+import zh from '../locales/zh';
 
-module.exports = {
-  localeData,
-  languages: [{ value: 'en', text: 'English' }, { value: 'zh', text: '简体中文' }],
-  translations: {
-    en: require('../locales/en'),
-    zh: require('../locales/zh'),
-  },
-};
+export const localeData = [...localeEN, ...localeZH];
+export const languages = [{ value: 'en', text: 'English' }, { value: 'zh', text: '简体中文' }];
+export const translations = { en, zh };

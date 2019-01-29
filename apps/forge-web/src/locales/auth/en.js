@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   form: {
     email: {
       label: 'Your Email',

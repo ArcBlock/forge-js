@@ -1,8 +1,9 @@
-/* eslint global-require:"off" */
-const flatten = require('flat');
+import flatten from 'flat';
 
-module.exports = flatten({
+import auth from './auth/zh';
+
+export default flatten({
   title: 'Arcblock | Blockchain 3.0',
   back: '返回',
-  auth: require('./auth/zh'),
+  auth,
 });
