@@ -29,8 +29,8 @@
     "lint": "eslint src",
     "precommit": "npm run lint && CI=1 yarn test",
     "prepush": "npm run lint && CI=1 yarn test",
-    "start": "react-app-rewired start",
-    "build": "react-app-rewired build",
+    "start": "REACT_APP_ASSETS= react-app-rewired start",
+    "build": "REACT_APP_ASSETS= react-app-rewired build",
     "test": "react-app-rewired test"
   },
   "config-overrides-path": "tools/config.js",
