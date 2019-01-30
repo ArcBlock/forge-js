@@ -92,6 +92,17 @@ function deserialize_forge_abi_RequestGetChannelState(buffer_arg) {
   return rpc_pb.RequestGetChannelState.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_forge_abi_RequestGetConfig(arg) {
+  if (!(arg instanceof rpc_pb.RequestGetConfig)) {
+    throw new Error('Expected argument of type forge_abi.RequestGetConfig');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_forge_abi_RequestGetConfig(buffer_arg) {
+  return rpc_pb.RequestGetConfig.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_forge_abi_RequestGetForgeState(arg) {
   if (!(arg instanceof rpc_pb.RequestGetForgeState)) {
     throw new Error('Expected argument of type forge_abi.RequestGetForgeState');
@@ -354,6 +365,17 @@ function serialize_forge_abi_ResponseGetChannelState(arg) {
 
 function deserialize_forge_abi_ResponseGetChannelState(buffer_arg) {
   return rpc_pb.ResponseGetChannelState.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_forge_abi_ResponseGetConfig(arg) {
+  if (!(arg instanceof rpc_pb.ResponseGetConfig)) {
+    throw new Error('Expected argument of type forge_abi.ResponseGetConfig');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_forge_abi_ResponseGetConfig(buffer_arg) {
+  return rpc_pb.ResponseGetConfig.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_forge_abi_ResponseGetForgeState(arg) {
@@ -640,6 +662,17 @@ var ChainRpcService = (exports.ChainRpcService = {
     requestDeserialize: deserialize_forge_abi_RequestGetValidatorsInfo,
     responseSerialize: serialize_forge_abi_ResponseGetValidatorsInfo,
     responseDeserialize: deserialize_forge_abi_ResponseGetValidatorsInfo,
+  },
+  get_config: {
+    path: '/forge_abi.ChainRpc/get_config',
+    requestStream: false,
+    responseStream: false,
+    requestType: rpc_pb.RequestGetConfig,
+    responseType: rpc_pb.ResponseGetConfig,
+    requestSerialize: serialize_forge_abi_RequestGetConfig,
+    requestDeserialize: deserialize_forge_abi_RequestGetConfig,
+    responseSerialize: serialize_forge_abi_ResponseGetConfig,
+    responseDeserialize: deserialize_forge_abi_ResponseGetConfig,
   },
 });
 
