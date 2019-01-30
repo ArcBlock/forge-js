@@ -100,7 +100,11 @@
         "Request": {
           "oneofs": {
             "value": {
-              "oneof": ["verifyTx", "updateState", "info"]
+              "oneof": [
+                "verifyTx",
+                "updateState",
+                "info"
+              ]
             }
           },
           "fields": {
@@ -121,7 +125,11 @@
         "Response": {
           "oneofs": {
             "value": {
-              "oneof": ["verifyTx", "updateState", "info"]
+              "oneof": [
+                "verifyTx",
+                "updateState",
+                "info"
+              ]
             }
           },
           "fields": {
@@ -518,7 +526,7 @@
               "id": 3
             },
             "chainId": {
-              "type": "uint32",
+              "type": "string",
               "id": 4
             },
             "signatures": {

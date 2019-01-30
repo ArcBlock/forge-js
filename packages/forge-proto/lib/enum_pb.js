@@ -56,7 +56,7 @@ proto.forge_abi.StatusCode = {
   INVALID_ASSET: 35,
   INVALID_TX_SIZE: 36,
   FORBIDDEN: 403,
-  INTERNAL: 500,
+  INTERNAL: 500
 };
 
 /**
@@ -81,7 +81,7 @@ proto.forge_abi.TopicType = {
   ASSET_STATE: 130,
   CHANNEL_STATE: 131,
   FORGE_STATE: 132,
-  STAKE_STATE: 133,
+  STAKE_STATE: 133
 };
 
 /**
@@ -89,7 +89,7 @@ proto.forge_abi.TopicType = {
  */
 proto.forge_abi.KeyType = {
   ED25519: 0,
-  SECP256K1: 1,
+  SECP256K1: 1
 };
 
 /**
@@ -104,7 +104,7 @@ proto.forge_abi.HashType = {
   SHA2_384: 9,
   KECCAK_512: 13,
   SHA3_512: 14,
-  SHA2_512: 15,
+  SHA2_512: 15
 };
 
 /**
@@ -112,7 +112,7 @@ proto.forge_abi.HashType = {
  */
 proto.forge_abi.EncodingType = {
   BASE16: 0,
-  BASE58: 1,
+  BASE58: 1
 };
 
 /**
@@ -128,7 +128,7 @@ proto.forge_abi.UpgradeType = {
   EXE_FORGE: 11,
   EXE_DFS: 12,
   EXE_CONSENSUS: 13,
-  EXE_P2P: 14,
+  EXE_P2P: 14
 };
 
 /**
@@ -146,7 +146,7 @@ proto.forge_abi.UpgradeAction = {
   ROLLBACK_IF_FAIL: 30,
   RESTART_ALL_IF_FAIL: 31,
   CRASH_IF_FAIL: 33,
-  DROP_ADDRESS_BOOK: 50,
+  DROP_ADDRESS_BOOK: 50
 };
 
 /**
@@ -157,7 +157,7 @@ proto.forge_abi.StateType = {
   STATE_ASSET: 1,
   STATE_CHANNEL: 2,
   STATE_FORGE: 3,
-  STATE_STAKE: 4,
+  STATE_STAKE: 4
 };
 
 /**
@@ -167,7 +167,7 @@ proto.forge_abi.StakeType = {
   STAKE_NODE: 0,
   STAKE_USER: 1,
   STAKE_ASSET: 2,
-  STAKE_CHAIN: 3,
+  STAKE_CHAIN: 3
 };
 
 goog.object.extend(exports, proto.forge_abi);
