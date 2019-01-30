@@ -51,10 +51,10 @@ class Status extends Page {
     const {
       getNetInfo: { netInfo: net },
     } = await forge.getNetInfo();
-    const {
-      getValidatorsInfo: { validatorsInfo: validators },
-    } = await forge.getValidatorsInfo();
-    this.setState({ loading: false, data: { chain, net, validators } });
+    // const {
+    //   getValidatorsInfo: { validatorsInfo: validators },
+    // } = await forge.getValidatorsInfo();
+    this.setState({ loading: false, data: { chain, net } });
   }
 }
 
