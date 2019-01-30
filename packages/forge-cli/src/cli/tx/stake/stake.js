@@ -97,7 +97,7 @@ async function main(answers) {
     } else if (err.errcode === 'BANNED_UNSTAKE') {
       shell.echo(`${symbols.error} stake failed, ensure you can unstake at this time`);
     } else {
-      shell.echo(`${symbols.error} stake failed`);
+      shell.echo(`${symbols.error} stake failed: ${err.message || err.toString()}`);
     }
   }
 }
