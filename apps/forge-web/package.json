@@ -2,7 +2,7 @@
   "name": "@arcblock/forge-web",
   "version": "0.1.0",
   "author": "wangshijun <wangshijun2010@gmail.com>",
-  "homepage": "https://github.com/arcblock/forge-js/apps/forge-web",
+  "homepage": "./",
   "dependencies": {
     "@arcblock/analytics-js": "^0.15.0",
     "@arcblock/forge-graphql-client": "^0.7.2",
