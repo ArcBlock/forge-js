@@ -1,6 +1,6 @@
 # Forge GraphQL API List
 
-> Updated on 2019-01-28T11:14:07.473Z
+> Updated on 2019-01-30T00:09:08.344Z
 
 
 ## Table of Contents
@@ -11,6 +11,7 @@
   * [getBlock](#getblock)
   * [getChainInfo](#getchaininfo)
   * [getChannelState](#getchannelstate)
+  * [getConfig](#getconfig)
   * [getForgeState](#getforgestate)
   * [getNetInfo](#getnetinfo)
   * [getStakeState](#getstakestate)
@@ -231,13 +232,20 @@ No arguments
       blockHash
       blockHeight
       blockTime
+      consensusVersion
+      dataVersion
       id
       moniker
       network
+      supportedTxs
       synced
       totalTxs
       version
       votingPower
+      forgeAppsVersion {
+        key
+        value
+      }
     }
   }
 }
@@ -297,6 +305,23 @@ No arguments
 }
 ```
 
+### getConfig
+
+#### Arguments
+
+No arguments
+
+#### Result Format
+
+```graphql
+{
+  getConfig {
+    code
+    config
+  }
+}
+```
+
 ### getForgeState
 
 #### Arguments
@@ -311,6 +336,8 @@ No arguments
   getForgeState(appHash: "abc", keys: ["abc"]) {
     code
     state {
+      dataVersion
+      version
       consensus {
         maxBytes
         maxCandidates
@@ -513,8 +540,13 @@ No arguments
       blockHeight
       validators {
         address
+        name
         proposerPriority
         votingPower
+        pubKey {
+          data
+          type
+        }
       }
     }
   }
@@ -919,14 +951,17 @@ mutation {
 
 #### Arguments
 
-* **moniker**, **required**, moniker of the wallet
-* **passphrase**, **required**, passphrase of the wallet
+* **declareTx**, **required**, 
+* **send**, optional, 
+* **sign**, optional, 
+* **token**, optional, 
+* **wallet**, **required**, 
 
 #### Result Format
 
 ```graphql
 mutation {
-  declare(moniker: "abc", passphrase: "abc")
+  declare(declareTx: "abc", send: "abc", sign: true, token: "abc", wallet: "abc")
 }
 ```
 
