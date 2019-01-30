@@ -2468,7 +2468,7 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
         from: jspb.Message.getFieldWithDefault(msg, 1, ''),
         nonce: jspb.Message.getFieldWithDefault(msg, 2, 0),
         signature: msg.getSignature(),
-        chainId: jspb.Message.getFieldWithDefault(msg, 4, 0),
+        chainId: jspb.Message.getFieldWithDefault(msg, 4, ''),
         signaturesList: jspb.Message.toObjectList(
           msg.getSignaturesList(),
           vendor_pb.KVPair.toObject,
@@ -2522,7 +2522,7 @@ proto.forge_abi.Transaction.deserializeBinaryFromReader = function(msg, reader) 
         msg.setSignature(value);
         break;
       case 4:
-        var value = /** @type {number} */ (reader.readUint32());
+        var value = /** @type {string} */ (reader.readString());
         msg.setChainId(value);
         break;
       case 5:
@@ -2575,8 +2575,8 @@ proto.forge_abi.Transaction.serializeBinaryToWriter = function(message, writer) 
     writer.writeBytes(3, f);
   }
   f = message.getChainId();
-  if (f !== 0) {
-    writer.writeUint32(4, f);
+  if (f.length > 0) {
+    writer.writeString(4, f);
   }
   f = message.getSignaturesList();
   if (f.length > 0) {
@@ -2648,14 +2648,14 @@ proto.forge_abi.Transaction.prototype.setSignature = function(value) {
 };
 
 /**
- * optional uint32 chain_id = 4;
- * @return {number}
+ * optional string chain_id = 4;
+ * @return {string}
  */
 proto.forge_abi.Transaction.prototype.getChainId = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ''));
 };
 
-/** @param {number} value */
+/** @param {string} value */
 proto.forge_abi.Transaction.prototype.setChainId = function(value) {
   jspb.Message.setField(this, 4, value);
 };

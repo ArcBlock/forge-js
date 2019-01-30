@@ -518,7 +518,7 @@
               "id": 3
             },
             "chainId": {
-              "type": "uint32",
+              "type": "string",
               "id": 4
             },
             "signatures": {
