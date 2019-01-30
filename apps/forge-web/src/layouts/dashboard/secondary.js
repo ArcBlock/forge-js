@@ -26,7 +26,7 @@ class SecondaryLinks extends React.Component {
   renderMenuItem(url, title) {
     const active = this.isSelected(url);
     return (
-      <MenuItem active={active}>
+      <MenuItem active={active} key={url}>
         <Link to={url} title={title}>
           {title}
         </Link>
