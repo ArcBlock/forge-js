@@ -1,3 +1,6 @@
+## 0.7.4 (January 30, 2019)
+  - chore: upgrade forge-proto to align with forge@v0.12.0
+
 ## 0.7.3 (January 30, 2019)
   - fix: format validation error #103
   - fix: wrong node address will crash cli in `forge stake` #105
