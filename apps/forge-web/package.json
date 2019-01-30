@@ -53,6 +53,9 @@
   "publishConfig": {
     "access": "public"
   },
+  "files": [
+    "build"
+  ],
   "browserslist": [
     ">0.2%",
     "not dead",
