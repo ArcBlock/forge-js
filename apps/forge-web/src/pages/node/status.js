@@ -45,16 +45,16 @@ class Status extends Page {
     const {
       getChainInfo: { info: chain },
     } = await forge.getChainInfo();
-    // const {
-    //   getForgeState: { state: core },
-    // } = await forge.getForgeState();
+    const {
+      getForgeState: { state: core },
+    } = await forge.getForgeState();
     const {
       getNetInfo: { netInfo: net },
     } = await forge.getNetInfo();
-    // const {
-    //   getValidatorsInfo: { validatorsInfo: validators },
-    // } = await forge.getValidatorsInfo();
-    this.setState({ loading: false, data: { chain, net } });
+    const {
+      getValidatorsInfo: { validatorsInfo: validators },
+    } = await forge.getValidatorsInfo();
+    this.setState({ loading: false, data: { chain, net, core, validators } });
   }
 }
 
