@@ -1,3 +1,16 @@
+## 0.7.5 (January 31, 2019)
+  - chore: update test case
+  - fix: stake.totalStakes and stake.totalUnstakes
+  - feat: support `forge unstake`
+  - feat: `forge stake` default select current node #117
+  - fix: "undefined" in `forge status1 output #118
+  - fix: `forge tx` should tell me the TX type #114
+  - chore: upgrade sdk doc
+  - chore: update forge config
+  - chore: upgrade forge proto
+  - fix: `forge stake` fail randomly and no reason given #113
+  - chore: update readme
+
 ## 0.7.4 (January 30, 2019)
   - chore: upgrade forge-proto to align with forge@v0.12.0
 

@@ -1,7 +1,7 @@
 const inquirer = require('inquirer');
-const { getQuestions, main } = require('./lib');
+const { getQuestions, main } = require('../stake/lib');
 
-const action = 'stake';
+const action = 'unstake';
 
 async function run() {
   const questions = await getQuestions(action);

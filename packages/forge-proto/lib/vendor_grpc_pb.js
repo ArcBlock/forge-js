@@ -247,10 +247,11 @@ function deserialize_forge_vendor_ResponseSetOption(buffer_arg) {
   return vendor_pb.ResponseSetOption.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+
 // ----------------------------------------
 // Service Definition
 //
-var ABCIApplicationService = (exports.ABCIApplicationService = {
+var ABCIApplicationService = exports.ABCIApplicationService = {
   echo: {
     path: '/forge_vendor.ABCIApplication/Echo',
     requestStream: false,
@@ -372,6 +373,6 @@ var ABCIApplicationService = (exports.ABCIApplicationService = {
     responseSerialize: serialize_forge_vendor_ResponseEndBlock,
     responseDeserialize: deserialize_forge_vendor_ResponseEndBlock,
   },
-});
+};
 
 exports.ABCIApplicationClient = grpc.makeGenericClientConstructor(ABCIApplicationService);
