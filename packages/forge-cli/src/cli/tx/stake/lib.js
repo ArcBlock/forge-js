@@ -39,7 +39,7 @@ async function getQuestions(action) {
       type: 'number',
       name: 'amount',
       message: `Amount of tokens to ${action} (minimum 1 token, ${
-        action === 'stake' ? state.balance : state.stake.totalStakes
+        action === 'stake' ? state.balance : state.stake.totalStakes - state.stake.totalUnstakes
       } available)`,
       validate: input => {
         const value = Number(input);
@@ -51,7 +51,7 @@ async function getQuestions(action) {
           return 'Stake amount exceeds account balance';
         }
 
-        if (action === 'unstake' && value > state.stake.totalStakes) {
+        if (action === 'unstake' && value > state.stake.totalStakes - state.stake.totalUnstakes) {
           return 'Unstake amount exceeds staked total';
         }
 
@@ -123,6 +123,7 @@ function getState() {
           debug('getState', result.$format().state);
           state.balance = client.fromArc(state.balance);
           state.stake.totalStakes = client.fromArc(state.stake.totalStakes);
+          state.stake.totalUnstakes = client.fromArc(state.stake.totalUnstakes);
 
           resolve(state);
         } else {
