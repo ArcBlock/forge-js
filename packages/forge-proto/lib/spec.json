@@ -8,14 +8,29 @@
               "type": "Transaction",
               "id": 1
             },
-            "sender": {
-              "type": "AccountState",
-              "id": 2
-            },
             "states": {
               "rule": "repeated",
               "type": "AccountState",
+              "id": 2
+            },
+            "channels": {
+              "rule": "repeated",
+              "type": "ChannelState",
               "id": 3
+            },
+            "assets": {
+              "rule": "repeated",
+              "type": "AssetState",
+              "id": 4
+            },
+            "stakes": {
+              "rule": "repeated",
+              "type": "StakeState",
+              "id": 5
+            },
+            "appState": {
+              "type": "ForgeState",
+              "id": 15
             }
           }
         },
@@ -33,18 +48,29 @@
               "type": "Transaction",
               "id": 1
             },
-            "sender": {
-              "type": "AccountState",
-              "id": 2
-            },
             "states": {
               "rule": "repeated",
               "type": "AccountState",
+              "id": 2
+            },
+            "channels": {
+              "rule": "repeated",
+              "type": "ChannelState",
               "id": 3
             },
-            "context": {
-              "type": "AbciContext",
+            "assets": {
+              "rule": "repeated",
+              "type": "AssetState",
               "id": 4
+            },
+            "stakes": {
+              "rule": "repeated",
+              "type": "StakeState",
+              "id": 5
+            },
+            "appState": {
+              "type": "ForgeState",
+              "id": 15
             }
           }
         },
@@ -100,7 +126,11 @@
         "Request": {
           "oneofs": {
             "value": {
-              "oneof": ["verifyTx", "updateState", "info"]
+              "oneof": [
+                "verifyTx",
+                "updateState",
+                "info"
+              ]
             }
           },
           "fields": {
@@ -121,7 +151,11 @@
         "Response": {
           "oneofs": {
             "value": {
-              "oneof": ["verifyTx", "updateState", "info"]
+              "oneof": [
+                "verifyTx",
+                "updateState",
+                "info"
+              ]
             }
           },
           "fields": {
@@ -186,6 +220,7 @@
             "banned_unstake": 34,
             "invalid_asset": 35,
             "invalid_tx_size": 36,
+            "expired_tx": 37,
             "forbidden": 403,
             "internal": 500
           }
@@ -384,7 +419,7 @@
               "id": 10
             },
             "votingPower": {
-              "type": "uint32",
+              "type": "uint64",
               "id": 11
             },
             "totalTxs": {
@@ -518,7 +553,7 @@
               "id": 3
             },
             "chainId": {
-              "type": "uint32",
+              "type": "string",
               "id": 4
             },
             "signatures": {
@@ -802,7 +837,7 @@
               "id": 2
             },
             "votingPower": {
-              "type": "uint32",
+              "type": "uint64",
               "id": 3
             },
             "proposerPriority": {
@@ -1189,6 +1224,10 @@
             "token": {
               "type": "string",
               "id": 2
+            },
+            "wallet": {
+              "type": "WalletInfo",
+              "id": 3
             }
           }
         },
@@ -1937,6 +1976,10 @@
             "receiver": {
               "type": "ExchangeInfo",
               "id": 3
+            },
+            "expireAtHeight": {
+              "type": "uint64",
+              "id": 4
             }
           }
         },
@@ -1991,7 +2034,7 @@
               "id": 1
             },
             "gracePeriod": {
-              "type": "uint32",
+              "type": "uint64",
               "id": 2
             }
           }

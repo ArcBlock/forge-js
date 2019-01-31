@@ -58,15 +58,11 @@ describe('#createMessage', () => {
       tx: {
         from: '123',
       },
-      sender: {
-        address: 'sender',
-      },
       states: [{ address: 'states1', nonce: 24 }, { address: 'states2', nonce: 32 }],
     };
 
     const message = createMessage('RequestVerifyTx', params);
     expect(message.getTx().toObject().from).toEqual(params.tx.from);
-    expect(message.getSender().toObject().address).toEqual(params.sender.address);
     const states = message.getStatesList().map(x => x.toObject());
     expect(states[0].address).toEqual('states1');
     expect(states[1].address).toEqual('states2');
