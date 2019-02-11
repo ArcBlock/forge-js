@@ -133,10 +133,6 @@ function formatMessage(type, data) {
     return data;
   }
 
-  if (type === 'bytes') {
-    return Buffer.from(data).toString('base64');
-  }
-
   const result = {};
   const { fields } = getMessageType(type);
   if (!fields) {
