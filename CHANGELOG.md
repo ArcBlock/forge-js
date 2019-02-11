@@ -1,3 +1,6 @@
+## 0.7.6 (February 11, 2019)
+  - chore: upgrade forge-proto to align with forge@v0.13.2
+
 ## 0.7.5 (January 31, 2019)
   - chore: update test case
   - fix: stake.totalStakes and stake.totalUnstakes
