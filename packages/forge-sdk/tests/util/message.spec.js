@@ -140,11 +140,9 @@ describe('#createMessage', () => {
 
   test('should support bigInt fields', () => {
     let message = createMessage('TransferTx', { value: 123456 }).toObject();
-    expect(message.value.minus).toEqual(false);
     expect(Buffer.from(message.value.value).toString('hex')).toEqual('01e240');
 
     message = createMessage('TransferTx', { value: -123456 }).toObject();
-    expect(message.value.minus).toEqual(true);
     expect(Buffer.from(message.value.value).toString('hex')).toEqual('01e240');
   });
 
@@ -187,20 +185,13 @@ describe('#formatMessage', () => {
     expect(message.migratedFrom[0]).toEqual('123456');
   });
 
-  // FIXME: circular queue need custom encoding and decoding
   test('should decode repeated data as expected', () => {
-    const message = formatMessage('ChannelState', {
+    const message = formatMessage('RequestGetAccountState', {
       address: '123456',
-      waiting: {
-        items: [{ from: 'abcd' }],
-        type_url: 'Transaction',
-        maxItems: 10,
-        circular: false,
-        fifo: false,
-      },
+      keys: ['abc', 'def'],
     });
     expect(message.address).toEqual('123456');
-    expect(message.waiting.maxItems).toEqual(10);
+    expect(message.keys).toEqual(['abc', 'def']);
   });
 
   test('should decode nested data as expected', () => {

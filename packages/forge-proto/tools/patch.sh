@@ -9,7 +9,7 @@ do
   else
     echo "patch: $FILE"
     if [[ "$FILE" =~ "vendor_" ]]; then
-      echo "\nmodule.exports = proto.forge_vendor;" >> $FILE
+      echo "\nmodule.exports = proto.abci_vendor;" >> $FILE
     else
       echo "\nmodule.exports = proto.forge_abi;" >> $FILE
     fi
