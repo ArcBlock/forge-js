@@ -7,7 +7,7 @@ const jspb = require('google-protobuf');
 const debug = require('debug')(`${require('../../package.json').name}:patch`);
 
 // FIXME: remove this patch when `google-protobuf` is enable to handle this
-// @link
+// @link https://github.com/protocolbuffers/protobuf/blob/46a48e49aa/js/map.js#L469
 if (typeof jspb.Map.deserializeBinary === 'function' && !jspb.Map.deserializeBinary.__patched__) {
   jspb.Map.deserializeBinary = function(
     map,
@@ -42,15 +42,14 @@ if (typeof jspb.Map.deserializeBinary === 'function' && !jspb.Map.deserializeBin
       }
     }
 
-    debug('deserializeBinary.map', typeof map.set);
     debug('deserializeBinary.key', key);
-    debug('deserializeBinary.value', value.toObject());
-    // HACK: these assertions are removed
+    debug('deserializeBinary.value', value ? value.toObject() : value);
+    // HACK: these assertions are disabled
     // assert(key !== undefined, 'key is undefined');
     // assert(value !== undefined, 'value is undefined');
-    if (typeof key !== 'undefined') {
+    if (typeof key !== 'undefined' && typeof value !== 'undefined') {
       map.set(key, value);
-      debug('deserializeBinary.after', map.get(key).toObject());
+      debug('deserializeBinary.set', key, map.get(key).toObject());
     }
   };
 
