@@ -51,7 +51,6 @@
     "moment": "^2.22.2",
     "mustache": "^2.3.0",
     "npm": "^6.1.0",
-    "octonode": "^0.9.5",
     "ora": "^3.0.0",
     "pidusage-tree": "^2.0.5",
     "pretty-bytes": "^5.1.0",
