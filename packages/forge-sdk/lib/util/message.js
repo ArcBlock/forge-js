@@ -475,7 +475,7 @@ function encodeBigInt(value, type) {
     return message;
   }
 
-  const number = toBN(value).abs();
+  const number = toBN(value);
   const zero = toBN(0);
   message.setValue(Uint8Array.from(number.toArray()));
   if (type === 'BigSint') {
@@ -493,8 +493,9 @@ function encodeBigInt(value, type) {
  * @returns String
  */
 function decodeBigInt(data) {
+  const bn = toBN(new BN(data.value));
   const symbol = data.minus ? '-' : '';
-  return `${symbol}${toBN(new BN(data.value)).toString(10)}`;
+  return `${symbol}${bn.toString(10)}`;
 }
 
 /**
