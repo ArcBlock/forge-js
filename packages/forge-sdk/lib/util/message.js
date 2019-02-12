@@ -2,9 +2,9 @@
 const util = require('util');
 const camelcase = require('camelcase');
 const faker = require('faker');
+const BN = require('bn.js');
 const range = require('lodash/range');
 const random = require('lodash/random');
-const { BigInteger } = require('jsbn');
 const {
   enums,
   messages,
@@ -15,6 +15,7 @@ const {
 const jspb = require('google-protobuf');
 const { Any } = require('google-protobuf/google/protobuf/any_pb');
 const { Timestamp } = require('google-protobuf/google/protobuf/timestamp_pb');
+const { toBN } = require('./unit');
 const debug = require('debug')(`${require('../../package.json').name}:util`);
 
 const enumTypes = Object.keys(enums);
@@ -474,12 +475,11 @@ function encodeBigInt(value, type) {
     return message;
   }
 
-  const number = new BigInteger(
-    typeof value === 'number' ? Math.abs(value).toString() : value.replace(/^(-|\+)/, '')
-  );
-  message.setValue(Uint8Array.from(number.toByteArray()));
+  const number = toBN(value).abs();
+  const zero = toBN(0);
+  message.setValue(Uint8Array.from(number.toArray()));
   if (type === 'BigSint') {
-    message.setMinus(typeof value === 'number' ? value < 0 : /^-/.test(value));
+    message.setMinus(number.lt(zero));
   }
 
   return message;
@@ -494,8 +494,7 @@ function encodeBigInt(value, type) {
  */
 function decodeBigInt(data) {
   const symbol = data.minus ? '-' : '';
-  const valueHex = Buffer.from(data.value).toString('hex');
-  return `${symbol}${new BigInteger(valueHex, 16).toString(10)}`;
+  return `${symbol}${toBN(new BN(data.value)).toString(10)}`;
 }
 
 /**

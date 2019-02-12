@@ -1,4 +1,3 @@
-const { BigInteger } = require('jsbn');
 const {
   createMessage,
   formatMessage,
@@ -172,15 +171,6 @@ describe('#createMessage', () => {
 
     message = createMessage('TransferTx', { value: -123456 }).toObject();
     expect(Buffer.from(message.value.value).toString('hex')).toEqual('01e240');
-  });
-
-  test('should support really big number fields', () => {
-    const v = new BigInteger('100', 10);
-    const d = new BigInteger('10').pow(16);
-    const bigNumber = v.multiply(d).toString('10');
-    const message = createMessage('TransferTx', { value: bigNumber }).toObject();
-    const decoded = formatMessage('TransferTx', message);
-    expect(decoded.value).toEqual(bigNumber);
   });
 });
 
