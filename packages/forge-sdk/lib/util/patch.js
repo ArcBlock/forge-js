@@ -4,7 +4,7 @@
  */
 const assert = require('assert');
 const jspb = require('google-protobuf');
-const debug = require('debug')(`${require('../../package.json').name}:patch`);
+const debug = require('debug')(`${require('../../package.json').name}:Map`);
 
 // FIXME: remove this patch when `google-protobuf` is enable to handle this
 // @link https://github.com/protocolbuffers/protobuf/blob/46a48e49aa/js/map.js#L469
@@ -30,7 +30,9 @@ if (typeof jspb.Map.deserializeBinary === 'function' && !jspb.Map.deserializeBin
       if (field == 1) {
         // Key.
         key = keyReaderFn.call(reader);
+        debug('deserializeBinary.key', key);
       } else if (field == 2) {
+        debug('deserializeBinary.map', map);
         // Value.
         if (map.valueCtor_) {
           assert(opt_valueReaderCallback, 'opt_valueReaderCallback');
@@ -39,17 +41,18 @@ if (typeof jspb.Map.deserializeBinary === 'function' && !jspb.Map.deserializeBin
         } else {
           value = /** @type {function(this:jspb.BinaryReader):?} */ (valueReaderFn).call(reader);
         }
+        debug(
+          'deserializeBinary.value',
+          typeof value.toObject === 'function' ? value.toObject() : value
+        );
       }
     }
 
-    debug('deserializeBinary.key', key);
-    debug('deserializeBinary.value', value ? value.toObject() : value);
     // HACK: these assertions are disabled
     // assert(key !== undefined, 'key is undefined');
     // assert(value !== undefined, 'value is undefined');
     if (typeof key !== 'undefined' && typeof value !== 'undefined') {
       map.set(key, value);
-      debug('deserializeBinary.set', key, map.get(key).toObject());
     }
   };
 
