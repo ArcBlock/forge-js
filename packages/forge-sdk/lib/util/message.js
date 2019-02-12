@@ -133,9 +133,27 @@ function formatMessage(type, data) {
     return data;
   }
 
+  if (
+    [
+      'bytes',
+      'string',
+      'double',
+      'float',
+      'sint32',
+      'uint32',
+      'sfixed32',
+      'sint64',
+      'uint64',
+      'sfixed64',
+    ].includes(type)
+  ) {
+    return data;
+  }
+
   const result = {};
   const { fields } = getMessageType(type);
   if (!fields) {
+    console.log({ type, data });
     throw new Error(`Cannot get fields for type ${type}`);
   }
 

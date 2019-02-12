@@ -5,6 +5,7 @@ const { execute, run } = require('./send');
 cli('tx:send', 'Send a signed tx to the network', input => action(execute, run, input), {
   requirements: {
     forgeRelease: true,
+    runningNode: true,
     rpcClient: true,
     wallet: true,
   },
