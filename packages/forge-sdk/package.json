@@ -1,7 +1,7 @@
 {
   "name": "@arcblock/forge-sdk",
   "description": "Node.js SDK for Forge Framework by ArcBlock",
-  "version": "0.7.7",
+  "version": "0.7.8",
   "author": "wangshijun <shijun@arcblock.io> (https://ocap.arcblock.io)",
   "engines": {
     "node": ">=0.10.0",
