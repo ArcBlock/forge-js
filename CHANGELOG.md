@@ -1,3 +1,7 @@
+## 0.7.7 (February 12, 2019)
+  - fix: A few command will fail with exception before forge started, some are OK #128
+  - fix: formatMessage on scalar types
+
 ## 0.7.6 (February 11, 2019)
   - chore: upgrade forge-proto to align with forge@v0.13.2
 
