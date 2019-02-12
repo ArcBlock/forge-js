@@ -1,3 +1,7 @@
+## 0.7.8 (February 12, 2019)
+  - chore: cleanup unused dependency
+  - fix: bignumber not handling decimals correctly #107
+
 ## 0.7.7 (February 12, 2019)
   - fix: A few command will fail with exception before forge started, some are OK #128
   - fix: formatMessage on scalar types
