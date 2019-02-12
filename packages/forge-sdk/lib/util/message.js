@@ -12,6 +12,7 @@ const {
   toTypeUrl,
   fromTypeUrl,
 } = require('@arcblock/forge-proto');
+const jspb = require('google-protobuf');
 const { Any } = require('google-protobuf/google/protobuf/any_pb');
 const { Timestamp } = require('google-protobuf/google/protobuf/timestamp_pb');
 const debug = require('debug')(`${require('../../package.json').name}:util`);
@@ -70,9 +71,15 @@ function fakeMessage(type) {
 
   const result = {};
   Object.keys(selectedFields).forEach(key => {
-    const { type: subType, rule } = selectedFields[key];
+    const { type: subType, keyType, rule } = selectedFields[key];
     if (rule === 'repeated') {
       result[key] = [1, 2].map(() => fakeMessage(subType));
+      return;
+    }
+    if (keyType) {
+      result[key] = {
+        [scalarTypes[keyType]]: fakeMessage(subType),
+      };
       return;
     }
 
@@ -128,15 +135,61 @@ function formatMessage(type, data) {
 
   const result = {};
   const { fields } = getMessageType(type);
+  if (!fields) {
+    throw new Error(`Cannot get fields for type ${type}`);
+  }
+
+  // "fields": {
+  //   "address": {
+  //     "type": "string",
+  //     "id": 1
+  //   },
+  //   "consensus": {
+  //     "type": "ConsensusParams",
+  //     "id": 2
+  //   },
+  //   "stakeSummary": {
+  //     "keyType": "uint32",
+  //     "type": "StakeSummary",
+  //     "id": 4
+  //   },
+  //   "forgeAppHash": {
+  //     "type": "bytes",
+  //     "id": 7
+  //   },
+  //   "data": {
+  //     "type": "google.protobuf.Any",
+  //     "id": 15
+  //   }
+  // }
   Object.keys(fields).forEach(key => {
-    const { type: subType, rule } = fields[key];
-    const value = data[rule === 'repeated' ? camelcase(`${key}_list`) : key] || data[key];
+    const { type: subType, keyType, rule } = fields[key];
+    let value = data[key];
+
+    // list
+    if (rule === 'repeated') {
+      value = data[camelcase(`${key}_list`)] || data[key];
+    }
+
+    // map
+    if (keyType) {
+      value = data[camelcase(`${key}_map`)] || data[key];
+    }
     if (value === undefined) {
       return;
     }
 
     if (rule === 'repeated') {
       result[key] = value.map(x => formatMessage(subType, x));
+      return;
+    }
+
+    if (keyType) {
+      debug('formatMessage.map', { type, subType, keyType, value });
+      result[key] = (value || []).reduce((acc, [k, v]) => {
+        acc[k] = formatMessage(subType, v);
+        return acc;
+      }, {});
       return;
     }
 
@@ -216,8 +269,24 @@ function createMessage(type, params) {
   // Attach each field to message
   Object.keys(fields).forEach(key => {
     const value = params[key];
-    const { type: subType, rule } = fields[key];
+    const { type: subType, keyType, rule, id } = fields[key];
     if (value === undefined) {
+      return;
+    }
+
+    // map
+    if (keyType) {
+      const keys = Object.keys(value);
+      if (keys.length) {
+        const fn = camelcase(`get_${key}_map`);
+        const map = message[fn]();
+        debug('createMessage.map', { type, subType, keyType, id, fn, keys });
+        keys.forEach(k => {
+          map.set(k, createMessage(subType, value[k]));
+        });
+
+        jspb.Message.setField(message, id, map);
+      }
       return;
     }
 

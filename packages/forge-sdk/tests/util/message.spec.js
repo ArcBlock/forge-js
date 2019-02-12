@@ -125,6 +125,34 @@ describe('#createMessage', () => {
     });
   });
 
+  test('should support map fields', () => {
+    const params = {
+      address: 'forge_state',
+      tasks: {},
+      stakeSummary: {
+        '0': {
+          totalStakes: '1000000000000000000',
+          totalUnstakes: '0',
+          context: {
+            genesisTx: 'EB44E6C297F1EE8FA6570799A702B3C4A6BF6DD7CE8948BAB96E0C2C6011CCD8',
+            renaissanceTx: 'EB44E6C297F1EE8FA6570799A702B3C4A6BF6DD7CE8948BAB96E0C2C6011CCD8',
+            genesisTime: '2019-02-11T02:41:50.683Z',
+            renaissanceTime: '2019-02-11T02:41:50.683Z',
+          },
+        },
+      },
+      version: '0.13.2',
+      dataVersion: '1.2',
+      forgeAppHash: '',
+    };
+    const message = createMessage('ForgeState', params);
+    const object = message.toObject();
+    expect(object.stakeSummaryMap[0][0]).toEqual('0');
+    expect(formatMessage('StakeSummary', object.stakeSummaryMap[0][1])).toEqual(
+      params.stakeSummary['0']
+    );
+  });
+
   test('should support timestamp fields', () => {
     const params = {
       address: '123456',
@@ -140,11 +168,9 @@ describe('#createMessage', () => {
 
   test('should support bigInt fields', () => {
     let message = createMessage('TransferTx', { value: 123456 }).toObject();
-    expect(message.value.minus).toEqual(false);
     expect(Buffer.from(message.value.value).toString('hex')).toEqual('01e240');
 
     message = createMessage('TransferTx', { value: -123456 }).toObject();
-    expect(message.value.minus).toEqual(true);
     expect(Buffer.from(message.value.value).toString('hex')).toEqual('01e240');
   });
 
@@ -187,20 +213,22 @@ describe('#formatMessage', () => {
     expect(message.migratedFrom[0]).toEqual('123456');
   });
 
-  // FIXME: circular queue need custom encoding and decoding
   test('should decode repeated data as expected', () => {
-    const message = formatMessage('ChannelState', {
+    const message = formatMessage('RequestGetAccountState', {
       address: '123456',
-      waiting: {
-        items: [{ from: 'abcd' }],
-        type_url: 'Transaction',
-        maxItems: 10,
-        circular: false,
-        fifo: false,
-      },
+      keys: ['abc', 'def'],
     });
     expect(message.address).toEqual('123456');
-    expect(message.waiting.maxItems).toEqual(10);
+    expect(message.keys).toEqual(['abc', 'def']);
+  });
+
+  test('should decode map data as expected', () => {
+    const message = formatMessage('ForgeState', {
+      tasks: [],
+      stakeSummaryMap: [[0, { context: { genesisTx: 'abc' } }]],
+    });
+    expect(message.tasks).toEqual({});
+    expect(message.stakeSummary['0']).toEqual({ context: { genesisTx: 'abc' } });
   });
 
   test('should decode nested data as expected', () => {

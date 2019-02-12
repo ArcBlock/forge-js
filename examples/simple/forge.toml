@@ -4,7 +4,7 @@ version = "0.1.0"
 
 path = "~/.forge_simple/app"
 executable = ""
-sock_tcp = "tcp://127.0.0.1:28211"
+sock_tcp = ""
 
 [forge]
 decimal = 16
