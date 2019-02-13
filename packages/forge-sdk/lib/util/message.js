@@ -2,9 +2,9 @@
 const util = require('util');
 const camelcase = require('camelcase');
 const faker = require('faker');
+const BN = require('bn.js');
 const range = require('lodash/range');
 const random = require('lodash/random');
-const { BigInteger } = require('jsbn');
 const {
   enums,
   messages,
@@ -12,8 +12,10 @@ const {
   toTypeUrl,
   fromTypeUrl,
 } = require('@arcblock/forge-proto');
+const jspb = require('google-protobuf');
 const { Any } = require('google-protobuf/google/protobuf/any_pb');
 const { Timestamp } = require('google-protobuf/google/protobuf/timestamp_pb');
+const { toBN } = require('./unit');
 const debug = require('debug')(`${require('../../package.json').name}:util`);
 
 const enumTypes = Object.keys(enums);
@@ -70,9 +72,15 @@ function fakeMessage(type) {
 
   const result = {};
   Object.keys(selectedFields).forEach(key => {
-    const { type: subType, rule } = selectedFields[key];
+    const { type: subType, keyType, rule } = selectedFields[key];
     if (rule === 'repeated') {
       result[key] = [1, 2].map(() => fakeMessage(subType));
+      return;
+    }
+    if (keyType) {
+      result[key] = {
+        [scalarTypes[keyType]]: fakeMessage(subType),
+      };
       return;
     }
 
@@ -126,17 +134,81 @@ function formatMessage(type, data) {
     return data;
   }
 
+  if (
+    [
+      'bytes',
+      'string',
+      'double',
+      'float',
+      'sint32',
+      'uint32',
+      'sfixed32',
+      'sint64',
+      'uint64',
+      'sfixed64',
+    ].includes(type)
+  ) {
+    return data;
+  }
+
   const result = {};
   const { fields } = getMessageType(type);
+  if (!fields) {
+    console.log({ type, data });
+    throw new Error(`Cannot get fields for type ${type}`);
+  }
+
+  // "fields": {
+  //   "address": {
+  //     "type": "string",
+  //     "id": 1
+  //   },
+  //   "consensus": {
+  //     "type": "ConsensusParams",
+  //     "id": 2
+  //   },
+  //   "stakeSummary": {
+  //     "keyType": "uint32",
+  //     "type": "StakeSummary",
+  //     "id": 4
+  //   },
+  //   "forgeAppHash": {
+  //     "type": "bytes",
+  //     "id": 7
+  //   },
+  //   "data": {
+  //     "type": "google.protobuf.Any",
+  //     "id": 15
+  //   }
+  // }
   Object.keys(fields).forEach(key => {
-    const { type: subType, rule } = fields[key];
-    const value = data[rule === 'repeated' ? camelcase(`${key}_list`) : key] || data[key];
+    const { type: subType, keyType, rule } = fields[key];
+    let value = data[key];
+
+    // list
+    if (rule === 'repeated') {
+      value = data[camelcase(`${key}_list`)] || data[key];
+    }
+
+    // map
+    if (keyType) {
+      value = data[camelcase(`${key}_map`)] || data[key];
+    }
     if (value === undefined) {
       return;
     }
 
     if (rule === 'repeated') {
       result[key] = value.map(x => formatMessage(subType, x));
+      return;
+    }
+
+    if (keyType) {
+      debug('formatMessage.map', { type, subType, keyType, value });
+      result[key] = (value || []).reduce((acc, [k, v]) => {
+        acc[k] = formatMessage(subType, v);
+        return acc;
+      }, {});
       return;
     }
 
@@ -216,8 +288,24 @@ function createMessage(type, params) {
   // Attach each field to message
   Object.keys(fields).forEach(key => {
     const value = params[key];
-    const { type: subType, rule } = fields[key];
+    const { type: subType, keyType, rule, id } = fields[key];
     if (value === undefined) {
+      return;
+    }
+
+    // map
+    if (keyType) {
+      const keys = Object.keys(value);
+      if (keys.length) {
+        const fn = camelcase(`get_${key}_map`);
+        const map = message[fn]();
+        debug('createMessage.map', { type, subType, keyType, id, fn, keys });
+        keys.forEach(k => {
+          map.set(k, createMessage(subType, value[k]));
+        });
+
+        jspb.Message.setField(message, id, map);
+      }
       return;
     }
 
@@ -387,12 +475,11 @@ function encodeBigInt(value, type) {
     return message;
   }
 
-  const number = new BigInteger(
-    typeof value === 'number' ? Math.abs(value).toString() : value.replace(/^(-|\+)/, '')
-  );
-  message.setValue(Uint8Array.from(number.toByteArray()));
+  const number = toBN(value);
+  const zero = toBN(0);
+  message.setValue(Uint8Array.from(number.toArray()));
   if (type === 'BigSint') {
-    message.setMinus(typeof value === 'number' ? value < 0 : /^-/.test(value));
+    message.setMinus(number.lt(zero));
   }
 
   return message;
@@ -406,9 +493,9 @@ function encodeBigInt(value, type) {
  * @returns String
  */
 function decodeBigInt(data) {
+  const bn = toBN(new BN(data.value));
   const symbol = data.minus ? '-' : '';
-  const valueHex = Buffer.from(data.value).toString('hex');
-  return `${symbol}${new BigInteger(valueHex, 16).toString(10)}`;
+  return `${symbol}${bn.toString(10)}`;
 }
 
 /**

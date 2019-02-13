@@ -26,7 +26,7 @@ describe('#fromArc & toArc', () => {
   });
 
   [8.8888, -8.8888, 3.3333333333333, 44444444444444444.5555].forEach(x => {
-    test.skip(`should support reverse op decimal: ${x}`, () => {
+    test(`should support reverse op decimal: ${x}`, () => {
       const encoded = client.toArc(x);
       const decoded = client.fromArc(encoded);
       expect(decoded).toEqual(x.toString());

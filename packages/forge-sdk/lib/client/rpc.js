@@ -1,6 +1,5 @@
 const grpc = require('grpc');
 const camelcase = require('camelcase');
-const { BigInteger } = require('jsbn');
 const { EventEmitter } = require('events');
 const { messages, enums, rpcs, getMessageType } = require('@arcblock/forge-proto');
 const {
@@ -9,6 +8,7 @@ const {
   attachFormatFn,
   attachExampleFn,
 } = require('../util/message');
+const { fromArc, toArc } = require('../util/unit');
 const debug = require('debug')(`${require('../../package.json').name}:Client`);
 
 class Client {
@@ -30,14 +30,10 @@ class Client {
    * the value shall be created with Arc.
    */
   fromArc(value) {
-    const v = new BigInteger(typeof value === 'string' ? value : value.toString(), 10);
-    const d = new BigInteger('10').pow(this.config.decimal || 16);
-    return v.divide(d).toString(10);
+    return fromArc(value, this.config.decimal || 16).toString(10);
   }
   toArc(value) {
-    const v = new BigInteger(typeof value === 'string' ? value : value.toString(), 10);
-    const d = new BigInteger('10').pow(this.config.decimal || 16);
-    return v.multiply(d).toString(10);
+    return toArc(value, this.config.decimal || 16).toString(10);
   }
 
   /**

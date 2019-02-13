@@ -6,7 +6,7 @@ const { config, debug } = require('core/env');
 const { symbols } = require('core/ui');
 
 function resolveLogPath(folder, file) {
-  return path.resolve(`${folder.replace('~', os.homedir())}/${file}`);
+  return folder ? path.resolve(`${folder.replace('~', os.homedir())}/${file}`) : '';
 }
 
 // TODO: log file path construction use consensus and storage engine config
@@ -41,7 +41,7 @@ function tailLogFile(logs, type) {
     }
   });
 
-  return Object.values(logs);
+  return Object.values(logs).filter(Boolean);
 }
 
 async function main({ args: [type = 'all'] }) {

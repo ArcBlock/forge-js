@@ -1,3 +1,4 @@
+require('./lib/util/patch');
 const { addSource } = require('@arcblock/forge-proto');
 const { parseConfig } = require('./lib/util/config');
 const {
