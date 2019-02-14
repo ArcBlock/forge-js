@@ -38,8 +38,8 @@ Examples:
   Be sure to initialize before running any other commands
   > ${chalk.cyan('forge init')}
 
-  Connect to a remote forge node without starting one
-  > ${chalk.cyan('forge chain:info --socket-grpc "tcp://10.0.0.1:9527"')}
+  Curious about how to use a subcommand?
+  > ${chalk.cyan('forge xxx -h')}
   `);
 });
 

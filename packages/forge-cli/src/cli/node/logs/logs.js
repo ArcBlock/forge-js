@@ -6,16 +6,19 @@ const { config, debug } = require('core/env');
 const { symbols } = require('core/ui');
 
 function resolveLogPath(folder, file) {
-  return path.resolve(`${folder.replace('~', os.homedir())}/${file}`);
+  return folder ? path.resolve(`${folder.replace('~', os.homedir())}/${file}`) : '';
 }
 
 // TODO: log file path construction use consensus and storage engine config
 function findLogFiles() {
   return {
-    app: resolveLogPath(config.get('app.path'), config.get('app.logfile')),
-    core: resolveLogPath(config.get('forge.path'), config.get('forge.logfile')),
-    ipfs: resolveLogPath(config.get('ipfs.path'), config.get('ipfs.logfile')),
-    tendermint: resolveLogPath(config.get('tendermint.path'), config.get('tendermint.logfile')),
+    app: resolveLogPath(config.get('app.path'), config.get('app.logfile', 'logs/app.log')),
+    core: resolveLogPath(config.get('forge.path'), config.get('forge.logfile', 'logs/forge.log')),
+    ipfs: resolveLogPath(config.get('ipfs.path'), config.get('ipfs.logfile', 'logs/ipfs.log')),
+    tendermint: resolveLogPath(
+      config.get('tendermint.path'),
+      config.get('tendermint.logfile', 'logs/tendermint.log')
+    ),
   };
 }
 
@@ -38,7 +41,7 @@ function tailLogFile(logs, type) {
     }
   });
 
-  return Object.values(logs);
+  return Object.values(logs).filter(Boolean);
 }
 
 async function main({ args: [type = 'all'] }) {

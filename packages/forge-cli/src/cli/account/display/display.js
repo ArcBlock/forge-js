@@ -10,7 +10,9 @@ async function execute({ args: [address] }) {
       .on('data', function(result) {
         debug('accountState', result.state.stake.recentStakes);
         if (result && result.code === 0) {
-          shell.echo(`${pretty(result.$format().state)}`);
+          const { state } = result.$format();
+          state.balance = `${client.fromArc(state.balance)} TOKEN`;
+          shell.echo(`${pretty(state)}`);
         } else {
           shell.echo(`${symbols.error} get account info error: ${pretty(result)}`);
         }

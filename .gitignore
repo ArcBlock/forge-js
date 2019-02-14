@@ -8,3 +8,4 @@ libd
 dist
 logs
 address.json
+packages/graphql-client/lib/

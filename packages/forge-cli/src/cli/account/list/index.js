@@ -10,11 +10,12 @@ for (let role in enums.AccountRole) {
 
 cli(
   'account:list [role]',
-  `list all accounts stored in this node, role=[${roles}], default role is all`,
+  `List all accounts stored in this node, role=[${roles}], default role is all`,
   input => action(execute, run, input),
   {
     requirements: {
       forgeRelease: false,
+      runningNode: true,
       rpcClient: true,
     },
     options: [

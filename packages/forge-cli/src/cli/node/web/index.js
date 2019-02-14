@@ -14,14 +14,15 @@ cli(
       rpcClient: true,
       wallet: false,
     },
-    options: [],
+    options: [['--graphql', 'Open graphql playground instead of forge admin panel']],
     handlers: {
       '--help': () => {
         shell.echo(`
 Examples:
-  - ${chalk.cyan('forge web start')} start the web UI
-  - ${chalk.cyan('forge web stop')} stop the web UI
-  - ${chalk.cyan('forge web open')} open the web UI in default browser
+  - ${chalk.cyan('forge web start')}          start forge web
+  - ${chalk.cyan('forge web stop')}           stop forge web
+  - ${chalk.cyan('forge web open')}           open admin panel in default browser
+  - ${chalk.cyan('forge web open --graphql')} open graphql playground in default browser
         `);
       },
     },

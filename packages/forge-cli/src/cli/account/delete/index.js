@@ -4,11 +4,12 @@ const { execute, run } = require('./delete');
 
 cli(
   'account:delete <address>',
-  'delete an account by address',
+  'Delete an account by address',
   input => action(execute, run, input),
   {
     requirements: {
       forgeRelease: false,
+      runningNode: true,
       rpcClient: true,
       wallet: false,
     },

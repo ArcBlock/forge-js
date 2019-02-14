@@ -3,7 +3,7 @@
 'use strict';
 var grpc = require('grpc');
 var abi_pb = require('./abi_pb.js');
-var code_pb = require('./code_pb.js');
+var enum_pb = require('./enum_pb.js');
 var type_pb = require('./type_pb.js');
 var state_pb = require('./state_pb.js');
 
@@ -29,9 +29,8 @@ function deserialize_forge_abi_Response(buffer_arg) {
   return abi_pb.Response.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-// ABI for forge application
-//
-var ForgeAppRpcService = (exports.ForgeAppRpcService = {
+
+var ForgeAppRpcService = exports.ForgeAppRpcService = {
   process_one: {
     path: '/forge_abi.ForgeAppRpc/process_one',
     requestStream: false,
@@ -54,6 +53,6 @@ var ForgeAppRpcService = (exports.ForgeAppRpcService = {
     responseSerialize: serialize_forge_abi_Response,
     responseDeserialize: deserialize_forge_abi_Response,
   },
-});
+};
 
 exports.ForgeAppRpcClient = grpc.makeGenericClientConstructor(ForgeAppRpcService);

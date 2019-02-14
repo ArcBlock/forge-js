@@ -1,30 +1,35 @@
 /* eslint no-case-declarations:"off" */
 const shell = require('shelljs');
-const { runNativeForgeCommand, debug } = require('core/env');
+const { runNativeForgeCommand, isForgeWebStarted, webUrl, debug } = require('core/env');
 const { symbols } = require('core/ui');
 
-const webUrl = 'http://localhost:8210';
-const startWebUI = runNativeForgeCommand('rpc "Application.start(:cover)"', { silent: true });
-const stopWebUI = runNativeForgeCommand('rpc "Application.stop(:cover)"', { silent: true });
+const startWebUI = runNativeForgeCommand('rpc "Application.start(:forge_web)"', { silent: true });
+const stopWebUI = runNativeForgeCommand('rpc "Application.stop(:forge_web)"', { silent: true });
 
 function processOutput(output, action) {
   if (/:error/.test(output)) {
-    shell.echo(`${symbols.error} web ${action} failed: ${output.trim()}`);
+    if (/:already_started/.test(output)) {
+      shell.echo(`${symbols.warning} forge web already started`);
+    } else {
+      shell.echo(`${symbols.error} forge web ${action} failed: ${output.trim()}`);
+    }
   } else {
-    shell.echo(`${symbols.success} forge web ui ${action} success!`);
+    shell.echo(`${symbols.success} forge web ${action} success!`);
   }
 }
 
-async function main({ args: [action = 'none'] }) {
+async function main({ args: [action = 'none'], opts }) {
   /* eslint-disable indent */
   switch (action) {
     case 'none':
-      shell.exec('forge web -h');
+      shell.exec('forge web -h --color always');
       break;
     case 'start':
       const { stdout, stderr } = startWebUI();
       processOutput(stdout || stderr, action);
-      shell.echo(`${symbols.info} running at: ${webUrl}`);
+      shell.echo(`${symbols.info} forge web running at:     ${webUrl}`);
+      shell.echo(`${symbols.info} graphql endpoint at:      ${webUrl}/api`);
+      shell.echo(`${symbols.info} graphql playground at:    ${webUrl}/api/playground`);
       break;
     case 'stop':
       const { stdout2, stderr2 } = stopWebUI();
@@ -32,8 +37,13 @@ async function main({ args: [action = 'none'] }) {
       processOutput(stdout2 || stderr2, action);
       break;
     case 'open':
-      shell.echo(`Opening ${webUrl}...`);
-      shell.exec(`open ${webUrl}`);
+      if (isForgeWebStarted() === false) {
+        shell.echo(`${symbols.info} forge web not started yet`);
+        await main({ args: ['start'] });
+      }
+      const url = opts.graphql ? `${webUrl}/api/playground` : webUrl;
+      shell.echo(`Opening ${url}...`);
+      shell.exec(`open ${url}`);
       break;
     default:
       break;

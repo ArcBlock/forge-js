@@ -1,3 +1,73 @@
+## 0.7.8 (February 12, 2019)
+  - chore: cleanup unused dependency
+  - fix: bignumber not handling decimals correctly #107
+
+## 0.7.7 (February 12, 2019)
+  - fix: A few command will fail with exception before forge started, some are OK #128
+  - fix: formatMessage on scalar types
+
+## 0.7.6 (February 11, 2019)
+  - chore: upgrade forge-proto to align with forge@v0.13.2
+
+## 0.7.5 (January 31, 2019)
+  - chore: update test case
+  - fix: stake.totalStakes and stake.totalUnstakes
+  - feat: support `forge unstake`
+  - feat: `forge stake` default select current node #117
+  - fix: "undefined" in `forge status1 output #118
+  - fix: `forge tx` should tell me the TX type #114
+  - chore: upgrade sdk doc
+  - chore: update forge config
+  - chore: upgrade forge proto
+  - fix: `forge stake` fail randomly and no reason given #113
+  - chore: update readme
+
+## 0.7.4 (January 30, 2019)
+  - chore: upgrade forge-proto to align with forge@v0.12.0
+
+## 0.7.3 (January 30, 2019)
+  - fix: format validation error #103
+  - fix: wrong node address will crash cli in `forge stake` #105
+  - fix: sensible logs path for `forge logs` #101
+  - fix: stake related improvement #103 #104 #106 #107 #108
+  - fix: `forge version` with tendermint and ipfs
+  - chore: update readme
+
+## 0.7.2 (January 29, 2019)
+  - v0.7.1
+  - fix: publish config
+
+## 0.7.1 (January 29, 2019)
+  - support graphql client (#100)
+
+## 0.7.0 (January 25, 2019)
+  - fix: disable `forge create:cli` for release
+  - fix: `forge xxx -h` colors in shelljs.exec
+  - feat: support open forge graphql playground with `forge web open`
+  - fix: improve errmsg for declare as node
+  - feat: support display web status in `forge status` #65
+  - chore: add subscribe example for forge-sdk #87
+  - feat: support `forge block -f` display blocks until user stop it. #91
+  - fix: start forge web before `forge web open` #90
+  - chore: remove `forge console` command, since it does not works on all start modes #47
+  - feat: add spinner for `forge stop`
+
+## 0.6.9 (January 24, 2019)
+  - upgrade forge protobuf and several improvements (#88)
+  - chore: upgrade forge-proto to latest forge
+  - fix: listWallets => listWallet
+  - fix: transactions are not correctly filtered in forge-proto
+  - fix: update forge config with latest release
+  - fix: forge web related commands with latest forge
+  - chore: improve `forge tx` error
+  - fix: remove useless tip
+  - chore: organize forge-cli code
+  - feat: elimiate GITHUB_TOKEN and fetch dependency #34
+  - chore: improve texture and help text
+  - feat: align forge release version with forge-sdk/forge-proto/forge-cli #37
+  - fix: display graceful error message when unlock wallet failed #66
+  - chore: add docs, user can switch to different chains apps easily with #72
+
 ## 0.6.8 (January 23, 2019)
   - chore: improve forge start/stop command
   - chore: make `forge restart` more developer friendly

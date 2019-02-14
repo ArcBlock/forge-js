@@ -5,61 +5,30 @@ version = "0.1.0"
 path = "/Users/wangshijun/Develop/arcblock/forge-js/examples/kvstore"
 # executable = "nodemon --exitcrash --spawn --config nodemon.json"
 executable = "server.js"
-logfile = "logs/app.log"
-error_logfile = "logs/error.log"
 sock_tcp = "tcp://127.0.0.1:9528"
 
 [forge]
 decimal = 16
 proto_version = 1
-path = "/tmp/.forge_kvstore_nodejs/core"
-# State db path
-db = "data"
-# index db path
-index_db = "index"
-keystore = "keystore"
-logfile = "logs/forge.log"
-
+path = "~/.forge_kvstore_nodejs/core"
 sock_grpc = "tcp://127.0.0.1:28210"
 
-consensus_engine = "tendermint"
-storage_engine = "ipfs"
-hash = "sha3"
-encoding = "base64"
-unlock_ttl = 300
-
-[forge.limit]
-# max grace period is 10
-grace_peroid = 10
-
-[forge.account]
-# for ethereum compatibility, use secp256k1
-public_key_format = "ed25519"
-# for ethereum compatibility, use keccak_256
-public_key_hash_format = "sha3_256"
-# for ethereum compatibility, use base16
-address_format = "base58"
-
-[forge.transaction]
-disabled_tx = ["SysUpgradeTx"]
-
-[forge.web]
-enabled = true
+pub_sub_key = "ABTTOTHEMOON"
 
 [forge.stake]
 
 [forge.stake.timeout]
-# for general stake, we do T+1
-general = 86400
-# for node stake, we do T+7
-stake_for_node = 604800
+# for general stake, we do 10s
+general = 10
+# for node stake, we do 60s
+stake_for_node = 60
+
+[forge.web]
+enabled = true
 
 [tendermint]
-version = "0.27.3-01"
 moniker = "forge"
-path = "/tmp/.forge_kvstore_nodejs/tendermint"
-# relative paths to "path"
-logfile = "logs/tendermint.log"
+path = "~/.forge_kvstore_nodejs/tendermint"
 
 # socket to proxy app
 sock_proxy_app = "tcp://127.0.0.1:28220"
@@ -83,7 +52,7 @@ persistent_peers = ""
 seed_peers = ""
 
 # timeout for commiting a new block
-timeout_commit = "100ms"
+timeout_commit = "1s"
 
 # create empty blocks in 5s interval
 create_empty_blocks = false
@@ -91,44 +60,23 @@ create_empty_blocks = false
 # set if this node runs in a seed mode
 seed_mode = false
 
-log_level = "consensus:info,main:info,state:info,*:error"
-
-max_num_inbound_peers = 40
-max_num_outbound_peers = 10
-
-upnp = false
-
-
 [tendermint.genesis]
 genesis_time = "2018-11-05T19:22:08.938749Z"
-chain_id = 1
+chain_id = "forge"
 max_bytes = 22020096
 max_gas = -1
 app_hash = ""
 
 # note that if you don't give this information we will use self as validator
-# Please do not remove this section if its empty
 [[tendermint.genesis.validators]]
+# address = "D875CBC0F1D0925D62AB235F1DA909D89CDF9D78"
+# name = "forge_genesis_validator"
+# power = "10"
+
+# [tendermint.genesis.validators.pub_key]
+# type = "tendermint/PubKeyEd25519"
+# value = "whsJQCA4g4bzQeaBe69/ZW/xHRNPAI2QxHV4CIgguq4="
 
 [ipfs]
 version = "0.4.18"
-path = "/tmp/.forge_kvstore_nodejs/ipfs"
-logfile = "logs/ipfs.log"
-storage_max = "10GB"
-bootstrap = []
-
-#ipfs_cluster_version = "0.7.0"
-#ipfs_cluster_ctl_version = "0.7.0"
-
-max_file_size.admin = "100M"
-max_file_size.account = "1M"
-
-[cache]
-dc_dump_limit = 50
-dump_log_write_threshold = 50_000
-cache_mnesia_table_timeout = 15_000
-path = "/tmp/.forge_kvstore_nodejs/cache/mnesia_data_dir"
-
-[geolix]
-mmdb_url = "https://geolite.maxmind.com/download/geoip/database/GeoLite2-City.tar.gz"
-mmdb_path = "~/.mmdb/GeoLite2-City.tar.gz"
+path = "~/.forge_kvstore_nodejs/ipfs"

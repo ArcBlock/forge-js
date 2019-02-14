@@ -1,10 +1,11 @@
 {
   "name": "@arcblock/forge-proto",
   "description": "Static modules generated from forge-sdk protobuf files",
-  "version": "0.6.7",
+  "version": "0.7.6",
   "author": "wangshijun <shijun@arcblock.io> (https://www.arcblock.io)",
   "engines": {
-    "node": ">=0.10.0"
+    "node": ">=0.10.0",
+    "forge": ">=0.11.1"
   },
   "bugs": {
     "url": "https://github.com/ArcBlock/forge-js/issues",
@@ -41,7 +42,7 @@
     "copy": "npm run copy:js && npm run copy:json",
     "copy:js": "rm -f lib/*.js && cp $FORGE_SDK_PROTO_GEN_DIR/*.js lib/ && sh ./tools/patch.sh",
     "copy:json": "rm -f lib/*.json && cp $FORGE_SDK_PROTO_GEN_DIR/*.json lib/",
-    "lint": "eslint test index.js",
+    "lint": "eslint tests index.js",
     "precommit": "CI=1 npm run test",
     "prepush": "CI=1 npm run test",
     "test": "npm run lint && node tools/jest.js",
