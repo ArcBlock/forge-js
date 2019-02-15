@@ -12,8 +12,6 @@ init: install dep
 
 travis-init: install dep
 	@echo "Initialize software required for travis (normally ubuntu software)"
-	@cd packages/forge-proto && yarn link
-	@cd packages/forge-sdk && yarn link @arcblock/forge-proto
 
 install:
 	@echo "Install software required for this repo..."
@@ -24,6 +22,7 @@ dep:
 	@echo "Install dependencies required for this repo..."
 	@lerna bootstrap
 	@lerna link
+	@cd apps/forge-web && npm i
 
 pre-build: install dep
 	@echo "Running scripts before the build..."
