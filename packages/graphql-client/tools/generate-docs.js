@@ -4,42 +4,43 @@ const fs = require('fs');
 const path = require('path');
 const { print, parse } = require('graphql');
 const { randomArg, randomArgs } = require('@arcblock/sdk-util/lib/util');
+
 const Client = require('../src/client');
 
 const genSectionDoc = (title, methods) => {
   return `
 ## ${title}
 ${
-    methods.length > 0
-      ? methods
-          .map(
-            method => `
+  methods.length > 0
+    ? methods
+        .map(
+          method => `
 ### ${method.name}
 
 #### Arguments
 
 ${
-              Object.values(method.args).length
-                ? Object.values(method.args)
-                    .map(
-                      arg =>
-                        `* **${arg.name}**, ${
-                          arg.type.kind === 'NON_NULL' ? '**required**' : 'optional'
-                        }, ${arg.description}`
-                    )
-                    .join('\n')
-                : 'No arguments'
-            }
+  Object.values(method.args).length
+    ? Object.values(method.args)
+        .map(
+          arg =>
+            `* **${arg.name}**, ${arg.type.kind === 'NON_NULL' ? '**required**' : 'optional'}, ${
+              arg.description
+            }`
+        )
+        .join('\n')
+    : 'No arguments'
+}
 
 #### Result Format
 
 \`\`\`graphql
 ${print(parse(method.result))}
 \`\`\``
-          )
-          .join('\n')
-      : `\nNo ${title} supported yet.\n`
-  }`;
+        )
+        .join('\n')
+    : `\nNo ${title} supported yet.\n`
+}`;
 };
 
 const client = new Client();

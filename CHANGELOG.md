@@ -1,3 +1,6 @@
+## 0.7.10 (February 15, 2019)
+  - forge web skeleton (#109)
+
 ## 0.7.9 (February 15, 2019)
   - chore: upgrade graphql client schme to align with forge v0.14.3
   - chore: regenerate forge rpc api doc
