@@ -39,6 +39,7 @@
     "url": "https://github.com/ArcBlock/forge-js/tree/master/packages/forge-proto"
   },
   "scripts": {
+    "upgrade": "npm run copy",
     "copy": "npm run copy:js && npm run copy:json",
     "copy:js": "rm -f lib/*.js && cp $FORGE_SDK_PROTO_GEN_DIR/*.js lib/ && sh ./tools/patch.sh",
     "copy:json": "rm -f lib/*.json && cp $FORGE_SDK_PROTO_GEN_DIR/*.json lib/",

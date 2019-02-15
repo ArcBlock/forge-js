@@ -1653,10 +1653,10 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
         address: jspb.Message.getFieldWithDefault(msg, 1, ''),
         numBlocks: jspb.Message.getFieldWithDefault(msg, 2, 0),
         numTxs: jspb.Message.getFieldWithDefault(msg, 3, 0),
-        numAccounts: jspb.Message.getFieldWithDefault(msg, 4, 0),
-        numAssets: jspb.Message.getFieldWithDefault(msg, 5, 0),
         numStakes: (f = msg.getNumStakes()) && type_pb.BigUint.toObject(includeInstance, f),
-        numValidators: jspb.Message.getFieldWithDefault(msg, 7, 0),
+        numValidators: jspb.Message.getFieldWithDefault(msg, 5, 0),
+        txStatistics:
+          (f = msg.getTxStatistics()) && type_pb.TxStatistics.toObject(includeInstance, f),
       };
 
     if (includeInstance) {
@@ -1704,21 +1704,18 @@ proto.forge_abi.StatisticsState.deserializeBinaryFromReader = function(msg, read
         msg.setNumTxs(value);
         break;
       case 4:
-        var value = /** @type {number} */ (reader.readUint32());
-        msg.setNumAccounts(value);
-        break;
-      case 5:
-        var value = /** @type {number} */ (reader.readUint32());
-        msg.setNumAssets(value);
-        break;
-      case 6:
         var value = new type_pb.BigUint();
         reader.readMessage(value, type_pb.BigUint.deserializeBinaryFromReader);
         msg.setNumStakes(value);
         break;
-      case 7:
+      case 5:
         var value = /** @type {number} */ (reader.readUint32());
         msg.setNumValidators(value);
+        break;
+      case 6:
+        var value = new type_pb.TxStatistics();
+        reader.readMessage(value, type_pb.TxStatistics.deserializeBinaryFromReader);
+        msg.setTxStatistics(value);
         break;
       default:
         reader.skipField();
@@ -1759,21 +1756,17 @@ proto.forge_abi.StatisticsState.serializeBinaryToWriter = function(message, writ
   if (f !== 0) {
     writer.writeUint64(3, f);
   }
-  f = message.getNumAccounts();
-  if (f !== 0) {
-    writer.writeUint32(4, f);
-  }
-  f = message.getNumAssets();
-  if (f !== 0) {
-    writer.writeUint32(5, f);
-  }
   f = message.getNumStakes();
   if (f != null) {
-    writer.writeMessage(6, f, type_pb.BigUint.serializeBinaryToWriter);
+    writer.writeMessage(4, f, type_pb.BigUint.serializeBinaryToWriter);
   }
   f = message.getNumValidators();
   if (f !== 0) {
-    writer.writeUint32(7, f);
+    writer.writeUint32(5, f);
+  }
+  f = message.getTxStatistics();
+  if (f != null) {
+    writer.writeMessage(6, f, type_pb.TxStatistics.serializeBinaryToWriter);
   }
 };
 
@@ -1817,46 +1810,20 @@ proto.forge_abi.StatisticsState.prototype.setNumTxs = function(value) {
 };
 
 /**
- * optional uint32 num_accounts = 4;
- * @return {number}
- */
-proto.forge_abi.StatisticsState.prototype.getNumAccounts = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
-};
-
-/** @param {number} value */
-proto.forge_abi.StatisticsState.prototype.setNumAccounts = function(value) {
-  jspb.Message.setField(this, 4, value);
-};
-
-/**
- * optional uint32 num_assets = 5;
- * @return {number}
- */
-proto.forge_abi.StatisticsState.prototype.getNumAssets = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 5, 0));
-};
-
-/** @param {number} value */
-proto.forge_abi.StatisticsState.prototype.setNumAssets = function(value) {
-  jspb.Message.setField(this, 5, value);
-};
-
-/**
- * optional BigUint num_stakes = 6;
+ * optional BigUint num_stakes = 4;
  * @return {?proto.forge_abi.BigUint}
  */
 proto.forge_abi.StatisticsState.prototype.getNumStakes = function() {
   return /** @type{?proto.forge_abi.BigUint} */ (jspb.Message.getWrapperField(
     this,
     type_pb.BigUint,
-    6
+    4
   ));
 };
 
 /** @param {?proto.forge_abi.BigUint|undefined} value */
 proto.forge_abi.StatisticsState.prototype.setNumStakes = function(value) {
-  jspb.Message.setWrapperField(this, 6, value);
+  jspb.Message.setWrapperField(this, 4, value);
 };
 
 proto.forge_abi.StatisticsState.prototype.clearNumStakes = function() {
@@ -1868,20 +1835,49 @@ proto.forge_abi.StatisticsState.prototype.clearNumStakes = function() {
  * @return {!boolean}
  */
 proto.forge_abi.StatisticsState.prototype.hasNumStakes = function() {
-  return jspb.Message.getField(this, 6) != null;
+  return jspb.Message.getField(this, 4) != null;
 };
 
 /**
- * optional uint32 num_validators = 7;
+ * optional uint32 num_validators = 5;
  * @return {number}
  */
 proto.forge_abi.StatisticsState.prototype.getNumValidators = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 7, 0));
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 5, 0));
 };
 
 /** @param {number} value */
 proto.forge_abi.StatisticsState.prototype.setNumValidators = function(value) {
-  jspb.Message.setField(this, 7, value);
+  jspb.Message.setField(this, 5, value);
+};
+
+/**
+ * optional TxStatistics tx_statistics = 6;
+ * @return {?proto.forge_abi.TxStatistics}
+ */
+proto.forge_abi.StatisticsState.prototype.getTxStatistics = function() {
+  return /** @type{?proto.forge_abi.TxStatistics} */ (jspb.Message.getWrapperField(
+    this,
+    type_pb.TxStatistics,
+    6
+  ));
+};
+
+/** @param {?proto.forge_abi.TxStatistics|undefined} value */
+proto.forge_abi.StatisticsState.prototype.setTxStatistics = function(value) {
+  jspb.Message.setWrapperField(this, 6, value);
+};
+
+proto.forge_abi.StatisticsState.prototype.clearTxStatistics = function() {
+  this.setTxStatistics(undefined);
+};
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.forge_abi.StatisticsState.prototype.hasTxStatistics = function() {
+  return jspb.Message.getField(this, 6) != null;
 };
 
 goog.object.extend(exports, proto.forge_abi);
