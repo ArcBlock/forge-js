@@ -19,6 +19,7 @@ const theme = createMuiTheme({
     },
     fontSize: 16,
     fontFamily: [
+      'Avenir',
       '-apple-system',
       'BlinkMacSystemFont',
       '"Segoe UI"',

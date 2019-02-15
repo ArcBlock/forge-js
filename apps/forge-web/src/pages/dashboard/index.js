@@ -2,119 +2,66 @@ import React from 'react';
 import styled from 'styled-components';
 
 import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid';
-import CircularProgress from '@material-ui/core/CircularProgress';
 
 import Page from '../../components/page';
 import Layout from '../../layouts/page';
 import withI18n from '../../components/withI18n';
 import withRoot from '../../components/withRoot';
 
-import forge from '../../libs/forge';
+import Summary from './components/summary';
+// import Transfers from './components/summary';
+// import TopAccounts from './components/summary';
+// import TopValidators from './components/summary';
 
 class Dashboard extends Page {
-  constructor(props) {
-    super(props);
-    this.state = {
-      loading: false,
-      summary: null,
-    };
-  }
-
-  componentDidMount() {
-    this.loadSummary();
-  }
+  sections = {
+    Summary,
+    Transfers: Summary,
+    'Top Accounts': Summary,
+    'Top Validators': Summary,
+  };
 
   render() {
-    const { loading, summary } = this.state;
     return (
       <Layout title="Dashboard" cookies={this.cookies}>
         <Container>
-          {loading && (
-            <React.Fragment>
-              <Typography component="h3">Loading data...</Typography>
-              <CircularProgress />
-            </React.Fragment>
-          )}
-          {!loading && summary && this.renderSummary(summary)}
+          {Object.keys(this.sections).map(x => this.renderSection(x, this.sections[x]))}
         </Container>
       </Layout>
     );
   }
 
-  renderSummary(summary) {
-    const metrics = {
-      blocks: summary.numBlocks[0],
-      txs: summary.numTxs[0],
-      accounts: summary.numDeclareTxs[0],
-      assets: summary.numCreateAssetTxs[0],
-      stakes: summary.numStakeTxs[0],
-      validators: summary.numValidators[0],
-    };
-
-    const images = {
-      blocks: 'front-view',
-      txs: 'activity-history',
-      accounts: 'user-folder',
-      assets: 'money-bag-bitcoin',
-      stakes: 'coin-in-hand',
-      validators: 'edit-property',
-    };
-
+  renderSection(name, SectionComponent) {
     return (
-      <Grid container spacing={16}>
-        {Object.keys(metrics).map(x => (
-          <Grid key={x} item xs={12} sm={4}>
-            <Metric>
-              <div className="metric__image">
-                <img alt={x} src={`https://img.icons8.com/dotty/36/000000/${images[x]}.png`} />
-              </div>
-              <div className="metric__number">{metrics[x]}</div>
-              <div className="metric__name">{x}</div>
-            </Metric>
-          </Grid>
-        ))}
-      </Grid>
+      <div className="section" key={name}>
+        <Typography component="h3" className="section__header">
+          {this.t(name)}
+        </Typography>
+        <div className="section__content">
+          <SectionComponent />
+        </div>
+      </div>
     );
-  }
-
-  async loadSummary() {
-    this.setState({ loading: true });
-    const {
-      getForgeStatistics: { forgeStatistics: summary },
-    } = await forge.getForgeStatistics();
-    console.log(summary);
-    this.setState({ loading: false, summary });
   }
 }
 
 const Container = styled.div`
-  padding: ${props => props.theme.spacing.unit * 3}px;
-`;
+  padding: ${props => props.theme.spacing.unit * 9}px ${props => props.theme.spacing.unit * 15}px;
 
-const Metric = styled.div`
-  padding: 20px 20px 0;
-
-  .metric__image {
-    margin-bottom: 10px;
+  .section {
+    margin-bottom: 80px;
   }
 
-  .metric__number {
-    margin-bottom: 3px;
-    font-family: Avenir;
-    font-size: 40px;
-    font-weight: 900;
-    line-height: 54px;
-    color: #222222;
-  }
-
-  .metric__name {
-    font-family: Avenir-Roman;
-    font-size: 14px;
+  .section__header {
+    margin-bottom: 30px;
+    font-size: 18px;
+    font-weight: 500;
     text-transform: uppercase;
-    line-height: 1.71;
-    letter-spacing: 2px;
-    color: #222222;
+    line-height: 1.33;
+    letter-spacing: 2.6px;
+  }
+
+  .section__content {
   }
 `;
 
