@@ -8,6 +8,7 @@ import Page from '../../components/page';
 import Layout from '../../layouts/page';
 import withI18n from '../../components/withI18n';
 import withRoot from '../../components/withRoot';
+
 import forge from '../../libs/forge';
 
 class BlockList extends Page {
