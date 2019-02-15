@@ -536,6 +536,14 @@
             "totalTxs": {
               "type": "uint64",
               "id": 4
+            },
+            "txStatistics": {
+              "type": "TxStatistics",
+              "id": 5
+            },
+            "txIndex": {
+              "type": "uint32",
+              "id": 6
             }
           }
         },
@@ -590,6 +598,10 @@
               "rule": "repeated",
               "type": "abci_vendor.KVPair",
               "id": 5
+            },
+            "code": {
+              "type": "StatusCode",
+              "id": 6
             }
           }
         },
@@ -888,24 +900,214 @@
               "type": "uint64",
               "id": 2
             },
-            "numAccounts": {
-              "rule": "repeated",
-              "type": "uint32",
-              "id": 3
-            },
-            "numAssets": {
-              "rule": "repeated",
-              "type": "uint32",
-              "id": 4
-            },
             "numStakes": {
               "rule": "repeated",
               "type": "BigUint",
-              "id": 5
+              "id": 3
             },
             "numValidators": {
               "rule": "repeated",
               "type": "uint32",
+              "id": 4
+            },
+            "numAccountMigrateTxs": {
+              "rule": "repeated",
+              "type": "uint64",
+              "id": 5
+            },
+            "numCreateAssetTxs": {
+              "rule": "repeated",
+              "type": "uint64",
+              "id": 6
+            },
+            "numConsensusUpgradeTxs": {
+              "rule": "repeated",
+              "type": "uint32",
+              "id": 7
+            },
+            "numDeclareTxs": {
+              "rule": "repeated",
+              "type": "uint64",
+              "id": 8
+            },
+            "numDeclareFileTxs": {
+              "rule": "repeated",
+              "type": "uint64",
+              "id": 9
+            },
+            "numExchangeTxs": {
+              "rule": "repeated",
+              "type": "uint64",
+              "id": 10
+            },
+            "numStakeTxs": {
+              "rule": "repeated",
+              "type": "uint64",
+              "id": 11
+            },
+            "numSysUpgradeTxs": {
+              "rule": "repeated",
+              "type": "uint32",
+              "id": 12
+            },
+            "numTransferTxs": {
+              "rule": "repeated",
+              "type": "uint64",
+              "id": 13
+            },
+            "numUpdateAssetTxs": {
+              "rule": "repeated",
+              "type": "uint64",
+              "id": 14
+            }
+          }
+        },
+        "TxStatistics": {
+          "fields": {
+            "numAccountMigrateTxs": {
+              "type": "uint64",
+              "id": 1
+            },
+            "numCreateAssetTxs": {
+              "type": "uint64",
+              "id": 2
+            },
+            "numConsensusUpgradeTxs": {
+              "type": "uint32",
+              "id": 3
+            },
+            "numDeclareTxs": {
+              "type": "uint64",
+              "id": 4
+            },
+            "numDeclareFileTxs": {
+              "type": "uint64",
+              "id": 5
+            },
+            "numExchangeTxs": {
+              "type": "uint64",
+              "id": 6
+            },
+            "numStakeTxs": {
+              "type": "uint64",
+              "id": 7
+            },
+            "numSysUpgradeTxs": {
+              "type": "uint32",
+              "id": 8
+            },
+            "numTransferTxs": {
+              "type": "uint64",
+              "id": 9
+            },
+            "numUpdateAssetTxs": {
+              "type": "uint64",
+              "id": 10
+            }
+          }
+        },
+        "PageOrder": {
+          "fields": {
+            "field": {
+              "type": "string",
+              "id": 1
+            },
+            "type": {
+              "type": "string",
+              "id": 2
+            }
+          }
+        },
+        "PageInput": {
+          "fields": {
+            "cursor": {
+              "type": "string",
+              "id": 1
+            },
+            "size": {
+              "type": "uint32",
+              "id": 2
+            },
+            "order": {
+              "rule": "repeated",
+              "type": "PageOrder",
+              "id": 3
+            }
+          }
+        },
+        "TypeFilter": {
+          "fields": {
+            "types": {
+              "rule": "repeated",
+              "type": "string",
+              "id": 1
+            }
+          }
+        },
+        "TimeFilter": {
+          "fields": {
+            "startDateTime": {
+              "type": "string",
+              "id": 1
+            },
+            "endDateTime": {
+              "type": "string",
+              "id": 2
+            }
+          }
+        },
+        "AddressFilter": {
+          "fields": {
+            "sender": {
+              "type": "string",
+              "id": 1
+            },
+            "receiver": {
+              "type": "string",
+              "id": 2
+            }
+          }
+        },
+        "PageInfo": {
+          "fields": {
+            "cursor": {
+              "type": "string",
+              "id": 1
+            },
+            "next": {
+              "type": "bool",
+              "id": 2
+            },
+            "total": {
+              "type": "uint32",
+              "id": 3
+            }
+          }
+        },
+        "IndexedTransaction": {
+          "fields": {
+            "hash": {
+              "type": "string",
+              "id": 1
+            },
+            "sender": {
+              "type": "string",
+              "id": 2
+            },
+            "receiver": {
+              "type": "string",
+              "id": 3
+            },
+            "time": {
+              "type": "string",
+              "id": 4
+            },
+            "type": {
+              "type": "string",
+              "id": 5
+            },
+            "tx": {
+              "type": "Transaction",
               "id": 6
             }
           }
@@ -1088,21 +1290,17 @@
               "type": "uint64",
               "id": 3
             },
-            "numAccounts": {
-              "type": "uint32",
-              "id": 4
-            },
-            "numAssets": {
-              "type": "uint32",
-              "id": 5
-            },
             "numStakes": {
               "type": "BigUint",
-              "id": 6
+              "id": 4
             },
             "numValidators": {
               "type": "uint32",
-              "id": 7
+              "id": 5
+            },
+            "txStatistics": {
+              "type": "TxStatistics",
+              "id": 6
             }
           }
         },
@@ -1873,153 +2071,68 @@
             }
           }
         },
-        "ChainRpc": {
-          "methods": {
-            "create_tx": {
-              "requestType": "RequestCreateTx",
-              "responseType": "ResponseCreateTx"
+        "RequestListTransactions": {
+          "fields": {
+            "paging": {
+              "type": "PageInput",
+              "id": 1
             },
-            "multisig": {
-              "requestType": "RequestMultisig",
-              "responseType": "ResponseMultisig"
+            "timeFilter": {
+              "type": "TimeFilter",
+              "id": 2
             },
-            "send_tx": {
-              "requestType": "RequestSendTx",
-              "responseType": "ResponseSendTx"
+            "addressFilter": {
+              "type": "AddressFilter",
+              "id": 3
             },
-            "get_tx": {
-              "requestType": "RequestGetTx",
-              "requestStream": true,
-              "responseType": "ResponseGetTx",
-              "responseStream": true
-            },
-            "get_block": {
-              "requestType": "RequestGetBlock",
-              "requestStream": true,
-              "responseType": "ResponseGetBlock",
-              "responseStream": true
-            },
-            "get_blocks": {
-              "requestType": "RequestGetBlocks",
-              "responseType": "ResponseGetBlocks"
-            },
-            "get_unconfirmed_txs": {
-              "requestType": "RequestGetUnconfirmedTxs",
-              "responseType": "ResponseGetUnconfirmedTxs"
-            },
-            "get_chain_info": {
-              "requestType": "RequestGetChainInfo",
-              "responseType": "ResponseGetChainInfo"
-            },
-            "search": {
-              "requestType": "RequestSearch",
-              "responseType": "ResponseSearch"
-            },
-            "get_net_info": {
-              "requestType": "RequestGetNetInfo",
-              "responseType": "ResponseGetNetInfo"
-            },
-            "get_validators_info": {
-              "requestType": "RequestGetValidatorsInfo",
-              "responseType": "ResponseGetValidatorsInfo"
-            },
-            "get_config": {
-              "requestType": "RequestGetConfig",
-              "responseType": "ResponseGetConfig"
+            "typeFilter": {
+              "type": "TypeFilter",
+              "id": 4
             }
           }
         },
-        "EventRpc": {
-          "methods": {
-            "subscribe": {
-              "requestType": "RequestSubscribe",
-              "responseType": "ResponseSubscribe",
-              "responseStream": true
+        "ResponseListTransactions": {
+          "fields": {
+            "code": {
+              "type": "StatusCode",
+              "id": 1
             },
-            "unsubscribe": {
-              "requestType": "RequestUnsubscribe",
-              "responseType": "ResponseUnsubscribe"
+            "page": {
+              "type": "PageInfo",
+              "id": 2
+            },
+            "transactions": {
+              "rule": "repeated",
+              "type": "IndexedTransaction",
+              "id": 3
             }
           }
         },
-        "FileRpc": {
-          "methods": {
-            "store_file": {
-              "requestType": "RequestStoreFile",
-              "requestStream": true,
-              "responseType": "ResponseStoreFile"
+        "RequestGetAssetAddress": {
+          "fields": {
+            "senderAddress": {
+              "type": "string",
+              "id": 1
             },
-            "load_file": {
-              "requestType": "RequestLoadFile",
-              "responseType": "ResponseLoadFile",
-              "responseStream": true
+            "itx": {
+              "type": "CreateAssetTx",
+              "id": 2
             },
-            "pin_file": {
-              "requestType": "RequestPinFile",
-              "responseType": "ResponsePinFile"
+            "walletType": {
+              "type": "WalletType",
+              "id": 3
             }
           }
         },
-        "StateRpc": {
-          "methods": {
-            "get_account_state": {
-              "requestType": "RequestGetAccountState",
-              "requestStream": true,
-              "responseType": "ResponseGetAccountState",
-              "responseStream": true
+        "ResponseGetAssetAddress": {
+          "fields": {
+            "code": {
+              "type": "StatusCode",
+              "id": 1
             },
-            "get_asset_state": {
-              "requestType": "RequestGetAssetState",
-              "requestStream": true,
-              "responseType": "ResponseGetAssetState",
-              "responseStream": true
-            },
-            "get_stake_state": {
-              "requestType": "RequestGetStakeState",
-              "requestStream": true,
-              "responseType": "ResponseGetStakeState",
-              "responseStream": true
-            },
-            "get_forge_state": {
-              "requestType": "RequestGetForgeState",
-              "responseType": "ResponseGetForgeState"
-            }
-          }
-        },
-        "WalletRpc": {
-          "methods": {
-            "create_wallet": {
-              "requestType": "RequestCreateWallet",
-              "responseType": "ResponseCreateWallet"
-            },
-            "load_wallet": {
-              "requestType": "RequestLoadWallet",
-              "responseType": "ResponseLoadWallet"
-            },
-            "recover_wallet": {
-              "requestType": "RequestRecoverWallet",
-              "responseType": "ResponseRecoverWallet"
-            },
-            "list_wallet": {
-              "requestType": "RequestListWallet",
-              "responseType": "ResponseListWallet",
-              "responseStream": true
-            },
-            "remove_wallet": {
-              "requestType": "RequestRemoveWallet",
-              "responseType": "ResponseRemoveWallet"
-            },
-            "declare_node": {
-              "requestType": "RequestDeclareNode",
-              "responseType": "ResponseDeclareNode"
-            }
-          }
-        },
-        "StatisticRpc": {
-          "methods": {
-            "get_forge_statistics": {
-              "requestType": "RequestGetForgeStatistics",
-              "responseType": "ResponseGetForgeStatistics"
+            "assetAddress": {
+              "type": "string",
+              "id": 2
             }
           }
         },
@@ -2191,6 +2304,164 @@
             "data": {
               "type": "google.protobuf.Any",
               "id": 3
+            }
+          }
+        },
+        "ChainRpc": {
+          "methods": {
+            "create_tx": {
+              "requestType": "RequestCreateTx",
+              "responseType": "ResponseCreateTx"
+            },
+            "multisig": {
+              "requestType": "RequestMultisig",
+              "responseType": "ResponseMultisig"
+            },
+            "send_tx": {
+              "requestType": "RequestSendTx",
+              "responseType": "ResponseSendTx"
+            },
+            "get_tx": {
+              "requestType": "RequestGetTx",
+              "requestStream": true,
+              "responseType": "ResponseGetTx",
+              "responseStream": true
+            },
+            "get_block": {
+              "requestType": "RequestGetBlock",
+              "requestStream": true,
+              "responseType": "ResponseGetBlock",
+              "responseStream": true
+            },
+            "get_blocks": {
+              "requestType": "RequestGetBlocks",
+              "responseType": "ResponseGetBlocks"
+            },
+            "get_unconfirmed_txs": {
+              "requestType": "RequestGetUnconfirmedTxs",
+              "responseType": "ResponseGetUnconfirmedTxs"
+            },
+            "get_chain_info": {
+              "requestType": "RequestGetChainInfo",
+              "responseType": "ResponseGetChainInfo"
+            },
+            "search": {
+              "requestType": "RequestSearch",
+              "responseType": "ResponseSearch"
+            },
+            "get_net_info": {
+              "requestType": "RequestGetNetInfo",
+              "responseType": "ResponseGetNetInfo"
+            },
+            "get_validators_info": {
+              "requestType": "RequestGetValidatorsInfo",
+              "responseType": "ResponseGetValidatorsInfo"
+            },
+            "get_config": {
+              "requestType": "RequestGetConfig",
+              "responseType": "ResponseGetConfig"
+            },
+            "get_asset_address": {
+              "requestType": "RequestGetAssetAddress",
+              "responseType": "ResponseGetAssetAddress"
+            }
+          }
+        },
+        "EventRpc": {
+          "methods": {
+            "subscribe": {
+              "requestType": "RequestSubscribe",
+              "responseType": "ResponseSubscribe",
+              "responseStream": true
+            },
+            "unsubscribe": {
+              "requestType": "RequestUnsubscribe",
+              "responseType": "ResponseUnsubscribe"
+            }
+          }
+        },
+        "FileRpc": {
+          "methods": {
+            "store_file": {
+              "requestType": "RequestStoreFile",
+              "requestStream": true,
+              "responseType": "ResponseStoreFile"
+            },
+            "load_file": {
+              "requestType": "RequestLoadFile",
+              "responseType": "ResponseLoadFile",
+              "responseStream": true
+            },
+            "pin_file": {
+              "requestType": "RequestPinFile",
+              "responseType": "ResponsePinFile"
+            }
+          }
+        },
+        "StateRpc": {
+          "methods": {
+            "get_account_state": {
+              "requestType": "RequestGetAccountState",
+              "requestStream": true,
+              "responseType": "ResponseGetAccountState",
+              "responseStream": true
+            },
+            "get_asset_state": {
+              "requestType": "RequestGetAssetState",
+              "requestStream": true,
+              "responseType": "ResponseGetAssetState",
+              "responseStream": true
+            },
+            "get_stake_state": {
+              "requestType": "RequestGetStakeState",
+              "requestStream": true,
+              "responseType": "ResponseGetStakeState",
+              "responseStream": true
+            },
+            "get_forge_state": {
+              "requestType": "RequestGetForgeState",
+              "responseType": "ResponseGetForgeState"
+            }
+          }
+        },
+        "WalletRpc": {
+          "methods": {
+            "create_wallet": {
+              "requestType": "RequestCreateWallet",
+              "responseType": "ResponseCreateWallet"
+            },
+            "load_wallet": {
+              "requestType": "RequestLoadWallet",
+              "responseType": "ResponseLoadWallet"
+            },
+            "recover_wallet": {
+              "requestType": "RequestRecoverWallet",
+              "responseType": "ResponseRecoverWallet"
+            },
+            "list_wallet": {
+              "requestType": "RequestListWallet",
+              "responseType": "ResponseListWallet",
+              "responseStream": true
+            },
+            "remove_wallet": {
+              "requestType": "RequestRemoveWallet",
+              "responseType": "ResponseRemoveWallet"
+            },
+            "declare_node": {
+              "requestType": "RequestDeclareNode",
+              "responseType": "ResponseDeclareNode"
+            }
+          }
+        },
+        "StatisticRpc": {
+          "methods": {
+            "get_forge_statistics": {
+              "requestType": "RequestGetForgeStatistics",
+              "responseType": "ResponseGetForgeStatistics"
+            },
+            "list_transactions": {
+              "requestType": "RequestListTransactions",
+              "responseType": "ResponseListTransactions"
             }
           }
         }

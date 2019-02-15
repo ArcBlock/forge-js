@@ -1,6 +1,6 @@
 # Forge GraphQL API List
 
-> Updated on 2019-01-28T11:14:07.473Z
+> Updated on 2019-02-15T05:07:24.540Z
 
 
 ## Table of Contents
@@ -9,9 +9,13 @@
   * [getAccountState](#getaccountstate)
   * [getAssetState](#getassetstate)
   * [getBlock](#getblock)
+  * [getBlocks](#getblocks)
   * [getChainInfo](#getchaininfo)
-  * [getChannelState](#getchannelstate)
+  * [getConfig](#getconfig)
   * [getForgeState](#getforgestate)
+  * [getForgeStatistics](#getforgestatistics)
+  * [getForgeStatisticsByDay](#getforgestatisticsbyday)
+  * [getForgeStatisticsByHour](#getforgestatisticsbyhour)
   * [getNetInfo](#getnetinfo)
   * [getStakeState](#getstakestate)
   * [getTx](#gettx)
@@ -20,6 +24,8 @@
   * [listWallet](#listwallet)
   * [loadFile](#loadfile)
   * [loadWallet](#loadwallet)
+  * [multisig](#multisig)
+  * [pinFile](#pinfile)
   * [search](#search)
 * [Subscriptions](#subscriptions)
   * [subscribe](#subscribe)
@@ -53,6 +59,7 @@
     code
     state {
       address
+      balance
       migratedFrom
       migratedTo
       moniker
@@ -60,54 +67,77 @@
       numAssets
       numTxs
       pk
-      balance {
-        value
-      }
       context {
         genesisTime
-        genesisTx
         renaissanceTime
-        renaissanceTx
+        genesisTx {
+          code
+          hash
+          height
+          index
+          tags {
+            key
+            value
+          }
+          tx {
+            chainId
+            from
+            nonce
+            signature
+          }
+        }
+        renaissanceTx {
+          code
+          hash
+          height
+          index
+          tags {
+            key
+            value
+          }
+          tx {
+            chainId
+            from
+            nonce
+            signature
+          }
+        }
       }
       data {
         typeUrl
         value
       }
+      pinnedFiles {
+        circular
+        fifo
+        items
+        maxItems
+        typeUrl
+      }
       stake {
+        totalReceivedStakes
+        totalStakes
+        totalUnstakes
         recentReceivedStakes {
           circular
           fifo
+          items
           maxItems
           typeUrl
-          items {
-            typeUrl
-            value
-          }
         }
         recentStakes {
           circular
           fifo
+          items
           maxItems
           typeUrl
-          items {
-            typeUrl
-            value
-          }
-        }
-        totalReceivedStakes {
-          value
-        }
-        totalStakes {
-          value
-        }
-        totalUnstakes {
-          value
         }
       }
       type {
         address
         hash
         pk
+        role
       }
     }
   }
@@ -135,43 +165,61 @@
       readonly
       context {
         genesisTime
-        genesisTx
         renaissanceTime
-        renaissanceTx
+        genesisTx {
+          code
+          hash
+          height
+          index
+          tags {
+            key
+            value
+          }
+          tx {
+            chainId
+            from
+            nonce
+            signature
+          }
+        }
+        renaissanceTx {
+          code
+          hash
+          height
+          index
+          tags {
+            key
+            value
+          }
+          tx {
+            chainId
+            from
+            nonce
+            signature
+          }
+        }
       }
       data {
         typeUrl
         value
       }
       stake {
+        totalReceivedStakes
+        totalStakes
+        totalUnstakes
         recentReceivedStakes {
           circular
           fifo
+          items
           maxItems
           typeUrl
-          items {
-            typeUrl
-            value
-          }
         }
         recentStakes {
           circular
           fifo
+          items
           maxItems
           typeUrl
-          items {
-            typeUrl
-            value
-          }
-        }
-        totalReceivedStakes {
-          value
-        }
-        totalStakes {
-          value
-        }
-        totalUnstakes {
-          value
         }
       }
     }
@@ -213,6 +261,41 @@
 }
 ```
 
+### getBlocks
+
+#### Arguments
+
+* **maxHeight**, optional, 
+* **minHeight**, optional, 
+
+#### Result Format
+
+```graphql
+{
+  getBlocks(maxHeight: 123, minHeight: 123) {
+    code
+    blocks {
+      appHash
+      height
+      numTxs
+      proposer
+      time
+      totalTxs
+      txs {
+        chainId
+        from
+        nonce
+        signature
+        signatures {
+          key
+          value
+        }
+      }
+    }
+  }
+}
+```
+
 ### getChainInfo
 
 #### Arguments
@@ -231,68 +314,38 @@ No arguments
       blockHash
       blockHeight
       blockTime
+      consensusVersion
+      dataVersion
       id
       moniker
       network
+      supportedTxs
       synced
       totalTxs
       version
       votingPower
+      forgeAppsVersion {
+        key
+        value
+      }
     }
   }
 }
 ```
 
-### getChannelState
+### getConfig
 
 #### Arguments
 
-* **address**, optional, 
-* **appHash**, optional, 
-* **keys**, optional, 
+No arguments
 
 #### Result Format
 
 ```graphql
 {
-  getChannelState(address: "abc", appHash: "abc", keys: ["abc"]) {
+  getConfig {
     code
-    state {
-      address
-      maxConfirmed
-      maxWaiting
-      totalConfirmed
-      confirmed {
-        circular
-        fifo
-        maxItems
-        typeUrl
-        items {
-          typeUrl
-          value
-        }
-      }
-      context {
-        genesisTime
-        genesisTx
-        renaissanceTime
-        renaissanceTx
-      }
-      data {
-        typeUrl
-        value
-      }
-      waiting {
-        circular
-        fifo
-        maxItems
-        typeUrl
-        items {
-          typeUrl
-          value
-        }
-      }
-    }
+    config
   }
 }
 ```
@@ -311,6 +364,10 @@ No arguments
   getForgeState(appHash: "abc", keys: ["abc"]) {
     code
     state {
+      address
+      dataVersion
+      forgeAppHash
+      version
       consensus {
         maxBytes
         maxCandidates
@@ -331,17 +388,11 @@ No arguments
       stakeSummary {
         key
         value {
+          totalStakes
+          totalUnstakes
           context {
             genesisTime
-            genesisTx
             renaissanceTime
-            renaissanceTx
-          }
-          totalStakes {
-            value
-          }
-          totalUnstakes {
-            value
           }
         }
       }
@@ -355,6 +406,103 @@ No arguments
           }
         }
       }
+    }
+  }
+}
+```
+
+### getForgeStatistics
+
+#### Arguments
+
+No arguments
+
+#### Result Format
+
+```graphql
+{
+  getForgeStatistics {
+    code
+    forgeStatistics {
+      numAccountMigrateTxs
+      numBlocks
+      numConsensusUpgradeTxs
+      numCreateAssetTxs
+      numDeclareFileTxs
+      numDeclareTxs
+      numExchangeTxs
+      numStakes
+      numStakeTxs
+      numSysUpgradeTxs
+      numTransferTxs
+      numTxs
+      numUpdateAssetTxs
+      numValidators
+    }
+  }
+}
+```
+
+### getForgeStatisticsByDay
+
+#### Arguments
+
+* **endDate**, optional, 
+* **startDate**, optional, 
+
+#### Result Format
+
+```graphql
+{
+  getForgeStatisticsByDay(endDate: "abc", startDate: "abc") {
+    code
+    forgeStatistics {
+      numAccountMigrateTxs
+      numBlocks
+      numConsensusUpgradeTxs
+      numCreateAssetTxs
+      numDeclareFileTxs
+      numDeclareTxs
+      numExchangeTxs
+      numStakes
+      numStakeTxs
+      numSysUpgradeTxs
+      numTransferTxs
+      numTxs
+      numUpdateAssetTxs
+      numValidators
+    }
+  }
+}
+```
+
+### getForgeStatisticsByHour
+
+#### Arguments
+
+* **date**, optional, 
+
+#### Result Format
+
+```graphql
+{
+  getForgeStatisticsByHour(date: "abc") {
+    code
+    forgeStatistics {
+      numAccountMigrateTxs
+      numBlocks
+      numConsensusUpgradeTxs
+      numCreateAssetTxs
+      numDeclareFileTxs
+      numDeclareTxs
+      numExchangeTxs
+      numStakes
+      numStakeTxs
+      numSysUpgradeTxs
+      numTransferTxs
+      numTxs
+      numUpdateAssetTxs
+      numValidators
     }
   }
 }
@@ -412,17 +560,45 @@ No arguments
     code
     state {
       address
+      balance
       from
       message
       to
-      balance {
-        value
-      }
       context {
         genesisTime
-        genesisTx
         renaissanceTime
-        renaissanceTx
+        genesisTx {
+          code
+          hash
+          height
+          index
+          tags {
+            key
+            value
+          }
+          tx {
+            chainId
+            from
+            nonce
+            signature
+          }
+        }
+        renaissanceTx {
+          code
+          hash
+          height
+          index
+          tags {
+            key
+            value
+          }
+          tx {
+            chainId
+            from
+            nonce
+            signature
+          }
+        }
       }
       data {
         typeUrl
@@ -446,6 +622,7 @@ No arguments
   getTx(hash: "abc") {
     code
     info {
+      code
       hash
       height
       index
@@ -513,8 +690,13 @@ No arguments
       blockHeight
       validators {
         address
+        name
         proposerPriority
         votingPower
+        pubKey {
+          data
+          type
+        }
       }
     }
   }
@@ -569,6 +751,61 @@ No arguments
   loadWallet(address: "abc", passphrase: "abc") {
     code
     token
+    wallet {
+      address
+      pk
+      sk
+      type {
+        address
+        hash
+        pk
+        role
+      }
+    }
+  }
+}
+```
+
+### multisig
+
+#### Arguments
+
+* **token**, optional, 
+* **tx**, optional, 
+* **wallet**, optional, 
+
+#### Result Format
+
+```graphql
+{
+  multisig(token: "abc", tx: "abc", wallet: "abc") {
+    code
+    tx {
+      chainId
+      from
+      nonce
+      signature
+      signatures {
+        key
+        value
+      }
+    }
+  }
+}
+```
+
+### pinFile
+
+#### Arguments
+
+* **hash**, optional, 
+
+#### Result Format
+
+```graphql
+{
+  pinFile(hash: "abc") {
+    code
   }
 }
 ```
@@ -587,6 +824,7 @@ No arguments
   search(key: "abc", value: "abc") {
     code
     txs {
+      code
       hash
       height
       index
@@ -704,16 +942,6 @@ subscription {
             power
           }
         }
-      }
-    }
-    channelState {
-      chainId
-      from
-      nonce
-      signature
-      signatures {
-        key
-        value
       }
     }
     confirm {
@@ -909,6 +1137,7 @@ mutation {
         address
         hash
         pk
+        role
       }
     }
   }
@@ -919,14 +1148,17 @@ mutation {
 
 #### Arguments
 
-* **moniker**, **required**, moniker of the wallet
-* **passphrase**, **required**, passphrase of the wallet
+* **declareTx**, **required**, 
+* **send**, optional, 
+* **sign**, optional, 
+* **token**, optional, 
+* **wallet**, **required**, 
 
 #### Result Format
 
 ```graphql
 mutation {
-  declare(moniker: "abc", passphrase: "abc")
+  declare(declareTx: "abc", send: "abc", sign: true, token: "abc", wallet: "abc")
 }
 ```
 
@@ -934,13 +1166,13 @@ mutation {
 
 #### Arguments
 
-No arguments
+* **validator**, optional, 
 
 #### Result Format
 
 ```graphql
 mutation {
-  declareNode {
+  declareNode(validator: true) {
     code
     wallet {
       address
@@ -950,6 +1182,7 @@ mutation {
         address
         hash
         pk
+        role
       }
     }
   }
@@ -980,6 +1213,7 @@ mutation {
         address
         hash
         pk
+        role
       }
     }
   }

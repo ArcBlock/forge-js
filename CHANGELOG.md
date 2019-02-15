@@ -1,3 +1,8 @@
+## 0.7.9 (February 15, 2019)
+  - chore: upgrade graphql client schme to align with forge v0.14.3
+  - chore: regenerate forge rpc api doc
+  - chore: upgrade proto to align with forge v0.14.3
+
 ## 0.7.8 (February 12, 2019)
   - chore: cleanup unused dependency
   - fix: bignumber not handling decimals correctly #107

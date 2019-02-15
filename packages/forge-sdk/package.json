@@ -54,6 +54,7 @@
   },
   "scripts": {
     "lint": "eslint lib index.js tests",
+    "upgrade": "npm run generate-docs && npm run format-docs",
     "generate-docs": "node tools/generate-docs.js",
     "format-docs": "remark . -o",
     "precommit": "CI=1 yarn test",
