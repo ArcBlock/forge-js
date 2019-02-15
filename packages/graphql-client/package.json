@@ -50,7 +50,7 @@
     "generate-docs": "node tools/generate-docs.js",
     "format-docs": "remark . -o",
     "update-schema": "node tools/update-schema.js",
-    "upgrade": "npm run update-schema && npm run generate-docs && npm run format-docs",
+    "upgrade": "npm run update-schema && npm run generate-docs && npm run format-docs && npm run build",
     "precommit": "CI=1 yarn test",
     "prepush": "CI=1 yarn test",
     "test": "yarn lint && node tools/jest.js",
