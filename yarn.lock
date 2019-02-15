@@ -11,6 +11,18 @@
     babel-polyfill "^6.26.0"
     js-cookie "^2.2.0"
 
+"@arcblock/forge-graphql-client@^0.7.9":
+  version "0.7.9"
+  resolved "https://registry.npmjs.org/@arcblock/forge-graphql-client/-/forge-graphql-client-0.7.9.tgz#8d87c472ffac3daeda967e89162f9753df3d958b"
+  integrity sha512-npUnejkqCRzoK7whf88C/tiDdFqR+k0R/+tKO8nXJh9X0ceVONNbflQahTarXB5CLAYJcyRMMnGs8fDKWcfAlg==
+  dependencies:
+    "@arcblock/sdk-util" "^0.16.3"
+    babel-polyfill "^6.26.0"
+    blueimp-md5 "^2.10.0"
+    phoenix "^1.3.4"
+    phoenix-channels "^1.0.0"
+    wolfy87-eventemitter "^5.2.5"
+
 "@arcblock/sdk-util@^0.13.0":
   version "0.13.0"
   resolved "https://registry.npmjs.org/@arcblock/sdk-util/-/sdk-util-0.13.0.tgz#57f867c1140d3e0e757eb214ceba6d40cf288c6b"
