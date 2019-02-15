@@ -5,8 +5,7 @@ const safeEval = require('safe-eval');
 const { enums } = require('@arcblock/forge-proto');
 const { fakeMessage } = require('@arcblock/forge-sdk');
 const { symbols, hr, pretty } = require('core/ui');
-const { createRpcClient, config } = require('core/env');
-const debug = require('debug')(require('../../../../package.json').name);
+const { createRpcClient, config, debug } = require('core/env');
 
 inquirer.registerPrompt('autocomplete', require('inquirer-autocomplete-prompt'));
 
@@ -69,7 +68,7 @@ function main(data) {
         shell.echo(`${symbols.success} tx create success!`);
         shell.echo(res.$format().tx);
       } catch (err) {
-        console.error(err);
+        debug.error(err);
         shell.echo(`${symbols.error} tx create failed`);
       }
 
