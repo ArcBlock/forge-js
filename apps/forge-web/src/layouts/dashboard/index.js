@@ -223,7 +223,7 @@ const Content = styled.div`
 `;
 
 const Version = styled.div`
-  position: absolute;
+  position: fixed;
   right: 24px;
   bottom: 24px;
   margin: 0;
