@@ -99,11 +99,11 @@ export default class SummarySection extends React.Component {
   renderTrend(data) {
     return (
       <ResponsiveContainer>
-        <AreaChart data={data} margin={{ top: 10, right: 0, left: 0, bottom: 10 }}>
+        <AreaChart data={data} margin={{ top: 10, right: 3, left: 3, bottom: 10 }}>
           <defs>
             <linearGradient id="gradient" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#ECE8E8" stopOpacity={0.8} />
-              <stop offset="95%" stopColor="#f8f8f8" stopOpacity={0} />
+              <stop offset="0%" stopColor="#ECE8E8" stopOpacity={1} />
+              <stop offset="95%" stopColor="#F8F8F8" stopOpacity={0} />
             </linearGradient>
           </defs>
           <Tooltip
@@ -164,10 +164,12 @@ const Metric = styled.div`
 
   .metric__image {
     margin-bottom: 10px;
+    margin-left: 3px;
   }
 
   .metric__number {
     margin-bottom: 3px;
+    margin-left: 3px;
     font-size: 40px;
     font-weight: 900;
     line-height: 54px;
@@ -175,6 +177,7 @@ const Metric = styled.div`
   }
 
   .metric__name {
+    margin-left: 3px;
     font-size: 14px;
     text-transform: uppercase;
     line-height: 1.71;
@@ -186,5 +189,6 @@ const Metric = styled.div`
     margin-top: 10px;
     height: 80px;
     width: 100%;
+    max-width: 320px;
   }
 `;
