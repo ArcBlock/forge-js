@@ -1,13 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 import dateFns from 'date-fns';
-import { AreaChart, Area, Tooltip, ResponsiveContainer } from 'recharts';
 
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 import Icon8 from '../../../components/icon8';
+import SparkLine from '../../../components/sparkline';
 import forge from '../../../libs/forge';
 
 export default class SummarySection extends React.Component {
@@ -88,56 +88,14 @@ export default class SummarySection extends React.Component {
               </div>
               <div className="metric__number">{metrics[x]}</div>
               <div className="metric__name">{x}</div>
-              <div className="metric__trend">{this.renderTrend(trends[x])}</div>
+              <div className="metric__trend">
+                <SparkLine data={trends[x]} fillGradient={true} />
+              </div>
             </Metric>
           </Grid>
         ))}
       </Grid>
     );
-  }
-
-  renderTrend(data) {
-    return (
-      <ResponsiveContainer>
-        <AreaChart data={data} margin={{ top: 10, right: 3, left: 3, bottom: 10 }}>
-          <defs>
-            <linearGradient id="gradient" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#ECE8E8" stopOpacity={1} />
-              <stop offset="95%" stopColor="#F8F8F8" stopOpacity={0} />
-            </linearGradient>
-          </defs>
-          <Tooltip
-            cursor={false}
-            content={this.renderTooltip}
-            wrapperStyle={{
-              width: 'auto',
-              minWidth: '150px',
-              padding: '3px 5px',
-              fontSize: '14px',
-              color: '#ffffff',
-              backgroundColor: '#4a4a4a',
-              borderRadius: '2px',
-            }}
-          />
-          <Area
-            type="monotone"
-            dataKey="value"
-            stroke="#868787"
-            fillOpacity={1}
-            fill="url(#gradient)"
-          />
-        </AreaChart>
-      </ResponsiveContainer>
-    );
-  }
-
-  renderTooltip(tip) {
-    if (tip.payload[0] && tip.payload[0].payload) {
-      const d = tip.payload[0].payload;
-      return `${d.time} ${d.value}`;
-    }
-
-    return null;
   }
 
   async loadSummary() {
