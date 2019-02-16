@@ -18,7 +18,7 @@ export default class TopValidatorsSection extends React.Component {
   }
 
   componentDidMount() {
-    this.loadSummary();
+    this.loadData();
   }
 
   render() {
@@ -44,11 +44,11 @@ export default class TopValidatorsSection extends React.Component {
     );
   }
 
-  async loadSummary() {
+  async loadData() {
     this.setState({ loading: true });
     const {
       getForgeStatistics: { forgeStatistics: data },
-    } = await forge.getForgeStatistics();
+    } = await forge.getValidatorsInfo();
     this.setState({ loading: false, data });
   }
 }

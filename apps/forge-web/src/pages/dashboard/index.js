@@ -16,9 +16,9 @@ import TopValidators from './components/top_validators';
 class Dashboard extends Page {
   sections = {
     Summary,
+    'Top Validators': TopValidators,
     Transfers,
     'Top Accounts': TopAccounts,
-    'Top Validators': TopValidators,
   };
 
   render() {
