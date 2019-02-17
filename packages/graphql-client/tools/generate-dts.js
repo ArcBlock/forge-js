@@ -102,7 +102,7 @@ const generateMethods = (methods, ns, resultType) =>
       const params = argType ? `params: ${argType}` : '';
       const returnType = getFieldType(x.type, ns) || 'void';
       const namespace = ns ? `${ns}.` : '';
-      return `${x.name}(${params}): ${namespace}${resultType}<${namespace}${returnType}>`;
+      return `${x.name}(${params}): ${namespace}${resultType}<${returnType}>`;
     })
     .join('\n');
 

@@ -31,85 +31,61 @@ declare class GraphQLClient {
 
   getAccountState(
     params: GetAccountStateParams
-  ): GraphQLClient.QueryResult<GraphQLClient.GraphQLClient.ResponseGetAccountState>;
+  ): GraphQLClient.QueryResult<GraphQLClient.ResponseGetAccountState>;
   getAssetState(
     params: GetAssetStateParams
-  ): GraphQLClient.QueryResult<GraphQLClient.GraphQLClient.ResponseGetAssetState>;
-  getBlock(
-    params: GetBlockParams
-  ): GraphQLClient.QueryResult<GraphQLClient.GraphQLClient.ResponseGetBlock>;
-  getBlocks(
-    params: GetBlocksParams
-  ): GraphQLClient.QueryResult<GraphQLClient.GraphQLClient.ResponseGetBlocks>;
-  getChainInfo(): GraphQLClient.QueryResult<GraphQLClient.GraphQLClient.ResponseGetChainInfo>;
-  getConfig(): GraphQLClient.QueryResult<GraphQLClient.GraphQLClient.ResponseGetConfig>;
+  ): GraphQLClient.QueryResult<GraphQLClient.ResponseGetAssetState>;
+  getBlock(params: GetBlockParams): GraphQLClient.QueryResult<GraphQLClient.ResponseGetBlock>;
+  getBlocks(params: GetBlocksParams): GraphQLClient.QueryResult<GraphQLClient.ResponseGetBlocks>;
+  getChainInfo(): GraphQLClient.QueryResult<GraphQLClient.ResponseGetChainInfo>;
+  getConfig(): GraphQLClient.QueryResult<GraphQLClient.ResponseGetConfig>;
   getForgeState(
     params: GetForgeStateParams
-  ): GraphQLClient.QueryResult<GraphQLClient.GraphQLClient.ResponseGetForgeState>;
-  getForgeStatistics(): GraphQLClient.QueryResult<
-    GraphQLClient.GraphQLClient.ResponseGetForgeStatistics
-  >;
+  ): GraphQLClient.QueryResult<GraphQLClient.ResponseGetForgeState>;
+  getForgeStatistics(): GraphQLClient.QueryResult<GraphQLClient.ResponseGetForgeStatistics>;
   getForgeStatisticsByDay(
     params: GetForgeStatisticsByDayParams
-  ): GraphQLClient.QueryResult<GraphQLClient.GraphQLClient.ResponseGetForgeStatistics>;
+  ): GraphQLClient.QueryResult<GraphQLClient.ResponseGetForgeStatistics>;
   getForgeStatisticsByHour(
     params: GetForgeStatisticsByHourParams
-  ): GraphQLClient.QueryResult<GraphQLClient.GraphQLClient.ResponseGetForgeStatistics>;
-  getNetInfo(): GraphQLClient.QueryResult<GraphQLClient.GraphQLClient.ResponseGetNetInfo>;
+  ): GraphQLClient.QueryResult<GraphQLClient.ResponseGetForgeStatistics>;
+  getNetInfo(): GraphQLClient.QueryResult<GraphQLClient.ResponseGetNetInfo>;
   getStakeState(
     params: GetStakeStateParams
-  ): GraphQLClient.QueryResult<GraphQLClient.GraphQLClient.ResponseGetStakeState>;
-  getTx(params: GetTxParams): GraphQLClient.QueryResult<GraphQLClient.GraphQLClient.ResponseGetTx>;
+  ): GraphQLClient.QueryResult<GraphQLClient.ResponseGetStakeState>;
+  getTx(params: GetTxParams): GraphQLClient.QueryResult<GraphQLClient.ResponseGetTx>;
   getUnconfirmedTxs(
     params: GetUnconfirmedTxsParams
-  ): GraphQLClient.QueryResult<GraphQLClient.GraphQLClient.ResponseGetUnconfirmedTxs>;
-  getValidatorsInfo(): GraphQLClient.QueryResult<
-    GraphQLClient.GraphQLClient.ResponseGetValidatorsInfo
-  >;
-  listWallet(): GraphQLClient.QueryResult<GraphQLClient.GraphQLClient.ResponseListWallet>;
-  loadFile(
-    params: LoadFileParams
-  ): GraphQLClient.QueryResult<GraphQLClient.GraphQLClient.ResponseLoadFile>;
-  loadWallet(
-    params: LoadWalletParams
-  ): GraphQLClient.QueryResult<GraphQLClient.GraphQLClient.ResponseLoadWallet>;
-  multisig(
-    params: MultisigParams
-  ): GraphQLClient.QueryResult<GraphQLClient.GraphQLClient.ResponseMultisig>;
-  pinFile(
-    params: PinFileParams
-  ): GraphQLClient.QueryResult<GraphQLClient.GraphQLClient.ResponsePinFile>;
-  search(
-    params: SearchParams
-  ): GraphQLClient.QueryResult<GraphQLClient.GraphQLClient.ResponseSearch>;
-  createTx(
-    params: CreateTxParams
-  ): GraphQLClient.QueryResult<GraphQLClient.GraphQLClient.ResponseCreateTx>;
+  ): GraphQLClient.QueryResult<GraphQLClient.ResponseGetUnconfirmedTxs>;
+  getValidatorsInfo(): GraphQLClient.QueryResult<GraphQLClient.ResponseGetValidatorsInfo>;
+  listWallet(): GraphQLClient.QueryResult<GraphQLClient.ResponseListWallet>;
+  loadFile(params: LoadFileParams): GraphQLClient.QueryResult<GraphQLClient.ResponseLoadFile>;
+  loadWallet(params: LoadWalletParams): GraphQLClient.QueryResult<GraphQLClient.ResponseLoadWallet>;
+  multisig(params: MultisigParams): GraphQLClient.QueryResult<GraphQLClient.ResponseMultisig>;
+  pinFile(params: PinFileParams): GraphQLClient.QueryResult<GraphQLClient.ResponsePinFile>;
+  search(params: SearchParams): GraphQLClient.QueryResult<GraphQLClient.ResponseSearch>;
+  createTx(params: CreateTxParams): GraphQLClient.QueryResult<GraphQLClient.ResponseCreateTx>;
   createWallet(
     params: CreateWalletParams
-  ): GraphQLClient.QueryResult<GraphQLClient.GraphQLClient.ResponseCreateWallet>;
-  declare(params: DeclareParams): GraphQLClient.QueryResult<GraphQLClient.string>;
+  ): GraphQLClient.QueryResult<GraphQLClient.ResponseCreateWallet>;
+  declare(params: DeclareParams): GraphQLClient.QueryResult<string>;
   declareNode(
     params: DeclareNodeParams
-  ): GraphQLClient.QueryResult<GraphQLClient.GraphQLClient.ResponseDeclareNode>;
+  ): GraphQLClient.QueryResult<GraphQLClient.ResponseDeclareNode>;
   recoverWallet(
     params: RecoverWalletParams
-  ): GraphQLClient.QueryResult<GraphQLClient.GraphQLClient.ResponseRecoverWallet>;
+  ): GraphQLClient.QueryResult<GraphQLClient.ResponseRecoverWallet>;
   removeWallet(
     params: RemoveWalletParams
-  ): GraphQLClient.QueryResult<GraphQLClient.GraphQLClient.ResponseRemoveWallet>;
-  sendTx(
-    params: SendTxParams
-  ): GraphQLClient.QueryResult<GraphQLClient.GraphQLClient.ResponseSendTx>;
-  storeFile(
-    params: StoreFileParams
-  ): GraphQLClient.QueryResult<GraphQLClient.GraphQLClient.ResponseStoreFile>;
+  ): GraphQLClient.QueryResult<GraphQLClient.ResponseRemoveWallet>;
+  sendTx(params: SendTxParams): GraphQLClient.QueryResult<GraphQLClient.ResponseSendTx>;
+  storeFile(params: StoreFileParams): GraphQLClient.QueryResult<GraphQLClient.ResponseStoreFile>;
   unsubscribe(
     params: UnsubscribeParams
-  ): GraphQLClient.QueryResult<GraphQLClient.GraphQLClient.ResponseUnsubscribe>;
+  ): GraphQLClient.QueryResult<GraphQLClient.ResponseUnsubscribe>;
   subscribe(
     params: SubscribeParams
-  ): GraphQLClient.SubscriptionResult<GraphQLClient.GraphQLClient.ResponseSubscribe>;
+  ): GraphQLClient.SubscriptionResult<GraphQLClient.ResponseSubscribe>;
 }
 
 declare namespace GraphQLClient {
