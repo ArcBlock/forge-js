@@ -225,6 +225,7 @@
             "consensus_upgrade": 21,
             "declare_file": 22,
             "sys_upgrade": 23,
+            "application": 24,
             "account_state": 129,
             "asset_state": 130,
             "forge_state": 131,
