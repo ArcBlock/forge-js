@@ -1,3 +1,7 @@
+## 0.7.11 (February 17, 2019)
+  - fix: forge-cli npm publish config
+  - update readme
+
 ## 0.7.10 (February 15, 2019)
   - forge web skeleton (#109)
 
