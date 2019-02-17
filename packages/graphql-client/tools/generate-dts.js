@@ -98,10 +98,10 @@ const generateMethodsExports = (methods, ns) =>
 const generateMethods = (methods, ns, resultType) =>
   methods
     .map(x => {
-      const argType = getArgTypeName(x);
-      const params = argType ? `params: ${argType}` : '';
-      const returnType = getFieldType(x.type, ns) || 'void';
       const namespace = ns ? `${ns}.` : '';
+      const argType = getArgTypeName(x);
+      const params = argType ? `params: ${namespace}${argType}` : '';
+      const returnType = getFieldType(x.type, ns) || 'void';
       return `${x.name}(${params}): ${namespace}${resultType}<${returnType}>`;
     })
     .join('\n');
