@@ -3,6 +3,9 @@
   "version": "0.7.10",
   "description": "a general set of CLI for arcblock Forge framework",
   "main": "src/index.js",
+  "files": [
+    "src"
+  ],
   "engines": {
     "node": ">=0.10.0",
     "forge": ">=0.11.1"
