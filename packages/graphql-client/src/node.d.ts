@@ -114,18 +114,14 @@ declare namespace GraphQLClient {
     catch(fn: (err: Error) => any): Promise<any>;
   }
 
-  export interface EventListener<T> {
-    (result: T): any;
-    (err: Error | string): any;
-  }
-
   export interface SubscriptionResult<T> {
     then(fn: (result: GraphQLClient.Subscription<T>) => any): Promise<any>;
     catch(fn: (err: Error) => any): Promise<any>;
   }
 
   export interface Subscription<T> {
-    on(event: string, callback: GraphQLClient.EventListener<T>): void;
+    on(event: 'data', fn: (data: T) => any): this;
+    on(event: 'error', fn: (err: Error) => void): this;
   }
 
   export enum EncodingType {
