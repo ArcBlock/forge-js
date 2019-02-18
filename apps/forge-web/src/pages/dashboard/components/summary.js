@@ -89,7 +89,10 @@ export default class SummarySection extends React.Component {
               <div className="metric__number">{metrics[x]}</div>
               <div className="metric__name">{x}</div>
               <div className="metric__trend">
-                <SparkLine data={trends[x]} fillGradient={true} />
+                <SparkLine
+                  data={trends[x]}
+                  series={[SparkLine.createSeries({ dataKey: 'value' })]}
+                />
               </div>
             </Metric>
           </Grid>

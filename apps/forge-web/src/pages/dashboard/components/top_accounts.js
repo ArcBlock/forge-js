@@ -46,9 +46,7 @@ export default class TopAccountsSection extends React.Component {
 
   async loadSummary() {
     this.setState({ loading: true });
-    const {
-      getForgeStatistics: { forgeStatistics: data },
-    } = await forge.getForgeStatistics();
+    const { forgeStatistics: data } = await forge.getForgeStatistics();
     this.setState({ loading: false, data });
   }
 }
