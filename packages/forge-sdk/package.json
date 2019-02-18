@@ -32,6 +32,7 @@
     "varint": "^5.0.0"
   },
   "devDependencies": {
+    "j2d": "^1.0.3-dev",
     "jest": "^23.5.0"
   },
   "homepage": "https://github.com/ArcBlock/forge-js/tree/master/packages/forge-sdk",
@@ -54,9 +55,10 @@
   },
   "scripts": {
     "lint": "eslint lib index.js tests",
-    "upgrade": "npm run generate-docs && npm run format-docs",
+    "upgrade": "npm run generate-docs && npm run format-docs && npm run generate-dts",
     "generate-docs": "node tools/generate-docs.js",
     "format-docs": "remark . -o",
+    "generate-dts": "j2d index.js && ./tools/patch-dts.sh && node tools/generate-dts.js",
     "precommit": "CI=1 yarn test",
     "prepush": "CI=1 yarn test",
     "repl": "node -r ./tools/repl.js",
