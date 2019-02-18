@@ -42,18 +42,10 @@ class Status extends Page {
 
   async loadStatus() {
     this.setState({ loading: true });
-    const {
-      getChainInfo: { info: chain },
-    } = await forge.getChainInfo();
-    const {
-      getForgeState: { state: core },
-    } = await forge.getForgeState();
-    const {
-      getNetInfo: { netInfo: net },
-    } = await forge.getNetInfo();
-    const {
-      getValidatorsInfo: { validatorsInfo: validators },
-    } = await forge.getValidatorsInfo();
+    const { info: chain } = await forge.getChainInfo();
+    const { state: core } = await forge.getForgeState();
+    const { netInfo: net } = await forge.getNetInfo();
+    const { validatorsInfo: validators } = await forge.getValidatorsInfo();
     this.setState({ loading: false, data: { chain, net, core, validators } });
   }
 }

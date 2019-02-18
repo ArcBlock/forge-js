@@ -55,14 +55,10 @@ class BlockList extends Page {
 
   async loadStatus() {
     this.setState({ loading: true });
-    const {
-      getChainInfo: { info: chainInfo },
-    } = await forge.getChainInfo();
+    const { info: chainInfo } = await forge.getChainInfo();
     console.log(chainInfo);
     const { blockHeight } = chainInfo;
-    const {
-      getBlock: { block },
-    } = await forge.getBlock({ height: blockHeight });
+    const { block } = await forge.getBlock({ height: blockHeight });
     console.log(block);
 
     this.setState({ loading: false, chainInfo, blocks: [block] });
