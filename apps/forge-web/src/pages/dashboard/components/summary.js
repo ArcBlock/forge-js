@@ -101,17 +101,10 @@ export default class SummarySection extends React.Component {
   async loadSummary() {
     this.setState({ loading: true });
     const date = dateFns.format(new Date(), 'YYYY-MM-DD');
-    const [res1, res2] = await Promise.all([
+    const [{ forgeStatistics: summary }, { forgeStatistics: trend }] = await Promise.all([
       forge.getForgeStatistics(),
       forge.getForgeStatisticsByHour({ date }),
     ]);
-
-    const {
-      getForgeStatistics: { forgeStatistics: summary },
-    } = res1;
-    const {
-      getForgeStatisticsByHour: { forgeStatistics: trend },
-    } = res2;
 
     this.setState({ loading: false, summary, trend });
   }

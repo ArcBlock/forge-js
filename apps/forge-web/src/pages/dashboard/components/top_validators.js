@@ -46,9 +46,7 @@ export default class TopValidatorsSection extends React.Component {
 
   async loadData() {
     this.setState({ loading: true });
-    const {
-      getValidatorsInfo: { validatorsInfo: data },
-    } = await forge.getValidatorsInfo();
+    const { validatorsInfo: data } = await forge.getValidatorsInfo();
     this.setState({ loading: false, data });
   }
 }
