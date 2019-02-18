@@ -1,17 +1,46 @@
 import React from 'react';
+import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import { AreaChart, Area, Tooltip, ResponsiveContainer } from 'recharts';
+import { AreaChart, Area, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 const renderTooltip = tip => {
   if (tip.payload[0] && tip.payload[0].payload) {
     const d = tip.payload[0].payload;
-    return `${d.time} ${d.value}`;
+    const series = Object.keys(d).filter(x => x !== 'time');
+    return (
+      <TipContainer>
+        <p className="time">{d.time}</p>
+        <ul className="metrics">
+          {series.map(x => (
+            <li key={x} className="metric">
+              <span className="metric-name">{x}</span> {d[x]}
+            </li>
+          ))}
+        </ul>
+      </TipContainer>
+    );
   }
 
   return null;
 };
 
-const SparkLine = ({ data, series }) => (
+const TipContainer = styled.div`
+  .time {
+    margin: 0;
+  }
+
+  .metrics {
+    padding: 0;
+    margin: 0;
+  }
+
+  .metric {
+    list-style-position: inside;
+    list-style-type: disc;
+  }
+`;
+
+const SparkLine = ({ data, series, legend }) => (
   <ResponsiveContainer>
     <AreaChart data={data} margin={{ top: 10, right: 3, left: 3, bottom: 10 }}>
       <defs>
@@ -30,13 +59,14 @@ const SparkLine = ({ data, series }) => (
         wrapperStyle={{
           width: 'auto',
           minWidth: '150px',
-          padding: '3px 5px',
+          padding: '8px 12px',
           fontSize: '14px',
           color: '#ffffff',
           backgroundColor: '#4a4a4a',
           borderRadius: '2px',
         }}
       />
+      {legend && <Legend verticalAlign="top" height={36} />}
       {series.map(({ dataKey, stroke, gradientStart, gradientStop }) => (
         <Area
           key={`area-${dataKey}`}
@@ -55,7 +85,6 @@ SparkLine.propTypes = {
   data: PropTypes.arrayOf(
     PropTypes.shape({
       time: PropTypes.string.isRequired,
-      value: PropTypes.number.isRequired,
     })
   ).isRequired,
   series: PropTypes.arrayOf(
@@ -66,9 +95,12 @@ SparkLine.propTypes = {
       gradientStop: PropTypes.string.isRequired,
     })
   ).isRequired,
+  legend: PropTypes.bool,
 };
 
-SparkLine.defaultProps = {};
+SparkLine.defaultProps = {
+  legend: false,
+};
 
 SparkLine.createSeries = ({ dataKey, stroke, gradientStart, gradientStop }) => ({
   dataKey,

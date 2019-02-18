@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import dateFns from 'date-fns';
+import moment from 'moment';
 
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
@@ -45,7 +45,7 @@ export default class SummarySection extends React.Component {
       txs: 'numTxs',
       accounts: 'numDeclareTxs',
       assets: 'numCreateAssetTxs',
-      stakes: 'numStakeTxs',
+      stakes: 'numStakes',
       validators: 'numValidators',
     };
 
@@ -62,8 +62,8 @@ export default class SummarySection extends React.Component {
         date.setMinutes(0);
         date.setSeconds(0);
         return {
-          time: dateFns.format(date, 'YYYY-MM-DD HH:mm'),
-          value: d,
+          time: moment(date).format('YYYY-MM-DD HH:mm'),
+          [x]: Number(d),
         };
       });
       return acc;
@@ -89,10 +89,7 @@ export default class SummarySection extends React.Component {
               <div className="metric__number">{metrics[x]}</div>
               <div className="metric__name">{x}</div>
               <div className="metric__trend">
-                <SparkLine
-                  data={trends[x]}
-                  series={[SparkLine.createSeries({ dataKey: 'value' })]}
-                />
+                <SparkLine data={trends[x]} series={[SparkLine.createSeries({ dataKey: x })]} />
               </div>
             </Metric>
           </Grid>
@@ -103,7 +100,7 @@ export default class SummarySection extends React.Component {
 
   async loadSummary() {
     this.setState({ loading: true });
-    const date = dateFns.format(new Date(), 'YYYY-MM-DD');
+    const date = moment().format('YYYY-MM-DD');
     const [{ forgeStatistics: summary }, { forgeStatistics: trend }] = await Promise.all([
       forge.getForgeStatistics(),
       forge.getForgeStatisticsByHour({ date }),

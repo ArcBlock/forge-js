@@ -9,16 +9,16 @@ import withI18n from '../../components/withI18n';
 import withRoot from '../../components/withRoot';
 
 import Summary from './components/summary';
-import Transfers from './components/transfers';
+import Transactions from './components/transactions';
 import TopAccounts from './components/top_accounts';
 import TopValidators from './components/top_validators';
 
 class Dashboard extends Page {
   sections = {
     Summary,
-    'Top Validators': TopValidators,
-    Transfers,
+    Transactions,
     'Top Accounts': TopAccounts,
+    'Top Validators': TopValidators,
   };
 
   render() {
