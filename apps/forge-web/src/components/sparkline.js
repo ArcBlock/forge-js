@@ -74,7 +74,7 @@ SparkLine.createSeries = ({ dataKey, stroke, gradientStart, gradientEnd }) => ({
   dataKey,
   stroke: stroke || '#868787',
   gradientStart: gradientStart || '#ECE8E8',
-  gradientStop: gradientEnd || '#F8F8F8',
+  gradientEnd: gradientEnd || '#F8F8F8',
 });
 
 export default SparkLine;
