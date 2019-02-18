@@ -2,7 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Icon8 = ({ name, size, alt, color }) => (
-  <img alt={alt || name} src={`https://img.icons8.com/dotty/${size}/${color}/${name}.png`} />
+  <img
+    alt={alt || name}
+    src={`https://img.icons8.com/dotty/${size}/${color.replace(/^#/, '')}/${name}.png`}
+  />
 );
 
 Icon8.propTypes = {
@@ -14,7 +17,7 @@ Icon8.propTypes = {
 
 Icon8.defaultProps = {
   size: 36,
-  color: '000000',
+  color: '#000000',
   alt: '',
 };
 
