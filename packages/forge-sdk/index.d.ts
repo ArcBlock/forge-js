@@ -112,6 +112,7 @@ declare class RpcClient {
  * @returns net.Server
  */
 declare function create(config: any): Readonly<ForgeSDK.T101>;
+declare function addSource(T104: any): void;
 declare function parseConfig(configPath: any): any;
 /**
  * Create an protobuf encoded Typed message with specified data, ready to send to rpc server
@@ -320,7 +321,7 @@ declare namespace ForgeSDK {
   export interface T104 {
     RpcClient: typeof RpcClient;
     TcpServer: ForgeSDK.T102;
-    addProtobuf: any;
+    addProtobuf: typeof addSource;
     parseConfig: typeof parseConfig;
     createMessage: typeof createMessage;
     formatMessage: typeof formatMessage;
@@ -1523,12 +1524,8 @@ declare namespace RpcClient {
     catch(fn: (err: Error) => any): Promise<any>;
   }
 
-  export interface EventListener<T> {
-    (data: T): any;
-    (err: Error | string): any;
-  }
-
   export interface StreamResult<T> {
-    on(event: string, callback: RpcClient.EventListener<T>): void;
+    on(event: 'data', fn: (data: T) => any): this;
+    on(event: 'error', fn: (err: Error) => void): this;
   }
 }

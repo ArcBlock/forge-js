@@ -102,13 +102,9 @@ declare namespace RpcClient {
     catch(fn: (err: Error) => any): Promise<any>;
   }
 
-  export interface EventListener<T> {
-    (data: T): any;
-    (err: Error | string): any;
-  }
-
   export interface StreamResult<T> {
-    on(event: string, callback: RpcClient.EventListener<T>): void;
+    on(event: 'data', fn: (data: T) => any): this;
+    on(event: 'error', fn: (err: Error) => void): this;
   }
 }
 `);
