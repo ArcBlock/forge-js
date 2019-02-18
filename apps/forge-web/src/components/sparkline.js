@@ -11,14 +11,18 @@ const renderTooltip = tip => {
   return null;
 };
 
-const SparkLine = ({ data, fillGradient }) => (
+const SparkLine = ({ data, series }) => (
   <ResponsiveContainer>
     <AreaChart data={data} margin={{ top: 10, right: 3, left: 3, bottom: 10 }}>
       <defs>
-        <linearGradient id="gradient" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#ECE8E8" stopOpacity={1} />
-          <stop offset="95%" stopColor="#F8F8F8" stopOpacity={0} />
-        </linearGradient>
+        {series
+          .filter(x => x.gradientStart && x.gradientEnd)
+          .map(x => (
+            <linearGradient id={`gradient-${x.dataKey}`} x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor={x.gradientStart} stopOpacity={1} />
+              <stop offset="95%" stopColor={x.gradientEnd} stopOpacity={0} />
+            </linearGradient>
+          ))}
       </defs>
       <Tooltip
         cursor={false}
@@ -33,13 +37,16 @@ const SparkLine = ({ data, fillGradient }) => (
           borderRadius: '2px',
         }}
       />
-      <Area
-        type="monotone"
-        dataKey="value"
-        stroke="#868787"
-        fillOpacity={1}
-        fill={fillGradient ? 'url(#gradient)' : null}
-      />
+      {series.map(x => (
+        <Area
+          key={`area-${x.dataKey}`}
+          type="monotone"
+          dataKey={x.dataKey}
+          stroke={x.stroke}
+          fillOpacity={1}
+          fill={x.gradientStart && x.gradientEnd ? `url(#gradient-${x.dataKey})` : null}
+        />
+      ))}
     </AreaChart>
   </ResponsiveContainer>
 );
@@ -51,11 +58,23 @@ SparkLine.propTypes = {
       value: PropTypes.number.isRequired,
     })
   ).isRequired,
-  fillGradient: PropTypes.bool,
+  series: PropTypes.arrayOf(
+    PropTypes.shape({
+      dataKey: PropTypes.string.isRequired,
+      stroke: PropTypes.string.isRequired,
+      gradientStart: PropTypes.string.isRequired,
+      gradientEnd: PropTypes.string.isRequired,
+    })
+  ).isRequired,
 };
 
-SparkLine.defaultProps = {
-  fillGradient: true,
-};
+SparkLine.defaultProps = {};
+
+SparkLine.createSeries = ({ dataKey, stroke, gradientStart, gradientEnd }) => ({
+  dataKey,
+  stroke: stroke || '#868787',
+  gradientStart: gradientStart || '#ECE8E8',
+  gradientStop: gradientEnd || '#F8F8F8',
+});
 
 export default SparkLine;
