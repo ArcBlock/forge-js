@@ -57,6 +57,7 @@ declare class RpcClient {
   getAssetAddress(
     request: forge_abi.RequestGetAssetAddress
   ): RpcClient.UnaryResult<forge_abi.ResponseGetAssetAddress>;
+  signData(request: forge_abi.RequestSignData): RpcClient.UnaryResult<forge_abi.ResponseSignData>;
   subscribe(
     request: forge_abi.RequestSubscribe
   ): RpcClient.StreamResult<forge_abi.ResponseSubscribe>;
@@ -624,7 +625,7 @@ declare namespace forge_abi {
     time: google.protobuf.Timestamp;
     appHash: string;
     proposer: string;
-    txs: Array<forge_abi.Transaction>;
+    txs: Array<forge_abi.TransactionInfo>;
     totalTxs: number;
   }
 
@@ -681,7 +682,7 @@ declare namespace forge_abi {
   export interface NodeInfo {
     id: string;
     network: string;
-    version: string;
+    consensusVersion: string;
     moniker: string;
     ip: string;
     geoInfo: forge_abi.GeoInfo;
@@ -1159,6 +1160,17 @@ declare namespace forge_abi {
   export interface ResponseGetAssetAddress {
     code: forge_abi.StatusCode;
     assetAddress: string;
+  }
+
+  export interface RequestSignData {
+    data: Uint8Array;
+    wallet: forge_abi.WalletInfo;
+    token: string;
+  }
+
+  export interface ResponseSignData {
+    code: forge_abi.StatusCode;
+    signedData: Uint8Array;
   }
 
   export interface AccountMigrateTx {
