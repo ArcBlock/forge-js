@@ -1,6 +1,6 @@
 # Forge GraphQL API List
 
-> Updated on 2019-02-19T06:50:21.173Z
+> Updated on 2019-02-19T08:57:57.779Z
 
 
 ## Table of Contents
@@ -277,6 +277,86 @@
           key
           value
         }
+        itx {
+          __typename
+          ... on UpdateAssetTx {
+            address
+            moniker
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on TransferTx {
+            assets
+            to
+            value
+          }
+          ... on SysUpgradeTx {
+            gracePeriod
+            task {
+              actions
+              dataHash
+              type
+            }
+          }
+          ... on StakeTx {
+            message
+            to
+            value
+            data {
+              type
+            }
+          }
+          ... on ExchangeTx {
+            expiredAt
+            to
+            receiver {
+              assets
+              value
+            }
+            sender {
+              assets
+              value
+            }
+          }
+          ... on DeclareFileTx {
+            hash
+          }
+          ... on DeclareTx {
+            moniker
+            pk
+            type {
+              address
+              hash
+              pk
+              role
+            }
+          }
+          ... on CreateAssetTx {
+            moniker
+            readonly
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on ConsensusUpgradeTx {
+            validators {
+              address
+              power
+            }
+          }
+          ... on AccountMigrateTx {
+            pk
+            type {
+              address
+              hash
+              pk
+              role
+            }
+          }
+        }
       }
     }
   }
@@ -311,6 +391,86 @@
         signatures {
           key
           value
+        }
+        itx {
+          __typename
+          ... on UpdateAssetTx {
+            address
+            moniker
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on TransferTx {
+            assets
+            to
+            value
+          }
+          ... on SysUpgradeTx {
+            gracePeriod
+            task {
+              actions
+              dataHash
+              type
+            }
+          }
+          ... on StakeTx {
+            message
+            to
+            value
+            data {
+              type
+            }
+          }
+          ... on ExchangeTx {
+            expiredAt
+            to
+            receiver {
+              assets
+              value
+            }
+            sender {
+              assets
+              value
+            }
+          }
+          ... on DeclareFileTx {
+            hash
+          }
+          ... on DeclareTx {
+            moniker
+            pk
+            type {
+              address
+              hash
+              pk
+              role
+            }
+          }
+          ... on CreateAssetTx {
+            moniker
+            readonly
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on ConsensusUpgradeTx {
+            validators {
+              address
+              power
+            }
+          }
+          ... on AccountMigrateTx {
+            pk
+            type {
+              address
+              hash
+              pk
+              role
+            }
+          }
         }
       }
     }
@@ -661,6 +821,86 @@ No arguments
           key
           value
         }
+        itx {
+          __typename
+          ... on UpdateAssetTx {
+            address
+            moniker
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on TransferTx {
+            assets
+            to
+            value
+          }
+          ... on SysUpgradeTx {
+            gracePeriod
+            task {
+              actions
+              dataHash
+              type
+            }
+          }
+          ... on StakeTx {
+            message
+            to
+            value
+            data {
+              type
+            }
+          }
+          ... on ExchangeTx {
+            expiredAt
+            to
+            receiver {
+              assets
+              value
+            }
+            sender {
+              assets
+              value
+            }
+          }
+          ... on DeclareFileTx {
+            hash
+          }
+          ... on DeclareTx {
+            moniker
+            pk
+            type {
+              address
+              hash
+              pk
+              role
+            }
+          }
+          ... on CreateAssetTx {
+            moniker
+            readonly
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on ConsensusUpgradeTx {
+            validators {
+              address
+              power
+            }
+          }
+          ... on AccountMigrateTx {
+            pk
+            type {
+              address
+              hash
+              pk
+              role
+            }
+          }
+        }
       }
     }
   }
@@ -689,6 +929,86 @@ No arguments
         signatures {
           key
           value
+        }
+        itx {
+          __typename
+          ... on UpdateAssetTx {
+            address
+            moniker
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on TransferTx {
+            assets
+            to
+            value
+          }
+          ... on SysUpgradeTx {
+            gracePeriod
+            task {
+              actions
+              dataHash
+              type
+            }
+          }
+          ... on StakeTx {
+            message
+            to
+            value
+            data {
+              type
+            }
+          }
+          ... on ExchangeTx {
+            expiredAt
+            to
+            receiver {
+              assets
+              value
+            }
+            sender {
+              assets
+              value
+            }
+          }
+          ... on DeclareFileTx {
+            hash
+          }
+          ... on DeclareTx {
+            moniker
+            pk
+            type {
+              address
+              hash
+              pk
+              role
+            }
+          }
+          ... on CreateAssetTx {
+            moniker
+            readonly
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on ConsensusUpgradeTx {
+            validators {
+              address
+              power
+            }
+          }
+          ... on AccountMigrateTx {
+            pk
+            type {
+              address
+              hash
+              pk
+              role
+            }
+          }
         }
       }
     }
@@ -759,6 +1079,86 @@ No arguments
         signatures {
           key
           value
+        }
+        itx {
+          __typename
+          ... on UpdateAssetTx {
+            address
+            moniker
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on TransferTx {
+            assets
+            to
+            value
+          }
+          ... on SysUpgradeTx {
+            gracePeriod
+            task {
+              actions
+              dataHash
+              type
+            }
+          }
+          ... on StakeTx {
+            message
+            to
+            value
+            data {
+              type
+            }
+          }
+          ... on ExchangeTx {
+            expiredAt
+            to
+            receiver {
+              assets
+              value
+            }
+            sender {
+              assets
+              value
+            }
+          }
+          ... on DeclareFileTx {
+            hash
+          }
+          ... on DeclareTx {
+            moniker
+            pk
+            type {
+              address
+              hash
+              pk
+              role
+            }
+          }
+          ... on CreateAssetTx {
+            moniker
+            readonly
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on ConsensusUpgradeTx {
+            validators {
+              address
+              power
+            }
+          }
+          ... on AccountMigrateTx {
+            pk
+            type {
+              address
+              hash
+              pk
+              role
+            }
+          }
         }
       }
     }
@@ -852,6 +1252,86 @@ No arguments
         key
         value
       }
+      itx {
+        __typename
+        ... on UpdateAssetTx {
+          address
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on TransferTx {
+          assets
+          to
+          value
+        }
+        ... on SysUpgradeTx {
+          gracePeriod
+          task {
+            actions
+            dataHash
+            type
+          }
+        }
+        ... on StakeTx {
+          message
+          to
+          value
+          data {
+            type
+          }
+        }
+        ... on ExchangeTx {
+          expiredAt
+          to
+          receiver {
+            assets
+            value
+          }
+          sender {
+            assets
+            value
+          }
+        }
+        ... on DeclareFileTx {
+          hash
+        }
+        ... on DeclareTx {
+          moniker
+          pk
+          type {
+            address
+            hash
+            pk
+            role
+          }
+        }
+        ... on CreateAssetTx {
+          moniker
+          readonly
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsensusUpgradeTx {
+          validators {
+            address
+            power
+          }
+        }
+        ... on AccountMigrateTx {
+          pk
+          type {
+            address
+            hash
+            pk
+            role
+          }
+        }
+      }
     }
   }
 }
@@ -904,6 +1384,86 @@ No arguments
           key
           value
         }
+        itx {
+          __typename
+          ... on UpdateAssetTx {
+            address
+            moniker
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on TransferTx {
+            assets
+            to
+            value
+          }
+          ... on SysUpgradeTx {
+            gracePeriod
+            task {
+              actions
+              dataHash
+              type
+            }
+          }
+          ... on StakeTx {
+            message
+            to
+            value
+            data {
+              type
+            }
+          }
+          ... on ExchangeTx {
+            expiredAt
+            to
+            receiver {
+              assets
+              value
+            }
+            sender {
+              assets
+              value
+            }
+          }
+          ... on DeclareFileTx {
+            hash
+          }
+          ... on DeclareTx {
+            moniker
+            pk
+            type {
+              address
+              hash
+              pk
+              role
+            }
+          }
+          ... on CreateAssetTx {
+            moniker
+            readonly
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on ConsensusUpgradeTx {
+            validators {
+              address
+              power
+            }
+          }
+          ... on AccountMigrateTx {
+            pk
+            type {
+              address
+              hash
+              pk
+              role
+            }
+          }
+        }
       }
     }
   }
@@ -955,6 +1515,86 @@ subscription {
         key
         value
       }
+      itx {
+        __typename
+        ... on UpdateAssetTx {
+          address
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on TransferTx {
+          assets
+          to
+          value
+        }
+        ... on SysUpgradeTx {
+          gracePeriod
+          task {
+            actions
+            dataHash
+            type
+          }
+        }
+        ... on StakeTx {
+          message
+          to
+          value
+          data {
+            type
+          }
+        }
+        ... on ExchangeTx {
+          expiredAt
+          to
+          receiver {
+            assets
+            value
+          }
+          sender {
+            assets
+            value
+          }
+        }
+        ... on DeclareFileTx {
+          hash
+        }
+        ... on DeclareTx {
+          moniker
+          pk
+          type {
+            address
+            hash
+            pk
+            role
+          }
+        }
+        ... on CreateAssetTx {
+          moniker
+          readonly
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsensusUpgradeTx {
+          validators {
+            address
+            power
+          }
+        }
+        ... on AccountMigrateTx {
+          pk
+          type {
+            address
+            hash
+            pk
+            role
+          }
+        }
+      }
     }
     accountState {
       chainId
@@ -965,6 +1605,86 @@ subscription {
         key
         value
       }
+      itx {
+        __typename
+        ... on UpdateAssetTx {
+          address
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on TransferTx {
+          assets
+          to
+          value
+        }
+        ... on SysUpgradeTx {
+          gracePeriod
+          task {
+            actions
+            dataHash
+            type
+          }
+        }
+        ... on StakeTx {
+          message
+          to
+          value
+          data {
+            type
+          }
+        }
+        ... on ExchangeTx {
+          expiredAt
+          to
+          receiver {
+            assets
+            value
+          }
+          sender {
+            assets
+            value
+          }
+        }
+        ... on DeclareFileTx {
+          hash
+        }
+        ... on DeclareTx {
+          moniker
+          pk
+          type {
+            address
+            hash
+            pk
+            role
+          }
+        }
+        ... on CreateAssetTx {
+          moniker
+          readonly
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsensusUpgradeTx {
+          validators {
+            address
+            power
+          }
+        }
+        ... on AccountMigrateTx {
+          pk
+          type {
+            address
+            hash
+            pk
+            role
+          }
+        }
+      }
     }
     assetState {
       chainId
@@ -974,6 +1694,86 @@ subscription {
       signatures {
         key
         value
+      }
+      itx {
+        __typename
+        ... on UpdateAssetTx {
+          address
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on TransferTx {
+          assets
+          to
+          value
+        }
+        ... on SysUpgradeTx {
+          gracePeriod
+          task {
+            actions
+            dataHash
+            type
+          }
+        }
+        ... on StakeTx {
+          message
+          to
+          value
+          data {
+            type
+          }
+        }
+        ... on ExchangeTx {
+          expiredAt
+          to
+          receiver {
+            assets
+            value
+          }
+          sender {
+            assets
+            value
+          }
+        }
+        ... on DeclareFileTx {
+          hash
+        }
+        ... on DeclareTx {
+          moniker
+          pk
+          type {
+            address
+            hash
+            pk
+            role
+          }
+        }
+        ... on CreateAssetTx {
+          moniker
+          readonly
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsensusUpgradeTx {
+          validators {
+            address
+            power
+          }
+        }
+        ... on AccountMigrateTx {
+          pk
+          type {
+            address
+            hash
+            pk
+            role
+          }
+        }
       }
     }
     beginBlock {
@@ -1035,6 +1835,86 @@ subscription {
         key
         value
       }
+      itx {
+        __typename
+        ... on UpdateAssetTx {
+          address
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on TransferTx {
+          assets
+          to
+          value
+        }
+        ... on SysUpgradeTx {
+          gracePeriod
+          task {
+            actions
+            dataHash
+            type
+          }
+        }
+        ... on StakeTx {
+          message
+          to
+          value
+          data {
+            type
+          }
+        }
+        ... on ExchangeTx {
+          expiredAt
+          to
+          receiver {
+            assets
+            value
+          }
+          sender {
+            assets
+            value
+          }
+        }
+        ... on DeclareFileTx {
+          hash
+        }
+        ... on DeclareTx {
+          moniker
+          pk
+          type {
+            address
+            hash
+            pk
+            role
+          }
+        }
+        ... on CreateAssetTx {
+          moniker
+          readonly
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsensusUpgradeTx {
+          validators {
+            address
+            power
+          }
+        }
+        ... on AccountMigrateTx {
+          pk
+          type {
+            address
+            hash
+            pk
+            role
+          }
+        }
+      }
     }
     consensusUpgrade {
       chainId
@@ -1044,6 +1924,86 @@ subscription {
       signatures {
         key
         value
+      }
+      itx {
+        __typename
+        ... on UpdateAssetTx {
+          address
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on TransferTx {
+          assets
+          to
+          value
+        }
+        ... on SysUpgradeTx {
+          gracePeriod
+          task {
+            actions
+            dataHash
+            type
+          }
+        }
+        ... on StakeTx {
+          message
+          to
+          value
+          data {
+            type
+          }
+        }
+        ... on ExchangeTx {
+          expiredAt
+          to
+          receiver {
+            assets
+            value
+          }
+          sender {
+            assets
+            value
+          }
+        }
+        ... on DeclareFileTx {
+          hash
+        }
+        ... on DeclareTx {
+          moniker
+          pk
+          type {
+            address
+            hash
+            pk
+            role
+          }
+        }
+        ... on CreateAssetTx {
+          moniker
+          readonly
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsensusUpgradeTx {
+          validators {
+            address
+            power
+          }
+        }
+        ... on AccountMigrateTx {
+          pk
+          type {
+            address
+            hash
+            pk
+            role
+          }
+        }
       }
     }
     createAsset {
@@ -1055,6 +2015,86 @@ subscription {
         key
         value
       }
+      itx {
+        __typename
+        ... on UpdateAssetTx {
+          address
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on TransferTx {
+          assets
+          to
+          value
+        }
+        ... on SysUpgradeTx {
+          gracePeriod
+          task {
+            actions
+            dataHash
+            type
+          }
+        }
+        ... on StakeTx {
+          message
+          to
+          value
+          data {
+            type
+          }
+        }
+        ... on ExchangeTx {
+          expiredAt
+          to
+          receiver {
+            assets
+            value
+          }
+          sender {
+            assets
+            value
+          }
+        }
+        ... on DeclareFileTx {
+          hash
+        }
+        ... on DeclareTx {
+          moniker
+          pk
+          type {
+            address
+            hash
+            pk
+            role
+          }
+        }
+        ... on CreateAssetTx {
+          moniker
+          readonly
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsensusUpgradeTx {
+          validators {
+            address
+            power
+          }
+        }
+        ... on AccountMigrateTx {
+          pk
+          type {
+            address
+            hash
+            pk
+            role
+          }
+        }
+      }
     }
     declare {
       chainId
@@ -1065,6 +2105,86 @@ subscription {
         key
         value
       }
+      itx {
+        __typename
+        ... on UpdateAssetTx {
+          address
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on TransferTx {
+          assets
+          to
+          value
+        }
+        ... on SysUpgradeTx {
+          gracePeriod
+          task {
+            actions
+            dataHash
+            type
+          }
+        }
+        ... on StakeTx {
+          message
+          to
+          value
+          data {
+            type
+          }
+        }
+        ... on ExchangeTx {
+          expiredAt
+          to
+          receiver {
+            assets
+            value
+          }
+          sender {
+            assets
+            value
+          }
+        }
+        ... on DeclareFileTx {
+          hash
+        }
+        ... on DeclareTx {
+          moniker
+          pk
+          type {
+            address
+            hash
+            pk
+            role
+          }
+        }
+        ... on CreateAssetTx {
+          moniker
+          readonly
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsensusUpgradeTx {
+          validators {
+            address
+            power
+          }
+        }
+        ... on AccountMigrateTx {
+          pk
+          type {
+            address
+            hash
+            pk
+            role
+          }
+        }
+      }
     }
     declareFile {
       chainId
@@ -1074,6 +2194,86 @@ subscription {
       signatures {
         key
         value
+      }
+      itx {
+        __typename
+        ... on UpdateAssetTx {
+          address
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on TransferTx {
+          assets
+          to
+          value
+        }
+        ... on SysUpgradeTx {
+          gracePeriod
+          task {
+            actions
+            dataHash
+            type
+          }
+        }
+        ... on StakeTx {
+          message
+          to
+          value
+          data {
+            type
+          }
+        }
+        ... on ExchangeTx {
+          expiredAt
+          to
+          receiver {
+            assets
+            value
+          }
+          sender {
+            assets
+            value
+          }
+        }
+        ... on DeclareFileTx {
+          hash
+        }
+        ... on DeclareTx {
+          moniker
+          pk
+          type {
+            address
+            hash
+            pk
+            role
+          }
+        }
+        ... on CreateAssetTx {
+          moniker
+          readonly
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsensusUpgradeTx {
+          validators {
+            address
+            power
+          }
+        }
+        ... on AccountMigrateTx {
+          pk
+          type {
+            address
+            hash
+            pk
+            role
+          }
+        }
       }
     }
     endBlock {
@@ -1088,6 +2288,86 @@ subscription {
         key
         value
       }
+      itx {
+        __typename
+        ... on UpdateAssetTx {
+          address
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on TransferTx {
+          assets
+          to
+          value
+        }
+        ... on SysUpgradeTx {
+          gracePeriod
+          task {
+            actions
+            dataHash
+            type
+          }
+        }
+        ... on StakeTx {
+          message
+          to
+          value
+          data {
+            type
+          }
+        }
+        ... on ExchangeTx {
+          expiredAt
+          to
+          receiver {
+            assets
+            value
+          }
+          sender {
+            assets
+            value
+          }
+        }
+        ... on DeclareFileTx {
+          hash
+        }
+        ... on DeclareTx {
+          moniker
+          pk
+          type {
+            address
+            hash
+            pk
+            role
+          }
+        }
+        ... on CreateAssetTx {
+          moniker
+          readonly
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsensusUpgradeTx {
+          validators {
+            address
+            power
+          }
+        }
+        ... on AccountMigrateTx {
+          pk
+          type {
+            address
+            hash
+            pk
+            role
+          }
+        }
+      }
     }
     forgeState {
       chainId
@@ -1097,6 +2377,86 @@ subscription {
       signatures {
         key
         value
+      }
+      itx {
+        __typename
+        ... on UpdateAssetTx {
+          address
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on TransferTx {
+          assets
+          to
+          value
+        }
+        ... on SysUpgradeTx {
+          gracePeriod
+          task {
+            actions
+            dataHash
+            type
+          }
+        }
+        ... on StakeTx {
+          message
+          to
+          value
+          data {
+            type
+          }
+        }
+        ... on ExchangeTx {
+          expiredAt
+          to
+          receiver {
+            assets
+            value
+          }
+          sender {
+            assets
+            value
+          }
+        }
+        ... on DeclareFileTx {
+          hash
+        }
+        ... on DeclareTx {
+          moniker
+          pk
+          type {
+            address
+            hash
+            pk
+            role
+          }
+        }
+        ... on CreateAssetTx {
+          moniker
+          readonly
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsensusUpgradeTx {
+          validators {
+            address
+            power
+          }
+        }
+        ... on AccountMigrateTx {
+          pk
+          type {
+            address
+            hash
+            pk
+            role
+          }
+        }
       }
     }
     revoke {
@@ -1108,6 +2468,86 @@ subscription {
         key
         value
       }
+      itx {
+        __typename
+        ... on UpdateAssetTx {
+          address
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on TransferTx {
+          assets
+          to
+          value
+        }
+        ... on SysUpgradeTx {
+          gracePeriod
+          task {
+            actions
+            dataHash
+            type
+          }
+        }
+        ... on StakeTx {
+          message
+          to
+          value
+          data {
+            type
+          }
+        }
+        ... on ExchangeTx {
+          expiredAt
+          to
+          receiver {
+            assets
+            value
+          }
+          sender {
+            assets
+            value
+          }
+        }
+        ... on DeclareFileTx {
+          hash
+        }
+        ... on DeclareTx {
+          moniker
+          pk
+          type {
+            address
+            hash
+            pk
+            role
+          }
+        }
+        ... on CreateAssetTx {
+          moniker
+          readonly
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsensusUpgradeTx {
+          validators {
+            address
+            power
+          }
+        }
+        ... on AccountMigrateTx {
+          pk
+          type {
+            address
+            hash
+            pk
+            role
+          }
+        }
+      }
     }
     stake {
       chainId
@@ -1117,6 +2557,86 @@ subscription {
       signatures {
         key
         value
+      }
+      itx {
+        __typename
+        ... on UpdateAssetTx {
+          address
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on TransferTx {
+          assets
+          to
+          value
+        }
+        ... on SysUpgradeTx {
+          gracePeriod
+          task {
+            actions
+            dataHash
+            type
+          }
+        }
+        ... on StakeTx {
+          message
+          to
+          value
+          data {
+            type
+          }
+        }
+        ... on ExchangeTx {
+          expiredAt
+          to
+          receiver {
+            assets
+            value
+          }
+          sender {
+            assets
+            value
+          }
+        }
+        ... on DeclareFileTx {
+          hash
+        }
+        ... on DeclareTx {
+          moniker
+          pk
+          type {
+            address
+            hash
+            pk
+            role
+          }
+        }
+        ... on CreateAssetTx {
+          moniker
+          readonly
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsensusUpgradeTx {
+          validators {
+            address
+            power
+          }
+        }
+        ... on AccountMigrateTx {
+          pk
+          type {
+            address
+            hash
+            pk
+            role
+          }
+        }
       }
     }
     stakeState {
@@ -1128,6 +2648,86 @@ subscription {
         key
         value
       }
+      itx {
+        __typename
+        ... on UpdateAssetTx {
+          address
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on TransferTx {
+          assets
+          to
+          value
+        }
+        ... on SysUpgradeTx {
+          gracePeriod
+          task {
+            actions
+            dataHash
+            type
+          }
+        }
+        ... on StakeTx {
+          message
+          to
+          value
+          data {
+            type
+          }
+        }
+        ... on ExchangeTx {
+          expiredAt
+          to
+          receiver {
+            assets
+            value
+          }
+          sender {
+            assets
+            value
+          }
+        }
+        ... on DeclareFileTx {
+          hash
+        }
+        ... on DeclareTx {
+          moniker
+          pk
+          type {
+            address
+            hash
+            pk
+            role
+          }
+        }
+        ... on CreateAssetTx {
+          moniker
+          readonly
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsensusUpgradeTx {
+          validators {
+            address
+            power
+          }
+        }
+        ... on AccountMigrateTx {
+          pk
+          type {
+            address
+            hash
+            pk
+            role
+          }
+        }
+      }
     }
     sysUpgrade {
       chainId
@@ -1137,6 +2737,86 @@ subscription {
       signatures {
         key
         value
+      }
+      itx {
+        __typename
+        ... on UpdateAssetTx {
+          address
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on TransferTx {
+          assets
+          to
+          value
+        }
+        ... on SysUpgradeTx {
+          gracePeriod
+          task {
+            actions
+            dataHash
+            type
+          }
+        }
+        ... on StakeTx {
+          message
+          to
+          value
+          data {
+            type
+          }
+        }
+        ... on ExchangeTx {
+          expiredAt
+          to
+          receiver {
+            assets
+            value
+          }
+          sender {
+            assets
+            value
+          }
+        }
+        ... on DeclareFileTx {
+          hash
+        }
+        ... on DeclareTx {
+          moniker
+          pk
+          type {
+            address
+            hash
+            pk
+            role
+          }
+        }
+        ... on CreateAssetTx {
+          moniker
+          readonly
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsensusUpgradeTx {
+          validators {
+            address
+            power
+          }
+        }
+        ... on AccountMigrateTx {
+          pk
+          type {
+            address
+            hash
+            pk
+            role
+          }
+        }
       }
     }
     transfer {
@@ -1148,6 +2828,86 @@ subscription {
         key
         value
       }
+      itx {
+        __typename
+        ... on UpdateAssetTx {
+          address
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on TransferTx {
+          assets
+          to
+          value
+        }
+        ... on SysUpgradeTx {
+          gracePeriod
+          task {
+            actions
+            dataHash
+            type
+          }
+        }
+        ... on StakeTx {
+          message
+          to
+          value
+          data {
+            type
+          }
+        }
+        ... on ExchangeTx {
+          expiredAt
+          to
+          receiver {
+            assets
+            value
+          }
+          sender {
+            assets
+            value
+          }
+        }
+        ... on DeclareFileTx {
+          hash
+        }
+        ... on DeclareTx {
+          moniker
+          pk
+          type {
+            address
+            hash
+            pk
+            role
+          }
+        }
+        ... on CreateAssetTx {
+          moniker
+          readonly
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsensusUpgradeTx {
+          validators {
+            address
+            power
+          }
+        }
+        ... on AccountMigrateTx {
+          pk
+          type {
+            address
+            hash
+            pk
+            role
+          }
+        }
+      }
     }
     updateAsset {
       chainId
@@ -1157,6 +2917,86 @@ subscription {
       signatures {
         key
         value
+      }
+      itx {
+        __typename
+        ... on UpdateAssetTx {
+          address
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on TransferTx {
+          assets
+          to
+          value
+        }
+        ... on SysUpgradeTx {
+          gracePeriod
+          task {
+            actions
+            dataHash
+            type
+          }
+        }
+        ... on StakeTx {
+          message
+          to
+          value
+          data {
+            type
+          }
+        }
+        ... on ExchangeTx {
+          expiredAt
+          to
+          receiver {
+            assets
+            value
+          }
+          sender {
+            assets
+            value
+          }
+        }
+        ... on DeclareFileTx {
+          hash
+        }
+        ... on DeclareTx {
+          moniker
+          pk
+          type {
+            address
+            hash
+            pk
+            role
+          }
+        }
+        ... on CreateAssetTx {
+          moniker
+          readonly
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsensusUpgradeTx {
+          validators {
+            address
+            power
+          }
+        }
+        ... on AccountMigrateTx {
+          pk
+          type {
+            address
+            hash
+            pk
+            role
+          }
+        }
       }
     }
   }
@@ -1190,6 +3030,86 @@ mutation {
       signatures {
         key
         value
+      }
+      itx {
+        __typename
+        ... on UpdateAssetTx {
+          address
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on TransferTx {
+          assets
+          to
+          value
+        }
+        ... on SysUpgradeTx {
+          gracePeriod
+          task {
+            actions
+            dataHash
+            type
+          }
+        }
+        ... on StakeTx {
+          message
+          to
+          value
+          data {
+            type
+          }
+        }
+        ... on ExchangeTx {
+          expiredAt
+          to
+          receiver {
+            assets
+            value
+          }
+          sender {
+            assets
+            value
+          }
+        }
+        ... on DeclareFileTx {
+          hash
+        }
+        ... on DeclareTx {
+          moniker
+          pk
+          type {
+            address
+            hash
+            pk
+            role
+          }
+        }
+        ... on CreateAssetTx {
+          moniker
+          readonly
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsensusUpgradeTx {
+          validators {
+            address
+            power
+          }
+        }
+        ... on AccountMigrateTx {
+          pk
+          type {
+            address
+            hash
+            pk
+            role
+          }
+        }
       }
     }
   }
