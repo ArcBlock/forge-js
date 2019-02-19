@@ -12,6 +12,8 @@ import Popper from '@material-ui/core/Popper';
 import Typography from '@material-ui/core/Typography';
 
 import CheckIcon from '@material-ui/icons/CheckCircle';
+import RightIcon from '@material-ui/icons/KeyboardArrowRight';
+import DownIcon from '@material-ui/icons/KeyboardArrowDown';
 
 import SparkLine from '../../../components/sparkline';
 import forge from '../../../libs/forge';
@@ -97,20 +99,6 @@ export default class TransactionsSection extends React.Component {
   }
 
   renderSummary(trend) {
-    const { startDate } = this.state;
-    const data = trend.numTransferTxs.map((v, i) => {
-      const date = moment(startDate).add(i, 'days');
-      const row = { time: date.format('YYYY-MM-DD') };
-
-      // FIXME: Generate some random data here
-      Object.keys(this.mapping).forEach(x => {
-        const { dataKey } = this.mapping[x];
-        const value = Number(trend[dataKey][i]);
-        row[x] = value || Math.round(Math.random() * 80);
-      });
-      return row;
-    });
-
     // prettier-ignore
     const series = Object.keys(this.mapping).map(x =>
       SparkLine.createSeries({
@@ -120,11 +108,9 @@ export default class TransactionsSection extends React.Component {
         gradientStop: this.mapping[x].gradientStop,
       }));
 
-    console.log({ series, data });
-
     return (
       <ChartContainer>
-        <SparkLine data={data} series={series} legend={true} />
+        <SparkLine data={trend} series={series} legend={true} />
         {this.renderDateChooser()}
       </ChartContainer>
     );
@@ -139,10 +125,10 @@ export default class TransactionsSection extends React.Component {
           buttonRef={node => {
             this.anchorEl = node;
           }}
-          aria-owns={open ? 'menu-list-grow' : undefined}
-          aria-haspopup="true"
+          className="toggler"
           onClick={this.onToggle}>
           {dateRange.text}
+          {open ? <DownIcon className="icon" /> : <RightIcon className="icon" />}
         </Button>
         <Popper open={open} anchorEl={this.anchorEl} transition disablePortal>
           {({ TransitionProps, placement }) => (
@@ -155,9 +141,7 @@ export default class TransactionsSection extends React.Component {
                   {Object.keys(this.dateRanges).map(x => (
                     <MenuItem key={x} onClick={e => this.onChooseRange(e, x)}>
                       {this.dateRanges[x].text}
-                      {x === rangeKey && (
-                        <CheckIcon style={{ marginLeft: '5px' }} color="primary" />
-                      )}
+                      {x === rangeKey && <CheckIcon className="icon" color="primary" />}
                     </MenuItem>
                   ))}
                 </MenuList>
@@ -209,9 +193,31 @@ export default class TransactionsSection extends React.Component {
     };
     const params = queryType === 'getForgeStatisticsByDay' ? rangeParams : { date: endDate };
 
-    console.log({ queryType, params });
-    const { forgeStatistics: data } = await forge[queryType](params);
-    // TODO: processing data for hours
+    const { forgeStatistics: rawData } = await forge[queryType](params);
+    const keys = Object.keys(rawData);
+    const data = rawData[keys[0]].map((v, i) => {
+      let time = null;
+      if (queryType === 'getForgeStatisticsByDay') {
+        time = moment(rangeParams.startDate)
+          .add(i, 'days')
+          .format('YYYY-MM-DD');
+      } else {
+        time = moment(endDate)
+          .hours(i)
+          .startOf('hour')
+          .format('YYYY-MM-DD HH:MM');
+      }
+      const row = { time };
+
+      Object.keys(this.mapping).forEach(x => {
+        const { dataKey } = this.mapping[x];
+        const value = Number(rawData[dataKey][i]);
+        // FIXME: some random data are populated here
+        row[x] = value || Math.round(Math.random() * 80);
+      });
+      return row;
+    });
+
     this.setState({ loading: false, data });
   }
 }
@@ -228,5 +234,15 @@ const ChartContainer = styled.div`
     position: absolute;
     top: -60px;
     right: 0;
+
+    .toggler {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .icon {
+      margin-left: 5px;
+    }
   }
 `;
