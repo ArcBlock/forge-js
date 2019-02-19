@@ -5,7 +5,7 @@ import { withRouter } from 'react-router-dom';
 
 import CircularProgress from '@material-ui/core/CircularProgress';
 
-import TxCard from './components/tx_card';
+import TxCard from './components/tx_card/index';
 import Pagination from './components/pagination';
 import SearchBox from './components/search_box';
 import SummaryHeader from './components/summary_header';
@@ -34,7 +34,7 @@ class TransactionList extends Page {
       txs: null,
       chainInfo: null,
       currentPage: Number(params.page) || 1,
-      pageSize: 10,
+      pageSize: 200,
       pageParam: { next: false, cursor: null },
     };
 
@@ -106,9 +106,9 @@ class TransactionList extends Page {
     this.setState({ txs: [] });
     const { pageSize, pageParam } = this.state;
 
-    const params = { size: pageSize };
+    const params = { paging: { size: pageSize } };
     if (pageParam && pageParam.next && pageParam.cursor) {
-      params.cursor = pageParam.cursor;
+      params.paging.cursor = pageParam.cursor;
     }
     const { transactions: txs, page } = await forge.listTransactions(params);
 

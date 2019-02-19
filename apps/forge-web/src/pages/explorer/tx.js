@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
 
 import Typography from '@material-ui/core/Typography';
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -14,7 +15,9 @@ import forge from '../../libs/forge';
 
 class TransactionDetail extends Page {
   static propTypes = {
-    hash: PropTypes.string.isRequired,
+    match: PropTypes.object.isRequired,
+    location: PropTypes.object.isRequired,
+    history: PropTypes.object.isRequired,
   };
 
   constructor(props) {
@@ -31,10 +34,11 @@ class TransactionDetail extends Page {
 
   render() {
     const { loading, tx } = this.state;
+    const { hash } = this.props.match.params;
     return (
       <Layout title="Transaction" cookies={this.cookies}>
         <Container>
-          <Typography component="h3">Transaction detail for {this.props.hash}...</Typography>
+          <Typography component="h3">Transaction detail for {hash}...</Typography>
           {loading && <CircularProgress />}
           {tx && (
             <pre>
@@ -48,7 +52,8 @@ class TransactionDetail extends Page {
 
   async loadStatus() {
     this.setState({ loading: true });
-    const { tx } = await forge.getTx({ hash: this.props.hash });
+    const { hash } = this.props.match.params;
+    const { info: tx } = await forge.getTx({ hash });
     this.setState({ loading: false, tx });
   }
 }
@@ -57,4 +62,4 @@ const Container = styled.div`
   padding: ${props => props.theme.spacing.unit * 3}px;
 `;
 
-export default withRoot(withI18n(TransactionDetail));
+export default withRoot(withI18n(withRouter(TransactionDetail)));

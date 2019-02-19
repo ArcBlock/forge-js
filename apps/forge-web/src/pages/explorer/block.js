@@ -9,7 +9,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import Page from '../../components/page';
 import Layout from '../../layouts/page';
 import SummaryHeader from './components/summary_header';
-import TxCard from './components/tx_card';
+import TxCard from './components/tx_card/index';
 import Pagination from './components/pagination';
 
 import withI18n from '../../components/withI18n';
