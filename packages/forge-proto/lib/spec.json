@@ -630,7 +630,7 @@
             },
             "txs": {
               "rule": "repeated",
-              "type": "Transaction",
+              "type": "TransactionInfo",
               "id": 6
             },
             "totalTxs": {
@@ -789,7 +789,7 @@
               "type": "string",
               "id": 2
             },
-            "version": {
+            "consensusVersion": {
               "type": "string",
               "id": 3
             },
@@ -2137,6 +2137,34 @@
             }
           }
         },
+        "RequestSignData": {
+          "fields": {
+            "data": {
+              "type": "bytes",
+              "id": 1
+            },
+            "wallet": {
+              "type": "WalletInfo",
+              "id": 2
+            },
+            "token": {
+              "type": "string",
+              "id": 3
+            }
+          }
+        },
+        "ResponseSignData": {
+          "fields": {
+            "code": {
+              "type": "StatusCode",
+              "id": 1
+            },
+            "signedData": {
+              "type": "bytes",
+              "id": 2
+            }
+          }
+        },
         "AccountMigrateTx": {
           "fields": {
             "pk": {
@@ -2365,6 +2393,10 @@
             "get_asset_address": {
               "requestType": "RequestGetAssetAddress",
               "responseType": "ResponseGetAssetAddress"
+            },
+            "sign_data": {
+              "requestType": "RequestSignData",
+              "responseType": "ResponseSignData"
             }
           }
         },

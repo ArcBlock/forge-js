@@ -301,6 +301,17 @@ function deserialize_forge_abi_RequestSendTx(buffer_arg) {
   return rpc_pb.RequestSendTx.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_forge_abi_RequestSignData(arg) {
+  if (!(arg instanceof rpc_pb.RequestSignData)) {
+    throw new Error('Expected argument of type forge_abi.RequestSignData');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_forge_abi_RequestSignData(buffer_arg) {
+  return rpc_pb.RequestSignData.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_forge_abi_RequestStoreFile(arg) {
   if (!(arg instanceof rpc_pb.RequestStoreFile)) {
     throw new Error('Expected argument of type forge_abi.RequestStoreFile');
@@ -631,6 +642,17 @@ function deserialize_forge_abi_ResponseSendTx(buffer_arg) {
   return rpc_pb.ResponseSendTx.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_forge_abi_ResponseSignData(arg) {
+  if (!(arg instanceof rpc_pb.ResponseSignData)) {
+    throw new Error('Expected argument of type forge_abi.ResponseSignData');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_forge_abi_ResponseSignData(buffer_arg) {
+  return rpc_pb.ResponseSignData.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_forge_abi_ResponseStoreFile(arg) {
   if (!(arg instanceof rpc_pb.ResponseStoreFile)) {
     throw new Error('Expected argument of type forge_abi.ResponseStoreFile');
@@ -816,6 +838,17 @@ var ChainRpcService = (exports.ChainRpcService = {
     requestDeserialize: deserialize_forge_abi_RequestGetAssetAddress,
     responseSerialize: serialize_forge_abi_ResponseGetAssetAddress,
     responseDeserialize: deserialize_forge_abi_ResponseGetAssetAddress,
+  },
+  sign_data: {
+    path: '/forge_abi.ChainRpc/sign_data',
+    requestStream: false,
+    responseStream: false,
+    requestType: rpc_pb.RequestSignData,
+    responseType: rpc_pb.ResponseSignData,
+    requestSerialize: serialize_forge_abi_RequestSignData,
+    requestDeserialize: deserialize_forge_abi_RequestSignData,
+    responseSerialize: serialize_forge_abi_ResponseSignData,
+    responseDeserialize: deserialize_forge_abi_ResponseSignData,
   },
 });
 

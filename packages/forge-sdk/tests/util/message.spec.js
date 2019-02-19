@@ -260,11 +260,13 @@ describe('#fakeMessage', () => {
     expect(message.height).toBeGreaterThan(0);
     expect(Date.parse(message.time) > 0).toBeTruthy();
     expect(Array.isArray(message.txs)).toBeTruthy();
-    const tx = message.txs[0];
-    expect(tx.from).toBeTruthy();
-    expect(tx.nonce).toBeTruthy();
-    expect(tx.itx.type).toBeTruthy();
-    expect(tx.itx.value).toBeTruthy();
+    const txi = message.txs[0];
+    expect(txi.height).toBeTruthy();
+    expect(txi.hash).toBeTruthy();
+    expect(txi.tx.from).toBeTruthy();
+    expect(txi.tx.nonce).toBeTruthy();
+    expect(txi.tx.itx.type).toBeTruthy();
+    expect(txi.tx.itx.value).toBeTruthy();
   });
 });
 
