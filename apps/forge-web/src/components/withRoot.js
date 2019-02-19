@@ -50,6 +50,20 @@ const theme = createMuiTheme({
         background: colors.background,
       },
     },
+    MuiTableCell: {
+      root: {
+        borderBottomWidth: '0',
+        paddingTop: '14px',
+        paddingBottom: '14px',
+        paddingLeft: 0,
+        paddingRight: '30px',
+        color: colors.gray,
+      },
+      head: {
+        textTransform: 'uppercase',
+        color: colors.gray,
+      },
+    },
   },
   colors,
   sizes,

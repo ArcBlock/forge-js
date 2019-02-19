@@ -53,7 +53,7 @@ const Container = styled.div`
   }
 
   .section__header {
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     font-size: 18px;
     font-weight: 500;
     text-transform: uppercase;

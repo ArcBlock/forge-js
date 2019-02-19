@@ -58,7 +58,7 @@ const SparkLine = ({ data, series, legend }) => (
         content={renderTooltip}
         wrapperStyle={{
           width: 'auto',
-          minWidth: '150px',
+          minWidth: '90px',
           padding: '8px 12px',
           fontSize: '14px',
           color: '#ffffff',
@@ -102,11 +102,18 @@ SparkLine.defaultProps = {
   legend: false,
 };
 
-SparkLine.createSeries = ({ dataKey, stroke, gradientStart, gradientStop }) => ({
-  dataKey,
-  stroke: stroke || '#868787',
-  gradientStart: gradientStart || '#ECE8E8',
-  gradientStop: gradientStop || '#F8F8F8',
-});
+SparkLine.createSeries = args => {
+  let { dataKey, stroke, gradientStart, gradientStop } = args; // eslint-disable-line
+  if (typeof args === 'string') {
+    dataKey = args;
+  }
+
+  return {
+    dataKey,
+    stroke: stroke || '#868787',
+    gradientStart: gradientStart || '#ECE8E8',
+    gradientStop: gradientStop || '#F8F8F8',
+  };
+};
 
 export default SparkLine;

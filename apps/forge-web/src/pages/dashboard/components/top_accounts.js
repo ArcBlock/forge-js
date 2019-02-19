@@ -1,11 +1,15 @@
 import React from 'react';
-// import styled from 'styled-components';
+import numeral from 'numeral';
 
 import Typography from '@material-ui/core/Typography';
-// import Grid from '@material-ui/core/Grid';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
 
-// import Icon8 from '../../../components/icon8';
+import AccountActivity from './account_activity';
 import forge from '../../../libs/forge';
 
 export default class TopAccountsSection extends React.Component {
@@ -18,7 +22,7 @@ export default class TopAccountsSection extends React.Component {
   }
 
   componentDidMount() {
-    this.loadSummary();
+    this.loadData();
   }
 
   render() {
@@ -31,22 +35,72 @@ export default class TopAccountsSection extends React.Component {
             <CircularProgress />
           </React.Fragment>
         )}
-        {!loading && data && this.renderSummary(data)}
+        {!loading && data && this.renderTable(data)}
       </React.Fragment>
     );
   }
 
-  renderSummary(data) {
+  renderTable(rows) {
     return (
-      <pre>
-        <code>{JSON.stringify(data, true, '  ')}</code>
-      </pre>
+      <Table>
+        <TableHead>
+          <TableRow>
+            <TableCell align="left">Rank</TableCell>
+            <TableCell align="left">Moniker</TableCell>
+            <TableCell align="center">Balance</TableCell>
+            <TableCell align="center">Assets</TableCell>
+            <TableCell align="left" style={{ width: '25%' }}>
+              Activities
+            </TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {rows.map((x, i) => (
+            <TableRow key={x.address}>
+              <TableCell align="left" component="th" scope="row">
+                {x.rank}
+              </TableCell>
+              <TableCell align="left">{x.moniker}</TableCell>
+              <TableCell align="center">{numeral(x.balance).format('0,0.0000')}</TableCell>
+              <TableCell align="center">{numeral(x.assets).format('0,0')}</TableCell>
+              <TableCell align="left">
+                <AccountActivity address={x.address} delayMS={i * 500} />
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
     );
   }
 
-  async loadSummary() {
+  async loadData() {
     this.setState({ loading: true });
-    const { forgeStatistics: data } = await forge.getForgeStatistics();
-    this.setState({ loading: false, data });
+    await forge.getForgeStatistics();
+    this.setState({
+      loading: false,
+      data: [
+        {
+          address: 'abc',
+          rank: 1,
+          moniker: 'Foundation',
+          balance: '9990000',
+          assets: 0,
+        },
+        {
+          address: 'def',
+          rank: 2,
+          moniker: 'ssnode',
+          balance: '1680000',
+          assets: 16,
+        },
+        {
+          address: 'efg',
+          rank: 3,
+          moniker: 'black_negget',
+          balance: '1390000',
+          assets: 324,
+        },
+      ],
+    });
   }
 }

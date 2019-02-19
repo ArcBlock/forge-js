@@ -14,7 +14,7 @@ export const sizes = {
 export const colors = {
   white: '#ffffff',
   dark: '#4A707C',
-  gray: '#404040',
+  gray: '#222222',
   background: '#f7f8f8',
   yellow: '#FFD166',
   green: '#4cbbb9',
