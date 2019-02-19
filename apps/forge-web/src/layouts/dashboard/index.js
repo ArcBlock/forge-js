@@ -214,7 +214,6 @@ class Dashboard extends React.Component {
 }
 
 const Content = styled.div`
-  width: 100%;
   height: ${props => (props.direction === 'row' ? '100%' : 'auto')};
   flex: 1 0 auto;
   display: flex;

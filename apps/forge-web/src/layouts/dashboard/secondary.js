@@ -42,7 +42,8 @@ class SecondaryLinks extends React.Component {
 
 const MenuItems = styled.div`
   width: 200px;
-  flex: 1 0 auto;
+  flex-grow: 0;
+  flex-shrink: 0;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;

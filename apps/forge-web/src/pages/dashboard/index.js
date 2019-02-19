@@ -46,7 +46,8 @@ class Dashboard extends Page {
 }
 
 const Container = styled.div`
-  padding: ${props => props.theme.spacing.unit * 9}px ${props => props.theme.spacing.unit * 15}px;
+  padding: ${props => props.theme.spacing.unit * 6}px ${props => props.theme.spacing.unit * 15}px;
+  max-width: 1280px;
 
   .section {
     margin-bottom: 80px;

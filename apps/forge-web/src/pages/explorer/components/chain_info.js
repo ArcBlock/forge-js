@@ -5,20 +5,20 @@ import styled from 'styled-components';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 
-const ChainInfo = ({ appHash, blockHeight, blockHash, id, moniker }) => (
-  <Container>
+const ChainInfo = ({ appHash, blockHeight, blockHash, id, moniker, ...rest }) => (
+  <Container {...rest}>
     <Typography component="h3" className="moniker">
       {moniker}
     </Typography>
     <Grid container spacing={40}>
       <Grid item xs={12} sm={9}>
-        <Typography component="p" className="id">
+        <Typography component="p" className="id" gutterBottom>
           abt:did:{id}
         </Typography>
-        <Typography component="p" className="meta">
+        <Typography component="p" className="meta" gutterBottom>
           <span>app_hash:</span> {appHash}
         </Typography>
-        <Typography component="p" className="meta">
+        <Typography component="p" className="meta" gutterBottom>
           <span>block_hash:</span> {blockHash}
         </Typography>
       </Grid>
@@ -36,9 +36,9 @@ const ChainInfo = ({ appHash, blockHeight, blockHash, id, moniker }) => (
 
 /* padding: ${props => props.theme.spacing.unit * 3}px; */
 const Container = styled.div`
-  width: 100%;
-  line-height: 1.71;
+  line-height: 2;
   text-transform: uppercase;
+  margin-bottom: 60px;
 
   .moniker {
     font-size: 14px;
