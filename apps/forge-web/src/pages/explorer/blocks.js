@@ -8,6 +8,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import ChainInfo from './components/chain_info';
 import BlockCard from './components/block_card';
 import Pagination from './components/pagination';
+import SearchBox from './components/search_box';
 
 import Page from '../../components/page';
 import Layout from '../../layouts/page';
@@ -55,6 +56,7 @@ class BlockList extends Page {
         <Container>
           {loading && <CircularProgress />}
           {chainInfo && <ChainInfo {...chainInfo} />}
+          {chainInfo && <SearchBox />}
           {blocks && (
             <div className="blocks">
               {blocks.map(x => (

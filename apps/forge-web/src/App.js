@@ -32,7 +32,6 @@ export default () => (
         <Switch>
           <Route exact path="/dashboard" component={PageDashboard} />
           <Route exact path="/app" component={PageApplication} />
-          <Route exact path="/node/explorer" component={PageBlockList} />
           <Route exact path="/node/explorer/blocks" component={PageBlockList} />
           <Route exact path="/node/explorer/txs" component={PageTxList} />
           <Route exact path="/node/explorer/blocks/:height" component={PageBlockDetail} />

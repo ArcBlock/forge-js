@@ -24,7 +24,7 @@ class Sidebar extends React.Component {
       <MenuItems>
         <div className="menu-top-items">
           {this.renderMenuItem('/dashboard', 'dashboard', 'Dashboard')}
-          {this.renderMenuItem('/node/explorer', 'node', 'Node Management')}
+          {this.renderMenuItem('/node/explorer/blocks', 'node', 'Node Management')}
           {this.renderMenuItem('/app', 'app', 'Application Management')}
           {this.renderMenuItem('/tasks', 'tasks', 'Tasks')}
           {this.renderMenuItem('/developer', 'developer', 'Developer Tools')}
