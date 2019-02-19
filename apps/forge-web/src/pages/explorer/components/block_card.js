@@ -15,7 +15,7 @@ const BlockCard = ({ block, ...rest }) => (
         #{block.appHash}
       </Typography>
       <div className="summary">
-        <Icon8 name="cancel" size={24} color="#4e6af6" />
+        <Icon8 name="cancel" size={28} color="#4e6af6" className="icon" />
         <Typography component="p">
           {block.height} ({block.numTxs} txs)
         </Typography>
@@ -56,6 +56,7 @@ const Container = styled.div`
 
     p {
       font-size: 16px;
+      margin-left: 8px;
     }
   }
 

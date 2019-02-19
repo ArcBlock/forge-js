@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Icon8 = ({ name, size, alt, color }) => (
+const Icon8 = ({ name, size, alt, color, ...rest }) => (
   <img
     alt={alt || name}
     src={`https://img.icons8.com/dotty/${size}/${color.replace(/^#/, '')}/${name}.png`}
+    {...rest}
   />
 );
 

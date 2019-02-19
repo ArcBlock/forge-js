@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import Pagination from 'rc-pagination';
 
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 import ChainInfo from './components/chain_info';
 import BlockCard from './components/block_card';
+import Pagination from './components/pagination';
 
 import Page from '../../components/page';
 import Layout from '../../layouts/page';
@@ -38,7 +38,6 @@ class BlockList extends Page {
   // TODO: add search feature
   // TODO: add filter feature
   // TODO: compact blocks
-  // TODO: block paginations
   render() {
     const { loading, chainInfo, blocks, currentPage, pageSize } = this.state;
     return (
@@ -46,13 +45,20 @@ class BlockList extends Page {
         <Container>
           {loading && <CircularProgress />}
           {chainInfo && <ChainInfo {...chainInfo} />}
-          {blocks && blocks.map(x => <BlockCard block={x} />)}
           {blocks && (
+            <div className="blocks">
+              {blocks.map(x => (
+                <BlockCard key={x.appHash} block={x} />
+              ))}
+            </div>
+          )}
+          {chainInfo && chainInfo.blockHeight > pageSize && (
             <Pagination
               onChange={this.onChangePage}
               pageSize={pageSize}
               current={currentPage}
               total={chainInfo.blockHeight}
+              className="pagination"
             />
           )}
         </Container>
@@ -100,6 +106,10 @@ class BlockList extends Page {
 const Container = styled.div`
   padding: ${props => props.theme.spacing.unit * 6}px ${props => props.theme.spacing.unit * 15}px;
   max-width: 1280px;
+
+  .pagination {
+    margin-top: 60px;
+  }
 `;
 
 export default withRoot(withI18n(BlockList));
