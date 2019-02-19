@@ -5,9 +5,9 @@ import { withRouter } from 'react-router-dom';
 
 import CircularProgress from '@material-ui/core/CircularProgress';
 
-import ChainInfo from './components/chain_info';
 import BlockCard from './components/block_card';
 import Pagination from './components/pagination';
+import SummaryHeader from './components/summary_header';
 import SearchBox from './components/search_box';
 
 import Page from '../../components/page';
@@ -46,7 +46,6 @@ class BlockList extends Page {
     this.loadChainInfo(this.loadBlocks);
   }
 
-  // TODO: add search feature
   // TODO: add filter feature
   // TODO: compact blocks
   render() {
@@ -55,7 +54,18 @@ class BlockList extends Page {
       <Layout title="Blocks" cookies={this.cookies}>
         <Container>
           {loading && <CircularProgress />}
-          {chainInfo && <ChainInfo {...chainInfo} />}
+          {chainInfo && (
+            <SummaryHeader
+              type={chainInfo.moniker}
+              title={`abt:did:${chainInfo.id}`}
+              badge={chainInfo.blockHeight}
+              badgeTip="Block Height"
+              meta={[
+                { key: 'app_hash', value: chainInfo.appHash },
+                { key: 'block_hash', value: chainInfo.blockHash },
+              ]}
+            />
+          )}
           {chainInfo && <SearchBox />}
           {blocks && (
             <div className="blocks">
@@ -117,6 +127,7 @@ class BlockList extends Page {
 
 const Container = styled.div`
   padding: ${props => props.theme.spacing.unit * 6}px ${props => props.theme.spacing.unit * 15}px;
+  width: auto;
   max-width: 1280px;
 
   .pagination {
