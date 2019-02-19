@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
 
 import CircularProgress from '@material-ui/core/CircularProgress';
 
@@ -13,16 +15,25 @@ import withI18n from '../../components/withI18n';
 import withRoot from '../../components/withRoot';
 
 import forge from '../../libs/forge';
+import { parseQuery } from '../../libs/util';
 
 class BlockList extends Page {
+  static propTypes = {
+    match: PropTypes.object.isRequired,
+    location: PropTypes.object.isRequired,
+    history: PropTypes.object.isRequired,
+  };
+
   constructor(props) {
     super(props);
+    const params = parseQuery(window.location.search);
+
     this.state = {
       loading: false,
       loadingBlocks: false,
       blocks: null,
       chainInfo: null,
-      currentPage: 1,
+      currentPage: Number(params.page) || 1,
       pageSize: 10,
     };
 
@@ -34,7 +45,6 @@ class BlockList extends Page {
     this.loadChainInfo(this.loadBlocks);
   }
 
-  // TODO: add links for txs and blocks
   // TODO: add search feature
   // TODO: add filter feature
   // TODO: compact blocks
@@ -71,7 +81,7 @@ class BlockList extends Page {
       return;
     }
 
-    this.setState({ currentPage: page }, this.loadBlocks);
+    window.location.href = `/node/explorer/blocks?page=${page}`;
   }
 
   async loadChainInfo(done) {
@@ -112,4 +122,4 @@ const Container = styled.div`
   }
 `;
 
-export default withRoot(withI18n(BlockList));
+export default withRoot(withI18n(withRouter(BlockList)));

@@ -18,3 +18,15 @@ export function detectLocale() {
 export function delay(ms = 1000) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
+
+export function parseQuery(str) {
+  return str
+    .replace(/^\?/, '')
+    .split('&')
+    .map(x => x.split('='))
+    .reduce((acc, x) => {
+      const [key, value = true] = x;
+      acc[key] = value;
+      return acc;
+    }, {});
+}

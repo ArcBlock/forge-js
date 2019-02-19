@@ -2,17 +2,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import moment from 'moment';
+import { Link } from 'react-router-dom';
 
 import Typography from '@material-ui/core/Typography';
 
 import Icon8 from '../../../components/icon8';
 
-// TODO: add links for block
 const BlockCard = ({ block, ...rest }) => (
   <Container {...rest}>
     <div className="left">
       <Typography component="p" className="hash" gutterBottom>
-        #{block.appHash}
+        <Link to={`/node/explorer/blocks/${block.height}`} title="View block detail">
+          #{block.appHash}
+        </Link>
       </Typography>
       <div className="summary">
         <Icon8 name="cancel" size={28} color="#4e6af6" className="icon" />
@@ -21,7 +23,9 @@ const BlockCard = ({ block, ...rest }) => (
         </Typography>
       </div>
       <Typography component="p" className="proposer">
-        <span>Proposer:</span> {block.proposer}
+        <Link to={`/node/explorer/accounts/${block.proposer}`} title="View account detail">
+          <span>Proposer:</span> {block.proposer}
+        </Link>
       </Typography>
     </div>
     <div className="right">
@@ -60,11 +64,12 @@ const Container = styled.div`
     }
   }
 
-  .proposer,
   .time,
-  .hash {
+  .proposer a,
+  .hash a {
     color: #9b9b9b;
     font-size: 14px;
+    cursor: pointer;
   }
 `;
 
