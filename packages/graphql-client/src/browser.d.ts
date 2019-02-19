@@ -32,6 +32,9 @@ declare class GraphQLClient {
   getAccountState(
     params: GraphQLClient.GetAccountStateParams
   ): GraphQLClient.QueryResult<GraphQLClient.ResponseGetAccountState>;
+  getAssetAddress(
+    params: GraphQLClient.GetAssetAddressParams
+  ): GraphQLClient.QueryResult<GraphQLClient.ResponseGetAssetAddress>;
   getAssetState(
     params: GraphQLClient.GetAssetStateParams
   ): GraphQLClient.QueryResult<GraphQLClient.ResponseGetAssetState>;
@@ -62,6 +65,9 @@ declare class GraphQLClient {
     params: GraphQLClient.GetUnconfirmedTxsParams
   ): GraphQLClient.QueryResult<GraphQLClient.ResponseGetUnconfirmedTxs>;
   getValidatorsInfo(): GraphQLClient.QueryResult<GraphQLClient.ResponseGetValidatorsInfo>;
+  listTransactions(
+    params: GraphQLClient.ListTransactionsParams
+  ): GraphQLClient.QueryResult<GraphQLClient.ResponseListTransactions>;
   listWallet(): GraphQLClient.QueryResult<GraphQLClient.ResponseListWallet>;
   loadFile(
     params: GraphQLClient.LoadFileParams
@@ -78,6 +84,9 @@ declare class GraphQLClient {
   search(
     params: GraphQLClient.SearchParams
   ): GraphQLClient.QueryResult<GraphQLClient.ResponseSearch>;
+  signData(
+    params: GraphQLClient.SignDataParams
+  ): GraphQLClient.QueryResult<GraphQLClient.ResponseSignData>;
   createTx(
     params: GraphQLClient.CreateTxParams
   ): GraphQLClient.QueryResult<GraphQLClient.ResponseCreateTx>;
@@ -216,6 +225,16 @@ declare namespace GraphQLClient {
     EXE_FORGE,
     EXE_P2P,
   }
+
+  export interface AddressFilter {}
+
+  export interface PageInput {}
+
+  export interface PageOrder {}
+
+  export interface TimeFilter {}
+
+  export interface TypeFilter {}
 
   export interface AccountMigrateTx {
     pk: string;
@@ -406,6 +425,15 @@ declare namespace GraphQLClient {
     version: GraphQLClient.Version;
   }
 
+  export interface IndexedTransaction {
+    hash: string;
+    receiver: string;
+    sender: string;
+    time: string;
+    tx: GraphQLClient.Transaction;
+    type: string;
+  }
+
   export interface KvPair {
     key: string;
     value: string;
@@ -430,6 +458,12 @@ declare namespace GraphQLClient {
     moniker: string;
     network: string;
     version: string;
+  }
+
+  export interface PageInfo {
+    cursor: string;
+    next: boolean;
+    total: number;
   }
 
   export interface PartSetHeader {
@@ -476,6 +510,11 @@ declare namespace GraphQLClient {
   export interface ResponseGetAccountState {
     code: GraphQLClient.StatusCode;
     state: GraphQLClient.AccountState;
+  }
+
+  export interface ResponseGetAssetAddress {
+    assetAddress: string;
+    code: GraphQLClient.StatusCode;
   }
 
   export interface ResponseGetAssetState {
@@ -538,6 +577,12 @@ declare namespace GraphQLClient {
     validatorsInfo: GraphQLClient.ValidatorsInfo;
   }
 
+  export interface ResponseListTransactions {
+    code: GraphQLClient.StatusCode;
+    page: GraphQLClient.PageInfo;
+    transactions: Array<IndexedTransaction>;
+  }
+
   export interface ResponseListWallet {
     address: Array<string>;
     code: GraphQLClient.StatusCode;
@@ -581,6 +626,11 @@ declare namespace GraphQLClient {
   export interface ResponseSendTx {
     code: GraphQLClient.StatusCode;
     hash: string;
+  }
+
+  export interface ResponseSignData {
+    code: GraphQLClient.StatusCode;
+    signedData: string;
   }
 
   export interface ResponseStoreFile {
@@ -777,6 +827,12 @@ declare namespace GraphQLClient {
     keys: Array<string>;
   }
 
+  export interface GetAssetAddressParams {
+    itx: string;
+    senderAddress: string;
+    walletType: string;
+  }
+
   export interface GetAssetStateParams {
     address: string;
     appHash: string;
@@ -820,6 +876,13 @@ declare namespace GraphQLClient {
     limit: number;
   }
 
+  export interface ListTransactionsParams {
+    addressFilter: undefined;
+    paging: undefined;
+    timeFilter: undefined;
+    typeFilter: undefined;
+  }
+
   export interface LoadFileParams {
     hash: string;
   }
@@ -842,6 +905,12 @@ declare namespace GraphQLClient {
   export interface SearchParams {
     key: string;
     value: string;
+  }
+
+  export interface SignDataParams {
+    data: string;
+    token: string;
+    wallet: string;
   }
 
   export interface CreateTxParams {

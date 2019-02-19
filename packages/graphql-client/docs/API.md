@@ -1,12 +1,13 @@
 # Forge GraphQL API List
 
-> Updated on 2019-02-17T00:36:53.771Z
+> Updated on 2019-02-19T06:50:21.173Z
 
 
 ## Table of Contents
 
 * [Queries](#queries)
   * [getAccountState](#getaccountstate)
+  * [getAssetAddress](#getassetaddress)
   * [getAssetState](#getassetstate)
   * [getBlock](#getblock)
   * [getBlocks](#getblocks)
@@ -21,12 +22,14 @@
   * [getTx](#gettx)
   * [getUnconfirmedTxs](#getunconfirmedtxs)
   * [getValidatorsInfo](#getvalidatorsinfo)
+  * [listTransactions](#listtransactions)
   * [listWallet](#listwallet)
   * [loadFile](#loadfile)
   * [loadWallet](#loadwallet)
   * [multisig](#multisig)
   * [pinFile](#pinfile)
   * [search](#search)
+  * [signData](#signdata)
 * [Subscriptions](#subscriptions)
   * [subscribe](#subscribe)
 * [Mutations](#mutations)
@@ -140,6 +143,25 @@
         role
       }
     }
+  }
+}
+```
+
+### getAssetAddress
+
+#### Arguments
+
+* **itx**, optional, 
+* **senderAddress**, optional, 
+* **walletType**, optional, 
+
+#### Result Format
+
+```graphql
+{
+  getAssetAddress(itx: "abc", senderAddress: "abc", walletType: "abc") {
+    assetAddress
+    code
   }
 }
 ```
@@ -703,6 +725,47 @@ No arguments
 }
 ```
 
+### listTransactions
+
+#### Arguments
+
+* **addressFilter**, optional, 
+* **paging**, optional, 
+* **timeFilter**, optional, 
+* **typeFilter**, optional, 
+
+#### Result Format
+
+```graphql
+{
+  listTransactions {
+    code
+    page {
+      cursor
+      next
+      total
+    }
+    transactions {
+      hash
+      receiver
+      sender
+      time
+      type
+      tx {
+        chainId
+        from
+        nonce
+        signature
+        signatures {
+          key
+          value
+        }
+      }
+    }
+  }
+}
+```
+
 ### listWallet
 
 #### Arguments
@@ -843,6 +906,25 @@ No arguments
         }
       }
     }
+  }
+}
+```
+
+### signData
+
+#### Arguments
+
+* **data**, optional, 
+* **token**, optional, 
+* **wallet**, optional, 
+
+#### Result Format
+
+```graphql
+{
+  signData(data: "abc", token: "abc", wallet: "abc") {
+    code
+    signedData
   }
 }
 ```

@@ -5,11 +5,9 @@
 
 ## Table of Contents
 
-- [`forge-graphql-client`](#forge-graphql-client)
-  - [Table of Contents](#table-of-contents)
-  - [Install](#install)
-  - [Usage](#usage)
-  - [Documentation](#documentation)
+* [Install](#install)
+* [Usage](#usage)
+* [Documentation](#documentation)
 
 
 ## Install
