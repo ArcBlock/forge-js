@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 import Typography from '@material-ui/core/Typography';
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -8,14 +9,19 @@ import Page from '../../components/page';
 import Layout from '../../layouts/page';
 import withI18n from '../../components/withI18n';
 import withRoot from '../../components/withRoot';
+
 import forge from '../../libs/forge';
 
-class Status extends Page {
+class BlockDetail extends Page {
+  static propTypes = {
+    height: PropTypes.number.isRequired,
+  };
+
   constructor(props) {
     super(props);
     this.state = {
       loading: false,
-      data: null,
+      block: null,
     };
   }
 
@@ -24,15 +30,15 @@ class Status extends Page {
   }
 
   render() {
-    const { loading, data } = this.state;
+    const { loading, block } = this.state;
     return (
-      <Layout title="Status" cookies={this.cookies}>
+      <Layout title="Block" cookies={this.cookies}>
         <Container>
-          <Typography component="h3">Node Status here...</Typography>
+          <Typography component="h3">Block detail for #{this.props.height}: </Typography>
           {loading && <CircularProgress />}
-          {data && (
+          {block && (
             <pre>
-              <code>{JSON.stringify(data, true, '  ')}</code>
+              <code>{JSON.stringify(block, true, '  ')}</code>
             </pre>
           )}
         </Container>
@@ -42,11 +48,8 @@ class Status extends Page {
 
   async loadStatus() {
     this.setState({ loading: true });
-    const { info: chain } = await forge.getChainInfo();
-    const { state: core } = await forge.getForgeState();
-    const { netInfo: net } = await forge.getNetInfo();
-    const { validatorsInfo: validators } = await forge.getValidatorsInfo();
-    this.setState({ loading: false, data: { chain, net, core, validators } });
+    const { block } = await forge.getBlock({ height: this.props.height });
+    this.setState({ loading: false, block });
   }
 }
 
@@ -54,4 +57,4 @@ const Container = styled.div`
   padding: ${props => props.theme.spacing.unit * 3}px;
 `;
 
-export default withRoot(withI18n(Status));
+export default withRoot(withI18n(BlockDetail));

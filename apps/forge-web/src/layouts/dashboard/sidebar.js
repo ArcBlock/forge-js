@@ -3,44 +3,15 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { withRouter, Link } from 'react-router-dom';
 
-import dashboardIcon from './images/dashboard.png';
-import dashboardIconActive from './images/dashboard-active.png';
-import appIcon from './images/app.png';
-import appIconActive from './images/app-active.png';
-import nodeIcon from './images/node.png';
-import nodeIconActive from './images/node-active.png';
-import developerIcon from './images/developer.png';
-import developerIconActive from './images/developer-active.png';
-import tasksIcon from './images/tasks.png';
-import tasksIconActive from './images/tasks-active.png';
-import settingsIcon from './images/setting.png';
-import settingsIconActive from './images/setting-active.png';
+import Icon8 from '../../components/icon8';
 
 const images = {
-  dashboard: {
-    default: dashboardIcon,
-    active: dashboardIconActive,
-  },
-  app: {
-    default: appIcon,
-    active: appIconActive,
-  },
-  node: {
-    default: nodeIcon,
-    active: nodeIconActive,
-  },
-  tasks: {
-    default: tasksIcon,
-    active: tasksIconActive,
-  },
-  developer: {
-    default: developerIcon,
-    active: developerIconActive,
-  },
-  settings: {
-    default: settingsIcon,
-    active: settingsIconActive,
-  },
+  dashboard: 'speedometer',
+  app: 'ios-app-icon-shape',
+  node: 'blockchain-technology',
+  tasks: 'todo-list',
+  developer: 'console',
+  settings: 'settings',
 };
 
 class Sidebar extends React.Component {
@@ -70,7 +41,7 @@ class Sidebar extends React.Component {
     return (
       <MenuItem active={active}>
         <Link to={url} title={title}>
-          <img alt={name} src={images[name][active ? 'active' : 'default']} />
+          <Icon8 name={images[name]} size={36} color={active ? '#00c2c4' : '#000000'} />
         </Link>
       </MenuItem>
     );
@@ -110,11 +81,6 @@ const MenuItem = styled.div`
   a {
     display: block;
     padding: 22px 0;
-  }
-
-  img {
-    width: 32px;
-    object-fit: contain;
   }
 `;
 

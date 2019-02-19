@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 import Typography from '@material-ui/core/Typography';
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -8,14 +9,19 @@ import Page from '../../components/page';
 import Layout from '../../layouts/page';
 import withI18n from '../../components/withI18n';
 import withRoot from '../../components/withRoot';
+
 import forge from '../../libs/forge';
 
-class Status extends Page {
+class AccountDetail extends Page {
+  static propTypes = {
+    address: PropTypes.number.isRequired,
+  };
+
   constructor(props) {
     super(props);
     this.state = {
       loading: false,
-      data: null,
+      account: null,
     };
   }
 
@@ -24,15 +30,15 @@ class Status extends Page {
   }
 
   render() {
-    const { loading, data } = this.state;
+    const { loading, account } = this.state;
     return (
-      <Layout title="Status" cookies={this.cookies}>
+      <Layout title="Account" cookies={this.cookies}>
         <Container>
-          <Typography component="h3">Node Status here...</Typography>
+          <Typography component="h3">Account detail for {this.props.address}: </Typography>
           {loading && <CircularProgress />}
-          {data && (
+          {account && (
             <pre>
-              <code>{JSON.stringify(data, true, '  ')}</code>
+              <code>{JSON.stringify(account, true, '  ')}</code>
             </pre>
           )}
         </Container>
@@ -42,11 +48,8 @@ class Status extends Page {
 
   async loadStatus() {
     this.setState({ loading: true });
-    const { info: chain } = await forge.getChainInfo();
-    const { state: core } = await forge.getForgeState();
-    const { netInfo: net } = await forge.getNetInfo();
-    const { validatorsInfo: validators } = await forge.getValidatorsInfo();
-    this.setState({ loading: false, data: { chain, net, core, validators } });
+    const { state } = await forge.getAccountState({ address: this.props.address });
+    this.setState({ loading: false, account: state });
   }
 }
 
@@ -54,4 +57,4 @@ const Container = styled.div`
   padding: ${props => props.theme.spacing.unit * 3}px;
 `;
 
-export default withRoot(withI18n(Status));
+export default withRoot(withI18n(AccountDetail));

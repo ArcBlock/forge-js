@@ -12,12 +12,12 @@ export const sizes = {
 
 // @link https://coolors.co/ef476f-ffd166-06d6a0-118ab2-073b4c
 export const colors = {
-  white: '#F8F8F8',
+  white: '#ffffff',
   dark: '#4A707C',
-  gray: '#404040',
+  gray: '#222222',
   background: '#f7f8f8',
   yellow: '#FFD166',
-  green: '#06D6A0',
+  green: '#4cbbb9',
   red: '#EF476F',
   blue: '#118AB2',
 };

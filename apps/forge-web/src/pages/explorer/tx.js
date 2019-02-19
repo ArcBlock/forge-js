@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 import Typography from '@material-ui/core/Typography';
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -8,14 +9,19 @@ import Page from '../../components/page';
 import Layout from '../../layouts/page';
 import withI18n from '../../components/withI18n';
 import withRoot from '../../components/withRoot';
+
 import forge from '../../libs/forge';
 
-class Status extends Page {
+class TransactionDetail extends Page {
+  static propTypes = {
+    hash: PropTypes.string.isRequired,
+  };
+
   constructor(props) {
     super(props);
     this.state = {
       loading: false,
-      data: null,
+      tx: null,
     };
   }
 
@@ -24,15 +30,15 @@ class Status extends Page {
   }
 
   render() {
-    const { loading, data } = this.state;
+    const { loading, tx } = this.state;
     return (
-      <Layout title="Status" cookies={this.cookies}>
+      <Layout title="Transaction" cookies={this.cookies}>
         <Container>
-          <Typography component="h3">Node Status here...</Typography>
+          <Typography component="h3">Transaction detail for {this.props.hash}...</Typography>
           {loading && <CircularProgress />}
-          {data && (
+          {tx && (
             <pre>
-              <code>{JSON.stringify(data, true, '  ')}</code>
+              <code>{JSON.stringify(tx, true, '  ')}</code>
             </pre>
           )}
         </Container>
@@ -42,11 +48,8 @@ class Status extends Page {
 
   async loadStatus() {
     this.setState({ loading: true });
-    const { info: chain } = await forge.getChainInfo();
-    const { state: core } = await forge.getForgeState();
-    const { netInfo: net } = await forge.getNetInfo();
-    const { validatorsInfo: validators } = await forge.getValidatorsInfo();
-    this.setState({ loading: false, data: { chain, net, core, validators } });
+    const { tx } = await forge.getTx({ hash: this.props.hash });
+    this.setState({ loading: false, tx });
   }
 }
 
@@ -54,4 +57,4 @@ const Container = styled.div`
   padding: ${props => props.theme.spacing.unit * 3}px;
 `;
 
-export default withRoot(withI18n(Status));
+export default withRoot(withI18n(TransactionDetail));

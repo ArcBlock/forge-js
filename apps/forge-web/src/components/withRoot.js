@@ -6,19 +6,20 @@ import { colors, sizes } from '../libs/constant';
 
 const theme = createMuiTheme({
   palette: {
-    primary: { main: '#4cbbb9', contrastText: '#ffffff' },
-    secondary: { main: '#EF476F', contrastText: '#ffffff' },
-    background: { paper: '#ffffff', default: '#f7f8f8' },
+    primary: { main: colors.green, contrastText: colors.white },
+    secondary: { main: colors.red, contrastText: colors.white },
+    background: { paper: colors.white, default: colors.background },
   },
   typography: {
     useNextVariants: true,
     color: {
-      main: '#404040',
+      main: colors.gray,
       gray: '#9b9b9b',
       blue: '#1e43fa',
     },
     fontSize: 16,
     fontFamily: [
+      'Avenir',
       '-apple-system',
       'BlinkMacSystemFont',
       '"Segoe UI"',
@@ -42,6 +43,25 @@ const theme = createMuiTheme({
     MuiAppBar: {
       root: {
         height: 80,
+      },
+    },
+    MuiToolbar: {
+      root: {
+        background: colors.background,
+      },
+    },
+    MuiTableCell: {
+      root: {
+        borderBottomWidth: '0',
+        paddingTop: '14px',
+        paddingBottom: '14px',
+        paddingLeft: 0,
+        paddingRight: '30px',
+        color: colors.gray,
+      },
+      head: {
+        textTransform: 'uppercase',
+        color: colors.gray,
       },
     },
   },
