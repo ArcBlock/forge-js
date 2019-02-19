@@ -5,7 +5,6 @@ import { IntlProvider, addLocaleData } from 'react-intl';
 import Layout from './layouts/dashboard';
 
 import PageDashboard from './pages/dashboard';
-import PageExplorer from './pages/node/explorer';
 import PageStatus from './pages/node/status';
 import PageQuery from './pages/node/query';
 import PageStorage from './pages/node/storage';
@@ -13,6 +12,11 @@ import PageDeveloper from './pages/developer';
 import PageApplication from './pages/app';
 import PageTasks from './pages/tasks';
 import PageSettings from './pages/settings';
+import PageBlockList from './pages/explorer/blocks';
+import PageBlockDetail from './pages/explorer/block';
+import PageTxList from './pages/explorer/txs';
+import PageTxDetail from './pages/explorer/tx';
+import PageAccountDetail from './pages/explorer/account';
 
 import { localeData } from './libs/locale';
 import { detectLocale } from './libs/util';
@@ -28,7 +32,12 @@ export default () => (
         <Switch>
           <Route exact path="/dashboard" component={PageDashboard} />
           <Route exact path="/app" component={PageApplication} />
-          <Route exact path="/node/explorer" component={PageExplorer} />
+          <Route exact path="/node/explorer" component={PageBlockList} />
+          <Route exact path="/node/explorer/blocks" component={PageBlockList} />
+          <Route exact path="/node/explorer/txs" component={PageTxList} />
+          <Route exact path="/node/explorer/blocks/:height" component={PageBlockDetail} />
+          <Route exact path="/node/explorer/txs/:hash" component={PageTxDetail} />
+          <Route exact path="/node/explorer/accounts/:address" component={PageAccountDetail} />
           <Route exact path="/node/status" component={PageStatus} />
           <Route exact path="/node/storage" component={PageStorage} />
           <Route exact path="/node/query" component={PageQuery} />

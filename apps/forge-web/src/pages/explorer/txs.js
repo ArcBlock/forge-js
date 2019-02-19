@@ -11,7 +11,7 @@ import withRoot from '../../components/withRoot';
 
 import forge from '../../libs/forge';
 
-class BlockList extends Page {
+class TransactionList extends Page {
   constructor(props) {
     super(props);
     this.state = {
@@ -28,9 +28,9 @@ class BlockList extends Page {
   render() {
     const { loading, chainInfo, blocks } = this.state;
     return (
-      <Layout title="BlockList" cookies={this.cookies}>
+      <Layout title="Transactions" cookies={this.cookies}>
         <Container>
-          <Typography component="h3">BlockList here...</Typography>
+          <Typography component="h3">Transactions here...</Typography>
           {loading && <CircularProgress />}
           {chainInfo && (
             <div>
@@ -69,4 +69,4 @@ const Container = styled.div`
   padding: ${props => props.theme.spacing.unit * 3}px;
 `;
 
-export default withRoot(withI18n(BlockList));
+export default withRoot(withI18n(TransactionList));
