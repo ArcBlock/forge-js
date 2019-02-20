@@ -42,6 +42,7 @@ const Container = styled.div`
   margin-bottom: ${props => props.theme.spacing.unit * 4}px;
   padding-left: ${props => props.theme.spacing.unit * 2}px;
   border-left: 1px solid ${props => props.theme.colors.gray};
+  max-width: 800px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;

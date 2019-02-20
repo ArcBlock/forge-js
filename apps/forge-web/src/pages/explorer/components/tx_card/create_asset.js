@@ -21,7 +21,7 @@ const CreateAssetTx = ({ tx, theme, ...rest }) => (
     </div>
     <div className="info-row" style={{ justifyContent: 'flex-start' }}>
       <IconFa name="gem" size={14} rounded={true} color={theme.colors.blue} className="type-icon" />
-      <Typography component="p" className="value" title={tx.receiver}>
+      <Typography component="p" className="value" title={tx.tx.itx.data.value}>
         {tx.tx.itx.data.value}
       </Typography>
       <Typography component="p" className="hash" title={tx.hash}>

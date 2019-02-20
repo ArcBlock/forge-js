@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import camelCase from 'lodash/camelCase';
+import upperFirst from 'lodash/upperFirst';
 
 import TxTransfer from './transfer';
 import TxExchange from './exchange';
@@ -12,19 +14,19 @@ import TxAccountMigrate from './account_migrate';
 import TxDefault from './default';
 
 const components = {
-  create_asset: TxCreateAsset,
-  update_asset: TxCreateAsset,
-  transfer: TxTransfer,
-  stake: TxStake,
-  exchange: TxExchange,
-  declare_file: TxDeclareFile,
-  declare: TxDeclare,
-  account_migrate: TxAccountMigrate,
+  CreateAsset: TxCreateAsset,
+  UpdateAsset: TxCreateAsset,
+  Transfer: TxTransfer,
+  Stake: TxStake,
+  Exchange: TxExchange,
+  DeclareFile: TxDeclareFile,
+  Declare: TxDeclare,
+  AccountMigrate: TxAccountMigrate,
 };
 
 const TxCard = ({ tx, ...rest }) => {
-  // const type = tx.type || tx.tx.itx.__typename.replace(/Tx$/, ''); // eslint-disable-line
-  const TxComponent = components[tx.type] || TxDefault;
+  const type = upperFirst(camelCase(tx.type)) || tx.tx.itx.__typename.replace(/Tx$/, ''); // eslint-disable-line
+  const TxComponent = components[type] || TxDefault;
   return (
     <Container>
       <TxComponent tx={tx} {...rest} />
@@ -37,6 +39,7 @@ const Container = styled.div`
   margin-bottom: ${props => props.theme.spacing.unit * 5}px;
   padding-left: ${props => props.theme.spacing.unit * 2}px;
   border-left: 1px solid ${props => props.theme.colors.gray};
+  max-width: 800px;
 `;
 
 TxCard.propTypes = {

@@ -27,7 +27,7 @@ const DeclareTxSummary = ({ tx, theme, ...rest }) => (
         color={theme.colors.blue}
         className="type-icon"
       />
-      <Typography component="p" className="value" title={tx.receiver}>
+      <Typography component="p" className="value" title={tx.tx.itx.moniker}>
         {tx.tx.itx.moniker}
       </Typography>
       <Typography component="p" className="hash" title={tx.hash}>
@@ -35,7 +35,7 @@ const DeclareTxSummary = ({ tx, theme, ...rest }) => (
       </Typography>
     </div>
     <div className="info-row">
-      <Typography component="p" className="type" title={tx.receiver}>
+      <Typography component="p" className="type">
         {JSON.stringify(tx.tx.itx.type)}
       </Typography>
     </div>

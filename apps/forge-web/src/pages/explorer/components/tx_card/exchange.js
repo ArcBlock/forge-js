@@ -20,8 +20,8 @@ const ExchangeTxSummary = ({ tx, theme, ...rest }) => (
       </Typography>
     </div>
     <div className="info-row">
-      <Typography component="p" className="sender" title={tx.sender}>
-        <Link to={`/node/explorer/accounts/${tx.sender}`}>{tx.sender}</Link>
+      <Typography component="p" className="sender" title={tx.tx.from}>
+        <Link to={`/node/explorer/accounts/${tx.tx.from}`}>{tx.tx.from}</Link>
       </Typography>
       <IconFa
         name="exchange"
@@ -30,8 +30,8 @@ const ExchangeTxSummary = ({ tx, theme, ...rest }) => (
         color={theme.colors.blue}
         className="type-icon"
       />
-      <Typography component="p" className="receiver" title={tx.receiver}>
-        <Link to={`/node/explorer/accounts/${tx.receiver}`}>{tx.receiver}</Link>
+      <Typography component="p" className="receiver" title={tx.tx.itx.to}>
+        <Link to={`/node/explorer/accounts/${tx.tx.itx.to}`}>{tx.tx.itx.to}</Link>
       </Typography>
     </div>
     <div className="info-row">Exchange: Assets + Token</div>
