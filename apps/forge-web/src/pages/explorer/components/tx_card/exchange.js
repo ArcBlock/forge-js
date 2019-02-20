@@ -6,31 +6,9 @@ import { withTheme } from '@material-ui/core/styles';
 
 import { Link } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
-import Tooltip from '@material-ui/core/Tooltip';
 
 import IconFa from '../../../../components/iconfa';
-
-// eslint-disable-next-line
-const Meta = ({ itx }) => {
-  const hasAssets = !!(Array.isArray(itx.assets) && itx.assets.length);
-  const hasValue = !!itx.value;
-  return (
-    <div className="meta">
-      {hasAssets && (
-        <Tooltip title={itx.assets.join(',')}>
-          <IconFa name="gem" size={14} className="meta-icon" />
-        </Tooltip>
-      )}
-      {hasAssets && hasValue && <span className="meta-separator">+</span>}
-      {hasValue && (
-        <span>
-          <IconFa name="coins" size={14} className="meta-icon" />
-          <span>{itx.value} arc</span>
-        </span>
-      )}
-    </div>
-  );
-};
+import Payload from './payload';
 
 const ExchangeTxSummary = ({ tx, theme, ...rest }) => (
   <Container {...rest}>
@@ -47,7 +25,7 @@ const ExchangeTxSummary = ({ tx, theme, ...rest }) => (
         <Typography component="p" title={tx.tx.from}>
           <Link to={`/node/explorer/accounts/${tx.tx.from}`}>{tx.tx.from}</Link>
         </Typography>
-        <Meta itx={tx.tx.itx.sender} />
+        <Payload itx={tx.tx.itx.sender} />
       </div>
       <IconFa
         name="exchange"
@@ -60,7 +38,7 @@ const ExchangeTxSummary = ({ tx, theme, ...rest }) => (
         <Typography component="p" title={tx.tx.itx.to}>
           <Link to={`/node/explorer/accounts/${tx.tx.itx.to}`}>{tx.tx.itx.to}</Link>
         </Typography>
-        <Meta itx={tx.tx.itx.receiver} />
+        <Payload itx={tx.tx.itx.receiver} />
       </div>
     </div>
   </Container>
@@ -125,6 +103,7 @@ const Container = styled.div`
 
   .meta {
     font-size: 14px;
+    font-weight: 600;
     .meta-icon {
       margin-right: 8px;
     }

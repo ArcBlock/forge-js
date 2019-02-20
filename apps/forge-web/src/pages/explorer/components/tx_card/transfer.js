@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
 
 import IconFa from '../../../../components/iconfa';
+import Payload from './payload';
 
 const TransferTxSummary = ({ tx, theme, ...rest }) => (
   <Container {...rest}>
@@ -24,18 +25,7 @@ const TransferTxSummary = ({ tx, theme, ...rest }) => (
         <Typography component="p" title={tx.tx.from}>
           <Link to={`/node/explorer/accounts/${tx.tx.from}`}>{tx.tx.from}</Link>
         </Typography>
-        <div className="meta">
-          {!!(Array.isArray(tx.tx.itx.assets) && tx.tx.itx.assets.length) && (
-            <React.Fragment>
-              <IconFa name="gem" size={14} className="meta-icon" />
-              <span>+</span>
-            </React.Fragment>
-          )}
-          <span>
-            <IconFa name="coins" size={14} className="meta-icon" />
-            <span>{tx.tx.itx.value} arc</span>
-          </span>
-        </div>
+        <Payload itx={tx.tx.itx} />
       </div>
       <IconFa
         name="arrow-right"
@@ -112,6 +102,7 @@ const Container = styled.div`
 
   .meta {
     font-size: 14px;
+    font-weight: 600;
     .meta-icon {
       margin-right: 8px;
     }
