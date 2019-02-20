@@ -1,6 +1,6 @@
 # Forge GraphQL API List
 
-> Updated on 2019-02-19T08:57:57.779Z
+> Updated on 2019-02-20T00:55:16.662Z
 
 
 ## Table of Contents
@@ -269,91 +269,65 @@
       time
       totalTxs
       txs {
-        chainId
-        from
-        nonce
-        signature
-        signatures {
+        code
+        hash
+        height
+        index
+        tags {
           key
           value
         }
-        itx {
-          __typename
-          ... on UpdateAssetTx {
-            address
-            moniker
-            data {
-              typeUrl
-              value
-            }
-          }
-          ... on TransferTx {
-            assets
-            to
+        tx {
+          chainId
+          from
+          nonce
+          signature
+          signatures {
+            key
             value
           }
-          ... on SysUpgradeTx {
-            gracePeriod
-            task {
-              actions
-              dataHash
-              type
+          itx {
+            __typename
+            ... on UpdateAssetTx {
+              address
+              moniker
             }
-          }
-          ... on StakeTx {
-            message
-            to
-            value
-            data {
-              type
-            }
-          }
-          ... on ExchangeTx {
-            expiredAt
-            to
-            receiver {
+            ... on TransferTx {
               assets
+              to
               value
             }
-            sender {
-              assets
+            ... on SysUpgradeTx {
+              gracePeriod
+            }
+            ... on StakeTx {
+              message
+              to
               value
             }
-          }
-          ... on DeclareFileTx {
-            hash
-          }
-          ... on DeclareTx {
-            moniker
-            pk
-            type {
-              address
+            ... on ExchangeTx {
+              expiredAt
+              to
+            }
+            ... on DeclareFileTx {
               hash
+            }
+            ... on DeclareTx {
+              moniker
               pk
-              role
             }
-          }
-          ... on CreateAssetTx {
-            moniker
-            readonly
-            data {
-              typeUrl
-              value
+            ... on CreateAssetTx {
+              moniker
+              readonly
             }
-          }
-          ... on ConsensusUpgradeTx {
-            validators {
-              address
-              power
+            ... on ConsensusUpgradeTx {
+              maxBytes
+              maxCandidates
+              maxGas
+              maxValidators
             }
-          }
-          ... on AccountMigrateTx {
-            pk
-            type {
-              address
-              hash
+            ... on AccountMigrateTx {
               pk
-              role
             }
           }
         }
@@ -384,91 +358,65 @@
       time
       totalTxs
       txs {
-        chainId
-        from
-        nonce
-        signature
-        signatures {
+        code
+        hash
+        height
+        index
+        tags {
           key
           value
         }
-        itx {
-          __typename
-          ... on UpdateAssetTx {
-            address
-            moniker
-            data {
-              typeUrl
-              value
-            }
-          }
-          ... on TransferTx {
-            assets
-            to
+        tx {
+          chainId
+          from
+          nonce
+          signature
+          signatures {
+            key
             value
           }
-          ... on SysUpgradeTx {
-            gracePeriod
-            task {
-              actions
-              dataHash
-              type
+          itx {
+            __typename
+            ... on UpdateAssetTx {
+              address
+              moniker
             }
-          }
-          ... on StakeTx {
-            message
-            to
-            value
-            data {
-              type
-            }
-          }
-          ... on ExchangeTx {
-            expiredAt
-            to
-            receiver {
+            ... on TransferTx {
               assets
+              to
               value
             }
-            sender {
-              assets
+            ... on SysUpgradeTx {
+              gracePeriod
+            }
+            ... on StakeTx {
+              message
+              to
               value
             }
-          }
-          ... on DeclareFileTx {
-            hash
-          }
-          ... on DeclareTx {
-            moniker
-            pk
-            type {
-              address
+            ... on ExchangeTx {
+              expiredAt
+              to
+            }
+            ... on DeclareFileTx {
               hash
+            }
+            ... on DeclareTx {
+              moniker
               pk
-              role
             }
-          }
-          ... on CreateAssetTx {
-            moniker
-            readonly
-            data {
-              typeUrl
-              value
+            ... on CreateAssetTx {
+              moniker
+              readonly
             }
-          }
-          ... on ConsensusUpgradeTx {
-            validators {
-              address
-              power
+            ... on ConsensusUpgradeTx {
+              maxBytes
+              maxCandidates
+              maxGas
+              maxValidators
             }
-          }
-          ... on AccountMigrateTx {
-            pk
-            type {
-              address
-              hash
+            ... on AccountMigrateTx {
               pk
-              role
             }
           }
         }
@@ -708,11 +656,11 @@ No arguments
       nPeers
       peers {
         nodeInfo {
+          consensusVersion
           id
           ip
           moniker
           network
-          version
           geoInfo {
             city
             country
@@ -835,9 +783,17 @@ No arguments
             assets
             to
             value
+            data {
+              typeUrl
+              value
+            }
           }
           ... on SysUpgradeTx {
             gracePeriod
+            data {
+              typeUrl
+              value
+            }
             task {
               actions
               dataHash
@@ -855,6 +811,10 @@ No arguments
           ... on ExchangeTx {
             expiredAt
             to
+            data {
+              typeUrl
+              value
+            }
             receiver {
               assets
               value
@@ -870,6 +830,10 @@ No arguments
           ... on DeclareTx {
             moniker
             pk
+            data {
+              typeUrl
+              value
+            }
             type {
               address
               hash
@@ -886,6 +850,14 @@ No arguments
             }
           }
           ... on ConsensusUpgradeTx {
+            maxBytes
+            maxCandidates
+            maxGas
+            maxValidators
+            data {
+              typeUrl
+              value
+            }
             validators {
               address
               power
@@ -944,9 +916,17 @@ No arguments
             assets
             to
             value
+            data {
+              typeUrl
+              value
+            }
           }
           ... on SysUpgradeTx {
             gracePeriod
+            data {
+              typeUrl
+              value
+            }
             task {
               actions
               dataHash
@@ -964,6 +944,10 @@ No arguments
           ... on ExchangeTx {
             expiredAt
             to
+            data {
+              typeUrl
+              value
+            }
             receiver {
               assets
               value
@@ -979,6 +963,10 @@ No arguments
           ... on DeclareTx {
             moniker
             pk
+            data {
+              typeUrl
+              value
+            }
             type {
               address
               hash
@@ -995,6 +983,14 @@ No arguments
             }
           }
           ... on ConsensusUpgradeTx {
+            maxBytes
+            maxCandidates
+            maxGas
+            maxValidators
+            data {
+              typeUrl
+              value
+            }
             validators {
               address
               power
@@ -1094,9 +1090,17 @@ No arguments
             assets
             to
             value
+            data {
+              typeUrl
+              value
+            }
           }
           ... on SysUpgradeTx {
             gracePeriod
+            data {
+              typeUrl
+              value
+            }
             task {
               actions
               dataHash
@@ -1114,6 +1118,10 @@ No arguments
           ... on ExchangeTx {
             expiredAt
             to
+            data {
+              typeUrl
+              value
+            }
             receiver {
               assets
               value
@@ -1129,6 +1137,10 @@ No arguments
           ... on DeclareTx {
             moniker
             pk
+            data {
+              typeUrl
+              value
+            }
             type {
               address
               hash
@@ -1145,6 +1157,14 @@ No arguments
             }
           }
           ... on ConsensusUpgradeTx {
+            maxBytes
+            maxCandidates
+            maxGas
+            maxValidators
+            data {
+              typeUrl
+              value
+            }
             validators {
               address
               power
@@ -1266,9 +1286,17 @@ No arguments
           assets
           to
           value
+          data {
+            typeUrl
+            value
+          }
         }
         ... on SysUpgradeTx {
           gracePeriod
+          data {
+            typeUrl
+            value
+          }
           task {
             actions
             dataHash
@@ -1286,6 +1314,10 @@ No arguments
         ... on ExchangeTx {
           expiredAt
           to
+          data {
+            typeUrl
+            value
+          }
           receiver {
             assets
             value
@@ -1301,6 +1333,10 @@ No arguments
         ... on DeclareTx {
           moniker
           pk
+          data {
+            typeUrl
+            value
+          }
           type {
             address
             hash
@@ -1317,6 +1353,14 @@ No arguments
           }
         }
         ... on ConsensusUpgradeTx {
+          maxBytes
+          maxCandidates
+          maxGas
+          maxValidators
+          data {
+            typeUrl
+            value
+          }
           validators {
             address
             power
@@ -1398,9 +1442,17 @@ No arguments
             assets
             to
             value
+            data {
+              typeUrl
+              value
+            }
           }
           ... on SysUpgradeTx {
             gracePeriod
+            data {
+              typeUrl
+              value
+            }
             task {
               actions
               dataHash
@@ -1418,6 +1470,10 @@ No arguments
           ... on ExchangeTx {
             expiredAt
             to
+            data {
+              typeUrl
+              value
+            }
             receiver {
               assets
               value
@@ -1433,6 +1489,10 @@ No arguments
           ... on DeclareTx {
             moniker
             pk
+            data {
+              typeUrl
+              value
+            }
             type {
               address
               hash
@@ -1449,6 +1509,14 @@ No arguments
             }
           }
           ... on ConsensusUpgradeTx {
+            maxBytes
+            maxCandidates
+            maxGas
+            maxValidators
+            data {
+              typeUrl
+              value
+            }
             validators {
               address
               power
@@ -1529,9 +1597,17 @@ subscription {
           assets
           to
           value
+          data {
+            typeUrl
+            value
+          }
         }
         ... on SysUpgradeTx {
           gracePeriod
+          data {
+            typeUrl
+            value
+          }
           task {
             actions
             dataHash
@@ -1549,6 +1625,10 @@ subscription {
         ... on ExchangeTx {
           expiredAt
           to
+          data {
+            typeUrl
+            value
+          }
           receiver {
             assets
             value
@@ -1564,6 +1644,10 @@ subscription {
         ... on DeclareTx {
           moniker
           pk
+          data {
+            typeUrl
+            value
+          }
           type {
             address
             hash
@@ -1580,6 +1664,14 @@ subscription {
           }
         }
         ... on ConsensusUpgradeTx {
+          maxBytes
+          maxCandidates
+          maxGas
+          maxValidators
+          data {
+            typeUrl
+            value
+          }
           validators {
             address
             power
@@ -1619,9 +1711,17 @@ subscription {
           assets
           to
           value
+          data {
+            typeUrl
+            value
+          }
         }
         ... on SysUpgradeTx {
           gracePeriod
+          data {
+            typeUrl
+            value
+          }
           task {
             actions
             dataHash
@@ -1639,6 +1739,10 @@ subscription {
         ... on ExchangeTx {
           expiredAt
           to
+          data {
+            typeUrl
+            value
+          }
           receiver {
             assets
             value
@@ -1654,6 +1758,10 @@ subscription {
         ... on DeclareTx {
           moniker
           pk
+          data {
+            typeUrl
+            value
+          }
           type {
             address
             hash
@@ -1670,6 +1778,14 @@ subscription {
           }
         }
         ... on ConsensusUpgradeTx {
+          maxBytes
+          maxCandidates
+          maxGas
+          maxValidators
+          data {
+            typeUrl
+            value
+          }
           validators {
             address
             power
@@ -1709,9 +1825,17 @@ subscription {
           assets
           to
           value
+          data {
+            typeUrl
+            value
+          }
         }
         ... on SysUpgradeTx {
           gracePeriod
+          data {
+            typeUrl
+            value
+          }
           task {
             actions
             dataHash
@@ -1729,6 +1853,10 @@ subscription {
         ... on ExchangeTx {
           expiredAt
           to
+          data {
+            typeUrl
+            value
+          }
           receiver {
             assets
             value
@@ -1744,6 +1872,10 @@ subscription {
         ... on DeclareTx {
           moniker
           pk
+          data {
+            typeUrl
+            value
+          }
           type {
             address
             hash
@@ -1760,6 +1892,14 @@ subscription {
           }
         }
         ... on ConsensusUpgradeTx {
+          maxBytes
+          maxCandidates
+          maxGas
+          maxValidators
+          data {
+            typeUrl
+            value
+          }
           validators {
             address
             power
@@ -1849,9 +1989,17 @@ subscription {
           assets
           to
           value
+          data {
+            typeUrl
+            value
+          }
         }
         ... on SysUpgradeTx {
           gracePeriod
+          data {
+            typeUrl
+            value
+          }
           task {
             actions
             dataHash
@@ -1869,6 +2017,10 @@ subscription {
         ... on ExchangeTx {
           expiredAt
           to
+          data {
+            typeUrl
+            value
+          }
           receiver {
             assets
             value
@@ -1884,6 +2036,10 @@ subscription {
         ... on DeclareTx {
           moniker
           pk
+          data {
+            typeUrl
+            value
+          }
           type {
             address
             hash
@@ -1900,6 +2056,14 @@ subscription {
           }
         }
         ... on ConsensusUpgradeTx {
+          maxBytes
+          maxCandidates
+          maxGas
+          maxValidators
+          data {
+            typeUrl
+            value
+          }
           validators {
             address
             power
@@ -1939,9 +2103,17 @@ subscription {
           assets
           to
           value
+          data {
+            typeUrl
+            value
+          }
         }
         ... on SysUpgradeTx {
           gracePeriod
+          data {
+            typeUrl
+            value
+          }
           task {
             actions
             dataHash
@@ -1959,6 +2131,10 @@ subscription {
         ... on ExchangeTx {
           expiredAt
           to
+          data {
+            typeUrl
+            value
+          }
           receiver {
             assets
             value
@@ -1974,6 +2150,10 @@ subscription {
         ... on DeclareTx {
           moniker
           pk
+          data {
+            typeUrl
+            value
+          }
           type {
             address
             hash
@@ -1990,6 +2170,14 @@ subscription {
           }
         }
         ... on ConsensusUpgradeTx {
+          maxBytes
+          maxCandidates
+          maxGas
+          maxValidators
+          data {
+            typeUrl
+            value
+          }
           validators {
             address
             power
@@ -2029,9 +2217,17 @@ subscription {
           assets
           to
           value
+          data {
+            typeUrl
+            value
+          }
         }
         ... on SysUpgradeTx {
           gracePeriod
+          data {
+            typeUrl
+            value
+          }
           task {
             actions
             dataHash
@@ -2049,6 +2245,10 @@ subscription {
         ... on ExchangeTx {
           expiredAt
           to
+          data {
+            typeUrl
+            value
+          }
           receiver {
             assets
             value
@@ -2064,6 +2264,10 @@ subscription {
         ... on DeclareTx {
           moniker
           pk
+          data {
+            typeUrl
+            value
+          }
           type {
             address
             hash
@@ -2080,6 +2284,14 @@ subscription {
           }
         }
         ... on ConsensusUpgradeTx {
+          maxBytes
+          maxCandidates
+          maxGas
+          maxValidators
+          data {
+            typeUrl
+            value
+          }
           validators {
             address
             power
@@ -2119,9 +2331,17 @@ subscription {
           assets
           to
           value
+          data {
+            typeUrl
+            value
+          }
         }
         ... on SysUpgradeTx {
           gracePeriod
+          data {
+            typeUrl
+            value
+          }
           task {
             actions
             dataHash
@@ -2139,6 +2359,10 @@ subscription {
         ... on ExchangeTx {
           expiredAt
           to
+          data {
+            typeUrl
+            value
+          }
           receiver {
             assets
             value
@@ -2154,6 +2378,10 @@ subscription {
         ... on DeclareTx {
           moniker
           pk
+          data {
+            typeUrl
+            value
+          }
           type {
             address
             hash
@@ -2170,6 +2398,14 @@ subscription {
           }
         }
         ... on ConsensusUpgradeTx {
+          maxBytes
+          maxCandidates
+          maxGas
+          maxValidators
+          data {
+            typeUrl
+            value
+          }
           validators {
             address
             power
@@ -2209,9 +2445,17 @@ subscription {
           assets
           to
           value
+          data {
+            typeUrl
+            value
+          }
         }
         ... on SysUpgradeTx {
           gracePeriod
+          data {
+            typeUrl
+            value
+          }
           task {
             actions
             dataHash
@@ -2229,6 +2473,10 @@ subscription {
         ... on ExchangeTx {
           expiredAt
           to
+          data {
+            typeUrl
+            value
+          }
           receiver {
             assets
             value
@@ -2244,6 +2492,10 @@ subscription {
         ... on DeclareTx {
           moniker
           pk
+          data {
+            typeUrl
+            value
+          }
           type {
             address
             hash
@@ -2260,6 +2512,14 @@ subscription {
           }
         }
         ... on ConsensusUpgradeTx {
+          maxBytes
+          maxCandidates
+          maxGas
+          maxValidators
+          data {
+            typeUrl
+            value
+          }
           validators {
             address
             power
@@ -2302,9 +2562,17 @@ subscription {
           assets
           to
           value
+          data {
+            typeUrl
+            value
+          }
         }
         ... on SysUpgradeTx {
           gracePeriod
+          data {
+            typeUrl
+            value
+          }
           task {
             actions
             dataHash
@@ -2322,6 +2590,10 @@ subscription {
         ... on ExchangeTx {
           expiredAt
           to
+          data {
+            typeUrl
+            value
+          }
           receiver {
             assets
             value
@@ -2337,6 +2609,10 @@ subscription {
         ... on DeclareTx {
           moniker
           pk
+          data {
+            typeUrl
+            value
+          }
           type {
             address
             hash
@@ -2353,6 +2629,14 @@ subscription {
           }
         }
         ... on ConsensusUpgradeTx {
+          maxBytes
+          maxCandidates
+          maxGas
+          maxValidators
+          data {
+            typeUrl
+            value
+          }
           validators {
             address
             power
@@ -2392,9 +2676,17 @@ subscription {
           assets
           to
           value
+          data {
+            typeUrl
+            value
+          }
         }
         ... on SysUpgradeTx {
           gracePeriod
+          data {
+            typeUrl
+            value
+          }
           task {
             actions
             dataHash
@@ -2412,6 +2704,10 @@ subscription {
         ... on ExchangeTx {
           expiredAt
           to
+          data {
+            typeUrl
+            value
+          }
           receiver {
             assets
             value
@@ -2427,6 +2723,10 @@ subscription {
         ... on DeclareTx {
           moniker
           pk
+          data {
+            typeUrl
+            value
+          }
           type {
             address
             hash
@@ -2443,6 +2743,14 @@ subscription {
           }
         }
         ... on ConsensusUpgradeTx {
+          maxBytes
+          maxCandidates
+          maxGas
+          maxValidators
+          data {
+            typeUrl
+            value
+          }
           validators {
             address
             power
@@ -2482,9 +2790,17 @@ subscription {
           assets
           to
           value
+          data {
+            typeUrl
+            value
+          }
         }
         ... on SysUpgradeTx {
           gracePeriod
+          data {
+            typeUrl
+            value
+          }
           task {
             actions
             dataHash
@@ -2502,6 +2818,10 @@ subscription {
         ... on ExchangeTx {
           expiredAt
           to
+          data {
+            typeUrl
+            value
+          }
           receiver {
             assets
             value
@@ -2517,6 +2837,10 @@ subscription {
         ... on DeclareTx {
           moniker
           pk
+          data {
+            typeUrl
+            value
+          }
           type {
             address
             hash
@@ -2533,6 +2857,14 @@ subscription {
           }
         }
         ... on ConsensusUpgradeTx {
+          maxBytes
+          maxCandidates
+          maxGas
+          maxValidators
+          data {
+            typeUrl
+            value
+          }
           validators {
             address
             power
@@ -2572,9 +2904,17 @@ subscription {
           assets
           to
           value
+          data {
+            typeUrl
+            value
+          }
         }
         ... on SysUpgradeTx {
           gracePeriod
+          data {
+            typeUrl
+            value
+          }
           task {
             actions
             dataHash
@@ -2592,6 +2932,10 @@ subscription {
         ... on ExchangeTx {
           expiredAt
           to
+          data {
+            typeUrl
+            value
+          }
           receiver {
             assets
             value
@@ -2607,6 +2951,10 @@ subscription {
         ... on DeclareTx {
           moniker
           pk
+          data {
+            typeUrl
+            value
+          }
           type {
             address
             hash
@@ -2623,6 +2971,14 @@ subscription {
           }
         }
         ... on ConsensusUpgradeTx {
+          maxBytes
+          maxCandidates
+          maxGas
+          maxValidators
+          data {
+            typeUrl
+            value
+          }
           validators {
             address
             power
@@ -2662,9 +3018,17 @@ subscription {
           assets
           to
           value
+          data {
+            typeUrl
+            value
+          }
         }
         ... on SysUpgradeTx {
           gracePeriod
+          data {
+            typeUrl
+            value
+          }
           task {
             actions
             dataHash
@@ -2682,6 +3046,10 @@ subscription {
         ... on ExchangeTx {
           expiredAt
           to
+          data {
+            typeUrl
+            value
+          }
           receiver {
             assets
             value
@@ -2697,6 +3065,10 @@ subscription {
         ... on DeclareTx {
           moniker
           pk
+          data {
+            typeUrl
+            value
+          }
           type {
             address
             hash
@@ -2713,6 +3085,14 @@ subscription {
           }
         }
         ... on ConsensusUpgradeTx {
+          maxBytes
+          maxCandidates
+          maxGas
+          maxValidators
+          data {
+            typeUrl
+            value
+          }
           validators {
             address
             power
@@ -2752,9 +3132,17 @@ subscription {
           assets
           to
           value
+          data {
+            typeUrl
+            value
+          }
         }
         ... on SysUpgradeTx {
           gracePeriod
+          data {
+            typeUrl
+            value
+          }
           task {
             actions
             dataHash
@@ -2772,6 +3160,10 @@ subscription {
         ... on ExchangeTx {
           expiredAt
           to
+          data {
+            typeUrl
+            value
+          }
           receiver {
             assets
             value
@@ -2787,6 +3179,10 @@ subscription {
         ... on DeclareTx {
           moniker
           pk
+          data {
+            typeUrl
+            value
+          }
           type {
             address
             hash
@@ -2803,6 +3199,14 @@ subscription {
           }
         }
         ... on ConsensusUpgradeTx {
+          maxBytes
+          maxCandidates
+          maxGas
+          maxValidators
+          data {
+            typeUrl
+            value
+          }
           validators {
             address
             power
@@ -2842,9 +3246,17 @@ subscription {
           assets
           to
           value
+          data {
+            typeUrl
+            value
+          }
         }
         ... on SysUpgradeTx {
           gracePeriod
+          data {
+            typeUrl
+            value
+          }
           task {
             actions
             dataHash
@@ -2862,6 +3274,10 @@ subscription {
         ... on ExchangeTx {
           expiredAt
           to
+          data {
+            typeUrl
+            value
+          }
           receiver {
             assets
             value
@@ -2877,6 +3293,10 @@ subscription {
         ... on DeclareTx {
           moniker
           pk
+          data {
+            typeUrl
+            value
+          }
           type {
             address
             hash
@@ -2893,6 +3313,14 @@ subscription {
           }
         }
         ... on ConsensusUpgradeTx {
+          maxBytes
+          maxCandidates
+          maxGas
+          maxValidators
+          data {
+            typeUrl
+            value
+          }
           validators {
             address
             power
@@ -2932,9 +3360,17 @@ subscription {
           assets
           to
           value
+          data {
+            typeUrl
+            value
+          }
         }
         ... on SysUpgradeTx {
           gracePeriod
+          data {
+            typeUrl
+            value
+          }
           task {
             actions
             dataHash
@@ -2952,6 +3388,10 @@ subscription {
         ... on ExchangeTx {
           expiredAt
           to
+          data {
+            typeUrl
+            value
+          }
           receiver {
             assets
             value
@@ -2967,6 +3407,10 @@ subscription {
         ... on DeclareTx {
           moniker
           pk
+          data {
+            typeUrl
+            value
+          }
           type {
             address
             hash
@@ -2983,6 +3427,14 @@ subscription {
           }
         }
         ... on ConsensusUpgradeTx {
+          maxBytes
+          maxCandidates
+          maxGas
+          maxValidators
+          data {
+            typeUrl
+            value
+          }
           validators {
             address
             power
@@ -3045,9 +3497,17 @@ mutation {
           assets
           to
           value
+          data {
+            typeUrl
+            value
+          }
         }
         ... on SysUpgradeTx {
           gracePeriod
+          data {
+            typeUrl
+            value
+          }
           task {
             actions
             dataHash
@@ -3065,6 +3525,10 @@ mutation {
         ... on ExchangeTx {
           expiredAt
           to
+          data {
+            typeUrl
+            value
+          }
           receiver {
             assets
             value
@@ -3080,6 +3544,10 @@ mutation {
         ... on DeclareTx {
           moniker
           pk
+          data {
+            typeUrl
+            value
+          }
           type {
             address
             hash
@@ -3096,6 +3564,14 @@ mutation {
           }
         }
         ... on ConsensusUpgradeTx {
+          maxBytes
+          maxCandidates
+          maxGas
+          maxValidators
+          data {
+            typeUrl
+            value
+          }
           validators {
             address
             power
