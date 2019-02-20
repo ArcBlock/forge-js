@@ -27,6 +27,9 @@ const components = {
 const TxCard = ({ tx, ...rest }) => {
   const type = upperFirst(camelCase(tx.type)) || tx.tx.itx.__typename.replace(/Tx$/, ''); // eslint-disable-line
   const TxComponent = components[type] || TxDefault;
+  if (type === 'Exchange') {
+    console.log(tx);
+  }
   return (
     <Container>
       <TxComponent tx={tx} {...rest} />

@@ -11,18 +11,32 @@ import IconFa from '../../../../components/iconfa';
 
 const TransferTxSummary = ({ tx, theme, ...rest }) => (
   <Container {...rest}>
-    <div className="info-row">
+    <div className="info-row info-row--full">
       <Typography component="p" className="hash" title={tx.hash}>
-        <Link to={`/node/explorer/txs/${tx.hash}`}>{tx.hash}</Link>
+        <Link to={`/node/explorer/txs/${tx.hash}`}># {tx.hash}</Link>
       </Typography>
       <Typography component="p" className="time" title={tx.time}>
         {moment(tx.time).fromNow()}
       </Typography>
     </div>
     <div className="info-row">
-      <Typography component="p" className="sender" title={tx.tx.from}>
-        <Link to={`/node/explorer/accounts/${tx.tx.from}`}>{tx.tx.from}</Link>
-      </Typography>
+      <div className="sender">
+        <Typography component="p" title={tx.tx.from}>
+          <Link to={`/node/explorer/accounts/${tx.tx.from}`}>{tx.tx.from}</Link>
+        </Typography>
+        <div className="meta">
+          {!!(Array.isArray(tx.tx.itx.assets) && tx.tx.itx.assets.length) && (
+            <React.Fragment>
+              <IconFa name="gem" size={14} className="meta-icon" />
+              <span>+</span>
+            </React.Fragment>
+          )}
+          <span>
+            <IconFa name="coins" size={14} className="meta-icon" />
+            <span>{tx.tx.itx.value} arc</span>
+          </span>
+        </div>
+      </div>
       <IconFa
         name="arrow-right"
         size={14}
@@ -30,11 +44,12 @@ const TransferTxSummary = ({ tx, theme, ...rest }) => (
         color={theme.colors.blue}
         className="type-icon"
       />
-      <Typography component="p" className="receiver" title={tx.tx.itx.to}>
-        <Link to={`/node/explorer/accounts/${tx.tx.itx.to}`}>{tx.tx.itx.to}</Link>
-      </Typography>
+      <div className="receiver">
+        <Typography component="p" title={tx.tx.itx.to}>
+          <Link to={`/node/explorer/accounts/${tx.tx.itx.to}`}>{tx.tx.itx.to}</Link>
+        </Typography>
+      </div>
     </div>
-    <div className="info-row">Transfer: Assets + Token</div>
   </Container>
 );
 
@@ -42,8 +57,8 @@ const Container = styled.div`
   .info-row {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+    justify-content: flex-start;
+    align-items: flex-start;
     margin-bottom: 10px;
 
     &:nth-last-of-type() {
@@ -58,32 +73,48 @@ const Container = styled.div`
     }
   }
 
+  .info-row--full {
+    justify-content: space-between;
+    align-items: center;
+  }
+
   .time,
   .hash a {
     color: #9b9b9b;
-    font-size: 14px;
+    font-size: 12px;
   }
 
   .sender,
   .receiver {
-    width: 40%;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    text-align: left;
-    font-size: 14px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    p {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      text-align: left;
+      height: 28px;
+      margin-bottom: 5px;
+    }
 
     a {
       color: #222222;
+      font-size: 14px;
     }
   }
 
-  .receiver {
-    text-align: right;
+  .type-icon {
+    margin: 0 16px;
   }
 
-  .type-icon {
-    margin: auto 5px;
+  .meta {
+    font-size: 14px;
+    .meta-icon {
+      margin-right: 8px;
+    }
   }
 `;
 

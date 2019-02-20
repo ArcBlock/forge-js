@@ -29,7 +29,7 @@ const Icon = ({ name, color, size, variant, rounded, style, className, ...rest }
 
 Icon.propTypes = {
   name: PropTypes.string.isRequired,
-  color: PropTypes.string.isRequired,
+  color: PropTypes.string,
   rounded: PropTypes.bool,
   variant: PropTypes.string,
   size: PropTypes.number,
@@ -39,6 +39,7 @@ Icon.propTypes = {
 Icon.defaultProps = {
   rounded: false,
   variant: 'light',
+  color: '#222222',
   size: 30,
   style: {},
 };

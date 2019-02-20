@@ -20,10 +20,10 @@
     debug "^3.1.0"
     graphql "^0.13.2"
 
-"@arcblock/sdk-util@^0.18.1":
-  version "0.18.1"
-  resolved "https://registry.npmjs.org/@arcblock/sdk-util/-/sdk-util-0.18.1.tgz#55793a487f249830d343a0ba8667b1afb00b80e9"
-  integrity sha512-pbhCYG2l5mHmnq5u/WLEWhIB8MqaWB7hC3QkuDJ/+Yp9NonHQC3ueR7e6H04LrvCS0y60O2xa3WFrw5Qbx4Xvw==
+"@arcblock/sdk-util@^0.18.2":
+  version "0.18.2"
+  resolved "https://registry.npmjs.org/@arcblock/sdk-util/-/sdk-util-0.18.2.tgz#ff2c7dd8cdd338ce1c298028ae2e2051c17c3c85"
+  integrity sha512-kG9MjtpLrxhBCoFxqnYdoU2XK2ffmPImP303xx9NgUgvxOLo7AxVxrzBF6y6MVANqrL3V2VnmYaSvsbdY1ZfrQ==
   dependencies:
     axios "^0.18.0"
     debug "^3.1.0"
