@@ -23,7 +23,7 @@ const components = {
 };
 
 const TxCard = ({ tx, ...rest }) => {
-  console.log(tx);
+  // const type = tx.type || tx.tx.itx.__typename.replace(/Tx$/, ''); // eslint-disable-line
   const TxComponent = components[tx.type] || TxDefault;
   return (
     <Container>
@@ -37,17 +37,6 @@ const Container = styled.div`
   margin-bottom: ${props => props.theme.spacing.unit * 5}px;
   padding-left: ${props => props.theme.spacing.unit * 2}px;
   border-left: 1px solid ${props => props.theme.colors.gray};
-
-  .type-icon {
-    width: 28px;
-    height: 28px;
-    border-radius: 14px;
-    border: 2px solid ${props => props.theme.colors.blue};
-    color: ${props => props.theme.colors.blue};
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
 `;
 
 TxCard.propTypes = {

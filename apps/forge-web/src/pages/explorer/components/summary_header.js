@@ -1,50 +1,60 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import isEqual from 'lodash/isEqual';
 
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 
-const SummaryHeader = ({ type, title, meta, badge, badgeTip, ...rest }) => (
-  <Container {...rest}>
-    <Typography component="h3" className="type">
-      {type}
-    </Typography>
-    <Grid container spacing={40}>
-      <Grid item xs={12} sm={9}>
-        <Typography component="p" className="title" gutterBottom>
-          {title}
-        </Typography>
-        {meta.map(x => (
-          <Typography key={x.key} component="p" className="meta" gutterBottom>
-            <span>{x.key}:</span> {x.value}
-          </Typography>
-        ))}
-      </Grid>
-      <Grid item xs={12} sm={3}>
-        <Typography component="p" className="badge">
-          {badge}
-        </Typography>
-        <Typography component="p" className="badge-tip">
-          {badgeTip}
-        </Typography>
-      </Grid>
-    </Grid>
-  </Container>
-);
+export default class SummaryHeader extends React.Component {
+  static propTypes = {
+    type: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    meta: PropTypes.arrayOf(
+      PropTypes.shape({
+        key: PropTypes.string.isRequired,
+        value: PropTypes.string.isRequired,
+      })
+    ).isRequired,
+    badge: PropTypes.any.isRequired,
+    badgeTip: PropTypes.string.isRequired,
+  };
 
-SummaryHeader.propTypes = {
-  type: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  meta: PropTypes.arrayOf(
-    PropTypes.shape({
-      key: PropTypes.string.isRequired,
-      value: PropTypes.string.isRequired,
-    })
-  ).isRequired,
-  badge: PropTypes.any.isRequired,
-  badgeTip: PropTypes.string.isRequired,
-};
+  shouldComponentUpdate(nextProps, nextState) {
+    return !isEqual(this.props, nextProps) || !isEqual(this.state, nextState);
+  }
+
+  render() {
+    const { type, title, meta, badge, badgeTip, ...rest } = this.props;
+    return (
+      <Container {...rest}>
+        <Typography component="h3" className="type">
+          {type}
+        </Typography>
+        <Grid container spacing={40}>
+          <Grid item xs={12} sm={9}>
+            <Typography component="p" className="title" gutterBottom>
+              {title}
+            </Typography>
+            {meta.map(x => (
+              <Typography key={x.key} component="p" className="meta" gutterBottom>
+                <span>{x.key}:</span> {x.value}
+              </Typography>
+            ))}
+          </Grid>
+          <Grid item xs={12} sm={3}>
+            <Typography component="p" className="badge">
+              {badge}
+            </Typography>
+            <Typography component="p" className="badge-tip">
+              {badgeTip}
+            </Typography>
+          </Grid>
+        </Grid>
+      </Container>
+    );
+  }
+}
 
 /* padding: ${props => props.theme.spacing.unit * 3}px; */
 const Container = styled.div`
@@ -86,5 +96,3 @@ const Container = styled.div`
     text-align: right;
   }
 `;
-
-export default SummaryHeader;

@@ -65,7 +65,7 @@ class BlockDetail extends Page {
               {this.renderPagination()}
               <div className="txs">
                 {txs.map(x => (
-                  <TxCard key={x.signature} tx={x} />
+                  <TxCard key={x.hash} tx={x} />
                 ))}
               </div>
               {this.renderPagination()}

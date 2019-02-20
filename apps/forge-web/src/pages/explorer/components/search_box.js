@@ -1,12 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+
+import { withTheme } from '@material-ui/core/styles';
 import { withRouter, Link } from 'react-router-dom';
 
-import Icon8 from '../../../components/icon8';
+import IconFa from '../../../components/iconfa';
 
 class SearchBox extends React.Component {
   static propTypes = {
+    theme: PropTypes.object.isRequired,
     // match: PropTypes.object.isRequired,
     location: PropTypes.object.isRequired,
     // history: PropTypes.object.isRequired,
@@ -20,16 +23,17 @@ class SearchBox extends React.Component {
     {
       name: 'txs',
       url: '/node/explorer/txs',
-      icon: 'check',
+      icon: 'file-invoice',
     },
     {
       name: 'blocks',
       url: '/node/explorer/blocks',
-      icon: 'cancel',
+      icon: 'boxes',
     },
   ];
 
   render() {
+    const { theme } = this.props;
     return (
       <Container>
         <div className="links">
@@ -38,11 +42,11 @@ class SearchBox extends React.Component {
               key={x.name}
               to={x.url}
               className={`link ${this.isActive(x.name) ? 'link--active' : ''}`}>
-              <Icon8
+              <IconFa
                 className="link__icon"
                 name={x.icon}
-                size={20}
-                color={this.isActive(x.name) ? '#222222' : '#9b9b9b'}
+                size={16}
+                color={this.isActive(x.name) ? theme.colors.gray : theme.colors.minor}
               />
               <span className="link__text">{x.name}</span>
             </Link>
@@ -96,4 +100,4 @@ const Container = styled.div`
   }
 `;
 
-export default withRouter(SearchBox);
+export default withRouter(withTheme()(SearchBox));

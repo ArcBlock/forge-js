@@ -1,13 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 import moment from 'moment';
+import { withTheme } from '@material-ui/core/styles';
 
+import { Link } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
-import DeclareIcon from '@material-ui/icons/RecordVoiceOver';
 
-const DeclareTxSummary = ({ tx, ...rest }) => (
+import IconFa from '../../../../components/iconfa';
+
+const DeclareTxSummary = ({ tx, theme, ...rest }) => (
   <Container {...rest}>
     <div className="info-row">
       <Typography component="p" className="action">
@@ -18,9 +20,13 @@ const DeclareTxSummary = ({ tx, ...rest }) => (
       </Typography>
     </div>
     <div className="info-row" style={{ justifyContent: 'flex-start' }}>
-      <div className="type-icon">
-        <DeclareIcon size={25} color="inherit" />
-      </div>
+      <IconFa
+        name="bullhorn"
+        size={14}
+        rounded={true}
+        color={theme.colors.blue}
+        className="type-icon"
+      />
       <Typography component="p" className="value" title={tx.receiver}>
         {tx.tx.itx.moniker}
       </Typography>
@@ -65,12 +71,14 @@ const Container = styled.div`
 
   .value,
   .hash {
-    width: 40%;
+    width: auto;
+    max-width: 49%;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     text-align: left;
     font-size: 14px;
+    margin-right: ${props => props.theme.spacing.unit}px;
 
     a {
       color: #222222;
@@ -84,6 +92,7 @@ const Container = styled.div`
 
 DeclareTxSummary.propTypes = {
   tx: PropTypes.object.isRequired,
+  theme: PropTypes.object.isRequired,
 };
 
-export default DeclareTxSummary;
+export default withTheme()(DeclareTxSummary);

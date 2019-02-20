@@ -2,13 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import moment from 'moment';
-import { Link } from 'react-router-dom';
+import { withTheme } from '@material-ui/core/styles';
 
+import { Link } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
 
-import Icon8 from '../../../components/icon8';
+import IconFa from '../../../components/iconfa';
 
-const BlockCard = ({ block, ...rest }) => (
+const BlockCard = ({ block, theme, ...rest }) => (
   <Container {...rest}>
     <div className="left">
       <Typography component="p" className="hash" gutterBottom>
@@ -17,7 +18,7 @@ const BlockCard = ({ block, ...rest }) => (
         </Link>
       </Typography>
       <div className="summary">
-        <Icon8 name="cancel" size={28} color="#4e6af6" className="icon" />
+        <IconFa name="boxes" size={14} rounded={true} color={theme.colors.blue} className="icon" />
         <Typography component="p">
           {block.height} ({block.numTxs} txs)
         </Typography>
@@ -40,7 +41,7 @@ const BlockCard = ({ block, ...rest }) => (
 const Container = styled.div`
   margin-bottom: ${props => props.theme.spacing.unit * 4}px;
   padding-left: ${props => props.theme.spacing.unit * 2}px;
-  border-left: 1px solid #222222;
+  border-left: 1px solid ${props => props.theme.colors.gray};
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -75,6 +76,7 @@ const Container = styled.div`
 
 BlockCard.propTypes = {
   block: PropTypes.object.isRequired,
+  theme: PropTypes.object.isRequired,
 };
 
-export default BlockCard;
+export default withTheme()(BlockCard);

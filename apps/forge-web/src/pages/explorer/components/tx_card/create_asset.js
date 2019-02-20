@@ -1,13 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 import moment from 'moment';
+import { withTheme } from '@material-ui/core/styles';
 
+import { Link } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
-import AssetIcon from '@material-ui/icons/MonetizationOn';
 
-const CreateAssetTx = ({ tx, ...rest }) => (
+import IconFa from '../../../../components/iconfa';
+
+const CreateAssetTx = ({ tx, theme, ...rest }) => (
   <Container {...rest}>
     <div className="info-row">
       <Typography component="p" className="action">
@@ -18,9 +20,7 @@ const CreateAssetTx = ({ tx, ...rest }) => (
       </Typography>
     </div>
     <div className="info-row" style={{ justifyContent: 'flex-start' }}>
-      <div className="type-icon">
-        <AssetIcon className="transfer-icon" size={25} color="inherit" />
-      </div>
+      <IconFa name="gem" size={14} rounded={true} color={theme.colors.blue} className="type-icon" />
       <Typography component="p" className="value" title={tx.receiver}>
         {tx.tx.itx.data.value}
       </Typography>
@@ -78,6 +78,7 @@ const Container = styled.div`
 
 CreateAssetTx.propTypes = {
   tx: PropTypes.object.isRequired,
+  theme: PropTypes.object.isRequired,
 };
 
-export default CreateAssetTx;
+export default withTheme()(CreateAssetTx);

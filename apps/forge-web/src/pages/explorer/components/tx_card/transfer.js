@@ -1,13 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 import moment from 'moment';
+import { withTheme } from '@material-ui/core/styles';
 
+import { Link } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
-import TransferIcon from '@material-ui/icons/ArrowForwardRounded';
 
-const TransferTxSummary = ({ tx, ...rest }) => (
+import IconFa from '../../../../components/iconfa';
+
+const TransferTxSummary = ({ tx, theme, ...rest }) => (
   <Container {...rest}>
     <div className="info-row">
       <Typography component="p" className="hash" title={tx.hash}>
@@ -21,14 +23,18 @@ const TransferTxSummary = ({ tx, ...rest }) => (
       <Typography component="p" className="sender" title={tx.sender}>
         <Link to={`/node/explorer/accounts/${tx.sender}`}>{tx.sender}</Link>
       </Typography>
-      <div className="type-icon">
-        <TransferIcon className="transfer-icon" size={25} color="inherit" />
-      </div>
+      <IconFa
+        name="arrow-right"
+        size={14}
+        rounded={true}
+        color={theme.colors.blue}
+        className="type-icon"
+      />
       <Typography component="p" className="receiver" title={tx.receiver}>
         <Link to={`/node/explorer/accounts/${tx.receiver}`}>{tx.receiver}</Link>
       </Typography>
     </div>
-    <div className="info-row">Assets + Token</div>
+    <div className="info-row">Transfer: Assets + Token</div>
   </Container>
 );
 
@@ -83,6 +89,7 @@ const Container = styled.div`
 
 TransferTxSummary.propTypes = {
   tx: PropTypes.object.isRequired,
+  theme: PropTypes.object.isRequired,
 };
 
-export default TransferTxSummary;
+export default withTheme()(TransferTxSummary);
