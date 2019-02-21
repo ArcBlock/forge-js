@@ -215,6 +215,7 @@ class Dashboard extends React.Component {
 
 const Content = styled.div`
   height: ${props => (props.direction === 'row' ? '100%' : 'auto')};
+  overflow: ${props => (props.direction === 'row' ? 'hidden' : 'scroll')};
   flex: 1 0 auto;
   display: flex;
   flex-direction: ${props => props.direction};
