@@ -15,6 +15,9 @@ class FilterStrip extends React.Component {
     theme: PropTypes.object.isRequired,
     location: PropTypes.object.isRequired,
     showFilter: PropTypes.bool,
+    supportedTxs: PropTypes.arrayOf(PropTypes.string).isRequired,
+    onApplyFilter: PropTypes.func.isRequired,
+    selectedTxs: PropTypes.arrayOf(PropTypes.string).isRequired,
   };
 
   static defaultProps = {
@@ -35,7 +38,7 @@ class FilterStrip extends React.Component {
   ];
 
   render() {
-    const { theme, showFilter } = this.props;
+    const { theme, showFilter, supportedTxs, selectedTxs, onApplyFilter } = this.props;
     return (
       <Container>
         <div className="links">
@@ -57,7 +60,13 @@ class FilterStrip extends React.Component {
           ))}
         </div>
         <div className="search-filter">
-          {showFilter && <FilterPanel />}
+          {showFilter && (
+            <FilterPanel
+              supportedTxs={supportedTxs}
+              selectedTxs={selectedTxs}
+              onApplyFilter={onApplyFilter}
+            />
+          )}
           <SearchBox />
         </div>
       </Container>

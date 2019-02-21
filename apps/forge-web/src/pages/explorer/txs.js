@@ -37,6 +37,7 @@ class TransactionList extends Page {
       currentPage: Number(params.page) || 1,
       pageSize: 50,
       pageParam: { next: false, cursor: null },
+      selectedTxs: [],
     };
 
     this.loadTransactions = this.loadTransactions.bind(this);
@@ -47,9 +48,8 @@ class TransactionList extends Page {
     this.loadChainInfo(this.loadTransactions);
   }
 
-  // TODO: add filter feature
   render() {
-    const { loading, loadingTxs, chainInfo, txs, currentPage, pageSize } = this.state;
+    const { loading, loadingTxs, chainInfo, txs, currentPage, pageSize, selectedTxs } = this.state;
     return (
       <Layout title="Transactions" cookies={this.cookies}>
         <Container>
@@ -66,7 +66,14 @@ class TransactionList extends Page {
               ]}
             />
           )}
-          {chainInfo && <FilterStrip />}
+          {chainInfo && (
+            <FilterStrip
+              showFilter={true}
+              supportedTxs={chainInfo.supportedTxs}
+              selectedTxs={selectedTxs}
+              onApplyFilter={this.onApplyFilter}
+            />
+          )}
           {loadingTxs && <CircularProgress />}
           {!loadingTxs && txs && (
             <div className="txs">
@@ -88,6 +95,10 @@ class TransactionList extends Page {
       </Layout>
     );
   }
+
+  onApplyFilter = selectedTxs => {
+    console.log('onApplyFilter', { selectedTxs });
+  };
 
   onChangePage(page) {
     if (this.state.currentPage === page) {
