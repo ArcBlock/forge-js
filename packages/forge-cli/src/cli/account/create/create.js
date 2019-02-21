@@ -1,4 +1,5 @@
 const fuzzy = require('fuzzy');
+const chalk = require('chalk');
 const shell = require('shelljs');
 const inquirer = require('inquirer');
 const { config, createRpcClient, cache } = require('core/env');
@@ -98,8 +99,11 @@ async function execute(data) {
     });
     shell.echo(hr);
     shell.echo(`${symbols.success} account unlocked!`);
-    shell.echo(hr);
-    shell.exec(`forge account ${res.wallet.address}`);
+    shell.echo(
+      `${symbols.info} run ${chalk.cyan(
+        `forge account ${res.wallet.address}`
+      )} to inspect account state`
+    );
   } catch (err) {
     console.error('error', err);
   }
