@@ -34,7 +34,7 @@ class TransactionList extends Page {
       txs: null,
       chainInfo: null,
       currentPage: Number(params.page) || 1,
-      pageSize: 200,
+      pageSize: 50,
       pageParam: { next: false, cursor: null },
     };
 

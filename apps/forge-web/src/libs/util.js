@@ -1,6 +1,8 @@
 /* eslint import/prefer-default-export:"off" */
 import Cookie from 'js-cookie';
 import browserLang from 'browser-lang';
+import camelCase from 'lodash/camelCase';
+import upperFirst from 'lodash/upperFirst';
 import { languages, translations } from './locale';
 import { COOKIE_LANGUAGE } from './constant';
 
@@ -29,4 +31,8 @@ export function parseQuery(str) {
       acc[key] = value;
       return acc;
     }, {});
+}
+
+export function getTxType(tx) {
+  return upperFirst(camelCase(tx.type)) || tx.tx.itx.__typename.replace(/Tx$/, ''); // eslint-disable-line
 }

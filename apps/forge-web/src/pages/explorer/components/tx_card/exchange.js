@@ -14,7 +14,7 @@ const ExchangeTxSummary = ({ tx, theme, ...rest }) => (
   <Container {...rest}>
     <div className="info-row info-row--full">
       <Typography component="p" className="hash" title={tx.hash}>
-        <Link to={`/node/explorer/txs/${tx.hash}`}>{tx.hash}</Link>
+        <Link to={`/node/explorer/txs/${tx.hash}`}># {tx.hash}</Link>
       </Typography>
       <Typography component="p" className="time" title={tx.time}>
         {moment(tx.time).fromNow()}

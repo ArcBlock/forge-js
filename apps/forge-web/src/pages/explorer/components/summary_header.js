@@ -12,12 +12,17 @@ export default class SummaryHeader extends React.Component {
     title: PropTypes.string.isRequired,
     meta: PropTypes.arrayOf(
       PropTypes.shape({
-        key: PropTypes.string.isRequired,
-        value: PropTypes.string.isRequired,
+        key: PropTypes.any.isRequired,
+        value: PropTypes.any.isRequired,
       })
     ).isRequired,
-    badge: PropTypes.any.isRequired,
-    badgeTip: PropTypes.string.isRequired,
+    badge: PropTypes.any,
+    badgeTip: PropTypes.string,
+  };
+
+  static defaultProps = {
+    badge: '',
+    badgeTip: '',
   };
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -26,30 +31,41 @@ export default class SummaryHeader extends React.Component {
 
   render() {
     const { type, title, meta, badge, badgeTip, ...rest } = this.props;
+    const leftWidth = !badge && !badgeTip ? 12 : 9;
     return (
       <Container {...rest}>
         <Typography component="h3" className="type">
           {type}
         </Typography>
         <Grid container spacing={40}>
-          <Grid item xs={12} sm={9}>
+          <Grid item xs={12} sm={leftWidth}>
             <Typography component="p" className="title" gutterBottom>
               {title}
             </Typography>
             {meta.map(x => (
               <Typography key={x.key} component="p" className="meta" gutterBottom>
-                <span>{x.key}:</span> {x.value}
+                <span>
+                  {x.key}
+                  {typeof x.key === 'string' ? ':' : ''}
+                </span>{' '}
+                {x.value}
               </Typography>
             ))}
           </Grid>
-          <Grid item xs={12} sm={3}>
-            <Typography component="p" className="badge">
-              {badge}
-            </Typography>
-            <Typography component="p" className="badge-tip">
-              {badgeTip}
-            </Typography>
-          </Grid>
+          {(!!badge || !!badgeTip) && (
+            <Grid item xs={12} sm={3}>
+              {!!badge && (
+                <Typography component="p" className="badge">
+                  {badge}
+                </Typography>
+              )}
+              {!!badgeTip && (
+                <Typography component="p" className="badge-tip">
+                  {badgeTip}
+                </Typography>
+              )}
+            </Grid>
+          )}
         </Grid>
       </Container>
     );
@@ -66,6 +82,7 @@ const Container = styled.div`
     font-size: 14px;
     letter-spacing: 2px;
     color: #9b9b9b;
+    margin-bottom: 10px;
   }
 
   .title {
@@ -78,6 +95,9 @@ const Container = styled.div`
   .meta {
     font-size: 14px;
     color: #9b9b9b;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
 
     span {
       color: #222222;

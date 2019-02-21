@@ -34,11 +34,6 @@ const DeclareTxSummary = ({ tx, theme, ...rest }) => (
         <Link to={`/node/explorer/txs/${tx.hash}`}>{tx.hash}</Link>
       </Typography>
     </div>
-    <div className="info-row">
-      <Typography component="p" className="type">
-        {JSON.stringify(tx.tx.itx.type)}
-      </Typography>
-    </div>
   </Container>
 );
 
