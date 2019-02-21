@@ -17,6 +17,8 @@ class SearchBox extends React.Component {
     loading: false,
   };
 
+  placeholder = 'Search by block height/tx hash/account address';
+
   render() {
     return (
       <Container>
@@ -25,14 +27,17 @@ class SearchBox extends React.Component {
           isLoading={this.state.loading}
           className="react-select-container"
           classNamePrefix="react-select"
-          noOptionsMessage={() => 'Oops, nothing match found'}
-          placeholder="Search by Address/Tx hash/Block"
+          noOptionsMessage={this.noOptionsMessage}
+          placeholder={this.placeholder}
           loadOptions={this.doSearch}
           onChange={this.onSelectSearch}
         />
       </Container>
     );
   }
+
+  // prettier-ignore
+  noOptionsMessage = ({ inputValue }) => (inputValue ? 'Oops, nothing match found' : this.placeholder);
 
   onSelectSearch = ({ value }, { action }) => {
     if (action === 'select-option' && value) {
