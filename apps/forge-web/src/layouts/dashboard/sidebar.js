@@ -39,7 +39,7 @@ class Sidebar extends React.Component {
   renderMenuItem(url, name, title) {
     const active = this.isSelected(url, name);
     return (
-      <MenuItem active={active}>
+      <MenuItem key={url} active={active}>
         <Link to={url} title={title}>
           <Icon8 name={images[name]} size={36} color={active ? '#00c2c4' : '#000000'} />
         </Link>
@@ -54,13 +54,13 @@ class Sidebar extends React.Component {
   };
 }
 
-const MenuItems = styled.div`
+const MenuItems = React.memo(styled.div`
   flex: 1;
   margin-top: 30px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-`;
+`);
 
 const gradient = 'linear-gradient(32deg, rgba(144, 255, 230, 0.1), rgba(144, 255, 230, 0))';
 const MenuItem = styled.div`

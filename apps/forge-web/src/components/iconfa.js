@@ -8,7 +8,7 @@ const variants = {
   solid: 'fas',
 };
 
-const Icon = ({ name, color, size, variant, rounded, style, className, ...rest }) => {
+const Icon = React.memo(({ name, color, size, variant, rounded, style, className, ...rest }) => {
   const content = (
     <i
       className={`${variants[variant]} fa-${name} ${rounded ? '' : className}`}
@@ -25,10 +25,11 @@ const Icon = ({ name, color, size, variant, rounded, style, className, ...rest }
   }
 
   return content;
-};
+});
 
 Icon.propTypes = {
   name: PropTypes.string.isRequired,
+  className: PropTypes.string,
   color: PropTypes.string,
   rounded: PropTypes.bool,
   variant: PropTypes.string,
@@ -40,6 +41,7 @@ Icon.defaultProps = {
   rounded: false,
   variant: 'light',
   color: '#222222',
+  className: '',
   size: 30,
   style: {},
 };

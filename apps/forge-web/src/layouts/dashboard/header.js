@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Typography from '@material-ui/core/Typography';
 
 // eslint-disable-next-line
-export default ({ children, style = {}, onClick = () => {} }) => (
+export default React.memo(({ children, style = {}, onClick = () => {} }) => (
   <Header
     component="h2"
     variant="headline"
@@ -11,7 +11,7 @@ export default ({ children, style = {}, onClick = () => {} }) => (
     style={Object.assign({ fontWeight: 'normal', marginBottom: '15px' }, style)}>
     {children}
   </Header>
-);
+));
 
 const Header = styled(Typography)`
   && {

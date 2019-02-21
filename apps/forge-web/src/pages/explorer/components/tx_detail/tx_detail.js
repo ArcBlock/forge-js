@@ -11,7 +11,6 @@ import InfoRows from './info_row';
 export default class TxDetail extends React.Component {
   static propTypes = {
     tx: PropTypes.object.isRequired,
-    theme: PropTypes.object.isRequired,
   };
 
   state = {
@@ -28,7 +27,7 @@ export default class TxDetail extends React.Component {
   };
 
   render() {
-    const { tx, theme, ...rest } = this.props;
+    const { tx, ...rest } = this.props;
     return (
       <Container {...rest}>
         {this.renderHeader()}

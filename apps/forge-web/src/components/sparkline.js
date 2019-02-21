@@ -40,7 +40,7 @@ const TipContainer = styled.div`
   }
 `;
 
-const SparkLine = ({ data, series, legend }) => (
+const SparkLine = React.memo(({ data, series, legend }) => (
   <ResponsiveContainer>
     <AreaChart data={data} margin={{ top: 10, right: 3, left: 3, bottom: 10 }}>
       <defs>
@@ -79,7 +79,7 @@ const SparkLine = ({ data, series, legend }) => (
       ))}
     </AreaChart>
   </ResponsiveContainer>
-);
+));
 
 SparkLine.propTypes = {
   data: PropTypes.arrayOf(

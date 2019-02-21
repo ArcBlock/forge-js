@@ -9,7 +9,7 @@ import Typography from '@material-ui/core/Typography';
 
 import IconFa from '../../../../components/iconfa';
 
-const CreateAssetTx = ({ tx, theme, ...rest }) => (
+const CreateAssetTx = React.memo(({ tx, theme, ...rest }) => (
   <Container {...rest}>
     <div className="info-row">
       <Typography component="p" className="action">
@@ -29,7 +29,7 @@ const CreateAssetTx = ({ tx, theme, ...rest }) => (
       </Typography>
     </div>
   </Container>
-);
+));
 
 const Container = styled.div`
   .info-row {

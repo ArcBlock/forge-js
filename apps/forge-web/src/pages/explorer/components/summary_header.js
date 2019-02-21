@@ -8,8 +8,8 @@ import Grid from '@material-ui/core/Grid';
 
 export default class SummaryHeader extends React.Component {
   static propTypes = {
-    type: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
+    type: PropTypes.any.isRequired,
+    title: PropTypes.any.isRequired,
     meta: PropTypes.arrayOf(
       PropTypes.shape({
         key: PropTypes.any.isRequired,
@@ -17,7 +17,7 @@ export default class SummaryHeader extends React.Component {
       })
     ).isRequired,
     badge: PropTypes.any,
-    badgeTip: PropTypes.string,
+    badgeTip: PropTypes.any,
   };
 
   static defaultProps = {

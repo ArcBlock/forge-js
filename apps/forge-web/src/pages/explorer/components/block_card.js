@@ -9,7 +9,7 @@ import Typography from '@material-ui/core/Typography';
 
 import IconFa from '../../../components/iconfa';
 
-const BlockCard = ({ block, theme, ...rest }) => (
+const BlockCard = React.memo(({ block, theme, ...rest }) => (
   <Container {...rest}>
     <div className="left">
       <Typography component="p" className="hash" gutterBottom>
@@ -35,7 +35,7 @@ const BlockCard = ({ block, theme, ...rest }) => (
       </Typography>
     </div>
   </Container>
-);
+));
 
 /* padding: ${props => props.theme.spacing.unit * 3}px; */
 const Container = styled.div`

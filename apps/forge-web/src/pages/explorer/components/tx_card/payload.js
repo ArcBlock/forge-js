@@ -5,7 +5,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 
 import IconFa from '../../../../components/iconfa';
 
-const Payload = ({ itx }) => {
+const Payload = React.memo(({ itx }) => {
   const hasAssets = !!(Array.isArray(itx.assets) && itx.assets.length);
   const hasValue = !!itx.value;
   return (
@@ -24,7 +24,7 @@ const Payload = ({ itx }) => {
       )}
     </span>
   );
-};
+});
 
 Payload.propTypes = {
   itx: PropTypes.object.isRequired,

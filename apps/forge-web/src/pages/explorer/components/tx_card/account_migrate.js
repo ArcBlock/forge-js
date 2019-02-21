@@ -4,13 +4,13 @@ import styled from 'styled-components';
 // import moment from 'moment';
 // import Typography from '@material-ui/core/Typography';
 
-const MigrateTxSummary = ({ tx, ...rest }) => (
+const MigrateTxSummary = React.memo(({ tx, ...rest }) => (
   <Container {...rest}>
     <pre>
       <code>{JSON.stringify(tx.tx, true, '  ')}</code>
     </pre>
   </Container>
-);
+));
 
 const Container = styled.div``;
 

@@ -24,7 +24,7 @@ const components = {
   AccountMigrate: TxAccountMigrate,
 };
 
-const TxCard = ({ tx, ...rest }) => {
+const TxCard = React.memo(({ tx, ...rest }) => {
   const type = getTxType(tx);
   const TxComponent = components[type] || TxDefault;
   return (
@@ -32,7 +32,7 @@ const TxCard = ({ tx, ...rest }) => {
       <TxComponent tx={tx} {...rest} />
     </Container>
   );
-};
+});
 
 /* padding: ${props => props.theme.spacing.unit * 3}px; */
 const Container = styled.div`

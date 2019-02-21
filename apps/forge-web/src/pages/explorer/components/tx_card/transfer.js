@@ -10,7 +10,7 @@ import Typography from '@material-ui/core/Typography';
 import IconFa from '../../../../components/iconfa';
 import Payload from './payload';
 
-const TransferTxSummary = ({ tx, theme, ...rest }) => (
+const TransferTxSummary = React.memo(({ tx, theme, ...rest }) => (
   <Container {...rest}>
     <div className="info-row info-row--full">
       <Typography component="p" className="hash" title={tx.hash}>
@@ -41,7 +41,7 @@ const TransferTxSummary = ({ tx, theme, ...rest }) => (
       </div>
     </div>
   </Container>
-);
+));
 
 const Container = styled.div`
   .info-row {
