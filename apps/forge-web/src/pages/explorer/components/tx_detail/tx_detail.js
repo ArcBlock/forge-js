@@ -76,7 +76,7 @@ const Container = styled.div`
       border-radius: 4px;
       color: #ffffff;
       display: block;
-      font-size: 18px;
+      font-size: 14px;
       line-height: 1.42857143;
       margin: 0 0 20px;
       padding: 16px;
