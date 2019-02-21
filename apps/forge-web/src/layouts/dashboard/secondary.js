@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
 import { withRouter, Link } from 'react-router-dom';
-import { Typography } from '@material-ui/core';
 
 class SecondaryLinks extends React.Component {
   static propTypes = {
@@ -74,26 +76,29 @@ const MenuItems = styled.div`
 `;
 
 // prettier-ignore
-const MenuItem = styled.div`
-  list-style: none;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  transition: all 200ms ease-in-out;
-  padding-left: 30px;
+const MenuItem = styled(Button)`
+  && {
+    list-style: none;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    transition: all 200ms ease-in-out;
+    padding-left: 30px;
+    text-align: left;
+    text-transform: initial;
 
-  &:hover {
-    a {
-      color: ${props => props.theme.palette.primary.main};
+    &:hover {
+      a {
+        color: ${props => props.theme.palette.primary.main};
+      }
     }
-  }
 
-  a {
-    display: block;
-    padding: 16px 0;
-    letter-spacing: 1px;
-    color: ${({ active, theme: { palette, typography } }) =>
-    (active ? palette.primary.main : typography.color.main)};
+    a {
+      display: block;
+      padding: 16px 0;
+      letter-spacing: 1px;
+      color: ${({ active, theme: { palette, typography } }) => (active ? palette.primary.main : typography.color.main)};
+    }
   }
 `;
 
