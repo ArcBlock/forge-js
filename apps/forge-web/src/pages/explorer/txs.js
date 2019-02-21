@@ -7,7 +7,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 
 import TxCard from './components/tx_card/index';
 import Pagination from './components/pagination';
-import SearchBox from './components/search_box';
+import FilterStrip from './components/filter_strip';
 import SummaryHeader from './components/summary_header';
 
 import Page from '../../components/page';
@@ -31,6 +31,7 @@ class TransactionList extends Page {
 
     this.state = {
       loading: false,
+      loadingTxs: false,
       txs: null,
       chainInfo: null,
       currentPage: Number(params.page) || 1,
@@ -46,10 +47,9 @@ class TransactionList extends Page {
     this.loadChainInfo(this.loadTransactions);
   }
 
-  // TODO: add search feature
   // TODO: add filter feature
   render() {
-    const { loading, chainInfo, txs, currentPage, pageSize } = this.state;
+    const { loading, loadingTxs, chainInfo, txs, currentPage, pageSize } = this.state;
     return (
       <Layout title="Transactions" cookies={this.cookies}>
         <Container>
@@ -66,8 +66,9 @@ class TransactionList extends Page {
               ]}
             />
           )}
-          {chainInfo && <SearchBox />}
-          {txs && (
+          {chainInfo && <FilterStrip />}
+          {loadingTxs && <CircularProgress />}
+          {!loadingTxs && txs && (
             <div className="txs">
               {txs.map(x => (
                 <TxCard key={x.hash} tx={x} />
@@ -103,7 +104,7 @@ class TransactionList extends Page {
   }
 
   async loadTransactions() {
-    this.setState({ txs: [] });
+    this.setState({ txs: null, loadingTxs: true });
     const { pageSize, pageParam } = this.state;
 
     const params = { paging: { size: pageSize } };
@@ -112,7 +113,7 @@ class TransactionList extends Page {
     }
     const { transactions: txs, page } = await forge.listTransactions(params);
 
-    this.setState({ txs, page });
+    this.setState({ txs, page, loadingTxs: false });
   }
 }
 
