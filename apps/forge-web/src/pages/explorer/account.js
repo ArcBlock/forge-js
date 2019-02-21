@@ -53,13 +53,13 @@ class AccountDetail extends Page {
   async loadStatus() {
     const { address } = this.props.match.params;
     this.setState({ loading: true });
-    const { state } = await forge.getAccountState({ address: address.toLowerCase() });
+    const { state } = await forge.getAccountState({ address });
     this.setState({ loading: false, account: state });
   }
 }
 
 const Container = styled.div`
-  padding: ${props => props.theme.spacing.unit * 3}px;
+  padding: ${props => props.theme.spacing.unit * 6}px ${props => props.theme.spacing.unit * 15}px;
 `;
 
 export default withRoot(withI18n(withRouter(AccountDetail)));
