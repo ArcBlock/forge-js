@@ -54,7 +54,7 @@ export default class SummaryHeader extends React.Component {
           </Grid>
           {(!!badge || !!badgeTip) && (
             <Grid item xs={12} sm={3}>
-              {!!badge && (
+              {badge !== undefined && (
                 <Typography component="p" className="badge">
                   {badge}
                 </Typography>
