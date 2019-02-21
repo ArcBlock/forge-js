@@ -1,7 +1,6 @@
 import GraphqlClient from '@arcblock/forge-graphql-client';
+import { getGraphQLEndpoint } from './util';
 
-// TODO: is it enough to only support local
-const client = new GraphqlClient('http://localhost:8210/api'); // local
-// const client = new GraphqlClient('http://abt-test.arcblock.co:8210/api'); // abt testnet
+const client = new GraphqlClient(getGraphQLEndpoint());
 
 export default client;

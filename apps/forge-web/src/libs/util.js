@@ -36,3 +36,13 @@ export function parseQuery(str) {
 export function getTxType(tx) {
   return upperFirst(camelCase(tx.type)) || tx.tx.itx.__typename.replace(/Tx$/, ''); // eslint-disable-line
 }
+
+export function getGraphQLEndpoint() {
+  if (process.env.NODE_ENV === 'production') {
+    const { protocol, host } = window.location;
+    return `${protocol}//${host}/api`;
+  }
+
+  return 'http://localhost:8210/api'; // local
+  // return 'http://abt-test.arcblock.co:8210/api'; // abt testnet
+}
