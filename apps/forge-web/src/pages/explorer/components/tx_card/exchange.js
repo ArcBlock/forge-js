@@ -6,6 +6,7 @@ import { withTheme } from '@material-ui/core/styles';
 
 import { Link } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
+import Tooltip from '@material-ui/core/Tooltip';
 
 import IconFa from '../../../../components/iconfa';
 import Payload from './payload';
@@ -27,13 +28,15 @@ const ExchangeTxSummary = React.memo(({ tx, theme, ...rest }) => (
         </Typography>
         <Payload itx={tx.tx.itx.sender} />
       </div>
-      <IconFa
-        name="exchange"
-        size={14}
-        rounded={true}
-        color={theme.colors.blue}
-        className="type-icon"
-      />
+      <Tooltip title="Exchange Transaction" placement="top">
+        <IconFa
+          name="exchange"
+          size={14}
+          rounded={true}
+          color={theme.colors.blue}
+          className="type-icon"
+        />
+      </Tooltip>
       <div className="receiver">
         <Typography component="p" title={tx.tx.itx.to}>
           <Link to={`/node/explorer/accounts/${tx.tx.itx.to}`}>{tx.tx.itx.to}</Link>
@@ -77,6 +80,7 @@ const Container = styled.div`
 
   .sender,
   .receiver {
+    width: 40%;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;

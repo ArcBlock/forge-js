@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 import TxTransfer from './transfer';
 import TxExchange from './exchange';
+import TxStake from './stake';
 import TxCreateAsset from './create_asset';
 import TxUpdateAsset from './update_asset';
 import TxDeclare from './declare';
@@ -15,7 +16,7 @@ const components = {
   CreateAsset: TxCreateAsset,
   UpdateAsset: TxUpdateAsset,
   Transfer: TxTransfer,
-  // Stake: TxStake,
+  Stake: TxStake,
   Exchange: TxExchange,
   // DeclareFile: TxDeclareFile,
   Declare: TxDeclare,

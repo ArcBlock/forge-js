@@ -18,7 +18,7 @@ const Payload = React.memo(({ itx }) => {
       {hasAssets && hasValue && <span className="meta-separator">+</span>}
       {hasValue && (
         <span>
-          <IconFa name="coins" size={14} className="meta-icon" />
+          <IconFa name="coins" size={16} className="meta-icon" />
           <span>{itx.value} arc</span>
         </span>
       )}
