@@ -47,7 +47,7 @@ class SearchBox extends React.Component {
               <IconFa
                 className="link__icon"
                 name={x.icon}
-                size={16}
+                size={18}
                 color={this.isActive(x.name) ? theme.colors.gray : theme.colors.minor}
               />
               <span className="link__text">{x.name}</span>
@@ -159,7 +159,7 @@ const Container = styled.div`
 
       .link__text {
         text-transform: uppercase;
-        font-size: 14px;
+        font-size: 16px;
         color: #9b9b9b;
       }
     }
