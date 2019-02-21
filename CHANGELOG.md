@@ -1,3 +1,30 @@
+## 0.8.0 (February 21, 2019)
+  - feat: added tranaction detail page
+  - chore: upgrade forge-sdk to align with forge
+  - chore: upgrade forge-proto to align with forge
+  - chore: upgrade graphql-client to align with forge
+  - chore: extract payload component
+  - chore: transfer and exchange details
+  - chore: update sdk-util dependency
+  - fix: block detail page
+  - chore: add font awesome icons and basic exchange tx
+  - chore: upgrade graphql-client to align with forge
+  - feat: basic tx cards
+  - feat: basic skeleton for tx list and block detail
+  - fix: forge web seconday nav select style
+  - feat: add search box component
+  - feat: add links for blocks and accounts
+  - feat: support block pagination
+  - feat: basic block list page
+  - feat: add chain info component
+  - chore: regenerate graphql client api docs for union types
+  - chore: upgrade graphql-client to align with forge@v0.15.1
+  - chore: upgrade forge-sdk to align with forge@v0.15.1
+  - chore: upgrade forge-proto to align with forge@v0.15.1
+  - abt chain node dashboard page (#136)
+  - chore: upgrade to align with forge v0.14.4
+  - update readme
+
 ## 0.7.11 (February 17, 2019)
   - fix: forge-cli npm publish config
   - update readme

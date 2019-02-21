@@ -34,15 +34,20 @@ class SecondaryLinks extends React.Component {
     );
   }
 
-  isSelected = name => {
+  isSelected = url => {
     const { pathname } = this.props.location;
-    return pathname === name;
+    const urlParts = url.split('/').filter(Boolean);
+    const pathParts = pathname.split('/').filter(Boolean);
+    return urlParts.length > 2 && pathParts.length > 2
+      ? urlParts.slice(0, 2).join() === pathParts.slice(0, 2).join()
+      : pathname === url;
   };
 }
 
 const MenuItems = styled.div`
   width: 200px;
-  flex: 1 0 auto;
+  flex-grow: 0;
+  flex-shrink: 0;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;

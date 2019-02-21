@@ -21,6 +21,7 @@ module.exports = {
     'import/no-extraneous-dependencies': 'off',
     'jsx-a11y/no-static-element-interactions': 'off',
     'jsx-a11y/click-events-have-key-events': 'off',
+    'jsx-a11y/anchor-is-valid': 'off',
     'react/no-danger': 'off',
     'react/jsx-closing-bracket-location': 'off',
     'react/jsx-no-target-blank': 'off',
@@ -29,7 +30,7 @@ module.exports = {
     'react/forbid-prop-types': 'off',
     'react/jsx-one-expression-per-line': 'off',
     'react/jsx-filename-extension': 'off',
-    'jsx-a11y/anchor-is-valid': 'off',
+    'react/jsx-wrap-multilines': 'off',
     'arrow-parens': ['error', 'as-needed'],
     'comma-dangle': [
       'error',

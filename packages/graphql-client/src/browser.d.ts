@@ -285,7 +285,7 @@ declare namespace GraphQLClient {
     proposer: string;
     time: string;
     totalTxs: number;
-    txs: Array<Transaction>;
+    txs: Array<TransactionInfo>;
   }
 
   export interface ChainInfo {
@@ -327,6 +327,11 @@ declare namespace GraphQLClient {
   }
 
   export interface ConsensusUpgradeTx {
+    data: GraphQLClient.Any;
+    maxBytes: number;
+    maxCandidates: number;
+    maxGas: number;
+    maxValidators: number;
     validators: Array<Validator>;
   }
 
@@ -341,6 +346,7 @@ declare namespace GraphQLClient {
   }
 
   export interface DeclareTx {
+    data: GraphQLClient.Any;
     moniker: string;
     pk: string;
     type: GraphQLClient.WalletType;
@@ -360,6 +366,7 @@ declare namespace GraphQLClient {
   }
 
   export interface ExchangeTx {
+    data: GraphQLClient.Any;
     expiredAt: string;
     receiver: GraphQLClient.ExchangeInfo;
     sender: GraphQLClient.ExchangeInfo;
@@ -452,12 +459,12 @@ declare namespace GraphQLClient {
   }
 
   export interface NodeInfo {
+    consensusVersion: string;
     geoInfo: GraphQLClient.GeoInfo;
     id: string;
     ip: string;
     moniker: string;
     network: string;
-    version: string;
   }
 
   export interface PageInfo {
@@ -713,6 +720,7 @@ declare namespace GraphQLClient {
   }
 
   export interface SysUpgradeTx {
+    data: GraphQLClient.Any;
     gracePeriod: number;
     task: GraphQLClient.UpgradeTask;
   }
@@ -742,6 +750,7 @@ declare namespace GraphQLClient {
 
   export interface TransferTx {
     assets: Array<string>;
+    data: GraphQLClient.Any;
     to: string;
     value: string;
   }

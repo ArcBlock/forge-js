@@ -10,6 +10,7 @@ class GraphqlClient extends BaseClient {
       enableQuery: true,
       enableSubscription: true,
       enableMutation: true,
+      maxQueryDepth: 6,
     });
   }
 

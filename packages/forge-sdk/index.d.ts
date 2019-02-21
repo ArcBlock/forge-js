@@ -1180,6 +1180,11 @@ declare namespace forge_abi {
 
   export interface ConsensusUpgradeTx {
     validators: Array<forge_abi.Validator>;
+    maxBytes: number;
+    maxGas: number;
+    maxValidators: number;
+    maxCandidates: number;
+    data: google.protobuf.Any;
   }
 
   export interface CreateAssetTx {
@@ -1192,6 +1197,7 @@ declare namespace forge_abi {
     moniker: string;
     pk: Uint8Array;
     type: forge_abi.WalletType;
+    data: google.protobuf.Any;
   }
 
   export interface DeclareFileTx {
@@ -1208,6 +1214,7 @@ declare namespace forge_abi {
     sender: forge_abi.ExchangeInfo;
     receiver: forge_abi.ExchangeInfo;
     expiredAt: google.protobuf.Timestamp;
+    data: google.protobuf.Any;
   }
 
   export interface stakeForAsset {}
@@ -1228,12 +1235,14 @@ declare namespace forge_abi {
   export interface SysUpgradeTx {
     task: forge_abi.UpgradeTask;
     gracePeriod: number;
+    data: google.protobuf.Any;
   }
 
   export interface TransferTx {
     to: string;
     value: forge_abi.BigUint;
     assets: Array<string>;
+    data: google.protobuf.Any;
   }
 
   export interface UpdateAssetTx {

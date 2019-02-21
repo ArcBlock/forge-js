@@ -282,6 +282,11 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
           type_pb.Validator.toObject,
           includeInstance
         ),
+        maxBytes: jspb.Message.getFieldWithDefault(msg, 2, 0),
+        maxGas: jspb.Message.getFieldWithDefault(msg, 3, 0),
+        maxValidators: jspb.Message.getFieldWithDefault(msg, 4, 0),
+        maxCandidates: jspb.Message.getFieldWithDefault(msg, 5, 0),
+        data: (f = msg.getData()) && google_protobuf_any_pb.Any.toObject(includeInstance, f),
       };
 
     if (includeInstance) {
@@ -321,6 +326,27 @@ proto.forge_abi.ConsensusUpgradeTx.deserializeBinaryFromReader = function(msg, r
         reader.readMessage(value, type_pb.Validator.deserializeBinaryFromReader);
         msg.addValidators(value);
         break;
+      case 2:
+        var value = /** @type {number} */ (reader.readUint64());
+        msg.setMaxBytes(value);
+        break;
+      case 3:
+        var value = /** @type {number} */ (reader.readSint64());
+        msg.setMaxGas(value);
+        break;
+      case 4:
+        var value = /** @type {number} */ (reader.readUint32());
+        msg.setMaxValidators(value);
+        break;
+      case 5:
+        var value = /** @type {number} */ (reader.readUint32());
+        msg.setMaxCandidates(value);
+        break;
+      case 15:
+        var value = new google_protobuf_any_pb.Any();
+        reader.readMessage(value, google_protobuf_any_pb.Any.deserializeBinaryFromReader);
+        msg.setData(value);
+        break;
       default:
         reader.skipField();
         break;
@@ -351,6 +377,26 @@ proto.forge_abi.ConsensusUpgradeTx.serializeBinaryToWriter = function(message, w
   f = message.getValidatorsList();
   if (f.length > 0) {
     writer.writeRepeatedMessage(1, f, type_pb.Validator.serializeBinaryToWriter);
+  }
+  f = message.getMaxBytes();
+  if (f !== 0) {
+    writer.writeUint64(2, f);
+  }
+  f = message.getMaxGas();
+  if (f !== 0) {
+    writer.writeSint64(3, f);
+  }
+  f = message.getMaxValidators();
+  if (f !== 0) {
+    writer.writeUint32(4, f);
+  }
+  f = message.getMaxCandidates();
+  if (f !== 0) {
+    writer.writeUint32(5, f);
+  }
+  f = message.getData();
+  if (f != null) {
+    writer.writeMessage(15, f, google_protobuf_any_pb.Any.serializeBinaryToWriter);
   }
 };
 
@@ -388,6 +434,87 @@ proto.forge_abi.ConsensusUpgradeTx.prototype.addValidators = function(opt_value,
 
 proto.forge_abi.ConsensusUpgradeTx.prototype.clearValidatorsList = function() {
   this.setValidatorsList([]);
+};
+
+/**
+ * optional uint64 max_bytes = 2;
+ * @return {number}
+ */
+proto.forge_abi.ConsensusUpgradeTx.prototype.getMaxBytes = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
+};
+
+/** @param {number} value */
+proto.forge_abi.ConsensusUpgradeTx.prototype.setMaxBytes = function(value) {
+  jspb.Message.setField(this, 2, value);
+};
+
+/**
+ * optional sint64 max_gas = 3;
+ * @return {number}
+ */
+proto.forge_abi.ConsensusUpgradeTx.prototype.getMaxGas = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
+};
+
+/** @param {number} value */
+proto.forge_abi.ConsensusUpgradeTx.prototype.setMaxGas = function(value) {
+  jspb.Message.setField(this, 3, value);
+};
+
+/**
+ * optional uint32 max_validators = 4;
+ * @return {number}
+ */
+proto.forge_abi.ConsensusUpgradeTx.prototype.getMaxValidators = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
+};
+
+/** @param {number} value */
+proto.forge_abi.ConsensusUpgradeTx.prototype.setMaxValidators = function(value) {
+  jspb.Message.setField(this, 4, value);
+};
+
+/**
+ * optional uint32 max_candidates = 5;
+ * @return {number}
+ */
+proto.forge_abi.ConsensusUpgradeTx.prototype.getMaxCandidates = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 5, 0));
+};
+
+/** @param {number} value */
+proto.forge_abi.ConsensusUpgradeTx.prototype.setMaxCandidates = function(value) {
+  jspb.Message.setField(this, 5, value);
+};
+
+/**
+ * optional google.protobuf.Any data = 15;
+ * @return {?proto.google.protobuf.Any}
+ */
+proto.forge_abi.ConsensusUpgradeTx.prototype.getData = function() {
+  return /** @type{?proto.google.protobuf.Any} */ (jspb.Message.getWrapperField(
+    this,
+    google_protobuf_any_pb.Any,
+    15
+  ));
+};
+
+/** @param {?proto.google.protobuf.Any|undefined} value */
+proto.forge_abi.ConsensusUpgradeTx.prototype.setData = function(value) {
+  jspb.Message.setWrapperField(this, 15, value);
+};
+
+proto.forge_abi.ConsensusUpgradeTx.prototype.clearData = function() {
+  this.setData(undefined);
+};
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.forge_abi.ConsensusUpgradeTx.prototype.hasData = function() {
+  return jspb.Message.getField(this, 15) != null;
 };
 
 /**
@@ -631,6 +758,7 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
         moniker: jspb.Message.getFieldWithDefault(msg, 1, ''),
         pk: msg.getPk(),
         type: (f = msg.getType()) && type_pb.WalletType.toObject(includeInstance, f),
+        data: (f = msg.getData()) && google_protobuf_any_pb.Any.toObject(includeInstance, f),
       };
 
     if (includeInstance) {
@@ -678,6 +806,11 @@ proto.forge_abi.DeclareTx.deserializeBinaryFromReader = function(msg, reader) {
         reader.readMessage(value, type_pb.WalletType.deserializeBinaryFromReader);
         msg.setType(value);
         break;
+      case 15:
+        var value = new google_protobuf_any_pb.Any();
+        reader.readMessage(value, google_protobuf_any_pb.Any.deserializeBinaryFromReader);
+        msg.setData(value);
+        break;
       default:
         reader.skipField();
         break;
@@ -716,6 +849,10 @@ proto.forge_abi.DeclareTx.serializeBinaryToWriter = function(message, writer) {
   f = message.getType();
   if (f != null) {
     writer.writeMessage(3, f, type_pb.WalletType.serializeBinaryToWriter);
+  }
+  f = message.getData();
+  if (f != null) {
+    writer.writeMessage(15, f, google_protobuf_any_pb.Any.serializeBinaryToWriter);
   }
 };
 
@@ -792,6 +929,35 @@ proto.forge_abi.DeclareTx.prototype.clearType = function() {
  */
 proto.forge_abi.DeclareTx.prototype.hasType = function() {
   return jspb.Message.getField(this, 3) != null;
+};
+
+/**
+ * optional google.protobuf.Any data = 15;
+ * @return {?proto.google.protobuf.Any}
+ */
+proto.forge_abi.DeclareTx.prototype.getData = function() {
+  return /** @type{?proto.google.protobuf.Any} */ (jspb.Message.getWrapperField(
+    this,
+    google_protobuf_any_pb.Any,
+    15
+  ));
+};
+
+/** @param {?proto.google.protobuf.Any|undefined} value */
+proto.forge_abi.DeclareTx.prototype.setData = function(value) {
+  jspb.Message.setWrapperField(this, 15, value);
+};
+
+proto.forge_abi.DeclareTx.prototype.clearData = function() {
+  this.setData(undefined);
+};
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.forge_abi.DeclareTx.prototype.hasData = function() {
+  return jspb.Message.getField(this, 15) != null;
 };
 
 /**
@@ -1170,6 +1336,7 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
         expiredAt:
           (f = msg.getExpiredAt()) &&
           google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+        data: (f = msg.getData()) && google_protobuf_any_pb.Any.toObject(includeInstance, f),
       };
 
     if (includeInstance) {
@@ -1226,6 +1393,11 @@ proto.forge_abi.ExchangeTx.deserializeBinaryFromReader = function(msg, reader) {
         );
         msg.setExpiredAt(value);
         break;
+      case 15:
+        var value = new google_protobuf_any_pb.Any();
+        reader.readMessage(value, google_protobuf_any_pb.Any.deserializeBinaryFromReader);
+        msg.setData(value);
+        break;
       default:
         reader.skipField();
         break;
@@ -1268,6 +1440,10 @@ proto.forge_abi.ExchangeTx.serializeBinaryToWriter = function(message, writer) {
   f = message.getExpiredAt();
   if (f != null) {
     writer.writeMessage(4, f, google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter);
+  }
+  f = message.getData();
+  if (f != null) {
+    writer.writeMessage(15, f, google_protobuf_any_pb.Any.serializeBinaryToWriter);
   }
 };
 
@@ -1369,6 +1545,35 @@ proto.forge_abi.ExchangeTx.prototype.clearExpiredAt = function() {
  */
 proto.forge_abi.ExchangeTx.prototype.hasExpiredAt = function() {
   return jspb.Message.getField(this, 4) != null;
+};
+
+/**
+ * optional google.protobuf.Any data = 15;
+ * @return {?proto.google.protobuf.Any}
+ */
+proto.forge_abi.ExchangeTx.prototype.getData = function() {
+  return /** @type{?proto.google.protobuf.Any} */ (jspb.Message.getWrapperField(
+    this,
+    google_protobuf_any_pb.Any,
+    15
+  ));
+};
+
+/** @param {?proto.google.protobuf.Any|undefined} value */
+proto.forge_abi.ExchangeTx.prototype.setData = function(value) {
+  jspb.Message.setWrapperField(this, 15, value);
+};
+
+proto.forge_abi.ExchangeTx.prototype.clearData = function() {
+  this.setData(undefined);
+};
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.forge_abi.ExchangeTx.prototype.hasData = function() {
+  return jspb.Message.getField(this, 15) != null;
 };
 
 /**
@@ -2076,6 +2281,7 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
       obj = {
         task: (f = msg.getTask()) && type_pb.UpgradeTask.toObject(includeInstance, f),
         gracePeriod: jspb.Message.getFieldWithDefault(msg, 2, 0),
+        data: (f = msg.getData()) && google_protobuf_any_pb.Any.toObject(includeInstance, f),
       };
 
     if (includeInstance) {
@@ -2119,6 +2325,11 @@ proto.forge_abi.SysUpgradeTx.deserializeBinaryFromReader = function(msg, reader)
         var value = /** @type {number} */ (reader.readUint64());
         msg.setGracePeriod(value);
         break;
+      case 15:
+        var value = new google_protobuf_any_pb.Any();
+        reader.readMessage(value, google_protobuf_any_pb.Any.deserializeBinaryFromReader);
+        msg.setData(value);
+        break;
       default:
         reader.skipField();
         break;
@@ -2153,6 +2364,10 @@ proto.forge_abi.SysUpgradeTx.serializeBinaryToWriter = function(message, writer)
   f = message.getGracePeriod();
   if (f !== 0) {
     writer.writeUint64(2, f);
+  }
+  f = message.getData();
+  if (f != null) {
+    writer.writeMessage(15, f, google_protobuf_any_pb.Any.serializeBinaryToWriter);
   }
 };
 
@@ -2196,6 +2411,35 @@ proto.forge_abi.SysUpgradeTx.prototype.getGracePeriod = function() {
 /** @param {number} value */
 proto.forge_abi.SysUpgradeTx.prototype.setGracePeriod = function(value) {
   jspb.Message.setField(this, 2, value);
+};
+
+/**
+ * optional google.protobuf.Any data = 15;
+ * @return {?proto.google.protobuf.Any}
+ */
+proto.forge_abi.SysUpgradeTx.prototype.getData = function() {
+  return /** @type{?proto.google.protobuf.Any} */ (jspb.Message.getWrapperField(
+    this,
+    google_protobuf_any_pb.Any,
+    15
+  ));
+};
+
+/** @param {?proto.google.protobuf.Any|undefined} value */
+proto.forge_abi.SysUpgradeTx.prototype.setData = function(value) {
+  jspb.Message.setWrapperField(this, 15, value);
+};
+
+proto.forge_abi.SysUpgradeTx.prototype.clearData = function() {
+  this.setData(undefined);
+};
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.forge_abi.SysUpgradeTx.prototype.hasData = function() {
+  return jspb.Message.getField(this, 15) != null;
 };
 
 /**
@@ -2252,6 +2496,7 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
         to: jspb.Message.getFieldWithDefault(msg, 1, ''),
         value: (f = msg.getValue()) && type_pb.BigUint.toObject(includeInstance, f),
         assetsList: jspb.Message.getRepeatedField(msg, 3),
+        data: (f = msg.getData()) && google_protobuf_any_pb.Any.toObject(includeInstance, f),
       };
 
     if (includeInstance) {
@@ -2299,6 +2544,11 @@ proto.forge_abi.TransferTx.deserializeBinaryFromReader = function(msg, reader) {
         var value = /** @type {string} */ (reader.readString());
         msg.addAssets(value);
         break;
+      case 15:
+        var value = new google_protobuf_any_pb.Any();
+        reader.readMessage(value, google_protobuf_any_pb.Any.deserializeBinaryFromReader);
+        msg.setData(value);
+        break;
       default:
         reader.skipField();
         break;
@@ -2337,6 +2587,10 @@ proto.forge_abi.TransferTx.serializeBinaryToWriter = function(message, writer) {
   f = message.getAssetsList();
   if (f.length > 0) {
     writer.writeRepeatedString(3, f);
+  }
+  f = message.getData();
+  if (f != null) {
+    writer.writeMessage(15, f, google_protobuf_any_pb.Any.serializeBinaryToWriter);
   }
 };
 
@@ -2405,6 +2659,35 @@ proto.forge_abi.TransferTx.prototype.addAssets = function(value, opt_index) {
 
 proto.forge_abi.TransferTx.prototype.clearAssetsList = function() {
   this.setAssetsList([]);
+};
+
+/**
+ * optional google.protobuf.Any data = 15;
+ * @return {?proto.google.protobuf.Any}
+ */
+proto.forge_abi.TransferTx.prototype.getData = function() {
+  return /** @type{?proto.google.protobuf.Any} */ (jspb.Message.getWrapperField(
+    this,
+    google_protobuf_any_pb.Any,
+    15
+  ));
+};
+
+/** @param {?proto.google.protobuf.Any|undefined} value */
+proto.forge_abi.TransferTx.prototype.setData = function(value) {
+  jspb.Message.setWrapperField(this, 15, value);
+};
+
+proto.forge_abi.TransferTx.prototype.clearData = function() {
+  this.setData(undefined);
+};
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.forge_abi.TransferTx.prototype.hasData = function() {
+  return jspb.Message.getField(this, 15) != null;
 };
 
 /**

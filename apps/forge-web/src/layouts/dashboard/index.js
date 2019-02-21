@@ -88,7 +88,7 @@ class Dashboard extends React.Component {
         title: 'Node',
         links: [
           { link: '/node/status', title: 'Status' },
-          { link: '/node/explorer', title: 'Block Explorer' },
+          { link: '/node/explorer/blocks', title: 'Block Explorer' },
           { link: '/node/query', title: 'Query' },
           { link: '/node/storage', title: 'Storage' },
         ],
@@ -214,7 +214,6 @@ class Dashboard extends React.Component {
 }
 
 const Content = styled.div`
-  width: 100%;
   height: ${props => (props.direction === 'row' ? '100%' : 'auto')};
   flex: 1 0 auto;
   display: flex;

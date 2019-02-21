@@ -1,10 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
 
-import Typography from '@material-ui/core/Typography';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
+import TxDetail from './components/tx_detail/index';
 import Page from '../../components/page';
 import Layout from '../../layouts/page';
 import withI18n from '../../components/withI18n';
@@ -14,13 +15,16 @@ import forge from '../../libs/forge';
 
 class TransactionDetail extends Page {
   static propTypes = {
-    hash: PropTypes.string.isRequired,
+    match: PropTypes.object.isRequired,
+    location: PropTypes.object.isRequired,
+    history: PropTypes.object.isRequired,
   };
 
   constructor(props) {
     super(props);
     this.state = {
       loading: false,
+      error: '',
       tx: null,
     };
   }
@@ -30,31 +34,40 @@ class TransactionDetail extends Page {
   }
 
   render() {
-    const { loading, tx } = this.state;
+    const { loading, error, tx } = this.state;
     return (
       <Layout title="Transaction" cookies={this.cookies}>
         <Container>
-          <Typography component="h3">Transaction detail for {this.props.hash}...</Typography>
           {loading && <CircularProgress />}
-          {tx && (
-            <pre>
-              <code>{JSON.stringify(tx, true, '  ')}</code>
-            </pre>
-          )}
+          {!!error && <p>{error}</p>}
+          {tx && <TxDetail tx={tx} />}
         </Container>
       </Layout>
     );
   }
 
   async loadStatus() {
-    this.setState({ loading: true });
-    const { tx } = await forge.getTx({ hash: this.props.hash });
-    this.setState({ loading: false, tx });
+    try {
+      this.setState({ loading: true });
+      const { hash } = this.props.match.params;
+      const { info: tx } = await forge.getTx({ hash });
+      this.setState({ loading: false, tx });
+    } catch (err) {
+      console.log(err.errors);
+      this.setState({
+        loading: false,
+        error: Array.isArray(err.errors)
+          ? err.errors.map(x => x.message).join(',')
+          : err.message || err.toString(),
+      });
+    }
   }
 }
 
 const Container = styled.div`
-  padding: ${props => props.theme.spacing.unit * 3}px;
+  padding: ${props => props.theme.spacing.unit * 6}px ${props => props.theme.spacing.unit * 15}px;
+  width: auto;
+  max-width: 1280px;
 `;
 
-export default withRoot(withI18n(TransactionDetail));
+export default withRoot(withI18n(withRouter(TransactionDetail)));

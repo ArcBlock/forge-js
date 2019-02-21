@@ -2183,6 +2183,26 @@
               "rule": "repeated",
               "type": "Validator",
               "id": 1
+            },
+            "maxBytes": {
+              "type": "uint64",
+              "id": 2
+            },
+            "maxGas": {
+              "type": "sint64",
+              "id": 3
+            },
+            "maxValidators": {
+              "type": "uint32",
+              "id": 4
+            },
+            "maxCandidates": {
+              "type": "uint32",
+              "id": 5
+            },
+            "data": {
+              "type": "google.protobuf.Any",
+              "id": 15
             }
           }
         },
@@ -2215,6 +2235,10 @@
             "type": {
               "type": "WalletType",
               "id": 3
+            },
+            "data": {
+              "type": "google.protobuf.Any",
+              "id": 15
             }
           }
         },
@@ -2256,6 +2280,10 @@
             "expiredAt": {
               "type": "google.protobuf.Timestamp",
               "id": 4
+            },
+            "data": {
+              "type": "google.protobuf.Any",
+              "id": 15
             }
           }
         },
@@ -2300,6 +2328,10 @@
             "gracePeriod": {
               "type": "uint64",
               "id": 2
+            },
+            "data": {
+              "type": "google.protobuf.Any",
+              "id": 15
             }
           }
         },
@@ -2317,6 +2349,10 @@
               "rule": "repeated",
               "type": "string",
               "id": 3
+            },
+            "data": {
+              "type": "google.protobuf.Any",
+              "id": 15
             }
           }
         },

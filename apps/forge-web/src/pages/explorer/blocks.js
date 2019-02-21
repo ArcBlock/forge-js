@@ -1,8 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
 
-import Typography from '@material-ui/core/Typography';
 import CircularProgress from '@material-ui/core/CircularProgress';
+
+import BlockCard from './components/block_card';
+import Pagination from './components/pagination';
+import SummaryHeader from './components/summary_header';
+import SearchBox from './components/search_box';
 
 import Page from '../../components/page';
 import Layout from '../../layouts/page';
@@ -10,63 +16,123 @@ import withI18n from '../../components/withI18n';
 import withRoot from '../../components/withRoot';
 
 import forge from '../../libs/forge';
+import { parseQuery } from '../../libs/util';
 
 class BlockList extends Page {
+  static propTypes = {
+    match: PropTypes.object.isRequired,
+    location: PropTypes.object.isRequired,
+    history: PropTypes.object.isRequired,
+  };
+
   constructor(props) {
     super(props);
+    const params = parseQuery(window.location.search);
+
     this.state = {
       loading: false,
+      loadingBlocks: false,
       blocks: null,
       chainInfo: null,
+      currentPage: Number(params.page) || 1,
+      pageSize: 10,
     };
+
+    this.loadBlocks = this.loadBlocks.bind(this);
+    this.onChangePage = this.onChangePage.bind(this);
   }
 
   componentDidMount() {
-    this.loadStatus();
+    this.loadChainInfo(this.loadBlocks);
   }
 
+  // TODO: add filter feature
+  // TODO: compact blocks
   render() {
-    const { loading, chainInfo, blocks } = this.state;
+    const { loading, chainInfo, blocks, currentPage, pageSize } = this.state;
     return (
       <Layout title="Blocks" cookies={this.cookies}>
         <Container>
-          <Typography component="h3">Blocks here...</Typography>
           {loading && <CircularProgress />}
           {chainInfo && (
-            <div>
-              <Typography component="h3">Chain Info</Typography>
-              <pre>
-                <code>{JSON.stringify(chainInfo, true, '  ')}</code>
-              </pre>
+            <SummaryHeader
+              type={chainInfo.moniker}
+              title={`abt:did:${chainInfo.id}`}
+              badge={chainInfo.blockHeight}
+              badgeTip="Block Height"
+              meta={[
+                { key: 'app_hash', value: chainInfo.appHash },
+                { key: 'block_hash', value: chainInfo.blockHash },
+              ]}
+            />
+          )}
+          {chainInfo && <SearchBox />}
+          {blocks && (
+            <div className="blocks">
+              {blocks.map(x => (
+                <BlockCard key={x.appHash} block={x} />
+              ))}
             </div>
           )}
-          {blocks && (
-            <div>
-              <Typography component="h3">Block List</Typography>
-              <pre>
-                <code>{JSON.stringify(blocks, true, '  ')}</code>
-              </pre>
-            </div>
+          {chainInfo && chainInfo.blockHeight > pageSize && (
+            <Pagination
+              onChange={this.onChangePage}
+              pageSize={pageSize}
+              current={currentPage}
+              total={chainInfo.blockHeight}
+              className="pagination"
+            />
           )}
         </Container>
       </Layout>
     );
   }
 
-  async loadStatus() {
+  onChangePage(page) {
+    if (this.state.currentPage === page) {
+      return;
+    }
+
+    window.location.href = `/node/explorer/blocks?page=${page}`;
+  }
+
+  async loadChainInfo(done) {
     this.setState({ loading: true });
     const { info: chainInfo } = await forge.getChainInfo();
-    console.log(chainInfo);
-    const { blockHeight } = chainInfo;
-    const { block } = await forge.getBlock({ height: blockHeight });
-    console.log(block);
+    this.setState({ loading: false, chainInfo }, done);
+  }
 
-    this.setState({ loading: false, chainInfo, blocks: [block] });
+  async loadBlocks() {
+    // TODO: optimize this
+    this.setState({ blocks: [] });
+    const {
+      pageSize,
+      currentPage,
+      chainInfo: { blockHeight },
+    } = this.state;
+
+    const { blocks } = await forge.getBlocks(
+      {
+        maxHeight: blockHeight - (currentPage - 1) * pageSize,
+        minHeight: blockHeight - currentPage * pageSize,
+      },
+      {
+        ignoreFields: ['blocks.txs'],
+      }
+    );
+
+    this.setState({ blocks });
   }
 }
 
 const Container = styled.div`
-  padding: ${props => props.theme.spacing.unit * 3}px;
+  padding: ${props => props.theme.spacing.unit * 6}px ${props => props.theme.spacing.unit * 15}px;
+  width: auto;
+  max-width: 1280px;
+
+  .pagination {
+    margin-top: 60px;
+  }
 `;
 
-export default withRoot(withI18n(BlockList));
+export default withRoot(withI18n(withRouter(BlockList)));
