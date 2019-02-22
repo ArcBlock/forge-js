@@ -3,11 +3,11 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 
-import Typography from '@material-ui/core/Typography';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 import Page from '../../components/page';
 import Layout from '../../layouts/page';
+import SummaryHeader from './components/summary_header';
 import withI18n from '../../components/withI18n';
 import withRoot from '../../components/withRoot';
 
@@ -34,16 +34,26 @@ class AccountDetail extends Page {
 
   render() {
     const { loading, account } = this.state;
-    const { address } = this.props.match.params;
     return (
       <Layout title="Account" cookies={this.cookies}>
         <Container>
-          <Typography component="h3">Account detail for {address}: </Typography>
           {loading && <CircularProgress />}
           {account && (
-            <pre>
-              <code>{JSON.stringify(account, true, '  ')}</code>
-            </pre>
+            <React.Fragment>
+              <SummaryHeader
+                type={account.address}
+                title={account.moniker}
+                badge={account.balance}
+                badgeTip="Balance"
+                meta={[
+                  { key: 'First Seen', value: account.context.genesisTime },
+                  { key: 'Last Seen', value: account.context.renaissanceTime },
+                ]}
+              />
+              <pre>
+                <code>{JSON.stringify(account, true, '  ')}</code>
+              </pre>
+            </React.Fragment>
           )}
         </Container>
       </Layout>

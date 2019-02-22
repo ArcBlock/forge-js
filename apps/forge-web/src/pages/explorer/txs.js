@@ -112,7 +112,7 @@ class TransactionList extends Page {
     const { selectedTxs } = this.state;
     window.location.href = `/node/explorer/txs?${qs.stringify({
       page,
-      filter: selectedTxs.map(x => fromTypeUrl(x, false)),
+      filter: selectedTxs.map(x => fromTypeUrl(x, false)).join(','),
     })}`;
   }
 
