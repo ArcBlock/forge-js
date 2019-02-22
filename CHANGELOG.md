@@ -1,3 +1,14 @@
+## 0.8.1 (February 21, 2019)
+  - chore: improve secondary menu style
+  - chore: try to add filter feature
+  - chore: improve no option message
+  - chore: optimize block and tx list
+  - chore: optimize style
+  - fix: summary header for empty blocks
+  - feat: support omni search box
+  - chore: add heart in process list
+  - update readme
+
 ## 0.8.0 (February 21, 2019)
   - feat: added tranaction detail page
   - chore: upgrade forge-sdk to align with forge

@@ -1,6 +1,7 @@
 const grpc = require('grpc');
 const camelcase = require('camelcase');
 const { EventEmitter } = require('events');
+const { fromArc, toArc } = require('@arcblock/forge-util').arc;
 const { messages, enums, rpcs, getMessageType } = require('@arcblock/forge-proto');
 const {
   formatMessage,
@@ -8,7 +9,6 @@ const {
   attachFormatFn,
   attachExampleFn,
 } = require('../util/message');
-const { fromArc, toArc } = require('../util/unit');
 const debug = require('debug')(`${require('../../package.json').name}:Client`);
 
 class Client {
@@ -30,10 +30,10 @@ class Client {
    * the value shall be created with Arc.
    */
   fromArc(value) {
-    return fromArc(value, this.config.decimal || 16).toString(10);
+    return fromArc(value, this.config.decimal || 18).toString(10);
   }
   toArc(value) {
-    return toArc(value, this.config.decimal || 16).toString(10);
+    return toArc(value, this.config.decimal || 18).toString(10);
   }
 
   /**

@@ -8,7 +8,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import BlockCard from './components/block_card';
 import Pagination from './components/pagination';
 import SummaryHeader from './components/summary_header';
-import SearchBox from './components/search_box';
+import FilterStrip from './components/filter/strip';
 
 import Page from '../../components/page';
 import Layout from '../../layouts/page';
@@ -49,7 +49,7 @@ class BlockList extends Page {
   // TODO: add filter feature
   // TODO: compact blocks
   render() {
-    const { loading, chainInfo, blocks, currentPage, pageSize } = this.state;
+    const { loading, loadingBlocks, chainInfo, blocks, currentPage, pageSize } = this.state;
     return (
       <Layout title="Blocks" cookies={this.cookies}>
         <Container>
@@ -66,8 +66,9 @@ class BlockList extends Page {
               ]}
             />
           )}
-          {chainInfo && <SearchBox />}
-          {blocks && (
+          {chainInfo && <FilterStrip />}
+          {loadingBlocks && <CircularProgress />}
+          {!loadingBlocks && blocks && (
             <div className="blocks">
               {blocks.map(x => (
                 <BlockCard key={x.appHash} block={x} />
@@ -103,8 +104,7 @@ class BlockList extends Page {
   }
 
   async loadBlocks() {
-    // TODO: optimize this
-    this.setState({ blocks: [] });
+    this.setState({ blocks: null, loadingBlocks: true });
     const {
       pageSize,
       currentPage,
@@ -121,12 +121,12 @@ class BlockList extends Page {
       }
     );
 
-    this.setState({ blocks });
+    this.setState({ blocks, loadingBlocks: false });
   }
 }
 
 const Container = styled.div`
-  padding: ${props => props.theme.spacing.unit * 6}px ${props => props.theme.spacing.unit * 15}px;
+  padding: ${props => props.theme.spacing.unit * 6}px 8%;
   width: auto;
   max-width: 1280px;
 

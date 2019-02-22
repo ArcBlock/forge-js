@@ -44,17 +44,17 @@ export default class SummaryHeader extends React.Component {
             </Typography>
             {meta.map(x => (
               <Typography key={x.key} component="p" className="meta" gutterBottom>
-                <span>
+                <span className="meta__key">
                   {x.key}
                   {typeof x.key === 'string' ? ':' : ''}
-                </span>{' '}
-                {x.value}
+                </span>
+                <span className="meta__value">{x.value}</span>
               </Typography>
             ))}
           </Grid>
           {(!!badge || !!badgeTip) && (
             <Grid item xs={12} sm={3}>
-              {!!badge && (
+              {badge !== undefined && (
                 <Typography component="p" className="badge">
                   {badge}
                 </Typography>
@@ -75,7 +75,6 @@ export default class SummaryHeader extends React.Component {
 /* padding: ${props => props.theme.spacing.unit * 3}px; */
 const Container = styled.div`
   line-height: 2;
-  text-transform: uppercase;
   margin-bottom: 60px;
 
   .type {
@@ -89,18 +88,21 @@ const Container = styled.div`
     font-size: 24px;
     font-weight: 900;
     letter-spacing: 2px;
-    text-transform: lowercase;
   }
 
   .meta {
     font-size: 14px;
-    color: #9b9b9b;
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
 
-    span {
+    .meta__key {
       color: #222222;
+      margin-right: 8px;
+    }
+
+    .meta__value {
+      color: #9b9b9b;
     }
   }
 

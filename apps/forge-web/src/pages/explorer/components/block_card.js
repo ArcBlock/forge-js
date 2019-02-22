@@ -72,6 +72,10 @@ const Container = styled.div`
     color: #9b9b9b;
     font-size: 14px;
     cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 `;
 

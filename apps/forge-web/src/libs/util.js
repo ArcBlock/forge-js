@@ -46,3 +46,22 @@ export function getGraphQLEndpoint() {
   return 'http://localhost:8210/api'; // local
   // return 'http://abt-test.arcblock.co:8210/api'; // abt testnet
 }
+
+export function fromTypeUrl(url, camelcase = true) {
+  const type = url.split(':').pop();
+  if (camelcase) {
+    return upperFirst(camelCase(type)).replace(/Tx$/, '');
+  }
+
+  return type;
+}
+
+export function toTypeUrl(type) {
+  const underscored = type
+    .trim()
+    .replace(/Tx$/, '')
+    .replace(/([a-z\d])([A-Z]+)/g, '$1_$2')
+    .replace(/[-\s]+/g, '_')
+    .toLowerCase();
+  return `fg:t:${underscored}`;
+}

@@ -403,7 +403,7 @@ async function getForgeProcesses() {
     const pattern = new RegExp(command, 'i');
 
     return results
-      .filter(x => /(forge|tendermint|ipfs)/.test(x.name) || (command && pattern.test(x.cmd)))
+      .filter(x => /(forge|tendermint|heart|ipfs)/.test(x.name) || (command && pattern.test(x.cmd)))
       .map(x => ({
         name: x.name.replace(path.extname(x.name), ''),
         pid: x.pid,
