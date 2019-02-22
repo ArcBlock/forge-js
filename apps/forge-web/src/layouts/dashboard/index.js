@@ -16,6 +16,7 @@ import Divider from '@material-ui/core/Divider';
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
+import CheckIcon from '@material-ui/icons/CheckCircleOutlineSharp';
 
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -23,13 +24,13 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
-import logo from './images/logo.png';
-
 import Sidebar from './sidebar';
 import SecondaryLinks from './secondary';
 import withI18n from '../../components/withI18n';
 import withRoot from '../../components/withRoot';
 import withTracker from '../../components/withTracker';
+import Icons8 from '../../components/icon8';
+
 import { colors } from '../../libs/constant';
 import { version } from '../../../package.json';
 
@@ -99,6 +100,7 @@ class Dashboard extends React.Component {
   }
 
   // FIXME: the header content should be dynamic
+  // TODO:  make header image overlay related to node status
   renderAppBar() {
     const { classes, session } = this.props;
     const { anchorEl } = this.state;
@@ -106,11 +108,12 @@ class Dashboard extends React.Component {
       <AppBar position="absolute" className={classes.appBar}>
         <Toolbar disableGutters={false} className={classes.toolbar}>
           <Header>
-            <div className="header-image">
-              <Link to="/">
-                <img alt="Node" src={logo} />
-              </Link>
-            </div>
+            <Link to="/">
+              <div className="header-image">
+                <Icons8 name="text-input-form" />
+                <CheckIcon className="header-image__overlay" />
+              </div>
+            </Link>
             <div className="header-title">
               <Typography component="h2" noWrap className="header-title__primary">
                 node01.bbs.net (38.88.166.250)
@@ -235,12 +238,21 @@ const Header = styled.div`
   display: flex;
 
   .header-image {
-    margin-right: ${props => props.theme.spacing.unit * 3}px;
-    margin-left: ${props => props.theme.spacing.unit * 2}px;
+    margin-right: ${props => props.theme.spacing.unit * 4}px;
+    margin-left: ${props => props.theme.spacing.unit}px;
     margin-top: 10px;
-    img {
-      height: 32px;
-      width: 32px;
+    position: relative;
+    color: ${props => props.theme.colors.green};
+
+    .header-image__overlay {
+      position: absolute;
+      bottom: 6px;
+      right: -6px;
+      z-index: 99;
+      border-radius: 8px;
+      background: ${props => props.theme.palette.background.default};
+      font-size: 16px;
+      color: inherit;
     }
   }
 
