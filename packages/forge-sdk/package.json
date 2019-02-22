@@ -1,7 +1,7 @@
 {
   "name": "@arcblock/forge-sdk",
   "description": "Node.js SDK for Forge Framework by ArcBlock",
-  "version": "0.8.0",
+  "version": "0.8.1",
   "author": "wangshijun <shijun@arcblock.io> (https://ocap.arcblock.io)",
   "engines": {
     "node": ">=0.10.0",
@@ -19,7 +19,7 @@
   ],
   "dependencies": {
     "@arcblock/forge-proto": "^0.8.0",
-    "@arcblock/forge-util": "^0.8.0",
+    "@arcblock/forge-util": "^0.8.1",
     "@iarna/toml": "^2.2.1",
     "bn.js": "^4.11.8",
     "camelcase": "^5.0.0",
