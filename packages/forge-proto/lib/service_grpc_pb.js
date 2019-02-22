@@ -70,6 +70,17 @@ function deserialize_forge_abi_RequestGetAssetState(buffer_arg) {
   return rpc_pb.RequestGetAssetState.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_forge_abi_RequestGetAssets(arg) {
+  if (!(arg instanceof rpc_pb.RequestGetAssets)) {
+    throw new Error('Expected argument of type forge_abi.RequestGetAssets');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_forge_abi_RequestGetAssets(buffer_arg) {
+  return rpc_pb.RequestGetAssets.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_forge_abi_RequestGetBlock(arg) {
   if (!(arg instanceof rpc_pb.RequestGetBlock)) {
     throw new Error('Expected argument of type forge_abi.RequestGetBlock');
@@ -156,6 +167,28 @@ function serialize_forge_abi_RequestGetStakeState(arg) {
 
 function deserialize_forge_abi_RequestGetStakeState(buffer_arg) {
   return rpc_pb.RequestGetStakeState.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_forge_abi_RequestGetStakes(arg) {
+  if (!(arg instanceof rpc_pb.RequestGetStakes)) {
+    throw new Error('Expected argument of type forge_abi.RequestGetStakes');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_forge_abi_RequestGetStakes(buffer_arg) {
+  return rpc_pb.RequestGetStakes.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_forge_abi_RequestGetTopAccounts(arg) {
+  if (!(arg instanceof rpc_pb.RequestGetTopAccounts)) {
+    throw new Error('Expected argument of type forge_abi.RequestGetTopAccounts');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_forge_abi_RequestGetTopAccounts(buffer_arg) {
+  return rpc_pb.RequestGetTopAccounts.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_forge_abi_RequestGetTx(arg) {
@@ -411,6 +444,17 @@ function deserialize_forge_abi_ResponseGetAssetState(buffer_arg) {
   return rpc_pb.ResponseGetAssetState.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_forge_abi_ResponseGetAssets(arg) {
+  if (!(arg instanceof rpc_pb.ResponseGetAssets)) {
+    throw new Error('Expected argument of type forge_abi.ResponseGetAssets');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_forge_abi_ResponseGetAssets(buffer_arg) {
+  return rpc_pb.ResponseGetAssets.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_forge_abi_ResponseGetBlock(arg) {
   if (!(arg instanceof rpc_pb.ResponseGetBlock)) {
     throw new Error('Expected argument of type forge_abi.ResponseGetBlock');
@@ -497,6 +541,28 @@ function serialize_forge_abi_ResponseGetStakeState(arg) {
 
 function deserialize_forge_abi_ResponseGetStakeState(buffer_arg) {
   return rpc_pb.ResponseGetStakeState.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_forge_abi_ResponseGetStakes(arg) {
+  if (!(arg instanceof rpc_pb.ResponseGetStakes)) {
+    throw new Error('Expected argument of type forge_abi.ResponseGetStakes');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_forge_abi_ResponseGetStakes(buffer_arg) {
+  return rpc_pb.ResponseGetStakes.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_forge_abi_ResponseGetTopAccounts(arg) {
+  if (!(arg instanceof rpc_pb.ResponseGetTopAccounts)) {
+    throw new Error('Expected argument of type forge_abi.ResponseGetTopAccounts');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_forge_abi_ResponseGetTopAccounts(buffer_arg) {
+  return rpc_pb.ResponseGetTopAccounts.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_forge_abi_ResponseGetTx(arg) {
@@ -1059,6 +1125,39 @@ var StatisticRpcService = (exports.StatisticRpcService = {
     requestDeserialize: deserialize_forge_abi_RequestListTransactions,
     responseSerialize: serialize_forge_abi_ResponseListTransactions,
     responseDeserialize: deserialize_forge_abi_ResponseListTransactions,
+  },
+  get_assets: {
+    path: '/forge_abi.StatisticRpc/get_assets',
+    requestStream: false,
+    responseStream: false,
+    requestType: rpc_pb.RequestGetAssets,
+    responseType: rpc_pb.ResponseGetAssets,
+    requestSerialize: serialize_forge_abi_RequestGetAssets,
+    requestDeserialize: deserialize_forge_abi_RequestGetAssets,
+    responseSerialize: serialize_forge_abi_ResponseGetAssets,
+    responseDeserialize: deserialize_forge_abi_ResponseGetAssets,
+  },
+  get_stakes: {
+    path: '/forge_abi.StatisticRpc/get_stakes',
+    requestStream: false,
+    responseStream: false,
+    requestType: rpc_pb.RequestGetStakes,
+    responseType: rpc_pb.ResponseGetStakes,
+    requestSerialize: serialize_forge_abi_RequestGetStakes,
+    requestDeserialize: deserialize_forge_abi_RequestGetStakes,
+    responseSerialize: serialize_forge_abi_ResponseGetStakes,
+    responseDeserialize: deserialize_forge_abi_ResponseGetStakes,
+  },
+  get_top_accounts: {
+    path: '/forge_abi.StatisticRpc/get_top_accounts',
+    requestStream: false,
+    responseStream: false,
+    requestType: rpc_pb.RequestGetTopAccounts,
+    responseType: rpc_pb.ResponseGetTopAccounts,
+    requestSerialize: serialize_forge_abi_RequestGetTopAccounts,
+    requestDeserialize: deserialize_forge_abi_RequestGetTopAccounts,
+    responseSerialize: serialize_forge_abi_ResponseGetTopAccounts,
+    responseDeserialize: deserialize_forge_abi_ResponseGetTopAccounts,
   },
 });
 

@@ -207,6 +207,10 @@
             "invalid_tx_size": 36,
             "invalid_signer_state": 37,
             "invalid_forge_state": 38,
+            "expired_asset": 39,
+            "untransferrable_asset": 40,
+            "readonly_asset": 41,
+            "activated_asset": 42,
             "forbidden": 403,
             "internal": 500
           }
@@ -226,6 +230,7 @@
             "declare_file": 22,
             "sys_upgrade": 23,
             "application": 24,
+            "activate_asset": 25,
             "account_state": 129,
             "asset_state": 130,
             "forge_state": 131,
@@ -1007,109 +1012,19 @@
             }
           }
         },
-        "PageOrder": {
+        "StateRoot": {
           "fields": {
-            "field": {
-              "type": "string",
-              "id": 1
-            },
-            "type": {
-              "type": "string",
-              "id": 2
-            }
-          }
-        },
-        "PageInput": {
-          "fields": {
-            "cursor": {
-              "type": "string",
-              "id": 1
-            },
-            "size": {
-              "type": "uint32",
+            "account": {
+              "type": "bytes",
               "id": 2
             },
-            "order": {
-              "rule": "repeated",
-              "type": "PageOrder",
-              "id": 3
-            }
-          }
-        },
-        "TypeFilter": {
-          "fields": {
-            "types": {
-              "rule": "repeated",
-              "type": "string",
-              "id": 1
-            }
-          }
-        },
-        "TimeFilter": {
-          "fields": {
-            "startDateTime": {
-              "type": "string",
-              "id": 1
-            },
-            "endDateTime": {
-              "type": "string",
-              "id": 2
-            }
-          }
-        },
-        "AddressFilter": {
-          "fields": {
-            "sender": {
-              "type": "string",
-              "id": 1
-            },
-            "receiver": {
-              "type": "string",
-              "id": 2
-            }
-          }
-        },
-        "PageInfo": {
-          "fields": {
-            "cursor": {
-              "type": "string",
-              "id": 1
-            },
-            "next": {
-              "type": "bool",
-              "id": 2
-            },
-            "total": {
-              "type": "uint32",
-              "id": 3
-            }
-          }
-        },
-        "IndexedTransaction": {
-          "fields": {
-            "hash": {
-              "type": "string",
-              "id": 1
-            },
-            "sender": {
-              "type": "string",
-              "id": 2
-            },
-            "receiver": {
-              "type": "string",
+            "asset": {
+              "type": "bytes",
               "id": 3
             },
-            "time": {
-              "type": "string",
+            "receipt": {
+              "type": "bytes",
               "id": 4
-            },
-            "type": {
-              "type": "string",
-              "id": 5
-            },
-            "tx": {
-              "type": "Transaction",
-              "id": 6
             }
           }
         },
@@ -1193,6 +1108,14 @@
               "type": "bool",
               "id": 4
             },
+            "activated": {
+              "type": "bool",
+              "id": 5
+            },
+            "expiredAt": {
+              "type": "google.protobuf.Timestamp",
+              "id": 6
+            },
             "stake": {
               "type": "StakeContext",
               "id": 13
@@ -1238,6 +1161,10 @@
             "forgeAppHash": {
               "type": "bytes",
               "id": 7
+            },
+            "rootHashes": {
+              "type": "StateRoot",
+              "id": 8
             },
             "data": {
               "type": "google.protobuf.Any",
@@ -1443,13 +1370,21 @@
         },
         "RequestGetBlocks": {
           "fields": {
+            "paging": {
+              "type": "PageInput",
+              "id": 1
+            },
             "minHeight": {
               "type": "uint64",
-              "id": 1
+              "id": 2
             },
             "maxHeight": {
               "type": "uint64",
-              "id": 2
+              "id": 3
+            },
+            "emptyExcluded": {
+              "type": "bool",
+              "id": 4
             }
           }
         },
@@ -1459,10 +1394,14 @@
               "type": "StatusCode",
               "id": 1
             },
+            "page": {
+              "type": "PageInfo",
+              "id": 2
+            },
             "blocks": {
               "rule": "repeated",
               "type": "BlockInfo",
-              "id": 2
+              "id": 3
             }
           }
         },
@@ -2165,6 +2104,89 @@
             }
           }
         },
+        "RequestGetAssets": {
+          "fields": {
+            "paging": {
+              "type": "PageInput",
+              "id": 1
+            },
+            "ownerAddress": {
+              "type": "string",
+              "id": 2
+            }
+          }
+        },
+        "ResponseGetAssets": {
+          "fields": {
+            "code": {
+              "type": "StatusCode",
+              "id": 1
+            },
+            "page": {
+              "type": "PageInfo",
+              "id": 2
+            },
+            "assets": {
+              "rule": "repeated",
+              "type": "IndexedAssetState",
+              "id": 3
+            }
+          }
+        },
+        "RequestGetStakes": {
+          "fields": {
+            "paging": {
+              "type": "PageInput",
+              "id": 1
+            },
+            "addressFilter": {
+              "type": "AddressFilter",
+              "id": 2
+            }
+          }
+        },
+        "ResponseGetStakes": {
+          "fields": {
+            "code": {
+              "type": "StatusCode",
+              "id": 1
+            },
+            "page": {
+              "type": "PageInfo",
+              "id": 2
+            },
+            "stakes": {
+              "rule": "repeated",
+              "type": "IndexedStakeState",
+              "id": 3
+            }
+          }
+        },
+        "RequestGetTopAccounts": {
+          "fields": {
+            "paging": {
+              "type": "PageInput",
+              "id": 1
+            }
+          }
+        },
+        "ResponseGetTopAccounts": {
+          "fields": {
+            "code": {
+              "type": "StatusCode",
+              "id": 1
+            },
+            "page": {
+              "type": "PageInfo",
+              "id": 2
+            },
+            "accounts": {
+              "rule": "repeated",
+              "type": "IndexedAccountState",
+              "id": 3
+            }
+          }
+        },
         "AccountMigrateTx": {
           "fields": {
             "pk": {
@@ -2174,6 +2196,22 @@
             "type": {
               "type": "WalletType",
               "id": 2
+            }
+          }
+        },
+        "ActivateAssetTx": {
+          "fields": {
+            "address": {
+              "type": "string",
+              "id": 1
+            },
+            "to": {
+              "type": "string",
+              "id": 2
+            },
+            "data": {
+              "type": "google.protobuf.Any",
+              "id": 15
             }
           }
         },
@@ -2219,6 +2257,10 @@
             "readonly": {
               "type": "bool",
               "id": 3
+            },
+            "expiredAt": {
+              "type": "google.protobuf.Timestamp",
+              "id": 4
             }
           }
         },
@@ -2368,7 +2410,233 @@
             },
             "data": {
               "type": "google.protobuf.Any",
+              "id": 15
+            }
+          }
+        },
+        "PageOrder": {
+          "fields": {
+            "field": {
+              "type": "string",
+              "id": 1
+            },
+            "type": {
+              "type": "string",
+              "id": 2
+            }
+          }
+        },
+        "PageInput": {
+          "fields": {
+            "cursor": {
+              "type": "string",
+              "id": 1
+            },
+            "size": {
+              "type": "uint32",
+              "id": 2
+            },
+            "order": {
+              "rule": "repeated",
+              "type": "PageOrder",
               "id": 3
+            }
+          }
+        },
+        "TypeFilter": {
+          "fields": {
+            "types": {
+              "rule": "repeated",
+              "type": "string",
+              "id": 1
+            }
+          }
+        },
+        "TimeFilter": {
+          "fields": {
+            "startDateTime": {
+              "type": "string",
+              "id": 1
+            },
+            "endDateTime": {
+              "type": "string",
+              "id": 2
+            }
+          }
+        },
+        "AddressFilter": {
+          "fields": {
+            "sender": {
+              "type": "string",
+              "id": 1
+            },
+            "receiver": {
+              "type": "string",
+              "id": 2
+            }
+          }
+        },
+        "PageInfo": {
+          "fields": {
+            "cursor": {
+              "type": "string",
+              "id": 1
+            },
+            "next": {
+              "type": "bool",
+              "id": 2
+            },
+            "total": {
+              "type": "uint32",
+              "id": 3
+            }
+          }
+        },
+        "IndexedTransaction": {
+          "fields": {
+            "hash": {
+              "type": "string",
+              "id": 1
+            },
+            "sender": {
+              "type": "string",
+              "id": 2
+            },
+            "receiver": {
+              "type": "string",
+              "id": 3
+            },
+            "time": {
+              "type": "string",
+              "id": 4
+            },
+            "type": {
+              "type": "string",
+              "id": 5
+            },
+            "tx": {
+              "type": "Transaction",
+              "id": 6
+            }
+          }
+        },
+        "IndexedAccountState": {
+          "fields": {
+            "address": {
+              "type": "string",
+              "id": 1
+            },
+            "balance": {
+              "type": "BigUint",
+              "id": 2
+            },
+            "numAssets": {
+              "type": "uint64",
+              "id": 3
+            },
+            "numTxs": {
+              "type": "uint64",
+              "id": 4
+            },
+            "nonce": {
+              "type": "uint64",
+              "id": 5
+            },
+            "genesisTime": {
+              "type": "string",
+              "id": 6
+            },
+            "renaissanceTime": {
+              "type": "string",
+              "id": 7
+            },
+            "moniker": {
+              "type": "string",
+              "id": 8
+            },
+            "migratedFrom": {
+              "type": "string",
+              "id": 9
+            },
+            "migratedTo": {
+              "type": "string",
+              "id": 10
+            },
+            "totalReceivedStakes": {
+              "type": "BigUint",
+              "id": 11
+            },
+            "totalStakes": {
+              "type": "BigUint",
+              "id": 12
+            },
+            "totalUnstakes": {
+              "type": "BigUint",
+              "id": 13
+            }
+          }
+        },
+        "IndexedAssetState": {
+          "fields": {
+            "address": {
+              "type": "string",
+              "id": 1
+            },
+            "owner": {
+              "type": "string",
+              "id": 2
+            },
+            "genesisTime": {
+              "type": "string",
+              "id": 3
+            },
+            "renaissanceTime": {
+              "type": "string",
+              "id": 4
+            },
+            "moniker": {
+              "type": "string",
+              "id": 5
+            },
+            "readonly": {
+              "type": "bool",
+              "id": 6
+            }
+          }
+        },
+        "IndexedStakeState": {
+          "fields": {
+            "address": {
+              "type": "string",
+              "id": 1
+            },
+            "balance": {
+              "type": "BigUint",
+              "id": 2
+            },
+            "sender": {
+              "type": "string",
+              "id": 3
+            },
+            "receiver": {
+              "type": "string",
+              "id": 4
+            },
+            "genesisTime": {
+              "type": "string",
+              "id": 5
+            },
+            "renaissanceTime": {
+              "type": "string",
+              "id": 6
+            },
+            "message": {
+              "type": "string",
+              "id": 7
+            },
+            "type": {
+              "type": "uint32",
+              "id": 8
             }
           }
         },
@@ -2531,6 +2799,18 @@
             "list_transactions": {
               "requestType": "RequestListTransactions",
               "responseType": "ResponseListTransactions"
+            },
+            "get_assets": {
+              "requestType": "RequestGetAssets",
+              "responseType": "ResponseGetAssets"
+            },
+            "get_stakes": {
+              "requestType": "RequestGetStakes",
+              "responseType": "ResponseGetStakes"
+            },
+            "get_top_accounts": {
+              "requestType": "RequestGetTopAccounts",
+              "responseType": "ResponseGetTopAccounts"
             }
           }
         }

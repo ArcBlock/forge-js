@@ -1,6 +1,6 @@
 # Forge GraphQL API List
 
-> Updated on 2019-02-20T04:03:22.702Z
+> Updated on 2019-02-22T21:56:36.495Z
 
 
 ## Table of Contents
@@ -9,6 +9,7 @@
   * [getAccountState](#getaccountstate)
   * [getAssetAddress](#getassetaddress)
   * [getAssetState](#getassetstate)
+  * [getAssets](#getassets)
   * [getBlock](#getblock)
   * [getBlocks](#getblocks)
   * [getChainInfo](#getchaininfo)
@@ -19,6 +20,8 @@
   * [getForgeStatisticsByHour](#getforgestatisticsbyhour)
   * [getNetInfo](#getnetinfo)
   * [getStakeState](#getstakestate)
+  * [getStakes](#getstakes)
+  * [getTopAccounts](#gettopaccounts)
   * [getTx](#gettx)
   * [getUnconfirmedTxs](#getunconfirmedtxs)
   * [getValidatorsInfo](#getvalidatorsinfo)
@@ -58,7 +61,7 @@
 
 ```graphql
 {
-  getAccountState(address: "abc", appHash: "abc", keys: ["abc"]) {
+  getAccountState(address: "abc", appHash: "abc", keys: "abc") {
     code
     state {
       address
@@ -164,6 +167,7 @@
                 }
               }
               ... on CreateAssetTx {
+                expiredAt
                 moniker
                 readonly
                 data {
@@ -288,6 +292,7 @@
                 }
               }
               ... on CreateAssetTx {
+                expiredAt
                 moniker
                 readonly
                 data {
@@ -394,10 +399,12 @@
 
 ```graphql
 {
-  getAssetState(address: "abc", appHash: "abc", keys: ["abc"]) {
+  getAssetState(address: "abc", appHash: "abc", keys: "abc") {
     code
     state {
+      activated
       address
+      expiredAt
       moniker
       owner
       readonly
@@ -495,6 +502,7 @@
                 }
               }
               ... on CreateAssetTx {
+                expiredAt
                 moniker
                 readonly
                 data {
@@ -619,6 +627,7 @@
                 }
               }
               ... on CreateAssetTx {
+                expiredAt
                 moniker
                 readonly
                 data {
@@ -676,6 +685,36 @@
           typeUrl
         }
       }
+    }
+  }
+}
+```
+
+### getAssets
+
+#### Arguments
+
+* **ownerAddress**, optional, 
+* **paging**, optional, 
+
+#### Result Format
+
+```graphql
+{
+  getAssets(ownerAddress: "abc") {
+    code
+    assets {
+      address
+      genesisTime
+      moniker
+      owner
+      readonly
+      renaissanceTime
+    }
+    page {
+      cursor
+      next
+      total
     }
   }
 }
@@ -791,6 +830,7 @@
               }
             }
             ... on CreateAssetTx {
+              expiredAt
               moniker
               readonly
               data {
@@ -833,14 +873,16 @@
 
 #### Arguments
 
+* **emptyExcluded**, optional, 
 * **maxHeight**, optional, 
 * **minHeight**, optional, 
+* **paging**, optional, 
 
 #### Result Format
 
 ```graphql
 {
-  getBlocks(maxHeight: 123, minHeight: 123) {
+  getBlocks(emptyExcluded: true, maxHeight: 123, minHeight: 123) {
     code
     blocks {
       appHash
@@ -940,6 +982,7 @@
               }
             }
             ... on CreateAssetTx {
+              expiredAt
               moniker
               readonly
               data {
@@ -973,6 +1016,11 @@
           }
         }
       }
+    }
+    page {
+      cursor
+      next
+      total
     }
   }
 }
@@ -1043,7 +1091,7 @@ No arguments
 
 ```graphql
 {
-  getForgeState(appHash: "abc", keys: ["abc"]) {
+  getForgeState(appHash: "abc", keys: "abc") {
     code
     state {
       address
@@ -1066,6 +1114,11 @@ No arguments
       data {
         typeUrl
         value
+      }
+      rootHashes {
+        account
+        asset
+        receipt
       }
       stakeSummary {
         key
@@ -1270,7 +1323,7 @@ No arguments
 
 ```graphql
 {
-  getStakeState(address: "abc", appHash: "abc", keys: ["abc"]) {
+  getStakeState(address: "abc", appHash: "abc", keys: "abc") {
     code
     state {
       address
@@ -1372,6 +1425,7 @@ No arguments
                 }
               }
               ... on CreateAssetTx {
+                expiredAt
                 moniker
                 readonly
                 data {
@@ -1496,6 +1550,7 @@ No arguments
                 }
               }
               ... on CreateAssetTx {
+                expiredAt
                 moniker
                 readonly
                 data {
@@ -1534,6 +1589,74 @@ No arguments
         typeUrl
         value
       }
+    }
+  }
+}
+```
+
+### getStakes
+
+#### Arguments
+
+* **addressFilter**, optional, 
+* **paging**, optional, 
+
+#### Result Format
+
+```graphql
+{
+  getStakes {
+    code
+    page {
+      cursor
+      next
+      total
+    }
+    stakes {
+      address
+      balance
+      genesisTime
+      message
+      receiver
+      renaissanceTime
+      sender
+      type
+    }
+  }
+}
+```
+
+### getTopAccounts
+
+#### Arguments
+
+* **paging**, optional, 
+
+#### Result Format
+
+```graphql
+{
+  getTopAccounts {
+    code
+    accounts {
+      address
+      balance
+      genesisTime
+      migratedFrom
+      migratedTo
+      moniker
+      nonce
+      numAssets
+      numTxs
+      renaissanceTime
+      totalReceivedStakes
+      totalStakes
+      totalUnstakes
+    }
+    page {
+      cursor
+      next
+      total
     }
   }
 }
@@ -1642,6 +1765,7 @@ No arguments
             }
           }
           ... on CreateAssetTx {
+            expiredAt
             moniker
             readonly
             data {
@@ -1775,6 +1899,7 @@ No arguments
             }
           }
           ... on CreateAssetTx {
+            expiredAt
             moniker
             readonly
             data {
@@ -1949,6 +2074,7 @@ No arguments
             }
           }
           ... on CreateAssetTx {
+            expiredAt
             moniker
             readonly
             data {
@@ -2145,6 +2271,7 @@ No arguments
           }
         }
         ... on CreateAssetTx {
+          expiredAt
           moniker
           readonly
           data {
@@ -2301,6 +2428,7 @@ No arguments
             }
           }
           ... on CreateAssetTx {
+            expiredAt
             moniker
             readonly
             data {
@@ -2456,6 +2584,7 @@ subscription {
           }
         }
         ... on CreateAssetTx {
+          expiredAt
           moniker
           readonly
           data {
@@ -2570,6 +2699,7 @@ subscription {
           }
         }
         ... on CreateAssetTx {
+          expiredAt
           moniker
           readonly
           data {
@@ -2684,6 +2814,7 @@ subscription {
           }
         }
         ... on CreateAssetTx {
+          expiredAt
           moniker
           readonly
           data {
@@ -2848,6 +2979,7 @@ subscription {
           }
         }
         ... on CreateAssetTx {
+          expiredAt
           moniker
           readonly
           data {
@@ -2962,6 +3094,7 @@ subscription {
           }
         }
         ... on CreateAssetTx {
+          expiredAt
           moniker
           readonly
           data {
@@ -3076,6 +3209,7 @@ subscription {
           }
         }
         ... on CreateAssetTx {
+          expiredAt
           moniker
           readonly
           data {
@@ -3190,6 +3324,7 @@ subscription {
           }
         }
         ... on CreateAssetTx {
+          expiredAt
           moniker
           readonly
           data {
@@ -3304,6 +3439,7 @@ subscription {
           }
         }
         ... on CreateAssetTx {
+          expiredAt
           moniker
           readonly
           data {
@@ -3421,6 +3557,7 @@ subscription {
           }
         }
         ... on CreateAssetTx {
+          expiredAt
           moniker
           readonly
           data {
@@ -3535,6 +3672,7 @@ subscription {
           }
         }
         ... on CreateAssetTx {
+          expiredAt
           moniker
           readonly
           data {
@@ -3649,6 +3787,7 @@ subscription {
           }
         }
         ... on CreateAssetTx {
+          expiredAt
           moniker
           readonly
           data {
@@ -3763,6 +3902,7 @@ subscription {
           }
         }
         ... on CreateAssetTx {
+          expiredAt
           moniker
           readonly
           data {
@@ -3877,6 +4017,7 @@ subscription {
           }
         }
         ... on CreateAssetTx {
+          expiredAt
           moniker
           readonly
           data {
@@ -3991,6 +4132,7 @@ subscription {
           }
         }
         ... on CreateAssetTx {
+          expiredAt
           moniker
           readonly
           data {
@@ -4105,6 +4247,7 @@ subscription {
           }
         }
         ... on CreateAssetTx {
+          expiredAt
           moniker
           readonly
           data {
@@ -4219,6 +4362,7 @@ subscription {
           }
         }
         ... on CreateAssetTx {
+          expiredAt
           moniker
           readonly
           data {
@@ -4264,6 +4408,7 @@ subscription {
 
 * **from**, optional, 
 * **itx**, optional, 
+* **itxType**, optional, 
 * **nonce**, optional, 
 * **token**, optional, 
 * **wallet**, optional, 
@@ -4272,7 +4417,7 @@ subscription {
 
 ```graphql
 mutation {
-  createTx(from: "abc", itx: "abc", nonce: 123, token: "abc", wallet: "abc") {
+  createTx(from: "abc", itx: "abc", itxType: "abc", nonce: 123, token: "abc", wallet: "abc") {
     code
     tx {
       chainId
@@ -4356,6 +4501,7 @@ mutation {
           }
         }
         ... on CreateAssetTx {
+          expiredAt
           moniker
           readonly
           data {
