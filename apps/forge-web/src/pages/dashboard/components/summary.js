@@ -52,6 +52,9 @@ export default class SummarySection extends React.Component {
 
     const metrics = Object.keys(mapping).reduce((acc, x) => {
       [acc[x]] = summary[mapping[x]];
+      if (x === 'stakes') {
+        acc[x] = arc.fromArc(acc[x]);
+      }
       return acc;
     }, {});
 
