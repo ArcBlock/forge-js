@@ -1,3 +1,10 @@
+## 0.8.2 (February 23, 2019)
+  - chore: upgrade graphql-client to align with forge master
+  - chore: upgrade forge-sdk to align with forge master
+  - chore: upgrade forge-proto to align with forge master
+  - chore: remove source map files before publish forge-web
+  - update readme
+
 ## 0.8.1 (February 21, 2019)
   - chore: improve secondary menu style
   - chore: try to add filter feature
