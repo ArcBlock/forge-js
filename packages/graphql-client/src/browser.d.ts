@@ -38,6 +38,9 @@ declare class GraphQLClient {
   getAssetState(
     params: GraphQLClient.GetAssetStateParams
   ): GraphQLClient.QueryResult<GraphQLClient.ResponseGetAssetState>;
+  getAssets(
+    params: GraphQLClient.GetAssetsParams
+  ): GraphQLClient.QueryResult<GraphQLClient.ResponseGetAssets>;
   getBlock(
     params: GraphQLClient.GetBlockParams
   ): GraphQLClient.QueryResult<GraphQLClient.ResponseGetBlock>;
@@ -60,6 +63,12 @@ declare class GraphQLClient {
   getStakeState(
     params: GraphQLClient.GetStakeStateParams
   ): GraphQLClient.QueryResult<GraphQLClient.ResponseGetStakeState>;
+  getStakes(
+    params: GraphQLClient.GetStakesParams
+  ): GraphQLClient.QueryResult<GraphQLClient.ResponseGetStakes>;
+  getTopAccounts(
+    params: GraphQLClient.GetTopAccountsParams
+  ): GraphQLClient.QueryResult<GraphQLClient.ResponseGetTopAccounts>;
   getTx(params: GraphQLClient.GetTxParams): GraphQLClient.QueryResult<GraphQLClient.ResponseGetTx>;
   getUnconfirmedTxs(
     params: GraphQLClient.GetUnconfirmedTxsParams
@@ -165,37 +174,41 @@ declare namespace GraphQLClient {
   }
 
   export enum StatusCode {
-    ACCOUNT_MIGRATED,
-    BANNED_UNSTAKE,
-    CONSENSUS_RPC_ERROR,
-    EXPIRED_TX,
-    EXPIRED_WALLET_TOKEN,
-    FORBIDDEN,
-    INSUFFICIENT_DATA,
-    INSUFFICIENT_FUND,
-    INSUFFICIENT_STAKE,
-    INTERNAL,
-    INVALID_ASSET,
-    INVALID_CHAIN_ID,
-    INVALID_FORGE_STATE,
-    INVALID_MONIKER,
-    INVALID_MULTISIG,
-    INVALID_NONCE,
-    INVALID_OWNER,
-    INVALID_PASSPHRASE,
     INVALID_RECEIVER_STATE,
-    INVALID_SENDER_STATE,
-    INVALID_SIGNATURE,
-    INVALID_SIGNER_STATE,
-    INVALID_STAKE_STATE,
-    INVALID_TX,
-    INVALID_TX_SIZE,
-    INVALID_WALLET,
+    EXPIRED_ASSET,
+    UNTRANSFERRABLE_ASSET,
     NOENT,
-    OK,
+    INVALID_STAKE_STATE,
+    INVALID_MONIKER,
     STORAGE_RPC_ERROR,
+    INVALID_NONCE,
+    INVALID_FORGE_STATE,
+    INVALID_CHAIN_ID,
+    FORBIDDEN,
+    INVALID_PASSPHRASE,
+    INSUFFICIENT_STAKE,
     UNSUPPORTED_STAKE,
+    EXPIRED_TX,
+    INVALID_TX_SIZE,
+    ACCOUNT_MIGRATED,
+    INVALID_SENDER_STATE,
+    INSUFFICIENT_DATA,
     UNSUPPORTED_TX,
+    INVALID_OWNER,
+    INVALID_WALLET,
+    INVALID_MULTISIG,
+    ACTIVATED_ASSET,
+    BANNED_UNSTAKE,
+    INVALID_ASSET,
+    CONSENSUS_RPC_ERROR,
+    INVALID_TX,
+    INSUFFICIENT_FUND,
+    INVALID_SIGNER_STATE,
+    READONLY_ASSET,
+    INVALID_SIGNATURE,
+    EXPIRED_WALLET_TOKEN,
+    INTERNAL,
+    OK,
   }
 
   export enum UpgradeAction {
@@ -264,9 +277,11 @@ declare namespace GraphQLClient {
   }
 
   export interface AssetState {
+    activated: boolean;
     address: string;
     context: GraphQLClient.StateContext;
     data: GraphQLClient.Any;
+    expiredAt: string;
     moniker: string;
     owner: string;
     readonly: boolean;
@@ -337,6 +352,7 @@ declare namespace GraphQLClient {
 
   export interface CreateAssetTx {
     data: GraphQLClient.Any;
+    expiredAt: string;
     moniker: string;
     readonly: boolean;
   }
@@ -384,6 +400,7 @@ declare namespace GraphQLClient {
     data: GraphQLClient.Any;
     dataVersion: string;
     forgeAppHash: string;
+    rootHashes: GraphQLClient.StateRoot;
     stakeSummary: Array<StakeSummaryEntry>;
     tasks: Array<TasksEntry>;
     version: string;
@@ -430,6 +447,42 @@ declare namespace GraphQLClient {
     totalTxs: number;
     validatorsHash: string;
     version: GraphQLClient.Version;
+  }
+
+  export interface IndexedAccountState {
+    address: string;
+    balance: string;
+    genesisTime: string;
+    migratedFrom: string;
+    migratedTo: string;
+    moniker: string;
+    nonce: number;
+    numAssets: number;
+    numTxs: number;
+    renaissanceTime: string;
+    totalReceivedStakes: string;
+    totalStakes: string;
+    totalUnstakes: string;
+  }
+
+  export interface IndexedAssetState {
+    address: string;
+    genesisTime: string;
+    moniker: string;
+    owner: string;
+    readonly: boolean;
+    renaissanceTime: string;
+  }
+
+  export interface IndexedStakeState {
+    address: string;
+    balance: string;
+    genesisTime: string;
+    message: string;
+    receiver: string;
+    renaissanceTime: string;
+    sender: string;
+    type: number;
   }
 
   export interface IndexedTransaction {
@@ -529,6 +582,12 @@ declare namespace GraphQLClient {
     state: GraphQLClient.AssetState;
   }
 
+  export interface ResponseGetAssets {
+    assets: Array<IndexedAssetState>;
+    code: GraphQLClient.StatusCode;
+    page: GraphQLClient.PageInfo;
+  }
+
   export interface ResponseGetBlock {
     block: GraphQLClient.BlockInfo;
     code: GraphQLClient.StatusCode;
@@ -537,6 +596,7 @@ declare namespace GraphQLClient {
   export interface ResponseGetBlocks {
     blocks: Array<BlockInfo>;
     code: GraphQLClient.StatusCode;
+    page: GraphQLClient.PageInfo;
   }
 
   export interface ResponseGetChainInfo {
@@ -567,6 +627,18 @@ declare namespace GraphQLClient {
   export interface ResponseGetStakeState {
     code: GraphQLClient.StatusCode;
     state: GraphQLClient.StakeState;
+  }
+
+  export interface ResponseGetStakes {
+    code: GraphQLClient.StatusCode;
+    page: GraphQLClient.PageInfo;
+    stakes: Array<IndexedStakeState>;
+  }
+
+  export interface ResponseGetTopAccounts {
+    accounts: Array<IndexedAccountState>;
+    code: GraphQLClient.StatusCode;
+    page: GraphQLClient.PageInfo;
   }
 
   export interface ResponseGetTx {
@@ -719,6 +791,12 @@ declare namespace GraphQLClient {
     renaissanceTx: GraphQLClient.TransactionInfo;
   }
 
+  export interface StateRoot {
+    account: string;
+    asset: string;
+    receipt: string;
+  }
+
   export interface SysUpgradeTx {
     data: GraphQLClient.Any;
     gracePeriod: number;
@@ -848,13 +926,20 @@ declare namespace GraphQLClient {
     keys: Array<string>;
   }
 
+  export interface GetAssetsParams {
+    ownerAddress: string;
+    paging: undefined;
+  }
+
   export interface GetBlockParams {
     height: number;
   }
 
   export interface GetBlocksParams {
+    emptyExcluded: boolean;
     maxHeight: number;
     minHeight: number;
+    paging: undefined;
   }
 
   export interface GetForgeStateParams {
@@ -875,6 +960,15 @@ declare namespace GraphQLClient {
     address: string;
     appHash: string;
     keys: Array<string>;
+  }
+
+  export interface GetStakesParams {
+    addressFilter: undefined;
+    paging: undefined;
+  }
+
+  export interface GetTopAccountsParams {
+    paging: undefined;
   }
 
   export interface GetTxParams {
@@ -925,6 +1019,7 @@ declare namespace GraphQLClient {
   export interface CreateTxParams {
     from: string;
     itx: string;
+    itxType: string;
     nonce: number;
     token: string;
     wallet: string;
