@@ -6,7 +6,7 @@ declare class RpcClient {
    * then 1 token (e.g. ABT) = 10^16 arc. When sending transfer tx or exchange tx,
    * the value shall be created with Arc.
    */
-  fromArc(value: any): string;
+  fromArc(value: any): any;
   toArc(value: any): any;
   /**
    * List standard rpc methods
@@ -105,6 +105,15 @@ declare class RpcClient {
   listTransactions(
     request: forge_abi.RequestListTransactions
   ): RpcClient.UnaryResult<forge_abi.ResponseListTransactions>;
+  getAssets(
+    request: forge_abi.RequestGetAssets
+  ): RpcClient.UnaryResult<forge_abi.ResponseGetAssets>;
+  getStakes(
+    request: forge_abi.RequestGetStakes
+  ): RpcClient.UnaryResult<forge_abi.ResponseGetStakes>;
+  getTopAccounts(
+    request: forge_abi.RequestGetTopAccounts
+  ): RpcClient.UnaryResult<forge_abi.ResponseGetTopAccounts>;
 }
 /**
  * Create new TCP Server to handle transactions from forge-core
@@ -426,6 +435,10 @@ declare namespace forge_abi {
     INVALID_TX_SIZE = 36,
     INVALID_SIGNER_STATE = 37,
     INVALID_FORGE_STATE = 38,
+    EXPIRED_ASSET = 39,
+    UNTRANSFERRABLE_ASSET = 40,
+    READONLY_ASSET = 41,
+    ACTIVATED_ASSET = 42,
     FORBIDDEN = 403,
     INTERNAL = 500,
   }
@@ -444,6 +457,7 @@ declare namespace forge_abi {
     DECLARE_FILE = 22,
     SYS_UPGRADE = 23,
     APPLICATION = 24,
+    ACTIVATE_ASSET = 25,
     ACCOUNT_STATE = 129,
     ASSET_STATE = 130,
     FORGE_STATE = 131,
@@ -746,44 +760,10 @@ declare namespace forge_abi {
     numUpdateAssetTxs: number;
   }
 
-  export interface PageOrder {
-    field: string;
-    type: string;
-  }
-
-  export interface PageInput {
-    cursor: string;
-    size: number;
-    order: Array<forge_abi.PageOrder>;
-  }
-
-  export interface TypeFilter {
-    types: Array<string>;
-  }
-
-  export interface TimeFilter {
-    startDateTime: string;
-    endDateTime: string;
-  }
-
-  export interface AddressFilter {
-    sender: string;
-    receiver: string;
-  }
-
-  export interface PageInfo {
-    cursor: string;
-    next: forge_abi.bool;
-    total: number;
-  }
-
-  export interface IndexedTransaction {
-    hash: string;
-    sender: string;
-    receiver: string;
-    time: string;
-    type: string;
-    tx: forge_abi.Transaction;
+  export interface StateRoot {
+    account: Uint8Array;
+    asset: Uint8Array;
+    receipt: Uint8Array;
   }
 
   export interface AccountState {
@@ -808,6 +788,8 @@ declare namespace forge_abi {
     owner: string;
     moniker: string;
     readonly: forge_abi.bool;
+    activated: forge_abi.bool;
+    expiredAt: google.protobuf.Timestamp;
     stake: forge_abi.StakeContext;
     context: forge_abi.StateContext;
     data: google.protobuf.Any;
@@ -821,6 +803,7 @@ declare namespace forge_abi {
     version: string;
     dataVersion: string;
     forgeAppHash: Uint8Array;
+    rootHashes: forge_abi.StateRoot;
     data: google.protobuf.Any;
   }
 
@@ -898,12 +881,15 @@ declare namespace forge_abi {
   }
 
   export interface RequestGetBlocks {
+    paging: forge_abi.PageInput;
     minHeight: number;
     maxHeight: number;
+    emptyExcluded: forge_abi.bool;
   }
 
   export interface ResponseGetBlocks {
     code: forge_abi.StatusCode;
+    page: forge_abi.PageInfo;
     blocks: Array<forge_abi.BlockInfo>;
   }
 
@@ -1173,9 +1159,47 @@ declare namespace forge_abi {
     signedData: Uint8Array;
   }
 
+  export interface RequestGetAssets {
+    paging: forge_abi.PageInput;
+    ownerAddress: string;
+  }
+
+  export interface ResponseGetAssets {
+    code: forge_abi.StatusCode;
+    page: forge_abi.PageInfo;
+    assets: Array<forge_abi.IndexedAssetState>;
+  }
+
+  export interface RequestGetStakes {
+    paging: forge_abi.PageInput;
+    addressFilter: forge_abi.AddressFilter;
+  }
+
+  export interface ResponseGetStakes {
+    code: forge_abi.StatusCode;
+    page: forge_abi.PageInfo;
+    stakes: Array<forge_abi.IndexedStakeState>;
+  }
+
+  export interface RequestGetTopAccounts {
+    paging: forge_abi.PageInput;
+  }
+
+  export interface ResponseGetTopAccounts {
+    code: forge_abi.StatusCode;
+    page: forge_abi.PageInfo;
+    accounts: Array<forge_abi.IndexedAccountState>;
+  }
+
   export interface AccountMigrateTx {
     pk: Uint8Array;
     type: forge_abi.WalletType;
+  }
+
+  export interface ActivateAssetTx {
+    address: string;
+    to: string;
+    data: google.protobuf.Any;
   }
 
   export interface ConsensusUpgradeTx {
@@ -1191,6 +1215,7 @@ declare namespace forge_abi {
     moniker: string;
     data: google.protobuf.Any;
     readonly: forge_abi.bool;
+    expiredAt: google.protobuf.Timestamp;
   }
 
   export interface DeclareTx {
@@ -1249,6 +1274,82 @@ declare namespace forge_abi {
     address: string;
     moniker: string;
     data: google.protobuf.Any;
+  }
+
+  export interface PageOrder {
+    field: string;
+    type: string;
+  }
+
+  export interface PageInput {
+    cursor: string;
+    size: number;
+    order: Array<forge_abi.PageOrder>;
+  }
+
+  export interface TypeFilter {
+    types: Array<string>;
+  }
+
+  export interface TimeFilter {
+    startDateTime: string;
+    endDateTime: string;
+  }
+
+  export interface AddressFilter {
+    sender: string;
+    receiver: string;
+  }
+
+  export interface PageInfo {
+    cursor: string;
+    next: forge_abi.bool;
+    total: number;
+  }
+
+  export interface IndexedTransaction {
+    hash: string;
+    sender: string;
+    receiver: string;
+    time: string;
+    type: string;
+    tx: forge_abi.Transaction;
+  }
+
+  export interface IndexedAccountState {
+    address: string;
+    balance: forge_abi.BigUint;
+    numAssets: number;
+    numTxs: number;
+    nonce: number;
+    genesisTime: string;
+    renaissanceTime: string;
+    moniker: string;
+    migratedFrom: string;
+    migratedTo: string;
+    totalReceivedStakes: forge_abi.BigUint;
+    totalStakes: forge_abi.BigUint;
+    totalUnstakes: forge_abi.BigUint;
+  }
+
+  export interface IndexedAssetState {
+    address: string;
+    owner: string;
+    genesisTime: string;
+    renaissanceTime: string;
+    moniker: string;
+    readonly: forge_abi.bool;
+  }
+
+  export interface IndexedStakeState {
+    address: string;
+    balance: forge_abi.BigUint;
+    sender: string;
+    receiver: string;
+    genesisTime: string;
+    renaissanceTime: string;
+    message: string;
+    type: number;
   }
 }
 
