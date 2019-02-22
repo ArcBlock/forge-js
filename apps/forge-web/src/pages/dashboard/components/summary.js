@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import moment from 'moment';
+import { arc } from '@arcblock/forge-util';
 
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
@@ -63,7 +64,7 @@ export default class SummarySection extends React.Component {
         date.setSeconds(0);
         return {
           time: moment(date).format('YYYY-MM-DD HH:mm'),
-          [x]: Number(d),
+          [x]: x === 'stakes' ? arc.fromArc(d) : Number(d),
         };
       });
       return acc;

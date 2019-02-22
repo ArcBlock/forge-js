@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
+import { arc } from '@arcblock/forge-util';
 
 import CircularProgress from '@material-ui/core/CircularProgress';
 
@@ -43,7 +44,7 @@ class AccountDetail extends Page {
               <SummaryHeader
                 type={account.address}
                 title={account.moniker}
-                badge={account.balance}
+                badge={arc.fromArc(account.balance)}
                 badgeTip="Balance"
                 meta={[
                   { key: 'First Seen', value: account.context.genesisTime },
@@ -69,7 +70,9 @@ class AccountDetail extends Page {
 }
 
 const Container = styled.div`
-  padding: ${props => props.theme.spacing.unit * 6}px ${props => props.theme.spacing.unit * 15}px;
+  padding: ${props => props.theme.spacing.unit * 6}px 8%;
+  width: auto;
+  max-width: 1280px;
 `;
 
 export default withRoot(withI18n(withRouter(AccountDetail)));
