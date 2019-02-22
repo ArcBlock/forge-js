@@ -12,6 +12,7 @@ var goog = jspb;
 var global = Function('return this')();
 
 var google_protobuf_any_pb = require('google-protobuf/google/protobuf/any_pb.js');
+var google_protobuf_timestamp_pb = require('google-protobuf/google/protobuf/timestamp_pb.js');
 var type_pb = require('./type_pb.js');
 goog.exportSymbol('proto.forge_abi.AccountState', null, global);
 goog.exportSymbol('proto.forge_abi.AssetState', null, global);
@@ -644,6 +645,10 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
         owner: jspb.Message.getFieldWithDefault(msg, 2, ''),
         moniker: jspb.Message.getFieldWithDefault(msg, 3, ''),
         readonly: jspb.Message.getFieldWithDefault(msg, 4, false),
+        activated: jspb.Message.getFieldWithDefault(msg, 5, false),
+        expiredAt:
+          (f = msg.getExpiredAt()) &&
+          google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
         stake: (f = msg.getStake()) && type_pb.StakeContext.toObject(includeInstance, f),
         context: (f = msg.getContext()) && type_pb.StateContext.toObject(includeInstance, f),
         data: (f = msg.getData()) && google_protobuf_any_pb.Any.toObject(includeInstance, f),
@@ -696,6 +701,18 @@ proto.forge_abi.AssetState.deserializeBinaryFromReader = function(msg, reader) {
       case 4:
         var value = /** @type {boolean} */ (reader.readBool());
         msg.setReadonly(value);
+        break;
+      case 5:
+        var value = /** @type {boolean} */ (reader.readBool());
+        msg.setActivated(value);
+        break;
+      case 6:
+        var value = new google_protobuf_timestamp_pb.Timestamp();
+        reader.readMessage(
+          value,
+          google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader
+        );
+        msg.setExpiredAt(value);
         break;
       case 13:
         var value = new type_pb.StakeContext();
@@ -754,6 +771,14 @@ proto.forge_abi.AssetState.serializeBinaryToWriter = function(message, writer) {
   f = message.getReadonly();
   if (f) {
     writer.writeBool(4, f);
+  }
+  f = message.getActivated();
+  if (f) {
+    writer.writeBool(5, f);
+  }
+  f = message.getExpiredAt();
+  if (f != null) {
+    writer.writeMessage(6, f, google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter);
   }
   f = message.getStake();
   if (f != null) {
@@ -821,6 +846,50 @@ proto.forge_abi.AssetState.prototype.getReadonly = function() {
 /** @param {boolean} value */
 proto.forge_abi.AssetState.prototype.setReadonly = function(value) {
   jspb.Message.setField(this, 4, value);
+};
+
+/**
+ * optional bool activated = 5;
+ * Note that Boolean fields may be set to 0/1 when serialized from a Java server.
+ * You should avoid comparisons like {@code val === true/false} in those cases.
+ * @return {boolean}
+ */
+proto.forge_abi.AssetState.prototype.getActivated = function() {
+  return /** @type {boolean} */ (jspb.Message.getFieldWithDefault(this, 5, false));
+};
+
+/** @param {boolean} value */
+proto.forge_abi.AssetState.prototype.setActivated = function(value) {
+  jspb.Message.setField(this, 5, value);
+};
+
+/**
+ * optional google.protobuf.Timestamp expired_at = 6;
+ * @return {?proto.google.protobuf.Timestamp}
+ */
+proto.forge_abi.AssetState.prototype.getExpiredAt = function() {
+  return /** @type{?proto.google.protobuf.Timestamp} */ (jspb.Message.getWrapperField(
+    this,
+    google_protobuf_timestamp_pb.Timestamp,
+    6
+  ));
+};
+
+/** @param {?proto.google.protobuf.Timestamp|undefined} value */
+proto.forge_abi.AssetState.prototype.setExpiredAt = function(value) {
+  jspb.Message.setWrapperField(this, 6, value);
+};
+
+proto.forge_abi.AssetState.prototype.clearExpiredAt = function() {
+  this.setExpiredAt(undefined);
+};
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.forge_abi.AssetState.prototype.hasExpiredAt = function() {
+  return jspb.Message.getField(this, 6) != null;
 };
 
 /**
@@ -966,6 +1035,7 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
         version: jspb.Message.getFieldWithDefault(msg, 5, ''),
         dataVersion: jspb.Message.getFieldWithDefault(msg, 6, ''),
         forgeAppHash: msg.getForgeAppHash(),
+        rootHashes: (f = msg.getRootHashes()) && type_pb.StateRoot.toObject(includeInstance, f),
         data: (f = msg.getData()) && google_protobuf_any_pb.Any.toObject(includeInstance, f),
       };
 
@@ -1046,6 +1116,11 @@ proto.forge_abi.ForgeState.deserializeBinaryFromReader = function(msg, reader) {
         var value = /** @type {!Uint8Array} */ (reader.readBytes());
         msg.setForgeAppHash(value);
         break;
+      case 8:
+        var value = new type_pb.StateRoot();
+        reader.readMessage(value, type_pb.StateRoot.deserializeBinaryFromReader);
+        msg.setRootHashes(value);
+        break;
       case 15:
         var value = new google_protobuf_any_pb.Any();
         reader.readMessage(value, google_protobuf_any_pb.Any.deserializeBinaryFromReader);
@@ -1117,6 +1192,10 @@ proto.forge_abi.ForgeState.serializeBinaryToWriter = function(message, writer) {
   f = message.getForgeAppHash_asU8();
   if (f.length > 0) {
     writer.writeBytes(7, f);
+  }
+  f = message.getRootHashes();
+  if (f != null) {
+    writer.writeMessage(8, f, type_pb.StateRoot.serializeBinaryToWriter);
   }
   f = message.getData();
   if (f != null) {
@@ -1261,6 +1340,35 @@ proto.forge_abi.ForgeState.prototype.getForgeAppHash_asU8 = function() {
 /** @param {!(string|Uint8Array)} value */
 proto.forge_abi.ForgeState.prototype.setForgeAppHash = function(value) {
   jspb.Message.setField(this, 7, value);
+};
+
+/**
+ * optional StateRoot root_hashes = 8;
+ * @return {?proto.forge_abi.StateRoot}
+ */
+proto.forge_abi.ForgeState.prototype.getRootHashes = function() {
+  return /** @type{?proto.forge_abi.StateRoot} */ (jspb.Message.getWrapperField(
+    this,
+    type_pb.StateRoot,
+    8
+  ));
+};
+
+/** @param {?proto.forge_abi.StateRoot|undefined} value */
+proto.forge_abi.ForgeState.prototype.setRootHashes = function(value) {
+  jspb.Message.setWrapperField(this, 8, value);
+};
+
+proto.forge_abi.ForgeState.prototype.clearRootHashes = function() {
+  this.setRootHashes(undefined);
+};
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.forge_abi.ForgeState.prototype.hasRootHashes = function() {
+  return jspb.Message.getField(this, 8) != null;
 };
 
 /**
