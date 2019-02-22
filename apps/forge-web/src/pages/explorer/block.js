@@ -5,6 +5,7 @@ import moment from 'moment';
 import { withRouter } from 'react-router-dom';
 
 import CircularProgress from '@material-ui/core/CircularProgress';
+import Typography from '@material-ui/core/Typography';
 
 import Page from '../../components/page';
 import Layout from '../../layouts/page';
@@ -67,6 +68,11 @@ class BlockDetail extends Page {
                 {txs.map(x => (
                   <TxCard key={x.hash} tx={x} />
                 ))}
+                {txs.length === 0 && (
+                  <Typography component="p" className="empty-tip">
+                    Oops, this is an empty block.
+                  </Typography>
+                )}
               </div>
               {this.renderPagination()}
             </React.Fragment>
@@ -122,6 +128,11 @@ const Container = styled.div`
   padding: ${props => props.theme.spacing.unit * 6}px 8%;
   width: auto;
   max-width: 1280px;
+
+  .empty-tip {
+    color: ${props => props.theme.colors.minor};
+    font-size: 30px;
+  }
 `;
 
 export default withRoot(withI18n(withRouter(BlockDetail)));
