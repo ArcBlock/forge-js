@@ -39,7 +39,7 @@
     "precommit": "npm run lint && CI=1 yarn test",
     "prepush": "npm run lint && CI=1 yarn test",
     "start": "REACT_APP_ASSETS= react-app-rewired start",
-    "build": "REACT_APP_ASSETS= react-app-rewired build",
+    "build": "REACT_APP_ASSETS= react-app-rewired build && rm build/static/**/*.map",
     "test": "react-app-rewired test"
   },
   "config-overrides-path": "tools/config.js",
