@@ -8,7 +8,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import BlockCard from './components/block_card';
 import Pagination from './components/pagination';
 import SummaryHeader from './components/summary_header';
-import FilterStrip from './components/filter_strip';
+import FilterStrip from './components/filter/strip';
 
 import Page from '../../components/page';
 import Layout from '../../layouts/page';

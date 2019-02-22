@@ -1,6 +1,6 @@
 module.exports = {
   parser: 'babel-eslint',
-  plugins: ['import'],
+  plugins: ['import', 'react-hooks'],
   extends: 'airbnb',
   env: {
     es6: true,
@@ -23,6 +23,7 @@ module.exports = {
     'jsx-a11y/click-events-have-key-events': 'off',
     'jsx-a11y/anchor-is-valid': 'off',
     'react/no-danger': 'off',
+    'react-hooks/rules-of-hooks': 'error',
     'react/jsx-closing-bracket-location': 'off',
     'react/jsx-no-target-blank': 'off',
     'react/jsx-boolean-value': 'off',
