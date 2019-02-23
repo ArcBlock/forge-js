@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import moment from 'moment';
+import get from 'lodash/get';
 import { withTheme } from '@material-ui/core/styles';
 
 import { Link } from 'react-router-dom';
@@ -21,8 +22,8 @@ const CreateAssetTx = React.memo(({ tx, theme, ...rest }) => (
     </div>
     <div className="info-row" style={{ justifyContent: 'flex-start' }}>
       <IconFa name="gem" size={14} rounded={true} color={theme.colors.blue} className="type-icon" />
-      <Typography component="p" className="value" title={tx.tx.itx.data.value}>
-        {tx.tx.itx.data.value}
+      <Typography component="p" className="value" title={get(tx, 'tx.itx.data.value', 'NO DATA')}>
+        {get(tx, 'tx.itx.data.value', 'NO DATA')}
       </Typography>
       <Typography component="p" className="hash" title={tx.hash}>
         <Link to={`/node/explorer/txs/${tx.hash}`}>{tx.hash}</Link>

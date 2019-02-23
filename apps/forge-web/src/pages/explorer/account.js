@@ -54,9 +54,6 @@ class AccountDetail extends Page {
                 ]}
               />
               <AccountTabs account={account} />
-              <pre>
-                <code>{JSON.stringify(account, true, '  ')}</code>
-              </pre>
             </React.Fragment>
           )}
         </Container>

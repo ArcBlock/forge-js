@@ -6,34 +6,57 @@ import get from 'lodash/get';
 import Button from '@material-ui/core/Button';
 
 import Icon from '../../../../components/iconfa';
-import AccountTxs from './txs';
+import TxList from './txs';
+import AssetList from './assets';
+
+import forge from '../../../../libs/forge';
 
 const tabs = {
   txs: {
     title: 'txs',
     path: 'numTxs',
     icon: 'receipt',
-    content: account => <AccountTxs address={account.address} />,
+    async fetcher({ address, paging }) {
+      const { transactions } = await forge.listTransactions({
+        paging,
+        addressFilter: { sender: address },
+      });
+      return transactions;
+    },
   },
   assets: {
     title: 'assets',
     path: 'numAssets',
     icon: 'gem',
-    content: account => <AccountTxs address={account.address} />,
+    content: account => <AssetList address={account.address} />,
   },
   stakes: {
     title: 'stakes',
     path: 'stake.recentStakes.items',
     format: v => v.length,
     icon: 'hand-point-right',
-    content: account => <pre>{JSON.stringify(account.stake.stakes)}</pre>,
+    async fetcher({ address, paging }) {
+      const { transactions } = await forge.listTransactions({
+        paging,
+        typeFilter: { types: ['stake'] },
+        addressFilter: { sender: address },
+      });
+      return transactions;
+    },
   },
   receivedStakes: {
     title: 'received stakes',
     path: 'stake.recentReceivedStakes.items',
     format: v => v.length,
     icon: 'hand-receiving',
-    content: account => <pre>{JSON.stringify(account.stake.receivedStakes)}</pre>,
+    async fetcher({ address, paging }) {
+      const { transactions } = await forge.listTransactions({
+        paging,
+        typeFilter: { types: ['stake'] },
+        addressFilter: { receiver: address },
+      });
+      return transactions;
+    },
   },
 };
 
@@ -62,10 +85,18 @@ function AccountTabs({ account }) {
     );
   };
 
+  const { content, fetcher } = tabs[selectedTab];
+
   return (
     <Container className="tabs">
       <div className="header">{Object.keys(tabs).map(x => renderTab(x, tabs[x]))}</div>
-      <div className="content">{tabs[selectedTab].content(account)}</div>
+      <div className="content">
+        {typeof content === 'function' ? (
+          content(account)
+        ) : (
+          <TxList key={selectedTab} address={account.address} dataLoaderFn={fetcher} />
+        )}
+      </div>
     </Container>
   );
 }
@@ -77,6 +108,10 @@ AccountTabs.propTypes = {
 const Container = styled.div`
   .header {
     margin-bottom: 60px;
+  }
+
+  .content {
+    width: 100%;
   }
 `;
 
