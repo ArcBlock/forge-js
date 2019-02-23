@@ -60,8 +60,8 @@ class TransactionList extends Page {
             <SummaryHeader
               type={chainInfo.moniker}
               title={`abt:did:${chainInfo.id}`}
-              badge={chainInfo.blockHeight}
-              badgeTip="Block Height"
+              badge={chainInfo.totalTxs}
+              badgeTip="Total Txs"
               meta={[
                 { key: 'app_hash', value: chainInfo.appHash },
                 { key: 'block_hash', value: chainInfo.blockHash },
@@ -132,12 +132,23 @@ class TransactionList extends Page {
 
   async loadTransactions() {
     this.setState({ txs: null, loadingTxs: true });
-    const { pageSize, pageParam, selectedTxs } = this.state;
+    const {
+      pageSize,
+      pageParam,
+      selectedTxs,
+      chainInfo: { supportedTxs },
+    } = this.state;
 
     const params = {
       paging: { size: pageSize },
       typeFilter: { types: selectedTxs.map(x => fromTypeUrl(x, false)) },
     };
+
+    // If we are filter for all, filter for nothing
+    if (selectedTxs.length === supportedTxs.length) {
+      delete params.typeFilter;
+    }
+
     if (pageParam && pageParam.next && pageParam.cursor) {
       params.paging.cursor = pageParam.cursor;
     }

@@ -40,9 +40,9 @@ Icon.propTypes = {
 Icon.defaultProps = {
   rounded: false,
   variant: 'light',
-  color: '#222222',
+  color: 'inherit',
   className: '',
-  size: 30,
+  size: 24,
   style: {},
 };
 

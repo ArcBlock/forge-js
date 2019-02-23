@@ -39,6 +39,7 @@ const Container = styled.div`
   margin-bottom: ${props => props.theme.spacing.unit * 5}px;
   padding-left: ${props => props.theme.spacing.unit * 2}px;
   border-left: 1px solid ${props => props.theme.colors.gray};
+  width: 100%;
   max-width: 800px;
 `;
 

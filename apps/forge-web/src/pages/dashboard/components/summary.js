@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import moment from 'moment';
-import { arc } from '@arcblock/forge-util';
 
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
@@ -10,6 +9,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import Icon8 from '../../../components/icon8';
 import SparkLine from '../../../components/sparkline';
 import forge from '../../../libs/forge';
+import { fromArcToReadable } from '../../../libs/util';
 
 export default class SummarySection extends React.Component {
   constructor(props) {
@@ -53,7 +53,7 @@ export default class SummarySection extends React.Component {
     const metrics = Object.keys(mapping).reduce((acc, x) => {
       [acc[x]] = summary[mapping[x]];
       if (x === 'stakes') {
-        acc[x] = arc.fromArc(acc[x]);
+        acc[x] = fromArcToReadable(acc[x]);
       }
       return acc;
     }, {});
@@ -67,7 +67,7 @@ export default class SummarySection extends React.Component {
         date.setSeconds(0);
         return {
           time: moment(date).format('YYYY-MM-DD HH:mm'),
-          [x]: x === 'stakes' ? arc.fromArc(d) : Number(d),
+          [x]: x === 'stakes' ? fromArcToReadable(d) : Number(d),
         };
       });
       return acc;
