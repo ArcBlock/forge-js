@@ -42,7 +42,7 @@ Icon.defaultProps = {
   variant: 'light',
   color: 'inherit',
   className: '',
-  size: 30,
+  size: 24,
   style: {},
 };
 

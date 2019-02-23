@@ -16,32 +16,38 @@ const tabs = {
     title: 'txs',
     path: 'numTxs',
     icon: 'receipt',
+    component: TxList,
     async fetcher({ address, paging }) {
-      const { transactions } = await forge.listTransactions({
+      return forge.listTransactions({
         paging,
         addressFilter: { sender: address },
       });
-      return transactions;
     },
   },
   assets: {
     title: 'assets',
     path: 'numAssets',
     icon: 'gem',
-    content: account => <AssetList address={account.address} />,
+    component: AssetList,
+    async fetcher({ address, paging }) {
+      return forge.getAssets({
+        paging,
+        ownerAddress: address,
+      });
+    },
   },
   stakes: {
     title: 'stakes',
     path: 'stake.recentStakes.items',
     format: v => v.length,
     icon: 'hand-point-right',
+    component: TxList,
     async fetcher({ address, paging }) {
-      const { transactions } = await forge.listTransactions({
+      return forge.listTransactions({
         paging,
         typeFilter: { types: ['stake'] },
         addressFilter: { sender: address },
       });
-      return transactions;
     },
   },
   receivedStakes: {
@@ -49,13 +55,13 @@ const tabs = {
     path: 'stake.recentReceivedStakes.items',
     format: v => v.length,
     icon: 'hand-receiving',
+    component: TxList,
     async fetcher({ address, paging }) {
-      const { transactions } = await forge.listTransactions({
+      return forge.listTransactions({
         paging,
         typeFilter: { types: ['stake'] },
         addressFilter: { receiver: address },
       });
-      return transactions;
     },
   },
 };
@@ -85,17 +91,13 @@ function AccountTabs({ account }) {
     );
   };
 
-  const { content, fetcher } = tabs[selectedTab];
+  const { component: ContentComponent, fetcher } = tabs[selectedTab];
 
   return (
     <Container className="tabs">
       <div className="header">{Object.keys(tabs).map(x => renderTab(x, tabs[x]))}</div>
       <div className="content">
-        {typeof content === 'function' ? (
-          content(account)
-        ) : (
-          <TxList key={selectedTab} address={account.address} dataLoaderFn={fetcher} />
-        )}
+        <ContentComponent key={selectedTab} address={account.address} dataLoaderFn={fetcher} />
       </div>
     </Container>
   );
