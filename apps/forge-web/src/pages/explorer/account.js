@@ -2,17 +2,19 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
-import { arc } from '@arcblock/forge-util';
 
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 import Page from '../../components/page';
 import Layout from '../../layouts/page';
 import SummaryHeader from './components/summary_header';
+import AccountTabs from './components/account/tabs';
+
 import withI18n from '../../components/withI18n';
 import withRoot from '../../components/withRoot';
 
 import forge from '../../libs/forge';
+import { fromArcToReadable } from '../../libs/util';
 
 class AccountDetail extends Page {
   static propTypes = {
@@ -30,7 +32,7 @@ class AccountDetail extends Page {
   }
 
   componentDidMount() {
-    this.loadStatus();
+    this.loadAccount();
   }
 
   render() {
@@ -44,13 +46,14 @@ class AccountDetail extends Page {
               <SummaryHeader
                 type={account.address}
                 title={account.moniker}
-                badge={arc.fromArc(account.balance)}
+                badge={fromArcToReadable(account.balance)}
                 badgeTip="Balance"
                 meta={[
                   { key: 'First Seen', value: account.context.genesisTime },
                   { key: 'Last Seen', value: account.context.renaissanceTime },
                 ]}
               />
+              <AccountTabs account={account} />
               <pre>
                 <code>{JSON.stringify(account, true, '  ')}</code>
               </pre>
@@ -61,10 +64,15 @@ class AccountDetail extends Page {
     );
   }
 
-  async loadStatus() {
+  async loadAccount() {
     const { address } = this.props.match.params;
     this.setState({ loading: true });
-    const { state } = await forge.getAccountState({ address });
+    const { state } = await forge.getAccountState(
+      { address },
+      {
+        ignoreFields: ['state.context.genesisTx.tx', 'state.context.renaissanceTx.tx'],
+      }
+    );
     this.setState({ loading: false, account: state });
   }
 }
@@ -73,6 +81,10 @@ const Container = styled.div`
   padding: ${props => props.theme.spacing.unit * 6}px 8%;
   width: auto;
   max-width: 1280px;
+
+  .tabs {
+    margin-bottom: 60px;
+  }
 `;
 
 export default withRoot(withI18n(withRouter(AccountDetail)));

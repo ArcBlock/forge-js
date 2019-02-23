@@ -3,6 +3,8 @@ import Cookie from 'js-cookie';
 import browserLang from 'browser-lang';
 import camelCase from 'lodash/camelCase';
 import upperFirst from 'lodash/upperFirst';
+import numeral from 'numeral';
+import { arc } from '@arcblock/forge-util';
 import { languages, translations } from './locale';
 import { COOKIE_LANGUAGE } from './constant';
 
@@ -64,4 +66,8 @@ export function toTypeUrl(type) {
     .replace(/[-\s]+/g, '_')
     .toLowerCase();
   return `fg:t:${underscored}`;
+}
+
+export function fromArcToReadable(bn) {
+  return numeral(arc.fromArc(bn)).format('0,0.0000');
 }
