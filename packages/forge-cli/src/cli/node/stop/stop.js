@@ -1,6 +1,31 @@
 const shell = require('shelljs');
 const { symbols, getSpinner } = require('core/ui');
-const { getForgeProcesses } = require('core/env');
+const { config, getForgeProcesses } = require('core/env');
+
+function isStopped() {
+  const { starterBinPath, forgeConfigPath } = config.get('cli');
+  const { stdout: pid } = shell.exec(`FORGE_CONFIG=${forgeConfigPath} ${starterBinPath} pid`, {
+    silent: true,
+  });
+
+  const pidNumber = Number(pid);
+  return !!pidNumber;
+}
+
+function waitUntilStopped() {
+  return new Promise(resolve => {
+    if (isStopped(true)) {
+      return resolve();
+    }
+
+    const timer = setInterval(() => {
+      if (isStopped(true)) {
+        clearInterval(timer);
+        return resolve();
+      }
+    }, 800);
+  });
+}
 
 async function main() {
   try {
@@ -13,12 +38,15 @@ async function main() {
     shell.echo(`${symbols.success} Sending kill signal to forge daemon...`);
     const spinner = getSpinner('Waiting for forge daemon to stop...');
     spinner.start();
-    const { code, stderr } = shell.exec(`kill ${starterProcess.pid}`);
-    if (code === 0) {
-      spinner.succeed('Forge daemon stopped!');
-    } else {
+    const { code, stderr } = shell.exec(`kill ${starterProcess.pid}`, { silent: true });
+    if (code !== 0) {
       spinner.fail(`Forge daemon stop failed ${stderr}!`);
+      return;
     }
+
+    await waitUntilStopped();
+    spinner.succeed('Forge daemon stopped!');
+
     process.exit(0);
   } catch (err) {
     shell.echo(`${symbols.error} cannot get daemon process info, ensure forge is started!`);

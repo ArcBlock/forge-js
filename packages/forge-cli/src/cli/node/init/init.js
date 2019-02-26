@@ -31,18 +31,8 @@ async function isForgeStopped() {
 function releaseDirExists() {
   const releaseDir = ensureForgeRelease({}, false);
   if (releaseDir) {
-    shell.echo(`${symbols.warning} forge already initialized: ${releaseDir}`);
-    shell.echo(
-      `${symbols.warning} to upgrade forge release, please run ${chalk.cyan(
-        'rm -rf ~/.forge_cli'
-      )} first`
-    );
-    shell.echo(hr);
-    shell.echo(chalk.cyan('Current forge release'));
-    shell.echo(hr);
-    if (config.get('cli.forgeBinPath')) {
-      shell.exec('forge version');
-    }
+    const version = config.get('cli.currentVersion');
+    shell.echo(`${symbols.warning} forge version ${version} already initialized: ${releaseDir}`);
     return true;
   }
 
@@ -192,20 +182,31 @@ function updateReleaseYaml(asset, version) {
 }
 
 async function main() {
-  const isStopped = await isForgeStopped();
-  if (!isStopped) {
-    return process.exit(1);
-  }
-
   try {
+    const platform = await getPlatform();
+    shell.echo(`${symbols.info} Detected platform is: ${platform}`);
+    const version = fetchReleaseVersion();
+
     if (releaseDirExists()) {
+      if (version === config.get('cli.currentVersion')) {
+        shell.echo(`${symbols.info} already initialized latest version: ${version}`);
+        shell.echo(hr);
+        shell.echo(chalk.cyan('Current forge release'));
+        shell.echo(hr);
+        if (config.get('cli.forgeBinPath')) {
+          shell.exec('forge version');
+        }
+        return process.exit(1);
+      }
+    }
+
+    // Ensure forge is stopped, because init on an running node may cause some mess
+    const isStopped = await isForgeStopped();
+    if (!isStopped) {
       return process.exit(1);
     }
 
-    const platform = await getPlatform();
-    shell.echo(`${symbols.info} Detected platform is: ${platform}`);
-
-    const version = fetchReleaseVersion();
+    // Start download and unzip
     const assets = ['forge', 'forge_starter', 'simulator'];
     for (const asset of assets) {
       const assetInfo = fetchAssetInfo(platform, version, asset);
@@ -235,5 +236,5 @@ async function main() {
 exports.run = main;
 exports.execute = main;
 
-// exports.run = () => copyReleaseConfig('0.15.15');
-// exports.execute = () => copyReleaseConfig('0.15.15');
+// exports.run = () => updateReleaseYaml('forge', '0.16.0');
+// exports.execute = () => updateReleaseYaml('forge', '0.16.0');
