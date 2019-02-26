@@ -19,6 +19,7 @@ cli(
       '--help': () => {
         shell.echo(`
 Examples:
+  - ${chalk.cyan('forge restart forge')}        restart forge
   - ${chalk.cyan('forge restart ipfs')}         restart ipfs
   - ${chalk.cyan('forge restart tendermint')}   restart tendermint
         `);

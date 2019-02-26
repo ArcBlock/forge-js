@@ -179,8 +179,8 @@ function ensureForgeRelease(args, exitOn404 = true) {
 }
 
 async function ensureRunningNode() {
-  const { forgeBinPath, forgeConfigPath } = config.cli;
-  const { stdout: pid } = shell.exec(`FORGE_CONFIG=${forgeConfigPath} ${forgeBinPath} pid`, {
+  const { starterBinPath, forgeConfigPath } = config.cli;
+  const { stdout: pid } = shell.exec(`FORGE_CONFIG=${forgeConfigPath} ${starterBinPath} pid`, {
     silent: true,
   });
 
@@ -433,8 +433,8 @@ function runNativeSimulatorCommand(subCommand, options = {}) {
 }
 
 async function getForgeProcesses() {
-  const { forgeBinPath, forgeConfigPath } = config.cli;
-  const { stdout: pid } = shell.exec(`FORGE_CONFIG=${forgeConfigPath} ${forgeBinPath} pid`, {
+  const { starterBinPath, forgeConfigPath } = config.cli;
+  const { stdout: pid } = shell.exec(`FORGE_CONFIG=${forgeConfigPath} ${starterBinPath} pid`, {
     silent: true,
   });
 
@@ -465,9 +465,9 @@ async function getForgeProcesses() {
     const pattern = new RegExp(command, 'i');
 
     return results
-      .filter(x => /(forge|tendermint|heart|ipfs)/.test(x.name) || (command && pattern.test(x.cmd)))
+      .filter(x => /(forge|tendermint|ipfs)/.test(x.name) || (command && pattern.test(x.cmd)))
       .map(x => ({
-        name: x.name.replace(path.extname(x.name), ''),
+        name: x.name.replace(path.extname(x.name), '').replace(/^forge_/, ''),
         pid: x.pid,
         uptime: prettyTime(x.elapsed),
         memory: prettyBytes(x.memory),
