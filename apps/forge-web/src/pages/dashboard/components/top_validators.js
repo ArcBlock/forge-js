@@ -1,5 +1,6 @@
 import React from 'react';
 import { useAsync } from 'react-use';
+import { Link } from 'react-router-dom';
 
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Table from '@material-ui/core/Table';
@@ -46,7 +47,9 @@ export default function TopAccountsSection() {
         {state.value.map((x, i) => (
           <TableRow key={x.address}>
             <TableCell align="left">{i + 1}</TableCell>
-            <TableCell align="left">{x.address}</TableCell>
+            <TableCell align="left">
+              <Link to={`/node/explorer/accounts/${x.address}`}>{x.address}</Link>
+            </TableCell>
             <TableCell align="center">{x.votingPower}</TableCell>
             <TableCell align="center">{x.proposerPriority}</TableCell>
             <TableCell align="left">

@@ -1,6 +1,7 @@
 import React from 'react';
 import numeral from 'numeral';
 import { useAsync } from 'react-use';
+import { Link } from 'react-router-dom';
 
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Table from '@material-ui/core/Table';
@@ -55,7 +56,9 @@ export default function TopAccountsSection() {
             <TableCell align="left" component="th" scope="row">
               {x.rank}
             </TableCell>
-            <TableCell align="left">{x.moniker}</TableCell>
+            <TableCell align="left">
+              <Link to={`/node/explorer/accounts/${x.address}`}>{x.moniker}</Link>
+            </TableCell>
             <TableCell align="center">{numeral(x.balance).format('0,0.0000')}</TableCell>
             <TableCell align="center">{numeral(x.assets).format('0,0')}</TableCell>
             <TableCell align="left">
