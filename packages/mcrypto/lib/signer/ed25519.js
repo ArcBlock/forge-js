@@ -1,9 +1,8 @@
-const EDDSA = require('elliptic').eddsa;
+const ed25519 = require('tweetnacl').sign;
 const randomBytes = require('randombytes');
+const { bytesToHex, hexToBytes } = require('../util');
 
 const Signer = require('../protocols/signer');
-
-const ed25519 = new EDDSA('ed25519');
 
 // https://github.com/bitchan/eccrypto
 class Ed25519Signer extends Signer {
@@ -11,20 +10,39 @@ class Ed25519Signer extends Signer {
     super();
   }
 
-  genKeyPair(size = 64) {
-    return ed25519.keyFromSecret(randomBytes(size));
+  toBytes(key) {
+    let bytes = key;
+    // FIXME: strict hex string check
+    if (typeof key === 'string') {
+      bytes = hexToBytes(key);
+    }
+
+    return Uint8Array.from(bytes);
   }
 
-  getPublicKey(privateKey) {
-    return ed25519.keyFromSecret(privateKey).getPublic();
+  genKeyPair() {
+    return ed25519.keyPair.fromSecretKey(Uint8Array.from(randomBytes(64)));
   }
 
-  sign(data, privateKey) {
-    return ed25519.keyFromSecret(privateKey).sign(data);
+  getPublicKey(secretKey, encoding) {
+    const secretBytes = this.toBytes(secretKey);
+    // console.log('getPublicKey', { secretKey, secretBytes });
+    const publicKey = ed25519.keyPair.fromSecretKey(secretBytes).publicKey;
+    return encoding === 'hex' ? bytesToHex(publicKey) : publicKey;
   }
 
-  verify(hash, signature, publicKey) {
-    return ed25519.keyFromPublic(publicKey).verify(hash, signature);
+  sign(message, secretKey, encoding) {
+    const secretBytes = this.toBytes(secretKey);
+    const messageBytes = this.toBytes(message);
+    const signature = ed25519.detached(messageBytes, secretBytes);
+    return encoding === 'hex' ? bytesToHex(signature) : signature;
+  }
+
+  verify(message, signature, publicKey) {
+    const publicBytes = this.toBytes(publicKey);
+    const messageBytes = this.toBytes(message);
+    const signatureBytes = this.toBytes(signature);
+    return ed25519.detached.verify(messageBytes, signatureBytes, publicBytes);
   }
 }
 

@@ -41,6 +41,7 @@
     "elliptic": "^6.4.1",
     "interface": "^1.2.1",
     "js-sha3": "^0.8.0",
-    "randombytes": "^2.0.6"
+    "randombytes": "^2.0.6",
+    "tweetnacl": "^1.0.1"
   }
 }
