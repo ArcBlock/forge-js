@@ -174,40 +174,40 @@ declare namespace GraphQLClient {
   }
 
   export enum StatusCode {
-    INVALID_NONCE,
-    EXPIRED_ASSET,
-    INVALID_ASSET,
-    UNTRANSFERRABLE_ASSET,
-    INSUFFICIENT_DATA,
-    UNSUPPORTED_TX,
     INVALID_MONIKER,
-    EXPIRED_WALLET_TOKEN,
-    INVALID_STAKE_STATE,
-    EXPIRED_TX,
-    FORBIDDEN,
-    INVALID_CHAIN_ID,
-    UNSUPPORTED_STAKE,
-    INVALID_SENDER_STATE,
-    INVALID_SIGNATURE,
-    INVALID_SIGNER_STATE,
-    INVALID_PASSPHRASE,
-    INVALID_FORGE_STATE,
-    CONSENSUS_RPC_ERROR,
-    STORAGE_RPC_ERROR,
-    INVALID_MULTISIG,
-    INVALID_OWNER,
-    READONLY_ASSET,
-    INSUFFICIENT_FUND,
-    INVALID_RECEIVER_STATE,
-    NOENT,
-    INSUFFICIENT_STAKE,
-    INVALID_TX,
-    ACTIVATED_ASSET,
-    INVALID_WALLET,
     BANNED_UNSTAKE,
+    INSUFFICIENT_FUND,
+    UNSUPPORTED_STAKE,
+    EXPIRED_TX,
+    STORAGE_RPC_ERROR,
+    INVALID_CHAIN_ID,
+    EXPIRED_ASSET,
+    INVALID_SENDER_STATE,
+    CONSENSUS_RPC_ERROR,
+    INSUFFICIENT_STAKE,
+    READONLY_ASSET,
+    INVALID_PASSPHRASE,
+    UNSUPPORTED_TX,
+    UNTRANSFERRABLE_ASSET,
+    INVALID_RECEIVER_STATE,
+    INVALID_NONCE,
+    INVALID_SIGNATURE,
+    INVALID_ASSET,
+    ACTIVATED_ASSET,
+    NOENT,
+    INVALID_FORGE_STATE,
+    INVALID_MULTISIG,
+    FORBIDDEN,
+    INVALID_WALLET,
+    EXPIRED_WALLET_TOKEN,
+    INVALID_OWNER,
+    INVALID_TX_SIZE,
+    INSUFFICIENT_DATA,
+    INVALID_SIGNER_STATE,
+    INVALID_TX,
     ACCOUNT_MIGRATED,
     INTERNAL,
-    INVALID_TX_SIZE,
+    INVALID_STAKE_STATE,
     OK,
   }
 
@@ -400,7 +400,6 @@ declare namespace GraphQLClient {
     data: GraphQLClient.Any;
     dataVersion: string;
     forgeAppHash: string;
-    rootHashes: GraphQLClient.StateRoot;
     stakeSummary: Array<StakeSummaryEntry>;
     tasks: Array<TasksEntry>;
     version: string;
@@ -709,7 +708,7 @@ declare namespace GraphQLClient {
 
   export interface ResponseSignData {
     code: GraphQLClient.StatusCode;
-    signedData: string;
+    signature: string;
   }
 
   export interface ResponseStoreFile {
@@ -789,12 +788,6 @@ declare namespace GraphQLClient {
     genesisTx: GraphQLClient.TransactionInfo;
     renaissanceTime: string;
     renaissanceTx: GraphQLClient.TransactionInfo;
-  }
-
-  export interface StateRoot {
-    account: string;
-    asset: string;
-    receipt: string;
   }
 
   export interface SysUpgradeTx {
@@ -910,7 +903,7 @@ declare namespace GraphQLClient {
 
   export interface GetAccountStateParams {
     address: string;
-    appHash: string;
+    height: number;
     keys: Array<string>;
   }
 
@@ -922,7 +915,7 @@ declare namespace GraphQLClient {
 
   export interface GetAssetStateParams {
     address: string;
-    appHash: string;
+    height: number;
     keys: Array<string>;
   }
 
@@ -943,7 +936,7 @@ declare namespace GraphQLClient {
   }
 
   export interface GetForgeStateParams {
-    appHash: string;
+    height: number;
     keys: Array<string>;
   }
 
@@ -958,7 +951,7 @@ declare namespace GraphQLClient {
 
   export interface GetStakeStateParams {
     address: string;
-    appHash: string;
+    height: number;
     keys: Array<string>;
   }
 
@@ -1019,9 +1012,9 @@ declare namespace GraphQLClient {
   export interface CreateTxParams {
     from: string;
     itx: string;
-    itxType: string;
     nonce: number;
     token: string;
+    typeUrl: string;
     wallet: string;
   }
 
