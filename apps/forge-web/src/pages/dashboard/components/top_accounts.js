@@ -2,7 +2,6 @@ import React from 'react';
 import numeral from 'numeral';
 import { useAsync } from 'react-use';
 
-import Typography from '@material-ui/core/Typography';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -30,12 +29,7 @@ export default function TopAccountsSection() {
   const state = useAsync(fetchTopAccounts);
 
   if (state.loading) {
-    return (
-      <React.Fragment>
-        <Typography component="h3">Loading data...</Typography>
-        <CircularProgress />
-      </React.Fragment>
-    );
+    return <CircularProgress />;
   }
 
   if (state.error) {

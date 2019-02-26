@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import moment from 'moment';
 import { useAsync } from 'react-use';
 
-import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
@@ -26,12 +25,7 @@ export default function SummarySection() {
   const state = useAsync(fetchSummary);
 
   if (state.loading) {
-    return (
-      <React.Fragment>
-        <Typography component="h3">Loading data...</Typography>
-        <CircularProgress />
-      </React.Fragment>
-    );
+    return <CircularProgress />;
   }
 
   if (state.error) {
