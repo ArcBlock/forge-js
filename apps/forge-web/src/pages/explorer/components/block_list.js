@@ -2,13 +2,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import BlockCard from '../block_card';
+import BlockCard from './block_card';
 import PaginatedList from './paginated_list';
 
 function BlockList({ pageSize, dataLoaderFn }) {
   const dataKey = 'blocks';
   const dataRenderFn = blocks => blocks.map(x => <BlockCard key={x.height} block={x} />);
-  const props = { address: '', pageSize, dataKey, dataLoaderFn, dataRenderFn };
+  const props = { args: {}, pageSize, dataKey, dataLoaderFn, dataRenderFn };
   return <PaginatedList {...props} />;
 }
 

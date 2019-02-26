@@ -8,7 +8,7 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import PaginatedList from './paginated_list';
+import PaginatedList from '../paginated_list';
 
 function renderAssets(assets) {
   return (
@@ -41,7 +41,7 @@ function renderAssets(assets) {
 
 function AssetList({ address, pageSize, dataLoaderFn }) {
   const dataKey = 'assets';
-  const props = { address, pageSize, dataKey, dataLoaderFn, dataRenderFn: renderAssets };
+  const props = { args: { address }, pageSize, dataKey, dataLoaderFn, dataRenderFn: renderAssets };
   return <PaginatedList {...props} />;
 }
 

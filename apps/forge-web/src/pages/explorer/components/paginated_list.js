@@ -7,13 +7,14 @@ import { useAsync } from 'react-use';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Button from '@material-ui/core/Button';
 
-import Icon from '../../../../components/iconfa';
+import Icon from '../../../components/iconfa';
 
-function PaginatedList({ address, pageSize, dataKey, dataLoaderFn, dataRenderFn }) {
+function PaginatedList({ args, pageSize, dataKey, dataLoaderFn, dataRenderFn }) {
   const [cursor, setCursor] = useState(null);
 
-  const fetchList = async (addr, size, cur = null) => {
-    const params = { address: addr, paging: { size: size || 10 } };
+  // eslint-disable-next-line
+  const fetchList = async (args, size, cur = null) => {
+    const params = { ...args, paging: { size: size || 10 } };
     if (cur) {
       params.paging.cursor = cur;
     }
@@ -25,11 +26,7 @@ function PaginatedList({ address, pageSize, dataKey, dataLoaderFn, dataRenderFn 
     return res;
   };
 
-  const state = useAsync(async () => fetchList(address, pageSize, cursor), [
-    address,
-    pageSize,
-    cursor,
-  ]);
+  const state = useAsync(async () => fetchList(args, pageSize, cursor), [args, pageSize, cursor]);
 
   if (state.error) {
     console.error(state.error);
@@ -77,7 +74,7 @@ function PaginatedList({ address, pageSize, dataKey, dataLoaderFn, dataRenderFn 
 }
 
 PaginatedList.propTypes = {
-  address: PropTypes.string.isRequired,
+  args: PropTypes.object.isRequired,
   dataKey: PropTypes.string.isRequired,
   pageSize: PropTypes.number,
   dataLoaderFn: PropTypes.func.isRequired,
