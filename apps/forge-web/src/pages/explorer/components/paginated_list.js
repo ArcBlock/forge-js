@@ -19,9 +19,7 @@ function PaginatedList({ args, pageSize, dataKey, dataLoaderFn, dataRenderFn }) 
       params.paging.cursor = cur;
     }
 
-    console.log('fetchList.dataLoaderFn.params', params);
     const res = await dataLoaderFn(params);
-    console.log('fetchList.dataLoaderFn.result', res);
 
     return res;
   };
