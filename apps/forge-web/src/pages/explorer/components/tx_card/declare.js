@@ -13,7 +13,7 @@ const DeclareTxSummary = React.memo(({ tx, theme, ...rest }) => (
   <Container {...rest}>
     <div className="info-row">
       <Typography component="p" className="hash" title={tx.hash}>
-        <Link to={`/node/explorer/txs/${tx.hash}`}>{tx.hash}</Link>
+        <Link to={`/node/explorer/txs/${tx.hash}`}># {tx.hash}</Link>
       </Typography>
       <Typography component="p" className="time" title={tx.time}>
         {moment(tx.time).fromNow()}
@@ -62,7 +62,7 @@ const Container = styled.div`
   }
 
   .value,
-  .hash {
+  .address {
     width: auto;
     max-width: 49%;
     white-space: nowrap;
