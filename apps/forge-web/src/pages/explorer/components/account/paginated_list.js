@@ -18,8 +18,9 @@ function PaginatedList({ address, pageSize, dataKey, dataLoaderFn, dataRenderFn 
       params.paging.cursor = cur;
     }
 
+    console.log('fetchList.dataLoaderFn.params', params);
     const res = await dataLoaderFn(params);
-    console.log('fetchList.dataLoaderFn', params, res);
+    console.log('fetchList.dataLoaderFn.result', res);
 
     return res;
   };
@@ -34,34 +35,42 @@ function PaginatedList({ address, pageSize, dataKey, dataLoaderFn, dataRenderFn 
     console.error(state.error);
   }
 
-  return (
-    <Container>
-      {state.loading ? (
+  if (state.loading) {
+    return (
+      <Container>
         <CircularProgress />
-      ) : state.error ? (
+      </Container>
+    );
+  }
+
+  if (state.error) {
+    return (
+      <Container>
         <p className="error">
           <Icon name="exclamation-circle" size={36} />
           {state.error.message}
         </p>
-      ) : (
-        <React.Fragment>
-          {Array.isArray(state.value[dataKey]) &&
-            state.value[dataKey].length > 0 &&
-            dataRenderFn(state.value[dataKey])}
-          {state.value[dataKey].length === 0 && (
-            <p className="warn">
-              <Icon name="exclamation-triangle" size={36} />
-              No data found!
-            </p>
-          )}
-          {state.value.page && state.value.page.cursor && state.value.page.next && (
-            <p className="pager">
-              <Button onClick={() => setCursor(state.value.page.cursor)}>
-                Next Page <Icon name="arrow-right" />
-              </Button>
-            </p>
-          )}
-        </React.Fragment>
+      </Container>
+    );
+  }
+
+  return (
+    <Container>
+      {Array.isArray(state.value[dataKey]) &&
+        state.value[dataKey].length > 0 &&
+        dataRenderFn(state.value[dataKey])}
+      {state.value[dataKey].length === 0 && (
+        <p className="warn">
+          <Icon name="exclamation-triangle" size={36} />
+          No data found!
+        </p>
+      )}
+      {state.value.page && state.value.page.cursor && state.value.page.next && (
+        <p className="pager">
+          <Button onClick={() => setCursor(state.value.page.cursor)}>
+            Next Page <Icon name="arrow-right" />
+          </Button>
+        </p>
       )}
     </Container>
   );

@@ -14,18 +14,19 @@ const BlockCard = React.memo(({ block, theme, ...rest }) => (
     <div className="left">
       <Typography component="p" className="hash" gutterBottom>
         <Link to={`/node/explorer/blocks/${block.height}`} title="View block detail">
-          #{block.appHash}
+          # {block.appHash}
         </Link>
       </Typography>
       <div className="summary">
         <IconFa name="boxes" size={14} rounded={true} color={theme.colors.blue} className="icon" />
         <Typography component="p">
-          {block.height} ({block.numTxs} txs)
+          #{block.height} ({block.numTxs} txs)
         </Typography>
       </div>
       <Typography component="p" className="proposer">
+        <span>Proposer:</span>
         <Link to={`/node/explorer/accounts/${block.proposer}`} title="View account detail">
-          <span>Proposer:</span> {block.proposer}
+          {block.proposer}
         </Link>
       </Typography>
     </div>
@@ -42,6 +43,7 @@ const Container = styled.div`
   margin-bottom: ${props => props.theme.spacing.unit * 4}px;
   padding-left: ${props => props.theme.spacing.unit * 2}px;
   border-left: 1px solid ${props => props.theme.colors.gray};
+  width: 100%;
   max-width: 800px;
   display: flex;
   flex-direction: row;
@@ -68,14 +70,23 @@ const Container = styled.div`
 
   .time,
   .proposer a,
+  .proposer span,
   .hash a {
     color: #9b9b9b;
-    font-size: 14px;
+    font-size: 12px;
     cursor: pointer;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 
     &:hover {
       text-decoration: underline;
     }
+  }
+
+  .time {
+    margin-top: 5px;
   }
 `;
 
