@@ -67,13 +67,16 @@ FilterStrip.propTypes = {
   theme: PropTypes.object.isRequired,
   location: PropTypes.object.isRequired,
   showFilter: PropTypes.bool,
-  supportedTxs: PropTypes.arrayOf(PropTypes.string).isRequired,
-  onApplyFilter: PropTypes.func.isRequired,
-  selectedTxs: PropTypes.arrayOf(PropTypes.string).isRequired,
+  supportedTxs: PropTypes.arrayOf(PropTypes.string),
+  onApplyFilter: PropTypes.func,
+  selectedTxs: PropTypes.arrayOf(PropTypes.string),
 };
 
 FilterStrip.defaultProps = {
   showFilter: false,
+  supportedTxs: [],
+  selectedTxs: [],
+  onApplyFilter: () => {},
 };
 
 const Container = styled.div`

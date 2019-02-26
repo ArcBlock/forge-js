@@ -1,14 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import qs from 'querystring';
 import { withRouter } from 'react-router-dom';
 
 import CircularProgress from '@material-ui/core/CircularProgress';
 
-import TxCard from './components/tx_card/index';
-import Pagination from './components/pagination';
 import FilterStrip from './components/filter/strip';
+import TxList from './components/tx_list';
 import SummaryHeader from './components/summary_header';
 
 import Page from '../../components/page';
@@ -18,6 +16,14 @@ import withRoot from '../../components/withRoot';
 
 import forge from '../../libs/forge';
 import { parseQuery, fromTypeUrl, toTypeUrl } from '../../libs/util';
+
+async function fetchTransactions({ typeFilter, paging }) {
+  const params = { paging };
+  if (typeFilter) {
+    params.typeFilter = typeFilter;
+  }
+  return forge.listTransactions(params);
+}
 
 class TransactionList extends Page {
   static propTypes = {
@@ -33,25 +39,20 @@ class TransactionList extends Page {
 
     this.state = {
       loading: false,
-      loadingTxs: false,
-      txs: null,
       chainInfo: null,
-      currentPage: Number(params.page) || 1,
-      pageSize: 50,
-      pageParam: { next: false, cursor: null },
+      pageSize: 20,
       selectedTxs: selected,
     };
-
-    this.loadTransactions = this.loadTransactions.bind(this);
-    this.onChangePage = this.onChangePage.bind(this);
   }
 
   componentDidMount() {
-    this.loadChainInfo(this.loadTransactions);
+    this.loadChainInfo();
   }
 
   render() {
-    const { loading, loadingTxs, chainInfo, txs, currentPage, pageSize, selectedTxs } = this.state;
+    const { loading, pageSize, chainInfo, selectedTxs } = this.state;
+    const args = this.getFetchArgs();
+
     return (
       <Layout title="Transactions" cookies={this.cookies}>
         <Container>
@@ -76,85 +77,43 @@ class TransactionList extends Page {
               onApplyFilter={this.onApplyFilter}
             />
           )}
-          {loadingTxs && <CircularProgress />}
-          {!loadingTxs && txs && (
-            <div className="txs">
-              {txs.map(x => (
-                <TxCard key={x.hash} tx={x} />
-              ))}
-            </div>
-          )}
-          {chainInfo && chainInfo.totalTxs > pageSize && (
-            <Pagination
-              onChange={this.onChangePage}
-              pageSize={pageSize}
-              current={currentPage}
-              total={chainInfo.totalTxs}
-              className="pagination"
-            />
-          )}
+          {chainInfo && <TxList args={args} pageSize={pageSize} dataLoaderFn={fetchTransactions} />}
         </Container>
       </Layout>
     );
   }
 
   onApplyFilter = selectedTxs => {
-    this.setState({ selectedTxs }, () => {
-      this.loadTransactions();
-    });
+    this.setState({ selectedTxs });
   };
 
-  onChangePage(page) {
-    if (this.state.currentPage === page) {
-      return;
-    }
-
-    const { selectedTxs } = this.state;
-    window.location.href = `/node/explorer/txs?${qs.stringify({
-      page,
-      filter: selectedTxs.map(x => fromTypeUrl(x, false)).join(','),
-    })}`;
-  }
-
-  async loadChainInfo(done) {
+  async loadChainInfo() {
     this.setState({ loading: true });
     const { info: chainInfo } = await forge.getChainInfo();
     const { selectedTxs } = this.state;
-    this.setState(
-      {
-        loading: false,
-        chainInfo,
-        selectedTxs: selectedTxs.length ? selectedTxs : chainInfo.supportedTxs,
-      },
-      done
-    );
+    this.setState({
+      loading: false,
+      chainInfo,
+      selectedTxs: selectedTxs.length ? selectedTxs : chainInfo.supportedTxs,
+    });
   }
 
-  async loadTransactions() {
-    this.setState({ txs: null, loadingTxs: true });
-    const {
-      pageSize,
-      pageParam,
-      selectedTxs,
-      chainInfo: { supportedTxs },
-    } = this.state;
+  getFetchArgs() {
+    const { selectedTxs, chainInfo } = this.state;
+    if (!chainInfo) {
+      return {};
+    }
 
     const params = {
-      paging: { size: pageSize },
       typeFilter: { types: selectedTxs.map(x => fromTypeUrl(x, false)) },
     };
 
-    // If we are filter for all, filter for nothing
+    const { supportedTxs } = chainInfo;
     if (selectedTxs.length === supportedTxs.length) {
       delete params.typeFilter;
     }
 
-    if (pageParam && pageParam.next && pageParam.cursor) {
-      params.paging.cursor = pageParam.cursor;
-    }
-    const { transactions: txs, page } = await forge.listTransactions(params);
-
-    this.setState({ txs, page, loadingTxs: false });
+    return params;
   }
 }
 

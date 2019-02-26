@@ -15,10 +15,10 @@ import TopValidators from './components/top_validators';
 
 class Dashboard extends Page {
   sections = {
-    Summary,
-    Transactions,
-    'Top Accounts': TopAccounts,
-    'Top Validators': TopValidators,
+    summary: Summary,
+    transactions: Transactions,
+    topAccounts: TopAccounts,
+    topValidators: TopValidators,
   };
 
   render() {
@@ -35,7 +35,7 @@ class Dashboard extends Page {
     return (
       <div className="section" key={name}>
         <Typography component="h3" className="section__header">
-          {this.t(name)}
+          {this.t(`dashboard.${name}`)}
         </Typography>
         <div className="section__content">
           <SectionComponent />

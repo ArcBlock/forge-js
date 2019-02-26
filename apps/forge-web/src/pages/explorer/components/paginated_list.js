@@ -7,68 +7,72 @@ import { useAsync } from 'react-use';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Button from '@material-ui/core/Button';
 
-import Icon from '../../../../components/iconfa';
+import Icon from '../../../components/iconfa';
 
-function PaginatedList({ address, pageSize, dataKey, dataLoaderFn, dataRenderFn }) {
+function PaginatedList({ args, pageSize, dataKey, dataLoaderFn, dataRenderFn }) {
   const [cursor, setCursor] = useState(null);
 
-  const fetchList = async (addr, size, cur = null) => {
-    const params = { address: addr, paging: { size: size || 10 } };
+  // eslint-disable-next-line
+  const fetchList = async (args, size, cur = null) => {
+    const params = { ...args, paging: { size: size || 10 } };
     if (cur) {
       params.paging.cursor = cur;
     }
 
     const res = await dataLoaderFn(params);
-    console.log('fetchList.dataLoaderFn', params, res);
 
     return res;
   };
 
-  const state = useAsync(async () => fetchList(address, pageSize, cursor), [
-    address,
-    pageSize,
-    cursor,
-  ]);
+  const state = useAsync(async () => fetchList(args, pageSize, cursor), [args, pageSize, cursor]);
 
   if (state.error) {
     console.error(state.error);
   }
 
-  return (
-    <Container>
-      {state.loading ? (
+  if (state.loading) {
+    return (
+      <Container>
         <CircularProgress />
-      ) : state.error ? (
+      </Container>
+    );
+  }
+
+  if (state.error) {
+    return (
+      <Container>
         <p className="error">
           <Icon name="exclamation-circle" size={36} />
           {state.error.message}
         </p>
-      ) : (
-        <React.Fragment>
-          {Array.isArray(state.value[dataKey]) &&
-            state.value[dataKey].length > 0 &&
-            dataRenderFn(state.value[dataKey])}
-          {state.value[dataKey].length === 0 && (
-            <p className="warn">
-              <Icon name="exclamation-triangle" size={36} />
-              No data found!
-            </p>
-          )}
-          {state.value.page && state.value.page.cursor && state.value.page.next && (
-            <p className="pager">
-              <Button onClick={() => setCursor(state.value.page.cursor)}>
-                Next Page <Icon name="arrow-right" />
-              </Button>
-            </p>
-          )}
-        </React.Fragment>
+      </Container>
+    );
+  }
+
+  return (
+    <Container>
+      {Array.isArray(state.value[dataKey]) &&
+        state.value[dataKey].length > 0 &&
+        dataRenderFn(state.value[dataKey])}
+      {state.value[dataKey].length === 0 && (
+        <p className="warn">
+          <Icon name="exclamation-triangle" size={36} />
+          No data found!
+        </p>
+      )}
+      {state.value.page && state.value.page.cursor && state.value.page.next && (
+        <p className="pager">
+          <Button onClick={() => setCursor(state.value.page.cursor)}>
+            Next Page <Icon name="arrow-right" />
+          </Button>
+        </p>
       )}
     </Container>
   );
 }
 
 PaginatedList.propTypes = {
-  address: PropTypes.string.isRequired,
+  args: PropTypes.object.isRequired,
   dataKey: PropTypes.string.isRequired,
   pageSize: PropTypes.number,
   dataLoaderFn: PropTypes.func.isRequired,
@@ -90,6 +94,7 @@ const Container = styled.div`
     align-items: center;
     font-size: 36px;
     opacity: 0.5;
+    margin: 0;
 
     i {
       margin-right: 16px;
