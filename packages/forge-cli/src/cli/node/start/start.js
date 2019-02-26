@@ -21,8 +21,8 @@ const questions = [
 ];
 
 function isStarted(silent = false) {
-  const { forgeBinPath, forgeConfigPath } = config.get('cli');
-  const { stdout: pid } = shell.exec(`FORGE_CONFIG=${forgeConfigPath} ${forgeBinPath} pid`, {
+  const { starterBinPath, forgeConfigPath } = config.get('cli');
+  const { stdout: pid } = shell.exec(`FORGE_CONFIG=${forgeConfigPath} ${starterBinPath} pid`, {
     silent: true,
   });
 
@@ -39,13 +39,13 @@ function isStarted(silent = false) {
 }
 
 async function main({ mode = 'start' } = {}) {
-  const { forgeBinPath, forgeConfigPath } = config.get('cli');
-  if (!forgeBinPath) {
-    shell.echo(`${symbols.error} forgeBinPath not found, abort!`);
+  const { starterBinPath, forgeConfigPath } = config.get('cli');
+  if (!starterBinPath) {
+    shell.echo(`${symbols.error} starterBinPath not found, abort!`);
     return;
   }
 
-  const command = `FORGE_CONFIG=${forgeConfigPath} ${forgeBinPath} ${mode}`;
+  const command = `FORGE_CONFIG=${forgeConfigPath} ${starterBinPath} ${mode}`;
   if (mode === 'console') {
     execSync(command, { stdio: 'inherit' });
   } else {

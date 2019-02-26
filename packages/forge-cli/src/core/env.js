@@ -3,6 +3,7 @@ const os = require('os');
 const path = require('path');
 const getos = require('getos');
 const chalk = require('chalk');
+const yaml = require('yaml');
 const shell = require('shelljs');
 const semver = require('semver');
 const inquirer = require('inquirer');
@@ -72,28 +73,75 @@ function ensureForgeRelease(args, exitOn404 = true) {
 
   const releaseDir = argReleaseDir || envReleaseDir || cliReleaseDir;
   if (fs.existsSync(releaseDir)) {
-    const simulatorBinPath = path.join(releaseDir, './simulator/bin/simulator');
+    const releaseYamlPath = path.join(releaseDir, './forge/release.yml');
+    if (!fs.existsSync(releaseYamlPath)) {
+      if (exitOn404) {
+        shell.echo(`${symbols.error} required config file ${releaseYamlPath} not found`);
+        process.exit(1);
+      }
+      return false;
+    }
+
+    try {
+      const releaseYamlObj = yaml.parse(fs.readFileSync(releaseYamlPath).toString());
+      if (!releaseYamlObj || !releaseYamlObj.current) {
+        throw new Error('no current forge release selected');
+      }
+
+      config.cli.currentVersion = releaseYamlObj.current;
+    } catch (err) {
+      debug.error(err);
+      if (exitOn404) {
+        shell.echo(`${symbols.error} config file ${releaseYamlPath} invalid`);
+        process.exit(1);
+      }
+
+      return false;
+    }
+
+    const currentVersion = config.cli.currentVersion;
+    const simulatorBinPath = path.join(releaseDir, 'simulator', currentVersion, './bin/simulator');
     if (fs.existsSync(simulatorBinPath) && fs.statSync(simulatorBinPath).isFile()) {
+      debug(`${symbols.success} Using simulator executable: ${simulatorBinPath}`);
       config.cli.simulatorBinPath = simulatorBinPath;
     }
 
-    const forgeBinPath = path.join(releaseDir, './forge/bin/forge');
+    const starterBinPath = path.join(
+      releaseDir,
+      'forge_starter',
+      currentVersion,
+      './bin/forge_starter'
+    );
+    if (fs.existsSync(starterBinPath) && fs.statSync(starterBinPath).isFile()) {
+      debug(`${symbols.success} Using forge_starter executable: ${starterBinPath}`);
+      config.cli.starterBinPath = starterBinPath;
+    } else {
+      if (exitOn404) {
+        shell.echo(
+          `${symbols.error} forge_starter binary not found, please run ${chalk.cyan(
+            'forge init'
+          )} first`
+        );
+        process.exit(1);
+      }
+      return false;
+    }
+
+    const forgeBinPath = path.join(releaseDir, 'forge', currentVersion, './bin/forge');
     if (fs.existsSync(forgeBinPath) && fs.statSync(forgeBinPath).isFile()) {
-      const releaseVersion = findReleaseVersion(releaseDir);
       config.cli.releaseDir = releaseDir;
-      config.cli.releaseVersion = releaseVersion;
       config.cli.forgeBinPath = forgeBinPath;
       debug(`${symbols.success} Using forge release dir: ${releaseDir}`);
       debug(`${symbols.success} Using forge executable: ${forgeBinPath}`);
 
-      if (semver.satisfies(releaseVersion, engines.forge)) {
+      if (semver.satisfies(currentVersion, engines.forge)) {
         return releaseDir;
       }
       if (exitOn404) {
         shell.echo(
           `${symbols.error} forge-cli@${version} requires forge@${
             engines.forge
-          } to work, but got ${releaseVersion}!`
+          } to work, but got ${currentVersion}!`
         );
         shell.echo(
           `${symbols.info} if you want to use forge-cli@${version}, please following below steps:`
@@ -266,12 +314,12 @@ function ensureSetupScript(args) {
  * @returns String
  */
 function createFileFinder(keyword, filePath) {
-  return function(releaseDir) {
+  return function(releaseDir, version) {
     if (!releaseDir) {
       return '';
     }
 
-    const libDir = path.join(releaseDir, 'forge/lib');
+    const libDir = path.join(releaseDir, 'forge', version, 'lib');
     debug('createFileFinder', { keyword, filePath, libDir });
     if (!fs.existsSync(libDir) || !fs.statSync(libDir).isDirectory()) {
       return '';
@@ -352,6 +400,20 @@ function runNativeForgeCommand(subCommand, options = {}) {
 
     const command = `FORGE_CONFIG=${forgeConfigPath} ${forgeBinPath} ${subCommand}`;
     debug('runNativeForgeCommand', command);
+    return shell.exec(command, options);
+  };
+}
+
+function runNativeStarterCommand(subCommand, options = {}) {
+  return function() {
+    const { starterBinPath, forgeConfigPath } = config.cli;
+    if (!starterBinPath) {
+      shell.echo(`${symbols.error} starterBinPath not found, abort!`);
+      return;
+    }
+
+    const command = `FORGE_CONFIG=${forgeConfigPath} ${starterBinPath} ${subCommand}`;
+    debug('runNativeStarterCommand', command);
     return shell.exec(command, options);
   };
 }
@@ -507,6 +569,7 @@ module.exports = {
   ensureForgeRelease,
   ensureRpcClient,
   runNativeForgeCommand,
+  runNativeStarterCommand,
   runNativeSimulatorCommand,
   getForgeProcesses,
   getPlatform,

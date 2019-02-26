@@ -5,7 +5,7 @@ const { getForgeProcesses } = require('core/env');
 async function main() {
   try {
     const list = await getForgeProcesses();
-    const heartProcess = list.find(x => x.name === 'heart');
+    const heartProcess = list.find(x => x.name === 'forge');
     if (!heartProcess) {
       throw new Error('cannot get heart process info');
     }
