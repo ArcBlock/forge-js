@@ -84,9 +84,7 @@ class TransactionList extends Page {
   }
 
   onApplyFilter = selectedTxs => {
-    this.setState({ selectedTxs }, () => {
-      this.loadTransactions();
-    });
+    this.setState({ selectedTxs });
   };
 
   async loadChainInfo() {

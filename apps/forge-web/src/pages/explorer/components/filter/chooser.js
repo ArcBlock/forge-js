@@ -18,7 +18,9 @@ import { fromTypeUrl } from '../../../../libs/util';
 
 function FilterChooser({ supportedTxs, onClose, onApplyFilter, selectedTxs }) {
   const options = ['all'].concat(supportedTxs);
-  const [selected, { set, filter, push }] = useList(selectedTxs);
+  const values =
+    selectedTxs.length === supportedTxs.length ? ['all'].concat(selectedTxs) : selectedTxs;
+  const [selected, { set, filter, push }] = useList(values);
 
   const onApply = () => {
     onApplyFilter(selected.filter(x => x !== 'all'));

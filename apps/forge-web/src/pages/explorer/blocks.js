@@ -19,7 +19,7 @@ import forge from '../../libs/forge';
 function fetchBlocks({ paging }) {
   return forge.getBlocks(
     {
-      emptyExcluded: true,
+      // emptyExcluded: true,
       paging,
     },
     {

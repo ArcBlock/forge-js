@@ -96,6 +96,7 @@ const Container = styled.div`
     align-items: center;
     font-size: 36px;
     opacity: 0.5;
+    margin: 0;
 
     i {
       margin-right: 16px;
