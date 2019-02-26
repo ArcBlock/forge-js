@@ -8,23 +8,26 @@ class Secp256k1Signer extends Signer {
     super();
   }
 
-  genKeyPair() {
-    return secp256k1.genKeyPair();
+  genKeyPair(compressed = false, encoding = 'hex') {
+    const keyPair = secp256k1.genKeyPair();
+    const secretKey = keyPair.getPrivate(encoding);
+    const publicKey = keyPair.getPublic(compressed, encoding);
+    return { secretKey, publicKey };
   }
 
-  getPublicKey(privateKey, compressed = true) {
+  getPublicKey(secretKey, compressed = false, encoding = 'hex') {
+    return secp256k1.keyFromPrivate(secretKey, encoding).getPublic(compressed, encoding);
+  }
+
+  sign(data, privateKey, encoding = 'hex') {
     return secp256k1
-      .keyFromPrivate(privateKey, 'hex')
-      .getPublic(compressed)
-      .encode('hex');
+      .keyFromPrivate(privateKey, encoding)
+      .sign(data)
+      .toDER(encoding);
   }
 
-  sign(data, privateKey) {
-    return secp256k1.keyFromPrivate(privateKey, 'hex').sign(data);
-  }
-
-  verify(hash, signature, publicKey) {
-    return secp256k1.keyFromPublic(publicKey, 'hex').verify(hash, signature);
+  verify(hash, signature, publicKey, encoding) {
+    return secp256k1.keyFromPublic(publicKey, encoding).verify(hash, signature);
   }
 }
 
