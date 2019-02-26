@@ -10,11 +10,11 @@ const questions = [
     type: 'list',
     name: 'mode',
     message: 'Select forge start mode',
-    default: 'console',
+    default: 'start',
     choices: [
       new inquirer.Separator(),
-      { value: 'console', name: 'Start forge with a interactive console attached' },
       { value: 'start', name: 'Start forge as a daemon in the background' },
+      { value: 'console', name: 'Start forge with a interactive console attached' },
       { value: 'foreground', name: 'Start forge in the foreground' },
     ],
   },
@@ -38,7 +38,7 @@ function isStarted(silent = false) {
   return false;
 }
 
-async function main({ mode = 'console' } = {}) {
+async function main({ mode = 'start' } = {}) {
   const { forgeBinPath, forgeConfigPath } = config.get('cli');
   if (!forgeBinPath) {
     shell.echo(`${symbols.error} forgeBinPath not found, abort!`);
