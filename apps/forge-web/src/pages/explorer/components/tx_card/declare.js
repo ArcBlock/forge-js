@@ -12,8 +12,8 @@ import IconFa from '../../../../components/iconfa';
 const DeclareTxSummary = React.memo(({ tx, theme, ...rest }) => (
   <Container {...rest}>
     <div className="info-row">
-      <Typography component="p" className="action">
-        Declare Account
+      <Typography component="p" className="hash" title={tx.hash}>
+        <Link to={`/node/explorer/txs/${tx.hash}`}># {tx.hash}</Link>
       </Typography>
       <Typography component="p" className="time" title={tx.time}>
         {moment(tx.time).fromNow()}
@@ -28,10 +28,7 @@ const DeclareTxSummary = React.memo(({ tx, theme, ...rest }) => (
         className="type-icon"
       />
       <Typography component="p" className="value" title={tx.tx.itx.moniker}>
-        {tx.tx.itx.moniker}
-      </Typography>
-      <Typography component="p" className="hash" title={tx.hash}>
-        <Link to={`/node/explorer/txs/${tx.hash}`}>{tx.hash}</Link>
+        Declare Account: {tx.tx.itx.moniker}
       </Typography>
     </div>
   </Container>
@@ -58,14 +55,14 @@ const Container = styled.div`
   }
 
   .time,
-  .action,
+  .hash a,
   .type {
     color: #9b9b9b;
-    font-size: 14px;
+    font-size: 12px;
   }
 
   .value,
-  .hash {
+  .address {
     width: auto;
     max-width: 49%;
     white-space: nowrap;

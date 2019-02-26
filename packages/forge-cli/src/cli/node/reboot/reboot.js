@@ -1,6 +1,6 @@
-const { runNativeForgeCommand } = require('core/env');
+const { runNativeStarterCommand } = require('core/env');
 
-const main = runNativeForgeCommand('reboot');
+const main = runNativeStarterCommand('restart');
 
 exports.run = main;
 exports.execute = main;

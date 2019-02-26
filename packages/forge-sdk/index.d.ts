@@ -613,6 +613,7 @@ declare namespace forge_abi {
     totalTxs: number;
     txStatistics: forge_abi.TxStatistics;
     txIndex: number;
+    lastBlockTime: google.protobuf.Timestamp;
   }
 
   export interface Transaction {
@@ -760,12 +761,6 @@ declare namespace forge_abi {
     numUpdateAssetTxs: number;
   }
 
-  export interface StateRoot {
-    account: Uint8Array;
-    asset: Uint8Array;
-    receipt: Uint8Array;
-  }
-
   export interface AccountState {
     balance: forge_abi.BigUint;
     nonce: number;
@@ -803,8 +798,14 @@ declare namespace forge_abi {
     version: string;
     dataVersion: string;
     forgeAppHash: Uint8Array;
-    rootHashes: forge_abi.StateRoot;
     data: google.protobuf.Any;
+  }
+
+  export interface RootState {
+    address: string;
+    account: Uint8Array;
+    asset: Uint8Array;
+    receipt: Uint8Array;
   }
 
   export interface StakeState {
@@ -956,7 +957,7 @@ declare namespace forge_abi {
   export interface RequestGetAccountState {
     address: string;
     keys: Array<string>;
-    appHash: string;
+    height: number;
   }
 
   export interface ResponseGetAccountState {
@@ -967,7 +968,7 @@ declare namespace forge_abi {
   export interface RequestGetAssetState {
     address: string;
     keys: Array<string>;
-    appHash: string;
+    height: number;
   }
 
   export interface ResponseGetAssetState {
@@ -978,7 +979,7 @@ declare namespace forge_abi {
   export interface RequestGetStakeState {
     address: string;
     keys: Array<string>;
-    appHash: string;
+    height: number;
   }
 
   export interface ResponseGetStakeState {
@@ -988,7 +989,7 @@ declare namespace forge_abi {
 
   export interface RequestGetForgeState {
     keys: Array<string>;
-    appHash: string;
+    height: number;
   }
 
   export interface ResponseGetForgeState {
@@ -1156,7 +1157,7 @@ declare namespace forge_abi {
 
   export interface ResponseSignData {
     code: forge_abi.StatusCode;
-    signedData: Uint8Array;
+    signature: Uint8Array;
   }
 
   export interface RequestGetAssets {

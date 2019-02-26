@@ -1,6 +1,6 @@
 # Forge GraphQL API List
 
-> Updated on 2019-02-23T03:23:08.597Z
+> Updated on 2019-02-26T03:28:12.479Z
 
 
 ## Table of Contents
@@ -54,14 +54,14 @@
 #### Arguments
 
 * **address**, optional, 
-* **appHash**, optional, 
+* **height**, optional, 
 * **keys**, optional, 
 
 #### Result Format
 
 ```graphql
 {
-  getAccountState(address: "abc", appHash: "abc", keys: "abc") {
+  getAccountState(address: "abc", height: 123, keys: "abc") {
     code
     state {
       address
@@ -392,14 +392,14 @@
 #### Arguments
 
 * **address**, optional, 
-* **appHash**, optional, 
+* **height**, optional, 
 * **keys**, optional, 
 
 #### Result Format
 
 ```graphql
 {
-  getAssetState(address: "abc", appHash: "abc", keys: "abc") {
+  getAssetState(address: "abc", height: 123, keys: "abc") {
     code
     state {
       activated
@@ -1084,14 +1084,14 @@ No arguments
 
 #### Arguments
 
-* **appHash**, optional, 
+* **height**, optional, 
 * **keys**, optional, 
 
 #### Result Format
 
 ```graphql
 {
-  getForgeState(appHash: "abc", keys: "abc") {
+  getForgeState(height: 123, keys: "abc") {
     code
     state {
       address
@@ -1114,11 +1114,6 @@ No arguments
       data {
         typeUrl
         value
-      }
-      rootHashes {
-        account
-        asset
-        receipt
       }
       stakeSummary {
         key
@@ -1316,14 +1311,14 @@ No arguments
 #### Arguments
 
 * **address**, optional, 
-* **appHash**, optional, 
+* **height**, optional, 
 * **keys**, optional, 
 
 #### Result Format
 
 ```graphql
 {
-  getStakeState(address: "abc", appHash: "abc", keys: "abc") {
+  getStakeState(address: "abc", height: 123, keys: "abc") {
     code
     state {
       address
@@ -2480,7 +2475,7 @@ No arguments
 {
   signData(data: "abc", token: "abc", wallet: "abc") {
     code
-    signedData
+    signature
   }
 }
 ```
@@ -4408,16 +4403,16 @@ subscription {
 
 * **from**, optional, 
 * **itx**, optional, 
-* **itxType**, optional, 
 * **nonce**, optional, 
 * **token**, optional, 
+* **typeUrl**, optional, 
 * **wallet**, optional, 
 
 #### Result Format
 
 ```graphql
 mutation {
-  createTx(from: "abc", itx: "abc", itxType: "abc", nonce: 123, token: "abc", wallet: "abc") {
+  createTx(from: "abc", itx: "abc", nonce: 123, token: "abc", typeUrl: "abc", wallet: "abc") {
     code
     tx {
       chainId

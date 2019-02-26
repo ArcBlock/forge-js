@@ -53,7 +53,7 @@ export default class SummarySection extends React.Component {
     const metrics = Object.keys(mapping).reduce((acc, x) => {
       [acc[x]] = summary[mapping[x]];
       if (x === 'stakes') {
-        acc[x] = fromArcToReadable(acc[x]);
+        acc[x] = Number(fromArcToReadable(acc[x]));
       }
       return acc;
     }, {});
@@ -67,7 +67,7 @@ export default class SummarySection extends React.Component {
         date.setSeconds(0);
         return {
           time: moment(date).format('YYYY-MM-DD HH:mm'),
-          [x]: x === 'stakes' ? fromArcToReadable(d) : Number(d),
+          [x]: x === 'stakes' ? Number(fromArcToReadable(d)) : Number(d),
         };
       });
       return acc;

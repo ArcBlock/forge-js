@@ -30,10 +30,10 @@ class Client {
    * the value shall be created with Arc.
    */
   fromArc(value) {
-    return fromArc(value, this.config.decimal || 18).toString(10);
+    return fromArc(value, this.config.decimal || 16).toString(10);
   }
   toArc(value) {
-    return toArc(value, this.config.decimal || 18).toString(10);
+    return toArc(value, this.config.decimal || 16).toString(10);
   }
 
   /**

@@ -4345,7 +4345,7 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
       obj = {
         address: jspb.Message.getFieldWithDefault(msg, 1, ''),
         keysList: jspb.Message.getRepeatedField(msg, 2),
-        appHash: jspb.Message.getFieldWithDefault(msg, 3, ''),
+        height: jspb.Message.getFieldWithDefault(msg, 3, 0),
       };
 
     if (includeInstance) {
@@ -4389,8 +4389,8 @@ proto.forge_abi.RequestGetAccountState.deserializeBinaryFromReader = function(ms
         msg.addKeys(value);
         break;
       case 3:
-        var value = /** @type {string} */ (reader.readString());
-        msg.setAppHash(value);
+        var value = /** @type {number} */ (reader.readUint64());
+        msg.setHeight(value);
         break;
       default:
         reader.skipField();
@@ -4427,9 +4427,9 @@ proto.forge_abi.RequestGetAccountState.serializeBinaryToWriter = function(messag
   if (f.length > 0) {
     writer.writeRepeatedString(2, f);
   }
-  f = message.getAppHash();
-  if (f.length > 0) {
-    writer.writeString(3, f);
+  f = message.getHeight();
+  if (f !== 0) {
+    writer.writeUint64(3, f);
   }
 };
 
@@ -4472,15 +4472,15 @@ proto.forge_abi.RequestGetAccountState.prototype.clearKeysList = function() {
 };
 
 /**
- * optional string app_hash = 3;
- * @return {string}
+ * optional uint64 height = 3;
+ * @return {number}
  */
-proto.forge_abi.RequestGetAccountState.prototype.getAppHash = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ''));
+proto.forge_abi.RequestGetAccountState.prototype.getHeight = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
 };
 
-/** @param {string} value */
-proto.forge_abi.RequestGetAccountState.prototype.setAppHash = function(value) {
+/** @param {number} value */
+proto.forge_abi.RequestGetAccountState.prototype.setHeight = function(value) {
   jspb.Message.setField(this, 3, value);
 };
 
@@ -4713,7 +4713,7 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
       obj = {
         address: jspb.Message.getFieldWithDefault(msg, 1, ''),
         keysList: jspb.Message.getRepeatedField(msg, 2),
-        appHash: jspb.Message.getFieldWithDefault(msg, 3, ''),
+        height: jspb.Message.getFieldWithDefault(msg, 3, 0),
       };
 
     if (includeInstance) {
@@ -4757,8 +4757,8 @@ proto.forge_abi.RequestGetAssetState.deserializeBinaryFromReader = function(msg,
         msg.addKeys(value);
         break;
       case 3:
-        var value = /** @type {string} */ (reader.readString());
-        msg.setAppHash(value);
+        var value = /** @type {number} */ (reader.readUint64());
+        msg.setHeight(value);
         break;
       default:
         reader.skipField();
@@ -4795,9 +4795,9 @@ proto.forge_abi.RequestGetAssetState.serializeBinaryToWriter = function(message,
   if (f.length > 0) {
     writer.writeRepeatedString(2, f);
   }
-  f = message.getAppHash();
-  if (f.length > 0) {
-    writer.writeString(3, f);
+  f = message.getHeight();
+  if (f !== 0) {
+    writer.writeUint64(3, f);
   }
 };
 
@@ -4840,15 +4840,15 @@ proto.forge_abi.RequestGetAssetState.prototype.clearKeysList = function() {
 };
 
 /**
- * optional string app_hash = 3;
- * @return {string}
+ * optional uint64 height = 3;
+ * @return {number}
  */
-proto.forge_abi.RequestGetAssetState.prototype.getAppHash = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ''));
+proto.forge_abi.RequestGetAssetState.prototype.getHeight = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
 };
 
-/** @param {string} value */
-proto.forge_abi.RequestGetAssetState.prototype.setAppHash = function(value) {
+/** @param {number} value */
+proto.forge_abi.RequestGetAssetState.prototype.setHeight = function(value) {
   jspb.Message.setField(this, 3, value);
 };
 
@@ -5081,7 +5081,7 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
       obj = {
         address: jspb.Message.getFieldWithDefault(msg, 1, ''),
         keysList: jspb.Message.getRepeatedField(msg, 2),
-        appHash: jspb.Message.getFieldWithDefault(msg, 3, ''),
+        height: jspb.Message.getFieldWithDefault(msg, 3, 0),
       };
 
     if (includeInstance) {
@@ -5125,8 +5125,8 @@ proto.forge_abi.RequestGetStakeState.deserializeBinaryFromReader = function(msg,
         msg.addKeys(value);
         break;
       case 3:
-        var value = /** @type {string} */ (reader.readString());
-        msg.setAppHash(value);
+        var value = /** @type {number} */ (reader.readUint64());
+        msg.setHeight(value);
         break;
       default:
         reader.skipField();
@@ -5163,9 +5163,9 @@ proto.forge_abi.RequestGetStakeState.serializeBinaryToWriter = function(message,
   if (f.length > 0) {
     writer.writeRepeatedString(2, f);
   }
-  f = message.getAppHash();
-  if (f.length > 0) {
-    writer.writeString(3, f);
+  f = message.getHeight();
+  if (f !== 0) {
+    writer.writeUint64(3, f);
   }
 };
 
@@ -5208,15 +5208,15 @@ proto.forge_abi.RequestGetStakeState.prototype.clearKeysList = function() {
 };
 
 /**
- * optional string app_hash = 3;
- * @return {string}
+ * optional uint64 height = 3;
+ * @return {number}
  */
-proto.forge_abi.RequestGetStakeState.prototype.getAppHash = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ''));
+proto.forge_abi.RequestGetStakeState.prototype.getHeight = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
 };
 
-/** @param {string} value */
-proto.forge_abi.RequestGetStakeState.prototype.setAppHash = function(value) {
+/** @param {number} value */
+proto.forge_abi.RequestGetStakeState.prototype.setHeight = function(value) {
   jspb.Message.setField(this, 3, value);
 };
 
@@ -5448,7 +5448,7 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
     var f,
       obj = {
         keysList: jspb.Message.getRepeatedField(msg, 1),
-        appHash: jspb.Message.getFieldWithDefault(msg, 2, ''),
+        height: jspb.Message.getFieldWithDefault(msg, 3, 0),
       };
 
     if (includeInstance) {
@@ -5487,9 +5487,9 @@ proto.forge_abi.RequestGetForgeState.deserializeBinaryFromReader = function(msg,
         var value = /** @type {string} */ (reader.readString());
         msg.addKeys(value);
         break;
-      case 2:
-        var value = /** @type {string} */ (reader.readString());
-        msg.setAppHash(value);
+      case 3:
+        var value = /** @type {number} */ (reader.readUint64());
+        msg.setHeight(value);
         break;
       default:
         reader.skipField();
@@ -5522,9 +5522,9 @@ proto.forge_abi.RequestGetForgeState.serializeBinaryToWriter = function(message,
   if (f.length > 0) {
     writer.writeRepeatedString(1, f);
   }
-  f = message.getAppHash();
-  if (f.length > 0) {
-    writer.writeString(2, f);
+  f = message.getHeight();
+  if (f !== 0) {
+    writer.writeUint64(3, f);
   }
 };
 
@@ -5554,16 +5554,16 @@ proto.forge_abi.RequestGetForgeState.prototype.clearKeysList = function() {
 };
 
 /**
- * optional string app_hash = 2;
- * @return {string}
+ * optional uint64 height = 3;
+ * @return {number}
  */
-proto.forge_abi.RequestGetForgeState.prototype.getAppHash = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ''));
+proto.forge_abi.RequestGetForgeState.prototype.getHeight = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
 };
 
-/** @param {string} value */
-proto.forge_abi.RequestGetForgeState.prototype.setAppHash = function(value) {
-  jspb.Message.setField(this, 2, value);
+/** @param {number} value */
+proto.forge_abi.RequestGetForgeState.prototype.setHeight = function(value) {
+  jspb.Message.setField(this, 3, value);
 };
 
 /**
@@ -11564,7 +11564,7 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
     var f,
       obj = {
         code: jspb.Message.getFieldWithDefault(msg, 1, 0),
-        signedData: msg.getSignedData(),
+        signature: msg.getSignature(),
       };
 
     if (includeInstance) {
@@ -11605,7 +11605,7 @@ proto.forge_abi.ResponseSignData.deserializeBinaryFromReader = function(msg, rea
         break;
       case 2:
         var value = /** @type {!Uint8Array} */ (reader.readBytes());
-        msg.setSignedData(value);
+        msg.setSignature(value);
         break;
       default:
         reader.skipField();
@@ -11638,7 +11638,7 @@ proto.forge_abi.ResponseSignData.serializeBinaryToWriter = function(message, wri
   if (f !== 0.0) {
     writer.writeEnum(1, f);
   }
-  f = message.getSignedData_asU8();
+  f = message.getSignature_asU8();
   if (f.length > 0) {
     writer.writeBytes(2, f);
   }
@@ -11658,35 +11658,35 @@ proto.forge_abi.ResponseSignData.prototype.setCode = function(value) {
 };
 
 /**
- * optional bytes signed_data = 2;
+ * optional bytes signature = 2;
  * @return {!(string|Uint8Array)}
  */
-proto.forge_abi.ResponseSignData.prototype.getSignedData = function() {
+proto.forge_abi.ResponseSignData.prototype.getSignature = function() {
   return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 2, ''));
 };
 
 /**
- * optional bytes signed_data = 2;
- * This is a type-conversion wrapper around `getSignedData()`
+ * optional bytes signature = 2;
+ * This is a type-conversion wrapper around `getSignature()`
  * @return {string}
  */
-proto.forge_abi.ResponseSignData.prototype.getSignedData_asB64 = function() {
-  return /** @type {string} */ (jspb.Message.bytesAsB64(this.getSignedData()));
+proto.forge_abi.ResponseSignData.prototype.getSignature_asB64 = function() {
+  return /** @type {string} */ (jspb.Message.bytesAsB64(this.getSignature()));
 };
 
 /**
- * optional bytes signed_data = 2;
+ * optional bytes signature = 2;
  * Note that Uint8Array is not supported on all browsers.
  * @see http://caniuse.com/Uint8Array
- * This is a type-conversion wrapper around `getSignedData()`
+ * This is a type-conversion wrapper around `getSignature()`
  * @return {!Uint8Array}
  */
-proto.forge_abi.ResponseSignData.prototype.getSignedData_asU8 = function() {
-  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(this.getSignedData()));
+proto.forge_abi.ResponseSignData.prototype.getSignature_asU8 = function() {
+  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(this.getSignature()));
 };
 
 /** @param {!(string|Uint8Array)} value */
-proto.forge_abi.ResponseSignData.prototype.setSignedData = function(value) {
+proto.forge_abi.ResponseSignData.prototype.setSignature = function(value) {
   jspb.Message.setField(this, 2, value);
 };
 

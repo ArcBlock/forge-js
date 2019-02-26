@@ -10,27 +10,39 @@ import Typography from '@material-ui/core/Typography';
 
 import IconFa from '../../../../components/iconfa';
 
-const CreateAssetTx = React.memo(({ tx, theme, ...rest }) => (
-  <Container {...rest}>
-    <div className="info-row">
-      <Typography component="p" className="action">
-        {tx.type === 'create_asset' ? 'Create Asset' : 'Update Asset'}
-      </Typography>
-      <Typography component="p" className="time" title={tx.time}>
-        {moment(tx.time).fromNow()}
-      </Typography>
-    </div>
-    <div className="info-row" style={{ justifyContent: 'flex-start' }}>
-      <IconFa name="gem" size={14} rounded={true} color={theme.colors.blue} className="type-icon" />
-      <Typography component="p" className="value" title={get(tx, 'tx.itx.data.value', 'NO DATA')}>
-        {get(tx, 'tx.itx.data.value', 'NO DATA')}
-      </Typography>
-      <Typography component="p" className="hash" title={tx.hash}>
-        <Link to={`/node/explorer/txs/${tx.hash}`}>{tx.hash}</Link>
-      </Typography>
-    </div>
-  </Container>
-));
+const CreateAssetTx = React.memo(({ tx, type, theme, ...rest }) => {
+  const address = get(tx, 'tx.itx.address', '');
+  const data = get(tx, 'tx.itx.data.value', 'NO DATA');
+  return (
+    <Container {...rest}>
+      <div className="info-row">
+        <Typography component="p" className="hash" title={tx.hash}>
+          <Link to={`/node/explorer/txs/${tx.hash}`}># {tx.hash}</Link>
+        </Typography>
+        <Typography component="p" className="time" title={tx.time}>
+          {moment(tx.time).fromNow()}
+        </Typography>
+      </div>
+      <div className="info-row" style={{ justifyContent: 'flex-start' }}>
+        <IconFa
+          name="gem"
+          size={14}
+          rounded={true}
+          color={theme.colors.blue}
+          className="type-icon"
+        />
+        <Typography component="p" className="value" title={data}>
+          {type}: {data}
+        </Typography>
+        {address && (
+          <Typography component="p" className="address" title={address}>
+            <Link to={`/node/explorer/assets/${address}`}>{address}</Link>
+          </Typography>
+        )}
+      </div>
+    </Container>
+  );
+});
 
 const Container = styled.div`
   .info-row {
@@ -53,13 +65,13 @@ const Container = styled.div`
   }
 
   .time,
-  .action {
+  .hash a {
     color: #9b9b9b;
-    font-size: 14px;
+    font-size: 12px;
   }
 
   .value,
-  .hash {
+  .address {
     width: 40%;
     white-space: nowrap;
     overflow: hidden;
@@ -79,6 +91,7 @@ const Container = styled.div`
 
 CreateAssetTx.propTypes = {
   tx: PropTypes.object.isRequired,
+  type: PropTypes.string.isRequired,
   theme: PropTypes.object.isRequired,
 };
 

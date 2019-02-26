@@ -30,11 +30,11 @@ export default class TransactionsSection extends React.Component {
       stroke: '#829DF4',
       gradientStart: '#D0DEF5',
     },
-    // Exchange: {
-    //   dataKey: 'numExchangeTxs',
-    //   stroke: colors.gray,
-    //   gradientStart: '',
-    // },
+    Exchange: {
+      dataKey: 'numExchangeTxs',
+      // stroke: colors.gray,
+      // gradientStart: '',
+    },
     // CreateAsset: {
     //   dataKey: 'numCreateAssetTxs',
     //   stroke: '',
@@ -211,9 +211,7 @@ export default class TransactionsSection extends React.Component {
 
       Object.keys(this.mapping).forEach(x => {
         const { dataKey } = this.mapping[x];
-        const value = Number(rawData[dataKey][i]);
-        // FIXME: some random data are populated here
-        row[x] = value || Math.round(Math.random() * 80);
+        row[x] = Number(rawData[dataKey][i]);
       });
       return row;
     });

@@ -1,6 +1,8 @@
 // const wget = require('wget');
 const fs = require('fs');
 const path = require('path');
+const yaml = require('yaml');
+const toml = require('@iarna/toml');
 const shell = require('shelljs');
 const chalk = require('chalk');
 const findProcess = require('find-process');
@@ -13,8 +15,6 @@ const {
   findReleaseConfig,
   getPlatform,
 } = require('core/env');
-
-// TODO: release dir cleanup
 
 async function isForgeStopped() {
   const processes = await findProcess('name', 'forge.sh');
@@ -31,18 +31,8 @@ async function isForgeStopped() {
 function releaseDirExists() {
   const releaseDir = ensureForgeRelease({}, false);
   if (releaseDir) {
-    shell.echo(`${symbols.warning} forge already initialized: ${releaseDir}`);
-    shell.echo(
-      `${symbols.warning} to upgrade forge release, please run ${chalk.cyan(
-        'rm -rf ~/.forge_cli'
-      )} first`
-    );
-    shell.echo(hr);
-    shell.echo(chalk.cyan('Current forge release'));
-    shell.echo(hr);
-    if (config.get('cli.forgeBinPath')) {
-      shell.exec('forge version');
-    }
+    const version = config.get('cli.currentVersion');
+    shell.echo(`${symbols.warning} forge version ${version} already initialized: ${releaseDir}`);
     return true;
   }
 
@@ -138,17 +128,17 @@ function downloadAsset(asset) {
   });
 }
 
-function expandReleaseTarball(filePath, subFolder) {
+function expandReleaseTarball(filePath, subFolder, version) {
   const fileName = path.basename(filePath);
-  const targetDir = path.join(requiredDirs.release, subFolder);
+  const targetDir = path.join(requiredDirs.release, subFolder, version);
   shell.exec(`mkdir -p ${targetDir}`);
   shell.exec(`cp ${filePath} ${targetDir}`);
   shell.exec(`cd ${targetDir} && tar -zxf ${fileName} && rm -f ${fileName}`);
   shell.echo(`${symbols.success} Expand release asset ${filePath} to ${targetDir}`);
 }
 
-function copyReleaseConfig() {
-  const configPath = findReleaseConfig(requiredDirs.release);
+function copyReleaseConfig(version) {
+  const configPath = findReleaseConfig(requiredDirs.release, version);
   if (configPath) {
     const baseDir = path.dirname(requiredDirs.release);
     shell.echo(`${symbols.success} Extract forge config from ${configPath}`);
@@ -156,39 +146,82 @@ function copyReleaseConfig() {
     shell.echo(
       `${symbols.success} Forge config written to ${baseDir}/${path.basename(configPath)}`
     );
+
+    // Patch release config: to add forge_starter
+    const filePath = path.join(baseDir, path.basename(configPath));
+    const configObj = toml.parse(fs.readFileSync(filePath).toString());
+    if (!configObj.forge_starter) {
+      configObj.forge_starter = {
+        release_path: path.join(requiredDirs.release, 'forge'),
+      };
+
+      fs.writeFileSync(filePath, toml.stringify(configObj));
+    }
   } else {
     shell.echo(`${symbols.error} Forge config not found under release folder`);
     process.exit(1);
   }
 }
 
-async function main() {
-  const isStopped = await isForgeStopped();
-  if (!isStopped) {
-    return process.exit(1);
-  }
-
+function updateReleaseYaml(asset, version) {
+  const filePath = path.join(requiredDirs.release, asset, 'release.yml');
   try {
+    shell.exec(`touch ${filePath}`);
+    debug('updateReleaseYaml', { asset, version, filePath });
+    const yamlObj = fs.existsSync(filePath)
+      ? yaml.parse(fs.readFileSync(filePath).toString()) || {}
+      : {};
+    if (yamlObj.current) {
+      yamlObj.old = yamlObj.current;
+    }
+    yamlObj.current = version;
+    fs.writeFileSync(filePath, yaml.stringify(yamlObj));
+  } catch (err) {
+    debug.error(err);
+  }
+}
+
+async function main() {
+  try {
+    const platform = await getPlatform();
+    shell.echo(`${symbols.info} Detected platform is: ${platform}`);
+    const version = fetchReleaseVersion();
+
     if (releaseDirExists()) {
+      if (version === config.get('cli.currentVersion')) {
+        shell.echo(`${symbols.info} already initialized latest version: ${version}`);
+        shell.echo(hr);
+        shell.echo(chalk.cyan('Current forge release'));
+        shell.echo(hr);
+        if (config.get('cli.forgeBinPath')) {
+          shell.exec('forge version');
+        }
+        return process.exit(1);
+      }
+    }
+
+    // Ensure forge is stopped, because init on an running node may cause some mess
+    const isStopped = await isForgeStopped();
+    if (!isStopped) {
       return process.exit(1);
     }
 
-    const platform = await getPlatform();
-    shell.echo(`${symbols.info} Detected platform is: ${platform}`);
-
-    const version = fetchReleaseVersion();
-    const forgeAsset = fetchAssetInfo(platform, version, 'forge');
-    debug('forgeAsset', forgeAsset);
-    const forgeTarball = await downloadAsset(forgeAsset);
-    // const forgeTarball = `/tmp/${forgeAsset.name}`;
-    expandReleaseTarball(forgeTarball, 'forge');
-    copyReleaseConfig();
-
-    const simulatorAsset = fetchAssetInfo(platform, version, 'simulator');
-    debug('simulatorAsset', simulatorAsset);
-    const simulatorTarball = await downloadAsset(simulatorAsset);
-    // const simulatorTarball = `/tmp/${simulatorAsset.name}`;
-    expandReleaseTarball(simulatorTarball, 'simulator');
+    // Start download and unzip
+    const assets = ['forge', 'forge_starter', 'simulator'];
+    for (const asset of assets) {
+      const assetInfo = fetchAssetInfo(platform, version, asset);
+      debug(asset, assetInfo);
+      const assetTarball = await downloadAsset(assetInfo);
+      // const assetTarball = `/tmp/${assetInfo.name}`;
+      expandReleaseTarball(assetTarball, asset, version);
+      if (asset === 'forge') {
+        // FIXME: copy the latest config as shared config on each release?
+        copyReleaseConfig(version);
+      }
+      if (asset === 'forge' || asset === 'simulator') {
+        updateReleaseYaml(asset, version);
+      }
+    }
 
     shell.echo(`${symbols.success} Congratulations! forge initialized successfully!`);
     shell.echo('');
@@ -202,3 +235,6 @@ async function main() {
 
 exports.run = main;
 exports.execute = main;
+
+// exports.run = () => updateReleaseYaml('forge', '0.16.0');
+// exports.execute = () => updateReleaseYaml('forge', '0.16.0');

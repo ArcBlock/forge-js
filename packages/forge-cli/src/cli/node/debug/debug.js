@@ -26,6 +26,8 @@ function main() {
   shell.echo(hr);
   shell.echo('Runtime config:');
   shell.echo(`  forgeBinPath: ${config.get('cli.forgeBinPath')}`);
+  shell.echo(`  starterBinPath: ${config.get('cli.starterBinPath')}`);
+  shell.echo(`  simulatorBinPath: ${config.get('cli.simulatorBinPath')}`);
   shell.echo(`  forgeConfigPath: ${config.get('cli.forgeConfigPath')}`);
 
   shell.echo('');

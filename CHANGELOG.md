@@ -1,3 +1,12 @@
+## 0.8.4 (February 26, 2019)
+  - chore: upgrade forge-sdk to align with forge v0.16.0
+  - chore: upgrade forge-proto to align with forge v0.16.0
+  - chore: upgrade graphql-client to align with forge v0.16.0
+  - chore: improve forge stop and init
+  - chore: polish starter related start/stop/restart/reboot
+  - chore: use forge starter to start forge
+  - chore: start forge as daemon default
+
 ## 0.8.3 (February 23, 2019)
 
 

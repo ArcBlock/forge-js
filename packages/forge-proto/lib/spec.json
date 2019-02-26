@@ -550,6 +550,10 @@
             "txIndex": {
               "type": "uint32",
               "id": 6
+            },
+            "lastBlockTime": {
+              "type": "google.protobuf.Timestamp",
+              "id": 7
             }
           }
         },
@@ -1012,22 +1016,6 @@
             }
           }
         },
-        "StateRoot": {
-          "fields": {
-            "account": {
-              "type": "bytes",
-              "id": 2
-            },
-            "asset": {
-              "type": "bytes",
-              "id": 3
-            },
-            "receipt": {
-              "type": "bytes",
-              "id": 4
-            }
-          }
-        },
         "AccountState": {
           "fields": {
             "balance": {
@@ -1162,13 +1150,29 @@
               "type": "bytes",
               "id": 7
             },
-            "rootHashes": {
-              "type": "StateRoot",
-              "id": 8
-            },
             "data": {
               "type": "google.protobuf.Any",
               "id": 15
+            }
+          }
+        },
+        "RootState": {
+          "fields": {
+            "address": {
+              "type": "string",
+              "id": 1
+            },
+            "account": {
+              "type": "bytes",
+              "id": 2
+            },
+            "asset": {
+              "type": "bytes",
+              "id": 3
+            },
+            "receipt": {
+              "type": "bytes",
+              "id": 4
             }
           }
         },
@@ -1563,8 +1567,8 @@
               "type": "string",
               "id": 2
             },
-            "appHash": {
-              "type": "string",
+            "height": {
+              "type": "uint64",
               "id": 3
             }
           }
@@ -1592,8 +1596,8 @@
               "type": "string",
               "id": 2
             },
-            "appHash": {
-              "type": "string",
+            "height": {
+              "type": "uint64",
               "id": 3
             }
           }
@@ -1621,8 +1625,8 @@
               "type": "string",
               "id": 2
             },
-            "appHash": {
-              "type": "string",
+            "height": {
+              "type": "uint64",
               "id": 3
             }
           }
@@ -1646,9 +1650,9 @@
               "type": "string",
               "id": 1
             },
-            "appHash": {
-              "type": "string",
-              "id": 2
+            "height": {
+              "type": "uint64",
+              "id": 3
             }
           }
         },
@@ -2098,7 +2102,7 @@
               "type": "StatusCode",
               "id": 1
             },
-            "signedData": {
+            "signature": {
               "type": "bytes",
               "id": 2
             }
