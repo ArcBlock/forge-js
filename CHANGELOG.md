@@ -1,3 +1,18 @@
+## 0.8.5 (February 26, 2019)
+  - chore: make dashboard header info dynamic
+  - chore: improve txs
+  - chore: cursor based pagination for txs
+  - chore: add links for top accounts/validators
+  - chore: exclude empty blocks
+  - chore: exclude empty blocks
+  - chore: make top validators dynamic
+  - chore: upgrade graphql-client to align with forge master
+  - chore: make top accounts dynamic
+  - fix: react-ga warnning when test
+  - feat: support locale
+  - fix: eslint warning
+  - update readme
+
 ## 0.8.4 (February 26, 2019)
   - chore: upgrade forge-sdk to align with forge v0.16.0
   - chore: upgrade forge-proto to align with forge v0.16.0
