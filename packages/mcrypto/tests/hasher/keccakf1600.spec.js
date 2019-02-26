@@ -28,7 +28,7 @@ const testVectors = {
   },
 };
 
-describe.skip('#keccakf1600', () => {
+describe('#keccakf1600', () => {
   Object.keys(testVectors['abcd']).forEach(length => {
     Object.keys(testVectors).forEach(key => {
       test(`should hash value: ${key} at length ${length}`, () => {
