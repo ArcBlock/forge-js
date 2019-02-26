@@ -16,6 +16,7 @@ import { getTxType } from '../../../../libs/util';
 const components = {
   CreateAsset: TxCreateAsset,
   UpdateAsset: TxCreateAsset,
+  ActivateAsset: TxCreateAsset,
   Transfer: TxTransfer,
   Stake: TxStake,
   Exchange: TxExchange,
@@ -29,7 +30,7 @@ const TxCard = React.memo(({ tx, ...rest }) => {
   const TxComponent = components[type] || TxDefault;
   return (
     <Container>
-      <TxComponent tx={tx} {...rest} />
+      <TxComponent tx={tx} type={type} {...rest} />
     </Container>
   );
 });
