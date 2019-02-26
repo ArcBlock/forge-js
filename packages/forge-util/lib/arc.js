@@ -27,7 +27,7 @@ const numberToString = arg => {
   );
 };
 
-const fromArc = (input, decimal = 18, optionsInput) => {
+const fromArc = (input, decimal = 16, optionsInput) => {
   let arc = numberToBN(input);
   const negative = arc.lt(zero);
   const base = toBN(`1${'0'.repeat(decimal)}`, 10);
@@ -60,7 +60,7 @@ const fromArc = (input, decimal = 18, optionsInput) => {
   return value;
 };
 
-const toArc = (input, decimal = 18) => {
+const toArc = (input, decimal = 16) => {
   let ether = numberToString(input);
   const base = toBN(`1${'0'.repeat(decimal)}`, 10);
   const baseLength = base.toString(10).length - 1 || 1;
