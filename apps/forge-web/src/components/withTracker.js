@@ -6,6 +6,10 @@ import { withRouter } from 'react-router-dom';
 
 export default (WrappedComponent, options = {}) => {
   const trackPage = page => {
+    if (process.env.NODE_ENV !== 'production') {
+      return;
+    }
+
     ReactGA.set({
       page,
       ...options,
