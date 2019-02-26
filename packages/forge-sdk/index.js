@@ -1,3 +1,4 @@
+require('./lib/util/patch');
 const { addSource } = require('@arcblock/forge-proto');
 const { parseConfig } = require('./lib/util/config');
 const {
@@ -18,7 +19,7 @@ const {
   decodePayload,
 } = require('./lib/util/socket_data');
 
-module.exports = Object.assign({
+module.exports = {
   RpcClient: require('./lib/client/rpc'),
   TcpServer: require('./lib/server/tcp'),
 
@@ -44,4 +45,4 @@ module.exports = Object.assign({
   encodeSocketData,
   decodeSocketData,
   decodePayload,
-});
+};

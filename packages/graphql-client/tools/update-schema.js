@@ -5,6 +5,7 @@ const { request } = require('graphql-request');
 const { introspectionQuery } = require('graphql');
 
 const httpEndpoint = () => 'http://localhost:8210/api';
+// const httpEndpoint = () => 'http://abt-test.arcblock.co:8210/api';
 // const httpEndpoint = () => 'https://auth.arcblock.co/api';
 
 const dataSources = ['schema'];

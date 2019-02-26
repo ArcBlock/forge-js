@@ -13,6 +13,7 @@ cli(
       rpcClient: false,
       wallet: false,
     },
+    alias: 'simulator',
     options: [],
   }
 );

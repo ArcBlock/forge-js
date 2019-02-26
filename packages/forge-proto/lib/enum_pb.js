@@ -14,6 +14,7 @@ var global = Function('return this')();
 goog.exportSymbol('proto.forge_abi.EncodingType', null, global);
 goog.exportSymbol('proto.forge_abi.HashType', null, global);
 goog.exportSymbol('proto.forge_abi.KeyType', null, global);
+goog.exportSymbol('proto.forge_abi.RoleType', null, global);
 goog.exportSymbol('proto.forge_abi.StakeType', null, global);
 goog.exportSymbol('proto.forge_abi.StateType', null, global);
 goog.exportSymbol('proto.forge_abi.StatusCode', null, global);
@@ -34,20 +35,16 @@ proto.forge_abi.StatusCode = {
   INVALID_OWNER: 7,
   INVALID_TX: 8,
   UNSUPPORTED_TX: 9,
+  EXPIRED_TX: 10,
   INVALID_MONIKER: 16,
   INVALID_PASSPHRASE: 17,
-  INVALID_CHANNEL: 18,
-  INVALID_CHANNEL_WAITING_DATA: 19,
   INVALID_MULTISIG: 20,
   INVALID_WALLET: 21,
   INVALID_CHAIN_ID: 22,
-  NEED_CONFIRMATION: 23,
   CONSENSUS_RPC_ERROR: 24,
   STORAGE_RPC_ERROR: 25,
   NOENT: 26,
   ACCOUNT_MIGRATED: 27,
-  CHANNEL_IS_FULL: 28,
-  REVOKED_TX: 29,
   UNSUPPORTED_STAKE: 30,
   INSUFFICIENT_STAKE: 31,
   INVALID_STAKE_STATE: 32,
@@ -55,6 +52,12 @@ proto.forge_abi.StatusCode = {
   BANNED_UNSTAKE: 34,
   INVALID_ASSET: 35,
   INVALID_TX_SIZE: 36,
+  INVALID_SIGNER_STATE: 37,
+  INVALID_FORGE_STATE: 38,
+  EXPIRED_ASSET: 39,
+  UNTRANSFERRABLE_ASSET: 40,
+  READONLY_ASSET: 41,
+  ACTIVATED_ASSET: 42,
   FORBIDDEN: 403,
   INTERNAL: 500,
 };
@@ -64,24 +67,23 @@ proto.forge_abi.StatusCode = {
  */
 proto.forge_abi.TopicType = {
   TRANSFER: 0,
-  ACCOUNT_MIGRATE: 1,
-  CONFIRM: 2,
+  EXCHANGE: 1,
+  DECLARE: 2,
   CREATE_ASSET: 3,
-  EXCHANGE: 4,
-  REVOKE: 5,
+  UPDATE_ASSET: 4,
+  STAKE: 5,
+  ACCOUNT_MIGRATE: 6,
   BEGIN_BLOCK: 16,
   END_BLOCK: 17,
-  DECLARE: 19,
-  UPDATE_ASSET: 20,
   CONSENSUS_UPGRADE: 21,
   DECLARE_FILE: 22,
   SYS_UPGRADE: 23,
-  STAKE: 24,
+  APPLICATION: 24,
+  ACTIVATE_ASSET: 25,
   ACCOUNT_STATE: 129,
   ASSET_STATE: 130,
-  CHANNEL_STATE: 131,
-  FORGE_STATE: 132,
-  STAKE_STATE: 133,
+  FORGE_STATE: 131,
+  STAKE_STATE: 132,
 };
 
 /**
@@ -98,13 +100,10 @@ proto.forge_abi.KeyType = {
 proto.forge_abi.HashType = {
   KECCAK: 0,
   SHA3: 1,
-  SHA2: 2,
   KECCAK_384: 6,
   SHA3_384: 7,
-  SHA2_384: 9,
   KECCAK_512: 13,
   SHA3_512: 14,
-  SHA2_512: 15,
 };
 
 /**
@@ -113,6 +112,21 @@ proto.forge_abi.HashType = {
 proto.forge_abi.EncodingType = {
   BASE16: 0,
   BASE58: 1,
+};
+
+/**
+ * @enum {number}
+ */
+proto.forge_abi.RoleType = {
+  ROLE_ACCOUNT: 0,
+  ROLE_NODE: 1,
+  ROLE_DEVICE: 2,
+  ROLE_APPLICATION: 3,
+  ROLE_SMART_CONTRACT: 4,
+  ROLE_BOT: 5,
+  ROLE_ASSET: 6,
+  ROLE_STAKE: 7,
+  ROLE_VALIDATOR: 8,
 };
 
 /**

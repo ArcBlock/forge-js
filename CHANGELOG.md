@@ -1,5 +1,123 @@
+## 0.8.5 (February 26, 2019)
+  - chore: make dashboard header info dynamic
+  - chore: improve txs
+  - chore: cursor based pagination for txs
+  - chore: add links for top accounts/validators
+  - chore: exclude empty blocks
+  - chore: exclude empty blocks
+  - chore: make top validators dynamic
+  - chore: upgrade graphql-client to align with forge master
+  - chore: make top accounts dynamic
+  - fix: react-ga warnning when test
+  - feat: support locale
+  - fix: eslint warning
+  - update readme
+
+## 0.8.4 (February 26, 2019)
+  - chore: upgrade forge-sdk to align with forge v0.16.0
+  - chore: upgrade forge-proto to align with forge v0.16.0
+  - chore: upgrade graphql-client to align with forge v0.16.0
+  - chore: improve forge stop and init
+  - chore: polish starter related start/stop/restart/reboot
+  - chore: use forge starter to start forge
+  - chore: start forge as daemon default
+
+## 0.8.3 (February 23, 2019)
+
+
+## 0.8.2 (February 23, 2019)
+  - chore: upgrade graphql-client to align with forge master
+  - chore: upgrade forge-sdk to align with forge master
+  - chore: upgrade forge-proto to align with forge master
+  - chore: remove source map files before publish forge-web
+  - update readme
+
+## 0.8.1 (February 21, 2019)
+  - chore: improve secondary menu style
+  - chore: try to add filter feature
+  - chore: improve no option message
+  - chore: optimize block and tx list
+  - chore: optimize style
+  - fix: summary header for empty blocks
+  - feat: support omni search box
+  - chore: add heart in process list
+  - update readme
+
+## 0.8.0 (February 21, 2019)
+  - feat: added tranaction detail page
+  - chore: upgrade forge-sdk to align with forge
+  - chore: upgrade forge-proto to align with forge
+  - chore: upgrade graphql-client to align with forge
+  - chore: extract payload component
+  - chore: transfer and exchange details
+  - chore: update sdk-util dependency
+  - fix: block detail page
+  - chore: add font awesome icons and basic exchange tx
+  - chore: upgrade graphql-client to align with forge
+  - feat: basic tx cards
+  - feat: basic skeleton for tx list and block detail
+  - fix: forge web seconday nav select style
+  - feat: add search box component
+  - feat: add links for blocks and accounts
+  - feat: support block pagination
+  - feat: basic block list page
+  - feat: add chain info component
+  - chore: regenerate graphql client api docs for union types
+  - chore: upgrade graphql-client to align with forge@v0.15.1
+  - chore: upgrade forge-sdk to align with forge@v0.15.1
+  - chore: upgrade forge-proto to align with forge@v0.15.1
+  - abt chain node dashboard page (#136)
+  - chore: upgrade to align with forge v0.14.4
+  - update readme
+
+## 0.7.11 (February 17, 2019)
+  - fix: forge-cli npm publish config
+  - update readme
+
+## 0.7.10 (February 15, 2019)
+  - forge web skeleton (#109)
+
+## 0.7.9 (February 15, 2019)
+  - chore: upgrade graphql client schme to align with forge v0.14.3
+  - chore: regenerate forge rpc api doc
+  - chore: upgrade proto to align with forge v0.14.3
+
+## 0.7.8 (February 12, 2019)
+  - chore: cleanup unused dependency
+  - fix: bignumber not handling decimals correctly #107
+
+## 0.7.7 (February 12, 2019)
+  - fix: A few command will fail with exception before forge started, some are OK #128
+  - fix: formatMessage on scalar types
+
+## 0.7.6 (February 11, 2019)
+  - chore: upgrade forge-proto to align with forge@v0.13.2
+
+## 0.7.5 (January 31, 2019)
+  - chore: update test case
+  - fix: stake.totalStakes and stake.totalUnstakes
+  - feat: support `forge unstake`
+  - feat: `forge stake` default select current node #117
+  - fix: "undefined" in `forge status1 output #118
+  - fix: `forge tx` should tell me the TX type #114
+  - chore: upgrade sdk doc
+  - chore: update forge config
+  - chore: upgrade forge proto
+  - fix: `forge stake` fail randomly and no reason given #113
+  - chore: update readme
+
+## 0.7.4 (January 30, 2019)
+  - chore: upgrade forge-proto to align with forge@v0.12.0
+
+## 0.7.3 (January 30, 2019)
+  - fix: format validation error #103
+  - fix: wrong node address will crash cli in `forge stake` #105
+  - fix: sensible logs path for `forge logs` #101
+  - fix: stake related improvement #103 #104 #106 #107 #108
+  - fix: `forge version` with tendermint and ipfs
+  - chore: update readme
+
 ## 0.7.2 (January 29, 2019)
-  - v0.7.1
   - v0.7.1
   - fix: publish config
 

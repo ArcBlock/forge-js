@@ -223,6 +223,7 @@ module.exports = {
     acc[x].methods = rpcs[x];
     return acc;
   }, {}),
+  compactSpec,
   processJs,
   processJson,
   getMessageType,

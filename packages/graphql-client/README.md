@@ -32,12 +32,12 @@ console.log({
 
 // Query Data
 (async () => {
-  const { getChainInfo } = await client.getChainInfo();
-  const { getForgeState } = await client.getForgeState();
-  const { getBlock } = await client.getBlock({ height: 2 });
-  console.log('getChainInfo', getChainInfo);
-  console.log('getForgeState', getForgeState);
-  console.log('getBlock', getBlock);
+  const chainInfo = await client.getChainInfo();
+  const forgeState = await client.getForgeState();
+  const block = await client.getBlock({ height: 2 });
+  console.log('getChainInfo', chainInfo);
+  console.log('getForgeState', forgeState);
+  console.log('getBlock', block);
 })();
 
 // Mutation

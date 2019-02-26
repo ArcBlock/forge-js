@@ -10,15 +10,27 @@ describe('#fromArc & toArc', () => {
     expect(typeof client.toArc).toEqual('function');
   });
 
-  test('should support reverse op', () => {
-    const value = '100';
-    const encoded = client.toArc(value);
-    const decoded = client.fromArc(encoded);
-    expect(decoded).toEqual(value);
+  test('should return same for number and string', () => {
     expect(client.toArc(100)).toEqual(client.toArc('100'));
     expect(client.toArc(-100)).toEqual(client.toArc('-100'));
     expect(client.toArc(10000000000)).toEqual(client.toArc('10000000000'));
     expect(client.toArc(9.87643)).toEqual(client.toArc('9.87643'));
+  });
+
+  [100, -100, 10000000000000].forEach(x => {
+    test(`should support reverse op on integer: ${x}`, () => {
+      const encoded = client.toArc(x);
+      const decoded = client.fromArc(encoded);
+      expect(decoded).toEqual(x.toString());
+    });
+  });
+
+  [8.8888, -8.8888, 3.3333333333333, 44444444444444444.5555].forEach(x => {
+    test(`should support reverse op decimal: ${x}`, () => {
+      const encoded = client.toArc(x);
+      const decoded = client.fromArc(encoded);
+      expect(decoded).toEqual(x.toString());
+    });
   });
 });
 

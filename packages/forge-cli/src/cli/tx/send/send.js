@@ -6,8 +6,7 @@ const safeEval = require('safe-eval');
 const { enums } = require('@arcblock/forge-proto');
 const { fakeMessage } = require('@arcblock/forge-sdk');
 const { symbols, hr, pretty } = require('core/ui');
-const { createRpcClient, config } = require('core/env');
-const debug = require('debug')(require('../../../../package.json').name);
+const { createRpcClient, config, debug } = require('core/env');
 
 inquirer.registerPrompt('autocomplete', require('inquirer-autocomplete-prompt'));
 
@@ -67,8 +66,8 @@ async function main(data) {
     debug(`send ${type} tx`, res);
     shell.echo(`${symbols.success} tx send success! ${chalk.cyan(res)}`);
   } catch (err) {
-    console.error(err);
-    shell.echo(`${symbols.error} tx send failed`);
+    debug.error(err);
+    shell.echo(`${symbols.error} tx send failed: {errcode: ${err.errcode}, errno: ${err.errno}}`);
   }
 }
 

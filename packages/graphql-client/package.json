@@ -1,6 +1,6 @@
 {
   "name": "@arcblock/forge-graphql-client",
-  "version": "0.7.2",
+  "version": "0.8.4",
   "description": "GraphQL Client for forge core",
   "keywords": [
     "graphql",
@@ -22,7 +22,7 @@
     "lib"
   ],
   "dependencies": {
-    "@arcblock/sdk-util": "^0.16.3",
+    "@arcblock/sdk-util": "^0.19.1",
     "babel-polyfill": "^6.26.0",
     "blueimp-md5": "^2.10.0",
     "phoenix": "^1.3.4",
@@ -34,7 +34,7 @@
     "axios-mock-adapter": "^1.15.0",
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.7.0",
-    "graphql": "^0.13.2",
+    "graphql": "^14.1.1",
     "graphql-request": "^1.8.2",
     "jest": "^23.5.0",
     "rimraf": "^2.6.2",
@@ -49,8 +49,9 @@
     "build": "yarn clean && yarn build-node && yarn build-browser",
     "generate-docs": "node tools/generate-docs.js",
     "format-docs": "remark . -o",
+    "generate-dts": "node tools/generate-dts.js",
     "update-schema": "node tools/update-schema.js",
-    "upgrade": "npm run update-schema && npm run generate-docs && npm run format-docs",
+    "upgrade": "npm run update-schema && npm run generate-docs && npm run generate-dts && npm run format-docs && npm run build",
     "precommit": "CI=1 yarn test",
     "prepush": "CI=1 yarn test",
     "test": "yarn lint && node tools/jest.js",

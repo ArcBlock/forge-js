@@ -1,4 +1,5 @@
 const fuzzy = require('fuzzy');
+const chalk = require('chalk');
 const shell = require('shelljs');
 const inquirer = require('inquirer');
 const { config, createRpcClient, cache } = require('core/env');
@@ -29,7 +30,7 @@ const questions = [
     message: 'Please input passphrase:',
     validate: input => {
       if (!input) return 'The passphrase should not empty';
-      if (!/^.{6,15}$/.test(input)) return 'The passphrase format validation error';
+      if (!/^.{6,15}$/.test(input)) return 'The passphrase length should between 6~25 char';
       return true;
     },
   },
@@ -40,7 +41,7 @@ const questions = [
     validate: input => {
       if (!input) return 'The moniker should not empty';
       if (!/^[a-zA-Z0-9][a-zA-Z0-9_]{3,15}$/.test(input))
-        return 'The moniker format validation error';
+        return 'The moniker should only contain 0-9,a-z,A-Z, and length between 3~15';
       return true;
     },
   },
@@ -94,12 +95,15 @@ async function execute(data) {
     cache.write('wallet', {
       token,
       address: res.wallet.address,
-      expireAt: Date.now() + config.get('forge.unlockTtl') * 1e3,
+      expireAt: Date.now() + config.get('forge.unlockTtl', 300) * 1e3,
     });
     shell.echo(hr);
     shell.echo(`${symbols.success} account unlocked!`);
-    shell.echo(hr);
-    shell.exec(`forge account ${res.wallet.address}`);
+    shell.echo(
+      `${symbols.info} run ${chalk.cyan(
+        `forge account ${res.wallet.address}`
+      )} to inspect account state`
+    );
   } catch (err) {
     console.error('error', err);
   }

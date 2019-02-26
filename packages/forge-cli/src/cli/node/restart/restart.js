@@ -20,9 +20,7 @@ async function main({ args: [app = 'none'] }) {
   }
 
   const pattern = new RegExp(app, 'i');
-  const processInfo = processes.find(x =>
-    app === 'core' ? /forge/.test(x.name) : pattern.test(x.name)
-  );
+  const processInfo = processes.find(x => pattern.test(x.name));
 
   if (processInfo) {
     const oldPid = processInfo.pid;
@@ -60,9 +58,7 @@ async function isRestarted(app, oldPid) {
   }
 
   const pattern = new RegExp(app, 'i');
-  const processInfo = processes.find(x =>
-    app === 'core' ? /forge/.test(x.name) : pattern.test(x.name)
-  );
+  const processInfo = processes.find(x => pattern.test(x.name));
 
   if (processInfo && processInfo.pid > oldPid) {
     return processInfo.pid;

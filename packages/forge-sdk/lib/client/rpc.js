@@ -1,7 +1,7 @@
 const grpc = require('grpc');
 const camelcase = require('camelcase');
-const { BigInteger } = require('jsbn');
 const { EventEmitter } = require('events');
+const { fromArc, toArc } = require('@arcblock/forge-util').arc;
 const { messages, enums, rpcs, getMessageType } = require('@arcblock/forge-proto');
 const {
   formatMessage,
@@ -30,14 +30,10 @@ class Client {
    * the value shall be created with Arc.
    */
   fromArc(value) {
-    const v = new BigInteger(typeof value === 'string' ? value : value.toString(), 10);
-    const d = new BigInteger('10').pow(this.config.decimal || 16);
-    return v.divide(d).toString(10);
+    return fromArc(value, this.config.decimal || 16).toString(10);
   }
   toArc(value) {
-    const v = new BigInteger(typeof value === 'string' ? value : value.toString(), 10);
-    const d = new BigInteger('10').pow(this.config.decimal || 16);
-    return v.multiply(d).toString(10);
+    return toArc(value, this.config.decimal || 16).toString(10);
   }
 
   /**
@@ -173,8 +169,7 @@ class Client {
 
           resolve(hash);
         } catch (err) {
-          console.error(err); // eslint-disable-line
-          reject(new Error(`Tx failed ${method} with error: ${err.message}`));
+          reject(err);
         }
       });
 

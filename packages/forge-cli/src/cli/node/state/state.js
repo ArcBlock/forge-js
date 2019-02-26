@@ -39,7 +39,7 @@ function getWebInfo() {
     shell.echo(`${symbols.info} graphql endpoint at:      ${webUrl}/api`);
     shell.echo(`${symbols.info} graphql playground at:    ${webUrl}/api/playground`);
   } else {
-    shell.echo(`${symbols.warn} forge web not started`);
+    shell.echo(`${symbols.warning} forge web not started`);
     shell.echo(`${symbols.info} start forge web with ${chalk.cyan('forge web start')}`);
   }
   shell.echo('');

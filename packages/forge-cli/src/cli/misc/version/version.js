@@ -4,18 +4,19 @@ const { config, debug, createFileFinder, getPlatform } = require('core/env');
 const { symbols } = require('core/ui');
 
 async function main() {
-  const { releaseDir, releaseVersion } = config.get('cli');
-  const { storageEngine, consensusEngine } = config.get('forge');
+  const { releaseDir, currentVersion } = config.get('cli');
+  const { storageEngine = 'ipfs', consensusEngine = 'tendermint' } = config.get('forge');
   const storageEnginePath = createFileFinder('storage', `priv/${storageEngine}/${storageEngine}`)(
-    releaseDir
+    releaseDir,
+    currentVersion
   );
   const consensusEnginePath = createFileFinder(
     'consensus',
     `priv/${consensusEngine}/${consensusEngine}`
-  )(releaseDir);
+  )(releaseDir, currentVersion);
 
   // core
-  shell.echo(`${symbols.success} forge-core version ${releaseVersion} on ${await getPlatform()}`);
+  shell.echo(`${symbols.success} forge-core version ${currentVersion} on ${await getPlatform()}`);
   shell.echo(`${symbols.success} forge-cli version ${forgeCliVersion}`);
 
   // tendermint

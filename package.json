@@ -3,6 +3,7 @@
   "private": true,
   "workspaces": [
     "packages/*",
+    "apps/*",
     "examples/*"
   ],
   "devDependencies": {
@@ -12,7 +13,7 @@
     "prettier": "^1.6.1",
     "remark-cli": "^5.0.0",
     "remark-preset-github": "^0.0.9",
-    "eslint": "^5.3.0",
+    "eslint": "5.6.0",
     "eslint-config-prettier": "latest",
     "eslint-plugin-prettier": "latest",
     "set-npm-auth-token-for-ci": "^2.0.13"

@@ -4,6 +4,7 @@ const fs = require('fs');
 const path = require('path');
 const { print, parse } = require('graphql');
 const { randomArg, randomArgs } = require('@arcblock/sdk-util/lib/util');
+
 const Client = require('../src/client');
 
 const genSectionDoc = (title, methods) => {

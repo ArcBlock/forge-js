@@ -10,19 +10,19 @@ const questions = [
     type: 'list',
     name: 'mode',
     message: 'Select forge start mode',
-    default: 'console',
+    default: 'start',
     choices: [
       new inquirer.Separator(),
-      { value: 'console', name: 'Start forge with a interactive console attached' },
       { value: 'start', name: 'Start forge as a daemon in the background' },
+      { value: 'console', name: 'Start forge with a interactive console attached' },
       { value: 'foreground', name: 'Start forge in the foreground' },
     ],
   },
 ];
 
 function isStarted(silent = false) {
-  const { forgeBinPath, forgeConfigPath } = config.get('cli');
-  const { stdout: pid } = shell.exec(`FORGE_CONFIG=${forgeConfigPath} ${forgeBinPath} pid`, {
+  const { starterBinPath, forgeConfigPath } = config.get('cli');
+  const { stdout: pid } = shell.exec(`FORGE_CONFIG=${forgeConfigPath} ${starterBinPath} pid`, {
     silent: true,
   });
 
@@ -38,14 +38,14 @@ function isStarted(silent = false) {
   return false;
 }
 
-async function main({ mode = 'console' } = {}) {
-  const { forgeBinPath, forgeConfigPath } = config.get('cli');
-  if (!forgeBinPath) {
-    shell.echo(`${symbols.error} forgeBinPath not found, abort!`);
+async function main({ mode = 'start' } = {}) {
+  const { starterBinPath, forgeConfigPath } = config.get('cli');
+  if (!starterBinPath) {
+    shell.echo(`${symbols.error} starterBinPath not found, abort!`);
     return;
   }
 
-  const command = `FORGE_CONFIG=${forgeConfigPath} ${forgeBinPath} ${mode}`;
+  const command = `FORGE_CONFIG=${forgeConfigPath} ${starterBinPath} ${mode}`;
   if (mode === 'console') {
     execSync(command, { stdio: 'inherit' });
   } else {

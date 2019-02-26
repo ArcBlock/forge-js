@@ -52,7 +52,7 @@ if (goog.DEBUG && !COMPILED) {
  * @private {!Array<number>}
  * @const
  */
-proto.forge_abi.RequestVerifyTx.repeatedFields_ = [3];
+proto.forge_abi.RequestVerifyTx.repeatedFields_ = [2, 3, 4];
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
   /**
@@ -82,12 +82,23 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
     var f,
       obj = {
         tx: (f = msg.getTx()) && type_pb.Transaction.toObject(includeInstance, f),
-        sender: (f = msg.getSender()) && state_pb.AccountState.toObject(includeInstance, f),
         statesList: jspb.Message.toObjectList(
           msg.getStatesList(),
           state_pb.AccountState.toObject,
           includeInstance
         ),
+        assetsList: jspb.Message.toObjectList(
+          msg.getAssetsList(),
+          state_pb.AssetState.toObject,
+          includeInstance
+        ),
+        stakesList: jspb.Message.toObjectList(
+          msg.getStakesList(),
+          state_pb.StakeState.toObject,
+          includeInstance
+        ),
+        context: (f = msg.getContext()) && type_pb.AbciContext.toObject(includeInstance, f),
+        appState: (f = msg.getAppState()) && state_pb.ForgeState.toObject(includeInstance, f),
       };
 
     if (includeInstance) {
@@ -130,12 +141,27 @@ proto.forge_abi.RequestVerifyTx.deserializeBinaryFromReader = function(msg, read
       case 2:
         var value = new state_pb.AccountState();
         reader.readMessage(value, state_pb.AccountState.deserializeBinaryFromReader);
-        msg.setSender(value);
+        msg.addStates(value);
         break;
       case 3:
-        var value = new state_pb.AccountState();
-        reader.readMessage(value, state_pb.AccountState.deserializeBinaryFromReader);
-        msg.addStates(value);
+        var value = new state_pb.AssetState();
+        reader.readMessage(value, state_pb.AssetState.deserializeBinaryFromReader);
+        msg.addAssets(value);
+        break;
+      case 4:
+        var value = new state_pb.StakeState();
+        reader.readMessage(value, state_pb.StakeState.deserializeBinaryFromReader);
+        msg.addStakes(value);
+        break;
+      case 5:
+        var value = new type_pb.AbciContext();
+        reader.readMessage(value, type_pb.AbciContext.deserializeBinaryFromReader);
+        msg.setContext(value);
+        break;
+      case 15:
+        var value = new state_pb.ForgeState();
+        reader.readMessage(value, state_pb.ForgeState.deserializeBinaryFromReader);
+        msg.setAppState(value);
         break;
       default:
         reader.skipField();
@@ -168,13 +194,25 @@ proto.forge_abi.RequestVerifyTx.serializeBinaryToWriter = function(message, writ
   if (f != null) {
     writer.writeMessage(1, f, type_pb.Transaction.serializeBinaryToWriter);
   }
-  f = message.getSender();
-  if (f != null) {
-    writer.writeMessage(2, f, state_pb.AccountState.serializeBinaryToWriter);
-  }
   f = message.getStatesList();
   if (f.length > 0) {
-    writer.writeRepeatedMessage(3, f, state_pb.AccountState.serializeBinaryToWriter);
+    writer.writeRepeatedMessage(2, f, state_pb.AccountState.serializeBinaryToWriter);
+  }
+  f = message.getAssetsList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(3, f, state_pb.AssetState.serializeBinaryToWriter);
+  }
+  f = message.getStakesList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(4, f, state_pb.StakeState.serializeBinaryToWriter);
+  }
+  f = message.getContext();
+  if (f != null) {
+    writer.writeMessage(5, f, type_pb.AbciContext.serializeBinaryToWriter);
+  }
+  f = message.getAppState();
+  if (f != null) {
+    writer.writeMessage(15, f, state_pb.ForgeState.serializeBinaryToWriter);
   }
 };
 
@@ -208,49 +246,20 @@ proto.forge_abi.RequestVerifyTx.prototype.hasTx = function() {
 };
 
 /**
- * optional AccountState sender = 2;
- * @return {?proto.forge_abi.AccountState}
- */
-proto.forge_abi.RequestVerifyTx.prototype.getSender = function() {
-  return /** @type{?proto.forge_abi.AccountState} */ (jspb.Message.getWrapperField(
-    this,
-    state_pb.AccountState,
-    2
-  ));
-};
-
-/** @param {?proto.forge_abi.AccountState|undefined} value */
-proto.forge_abi.RequestVerifyTx.prototype.setSender = function(value) {
-  jspb.Message.setWrapperField(this, 2, value);
-};
-
-proto.forge_abi.RequestVerifyTx.prototype.clearSender = function() {
-  this.setSender(undefined);
-};
-
-/**
- * Returns whether this field is set.
- * @return {!boolean}
- */
-proto.forge_abi.RequestVerifyTx.prototype.hasSender = function() {
-  return jspb.Message.getField(this, 2) != null;
-};
-
-/**
- * repeated AccountState states = 3;
+ * repeated AccountState states = 2;
  * @return {!Array.<!proto.forge_abi.AccountState>}
  */
 proto.forge_abi.RequestVerifyTx.prototype.getStatesList = function() {
   return /** @type{!Array.<!proto.forge_abi.AccountState>} */ (jspb.Message.getRepeatedWrapperField(
     this,
     state_pb.AccountState,
-    3
+    2
   ));
 };
 
 /** @param {!Array.<!proto.forge_abi.AccountState>} value */
 proto.forge_abi.RequestVerifyTx.prototype.setStatesList = function(value) {
-  jspb.Message.setRepeatedWrapperField(this, 3, value);
+  jspb.Message.setRepeatedWrapperField(this, 2, value);
 };
 
 /**
@@ -261,7 +270,7 @@ proto.forge_abi.RequestVerifyTx.prototype.setStatesList = function(value) {
 proto.forge_abi.RequestVerifyTx.prototype.addStates = function(opt_value, opt_index) {
   return jspb.Message.addToRepeatedWrapperField(
     this,
-    3,
+    2,
     opt_value,
     proto.forge_abi.AccountState,
     opt_index
@@ -270,6 +279,136 @@ proto.forge_abi.RequestVerifyTx.prototype.addStates = function(opt_value, opt_in
 
 proto.forge_abi.RequestVerifyTx.prototype.clearStatesList = function() {
   this.setStatesList([]);
+};
+
+/**
+ * repeated AssetState assets = 3;
+ * @return {!Array.<!proto.forge_abi.AssetState>}
+ */
+proto.forge_abi.RequestVerifyTx.prototype.getAssetsList = function() {
+  return /** @type{!Array.<!proto.forge_abi.AssetState>} */ (jspb.Message.getRepeatedWrapperField(
+    this,
+    state_pb.AssetState,
+    3
+  ));
+};
+
+/** @param {!Array.<!proto.forge_abi.AssetState>} value */
+proto.forge_abi.RequestVerifyTx.prototype.setAssetsList = function(value) {
+  jspb.Message.setRepeatedWrapperField(this, 3, value);
+};
+
+/**
+ * @param {!proto.forge_abi.AssetState=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.forge_abi.AssetState}
+ */
+proto.forge_abi.RequestVerifyTx.prototype.addAssets = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(
+    this,
+    3,
+    opt_value,
+    proto.forge_abi.AssetState,
+    opt_index
+  );
+};
+
+proto.forge_abi.RequestVerifyTx.prototype.clearAssetsList = function() {
+  this.setAssetsList([]);
+};
+
+/**
+ * repeated StakeState stakes = 4;
+ * @return {!Array.<!proto.forge_abi.StakeState>}
+ */
+proto.forge_abi.RequestVerifyTx.prototype.getStakesList = function() {
+  return /** @type{!Array.<!proto.forge_abi.StakeState>} */ (jspb.Message.getRepeatedWrapperField(
+    this,
+    state_pb.StakeState,
+    4
+  ));
+};
+
+/** @param {!Array.<!proto.forge_abi.StakeState>} value */
+proto.forge_abi.RequestVerifyTx.prototype.setStakesList = function(value) {
+  jspb.Message.setRepeatedWrapperField(this, 4, value);
+};
+
+/**
+ * @param {!proto.forge_abi.StakeState=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.forge_abi.StakeState}
+ */
+proto.forge_abi.RequestVerifyTx.prototype.addStakes = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(
+    this,
+    4,
+    opt_value,
+    proto.forge_abi.StakeState,
+    opt_index
+  );
+};
+
+proto.forge_abi.RequestVerifyTx.prototype.clearStakesList = function() {
+  this.setStakesList([]);
+};
+
+/**
+ * optional AbciContext context = 5;
+ * @return {?proto.forge_abi.AbciContext}
+ */
+proto.forge_abi.RequestVerifyTx.prototype.getContext = function() {
+  return /** @type{?proto.forge_abi.AbciContext} */ (jspb.Message.getWrapperField(
+    this,
+    type_pb.AbciContext,
+    5
+  ));
+};
+
+/** @param {?proto.forge_abi.AbciContext|undefined} value */
+proto.forge_abi.RequestVerifyTx.prototype.setContext = function(value) {
+  jspb.Message.setWrapperField(this, 5, value);
+};
+
+proto.forge_abi.RequestVerifyTx.prototype.clearContext = function() {
+  this.setContext(undefined);
+};
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.forge_abi.RequestVerifyTx.prototype.hasContext = function() {
+  return jspb.Message.getField(this, 5) != null;
+};
+
+/**
+ * optional ForgeState app_state = 15;
+ * @return {?proto.forge_abi.ForgeState}
+ */
+proto.forge_abi.RequestVerifyTx.prototype.getAppState = function() {
+  return /** @type{?proto.forge_abi.ForgeState} */ (jspb.Message.getWrapperField(
+    this,
+    state_pb.ForgeState,
+    15
+  ));
+};
+
+/** @param {?proto.forge_abi.ForgeState|undefined} value */
+proto.forge_abi.RequestVerifyTx.prototype.setAppState = function(value) {
+  jspb.Message.setWrapperField(this, 15, value);
+};
+
+proto.forge_abi.RequestVerifyTx.prototype.clearAppState = function() {
+  this.setAppState(undefined);
+};
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.forge_abi.RequestVerifyTx.prototype.hasAppState = function() {
+  return jspb.Message.getField(this, 15) != null;
 };
 
 /**
@@ -431,7 +570,7 @@ if (goog.DEBUG && !COMPILED) {
  * @private {!Array<number>}
  * @const
  */
-proto.forge_abi.RequestUpdateState.repeatedFields_ = [3];
+proto.forge_abi.RequestUpdateState.repeatedFields_ = [2, 3, 4];
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
   /**
@@ -461,12 +600,23 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
     var f,
       obj = {
         tx: (f = msg.getTx()) && type_pb.Transaction.toObject(includeInstance, f),
-        sender: (f = msg.getSender()) && state_pb.AccountState.toObject(includeInstance, f),
         statesList: jspb.Message.toObjectList(
           msg.getStatesList(),
           state_pb.AccountState.toObject,
           includeInstance
         ),
+        assetsList: jspb.Message.toObjectList(
+          msg.getAssetsList(),
+          state_pb.AssetState.toObject,
+          includeInstance
+        ),
+        stakesList: jspb.Message.toObjectList(
+          msg.getStakesList(),
+          state_pb.StakeState.toObject,
+          includeInstance
+        ),
+        context: (f = msg.getContext()) && type_pb.AbciContext.toObject(includeInstance, f),
+        appState: (f = msg.getAppState()) && state_pb.ForgeState.toObject(includeInstance, f),
       };
 
     if (includeInstance) {
@@ -509,12 +659,27 @@ proto.forge_abi.RequestUpdateState.deserializeBinaryFromReader = function(msg, r
       case 2:
         var value = new state_pb.AccountState();
         reader.readMessage(value, state_pb.AccountState.deserializeBinaryFromReader);
-        msg.setSender(value);
+        msg.addStates(value);
         break;
       case 3:
-        var value = new state_pb.AccountState();
-        reader.readMessage(value, state_pb.AccountState.deserializeBinaryFromReader);
-        msg.addStates(value);
+        var value = new state_pb.AssetState();
+        reader.readMessage(value, state_pb.AssetState.deserializeBinaryFromReader);
+        msg.addAssets(value);
+        break;
+      case 4:
+        var value = new state_pb.StakeState();
+        reader.readMessage(value, state_pb.StakeState.deserializeBinaryFromReader);
+        msg.addStakes(value);
+        break;
+      case 5:
+        var value = new type_pb.AbciContext();
+        reader.readMessage(value, type_pb.AbciContext.deserializeBinaryFromReader);
+        msg.setContext(value);
+        break;
+      case 15:
+        var value = new state_pb.ForgeState();
+        reader.readMessage(value, state_pb.ForgeState.deserializeBinaryFromReader);
+        msg.setAppState(value);
         break;
       default:
         reader.skipField();
@@ -547,13 +712,25 @@ proto.forge_abi.RequestUpdateState.serializeBinaryToWriter = function(message, w
   if (f != null) {
     writer.writeMessage(1, f, type_pb.Transaction.serializeBinaryToWriter);
   }
-  f = message.getSender();
-  if (f != null) {
-    writer.writeMessage(2, f, state_pb.AccountState.serializeBinaryToWriter);
-  }
   f = message.getStatesList();
   if (f.length > 0) {
-    writer.writeRepeatedMessage(3, f, state_pb.AccountState.serializeBinaryToWriter);
+    writer.writeRepeatedMessage(2, f, state_pb.AccountState.serializeBinaryToWriter);
+  }
+  f = message.getAssetsList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(3, f, state_pb.AssetState.serializeBinaryToWriter);
+  }
+  f = message.getStakesList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(4, f, state_pb.StakeState.serializeBinaryToWriter);
+  }
+  f = message.getContext();
+  if (f != null) {
+    writer.writeMessage(5, f, type_pb.AbciContext.serializeBinaryToWriter);
+  }
+  f = message.getAppState();
+  if (f != null) {
+    writer.writeMessage(15, f, state_pb.ForgeState.serializeBinaryToWriter);
   }
 };
 
@@ -587,49 +764,20 @@ proto.forge_abi.RequestUpdateState.prototype.hasTx = function() {
 };
 
 /**
- * optional AccountState sender = 2;
- * @return {?proto.forge_abi.AccountState}
- */
-proto.forge_abi.RequestUpdateState.prototype.getSender = function() {
-  return /** @type{?proto.forge_abi.AccountState} */ (jspb.Message.getWrapperField(
-    this,
-    state_pb.AccountState,
-    2
-  ));
-};
-
-/** @param {?proto.forge_abi.AccountState|undefined} value */
-proto.forge_abi.RequestUpdateState.prototype.setSender = function(value) {
-  jspb.Message.setWrapperField(this, 2, value);
-};
-
-proto.forge_abi.RequestUpdateState.prototype.clearSender = function() {
-  this.setSender(undefined);
-};
-
-/**
- * Returns whether this field is set.
- * @return {!boolean}
- */
-proto.forge_abi.RequestUpdateState.prototype.hasSender = function() {
-  return jspb.Message.getField(this, 2) != null;
-};
-
-/**
- * repeated AccountState states = 3;
+ * repeated AccountState states = 2;
  * @return {!Array.<!proto.forge_abi.AccountState>}
  */
 proto.forge_abi.RequestUpdateState.prototype.getStatesList = function() {
   return /** @type{!Array.<!proto.forge_abi.AccountState>} */ (jspb.Message.getRepeatedWrapperField(
     this,
     state_pb.AccountState,
-    3
+    2
   ));
 };
 
 /** @param {!Array.<!proto.forge_abi.AccountState>} value */
 proto.forge_abi.RequestUpdateState.prototype.setStatesList = function(value) {
-  jspb.Message.setRepeatedWrapperField(this, 3, value);
+  jspb.Message.setRepeatedWrapperField(this, 2, value);
 };
 
 /**
@@ -640,7 +788,7 @@ proto.forge_abi.RequestUpdateState.prototype.setStatesList = function(value) {
 proto.forge_abi.RequestUpdateState.prototype.addStates = function(opt_value, opt_index) {
   return jspb.Message.addToRepeatedWrapperField(
     this,
-    3,
+    2,
     opt_value,
     proto.forge_abi.AccountState,
     opt_index
@@ -649,6 +797,136 @@ proto.forge_abi.RequestUpdateState.prototype.addStates = function(opt_value, opt
 
 proto.forge_abi.RequestUpdateState.prototype.clearStatesList = function() {
   this.setStatesList([]);
+};
+
+/**
+ * repeated AssetState assets = 3;
+ * @return {!Array.<!proto.forge_abi.AssetState>}
+ */
+proto.forge_abi.RequestUpdateState.prototype.getAssetsList = function() {
+  return /** @type{!Array.<!proto.forge_abi.AssetState>} */ (jspb.Message.getRepeatedWrapperField(
+    this,
+    state_pb.AssetState,
+    3
+  ));
+};
+
+/** @param {!Array.<!proto.forge_abi.AssetState>} value */
+proto.forge_abi.RequestUpdateState.prototype.setAssetsList = function(value) {
+  jspb.Message.setRepeatedWrapperField(this, 3, value);
+};
+
+/**
+ * @param {!proto.forge_abi.AssetState=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.forge_abi.AssetState}
+ */
+proto.forge_abi.RequestUpdateState.prototype.addAssets = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(
+    this,
+    3,
+    opt_value,
+    proto.forge_abi.AssetState,
+    opt_index
+  );
+};
+
+proto.forge_abi.RequestUpdateState.prototype.clearAssetsList = function() {
+  this.setAssetsList([]);
+};
+
+/**
+ * repeated StakeState stakes = 4;
+ * @return {!Array.<!proto.forge_abi.StakeState>}
+ */
+proto.forge_abi.RequestUpdateState.prototype.getStakesList = function() {
+  return /** @type{!Array.<!proto.forge_abi.StakeState>} */ (jspb.Message.getRepeatedWrapperField(
+    this,
+    state_pb.StakeState,
+    4
+  ));
+};
+
+/** @param {!Array.<!proto.forge_abi.StakeState>} value */
+proto.forge_abi.RequestUpdateState.prototype.setStakesList = function(value) {
+  jspb.Message.setRepeatedWrapperField(this, 4, value);
+};
+
+/**
+ * @param {!proto.forge_abi.StakeState=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.forge_abi.StakeState}
+ */
+proto.forge_abi.RequestUpdateState.prototype.addStakes = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(
+    this,
+    4,
+    opt_value,
+    proto.forge_abi.StakeState,
+    opt_index
+  );
+};
+
+proto.forge_abi.RequestUpdateState.prototype.clearStakesList = function() {
+  this.setStakesList([]);
+};
+
+/**
+ * optional AbciContext context = 5;
+ * @return {?proto.forge_abi.AbciContext}
+ */
+proto.forge_abi.RequestUpdateState.prototype.getContext = function() {
+  return /** @type{?proto.forge_abi.AbciContext} */ (jspb.Message.getWrapperField(
+    this,
+    type_pb.AbciContext,
+    5
+  ));
+};
+
+/** @param {?proto.forge_abi.AbciContext|undefined} value */
+proto.forge_abi.RequestUpdateState.prototype.setContext = function(value) {
+  jspb.Message.setWrapperField(this, 5, value);
+};
+
+proto.forge_abi.RequestUpdateState.prototype.clearContext = function() {
+  this.setContext(undefined);
+};
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.forge_abi.RequestUpdateState.prototype.hasContext = function() {
+  return jspb.Message.getField(this, 5) != null;
+};
+
+/**
+ * optional ForgeState app_state = 15;
+ * @return {?proto.forge_abi.ForgeState}
+ */
+proto.forge_abi.RequestUpdateState.prototype.getAppState = function() {
+  return /** @type{?proto.forge_abi.ForgeState} */ (jspb.Message.getWrapperField(
+    this,
+    state_pb.ForgeState,
+    15
+  ));
+};
+
+/** @param {?proto.forge_abi.ForgeState|undefined} value */
+proto.forge_abi.RequestUpdateState.prototype.setAppState = function(value) {
+  jspb.Message.setWrapperField(this, 15, value);
+};
+
+proto.forge_abi.RequestUpdateState.prototype.clearAppState = function() {
+  this.setAppState(undefined);
+};
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.forge_abi.RequestUpdateState.prototype.hasAppState = function() {
+  return jspb.Message.getField(this, 15) != null;
 };
 
 /**
@@ -715,14 +993,14 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
           state_pb.AccountState.toObject,
           includeInstance
         ),
-        channelsList: jspb.Message.toObjectList(
-          msg.getChannelsList(),
-          state_pb.ChannelState.toObject,
-          includeInstance
-        ),
         assetsList: jspb.Message.toObjectList(
           msg.getAssetsList(),
           state_pb.AssetState.toObject,
+          includeInstance
+        ),
+        stakesList: jspb.Message.toObjectList(
+          msg.getStakesList(),
+          state_pb.StakeState.toObject,
           includeInstance
         ),
         appState: (f = msg.getAppState()) && state_pb.ForgeState.toObject(includeInstance, f),
@@ -770,16 +1048,16 @@ proto.forge_abi.ResponseUpdateState.deserializeBinaryFromReader = function(msg, 
         msg.addStates(value);
         break;
       case 3:
-        var value = new state_pb.ChannelState();
-        reader.readMessage(value, state_pb.ChannelState.deserializeBinaryFromReader);
-        msg.addChannels(value);
-        break;
-      case 4:
         var value = new state_pb.AssetState();
         reader.readMessage(value, state_pb.AssetState.deserializeBinaryFromReader);
         msg.addAssets(value);
         break;
-      case 5:
+      case 4:
+        var value = new state_pb.StakeState();
+        reader.readMessage(value, state_pb.StakeState.deserializeBinaryFromReader);
+        msg.addStakes(value);
+        break;
+      case 15:
         var value = new state_pb.ForgeState();
         reader.readMessage(value, state_pb.ForgeState.deserializeBinaryFromReader);
         msg.setAppState(value);
@@ -819,17 +1097,17 @@ proto.forge_abi.ResponseUpdateState.serializeBinaryToWriter = function(message, 
   if (f.length > 0) {
     writer.writeRepeatedMessage(2, f, state_pb.AccountState.serializeBinaryToWriter);
   }
-  f = message.getChannelsList();
-  if (f.length > 0) {
-    writer.writeRepeatedMessage(3, f, state_pb.ChannelState.serializeBinaryToWriter);
-  }
   f = message.getAssetsList();
   if (f.length > 0) {
-    writer.writeRepeatedMessage(4, f, state_pb.AssetState.serializeBinaryToWriter);
+    writer.writeRepeatedMessage(3, f, state_pb.AssetState.serializeBinaryToWriter);
+  }
+  f = message.getStakesList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(4, f, state_pb.StakeState.serializeBinaryToWriter);
   }
   f = message.getAppState();
   if (f != null) {
-    writer.writeMessage(5, f, state_pb.ForgeState.serializeBinaryToWriter);
+    writer.writeMessage(15, f, state_pb.ForgeState.serializeBinaryToWriter);
   }
 };
 
@@ -883,56 +1161,20 @@ proto.forge_abi.ResponseUpdateState.prototype.clearStatesList = function() {
 };
 
 /**
- * repeated ChannelState channels = 3;
- * @return {!Array.<!proto.forge_abi.ChannelState>}
- */
-proto.forge_abi.ResponseUpdateState.prototype.getChannelsList = function() {
-  return /** @type{!Array.<!proto.forge_abi.ChannelState>} */ (jspb.Message.getRepeatedWrapperField(
-    this,
-    state_pb.ChannelState,
-    3
-  ));
-};
-
-/** @param {!Array.<!proto.forge_abi.ChannelState>} value */
-proto.forge_abi.ResponseUpdateState.prototype.setChannelsList = function(value) {
-  jspb.Message.setRepeatedWrapperField(this, 3, value);
-};
-
-/**
- * @param {!proto.forge_abi.ChannelState=} opt_value
- * @param {number=} opt_index
- * @return {!proto.forge_abi.ChannelState}
- */
-proto.forge_abi.ResponseUpdateState.prototype.addChannels = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(
-    this,
-    3,
-    opt_value,
-    proto.forge_abi.ChannelState,
-    opt_index
-  );
-};
-
-proto.forge_abi.ResponseUpdateState.prototype.clearChannelsList = function() {
-  this.setChannelsList([]);
-};
-
-/**
- * repeated AssetState assets = 4;
+ * repeated AssetState assets = 3;
  * @return {!Array.<!proto.forge_abi.AssetState>}
  */
 proto.forge_abi.ResponseUpdateState.prototype.getAssetsList = function() {
   return /** @type{!Array.<!proto.forge_abi.AssetState>} */ (jspb.Message.getRepeatedWrapperField(
     this,
     state_pb.AssetState,
-    4
+    3
   ));
 };
 
 /** @param {!Array.<!proto.forge_abi.AssetState>} value */
 proto.forge_abi.ResponseUpdateState.prototype.setAssetsList = function(value) {
-  jspb.Message.setRepeatedWrapperField(this, 4, value);
+  jspb.Message.setRepeatedWrapperField(this, 3, value);
 };
 
 /**
@@ -943,7 +1185,7 @@ proto.forge_abi.ResponseUpdateState.prototype.setAssetsList = function(value) {
 proto.forge_abi.ResponseUpdateState.prototype.addAssets = function(opt_value, opt_index) {
   return jspb.Message.addToRepeatedWrapperField(
     this,
-    4,
+    3,
     opt_value,
     proto.forge_abi.AssetState,
     opt_index
@@ -955,20 +1197,56 @@ proto.forge_abi.ResponseUpdateState.prototype.clearAssetsList = function() {
 };
 
 /**
- * optional ForgeState app_state = 5;
+ * repeated StakeState stakes = 4;
+ * @return {!Array.<!proto.forge_abi.StakeState>}
+ */
+proto.forge_abi.ResponseUpdateState.prototype.getStakesList = function() {
+  return /** @type{!Array.<!proto.forge_abi.StakeState>} */ (jspb.Message.getRepeatedWrapperField(
+    this,
+    state_pb.StakeState,
+    4
+  ));
+};
+
+/** @param {!Array.<!proto.forge_abi.StakeState>} value */
+proto.forge_abi.ResponseUpdateState.prototype.setStakesList = function(value) {
+  jspb.Message.setRepeatedWrapperField(this, 4, value);
+};
+
+/**
+ * @param {!proto.forge_abi.StakeState=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.forge_abi.StakeState}
+ */
+proto.forge_abi.ResponseUpdateState.prototype.addStakes = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(
+    this,
+    4,
+    opt_value,
+    proto.forge_abi.StakeState,
+    opt_index
+  );
+};
+
+proto.forge_abi.ResponseUpdateState.prototype.clearStakesList = function() {
+  this.setStakesList([]);
+};
+
+/**
+ * optional ForgeState app_state = 15;
  * @return {?proto.forge_abi.ForgeState}
  */
 proto.forge_abi.ResponseUpdateState.prototype.getAppState = function() {
   return /** @type{?proto.forge_abi.ForgeState} */ (jspb.Message.getWrapperField(
     this,
     state_pb.ForgeState,
-    5
+    15
   ));
 };
 
 /** @param {?proto.forge_abi.ForgeState|undefined} value */
 proto.forge_abi.ResponseUpdateState.prototype.setAppState = function(value) {
-  jspb.Message.setWrapperField(this, 5, value);
+  jspb.Message.setWrapperField(this, 15, value);
 };
 
 proto.forge_abi.ResponseUpdateState.prototype.clearAppState = function() {
@@ -980,7 +1258,7 @@ proto.forge_abi.ResponseUpdateState.prototype.clearAppState = function() {
  * @return {!boolean}
  */
 proto.forge_abi.ResponseUpdateState.prototype.hasAppState = function() {
-  return jspb.Message.getField(this, 5) != null;
+  return jspb.Message.getField(this, 15) != null;
 };
 
 /**
@@ -1172,6 +1450,7 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
     var f,
       obj = {
         typeUrlsList: jspb.Message.getRepeatedField(msg, 1),
+        appHash: msg.getAppHash(),
       };
 
     if (includeInstance) {
@@ -1210,6 +1489,10 @@ proto.forge_abi.ResponseInfo.deserializeBinaryFromReader = function(msg, reader)
         var value = /** @type {string} */ (reader.readString());
         msg.addTypeUrls(value);
         break;
+      case 2:
+        var value = /** @type {!Uint8Array} */ (reader.readBytes());
+        msg.setAppHash(value);
+        break;
       default:
         reader.skipField();
         break;
@@ -1241,6 +1524,10 @@ proto.forge_abi.ResponseInfo.serializeBinaryToWriter = function(message, writer)
   if (f.length > 0) {
     writer.writeRepeatedString(1, f);
   }
+  f = message.getAppHash_asU8();
+  if (f.length > 0) {
+    writer.writeBytes(2, f);
+  }
 };
 
 /**
@@ -1266,6 +1553,39 @@ proto.forge_abi.ResponseInfo.prototype.addTypeUrls = function(value, opt_index) 
 
 proto.forge_abi.ResponseInfo.prototype.clearTypeUrlsList = function() {
   this.setTypeUrlsList([]);
+};
+
+/**
+ * optional bytes app_hash = 2;
+ * @return {!(string|Uint8Array)}
+ */
+proto.forge_abi.ResponseInfo.prototype.getAppHash = function() {
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 2, ''));
+};
+
+/**
+ * optional bytes app_hash = 2;
+ * This is a type-conversion wrapper around `getAppHash()`
+ * @return {string}
+ */
+proto.forge_abi.ResponseInfo.prototype.getAppHash_asB64 = function() {
+  return /** @type {string} */ (jspb.Message.bytesAsB64(this.getAppHash()));
+};
+
+/**
+ * optional bytes app_hash = 2;
+ * Note that Uint8Array is not supported on all browsers.
+ * @see http://caniuse.com/Uint8Array
+ * This is a type-conversion wrapper around `getAppHash()`
+ * @return {!Uint8Array}
+ */
+proto.forge_abi.ResponseInfo.prototype.getAppHash_asU8 = function() {
+  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(this.getAppHash()));
+};
+
+/** @param {!(string|Uint8Array)} value */
+proto.forge_abi.ResponseInfo.prototype.setAppHash = function(value) {
+  jspb.Message.setField(this, 2, value);
 };
 
 /**
