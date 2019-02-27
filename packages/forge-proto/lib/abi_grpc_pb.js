@@ -29,8 +29,7 @@ function deserialize_forge_abi_Response(buffer_arg) {
   return abi_pb.Response.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-
-var ForgeAppRpcService = exports.ForgeAppRpcService = {
+var ForgeAppRpcService = (exports.ForgeAppRpcService = {
   process_one: {
     path: '/forge_abi.ForgeAppRpc/process_one',
     requestStream: false,
@@ -53,6 +52,6 @@ var ForgeAppRpcService = exports.ForgeAppRpcService = {
     responseSerialize: serialize_forge_abi_Response,
     responseDeserialize: deserialize_forge_abi_Response,
   },
-};
+});
 
 exports.ForgeAppRpcClient = grpc.makeGenericClientConstructor(ForgeAppRpcService);

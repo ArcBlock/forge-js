@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import moment from 'moment';
+import { fromArc } from '@arcblock/forge-util';
 import { useAsync } from 'react-use';
 
 import Grid from '@material-ui/core/Grid';
@@ -45,7 +46,7 @@ export default function SummarySection() {
   const metrics = Object.keys(mapping).reduce((acc, x) => {
     [acc[x]] = summary[mapping[x]];
     if (x === 'stakes') {
-      acc[x] = Number(fromArcToReadable(acc[x]));
+      acc[x] = fromArcToReadable(acc[x]);
     }
     return acc;
   }, {});
@@ -59,7 +60,7 @@ export default function SummarySection() {
       date.setSeconds(0);
       return {
         time: moment(date).format('YYYY-MM-DD HH:mm'),
-        [x]: x === 'stakes' ? Number(fromArcToReadable(d)) : Number(d),
+        [x]: x === 'stakes' ? Number(fromArc(d)) : Number(d),
       };
     });
     return acc;

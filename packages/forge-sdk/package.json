@@ -21,7 +21,6 @@
     "@arcblock/forge-proto": "^0.8.4",
     "@arcblock/forge-util": "^0.8.4",
     "@iarna/toml": "^2.2.1",
-    "bn.js": "^4.11.8",
     "camelcase": "^5.0.0",
     "camelize": "^1.0.0",
     "debug": "^4.1.1",

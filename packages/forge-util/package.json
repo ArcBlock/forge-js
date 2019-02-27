@@ -14,7 +14,9 @@
   },
   "dependencies": {
     "bn.js": "^4.11.8",
-    "number-to-bn": "^1.7.0"
+    "lodash": "^4.17.11",
+    "number-to-bn": "^1.7.0",
+    "utf8": "^3.0.0"
   },
   "devDependencies": {
     "jest": "^23.5.0"
@@ -22,13 +24,8 @@
   "author": "wangshijun <wangshijun2010@gmail.com>",
   "homepage": "https://github.com/ArcBlock/forge-js#readme",
   "license": "MIT",
-  "main": "index.js",
-  "directories": {
-    "lib": "lib",
-    "test": "tests"
-  },
+  "main": "lib/index.js",
   "files": [
-    "index.js",
     "lib"
   ],
   "repository": {
@@ -36,7 +33,7 @@
     "url": "git+https://github.com/ArcBlock/forge-js.git"
   },
   "scripts": {
-    "lint": "eslint lib index.js tests",
+    "lint": "eslint lib tests",
     "precommit": "CI=1 yarn test",
     "prepush": "CI=1 yarn test",
     "test": "npm run lint && node tools/jest.js",

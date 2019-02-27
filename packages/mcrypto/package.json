@@ -1,0 +1,48 @@
+{
+  "name": "@arcblock/mcrypto",
+  "version": "0.7.0",
+  "description": "Crypto lib that provides signer,crypter,hasher interface",
+  "keywords": [
+    "crypto",
+    "forge",
+    "arcblock",
+    "blockchain",
+    "sdk"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "author": "wangshijun <wangshijun2010@gmail.com>",
+  "homepage": "https://github.com/ArcBlock/forge-js/tree/master/packages/mcrypto",
+  "license": "MIT",
+  "main": "lib/index.js",
+  "files": [
+    "lib"
+  ],
+  "devDependencies": {
+    "jest": "^23.5.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ArcBlock/forge-js.git"
+  },
+  "scripts": {
+    "lint": "eslint tests lib",
+    "precommit": "CI=1 npm run test",
+    "prepush": "CI=1 npm run test",
+    "test": "npm run lint && node tools/jest.js",
+    "coverage": "npm run lint && npm run test -- --coverage"
+  },
+  "bugs": {
+    "url": "https://github.com/ArcBlock/forge-js/issues"
+  },
+  "dependencies": {
+    "@arcblock/forge-util": "^0.8.4",
+    "crypto-js": "^3.1.9-1",
+    "elliptic": "^6.4.1",
+    "interface": "^1.2.1",
+    "js-sha3": "^0.8.0",
+    "randombytes": "^2.0.6",
+    "tweetnacl": "^1.0.1"
+  }
+}

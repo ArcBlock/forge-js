@@ -2,7 +2,6 @@
 const util = require('util');
 const camelcase = require('camelcase');
 const faker = require('faker');
-const BN = require('bn.js');
 const range = require('lodash/range');
 const random = require('lodash/random');
 const {
@@ -15,7 +14,7 @@ const {
 const jspb = require('google-protobuf');
 const { Any } = require('google-protobuf/google/protobuf/any_pb');
 const { Timestamp } = require('google-protobuf/google/protobuf/timestamp_pb');
-const { toBN } = require('@arcblock/forge-util').arc;
+const { toBN, bytesToHex } = require('@arcblock/forge-util');
 const debug = require('debug')(`${require('../../package.json').name}:util`);
 
 const enumTypes = Object.keys(enums);
@@ -493,7 +492,7 @@ function encodeBigInt(value, type) {
  * @returns String
  */
 function decodeBigInt(data) {
-  const bn = toBN(new BN(data.value));
+  const bn = toBN(bytesToHex(data.value));
   const symbol = data.minus ? '-' : '';
   return `${symbol}${bn.toString(10)}`;
 }

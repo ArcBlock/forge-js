@@ -57,9 +57,9 @@ class Blocks extends Page {
           {chainInfo && (
             <SummaryHeader
               type={chainInfo.moniker}
-              title={`abt:did:${chainInfo.id}`}
+              title={`abt:did:${chainInfo.address}`}
               badge={chainInfo.blockHeight}
-              badgeTip="Block Height"
+              badgeTip="BLOCK HEIGHT"
               meta={[
                 { key: 'app_hash', value: chainInfo.appHash },
                 { key: 'block_hash', value: chainInfo.blockHash },
