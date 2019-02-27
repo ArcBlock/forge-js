@@ -1,3 +1,4 @@
+// most functions are from: https://github.com/ethereum/web3.js/blob/1.0/packages/web3-utils/src/Utils.js
 const isBoolean = require('lodash/isBoolean');
 const isString = require('lodash/isString');
 const isNumber = require('lodash/isNumber');
@@ -177,7 +178,7 @@ const numberToHex = value => {
     return value;
   }
 
-  if (!isFinite(value) && !isHexStrict(value)) {
+  if (!isFinite(value) && !isHex(value)) {
     throw new Error(`Given input "${value}" is not a number.`);
   }
 
@@ -223,7 +224,7 @@ const bytesToHex = bytes => {
 const hexToBytes = hex => {
   hex = hex.toString(16);
 
-  if (!isHexStrict(hex)) {
+  if (!isHex(hex)) {
     throw new Error(`Given value "${hex}" is not a valid hex string.`);
   }
 
@@ -244,7 +245,7 @@ const hexToBytes = hex => {
  *
  * @method toHex
  *
- * @param {String|Number|BN|Object} value
+ * @param {String|Number|BN|Object|TypedArray|Buffer} value
  * @param {Boolean} returnType
  *
  * @returns {String}

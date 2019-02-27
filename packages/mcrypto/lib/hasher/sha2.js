@@ -5,10 +5,8 @@ const hashFns = {
   sha512: require('crypto-js/sha512'),
 };
 const encoders = {
-  latin1: require('crypto-js/enc-latin1'),
   utf8: require('crypto-js/enc-utf8'),
   hex: require('crypto-js/enc-hex'),
-  utf16: require('crypto-js/enc-utf16'),
   base64: require('crypto-js/enc-base64'),
 };
 

@@ -1,7 +1,7 @@
 const grpc = require('grpc');
 const camelcase = require('camelcase');
 const { EventEmitter } = require('events');
-const { fromArc, toArc } = require('@arcblock/forge-util').arc;
+const { fromArc, toArc } = require('@arcblock/forge-util');
 const { messages, enums, rpcs, getMessageType } = require('@arcblock/forge-proto');
 const {
   formatMessage,

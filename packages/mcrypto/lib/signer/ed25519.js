@@ -1,6 +1,6 @@
 const ed25519 = require('tweetnacl').sign;
 const randomBytes = require('randombytes');
-const { bytesToHex, hexToBytes } = require('../util');
+const { toHex, isHex, hexToBytes, bytesToHex } = require('@arcblock/forge-util');
 
 const Signer = require('../protocols/signer');
 
@@ -9,13 +9,11 @@ class Ed25519Signer extends Signer {
     super();
   }
 
-  toBytes(key) {
-    let bytes = key;
-    // FIXME: strict hex string check
-    if (typeof key === 'string') {
-      bytes = hexToBytes(key);
+  toUint8Array(input) {
+    let bytes = input;
+    if (typeof input === 'string') {
+      bytes = hexToBytes((isHex(input) ? input : toHex(input)).replace(/^0x/i, ''));
     }
-
     return Uint8Array.from(bytes);
   }
 
@@ -30,24 +28,22 @@ class Ed25519Signer extends Signer {
   }
 
   getPublicKey(secretKey, encoding = 'hex') {
-    const secretBytes = this.toBytes(secretKey);
-    // console.log('getPublicKey', { secretKey, secretBytes });
+    const secretBytes = this.toUint8Array(secretKey);
     const publicKey = ed25519.keyPair.fromSecretKey(secretBytes).publicKey;
     return encoding === 'hex' ? bytesToHex(publicKey) : publicKey;
   }
 
-  // FIXME: support any message type here (ascii, utf8, hex, bytes)
   sign(message, secretKey, encoding = 'hex') {
-    const secretBytes = this.toBytes(secretKey);
-    const messageBytes = this.toBytes(message);
+    const secretBytes = this.toUint8Array(secretKey);
+    const messageBytes = this.toUint8Array(message);
     const signature = ed25519.detached(messageBytes, secretBytes);
     return encoding === 'hex' ? bytesToHex(signature) : signature;
   }
 
   verify(message, signature, publicKey) {
-    const publicBytes = this.toBytes(publicKey);
-    const messageBytes = this.toBytes(message);
-    const signatureBytes = this.toBytes(signature);
+    const publicBytes = this.toUint8Array(publicKey);
+    const messageBytes = this.toUint8Array(message);
+    const signatureBytes = this.toUint8Array(signature);
     return ed25519.detached.verify(messageBytes, signatureBytes, publicBytes);
   }
 }

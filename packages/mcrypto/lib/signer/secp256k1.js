@@ -19,15 +19,15 @@ class Secp256k1Signer extends Signer {
     return secp256k1.keyFromPrivate(secretKey, encoding).getPublic(compressed, encoding);
   }
 
-  sign(data, privateKey, encoding = 'hex') {
+  sign(message, privateKey, encoding = 'hex') {
     return secp256k1
       .keyFromPrivate(privateKey, encoding)
-      .sign(data)
+      .sign(message)
       .toDER(encoding);
   }
 
-  verify(hash, signature, publicKey, encoding) {
-    return secp256k1.keyFromPublic(publicKey, encoding).verify(hash, signature);
+  verify(message, signature, publicKey, encoding) {
+    return secp256k1.keyFromPublic(publicKey, encoding).verify(message, signature);
   }
 }
 
