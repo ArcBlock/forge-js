@@ -25,27 +25,27 @@ describe('#ed25519', () => {
   });
 
   test('should gen public key same as elixir', () => {
-    const pk2 = signer.getPublicKey(secretKey, 'hex');
+    const pk2 = signer.getPublicKey(secretKey);
     expect(pk2.toUpperCase()).toEqual(publicKey.toUpperCase());
   });
 
   test('should sign hex message', () => {
-    const signature2 = signer.sign(messageHex, secretKey, 'hex');
+    const signature2 = signer.sign(messageHex, secretKey);
     expect(signature2.toUpperCase()).toEqual(signatureHex.toUpperCase());
   });
 
   test('should verify hex message', () => {
-    const result = signer.verify(messageHex, signatureHex, publicKey, 'hex');
+    const result = signer.verify(messageHex, signatureHex, publicKey);
     expect(result).toEqual(true);
   });
 
   test('should sign utf8 message', () => {
-    const signature2 = signer.sign(messageUtf8, secretKey, 'hex');
+    const signature2 = signer.sign(messageUtf8, secretKey);
     expect(signature2.toUpperCase()).toEqual(signatureUtf8.toUpperCase());
   });
 
   test('should verify utf8 message', () => {
-    const result = signer.verify(messageUtf8, signatureUtf8, publicKey, 'hex');
+    const result = signer.verify(messageUtf8, signatureUtf8, publicKey);
     expect(result).toEqual(true);
   });
 });

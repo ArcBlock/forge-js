@@ -25,17 +25,17 @@ describe('#secp256k1', () => {
   });
 
   test('should gen public key same as elixir', () => {
-    const publicKey2 = signer.getPublicKey(secretKey, 'hex');
+    const publicKey2 = signer.getPublicKey(secretKey);
     expect(publicKey2.toUpperCase()).toEqual(signer.strip0x(publicKey));
   });
 
   test('should sign hex message', () => {
-    const signature2 = signer.sign(messageHex, secretKey, 'hex');
+    const signature2 = signer.sign(messageHex, secretKey);
     expect(signature2.toUpperCase()).toEqual(signatureHex);
   });
 
   test('should verify hex message', () => {
-    const result = signer.verify(messageHex, signatureHex, publicKey, 'hex');
+    const result = signer.verify(messageHex, signatureHex, publicKey);
     expect(result).toEqual(true);
   });
 
