@@ -1,6 +1,5 @@
 const hasher = require('../../lib/hasher/keccak');
 
-// FIXME: test vectors not collected
 const testVectors = {
   '': {
     224: 'F71837502BA8E10837BDD8D365ADB85591895602FC552B48B7390ABD',
