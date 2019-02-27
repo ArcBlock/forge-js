@@ -26,7 +26,7 @@ class Secp256k1Signer extends Signer {
       .toDER(encoding);
   }
 
-  verify(message, signature, publicKey, encoding) {
+  verify(message, signature, publicKey, encoding = 'hex') {
     return secp256k1.keyFromPublic(publicKey, encoding).verify(message, signature);
   }
 }

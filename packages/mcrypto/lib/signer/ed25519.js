@@ -12,9 +12,13 @@ class Ed25519Signer extends Signer {
   toUint8Array(input) {
     let bytes = input;
     if (typeof input === 'string') {
-      bytes = hexToBytes((isHex(input) ? input : toHex(input)).replace(/^0x/i, ''));
+      bytes = hexToBytes(this.toHex(input));
     }
     return Uint8Array.from(bytes);
+  }
+
+  toHex(input) {
+    return (isHex(input) ? input : toHex(input)).replace(/^0x/i, '');
   }
 
   genKeyPair(encoding = 'hex') {
