@@ -1,3 +1,4 @@
+const { isHexStrict, hexToBytes } = require('@arcblock/forge-util');
 const hashFns = {
   sha224: require('crypto-js/sha224'),
   sha256: require('crypto-js/sha256'),
@@ -17,7 +18,9 @@ class Sha2Hasher {
       const hasher = hashFns[name];
       const fn = (data, round = 2, outputEncoding = 'hex') => {
         if (round === 1) {
-          return hasher(data).toString(encoders[outputEncoding]);
+          return hasher(isHexStrict(data) ? hexToBytes(data) : data).toString(
+            encoders[outputEncoding]
+          );
         }
 
         return fn(hasher(data), round - 1, outputEncoding);

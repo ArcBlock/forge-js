@@ -1,6 +1,6 @@
 const ed25519 = require('tweetnacl').sign;
 const randomBytes = require('randombytes');
-const { toHex, isHex, hexToBytes, bytesToHex } = require('@arcblock/forge-util');
+const { toHex, isHexStrict, hexToBytes, bytesToHex } = require('@arcblock/forge-util');
 
 const Signer = require('../protocols/signer');
 
@@ -18,7 +18,7 @@ class Ed25519Signer extends Signer {
   }
 
   toHex(input) {
-    return (isHex(input) ? input : toHex(input)).replace(/^0x/i, '');
+    return (isHexStrict(input) ? input : toHex(input)).replace(/^0x/i, '');
   }
 
   genKeyPair(encoding = 'hex') {
