@@ -7,6 +7,7 @@ import { withTheme } from '@material-ui/core/styles';
 
 import { Link } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
+import Tooltip from '@material-ui/core/Tooltip';
 
 import IconFa from '../../../../components/iconfa';
 
@@ -24,13 +25,15 @@ const CreateAssetTx = React.memo(({ tx, type, theme, ...rest }) => {
         </Typography>
       </div>
       <div className="info-row" style={{ justifyContent: 'flex-start' }}>
-        <IconFa
-          name="gem"
-          size={14}
-          rounded={true}
-          color={theme.colors.blue}
-          className="type-icon"
-        />
+        <Tooltip title={type} placement="top">
+          <IconFa
+            name="gem"
+            size={14}
+            rounded={true}
+            color={theme.colors.blue}
+            className="type-icon"
+          />
+        </Tooltip>
         <Typography component="p" className="value" title={data}>
           {type}: {data}
         </Typography>

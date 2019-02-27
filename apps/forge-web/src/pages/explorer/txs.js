@@ -62,7 +62,7 @@ class TransactionList extends Page {
               type={chainInfo.moniker}
               title={`abt:did:${chainInfo.address}`}
               badge={chainInfo.totalTxs}
-              badgeTip="Total Txs"
+              badgeTip="TOTAL TXS"
               meta={[
                 { key: 'app_hash', value: chainInfo.appHash },
                 { key: 'block_hash', value: chainInfo.blockHash },
