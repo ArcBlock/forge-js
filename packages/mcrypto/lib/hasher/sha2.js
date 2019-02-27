@@ -22,7 +22,7 @@ class Sha2Hasher {
           return hasher(data).toString(encoders[outputEncoding]);
         }
 
-        return fn(hasher(data), outputEncoding, round - 1);
+        return fn(hasher(data), round - 1, outputEncoding);
       };
 
       this[name] = fn;

@@ -1,4 +1,5 @@
 module.exports = {
+  util: require('./util'),
   signer: {
     ed25519: require('./signer/ed25519'),
     secp256k1: require('./signer/secp256k1'),

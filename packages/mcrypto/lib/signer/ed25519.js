@@ -4,7 +4,6 @@ const { bytesToHex, hexToBytes } = require('../util');
 
 const Signer = require('../protocols/signer');
 
-// https://github.com/bitchan/eccrypto
 class Ed25519Signer extends Signer {
   constructor() {
     super();
@@ -20,7 +19,7 @@ class Ed25519Signer extends Signer {
     return Uint8Array.from(bytes);
   }
 
-  genKeyPair(encoding) {
+  genKeyPair(encoding = 'hex') {
     const keyPair = ed25519.keyPair.fromSecretKey(Uint8Array.from(randomBytes(64)));
     if (encoding === 'hex') {
       keyPair.publicKey = bytesToHex(keyPair.publicKey);
@@ -30,7 +29,7 @@ class Ed25519Signer extends Signer {
     return keyPair;
   }
 
-  getPublicKey(secretKey, encoding) {
+  getPublicKey(secretKey, encoding = 'hex') {
     const secretBytes = this.toBytes(secretKey);
     // console.log('getPublicKey', { secretKey, secretBytes });
     const publicKey = ed25519.keyPair.fromSecretKey(secretBytes).publicKey;
@@ -38,7 +37,7 @@ class Ed25519Signer extends Signer {
   }
 
   // FIXME: support any message type here (ascii, utf8, hex, bytes)
-  sign(message, secretKey, encoding) {
+  sign(message, secretKey, encoding = 'hex') {
     const secretBytes = this.toBytes(secretKey);
     const messageBytes = this.toBytes(message);
     const signature = ed25519.detached(messageBytes, secretBytes);
