@@ -6,7 +6,7 @@ module.exports = {
   hasher: {
     sha2: require('./hasher/sha2'),
     sha3: require('./hasher/sha3'),
-    keccakf1600: require('./hasher/keccakf1600'),
+    keccak: require('./hasher/keccak'),
   },
   crypter: {
     aes: require('./crypter/aes'),

@@ -1,7 +1,6 @@
-// see issue: https://github.com/brix/crypto-js/issues/173
 const sha3 = require('js-sha3');
 
-class Kecakf1600Hasher {
+class KeccakHasher {
   constructor() {
     [224, 256, 384, 512].forEach(x => {
       const name = `sha${x}`;
@@ -19,4 +18,4 @@ class Kecakf1600Hasher {
   }
 }
 
-module.exports = new Kecakf1600Hasher();
+module.exports = new KeccakHasher();
