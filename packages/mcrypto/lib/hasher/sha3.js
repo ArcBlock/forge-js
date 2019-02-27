@@ -11,7 +11,7 @@ class Sha3Hasher {
           return hasher(data).toString();
         }
 
-        return fn(hasher(data), outputEncoding, round - 1);
+        return fn(hasher(data), round - 1, outputEncoding);
       };
 
       this[name] = fn;
