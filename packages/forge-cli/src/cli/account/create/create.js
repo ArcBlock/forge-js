@@ -47,8 +47,18 @@ const questions = [
   },
   {
     type: 'autocomplete',
+    name: 'role',
+    default: enums.RoleType.ROLE_ACCOUNT,
+    message: 'Please select a account role type?',
+    source: function(answersSoFar, input) {
+      return source(answersSoFar, input, 'RoleType');
+    },
+  },
+  {
+    type: 'autocomplete',
     name: 'pk',
-    message: 'Please select a public_key type?',
+    default: enums.KeyType.ED25519,
+    message: 'Please select a key pair algorithm?',
     source: function(answersSoFar, input) {
       return source(answersSoFar, input, 'KeyType');
     },
@@ -56,17 +66,10 @@ const questions = [
   {
     type: 'autocomplete',
     name: 'hash',
-    message: 'Please select a hash type?',
+    default: enums.HashType.SHA3,
+    message: 'Please select a hash algorithm?',
     source: function(answersSoFar, input) {
       return source(answersSoFar, input, 'HashType');
-    },
-  },
-  {
-    type: 'autocomplete',
-    name: 'encoding',
-    message: 'Please select a address encoding type?',
-    source: function(answersSoFar, input) {
-      return source(answersSoFar, input, 'EncodingType');
     },
   },
 ];
@@ -75,14 +78,15 @@ const questions = [
 async function execute(data) {
   try {
     const client = createRpcClient();
-    const { passphrase, moniker, pk, hash, encoding } = data;
+    const { passphrase, moniker, pk, hash, role } = data;
     const res = await client.createWallet({
       passphrase,
       moniker,
       type: {
         pk: enums.KeyType[pk],
         hash: enums.HashType[hash],
-        address: enums.EncodingType[encoding],
+        address: enums.EncodingType.BASE58,
+        role: enums.RoleType[role],
       },
     });
     shell.echo(hr);
