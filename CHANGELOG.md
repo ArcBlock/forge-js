@@ -1,3 +1,10 @@
+## 0.8.7 (February 27, 2019)
+  - chore: add fromAppDID for did-generation
+  - chore: do not remove heading zeros when convert bytes to hex
+  - chore: did generating process
+  - chore: tune mcrypto lib
+  - chore: better hex input support in mcrypto
+
 ## 0.8.6 (February 27, 2019)
   - fix: forge web display issue
   - chore: update test case for signer
