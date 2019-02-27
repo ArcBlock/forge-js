@@ -1,3 +1,22 @@
+## 0.8.6 (February 27, 2019)
+  - fix: forge web display issue
+  - chore: update test case for signer
+  - chore: make ed25519 sign any message format
+  - chore: add more functions in forge-util
+  - chore: fix test case for keccak
+  - chore: try to make keccak work
+  - feat: support secp256k1 signner interface
+  - chore: support ed25519 in mcrypto module
+  - Merge branch 'master' into wangshijun/mcrypto
+  - chore: update reference in test script
+  - chore: commit test script
+  - chore: improve signer
+  - chore: improve test case
+  - chore: add test vectors for sha2/sha3 hasher
+  - chore: basic implementation of aes crypter
+  - chore: basic implementation of signer and hasher
+  - chore: initialize mcrypto package
+
 ## 0.8.5 (February 26, 2019)
   - chore: make dashboard header info dynamic
   - chore: improve txs
