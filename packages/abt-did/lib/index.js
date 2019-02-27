@@ -1,7 +1,8 @@
 const padStart = require('lodash/padStart');
-const { toBN, numberToHex } = require('@arcblock/forge-util');
+const { toBN, numberToHex, hexToNumber } = require('@arcblock/forge-util');
 const mcrypto = require('@arcblock/mcrypto');
 const multibase = require('multibase');
+const hdkey = require('hdkey');
 
 const enums = Object.freeze({
   KeyType: {
@@ -45,13 +46,48 @@ const hasher = Object.freeze({
 
 const toBinary = (decimal, length) => padStart(toBN(decimal).toString(2), length, '0');
 
+// Implementation: https://github.com/ArcBlock/ABT-DID-Protocol#request-did-authentication
+const fromAppDID = (appDID, seedHex, types = {}, index = 0) => {
+  const hash = mcrypto.hasher.sha3.sha256(multibase.decode(appDID));
+  const hashSlice = hash.slice(0, 16);
+  const s1 = hashSlice.slice(0, 8);
+  const s2 = hashSlice.slice(8, 16);
+  // const b1 = toBinary(toBN(s1).toTwos(), 8, '0');
+  // const b2 = toBinary(toBN(s2).toTwos(), 8, '0');
+  // if (b1[0] === '0') {
+  //   b1[0] = 1;
+  // }
+  // if (b2[0] === '0') {
+  //   b2[0] = 1;
+  // }
+
+  const n1 = hexToNumber(s1);
+  const n2 = hexToNumber(s2);
+  // console.log({ appDID, hash, hashSlice, s1, s2, n1, n2 });
+
+  const master = hdkey.fromMasterSeed(Buffer.from(seedHex, 'hex'));
+  const derivePath = `m/44'/260/${n1}'/${n2}'/${index}`;
+  const child = master.derive(derivePath);
+  // console.log({ seedHex, derivePath, child });
+
+  const { keyType = enums.KeyType.ED25519 } = types;
+  let sk;
+  if (keyType === enums.KeyType.ED25519) {
+    // HACK: because tweetnacl requires a 64 byte sk
+    sk = Buffer.concat([child.privateKey, child.chainCode]);
+  } else {
+    sk = child.privateKey;
+  }
+  // console.log({ sk, skLength: sk.length, types });
+  return fromSecretKey(sk, types);
+};
+
 // Implementation: https://github.com/ArcBlock/ABT-DID-Protocol#create-did
 const fromSecretKey = (sk, types) => {
   const { keyType = enums.KeyType.ED25519 } = types || {};
   const pk = signer[keyType].getPublicKey(sk);
   return fromPublicKey(pk, types);
 };
-
 const fromPublicKey = (pk, types) => {
   const {
     keyType = enums.KeyType.ED25519,
@@ -76,6 +112,7 @@ const fromPublicKey = (pk, types) => {
 
 module.exports = {
   types: enums,
+  fromAppDID,
   fromSecretKey,
   fromPublicKey,
 };
