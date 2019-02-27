@@ -17,13 +17,12 @@ class Sha2Hasher {
       const name = `sha${x}`;
       const hasher = hashFns[name];
       const fn = (data, round = 2, outputEncoding = 'hex') => {
+        const input = isHexStrict(data) ? hexToBytes(data) : data;
         if (round === 1) {
-          return hasher(isHexStrict(data) ? hexToBytes(data) : data).toString(
-            encoders[outputEncoding]
-          );
+          return hasher(input).toString(encoders[outputEncoding]);
         }
 
-        return fn(hasher(data), round - 1, outputEncoding);
+        return fn(hasher(input), round - 1, outputEncoding);
       };
 
       this[name] = fn;

@@ -7,11 +7,12 @@ class KeccakHasher {
       const name = `sha${x}`;
       const hasher = data => sha3[`keccak${x}`](data);
       const fn = (data, round = 1) => {
+        const input = isHexStrict(data) ? hexToBytes(data) : data;
         if (round === 1) {
-          return hasher(isHexStrict(data) ? hexToBytes(data) : data);
+          return hasher(input);
         }
 
-        return fn(hasher(data), round - 1);
+        return fn(hasher(input), round - 1);
       };
 
       this[name] = fn;
