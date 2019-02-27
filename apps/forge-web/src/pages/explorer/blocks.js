@@ -57,7 +57,7 @@ class Blocks extends Page {
           {chainInfo && (
             <SummaryHeader
               type={chainInfo.moniker}
-              title={`abt:did:${chainInfo.id}`}
+              title={`abt:did:${chainInfo.address}`}
               badge={chainInfo.blockHeight}
               badgeTip="Block Height"
               meta={[

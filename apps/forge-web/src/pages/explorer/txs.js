@@ -60,7 +60,7 @@ class TransactionList extends Page {
           {chainInfo && (
             <SummaryHeader
               type={chainInfo.moniker}
-              title={`abt:did:${chainInfo.id}`}
+              title={`abt:did:${chainInfo.address}`}
               badge={chainInfo.totalTxs}
               badgeTip="Total Txs"
               meta={[
