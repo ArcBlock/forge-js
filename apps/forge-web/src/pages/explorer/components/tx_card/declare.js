@@ -33,6 +33,11 @@ const DeclareTxSummary = React.memo(({ tx, theme, ...rest }) => (
       <Typography component="p" className="value" title={tx.tx.itx.moniker}>
         Declare Account: {tx.tx.itx.moniker}
       </Typography>
+      <div className="sender">
+        <Typography component="p" title={tx.tx.from}>
+          <Link to={`/node/explorer/accounts/${tx.tx.from}`}>{tx.tx.from}</Link>
+        </Typography>
+      </div>
     </div>
   </Container>
 ));
@@ -65,7 +70,7 @@ const Container = styled.div`
   }
 
   .value,
-  .address {
+  .sender {
     width: auto;
     max-width: 49%;
     white-space: nowrap;
