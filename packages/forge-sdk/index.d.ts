@@ -44,6 +44,9 @@ declare class RpcClient {
   getChainInfo(
     request: forge_abi.RequestGetChainInfo
   ): RpcClient.UnaryResult<forge_abi.ResponseGetChainInfo>;
+  getNodeInfo(
+    request: forge_abi.RequestGetNodeInfo
+  ): RpcClient.UnaryResult<forge_abi.ResponseGetNodeInfo>;
   search(request: forge_abi.RequestSearch): RpcClient.UnaryResult<forge_abi.ResponseSearch>;
   getNetInfo(
     request: forge_abi.RequestGetNetInfo
@@ -122,7 +125,7 @@ declare class RpcClient {
  * @returns net.Server
  */
 declare function create(config: any): Readonly<ForgeSDK.T101>;
-declare function addSource(T104: any): void;
+declare function addSource(T104: T105): void;
 declare function parseConfig(configPath: any): any;
 /**
  * Create an protobuf encoded Typed message with specified data, ready to send to rpc server
@@ -580,6 +583,27 @@ declare namespace forge_abi {
     supportedTxs: Array<string>;
   }
 
+  export interface NodeInfo {
+    id: string;
+    network: string;
+    moniker: string;
+    consensusVersion: string;
+    synced: forge_abi.bool;
+    appHash: Uint8Array;
+    blockHash: Uint8Array;
+    blockHeight: number;
+    blockTime: google.protobuf.Timestamp;
+    address: string;
+    votingPower: number;
+    totalTxs: number;
+    version: string;
+    dataVersion: string;
+    forgeAppsVersion: string;
+    supportedTxs: Array<string>;
+    ip: string;
+    geoInfo: forge_abi.GeoInfo;
+  }
+
   export interface Validator {
     address: string;
     power: number;
@@ -690,24 +714,20 @@ declare namespace forge_abi {
     peers: Array<forge_abi.PeerInfo>;
   }
 
-  export interface PeerInfo {
-    nodeInfo: forge_abi.NodeInfo;
+  export interface GeoInfo {
+    city: string;
+    country: string;
+    latitude: number;
+    longitude: number;
   }
 
-  export interface NodeInfo {
+  export interface PeerInfo {
     id: string;
     network: string;
     consensusVersion: string;
     moniker: string;
     ip: string;
     geoInfo: forge_abi.GeoInfo;
-  }
-
-  export interface GeoInfo {
-    city: string;
-    country: string;
-    latitude: number;
-    longitude: number;
   }
 
   export interface ValidatorsInfo {
@@ -1030,6 +1050,13 @@ declare namespace forge_abi {
     info: forge_abi.ChainInfo;
   }
 
+  export interface RequestGetNodeInfo {}
+
+  export interface ResponseGetNodeInfo {
+    code: forge_abi.StatusCode;
+    info: forge_abi.NodeInfo;
+  }
+
   export interface RequestSearch {
     key: string;
     value: string;
@@ -1297,9 +1324,16 @@ declare namespace forge_abi {
     endDateTime: string;
   }
 
+  export enum Direction {
+    MUTUAL = 0,
+    ONE_WAY = 1,
+    UNION = 2,
+  }
+
   export interface AddressFilter {
     sender: string;
     receiver: string;
+    direction: forge_abi.Direction;
   }
 
   export interface PageInfo {
