@@ -39,7 +39,7 @@ class TransactionList extends Page {
 
     this.state = {
       loading: false,
-      chainInfo: null,
+      nodeInfo: null,
       pageSize: 20,
       selectedTxs: selected,
     };
@@ -50,34 +50,34 @@ class TransactionList extends Page {
   }
 
   render() {
-    const { loading, pageSize, chainInfo, selectedTxs } = this.state;
+    const { loading, pageSize, nodeInfo, selectedTxs } = this.state;
     const args = this.getFetchArgs();
 
     return (
       <Layout title="Transactions" cookies={this.cookies}>
         <Container>
           {loading && <CircularProgress />}
-          {chainInfo && (
+          {nodeInfo && (
             <SummaryHeader
-              type={chainInfo.moniker}
-              title={`abt:did:${chainInfo.address}`}
-              badge={chainInfo.totalTxs}
+              type={nodeInfo.moniker}
+              title={`abt:did:${nodeInfo.address}`}
+              badge={nodeInfo.totalTxs}
               badgeTip="TOTAL TXS"
               meta={[
-                { key: 'app_hash', value: chainInfo.appHash },
-                { key: 'block_hash', value: chainInfo.blockHash },
+                { key: 'app_hash', value: nodeInfo.appHash },
+                { key: 'block_hash', value: nodeInfo.blockHash },
               ]}
             />
           )}
-          {chainInfo && (
+          {nodeInfo && (
             <FilterStrip
               showFilter={true}
-              supportedTxs={chainInfo.supportedTxs.sort()}
+              supportedTxs={nodeInfo.supportedTxs.sort()}
               selectedTxs={selectedTxs}
               onApplyFilter={this.onApplyFilter}
             />
           )}
-          {chainInfo && <TxList args={args} pageSize={pageSize} dataLoaderFn={fetchTransactions} />}
+          {nodeInfo && <TxList args={args} pageSize={pageSize} dataLoaderFn={fetchTransactions} />}
         </Container>
       </Layout>
     );
@@ -89,18 +89,18 @@ class TransactionList extends Page {
 
   async loadChainInfo() {
     this.setState({ loading: true });
-    const { info: chainInfo } = await forge.getChainInfo();
+    const { info: nodeInfo } = await forge.getChainInfo();
     const { selectedTxs } = this.state;
     this.setState({
       loading: false,
-      chainInfo,
-      selectedTxs: selectedTxs.length ? selectedTxs : chainInfo.supportedTxs,
+      nodeInfo,
+      selectedTxs: selectedTxs.length ? selectedTxs : nodeInfo.supportedTxs,
     });
   }
 
   getFetchArgs() {
-    const { selectedTxs, chainInfo } = this.state;
-    if (!chainInfo) {
+    const { selectedTxs, nodeInfo } = this.state;
+    if (!nodeInfo) {
       return {};
     }
 
@@ -108,7 +108,7 @@ class TransactionList extends Page {
       typeFilter: { types: selectedTxs.map(x => fromTypeUrl(x, false)) },
     };
 
-    const { supportedTxs } = chainInfo;
+    const { supportedTxs } = nodeInfo;
     if (selectedTxs.length === supportedTxs.length) {
       delete params.typeFilter;
     }

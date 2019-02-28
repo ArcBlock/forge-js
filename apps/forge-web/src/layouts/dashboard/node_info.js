@@ -11,13 +11,13 @@ import SyncIcon from '@material-ui/icons/SyncSharp';
 import Icons8 from '../../components/icon8';
 import forge from '../../libs/forge';
 
-async function fetchChainInfo() {
-  const res = await forge.getChainInfo();
+async function fetchNodeInfo() {
+  const res = await forge.getNodeInfo();
   return res.info;
 }
 
-export default function ChainInfo() {
-  const state = useAsync(fetchChainInfo);
+export default function NodeInfo() {
+  const state = useAsync(fetchNodeInfo);
   if (state.loading) {
     return <CircularProgress />;
   }
@@ -44,7 +44,11 @@ export default function ChainInfo() {
       </Link>
       <div className="header-title">
         <Typography component="h2" noWrap className="header-title__primary">
-          {state.value.network} (38.88.166.250)
+          {state.value.network} ({state.value.ip}{' '}
+          <span>
+            {state.value.geoInfo.city},{state.value.geoInfo.country}
+          </span>
+          )
         </Typography>
         <Typography component="p" noWrap className="header-title__secondary">
           forge v{state.value.version} {appName} {appVersion}

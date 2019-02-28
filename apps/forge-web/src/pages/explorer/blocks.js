@@ -40,7 +40,7 @@ class Blocks extends Page {
 
     this.state = {
       loading: false,
-      chainInfo: null,
+      nodeInfo: null,
     };
   }
 
@@ -49,25 +49,25 @@ class Blocks extends Page {
   }
 
   render() {
-    const { loading, chainInfo } = this.state;
+    const { loading, nodeInfo } = this.state;
     return (
       <Layout title="Blocks" cookies={this.cookies}>
         <Container>
           {loading && <CircularProgress />}
-          {chainInfo && (
+          {nodeInfo && (
             <SummaryHeader
-              type={chainInfo.moniker}
-              title={`abt:did:${chainInfo.address}`}
-              badge={chainInfo.blockHeight}
+              type={nodeInfo.moniker}
+              title={`abt:did:${nodeInfo.address}`}
+              badge={nodeInfo.blockHeight}
               badgeTip="BLOCK HEIGHT"
               meta={[
-                { key: 'app_hash', value: chainInfo.appHash },
-                { key: 'block_hash', value: chainInfo.blockHash },
+                { key: 'app_hash', value: nodeInfo.appHash },
+                { key: 'block_hash', value: nodeInfo.blockHash },
               ]}
             />
           )}
-          {chainInfo && <FilterStrip />}
-          {chainInfo && <PaginatedBlocks dataLoaderFn={fetchBlocks} />}
+          {nodeInfo && <FilterStrip />}
+          {nodeInfo && <PaginatedBlocks dataLoaderFn={fetchBlocks} />}
         </Container>
       </Layout>
     );
@@ -75,8 +75,8 @@ class Blocks extends Page {
 
   async loadChainInfo() {
     this.setState({ loading: true });
-    const { info: chainInfo } = await forge.getChainInfo();
-    this.setState({ loading: false, chainInfo });
+    const { info: nodeInfo } = await forge.getNodeInfo();
+    this.setState({ loading: false, nodeInfo });
   }
 }
 
