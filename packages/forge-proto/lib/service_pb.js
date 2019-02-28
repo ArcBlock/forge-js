@@ -12,6 +12,6 @@ var goog = jspb;
 var global = Function('return this')();
 
 var rpc_pb = require('./rpc_pb.js');
-goog.object.extend(exports, proto.forge_abi);
+goog.object.extend(proto, rpc_pb);
 
 module.exports = proto.forge_abi;
