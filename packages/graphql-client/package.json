@@ -36,10 +36,23 @@
     "babel-preset-env": "^1.7.0",
     "graphql": "^14.1.1",
     "graphql-request": "^1.8.2",
+    "remark-cli": "^5.0.0",
+    "remark-preset-github": "^0.0.9",
     "jest": "^23.5.0",
     "rimraf": "^2.6.2",
     "webpack": "^3",
     "webpack-cli": "^3.1.0"
+  },
+  "remarkConfig": {
+    "plugins": [
+      "preset-github",
+      [
+        "validate-links",
+        {
+          "repository": "ArcBlock/forge-js"
+        }
+      ]
+    ]
   },
   "scripts": {
     "lint": "eslint src",
