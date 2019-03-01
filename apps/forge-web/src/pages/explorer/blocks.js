@@ -16,18 +16,6 @@ import withRoot from '../../components/withRoot';
 
 import forge from '../../libs/forge';
 
-function fetchBlocks({ paging }) {
-  return forge.getBlocks(
-    {
-      // emptyExcluded: true,
-      paging,
-    },
-    {
-      ignoreFields: ['blocks.txs'],
-    }
-  );
-}
-
 class Blocks extends Page {
   static propTypes = {
     match: PropTypes.object.isRequired,
@@ -42,6 +30,8 @@ class Blocks extends Page {
       loading: false,
       nodeInfo: null,
     };
+
+    this.fetchBlocks = this.fetchBlocks.bind(this);
   }
 
   componentDidMount() {
@@ -67,7 +57,7 @@ class Blocks extends Page {
             />
           )}
           {nodeInfo && <FilterStrip />}
-          {nodeInfo && <PaginatedBlocks dataLoaderFn={fetchBlocks} />}
+          {nodeInfo && <PaginatedBlocks dataLoaderFn={this.fetchBlocks} />}
         </Container>
       </Layout>
     );
@@ -77,6 +67,21 @@ class Blocks extends Page {
     this.setState({ loading: true });
     const { info: nodeInfo } = await forge.getNodeInfo();
     this.setState({ loading: false, nodeInfo });
+  }
+
+  async fetchBlocks({ paging }) {
+    const { nodeInfo } = this.state;
+    return forge.getBlocks(
+      {
+        emptyExcluded: true,
+        maxHeight: nodeInfo.blockHeight,
+        minHeight: 0,
+        paging,
+      },
+      {
+        ignoreFields: ['blocks.txs'],
+      }
+    );
   }
 }
 
