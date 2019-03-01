@@ -235,6 +235,17 @@ function deserialize_forge_abi_RequestGetValidatorsInfo(buffer_arg) {
   return rpc_pb.RequestGetValidatorsInfo.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_forge_abi_RequestListAssetTransactions(arg) {
+  if (!(arg instanceof rpc_pb.RequestListAssetTransactions)) {
+    throw new Error('Expected argument of type forge_abi.RequestListAssetTransactions');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_forge_abi_RequestListAssetTransactions(buffer_arg) {
+  return rpc_pb.RequestListAssetTransactions.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_forge_abi_RequestListTransactions(arg) {
   if (!(arg instanceof rpc_pb.RequestListTransactions)) {
     throw new Error('Expected argument of type forge_abi.RequestListTransactions');
@@ -618,6 +629,17 @@ function serialize_forge_abi_ResponseGetValidatorsInfo(arg) {
 
 function deserialize_forge_abi_ResponseGetValidatorsInfo(buffer_arg) {
   return rpc_pb.ResponseGetValidatorsInfo.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_forge_abi_ResponseListAssetTransactions(arg) {
+  if (!(arg instanceof rpc_pb.ResponseListAssetTransactions)) {
+    throw new Error('Expected argument of type forge_abi.ResponseListAssetTransactions');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_forge_abi_ResponseListAssetTransactions(buffer_arg) {
+  return rpc_pb.ResponseListAssetTransactions.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_forge_abi_ResponseListTransactions(arg) {
@@ -1191,6 +1213,17 @@ var StatisticRpcService = (exports.StatisticRpcService = {
     requestDeserialize: deserialize_forge_abi_RequestGetTopAccounts,
     responseSerialize: serialize_forge_abi_ResponseGetTopAccounts,
     responseDeserialize: deserialize_forge_abi_ResponseGetTopAccounts,
+  },
+  list_asset_transactions: {
+    path: '/forge_abi.StatisticRpc/list_asset_transactions',
+    requestStream: false,
+    responseStream: false,
+    requestType: rpc_pb.RequestListAssetTransactions,
+    responseType: rpc_pb.ResponseListAssetTransactions,
+    requestSerialize: serialize_forge_abi_RequestListAssetTransactions,
+    requestDeserialize: deserialize_forge_abi_RequestListAssetTransactions,
+    responseSerialize: serialize_forge_abi_ResponseListAssetTransactions,
+    responseDeserialize: deserialize_forge_abi_ResponseListAssetTransactions,
   },
 });
 

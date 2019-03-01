@@ -1303,12 +1303,25 @@ proto.forge_abi.IndexedTransaction.prototype.hasTx = function() {
  * @constructor
  */
 proto.forge_abi.IndexedAccountState = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+  jspb.Message.initialize(
+    this,
+    opt_data,
+    0,
+    -1,
+    proto.forge_abi.IndexedAccountState.repeatedFields_,
+    null
+  );
 };
 goog.inherits(proto.forge_abi.IndexedAccountState, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   proto.forge_abi.IndexedAccountState.displayName = 'proto.forge_abi.IndexedAccountState';
 }
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.forge_abi.IndexedAccountState.repeatedFields_ = [14];
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
   /**
@@ -1351,6 +1364,7 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
           (f = msg.getTotalReceivedStakes()) && type_pb.BigUint.toObject(includeInstance, f),
         totalStakes: (f = msg.getTotalStakes()) && type_pb.BigUint.toObject(includeInstance, f),
         totalUnstakes: (f = msg.getTotalUnstakes()) && type_pb.BigUint.toObject(includeInstance, f),
+        recentNumTxsList: jspb.Message.getRepeatedField(msg, 14),
       };
 
     if (includeInstance) {
@@ -1441,6 +1455,10 @@ proto.forge_abi.IndexedAccountState.deserializeBinaryFromReader = function(msg, 
         reader.readMessage(value, type_pb.BigUint.deserializeBinaryFromReader);
         msg.setTotalUnstakes(value);
         break;
+      case 14:
+        var value = /** @type {!Array<number>} */ (reader.readPackedUint64());
+        msg.setRecentNumTxsList(value);
+        break;
       default:
         reader.skipField();
         break;
@@ -1519,6 +1537,10 @@ proto.forge_abi.IndexedAccountState.serializeBinaryToWriter = function(message, 
   f = message.getTotalUnstakes();
   if (f != null) {
     writer.writeMessage(13, f, type_pb.BigUint.serializeBinaryToWriter);
+  }
+  f = message.getRecentNumTxsList();
+  if (f.length > 0) {
+    writer.writePackedUint64(14, f);
   }
 };
 
@@ -1753,6 +1775,31 @@ proto.forge_abi.IndexedAccountState.prototype.clearTotalUnstakes = function() {
  */
 proto.forge_abi.IndexedAccountState.prototype.hasTotalUnstakes = function() {
   return jspb.Message.getField(this, 13) != null;
+};
+
+/**
+ * repeated uint64 recent_num_txs = 14;
+ * @return {!Array<number>}
+ */
+proto.forge_abi.IndexedAccountState.prototype.getRecentNumTxsList = function() {
+  return /** @type {!Array<number>} */ (jspb.Message.getRepeatedField(this, 14));
+};
+
+/** @param {!Array<number>} value */
+proto.forge_abi.IndexedAccountState.prototype.setRecentNumTxsList = function(value) {
+  jspb.Message.setField(this, 14, value || []);
+};
+
+/**
+ * @param {number} value
+ * @param {number=} opt_index
+ */
+proto.forge_abi.IndexedAccountState.prototype.addRecentNumTxs = function(value, opt_index) {
+  jspb.Message.addToRepeatedField(this, 14, value, opt_index);
+};
+
+proto.forge_abi.IndexedAccountState.prototype.clearRecentNumTxsList = function() {
+  this.setRecentNumTxsList([]);
 };
 
 /**
