@@ -449,6 +449,84 @@
             }
           }
         },
+        "NodeInfo": {
+          "fields": {
+            "id": {
+              "type": "string",
+              "id": 1
+            },
+            "network": {
+              "type": "string",
+              "id": 2
+            },
+            "moniker": {
+              "type": "string",
+              "id": 3
+            },
+            "consensusVersion": {
+              "type": "string",
+              "id": 4
+            },
+            "synced": {
+              "type": "bool",
+              "id": 5
+            },
+            "appHash": {
+              "type": "bytes",
+              "id": 6
+            },
+            "blockHash": {
+              "type": "bytes",
+              "id": 7
+            },
+            "blockHeight": {
+              "type": "uint64",
+              "id": 8
+            },
+            "blockTime": {
+              "type": "google.protobuf.Timestamp",
+              "id": 9
+            },
+            "address": {
+              "type": "string",
+              "id": 10
+            },
+            "votingPower": {
+              "type": "uint64",
+              "id": 11
+            },
+            "totalTxs": {
+              "type": "uint64",
+              "id": 12
+            },
+            "version": {
+              "type": "string",
+              "id": 13
+            },
+            "dataVersion": {
+              "type": "string",
+              "id": 14
+            },
+            "forgeAppsVersion": {
+              "keyType": "string",
+              "type": "string",
+              "id": 15
+            },
+            "supportedTxs": {
+              "rule": "repeated",
+              "type": "string",
+              "id": 16
+            },
+            "ip": {
+              "type": "string",
+              "id": 17
+            },
+            "geoInfo": {
+              "type": "GeoInfo",
+              "id": 18
+            }
+          }
+        },
         "Validator": {
           "fields": {
             "address": {
@@ -780,15 +858,27 @@
             }
           }
         },
-        "PeerInfo": {
+        "GeoInfo": {
           "fields": {
-            "nodeInfo": {
-              "type": "NodeInfo",
+            "city": {
+              "type": "string",
               "id": 1
+            },
+            "country": {
+              "type": "string",
+              "id": 2
+            },
+            "latitude": {
+              "type": "float",
+              "id": 3
+            },
+            "longitude": {
+              "type": "float",
+              "id": 4
             }
           }
         },
-        "NodeInfo": {
+        "PeerInfo": {
           "fields": {
             "id": {
               "type": "string",
@@ -813,26 +903,6 @@
             "geoInfo": {
               "type": "GeoInfo",
               "id": 6
-            }
-          }
-        },
-        "GeoInfo": {
-          "fields": {
-            "city": {
-              "type": "string",
-              "id": 1
-            },
-            "country": {
-              "type": "string",
-              "id": 2
-            },
-            "latitude": {
-              "type": "float",
-              "id": 3
-            },
-            "longitude": {
-              "type": "float",
-              "id": 4
             }
           }
         },
@@ -1739,6 +1809,21 @@
             }
           }
         },
+        "RequestGetNodeInfo": {
+          "fields": {}
+        },
+        "ResponseGetNodeInfo": {
+          "fields": {
+            "code": {
+              "type": "StatusCode",
+              "id": 1
+            },
+            "info": {
+              "type": "NodeInfo",
+              "id": 2
+            }
+          }
+        },
         "RequestSearch": {
           "fields": {
             "key": {
@@ -2468,6 +2553,13 @@
             }
           }
         },
+        "Direction": {
+          "values": {
+            "mutual": 0,
+            "one_way": 1,
+            "union": 2
+          }
+        },
         "AddressFilter": {
           "fields": {
             "sender": {
@@ -2477,6 +2569,10 @@
             "receiver": {
               "type": "string",
               "id": 2
+            },
+            "direction": {
+              "type": "Direction",
+              "id": 3
             }
           }
         },
@@ -2681,6 +2777,10 @@
             "get_chain_info": {
               "requestType": "RequestGetChainInfo",
               "responseType": "ResponseGetChainInfo"
+            },
+            "get_node_info": {
+              "requestType": "RequestGetNodeInfo",
+              "responseType": "ResponseGetNodeInfo"
             },
             "search": {
               "requestType": "RequestSearch",

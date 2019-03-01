@@ -158,6 +158,17 @@ function deserialize_forge_abi_RequestGetNetInfo(buffer_arg) {
   return rpc_pb.RequestGetNetInfo.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_forge_abi_RequestGetNodeInfo(arg) {
+  if (!(arg instanceof rpc_pb.RequestGetNodeInfo)) {
+    throw new Error('Expected argument of type forge_abi.RequestGetNodeInfo');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_forge_abi_RequestGetNodeInfo(buffer_arg) {
+  return rpc_pb.RequestGetNodeInfo.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_forge_abi_RequestGetStakeState(arg) {
   if (!(arg instanceof rpc_pb.RequestGetStakeState)) {
     throw new Error('Expected argument of type forge_abi.RequestGetStakeState');
@@ -532,6 +543,17 @@ function deserialize_forge_abi_ResponseGetNetInfo(buffer_arg) {
   return rpc_pb.ResponseGetNetInfo.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_forge_abi_ResponseGetNodeInfo(arg) {
+  if (!(arg instanceof rpc_pb.ResponseGetNodeInfo)) {
+    throw new Error('Expected argument of type forge_abi.ResponseGetNodeInfo');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_forge_abi_ResponseGetNodeInfo(buffer_arg) {
+  return rpc_pb.ResponseGetNodeInfo.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_forge_abi_ResponseGetStakeState(arg) {
   if (!(arg instanceof rpc_pb.ResponseGetStakeState)) {
     throw new Error('Expected argument of type forge_abi.ResponseGetStakeState');
@@ -849,6 +871,17 @@ var ChainRpcService = (exports.ChainRpcService = {
     requestDeserialize: deserialize_forge_abi_RequestGetChainInfo,
     responseSerialize: serialize_forge_abi_ResponseGetChainInfo,
     responseDeserialize: deserialize_forge_abi_ResponseGetChainInfo,
+  },
+  get_node_info: {
+    path: '/forge_abi.ChainRpc/get_node_info',
+    requestStream: false,
+    responseStream: false,
+    requestType: rpc_pb.RequestGetNodeInfo,
+    responseType: rpc_pb.ResponseGetNodeInfo,
+    requestSerialize: serialize_forge_abi_RequestGetNodeInfo,
+    requestDeserialize: deserialize_forge_abi_RequestGetNodeInfo,
+    responseSerialize: serialize_forge_abi_ResponseGetNodeInfo,
+    responseDeserialize: deserialize_forge_abi_ResponseGetNodeInfo,
   },
   search: {
     path: '/forge_abi.ChainRpc/search',

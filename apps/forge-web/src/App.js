@@ -17,6 +17,7 @@ import PageBlockDetail from './pages/explorer/block';
 import PageTxList from './pages/explorer/txs';
 import PageTxDetail from './pages/explorer/tx';
 import PageAccountDetail from './pages/explorer/account';
+import PageAssetDetail from './pages/explorer/asset';
 
 import { localeData } from './libs/locale';
 import { detectLocale } from './libs/util';
@@ -37,6 +38,7 @@ export default () => (
           <Route exact path="/node/explorer/blocks/:height" component={PageBlockDetail} />
           <Route exact path="/node/explorer/txs/:hash" component={PageTxDetail} />
           <Route exact path="/node/explorer/accounts/:address" component={PageAccountDetail} />
+          <Route exact path="/node/explorer/assets/:address" component={PageAssetDetail} />
           <Route exact path="/node/status" component={PageStatus} />
           <Route exact path="/node/storage" component={PageStorage} />
           <Route exact path="/node/query" component={PageQuery} />

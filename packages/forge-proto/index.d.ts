@@ -196,6 +196,12 @@ declare namespace Enums {
     STAKE_CHAIN = 3,
   }
 
+  export enum Direction {
+    MUTUAL = 0,
+    ONE_WAY = 1,
+    UNION = 2,
+  }
+
   export enum SupportedTxs {
     0 = AccountMigrateTx,
     1 = ActivateAssetTx,
@@ -228,6 +234,7 @@ declare namespace Enums {
     UpgradeAction: typeof Enums.UpgradeAction;
     StateType: typeof Enums.StateType;
     StakeType: typeof Enums.StakeType;
+    Direction: typeof Enums.Direction;
     SupportedTxs: typeof Enums.SupportedTxs;
     SupportedStakes: typeof Enums.SupportedStakes;
   }
@@ -366,6 +373,12 @@ declare namespace Messages {
     3 = STAKE_CHAIN,
   }
 
+  export enum Direction {
+    0 = MUTUAL,
+    1 = ONE_WAY,
+    2 = UNION,
+  }
+
   export interface main {
     StatusCode: typeof Messages.StatusCode;
     TopicType: typeof Messages.TopicType;
@@ -377,5 +390,6 @@ declare namespace Messages {
     UpgradeAction: typeof Messages.UpgradeAction;
     StateType: typeof Messages.StateType;
     StakeType: typeof Messages.StakeType;
+    Direction: typeof Messages.Direction;
   }
 }

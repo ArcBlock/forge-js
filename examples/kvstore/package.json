@@ -1,6 +1,6 @@
 {
   "name": "@arcblock/forge-app-kvstore",
-  "version": "0.8.4",
+  "version": "0.8.6",
   "description": "",
   "main": "app.js",
   "scripts": {},
@@ -14,8 +14,8 @@
     "access": "public"
   },
   "dependencies": {
-    "@arcblock/forge-proto": "^0.8.4",
-    "@arcblock/forge-sdk": "^0.8.4",
+    "@arcblock/forge-proto": "^0.8.6",
+    "@arcblock/forge-sdk": "^0.8.6",
     "nodemon": "^1.18.9"
   },
   "gitHead": "87990c8b5e215107fc587c1ced0d6b3e2cd2483e"

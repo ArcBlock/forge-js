@@ -12,6 +12,7 @@ var goog = jspb;
 var global = Function('return this')();
 
 var google_protobuf_timestamp_pb = require('google-protobuf/google/protobuf/timestamp_pb.js');
+goog.object.extend(proto, google_protobuf_timestamp_pb);
 goog.exportSymbol('proto.abci_vendor.BlockID', null, global);
 goog.exportSymbol('proto.abci_vendor.BlockSizeParams', null, global);
 goog.exportSymbol('proto.abci_vendor.ConsensusParams', null, global);
@@ -215,7 +216,7 @@ proto.abci_vendor.KVPair.prototype.getKey_asU8 = function() {
 
 /** @param {!(string|Uint8Array)} value */
 proto.abci_vendor.KVPair.prototype.setKey = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3BytesField(this, 1, value);
 };
 
 /**
@@ -248,7 +249,7 @@ proto.abci_vendor.KVPair.prototype.getValue_asU8 = function() {
 
 /** @param {!(string|Uint8Array)} value */
 proto.abci_vendor.KVPair.prototype.setValue = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3BytesField(this, 2, value);
 };
 
 /**
@@ -396,7 +397,7 @@ proto.abci_vendor.ProofOp.prototype.getType = function() {
 
 /** @param {string} value */
 proto.abci_vendor.ProofOp.prototype.setType = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 /**
@@ -429,7 +430,7 @@ proto.abci_vendor.ProofOp.prototype.getKey_asU8 = function() {
 
 /** @param {!(string|Uint8Array)} value */
 proto.abci_vendor.ProofOp.prototype.setKey = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3BytesField(this, 2, value);
 };
 
 /**
@@ -462,7 +463,7 @@ proto.abci_vendor.ProofOp.prototype.getData_asU8 = function() {
 
 /** @param {!(string|Uint8Array)} value */
 proto.abci_vendor.ProofOp.prototype.setData = function(value) {
-  jspb.Message.setField(this, 3, value);
+  jspb.Message.setProto3BytesField(this, 3, value);
 };
 
 /**
@@ -595,17 +596,17 @@ proto.abci_vendor.Proof.serializeBinaryToWriter = function(message, writer) {
 
 /**
  * repeated ProofOp ops = 1;
- * @return {!Array.<!proto.abci_vendor.ProofOp>}
+ * @return {!Array<!proto.abci_vendor.ProofOp>}
  */
 proto.abci_vendor.Proof.prototype.getOpsList = function() {
-  return /** @type{!Array.<!proto.abci_vendor.ProofOp>} */ (jspb.Message.getRepeatedWrapperField(
+  return /** @type{!Array<!proto.abci_vendor.ProofOp>} */ (jspb.Message.getRepeatedWrapperField(
     this,
     proto.abci_vendor.ProofOp,
     1
   ));
 };
 
-/** @param {!Array.<!proto.abci_vendor.ProofOp>} value */
+/** @param {!Array<!proto.abci_vendor.ProofOp>} value */
 proto.abci_vendor.Proof.prototype.setOpsList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 1, value);
 };
@@ -765,7 +766,7 @@ proto.abci_vendor.BlockSizeParams.prototype.getMaxBytes = function() {
 
 /** @param {number} value */
 proto.abci_vendor.BlockSizeParams.prototype.setMaxBytes = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3IntField(this, 1, value);
 };
 
 /**
@@ -778,7 +779,7 @@ proto.abci_vendor.BlockSizeParams.prototype.getMaxGas = function() {
 
 /** @param {number} value */
 proto.abci_vendor.BlockSizeParams.prototype.setMaxGas = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3IntField(this, 2, value);
 };
 
 /**
@@ -908,7 +909,7 @@ proto.abci_vendor.EvidenceParams.prototype.getMaxAge = function() {
 
 /** @param {number} value */
 proto.abci_vendor.EvidenceParams.prototype.setMaxAge = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3IntField(this, 1, value);
 };
 
 /**
@@ -1043,19 +1044,19 @@ proto.abci_vendor.ValidatorParams.serializeBinaryToWriter = function(message, wr
 
 /**
  * repeated string pub_key_types = 1;
- * @return {!Array.<string>}
+ * @return {!Array<string>}
  */
 proto.abci_vendor.ValidatorParams.prototype.getPubKeyTypesList = function() {
-  return /** @type {!Array.<string>} */ (jspb.Message.getRepeatedField(this, 1));
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 1));
 };
 
-/** @param {!Array.<string>} value */
+/** @param {!Array<string>} value */
 proto.abci_vendor.ValidatorParams.prototype.setPubKeyTypesList = function(value) {
   jspb.Message.setField(this, 1, value || []);
 };
 
 /**
- * @param {!string} value
+ * @param {string} value
  * @param {number=} opt_index
  */
 proto.abci_vendor.ValidatorParams.prototype.addPubKeyTypes = function(value, opt_index) {
@@ -1232,7 +1233,7 @@ proto.abci_vendor.ConsensusParams.prototype.clearBlockSize = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.abci_vendor.ConsensusParams.prototype.hasBlockSize = function() {
   return jspb.Message.getField(this, 1) != null;
@@ -1261,7 +1262,7 @@ proto.abci_vendor.ConsensusParams.prototype.clearEvidence = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.abci_vendor.ConsensusParams.prototype.hasEvidence = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -1290,7 +1291,7 @@ proto.abci_vendor.ConsensusParams.prototype.clearValidator = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.abci_vendor.ConsensusParams.prototype.hasValidator = function() {
   return jspb.Message.getField(this, 3) != null;
@@ -1450,22 +1451,22 @@ proto.abci_vendor.LastCommitInfo.prototype.getRound = function() {
 
 /** @param {number} value */
 proto.abci_vendor.LastCommitInfo.prototype.setRound = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3IntField(this, 1, value);
 };
 
 /**
  * repeated VoteInfo votes = 2;
- * @return {!Array.<!proto.abci_vendor.VoteInfo>}
+ * @return {!Array<!proto.abci_vendor.VoteInfo>}
  */
 proto.abci_vendor.LastCommitInfo.prototype.getVotesList = function() {
-  return /** @type{!Array.<!proto.abci_vendor.VoteInfo>} */ (jspb.Message.getRepeatedWrapperField(
+  return /** @type{!Array<!proto.abci_vendor.VoteInfo>} */ (jspb.Message.getRepeatedWrapperField(
     this,
     proto.abci_vendor.VoteInfo,
     2
   ));
 };
 
-/** @param {!Array.<!proto.abci_vendor.VoteInfo>} value */
+/** @param {!Array<!proto.abci_vendor.VoteInfo>} value */
 proto.abci_vendor.LastCommitInfo.prototype.setVotesList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 2, value);
 };
@@ -1625,7 +1626,7 @@ proto.abci_vendor.Version.prototype.getBlock = function() {
 
 /** @param {number} value */
 proto.abci_vendor.Version.prototype.setBlock = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3IntField(this, 1, value);
 };
 
 /**
@@ -1638,7 +1639,7 @@ proto.abci_vendor.Version.prototype.getApp = function() {
 
 /** @param {number} value */
 proto.abci_vendor.Version.prototype.setApp = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3IntField(this, 2, value);
 };
 
 /**
@@ -1777,7 +1778,7 @@ proto.abci_vendor.PartSetHeader.prototype.getTotal = function() {
 
 /** @param {number} value */
 proto.abci_vendor.PartSetHeader.prototype.setTotal = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3IntField(this, 1, value);
 };
 
 /**
@@ -1810,7 +1811,7 @@ proto.abci_vendor.PartSetHeader.prototype.getHash_asU8 = function() {
 
 /** @param {!(string|Uint8Array)} value */
 proto.abci_vendor.PartSetHeader.prototype.setHash = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3BytesField(this, 2, value);
 };
 
 /**
@@ -1972,7 +1973,7 @@ proto.abci_vendor.BlockID.prototype.getHash_asU8 = function() {
 
 /** @param {!(string|Uint8Array)} value */
 proto.abci_vendor.BlockID.prototype.setHash = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3BytesField(this, 1, value);
 };
 
 /**
@@ -1998,7 +1999,7 @@ proto.abci_vendor.BlockID.prototype.clearPartsHeader = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.abci_vendor.BlockID.prototype.hasPartsHeader = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -2160,7 +2161,7 @@ proto.abci_vendor.Validator.prototype.getAddress_asU8 = function() {
 
 /** @param {!(string|Uint8Array)} value */
 proto.abci_vendor.Validator.prototype.setAddress = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3BytesField(this, 1, value);
 };
 
 /**
@@ -2173,7 +2174,7 @@ proto.abci_vendor.Validator.prototype.getPower = function() {
 
 /** @param {number} value */
 proto.abci_vendor.Validator.prototype.setPower = function(value) {
-  jspb.Message.setField(this, 3, value);
+  jspb.Message.setProto3IntField(this, 3, value);
 };
 
 /**
@@ -2312,7 +2313,7 @@ proto.abci_vendor.PubKey.prototype.getType = function() {
 
 /** @param {string} value */
 proto.abci_vendor.PubKey.prototype.setType = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 /**
@@ -2345,7 +2346,7 @@ proto.abci_vendor.PubKey.prototype.getData_asU8 = function() {
 
 /** @param {!(string|Uint8Array)} value */
 proto.abci_vendor.PubKey.prototype.setData = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3BytesField(this, 2, value);
 };
 
 /**
@@ -2498,7 +2499,7 @@ proto.abci_vendor.ValidatorUpdate.prototype.clearPubKey = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.abci_vendor.ValidatorUpdate.prototype.hasPubKey = function() {
   return jspb.Message.getField(this, 1) != null;
@@ -2514,7 +2515,7 @@ proto.abci_vendor.ValidatorUpdate.prototype.getPower = function() {
 
 /** @param {number} value */
 proto.abci_vendor.ValidatorUpdate.prototype.setPower = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3IntField(this, 2, value);
 };
 
 /**
@@ -2668,7 +2669,7 @@ proto.abci_vendor.VoteInfo.prototype.clearValidator = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.abci_vendor.VoteInfo.prototype.hasValidator = function() {
   return jspb.Message.getField(this, 1) != null;
@@ -2686,7 +2687,7 @@ proto.abci_vendor.VoteInfo.prototype.getSignedLastBlock = function() {
 
 /** @param {boolean} value */
 proto.abci_vendor.VoteInfo.prototype.setSignedLastBlock = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3BooleanField(this, 2, value);
 };
 
 /**
@@ -2860,7 +2861,7 @@ proto.abci_vendor.Evidence.prototype.getType = function() {
 
 /** @param {string} value */
 proto.abci_vendor.Evidence.prototype.setType = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 /**
@@ -2886,7 +2887,7 @@ proto.abci_vendor.Evidence.prototype.clearValidator = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.abci_vendor.Evidence.prototype.hasValidator = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -2902,7 +2903,7 @@ proto.abci_vendor.Evidence.prototype.getHeight = function() {
 
 /** @param {number} value */
 proto.abci_vendor.Evidence.prototype.setHeight = function(value) {
-  jspb.Message.setField(this, 3, value);
+  jspb.Message.setProto3IntField(this, 3, value);
 };
 
 /**
@@ -2928,7 +2929,7 @@ proto.abci_vendor.Evidence.prototype.clearTime = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.abci_vendor.Evidence.prototype.hasTime = function() {
   return jspb.Message.getField(this, 4) != null;
@@ -2944,7 +2945,7 @@ proto.abci_vendor.Evidence.prototype.getTotalVotingPower = function() {
 
 /** @param {number} value */
 proto.abci_vendor.Evidence.prototype.setTotalVotingPower = function(value) {
-  jspb.Message.setField(this, 5, value);
+  jspb.Message.setProto3IntField(this, 5, value);
 };
 
 /**
@@ -3231,7 +3232,7 @@ proto.abci_vendor.Header.prototype.clearVersion = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.abci_vendor.Header.prototype.hasVersion = function() {
   return jspb.Message.getField(this, 1) != null;
@@ -3247,7 +3248,7 @@ proto.abci_vendor.Header.prototype.getChainId = function() {
 
 /** @param {string} value */
 proto.abci_vendor.Header.prototype.setChainId = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 /**
@@ -3260,7 +3261,7 @@ proto.abci_vendor.Header.prototype.getHeight = function() {
 
 /** @param {number} value */
 proto.abci_vendor.Header.prototype.setHeight = function(value) {
-  jspb.Message.setField(this, 3, value);
+  jspb.Message.setProto3IntField(this, 3, value);
 };
 
 /**
@@ -3286,7 +3287,7 @@ proto.abci_vendor.Header.prototype.clearTime = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.abci_vendor.Header.prototype.hasTime = function() {
   return jspb.Message.getField(this, 4) != null;
@@ -3302,7 +3303,7 @@ proto.abci_vendor.Header.prototype.getNumTxs = function() {
 
 /** @param {number} value */
 proto.abci_vendor.Header.prototype.setNumTxs = function(value) {
-  jspb.Message.setField(this, 5, value);
+  jspb.Message.setProto3IntField(this, 5, value);
 };
 
 /**
@@ -3315,7 +3316,7 @@ proto.abci_vendor.Header.prototype.getTotalTxs = function() {
 
 /** @param {number} value */
 proto.abci_vendor.Header.prototype.setTotalTxs = function(value) {
-  jspb.Message.setField(this, 6, value);
+  jspb.Message.setProto3IntField(this, 6, value);
 };
 
 /**
@@ -3341,7 +3342,7 @@ proto.abci_vendor.Header.prototype.clearLastBlockId = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.abci_vendor.Header.prototype.hasLastBlockId = function() {
   return jspb.Message.getField(this, 7) != null;
@@ -3377,7 +3378,7 @@ proto.abci_vendor.Header.prototype.getLastCommitHash_asU8 = function() {
 
 /** @param {!(string|Uint8Array)} value */
 proto.abci_vendor.Header.prototype.setLastCommitHash = function(value) {
-  jspb.Message.setField(this, 8, value);
+  jspb.Message.setProto3BytesField(this, 8, value);
 };
 
 /**
@@ -3410,7 +3411,7 @@ proto.abci_vendor.Header.prototype.getDataHash_asU8 = function() {
 
 /** @param {!(string|Uint8Array)} value */
 proto.abci_vendor.Header.prototype.setDataHash = function(value) {
-  jspb.Message.setField(this, 9, value);
+  jspb.Message.setProto3BytesField(this, 9, value);
 };
 
 /**
@@ -3443,7 +3444,7 @@ proto.abci_vendor.Header.prototype.getValidatorsHash_asU8 = function() {
 
 /** @param {!(string|Uint8Array)} value */
 proto.abci_vendor.Header.prototype.setValidatorsHash = function(value) {
-  jspb.Message.setField(this, 10, value);
+  jspb.Message.setProto3BytesField(this, 10, value);
 };
 
 /**
@@ -3476,7 +3477,7 @@ proto.abci_vendor.Header.prototype.getNextValidatorsHash_asU8 = function() {
 
 /** @param {!(string|Uint8Array)} value */
 proto.abci_vendor.Header.prototype.setNextValidatorsHash = function(value) {
-  jspb.Message.setField(this, 11, value);
+  jspb.Message.setProto3BytesField(this, 11, value);
 };
 
 /**
@@ -3509,7 +3510,7 @@ proto.abci_vendor.Header.prototype.getConsensusHash_asU8 = function() {
 
 /** @param {!(string|Uint8Array)} value */
 proto.abci_vendor.Header.prototype.setConsensusHash = function(value) {
-  jspb.Message.setField(this, 12, value);
+  jspb.Message.setProto3BytesField(this, 12, value);
 };
 
 /**
@@ -3542,7 +3543,7 @@ proto.abci_vendor.Header.prototype.getAppHash_asU8 = function() {
 
 /** @param {!(string|Uint8Array)} value */
 proto.abci_vendor.Header.prototype.setAppHash = function(value) {
-  jspb.Message.setField(this, 13, value);
+  jspb.Message.setProto3BytesField(this, 13, value);
 };
 
 /**
@@ -3575,7 +3576,7 @@ proto.abci_vendor.Header.prototype.getLastResultsHash_asU8 = function() {
 
 /** @param {!(string|Uint8Array)} value */
 proto.abci_vendor.Header.prototype.setLastResultsHash = function(value) {
-  jspb.Message.setField(this, 14, value);
+  jspb.Message.setProto3BytesField(this, 14, value);
 };
 
 /**
@@ -3608,7 +3609,7 @@ proto.abci_vendor.Header.prototype.getEvidenceHash_asU8 = function() {
 
 /** @param {!(string|Uint8Array)} value */
 proto.abci_vendor.Header.prototype.setEvidenceHash = function(value) {
-  jspb.Message.setField(this, 15, value);
+  jspb.Message.setProto3BytesField(this, 15, value);
 };
 
 /**
@@ -3641,7 +3642,7 @@ proto.abci_vendor.Header.prototype.getProposerAddress_asU8 = function() {
 
 /** @param {!(string|Uint8Array)} value */
 proto.abci_vendor.Header.prototype.setProposerAddress = function(value) {
-  jspb.Message.setField(this, 16, value);
+  jspb.Message.setProto3BytesField(this, 16, value);
 };
 
 /**
@@ -3771,7 +3772,7 @@ proto.abci_vendor.RequestEcho.prototype.getMessage = function() {
 
 /** @param {string} value */
 proto.abci_vendor.RequestEcho.prototype.setMessage = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 /**
@@ -4026,7 +4027,7 @@ proto.abci_vendor.RequestInfo.prototype.getVersion = function() {
 
 /** @param {string} value */
 proto.abci_vendor.RequestInfo.prototype.setVersion = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 /**
@@ -4039,7 +4040,7 @@ proto.abci_vendor.RequestInfo.prototype.getBlockVersion = function() {
 
 /** @param {number} value */
 proto.abci_vendor.RequestInfo.prototype.setBlockVersion = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3IntField(this, 2, value);
 };
 
 /**
@@ -4052,7 +4053,7 @@ proto.abci_vendor.RequestInfo.prototype.getP2pVersion = function() {
 
 /** @param {number} value */
 proto.abci_vendor.RequestInfo.prototype.setP2pVersion = function(value) {
-  jspb.Message.setField(this, 3, value);
+  jspb.Message.setProto3IntField(this, 3, value);
 };
 
 /**
@@ -4191,7 +4192,7 @@ proto.abci_vendor.RequestSetOption.prototype.getKey = function() {
 
 /** @param {string} value */
 proto.abci_vendor.RequestSetOption.prototype.setKey = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 /**
@@ -4204,7 +4205,7 @@ proto.abci_vendor.RequestSetOption.prototype.getValue = function() {
 
 /** @param {string} value */
 proto.abci_vendor.RequestSetOption.prototype.setValue = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 /**
@@ -4410,7 +4411,7 @@ proto.abci_vendor.RequestInitChain.prototype.clearTime = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.abci_vendor.RequestInitChain.prototype.hasTime = function() {
   return jspb.Message.getField(this, 1) != null;
@@ -4426,7 +4427,7 @@ proto.abci_vendor.RequestInitChain.prototype.getChainId = function() {
 
 /** @param {string} value */
 proto.abci_vendor.RequestInitChain.prototype.setChainId = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 /**
@@ -4452,7 +4453,7 @@ proto.abci_vendor.RequestInitChain.prototype.clearConsensusParams = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.abci_vendor.RequestInitChain.prototype.hasConsensusParams = function() {
   return jspb.Message.getField(this, 3) != null;
@@ -4460,17 +4461,17 @@ proto.abci_vendor.RequestInitChain.prototype.hasConsensusParams = function() {
 
 /**
  * repeated ValidatorUpdate validators = 4;
- * @return {!Array.<!proto.abci_vendor.ValidatorUpdate>}
+ * @return {!Array<!proto.abci_vendor.ValidatorUpdate>}
  */
 proto.abci_vendor.RequestInitChain.prototype.getValidatorsList = function() {
-  return /** @type{!Array.<!proto.abci_vendor.ValidatorUpdate>} */ (jspb.Message.getRepeatedWrapperField(
+  return /** @type{!Array<!proto.abci_vendor.ValidatorUpdate>} */ (jspb.Message.getRepeatedWrapperField(
     this,
     proto.abci_vendor.ValidatorUpdate,
     4
   ));
 };
 
-/** @param {!Array.<!proto.abci_vendor.ValidatorUpdate>} value */
+/** @param {!Array<!proto.abci_vendor.ValidatorUpdate>} value */
 proto.abci_vendor.RequestInitChain.prototype.setValidatorsList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 4, value);
 };
@@ -4524,7 +4525,7 @@ proto.abci_vendor.RequestInitChain.prototype.getAppStateBytes_asU8 = function() 
 
 /** @param {!(string|Uint8Array)} value */
 proto.abci_vendor.RequestInitChain.prototype.setAppStateBytes = function(value) {
-  jspb.Message.setField(this, 5, value);
+  jspb.Message.setProto3BytesField(this, 5, value);
 };
 
 /**
@@ -4701,7 +4702,7 @@ proto.abci_vendor.RequestQuery.prototype.getData_asU8 = function() {
 
 /** @param {!(string|Uint8Array)} value */
 proto.abci_vendor.RequestQuery.prototype.setData = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3BytesField(this, 1, value);
 };
 
 /**
@@ -4714,7 +4715,7 @@ proto.abci_vendor.RequestQuery.prototype.getPath = function() {
 
 /** @param {string} value */
 proto.abci_vendor.RequestQuery.prototype.setPath = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 /**
@@ -4727,7 +4728,7 @@ proto.abci_vendor.RequestQuery.prototype.getHeight = function() {
 
 /** @param {number} value */
 proto.abci_vendor.RequestQuery.prototype.setHeight = function(value) {
-  jspb.Message.setField(this, 3, value);
+  jspb.Message.setProto3IntField(this, 3, value);
 };
 
 /**
@@ -4742,7 +4743,7 @@ proto.abci_vendor.RequestQuery.prototype.getProve = function() {
 
 /** @param {boolean} value */
 proto.abci_vendor.RequestQuery.prototype.setProve = function(value) {
-  jspb.Message.setField(this, 4, value);
+  jspb.Message.setProto3BooleanField(this, 4, value);
 };
 
 /**
@@ -4941,7 +4942,7 @@ proto.abci_vendor.RequestBeginBlock.prototype.getHash_asU8 = function() {
 
 /** @param {!(string|Uint8Array)} value */
 proto.abci_vendor.RequestBeginBlock.prototype.setHash = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3BytesField(this, 1, value);
 };
 
 /**
@@ -4967,7 +4968,7 @@ proto.abci_vendor.RequestBeginBlock.prototype.clearHeader = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.abci_vendor.RequestBeginBlock.prototype.hasHeader = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -4996,7 +4997,7 @@ proto.abci_vendor.RequestBeginBlock.prototype.clearLastCommitInfo = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.abci_vendor.RequestBeginBlock.prototype.hasLastCommitInfo = function() {
   return jspb.Message.getField(this, 3) != null;
@@ -5004,17 +5005,17 @@ proto.abci_vendor.RequestBeginBlock.prototype.hasLastCommitInfo = function() {
 
 /**
  * repeated Evidence byzantine_validators = 4;
- * @return {!Array.<!proto.abci_vendor.Evidence>}
+ * @return {!Array<!proto.abci_vendor.Evidence>}
  */
 proto.abci_vendor.RequestBeginBlock.prototype.getByzantineValidatorsList = function() {
-  return /** @type{!Array.<!proto.abci_vendor.Evidence>} */ (jspb.Message.getRepeatedWrapperField(
+  return /** @type{!Array<!proto.abci_vendor.Evidence>} */ (jspb.Message.getRepeatedWrapperField(
     this,
     proto.abci_vendor.Evidence,
     4
   ));
 };
 
-/** @param {!Array.<!proto.abci_vendor.Evidence>} value */
+/** @param {!Array<!proto.abci_vendor.Evidence>} value */
 proto.abci_vendor.RequestBeginBlock.prototype.setByzantineValidatorsList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 4, value);
 };
@@ -5188,7 +5189,7 @@ proto.abci_vendor.RequestCheckTx.prototype.getTx_asU8 = function() {
 
 /** @param {!(string|Uint8Array)} value */
 proto.abci_vendor.RequestCheckTx.prototype.setTx = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3BytesField(this, 1, value);
 };
 
 /**
@@ -5338,7 +5339,7 @@ proto.abci_vendor.RequestDeliverTx.prototype.getTx_asU8 = function() {
 
 /** @param {!(string|Uint8Array)} value */
 proto.abci_vendor.RequestDeliverTx.prototype.setTx = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3BytesField(this, 1, value);
 };
 
 /**
@@ -5468,7 +5469,7 @@ proto.abci_vendor.RequestEndBlock.prototype.getHeight = function() {
 
 /** @param {number} value */
 proto.abci_vendor.RequestEndBlock.prototype.setHeight = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3IntField(this, 1, value);
 };
 
 /**
@@ -5867,7 +5868,7 @@ proto.abci_vendor.Request.prototype.clearEcho = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.abci_vendor.Request.prototype.hasEcho = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -5896,7 +5897,7 @@ proto.abci_vendor.Request.prototype.clearFlush = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.abci_vendor.Request.prototype.hasFlush = function() {
   return jspb.Message.getField(this, 3) != null;
@@ -5925,7 +5926,7 @@ proto.abci_vendor.Request.prototype.clearInfo = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.abci_vendor.Request.prototype.hasInfo = function() {
   return jspb.Message.getField(this, 4) != null;
@@ -5954,7 +5955,7 @@ proto.abci_vendor.Request.prototype.clearSetOption = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.abci_vendor.Request.prototype.hasSetOption = function() {
   return jspb.Message.getField(this, 5) != null;
@@ -5983,7 +5984,7 @@ proto.abci_vendor.Request.prototype.clearInitChain = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.abci_vendor.Request.prototype.hasInitChain = function() {
   return jspb.Message.getField(this, 6) != null;
@@ -6012,7 +6013,7 @@ proto.abci_vendor.Request.prototype.clearQuery = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.abci_vendor.Request.prototype.hasQuery = function() {
   return jspb.Message.getField(this, 7) != null;
@@ -6041,7 +6042,7 @@ proto.abci_vendor.Request.prototype.clearBeginBlock = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.abci_vendor.Request.prototype.hasBeginBlock = function() {
   return jspb.Message.getField(this, 8) != null;
@@ -6070,7 +6071,7 @@ proto.abci_vendor.Request.prototype.clearCheckTx = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.abci_vendor.Request.prototype.hasCheckTx = function() {
   return jspb.Message.getField(this, 9) != null;
@@ -6099,7 +6100,7 @@ proto.abci_vendor.Request.prototype.clearDeliverTx = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.abci_vendor.Request.prototype.hasDeliverTx = function() {
   return jspb.Message.getField(this, 19) != null;
@@ -6128,7 +6129,7 @@ proto.abci_vendor.Request.prototype.clearEndBlock = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.abci_vendor.Request.prototype.hasEndBlock = function() {
   return jspb.Message.getField(this, 11) != null;
@@ -6157,7 +6158,7 @@ proto.abci_vendor.Request.prototype.clearCommit = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.abci_vendor.Request.prototype.hasCommit = function() {
   return jspb.Message.getField(this, 12) != null;
@@ -6290,7 +6291,7 @@ proto.abci_vendor.ResponseException.prototype.getError = function() {
 
 /** @param {string} value */
 proto.abci_vendor.ResponseException.prototype.setError = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 /**
@@ -6420,7 +6421,7 @@ proto.abci_vendor.ResponseEcho.prototype.getMessage = function() {
 
 /** @param {string} value */
 proto.abci_vendor.ResponseEcho.prototype.setMessage = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 /**
@@ -6693,7 +6694,7 @@ proto.abci_vendor.ResponseInfo.prototype.getData = function() {
 
 /** @param {string} value */
 proto.abci_vendor.ResponseInfo.prototype.setData = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 /**
@@ -6706,7 +6707,7 @@ proto.abci_vendor.ResponseInfo.prototype.getVersion = function() {
 
 /** @param {string} value */
 proto.abci_vendor.ResponseInfo.prototype.setVersion = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 /**
@@ -6719,7 +6720,7 @@ proto.abci_vendor.ResponseInfo.prototype.getAppVersion = function() {
 
 /** @param {number} value */
 proto.abci_vendor.ResponseInfo.prototype.setAppVersion = function(value) {
-  jspb.Message.setField(this, 3, value);
+  jspb.Message.setProto3IntField(this, 3, value);
 };
 
 /**
@@ -6732,7 +6733,7 @@ proto.abci_vendor.ResponseInfo.prototype.getLastBlockHeight = function() {
 
 /** @param {number} value */
 proto.abci_vendor.ResponseInfo.prototype.setLastBlockHeight = function(value) {
-  jspb.Message.setField(this, 4, value);
+  jspb.Message.setProto3IntField(this, 4, value);
 };
 
 /**
@@ -6765,7 +6766,7 @@ proto.abci_vendor.ResponseInfo.prototype.getLastBlockAppHash_asU8 = function() {
 
 /** @param {!(string|Uint8Array)} value */
 proto.abci_vendor.ResponseInfo.prototype.setLastBlockAppHash = function(value) {
-  jspb.Message.setField(this, 5, value);
+  jspb.Message.setProto3BytesField(this, 5, value);
 };
 
 /**
@@ -6913,7 +6914,7 @@ proto.abci_vendor.ResponseSetOption.prototype.getCode = function() {
 
 /** @param {number} value */
 proto.abci_vendor.ResponseSetOption.prototype.setCode = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3IntField(this, 1, value);
 };
 
 /**
@@ -6926,7 +6927,7 @@ proto.abci_vendor.ResponseSetOption.prototype.getLog = function() {
 
 /** @param {string} value */
 proto.abci_vendor.ResponseSetOption.prototype.setLog = function(value) {
-  jspb.Message.setField(this, 3, value);
+  jspb.Message.setProto3StringField(this, 3, value);
 };
 
 /**
@@ -6939,7 +6940,7 @@ proto.abci_vendor.ResponseSetOption.prototype.getInfo = function() {
 
 /** @param {string} value */
 proto.abci_vendor.ResponseSetOption.prototype.setInfo = function(value) {
-  jspb.Message.setField(this, 4, value);
+  jspb.Message.setProto3StringField(this, 4, value);
 };
 
 /**
@@ -7112,7 +7113,7 @@ proto.abci_vendor.ResponseInitChain.prototype.clearConsensusParams = function() 
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.abci_vendor.ResponseInitChain.prototype.hasConsensusParams = function() {
   return jspb.Message.getField(this, 1) != null;
@@ -7120,17 +7121,17 @@ proto.abci_vendor.ResponseInitChain.prototype.hasConsensusParams = function() {
 
 /**
  * repeated ValidatorUpdate validators = 2;
- * @return {!Array.<!proto.abci_vendor.ValidatorUpdate>}
+ * @return {!Array<!proto.abci_vendor.ValidatorUpdate>}
  */
 proto.abci_vendor.ResponseInitChain.prototype.getValidatorsList = function() {
-  return /** @type{!Array.<!proto.abci_vendor.ValidatorUpdate>} */ (jspb.Message.getRepeatedWrapperField(
+  return /** @type{!Array<!proto.abci_vendor.ValidatorUpdate>} */ (jspb.Message.getRepeatedWrapperField(
     this,
     proto.abci_vendor.ValidatorUpdate,
     2
   ));
 };
 
-/** @param {!Array.<!proto.abci_vendor.ValidatorUpdate>} value */
+/** @param {!Array<!proto.abci_vendor.ValidatorUpdate>} value */
 proto.abci_vendor.ResponseInitChain.prototype.setValidatorsList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 2, value);
 };
@@ -7354,7 +7355,7 @@ proto.abci_vendor.ResponseQuery.prototype.getCode = function() {
 
 /** @param {number} value */
 proto.abci_vendor.ResponseQuery.prototype.setCode = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3IntField(this, 1, value);
 };
 
 /**
@@ -7367,7 +7368,7 @@ proto.abci_vendor.ResponseQuery.prototype.getLog = function() {
 
 /** @param {string} value */
 proto.abci_vendor.ResponseQuery.prototype.setLog = function(value) {
-  jspb.Message.setField(this, 3, value);
+  jspb.Message.setProto3StringField(this, 3, value);
 };
 
 /**
@@ -7380,7 +7381,7 @@ proto.abci_vendor.ResponseQuery.prototype.getInfo = function() {
 
 /** @param {string} value */
 proto.abci_vendor.ResponseQuery.prototype.setInfo = function(value) {
-  jspb.Message.setField(this, 4, value);
+  jspb.Message.setProto3StringField(this, 4, value);
 };
 
 /**
@@ -7393,7 +7394,7 @@ proto.abci_vendor.ResponseQuery.prototype.getIndex = function() {
 
 /** @param {number} value */
 proto.abci_vendor.ResponseQuery.prototype.setIndex = function(value) {
-  jspb.Message.setField(this, 5, value);
+  jspb.Message.setProto3IntField(this, 5, value);
 };
 
 /**
@@ -7426,7 +7427,7 @@ proto.abci_vendor.ResponseQuery.prototype.getKey_asU8 = function() {
 
 /** @param {!(string|Uint8Array)} value */
 proto.abci_vendor.ResponseQuery.prototype.setKey = function(value) {
-  jspb.Message.setField(this, 6, value);
+  jspb.Message.setProto3BytesField(this, 6, value);
 };
 
 /**
@@ -7459,7 +7460,7 @@ proto.abci_vendor.ResponseQuery.prototype.getValue_asU8 = function() {
 
 /** @param {!(string|Uint8Array)} value */
 proto.abci_vendor.ResponseQuery.prototype.setValue = function(value) {
-  jspb.Message.setField(this, 7, value);
+  jspb.Message.setProto3BytesField(this, 7, value);
 };
 
 /**
@@ -7485,7 +7486,7 @@ proto.abci_vendor.ResponseQuery.prototype.clearProof = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.abci_vendor.ResponseQuery.prototype.hasProof = function() {
   return jspb.Message.getField(this, 8) != null;
@@ -7501,7 +7502,7 @@ proto.abci_vendor.ResponseQuery.prototype.getHeight = function() {
 
 /** @param {number} value */
 proto.abci_vendor.ResponseQuery.prototype.setHeight = function(value) {
-  jspb.Message.setField(this, 9, value);
+  jspb.Message.setProto3IntField(this, 9, value);
 };
 
 /**
@@ -7514,7 +7515,7 @@ proto.abci_vendor.ResponseQuery.prototype.getCodespace = function() {
 
 /** @param {string} value */
 proto.abci_vendor.ResponseQuery.prototype.setCodespace = function(value) {
-  jspb.Message.setField(this, 10, value);
+  jspb.Message.setProto3StringField(this, 10, value);
 };
 
 /**
@@ -7654,17 +7655,17 @@ proto.abci_vendor.ResponseBeginBlock.serializeBinaryToWriter = function(message,
 
 /**
  * repeated KVPair tags = 1;
- * @return {!Array.<!proto.abci_vendor.KVPair>}
+ * @return {!Array<!proto.abci_vendor.KVPair>}
  */
 proto.abci_vendor.ResponseBeginBlock.prototype.getTagsList = function() {
-  return /** @type{!Array.<!proto.abci_vendor.KVPair>} */ (jspb.Message.getRepeatedWrapperField(
+  return /** @type{!Array<!proto.abci_vendor.KVPair>} */ (jspb.Message.getRepeatedWrapperField(
     this,
     proto.abci_vendor.KVPair,
     1
   ));
 };
 
-/** @param {!Array.<!proto.abci_vendor.KVPair>} value */
+/** @param {!Array<!proto.abci_vendor.KVPair>} value */
 proto.abci_vendor.ResponseBeginBlock.prototype.setTagsList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 1, value);
 };
@@ -7896,7 +7897,7 @@ proto.abci_vendor.ResponseCheckTx.prototype.getCode = function() {
 
 /** @param {number} value */
 proto.abci_vendor.ResponseCheckTx.prototype.setCode = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3IntField(this, 1, value);
 };
 
 /**
@@ -7929,7 +7930,7 @@ proto.abci_vendor.ResponseCheckTx.prototype.getData_asU8 = function() {
 
 /** @param {!(string|Uint8Array)} value */
 proto.abci_vendor.ResponseCheckTx.prototype.setData = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3BytesField(this, 2, value);
 };
 
 /**
@@ -7942,7 +7943,7 @@ proto.abci_vendor.ResponseCheckTx.prototype.getLog = function() {
 
 /** @param {string} value */
 proto.abci_vendor.ResponseCheckTx.prototype.setLog = function(value) {
-  jspb.Message.setField(this, 3, value);
+  jspb.Message.setProto3StringField(this, 3, value);
 };
 
 /**
@@ -7955,7 +7956,7 @@ proto.abci_vendor.ResponseCheckTx.prototype.getInfo = function() {
 
 /** @param {string} value */
 proto.abci_vendor.ResponseCheckTx.prototype.setInfo = function(value) {
-  jspb.Message.setField(this, 4, value);
+  jspb.Message.setProto3StringField(this, 4, value);
 };
 
 /**
@@ -7968,7 +7969,7 @@ proto.abci_vendor.ResponseCheckTx.prototype.getGasWanted = function() {
 
 /** @param {number} value */
 proto.abci_vendor.ResponseCheckTx.prototype.setGasWanted = function(value) {
-  jspb.Message.setField(this, 5, value);
+  jspb.Message.setProto3IntField(this, 5, value);
 };
 
 /**
@@ -7981,22 +7982,22 @@ proto.abci_vendor.ResponseCheckTx.prototype.getGasUsed = function() {
 
 /** @param {number} value */
 proto.abci_vendor.ResponseCheckTx.prototype.setGasUsed = function(value) {
-  jspb.Message.setField(this, 6, value);
+  jspb.Message.setProto3IntField(this, 6, value);
 };
 
 /**
  * repeated KVPair tags = 7;
- * @return {!Array.<!proto.abci_vendor.KVPair>}
+ * @return {!Array<!proto.abci_vendor.KVPair>}
  */
 proto.abci_vendor.ResponseCheckTx.prototype.getTagsList = function() {
-  return /** @type{!Array.<!proto.abci_vendor.KVPair>} */ (jspb.Message.getRepeatedWrapperField(
+  return /** @type{!Array<!proto.abci_vendor.KVPair>} */ (jspb.Message.getRepeatedWrapperField(
     this,
     proto.abci_vendor.KVPair,
     7
   ));
 };
 
-/** @param {!Array.<!proto.abci_vendor.KVPair>} value */
+/** @param {!Array<!proto.abci_vendor.KVPair>} value */
 proto.abci_vendor.ResponseCheckTx.prototype.setTagsList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 7, value);
 };
@@ -8030,7 +8031,7 @@ proto.abci_vendor.ResponseCheckTx.prototype.getCodespace = function() {
 
 /** @param {string} value */
 proto.abci_vendor.ResponseCheckTx.prototype.setCodespace = function(value) {
-  jspb.Message.setField(this, 8, value);
+  jspb.Message.setProto3StringField(this, 8, value);
 };
 
 /**
@@ -8241,7 +8242,7 @@ proto.abci_vendor.ResponseDeliverTx.prototype.getCode = function() {
 
 /** @param {number} value */
 proto.abci_vendor.ResponseDeliverTx.prototype.setCode = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3IntField(this, 1, value);
 };
 
 /**
@@ -8274,7 +8275,7 @@ proto.abci_vendor.ResponseDeliverTx.prototype.getData_asU8 = function() {
 
 /** @param {!(string|Uint8Array)} value */
 proto.abci_vendor.ResponseDeliverTx.prototype.setData = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3BytesField(this, 2, value);
 };
 
 /**
@@ -8287,7 +8288,7 @@ proto.abci_vendor.ResponseDeliverTx.prototype.getLog = function() {
 
 /** @param {string} value */
 proto.abci_vendor.ResponseDeliverTx.prototype.setLog = function(value) {
-  jspb.Message.setField(this, 3, value);
+  jspb.Message.setProto3StringField(this, 3, value);
 };
 
 /**
@@ -8300,7 +8301,7 @@ proto.abci_vendor.ResponseDeliverTx.prototype.getInfo = function() {
 
 /** @param {string} value */
 proto.abci_vendor.ResponseDeliverTx.prototype.setInfo = function(value) {
-  jspb.Message.setField(this, 4, value);
+  jspb.Message.setProto3StringField(this, 4, value);
 };
 
 /**
@@ -8313,7 +8314,7 @@ proto.abci_vendor.ResponseDeliverTx.prototype.getGasWanted = function() {
 
 /** @param {number} value */
 proto.abci_vendor.ResponseDeliverTx.prototype.setGasWanted = function(value) {
-  jspb.Message.setField(this, 5, value);
+  jspb.Message.setProto3IntField(this, 5, value);
 };
 
 /**
@@ -8326,22 +8327,22 @@ proto.abci_vendor.ResponseDeliverTx.prototype.getGasUsed = function() {
 
 /** @param {number} value */
 proto.abci_vendor.ResponseDeliverTx.prototype.setGasUsed = function(value) {
-  jspb.Message.setField(this, 6, value);
+  jspb.Message.setProto3IntField(this, 6, value);
 };
 
 /**
  * repeated KVPair tags = 7;
- * @return {!Array.<!proto.abci_vendor.KVPair>}
+ * @return {!Array<!proto.abci_vendor.KVPair>}
  */
 proto.abci_vendor.ResponseDeliverTx.prototype.getTagsList = function() {
-  return /** @type{!Array.<!proto.abci_vendor.KVPair>} */ (jspb.Message.getRepeatedWrapperField(
+  return /** @type{!Array<!proto.abci_vendor.KVPair>} */ (jspb.Message.getRepeatedWrapperField(
     this,
     proto.abci_vendor.KVPair,
     7
   ));
 };
 
-/** @param {!Array.<!proto.abci_vendor.KVPair>} value */
+/** @param {!Array<!proto.abci_vendor.KVPair>} value */
 proto.abci_vendor.ResponseDeliverTx.prototype.setTagsList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 7, value);
 };
@@ -8375,7 +8376,7 @@ proto.abci_vendor.ResponseDeliverTx.prototype.getCodespace = function() {
 
 /** @param {string} value */
 proto.abci_vendor.ResponseDeliverTx.prototype.setCodespace = function(value) {
-  jspb.Message.setField(this, 8, value);
+  jspb.Message.setProto3StringField(this, 8, value);
 };
 
 /**
@@ -8541,17 +8542,17 @@ proto.abci_vendor.ResponseEndBlock.serializeBinaryToWriter = function(message, w
 
 /**
  * repeated ValidatorUpdate validator_updates = 1;
- * @return {!Array.<!proto.abci_vendor.ValidatorUpdate>}
+ * @return {!Array<!proto.abci_vendor.ValidatorUpdate>}
  */
 proto.abci_vendor.ResponseEndBlock.prototype.getValidatorUpdatesList = function() {
-  return /** @type{!Array.<!proto.abci_vendor.ValidatorUpdate>} */ (jspb.Message.getRepeatedWrapperField(
+  return /** @type{!Array<!proto.abci_vendor.ValidatorUpdate>} */ (jspb.Message.getRepeatedWrapperField(
     this,
     proto.abci_vendor.ValidatorUpdate,
     1
   ));
 };
 
-/** @param {!Array.<!proto.abci_vendor.ValidatorUpdate>} value */
+/** @param {!Array<!proto.abci_vendor.ValidatorUpdate>} value */
 proto.abci_vendor.ResponseEndBlock.prototype.setValidatorUpdatesList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 1, value);
 };
@@ -8598,7 +8599,7 @@ proto.abci_vendor.ResponseEndBlock.prototype.clearConsensusParamUpdates = functi
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.abci_vendor.ResponseEndBlock.prototype.hasConsensusParamUpdates = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -8606,17 +8607,17 @@ proto.abci_vendor.ResponseEndBlock.prototype.hasConsensusParamUpdates = function
 
 /**
  * repeated KVPair tags = 3;
- * @return {!Array.<!proto.abci_vendor.KVPair>}
+ * @return {!Array<!proto.abci_vendor.KVPair>}
  */
 proto.abci_vendor.ResponseEndBlock.prototype.getTagsList = function() {
-  return /** @type{!Array.<!proto.abci_vendor.KVPair>} */ (jspb.Message.getRepeatedWrapperField(
+  return /** @type{!Array<!proto.abci_vendor.KVPair>} */ (jspb.Message.getRepeatedWrapperField(
     this,
     proto.abci_vendor.KVPair,
     3
   ));
 };
 
-/** @param {!Array.<!proto.abci_vendor.KVPair>} value */
+/** @param {!Array<!proto.abci_vendor.KVPair>} value */
 proto.abci_vendor.ResponseEndBlock.prototype.setTagsList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 3, value);
 };
@@ -8787,7 +8788,7 @@ proto.abci_vendor.ResponseCommit.prototype.getData_asU8 = function() {
 
 /** @param {!(string|Uint8Array)} value */
 proto.abci_vendor.ResponseCommit.prototype.setData = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3BytesField(this, 2, value);
 };
 
 /**
@@ -9093,7 +9094,7 @@ proto.abci_vendor.Response.prototype.clearException = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.abci_vendor.Response.prototype.hasException = function() {
   return jspb.Message.getField(this, 1) != null;
@@ -9122,7 +9123,7 @@ proto.abci_vendor.Response.prototype.clearEcho = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.abci_vendor.Response.prototype.hasEcho = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -9151,7 +9152,7 @@ proto.abci_vendor.Response.prototype.clearFlush = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.abci_vendor.Response.prototype.hasFlush = function() {
   return jspb.Message.getField(this, 3) != null;
@@ -9180,7 +9181,7 @@ proto.abci_vendor.Response.prototype.clearInfo = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.abci_vendor.Response.prototype.hasInfo = function() {
   return jspb.Message.getField(this, 4) != null;
@@ -9209,7 +9210,7 @@ proto.abci_vendor.Response.prototype.clearSetOption = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.abci_vendor.Response.prototype.hasSetOption = function() {
   return jspb.Message.getField(this, 5) != null;
@@ -9238,7 +9239,7 @@ proto.abci_vendor.Response.prototype.clearInitChain = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.abci_vendor.Response.prototype.hasInitChain = function() {
   return jspb.Message.getField(this, 6) != null;
@@ -9267,7 +9268,7 @@ proto.abci_vendor.Response.prototype.clearQuery = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.abci_vendor.Response.prototype.hasQuery = function() {
   return jspb.Message.getField(this, 7) != null;
@@ -9296,7 +9297,7 @@ proto.abci_vendor.Response.prototype.clearBeginBlock = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.abci_vendor.Response.prototype.hasBeginBlock = function() {
   return jspb.Message.getField(this, 8) != null;
@@ -9325,7 +9326,7 @@ proto.abci_vendor.Response.prototype.clearCheckTx = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.abci_vendor.Response.prototype.hasCheckTx = function() {
   return jspb.Message.getField(this, 9) != null;
@@ -9354,7 +9355,7 @@ proto.abci_vendor.Response.prototype.clearDeliverTx = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.abci_vendor.Response.prototype.hasDeliverTx = function() {
   return jspb.Message.getField(this, 10) != null;
@@ -9383,7 +9384,7 @@ proto.abci_vendor.Response.prototype.clearEndBlock = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.abci_vendor.Response.prototype.hasEndBlock = function() {
   return jspb.Message.getField(this, 11) != null;
@@ -9412,7 +9413,7 @@ proto.abci_vendor.Response.prototype.clearCommit = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.abci_vendor.Response.prototype.hasCommit = function() {
   return jspb.Message.getField(this, 12) != null;
@@ -9672,7 +9673,7 @@ proto.abci_vendor.RequestBroadcastTx.prototype.getTx_asU8 = function() {
 
 /** @param {!(string|Uint8Array)} value */
 proto.abci_vendor.RequestBroadcastTx.prototype.setTx = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3BytesField(this, 1, value);
 };
 
 /**
@@ -9936,7 +9937,7 @@ proto.abci_vendor.ResponseBroadcastTx.prototype.clearCheckTx = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.abci_vendor.ResponseBroadcastTx.prototype.hasCheckTx = function() {
   return jspb.Message.getField(this, 1) != null;
@@ -9965,7 +9966,7 @@ proto.abci_vendor.ResponseBroadcastTx.prototype.clearDeliverTx = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.abci_vendor.ResponseBroadcastTx.prototype.hasDeliverTx = function() {
   return jspb.Message.getField(this, 2) != null;

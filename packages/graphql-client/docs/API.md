@@ -1,6 +1,6 @@
 # Forge GraphQL API List
 
-> Updated on 2019-02-26T07:00:46.280Z
+> Updated on 2019-02-28T21:57:45.915Z
 
 
 ## Table of Contents
@@ -19,6 +19,7 @@
   * [getForgeStatisticsByDay](#getforgestatisticsbyday)
   * [getForgeStatisticsByHour](#getforgestatisticsbyhour)
   * [getNetInfo](#getnetinfo)
+  * [getNodeInfo](#getnodeinfo)
   * [getStakeState](#getstakestate)
   * [getStakes](#getstakes)
   * [getTopAccounts](#gettopaccounts)
@@ -1287,19 +1288,61 @@ No arguments
       listening
       nPeers
       peers {
-        nodeInfo {
-          consensusVersion
-          id
-          ip
-          moniker
-          network
-          geoInfo {
-            city
-            country
-            latitude
-            longitude
-          }
+        consensusVersion
+        id
+        ip
+        moniker
+        network
+        geoInfo {
+          city
+          country
+          latitude
+          longitude
         }
+      }
+    }
+  }
+}
+```
+
+### getNodeInfo
+
+#### Arguments
+
+No arguments
+
+#### Result Format
+
+```graphql
+{
+  getNodeInfo {
+    code
+    info {
+      address
+      appHash
+      blockHash
+      blockHeight
+      blockTime
+      consensusVersion
+      dataVersion
+      id
+      ip
+      moniker
+      network
+      supportedTxs
+      synced
+      totalTxs
+      version
+      votingPower
+      forgeAppsVersion {
+        key
+        value
+      }
+      geoInfo {
+        city
+        country
+        latitude
+        longitude
       }
     }
   }

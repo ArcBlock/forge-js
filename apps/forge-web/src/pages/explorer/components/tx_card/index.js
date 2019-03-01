@@ -25,8 +25,11 @@ const components = {
   AccountMigrate: TxAccountMigrate,
 };
 
-const TxCard = React.memo(({ tx, ...rest }) => {
+const TxCard = React.memo(({ tx, time, ...rest }) => {
   const type = getTxType(tx);
+  if (!tx.time) {
+    tx.time = time;
+  }
   const TxComponent = components[type] || TxDefault;
   return (
     <Container>
@@ -46,6 +49,11 @@ const Container = styled.div`
 
 TxCard.propTypes = {
   tx: PropTypes.object.isRequired,
+  time: PropTypes.string,
+};
+
+TxCard.defaultProps = {
+  time: '',
 };
 
 export default TxCard;
