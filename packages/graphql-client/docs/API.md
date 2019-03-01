@@ -1,6 +1,6 @@
 # Forge GraphQL API List
 
-> Updated on 2019-02-28T21:57:45.915Z
+> Updated on 2019-03-01T22:36:18.751Z
 
 
 ## Table of Contents
@@ -62,7 +62,7 @@
 
 ```graphql
 {
-  getAccountState(address: "abc", height: 123, keys: "abc") {
+  getAccountState(address: "abc", height: 123, keys: ["abc"]) {
     code
     state {
       address
@@ -400,7 +400,7 @@
 
 ```graphql
 {
-  getAssetState(address: "abc", height: 123, keys: "abc") {
+  getAssetState(address: "abc", height: 123, keys: ["abc"]) {
     code
     state {
       activated
@@ -1092,7 +1092,7 @@ No arguments
 
 ```graphql
 {
-  getForgeState(height: 123, keys: "abc") {
+  getForgeState(height: 123, keys: ["abc"]) {
     code
     state {
       address
@@ -1361,7 +1361,7 @@ No arguments
 
 ```graphql
 {
-  getStakeState(address: "abc", height: 123, keys: "abc") {
+  getStakeState(address: "abc", height: 123, keys: ["abc"]) {
     code
     state {
       address
