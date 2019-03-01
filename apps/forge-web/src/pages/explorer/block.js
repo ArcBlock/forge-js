@@ -9,6 +9,7 @@ import Typography from '@material-ui/core/Typography';
 
 import Page from '../../components/page';
 import Layout from '../../layouts/page';
+import Wrapper from '../../components/wrapper';
 import SummaryHeader from './components/summary_header';
 import TxCard from './components/tx_card/index';
 import Pagination from './components/pagination';
@@ -124,11 +125,7 @@ class BlockDetail extends Page {
   }
 }
 
-const Container = styled.div`
-  padding: ${props => props.theme.spacing.unit * 6}px 8%;
-  width: auto;
-  max-width: 1280px;
-
+const Container = styled(Wrapper)`
   .empty-tip {
     color: ${props => props.theme.colors.minor};
     font-size: 30px;

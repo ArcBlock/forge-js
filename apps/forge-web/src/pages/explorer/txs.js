@@ -11,6 +11,7 @@ import SummaryHeader from './components/summary_header';
 
 import Page from '../../components/page';
 import Layout from '../../layouts/page';
+import Wrapper from '../../components/wrapper';
 import withI18n from '../../components/withI18n';
 import withRoot from '../../components/withRoot';
 
@@ -117,13 +118,7 @@ class TransactionList extends Page {
   }
 }
 
-// TODO: make this responsive
-const Container = styled.div`
-  padding: ${props => props.theme.spacing.unit * 6}px 8%;
-  width: auto;
-  max-width: 1280px;
-  box-sizing: border-box;
-
+const Container = styled(Wrapper)`
   .pagination {
     margin-top: 60px;
   }

@@ -7,6 +7,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 
 import Page from '../../components/page';
 import Layout from '../../layouts/page';
+import Wrapper from '../../components/wrapper';
 import SummaryHeader from './components/summary_header';
 import AccountTabs from './components/account/tabs';
 
@@ -74,11 +75,7 @@ class AccountDetail extends Page {
   }
 }
 
-const Container = styled.div`
-  padding: ${props => props.theme.spacing.unit * 6}px 8%;
-  width: auto;
-  max-width: 1280px;
-
+const Container = styled(Wrapper)`
   .tabs {
     margin-bottom: 60px;
   }

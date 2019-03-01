@@ -11,6 +11,7 @@ import PaginatedBlocks from './components/block_list';
 
 import Page from '../../components/page';
 import Layout from '../../layouts/page';
+import Wrapper from '../../components/wrapper';
 import withI18n from '../../components/withI18n';
 import withRoot from '../../components/withRoot';
 
@@ -85,10 +86,6 @@ class Blocks extends Page {
   }
 }
 
-const Container = styled.div`
-  padding: ${props => props.theme.spacing.unit * 6}px 8%;
-  width: auto;
-  max-width: 1280px;
-`;
+const Container = styled(Wrapper)``;
 
 export default withRoot(withI18n(withRouter(Blocks)));
