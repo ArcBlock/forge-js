@@ -131,6 +131,7 @@ function ensureForgeRelease(args, exitOn404 = true) {
     if (fs.existsSync(forgeBinPath) && fs.statSync(forgeBinPath).isFile()) {
       config.cli.releaseDir = releaseDir;
       config.cli.forgeBinPath = forgeBinPath;
+      config.cli.forgeReleaseDir = path.join(releaseDir, 'forge');
       debug(`${symbols.success} Using forge release dir: ${releaseDir}`);
       debug(`${symbols.success} Using forge executable: ${forgeBinPath}`);
 

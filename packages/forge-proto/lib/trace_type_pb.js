@@ -12,7 +12,9 @@ var goog = jspb;
 var global = Function('return this')();
 
 var type_pb = require('./type_pb.js');
+goog.object.extend(proto, type_pb);
 goog.exportSymbol('proto.forge_abi.AddressFilter', null, global);
+goog.exportSymbol('proto.forge_abi.Direction', null, global);
 goog.exportSymbol('proto.forge_abi.IndexedAccountState', null, global);
 goog.exportSymbol('proto.forge_abi.IndexedAssetState', null, global);
 goog.exportSymbol('proto.forge_abi.IndexedStakeState', null, global);
@@ -159,7 +161,7 @@ proto.forge_abi.PageOrder.prototype.getField = function() {
 
 /** @param {string} value */
 proto.forge_abi.PageOrder.prototype.setField = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 /**
@@ -172,7 +174,7 @@ proto.forge_abi.PageOrder.prototype.getType = function() {
 
 /** @param {string} value */
 proto.forge_abi.PageOrder.prototype.setType = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 /**
@@ -331,7 +333,7 @@ proto.forge_abi.PageInput.prototype.getCursor = function() {
 
 /** @param {string} value */
 proto.forge_abi.PageInput.prototype.setCursor = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 /**
@@ -344,22 +346,22 @@ proto.forge_abi.PageInput.prototype.getSize = function() {
 
 /** @param {number} value */
 proto.forge_abi.PageInput.prototype.setSize = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3IntField(this, 2, value);
 };
 
 /**
  * repeated PageOrder order = 3;
- * @return {!Array.<!proto.forge_abi.PageOrder>}
+ * @return {!Array<!proto.forge_abi.PageOrder>}
  */
 proto.forge_abi.PageInput.prototype.getOrderList = function() {
-  return /** @type{!Array.<!proto.forge_abi.PageOrder>} */ (jspb.Message.getRepeatedWrapperField(
+  return /** @type{!Array<!proto.forge_abi.PageOrder>} */ (jspb.Message.getRepeatedWrapperField(
     this,
     proto.forge_abi.PageOrder,
     3
   ));
 };
 
-/** @param {!Array.<!proto.forge_abi.PageOrder>} value */
+/** @param {!Array<!proto.forge_abi.PageOrder>} value */
 proto.forge_abi.PageInput.prototype.setOrderList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 3, value);
 };
@@ -508,19 +510,19 @@ proto.forge_abi.TypeFilter.serializeBinaryToWriter = function(message, writer) {
 
 /**
  * repeated string types = 1;
- * @return {!Array.<string>}
+ * @return {!Array<string>}
  */
 proto.forge_abi.TypeFilter.prototype.getTypesList = function() {
-  return /** @type {!Array.<string>} */ (jspb.Message.getRepeatedField(this, 1));
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 1));
 };
 
-/** @param {!Array.<string>} value */
+/** @param {!Array<string>} value */
 proto.forge_abi.TypeFilter.prototype.setTypesList = function(value) {
   jspb.Message.setField(this, 1, value || []);
 };
 
 /**
- * @param {!string} value
+ * @param {string} value
  * @param {number=} opt_index
  */
 proto.forge_abi.TypeFilter.prototype.addTypes = function(value, opt_index) {
@@ -667,7 +669,7 @@ proto.forge_abi.TimeFilter.prototype.getStartDateTime = function() {
 
 /** @param {string} value */
 proto.forge_abi.TimeFilter.prototype.setStartDateTime = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 /**
@@ -680,7 +682,7 @@ proto.forge_abi.TimeFilter.prototype.getEndDateTime = function() {
 
 /** @param {string} value */
 proto.forge_abi.TimeFilter.prototype.setEndDateTime = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 /**
@@ -730,6 +732,7 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
       obj = {
         sender: jspb.Message.getFieldWithDefault(msg, 1, ''),
         receiver: jspb.Message.getFieldWithDefault(msg, 2, ''),
+        direction: jspb.Message.getFieldWithDefault(msg, 3, 0),
       };
 
     if (includeInstance) {
@@ -772,6 +775,10 @@ proto.forge_abi.AddressFilter.deserializeBinaryFromReader = function(msg, reader
         var value = /** @type {string} */ (reader.readString());
         msg.setReceiver(value);
         break;
+      case 3:
+        var value = /** @type {!proto.forge_abi.Direction} */ (reader.readEnum());
+        msg.setDirection(value);
+        break;
       default:
         reader.skipField();
         break;
@@ -807,6 +814,10 @@ proto.forge_abi.AddressFilter.serializeBinaryToWriter = function(message, writer
   if (f.length > 0) {
     writer.writeString(2, f);
   }
+  f = message.getDirection();
+  if (f !== 0.0) {
+    writer.writeEnum(3, f);
+  }
 };
 
 /**
@@ -819,7 +830,7 @@ proto.forge_abi.AddressFilter.prototype.getSender = function() {
 
 /** @param {string} value */
 proto.forge_abi.AddressFilter.prototype.setSender = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 /**
@@ -832,7 +843,20 @@ proto.forge_abi.AddressFilter.prototype.getReceiver = function() {
 
 /** @param {string} value */
 proto.forge_abi.AddressFilter.prototype.setReceiver = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
+};
+
+/**
+ * optional Direction direction = 3;
+ * @return {!proto.forge_abi.Direction}
+ */
+proto.forge_abi.AddressFilter.prototype.getDirection = function() {
+  return /** @type {!proto.forge_abi.Direction} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
+};
+
+/** @param {!proto.forge_abi.Direction} value */
+proto.forge_abi.AddressFilter.prototype.setDirection = function(value) {
+  jspb.Message.setProto3EnumField(this, 3, value);
 };
 
 /**
@@ -980,7 +1004,7 @@ proto.forge_abi.PageInfo.prototype.getCursor = function() {
 
 /** @param {string} value */
 proto.forge_abi.PageInfo.prototype.setCursor = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 /**
@@ -995,7 +1019,7 @@ proto.forge_abi.PageInfo.prototype.getNext = function() {
 
 /** @param {boolean} value */
 proto.forge_abi.PageInfo.prototype.setNext = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3BooleanField(this, 2, value);
 };
 
 /**
@@ -1008,7 +1032,7 @@ proto.forge_abi.PageInfo.prototype.getTotal = function() {
 
 /** @param {number} value */
 proto.forge_abi.PageInfo.prototype.setTotal = function(value) {
-  jspb.Message.setField(this, 3, value);
+  jspb.Message.setProto3IntField(this, 3, value);
 };
 
 /**
@@ -1184,7 +1208,7 @@ proto.forge_abi.IndexedTransaction.prototype.getHash = function() {
 
 /** @param {string} value */
 proto.forge_abi.IndexedTransaction.prototype.setHash = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 /**
@@ -1197,7 +1221,7 @@ proto.forge_abi.IndexedTransaction.prototype.getSender = function() {
 
 /** @param {string} value */
 proto.forge_abi.IndexedTransaction.prototype.setSender = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 /**
@@ -1210,7 +1234,7 @@ proto.forge_abi.IndexedTransaction.prototype.getReceiver = function() {
 
 /** @param {string} value */
 proto.forge_abi.IndexedTransaction.prototype.setReceiver = function(value) {
-  jspb.Message.setField(this, 3, value);
+  jspb.Message.setProto3StringField(this, 3, value);
 };
 
 /**
@@ -1223,7 +1247,7 @@ proto.forge_abi.IndexedTransaction.prototype.getTime = function() {
 
 /** @param {string} value */
 proto.forge_abi.IndexedTransaction.prototype.setTime = function(value) {
-  jspb.Message.setField(this, 4, value);
+  jspb.Message.setProto3StringField(this, 4, value);
 };
 
 /**
@@ -1236,7 +1260,7 @@ proto.forge_abi.IndexedTransaction.prototype.getType = function() {
 
 /** @param {string} value */
 proto.forge_abi.IndexedTransaction.prototype.setType = function(value) {
-  jspb.Message.setField(this, 5, value);
+  jspb.Message.setProto3StringField(this, 5, value);
 };
 
 /**
@@ -1262,7 +1286,7 @@ proto.forge_abi.IndexedTransaction.prototype.clearTx = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.forge_abi.IndexedTransaction.prototype.hasTx = function() {
   return jspb.Message.getField(this, 6) != null;
@@ -1508,7 +1532,7 @@ proto.forge_abi.IndexedAccountState.prototype.getAddress = function() {
 
 /** @param {string} value */
 proto.forge_abi.IndexedAccountState.prototype.setAddress = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 /**
@@ -1534,7 +1558,7 @@ proto.forge_abi.IndexedAccountState.prototype.clearBalance = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.forge_abi.IndexedAccountState.prototype.hasBalance = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -1550,7 +1574,7 @@ proto.forge_abi.IndexedAccountState.prototype.getNumAssets = function() {
 
 /** @param {number} value */
 proto.forge_abi.IndexedAccountState.prototype.setNumAssets = function(value) {
-  jspb.Message.setField(this, 3, value);
+  jspb.Message.setProto3IntField(this, 3, value);
 };
 
 /**
@@ -1563,7 +1587,7 @@ proto.forge_abi.IndexedAccountState.prototype.getNumTxs = function() {
 
 /** @param {number} value */
 proto.forge_abi.IndexedAccountState.prototype.setNumTxs = function(value) {
-  jspb.Message.setField(this, 4, value);
+  jspb.Message.setProto3IntField(this, 4, value);
 };
 
 /**
@@ -1576,7 +1600,7 @@ proto.forge_abi.IndexedAccountState.prototype.getNonce = function() {
 
 /** @param {number} value */
 proto.forge_abi.IndexedAccountState.prototype.setNonce = function(value) {
-  jspb.Message.setField(this, 5, value);
+  jspb.Message.setProto3IntField(this, 5, value);
 };
 
 /**
@@ -1589,7 +1613,7 @@ proto.forge_abi.IndexedAccountState.prototype.getGenesisTime = function() {
 
 /** @param {string} value */
 proto.forge_abi.IndexedAccountState.prototype.setGenesisTime = function(value) {
-  jspb.Message.setField(this, 6, value);
+  jspb.Message.setProto3StringField(this, 6, value);
 };
 
 /**
@@ -1602,7 +1626,7 @@ proto.forge_abi.IndexedAccountState.prototype.getRenaissanceTime = function() {
 
 /** @param {string} value */
 proto.forge_abi.IndexedAccountState.prototype.setRenaissanceTime = function(value) {
-  jspb.Message.setField(this, 7, value);
+  jspb.Message.setProto3StringField(this, 7, value);
 };
 
 /**
@@ -1615,7 +1639,7 @@ proto.forge_abi.IndexedAccountState.prototype.getMoniker = function() {
 
 /** @param {string} value */
 proto.forge_abi.IndexedAccountState.prototype.setMoniker = function(value) {
-  jspb.Message.setField(this, 8, value);
+  jspb.Message.setProto3StringField(this, 8, value);
 };
 
 /**
@@ -1628,7 +1652,7 @@ proto.forge_abi.IndexedAccountState.prototype.getMigratedFrom = function() {
 
 /** @param {string} value */
 proto.forge_abi.IndexedAccountState.prototype.setMigratedFrom = function(value) {
-  jspb.Message.setField(this, 9, value);
+  jspb.Message.setProto3StringField(this, 9, value);
 };
 
 /**
@@ -1641,7 +1665,7 @@ proto.forge_abi.IndexedAccountState.prototype.getMigratedTo = function() {
 
 /** @param {string} value */
 proto.forge_abi.IndexedAccountState.prototype.setMigratedTo = function(value) {
-  jspb.Message.setField(this, 10, value);
+  jspb.Message.setProto3StringField(this, 10, value);
 };
 
 /**
@@ -1667,7 +1691,7 @@ proto.forge_abi.IndexedAccountState.prototype.clearTotalReceivedStakes = functio
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.forge_abi.IndexedAccountState.prototype.hasTotalReceivedStakes = function() {
   return jspb.Message.getField(this, 11) != null;
@@ -1696,7 +1720,7 @@ proto.forge_abi.IndexedAccountState.prototype.clearTotalStakes = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.forge_abi.IndexedAccountState.prototype.hasTotalStakes = function() {
   return jspb.Message.getField(this, 12) != null;
@@ -1725,7 +1749,7 @@ proto.forge_abi.IndexedAccountState.prototype.clearTotalUnstakes = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.forge_abi.IndexedAccountState.prototype.hasTotalUnstakes = function() {
   return jspb.Message.getField(this, 13) != null;
@@ -1903,7 +1927,7 @@ proto.forge_abi.IndexedAssetState.prototype.getAddress = function() {
 
 /** @param {string} value */
 proto.forge_abi.IndexedAssetState.prototype.setAddress = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 /**
@@ -1916,7 +1940,7 @@ proto.forge_abi.IndexedAssetState.prototype.getOwner = function() {
 
 /** @param {string} value */
 proto.forge_abi.IndexedAssetState.prototype.setOwner = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 /**
@@ -1929,7 +1953,7 @@ proto.forge_abi.IndexedAssetState.prototype.getGenesisTime = function() {
 
 /** @param {string} value */
 proto.forge_abi.IndexedAssetState.prototype.setGenesisTime = function(value) {
-  jspb.Message.setField(this, 3, value);
+  jspb.Message.setProto3StringField(this, 3, value);
 };
 
 /**
@@ -1942,7 +1966,7 @@ proto.forge_abi.IndexedAssetState.prototype.getRenaissanceTime = function() {
 
 /** @param {string} value */
 proto.forge_abi.IndexedAssetState.prototype.setRenaissanceTime = function(value) {
-  jspb.Message.setField(this, 4, value);
+  jspb.Message.setProto3StringField(this, 4, value);
 };
 
 /**
@@ -1955,7 +1979,7 @@ proto.forge_abi.IndexedAssetState.prototype.getMoniker = function() {
 
 /** @param {string} value */
 proto.forge_abi.IndexedAssetState.prototype.setMoniker = function(value) {
-  jspb.Message.setField(this, 5, value);
+  jspb.Message.setProto3StringField(this, 5, value);
 };
 
 /**
@@ -1970,7 +1994,7 @@ proto.forge_abi.IndexedAssetState.prototype.getReadonly = function() {
 
 /** @param {boolean} value */
 proto.forge_abi.IndexedAssetState.prototype.setReadonly = function(value) {
-  jspb.Message.setField(this, 6, value);
+  jspb.Message.setProto3BooleanField(this, 6, value);
 };
 
 /**
@@ -2164,7 +2188,7 @@ proto.forge_abi.IndexedStakeState.prototype.getAddress = function() {
 
 /** @param {string} value */
 proto.forge_abi.IndexedStakeState.prototype.setAddress = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 /**
@@ -2190,7 +2214,7 @@ proto.forge_abi.IndexedStakeState.prototype.clearBalance = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.forge_abi.IndexedStakeState.prototype.hasBalance = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -2206,7 +2230,7 @@ proto.forge_abi.IndexedStakeState.prototype.getSender = function() {
 
 /** @param {string} value */
 proto.forge_abi.IndexedStakeState.prototype.setSender = function(value) {
-  jspb.Message.setField(this, 3, value);
+  jspb.Message.setProto3StringField(this, 3, value);
 };
 
 /**
@@ -2219,7 +2243,7 @@ proto.forge_abi.IndexedStakeState.prototype.getReceiver = function() {
 
 /** @param {string} value */
 proto.forge_abi.IndexedStakeState.prototype.setReceiver = function(value) {
-  jspb.Message.setField(this, 4, value);
+  jspb.Message.setProto3StringField(this, 4, value);
 };
 
 /**
@@ -2232,7 +2256,7 @@ proto.forge_abi.IndexedStakeState.prototype.getGenesisTime = function() {
 
 /** @param {string} value */
 proto.forge_abi.IndexedStakeState.prototype.setGenesisTime = function(value) {
-  jspb.Message.setField(this, 5, value);
+  jspb.Message.setProto3StringField(this, 5, value);
 };
 
 /**
@@ -2245,7 +2269,7 @@ proto.forge_abi.IndexedStakeState.prototype.getRenaissanceTime = function() {
 
 /** @param {string} value */
 proto.forge_abi.IndexedStakeState.prototype.setRenaissanceTime = function(value) {
-  jspb.Message.setField(this, 6, value);
+  jspb.Message.setProto3StringField(this, 6, value);
 };
 
 /**
@@ -2258,7 +2282,7 @@ proto.forge_abi.IndexedStakeState.prototype.getMessage = function() {
 
 /** @param {string} value */
 proto.forge_abi.IndexedStakeState.prototype.setMessage = function(value) {
-  jspb.Message.setField(this, 7, value);
+  jspb.Message.setProto3StringField(this, 7, value);
 };
 
 /**
@@ -2271,7 +2295,16 @@ proto.forge_abi.IndexedStakeState.prototype.getType = function() {
 
 /** @param {number} value */
 proto.forge_abi.IndexedStakeState.prototype.setType = function(value) {
-  jspb.Message.setField(this, 8, value);
+  jspb.Message.setProto3IntField(this, 8, value);
+};
+
+/**
+ * @enum {number}
+ */
+proto.forge_abi.Direction = {
+  MUTUAL: 0,
+  ONE_WAY: 1,
+  UNION: 2,
 };
 
 goog.object.extend(exports, proto.forge_abi);

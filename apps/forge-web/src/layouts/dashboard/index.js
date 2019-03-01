@@ -23,7 +23,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 
 import Sidebar from './sidebar';
 import SecondaryLinks from './secondary';
-import ChainInfo from './chain_info';
+import NodeInfo from './node_info';
 import withI18n from '../../components/withI18n';
 import withRoot from '../../components/withRoot';
 import withTracker from '../../components/withTracker';
@@ -102,7 +102,7 @@ class Dashboard extends React.Component {
     return (
       <AppBar position="absolute" className={classes.appBar}>
         <Toolbar disableGutters={false} className={classes.toolbar}>
-          <ChainInfo />
+          <NodeInfo />
           {session.user && [
             <IconButton
               color="inherit"

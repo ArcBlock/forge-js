@@ -60,6 +60,7 @@ declare class GraphQLClient {
     params: GraphQLClient.GetForgeStatisticsByHourParams
   ): GraphQLClient.QueryResult<GraphQLClient.ResponseGetForgeStatistics>;
   getNetInfo(): GraphQLClient.QueryResult<GraphQLClient.ResponseGetNetInfo>;
+  getNodeInfo(): GraphQLClient.QueryResult<GraphQLClient.ResponseGetNodeInfo>;
   getStakeState(
     params: GraphQLClient.GetStakeStateParams
   ): GraphQLClient.QueryResult<GraphQLClient.ResponseGetStakeState>;
@@ -142,6 +143,12 @@ declare namespace GraphQLClient {
     on(event: 'error', fn: (err: Error) => void): this;
   }
 
+  export enum Direction {
+    MUTUAL,
+    ONE_WAY,
+    UNION,
+  }
+
   export enum EncodingType {
     BASE16,
     BASE58,
@@ -174,40 +181,40 @@ declare namespace GraphQLClient {
   }
 
   export enum StatusCode {
-    INSUFFICIENT_FUND,
-    INVALID_SIGNATURE,
-    ACTIVATED_ASSET,
-    UNTRANSFERRABLE_ASSET,
-    STORAGE_RPC_ERROR,
-    EXPIRED_WALLET_TOKEN,
-    INVALID_TX_SIZE,
-    CONSENSUS_RPC_ERROR,
-    INVALID_TX,
-    BANNED_UNSTAKE,
-    INVALID_MULTISIG,
-    INVALID_STAKE_STATE,
-    INVALID_FORGE_STATE,
-    UNSUPPORTED_STAKE,
-    INVALID_WALLET,
-    NOENT,
-    INVALID_MONIKER,
-    INVALID_ASSET,
-    INSUFFICIENT_DATA,
     ACCOUNT_MIGRATED,
-    INVALID_SIGNER_STATE,
-    READONLY_ASSET,
-    INSUFFICIENT_STAKE,
-    FORBIDDEN,
-    INVALID_SENDER_STATE,
-    EXPIRED_ASSET,
-    INVALID_CHAIN_ID,
-    INVALID_RECEIVER_STATE,
-    EXPIRED_TX,
-    INVALID_NONCE,
     INVALID_PASSPHRASE,
+    EXPIRED_WALLET_TOKEN,
+    INVALID_FORGE_STATE,
+    INSUFFICIENT_STAKE,
+    INVALID_NONCE,
+    INSUFFICIENT_FUND,
+    INVALID_TX_SIZE,
+    INSUFFICIENT_DATA,
+    INVALID_MONIKER,
+    BANNED_UNSTAKE,
+    UNTRANSFERRABLE_ASSET,
+    INVALID_STAKE_STATE,
+    ACTIVATED_ASSET,
+    INVALID_TX,
+    INVALID_SENDER_STATE,
+    INVALID_MULTISIG,
+    EXPIRED_TX,
     UNSUPPORTED_TX,
-    INTERNAL,
     INVALID_OWNER,
+    INVALID_RECEIVER_STATE,
+    UNSUPPORTED_STAKE,
+    INVALID_ASSET,
+    INVALID_SIGNER_STATE,
+    STORAGE_RPC_ERROR,
+    FORBIDDEN,
+    INVALID_CHAIN_ID,
+    INVALID_WALLET,
+    INVALID_SIGNATURE,
+    CONSENSUS_RPC_ERROR,
+    READONLY_ASSET,
+    EXPIRED_ASSET,
+    INTERNAL,
+    NOENT,
     OK,
   }
 
@@ -511,12 +518,24 @@ declare namespace GraphQLClient {
   }
 
   export interface NodeInfo {
+    address: string;
+    appHash: string;
+    blockHash: string;
+    blockHeight: number;
+    blockTime: string;
     consensusVersion: string;
+    dataVersion: string;
+    forgeAppsVersion: Array<ForgeAppsVersionEntry>;
     geoInfo: GraphQLClient.GeoInfo;
     id: string;
     ip: string;
     moniker: string;
     network: string;
+    supportedTxs: Array<string>;
+    synced: boolean;
+    totalTxs: number;
+    version: string;
+    votingPower: number;
   }
 
   export interface PageInfo {
@@ -531,7 +550,12 @@ declare namespace GraphQLClient {
   }
 
   export interface PeerInfo {
-    nodeInfo: GraphQLClient.NodeInfo;
+    consensusVersion: string;
+    geoInfo: GraphQLClient.GeoInfo;
+    id: string;
+    ip: string;
+    moniker: string;
+    network: string;
   }
 
   export interface PubKey {
@@ -621,6 +645,11 @@ declare namespace GraphQLClient {
   export interface ResponseGetNetInfo {
     code: GraphQLClient.StatusCode;
     netInfo: GraphQLClient.NetInfo;
+  }
+
+  export interface ResponseGetNodeInfo {
+    code: GraphQLClient.StatusCode;
+    info: GraphQLClient.NodeInfo;
   }
 
   export interface ResponseGetStakeState {

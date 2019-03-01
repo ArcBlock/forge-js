@@ -12,8 +12,11 @@ var goog = jspb;
 var global = Function('return this')();
 
 var google_protobuf_any_pb = require('google-protobuf/google/protobuf/any_pb.js');
+goog.object.extend(proto, google_protobuf_any_pb);
 var google_protobuf_timestamp_pb = require('google-protobuf/google/protobuf/timestamp_pb.js');
+goog.object.extend(proto, google_protobuf_timestamp_pb);
 var type_pb = require('./type_pb.js');
+goog.object.extend(proto, type_pb);
 goog.exportSymbol('proto.forge_abi.AccountMigrateTx', null, global);
 goog.exportSymbol('proto.forge_abi.ActivateAssetTx', null, global);
 goog.exportSymbol('proto.forge_abi.ConsensusUpgradeTx', null, global);
@@ -188,7 +191,7 @@ proto.forge_abi.AccountMigrateTx.prototype.getPk_asU8 = function() {
 
 /** @param {!(string|Uint8Array)} value */
 proto.forge_abi.AccountMigrateTx.prototype.setPk = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3BytesField(this, 1, value);
 };
 
 /**
@@ -214,7 +217,7 @@ proto.forge_abi.AccountMigrateTx.prototype.clearType = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.forge_abi.AccountMigrateTx.prototype.hasType = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -366,7 +369,7 @@ proto.forge_abi.ActivateAssetTx.prototype.getAddress = function() {
 
 /** @param {string} value */
 proto.forge_abi.ActivateAssetTx.prototype.setAddress = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 /**
@@ -379,7 +382,7 @@ proto.forge_abi.ActivateAssetTx.prototype.getTo = function() {
 
 /** @param {string} value */
 proto.forge_abi.ActivateAssetTx.prototype.setTo = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 /**
@@ -405,7 +408,7 @@ proto.forge_abi.ActivateAssetTx.prototype.clearData = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.forge_abi.ActivateAssetTx.prototype.hasData = function() {
   return jspb.Message.getField(this, 15) != null;
@@ -594,17 +597,17 @@ proto.forge_abi.ConsensusUpgradeTx.serializeBinaryToWriter = function(message, w
 
 /**
  * repeated Validator validators = 1;
- * @return {!Array.<!proto.forge_abi.Validator>}
+ * @return {!Array<!proto.forge_abi.Validator>}
  */
 proto.forge_abi.ConsensusUpgradeTx.prototype.getValidatorsList = function() {
-  return /** @type{!Array.<!proto.forge_abi.Validator>} */ (jspb.Message.getRepeatedWrapperField(
+  return /** @type{!Array<!proto.forge_abi.Validator>} */ (jspb.Message.getRepeatedWrapperField(
     this,
     type_pb.Validator,
     1
   ));
 };
 
-/** @param {!Array.<!proto.forge_abi.Validator>} value */
+/** @param {!Array<!proto.forge_abi.Validator>} value */
 proto.forge_abi.ConsensusUpgradeTx.prototype.setValidatorsList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 1, value);
 };
@@ -638,7 +641,7 @@ proto.forge_abi.ConsensusUpgradeTx.prototype.getMaxBytes = function() {
 
 /** @param {number} value */
 proto.forge_abi.ConsensusUpgradeTx.prototype.setMaxBytes = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3IntField(this, 2, value);
 };
 
 /**
@@ -651,7 +654,7 @@ proto.forge_abi.ConsensusUpgradeTx.prototype.getMaxGas = function() {
 
 /** @param {number} value */
 proto.forge_abi.ConsensusUpgradeTx.prototype.setMaxGas = function(value) {
-  jspb.Message.setField(this, 3, value);
+  jspb.Message.setProto3IntField(this, 3, value);
 };
 
 /**
@@ -664,7 +667,7 @@ proto.forge_abi.ConsensusUpgradeTx.prototype.getMaxValidators = function() {
 
 /** @param {number} value */
 proto.forge_abi.ConsensusUpgradeTx.prototype.setMaxValidators = function(value) {
-  jspb.Message.setField(this, 4, value);
+  jspb.Message.setProto3IntField(this, 4, value);
 };
 
 /**
@@ -677,7 +680,7 @@ proto.forge_abi.ConsensusUpgradeTx.prototype.getMaxCandidates = function() {
 
 /** @param {number} value */
 proto.forge_abi.ConsensusUpgradeTx.prototype.setMaxCandidates = function(value) {
-  jspb.Message.setField(this, 5, value);
+  jspb.Message.setProto3IntField(this, 5, value);
 };
 
 /**
@@ -703,7 +706,7 @@ proto.forge_abi.ConsensusUpgradeTx.prototype.clearData = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.forge_abi.ConsensusUpgradeTx.prototype.hasData = function() {
   return jspb.Message.getField(this, 15) != null;
@@ -870,7 +873,7 @@ proto.forge_abi.CreateAssetTx.prototype.getMoniker = function() {
 
 /** @param {string} value */
 proto.forge_abi.CreateAssetTx.prototype.setMoniker = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 /**
@@ -896,7 +899,7 @@ proto.forge_abi.CreateAssetTx.prototype.clearData = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.forge_abi.CreateAssetTx.prototype.hasData = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -914,7 +917,7 @@ proto.forge_abi.CreateAssetTx.prototype.getReadonly = function() {
 
 /** @param {boolean} value */
 proto.forge_abi.CreateAssetTx.prototype.setReadonly = function(value) {
-  jspb.Message.setField(this, 3, value);
+  jspb.Message.setProto3BooleanField(this, 3, value);
 };
 
 /**
@@ -940,7 +943,7 @@ proto.forge_abi.CreateAssetTx.prototype.clearExpiredAt = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.forge_abi.CreateAssetTx.prototype.hasExpiredAt = function() {
   return jspb.Message.getField(this, 4) != null;
@@ -1102,7 +1105,7 @@ proto.forge_abi.DeclareTx.prototype.getMoniker = function() {
 
 /** @param {string} value */
 proto.forge_abi.DeclareTx.prototype.setMoniker = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 /**
@@ -1135,7 +1138,7 @@ proto.forge_abi.DeclareTx.prototype.getPk_asU8 = function() {
 
 /** @param {!(string|Uint8Array)} value */
 proto.forge_abi.DeclareTx.prototype.setPk = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3BytesField(this, 2, value);
 };
 
 /**
@@ -1161,7 +1164,7 @@ proto.forge_abi.DeclareTx.prototype.clearType = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.forge_abi.DeclareTx.prototype.hasType = function() {
   return jspb.Message.getField(this, 3) != null;
@@ -1190,7 +1193,7 @@ proto.forge_abi.DeclareTx.prototype.clearData = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.forge_abi.DeclareTx.prototype.hasData = function() {
   return jspb.Message.getField(this, 15) != null;
@@ -1323,7 +1326,7 @@ proto.forge_abi.DeclareFileTx.prototype.getHash = function() {
 
 /** @param {string} value */
 proto.forge_abi.DeclareFileTx.prototype.setHash = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 /**
@@ -1489,7 +1492,7 @@ proto.forge_abi.ExchangeInfo.prototype.clearValue = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.forge_abi.ExchangeInfo.prototype.hasValue = function() {
   return jspb.Message.getField(this, 1) != null;
@@ -1497,19 +1500,19 @@ proto.forge_abi.ExchangeInfo.prototype.hasValue = function() {
 
 /**
  * repeated string assets = 2;
- * @return {!Array.<string>}
+ * @return {!Array<string>}
  */
 proto.forge_abi.ExchangeInfo.prototype.getAssetsList = function() {
-  return /** @type {!Array.<string>} */ (jspb.Message.getRepeatedField(this, 2));
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 2));
 };
 
-/** @param {!Array.<string>} value */
+/** @param {!Array<string>} value */
 proto.forge_abi.ExchangeInfo.prototype.setAssetsList = function(value) {
   jspb.Message.setField(this, 2, value || []);
 };
 
 /**
- * @param {!string} value
+ * @param {string} value
  * @param {number=} opt_index
  */
 proto.forge_abi.ExchangeInfo.prototype.addAssets = function(value, opt_index) {
@@ -1693,7 +1696,7 @@ proto.forge_abi.ExchangeTx.prototype.getTo = function() {
 
 /** @param {string} value */
 proto.forge_abi.ExchangeTx.prototype.setTo = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 /**
@@ -1719,7 +1722,7 @@ proto.forge_abi.ExchangeTx.prototype.clearSender = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.forge_abi.ExchangeTx.prototype.hasSender = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -1748,7 +1751,7 @@ proto.forge_abi.ExchangeTx.prototype.clearReceiver = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.forge_abi.ExchangeTx.prototype.hasReceiver = function() {
   return jspb.Message.getField(this, 3) != null;
@@ -1777,7 +1780,7 @@ proto.forge_abi.ExchangeTx.prototype.clearExpiredAt = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.forge_abi.ExchangeTx.prototype.hasExpiredAt = function() {
   return jspb.Message.getField(this, 4) != null;
@@ -1806,7 +1809,7 @@ proto.forge_abi.ExchangeTx.prototype.clearData = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.forge_abi.ExchangeTx.prototype.hasData = function() {
   return jspb.Message.getField(this, 15) != null;
@@ -2396,7 +2399,7 @@ proto.forge_abi.StakeTx.prototype.getTo = function() {
 
 /** @param {string} value */
 proto.forge_abi.StakeTx.prototype.setTo = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 /**
@@ -2422,7 +2425,7 @@ proto.forge_abi.StakeTx.prototype.clearValue = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.forge_abi.StakeTx.prototype.hasValue = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -2438,7 +2441,7 @@ proto.forge_abi.StakeTx.prototype.getMessage = function() {
 
 /** @param {string} value */
 proto.forge_abi.StakeTx.prototype.setMessage = function(value) {
-  jspb.Message.setField(this, 3, value);
+  jspb.Message.setProto3StringField(this, 3, value);
 };
 
 /**
@@ -2464,7 +2467,7 @@ proto.forge_abi.StakeTx.prototype.clearData = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.forge_abi.StakeTx.prototype.hasData = function() {
   return jspb.Message.getField(this, 15) != null;
@@ -2630,7 +2633,7 @@ proto.forge_abi.SysUpgradeTx.prototype.clearTask = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.forge_abi.SysUpgradeTx.prototype.hasTask = function() {
   return jspb.Message.getField(this, 1) != null;
@@ -2646,7 +2649,7 @@ proto.forge_abi.SysUpgradeTx.prototype.getGracePeriod = function() {
 
 /** @param {number} value */
 proto.forge_abi.SysUpgradeTx.prototype.setGracePeriod = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3IntField(this, 2, value);
 };
 
 /**
@@ -2672,7 +2675,7 @@ proto.forge_abi.SysUpgradeTx.prototype.clearData = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.forge_abi.SysUpgradeTx.prototype.hasData = function() {
   return jspb.Message.getField(this, 15) != null;
@@ -2840,7 +2843,7 @@ proto.forge_abi.TransferTx.prototype.getTo = function() {
 
 /** @param {string} value */
 proto.forge_abi.TransferTx.prototype.setTo = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 /**
@@ -2866,7 +2869,7 @@ proto.forge_abi.TransferTx.prototype.clearValue = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.forge_abi.TransferTx.prototype.hasValue = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -2874,19 +2877,19 @@ proto.forge_abi.TransferTx.prototype.hasValue = function() {
 
 /**
  * repeated string assets = 3;
- * @return {!Array.<string>}
+ * @return {!Array<string>}
  */
 proto.forge_abi.TransferTx.prototype.getAssetsList = function() {
-  return /** @type {!Array.<string>} */ (jspb.Message.getRepeatedField(this, 3));
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 3));
 };
 
-/** @param {!Array.<string>} value */
+/** @param {!Array<string>} value */
 proto.forge_abi.TransferTx.prototype.setAssetsList = function(value) {
   jspb.Message.setField(this, 3, value || []);
 };
 
 /**
- * @param {!string} value
+ * @param {string} value
  * @param {number=} opt_index
  */
 proto.forge_abi.TransferTx.prototype.addAssets = function(value, opt_index) {
@@ -2920,7 +2923,7 @@ proto.forge_abi.TransferTx.prototype.clearData = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.forge_abi.TransferTx.prototype.hasData = function() {
   return jspb.Message.getField(this, 15) != null;
@@ -3072,7 +3075,7 @@ proto.forge_abi.UpdateAssetTx.prototype.getAddress = function() {
 
 /** @param {string} value */
 proto.forge_abi.UpdateAssetTx.prototype.setAddress = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 /**
@@ -3085,7 +3088,7 @@ proto.forge_abi.UpdateAssetTx.prototype.getMoniker = function() {
 
 /** @param {string} value */
 proto.forge_abi.UpdateAssetTx.prototype.setMoniker = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 /**
@@ -3111,7 +3114,7 @@ proto.forge_abi.UpdateAssetTx.prototype.clearData = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.forge_abi.UpdateAssetTx.prototype.hasData = function() {
   return jspb.Message.getField(this, 15) != null;

@@ -11,22 +11,11 @@ import PaginatedBlocks from './components/block_list';
 
 import Page from '../../components/page';
 import Layout from '../../layouts/page';
+import Wrapper from '../../components/wrapper';
 import withI18n from '../../components/withI18n';
 import withRoot from '../../components/withRoot';
 
 import forge from '../../libs/forge';
-
-function fetchBlocks({ paging }) {
-  return forge.getBlocks(
-    {
-      // emptyExcluded: true,
-      paging,
-    },
-    {
-      ignoreFields: ['blocks.txs'],
-    }
-  );
-}
 
 class Blocks extends Page {
   static propTypes = {
@@ -40,8 +29,10 @@ class Blocks extends Page {
 
     this.state = {
       loading: false,
-      chainInfo: null,
+      nodeInfo: null,
     };
+
+    this.fetchBlocks = this.fetchBlocks.bind(this);
   }
 
   componentDidMount() {
@@ -49,25 +40,25 @@ class Blocks extends Page {
   }
 
   render() {
-    const { loading, chainInfo } = this.state;
+    const { loading, nodeInfo } = this.state;
     return (
       <Layout title="Blocks" cookies={this.cookies}>
         <Container>
           {loading && <CircularProgress />}
-          {chainInfo && (
+          {nodeInfo && (
             <SummaryHeader
-              type={chainInfo.moniker}
-              title={`abt:did:${chainInfo.address}`}
-              badge={chainInfo.blockHeight}
+              type={nodeInfo.moniker}
+              title={`abt:did:${nodeInfo.address}`}
+              badge={nodeInfo.blockHeight}
               badgeTip="BLOCK HEIGHT"
               meta={[
-                { key: 'app_hash', value: chainInfo.appHash },
-                { key: 'block_hash', value: chainInfo.blockHash },
+                { key: 'app_hash', value: nodeInfo.appHash },
+                { key: 'block_hash', value: nodeInfo.blockHash },
               ]}
             />
           )}
-          {chainInfo && <FilterStrip />}
-          {chainInfo && <PaginatedBlocks dataLoaderFn={fetchBlocks} />}
+          {nodeInfo && <FilterStrip />}
+          {nodeInfo && <PaginatedBlocks dataLoaderFn={this.fetchBlocks} />}
         </Container>
       </Layout>
     );
@@ -75,15 +66,26 @@ class Blocks extends Page {
 
   async loadChainInfo() {
     this.setState({ loading: true });
-    const { info: chainInfo } = await forge.getChainInfo();
-    this.setState({ loading: false, chainInfo });
+    const { info: nodeInfo } = await forge.getNodeInfo();
+    this.setState({ loading: false, nodeInfo });
+  }
+
+  async fetchBlocks({ paging }) {
+    const { nodeInfo } = this.state;
+    return forge.getBlocks(
+      {
+        emptyExcluded: true,
+        maxHeight: nodeInfo.blockHeight,
+        minHeight: 0,
+        paging,
+      },
+      {
+        ignoreFields: ['blocks.txs'],
+      }
+    );
   }
 }
 
-const Container = styled.div`
-  padding: ${props => props.theme.spacing.unit * 6}px 8%;
-  width: auto;
-  max-width: 1280px;
-`;
+const Container = styled(Wrapper)``;
 
 export default withRoot(withI18n(withRouter(Blocks)));

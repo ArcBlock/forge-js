@@ -11,10 +11,19 @@
     babel-polyfill "^6.26.0"
     js-cookie "^2.2.0"
 
-"@arcblock/sdk-util@^0.19.0", "@arcblock/sdk-util@^0.19.1":
+"@arcblock/sdk-util@^0.19.0":
   version "0.19.1"
   resolved "https://registry.npmjs.org/@arcblock/sdk-util/-/sdk-util-0.19.1.tgz#f2a64c7b1d9f21a0a9c2c7d0bf0bc0e37bcb79d6"
   integrity sha512-svDyV22ZCx+fifRip/3FhBj1AB89iXP8R3YPLasO330r3cVyWf8DSCy1mId5jxGnGfH1lxy0cJAZ+gd5v7ZfEw==
+  dependencies:
+    axios "^0.18.0"
+    debug "^3.1.0"
+    graphql "^14.1.1"
+
+"@arcblock/sdk-util@^0.19.3":
+  version "0.19.3"
+  resolved "https://registry.npmjs.org/@arcblock/sdk-util/-/sdk-util-0.19.3.tgz#e611c5e92b92c191a88bd181b7294c87c2058f45"
+  integrity sha512-vY8aiYFlLUjgXBUX1cNK2lIQdVOSm1VSe4r4YtbBMqyKaOzRGH1cxyaR99OkD9DeqHb+byoWgvsBgDOumun+mw==
   dependencies:
     axios "^0.18.0"
     debug "^3.1.0"

@@ -32,7 +32,20 @@
   },
   "devDependencies": {
     "j2d": "^1.0.3-dev",
+    "remark-cli": "^5.0.0",
+    "remark-preset-github": "^0.0.9",
     "jest": "^23.5.0"
+  },
+  "remarkConfig": {
+    "plugins": [
+      "preset-github",
+      [
+        "validate-links",
+        {
+          "repository": "ArcBlock/forge-js"
+        }
+      ]
+    ]
   },
   "homepage": "https://github.com/ArcBlock/forge-js/tree/master/packages/forge-sdk",
   "keywords": [

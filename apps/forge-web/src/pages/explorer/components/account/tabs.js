@@ -20,8 +20,7 @@ const tabs = {
     async fetcher({ address, paging }) {
       return forge.listTransactions({
         paging,
-        // FIXME: we should list both sent/received txs here
-        addressFilter: { sender: address },
+        addressFilter: { sender: address, receiver: address, direction: 'UNION' },
       });
     },
   },

@@ -12,8 +12,11 @@ var goog = jspb;
 var global = Function('return this')();
 
 var google_protobuf_any_pb = require('google-protobuf/google/protobuf/any_pb.js');
+goog.object.extend(proto, google_protobuf_any_pb);
 var google_protobuf_timestamp_pb = require('google-protobuf/google/protobuf/timestamp_pb.js');
+goog.object.extend(proto, google_protobuf_timestamp_pb);
 var type_pb = require('./type_pb.js');
+goog.object.extend(proto, type_pb);
 goog.exportSymbol('proto.forge_abi.AccountState', null, global);
 goog.exportSymbol('proto.forge_abi.AssetState', null, global);
 goog.exportSymbol('proto.forge_abi.ForgeState', null, global);
@@ -298,7 +301,7 @@ proto.forge_abi.AccountState.prototype.clearBalance = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.forge_abi.AccountState.prototype.hasBalance = function() {
   return jspb.Message.getField(this, 1) != null;
@@ -314,7 +317,7 @@ proto.forge_abi.AccountState.prototype.getNonce = function() {
 
 /** @param {number} value */
 proto.forge_abi.AccountState.prototype.setNonce = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3IntField(this, 2, value);
 };
 
 /**
@@ -327,7 +330,7 @@ proto.forge_abi.AccountState.prototype.getNumTxs = function() {
 
 /** @param {number} value */
 proto.forge_abi.AccountState.prototype.setNumTxs = function(value) {
-  jspb.Message.setField(this, 3, value);
+  jspb.Message.setProto3IntField(this, 3, value);
 };
 
 /**
@@ -340,7 +343,7 @@ proto.forge_abi.AccountState.prototype.getAddress = function() {
 
 /** @param {string} value */
 proto.forge_abi.AccountState.prototype.setAddress = function(value) {
-  jspb.Message.setField(this, 4, value);
+  jspb.Message.setProto3StringField(this, 4, value);
 };
 
 /**
@@ -373,7 +376,7 @@ proto.forge_abi.AccountState.prototype.getPk_asU8 = function() {
 
 /** @param {!(string|Uint8Array)} value */
 proto.forge_abi.AccountState.prototype.setPk = function(value) {
-  jspb.Message.setField(this, 5, value);
+  jspb.Message.setProto3BytesField(this, 5, value);
 };
 
 /**
@@ -399,7 +402,7 @@ proto.forge_abi.AccountState.prototype.clearType = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.forge_abi.AccountState.prototype.hasType = function() {
   return jspb.Message.getField(this, 6) != null;
@@ -415,7 +418,7 @@ proto.forge_abi.AccountState.prototype.getMoniker = function() {
 
 /** @param {string} value */
 proto.forge_abi.AccountState.prototype.setMoniker = function(value) {
-  jspb.Message.setField(this, 7, value);
+  jspb.Message.setProto3StringField(this, 7, value);
 };
 
 /**
@@ -441,7 +444,7 @@ proto.forge_abi.AccountState.prototype.clearContext = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.forge_abi.AccountState.prototype.hasContext = function() {
   return jspb.Message.getField(this, 8) != null;
@@ -449,19 +452,19 @@ proto.forge_abi.AccountState.prototype.hasContext = function() {
 
 /**
  * repeated string migrated_to = 13;
- * @return {!Array.<string>}
+ * @return {!Array<string>}
  */
 proto.forge_abi.AccountState.prototype.getMigratedToList = function() {
-  return /** @type {!Array.<string>} */ (jspb.Message.getRepeatedField(this, 13));
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 13));
 };
 
-/** @param {!Array.<string>} value */
+/** @param {!Array<string>} value */
 proto.forge_abi.AccountState.prototype.setMigratedToList = function(value) {
   jspb.Message.setField(this, 13, value || []);
 };
 
 /**
- * @param {!string} value
+ * @param {string} value
  * @param {number=} opt_index
  */
 proto.forge_abi.AccountState.prototype.addMigratedTo = function(value, opt_index) {
@@ -474,19 +477,19 @@ proto.forge_abi.AccountState.prototype.clearMigratedToList = function() {
 
 /**
  * repeated string migrated_from = 14;
- * @return {!Array.<string>}
+ * @return {!Array<string>}
  */
 proto.forge_abi.AccountState.prototype.getMigratedFromList = function() {
-  return /** @type {!Array.<string>} */ (jspb.Message.getRepeatedField(this, 14));
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 14));
 };
 
-/** @param {!Array.<string>} value */
+/** @param {!Array<string>} value */
 proto.forge_abi.AccountState.prototype.setMigratedFromList = function(value) {
   jspb.Message.setField(this, 14, value || []);
 };
 
 /**
- * @param {!string} value
+ * @param {string} value
  * @param {number=} opt_index
  */
 proto.forge_abi.AccountState.prototype.addMigratedFrom = function(value, opt_index) {
@@ -507,7 +510,7 @@ proto.forge_abi.AccountState.prototype.getNumAssets = function() {
 
 /** @param {number} value */
 proto.forge_abi.AccountState.prototype.setNumAssets = function(value) {
-  jspb.Message.setField(this, 15, value);
+  jspb.Message.setProto3IntField(this, 15, value);
 };
 
 /**
@@ -533,7 +536,7 @@ proto.forge_abi.AccountState.prototype.clearStake = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.forge_abi.AccountState.prototype.hasStake = function() {
   return jspb.Message.getField(this, 16) != null;
@@ -562,7 +565,7 @@ proto.forge_abi.AccountState.prototype.clearPinnedFiles = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.forge_abi.AccountState.prototype.hasPinnedFiles = function() {
   return jspb.Message.getField(this, 17) != null;
@@ -591,7 +594,7 @@ proto.forge_abi.AccountState.prototype.clearData = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.forge_abi.AccountState.prototype.hasData = function() {
   return jspb.Message.getField(this, 50) != null;
@@ -805,7 +808,7 @@ proto.forge_abi.AssetState.prototype.getAddress = function() {
 
 /** @param {string} value */
 proto.forge_abi.AssetState.prototype.setAddress = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 /**
@@ -818,7 +821,7 @@ proto.forge_abi.AssetState.prototype.getOwner = function() {
 
 /** @param {string} value */
 proto.forge_abi.AssetState.prototype.setOwner = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 /**
@@ -831,7 +834,7 @@ proto.forge_abi.AssetState.prototype.getMoniker = function() {
 
 /** @param {string} value */
 proto.forge_abi.AssetState.prototype.setMoniker = function(value) {
-  jspb.Message.setField(this, 3, value);
+  jspb.Message.setProto3StringField(this, 3, value);
 };
 
 /**
@@ -846,7 +849,7 @@ proto.forge_abi.AssetState.prototype.getReadonly = function() {
 
 /** @param {boolean} value */
 proto.forge_abi.AssetState.prototype.setReadonly = function(value) {
-  jspb.Message.setField(this, 4, value);
+  jspb.Message.setProto3BooleanField(this, 4, value);
 };
 
 /**
@@ -861,7 +864,7 @@ proto.forge_abi.AssetState.prototype.getActivated = function() {
 
 /** @param {boolean} value */
 proto.forge_abi.AssetState.prototype.setActivated = function(value) {
-  jspb.Message.setField(this, 5, value);
+  jspb.Message.setProto3BooleanField(this, 5, value);
 };
 
 /**
@@ -887,7 +890,7 @@ proto.forge_abi.AssetState.prototype.clearExpiredAt = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.forge_abi.AssetState.prototype.hasExpiredAt = function() {
   return jspb.Message.getField(this, 6) != null;
@@ -916,7 +919,7 @@ proto.forge_abi.AssetState.prototype.clearStake = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.forge_abi.AssetState.prototype.hasStake = function() {
   return jspb.Message.getField(this, 13) != null;
@@ -945,7 +948,7 @@ proto.forge_abi.AssetState.prototype.clearContext = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.forge_abi.AssetState.prototype.hasContext = function() {
   return jspb.Message.getField(this, 14) != null;
@@ -974,7 +977,7 @@ proto.forge_abi.AssetState.prototype.clearData = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.forge_abi.AssetState.prototype.hasData = function() {
   return jspb.Message.getField(this, 50) != null;
@@ -1088,7 +1091,8 @@ proto.forge_abi.ForgeState.deserializeBinaryFromReader = function(msg, reader) {
             reader,
             jspb.BinaryReader.prototype.readUint64,
             jspb.BinaryReader.prototype.readMessage,
-            proto.forge_abi.UpgradeTasks.deserializeBinaryFromReader
+            proto.forge_abi.UpgradeTasks.deserializeBinaryFromReader,
+            0
           );
         });
         break;
@@ -1100,7 +1104,8 @@ proto.forge_abi.ForgeState.deserializeBinaryFromReader = function(msg, reader) {
             reader,
             jspb.BinaryReader.prototype.readUint32,
             jspb.BinaryReader.prototype.readMessage,
-            proto.forge_abi.StakeSummary.deserializeBinaryFromReader
+            proto.forge_abi.StakeSummary.deserializeBinaryFromReader,
+            0
           );
         });
         break;
@@ -1204,7 +1209,7 @@ proto.forge_abi.ForgeState.prototype.getAddress = function() {
 
 /** @param {string} value */
 proto.forge_abi.ForgeState.prototype.setAddress = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 /**
@@ -1230,7 +1235,7 @@ proto.forge_abi.ForgeState.prototype.clearConsensus = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.forge_abi.ForgeState.prototype.hasConsensus = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -1284,7 +1289,7 @@ proto.forge_abi.ForgeState.prototype.getVersion = function() {
 
 /** @param {string} value */
 proto.forge_abi.ForgeState.prototype.setVersion = function(value) {
-  jspb.Message.setField(this, 5, value);
+  jspb.Message.setProto3StringField(this, 5, value);
 };
 
 /**
@@ -1297,7 +1302,7 @@ proto.forge_abi.ForgeState.prototype.getDataVersion = function() {
 
 /** @param {string} value */
 proto.forge_abi.ForgeState.prototype.setDataVersion = function(value) {
-  jspb.Message.setField(this, 6, value);
+  jspb.Message.setProto3StringField(this, 6, value);
 };
 
 /**
@@ -1330,7 +1335,7 @@ proto.forge_abi.ForgeState.prototype.getForgeAppHash_asU8 = function() {
 
 /** @param {!(string|Uint8Array)} value */
 proto.forge_abi.ForgeState.prototype.setForgeAppHash = function(value) {
-  jspb.Message.setField(this, 7, value);
+  jspb.Message.setProto3BytesField(this, 7, value);
 };
 
 /**
@@ -1356,7 +1361,7 @@ proto.forge_abi.ForgeState.prototype.clearData = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.forge_abi.ForgeState.prototype.hasData = function() {
   return jspb.Message.getField(this, 15) != null;
@@ -1516,7 +1521,7 @@ proto.forge_abi.RootState.prototype.getAddress = function() {
 
 /** @param {string} value */
 proto.forge_abi.RootState.prototype.setAddress = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 /**
@@ -1549,7 +1554,7 @@ proto.forge_abi.RootState.prototype.getAccount_asU8 = function() {
 
 /** @param {!(string|Uint8Array)} value */
 proto.forge_abi.RootState.prototype.setAccount = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3BytesField(this, 2, value);
 };
 
 /**
@@ -1582,7 +1587,7 @@ proto.forge_abi.RootState.prototype.getAsset_asU8 = function() {
 
 /** @param {!(string|Uint8Array)} value */
 proto.forge_abi.RootState.prototype.setAsset = function(value) {
-  jspb.Message.setField(this, 3, value);
+  jspb.Message.setProto3BytesField(this, 3, value);
 };
 
 /**
@@ -1615,7 +1620,7 @@ proto.forge_abi.RootState.prototype.getReceipt_asU8 = function() {
 
 /** @param {!(string|Uint8Array)} value */
 proto.forge_abi.RootState.prototype.setReceipt = function(value) {
-  jspb.Message.setField(this, 4, value);
+  jspb.Message.setProto3BytesField(this, 4, value);
 };
 
 /**
@@ -1802,7 +1807,7 @@ proto.forge_abi.StakeState.prototype.getAddress = function() {
 
 /** @param {string} value */
 proto.forge_abi.StakeState.prototype.setAddress = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 /**
@@ -1815,7 +1820,7 @@ proto.forge_abi.StakeState.prototype.getFrom = function() {
 
 /** @param {string} value */
 proto.forge_abi.StakeState.prototype.setFrom = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 /**
@@ -1828,7 +1833,7 @@ proto.forge_abi.StakeState.prototype.getTo = function() {
 
 /** @param {string} value */
 proto.forge_abi.StakeState.prototype.setTo = function(value) {
-  jspb.Message.setField(this, 3, value);
+  jspb.Message.setProto3StringField(this, 3, value);
 };
 
 /**
@@ -1854,7 +1859,7 @@ proto.forge_abi.StakeState.prototype.clearBalance = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.forge_abi.StakeState.prototype.hasBalance = function() {
   return jspb.Message.getField(this, 4) != null;
@@ -1870,7 +1875,7 @@ proto.forge_abi.StakeState.prototype.getMessage = function() {
 
 /** @param {string} value */
 proto.forge_abi.StakeState.prototype.setMessage = function(value) {
-  jspb.Message.setField(this, 5, value);
+  jspb.Message.setProto3StringField(this, 5, value);
 };
 
 /**
@@ -1896,7 +1901,7 @@ proto.forge_abi.StakeState.prototype.clearContext = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.forge_abi.StakeState.prototype.hasContext = function() {
   return jspb.Message.getField(this, 14) != null;
@@ -1925,7 +1930,7 @@ proto.forge_abi.StakeState.prototype.clearData = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.forge_abi.StakeState.prototype.hasData = function() {
   return jspb.Message.getField(this, 15) != null;
@@ -2106,7 +2111,7 @@ proto.forge_abi.StatisticsState.prototype.getAddress = function() {
 
 /** @param {string} value */
 proto.forge_abi.StatisticsState.prototype.setAddress = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 /**
@@ -2119,7 +2124,7 @@ proto.forge_abi.StatisticsState.prototype.getNumBlocks = function() {
 
 /** @param {number} value */
 proto.forge_abi.StatisticsState.prototype.setNumBlocks = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3IntField(this, 2, value);
 };
 
 /**
@@ -2132,7 +2137,7 @@ proto.forge_abi.StatisticsState.prototype.getNumTxs = function() {
 
 /** @param {number} value */
 proto.forge_abi.StatisticsState.prototype.setNumTxs = function(value) {
-  jspb.Message.setField(this, 3, value);
+  jspb.Message.setProto3IntField(this, 3, value);
 };
 
 /**
@@ -2158,7 +2163,7 @@ proto.forge_abi.StatisticsState.prototype.clearNumStakes = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.forge_abi.StatisticsState.prototype.hasNumStakes = function() {
   return jspb.Message.getField(this, 4) != null;
@@ -2174,7 +2179,7 @@ proto.forge_abi.StatisticsState.prototype.getNumValidators = function() {
 
 /** @param {number} value */
 proto.forge_abi.StatisticsState.prototype.setNumValidators = function(value) {
-  jspb.Message.setField(this, 5, value);
+  jspb.Message.setProto3IntField(this, 5, value);
 };
 
 /**
@@ -2200,7 +2205,7 @@ proto.forge_abi.StatisticsState.prototype.clearTxStatistics = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.forge_abi.StatisticsState.prototype.hasTxStatistics = function() {
   return jspb.Message.getField(this, 6) != null;
