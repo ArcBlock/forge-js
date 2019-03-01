@@ -8,15 +8,13 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import Page from '../../components/page';
 import Layout from '../../layouts/page';
 import SummaryHeader from './components/summary_header';
-import AccountTabs from './components/account/tabs';
 
 import withI18n from '../../components/withI18n';
 import withRoot from '../../components/withRoot';
 
 import forge from '../../libs/forge';
-import { fromArcToReadable } from '../../libs/util';
 
-class AccountDetail extends Page {
+class AssetDetail extends Page {
   static propTypes = {
     match: PropTypes.object.isRequired,
     location: PropTypes.object.isRequired,
@@ -27,33 +25,33 @@ class AccountDetail extends Page {
     super(props);
     this.state = {
       loading: false,
-      account: null,
+      asset: null,
     };
   }
 
   componentDidMount() {
-    this.loadAccount();
+    this.loadAsset();
   }
 
   render() {
-    const { loading, account } = this.state;
+    const { loading, asset } = this.state;
     return (
-      <Layout title="Account" cookies={this.cookies}>
+      <Layout title="Asset" cookies={this.cookies}>
         <Container>
           {loading && <CircularProgress />}
-          {account && (
+          {asset && (
             <React.Fragment>
               <SummaryHeader
-                type={`Account: ${account.address}`}
-                title={account.moniker}
-                badge={fromArcToReadable(account.balance)}
-                badgeTip="Balance"
+                type={`Asset: ${asset.address}`}
+                title={asset.moniker}
                 meta={[
-                  { key: 'First Seen', value: account.context.genesisTime },
-                  { key: 'Last Seen', value: account.context.renaissanceTime },
+                  { key: 'Created At', value: asset.context.genesisTime },
+                  { key: 'Updated At', value: asset.context.renaissanceTime },
                 ]}
               />
-              <AccountTabs account={account} />
+              <pre>
+                <code>{JSON.stringify(asset, true, '  ')}</code>
+              </pre>
             </React.Fragment>
           )}
         </Container>
@@ -61,16 +59,16 @@ class AccountDetail extends Page {
     );
   }
 
-  async loadAccount() {
+  async loadAsset() {
     const { address } = this.props.match.params;
     this.setState({ loading: true });
-    const { state } = await forge.getAccountState(
+    const { state: asset } = await forge.getAssetState(
       { address },
       {
         ignoreFields: ['state.context.genesisTx.tx', 'state.context.renaissanceTx.tx'],
       }
     );
-    this.setState({ loading: false, account: state });
+    this.setState({ loading: false, asset });
   }
 }
 
@@ -84,4 +82,4 @@ const Container = styled.div`
   }
 `;
 
-export default withRoot(withI18n(withRouter(AccountDetail)));
+export default withRoot(withI18n(withRouter(AssetDetail)));
