@@ -117,6 +117,9 @@ declare class RpcClient {
   getTopAccounts(
     request: forge_abi.RequestGetTopAccounts
   ): RpcClient.UnaryResult<forge_abi.ResponseGetTopAccounts>;
+  listAssetTransactions(
+    request: forge_abi.RequestListAssetTransactions
+  ): RpcClient.UnaryResult<forge_abi.ResponseListAssetTransactions>;
 }
 /**
  * Create new TCP Server to handle transactions from forge-core
@@ -125,7 +128,7 @@ declare class RpcClient {
  * @returns net.Server
  */
 declare function create(config: any): Readonly<ForgeSDK.T101>;
-declare function addSource(T104: T105): void;
+declare function addSource(T104: any): void;
 declare function parseConfig(configPath: any): any;
 /**
  * Create an protobuf encoded Typed message with specified data, ready to send to rpc server
@@ -766,6 +769,7 @@ declare namespace forge_abi {
     numSysUpgradeTxs: Array<number>;
     numTransferTxs: Array<number>;
     numUpdateAssetTxs: Array<number>;
+    numActivateAssetTxs: Array<number>;
   }
 
   export interface TxStatistics {
@@ -779,6 +783,7 @@ declare namespace forge_abi {
     numSysUpgradeTxs: number;
     numTransferTxs: number;
     numUpdateAssetTxs: number;
+    numActivateAssetTxs: number;
   }
 
   export interface AccountState {
@@ -1219,6 +1224,17 @@ declare namespace forge_abi {
     accounts: Array<forge_abi.IndexedAccountState>;
   }
 
+  export interface RequestListAssetTransactions {
+    paging: forge_abi.PageInput;
+    address: string;
+  }
+
+  export interface ResponseListAssetTransactions {
+    code: forge_abi.StatusCode;
+    page: forge_abi.PageInfo;
+    transactions: Array<forge_abi.IndexedTransaction>;
+  }
+
   export interface AccountMigrateTx {
     pk: Uint8Array;
     type: forge_abi.WalletType;
@@ -1365,6 +1381,7 @@ declare namespace forge_abi {
     totalReceivedStakes: forge_abi.BigUint;
     totalStakes: forge_abi.BigUint;
     totalUnstakes: forge_abi.BigUint;
+    recentNumTxs: Array<number>;
   }
 
   export interface IndexedAssetState {
