@@ -1,6 +1,6 @@
 {
   "name": "@arcblock/forge-graphql-client",
-  "version": "0.8.6",
+  "version": "0.8.7",
   "description": "GraphQL Client for forge core",
   "keywords": [
     "graphql",
@@ -36,9 +36,9 @@
     "babel-preset-env": "^1.7.0",
     "graphql": "^14.1.1",
     "graphql-request": "^1.8.2",
+    "jest": "^23.5.0",
     "remark-cli": "^5.0.0",
     "remark-preset-github": "^0.0.9",
-    "jest": "^23.5.0",
     "rimraf": "^2.6.2",
     "webpack": "^3",
     "webpack-cli": "^3.1.0"
