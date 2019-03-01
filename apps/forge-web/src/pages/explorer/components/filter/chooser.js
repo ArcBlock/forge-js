@@ -42,7 +42,7 @@ function FilterChooser({ supportedTxs, onClose, onApplyFilter, selectedTxs }) {
     } else if (type === 'all') {
       set([]);
     } else {
-      filter(x => x !== type);
+      filter(x => !['all', type].includes(x));
     }
   };
 
