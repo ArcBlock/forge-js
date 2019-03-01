@@ -1,14 +1,14 @@
 module.exports = {
-  signer: {
-    ed25519: require('./signer/ed25519'),
-    secp256k1: require('./signer/secp256k1'),
+  Signer: {
+    Ed25519: require('./signer/ed25519'),
+    Secp256k1: require('./signer/secp256k1'),
   },
-  hasher: {
-    sha2: require('./hasher/sha2'),
-    sha3: require('./hasher/sha3'),
-    keccak: require('./hasher/keccak'),
+  Hasher: {
+    SHA2: require('./hasher/sha2'),
+    SHA3: require('./hasher/sha3'),
+    Keccak: require('./hasher/keccak'),
   },
-  crypter: {
+  Crypter: {
     aes: require('./crypter/aes'),
   },
 };

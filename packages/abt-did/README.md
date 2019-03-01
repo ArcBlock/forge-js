@@ -12,7 +12,7 @@ yarn add @arcblock/mcrypto @arcblock/abt-did
 const Mcrypto = require('@arcblock/mcrypto');
 const { types, fromSecretKey } = require('@arcblock/abt-did');
 
-const keyPair = Mcrypto.signer.ed25519.genKeyPair();
+const keyPair = Mcrypto.Signer.Ed25519.genKeyPair();
 const address = fromSecretKey(keyPir.secretKey, {
   roleType: enums.RoleType.ROLE_APPLICATION,
   keyType: enums.KeyType.ED25519,

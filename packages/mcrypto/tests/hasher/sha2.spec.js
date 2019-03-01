@@ -25,14 +25,13 @@ const testVectors = {
     384: '2A86C218F7B896485EA39F5758999C932A212CFF0309ACB8E8621CAD682CA1B35CC41154AFB4A1BF050D97E2A0EC7C14',
     512: '14BEA590E28F4EE0C16336887F7E3C3E6AA744F37E09F067655E6326B905ACBD7DBE48656FBC0C71BE0C7A4776B174E380E14EF336D35ED7027E5D9C6256F947',
   },
-  // FIXME: elixir does not support chinese!
 };
 
 describe('#sha2', () => {
   Object.keys(testVectors['abcd']).forEach(length => {
     Object.keys(testVectors).forEach(key => {
       test(`should hash value: ${key} at length ${length}`, () => {
-        const fn = `sha${length}`;
+        const fn = `hash${length}`;
         expect(hasher[fn](key, 1).toUpperCase()).toEqual(testVectors[key][length]);
       });
     });

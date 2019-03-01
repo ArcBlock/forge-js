@@ -14,8 +14,8 @@ const encoders = {
 class Sha2Hasher {
   constructor() {
     [224, 256, 384, 512].forEach(x => {
-      const name = `sha${x}`;
-      const hasher = hashFns[name];
+      const name = `hash${x}`;
+      const hasher = hashFns[`sha${x}`];
       const fn = (data, round = 2, outputEncoding = 'hex') => {
         const input = isHexStrict(data) ? hexToBytes(data) : data;
         if (round === 1) {

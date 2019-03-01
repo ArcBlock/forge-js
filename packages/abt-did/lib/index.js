@@ -1,6 +1,6 @@
 const padStart = require('lodash/padStart');
 const { toBN, toHex, numberToHex, isHexStrict } = require('@arcblock/forge-util');
-const mcrypto = require('@arcblock/mcrypto');
+const Mcrypto = require('@arcblock/mcrypto');
 const multibase = require('multibase');
 const hdkey = require('hdkey');
 
@@ -31,24 +31,24 @@ const enums = Object.freeze({
 });
 
 const signer = Object.freeze({
-  [enums.KeyType.ED25519]: mcrypto.signer.ed25519,
-  [enums.KeyType.SECP256K1]: mcrypto.signer.secp256k1,
+  [enums.KeyType.ED25519]: Mcrypto.Signer.Ed25519,
+  [enums.KeyType.SECP256K1]: Mcrypto.Signer.Secp256k1,
 });
 
 const hasher = Object.freeze({
-  [enums.HashType.KECCAK]: mcrypto.hasher.keccak.sha256,
-  [enums.HashType.KECCAK_384]: mcrypto.hasher.keccak.sha384,
-  [enums.HashType.KECCAK_512]: mcrypto.hasher.keccak.sha512,
-  [enums.HashType.SHA3]: mcrypto.hasher.sha3.sha256,
-  [enums.HashType.SHA3_384]: mcrypto.hasher.sha3.sha384,
-  [enums.HashType.SHA3_512]: mcrypto.hasher.sha3.sha512,
+  [enums.HashType.KECCAK]: Mcrypto.Hasher.Keccak.hash256,
+  [enums.HashType.KECCAK_384]: Mcrypto.Hasher.Keccak.hash384,
+  [enums.HashType.KECCAK_512]: Mcrypto.Hasher.Keccak.hash512,
+  [enums.HashType.SHA3]: Mcrypto.Hasher.SHA3.hash256,
+  [enums.HashType.SHA3_384]: Mcrypto.Hasher.SHA3.hash384,
+  [enums.HashType.SHA3_512]: Mcrypto.Hasher.SHA3.hash512,
 });
 
 const toBinary = (decimal, length) => padStart(toBN(decimal).toString(2), length, '0');
 
 // Implementation: https://github.com/ArcBlock/ABT-DID-Protocol#request-did-authentication
 const fromAppDID = (appDID, seed, types = {}, index = 0) => {
-  const hash = mcrypto.hasher.sha3.sha256(multibase.decode(appDID));
+  const hash = Mcrypto.Hasher.SHA3.hash256(multibase.decode(appDID));
   const hashSlice = hash.slice(0, 16);
   const s1 = hashSlice.slice(0, 8);
   const s2 = hashSlice.slice(8, 16);

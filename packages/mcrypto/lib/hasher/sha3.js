@@ -4,7 +4,7 @@ const { isHexStrict, hexToBytes } = require('@arcblock/forge-util');
 class Sha3Hasher {
   constructor() {
     [224, 256, 384, 512].forEach(x => {
-      const name = `sha${x}`;
+      const name = `hash${x}`;
       const hasher = sha3[`sha3_${x}`];
       const fn = (data, round = 1) => {
         const input = isHexStrict(data) ? hexToBytes(data) : data;

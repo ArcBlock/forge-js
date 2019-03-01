@@ -31,7 +31,7 @@ describe('#keccak', () => {
   Object.keys(testVectors['abcd']).forEach(length => {
     Object.keys(testVectors).forEach(key => {
       test(`should hash value: ${key} at length ${length}`, () => {
-        const fn = `sha${length}`;
+        const fn = `hash${length}`;
         expect(hasher[fn](key, 1).toUpperCase()).toEqual(testVectors[key][length]);
       });
     });
