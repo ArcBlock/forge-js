@@ -1,0 +1,48 @@
+{
+  "name": "@arcblock/abt-did",
+  "version": "0.8.6",
+  "description": "Javascript lib to work with ArcBlock DID",
+  "keywords": [
+    "forge",
+    "arcblock",
+    "blockchain",
+    "did",
+    "sdk"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "author": "wangshijun <wangshijun2010@gmail.com>",
+  "homepage": "https://github.com/ArcBlock/forge-js/tree/master/packages/abt-did",
+  "license": "MIT",
+  "main": "lib/index.js",
+  "files": [
+    "lib"
+  ],
+  "devDependencies": {
+    "jest": "^23.5.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ArcBlock/forge-js.git"
+  },
+  "scripts": {
+    "lint": "eslint tests lib",
+    "precommit": "CI=1 npm run test",
+    "prepush": "CI=1 npm run test",
+    "test": "npm run lint && node tools/jest.js",
+    "coverage": "npm run lint && npm run test -- --coverage"
+  },
+  "bugs": {
+    "url": "https://github.com/ArcBlock/forge-js/issues"
+  },
+  "dependencies": {
+    "@arcblock/forge-util": "^0.8.6",
+    "@arcblock/mcrypto": "^0.8.6",
+    "debug": "^4.1.1",
+    "hdkey": "^1.1.1",
+    "lodash": "^4.17.11",
+    "multibase": "^0.6.0",
+    "randombytes": "^2.0.6"
+  }
+}

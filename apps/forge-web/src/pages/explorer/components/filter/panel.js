@@ -28,6 +28,7 @@ function FilterPanel({ supportedTxs, onApplyFilter, selectedTxs, theme }) {
             backgroundColor: '#f7f8f8',
             width: '440px',
             marginTop: '100px',
+            overflow: 'scroll',
           },
         }}
         ModalProps={{

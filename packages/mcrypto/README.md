@@ -1,6 +1,6 @@
 # `@arcblock/mcrypto`
 
-> Forge [mcrypto](https://github.com/ArcBlock/mcrypto) implementation for javascript.
+> Forge [mcrypto](https://github.com/ArcBlock/mcrypto) implementation for javascript, just a wrapper around existing javascript crypto libraries.
 
 ## Usage
 
@@ -8,14 +8,25 @@
 yarn add @arcblock/mcrypto
 ```
 
-```javascript
-const { signer } = require('@arcblock/mcrypto');
+### Sign/Verify
 
-const keyPair = signer.ed25519.genKeyPair();
+```javascript
+const { Signer } = require('@arcblock/mcrypto');
+
+const keyPair = Signer.Ed25519.genKeyPair();
 const message = 'some message to sign';
-const signature = signer.ed25519.sign(message, keyPair.secretKey);
-const result = signer.ed25519.verify(message, signature, keyPair.publicKey);
+const signature = Signer.Ed25519.sign(message, keyPair.secretKey);
+const result = Signer.Ed25519.verify(message, signature, keyPair.publicKey);
 assert.ok(result);
+```
+
+### Hashing
+
+```javascript
+const { Hasher } = require('@arcblock/mcrypto');
+
+const message = 'message to hash';
+const hash = Hasher.SHA2.hash256(message);
 ```
 
 ## Implementation

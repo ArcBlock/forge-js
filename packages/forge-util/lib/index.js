@@ -207,7 +207,7 @@ const bytesToHex = bytes => {
     hex.push((bytes[i] & 0xf).toString(16));
   }
 
-  return `0x${hex.join('').replace(/^0+/, '')}`;
+  return `0x${hex.join('')}`;
 };
 
 /**
