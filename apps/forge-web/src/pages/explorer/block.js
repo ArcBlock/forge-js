@@ -66,7 +66,7 @@ class BlockDetail extends Page {
               {this.renderPagination()}
               <div className="txs">
                 {txs.map(x => (
-                  <TxCard key={x.hash} tx={x} />
+                  <TxCard key={x.hash} tx={x} time={block.time} />
                 ))}
                 {txs.length === 0 && (
                   <Typography component="p" className="empty-tip">
