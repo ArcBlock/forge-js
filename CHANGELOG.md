@@ -1,3 +1,9 @@
+## 0.8.8 (March 02, 2019)
+  - chore: upgrade graphql-client to align with forge v0.16.5
+  - chore: upgrade forge-sdk to align with forge v0.16.5
+  - chore: upgrade forge-proto to align with forge v0.16.5
+  - update readme
+
 ## 0.8.7 (February 27, 2019)
   - chore: add fromAppDID for did-generation
   - chore: do not remove heading zeros when convert bytes to hex
