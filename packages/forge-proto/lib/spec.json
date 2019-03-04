@@ -1039,6 +1039,11 @@
               "rule": "repeated",
               "type": "uint64",
               "id": 14
+            },
+            "numActivateAssetTxs": {
+              "rule": "repeated",
+              "type": "uint64",
+              "id": 15
             }
           }
         },
@@ -1083,6 +1088,10 @@
             "numUpdateAssetTxs": {
               "type": "uint64",
               "id": 10
+            },
+            "numActivateAssetTxs": {
+              "type": "uint64",
+              "id": 11
             }
           }
         },
@@ -2276,6 +2285,35 @@
             }
           }
         },
+        "RequestListAssetTransactions": {
+          "fields": {
+            "paging": {
+              "type": "PageInput",
+              "id": 1
+            },
+            "address": {
+              "type": "string",
+              "id": 2
+            }
+          }
+        },
+        "ResponseListAssetTransactions": {
+          "fields": {
+            "code": {
+              "type": "StatusCode",
+              "id": 1
+            },
+            "page": {
+              "type": "PageInfo",
+              "id": 2
+            },
+            "transactions": {
+              "rule": "repeated",
+              "type": "IndexedTransaction",
+              "id": 3
+            }
+          }
+        },
         "AccountMigrateTx": {
           "fields": {
             "pk": {
@@ -2673,6 +2711,11 @@
             "totalUnstakes": {
               "type": "BigUint",
               "id": 13
+            },
+            "recentNumTxs": {
+              "rule": "repeated",
+              "type": "uint64",
+              "id": 14
             }
           }
         },
@@ -2915,6 +2958,10 @@
             "get_top_accounts": {
               "requestType": "RequestGetTopAccounts",
               "responseType": "ResponseGetTopAccounts"
+            },
+            "list_asset_transactions": {
+              "requestType": "RequestListAssetTransactions",
+              "responseType": "ResponseListAssetTransactions"
             }
           }
         }
