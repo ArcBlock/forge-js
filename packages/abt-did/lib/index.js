@@ -1,96 +1,9 @@
-const padStart = require('lodash/padStart');
 const upperFirst = require('lodash/upperFirst');
 const { toBN, toHex, numberToHex, isHexStrict } = require('@arcblock/forge-util');
 const Mcrypto = require('@arcblock/mcrypto');
 const multibase = require('multibase');
 const hdkey = require('hdkey');
-
-const DID_PREFIX = /^did:abt:/i;
-
-const enums = Object.freeze({
-  KeyType: {
-    ED25519: 0,
-    SECP256K1: 1,
-  },
-  HashType: {
-    KECCAK: 0,
-    SHA3: 1,
-    KECCAK_384: 6,
-    SHA3_384: 7,
-    KECCAK_512: 13,
-    SHA3_512: 14,
-  },
-  RoleType: {
-    ROLE_ACCOUNT: 0,
-    ROLE_NODE: 1,
-    ROLE_DEVICE: 2,
-    ROLE_APPLICATION: 3,
-    ROLE_SMART_CONTRACT: 4,
-    ROLE_BOT: 5,
-    ROLE_ASSET: 6,
-    ROLE_STAKE: 7,
-    ROLE_VALIDATOR: 8,
-  },
-});
-
-const signer = Object.freeze({
-  [enums.KeyType.ED25519]: Mcrypto.Signer.Ed25519,
-  [enums.KeyType.SECP256K1]: Mcrypto.Signer.Secp256k1,
-});
-
-const hasher = Object.freeze({
-  [enums.HashType.KECCAK]: Mcrypto.Hasher.Keccak.hash256,
-  [enums.HashType.KECCAK_384]: Mcrypto.Hasher.Keccak.hash384,
-  [enums.HashType.KECCAK_512]: Mcrypto.Hasher.Keccak.hash512,
-  [enums.HashType.SHA3]: Mcrypto.Hasher.SHA3.hash256,
-  [enums.HashType.SHA3_384]: Mcrypto.Hasher.SHA3.hash384,
-  [enums.HashType.SHA3_512]: Mcrypto.Hasher.SHA3.hash512,
-});
-
-/**
- * Convert did to bytes with length of 26
- *
- * @param {string} did
- * @returns {Buffer}
- */
-const toBytes = did => {
-  try {
-    let bytes = multibase.decode(did.replace(DID_PREFIX, ''));
-    while (bytes.length < 26) {
-      bytes = Buffer.concat([Buffer.from([0]), bytes]);
-    }
-
-    return bytes;
-  } catch (err) {
-    throw new Error(`Cannot convert DID string to byte array: ${err.message}`);
-  }
-};
-
-/**
- * Convert number to bit string with predefined length
- *
- * @param {string} decimal
- * @param {number} length
- * @returns String
- */
-const toBits = (decimal, length) => padStart(toBN(decimal).toString(2), length, '0');
-
-/**
- * Ensure the hex length is even number, 2, 4, 6, 8
- *
- * @param {string} hex
- * @param {number} length
- * @returns {string} hex
- */
-const toStrictHex = (hex, length) => {
-  const str = hex.replace(/^0x/i, '');
-
-  if (typeof length === 'number' && length % 2 === 0) {
-    return padStart(hex, length, '0');
-  }
-
-  return str.length % 2 === 0 ? str : `0${str}`;
-};
+const { DID_PREFIX, toBits, toBytes, toStrictHex, signer, hasher, types } = require('./util');
 
 /**
  * Gen DID from appDID and seed
@@ -128,9 +41,9 @@ const fromAppDID = (appDID, seed, type = {}, index = 0) => {
   const derivePath = `m/44'/260'/${n1}'/${n2}'/${index}`;
   const child = master.derive(derivePath);
 
-  const { key = enums.KeyType.ED25519 } = type;
+  const { key = types.KeyType.ED25519 } = type;
   let sk;
-  if (key === enums.KeyType.ED25519) {
+  if (key === types.KeyType.ED25519) {
     // HACK: because tweetnacl requires a 64 byte sk
     sk = Buffer.concat([child.privateKey, child.chainCode]);
   } else {
@@ -150,7 +63,7 @@ const fromAppDID = (appDID, seed, type = {}, index = 0) => {
  * @returns DID string
  */
 const fromSecretKey = (sk, type) => {
-  const { key = enums.KeyType.ED25519 } = type || {};
+  const { key = types.KeyType.ED25519 } = type || {};
   const pk = signer[key].getPublicKey(sk);
   return fromPublicKey(pk.indexOf('0x') === 0 ? pk : `0x${pk}`, type);
 };
@@ -163,7 +76,7 @@ const fromSecretKey = (sk, type) => {
  * @returns DID string
  */
 const fromPublicKey = (pk, type) => {
-  const { hash = enums.HashType.SHA3 } = type || {};
+  const { hash = types.HashType.SHA3 } = type || {};
 
   const typeHex = fromTypeInfo(type);
   const pkHash = hasher[hash](pk);
@@ -202,9 +115,9 @@ const isFromPublicKey = (did, pk) => {
  */
 const fromTypeInfo = type => {
   const {
-    role = enums.RoleType.ROLE_ACCOUNT,
-    key = enums.KeyType.ED25519,
-    hash = enums.HashType.SHA3,
+    role = types.RoleType.ROLE_ACCOUNT,
+    key = types.KeyType.ED25519,
+    hash = types.HashType.SHA3,
   } = type || {};
 
   const infoBits = `${toBits(role, 6)}${toBits(key, 5)}${toBits(hash, 5)}`;
@@ -236,15 +149,15 @@ const toTypeInfo = (did, returnString = false) => {
 
     // remove unsupported types
     Object.keys(type).forEach(x => {
-      const types = Object.values(enums[`${upperFirst(x)}Type`]);
-      if (types.includes(type[x]) === false) {
+      const enums = Object.values(types[`${upperFirst(x)}Type`]);
+      if (enums.includes(type[x]) === false) {
         delete type[x];
       }
     });
 
     const typeStr = Object.keys(type).reduce((acc, x) => {
-      const types = enums[`${upperFirst(x)}Type`];
-      acc[x] = Object.keys(types).find(d => types[d] === type[x]);
+      const enums = types[`${upperFirst(x)}Type`];
+      acc[x] = Object.keys(enums).find(d => enums[d] === type[x]);
       return acc;
     }, {});
 
@@ -276,9 +189,7 @@ const isValid = did => {
 };
 
 module.exports = {
-  types: enums,
-  toBits,
-  toBytes,
+  types,
   toStrictHex,
   fromAppDID,
   fromSecretKey,
