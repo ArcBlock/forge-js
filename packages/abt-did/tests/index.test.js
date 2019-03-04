@@ -17,7 +17,7 @@ const pk = '0xE4852B7091317E3622068E62A5127D1FB0D4AE2FC50213295E10652D2F0ABFC7';
 const appId = 'zNKtCNqYWLYWYW3gWRA1vnRykfCBZYHZvzKr';
 const appIdSecp256k1 = 'zNYm1gM23ZGHNYDYyBwSaywzTqLKoj4WuTeC';
 const userId = 'z1nfCgfPqvSQCaZ2EVZPXbwPjKCkMrqfTUu';
-const userIdSecp256k1 = 'z1EVvzPUhYXKGzSZ1KF67V95Ax7j9PnkS3Db';
+const userIdSecp256k1 = 'z1EZgtnWTBTPSx3X8EMYDoTbddYSpyytDxQK';
 const appType = {
   role: types.RoleType.ROLE_APPLICATION,
   key: types.KeyType.ED25519,
@@ -87,11 +87,32 @@ describe('@arcblock/abt-did', () => {
   it('should validate did as expected', () => {
     expect(isValid(appId)).toEqual(true);
     expect(isValid(userId)).toEqual(true);
+    expect(isValid(`did:abt:${appId}`)).toEqual(true);
+    expect(isValid(`did:abt:${userId}`)).toEqual(true);
     expect(isValid('abc')).toEqual(false);
   });
 
   it('should match did and pk work as expected', () => {
     expect(isFromPublicKey(appId, pk)).toEqual(true);
     expect(isFromPublicKey('abc', pk)).toEqual(false);
+  });
+
+  it('should match elixir test case', () => {
+    expect(
+      fromSecretKey(
+        '0x3E0F9A313300226D51E33D5D98A126E86396956122E97E32D31CEE2277380B83FF47B3022FA503EAA1E9FA4B20FA8B16694EA56096F3A2E9109714062B3486D9'
+      )
+    ).toEqual('z1ioGHFYiEemfLa3hQjk4JTwWTQPu1g2YxP');
+
+    expect(
+      fromSecretKey('0x26954E19E8781905E2CF91A18AE4F36A954C142176EE1BC27C2635520C49BC55', {
+        key: types.KeyType.SECP256K1,
+      })
+    ).toEqual('z1Ee1H8g248HqroacmEnZzMYgbhjz1Z2WSvv');
+
+    expect(isValid('did:abt:z1muQ3xqHQK2uiACHyChikobsiY5kLqtShA')).toEqual(true);
+    expect(isValid('z1muQ3xqHQK2uiACHyChikobsiY5kLqtShA')).toEqual(true);
+    expect(isValid('z2muQ3xqHQK2uiACHyChikobsiY5kLqtShA')).toEqual(false);
+    expect(isValid('z1muQ3xqHQK2uiACHyChikobsiY5kLqtSha')).toEqual(false);
   });
 });

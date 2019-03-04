@@ -5,7 +5,7 @@ const Mcrypto = require('@arcblock/mcrypto');
 const multibase = require('multibase');
 const hdkey = require('hdkey');
 
-const DID_PREFIX = /^abt:did:/i;
+const DID_PREFIX = /^did:abt:/i;
 
 const enums = Object.freeze({
   KeyType: {
@@ -152,7 +152,7 @@ const fromAppDID = (appDID, seed, type = {}, index = 0) => {
 const fromSecretKey = (sk, type) => {
   const { key = enums.KeyType.ED25519 } = type || {};
   const pk = signer[key].getPublicKey(sk);
-  return fromPublicKey(pk, type);
+  return fromPublicKey(pk.indexOf('0x') === 0 ? pk : `0x${pk}`, type);
 };
 
 /**
@@ -257,6 +257,10 @@ const toTypeInfo = (did, returnString = false) => {
 const isValid = did => {
   const { hash } = toTypeInfo(did);
   if (typeof hash === 'undefined') {
+    return false;
+  }
+  const supportedHasher = Object.values(enums.HashType);
+  if (supportedHasher.includes(hash) === false) {
     return false;
   }
 

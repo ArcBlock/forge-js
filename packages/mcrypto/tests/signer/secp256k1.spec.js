@@ -26,7 +26,7 @@ describe('#secp256k1', () => {
 
   test('should gen public key same as elixir', () => {
     const publicKey2 = signer.getPublicKey(secretKey);
-    expect(publicKey2.toUpperCase()).toEqual(signer.strip0x(publicKey));
+    expect(publicKey2.toUpperCase()).toEqual(publicKey.toUpperCase());
   });
 
   test('should sign hex message', () => {
