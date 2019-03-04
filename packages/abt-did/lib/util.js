@@ -3,7 +3,7 @@ const { toBN } = require('@arcblock/forge-util');
 const Mcrypto = require('@arcblock/mcrypto');
 const multibase = require('multibase');
 
-const DID_PREFIX = /^did:abt:/i;
+const DID_PREFIX = 'did:abt:';
 
 const enums = Object.freeze({
   KeyType: {
@@ -44,6 +44,17 @@ const hasher = Object.freeze({
   [enums.HashType.SHA3_384]: Mcrypto.Hasher.SHA3.hash384,
   [enums.HashType.SHA3_512]: Mcrypto.Hasher.SHA3.hash512,
 });
+
+const jwtHeaders = {
+  [enums.KeyType.SECP256K1]: {
+    alg: 'ES256K',
+    type: 'JWT',
+  },
+  [enums.KeyType.ED25519]: {
+    alg: 'Ed25519',
+    type: 'JWT',
+  },
+};
 
 /**
  * Convert did to bytes with length of 26
@@ -97,5 +108,6 @@ module.exports = {
   toStrictHex,
   signer,
   hasher,
+  jwtHeaders,
   types: enums,
 };

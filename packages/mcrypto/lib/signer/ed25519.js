@@ -31,24 +31,24 @@ class Ed25519Signer extends Signer {
     return keyPair;
   }
 
-  getPublicKey(secretKey, encoding = 'hex') {
-    const secretBytes = this.toUint8Array(secretKey);
-    const publicKey = ed25519.keyPair.fromSecretKey(secretBytes).publicKey;
-    return encoding === 'hex' ? bytesToHex(publicKey) : publicKey;
+  getPublicKey(sk, encoding = 'hex') {
+    const skBytes = this.toUint8Array(sk);
+    const pk = ed25519.keyPair.fromSecretKey(skBytes).publicKey;
+    return encoding === 'hex' ? bytesToHex(pk) : pk;
   }
 
-  sign(message, secretKey, encoding = 'hex') {
-    const secretBytes = this.toUint8Array(secretKey);
+  sign(message, sk, encoding = 'hex') {
+    const skBytes = this.toUint8Array(sk);
     const messageBytes = this.toUint8Array(message);
-    const signature = ed25519.detached(messageBytes, secretBytes);
+    const signature = ed25519.detached(messageBytes, skBytes);
     return encoding === 'hex' ? bytesToHex(signature) : signature;
   }
 
-  verify(message, signature, publicKey) {
-    const publicBytes = this.toUint8Array(publicKey);
+  verify(message, signature, pk) {
+    const pkBytes = this.toUint8Array(pk);
     const messageBytes = this.toUint8Array(message);
     const signatureBytes = this.toUint8Array(signature);
-    return ed25519.detached.verify(messageBytes, signatureBytes, publicBytes);
+    return ed25519.detached.verify(messageBytes, signatureBytes, pkBytes);
   }
 }
 

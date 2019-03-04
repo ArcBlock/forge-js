@@ -30,16 +30,17 @@ class Secp256k1Signer extends Signer {
   }
 
   sign(message, sk, encoding = 'hex') {
-    return secp256k1
+    const signature = secp256k1
       .keyFromPrivate(this.strip0x(sk), encoding)
       .sign(this.strip0x(message))
       .toDER(encoding);
+    return `0x${signature}`;
   }
 
   verify(message, signature, pk, encoding = 'hex') {
     return secp256k1
       .keyFromPublic(this.strip0x(pk), encoding)
-      .verify(this.strip0x(message), signature);
+      .verify(this.strip0x(message), this.strip0x(signature));
   }
 }
 

@@ -2,8 +2,18 @@ const upperFirst = require('lodash/upperFirst');
 const { toBN, toHex, numberToHex, isHexStrict } = require('@arcblock/forge-util');
 const Mcrypto = require('@arcblock/mcrypto');
 const multibase = require('multibase');
+const base64 = require('base64-url');
 const hdkey = require('hdkey');
-const { DID_PREFIX, toBits, toBytes, toStrictHex, signer, hasher, types } = require('./util');
+const {
+  DID_PREFIX,
+  toBits,
+  toBytes,
+  toStrictHex,
+  signer,
+  hasher,
+  types,
+  jwtHeaders,
+} = require('./util');
 
 /**
  * Gen DID from appDID and seed
@@ -188,6 +198,114 @@ const isValid = did => {
   return didChecksum === checksum;
 };
 
+/**
+ * Generate and sign a jwt token
+ *
+ * @param {string} did
+ * @param {string} sk
+ * @param {object} [payload={}]
+ * @returns {string}
+ */
+const jwtSign = (did, sk, payload = {}) => {
+  if (isValid(did) === false) {
+    throw new Error('Cannot do jwtSign with invalid did');
+  }
+
+  const type = toTypeInfo(did);
+
+  // make header
+  const header = jwtHeaders[type.key];
+  // console.log({ type, header, jwtHeaders });
+  const headerB64 = base64.escape(base64.encode(JSON.stringify(header)));
+
+  // make body
+  const timestamp = Math.floor(Date.now() / 1000);
+  let body = Object.assign(
+    {
+      iss: did.indexOf(DID_PREFIX) === 0 ? did : `${DID_PREFIX}${did}`,
+      ist: timestamp,
+      nbf: timestamp,
+      exp: timestamp + 30 * 60,
+    },
+    payload || {}
+  );
+  // remove empty keys
+  body = Object.keys(body)
+    .filter(x => {
+      if (typeof body[x] === 'undefined' || body[x] == null || body[x] === '') {
+        return false;
+      }
+
+      return true;
+    })
+    // sort keys
+    .sort()
+    .reduce((acc, x) => {
+      acc[x] = body[x];
+      return acc;
+    }, {});
+
+  const bodyB64 = base64.escape(base64.encode(JSON.stringify(body)));
+
+  // make signature
+  const msgHex = toHex(`${headerB64}.${bodyB64}`);
+  const sigHex = signer[type.key].sign(msgHex, sk);
+  const sigB64 = base64.escape(Buffer.from(sigHex.replace(/^0x/, ''), 'hex').toString('base64'));
+  // console.log({ header, headerB64, body, bodyB64, msgHex, sigHex, sigB64 });
+
+  return [headerB64, bodyB64, sigB64].join('.');
+};
+
+/**
+ * Verify a jwt token signed with pk and certain issuer
+ *
+ * @param {string} token
+ * @param {string} pk
+ * @returns {boolean}
+ */
+const jwtVerify = (token, pk) => {
+  try {
+    const [headerB64, bodyB64, sigB64] = token.split('.');
+    const header = JSON.parse(base64.decode(base64.unescape(headerB64)));
+    const body = JSON.parse(base64.decode(base64.unescape(bodyB64)));
+    const signature = Buffer.from(base64.unescape(sigB64), 'base64').toString('hex');
+    const sigHex = `0x${toStrictHex(signature)}`;
+    if (!sigHex) {
+      return false;
+    }
+    if (!header.alg) {
+      return false;
+    }
+
+    const did = body.iss;
+    if (!did) {
+      return false;
+    }
+
+    if (isFromPublicKey(did, pk) === false) {
+      return false;
+    }
+
+    const signers = {
+      secp256k1: signer[types.KeyType.SECP256K1],
+      es256k: signer[types.KeyType.SECP256K1],
+      ed25519: signer[types.KeyType.ED25519],
+    };
+    const alg = header.alg.toLowerCase();
+    if (signers[alg]) {
+      const msgHex = toHex(`${headerB64}.${bodyB64}`);
+      // console.log({ header, headerB64, body, bodyB64, msgHex, sigB64, signature, sigHex });
+      return signers[alg].verify(msgHex, sigHex, pk);
+    }
+
+    return false;
+  } catch (err) {
+    // eslint-disable-next-line
+    console.error('jwtVerify.error', err);
+    return false;
+  }
+};
+
 module.exports = {
   types,
   toStrictHex,
@@ -198,4 +316,6 @@ module.exports = {
   fromTypeInfo,
   isFromPublicKey,
   isValid,
+  jwtSign,
+  jwtVerify,
 };
