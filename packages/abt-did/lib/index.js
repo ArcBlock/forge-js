@@ -234,6 +234,14 @@ const toTypeInfo = (did, returnString = false) => {
       hash: parseInt(hashBits, 2),
     };
 
+    // remove unsupported types
+    Object.keys(type).forEach(x => {
+      const types = Object.values(enums[`${upperFirst(x)}Type`]);
+      if (types.includes(type[x]) === false) {
+        delete type[x];
+      }
+    });
+
     const typeStr = Object.keys(type).reduce((acc, x) => {
       const types = enums[`${upperFirst(x)}Type`];
       acc[x] = Object.keys(types).find(d => types[d] === type[x]);
@@ -257,10 +265,6 @@ const toTypeInfo = (did, returnString = false) => {
 const isValid = did => {
   const { hash } = toTypeInfo(did);
   if (typeof hash === 'undefined') {
-    return false;
-  }
-  const supportedHasher = Object.values(enums.HashType);
-  if (supportedHasher.includes(hash) === false) {
     return false;
   }
 
