@@ -15,7 +15,9 @@ const sk =
   '0xD67C071B6F51D2B61180B9B1AA9BE0DD0704619F0E30453AB4A592B036EDE644E4852B7091317E3622068E62A5127D1FB0D4AE2FC50213295E10652D2F0ABFC7';
 const pk = '0xE4852B7091317E3622068E62A5127D1FB0D4AE2FC50213295E10652D2F0ABFC7';
 const appId = 'zNKtCNqYWLYWYW3gWRA1vnRykfCBZYHZvzKr';
+const appIdSecp256k1 = 'zNYm1gM23ZGHNYDYyBwSaywzTqLKoj4WuTeC';
 const userId = 'z1nfCgfPqvSQCaZ2EVZPXbwPjKCkMrqfTUu';
+const userIdSecp256k1 = 'z1EVvzPUhYXKGzSZ1KF67V95Ax7j9PnkS3Db';
 const appType = {
   role: types.RoleType.ROLE_APPLICATION,
   key: types.KeyType.ED25519,
@@ -42,11 +44,27 @@ describe('@arcblock/abt-did', () => {
   it('should generate expected did from publicKey', () => {
     const address = fromPublicKey(pk, appType);
     expect(address).toEqual(appId);
+    expect(
+      fromPublicKey(pk, {
+        role: types.RoleType.ROLE_APPLICATION,
+        key: types.KeyType.SECP256K1,
+        hash: types.HashType.SHA3,
+      })
+    ).toEqual(appIdSecp256k1);
   });
 
   it('should generate expected did from appId', () => {
     const uid = fromAppDID(appId, seed, userType);
+    const uid2 = fromAppDID('abc', seed, userType);
     expect(uid).toEqual(userId);
+    expect(uid2).toEqual(null);
+    expect(
+      fromAppDID(appId, seed, {
+        role: types.RoleType.ROLE_ACCOUNT,
+        key: types.KeyType.SECP256K1,
+        hash: types.HashType.SHA3,
+      })
+    ).toEqual(userIdSecp256k1);
   });
 
   it('should get type info as expected', () => {
@@ -74,5 +92,6 @@ describe('@arcblock/abt-did', () => {
 
   it('should match did and pk work as expected', () => {
     expect(isFromPublicKey(appId, pk)).toEqual(true);
+    expect(isFromPublicKey('abc', pk)).toEqual(false);
   });
 });
