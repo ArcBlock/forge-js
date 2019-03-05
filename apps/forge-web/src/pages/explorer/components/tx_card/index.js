@@ -1,11 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import humanize from 'humanize-string';
 
 import TxTransfer from './transfer';
 import TxExchange from './exchange';
 import TxStake from './stake';
 import TxCreateAsset from './create_asset';
+import TxConsumeAsset from './consume_asset';
 import TxDeclare from './declare';
 import TxDeclareFile from './declare_file';
 import TxAccountMigrate from './account_migrate';
@@ -16,7 +18,7 @@ import { getTxType } from '../../../../libs/util';
 const components = {
   CreateAsset: TxCreateAsset,
   UpdateAsset: TxCreateAsset,
-  ActivateAsset: TxCreateAsset,
+  ConsumeAsset: TxConsumeAsset,
   Transfer: TxTransfer,
   Stake: TxStake,
   Exchange: TxExchange,
@@ -33,7 +35,7 @@ const TxCard = React.memo(({ tx, time, ...rest }) => {
   const TxComponent = components[type] || TxDefault;
   return (
     <Container>
-      <TxComponent tx={tx} type={type} {...rest} />
+      <TxComponent tx={tx} type={humanize(type)} {...rest} />
     </Container>
   );
 });
