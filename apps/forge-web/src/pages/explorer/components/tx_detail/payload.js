@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 import IconFa from '../../../../components/iconfa';
 
@@ -13,7 +14,7 @@ const Payload = ({ itx }) => {
         itx.assets.map(x => (
           <li>
             <IconFa name="gem" size={14} className="meta-icon" />
-            <span>{x}</span>
+            <Link to={`/node/explorer/assets/${x}`}>{x}</Link>
           </li>
         ))}
       {hasValue && (
@@ -34,6 +35,11 @@ const List = styled.ul`
   padding: 0;
   margin: 0;
   list-style: none;
+
+  a {
+    text-decoration: underline;
+    color: #9b9b9b;
+  }
 `;
 
 Payload.propTypes = {
