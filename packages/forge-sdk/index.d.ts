@@ -444,7 +444,7 @@ declare namespace forge_abi {
     EXPIRED_ASSET = 39,
     UNTRANSFERRABLE_ASSET = 40,
     READONLY_ASSET = 41,
-    ACTIVATED_ASSET = 42,
+    CONSUMED_ASSET = 42,
     FORBIDDEN = 403,
     INTERNAL = 500,
   }
@@ -463,7 +463,7 @@ declare namespace forge_abi {
     DECLARE_FILE = 22,
     SYS_UPGRADE = 23,
     APPLICATION = 24,
-    ACTIVATE_ASSET = 25,
+    CONSUME_ASSET = 25,
     ACCOUNT_STATE = 129,
     ASSET_STATE = 130,
     FORGE_STATE = 131,
@@ -643,12 +643,18 @@ declare namespace forge_abi {
     lastBlockTime: google.protobuf.Timestamp;
   }
 
+  export interface Multisig {
+    signer: string;
+    signature: Uint8Array;
+    data: google.protobuf.Any;
+  }
+
   export interface Transaction {
     from: string;
     nonce: number;
     signature: Uint8Array;
     chainId: string;
-    signatures: Array<abci_vendor.KVPair>;
+    signatures: Array<forge_abi.Multisig>;
     itx: google.protobuf.Any;
   }
 
@@ -769,7 +775,7 @@ declare namespace forge_abi {
     numSysUpgradeTxs: Array<number>;
     numTransferTxs: Array<number>;
     numUpdateAssetTxs: Array<number>;
-    numActivateAssetTxs: Array<number>;
+    numConsumeAssetTxs: Array<number>;
   }
 
   export interface TxStatistics {
@@ -783,7 +789,7 @@ declare namespace forge_abi {
     numSysUpgradeTxs: number;
     numTransferTxs: number;
     numUpdateAssetTxs: number;
-    numActivateAssetTxs: number;
+    numConsumeAssetTxs: number;
   }
 
   export interface AccountState {
@@ -795,6 +801,7 @@ declare namespace forge_abi {
     type: forge_abi.WalletType;
     moniker: string;
     context: forge_abi.StateContext;
+    issuer: string;
     migratedTo: Array<string>;
     migratedFrom: Array<string>;
     numAssets: number;
@@ -808,8 +815,10 @@ declare namespace forge_abi {
     owner: string;
     moniker: string;
     readonly: forge_abi.bool;
-    activated: forge_abi.bool;
-    expiredAt: google.protobuf.Timestamp;
+    transferrable: forge_abi.bool;
+    ttl: number;
+    consumedTime: google.protobuf.Timestamp;
+    issuer: string;
     stake: forge_abi.StakeContext;
     context: forge_abi.StateContext;
     data: google.protobuf.Any;
@@ -867,6 +876,7 @@ declare namespace forge_abi {
 
   export interface RequestMultisig {
     tx: forge_abi.Transaction;
+    data: google.protobuf.Any;
     wallet: forge_abi.WalletInfo;
     token: string;
   }
@@ -1240,12 +1250,6 @@ declare namespace forge_abi {
     type: forge_abi.WalletType;
   }
 
-  export interface ActivateAssetTx {
-    address: string;
-    to: string;
-    data: google.protobuf.Any;
-  }
-
   export interface ConsensusUpgradeTx {
     validators: Array<forge_abi.Validator>;
     maxBytes: number;
@@ -1255,17 +1259,26 @@ declare namespace forge_abi {
     data: google.protobuf.Any;
   }
 
+  export interface ConsumeAssetTx {
+    issuer: string;
+    address: string;
+    data: google.protobuf.Any;
+  }
+
   export interface CreateAssetTx {
     moniker: string;
     data: google.protobuf.Any;
     readonly: forge_abi.bool;
-    expiredAt: google.protobuf.Timestamp;
+    transferrable: forge_abi.bool;
+    ttl: number;
+    parent: string;
   }
 
   export interface DeclareTx {
     moniker: string;
     pk: Uint8Array;
     type: forge_abi.WalletType;
+    issuer: string;
     data: google.protobuf.Any;
   }
 
