@@ -82,6 +82,10 @@ const Container = styled.div`
     letter-spacing: 2px;
     color: #9b9b9b;
     margin-bottom: 10px;
+
+    i {
+      margin-right: 5px;
+    }
   }
 
   .title {
@@ -103,6 +107,10 @@ const Container = styled.div`
 
     .meta__value {
       color: #9b9b9b;
+    }
+
+    a {
+      text-decoration: underline;
     }
   }
 

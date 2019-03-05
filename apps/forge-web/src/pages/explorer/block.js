@@ -16,6 +16,7 @@ import Pagination from './components/pagination';
 
 import withI18n from '../../components/withI18n';
 import withRoot from '../../components/withRoot';
+import Icon from '../../components/iconfa';
 
 import forge from '../../libs/forge';
 import { parseQuery } from '../../libs/util';
@@ -55,7 +56,12 @@ class BlockDetail extends Page {
           {block && (
             <React.Fragment>
               <SummaryHeader
-                type={`Block #${block.height}`}
+                type={
+                  <React.Fragment>
+                    <Icon name="boxes" size={14} />
+                    {block.height}
+                  </React.Fragment>
+                }
                 title={moment(block.time).format('YYYY-MM-DD HH:mm:ss')}
                 badge={block.numTxs}
                 badgeTip="Num Txs"

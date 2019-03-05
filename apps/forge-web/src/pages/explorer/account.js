@@ -13,6 +13,7 @@ import AccountTabs from './components/account/tabs';
 
 import withI18n from '../../components/withI18n';
 import withRoot from '../../components/withRoot';
+import Icon from '../../components/iconfa';
 
 import forge from '../../libs/forge';
 import { fromArcToReadable } from '../../libs/util';
@@ -45,7 +46,12 @@ class AccountDetail extends Page {
           {account && (
             <React.Fragment>
               <SummaryHeader
-                type={`Account: ${account.address}`}
+                type={
+                  <React.Fragment>
+                    <Icon name="wallet" size={14} />
+                    {account.address}
+                  </React.Fragment>
+                }
                 title={account.moniker}
                 badge={fromArcToReadable(account.balance)}
                 badgeTip="Balance"
