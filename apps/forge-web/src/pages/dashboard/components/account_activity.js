@@ -7,27 +7,23 @@ import { useAsync } from 'react-use';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 import SparkLine from '../../../components/sparkline';
-// import forge from '../../../libs/forge';
 import { delay } from '../../../libs/util';
 
-async function fetchActivity(address, delayMS) {
+async function formatActivity(data, delayMS) {
   await delay(delayMS);
-  // await forge.getForgeStatistics({ address });
 
-  // https://stackoverflow.com/questions/3895478/does-javascript-have-a-method-like-range-to-generate-a-range-within-the-supp
-  // Some random data
-  const rows = [...Array(14).keys()].map(i => ({
+  const rows = [...Array(data.length).keys()].map(i => ({
     time: moment()
-      .subtract(i, 'days')
+      .subtract(data.length - i, 'days')
       .format('YYYY-MM-DD'),
-    txs: 10 + Math.round(Math.random() * 50),
+    txs: data[i],
   }));
 
   return rows;
 }
 
-export default function AccountActivity({ address, delayMS }) {
-  const state = useAsync(async () => fetchActivity(address, delayMS), [address, delayMS]);
+export default function AccountActivity({ data, delayMS }) {
+  const state = useAsync(async () => formatActivity(data, delayMS), [data, delayMS]);
 
   if (state.loading) {
     return <CircularProgress color="primary" size={32} />;
@@ -45,7 +41,7 @@ export default function AccountActivity({ address, delayMS }) {
 }
 
 AccountActivity.propTypes = {
-  address: PropTypes.string.isRequired,
+  data: PropTypes.array.isRequired,
   delayMS: PropTypes.number,
 };
 

@@ -53,7 +53,7 @@ export default function TopAccountsSection() {
             <TableCell align="center">{x.votingPower}</TableCell>
             <TableCell align="center">{x.proposerPriority}</TableCell>
             <TableCell align="left">
-              <AccountActivity address={x.address} delayMS={i * 500} />
+              <AccountActivity data={[...Array(7).fill(0)]} delayMS={i * 500} />
             </TableCell>
           </TableRow>
         ))}
