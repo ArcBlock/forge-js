@@ -84,7 +84,7 @@ const Container = styled.div`
       text-transform: uppercase;
 
       &::before {
-        border-color: ${props => props.theme.typography.color.main};
+        border-color: ${props => props.theme.typography.color.gray};
       }
     }
 
@@ -163,7 +163,33 @@ const Container = styled.div`
     }
 
     .variable-editor-title {
+      background: ${props => props.theme.palette.background.default};
       border: none;
+      height: 40px;
+      padding-left: 20px;
+
+      &::before {
+        border-left: 2px solid ${props => props.theme.typography.color.gray};
+        border-top: 2px solid ${props => props.theme.typography.color.gray};
+        content: '';
+        display: inline-block;
+        height: 9px;
+        margin: 0 5px 1px 0;
+        position: relative;
+        -webkit-transform: rotate(-135deg);
+        transform: rotate(-135deg);
+        width: 9px;
+      }
+    }
+
+    .CodeMirror {
+      background: ${props => props.theme.palette.background.default};
+    }
+
+    .variable-editor {
+      .CodeMirror {
+        background: white;
+      }
     }
 
     .CodeMirror-gutters {
