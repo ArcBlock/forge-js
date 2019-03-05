@@ -1,67 +1,47 @@
-const padStart = require('lodash/padStart');
+const upperFirst = require('lodash/upperFirst');
 const { toBN, toHex, numberToHex, isHexStrict } = require('@arcblock/forge-util');
 const Mcrypto = require('@arcblock/mcrypto');
 const multibase = require('multibase');
+const base64 = require('base64-url');
 const hdkey = require('hdkey');
+const {
+  DID_PREFIX,
+  toBits,
+  toBytes,
+  toStrictHex,
+  signer,
+  hasher,
+  types,
+  jwtHeaders,
+} = require('./util');
 
-const enums = Object.freeze({
-  KeyType: {
-    ED25519: 0,
-    SECP256K1: 1,
-  },
-  HashType: {
-    KECCAK: 0,
-    SHA3: 1,
-    KECCAK_384: 6,
-    SHA3_384: 7,
-    KECCAK_512: 13,
-    SHA3_512: 14,
-  },
-  RoleType: {
-    ROLE_ACCOUNT: 0,
-    ROLE_NODE: 1,
-    ROLE_DEVICE: 2,
-    ROLE_APPLICATION: 3,
-    ROLE_SMART_CONTRACT: 4,
-    ROLE_BOT: 5,
-    ROLE_ASSET: 6,
-    ROLE_STAKE: 7,
-    ROLE_VALIDATOR: 8,
-  },
-});
+/**
+ * Gen DID from appDID and seed
+ *
+ * Spec: https://github.com/ArcBlock/ABT-DID-Protocol#request-did-authentication
+ *
+ * @param {string} appDID
+ * @param {string} seed
+ * @param {object} [type={}]
+ * @param {number} [index=0]
+ * @returns DID string
+ */
+const fromAppDID = (appDID, seed, type = {}, index = 0) => {
+  if (!isValid(appDID)) {
+    return null;
+  }
 
-const signer = Object.freeze({
-  [enums.KeyType.ED25519]: Mcrypto.Signer.Ed25519,
-  [enums.KeyType.SECP256K1]: Mcrypto.Signer.Secp256k1,
-});
-
-const hasher = Object.freeze({
-  [enums.HashType.KECCAK]: Mcrypto.Hasher.Keccak.hash256,
-  [enums.HashType.KECCAK_384]: Mcrypto.Hasher.Keccak.hash384,
-  [enums.HashType.KECCAK_512]: Mcrypto.Hasher.Keccak.hash512,
-  [enums.HashType.SHA3]: Mcrypto.Hasher.SHA3.hash256,
-  [enums.HashType.SHA3_384]: Mcrypto.Hasher.SHA3.hash384,
-  [enums.HashType.SHA3_512]: Mcrypto.Hasher.SHA3.hash512,
-});
-
-const toBinary = (decimal, length) => padStart(toBN(decimal).toString(2), length, '0');
-
-// Implementation: https://github.com/ArcBlock/ABT-DID-Protocol#request-did-authentication
-const fromAppDID = (appDID, seed, types = {}, index = 0) => {
-  const hash = Mcrypto.Hasher.SHA3.hash256(multibase.decode(appDID));
+  const hash = Mcrypto.Hasher.SHA3.hash256(toBytes(appDID));
   const hashSlice = hash.slice(0, 16);
   const s1 = hashSlice.slice(0, 8);
   const s2 = hashSlice.slice(8, 16);
 
   // We have to ensure the number parsed from s1, s2 to be a valid index
-  const b1 = toBinary(toBN(s1).toTwos(), 8, '0').split('');
-  const b2 = toBinary(toBN(s2).toTwos(), 8, '0').split('');
-  if (b1[0] === '1') {
-    b1[0] = 0;
-  }
-  if (b2[0] === '1') {
-    b2[0] = 0;
-  }
+  const b1 = toBits(toBN(s1).toTwos(), 8, '0').split('');
+  const b2 = toBits(toBN(s2).toTwos(), 8, '0').split('');
+  // set highest bit to zero, since s1 and s2 are 32 bits long
+  b1[0] = 0;
+  b2[0] = 0;
 
   const n1 = parseInt(b1.join(''), 2);
   const n2 = parseInt(b2.join(''), 2);
@@ -71,50 +51,271 @@ const fromAppDID = (appDID, seed, types = {}, index = 0) => {
   const derivePath = `m/44'/260'/${n1}'/${n2}'/${index}`;
   const child = master.derive(derivePath);
 
-  const { keyType = enums.KeyType.ED25519 } = types;
+  const { key = types.KeyType.ED25519 } = type;
   let sk;
-  if (keyType === enums.KeyType.ED25519) {
+  if (key === types.KeyType.ED25519) {
     // HACK: because tweetnacl requires a 64 byte sk
     sk = Buffer.concat([child.privateKey, child.chainCode]);
   } else {
     sk = child.privateKey;
   }
 
-  return fromSecretKey(sk, types);
+  return fromSecretKey(sk, type);
 };
 
-// Implementation: https://github.com/ArcBlock/ABT-DID-Protocol#create-did
-const fromSecretKey = (sk, types) => {
-  const { keyType = enums.KeyType.ED25519 } = types || {};
-  const pk = signer[keyType].getPublicKey(sk);
-  return fromPublicKey(pk, types);
+/**
+ * Gen DID from private key and type config
+ *
+ * Spec: https://github.com/ArcBlock/ABT-DID-Protocol#create-did
+ *
+ * @param {string} sk
+ * @param {object} type
+ * @returns DID string
+ */
+const fromSecretKey = (sk, type) => {
+  const { key = types.KeyType.ED25519 } = type || {};
+  const pk = signer[key].getPublicKey(sk);
+  return fromPublicKey(pk.indexOf('0x') === 0 ? pk : `0x${pk}`, type);
 };
 
-const fromPublicKey = (pk, types) => {
-  const {
-    keyType = enums.KeyType.ED25519,
-    hashType = enums.HashType.SHA3,
-    roleType = enums.RoleType.ROLE_ACCOUNT,
-  } = types || {};
+/**
+ * Gen DID from public key and type config
+ *
+ * @param {string} pk
+ * @param {object} type
+ * @returns DID string
+ */
+const fromPublicKey = (pk, type) => {
+  const { hash = types.HashType.SHA3 } = type || {};
 
-  const prefix = `${toBinary(roleType, 6)}${toBinary(keyType, 5)}${toBinary(hashType, 5)}`;
-  let prefixHex = numberToHex(parseInt(prefix, 2)).replace(/^0x/i, '');
-  if (prefixHex.length % 2 !== 0) {
-    prefixHex = `0${prefixHex}`;
-  }
+  const typeHex = fromTypeInfo(type);
+  const pkHash = hasher[hash](pk);
 
-  const pkHash = hasher[hashType](pk);
-
-  const checksum = hasher[hashType](`0x${prefixHex}${pkHash.slice(0, 40)}`).slice(0, 8);
-  const didHash = `${prefixHex}${pkHash.slice(0, 40)}${checksum}`;
+  const checksum = hasher[hash](`0x${typeHex}${pkHash.slice(0, 40)}`).slice(0, 8);
+  const didHash = `${typeHex}${pkHash.slice(0, 40)}${checksum}`;
 
   const address = multibase.encode('base58btc', Buffer.from(didHash, 'hex'));
   return address.toString();
 };
 
+/**
+ * Check if an DID is generated from a publicKey
+ *
+ * @param {string} did
+ * @param {string} pk
+ * @returns {boolean}
+ */
+const isFromPublicKey = (did, pk) => {
+  if (isValid(did) === false) {
+    return false;
+  }
+
+  const type = toTypeInfo(did);
+  const didNew = fromPublicKey(pk, type);
+  const didClean = did.replace(DID_PREFIX, '');
+
+  return didNew === didClean;
+};
+
+/**
+ * Convert type info object to hex string
+ *
+ * @param {object} type
+ * @returns string
+ */
+const fromTypeInfo = type => {
+  const {
+    role = types.RoleType.ROLE_ACCOUNT,
+    key = types.KeyType.ED25519,
+    hash = types.HashType.SHA3,
+  } = type || {};
+
+  const infoBits = `${toBits(role, 6)}${toBits(key, 5)}${toBits(hash, 5)}`;
+  const infoHex = numberToHex(parseInt(infoBits, 2)).replace(/^0x/i, '');
+  return toStrictHex(infoHex, 4);
+};
+
+/**
+ * Get type info from did (base58 format)
+ *
+ * @param {string} did
+ * @param {boolean} [returnString=true]
+ * @returns {object}
+ */
+const toTypeInfo = (did, returnString = false) => {
+  try {
+    const bytes = toBytes(did);
+    const typeBytes = bytes.slice(0, 2);
+    const typeHex = toStrictHex(Buffer.from(typeBytes).toString('hex'));
+    const typeBits = toBits(typeHex, 16);
+    const roleBits = typeBits.slice(0, 6);
+    const keyBits = typeBits.slice(6, 11);
+    const hashBits = typeBits.slice(11, 16);
+    const type = {
+      role: parseInt(roleBits, 2),
+      key: parseInt(keyBits, 2),
+      hash: parseInt(hashBits, 2),
+    };
+
+    // remove unsupported types
+    Object.keys(type).forEach(x => {
+      const enums = Object.values(types[`${upperFirst(x)}Type`]);
+      if (enums.includes(type[x]) === false) {
+        delete type[x];
+      }
+    });
+
+    const typeStr = Object.keys(type).reduce((acc, x) => {
+      const enums = types[`${upperFirst(x)}Type`];
+      acc[x] = Object.keys(enums).find(d => enums[d] === type[x]);
+      return acc;
+    }, {});
+
+    return returnString ? typeStr : type;
+  } catch (err) {
+    // eslint-disable-next-line
+    console.warn('AbtDid.toTypeInfo.decodeError', err);
+    return {};
+  }
+};
+
+/**
+ * Check if a DID string is valid
+ *
+ * @param {string} did
+ * @returns {boolean}
+ */
+const isValid = did => {
+  const { hash } = toTypeInfo(did);
+  if (typeof hash === 'undefined') {
+    return false;
+  }
+
+  const bytes = toBytes(did);
+  const bytesHex = toStrictHex(Buffer.from(bytes.slice(0, 22)).toString('hex'));
+  const didChecksum = toStrictHex(Buffer.from(bytes.slice(22, 26)).toString('hex'));
+  const checksum = hasher[hash](`0x${bytesHex}`).slice(0, 8);
+  return didChecksum === checksum;
+};
+
+/**
+ * Generate and sign a jwt token
+ *
+ * @param {string} did
+ * @param {string} sk
+ * @param {object} [payload={}]
+ * @returns {string}
+ */
+const jwtSign = (did, sk, payload = {}) => {
+  if (isValid(did) === false) {
+    throw new Error('Cannot do jwtSign with invalid did');
+  }
+
+  const type = toTypeInfo(did);
+
+  // make header
+  const header = jwtHeaders[type.key];
+  // console.log({ type, header, jwtHeaders });
+  const headerB64 = base64.escape(base64.encode(JSON.stringify(header)));
+
+  // make body
+  const timestamp = Math.floor(Date.now() / 1000);
+  let body = Object.assign(
+    {
+      iss: did.indexOf(DID_PREFIX) === 0 ? did : `${DID_PREFIX}${did}`,
+      ist: timestamp,
+      nbf: timestamp,
+      exp: timestamp + 30 * 60,
+    },
+    payload || {}
+  );
+  // remove empty keys
+  body = Object.keys(body)
+    .filter(x => {
+      if (typeof body[x] === 'undefined' || body[x] == null || body[x] === '') {
+        return false;
+      }
+
+      return true;
+    })
+    // sort keys
+    .sort()
+    .reduce((acc, x) => {
+      acc[x] = body[x];
+      return acc;
+    }, {});
+
+  const bodyB64 = base64.escape(base64.encode(JSON.stringify(body)));
+
+  // make signature
+  const msgHex = toHex(`${headerB64}.${bodyB64}`);
+  const sigHex = signer[type.key].sign(msgHex, sk);
+  const sigB64 = base64.escape(Buffer.from(sigHex.replace(/^0x/, ''), 'hex').toString('base64'));
+  // console.log({ header, headerB64, body, bodyB64, msgHex, sigHex, sigB64 });
+
+  return [headerB64, bodyB64, sigB64].join('.');
+};
+
+/**
+ * Verify a jwt token signed with pk and certain issuer
+ *
+ * @param {string} token
+ * @param {string} pk
+ * @returns {boolean}
+ */
+const jwtVerify = (token, pk) => {
+  try {
+    const [headerB64, bodyB64, sigB64] = token.split('.');
+    const header = JSON.parse(base64.decode(base64.unescape(headerB64)));
+    const body = JSON.parse(base64.decode(base64.unescape(bodyB64)));
+    const signature = Buffer.from(base64.unescape(sigB64), 'base64').toString('hex');
+    const sigHex = `0x${toStrictHex(signature)}`;
+    if (!sigHex) {
+      return false;
+    }
+    if (!header.alg) {
+      return false;
+    }
+
+    const did = body.iss;
+    if (!did) {
+      return false;
+    }
+
+    if (isFromPublicKey(did, pk) === false) {
+      return false;
+    }
+
+    const signers = {
+      secp256k1: signer[types.KeyType.SECP256K1],
+      es256k: signer[types.KeyType.SECP256K1],
+      ed25519: signer[types.KeyType.ED25519],
+    };
+    const alg = header.alg.toLowerCase();
+    if (signers[alg]) {
+      const msgHex = toHex(`${headerB64}.${bodyB64}`);
+      // console.log({ header, headerB64, body, bodyB64, msgHex, sigB64, signature, sigHex });
+      return signers[alg].verify(msgHex, sigHex, pk);
+    }
+
+    return false;
+  } catch (err) {
+    // eslint-disable-next-line
+    console.error('jwtVerify.error', err);
+    return false;
+  }
+};
+
 module.exports = {
-  types: enums,
+  types,
+  toStrictHex,
   fromAppDID,
   fromSecretKey,
   fromPublicKey,
+  toTypeInfo,
+  fromTypeInfo,
+  isFromPublicKey,
+  isValid,
+  jwtSign,
+  jwtVerify,
 };

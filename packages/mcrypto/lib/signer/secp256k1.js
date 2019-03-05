@@ -15,28 +15,32 @@ class Secp256k1Signer extends Signer {
 
   genKeyPair(compressed = false, encoding = 'hex') {
     const keyPair = secp256k1.genKeyPair();
-    const secretKey = keyPair.getPrivate(encoding);
-    const publicKey = keyPair.getPublic(compressed, encoding);
-    return { secretKey, publicKey };
+    const sk = keyPair.getPrivate(encoding);
+    const pk = keyPair.getPublic(compressed, encoding);
+    if (encoding === 'hex') {
+      return { secretKey: `0x${sk}`, publicKey: `0x${pk}` };
+    }
+
+    return { secretKey: sk, publicKey: pk };
   }
 
-  getPublicKey(secretKey, compressed = false, encoding = 'hex') {
-    return secp256k1
-      .keyFromPrivate(this.strip0x(secretKey), encoding)
-      .getPublic(compressed, encoding);
+  getPublicKey(sk, compressed = false, encoding = 'hex') {
+    const pk = secp256k1.keyFromPrivate(this.strip0x(sk), encoding).getPublic(compressed, encoding);
+    return `0x${pk}`;
   }
 
-  sign(message, privateKey, encoding = 'hex') {
-    return secp256k1
-      .keyFromPrivate(this.strip0x(privateKey), encoding)
+  sign(message, sk, encoding = 'hex') {
+    const signature = secp256k1
+      .keyFromPrivate(this.strip0x(sk), encoding)
       .sign(this.strip0x(message))
       .toDER(encoding);
+    return `0x${signature}`;
   }
 
-  verify(message, signature, publicKey, encoding = 'hex') {
+  verify(message, signature, pk, encoding = 'hex') {
     return secp256k1
-      .keyFromPublic(this.strip0x(publicKey), encoding)
-      .verify(this.strip0x(message), signature);
+      .keyFromPublic(this.strip0x(pk), encoding)
+      .verify(this.strip0x(message), this.strip0x(signature));
   }
 }
 

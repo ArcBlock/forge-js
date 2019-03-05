@@ -1,3 +1,9 @@
+## 0.9.0 (March 04, 2019)
+  - chore: make node.js did lib compatible with elixir did lib
+  - chore: add more test case
+  - chore: add more methods in did lib
+  - update readme
+
 ## 0.8.8 (March 02, 2019)
   - chore: upgrade graphql-client to align with forge v0.16.5
   - chore: upgrade forge-sdk to align with forge v0.16.5
