@@ -11,9 +11,9 @@ import Tooltip from '@material-ui/core/Tooltip';
 
 import IconFa from '../../../../components/iconfa';
 
-const CreateAssetTx = React.memo(({ tx, type, theme, ...rest }) => {
-  const address = get(tx, 'tx.itx.address', '');
-  const data = get(tx, 'tx.itx.data.value', 'NO DATA');
+const ConsumeAssetTx = React.memo(({ tx, type, theme, ...rest }) => {
+  const address = get(tx, 'tx.from', '');
+  const issuer = get(tx, 'tx.itx.issuer', '');
   return (
     <Container {...rest}>
       <div className="info-row">
@@ -27,19 +27,20 @@ const CreateAssetTx = React.memo(({ tx, type, theme, ...rest }) => {
       <div className="info-row" style={{ justifyContent: 'flex-start' }}>
         <Tooltip title={type} placement="top">
           <IconFa
-            name="gem"
+            name="trash"
             size={14}
             rounded={true}
-            color={theme.colors.blue}
+            color={theme.colors.red}
             className="type-icon"
           />
         </Tooltip>
-        <Typography component="p" className="value" title={data}>
-          <span className="type">{type}</span> {data}
+        <Typography component="p" className="value">
+          <span className="type">{type}</span>
+          {!!issuer && <Link to={`/node/explorer/accounts/${issuer}`}>Issuer: {issuer}</Link>}
         </Typography>
         {address && (
           <Typography component="p" className="address" title={address}>
-            <Link to={`/node/explorer/assets/${address}`}>{address}</Link>
+            <Link to={`/node/explorer/accounts/${address}`}>By: {address}</Link>
           </Typography>
         )}
       </div>
@@ -97,10 +98,10 @@ const Container = styled.div`
   }
 `;
 
-CreateAssetTx.propTypes = {
+ConsumeAssetTx.propTypes = {
   tx: PropTypes.object.isRequired,
   type: PropTypes.string.isRequired,
   theme: PropTypes.object.isRequired,
 };
 
-export default withTheme()(CreateAssetTx);
+export default withTheme()(ConsumeAssetTx);

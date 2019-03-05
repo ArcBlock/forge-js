@@ -3,6 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 
+import { Link } from 'react-router-dom';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -24,7 +25,9 @@ function renderAssets(assets) {
       <TableBody>
         {assets.map(x => (
           <TableRow key={x.address}>
-            <TableCell align="left">{x.address}</TableCell>
+            <TableCell align="left">
+              <Link to={`/node/explorer/assets/${x.address}`}>{x.address}</Link>
+            </TableCell>
             <TableCell align="left">{x.moniker}</TableCell>
             <TableCell align="left" title={x.genesisTime}>
               {x.genesisTime ? moment(x.genesisTime).fromNow() : ''}

@@ -23,6 +23,7 @@ async function fetchTopAccounts() {
     // TODO: add decimal here
     balance: fromArcToReadable(x.balance),
     assets: x.numAssets,
+    recentNumTxs: x.recentNumTxs,
   }));
 }
 
@@ -62,7 +63,7 @@ export default function TopAccountsSection() {
             <TableCell align="center">{numeral(x.balance).format('0,0.0000')}</TableCell>
             <TableCell align="center">{numeral(x.assets).format('0,0')}</TableCell>
             <TableCell align="left">
-              <AccountActivity address={x.address} delayMS={i * 500} />
+              <AccountActivity data={x.recentNumTxs} delayMS={i * 500} />
             </TableCell>
           </TableRow>
         ))}

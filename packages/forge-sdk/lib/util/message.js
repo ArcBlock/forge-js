@@ -104,8 +104,8 @@ function fakeMessage(type) {
 
     if (subType === 'google.protobuf.Any') {
       result[key] = {
-        type: 'WalletType',
-        value: fakeMessage('WalletType'),
+        type: 'fg:x:random_data',
+        value: 'ABCD 1234',
       };
       return;
     }

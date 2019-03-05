@@ -210,7 +210,7 @@
             "expired_asset": 39,
             "untransferrable_asset": 40,
             "readonly_asset": 41,
-            "activated_asset": 42,
+            "consumed_asset": 42,
             "forbidden": 403,
             "internal": 500
           }
@@ -230,7 +230,7 @@
             "declare_file": 22,
             "sys_upgrade": 23,
             "application": 24,
-            "activate_asset": 25,
+            "consume_asset": 25,
             "account_state": 129,
             "asset_state": 130,
             "forge_state": 131,
@@ -635,6 +635,22 @@
             }
           }
         },
+        "Multisig": {
+          "fields": {
+            "signer": {
+              "type": "string",
+              "id": 1
+            },
+            "signature": {
+              "type": "bytes",
+              "id": 2
+            },
+            "data": {
+              "type": "google.protobuf.Any",
+              "id": 3
+            }
+          }
+        },
         "Transaction": {
           "fields": {
             "from": {
@@ -655,7 +671,7 @@
             },
             "signatures": {
               "rule": "repeated",
-              "type": "abci_vendor.KVPair",
+              "type": "Multisig",
               "id": 5
             },
             "itx": {
@@ -1040,7 +1056,7 @@
               "type": "uint64",
               "id": 14
             },
-            "numActivateAssetTxs": {
+            "numConsumeAssetTxs": {
               "rule": "repeated",
               "type": "uint64",
               "id": 15
@@ -1089,7 +1105,7 @@
               "type": "uint64",
               "id": 10
             },
-            "numActivateAssetTxs": {
+            "numConsumeAssetTxs": {
               "type": "uint64",
               "id": 11
             }
@@ -1128,6 +1144,10 @@
             "context": {
               "type": "StateContext",
               "id": 8
+            },
+            "issuer": {
+              "type": "string",
+              "id": 9
             },
             "migratedTo": {
               "rule": "repeated",
@@ -1175,13 +1195,21 @@
               "type": "bool",
               "id": 4
             },
-            "activated": {
+            "transferrable": {
               "type": "bool",
               "id": 5
             },
-            "expiredAt": {
-              "type": "google.protobuf.Timestamp",
+            "ttl": {
+              "type": "uint32",
               "id": 6
+            },
+            "consumedTime": {
+              "type": "google.protobuf.Timestamp",
+              "id": 7
+            },
+            "issuer": {
+              "type": "string",
+              "id": 8
             },
             "stake": {
               "type": "StakeContext",
@@ -1357,13 +1385,17 @@
               "type": "Transaction",
               "id": 1
             },
+            "data": {
+              "type": "google.protobuf.Any",
+              "id": 2
+            },
             "wallet": {
               "type": "WalletInfo",
-              "id": 2
+              "id": 3
             },
             "token": {
               "type": "string",
-              "id": 3
+              "id": 4
             }
           }
         },
@@ -2326,22 +2358,6 @@
             }
           }
         },
-        "ActivateAssetTx": {
-          "fields": {
-            "address": {
-              "type": "string",
-              "id": 1
-            },
-            "to": {
-              "type": "string",
-              "id": 2
-            },
-            "data": {
-              "type": "google.protobuf.Any",
-              "id": 15
-            }
-          }
-        },
         "ConsensusUpgradeTx": {
           "fields": {
             "validators": {
@@ -2371,6 +2387,22 @@
             }
           }
         },
+        "ConsumeAssetTx": {
+          "fields": {
+            "issuer": {
+              "type": "string",
+              "id": 1
+            },
+            "address": {
+              "type": "string",
+              "id": 2
+            },
+            "data": {
+              "type": "google.protobuf.Any",
+              "id": 15
+            }
+          }
+        },
         "CreateAssetTx": {
           "fields": {
             "moniker": {
@@ -2385,9 +2417,17 @@
               "type": "bool",
               "id": 3
             },
-            "expiredAt": {
-              "type": "google.protobuf.Timestamp",
+            "transferrable": {
+              "type": "bool",
               "id": 4
+            },
+            "ttl": {
+              "type": "uint32",
+              "id": 5
+            },
+            "parent": {
+              "type": "string",
+              "id": 6
             }
           }
         },
@@ -2404,6 +2444,10 @@
             "type": {
               "type": "WalletType",
               "id": 3
+            },
+            "issuer": {
+              "type": "string",
+              "id": 4
             },
             "data": {
               "type": "google.protobuf.Any",

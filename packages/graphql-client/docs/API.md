@@ -1,6 +1,6 @@
 # Forge GraphQL API List
 
-> Updated on 2019-03-01T22:36:18.751Z
+> Updated on 2019-03-05T00:36:24.515Z
 
 
 ## Table of Contents
@@ -26,6 +26,7 @@
   * [getTx](#gettx)
   * [getUnconfirmedTxs](#getunconfirmedtxs)
   * [getValidatorsInfo](#getvalidatorsinfo)
+  * [listAssetTransactions](#listassettransactions)
   * [listTransactions](#listtransactions)
   * [listWallet](#listwallet)
   * [loadFile](#loadfile)
@@ -67,6 +68,7 @@
     state {
       address
       balance
+      issuer
       migratedFrom
       migratedTo
       moniker
@@ -154,6 +156,7 @@
                 hash
               }
               ... on DeclareTx {
+                issuer
                 moniker
                 pk
                 data {
@@ -168,9 +171,19 @@
                 }
               }
               ... on CreateAssetTx {
-                expiredAt
                 moniker
+                parent
                 readonly
+                transferrable
+                ttl
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ConsumeAssetTx {
+                address
+                issuer
                 data {
                   typeUrl
                   value
@@ -279,6 +292,7 @@
                 hash
               }
               ... on DeclareTx {
+                issuer
                 moniker
                 pk
                 data {
@@ -293,9 +307,19 @@
                 }
               }
               ... on CreateAssetTx {
-                expiredAt
                 moniker
+                parent
                 readonly
+                transferrable
+                ttl
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ConsumeAssetTx {
+                address
+                issuer
                 data {
                   typeUrl
                   value
@@ -403,12 +427,14 @@
   getAssetState(address: "abc", height: 123, keys: ["abc"]) {
     code
     state {
-      activated
       address
-      expiredAt
+      consumedTime
+      issuer
       moniker
       owner
       readonly
+      transferrable
+      ttl
       context {
         genesisTime
         renaissanceTime
@@ -489,6 +515,7 @@
                 hash
               }
               ... on DeclareTx {
+                issuer
                 moniker
                 pk
                 data {
@@ -503,9 +530,19 @@
                 }
               }
               ... on CreateAssetTx {
-                expiredAt
                 moniker
+                parent
                 readonly
+                transferrable
+                ttl
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ConsumeAssetTx {
+                address
+                issuer
                 data {
                   typeUrl
                   value
@@ -614,6 +651,7 @@
                 hash
               }
               ... on DeclareTx {
+                issuer
                 moniker
                 pk
                 data {
@@ -628,9 +666,19 @@
                 }
               }
               ... on CreateAssetTx {
-                expiredAt
                 moniker
+                parent
                 readonly
+                transferrable
+                ttl
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ConsumeAssetTx {
+                address
+                issuer
                 data {
                   typeUrl
                   value
@@ -817,6 +865,7 @@
               hash
             }
             ... on DeclareTx {
+              issuer
               moniker
               pk
               data {
@@ -831,9 +880,19 @@
               }
             }
             ... on CreateAssetTx {
-              expiredAt
               moniker
+              parent
               readonly
+              transferrable
+              ttl
+              data {
+                typeUrl
+                value
+              }
+            }
+            ... on ConsumeAssetTx {
+              address
+              issuer
               data {
                 typeUrl
                 value
@@ -969,6 +1028,7 @@
               hash
             }
             ... on DeclareTx {
+              issuer
               moniker
               pk
               data {
@@ -983,9 +1043,19 @@
               }
             }
             ... on CreateAssetTx {
-              expiredAt
               moniker
+              parent
               readonly
+              transferrable
+              ttl
+              data {
+                typeUrl
+                value
+              }
+            }
+            ... on ConsumeAssetTx {
+              address
+              issuer
               data {
                 typeUrl
                 value
@@ -1190,6 +1260,7 @@ No arguments
       numAccountMigrateTxs
       numBlocks
       numConsensusUpgradeTxs
+      numConsumeAssetTxs
       numCreateAssetTxs
       numDeclareFileTxs
       numDeclareTxs
@@ -1223,6 +1294,7 @@ No arguments
       numAccountMigrateTxs
       numBlocks
       numConsensusUpgradeTxs
+      numConsumeAssetTxs
       numCreateAssetTxs
       numDeclareFileTxs
       numDeclareTxs
@@ -1255,6 +1327,7 @@ No arguments
       numAccountMigrateTxs
       numBlocks
       numConsensusUpgradeTxs
+      numConsumeAssetTxs
       numCreateAssetTxs
       numDeclareFileTxs
       numDeclareTxs
@@ -1449,6 +1522,7 @@ No arguments
                 hash
               }
               ... on DeclareTx {
+                issuer
                 moniker
                 pk
                 data {
@@ -1463,9 +1537,19 @@ No arguments
                 }
               }
               ... on CreateAssetTx {
-                expiredAt
                 moniker
+                parent
                 readonly
+                transferrable
+                ttl
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ConsumeAssetTx {
+                address
+                issuer
                 data {
                   typeUrl
                   value
@@ -1574,6 +1658,7 @@ No arguments
                 hash
               }
               ... on DeclareTx {
+                issuer
                 moniker
                 pk
                 data {
@@ -1588,9 +1673,19 @@ No arguments
                 }
               }
               ... on CreateAssetTx {
-                expiredAt
                 moniker
+                parent
                 readonly
+                transferrable
+                ttl
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ConsumeAssetTx {
+                address
+                issuer
                 data {
                   typeUrl
                   value
@@ -1686,6 +1781,7 @@ No arguments
       nonce
       numAssets
       numTxs
+      recentNumTxs
       renaissanceTime
       totalReceivedStakes
       totalStakes
@@ -1789,6 +1885,7 @@ No arguments
             hash
           }
           ... on DeclareTx {
+            issuer
             moniker
             pk
             data {
@@ -1803,9 +1900,19 @@ No arguments
             }
           }
           ... on CreateAssetTx {
-            expiredAt
             moniker
+            parent
             readonly
+            transferrable
+            ttl
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on ConsumeAssetTx {
+            address
+            issuer
             data {
               typeUrl
               value
@@ -1923,6 +2030,7 @@ No arguments
             hash
           }
           ... on DeclareTx {
+            issuer
             moniker
             pk
             data {
@@ -1937,9 +2045,19 @@ No arguments
             }
           }
           ... on CreateAssetTx {
-            expiredAt
             moniker
+            parent
             readonly
+            transferrable
+            ttl
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on ConsumeAssetTx {
+            address
+            issuer
             data {
               typeUrl
               value
@@ -1997,6 +2115,161 @@ No arguments
         pubKey {
           data
           type
+        }
+      }
+    }
+  }
+}
+```
+
+### listAssetTransactions
+
+#### Arguments
+
+* **address**, optional, 
+* **paging**, optional, 
+
+#### Result Format
+
+```graphql
+{
+  listAssetTransactions(address: "abc") {
+    code
+    page {
+      cursor
+      next
+      total
+    }
+    transactions {
+      hash
+      receiver
+      sender
+      time
+      type
+      tx {
+        chainId
+        from
+        nonce
+        signature
+        signatures {
+          key
+          value
+        }
+        itx {
+          __typename
+          ... on UpdateAssetTx {
+            address
+            moniker
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on TransferTx {
+            assets
+            to
+            value
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on SysUpgradeTx {
+            gracePeriod
+            data {
+              typeUrl
+              value
+            }
+            task {
+              actions
+              dataHash
+              type
+            }
+          }
+          ... on StakeTx {
+            message
+            to
+            value
+            data {
+              type
+            }
+          }
+          ... on ExchangeTx {
+            expiredAt
+            to
+            data {
+              typeUrl
+              value
+            }
+            receiver {
+              assets
+              value
+            }
+            sender {
+              assets
+              value
+            }
+          }
+          ... on DeclareFileTx {
+            hash
+          }
+          ... on DeclareTx {
+            issuer
+            moniker
+            pk
+            data {
+              typeUrl
+              value
+            }
+            type {
+              address
+              hash
+              pk
+              role
+            }
+          }
+          ... on CreateAssetTx {
+            moniker
+            parent
+            readonly
+            transferrable
+            ttl
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on ConsumeAssetTx {
+            address
+            issuer
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on ConsensusUpgradeTx {
+            maxBytes
+            maxCandidates
+            maxGas
+            maxValidators
+            data {
+              typeUrl
+              value
+            }
+            validators {
+              address
+              power
+            }
+          }
+          ... on AccountMigrateTx {
+            pk
+            type {
+              address
+              hash
+              pk
+              role
+            }
+          }
         }
       }
     }
@@ -2098,6 +2371,7 @@ No arguments
             hash
           }
           ... on DeclareTx {
+            issuer
             moniker
             pk
             data {
@@ -2112,9 +2386,19 @@ No arguments
             }
           }
           ... on CreateAssetTx {
-            expiredAt
             moniker
+            parent
             readonly
+            transferrable
+            ttl
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on ConsumeAssetTx {
+            address
+            issuer
             data {
               typeUrl
               value
@@ -2217,6 +2501,7 @@ No arguments
 
 #### Arguments
 
+* **data**, optional, 
 * **token**, optional, 
 * **tx**, optional, 
 * **wallet**, optional, 
@@ -2225,7 +2510,7 @@ No arguments
 
 ```graphql
 {
-  multisig(token: "abc", tx: "abc", wallet: "abc") {
+  multisig(data: "abc", token: "abc", tx: "abc", wallet: "abc") {
     code
     tx {
       chainId
@@ -2295,6 +2580,7 @@ No arguments
           hash
         }
         ... on DeclareTx {
+          issuer
           moniker
           pk
           data {
@@ -2309,9 +2595,19 @@ No arguments
           }
         }
         ... on CreateAssetTx {
-          expiredAt
           moniker
+          parent
           readonly
+          transferrable
+          ttl
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsumeAssetTx {
+          address
+          issuer
           data {
             typeUrl
             value
@@ -2452,6 +2748,7 @@ No arguments
             hash
           }
           ... on DeclareTx {
+            issuer
             moniker
             pk
             data {
@@ -2466,9 +2763,19 @@ No arguments
             }
           }
           ... on CreateAssetTx {
-            expiredAt
             moniker
+            parent
             readonly
+            transferrable
+            ttl
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on ConsumeAssetTx {
+            address
+            issuer
             data {
               typeUrl
               value
@@ -2608,6 +2915,7 @@ subscription {
           hash
         }
         ... on DeclareTx {
+          issuer
           moniker
           pk
           data {
@@ -2622,9 +2930,19 @@ subscription {
           }
         }
         ... on CreateAssetTx {
-          expiredAt
           moniker
+          parent
           readonly
+          transferrable
+          ttl
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsumeAssetTx {
+          address
+          issuer
           data {
             typeUrl
             value
@@ -2723,6 +3041,7 @@ subscription {
           hash
         }
         ... on DeclareTx {
+          issuer
           moniker
           pk
           data {
@@ -2737,9 +3056,19 @@ subscription {
           }
         }
         ... on CreateAssetTx {
-          expiredAt
           moniker
+          parent
           readonly
+          transferrable
+          ttl
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsumeAssetTx {
+          address
+          issuer
           data {
             typeUrl
             value
@@ -2838,6 +3167,7 @@ subscription {
           hash
         }
         ... on DeclareTx {
+          issuer
           moniker
           pk
           data {
@@ -2852,9 +3182,19 @@ subscription {
           }
         }
         ... on CreateAssetTx {
-          expiredAt
           moniker
+          parent
           readonly
+          transferrable
+          ttl
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsumeAssetTx {
+          address
+          issuer
           data {
             typeUrl
             value
@@ -3003,6 +3343,7 @@ subscription {
           hash
         }
         ... on DeclareTx {
+          issuer
           moniker
           pk
           data {
@@ -3017,9 +3358,19 @@ subscription {
           }
         }
         ... on CreateAssetTx {
-          expiredAt
           moniker
+          parent
           readonly
+          transferrable
+          ttl
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsumeAssetTx {
+          address
+          issuer
           data {
             typeUrl
             value
@@ -3118,6 +3469,7 @@ subscription {
           hash
         }
         ... on DeclareTx {
+          issuer
           moniker
           pk
           data {
@@ -3132,9 +3484,19 @@ subscription {
           }
         }
         ... on CreateAssetTx {
-          expiredAt
           moniker
+          parent
           readonly
+          transferrable
+          ttl
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsumeAssetTx {
+          address
+          issuer
           data {
             typeUrl
             value
@@ -3233,6 +3595,7 @@ subscription {
           hash
         }
         ... on DeclareTx {
+          issuer
           moniker
           pk
           data {
@@ -3247,9 +3610,19 @@ subscription {
           }
         }
         ... on CreateAssetTx {
-          expiredAt
           moniker
+          parent
           readonly
+          transferrable
+          ttl
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsumeAssetTx {
+          address
+          issuer
           data {
             typeUrl
             value
@@ -3348,6 +3721,7 @@ subscription {
           hash
         }
         ... on DeclareTx {
+          issuer
           moniker
           pk
           data {
@@ -3362,9 +3736,19 @@ subscription {
           }
         }
         ... on CreateAssetTx {
-          expiredAt
           moniker
+          parent
           readonly
+          transferrable
+          ttl
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsumeAssetTx {
+          address
+          issuer
           data {
             typeUrl
             value
@@ -3463,6 +3847,7 @@ subscription {
           hash
         }
         ... on DeclareTx {
+          issuer
           moniker
           pk
           data {
@@ -3477,9 +3862,19 @@ subscription {
           }
         }
         ... on CreateAssetTx {
-          expiredAt
           moniker
+          parent
           readonly
+          transferrable
+          ttl
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsumeAssetTx {
+          address
+          issuer
           data {
             typeUrl
             value
@@ -3581,6 +3976,7 @@ subscription {
           hash
         }
         ... on DeclareTx {
+          issuer
           moniker
           pk
           data {
@@ -3595,9 +3991,19 @@ subscription {
           }
         }
         ... on CreateAssetTx {
-          expiredAt
           moniker
+          parent
           readonly
+          transferrable
+          ttl
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsumeAssetTx {
+          address
+          issuer
           data {
             typeUrl
             value
@@ -3696,6 +4102,7 @@ subscription {
           hash
         }
         ... on DeclareTx {
+          issuer
           moniker
           pk
           data {
@@ -3710,9 +4117,19 @@ subscription {
           }
         }
         ... on CreateAssetTx {
-          expiredAt
           moniker
+          parent
           readonly
+          transferrable
+          ttl
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsumeAssetTx {
+          address
+          issuer
           data {
             typeUrl
             value
@@ -3811,6 +4228,7 @@ subscription {
           hash
         }
         ... on DeclareTx {
+          issuer
           moniker
           pk
           data {
@@ -3825,9 +4243,19 @@ subscription {
           }
         }
         ... on CreateAssetTx {
-          expiredAt
           moniker
+          parent
           readonly
+          transferrable
+          ttl
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsumeAssetTx {
+          address
+          issuer
           data {
             typeUrl
             value
@@ -3926,6 +4354,7 @@ subscription {
           hash
         }
         ... on DeclareTx {
+          issuer
           moniker
           pk
           data {
@@ -3940,9 +4369,19 @@ subscription {
           }
         }
         ... on CreateAssetTx {
-          expiredAt
           moniker
+          parent
           readonly
+          transferrable
+          ttl
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsumeAssetTx {
+          address
+          issuer
           data {
             typeUrl
             value
@@ -4041,6 +4480,7 @@ subscription {
           hash
         }
         ... on DeclareTx {
+          issuer
           moniker
           pk
           data {
@@ -4055,9 +4495,19 @@ subscription {
           }
         }
         ... on CreateAssetTx {
-          expiredAt
           moniker
+          parent
           readonly
+          transferrable
+          ttl
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsumeAssetTx {
+          address
+          issuer
           data {
             typeUrl
             value
@@ -4156,6 +4606,7 @@ subscription {
           hash
         }
         ... on DeclareTx {
+          issuer
           moniker
           pk
           data {
@@ -4170,9 +4621,19 @@ subscription {
           }
         }
         ... on CreateAssetTx {
-          expiredAt
           moniker
+          parent
           readonly
+          transferrable
+          ttl
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsumeAssetTx {
+          address
+          issuer
           data {
             typeUrl
             value
@@ -4271,6 +4732,7 @@ subscription {
           hash
         }
         ... on DeclareTx {
+          issuer
           moniker
           pk
           data {
@@ -4285,9 +4747,19 @@ subscription {
           }
         }
         ... on CreateAssetTx {
-          expiredAt
           moniker
+          parent
           readonly
+          transferrable
+          ttl
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsumeAssetTx {
+          address
+          issuer
           data {
             typeUrl
             value
@@ -4386,6 +4858,7 @@ subscription {
           hash
         }
         ... on DeclareTx {
+          issuer
           moniker
           pk
           data {
@@ -4400,9 +4873,19 @@ subscription {
           }
         }
         ... on CreateAssetTx {
-          expiredAt
           moniker
+          parent
           readonly
+          transferrable
+          ttl
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsumeAssetTx {
+          address
+          issuer
           data {
             typeUrl
             value
@@ -4525,6 +5008,7 @@ mutation {
           hash
         }
         ... on DeclareTx {
+          issuer
           moniker
           pk
           data {
@@ -4539,9 +5023,19 @@ mutation {
           }
         }
         ... on CreateAssetTx {
-          expiredAt
           moniker
+          parent
           readonly
+          transferrable
+          ttl
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsumeAssetTx {
+          address
+          issuer
           data {
             typeUrl
             value

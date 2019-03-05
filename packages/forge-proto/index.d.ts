@@ -96,7 +96,7 @@ declare namespace Enums {
     EXPIRED_ASSET = 39,
     UNTRANSFERRABLE_ASSET = 40,
     READONLY_ASSET = 41,
-    ACTIVATED_ASSET = 42,
+    CONSUMED_ASSET = 42,
     FORBIDDEN = 403,
     INTERNAL = 500,
   }
@@ -115,7 +115,7 @@ declare namespace Enums {
     DECLARE_FILE = 22,
     SYS_UPGRADE = 23,
     APPLICATION = 24,
-    ACTIVATE_ASSET = 25,
+    CONSUME_ASSET = 25,
     ACCOUNT_STATE = 129,
     ASSET_STATE = 130,
     FORGE_STATE = 131,
@@ -204,8 +204,8 @@ declare namespace Enums {
 
   export enum SupportedTxs {
     0 = AccountMigrateTx,
-    1 = ActivateAssetTx,
-    2 = ConsensusUpgradeTx,
+    1 = ConsensusUpgradeTx,
+    2 = ConsumeAssetTx,
     3 = CreateAssetTx,
     4 = DeclareFileTx,
     5 = DeclareTx,
@@ -273,7 +273,7 @@ declare namespace Messages {
     39 = EXPIRED_ASSET,
     40 = UNTRANSFERRABLE_ASSET,
     41 = READONLY_ASSET,
-    42 = ACTIVATED_ASSET,
+    42 = CONSUMED_ASSET,
     403 = FORBIDDEN,
     500 = INTERNAL,
   }
@@ -292,7 +292,7 @@ declare namespace Messages {
     22 = DECLARE_FILE,
     23 = SYS_UPGRADE,
     24 = APPLICATION,
-    25 = ACTIVATE_ASSET,
+    25 = CONSUME_ASSET,
     129 = ACCOUNT_STATE,
     130 = ASSET_STATE,
     131 = FORGE_STATE,
