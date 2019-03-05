@@ -1,3 +1,19 @@
+## 0.10.0 (March 05, 2019)
+  - feat: basic asset detail page
+  - chore: update random message
+  - chore: add link for asset in tx detail page
+  - chore: use dynamic data for top account trends
+  - chore: update asset page
+  - chore: add link for asset list
+  - chore: fix page width
+  - chore: fix page width
+  - chore: add display for consume asset tx
+  - fix: explorer default url
+  - chore: upgrade graphql-client to align with forge v0.17.0
+  - chore: upgrade forge-sdk to align with forge v0.17.0
+  - chore: upgrade forge-proto to align with forge v0.17.0
+  - update readme
+
 ## 0.9.0 (March 04, 2019)
   - chore: make node.js did lib compatible with elixir did lib
   - chore: add more test case
