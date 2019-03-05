@@ -1,3 +1,9 @@
+## 0.11.1 (March 06, 2019)
+  - chore: upgrade forge-sdk with forge v0.17.1
+  - chore: upgrade forge-proto with forge v0.17.1
+  - chore: upgrade graphql-client with forge v0.17.1
+  - update readme
+
 ## 0.11.0 (March 05, 2019)
 
 
