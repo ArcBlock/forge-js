@@ -1,3 +1,6 @@
+## 0.11.0 (March 05, 2019)
+
+
 ## 0.10.1 (March 05, 2019)
   - chore: fix test case for verify jwt token signed by elixir sdk
   - update readme
