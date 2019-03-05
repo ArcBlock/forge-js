@@ -5,15 +5,12 @@ body {
     'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-size: 16px;
+  color: #222222;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
-}
-
-body {
-  font-size: 16px;
-  color: #222222;
 }
 
 a,
@@ -23,8 +20,6 @@ a:active {
   color: #222222;
 }
 
-td {
-  a:hover {
-    text-decoration: underline;
-  }
+td a:hover {
+  text-decoration: underline;
 }
