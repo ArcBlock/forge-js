@@ -75,6 +75,9 @@ declare class GraphQLClient {
     params: GraphQLClient.GetUnconfirmedTxsParams
   ): GraphQLClient.QueryResult<GraphQLClient.ResponseGetUnconfirmedTxs>;
   getValidatorsInfo(): GraphQLClient.QueryResult<GraphQLClient.ResponseGetValidatorsInfo>;
+  listAssetTransactions(
+    params: GraphQLClient.ListAssetTransactionsParams
+  ): GraphQLClient.QueryResult<GraphQLClient.ResponseListAssetTransactions>;
   listTransactions(
     params: GraphQLClient.ListTransactionsParams
   ): GraphQLClient.QueryResult<GraphQLClient.ResponseListTransactions>;
@@ -181,40 +184,40 @@ declare namespace GraphQLClient {
   }
 
   export enum StatusCode {
-    INVALID_NONCE,
-    EXPIRED_ASSET,
-    INVALID_ASSET,
-    UNTRANSFERRABLE_ASSET,
-    INSUFFICIENT_DATA,
-    UNSUPPORTED_TX,
-    FORBIDDEN,
-    INVALID_MONIKER,
-    EXPIRED_WALLET_TOKEN,
-    INVALID_STAKE_STATE,
     EXPIRED_TX,
-    INVALID_CHAIN_ID,
-    UNSUPPORTED_STAKE,
-    INVALID_SENDER_STATE,
+    ACCOUNT_MIGRATED,
+    NOENT,
+    INVALID_MULTISIG,
     INVALID_SIGNER_STATE,
     INVALID_PASSPHRASE,
-    INVALID_FORGE_STATE,
-    CONSENSUS_RPC_ERROR,
-    STORAGE_RPC_ERROR,
-    INVALID_MULTISIG,
-    INVALID_OWNER,
-    INVALID_SIGNATURE,
-    READONLY_ASSET,
-    INSUFFICIENT_FUND,
-    INVALID_RECEIVER_STATE,
-    NOENT,
-    INSUFFICIENT_STAKE,
-    INVALID_TX,
-    ACTIVATED_ASSET,
-    INVALID_WALLET,
-    BANNED_UNSTAKE,
-    ACCOUNT_MIGRATED,
-    INTERNAL,
     INVALID_TX_SIZE,
+    INVALID_OWNER,
+    INVALID_NONCE,
+    CONSENSUS_RPC_ERROR,
+    INVALID_STAKE_STATE,
+    INVALID_SIGNATURE,
+    UNSUPPORTED_TX,
+    EXPIRED_ASSET,
+    INSUFFICIENT_STAKE,
+    INSUFFICIENT_DATA,
+    UNTRANSFERRABLE_ASSET,
+    STORAGE_RPC_ERROR,
+    INVALID_TX,
+    INVALID_MONIKER,
+    INVALID_WALLET,
+    EXPIRED_WALLET_TOKEN,
+    READONLY_ASSET,
+    INVALID_RECEIVER_STATE,
+    BANNED_UNSTAKE,
+    UNSUPPORTED_STAKE,
+    INVALID_SENDER_STATE,
+    INVALID_CHAIN_ID,
+    INSUFFICIENT_FUND,
+    INVALID_FORGE_STATE,
+    CONSUMED_ASSET,
+    FORBIDDEN,
+    INVALID_ASSET,
+    INTERNAL,
     OK,
   }
 
@@ -266,6 +269,7 @@ declare namespace GraphQLClient {
     balance: string;
     context: GraphQLClient.StateContext;
     data: GraphQLClient.Any;
+    issuer: string;
     migratedFrom: Array<string>;
     migratedTo: Array<string>;
     moniker: string;
@@ -284,15 +288,17 @@ declare namespace GraphQLClient {
   }
 
   export interface AssetState {
-    activated: boolean;
     address: string;
+    consumedTime: string;
     context: GraphQLClient.StateContext;
     data: GraphQLClient.Any;
-    expiredAt: string;
+    issuer: string;
     moniker: string;
     owner: string;
     readonly: boolean;
     stake: GraphQLClient.StakeContext;
+    transferrable: boolean;
+    ttl: number;
   }
 
   export interface BlockId {
@@ -357,11 +363,19 @@ declare namespace GraphQLClient {
     validators: Array<Validator>;
   }
 
+  export interface ConsumeAssetTx {
+    address: string;
+    data: GraphQLClient.Any;
+    issuer: string;
+  }
+
   export interface CreateAssetTx {
     data: GraphQLClient.Any;
-    expiredAt: string;
     moniker: string;
+    parent: string;
     readonly: boolean;
+    transferrable: boolean;
+    ttl: number;
   }
 
   export interface DeclareFileTx {
@@ -370,6 +384,7 @@ declare namespace GraphQLClient {
 
   export interface DeclareTx {
     data: GraphQLClient.Any;
+    issuer: string;
     moniker: string;
     pk: string;
     type: GraphQLClient.WalletType;
@@ -416,6 +431,7 @@ declare namespace GraphQLClient {
     numAccountMigrateTxs: Array<number>;
     numBlocks: Array<number>;
     numConsensusUpgradeTxs: Array<number>;
+    numConsumeAssetTxs: Array<number>;
     numCreateAssetTxs: Array<number>;
     numDeclareFileTxs: Array<number>;
     numDeclareTxs: Array<number>;
@@ -465,6 +481,7 @@ declare namespace GraphQLClient {
     nonce: number;
     numAssets: number;
     numTxs: number;
+    recentNumTxs: Array<number>;
     renaissanceTime: string;
     totalReceivedStakes: string;
     totalStakes: string;
@@ -682,6 +699,12 @@ declare namespace GraphQLClient {
   export interface ResponseGetValidatorsInfo {
     code: GraphQLClient.StatusCode;
     validatorsInfo: GraphQLClient.ValidatorsInfo;
+  }
+
+  export interface ResponseListAssetTransactions {
+    code: GraphQLClient.StatusCode;
+    page: GraphQLClient.PageInfo;
+    transactions: Array<IndexedTransaction>;
   }
 
   export interface ResponseListTransactions {
@@ -927,6 +950,7 @@ declare namespace GraphQLClient {
     | GraphQLClient.DeclareFileTx
     | GraphQLClient.DeclareTx
     | GraphQLClient.CreateAssetTx
+    | GraphQLClient.ConsumeAssetTx
     | GraphQLClient.ConsensusUpgradeTx
     | GraphQLClient.AccountMigrateTx;
 
@@ -1001,6 +1025,11 @@ declare namespace GraphQLClient {
     limit: number;
   }
 
+  export interface ListAssetTransactionsParams {
+    address: string;
+    paging: undefined;
+  }
+
   export interface ListTransactionsParams {
     addressFilter: undefined;
     paging: undefined;
@@ -1018,6 +1047,7 @@ declare namespace GraphQLClient {
   }
 
   export interface MultisigParams {
+    data: string;
     token: string;
     tx: string;
     wallet: string;
