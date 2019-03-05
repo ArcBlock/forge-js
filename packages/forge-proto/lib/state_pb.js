@@ -90,6 +90,7 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
         type: (f = msg.getType()) && type_pb.WalletType.toObject(includeInstance, f),
         moniker: jspb.Message.getFieldWithDefault(msg, 7, ''),
         context: (f = msg.getContext()) && type_pb.StateContext.toObject(includeInstance, f),
+        issuer: jspb.Message.getFieldWithDefault(msg, 9, ''),
         migratedToList: jspb.Message.getRepeatedField(msg, 13),
         migratedFromList: jspb.Message.getRepeatedField(msg, 14),
         numAssets: jspb.Message.getFieldWithDefault(msg, 15, 0),
@@ -165,6 +166,10 @@ proto.forge_abi.AccountState.deserializeBinaryFromReader = function(msg, reader)
         var value = new type_pb.StateContext();
         reader.readMessage(value, type_pb.StateContext.deserializeBinaryFromReader);
         msg.setContext(value);
+        break;
+      case 9:
+        var value = /** @type {string} */ (reader.readString());
+        msg.setIssuer(value);
         break;
       case 13:
         var value = /** @type {string} */ (reader.readString());
@@ -251,6 +256,10 @@ proto.forge_abi.AccountState.serializeBinaryToWriter = function(message, writer)
   f = message.getContext();
   if (f != null) {
     writer.writeMessage(8, f, type_pb.StateContext.serializeBinaryToWriter);
+  }
+  f = message.getIssuer();
+  if (f.length > 0) {
+    writer.writeString(9, f);
   }
   f = message.getMigratedToList();
   if (f.length > 0) {
@@ -448,6 +457,19 @@ proto.forge_abi.AccountState.prototype.clearContext = function() {
  */
 proto.forge_abi.AccountState.prototype.hasContext = function() {
   return jspb.Message.getField(this, 8) != null;
+};
+
+/**
+ * optional string issuer = 9;
+ * @return {string}
+ */
+proto.forge_abi.AccountState.prototype.getIssuer = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 9, ''));
+};
+
+/** @param {string} value */
+proto.forge_abi.AccountState.prototype.setIssuer = function(value) {
+  jspb.Message.setProto3StringField(this, 9, value);
 };
 
 /**
@@ -649,10 +671,12 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
         owner: jspb.Message.getFieldWithDefault(msg, 2, ''),
         moniker: jspb.Message.getFieldWithDefault(msg, 3, ''),
         readonly: jspb.Message.getFieldWithDefault(msg, 4, false),
-        activated: jspb.Message.getFieldWithDefault(msg, 5, false),
-        expiredAt:
-          (f = msg.getExpiredAt()) &&
+        transferrable: jspb.Message.getFieldWithDefault(msg, 5, false),
+        ttl: jspb.Message.getFieldWithDefault(msg, 6, 0),
+        consumedTime:
+          (f = msg.getConsumedTime()) &&
           google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+        issuer: jspb.Message.getFieldWithDefault(msg, 8, ''),
         stake: (f = msg.getStake()) && type_pb.StakeContext.toObject(includeInstance, f),
         context: (f = msg.getContext()) && type_pb.StateContext.toObject(includeInstance, f),
         data: (f = msg.getData()) && google_protobuf_any_pb.Any.toObject(includeInstance, f),
@@ -708,15 +732,23 @@ proto.forge_abi.AssetState.deserializeBinaryFromReader = function(msg, reader) {
         break;
       case 5:
         var value = /** @type {boolean} */ (reader.readBool());
-        msg.setActivated(value);
+        msg.setTransferrable(value);
         break;
       case 6:
+        var value = /** @type {number} */ (reader.readUint32());
+        msg.setTtl(value);
+        break;
+      case 7:
         var value = new google_protobuf_timestamp_pb.Timestamp();
         reader.readMessage(
           value,
           google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader
         );
-        msg.setExpiredAt(value);
+        msg.setConsumedTime(value);
+        break;
+      case 8:
+        var value = /** @type {string} */ (reader.readString());
+        msg.setIssuer(value);
         break;
       case 13:
         var value = new type_pb.StakeContext();
@@ -776,13 +808,21 @@ proto.forge_abi.AssetState.serializeBinaryToWriter = function(message, writer) {
   if (f) {
     writer.writeBool(4, f);
   }
-  f = message.getActivated();
+  f = message.getTransferrable();
   if (f) {
     writer.writeBool(5, f);
   }
-  f = message.getExpiredAt();
+  f = message.getTtl();
+  if (f !== 0) {
+    writer.writeUint32(6, f);
+  }
+  f = message.getConsumedTime();
   if (f != null) {
-    writer.writeMessage(6, f, google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter);
+    writer.writeMessage(7, f, google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter);
+  }
+  f = message.getIssuer();
+  if (f.length > 0) {
+    writer.writeString(8, f);
   }
   f = message.getStake();
   if (f != null) {
@@ -853,47 +893,73 @@ proto.forge_abi.AssetState.prototype.setReadonly = function(value) {
 };
 
 /**
- * optional bool activated = 5;
+ * optional bool transferrable = 5;
  * Note that Boolean fields may be set to 0/1 when serialized from a Java server.
  * You should avoid comparisons like {@code val === true/false} in those cases.
  * @return {boolean}
  */
-proto.forge_abi.AssetState.prototype.getActivated = function() {
+proto.forge_abi.AssetState.prototype.getTransferrable = function() {
   return /** @type {boolean} */ (jspb.Message.getFieldWithDefault(this, 5, false));
 };
 
 /** @param {boolean} value */
-proto.forge_abi.AssetState.prototype.setActivated = function(value) {
+proto.forge_abi.AssetState.prototype.setTransferrable = function(value) {
   jspb.Message.setProto3BooleanField(this, 5, value);
 };
 
 /**
- * optional google.protobuf.Timestamp expired_at = 6;
+ * optional uint32 ttl = 6;
+ * @return {number}
+ */
+proto.forge_abi.AssetState.prototype.getTtl = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 6, 0));
+};
+
+/** @param {number} value */
+proto.forge_abi.AssetState.prototype.setTtl = function(value) {
+  jspb.Message.setProto3IntField(this, 6, value);
+};
+
+/**
+ * optional google.protobuf.Timestamp consumed_time = 7;
  * @return {?proto.google.protobuf.Timestamp}
  */
-proto.forge_abi.AssetState.prototype.getExpiredAt = function() {
+proto.forge_abi.AssetState.prototype.getConsumedTime = function() {
   return /** @type{?proto.google.protobuf.Timestamp} */ (jspb.Message.getWrapperField(
     this,
     google_protobuf_timestamp_pb.Timestamp,
-    6
+    7
   ));
 };
 
 /** @param {?proto.google.protobuf.Timestamp|undefined} value */
-proto.forge_abi.AssetState.prototype.setExpiredAt = function(value) {
-  jspb.Message.setWrapperField(this, 6, value);
+proto.forge_abi.AssetState.prototype.setConsumedTime = function(value) {
+  jspb.Message.setWrapperField(this, 7, value);
 };
 
-proto.forge_abi.AssetState.prototype.clearExpiredAt = function() {
-  this.setExpiredAt(undefined);
+proto.forge_abi.AssetState.prototype.clearConsumedTime = function() {
+  this.setConsumedTime(undefined);
 };
 
 /**
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.forge_abi.AssetState.prototype.hasExpiredAt = function() {
-  return jspb.Message.getField(this, 6) != null;
+proto.forge_abi.AssetState.prototype.hasConsumedTime = function() {
+  return jspb.Message.getField(this, 7) != null;
+};
+
+/**
+ * optional string issuer = 8;
+ * @return {string}
+ */
+proto.forge_abi.AssetState.prototype.getIssuer = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 8, ''));
+};
+
+/** @param {string} value */
+proto.forge_abi.AssetState.prototype.setIssuer = function(value) {
+  jspb.Message.setProto3StringField(this, 8, value);
 };
 
 /**

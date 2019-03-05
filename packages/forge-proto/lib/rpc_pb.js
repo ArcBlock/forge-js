@@ -567,8 +567,9 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
     var f,
       obj = {
         tx: (f = msg.getTx()) && type_pb.Transaction.toObject(includeInstance, f),
+        data: (f = msg.getData()) && google_protobuf_any_pb.Any.toObject(includeInstance, f),
         wallet: (f = msg.getWallet()) && type_pb.WalletInfo.toObject(includeInstance, f),
-        token: jspb.Message.getFieldWithDefault(msg, 3, ''),
+        token: jspb.Message.getFieldWithDefault(msg, 4, ''),
       };
 
     if (includeInstance) {
@@ -609,11 +610,16 @@ proto.forge_abi.RequestMultisig.deserializeBinaryFromReader = function(msg, read
         msg.setTx(value);
         break;
       case 2:
+        var value = new google_protobuf_any_pb.Any();
+        reader.readMessage(value, google_protobuf_any_pb.Any.deserializeBinaryFromReader);
+        msg.setData(value);
+        break;
+      case 3:
         var value = new type_pb.WalletInfo();
         reader.readMessage(value, type_pb.WalletInfo.deserializeBinaryFromReader);
         msg.setWallet(value);
         break;
-      case 3:
+      case 4:
         var value = /** @type {string} */ (reader.readString());
         msg.setToken(value);
         break;
@@ -648,13 +654,17 @@ proto.forge_abi.RequestMultisig.serializeBinaryToWriter = function(message, writ
   if (f != null) {
     writer.writeMessage(1, f, type_pb.Transaction.serializeBinaryToWriter);
   }
+  f = message.getData();
+  if (f != null) {
+    writer.writeMessage(2, f, google_protobuf_any_pb.Any.serializeBinaryToWriter);
+  }
   f = message.getWallet();
   if (f != null) {
-    writer.writeMessage(2, f, type_pb.WalletInfo.serializeBinaryToWriter);
+    writer.writeMessage(3, f, type_pb.WalletInfo.serializeBinaryToWriter);
   }
   f = message.getToken();
   if (f.length > 0) {
-    writer.writeString(3, f);
+    writer.writeString(4, f);
   }
 };
 
@@ -688,20 +698,49 @@ proto.forge_abi.RequestMultisig.prototype.hasTx = function() {
 };
 
 /**
- * optional WalletInfo wallet = 2;
+ * optional google.protobuf.Any data = 2;
+ * @return {?proto.google.protobuf.Any}
+ */
+proto.forge_abi.RequestMultisig.prototype.getData = function() {
+  return /** @type{?proto.google.protobuf.Any} */ (jspb.Message.getWrapperField(
+    this,
+    google_protobuf_any_pb.Any,
+    2
+  ));
+};
+
+/** @param {?proto.google.protobuf.Any|undefined} value */
+proto.forge_abi.RequestMultisig.prototype.setData = function(value) {
+  jspb.Message.setWrapperField(this, 2, value);
+};
+
+proto.forge_abi.RequestMultisig.prototype.clearData = function() {
+  this.setData(undefined);
+};
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.forge_abi.RequestMultisig.prototype.hasData = function() {
+  return jspb.Message.getField(this, 2) != null;
+};
+
+/**
+ * optional WalletInfo wallet = 3;
  * @return {?proto.forge_abi.WalletInfo}
  */
 proto.forge_abi.RequestMultisig.prototype.getWallet = function() {
   return /** @type{?proto.forge_abi.WalletInfo} */ (jspb.Message.getWrapperField(
     this,
     type_pb.WalletInfo,
-    2
+    3
   ));
 };
 
 /** @param {?proto.forge_abi.WalletInfo|undefined} value */
 proto.forge_abi.RequestMultisig.prototype.setWallet = function(value) {
-  jspb.Message.setWrapperField(this, 2, value);
+  jspb.Message.setWrapperField(this, 3, value);
 };
 
 proto.forge_abi.RequestMultisig.prototype.clearWallet = function() {
@@ -713,20 +752,20 @@ proto.forge_abi.RequestMultisig.prototype.clearWallet = function() {
  * @return {boolean}
  */
 proto.forge_abi.RequestMultisig.prototype.hasWallet = function() {
-  return jspb.Message.getField(this, 2) != null;
+  return jspb.Message.getField(this, 3) != null;
 };
 
 /**
- * optional string token = 3;
+ * optional string token = 4;
  * @return {string}
  */
 proto.forge_abi.RequestMultisig.prototype.getToken = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ''));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ''));
 };
 
 /** @param {string} value */
 proto.forge_abi.RequestMultisig.prototype.setToken = function(value) {
-  jspb.Message.setProto3StringField(this, 3, value);
+  jspb.Message.setProto3StringField(this, 4, value);
 };
 
 /**
