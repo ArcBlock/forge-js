@@ -1,6 +1,6 @@
 # Forge GraphQL API List
 
-> Updated on 2019-03-05T00:36:24.515Z
+> Updated on 2019-03-05T22:29:20.365Z
 
 
 ## Table of Contents
@@ -63,7 +63,7 @@
 
 ```graphql
 {
-  getAccountState(address: "abc", height: 123, keys: ["abc"]) {
+  getAccountState(address: "abc", height: 123, keys: "abc") {
     code
     state {
       address
@@ -94,8 +94,12 @@
             nonce
             signature
             signatures {
-              key
-              value
+              signature
+              signer
+              data {
+                typeUrl
+                value
+              }
             }
             itx {
               __typename
@@ -230,8 +234,12 @@
             nonce
             signature
             signatures {
-              key
-              value
+              signature
+              signer
+              data {
+                typeUrl
+                value
+              }
             }
             itx {
               __typename
@@ -424,7 +432,7 @@
 
 ```graphql
 {
-  getAssetState(address: "abc", height: 123, keys: ["abc"]) {
+  getAssetState(address: "abc", height: 123, keys: "abc") {
     code
     state {
       address
@@ -453,8 +461,12 @@
             nonce
             signature
             signatures {
-              key
-              value
+              signature
+              signer
+              data {
+                typeUrl
+                value
+              }
             }
             itx {
               __typename
@@ -589,8 +601,12 @@
             nonce
             signature
             signatures {
-              key
-              value
+              signature
+              signer
+              data {
+                typeUrl
+                value
+              }
             }
             itx {
               __typename
@@ -803,8 +819,12 @@
           nonce
           signature
           signatures {
-            key
-            value
+            signature
+            signer
+            data {
+              typeUrl
+              value
+            }
           }
           itx {
             __typename
@@ -966,8 +986,12 @@
           nonce
           signature
           signatures {
-            key
-            value
+            signature
+            signer
+            data {
+              typeUrl
+              value
+            }
           }
           itx {
             __typename
@@ -1162,7 +1186,7 @@ No arguments
 
 ```graphql
 {
-  getForgeState(height: 123, keys: ["abc"]) {
+  getForgeState(height: 123, keys: "abc") {
     code
     state {
       address
@@ -1434,7 +1458,7 @@ No arguments
 
 ```graphql
 {
-  getStakeState(address: "abc", height: 123, keys: ["abc"]) {
+  getStakeState(address: "abc", height: 123, keys: "abc") {
     code
     state {
       address
@@ -1460,8 +1484,12 @@ No arguments
             nonce
             signature
             signatures {
-              key
-              value
+              signature
+              signer
+              data {
+                typeUrl
+                value
+              }
             }
             itx {
               __typename
@@ -1596,8 +1624,12 @@ No arguments
             nonce
             signature
             signatures {
-              key
-              value
+              signature
+              signer
+              data {
+                typeUrl
+                value
+              }
             }
             itx {
               __typename
@@ -1823,8 +1855,12 @@ No arguments
         nonce
         signature
         signatures {
-          key
-          value
+          signature
+          signer
+          data {
+            typeUrl
+            value
+          }
         }
         itx {
           __typename
@@ -1968,8 +2004,12 @@ No arguments
         nonce
         signature
         signatures {
-          key
-          value
+          signature
+          signer
+          data {
+            typeUrl
+            value
+          }
         }
         itx {
           __typename
@@ -2152,8 +2192,12 @@ No arguments
         nonce
         signature
         signatures {
-          key
-          value
+          signature
+          signer
+          data {
+            typeUrl
+            value
+          }
         }
         itx {
           __typename
@@ -2309,8 +2353,12 @@ No arguments
         nonce
         signature
         signatures {
-          key
-          value
+          signature
+          signer
+          data {
+            typeUrl
+            value
+          }
         }
         itx {
           __typename
@@ -2518,8 +2566,12 @@ No arguments
       nonce
       signature
       signatures {
-        key
-        value
+        signature
+        signer
+        data {
+          typeUrl
+          value
+        }
       }
       itx {
         __typename
@@ -2686,8 +2738,12 @@ No arguments
         nonce
         signature
         signatures {
-          key
-          value
+          signature
+          signer
+          data {
+            typeUrl
+            value
+          }
         }
         itx {
           __typename
@@ -2853,8 +2909,12 @@ subscription {
       nonce
       signature
       signatures {
-        key
-        value
+        signature
+        signer
+        data {
+          typeUrl
+          value
+        }
       }
       itx {
         __typename
@@ -2979,8 +3039,12 @@ subscription {
       nonce
       signature
       signatures {
-        key
-        value
+        signature
+        signer
+        data {
+          typeUrl
+          value
+        }
       }
       itx {
         __typename
@@ -3105,8 +3169,12 @@ subscription {
       nonce
       signature
       signatures {
-        key
-        value
+        signature
+        signer
+        data {
+          typeUrl
+          value
+        }
       }
       itx {
         __typename
@@ -3281,8 +3349,12 @@ subscription {
       nonce
       signature
       signatures {
-        key
-        value
+        signature
+        signer
+        data {
+          typeUrl
+          value
+        }
       }
       itx {
         __typename
@@ -3407,8 +3479,12 @@ subscription {
       nonce
       signature
       signatures {
-        key
-        value
+        signature
+        signer
+        data {
+          typeUrl
+          value
+        }
       }
       itx {
         __typename
@@ -3533,8 +3609,12 @@ subscription {
       nonce
       signature
       signatures {
-        key
-        value
+        signature
+        signer
+        data {
+          typeUrl
+          value
+        }
       }
       itx {
         __typename
@@ -3659,8 +3739,12 @@ subscription {
       nonce
       signature
       signatures {
-        key
-        value
+        signature
+        signer
+        data {
+          typeUrl
+          value
+        }
       }
       itx {
         __typename
@@ -3785,8 +3869,12 @@ subscription {
       nonce
       signature
       signatures {
-        key
-        value
+        signature
+        signer
+        data {
+          typeUrl
+          value
+        }
       }
       itx {
         __typename
@@ -3914,8 +4002,12 @@ subscription {
       nonce
       signature
       signatures {
-        key
-        value
+        signature
+        signer
+        data {
+          typeUrl
+          value
+        }
       }
       itx {
         __typename
@@ -4040,8 +4132,12 @@ subscription {
       nonce
       signature
       signatures {
-        key
-        value
+        signature
+        signer
+        data {
+          typeUrl
+          value
+        }
       }
       itx {
         __typename
@@ -4166,8 +4262,12 @@ subscription {
       nonce
       signature
       signatures {
-        key
-        value
+        signature
+        signer
+        data {
+          typeUrl
+          value
+        }
       }
       itx {
         __typename
@@ -4292,8 +4392,12 @@ subscription {
       nonce
       signature
       signatures {
-        key
-        value
+        signature
+        signer
+        data {
+          typeUrl
+          value
+        }
       }
       itx {
         __typename
@@ -4418,8 +4522,12 @@ subscription {
       nonce
       signature
       signatures {
-        key
-        value
+        signature
+        signer
+        data {
+          typeUrl
+          value
+        }
       }
       itx {
         __typename
@@ -4544,8 +4652,12 @@ subscription {
       nonce
       signature
       signatures {
-        key
-        value
+        signature
+        signer
+        data {
+          typeUrl
+          value
+        }
       }
       itx {
         __typename
@@ -4670,8 +4782,12 @@ subscription {
       nonce
       signature
       signatures {
-        key
-        value
+        signature
+        signer
+        data {
+          typeUrl
+          value
+        }
       }
       itx {
         __typename
@@ -4796,8 +4912,12 @@ subscription {
       nonce
       signature
       signatures {
-        key
-        value
+        signature
+        signer
+        data {
+          typeUrl
+          value
+        }
       }
       itx {
         __typename
@@ -4946,8 +5066,12 @@ mutation {
       nonce
       signature
       signatures {
-        key
-        value
+        signature
+        signer
+        data {
+          typeUrl
+          value
+        }
       }
       itx {
         __typename
