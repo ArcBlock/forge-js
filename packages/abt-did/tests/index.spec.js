@@ -136,10 +136,10 @@ describe('@arcblock/abt-did', () => {
     expect(body.key).toEqual('value');
   });
 
-  it.skip('should match elixir jwt test case', () => {
+  it('should be able to verify jwt token signed by elixir', () => {
+    const pk = '0xE4852B7091317E3622068E62A5127D1FB0D4AE2FC50213295E10652D2F0ABFC7';
     const token =
-      'eyJhbGciOiJFZDI1NTE5IiwidHlwIjoiSldUIn0.eyJrZXkiOiJ2YWx1ZSIsImV4cCI6IjE1NTE2OTk3NDEiLCJpYXQiOiIxNTUxNjk3OTQxIiwiaXNzIjoiZGlkOmFidDp6MWlvR0hGWWlFZW1mTGEzaFFqazRKVHdXVFFQdTFnMll4UCIsIm5iZiI6IjE1NTE2OTc5NDEifQ.XLUfXct21kZOWSPMpP0qzvZjyZXajPyc2TkKLUxXA5cSgYIrYRXHKJMSiyIg7tZNutu1INdrrkZTPUH9_ik_Dg';
-    const pk = '0xFF47B3022FA503EAA1E9FA4B20FA8B16694EA56096F3A2E9109714062B3486D9';
+      'eyJhbGciOiJFZDI1NTE5IiwidHlwIjoiSldUIn0.eyJrZXkiOiJ2YWx1ZSIsImlzcyI6ImRpZDphYnQ6ek5LdENOcVlXTFlXWVczZ1dSQTF2blJ5a2ZDQlpZSFp2ektyIn0.5cP-B1SCbPUZsq9NeFSRyRXBncvljUrowHd6EWCPrK-LP2j7pHQb1j9h2ZdaU2435HXL_EYChN7teilTa6xYDA';
     const result = jwtVerify(token, pk);
     expect(result).toEqual(true);
   });

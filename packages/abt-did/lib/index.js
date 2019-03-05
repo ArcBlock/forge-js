@@ -173,8 +173,10 @@ const toTypeInfo = (did, returnString = false) => {
 
     return returnString ? typeStr : type;
   } catch (err) {
-    // eslint-disable-next-line
-    console.warn('AbtDid.toTypeInfo.decodeError', err);
+    if (process.env.NODE_ENV !== 'test') {
+      // eslint-disable-next-line
+      console.warn('AbtDid.toTypeInfo.decodeError', err);
+    }
     return {};
   }
 };
@@ -215,7 +217,6 @@ const jwtSign = (did, sk, payload = {}) => {
 
   // make header
   const header = jwtHeaders[type.key];
-  // console.log({ type, header, jwtHeaders });
   const headerB64 = base64.escape(base64.encode(JSON.stringify(header)));
 
   // make body
@@ -251,7 +252,6 @@ const jwtSign = (did, sk, payload = {}) => {
   const msgHex = toHex(`${headerB64}.${bodyB64}`);
   const sigHex = signer[type.key].sign(msgHex, sk);
   const sigB64 = base64.escape(Buffer.from(sigHex.replace(/^0x/, ''), 'hex').toString('base64'));
-  // console.log({ header, headerB64, body, bodyB64, msgHex, sigHex, sigB64 });
 
   return [headerB64, bodyB64, sigB64].join('.');
 };
@@ -294,14 +294,15 @@ const jwtVerify = (token, pk) => {
     const alg = header.alg.toLowerCase();
     if (signers[alg]) {
       const msgHex = toHex(`${headerB64}.${bodyB64}`);
-      // console.log({ header, headerB64, body, bodyB64, msgHex, sigB64, signature, sigHex });
       return signers[alg].verify(msgHex, sigHex, pk);
     }
 
     return false;
   } catch (err) {
-    // eslint-disable-next-line
-    console.error('jwtVerify.error', err);
+    if (process.env.NODE_ENV !== 'test') {
+      // eslint-disable-next-line
+      console.error('jwtVerify.error', err);
+    }
     return false;
   }
 };
