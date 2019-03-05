@@ -1,6 +1,6 @@
 {
   "name": "@arcblock/abt-did",
-  "version": "0.8.7",
+  "version": "0.9.0",
   "description": "Javascript lib to work with ArcBlock DID",
   "keywords": [
     "forge",
@@ -37,8 +37,8 @@
     "url": "https://github.com/ArcBlock/forge-js/issues"
   },
   "dependencies": {
-    "@arcblock/forge-util": "^0.8.7",
-    "@arcblock/mcrypto": "^0.8.7",
+    "@arcblock/forge-util": "^0.9.0",
+    "@arcblock/mcrypto": "^0.9.0",
     "base64-url": "^2.2.0",
     "debug": "^4.1.1",
     "hdkey": "^1.1.1",
