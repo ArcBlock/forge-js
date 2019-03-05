@@ -13,6 +13,7 @@
     "browser-lang": "^0.0.1",
     "copy-to-clipboard": "^3.0.8",
     "flat": "^4.1.0",
+    "graphiql": "^0.13.0",
     "hoist-non-react-statics": "^3.3.0",
     "humanize-string": "^1.0.2",
     "js-cookie": "^2.2.0",
