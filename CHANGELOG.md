@@ -1,3 +1,7 @@
+## 0.10.1 (March 05, 2019)
+  - chore: fix test case for verify jwt token signed by elixir sdk
+  - update readme
+
 ## 0.10.0 (March 05, 2019)
   - feat: basic asset detail page
   - chore: update random message
