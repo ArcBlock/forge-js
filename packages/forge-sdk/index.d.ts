@@ -128,7 +128,7 @@ declare class RpcClient {
  * @returns net.Server
  */
 declare function create(config: any): Readonly<ForgeSDK.T101>;
-declare function addSource(T104: any): void;
+declare function addSource(T104: T105): void;
 declare function parseConfig(configPath: any): any;
 /**
  * Create an protobuf encoded Typed message with specified data, ready to send to rpc server
