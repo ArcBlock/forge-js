@@ -283,86 +283,66 @@
 ```js
 const result = await client.createTx({
   itx: {
-    type: 'WalletType',
-    value: {
-      pk: 0,
-      hash: 14,
-      address: 1,
-      role: 7
-    }
+    type: 'fg:x:random_data',
+    value: 'ABCD 1234'
   },
-  from: '47b986177b7a0c98fec631f28a0d4059499bf569',
-  nonce: 5468,
+  from: '9e532c06a04ed086e4480c9b10e3549111703308',
+  nonce: 91858,
   wallet: {
     type: {
-      pk: 0,
+      pk: 1,
       hash: 6,
       address: 0,
-      role: 4
+      role: 5
     },
     sk: Uint8Array [
-      89
+      207
     ],
     pk: Uint8Array [
-      88
+      220
     ],
-    address: 'b1b9ae2e2489f76fd9d7d96a6129560555d2dbfc'
+    address: '1f79635a2554487ae32dc27a8fa2c739e654adf2'
   },
-  token: 'Buckinghamshire'
+  token: 'Illinois'
 });
 
 // response is a stream
 result.on('data', data => {
   // response data format
   {
-  code: 4,
+  code: 24,
   tx: {
-    from: 'a4d3165f9807e7db5d88ad6c5f2f35f418a7224a',
-    nonce: 53526,
+    from: '50a698e88b514966a189c74553e4c56e4cfb9b6d',
+    nonce: 10043,
     signature: Uint8Array [
-      128
+      85
     ],
-    chainId: '1080p',
+    chainId: 'hacking',
     signatures: [
       {
-        signer: 'Stream',
+        signer: 'Awesome Steel Cheese',
         signature: Uint8Array [
-          108
+          148
         ],
         data: {
-          type: 'WalletType',
-          value: {
-            pk: 1,
-            hash: 1,
-            address: 1,
-            role: 1
-          }
+          type: 'fg:x:random_data',
+          value: 'ABCD 1234'
         }
       },
       {
-        signer: 'connect',
+        signer: 'Buckinghamshire',
         signature: Uint8Array [
-          183
+          21
         ],
         data: {
-          type: 'WalletType',
-          value: {
-            pk: 1,
-            hash: 14,
-            address: 0,
-            role: 1
-          }
+          type: 'fg:x:random_data',
+          value: 'ABCD 1234'
         }
       }
     ],
     itx: {
-      type: 'WalletType',
-      value: {
-        pk: 0,
-        hash: 0,
-        address: 1,
-        role: 2
-      }
+      type: 'fg:x:random_data',
+      value: 'ABCD 1234'
     }
   }
 }
@@ -373,36 +353,36 @@ result.on('data', data => {
 
 ```js
 const result = await client.createWallet({
-  passphrase: 'Agent',
+  passphrase: 'Pants',
   type: {
     pk: 1,
-    hash: 1,
+    hash: 6,
     address: 0,
-    role: 2
+    role: 7
   },
-  moniker: 'New Hampshire'
+  moniker: 'national'
 });
 
 // response is a stream
 result.on('data', data => {
   // response data format
   {
-  code: 42,
-  token: 'bypassing',
+  code: 31,
+  token: 'Salad',
   wallet: {
     type: {
       pk: 0,
-      hash: 0,
-      address: 1,
-      role: 1
+      hash: 13,
+      address: 0,
+      role: 7
     },
     sk: Uint8Array [
-      255
+      233
     ],
     pk: Uint8Array [
-      123
+      50
     ],
-    address: '8f65d72675881fb8252a19c16ee91c337bd03a15'
+    address: '99b1ff6dc97cfddcec6f6539450d40e2bcc26a2c'
   }
 }
 });
@@ -419,21 +399,21 @@ const result = await client.declareNode({
 result.on('data', data => {
   // response data format
   {
-  code: 33,
+  code: 32,
   wallet: {
     type: {
       pk: 0,
-      hash: 13,
+      hash: 1,
       address: 1,
-      role: 8
+      role: 6
     },
     sk: Uint8Array [
-      53
+      16
     ],
     pk: Uint8Array [
-      107
+      149
     ],
-    address: '2a31463904c84a860791b911db361b4a66e4d0bc'
+    address: 'b036f53d2e914ae6855069e7f16d74536bf1a031'
   }
 }
 });
@@ -443,77 +423,77 @@ result.on('data', data => {
 
 ```js
 const stream = client.getAccountState({
-  address: 'e0c116647a8622d9210ae868756e7c6c9a728e9f',
+  address: 'ec092402bea9335359db680ebbbe05a3a02d48b6',
   keys: [
-    'Berkshire',
-    'Georgia'
+    'compress',
+    'evolve'
   ],
-  height: 88615
+  height: 8723
 });
 
 // output
 {
-  code: 32,
+  code: 35,
   state: {
-    balance: '57150',
-    nonce: 59958,
-    numTxs: 3842,
-    address: 'b859452a1fa6dca8863b633658d3a4146a1a0b37',
+    balance: '64496',
+    nonce: 15423,
+    numTxs: 15828,
+    address: '9d86b25b6ee27956432677c5ad57ffa2c2911534',
     pk: Uint8Array [
-      14
+      216
     ],
     type: {
       pk: 1,
-      hash: 1,
-      address: 1,
-      role: 2
+      hash: 6,
+      address: 0,
+      role: 5
     },
-    moniker: 'array',
+    moniker: 'invoice',
     context: {
-      genesisTx: 'Cambridgeshire',
-      renaissanceTx: 'communities',
-      genesisTime: '2019-03-05T00:35:00.853Z',
-      renaissanceTime: '2019-03-05T00:35:00.853Z'
+      genesisTx: 'copying',
+      renaissanceTx: 'PCI',
+      genesisTime: '2019-03-05T02:54:13.058Z',
+      renaissanceTime: '2019-03-05T02:54:13.058Z'
     },
-    issuer: 'USB',
+    issuer: 'parse',
     migratedTo: [
-      'Maryland',
-      'deposit'
+      'Nakfa',
+      'Wisconsin'
     ],
     migratedFrom: [
-      'Bike',
-      'actuating'
+      'architecture',
+      'supply-chains'
     ],
-    numAssets: 94878,
+    numAssets: 52186,
     stake: {
-      totalStakes: '82326',
-      totalUnstakes: '39630',
-      totalReceivedStakes: '2987',
+      totalStakes: '44608',
+      totalUnstakes: '52561',
+      totalReceivedStakes: '83289',
       recentStakes: {
         items: [
           Uint8Array [
-            45
+            62
           ],
           Uint8Array [
-            91
+            95
           ]
         ],
-        typeUrl: 'Intelligent',
-        maxItems: 13452,
+        typeUrl: 'Avon',
+        maxItems: 57108,
         circular: undefined,
         fifo: undefined
       },
       recentReceivedStakes: {
         items: [
           Uint8Array [
-            92
+            2
           ],
           Uint8Array [
-            220
+            96
           ]
         ],
-        typeUrl: 'Planner',
-        maxItems: 73827,
+        typeUrl: 'copying',
+        maxItems: 15722,
         circular: undefined,
         fifo: undefined
       }
@@ -521,25 +501,20 @@ const stream = client.getAccountState({
     pinnedFiles: {
       items: [
         Uint8Array [
-          157
+          27
         ],
         Uint8Array [
-          209
+          151
         ]
       ],
-      typeUrl: 'override',
-      maxItems: 36068,
+      typeUrl: 'PNG',
+      maxItems: 18374,
       circular: undefined,
       fifo: undefined
     },
     data: {
-      type: 'WalletType',
-      value: {
-        pk: 1,
-        hash: 13,
-        address: 1,
-        role: 0
-      }
+      type: 'fg:x:random_data',
+      value: 'ABCD 1234'
     }
   }
 }
@@ -549,28 +524,23 @@ const stream = client.getAccountState({
 
 ```js
 const result = await client.getAssetAddress({
-  senderAddress: 'Central',
+  senderAddress: 'Bolivar Fuerte',
   itx: {
-    moniker: 'connect',
+    moniker: 'Rubber',
     data: {
-      type: 'WalletType',
-      value: {
-        pk: 1,
-        hash: 6,
-        address: 1,
-        role: 8
-      }
+      type: 'fg:x:random_data',
+      value: 'ABCD 1234'
     },
     readonly: undefined,
     transferrable: undefined,
-    ttl: 40436,
-    parent: 'Berkshire'
+    ttl: 47032,
+    parent: 'Handmade'
   },
   walletType: {
     pk: 0,
-    hash: 14,
-    address: 1,
-    role: 2
+    hash: 0,
+    address: 0,
+    role: 6
   }
 });
 
@@ -578,8 +548,8 @@ const result = await client.getAssetAddress({
 result.on('data', data => {
   // response data format
   {
-  code: 403,
-  assetAddress: 'Jewelery'
+  code: 41,
+  assetAddress: '24/7'
 }
 });
 ```
@@ -588,73 +558,68 @@ result.on('data', data => {
 
 ```js
 const stream = client.getAssetState({
-  address: '8806721f52807399cda8ed91eca14335426c1757',
+  address: '7c3f936d4f3529f3a4f77797325d7022edddbcac',
   keys: [
-    'index',
-    'Implementation'
+    'Mouse',
+    'Sleek Rubber Pants'
   ],
-  height: 69510
+  height: 87332
 });
 
 // output
 {
-  code: 30,
+  code: 6,
   state: {
-    address: '653daa797b8d5472b847acc9145e259604c5b0b8',
-    owner: 'salmon',
-    moniker: 'Car',
+    address: 'db778672bfcf3da9bb2c8a7050679f5096c9fa07',
+    owner: 'Handcrafted Concrete Mouse',
+    moniker: 'bypass',
     readonly: undefined,
     transferrable: undefined,
-    ttl: 1999,
-    consumedTime: '2019-03-05T00:35:00.854Z',
-    issuer: 'Realigned',
+    ttl: 44350,
+    consumedTime: '2019-03-05T02:54:13.059Z',
+    issuer: 'azure',
     stake: {
-      totalStakes: '31601',
-      totalUnstakes: '1285',
-      totalReceivedStakes: '76865',
+      totalStakes: '64056',
+      totalUnstakes: '44279',
+      totalReceivedStakes: '33153',
       recentStakes: {
         items: [
           Uint8Array [
-            211
+            67
           ],
           Uint8Array [
-            54
+            80
           ]
         ],
-        typeUrl: 'optimal',
-        maxItems: 22791,
+        typeUrl: 'syndicate',
+        maxItems: 39188,
         circular: undefined,
         fifo: undefined
       },
       recentReceivedStakes: {
         items: [
           Uint8Array [
-            118
+            19
           ],
           Uint8Array [
-            105
+            190
           ]
         ],
-        typeUrl: 'Rwanda',
-        maxItems: 61004,
+        typeUrl: 'model',
+        maxItems: 50410,
         circular: undefined,
         fifo: undefined
       }
     },
     context: {
-      genesisTx: 'expedite',
-      renaissanceTx: 'JSON',
-      genesisTime: '2019-03-05T00:35:00.855Z',
-      renaissanceTime: '2019-03-05T00:35:00.855Z'
+      genesisTx: 'system',
+      renaissanceTx: 'Open-source',
+      genesisTime: '2019-03-05T02:54:13.060Z',
+      renaissanceTime: '2019-03-05T02:54:13.060Z'
     },
     data: {
-      type: 'WalletType',
-      value: {
-        pk: 1,
-        hash: 14,
-        address: 1,
-        role: 6
-      }
+      type: 'fg:x:random_data',
+      value: 'ABCD 1234'
     }
   }
 }
@@ -665,47 +630,47 @@ const stream = client.getAssetState({
 ```js
 const result = await client.getAssets({
   paging: {
-    cursor: 'Sleek Granite Computer',
-    size: 10819,
+    cursor: 'Panama',
+    size: 65440,
     order: [
       {
-        field: 'Money Market Account',
-        type: 'Belarussian Ruble'
+        field: 'Intelligent Rubber Towels',
+        type: 'monetize'
       },
       {
-        field: 'transition',
-        type: 'Fall'
+        field: 'secondary',
+        type: 'Beauty'
       }
     ]
   },
-  ownerAddress: 'calculate'
+  ownerAddress: 'Mouse'
 });
 
 // response is a stream
 result.on('data', data => {
   // response data format
   {
-  code: 10,
+  code: 2,
   page: {
-    cursor: 'Kentucky',
+    cursor: 'Bedfordshire',
     next: undefined,
-    total: 99998
+    total: 64974
   },
   assets: [
     {
-      address: '651c9b900b5a327d9fccd18915c79fb6870fd366',
-      owner: 'Intelligent',
-      genesisTime: 'CFP Franc',
-      renaissanceTime: 'Avon',
-      moniker: 'Awesome',
+      address: '5497d9d253389f4ba572b50082ee88110a5211aa',
+      owner: 'Illinois',
+      genesisTime: 'Guyana Dollar',
+      renaissanceTime: 'customer loyalty',
+      moniker: 'National',
       readonly: undefined
     },
     {
-      address: 'd4fac8c8b41f0fb6ff9ca049e4088129a89028c5',
-      owner: 'Afghanistan',
-      genesisTime: 'Movies',
-      renaissanceTime: 'Liaison',
-      moniker: 'Money Market Account',
+      address: '814b735f4c51950d158da57312992152263d03e1',
+      owner: 'red',
+      genesisTime: 'primary',
+      renaissanceTime: 'Harbor',
+      moniker: 'partnerships',
       readonly: undefined
     }
   ]
@@ -717,167 +682,137 @@ result.on('data', data => {
 
 ```js
 const stream = client.getBlock({
-  height: 21654
+  height: 3576
 });
 
 // output
 {
-  code: 500,
+  code: 22,
   block: {
-    height: 3851,
-    numTxs: 32646,
-    time: '2019-03-05T00:35:00.856Z',
-    appHash: '6112e63d1caf17501af7a1d637bd62f8a130c92c',
-    proposer: '660255e42750af91f0cf2a6e7461808879e6e875',
+    height: 60831,
+    numTxs: 58130,
+    time: '2019-03-05T02:54:13.060Z',
+    appHash: 'ef5430a85c7d216cd9ec7c965e036b637a79402c',
+    proposer: '0974a3a97881dfbf8ff58fa5c31301b1742480b6',
     txs: [
       {
         tx: {
-          from: 'f74eca93a897e6c82b0232854f40ab6f86910998',
-          nonce: 30445,
+          from: 'e09c801d5fff82dc43b34d264078187e39f7fe4e',
+          nonce: 96775,
           signature: Uint8Array [
-            134
+            229
           ],
-          chainId: 'payment',
+          chainId: 'Vermont',
           signatures: [
             {
-              signer: 'payment',
+              signer: 'neural',
               signature: Uint8Array [
-                169
+                185
               ],
               data: {
-                type: 'WalletType',
-                value: {
-                  pk: 1,
-                  hash: 13,
-                  address: 0,
-                  role: 6
-                }
+                type: 'fg:x:random_data',
+                value: 'ABCD 1234'
               }
             },
             {
-              signer: 'extensible',
+              signer: 'Corporate',
               signature: Uint8Array [
-                194
+                28
               ],
               data: {
-                type: 'WalletType',
-                value: {
-                  pk: 0,
-                  hash: 14,
-                  address: 0,
-                  role: 1
-                }
+                type: 'fg:x:random_data',
+                value: 'ABCD 1234'
               }
             }
           ],
           itx: {
-            type: 'WalletType',
-            value: {
-              pk: 1,
-              hash: 6,
-              address: 1,
-              role: 7
-            }
+            type: 'fg:x:random_data',
+            value: 'ABCD 1234'
           }
         },
-        height: 13709,
-        index: 64764,
-        hash: '143a7e9e17312a54c621c1ab79fcdffe23c1a6c0',
+        height: 26556,
+        index: 90593,
+        hash: 'ce87aa16d3266ab2dcc8457da30aa2e97478d3c4',
         tags: [
           {
             key: Uint8Array [
-              122
+              39
             ],
             value: Uint8Array [
-              57
+              136
             ]
           },
           {
             key: Uint8Array [
-              11
+              199
             ],
             value: Uint8Array [
-              0
+              22
             ]
           }
         ],
-        code: 38
+        code: 27
       },
       {
         tx: {
-          from: 'b4db81f18455dddff569019439fc7c948c819dff',
-          nonce: 77575,
+          from: 'cab739f32c4b4b43f2fdf528fd71096eb014c15a',
+          nonce: 54851,
           signature: Uint8Array [
-            165
+            82
           ],
-          chainId: 'hard drive',
+          chainId: 'interactive',
           signatures: [
             {
-              signer: 'Alabama',
+              signer: 'Keyboard',
               signature: Uint8Array [
-                80
+                22
               ],
               data: {
-                type: 'WalletType',
-                value: {
-                  pk: 0,
-                  hash: 0,
-                  address: 0,
-                  role: 6
-                }
+                type: 'fg:x:random_data',
+                value: 'ABCD 1234'
               }
             },
             {
-              signer: 'product',
+              signer: 'Persistent',
               signature: Uint8Array [
-                231
+                233
               ],
               data: {
-                type: 'WalletType',
-                value: {
-                  pk: 0,
-                  hash: 7,
-                  address: 1,
-                  role: 0
-                }
+                type: 'fg:x:random_data',
+                value: 'ABCD 1234'
               }
             }
           ],
           itx: {
-            type: 'WalletType',
-            value: {
-              pk: 1,
-              hash: 0,
-              address: 1,
-              role: 1
-            }
+            type: 'fg:x:random_data',
+            value: 'ABCD 1234'
           }
         },
-        height: 98268,
-        index: 87845,
-        hash: '113989e63aaca639cb5c7fcc415b042148d966dc',
+        height: 29468,
+        index: 61803,
+        hash: 'd6818972c1bc7d85bc85ca3df8c3bec88d460900',
         tags: [
           {
             key: Uint8Array [
-              156
+              149
             ],
             value: Uint8Array [
-              108
+              219
             ]
           },
           {
             key: Uint8Array [
-              73
+              67
             ],
             value: Uint8Array [
-              131
+              81
             ]
           }
         ],
-        code: 4
+        code: 403
       }
     ],
-    totalTxs: 27349
+    totalTxs: 71104
   }
 }
 ```
@@ -887,21 +822,21 @@ const stream = client.getBlock({
 ```js
 const result = await client.getBlocks({
   paging: {
-    cursor: 'ADP',
-    size: 68556,
+    cursor: 'driver',
+    size: 66024,
     order: [
       {
-        field: 'foreground',
-        type: 'service-desk'
+        field: 'navigate',
+        type: 'invoice'
       },
       {
-        field: 'Practical',
-        type: 'Won'
+        field: 'US Dollar',
+        type: 'Tools'
       }
     ]
   },
-  minHeight: 35892,
-  maxHeight: 13062,
+  minHeight: 48407,
+  maxHeight: 43331,
   emptyExcluded: undefined
 });
 
@@ -909,284 +844,264 @@ const result = await client.getBlocks({
 result.on('data', data => {
   // response data format
   {
-  code: 9,
+  code: 41,
   page: {
-    cursor: 'Auto Loan Account',
+    cursor: 'Philippines',
     next: undefined,
-    total: 15673
+    total: 30527
   },
   blocks: [
     {
-      height: 53352,
-      numTxs: 67312,
-      time: '2019-03-05T00:35:00.858Z',
-      appHash: '6362c5f3db2265a959589c6295c84b087196da82',
-      proposer: '46f47c28e233c32c41555b426907436b94253499',
+      height: 93269,
+      numTxs: 23548,
+      time: '2019-03-05T02:54:13.062Z',
+      appHash: '3d83fa64f51cb1d4d63e260dcda38ddd996606bc',
+      proposer: '54d42d2a225a3758b73d12033ed252f981549c0d',
       txs: [
         {
           tx: {
-            from: 'f8b16a27375d55d49de09c79c8d921a003f97ca0',
-            nonce: 84108,
+            from: 'a18a611ae42ee454d667bd946d12d76e06ecc46c',
+            nonce: 78728,
             signature: Uint8Array [
-              75
+              14
             ],
-            chainId: 'solutions',
+            chainId: 'Jewelery',
             signatures: [
               {
-                signer: 'Handmade Fresh Chicken',
+                signer: 'indexing',
                 signature: Uint8Array [
-                  186
+                  104
                 ],
                 data: {
-                  type: 'WalletType',
-                  value: [Object]
+                  type: 'fg:x:random_data',
+                  value: 'ABCD 1234'
                 }
               },
               {
-                signer: 'Refined Frozen Soap',
+                signer: 'Right-sized',
                 signature: Uint8Array [
-                  226
+                  198
                 ],
                 data: {
-                  type: 'WalletType',
-                  value: [Object]
+                  type: 'fg:x:random_data',
+                  value: 'ABCD 1234'
                 }
               }
             ],
             itx: {
-              type: 'WalletType',
-              value: {
-                pk: 1,
-                hash: 14,
-                address: 0,
-                role: 6
-              }
+              type: 'fg:x:random_data',
+              value: 'ABCD 1234'
             }
           },
-          height: 72456,
-          index: 76210,
-          hash: '1240979962b3dbaeca8aa058bb8beea1f6b79c5c',
+          height: 50779,
+          index: 78007,
+          hash: 'b944516865840244c11a6623d4b546b1a052e23c',
           tags: [
             {
               key: Uint8Array [
-                112
+                241
               ],
               value: Uint8Array [
-                222
+                156
               ]
             },
             {
               key: Uint8Array [
-                10
+                140
               ],
               value: Uint8Array [
-                93
+                17
               ]
             }
           ],
-          code: 10
+          code: 24
         },
         {
           tx: {
-            from: 'ee4b588de7643db3f3c0514b5478c607d53a5be9',
-            nonce: 75490,
+            from: 'e8d1331073b10ace51151c0a810896a9a8f85a38',
+            nonce: 43857,
             signature: Uint8Array [
-              215
+              168
             ],
-            chainId: 'multi-tasking',
+            chainId: 'array',
             signatures: [
               {
-                signer: 'teal',
+                signer: 'metrics',
                 signature: Uint8Array [
-                  124
+                  86
                 ],
                 data: {
-                  type: 'WalletType',
-                  value: [Object]
+                  type: 'fg:x:random_data',
+                  value: 'ABCD 1234'
                 }
               },
               {
-                signer: 'digital',
+                signer: 'Place',
                 signature: Uint8Array [
-                  94
+                  152
                 ],
                 data: {
-                  type: 'WalletType',
-                  value: [Object]
+                  type: 'fg:x:random_data',
+                  value: 'ABCD 1234'
                 }
               }
             ],
             itx: {
-              type: 'WalletType',
-              value: {
-                pk: 1,
-                hash: 1,
-                address: 0,
-                role: 8
-              }
+              type: 'fg:x:random_data',
+              value: 'ABCD 1234'
             }
           },
-          height: 54904,
-          index: 47211,
-          hash: '6f687c2df452222913340e51a4a4f3e549746a75',
+          height: 81818,
+          index: 99527,
+          hash: 'c8e396be44d26d49200b833d8c7fd69229a189b4',
           tags: [
             {
               key: Uint8Array [
-                14
+                21
               ],
               value: Uint8Array [
-                41
+                16
               ]
             },
             {
               key: Uint8Array [
-                137
+                106
               ],
               value: Uint8Array [
-                231
+                23
               ]
             }
           ],
-          code: 3
+          code: 9
         }
       ],
-      totalTxs: 20009
+      totalTxs: 58125
     },
     {
-      height: 74348,
-      numTxs: 51509,
-      time: '2019-03-05T00:35:00.859Z',
-      appHash: '6a6aeab86a5318bd92cb9866b66deac823c7cad4',
-      proposer: '335cadeffa9b289535ce2b74cf96ff25ff9d9b10',
+      height: 76351,
+      numTxs: 19,
+      time: '2019-03-05T02:54:13.062Z',
+      appHash: '45c31ad72bb9012b992125608329d3fc81928d6d',
+      proposer: 'b04824ea332dccd42575952071f542e875490685',
       txs: [
         {
           tx: {
-            from: 'ed9a7820b1060d9fd2e348f177fc1e813405c798',
-            nonce: 87917,
+            from: '35150c3ec48423d6973118940903e54163d4e0e4',
+            nonce: 63493,
             signature: Uint8Array [
-              87
+              174
             ],
-            chainId: 'Small',
+            chainId: 'haptic',
             signatures: [
               {
-                signer: 'Realigned',
+                signer: 'grow',
                 signature: Uint8Array [
-                  216
+                  22
                 ],
                 data: {
-                  type: 'WalletType',
-                  value: [Object]
+                  type: 'fg:x:random_data',
+                  value: 'ABCD 1234'
                 }
               },
               {
-                signer: 'bandwidth',
+                signer: 'Savings Account',
                 signature: Uint8Array [
-                  189
+                  193
                 ],
                 data: {
-                  type: 'WalletType',
-                  value: [Object]
+                  type: 'fg:x:random_data',
+                  value: 'ABCD 1234'
                 }
               }
             ],
             itx: {
-              type: 'WalletType',
-              value: {
-                pk: 0,
-                hash: 0,
-                address: 1,
-                role: 8
-              }
+              type: 'fg:x:random_data',
+              value: 'ABCD 1234'
             }
           },
-          height: 9403,
-          index: 98191,
-          hash: 'b2bb702262f19ab9ef095819235b82e4f11987ef',
+          height: 94004,
+          index: 38309,
+          hash: '29907e89808d28ca2dd6357f1c974c02592a4340',
           tags: [
             {
               key: Uint8Array [
-                218
+                161
               ],
               value: Uint8Array [
-                115
+                174
               ]
             },
             {
               key: Uint8Array [
-                210
+                143
               ],
               value: Uint8Array [
-                125
+                177
               ]
             }
           ],
-          code: 22
+          code: 6
         },
         {
           tx: {
-            from: '711cd4da37dc5c872655c677931cf7792f42b461',
-            nonce: 73354,
+            from: 'ccec0398460e3113ce3f14060fa402099a1c5715',
+            nonce: 9779,
             signature: Uint8Array [
-              156
+              62
             ],
-            chainId: 'Creek',
+            chainId: 'Rial Omani',
             signatures: [
               {
-                signer: 'Fort',
+                signer: 'CFA Franc BEAC',
                 signature: Uint8Array [
-                  36
+                  114
                 ],
                 data: {
-                  type: 'WalletType',
-                  value: [Object]
+                  type: 'fg:x:random_data',
+                  value: 'ABCD 1234'
                 }
               },
               {
-                signer: 'Senior',
+                signer: 'payment',
                 signature: Uint8Array [
-                  37
+                  128
                 ],
                 data: {
-                  type: 'WalletType',
-                  value: [Object]
+                  type: 'fg:x:random_data',
+                  value: 'ABCD 1234'
                 }
               }
             ],
             itx: {
-              type: 'WalletType',
-              value: {
-                pk: 0,
-                hash: 0,
-                address: 0,
-                role: 0
-              }
+              type: 'fg:x:random_data',
+              value: 'ABCD 1234'
             }
           },
-          height: 67313,
-          index: 53169,
-          hash: '18c629053a2d49d387f036a00958d77a339988ed',
+          height: 39613,
+          index: 87567,
+          hash: 'c162105f82d8f0d42590d3a2e077b5fa940d3292',
           tags: [
             {
               key: Uint8Array [
-                51
+                89
               ],
               value: Uint8Array [
-                29
+                65
               ]
             },
             {
               key: Uint8Array [
-                163
+                133
               ],
               value: Uint8Array [
-                8
+                92
               ]
             }
           ],
-          code: 20
+          code: 5
         }
       ],
-      totalTxs: 14511
+      totalTxs: 5496
     }
   ]
 }
@@ -1202,30 +1117,30 @@ const result = await client.getChainInfo({});
 result.on('data', data => {
   // response data format
   {
-  code: 9,
+  code: 27,
   info: {
-    id: 'Intelligent',
-    network: 'magenta',
-    moniker: 'Alaska',
-    consensusVersion: 'card',
+    id: 'sticky',
+    network: 'Representative',
+    moniker: 'input',
+    consensusVersion: 'deposit',
     synced: undefined,
-    appHash: '1028bfa0b2e25830959b9668f5a3a6a87575f691',
+    appHash: '79efb3022f4154537975d4df54aa092724b86a52',
     blockHash: Uint8Array [
-      215
+      236
     ],
-    blockHeight: 70317,
-    blockTime: '2019-03-05T00:35:00.860Z',
-    address: '48cf136f897e2c37edfd4d7d64ca3f8e2e0da0e5',
-    votingPower: 88964,
-    totalTxs: 66691,
-    version: 'Credit Card Account',
-    dataVersion: 'initiatives',
+    blockHeight: 67495,
+    blockTime: '2019-03-05T02:54:13.063Z',
+    address: 'e9eb061c4db9abc64a27e059e35db036bd051f7d',
+    votingPower: 56941,
+    totalTxs: 41503,
+    version: 'collaboration',
+    dataVersion: 'extranet',
     forgeAppsVersion: {
-      'function randomWord (type) {\n\n    var wordMethods = [\n    \'commerce.department\',\n    \'commerce.productName\',\n    \'commerce.productAdjective\',\n    \'commerce.productMaterial\',\n    \'commerce.product\',\n    \'commerce.color\',\n\n    \'company.catchPhraseAdjective\',\n    \'company.catchPhraseDescriptor\',\n    \'company.catchPhraseNoun\',\n    \'company.bsAdjective\',\n    \'company.bsBuzz\',\n    \'company.bsNoun\',\n    \'address.streetSuffix\',\n    \'address.county\',\n    \'address.country\',\n    \'address.state\',\n\n    \'finance.accountName\',\n    \'finance.transactionType\',\n    \'finance.currencyName\',\n\n    \'hacker.noun\',\n    \'hacker.verb\',\n    \'hacker.adjective\',\n    \'hacker.ingverb\',\n    \'hacker.abbreviation\',\n\n    \'name.jobDescriptor\',\n    \'name.jobArea\',\n    \'name.jobType\'];\n\n    // randomly pick from the many faker methods that can generate words\n    var randomWordMethod = faker.random.arrayElement(wordMethods);\n    return faker.fake(\'{{\' + randomWordMethod + \'}}\');\n\n  }': 'reintermediate'
+      'function randomWord (type) {\n\n    var wordMethods = [\n    \'commerce.department\',\n    \'commerce.productName\',\n    \'commerce.productAdjective\',\n    \'commerce.productMaterial\',\n    \'commerce.product\',\n    \'commerce.color\',\n\n    \'company.catchPhraseAdjective\',\n    \'company.catchPhraseDescriptor\',\n    \'company.catchPhraseNoun\',\n    \'company.bsAdjective\',\n    \'company.bsBuzz\',\n    \'company.bsNoun\',\n    \'address.streetSuffix\',\n    \'address.county\',\n    \'address.country\',\n    \'address.state\',\n\n    \'finance.accountName\',\n    \'finance.transactionType\',\n    \'finance.currencyName\',\n\n    \'hacker.noun\',\n    \'hacker.verb\',\n    \'hacker.adjective\',\n    \'hacker.ingverb\',\n    \'hacker.abbreviation\',\n\n    \'name.jobDescriptor\',\n    \'name.jobArea\',\n    \'name.jobType\'];\n\n    // randomly pick from the many faker methods that can generate words\n    var randomWordMethod = faker.random.arrayElement(wordMethods);\n    return faker.fake(\'{{\' + randomWordMethod + \'}}\');\n\n  }': 'Norwegian Krone'
     },
     supportedTxs: [
-      'Music',
-      'optical'
+      'Metal',
+      'Keyboard'
     ]
   }
 }
@@ -1241,8 +1156,8 @@ const result = await client.getConfig({});
 result.on('data', data => {
   // response data format
   {
-  code: 8,
-  config: 'Cheese'
+  code: 38,
+  config: 'customer loyalty'
 }
 });
 ```
@@ -1252,36 +1167,36 @@ result.on('data', data => {
 ```js
 const result = await client.getForgeState({
   keys: [
-    'Gibraltar',
-    'Rial Omani'
+    'withdrawal',
+    'invoice'
   ],
-  height: 95589
+  height: 43089
 });
 
 // response is a stream
 result.on('data', data => {
   // response data format
   {
-  code: 5,
+  code: 22,
   state: {
-    address: '05b0661fc67c82e5b8b476267efa06eece8ea8ef',
+    address: '881fb5df2cb725aee52f3b2d254bcd223b4cbe33',
     consensus: {
-      maxBytes: 29303,
-      maxGas: 8576,
-      maxValidators: 18151,
-      maxCandidates: 18086,
+      maxBytes: 24257,
+      maxGas: 7326,
+      maxValidators: 24178,
+      maxCandidates: 487,
       pubKeyTypes: [
-        'Data',
-        'Valley'
+        'Via',
+        'Cayman Islands'
       ],
       validators: [
         {
-          address: '8963df2efb4e131d9d76fefe7182c7b910392484',
-          power: 56805
+          address: 'ddcd7bafa45879995171a898f616a49a4200b4ac',
+          power: 38038
         },
         {
-          address: '992325c94d222865a4904fc05f29a75b82a891db',
-          power: 85905
+          address: 'b7bd232587e4dc26d722ce83bcd6b71bdeab900e',
+          power: 64584
         }
       ],
       validatorChanged: undefined,
@@ -1291,16 +1206,16 @@ result.on('data', data => {
       'function (options) {\n\n    if (typeof options === "number") {\n      options = {\n        max: options\n      };\n    }\n\n    options = options || {};\n\n    if (typeof options.min === "undefined") {\n      options.min = 0;\n    }\n\n    if (typeof options.max === "undefined") {\n      options.max = 99999;\n    }\n    if (typeof options.precision === "undefined") {\n      options.precision = 1;\n    }\n\n    // Make the range inclusive of the max value\n    var max = options.max;\n    if (max >= 0) {\n      max += options.precision;\n    }\n\n    var randomNumber = Math.floor(\n      mersenne.rand(max / options.precision, options.min / options.precision));\n    // Workaround problem in Float point arithmetics for e.g. 6681493 / 0.01\n    randomNumber = randomNumber / (1 / options.precision);\n\n    return randomNumber;\n\n  }': {
         item: [
           {
-            type: 10,
-            dataHash: 'facilitate',
+            type: 12,
+            dataHash: 'input',
             actions: [
               undefined,
               undefined
             ]
           },
           {
-            type: 12,
-            dataHash: 'Cambridgeshire',
+            type: 2,
+            dataHash: 'fault-tolerant',
             actions: [
               undefined,
               undefined
@@ -1311,29 +1226,24 @@ result.on('data', data => {
     },
     stakeSummary: {
       'function (options) {\n\n    if (typeof options === "number") {\n      options = {\n        max: options\n      };\n    }\n\n    options = options || {};\n\n    if (typeof options.min === "undefined") {\n      options.min = 0;\n    }\n\n    if (typeof options.max === "undefined") {\n      options.max = 99999;\n    }\n    if (typeof options.precision === "undefined") {\n      options.precision = 1;\n    }\n\n    // Make the range inclusive of the max value\n    var max = options.max;\n    if (max >= 0) {\n      max += options.precision;\n    }\n\n    var randomNumber = Math.floor(\n      mersenne.rand(max / options.precision, options.min / options.precision));\n    // Workaround problem in Float point arithmetics for e.g. 6681493 / 0.01\n    randomNumber = randomNumber / (1 / options.precision);\n\n    return randomNumber;\n\n  }': {
-        totalStakes: '44252',
-        totalUnstakes: '74047',
+        totalStakes: '220',
+        totalUnstakes: '87268',
         context: {
-          genesisTx: 'copying',
-          renaissanceTx: 'lavender',
-          genesisTime: '2019-03-05T00:35:00.862Z',
-          renaissanceTime: '2019-03-05T00:35:00.862Z'
+          genesisTx: 'calculate',
+          renaissanceTx: 'monitor',
+          genesisTime: '2019-03-05T02:54:13.064Z',
+          renaissanceTime: '2019-03-05T02:54:13.064Z'
         }
       }
     },
-    version: 'overriding',
-    dataVersion: 'bandwidth',
+    version: 'Toys',
+    dataVersion: 'Planner',
     forgeAppHash: Uint8Array [
-      88
+      132
     ],
     data: {
-      type: 'WalletType',
-      value: {
-        pk: 0,
-        hash: 1,
-        address: 0,
-        role: 1
-      }
+      type: 'fg:x:random_data',
+      value: 'ABCD 1234'
     }
   }
 }
@@ -1345,8 +1255,8 @@ result.on('data', data => {
 ```js
 const result = await client.getForgeStatistics({
   dayInfo: {
-    startDate: 'Tasty',
-    endDate: 'Shoes'
+    startDate: 'microchip',
+    endDate: 'California'
   }
 });
 
@@ -1354,67 +1264,67 @@ const result = await client.getForgeStatistics({
 result.on('data', data => {
   // response data format
   {
-  code: 35,
+  code: 0,
   forgeStatistics: {
     numBlocks: [
-      14398,
-      9608
+      40249,
+      36428
     ],
     numTxs: [
-      60361,
-      88979
+      47196,
+      39966
     ],
     numStakes: [
-      '41863',
-      '1647'
+      '86540',
+      '77881'
     ],
     numValidators: [
-      1820,
-      45870
+      48442,
+      28216
     ],
     numAccountMigrateTxs: [
-      32524,
-      78723
+      44777,
+      61985
     ],
     numCreateAssetTxs: [
-      34728,
-      9338
+      99166,
+      39977
     ],
     numConsensusUpgradeTxs: [
-      16952,
-      74285
+      80153,
+      29601
     ],
     numDeclareTxs: [
-      65467,
-      99233
+      97967,
+      21436
     ],
     numDeclareFileTxs: [
-      93116,
-      21086
+      84859,
+      37602
     ],
     numExchangeTxs: [
-      61095,
-      25457
+      42158,
+      26396
     ],
     numStakeTxs: [
-      33228,
-      97063
+      55859,
+      18533
     ],
     numSysUpgradeTxs: [
-      66827,
-      36471
+      7024,
+      25613
     ],
     numTransferTxs: [
-      66327,
-      55267
+      92594,
+      13171
     ],
     numUpdateAssetTxs: [
-      81732,
-      19860
+      65380,
+      70341
     ],
     numConsumeAssetTxs: [
-      76911,
-      83452
+      85871,
+      70827
     ]
   }
 }
@@ -1430,39 +1340,39 @@ const result = await client.getNetInfo({});
 result.on('data', data => {
   // response data format
   {
-  code: 36,
+  code: 3,
   netInfo: {
     listening: undefined,
     listeners: [
-      'Optimized',
-      'withdrawal'
+      'Walk',
+      'application'
     ],
-    nPeers: 97825,
+    nPeers: 7239,
     peers: [
       {
-        id: 'Jewelery',
-        network: 'backing up',
-        consensusVersion: 'frictionless',
-        moniker: 'executive',
-        ip: 'User-centric',
+        id: 'Berkshire',
+        network: 'firewall',
+        consensusVersion: 'Guarani',
+        moniker: 'Compatible',
+        ip: 'Regional',
         geoInfo: {
-          city: 'invoice',
-          country: 'paradigms',
-          latitude: 97230.03,
-          longitude: 928.24
+          city: 'Cliff',
+          country: 'interface',
+          latitude: 32004.02,
+          longitude: 40150.27
         }
       },
       {
-        id: 'neural',
-        network: 'Steel',
-        consensusVersion: 'SDD',
-        moniker: 'orange',
-        ip: 'markets',
+        id: 'Tasty Wooden Chips',
+        network: 'Coordinator',
+        consensusVersion: 'Generic',
+        moniker: 'Tasty',
+        ip: 'Internal',
         geoInfo: {
-          city: 'Bangladesh',
-          country: 'Electronics',
-          latitude: 75079.86,
-          longitude: 14258.17
+          city: 'applications',
+          country: 'invoice',
+          latitude: 41564.75,
+          longitude: 19678.68
         }
       }
     ]
@@ -1480,37 +1390,37 @@ const result = await client.getNodeInfo({});
 result.on('data', data => {
   // response data format
   {
-  code: 4,
+  code: 38,
   info: {
-    id: 'Cotton',
-    network: 'Enhanced',
-    moniker: 'index',
-    consensusVersion: 'De-engineered',
+    id: 'SCSI',
+    network: 'Yemen',
+    moniker: 'programming',
+    consensusVersion: 'port',
     synced: undefined,
-    appHash: '9ed7c8dc88c035551a937093fd0a65b7d4a7b3d7',
+    appHash: '7e596aa4fdbed3645cc64d7bc108f2cadc0044c2',
     blockHash: Uint8Array [
-      92
+      255
     ],
-    blockHeight: 53282,
-    blockTime: '2019-03-05T00:35:00.863Z',
-    address: '60fd80783cf1524ceefd42ba8d774199a614f6e0',
-    votingPower: 77428,
-    totalTxs: 33163,
-    version: 'attitude-oriented',
-    dataVersion: 'initiatives',
+    blockHeight: 50718,
+    blockTime: '2019-03-05T02:54:13.065Z',
+    address: 'ffdb4d552482a6a4a4b67c82c7c3211d2f14201a',
+    votingPower: 10197,
+    totalTxs: 45714,
+    version: 'Minnesota',
+    dataVersion: 'target',
     forgeAppsVersion: {
-      'function randomWord (type) {\n\n    var wordMethods = [\n    \'commerce.department\',\n    \'commerce.productName\',\n    \'commerce.productAdjective\',\n    \'commerce.productMaterial\',\n    \'commerce.product\',\n    \'commerce.color\',\n\n    \'company.catchPhraseAdjective\',\n    \'company.catchPhraseDescriptor\',\n    \'company.catchPhraseNoun\',\n    \'company.bsAdjective\',\n    \'company.bsBuzz\',\n    \'company.bsNoun\',\n    \'address.streetSuffix\',\n    \'address.county\',\n    \'address.country\',\n    \'address.state\',\n\n    \'finance.accountName\',\n    \'finance.transactionType\',\n    \'finance.currencyName\',\n\n    \'hacker.noun\',\n    \'hacker.verb\',\n    \'hacker.adjective\',\n    \'hacker.ingverb\',\n    \'hacker.abbreviation\',\n\n    \'name.jobDescriptor\',\n    \'name.jobArea\',\n    \'name.jobType\'];\n\n    // randomly pick from the many faker methods that can generate words\n    var randomWordMethod = faker.random.arrayElement(wordMethods);\n    return faker.fake(\'{{\' + randomWordMethod + \'}}\');\n\n  }': 'Sleek'
+      'function randomWord (type) {\n\n    var wordMethods = [\n    \'commerce.department\',\n    \'commerce.productName\',\n    \'commerce.productAdjective\',\n    \'commerce.productMaterial\',\n    \'commerce.product\',\n    \'commerce.color\',\n\n    \'company.catchPhraseAdjective\',\n    \'company.catchPhraseDescriptor\',\n    \'company.catchPhraseNoun\',\n    \'company.bsAdjective\',\n    \'company.bsBuzz\',\n    \'company.bsNoun\',\n    \'address.streetSuffix\',\n    \'address.county\',\n    \'address.country\',\n    \'address.state\',\n\n    \'finance.accountName\',\n    \'finance.transactionType\',\n    \'finance.currencyName\',\n\n    \'hacker.noun\',\n    \'hacker.verb\',\n    \'hacker.adjective\',\n    \'hacker.ingverb\',\n    \'hacker.abbreviation\',\n\n    \'name.jobDescriptor\',\n    \'name.jobArea\',\n    \'name.jobType\'];\n\n    // randomly pick from the many faker methods that can generate words\n    var randomWordMethod = faker.random.arrayElement(wordMethods);\n    return faker.fake(\'{{\' + randomWordMethod + \'}}\');\n\n  }': 'virtual'
     },
     supportedTxs: [
-      'Optimized',
-      'Small Soft Sausages'
+      'program',
+      'Baby'
     ],
-    ip: 'Tasty',
+    ip: 'Soft',
     geoInfo: {
-      city: 'Sausages',
-      country: 'Solutions',
-      latitude: 60952.1,
-      longitude: 45885.14
+      city: 'Views',
+      country: 'turquoise',
+      latitude: 33806.02,
+      longitude: 46525.76
     }
   }
 }
@@ -1521,37 +1431,32 @@ result.on('data', data => {
 
 ```js
 const stream = client.getStakeState({
-  address: '19fd915ee32a455a83b5882214393dba90d7979c',
+  address: '7fd8d2daaf8ba80b65105ff09e614000de4c92e0',
   keys: [
-    'Assimilated',
-    'Corporate'
+    'capacity',
+    'encompassing'
   ],
-  height: 73285
+  height: 71789
 });
 
 // output
 {
-  code: 4,
+  code: 9,
   state: {
-    address: '7544f0757d4bd319bdd446e214f5f8c6185b772b',
-    from: 'b81b2c67251cab05774f99a0e9db8673a287c187',
-    to: 'daa48d9685e34a0b9a1e612af3e761c8852e1e89',
-    balance: '22431',
-    message: 'Forward',
+    address: '1a470a59c6855cfb45481c0f4d1a8e3355176709',
+    from: '66190cdd01e721edd0e0529e978fb643658306e3',
+    to: 'a47add3f510a4ce5b99c698f2314b85e2689f3ef',
+    balance: '19117',
+    message: 'Dynamic',
     context: {
-      genesisTx: 'technologies',
-      renaissanceTx: 'Wyoming',
-      genesisTime: '2019-03-05T00:35:00.864Z',
-      renaissanceTime: '2019-03-05T00:35:00.864Z'
+      genesisTx: 'best-of-breed',
+      renaissanceTx: 'Small Cotton Shoes',
+      genesisTime: '2019-03-05T02:54:13.066Z',
+      renaissanceTime: '2019-03-05T02:54:13.066Z'
     },
     data: {
-      type: 'WalletType',
-      value: {
-        pk: 0,
-        hash: 1,
-        address: 0,
-        role: 0
-      }
+      type: 'fg:x:random_data',
+      value: 'ABCD 1234'
     }
   }
 }
@@ -1562,22 +1467,22 @@ const stream = client.getStakeState({
 ```js
 const result = await client.getStakes({
   paging: {
-    cursor: 'haptic',
-    size: 73645,
+    cursor: 'Legacy',
+    size: 95538,
     order: [
       {
-        field: 'Virgin Islands, British',
-        type: 'Savings Account'
+        field: 'Regional',
+        type: 'schemas'
       },
       {
-        field: 'strategic',
-        type: 'microchip'
+        field: 'viral',
+        type: 'protocol'
       }
     ]
   },
   addressFilter: {
-    sender: 'Kyrgyz Republic',
-    receiver: 'Berkshire',
+    sender: 'Music',
+    receiver: 'Handcrafted',
     direction: 1
   }
 });
@@ -1586,32 +1491,32 @@ const result = await client.getStakes({
 result.on('data', data => {
   // response data format
   {
-  code: 39,
+  code: 32,
   page: {
-    cursor: 'Mexico',
+    cursor: 'Credit Card Account',
     next: undefined,
-    total: 73557
+    total: 47471
   },
   stakes: [
     {
-      address: 'c68d5eb283302347a074722dc01075eb4fae007d',
-      balance: '80630',
-      sender: 'sensor',
-      receiver: 'whiteboard',
-      genesisTime: 'Virginia',
-      renaissanceTime: 'Ball',
-      message: 'transition',
-      type: 92690
+      address: '5edca11b0e16782265de3349a8fd18f7bb89495f',
+      balance: '91073',
+      sender: 'open-source',
+      receiver: 'Gorgeous',
+      genesisTime: 'Bedfordshire',
+      renaissanceTime: 'overriding',
+      message: 'Keys',
+      type: 88174
     },
     {
-      address: '70e76d6568605f12fdae1f80dc52b419e38a83a1',
-      balance: '1075',
-      sender: 'black',
-      receiver: 'Shoes',
-      genesisTime: 'e-business',
-      renaissanceTime: 'Awesome Frozen Bike',
-      message: 'Incredible',
-      type: 87832
+      address: 'b1aefbaa7a2215d2c49fe5586f1f4fd032b2bd2d',
+      balance: '9443',
+      sender: 'interface',
+      receiver: 'encoding',
+      genesisTime: 'Soft',
+      renaissanceTime: 'Maine',
+      message: 'Music',
+      type: 70756
     }
   ]
 }
@@ -1623,16 +1528,16 @@ result.on('data', data => {
 ```js
 const result = await client.getTopAccounts({
   paging: {
-    cursor: 'Solutions',
-    size: 5776,
+    cursor: 'Kentucky',
+    size: 56311,
     order: [
       {
-        field: 'stable',
-        type: 'sexy'
+        field: 'Holy See (Vatican City State)',
+        type: 'Table'
       },
       {
-        field: 'Generic',
-        type: 'Architect'
+        field: 'Kina',
+        type: 'Forges'
       }
     ]
   }
@@ -1642,49 +1547,49 @@ const result = await client.getTopAccounts({
 result.on('data', data => {
   // response data format
   {
-  code: 41,
+  code: 32,
   page: {
-    cursor: 'Automotive',
+    cursor: 'pixel',
     next: undefined,
-    total: 79808
+    total: 88761
   },
   accounts: [
     {
-      address: 'c70f37280028c9eeb4852cc1b4c8a64a585ee825',
-      balance: '25128',
-      numAssets: 16082,
-      numTxs: 2525,
-      nonce: 79590,
-      genesisTime: 'National',
-      renaissanceTime: 'Industrial',
-      moniker: 'Supervisor',
-      migratedFrom: 'Chilean Peso Unidades de fomento',
-      migratedTo: 'Kansas',
-      totalReceivedStakes: '35704',
-      totalStakes: '90323',
-      totalUnstakes: '40456',
+      address: 'dd85efb69b5b4cf7586407e92d519936f6a66fbd',
+      balance: '73011',
+      numAssets: 64698,
+      numTxs: 21982,
+      nonce: 17852,
+      genesisTime: 'Idaho',
+      renaissanceTime: 'Investor',
+      moniker: 'zero administration',
+      migratedFrom: 'throughput',
+      migratedTo: 'copy',
+      totalReceivedStakes: '6521',
+      totalStakes: '40800',
+      totalUnstakes: '28397',
       recentNumTxs: [
-        88643,
-        57601
+        8719,
+        9323
       ]
     },
     {
-      address: 'e8628fe3012d5ff219b205bb28153602bff1e3bb',
-      balance: '42986',
-      numAssets: 36502,
-      numTxs: 18935,
-      nonce: 88843,
-      genesisTime: 'system',
-      renaissanceTime: 'Steel',
-      moniker: 'protocol',
-      migratedFrom: 'connecting',
-      migratedTo: 'Paraguay',
-      totalReceivedStakes: '45245',
-      totalStakes: '88215',
-      totalUnstakes: '39168',
+      address: '996c96ca68d975d233d14cb978cd0fc4ae6d7d0d',
+      balance: '69006',
+      numAssets: 86573,
+      numTxs: 77734,
+      nonce: 70438,
+      genesisTime: 'Glens',
+      renaissanceTime: 'Automotive',
+      moniker: 'revolutionary',
+      migratedFrom: 'New Mexico',
+      migratedTo: 'Group',
+      totalReceivedStakes: '22131',
+      totalStakes: '10649',
+      totalUnstakes: '50603',
       recentNumTxs: [
-        64915,
-        81719
+        16337,
+        8146
       ]
     }
   ]
@@ -1696,84 +1601,69 @@ result.on('data', data => {
 
 ```js
 const stream = client.getTx({
-  hash: '66176db0f635db422737d23d1f2e8ceb5e7e676c'
+  hash: 'fa21e0ee0eb8f89a2b972c078eecf25c36f98b8e'
 });
 
 // output
 {
-  code: 34,
+  code: 39,
   info: {
     tx: {
-      from: '4a17be3a7c20a7d2dbd1e35b2a09ae2e0c1178e2',
-      nonce: 46030,
+      from: '4c1d92b0577eaf9093815f10ae4f6faaef44e65a',
+      nonce: 26740,
       signature: Uint8Array [
-        3
+        43
       ],
-      chainId: 'EXE',
+      chainId: 'neutral',
       signatures: [
         {
-          signer: 'National',
+          signer: 'systems',
           signature: Uint8Array [
-            211
+            171
           ],
           data: {
-            type: 'WalletType',
-            value: {
-              pk: 0,
-              hash: 0,
-              address: 1,
-              role: 2
-            }
+            type: 'fg:x:random_data',
+            value: 'ABCD 1234'
           }
         },
         {
-          signer: 'calculate',
+          signer: 'Factors',
           signature: Uint8Array [
-            185
+            60
           ],
           data: {
-            type: 'WalletType',
-            value: {
-              pk: 0,
-              hash: 7,
-              address: 0,
-              role: 7
-            }
+            type: 'fg:x:random_data',
+            value: 'ABCD 1234'
           }
         }
       ],
       itx: {
-        type: 'WalletType',
-        value: {
-          pk: 1,
-          hash: 14,
-          address: 1,
-          role: 8
-        }
+        type: 'fg:x:random_data',
+        value: 'ABCD 1234'
       }
     },
-    height: 95866,
-    index: 96603,
-    hash: '8efa6ff6400298b7a6c7bda8519a114ffb16d625',
+    height: 65178,
+    index: 62798,
+    hash: '2a357193bb751ae6bddace82f3ac1d614ed15cc4',
     tags: [
       {
         key: Uint8Array [
-          204
+          100
         ],
         value: Uint8Array [
-          148
+          58
         ]
       },
       {
         key: Uint8Array [
-          58
+          174
         ],
         value: Uint8Array [
-          161
+          116
         ]
       }
     ],
-    code: 41
+    code: 35
   }
 }
 ```
@@ -1782,113 +1672,83 @@ const stream = client.getTx({
 
 ```js
 const result = await client.getUnconfirmedTxs({
-  limit: 94107
+  limit: 30072
 });
 
 // response is a stream
 result.on('data', data => {
   // response data format
   {
-  code: 37,
+  code: 24,
   unconfirmedTxs: {
-    nTxs: 50244,
+    nTxs: 91913,
     txs: [
       {
-        from: '94801a58691e32c46d16d0f3da64ad5f06d6cae3',
-        nonce: 96702,
+        from: '9ef9731d6d238c3578010db035f9b4f9c384dfd4',
+        nonce: 67309,
         signature: Uint8Array [
-          74
+          165
         ],
-        chainId: 'Denar',
+        chainId: 'Music',
         signatures: [
           {
-            signer: 'enable',
+            signer: 'Configuration',
             signature: Uint8Array [
-              25
+              138
             ],
             data: {
-              type: 'WalletType',
-              value: {
-                pk: 1,
-                hash: 7,
-                address: 1,
-                role: 0
-              }
+              type: 'fg:x:random_data',
+              value: 'ABCD 1234'
             }
           },
           {
-            signer: 'Kansas',
+            signer: 'optimal',
             signature: Uint8Array [
-              155
+              164
             ],
             data: {
-              type: 'WalletType',
-              value: {
-                pk: 0,
-                hash: 13,
-                address: 1,
-                role: 6
-              }
+              type: 'fg:x:random_data',
+              value: 'ABCD 1234'
             }
           }
         ],
         itx: {
-          type: 'WalletType',
-          value: {
-            pk: 1,
-            hash: 13,
-            address: 0,
-            role: 6
-          }
+          type: 'fg:x:random_data',
+          value: 'ABCD 1234'
         }
       },
       {
-        from: '488001f5ac513fccd5c116072302459b0285b8f4',
-        nonce: 26918,
+        from: '3784eb4133dd8ac90ec4f47c606970d0aa9e2bc7',
+        nonce: 43652,
         signature: Uint8Array [
-          101
+          77
         ],
-        chainId: 'Malagasy Ariary',
+        chainId: 'payment',
         signatures: [
           {
-            signer: 'platforms',
+            signer: 'Buckinghamshire',
             signature: Uint8Array [
-              77
+              152
             ],
             data: {
-              type: 'WalletType',
-              value: {
-                pk: 0,
-                hash: 14,
-                address: 1,
-                role: 6
-              }
+              type: 'fg:x:random_data',
+              value: 'ABCD 1234'
             }
           },
           {
-            signer: 'District',
+            signer: 'capacitor',
             signature: Uint8Array [
-              112
+              84
             ],
             data: {
-              type: 'WalletType',
-              value: {
-                pk: 1,
-                hash: 13,
-                address: 1,
-                role: 3
-              }
+              type: 'fg:x:random_data',
+              value: 'ABCD 1234'
             }
           }
         ],
         itx: {
-          type: 'WalletType',
-          value: {
-            pk: 0,
-            hash: 6,
-            address: 1,
-            role: 2
-          }
+          type: 'fg:x:random_data',
+          value: 'ABCD 1234'
         }
       }
     ]
@@ -1906,33 +1766,33 @@ const result = await client.getValidatorsInfo({});
 result.on('data', data => {
   // response data format
   {
-  code: 16,
+  code: 500,
   validatorsInfo: {
-    blockHeight: 78557,
+    blockHeight: 97012,
     validators: [
       {
-        address: '5fec7b536b1b0cea13d62d60cf2f1e31573f7bb2',
+        address: 'f59f68ea285a087a6aa6b945f1443dbfa4603252',
         pubKey: {
-          type: 'Fresh',
+          type: 'Gorgeous Granite Bacon',
           data: Uint8Array [
-            114
+            17
           ]
         },
-        votingPower: 48270,
-        proposerPriority: 'value-added',
-        name: 'viral'
+        votingPower: 62727,
+        proposerPriority: 'Peru',
+        name: 'withdrawal'
       },
       {
-        address: '90115c2cc7b9b6d959a4b28c23b567764f027dc3',
+        address: '73726c606c9f625ecea91b68f81c8eaa0a0bb865',
         pubKey: {
-          type: 'Alabama',
+          type: 'Human',
           data: Uint8Array [
-            233
+            135
           ]
         },
-        votingPower: 19648,
-        proposerPriority: 'card',
-        name: 'Clothing'
+        votingPower: 52525,
+        proposerPriority: 'navigate',
+        name: 'transition'
       }
     ]
   }
@@ -1945,142 +1805,112 @@ result.on('data', data => {
 ```js
 const result = await client.listAssetTransactions({
   paging: {
-    cursor: 'Web',
-    size: 35396,
+    cursor: 'Future-proofed',
+    size: 31273,
     order: [
       {
-        field: 'Brunei Darussalam',
-        type: 'deposit'
+        field: 'Beauty',
+        type: 'Rubber'
       },
       {
-        field: 'Investor',
-        type: 'Down-sized'
+        field: 'Generic',
+        type: 'Towels'
       }
     ]
   },
-  address: '04a5d287944c3f62c3c9591c363d0f0fd046762f'
+  address: '0fc15b18ec96eff86025df5d2f3cea5f343d25f4'
 });
 
 // response is a stream
 result.on('data', data => {
   // response data format
   {
-  code: 40,
+  code: 33,
   page: {
-    cursor: 'harness',
+    cursor: 'Fantastic',
     next: undefined,
-    total: 29541
+    total: 40369
   },
   transactions: [
     {
-      hash: 'd046fdad03ee82cd8b26e41f5ea4af45a049eb83',
-      sender: 'Refined',
-      receiver: 'Buckinghamshire',
-      time: 'Executive',
-      type: 'Object-based',
+      hash: '5c7b5074127d03cf87d0a752e0d69c4944fc866a',
+      sender: 'Garden',
+      receiver: 'website',
+      time: 'Functionality',
+      type: 'withdrawal',
       tx: {
-        from: '4bc58e6207da273c4be7a42d9274b1b743ce4538',
-        nonce: 71355,
+        from: '2db2e84abcc5ed92d9d5a62668647ef94625db44',
+        nonce: 82454,
         signature: Uint8Array [
-          54
+          18
         ],
-        chainId: 'architect',
+        chainId: 'Upgradable',
         signatures: [
           {
-            signer: 'plum',
+            signer: 'Automotive',
             signature: Uint8Array [
-              96
+              0
             ],
             data: {
-              type: 'WalletType',
-              value: {
-                pk: 0,
-                hash: 6,
-                address: 0,
-                role: 5
-              }
+              type: 'fg:x:random_data',
+              value: 'ABCD 1234'
             }
           },
           {
-            signer: 'Technician',
+            signer: 'Myanmar',
             signature: Uint8Array [
-              207
+              21
             ],
             data: {
-              type: 'WalletType',
-              value: {
-                pk: 0,
-                hash: 13,
-                address: 1,
-                role: 1
-              }
+              type: 'fg:x:random_data',
+              value: 'ABCD 1234'
             }
           }
         ],
         itx: {
-          type: 'WalletType',
-          value: {
-            pk: 1,
-            hash: 0,
-            address: 1,
-            role: 2
-          }
+          type: 'fg:x:random_data',
+          value: 'ABCD 1234'
         }
       }
     },
     {
-      hash: '27aa3efe1ffe91e0fed913477987accb2ac65c9e',
-      sender: 'infrastructure',
-      receiver: 'object-oriented',
-      time: 'encoding',
-      type: 'lime',
+      hash: '38375b1837d160c6cf033ef6dbff6366eca37aa1',
+      sender: 'Computers',
+      receiver: 'Expanded',
+      time: 'reboot',
+      type: 'compelling',
       tx: {
-        from: 'c1b5c630d254399c3df6bb92482bbf1e1eefab5c',
-        nonce: 10639,
+        from: '08dcf646d722ffc5d5cb820c1c53ac00120fe09f',
+        nonce: 61247,
         signature: Uint8Array [
-          34
+          134
         ],
-        chainId: 'SQL',
+        chainId: 'Rhode Island',
         signatures: [
           {
-            signer: 'Landing',
+            signer: 'Program',
             signature: Uint8Array [
-              175
+              227
             ],
             data: {
-              type: 'WalletType',
-              value: {
-                pk: 1,
-                hash: 14,
-                address: 0,
-                role: 8
-              }
+              type: 'fg:x:random_data',
+              value: 'ABCD 1234'
             }
           },
           {
-            signer: 'lime',
+            signer: 'attitude',
             signature: Uint8Array [
-              107
+              255
             ],
             data: {
-              type: 'WalletType',
-              value: {
-                pk: 0,
-                hash: 1,
-                address: 0,
-                role: 2
-              }
+              type: 'fg:x:random_data',
+              value: 'ABCD 1234'
             }
           }
         ],
         itx: {
-          type: 'WalletType',
-          value: {
-            pk: 0,
-            hash: 14,
-            address: 0,
-            role: 2
-          }
+          type: 'fg:x:random_data',
+          value: 'ABCD 1234'
         }
       }
     }
@@ -2094,32 +1924,32 @@ result.on('data', data => {
 ```js
 const result = await client.listTransactions({
   paging: {
-    cursor: 'redefine',
-    size: 60675,
+    cursor: 'Cape Verde Escudo',
+    size: 56384,
     order: [
       {
-        field: 'Bhutan',
-        type: 'interface'
+        field: 'deposit',
+        type: 'empowering'
       },
       {
-        field: 'SCSI',
-        type: 'Global'
+        field: 'Central',
+        type: 'Oregon'
       }
     ]
   },
   timeFilter: {
-    startDateTime: 'payment',
-    endDateTime: 'Enhanced'
+    startDateTime: 'Unbranded Fresh Pizza',
+    endDateTime: 'Wisconsin'
   },
   addressFilter: {
-    sender: 'emulation',
-    receiver: 'Synergized',
-    direction: 1
+    sender: 'Credit Card Account',
+    receiver: 'Legacy',
+    direction: 2
   },
   typeFilter: {
     types: [
-      'online',
-      'Generic Fresh Shoes'
+      'whiteboard',
+      'IB'
     ]
   }
 });
@@ -2128,122 +1958,92 @@ const result = await client.listTransactions({
 result.on('data', data => {
   // response data format
   {
-  code: 3,
+  code: 5,
   page: {
-    cursor: 'harness',
+    cursor: 'Agent',
     next: undefined,
-    total: 30413
+    total: 89192
   },
   transactions: [
     {
-      hash: '59a7e2402bb3a04e16a21c6ed3f663c2f0c6ffb9',
-      sender: 'Associate',
-      receiver: 'calculating',
-      time: 'West Virginia',
-      type: 'success',
+      hash: 'c2146c234d83a11eac4c532206a619769ea036a5',
+      sender: 'Tasty Fresh Chicken',
+      receiver: 'Central',
+      time: 'Pataca',
+      type: 'Tasty Plastic Chips',
       tx: {
-        from: 'f25f520f84da4961ea0faa696a67168a0fdec182',
-        nonce: 79036,
+        from: 'a57ba80759fe86a843e00399cc21bab6565dafd3',
+        nonce: 15951,
         signature: Uint8Array [
-          103
+          186
         ],
-        chainId: 'Buckinghamshire',
+        chainId: 'Multi-tiered',
         signatures: [
           {
-            signer: 'Row',
+            signer: 'Industrial',
             signature: Uint8Array [
-              232
+              146
             ],
             data: {
-              type: 'WalletType',
-              value: {
-                pk: 0,
-                hash: 14,
-                address: 1,
-                role: 3
-              }
+              type: 'fg:x:random_data',
+              value: 'ABCD 1234'
             }
           },
           {
-            signer: 'sensor',
+            signer: 'open-source',
             signature: Uint8Array [
-              218
+              196
             ],
             data: {
-              type: 'WalletType',
-              value: {
-                pk: 0,
-                hash: 14,
-                address: 0,
-                role: 6
-              }
+              type: 'fg:x:random_data',
+              value: 'ABCD 1234'
             }
           }
         ],
         itx: {
-          type: 'WalletType',
-          value: {
-            pk: 0,
-            hash: 7,
-            address: 0,
-            role: 3
-          }
+          type: 'fg:x:random_data',
+          value: 'ABCD 1234'
         }
       }
     },
     {
-      hash: '50e2a5f9326bc00b41de8d862495106c947efd9b',
-      sender: 'panel',
-      receiver: 'incentivize',
-      time: 'Solomon Islands Dollar',
-      type: 'Money Market Account',
+      hash: '3eab0b90da9583f25a66a8b5a3698f80925df5aa',
+      sender: 'Incredible',
+      receiver: 'Plastic',
+      time: 'Sports',
+      type: 'District',
       tx: {
-        from: '8fc12d9c1bca861b248b053145ab93c3110ce701',
-        nonce: 13875,
+        from: '164e43a786b2163a56922201aef8c757a31b581a',
+        nonce: 35418,
         signature: Uint8Array [
-          101
+          154
         ],
-        chainId: 'primary',
+        chainId: 'SAS',
         signatures: [
           {
-            signer: 'Graphic Interface',
+            signer: 'override',
             signature: Uint8Array [
-              32
+              204
             ],
             data: {
-              type: 'WalletType',
-              value: {
-                pk: 1,
-                hash: 13,
-                address: 1,
-                role: 1
-              }
+              type: 'fg:x:random_data',
+              value: 'ABCD 1234'
             }
           },
           {
-            signer: 'Quality',
+            signer: 'AI',
             signature: Uint8Array [
-              235
+              18
             ],
             data: {
-              type: 'WalletType',
-              value: {
-                pk: 1,
-                hash: 0,
-                address: 0,
-                role: 0
-              }
+              type: 'fg:x:random_data',
+              value: 'ABCD 1234'
             }
           }
         ],
         itx: {
-          type: 'WalletType',
-          value: {
-            pk: 0,
-            hash: 7,
-            address: 1,
-            role: 8
-          }
+          type: 'fg:x:random_data',
+          value: 'ABCD 1234'
         }
       }
     }
@@ -2259,8 +2059,8 @@ const stream = client.listWallet({});
 
 // output
 {
-  code: 41,
-  address: '1e1ccceb6478167d5859e6ddc1096eb3e0bac67c'
+  code: 1,
+  address: '57f39687afc99ce32ed9cb516a4ff8867221dff7'
 }
 ```
 
@@ -2268,14 +2068,14 @@ const stream = client.listWallet({});
 
 ```js
 const stream = client.loadFile({
-  hash: 'b0288f060cffe2465a161b5a88c5833a5d3970f9'
+  hash: '061bd810c2f7177d55c4d924375f94d4de0e7ab8'
 });
 
 // output
 {
-  code: 4,
+  code: 22,
   chunk: Uint8Array [
-    49
+    124
   ]
 }
 ```
@@ -2284,30 +2084,30 @@ const stream = client.loadFile({
 
 ```js
 const result = await client.loadWallet({
-  address: 'a248299e39f714c6043646d648e6a9046f4d47f0',
-  passphrase: 'indexing'
+  address: 'a242f2225ec02a2ab6839da9221e8bd90cdbed04',
+  passphrase: 'Licensed'
 });
 
 // response is a stream
 result.on('data', data => {
   // response data format
   {
-  code: 34,
-  token: 'pink',
+  code: 8,
+  token: 'Plastic',
   wallet: {
     type: {
       pk: 1,
-      hash: 6,
-      address: 0,
+      hash: 13,
+      address: 1,
       role: 7
     },
     sk: Uint8Array [
-      57
+      43
     ],
     pk: Uint8Array [
-      234
+      16
     ],
-    address: '2da975f2d527373b7831a22c7b520d48d401ad24'
+    address: '8f7d5105fb5a2873cb4c396a07641f013bdd3fc9'
   }
 }
 });
@@ -2318,133 +2118,98 @@ result.on('data', data => {
 ```js
 const result = await client.multisig({
   tx: {
-    from: 'd823eea96be02940ec86c500c524dff5851c4eaf',
-    nonce: 36435,
+    from: 'a783d98afa3f9eede27835139c0d41f93a877c23',
+    nonce: 48669,
     signature: Uint8Array [
-      178
+      170
     ],
-    chainId: 'Ergonomic',
+    chainId: 'Refined Concrete Chicken',
     signatures: [
       {
-        signer: 'TCP',
+        signer: 'RAM',
         signature: Uint8Array [
-          237
+          40
         ],
         data: {
-          type: 'WalletType',
-          value: {
-            pk: 1,
-            hash: 1,
-            address: 0,
-            role: 4
-          }
+          type: 'fg:x:random_data',
+          value: 'ABCD 1234'
         }
       },
       {
-        signer: 'Bahraini Dinar',
+        signer: 'Response',
         signature: Uint8Array [
-          232
+          49
         ],
         data: {
-          type: 'WalletType',
-          value: {
-            pk: 0,
-            hash: 14,
-            address: 0,
-            role: 6
-          }
+          type: 'fg:x:random_data',
+          value: 'ABCD 1234'
         }
       }
     ],
     itx: {
-      type: 'WalletType',
-      value: {
-        pk: 1,
-        hash: 1,
-        address: 0,
-        role: 7
-      }
+      type: 'fg:x:random_data',
+      value: 'ABCD 1234'
     }
   },
   data: {
-    type: 'WalletType',
-    value: {
-      pk: 0,
-      hash: 14,
-      address: 0,
-      role: 3
-    }
+    type: 'fg:x:random_data',
+    value: 'ABCD 1234'
   },
   wallet: {
     type: {
       pk: 0,
       hash: 14,
-      address: 0,
-      role: 8
+      address: 1,
+      role: 3
     },
     sk: Uint8Array [
-      35
+      28
     ],
     pk: Uint8Array [
-      17
+      236
     ],
-    address: '058ed60360766755dfd087bffc4065834c923386'
+    address: 'dd1c22698bb13457f98fc63fd43bd4549e6df429'
   },
-  token: 'invoice'
+  token: 'calculate'
 });
 
 // response is a stream
 result.on('data', data => {
   // response data format
   {
-  code: 31,
+  code: 7,
   tx: {
-    from: '91cf9e04f585c8f070739220b7cbe03e80e67d22',
-    nonce: 88738,
+    from: '75b256c0fe4948e8cbeb586cd8efe8c7860c539c',
+    nonce: 5996,
     signature: Uint8Array [
-      247
+      158
     ],
-    chainId: 'one-to-one',
+    chainId: 'CSS',
     signatures: [
       {
-        signer: 'cultivate',
+        signer: 'supply-chains',
         signature: Uint8Array [
-          114
+          143
         ],
         data: {
-          type: 'WalletType',
-          value: {
-            pk: 0,
-            hash: 7,
-            address: 0,
-            role: 5
-          }
+          type: 'fg:x:random_data',
+          value: 'ABCD 1234'
         }
       },
       {
-        signer: 'Checking Account',
+        signer: 'Face to face',
         signature: Uint8Array [
-          213
+          136
         ],
         data: {
-          type: 'WalletType',
-          value: {
-            pk: 0,
-            hash: 13,
-            address: 0,
-            role: 4
-          }
+          type: 'fg:x:random_data',
+          value: 'ABCD 1234'
         }
       }
     ],
     itx: {
-      type: 'WalletType',
-      value: {
-        pk: 0,
-        hash: 13,
-        address: 1,
-        role: 6
-      }
+      type: 'fg:x:random_data',
+      value: 'ABCD 1234'
     }
   }
 }
@@ -2455,14 +2220,14 @@ result.on('data', data => {
 
 ```js
 const result = await client.pinFile({
-  hash: '8f4f60b0106ae29ec2bb6406ad1d735ee3b34aad'
+  hash: '52930de3de1663aec4ed8afe967ae76cb7870fe6'
 });
 
 // response is a stream
 result.on('data', data => {
   // response data format
   {
-  code: 38
+  code: 36
 }
 });
 ```
@@ -2473,704 +2238,100 @@ result.on('data', data => {
 const stream = client.process({
   verifyTx: {
     tx: {
-      from: 'b6b30e3e7664659aae31dbf5f085c5bfa1ff2851',
-      nonce: 98879,
+      from: 'bdb5ea49f00808854016334d507f33e1b19f7f6a',
+      nonce: 95196,
       signature: Uint8Array [
-        6
+        128
       ],
-      chainId: 'orange',
+      chainId: 'Bedfordshire',
       signatures: [
         {
-          signer: 'Functionality',
+          signer: 'Computer',
           signature: Uint8Array [
-            76
+            101
           ],
           data: {
-            type: 'WalletType',
-            value: {
-              pk: 0,
-              hash: 6,
-              address: 1,
-              role: 1
-            }
+            type: 'fg:x:random_data',
+            value: 'ABCD 1234'
           }
         },
         {
-          signer: 'static',
+          signer: 'Avon',
           signature: Uint8Array [
-            86
+            31
           ],
           data: {
-            type: 'WalletType',
-            value: {
-              pk: 0,
-              hash: 7,
-              address: 1,
-              role: 2
-            }
+            type: 'fg:x:random_data',
+            value: 'ABCD 1234'
           }
         }
       ],
       itx: {
-        type: 'WalletType',
-        value: {
-          pk: 0,
-          hash: 0,
-          address: 1,
-          role: 1
-        }
+        type: 'fg:x:random_data',
+        value: 'ABCD 1234'
       }
     },
     states: [
       {
-        balance: '48330',
-        nonce: 6397,
-        numTxs: 24916,
-        address: '8a36f35ce0dc2723e01428cae5ec3fc243a7bc88',
+        balance: '27903',
+        nonce: 58919,
+        numTxs: 65266,
+        address: '91510eefad40f46e00fbf71ed45b4a8f44db5325',
         pk: Uint8Array [
-          43
+          133
         ],
         type: {
           pk: 0,
-          hash: 7,
-          address: 0,
-          role: 1
+          hash: 14,
+          address: 1,
+          role: 4
         },
-        moniker: 'orange',
+        moniker: 'Tasty',
         context: {
-          genesisTx: 'convergence',
-          renaissanceTx: 'Data',
-          genesisTime: '2019-03-05T00:35:00.872Z',
-          renaissanceTime: '2019-03-05T00:35:00.872Z'
+          genesisTx: 'Internal',
+          renaissanceTx: 'copying',
+          genesisTime: '2019-03-05T02:54:13.072Z',
+          renaissanceTime: '2019-03-05T02:54:13.072Z'
         },
-        issuer: 'compress',
+        issuer: 'Home Loan Account',
         migratedTo: [
-          'Awesome',
-          'mobile'
+          'Liaison',
+          'Awesome Steel Shirt'
         ],
         migratedFrom: [
-          'hard drive',
-          'infrastructures'
+          'Electronics',
+          'transmit'
         ],
-        numAssets: 23040,
+        numAssets: 59859,
         stake: {
-          totalStakes: '44801',
-          totalUnstakes: '87516',
-          totalReceivedStakes: '83728',
+          totalStakes: '39929',
+          totalUnstakes: '97803',
+          totalReceivedStakes: '80011',
           recentStakes: {
             items: [
               Uint8Array [
-                179
+                50
               ],
               Uint8Array [
-                140
-              ]
-            ],
-            typeUrl: 'Tasty Metal Shoes',
-            maxItems: 61295,
-            circular: undefined,
-            fifo: undefined
-          },
-          recentReceivedStakes: {
-            items: [
-              Uint8Array [
-                186
-              ],
-              Uint8Array [
-                72
-              ]
-            ],
-            typeUrl: 'European Monetary Unit (E.M.U.-6)',
-            maxItems: 84293,
-            circular: undefined,
-            fifo: undefined
-          }
-        },
-        pinnedFiles: {
-          items: [
-            Uint8Array [
-              95
-            ],
-            Uint8Array [
-              130
-            ]
-          ],
-          typeUrl: 'input',
-          maxItems: 39178,
-          circular: undefined,
-          fifo: undefined
-        },
-        data: {
-          type: 'WalletType',
-          value: {
-            pk: 0,
-            hash: 14,
-            address: 0,
-            role: 0
-          }
-        }
-      },
-      {
-        balance: '91533',
-        nonce: 19187,
-        numTxs: 52134,
-        address: '79d517fb1b160f287915c6b8df4466b082f876ef',
-        pk: Uint8Array [
-          194
-        ],
-        type: {
-          pk: 1,
-          hash: 7,
-          address: 1,
-          role: 6
-        },
-        moniker: 'seamless',
-        context: {
-          genesisTx: 'microchip',
-          renaissanceTx: 'Rustic',
-          genesisTime: '2019-03-05T00:35:00.872Z',
-          renaissanceTime: '2019-03-05T00:35:00.872Z'
-        },
-        issuer: 'Costa Rican Colon',
-        migratedTo: [
-          'virtual',
-          'SAS'
-        ],
-        migratedFrom: [
-          'Communications',
-          'global'
-        ],
-        numAssets: 49139,
-        stake: {
-          totalStakes: '58571',
-          totalUnstakes: '59009',
-          totalReceivedStakes: '18254',
-          recentStakes: {
-            items: [
-              Uint8Array [
-                131
-              ],
-              Uint8Array [
-                89
-              ]
-            ],
-            typeUrl: 'Soft',
-            maxItems: 26273,
-            circular: undefined,
-            fifo: undefined
-          },
-          recentReceivedStakes: {
-            items: [
-              Uint8Array [
-                60
-              ],
-              Uint8Array [
-                198
-              ]
-            ],
-            typeUrl: 'Checking Account',
-            maxItems: 80376,
-            circular: undefined,
-            fifo: undefined
-          }
-        },
-        pinnedFiles: {
-          items: [
-            Uint8Array [
-              27
-            ],
-            Uint8Array [
-              58
-            ]
-          ],
-          typeUrl: 'azure',
-          maxItems: 2479,
-          circular: undefined,
-          fifo: undefined
-        },
-        data: {
-          type: 'WalletType',
-          value: {
-            pk: 1,
-            hash: 13,
-            address: 1,
-            role: 8
-          }
-        }
-      }
-    ],
-    assets: [
-      {
-        address: 'a3648dec53737f72685aaf4b9cf765c8d9359eb4',
-        owner: 'TCP',
-        moniker: 'Trinidad and Tobago Dollar',
-        readonly: undefined,
-        transferrable: undefined,
-        ttl: 57561,
-        consumedTime: '2019-03-05T00:35:00.873Z',
-        issuer: 'circuit',
-        stake: {
-          totalStakes: '65230',
-          totalUnstakes: '28410',
-          totalReceivedStakes: '8434',
-          recentStakes: {
-            items: [
-              Uint8Array [
-                155
-              ],
-              Uint8Array [
-                20
-              ]
-            ],
-            typeUrl: 'Electronics',
-            maxItems: 47176,
-            circular: undefined,
-            fifo: undefined
-          },
-          recentReceivedStakes: {
-            items: [
-              Uint8Array [
-                232
-              ],
-              Uint8Array [
-                36
-              ]
-            ],
-            typeUrl: 'sensor',
-            maxItems: 87289,
-            circular: undefined,
-            fifo: undefined
-          }
-        },
-        context: {
-          genesisTx: 'Trafficway',
-          renaissanceTx: 'Strategist',
-          genesisTime: '2019-03-05T00:35:00.873Z',
-          renaissanceTime: '2019-03-05T00:35:00.873Z'
-        },
-        data: {
-          type: 'WalletType',
-          value: {
-            pk: 0,
-            hash: 6,
-            address: 0,
-            role: 7
-          }
-        }
-      },
-      {
-        address: '8e2ae87b65c250fdb6d8a1166180a65a3d0ba9d2',
-        owner: 'Consultant',
-        moniker: 'calculating',
-        readonly: undefined,
-        transferrable: undefined,
-        ttl: 33783,
-        consumedTime: '2019-03-05T00:35:00.873Z',
-        issuer: 'Internal',
-        stake: {
-          totalStakes: '33976',
-          totalUnstakes: '70626',
-          totalReceivedStakes: '99286',
-          recentStakes: {
-            items: [
-              Uint8Array [
-                114
-              ],
-              Uint8Array [
-                205
-              ]
-            ],
-            typeUrl: 'gold',
-            maxItems: 58175,
-            circular: undefined,
-            fifo: undefined
-          },
-          recentReceivedStakes: {
-            items: [
-              Uint8Array [
-                220
-              ],
-              Uint8Array [
-                44
-              ]
-            ],
-            typeUrl: 'turquoise',
-            maxItems: 95346,
-            circular: undefined,
-            fifo: undefined
-          }
-        },
-        context: {
-          genesisTx: 'Auto Loan Account',
-          renaissanceTx: 'indexing',
-          genesisTime: '2019-03-05T00:35:00.873Z',
-          renaissanceTime: '2019-03-05T00:35:00.873Z'
-        },
-        data: {
-          type: 'WalletType',
-          value: {
-            pk: 0,
-            hash: 14,
-            address: 1,
-            role: 5
-          }
-        }
-      }
-    ],
-    stakes: [
-      {
-        address: 'b10478c9dbdf5d57389b4117ea0580da8224117f',
-        from: '67981929c374816844ac80f7b38e8e792cc90e5e',
-        to: '1a837e89f89598f1d4c75ca563f0ff376dd1a6ab',
-        balance: '36803',
-        message: 'Music',
-        context: {
-          genesisTx: 'Gorgeous',
-          renaissanceTx: 'generating',
-          genesisTime: '2019-03-05T00:35:00.874Z',
-          renaissanceTime: '2019-03-05T00:35:00.874Z'
-        },
-        data: {
-          type: 'WalletType',
-          value: {
-            pk: 0,
-            hash: 13,
-            address: 1,
-            role: 0
-          }
-        }
-      },
-      {
-        address: 'd17713c79d1a82d1b4db39241fb7f94c65d27afb',
-        from: '9671390e7939e41c8b4b0e3fa4ef41a7c8fda85a',
-        to: '908109bfdbc5d67e274eb9acdaa4976356862cdf',
-        balance: '27511',
-        message: 'connect',
-        context: {
-          genesisTx: 'Alaska',
-          renaissanceTx: 'Practical Fresh Tuna',
-          genesisTime: '2019-03-05T00:35:00.874Z',
-          renaissanceTime: '2019-03-05T00:35:00.874Z'
-        },
-        data: {
-          type: 'WalletType',
-          value: {
-            pk: 0,
-            hash: 0,
-            address: 0,
-            role: 3
-          }
-        }
-      }
-    ],
-    context: {
-      txHash: '64d1bfaeaf9e73a7532af8bc9cd7f3de86d0f2a8',
-      blockHeight: 4244,
-      blockTime: '2019-03-05T00:35:00.874Z',
-      totalTxs: 25389,
-      txStatistics: {
-        numAccountMigrateTxs: 61760,
-        numCreateAssetTxs: 59286,
-        numConsensusUpgradeTxs: 98425,
-        numDeclareTxs: 20259,
-        numDeclareFileTxs: 35518,
-        numExchangeTxs: 57434,
-        numStakeTxs: 70319,
-        numSysUpgradeTxs: 90857,
-        numTransferTxs: 34964,
-        numUpdateAssetTxs: 80730,
-        numConsumeAssetTxs: 14047
-      },
-      txIndex: 96300,
-      lastBlockTime: '2019-03-05T00:35:00.874Z'
-    },
-    appState: {
-      address: 'f2195ec41ea1c915d8f21b9bbd2210012fc95af5',
-      consensus: {
-        maxBytes: 56931,
-        maxGas: 39801,
-        maxValidators: 5439,
-        maxCandidates: 30733,
-        pubKeyTypes: [
-          'Facilitator',
-          'strategic'
-        ],
-        validators: [
-          {
-            address: '3bb8d759a23fd90a656ec81c419faca151cea16a',
-            power: 64503
-          },
-          {
-            address: '27c108b6102001e9ce39c1dda5c10d1d6d007b30',
-            power: 1553
-          }
-        ],
-        validatorChanged: undefined,
-        paramChanged: undefined
-      },
-      tasks: {
-        'function (options) {\n\n    if (typeof options === "number") {\n      options = {\n        max: options\n      };\n    }\n\n    options = options || {};\n\n    if (typeof options.min === "undefined") {\n      options.min = 0;\n    }\n\n    if (typeof options.max === "undefined") {\n      options.max = 99999;\n    }\n    if (typeof options.precision === "undefined") {\n      options.precision = 1;\n    }\n\n    // Make the range inclusive of the max value\n    var max = options.max;\n    if (max >= 0) {\n      max += options.precision;\n    }\n\n    var randomNumber = Math.floor(\n      mersenne.rand(max / options.precision, options.min / options.precision));\n    // Workaround problem in Float point arithmetics for e.g. 6681493 / 0.01\n    randomNumber = randomNumber / (1 / options.precision);\n\n    return randomNumber;\n\n  }': {
-          item: [
-            {
-              type: 0,
-              dataHash: 'Iowa',
-              actions: [
-                undefined,
-                undefined
-              ]
-            },
-            {
-              type: 3,
-              dataHash: 'systemic',
-              actions: [
-                undefined,
-                undefined
-              ]
-            }
-          ]
-        }
-      },
-      stakeSummary: {
-        'function (options) {\n\n    if (typeof options === "number") {\n      options = {\n        max: options\n      };\n    }\n\n    options = options || {};\n\n    if (typeof options.min === "undefined") {\n      options.min = 0;\n    }\n\n    if (typeof options.max === "undefined") {\n      options.max = 99999;\n    }\n    if (typeof options.precision === "undefined") {\n      options.precision = 1;\n    }\n\n    // Make the range inclusive of the max value\n    var max = options.max;\n    if (max >= 0) {\n      max += options.precision;\n    }\n\n    var randomNumber = Math.floor(\n      mersenne.rand(max / options.precision, options.min / options.precision));\n    // Workaround problem in Float point arithmetics for e.g. 6681493 / 0.01\n    randomNumber = randomNumber / (1 / options.precision);\n\n    return randomNumber;\n\n  }': {
-          totalStakes: '32221',
-          totalUnstakes: '98917',
-          context: {
-            genesisTx: 'system',
-            renaissanceTx: 'out-of-the-box',
-            genesisTime: '2019-03-05T00:35:00.875Z',
-            renaissanceTime: '2019-03-05T00:35:00.875Z'
-          }
-        }
-      },
-      version: 'core',
-      dataVersion: 'Uzbekistan',
-      forgeAppHash: Uint8Array [
-        35
-      ],
-      data: {
-        type: 'WalletType',
-        value: {
-          pk: 0,
-          hash: 13,
-          address: 1,
-          role: 2
-        }
-      }
-    }
-  }
-});
-
-// output
-{
-  verifyTx: {
-    code: 20
-  }
-}
-```
-
-### processOne
-
-```js
-const result = await client.processOne({
-  verifyTx: {
-    tx: {
-      from: '84895af87be507e0ae4e816d3b930413788df544',
-      nonce: 39381,
-      signature: Uint8Array [
-        143
-      ],
-      chainId: 'User-centric',
-      signatures: [
-        {
-          signer: 'District',
-          signature: Uint8Array [
-            188
-          ],
-          data: {
-            type: 'WalletType',
-            value: {
-              pk: 1,
-              hash: 6,
-              address: 1,
-              role: 3
-            }
-          }
-        },
-        {
-          signer: 'Secured',
-          signature: Uint8Array [
-            28
-          ],
-          data: {
-            type: 'WalletType',
-            value: {
-              pk: 0,
-              hash: 6,
-              address: 1,
-              role: 0
-            }
-          }
-        }
-      ],
-      itx: {
-        type: 'WalletType',
-        value: {
-          pk: 1,
-          hash: 7,
-          address: 0,
-          role: 6
-        }
-      }
-    },
-    states: [
-      {
-        balance: '14549',
-        nonce: 97248,
-        numTxs: 39353,
-        address: '85c7341cc39c25c77ad02995cc2c0fd93904dca7',
-        pk: Uint8Array [
-          74
-        ],
-        type: {
-          pk: 1,
-          hash: 6,
-          address: 1,
-          role: 3
-        },
-        moniker: 'reboot',
-        context: {
-          genesisTx: 'Outdoors',
-          renaissanceTx: 'productivity',
-          genesisTime: '2019-03-05T00:35:00.876Z',
-          renaissanceTime: '2019-03-05T00:35:00.876Z'
-        },
-        issuer: 'Burkina Faso',
-        migratedTo: [
-          'SAS',
-          'object-oriented'
-        ],
-        migratedFrom: [
-          'vortals',
-          'Cambridgeshire'
-        ],
-        numAssets: 94337,
-        stake: {
-          totalStakes: '18220',
-          totalUnstakes: '57228',
-          totalReceivedStakes: '57514',
-          recentStakes: {
-            items: [
-              Uint8Array [
-                88
-              ],
-              Uint8Array [
-                51
-              ]
-            ],
-            typeUrl: 'Refined',
-            maxItems: 91959,
-            circular: undefined,
-            fifo: undefined
-          },
-          recentReceivedStakes: {
-            items: [
-              Uint8Array [
-                100
-              ],
-              Uint8Array [
-                196
+                165
               ]
             ],
             typeUrl: 'Unbranded',
-            maxItems: 44790,
-            circular: undefined,
-            fifo: undefined
-          }
-        },
-        pinnedFiles: {
-          items: [
-            Uint8Array [
-              166
-            ],
-            Uint8Array [
-              127
-            ]
-          ],
-          typeUrl: 'Facilitator',
-          maxItems: 48915,
-          circular: undefined,
-          fifo: undefined
-        },
-        data: {
-          type: 'WalletType',
-          value: {
-            pk: 0,
-            hash: 14,
-            address: 0,
-            role: 3
-          }
-        }
-      },
-      {
-        balance: '29133',
-        nonce: 57793,
-        numTxs: 46504,
-        address: 'c0cdeb133073791321f4dd9bc1e1ab46e5c62662',
-        pk: Uint8Array [
-          199
-        ],
-        type: {
-          pk: 1,
-          hash: 14,
-          address: 0,
-          role: 5
-        },
-        moniker: 'utilisation',
-        context: {
-          genesisTx: 'driver',
-          renaissanceTx: 'Licensed',
-          genesisTime: '2019-03-05T00:35:00.876Z',
-          renaissanceTime: '2019-03-05T00:35:00.876Z'
-        },
-        issuer: 'even-keeled',
-        migratedTo: [
-          'Idaho',
-          'CFP Franc'
-        ],
-        migratedFrom: [
-          'neutral',
-          'iterate'
-        ],
-        numAssets: 40528,
-        stake: {
-          totalStakes: '40402',
-          totalUnstakes: '40459',
-          totalReceivedStakes: '80058',
-          recentStakes: {
-            items: [
-              Uint8Array [
-                150
-              ],
-              Uint8Array [
-                27
-              ]
-            ],
-            typeUrl: 'Developer',
-            maxItems: 136,
+            maxItems: 33287,
             circular: undefined,
             fifo: undefined
           },
           recentReceivedStakes: {
             items: [
               Uint8Array [
-                178
+                223
               ],
               Uint8Array [
-                149
+                230
               ]
             ],
-            typeUrl: 'compress',
-            maxItems: 56169,
+            typeUrl: 'Orchestrator',
+            maxItems: 97475,
             circular: undefined,
             fifo: undefined
           }
@@ -3178,232 +2339,290 @@ const result = await client.processOne({
         pinnedFiles: {
           items: [
             Uint8Array [
-              180
+              87
             ],
             Uint8Array [
-              123
+              202
             ]
           ],
-          typeUrl: 'interface',
-          maxItems: 35293,
+          typeUrl: 'salmon',
+          maxItems: 24825,
           circular: undefined,
           fifo: undefined
         },
         data: {
-          type: 'WalletType',
-          value: {
-            pk: 1,
-            hash: 14,
-            address: 0,
-            role: 3
-          }
+          type: 'fg:x:random_data',
+          value: 'ABCD 1234'
         }
-      }
-    ],
-    assets: [
+      },
       {
-        address: '2864e6e4cdf049bdaf7dddcc82475d95fc84f2de',
-        owner: 'facilitate',
-        moniker: 'SSL',
-        readonly: undefined,
-        transferrable: undefined,
-        ttl: 48007,
-        consumedTime: '2019-03-05T00:35:00.877Z',
-        issuer: 'Granite',
+        balance: '31846',
+        nonce: 91455,
+        numTxs: 40846,
+        address: 'c3e78468a84e8d6a9a03c19fbd946a37e387bef7',
+        pk: Uint8Array [
+          14
+        ],
+        type: {
+          pk: 0,
+          hash: 0,
+          address: 0,
+          role: 1
+        },
+        moniker: 'pixel',
+        context: {
+          genesisTx: 'Berkshire',
+          renaissanceTx: 'Unbranded Concrete Computer',
+          genesisTime: '2019-03-05T02:54:13.072Z',
+          renaissanceTime: '2019-03-05T02:54:13.072Z'
+        },
+        issuer: 'system',
+        migratedTo: [
+          'cross-platform',
+          'scalable'
+        ],
+        migratedFrom: [
+          'Computer',
+          'Refined'
+        ],
+        numAssets: 7879,
         stake: {
-          totalStakes: '46871',
-          totalUnstakes: '68667',
-          totalReceivedStakes: '19680',
+          totalStakes: '6182',
+          totalUnstakes: '55819',
+          totalReceivedStakes: '12355',
           recentStakes: {
             items: [
               Uint8Array [
                 229
               ],
               Uint8Array [
-                208
+                94
               ]
             ],
-            typeUrl: 'one-to-one',
-            maxItems: 2744,
+            typeUrl: 'channels',
+            maxItems: 32772,
             circular: undefined,
             fifo: undefined
           },
           recentReceivedStakes: {
             items: [
               Uint8Array [
-                231
+                37
               ],
               Uint8Array [
-                195
+                205
               ]
             ],
-            typeUrl: 'Tasty Soft Hat',
-            maxItems: 66783,
+            typeUrl: 'deposit',
+            maxItems: 21238,
             circular: undefined,
             fifo: undefined
           }
         },
-        context: {
-          genesisTx: 'programming',
-          renaissanceTx: 'Coordinator',
-          genesisTime: '2019-03-05T00:35:00.877Z',
-          renaissanceTime: '2019-03-05T00:35:00.877Z'
+        pinnedFiles: {
+          items: [
+            Uint8Array [
+              244
+            ],
+            Uint8Array [
+              3
+            ]
+          ],
+          typeUrl: 'Practical',
+          maxItems: 7881,
+          circular: undefined,
+          fifo: undefined
         },
         data: {
-          type: 'WalletType',
-          value: {
-            pk: 0,
-            hash: 0,
-            address: 0,
-            role: 5
-          }
+          type: 'fg:x:random_data',
+          value: 'ABCD 1234'
         }
-      },
+      }
+    ],
+    assets: [
       {
-        address: '87f0ae7619ad980469240dde58a145f84d9f467b',
-        owner: 'transparent',
-        moniker: 'Chicken',
+        address: '081bef96ede68d2081be17c0adfb0fc9bc1ed3e1',
+        owner: 'Frozen',
+        moniker: 'Table',
         readonly: undefined,
         transferrable: undefined,
-        ttl: 77874,
-        consumedTime: '2019-03-05T00:35:00.877Z',
-        issuer: 'Credit Card Account',
+        ttl: 92783,
+        consumedTime: '2019-03-05T02:54:13.072Z',
+        issuer: 'driver',
         stake: {
-          totalStakes: '98281',
-          totalUnstakes: '98587',
-          totalReceivedStakes: '3970',
+          totalStakes: '22688',
+          totalUnstakes: '82716',
+          totalReceivedStakes: '13973',
           recentStakes: {
             items: [
               Uint8Array [
-                66
+                176
               ],
               Uint8Array [
-                219
+                131
               ]
             ],
-            typeUrl: 'Security',
-            maxItems: 17005,
+            typeUrl: 'Frozen',
+            maxItems: 53626,
             circular: undefined,
             fifo: undefined
           },
           recentReceivedStakes: {
             items: [
               Uint8Array [
-                55
+                74
               ],
               Uint8Array [
-                228
+                109
               ]
             ],
-            typeUrl: 'markets',
-            maxItems: 7509,
+            typeUrl: 'deposit',
+            maxItems: 92683,
             circular: undefined,
             fifo: undefined
           }
         },
         context: {
-          genesisTx: 'Ergonomic',
-          renaissanceTx: 'Dynamic',
-          genesisTime: '2019-03-05T00:35:00.877Z',
-          renaissanceTime: '2019-03-05T00:35:00.877Z'
+          genesisTx: 'Engineer',
+          renaissanceTx: 'Djibouti Franc',
+          genesisTime: '2019-03-05T02:54:13.072Z',
+          renaissanceTime: '2019-03-05T02:54:13.072Z'
         },
         data: {
-          type: 'WalletType',
-          value: {
-            pk: 1,
-            hash: 14,
-            address: 1,
-            role: 1
+          type: 'fg:x:random_data',
+          value: 'ABCD 1234'
+        }
+      },
+      {
+        address: 'a596ecb11bd74723de23eaea831c26630090b8a5',
+        owner: 'Fantastic',
+        moniker: 'maximize',
+        readonly: undefined,
+        transferrable: undefined,
+        ttl: 8842,
+        consumedTime: '2019-03-05T02:54:13.072Z',
+        issuer: 'Accountability',
+        stake: {
+          totalStakes: '27207',
+          totalUnstakes: '73592',
+          totalReceivedStakes: '71457',
+          recentStakes: {
+            items: [
+              Uint8Array [
+                61
+              ],
+              Uint8Array [
+                132
+              ]
+            ],
+            typeUrl: 'Tunisian Dinar',
+            maxItems: 66400,
+            circular: undefined,
+            fifo: undefined
+          },
+          recentReceivedStakes: {
+            items: [
+              Uint8Array [
+                151
+              ],
+              Uint8Array [
+                105
+              ]
+            ],
+            typeUrl: 'Analyst',
+            maxItems: 70317,
+            circular: undefined,
+            fifo: undefined
           }
+        },
+        context: {
+          genesisTx: 'Falls',
+          renaissanceTx: 'Investment Account',
+          genesisTime: '2019-03-05T02:54:13.072Z',
+          renaissanceTime: '2019-03-05T02:54:13.072Z'
+        },
+        data: {
+          type: 'fg:x:random_data',
+          value: 'ABCD 1234'
         }
       }
     ],
     stakes: [
       {
-        address: 'd0836696520e93f222a17e122415ec089aa81528',
-        from: 'c1128155314668a85621fcb142158919b06e0443',
-        to: '2e20ac31a1186db8d7348464442c0ea84a484630',
-        balance: '50475',
-        message: 'Turkmenistan',
+        address: '93c80eba4f319eab60647f964dca6d52c624557e',
+        from: 'a9e6cc65ec168e43484868ecd392502182664961',
+        to: '8168b6b20ff9c13a2b90579ece15089759eee9a2',
+        balance: '36234',
+        message: 'Interactions',
         context: {
-          genesisTx: 'matrix',
-          renaissanceTx: 'French Southern Territories',
-          genesisTime: '2019-03-05T00:35:00.877Z',
-          renaissanceTime: '2019-03-05T00:35:00.877Z'
+          genesisTx: 'B2B',
+          renaissanceTx: 'Extension',
+          genesisTime: '2019-03-05T02:54:13.073Z',
+          renaissanceTime: '2019-03-05T02:54:13.073Z'
         },
         data: {
-          type: 'WalletType',
-          value: {
-            pk: 0,
-            hash: 7,
-            address: 1,
-            role: 1
-          }
+          type: 'fg:x:random_data',
+          value: 'ABCD 1234'
         }
       },
       {
-        address: '14547821772ecf2e7f451fb47e8cf2e7dead77cb',
-        from: '2056392e75ae43deae4f383ef47349d80e8f37b1',
-        to: '011916c145c01eb95bea534f36cd627230c5de82',
-        balance: '62120',
-        message: 'Executive',
+        address: 'b5c3589ddfde08b79814bf238f66cb6d14632ef6',
+        from: 'd14a30d7b8fcba63b3ea6b22f2d39602aea6828e',
+        to: '2c4ab252ba315248b32e65c07eee81117f1f4827',
+        balance: '73540',
+        message: 'transmitter',
         context: {
-          genesisTx: 'withdrawal',
-          renaissanceTx: 'Home Loan Account',
-          genesisTime: '2019-03-05T00:35:00.877Z',
-          renaissanceTime: '2019-03-05T00:35:00.877Z'
+          genesisTx: 'Phased',
+          renaissanceTx: 'web-enabled',
+          genesisTime: '2019-03-05T02:54:13.073Z',
+          renaissanceTime: '2019-03-05T02:54:13.073Z'
         },
         data: {
-          type: 'WalletType',
-          value: {
-            pk: 1,
-            hash: 0,
-            address: 1,
-            role: 0
-          }
+          type: 'fg:x:random_data',
+          value: 'ABCD 1234'
         }
       }
     ],
     context: {
-      txHash: '74093dc03a620cd43c8a089785a19979f7fdfe7f',
-      blockHeight: 91147,
-      blockTime: '2019-03-05T00:35:00.877Z',
-      totalTxs: 35222,
+      txHash: '6cc8936dc3ac00b03f8d37d68f69b70c09915e10',
+      blockHeight: 96224,
+      blockTime: '2019-03-05T02:54:13.073Z',
+      totalTxs: 10779,
       txStatistics: {
-        numAccountMigrateTxs: 30066,
-        numCreateAssetTxs: 15632,
-        numConsensusUpgradeTxs: 23479,
-        numDeclareTxs: 20168,
-        numDeclareFileTxs: 36042,
-        numExchangeTxs: 93681,
-        numStakeTxs: 93330,
-        numSysUpgradeTxs: 48163,
-        numTransferTxs: 89953,
-        numUpdateAssetTxs: 93585,
-        numConsumeAssetTxs: 77535
+        numAccountMigrateTxs: 11293,
+        numCreateAssetTxs: 70373,
+        numConsensusUpgradeTxs: 61470,
+        numDeclareTxs: 30849,
+        numDeclareFileTxs: 28157,
+        numExchangeTxs: 23884,
+        numStakeTxs: 70395,
+        numSysUpgradeTxs: 69034,
+        numTransferTxs: 66653,
+        numUpdateAssetTxs: 1573,
+        numConsumeAssetTxs: 51612
       },
-      txIndex: 7216,
-      lastBlockTime: '2019-03-05T00:35:00.877Z'
+      txIndex: 16338,
+      lastBlockTime: '2019-03-05T02:54:13.073Z'
     },
     appState: {
-      address: 'd6b569f1b82815873631902d140557b7f75884ac',
+      address: 'eb7e067b225908e62770eb6c6acd84fc322bb0d3',
       consensus: {
-        maxBytes: 5427,
-        maxGas: 26170,
-        maxValidators: 50852,
-        maxCandidates: 2796,
+        maxBytes: 96534,
+        maxGas: 11129,
+        maxValidators: 40464,
+        maxCandidates: 4708,
         pubKeyTypes: [
-          'Industrial',
-          'Music'
+          'e-markets',
+          'Rustic'
         ],
         validators: [
           {
-            address: 'd5de33d0a310ce6cb8f1d3e4759bc4b1a76f5d7b',
-            power: 21990
+            address: '168d1f9f132bd90c419a65c1dd34d7960003d704',
+            power: 39587
           },
           {
-            address: '4f56cd0b7bc27fb9065cce766c6f431039e60265',
-            power: 39590
+            address: '914d23d533d0d9f1bbd59555a0c21d5a2c5ad548',
+            power: 50401
           }
         ],
         validatorChanged: undefined,
@@ -3414,15 +2633,15 @@ const result = await client.processOne({
           item: [
             {
               type: 4,
-              dataHash: 'SMS',
+              dataHash: 'matrix',
               actions: [
                 undefined,
                 undefined
               ]
             },
             {
-              type: 14,
-              dataHash: 'Specialist',
+              type: 1,
+              dataHash: 'platforms',
               actions: [
                 undefined,
                 undefined
@@ -3433,29 +2652,475 @@ const result = await client.processOne({
       },
       stakeSummary: {
         'function (options) {\n\n    if (typeof options === "number") {\n      options = {\n        max: options\n      };\n    }\n\n    options = options || {};\n\n    if (typeof options.min === "undefined") {\n      options.min = 0;\n    }\n\n    if (typeof options.max === "undefined") {\n      options.max = 99999;\n    }\n    if (typeof options.precision === "undefined") {\n      options.precision = 1;\n    }\n\n    // Make the range inclusive of the max value\n    var max = options.max;\n    if (max >= 0) {\n      max += options.precision;\n    }\n\n    var randomNumber = Math.floor(\n      mersenne.rand(max / options.precision, options.min / options.precision));\n    // Workaround problem in Float point arithmetics for e.g. 6681493 / 0.01\n    randomNumber = randomNumber / (1 / options.precision);\n\n    return randomNumber;\n\n  }': {
-          totalStakes: '40966',
-          totalUnstakes: '60907',
+          totalStakes: '66223',
+          totalUnstakes: '7628',
           context: {
-            genesisTx: 'Interactions',
-            renaissanceTx: 'Sleek Soft Bacon',
-            genesisTime: '2019-03-05T00:35:00.877Z',
-            renaissanceTime: '2019-03-05T00:35:00.877Z'
+            genesisTx: 'Orchestrator',
+            renaissanceTx: 'deposit',
+            genesisTime: '2019-03-05T02:54:13.073Z',
+            renaissanceTime: '2019-03-05T02:54:13.073Z'
           }
         }
       },
-      version: 'Personal Loan Account',
-      dataVersion: 'Regional',
+      version: 'Gardens',
+      dataVersion: 'Accounts',
       forgeAppHash: Uint8Array [
-        60
+        5
       ],
       data: {
-        type: 'WalletType',
-        value: {
-          pk: 0,
-          hash: 13,
-          address: 1,
-          role: 2
+        type: 'fg:x:random_data',
+        value: 'ABCD 1234'
+      }
+    }
+  }
+});
+
+// output
+{
+  verifyTx: {
+    code: 33
+  }
+}
+```
+
+### processOne
+
+```js
+const result = await client.processOne({
+  verifyTx: {
+    tx: {
+      from: '0b4228e762902f8c83e294e4bb473cbd7472ae59',
+      nonce: 38038,
+      signature: Uint8Array [
+        161
+      ],
+      chainId: 'Berkshire',
+      signatures: [
+        {
+          signer: 'disintermediate',
+          signature: Uint8Array [
+            1
+          ],
+          data: {
+            type: 'fg:x:random_data',
+            value: 'ABCD 1234'
+          }
+        },
+        {
+          signer: 'quantifying',
+          signature: Uint8Array [
+            75
+          ],
+          data: {
+            type: 'fg:x:random_data',
+            value: 'ABCD 1234'
+          }
         }
+      ],
+      itx: {
+        type: 'fg:x:random_data',
+        value: 'ABCD 1234'
+      }
+    },
+    states: [
+      {
+        balance: '28270',
+        nonce: 82749,
+        numTxs: 90643,
+        address: '85126fba89534a2d0e07eb43b3f2229a0e749cf0',
+        pk: Uint8Array [
+          112
+        ],
+        type: {
+          pk: 1,
+          hash: 14,
+          address: 0,
+          role: 0
+        },
+        moniker: 'indexing',
+        context: {
+          genesisTx: 'Streets',
+          renaissanceTx: 'Officer',
+          genesisTime: '2019-03-05T02:54:13.074Z',
+          renaissanceTime: '2019-03-05T02:54:13.074Z'
+        },
+        issuer: 'Program',
+        migratedTo: [
+          'lime',
+          'wireless'
+        ],
+        migratedFrom: [
+          'Consultant',
+          'Liaison'
+        ],
+        numAssets: 56234,
+        stake: {
+          totalStakes: '64671',
+          totalUnstakes: '79759',
+          totalReceivedStakes: '66475',
+          recentStakes: {
+            items: [
+              Uint8Array [
+                114
+              ],
+              Uint8Array [
+                46
+              ]
+            ],
+            typeUrl: 'executive',
+            maxItems: 5867,
+            circular: undefined,
+            fifo: undefined
+          },
+          recentReceivedStakes: {
+            items: [
+              Uint8Array [
+                30
+              ],
+              Uint8Array [
+                169
+              ]
+            ],
+            typeUrl: 'violet',
+            maxItems: 92579,
+            circular: undefined,
+            fifo: undefined
+          }
+        },
+        pinnedFiles: {
+          items: [
+            Uint8Array [
+              40
+            ],
+            Uint8Array [
+              226
+            ]
+          ],
+          typeUrl: 'Metal',
+          maxItems: 90517,
+          circular: undefined,
+          fifo: undefined
+        },
+        data: {
+          type: 'fg:x:random_data',
+          value: 'ABCD 1234'
+        }
+      },
+      {
+        balance: '88340',
+        nonce: 39746,
+        numTxs: 26655,
+        address: 'd8da2cde895345a1579b13905bd370cf5c0a48f6',
+        pk: Uint8Array [
+          180
+        ],
+        type: {
+          pk: 0,
+          hash: 14,
+          address: 0,
+          role: 8
+        },
+        moniker: 'Tunisia',
+        context: {
+          genesisTx: 'archive',
+          renaissanceTx: 'Savings Account',
+          genesisTime: '2019-03-05T02:54:13.074Z',
+          renaissanceTime: '2019-03-05T02:54:13.074Z'
+        },
+        issuer: 'Operations',
+        migratedTo: [
+          'South Carolina',
+          'Lead'
+        ],
+        migratedFrom: [
+          'deposit',
+          'Avon'
+        ],
+        numAssets: 54539,
+        stake: {
+          totalStakes: '54129',
+          totalUnstakes: '59630',
+          totalReceivedStakes: '87556',
+          recentStakes: {
+            items: [
+              Uint8Array [
+                132
+              ],
+              Uint8Array [
+                37
+              ]
+            ],
+            typeUrl: '24/365',
+            maxItems: 36289,
+            circular: undefined,
+            fifo: undefined
+          },
+          recentReceivedStakes: {
+            items: [
+              Uint8Array [
+                200
+              ],
+              Uint8Array [
+                205
+              ]
+            ],
+            typeUrl: 'online',
+            maxItems: 55071,
+            circular: undefined,
+            fifo: undefined
+          }
+        },
+        pinnedFiles: {
+          items: [
+            Uint8Array [
+              91
+            ],
+            Uint8Array [
+              55
+            ]
+          ],
+          typeUrl: 'Tasty Wooden Bacon',
+          maxItems: 21074,
+          circular: undefined,
+          fifo: undefined
+        },
+        data: {
+          type: 'fg:x:random_data',
+          value: 'ABCD 1234'
+        }
+      }
+    ],
+    assets: [
+      {
+        address: '299c499cbc80a1bdbbe82ce06b962fe0353eeb30',
+        owner: 'sensor',
+        moniker: 'generating',
+        readonly: undefined,
+        transferrable: undefined,
+        ttl: 1012,
+        consumedTime: '2019-03-05T02:54:13.074Z',
+        issuer: 'Berkshire',
+        stake: {
+          totalStakes: '30885',
+          totalUnstakes: '41498',
+          totalReceivedStakes: '6842',
+          recentStakes: {
+            items: [
+              Uint8Array [
+                12
+              ],
+              Uint8Array [
+                219
+              ]
+            ],
+            typeUrl: 'Manat',
+            maxItems: 49003,
+            circular: undefined,
+            fifo: undefined
+          },
+          recentReceivedStakes: {
+            items: [
+              Uint8Array [
+                29
+              ],
+              Uint8Array [
+                92
+              ]
+            ],
+            typeUrl: 'Jewelery',
+            maxItems: 9296,
+            circular: undefined,
+            fifo: undefined
+          }
+        },
+        context: {
+          genesisTx: 'infrastructures',
+          renaissanceTx: 'Division',
+          genesisTime: '2019-03-05T02:54:13.075Z',
+          renaissanceTime: '2019-03-05T02:54:13.075Z'
+        },
+        data: {
+          type: 'fg:x:random_data',
+          value: 'ABCD 1234'
+        }
+      },
+      {
+        address: 'ecb426c4f506cd6edc1a5e76776b2ae87b3ce65e',
+        owner: 'Cape Verde Escudo',
+        moniker: 'Small',
+        readonly: undefined,
+        transferrable: undefined,
+        ttl: 29266,
+        consumedTime: '2019-03-05T02:54:13.075Z',
+        issuer: 'Books',
+        stake: {
+          totalStakes: '14786',
+          totalUnstakes: '55195',
+          totalReceivedStakes: '71631',
+          recentStakes: {
+            items: [
+              Uint8Array [
+                50
+              ],
+              Uint8Array [
+                178
+              ]
+            ],
+            typeUrl: '24/365',
+            maxItems: 66806,
+            circular: undefined,
+            fifo: undefined
+          },
+          recentReceivedStakes: {
+            items: [
+              Uint8Array [
+                44
+              ],
+              Uint8Array [
+                25
+              ]
+            ],
+            typeUrl: 'Curve',
+            maxItems: 7419,
+            circular: undefined,
+            fifo: undefined
+          }
+        },
+        context: {
+          genesisTx: 'Branding',
+          renaissanceTx: 'Qatar',
+          genesisTime: '2019-03-05T02:54:13.075Z',
+          renaissanceTime: '2019-03-05T02:54:13.075Z'
+        },
+        data: {
+          type: 'fg:x:random_data',
+          value: 'ABCD 1234'
+        }
+      }
+    ],
+    stakes: [
+      {
+        address: '0f1b00d9f9494bdb56658341916eaa31015b1696',
+        from: '02a6c45cd474e5352310571b8b3c8200f6ce423a',
+        to: '15d53ce26125f2446377524c6c2b6388dee021f0',
+        balance: '97235',
+        message: 'Agent',
+        context: {
+          genesisTx: 'New Zealand Dollar',
+          renaissanceTx: 'e-business',
+          genesisTime: '2019-03-05T02:54:13.075Z',
+          renaissanceTime: '2019-03-05T02:54:13.075Z'
+        },
+        data: {
+          type: 'fg:x:random_data',
+          value: 'ABCD 1234'
+        }
+      },
+      {
+        address: 'e92a895555cf4d0aa10560384a3106497b9f54c1',
+        from: 'a214b16ab0bf071f4947cbde5ba8526154441138',
+        to: '3838908e068f8e42fbabf7a31ec1077c710280eb',
+        balance: '73514',
+        message: 'withdrawal',
+        context: {
+          genesisTx: 'facilitate',
+          renaissanceTx: 'payment',
+          genesisTime: '2019-03-05T02:54:13.075Z',
+          renaissanceTime: '2019-03-05T02:54:13.075Z'
+        },
+        data: {
+          type: 'fg:x:random_data',
+          value: 'ABCD 1234'
+        }
+      }
+    ],
+    context: {
+      txHash: '1d8aa2191b47ca2d8d93a01e1224913981ed8d1b',
+      blockHeight: 66132,
+      blockTime: '2019-03-05T02:54:13.075Z',
+      totalTxs: 14798,
+      txStatistics: {
+        numAccountMigrateTxs: 38039,
+        numCreateAssetTxs: 49922,
+        numConsensusUpgradeTxs: 54609,
+        numDeclareTxs: 2326,
+        numDeclareFileTxs: 69171,
+        numExchangeTxs: 57370,
+        numStakeTxs: 76279,
+        numSysUpgradeTxs: 81741,
+        numTransferTxs: 70716,
+        numUpdateAssetTxs: 22153,
+        numConsumeAssetTxs: 40479
+      },
+      txIndex: 37127,
+      lastBlockTime: '2019-03-05T02:54:13.075Z'
+    },
+    appState: {
+      address: '6c916faf890a535038f1d22cb09196fa44bdfc79',
+      consensus: {
+        maxBytes: 93613,
+        maxGas: 83483,
+        maxValidators: 85471,
+        maxCandidates: 95144,
+        pubKeyTypes: [
+          'local area network',
+          'Sleek Fresh Tuna'
+        ],
+        validators: [
+          {
+            address: 'b349f420b091bbc47a509e8af442ccf2fcbf146c',
+            power: 13865
+          },
+          {
+            address: '26aeaea8e4b9f5e29094f47b3509902bd8d214ff',
+            power: 76883
+          }
+        ],
+        validatorChanged: undefined,
+        paramChanged: undefined
+      },
+      tasks: {
+        'function (options) {\n\n    if (typeof options === "number") {\n      options = {\n        max: options\n      };\n    }\n\n    options = options || {};\n\n    if (typeof options.min === "undefined") {\n      options.min = 0;\n    }\n\n    if (typeof options.max === "undefined") {\n      options.max = 99999;\n    }\n    if (typeof options.precision === "undefined") {\n      options.precision = 1;\n    }\n\n    // Make the range inclusive of the max value\n    var max = options.max;\n    if (max >= 0) {\n      max += options.precision;\n    }\n\n    var randomNumber = Math.floor(\n      mersenne.rand(max / options.precision, options.min / options.precision));\n    // Workaround problem in Float point arithmetics for e.g. 6681493 / 0.01\n    randomNumber = randomNumber / (1 / options.precision);\n\n    return randomNumber;\n\n  }': {
+          item: [
+            {
+              type: 1,
+              dataHash: 'Nevada',
+              actions: [
+                undefined,
+                undefined
+              ]
+            },
+            {
+              type: 3,
+              dataHash: 'Montenegro',
+              actions: [
+                undefined,
+                undefined
+              ]
+            }
+          ]
+        }
+      },
+      stakeSummary: {
+        'function (options) {\n\n    if (typeof options === "number") {\n      options = {\n        max: options\n      };\n    }\n\n    options = options || {};\n\n    if (typeof options.min === "undefined") {\n      options.min = 0;\n    }\n\n    if (typeof options.max === "undefined") {\n      options.max = 99999;\n    }\n    if (typeof options.precision === "undefined") {\n      options.precision = 1;\n    }\n\n    // Make the range inclusive of the max value\n    var max = options.max;\n    if (max >= 0) {\n      max += options.precision;\n    }\n\n    var randomNumber = Math.floor(\n      mersenne.rand(max / options.precision, options.min / options.precision));\n    // Workaround problem in Float point arithmetics for e.g. 6681493 / 0.01\n    randomNumber = randomNumber / (1 / options.precision);\n\n    return randomNumber;\n\n  }': {
+          totalStakes: '35715',
+          totalUnstakes: '25950',
+          context: {
+            genesisTx: 'virtual',
+            renaissanceTx: 'Games',
+            genesisTime: '2019-03-05T02:54:13.075Z',
+            renaissanceTime: '2019-03-05T02:54:13.075Z'
+          }
+        }
+      },
+      version: 'Manager',
+      dataVersion: 'Sports',
+      forgeAppHash: Uint8Array [
+        4
+      ],
+      data: {
+        type: 'fg:x:random_data',
+        value: 'ABCD 1234'
       }
     }
   }
@@ -3466,7 +3131,7 @@ result.on('data', data => {
   // response data format
   {
   verifyTx: {
-    code: 42
+    code: 21
   }
 }
 });
@@ -3477,38 +3142,38 @@ result.on('data', data => {
 ```js
 const result = await client.recoverWallet({
   data: Uint8Array [
-    124
+    215
   ],
   type: {
     pk: 1,
-    hash: 1,
-    address: 1,
-    role: 8
+    hash: 6,
+    address: 0,
+    role: 5
   },
-  passphrase: 'copy',
-  moniker: 'Wyoming'
+  passphrase: 'azure',
+  moniker: 'Florida'
 });
 
 // response is a stream
 result.on('data', data => {
   // response data format
   {
-  code: 34,
-  token: 'function',
+  code: 9,
+  token: 'Pine',
   wallet: {
     type: {
-      pk: 0,
-      hash: 1,
-      address: 1,
-      role: 1
+      pk: 1,
+      hash: 7,
+      address: 0,
+      role: 0
     },
     sk: Uint8Array [
-      40
+      231
     ],
     pk: Uint8Array [
-      184
+      78
     ],
-    address: 'd1fb9425136a51f758a163743799ba693c02cd97'
+    address: '9513ef4a2c71e1dfafdda64338bbc30fc53673ed'
   }
 }
 });
@@ -3518,14 +3183,14 @@ result.on('data', data => {
 
 ```js
 const result = await client.removeWallet({
-  address: '808fcf1ebcac37ef14c10e6ec607aa33f40b1656'
+  address: '1e1868ea03d8544598ee54a273911cd914030d15'
 });
 
 // response is a stream
 result.on('data', data => {
   // response data format
   {
-  code: 8
+  code: 31
 }
 });
 ```
@@ -3534,161 +3199,131 @@ result.on('data', data => {
 
 ```js
 const result = await client.search({
-  key: 'ADP',
-  value: 'scalable'
+  key: 'synthesizing',
+  value: 'SCSI'
 });
 
 // response is a stream
 result.on('data', data => {
   // response data format
   {
-  code: 2,
+  code: 35,
   txs: [
     {
       tx: {
-        from: '1155805dc6c8eafdf83180881d0b184ac17242a8',
-        nonce: 33395,
+        from: '4e6ed2f1bd90187c176ff753b5f75a58e925bfb6',
+        nonce: 94554,
         signature: Uint8Array [
-          165
+          58
         ],
-        chainId: 'Auto Loan Account',
+        chainId: 'Profound',
         signatures: [
           {
-            signer: 'standardization',
+            signer: 'Industrial',
             signature: Uint8Array [
-              75
+              21
             ],
             data: {
-              type: 'WalletType',
-              value: {
-                pk: 1,
-                hash: 13,
-                address: 1,
-                role: 2
-              }
+              type: 'fg:x:random_data',
+              value: 'ABCD 1234'
             }
           },
           {
-            signer: 'technologies',
+            signer: 'monitoring',
             signature: Uint8Array [
-              43
+              111
             ],
             data: {
-              type: 'WalletType',
-              value: {
-                pk: 1,
-                hash: 0,
-                address: 1,
-                role: 6
-              }
+              type: 'fg:x:random_data',
+              value: 'ABCD 1234'
             }
           }
         ],
         itx: {
-          type: 'WalletType',
-          value: {
-            pk: 0,
-            hash: 1,
-            address: 1,
-            role: 3
-          }
+          type: 'fg:x:random_data',
+          value: 'ABCD 1234'
         }
       },
-      height: 4477,
-      index: 55655,
-      hash: 'c358e3886379a1c4e6f130215b84f1979e92bf1c',
+      height: 5221,
+      index: 39738,
+      hash: '05be6af7b0431f5d6907b937807e3b7204198ebf',
       tags: [
         {
           key: Uint8Array [
-            102
+            115
           ],
           value: Uint8Array [
-            120
+            100
           ]
         },
         {
           key: Uint8Array [
-            188
+            193
           ],
           value: Uint8Array [
-            195
+            222
           ]
         }
       ],
-      code: 37
+      code: 36
     },
     {
       tx: {
-        from: 'dc2eafa07d6dbe2a182a9ba138d9c9db21bb5cc4',
-        nonce: 83468,
+        from: '5b3807ad9746d43f204ed2f1677dce8706b4aafb',
+        nonce: 76190,
         signature: Uint8Array [
-          233
+          216
         ],
-        chainId: 'Customer',
+        chainId: 'Bedfordshire',
         signatures: [
           {
-            signer: 'PCI',
+            signer: 'Grenada',
             signature: Uint8Array [
-              151
+              219
             ],
             data: {
-              type: 'WalletType',
-              value: {
-                pk: 0,
-                hash: 1,
-                address: 1,
-                role: 1
-              }
+              type: 'fg:x:random_data',
+              value: 'ABCD 1234'
             }
           },
           {
-            signer: 'core',
+            signer: 'Camp',
             signature: Uint8Array [
-              14
+              160
             ],
             data: {
-              type: 'WalletType',
-              value: {
-                pk: 1,
-                hash: 7,
-                address: 1,
-                role: 1
-              }
+              type: 'fg:x:random_data',
+              value: 'ABCD 1234'
             }
           }
         ],
         itx: {
-          type: 'WalletType',
-          value: {
-            pk: 0,
-            hash: 0,
-            address: 0,
-            role: 8
-          }
+          type: 'fg:x:random_data',
+          value: 'ABCD 1234'
         }
       },
-      height: 40273,
-      index: 14632,
-      hash: '513374d21849c1a470404f10603ebbe541e205ee',
+      height: 93285,
+      index: 23594,
+      hash: '3dd221df5295be1ed561cbc4dac76d636a336a15',
       tags: [
         {
           key: Uint8Array [
-            48
+            177
           ],
           value: Uint8Array [
-            232
+            39
           ]
         },
         {
           key: Uint8Array [
-            116
+            160
           ],
           value: Uint8Array [
-            210
+            31
           ]
         }
       ],
-      code: 22
+      code: 21
     }
   ]
 }
@@ -3700,70 +3335,55 @@ result.on('data', data => {
 ```js
 const result = await client.sendTx({
   tx: {
-    from: '4f3be5e55112472a0310c1d2319f78c5736e38a3',
-    nonce: 77749,
+    from: '223bb39a0f565a5e50d8ef8e51355cdcdfc90ad2',
+    nonce: 42065,
     signature: Uint8Array [
-      19
+      152
     ],
-    chainId: 'capacity',
+    chainId: 'transmitting',
     signatures: [
       {
-        signer: 'connect',
+        signer: 'Iraq',
         signature: Uint8Array [
-          14
+          200
         ],
         data: {
-          type: 'WalletType',
-          value: {
-            pk: 0,
-            hash: 7,
-            address: 0,
-            role: 7
-          }
+          type: 'fg:x:random_data',
+          value: 'ABCD 1234'
         }
       },
       {
-        signer: 'Chicken',
+        signer: 'Global',
         signature: Uint8Array [
-          45
+          68
         ],
         data: {
-          type: 'WalletType',
-          value: {
-            pk: 1,
-            hash: 6,
-            address: 0,
-            role: 4
-          }
+          type: 'fg:x:random_data',
+          value: 'ABCD 1234'
         }
       }
     ],
     itx: {
-      type: 'WalletType',
-      value: {
-        pk: 1,
-        hash: 7,
-        address: 1,
-        role: 0
-      }
+      type: 'fg:x:random_data',
+      value: 'ABCD 1234'
     }
   },
   wallet: {
     type: {
       pk: 0,
-      hash: 1,
-      address: 0,
-      role: 4
+      hash: 13,
+      address: 1,
+      role: 1
     },
     sk: Uint8Array [
-      185
+      135
     ],
     pk: Uint8Array [
-      57
+      146
     ],
-    address: 'd799e97c835bf8aae444ec9b0fecae05eef17b19'
+    address: '0646976e1e74db6a905a25283860d7edbab3ce0a'
   },
-  token: 'transition',
+  token: 'Gold',
   commit: undefined
 });
 
@@ -3771,8 +3391,8 @@ const result = await client.sendTx({
 result.on('data', data => {
   // response data format
   {
-  code: 40,
-  hash: '1c960cf5d62a74fc6f071afd9151cab53cfc8de7'
+  code: 32,
+  hash: 'aa5a259a40ba76712b5931441ff0ef241bd980e8'
 }
 });
 ```
@@ -3782,33 +3402,33 @@ result.on('data', data => {
 ```js
 const result = await client.signData({
   data: Uint8Array [
-    79
+    57
   ],
   wallet: {
     type: {
-      pk: 0,
-      hash: 6,
+      pk: 1,
+      hash: 0,
       address: 1,
-      role: 0
+      role: 3
     },
     sk: Uint8Array [
-      60
+      16
     ],
     pk: Uint8Array [
-      24
+      253
     ],
-    address: '1e077b496594481249bcfef3ed1bf77dc97abe06'
+    address: '56056dfd9493220b1b7f5f1e7f5752695dc64e1e'
   },
-  token: 'National'
+  token: 'unleash'
 });
 
 // response is a stream
 result.on('data', data => {
   // response data format
   {
-  code: 9,
+  code: 500,
   signature: Uint8Array [
-    121
+    244
   ]
 }
 });
@@ -3819,7 +3439,7 @@ result.on('data', data => {
 ```js
 const result = await client.storeFile({
   chunk: Uint8Array [
-    130
+    99
   ]
 });
 
@@ -3827,8 +3447,8 @@ const result = await client.storeFile({
 result.on('data', data => {
   // response data format
   {
-  code: 6,
-  hash: '8bfc6d1ef89415c2c92d2cda66cf82eca0f19512'
+  code: 10,
+  hash: 'be376e2407e77ef34621721739679d9cbf1232bc'
 }
 });
 ```
@@ -3837,13 +3457,13 @@ result.on('data', data => {
 
 ```js
 const stream = client.subscribe({
-  type: 21,
-  filter: 'killer'
+  type: 17,
+  filter: 'vertical'
 });
 
 // output
 {
-  topic: 'toolset'
+  topic: 'Alley'
 }
 ```
 
@@ -3851,14 +3471,14 @@ const stream = client.subscribe({
 
 ```js
 const result = await client.unsubscribe({
-  topic: 'Product'
+  topic: 'North Carolina'
 });
 
 // response is a stream
 result.on('data', data => {
   // response data format
   {
-  code: 20
+  code: 10
 }
 });
 ```
