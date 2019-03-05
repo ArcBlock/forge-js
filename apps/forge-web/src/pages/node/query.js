@@ -182,6 +182,14 @@ const Container = styled.div`
       }
     }
 
+    .resultWrap {
+      border-left: none;
+
+      .CodeMirror-gutters {
+        opacity: 0.5;
+      }
+    }
+
     .CodeMirror {
       background: ${props => props.theme.palette.background.default};
     }
