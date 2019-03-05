@@ -48,6 +48,7 @@ class AssetDetail extends Page {
                 meta={[
                   { key: 'Created At', value: asset.context.genesisTime },
                   { key: 'Updated At', value: asset.context.renaissanceTime },
+                  { key: 'Consumed At', value: asset.context.consumeTime || 'NAN' },
                 ]}
               />
               <pre>
