@@ -1,3 +1,7 @@
+## 0.11.2 (March 07, 2019)
+  - remove license for forge web
+  - update readme
+
 ## 0.11.1 (March 06, 2019)
   - chore: upgrade forge-sdk with forge v0.17.1
   - chore: upgrade forge-proto with forge v0.17.1
