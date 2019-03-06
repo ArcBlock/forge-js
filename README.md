@@ -2,7 +2,7 @@
 
 [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lernajs.io/)
 
-> Javascript libraries to work with forge, an awesome framework to write distributed blockchain applications, last updated at 3/6/2019, 6:56:27 AM
+> Javascript libraries to work with forge, an awesome framework to write distributed blockchain applications, last updated at 3/7/2019, 6:56:33 AM
 
 ## Packages Included
 
