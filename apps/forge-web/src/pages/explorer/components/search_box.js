@@ -65,6 +65,12 @@ class SearchBox extends React.Component {
         value: v => `/node/explorer/accounts/${v}`,
         path: 'getAccountState.state.address',
       },
+      asset: {
+        query: `{ getAssetState(address: "${keyword}") { state { address } } }`,
+        label: v => `Asset: ${v}`,
+        value: v => `/node/explorer/assets/${v}`,
+        path: 'getAssetState.state.address',
+      },
     };
 
     this.setState({ loading: true });

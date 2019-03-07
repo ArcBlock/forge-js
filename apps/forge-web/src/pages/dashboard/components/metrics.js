@@ -1,16 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import moment from 'moment';
 import { fromArc } from '@arcblock/forge-util';
-import { useAsync } from 'react-use';
+import { useAsync, useBoolean } from 'react-use';
 
 import Grid from '@material-ui/core/Grid';
+import Switch from '@material-ui/core/Switch';
+import Tooltip from '@material-ui/core/Tooltip';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 import Icon8 from '../../../components/icon8';
 import SparkLine from '../../../components/sparkline';
 import forge from '../../../libs/forge';
 import { fromArcToReadable } from '../../../libs/util';
+import { useInterval } from '../../../libs/hooks';
 
 async function fetchSummary() {
   const date = moment().format('YYYY-MM-DD');
@@ -24,6 +27,21 @@ async function fetchSummary() {
 
 export default function SummarySection() {
   const state = useAsync(fetchSummary);
+  const [updates, setUpdates] = useState(null);
+  const [autoRefresh, setAutoRefresh] = useBoolean(true);
+
+  // Pull
+  useInterval(
+    async () => {
+      try {
+        const res = await fetchSummary();
+        setUpdates(res);
+      } catch (err) {
+        console.error(err);
+      }
+    },
+    autoRefresh ? 3000 : null
+  );
 
   if (state.loading) {
     return <CircularProgress />;
@@ -33,7 +51,7 @@ export default function SummarySection() {
     return <p className="error">{state.error.message}</p>;
   }
 
-  const { summary, trend } = state.value;
+  const { summary, trend } = updates || state.value;
   const mapping = {
     blocks: 'numBlocks',
     txs: 'numTxs',
@@ -76,24 +94,61 @@ export default function SummarySection() {
   };
 
   return (
-    <Grid container spacing={40}>
-      {Object.keys(metrics).map(x => (
-        <Grid key={x} item xs={12} sm={6} md={4}>
-          <Metric>
-            <div className="metric__image">
-              <Icon8 name={images[x]} alt={x} size={36} />
-            </div>
-            <div className="metric__number">{metrics[x]}</div>
-            <div className="metric__name">{x}</div>
-            <div className="metric__trend">
-              <SparkLine data={trends[x]} series={[SparkLine.createSeries({ dataKey: x })]} />
-            </div>
-          </Metric>
-        </Grid>
-      ))}
-    </Grid>
+    <Container>
+      <div className="refresh-toggler">
+        <Tooltip
+          title={
+            autoRefresh
+              ? 'Realtime updates enabled, click to disable'
+              : 'Realtime updates disabled, click to enable'
+          }>
+          <Switch
+            checked={autoRefresh}
+            onChange={e => setAutoRefresh(e.target.checked)}
+            value="autoRefresh"
+            color="primary"
+          />
+        </Tooltip>
+      </div>
+      <Grid container spacing={40}>
+        {Object.keys(metrics).map(x => (
+          <Grid key={x} item xs={12} sm={6} md={4}>
+            <Metric>
+              <div className="metric__image">
+                <Icon8 name={images[x]} alt={x} size={36} />
+              </div>
+              <div className="metric__number">{metrics[x]}</div>
+              <div className="metric__name">{x}</div>
+              <div className="metric__trend">
+                <SparkLine data={trends[x]} series={[SparkLine.createSeries({ dataKey: x })]} />
+              </div>
+            </Metric>
+          </Grid>
+        ))}
+      </Grid>
+    </Container>
   );
 }
+
+const Container = styled.div`
+  position: relative;
+
+  .refresh-toggler {
+    position: absolute;
+    top: -40px;
+    right: 0;
+
+    .toggler {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .icon {
+      margin-left: 5px;
+    }
+  }
+`;
 
 const Metric = styled.div`
   padding: 20px 0 0;
