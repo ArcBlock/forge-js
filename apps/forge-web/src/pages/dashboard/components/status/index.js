@@ -6,8 +6,8 @@ import { useAsync } from 'react-use';
 // TODO: use css transition group to make animation perfect
 
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
-import CircularProgress from '@material-ui/core/CircularProgress';
 
+import ActivityIndicator from '../../../../components/activity_indicator';
 import Summary from './summary';
 
 import { fetchStatus, getLayerBackground, getLayerStyle, getGreeting } from './util';
@@ -20,7 +20,21 @@ export default function StatusSection() {
   const [selected, setSelected] = useState(null);
 
   if (state.loading) {
-    return <CircularProgress />;
+    return (
+      <ActivityIndicator
+        interval={1000}
+        messages={[
+          'Loading application info...',
+          'Checking network status...',
+          'Fetching consensus status...',
+          'Fetching storage status...',
+          'Pulling forge framework state...',
+        ]}
+        style={{
+          height: '500px',
+        }}
+      />
+    );
   }
 
   if (state.error) {
