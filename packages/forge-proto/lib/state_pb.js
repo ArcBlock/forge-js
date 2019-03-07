@@ -1105,6 +1105,7 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
         version: jspb.Message.getFieldWithDefault(msg, 5, ''),
         dataVersion: jspb.Message.getFieldWithDefault(msg, 6, ''),
         forgeAppHash: msg.getForgeAppHash(),
+        token: (f = msg.getToken()) && type_pb.ForgeToken.toObject(includeInstance, f),
         data: (f = msg.getData()) && google_protobuf_any_pb.Any.toObject(includeInstance, f),
       };
 
@@ -1187,6 +1188,11 @@ proto.forge_abi.ForgeState.deserializeBinaryFromReader = function(msg, reader) {
         var value = /** @type {!Uint8Array} */ (reader.readBytes());
         msg.setForgeAppHash(value);
         break;
+      case 8:
+        var value = new type_pb.ForgeToken();
+        reader.readMessage(value, type_pb.ForgeToken.deserializeBinaryFromReader);
+        msg.setToken(value);
+        break;
       case 15:
         var value = new google_protobuf_any_pb.Any();
         reader.readMessage(value, google_protobuf_any_pb.Any.deserializeBinaryFromReader);
@@ -1258,6 +1264,10 @@ proto.forge_abi.ForgeState.serializeBinaryToWriter = function(message, writer) {
   f = message.getForgeAppHash_asU8();
   if (f.length > 0) {
     writer.writeBytes(7, f);
+  }
+  f = message.getToken();
+  if (f != null) {
+    writer.writeMessage(8, f, type_pb.ForgeToken.serializeBinaryToWriter);
   }
   f = message.getData();
   if (f != null) {
@@ -1402,6 +1412,35 @@ proto.forge_abi.ForgeState.prototype.getForgeAppHash_asU8 = function() {
 /** @param {!(string|Uint8Array)} value */
 proto.forge_abi.ForgeState.prototype.setForgeAppHash = function(value) {
   jspb.Message.setProto3BytesField(this, 7, value);
+};
+
+/**
+ * optional ForgeToken token = 8;
+ * @return {?proto.forge_abi.ForgeToken}
+ */
+proto.forge_abi.ForgeState.prototype.getToken = function() {
+  return /** @type{?proto.forge_abi.ForgeToken} */ (jspb.Message.getWrapperField(
+    this,
+    type_pb.ForgeToken,
+    8
+  ));
+};
+
+/** @param {?proto.forge_abi.ForgeToken|undefined} value */
+proto.forge_abi.ForgeState.prototype.setToken = function(value) {
+  jspb.Message.setWrapperField(this, 8, value);
+};
+
+proto.forge_abi.ForgeState.prototype.clearToken = function() {
+  this.setToken(undefined);
+};
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.forge_abi.ForgeState.prototype.hasToken = function() {
+  return jspb.Message.getField(this, 8) != null;
 };
 
 /**
