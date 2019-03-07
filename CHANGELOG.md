@@ -1,3 +1,20 @@
+## 0.12.0 (March 07, 2019)
+  - chore: upgrade forge-sdk with latest forge
+  - chore: upgrade forge-proto with latest forge
+  - chore: upgrade graphql-client with latest forge
+  - fix: proper layer color on status basis
+  - chore: rename summary section => metrics section
+  - chore: make default status null
+  - chore: complete status components
+  - chore: basic summary and stack skeleton
+  - chore: basic stacked layer
+  - chore: add asset address when creating asset
+  - chore: add consume asset tx
+  - chore: add detail for migrate tx
+  - chore: add receiver field for account migrate tx
+  - chore: add make command to do upgrade
+  - update readme
+
 ## 0.11.2 (March 07, 2019)
   - remove license for forge web
   - update readme
