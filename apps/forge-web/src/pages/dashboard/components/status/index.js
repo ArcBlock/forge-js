@@ -41,7 +41,7 @@ export default function StatusSection() {
     return <p className="error">{state.error.message}</p>;
   }
 
-  const { layers, data } = state.value;
+  const { layers, data, ok } = state.value;
   const names = Object.keys(layers);
   const SummaryComponent = selected ? layers[selected].component : Summary;
 
@@ -54,7 +54,7 @@ export default function StatusSection() {
         <div className="greeting">
           <p>
             Good {getGreeting()}! <br />
-            Your node is running now.
+            Your node {ok ? 'works good' : 'is running'} now.
           </p>
         </div>
         <div className="layers">
