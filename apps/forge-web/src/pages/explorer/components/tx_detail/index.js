@@ -7,6 +7,7 @@ import TxExchange from './exchange';
 import TxStake from './stake';
 import TxCreateAsset from './create_asset';
 import TxUpdateAsset from './update_asset';
+import TxConsumeAsset from './consume_asset';
 import TxDeclare from './declare';
 import TxAccountMigrate from './account_migrate';
 import TxDefault from './default';
@@ -16,6 +17,7 @@ import { getTxType } from '../../../../libs/util';
 const components = {
   CreateAsset: TxCreateAsset,
   UpdateAsset: TxUpdateAsset,
+  ConsumeAsset: TxConsumeAsset,
   Transfer: TxTransfer,
   Stake: TxStake,
   Exchange: TxExchange,
