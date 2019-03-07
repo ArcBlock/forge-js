@@ -6,7 +6,7 @@ import get from 'lodash/get';
 import AsyncSelect from 'react-select/lib/Async';
 import { withRouter } from 'react-router-dom';
 
-import forge from '../../../libs/forge';
+import forge from '../libs/forge';
 
 class SearchBox extends React.Component {
   static propTypes = {

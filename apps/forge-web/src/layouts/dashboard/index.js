@@ -24,6 +24,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import Sidebar from './sidebar';
 import SecondaryLinks from './secondary';
 import NodeInfo from './node_info';
+// import SearchBox from '../../components/search_box';
 import withI18n from '../../components/withI18n';
 import withRoot from '../../components/withRoot';
 import withTracker from '../../components/withTracker';

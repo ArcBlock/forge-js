@@ -7,8 +7,8 @@ import { withTheme } from '@material-ui/core/styles';
 import { withRouter, Link } from 'react-router-dom';
 
 import IconFa from '../../../../components/iconfa';
+import SearchBox from '../../../../components/search_box';
 
-import SearchBox from '../search_box';
 import FilterPanel from './panel';
 import SelectedList from './selected';
 
