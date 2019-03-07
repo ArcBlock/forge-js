@@ -9,17 +9,16 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 
 import IconFa from '../../../../components/iconfa';
-import { getLayerColor } from './util';
 
-function SummaryStatus({ layers, theme }) {
+function SummaryStatus({ layers, labels, theme }) {
   return (
     <List component="div">
-      {Object.keys(layers).map(x => (
+      {layers.map(x => (
         <ListItem key={x}>
           <ListItemIcon>
-            <IconFa name="check-circle" color={getLayerColor(layers[x].status, theme)} />
+            <IconFa name="check-circle" color={theme.colors.green} />
           </ListItemIcon>
-          <ListItemText primary={upperFirst(layers[x].label)} style={{ padding: 0 }} />
+          <ListItemText primary={upperFirst(labels[x])} style={{ padding: 0 }} />
         </ListItem>
       ))}
     </List>
@@ -27,7 +26,8 @@ function SummaryStatus({ layers, theme }) {
 }
 
 SummaryStatus.propTypes = {
-  layers: PropTypes.object.isRequired,
+  layers: PropTypes.array.isRequired,
+  labels: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
 };
 

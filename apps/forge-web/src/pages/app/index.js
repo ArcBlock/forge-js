@@ -3,8 +3,6 @@ import styled from 'styled-components';
 
 import Typography from '@material-ui/core/Typography';
 
-import Status from '../dashboard/components/status/index';
-
 import Page from '../../components/page';
 import Layout from '../../layouts/page';
 import Wrapper from '../../components/wrapper';
@@ -17,7 +15,6 @@ class Application extends Page {
       <Layout title="Application" cookies={this.cookies}>
         <Container>
           <Typography component="h3">Application here...</Typography>
-          <Status />
         </Container>
       </Layout>
     );
