@@ -128,7 +128,7 @@ declare class RpcClient {
  * @returns net.Server
  */
 declare function create(config: any): Readonly<ForgeSDK.T101>;
-declare function addSource(T104: T105): void;
+declare function addSource(T104: any): void;
 declare function parseConfig(configPath: any): any;
 /**
  * Create an protobuf encoded Typed message with specified data, ready to send to rpc server
@@ -665,6 +665,7 @@ declare namespace forge_abi {
     hash: string;
     tags: Array<abci_vendor.KVPair>;
     code: forge_abi.StatusCode;
+    time: google.protobuf.Timestamp;
   }
 
   export interface BlockInfo {
@@ -675,6 +676,9 @@ declare namespace forge_abi {
     proposer: string;
     txs: Array<forge_abi.TransactionInfo>;
     totalTxs: number;
+    invalidTxs: Array<forge_abi.TransactionInfo>;
+    txsHashes: Array<string>;
+    invalidTxsHashes: Array<string>;
   }
 
   export interface TxStatus {
@@ -792,6 +796,18 @@ declare namespace forge_abi {
     numConsumeAssetTxs: number;
   }
 
+  export interface ForgeToken {
+    name: string;
+    symbol: string;
+    unit: string;
+    description: string;
+    icon: Uint8Array;
+    decimal: number;
+    initialSupply: number;
+    totalSupply: number;
+    inflationRate: number;
+  }
+
   export interface AccountState {
     balance: forge_abi.BigUint;
     nonce: number;
@@ -832,6 +848,7 @@ declare namespace forge_abi {
     version: string;
     dataVersion: string;
     forgeAppHash: Uint8Array;
+    token: forge_abi.ForgeToken;
     data: google.protobuf.Any;
   }
 
@@ -1378,6 +1395,11 @@ declare namespace forge_abi {
     time: string;
     type: string;
     tx: forge_abi.Transaction;
+    consumeAsset: forge_abi.IndexedConsumeAsset;
+    createAsset: forge_abi.IndexedCreateAsset;
+    exchange: forge_abi.IndexedExchange;
+    transfer: forge_abi.IndexedTransfer;
+    updateAsset: forge_abi.IndexedUpdateAsset;
   }
 
   export interface IndexedAccountState {
@@ -1415,6 +1437,27 @@ declare namespace forge_abi {
     renaissanceTime: string;
     message: string;
     type: number;
+  }
+
+  export interface IndexedConsumeAsset {
+    asset: string;
+  }
+
+  export interface IndexedCreateAsset {
+    asset: string;
+  }
+
+  export interface IndexedExchange {
+    senderAssets: Array<string>;
+    receiverAssets: Array<string>;
+  }
+
+  export interface IndexedTransfer {
+    assets: Array<string>;
+  }
+
+  export interface IndexedUpdateAsset {
+    asset: string;
   }
 }
 
