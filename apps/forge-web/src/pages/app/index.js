@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import Typography from '@material-ui/core/Typography';
 
-import Status from '../dashboard/components/status';
+import Status from '../dashboard/components/status/index';
 
 import Page from '../../components/page';
 import Layout from '../../layouts/page';
