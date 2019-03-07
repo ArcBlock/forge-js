@@ -11,11 +11,11 @@ const STATUS_WARNING = 1;
 const STATUS_ERROR = 2;
 
 export const getLayerColor = (status, theme) => {
-  if (status === 1) {
+  if (status === STATUS_WARNING) {
     return theme.colors.yellow;
   }
 
-  if (status === 2) {
+  if (status === STATUS_ERROR) {
     return theme.colors.red;
   }
 

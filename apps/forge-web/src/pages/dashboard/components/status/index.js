@@ -34,6 +34,11 @@ export default function StatusSection() {
   const onSelectLayer = name => () => setSelected(name);
   const onClickAway = () => setSelected(null);
 
+  console.log({
+    error: selected ? layers[selected].status === STATUS_ERROR : false,
+    warning: selected ? layers[selected].status === STATUS_WARNING : false,
+  });
+
   return (
     <ClickAwayListener onClickAway={onClickAway}>
       <Container>
@@ -48,8 +53,8 @@ export default function StatusSection() {
             {names.map((x, i) => (
               <Layer
                 key={x}
-                error={selected ? layers[selected].status === STATUS_ERROR : false}
-                warning={selected ? layers[selected].status === STATUS_WARNING : false}
+                error={layers[x].status === STATUS_ERROR}
+                warning={layers[x].status === STATUS_WARNING}
                 onMouseEnter={onSelectLayer(x)}
                 style={getLayerStyle(names, selected, i)}
               />
