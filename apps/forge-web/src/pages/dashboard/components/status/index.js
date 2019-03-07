@@ -17,7 +17,7 @@ const STATUS_ERROR = 2;
 
 export default function StatusSection() {
   const state = useAsync(fetchStatus);
-  const [selected, setSelected] = useState('forge');
+  const [selected, setSelected] = useState(null);
 
   if (state.loading) {
     return <CircularProgress />;
