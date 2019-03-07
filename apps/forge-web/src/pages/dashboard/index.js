@@ -10,14 +10,14 @@ import withI18n from '../../components/withI18n';
 import withRoot from '../../components/withRoot';
 
 import Status from './components/status/index';
-import Summary from './components/summary';
+import Metrics from './components/metrics';
 import Transactions from './components/transactions';
 import TopAccounts from './components/top_accounts';
 import TopValidators from './components/top_validators';
 
 class Dashboard extends Page {
   sections = {
-    summary: Summary,
+    metrics: Metrics,
     transactions: Transactions,
     topAccounts: TopAccounts,
     topValidators: TopValidators,

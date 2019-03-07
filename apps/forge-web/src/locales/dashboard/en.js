@@ -1,5 +1,5 @@
 export default {
-  summary: 'Summary',
+  metrics: 'Summary',
   transactions: 'Transactions',
   topAccounts: 'Top Accounts',
   topValidators: 'Top Validators',
