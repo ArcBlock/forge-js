@@ -48,18 +48,13 @@ export default function StatusSection() {
   const onSelectLayer = name => () => setSelected(name);
   const onClickAway = () => setSelected(null);
 
-  console.log({
-    error: selected ? layers[selected].status === STATUS_ERROR : false,
-    warning: selected ? layers[selected].status === STATUS_WARNING : false,
-  });
-
   return (
     <ClickAwayListener onClickAway={onClickAway}>
       <Container>
         <div className="greeting">
           <p>
             Good {getGreeting()}! <br />
-            Your node works good now.
+            Your node is running now.
           </p>
         </div>
         <div className="layers">
