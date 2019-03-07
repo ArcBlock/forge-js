@@ -184,41 +184,41 @@ declare namespace GraphQLClient {
   }
 
   export enum StatusCode {
-    INVALID_SENDER_STATE,
+    INVALID_SIGNATURE,
     INVALID_MULTISIG,
-    UNTRANSFERRABLE_ASSET,
-    INVALID_MONIKER,
-    BANNED_UNSTAKE,
-    INSUFFICIENT_STAKE,
     INVALID_OWNER,
+    INVALID_STAKE_STATE,
+    INVALID_WALLET,
+    INVALID_CHAIN_ID,
+    INSUFFICIENT_STAKE,
+    UNSUPPORTED_STAKE,
+    FORBIDDEN,
+    INSUFFICIENT_DATA,
+    EXPIRED_WALLET_TOKEN,
+    ACCOUNT_MIGRATED,
     INVALID_TX_SIZE,
     EXPIRED_TX,
-    FORBIDDEN,
-    INVALID_RECEIVER_STATE,
-    ACCOUNT_MIGRATED,
-    NOENT,
-    INVALID_TX,
-    UNSUPPORTED_TX,
     INVALID_ASSET,
-    INVALID_STAKE_STATE,
-    INSUFFICIENT_DATA,
-    INVALID_FORGE_STATE,
-    INVALID_NONCE,
-    INSUFFICIENT_FUND,
-    STORAGE_RPC_ERROR,
-    INVALID_SIGNATURE,
-    INVALID_CHAIN_ID,
-    INVALID_WALLET,
-    CONSUMED_ASSET,
-    UNSUPPORTED_STAKE,
-    EXPIRED_ASSET,
+    INVALID_TX,
     INVALID_PASSPHRASE,
-    INVALID_SIGNER_STATE,
-    READONLY_ASSET,
-    INTERNAL,
-    EXPIRED_WALLET_TOKEN,
     CONSENSUS_RPC_ERROR,
+    UNTRANSFERRABLE_ASSET,
+    INVALID_RECEIVER_STATE,
+    INVALID_FORGE_STATE,
+    BANNED_UNSTAKE,
+    READONLY_ASSET,
+    INVALID_NONCE,
+    STORAGE_RPC_ERROR,
+    INSUFFICIENT_FUND,
+    CONSUMED_ASSET,
+    INVALID_SIGNER_STATE,
+    EXPIRED_ASSET,
+    INVALID_SENDER_STATE,
+    INTERNAL,
+    UNSUPPORTED_TX,
+    NOENT,
     OK,
+    INVALID_MONIKER,
   }
 
   export enum UpgradeAction {
@@ -309,11 +309,14 @@ declare namespace GraphQLClient {
   export interface BlockInfo {
     appHash: string;
     height: number;
+    invalidTxs: Array<TransactionInfo>;
+    invalidTxsHashes: Array<string>;
     numTxs: number;
     proposer: string;
     time: string;
     totalTxs: number;
     txs: Array<TransactionInfo>;
+    txsHashes: Array<string>;
   }
 
   export interface ChainInfo {
@@ -497,6 +500,19 @@ declare namespace GraphQLClient {
     renaissanceTime: string;
   }
 
+  export interface IndexedConsumeAsset {
+    asset: string;
+  }
+
+  export interface IndexedCreateAsset {
+    asset: string;
+  }
+
+  export interface IndexedExchange {
+    receiverAssets: Array<string>;
+    senderAssets: Array<string>;
+  }
+
   export interface IndexedStakeState {
     address: string;
     balance: string;
@@ -509,12 +525,25 @@ declare namespace GraphQLClient {
   }
 
   export interface IndexedTransaction {
+    consumeAsset: GraphQLClient.IndexedConsumeAsset;
+    createAsset: GraphQLClient.IndexedCreateAsset;
+    exchange: GraphQLClient.IndexedExchange;
     hash: string;
     receiver: string;
     sender: string;
     time: string;
+    transfer: GraphQLClient.IndexedTransfer;
     tx: GraphQLClient.Transaction;
     type: string;
+    updateAsset: GraphQLClient.IndexedUpdateAsset;
+  }
+
+  export interface IndexedTransfer {
+    assets: Array<string>;
+  }
+
+  export interface IndexedUpdateAsset {
+    asset: string;
   }
 
   export interface KvPair {
@@ -874,6 +903,7 @@ declare namespace GraphQLClient {
     height: number;
     index: number;
     tags: Array<KvPair>;
+    time: string;
     tx: GraphQLClient.Transaction;
   }
 
