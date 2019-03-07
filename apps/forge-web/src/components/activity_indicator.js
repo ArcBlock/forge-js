@@ -45,9 +45,10 @@ export default class ActivityIndicator extends React.Component {
   }
 
   render() {
+    const { messages, ...rest } = this.props;
     const message = this.props.messages[this.state.index];
     return (
-      <Container>
+      <Container {...rest}>
         <div className="pm-loader-container">
           <Fade key={message} in={true}>
             <div className="pm-loader-text">

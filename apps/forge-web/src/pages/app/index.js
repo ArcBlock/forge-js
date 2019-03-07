@@ -5,6 +5,7 @@ import Typography from '@material-ui/core/Typography';
 
 import Page from '../../components/page';
 import Layout from '../../layouts/page';
+import Wrapper from '../../components/wrapper';
 import withI18n from '../../components/withI18n';
 import withRoot from '../../components/withRoot';
 
@@ -20,8 +21,6 @@ class Application extends Page {
   }
 }
 
-const Container = styled.div`
-  padding: ${props => props.theme.spacing.unit * 3}px;
-`;
+const Container = styled(Wrapper)``;
 
 export default withRoot(withI18n(Application));

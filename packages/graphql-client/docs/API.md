@@ -1,6 +1,6 @@
 # Forge GraphQL API List
 
-> Updated on 2019-03-05T22:29:20.365Z
+> Updated on 2019-03-07T10:16:08.968Z
 
 
 ## Table of Contents
@@ -63,7 +63,7 @@
 
 ```graphql
 {
-  getAccountState(address: "abc", height: 123, keys: "abc") {
+  getAccountState(address: "abc", height: 123, keys: ["abc"]) {
     code
     state {
       address
@@ -84,6 +84,7 @@
           hash
           height
           index
+          time
           tags {
             key
             value
@@ -224,6 +225,7 @@
           hash
           height
           index
+          time
           tags {
             key
             value
@@ -432,7 +434,7 @@
 
 ```graphql
 {
-  getAssetState(address: "abc", height: 123, keys: "abc") {
+  getAssetState(address: "abc", height: 123, keys: ["abc"]) {
     code
     state {
       address
@@ -451,6 +453,7 @@
           hash
           height
           index
+          time
           tags {
             key
             value
@@ -591,6 +594,7 @@
           hash
           height
           index
+          time
           tags {
             key
             value
@@ -800,15 +804,159 @@
     block {
       appHash
       height
+      invalidTxsHashes
       numTxs
       proposer
       time
       totalTxs
+      txsHashes
+      invalidTxs {
+        code
+        hash
+        height
+        index
+        time
+        tags {
+          key
+          value
+        }
+        tx {
+          chainId
+          from
+          nonce
+          signature
+          signatures {
+            signature
+            signer
+            data {
+              typeUrl
+              value
+            }
+          }
+          itx {
+            __typename
+            ... on UpdateAssetTx {
+              address
+              moniker
+              data {
+                typeUrl
+                value
+              }
+            }
+            ... on TransferTx {
+              assets
+              to
+              value
+              data {
+                typeUrl
+                value
+              }
+            }
+            ... on SysUpgradeTx {
+              gracePeriod
+              data {
+                typeUrl
+                value
+              }
+              task {
+                actions
+                dataHash
+                type
+              }
+            }
+            ... on StakeTx {
+              message
+              to
+              value
+              data {
+                type
+              }
+            }
+            ... on ExchangeTx {
+              expiredAt
+              to
+              data {
+                typeUrl
+                value
+              }
+              receiver {
+                assets
+                value
+              }
+              sender {
+                assets
+                value
+              }
+            }
+            ... on DeclareFileTx {
+              hash
+            }
+            ... on DeclareTx {
+              issuer
+              moniker
+              pk
+              data {
+                typeUrl
+                value
+              }
+              type {
+                address
+                hash
+                pk
+                role
+              }
+            }
+            ... on CreateAssetTx {
+              moniker
+              parent
+              readonly
+              transferrable
+              ttl
+              data {
+                typeUrl
+                value
+              }
+            }
+            ... on ConsumeAssetTx {
+              address
+              issuer
+              data {
+                typeUrl
+                value
+              }
+            }
+            ... on ConsensusUpgradeTx {
+              maxBytes
+              maxCandidates
+              maxGas
+              maxValidators
+              data {
+                typeUrl
+                value
+              }
+              validators {
+                address
+                power
+              }
+            }
+            ... on AccountMigrateTx {
+              pk
+              type {
+                address
+                hash
+                pk
+                role
+              }
+            }
+          }
+        }
+      }
       txs {
         code
         hash
         height
         index
+        time
         tags {
           key
           value
@@ -967,15 +1115,159 @@
     blocks {
       appHash
       height
+      invalidTxsHashes
       numTxs
       proposer
       time
       totalTxs
+      txsHashes
+      invalidTxs {
+        code
+        hash
+        height
+        index
+        time
+        tags {
+          key
+          value
+        }
+        tx {
+          chainId
+          from
+          nonce
+          signature
+          signatures {
+            signature
+            signer
+            data {
+              typeUrl
+              value
+            }
+          }
+          itx {
+            __typename
+            ... on UpdateAssetTx {
+              address
+              moniker
+              data {
+                typeUrl
+                value
+              }
+            }
+            ... on TransferTx {
+              assets
+              to
+              value
+              data {
+                typeUrl
+                value
+              }
+            }
+            ... on SysUpgradeTx {
+              gracePeriod
+              data {
+                typeUrl
+                value
+              }
+              task {
+                actions
+                dataHash
+                type
+              }
+            }
+            ... on StakeTx {
+              message
+              to
+              value
+              data {
+                type
+              }
+            }
+            ... on ExchangeTx {
+              expiredAt
+              to
+              data {
+                typeUrl
+                value
+              }
+              receiver {
+                assets
+                value
+              }
+              sender {
+                assets
+                value
+              }
+            }
+            ... on DeclareFileTx {
+              hash
+            }
+            ... on DeclareTx {
+              issuer
+              moniker
+              pk
+              data {
+                typeUrl
+                value
+              }
+              type {
+                address
+                hash
+                pk
+                role
+              }
+            }
+            ... on CreateAssetTx {
+              moniker
+              parent
+              readonly
+              transferrable
+              ttl
+              data {
+                typeUrl
+                value
+              }
+            }
+            ... on ConsumeAssetTx {
+              address
+              issuer
+              data {
+                typeUrl
+                value
+              }
+            }
+            ... on ConsensusUpgradeTx {
+              maxBytes
+              maxCandidates
+              maxGas
+              maxValidators
+              data {
+                typeUrl
+                value
+              }
+              validators {
+                address
+                power
+              }
+            }
+            ... on AccountMigrateTx {
+              pk
+              type {
+                address
+                hash
+                pk
+                role
+              }
+            }
+          }
+        }
+      }
       txs {
         code
         hash
         height
         index
+        time
         tags {
           key
           value
@@ -1186,7 +1478,7 @@ No arguments
 
 ```graphql
 {
-  getForgeState(height: 123, keys: "abc") {
+  getForgeState(height: 123, keys: ["abc"]) {
     code
     state {
       address
@@ -1223,6 +1515,7 @@ No arguments
               hash
               height
               index
+              time
               tags {
                 key
                 value
@@ -1239,6 +1532,7 @@ No arguments
               hash
               height
               index
+              time
               tags {
                 key
                 value
@@ -1458,7 +1752,7 @@ No arguments
 
 ```graphql
 {
-  getStakeState(address: "abc", height: 123, keys: "abc") {
+  getStakeState(address: "abc", height: 123, keys: ["abc"]) {
     code
     state {
       address
@@ -1474,6 +1768,7 @@ No arguments
           hash
           height
           index
+          time
           tags {
             key
             value
@@ -1614,6 +1909,7 @@ No arguments
           hash
           height
           index
+          time
           tags {
             key
             value
@@ -1845,6 +2141,7 @@ No arguments
       hash
       height
       index
+      time
       tags {
         key
         value
@@ -2186,6 +2483,19 @@ No arguments
       sender
       time
       type
+      consumeAsset {
+        asset
+      }
+      createAsset {
+        asset
+      }
+      exchange {
+        receiverAssets
+        senderAssets
+      }
+      transfer {
+        assets
+      }
       tx {
         chainId
         from
@@ -2316,6 +2626,9 @@ No arguments
           }
         }
       }
+      updateAsset {
+        asset
+      }
     }
   }
 }
@@ -2347,6 +2660,19 @@ No arguments
       sender
       time
       type
+      consumeAsset {
+        asset
+      }
+      createAsset {
+        asset
+      }
+      exchange {
+        receiverAssets
+        senderAssets
+      }
+      transfer {
+        assets
+      }
       tx {
         chainId
         from
@@ -2476,6 +2802,9 @@ No arguments
             }
           }
         }
+      }
+      updateAsset {
+        asset
       }
     }
   }
@@ -2728,6 +3057,7 @@ No arguments
       hash
       height
       index
+      time
       tags {
         key
         value

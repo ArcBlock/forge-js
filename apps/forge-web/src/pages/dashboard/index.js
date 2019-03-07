@@ -9,14 +9,15 @@ import Wrapper from '../../components/wrapper';
 import withI18n from '../../components/withI18n';
 import withRoot from '../../components/withRoot';
 
-import Summary from './components/summary';
+import Status from './components/status/index';
+import Metrics from './components/metrics';
 import Transactions from './components/transactions';
 import TopAccounts from './components/top_accounts';
 import TopValidators from './components/top_validators';
 
 class Dashboard extends Page {
   sections = {
-    summary: Summary,
+    metrics: Metrics,
     transactions: Transactions,
     topAccounts: TopAccounts,
     topValidators: TopValidators,
@@ -26,6 +27,7 @@ class Dashboard extends Page {
     return (
       <Layout title="Dashboard" cookies={this.cookies}>
         <Container>
+          <Status />
           {Object.keys(this.sections).map(x => this.renderSection(x, this.sections[x]))}
         </Container>
       </Layout>

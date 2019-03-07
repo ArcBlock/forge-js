@@ -64,6 +64,18 @@ const theme = createMuiTheme({
         color: colors.gray,
       },
     },
+    MuiChip: {
+      root: {
+        padding: '3px',
+        height: '20px',
+        fontSize: '12px',
+        marginRight: '10px',
+      },
+      label: {
+        paddingLeft: '5px',
+        paddingRight: '5px',
+      },
+    },
   },
   colors,
   sizes,
