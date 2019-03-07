@@ -23,8 +23,8 @@ const AccountMigrateTx = React.memo(({ tx, theme, ...rest }) => (
     </div>
     <div className="info-row">
       <div className="sender">
-        <Typography component="p" title={tx.tx.from}>
-          <Link to={`/node/explorer/accounts/${tx.tx.from}`}>{tx.tx.from}</Link>
+        <Typography component="p" title={tx.sender}>
+          <Link to={`/node/explorer/accounts/${tx.sender}`}>{tx.sender}</Link>
         </Typography>
         <Payload itx={tx.tx.itx} />
       </div>
@@ -38,7 +38,7 @@ const AccountMigrateTx = React.memo(({ tx, theme, ...rest }) => (
         />
       </Tooltip>
       <div className="receiver">
-        <Typography component="p">api not ready</Typography>
+        <Link to={`/node/explorer/accounts/${tx.receiver}`}>{tx.receiver}</Link>
       </div>
     </div>
   </Container>
