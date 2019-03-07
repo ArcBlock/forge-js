@@ -12,7 +12,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 import IconFa from '../../../../components/iconfa';
 
 const CreateAssetTx = React.memo(({ tx, type, theme, ...rest }) => {
-  const address = get(tx, 'tx.itx.address', '');
+  const address = get(tx, 'createAsset.asset') || get(tx, 'updateAsset.asset');
   const data = get(tx, 'tx.itx.data.value', 'NO DATA');
   return (
     <Container {...rest}>
