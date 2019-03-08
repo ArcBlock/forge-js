@@ -1,6 +1,7 @@
 [app]
 name = "forge_kvstore_nodejs"
 version = "0.1.0"
+app_hash = "1234"
 
 path = "/Users/wangshijun/Develop/arcblock/forge-js/examples/kvstore"
 # executable = "nodemon --exitcrash --spawn --config nodemon.json"
@@ -52,7 +53,7 @@ persistent_peers = ""
 seed_peers = ""
 
 # timeout for commiting a new block
-timeout_commit = "1s"
+timeout_commit = "5s"
 
 # create empty blocks in 5s interval
 create_empty_blocks = false
