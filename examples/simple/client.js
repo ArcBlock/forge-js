@@ -13,7 +13,7 @@ const debug = (...args) => {
 };
 
 // Because creating an wallet is asynchronous we need to add some delay to retrieve user info
-const delay = (timeout = 1000) => new Promise(resolve => setTimeout(resolve, timeout));
+const delay = (timeout = 5000) => new Promise(resolve => setTimeout(resolve, timeout));
 const random = prefix => `${prefix}_${Math.round(Math.random() * 1000000)}`;
 
 debug('Supported RPC methods', Object.keys(client.listRpcMethods()));
@@ -48,7 +48,10 @@ const getAccountState = address => {
         if (res.endBlock && res.endBlock.height) {
           client
             .getBlock(res.endBlock)
-            .on('data', ({ block }) => debug('Streaming.blockInfo:', block))
+            .on('data', res => {
+              const { block } = res.$format();
+              debug('Streaming.blockInfo:', block);
+            })
             .on('error', console.error);
         }
       });
