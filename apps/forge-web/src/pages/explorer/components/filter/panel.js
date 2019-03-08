@@ -27,7 +27,7 @@ function FilterPanel({ supportedTxs, onApplyFilter, selectedTxs, theme }) {
             boxShadow: '-2px 16px 10px 0 rgba(0, 0, 0, 0.05)',
             backgroundColor: '#f7f8f8',
             width: '440px',
-            marginTop: '100px',
+            marginTop: '80px',
             overflow: 'scroll',
           },
         }}

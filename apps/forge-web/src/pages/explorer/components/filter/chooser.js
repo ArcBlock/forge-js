@@ -114,7 +114,7 @@ const ChooserContainer = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 60px;
+    margin-bottom: 20px;
 
     .header__title {
       color: ${props => props.theme.colors.minor};
@@ -139,12 +139,12 @@ const ChooserContainer = styled.div`
       font-size: 14px;
       text-transform: uppercase;
       letter-spacing: 2px;
-      margin-bottom: 30px;
+      margin-bottom: 20px;
     }
   }
 
   .filter-footer {
-    margin-top: 30px;
+    margin-top: 20px;
     text-align: right;
 
     .footer__button {

@@ -1,3 +1,13 @@
+## 0.12.1 (March 08, 2019)
+  - chore: add version env var when build
+  - chore: tweak color
+  - chore: prepare to add global search box
+  - feat: support realtime updates for metrics section
+  - fix: node overall status statement according to layer status
+  - fix: filter apply button not visible on small screen
+  - chore: make icons sharp
+  - update readme
+
 ## 0.12.0 (March 07, 2019)
   - chore: upgrade forge-sdk with latest forge
   - chore: upgrade forge-proto with latest forge

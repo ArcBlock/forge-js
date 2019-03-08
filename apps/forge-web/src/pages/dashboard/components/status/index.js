@@ -5,8 +5,6 @@ import { useAsync } from 'react-use';
 
 // TODO: use css transition group to make animation perfect
 
-import ClickAwayListener from '@material-ui/core/ClickAwayListener';
-
 import ActivityIndicator from '../../../../components/activity_indicator';
 import Summary from './summary';
 
@@ -41,45 +39,38 @@ export default function StatusSection() {
     return <p className="error">{state.error.message}</p>;
   }
 
-  const { layers, data } = state.value;
+  const { layers, data, ok } = state.value;
   const names = Object.keys(layers);
   const SummaryComponent = selected ? layers[selected].component : Summary;
 
   const onSelectLayer = name => () => setSelected(name);
   const onClickAway = () => setSelected(null);
 
-  console.log({
-    error: selected ? layers[selected].status === STATUS_ERROR : false,
-    warning: selected ? layers[selected].status === STATUS_WARNING : false,
-  });
-
   return (
-    <ClickAwayListener onClickAway={onClickAway}>
-      <Container>
-        <div className="greeting">
-          <p>
-            Good {getGreeting()}! <br />
-            Your node works good now.
-          </p>
+    <Container onMouseOut={onClickAway} onBlur={onClickAway}>
+      <div className="greeting">
+        <p>
+          Good {getGreeting()}! <br />
+          Your node {ok ? 'works good' : 'is running'} now.
+        </p>
+      </div>
+      <div className="layers">
+        <div className="stack">
+          {names.map((x, i) => (
+            <Layer
+              key={x}
+              error={layers[x].status === STATUS_ERROR}
+              warning={layers[x].status === STATUS_WARNING}
+              onMouseEnter={onSelectLayer(x)}
+              style={getLayerStyle(names, selected, i)}
+            />
+          ))}
         </div>
-        <div className="layers">
-          <div className="stack">
-            {names.map((x, i) => (
-              <Layer
-                key={x}
-                error={layers[x].status === STATUS_ERROR}
-                warning={layers[x].status === STATUS_WARNING}
-                onMouseEnter={onSelectLayer(x)}
-                style={getLayerStyle(names, selected, i)}
-              />
-            ))}
-          </div>
-          <div className="summary">
-            <SummaryComponent layers={layers} layer={layers[selected]} data={data} />
-          </div>
+        <div className="summary">
+          <SummaryComponent layers={layers} layer={layers[selected]} data={data} />
         </div>
-      </Container>
-    </ClickAwayListener>
+      </div>
+    </Container>
   );
 }
 
@@ -156,7 +147,7 @@ const Layer = styled.div`
   box-sizing: content-box;
   width: 200px;
   height: 200px;
-  border-radius: 20px 10px;
+  border-radius: 30px 15px;
   border: 2px solid #222222;
   transition: all 200ms ease-in-out;
   transform: rotateX(55deg) rotateZ(-45deg);

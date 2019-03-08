@@ -65,8 +65,9 @@ export async function fetchStatus() {
 
     // Return all data for summary rendering
     const data = { app, chain, forge, net, validators };
+    const ok = Object.keys(layers).every(x => layers[x].status === STATUS_OK);
 
-    return { data, layers };
+    return { data, layers, ok };
   } catch (err) {
     console.error(err);
     throw new Error('Failed to fetch node status data');

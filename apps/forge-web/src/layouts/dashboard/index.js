@@ -24,12 +24,12 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import Sidebar from './sidebar';
 import SecondaryLinks from './secondary';
 import NodeInfo from './node_info';
+// import SearchBox from '../../components/search_box';
 import withI18n from '../../components/withI18n';
 import withRoot from '../../components/withRoot';
 import withTracker from '../../components/withTracker';
 
 import { colors } from '../../libs/constant';
-import { version } from '../../../package.json';
 
 // TODO: attach language switcher on top
 class Dashboard extends React.Component {
@@ -57,6 +57,7 @@ class Dashboard extends React.Component {
     const { children, classes } = this.props;
     const { title, links } = this.getSecondaryLinks();
     const hasSecondaryLinks = !!links.length;
+    const version = process.env.REACT_APP_VERSION;
 
     return (
       <div className={classes.root}>

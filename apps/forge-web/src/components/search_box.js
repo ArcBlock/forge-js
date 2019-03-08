@@ -6,7 +6,7 @@ import get from 'lodash/get';
 import AsyncSelect from 'react-select/lib/Async';
 import { withRouter } from 'react-router-dom';
 
-import forge from '../../../libs/forge';
+import forge from '../libs/forge';
 
 class SearchBox extends React.Component {
   static propTypes = {
@@ -64,6 +64,12 @@ class SearchBox extends React.Component {
         label: v => `Account: ${v}`,
         value: v => `/node/explorer/accounts/${v}`,
         path: 'getAccountState.state.address',
+      },
+      asset: {
+        query: `{ getAssetState(address: "${keyword}") { state { address } } }`,
+        label: v => `Asset: ${v}`,
+        value: v => `/node/explorer/assets/${v}`,
+        path: 'getAssetState.state.address',
       },
     };
 

@@ -17,8 +17,8 @@ export const colors = {
   gray: '#222222',
   minor: '#9b9b9b',
   background: '#f7f8f8',
-  yellow: '#FFD166',
+  yellow: '#FFCF71',
   green: '#4cbbb9',
-  red: '#EF476F',
+  red: '#FF7B8A',
   blue: '#4e6af6',
 };

@@ -38,10 +38,11 @@
   },
   "scripts": {
     "lint": "eslint src",
+    "clean": "rm -rf build",
     "precommit": "npm run lint && CI=1 yarn test",
     "prepush": "npm run lint && CI=1 yarn test",
-    "start": "REACT_APP_ASSETS= react-app-rewired start",
-    "build": "REACT_APP_ASSETS= react-app-rewired build && rm build/static/**/*.map",
+    "start": "./tools/start.sh",
+    "build": "./tools/build.sh",
     "test": "react-app-rewired test"
   },
   "config-overrides-path": "tools/config.js",
