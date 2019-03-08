@@ -30,7 +30,6 @@ import withRoot from '../../components/withRoot';
 import withTracker from '../../components/withTracker';
 
 import { colors } from '../../libs/constant';
-import { version } from '../../../package.json';
 
 // TODO: attach language switcher on top
 class Dashboard extends React.Component {
@@ -58,6 +57,7 @@ class Dashboard extends React.Component {
     const { children, classes } = this.props;
     const { title, links } = this.getSecondaryLinks();
     const hasSecondaryLinks = !!links.length;
+    const version = process.env.REACT_APP_VERSION;
 
     return (
       <div className={classes.root}>
@@ -72,7 +72,7 @@ class Dashboard extends React.Component {
           )}
           {!hasSecondaryLinks && <Content direction="column">{children}</Content>}
           <Version key={version}>
-            v{process.env.REACT_APP_VERSION || version} <span className="highlight">beta</span>
+            v{version} <span className="highlight">beta</span>
           </Version>
         </main>
         {this.renderSecurityDialog()}
