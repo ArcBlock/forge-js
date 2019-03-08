@@ -17,12 +17,24 @@ declare class Secp256k1Signer {
 }
 declare class Sha2Hasher {
   constructor();
+  hash224(input: string | Buffer, round: number): string;
+  hash256(input: string | Buffer, round: number): string;
+  hash384(input: string | Buffer, round: number): string;
+  hash512(input: string | Buffer, round: number): string;
 }
 declare class Sha3Hasher {
   constructor();
+  hash224(input: string | Buffer, round: number): string;
+  hash256(input: string | Buffer, round: number): string;
+  hash384(input: string | Buffer, round: number): string;
+  hash512(input: string | Buffer, round: number): string;
 }
 declare class KeccakHasher {
   constructor();
+  hash224(input: string | Buffer, round: number): string;
+  hash256(input: string | Buffer, round: number): string;
+  hash384(input: string | Buffer, round: number): string;
+  hash512(input: string | Buffer, round: number): string;
 }
 declare class AesCrypter {
   constructor();
