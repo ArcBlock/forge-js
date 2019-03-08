@@ -1,6 +1,6 @@
 const BaseClient = require('@arcblock/sdk-util');
 const md5 = require('blueimp-md5');
-const schema = require('./schema.json');
+const schema = require('./schema/graphql.json');
 
 class GraphqlClient extends BaseClient {
   constructor(httpEndpoint = 'http://localhost:8210/api') {

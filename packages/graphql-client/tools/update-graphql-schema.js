@@ -8,12 +8,12 @@ const httpEndpoint = () => 'http://localhost:8210/api';
 // const httpEndpoint = () => 'http://abt-test.arcblock.co:8210/api';
 // const httpEndpoint = () => 'https://auth.arcblock.co/api';
 
-const dataSources = ['schema'];
-dataSources.map(async dataSource => {
+(async () => {
+  const dataSource = 'graphql';
   try {
     const result = await request(httpEndpoint(dataSource), introspectionQuery);
     if (result.__schema) {
-      const schemaFile = path.join(__dirname, '../src', `${dataSource}.json`);
+      const schemaFile = path.join(__dirname, '../src/schema', `${dataSource}.json`);
       const schemaJson = JSON.stringify(result.__schema, true, '  ');
       fs.writeFileSync(schemaFile, schemaJson);
       console.log(`${dataSource} update success`, schemaFile);
@@ -24,4 +24,4 @@ dataSources.map(async dataSource => {
     console.error(err);
     console.log(`${dataSource} update error`);
   }
-});
+})();
