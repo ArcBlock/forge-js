@@ -2,18 +2,18 @@ declare class Ed25519Signer {
   constructor();
   toUint8Array(input: any): Uint8Array;
   toHex(input: any): any;
-  genKeyPair(encoding?: string): SignKeyPair;
-  getPublicKey(secretKey: any, encoding?: string): any;
-  sign(message: any, secretKey: any, encoding?: string): any;
-  verify(message: any, signature: any, publicKey: any): boolean;
+  genKeyPair(encoding?: string): object;
+  getPublicKey(sk: any, encoding?: string): string | Uint8Array;
+  sign(message: any, sk: any, encoding?: string): string | Uint8Array;
+  verify(message: any, signature: any, pk: any): boolean;
 }
 declare class Secp256k1Signer {
   constructor();
   strip0x(input: any): any;
   genKeyPair(compressed?: boolean, encoding?: string): _Lib.T100;
-  getPublicKey(secretKey: any, compressed?: boolean, encoding?: string): any;
-  sign(message: any, privateKey: any, encoding?: string): any;
-  verify(message: any, signature: any, publicKey: any, encoding?: string): any;
+  getPublicKey(sk: any, compressed?: boolean, encoding?: string): string;
+  sign(message: any, sk: any, encoding?: string): string;
+  verify(message: any, signature: any, pk: any, encoding?: string): any;
 }
 declare class Sha2Hasher {
   constructor();
@@ -41,7 +41,7 @@ declare class AesCrypter {
   encrypt(message: any, secret: any): any;
   decrypt(cipher: any, secret: any, outputEncoding?: string): any;
 }
-declare const _Lib: _Lib.T104;
+declare const _Lib: _Lib.T108;
 declare namespace _Lib {
   export interface T100 {
     secretKey: any;
@@ -57,12 +57,43 @@ declare namespace _Lib {
     Keccak: typeof KeccakHasher;
   }
   export interface T103 {
-    aes: typeof AesCrypter;
+    AES: typeof AesCrypter;
   }
   export interface T104 {
+    ED25519: number;
+    SECP256K1: number;
+  }
+  export interface T105 {
+    KECCAK: number;
+    SHA3: number;
+    KECCAK_384: number;
+    SHA3_384: number;
+    KECCAK_512: number;
+    SHA3_512: number;
+  }
+  export interface T106 {
+    ROLE_ACCOUNT: number;
+    ROLE_NODE: number;
+    ROLE_DEVICE: number;
+    ROLE_APPLICATION: number;
+    ROLE_SMART_CONTRACT: number;
+    ROLE_BOT: number;
+    ROLE_ASSET: number;
+    ROLE_STAKE: number;
+    ROLE_VALIDATOR: number;
+  }
+  export interface T107 {
+    KeyType: _Lib.T104;
+    HashType: _Lib.T105;
+    RoleType: _Lib.T106;
+  }
+  export interface T108 {
     Signer: _Lib.T101;
     Hasher: _Lib.T102;
     Crypter: _Lib.T103;
+    types: _Lib.T107;
+    getSigner(type: any): typeof Ed25519Signer | typeof Secp256k1Signer;
+    getHasher(type: any): any;
   }
 }
 export = _Lib;

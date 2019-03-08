@@ -15,6 +15,7 @@ module.exports = async function(req, res, next) {
       KvTx: 'KV/kv',
       AccountKvState: 'KV/kv_state',
     }),
+    appHash: req.serverConfig.appHash,
   });
   next();
 };

@@ -184,41 +184,41 @@ declare namespace GraphQLClient {
   }
 
   export enum StatusCode {
-    INVALID_FORGE_STATE,
-    INSUFFICIENT_DATA,
-    NOENT,
-    READONLY_ASSET,
-    INSUFFICIENT_FUND,
-    INVALID_TX,
-    CONSUMED_ASSET,
-    EXPIRED_ASSET,
-    EXPIRED_WALLET_TOKEN,
-    INSUFFICIENT_STAKE,
-    INVALID_SIGNER_STATE,
-    ACCOUNT_MIGRATED,
-    FORBIDDEN,
-    INVALID_RECEIVER_STATE,
-    INVALID_PASSPHRASE,
-    INVALID_MONIKER,
-    INVALID_STAKE_STATE,
-    STORAGE_RPC_ERROR,
-    INVALID_NONCE,
-    EXPIRED_TX,
-    INVALID_ASSET,
-    INVALID_CHAIN_ID,
     UNSUPPORTED_STAKE,
+    STORAGE_RPC_ERROR,
+    INSUFFICIENT_DATA,
+    INVALID_FORGE_STATE,
+    INVALID_NONCE,
     INVALID_TX_SIZE,
-    CONSENSUS_RPC_ERROR,
-    INVALID_MULTISIG,
-    BANNED_UNSTAKE,
-    INVALID_SIGNATURE,
-    INVALID_SENDER_STATE,
-    INVALID_OWNER,
     UNTRANSFERRABLE_ASSET,
-    UNSUPPORTED_TX,
-    INTERNAL,
-    OK,
+    INVALID_SENDER_STATE,
+    FORBIDDEN,
+    CONSENSUS_RPC_ERROR,
+    BANNED_UNSTAKE,
+    INVALID_MULTISIG,
+    ACCOUNT_MIGRATED,
+    EXPIRED_ASSET,
+    INVALID_MONIKER,
+    INSUFFICIENT_FUND,
     INVALID_WALLET,
+    INVALID_SIGNATURE,
+    INVALID_STAKE_STATE,
+    READONLY_ASSET,
+    UNSUPPORTED_TX,
+    INSUFFICIENT_STAKE,
+    INVALID_TX,
+    NOENT,
+    INVALID_PASSPHRASE,
+    EXPIRED_WALLET_TOKEN,
+    INVALID_RECEIVER_STATE,
+    CONSUMED_ASSET,
+    INVALID_CHAIN_ID,
+    INVALID_ASSET,
+    INTERNAL,
+    INVALID_SIGNER_STATE,
+    INVALID_OWNER,
+    OK,
+    EXPIRED_TX,
   }
 
   export enum UpgradeAction {
@@ -427,6 +427,7 @@ declare namespace GraphQLClient {
     forgeAppHash: string;
     stakeSummary: Array<StakeSummaryEntry>;
     tasks: Array<TasksEntry>;
+    token: GraphQLClient.ForgeToken;
     version: string;
   }
 
@@ -446,6 +447,18 @@ declare namespace GraphQLClient {
     numTxs: Array<number>;
     numUpdateAssetTxs: Array<number>;
     numValidators: Array<number>;
+  }
+
+  export interface ForgeToken {
+    decimal: number;
+    description: string;
+    icon: string;
+    inflationRate: number;
+    initialSupply: number;
+    name: string;
+    symbol: string;
+    totalSupply: number;
+    unit: string;
   }
 
   export interface GeoInfo {

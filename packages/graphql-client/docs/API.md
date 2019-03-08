@@ -1,6 +1,6 @@
 # Forge GraphQL API List
 
-> Updated on 2019-03-07T10:16:08.968Z
+> Updated on 2019-03-08T03:13:13.566Z
 
 
 ## Table of Contents
@@ -1556,6 +1556,17 @@ No arguments
             type
           }
         }
+      }
+      token {
+        decimal
+        description
+        icon
+        inflationRate
+        initialSupply
+        name
+        symbol
+        totalSupply
+        unit
       }
     }
   }

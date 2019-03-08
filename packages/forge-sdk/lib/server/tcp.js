@@ -49,11 +49,12 @@ function create(config) {
         updateState: { code: OK },
       };
 
-      // TODO: compose type base on itx
       try {
         decodePayload(payload[type]);
         const result = {};
         const request = payload[type];
+        request.serverConfig = config;
+
         if (payload[type].tx && payload[type].tx.itx) {
           request.itx = payload[type].tx.itx;
         }

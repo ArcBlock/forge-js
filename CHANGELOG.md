@@ -1,3 +1,18 @@
+## 0.12.2 (March 08, 2019)
+  - chore: update readme for forge-wallet
+  - feat: add forge wallet lib
+  - chore: update definitions
+  - chore: move common code to mcrypto
+  - chore: update readme for forge-util
+  - chore: update readme for forge-web
+  - chore: add protobuf json copy script for graphql client
+  - chore: attach server config on middleware request object
+  - fix: wait enough time until new block produced
+  - chore: upgrade forge-sdk with latest forge
+  - chore: upgrade forge-proto with latest forge
+  - chore: upgrade graphql-client with latest forge
+  - update readme
+
 ## 0.12.1 (March 08, 2019)
   - chore: add version env var when build
   - chore: tweak color
