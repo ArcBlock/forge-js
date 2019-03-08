@@ -5,7 +5,7 @@ VERSION=$(strip $(shell cat version))
 
 build:
 	@echo "Building the software..."
-	@yarn build
+	@REACT_APP_VERSION=$(VERSION) yarn build
 
 init: install dep
 	@echo "Initializing the repo..."
