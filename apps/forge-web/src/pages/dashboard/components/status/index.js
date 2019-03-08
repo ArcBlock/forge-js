@@ -151,7 +151,7 @@ const Layer = styled.div`
   box-sizing: content-box;
   width: 200px;
   height: 200px;
-  border-radius: 20px 10px;
+  border-radius: 30px 15px;
   border: 2px solid #222222;
   transition: all 200ms ease-in-out;
   transform: rotateX(55deg) rotateZ(-45deg);
