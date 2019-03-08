@@ -72,7 +72,7 @@ class Dashboard extends React.Component {
           )}
           {!hasSecondaryLinks && <Content direction="column">{children}</Content>}
           <Version key={version}>
-            v{version} <span className="highlight">beta</span>
+            v{process.env.REACT_APP_VERSION || version} <span className="highlight">beta</span>
           </Version>
         </main>
         {this.renderSecurityDialog()}
