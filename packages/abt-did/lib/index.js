@@ -4,16 +4,8 @@ const Mcrypto = require('@arcblock/mcrypto');
 const multibase = require('multibase');
 const base64 = require('base64-url');
 const hdkey = require('hdkey');
-const {
-  DID_PREFIX,
-  toBits,
-  toBytes,
-  toStrictHex,
-  signer,
-  hasher,
-  types,
-  jwtHeaders,
-} = require('./util');
+const { DID_PREFIX, toBits, toBytes, toStrictHex } = require('./util');
+const { types, getSigner, getHasher } = Mcrypto;
 
 /**
  * Gen DID from appDID and seed
@@ -74,7 +66,7 @@ const fromAppDID = (appDID, seed, type = {}, index = 0) => {
  */
 const fromSecretKey = (sk, type) => {
   const { key = types.KeyType.ED25519 } = type || {};
-  const pk = signer[key].getPublicKey(sk);
+  const pk = getSigner(key).getPublicKey(sk);
   return fromPublicKey(pk.indexOf('0x') === 0 ? pk : `0x${pk}`, type);
 };
 
@@ -87,11 +79,12 @@ const fromSecretKey = (sk, type) => {
  */
 const fromPublicKey = (pk, type) => {
   const { hash = types.HashType.SHA3 } = type || {};
+  const hashFn = getHasher(hash);
 
   const typeHex = fromTypeInfo(type);
-  const pkHash = hasher[hash](pk);
+  const pkHash = hashFn(pk);
 
-  const checksum = hasher[hash](`0x${typeHex}${pkHash.slice(0, 40)}`).slice(0, 8);
+  const checksum = hashFn(`0x${typeHex}${pkHash.slice(0, 40)}`).slice(0, 8);
   const didHash = `${typeHex}${pkHash.slice(0, 40)}${checksum}`;
 
   const address = multibase.encode('base58btc', Buffer.from(didHash, 'hex'));
@@ -193,10 +186,11 @@ const isValid = did => {
     return false;
   }
 
+  const hashFn = getHasher(hash);
   const bytes = toBytes(did);
   const bytesHex = toStrictHex(Buffer.from(bytes.slice(0, 22)).toString('hex'));
   const didChecksum = toStrictHex(Buffer.from(bytes.slice(22, 26)).toString('hex'));
-  const checksum = hasher[hash](`0x${bytesHex}`).slice(0, 8);
+  const checksum = hashFn(`0x${bytesHex}`).slice(0, 8);
   return didChecksum === checksum;
 };
 
@@ -214,9 +208,19 @@ const jwtSign = (did, sk, payload = {}) => {
   }
 
   const type = toTypeInfo(did);
+  const headers = {
+    [types.KeyType.SECP256K1]: {
+      alg: 'ES256K',
+      type: 'JWT',
+    },
+    [types.KeyType.ED25519]: {
+      alg: 'Ed25519',
+      type: 'JWT',
+    },
+  };
 
   // make header
-  const header = jwtHeaders[type.key];
+  const header = headers[type.key];
   const headerB64 = base64.escape(base64.encode(JSON.stringify(header)));
 
   // make body
@@ -250,7 +254,7 @@ const jwtSign = (did, sk, payload = {}) => {
 
   // make signature
   const msgHex = toHex(`${headerB64}.${bodyB64}`);
-  const sigHex = signer[type.key].sign(msgHex, sk);
+  const sigHex = getSigner(type.key).sign(msgHex, sk);
   const sigB64 = base64.escape(Buffer.from(sigHex.replace(/^0x/, ''), 'hex').toString('base64'));
 
   return [headerB64, bodyB64, sigB64].join('.');
@@ -287,9 +291,9 @@ const jwtVerify = (token, pk) => {
     }
 
     const signers = {
-      secp256k1: signer[types.KeyType.SECP256K1],
-      es256k: signer[types.KeyType.SECP256K1],
-      ed25519: signer[types.KeyType.ED25519],
+      secp256k1: getSigner(types.KeyType.SECP256K1),
+      es256k: getSigner(types.KeyType.SECP256K1),
+      ed25519: getSigner(types.KeyType.ED25519),
     };
     const alg = header.alg.toLowerCase();
     if (signers[alg]) {

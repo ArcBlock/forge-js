@@ -1,60 +1,8 @@
 const padStart = require('lodash/padStart');
 const { toBN } = require('@arcblock/forge-util');
-const Mcrypto = require('@arcblock/mcrypto');
 const multibase = require('multibase');
 
 const DID_PREFIX = 'did:abt:';
-
-const enums = Object.freeze({
-  KeyType: {
-    ED25519: 0,
-    SECP256K1: 1,
-  },
-  HashType: {
-    KECCAK: 0,
-    SHA3: 1,
-    KECCAK_384: 6,
-    SHA3_384: 7,
-    KECCAK_512: 13,
-    SHA3_512: 14,
-  },
-  RoleType: {
-    ROLE_ACCOUNT: 0,
-    ROLE_NODE: 1,
-    ROLE_DEVICE: 2,
-    ROLE_APPLICATION: 3,
-    ROLE_SMART_CONTRACT: 4,
-    ROLE_BOT: 5,
-    ROLE_ASSET: 6,
-    ROLE_STAKE: 7,
-    ROLE_VALIDATOR: 8,
-  },
-});
-
-const signer = Object.freeze({
-  [enums.KeyType.ED25519]: Mcrypto.Signer.Ed25519,
-  [enums.KeyType.SECP256K1]: Mcrypto.Signer.Secp256k1,
-});
-
-const hasher = Object.freeze({
-  [enums.HashType.KECCAK]: Mcrypto.Hasher.Keccak.hash256,
-  [enums.HashType.KECCAK_384]: Mcrypto.Hasher.Keccak.hash384,
-  [enums.HashType.KECCAK_512]: Mcrypto.Hasher.Keccak.hash512,
-  [enums.HashType.SHA3]: Mcrypto.Hasher.SHA3.hash256,
-  [enums.HashType.SHA3_384]: Mcrypto.Hasher.SHA3.hash384,
-  [enums.HashType.SHA3_512]: Mcrypto.Hasher.SHA3.hash512,
-});
-
-const jwtHeaders = {
-  [enums.KeyType.SECP256K1]: {
-    alg: 'ES256K',
-    type: 'JWT',
-  },
-  [enums.KeyType.ED25519]: {
-    alg: 'Ed25519',
-    type: 'JWT',
-  },
-};
 
 /**
  * Convert did to bytes with length of 26
@@ -106,8 +54,4 @@ module.exports = {
   toBits,
   toBytes,
   toStrictHex,
-  signer,
-  hasher,
-  jwtHeaders,
-  types: enums,
 };
