@@ -38,7 +38,7 @@ export default function NodeInfo() {
           {state.value.synced ? (
             <CheckIcon className="header-image__overlay" />
           ) : (
-            <SyncIcon className="header-image__overlay" />
+            <SyncIcon className="header-image__overlay header-image__animated" />
           )}
         </div>
       </Link>
@@ -78,6 +78,10 @@ const Header = styled.div`
       font-size: 16px;
       color: inherit;
     }
+
+    .header-image__animated {
+      animation: spin 2s infinite linear;
+    }
   }
 
   .header-title {
@@ -100,5 +104,11 @@ const Header = styled.div`
     line-height: 1.71;
     letter-spacing: 1px;
     color: #9b9b9b;
+  }
+
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
   }
 `;
