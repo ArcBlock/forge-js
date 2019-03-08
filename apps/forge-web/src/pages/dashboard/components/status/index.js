@@ -5,8 +5,6 @@ import { useAsync } from 'react-use';
 
 // TODO: use css transition group to make animation perfect
 
-import ClickAwayListener from '@material-ui/core/ClickAwayListener';
-
 import ActivityIndicator from '../../../../components/activity_indicator';
 import Summary from './summary';
 
@@ -49,32 +47,30 @@ export default function StatusSection() {
   const onClickAway = () => setSelected(null);
 
   return (
-    <ClickAwayListener onClickAway={onClickAway}>
-      <Container>
-        <div className="greeting">
-          <p>
-            Good {getGreeting()}! <br />
-            Your node {ok ? 'works good' : 'is running'} now.
-          </p>
+    <Container onMouseOut={onClickAway} onBlur={onClickAway}>
+      <div className="greeting">
+        <p>
+          Good {getGreeting()}! <br />
+          Your node {ok ? 'works good' : 'is running'} now.
+        </p>
+      </div>
+      <div className="layers">
+        <div className="stack">
+          {names.map((x, i) => (
+            <Layer
+              key={x}
+              error={layers[x].status === STATUS_ERROR}
+              warning={layers[x].status === STATUS_WARNING}
+              onMouseEnter={onSelectLayer(x)}
+              style={getLayerStyle(names, selected, i)}
+            />
+          ))}
         </div>
-        <div className="layers">
-          <div className="stack">
-            {names.map((x, i) => (
-              <Layer
-                key={x}
-                error={layers[x].status === STATUS_ERROR}
-                warning={layers[x].status === STATUS_WARNING}
-                onMouseEnter={onSelectLayer(x)}
-                style={getLayerStyle(names, selected, i)}
-              />
-            ))}
-          </div>
-          <div className="summary">
-            <SummaryComponent layers={layers} layer={layers[selected]} data={data} />
-          </div>
+        <div className="summary">
+          <SummaryComponent layers={layers} layer={layers[selected]} data={data} />
         </div>
-      </Container>
-    </ClickAwayListener>
+      </div>
+    </Container>
   );
 }
 
