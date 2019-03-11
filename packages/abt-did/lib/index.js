@@ -1,5 +1,5 @@
 const upperFirst = require('lodash/upperFirst');
-const { toBN, toHex, numberToHex, isHexStrict } = require('@arcblock/forge-util');
+const { toBN, toHex, numberToHex, isHexStrict, stripHexPrefix } = require('@arcblock/forge-util');
 const Mcrypto = require('@arcblock/mcrypto');
 const multibase = require('multibase');
 const base64 = require('base64-url');
@@ -24,7 +24,7 @@ const fromAppDID = (appDID, seed, type = {}, index = 0) => {
   }
 
   const hash = Mcrypto.Hasher.SHA3.hash256(toBytes(appDID));
-  const hashSlice = hash.slice(0, 16);
+  const hashSlice = stripHexPrefix(hash).slice(0, 16);
   const s1 = hashSlice.slice(0, 8);
   const s2 = hashSlice.slice(8, 16);
 
@@ -38,7 +38,7 @@ const fromAppDID = (appDID, seed, type = {}, index = 0) => {
   const n1 = parseInt(b1.join(''), 2);
   const n2 = parseInt(b2.join(''), 2);
 
-  const seedHex = (isHexStrict(seed) ? seed : toHex(seed)).replace(/^0x/i, '');
+  const seedHex = stripHexPrefix(isHexStrict(seed) ? seed : toHex(seed));
   const master = hdkey.fromMasterSeed(Buffer.from(seedHex, 'hex'));
   const derivePath = `m/44'/260'/${n1}'/${n2}'/${index}`;
   const child = master.derive(derivePath);
@@ -82,9 +82,9 @@ const fromPublicKey = (pk, type) => {
   const hashFn = getHasher(hash);
 
   const typeHex = fromTypeInfo(type);
-  const pkHash = hashFn(pk);
+  const pkHash = stripHexPrefix(hashFn(pk));
 
-  const checksum = hashFn(`0x${typeHex}${pkHash.slice(0, 40)}`).slice(0, 8);
+  const checksum = stripHexPrefix(hashFn(`0x${typeHex}${pkHash.slice(0, 40)}`)).slice(0, 8);
   const didHash = `${typeHex}${pkHash.slice(0, 40)}${checksum}`;
 
   const address = multibase.encode('base58btc', Buffer.from(didHash, 'hex'));
@@ -124,7 +124,7 @@ const fromTypeInfo = type => {
   } = type || {};
 
   const infoBits = `${toBits(role, 6)}${toBits(key, 5)}${toBits(hash, 5)}`;
-  const infoHex = numberToHex(parseInt(infoBits, 2)).replace(/^0x/i, '');
+  const infoHex = stripHexPrefix(numberToHex(parseInt(infoBits, 2)));
   return toStrictHex(infoHex, 4);
 };
 
@@ -190,7 +190,8 @@ const isValid = did => {
   const bytes = toBytes(did);
   const bytesHex = toStrictHex(Buffer.from(bytes.slice(0, 22)).toString('hex'));
   const didChecksum = toStrictHex(Buffer.from(bytes.slice(22, 26)).toString('hex'));
-  const checksum = hashFn(`0x${bytesHex}`).slice(0, 8);
+  const checksum = stripHexPrefix(hashFn(`0x${bytesHex}`)).slice(0, 8);
+
   return didChecksum === checksum;
 };
 
@@ -255,7 +256,7 @@ const jwtSign = (did, sk, payload = {}) => {
   // make signature
   const msgHex = toHex(`${headerB64}.${bodyB64}`);
   const sigHex = getSigner(type.key).sign(msgHex, sk);
-  const sigB64 = base64.escape(Buffer.from(sigHex.replace(/^0x/, ''), 'hex').toString('base64'));
+  const sigB64 = base64.escape(Buffer.from(stripHexPrefix(sigHex), 'hex').toString('base64'));
 
   return [headerB64, bodyB64, sigB64].join('.');
 };
