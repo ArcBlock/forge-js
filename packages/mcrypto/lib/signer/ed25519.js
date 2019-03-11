@@ -40,6 +40,7 @@ class Ed25519Signer extends Signer {
   sign(message, sk, encoding = 'hex') {
     const skBytes = this.toUint8Array(sk);
     const messageBytes = this.toUint8Array(message);
+    // console.log('mcrypto.sign', { skBytes, sk, messageBytes, message });
     const signature = ed25519.detached(messageBytes, skBytes);
     return encoding === 'hex' ? bytesToHex(signature) : signature;
   }

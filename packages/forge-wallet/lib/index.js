@@ -53,10 +53,12 @@ function Wallet(keyPair, type) {
         throw new Error('Cannot sign data without a secretKey');
       }
       const hash = hasher(data);
+      // console.log('sign.hash', hash);
       return signer.sign(hash, keyPair.sk);
     },
     verify(data, signature) {
       const hash = hasher(data);
+      // console.log('verify.hash', hash);
       return signer.verify(hash, signature, keyPair.pk);
     },
     toAddress() {

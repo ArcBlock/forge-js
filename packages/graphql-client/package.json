@@ -22,11 +22,13 @@
     "lib"
   ],
   "dependencies": {
+    "@arcblock/forge-wallet": "^0.12.2",
     "@arcblock/sdk-util": "^0.19.3",
     "babel-polyfill": "^6.26.0",
     "blueimp-md5": "^2.10.0",
     "phoenix": "^1.3.4",
     "phoenix-channels": "^1.0.0",
+    "protobufjs": "^6.8.8",
     "wolfy87-eventemitter": "^5.2.5"
   },
   "devDependencies": {
