@@ -145,9 +145,9 @@ const Container = styled.div`
 
 const Layer = styled.div`
   box-sizing: content-box;
-  width: 200px;
-  height: 200px;
-  border-radius: 30px 15px;
+  width: 160px;
+  height: 160px;
+  border-radius: 24px 8px;
   border: 2px solid #222222;
   transition: all 200ms ease-in-out;
   transform: rotateX(55deg) rotateZ(-45deg);
@@ -161,10 +161,10 @@ const Layer = styled.div`
   }
 
   &::after {
-    width: 150px;
-    height: 150px;
+    width: 120px;
+    height: 120px;
     content: '';
-    border: 3px dotted #231916;
+    border: 2px dotted #231916;
     border-top-width: 0;
     border-right-width: 0;
     position: absolute;

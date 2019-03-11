@@ -87,20 +87,20 @@ export const getLayerStyle = (layers, selected, i) => {
   };
 
   if (selected) {
-    style.opacity = layers.indexOf(selected) === i ? 0.9 : 0.3;
+    style.opacity = layers.indexOf(selected) === i ? 1 : 0.5;
   } else {
-    style.opacity = 0.8;
+    style.opacity = 1;
   }
 
   return style;
 };
 
-export const getLayerBackground = ({ error, warning, theme }) => {
+export const getLayerBackground = ({ error, warning }) => {
   if (error) {
-    return `linear-gradient(9deg, ${theme.colors.red}, rgba(255, 255, 255, 0.8))`;
+    return 'linear-gradient(-135deg, rgba(255, 114, 114, 1), rgba(230, 45, 67, 1))';
   }
   if (warning) {
-    return `linear-gradient(9deg, ${theme.colors.yellow}, rgba(255, 255, 255, 0.8))`;
+    return 'linear-gradient(-135deg, rgba(255, 230, 180, 1), rgba(255, 190, 80, 1))';
   }
 
   return 'linear-gradient(9deg, rgba(182, 247, 248, 0.8), rgba(255, 255, 255, 0.8))';
