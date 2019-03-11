@@ -22,6 +22,10 @@ const types = {
     ROLE_STAKE: 7,
     ROLE_VALIDATOR: 8,
   },
+  EncodingType: {
+    BASE16: 0,
+    BASE58: 1,
+  },
 };
 
 const Mcrypto = {
