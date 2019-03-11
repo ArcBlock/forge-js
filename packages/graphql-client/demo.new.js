@@ -2,7 +2,7 @@
 const protobuf = require('protobufjs');
 const camelcase = require('camelcase');
 const base64 = require('base64-url');
-const { fromSecretKey, WalletType } = require('@arcblock/forge-wallet');
+const { fromSecretKey, fromRandom, WalletType } = require('@arcblock/forge-wallet');
 const Mcrypto = require('@arcblock/mcrypto');
 const { hexToBytes, bytesToHex, stripHexPrefix } = require('@arcblock/forge-util');
 
@@ -96,14 +96,16 @@ const type = WalletType({
 });
 
 const sk =
-  '0xD67C071B6F51D2B61180B9B1AA9BE0DD0704619F0E30453AB4A592B036EDE644E4852B7091317E3622068E62A5127D1FB0D4AE2FC50213295E10652D2F0ABFC8';
+  '0xD67C071B6F51D2B61180B9B1AA9BE0DD0704619F0E30453AB4A592B036EDE644E4852B7091317E3622068E62A5127D1FB0D4AE2FC50213295E10652D2F0ABFC7';
 
 (async () => {
   try {
     const wallet = fromSecretKey(sk, type);
+    // const wallet = fromRandom(type);
+    // console.log(wallet);
     const res = await methods.sendDeclareTx({
       data: {
-        moniker: 'wangshijun2019',
+        moniker: `wangshijun_${Math.round(Math.random() * 1000)}`,
         pk: Buffer.from(hexToBytes(wallet.publicKey)),
         type,
         issuer: '',
