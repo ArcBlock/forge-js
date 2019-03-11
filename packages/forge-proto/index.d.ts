@@ -116,6 +116,7 @@ declare namespace Enums {
     SYS_UPGRADE = 23,
     APPLICATION = 24,
     CONSUME_ASSET = 25,
+    POKE = 26,
     ACCOUNT_STATE = 129,
     ASSET_STATE = 130,
     FORGE_STATE = 131,
@@ -210,10 +211,11 @@ declare namespace Enums {
     4 = DeclareFileTx,
     5 = DeclareTx,
     6 = ExchangeTx,
-    7 = StakeTx,
-    8 = SysUpgradeTx,
-    9 = TransferTx,
-    10 = UpdateAssetTx,
+    7 = PokeTx,
+    8 = StakeTx,
+    9 = SysUpgradeTx,
+    10 = TransferTx,
+    11 = UpdateAssetTx,
   }
 
   export enum SupportedStakes {
@@ -293,6 +295,7 @@ declare namespace Messages {
     23 = SYS_UPGRADE,
     24 = APPLICATION,
     25 = CONSUME_ASSET,
+    26 = POKE,
     129 = ACCOUNT_STATE,
     130 = ASSET_STATE,
     131 = FORGE_STATE,
