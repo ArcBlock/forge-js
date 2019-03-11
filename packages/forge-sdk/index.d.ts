@@ -6,7 +6,7 @@ declare class RpcClient {
    * then 1 token (e.g. ABT) = 10^16 arc. When sending transfer tx or exchange tx,
    * the value shall be created with Arc.
    */
-  fromArc(value: any): any;
+  fromArc(value: any): string;
   toArc(value: any): any;
   /**
    * List standard rpc methods
@@ -464,6 +464,7 @@ declare namespace forge_abi {
     SYS_UPGRADE = 23,
     APPLICATION = 24,
     CONSUME_ASSET = 25,
+    POKE = 26,
     ACCOUNT_STATE = 129,
     ASSET_STATE = 130,
     FORGE_STATE = 131,
@@ -780,6 +781,7 @@ declare namespace forge_abi {
     numTransferTxs: Array<number>;
     numUpdateAssetTxs: Array<number>;
     numConsumeAssetTxs: Array<number>;
+    numPokeTxs: Array<number>;
   }
 
   export interface TxStatistics {
@@ -794,6 +796,7 @@ declare namespace forge_abi {
     numTransferTxs: number;
     numUpdateAssetTxs: number;
     numConsumeAssetTxs: number;
+    numPokeTxs: number;
   }
 
   export interface ForgeToken {
@@ -806,6 +809,12 @@ declare namespace forge_abi {
     initialSupply: number;
     totalSupply: number;
     inflationRate: number;
+  }
+
+  export interface PokeInfo {
+    dailyLimit: forge_abi.BigUint;
+    leftover: forge_abi.BigUint;
+    amount: forge_abi.BigUint;
   }
 
   export interface AccountState {
@@ -823,6 +832,7 @@ declare namespace forge_abi {
     numAssets: number;
     stake: forge_abi.StakeContext;
     pinnedFiles: forge_abi.CircularQueue;
+    poke: forge_abi.PokeInfo;
     data: google.protobuf.Any;
   }
 
@@ -1348,6 +1358,11 @@ declare namespace forge_abi {
     address: string;
     moniker: string;
     data: google.protobuf.Any;
+  }
+
+  export interface PokeTx {
+    date: string;
+    address: string;
   }
 
   export interface PageOrder {

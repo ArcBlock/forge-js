@@ -15,6 +15,7 @@ import withI18n from '../../components/withI18n';
 import withRoot from '../../components/withRoot';
 import TxList from './components/account/txs';
 import Icon from '../../components/iconfa';
+import Alert from '../../components/alert';
 
 import forge from '../../libs/forge';
 
@@ -37,6 +38,7 @@ class AssetDetail extends Page {
     this.state = {
       loading: false,
       asset: null,
+      error: null,
     };
   }
 
@@ -45,12 +47,19 @@ class AssetDetail extends Page {
   }
 
   render() {
-    const { loading, asset } = this.state;
+    const { address } = this.props.match.params;
+    const { loading, error, asset } = this.state;
     return (
       <Layout title="Asset" cookies={this.cookies}>
         <Container>
           {loading && <CircularProgress />}
-          {asset && (
+          {!!error && <Alert type="error">{error}</Alert>}
+          {!error && !loading && !asset && (
+            <Alert type="error">
+              Asset <strong>{address}</strong> not found!
+            </Alert>
+          )}
+          {!loading && asset && (
             <React.Fragment>
               <SummaryHeader
                 type={
@@ -92,15 +101,25 @@ class AssetDetail extends Page {
   }
 
   async loadAsset() {
-    const { address } = this.props.match.params;
-    this.setState({ loading: true });
-    const { state: asset } = await forge.getAssetState(
-      { address },
-      {
-        ignoreFields: ['state.context.genesisTx.tx', 'state.context.renaissanceTx.tx'],
-      }
-    );
-    this.setState({ loading: false, asset });
+    try {
+      const { address } = this.props.match.params;
+      this.setState({ loading: true });
+      const { state: asset } = await forge.getAssetState(
+        { address },
+        {
+          ignoreFields: ['state.context.genesisTx.tx', 'state.context.renaissanceTx.tx'],
+        }
+      );
+      this.setState({ loading: false, asset });
+    } catch (err) {
+      console.error(err.errors);
+      this.setState({
+        loading: false,
+        error: Array.isArray(err.errors)
+          ? err.errors.map(x => x.message).join(',')
+          : err.message || err.toString(),
+      });
+    }
   }
 }
 

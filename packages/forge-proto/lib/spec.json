@@ -231,6 +231,7 @@
             "sys_upgrade": 23,
             "application": 24,
             "consume_asset": 25,
+            "poke": 26,
             "account_state": 129,
             "asset_state": 130,
             "forge_state": 131,
@@ -1079,6 +1080,11 @@
               "rule": "repeated",
               "type": "uint64",
               "id": 15
+            },
+            "numPokeTxs": {
+              "rule": "repeated",
+              "type": "uint64",
+              "id": 16
             }
           }
         },
@@ -1127,6 +1133,10 @@
             "numConsumeAssetTxs": {
               "type": "uint64",
               "id": 11
+            },
+            "numPokeTxs": {
+              "type": "uint64",
+              "id": 12
             }
           }
         },
@@ -1167,6 +1177,22 @@
             "inflationRate": {
               "type": "uint32",
               "id": 9
+            }
+          }
+        },
+        "PokeInfo": {
+          "fields": {
+            "dailyLimit": {
+              "type": "BigUint",
+              "id": 1
+            },
+            "leftover": {
+              "type": "BigUint",
+              "id": 2
+            },
+            "amount": {
+              "type": "BigUint",
+              "id": 3
             }
           }
         },
@@ -1229,6 +1255,10 @@
             "pinnedFiles": {
               "type": "CircularQueue",
               "id": 17
+            },
+            "poke": {
+              "type": "PokeInfo",
+              "id": 18
             },
             "data": {
               "type": "google.protobuf.Any",
@@ -2645,6 +2675,18 @@
             "data": {
               "type": "google.protobuf.Any",
               "id": 15
+            }
+          }
+        },
+        "PokeTx": {
+          "fields": {
+            "date": {
+              "type": "string",
+              "id": 1
+            },
+            "address": {
+              "type": "string",
+              "id": 2
             }
           }
         },

@@ -97,6 +97,7 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
         stake: (f = msg.getStake()) && type_pb.StakeContext.toObject(includeInstance, f),
         pinnedFiles:
           (f = msg.getPinnedFiles()) && type_pb.CircularQueue.toObject(includeInstance, f),
+        poke: (f = msg.getPoke()) && type_pb.PokeInfo.toObject(includeInstance, f),
         data: (f = msg.getData()) && google_protobuf_any_pb.Any.toObject(includeInstance, f),
       };
 
@@ -193,6 +194,11 @@ proto.forge_abi.AccountState.deserializeBinaryFromReader = function(msg, reader)
         reader.readMessage(value, type_pb.CircularQueue.deserializeBinaryFromReader);
         msg.setPinnedFiles(value);
         break;
+      case 18:
+        var value = new type_pb.PokeInfo();
+        reader.readMessage(value, type_pb.PokeInfo.deserializeBinaryFromReader);
+        msg.setPoke(value);
+        break;
       case 50:
         var value = new google_protobuf_any_pb.Any();
         reader.readMessage(value, google_protobuf_any_pb.Any.deserializeBinaryFromReader);
@@ -280,6 +286,10 @@ proto.forge_abi.AccountState.serializeBinaryToWriter = function(message, writer)
   f = message.getPinnedFiles();
   if (f != null) {
     writer.writeMessage(17, f, type_pb.CircularQueue.serializeBinaryToWriter);
+  }
+  f = message.getPoke();
+  if (f != null) {
+    writer.writeMessage(18, f, type_pb.PokeInfo.serializeBinaryToWriter);
   }
   f = message.getData();
   if (f != null) {
@@ -591,6 +601,35 @@ proto.forge_abi.AccountState.prototype.clearPinnedFiles = function() {
  */
 proto.forge_abi.AccountState.prototype.hasPinnedFiles = function() {
   return jspb.Message.getField(this, 17) != null;
+};
+
+/**
+ * optional PokeInfo poke = 18;
+ * @return {?proto.forge_abi.PokeInfo}
+ */
+proto.forge_abi.AccountState.prototype.getPoke = function() {
+  return /** @type{?proto.forge_abi.PokeInfo} */ (jspb.Message.getWrapperField(
+    this,
+    type_pb.PokeInfo,
+    18
+  ));
+};
+
+/** @param {?proto.forge_abi.PokeInfo|undefined} value */
+proto.forge_abi.AccountState.prototype.setPoke = function(value) {
+  jspb.Message.setWrapperField(this, 18, value);
+};
+
+proto.forge_abi.AccountState.prototype.clearPoke = function() {
+  this.setPoke(undefined);
+};
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.forge_abi.AccountState.prototype.hasPoke = function() {
+  return jspb.Message.getField(this, 18) != null;
 };
 
 /**

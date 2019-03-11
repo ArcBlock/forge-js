@@ -80,6 +80,7 @@ proto.forge_abi.TopicType = {
   SYS_UPGRADE: 23,
   APPLICATION: 24,
   CONSUME_ASSET: 25,
+  POKE: 26,
   ACCOUNT_STATE: 129,
   ASSET_STATE: 130,
   FORGE_STATE: 131,

@@ -11,6 +11,7 @@ import Layout from '../../layouts/page';
 import Wrapper from '../../components/wrapper';
 import withI18n from '../../components/withI18n';
 import withRoot from '../../components/withRoot';
+import Alert from '../../components/alert';
 
 import forge from '../../libs/forge';
 
@@ -35,13 +36,19 @@ class TransactionDetail extends Page {
   }
 
   render() {
+    const { hash } = this.props.match.params;
     const { loading, error, tx } = this.state;
     return (
       <Layout title="Transaction" cookies={this.cookies}>
         <Container>
           {loading && <CircularProgress />}
-          {!!error && <p>{error}</p>}
-          {tx && <TxDetail tx={tx} />}
+          {!!error && <Alert type="error">{error}</Alert>}
+          {!error && !loading && !tx && (
+            <Alert type="error">
+              Transaction <strong>{hash}</strong> not found!
+            </Alert>
+          )}
+          {!loading && tx && <TxDetail tx={tx} />}
         </Container>
       </Layout>
     );
@@ -54,7 +61,7 @@ class TransactionDetail extends Page {
       const { info: tx } = await forge.getTx({ hash });
       this.setState({ loading: false, tx });
     } catch (err) {
-      console.log(err.errors);
+      console.error(err.errors);
       this.setState({
         loading: false,
         error: Array.isArray(err.errors)
