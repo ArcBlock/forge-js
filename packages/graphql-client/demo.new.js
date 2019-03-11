@@ -21,14 +21,11 @@ const client = new GraphqlClient('http://localhost:8210/api'); // local
 
 const packageName = 'forge_abi';
 const root = protobuf.Root.fromJSON(jsonDescriptor);
-const { messages, enums, spec, transactions, stakes, typeUrls } = processJson(
-  jsonDescriptor,
-  packageName
-);
-console.log({ messages, enums, spec, transactions, stakes, typeUrls });
+const { transactions, typeUrls } = processJson(jsonDescriptor, packageName);
+
+const toHex = bytes => stripHexPrefix(bytesToHex(bytes)).toUpperCase();
 
 const methods = {};
-
 transactions.forEach(x => {
   const method = camelcase(`send_${x}`);
   const txSendFn = async ({ data, wallet }) => {
@@ -48,7 +45,13 @@ transactions.forEach(x => {
       }
       nonce = account.nonce;
     }
-    console.log({ address, nonce, chainId });
+    console.log({
+      pk: stripHexPrefix(wallet.publicKey).toUpperCase(),
+      sk: stripHexPrefix(wallet.secretKey).toUpperCase(),
+      address,
+      nonce,
+      chainId,
+    });
 
     const Any = root.lookupType('google.protobuf.Any');
     const Transaction = root.lookupType(`${packageName}.Transaction`);
@@ -56,7 +59,7 @@ transactions.forEach(x => {
 
     const itx = ItxType.fromObject(data);
     const itxBytes = ItxType.encode(itx).finish();
-    console.log({ wallet, itx, itxBytes: bytesToHex(itxBytes) });
+    console.log({ itxBytes, itxHex: toHex(itxBytes) });
 
     const txObj = {
       from: wallet.toAddress(),
@@ -72,13 +75,17 @@ transactions.forEach(x => {
     const txToSignBytes = Transaction.encode(txToSign).finish();
 
     const signature = wallet.sign(txToSignBytes);
-    console.log({ txToSign, txToSignBytes: bytesToHex(txToSignBytes), signature });
+    console.log({
+      txToSignBytes,
+      txToSignHex: toHex(txToSignBytes),
+      signature: stripHexPrefix(signature).toUpperCase(),
+    });
 
     txObj.signature = Buffer.from(hexToBytes(signature));
     const tx = Transaction.fromObject(txObj);
     const txBytes = Transaction.encode(tx).finish();
     const txStr = base64.escape(Buffer.from(txBytes).toString('base64'));
-    console.log({ tx, txBytes, txStr });
+    console.log({ txBytes, txHex: toHex(txBytes), txStr });
 
     return client.sendTx({ tx: txStr });
   };
