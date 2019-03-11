@@ -8,6 +8,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import Button from '@material-ui/core/Button';
 
 import Icon from '../../../components/iconfa';
+import Alert from '../../../components/alert';
 
 function PaginatedList({ args, pageSize, dataKey, dataLoaderFn, dataRenderFn }) {
   const [cursor, setCursor] = useState(null);
@@ -41,10 +42,7 @@ function PaginatedList({ args, pageSize, dataKey, dataLoaderFn, dataRenderFn }) 
   if (state.error) {
     return (
       <Container>
-        <p className="error">
-          <Icon name="exclamation-circle" size={36} />
-          {state.error.message}
-        </p>
+        <Alert type="error">{state.error.message}</Alert>
       </Container>
     );
   }
@@ -54,12 +52,7 @@ function PaginatedList({ args, pageSize, dataKey, dataLoaderFn, dataRenderFn }) 
       {Array.isArray(state.value[dataKey]) &&
         state.value[dataKey].length > 0 &&
         dataRenderFn(state.value[dataKey])}
-      {state.value[dataKey].length === 0 && (
-        <p className="warn">
-          <Icon name="exclamation-triangle" size={36} />
-          No data found!
-        </p>
-      )}
+      {state.value[dataKey].length === 0 && <Alert type="error">No data found!</Alert>}
       {state.value.page && state.value.page.cursor && state.value.page.next && (
         <p className="pager">
           <Button onClick={() => setCursor(state.value.page.cursor)}>
@@ -87,27 +80,6 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-
-  .error,
-  .warn {
-    display: flex;
-    align-items: center;
-    font-size: 36px;
-    opacity: 0.5;
-    margin: 0;
-
-    i {
-      margin-right: 16px;
-    }
-  }
-
-  .error {
-    color: ${props => props.theme.colors.red};
-  }
-
-  .warn {
-    color: ${props => props.theme.colors.minor};
-  }
 
   .pager {
     width: 100%;

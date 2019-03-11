@@ -14,6 +14,7 @@ import AccountTabs from './components/account/tabs';
 import withI18n from '../../components/withI18n';
 import withRoot from '../../components/withRoot';
 import Icon from '../../components/iconfa';
+import Alert from '../../components/alert';
 
 import forge from '../../libs/forge';
 import { fromArcToReadable } from '../../libs/util';
@@ -30,6 +31,7 @@ class AccountDetail extends Page {
     this.state = {
       loading: false,
       account: null,
+      error: null,
     };
   }
 
@@ -38,12 +40,19 @@ class AccountDetail extends Page {
   }
 
   render() {
-    const { loading, account } = this.state;
+    const { address } = this.props.match.params;
+    const { loading, error, account } = this.state;
     return (
       <Layout title="Account" cookies={this.cookies}>
         <Container>
           {loading && <CircularProgress />}
-          {account && (
+          {!!error && <Alert type="error">{error}</Alert>}
+          {!error && !loading && !account && (
+            <Alert type="error">
+              Account <strong>{address}</strong> not found!
+            </Alert>
+          )}
+          {!loading && account && (
             <React.Fragment>
               <SummaryHeader
                 type={
@@ -69,15 +78,25 @@ class AccountDetail extends Page {
   }
 
   async loadAccount() {
-    const { address } = this.props.match.params;
-    this.setState({ loading: true });
-    const { state } = await forge.getAccountState(
-      { address },
-      {
-        ignoreFields: ['state.context.genesisTx.tx', 'state.context.renaissanceTx.tx'],
-      }
-    );
-    this.setState({ loading: false, account: state });
+    try {
+      const { address } = this.props.match.params;
+      this.setState({ loading: true });
+      const { state } = await forge.getAccountState(
+        { address },
+        {
+          ignoreFields: ['state.context.genesisTx.tx', 'state.context.renaissanceTx.tx'],
+        }
+      );
+      this.setState({ loading: false, account: state });
+    } catch (err) {
+      console.error(err.errors);
+      this.setState({
+        loading: false,
+        error: Array.isArray(err.errors)
+          ? err.errors.map(x => x.message).join(',')
+          : err.message || err.toString(),
+      });
+    }
   }
 }
 

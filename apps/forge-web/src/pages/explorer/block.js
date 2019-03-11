@@ -17,6 +17,7 @@ import Pagination from './components/pagination';
 import withI18n from '../../components/withI18n';
 import withRoot from '../../components/withRoot';
 import Icon from '../../components/iconfa';
+import Alert from '../../components/alert';
 
 import forge from '../../libs/forge';
 import { parseQuery } from '../../libs/util';
@@ -34,6 +35,7 @@ class BlockDetail extends Page {
     const params = parseQuery(window.location.search);
     this.state = {
       loading: false,
+      error: null,
       block: null,
       currentPage: Number(params.page) || 1,
       pageSize: 10,
@@ -43,17 +45,24 @@ class BlockDetail extends Page {
   }
 
   componentDidMount() {
-    this.loadStatus();
+    this.loadBlock();
   }
 
   render() {
-    const { loading, block } = this.state;
+    const { height } = this.props.match.params;
+    const { loading, error, block } = this.state;
     const txs = this.getTxs();
     return (
       <Layout title="Block" cookies={this.cookies}>
         <Container>
           {loading && <CircularProgress />}
-          {block && (
+          {!!error && <Alert type="error">{error}</Alert>}
+          {!error && !loading && !block && (
+            <Alert type="error">
+              Block <strong>#{height}</strong> not found!
+            </Alert>
+          )}
+          {!loading && block && (
             <React.Fragment>
               <SummaryHeader
                 type={
@@ -123,11 +132,21 @@ class BlockDetail extends Page {
     this.setState({ currentPage: page });
   }
 
-  async loadStatus() {
-    const { height } = this.props.match.params;
-    this.setState({ loading: true });
-    const { block } = await forge.getBlock({ height });
-    this.setState({ loading: false, block });
+  async loadBlock() {
+    try {
+      const { height } = this.props.match.params;
+      this.setState({ loading: true });
+      const { block } = await forge.getBlock({ height });
+      this.setState({ loading: false, block });
+    } catch (err) {
+      console.error(err.errors);
+      this.setState({
+        loading: false,
+        error: Array.isArray(err.errors)
+          ? err.errors.map(x => x.message).join(',')
+          : err.message || err.toString(),
+      });
+    }
   }
 }
 
