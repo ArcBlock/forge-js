@@ -53,12 +53,10 @@ function Wallet(keyPair, type) {
         throw new Error('Cannot sign data without a secretKey');
       }
       const hash = hasher(data);
-      // console.log('sign.hash', hash);
       return signer.sign(hash, keyPair.sk);
     },
     verify(data, signature) {
       const hash = hasher(data);
-      // console.log('verify.hash', hash);
       return signer.verify(hash, signature, keyPair.pk);
     },
     toAddress() {
@@ -89,7 +87,7 @@ function fromRandom(_type) {
   const type = WalletType(_type);
   const signer = getSigner(type.pk);
   const keyPair = signer.genKeyPair();
-  return Wallet({ sk: keyPair.publicKey, pk: keyPair.secretKey }, type);
+  return Wallet({ sk: keyPair.secretKey, pk: keyPair.publicKey }, type);
 }
 
 function fromJSON(json) {
