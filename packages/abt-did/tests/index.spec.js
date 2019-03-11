@@ -23,12 +23,12 @@ const userId = 'z1nfCgfPqvSQCaZ2EVZPXbwPjKCkMrqfTUu';
 const userIdSecp256k1 = 'z1EZgtnWTBTPSx3X8EMYDoTbddYSpyytDxQK';
 const appType = {
   role: types.RoleType.ROLE_APPLICATION,
-  key: types.KeyType.ED25519,
+  pk: types.KeyType.ED25519,
   hash: types.HashType.SHA3,
 };
 const userType = {
   role: types.RoleType.ROLE_ACCOUNT,
-  key: types.KeyType.ED25519,
+  pk: types.KeyType.ED25519,
   hash: types.HashType.SHA3,
 };
 
@@ -58,7 +58,7 @@ describe('@arcblock/abt-did', () => {
     expect(
       fromPublicKey(pk, {
         role: types.RoleType.ROLE_APPLICATION,
-        key: types.KeyType.SECP256K1,
+        pk: types.KeyType.SECP256K1,
         hash: types.HashType.SHA3,
       })
     ).toEqual(appIdSecp256k1);
@@ -72,7 +72,7 @@ describe('@arcblock/abt-did', () => {
     expect(
       fromAppDID(appId, seed, {
         role: types.RoleType.ROLE_ACCOUNT,
-        key: types.KeyType.SECP256K1,
+        pk: types.KeyType.SECP256K1,
         hash: types.HashType.SHA3,
       })
     ).toEqual(userIdSecp256k1);
@@ -86,7 +86,7 @@ describe('@arcblock/abt-did', () => {
   it('should get type info as expected: string', () => {
     const typeInfo = toTypeInfo(appId, true);
     expect(typeInfo.role).toEqual('ROLE_APPLICATION');
-    expect(typeInfo.key).toEqual('ED25519');
+    expect(typeInfo.pk).toEqual('ED25519');
     expect(typeInfo.hash).toEqual('SHA3');
   });
 
@@ -117,7 +117,7 @@ describe('@arcblock/abt-did', () => {
 
     expect(
       fromSecretKey('0x26954E19E8781905E2CF91A18AE4F36A954C142176EE1BC27C2635520C49BC55', {
-        key: types.KeyType.SECP256K1,
+        pk: types.KeyType.SECP256K1,
       })
     ).toEqual('z1Ee1H8g248HqroacmEnZzMYgbhjz1Z2WSvv');
 
