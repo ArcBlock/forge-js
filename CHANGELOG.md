@@ -1,3 +1,11 @@
+## 0.12.3 (March 11, 2019)
+  - chore: add error handling for all detail pages
+  - chore: improve forge-web according to echo s codepen
+  - chore: upgrade forge-sdk with latest forge
+  - chore: upgrade forge-proto with latest forge
+  - chore: upgrade graphql-client with latest forge
+  - update readme
+
 ## 0.12.2 (March 08, 2019)
   - chore: update readme for forge-wallet
   - feat: add forge wallet lib
