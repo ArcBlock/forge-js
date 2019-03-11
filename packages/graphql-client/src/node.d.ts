@@ -184,41 +184,41 @@ declare namespace GraphQLClient {
   }
 
   export enum StatusCode {
-    UNSUPPORTED_STAKE,
-    STORAGE_RPC_ERROR,
-    INSUFFICIENT_DATA,
-    INVALID_FORGE_STATE,
-    INVALID_NONCE,
-    INVALID_TX_SIZE,
-    UNTRANSFERRABLE_ASSET,
-    INVALID_SENDER_STATE,
-    FORBIDDEN,
-    CONSENSUS_RPC_ERROR,
-    BANNED_UNSTAKE,
-    INVALID_MULTISIG,
-    ACCOUNT_MIGRATED,
-    EXPIRED_ASSET,
-    INVALID_MONIKER,
-    INSUFFICIENT_FUND,
-    INVALID_WALLET,
-    INVALID_SIGNATURE,
-    INVALID_STAKE_STATE,
-    READONLY_ASSET,
-    UNSUPPORTED_TX,
-    INSUFFICIENT_STAKE,
     INVALID_TX,
-    NOENT,
-    INVALID_PASSPHRASE,
     EXPIRED_WALLET_TOKEN,
+    INVALID_PASSPHRASE,
+    BANNED_UNSTAKE,
+    INVALID_SENDER_STATE,
+    UNSUPPORTED_TX,
     INVALID_RECEIVER_STATE,
-    CONSUMED_ASSET,
-    INVALID_CHAIN_ID,
-    INVALID_ASSET,
-    INTERNAL,
-    INVALID_SIGNER_STATE,
-    INVALID_OWNER,
-    OK,
     EXPIRED_TX,
+    INVALID_TX_SIZE,
+    STORAGE_RPC_ERROR,
+    INTERNAL,
+    UNSUPPORTED_STAKE,
+    READONLY_ASSET,
+    CONSENSUS_RPC_ERROR,
+    INSUFFICIENT_FUND,
+    INVALID_MONIKER,
+    INVALID_STAKE_STATE,
+    INVALID_SIGNER_STATE,
+    INVALID_FORGE_STATE,
+    INVALID_ASSET,
+    UNTRANSFERRABLE_ASSET,
+    FORBIDDEN,
+    INVALID_SIGNATURE,
+    EXPIRED_ASSET,
+    NOENT,
+    INVALID_OWNER,
+    INVALID_NONCE,
+    INVALID_CHAIN_ID,
+    INVALID_WALLET,
+    INSUFFICIENT_DATA,
+    INSUFFICIENT_STAKE,
+    ACCOUNT_MIGRATED,
+    OK,
+    CONSUMED_ASSET,
+    INVALID_MULTISIG,
   }
 
   export enum UpgradeAction {
@@ -278,6 +278,7 @@ declare namespace GraphQLClient {
     numTxs: number;
     pinnedFiles: GraphQLClient.CircularQueue;
     pk: string;
+    poke: GraphQLClient.PokeInfo;
     stake: GraphQLClient.StakeContext;
     type: GraphQLClient.WalletType;
   }
@@ -440,6 +441,7 @@ declare namespace GraphQLClient {
     numDeclareFileTxs: Array<number>;
     numDeclareTxs: Array<number>;
     numExchangeTxs: Array<number>;
+    numPokeTxs: Array<number>;
     numStakeTxs: Array<number>;
     numStakes: Array<string>;
     numSysUpgradeTxs: Array<number>;
@@ -621,6 +623,17 @@ declare namespace GraphQLClient {
     ip: string;
     moniker: string;
     network: string;
+  }
+
+  export interface PokeInfo {
+    amount: string;
+    dailyLimit: string;
+    leftover: string;
+  }
+
+  export interface PokeTx {
+    address: string;
+    date: string;
   }
 
   export interface PubKey {
@@ -1001,6 +1014,7 @@ declare namespace GraphQLClient {
     | GraphQLClient.CreateAssetTx
     | GraphQLClient.ConsumeAssetTx
     | GraphQLClient.ConsensusUpgradeTx
+    | GraphQLClient.PokeTx
     | GraphQLClient.AccountMigrateTx;
 
   export interface GetAccountStateParams {
