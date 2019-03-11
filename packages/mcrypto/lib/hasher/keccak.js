@@ -6,16 +6,16 @@ class KeccakHasher {
     [224, 256, 384, 512].forEach(x => {
       const name = `hash${x}`;
       const hasher = data => sha3[`keccak${x}`](data);
-      const fn = (data, round = 1) => {
+      const hashFn = (data, round) => {
         const input = isHexStrict(data) ? hexToBytes(data) : data;
         if (round === 1) {
           return hasher(input);
         }
 
-        return fn(hasher(input), round - 1);
+        return hashFn(hasher(input), round - 1);
       };
 
-      this[name] = fn;
+      this[name] = (data, round = 1) => `0x${hashFn(data, round)}`;
     });
   }
 }

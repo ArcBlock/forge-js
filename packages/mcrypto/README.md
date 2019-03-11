@@ -29,6 +29,8 @@ const message = 'message to hash';
 const hash = Hasher.SHA2.hash256(message);
 ```
 
+**Important Note: results from signer and hasher are all hex encoded string**
+
 ## Implementation
 
 ### Hasher
