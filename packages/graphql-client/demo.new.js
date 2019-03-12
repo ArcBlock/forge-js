@@ -4,7 +4,7 @@ const camelcase = require('camelcase');
 const base64 = require('base64-url');
 const { fromSecretKey, fromRandom, WalletType } = require('@arcblock/forge-wallet');
 const Mcrypto = require('@arcblock/mcrypto');
-const { hexToBytes, bytesToHex, stripHexPrefix } = require('@arcblock/forge-util');
+const { hexToBytes, bytesToHex, stripHexPrefix, toArc } = require('@arcblock/forge-util');
 
 const GraphqlClient = require('./src/node');
 const jsonDescriptor = require('./src/schema/protobuf.json');
@@ -39,19 +39,20 @@ transactions.forEach(x => {
     // Determine nonce
     let nonce = 1;
     if (x !== 'DeclareTx') {
-      const { state: account } = await client.getAccountState({ address });
-      if (!account) {
-        throw new Error('Wallet address not declared on chain, please declare before send any tx');
+      const res = await client.getAccountState({ address });
+      // console.log(`getAccountState.${address}`, res);
+      if (!res.state) {
+        throw new Error(`Address ${address} not declared on chain, please declare before send tx`);
       }
-      nonce = account.nonce;
+      nonce = res.state.nonce;
     }
-    console.log({
-      pk: stripHexPrefix(wallet.publicKey).toUpperCase(),
-      sk: stripHexPrefix(wallet.secretKey).toUpperCase(),
-      address,
-      nonce,
-      chainId,
-    });
+    // console.log({
+    //   pk: stripHexPrefix(wallet.publicKey).toUpperCase(),
+    //   sk: stripHexPrefix(wallet.secretKey).toUpperCase(),
+    //   address,
+    //   nonce,
+    //   chainId,
+    // });
 
     const Any = root.lookupType('google.protobuf.Any');
     const Transaction = root.lookupType(`${packageName}.Transaction`);
@@ -59,10 +60,10 @@ transactions.forEach(x => {
 
     const itx = ItxType.fromObject(data);
     const itxBytes = ItxType.encode(itx).finish();
-    console.log({ itxBytes, itxHex: toHex(itxBytes) });
+    // console.log({ itxBytes, itxHex: toHex(itxBytes) });
 
     const txObj = {
-      from: wallet.toAddress(),
+      from: address,
       nonce,
       chainId: chainId,
       itx: Any.fromObject({
@@ -75,17 +76,17 @@ transactions.forEach(x => {
     const txToSignBytes = Transaction.encode(txToSign).finish();
 
     const signature = wallet.sign(txToSignBytes);
-    console.log({
-      txToSignBytes,
-      txToSignHex: toHex(txToSignBytes),
-      signature: stripHexPrefix(signature).toUpperCase(),
-    });
+    // console.log({
+    //   txToSignBytes,
+    //   txToSignHex: toHex(txToSignBytes),
+    //   signature: stripHexPrefix(signature).toUpperCase(),
+    // });
 
     txObj.signature = Buffer.from(hexToBytes(signature));
     const tx = Transaction.fromObject(txObj);
     const txBytes = Transaction.encode(tx).finish();
     const txStr = base64.escape(Buffer.from(txBytes).toString('base64'));
-    console.log({ txBytes, txHex: toHex(txBytes), txStr });
+    // console.log({ txBytes, txHex: toHex(txBytes), txStr });
 
     return client.sendTx({ tx: txStr });
   };
@@ -95,30 +96,48 @@ transactions.forEach(x => {
 });
 console.log(Object.keys(methods));
 
-const { types } = Mcrypto;
 const type = WalletType({
-  role: types.RoleType.ROLE_ACCOUNT,
-  pk: types.KeyType.ED25519,
-  hash: types.HashType.SHA3,
+  role: Mcrypto.types.RoleType.ROLE_ACCOUNT,
+  pk: Mcrypto.types.KeyType.ED25519,
+  hash: Mcrypto.types.HashType.SHA3,
 });
-
-const sk =
-  '0xD67C071B6F51D2B61180B9B1AA9BE0DD0704619F0E30453AB4A592B036EDE644E4852B7091317E3622068E62A5127D1FB0D4AE2FC50213295E10652D2F0ABFC7';
 
 (async () => {
   try {
-    const wallet = fromSecretKey(sk, type);
-    // const wallet = fromRandom(type);
-    // console.log(wallet);
-    const res = await methods.sendDeclareTx({
+    const delay = timeout => new Promise(resolve => setTimeout(resolve, timeout));
+    const sender = fromRandom(type);
+    const res1 = await methods.sendDeclareTx({
       data: {
         moniker: `wangshijun_${Math.round(Math.random() * 1000)}`,
-        pk: Buffer.from(hexToBytes(wallet.publicKey)),
+        pk: Buffer.from(hexToBytes(sender.publicKey)),
         type,
-        issuer: '',
-        data: null,
       },
-      wallet,
+      wallet: sender,
+    });
+
+    const receiver = fromRandom(type);
+    const res2 = await methods.sendDeclareTx({
+      data: {
+        moniker: `paper_${Math.round(Math.random() * 1000)}`,
+        pk: Buffer.from(hexToBytes(receiver.publicKey)),
+        type,
+      },
+      wallet: receiver,
+    });
+    console.log({
+      sender: sender.toJSON(),
+      receiver: receiver.toJSON(),
+      res1,
+      res2,
+    });
+
+    await delay(5000);
+    const res = await methods.sendTransferTx({
+      data: {
+        to: receiver.toAddress(),
+        value: { value: toArc(100).toBuffer() },
+      },
+      wallet: sender,
     });
 
     console.log(res);
