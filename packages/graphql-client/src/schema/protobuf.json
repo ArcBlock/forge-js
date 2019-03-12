@@ -1210,6 +1210,7 @@
             }
           }
         },
+<<<<<<< HEAD
         "ExtraCreateAsset": {
           "fields": {
             "asset": {
@@ -1226,6 +1227,8 @@
             }
           }
         },
+=======
+>>>>>>> master
         "AccountState": {
           "fields": {
             "balance": {
