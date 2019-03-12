@@ -96,7 +96,7 @@ class GraphqlClient extends BaseClient {
         const txToSign = Transaction.fromObject(txObj);
         const txToSignBytes = Transaction.encode(txToSign).finish();
 
-        const signature = wallet.sign(txToSignBytes);
+        const signature = wallet.sign(bytesToHex(txToSignBytes));
         debug({
           txToSignBytes,
           txToSignHex: toHex(txToSignBytes),
