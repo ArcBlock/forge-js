@@ -28,10 +28,8 @@ class SecondaryLinks extends React.Component {
   renderMenuItem(url, title) {
     const active = this.isSelected(url);
     return (
-      <MenuItem active={active} key={url}>
-        <Link to={url} title={title}>
-          {title}
-        </Link>
+      <MenuItem component={Link} to={url} title={title} active={active} key={url}>
+        {title}
       </MenuItem>
     );
   }
@@ -83,21 +81,14 @@ const MenuItem = styled(Button)`
     justify-content: flex-start;
     align-items: center;
     transition: all 200ms ease-in-out;
-    padding-left: 30px;
+    padding: 16px 0 16px 30px;
     text-align: left;
     text-transform: initial;
+    letter-spacing: 1px;
+    color: ${({ active, theme: { palette, typography } }) => (active ? palette.primary.main : typography.color.main)};
 
     &:hover {
-      a {
-        color: ${props => props.theme.palette.primary.main};
-      }
-    }
-
-    a {
-      display: block;
-      padding: 16px 0;
-      letter-spacing: 1px;
-      color: ${({ active, theme: { palette, typography } }) => (active ? palette.primary.main : typography.color.main)};
+      color: ${props => props.theme.palette.primary.main};
     }
   }
 `;
