@@ -1,21 +1,23 @@
 /* eslint no-console:"off" */
 const decamelize = require('decamelize');
+const protobuf = require('protobufjs');
 
 const txTypePattern = /Tx$/;
 const stateTypePattern = /State$/;
 const stakeTypePattern = /^StakeFor/i;
 const requestTypePattern = /^Request/i;
 const responseTypePattern = /^Response/i;
+const packageName = 'forge_abi';
 const lowerUnder = x => decamelize(x).toLowerCase();
 
-const compactJson = object => {
+const compactSchema = object => {
   if (object.nested) {
     object = object.nested;
   }
 
   Object.keys(object).forEach(x => {
     if (object[x] && typeof object[x] === 'object') {
-      object[x] = compactJson(object[x]);
+      object[x] = compactSchema(object[x]);
     }
   });
 
@@ -61,13 +63,14 @@ function createTypeUrls(abi) {
 /**
  * extract rpc descriptors
  *
- * @param {*} filePath
+ * @param {*} json
  * @param {*} packageName
  * @returns Object
  */
-function processJson(json, packageName) {
-  const spec = compactJson(json);
+function processSchema(json) {
+  const types = protobuf.Root.fromJSON(json);
 
+  const spec = compactSchema(json);
   const { [packageName]: abi } = spec;
 
   // extract messages and enums
@@ -92,12 +95,24 @@ function processJson(json, packageName) {
   );
   const stakes = Object.keys(spec[packageName]).filter(x => stakeTypePattern.test(x));
 
-  Object.assign(spec, spec[packageName]);
-  return { messages, enums, spec, transactions, stakes, typeUrls };
+  return {
+    messages,
+    enums,
+    transactions,
+    stakes,
+    typeUrls,
+    getType: key => {
+      if (key.split('.').length > 1) {
+        return types.lookupType(key);
+      }
+
+      return types.lookupType(`${packageName}.${key}`);
+    },
+  };
 }
 
 module.exports = {
-  compactJson,
-  processJson,
+  compactSchema,
+  processSchema,
   createTypeUrls,
 };
