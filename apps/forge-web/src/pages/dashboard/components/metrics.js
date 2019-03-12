@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import moment from 'moment';
 import { fromArc } from '@arcblock/forge-util';
-import { useAsync, useBoolean } from 'react-use';
+import { useAsync, useBoolean, useLocalStorage } from 'react-use';
 
 import Grid from '@material-ui/core/Grid';
 import Switch from '@material-ui/core/Switch';
@@ -12,7 +12,6 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import Icon8 from '../../../components/icon8';
 import SparkLine from '../../../components/sparkline';
 import forge from '../../../libs/forge';
-import { fromArcToReadable } from '../../../libs/util';
 import { useInterval } from '../../../libs/hooks';
 
 async function fetchSummary() {
@@ -29,6 +28,8 @@ export default function SummarySection() {
   const state = useAsync(fetchSummary);
   const [updates, setUpdates] = useState(null);
   const [autoRefresh, setAutoRefresh] = useBoolean(true);
+  const [animation, setAnimation] = useBoolean(false);
+  const [token] = useLocalStorage('token');
 
   // Pull
   useInterval(
@@ -36,6 +37,11 @@ export default function SummarySection() {
       try {
         const res = await fetchSummary();
         setUpdates(res);
+        setAnimation(true);
+
+        setTimeout(() => {
+          setAnimation(false);
+        }, 700);
       } catch (err) {
         console.error(err);
       }
@@ -64,7 +70,7 @@ export default function SummarySection() {
   const metrics = Object.keys(mapping).reduce((acc, x) => {
     [acc[x]] = summary[mapping[x]];
     if (x === 'stakes') {
-      acc[x] = fromArcToReadable(acc[x]);
+      acc[x] = `${fromArc(acc[x], token.decimal)}`;
     }
     return acc;
   }, {});
@@ -117,7 +123,7 @@ export default function SummarySection() {
               <div className="metric__image">
                 <Icon8 name={images[x]} alt={x} size={36} />
               </div>
-              <div className="metric__number">{metrics[x]}</div>
+              <div className={`metric__number ${animation ? 'animated' : ''}`}>{metrics[x]}</div>
               <div className="metric__name">{x}</div>
               <div className="metric__trend">
                 <SparkLine data={trends[x]} series={[SparkLine.createSeries({ dataKey: x })]} />
@@ -167,6 +173,10 @@ const Metric = styled.div`
     color: #222222;
   }
 
+  .animated {
+    animation: blink 250ms reverse both;
+  }
+
   .metric__name {
     margin-left: 3px;
     font-size: 14px;
@@ -181,5 +191,18 @@ const Metric = styled.div`
     height: 80px;
     width: 100%;
     max-width: 320px;
+  }
+
+  /* http://animista.net/play/attention/blink/blink-2 */
+  @keyframes blink {
+    0% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.3;
+    }
+    100% {
+      opacity: 1;
+    }
   }
 `;
