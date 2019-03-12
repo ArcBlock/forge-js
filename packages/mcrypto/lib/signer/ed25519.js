@@ -22,7 +22,8 @@ class Ed25519Signer extends Signer {
   }
 
   genKeyPair(encoding = 'hex') {
-    const keyPair = ed25519.keyPair.fromSecretKey(Uint8Array.from(randomBytes(64)));
+    const seed = Uint8Array.from(randomBytes(32));
+    const keyPair = ed25519.keyPair.fromSeed(seed);
     if (encoding === 'hex') {
       keyPair.publicKey = bytesToHex(keyPair.publicKey);
       keyPair.secretKey = bytesToHex(keyPair.secretKey);
