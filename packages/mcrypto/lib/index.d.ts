@@ -86,6 +86,11 @@ declare namespace _Lib {
     KeyType: _Lib.T104;
     HashType: _Lib.T105;
     RoleType: _Lib.T106;
+    EncodingType: _Lib.T109;
+  }
+  export interface T109 {
+    BASE16: number;
+    BASE58: number;
   }
   export interface T108 {
     Signer: _Lib.T101;

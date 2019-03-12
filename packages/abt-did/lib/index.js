@@ -1,11 +1,15 @@
 const upperFirst = require('lodash/upperFirst');
-const { toBN, toHex, numberToHex, isHexStrict } = require('@arcblock/forge-util');
+const { toBN, toHex, numberToHex, isHexStrict, stripHexPrefix } = require('@arcblock/forge-util');
 const Mcrypto = require('@arcblock/mcrypto');
 const multibase = require('multibase');
 const base64 = require('base64-url');
 const hdkey = require('hdkey');
 const { DID_PREFIX, toBits, toBytes, toStrictHex } = require('./util');
 const { types, getSigner, getHasher } = Mcrypto;
+
+const mapping = {
+  pk: 'key',
+};
 
 /**
  * Gen DID from appDID and seed
@@ -24,7 +28,7 @@ const fromAppDID = (appDID, seed, type = {}, index = 0) => {
   }
 
   const hash = Mcrypto.Hasher.SHA3.hash256(toBytes(appDID));
-  const hashSlice = hash.slice(0, 16);
+  const hashSlice = stripHexPrefix(hash).slice(0, 16);
   const s1 = hashSlice.slice(0, 8);
   const s2 = hashSlice.slice(8, 16);
 
@@ -38,14 +42,14 @@ const fromAppDID = (appDID, seed, type = {}, index = 0) => {
   const n1 = parseInt(b1.join(''), 2);
   const n2 = parseInt(b2.join(''), 2);
 
-  const seedHex = (isHexStrict(seed) ? seed : toHex(seed)).replace(/^0x/i, '');
+  const seedHex = stripHexPrefix(isHexStrict(seed) ? seed : toHex(seed));
   const master = hdkey.fromMasterSeed(Buffer.from(seedHex, 'hex'));
   const derivePath = `m/44'/260'/${n1}'/${n2}'/${index}`;
   const child = master.derive(derivePath);
 
-  const { key = types.KeyType.ED25519 } = type;
+  const { pk = types.KeyType.ED25519 } = type;
   let sk;
-  if (key === types.KeyType.ED25519) {
+  if (pk === types.KeyType.ED25519) {
     // HACK: because tweetnacl requires a 64 byte sk
     sk = Buffer.concat([child.privateKey, child.chainCode]);
   } else {
@@ -65,9 +69,9 @@ const fromAppDID = (appDID, seed, type = {}, index = 0) => {
  * @returns DID string
  */
 const fromSecretKey = (sk, type) => {
-  const { key = types.KeyType.ED25519 } = type || {};
-  const pk = getSigner(key).getPublicKey(sk);
-  return fromPublicKey(pk.indexOf('0x') === 0 ? pk : `0x${pk}`, type);
+  const { pk = types.KeyType.ED25519 } = type || {};
+  const pub = getSigner(pk).getPublicKey(sk);
+  return fromPublicKey(pub.indexOf('0x') === 0 ? pub : `0x${pub}`, type);
 };
 
 /**
@@ -82,9 +86,9 @@ const fromPublicKey = (pk, type) => {
   const hashFn = getHasher(hash);
 
   const typeHex = fromTypeInfo(type);
-  const pkHash = hashFn(pk);
+  const pkHash = stripHexPrefix(hashFn(pk));
 
-  const checksum = hashFn(`0x${typeHex}${pkHash.slice(0, 40)}`).slice(0, 8);
+  const checksum = stripHexPrefix(hashFn(`0x${typeHex}${pkHash.slice(0, 40)}`)).slice(0, 8);
   const didHash = `${typeHex}${pkHash.slice(0, 40)}${checksum}`;
 
   const address = multibase.encode('base58btc', Buffer.from(didHash, 'hex'));
@@ -119,12 +123,12 @@ const isFromPublicKey = (did, pk) => {
 const fromTypeInfo = type => {
   const {
     role = types.RoleType.ROLE_ACCOUNT,
-    key = types.KeyType.ED25519,
+    pk = types.KeyType.ED25519,
     hash = types.HashType.SHA3,
   } = type || {};
 
-  const infoBits = `${toBits(role, 6)}${toBits(key, 5)}${toBits(hash, 5)}`;
-  const infoHex = numberToHex(parseInt(infoBits, 2)).replace(/^0x/i, '');
+  const infoBits = `${toBits(role, 6)}${toBits(pk, 5)}${toBits(hash, 5)}`;
+  const infoHex = stripHexPrefix(numberToHex(parseInt(infoBits, 2)));
   return toStrictHex(infoHex, 4);
 };
 
@@ -146,20 +150,20 @@ const toTypeInfo = (did, returnString = false) => {
     const hashBits = typeBits.slice(11, 16);
     const type = {
       role: parseInt(roleBits, 2),
-      key: parseInt(keyBits, 2),
+      pk: parseInt(keyBits, 2),
       hash: parseInt(hashBits, 2),
     };
 
     // remove unsupported types
     Object.keys(type).forEach(x => {
-      const enums = Object.values(types[`${upperFirst(x)}Type`]);
+      const enums = Object.values(types[`${upperFirst(mapping[x] || x)}Type`]);
       if (enums.includes(type[x]) === false) {
         delete type[x];
       }
     });
 
     const typeStr = Object.keys(type).reduce((acc, x) => {
-      const enums = types[`${upperFirst(x)}Type`];
+      const enums = types[`${upperFirst(mapping[x] || x)}Type`];
       acc[x] = Object.keys(enums).find(d => enums[d] === type[x]);
       return acc;
     }, {});
@@ -190,7 +194,8 @@ const isValid = did => {
   const bytes = toBytes(did);
   const bytesHex = toStrictHex(Buffer.from(bytes.slice(0, 22)).toString('hex'));
   const didChecksum = toStrictHex(Buffer.from(bytes.slice(22, 26)).toString('hex'));
-  const checksum = hashFn(`0x${bytesHex}`).slice(0, 8);
+  const checksum = stripHexPrefix(hashFn(`0x${bytesHex}`)).slice(0, 8);
+
   return didChecksum === checksum;
 };
 
@@ -220,7 +225,7 @@ const jwtSign = (did, sk, payload = {}) => {
   };
 
   // make header
-  const header = headers[type.key];
+  const header = headers[type.pk];
   const headerB64 = base64.escape(base64.encode(JSON.stringify(header)));
 
   // make body
@@ -254,8 +259,8 @@ const jwtSign = (did, sk, payload = {}) => {
 
   // make signature
   const msgHex = toHex(`${headerB64}.${bodyB64}`);
-  const sigHex = getSigner(type.key).sign(msgHex, sk);
-  const sigB64 = base64.escape(Buffer.from(sigHex.replace(/^0x/, ''), 'hex').toString('base64'));
+  const sigHex = getSigner(type.pk).sign(msgHex, sk);
+  const sigB64 = base64.escape(Buffer.from(stripHexPrefix(sigHex), 'hex').toString('base64'));
 
   return [headerB64, bodyB64, sigB64].join('.');
 };

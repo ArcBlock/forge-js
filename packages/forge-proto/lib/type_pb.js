@@ -26,6 +26,8 @@ goog.exportSymbol('proto.forge_abi.BlockInfo', null, global);
 goog.exportSymbol('proto.forge_abi.ChainInfo', null, global);
 goog.exportSymbol('proto.forge_abi.CircularQueue', null, global);
 goog.exportSymbol('proto.forge_abi.ConsensusParams', null, global);
+goog.exportSymbol('proto.forge_abi.ExtraAccountMigrate', null, global);
+goog.exportSymbol('proto.forge_abi.ExtraCreateAsset', null, global);
 goog.exportSymbol('proto.forge_abi.ForgeStatistics', null, global);
 goog.exportSymbol('proto.forge_abi.ForgeToken', null, global);
 goog.exportSymbol('proto.forge_abi.GenesisInfo', null, global);
@@ -3739,7 +3741,7 @@ proto.forge_abi.TransactionInfo = function(opt_data) {
     0,
     -1,
     proto.forge_abi.TransactionInfo.repeatedFields_,
-    null
+    proto.forge_abi.TransactionInfo.oneofGroups_
   );
 };
 goog.inherits(proto.forge_abi.TransactionInfo, jspb.Message);
@@ -3752,6 +3754,35 @@ if (goog.DEBUG && !COMPILED) {
  * @const
  */
 proto.forge_abi.TransactionInfo.repeatedFields_ = [5];
+
+/**
+ * Oneof group definitions for this message. Each group defines the field
+ * numbers belonging to that group. When of these fields' value is set, all
+ * other fields in the group are cleared. During deserialization, if multiple
+ * fields are encountered for a group, only the last value seen will be kept.
+ * @private {!Array<!Array<number>>}
+ * @const
+ */
+proto.forge_abi.TransactionInfo.oneofGroups_ = [[8, 9]];
+
+/**
+ * @enum {number}
+ */
+proto.forge_abi.TransactionInfo.ExtraMetaCase = {
+  EXTRA_META_NOT_SET: 0,
+  CREATE_ASSET: 8,
+  ACCOUNT_MIGRATE: 9,
+};
+
+/**
+ * @return {proto.forge_abi.TransactionInfo.ExtraMetaCase}
+ */
+proto.forge_abi.TransactionInfo.prototype.getExtraMetaCase = function() {
+  return /** @type {proto.forge_abi.TransactionInfo.ExtraMetaCase} */ (jspb.Message.computeOneofCase(
+    this,
+    proto.forge_abi.TransactionInfo.oneofGroups_[0]
+  ));
+};
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
   /**
@@ -3793,6 +3824,12 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
         time:
           (f = msg.getTime()) &&
           google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+        createAsset:
+          (f = msg.getCreateAsset()) &&
+          proto.forge_abi.ExtraCreateAsset.toObject(includeInstance, f),
+        accountMigrate:
+          (f = msg.getAccountMigrate()) &&
+          proto.forge_abi.ExtraAccountMigrate.toObject(includeInstance, f),
       };
 
     if (includeInstance) {
@@ -3861,6 +3898,16 @@ proto.forge_abi.TransactionInfo.deserializeBinaryFromReader = function(msg, read
         );
         msg.setTime(value);
         break;
+      case 8:
+        var value = new proto.forge_abi.ExtraCreateAsset();
+        reader.readMessage(value, proto.forge_abi.ExtraCreateAsset.deserializeBinaryFromReader);
+        msg.setCreateAsset(value);
+        break;
+      case 9:
+        var value = new proto.forge_abi.ExtraAccountMigrate();
+        reader.readMessage(value, proto.forge_abi.ExtraAccountMigrate.deserializeBinaryFromReader);
+        msg.setAccountMigrate(value);
+        break;
       default:
         reader.skipField();
         break;
@@ -3915,6 +3962,14 @@ proto.forge_abi.TransactionInfo.serializeBinaryToWriter = function(message, writ
   f = message.getTime();
   if (f != null) {
     writer.writeMessage(7, f, google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter);
+  }
+  f = message.getCreateAsset();
+  if (f != null) {
+    writer.writeMessage(8, f, proto.forge_abi.ExtraCreateAsset.serializeBinaryToWriter);
+  }
+  f = message.getAccountMigrate();
+  if (f != null) {
+    writer.writeMessage(9, f, proto.forge_abi.ExtraAccountMigrate.serializeBinaryToWriter);
   }
 };
 
@@ -4062,6 +4117,74 @@ proto.forge_abi.TransactionInfo.prototype.clearTime = function() {
  */
 proto.forge_abi.TransactionInfo.prototype.hasTime = function() {
   return jspb.Message.getField(this, 7) != null;
+};
+
+/**
+ * optional ExtraCreateAsset create_asset = 8;
+ * @return {?proto.forge_abi.ExtraCreateAsset}
+ */
+proto.forge_abi.TransactionInfo.prototype.getCreateAsset = function() {
+  return /** @type{?proto.forge_abi.ExtraCreateAsset} */ (jspb.Message.getWrapperField(
+    this,
+    proto.forge_abi.ExtraCreateAsset,
+    8
+  ));
+};
+
+/** @param {?proto.forge_abi.ExtraCreateAsset|undefined} value */
+proto.forge_abi.TransactionInfo.prototype.setCreateAsset = function(value) {
+  jspb.Message.setOneofWrapperField(
+    this,
+    8,
+    proto.forge_abi.TransactionInfo.oneofGroups_[0],
+    value
+  );
+};
+
+proto.forge_abi.TransactionInfo.prototype.clearCreateAsset = function() {
+  this.setCreateAsset(undefined);
+};
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.forge_abi.TransactionInfo.prototype.hasCreateAsset = function() {
+  return jspb.Message.getField(this, 8) != null;
+};
+
+/**
+ * optional ExtraAccountMigrate account_migrate = 9;
+ * @return {?proto.forge_abi.ExtraAccountMigrate}
+ */
+proto.forge_abi.TransactionInfo.prototype.getAccountMigrate = function() {
+  return /** @type{?proto.forge_abi.ExtraAccountMigrate} */ (jspb.Message.getWrapperField(
+    this,
+    proto.forge_abi.ExtraAccountMigrate,
+    9
+  ));
+};
+
+/** @param {?proto.forge_abi.ExtraAccountMigrate|undefined} value */
+proto.forge_abi.TransactionInfo.prototype.setAccountMigrate = function(value) {
+  jspb.Message.setOneofWrapperField(
+    this,
+    9,
+    proto.forge_abi.TransactionInfo.oneofGroups_[0],
+    value
+  );
+};
+
+proto.forge_abi.TransactionInfo.prototype.clearAccountMigrate = function() {
+  this.setAccountMigrate(undefined);
+};
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.forge_abi.TransactionInfo.prototype.hasAccountMigrate = function() {
+  return jspb.Message.getField(this, 9) != null;
 };
 
 /**
@@ -8908,6 +9031,266 @@ proto.forge_abi.PokeInfo.prototype.clearAmount = function() {
  */
 proto.forge_abi.PokeInfo.prototype.hasAmount = function() {
   return jspb.Message.getField(this, 3) != null;
+};
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.forge_abi.ExtraCreateAsset = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.forge_abi.ExtraCreateAsset, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.forge_abi.ExtraCreateAsset.displayName = 'proto.forge_abi.ExtraCreateAsset';
+}
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+  /**
+   * Creates an object representation of this proto suitable for use in Soy templates.
+   * Field names that are reserved in JavaScript and will be renamed to pb_name.
+   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+   * For the list of reserved names please see:
+   *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+   * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+   *     for transitional soy proto support: http://goto/soy-param-migration
+   * @return {!Object}
+   */
+  proto.forge_abi.ExtraCreateAsset.prototype.toObject = function(opt_includeInstance) {
+    return proto.forge_abi.ExtraCreateAsset.toObject(opt_includeInstance, this);
+  };
+
+  /**
+   * Static version of the {@see toObject} method.
+   * @param {boolean|undefined} includeInstance Whether to include the JSPB
+   *     instance for transitional soy proto support:
+   *     http://goto/soy-param-migration
+   * @param {!proto.forge_abi.ExtraCreateAsset} msg The msg instance to transform.
+   * @return {!Object}
+   * @suppress {unusedLocalVariables} f is only used for nested messages
+   */
+  proto.forge_abi.ExtraCreateAsset.toObject = function(includeInstance, msg) {
+    var f,
+      obj = {
+        asset: jspb.Message.getFieldWithDefault(msg, 1, ''),
+      };
+
+    if (includeInstance) {
+      obj.$jspbMessageInstance = msg;
+    }
+    return obj;
+  };
+}
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.forge_abi.ExtraCreateAsset}
+ */
+proto.forge_abi.ExtraCreateAsset.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.forge_abi.ExtraCreateAsset();
+  return proto.forge_abi.ExtraCreateAsset.deserializeBinaryFromReader(msg, reader);
+};
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.forge_abi.ExtraCreateAsset} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.forge_abi.ExtraCreateAsset}
+ */
+proto.forge_abi.ExtraCreateAsset.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+      case 1:
+        var value = /** @type {string} */ (reader.readString());
+        msg.setAsset(value);
+        break;
+      default:
+        reader.skipField();
+        break;
+    }
+  }
+  return msg;
+};
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.forge_abi.ExtraCreateAsset.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.forge_abi.ExtraCreateAsset.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.forge_abi.ExtraCreateAsset} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.forge_abi.ExtraCreateAsset.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getAsset();
+  if (f.length > 0) {
+    writer.writeString(1, f);
+  }
+};
+
+/**
+ * optional string asset = 1;
+ * @return {string}
+ */
+proto.forge_abi.ExtraCreateAsset.prototype.getAsset = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ''));
+};
+
+/** @param {string} value */
+proto.forge_abi.ExtraCreateAsset.prototype.setAsset = function(value) {
+  jspb.Message.setProto3StringField(this, 1, value);
+};
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.forge_abi.ExtraAccountMigrate = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.forge_abi.ExtraAccountMigrate, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.forge_abi.ExtraAccountMigrate.displayName = 'proto.forge_abi.ExtraAccountMigrate';
+}
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+  /**
+   * Creates an object representation of this proto suitable for use in Soy templates.
+   * Field names that are reserved in JavaScript and will be renamed to pb_name.
+   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+   * For the list of reserved names please see:
+   *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+   * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+   *     for transitional soy proto support: http://goto/soy-param-migration
+   * @return {!Object}
+   */
+  proto.forge_abi.ExtraAccountMigrate.prototype.toObject = function(opt_includeInstance) {
+    return proto.forge_abi.ExtraAccountMigrate.toObject(opt_includeInstance, this);
+  };
+
+  /**
+   * Static version of the {@see toObject} method.
+   * @param {boolean|undefined} includeInstance Whether to include the JSPB
+   *     instance for transitional soy proto support:
+   *     http://goto/soy-param-migration
+   * @param {!proto.forge_abi.ExtraAccountMigrate} msg The msg instance to transform.
+   * @return {!Object}
+   * @suppress {unusedLocalVariables} f is only used for nested messages
+   */
+  proto.forge_abi.ExtraAccountMigrate.toObject = function(includeInstance, msg) {
+    var f,
+      obj = {
+        address: jspb.Message.getFieldWithDefault(msg, 1, ''),
+      };
+
+    if (includeInstance) {
+      obj.$jspbMessageInstance = msg;
+    }
+    return obj;
+  };
+}
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.forge_abi.ExtraAccountMigrate}
+ */
+proto.forge_abi.ExtraAccountMigrate.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.forge_abi.ExtraAccountMigrate();
+  return proto.forge_abi.ExtraAccountMigrate.deserializeBinaryFromReader(msg, reader);
+};
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.forge_abi.ExtraAccountMigrate} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.forge_abi.ExtraAccountMigrate}
+ */
+proto.forge_abi.ExtraAccountMigrate.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+      case 1:
+        var value = /** @type {string} */ (reader.readString());
+        msg.setAddress(value);
+        break;
+      default:
+        reader.skipField();
+        break;
+    }
+  }
+  return msg;
+};
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.forge_abi.ExtraAccountMigrate.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.forge_abi.ExtraAccountMigrate.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.forge_abi.ExtraAccountMigrate} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.forge_abi.ExtraAccountMigrate.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getAddress();
+  if (f.length > 0) {
+    writer.writeString(1, f);
+  }
+};
+
+/**
+ * optional string address = 1;
+ * @return {string}
+ */
+proto.forge_abi.ExtraAccountMigrate.prototype.getAddress = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ''));
+};
+
+/** @param {string} value */
+proto.forge_abi.ExtraAccountMigrate.prototype.setAddress = function(value) {
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 goog.object.extend(exports, proto.forge_abi);

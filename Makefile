@@ -5,7 +5,7 @@ VERSION=$(strip $(shell cat version))
 
 build:
 	@echo "Building the software..."
-	@yarn build
+	@cd packages/graphql-client && yarn build
 
 init: install dep
 	@echo "Initializing the repo..."

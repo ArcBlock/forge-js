@@ -12,6 +12,33 @@ const zero = new BN(0);
 const negative1 = new BN(-1);
 
 /**
+ * Returns a `Boolean` on whether or not the a `String` starts with '0x'
+ * @param {String} str the string input value
+ * @return {Boolean} a boolean if it is or is not hex prefixed
+ * @throws if the str input is not a string
+ */
+const isHexPrefixed = str => {
+  if (typeof str !== 'string') {
+    throw new Error('[is-hex-prefixed] value must be type string');
+  }
+
+  return str.slice(0, 2).toLowerCase() === '0x';
+};
+
+/**
+ * Removes '0x' from a given `String` if present
+ * @param {String} str the string value
+ * @return {String|Optional} a string by pass if necessary
+ */
+const stripHexPrefix = str => {
+  if (typeof str !== 'string') {
+    return str;
+  }
+
+  return isHexPrefixed(str) ? str.slice(2) : str;
+};
+
+/**
  * Returns true if object is BN, otherwise false
  *
  * @method isBN
@@ -407,6 +434,8 @@ const toArc = (input, decimal = 16) => {
 module.exports = {
   isBN,
   isBigNumber,
+  isHexPrefixed,
+  stripHexPrefix,
   utf8ToHex,
   hexToUtf8,
   numberToHex,

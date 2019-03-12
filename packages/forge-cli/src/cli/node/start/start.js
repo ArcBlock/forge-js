@@ -1,25 +1,8 @@
 const fs = require('fs');
-const inquirer = require('inquirer');
 const shell = require('shelljs');
 const chalk = require('chalk');
-const { execSync } = require('child_process');
-const { symbols } = require('core/ui');
+const { symbols, getSpinner } = require('core/ui');
 const { config, debug } = require('core/env');
-
-const questions = [
-  {
-    type: 'list',
-    name: 'mode',
-    message: 'Select forge start mode',
-    default: 'start',
-    choices: [
-      new inquirer.Separator(),
-      { value: 'start', name: 'Start forge as a daemon in the background' },
-      { value: 'console', name: 'Start forge with a interactive console attached' },
-      { value: 'foreground', name: 'Start forge in the foreground' },
-    ],
-  },
-];
 
 function getForgeReleaseEnv() {
   if (process.env.FORGE_RELEASE && fs.existsSync(process.env.FORGE_RELEASE)) {
@@ -39,6 +22,7 @@ function isStarted(silent = false) {
   );
 
   const pidNumber = Number(pid);
+  debug('node.start.isStarted', { pidNumber, pid });
   if (pidNumber) {
     if (silent === false) {
       shell.echo(`${symbols.info} forge is already started!`);
@@ -50,26 +34,28 @@ function isStarted(silent = false) {
   return false;
 }
 
-async function main({ mode = 'start' } = {}) {
-  const { starterBinPath, forgeConfigPath } = config.get('cli');
+async function main() {
+  const { starterBinPath, forgeBinPath, forgeConfigPath } = config.get('cli');
   if (!starterBinPath) {
     shell.echo(`${symbols.error} starterBinPath not found, abort!`);
     return;
   }
 
-  const command = `FORGE_CONFIG=${forgeConfigPath} FORGE_RELEASE=${getForgeReleaseEnv()} ${starterBinPath} ${mode}`;
+  const command = `FORGE_CONFIG=${forgeConfigPath} FORGE_RELEASE=${getForgeReleaseEnv()} ${starterBinPath} start`;
   debug('start command', command);
-  if (mode === 'console') {
-    execSync(command, { stdio: 'inherit' });
-  } else {
-    shell.exec(command);
-  }
 
-  if (mode === 'start') {
-    await waitUntilStarted();
-    shell.echo(`${symbols.success} forge daemon successfully started`);
-    shell.exec('forge ps');
-  }
+  const spinner = getSpinner('Waiting for forge daemon to start...');
+  spinner.start();
+  shell.exec(command);
+  await waitUntilStarted();
+  spinner.succeed('Forge daemon successfully started');
+  shell.exec('forge ps');
+  shell.echo('');
+  shell.echo(
+    `${symbols.info} If you want to access interactive console, please run ${chalk.cyan(
+      `${forgeBinPath} remote_console`
+    )}`
+  );
 }
 
 function waitUntilStarted() {
@@ -98,5 +84,5 @@ exports.run = () => {
   if (isStarted()) {
     return;
   }
-  inquirer.prompt(questions).then(main);
+  main();
 };

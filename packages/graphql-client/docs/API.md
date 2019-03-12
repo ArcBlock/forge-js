@@ -1,6 +1,6 @@
 # Forge GraphQL API List
 
-> Updated on 2019-03-11T02:39:16.696Z
+> Updated on 2019-03-12T09:13:31.312Z
 
 
 ## Table of Contents
@@ -85,6 +85,12 @@
           height
           index
           time
+          accountMigrate {
+            address
+          }
+          createAsset {
+            asset
+          }
           tags {
             key
             value
@@ -230,6 +236,12 @@
           height
           index
           time
+          accountMigrate {
+            address
+          }
+          createAsset {
+            asset
+          }
           tags {
             key
             value
@@ -467,6 +479,12 @@
           height
           index
           time
+          accountMigrate {
+            address
+          }
+          createAsset {
+            asset
+          }
           tags {
             key
             value
@@ -612,6 +630,12 @@
           height
           index
           time
+          accountMigrate {
+            address
+          }
+          createAsset {
+            asset
+          }
           tags {
             key
             value
@@ -837,6 +861,12 @@
         height
         index
         time
+        accountMigrate {
+          address
+        }
+        createAsset {
+          asset
+        }
         tags {
           key
           value
@@ -982,6 +1012,12 @@
         height
         index
         time
+        accountMigrate {
+          address
+        }
+        createAsset {
+          asset
+        }
         tags {
           key
           value
@@ -1156,6 +1192,12 @@
         height
         index
         time
+        accountMigrate {
+          address
+        }
+        createAsset {
+          asset
+        }
         tags {
           key
           value
@@ -1301,6 +1343,12 @@
         height
         index
         time
+        accountMigrate {
+          address
+        }
+        createAsset {
+          asset
+        }
         tags {
           key
           value
@@ -1553,6 +1601,12 @@ No arguments
               height
               index
               time
+              accountMigrate {
+                address
+              }
+              createAsset {
+                asset
+              }
               tags {
                 key
                 value
@@ -1570,6 +1624,12 @@ No arguments
               height
               index
               time
+              accountMigrate {
+                address
+              }
+              createAsset {
+                asset
+              }
               tags {
                 key
                 value
@@ -1820,6 +1880,12 @@ No arguments
           height
           index
           time
+          accountMigrate {
+            address
+          }
+          createAsset {
+            asset
+          }
           tags {
             key
             value
@@ -1965,6 +2031,12 @@ No arguments
           height
           index
           time
+          accountMigrate {
+            address
+          }
+          createAsset {
+            asset
+          }
           tags {
             key
             value
@@ -2201,6 +2273,12 @@ No arguments
       height
       index
       time
+      accountMigrate {
+        address
+      }
+      createAsset {
+        asset
+      }
       tags {
         key
         value
@@ -3137,6 +3215,12 @@ No arguments
       height
       index
       time
+      accountMigrate {
+        address
+      }
+      createAsset {
+        asset
+      }
       tags {
         key
         value

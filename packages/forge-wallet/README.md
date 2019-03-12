@@ -24,7 +24,7 @@ const sig =
 
 const type = {
   role: types.RoleType.ROLE_APPLICATION,
-  key: types.KeyType.ED25519,
+  pk: types.KeyType.ED25519,
   hash: types.HashType.SHA3,
 };
 

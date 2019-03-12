@@ -137,6 +137,16 @@ declare class GraphQLClient {
   generateSubscriptionFns(): void;
   generateMutationFns(): void;
 
+  ${client
+    .getTxMethods()
+    .map(
+      x =>
+        `${x}(param: GraphQLClient.TxParam<GraphQLClient.${x.replace(
+          /^send/,
+          ''
+        )}>): Promise<GraphQLClient.ResponseSendTx>;`
+    )
+    .join('\n')}
   ${generateMethods(queries, namespace, 'QueryResult')}
   ${generateMethods(mutations, namespace, 'QueryResult')}
   ${generateMethods(subscriptions, namespace, 'SubscriptionResult')}
@@ -156,6 +166,28 @@ declare namespace ${namespace} {
   export interface Subscription<T> {
     on(event: 'data', fn: (data: T) => any): this;
     on(event: 'error', fn: (err: Error) => void): this;
+  }
+
+  export interface TxParam<T> {
+    data: T;
+    wallet: GraphQLClient.WalletObject,
+  }
+
+  export interface WalletObject {
+    publicKey: string;
+    secretKey: string;
+    type: GraphQLClient.WalletTypeObject,
+    sign(message: string): string;
+    verify(message: string, signature: string): boolean;
+    toJSON(): object;
+    toAddress(): string;
+  }
+
+  export interface WalletTypeObject {
+    pk: number;
+    role: number;
+    address: number;
+    hash: number;
   }
 
 ${sortBy(types, ['kind', 'name'])

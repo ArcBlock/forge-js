@@ -22,7 +22,11 @@ yarn add @arcblock/forge-graphql-client
 ## Usage
 
 ```js
+const Mcrypto = require('@arcblock/mcrypto');
 const GraphqlClient = require('@arcblock/forge-graphql-client');
+const { fromRandom, WalletType } = require('@arcblock/forge-wallet');
+const { hexToBytes } = require('@arcblock/forge-util');
+
 const client = new GraphqlClient('http://localhost:8210/api');
 console.log({
   queries: client.getQueries(),
@@ -30,21 +34,33 @@ console.log({
   mutations: client.getMutations(),
 });
 
-// Query Data
 (async () => {
+  // Query Data
   const chainInfo = await client.getChainInfo();
   const forgeState = await client.getForgeState();
   const block = await client.getBlock({ height: 2 });
   console.log('getChainInfo', chainInfo);
   console.log('getForgeState', forgeState);
   console.log('getBlock', block);
+
+  // Send Transaction
+  const wallet = fromRandom(
+    WalletType({
+      role: Mcrypto.types.RoleType.ROLE_ACCOUNT,
+      pk: Mcrypto.types.KeyType.SECP256K1,
+      hash: Mcrypto.types.HashType.SHA3,
+    })
+  );
+  const res = await client.sendDeclareTx({
+    data: {
+      moniker: `wangshijun_${Math.round(Math.random() * 1000)}`,
+      pk: Buffer.from(hexToBytes(wallet.publicKey)),
+      type,
+    },
+    wallet,
+  });
+  console.log(res);
 })();
-
-// Mutation
-// TODO:
-
-// Subscription
-// TODO:
 ```
 
 

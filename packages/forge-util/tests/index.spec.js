@@ -9,6 +9,7 @@ const {
   toHex,
   hexToUtf8,
   utf8ToHex,
+  stripHexPrefix,
 } = require('../lib/index');
 
 describe('#fromArc & toArc', () => {
@@ -294,5 +295,40 @@ describe('#web-util-test-case', () => {
     tests.forEach(test => {
       expect(utf8ToHex(test.value)).toEqual(test.expected);
     });
+  });
+});
+
+describe('#stripHexPrefix', () => {
+  test('should stripHexPrefix strip prefix of valid strings', () => {
+    expect(stripHexPrefix('0xkdsfksfdkj')).toEqual('kdsfksfdkj');
+    expect(stripHexPrefix('0xksfdkj')).toEqual('ksfdkj');
+    expect(stripHexPrefix('0xkdsfdkj')).toEqual('kdsfdkj');
+    expect(stripHexPrefix('0x23442sfdkj')).toEqual('23442sfdkj');
+    expect(stripHexPrefix('0xkdssdfssfdkj')).toEqual('kdssdfssfdkj');
+    expect(stripHexPrefix('0xaaaasfdkj')).toEqual('aaaasfdkj');
+    expect(stripHexPrefix('0xkdsdfsfsdfsdfsdfdkj')).toEqual('kdsdfsfsdfsdfsdfdkj');
+    expect(stripHexPrefix('0x111dssdddj')).toEqual('111dssdddj');
+    expect(stripHexPrefix('0x')).toEqual('');
+    expect(stripHexPrefix('')).toEqual('');
+    expect(stripHexPrefix('-0xsdfsfd')).toEqual('-0xsdfsfd');
+    expect(stripHexPrefix('-0x')).toEqual('-0x');
+  });
+
+  test('should stripHexPrefix strip prefix of mix hexed strings', () => {
+    expect(stripHexPrefix('0xkdsfksfdkj')).toEqual('kdsfksfdkj');
+    expect(stripHexPrefix('ksfdkj')).toEqual('ksfdkj');
+    expect(stripHexPrefix('kdsfdkj')).toEqual('kdsfdkj');
+    expect(stripHexPrefix('23442sfdkj')).toEqual('23442sfdkj');
+    expect(stripHexPrefix('0xkdssdfssfdkj')).toEqual('kdssdfssfdkj');
+    expect(stripHexPrefix('aaaasfdkj')).toEqual('aaaasfdkj');
+    expect(stripHexPrefix('kdsdfsfsdfsdfsdfdkj')).toEqual('kdsdfsfsdfsdfsdfdkj');
+    expect(stripHexPrefix('111dssdddj')).toEqual('111dssdddj');
+  });
+
+  test('should stripHexPrefix bypass if not string', () => {
+    expect(stripHexPrefix(null)).toEqual(null);
+    expect(stripHexPrefix(undefined)).toEqual(undefined);
+    expect(stripHexPrefix(242423)).toEqual(242423);
+    expect(stripHexPrefix(true)).toEqual(true);
   });
 });

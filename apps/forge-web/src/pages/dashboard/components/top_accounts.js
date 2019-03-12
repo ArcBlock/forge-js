@@ -1,7 +1,8 @@
 import React from 'react';
 import numeral from 'numeral';
-import { useAsync } from 'react-use';
+import { useAsync, useLocalStorage } from 'react-use';
 import { Link } from 'react-router-dom';
+import { fromArc } from '@arcblock/forge-util';
 
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Table from '@material-ui/core/Table';
@@ -12,7 +13,6 @@ import TableRow from '@material-ui/core/TableRow';
 
 import AccountActivity from './account_activity';
 import forge from '../../../libs/forge';
-import { fromArcToReadable } from '../../../libs/util';
 
 async function fetchTopAccounts() {
   const { accounts } = await forge.getTopAccounts();
@@ -20,8 +20,7 @@ async function fetchTopAccounts() {
     address: x.address,
     rank: i + 1,
     moniker: x.moniker,
-    // TODO: add decimal here
-    balance: fromArcToReadable(x.balance),
+    balance: x.balance,
     assets: x.numAssets,
     recentNumTxs: x.recentNumTxs,
   }));
@@ -29,6 +28,7 @@ async function fetchTopAccounts() {
 
 export default function TopAccountsSection() {
   const state = useAsync(fetchTopAccounts);
+  const [token] = useLocalStorage('token');
 
   if (state.loading) {
     return <CircularProgress />;
@@ -60,7 +60,9 @@ export default function TopAccountsSection() {
             <TableCell align="left">
               <Link to={`/node/explorer/accounts/${x.address}`}>{x.moniker}</Link>
             </TableCell>
-            <TableCell align="center">{numeral(x.balance).format('0,0.0000')}</TableCell>
+            <TableCell align="center">
+              {fromArc(x.balance, token.decimal)} {token.symbol}
+            </TableCell>
             <TableCell align="center">{numeral(x.assets).format('0,0')}</TableCell>
             <TableCell align="left">
               <AccountActivity data={x.recentNumTxs} delayMS={i * 500} />

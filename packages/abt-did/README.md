@@ -18,7 +18,7 @@ const keyPair = Mcrypto.Signer.Ed25519.genKeyPair();
 // Gen DID from secretKey
 const address = fromSecretKey(keyPir.secretKey, {
   role: enums.RoleType.ROLE_APPLICATION,
-  key: enums.KeyType.ED25519,
+  pk: enums.KeyType.ED25519,
   hash: enums.HashType.SHA3,
 });
 console.log(`abt:did:${address}`);
@@ -26,7 +26,7 @@ console.log(`abt:did:${address}`);
 // Gen DID from publicKey
 const address = fromPublicKey(keyPir.publicKey, {
   role: enums.RoleType.ROLE_APPLICATION,
-  key: enums.KeyType.ED25519,
+  pk: enums.KeyType.ED25519,
   hash: enums.HashType.SHA3,
 });
 console.log(`abt:did:${address}`);
@@ -37,7 +37,7 @@ const seed =
 const appDID = 'zNKtCNqYWLYWYW3gWRA1vnRykfCBZYHZvzKr';
 const userDID = fromAppDID(appDID, keyPir.publicKey, {
   role: enums.RoleType.ROLE_APPLICATION,
-  key: enums.KeyType.ED25519,
+  pk: enums.KeyType.ED25519,
   hash: enums.HashType.SHA3,
 })
 console.log(`abt:did:${userDID}`);

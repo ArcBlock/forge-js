@@ -1,3 +1,4 @@
+// FIXME: enum definition of forge-abi and abt-did-elixir are not exactly the same
 const types = {
   KeyType: {
     ED25519: 0,
@@ -6,10 +7,10 @@ const types = {
   HashType: {
     KECCAK: 0,
     SHA3: 1,
-    KECCAK_384: 6,
-    SHA3_384: 7,
-    KECCAK_512: 13,
-    SHA3_512: 14,
+    KECCAK_384: 2,
+    SHA3_384: 3,
+    KECCAK_512: 4,
+    SHA3_512: 5,
   },
   RoleType: {
     ROLE_ACCOUNT: 0,
@@ -21,6 +22,12 @@ const types = {
     ROLE_ASSET: 6,
     ROLE_STAKE: 7,
     ROLE_VALIDATOR: 8,
+    ROLE_GROUP: 9,
+    ROLE_ANY: 63,
+  },
+  EncodingType: {
+    BASE16: 0,
+    BASE58: 1,
   },
 };
 
