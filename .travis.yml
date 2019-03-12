@@ -10,8 +10,7 @@ cache:
 branches:
   only:
   - master
-before_script: make travis-init
-script: make travis
+script: travis_wait make travis
 deploy:
 - provider: script
   skip_cleanup: true
