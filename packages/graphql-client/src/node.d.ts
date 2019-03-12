@@ -242,41 +242,42 @@ declare namespace GraphQLClient {
   }
 
   export enum StatusCode {
-    INVALID_TX,
+    INVALID_OWNER,
     EXPIRED_WALLET_TOKEN,
+    INVALID_NONCE,
+    INVALID_CHAIN_ID,
     INVALID_PASSPHRASE,
-    BANNED_UNSTAKE,
-    INVALID_SENDER_STATE,
-    UNSUPPORTED_TX,
     INVALID_RECEIVER_STATE,
-    EXPIRED_TX,
-    INVALID_TX_SIZE,
-    STORAGE_RPC_ERROR,
-    INTERNAL,
-    UNSUPPORTED_STAKE,
-    READONLY_ASSET,
+    INVALID_MULTISIG,
+    EXPIRED_ASSET,
+    FORBIDDEN,
     CONSENSUS_RPC_ERROR,
     INSUFFICIENT_FUND,
     INVALID_MONIKER,
-    INVALID_STAKE_STATE,
-    INVALID_SIGNER_STATE,
-    INVALID_FORGE_STATE,
-    INVALID_ASSET,
-    UNTRANSFERRABLE_ASSET,
-    FORBIDDEN,
-    INVALID_SIGNATURE,
-    EXPIRED_ASSET,
-    NOENT,
-    INVALID_OWNER,
-    INVALID_NONCE,
-    INVALID_CHAIN_ID,
-    INVALID_WALLET,
-    INSUFFICIENT_DATA,
-    INSUFFICIENT_STAKE,
     ACCOUNT_MIGRATED,
-    OK,
     CONSUMED_ASSET,
-    INVALID_MULTISIG,
+    INVALID_TX,
+    INVALID_SIGNER_STATE,
+    STORAGE_RPC_ERROR,
+    UNSUPPORTED_STAKE,
+    UNTRANSFERRABLE_ASSET,
+    INVALID_ASSET,
+    INVALID_SIGNATURE,
+    BANNED_UNSTAKE,
+    INVALID_SENDER_STATE,
+    TIMEOUT,
+    INVALID_STAKE_STATE,
+    INSUFFICIENT_STAKE,
+    UNSUPPORTED_TX,
+    INSUFFICIENT_DATA,
+    INVALID_FORGE_STATE,
+    EXPIRED_TX,
+    INVALID_WALLET,
+    READONLY_ASSET,
+    NOENT,
+    INVALID_TX_SIZE,
+    INTERNAL,
+    OK,
   }
 
   export enum UpgradeAction {
@@ -471,6 +472,14 @@ declare namespace GraphQLClient {
     receiver: GraphQLClient.ExchangeInfo;
     sender: GraphQLClient.ExchangeInfo;
     to: string;
+  }
+
+  export interface ExtraAccountMigrate {
+    address: string;
+  }
+
+  export interface ExtraCreateAsset {
+    asset: string;
   }
 
   export interface ForgeAppsVersionEntry {
@@ -982,7 +991,9 @@ declare namespace GraphQLClient {
   }
 
   export interface TransactionInfo {
+    accountMigrate: GraphQLClient.ExtraAccountMigrate;
     code: GraphQLClient.StatusCode;
+    createAsset: GraphQLClient.ExtraCreateAsset;
     hash: string;
     height: number;
     index: number;
