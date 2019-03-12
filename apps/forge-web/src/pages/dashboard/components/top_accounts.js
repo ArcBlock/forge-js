@@ -43,7 +43,7 @@ export default function TopAccountsSection() {
       <TableHead>
         <TableRow>
           <TableCell align="left">Rank</TableCell>
-          <TableCell align="left">Moniker</TableCell>
+          <TableCell align="left">Username</TableCell>
           <TableCell align="center">Balance</TableCell>
           <TableCell align="center">Assets</TableCell>
           <TableCell align="left" style={{ width: '25%' }}>
