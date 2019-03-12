@@ -39,10 +39,10 @@ class Sidebar extends React.Component {
   }
 
   renderMenuItem(url, name, title) {
-    const active = this.isSelected(url, name);
+    const selected = this.isSelected(url, name);
     return (
-      <MenuItem component={Link} key={url} active={active} to={url} title={title}>
-        <Icon8 name={images[name]} size={36} color={active ? '#00c2c4' : '#000000'} />
+      <MenuItem component={Link} key={url} selected={selected} to={url} title={title}>
+        <Icon8 name={images[name]} size={36} color={selected ? '#00c2c4' : '#000000'} />
       </MenuItem>
     );
   }
@@ -70,10 +70,10 @@ const MenuItem = styled(Button)`
     justify-content: center;
     align-items: center;
     transition: all 200ms ease-in-out;
-    background: ${props => (props.active ? gradient : '')};
+    background: ${props => (props.selected ? gradient : '')};
     padding: 22px 0 22px 30px;
     border-left: 2px solid
-      ${props => (props.active ? props.theme.palette.primary.main : 'transparent')};
+      ${props => (props.selected ? props.theme.palette.primary.main : 'transparent')};
 
     &:hover {
       background: ${gradient};
