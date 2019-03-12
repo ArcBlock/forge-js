@@ -820,7 +820,6 @@ declare namespace forge_abi {
     amount: forge_abi.BigUint;
   }
 
-<<<<<<< HEAD
   export interface ExtraCreateAsset {
     asset: string;
   }
@@ -829,8 +828,6 @@ declare namespace forge_abi {
     address: string;
   }
 
-=======
->>>>>>> master
   export interface AccountState {
     balance: forge_abi.BigUint;
     nonce: number;
