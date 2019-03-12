@@ -26,6 +26,10 @@ class GraphqlClient extends BaseClient {
     }
   }
 
+  getType(x) {
+    return getType(x);
+  }
+
   getTxMethods() {
     return transactions.map(x => camelcase(`send_${x}`));
   }
