@@ -21,29 +21,28 @@ class Ed25519Signer extends Signer {
     return (isHexStrict(input) ? input : toHex(input)).replace(/^0x/i, '');
   }
 
-  genKeyPair(encoding = 'hex') {
+  genKeyPair() {
     const seed = Uint8Array.from(randomBytes(32));
     const keyPair = ed25519.keyPair.fromSeed(seed);
-    if (encoding === 'hex') {
-      keyPair.publicKey = bytesToHex(keyPair.publicKey);
-      keyPair.secretKey = bytesToHex(keyPair.secretKey);
-    }
+
+    keyPair.publicKey = bytesToHex(keyPair.publicKey);
+    keyPair.secretKey = bytesToHex(keyPair.secretKey);
 
     return keyPair;
   }
 
-  getPublicKey(sk, encoding = 'hex') {
+  getPublicKey(sk) {
     const skBytes = this.toUint8Array(sk);
     const pk = ed25519.keyPair.fromSecretKey(skBytes).publicKey;
-    return encoding === 'hex' ? bytesToHex(pk) : pk;
+    return bytesToHex(pk);
   }
 
-  sign(message, sk, encoding = 'hex') {
+  sign(message, sk) {
     const skBytes = this.toUint8Array(sk);
     const messageBytes = this.toUint8Array(message);
     // console.log('mcrypto.sign', { skBytes, sk, messageBytes, message });
     const signature = ed25519.detached(messageBytes, skBytes);
-    return encoding === 'hex' ? bytesToHex(signature) : signature;
+    return bytesToHex(signature);
   }
 
   verify(message, signature, pk) {
