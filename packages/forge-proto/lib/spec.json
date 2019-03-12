@@ -212,7 +212,8 @@
             "readonly_asset": 41,
             "consumed_asset": 42,
             "forbidden": 403,
-            "internal": 500
+            "internal": 500,
+            "timeout": 504
           }
         },
         "TopicType": {
@@ -682,6 +683,11 @@
           }
         },
         "TransactionInfo": {
+          "oneofs": {
+            "extraMeta": {
+              "oneof": ["createAsset", "accountMigrate"]
+            }
+          },
           "fields": {
             "tx": {
               "type": "Transaction",
@@ -711,6 +717,14 @@
             "time": {
               "type": "google.protobuf.Timestamp",
               "id": 7
+            },
+            "createAsset": {
+              "type": "ExtraCreateAsset",
+              "id": 8
+            },
+            "accountMigrate": {
+              "type": "ExtraAccountMigrate",
+              "id": 9
             }
           }
         },
@@ -1193,6 +1207,22 @@
             "amount": {
               "type": "BigUint",
               "id": 3
+            }
+          }
+        },
+        "ExtraCreateAsset": {
+          "fields": {
+            "asset": {
+              "type": "string",
+              "id": 1
+            }
+          }
+        },
+        "ExtraAccountMigrate": {
+          "fields": {
+            "address": {
+              "type": "string",
+              "id": 1
             }
           }
         },

@@ -60,6 +60,7 @@ proto.forge_abi.StatusCode = {
   CONSUMED_ASSET: 42,
   FORBIDDEN: 403,
   INTERNAL: 500,
+  TIMEOUT: 504,
 };
 
 /**

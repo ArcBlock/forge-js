@@ -99,6 +99,7 @@ declare namespace Enums {
     CONSUMED_ASSET = 42,
     FORBIDDEN = 403,
     INTERNAL = 500,
+    TIMEOUT = 504,
   }
 
   export enum TopicType {
@@ -278,6 +279,7 @@ declare namespace Messages {
     42 = CONSUMED_ASSET,
     403 = FORBIDDEN,
     500 = INTERNAL,
+    504 = TIMEOUT,
   }
 
   export enum TopicType {
