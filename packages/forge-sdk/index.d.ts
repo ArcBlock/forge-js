@@ -447,6 +447,7 @@ declare namespace forge_abi {
     CONSUMED_ASSET = 42,
     FORBIDDEN = 403,
     INTERNAL = 500,
+    TIMEOUT = 504,
   }
 
   export enum TopicType {
@@ -667,6 +668,8 @@ declare namespace forge_abi {
     tags: Array<abci_vendor.KVPair>;
     code: forge_abi.StatusCode;
     time: google.protobuf.Timestamp;
+    createAsset: forge_abi.ExtraCreateAsset;
+    accountMigrate: forge_abi.ExtraAccountMigrate;
   }
 
   export interface BlockInfo {
@@ -815,6 +818,14 @@ declare namespace forge_abi {
     dailyLimit: forge_abi.BigUint;
     leftover: forge_abi.BigUint;
     amount: forge_abi.BigUint;
+  }
+
+  export interface ExtraCreateAsset {
+    asset: string;
+  }
+
+  export interface ExtraAccountMigrate {
+    address: string;
   }
 
   export interface AccountState {
