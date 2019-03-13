@@ -1,10 +1,11 @@
 const shell = require('shelljs');
-const { createRpcClient } = require('core/env');
+const { createRpcClient, config } = require('core/env');
 const { symbols, pretty } = require('core/ui');
 
-async function execute({ args: [address] }) {
+async function execute({ args: [addr] }) {
   try {
     const client = createRpcClient();
+    const address = addr === 'me' ? config.get('cli.wallet').address : addr;
     const stream = await client.getAccountState({ address: address });
     stream
       .on('data', function(result) {
