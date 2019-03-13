@@ -282,9 +282,9 @@ class Client {
         attachFormatFn(responseType, res);
         emitter.emit('data', res);
       })
-      .on('error', err => {
-        emitter.emit('error', err);
-      });
+      .on('error', err => emitter.emit('error', err))
+      .on('close', () => emitter.emit('close', undefined))
+      .on('end', () => emitter.emit('end', undefined));
 
     return emitter;
   }
