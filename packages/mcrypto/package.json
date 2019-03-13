@@ -1,6 +1,6 @@
 {
   "name": "@arcblock/mcrypto",
-  "version": "0.12.3",
+  "version": "0.13.0",
   "description": "Crypto lib that provides signer,crypter,hasher interface",
   "keywords": [
     "crypto",
@@ -37,7 +37,7 @@
     "url": "https://github.com/ArcBlock/forge-js/issues"
   },
   "dependencies": {
-    "@arcblock/forge-util": "^0.12.3",
+    "@arcblock/forge-util": "^0.13.0",
     "crypto-js": "^3.1.9-1",
     "elliptic": "^6.4.1",
     "interface": "^1.2.1",
