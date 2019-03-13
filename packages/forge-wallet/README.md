@@ -1,6 +1,6 @@
 # `@arcblock/forge-wallet`
 
-> Utility function to create and use an forge compatible wallet.
+> Utility function to create and use a forge compatible wallet, the wallet is also DID compatible.
 
 ## Usage
 

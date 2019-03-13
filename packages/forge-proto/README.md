@@ -28,13 +28,21 @@ yarn add @arcblock/forge-proto
 ## Usage
 
 ```js
-const { btc, eth } = require('@arcblock/forge-proto');
+const { fromTypeUrl, toTypeUrl, getMessageType, enums } = require('@arcblock/forge-proto');
+
+console.log(fromTypeUrl('fg:t:stake'));   // StakeTx
+console.log(toTypeUrl('StakeTx'));        // fg:t:stake
+
+const { fields, fn: Message } = getMessageType('RequestCreateTx');
+const message = new Message({
+  from: 'abc',
+});
 ```
 
 ## Contributors
 
-| Name           | Website                    |
-| -------------- | -------------------------- |
+| Name           | Website                   |
+| -------------- | ------------------------- |
 | **wangshijun** | <https://www.arcblock.io> |
 
 - wangshijun
