@@ -5,9 +5,11 @@
 
 ## Table of Contents
 
-* [Install](#install)
-* [Usage](#usage)
-* [Documentation](#documentation)
+- [`forge-graphql-client`](#forge-graphql-client)
+  - [Table of Contents](#table-of-contents)
+  - [Install](#install)
+  - [Usage](#usage)
+  - [Documentation](#documentation)
 
 
 ## Install
@@ -32,6 +34,7 @@ console.log({
   queries: client.getQueries(),
   subscriptions: client.getSubscriptions(),
   mutations: client.getMutations(),
+  transactions: client.getTxMethods(),
 });
 
 (async () => {

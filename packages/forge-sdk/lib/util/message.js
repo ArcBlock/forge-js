@@ -78,7 +78,7 @@ function fakeMessage(type) {
     }
     if (keyType) {
       result[key] = {
-        [scalarTypes[keyType]]: fakeMessage(subType),
+        [scalarTypes[keyType]()]: fakeMessage(subType),
       };
       return;
     }
@@ -94,7 +94,7 @@ function fakeMessage(type) {
     }
 
     if (scalarTypes[subType]) {
-      result[key] = scalarTypes[subType];
+      result[key] = scalarTypes[subType]();
     }
 
     if (subType === 'google.protobuf.Timestamp') {

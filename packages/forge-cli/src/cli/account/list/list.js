@@ -1,14 +1,14 @@
 const shell = require('shelljs');
 const inquirer = require('inquirer');
 const { createRpcClient, cache } = require('core/env');
-const { symbols } = require('core/ui');
+const { symbols, hr } = require('core/ui');
 
 inquirer.registerPrompt('autocomplete', require('inquirer-autocomplete-prompt'));
 
 async function getAccountState(argAddress, cached) {
   const client = createRpcClient();
 
-  const streamChild = await client.getAccountState({ address: argAddress });
+  const streamChild = client.getAccountState({ address: argAddress });
   streamChild
     .on('data', function({ code, state }) {
       if (state && code === 0) {
@@ -30,30 +30,38 @@ async function getAccountState(argAddress, cached) {
 }
 
 // Execute the cli silently.
-async function execute() {
+function execute() {
   const client = createRpcClient();
   const cached = cache.read('wallet');
+  let isHeaderPrinted = false;
+  let counter = 0;
 
-  shell.echo(`${''.padEnd(80, '-')}`);
-  shell.echo(
-    `${'moniker'.padEnd(20, ' ').padStart(23, ' ')}${'address'.padEnd(45, ' ')}${'selected'.padEnd(
-      10,
-      ' '
-    )}`
-  );
-  shell.echo(`${''.padEnd(80, '-')}`);
-  try {
-    const stream = await client.listWallet({});
-    stream
-      .on('data', function(result) {
-        getAccountState(result.address, cached);
-      })
-      .on('error', err => {
-        shell.echo(`${symbols.error} error: ${err}`);
-      });
-  } catch (err) {
-    shell.echo(`${symbols.error} error: ${err}`);
-  }
+  const stream = client.listWallet({});
+  stream
+    .on('data', function(result) {
+      if (isHeaderPrinted === false) {
+        shell.echo(`${''.padEnd(80, '-')}`);
+        shell.echo(
+          `${'moniker'.padEnd(20, ' ').padStart(23, ' ')}${'address'.padEnd(
+            45,
+            ' '
+          )}${'selected'.padEnd(10, ' ')}`
+        );
+        shell.echo(`${''.padEnd(80, '-')}`);
+        isHeaderPrinted = true;
+      }
+      getAccountState(result.address, cached);
+      counter += 1;
+    })
+    .on('error', err => {
+      shell.echo(`${symbols.error} error: ${err}`);
+    })
+    .on('end', () => {
+      setTimeout(() => {
+        shell.echo(hr);
+        shell.echo(`Got ${counter} accounts`);
+      }, 1000);
+    });
 }
 
 // Run the cli interactively
