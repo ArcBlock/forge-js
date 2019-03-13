@@ -21,19 +21,18 @@ class Sidebar extends React.Component {
     location: PropTypes.object.isRequired,
   };
 
+  // {this.renderMenuItem('/app', 'app', 'Application Management')}
+  // {this.renderMenuItem('/tasks', 'tasks', 'Tasks')}
+  // {this.renderMenuItem('/developer', 'developer', 'Developer Tools')}
+  // {this.renderMenuItem('/settings', 'settings', 'Settings')}
   render() {
     return (
       <MenuItems>
         <div className="menu-top-items">
           {this.renderMenuItem('/dashboard', 'dashboard', 'Dashboard')}
           {this.renderMenuItem('/node/explorer/txs', 'node', 'Node Management')}
-          {this.renderMenuItem('/app', 'app', 'Application Management')}
-          {this.renderMenuItem('/tasks', 'tasks', 'Tasks')}
-          {this.renderMenuItem('/developer', 'developer', 'Developer Tools')}
         </div>
-        <div className="menu-top-items">
-          {this.renderMenuItem('/settings', 'settings', 'Settings')}
-        </div>
+        <div className="menu-top-items" />
       </MenuItems>
     );
   }

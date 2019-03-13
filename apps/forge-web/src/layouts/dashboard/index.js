@@ -86,10 +86,10 @@ class Dashboard extends React.Component {
       return {
         title: 'Node',
         links: [
-          { link: '/node/status', title: 'Status' },
+          // { link: '/node/status', title: 'Status' },
           { link: '/node/explorer/txs', title: 'Block Explorer' },
           { link: '/node/query', title: 'Query' },
-          { link: '/node/storage', title: 'Storage' },
+          // { link: '/node/storage', title: 'Storage' },
         ],
       };
     }
