@@ -36,6 +36,13 @@ const config = { cli: {} }; // global shared forge-cli run time config
  * @param {*} requirements
  */
 async function setupEnv(args, requirements) {
+  // Support evaluating requirements at runtime
+  Object.keys(requirements).forEach(x => {
+    if (typeof requirements[x] === 'function') {
+      requirements[x] = requirements[x](args);
+    }
+  });
+
   debug('setupEnv.args', { args, requirements });
 
   ensureRequiredDirs();
