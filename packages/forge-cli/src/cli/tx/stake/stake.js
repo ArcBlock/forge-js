@@ -1,12 +1,17 @@
 const inquirer = require('inquirer');
-const { getQuestions, main } = require('./lib');
+const { getQuestions, getStakes, main } = require('./lib');
 
-const action = 'stake';
+const direction = 'stake';
 
-async function run() {
-  const questions = await getQuestions(action);
-  inquirer.prompt(questions).then(args => main(args, action));
+async function run({ args: [action = 'send'], opts }) {
+  if (action === 'send') {
+    const questions = await getQuestions(direction);
+    inquirer.prompt(questions).then(args => main(args, direction));
+  }
+  if (action === 'show') {
+    await getStakes(opts);
+  }
 }
 
 exports.run = run;
-exports.execute = args => main(args, action);
+exports.execute = args => main(args, direction);

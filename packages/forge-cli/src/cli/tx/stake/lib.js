@@ -2,9 +2,11 @@ const fuzzy = require('fuzzy');
 const chalk = require('chalk');
 const inquirer = require('inquirer');
 const shell = require('shelljs');
+const Table = require('cli-table-redemption');
 const { createRpcClient, config, debug } = require('core/env');
 const { symbols } = require('core/ui');
-const { enums } = require('@arcblock/forge-proto');
+const { enums, getMessageType, fromTypeUrl } = require('@arcblock/forge-proto');
+const { formatMessage } = require('@arcblock/forge-sdk');
 
 inquirer.registerPrompt('autocomplete', require('inquirer-autocomplete-prompt'));
 
@@ -143,5 +145,47 @@ async function getAddress() {
   return result.$format().info.address;
 }
 
+async function getStakes(opts) {
+  const client = createRpcClient();
+  const address = opts.address || config.get('cli.wallet').address;
+  try {
+    const res = await client.listTransactions({
+      paging: { size: 100 },
+      addressFilter: { sender: address },
+      typeFilter: { types: ['stake'] },
+    });
+
+    const txs = res.transactionsList;
+    if (!txs.length) {
+      shell.echo(`${symbols.warning} no stake transaction found for ${address}`);
+      return;
+    }
+
+    const table = new Table({
+      head: ['Type', 'To', 'Value', 'Message', 'Time'],
+      style: { 'padding-left': 1, head: ['cyan', 'bold'], compact: true },
+      colWidths: [15, 40, 10, 20, 24],
+    });
+
+    // shell.echo(`${symbols.success} found ${txs.length} stakes for address ${address}`);
+    txs.forEach(x => {
+      const type = fromTypeUrl(x.tx.itx.typeUrl);
+      const { fn: Message } = getMessageType(type);
+      const itx = formatMessage(type, Message.deserializeBinary(x.tx.itx.value).toObject());
+      table.push([
+        itx.data.type,
+        itx.to,
+        client.fromArc(itx.value),
+        itx.message,
+        x.time.slice(0, 19),
+      ]);
+    });
+    shell.echo(table.toString());
+  } catch (err) {
+    shell.echo(`${symbols.error} failed to fetch stake transaction for ${address}`);
+  }
+}
+
 exports.getQuestions = getQuestions;
+exports.getStakes = getStakes;
 exports.main = main;
