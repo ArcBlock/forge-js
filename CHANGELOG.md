@@ -1,3 +1,11 @@
+## 0.13.1 (March 13, 2019)
+  - chore: update readme for major js library
+  - fix: scalar types random fns when generating docs for forge-sdk
+  - chore: cleanup and update readme
+  - chore: add `close` and `end` events for streaming grpc requests
+  - chore: remove useless commands
+  - update readme
+
 ## 0.13.0 (March 13, 2019)
   - chore: move `forge me` to `forge account me`
   - feat: `forge stake show` show me a complete list of my stakes #116
