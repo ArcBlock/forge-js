@@ -1,3 +1,11 @@
+## 0.13.0 (March 13, 2019)
+  - chore: move `forge me` to `forge account me`
+  - feat: `forge stake show` show me a complete list of my stakes #116
+  - feat: Join a network from cli: `forge join http://abt-test.arcblock.co:8210/api` #46
+  - feat: support `forge help xxx` command for documentation #82
+  - chore: change moniker to usrname on top account list
+  - update readme
+
 ## 0.12.3 (March 11, 2019)
   - chore: add error handling for all detail pages
   - chore: improve forge-web according to echo s codepen
