@@ -1,6 +1,5 @@
 const shell = require('shelljs');
 
-// Execute the cli silently.
 function main({ args: [command = ''] }) {
   if (!command) {
     shell.exec('forge -h');
