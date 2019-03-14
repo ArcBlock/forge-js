@@ -73,7 +73,7 @@ const SparkLine = React.memo(({ data, series, legend }) => (
           type="monotone"
           dataKey={dataKey}
           stroke={stroke}
-          fillOpacity={1}
+          fillOpacity={process.env.REACT_APP_NAME === 'explorer' ? 0.05 : 1}
           fill={gradientStart && gradientStop ? `url(#gradient-${dataKey})` : null}
         />
       ))}
