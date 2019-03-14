@@ -176,7 +176,7 @@ const Metric = styled.div`
     font-size: 40px;
     font-weight: 900;
     line-height: 54px;
-    color: #222222;
+    color: ${props => props.theme.typography.color.main};
   }
 
   .animated {
@@ -189,7 +189,7 @@ const Metric = styled.div`
     text-transform: uppercase;
     line-height: 1.71;
     letter-spacing: 2px;
-    color: #222222;
+    color: ${props => props.theme.typography.color.main};
   }
 
   .metric__trend {

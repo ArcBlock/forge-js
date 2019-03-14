@@ -78,7 +78,7 @@ const Container = styled.div`
   .greeting {
     font-size: 30px;
     font-weight: 900;
-    color: #222222;
+    color: ${props => props.theme.typography.color.main};
   }
 
   .layers {
@@ -110,9 +110,11 @@ const Container = styled.div`
         flex-direction: row-reverse;
         justify-content: flex-end;
         align-items: center;
+        color: ${props => props.theme.typography.color.gray};
 
         p {
           margin-right: 16px;
+          color: ${props => props.theme.typography.color.gray};
         }
       }
     }
@@ -148,7 +150,7 @@ const Layer = styled.div`
   width: 160px;
   height: 160px;
   border-radius: 24px 8px;
-  border: 2px solid #222222;
+  border: 2px solid ${props => props.theme.typography.color.main};
   transition: all 200ms ease-in-out;
   transform: rotateX(55deg) rotateZ(-45deg);
   background-image: ${props => getLayerBackground(props)};

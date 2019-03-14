@@ -86,9 +86,11 @@ const Container = styled.div`
     max-width: 800px;
     display: flex;
     justify-content: flex-end;
-    color: ${props => props.theme.colors.gray};
     i {
       margin-left: 16px;
+    }
+    span {
+      color: ${props => props.theme.typography.color.gray};
     }
   }
 `;

@@ -71,7 +71,7 @@ const Container = styled.div`
 
   .time,
   .hash a {
-    color: #9b9b9b;
+    color: ${props => props.theme.typography.color.gray};
     font-size: 12px;
   }
 
@@ -93,7 +93,7 @@ const Container = styled.div`
     }
 
     a {
-      color: #222222;
+      color: ${props => props.theme.typography.color.main};
       font-size: 14px;
     }
   }

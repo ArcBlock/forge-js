@@ -117,12 +117,14 @@ const Container = styled.div`
   }
 `;
 
+// prettier-ignore
 const Tab = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
   margin-right: 60px;
-  color: ${props => (props.active ? props.theme.colors.gray : props.theme.colors.minor)};
+  color: ${props =>
+    (props.active ? props.theme.typography.color.main : props.theme.typography.color.gray)};
 
   .tab__icon {
     margin-right: 8px;

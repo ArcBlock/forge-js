@@ -72,7 +72,7 @@ const Container = styled.div`
   .proposer a,
   .proposer span,
   .hash a {
-    color: #9b9b9b;
+    color: ${props => props.theme.typography.color.gray};
     font-size: 12px;
     cursor: pointer;
     width: 100%;

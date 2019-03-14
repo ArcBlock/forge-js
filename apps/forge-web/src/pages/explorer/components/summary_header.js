@@ -80,7 +80,7 @@ const Container = styled.div`
   .type {
     font-size: 14px;
     letter-spacing: 2px;
-    color: #9b9b9b;
+    color: ${props => props.theme.typography.color.gray};
     margin-bottom: 10px;
 
     i {
@@ -92,6 +92,7 @@ const Container = styled.div`
     font-size: 24px;
     font-weight: 900;
     letter-spacing: 2px;
+    color: ${props => props.theme.typography.color.main};
   }
 
   .meta {
@@ -101,12 +102,12 @@ const Container = styled.div`
     align-items: flex-start;
 
     .meta__key {
-      color: #222222;
+      color: ${props => props.theme.typography.color.main};
       margin-right: 8px;
     }
 
     .meta__value {
-      color: #9b9b9b;
+      color: ${props => props.theme.typography.color.gray};
     }
 
     a {
@@ -118,6 +119,7 @@ const Container = styled.div`
     font-size: 40px;
     font-weight: 900;
     text-align: right;
+    color: ${props => props.theme.typography.color.main};
   }
 
   .badge-tip {

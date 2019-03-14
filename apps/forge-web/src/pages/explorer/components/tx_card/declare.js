@@ -65,7 +65,7 @@ const Container = styled.div`
   .time,
   .hash a,
   .type {
-    color: #9b9b9b;
+    color: ${props => props.theme.typography.color.gray};
     font-size: 12px;
   }
 
@@ -81,7 +81,7 @@ const Container = styled.div`
     margin-right: ${props => props.theme.spacing.unit}px;
 
     a {
-      color: #222222;
+      color: ${props => props.theme.typography.color.main};
     }
   }
 

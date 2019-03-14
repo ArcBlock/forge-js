@@ -38,7 +38,7 @@ const List = styled.ul`
 
   a {
     text-decoration: underline;
-    color: #9b9b9b;
+    color: ${props => props.theme.typography.color.gray};
   }
 `;
 

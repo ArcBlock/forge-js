@@ -19,7 +19,7 @@ const createTheme = theme =>
       useNextVariants: true,
       color: {
         main: theme === 'light' ? colors.gray : colors.white,
-        gray: colors.minor,
+        gray: theme === 'light' ? colors.minor : colors.darkText,
         blue: '#1e43fa',
       },
       fontSize: 16,
@@ -62,11 +62,13 @@ const createTheme = theme =>
           paddingBottom: '14px',
           paddingLeft: 0,
           paddingRight: '30px',
-          color: theme === 'light' ? colors.gray : colors.minor,
         },
         head: {
           textTransform: 'uppercase',
-          color: theme === 'light' ? colors.gray : colors.minor,
+          color: theme === 'light' ? colors.gray : colors.darkText,
+        },
+        body: {
+          color: theme === 'light' ? colors.gray : colors.darkText,
         },
       },
       MuiChip: {
@@ -87,6 +89,14 @@ const createTheme = theme =>
           fontSize: '14px',
         },
       },
+      MuiTypography: {
+        body1: {
+          color: theme === 'light' ? colors.gray : colors.darkText,
+        },
+        body2: {
+          color: theme === 'light' ? colors.gray : colors.darkText,
+        },
+      },
     },
     colors,
     sizes,
@@ -102,7 +112,7 @@ const GlobalStyle = createGlobalStyle`
     -moz-osx-font-smoothing: grayscale;
     font-size: 16px;
     background: ${props => (props.palette === 'light' ? colors.background : colors.gray)};
-    color: ${props => (props.palette === 'light' ? colors.gray : colors.minor)};
+    color: ${props => (props.palette === 'light' ? colors.gray : colors.darkText)};
   }
 
   code {
@@ -113,7 +123,7 @@ const GlobalStyle = createGlobalStyle`
   a:hover,
   a:active {
     text-decoration: none;
-    color: ${props => (props.palette === 'light' ? colors.gray : colors.minor)};
+    color: ${props => (props.palette === 'light' ? colors.gray : colors.darkText)};
   }
 
   td a:hover {

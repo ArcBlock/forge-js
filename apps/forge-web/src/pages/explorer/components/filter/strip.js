@@ -45,7 +45,9 @@ function FilterStrip({ theme, location, showFilter, supportedTxs, onApplyFilter,
                   className="link__icon"
                   name={x.icon}
                   size={18}
-                  color={isActive(x.name) ? theme.colors.gray : theme.colors.minor}
+                  color={
+                    isActive(x.name) ? theme.typography.color.main : theme.typography.color.gray
+                  }
                 />
                 <span className="link__text">{x.name}</span>
               </Button>
@@ -118,13 +120,13 @@ const Container = styled.div`
       .link__text {
         text-transform: uppercase;
         font-size: 16px;
-        color: #9b9b9b;
+        color: ${props => props.theme.typography.color.gray};
       }
     }
 
     .link--active {
       .link__text {
-        color: #222222;
+        color: ${props => props.theme.typography.color.main};
         font-weight: bold;
       }
     }

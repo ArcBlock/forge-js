@@ -48,7 +48,7 @@ const Container = styled.div`
       background: transparent;
       font-size: 16px;
       font-weight: 600;
-      color: #222222;
+      color: ${props => props.theme.palette.primary.main};
       outline: none;
     }
 
