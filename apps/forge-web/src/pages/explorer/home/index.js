@@ -15,6 +15,8 @@ import Transactions from '../../dashboard/components/transactions';
 import TopAccounts from '../../dashboard/components/top_accounts';
 import TopValidators from '../../dashboard/components/top_validators';
 
+import Latest from './latest';
+
 class Dashboard extends Page {
   render() {
     return (
@@ -27,6 +29,16 @@ class Dashboard extends Page {
               </Typography>
               <div className="section__content">
                 <Metrics sparkline={false} itemSize={{ xs: 6, sm: 4, md: 2 }} size="small" />
+              </div>
+            </Grid>
+            <Grid item xs={12} sm={6} md={6} className="section section--latest">
+              <div className="section__content">
+                <Latest />
+              </div>
+            </Grid>
+            <Grid item xs={12} sm={6} md={6} className="section section--network">
+              <div className="section__content">
+                <p>TODO: add network map here</p>
               </div>
             </Grid>
             <Grid item xs={12} sm={12} md={12} className="section section--transactions">
@@ -62,7 +74,7 @@ class Dashboard extends Page {
 
 const Container = styled(Wrapper)`
   .section {
-    margin-bottom: 120px;
+    margin-bottom: 60px;
     .section__header {
       margin-bottom: 30px;
       font-size: 18px;

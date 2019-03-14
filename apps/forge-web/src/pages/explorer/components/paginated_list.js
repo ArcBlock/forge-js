@@ -3,14 +3,16 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { useAsync } from 'react-use';
+import { Link } from 'react-router-dom';
 
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Button from '@material-ui/core/Button';
 
 import Icon from '../../../components/iconfa';
 import Alert from '../../../components/alert';
+import { getExplorerUrl } from '../../../libs/util';
 
-function PaginatedList({ args, pageSize, dataKey, dataLoaderFn, dataRenderFn }) {
+function PaginatedList({ args, pageSize, pageLink, dataKey, dataLoaderFn, dataRenderFn }) {
   const [cursor, setCursor] = useState(null);
 
   // eslint-disable-next-line
@@ -53,10 +55,17 @@ function PaginatedList({ args, pageSize, dataKey, dataLoaderFn, dataRenderFn }) 
         state.value[dataKey].length > 0 &&
         dataRenderFn(state.value[dataKey])}
       {state.value[dataKey].length === 0 && <Alert type="error">No data found!</Alert>}
-      {state.value.page && state.value.page.cursor && state.value.page.next && (
+      {!pageLink && state.value.page && state.value.page.cursor && state.value.page.next && (
         <p className="pager">
           <Button onClick={() => setCursor(state.value.page.cursor)}>
             Next Page <Icon name="arrow-right" />
+          </Button>
+        </p>
+      )}
+      {!!pageLink && (
+        <p className="pager pager--small">
+          <Button component={Link} to={getExplorerUrl(pageLink)}>
+            View All <Icon name="arrow-right" />
           </Button>
         </p>
       )}
@@ -70,10 +79,12 @@ PaginatedList.propTypes = {
   pageSize: PropTypes.number,
   dataLoaderFn: PropTypes.func.isRequired,
   dataRenderFn: PropTypes.func.isRequired,
+  pageLink: PropTypes.string,
 };
 
 PaginatedList.defaultProps = {
   pageSize: 10,
+  pageLink: '',
 };
 
 const Container = styled.div`
@@ -91,7 +102,13 @@ const Container = styled.div`
     }
     span {
       color: ${props => props.theme.typography.color.gray};
+      font-size: 14px;
     }
+  }
+
+  .pager--small {
+    justify-content: flex-start;
+    margin: 0;
   }
 `;
 

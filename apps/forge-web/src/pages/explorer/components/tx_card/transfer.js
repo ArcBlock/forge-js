@@ -85,11 +85,11 @@ const Container = styled.div`
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
+    overflow: hidden;
+    white-space: no-wrap;
+    text-overflow: ellipsis;
 
     p {
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
       text-align: left;
       height: 28px;
       margin-bottom: 5px;

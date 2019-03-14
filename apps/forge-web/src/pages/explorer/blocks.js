@@ -7,7 +7,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 
 import SummaryHeader from './components/summary_header';
 import FilterStrip from './components/filter/strip';
-import PaginatedBlocks from './components/block_list';
+import BlockList from './components/block_list';
 
 import Page from '../../components/page';
 import Layout from '../../layouts/page';
@@ -58,7 +58,7 @@ class Blocks extends Page {
             />
           )}
           {nodeInfo && <FilterStrip />}
-          {nodeInfo && <PaginatedBlocks dataLoaderFn={this.fetchBlocks} />}
+          {nodeInfo && <BlockList dataLoaderFn={this.fetchBlocks} />}
         </Container>
       </Layout>
     );
