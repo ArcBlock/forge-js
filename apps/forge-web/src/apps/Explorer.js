@@ -91,7 +91,7 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #333333;
+  background: #222222;
 `;
 
 export default App;

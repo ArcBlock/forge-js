@@ -5,11 +5,12 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 import { useLocalStorage } from '../libs/hooks';
 
-export default function ThemeSwitcher() {
+export default function ThemeSwitcher(props) {
   const [theme, setTheme] = useLocalStorage('theme', 'light');
 
   return (
     <FormControlLabel
+      {...props}
       control={
         <Switch
           checked={theme === 'dark'}

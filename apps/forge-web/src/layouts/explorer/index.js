@@ -6,11 +6,12 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 
 import ThemeSwitcher from '../../components/theme_switcher';
-
 import SearchBox from '../../components/search_box';
 import withI18n from '../../components/withI18n';
 import withRoot from '../../components/withRoot';
 import withTracker from '../../components/withTracker';
+
+import Logo from './logo';
 
 function Layout({ children }) {
   const version = process.env.REACT_APP_VERSION;
@@ -19,8 +20,9 @@ function Layout({ children }) {
     <Container>
       <AppBar position="absolute" className="appBar">
         <Toolbar disableGutters={false} className="toolbar">
+          <Logo />
           <SearchBox />
-          <ThemeSwitcher />
+          <ThemeSwitcher className="switcher" />
         </Toolbar>
       </AppBar>
       <main className="main">
@@ -58,21 +60,31 @@ const Version = styled.div`
 const Container = styled.div`
   display: flex;
 
+  .appBar {
+    display: flex;
+    justify-content: space-between;
+    z-index: ${props => props.theme.zIndex.drawer + 1};
+    background: ${props => props.theme.palette.background.default};
+    box-shadow: 2px 2px 10px 0
+      rgba(0, 0, 0, ${props => (props.theme.mode === 'light' ? 0.05 : 0.5)});
+  }
+
   .toolbar {
     padding-right: 24;
     background: ${props => props.theme.palette.background.default};
     color: ${props => props.theme.palette.text.primary};
     display: flex;
     justify-content: space-between;
+    margin: 0 auto;
     margin-top: ${props => props.theme.spacing.unit}px;
-  }
+    width: 100%;
+    max-width: 1200px;
+    position: relative;
 
-  .appBar {
-    z-index: ${props => props.theme.zIndex.drawer + 1};
-    background: ${props => props.theme.palette.background.default};
-    box-shadow: 0 0 0 0 transparent;
-    box-shadow: 2px 2px 10px 0
-      rgba(0, 0, 0, ${props => (props.theme.mode === 'light' ? 0.05 : 0.5)});
+    .switcher {
+      position: absolute;
+      right: -200px;
+    }
   }
 
   .main {

@@ -11,7 +11,6 @@ import SecondaryLinks from './secondary';
 import NodeInfo from './node_info';
 import ThemeSwitcher from '../../components/theme_switcher';
 
-// import SearchBox from '../../components/search_box';
 import withI18n from '../../components/withI18n';
 import withRoot from '../../components/withRoot';
 import withTracker from '../../components/withTracker';
@@ -102,7 +101,6 @@ const Container = styled.div`
   .appBar {
     z-index: ${props => props.theme.zIndex.drawer + 1};
     background: ${props => props.theme.palette.background.default};
-    box-shadow: 0 0 0 0 transparent;
     box-shadow: 2px 2px 10px 0
       rgba(0, 0, 0, ${props => (props.theme.mode === 'light' ? 0.05 : 0.5)});
   }
