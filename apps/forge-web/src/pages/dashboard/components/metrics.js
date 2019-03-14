@@ -7,6 +7,7 @@ import { useAsync, useBoolean, useLocalStorage } from 'react-use';
 import Grid from '@material-ui/core/Grid';
 import Switch from '@material-ui/core/Switch';
 import Tooltip from '@material-ui/core/Tooltip';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 import Icon8 from '../../../components/icon8';
@@ -46,7 +47,7 @@ export default function SummarySection() {
         console.error(err);
       }
     },
-    autoRefresh ? 3000 : null
+    autoRefresh ? 4000 : null
   );
 
   if (state.loading) {
@@ -108,11 +109,16 @@ export default function SummarySection() {
               ? 'Realtime updates enabled, click to disable'
               : 'Realtime updates disabled, click to enable'
           }>
-          <Switch
-            checked={autoRefresh}
-            onChange={e => setAutoRefresh(e.target.checked)}
-            value="autoRefresh"
-            color="primary"
+          <FormControlLabel
+            control={
+              <Switch
+                checked={autoRefresh}
+                onChange={e => setAutoRefresh(e.target.checked)}
+                value="autoRefresh"
+                color="primary"
+              />
+            }
+            label={autoRefresh ? 'Refresh On' : 'Refresh Off'}
           />
         </Tooltip>
       </div>
