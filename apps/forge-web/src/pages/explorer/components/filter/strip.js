@@ -30,7 +30,7 @@ function FilterStrip({ theme, location, showFilter, supportedTxs, onApplyFilter,
 
   const isActive = name => {
     const { pathname } = location;
-    return pathname.indexOf(`/${name}`) > 0;
+    return pathname.indexOf(`/${name}`) >= 0;
   };
 
   return (
@@ -64,7 +64,7 @@ function FilterStrip({ theme, location, showFilter, supportedTxs, onApplyFilter,
               onApplyFilter={onApplyFilter}
             />
           )}
-          <SearchBox />
+          {process.env.REACT_APP_NAME !== 'explorer' && <SearchBox />}
         </div>
       </Container>
       {showFilter && !!selectedTxs.length && selectedTxs.length < supportedTxs.length && (

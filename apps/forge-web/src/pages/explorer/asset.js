@@ -92,7 +92,7 @@ class AssetDetail extends Page {
                 ]}
               />
 
-              <Typography component="h3" variant="h6" style={{ marginBottom: '16px' }}>
+              <Typography component="h3" variant="h6" className="subtitle">
                 Related Transactions
               </Typography>
               <TxList address={asset.address} dataLoaderFn={fetchTxs} />
@@ -129,6 +129,11 @@ class AssetDetail extends Page {
 const Container = styled(Wrapper)`
   .tabs {
     margin-bottom: 60px;
+  }
+
+  .subtitle {
+    margin-top: 16px;
+    color: ${props => props.theme.typography.color.main};
   }
 `;
 
