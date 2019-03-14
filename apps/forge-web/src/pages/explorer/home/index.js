@@ -17,10 +17,10 @@ import TopValidators from '../../dashboard/components/top_validators';
 
 import Latest from './latest';
 
-class Dashboard extends Page {
+class Home extends Page {
   render() {
     return (
-      <Layout title="Dashboard" cookies={this.cookies}>
+      <Layout title="Explorer" cookies={this.cookies}>
         <Container>
           <Grid container spacing={40}>
             <Grid item xs={12} sm={12} md={12} className="section section--metrics">
@@ -96,4 +96,4 @@ const Container = styled(Wrapper)`
   }
 `;
 
-export default withRoot(withI18n(Dashboard));
+export default withRoot(withI18n(Home));

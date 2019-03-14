@@ -41,15 +41,12 @@ export function getTxType(tx) {
 
 export function getGraphQLEndpoint() {
   if (process.env.NODE_ENV === 'production') {
-    if (process.env.REACT_APP_NAME === 'explorer') {
-      return 'http://abt-test.arcblock.co:8210/api'; // abt testnet
-    }
-
     const { protocol, host } = window.location;
     return `${protocol}//${host}/api`;
   }
 
   return 'http://localhost:8210/api'; // local
+  // return 'http://abt-test.arcblock.co:8210/api'; // abt testnet
 }
 
 export function fromTypeUrl(url, camelcase = true) {
