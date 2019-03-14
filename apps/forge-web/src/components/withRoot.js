@@ -77,6 +77,11 @@ const theme = createMuiTheme({
         marginRight: '5px',
       },
     },
+    MuiTooltip: {
+      tooltip: {
+        fontSize: '14px',
+      },
+    },
   },
   colors,
   sizes,
