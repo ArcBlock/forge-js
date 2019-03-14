@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import moment from 'moment';
 import { fromArc } from '@arcblock/forge-util';
 import { useAsync, useBoolean, useLocalStorage } from 'react-use';
+import { withTheme } from '@material-ui/core/styles';
 
 import Grid from '@material-ui/core/Grid';
 import Switch from '@material-ui/core/Switch';
@@ -25,7 +27,7 @@ async function fetchSummary() {
   return { summary, trend };
 }
 
-export default function SummarySection() {
+function MetricsSection({ theme }) {
   const state = useAsync(fetchSummary);
   const [updates, setUpdates] = useState(null);
   const [autoRefresh, setAutoRefresh] = useBoolean(true);
@@ -127,7 +129,7 @@ export default function SummarySection() {
           <Grid key={x} item xs={12} sm={6} md={4}>
             <Metric>
               <div className="metric__image">
-                <Icon8 name={images[x]} alt={x} size={36} />
+                <Icon8 name={images[x]} alt={x} size={36} color={theme.typography.color.main} />
               </div>
               <div className={`metric__number ${animation ? 'animated' : ''}`}>{metrics[x]}</div>
               <div className="metric__name">{x}</div>
@@ -141,6 +143,10 @@ export default function SummarySection() {
     </Container>
   );
 }
+
+MetricsSection.propTypes = {
+  theme: PropTypes.object.isRequired,
+};
 
 const Container = styled.div`
   position: relative;
@@ -212,3 +218,5 @@ const Metric = styled.div`
     }
   }
 `;
+
+export default withTheme()(MetricsSection);

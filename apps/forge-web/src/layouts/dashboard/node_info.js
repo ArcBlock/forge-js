@@ -1,7 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { useAsync } from 'react-use';
+import { withTheme } from '@material-ui/core/styles';
 
 import Typography from '@material-ui/core/Typography';
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -16,7 +18,7 @@ async function fetchNodeInfo() {
   return res.info;
 }
 
-export default function NodeInfo() {
+function NodeInfo({ theme }) {
   const state = useAsync(fetchNodeInfo);
   if (state.loading) {
     return <CircularProgress />;
@@ -34,7 +36,7 @@ export default function NodeInfo() {
     <Header synced={state.value.synced}>
       <Link to="/">
         <div className="header-image">
-          <Icons8 name="text-input-form" />
+          <Icons8 name="text-input-form" color={theme.typography.color.main} />
           {state.value.synced ? (
             <CheckIcon className="header-image__overlay" />
           ) : (
@@ -57,6 +59,10 @@ export default function NodeInfo() {
     </Header>
   );
 }
+
+NodeInfo.propTypes = {
+  theme: PropTypes.object.isRequired,
+};
 
 const Header = styled.div`
   display: flex;
@@ -95,7 +101,7 @@ const Header = styled.div`
     font-size: 24px;
     font-weight: 800;
     letter-spacing: 2px;
-    color: #222222;
+    color: ${props => props.theme.typography.color.main};
     text-transform: uppercase;
   }
 
@@ -103,7 +109,7 @@ const Header = styled.div`
     font-size: 14px;
     line-height: 1.71;
     letter-spacing: 1px;
-    color: #9b9b9b;
+    color: ${props => props.theme.typography.color.gray};
   }
 
   @keyframes spin {
@@ -112,3 +118,5 @@ const Header = styled.div`
     }
   }
 `;
+
+export default withTheme()(NodeInfo);

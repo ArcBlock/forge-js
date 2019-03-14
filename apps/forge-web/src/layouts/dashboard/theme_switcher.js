@@ -15,10 +15,10 @@ export default function ThemeSwitcher() {
           checked={theme === 'light'}
           onChange={() => setTheme(theme === 'light' ? 'dark' : 'light')}
           value="theme"
-          color="primary"
+          color={theme === 'light' ? 'default' : 'primary'}
         />
       }
-      label={theme === 'light' ? 'Light' : 'Dark'}
+      label={theme === 'light' ? 'Light Mode' : 'Dark Mode'}
     />
   );
 }

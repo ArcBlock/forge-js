@@ -1,13 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import classNames from 'classnames';
 
-import { withStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import Divider from '@material-ui/core/Divider';
 
 import Sidebar from './sidebar';
 import SecondaryLinks from './secondary';
@@ -35,25 +32,23 @@ const getSecondaryLinks = location => {
   return { title: '', links: [] };
 };
 
-function Dashboard({ children, classes, location }) {
+function Dashboard({ children, location }) {
   const { title, links } = getSecondaryLinks(location);
   const hasSecondaryLinks = !!links.length;
   const version = process.env.REACT_APP_VERSION;
 
   return (
-    <div className={classes.root}>
-      <AppBar position="absolute" className={classes.appBar}>
-        <Toolbar disableGutters={false} className={classes.toolbar}>
+    <Container>
+      <AppBar position="absolute" className="appBar">
+        <Toolbar disableGutters={false} className="toolbar">
           <NodeInfo />
           <ThemeSwitcher />
         </Toolbar>
       </AppBar>
-      <Drawer variant="permanent" classes={{ paper: classNames(classes.drawerPaper) }} open={true}>
-        <div className={classes.toolbarIcon} />
-        <Divider />
+      <Drawer variant="permanent" classes={{ paper: 'drawerPaper' }} open={true}>
         <Sidebar open={true} />
       </Drawer>
-      <main className={classes.content}>
+      <main className="content">
         {hasSecondaryLinks && (
           <Content direction="row">
             <SecondaryLinks links={links} title={title} />
@@ -65,13 +60,12 @@ function Dashboard({ children, classes, location }) {
           v{version} <span className="highlight">beta</span>
         </Version>
       </main>
-    </div>
+    </Container>
   );
 }
 
 Dashboard.propTypes = {
   children: PropTypes.any.isRequired,
-  classes: PropTypes.object.isRequired,
   location: PropTypes.object.isRequired,
 };
 
@@ -93,83 +87,52 @@ const Version = styled.div`
   z-index: 99;
 `;
 
-const drawerWidth = 100;
+const Container = styled.div`
+  display: flex;
 
-const styles = theme => ({
-  root: {
-    display: 'flex',
-  },
-  toolbar: {
-    paddingRight: 24,
-    background: theme.palette.background.default,
-    color: theme.palette.text.primary,
-    display: 'flex',
-    justifyContent: 'space-between',
-  },
-  toolbarIcon: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    padding: '0 8px 0 24px',
-    ...theme.mixins.toolbar,
-  },
-  appBar: {
-    zIndex: theme.zIndex.drawer + 1,
-    background: theme.palette.background.default,
-    boxShadow: '0 0 0 0 transparent',
-    transition: theme.transitions.create(['width', 'margin'], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-  },
-  menuButton: {
-    marginLeft: 12,
-    marginRight: 36,
-  },
-  menuButtonHidden: {
-    display: 'none',
-  },
-  title: {
-    flexGrow: 1,
-    display: 'flex',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-  },
-  drawerPaper: {
-    position: 'relative',
-    whiteSpace: 'nowrap',
-    width: drawerWidth,
-    background: theme.palette.background.default,
-    boxShadow: '2px 16px 10px 0 rgba(0, 0, 0, 0.05)',
-    border: 0,
-    transition: theme.transitions.create('width', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  },
-  drawerPaperClose: {
-    overflowX: 'hidden',
-    transition: theme.transitions.create('width', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    width: theme.spacing.unit * 7,
-    [theme.breakpoints.up('sm')]: {
-      width: theme.spacing.unit * 9,
-    },
-  },
-  appBarSpacer: theme.mixins.toolbar,
-  content: {
-    flexGrow: 1,
-    paddingTop: 80,
-    height: '100vh',
-    overflow: 'auto',
-    boxSizing: 'border-box',
-    position: 'relative',
-  },
-  h5: {
-    marginBottom: theme.spacing.unit * 2,
-  },
-});
+  .toolbar {
+    padding-right: 24;
+    background: ${props => props.theme.palette.background.default};
+    color: ${props => props.theme.palette.text.primary};
+    display: flex;
+    justify-content: space-between;
+  }
 
-export default withStyles(styles)(withTracker(withRoot(withI18n(Dashboard))));
+  .toolbarIcon {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 8px 0 24px;
+  }
+
+  .appBar {
+    z-index: ${props => props.theme.zIndex.drawer + 1};
+    background: ${props => props.theme.palette.background.default};
+    box-shadow: 0 0 0 0 transparent;
+  }
+
+  .drawerPaper {
+    position: relative;
+    padding-top: 80px;
+    white-space: nowrap;
+    width: 100px;
+    background: ${props => props.theme.palette.background.default};
+    box-shadow: 2px 16px 10px 0 rgba(0, 0, 0, 0.05);
+    border: 0;
+  }
+
+  .content {
+    flex-grow: 1;
+    padding-top: 80px;
+    height: 100vh;
+    overflow: auto;
+    box-sizing: border-box;
+    position: relative;
+  }
+
+  h5 {
+    margin-bottom: ${props => props.theme.spacing.unit * 2}px;
+  }
+`;
+
+export default withTracker(withRoot(withI18n(Dashboard)));

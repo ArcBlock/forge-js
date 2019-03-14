@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { withTheme } from '@material-ui/core/styles';
 
 import { withRouter, Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
@@ -19,6 +20,7 @@ const images = {
 class Sidebar extends React.Component {
   static propTypes = {
     location: PropTypes.object.isRequired,
+    theme: PropTypes.object.isRequired,
   };
 
   // {this.renderMenuItem('/app', 'app', 'Application Management')}
@@ -41,7 +43,11 @@ class Sidebar extends React.Component {
     const selected = this.isSelected(url, name);
     return (
       <MenuItem component={Link} key={url} selected={selected} to={url} title={title}>
-        <Icon8 name={images[name]} size={36} color={selected ? '#00c2c4' : '#000000'} />
+        <Icon8
+          name={images[name]}
+          size={36}
+          color={selected ? '#00c2c4' : this.props.theme.typography.color.main}
+        />
       </MenuItem>
     );
   }
@@ -81,4 +87,4 @@ const MenuItem = styled(Button)`
   }
 `;
 
-export default withRouter(Sidebar);
+export default withRouter(withTheme()(Sidebar));
