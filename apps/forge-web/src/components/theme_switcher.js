@@ -3,7 +3,7 @@ import React from 'react';
 import Switch from '@material-ui/core/Switch';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 
-import { useLocalStorage } from '../../libs/hooks';
+import { useLocalStorage } from '../libs/hooks';
 
 export default function ThemeSwitcher() {
   const [theme, setTheme] = useLocalStorage('theme', 'light');

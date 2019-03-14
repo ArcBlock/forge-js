@@ -4,7 +4,7 @@ import { BrowserRouter, HashRouter, Route, Switch, Redirect } from 'react-router
 import { IntlProvider, addLocaleData } from 'react-intl';
 import { useAsync, useLocalStorage } from 'react-use';
 
-import Layout from '../layouts/dashboard';
+import Layout from '../layouts/explorer';
 
 import PageBlockList from '../pages/explorer/blocks';
 import PageBlockDetail from '../pages/explorer/block';
