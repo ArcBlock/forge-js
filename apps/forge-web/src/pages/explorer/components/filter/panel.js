@@ -24,8 +24,8 @@ function FilterPanel({ supportedTxs, onApplyFilter, selectedTxs, theme }) {
         onClose={onToggle}
         PaperProps={{
           style: {
-            boxShadow: '-2px 16px 10px 0 rgba(0, 0, 0, 0.05)',
-            backgroundColor: '#f7f8f8',
+            boxShadow: `-2px 16px 10px 0 rgba(0, 0, 0, ${theme.mode === 'light' ? 0.05 : 0.5})`,
+            backgroundColor: theme.palette.background.default,
             width: '440px',
             marginTop: '80px',
             overflow: 'scroll',

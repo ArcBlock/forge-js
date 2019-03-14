@@ -67,7 +67,7 @@ function FilterChooser({ supportedTxs, onClose, onApplyFilter, selectedTxs }) {
                 key={x}
                 control={
                   <Checkbox
-                    color="default"
+                    color="primary"
                     icon={<CheckBoxIcon style={{ fontSize: '18px' }} />}
                     checkedIcon={<CheckedIcon style={{ fontSize: '18px' }} />}
                     checked={selected.includes(x)}
@@ -123,7 +123,7 @@ const ChooserContainer = styled.div`
     }
 
     .header__close {
-      color: ${props => props.theme.colors.minor};
+      color: ${props => props.theme.typography.color.gray};
     }
   }
 
@@ -135,7 +135,7 @@ const ChooserContainer = styled.div`
     align-items: flex-start;
 
     .list__title {
-      color: ${props => props.theme.colors.minor};
+      color: ${props => props.theme.typography.color.gray};
       font-size: 14px;
       text-transform: uppercase;
       letter-spacing: 2px;
@@ -150,6 +150,7 @@ const ChooserContainer = styled.div`
     .footer__button {
       border: none;
       border-bottom: 1px solid ${props => props.theme.colors.minor};
+      color: ${props => props.theme.typography.color.gray};
     }
   }
 `;
