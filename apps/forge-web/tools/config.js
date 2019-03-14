@@ -1,6 +1,5 @@
 /* eslint no-unused-vars:"off" */
 const util = require('util');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const paths = require('./paths');
 
 const debug = (label, d) => console.log(label, util.inspect(d, { depth: 8, colors: true }));
@@ -16,68 +15,9 @@ module.exports = {
 
     // Add entries
     const oldEntry = config.entry.slice(0, config.entry.length - 1);
-    config.entry = {
-      web: oldEntry.concat([paths.appJs]),
-      explorer: oldEntry.concat([paths.appExplorerJs]),
-    };
-
-    // Add html outputs
-    const index = config.plugins.findIndex(
-      x => x.options && x.options.template && x.options.filename
-    );
-    if (index > -1) {
-      config.plugins.splice(index, 1);
-    }
-
-    const minify = {
-      removeComments: true,
-      collapseWhitespace: true,
-      removeRedundantAttributes: true,
-      useShortDoctype: true,
-      removeEmptyAttributes: true,
-      removeStyleLinkTypeAttributes: true,
-      keepClosingSlash: true,
-      minifyJS: true,
-      minifyCSS: true,
-      minifyURLs: true,
-    };
-
-    config.plugins.splice(
-      index,
-      0,
-      new HtmlWebpackPlugin({
-        chunks: ['web'],
-        template: paths.appHtml,
-        filename: 'forge-web.html',
-        inject: true,
-        hash: false,
-        compile: true,
-        favicon: false,
-        minify: env === 'production' ? minify : false,
-        cache: true,
-        showErrors: true,
-        chunksSortMode: 'auto',
-        title: 'ABT Chain Node',
-      })
-    );
-    config.plugins.splice(
-      index,
-      0,
-      new HtmlWebpackPlugin({
-        chunks: ['explorer'],
-        template: paths.appHtml,
-        filename: 'abt-explorer.html',
-        inject: true,
-        hash: false,
-        compile: true,
-        favicon: false,
-        minify: env === 'production' ? minify : false,
-        cache: true,
-        showErrors: true,
-        chunksSortMode: 'auto',
-        title: 'ABT Network Explorer',
-      })
-    );
+    config.entry = oldEntry.concat([
+      process.env.REACT_APP_NAME === 'explorer' ? paths.appExplorerJs : paths.appJs,
+    ]);
 
     // debug('webpack', { config, env });
     // process.exit(1);

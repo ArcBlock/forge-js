@@ -71,3 +71,7 @@ export function toTypeUrl(type) {
 export function fromArcToReadable(bn) {
   return numeral(fromArc(bn)).format('0,0.0000');
 }
+
+export function getExplorerUrl(url) {
+  return process.env.REACT_APP_NAME === 'explorer' ? `/node/explorer/${url}` : url;
+}
