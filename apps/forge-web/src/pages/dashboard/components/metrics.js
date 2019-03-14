@@ -27,7 +27,7 @@ async function fetchSummary() {
   return { summary, trend };
 }
 
-function MetricsSection({ theme }) {
+function Metrics({ theme, sparkline, itemSize, size }) {
   const state = useAsync(fetchSummary);
   const [updates, setUpdates] = useState(null);
   const [autoRefresh, setAutoRefresh] = useBoolean(true);
@@ -126,16 +126,23 @@ function MetricsSection({ theme }) {
       </div>
       <Grid container spacing={40}>
         {Object.keys(metrics).map(x => (
-          <Grid key={x} item xs={12} sm={6} md={4}>
-            <Metric>
+          <Grid key={x} item {...itemSize}>
+            <Metric size={size}>
               <div className="metric__image">
-                <Icon8 name={images[x]} alt={x} size={36} color={theme.typography.color.main} />
+                <Icon8
+                  name={images[x]}
+                  alt={x}
+                  size={size === 'small' ? 26 : 36}
+                  color={theme.typography.color.main}
+                />
               </div>
               <div className={`metric__number ${animation ? 'animated' : ''}`}>{metrics[x]}</div>
               <div className="metric__name">{x}</div>
-              <div className="metric__trend">
-                <SparkLine data={trends[x]} series={[SparkLine.createSeries({ dataKey: x })]} />
-              </div>
+              {sparkline && (
+                <div className="metric__trend">
+                  <SparkLine data={trends[x]} series={[SparkLine.createSeries({ dataKey: x })]} />
+                </div>
+              )}
             </Metric>
           </Grid>
         ))}
@@ -144,8 +151,21 @@ function MetricsSection({ theme }) {
   );
 }
 
-MetricsSection.propTypes = {
+Metrics.propTypes = {
   theme: PropTypes.object.isRequired,
+  itemSize: PropTypes.object,
+  sparkline: PropTypes.bool,
+  size: PropTypes.string,
+};
+
+Metrics.defaultProps = {
+  sparkline: true,
+  itemSize: {
+    xs: 12,
+    sm: 6,
+    md: 4,
+  },
+  size: 'normal',
 };
 
 const Container = styled.div`
@@ -179,7 +199,7 @@ const Metric = styled.div`
   .metric__number {
     margin-bottom: 3px;
     margin-left: 3px;
-    font-size: 40px;
+    font-size: ${props => (props.size === 'small' ? 32 : 40)}px;
     font-weight: 900;
     line-height: 54px;
     color: ${props => props.theme.typography.color.main};
@@ -219,4 +239,4 @@ const Metric = styled.div`
   }
 `;
 
-export default withTheme()(MetricsSection);
+export default withTheme()(Metrics);

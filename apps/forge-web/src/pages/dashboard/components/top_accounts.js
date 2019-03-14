@@ -1,5 +1,6 @@
 import React from 'react';
 import numeral from 'numeral';
+import PropTypes from 'prop-types';
 import { useAsync, useLocalStorage } from 'react-use';
 import { Link } from 'react-router-dom';
 import { fromArc } from '@arcblock/forge-util';
@@ -26,7 +27,7 @@ async function fetchTopAccounts() {
   }));
 }
 
-export default function TopAccountsSection() {
+export default function TopAccounts({ sparkline }) {
   const state = useAsync(fetchTopAccounts);
   const [token] = useLocalStorage('token');
 
@@ -46,9 +47,11 @@ export default function TopAccountsSection() {
           <TableCell align="left">Username</TableCell>
           <TableCell align="center">Balance</TableCell>
           <TableCell align="center">Assets</TableCell>
-          <TableCell align="left" style={{ width: '25%' }}>
-            Activities
-          </TableCell>
+          {sparkline && (
+            <TableCell align="left" style={{ width: '25%' }}>
+              Activities
+            </TableCell>
+          )}
         </TableRow>
       </TableHead>
       <TableBody>
@@ -64,12 +67,22 @@ export default function TopAccountsSection() {
               {fromArc(x.balance, token.decimal)} {token.symbol}
             </TableCell>
             <TableCell align="center">{numeral(x.assets).format('0,0')}</TableCell>
-            <TableCell align="left">
-              <AccountActivity data={x.recentNumTxs} delayMS={i * 500} />
-            </TableCell>
+            {sparkline && (
+              <TableCell align="left">
+                <AccountActivity data={x.recentNumTxs} delayMS={i * 500} />
+              </TableCell>
+            )}
           </TableRow>
         ))}
       </TableBody>
     </Table>
   );
 }
+
+TopAccounts.propTypes = {
+  sparkline: PropTypes.bool,
+};
+
+TopAccounts.defaultProps = {
+  sparkline: true,
+};

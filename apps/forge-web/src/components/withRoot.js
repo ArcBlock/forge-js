@@ -98,6 +98,7 @@ const createTheme = mode =>
         },
       },
     },
+    pageWidth: 1320,
     colors,
     sizes,
     mode,

@@ -139,7 +139,7 @@ export default class TransactionsSection extends React.Component {
               <ClickAwayListener onClickAway={this.onClose}>
                 <MenuList>
                   {Object.keys(this.dateRanges).map(x => (
-                    <MenuItem key={x} onClick={e => this.onChooseRange(e, x)}>
+                    <MenuItem key={x} onClick={e => this.onChooseRange(e, x)} className="menu-item">
                       {this.dateRanges[x].text}
                       {x === rangeKey && <CheckIcon className="icon" color="primary" />}
                     </MenuItem>
@@ -237,6 +237,13 @@ const ChartContainer = styled.div`
       display: flex;
       justify-content: center;
       align-items: center;
+      color: ${props => props.theme.typography.color.gray};
+      font-size: 14px;
+    }
+
+    .menu-item {
+      color: ${props => props.theme.typography.color.gray};
+      font-size: 14px;
     }
 
     .icon {

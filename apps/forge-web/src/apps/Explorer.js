@@ -6,6 +6,7 @@ import { useAsync, useLocalStorage } from 'react-use';
 
 import Layout from '../layouts/explorer';
 
+import PageHome from '../pages/explorer/home';
 import PageBlockList from '../pages/explorer/blocks';
 import PageBlockDetail from '../pages/explorer/block';
 import PageTxList from '../pages/explorer/txs';
@@ -71,13 +72,14 @@ const App = () => {
       <Router>
         <Layout>
           <Switch>
+            <Route exact path="/" component={PageHome} />
             <Route exact path="/blocks" component={PageBlockList} />
             <Route exact path="/txs" component={PageTxList} />
             <Route exact path="/blocks/:height" component={PageBlockDetail} />
             <Route exact path="/txs/:hash" component={PageTxDetail} />
             <Route exact path="/accounts/:address" component={PageAccountDetail} />
             <Route exact path="/assets/:address" component={PageAssetDetail} />
-            <Redirect from="/" to="/blocks" />
+            <Redirect from="/*" to="/" />
           </Switch>
         </Layout>
       </Router>

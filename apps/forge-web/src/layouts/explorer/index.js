@@ -70,7 +70,6 @@ const Container = styled.div`
   }
 
   .toolbar {
-    padding-right: 24;
     background: ${props => props.theme.palette.background.default};
     color: ${props => props.theme.palette.text.primary};
     display: flex;
@@ -78,7 +77,7 @@ const Container = styled.div`
     margin: 0 auto;
     margin-top: ${props => props.theme.spacing.unit}px;
     width: 100%;
-    max-width: 1200px;
+    max-width: ${props => props.theme.pageWidth}px;
     position: relative;
 
     .switcher {
