@@ -9,13 +9,14 @@ import Typography from '@material-ui/core/Typography';
 import Tooltip from '@material-ui/core/Tooltip';
 
 import IconFa from '../../../../components/iconfa';
+import { getExplorerUrl } from '../../../../libs/util';
 import Payload from './payload';
 
 const ExchangeTxSummary = React.memo(({ tx, theme, ...rest }) => (
   <Container {...rest}>
     <div className="info-row info-row--full">
       <Typography component="p" className="hash" title={tx.hash}>
-        <Link to={`/node/explorer/txs/${tx.hash}`}># {tx.hash}</Link>
+        <Link to={getExplorerUrl(`/txs/${tx.hash}`)}># {tx.hash}</Link>
       </Typography>
       <Typography component="p" className="time" title={tx.time}>
         {moment(tx.time).fromNow()}
@@ -24,7 +25,7 @@ const ExchangeTxSummary = React.memo(({ tx, theme, ...rest }) => (
     <div className="info-row">
       <div className="sender">
         <Typography component="p" title={tx.tx.from}>
-          <Link to={`/node/explorer/accounts/${tx.tx.from}`}>{tx.tx.from}</Link>
+          <Link to={getExplorerUrl(`/accounts/${tx.tx.from}`)}>{tx.tx.from}</Link>
         </Typography>
         <Payload itx={tx.tx.itx.sender} />
       </div>
@@ -39,7 +40,7 @@ const ExchangeTxSummary = React.memo(({ tx, theme, ...rest }) => (
       </Tooltip>
       <div className="receiver">
         <Typography component="p" title={tx.tx.itx.to}>
-          <Link to={`/node/explorer/accounts/${tx.tx.itx.to}`}>{tx.tx.itx.to}</Link>
+          <Link to={getExplorerUrl(`/accounts/${tx.tx.itx.to}`)}>{tx.tx.itx.to}</Link>
         </Typography>
         <Payload itx={tx.tx.itx.receiver} />
       </div>
@@ -74,7 +75,7 @@ const Container = styled.div`
 
   .time,
   .hash a {
-    color: #9b9b9b;
+    color: ${props => props.theme.typography.color.gray};
     font-size: 12px;
   }
 
@@ -85,18 +86,18 @@ const Container = styled.div`
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
+    overflow: hidden;
+    white-space: no-wrap;
+    text-overflow: ellipsis;
 
     p {
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
       text-align: left;
       height: 28px;
       margin-bottom: 5px;
     }
 
     a {
-      color: #222222;
+      color: ${props => props.theme.typography.color.main};
       font-size: 14px;
     }
   }

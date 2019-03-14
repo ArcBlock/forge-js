@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import moment from 'moment';
-import { fromArc } from '@arcblock/forge-util';
+import { fromUnitToToken } from '@arcblock/forge-util';
 import { useAsync, useBoolean, useLocalStorage } from 'react-use';
+import { withTheme } from '@material-ui/core/styles';
 
 import Grid from '@material-ui/core/Grid';
 import Switch from '@material-ui/core/Switch';
 import Tooltip from '@material-ui/core/Tooltip';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 import Icon8 from '../../../components/icon8';
@@ -24,7 +27,7 @@ async function fetchSummary() {
   return { summary, trend };
 }
 
-export default function SummarySection() {
+function Metrics({ theme, sparkline, itemSize, size }) {
   const state = useAsync(fetchSummary);
   const [updates, setUpdates] = useState(null);
   const [autoRefresh, setAutoRefresh] = useBoolean(true);
@@ -46,7 +49,7 @@ export default function SummarySection() {
         console.error(err);
       }
     },
-    autoRefresh ? 3000 : null
+    autoRefresh ? 4000 : null
   );
 
   if (state.loading) {
@@ -70,7 +73,7 @@ export default function SummarySection() {
   const metrics = Object.keys(mapping).reduce((acc, x) => {
     [acc[x]] = summary[mapping[x]];
     if (x === 'stakes') {
-      acc[x] = `${fromArc(acc[x], token.decimal)}`;
+      acc[x] = `${fromUnitToToken(acc[x], token.decimal)}`;
     }
     return acc;
   }, {});
@@ -84,7 +87,7 @@ export default function SummarySection() {
       date.setSeconds(0);
       return {
         time: moment(date).format('YYYY-MM-DD HH:mm'),
-        [x]: x === 'stakes' ? Number(fromArc(d)) : Number(d),
+        [x]: x === 'stakes' ? Number(fromUnitToToken(d)) : Number(d),
       };
     });
     return acc;
@@ -108,26 +111,38 @@ export default function SummarySection() {
               ? 'Realtime updates enabled, click to disable'
               : 'Realtime updates disabled, click to enable'
           }>
-          <Switch
-            checked={autoRefresh}
-            onChange={e => setAutoRefresh(e.target.checked)}
-            value="autoRefresh"
-            color="primary"
+          <FormControlLabel
+            control={
+              <Switch
+                checked={autoRefresh}
+                onChange={e => setAutoRefresh(e.target.checked)}
+                value="autoRefresh"
+                color="primary"
+              />
+            }
+            label={autoRefresh ? 'Refresh On' : 'Refresh Off'}
           />
         </Tooltip>
       </div>
       <Grid container spacing={40}>
         {Object.keys(metrics).map(x => (
-          <Grid key={x} item xs={12} sm={6} md={4}>
-            <Metric>
+          <Grid key={x} item {...itemSize}>
+            <Metric size={size}>
               <div className="metric__image">
-                <Icon8 name={images[x]} alt={x} size={36} />
+                <Icon8
+                  name={images[x]}
+                  alt={x}
+                  size={size === 'small' ? 26 : 36}
+                  color={theme.typography.color.main}
+                />
               </div>
               <div className={`metric__number ${animation ? 'animated' : ''}`}>{metrics[x]}</div>
               <div className="metric__name">{x}</div>
-              <div className="metric__trend">
-                <SparkLine data={trends[x]} series={[SparkLine.createSeries({ dataKey: x })]} />
-              </div>
+              {sparkline && (
+                <div className="metric__trend">
+                  <SparkLine data={trends[x]} series={[SparkLine.createSeries({ dataKey: x })]} />
+                </div>
+              )}
             </Metric>
           </Grid>
         ))}
@@ -135,6 +150,23 @@ export default function SummarySection() {
     </Container>
   );
 }
+
+Metrics.propTypes = {
+  theme: PropTypes.object.isRequired,
+  itemSize: PropTypes.object,
+  sparkline: PropTypes.bool,
+  size: PropTypes.string,
+};
+
+Metrics.defaultProps = {
+  sparkline: true,
+  itemSize: {
+    xs: 12,
+    sm: 6,
+    md: 4,
+  },
+  size: 'normal',
+};
 
 const Container = styled.div`
   position: relative;
@@ -167,10 +199,10 @@ const Metric = styled.div`
   .metric__number {
     margin-bottom: 3px;
     margin-left: 3px;
-    font-size: 40px;
+    font-size: ${props => (props.size === 'small' ? 32 : 40)}px;
     font-weight: 900;
     line-height: 54px;
-    color: #222222;
+    color: ${props => props.theme.typography.color.main};
   }
 
   .animated {
@@ -183,7 +215,7 @@ const Metric = styled.div`
     text-transform: uppercase;
     line-height: 1.71;
     letter-spacing: 2px;
-    color: #222222;
+    color: ${props => props.theme.typography.color.main};
   }
 
   .metric__trend {
@@ -206,3 +238,5 @@ const Metric = styled.div`
     }
   }
 `;
+
+export default withTheme()(Metrics);

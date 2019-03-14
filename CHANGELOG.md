@@ -1,3 +1,22 @@
+## 0.13.2 (March 14, 2019)
+  - fix: sparkline fill opacity in dark mode
+  - chore: make release work
+  - chore: latest data section on explorer home
+  - fix: sparkline fill opacity
+  - fix: explorer links
+  - chore: extract theme mode to hooks
+  - chore: support start in different mode
+  - chore: basic explorer home page
+  - chore: support header for explorer
+  - chore: remove useless code
+  - chore: add layout for explorer
+  - chore: support explorer apps
+  - chore: update lots of styles for dark theme
+  - chore: add infra for theme switcher
+  - chore: add label for metric updates
+  - chore: fix tooltip font size
+  - update readme
+
 ## 0.13.1 (March 13, 2019)
   - chore: update readme for major js library
   - fix: scalar types random fns when generating docs for forge-sdk

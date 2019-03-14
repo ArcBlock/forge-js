@@ -3,6 +3,8 @@ declare namespace _Lib {
   export interface T100 {
     isBN: (object: any) => boolean;
     isBigNumber: (object: any) => boolean;
+    isHexPrefixed: (str: string) => boolean;
+    stripHexPrefix: (str: string) => any;
     utf8ToHex: (str: string) => string;
     hexToUtf8: (hex: string) => string;
     numberToHex: (value: any) => string;
@@ -15,8 +17,8 @@ declare namespace _Lib {
     bytesToHex: (bytes: any[]) => string;
     toHex: (value: any, returnType: boolean) => string;
     numberToString: (arg: any) => any;
-    fromArc: (input: any, decimal?: number, optionsInput: any) => string;
-    toArc: (input: any, decimal?: number) => any;
+    fromUnitToToken: (input: any, decimal?: number, optionsInput: any) => string;
+    fromTokenToUnit: (input: any, decimal?: number) => any;
     toBN: (number: any) => any;
   }
 }

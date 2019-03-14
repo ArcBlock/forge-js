@@ -1,8 +1,9 @@
 import React from 'react';
 import numeral from 'numeral';
+import PropTypes from 'prop-types';
 import { useAsync, useLocalStorage } from 'react-use';
 import { Link } from 'react-router-dom';
-import { fromArc } from '@arcblock/forge-util';
+import { fromUnitToToken } from '@arcblock/forge-util';
 
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Table from '@material-ui/core/Table';
@@ -13,6 +14,7 @@ import TableRow from '@material-ui/core/TableRow';
 
 import AccountActivity from './account_activity';
 import forge from '../../../libs/forge';
+import { getExplorerUrl } from '../../../libs/util';
 
 async function fetchTopAccounts() {
   const { accounts } = await forge.getTopAccounts();
@@ -26,7 +28,7 @@ async function fetchTopAccounts() {
   }));
 }
 
-export default function TopAccountsSection() {
+export default function TopAccounts({ sparkline }) {
   const state = useAsync(fetchTopAccounts);
   const [token] = useLocalStorage('token');
 
@@ -46,9 +48,11 @@ export default function TopAccountsSection() {
           <TableCell align="left">Username</TableCell>
           <TableCell align="center">Balance</TableCell>
           <TableCell align="center">Assets</TableCell>
-          <TableCell align="left" style={{ width: '25%' }}>
-            Activities
-          </TableCell>
+          {sparkline && (
+            <TableCell align="left" style={{ width: '25%' }}>
+              Activities
+            </TableCell>
+          )}
         </TableRow>
       </TableHead>
       <TableBody>
@@ -58,18 +62,28 @@ export default function TopAccountsSection() {
               {x.rank}
             </TableCell>
             <TableCell align="left">
-              <Link to={`/node/explorer/accounts/${x.address}`}>{x.moniker}</Link>
+              <Link to={getExplorerUrl(`/accounts/${x.address}`)}>{x.moniker}</Link>
             </TableCell>
             <TableCell align="center">
-              {fromArc(x.balance, token.decimal)} {token.symbol}
+              {fromUnitToToken(x.balance, token.decimal)} {token.symbol}
             </TableCell>
             <TableCell align="center">{numeral(x.assets).format('0,0')}</TableCell>
-            <TableCell align="left">
-              <AccountActivity data={x.recentNumTxs} delayMS={i * 500} />
-            </TableCell>
+            {sparkline && (
+              <TableCell align="left">
+                <AccountActivity data={x.recentNumTxs} delayMS={i * 500} />
+              </TableCell>
+            )}
           </TableRow>
         ))}
       </TableBody>
     </Table>
   );
 }
+
+TopAccounts.propTypes = {
+  sparkline: PropTypes.bool,
+};
+
+TopAccounts.defaultProps = {
+  sparkline: true,
+};

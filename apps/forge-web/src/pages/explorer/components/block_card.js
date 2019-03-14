@@ -8,12 +8,13 @@ import { Link } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
 
 import IconFa from '../../../components/iconfa';
+import { getExplorerUrl } from '../../../libs/util';
 
 const BlockCard = React.memo(({ block, theme, ...rest }) => (
   <Container {...rest}>
     <div className="left">
       <Typography component="p" className="hash" gutterBottom>
-        <Link to={`/node/explorer/blocks/${block.height}`} title="View block detail">
+        <Link to={getExplorerUrl(`/blocks/${block.height}`)} title="View block detail">
           # {block.appHash}
         </Link>
       </Typography>
@@ -25,7 +26,7 @@ const BlockCard = React.memo(({ block, theme, ...rest }) => (
       </div>
       <Typography component="p" className="proposer">
         <span>Proposer:</span>
-        <Link to={`/node/explorer/accounts/${block.proposer}`} title="View account detail">
+        <Link to={getExplorerUrl(`/accounts/${block.proposer}`)} title="View account detail">
           {block.proposer}
         </Link>
       </Typography>
@@ -42,7 +43,7 @@ const BlockCard = React.memo(({ block, theme, ...rest }) => (
 const Container = styled.div`
   margin-bottom: ${props => props.theme.spacing.unit * 4}px;
   padding-left: ${props => props.theme.spacing.unit * 2}px;
-  border-left: 1px solid ${props => props.theme.colors.gray};
+  border-left: 1px solid ${props => props.theme.typography.color.gray};
   width: 100%;
   max-width: 800px;
   display: flex;
@@ -72,7 +73,7 @@ const Container = styled.div`
   .proposer a,
   .proposer span,
   .hash a {
-    color: #9b9b9b;
+    color: ${props => props.theme.typography.color.gray};
     font-size: 12px;
     cursor: pointer;
     width: 100%;

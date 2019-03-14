@@ -12,7 +12,7 @@ async function execute({ args: [addr] }) {
         if (result && result.code === 0) {
           const { state } = result.$format();
           if (state) {
-            state.balance = `${client.fromArc(state.balance)} TOKEN`;
+            state.balance = `${client.fromUnitToToken(state.balance)} TOKEN`;
             shell.echo(`${pretty(state)}`);
           } else {
             shell.echo(

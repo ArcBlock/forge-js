@@ -9,12 +9,13 @@ import Typography from '@material-ui/core/Typography';
 import Tooltip from '@material-ui/core/Tooltip';
 
 import IconFa from '../../../../components/iconfa';
+import { getExplorerUrl } from '../../../../libs/util';
 
 const DeclareTxSummary = React.memo(({ tx, theme, ...rest }) => (
   <Container {...rest}>
     <div className="info-row">
       <Typography component="p" className="hash" title={tx.hash}>
-        <Link to={`/node/explorer/txs/${tx.hash}`}># {tx.hash}</Link>
+        <Link to={getExplorerUrl(`/txs/${tx.hash}`)}># {tx.hash}</Link>
       </Typography>
       <Typography component="p" className="time" title={tx.time}>
         {moment(tx.time).fromNow()}
@@ -35,7 +36,7 @@ const DeclareTxSummary = React.memo(({ tx, theme, ...rest }) => (
       </Typography>
       <div className="sender">
         <Typography component="p" title={tx.tx.from}>
-          <Link to={`/node/explorer/accounts/${tx.tx.from}`}>{tx.tx.from}</Link>
+          <Link to={getExplorerUrl(`/accounts/${tx.tx.from}`)}>{tx.tx.from}</Link>
         </Typography>
       </div>
     </div>
@@ -65,7 +66,7 @@ const Container = styled.div`
   .time,
   .hash a,
   .type {
-    color: #9b9b9b;
+    color: ${props => props.theme.typography.color.gray};
     font-size: 12px;
   }
 
@@ -81,7 +82,7 @@ const Container = styled.div`
     margin-right: ${props => props.theme.spacing.unit}px;
 
     a {
-      color: #222222;
+      color: ${props => props.theme.typography.color.main};
     }
   }
 

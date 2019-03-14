@@ -18,6 +18,7 @@ import Icon from '../../components/iconfa';
 import Alert from '../../components/alert';
 
 import forge from '../../libs/forge';
+import { getExplorerUrl } from '../../libs/util';
 
 async function fetchTxs({ address, paging }) {
   return forge.listAssetTransactions({
@@ -77,19 +78,21 @@ class AssetDetail extends Page {
                   {
                     key: 'Created By',
                     value: (
-                      <Link to={`/node/explorer/accounts/${asset.issuer}`}>{asset.issuer}</Link>
+                      <Link to={getExplorerUrl(`/accounts/${asset.issuer}`)}>{asset.issuer}</Link>
                     ),
                   },
                   {
                     key: 'Owned By',
-                    value: <Link to={`/node/explorer/accounts/${asset.owner}`}>{asset.owner}</Link>,
+                    value: (
+                      <Link to={getExplorerUrl(`/accounts/${asset.owner}`)}>{asset.owner}</Link>
+                    ),
                   },
                   { key: 'Readonly?', value: asset.readonly ? 'Yes' : 'No' },
                   { key: 'Transferable?', value: asset.transferrable ? 'Yes' : 'No' },
                 ]}
               />
 
-              <Typography component="h3" variant="h6" style={{ marginBottom: '16px' }}>
+              <Typography component="h3" variant="h6" className="subtitle">
                 Related Transactions
               </Typography>
               <TxList address={asset.address} dataLoaderFn={fetchTxs} />
@@ -126,6 +129,11 @@ class AssetDetail extends Page {
 const Container = styled(Wrapper)`
   .tabs {
     margin-bottom: 60px;
+  }
+
+  .subtitle {
+    margin-top: 16px;
+    color: ${props => props.theme.typography.color.main};
   }
 `;
 

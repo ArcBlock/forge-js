@@ -4,31 +4,31 @@ const client = new RpcClient(
   parseConfig(path.resolve(__dirname, '../../../../examples/simple/forge.toml'))
 );
 
-describe('#fromArc & toArc', () => {
+describe('#fromUnitToToken & fromTokenToUnit', () => {
   test('should be function', () => {
-    expect(typeof client.fromArc).toEqual('function');
-    expect(typeof client.toArc).toEqual('function');
+    expect(typeof client.fromUnitToToken).toEqual('function');
+    expect(typeof client.fromTokenToUnit).toEqual('function');
   });
 
   test('should return same for number and string', () => {
-    expect(client.toArc(100)).toEqual(client.toArc('100'));
-    expect(client.toArc(-100)).toEqual(client.toArc('-100'));
-    expect(client.toArc(10000000000)).toEqual(client.toArc('10000000000'));
-    expect(client.toArc(9.87643)).toEqual(client.toArc('9.87643'));
+    expect(client.fromTokenToUnit(100)).toEqual(client.fromTokenToUnit('100'));
+    expect(client.fromTokenToUnit(-100)).toEqual(client.fromTokenToUnit('-100'));
+    expect(client.fromTokenToUnit(10000000000)).toEqual(client.fromTokenToUnit('10000000000'));
+    expect(client.fromTokenToUnit(9.87643)).toEqual(client.fromTokenToUnit('9.87643'));
   });
 
   [100, -100, 10000000000000].forEach(x => {
     test(`should support reverse op on integer: ${x}`, () => {
-      const encoded = client.toArc(x);
-      const decoded = client.fromArc(encoded);
+      const encoded = client.fromTokenToUnit(x);
+      const decoded = client.fromUnitToToken(encoded);
       expect(decoded).toEqual(x.toString());
     });
   });
 
   [8.8888, -8.8888, 3.3333333333333, 44444444444444444.5555].forEach(x => {
     test(`should support reverse op decimal: ${x}`, () => {
-      const encoded = client.toArc(x);
-      const decoded = client.fromArc(encoded);
+      const encoded = client.fromTokenToUnit(x);
+      const decoded = client.fromUnitToToken(encoded);
       expect(decoded).toEqual(x.toString());
     });
   });

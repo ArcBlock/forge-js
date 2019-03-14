@@ -60,6 +60,7 @@ const Container = styled(Wrapper)`
     text-transform: uppercase;
     line-height: 1.33;
     letter-spacing: 2.6px;
+    color: ${props => props.theme.typography.color.main};
   }
 
   .section__content {

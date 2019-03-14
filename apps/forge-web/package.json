@@ -41,8 +41,11 @@
     "clean": "rm -rf build",
     "precommit": "npm run lint && CI=1 yarn test",
     "prepush": "npm run lint && CI=1 yarn test",
-    "start": "./tools/start.sh",
-    "build": "./tools/build.sh",
+    "start:node": "REACT_APP_NAME=node ./tools/start.sh",
+    "start:explorer": "REACT_APP_NAME=explorer ./tools/start.sh",
+    "build": "npm run build:node",
+    "build:node": "REACT_APP_NAME=node ./tools/build.sh",
+    "build:explorer": "REACT_APP_NAME=explorer ./tools/build.sh",
     "test": "react-app-rewired test"
   },
   "config-overrides-path": "tools/config.js",

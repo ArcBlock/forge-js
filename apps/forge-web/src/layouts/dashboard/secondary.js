@@ -51,7 +51,7 @@ const MenuItems = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  box-shadow: 2px 0px 10px 0 rgba(0, 0, 0, 0.05);
+  box-shadow: 2px 0px 10px 0 rgba(0, 0, 0, ${props => (props.theme.mode === 'light' ? 0.05 : 0.5)});
   box-sizing: border-box;
 
   .secondary-title {

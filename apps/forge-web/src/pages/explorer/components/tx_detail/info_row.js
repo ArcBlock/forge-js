@@ -55,7 +55,7 @@ const Container = styled.div`
 
   .info-row__value {
     a {
-      color: #222222;
+      color: ${props => props.theme.typography.color.main};
       text-decoration: underline;
     }
   }

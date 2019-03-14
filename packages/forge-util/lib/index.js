@@ -349,7 +349,7 @@ const numberToString = arg => {
   );
 };
 
-const fromArc = (input, decimal = 16, optionsInput) => {
+const fromUnitToToken = (input, decimal = 16, optionsInput) => {
   let arc = numberToBN(input);
   const negative = arc.lt(zero);
   const base = toBN(`1${'0'.repeat(decimal)}`, 10);
@@ -382,7 +382,7 @@ const fromArc = (input, decimal = 16, optionsInput) => {
   return value;
 };
 
-const toArc = (input, decimal = 16) => {
+const fromTokenToUnit = (input, decimal = 16) => {
   let ether = numberToString(input);
   const base = toBN(`1${'0'.repeat(decimal)}`, 10);
   const baseLength = base.toString(10).length - 1 || 1;
@@ -448,7 +448,7 @@ module.exports = {
   bytesToHex,
   toHex,
   numberToString,
-  fromArc,
-  toArc,
+  fromUnitToToken,
+  fromTokenToUnit,
   toBN,
 };

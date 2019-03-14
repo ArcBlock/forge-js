@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { useAsync } from 'react-use';
 import { Link } from 'react-router-dom';
 
@@ -11,6 +12,7 @@ import TableRow from '@material-ui/core/TableRow';
 
 import AccountActivity from './account_activity';
 import forge from '../../../libs/forge';
+import { getExplorerUrl } from '../../../libs/util';
 
 async function fetchTopValidators() {
   const {
@@ -19,7 +21,7 @@ async function fetchTopValidators() {
   return validators.sort((a, b) => b.votingPower - a.votingPower);
 }
 
-export default function TopAccountsSection() {
+export default function TopValidators({ sparkline }) {
   const state = useAsync(fetchTopValidators);
 
   if (state.loading) {
@@ -38,9 +40,11 @@ export default function TopAccountsSection() {
           <TableCell align="left">Address</TableCell>
           <TableCell align="center">Voting Power</TableCell>
           <TableCell align="center">Proposer Priority</TableCell>
-          <TableCell align="left" style={{ width: '25%' }}>
-            Activities
-          </TableCell>
+          {sparkline && (
+            <TableCell align="left" style={{ width: '25%' }}>
+              Activities
+            </TableCell>
+          )}
         </TableRow>
       </TableHead>
       <TableBody>
@@ -48,16 +52,26 @@ export default function TopAccountsSection() {
           <TableRow key={x.address}>
             <TableCell align="left">{i + 1}</TableCell>
             <TableCell align="left">
-              <Link to={`/node/explorer/accounts/${x.address}`}>{x.address}</Link>
+              <Link to={getExplorerUrl(`/accounts/${x.address}`)}>{x.address}</Link>
             </TableCell>
             <TableCell align="center">{x.votingPower}</TableCell>
             <TableCell align="center">{x.proposerPriority}</TableCell>
-            <TableCell align="left">
-              <AccountActivity data={[...Array(7).fill(0)]} delayMS={i * 500} />
-            </TableCell>
+            {sparkline && (
+              <TableCell align="left">
+                <AccountActivity data={[...Array(7).fill(0)]} delayMS={i * 500} />
+              </TableCell>
+            )}
           </TableRow>
         ))}
       </TableBody>
     </Table>
   );
 }
+
+TopValidators.propTypes = {
+  sparkline: PropTypes.bool,
+};
+
+TopValidators.defaultProps = {
+  sparkline: true,
+};

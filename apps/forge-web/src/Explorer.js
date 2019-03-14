@@ -4,11 +4,11 @@ import ReactDOM from 'react-dom';
 import ReactGA from 'react-ga';
 import ABA from '@arcblock/analytics-js';
 
-import ForgeWeb from './apps/ForgeWeb';
+import Explorer from './apps/Explorer';
 
 if (process.env.NODE_ENV === 'production') {
   ABA.initialize('forge_web');
   ReactGA.initialize('UA-121627413-1');
 }
 
-ReactDOM.render(<ForgeWeb />, document.getElementById('root'));
+ReactDOM.render(<Explorer />, document.getElementById('root'));

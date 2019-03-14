@@ -1,7 +1,7 @@
 /* eslint no-console:"off" */
 const { fromRandom, WalletType } = require('@arcblock/forge-wallet');
 const Mcrypto = require('@arcblock/mcrypto');
-const { hexToBytes, toArc } = require('@arcblock/forge-util');
+const { hexToBytes, fromTokenToUnit } = require('@arcblock/forge-util');
 
 const GraphqlClient = require('./src/node');
 
@@ -54,7 +54,7 @@ const type = WalletType({
     const res = await client.sendTransferTx({
       data: {
         to: receiver.toAddress(),
-        value: { value: toArc(100).toBuffer() },
+        value: { value: fromTokenToUnit(100).toBuffer() },
       },
       wallet: sender,
     });

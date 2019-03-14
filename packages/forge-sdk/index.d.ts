@@ -6,8 +6,8 @@ declare class RpcClient {
    * then 1 token (e.g. ABT) = 10^16 arc. When sending transfer tx or exchange tx,
    * the value shall be created with Arc.
    */
-  fromArc(value: any): string;
-  toArc(value: any): any;
+  fromUnitToToken(value: any): string;
+  fromTokenToUnit(value: any): any;
   /**
    * List standard rpc methods
    *

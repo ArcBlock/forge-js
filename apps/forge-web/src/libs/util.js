@@ -4,7 +4,7 @@ import browserLang from 'browser-lang';
 import camelCase from 'lodash/camelCase';
 import upperFirst from 'lodash/upperFirst';
 import numeral from 'numeral';
-import { fromArc } from '@arcblock/forge-util';
+import { fromUnitToToken } from '@arcblock/forge-util';
 import { languages, translations } from './locale';
 import { COOKIE_LANGUAGE } from './constant';
 
@@ -69,5 +69,9 @@ export function toTypeUrl(type) {
 }
 
 export function fromArcToReadable(bn) {
-  return numeral(fromArc(bn)).format('0,0.0000');
+  return numeral(fromUnitToToken(bn)).format('0,0.0000');
+}
+
+export function getExplorerUrl(url) {
+  return process.env.REACT_APP_NAME === 'explorer' ? url : `/node/explorer${url}`;
 }

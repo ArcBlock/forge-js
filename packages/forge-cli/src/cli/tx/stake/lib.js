@@ -82,7 +82,7 @@ async function main(answers, action) {
       token,
       itx: {
         to: target,
-        value: client.toArc(action === 'stake' ? amount : -amount),
+        value: client.fromTokenToUnit(action === 'stake' ? amount : -amount),
         message,
         data: {
           type,
@@ -123,9 +123,9 @@ function getState() {
         if (result && result.code === 0) {
           const { state } = result.$format();
           debug('getState', result.$format().state);
-          state.balance = client.fromArc(state.balance);
-          state.stake.totalStakes = client.fromArc(state.stake.totalStakes);
-          state.stake.totalUnstakes = client.fromArc(state.stake.totalUnstakes);
+          state.balance = client.fromUnitToToken(state.balance);
+          state.stake.totalStakes = client.fromUnitToToken(state.stake.totalStakes);
+          state.stake.totalUnstakes = client.fromUnitToToken(state.stake.totalUnstakes);
 
           resolve(state);
         } else {
@@ -175,7 +175,7 @@ async function getStakes(opts) {
       table.push([
         itx.data.type,
         itx.to,
-        client.fromArc(itx.value),
+        client.fromUnitToToken(itx.value),
         itx.message,
         x.time.slice(0, 19),
       ]);

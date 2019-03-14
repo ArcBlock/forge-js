@@ -10,6 +10,7 @@ import Typography from '@material-ui/core/Typography';
 import Tooltip from '@material-ui/core/Tooltip';
 
 import IconFa from '../../../../components/iconfa';
+import { getExplorerUrl } from '../../../../libs/util';
 
 const CreateAssetTx = React.memo(({ tx, type, theme, ...rest }) => {
   const address = get(tx, 'createAsset.asset') || get(tx, 'updateAsset.asset');
@@ -18,7 +19,7 @@ const CreateAssetTx = React.memo(({ tx, type, theme, ...rest }) => {
     <Container {...rest}>
       <div className="info-row">
         <Typography component="p" className="hash" title={tx.hash}>
-          <Link to={`/node/explorer/txs/${tx.hash}`}># {tx.hash}</Link>
+          <Link to={getExplorerUrl(`/txs/${tx.hash}`)}># {tx.hash}</Link>
         </Typography>
         <Typography component="p" className="time" title={tx.time}>
           {moment(tx.time).fromNow()}
@@ -39,7 +40,7 @@ const CreateAssetTx = React.memo(({ tx, type, theme, ...rest }) => {
         </Typography>
         {address && (
           <Typography component="p" className="address" title={address}>
-            <Link to={`/node/explorer/assets/${address}`}>{address}</Link>
+            <Link to={getExplorerUrl(`/assets/${address}`)}>{address}</Link>
           </Typography>
         )}
       </div>
@@ -69,7 +70,7 @@ const Container = styled.div`
 
   .time,
   .hash a {
-    color: #9b9b9b;
+    color: ${props => props.theme.typography.color.gray};
     font-size: 12px;
   }
 
@@ -83,7 +84,7 @@ const Container = styled.div`
     font-size: 14px;
 
     a {
-      color: #222222;
+      color: ${props => props.theme.typography.color.main};
     }
 
     .type {

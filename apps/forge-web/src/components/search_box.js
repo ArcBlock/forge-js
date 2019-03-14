@@ -7,6 +7,7 @@ import AsyncSelect from 'react-select/lib/Async';
 import { withRouter } from 'react-router-dom';
 
 import forge from '../libs/forge';
+import { getExplorerUrl } from '../libs/util';
 
 class SearchBox extends React.Component {
   static propTypes = {
@@ -50,25 +51,25 @@ class SearchBox extends React.Component {
       tx: {
         query: `{ getTx(hash: "${keyword}") { info { hash } } }`,
         label: v => `Transaction: ${v}`,
-        value: v => `/node/explorer/txs/${v}`,
+        value: v => getExplorerUrl(`/txs/${v}`),
         path: 'getTx.info.hash',
       },
       block: {
         query: `{ getBlock(height: ${keyword}) { block { height } } }`,
         label: v => `Block: ${v}`,
-        value: v => `/node/explorer/blocks/${v}`,
+        value: v => getExplorerUrl(`/blocks/${v}`),
         path: 'getBlock.block.height',
       },
       account: {
         query: `{ getAccountState(address: "${keyword}") { state { address } } }`,
         label: v => `Account: ${v}`,
-        value: v => `/node/explorer/accounts/${v}`,
+        value: v => getExplorerUrl(`/accounts/${v}`),
         path: 'getAccountState.state.address',
       },
       asset: {
         query: `{ getAssetState(address: "${keyword}") { state { address } } }`,
         label: v => `Asset: ${v}`,
-        value: v => `/node/explorer/assets/${v}`,
+        value: v => getExplorerUrl(`/assets/${v}`),
         path: 'getAssetState.state.address',
       },
     };
