@@ -43,6 +43,7 @@
     "prepush": "npm run lint && CI=1 yarn test",
     "start:node": "REACT_APP_NAME=node ./tools/start.sh",
     "start:explorer": "REACT_APP_NAME=explorer ./tools/start.sh",
+    "build": "npm run build:node",
     "build:node": "REACT_APP_NAME=node ./tools/build.sh",
     "build:explorer": "REACT_APP_NAME=explorer ./tools/build.sh",
     "test": "react-app-rewired test"
