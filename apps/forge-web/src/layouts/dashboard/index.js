@@ -2,200 +2,78 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import classNames from 'classnames';
-import Gravatar from 'react-gravatar';
-import qs from 'querystring';
 
 import { withStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
 import Divider from '@material-ui/core/Divider';
-import Button from '@material-ui/core/Button';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
 
 import Sidebar from './sidebar';
 import SecondaryLinks from './secondary';
 import NodeInfo from './node_info';
+import ThemeSwitcher from './theme_switcher';
+
 // import SearchBox from '../../components/search_box';
 import withI18n from '../../components/withI18n';
 import withRoot from '../../components/withRoot';
 import withTracker from '../../components/withTracker';
 
-import { colors } from '../../libs/constant';
-
-// TODO: attach language switcher on top
-class Dashboard extends React.Component {
-  static propTypes = {
-    children: PropTypes.any.isRequired,
-    classes: PropTypes.object.isRequired,
-    location: PropTypes.object.isRequired,
-    session: PropTypes.object,
-  };
-
-  static defaultProps = {
-    // FIXME: auth and session
-    session: { user: { email: 'wangshijun2010@gmail.com' } },
-  };
-
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      anchorEl: null,
+const getSecondaryLinks = location => {
+  if (/^\/node\//.test(location.pathname)) {
+    return {
+      title: 'Node',
+      links: [
+        // { link: '/node/status', title: 'Status' },
+        { link: '/node/explorer/txs', title: 'Block Explorer' },
+        { link: '/node/query', title: 'Query' },
+        // { link: '/node/storage', title: 'Storage' },
+      ],
     };
   }
 
-  render() {
-    const { children, classes } = this.props;
-    const { title, links } = this.getSecondaryLinks();
-    const hasSecondaryLinks = !!links.length;
-    const version = process.env.REACT_APP_VERSION;
+  return { title: '', links: [] };
+};
 
-    return (
-      <div className={classes.root}>
-        {this.renderAppBar()}
-        {this.renderDrawer()}
-        <main className={classes.content}>
-          {hasSecondaryLinks && (
-            <Content direction="row">
-              <SecondaryLinks links={links} title={title} />
-              <Content direction="column">{children}</Content>
-            </Content>
-          )}
-          {!hasSecondaryLinks && <Content direction="column">{children}</Content>}
-          <Version key={version}>
-            v{version} <span className="highlight">beta</span>
-          </Version>
-        </main>
-        {this.renderSecurityDialog()}
-      </div>
-    );
-  }
+function Dashboard({ children, classes, location }) {
+  const { title, links } = getSecondaryLinks(location);
+  const hasSecondaryLinks = !!links.length;
+  const version = process.env.REACT_APP_VERSION;
 
-  getSecondaryLinks() {
-    const { pathname } = this.props.location;
-    if (/^\/node\//.test(pathname)) {
-      return {
-        title: 'Node',
-        links: [
-          // { link: '/node/status', title: 'Status' },
-          { link: '/node/explorer/txs', title: 'Block Explorer' },
-          { link: '/node/query', title: 'Query' },
-          // { link: '/node/storage', title: 'Storage' },
-        ],
-      };
-    }
-
-    return { title: '', links: [] };
-  }
-
-  renderAppBar() {
-    const { classes, session } = this.props;
-    const { anchorEl } = this.state;
-    return (
+  return (
+    <div className={classes.root}>
       <AppBar position="absolute" className={classes.appBar}>
         <Toolbar disableGutters={false} className={classes.toolbar}>
           <NodeInfo />
-          {session.user && [
-            <IconButton
-              color="inherit"
-              key="avatar"
-              aria-owns={anchorEl ? 'user-menu' : null}
-              aria-haspopup="true"
-              onClick={this.onMenuOpen}>
-              <Gravatar
-                style={{ borderRadius: '20px', width: '50px', height: '50px' }}
-                email={session.user.email}
-                title={session.user.email}
-              />
-            </IconButton>,
-            <Menu
-              id="user-menu"
-              key="menu"
-              anchorEl={anchorEl}
-              open={Boolean(anchorEl)}
-              onClose={this.onMenuClose}>
-              <MenuItem onClick={this.onProfile}>{session.user.email}</MenuItem>
-              <MenuItem onClick={this.onLogout}>Logout</MenuItem>
-            </Menu>,
-          ]}
+          <ThemeSwitcher />
         </Toolbar>
       </AppBar>
-    );
-  }
-
-  renderDrawer() {
-    const { classes } = this.props;
-    return (
       <Drawer variant="permanent" classes={{ paper: classNames(classes.drawerPaper) }} open={true}>
         <div className={classes.toolbarIcon} />
         <Divider />
         <Sidebar open={true} />
       </Drawer>
-    );
-  }
-
-  renderSecurityDialog() {
-    const { session } = this.props;
-    if (session.loading || session.user) {
-      return null;
-    }
-
-    return (
-      <Dialog
-        open={true}
-        disableBackdropClick={true}
-        disableEscapeKeyDown={true}
-        onClose={this.onDialogClose}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description">
-        <DialogTitle id="alert-dialog-title">Security Alert</DialogTitle>
-        <DialogContent>
-          <DialogContentText id="alert-dialog-description" style={{ color: colors.red }}>
-            Sorry! We cannot verify your login state, to protect your information please login
-            again. {session.errmsg || ''}
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={this.onDialogClose} color="primary" autoFocus>
-            Login
-          </Button>
-        </DialogActions>
-      </Dialog>
-    );
-  }
-
-  onDialogClose = () => {
-    window.location.href = `/auth/login?${qs.stringify({
-      login_redirect: window.location.toString(),
-    })}`;
-  };
-
-  onMenuOpen = e => {
-    this.setState({ anchorEl: e.currentTarget });
-  };
-
-  onMenuClose = () => {
-    this.setState({ anchorEl: null });
-  };
-
-  onProfile = () => {
-    this.setState({ anchorEl: null });
-    window.location.href = '/users/profile';
-  };
-
-  onLogout = () => {
-    window.location.href = '/auth/login';
-  };
+      <main className={classes.content}>
+        {hasSecondaryLinks && (
+          <Content direction="row">
+            <SecondaryLinks links={links} title={title} />
+            <Content direction="column">{children}</Content>
+          </Content>
+        )}
+        {!hasSecondaryLinks && <Content direction="column">{children}</Content>}
+        <Version key={version}>
+          v{version} <span className="highlight">beta</span>
+        </Version>
+      </main>
+    </div>
+  );
 }
+
+Dashboard.propTypes = {
+  children: PropTypes.any.isRequired,
+  classes: PropTypes.object.isRequired,
+  location: PropTypes.object.isRequired,
+};
 
 const Content = styled.div`
   height: ${props => (props.direction === 'row' ? '100%' : 'auto')};
@@ -217,7 +95,6 @@ const Version = styled.div`
 
 const drawerWidth = 100;
 
-// TODO: eliminate this kind of styling, low priority
 const styles = theme => ({
   root: {
     display: 'flex',
@@ -243,14 +120,6 @@ const styles = theme => ({
     transition: theme.transitions.create(['width', 'margin'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
-    }),
-  },
-  appBarShift: {
-    marginLeft: drawerWidth,
-    width: `calc(100% - ${drawerWidth}px)`,
-    transition: theme.transitions.create(['width', 'margin'], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
     }),
   },
   menuButton: {
