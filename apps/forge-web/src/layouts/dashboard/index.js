@@ -117,7 +117,8 @@ const Container = styled.div`
     white-space: nowrap;
     width: 100px;
     background: ${props => props.theme.palette.background.default};
-    box-shadow: 2px 16px 10px 0 rgba(0, 0, 0, 0.05);
+    box-shadow: 2px 16px 10px 0
+      rgba(0, 0, 0, ${props => (props.theme.mode === 'light' ? 0.05 : 0.5)});
     border: 0;
   }
 

@@ -12,7 +12,7 @@ export default function ThemeSwitcher() {
     <FormControlLabel
       control={
         <Switch
-          checked={theme === 'light'}
+          checked={theme === 'dark'}
           onChange={() => setTheme(theme === 'light' ? 'dark' : 'light')}
           value="theme"
           color={theme === 'light' ? 'default' : 'primary'}

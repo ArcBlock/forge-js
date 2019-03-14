@@ -70,6 +70,10 @@ const Container = styled.div`
   overflow: hidden;
 
   .graphiql-container {
+    .title {
+      color: ${props => props.theme.typography.color.main};
+    }
+
     .topBar {
       background-image: none;
       height: 64px;
@@ -94,7 +98,8 @@ const Container = styled.div`
       top: 74px;
       right: 0;
       background-color: ${props => props.theme.palette.background.default};
-      box-shadow: -5px 16px 10px 0 rgba(0, 0, 0, 0.05);
+      box-shadow: -5px 16px 10px 0
+        rgba(0, 0, 0, ${props => (props.theme.mode === 'light' ? 0.05 : 0.5)});
       z-index: 3;
     }
 
@@ -124,9 +129,17 @@ const Container = styled.div`
       background-color: ${props => props.theme.palette.background.default};
     }
 
+    .history-contents {
+      color: ${props => props.theme.typography.color.main};
+      p {
+        border-bottom: 1px solid ${props => props.theme.typography.color.gray};
+      }
+    }
+
     .historyPaneWrap {
       background-color: ${props => props.theme.palette.background.default};
-      box-shadow: 5px 16px 10px 0 rgba(0, 0, 0, 0.05);
+      box-shadow: 5px 16px 10px 0
+        rgba(0, 0, 0, ${props => (props.theme.mode === 'light' ? 0.05 : 0.5)});
     }
 
     .docExplorerWrap {
@@ -139,6 +152,7 @@ const Container = styled.div`
     }
 
     .docExplorerHide {
+      color: ${props => props.theme.typography.color.main};
       padding: 0;
     }
 
@@ -190,7 +204,10 @@ const Container = styled.div`
       }
     }
 
-    .CodeMirror {
+    .CodeMirror,
+    .CodeMirror-gutters,
+    .CodeMirror-linenumber,
+    .CodeMirror-foldgutter {
       background: ${props => props.theme.palette.background.default};
     }
 

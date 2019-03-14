@@ -5,21 +5,21 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import { colors, sizes } from '../libs/constant';
 import { useLocalStorage } from '../libs/hooks';
 
-const createTheme = theme =>
+const createTheme = mode =>
   createMuiTheme({
     palette: {
       primary: { main: colors.green, contrastText: colors.white },
       secondary: { main: colors.red, contrastText: colors.white },
       background: {
-        paper: theme === 'light' ? colors.white : colors.gray,
-        default: theme === 'light' ? colors.background : colors.gray,
+        paper: mode === 'light' ? colors.white : colors.gray,
+        default: mode === 'light' ? colors.background : colors.gray,
       },
     },
     typography: {
       useNextVariants: true,
       color: {
-        main: theme === 'light' ? colors.gray : colors.white,
-        gray: theme === 'light' ? colors.minor : colors.darkText,
+        main: mode === 'light' ? colors.gray : colors.white,
+        gray: mode === 'light' ? colors.minor : colors.darkText,
         blue: '#1e43fa',
       },
       fontSize: 16,
@@ -52,7 +52,7 @@ const createTheme = theme =>
       },
       MuiToolbar: {
         root: {
-          background: theme === 'light' ? colors.background : colors.gray,
+          background: mode === 'light' ? colors.background : colors.gray,
         },
       },
       MuiTableCell: {
@@ -65,10 +65,10 @@ const createTheme = theme =>
         },
         head: {
           textTransform: 'uppercase',
-          color: theme === 'light' ? colors.gray : colors.darkText,
+          color: mode === 'light' ? colors.gray : colors.darkText,
         },
         body: {
-          color: theme === 'light' ? colors.gray : colors.darkText,
+          color: mode === 'light' ? colors.gray : colors.darkText,
         },
       },
       MuiChip: {
@@ -91,28 +91,22 @@ const createTheme = theme =>
       },
       MuiTypography: {
         body1: {
-          color: theme === 'light' ? colors.gray : colors.darkText,
+          color: mode === 'light' ? colors.gray : colors.darkText,
         },
         body2: {
-          color: theme === 'light' ? colors.gray : colors.darkText,
+          color: mode === 'light' ? colors.gray : colors.darkText,
         },
       },
     },
     colors,
     sizes,
+    mode,
   });
 
 const GlobalStyle = createGlobalStyle`
   body {
-    margin: 0;
-    padding: 0;
-    font-family: Avenir, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
-      'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    font-size: 16px;
-    background: ${props => (props.palette === 'light' ? colors.background : colors.gray)};
-    color: ${props => (props.palette === 'light' ? colors.gray : colors.darkText)};
+    background: ${props => (props.mode === 'light' ? colors.background : colors.gray)};
+    color: ${props => (props.mode === 'light' ? colors.gray : colors.darkText)};
   }
 
   code {
@@ -123,7 +117,7 @@ const GlobalStyle = createGlobalStyle`
   a:hover,
   a:active {
     text-decoration: none;
-    color: ${props => (props.palette === 'light' ? colors.gray : colors.darkText)};
+    color: ${props => (props.mode === 'light' ? colors.gray : colors.darkText)};
   }
 
   td a:hover {
@@ -133,15 +127,15 @@ const GlobalStyle = createGlobalStyle`
 
 function withRoot(Component) {
   function WithRoot(props) {
-    const [theme] = useLocalStorage('theme', 'light');
-    const themeObj = createTheme(theme);
+    const [mode] = useLocalStorage('theme', 'light');
+    const theme = createTheme(mode);
 
     return (
-      <MuiThemeProvider theme={themeObj}>
-        <ThemeProvider theme={themeObj}>
+      <MuiThemeProvider theme={theme}>
+        <ThemeProvider theme={theme}>
           <React.Fragment>
             <CssBaseline />
-            <GlobalStyle palette={theme} />
+            <GlobalStyle mode={mode} />
             <Component {...props} />
           </React.Fragment>
         </ThemeProvider>
