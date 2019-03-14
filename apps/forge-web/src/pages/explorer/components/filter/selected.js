@@ -46,13 +46,19 @@ const SelectedContainer = styled.div`
   align-items: center;
 
   .title {
-    color: ${props => props.theme.colors.minor};
+    color: ${props => props.theme.typography.color.gray};
     text-transform: uppercase;
     margin-right: 16px;
   }
 
   .type-item {
     margin-right: 8px;
+    color: ${props => props.theme.typography.color.main};
+    border-color: ${props => props.theme.typography.color.main};
+
+    svg {
+      color: ${props => props.theme.typography.color.main};
+    }
   }
 `;
 

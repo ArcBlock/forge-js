@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { useList } from 'react-use';
+import { withTheme } from '@material-ui/core/styles';
 
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
@@ -16,7 +17,7 @@ import CheckedIcon from '@material-ui/icons/CheckBox';
 import IconFa from '../../../../components/iconfa';
 import { fromTypeUrl } from '../../../../libs/util';
 
-function FilterChooser({ supportedTxs, onClose, onApplyFilter, selectedTxs }) {
+function FilterChooser({ supportedTxs, onClose, onApplyFilter, selectedTxs, theme }) {
   const options = ['all'].concat(supportedTxs);
   const values =
     selectedTxs.length === supportedTxs.length ? ['all'].concat(selectedTxs) : selectedTxs;
@@ -68,7 +69,11 @@ function FilterChooser({ supportedTxs, onClose, onApplyFilter, selectedTxs }) {
                 control={
                   <Checkbox
                     color="primary"
-                    icon={<CheckBoxIcon style={{ fontSize: '18px' }} />}
+                    icon={
+                      <CheckBoxIcon
+                        style={{ fontSize: '18px', color: theme.typography.color.gray }}
+                      />
+                    }
                     checkedIcon={<CheckedIcon style={{ fontSize: '18px' }} />}
                     checked={selected.includes(x)}
                     onChange={getHandler(x)}
@@ -100,6 +105,7 @@ FilterChooser.propTypes = {
   onApplyFilter: PropTypes.func.isRequired,
   onClose: PropTypes.func.isRequired,
   selectedTxs: PropTypes.arrayOf(PropTypes.string).isRequired,
+  theme: PropTypes.object.isRequired,
 };
 
 const ChooserContainer = styled.div`
@@ -155,4 +161,4 @@ const ChooserContainer = styled.div`
   }
 `;
 
-export default FilterChooser;
+export default withTheme()(FilterChooser);

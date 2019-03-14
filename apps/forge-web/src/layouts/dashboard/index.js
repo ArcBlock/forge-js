@@ -48,7 +48,7 @@ function Dashboard({ children, location }) {
       <Drawer variant="permanent" classes={{ paper: 'drawerPaper' }} open={true}>
         <Sidebar open={true} />
       </Drawer>
-      <main className="content">
+      <main className="main">
         {hasSecondaryLinks && (
           <Content direction="row">
             <SecondaryLinks links={links} title={title} />
@@ -96,6 +96,7 @@ const Container = styled.div`
     color: ${props => props.theme.palette.text.primary};
     display: flex;
     justify-content: space-between;
+    margin-top: ${props => props.theme.spacing.unit}px;
   }
 
   .toolbarIcon {
@@ -109,12 +110,14 @@ const Container = styled.div`
     z-index: ${props => props.theme.zIndex.drawer + 1};
     background: ${props => props.theme.palette.background.default};
     box-shadow: 0 0 0 0 transparent;
+    box-shadow: 2px 2px 10px 0
+      rgba(0, 0, 0, ${props => (props.theme.mode === 'light' ? 0.05 : 0.5)});
   }
 
   .drawerPaper {
     position: relative;
     padding-top: 80px;
-    white-space: nowrap;
+    white-space: no-wrap;
     width: 100px;
     background: ${props => props.theme.palette.background.default};
     box-shadow: 2px 16px 10px 0
@@ -122,7 +125,7 @@ const Container = styled.div`
     border: 0;
   }
 
-  .content {
+  .main {
     flex-grow: 1;
     padding-top: 80px;
     height: 100vh;
