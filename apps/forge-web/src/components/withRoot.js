@@ -3,7 +3,7 @@ import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { colors, sizes } from '../libs/constant';
-import { useLocalStorage } from '../libs/hooks';
+import { useThemeMode } from '../libs/hooks';
 
 const createTheme = mode =>
   createMuiTheme({
@@ -98,7 +98,7 @@ const createTheme = mode =>
         },
       },
     },
-    pageWidth: 1320,
+    pageWidth: process.env.REACT_APP_NAME === 'explorer' ? 1320 : 1000,
     colors,
     sizes,
     mode,
@@ -128,7 +128,7 @@ const GlobalStyle = createGlobalStyle`
 
 function withRoot(Component) {
   function WithRoot(props) {
-    const [mode] = useLocalStorage('theme', 'light');
+    const [mode] = useThemeMode();
     const theme = createTheme(mode);
 
     return (

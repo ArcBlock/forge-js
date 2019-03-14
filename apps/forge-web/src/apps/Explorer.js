@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { BrowserRouter, HashRouter, Route, Switch, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import { IntlProvider, addLocaleData } from 'react-intl';
 import { useAsync, useLocalStorage } from 'react-use';
 
@@ -38,7 +38,6 @@ async function fetchInfo() {
   }
 }
 
-const Router = process.env.NODE_ENV === 'production' ? BrowserRouter : HashRouter;
 const App = () => {
   const [, setToken] = useLocalStorage('token', {});
   const state = useAsync(fetchInfo);
