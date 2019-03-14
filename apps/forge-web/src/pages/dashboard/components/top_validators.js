@@ -12,6 +12,7 @@ import TableRow from '@material-ui/core/TableRow';
 
 import AccountActivity from './account_activity';
 import forge from '../../../libs/forge';
+import { getExplorerUrl } from '../../../libs/util';
 
 async function fetchTopValidators() {
   const {
@@ -51,7 +52,7 @@ export default function TopValidators({ sparkline }) {
           <TableRow key={x.address}>
             <TableCell align="left">{i + 1}</TableCell>
             <TableCell align="left">
-              <Link to={`/node/explorer/accounts/${x.address}`}>{x.address}</Link>
+              <Link to={getExplorerUrl(`/accounts/${x.address}`)}>{x.address}</Link>
             </TableCell>
             <TableCell align="center">{x.votingPower}</TableCell>
             <TableCell align="center">{x.proposerPriority}</TableCell>

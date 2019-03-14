@@ -12,16 +12,18 @@ import SearchBox from '../../../../components/search_box';
 import FilterPanel from './panel';
 import SelectedList from './selected';
 
+import { getExplorerUrl } from '../../../../libs/util';
+
 function FilterStrip({ theme, location, showFilter, supportedTxs, onApplyFilter, selectedTxs }) {
   const links = [
     {
       name: 'txs',
-      url: '/node/explorer/txs',
+      url: getExplorerUrl('/txs'),
       icon: 'file-invoice',
     },
     {
       name: 'blocks',
-      url: '/node/explorer/blocks',
+      url: getExplorerUrl('/blocks'),
       icon: 'boxes',
     },
   ];

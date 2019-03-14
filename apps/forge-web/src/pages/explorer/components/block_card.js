@@ -8,12 +8,13 @@ import { Link } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
 
 import IconFa from '../../../components/iconfa';
+import { getExplorerUrl } from '../../../libs/util';
 
 const BlockCard = React.memo(({ block, theme, ...rest }) => (
   <Container {...rest}>
     <div className="left">
       <Typography component="p" className="hash" gutterBottom>
-        <Link to={`/node/explorer/blocks/${block.height}`} title="View block detail">
+        <Link to={getExplorerUrl(`/blocks/${block.height}`)} title="View block detail">
           # {block.appHash}
         </Link>
       </Typography>
@@ -25,7 +26,7 @@ const BlockCard = React.memo(({ block, theme, ...rest }) => (
       </div>
       <Typography component="p" className="proposer">
         <span>Proposer:</span>
-        <Link to={`/node/explorer/accounts/${block.proposer}`} title="View account detail">
+        <Link to={getExplorerUrl(`/accounts/${block.proposer}`)} title="View account detail">
           {block.proposer}
         </Link>
       </Typography>

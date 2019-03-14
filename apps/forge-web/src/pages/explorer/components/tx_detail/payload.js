@@ -6,6 +6,7 @@ import { fromArc } from '@arcblock/forge-util';
 import { useLocalStorage } from 'react-use';
 
 import IconFa from '../../../../components/iconfa';
+import { getExplorerUrl } from '../../../../libs/util';
 
 const Payload = ({ itx }) => {
   const hasAssets = !!(Array.isArray(itx.assets) && itx.assets.length);
@@ -18,7 +19,7 @@ const Payload = ({ itx }) => {
         itx.assets.map(x => (
           <li>
             <IconFa name="gem" size={14} className="meta-icon" />
-            <Link to={`/node/explorer/assets/${x}`}>{x}</Link>
+            <Link to={getExplorerUrl(`/assets/${x}`)}>{x}</Link>
           </li>
         ))}
       {hasValue && (

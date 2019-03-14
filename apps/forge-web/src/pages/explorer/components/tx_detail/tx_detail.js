@@ -7,6 +7,7 @@ import Button from '@material-ui/core/Button';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 import InfoRows from './info_row';
+import { getExplorerUrl } from '../../../../libs/util';
 
 export default class TxDetail extends React.Component {
   static propTypes = {
@@ -19,9 +20,9 @@ export default class TxDetail extends React.Component {
 
   rows = {
     hash: { path: 'hash' },
-    from: { path: 'tx.from', link: v => `/node/explorer/accounts/${v}` },
-    to: { path: 'tx.itx.to', link: v => `/node/explorer/accounts/${v}` },
-    block: { path: 'height', link: v => `/node/explorer/blocks/${v}` },
+    from: { path: 'tx.from', link: v => getExplorerUrl(`/accounts/${v}`) },
+    to: { path: 'tx.itx.to', link: v => getExplorerUrl(`/accounts/${v}`) },
+    block: { path: 'height', link: v => getExplorerUrl(`/blocks/${v}`) },
     index: { path: 'index' },
     nonce: { path: 'tx.nonce' },
   };

@@ -73,5 +73,5 @@ export function fromArcToReadable(bn) {
 }
 
 export function getExplorerUrl(url) {
-  return process.env.REACT_APP_NAME === 'explorer' ? `/node/explorer/${url}` : url;
+  return process.env.REACT_APP_NAME === 'explorer' ? url : `/node/explorer${url}`;
 }

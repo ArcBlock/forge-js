@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import TxDetail from './tx_detail';
 import SummaryHeader from '../summary_header';
 import IconFa from '../../../../components/iconfa';
+import { getExplorerUrl } from '../../../../libs/util';
 
 export default class ConsumeAssetDetail extends TxDetail {
   renderHeader() {
@@ -13,7 +14,7 @@ export default class ConsumeAssetDetail extends TxDetail {
       <SummaryHeader
         type="Consume Asset"
         title={
-          <Link to={`/node/explorer/assets/${tx.signatures[0].data.value}`}>
+          <Link to={getExplorerUrl(`/assets/${tx.signatures[0].data.value}`)}>
             {`Asset ${tx.signatures[0].data.value}`}
           </Link>
         }
@@ -21,7 +22,7 @@ export default class ConsumeAssetDetail extends TxDetail {
           {
             key: <IconFa name="user" size={12} className="meta-icon" />,
             value: (
-              <Link to={`/node/explorer/accounts/${tx.itx.issuer}`}>
+              <Link to={getExplorerUrl(`/accounts/${tx.itx.issuer}`)}>
                 {`Issuer: ${tx.itx.issuer}`}
               </Link>
             ),
@@ -29,7 +30,7 @@ export default class ConsumeAssetDetail extends TxDetail {
           {
             key: <IconFa name="user" size={12} className="meta-icon" />,
             value: (
-              <Link to={`/node/explorer/accounts/${tx.signatures[0].signer}`}>
+              <Link to={getExplorerUrl(`/accounts/${tx.signatures[0].signer}`)}>
                 {`Signer: ${tx.signatures[0].signer}`}
               </Link>
             ),

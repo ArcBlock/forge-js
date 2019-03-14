@@ -10,6 +10,7 @@ import Typography from '@material-ui/core/Typography';
 import Tooltip from '@material-ui/core/Tooltip';
 
 import IconFa from '../../../../components/iconfa';
+import { getExplorerUrl } from '../../../../libs/util';
 
 const ConsumeAssetTx = React.memo(({ tx, type, theme, ...rest }) => {
   const address = get(tx, 'tx.from', '');
@@ -18,7 +19,7 @@ const ConsumeAssetTx = React.memo(({ tx, type, theme, ...rest }) => {
     <Container {...rest}>
       <div className="info-row">
         <Typography component="p" className="hash" title={tx.hash}>
-          <Link to={`/node/explorer/txs/${tx.hash}`}># {tx.hash}</Link>
+          <Link to={getExplorerUrl(`/txs/${tx.hash}`)}># {tx.hash}</Link>
         </Typography>
         <Typography component="p" className="time" title={tx.time}>
           {moment(tx.time).fromNow()}
@@ -36,11 +37,11 @@ const ConsumeAssetTx = React.memo(({ tx, type, theme, ...rest }) => {
         </Tooltip>
         <Typography component="p" className="value">
           <span className="type">{type}</span>
-          {!!issuer && <Link to={`/node/explorer/accounts/${issuer}`}>Issuer: {issuer}</Link>}
+          {!!issuer && <Link to={getExplorerUrl(`/accounts/${issuer}`)}>Issuer: {issuer}</Link>}
         </Typography>
         {address && (
           <Typography component="p" className="address" title={address}>
-            <Link to={`/node/explorer/accounts/${address}`}>By: {address}</Link>
+            <Link to={getExplorerUrl(`/accounts/${address}`)}>By: {address}</Link>
           </Typography>
         )}
       </div>

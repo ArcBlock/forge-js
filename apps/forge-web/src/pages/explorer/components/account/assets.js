@@ -11,6 +11,8 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import PaginatedList from '../paginated_list';
 
+import { getExplorerUrl } from '../../../../libs/util';
+
 function renderAssets(assets) {
   return (
     <Table style={{ width: '100%', maxWidth: '800px' }}>
@@ -26,7 +28,7 @@ function renderAssets(assets) {
         {assets.map(x => (
           <TableRow key={x.address}>
             <TableCell align="left">
-              <Link to={`/node/explorer/assets/${x.address}`}>{x.address}</Link>
+              <Link to={getExplorerUrl(`/assets/${x.address}`)}>{x.address}</Link>
             </TableCell>
             <TableCell align="left">{x.moniker}</TableCell>
             <TableCell align="left" title={x.genesisTime}>

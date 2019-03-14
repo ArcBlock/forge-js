@@ -14,6 +14,7 @@ import TableRow from '@material-ui/core/TableRow';
 
 import AccountActivity from './account_activity';
 import forge from '../../../libs/forge';
+import { getExplorerUrl } from '../../../libs/util';
 
 async function fetchTopAccounts() {
   const { accounts } = await forge.getTopAccounts();
@@ -61,7 +62,7 @@ export default function TopAccounts({ sparkline }) {
               {x.rank}
             </TableCell>
             <TableCell align="left">
-              <Link to={`/node/explorer/accounts/${x.address}`}>{x.moniker}</Link>
+              <Link to={getExplorerUrl(`/accounts/${x.address}`)}>{x.moniker}</Link>
             </TableCell>
             <TableCell align="center">
               {fromArc(x.balance, token.decimal)} {token.symbol}

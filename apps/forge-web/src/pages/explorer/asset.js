@@ -18,6 +18,7 @@ import Icon from '../../components/iconfa';
 import Alert from '../../components/alert';
 
 import forge from '../../libs/forge';
+import { getExplorerUrl } from '../../libs/util';
 
 async function fetchTxs({ address, paging }) {
   return forge.listAssetTransactions({
@@ -77,12 +78,14 @@ class AssetDetail extends Page {
                   {
                     key: 'Created By',
                     value: (
-                      <Link to={`/node/explorer/accounts/${asset.issuer}`}>{asset.issuer}</Link>
+                      <Link to={getExplorerUrl(`/accounts/${asset.issuer}`)}>{asset.issuer}</Link>
                     ),
                   },
                   {
                     key: 'Owned By',
-                    value: <Link to={`/node/explorer/accounts/${asset.owner}`}>{asset.owner}</Link>,
+                    value: (
+                      <Link to={getExplorerUrl(`/accounts/${asset.owner}`)}>{asset.owner}</Link>
+                    ),
                   },
                   { key: 'Readonly?', value: asset.readonly ? 'Yes' : 'No' },
                   { key: 'Transferable?', value: asset.transferrable ? 'Yes' : 'No' },
