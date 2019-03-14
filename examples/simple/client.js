@@ -92,7 +92,7 @@ const getAccountState = address => {
       token: sender.token,
       itx: {
         to: receiver.wallet.address,
-        value: client.toArc(20),
+        value: client.fromTokenToUnit(20),
       },
     });
     debug('txInfo.sent.oneShot', { hash });

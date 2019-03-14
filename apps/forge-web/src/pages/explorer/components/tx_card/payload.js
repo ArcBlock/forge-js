@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useLocalStorage } from 'react-use';
-import { fromArc } from '@arcblock/forge-util';
+import { fromUnitToToken } from '@arcblock/forge-util';
 
 import Tooltip from '@material-ui/core/Tooltip';
 
@@ -23,7 +23,7 @@ const Payload = ({ itx }) => {
         <span>
           <IconFa name="coins" size={16} className="meta-icon" />
           <span>
-            {fromArc(itx.value, token.decimal || 16)} {token.symbol || 'ABT'}
+            {fromUnitToToken(itx.value, token.decimal || 16)} {token.symbol || 'ABT'}
           </span>
         </span>
       )}

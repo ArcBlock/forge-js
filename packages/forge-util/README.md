@@ -14,8 +14,8 @@ npm i @arcblock/forge-util -S
 ```javascript
 const Util = require('@arcblock/forge-util');
 
-console.log(Util.toArc(100));                     // 100_0000_0000_0000_0000
-console.log(Util.fromArc('1000000000000000000')); // 100
+console.log(Util.fromTokenToUnit(100));                   // 100_0000_0000_0000_0000
+console.log(Util.fromUnitToToken('1000000000000000000')); // 100
 console.log(Util.isStrictHex('0x123abc'));        // true
 ```
 

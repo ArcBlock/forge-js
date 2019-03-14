@@ -1,7 +1,7 @@
 const BN = require('bn.js');
 const {
-  fromArc,
-  toArc,
+  fromUnitToToken,
+  fromTokenToUnit,
   hexToNumberString,
   isBN,
   numberToHex,
@@ -12,31 +12,31 @@ const {
   stripHexPrefix,
 } = require('../lib/index');
 
-describe('#fromArc & toArc', () => {
+describe('#fromUnitToToken & fromTokenToUnit', () => {
   test('should be function', () => {
-    expect(typeof fromArc).toEqual('function');
-    expect(typeof toArc).toEqual('function');
+    expect(typeof fromUnitToToken).toEqual('function');
+    expect(typeof fromTokenToUnit).toEqual('function');
   });
 
   test('should return same for number and string', () => {
-    expect(toArc(100)).toEqual(toArc('100'));
-    expect(toArc(-100)).toEqual(toArc('-100'));
-    expect(toArc(10000000000)).toEqual(toArc('10000000000'));
-    expect(toArc(9.87643)).toEqual(toArc('9.87643'));
+    expect(fromTokenToUnit(100)).toEqual(fromTokenToUnit('100'));
+    expect(fromTokenToUnit(-100)).toEqual(fromTokenToUnit('-100'));
+    expect(fromTokenToUnit(10000000000)).toEqual(fromTokenToUnit('10000000000'));
+    expect(fromTokenToUnit(9.87643)).toEqual(fromTokenToUnit('9.87643'));
   });
 
   [100, -100, 10000000000000].forEach(x => {
     test(`should support reverse op on integer: ${x}`, () => {
-      const encoded = toArc(x);
-      const decoded = fromArc(encoded);
+      const encoded = fromTokenToUnit(x);
+      const decoded = fromUnitToToken(encoded);
       expect(decoded).toEqual(x.toString());
     });
   });
 
   [8.8888, -8.8888, 3.3333333333333, 44444444444444444.5555].forEach(x => {
     test(`should support reverse op decimal: ${x}`, () => {
-      const encoded = toArc(x);
-      const decoded = fromArc(encoded);
+      const encoded = fromTokenToUnit(x);
+      const decoded = fromUnitToToken(encoded);
       expect(decoded).toEqual(x.toString());
     });
   });

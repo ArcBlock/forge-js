@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { fromArc } from '@arcblock/forge-util';
+import { fromUnitToToken } from '@arcblock/forge-util';
 import { useLocalStorage } from 'react-use';
 
 import IconFa from '../../../../components/iconfa';
@@ -26,7 +26,7 @@ const Payload = ({ itx }) => {
         <li>
           <IconFa name="coins" size={14} className="meta-icon" />
           <span>
-            {fromArc(itx.value, token.decimal)} {token.symbol}
+            {fromUnitToToken(itx.value, token.decimal)} {token.symbol}
           </span>
         </li>
       )}

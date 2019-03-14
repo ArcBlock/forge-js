@@ -1,7 +1,7 @@
 const grpc = require('grpc');
 const camelcase = require('camelcase');
 const { EventEmitter } = require('events');
-const { fromArc, toArc } = require('@arcblock/forge-util');
+const { fromUnitToToken, fromTokenToUnit } = require('@arcblock/forge-util');
 const { messages, enums, rpcs, getMessageType } = require('@arcblock/forge-proto');
 const {
   formatMessage,
@@ -29,11 +29,11 @@ class Client {
    * then 1 token (e.g. ABT) = 10^16 arc. When sending transfer tx or exchange tx,
    * the value shall be created with Arc.
    */
-  fromArc(value) {
-    return fromArc(value, this.config.decimal || 16).toString(10);
+  fromUnitToToken(value) {
+    return fromUnitToToken(value, this.config.decimal || 16).toString(10);
   }
-  toArc(value) {
-    return toArc(value, this.config.decimal || 16).toString(10);
+  fromTokenToUnit(value) {
+    return fromTokenToUnit(value, this.config.decimal || 16).toString(10);
   }
 
   /**

@@ -3,7 +3,7 @@ import numeral from 'numeral';
 import PropTypes from 'prop-types';
 import { useAsync, useLocalStorage } from 'react-use';
 import { Link } from 'react-router-dom';
-import { fromArc } from '@arcblock/forge-util';
+import { fromUnitToToken } from '@arcblock/forge-util';
 
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Table from '@material-ui/core/Table';
@@ -65,7 +65,7 @@ export default function TopAccounts({ sparkline }) {
               <Link to={getExplorerUrl(`/accounts/${x.address}`)}>{x.moniker}</Link>
             </TableCell>
             <TableCell align="center">
-              {fromArc(x.balance, token.decimal)} {token.symbol}
+              {fromUnitToToken(x.balance, token.decimal)} {token.symbol}
             </TableCell>
             <TableCell align="center">{numeral(x.assets).format('0,0')}</TableCell>
             {sparkline && (

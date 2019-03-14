@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import moment from 'moment';
-import { fromArc } from '@arcblock/forge-util';
+import { fromUnitToToken } from '@arcblock/forge-util';
 import { useAsync, useBoolean, useLocalStorage } from 'react-use';
 import { withTheme } from '@material-ui/core/styles';
 
@@ -73,7 +73,7 @@ function Metrics({ theme, sparkline, itemSize, size }) {
   const metrics = Object.keys(mapping).reduce((acc, x) => {
     [acc[x]] = summary[mapping[x]];
     if (x === 'stakes') {
-      acc[x] = `${fromArc(acc[x], token.decimal)}`;
+      acc[x] = `${fromUnitToToken(acc[x], token.decimal)}`;
     }
     return acc;
   }, {});
@@ -87,7 +87,7 @@ function Metrics({ theme, sparkline, itemSize, size }) {
       date.setSeconds(0);
       return {
         time: moment(date).format('YYYY-MM-DD HH:mm'),
-        [x]: x === 'stakes' ? Number(fromArc(d)) : Number(d),
+        [x]: x === 'stakes' ? Number(fromUnitToToken(d)) : Number(d),
       };
     });
     return acc;
