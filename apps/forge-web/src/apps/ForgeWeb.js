@@ -1,30 +1,30 @@
 import React from 'react';
 import styled from 'styled-components';
-import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import { BrowserRouter, HashRouter, Route, Switch, Redirect } from 'react-router-dom';
 import { IntlProvider, addLocaleData } from 'react-intl';
 import { useAsync, useLocalStorage } from 'react-use';
 
-import Layout from './layouts/dashboard';
+import Layout from '../layouts/dashboard';
 
-import PageDashboard from './pages/dashboard';
-import PageStatus from './pages/node/status';
-import PageQuery from './pages/node/query';
-import PageStorage from './pages/node/storage';
-import PageDeveloper from './pages/developer';
-import PageApplication from './pages/app';
-import PageTasks from './pages/tasks';
-import PageSettings from './pages/settings';
-import PageBlockList from './pages/explorer/blocks';
-import PageBlockDetail from './pages/explorer/block';
-import PageTxList from './pages/explorer/txs';
-import PageTxDetail from './pages/explorer/tx';
-import PageAccountDetail from './pages/explorer/account';
-import PageAssetDetail from './pages/explorer/asset';
-import ActivityIndicator from './components/activity_indicator';
+import PageDashboard from '../pages/dashboard';
+import PageStatus from '../pages/node/status';
+import PageQuery from '../pages/node/query';
+import PageStorage from '../pages/node/storage';
+import PageDeveloper from '../pages/developer';
+import PageApplication from '../pages/app';
+import PageTasks from '../pages/tasks';
+import PageSettings from '../pages/settings';
+import PageBlockList from '../pages/explorer/blocks';
+import PageBlockDetail from '../pages/explorer/block';
+import PageTxList from '../pages/explorer/txs';
+import PageTxDetail from '../pages/explorer/tx';
+import PageAccountDetail from '../pages/explorer/account';
+import PageAssetDetail from '../pages/explorer/asset';
+import ActivityIndicator from '../components/activity_indicator';
 
-import { localeData } from './libs/locale';
-import { detectLocale, delay } from './libs/util';
-import forge from './libs/forge';
+import { localeData } from '../libs/locale';
+import { detectLocale, delay } from '../libs/util';
+import forge from '../libs/forge';
 
 addLocaleData(localeData);
 
@@ -45,6 +45,7 @@ async function fetchInfo() {
   }
 }
 
+const Router = process.env.NODE_ENV === 'production' ? BrowserRouter : HashRouter;
 const App = () => {
   const [, setToken] = useLocalStorage('token', {});
   const state = useAsync(fetchInfo);
