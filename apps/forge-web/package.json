@@ -12,6 +12,7 @@
     "babel-polyfill": "^6.26.0",
     "browser-lang": "^0.0.1",
     "copy-to-clipboard": "^3.0.8",
+    "event-target-shim": "^5.0.1",
     "flat": "^4.1.0",
     "graphiql": "^0.13.0",
     "hoist-non-react-statics": "^3.3.0",

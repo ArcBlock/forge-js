@@ -1,6 +1,7 @@
 /* eslint import/prefer-default-export:"off" */
 /* eslint react-hooks/rules-of-hooks:"off" */
 import { useState, useEffect, useRef } from 'react';
+import { EventTarget } from 'event-target-shim';
 
 export function useInterval(callback, delay) {
   const savedCallback = useRef();
