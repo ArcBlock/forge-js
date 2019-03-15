@@ -2,7 +2,7 @@ const fs = require('fs');
 const shell = require('shelljs');
 const chalk = require('chalk');
 const { symbols, getSpinner } = require('core/ui');
-const { config, debug } = require('core/env');
+const { config, debug, sleep } = require('core/env');
 
 function getForgeReleaseEnv() {
   if (process.env.FORGE_RELEASE && fs.existsSync(process.env.FORGE_RELEASE)) {
@@ -48,6 +48,7 @@ async function main() {
   spinner.start();
   shell.exec(command);
   await waitUntilStarted();
+  await sleep(3000);
   spinner.succeed('Forge daemon successfully started');
   shell.exec('forge ps');
   shell.echo('');
