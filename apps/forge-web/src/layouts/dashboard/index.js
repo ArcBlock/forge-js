@@ -101,8 +101,7 @@ const Container = styled.div`
   .appBar {
     z-index: ${props => props.theme.zIndex.drawer + 1};
     background: ${props => props.theme.palette.background.default};
-    box-shadow: 2px 2px 10px 0
-      rgba(0, 0, 0, ${props => (props.theme.mode === 'light' ? 0.05 : 0.5)});
+    box-shadow: 0 0 0 0 transparent;
   }
 
   .drawerPaper {
