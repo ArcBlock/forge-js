@@ -35,6 +35,7 @@ Logo.propTypes = {
 
 const Header = styled.div`
   display: flex;
+  margin-top: 8px;
 
   .header-image {
     margin-right: ${props => props.theme.spacing.unit * 2}px;
