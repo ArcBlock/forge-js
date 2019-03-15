@@ -1,4 +1,5 @@
 import React from 'react';
+import numeral from 'numeral';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
@@ -49,7 +50,7 @@ class Blocks extends Page {
             <SummaryHeader
               type={nodeInfo.moniker}
               title={`abt:did:${nodeInfo.address}`}
-              badge={nodeInfo.blockHeight}
+              badge={numeral(nodeInfo.blockHeight).format('0,0')}
               badgeTip="BLOCK HEIGHT"
               meta={[
                 { key: 'app_hash', value: nodeInfo.appHash },

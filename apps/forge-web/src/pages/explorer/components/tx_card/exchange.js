@@ -89,6 +89,8 @@ const Container = styled.div`
     overflow: hidden;
     white-space: no-wrap;
     text-overflow: ellipsis;
+    color: ${props => props.theme.typography.color.gray};
+    font-size: 14px;
 
     p {
       text-align: left;
@@ -109,6 +111,8 @@ const Container = styled.div`
   .meta {
     font-size: 14px;
     font-weight: 600;
+    color: ${props => props.theme.typography.color.gray};
+
     .meta-icon {
       margin-right: 8px;
     }

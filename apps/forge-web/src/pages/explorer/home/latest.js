@@ -36,7 +36,7 @@ function LatestData({ theme }) {
   const links = {
     txs: {
       name: 'txs',
-      content: <TxList pageSize={5} pageLink="/txs" dataLoaderFn={fetchTransactions} />,
+      content: <TxList args={{}} pageSize={5} pageLink="/txs" dataLoaderFn={fetchTransactions} />,
       icon: 'file-invoice',
     },
     blocks: {

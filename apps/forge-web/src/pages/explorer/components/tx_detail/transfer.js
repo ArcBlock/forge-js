@@ -1,8 +1,10 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import TxDetail from './tx_detail';
 import SummaryHeader from '../summary_header';
 import IconFa from '../../../../components/iconfa';
+import { getExplorerUrl } from '../../../../libs/util';
 
 export default class TransferDetail extends TxDetail {
   renderHeader() {
@@ -18,7 +20,7 @@ export default class TransferDetail extends TxDetail {
         }
         meta={(tx.tx.itx.assets || []).map(x => ({
           key: <IconFa name="gem" size={12} className="meta-icon" />,
-          value: <span>{x}</span>,
+          value: <Link to={getExplorerUrl(`/assets/${x}`)}>{x}</Link>,
         }))}
       />
     );

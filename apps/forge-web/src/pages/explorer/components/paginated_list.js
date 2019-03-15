@@ -65,7 +65,7 @@ function PaginatedList({ args, pageSize, pageLink, dataKey, dataLoaderFn, dataRe
       {!!pageLink && (
         <p className="pager pager--small">
           <Button component={Link} to={getExplorerUrl(pageLink)}>
-            View All <Icon name="arrow-right" />
+            View All <Icon name="arrow-right" size={16} />
           </Button>
         </p>
       )}
@@ -109,6 +109,9 @@ const Container = styled.div`
   .pager--small {
     justify-content: flex-start;
     margin: 0;
+    span {
+      font-size: 12px;
+    }
   }
 `;
 

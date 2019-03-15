@@ -1,3 +1,21 @@
+## 0.13.4 (March 15, 2019)
+  - fix: add proper delay when run `forge start` and `forge stop`
+  - fix: use tmp dir under home when run `forge init`
+  - feat: support `forge poke` to get test tokens #186
+  - support PokeTx in tx_card #179
+  - chore: Use `,` for large numbers #177
+  - chore: update netlify redirect rule
+  - fix: event target in safari
+  - chore: fix logo in light mode for explorer
+  - chore: search box should also be black #181
+  - tune: animation easing function
+  - tune: colors and sizes
+  - chore: refresh switch should become a blinking green dot #184
+  - chore: theme switch button should become an icon #183
+  - chore: header should not have box-shadow #182
+  - fix: menu dropdown background blur #180
+  - update readme
+
 ## 0.13.2 (March 14, 2019)
   - fix: sparkline fill opacity in dark mode
   - chore: make release work

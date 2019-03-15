@@ -5,6 +5,7 @@ import get from 'lodash/get';
 
 import AsyncSelect from 'react-select/lib/Async';
 import { withRouter } from 'react-router-dom';
+import IconFa from './iconfa';
 
 import forge from '../libs/forge';
 import { getExplorerUrl } from '../libs/util';
@@ -22,7 +23,7 @@ class SearchBox extends React.Component {
 
   render() {
     return (
-      <Container>
+      <Container size={this.props.size}>
         <AsyncSelect
           cacheOptions
           isLoading={this.state.loading}
@@ -33,6 +34,7 @@ class SearchBox extends React.Component {
           loadOptions={this.doSearch}
           onChange={this.onSelectSearch}
         />
+        <IconFa name="search" size={18} className="search-icon" />
       </Container>
     );
   }
@@ -104,13 +106,63 @@ class SearchBox extends React.Component {
   };
 }
 
+SearchBox.propTypes = {
+  history: PropTypes.object.isRequired,
+  size: PropTypes.number,
+};
+
+SearchBox.defaultProps = {
+  size: 480,
+};
+
 const Container = styled.div`
-  width: 480px;
+  width: ${props => props.size}px;
+  position: relative;
+
+  .search-icon {
+    position: absolute;
+    right: 16px;
+    top: 8px;
+  }
 
   .react-select__control {
     border-radius: 20px;
+    padding-left: 8px;
+    background-color: ${props => props.theme.palette.background.default};
     .react-select__indicators {
       display: none;
+    }
+    .react-select__placeholder {
+      color: ${props => props.theme.typography.color.gray};
+    }
+    .react-select__input,
+    .react-select__single-value {
+      color: ${props => props.theme.typography.color.main};
+    }
+  }
+
+  .react-select__control--is-focused {
+    border-color: ${props => props.theme.typography.color.main};
+    box-shadow: 0 0 0 0 transparent;
+
+    &:hover {
+      border-color: ${props => props.theme.typography.color.main};
+    }
+  }
+
+  .react-select__menu {
+    background-color: ${props => props.theme.palette.background.default};
+    color: ${props => props.theme.typography.color.main};
+    text-align: left;
+
+    .react-select__option,
+    .react-select__option--is-disabled {
+      text-align: left;
+    }
+
+    .react-select__option--is-focused,
+    .react-select__control--is-selected {
+      background-color: ${props => props.theme.palette.primary.main};
     }
   }
 `;

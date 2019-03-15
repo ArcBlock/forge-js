@@ -1,6 +1,6 @@
 const shell = require('shelljs');
 const { symbols, getSpinner } = require('core/ui');
-const { config, getForgeProcesses } = require('core/env');
+const { config, getForgeProcesses, sleep } = require('core/env');
 
 function isStopped() {
   const { starterBinPath, forgeConfigPath } = config.get('cli');
@@ -45,6 +45,7 @@ async function main() {
     }
 
     await waitUntilStopped();
+    await sleep(5000);
     spinner.succeed('Forge daemon stopped!');
 
     process.exit(0);

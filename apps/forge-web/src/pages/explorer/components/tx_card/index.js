@@ -9,6 +9,7 @@ import TxStake from './stake';
 import TxCreateAsset from './create_asset';
 import TxConsumeAsset from './consume_asset';
 import TxDeclare from './declare';
+import TxPoke from './poke';
 import TxDeclareFile from './declare_file';
 import TxAccountMigrate from './account_migrate';
 import TxDefault from './default';
@@ -24,6 +25,7 @@ const components = {
   Exchange: TxExchange,
   DeclareFile: TxDeclareFile,
   Declare: TxDeclare,
+  Poke: TxPoke,
   AccountMigrate: TxAccountMigrate,
 };
 

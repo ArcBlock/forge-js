@@ -82,6 +82,7 @@ const Container = styled.div`
     text-overflow: ellipsis;
     text-align: left;
     font-size: 14px;
+    color: ${props => props.theme.typography.color.gray};
 
     a {
       color: ${props => props.theme.typography.color.main};

@@ -1,49 +1,45 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { withTheme } from '@material-ui/core/styles';
 
 import Typography from '@material-ui/core/Typography';
+import { useThemeMode } from '../../libs/hooks';
 
-import logo from './logo.png';
+import logoDark from './logo-dark.png';
+import logoLight from './logo-light.png';
 
-// eslint-disable-next-line
-function Logo({ theme }) {
+export default function Logo() {
+  const [mode] = useThemeMode();
   return (
-    <Header>
-      <Link to="/">
+    <Link to="/">
+      <Header>
         <div className="header-image">
-          <img src={logo} alt="arcblock" />
+          <img src={mode === 'dark' ? logoDark : logoLight} alt="arcblock" />
         </div>
-      </Link>
-      <div className="header-title">
-        <Typography component="h2" noWrap className="header-title__primary">
-          ABT Network
-        </Typography>
-        <Typography component="p" noWrap className="header-title__secondary">
-          Universal Block Explorer
-        </Typography>
-      </div>
-    </Header>
+        <div className="header-title">
+          <Typography component="h2" noWrap className="header-title__primary">
+            ABT Network
+          </Typography>
+          <Typography component="p" noWrap className="header-title__secondary">
+            Universal Block Explorer
+          </Typography>
+        </div>
+      </Header>
+    </Link>
   );
 }
 
-Logo.propTypes = {
-  theme: PropTypes.object.isRequired,
-};
-
 const Header = styled.div`
   display: flex;
+  margin-top: 8px;
 
   .header-image {
     margin-right: ${props => props.theme.spacing.unit * 2}px;
     margin-top: ${props => props.theme.spacing.unit / 2}px;
-    position: relative;
     color: ${props => (props.synced ? props.theme.colors.green : props.theme.colors.red)};
 
     img {
-      width: 50px;
+      width: 64px;
     }
   }
 
@@ -69,5 +65,3 @@ const Header = styled.div`
     color: ${props => props.theme.typography.color.gray};
   }
 `;
-
-export default withTheme()(Logo);

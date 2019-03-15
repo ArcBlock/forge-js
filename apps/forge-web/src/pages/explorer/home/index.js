@@ -90,8 +90,13 @@ const Container = styled(Wrapper)`
   }
 
   .section--metrics {
+    margin-top: 30px;
+    margin-bottom: 120px;
     .section__header {
       visibility: hidden;
+    }
+    .refresh-toggler {
+      top: -20px;
     }
   }
 `;

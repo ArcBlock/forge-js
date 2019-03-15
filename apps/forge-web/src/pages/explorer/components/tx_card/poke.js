@@ -10,11 +10,10 @@ import Tooltip from '@material-ui/core/Tooltip';
 
 import IconFa from '../../../../components/iconfa';
 import { getExplorerUrl } from '../../../../libs/util';
-import Payload from './payload';
 
-const StakeTxSummary = React.memo(({ tx, theme, ...rest }) => (
+const PokeTx = React.memo(({ tx, theme, ...rest }) => (
   <Container {...rest}>
-    <div className="info-row info-row--full">
+    <div className="info-row">
       <Typography component="p" className="hash" title={tx.hash}>
         <Link to={getExplorerUrl(`/txs/${tx.hash}`)}># {tx.hash}</Link>
       </Typography>
@@ -22,25 +21,19 @@ const StakeTxSummary = React.memo(({ tx, theme, ...rest }) => (
         {moment(tx.time).fromNow()}
       </Typography>
     </div>
-    <div className="info-row">
-      <div className="sender">
-        <Typography component="p" title={tx.tx.from}>
-          <Link to={getExplorerUrl(`/accounts/${tx.tx.from}`)}>{tx.tx.from}</Link>
-        </Typography>
-        <Payload itx={tx.tx.itx} />
-      </div>
-      <Tooltip title="Stake Transaction" placement="top">
+    <div className="info-row" style={{ justifyContent: 'flex-start' }}>
+      <Tooltip title="Poke" placement="top">
         <IconFa
-          name="hands-usd"
+          name="check"
           size={14}
           rounded={true}
           color={theme.colors.blue}
           className="type-icon"
         />
       </Tooltip>
-      <div className="receiver">
-        <Typography component="p" title={tx.tx.itx.to}>
-          <Link to={getExplorerUrl(`/accounts/${tx.tx.itx.to}`)}>{tx.tx.itx.to}</Link>
+      <div className="sender">
+        <Typography component="p" title={tx.tx.from}>
+          <Link to={getExplorerUrl(`/accounts/${tx.tx.from}`)}>By: {tx.tx.from}</Link>
         </Typography>
       </div>
     </div>
@@ -51,8 +44,8 @@ const Container = styled.div`
   .info-row {
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
-    align-items: flex-start;
+    justify-content: space-between;
+    align-items: center;
     margin-bottom: 10px;
 
     &:nth-last-of-type() {
@@ -67,59 +60,39 @@ const Container = styled.div`
     }
   }
 
-  .info-row--full {
-    justify-content: space-between;
-    align-items: center;
-  }
-
   .time,
-  .hash a {
+  .hash a,
+  .type {
     color: ${props => props.theme.typography.color.gray};
     font-size: 12px;
   }
 
-  .sender,
-  .receiver {
-    width: 40%;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    white-space: no-wrap;
+  .value,
+  .sender {
+    width: auto;
+    max-width: 49%;
+    white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    text-align: left;
     font-size: 14px;
+    margin-right: ${props => props.theme.spacing.unit}px;
     color: ${props => props.theme.typography.color.gray};
 
-    p {
-      text-align: left;
-      height: 28px;
-      margin-bottom: 5px;
-    }
-
     a {
-      color: ${props => props.theme.typography.color.main};
       font-size: 14px;
+      color: ${props => props.theme.typography.color.main};
     }
   }
 
   .type-icon {
-    margin: 0 16px;
-  }
-
-  .meta {
-    font-size: 14px;
-    font-weight: 600;
-    .meta-icon,
-    .meta-separator {
-      margin-right: 8px;
-    }
+    margin-right: 16px;
   }
 `;
 
-StakeTxSummary.propTypes = {
+PokeTx.propTypes = {
   tx: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
 };
 
-export default withTheme()(StakeTxSummary);
+export default withTheme()(PokeTx);

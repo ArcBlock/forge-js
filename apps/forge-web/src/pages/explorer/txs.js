@@ -1,4 +1,5 @@
 import React from 'react';
+import numeral from 'numeral';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
@@ -62,7 +63,7 @@ class TransactionList extends Page {
             <SummaryHeader
               type={nodeInfo.moniker}
               title={`abt:did:${nodeInfo.address}`}
-              badge={nodeInfo.totalTxs}
+              badge={numeral(nodeInfo.totalTxs).format('0,0')}
               badgeTip="TOTAL TXS"
               meta={[
                 { key: 'app_hash', value: nodeInfo.appHash },

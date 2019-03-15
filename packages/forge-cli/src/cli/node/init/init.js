@@ -91,8 +91,12 @@ function fetchAssetInfo(platform, version, key) {
 function downloadAsset(asset) {
   return new Promise((resolve, reject) => {
     debug('Download asset', asset);
-    const assetOutput = `/tmp/${asset.name}`;
-    shell.exec(`rm -f ${assetOutput}`);
+    const assetOutput = path.join(requiredDirs.tmp, asset.name);
+    try {
+      shell.rm(assetOutput);
+    } catch (err) {
+      // Do nothing
+    }
     const progress = getProgress({
       title: `${symbols.info} Downloading ${asset.name}`,
       unit: 'MB',
@@ -109,7 +113,7 @@ function downloadAsset(asset) {
     }, 500);
 
     shell.exec(
-      `curl ${asset.url} --silent --out /tmp/${asset.name}`,
+      `curl ${asset.url} --silent --out ${assetOutput}`,
       { async: true, silent: true },
       (code, _, stderr) => {
         clearInterval(timer);
@@ -212,7 +216,6 @@ async function main() {
       const assetInfo = fetchAssetInfo(platform, version, asset);
       debug(asset, assetInfo);
       const assetTarball = await downloadAsset(assetInfo);
-      // const assetTarball = `/tmp/${assetInfo.name}`;
       expandReleaseTarball(assetTarball, asset, version);
       if (asset === 'forge') {
         // FIXME: copy the latest config as shared config on each release?
