@@ -40,16 +40,19 @@ const Dot = styled.span`
     width: ${props => props.size || 16}px;
     height: ${props => props.size || 16}px;
     border-radius: 50%;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    animation-duration: ${props => props.duration};
   }
 
   .led__dot--green {
     background-color: ${props => props.theme.colors.green};
-    animation: blinkGreen ${props => props.duration} infinite;
+    animation-name: blinkGreen;
   }
 
   .led__dot--red {
     background-color: ${props => props.theme.colors.red};
-    animation: blinkRed ${props => props.duration} infinite;
+    animation-name: blinkRed;
   }
 
   @keyframes blinkGreen {
