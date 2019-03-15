@@ -1,25 +1,29 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { withTheme } from '@material-ui/core/styles';
 
-import Switch from '@material-ui/core/Switch';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Tooltip from '@material-ui/core/Tooltip';
+import Icon8 from './icon8';
 
 import { useThemeMode } from '../libs/hooks';
 
-export default function ThemeSwitcher(props) {
-  const [mode, setTheme] = useThemeMode();
+function ThemeSwitcher({ theme, ...rest }) {
+  const [mode, setMode] = useThemeMode();
+  const toggle = () => setMode(mode === 'light' ? 'dark' : 'light');
 
   return (
-    <FormControlLabel
-      {...props}
-      control={
-        <Switch
-          checked={mode === 'dark'}
-          onChange={() => setTheme(mode === 'light' ? 'dark' : 'light')}
-          value="theme"
-          color={mode === 'light' ? 'default' : 'primary'}
-        />
-      }
-      label={mode === 'light' ? 'Light Mode' : 'Dark Mode'}
-    />
+    <Tooltip {...rest} title={mode === 'light' ? 'Light Mode' : 'Dark Mode'}>
+      <Icon8
+        name={mode === 'light' ? 'light' : 'no-idea'}
+        color={theme.typography.color.main}
+        onClick={toggle}
+      />
+    </Tooltip>
   );
 }
+
+ThemeSwitcher.propTypes = {
+  theme: PropTypes.object.isRequired,
+};
+
+export default withTheme()(ThemeSwitcher);
