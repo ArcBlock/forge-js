@@ -137,7 +137,7 @@ export default class TransactionsSection extends React.Component {
               id="menu-list-grow"
               style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}>
               <ClickAwayListener onClickAway={this.onClose}>
-                <MenuList>
+                <MenuList className="menu-list">
                   {Object.keys(this.dateRanges).map(x => (
                     <MenuItem key={x} onClick={e => this.onChooseRange(e, x)} className="menu-item">
                       {this.dateRanges[x].text}
@@ -241,8 +241,18 @@ const ChartContainer = styled.div`
       font-size: 14px;
     }
 
+    .menu-list {
+      background: ${props => props.theme.palette.background.default};
+      font-size: 14px;
+      padding: 0;
+      opacity: 0.9;
+      box-shadow: 2px 2px 2px 0 ${props => props.theme.palette.background.default},
+        -2px 2px 2px 0 ${props => props.theme.palette.background.default};
+    }
+
     .menu-item {
       color: ${props => props.theme.typography.color.gray};
+      text-transform: uppercase;
       font-size: 14px;
     }
 
