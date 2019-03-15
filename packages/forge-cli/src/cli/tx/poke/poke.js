@@ -23,7 +23,8 @@ async function main() {
       token: wallet.token,
       itx,
     });
-    shell.echo(`${symbols.success} poke success! check tx with: ${chalk.cyan(`forge tx ${res}`)}`);
+    shell.echo(`${symbols.success} poke success!`);
+    shell.echo(`${symbols.info} check tx with: ${chalk.cyan(`forge tx ${res}`)}`);
     shell.echo(
       `${symbols.info} check balance with: ${chalk.cyan(`forge account ${wallet.address}`)}`
     );
