@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import moment from 'moment';
+import numeral from 'numeral';
 import { fromUnitToToken } from '@arcblock/forge-util';
 import { useAsync, useBoolean, useLocalStorage } from 'react-use';
 import { withTheme } from '@material-ui/core/styles';
@@ -72,7 +73,9 @@ function Metrics({ theme, sparkline, itemSize, size }) {
   const metrics = Object.keys(mapping).reduce((acc, x) => {
     [acc[x]] = summary[mapping[x]];
     if (x === 'stakes') {
-      acc[x] = `${fromUnitToToken(acc[x], token.decimal)}`;
+      acc[x] = numeral(fromUnitToToken(acc[x], token.decimal)).format('0,0.00');
+    } else {
+      acc[x] = numeral(acc[x]).format('0,0');
     }
     return acc;
   }, {});

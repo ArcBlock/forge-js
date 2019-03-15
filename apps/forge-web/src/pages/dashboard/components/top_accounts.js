@@ -65,7 +65,7 @@ export default function TopAccounts({ sparkline }) {
               <Link to={getExplorerUrl(`/accounts/${x.address}`)}>{x.moniker}</Link>
             </TableCell>
             <TableCell align="center">
-              {fromUnitToToken(x.balance, token.decimal)} {token.symbol}
+              {numeral(fromUnitToToken(x.balance, token.decimal)).format('0,0.0000')} {token.symbol}
             </TableCell>
             <TableCell align="center">{numeral(x.assets).format('0,0')}</TableCell>
             {sparkline && (
