@@ -11,21 +11,21 @@ import logo from './logo.png';
 // eslint-disable-next-line
 function Logo({ theme }) {
   return (
-    <Header>
-      <Link to="/">
+    <Link to="/">
+      <Header>
         <div className="header-image">
           <img src={logo} alt="arcblock" />
         </div>
-      </Link>
-      <div className="header-title">
-        <Typography component="h2" noWrap className="header-title__primary">
-          ABT Network
-        </Typography>
-        <Typography component="p" noWrap className="header-title__secondary">
-          Universal Block Explorer
-        </Typography>
-      </div>
-    </Header>
+        <div className="header-title">
+          <Typography component="h2" noWrap className="header-title__primary">
+            ABT Network
+          </Typography>
+          <Typography component="p" noWrap className="header-title__secondary">
+            Universal Block Explorer
+          </Typography>
+        </div>
+      </Header>
+    </Link>
   );
 }
 
