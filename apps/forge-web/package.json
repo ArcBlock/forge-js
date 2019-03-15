@@ -46,7 +46,7 @@
     "start:explorer": "REACT_APP_NAME=explorer ./tools/start.sh",
     "build": "npm run build:node",
     "build:node": "REACT_APP_NAME=node ./tools/build.sh",
-    "build:explorer": "REACT_APP_NAME=explorer ./tools/build.sh",
+    "build:explorer": "REACT_APP_NAME=explorer PUBLIC_URL=https://abt-explorer.netlify.com ./tools/build.sh",
     "test": "react-app-rewired test"
   },
   "config-overrides-path": "tools/config.js",
