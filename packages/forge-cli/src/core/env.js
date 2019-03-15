@@ -19,6 +19,7 @@ const debug = require('debug')(name);
 const { symbols, hr } = require('./ui');
 
 const requiredDirs = {
+  tmp: path.join(os.homedir(), '.forge_cli/tmp'),
   cache: path.join(os.homedir(), '.forge_cli/cache'),
   release: path.join(os.homedir(), '.forge_cli/release'),
 };
