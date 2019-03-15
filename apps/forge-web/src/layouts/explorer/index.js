@@ -81,7 +81,7 @@ const Container = styled.div`
 
     .switcher {
       position: absolute;
-      right: -32px;
+      right: -48px;
       cursor: pointer;
     }
   }

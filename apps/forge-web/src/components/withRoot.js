@@ -14,6 +14,7 @@ const createTheme = mode =>
         paper: mode === 'light' ? colors.white : colors.gray,
         default: mode === 'light' ? colors.background : colors.gray,
       },
+      type: mode,
     },
     typography: {
       useNextVariants: true,

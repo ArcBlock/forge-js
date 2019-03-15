@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { withTheme } from '@material-ui/core/styles';
 
 import Tooltip from '@material-ui/core/Tooltip';
+import IconButton from '@material-ui/core/IconButton';
 import Icon8 from './icon8';
 
 import { useThemeMode } from '../libs/hooks';
@@ -13,11 +14,13 @@ function ThemeSwitcher({ theme, ...rest }) {
 
   return (
     <Tooltip {...rest} title={mode === 'light' ? 'Light Mode' : 'Dark Mode'}>
-      <Icon8
-        name={mode === 'light' ? 'light' : 'no-idea'}
-        color={theme.typography.color.main}
-        onClick={toggle}
-      />
+      <IconButton onClick={toggle}>
+        <Icon8
+          size={36}
+          name={mode === 'light' ? 'light' : 'no-idea'}
+          color={theme.typography.color.main}
+        />
+      </IconButton>
     </Tooltip>
   );
 }
