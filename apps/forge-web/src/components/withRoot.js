@@ -5,6 +5,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import { colors, sizes } from '../libs/constant';
 import { useThemeMode } from '../libs/hooks';
 
+// https://material-ui.com/customization/default-theme/
 const createTheme = mode =>
   createMuiTheme({
     palette: {
