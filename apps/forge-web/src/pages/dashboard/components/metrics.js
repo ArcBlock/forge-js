@@ -7,13 +7,12 @@ import { useAsync, useBoolean, useLocalStorage } from 'react-use';
 import { withTheme } from '@material-ui/core/styles';
 
 import Grid from '@material-ui/core/Grid';
-import Switch from '@material-ui/core/Switch';
 import Tooltip from '@material-ui/core/Tooltip';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 import Icon8 from '../../../components/icon8';
 import SparkLine from '../../../components/sparkline';
+import BlinkingDot from '../../../components/blinking_dot';
 import forge from '../../../libs/forge';
 import { useInterval } from '../../../libs/hooks';
 
@@ -104,26 +103,22 @@ function Metrics({ theme, sparkline, itemSize, size }) {
 
   return (
     <Container>
-      <div className="refresh-toggler">
-        <Tooltip
-          title={
-            autoRefresh
-              ? 'Realtime updates enabled, click to disable'
-              : 'Realtime updates disabled, click to enable'
-          }>
-          <FormControlLabel
-            control={
-              <Switch
-                checked={autoRefresh}
-                onChange={e => setAutoRefresh(e.target.checked)}
-                value="autoRefresh"
-                color="primary"
-              />
-            }
-            label={autoRefresh ? 'Refresh On' : 'Refresh Off'}
+      <Tooltip
+        title={
+          autoRefresh
+            ? 'Live updates enabled, click to disable'
+            : 'Live updates disabled, click to enable'
+        }>
+        <span className="refresh-toggler" onClick={() => setAutoRefresh()}>
+          <BlinkingDot
+            theme={autoRefresh ? 'green' : 'red'}
+            size={14}
+            duration={autoRefresh ? '800ms' : '0'}
+            style={{ marginRight: '8px' }}
           />
-        </Tooltip>
-      </div>
+          {autoRefresh ? 'Live Updates On' : 'Live Updates Off'}
+        </span>
+      </Tooltip>
       <Grid container spacing={40}>
         {Object.keys(metrics).map(x => (
           <Grid key={x} item {...itemSize}>
@@ -175,16 +170,10 @@ const Container = styled.div`
     position: absolute;
     top: -40px;
     right: 0;
-
-    .toggler {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .icon {
-      margin-left: 5px;
-    }
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    cursor: pointer;
   }
 `;
 
