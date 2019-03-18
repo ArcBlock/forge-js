@@ -251,7 +251,7 @@ class Network extends Page {
           </g>
           <g className="markers">{renderMarkers()}</g>
         </svg>
-        <svg class="defs">
+        <svg className="defs">
           <defs>
             <linearGradient id="gradBlue" x1="0%" y1="0%" x2="100%" y2="0%">
               <stop offset="0%" style={{ stopColor: '#005C99', stopOpacity: 1 }} />
