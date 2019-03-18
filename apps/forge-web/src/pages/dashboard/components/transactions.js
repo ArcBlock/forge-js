@@ -184,7 +184,9 @@ export default class TransactionsSection extends React.Component {
     this.setState({ loading: true });
     const dateRange = this.dateRanges[this.state.rangeKey];
     const queryType = dateRange.api || 'getForgeStatisticsByDay';
-    const endDate = moment().format('YYYY-MM-DD');
+    const endDate = moment()
+      .utc()
+      .format('YYYY-MM-DD');
     const rangeParams = {
       endDate,
       startDate: moment()

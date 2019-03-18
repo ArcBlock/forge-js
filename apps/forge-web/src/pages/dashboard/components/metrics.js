@@ -18,7 +18,9 @@ import forge from '../../../libs/forge';
 import { useInterval, useTokenInfo } from '../../../libs/hooks';
 
 async function fetchSummary() {
-  const date = moment().format('YYYY-MM-DD');
+  const date = moment()
+    .utc()
+    .format('YYYY-MM-DD');
   const [{ forgeStatistics: summary }, { forgeStatistics: trend }] = await Promise.all([
     forge.getForgeStatistics(),
     forge.getForgeStatisticsByHour({ date }),
@@ -81,10 +83,12 @@ function Metrics({ theme, sparkline, itemSize, size }) {
   }, {});
 
   const trends = Object.keys(mapping).reduce((acc, x) => {
-    acc[x] = trend[mapping[x]].map((d, i) => {
-      // FIXME: use same date as `this.loadSummary`
+    const hour = new Date().getHours();
+    const dataPoints = trend[mapping[x]];
+    acc[x] = dataPoints.map((d, i) => {
       const date = new Date();
-      date.setHours(i + 1);
+      // because dataPoints have no bounded timestamp, we have to calculate offset
+      date.setHours(hour - (dataPoints.length - i));
       date.setMinutes(0);
       date.setSeconds(0);
       return {
