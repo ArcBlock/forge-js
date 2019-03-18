@@ -114,6 +114,9 @@ declare class GraphQLClient {
   listAssetTransactions(
     params: GraphQLClient.ListAssetTransactionsParams
   ): GraphQLClient.QueryResult<GraphQLClient.ResponseListAssetTransactions>;
+  listBlocks(
+    params: GraphQLClient.ListBlocksParams
+  ): GraphQLClient.QueryResult<GraphQLClient.ResponseListBlocks>;
   listTransactions(
     params: GraphQLClient.ListTransactionsParams
   ): GraphQLClient.QueryResult<GraphQLClient.ResponseListTransactions>;
@@ -219,6 +222,7 @@ declare namespace GraphQLClient {
     KECCAK,
     KECCAK_384,
     KECCAK_512,
+    SHA2,
     SHA3,
     SHA3_384,
     SHA3_512,
@@ -242,41 +246,42 @@ declare namespace GraphQLClient {
   }
 
   export enum StatusCode {
-    INVALID_OWNER,
-    EXPIRED_WALLET_TOKEN,
-    INVALID_NONCE,
+    UNSUPPORTED_STAKE,
+    INVALID_TX_SIZE,
+    INVALID_WALLET,
+    EXPIRED_ASSET,
     INVALID_CHAIN_ID,
     INVALID_PASSPHRASE,
-    INVALID_RECEIVER_STATE,
-    INVALID_MULTISIG,
-    EXPIRED_ASSET,
-    FORBIDDEN,
-    CONSENSUS_RPC_ERROR,
-    INSUFFICIENT_FUND,
-    INVALID_MONIKER,
-    ACCOUNT_MIGRATED,
-    CONSUMED_ASSET,
-    INVALID_TX,
-    INVALID_SIGNER_STATE,
-    STORAGE_RPC_ERROR,
-    UNSUPPORTED_STAKE,
-    UNTRANSFERRABLE_ASSET,
-    INVALID_ASSET,
-    INVALID_SIGNATURE,
-    BANNED_UNSTAKE,
+    EXPIRED_TX,
     INVALID_SENDER_STATE,
-    TIMEOUT,
+    INVALID_ASSET,
+    TOO_MANY_TXS,
+    INVALID_MONIKER,
+    STORAGE_RPC_ERROR,
+    FORBIDDEN,
+    CONSUMED_ASSET,
+    INVALID_SIGNER_STATE,
+    INVALID_FORGE_STATE,
     INVALID_STAKE_STATE,
-    INSUFFICIENT_STAKE,
+    INVALID_RECEIVER_STATE,
+    ACCOUNT_MIGRATED,
+    UNTRANSFERRABLE_ASSET,
     UNSUPPORTED_TX,
     INSUFFICIENT_DATA,
-    INVALID_FORGE_STATE,
-    EXPIRED_TX,
-    INVALID_WALLET,
+    INVALID_OWNER,
+    EXPIRED_WALLET_TOKEN,
+    INVALID_MULTISIG,
+    INSUFFICIENT_FUND,
+    CONSENSUS_RPC_ERROR,
+    INVALID_SIGNATURE,
+    TIMEOUT,
+    INVALID_NONCE,
+    INSUFFICIENT_STAKE,
+    INVALID_TX,
+    BANNED_UNSTAKE,
     READONLY_ASSET,
-    NOENT,
-    INVALID_TX_SIZE,
     INTERNAL,
+    NOENT,
     OK,
   }
 
@@ -309,6 +314,12 @@ declare namespace GraphQLClient {
   }
 
   export interface AddressFilter {}
+
+  export interface HeightFilter {}
+
+  export interface NumInvalidTxsFilter {}
+
+  export interface NumTxsFilter {}
 
   export interface PageInput {}
 
@@ -368,15 +379,24 @@ declare namespace GraphQLClient {
 
   export interface BlockInfo {
     appHash: string;
+    consensusHash: string;
+    dataHash: string;
+    evidenceHash: string;
     height: number;
     invalidTxs: Array<TransactionInfo>;
     invalidTxsHashes: Array<string>;
+    lastBlockId: GraphQLClient.BlockId;
+    lastCommitHash: string;
+    lastResultsHash: string;
+    nextValidatorsHash: string;
     numTxs: number;
     proposer: string;
     time: string;
     totalTxs: number;
     txs: Array<TransactionInfo>;
     txsHashes: Array<string>;
+    validatorsHash: string;
+    version: GraphQLClient.Version;
   }
 
   export interface ChainInfo {
@@ -493,13 +513,18 @@ declare namespace GraphQLClient {
     data: GraphQLClient.Any;
     dataVersion: string;
     forgeAppHash: string;
+    pokeConfig: GraphQLClient.PokeConfig;
+    stakeConfig: GraphQLClient.StakeConfig;
     stakeSummary: Array<StakeSummaryEntry>;
     tasks: Array<TasksEntry>;
     token: GraphQLClient.ForgeToken;
+    txConfig: GraphQLClient.TransactionConfig;
     version: string;
   }
 
   export interface ForgeStatistics {
+    avgTps: number;
+    maxTps: number;
     numAccountMigrateTxs: Array<number>;
     numBlocks: Array<number>;
     numConsensusUpgradeTxs: Array<number>;
@@ -516,6 +541,7 @@ declare namespace GraphQLClient {
     numTxs: Array<number>;
     numUpdateAssetTxs: Array<number>;
     numValidators: Array<number>;
+    tps: Array<number>;
   }
 
   export interface ForgeToken {
@@ -580,6 +606,14 @@ declare namespace GraphQLClient {
     owner: string;
     readonly: boolean;
     renaissanceTime: string;
+  }
+
+  export interface IndexedBlock {
+    height: number;
+    numInvalidTxs: number;
+    numTxs: number;
+    proposer: string;
+    time: string;
   }
 
   export interface IndexedConsumeAsset {
@@ -665,6 +699,7 @@ declare namespace GraphQLClient {
     ip: string;
     moniker: string;
     network: string;
+    p2pAddress: string;
     supportedTxs: Array<string>;
     synced: boolean;
     totalTxs: number;
@@ -690,6 +725,13 @@ declare namespace GraphQLClient {
     ip: string;
     moniker: string;
     network: string;
+  }
+
+  export interface PokeConfig {
+    address: string;
+    amount: number;
+    balance: number;
+    dailyLimit: number;
   }
 
   export interface PokeInfo {
@@ -835,6 +877,12 @@ declare namespace GraphQLClient {
     transactions: Array<IndexedTransaction>;
   }
 
+  export interface ResponseListBlocks {
+    blocks: Array<IndexedBlock>;
+    code: GraphQLClient.StatusCode;
+    page: GraphQLClient.PageInfo;
+  }
+
   export interface ResponseListTransactions {
     code: GraphQLClient.StatusCode;
     page: GraphQLClient.PageInfo;
@@ -923,6 +971,11 @@ declare namespace GraphQLClient {
     code: GraphQLClient.StatusCode;
   }
 
+  export interface StakeConfig {
+    timeoutGeneral: number;
+    timeoutStakeForNode: number;
+  }
+
   export interface StakeContext {
     recentReceivedStakes: GraphQLClient.CircularQueue;
     recentStakes: GraphQLClient.CircularQueue;
@@ -990,6 +1043,13 @@ declare namespace GraphQLClient {
     signatures: Array<Multisig>;
   }
 
+  export interface TransactionConfig {
+    maxAssetSize: number;
+    maxListSize: number;
+    maxMultisig: number;
+    minimumStake: number;
+  }
+
   export interface TransactionInfo {
     accountMigrate: GraphQLClient.ExtraAccountMigrate;
     code: GraphQLClient.StatusCode;
@@ -1049,8 +1109,8 @@ declare namespace GraphQLClient {
   }
 
   export interface Version {
-    App: number;
-    Block: number;
+    app: number;
+    block: number;
   }
 
   export interface VoteInfo {
@@ -1160,6 +1220,15 @@ declare namespace GraphQLClient {
   export interface ListAssetTransactionsParams {
     address: string;
     paging: undefined;
+  }
+
+  export interface ListBlocksParams {
+    heightFilter: undefined;
+    numInvalidTxsFilter: undefined;
+    numTxsFilter: undefined;
+    paging: undefined;
+    proposer: string;
+    timeFilter: undefined;
   }
 
   export interface ListTransactionsParams {
