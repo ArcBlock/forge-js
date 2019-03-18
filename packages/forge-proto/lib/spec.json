@@ -189,6 +189,7 @@
             "invalid_tx": 8,
             "unsupported_tx": 9,
             "expired_tx": 10,
+            "too_many_txs": 11,
             "invalid_moniker": 16,
             "invalid_passphrase": 17,
             "invalid_multisig": 20,
@@ -249,6 +250,7 @@
           "values": {
             "keccak": 0,
             "sha3": 1,
+            "sha2": 2,
             "keccak_384": 6,
             "sha3_384": 7,
             "keccak_512": 13,
@@ -526,6 +528,10 @@
             "geoInfo": {
               "type": "GeoInfo",
               "id": 18
+            },
+            "p2pAddress": {
+              "type": "string",
+              "id": 19
             }
           }
         },
@@ -728,6 +734,26 @@
             }
           }
         },
+        "TransactionConfig": {
+          "fields": {
+            "maxAssetSize": {
+              "type": "uint32",
+              "id": 1
+            },
+            "maxListSize": {
+              "type": "uint32",
+              "id": 2
+            },
+            "maxMultisig": {
+              "type": "uint32",
+              "id": 3
+            },
+            "minimumStake": {
+              "type": "uint64",
+              "id": 4
+            }
+          }
+        },
         "BlockInfo": {
           "fields": {
             "height": {
@@ -743,11 +769,11 @@
               "id": 3
             },
             "appHash": {
-              "type": "string",
+              "type": "bytes",
               "id": 4
             },
             "proposer": {
-              "type": "string",
+              "type": "bytes",
               "id": 5
             },
             "txs": {
@@ -773,6 +799,42 @@
               "rule": "repeated",
               "type": "string",
               "id": 10
+            },
+            "consensusHash": {
+              "type": "bytes",
+              "id": 11
+            },
+            "dataHash": {
+              "type": "bytes",
+              "id": 12
+            },
+            "evidenceHash": {
+              "type": "bytes",
+              "id": 13
+            },
+            "lastCommitHash": {
+              "type": "bytes",
+              "id": 14
+            },
+            "lastResultsHash": {
+              "type": "bytes",
+              "id": 15
+            },
+            "nextValidatorsHash": {
+              "type": "bytes",
+              "id": 16
+            },
+            "validatorsHash": {
+              "type": "bytes",
+              "id": 17
+            },
+            "version": {
+              "type": "abci_vendor.Version",
+              "id": 18
+            },
+            "lastBlockId": {
+              "type": "abci_vendor.BlockID",
+              "id": 19
             }
           }
         },
@@ -870,6 +932,18 @@
             "context": {
               "type": "StateContext",
               "id": 3
+            }
+          }
+        },
+        "StakeConfig": {
+          "fields": {
+            "timeoutGeneral": {
+              "type": "uint32",
+              "id": 1
+            },
+            "timeoutStakeForNode": {
+              "type": "uint32",
+              "id": 2
             }
           }
         },
@@ -1099,6 +1173,19 @@
               "rule": "repeated",
               "type": "uint64",
               "id": 16
+            },
+            "tps": {
+              "rule": "repeated",
+              "type": "uint32",
+              "id": 17
+            },
+            "maxTps": {
+              "type": "uint32",
+              "id": 18
+            },
+            "avgTps": {
+              "type": "uint32",
+              "id": 19
             }
           }
         },
@@ -1207,6 +1294,26 @@
             "amount": {
               "type": "BigUint",
               "id": 3
+            }
+          }
+        },
+        "PokeConfig": {
+          "fields": {
+            "address": {
+              "type": "string",
+              "id": 1
+            },
+            "dailyLimit": {
+              "type": "uint64",
+              "id": 2
+            },
+            "balance": {
+              "type": "uint64",
+              "id": 3
+            },
+            "amount": {
+              "type": "uint64",
+              "id": 4
             }
           }
         },
@@ -1379,6 +1486,18 @@
             "token": {
               "type": "ForgeToken",
               "id": 8
+            },
+            "txConfig": {
+              "type": "TransactionConfig",
+              "id": 9
+            },
+            "stakeConfig": {
+              "type": "StakeConfig",
+              "id": 10
+            },
+            "pokeConfig": {
+              "type": "PokeConfig",
+              "id": 11
             },
             "data": {
               "type": "google.protobuf.Any",
@@ -2469,6 +2588,51 @@
             }
           }
         },
+        "RequestListBlocks": {
+          "fields": {
+            "paging": {
+              "type": "PageInput",
+              "id": 1
+            },
+            "proposer": {
+              "type": "string",
+              "id": 2
+            },
+            "timeFilter": {
+              "type": "TimeFilter",
+              "id": 3
+            },
+            "heightFilter": {
+              "type": "HeightFilter",
+              "id": 4
+            },
+            "numTxsFilter": {
+              "type": "NumTxsFilter",
+              "id": 5
+            },
+            "numInvalidTxsFilter": {
+              "type": "NumInvalidTxsFilter",
+              "id": 6
+            }
+          }
+        },
+        "ResponseListBlocks": {
+          "fields": {
+            "code": {
+              "type": "StatusCode",
+              "id": 1
+            },
+            "page": {
+              "type": "PageInfo",
+              "id": 2
+            },
+            "blocks": {
+              "rule": "repeated",
+              "type": "IndexedBlock",
+              "id": 3
+            }
+          }
+        },
         "AccountMigrateTx": {
           "fields": {
             "pk": {
@@ -3034,6 +3198,66 @@
             }
           }
         },
+        "HeightFilter": {
+          "fields": {
+            "fromHeight": {
+              "type": "uint64",
+              "id": 1
+            },
+            "toHeight": {
+              "type": "uint64",
+              "id": 2
+            }
+          }
+        },
+        "NumTxsFilter": {
+          "fields": {
+            "minNumTxs": {
+              "type": "uint64",
+              "id": 1
+            },
+            "maxNumTxs": {
+              "type": "uint64",
+              "id": 2
+            }
+          }
+        },
+        "NumInvalidTxsFilter": {
+          "fields": {
+            "minNumInvalidTxs": {
+              "type": "uint64",
+              "id": 1
+            },
+            "maxNumInvalidTxs": {
+              "type": "uint64",
+              "id": 2
+            }
+          }
+        },
+        "IndexedBlock": {
+          "fields": {
+            "height": {
+              "type": "uint64",
+              "id": 1
+            },
+            "time": {
+              "type": "string",
+              "id": 2
+            },
+            "proposer": {
+              "type": "string",
+              "id": 3
+            },
+            "numTxs": {
+              "type": "uint64",
+              "id": 4
+            },
+            "numInvalidTxs": {
+              "type": "uint64",
+              "id": 5
+            }
+          }
+        },
         "ChainRpc": {
           "methods": {
             "create_tx": {
@@ -3213,6 +3437,10 @@
             "list_asset_transactions": {
               "requestType": "RequestListAssetTransactions",
               "responseType": "ResponseListAssetTransactions"
+            },
+            "list_blocks": {
+              "requestType": "RequestListBlocks",
+              "responseType": "ResponseListBlocks"
             }
           }
         }

@@ -36,6 +36,7 @@ proto.forge_abi.StatusCode = {
   INVALID_TX: 8,
   UNSUPPORTED_TX: 9,
   EXPIRED_TX: 10,
+  TOO_MANY_TXS: 11,
   INVALID_MONIKER: 16,
   INVALID_PASSPHRASE: 17,
   INVALID_MULTISIG: 20,
@@ -102,6 +103,7 @@ proto.forge_abi.KeyType = {
 proto.forge_abi.HashType = {
   KECCAK: 0,
   SHA3: 1,
+  SHA2: 2,
   KECCAK_384: 6,
   SHA3_384: 7,
   KECCAK_512: 13,

@@ -246,6 +246,17 @@ function deserialize_forge_abi_RequestListAssetTransactions(buffer_arg) {
   return rpc_pb.RequestListAssetTransactions.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_forge_abi_RequestListBlocks(arg) {
+  if (!(arg instanceof rpc_pb.RequestListBlocks)) {
+    throw new Error('Expected argument of type forge_abi.RequestListBlocks');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_forge_abi_RequestListBlocks(buffer_arg) {
+  return rpc_pb.RequestListBlocks.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_forge_abi_RequestListTransactions(arg) {
   if (!(arg instanceof rpc_pb.RequestListTransactions)) {
     throw new Error('Expected argument of type forge_abi.RequestListTransactions');
@@ -640,6 +651,17 @@ function serialize_forge_abi_ResponseListAssetTransactions(arg) {
 
 function deserialize_forge_abi_ResponseListAssetTransactions(buffer_arg) {
   return rpc_pb.ResponseListAssetTransactions.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_forge_abi_ResponseListBlocks(arg) {
+  if (!(arg instanceof rpc_pb.ResponseListBlocks)) {
+    throw new Error('Expected argument of type forge_abi.ResponseListBlocks');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_forge_abi_ResponseListBlocks(buffer_arg) {
+  return rpc_pb.ResponseListBlocks.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_forge_abi_ResponseListTransactions(arg) {
@@ -1224,6 +1246,17 @@ var StatisticRpcService = (exports.StatisticRpcService = {
     requestDeserialize: deserialize_forge_abi_RequestListAssetTransactions,
     responseSerialize: serialize_forge_abi_ResponseListAssetTransactions,
     responseDeserialize: deserialize_forge_abi_ResponseListAssetTransactions,
+  },
+  list_blocks: {
+    path: '/forge_abi.StatisticRpc/list_blocks',
+    requestStream: false,
+    responseStream: false,
+    requestType: rpc_pb.RequestListBlocks,
+    responseType: rpc_pb.ResponseListBlocks,
+    requestSerialize: serialize_forge_abi_RequestListBlocks,
+    requestDeserialize: deserialize_forge_abi_RequestListBlocks,
+    responseSerialize: serialize_forge_abi_ResponseListBlocks,
+    responseDeserialize: deserialize_forge_abi_ResponseListBlocks,
   },
 });
 
