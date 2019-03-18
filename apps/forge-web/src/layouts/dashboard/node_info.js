@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { useLocalStorage } from 'react-use';
 import { withTheme } from '@material-ui/core/styles';
 
 import Typography from '@material-ui/core/Typography';
@@ -10,9 +9,10 @@ import CheckIcon from '@material-ui/icons/CheckCircleOutlineSharp';
 import SyncIcon from '@material-ui/icons/SyncSharp';
 
 import Icons8 from '../../components/icon8';
+import { useNodeInfo } from '../../libs/util';
 
 function NodeInfo({ theme }) {
-  const [nodeInfo] = useLocalStorage('node');
+  const [nodeInfo] = useNodeInfo();
   const [appInfo] = nodeInfo.forgeAppsVersion;
   const appName = appInfo ? appInfo.key : '';
   const appVersion = appInfo ? appInfo.value : '';

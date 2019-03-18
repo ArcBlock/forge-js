@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import { IntlProvider, addLocaleData } from 'react-intl';
-import { useAsync, useLocalStorage } from 'react-use';
 
 import Layout from '../layouts/explorer';
 
@@ -16,17 +15,14 @@ import PageAssetDetail from '../pages/explorer/asset';
 import ActivityIndicator from '../components/activity_indicator';
 
 import { localeData } from '../libs/locale';
-import { detectLocale, fetchInfo } from '../libs/util';
+import { detectLocale, useStartupInfo } from '../libs/util';
 
 addLocaleData(localeData);
 
 const { locale, messages } = detectLocale();
 
 const App = () => {
-  const [tokenInfo, setTokenInfo] = useLocalStorage('token', {});
-  const [nodeInfo, setNodeInfo] = useLocalStorage('node', {});
-
-  const state = useAsync(fetchInfo, [tokenInfo, nodeInfo]);
+  const state = useStartupInfo();
 
   if (state.loading) {
     return (
@@ -45,14 +41,6 @@ const App = () => {
         <p className="error">{state.error.message}</p>
       </Wrapper>
     );
-  }
-
-  if (state.value.token) {
-    // HACK: we must add a timeout here
-    setTimeout(() => {
-      setTokenInfo(state.value.token);
-      setNodeInfo(state.value.node);
-    }, 0);
   }
 
   return (

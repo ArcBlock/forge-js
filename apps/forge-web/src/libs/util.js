@@ -6,6 +6,8 @@ import camelCase from 'lodash/camelCase';
 import upperFirst from 'lodash/upperFirst';
 import numeral from 'numeral';
 import { fromUnitToToken } from '@arcblock/forge-util';
+import { useAsync, useLocalStorage } from 'react-use';
+
 import { languages, translations } from './locale';
 import { COOKIE_LANGUAGE } from './constant';
 import forge from './forge';
@@ -100,4 +102,28 @@ export async function fetchInfo(tokenInfo, nodeInfo) {
         : err.message || err.toString()
     );
   }
+}
+
+export function useTokenInfo() {
+  return useLocalStorage('token', {});
+}
+
+export function useNodeInfo() {
+  return useLocalStorage('node', {});
+}
+
+export function useStartupInfo() {
+  const [, setTokenInfo] = useTokenInfo();
+  const [, setNodeInfo] = useNodeInfo();
+
+  const state = useAsync(fetchInfo);
+  if (state.value) {
+    // HACK: we must add a timeout here
+    setTimeout(() => {
+      setTokenInfo(state.value.token);
+      setNodeInfo(state.value.node);
+    }, 0);
+  }
+
+  return state;
 }
