@@ -4,11 +4,12 @@ import styled from 'styled-components';
 import { useAsync } from 'react-use';
 
 // TODO: use css transition group to make animation perfect
+import Grid from '@material-ui/core/Grid';
 
 import ActivityIndicator from '../../../../components/activity_indicator';
 import Summary from './summary';
 
-import { fetchStatus, getLayerBackground, getLayerStyle, getGreeting } from './util';
+import { fetchStatus, getLayerBackground, getLayerStyle } from './util';
 
 const STATUS_WARNING = 1;
 const STATUS_ERROR = 2;
@@ -49,26 +50,29 @@ export default function StatusSection() {
   return (
     <Container onMouseOut={onClickAway} onBlur={onClickAway}>
       <div className="greeting">
-        <p>
-          Good {getGreeting()}! <br />
-          Your node {ok ? 'works good' : 'is running'} now.
-        </p>
+        <p>Your node {ok ? 'works good' : 'is running'} now.</p>
       </div>
       <div className="layers">
-        <div className="stack">
-          {names.map((x, i) => (
-            <Layer
-              key={x}
-              error={layers[x].status === STATUS_ERROR}
-              warning={layers[x].status === STATUS_WARNING}
-              onMouseEnter={onSelectLayer(x)}
-              style={getLayerStyle(names, selected, i)}
-            />
-          ))}
-        </div>
-        <div className="summary">
-          <SummaryComponent layers={layers} layer={layers[selected]} data={data} />
-        </div>
+        <Grid container spacing={0}>
+          <Grid item xs={12} sm={5} md={4}>
+            <div className="stack">
+              {names.map((x, i) => (
+                <Layer
+                  key={x}
+                  error={layers[x].status === STATUS_ERROR}
+                  warning={layers[x].status === STATUS_WARNING}
+                  onMouseEnter={onSelectLayer(x)}
+                  style={getLayerStyle(names, selected, i)}
+                />
+              ))}
+            </div>
+          </Grid>
+          <Grid item xs={12} sm={7} md={8}>
+            <div className="summary">
+              <SummaryComponent layers={layers} layer={layers[selected]} data={data} />
+            </div>
+          </Grid>
+        </Grid>
       </div>
     </Container>
   );
@@ -90,7 +94,6 @@ const Container = styled.div`
     .stack {
       position: relative;
       height: 450px;
-      width: 400px;
       padding: 0 36px;
       flex-shrink: 0;
     }

@@ -2,6 +2,9 @@
 /* eslint react-hooks/rules-of-hooks:"off" */
 import { useState, useEffect, useRef } from 'react';
 import { EventTarget } from 'event-target-shim';
+import { useAsync } from 'react-use';
+
+import { fetchInfo } from './util';
 
 export function useInterval(callback, delay) {
   const savedCallback = useRef();
@@ -66,4 +69,28 @@ export function useThemeMode() {
   const defaultMode = appName === 'explorer' ? 'dark' : 'light';
   const [mode, setMode] = useLocalStorage(`theme.${appName}`, defaultMode);
   return [mode, setMode];
+}
+
+export function useTokenInfo() {
+  return useLocalStorage('token', {});
+}
+
+export function useNodeInfo() {
+  return useLocalStorage('node', {});
+}
+
+export function useStartupInfo() {
+  const [, setTokenInfo] = useTokenInfo();
+  const [, setNodeInfo] = useNodeInfo();
+
+  const state = useAsync(fetchInfo);
+  if (state.value) {
+    // HACK: we must add a timeout here
+    setTimeout(() => {
+      setTokenInfo(state.value.token);
+      setNodeInfo(state.value.node);
+    }, 0);
+  }
+
+  return state;
 }

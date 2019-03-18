@@ -23,10 +23,9 @@ function ConsensusStatus({ layer, theme, data }) {
       </ListItem>
       <List component="div" style={{ paddingLeft: '32px' }}>
         <InfoRow label="Synced" value={data.chain.synced ? 'Yes' : 'No'} />
-        <InfoRow label="Tendermint Version" value={data.chain.consensusVersion} />
+        <InfoRow label="Consensus Engine" value={`Tendermint v${data.chain.consensusVersion}`} />
         <InfoRow label="Max Block Size" value={data.forge.consensus.maxBytes} />
         <InfoRow label="Max Validator Candidate" value={data.forge.consensus.maxCandidates} />
-        <InfoRow label="Max Gas" value={data.forge.consensus.maxGas} />
         <InfoRow label="Max Validator" value={data.forge.consensus.maxValidators} />
       </List>
     </List>

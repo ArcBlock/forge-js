@@ -13,5 +13,6 @@
 
 ```terminal
 yarn
-yarn start
+yarn start:node         # start forge-web shipped within forge
+yarn start:explorer     # start universal block explorer
 ```

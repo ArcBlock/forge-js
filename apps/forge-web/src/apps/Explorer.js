@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import { IntlProvider, addLocaleData } from 'react-intl';
-import { useAsync, useLocalStorage } from 'react-use';
 
 import Layout from '../layouts/explorer';
 
@@ -16,31 +15,15 @@ import PageAssetDetail from '../pages/explorer/asset';
 import ActivityIndicator from '../components/activity_indicator';
 
 import { localeData } from '../libs/locale';
-import { detectLocale, delay } from '../libs/util';
-import forge from '../libs/forge';
+import { detectLocale } from '../libs/util';
+import { useStartupInfo } from '../libs/hooks';
 
 addLocaleData(localeData);
 
 const { locale, messages } = detectLocale();
 
-async function fetchInfo() {
-  try {
-    const { state } = await forge.getForgeState();
-    await delay(1600);
-    return { token: state.token };
-  } catch (err) {
-    console.error(err.errors);
-    throw new Error(
-      Array.isArray(err.errors)
-        ? err.errors.map(x => x.message).join(',')
-        : err.message || err.toString()
-    );
-  }
-}
-
 const App = () => {
-  const [, setToken] = useLocalStorage('token', {});
-  const state = useAsync(fetchInfo);
+  const state = useStartupInfo();
 
   if (state.loading) {
     return (
@@ -59,11 +42,6 @@ const App = () => {
         <p className="error">{state.error.message}</p>
       </Wrapper>
     );
-  }
-
-  if (state.value.token) {
-    // HACK: we must add a timeout here
-    setTimeout(() => setToken(state.value.token), 0);
   }
 
   return (

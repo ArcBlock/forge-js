@@ -75,6 +75,7 @@ declare namespace Enums {
     INVALID_TX = 8,
     UNSUPPORTED_TX = 9,
     EXPIRED_TX = 10,
+    TOO_MANY_TXS = 11,
     INVALID_MONIKER = 16,
     INVALID_PASSPHRASE = 17,
     INVALID_MULTISIG = 20,
@@ -132,6 +133,7 @@ declare namespace Enums {
   export enum HashType {
     KECCAK = 0,
     SHA3 = 1,
+    SHA2 = 2,
     KECCAK_384 = 6,
     SHA3_384 = 7,
     KECCAK_512 = 13,
@@ -255,6 +257,7 @@ declare namespace Messages {
     8 = INVALID_TX,
     9 = UNSUPPORTED_TX,
     10 = EXPIRED_TX,
+    11 = TOO_MANY_TXS,
     16 = INVALID_MONIKER,
     17 = INVALID_PASSPHRASE,
     20 = INVALID_MULTISIG,
@@ -312,6 +315,7 @@ declare namespace Messages {
   export enum HashType {
     0 = KECCAK,
     1 = SHA3,
+    2 = SHA2,
     6 = KECCAK_384,
     7 = SHA3_384,
     13 = KECCAK_512,

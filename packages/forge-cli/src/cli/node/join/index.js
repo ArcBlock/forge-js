@@ -3,8 +3,8 @@ const { cli, action } = require('core/cli');
 const { execute, run } = require('./join');
 
 cli(
-  'join <forge-web-api-endpoint>',
-  'Join a network by providing an graphql endpoint to fetch config',
+  'join <endpoint>',
+  'Join a network by providing an forge web graphql endpoint to fetch config',
   input => action(execute, run, input),
   {
     requirements: {

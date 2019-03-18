@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import moment from 'moment';
 import numeral from 'numeral';
 import { fromUnitToToken } from '@arcblock/forge-util';
-import { useAsync, useBoolean, useLocalStorage } from 'react-use';
+import { useAsync, useBoolean } from 'react-use';
 import { withTheme } from '@material-ui/core/styles';
 
 import Grid from '@material-ui/core/Grid';
@@ -15,10 +15,12 @@ import Icon8 from '../../../components/icon8';
 import SparkLine from '../../../components/sparkline';
 import BlinkingDot from '../../../components/blinking_dot';
 import forge from '../../../libs/forge';
-import { useInterval } from '../../../libs/hooks';
+import { useInterval, useTokenInfo } from '../../../libs/hooks';
 
 async function fetchSummary() {
-  const date = moment().format('YYYY-MM-DD');
+  const date = moment()
+    .utc()
+    .format('YYYY-MM-DD');
   const [{ forgeStatistics: summary }, { forgeStatistics: trend }] = await Promise.all([
     forge.getForgeStatistics(),
     forge.getForgeStatisticsByHour({ date }),
@@ -32,7 +34,7 @@ function Metrics({ theme, sparkline, itemSize, size }) {
   const [updates, setUpdates] = useState(null);
   const [autoRefresh, setAutoRefresh] = useBoolean(true);
   const [animation, setAnimation] = useBoolean(false);
-  const [token] = useLocalStorage('token');
+  const [token] = useTokenInfo();
 
   // Pull
   useInterval(
@@ -81,10 +83,12 @@ function Metrics({ theme, sparkline, itemSize, size }) {
   }, {});
 
   const trends = Object.keys(mapping).reduce((acc, x) => {
-    acc[x] = trend[mapping[x]].map((d, i) => {
-      // FIXME: use same date as `this.loadSummary`
+    const hour = new Date().getHours();
+    const dataPoints = trend[mapping[x]];
+    acc[x] = dataPoints.map((d, i) => {
       const date = new Date();
-      date.setHours(i + 1);
+      // because dataPoints have no bounded timestamp, we have to calculate offset
+      date.setHours(hour - (dataPoints.length - i));
       date.setMinutes(0);
       date.setSeconds(0);
       return {
@@ -116,7 +120,7 @@ function Metrics({ theme, sparkline, itemSize, size }) {
           <BlinkingDot
             theme={autoRefresh ? 'green' : 'red'}
             size={14}
-            duration={autoRefresh ? '800ms' : '0'}
+            duration={autoRefresh ? '4s' : '0'}
             style={{ marginRight: '8px' }}
           />
           {autoRefresh ? 'Live Updates On' : 'Live Updates Off'}

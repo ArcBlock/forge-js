@@ -2,42 +2,27 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { useAsync } from 'react-use';
 import { withTheme } from '@material-ui/core/styles';
 
 import Typography from '@material-ui/core/Typography';
-import CircularProgress from '@material-ui/core/CircularProgress';
 import CheckIcon from '@material-ui/icons/CheckCircleOutlineSharp';
 import SyncIcon from '@material-ui/icons/SyncSharp';
 
 import Icons8 from '../../components/icon8';
-import forge from '../../libs/forge';
-
-async function fetchNodeInfo() {
-  const res = await forge.getNodeInfo();
-  return res.info;
-}
+import { useNodeInfo } from '../../libs/hooks';
 
 function NodeInfo({ theme }) {
-  const state = useAsync(fetchNodeInfo);
-  if (state.loading) {
-    return <CircularProgress />;
-  }
-
-  if (state.error) {
-    return <Typography component="span">{state.error.message}</Typography>;
-  }
-
-  const [appInfo] = state.value.forgeAppsVersion;
+  const [nodeInfo] = useNodeInfo();
+  const [appInfo] = nodeInfo.forgeAppsVersion;
   const appName = appInfo ? appInfo.key : '';
   const appVersion = appInfo ? appInfo.value : '';
 
   return (
-    <Header synced={state.value.synced}>
+    <Header synced={nodeInfo.synced}>
       <Link to="/">
         <div className="header-image">
           <Icons8 name="text-input-form" color={theme.typography.color.main} />
-          {state.value.synced ? (
+          {nodeInfo.synced ? (
             <CheckIcon className="header-image__overlay" />
           ) : (
             <SyncIcon className="header-image__overlay header-image__animated" />
@@ -46,14 +31,14 @@ function NodeInfo({ theme }) {
       </Link>
       <div className="header-title">
         <Typography component="h2" noWrap className="header-title__primary">
-          {state.value.network} ({state.value.ip}{' '}
+          {nodeInfo.network} ({nodeInfo.ip}{' '}
           <span>
-            {state.value.geoInfo.city},{state.value.geoInfo.country}
+            {nodeInfo.geoInfo.city},{nodeInfo.geoInfo.country}
           </span>
           )
         </Typography>
         <Typography component="p" noWrap className="header-title__secondary">
-          forge v{state.value.version} {appName} {appVersion}
+          forge v{nodeInfo.version} {appName} {appVersion}
         </Typography>
       </div>
     </Header>

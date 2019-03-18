@@ -1,6 +1,6 @@
 # Forge GraphQL API List
 
-> Updated on 2019-03-12T09:13:31.312Z
+> Updated on 2019-03-18T01:30:32.638Z
 
 
 ## Table of Contents
@@ -27,6 +27,7 @@
   * [getUnconfirmedTxs](#getunconfirmedtxs)
   * [getValidatorsInfo](#getvalidatorsinfo)
   * [listAssetTransactions](#listassettransactions)
+  * [listBlocks](#listblocks)
   * [listTransactions](#listtransactions)
   * [listWallet](#listwallet)
   * [loadFile](#loadfile)
@@ -848,13 +849,20 @@
     code
     block {
       appHash
+      consensusHash
+      dataHash
+      evidenceHash
       height
       invalidTxsHashes
+      lastCommitHash
+      lastResultsHash
+      nextValidatorsHash
       numTxs
       proposer
       time
       totalTxs
       txsHashes
+      validatorsHash
       invalidTxs {
         code
         hash
@@ -1004,6 +1012,13 @@
               }
             }
           }
+        }
+      }
+      lastBlockId {
+        hash
+        partsHeader {
+          hash
+          total
         }
       }
       txs {
@@ -1156,6 +1171,10 @@
             }
           }
         }
+      }
+      version {
+        app
+        block
       }
     }
   }
@@ -1179,13 +1198,20 @@
     code
     blocks {
       appHash
+      consensusHash
+      dataHash
+      evidenceHash
       height
       invalidTxsHashes
+      lastCommitHash
+      lastResultsHash
+      nextValidatorsHash
       numTxs
       proposer
       time
       totalTxs
       txsHashes
+      validatorsHash
       invalidTxs {
         code
         hash
@@ -1335,6 +1361,13 @@
               }
             }
           }
+        }
+      }
+      lastBlockId {
+        hash
+        partsHeader {
+          hash
+          total
         }
       }
       txs {
@@ -1487,6 +1520,10 @@
             }
           }
         }
+      }
+      version {
+        app
+        block
       }
     }
     page {
@@ -1587,6 +1624,16 @@ No arguments
         typeUrl
         value
       }
+      pokeConfig {
+        address
+        amount
+        balance
+        dailyLimit
+      }
+      stakeConfig {
+        timeoutGeneral
+        timeoutStakeForNode
+      }
       stakeSummary {
         key
         value {
@@ -1665,6 +1712,12 @@ No arguments
         totalSupply
         unit
       }
+      txConfig {
+        maxAssetSize
+        maxListSize
+        maxMultisig
+        minimumStake
+      }
     }
   }
 }
@@ -1683,6 +1736,8 @@ No arguments
   getForgeStatistics {
     code
     forgeStatistics {
+      avgTps
+      maxTps
       numAccountMigrateTxs
       numBlocks
       numConsensusUpgradeTxs
@@ -1699,6 +1754,7 @@ No arguments
       numTxs
       numUpdateAssetTxs
       numValidators
+      tps
     }
   }
 }
@@ -1718,6 +1774,8 @@ No arguments
   getForgeStatisticsByDay(endDate: "abc", startDate: "abc") {
     code
     forgeStatistics {
+      avgTps
+      maxTps
       numAccountMigrateTxs
       numBlocks
       numConsensusUpgradeTxs
@@ -1734,6 +1792,7 @@ No arguments
       numTxs
       numUpdateAssetTxs
       numValidators
+      tps
     }
   }
 }
@@ -1752,6 +1811,8 @@ No arguments
   getForgeStatisticsByHour(date: "abc") {
     code
     forgeStatistics {
+      avgTps
+      maxTps
       numAccountMigrateTxs
       numBlocks
       numConsensusUpgradeTxs
@@ -1768,6 +1829,7 @@ No arguments
       numTxs
       numUpdateAssetTxs
       numValidators
+      tps
     }
   }
 }
@@ -1831,6 +1893,7 @@ No arguments
       ip
       moniker
       network
+      p2pAddress
       supportedTxs
       synced
       totalTxs
@@ -2778,6 +2841,39 @@ No arguments
       updateAsset {
         asset
       }
+    }
+  }
+}
+```
+
+### listBlocks
+
+#### Arguments
+
+* **heightFilter**, optional, 
+* **numInvalidTxsFilter**, optional, 
+* **numTxsFilter**, optional, 
+* **paging**, optional, 
+* **proposer**, optional, 
+* **timeFilter**, optional, 
+
+#### Result Format
+
+```graphql
+{
+  listBlocks(proposer: "abc") {
+    code
+    blocks {
+      height
+      numInvalidTxs
+      numTxs
+      proposer
+      time
+    }
+    page {
+      cursor
+      next
+      total
     }
   }
 }
@@ -3837,8 +3933,8 @@ subscription {
           }
         }
         version {
-          App
-          Block
+          app
+          block
         }
       }
       lastCommitInfo {

@@ -1145,6 +1145,9 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
         dataVersion: jspb.Message.getFieldWithDefault(msg, 6, ''),
         forgeAppHash: msg.getForgeAppHash(),
         token: (f = msg.getToken()) && type_pb.ForgeToken.toObject(includeInstance, f),
+        txConfig: (f = msg.getTxConfig()) && type_pb.TransactionConfig.toObject(includeInstance, f),
+        stakeConfig: (f = msg.getStakeConfig()) && type_pb.StakeConfig.toObject(includeInstance, f),
+        pokeConfig: (f = msg.getPokeConfig()) && type_pb.PokeConfig.toObject(includeInstance, f),
         data: (f = msg.getData()) && google_protobuf_any_pb.Any.toObject(includeInstance, f),
       };
 
@@ -1232,6 +1235,21 @@ proto.forge_abi.ForgeState.deserializeBinaryFromReader = function(msg, reader) {
         reader.readMessage(value, type_pb.ForgeToken.deserializeBinaryFromReader);
         msg.setToken(value);
         break;
+      case 9:
+        var value = new type_pb.TransactionConfig();
+        reader.readMessage(value, type_pb.TransactionConfig.deserializeBinaryFromReader);
+        msg.setTxConfig(value);
+        break;
+      case 10:
+        var value = new type_pb.StakeConfig();
+        reader.readMessage(value, type_pb.StakeConfig.deserializeBinaryFromReader);
+        msg.setStakeConfig(value);
+        break;
+      case 11:
+        var value = new type_pb.PokeConfig();
+        reader.readMessage(value, type_pb.PokeConfig.deserializeBinaryFromReader);
+        msg.setPokeConfig(value);
+        break;
       case 15:
         var value = new google_protobuf_any_pb.Any();
         reader.readMessage(value, google_protobuf_any_pb.Any.deserializeBinaryFromReader);
@@ -1307,6 +1325,18 @@ proto.forge_abi.ForgeState.serializeBinaryToWriter = function(message, writer) {
   f = message.getToken();
   if (f != null) {
     writer.writeMessage(8, f, type_pb.ForgeToken.serializeBinaryToWriter);
+  }
+  f = message.getTxConfig();
+  if (f != null) {
+    writer.writeMessage(9, f, type_pb.TransactionConfig.serializeBinaryToWriter);
+  }
+  f = message.getStakeConfig();
+  if (f != null) {
+    writer.writeMessage(10, f, type_pb.StakeConfig.serializeBinaryToWriter);
+  }
+  f = message.getPokeConfig();
+  if (f != null) {
+    writer.writeMessage(11, f, type_pb.PokeConfig.serializeBinaryToWriter);
   }
   f = message.getData();
   if (f != null) {
@@ -1480,6 +1510,93 @@ proto.forge_abi.ForgeState.prototype.clearToken = function() {
  */
 proto.forge_abi.ForgeState.prototype.hasToken = function() {
   return jspb.Message.getField(this, 8) != null;
+};
+
+/**
+ * optional TransactionConfig tx_config = 9;
+ * @return {?proto.forge_abi.TransactionConfig}
+ */
+proto.forge_abi.ForgeState.prototype.getTxConfig = function() {
+  return /** @type{?proto.forge_abi.TransactionConfig} */ (jspb.Message.getWrapperField(
+    this,
+    type_pb.TransactionConfig,
+    9
+  ));
+};
+
+/** @param {?proto.forge_abi.TransactionConfig|undefined} value */
+proto.forge_abi.ForgeState.prototype.setTxConfig = function(value) {
+  jspb.Message.setWrapperField(this, 9, value);
+};
+
+proto.forge_abi.ForgeState.prototype.clearTxConfig = function() {
+  this.setTxConfig(undefined);
+};
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.forge_abi.ForgeState.prototype.hasTxConfig = function() {
+  return jspb.Message.getField(this, 9) != null;
+};
+
+/**
+ * optional StakeConfig stake_config = 10;
+ * @return {?proto.forge_abi.StakeConfig}
+ */
+proto.forge_abi.ForgeState.prototype.getStakeConfig = function() {
+  return /** @type{?proto.forge_abi.StakeConfig} */ (jspb.Message.getWrapperField(
+    this,
+    type_pb.StakeConfig,
+    10
+  ));
+};
+
+/** @param {?proto.forge_abi.StakeConfig|undefined} value */
+proto.forge_abi.ForgeState.prototype.setStakeConfig = function(value) {
+  jspb.Message.setWrapperField(this, 10, value);
+};
+
+proto.forge_abi.ForgeState.prototype.clearStakeConfig = function() {
+  this.setStakeConfig(undefined);
+};
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.forge_abi.ForgeState.prototype.hasStakeConfig = function() {
+  return jspb.Message.getField(this, 10) != null;
+};
+
+/**
+ * optional PokeConfig poke_config = 11;
+ * @return {?proto.forge_abi.PokeConfig}
+ */
+proto.forge_abi.ForgeState.prototype.getPokeConfig = function() {
+  return /** @type{?proto.forge_abi.PokeConfig} */ (jspb.Message.getWrapperField(
+    this,
+    type_pb.PokeConfig,
+    11
+  ));
+};
+
+/** @param {?proto.forge_abi.PokeConfig|undefined} value */
+proto.forge_abi.ForgeState.prototype.setPokeConfig = function(value) {
+  jspb.Message.setWrapperField(this, 11, value);
+};
+
+proto.forge_abi.ForgeState.prototype.clearPokeConfig = function() {
+  this.setPokeConfig(undefined);
+};
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.forge_abi.ForgeState.prototype.hasPokeConfig = function() {
+  return jspb.Message.getField(this, 11) != null;
 };
 
 /**

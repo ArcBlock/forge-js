@@ -1,12 +1,15 @@
 /* eslint import/prefer-default-export:"off" */
 import Cookie from 'js-cookie';
+import isEmpty from 'lodash/isEmpty';
 import browserLang from 'browser-lang';
 import camelCase from 'lodash/camelCase';
 import upperFirst from 'lodash/upperFirst';
 import numeral from 'numeral';
 import { fromUnitToToken } from '@arcblock/forge-util';
+
 import { languages, translations } from './locale';
 import { COOKIE_LANGUAGE } from './constant';
+import forge from './forge';
 
 export function detectLocale() {
   const locale =
@@ -74,4 +77,28 @@ export function fromArcToReadable(bn) {
 
 export function getExplorerUrl(url) {
   return process.env.REACT_APP_NAME === 'explorer' ? url : `/node/explorer${url}`;
+}
+
+export async function fetchInfo(tokenInfo, nodeInfo) {
+  try {
+    if (isEmpty(tokenInfo)) {
+      const { state } = await forge.getForgeState();
+      // eslint-disable-next-line
+      tokenInfo = state.token;
+    }
+    if (isEmpty(nodeInfo)) {
+      const { info } = await forge.getNodeInfo();
+      // eslint-disable-next-line
+      nodeInfo = info;
+    }
+
+    return { token: tokenInfo, node: nodeInfo };
+  } catch (err) {
+    console.error(err.errors);
+    throw new Error(
+      Array.isArray(err.errors)
+        ? err.errors.map(x => x.message).join(',')
+        : err.message || err.toString()
+    );
+  }
 }

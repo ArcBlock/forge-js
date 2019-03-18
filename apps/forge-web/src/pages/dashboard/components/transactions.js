@@ -184,7 +184,9 @@ export default class TransactionsSection extends React.Component {
     this.setState({ loading: true });
     const dateRange = this.dateRanges[this.state.rangeKey];
     const queryType = dateRange.api || 'getForgeStatisticsByDay';
-    const endDate = moment().format('YYYY-MM-DD');
+    const endDate = moment()
+      .utc()
+      .format('YYYY-MM-DD');
     const rangeParams = {
       endDate,
       startDate: moment()
@@ -194,7 +196,7 @@ export default class TransactionsSection extends React.Component {
     const params = queryType === 'getForgeStatisticsByDay' ? rangeParams : { date: endDate };
 
     const { forgeStatistics: rawData } = await forge[queryType](params);
-    const keys = Object.keys(rawData);
+    const keys = Object.keys(rawData).filter(x => Array.isArray(rawData[x]));
     const data = rawData[keys[0]].map((v, i) => {
       let time = null;
       if (queryType === 'getForgeStatisticsByDay') {
