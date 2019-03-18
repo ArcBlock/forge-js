@@ -1,12 +1,12 @@
 {
   "name": "@arcblock/forge-web",
-  "version": "0.13.4",
+  "version": "0.14.0",
   "author": "wangshijun <wangshijun2010@gmail.com>",
   "homepage": "./",
   "dependencies": {
     "@arcblock/analytics-js": "^0.16.0",
-    "@arcblock/forge-graphql-client": "^0.13.2",
-    "@arcblock/forge-util": "^0.13.2",
+    "@arcblock/forge-graphql-client": "^0.14.0",
+    "@arcblock/forge-util": "^0.14.0",
     "@material-ui/core": "^3.9.1",
     "@material-ui/icons": "^3.0.2",
     "babel-polyfill": "^6.26.0",
