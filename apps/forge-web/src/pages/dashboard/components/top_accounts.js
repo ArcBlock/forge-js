@@ -1,7 +1,7 @@
 import React from 'react';
 import numeral from 'numeral';
 import PropTypes from 'prop-types';
-import { useAsync, useLocalStorage } from 'react-use';
+import { useAsync } from 'react-use';
 import { Link } from 'react-router-dom';
 import { fromUnitToToken } from '@arcblock/forge-util';
 
@@ -15,6 +15,7 @@ import TableRow from '@material-ui/core/TableRow';
 import AccountActivity from './account_activity';
 import forge from '../../../libs/forge';
 import { getExplorerUrl } from '../../../libs/util';
+import { useTokenInfo } from '../../../libs/hooks';
 
 async function fetchTopAccounts() {
   const { accounts } = await forge.getTopAccounts();
@@ -30,7 +31,7 @@ async function fetchTopAccounts() {
 
 export default function TopAccounts({ sparkline }) {
   const state = useAsync(fetchTopAccounts);
-  const [token] = useLocalStorage('token');
+  const [token] = useTokenInfo();
 
   if (state.loading) {
     return <CircularProgress />;

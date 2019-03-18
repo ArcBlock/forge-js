@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import moment from 'moment';
 import numeral from 'numeral';
 import { fromUnitToToken } from '@arcblock/forge-util';
-import { useAsync, useBoolean, useLocalStorage } from 'react-use';
+import { useAsync, useBoolean } from 'react-use';
 import { withTheme } from '@material-ui/core/styles';
 
 import Grid from '@material-ui/core/Grid';
@@ -15,7 +15,7 @@ import Icon8 from '../../../components/icon8';
 import SparkLine from '../../../components/sparkline';
 import BlinkingDot from '../../../components/blinking_dot';
 import forge from '../../../libs/forge';
-import { useInterval } from '../../../libs/hooks';
+import { useInterval, useTokenInfo } from '../../../libs/hooks';
 
 async function fetchSummary() {
   const date = moment().format('YYYY-MM-DD');
@@ -32,7 +32,7 @@ function Metrics({ theme, sparkline, itemSize, size }) {
   const [updates, setUpdates] = useState(null);
   const [autoRefresh, setAutoRefresh] = useBoolean(true);
   const [animation, setAnimation] = useBoolean(false);
-  const [token] = useLocalStorage('token');
+  const [token] = useTokenInfo();
 
   // Pull
   useInterval(

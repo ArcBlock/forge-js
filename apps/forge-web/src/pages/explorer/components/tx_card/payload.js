@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useLocalStorage } from 'react-use';
 import { fromUnitToToken } from '@arcblock/forge-util';
 
 import Tooltip from '@material-ui/core/Tooltip';
 
 import IconFa from '../../../../components/iconfa';
+import { useTokenInfo } from '../../../../libs/hooks';
 
 const Payload = ({ itx }) => {
-  const [token] = useLocalStorage('token');
+  const [token] = useTokenInfo();
   const hasAssets = !!(Array.isArray(itx.assets) && itx.assets.length);
   const hasValue = !!itx.value;
   return (

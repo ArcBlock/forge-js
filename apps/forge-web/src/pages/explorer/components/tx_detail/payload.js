@@ -3,15 +3,15 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { fromUnitToToken } from '@arcblock/forge-util';
-import { useLocalStorage } from 'react-use';
 
 import IconFa from '../../../../components/iconfa';
 import { getExplorerUrl } from '../../../../libs/util';
+import { useTokenInfo } from '../../../../libs/hooks';
 
 const Payload = ({ itx }) => {
   const hasAssets = !!(Array.isArray(itx.assets) && itx.assets.length);
   const hasValue = !!itx.value;
-  const [token] = useLocalStorage('token');
+  const [token] = useTokenInfo();
 
   return (
     <List className="meta">

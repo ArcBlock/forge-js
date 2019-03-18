@@ -22,7 +22,8 @@ import PageAssetDetail from '../pages/explorer/asset';
 import ActivityIndicator from '../components/activity_indicator';
 
 import { localeData } from '../libs/locale';
-import { detectLocale, useStartupInfo } from '../libs/util';
+import { detectLocale } from '../libs/util';
+import { useStartupInfo } from '../libs/hooks';
 
 addLocaleData(localeData);
 

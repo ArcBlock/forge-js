@@ -9,7 +9,7 @@ import CheckIcon from '@material-ui/icons/CheckCircleOutlineSharp';
 import SyncIcon from '@material-ui/icons/SyncSharp';
 
 import Icons8 from '../../components/icon8';
-import { useNodeInfo } from '../../libs/util';
+import { useNodeInfo } from '../../libs/hooks';
 
 function NodeInfo({ theme }) {
   const [nodeInfo] = useNodeInfo();
