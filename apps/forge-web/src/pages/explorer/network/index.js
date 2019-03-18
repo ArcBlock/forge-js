@@ -65,8 +65,8 @@ class Network extends Page {
 
     this.state = {
       rotationZ: 0,
-      rotationX: 0,
-      rotationY: 0,
+      rotationX: -2.5,
+      rotationY: -6.5,
       isDragging: false,
       mousePosition: null,
       geoJson: null,
