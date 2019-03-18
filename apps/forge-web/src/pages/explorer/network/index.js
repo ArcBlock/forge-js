@@ -41,6 +41,10 @@ function createStars(number) {
 window.d3 = d3;
 window.topojson = topojson;
 
+let v0; // Mouse position in Cartesian coordinates at start of drag gesture.
+let r0; // Projection rotation as Euler angles at start.
+let q0; // Projection rotation as versor at start.
+
 class Network extends Page {
   static propTypes = {
     width: PropTypes.number,
@@ -63,6 +67,8 @@ class Network extends Page {
       rotationZ: 0,
       rotationX: 0,
       rotationY: 0,
+      isDragging: false,
+      mousePosition: null,
       geoJson: null,
       netInfo: null,
     };
@@ -105,7 +111,17 @@ class Network extends Page {
 
   renderGlobe() {
     const { width, height } = this.props;
-    const { geoJson, netInfo, rotationZ, rotationX, rotationY } = this.state;
+    const {
+      geoJson,
+      netInfo,
+      rotationZ,
+      rotationX,
+      rotationY,
+      isDragging,
+      mousePosition,
+    } = this.state;
+
+    console.log('renderGlobe.rotate', { rotationZ, rotationX, rotationY });
 
     // Setup path for outerspace
     const space = d3.geoAzimuthalEquidistant().translate([width / 2, height / 2]);
@@ -125,78 +141,6 @@ class Network extends Page {
       .geoPath()
       .projection(globe)
       .pointRadius(2);
-
-    // FIXME: dragging not working at all
-    // let v0; // Mouse position in Cartesian coordinates at start of drag gesture.
-    // let r0; // Projection rotation as Euler angles at start.
-    // let q0; // Projection rotation as versor at start.
-
-    // function getMousePos() {
-    //   const node = document.getElementById('earth');
-    //   const rect = node.getBoundingClientRect();
-    //   const event = d3.event.sourceEvent;
-    //   const mousePos = [
-    //     event.clientX - rect.left - node.clientLeft,
-    //     event.clientY - rect.top - node.clientTop,
-    //   ];
-
-    //   console.log('getMousePos', {
-    //     'event.clientX': event.clientX,
-    //     'event.clientY': event.clientY,
-    //     'node.clientLeft': node.clientLeft,
-    //     'node.clientTop': node.clientTop,
-    //     'rect.left': rect.left,
-    //     'rect.top': rect.top,
-    //     mousePos,
-    //   });
-
-    //   return mousePos;
-    // }
-
-    // function dragstarted() {
-    //   const mousePos = getMousePos();
-
-    //   if (!mousePos[0]) {
-    //     console.error('Invalid mouse pos');
-    //   }
-
-    //   v0 = versor.cartesian(projection.invert(mousePos));
-    //   r0 = projection.rotate();
-    //   q0 = versor(r0);
-
-    //   svg
-    //     .insert('path')
-    //     .datum({ type: 'Point', coordinates: projection.invert(mousePos) })
-    //     .attr('class', 'point point-mouse')
-    //     .attr('d', globePath);
-    // }
-
-    // function dragged() {
-    //   const mousePos = getMousePos();
-
-    //   const v1 = versor.cartesian(projection.rotate(r0).invert(mousePos));
-    //   const q1 = versor.multiply(q0, versor.delta(v0, v1));
-    //   const r1 = versor.rotation(q1);
-    //   console.dir(r1);
-
-    //   if (r1) {
-    //     // projection.rotate(r1);
-
-    //     // svg.selectAll('.feature').attr('d', globePath);
-    //     // svg.selectAll('.graticule').attr('d', globePath);
-    //     // svg.selectAll('.node').attr('d', globePath);
-    //     const [rotateZ, rotateX, rotateY] = r1;
-    //     self.setState({ rotateZ, rotateX, rotateY });
-
-    //     svg
-    //       .selectAll('.point-mouse')
-    //       .datum({ type: 'Point', coordinates: projection.invert(mousePos) });
-    //   }
-    // }
-
-    // function dragended() {
-    //   svg.selectAll('.point').remove();
-    // }
 
     const renderStars = () =>
       this.starList.map(star => {
@@ -222,9 +166,18 @@ class Network extends Page {
         );
       });
 
+    this.globe = globe;
+    this.globePath = globePath;
+
     return (
       <div>
-        <svg className="earth" width={width} height={height}>
+        <svg
+          className="earth"
+          width={width}
+          height={height}
+          onMouseDown={this.onDragStart}
+          onMouseUp={this.onDragEnd}
+          ref={svg => (this.svg = svg)}>
           <g className="stars">{renderStars()}</g>
           <rect className="frame" width={width} height={height} />
           <circle
@@ -247,6 +200,12 @@ class Network extends Page {
             ))}
           </g>
           <g className="markers">{renderMarkers()}</g>
+          {isDragging && (
+            <path
+              className="point point-mouse"
+              d={globePath({ type: 'Point', coordinates: globe.invert(mousePosition) })}
+            />
+          )}
         </svg>
         <svg className="defs">
           <defs>
@@ -273,6 +232,49 @@ class Network extends Page {
       </div>
     );
   }
+
+  getMousePosition = event => {
+    const node = this.svg;
+    const rect = node.getBoundingClientRect();
+    const mousePosition = [
+      event.clientX - rect.left - node.clientLeft,
+      event.clientY - rect.top - node.clientTop,
+    ];
+
+    console.log('getMousePosition', mousePosition);
+    return mousePosition;
+  };
+
+  onDragStart = event => {
+    this.svg.addEventListener('mousemove', this.onDrag);
+    const mousePosition = this.getMousePosition(event);
+
+    if (!mousePosition[0]) {
+      return console.error('Invalid mouse pos');
+    }
+
+    v0 = versor.cartesian(this.globe.invert(mousePosition));
+    r0 = this.globe.rotate();
+    q0 = versor(r0);
+
+    this.setState({ isDragging: true, mousePosition });
+  };
+
+  onDrag = event => {
+    const mousePosition = this.getMousePosition(event);
+
+    const v1 = versor.cartesian(this.globe.rotate(r0).invert(mousePosition));
+    const q1 = versor.multiply(q0, versor.delta(v0, v1));
+    const r1 = versor.rotation(q1);
+
+    const [rotationZ, rotationX, rotationY] = r1;
+    this.setState({ rotationZ, rotationX, rotationY, mousePosition });
+  };
+
+  onDragEnd = () => {
+    this.svg.removeEventListener('mousemove', this.onDrag);
+    this.setState({ isDragging: false });
+  };
 }
 
 const Container = styled(Wrapper)`
