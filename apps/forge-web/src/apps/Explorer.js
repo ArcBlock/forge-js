@@ -16,31 +16,17 @@ import PageAssetDetail from '../pages/explorer/asset';
 import ActivityIndicator from '../components/activity_indicator';
 
 import { localeData } from '../libs/locale';
-import { detectLocale, delay } from '../libs/util';
-import forge from '../libs/forge';
+import { detectLocale, fetchInfo } from '../libs/util';
 
 addLocaleData(localeData);
 
 const { locale, messages } = detectLocale();
 
-async function fetchInfo() {
-  try {
-    const { state } = await forge.getForgeState();
-    await delay(1600);
-    return { token: state.token };
-  } catch (err) {
-    console.error(err.errors);
-    throw new Error(
-      Array.isArray(err.errors)
-        ? err.errors.map(x => x.message).join(',')
-        : err.message || err.toString()
-    );
-  }
-}
-
 const App = () => {
-  const [, setToken] = useLocalStorage('token', {});
-  const state = useAsync(fetchInfo);
+  const [tokenInfo, setTokenInfo] = useLocalStorage('token', {});
+  const [nodeInfo, setNodeInfo] = useLocalStorage('node', {});
+
+  const state = useAsync(fetchInfo, [tokenInfo, nodeInfo]);
 
   if (state.loading) {
     return (
@@ -63,7 +49,10 @@ const App = () => {
 
   if (state.value.token) {
     // HACK: we must add a timeout here
-    setTimeout(() => setToken(state.value.token), 0);
+    setTimeout(() => {
+      setTokenInfo(state.value.token);
+      setNodeInfo(state.value.node);
+    }, 0);
   }
 
   return (
