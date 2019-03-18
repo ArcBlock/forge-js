@@ -240,9 +240,9 @@ class Network extends Page {
           />
           <path
             className="graticule"
-            fill="transparent"
+            fill="none"
             stroke="#005c99"
-            d={pathGenerator(d3.geoGraticule().step([10, 10]))}
+            d={pathGenerator(d3.geoGraticule().step([10, 10])())}
           />
           <g className="features">
             {geoJson.features.map(x => (
