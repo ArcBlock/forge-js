@@ -120,6 +120,9 @@ declare class RpcClient {
   listAssetTransactions(
     request: forge_abi.RequestListAssetTransactions
   ): RpcClient.UnaryResult<forge_abi.ResponseListAssetTransactions>;
+  listBlocks(
+    request: forge_abi.RequestListBlocks
+  ): RpcClient.UnaryResult<forge_abi.ResponseListBlocks>;
 }
 /**
  * Create new TCP Server to handle transactions from forge-core
@@ -423,6 +426,7 @@ declare namespace forge_abi {
     INVALID_TX = 8,
     UNSUPPORTED_TX = 9,
     EXPIRED_TX = 10,
+    TOO_MANY_TXS = 11,
     INVALID_MONIKER = 16,
     INVALID_PASSPHRASE = 17,
     INVALID_MULTISIG = 20,
@@ -480,6 +484,7 @@ declare namespace forge_abi {
   export enum HashType {
     KECCAK = 0,
     SHA3 = 1,
+    SHA2 = 2,
     KECCAK_384 = 6,
     SHA3_384 = 7,
     KECCAK_512 = 13,
@@ -607,6 +612,7 @@ declare namespace forge_abi {
     supportedTxs: Array<string>;
     ip: string;
     geoInfo: forge_abi.GeoInfo;
+    p2pAddress: string;
   }
 
   export interface Validator {
@@ -672,17 +678,33 @@ declare namespace forge_abi {
     accountMigrate: forge_abi.ExtraAccountMigrate;
   }
 
+  export interface TransactionConfig {
+    maxAssetSize: number;
+    maxListSize: number;
+    maxMultisig: number;
+    minimumStake: number;
+  }
+
   export interface BlockInfo {
     height: number;
     numTxs: number;
     time: google.protobuf.Timestamp;
-    appHash: string;
-    proposer: string;
+    appHash: Uint8Array;
+    proposer: Uint8Array;
     txs: Array<forge_abi.TransactionInfo>;
     totalTxs: number;
     invalidTxs: Array<forge_abi.TransactionInfo>;
     txsHashes: Array<string>;
     invalidTxsHashes: Array<string>;
+    consensusHash: Uint8Array;
+    dataHash: Uint8Array;
+    evidenceHash: Uint8Array;
+    lastCommitHash: Uint8Array;
+    lastResultsHash: Uint8Array;
+    nextValidatorsHash: Uint8Array;
+    validatorsHash: Uint8Array;
+    version: abci_vendor.Version;
+    lastBlockId: abci_vendor.BlockID;
   }
 
   export interface TxStatus {
@@ -717,6 +739,11 @@ declare namespace forge_abi {
     totalStakes: forge_abi.BigUint;
     totalUnstakes: forge_abi.BigUint;
     context: forge_abi.StateContext;
+  }
+
+  export interface StakeConfig {
+    timeoutGeneral: number;
+    timeoutStakeForNode: number;
   }
 
   export interface UnconfirmedTxs {
@@ -785,6 +812,9 @@ declare namespace forge_abi {
     numUpdateAssetTxs: Array<number>;
     numConsumeAssetTxs: Array<number>;
     numPokeTxs: Array<number>;
+    tps: Array<number>;
+    maxTps: number;
+    avgTps: number;
   }
 
   export interface TxStatistics {
@@ -818,6 +848,13 @@ declare namespace forge_abi {
     dailyLimit: forge_abi.BigUint;
     leftover: forge_abi.BigUint;
     amount: forge_abi.BigUint;
+  }
+
+  export interface PokeConfig {
+    address: string;
+    dailyLimit: number;
+    balance: number;
+    amount: number;
   }
 
   export interface ExtraCreateAsset {
@@ -870,6 +907,9 @@ declare namespace forge_abi {
     dataVersion: string;
     forgeAppHash: Uint8Array;
     token: forge_abi.ForgeToken;
+    txConfig: forge_abi.TransactionConfig;
+    stakeConfig: forge_abi.StakeConfig;
+    pokeConfig: forge_abi.PokeConfig;
     data: google.protobuf.Any;
   }
 
@@ -1283,6 +1323,21 @@ declare namespace forge_abi {
     transactions: Array<forge_abi.IndexedTransaction>;
   }
 
+  export interface RequestListBlocks {
+    paging: forge_abi.PageInput;
+    proposer: string;
+    timeFilter: forge_abi.TimeFilter;
+    heightFilter: forge_abi.HeightFilter;
+    numTxsFilter: forge_abi.NumTxsFilter;
+    numInvalidTxsFilter: forge_abi.NumInvalidTxsFilter;
+  }
+
+  export interface ResponseListBlocks {
+    code: forge_abi.StatusCode;
+    page: forge_abi.PageInfo;
+    blocks: Array<forge_abi.IndexedBlock>;
+  }
+
   export interface AccountMigrateTx {
     pk: Uint8Array;
     type: forge_abi.WalletType;
@@ -1484,6 +1539,29 @@ declare namespace forge_abi {
 
   export interface IndexedUpdateAsset {
     asset: string;
+  }
+
+  export interface HeightFilter {
+    fromHeight: number;
+    toHeight: number;
+  }
+
+  export interface NumTxsFilter {
+    minNumTxs: number;
+    maxNumTxs: number;
+  }
+
+  export interface NumInvalidTxsFilter {
+    minNumInvalidTxs: number;
+    maxNumInvalidTxs: number;
+  }
+
+  export interface IndexedBlock {
+    height: number;
+    time: string;
+    proposer: string;
+    numTxs: number;
+    numInvalidTxs: number;
   }
 }
 
