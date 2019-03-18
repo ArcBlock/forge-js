@@ -9,7 +9,7 @@ import Grid from '@material-ui/core/Grid';
 import ActivityIndicator from '../../../../components/activity_indicator';
 import Summary from './summary';
 
-import { fetchStatus, getLayerBackground, getLayerStyle, getGreeting } from './util';
+import { fetchStatus, getLayerBackground, getLayerStyle } from './util';
 
 const STATUS_WARNING = 1;
 const STATUS_ERROR = 2;
