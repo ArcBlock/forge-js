@@ -109,24 +109,21 @@ class Network extends Page {
 
     // Setup path for outerspace
     const space = d3.geoAzimuthalEquidistant().translate([width / 2, height / 2]);
-
-    space.scale(space.scale() * 3);
-
     const spacePath = d3
       .geoPath()
       .projection(space)
       .pointRadius(1);
 
     // Setup path for globe
-    const projection = d3
+    const globe = d3
       .geoOrthographic()
       .fitSize([width, height - 20], geoJson)
       .translate([width / 2, height / 2])
       .rotate([rotationZ, rotationX, rotationY]);
 
-    const pathGenerator = d3
+    const globePath = d3
       .geoPath()
-      .projection(projection)
+      .projection(globe)
       .pointRadius(2);
 
     // FIXME: dragging not working at all
@@ -171,7 +168,7 @@ class Network extends Page {
     //     .insert('path')
     //     .datum({ type: 'Point', coordinates: projection.invert(mousePos) })
     //     .attr('class', 'point point-mouse')
-    //     .attr('d', pathGenerator);
+    //     .attr('d', globePath);
     // }
 
     // function dragged() {
@@ -185,9 +182,9 @@ class Network extends Page {
     //   if (r1) {
     //     // projection.rotate(r1);
 
-    //     // svg.selectAll('.feature').attr('d', pathGenerator);
-    //     // svg.selectAll('.graticule').attr('d', pathGenerator);
-    //     // svg.selectAll('.node').attr('d', pathGenerator);
+    //     // svg.selectAll('.feature').attr('d', globePath);
+    //     // svg.selectAll('.graticule').attr('d', globePath);
+    //     // svg.selectAll('.node').attr('d', globePath);
     //     const [rotateZ, rotateX, rotateY] = r1;
     //     self.setState({ rotateZ, rotateX, rotateY });
 
@@ -210,8 +207,8 @@ class Network extends Page {
     const renderMarkers = () =>
       netInfo.peers.map(x => {
         const coordinate = [x.geoInfo.longitude, x.geoInfo.latitude];
-        const distance = d3.geoDistance(coordinate, projection.invert([width / 2, height / 2]));
-        const coordinateProjection = projection(coordinate);
+        const distance = d3.geoDistance(coordinate, globe.invert([width / 2, height / 2]));
+        const coordinateProjection = globe(coordinate);
         const fill = distance > 1.57 ? 'none' : 'red';
         return (
           <circle
@@ -233,7 +230,7 @@ class Network extends Page {
           <circle
             cx={width / 2}
             cy={height / 2}
-            r={projection.scale()}
+            r={globe.scale()}
             className="globe"
             filter="url(#glow)"
             fill="url(#gradBlue)"
@@ -242,11 +239,11 @@ class Network extends Page {
             className="graticule"
             fill="none"
             stroke="#005c99"
-            d={pathGenerator(d3.geoGraticule().step([10, 10])())}
+            d={globePath(d3.geoGraticule().step([10, 10])())}
           />
           <g className="features">
             {geoJson.features.map(x => (
-              <path key={JSON.stringify(x)} className="feature" d={pathGenerator(x)} />
+              <path key={JSON.stringify(x)} className="feature" d={globePath(x)} />
             ))}
           </g>
           <g className="markers">{renderMarkers()}</g>
