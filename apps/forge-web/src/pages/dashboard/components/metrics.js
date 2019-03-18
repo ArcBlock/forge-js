@@ -116,7 +116,7 @@ function Metrics({ theme, sparkline, itemSize, size }) {
           <BlinkingDot
             theme={autoRefresh ? 'green' : 'red'}
             size={14}
-            duration={autoRefresh ? '800ms' : '0'}
+            duration={autoRefresh ? '4s' : '0'}
             style={{ marginRight: '8px' }}
           />
           {autoRefresh ? 'Live Updates On' : 'Live Updates Off'}

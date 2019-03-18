@@ -22,6 +22,7 @@ function NetworkStatus({ layer, theme }) {
         <ListItemText primary={upperFirst(layer.label)} style={{ padding: 0 }} />
       </ListItem>
       <List component="div" style={{ paddingLeft: '32px' }}>
+        <InfoRow label="Storage Engine" value="IPFS v0.4.19" />
         <InfoRow label="Daemon Running" value="Yes" />
         <InfoRow label="Disk Usage" value="1.2 GB" />
       </List>
