@@ -5,6 +5,7 @@ import { IntlProvider, addLocaleData } from 'react-intl';
 
 import Layout from '../layouts/explorer';
 
+import PageNetwork from '../pages/explorer/network';
 import PageHome from '../pages/explorer/home';
 import PageBlockList from '../pages/explorer/blocks';
 import PageBlockDetail from '../pages/explorer/block';
@@ -23,26 +24,26 @@ addLocaleData(localeData);
 const { locale, messages } = detectLocale();
 
 const App = () => {
-  const state = useStartupInfo();
+  // const state = useStartupInfo();
 
-  if (state.loading) {
-    return (
-      <Wrapper>
-        <ActivityIndicator
-          messages={['Fetch chain info...', 'Fetching network state...']}
-          interval={800}
-        />
-      </Wrapper>
-    );
-  }
+  // if (state.loading) {
+  //   return (
+  //     <Wrapper>
+  //       <ActivityIndicator
+  //         messages={['Fetch chain info...', 'Fetching network state...']}
+  //         interval={800}
+  //       />
+  //     </Wrapper>
+  //   );
+  // }
 
-  if (state.error) {
-    return (
-      <Wrapper>
-        <p className="error">{state.error.message}</p>
-      </Wrapper>
-    );
-  }
+  // if (state.error) {
+  //   return (
+  //     <Wrapper>
+  //       <p className="error">{state.error.message}</p>
+  //     </Wrapper>
+  //   );
+  // }
 
   return (
     <IntlProvider locale={locale} messages={messages}>
@@ -56,6 +57,7 @@ const App = () => {
             <Route exact path="/txs/:hash" component={PageTxDetail} />
             <Route exact path="/accounts/:address" component={PageAccountDetail} />
             <Route exact path="/assets/:address" component={PageAssetDetail} />
+            <Route exact path="/network" component={PageNetwork} />
             <Redirect from="/*" to="/" />
           </Switch>
         </Layout>
