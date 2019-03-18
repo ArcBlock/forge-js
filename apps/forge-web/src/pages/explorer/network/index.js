@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ReactFauxDOM from 'react-faux-dom';
 import styled from 'styled-components';
 import * as d3 from 'd3';
 import * as topojson from 'topojson-client';
+import versor from 'versor';
 
 import CircularProgress from '@material-ui/core/CircularProgress';
 
@@ -60,7 +60,9 @@ class Network extends Page {
     super(props);
 
     this.state = {
-      rotation: 0,
+      rotationZ: 0,
+      rotationX: 0,
+      rotationY: 0,
       geoJson: null,
       netInfo: null,
     };
@@ -89,45 +91,21 @@ class Network extends Page {
     if (enableRotation) {
       window.requestAnimationFrame(() => {
         this.setState(state => ({
-          rotation: state.rotation + 2 / rotationSpeed,
+          rotationZ: state.rotationZ + 2 / rotationSpeed,
         }));
       });
     }
 
     return (
       <Layout title="Network" cookies={this.cookies}>
-        <Container>
-          <svg id="defs">
-            <defs>
-              <linearGradient id="gradBlue" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" style={{ stopColor: '#005C99', stopOpacity: 1 }} />
-                <stop offset="100%" style={{ stopColor: '#0099FF', stopOpacity: 1 }} />
-              </linearGradient>
-              <filter id="glow">
-                <feColorMatrix
-                  type="matrix"
-                  values="0 0 0 0   0
-                     0 0 0 0.9 0
-                     0 0 0 0.9 0
-                     0 0 0 1   0"
-                />
-                <feGaussianBlur stdDeviation="5.5" result="coloredBlur" />
-                <feMerge>
-                  <feMergeNode in="coloredBlur" />
-                  <feMergeNode in="SourceGraphic" />
-                </feMerge>
-              </filter>
-            </defs>
-          </svg>
-          {this.renderGlobe()}
-        </Container>
+        <Container>{this.renderGlobe()}</Container>
       </Layout>
     );
   }
 
   renderGlobe() {
     const { width, height } = this.props;
-    const { geoJson, netInfo, rotation } = this.state;
+    const { geoJson, netInfo, rotationZ, rotationX, rotationY } = this.state;
 
     // Setup path for outerspace
     const space = d3.geoAzimuthalEquidistant().translate([width / 2, height / 2]);
@@ -144,126 +122,166 @@ class Network extends Page {
       .geoOrthographic()
       .fitSize([width, height - 20], geoJson)
       .translate([width / 2, height / 2])
-      .rotate([rotation, 0, 0]);
+      .rotate([rotationZ, rotationX, rotationY]);
 
     const pathGenerator = d3
       .geoPath()
       .projection(projection)
       .pointRadius(2);
 
-    const container = ReactFauxDOM.createElement('div');
-    const svg = d3
-      .select(container)
-      .append('svg')
-      .attr('width', width)
-      .attr('height', height);
-
     // FIXME: dragging not working at all
-    // let gpos0;
-    // let o0;
+    // let v0; // Mouse position in Cartesian coordinates at start of drag gesture.
+    // let r0; // Projection rotation as Euler angles at start.
+    // let q0; // Projection rotation as versor at start.
 
-    // function onDragStart() {
-    //   console.log('onDragStart', arguments, d3.clientPoint(this, d3.event));
-    //   gpos0 = projection.invert(d3.mouse(this));
-    //   o0 = projection.rotate();
+    // function getMousePos() {
+    //   const node = document.getElementById('earth');
+    //   const rect = node.getBoundingClientRect();
+    //   const event = d3.event.sourceEvent;
+    //   const mousePos = [
+    //     event.clientX - rect.left - node.clientLeft,
+    //     event.clientY - rect.top - node.clientTop,
+    //   ];
+
+    //   console.log('getMousePos', {
+    //     'event.clientX': event.clientX,
+    //     'event.clientY': event.clientY,
+    //     'node.clientLeft': node.clientLeft,
+    //     'node.clientTop': node.clientTop,
+    //     'rect.left': rect.left,
+    //     'rect.top': rect.top,
+    //     mousePos,
+    //   });
+
+    //   return mousePos;
+    // }
+
+    // function dragstarted() {
+    //   const mousePos = getMousePos();
+
+    //   if (!mousePos[0]) {
+    //     console.error('Invalid mouse pos');
+    //   }
+
+    //   v0 = versor.cartesian(projection.invert(mousePos));
+    //   r0 = projection.rotate();
+    //   q0 = versor(r0);
 
     //   svg
     //     .insert('path')
-    //     .datum({ type: 'Point', coordinates: gpos0 })
-    //     .attr('class', 'point')
+    //     .datum({ type: 'Point', coordinates: projection.invert(mousePos) })
+    //     .attr('class', 'point point-mouse')
     //     .attr('d', pathGenerator);
     // }
 
-    // function onDrag() {
-    //   console.log('onDrag', arguments, d3.clientPoint(this, d3.event));
-    //   const gpos1 = projection.invert(d3.mouse(this));
-    //   o0 = projection.rotate();
+    // function dragged() {
+    //   const mousePos = getMousePos();
 
-    //   const o1 = eulerAngles(gpos0, gpos1, o0);
+    //   const v1 = versor.cartesian(projection.rotate(r0).invert(mousePos));
+    //   const q1 = versor.multiply(q0, versor.delta(v0, v1));
+    //   const r1 = versor.rotation(q1);
+    //   console.dir(r1);
 
-    //   console.log({ gpos0, gpos1, o0, o1 });
+    //   if (r1) {
+    //     // projection.rotate(r1);
 
-    //   // projection.rotate(o1);
-    //   // svg.selectAll('.point').datum({ type: 'Point', coordinates: gpos1 });
-    //   // svg.selectAll('path').attr('d', pathGenerator);
+    //     // svg.selectAll('.feature').attr('d', pathGenerator);
+    //     // svg.selectAll('.graticule').attr('d', pathGenerator);
+    //     // svg.selectAll('.node').attr('d', pathGenerator);
+    //     const [rotateZ, rotateX, rotateY] = r1;
+    //     self.setState({ rotateZ, rotateX, rotateY });
+
+    //     svg
+    //       .selectAll('.point-mouse')
+    //       .datum({ type: 'Point', coordinates: projection.invert(mousePos) });
+    //   }
     // }
 
-    // function onDragEnd() {
+    // function dragended() {
     //   svg.selectAll('.point').remove();
     // }
 
-    // const drag = d3
-    //   .drag()
-    //   .on('start', onDragStart)
-    //   .on('drag', onDrag)
-    //   .on('end', onDragEnd);
-
-    // svg.call(drag);
-
-    // Add random stars to outer space
-    svg
-      .append('g')
-      .selectAll('g')
-      .data(this.starList)
-      .enter()
-      .append('path')
-      .attr('class', 'star')
-      .attr('d', d => {
-        spacePath.pointRadius(d.properties.radius);
-        return spacePath(d);
+    const renderStars = () =>
+      this.starList.map(star => {
+        spacePath.pointRadius(star.properties.radius);
+        return <path key={JSON.stringify(star)} className="star" d={spacePath(star)} />;
       });
 
-    svg
-      .append('rect')
-      .attr('class', 'frame')
-      .attr('width', width)
-      .attr('height', height);
-
-    // Create the base globe
-    svg
-      .append('circle')
-      .attr('cx', width / 2)
-      .attr('cy', height / 2)
-      .attr('r', projection.scale())
-      .attr('class', 'globe')
-      .attr('filter', 'url(#glow)')
-      .attr('fill', 'url(#gradBlue)');
-
-    // Append topojson objects
-    svg
-      .append('g')
-      .selectAll('.feature')
-      .data(geoJson.features)
-      .enter()
-      .append('path')
-      .attr('class', 'feature')
-      .attr('d', d => pathGenerator(d));
-
-    // Append nodes
-    svg
-      .append('g')
-      .selectAll('.node')
-      .data(netInfo.peers)
-      .enter()
-      .append('circle')
-      .attr('class', 'node')
-      .attr('r', 8)
-      .attr('cx', d => projection([d.geoInfo.longitude, d.geoInfo.latitude])[0])
-      .attr('cy', d => projection([d.geoInfo.longitude, d.geoInfo.latitude])[1])
-      .attr('fill', d => {
-        const coordinate = [d.geoInfo.longitude, d.geoInfo.latitude];
+    const renderMarkers = () =>
+      netInfo.peers.map(x => {
+        const coordinate = [x.geoInfo.longitude, x.geoInfo.latitude];
         const distance = d3.geoDistance(coordinate, projection.invert([width / 2, height / 2]));
-        return distance > 1.57 ? 'none' : 'red';
+        const coordinateProjection = projection(coordinate);
+        const fill = distance > 1.57 ? 'none' : 'red';
+        return (
+          <circle
+            key={JSON.stringify(x)}
+            className="marker"
+            r={8}
+            cx={coordinateProjection[0]}
+            cy={coordinateProjection[1]}
+            fill={fill}
+          />
+        );
       });
 
-    return container.toReact();
+    return (
+      <div>
+        <svg className="earth" width={width} height={height}>
+          <g className="stars">{renderStars()}</g>
+          <rect className="frame" width={width} height={height} />
+          <circle
+            cx={width / 2}
+            cy={height / 2}
+            r={projection.scale()}
+            className="globe"
+            filter="url(#glow)"
+            fill="url(#gradBlue)"
+          />
+          <path
+            className="graticule"
+            fill="transparent"
+            stroke="#005c99"
+            d={pathGenerator(d3.geoGraticule().step([10, 10]))}
+          />
+          <g className="features">
+            {geoJson.features.map(x => (
+              <path key={JSON.stringify(x)} className="feature" d={pathGenerator(x)} />
+            ))}
+          </g>
+          <g className="markers">{renderMarkers()}</g>
+        </svg>
+        <svg class="defs">
+          <defs>
+            <linearGradient id="gradBlue" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" style={{ stopColor: '#005C99', stopOpacity: 1 }} />
+              <stop offset="100%" style={{ stopColor: '#0099FF', stopOpacity: 1 }} />
+            </linearGradient>
+            <filter id="glow">
+              <feColorMatrix
+                type="matrix"
+                values="0 0 0 0   0
+                     0 0 0 0.9 0
+                     0 0 0 0.9 0
+                     0 0 0 1   0"
+              />
+              <feGaussianBlur stdDeviation="5.5" result="coloredBlur" />
+              <feMerge>
+                <feMergeNode in="coloredBlur" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
+          </defs>
+        </svg>
+      </div>
+    );
   }
 }
 
 const Container = styled(Wrapper)`
   background-color: #222;
 
-  #defs {
+  .defs {
     height: 0;
     width: 0;
   }
