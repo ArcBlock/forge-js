@@ -20,6 +20,7 @@ function stateReducer(state, action) {
       return { ...state, isDragging: false };
     case 'dragStart':
       return { ...state, isDragging: true, mousePosition: action.payload.mousePosition };
+    case 'tooltip':
     case 'rotate':
       return Object.assign({}, state, action.payload);
     default:
@@ -41,6 +42,7 @@ export default function Globe({ theme, width, height, enableRotation, rotationSp
     rotationY: -6.5,
     isDragging: false,
     mousePosition: null,
+    tooltipIndex: -1,
   });
   console.log('renderGlobe', state, positionRef, geoJson);
 
@@ -115,26 +117,68 @@ export default function Globe({ theme, width, height, enableRotation, rotationSp
     dispatch({ type: 'dragEnd', payload: {} });
   };
 
+  const onShowTooltip = (event, i) =>
+    dispatch({
+      type: 'tooltip',
+      payload: { tooltipIndex: i, mousePosition: getMousePosition(event) },
+    });
+
+  const onHideTooltip = () =>
+    dispatch({ type: 'tooltip', payload: { tooltipIndex: -1, mousePosition: null } });
+
   const renderMarkers = () =>
-    markers.map(x => {
+    markers.map((x, i) => {
       const coordinate = [x.longitude, x.latitude];
       const distance = d3.geoDistance(coordinate, globe.invert([width / 2, height / 2]));
       const projection = globe(coordinate);
       const fill = distance > 1.57 ? 'none' : 'red';
       return (
-        <circle
+        <g
           key={x.id}
           className="marker"
-          r={8}
-          cx={projection[0]}
-          cy={projection[1]}
-          fill={fill}
-        />
+          onFocus={event => onShowTooltip(event, i)}
+          onBlur={onHideTooltip}
+          onMouseOver={event => onShowTooltip(event, i)}
+          onMouseOut={onHideTooltip}>
+          <circle
+            key="marker-inner"
+            className="marker__inner"
+            r={6}
+            cx={projection[0]}
+            cy={projection[1]}
+            fill={fill}
+          />
+          <circle
+            key="marker-outer"
+            className="marker__outer"
+            r={12}
+            cx={projection[0]}
+            cy={projection[1]}
+            fill={fill}
+            style={{
+              animationDelay: `${i * 0.2}s`,
+              transformOrigin: `${projection[0]}px ${projection[1]}px`,
+            }}
+          />
+        </g>
       );
     });
 
+  const renderTooltip = () => {
+    if (state.tooltipIndex >= 0) {
+      const marker = markers[state.tooltipIndex];
+      return (
+        <Tooltip style={{ left: state.mousePosition[0], top: state.mousePosition[1] }}>
+          <p className="title">{marker.title}</p>
+          <p className="description">{marker.description}</p>
+        </Tooltip>
+      );
+    }
+  };
+
   return (
     <Container width={width} height={height} theme={theme}>
+      {renderTooltip()}
       <svg
         className="earth"
         width={width}
@@ -227,6 +271,7 @@ const Container = styled.div`
   background-color: #222;
   width: ${props => props.width}px;
   height: ${props => props.height}px;
+  position: relative;
   animation-name: zoomIn;
   animation-duration: 1s;
   animation-iteration-count: 1;
@@ -259,14 +304,69 @@ const Container = styled.div`
     stroke-width: 0.25px;
   }
 
+  .marker {
+    .marker__outer {
+      fill-opacity: 0;
+      animation: scaleIn 2s infinite ease-in-out;
+    }
+  }
+
   @keyframes zoomIn {
     from {
       opacity: 0;
-      -webkit-transform: scale3d(0.1, 0.1, 0.1);
       transform: scale3d(0.1, 0.1, 0.1);
     }
 
     50% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes scaleIn {
+    from {
+      fill-opacity: 0.4;
+      transform: scale3d(0.5, 0.5, 0.5);
+    }
+    to {
+      fill-opacity: 0;
+      transform: scale3d(1.5, 1.5, 1.5);
+    }
+  }
+`;
+
+const Tooltip = styled.div`
+  position: absolute;
+  width: auto;
+  min-width: 90px;
+  max-width: 240px;
+  padding: 8px 12px;
+  font-size: 14px;
+  background-color: #4a4a4a;
+  border-radius: 2px;
+  animation-name: fadeIn;
+  animation-duration: 250ms;
+  animation-iteration-count: 1;
+  animation-timing-function: ease;
+
+  .title,
+  .description {
+    margin: 0;
+    font-size: 16px;
+    color: ${props => props.theme.typography.color.main};
+  }
+
+  .description {
+    margin-top: ${props => props.theme.spacing.unit}px;
+    color: ${props => props.theme.typography.color.gray};
+    font-size: 12px;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+
+    to {
       opacity: 1;
     }
   }
