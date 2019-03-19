@@ -506,6 +506,10 @@ function getPlatform() {
           return resolve('ubuntu');
         }
 
+        if (/centos/i.test(info.dist)) {
+          return resolve('centos');
+        }
+
         return resolve('linux');
       }
 
