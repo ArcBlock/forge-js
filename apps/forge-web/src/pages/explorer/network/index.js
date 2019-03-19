@@ -61,7 +61,11 @@ class Network extends Page {
   render() {
     const { markers, activeMarkerId } = this.state;
     if (!markers.length) {
-      return <CircularProgress />;
+      return (
+        <Container>
+          <CircularProgress />
+        </Container>
+      );
     }
 
     return (

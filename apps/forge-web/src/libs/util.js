@@ -48,8 +48,8 @@ export function getGraphQLEndpoint() {
     return `${protocol}//${host}/api`;
   }
 
-  return 'http://localhost:8210/api'; // local
-  // return 'http://abt-test.arcblock.co:8210/api'; // abt testnet
+  // return 'http://localhost:8210/api'; // local
+  return 'http://abt-test.arcblock.co:8210/api'; // abt testnet
 }
 
 export function fromTypeUrl(url, camelcase = true) {

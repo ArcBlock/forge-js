@@ -82,7 +82,7 @@ export default function Globe({
   // Setup path for globe
   const projection = d3
     .geoOrthographic()
-    .fitExtent([[10, 10], [width - 10, height - 10]], geoJson)
+    .fitExtent([[30, 30], [width - 30, height - 30]], geoJson)
     .rotate(
       t <= 1 || state.isDragging ? state.rotation : rotateRef.current.iv(t / state.animateDuration)
     );
