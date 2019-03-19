@@ -79,7 +79,6 @@ class Network extends Page {
 }
 
 const Container = styled(Wrapper)`
-  background-color: #222;
   margin-top: 30px;
   width: 100%;
   height: 100%;
