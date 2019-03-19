@@ -60,15 +60,15 @@ export default function Globe({ theme, width, height, enableRotation, rotationSp
   });
 
   // Setup path for globe
-  const globe = d3
+  const projection = d3
     .geoOrthographic()
     .fitSize([width, height - 20], geoJson)
     .translate([width / 2, height / 2])
     .rotate([state.rotationZ, state.rotationX, state.rotationY]);
 
-  const globePath = d3
+  const pathGenerator = d3
     .geoPath()
-    .projection(globe)
+    .projection(projection)
     .pointRadius(2);
 
   const getMousePosition = event => {
@@ -90,8 +90,8 @@ export default function Globe({ theme, width, height, enableRotation, rotationSp
       return;
     }
 
-    positionRef.current.v0 = versor.cartesian(globe.invert(mousePosition));
-    positionRef.current.r0 = globe.rotate();
+    positionRef.current.v0 = versor.cartesian(projection.invert(mousePosition));
+    positionRef.current.r0 = projection.rotate();
     positionRef.current.q0 = versor(positionRef.current.r0);
 
     dispatch({ type: 'dragStart', payload: { mousePosition } });
@@ -105,7 +105,7 @@ export default function Globe({ theme, width, height, enableRotation, rotationSp
     const mousePosition = getMousePosition(event);
     const { r0, v0, q0 } = positionRef.current;
 
-    const v1 = versor.cartesian(globe.rotate(r0).invert(mousePosition));
+    const v1 = versor.cartesian(projection.rotate(r0).invert(mousePosition));
     const q1 = versor.multiply(q0, versor.delta(v0, v1));
     const r1 = versor.rotation(q1);
 
@@ -128,9 +128,9 @@ export default function Globe({ theme, width, height, enableRotation, rotationSp
 
   const renderMarkers = () =>
     markers.map((x, i) => {
-      const coordinate = [x.longitude, x.latitude];
-      const distance = d3.geoDistance(coordinate, globe.invert([width / 2, height / 2]));
-      const projection = globe(coordinate);
+      const areaCoords = [x.longitude, x.latitude];
+      const distance = d3.geoDistance(areaCoords, projection.invert([width / 2, height / 2]));
+      const sphereCoords = projection(areaCoords);
       const fill = distance > 1.57 ? 'none' : 'red';
       return (
         <g
@@ -144,20 +144,20 @@ export default function Globe({ theme, width, height, enableRotation, rotationSp
             key="marker-inner"
             className="marker__inner"
             r={6}
-            cx={projection[0]}
-            cy={projection[1]}
+            cx={sphereCoords[0]}
+            cy={sphereCoords[1]}
             fill={fill}
           />
           <circle
             key="marker-outer"
             className="marker__outer"
             r={12}
-            cx={projection[0]}
-            cy={projection[1]}
+            cx={sphereCoords[0]}
+            cy={sphereCoords[1]}
             fill={fill}
             style={{
               animationDelay: `${i * 0.2}s`,
-              transformOrigin: `${projection[0]}px ${projection[1]}px`,
+              transformOrigin: `${sphereCoords[0]}px ${sphereCoords[1]}px`,
             }}
           />
         </g>
@@ -191,7 +191,7 @@ export default function Globe({ theme, width, height, enableRotation, rotationSp
         <circle
           cx={width / 2}
           cy={height / 2}
-          r={globe.scale()}
+          r={projection.scale()}
           className="globe"
           filter="url(#glow)"
           fill="url(#gradBlue)"
@@ -200,18 +200,18 @@ export default function Globe({ theme, width, height, enableRotation, rotationSp
           className="graticule"
           fill="none"
           stroke="#005c99"
-          d={globePath(d3.geoGraticule().step([10, 10])())}
+          d={pathGenerator(d3.geoGraticule().step([10, 10])())}
         />
         <g className="features">
           {geoJson.features.map(x => (
-            <path key={JSON.stringify(x)} className="feature" d={globePath(x)} />
+            <path key={JSON.stringify(x)} className="feature" d={pathGenerator(x)} />
           ))}
         </g>
         <g className="markers">{renderMarkers()}</g>
         {state.isDragging && state.mousePosition && (
           <path
             className="point point-mouse"
-            d={globePath({ type: 'Point', coordinates: globe.invert(state.mousePosition) })}
+            d={pathGenerator({ type: 'Point', coordinates: projection.invert(state.mousePosition) })}
           />
         )}
       </svg>
