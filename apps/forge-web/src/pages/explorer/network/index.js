@@ -18,7 +18,11 @@ class Network extends Page {
 
     this.state = {
       markers: [],
+      activeMarkerId: null,
     };
+
+    this.timer = null;
+    this.setActiveMarker = this.setActiveMarker.bind(this);
   }
 
   async componentDidMount() {
@@ -34,20 +38,37 @@ class Network extends Page {
           description: `IP: ${x.ip}, Location: ${x.geoInfo.city},${x.geoInfo.country}`,
         })),
       });
+
+      this.timer = setTimeout(this.setActiveMarker, 5000);
     } catch (err) {
       this.setState({ error: 'Error loading data' });
     }
   }
 
+  componentWillMount() {
+    if (this.timer) {
+      clearInterval(this.timer);
+    }
+  }
+
+  setActiveMarker() {
+    const ids = this.state.markers.map(x => x.id);
+    const index = Math.floor(Math.random() * ids.length);
+    console.log('set activeMarkerId', ids[index], Date.now());
+    this.setState({ activeMarkerId: ids[index] });
+    this.timer = setTimeout(this.setActiveMarker, 8000);
+  }
+
   render() {
-    if (!this.state.markers.length) {
+    const { markers, activeMarkerId } = this.state;
+    if (!markers.length) {
       return <CircularProgress />;
     }
 
     return (
       <Layout title="Network" cookies={this.cookies}>
         <Container>
-          <Globe markers={this.state.markers} />
+          <Globe markers={markers} activeMarkerId={activeMarkerId} />
         </Container>
       </Layout>
     );

@@ -6,7 +6,9 @@ import * as d3 from 'd3';
 import * as topojson from 'topojson-client';
 import versor from 'versor';
 
+import { useInterval } from '../../libs/hooks';
 import json from './countries.json';
+import Versor from './versor';
 
 window.d3 = d3;
 window.topojson = topojson;
@@ -28,27 +30,84 @@ function stateReducer(state, action) {
   }
 }
 
-export default function Globe({ theme, width, height, enableRotation, rotationSpeed, markers }) {
+export default function Globe({
+  theme,
+  width,
+  height,
+  enableRotation,
+  rotationSpeed,
+  markers,
+  activeMarkerId,
+}) {
+  const [state, dispatch] = useReducer(stateReducer, {
+    rotationZ: 0,
+    rotationX: 0,
+    rotationY: 0,
+    isDragging: false,
+    isAnimated: false,
+    mousePosition: null,
+    tooltipIndex: -1,
+  });
+
+  // Setup path for globe
+  const projection = d3
+    .geoOrthographic()
+    .fitSize([width, height - 20], geoJson)
+    // .translate([width / 2, height / 2])
+    .rotate([state.rotationZ, state.rotationX, state.rotationY]);
+
+  const pathGenerator = d3
+    .geoPath()
+    .projection(projection)
+    .pointRadius(2);
+
   const svgRef = useRef(null);
-  const positionRef = useRef({
+
+  // variables used to track drag and rotate
+  const dragRef = useRef({
     v0: undefined,
     r0: undefined,
     q0: undefined,
   });
 
-  const [state, dispatch] = useReducer(stateReducer, {
-    rotationZ: 0,
-    rotationX: -2.5,
-    rotationY: -6.5,
-    isDragging: false,
-    mousePosition: null,
-    tooltipIndex: -1,
+  // variables used to track start and end position when there is active marker
+  const rotateRef = useRef({
+    p1: null,
+    p2: projection.center(),
+    r1: null,
+    r2: projection.rotate(),
+    step: 0,
+    markerId: null,
+    ip: null,
+    iv: null,
   });
-  console.log('renderGlobe', state, positionRef, geoJson);
+  console.log('renderGlobe', state, dragRef.current, rotateRef.current, geoJson);
+
+  const isValid =
+    activeMarkerId &&
+    rotateRef.current.markerId !== activeMarkerId &&
+    markers.some(x => x.id === activeMarkerId);
 
   // Enable auto rotation
   useEffect(() => {
-    if (enableRotation) {
+    if (isValid) {
+      // eslint-disable-next-line
+      let { p1, p2, r1, r2, markerId } = rotateRef.current;
+      // We should only start new animation if the marker has changed
+      if (markerId !== activeMarkerId && !state.isDragging) {
+        const marker = markers.find(x => x.id === activeMarkerId);
+        // projection.center([marker.longitude, marker.latitude]);
+        p1 = p2;
+        p2 = [marker.longitude, marker.latitude];
+        r1 = r2;
+        r2 = [-p2[0], 80 - p2[1], 0];
+        const ip = d3.geoInterpolate(p1, p2);
+        const iv = Versor.interpolateAngles(r1, r2);
+        Object.assign(rotateRef.current, { p1, p2, r1, r2, ip, iv, markerId: activeMarkerId });
+        console.log('startAnimation', rotateRef.current, marker);
+        // console.log('startAnimation', marker);
+      }
+    } else if (enableRotation) {
       const handler = window.requestAnimationFrame(() => {
         dispatch({ type: 'rotate', payload: { rotationZ: state.rotationZ + 2 / rotationSpeed } });
       });
@@ -59,17 +118,33 @@ export default function Globe({ theme, width, height, enableRotation, rotationSp
     }
   });
 
-  // Setup path for globe
-  const projection = d3
-    .geoOrthographic()
-    .fitSize([width, height - 20], geoJson)
-    .translate([width / 2, height / 2])
-    .rotate([state.rotationZ, state.rotationX, state.rotationY]);
+  // If we have an active marker, rotate the globe to that marker
+  useInterval(
+    () => {
+      if (rotateRef.current.iv) {
+        rotateRef.current.step += 0.005;
+        if (rotateRef.current.step > 1) {
+          rotateRef.current = {
+            p1: null,
+            p2: rotateRef.current.p2,
+            r1: null,
+            r2: projection.rotate(),
+            step: 0,
+            markerId: null,
+            ip: null,
+            iv: null,
+          };
 
-  const pathGenerator = d3
-    .geoPath()
-    .projection(projection)
-    .pointRadius(2);
+          dispatch({ type: 'rotate', payload: { isAnimated: true } });
+          console.log('endAnimation', rotateRef.current);
+        } else {
+          const [rotationZ, rotationX, rotationY] = rotateRef.current.iv(rotateRef.current.step);
+          dispatch({ type: 'rotate', payload: { rotationZ, rotationX, rotationY } });
+        }
+      }
+    },
+    isValid && !state.isAnimated && !state.isDragging ? 10 : null
+  );
 
   const getMousePosition = event => {
     const node = svgRef.current;
@@ -90,9 +165,9 @@ export default function Globe({ theme, width, height, enableRotation, rotationSp
       return;
     }
 
-    positionRef.current.v0 = versor.cartesian(projection.invert(mousePosition));
-    positionRef.current.r0 = projection.rotate();
-    positionRef.current.q0 = versor(positionRef.current.r0);
+    dragRef.current.v0 = versor.cartesian(projection.invert(mousePosition));
+    dragRef.current.r0 = projection.rotate();
+    dragRef.current.q0 = versor(dragRef.current.r0);
 
     dispatch({ type: 'dragStart', payload: { mousePosition } });
   };
@@ -103,7 +178,7 @@ export default function Globe({ theme, width, height, enableRotation, rotationSp
     }
 
     const mousePosition = getMousePosition(event);
-    const { r0, v0, q0 } = positionRef.current;
+    const { r0, v0, q0 } = dragRef.current;
 
     const v1 = versor.cartesian(projection.rotate(r0).invert(mousePosition));
     const q1 = versor.multiply(q0, versor.delta(v0, v1));
@@ -131,7 +206,8 @@ export default function Globe({ theme, width, height, enableRotation, rotationSp
       const areaCoords = [x.longitude, x.latitude];
       const distance = d3.geoDistance(areaCoords, projection.invert([width / 2, height / 2]));
       const sphereCoords = projection(areaCoords);
-      const fill = distance > 1.57 ? 'none' : 'red';
+      // eslint-disable-next-line
+      const fill = distance > 1.57 ? 'none' : activeMarkerId === x.id ? 'black' : 'red';
       return (
         <g
           key={x.id}
@@ -211,7 +287,10 @@ export default function Globe({ theme, width, height, enableRotation, rotationSp
         {state.isDragging && state.mousePosition && (
           <path
             className="point point-mouse"
-            d={pathGenerator({ type: 'Point', coordinates: projection.invert(state.mousePosition) })}
+            d={pathGenerator({
+              type: 'Point',
+              coordinates: projection.invert(state.mousePosition),
+            })}
           />
         )}
       </svg>
@@ -247,6 +326,7 @@ Globe.propTypes = {
   height: PropTypes.number,
   enableRotation: PropTypes.bool,
   rotationSpeed: PropTypes.number,
+  activeMarkerId: PropTypes.string,
   markers: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string.isRequired,
@@ -265,6 +345,7 @@ Globe.defaultProps = {
   enableRotation: false,
   rotationSpeed: 5,
   markers: [],
+  activeMarkerId: undefined,
 };
 
 const Container = styled.div`
@@ -276,6 +357,7 @@ const Container = styled.div`
   animation-duration: 1s;
   animation-iteration-count: 1;
   animation-timing-function: ease;
+  user-select: none;
 
   .defs {
     height: 0;
