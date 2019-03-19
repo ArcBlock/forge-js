@@ -34,7 +34,7 @@ class Network extends Page {
           latitude: x.geoInfo.latitude,
           longitude: x.geoInfo.longitude,
           title: x.moniker,
-          description: `IP: ${x.ip}, Location: ${x.geoInfo.city},${x.geoInfo.country}`,
+          description: `Location: ${x.geoInfo.city},${x.geoInfo.country}`,
         })),
       });
 
