@@ -85,8 +85,8 @@ export default function Globe({
     .projection(projection)
     .pointRadius(2);
 
-  // Enable auto rotation
   useEffect(() => {
+    // Rotate to active marker
     if (isValid) {
       // eslint-disable-next-line
       let { p1, p2, r1, r2, markerId } = rotateRef.current;
@@ -109,6 +109,8 @@ export default function Globe({
           },
         });
       }
+
+    // Enable auto rotation
     } else if (enableRotation) {
       const handler = window.requestAnimationFrame(() => {
         const newRotation = [
