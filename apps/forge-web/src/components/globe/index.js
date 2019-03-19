@@ -1,8 +1,10 @@
 /* eslint consistent-return:"off" */
 import React, { useReducer, useRef, useEffect } from 'react';
+import { useRaf } from 'react-use';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import * as d3 from 'd3';
+import { easeCubic } from 'd3-ease';
 import * as topojson from 'topojson-client';
 import versor from 'versor';
 
@@ -16,7 +18,7 @@ window.topojson = topojson;
 const geoJson = topojson.feature(json, json.objects.ne_110m_admin_0_countries);
 
 function stateReducer(state, action) {
-  console.log('stateReducer', action);
+  console.log('stateReducer', action.type, action.payload);
   switch (action.type) {
     case 'dragEnd':
       return { ...state, isDragging: false };
@@ -40,26 +42,11 @@ export default function Globe({
   activeMarkerId,
 }) {
   const [state, dispatch] = useReducer(stateReducer, {
-    rotationZ: 0,
-    rotationX: 0,
-    rotationY: 0,
+    rotation: [0, 0, 0],
     isDragging: false,
-    isAnimated: false,
     mousePosition: null,
     tooltipIndex: -1,
   });
-
-  // Setup path for globe
-  const projection = d3
-    .geoOrthographic()
-    .fitSize([width, height - 20], geoJson)
-    // .translate([width / 2, height / 2])
-    .rotate([state.rotationZ, state.rotationX, state.rotationY]);
-
-  const pathGenerator = d3
-    .geoPath()
-    .projection(projection)
-    .pointRadius(2);
 
   const svgRef = useRef(null);
 
@@ -73,20 +60,31 @@ export default function Globe({
   // variables used to track start and end position when there is active marker
   const rotateRef = useRef({
     p1: null,
-    p2: projection.center(),
+    p2: [0, 0],
     r1: null,
-    r2: projection.rotate(),
+    r2: [0, 0, 0],
     step: 0,
     markerId: null,
-    ip: null,
     iv: null,
   });
-  console.log('renderGlobe', state, dragRef.current, rotateRef.current, geoJson);
+
+  // console.log('renderGlobe', state, dragRef.current, rotateRef.current, geoJson);
 
   const isValid =
     activeMarkerId &&
     rotateRef.current.markerId !== activeMarkerId &&
     markers.some(x => x.id === activeMarkerId);
+
+  // Setup path for globe
+  const projection = d3
+    .geoOrthographic()
+    .fitExtent([[10, 10], [width - 10, height - 10]], geoJson)
+    .rotate(state.rotation);
+
+  const pathGenerator = d3
+    .geoPath()
+    .projection(projection)
+    .pointRadius(2);
 
   // Enable auto rotation
   useEffect(() => {
@@ -100,16 +98,20 @@ export default function Globe({
         p1 = p2;
         p2 = [marker.longitude, marker.latitude];
         r1 = r2;
-        r2 = [-p2[0], 80 - p2[1], 0];
-        const ip = d3.geoInterpolate(p1, p2);
+        r2 = [-p2[0], 20 - p2[1], projection.rotate()[2]];
         const iv = Versor.interpolateAngles(r1, r2);
-        Object.assign(rotateRef.current, { p1, p2, r1, r2, ip, iv, markerId: activeMarkerId });
+        Object.assign(rotateRef.current, { p1, p2, r1, r2, iv, markerId: activeMarkerId });
+        dispatch({ type: 'rotate', payload: { rotation: iv(1) } });
         console.log('startAnimation', rotateRef.current, marker);
-        // console.log('startAnimation', marker);
       }
     } else if (enableRotation) {
       const handler = window.requestAnimationFrame(() => {
-        dispatch({ type: 'rotate', payload: { rotationZ: state.rotationZ + 2 / rotationSpeed } });
+        const newRotation = [
+          state.rotation[0] + 2 / rotationSpeed,
+          state.rotation[1],
+          state.rotation[2],
+        ];
+        dispatch({ type: 'rotate', payload: { rotation: newRotation } });
       });
 
       return function cleanup() {
@@ -117,34 +119,6 @@ export default function Globe({
       };
     }
   });
-
-  // If we have an active marker, rotate the globe to that marker
-  useInterval(
-    () => {
-      if (rotateRef.current.iv) {
-        rotateRef.current.step += 0.005;
-        if (rotateRef.current.step > 1) {
-          rotateRef.current = {
-            p1: null,
-            p2: rotateRef.current.p2,
-            r1: null,
-            r2: projection.rotate(),
-            step: 0,
-            markerId: null,
-            ip: null,
-            iv: null,
-          };
-
-          dispatch({ type: 'rotate', payload: { isAnimated: true } });
-          console.log('endAnimation', rotateRef.current);
-        } else {
-          const [rotationZ, rotationX, rotationY] = rotateRef.current.iv(rotateRef.current.step);
-          dispatch({ type: 'rotate', payload: { rotationZ, rotationX, rotationY } });
-        }
-      }
-    },
-    isValid && !state.isAnimated && !state.isDragging ? 10 : null
-  );
 
   const getMousePosition = event => {
     const node = svgRef.current;
@@ -184,8 +158,7 @@ export default function Globe({
     const q1 = versor.multiply(q0, versor.delta(v0, v1));
     const r1 = versor.rotation(q1);
 
-    const [rotationZ, rotationX, rotationY] = r1;
-    dispatch({ type: 'rotate', payload: { rotationZ, rotationX, rotationY, mousePosition } });
+    dispatch({ type: 'rotate', payload: { rotation: r1, mousePosition } });
   };
 
   const onDragEnd = () => {
@@ -207,7 +180,9 @@ export default function Globe({
       const distance = d3.geoDistance(areaCoords, projection.invert([width / 2, height / 2]));
       const sphereCoords = projection(areaCoords);
       // eslint-disable-next-line
-      const fill = distance > 1.57 ? 'none' : activeMarkerId === x.id ? 'black' : 'red';
+      const fill = distance > 1.57 ? 'none' : 'red';
+      const fillOpacity = activeMarkerId === x.id ? 1 : 0.5;
+      const radius = activeMarkerId === x.id ? 8 : 6;
       return (
         <g
           key={x.id}
@@ -219,15 +194,16 @@ export default function Globe({
           <circle
             key="marker-inner"
             className="marker__inner"
-            r={6}
+            r={radius}
             cx={sphereCoords[0]}
             cy={sphereCoords[1]}
             fill={fill}
+            style={{ fillOpacity }}
           />
           <circle
             key="marker-outer"
             className="marker__outer"
-            r={12}
+            r={radius * 2}
             cx={sphereCoords[0]}
             cy={sphereCoords[1]}
             fill={fill}
@@ -406,7 +382,7 @@ const Container = styled.div`
 
   @keyframes scaleIn {
     from {
-      fill-opacity: 0.4;
+      fill-opacity: 0.3;
       transform: scale3d(0.5, 0.5, 0.5);
     }
     to {

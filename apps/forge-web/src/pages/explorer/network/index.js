@@ -54,7 +54,7 @@ class Network extends Page {
   setActiveMarker() {
     const ids = this.state.markers.map(x => x.id);
     const index = Math.floor(Math.random() * ids.length);
-    console.log('set activeMarkerId', ids[index], Date.now());
+    // console.log('set activeMarkerId', ids[index], Date.now());
     this.setState({ activeMarkerId: ids[index] });
     this.timer = setTimeout(this.setActiveMarker, 8000);
   }
