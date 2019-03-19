@@ -1,14 +1,12 @@
 /* eslint consistent-return:"off" */
 import React, { useReducer, useRef, useEffect } from 'react';
-import { useRaf } from 'react-use';
+import { useSpring } from 'react-use';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import * as d3 from 'd3';
-import { easeCubic } from 'd3-ease';
 import * as topojson from 'topojson-client';
 import versor from 'versor';
 
-import { useInterval } from '../../libs/hooks';
 import json from './countries.json';
 import Versor from './versor';
 
@@ -18,7 +16,6 @@ window.topojson = topojson;
 const geoJson = topojson.feature(json, json.objects.ne_110m_admin_0_countries);
 
 function stateReducer(state, action) {
-  console.log('stateReducer', action.type, action.payload);
   switch (action.type) {
     case 'dragEnd':
       return { ...state, isDragging: false };
@@ -44,6 +41,7 @@ export default function Globe({
   const [state, dispatch] = useReducer(stateReducer, {
     rotation: [0, 0, 0],
     isDragging: false,
+    animateDuration: 1,
     mousePosition: null,
     tooltipIndex: -1,
   });
@@ -69,6 +67,7 @@ export default function Globe({
   });
 
   // console.log('renderGlobe', state, dragRef.current, rotateRef.current, geoJson);
+  const t = useSpring(state.animateDuration, 170, 26);
 
   const isValid =
     activeMarkerId &&
@@ -79,7 +78,7 @@ export default function Globe({
   const projection = d3
     .geoOrthographic()
     .fitExtent([[10, 10], [width - 10, height - 10]], geoJson)
-    .rotate(state.rotation);
+    .rotate(t <= 1 ? state.rotation : rotateRef.current.iv(t / state.animateDuration));
 
   const pathGenerator = d3
     .geoPath()
@@ -94,15 +93,21 @@ export default function Globe({
       // We should only start new animation if the marker has changed
       if (markerId !== activeMarkerId && !state.isDragging) {
         const marker = markers.find(x => x.id === activeMarkerId);
-        // projection.center([marker.longitude, marker.latitude]);
         p1 = p2;
         p2 = [marker.longitude, marker.latitude];
         r1 = r2;
         r2 = [-p2[0], 20 - p2[1], projection.rotate()[2]];
         const iv = Versor.interpolateAngles(r1, r2);
+
         Object.assign(rotateRef.current, { p1, p2, r1, r2, iv, markerId: activeMarkerId });
-        dispatch({ type: 'rotate', payload: { rotation: iv(1) } });
-        console.log('startAnimation', rotateRef.current, marker);
+        const duration = state.animateDuration * 2;
+
+        dispatch({
+          type: 'rotate',
+          payload: {
+            animateDuration: duration > 1e6 ? 2 : duration,
+          },
+        });
       }
     } else if (enableRotation) {
       const handler = window.requestAnimationFrame(() => {
@@ -135,7 +140,6 @@ export default function Globe({
     const mousePosition = getMousePosition(event);
 
     if (!mousePosition[0]) {
-      console.error('Invalid mouse pos');
       return;
     }
 
@@ -179,10 +183,8 @@ export default function Globe({
       const areaCoords = [x.longitude, x.latitude];
       const distance = d3.geoDistance(areaCoords, projection.invert([width / 2, height / 2]));
       const sphereCoords = projection(areaCoords);
-      // eslint-disable-next-line
       const fill = distance > 1.57 ? 'none' : 'red';
-      const fillOpacity = activeMarkerId === x.id ? 1 : 0.5;
-      const radius = activeMarkerId === x.id ? 8 : 6;
+      const radius = activeMarkerId === x.id ? 9 : 6;
       return (
         <g
           key={x.id}
@@ -198,7 +200,7 @@ export default function Globe({
             cx={sphereCoords[0]}
             cy={sphereCoords[1]}
             fill={fill}
-            style={{ fillOpacity }}
+            style={{ fillOpacity: activeMarkerId === x.id ? 1 : 0.5 }}
           />
           <circle
             key="marker-outer"
@@ -208,6 +210,7 @@ export default function Globe({
             cy={sphereCoords[1]}
             fill={fill}
             style={{
+              animationDuration: activeMarkerId === x.id ? '800ms' : '1600ms',
               animationDelay: `${i * 0.2}s`,
               transformOrigin: `${sphereCoords[0]}px ${sphereCoords[1]}px`,
             }}

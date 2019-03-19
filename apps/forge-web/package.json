@@ -13,7 +13,6 @@
     "browser-lang": "^0.0.1",
     "copy-to-clipboard": "^3.0.8",
     "d3": "^5.9.2",
-    "d3-ease": "^1.0.5",
     "event-target-shim": "^5.0.1",
     "flat": "^4.1.0",
     "graphiql": "^0.13.0",
