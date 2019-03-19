@@ -28,7 +28,6 @@ class Network extends Page {
   async componentDidMount() {
     try {
       const { netInfo } = await api.getNetInfo();
-      console.log({ netInfo });
       this.setState({
         markers: netInfo.peers.map(x => ({
           id: x.id,
@@ -52,11 +51,11 @@ class Network extends Page {
   }
 
   setActiveMarker() {
-    const ids = this.state.markers.map(x => x.id);
+    const { markers } = this.state;
+    const ids = markers.map(x => x.id);
     const index = Math.floor(Math.random() * ids.length);
-    // console.log('set activeMarkerId', ids[index], Date.now());
     this.setState({ activeMarkerId: ids[index] });
-    this.timer = setTimeout(this.setActiveMarker, 8000);
+    this.timer = setTimeout(this.setActiveMarker, 5000);
   }
 
   render() {
@@ -68,7 +67,7 @@ class Network extends Page {
     return (
       <Layout title="Network" cookies={this.cookies}>
         <Container>
-          <Globe markers={markers} activeMarkerId={activeMarkerId} />
+          <Globe width={900} height={900} markers={markers} activeMarkerId={activeMarkerId} />
         </Container>
       </Layout>
     );
@@ -77,6 +76,12 @@ class Network extends Page {
 
 const Container = styled(Wrapper)`
   background-color: #222;
+  margin-top: 30px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 export default withRoot(withI18n(Network));

@@ -20,7 +20,12 @@ function stateReducer(state, action) {
     case 'dragEnd':
       return { ...state, isDragging: false };
     case 'dragStart':
-      return { ...state, isDragging: true, mousePosition: action.payload.mousePosition };
+      return {
+        ...state,
+        isDragging: true,
+        animationDuration: 1,
+        mousePosition: action.payload.mousePosition,
+      };
     case 'tooltip':
     case 'rotate':
       return Object.assign({}, state, action.payload);
@@ -78,7 +83,9 @@ export default function Globe({
   const projection = d3
     .geoOrthographic()
     .fitExtent([[10, 10], [width - 10, height - 10]], geoJson)
-    .rotate(t <= 1 ? state.rotation : rotateRef.current.iv(t / state.animateDuration));
+    .rotate(
+      t <= 1 || state.isDragging ? state.rotation : rotateRef.current.iv(t / state.animateDuration)
+    );
 
   const pathGenerator = d3
     .geoPath()
@@ -110,7 +117,7 @@ export default function Globe({
         });
       }
 
-    // Enable auto rotation
+      // Enable auto rotation
     } else if (enableRotation) {
       const handler = window.requestAnimationFrame(() => {
         const newRotation = [
@@ -168,7 +175,9 @@ export default function Globe({
   };
 
   const onDragEnd = () => {
-    dispatch({ type: 'dragEnd', payload: {} });
+    setTimeout(() => {
+      dispatch({ type: 'dragEnd', payload: {} });
+    }, 200);
   };
 
   const onShowTooltip = (event, i) =>
@@ -228,6 +237,7 @@ export default function Globe({
         <Tooltip style={{ left: state.mousePosition[0], top: state.mousePosition[1] }}>
           <p className="title">{marker.title}</p>
           <p className="description">{marker.description}</p>
+          <p className="description">ID: {marker.id}</p>
         </Tooltip>
       );
     }
@@ -401,7 +411,7 @@ const Tooltip = styled.div`
   position: absolute;
   width: auto;
   min-width: 90px;
-  max-width: 240px;
+  max-width: 320px;
   padding: 8px 12px;
   font-size: 14px;
   background-color: #4a4a4a;
