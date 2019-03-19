@@ -1,3 +1,6 @@
+## 0.14.1 (March 19, 2019)
+  - feat: add interactive producer globe
+
 ## 0.14.0 (March 18, 2019)
   - fix: utc time used when request forge
   - chore: update readme
