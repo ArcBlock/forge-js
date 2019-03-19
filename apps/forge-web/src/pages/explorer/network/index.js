@@ -17,7 +17,7 @@ class Network extends Page {
     super(props);
 
     this.state = {
-      markers: [],
+      markers: null,
       activeMarkerId: null,
     };
 
@@ -60,7 +60,7 @@ class Network extends Page {
 
   render() {
     const { markers, activeMarkerId } = this.state;
-    if (!markers.length) {
+    if (!markers) {
       return (
         <Container>
           <CircularProgress />
