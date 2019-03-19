@@ -119,15 +119,15 @@ export default function Globe({ theme, width, height, enableRotation, rotationSp
     markers.map(x => {
       const coordinate = [x.longitude, x.latitude];
       const distance = d3.geoDistance(coordinate, globe.invert([width / 2, height / 2]));
-      const coordinateProjection = globe(coordinate);
+      const projection = globe(coordinate);
       const fill = distance > 1.57 ? 'none' : 'red';
       return (
         <circle
-          key={JSON.stringify(x)}
+          key={x.id}
           className="marker"
           r={8}
-          cx={coordinateProjection[0]}
-          cy={coordinateProjection[1]}
+          cx={projection[0]}
+          cy={projection[1]}
           fill={fill}
         />
       );
@@ -205,6 +205,7 @@ Globe.propTypes = {
   rotationSpeed: PropTypes.number,
   markers: PropTypes.arrayOf(
     PropTypes.shape({
+      id: PropTypes.string.isRequired,
       title: PropTypes.string.isRequired,
       description: PropTypes.string.isRequired,
       latitude: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
@@ -226,6 +227,10 @@ const Container = styled.div`
   background-color: #222;
   width: ${props => props.width}px;
   height: ${props => props.height}px;
+  animation-name: zoomIn;
+  animation-duration: 1s;
+  animation-iteration-count: 1;
+  animation-timing-function: ease;
 
   .defs {
     height: 0;
@@ -252,5 +257,17 @@ const Container = styled.div`
     fill: #fff;
     stroke: rgba(255, 255, 255, 0.5);
     stroke-width: 0.25px;
+  }
+
+  @keyframes zoomIn {
+    from {
+      opacity: 0;
+      -webkit-transform: scale3d(0.1, 0.1, 0.1);
+      transform: scale3d(0.1, 0.1, 0.1);
+    }
+
+    50% {
+      opacity: 1;
+    }
   }
 `;
