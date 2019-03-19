@@ -1,17 +1,20 @@
+/* eslint consistent-return:"off" */
 import React, { useReducer, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import * as d3 from 'd3';
 import * as topojson from 'topojson-client';
 import versor from 'versor';
-import { useAsync } from 'react-use';
 
-import CircularProgress from '@material-ui/core/CircularProgress';
+import json from './countries.json';
 
 window.d3 = d3;
 window.topojson = topojson;
 
+const geoJson = topojson.feature(json, json.objects.ne_110m_admin_0_countries);
+
 function stateReducer(state, action) {
+  console.log('stateReducer', action);
   switch (action.type) {
     case 'dragEnd':
       return { ...state, isDragging: false };
@@ -24,15 +27,7 @@ function stateReducer(state, action) {
   }
 }
 
-// TODO: may find a better geo json here
-async function fetchGeoJson() {
-  const json = await d3.json('https://codepen.io/frontendcharts/pen/JBprpp.js');
-  const geoJson = topojson.feature(json, json.objects.ne_110m_admin_0_countries);
-  return geoJson;
-}
-
-export default function Globe({ width, height, enableRotation, rotationSpeed, markers }) {
-  const geoJson = useAsync(fetchGeoJson);
+export default function Globe({ theme, width, height, enableRotation, rotationSpeed, markers }) {
   const svgRef = useRef(null);
   const positionRef = useRef({
     v0: undefined,
@@ -60,30 +55,12 @@ export default function Globe({ width, height, enableRotation, rotationSpeed, ma
         window.cancelAnimationFrame(handler);
       };
     }
-
-    return null;
   });
-
-  if (geoJson.loading) {
-    return (
-      <Container>
-        <CircularProgress />
-      </Container>
-    );
-  }
-
-  if (geoJson.error) {
-    return (
-      <Container>
-        <p>{geoJson.error.message}</p>
-      </Container>
-    );
-  }
 
   // Setup path for globe
   const globe = d3
     .geoOrthographic()
-    .fitSize([width, height - 20], geoJson.value)
+    .fitSize([width, height - 20], geoJson)
     .translate([width / 2, height / 2])
     .rotate([state.rotationZ, state.rotationX, state.rotationY]);
 
@@ -100,24 +77,10 @@ export default function Globe({ width, height, enableRotation, rotationSpeed, ma
       event.clientY - rect.top - node.clientTop,
     ];
 
-    console.log('getMousePosition', mousePosition);
     return mousePosition;
   };
 
-  const onDrag = event => {
-    const mousePosition = getMousePosition(event);
-    const { r0, v0, q0 } = positionRef.current;
-
-    const v1 = versor.cartesian(globe.rotate(r0).invert(mousePosition));
-    const q1 = versor.multiply(q0, versor.delta(v0, v1));
-    const r1 = versor.rotation(q1);
-
-    const [rotationZ, rotationX, rotationY] = r1;
-    dispatch({ type: 'rotate', payload: { rotationZ, rotationX, rotationY, mousePosition } });
-  };
-
   const onDragStart = event => {
-    svgRef.current.addEventListener('mousemove', onDrag);
     const mousePosition = getMousePosition(event);
 
     if (!mousePosition[0]) {
@@ -132,8 +95,23 @@ export default function Globe({ width, height, enableRotation, rotationSpeed, ma
     dispatch({ type: 'dragStart', payload: { mousePosition } });
   };
 
+  const onDrag = event => {
+    if (state.isDragging === false) {
+      return;
+    }
+
+    const mousePosition = getMousePosition(event);
+    const { r0, v0, q0 } = positionRef.current;
+
+    const v1 = versor.cartesian(globe.rotate(r0).invert(mousePosition));
+    const q1 = versor.multiply(q0, versor.delta(v0, v1));
+    const r1 = versor.rotation(q1);
+
+    const [rotationZ, rotationX, rotationY] = r1;
+    dispatch({ type: 'rotate', payload: { rotationZ, rotationX, rotationY, mousePosition } });
+  };
+
   const onDragEnd = () => {
-    svgRef.current.removeEventListener('mousemove', onDrag);
     dispatch({ type: 'dragEnd', payload: {} });
   };
 
@@ -156,12 +134,13 @@ export default function Globe({ width, height, enableRotation, rotationSpeed, ma
     });
 
   return (
-    <Container width={width} height={height}>
+    <Container width={width} height={height} theme={theme}>
       <svg
         className="earth"
         width={width}
         height={height}
         onMouseDown={onDragStart}
+        onMouseMove={onDrag}
         onMouseUp={onDragEnd}
         ref={svgRef}>
         <rect className="frame" width={width} height={height} />
@@ -180,7 +159,7 @@ export default function Globe({ width, height, enableRotation, rotationSpeed, ma
           d={globePath(d3.geoGraticule().step([10, 10])())}
         />
         <g className="features">
-          {geoJson.value.features.map(x => (
+          {geoJson.features.map(x => (
             <path key={JSON.stringify(x)} className="feature" d={globePath(x)} />
           ))}
         </g>
@@ -219,6 +198,7 @@ export default function Globe({ width, height, enableRotation, rotationSpeed, ma
 }
 
 Globe.propTypes = {
+  theme: PropTypes.oneOf(['light', 'dark']),
   width: PropTypes.number,
   height: PropTypes.number,
   enableRotation: PropTypes.bool,
@@ -227,13 +207,14 @@ Globe.propTypes = {
     PropTypes.shape({
       title: PropTypes.string.isRequired,
       description: PropTypes.string.isRequired,
-      latitude: PropTypes.oneOfType(PropTypes.number, PropTypes.string).isRequired,
-      longitude: PropTypes.oneOfType(PropTypes.number, PropTypes.string).isRequired,
+      latitude: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+      longitude: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
     })
   ),
 };
 
 Globe.defaultProps = {
+  theme: 'dark',
   width: 1200,
   height: 600,
   enableRotation: false,
