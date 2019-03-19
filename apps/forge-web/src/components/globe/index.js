@@ -340,7 +340,7 @@ Globe.defaultProps = {
 };
 
 const Container = styled.div`
-  background-color: #222;
+  background-color: ${props => (props.theme === 'light' ? '#f7f7f7' : '#222')};
   width: ${props => props.width}px;
   height: ${props => props.height}px;
   position: relative;
