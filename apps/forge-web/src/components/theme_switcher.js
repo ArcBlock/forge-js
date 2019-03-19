@@ -13,11 +13,11 @@ function ThemeSwitcher({ theme, ...rest }) {
   const toggle = () => setMode(mode === 'light' ? 'dark' : 'light');
 
   return (
-    <Tooltip {...rest} title={mode === 'light' ? 'Light Mode' : 'Dark Mode'}>
+    <Tooltip {...rest} title={mode === 'light' ? 'Light Off' : 'Light On'}>
       <IconButton onClick={toggle}>
         <Icon8
           size={36}
-          name={mode === 'light' ? 'light' : 'no-idea'}
+          name={mode === 'light' ? 'no-idea' : 'light'}
           color={theme.typography.color.main}
         />
       </IconButton>
