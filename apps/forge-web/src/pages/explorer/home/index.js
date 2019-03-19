@@ -16,6 +16,7 @@ import TopAccounts from '../../dashboard/components/top_accounts';
 import TopValidators from '../../dashboard/components/top_validators';
 
 import Latest from './latest';
+import Producer from './producer';
 
 class Home extends Page {
   render() {
@@ -37,8 +38,16 @@ class Home extends Page {
               </div>
             </Grid>
             <Grid item xs={12} sm={6} md={6} className="section section--network">
-              <div className="section__content">
-                <p>TODO: add network map here</p>
+              <div
+                className="section__content"
+                style={{
+                  height: '100%',
+                  width: '100%',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}>
+                <Producer />
               </div>
             </Grid>
             <Grid item xs={12} sm={12} md={12} className="section section--transactions">

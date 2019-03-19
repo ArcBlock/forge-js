@@ -5,6 +5,7 @@ import { IntlProvider, addLocaleData } from 'react-intl';
 
 import Layout from '../layouts/explorer';
 
+import PageNetwork from '../pages/explorer/network';
 import PageHome from '../pages/explorer/home';
 import PageBlockList from '../pages/explorer/blocks';
 import PageBlockDetail from '../pages/explorer/block';
@@ -56,6 +57,7 @@ const App = () => {
             <Route exact path="/txs/:hash" component={PageTxDetail} />
             <Route exact path="/accounts/:address" component={PageAccountDetail} />
             <Route exact path="/assets/:address" component={PageAssetDetail} />
+            <Route exact path="/network" component={PageNetwork} />
             <Redirect from="/*" to="/" />
           </Switch>
         </Layout>
