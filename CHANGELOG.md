@@ -1,3 +1,6 @@
+## 0.14.3 (March 20, 2019)
+  - fix: test case
+
 ## 0.14.2 (March 20, 2019)
   - chore: use only d3-geo for globe component #190
   - chore: make colors an config object for globe #198
