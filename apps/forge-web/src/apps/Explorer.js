@@ -3,17 +3,11 @@ import styled from 'styled-components';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import { IntlProvider, addLocaleData } from 'react-intl';
 
+import AsyncComponent from '../components/async';
 import Layout from '../layouts/explorer';
-
-import PageNetwork from '../pages/explorer/network';
-import PageHome from '../pages/explorer/home';
-import PageBlockList from '../pages/explorer/blocks';
-import PageBlockDetail from '../pages/explorer/block';
-import PageTxList from '../pages/explorer/txs';
-import PageTxDetail from '../pages/explorer/tx';
-import PageAccountDetail from '../pages/explorer/account';
-import PageAssetDetail from '../pages/explorer/asset';
 import ActivityIndicator from '../components/activity_indicator';
+
+import PageHome from '../pages/explorer/home';
 
 import { localeData } from '../libs/locale';
 import { detectLocale } from '../libs/util';
@@ -22,6 +16,14 @@ import { useStartupInfo } from '../libs/hooks';
 addLocaleData(localeData);
 
 const { locale, messages } = detectLocale();
+
+const PageNetwork = AsyncComponent(() => import('../pages/explorer/network'));
+const PageBlockList = AsyncComponent(() => import('../pages/explorer/blocks'));
+const PageBlockDetail = AsyncComponent(() => import('../pages/explorer/block'));
+const PageTxList = AsyncComponent(() => import('../pages/explorer/txs'));
+const PageTxDetail = AsyncComponent(() => import('../pages/explorer/tx'));
+const PageAccountDetail = AsyncComponent(() => import('../pages/explorer/account'));
+const PageAssetDetail = AsyncComponent(() => import('../pages/explorer/asset'));
 
 const App = () => {
   const state = useStartupInfo();

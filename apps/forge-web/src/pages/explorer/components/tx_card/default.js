@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-// import moment from 'moment';
+// import dayjs from 'dayjs';
 // import Typography from '@material-ui/core/Typography';
 
 const DefaultTxSummary = React.memo(({ tx, ...rest }) => (

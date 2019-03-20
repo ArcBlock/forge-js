@@ -3,12 +3,14 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import get from 'lodash/get';
 
-import AsyncSelect from 'react-select/lib/Async';
 import { withRouter } from 'react-router-dom';
 import IconFa from './iconfa';
+import AsyncComponent from './async';
 
 import forge from '../libs/forge';
 import { getExplorerUrl } from '../libs/util';
+
+const AsyncSelect = AsyncComponent(() => import('react-select/lib/Async'));
 
 class SearchBox extends React.Component {
   static propTypes = {

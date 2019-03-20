@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import get from 'lodash/get';
 import { withTheme } from '@material-ui/core/styles';
 
@@ -22,7 +22,7 @@ const ConsumeAssetTx = React.memo(({ tx, type, theme, ...rest }) => {
           <Link to={getExplorerUrl(`/txs/${tx.hash}`)}># {tx.hash}</Link>
         </Typography>
         <Typography component="p" className="time" title={tx.time}>
-          {moment(tx.time).fromNow()}
+          {dayjs(tx.time).fromNow()}
         </Typography>
       </div>
       <div className="info-row" style={{ justifyContent: 'flex-start' }}>

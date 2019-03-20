@@ -1,5 +1,4 @@
 /* eslint no-console:"off" */
-const decamelize = require('decamelize');
 const protobuf = require('protobufjs');
 
 const txTypePattern = /Tx$/;
@@ -8,7 +7,11 @@ const stakeTypePattern = /^StakeFor/i;
 const requestTypePattern = /^Request/i;
 const responseTypePattern = /^Response/i;
 const packageName = 'forge_abi';
-const lowerUnder = x => decamelize(x).toLowerCase();
+const lowerUnder = x =>
+  x
+    .split(/(?=[A-Z])/)
+    .join('_')
+    .toLowerCase();
 
 const compactSchema = object => {
   if (object.nested) {

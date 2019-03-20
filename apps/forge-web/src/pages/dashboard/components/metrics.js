@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import numeral from 'numeral';
 import { fromUnitToToken } from '@arcblock/forge-util';
 import { useAsync, useBoolean } from 'react-use';
@@ -12,15 +12,16 @@ import Tooltip from '@material-ui/core/Tooltip';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 import Icon8 from '../../../components/icon8';
-import SparkLine from '../../../components/sparkline';
+import AsyncComponent from '../../../components/async';
 import BlinkingDot from '../../../components/blinking_dot';
 import forge from '../../../libs/forge';
+import { createSeries } from '../../../libs/util';
 import { useInterval, useTokenInfo } from '../../../libs/hooks';
 
+const SparkLine = AsyncComponent(() => import('../../../components/sparkline'));
+
 async function fetchSummary() {
-  const date = moment()
-    .utc()
-    .format('YYYY-MM-DD');
+  const date = dayjs().format('YYYY-MM-DD');
   const [{ forgeStatistics: summary }, { forgeStatistics: trend }] = await Promise.all([
     forge.getForgeStatistics(),
     forge.getForgeStatisticsByHour({ date }),
@@ -92,7 +93,7 @@ function Metrics({ theme, sparkline, itemSize, size }) {
       date.setMinutes(0);
       date.setSeconds(0);
       return {
-        time: moment(date).format('YYYY-MM-DD HH:mm'),
+        time: dayjs(date).format('YYYY-MM-DD HH:mm'),
         [x]: x === 'stakes' ? Number(fromUnitToToken(d)) : Number(d),
       };
     });
@@ -142,7 +143,7 @@ function Metrics({ theme, sparkline, itemSize, size }) {
               <div className="metric__name">{x}</div>
               {sparkline && (
                 <div className="metric__trend">
-                  <SparkLine data={trends[x]} series={[SparkLine.createSeries({ dataKey: x })]} />
+                  <SparkLine data={trends[x]} series={[createSeries({ dataKey: x })]} />
                 </div>
               )}
             </Metric>

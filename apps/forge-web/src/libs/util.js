@@ -48,8 +48,8 @@ export function getGraphQLEndpoint() {
     return `${protocol}//${host}/api`;
   }
 
-  return 'http://localhost:8210/api'; // local
-  // return 'http://abt-test.arcblock.co:8210/api'; // abt testnet
+  // return 'http://localhost:8210/api'; // local
+  return 'http://abt-test.arcblock.co:8210/api'; // abt testnet
 }
 
 export function fromTypeUrl(url, camelcase = true) {
@@ -101,4 +101,18 @@ export async function fetchInfo(tokenInfo, nodeInfo) {
         : err.message || err.toString()
     );
   }
+}
+
+export function createSeries(args) {
+  let { dataKey, stroke, gradientStart, gradientStop } = args; // eslint-disable-line
+  if (typeof args === 'string') {
+    dataKey = args;
+  }
+
+  return {
+    dataKey,
+    stroke: stroke || '#868787',
+    gradientStart: gradientStart || '#ECE8E8',
+    gradientStop: gradientStop || '#F8F8F8',
+  };
 }

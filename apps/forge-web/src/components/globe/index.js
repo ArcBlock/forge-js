@@ -3,15 +3,12 @@ import React, { useReducer, useRef, useEffect } from 'react';
 import { useSpring } from 'react-use';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import * as d3 from 'd3';
+import * as d3 from 'd3-geo';
 import * as topojson from 'topojson-client';
 import versor from 'versor';
 
 import json from './countries.json';
 import Versor from './versor';
-
-window.d3 = d3;
-window.topojson = topojson;
 
 const geoJson = topojson.feature(json, json.objects.ne_110m_admin_0_countries);
 
@@ -42,6 +39,7 @@ export default function Globe({
   rotationSpeed,
   markers,
   activeMarkerId,
+  colors,
 }) {
   const [state, dispatch] = useReducer(stateReducer, {
     rotation: [0, 0, 0],
@@ -194,12 +192,14 @@ export default function Globe({
       const areaCoords = [x.longitude, x.latitude];
       const distance = d3.geoDistance(areaCoords, projection.invert([width / 2, height / 2]));
       const sphereCoords = projection(areaCoords);
-      const fill = distance > 1.57 ? 'none' : 'red';
-      const radius = activeMarkerId === x.id ? 9 : 6;
+      const isActive = activeMarkerId === x.id;
+      // eslint-disable-next-line
+      const fill = distance > 1.57 ? 'none' : isActive ? colors.activeMarker : colors.marker;
+      const radius = isActive ? 9 : 6;
       return (
         <g
           key={x.id}
-          className="marker"
+          className={`marker ${isActive ? 'marker--active' : ''}`}
           onFocus={event => onShowTooltip(event, i)}
           onBlur={onHideTooltip}
           onMouseOver={event => onShowTooltip(event, i)}
@@ -211,7 +211,7 @@ export default function Globe({
             cx={sphereCoords[0]}
             cy={sphereCoords[1]}
             fill={fill}
-            style={{ fillOpacity: activeMarkerId === x.id ? 1 : 0.5 }}
+            style={{ fillOpacity: isActive ? 1 : 0.5 }}
           />
           <circle
             key="marker-outer"
@@ -221,7 +221,7 @@ export default function Globe({
             cy={sphereCoords[1]}
             fill={fill}
             style={{
-              animationDuration: activeMarkerId === x.id ? '800ms' : '1600ms',
+              animationDuration: isActive ? '800ms' : '1600ms',
               animationDelay: `${i * 0.2}s`,
               transformOrigin: `${sphereCoords[0]}px ${sphereCoords[1]}px`,
             }}
@@ -243,8 +243,16 @@ export default function Globe({
     }
   };
 
+  let activeCountry = null;
+  if (activeMarkerId && markers.some(x => x.id === activeMarkerId)) {
+    const activeMarker = markers.find(x => x.id === activeMarkerId);
+    activeCountry = geoJson.features.findIndex(
+      x => x.properties && x.properties.name && x.properties.name === activeMarker.country
+    );
+  }
+
   return (
-    <Container width={width} height={height} theme={theme}>
+    <Container width={width} height={height} theme={theme} colors={colors}>
       {renderTooltip()}
       <svg
         className="earth"
@@ -261,17 +269,15 @@ export default function Globe({
           r={projection.scale()}
           className="globe"
           filter="url(#glow)"
-          fill="#80A7F5"
         />
-        <path
-          className="graticule"
-          fill="none"
-          stroke="#7F96E4"
-          d={pathGenerator(d3.geoGraticule().step([10, 10])())}
-        />
+        <path className="graticule" d={pathGenerator(d3.geoGraticule().step([10, 10])())} />
         <g className="features">
-          {geoJson.features.map(x => (
-            <path key={JSON.stringify(x)} className="feature" d={pathGenerator(x)} />
+          {geoJson.features.map((x, i) => (
+            <path
+              key={x.properties.name}
+              className={`country ${activeCountry === i ? 'country--active' : ''}`}
+              d={pathGenerator(x)}
+            />
           ))}
         </g>
         <g className="markers">{renderMarkers()}</g>
@@ -323,10 +329,20 @@ Globe.propTypes = {
       id: PropTypes.string.isRequired,
       title: PropTypes.string.isRequired,
       description: PropTypes.string.isRequired,
+      country: PropTypes.string.isRequired,
       latitude: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
       longitude: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
     })
   ),
+  colors: PropTypes.shape({
+    ocean: PropTypes.string,
+    graticule: PropTypes.string,
+    land: PropTypes.string,
+    activeLand: PropTypes.string,
+    border: PropTypes.string,
+    marker: PropTypes.string,
+    activeMarker: PropTypes.string,
+  }),
 };
 
 Globe.defaultProps = {
@@ -337,6 +353,15 @@ Globe.defaultProps = {
   rotationSpeed: 5,
   markers: [],
   activeMarkerId: undefined,
+  colors: {
+    ocean: '#80a7f5',
+    graticule: '#7F96E4',
+    land: '#edffd1',
+    activeLand: '#95d16d',
+    border: '#404040',
+    marker: '#ff0000',
+    activeMarker: '#ff0000',
+  },
 };
 
 const Container = styled.div`
@@ -360,15 +385,29 @@ const Container = styled.div`
     pointer-events: all;
   }
 
-  .feature {
-    fill: #95d16d;
-    stroke: #404040;
+  .country {
+    fill: ${props => props.colors.land};
+    stroke: ${props => props.colors.border};
     stroke-width: 0.5px;
+
+    &:hover {
+      fill: ${props => props.colors.activeLand};
+    }
+  }
+
+  .country--active {
+    fill: ${props => props.colors.activeLand};
   }
 
   .globe {
+    fill: ${props => props.colors.ocean};
     stroke: rgba(255, 255, 255, 0.5);
     stroke-width: 0.25px;
+  }
+
+  .graticule {
+    fill: none;
+    stroke: ${props => props.colors.graticule};
   }
 
   .star {

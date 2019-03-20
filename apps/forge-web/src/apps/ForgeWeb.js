@@ -4,22 +4,9 @@ import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-d
 import { IntlProvider, addLocaleData } from 'react-intl';
 
 import Layout from '../layouts/dashboard';
-
 import PageDashboard from '../pages/dashboard';
-import PageStatus from '../pages/node/status';
-import PageQuery from '../pages/node/query';
-import PageStorage from '../pages/node/storage';
-import PageDeveloper from '../pages/developer';
-import PageApplication from '../pages/app';
-import PageTasks from '../pages/tasks';
-import PageSettings from '../pages/settings';
-import PageBlockList from '../pages/explorer/blocks';
-import PageBlockDetail from '../pages/explorer/block';
-import PageTxList from '../pages/explorer/txs';
-import PageTxDetail from '../pages/explorer/tx';
-import PageAccountDetail from '../pages/explorer/account';
-import PageAssetDetail from '../pages/explorer/asset';
 import ActivityIndicator from '../components/activity_indicator';
+import AsyncComponent from '../components/async';
 
 import { localeData } from '../libs/locale';
 import { detectLocale } from '../libs/util';
@@ -28,6 +15,20 @@ import { useStartupInfo } from '../libs/hooks';
 addLocaleData(localeData);
 
 const { locale, messages } = detectLocale();
+
+const PageStatus = AsyncComponent(() => import('../pages/node/status'));
+const PageQuery = AsyncComponent(() => import('../pages/node/query'));
+const PageStorage = AsyncComponent(() => import('../pages/node/storage'));
+const PageDeveloper = AsyncComponent(() => import('../pages/developer'));
+const PageApplication = AsyncComponent(() => import('../pages/app'));
+const PageTasks = AsyncComponent(() => import('../pages/tasks'));
+const PageSettings = AsyncComponent(() => import('../pages/settings'));
+const PageBlockList = AsyncComponent(() => import('../pages/explorer/blocks'));
+const PageBlockDetail = AsyncComponent(() => import('../pages/explorer/block'));
+const PageTxList = AsyncComponent(() => import('../pages/explorer/txs'));
+const PageTxDetail = AsyncComponent(() => import('../pages/explorer/tx'));
+const PageAccountDetail = AsyncComponent(() => import('../pages/explorer/account'));
+const PageAssetDetail = AsyncComponent(() => import('../pages/explorer/asset'));
 
 const App = () => {
   const state = useStartupInfo();

@@ -12,14 +12,14 @@
     "babel-polyfill": "^6.26.0",
     "browser-lang": "^0.0.1",
     "copy-to-clipboard": "^3.0.8",
-    "d3": "^5.9.2",
+    "d3-geo": "^1.11.3",
+    "dayjs": "^1.8.10",
     "event-target-shim": "^5.0.1",
     "flat": "^4.1.0",
     "graphiql": "^0.13.0",
     "hoist-non-react-statics": "^3.3.0",
     "humanize-string": "^1.0.2",
     "js-cookie": "^2.2.0",
-    "moment": "^2.24.0",
     "numeral": "^2.0.6",
     "prop-types": "^15.6.2",
     "rc-pagination": "^1.17.8",
@@ -81,6 +81,7 @@
   "devDependencies": {
     "@types/react": "^16.8.3",
     "babel-eslint": "^8.2.6",
+    "babel-plugin-recharts": "^1.2.0",
     "babel-plugin-styled-components": "^1.5.1",
     "eslint": "^5.3.0",
     "eslint-config-airbnb": "^17.1.0",
@@ -88,6 +89,7 @@
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-react": "^7.12.4",
     "eslint-plugin-react-hooks": "^1.2.0",
-    "react-app-rewired": "^2.0.3"
+    "react-app-rewired": "^2.0.3",
+    "webpack-bundle-analyzer": "^3.1.0"
   }
 }

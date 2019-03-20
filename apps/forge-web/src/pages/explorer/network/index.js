@@ -4,13 +4,15 @@ import styled from 'styled-components';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 import Page from '../../../components/page';
+import AsyncComponent from '../../../components/async';
 import Layout from '../../../layouts/page';
 import Wrapper from '../../../components/wrapper';
 import withI18n from '../../../components/withI18n';
 import withRoot from '../../../components/withRoot';
-import Globe from '../../../components/globe';
 
 import api from '../../../libs/forge';
+
+const AsyncGlobe = AsyncComponent(() => import('../../../components/globe'));
 
 class Network extends Page {
   constructor(props) {
@@ -34,6 +36,7 @@ class Network extends Page {
           latitude: x.geoInfo.latitude,
           longitude: x.geoInfo.longitude,
           title: x.moniker,
+          country: x.geoInfo.country,
           description: `Location: ${x.geoInfo.city},${x.geoInfo.country}`,
         })),
       });
@@ -71,7 +74,7 @@ class Network extends Page {
     return (
       <Layout title="Network" cookies={this.cookies}>
         <Container>
-          <Globe width={900} height={900} markers={markers} activeMarkerId={activeMarkerId} />
+          <AsyncGlobe width={900} height={900} markers={markers} activeMarkerId={activeMarkerId} />
         </Container>
       </Layout>
     );

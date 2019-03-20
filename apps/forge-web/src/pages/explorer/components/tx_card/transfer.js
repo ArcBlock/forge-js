@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import { withTheme } from '@material-ui/core/styles';
 
 import { Link } from 'react-router-dom';
@@ -19,7 +19,7 @@ const TransferTxSummary = React.memo(({ tx, theme, ...rest }) => (
         <Link to={getExplorerUrl(`/txs/${tx.hash}`)}># {tx.hash}</Link>
       </Typography>
       <Typography component="p" className="time" title={tx.time}>
-        {moment(tx.time).fromNow()}
+        {dayjs(tx.time).fromNow()}
       </Typography>
     </div>
     <div className="info-row">

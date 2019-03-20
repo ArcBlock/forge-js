@@ -1,7 +1,7 @@
 /* eslint no-nested-ternary:"off" */
 import React from 'react';
 import PropTypes from 'prop-types';
-import moment from 'moment';
+import dayjs from 'dayjs';
 
 import { Link } from 'react-router-dom';
 import Table from '@material-ui/core/Table';
@@ -32,10 +32,10 @@ function renderAssets(assets) {
             </TableCell>
             <TableCell align="left">{x.moniker}</TableCell>
             <TableCell align="left" title={x.genesisTime}>
-              {x.genesisTime ? moment(x.genesisTime).fromNow() : ''}
+              {x.genesisTime ? dayjs(x.genesisTime).fromNow() : ''}
             </TableCell>
             <TableCell align="left" title={x.renaissanceTime}>
-              {x.renaissanceTime ? moment(x.renaissanceTime).fromNow() : ''}
+              {x.renaissanceTime ? dayjs(x.renaissanceTime).fromNow() : ''}
             </TableCell>
           </TableRow>
         ))}
