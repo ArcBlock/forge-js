@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import styled from 'styled-components';
 import { useAsync } from 'react-use';
 
@@ -13,7 +13,7 @@ async function formatActivity(data, delayMS) {
   await delay(delayMS);
 
   const rows = [...Array(data.length).keys()].map(i => ({
-    time: moment()
+    time: dayjs()
       .subtract(data.length - i, 'days')
       .format('YYYY-MM-DD'),
     txs: data[i],

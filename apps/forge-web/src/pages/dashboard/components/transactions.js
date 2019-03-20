@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import moment from 'moment';
+import dayjs from 'dayjs';
 
 import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -52,7 +52,7 @@ export default class TransactionsSection extends React.Component {
     // },
   };
 
-  // startDate: moment().format('YYYY-MM-DD'),
+  // startDate: dayjs().format('YYYY-MM-DD'),
   dateRanges = {
     last24Hours: {
       text: 'Last 24 hours',
@@ -184,12 +184,10 @@ export default class TransactionsSection extends React.Component {
     this.setState({ loading: true });
     const dateRange = this.dateRanges[this.state.rangeKey];
     const queryType = dateRange.api || 'getForgeStatisticsByDay';
-    const endDate = moment()
-      .utc()
-      .format('YYYY-MM-DD');
+    const endDate = dayjs().format('YYYY-MM-DD');
     const rangeParams = {
       endDate,
-      startDate: moment()
+      startDate: dayjs()
         .subtract(dateRange.offset, 'days')
         .format('YYYY-MM-DD'),
     };
@@ -200,11 +198,11 @@ export default class TransactionsSection extends React.Component {
     const data = rawData[keys[0]].map((v, i) => {
       let time = null;
       if (queryType === 'getForgeStatisticsByDay') {
-        time = moment(rangeParams.startDate)
+        time = dayjs(rangeParams.startDate)
           .add(i, 'days')
           .format('YYYY-MM-DD');
       } else {
-        time = moment(endDate)
+        time = dayjs(endDate)
           .hours(i)
           .startOf('hour')
           .format('YYYY-MM-DD HH:MM');

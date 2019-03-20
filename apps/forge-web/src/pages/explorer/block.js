@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import { withRouter } from 'react-router-dom';
 
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -71,7 +71,7 @@ class BlockDetail extends Page {
                     {block.height}
                   </React.Fragment>
                 }
-                title={moment(block.time).format('YYYY-MM-DD HH:mm:ss')}
+                title={dayjs(block.time).format('YYYY-MM-DD HH:mm:ss')}
                 badge={block.numTxs}
                 badgeTip="Num Txs"
                 meta={[

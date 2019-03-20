@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import { withTheme } from '@material-ui/core/styles';
 
 import { Link } from 'react-router-dom';
@@ -33,7 +33,7 @@ const BlockCard = React.memo(({ block, theme, ...rest }) => (
     </div>
     <div className="right">
       <Typography component="p" className="time" title={block.time}>
-        {moment(block.time).fromNow()}
+        {dayjs(block.time).fromNow()}
       </Typography>
     </div>
   </Container>
