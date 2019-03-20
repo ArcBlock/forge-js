@@ -7,5 +7,5 @@ lerna publish $VERSION --yes
 
 # update readme
 node tools/update-readme.js
-git commit -am 'update readme'
-git push origin master
+git commit -nam 'update readme'
+git push origin master --no-verify
