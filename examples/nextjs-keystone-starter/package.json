@@ -23,6 +23,6 @@
   },
   "scripts": {
     "lint": "eslint .",
-    "start": "node keystone.js"
+    "start": "node app.js"
   }
 }

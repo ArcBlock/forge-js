@@ -11,3 +11,4 @@ address.json
 packages/graphql-client/lib/
 demo.js
 .netlify
+.next

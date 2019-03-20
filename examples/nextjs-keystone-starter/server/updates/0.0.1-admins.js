@@ -8,9 +8,15 @@
  */
 
 exports.create = {
-	User: [
-		{ 'name.first': 'Admin', 'name.last': 'User', 'email': 'shijun@arcblock.io', 'password': 'admin', 'isAdmin': true },
-	],
+  User: [
+    {
+      'name.first': 'Admin',
+      'name.last': 'User',
+      email: 'shijun@arcblock.io',
+      password: 'admin',
+      isAdmin: true,
+    },
+  ],
 };
 
 /*
