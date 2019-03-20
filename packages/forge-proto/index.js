@@ -1,6 +1,5 @@
 const fs = require('fs');
 const path = require('path');
-const decamelize = require('decamelize');
 const { get } = require('lodash');
 const debug = require('debug')(`${require('./package.json').name}`);
 
@@ -9,7 +8,11 @@ const stateTypePattern = /State$/;
 const stakeTypePattern = /^StakeFor/i;
 const requestTypePattern = /^Request/i;
 const responseTypePattern = /^Response/i;
-const lowerUnder = x => decamelize(x).toLowerCase();
+const lowerUnder = x =>
+  x
+    .split(/(?=[A-Z])/)
+    .join('_')
+    .toLowerCase();
 
 // extract spec
 const compactSpec = object => {
