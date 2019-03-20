@@ -22,7 +22,7 @@ describe('GraphqlClient', () => {
     expect(client.getSubscriptions().length).toBeGreaterThan(0);
   });
 
-  test('should support getBlock', async () => {
+  test.skip('should support getBlock', async () => {
     const res = await client.getBlock({ height: 2 });
     expect(res.code).toEqual('OK');
     expect(res.block.height).toEqual(2);
@@ -34,10 +34,10 @@ describe('GraphqlClient', () => {
     expect(typeof type.encode).toEqual('function');
   });
 
-  test('should support declare account', async () => {
+  test.skip('should support declare account', async () => {
     const type = WalletType({
       role: Mcrypto.types.RoleType.ROLE_ACCOUNT,
-      pk: Mcrypto.types.KeyType.SECP256K1,
+      pk: Mcrypto.types.KeyType.ED25519,
       hash: Mcrypto.types.HashType.SHA3,
     });
 
