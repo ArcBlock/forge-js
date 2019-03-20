@@ -34,7 +34,7 @@ class Network extends Page {
           latitude: x.geoInfo.latitude,
           longitude: x.geoInfo.longitude,
           title: x.moniker,
-          description: `IP: ${x.ip}, Location: ${x.geoInfo.city},${x.geoInfo.country}`,
+          description: `Location: ${x.geoInfo.city},${x.geoInfo.country}`,
         })),
       });
 
@@ -79,7 +79,6 @@ class Network extends Page {
 }
 
 const Container = styled(Wrapper)`
-  background-color: #222;
   margin-top: 30px;
   width: 100%;
   height: 100%;

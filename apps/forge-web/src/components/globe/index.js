@@ -261,12 +261,12 @@ export default function Globe({
           r={projection.scale()}
           className="globe"
           filter="url(#glow)"
-          fill="url(#gradBlue)"
+          fill="#80A7F5"
         />
         <path
           className="graticule"
           fill="none"
-          stroke="#005c99"
+          stroke="#7F96E4"
           d={pathGenerator(d3.geoGraticule().step([10, 10])())}
         />
         <g className="features">
@@ -340,7 +340,7 @@ Globe.defaultProps = {
 };
 
 const Container = styled.div`
-  background-color: #222;
+  background-color: ${props => (props.theme === 'light' ? '#f7f7f7' : '#222')};
   width: ${props => props.width}px;
   height: ${props => props.height}px;
   position: relative;
@@ -361,8 +361,8 @@ const Container = styled.div`
   }
 
   .feature {
-    fill: #6ccc00;
-    stroke: #fff;
+    fill: #95d16d;
+    stroke: #404040;
     stroke-width: 0.5px;
   }
 
