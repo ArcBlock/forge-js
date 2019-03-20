@@ -41,7 +41,6 @@ export default function ProducerGlobe() {
 
   useInterval(async () => {
     const proposer = await fetchLatestProposer();
-    console.log('setActiveMarker', proposer);
     setActiveMarker(proposer);
   }, 4000);
 

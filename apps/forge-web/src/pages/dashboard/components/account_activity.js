@@ -6,8 +6,10 @@ import { useAsync } from 'react-use';
 
 import CircularProgress from '@material-ui/core/CircularProgress';
 
-import SparkLine from '../../../components/sparkline';
-import { delay } from '../../../libs/util';
+import AsyncComponent from '../../../components/async';
+import { delay, createSeries } from '../../../libs/util';
+
+const SparkLine = AsyncComponent(() => import('../../../components/sparkline'));
 
 async function formatActivity(data, delayMS) {
   await delay(delayMS);
@@ -35,7 +37,7 @@ export default function AccountActivity({ data, delayMS }) {
 
   return (
     <ChartContainer>
-      <SparkLine data={state.value} series={[SparkLine.createSeries('txs')]} />
+      <SparkLine data={state.value} series={[createSeries('txs')]} />
     </ChartContainer>
   );
 }

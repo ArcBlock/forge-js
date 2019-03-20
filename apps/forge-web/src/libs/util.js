@@ -102,3 +102,17 @@ export async function fetchInfo(tokenInfo, nodeInfo) {
     );
   }
 }
+
+export function createSeries(args) {
+  let { dataKey, stroke, gradientStart, gradientStop } = args; // eslint-disable-line
+  if (typeof args === 'string') {
+    dataKey = args;
+  }
+
+  return {
+    dataKey,
+    stroke: stroke || '#868787',
+    gradientStart: gradientStart || '#ECE8E8',
+    gradientStop: gradientStop || '#F8F8F8',
+  };
+}

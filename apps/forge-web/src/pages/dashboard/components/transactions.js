@@ -15,8 +15,11 @@ import CheckIcon from '@material-ui/icons/CheckCircle';
 import RightIcon from '@material-ui/icons/KeyboardArrowRight';
 import DownIcon from '@material-ui/icons/KeyboardArrowDown';
 
-import SparkLine from '../../../components/sparkline';
+import AsyncComponent from '../../../components/async';
 import forge from '../../../libs/forge';
+import { createSeries } from '../../../libs/util';
+
+const SparkLine = AsyncComponent(() => import('../../../components/sparkline'));
 
 export default class TransactionsSection extends React.Component {
   mapping = {
@@ -101,7 +104,7 @@ export default class TransactionsSection extends React.Component {
   renderSummary(trend) {
     // prettier-ignore
     const series = Object.keys(this.mapping).map(x =>
-      SparkLine.createSeries({
+      createSeries({
         dataKey: x,
         stroke: this.mapping[x].stroke,
         gradientStart: this.mapping[x].gradientStart,

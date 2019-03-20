@@ -42,7 +42,7 @@ const TipContainer = styled.div`
   }
 `;
 
-const SparkLine = ({ data, series, legend }) => {
+export default function SparkLine({ data, series, legend }) {
   const [mode] = useThemeMode();
   return (
     <ResponsiveContainer>
@@ -84,7 +84,7 @@ const SparkLine = ({ data, series, legend }) => {
       </AreaChart>
     </ResponsiveContainer>
   );
-};
+}
 
 SparkLine.propTypes = {
   data: PropTypes.arrayOf(
@@ -106,19 +106,3 @@ SparkLine.propTypes = {
 SparkLine.defaultProps = {
   legend: false,
 };
-
-SparkLine.createSeries = args => {
-  let { dataKey, stroke, gradientStart, gradientStop } = args; // eslint-disable-line
-  if (typeof args === 'string') {
-    dataKey = args;
-  }
-
-  return {
-    dataKey,
-    stroke: stroke || '#868787',
-    gradientStart: gradientStart || '#ECE8E8',
-    gradientStop: gradientStop || '#F8F8F8',
-  };
-};
-
-export default SparkLine;
