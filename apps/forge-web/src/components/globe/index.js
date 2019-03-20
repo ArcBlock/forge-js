@@ -243,6 +243,14 @@ export default function Globe({
     }
   };
 
+  let activeCountry = null;
+  if (activeMarkerId && markers.some(x => x.id === activeMarkerId)) {
+    const activeMarker = markers.find(x => x.id === activeMarkerId);
+    activeCountry = geoJson.features.findIndex(
+      x => x.properties && x.properties.name && x.properties.name === activeMarker.country
+    );
+  }
+
   return (
     <Container width={width} height={height} theme={theme} colors={colors}>
       {renderTooltip()}
@@ -264,8 +272,12 @@ export default function Globe({
         />
         <path className="graticule" d={pathGenerator(d3.geoGraticule().step([10, 10])())} />
         <g className="features">
-          {geoJson.features.map(x => (
-            <path key={JSON.stringify(x)} className="feature" d={pathGenerator(x)} />
+          {geoJson.features.map((x, i) => (
+            <path
+              key={x.properties.name}
+              className={`country ${activeCountry === i ? 'country--active' : ''}`}
+              d={pathGenerator(x)}
+            />
           ))}
         </g>
         <g className="markers">{renderMarkers()}</g>
@@ -317,6 +329,7 @@ Globe.propTypes = {
       id: PropTypes.string.isRequired,
       title: PropTypes.string.isRequired,
       description: PropTypes.string.isRequired,
+      country: PropTypes.string.isRequired,
       latitude: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
       longitude: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
     })
@@ -372,7 +385,7 @@ const Container = styled.div`
     pointer-events: all;
   }
 
-  .feature {
+  .country {
     fill: ${props => props.colors.land};
     stroke: ${props => props.colors.border};
     stroke-width: 0.5px;
@@ -380,6 +393,10 @@ const Container = styled.div`
     &:hover {
       fill: ${props => props.colors.activeLand};
     }
+  }
+
+  .country--active {
+    fill: ${props => props.colors.activeLand};
   }
 
   .globe {
