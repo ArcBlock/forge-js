@@ -12,7 +12,7 @@
     "babel-polyfill": "^6.26.0",
     "browser-lang": "^0.0.1",
     "copy-to-clipboard": "^3.0.8",
-    "d3": "^5.9.2",
+    "d3-geo": "^1.11.3",
     "event-target-shim": "^5.0.1",
     "flat": "^4.1.0",
     "graphiql": "^0.13.0",
