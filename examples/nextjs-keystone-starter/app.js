@@ -11,6 +11,7 @@ keystone.init({
   brand: 'Forge Web Starter (React + Next.js + Keystone.js)',
   updates: './server/updates',
   'auto update': true,
+  'admin path': 'admin',
   session: true,
   auth: true,
   'user model': 'User',
