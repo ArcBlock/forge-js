@@ -3,13 +3,14 @@ import { useAsync } from 'react-use';
 
 import CircularProgress from '@material-ui/core/CircularProgress';
 
-import Globe from '../../../components/globe';
+import AsyncComponent from '../../../components/async';
 import api from '../../../libs/forge';
 import { useInterval } from '../../../libs/hooks';
 
+const AsyncGlobe = AsyncComponent(() => import('../../../components/globe'));
+
 async function fetchPeers() {
   const { netInfo } = await api.getNetInfo();
-  console.log({ netInfo });
   return netInfo.peers.map(x => ({
     id: x.id,
     latitude: x.geoInfo.latitude,
@@ -52,5 +53,7 @@ export default function ProducerGlobe() {
     return <p>{state.error.message}</p>;
   }
 
-  return <Globe width={540} height={540} markers={state.value} activeMarkerId={activeMarkerId} />;
+  return (
+    <AsyncGlobe width={540} height={540} markers={state.value} activeMarkerId={activeMarkerId} />
+  );
 }
