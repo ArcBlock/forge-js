@@ -1,3 +1,17 @@
+## 0.14.2 (March 20, 2019)
+  - chore: use only d3-geo for globe component #190
+  - chore: make colors an config object for globe #198
+  - chore: highlight current country when new block produces
+  - chore: make globe component an async component to get faster load time …  …
+  - chore: add bundle analyzer and optimize recharts import
+  - chore: use dayjs to replace momentjs
+  - chore: make sparkline async
+  - chore: make forge-web async
+  - chore: cleanup dependency
+  - chore: make searchbox async
+  - improve globe (#199)
+  - update readme
+
 ## 0.14.1 (March 19, 2019)
   - feat: add interactive producer globe
 
