@@ -38,6 +38,6 @@
   },
   "scripts": {
     "lint": "eslint .",
-    "start": "nodemon app.js"
+    "start": "nodemon app.js -w server -w config -w app.js"
   }
 }

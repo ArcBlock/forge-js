@@ -26,5 +26,9 @@ module.exports = nextApp => app => {
     res.send(config.getLoginUri());
   });
 
+  app.get('/api/auth', (req, res) => {
+    res.jsonp(config.getAuthInfo(req.query.userDid));
+  });
+
   app.get('*', (req, res) => handle(req, res));
 };
