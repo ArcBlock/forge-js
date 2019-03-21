@@ -56,7 +56,7 @@ export default function ProducerGlobe() {
   return (
     <AsyncGlobe
       width={540}
-      height={540}
+      height={732}
       theme={theme}
       markers={state.value}
       activeMarkerId={activeMarkerId}

@@ -108,6 +108,11 @@ const Container = styled(Wrapper)`
       top: -20px;
     }
   }
+
+  .section--latest,
+  .section--network {
+    height: 772px;
+  }
 `;
 
 export default withRoot(withI18n(Home));
