@@ -510,6 +510,11 @@ function getPlatform() {
           return resolve('centos');
         }
 
+        // Amazon linux
+        if (/amzn/i.test(os.release())) {
+          return resolve('centos');
+        }
+
         return resolve('linux');
       }
 

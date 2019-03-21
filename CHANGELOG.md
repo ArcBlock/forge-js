@@ -1,3 +1,7 @@
+## 0.14.4 (March 21, 2019)
+  - fix: correct version on amazon linux
+  - update readme
+
 ## 0.14.3 (March 20, 2019)
   - fix: test case
 
