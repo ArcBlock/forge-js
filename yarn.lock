@@ -14257,7 +14257,7 @@ node.extend@^1.1.5, node.extend@~1.1.5:
     has "^1.0.3"
     is "^3.2.1"
 
-nodemon@^1.18.9:
+nodemon@^1.18.10, nodemon@^1.18.9:
   version "1.18.10"
   resolved "https://registry.npmjs.org/nodemon/-/nodemon-1.18.10.tgz#3ba63f64eb4c283cf3e4f75f30817e9d4f393afe"
   integrity sha512-we51yBb1TfEvZamFchRgcfLbVYgg0xlGbyXmOtbBzDwxwgewYS/YbZ5tnlnsH51+AoSTTsT3A2E/FloUbtH8cQ==
@@ -16582,10 +16582,23 @@ q@^1.1.2, q@^1.5.1:
   resolved "https://registry.npmjs.org/q/-/q-1.5.1.tgz#7e32f75b41381291d04611f1bf14109ac00651d7"
   integrity sha1-fjL3W0E4EpHQRhHxvxQQmsAGUdc=
 
+qr.js@0.0.0:
+  version "0.0.0"
+  resolved "https://registry.npmjs.org/qr.js/-/qr.js-0.0.0.tgz#cace86386f59a0db8050fa90d9b6b0e88a1e364f"
+  integrity sha1-ys6GOG9ZoNuAUPqQ2baw6IoeNk8=
+
 qrcode-terminal@^0.12.0:
   version "0.12.0"
   resolved "https://registry.npmjs.org/qrcode-terminal/-/qrcode-terminal-0.12.0.tgz#bb5b699ef7f9f0505092a3748be4464fe71b5819"
   integrity sha512-EXtzRZmC+YGmGlDFbXKxQiMZNwCLEO6BANKXG4iCtSIM0yqc/pappSx3RIKr4r0uh5JsBckOXeKrB3Iz7mdQpQ==
+
+qrcode.react@^0.9.3:
+  version "0.9.3"
+  resolved "https://registry.npmjs.org/qrcode.react/-/qrcode.react-0.9.3.tgz#91de1287912bdc5ccfb3b091737b828d6ced60c5"
+  integrity sha512-gGd30Ez7cmrKxyN2M3nueaNLk/f9J7NDRgaD5fVgxGpPLsYGWMn9UQ+XnDpv95cfszTQTdaf4QGLNMf3xU0hmw==
+  dependencies:
+    prop-types "^15.6.0"
+    qr.js "0.0.0"
 
 qs@2.3.3:
   version "2.3.3"
@@ -17254,6 +17267,21 @@ react-use@^5.4.1:
   version "5.5.4"
   resolved "https://registry.npmjs.org/react-use/-/react-use-5.5.4.tgz#1e9145495c08d5117fc6c6c92eccac6226b912a5"
   integrity sha512-m115VxszNFZxmHPuRGAO/9v2dwm8iwK8h3qhuqFu8dVeLqCFTqUn3qOGh32uHQdylKUwUhKnh4QLYt6yB2seaw==
+  dependencies:
+    "@types/react" "^16.8.2"
+    keyboardjs "^2.5.1"
+    nano-css "^3.4.0"
+    react-wait "^0.3.0"
+    rebound "^0.1.0"
+    throttle-debounce "^2.0.1"
+    ts-easing "^0.2.0"
+    use-callbag "^0.2.0"
+    use-onclickoutside "^0.3.0"
+
+react-use@^5.8.1:
+  version "5.8.1"
+  resolved "https://registry.npmjs.org/react-use/-/react-use-5.8.1.tgz#0f874d03bf2a1fce15290e69fa91c1400a3d9e27"
+  integrity sha512-OKnCFwapQ37Vm1qfWmEq6IiFMOr/fMcOrwT1ofFjbQSLd4xUGxeOvAv4IWB1CDWVTBjH3muhbtWetXpAB2GUYQ==
   dependencies:
     "@types/react" "^16.8.2"
     keyboardjs "^2.5.1"
