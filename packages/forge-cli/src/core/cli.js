@@ -1,8 +1,13 @@
 /* eslint no-console:"off" */
 const path = require('path');
+const chalk = require('chalk');
+const figlet = require('figlet');
 const debug = require('debug');
 const args = require('yargs').argv;
 const { setupEnv } = require('./env');
+
+console.log('');
+console.log(chalk.red(figlet.textSync('By ArcBlock', { font: 'ANSI Shadow' })));
 
 if (args.verbose) {
   debug.enable('@arcblock/forge-cli');
