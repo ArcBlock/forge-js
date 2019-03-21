@@ -12,8 +12,8 @@ const wallet = {
     address: 'BASE58',
   },
   sk: process.env.APP_SK,
-  pk: '0xdcadd4fe1d595da9a53910af1b45d26ff4d1f4ac91486244394a5bdf50456407',
-  address: 'zNKgxkxo4EDpUFkEAAJr7krqH9sH4VTM8kU2',
+  pk: '0x816bb2a1f0156ebf7491d97f3be7b9f2f11ece0d65eafaef8af99cccb5f18177',
+  address: 'zNKaZFAhe4azLAUQUzi6s8s4F8wZ3L9izeU4',
 };
 
 const appDID = `did:abt:${wallet.address}`;
@@ -32,7 +32,8 @@ const meta = {
   subtitle: 'Starter projects to develop web application on forge',
 };
 
-const authUrl = 'http://localhost:3000/api/auth';
+// const authUrl = 'http://localhost:3000/api/auth';
+const authUrl = 'http://wangshijun.natapp1.cc/api/auth';
 
 module.exports = {
   wallet,
@@ -71,6 +72,7 @@ module.exports = {
   },
 
   verifyAuth(data) {
+    console.log('verifyLogin', data);
     return !!data;
   },
 };
