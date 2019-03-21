@@ -266,6 +266,24 @@ const jwtSign = (did, sk, payload = {}) => {
 };
 
 /**
+ * Decode info from jwt token
+ *
+ * @param {*} token
+ * @param {boolean} [payloadOnly=false]
+ * @returns
+ */
+const jwtDecode = (token, payloadOnly = true) => {
+  const [headerB64, bodyB64, sigB64] = token.split('.');
+  const header = JSON.parse(base64.decode(base64.unescape(headerB64)));
+  const body = JSON.parse(base64.decode(base64.unescape(bodyB64)));
+  const sig = Buffer.from(base64.unescape(sigB64), 'base64').toString('hex');
+  if (payloadOnly) {
+    return body;
+  }
+  return { header, body, signature: `0x${toStrictHex(sig)}` };
+};
+
+/**
  * Verify a jwt token signed with pk and certain issuer
  *
  * @param {string} token
@@ -274,12 +292,9 @@ const jwtSign = (did, sk, payload = {}) => {
  */
 const jwtVerify = (token, pk) => {
   try {
-    const [headerB64, bodyB64, sigB64] = token.split('.');
-    const header = JSON.parse(base64.decode(base64.unescape(headerB64)));
-    const body = JSON.parse(base64.decode(base64.unescape(bodyB64)));
-    const signature = Buffer.from(base64.unescape(sigB64), 'base64').toString('hex');
-    const sigHex = `0x${toStrictHex(signature)}`;
-    if (!sigHex) {
+    const [headerB64, bodyB64] = token.split('.');
+    const { header, body, signature } = jwtDecode(token, false);
+    if (!signature) {
       return false;
     }
     if (!header.alg) {
@@ -303,7 +318,7 @@ const jwtVerify = (token, pk) => {
     const alg = header.alg.toLowerCase();
     if (signers[alg]) {
       const msgHex = toHex(`${headerB64}.${bodyB64}`);
-      return signers[alg].verify(msgHex, sigHex, pk);
+      return signers[alg].verify(msgHex, signature, pk);
     }
 
     return false;
@@ -328,4 +343,5 @@ module.exports = {
   isValid,
   jwtSign,
   jwtVerify,
+  jwtDecode,
 };
