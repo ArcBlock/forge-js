@@ -9,11 +9,9 @@ export default function Header() {
     <Nav>
       <div className="items">
         <Typography variant="h6" color="inherit" noWrap className="brand">
-          Company name
+          Forge WebAPP Starter
         </Typography>
-        <Button>Features</Button>
-        <Button>Enterprise</Button>
-        <Button>Support</Button>
+        <Button>Users</Button>
       </div>
       <Button color="primary" variant="outlined">
         Login
@@ -26,6 +24,11 @@ const Nav = styled(Toolbar)`
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  && {
+    padding-left: 0;
+    padding-right: 0;
+  }
 
   .brand {
     margin-right: 60px;

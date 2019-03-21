@@ -19,7 +19,7 @@ export default function Layout({ children, contentOnly }) {
           <Header />
         </Wrapper>
       </AppBar>
-      <Wrapper>{children}</Wrapper>
+      <Wrapper style={{ minHeight: '60vh' }}>{children}</Wrapper>
       <Wrapper>
         <Footer />
       </Wrapper>
