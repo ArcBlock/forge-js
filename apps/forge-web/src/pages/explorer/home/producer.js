@@ -5,7 +5,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 
 import AsyncComponent from '../../../components/async';
 import api from '../../../libs/forge';
-import { useInterval } from '../../../libs/hooks';
+import { useInterval, useThemeMode } from '../../../libs/hooks';
 
 const AsyncGlobe = AsyncComponent(() => import('../../../components/globe'));
 
@@ -37,6 +37,7 @@ async function fetchLatestProposer() {
 
 export default function ProducerGlobe() {
   const state = useAsync(fetchPeers);
+  const [theme] = useThemeMode();
   const [activeMarkerId, setActiveMarker] = useState(null);
 
   useInterval(async () => {
@@ -53,6 +54,12 @@ export default function ProducerGlobe() {
   }
 
   return (
-    <AsyncGlobe width={540} height={540} markers={state.value} activeMarkerId={activeMarkerId} />
+    <AsyncGlobe
+      width={540}
+      height={540}
+      theme={theme}
+      markers={state.value}
+      activeMarkerId={activeMarkerId}
+    />
   );
 }

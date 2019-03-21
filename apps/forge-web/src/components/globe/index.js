@@ -11,6 +11,26 @@ import json from './countries.json';
 import Versor from './versor';
 
 const geoJson = topojson.feature(json, json.objects.ne_110m_admin_0_countries);
+const themes = {
+  light: {
+    ocean: '#EDF4F4',
+    graticule: '#EDF4F4',
+    land: '#CCEAEA',
+    activeLand: '#AFD3D3',
+    border: '#AFD3D3',
+    marker: '#4E6AF6',
+    activeMarker: '#4E6AF6',
+  },
+  dark: {
+    ocean: '#09233B',
+    graticule: '#09233B',
+    land: '#0D2344',
+    activeLand: '#173159',
+    border: '#89DDD9',
+    marker: '#ffffff',
+    activeMarker: '#FFD159',
+  },
+};
 
 function stateReducer(state, action) {
   switch (action.type) {
@@ -41,6 +61,7 @@ export default function Globe({
   activeMarkerId,
   colors,
 }) {
+  Object.assign(colors, themes[theme]);
   const [state, dispatch] = useReducer(stateReducer, {
     rotation: [0, 0, 0],
     isDragging: false,
@@ -353,15 +374,7 @@ Globe.defaultProps = {
   rotationSpeed: 5,
   markers: [],
   activeMarkerId: undefined,
-  colors: {
-    ocean: '#80a7f5',
-    graticule: '#7F96E4',
-    land: '#edffd1',
-    activeLand: '#95d16d',
-    border: '#404040',
-    marker: '#ff0000',
-    activeMarker: '#ff0000',
-  },
+  colors: {},
 };
 
 const Container = styled.div`
