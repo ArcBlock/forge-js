@@ -13,8 +13,11 @@ import withTracker from '../../components/withTracker';
 
 import Logo from './logo';
 
+import { useNodeInfo } from '../../libs/hooks';
+
 function Layout({ children }) {
   const version = process.env.REACT_APP_VERSION;
+  const [nodeInfo] = useNodeInfo();
 
   return (
     <Container>
@@ -28,7 +31,7 @@ function Layout({ children }) {
       <main className="main">
         <Content direction="column">{children}</Content>
         <Version key={version}>
-          v{version} <span className="highlight">beta</span>
+          forge v{nodeInfo.version}, explorer v{version}
         </Version>
       </main>
     </Container>
@@ -49,6 +52,8 @@ const Content = styled.div`
 `;
 
 const Version = styled.div`
+  color: ${props => props.theme.typography.color.gray};
+  opacity: 0.3;
   position: fixed;
   right: 24px;
   bottom: 24px;
