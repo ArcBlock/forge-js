@@ -1,3 +1,5 @@
+// Generate by [js2dts@0.3.2](https://github.com/whxaxes/js2dts#readme)
+
 /**
  * extract types and services from javascript code
  *
