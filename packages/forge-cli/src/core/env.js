@@ -11,6 +11,7 @@ const pidUsageTree = require('pidusage-tree');
 const pidInfo = require('find-process');
 const prettyTime = require('pretty-ms');
 const prettyBytes = require('pretty-bytes');
+const figlet = require('figlet');
 const { get, set } = require('lodash');
 const { RpcClient, parseConfig } = require('@arcblock/forge-sdk');
 const { name, version, engines } = require('../../package.json');
@@ -557,6 +558,11 @@ function isForgeWebStarted() {
   return false;
 }
 
+function printLogo() {
+  shell.echo('');
+  shell.echo(chalk.red(figlet.textSync('By ArcBlock', { font: 'ANSI Shadow' })));
+}
+
 debug.error = (...args) => {
   if (debug.enabled) {
     console.error(...args);
@@ -593,4 +599,5 @@ module.exports = {
   getPlatform,
   createRpcClient,
   isForgeWebStarted,
+  printLogo,
 };

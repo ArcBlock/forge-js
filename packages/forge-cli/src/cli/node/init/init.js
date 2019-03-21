@@ -14,6 +14,7 @@ const {
   ensureForgeRelease,
   findReleaseConfig,
   getPlatform,
+  printLogo,
 } = require('core/env');
 
 async function isForgeStopped() {
@@ -209,6 +210,8 @@ async function main() {
     if (!isStopped) {
       return process.exit(1);
     }
+
+    printLogo();
 
     // Start download and unzip
     const assets = ['forge', 'forge_starter', 'simulator'];
