@@ -9,6 +9,7 @@ module.exports = {
     mocha: true,
   },
   rules: {
+    'react/jsx-filename-extension': 'off',
     'arrow-parens': ['error', 'as-needed'],
     'comma-dangle': [
       'error',
