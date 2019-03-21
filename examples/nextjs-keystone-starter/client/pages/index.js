@@ -1,19 +1,25 @@
 import React from 'react';
+import styled from 'styled-components';
+import Typography from '@material-ui/core/Typography';
 
-import Button from '@material-ui/core/Button';
-import Grid from '@material-ui/core/Grid';
+import Layout from '../components/layout';
 
-class IndexPage extends React.Component {
-  render() {
-    return (
-      <Grid container>
-        <Grid item xs={12}>
-          Hello World
-          <Button onClick={() => window.alert('clicked')}>Click me</Button>
-        </Grid>
-      </Grid>
-    );
-  }
+export default function IndexPage() {
+  return (
+    <Layout>
+      <Main>
+        <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
+          Pricing
+        </Typography>
+        <Typography variant="h6" align="center" color="textSecondary" component="p">
+          Quickly build an effective pricing table for your potential customers with this layout.
+          It&apos;s built with default Material-UI components with little customization.
+        </Typography>
+      </Main>
+    </Layout>
+  );
 }
 
-export default IndexPage;
+const Main = styled.main`
+  margin: 50px 0;
+`;

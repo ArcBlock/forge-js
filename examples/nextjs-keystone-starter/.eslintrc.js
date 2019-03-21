@@ -10,6 +10,9 @@ module.exports = {
   },
   rules: {
     'react/jsx-filename-extension': 'off',
+    'react/forbid-prop-types': 'off',
+    'react/sort-comp': 'off',
+    'class-methods-use-this': 'off',
     'arrow-parens': ['error', 'as-needed'],
     'comma-dangle': [
       'error',
