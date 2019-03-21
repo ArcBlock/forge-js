@@ -23,7 +23,7 @@
   ],
   "dependencies": {
     "@arcblock/forge-wallet": "^0.14.3",
-    "@arcblock/sdk-util": "^0.19.3",
+    "@arcblock/sdk-util": "^0.19.4",
     "babel-polyfill": "^6.26.0",
     "base64-url": "^2.2.0",
     "blueimp-md5": "^2.10.0",
