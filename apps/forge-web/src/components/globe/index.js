@@ -273,7 +273,7 @@ export default function Globe({
   }
 
   return (
-    <Container width={width} height={height} theme={theme} colors={colors}>
+    <Container width={width} height={height} theme={theme} colors={colors} onMouseLeave={onDragEnd}>
       {renderTooltip()}
       <svg
         className="earth"
@@ -402,6 +402,7 @@ const Container = styled.div`
     fill: ${props => props.colors.land};
     stroke: ${props => props.colors.border};
     stroke-width: 0.5px;
+    transition: fill 300ms ease;
 
     &:hover {
       fill: ${props => props.colors.activeLand};
