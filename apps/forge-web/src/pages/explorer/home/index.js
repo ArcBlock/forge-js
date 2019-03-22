@@ -97,9 +97,6 @@ const Container = styled(Wrapper)`
       letter-spacing: 2.6px;
       color: ${props => props.theme.typography.color.main};
     }
-
-    .section__content {
-    }
   }
 
   .section--metrics {
@@ -117,6 +114,33 @@ const Container = styled(Wrapper)`
   .section--network {
     @media (min-width: ${props => props.theme.breakpoints.values.md}px) {
       height: 772px;
+    }
+  }
+
+  .section--top-accounts,
+  .section--top-validators {
+    .section__content {
+      width: 100%;
+      overflow-x: auto;
+
+      @media (max-width: ${props => props.theme.breakpoints.values.md}px) {
+        tr {
+          height: 40px !important;
+        }
+
+        th {
+          padding: 0 !important;
+          overflow-x: auto;
+          white-space: nowrap;
+          text-align: center !important;
+        }
+
+        td {
+          height: 40px !important;
+          padding: 5px !important;
+          text-align: center !important;
+        }
+      }
     }
   }
 
