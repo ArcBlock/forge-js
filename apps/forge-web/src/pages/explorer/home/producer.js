@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useAsync } from 'react-use';
+import { useAsync, useWindowSize } from 'react-use';
 
 import CircularProgress from '@material-ui/core/CircularProgress';
 
@@ -81,6 +81,7 @@ const markers = [
 
 export default function ProducerGlobe() {
   const state = useAsync(fetchPeers);
+  const { width } = useWindowSize();
   const [theme] = useThemeMode();
   const [activeMarkerId, setActiveMarker] = useState(null);
 
@@ -102,8 +103,8 @@ export default function ProducerGlobe() {
 
   return (
     <AsyncGlobe
-      width={540}
-      height={732}
+      width={width > 540 ? 540 : width - 20}
+      height={width > 540 ? 732 : width - 20}
       theme={theme}
       markers={markers || state.value}
       activeMarkerId={activeMarkerId}

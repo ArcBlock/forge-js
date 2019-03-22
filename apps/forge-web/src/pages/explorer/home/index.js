@@ -32,12 +32,14 @@ class Home extends Page {
                 <Metrics sparkline={false} itemSize={{ xs: 6, sm: 4, md: 2 }} size="small" />
               </div>
             </Grid>
-            <Grid item xs={12} sm={6} md={6} className="section section--latest">
+          </Grid>
+          <Grid container spacing={40} className="should-reverse">
+            <Grid item xs={12} sm={12} md={6} className="section section--latest">
               <div className="section__content">
                 <Latest />
               </div>
             </Grid>
-            <Grid item xs={12} sm={6} md={6} className="section section--network">
+            <Grid item xs={12} sm={12} md={6} className="section section--network">
               <div
                 className="section__content"
                 style={{
@@ -50,6 +52,8 @@ class Home extends Page {
                 <Producer />
               </div>
             </Grid>
+          </Grid>
+          <Grid container spacing={40}>
             <Grid item xs={12} sm={12} md={12} className="section section--transactions">
               <Typography component="h3" className="section__header">
                 {this.t('dashboard.transactions')}
@@ -58,7 +62,7 @@ class Home extends Page {
                 <Transactions />
               </div>
             </Grid>
-            <Grid item xs={12} sm={6} md={6} className="section section--top-accounts">
+            <Grid item xs={12} sm={12} md={6} className="section section--top-accounts">
               <Typography component="h3" className="section__header">
                 {this.t('dashboard.topAccounts')}
               </Typography>
@@ -66,7 +70,7 @@ class Home extends Page {
                 <TopAccounts sparkline={false} />
               </div>
             </Grid>
-            <Grid item xs={12} sm={6} md={6} className="section section--top-validators">
+            <Grid item xs={12} sm={12} md={6} className="section section--top-validators">
               <Typography component="h3" className="section__header">
                 {this.t('dashboard.topValidators')}
               </Typography>
@@ -111,7 +115,20 @@ const Container = styled(Wrapper)`
 
   .section--latest,
   .section--network {
-    height: 772px;
+    @media (min-width: ${props => props.theme.breakpoints.values.md}px) {
+      height: 772px;
+    }
+  }
+
+  @media (max-width: ${props => props.theme.breakpoints.values.md}px) {
+    .should-reverse {
+      flex-direction: column-reverse;
+    }
+
+    .section--network,
+    .section--metrics {
+      margin-bottom: 30px;
+    }
   }
 `;
 

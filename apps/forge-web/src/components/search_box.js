@@ -24,15 +24,16 @@ class SearchBox extends React.Component {
   placeholder = 'Search by block height/tx hash/account address';
 
   render() {
+    const { history, size, ...rest } = this.props;
     return (
-      <Container size={this.props.size}>
+      <Container {...rest} size={size}>
         <AsyncSelect
           cacheOptions
           isLoading={this.state.loading}
           className="react-select-container"
           classNamePrefix="react-select"
           noOptionsMessage={this.noOptionsMessage}
-          placeholder={this.placeholder}
+          placeholder="Search tx/account/block"
           loadOptions={this.doSearch}
           onChange={this.onSelectSearch}
         />
@@ -119,6 +120,7 @@ SearchBox.defaultProps = {
 
 const Container = styled.div`
   width: ${props => props.size}px;
+  margin-left: 20px;
   position: relative;
 
   .search-icon {
