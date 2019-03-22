@@ -86,7 +86,7 @@ const Container = styled.div`
 
     .switcher {
       cursor: pointer;
-      @media (min-width: ${props => props.theme.breakpoints.values.md}px) {
+      @media (min-width: ${props => props.theme.breakpoints.values.lg}px) {
         position: absolute;
         right: -48px;
       }

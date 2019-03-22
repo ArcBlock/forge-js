@@ -46,6 +46,7 @@ const Container = styled.div`
   border-left: 1px solid ${props => props.theme.typography.color.gray};
   width: 100%;
   max-width: 800px;
+  box-sizing: border-box;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -54,6 +55,7 @@ const Container = styled.div`
 
   .left {
     width: 75%;
+    overflow: hidden;
   }
 
   .summary {
