@@ -22,6 +22,8 @@ dep:
 	@lerna clean --yes
 	@lerna bootstrap
 	@lerna link
+	@cd examples/nextjs-keystone-starter && npm i
+	@cd apps/forge-web && npm i
 
 pre-build: install dep
 	@echo "Running scripts before the build..."
