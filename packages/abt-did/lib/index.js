@@ -1,9 +1,10 @@
 const upperFirst = require('lodash/upperFirst');
-const { toBN, toHex, numberToHex, isHexStrict, stripHexPrefix } = require('@arcblock/forge-util');
+const stringify = require('json-stable-stringify');
 const Mcrypto = require('@arcblock/mcrypto');
 const multibase = require('multibase');
 const base64 = require('base64-url');
 const hdkey = require('hdkey');
+const { toBN, toHex, numberToHex, isHexStrict, stripHexPrefix } = require('@arcblock/forge-util');
 const { DID_PREFIX, toBits, toBytes, toStrictHex } = require('./util');
 const { types, getSigner, getHasher } = Mcrypto;
 
@@ -248,14 +249,12 @@ const jwtSign = (did, sk, payload = {}) => {
 
       return true;
     })
-    // sort keys
-    .sort()
     .reduce((acc, x) => {
       acc[x] = body[x];
       return acc;
     }, {});
 
-  const bodyB64 = base64.escape(base64.encode(JSON.stringify(body)));
+  const bodyB64 = base64.escape(base64.encode(stringify(body)));
 
   // make signature
   const msgHex = toHex(`${headerB64}.${bodyB64}`);
