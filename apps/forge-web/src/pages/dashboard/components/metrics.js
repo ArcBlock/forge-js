@@ -94,24 +94,25 @@ function Metrics({ theme, sparkline, itemSize, size }) {
     return acc;
   }, {});
 
-  const trends = sparkline
-    ? Object.keys(mapping).reduce((acc, x) => {
-        const hour = new Date().getHours();
-        const dataPoints = trend[mapping[x]];
-        acc[x] = dataPoints.map((d, i) => {
-          const date = new Date();
-          // because dataPoints have no bounded timestamp, we have to calculate offset
-          date.setHours(hour - (dataPoints.length - i));
-          date.setMinutes(0);
-          date.setSeconds(0);
-          return {
-            time: dayjs(date).format('YYYY-MM-DD HH:mm'),
-            [x]: x === 'stakes' ? Number(fromUnitToToken(d)) : Number(d),
-          };
-        });
-        return acc;
-      }, {})
-    : {};
+  let trends = {};
+  if (sparkline) {
+    trends = Object.keys(mapping).reduce((acc, x) => {
+      const hour = new Date().getHours();
+      const dataPoints = trend[mapping[x]];
+      acc[x] = dataPoints.map((d, i) => {
+        const date = new Date();
+        // because dataPoints have no bounded timestamp, we have to calculate offset
+        date.setHours(hour - (dataPoints.length - i));
+        date.setMinutes(0);
+        date.setSeconds(0);
+        return {
+          time: dayjs(date).format('YYYY-MM-DD HH:mm'),
+          [x]: x === 'stakes' ? Number(fromUnitToToken(d)) : Number(d),
+        };
+      });
+      return acc;
+    }, {});
+  }
 
   const images = {
     blocks: 'front-view',

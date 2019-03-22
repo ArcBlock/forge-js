@@ -188,6 +188,8 @@ function updateReleaseYaml(asset, version) {
 
 async function main() {
   try {
+    printLogo();
+
     const platform = await getPlatform();
     shell.echo(`${symbols.info} Detected platform is: ${platform}`);
     const version = fetchReleaseVersion();
@@ -210,8 +212,6 @@ async function main() {
     if (!isStopped) {
       return process.exit(1);
     }
-
-    printLogo();
 
     // Start download and unzip
     const assets = ['forge', 'forge_starter', 'simulator'];
