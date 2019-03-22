@@ -19,7 +19,8 @@ install:
 
 dep:
 	@echo "Install dependencies required for this repo..."
-	@yarn
+	@lerna clean --yes
+	@lerna bootstrap
 	@lerna link
 
 pre-build: install dep

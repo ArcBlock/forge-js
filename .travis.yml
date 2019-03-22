@@ -6,7 +6,7 @@ install: false
 branches:
   only:
   - master
-script: travis_wait make travis
+script: make travis
 deploy:
 - provider: script
   skip_cleanup: true
