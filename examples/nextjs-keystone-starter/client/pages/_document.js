@@ -1,4 +1,6 @@
 /* eslint import/no-extraneous-dependencies:"off" */
+/* eslint implicit-arrow-linebreak:"off" */
+/* eslint function-paren-newline:"off" */
 import React from 'react';
 import Document, { Head, Main, NextScript } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';

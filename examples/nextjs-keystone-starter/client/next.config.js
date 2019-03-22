@@ -1,8 +1,8 @@
+/* eslint import/no-extraneous-dependencies:"off" */
 const path = require('path');
 const withCustomBabelConfigFile = require('next-plugin-custom-babel-config');
 
 module.exports = withCustomBabelConfigFile({
-  distDir: 'dist',
   babelConfigFile: path.join(__dirname, './babel.config.js'),
 
   webpack: config => {

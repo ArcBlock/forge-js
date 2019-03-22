@@ -13,7 +13,7 @@ module.exports = nextApp => app => {
 
   app.get('/api/auth', (req, res) => {
     const authInfo = auth.getAuthInfo(req.query.userDid);
-    console.log('requestAuth', { query: req.query, authInfo });
+    // console.log('requestAuth', { query: req.query, authInfo });
     res.json(authInfo);
   });
 

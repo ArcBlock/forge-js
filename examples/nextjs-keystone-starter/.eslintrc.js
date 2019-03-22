@@ -10,6 +10,7 @@ module.exports = {
   },
   rules: {
     'react/jsx-filename-extension': 'off',
+    'react/jsx-closing-bracket-location': 'off',
     'react/forbid-prop-types': 'off',
     'react/sort-comp': 'off',
     'class-methods-use-this': 'off',

@@ -4,7 +4,7 @@ import api from '../libs/api';
 
 async function fetchSession() {
   const res = await api.get('/session');
-  console.log('fetchSession', res.data);
+  // console.log('fetchSession', res.data);
   return res.data;
 }
 

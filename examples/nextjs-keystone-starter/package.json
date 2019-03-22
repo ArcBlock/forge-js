@@ -37,7 +37,7 @@
     "nodemon": "^1.18.10"
   },
   "scripts": {
-    "lint": "eslint .",
+    "lint": "eslint client server",
     "start": "nodemon app.js -w server -w config -w app.js"
   }
 }

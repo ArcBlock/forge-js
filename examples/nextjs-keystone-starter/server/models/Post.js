@@ -1,12 +1,13 @@
-var keystone = require('keystone');
-var Types = keystone.Field.Types;
+const keystone = require('keystone');
+
+const { Types } = keystone.Field;
 
 /**
  * Post Model
  * ==========
  */
 
-var Post = new keystone.List('Post', {
+const Post = new keystone.List('Post', {
   map: { name: 'title' },
   autokey: { path: 'slug', from: 'title', unique: true },
 });
@@ -29,7 +30,7 @@ Post.add({
   categories: { type: Types.Relationship, ref: 'PostCategory', many: true },
 });
 
-Post.schema.virtual('content.full').get(function() {
+Post.schema.virtual('content.full').get(function fullContent() {
   return this.content.extended || this.content.brief;
 });
 
