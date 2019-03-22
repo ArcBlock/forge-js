@@ -2642,6 +2642,10 @@
             "type": {
               "type": "WalletType",
               "id": 2
+            },
+            "data": {
+              "type": "google.protobuf.Any",
+              "id": 15
             }
           }
         },
@@ -2881,6 +2885,10 @@
             "address": {
               "type": "string",
               "id": 2
+            },
+            "data": {
+              "type": "google.protobuf.Any",
+              "id": 15
             }
           }
         },

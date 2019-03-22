@@ -82,6 +82,7 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
       obj = {
         pk: msg.getPk(),
         type: (f = msg.getType()) && type_pb.WalletType.toObject(includeInstance, f),
+        data: (f = msg.getData()) && google_protobuf_any_pb.Any.toObject(includeInstance, f),
       };
 
     if (includeInstance) {
@@ -125,6 +126,11 @@ proto.forge_abi.AccountMigrateTx.deserializeBinaryFromReader = function(msg, rea
         reader.readMessage(value, type_pb.WalletType.deserializeBinaryFromReader);
         msg.setType(value);
         break;
+      case 15:
+        var value = new google_protobuf_any_pb.Any();
+        reader.readMessage(value, google_protobuf_any_pb.Any.deserializeBinaryFromReader);
+        msg.setData(value);
+        break;
       default:
         reader.skipField();
         break;
@@ -159,6 +165,10 @@ proto.forge_abi.AccountMigrateTx.serializeBinaryToWriter = function(message, wri
   f = message.getType();
   if (f != null) {
     writer.writeMessage(2, f, type_pb.WalletType.serializeBinaryToWriter);
+  }
+  f = message.getData();
+  if (f != null) {
+    writer.writeMessage(15, f, google_protobuf_any_pb.Any.serializeBinaryToWriter);
   }
 };
 
@@ -222,6 +232,35 @@ proto.forge_abi.AccountMigrateTx.prototype.clearType = function() {
  */
 proto.forge_abi.AccountMigrateTx.prototype.hasType = function() {
   return jspb.Message.getField(this, 2) != null;
+};
+
+/**
+ * optional google.protobuf.Any data = 15;
+ * @return {?proto.google.protobuf.Any}
+ */
+proto.forge_abi.AccountMigrateTx.prototype.getData = function() {
+  return /** @type{?proto.google.protobuf.Any} */ (jspb.Message.getWrapperField(
+    this,
+    google_protobuf_any_pb.Any,
+    15
+  ));
+};
+
+/** @param {?proto.google.protobuf.Any|undefined} value */
+proto.forge_abi.AccountMigrateTx.prototype.setData = function(value) {
+  jspb.Message.setWrapperField(this, 15, value);
+};
+
+proto.forge_abi.AccountMigrateTx.prototype.clearData = function() {
+  this.setData(undefined);
+};
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.forge_abi.AccountMigrateTx.prototype.hasData = function() {
+  return jspb.Message.getField(this, 15) != null;
 };
 
 /**
@@ -3214,6 +3253,7 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
       obj = {
         date: jspb.Message.getFieldWithDefault(msg, 1, ''),
         address: jspb.Message.getFieldWithDefault(msg, 2, ''),
+        data: (f = msg.getData()) && google_protobuf_any_pb.Any.toObject(includeInstance, f),
       };
 
     if (includeInstance) {
@@ -3256,6 +3296,11 @@ proto.forge_abi.PokeTx.deserializeBinaryFromReader = function(msg, reader) {
         var value = /** @type {string} */ (reader.readString());
         msg.setAddress(value);
         break;
+      case 15:
+        var value = new google_protobuf_any_pb.Any();
+        reader.readMessage(value, google_protobuf_any_pb.Any.deserializeBinaryFromReader);
+        msg.setData(value);
+        break;
       default:
         reader.skipField();
         break;
@@ -3291,6 +3336,10 @@ proto.forge_abi.PokeTx.serializeBinaryToWriter = function(message, writer) {
   if (f.length > 0) {
     writer.writeString(2, f);
   }
+  f = message.getData();
+  if (f != null) {
+    writer.writeMessage(15, f, google_protobuf_any_pb.Any.serializeBinaryToWriter);
+  }
 };
 
 /**
@@ -3317,6 +3366,35 @@ proto.forge_abi.PokeTx.prototype.getAddress = function() {
 /** @param {string} value */
 proto.forge_abi.PokeTx.prototype.setAddress = function(value) {
   jspb.Message.setProto3StringField(this, 2, value);
+};
+
+/**
+ * optional google.protobuf.Any data = 15;
+ * @return {?proto.google.protobuf.Any}
+ */
+proto.forge_abi.PokeTx.prototype.getData = function() {
+  return /** @type{?proto.google.protobuf.Any} */ (jspb.Message.getWrapperField(
+    this,
+    google_protobuf_any_pb.Any,
+    15
+  ));
+};
+
+/** @param {?proto.google.protobuf.Any|undefined} value */
+proto.forge_abi.PokeTx.prototype.setData = function(value) {
+  jspb.Message.setWrapperField(this, 15, value);
+};
+
+proto.forge_abi.PokeTx.prototype.clearData = function() {
+  this.setData(undefined);
+};
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.forge_abi.PokeTx.prototype.hasData = function() {
+  return jspb.Message.getField(this, 15) != null;
 };
 
 goog.object.extend(exports, proto.forge_abi);

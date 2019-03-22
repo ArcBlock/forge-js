@@ -11,6 +11,7 @@ const pidUsageTree = require('pidusage-tree');
 const pidInfo = require('find-process');
 const prettyTime = require('pretty-ms');
 const prettyBytes = require('pretty-bytes');
+const figlet = require('figlet');
 const { get, set } = require('lodash');
 const { RpcClient, parseConfig } = require('@arcblock/forge-sdk');
 const { name, version, engines } = require('../../package.json');
@@ -18,10 +19,26 @@ const debug = require('debug')(name);
 
 const { symbols, hr } = require('./ui');
 
+let baseDir = path.join(os.homedir(), '.forge_cli');
+if (process.env.FORGE_CLI_DIR) {
+  try {
+    const dir = path.resolve(process.env.FORGE_CLI_DIR);
+    if (!fs.existsSync(dir)) {
+      shell.mkdir(dir, { silent: true });
+    }
+    baseDir = dir;
+    debug(`${symbols.info} use custom baseDir: ${baseDir}`);
+  } catch (err) {
+    shell.echo(
+      `${symbols.warning} invalid or cannot create custom baseDir: ${process.env.FORGE_CLI_DIR}`
+    );
+  }
+}
+
 const requiredDirs = {
-  tmp: path.join(os.homedir(), '.forge_cli/tmp'),
-  cache: path.join(os.homedir(), '.forge_cli/cache'),
-  release: path.join(os.homedir(), '.forge_cli/release'),
+  tmp: path.join(baseDir, 'tmp'),
+  cache: path.join(baseDir, 'cache'),
+  release: path.join(baseDir, 'release'),
 };
 
 const webPort = '8210';
@@ -85,6 +102,11 @@ function ensureForgeRelease(args, exitOn404 = true) {
     if (!fs.existsSync(releaseYamlPath)) {
       if (exitOn404) {
         shell.echo(`${symbols.error} required config file ${releaseYamlPath} not found`);
+        shell.echo(
+          `${symbols.info} if you have not setup forge yet, please run ${chalk.cyan(
+            'forge init'
+          )} first`
+        );
         process.exit(1);
       }
       return false;
@@ -557,6 +579,11 @@ function isForgeWebStarted() {
   return false;
 }
 
+function printLogo() {
+  shell.echo('');
+  shell.echo(chalk.red(figlet.textSync('By ArcBlock', { font: 'ANSI Shadow' })));
+}
+
 debug.error = (...args) => {
   if (debug.enabled) {
     console.error(...args);
@@ -593,4 +620,5 @@ module.exports = {
   getPlatform,
   createRpcClient,
   isForgeWebStarted,
+  printLogo,
 };

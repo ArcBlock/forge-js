@@ -13,22 +13,25 @@ import withTracker from '../../components/withTracker';
 
 import Logo from './logo';
 
+import { useNodeInfo } from '../../libs/hooks';
+
 function Layout({ children }) {
   const version = process.env.REACT_APP_VERSION;
+  const [nodeInfo] = useNodeInfo();
 
   return (
     <Container>
       <AppBar position="absolute" className="appBar">
         <Toolbar disableGutters={false} className="toolbar">
           <Logo />
-          <SearchBox />
+          <SearchBox className="search-box" />
           <ThemeSwitcher className="switcher" />
         </Toolbar>
       </AppBar>
       <main className="main">
         <Content direction="column">{children}</Content>
         <Version key={version}>
-          v{version} <span className="highlight">beta</span>
+          forge v{nodeInfo.version}, explorer v{version}
         </Version>
       </main>
     </Container>
@@ -49,6 +52,8 @@ const Content = styled.div`
 `;
 
 const Version = styled.div`
+  color: ${props => props.theme.typography.color.gray};
+  opacity: 0.3;
   position: fixed;
   right: 24px;
   bottom: 24px;
@@ -80,19 +85,26 @@ const Container = styled.div`
     position: relative;
 
     .switcher {
-      position: absolute;
-      right: -48px;
       cursor: pointer;
+      @media (min-width: ${props => props.theme.breakpoints.values.lg}px) {
+        position: absolute;
+        right: -48px;
+      }
     }
   }
 
   .main {
     flex-grow: 1;
     padding-top: 80px;
-    height: 100vh;
     overflow: auto;
     box-sizing: border-box;
     position: relative;
+  }
+
+  @media (max-width: ${props => props.theme.breakpoints.values.sm}px) {
+    .search-box {
+      display: none;
+    }
   }
 `;
 

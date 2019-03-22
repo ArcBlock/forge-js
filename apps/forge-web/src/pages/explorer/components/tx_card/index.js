@@ -49,6 +49,16 @@ const Container = styled.div`
   border-left: 1px solid ${props => props.theme.typography.color.gray};
   width: 100%;
   max-width: 800px;
+  box-sizing: border-box;
+
+  .info-row {
+    .hash {
+      width: 75%;
+      a {
+        word-break: break-all;
+      }
+    }
+  }
 `;
 
 TxCard.propTypes = {

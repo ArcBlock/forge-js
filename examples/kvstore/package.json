@@ -1,5 +1,6 @@
 {
   "name": "@arcblock/forge-app-kvstore",
+  "private": true,
   "version": "0.14.3",
   "description": "",
   "main": "app.js",
@@ -9,9 +10,6 @@
   "license": "MIT",
   "engines": {
     "node": ">=0.10.0"
-  },
-  "publishConfig": {
-    "access": "public"
   },
   "dependencies": {
     "@arcblock/forge-proto": "^0.14.3",

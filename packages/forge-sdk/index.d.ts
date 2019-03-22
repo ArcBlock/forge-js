@@ -1,3 +1,6 @@
+// Generate by [js2dts@0.3.2](https://github.com/whxaxes/js2dts#readme)
+
+import { Buffer } from 'node/globals';
 declare class RpcClient {
   config: any;
   constructor(config: any);
@@ -131,7 +134,7 @@ declare class RpcClient {
  * @returns net.Server
  */
 declare function create(config: any): Readonly<ForgeSDK.T101>;
-declare function addSource(T104: any): void;
+declare function addSource(T104: T105): void;
 declare function parseConfig(configPath: any): any;
 /**
  * Create an protobuf encoded Typed message with specified data, ready to send to rpc server
@@ -202,7 +205,6 @@ declare function encodeBigInt(value: any, type: any): any;
  * @returns String
  */
 declare function decodeBigInt(data: any): string;
-declare const Buffer: ForgeSDK.T103;
 declare function encode(data: any, type: any): Buffer;
 /**
  * Decode socket data from forge-core
@@ -220,7 +222,7 @@ declare function decode(buffer: any, type: any): any;
  * @returns payload
  */
 declare function decodePayload(payload: any): any;
-declare const ForgeSDK: ForgeSDK.T104;
+declare const ForgeSDK: ForgeSDK.T103;
 declare namespace ForgeSDK {
   export interface T100 {
     [key: string]: any;
@@ -237,107 +239,6 @@ declare namespace ForgeSDK {
     create: typeof create;
   }
   export interface T103 {
-    prototype: Buffer;
-    /**
-     * When passed a reference to the .buffer property of a TypedArray instance,
-     * the newly created Buffer will share the same allocated memory as the TypedArray.
-     * The optional {byteOffset} and {length} arguments specify a memory range
-     * within the {arrayBuffer} that will be shared by the Buffer.
-     *
-     * @param arrayBuffer The .buffer property of any TypedArray or a new ArrayBuffer()
-     */
-    from(
-      arrayBuffer: ArrayBuffer | SharedArrayBuffer,
-      byteOffset?: number,
-      length?: number
-    ): Buffer;
-    /**
-     * Creates a new Buffer using the passed {data}
-     * @param values to create a new Buffer
-     */
-    of(...items: number[]): Buffer;
-    /**
-     * Returns true if {obj} is a Buffer
-     *
-     * @param obj object to test.
-     */
-    isBuffer(obj: any): any;
-    /**
-     * Returns true if {encoding} is a valid encoding argument.
-     * Valid string encodings in Node 0.12: 'ascii'|'utf8'|'utf16le'|'ucs2'(alias of 'utf16le')|'base64'|'binary'(deprecated)|'hex'
-     *
-     * @param encoding string to test.
-     */
-    isEncoding(encoding: string): boolean;
-    /**
-     * Gives the actual byte length of a string. encoding defaults to 'utf8'.
-     * This is not the same as String.prototype.length since that returns the number of characters in a string.
-     *
-     * @param string string to test.
-     * @param encoding encoding used to evaluate (defaults to 'utf8')
-     */
-    byteLength(
-      string:
-        | string
-        | Uint8Array
-        | ArrayBuffer
-        | SharedArrayBuffer
-        | Uint8ClampedArray
-        | Uint16Array
-        | Uint32Array
-        | Int8Array
-        | Int16Array
-        | Int32Array
-        | Float32Array
-        | Float64Array
-        | DataView,
-      encoding?: string
-    ): number;
-    /**
-     * Returns a buffer which is the result of concatenating all the buffers in the list together.
-     *
-     * If the list has no items, or if the totalLength is 0, then it returns a zero-length buffer.
-     * If the list has exactly one item, then the first item of the list is returned.
-     * If the list has more than one item, then a new Buffer is created.
-     *
-     * @param list An array of Buffer objects to concatenate
-     * @param totalLength Total length of the buffers when concatenated.
-     *   If totalLength is not provided, it is read from the buffers in the list. However, this adds an additional loop to the function, so it is faster to provide the length explicitly.
-     */
-    concat(list: Uint8Array[], totalLength?: number): Buffer;
-    /**
-     * The same as buf1.compare(buf2).
-     */
-    compare(buf1: Uint8Array, buf2: Uint8Array): number;
-    /**
-     * Allocates a new buffer of {size} octets.
-     *
-     * @param size count of octets to allocate.
-     * @param fill if specified, buffer will be initialized by calling buf.fill(fill).
-     *    If parameter is omitted, buffer will be filled with zeros.
-     * @param encoding encoding used for call to buf.fill while initalizing
-     */
-    alloc(size: number, fill?: string | number | Buffer, encoding?: string): Buffer;
-    /**
-     * Allocates a new buffer of {size} octets, leaving memory not initialized, so the contents
-     * of the newly created Buffer are unknown and may contain sensitive data.
-     *
-     * @param size count of octets to allocate
-     */
-    allocUnsafe(size: number): Buffer;
-    /**
-     * Allocates a new non-pooled buffer of {size} octets, leaving memory not initialized, so the contents
-     * of the newly created Buffer are unknown and may contain sensitive data.
-     *
-     * @param size count of octets to allocate
-     */
-    allocUnsafeSlow(size: number): Buffer;
-    /**
-     * This is the number of bytes used to determine the size of pre-allocated, internal Buffer instances used for pooling. This value may be modified.
-     */
-    poolSize: number;
-  }
-  export interface T104 {
     RpcClient: typeof RpcClient;
     TcpServer: ForgeSDK.T102;
     addProtobuf: typeof addSource;
@@ -1341,6 +1242,7 @@ declare namespace forge_abi {
   export interface AccountMigrateTx {
     pk: Uint8Array;
     type: forge_abi.WalletType;
+    data: google.protobuf.Any;
   }
 
   export interface ConsensusUpgradeTx {
@@ -1429,6 +1331,7 @@ declare namespace forge_abi {
   export interface PokeTx {
     date: string;
     address: string;
+    data: google.protobuf.Any;
   }
 
   export interface PageOrder {

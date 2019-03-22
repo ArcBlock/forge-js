@@ -1,3 +1,36 @@
+## 0.15.0 (March 22, 2019)
+  - chore: responsive design for universal explorer
+  - fix: make file for release explorer
+  - feat: fake latest proposer on globe
+  - feat: support custom .forge_cli dir when do forge init #203
+  - chore: send less request when there no sparkline in metris
+  - fix: auth info generating
+  - fix: auth info generating
+  - chore: fix production build and deploy script
+  - feat: add jwtDecode for abt-did lib
+  - feat: add basic did loginUri/authInfo gen process
+  - chore: add login uri generating process
+  - chore: improve page style
+  - chore: add publish script
+  - chore: add pagination for top validators
+  - fix: add babel-polyfill back
+  - chore: add layout
+  - fix: globe gragging should stop when mouse leave
+  - chore: display forge version in explorer footer
+  - chore: integrate material ui and styled-components
+  - chore: add ascii logo for forge-cli
+  - fix: globe jumps when switch between "block" and "tx" #200
+  - chore: support theme for globe
+  - chore: upgrade forge-sdk with latest forge
+  - chore: upgrade graphql-client with latest forge
+  - chore: upgrade sdk-util dependency version
+  - Merge branch 'master' into wangshijun/web-starter
+  - update readme
+  - chore: update admin path
+  - chore: basic next and react integration
+  - chore: init keystone
+  - chore: make example projects private
+
 ## 0.14.4 (March 21, 2019)
   - fix: correct version on amazon linux
   - update readme

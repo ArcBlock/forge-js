@@ -10,9 +10,9 @@ import Typography from '@material-ui/core/Typography';
 import Page from '../../components/page';
 import Layout from '../../layouts/page';
 import Wrapper from '../../components/wrapper';
+import Pagination from '../../components/pagination';
 import SummaryHeader from './components/summary_header';
 import TxCard from './components/tx_card/index';
-import Pagination from './components/pagination';
 
 import withI18n from '../../components/withI18n';
 import withRoot from '../../components/withRoot';

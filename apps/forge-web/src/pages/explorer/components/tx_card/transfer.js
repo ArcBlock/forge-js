@@ -69,7 +69,7 @@ const Container = styled.div`
 
   .info-row--full {
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
   }
 
   .time,

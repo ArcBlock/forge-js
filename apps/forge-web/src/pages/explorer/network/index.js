@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { withTheme } from '@material-ui/core/styles';
 
 import CircularProgress from '@material-ui/core/CircularProgress';
 
@@ -74,7 +75,13 @@ class Network extends Page {
     return (
       <Layout title="Network" cookies={this.cookies}>
         <Container>
-          <AsyncGlobe width={900} height={900} markers={markers} activeMarkerId={activeMarkerId} />
+          <AsyncGlobe
+            theme={this.props.theme.mode}
+            width={900}
+            height={900}
+            markers={markers}
+            activeMarkerId={activeMarkerId}
+          />
         </Container>
       </Layout>
     );
@@ -90,4 +97,4 @@ const Container = styled(Wrapper)`
   justify-content: center;
 `;
 
-export default withRoot(withI18n(Network));
+export default withRoot(withI18n(withTheme()(Network)));

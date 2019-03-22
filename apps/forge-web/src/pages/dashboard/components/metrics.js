@@ -20,8 +20,8 @@ import { useInterval, useTokenInfo } from '../../../libs/hooks';
 
 const SparkLine = AsyncComponent(() => import('../../../components/sparkline'));
 
-async function fetchSummary() {
-  const date = dayjs().format('YYYY-MM-DD');
+async function fetchBoth() {
+  const date = dayjs.utc().format('YYYY-MM-DD');
   const [{ forgeStatistics: summary }, { forgeStatistics: trend }] = await Promise.all([
     forge.getForgeStatistics(),
     forge.getForgeStatisticsByHour({ date }),
@@ -30,8 +30,14 @@ async function fetchSummary() {
   return { summary, trend };
 }
 
+async function fetchLatest() {
+  const [{ forgeStatistics: summary }] = await Promise.all([forge.getForgeStatistics()]);
+
+  return { summary };
+}
+
 function Metrics({ theme, sparkline, itemSize, size }) {
-  const state = useAsync(fetchSummary);
+  const state = useAsync(sparkline ? fetchBoth : fetchLatest);
   const [updates, setUpdates] = useState(null);
   const [autoRefresh, setAutoRefresh] = useBoolean(true);
   const [animation, setAnimation] = useBoolean(false);
@@ -41,7 +47,12 @@ function Metrics({ theme, sparkline, itemSize, size }) {
   useInterval(
     async () => {
       try {
-        const res = await fetchSummary();
+        let res = null;
+        if (sparkline) {
+          res = await fetchBoth();
+        } else {
+          res = await fetchLatest();
+        }
         setUpdates(res);
         setAnimation(true);
 
@@ -52,7 +63,7 @@ function Metrics({ theme, sparkline, itemSize, size }) {
         console.error(err);
       }
     },
-    autoRefresh ? 4000 : null
+    autoRefresh ? 5000 : null
   );
 
   if (state.loading) {
@@ -83,22 +94,25 @@ function Metrics({ theme, sparkline, itemSize, size }) {
     return acc;
   }, {});
 
-  const trends = Object.keys(mapping).reduce((acc, x) => {
-    const hour = new Date().getHours();
-    const dataPoints = trend[mapping[x]];
-    acc[x] = dataPoints.map((d, i) => {
-      const date = new Date();
-      // because dataPoints have no bounded timestamp, we have to calculate offset
-      date.setHours(hour - (dataPoints.length - i));
-      date.setMinutes(0);
-      date.setSeconds(0);
-      return {
-        time: dayjs(date).format('YYYY-MM-DD HH:mm'),
-        [x]: x === 'stakes' ? Number(fromUnitToToken(d)) : Number(d),
-      };
-    });
-    return acc;
-  }, {});
+  let trends = {};
+  if (sparkline) {
+    trends = Object.keys(mapping).reduce((acc, x) => {
+      const hour = new Date().getHours();
+      const dataPoints = trend[mapping[x]];
+      acc[x] = dataPoints.map((d, i) => {
+        const date = new Date();
+        // because dataPoints have no bounded timestamp, we have to calculate offset
+        date.setHours(hour - (dataPoints.length - i));
+        date.setMinutes(0);
+        date.setSeconds(0);
+        return {
+          time: dayjs(date).format('YYYY-MM-DD HH:mm'),
+          [x]: x === 'stakes' ? Number(fromUnitToToken(d)) : Number(d),
+        };
+      });
+      return acc;
+    }, {});
+  }
 
   const images = {
     blocks: 'front-view',

@@ -2,10 +2,14 @@
 const path = require('path');
 const debug = require('debug');
 const args = require('yargs').argv;
-const { setupEnv } = require('./env');
+const { setupEnv, printLogo } = require('./env');
 
 if (args.verbose) {
   debug.enable('@arcblock/forge-cli');
+}
+
+if (args._.length === 0) {
+  printLogo();
 }
 
 const allCommands = [];

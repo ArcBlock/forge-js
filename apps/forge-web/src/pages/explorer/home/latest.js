@@ -80,7 +80,9 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  min-height: 500px;
+  @media (min-width: ${props => props.theme.breakpoints.values.md}px) {
+    min-height: 732px;
+  }
 
   .links {
     display: flex;

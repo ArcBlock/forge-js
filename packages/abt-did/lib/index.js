@@ -1,9 +1,10 @@
 const upperFirst = require('lodash/upperFirst');
-const { toBN, toHex, numberToHex, isHexStrict, stripHexPrefix } = require('@arcblock/forge-util');
+const stringify = require('json-stable-stringify');
 const Mcrypto = require('@arcblock/mcrypto');
 const multibase = require('multibase');
 const base64 = require('base64-url');
 const hdkey = require('hdkey');
+const { toBN, toHex, numberToHex, isHexStrict, stripHexPrefix } = require('@arcblock/forge-util');
 const { DID_PREFIX, toBits, toBytes, toStrictHex } = require('./util');
 const { types, getSigner, getHasher } = Mcrypto;
 
@@ -248,14 +249,12 @@ const jwtSign = (did, sk, payload = {}) => {
 
       return true;
     })
-    // sort keys
-    .sort()
     .reduce((acc, x) => {
       acc[x] = body[x];
       return acc;
     }, {});
 
-  const bodyB64 = base64.escape(base64.encode(JSON.stringify(body)));
+  const bodyB64 = base64.escape(base64.encode(stringify(body)));
 
   // make signature
   const msgHex = toHex(`${headerB64}.${bodyB64}`);
@@ -263,6 +262,24 @@ const jwtSign = (did, sk, payload = {}) => {
   const sigB64 = base64.escape(Buffer.from(stripHexPrefix(sigHex), 'hex').toString('base64'));
 
   return [headerB64, bodyB64, sigB64].join('.');
+};
+
+/**
+ * Decode info from jwt token
+ *
+ * @param {*} token
+ * @param {boolean} [payloadOnly=false]
+ * @returns
+ */
+const jwtDecode = (token, payloadOnly = true) => {
+  const [headerB64, bodyB64, sigB64] = token.split('.');
+  const header = JSON.parse(base64.decode(base64.unescape(headerB64)));
+  const body = JSON.parse(base64.decode(base64.unescape(bodyB64)));
+  const sig = Buffer.from(base64.unescape(sigB64), 'base64').toString('hex');
+  if (payloadOnly) {
+    return body;
+  }
+  return { header, body, signature: `0x${toStrictHex(sig)}` };
 };
 
 /**
@@ -274,12 +291,9 @@ const jwtSign = (did, sk, payload = {}) => {
  */
 const jwtVerify = (token, pk) => {
   try {
-    const [headerB64, bodyB64, sigB64] = token.split('.');
-    const header = JSON.parse(base64.decode(base64.unescape(headerB64)));
-    const body = JSON.parse(base64.decode(base64.unescape(bodyB64)));
-    const signature = Buffer.from(base64.unescape(sigB64), 'base64').toString('hex');
-    const sigHex = `0x${toStrictHex(signature)}`;
-    if (!sigHex) {
+    const [headerB64, bodyB64] = token.split('.');
+    const { header, body, signature } = jwtDecode(token, false);
+    if (!signature) {
       return false;
     }
     if (!header.alg) {
@@ -303,7 +317,7 @@ const jwtVerify = (token, pk) => {
     const alg = header.alg.toLowerCase();
     if (signers[alg]) {
       const msgHex = toHex(`${headerB64}.${bodyB64}`);
-      return signers[alg].verify(msgHex, sigHex, pk);
+      return signers[alg].verify(msgHex, signature, pk);
     }
 
     return false;
@@ -328,4 +342,5 @@ module.exports = {
   isValid,
   jwtSign,
   jwtVerify,
+  jwtDecode,
 };

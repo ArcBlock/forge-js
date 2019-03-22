@@ -246,42 +246,42 @@ declare namespace GraphQLClient {
   }
 
   export enum StatusCode {
-    UNSUPPORTED_STAKE,
-    INVALID_TX_SIZE,
-    INVALID_WALLET,
-    EXPIRED_ASSET,
-    INVALID_CHAIN_ID,
-    INVALID_PASSPHRASE,
-    EXPIRED_TX,
-    INVALID_SENDER_STATE,
-    INVALID_ASSET,
-    TOO_MANY_TXS,
-    INVALID_MONIKER,
-    STORAGE_RPC_ERROR,
-    FORBIDDEN,
-    CONSUMED_ASSET,
-    INVALID_SIGNER_STATE,
-    INVALID_FORGE_STATE,
-    INVALID_STAKE_STATE,
-    INVALID_RECEIVER_STATE,
-    ACCOUNT_MIGRATED,
-    UNTRANSFERRABLE_ASSET,
-    UNSUPPORTED_TX,
-    INSUFFICIENT_DATA,
-    INVALID_OWNER,
-    EXPIRED_WALLET_TOKEN,
-    INVALID_MULTISIG,
-    INSUFFICIENT_FUND,
-    CONSENSUS_RPC_ERROR,
-    INVALID_SIGNATURE,
-    TIMEOUT,
-    INVALID_NONCE,
     INSUFFICIENT_STAKE,
-    INVALID_TX,
-    BANNED_UNSTAKE,
+    ACCOUNT_MIGRATED,
+    TOO_MANY_TXS,
     READONLY_ASSET,
-    INTERNAL,
+    INVALID_ASSET,
+    CONSUMED_ASSET,
+    INVALID_WALLET,
+    EXPIRED_WALLET_TOKEN,
+    INSUFFICIENT_DATA,
+    UNSUPPORTED_STAKE,
+    CONSENSUS_RPC_ERROR,
+    INVALID_SIGNER_STATE,
+    STORAGE_RPC_ERROR,
+    INVALID_OWNER,
+    INVALID_PASSPHRASE,
+    UNSUPPORTED_TX,
+    INVALID_STAKE_STATE,
+    UNTRANSFERRABLE_ASSET,
+    INVALID_RECEIVER_STATE,
+    INVALID_TX_SIZE,
+    INVALID_CHAIN_ID,
+    INVALID_NONCE,
+    BANNED_UNSTAKE,
+    INVALID_MONIKER,
+    FORBIDDEN,
+    INVALID_FORGE_STATE,
+    INVALID_SENDER_STATE,
+    INSUFFICIENT_FUND,
+    TIMEOUT,
+    INVALID_TX,
     NOENT,
+    INVALID_SIGNATURE,
+    EXPIRED_ASSET,
+    INVALID_MULTISIG,
+    EXPIRED_TX,
+    INTERNAL,
     OK,
   }
 
@@ -330,6 +330,7 @@ declare namespace GraphQLClient {
   export interface TypeFilter {}
 
   export interface AccountMigrateTx {
+    data: GraphQLClient.Any;
     pk: string;
     type: GraphQLClient.WalletType;
   }
@@ -742,6 +743,7 @@ declare namespace GraphQLClient {
 
   export interface PokeTx {
     address: string;
+    data: GraphQLClient.Any;
     date: string;
   }
 
@@ -1035,7 +1037,7 @@ declare namespace GraphQLClient {
   }
 
   export interface Transaction {
-    chainId: number;
+    chainId: string;
     from: string;
     itx: Itx;
     nonce: number;

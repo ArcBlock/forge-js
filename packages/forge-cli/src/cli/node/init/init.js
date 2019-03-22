@@ -14,6 +14,7 @@ const {
   ensureForgeRelease,
   findReleaseConfig,
   getPlatform,
+  printLogo,
 } = require('core/env');
 
 async function isForgeStopped() {
@@ -187,6 +188,8 @@ function updateReleaseYaml(asset, version) {
 
 async function main() {
   try {
+    printLogo();
+
     const platform = await getPlatform();
     shell.echo(`${symbols.info} Detected platform is: ${platform}`);
     const version = fetchReleaseVersion();

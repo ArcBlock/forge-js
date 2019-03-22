@@ -1,0 +1,22 @@
+require('dotenv').config();
+
+const Mcrypto = require('@arcblock/mcrypto');
+const { fromRandom, WalletType } = require('@arcblock/forge-wallet');
+const { jwtDecode, jwtVerify } = require('@arcblock/abt-did');
+const auth = require('../config/auth');
+
+const type = WalletType({
+  role: Mcrypto.types.RoleType.ROLE_APPLICATION,
+  pk: Mcrypto.types.KeyType.ED25519,
+  hash: Mcrypto.types.HashType.SHA3,
+});
+
+const wallet = fromRandom(type);
+console.log(wallet.toJSON());
+
+const token =
+  'eyJhbGciOiJFZDI1NTE5IiwidHlwZSI6IkpXVCJ9.eyJhY3Rpb24iOiJyZXNwb25zZUF1dGgiLCJhcHBJbmZvIjp7ImNoYWluSG9zdCI6Imh0dHA6Ly9hYnQtdGVzdG5ldC5hcmNibG9jay5jbzo4MjEwL2FwaS8iLCJjaGFpbklkIjoiZm9yZ2UiLCJjaGFpblRva2VuIjoiVEJBIiwiY29weXJpZ2h0IjoiaHR0cHM6Ly9leGFtcGxlLWFwcGxpY2F0aW9uL2NvcHlyaWdodCIsImRlY2ltYWxzIjoxNiwiZGVzY3JpcHRpb24iOiJTdGFydGVyIHByb2plY3RzIHRvIGRldmVsb3Agd2ViIGFwcGxpY2F0aW9uIG9uIGZvcmdlIiwiaWNvbiI6Ii9pbWFnZXMvbG9nb0AyeC5wbmciLCJuYW1lIjoiRm9yZ2UgV2ViIFN0YXJ0ZXIiLCJwYXRoIjoiaHR0cHM6Ly9hcmN3YWxsZXQuaW8vaS8iLCJwdWJsaXNoZXIiOiJkaWQ6YWJ0OnpOS2FaRkFoZTRhekxBVVFVemk2czhzNEY4d1ozTDlpemVVNCIsInN1YnRpdGxlIjoiU3RhcnRlciBwcm9qZWN0cyB0byBkZXZlbG9wIHdlYiBhcHBsaWNhdGlvbiBvbiBmb3JnZSJ9LCJleHAiOjE1NTMyMTA5NzIsImlzcyI6ImRpZDphYnQ6ek5LYVpGQWhlNGF6TEFVUVV6aTZzOHM0Rjh3WjNMOWl6ZVU0IiwiaXN0IjoxNTUzMjA5MTcyLCJuYmYiOjE1NTMyMDkxNzIsInJlcXVlc3RlZENsYWltcyI6W3siaXRlbXMiOlsiZW1haWwiLCJmdWxsTmFtZSIsInBob25lIl0sIm1ldGEiOnsiZGVzY3JpcHRpb24iOiJQbGVhc2UgcHJvdmlkZSB5b3VyIHByb2ZpbGUgaW5mb3JtYXRpb24uIn0sInR5cGUiOiJwcm9maWxlIn1dLCJ1cmwiOiJodHRwOi8vd2FuZ3NoaWp1bi5uYXRhcHAxLmNjL2FwaS9hdXRoIn0.uqv0ezuoTP7cLULYKziqF8uei939jnvGFY87vMlAbAMwdh405fYmAD0_8KPNHb4uUv5mwUiyueLpeUm0cfjUCQ';
+console.log(jwtDecode(token));
+console.log(jwtVerify(token, auth.wallet.pk));
+
+console.log(auth.getAuthInfo());
