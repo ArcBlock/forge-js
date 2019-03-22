@@ -127,6 +127,12 @@ describe('@arcblock/abt-did', () => {
     expect(isValid('z1muQ3xqHQK2uiACHyChikobsiY5kLqtSha')).toEqual(false);
   });
 
+  it('should do stable sort on sign', () => {
+    const token1 = jwtSign(appId, sk, { key: 'value', value: 'key' });
+    const token2 = jwtSign(appId, sk, { value: 'key', key: 'value' });
+    expect(token1).toEqual(token2);
+  });
+
   it('should sign and verify jwt token', () => {
     const token = jwtSign(appId, sk, { key: 'value' });
     const [, bodyB64] = token.split('.');

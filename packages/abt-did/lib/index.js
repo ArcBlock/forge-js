@@ -227,14 +227,14 @@ const jwtSign = (did, sk, payload = {}) => {
 
   // make header
   const header = headers[type.pk];
-  const headerB64 = base64.escape(base64.encode(JSON.stringify(header)));
+  const headerB64 = base64.escape(base64.encode(stringify(header)));
 
   // make body
   const timestamp = Math.floor(Date.now() / 1000);
   let body = Object.assign(
     {
       iss: did.indexOf(DID_PREFIX) === 0 ? did : `${DID_PREFIX}${did}`,
-      ist: timestamp,
+      iat: timestamp,
       nbf: timestamp,
       exp: timestamp + 30 * 60,
     },
@@ -289,7 +289,7 @@ const jwtDecode = (token, payloadOnly = true) => {
  * @param {string} pk
  * @returns {boolean}
  */
-const jwtVerify = (token, pk) => {
+const jwtVerify = (token, pk, tolerance = 5) => {
   try {
     const [headerB64, bodyB64] = token.split('.');
     const { header, body, signature } = jwtDecode(token, false);
@@ -306,6 +306,17 @@ const jwtVerify = (token, pk) => {
     }
 
     if (isFromPublicKey(did, pk) === false) {
+      return false;
+    }
+
+    const timestamp = Math.ceil(Date.now() / 1000) + tolerance;
+    if (body.exp && body.exp < timestamp) {
+      return false;
+    }
+    if (body.iat && body.iat > timestamp) {
+      return false;
+    }
+    if (body.nbf && body.nbf > timestamp) {
       return false;
     }
 
