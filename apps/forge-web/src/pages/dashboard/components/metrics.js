@@ -63,7 +63,7 @@ function Metrics({ theme, sparkline, itemSize, size }) {
         console.error(err);
       }
     },
-    autoRefresh ? 4000 : null
+    autoRefresh ? 5000 : null
   );
 
   if (state.loading) {
