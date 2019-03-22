@@ -19,9 +19,8 @@ install:
 
 dep:
 	@echo "Install dependencies required for this repo..."
-	@lerna bootstrap
+	@yarn
 	@lerna link
-	@cd apps/forge-web && npm i
 
 pre-build: install dep
 	@echo "Running scripts before the build..."
