@@ -1,6 +1,6 @@
 {
   "name": "@arcblock/forge-graphql-client",
-  "version": "0.14.3",
+  "version": "0.15.0",
   "description": "GraphQL Client for forge core",
   "keywords": [
     "graphql",
@@ -22,7 +22,7 @@
     "lib"
   ],
   "dependencies": {
-    "@arcblock/forge-wallet": "^0.14.3",
+    "@arcblock/forge-wallet": "^0.15.0",
     "@arcblock/sdk-util": "^0.19.4",
     "babel-polyfill": "^6.26.0",
     "base64-url": "^2.2.0",
