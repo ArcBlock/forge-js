@@ -1,8 +1,10 @@
 require('dotenv').config();
 
 const Mcrypto = require('@arcblock/mcrypto');
-const { fromRandom, WalletType } = require('@arcblock/forge-wallet');
-const { jwtDecode, jwtVerify } = require('@arcblock/abt-did');
+const { fromSecretKey, WalletType } = require('@arcblock/forge-wallet');
+const { jwtDecode, jwtSign, jwtVerify } = require('@arcblock/abt-did');
+const { bytesToHex } = require('@arcblock/forge-util');
+const base64 = require('base64-url');
 const auth = require('../config/auth');
 
 const type = WalletType({
@@ -11,12 +13,40 @@ const type = WalletType({
   hash: Mcrypto.types.HashType.SHA3,
 });
 
-const wallet = fromRandom(type);
-console.log(wallet.toJSON());
+// const wallet = fromSecretKey(process.env.APP_SK, type);
+// console.log(wallet.toJSON());
 
-const token =
-  'eyJhbGciOiJFZDI1NTE5IiwidHlwZSI6IkpXVCJ9.eyJhY3Rpb24iOiJyZXNwb25zZUF1dGgiLCJhcHBJbmZvIjp7ImNoYWluSG9zdCI6Imh0dHA6Ly9hYnQtdGVzdG5ldC5hcmNibG9jay5jbzo4MjEwL2FwaS8iLCJjaGFpbklkIjoiZm9yZ2UiLCJjaGFpblRva2VuIjoiVEJBIiwiY29weXJpZ2h0IjoiaHR0cHM6Ly9leGFtcGxlLWFwcGxpY2F0aW9uL2NvcHlyaWdodCIsImRlY2ltYWxzIjoxNiwiZGVzY3JpcHRpb24iOiJTdGFydGVyIHByb2plY3RzIHRvIGRldmVsb3Agd2ViIGFwcGxpY2F0aW9uIG9uIGZvcmdlIiwiaWNvbiI6Ii9pbWFnZXMvbG9nb0AyeC5wbmciLCJuYW1lIjoiRm9yZ2UgV2ViIFN0YXJ0ZXIiLCJwYXRoIjoiaHR0cHM6Ly9hcmN3YWxsZXQuaW8vaS8iLCJwdWJsaXNoZXIiOiJkaWQ6YWJ0OnpOS2FaRkFoZTRhekxBVVFVemk2czhzNEY4d1ozTDlpemVVNCIsInN1YnRpdGxlIjoiU3RhcnRlciBwcm9qZWN0cyB0byBkZXZlbG9wIHdlYiBhcHBsaWNhdGlvbiBvbiBmb3JnZSJ9LCJleHAiOjE1NTMyMTA5NzIsImlzcyI6ImRpZDphYnQ6ek5LYVpGQWhlNGF6TEFVUVV6aTZzOHM0Rjh3WjNMOWl6ZVU0IiwiaXN0IjoxNTUzMjA5MTcyLCJuYmYiOjE1NTMyMDkxNzIsInJlcXVlc3RlZENsYWltcyI6W3siaXRlbXMiOlsiZW1haWwiLCJmdWxsTmFtZSIsInBob25lIl0sIm1ldGEiOnsiZGVzY3JpcHRpb24iOiJQbGVhc2UgcHJvdmlkZSB5b3VyIHByb2ZpbGUgaW5mb3JtYXRpb24uIn0sInR5cGUiOiJwcm9maWxlIn1dLCJ1cmwiOiJodHRwOi8vd2FuZ3NoaWp1bi5uYXRhcHAxLmNjL2FwaS9hdXRoIn0.uqv0ezuoTP7cLULYKziqF8uei939jnvGFY87vMlAbAMwdh405fYmAD0_8KPNHb4uUv5mwUiyueLpeUm0cfjUCQ';
-console.log(jwtDecode(token));
-console.log(jwtVerify(token, auth.wallet.pk));
+const data = {
+  userInfo:
+    'eyJhbGciOiJFZDI1NTE5IiwidHlwIjoiSldUIn0.eyJleHAiOiIxNTUzMjQ0NTI1IiwiaWF0IjoiMTU1MzI0NDQ2NSIsImlzcyI6ImRpZDphYnQ6ejFjM0p6bkc5clRDSGJGUTN1NWd0ekhiRTlzVUdMMjJyTnkiLCJuYmYiOiIxNTUzMjQ0NDY1IiwicmVxdWVzdGVkQ2xhaW1zIjpbeyJ0eXBlIjoicHJvZmlsZSIsImVtYWlsIjoicG90bUAxNjMuY29tIiwiZnVsbE5hbWUiOiJQYXBlciIsInBob25lIjoiMTUxMjMzNTgxOTgifV19.ZAHZTbGEgUN21NHjeecmuzaG6f-WijR6Cw22ZHK-54C-FsG8YV77zwyB5KkxsffxMjBHD9m73TdokmFxOl73Dg',
+  userPk: '0x186749DC92F398C9AAF9AE0FA795A96C2549AD441069A4508A132C4F000C1FB3',
+};
 
-console.log(auth.getAuthInfo());
+const payload = {
+  exp: '1553244525',
+  iat: '1553244465',
+  iss: 'did:abt:z1c3JznG9rTCHbFQ3u5gtzHbE9sUGL22rNy',
+  nbf: '1553244465',
+  requestedClaims: [
+    {
+      type: 'profile',
+      email: 'potm@163.com',
+      fullName: 'Paper',
+      phone: '15123358198',
+    },
+  ],
+};
+console.log({ payload });
+
+const skB64 =
+  'wkLOhdee5aM5+Fk+hEZ6b2m7wWNf4rHR139ZRJ4D4DsYZ0nckvOYyar5rg+nlalsJUmtRBBppFCKEyxPAAwfsw==';
+const sk = bytesToHex(Buffer.from(base64.unescape(skB64), 'base64'));
+const pk = Mcrypto.Signer.Ed25519.getPublicKey(sk);
+console.log({ sk, pk });
+
+// console.log(auth.getAuthInfo());
+const { body } = jwtDecode(data.userInfo, false);
+const sig = jwtSign(body.iss, sk, body);
+console.log(sig);
+console.log(jwtDecode(sig));
+console.log(jwtVerify(data.userInfo, pk));

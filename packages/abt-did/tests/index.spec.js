@@ -128,8 +128,8 @@ describe('@arcblock/abt-did', () => {
   });
 
   it('should do stable sort on sign', () => {
-    const token1 = jwtSign(appId, sk, { key: 'value', value: 'key' });
-    const token2 = jwtSign(appId, sk, { value: 'key', key: 'value' });
+    const token1 = jwtSign(appId, sk, { key: 'value', value: 'key', iat: 123, nbf: 123, exp: 123 });
+    const token2 = jwtSign(appId, sk, { value: 'key', key: 'value', iat: 123, nbf: 123, exp: 123 });
     expect(token1).toEqual(token2);
   });
 
