@@ -7741,6 +7741,7 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
         votingPower: jspb.Message.getFieldWithDefault(msg, 3, 0),
         proposerPriority: jspb.Message.getFieldWithDefault(msg, 4, ''),
         name: jspb.Message.getFieldWithDefault(msg, 5, ''),
+        geoInfo: (f = msg.getGeoInfo()) && proto.forge_abi.GeoInfo.toObject(includeInstance, f),
       };
 
     if (includeInstance) {
@@ -7796,6 +7797,11 @@ proto.forge_abi.ValidatorInfo.deserializeBinaryFromReader = function(msg, reader
         var value = /** @type {string} */ (reader.readString());
         msg.setName(value);
         break;
+      case 6:
+        var value = new proto.forge_abi.GeoInfo();
+        reader.readMessage(value, proto.forge_abi.GeoInfo.deserializeBinaryFromReader);
+        msg.setGeoInfo(value);
+        break;
       default:
         reader.skipField();
         break;
@@ -7842,6 +7848,10 @@ proto.forge_abi.ValidatorInfo.serializeBinaryToWriter = function(message, writer
   f = message.getName();
   if (f.length > 0) {
     writer.writeString(5, f);
+  }
+  f = message.getGeoInfo();
+  if (f != null) {
+    writer.writeMessage(6, f, proto.forge_abi.GeoInfo.serializeBinaryToWriter);
   }
 };
 
@@ -7924,6 +7934,35 @@ proto.forge_abi.ValidatorInfo.prototype.getName = function() {
 /** @param {string} value */
 proto.forge_abi.ValidatorInfo.prototype.setName = function(value) {
   jspb.Message.setProto3StringField(this, 5, value);
+};
+
+/**
+ * optional GeoInfo geo_info = 6;
+ * @return {?proto.forge_abi.GeoInfo}
+ */
+proto.forge_abi.ValidatorInfo.prototype.getGeoInfo = function() {
+  return /** @type{?proto.forge_abi.GeoInfo} */ (jspb.Message.getWrapperField(
+    this,
+    proto.forge_abi.GeoInfo,
+    6
+  ));
+};
+
+/** @param {?proto.forge_abi.GeoInfo|undefined} value */
+proto.forge_abi.ValidatorInfo.prototype.setGeoInfo = function(value) {
+  jspb.Message.setWrapperField(this, 6, value);
+};
+
+proto.forge_abi.ValidatorInfo.prototype.clearGeoInfo = function() {
+  this.setGeoInfo(undefined);
+};
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.forge_abi.ValidatorInfo.prototype.hasGeoInfo = function() {
+  return jspb.Message.getField(this, 6) != null;
 };
 
 /**
