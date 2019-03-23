@@ -1064,6 +1064,10 @@
             "name": {
               "type": "string",
               "id": 5
+            },
+            "geoInfo": {
+              "type": "GeoInfo",
+              "id": 6
             }
           }
         },
@@ -2633,6 +2637,39 @@
             }
           }
         },
+        "RequestListAssets": {
+          "fields": {
+            "paging": {
+              "type": "PageInput",
+              "id": 1
+            },
+            "ownerAddress": {
+              "type": "string",
+              "id": 2
+            }
+          }
+        },
+        "ResponseListAssets": {
+          "fields": {
+            "code": {
+              "type": "StatusCode",
+              "id": 1
+            },
+            "page": {
+              "type": "PageInfo",
+              "id": 2
+            },
+            "account": {
+              "type": "IndexedAccountState",
+              "id": 3
+            },
+            "assets": {
+              "rule": "repeated",
+              "type": "IndexedAssetState",
+              "id": 4
+            }
+          }
+        },
         "AccountMigrateTx": {
           "fields": {
             "pk": {
@@ -3449,6 +3486,10 @@
             "list_blocks": {
               "requestType": "RequestListBlocks",
               "responseType": "ResponseListBlocks"
+            },
+            "list_assets": {
+              "requestType": "RequestListAssets",
+              "responseType": "ResponseListAssets"
             }
           }
         }
@@ -3525,7 +3566,7 @@
             }
           }
         },
-        "BlockSizeParams": {
+        "BlockParams": {
           "fields": {
             "maxBytes": {
               "type": "int64",
@@ -3556,8 +3597,8 @@
         },
         "ConsensusParams": {
           "fields": {
-            "blockSize": {
-              "type": "BlockSizeParams",
+            "block": {
+              "type": "BlockParams",
               "id": 1
             },
             "evidence": {
@@ -3595,18 +3636,6 @@
             }
           }
         },
-        "PartSetHeader": {
-          "fields": {
-            "total": {
-              "type": "int32",
-              "id": 1
-            },
-            "hash": {
-              "type": "bytes",
-              "id": 2
-            }
-          }
-        },
         "BlockID": {
           "fields": {
             "hash": {
@@ -3615,6 +3644,18 @@
             },
             "partsHeader": {
               "type": "PartSetHeader",
+              "id": 2
+            }
+          }
+        },
+        "PartSetHeader": {
+          "fields": {
+            "total": {
+              "type": "int32",
+              "id": 1
+            },
+            "hash": {
+              "type": "bytes",
               "id": 2
             }
           }
@@ -3628,18 +3669,6 @@
             "power": {
               "type": "int64",
               "id": 3
-            }
-          }
-        },
-        "PubKey": {
-          "fields": {
-            "type": {
-              "type": "string",
-              "id": 1
-            },
-            "data": {
-              "type": "bytes",
-              "id": 2
             }
           }
         },
@@ -3663,6 +3692,18 @@
             },
             "signedLastBlock": {
               "type": "bool",
+              "id": 2
+            }
+          }
+        },
+        "PubKey": {
+          "fields": {
+            "type": {
+              "type": "string",
+              "id": 1
+            },
+            "data": {
+              "type": "bytes",
               "id": 2
             }
           }

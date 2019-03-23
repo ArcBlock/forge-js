@@ -1,6 +1,6 @@
 # Forge GraphQL API List
 
-> Updated on 2019-03-21T01:07:36.592Z
+> Updated on 2019-03-23T23:48:26.770Z
 
 
 ## Table of Contents
@@ -27,6 +27,7 @@
   * [getUnconfirmedTxs](#getunconfirmedtxs)
   * [getValidatorsInfo](#getvalidatorsinfo)
   * [listAssetTransactions](#listassettransactions)
+  * [listAssets](#listassets)
   * [listBlocks](#listblocks)
   * [listTransactions](#listtransactions)
   * [listWallet](#listwallet)
@@ -2753,6 +2754,12 @@ No arguments
         name
         proposerPriority
         votingPower
+        geoInfo {
+          city
+          country
+          latitude
+          longitude
+        }
         pubKey {
           data
           type
@@ -2945,6 +2952,52 @@ No arguments
       updateAsset {
         asset
       }
+    }
+  }
+}
+```
+
+### listAssets
+
+#### Arguments
+
+* **ownerAddress**, optional, 
+* **paging**, optional, 
+
+#### Result Format
+
+```graphql
+{
+  listAssets(ownerAddress: "abc", paging: "abc") {
+    code
+    account {
+      address
+      balance
+      genesisTime
+      migratedFrom
+      migratedTo
+      moniker
+      nonce
+      numAssets
+      numTxs
+      recentNumTxs
+      renaissanceTime
+      totalReceivedStakes
+      totalStakes
+      totalUnstakes
+    }
+    assets {
+      address
+      genesisTime
+      moniker
+      owner
+      readonly
+      renaissanceTime
+    }
+    page {
+      cursor
+      next
+      total
     }
   }
 }

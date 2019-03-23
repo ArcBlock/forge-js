@@ -114,6 +114,9 @@ declare class GraphQLClient {
   listAssetTransactions(
     params: GraphQLClient.ListAssetTransactionsParams
   ): GraphQLClient.QueryResult<GraphQLClient.ResponseListAssetTransactions>;
+  listAssets(
+    params: GraphQLClient.ListAssetsParams
+  ): GraphQLClient.QueryResult<GraphQLClient.ResponseListAssets>;
   listBlocks(
     params: GraphQLClient.ListBlocksParams
   ): GraphQLClient.QueryResult<GraphQLClient.ResponseListBlocks>;
@@ -246,41 +249,41 @@ declare namespace GraphQLClient {
   }
 
   export enum StatusCode {
-    INSUFFICIENT_STAKE,
-    ACCOUNT_MIGRATED,
-    TOO_MANY_TXS,
     READONLY_ASSET,
-    INVALID_ASSET,
-    CONSUMED_ASSET,
-    INVALID_WALLET,
-    EXPIRED_WALLET_TOKEN,
-    INSUFFICIENT_DATA,
-    UNSUPPORTED_STAKE,
-    CONSENSUS_RPC_ERROR,
-    INVALID_SIGNER_STATE,
-    STORAGE_RPC_ERROR,
-    INVALID_OWNER,
-    INVALID_PASSPHRASE,
-    UNSUPPORTED_TX,
-    INVALID_STAKE_STATE,
-    UNTRANSFERRABLE_ASSET,
-    INVALID_RECEIVER_STATE,
-    INVALID_TX_SIZE,
-    INVALID_CHAIN_ID,
-    INVALID_NONCE,
-    BANNED_UNSTAKE,
-    INVALID_MONIKER,
     FORBIDDEN,
-    INVALID_FORGE_STATE,
-    INVALID_SENDER_STATE,
-    INSUFFICIENT_FUND,
-    TIMEOUT,
-    INVALID_TX,
-    NOENT,
-    INVALID_SIGNATURE,
-    EXPIRED_ASSET,
+    INVALID_PASSPHRASE,
+    INSUFFICIENT_STAKE,
+    INVALID_NONCE,
+    STORAGE_RPC_ERROR,
     INVALID_MULTISIG,
+    INVALID_ASSET,
+    INVALID_SIGNER_STATE,
+    EXPIRED_ASSET,
+    INVALID_TX_SIZE,
+    INVALID_WALLET,
+    CONSENSUS_RPC_ERROR,
+    INVALID_CHAIN_ID,
     EXPIRED_TX,
+    INSUFFICIENT_FUND,
+    TOO_MANY_TXS,
+    INVALID_SENDER_STATE,
+    INVALID_RECEIVER_STATE,
+    UNSUPPORTED_TX,
+    INVALID_FORGE_STATE,
+    UNSUPPORTED_STAKE,
+    ACCOUNT_MIGRATED,
+    NOENT,
+    INVALID_MONIKER,
+    TIMEOUT,
+    INSUFFICIENT_DATA,
+    INVALID_SIGNATURE,
+    INVALID_STAKE_STATE,
+    EXPIRED_WALLET_TOKEN,
+    CONSUMED_ASSET,
+    INVALID_OWNER,
+    BANNED_UNSTAKE,
+    UNTRANSFERRABLE_ASSET,
+    INVALID_TX,
     INTERNAL,
     OK,
   }
@@ -879,6 +882,13 @@ declare namespace GraphQLClient {
     transactions: Array<IndexedTransaction>;
   }
 
+  export interface ResponseListAssets {
+    account: GraphQLClient.IndexedAccountState;
+    assets: Array<IndexedAssetState>;
+    code: GraphQLClient.StatusCode;
+    page: GraphQLClient.PageInfo;
+  }
+
   export interface ResponseListBlocks {
     blocks: Array<IndexedBlock>;
     code: GraphQLClient.StatusCode;
@@ -1099,6 +1109,7 @@ declare namespace GraphQLClient {
 
   export interface ValidatorInfo {
     address: string;
+    geoInfo: GraphQLClient.GeoInfo;
     name: string;
     proposerPriority: string;
     pubKey: GraphQLClient.PubKey;
@@ -1222,6 +1233,11 @@ declare namespace GraphQLClient {
   export interface ListAssetTransactionsParams {
     address: string;
     paging: undefined;
+  }
+
+  export interface ListAssetsParams {
+    ownerAddress: string;
+    paging: string;
   }
 
   export interface ListBlocksParams {
