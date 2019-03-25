@@ -72,7 +72,7 @@ module.exports = {
   wallet,
   meta,
 
-  getLoginUri(token) {
+  uri({ token }) {
     const params = {
       appPk,
       appDid: `abt:did:${wallet.address}`,
@@ -83,7 +83,7 @@ module.exports = {
     return `${meta.path}?${qs.stringify(params)}`;
   },
 
-  async getAuthInfo({ token, claims }) {
+  async sign({ token, claims }) {
     const payload = {
       action: 'responseAuth',
       appInfo: meta,
@@ -103,7 +103,7 @@ module.exports = {
    * @param {*} data
    * @returns Promise<>
    */
-  verifyAuth(data) {
+  verify(data) {
     return new Promise((resolve, reject) => {
       console.log('verifyLogin', data);
 

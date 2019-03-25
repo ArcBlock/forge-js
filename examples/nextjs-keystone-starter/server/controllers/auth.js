@@ -68,7 +68,7 @@ module.exports = app => {
 
     res.send({
       token,
-      url: auth.getLoginUri(token),
+      url: auth.uri({ token }),
     });
   });
 
@@ -84,7 +84,7 @@ module.exports = app => {
       await session.save();
     }
 
-    const authInfo = await auth.getAuthInfo({
+    const authInfo = await auth.sign({
       token,
       claims: {
         profile: {
@@ -99,7 +99,7 @@ module.exports = app => {
   // 3. Update login session status, verify login session data
   app.post('/api/auth', (req, res) => {
     auth
-      .verifyAuth(Object.assign(req.body, req.query))
+      .verify(Object.assign(req.body, req.query))
       .then(async payload => {
         const LoginToken = keystone.list('LoginToken').model;
         const User = keystone.list('User').model;
