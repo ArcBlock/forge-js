@@ -342,6 +342,7 @@ const jwtVerify = (token, pk, tolerance = 5) => {
 };
 
 module.exports = {
+  DID_PREFIX,
   types,
   toStrictHex,
   fromAppDID,
