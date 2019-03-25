@@ -30,23 +30,28 @@ class GraphqlClient extends BaseClient {
     return getType(x);
   }
 
-  getTxMethods() {
+  getTxSendMethods() {
     return transactions.map(x => camelcase(`send_${x}`));
+  }
+
+  getTxEncodeMethods() {
+    return transactions.map(x => camelcase(`encode_${x}`));
   }
 
   _initTxMethods() {
     const toHex = bytes => stripHexPrefix(bytesToHex(bytes)).toUpperCase();
 
     transactions.forEach(x => {
-      const method = camelcase(`send_${x}`);
+      const Any = getType('google.protobuf.Any');
+      const Transaction = getType('Transaction');
 
       /**
-       * Generate an transaction sender function
+       * Generate an transaction encoding function
        *
        * @param {object} { data, wallet } data is the itx object, and wallet is an Wallet instance
        * @returns Promise
        */
-      const txSendFn = async ({ data, wallet }) => {
+      const txEncodeFn = async ({ data, wallet }) => {
         // Determine sender address
         const address = wallet.toAddress();
 
@@ -75,8 +80,6 @@ class GraphqlClient extends BaseClient {
           chainId,
         });
 
-        const Any = getType('google.protobuf.Any');
-        const Transaction = getType('Transaction');
         const ItxType = getType(x);
 
         const itx = ItxType.fromObject(data);
@@ -96,6 +99,21 @@ class GraphqlClient extends BaseClient {
         const txToSign = Transaction.fromObject(txObj);
         const txToSignBytes = Transaction.encode(txToSign).finish();
 
+        return { object: txObj, binary: txToSignBytes };
+      };
+
+      const encodeMethod = camelcase(`encode_${x}`);
+      txEncodeFn.__tx__ = encodeMethod;
+      this[encodeMethod] = txEncodeFn;
+
+      /**
+       * Generate an transaction sender function
+       *
+       * @param {object} { data, wallet } data is the itx object, and wallet is an Wallet instance
+       * @returns Promise
+       */
+      const txSendFn = async ({ data, wallet }) => {
+        const { object: txObj, buffer: txToSignBytes } = await txEncodeFn({ data, wallet });
         const signature = wallet.sign(bytesToHex(txToSignBytes));
         debug({
           txToSignBytes,
@@ -112,8 +130,9 @@ class GraphqlClient extends BaseClient {
         return this.sendTx({ tx: txStr });
       };
 
-      txSendFn.__tx__ = method;
-      this[method] = txSendFn;
+      const sendMethod = camelcase(`send_${x}`);
+      txSendFn.__tx__ = sendMethod;
+      this[sendMethod] = txSendFn;
     });
   }
 

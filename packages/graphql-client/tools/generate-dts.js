@@ -138,7 +138,8 @@ declare class GraphQLClient {
   generateMutationFns(): void;
 
   ${client
-    .getTxMethods()
+    .getTxSendMethods()
+    .concat(client.getTxEncodeMethods())
     .map(
       x =>
         `${x}(param: GraphQLClient.TxParam<GraphQLClient.${x.replace(
