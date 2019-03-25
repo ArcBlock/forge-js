@@ -11,6 +11,11 @@ module.exports = app => {
     res.json(req.session);
   });
 
+  app.post('/api/logout', async (req, res) => {
+    req.session.user = null;
+    res.json(req.session);
+  });
+
   app.get('/api/login/status', async (req, res) => {
     const LoginToken = keystone.list('LoginToken').model;
     const User = keystone.list('User').model;

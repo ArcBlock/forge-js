@@ -6,6 +6,7 @@ import { createMuiTheme, createGenerateClassName } from '@material-ui/core/style
 const theme = createMuiTheme({
   pageWidth: 1000,
   typography: {
+    fontSize: 14,
     useNextVariants: true,
   },
 });

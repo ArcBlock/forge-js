@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import qs from 'querystring';
 import styled from 'styled-components';
 
 import Button from '@material-ui/core/Button';
@@ -16,6 +17,19 @@ export default function Header() {
   const [open, setOpen] = useState(false);
   const closeDialog = () => setOpen(false);
   const openDialog = () => setOpen(true);
+
+  useEffect(() => {
+    if (session.value && !session.value.user && window.location.search) {
+      const params = qs.parse(window.location.search.slice(1));
+      try {
+        if (params.openLogin && JSON.parse(params.openLogin)) {
+          setOpen(true);
+        }
+      } catch (err) {
+        // Do nothing
+      }
+    }
+  }, [session]);
 
   return (
     <Nav>
@@ -36,13 +50,13 @@ export default function Header() {
         </Button>
       )}
       {session.value && session.value.user && (
-        <div className="avatar">
+        <Button href="/me" className="avatar">
           <UserAvatar did={session.value.user.did} />
-        </div>
+        </Button>
       )}
       {open && (
         <Dialog open maxWidth="sm" disableBackdropClick disableEscapeKeyDown onClose={closeDialog}>
-          <Login onClose={closeDialog} onSuccess={() => window.location.reload()} />
+          <Login onClose={closeDialog} onSuccess={() => (window.location.href = '/me')} />
         </Dialog>
       )}
     </Nav>
