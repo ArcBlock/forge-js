@@ -102,9 +102,9 @@ class GraphqlClient extends BaseClient {
        * @param {object} { data, wallet } data is the itx object, and wallet is an Wallet instance
        * @returns Promise
        */
-      const txSendFn = async ({ data, wallet }) => {
+      const txSendFn = async ({ data, wallet, sig }) => {
         const { object: txObj, buffer: txToSignBytes } = await txEncodeFn({ data, wallet });
-        const signature = wallet.sign(bytesToHex(txToSignBytes));
+        const signature = sig ? sig : wallet.sign(bytesToHex(txToSignBytes));
         debug({
           txToSignBytes,
           txToSignHex: toHex(txToSignBytes),

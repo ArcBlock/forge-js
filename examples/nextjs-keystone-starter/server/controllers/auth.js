@@ -59,7 +59,7 @@ module.exports = app => {
   });
 
   // 1. Generate a login token for this login
-  app.get('/api/login', async (req, res) => {
+  app.get('/api/login/token', async (req, res) => {
     const LoginToken = keystone.list('LoginToken').model;
     const token = createLoginToken(req);
     await LoginToken.remove({ token });
@@ -73,7 +73,7 @@ module.exports = app => {
   });
 
   // 2. Create a new login session record (did, token) for this login
-  app.get('/api/auth', async (req, res) => {
+  app.get('/api/login/auth', async (req, res) => {
     const LoginToken = keystone.list('LoginToken').model;
     const { userDid: did, token } = req.query;
     console.log('auth.get', { did, token });
@@ -98,7 +98,7 @@ module.exports = app => {
   });
 
   // 3. Update login session status, verify login session data
-  app.post('/api/auth', (req, res) => {
+  app.post('/api/login/auth', (req, res) => {
     auth
       .verify(Object.assign(req.body, req.query))
       .then(async payload => {

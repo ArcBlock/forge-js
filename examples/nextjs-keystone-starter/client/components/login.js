@@ -13,13 +13,13 @@ import Avatar from './avatar';
 import api from '../libs/api';
 import useInterval from '../hooks/interval';
 
-async function fetchLoginUri() {
-  const res = await api.get('/login');
+async function createLoginToken() {
+  const res = await api.get('/login/token');
   return res.data;
 }
 
 export default function Login({ onClose, onSuccess }) {
-  const state = useAsync(fetchLoginUri);
+  const state = useAsync(createLoginToken);
   const [status, setStatus] = useState('created');
   const [error, setError] = useState(null);
   const [did, setDid] = useState(null);
@@ -29,7 +29,7 @@ export default function Login({ onClose, onSuccess }) {
   const token = refresh ? refresh.token : state.value ? state.value.token : {};
 
   const switchAccount = async () => {
-    const data = await fetchLoginUri();
+    const data = await createLoginToken();
     setRefresh(data);
   };
 
