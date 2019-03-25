@@ -89,6 +89,7 @@ module.exports = app => {
       claims: {
         profile: {
           fields: ['fullName', 'email', 'phone'],
+          description: 'Please provide your email and name to continue',
         },
       },
     });
