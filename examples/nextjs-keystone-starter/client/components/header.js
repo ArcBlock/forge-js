@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import qs from 'querystring';
 import styled from 'styled-components';
+import Link from 'next/link';
 
 import Button from '@material-ui/core/Button';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -34,10 +35,19 @@ export default function Header() {
   return (
     <Nav>
       <div className="items">
-        <Typography variant="h6" color="inherit" noWrap className="brand">
-          Forge WebAPP Starter
-        </Typography>
-        <Button href="/users">Users</Button>
+        <Link href="/">
+          <Typography variant="h6" color="inherit" noWrap className="brand">
+            Forge WebAPP Starter
+          </Typography>
+        </Link>
+        <Button href="/users" size="large">
+          Users
+        </Button>
+        {session.value && session.value.user && (
+          <Button href="/paid" size="large">
+            Paid Content
+          </Button>
+        )}
       </div>
       {session.loading && (
         <Button>
@@ -75,6 +85,7 @@ const Nav = styled(Toolbar)`
 
   .brand {
     margin-right: 60px;
+    cursor: pointer;
   }
 
   .items {
