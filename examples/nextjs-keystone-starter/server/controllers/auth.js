@@ -84,7 +84,14 @@ module.exports = app => {
       await session.save();
     }
 
-    const authInfo = auth.getAuthInfo(token, did);
+    const authInfo = await auth.getAuthInfo({
+      token,
+      claims: {
+        profile: {
+          fields: ['fullName', 'email', 'phone'],
+        },
+      },
+    });
     // console.log('requestAuth', { query: req.query, authInfo });
     res.json(authInfo);
   });
@@ -97,16 +104,16 @@ module.exports = app => {
         const LoginToken = keystone.list('LoginToken').model;
         const User = keystone.list('User').model;
         const {
-          userDID,
+          did,
           token,
           requestedClaims: { profile },
         } = payload;
 
-        console.log('auth.post', { did: userDID, token });
+        console.log('auth.post', { did, token });
 
         const updateLoginToken = async ({ user, succeed }) => {
           if (token) {
-            const session = await LoginToken.findOne({ token, did: userDID });
+            const session = await LoginToken.findOne({ token, did });
             if (session) {
               session.status = succeed ? 'succeed' : 'failed';
               if (user) {
@@ -120,7 +127,7 @@ module.exports = app => {
           }
         };
 
-        const exist = await User.findOne({ did: userDID });
+        const exist = await User.findOne({ did });
         if (exist) {
           exist.name = profile.fullName;
           exist.email = profile.email;
@@ -131,10 +138,10 @@ module.exports = app => {
         } else {
           try {
             const user = new User({
-              did: payload.userDID,
+              did,
               name: profile.fullName,
               email: profile.email,
-              mobile: profile.mobile,
+              mobile: profile.phone,
             });
             await user.save();
             console.log('login.create', user.toObject());

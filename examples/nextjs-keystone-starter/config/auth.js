@@ -2,8 +2,9 @@ const qs = require('querystring');
 const multibase = require('multibase');
 const Mcrypto = require('@arcblock/mcrypto');
 const { hexToBytes, bytesToHex, isHex } = require('@arcblock/forge-util');
-const { fromSecretKey, WalletType } = require('@arcblock/forge-wallet');
+const { fromSecretKey, fromAddress, WalletType } = require('@arcblock/forge-wallet');
 const { jwtDecode, jwtVerify, jwtSign } = require('@arcblock/abt-did');
+const GraphQLClient = require('@arcblock/forge-graphql-client');
 
 const type = WalletType({
   role: Mcrypto.types.RoleType.ROLE_APPLICATION,
@@ -28,9 +29,44 @@ const meta = {
   subtitle: 'Starter projects to develop web application on forge',
 };
 
-// const authUrl = 'http://localhost:3000/api/auth';
-const authUrl = 'http://wangshijun.natapp1.cc/api/auth';
+// const baseUrl = 'http://localhost:3000/api/auth';
+const baseUrl = 'http://wangshijun.natapp1.cc/api';
 const appPk = multibase.encode('base58btc', Buffer.from(hexToBytes(wallet.pk))).toString();
+const client = new GraphQLClient(meta.chainHost);
+
+const requestClaims = {
+  profile({ fields, description }) {
+    return {
+      items: fields || ['fullName'],
+      meta: { description: description || 'Please provide your profile information.' },
+      type: 'profile',
+    };
+  },
+
+  // eslint-disable-next-line object-curly-newline
+  async signature({ txData, txType, sender, description }) {
+    const { buffer: txBuffer } = await client[`encode${txType}`]({
+      data: txData,
+      wallet: fromAddress(sender),
+    });
+
+    return {
+      data: multibase.encode('base58btc', hexToBytes(Mcrypto.Hasher.SHA3.hash256(txBuffer))),
+      meta: {
+        description: description || 'You have to sign this transaction to continue.',
+        typeUrl: 'fg:t:transaction',
+      },
+      method: 'sha3',
+      origin: multibase.encode('base58btc', txBuffer),
+      sig: '',
+      type: 'signature',
+    };
+  },
+
+  generate(params) {
+    return Promise.all(Object.keys(params).map(x => requestClaims[x](params[x])));
+  },
+};
 
 module.exports = {
   wallet,
@@ -41,25 +77,18 @@ module.exports = {
       appPk,
       appDid: `abt:did:${wallet.address}`,
       action: 'requestAuth',
-      url: `${authUrl}?${qs.stringify({ token })}`,
+      url: `${baseUrl}/auth?${qs.stringify({ token })}`,
     };
 
     return `${meta.path}?${qs.stringify(params)}`;
   },
 
-  // TODO: userDID is not used here
-  getAuthInfo(token, userDID) {
+  async getAuthInfo({ token, claims }) {
     const payload = {
       action: 'responseAuth',
       appInfo: meta,
-      requestedClaims: [
-        {
-          items: ['email', 'fullName', 'phone'],
-          meta: { description: 'Please provide your profile information.' },
-          type: 'profile',
-        },
-      ],
-      url: `${authUrl}?${qs.stringify({ token })}`,
+      requestedClaims: await requestClaims.generate(claims),
+      url: `${baseUrl}/auth?${qs.stringify({ token })}`,
     };
 
     return {
@@ -68,6 +97,12 @@ module.exports = {
     };
   },
 
+  /**
+   * Verify a DID auth response sent from ABT Wallet
+   *
+   * @param {*} data
+   * @returns Promise<>
+   */
   verifyAuth(data) {
     return new Promise((resolve, reject) => {
       console.log('verifyLogin', data);
@@ -105,7 +140,7 @@ module.exports = {
       }
 
       // check timestamp
-      return resolve({ token, userDID: payload.iss, requestedClaims: payload.requestedClaims });
+      return resolve({ token, did: payload.iss, requestedClaims: payload.requestedClaims });
     });
   },
 };

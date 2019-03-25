@@ -1,3 +1,4 @@
+/* eslint no-return-assign:"off" */
 import React, { useState, useEffect } from 'react';
 import qs from 'querystring';
 import styled from 'styled-components';

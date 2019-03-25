@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@arcblock/abt-did": "^0.15.0",
+    "@arcblock/forge-graphql-client": "^0.15.0",
     "@arcblock/forge-util": "^0.15.0",
     "@arcblock/forge-wallet": "^0.15.0",
     "@arcblock/mcrypto": "^0.15.0",
