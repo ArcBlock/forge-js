@@ -44,7 +44,6 @@ export default function Login({ onClose, onSuccess }) {
         const res = await api.get(`/login/status?${qs.stringify({ token })}`);
         const { status: _status, error: _error, did: _did } = res.data;
         if (status) {
-          console.log({ status, type: typeof onSuccess });
           if (_did) {
             setDid(_did);
           }
@@ -96,7 +95,7 @@ export default function Login({ onClose, onSuccess }) {
         </div>
         <div className="container" style={{ background: '#eee', padding: '24px 40px' }}>
           <div className="extra">
-            <div className="tip tip--install">Don't have ABT Wallet? Get it here!</div>
+            <div className="tip tip--install">Dont have ABT Wallet? Get it here!</div>
             <div className="apps">
               <Button
                 variant="outlined"
