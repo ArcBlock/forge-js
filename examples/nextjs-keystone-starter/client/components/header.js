@@ -23,7 +23,7 @@ export default function Header() {
         <Typography variant="h6" color="inherit" noWrap className="brand">
           Forge WebAPP Starter
         </Typography>
-        <Button>Users</Button>
+        <Button href="/users">Users</Button>
       </div>
       {session.loading && (
         <Button>
