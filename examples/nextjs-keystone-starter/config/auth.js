@@ -3,7 +3,7 @@ const multibase = require('multibase');
 const Mcrypto = require('@arcblock/mcrypto');
 const { hexToBytes, bytesToHex, isHex } = require('@arcblock/forge-util');
 const { fromSecretKey, WalletType } = require('@arcblock/forge-wallet');
-const { jwtDecode, jwtVerify, jwtSign, fromPublicKey } = require('@arcblock/abt-did');
+const { jwtDecode, jwtVerify, jwtSign } = require('@arcblock/abt-did');
 
 const type = WalletType({
   role: Mcrypto.types.RoleType.ROLE_APPLICATION,
@@ -36,19 +36,19 @@ module.exports = {
   wallet,
   meta,
 
-  getLoginUri(sessionID) {
+  getLoginUri(token) {
     const params = {
       appPk,
       appDid: `abt:did:${wallet.address}`,
       action: 'requestAuth',
-      url: `${authUrl}?${qs.stringify({ sessionID })}`,
+      url: `${authUrl}?${qs.stringify({ token })}`,
     };
 
     return `${meta.path}?${qs.stringify(params)}`;
   },
 
   // TODO: userDID is not used here
-  getAuthInfo(sessionID, userDID) {
+  getAuthInfo(token, userDID) {
     const payload = {
       action: 'responseAuth',
       appInfo: meta,
@@ -59,7 +59,7 @@ module.exports = {
           type: 'profile',
         },
       ],
-      url: `${authUrl}?${qs.stringify({ sessionID })}`,
+      url: `${authUrl}?${qs.stringify({ token })}`,
     };
 
     return {
@@ -72,7 +72,7 @@ module.exports = {
     return new Promise((resolve, reject) => {
       console.log('verifyLogin', data);
 
-      const { userPk, userInfo, sessionID } = data;
+      const { userPk, userInfo, token } = data;
       if (!userPk) {
         return reject(new Error('userPk is required to login'));
       }
@@ -80,6 +80,7 @@ module.exports = {
         return reject(new Error('userInfo(jwt token) is required to login'));
       }
 
+      // We should support both base16 and base58 format
       let userPkHex = '';
       if (multibase.isEncoded(userPk)) {
         userPkHex = bytesToHex(multibase.decode(userPk));
@@ -104,7 +105,7 @@ module.exports = {
       }
 
       // check timestamp
-      return resolve({ sessionID, userDID: payload.iss, requestedClaims: payload.requestedClaims });
+      return resolve({ token, userDID: payload.iss, requestedClaims: payload.requestedClaims });
     });
   },
 };
