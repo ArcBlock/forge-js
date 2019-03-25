@@ -1,6 +1,6 @@
 const upperFirst = require('lodash/upperFirst');
 const { types, getSigner, getHasher } = require('@arcblock/mcrypto');
-const { fromPublicKey: DIDFromPublicKey } = require('@arcblock/abt-did');
+const { fromPublicKey: DIDFromPublicKey, toTypeInfo } = require('@arcblock/abt-did');
 
 const mapping = {
   pk: 'key',
@@ -57,12 +57,15 @@ function Wallet(keyPair, type) {
       return signer.sign(hash, keyPair.sk);
     },
     verify(data, signature) {
+      if (!keyPair.pk) {
+        throw new Error('Cannot verify data without a publicKey');
+      }
       const hash = hasher(data);
       // console.log('verify.hash', hash.replace(/^0x/i, '').toUpperCase());
       return signer.verify(hash, signature, keyPair.pk);
     },
     toAddress() {
-      return DIDFromPublicKey(keyPair.pk, type);
+      return keyPair.pk ? DIDFromPublicKey(keyPair.pk, type) : keyPair.address;
     },
     toJSON() {
       return {
@@ -85,6 +88,10 @@ function fromPublicKey(pk, _type) {
   return Wallet({ pk }, WalletType(_type));
 }
 
+function fromAddress(address) {
+  return Wallet({ address }, WalletType(toTypeInfo(address)));
+}
+
 function fromRandom(_type) {
   const type = WalletType(_type);
   const signer = getSigner(type.pk);
@@ -101,6 +108,8 @@ module.exports = {
   fromSecretKey,
   fromPublicKey,
   fromRandom,
+  fromAddress,
+  fromDID: fromAddress,
   fromJSON,
   Wallet,
   WalletType,
