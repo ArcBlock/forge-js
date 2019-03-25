@@ -21,9 +21,7 @@ class GraphqlClient extends BaseClient {
       maxQueryDepth: 6,
     });
 
-    if (['getChainInfo', 'getAccountState', 'sendTx'].every(x => typeof this[x] === 'function')) {
-      this._initTxMethods();
-    }
+    this._initTxMethods();
   }
 
   getType(x) {
@@ -55,21 +53,13 @@ class GraphqlClient extends BaseClient {
         // Determine sender address
         const address = wallet.toAddress();
 
-        // Determine chainId
-        const { info } = await this.getChainInfo();
-        const chainId = info.network;
-
-        // Determine nonce
-        let nonce = 1;
-        if (x !== 'DeclareTx') {
-          const res = await this.getAccountState({ address });
-          // console.log(`getAccountState.${address}`, res);
-          if (!res.state) {
-            throw new Error(
-              `Address ${address} not declared on chain, please declare before send tx`
-            );
-          }
-          nonce = res.state.nonce;
+        // Determine chainId & nonce
+        let nonce = Date.now();
+        let chainId = data.chainId;
+        delete data.chainId;
+        if (!chainId) {
+          const { info } = await this.getChainInfo();
+          chainId = info.network;
         }
 
         debug({
