@@ -7,7 +7,9 @@ export default function Avatar({ did, size }) {
       window.jdenticon();
     }
   });
-  return <svg width={size} height={size} data-jdenticon-value={did} />;
+
+  const fullDid = did.indexOf('did:abt:') === 0 ? did : `abt:did:${did}`;
+  return <svg width={size} height={size} data-jdenticon-value={fullDid} />;
 }
 
 Avatar.propTypes = {
