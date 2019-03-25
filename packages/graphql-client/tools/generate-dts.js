@@ -139,13 +139,22 @@ declare class GraphQLClient {
 
   ${client
     .getTxSendMethods()
-    .concat(client.getTxEncodeMethods())
     .map(
       x =>
         `${x}(param: GraphQLClient.TxParam<GraphQLClient.${x.replace(
           /^send/,
           ''
         )}>): Promise<GraphQLClient.ResponseSendTx>;`
+    )
+    .join('\n')}
+  ${client
+    .getTxEncodeMethods()
+    .map(
+      x =>
+        `${x}(param: GraphQLClient.TxParam<GraphQLClient.${x.replace(
+          /^send/,
+          ''
+        )}>): Promise<GraphQLClient.EncodeTxResult>;`
     )
     .join('\n')}
   ${generateMethods(queries, namespace, 'QueryResult')}
@@ -189,6 +198,11 @@ declare namespace ${namespace} {
     role: number;
     address: number;
     hash: number;
+  }
+
+  export interface EncodeTxResult {
+    object: object;
+    buffer: buffer;
   }
 
 ${sortBy(types, ['kind', 'name'])

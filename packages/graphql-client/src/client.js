@@ -99,7 +99,7 @@ class GraphqlClient extends BaseClient {
         const txToSign = Transaction.fromObject(txObj);
         const txToSignBytes = Transaction.encode(txToSign).finish();
 
-        return { object: txObj, binary: txToSignBytes };
+        return { object: txObj, buffer: txToSignBytes };
       };
 
       const encodeMethod = camelcase(`encode_${x}`);

@@ -67,40 +67,40 @@ declare class GraphQLClient {
   ): Promise<GraphQLClient.ResponseSendTx>;
   encodeAccountMigrateTx(
     param: GraphQLClient.TxParam<GraphQLClient.encodeAccountMigrateTx>
-  ): Promise<GraphQLClient.ResponseSendTx>;
+  ): Promise<GraphQLClient.EncodeTxResult>;
   encodeConsensusUpgradeTx(
     param: GraphQLClient.TxParam<GraphQLClient.encodeConsensusUpgradeTx>
-  ): Promise<GraphQLClient.ResponseSendTx>;
+  ): Promise<GraphQLClient.EncodeTxResult>;
   encodeConsumeAssetTx(
     param: GraphQLClient.TxParam<GraphQLClient.encodeConsumeAssetTx>
-  ): Promise<GraphQLClient.ResponseSendTx>;
+  ): Promise<GraphQLClient.EncodeTxResult>;
   encodeCreateAssetTx(
     param: GraphQLClient.TxParam<GraphQLClient.encodeCreateAssetTx>
-  ): Promise<GraphQLClient.ResponseSendTx>;
+  ): Promise<GraphQLClient.EncodeTxResult>;
   encodeDeclareTx(
     param: GraphQLClient.TxParam<GraphQLClient.encodeDeclareTx>
-  ): Promise<GraphQLClient.ResponseSendTx>;
+  ): Promise<GraphQLClient.EncodeTxResult>;
   encodeDeclareFileTx(
     param: GraphQLClient.TxParam<GraphQLClient.encodeDeclareFileTx>
-  ): Promise<GraphQLClient.ResponseSendTx>;
+  ): Promise<GraphQLClient.EncodeTxResult>;
   encodeExchangeTx(
     param: GraphQLClient.TxParam<GraphQLClient.encodeExchangeTx>
-  ): Promise<GraphQLClient.ResponseSendTx>;
+  ): Promise<GraphQLClient.EncodeTxResult>;
   encodeStakeTx(
     param: GraphQLClient.TxParam<GraphQLClient.encodeStakeTx>
-  ): Promise<GraphQLClient.ResponseSendTx>;
+  ): Promise<GraphQLClient.EncodeTxResult>;
   encodeSysUpgradeTx(
     param: GraphQLClient.TxParam<GraphQLClient.encodeSysUpgradeTx>
-  ): Promise<GraphQLClient.ResponseSendTx>;
+  ): Promise<GraphQLClient.EncodeTxResult>;
   encodeTransferTx(
     param: GraphQLClient.TxParam<GraphQLClient.encodeTransferTx>
-  ): Promise<GraphQLClient.ResponseSendTx>;
+  ): Promise<GraphQLClient.EncodeTxResult>;
   encodeUpdateAssetTx(
     param: GraphQLClient.TxParam<GraphQLClient.encodeUpdateAssetTx>
-  ): Promise<GraphQLClient.ResponseSendTx>;
+  ): Promise<GraphQLClient.EncodeTxResult>;
   encodePokeTx(
     param: GraphQLClient.TxParam<GraphQLClient.encodePokeTx>
-  ): Promise<GraphQLClient.ResponseSendTx>;
+  ): Promise<GraphQLClient.EncodeTxResult>;
   getAccountState(
     params: GraphQLClient.GetAccountStateParams
   ): GraphQLClient.QueryResult<GraphQLClient.ResponseGetAccountState>;
@@ -244,6 +244,11 @@ declare namespace GraphQLClient {
     role: number;
     address: number;
     hash: number;
+  }
+
+  export interface EncodeTxResult {
+    object: object;
+    buffer: buffer;
   }
 
   export enum Direction {
