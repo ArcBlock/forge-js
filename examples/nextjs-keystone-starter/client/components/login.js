@@ -79,7 +79,7 @@ export default function Login({ onClose, onSuccess }) {
   if (status === 'created') {
     return (
       <Container>
-        <div className="close" onClose={onClose}>
+        <div className="close" onClick={onClose}>
           &times;
         </div>
         <div className="container">
@@ -124,7 +124,7 @@ export default function Login({ onClose, onSuccess }) {
   if (status === 'scanned') {
     return (
       <Container>
-        <div className="close" onClose={onClose}>
+        <div className="close" onClick={onClose}>
           &times;
         </div>
         <div className="container">
@@ -143,7 +143,7 @@ export default function Login({ onClose, onSuccess }) {
 
   return (
     <Container>
-      <div className="close" onClose={onClose}>
+      <div className="close" onClick={onClose}>
         &times;
       </div>
       <div className="container">
@@ -172,6 +172,8 @@ const Container = styled.div`
     color: #999999;
     font-size: 24px;
     line-height: 24px;
+    cursor: pointer;
+    user-select: none;
   }
 
   .container {
