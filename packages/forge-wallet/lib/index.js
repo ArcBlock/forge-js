@@ -1,6 +1,6 @@
 const upperFirst = require('lodash/upperFirst');
 const { types, getSigner, getHasher } = require('@arcblock/mcrypto');
-const { fromPublicKey: DIDFromPublicKey, toTypeInfo } = require('@arcblock/abt-did');
+const { DID_PREFIX, fromPublicKey: DIDFromPublicKey, toTypeInfo } = require('@arcblock/abt-did');
 
 const mapping = {
   pk: 'key',
@@ -89,7 +89,7 @@ function fromPublicKey(pk, _type) {
 }
 
 function fromAddress(address) {
-  return Wallet({ address }, WalletType(toTypeInfo(address)));
+  return Wallet({ address: address.replace(DID_PREFIX, '') }, WalletType(toTypeInfo(address)));
 }
 
 function fromRandom(_type) {
