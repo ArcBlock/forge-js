@@ -1,52 +1,21 @@
 const keystone = require('keystone');
+const Mcrypto = require('@arcblock/mcrypto');
 const auth = require('../../config/auth');
 
 function createLoginToken(req) {
-  return req.sessionID;
+  return Mcrypto.Hasher.SHA3.hash256(req.sessionID + process.env.COOKIE_SECRET).replace(/^0x/, '');
 }
 
 module.exports = nextApp => app => {
   const handle = nextApp.getRequestHandler();
 
   app.get('/api/session', async (req, res) => {
-    const { LoginToken, User } = keystone.mongoose.models;
-    const { token } = req.query;
-    if (!token) {
-      res.json(req.session);
-      return;
-    }
-
-    const session = await LoginToken.findOne({ token, status: 'succeed' });
-    if (!session) {
-      res.json(req.session);
-      return;
-    }
-
-    const user = await User.findById(session.uid);
-    if (!user) {
-      res.json(req.session);
-      return;
-    }
-
-    // FIXME: old session info should be copied to new session
-    // const info = req.session;
-    req.session.regenerate(async err => {
-      if (err) {
-        res.status(500).json({ error: err });
-        return;
-      }
-
-      // Cleanup
-      await session.remove();
-
-      // Populate user to session
-      req.session.user = user.toObject();
-      res.json(req.session);
-    });
+    res.json(req.session);
   });
 
   app.get('/api/login/status', async (req, res) => {
-    const { LoginToken } = keystone.mongoose.models;
+    const LoginToken = keystone.list('LoginToken').model;
+    const User = keystone.list('User').model;
     const { token } = req.query;
     if (!token) {
       res.status(400).json({ error: 'login token is required to check status' });
@@ -55,7 +24,32 @@ module.exports = nextApp => app => {
 
     const session = await LoginToken.findOne({ token });
     if (session) {
-      res.status(200).json({ status: session.status });
+      if (!session.uid) {
+        res.status(200).json({ status: session.status });
+        return;
+      }
+
+      const user = await User.findById(session.uid);
+      if (!user) {
+        res.status(200).json({ status: session.status });
+        return;
+      }
+
+      // FIXME: old session info should be copied to new session
+      // const info = req.session;
+      req.session.regenerate(async err => {
+        if (err) {
+          res.status(500).json({ error: err });
+          return;
+        }
+
+        // Cleanup
+        await session.remove();
+
+        // Populate user to session
+        req.session.user = user.toObject();
+        res.status(200).json({ status: session.status, session: req.session });
+      });
     } else {
       res.status(404).json({ error: 'login status not found' });
     }
@@ -63,7 +57,7 @@ module.exports = nextApp => app => {
 
   // 1. Generate a login token for this login
   app.get('/api/login', async (req, res) => {
-    const { LoginToken } = keystone.mongoose.models;
+    const LoginToken = keystone.list('LoginToken').model;
     const token = createLoginToken(req);
     await LoginToken.remove({ token });
     const session = new LoginToken({ token, status: 'created' });
@@ -77,9 +71,9 @@ module.exports = nextApp => app => {
 
   // 2. Create a new login session record (did, token) for this login
   app.get('/api/auth', async (req, res) => {
-    const { LoginToken } = keystone.mongoose.models;
+    const LoginToken = keystone.list('LoginToken').model;
     const { userDid: did, token } = req.query;
-    const session = LoginToken.findOne({ token });
+    const session = await LoginToken.findOne({ token });
     if (session) {
       session.did = did;
       session.status = 'scanned';
@@ -96,7 +90,8 @@ module.exports = nextApp => app => {
     auth
       .verifyAuth(Object.assign(req.body, req.query))
       .then(async payload => {
-        const { User, LoginToken } = keystone.mongoose.models;
+        const LoginToken = keystone.list('LoginToken').model;
+        const User = keystone.list('User').model;
         const {
           userDID,
           token,
@@ -105,7 +100,7 @@ module.exports = nextApp => app => {
 
         const updateLoginToken = async ({ user, succeed }) => {
           if (token) {
-            const session = LoginToken.findOne({ token });
+            const session = await LoginToken.findOne({ token, did: userDID });
             if (session) {
               session.status = succeed ? 'succeed' : 'failed';
               if (user) {

@@ -18,13 +18,24 @@ export default function LoginQRCode() {
   const state = useAsync(fetchLoginUri);
   const token = state.value ? state.value.token : {};
   const [status, setStatus] = useState('created');
+  const [error, setError] = useState(null);
 
   // Check login status if we have a token
   useInterval(
     async () => {
       if (token) {
         const res = await api.get(`/login/status?${qs.stringify({ token })}`);
-        console.log('checkLoginStatus', res);
+        const { status: _status, error: _error } = res.data;
+        if (status) {
+          if (status === 'succeed') {
+            // TODO: make this a callback
+            window.location.reload();
+            return;
+          }
+          setStatus(_status);
+        } else {
+          setError(_error);
+        }
       }
     },
     token ? 1000 : null
@@ -44,6 +55,7 @@ export default function LoginQRCode() {
       {status === 'scanned' && <p>Please confirm on the wallet app</p>}
       {status === 'failed' && <p>Error occurred during wallet auth</p>}
       {status === 'succeed' && <p>Authentication success, now reloading...</p>}
+      {!!error && <p>Error: {error}</p>}
     </Container>
   );
 }
