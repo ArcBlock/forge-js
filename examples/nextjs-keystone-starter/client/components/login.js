@@ -33,6 +33,10 @@ export default function Login({ onClose, onSuccess }) {
     setRefresh(data);
   };
 
+  if (status === 'succeed' && typeof onSuccess === 'function') {
+    onSuccess();
+  }
+
   // Check login status if we have a token
   useInterval(
     async () => {
@@ -40,19 +44,18 @@ export default function Login({ onClose, onSuccess }) {
         const res = await api.get(`/login/status?${qs.stringify({ token })}`);
         const { status: _status, error: _error, did: _did } = res.data;
         if (status) {
-          setStatus(_status);
+          console.log({ status, type: typeof onSuccess });
           if (_did) {
             setDid(_did);
           }
-          if (status === 'succeed' && typeof onSuccess === 'function') {
-            onSuccess();
-          }
+
+          setStatus(_status);
         } else {
           setError(_error);
         }
       }
     },
-    token ? 1000 : null
+    token && status !== 'succeed' ? 1000 : null
   );
 
   if (state.loading) {
@@ -187,6 +190,10 @@ const Container = styled.div`
 
   .qrcode {
     margin-bottom: 32px;
+  }
+
+  .avatar {
+    margin-top: 32px;
   }
 
   .tip--scan,

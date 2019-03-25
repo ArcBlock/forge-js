@@ -41,7 +41,7 @@ export default function Header() {
         </div>
       )}
       {open && (
-        <Dialog open maxWidth="sm" onClose={closeDialog}>
+        <Dialog open maxWidth="sm" disableBackdropClick disableEscapeKeyDown onClose={closeDialog}>
           <Login onClose={closeDialog} onSuccess={() => window.location.reload()} />
         </Dialog>
       )}
