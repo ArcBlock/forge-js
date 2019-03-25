@@ -3,7 +3,7 @@ const Mcrypto = require('@arcblock/mcrypto');
 const auth = require('../../config/auth');
 
 function createLoginToken(req) {
-  return Mcrypto.Hasher.SHA3.hash256(req.sessionID + process.env.COOKIE_SECRET).replace(/^0x/, '');
+  return Mcrypto.Hasher.SHA3.hash256(req.sessionID + Date.now()).replace(/^0x/, '');
 }
 
 module.exports = nextApp => app => {
@@ -25,13 +25,13 @@ module.exports = nextApp => app => {
     const session = await LoginToken.findOne({ token });
     if (session) {
       if (!session.uid) {
-        res.status(200).json({ status: session.status });
+        res.status(200).json(session);
         return;
       }
 
       const user = await User.findById(session.uid);
       if (!user) {
-        res.status(200).json({ status: session.status });
+        res.status(200).json(session);
         return;
       }
 
@@ -48,7 +48,7 @@ module.exports = nextApp => app => {
 
         // Populate user to session
         req.session.user = user.toObject();
-        res.status(200).json({ status: session.status, session: req.session });
+        res.status(200).json(session);
       });
     } else {
       res.status(404).json({ error: 'login status not found' });
@@ -73,6 +73,7 @@ module.exports = nextApp => app => {
   app.get('/api/auth', async (req, res) => {
     const LoginToken = keystone.list('LoginToken').model;
     const { userDid: did, token } = req.query;
+    console.log('auth.get', { did, token });
     const session = await LoginToken.findOne({ token });
     if (session) {
       session.did = did;
@@ -97,6 +98,8 @@ module.exports = nextApp => app => {
           token,
           requestedClaims: { profile },
         } = payload;
+
+        console.log('auth.post', { did: userDID, token });
 
         const updateLoginToken = async ({ user, succeed }) => {
           if (token) {
