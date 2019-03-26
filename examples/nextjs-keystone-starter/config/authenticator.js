@@ -5,6 +5,7 @@ const GraphQLClient = require('@arcblock/forge-graphql-client');
 const { hexToBytes, bytesToHex, isHex } = require('@arcblock/forge-util');
 const { fromAddress } = require('@arcblock/forge-wallet');
 const { jwtDecode, jwtVerify, jwtSign } = require('@arcblock/abt-did');
+const debug = require('debug')('DIDAuth:Authenticator');
 
 module.exports = class Authenticator {
   constructor({ wallet, appInfo, baseUrl }) {
@@ -30,7 +31,9 @@ module.exports = class Authenticator {
       url: `${this.baseUrl}${pathname}?${qs.stringify({ token })}`,
     };
 
-    return `${this.appInfo.path}?${qs.stringify(params)}`;
+    const uri = `${this.appInfo.path}?${qs.stringify(params)}`;
+    debug('uri', { token, pathname, uri });
+    return uri;
   }
 
   async sign({ token, claims, pathname }) {
@@ -55,7 +58,7 @@ module.exports = class Authenticator {
    */
   verify(data) {
     return new Promise((resolve, reject) => {
-      console.log('verifyLogin', data);
+      debug('verify', data);
 
       const { userPk, userInfo, token } = data;
       if (!userPk) {
@@ -80,17 +83,11 @@ module.exports = class Authenticator {
         return reject(new Error('userInfo signature invalid'));
       }
 
-      const payload = jwtDecode(userInfo);
-      if (Array.isArray(payload.requestedClaims)) {
-        payload.requestedClaims = payload.requestedClaims.reduce((acc, x) => {
-          acc[x.type] = x;
-          delete acc[x.type].type;
-          return acc;
-        }, {});
-      }
+      const { iss, requestedClaims } = jwtDecode(userInfo);
+      debug('decode', { iss, requestedClaims });
 
       // check timestamp
-      return resolve({ token, did: payload.iss, requestedClaims: payload.requestedClaims });
+      return resolve({ token, did: iss, claims: requestedClaims });
     });
   }
 

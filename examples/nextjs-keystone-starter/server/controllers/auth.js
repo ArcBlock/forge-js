@@ -28,8 +28,9 @@ module.exports = app => {
         description: 'Please provide your email and name to continue',
       },
     },
-    onAuthSuccess: async ({ profile, did }) => {
+    onAuthSuccess: async ({ claims, did }) => {
       const User = keystone.list('User').model;
+      const profile = claims.find(x => x.type === 'profile');
       const exist = await User.findOne({ did });
       if (exist) {
         exist.name = profile.fullName;
@@ -37,17 +38,13 @@ module.exports = app => {
         exist.mobile = profile.mobile;
         await exist.save();
       } else {
-        try {
-          const user = new User({
-            did,
-            name: profile.fullName,
-            email: profile.email,
-            mobile: profile.phone,
-          });
-          await user.save();
-        } catch (err) {
-          console.error(err);
-        }
+        const user = new User({
+          did,
+          name: profile.fullName,
+          email: profile.email,
+          mobile: profile.phone,
+        });
+        await user.save();
       }
     },
     onStatusCheck: (req, { did }) =>

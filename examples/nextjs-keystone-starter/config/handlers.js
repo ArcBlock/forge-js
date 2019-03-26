@@ -1,9 +1,10 @@
 /* eslint-disable object-curly-newline */
 const Mcrypto = require('@arcblock/mcrypto');
+const debug = require('debug')('DIDAuth:Handlers');
 
 const sha3 = Mcrypto.Hasher.SHA3.hash256;
 
-module.exports = class AuthHandlers {
+module.exports = class Handlers {
   constructor({ tokenGenerator, tokenStorage, authenticator }) {
     if (typeof tokenGenerator !== 'function') {
       throw new Error('tokenGenerator must be a function');
@@ -44,6 +45,7 @@ module.exports = class AuthHandlers {
       try {
         const token = sha3(this.generator(req, { action, prefix })).replace(/^0x/, '');
         await this.storage.create(token, 'created');
+        debug('generate token', { action, prefix, token });
 
         res.json({
           token,
@@ -101,8 +103,10 @@ module.exports = class AuthHandlers {
     app.post(pathname, async (req, res) => {
       try {
         const params = Object.assign({}, req.body, req.query);
-        const { did, token, requestedClaims } = this.authenticator.verify(params);
-        await onAuthSuccess(Object.assign({}, requestedClaims, { did, token }));
+        // eslint-disable-next-line no-shadow
+        const { did, token, claims } = await this.authenticator.verify(params);
+        debug('verify auth', { did, token, claims });
+        await onAuthSuccess({ did, token, claims });
 
         if (token) {
           const exist = await this.storage.exist(token, did);
