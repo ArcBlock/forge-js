@@ -51,3 +51,8 @@ Plan to support:
 - token-storage-psql
 - token-storage-nedb
 - token-storage-memory
+
+## Issues
+
+- Application need to verify DID used for login and payment
+- Application should ask user to select payment DID
