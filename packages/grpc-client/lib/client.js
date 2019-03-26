@@ -152,7 +152,7 @@ class Client {
       new Promise(async (resolve, reject) => {
         try {
           params.itx = { type: x, value: params.itx };
-          params.nonce = await this._getNonce(params);
+          params.nonce = params.nonce || Date.now();
 
           const { tx } = await this.createTx(params);
           const { hash } = await this.sendTx({
@@ -186,25 +186,6 @@ class Client {
         acc[x] = this[x].itx;
         return acc;
       }, {});
-  }
-
-  /**
-   * Ensure we have an correct nonce set before sending transaction
-   *
-   * @param {*} params
-   * @returns
-   * @memberof Client
-   */
-  _getNonce(params) {
-    if (typeof params.nonce === 'number') {
-      return params.nonce;
-    }
-
-    return new Promise((resolve, reject) => {
-      const stream = this.getAccountState({ address: params.from });
-      stream.on('data', ({ state }) => resolve(state.nonce));
-      stream.on('error', err => reject(err));
-    });
   }
 
   /**

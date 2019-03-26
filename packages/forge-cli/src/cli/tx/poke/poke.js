@@ -8,7 +8,9 @@ async function main() {
   const client = createRpcClient();
   const wallet = config.get('cli.wallet');
   const itx = {
-    date: moment(new Date().toISOString()).format('YYYY-MM-DD'),
+    date: moment(new Date().toISOString())
+      .utc()
+      .format('YYYY-MM-DD'),
     address: 'zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz',
   };
 
