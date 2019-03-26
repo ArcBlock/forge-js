@@ -52,6 +52,9 @@ export default function ProfilePage() {
           <Button color="secondary" variant="outlined" onClick={onLogout}>
             Logout
           </Button>
+          <Button color="primary" variant="outlined" href="/paid" style={{ marginTop: '30px' }}>
+            My Purchase
+          </Button>
         </div>
         <div className="meta">
           <Typography component="h3" variant="h4">

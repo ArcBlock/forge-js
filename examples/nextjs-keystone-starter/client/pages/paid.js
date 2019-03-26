@@ -74,11 +74,14 @@ export default function PaymentPage() {
         <div className="avatar">
           <Avatar size={240} did={state.value.session.user.did} />
           <Button
-            color="primary"
+            color="secondary"
             disabled={state.value.payment}
             variant="outlined"
             onClick={() => toggle()}>
             {state.value.payment ? 'Already Paid' : 'Make Payment'}
+          </Button>
+          <Button color="primary" variant="outlined" href="/me" style={{ marginTop: '30px' }}>
+            My Profile
           </Button>
         </div>
         <div className="meta">
@@ -174,17 +177,21 @@ const Main = styled.main`
     }
 
     &:after {
-      color: #ff0000;
+      color: #dd2233;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell,
+        'Open Sans', 'Helvetica Neue', sans-serif;
       content: 'Pay 100 TBA to view this document';
       font-size: 30px;
+      line-height: 45px;
+      border-radius: 15px;
+      padding: 15px;
       font-weight: bold;
-      height: 100%;
       position: absolute;
       text-transform: uppercase;
       animation: blink 800ms ease;
+      border: 0.5rem double #dd2233;
       top: 35%;
       left: 15%;
-      width: 100%;
     }
 
     @keyframes blink {
