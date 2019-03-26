@@ -8,7 +8,7 @@
  */
 
 exports.create = {
-  User: [
+  InternalUser: [
     {
       'name.first': 'Admin',
       'name.last': 'User',

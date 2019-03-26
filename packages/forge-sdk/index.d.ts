@@ -126,6 +126,9 @@ declare class RpcClient {
   listBlocks(
     request: forge_abi.RequestListBlocks
   ): RpcClient.UnaryResult<forge_abi.ResponseListBlocks>;
+  listAssets(
+    request: forge_abi.RequestListAssets
+  ): RpcClient.UnaryResult<forge_abi.ResponseListAssets>;
 }
 /**
  * Create new TCP Server to handle transactions from forge-core
@@ -686,6 +689,7 @@ declare namespace forge_abi {
     votingPower: number;
     proposerPriority: string;
     name: string;
+    geoInfo: forge_abi.GeoInfo;
   }
 
   export interface GenesisInfo {
@@ -1239,6 +1243,18 @@ declare namespace forge_abi {
     blocks: Array<forge_abi.IndexedBlock>;
   }
 
+  export interface RequestListAssets {
+    paging: forge_abi.PageInput;
+    ownerAddress: string;
+  }
+
+  export interface ResponseListAssets {
+    code: forge_abi.StatusCode;
+    page: forge_abi.PageInfo;
+    account: forge_abi.IndexedAccountState;
+    assets: Array<forge_abi.IndexedAssetState>;
+  }
+
   export interface AccountMigrateTx {
     pk: Uint8Array;
     type: forge_abi.WalletType;
@@ -1496,7 +1512,7 @@ declare namespace abci_vendor {
     ops: Array<abci_vendor.ProofOp>;
   }
 
-  export interface BlockSizeParams {
+  export interface BlockParams {
     maxBytes: abci_vendor.int64;
     maxGas: abci_vendor.int64;
   }
@@ -1510,7 +1526,7 @@ declare namespace abci_vendor {
   }
 
   export interface ConsensusParams {
-    blockSize: abci_vendor.BlockSizeParams;
+    block: abci_vendor.BlockParams;
     evidence: abci_vendor.EvidenceParams;
     validator: abci_vendor.ValidatorParams;
   }
@@ -1525,24 +1541,19 @@ declare namespace abci_vendor {
     App: number;
   }
 
-  export interface PartSetHeader {
-    total: abci_vendor.int32;
-    hash: Uint8Array;
-  }
-
   export interface BlockID {
     hash: Uint8Array;
     partsHeader: abci_vendor.PartSetHeader;
   }
 
+  export interface PartSetHeader {
+    total: abci_vendor.int32;
+    hash: Uint8Array;
+  }
+
   export interface Validator {
     address: Uint8Array;
     power: abci_vendor.int64;
-  }
-
-  export interface PubKey {
-    type: string;
-    data: Uint8Array;
   }
 
   export interface ValidatorUpdate {
@@ -1553,6 +1564,11 @@ declare namespace abci_vendor {
   export interface VoteInfo {
     validator: abci_vendor.Validator;
     signedLastBlock: abci_vendor.bool;
+  }
+
+  export interface PubKey {
+    type: string;
+    data: Uint8Array;
   }
 
   export interface Evidence {

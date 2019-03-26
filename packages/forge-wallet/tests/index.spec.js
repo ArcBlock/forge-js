@@ -1,4 +1,4 @@
-const { fromPublicKey, fromSecretKey, fromJSON } = require('../lib');
+const { fromPublicKey, fromSecretKey, fromJSON, fromAddress } = require('../lib');
 const { types } = require('@arcblock/mcrypto');
 
 const sk =
@@ -44,5 +44,12 @@ describe('#forge-wallet', () => {
     const signature = wallet.sign(message);
     expect(signature).toEqual(sig);
     expect(wallet.verify(message, signature)).toEqual(true);
+  });
+
+  it('should gen type from address', () => {
+    const wallet = fromAddress(appId);
+    expect(wallet.type.pk).toEqual(type.pk);
+    expect(wallet.type.hash).toEqual(type.hash);
+    expect(wallet.type.role).toEqual(type.role);
   });
 });

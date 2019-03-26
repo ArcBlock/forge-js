@@ -55,7 +55,10 @@ export default class StyledDocument extends Document {
   render() {
     return (
       <html lang="en">
-        <Head>{this.props.styleTags}</Head>
+        <Head>
+          {this.props.styleTags}
+          <script src="https://cdn.jsdelivr.net/npm/jdenticon@2.1.1" async />
+        </Head>
         <body style={{ padding: 0, margin: 0 }}>
           <Main />
           <NextScript />

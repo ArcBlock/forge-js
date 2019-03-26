@@ -21,67 +21,56 @@ class GraphqlClient extends BaseClient {
       maxQueryDepth: 6,
     });
 
-    if (['getChainInfo', 'getAccountState', 'sendTx'].every(x => typeof this[x] === 'function')) {
-      this._initTxMethods();
-    }
+    this._initTxMethods();
   }
 
   getType(x) {
     return getType(x);
   }
 
-  getTxMethods() {
+  getTxSendMethods() {
     return transactions.map(x => camelcase(`send_${x}`));
+  }
+
+  getTxEncodeMethods() {
+    return transactions.map(x => camelcase(`encode_${x}`));
+  }
+
+  decodeTx(buffer) {
+    const Transaction = getType('Transaction');
+    return Transaction.decode(buffer);
   }
 
   _initTxMethods() {
     const toHex = bytes => stripHexPrefix(bytesToHex(bytes)).toUpperCase();
 
     transactions.forEach(x => {
-      const method = camelcase(`send_${x}`);
+      const Any = getType('google.protobuf.Any');
+      const Transaction = getType('Transaction');
 
       /**
-       * Generate an transaction sender function
+       * Generate an transaction encoding function
        *
        * @param {object} { data, wallet } data is the itx object, and wallet is an Wallet instance
        * @returns Promise
        */
-      const txSendFn = async ({ data, wallet }) => {
+      const txEncodeFn = async ({ data, wallet }) => {
         // Determine sender address
-        const address = wallet.toAddress();
+        const address = data.from || wallet.toAddress();
 
-        // Determine chainId
-        const { info } = await this.getChainInfo();
-        const chainId = info.network;
-
-        // Determine nonce
-        let nonce = 1;
-        if (x !== 'DeclareTx') {
-          const res = await this.getAccountState({ address });
-          // console.log(`getAccountState.${address}`, res);
-          if (!res.state) {
-            throw new Error(
-              `Address ${address} not declared on chain, please declare before send tx`
-            );
-          }
-          nonce = res.state.nonce;
+        // Determine chainId & nonce, only attach new one when not exist
+        let nonce = data.nonce || Date.now();
+        let chainId = data.chainId;
+        if (!chainId) {
+          const { info } = await this.getChainInfo();
+          chainId = info.network;
         }
 
-        debug({
-          pk: stripHexPrefix(wallet.publicKey).toUpperCase(),
-          sk: stripHexPrefix(wallet.secretKey).toUpperCase(),
-          address,
-          nonce,
-          chainId,
-        });
-
-        const Any = getType('google.protobuf.Any');
-        const Transaction = getType('Transaction');
         const ItxType = getType(x);
 
         const itx = ItxType.fromObject(data);
         const itxBytes = ItxType.encode(itx).finish();
-        debug({ itxBytes, itxHex: toHex(itxBytes) });
+        debug({ itx, itxBytes, itxHex: toHex(itxBytes) });
 
         const txObj = {
           from: address,
@@ -96,24 +85,42 @@ class GraphqlClient extends BaseClient {
         const txToSign = Transaction.fromObject(txObj);
         const txToSignBytes = Transaction.encode(txToSign).finish();
 
-        const signature = wallet.sign(bytesToHex(txToSignBytes));
-        debug({
-          txToSignBytes,
-          txToSignHex: toHex(txToSignBytes),
-          signature: stripHexPrefix(signature).toUpperCase(),
-        });
+        return { object: txObj, buffer: txToSignBytes };
+      };
 
-        txObj.signature = Buffer.from(hexToBytes(signature));
+      const encodeMethod = camelcase(`encode_${x}`);
+      txEncodeFn.__tx__ = encodeMethod;
+      this[encodeMethod] = txEncodeFn;
+
+      /**
+       * Generate an transaction sender function
+       *
+       * @param {object} { data, wallet } data is the itx object, and wallet is an Wallet instance
+       * @returns Promise
+       */
+      const txSendFn = async ({ data, wallet, signature }) => {
+        let txObj;
+        if (signature) {
+          txObj = data;
+          txObj.signature = Buffer.from(hexToBytes(signature));
+        } else {
+          const { object, buffer: txToSignBytes } = await txEncodeFn({ data, wallet });
+          const signature = wallet.sign(bytesToHex(txToSignBytes));
+          txObj = object;
+          txObj.signature = Buffer.from(hexToBytes(signature));
+        }
+
         const tx = Transaction.fromObject(txObj);
         const txBytes = Transaction.encode(tx).finish();
         const txStr = base64.escape(Buffer.from(txBytes).toString('base64'));
-        debug({ txBytes, txHex: toHex(txBytes), txStr });
+        debug({ tx, txBytes, txHex: toHex(txBytes), txStr });
 
         return this.sendTx({ tx: txStr });
       };
 
-      txSendFn.__tx__ = method;
-      this[method] = txSendFn;
+      const sendMethod = camelcase(`send_${x}`);
+      txSendFn.__tx__ = sendMethod;
+      this[sendMethod] = txSendFn;
     });
   }
 

@@ -14,7 +14,7 @@ var global = Function('return this')();
 var google_protobuf_timestamp_pb = require('google-protobuf/google/protobuf/timestamp_pb.js');
 goog.object.extend(proto, google_protobuf_timestamp_pb);
 goog.exportSymbol('proto.abci_vendor.BlockID', null, global);
-goog.exportSymbol('proto.abci_vendor.BlockSizeParams', null, global);
+goog.exportSymbol('proto.abci_vendor.BlockParams', null, global);
 goog.exportSymbol('proto.abci_vendor.ConsensusParams', null, global);
 goog.exportSymbol('proto.abci_vendor.Evidence', null, global);
 goog.exportSymbol('proto.abci_vendor.EvidenceParams', null, global);
@@ -640,12 +640,12 @@ proto.abci_vendor.Proof.prototype.clearOpsList = function() {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.abci_vendor.BlockSizeParams = function(opt_data) {
+proto.abci_vendor.BlockParams = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.abci_vendor.BlockSizeParams, jspb.Message);
+goog.inherits(proto.abci_vendor.BlockParams, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
-  proto.abci_vendor.BlockSizeParams.displayName = 'proto.abci_vendor.BlockSizeParams';
+  proto.abci_vendor.BlockParams.displayName = 'proto.abci_vendor.BlockParams';
 }
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
@@ -659,8 +659,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
    *     for transitional soy proto support: http://goto/soy-param-migration
    * @return {!Object}
    */
-  proto.abci_vendor.BlockSizeParams.prototype.toObject = function(opt_includeInstance) {
-    return proto.abci_vendor.BlockSizeParams.toObject(opt_includeInstance, this);
+  proto.abci_vendor.BlockParams.prototype.toObject = function(opt_includeInstance) {
+    return proto.abci_vendor.BlockParams.toObject(opt_includeInstance, this);
   };
 
   /**
@@ -668,11 +668,11 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
    * @param {boolean|undefined} includeInstance Whether to include the JSPB
    *     instance for transitional soy proto support:
    *     http://goto/soy-param-migration
-   * @param {!proto.abci_vendor.BlockSizeParams} msg The msg instance to transform.
+   * @param {!proto.abci_vendor.BlockParams} msg The msg instance to transform.
    * @return {!Object}
    * @suppress {unusedLocalVariables} f is only used for nested messages
    */
-  proto.abci_vendor.BlockSizeParams.toObject = function(includeInstance, msg) {
+  proto.abci_vendor.BlockParams.toObject = function(includeInstance, msg) {
     var f,
       obj = {
         maxBytes: jspb.Message.getFieldWithDefault(msg, 1, 0),
@@ -689,22 +689,22 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.abci_vendor.BlockSizeParams}
+ * @return {!proto.abci_vendor.BlockParams}
  */
-proto.abci_vendor.BlockSizeParams.deserializeBinary = function(bytes) {
+proto.abci_vendor.BlockParams.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.abci_vendor.BlockSizeParams();
-  return proto.abci_vendor.BlockSizeParams.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.abci_vendor.BlockParams();
+  return proto.abci_vendor.BlockParams.deserializeBinaryFromReader(msg, reader);
 };
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.abci_vendor.BlockSizeParams} msg The message object to deserialize into.
+ * @param {!proto.abci_vendor.BlockParams} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.abci_vendor.BlockSizeParams}
+ * @return {!proto.abci_vendor.BlockParams}
  */
-proto.abci_vendor.BlockSizeParams.deserializeBinaryFromReader = function(msg, reader) {
+proto.abci_vendor.BlockParams.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -731,20 +731,20 @@ proto.abci_vendor.BlockSizeParams.deserializeBinaryFromReader = function(msg, re
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.abci_vendor.BlockSizeParams.prototype.serializeBinary = function() {
+proto.abci_vendor.BlockParams.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.abci_vendor.BlockSizeParams.serializeBinaryToWriter(this, writer);
+  proto.abci_vendor.BlockParams.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.abci_vendor.BlockSizeParams} message
+ * @param {!proto.abci_vendor.BlockParams} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.abci_vendor.BlockSizeParams.serializeBinaryToWriter = function(message, writer) {
+proto.abci_vendor.BlockParams.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getMaxBytes();
   if (f !== 0) {
@@ -760,12 +760,12 @@ proto.abci_vendor.BlockSizeParams.serializeBinaryToWriter = function(message, wr
  * optional int64 max_bytes = 1;
  * @return {number}
  */
-proto.abci_vendor.BlockSizeParams.prototype.getMaxBytes = function() {
+proto.abci_vendor.BlockParams.prototype.getMaxBytes = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
 };
 
 /** @param {number} value */
-proto.abci_vendor.BlockSizeParams.prototype.setMaxBytes = function(value) {
+proto.abci_vendor.BlockParams.prototype.setMaxBytes = function(value) {
   jspb.Message.setProto3IntField(this, 1, value);
 };
 
@@ -773,12 +773,12 @@ proto.abci_vendor.BlockSizeParams.prototype.setMaxBytes = function(value) {
  * optional int64 max_gas = 2;
  * @return {number}
  */
-proto.abci_vendor.BlockSizeParams.prototype.getMaxGas = function() {
+proto.abci_vendor.BlockParams.prototype.getMaxGas = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
 };
 
 /** @param {number} value */
-proto.abci_vendor.BlockSizeParams.prototype.setMaxGas = function(value) {
+proto.abci_vendor.BlockParams.prototype.setMaxGas = function(value) {
   jspb.Message.setProto3IntField(this, 2, value);
 };
 
@@ -1112,9 +1112,7 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
   proto.abci_vendor.ConsensusParams.toObject = function(includeInstance, msg) {
     var f,
       obj = {
-        blockSize:
-          (f = msg.getBlockSize()) &&
-          proto.abci_vendor.BlockSizeParams.toObject(includeInstance, f),
+        block: (f = msg.getBlock()) && proto.abci_vendor.BlockParams.toObject(includeInstance, f),
         evidence:
           (f = msg.getEvidence()) && proto.abci_vendor.EvidenceParams.toObject(includeInstance, f),
         validator:
@@ -1155,9 +1153,9 @@ proto.abci_vendor.ConsensusParams.deserializeBinaryFromReader = function(msg, re
     var field = reader.getFieldNumber();
     switch (field) {
       case 1:
-        var value = new proto.abci_vendor.BlockSizeParams();
-        reader.readMessage(value, proto.abci_vendor.BlockSizeParams.deserializeBinaryFromReader);
-        msg.setBlockSize(value);
+        var value = new proto.abci_vendor.BlockParams();
+        reader.readMessage(value, proto.abci_vendor.BlockParams.deserializeBinaryFromReader);
+        msg.setBlock(value);
         break;
       case 2:
         var value = new proto.abci_vendor.EvidenceParams();
@@ -1196,9 +1194,9 @@ proto.abci_vendor.ConsensusParams.prototype.serializeBinary = function() {
  */
 proto.abci_vendor.ConsensusParams.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getBlockSize();
+  f = message.getBlock();
   if (f != null) {
-    writer.writeMessage(1, f, proto.abci_vendor.BlockSizeParams.serializeBinaryToWriter);
+    writer.writeMessage(1, f, proto.abci_vendor.BlockParams.serializeBinaryToWriter);
   }
   f = message.getEvidence();
   if (f != null) {
@@ -1211,31 +1209,31 @@ proto.abci_vendor.ConsensusParams.serializeBinaryToWriter = function(message, wr
 };
 
 /**
- * optional BlockSizeParams block_size = 1;
- * @return {?proto.abci_vendor.BlockSizeParams}
+ * optional BlockParams block = 1;
+ * @return {?proto.abci_vendor.BlockParams}
  */
-proto.abci_vendor.ConsensusParams.prototype.getBlockSize = function() {
-  return /** @type{?proto.abci_vendor.BlockSizeParams} */ (jspb.Message.getWrapperField(
+proto.abci_vendor.ConsensusParams.prototype.getBlock = function() {
+  return /** @type{?proto.abci_vendor.BlockParams} */ (jspb.Message.getWrapperField(
     this,
-    proto.abci_vendor.BlockSizeParams,
+    proto.abci_vendor.BlockParams,
     1
   ));
 };
 
-/** @param {?proto.abci_vendor.BlockSizeParams|undefined} value */
-proto.abci_vendor.ConsensusParams.prototype.setBlockSize = function(value) {
+/** @param {?proto.abci_vendor.BlockParams|undefined} value */
+proto.abci_vendor.ConsensusParams.prototype.setBlock = function(value) {
   jspb.Message.setWrapperField(this, 1, value);
 };
 
-proto.abci_vendor.ConsensusParams.prototype.clearBlockSize = function() {
-  this.setBlockSize(undefined);
+proto.abci_vendor.ConsensusParams.prototype.clearBlock = function() {
+  this.setBlock(undefined);
 };
 
 /**
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.abci_vendor.ConsensusParams.prototype.hasBlockSize = function() {
+proto.abci_vendor.ConsensusParams.prototype.hasBlock = function() {
   return jspb.Message.getField(this, 1) != null;
 };
 
@@ -1652,178 +1650,6 @@ proto.abci_vendor.Version.prototype.setApp = function(value) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.abci_vendor.PartSetHeader = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
-};
-goog.inherits(proto.abci_vendor.PartSetHeader, jspb.Message);
-if (goog.DEBUG && !COMPILED) {
-  proto.abci_vendor.PartSetHeader.displayName = 'proto.abci_vendor.PartSetHeader';
-}
-
-if (jspb.Message.GENERATE_TO_OBJECT) {
-  /**
-   * Creates an object representation of this proto suitable for use in Soy templates.
-   * Field names that are reserved in JavaScript and will be renamed to pb_name.
-   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
-   * For the list of reserved names please see:
-   *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
-   * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
-   *     for transitional soy proto support: http://goto/soy-param-migration
-   * @return {!Object}
-   */
-  proto.abci_vendor.PartSetHeader.prototype.toObject = function(opt_includeInstance) {
-    return proto.abci_vendor.PartSetHeader.toObject(opt_includeInstance, this);
-  };
-
-  /**
-   * Static version of the {@see toObject} method.
-   * @param {boolean|undefined} includeInstance Whether to include the JSPB
-   *     instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @param {!proto.abci_vendor.PartSetHeader} msg The msg instance to transform.
-   * @return {!Object}
-   * @suppress {unusedLocalVariables} f is only used for nested messages
-   */
-  proto.abci_vendor.PartSetHeader.toObject = function(includeInstance, msg) {
-    var f,
-      obj = {
-        total: jspb.Message.getFieldWithDefault(msg, 1, 0),
-        hash: msg.getHash(),
-      };
-
-    if (includeInstance) {
-      obj.$jspbMessageInstance = msg;
-    }
-    return obj;
-  };
-}
-
-/**
- * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.abci_vendor.PartSetHeader}
- */
-proto.abci_vendor.PartSetHeader.deserializeBinary = function(bytes) {
-  var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.abci_vendor.PartSetHeader();
-  return proto.abci_vendor.PartSetHeader.deserializeBinaryFromReader(msg, reader);
-};
-
-/**
- * Deserializes binary data (in protobuf wire format) from the
- * given reader into the given message object.
- * @param {!proto.abci_vendor.PartSetHeader} msg The message object to deserialize into.
- * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.abci_vendor.PartSetHeader}
- */
-proto.abci_vendor.PartSetHeader.deserializeBinaryFromReader = function(msg, reader) {
-  while (reader.nextField()) {
-    if (reader.isEndGroup()) {
-      break;
-    }
-    var field = reader.getFieldNumber();
-    switch (field) {
-      case 1:
-        var value = /** @type {number} */ (reader.readInt32());
-        msg.setTotal(value);
-        break;
-      case 2:
-        var value = /** @type {!Uint8Array} */ (reader.readBytes());
-        msg.setHash(value);
-        break;
-      default:
-        reader.skipField();
-        break;
-    }
-  }
-  return msg;
-};
-
-/**
- * Serializes the message to binary data (in protobuf wire format).
- * @return {!Uint8Array}
- */
-proto.abci_vendor.PartSetHeader.prototype.serializeBinary = function() {
-  var writer = new jspb.BinaryWriter();
-  proto.abci_vendor.PartSetHeader.serializeBinaryToWriter(this, writer);
-  return writer.getResultBuffer();
-};
-
-/**
- * Serializes the given message to binary data (in protobuf wire
- * format), writing to the given BinaryWriter.
- * @param {!proto.abci_vendor.PartSetHeader} message
- * @param {!jspb.BinaryWriter} writer
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.abci_vendor.PartSetHeader.serializeBinaryToWriter = function(message, writer) {
-  var f = undefined;
-  f = message.getTotal();
-  if (f !== 0) {
-    writer.writeInt32(1, f);
-  }
-  f = message.getHash_asU8();
-  if (f.length > 0) {
-    writer.writeBytes(2, f);
-  }
-};
-
-/**
- * optional int32 total = 1;
- * @return {number}
- */
-proto.abci_vendor.PartSetHeader.prototype.getTotal = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
-};
-
-/** @param {number} value */
-proto.abci_vendor.PartSetHeader.prototype.setTotal = function(value) {
-  jspb.Message.setProto3IntField(this, 1, value);
-};
-
-/**
- * optional bytes hash = 2;
- * @return {!(string|Uint8Array)}
- */
-proto.abci_vendor.PartSetHeader.prototype.getHash = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 2, ''));
-};
-
-/**
- * optional bytes hash = 2;
- * This is a type-conversion wrapper around `getHash()`
- * @return {string}
- */
-proto.abci_vendor.PartSetHeader.prototype.getHash_asB64 = function() {
-  return /** @type {string} */ (jspb.Message.bytesAsB64(this.getHash()));
-};
-
-/**
- * optional bytes hash = 2;
- * Note that Uint8Array is not supported on all browsers.
- * @see http://caniuse.com/Uint8Array
- * This is a type-conversion wrapper around `getHash()`
- * @return {!Uint8Array}
- */
-proto.abci_vendor.PartSetHeader.prototype.getHash_asU8 = function() {
-  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(this.getHash()));
-};
-
-/** @param {!(string|Uint8Array)} value */
-proto.abci_vendor.PartSetHeader.prototype.setHash = function(value) {
-  jspb.Message.setProto3BytesField(this, 2, value);
-};
-
-/**
- * Generated by JsPbCodeGenerator.
- * @param {Array=} opt_data Optional initial data array, typically from a
- * server response, or constructed directly in Javascript. The array is used
- * in place and becomes part of the constructed object. It is not cloned.
- * If no data is provided, the constructed object will be empty, but still
- * valid.
- * @extends {jspb.Message}
- * @constructor
- */
 proto.abci_vendor.BlockID = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
@@ -2015,6 +1841,178 @@ proto.abci_vendor.BlockID.prototype.hasPartsHeader = function() {
  * @extends {jspb.Message}
  * @constructor
  */
+proto.abci_vendor.PartSetHeader = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.abci_vendor.PartSetHeader, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.abci_vendor.PartSetHeader.displayName = 'proto.abci_vendor.PartSetHeader';
+}
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+  /**
+   * Creates an object representation of this proto suitable for use in Soy templates.
+   * Field names that are reserved in JavaScript and will be renamed to pb_name.
+   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+   * For the list of reserved names please see:
+   *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+   * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+   *     for transitional soy proto support: http://goto/soy-param-migration
+   * @return {!Object}
+   */
+  proto.abci_vendor.PartSetHeader.prototype.toObject = function(opt_includeInstance) {
+    return proto.abci_vendor.PartSetHeader.toObject(opt_includeInstance, this);
+  };
+
+  /**
+   * Static version of the {@see toObject} method.
+   * @param {boolean|undefined} includeInstance Whether to include the JSPB
+   *     instance for transitional soy proto support:
+   *     http://goto/soy-param-migration
+   * @param {!proto.abci_vendor.PartSetHeader} msg The msg instance to transform.
+   * @return {!Object}
+   * @suppress {unusedLocalVariables} f is only used for nested messages
+   */
+  proto.abci_vendor.PartSetHeader.toObject = function(includeInstance, msg) {
+    var f,
+      obj = {
+        total: jspb.Message.getFieldWithDefault(msg, 1, 0),
+        hash: msg.getHash(),
+      };
+
+    if (includeInstance) {
+      obj.$jspbMessageInstance = msg;
+    }
+    return obj;
+  };
+}
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.abci_vendor.PartSetHeader}
+ */
+proto.abci_vendor.PartSetHeader.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.abci_vendor.PartSetHeader();
+  return proto.abci_vendor.PartSetHeader.deserializeBinaryFromReader(msg, reader);
+};
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.abci_vendor.PartSetHeader} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.abci_vendor.PartSetHeader}
+ */
+proto.abci_vendor.PartSetHeader.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+      case 1:
+        var value = /** @type {number} */ (reader.readInt32());
+        msg.setTotal(value);
+        break;
+      case 2:
+        var value = /** @type {!Uint8Array} */ (reader.readBytes());
+        msg.setHash(value);
+        break;
+      default:
+        reader.skipField();
+        break;
+    }
+  }
+  return msg;
+};
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.abci_vendor.PartSetHeader.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.abci_vendor.PartSetHeader.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.abci_vendor.PartSetHeader} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.abci_vendor.PartSetHeader.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getTotal();
+  if (f !== 0) {
+    writer.writeInt32(1, f);
+  }
+  f = message.getHash_asU8();
+  if (f.length > 0) {
+    writer.writeBytes(2, f);
+  }
+};
+
+/**
+ * optional int32 total = 1;
+ * @return {number}
+ */
+proto.abci_vendor.PartSetHeader.prototype.getTotal = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
+};
+
+/** @param {number} value */
+proto.abci_vendor.PartSetHeader.prototype.setTotal = function(value) {
+  jspb.Message.setProto3IntField(this, 1, value);
+};
+
+/**
+ * optional bytes hash = 2;
+ * @return {!(string|Uint8Array)}
+ */
+proto.abci_vendor.PartSetHeader.prototype.getHash = function() {
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 2, ''));
+};
+
+/**
+ * optional bytes hash = 2;
+ * This is a type-conversion wrapper around `getHash()`
+ * @return {string}
+ */
+proto.abci_vendor.PartSetHeader.prototype.getHash_asB64 = function() {
+  return /** @type {string} */ (jspb.Message.bytesAsB64(this.getHash()));
+};
+
+/**
+ * optional bytes hash = 2;
+ * Note that Uint8Array is not supported on all browsers.
+ * @see http://caniuse.com/Uint8Array
+ * This is a type-conversion wrapper around `getHash()`
+ * @return {!Uint8Array}
+ */
+proto.abci_vendor.PartSetHeader.prototype.getHash_asU8 = function() {
+  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(this.getHash()));
+};
+
+/** @param {!(string|Uint8Array)} value */
+proto.abci_vendor.PartSetHeader.prototype.setHash = function(value) {
+  jspb.Message.setProto3BytesField(this, 2, value);
+};
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
 proto.abci_vendor.Validator = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
@@ -2175,178 +2173,6 @@ proto.abci_vendor.Validator.prototype.getPower = function() {
 /** @param {number} value */
 proto.abci_vendor.Validator.prototype.setPower = function(value) {
   jspb.Message.setProto3IntField(this, 3, value);
-};
-
-/**
- * Generated by JsPbCodeGenerator.
- * @param {Array=} opt_data Optional initial data array, typically from a
- * server response, or constructed directly in Javascript. The array is used
- * in place and becomes part of the constructed object. It is not cloned.
- * If no data is provided, the constructed object will be empty, but still
- * valid.
- * @extends {jspb.Message}
- * @constructor
- */
-proto.abci_vendor.PubKey = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
-};
-goog.inherits(proto.abci_vendor.PubKey, jspb.Message);
-if (goog.DEBUG && !COMPILED) {
-  proto.abci_vendor.PubKey.displayName = 'proto.abci_vendor.PubKey';
-}
-
-if (jspb.Message.GENERATE_TO_OBJECT) {
-  /**
-   * Creates an object representation of this proto suitable for use in Soy templates.
-   * Field names that are reserved in JavaScript and will be renamed to pb_name.
-   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
-   * For the list of reserved names please see:
-   *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
-   * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
-   *     for transitional soy proto support: http://goto/soy-param-migration
-   * @return {!Object}
-   */
-  proto.abci_vendor.PubKey.prototype.toObject = function(opt_includeInstance) {
-    return proto.abci_vendor.PubKey.toObject(opt_includeInstance, this);
-  };
-
-  /**
-   * Static version of the {@see toObject} method.
-   * @param {boolean|undefined} includeInstance Whether to include the JSPB
-   *     instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @param {!proto.abci_vendor.PubKey} msg The msg instance to transform.
-   * @return {!Object}
-   * @suppress {unusedLocalVariables} f is only used for nested messages
-   */
-  proto.abci_vendor.PubKey.toObject = function(includeInstance, msg) {
-    var f,
-      obj = {
-        type: jspb.Message.getFieldWithDefault(msg, 1, ''),
-        data: msg.getData(),
-      };
-
-    if (includeInstance) {
-      obj.$jspbMessageInstance = msg;
-    }
-    return obj;
-  };
-}
-
-/**
- * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.abci_vendor.PubKey}
- */
-proto.abci_vendor.PubKey.deserializeBinary = function(bytes) {
-  var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.abci_vendor.PubKey();
-  return proto.abci_vendor.PubKey.deserializeBinaryFromReader(msg, reader);
-};
-
-/**
- * Deserializes binary data (in protobuf wire format) from the
- * given reader into the given message object.
- * @param {!proto.abci_vendor.PubKey} msg The message object to deserialize into.
- * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.abci_vendor.PubKey}
- */
-proto.abci_vendor.PubKey.deserializeBinaryFromReader = function(msg, reader) {
-  while (reader.nextField()) {
-    if (reader.isEndGroup()) {
-      break;
-    }
-    var field = reader.getFieldNumber();
-    switch (field) {
-      case 1:
-        var value = /** @type {string} */ (reader.readString());
-        msg.setType(value);
-        break;
-      case 2:
-        var value = /** @type {!Uint8Array} */ (reader.readBytes());
-        msg.setData(value);
-        break;
-      default:
-        reader.skipField();
-        break;
-    }
-  }
-  return msg;
-};
-
-/**
- * Serializes the message to binary data (in protobuf wire format).
- * @return {!Uint8Array}
- */
-proto.abci_vendor.PubKey.prototype.serializeBinary = function() {
-  var writer = new jspb.BinaryWriter();
-  proto.abci_vendor.PubKey.serializeBinaryToWriter(this, writer);
-  return writer.getResultBuffer();
-};
-
-/**
- * Serializes the given message to binary data (in protobuf wire
- * format), writing to the given BinaryWriter.
- * @param {!proto.abci_vendor.PubKey} message
- * @param {!jspb.BinaryWriter} writer
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.abci_vendor.PubKey.serializeBinaryToWriter = function(message, writer) {
-  var f = undefined;
-  f = message.getType();
-  if (f.length > 0) {
-    writer.writeString(1, f);
-  }
-  f = message.getData_asU8();
-  if (f.length > 0) {
-    writer.writeBytes(2, f);
-  }
-};
-
-/**
- * optional string type = 1;
- * @return {string}
- */
-proto.abci_vendor.PubKey.prototype.getType = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ''));
-};
-
-/** @param {string} value */
-proto.abci_vendor.PubKey.prototype.setType = function(value) {
-  jspb.Message.setProto3StringField(this, 1, value);
-};
-
-/**
- * optional bytes data = 2;
- * @return {!(string|Uint8Array)}
- */
-proto.abci_vendor.PubKey.prototype.getData = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 2, ''));
-};
-
-/**
- * optional bytes data = 2;
- * This is a type-conversion wrapper around `getData()`
- * @return {string}
- */
-proto.abci_vendor.PubKey.prototype.getData_asB64 = function() {
-  return /** @type {string} */ (jspb.Message.bytesAsB64(this.getData()));
-};
-
-/**
- * optional bytes data = 2;
- * Note that Uint8Array is not supported on all browsers.
- * @see http://caniuse.com/Uint8Array
- * This is a type-conversion wrapper around `getData()`
- * @return {!Uint8Array}
- */
-proto.abci_vendor.PubKey.prototype.getData_asU8 = function() {
-  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(this.getData()));
-};
-
-/** @param {!(string|Uint8Array)} value */
-proto.abci_vendor.PubKey.prototype.setData = function(value) {
-  jspb.Message.setProto3BytesField(this, 2, value);
 };
 
 /**
@@ -2688,6 +2514,178 @@ proto.abci_vendor.VoteInfo.prototype.getSignedLastBlock = function() {
 /** @param {boolean} value */
 proto.abci_vendor.VoteInfo.prototype.setSignedLastBlock = function(value) {
   jspb.Message.setProto3BooleanField(this, 2, value);
+};
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.abci_vendor.PubKey = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.abci_vendor.PubKey, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.abci_vendor.PubKey.displayName = 'proto.abci_vendor.PubKey';
+}
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+  /**
+   * Creates an object representation of this proto suitable for use in Soy templates.
+   * Field names that are reserved in JavaScript and will be renamed to pb_name.
+   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+   * For the list of reserved names please see:
+   *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+   * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+   *     for transitional soy proto support: http://goto/soy-param-migration
+   * @return {!Object}
+   */
+  proto.abci_vendor.PubKey.prototype.toObject = function(opt_includeInstance) {
+    return proto.abci_vendor.PubKey.toObject(opt_includeInstance, this);
+  };
+
+  /**
+   * Static version of the {@see toObject} method.
+   * @param {boolean|undefined} includeInstance Whether to include the JSPB
+   *     instance for transitional soy proto support:
+   *     http://goto/soy-param-migration
+   * @param {!proto.abci_vendor.PubKey} msg The msg instance to transform.
+   * @return {!Object}
+   * @suppress {unusedLocalVariables} f is only used for nested messages
+   */
+  proto.abci_vendor.PubKey.toObject = function(includeInstance, msg) {
+    var f,
+      obj = {
+        type: jspb.Message.getFieldWithDefault(msg, 1, ''),
+        data: msg.getData(),
+      };
+
+    if (includeInstance) {
+      obj.$jspbMessageInstance = msg;
+    }
+    return obj;
+  };
+}
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.abci_vendor.PubKey}
+ */
+proto.abci_vendor.PubKey.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.abci_vendor.PubKey();
+  return proto.abci_vendor.PubKey.deserializeBinaryFromReader(msg, reader);
+};
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.abci_vendor.PubKey} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.abci_vendor.PubKey}
+ */
+proto.abci_vendor.PubKey.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+      case 1:
+        var value = /** @type {string} */ (reader.readString());
+        msg.setType(value);
+        break;
+      case 2:
+        var value = /** @type {!Uint8Array} */ (reader.readBytes());
+        msg.setData(value);
+        break;
+      default:
+        reader.skipField();
+        break;
+    }
+  }
+  return msg;
+};
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.abci_vendor.PubKey.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.abci_vendor.PubKey.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.abci_vendor.PubKey} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.abci_vendor.PubKey.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getType();
+  if (f.length > 0) {
+    writer.writeString(1, f);
+  }
+  f = message.getData_asU8();
+  if (f.length > 0) {
+    writer.writeBytes(2, f);
+  }
+};
+
+/**
+ * optional string type = 1;
+ * @return {string}
+ */
+proto.abci_vendor.PubKey.prototype.getType = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ''));
+};
+
+/** @param {string} value */
+proto.abci_vendor.PubKey.prototype.setType = function(value) {
+  jspb.Message.setProto3StringField(this, 1, value);
+};
+
+/**
+ * optional bytes data = 2;
+ * @return {!(string|Uint8Array)}
+ */
+proto.abci_vendor.PubKey.prototype.getData = function() {
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 2, ''));
+};
+
+/**
+ * optional bytes data = 2;
+ * This is a type-conversion wrapper around `getData()`
+ * @return {string}
+ */
+proto.abci_vendor.PubKey.prototype.getData_asB64 = function() {
+  return /** @type {string} */ (jspb.Message.bytesAsB64(this.getData()));
+};
+
+/**
+ * optional bytes data = 2;
+ * Note that Uint8Array is not supported on all browsers.
+ * @see http://caniuse.com/Uint8Array
+ * This is a type-conversion wrapper around `getData()`
+ * @return {!Uint8Array}
+ */
+proto.abci_vendor.PubKey.prototype.getData_asU8 = function() {
+  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(this.getData()));
+};
+
+/** @param {!(string|Uint8Array)} value */
+proto.abci_vendor.PubKey.prototype.setData = function(value) {
+  jspb.Message.setProto3BytesField(this, 2, value);
 };
 
 /**

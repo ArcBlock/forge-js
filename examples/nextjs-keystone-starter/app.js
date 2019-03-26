@@ -4,7 +4,11 @@ require('dotenv').config();
 
 const path = require('path');
 const keystone = require('keystone');
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
 const next = require('next');
+
+const mongo = 'mongodb://localhost/forge-web-starter';
 
 keystone.init({
   name: 'Forge Web Starter (React + Next.js + Keystone.js)',
@@ -14,10 +18,23 @@ keystone.init({
   'admin path': 'admin',
   session: true,
   auth: true,
-  'user model': 'User',
+  mongo,
+  'user model': 'InternalUser',
+  'session options': {
+    key: 'sid',
+    rolling: true,
+    resave: false,
+    saveUninitialized: true,
+    secret: process.env.COOKIE_SECRET,
+    store: new MongoStore({ url: mongo }),
+  },
 });
 
 keystone.import('./server/models');
+keystone.set('nav', {
+  posts: ['posts', 'post-categories'],
+  users: ['users', 'internal-users'],
+});
 
 const app = next({
   dev: process.env.NODE_ENV !== 'production',
@@ -27,11 +44,6 @@ const app = next({
 app.prepare().then(() => {
   // eslint-disable-next-line
   keystone.set('routes', require('./server/routes')(app));
-
-  keystone.set('nav', {
-    posts: ['posts', 'post-categories'],
-    users: 'users',
-  });
 
   keystone.start();
 });

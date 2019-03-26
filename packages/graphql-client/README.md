@@ -2,13 +2,13 @@
 
 > Graphql Client for Forge, provided gRPC similar features to interact with a forge-powered app.
 
-
 ## Table of Contents
 
-* [Install](#install)
-* [Usage](#usage)
-* [Documentation](#documentation)
-
+- [`forge-graphql-client`](#forge-graphql-client)
+  - [Table of Contents](#table-of-contents)
+  - [Install](#install)
+  - [Usage](#usage)
+  - [Documentation](#documentation)
 
 ## Install
 
@@ -17,7 +17,6 @@ npm i @arcblock/forge-graphql-client -S
 # OR
 yarn add @arcblock/forge-graphql-client
 ```
-
 
 ## Usage
 
@@ -32,7 +31,8 @@ console.log({
   queries: client.getQueries(),
   subscriptions: client.getSubscriptions(),
   mutations: client.getMutations(),
-  transactions: client.getTxMethods(),
+  senders: client.getTxSendMethods(),
+  encoders: client.getTxEncodeMethods(),
 });
 
 (async () => {
@@ -63,7 +63,6 @@ console.log({
   console.log(res);
 })();
 ```
-
 
 ## Documentation
 
