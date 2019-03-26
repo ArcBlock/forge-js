@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
 import useAsync from 'react-use/lib/useAsync';
 
 import Table from '@material-ui/core/Table';
@@ -12,10 +13,8 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import Layout from '../components/layout';
 import Avatar from '../components/avatar';
 
-import api from '../libs/api';
-
 async function fetchUsers() {
-  const res = await api.get('/users');
+  const res = await axios.get('/api/users');
   return res.data;
 }
 
@@ -54,6 +53,7 @@ export default function UsersPage() {
           </TableHead>
           <TableBody>
             {state.value.map(row => (
+              // eslint-disable-next-line no-underscore-dangle
               <TableRow key={row._id}>
                 <TableCell>
                   <Avatar did={row.did} />

@@ -12,6 +12,7 @@
     "async": "2.1.4",
     "axios": "^0.18.0",
     "connect-mongo": "^2.0.3",
+    "debug": "^4.1.1",
     "dotenv": "4.0.0",
     "express-session": "^1.15.6",
     "jss": "^9.8.7",
@@ -40,7 +41,7 @@
     "nodemon": "^1.18.10"
   },
   "scripts": {
-    "lint": "eslint client server",
+    "lint": "eslint client server config",
     "start": "nodemon app.js -w server -w config -w app.js"
   }
 }
