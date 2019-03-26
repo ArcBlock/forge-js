@@ -36,11 +36,12 @@ module.exports = class Authenticator {
     return uri;
   }
 
-  async sign({ token, claims, pathname }) {
+  // eslint-disable-next-line object-curly-newline
+  async sign({ token, did, claims, pathname }) {
     const payload = {
       action: 'responseAuth',
       appInfo: this.appInfo,
-      requestedClaims: await this.genRequestedClaims(claims),
+      requestedClaims: await this.genRequestedClaims(claims, did),
       url: `${this.baseUrl}${pathname}?${qs.stringify({ token })}`,
     };
 
@@ -94,8 +95,8 @@ module.exports = class Authenticator {
   // ---------------------------------------
   // Request claim related methods
   // ---------------------------------------
-  genRequestedClaims(params) {
-    return Promise.all(Object.keys(params).map(x => this[x](params[x])));
+  genRequestedClaims(params, did) {
+    return Promise.all(Object.keys(params).map(x => this[x](params[x], did)));
   }
 
   profile({ fields, description }) {
@@ -107,11 +108,11 @@ module.exports = class Authenticator {
   }
 
   // eslint-disable-next-line object-curly-newline
-  async signature({ txData, txType, sender, description }) {
+  async signature({ txData, txType, sender, description }, did) {
     // TODO: make this more robust
     const { buffer: txBuffer } = await this.client[`encode${txType}`]({
       data: txData,
-      wallet: fromAddress(sender),
+      wallet: fromAddress(sender, did),
     });
 
     return {

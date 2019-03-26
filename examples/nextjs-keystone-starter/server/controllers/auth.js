@@ -1,4 +1,5 @@
 const keystone = require('keystone');
+const { fromTokenToUnit } = require('@arcblock/forge-util');
 const auth = require('../../config/auth');
 const AuthHandlers = require('../../config/handlers');
 const KeystoneStorage = require('../../config/storage/keystone');
@@ -19,6 +20,29 @@ module.exports = app => {
     res.json(req.session);
   });
 
+  // Enable payment
+  handler.attach({
+    app,
+    action: 'pay',
+    claims: {
+      signature: {
+        txType: 'TransferTx',
+        txData: {
+          to: auth.wallet.address,
+          value: fromTokenToUnit(100),
+        },
+        description: 'Please provide your email and name to continue',
+      },
+    },
+    onAuthSuccess: async ({ claims, did }) => {
+      console.log('pay.onAuthSuccess', { claims, did });
+    },
+    onStatusCheck: (req, { did }) => {
+      console.log('pay.onStatusCheck', { did });
+    },
+  });
+
+  // Enable login
   handler.attach({
     app,
     action: 'login',

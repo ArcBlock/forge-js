@@ -91,7 +91,7 @@ module.exports = class Handlers {
           await this.storage.update(token, { did, status: 'scanned' });
         }
 
-        const authInfo = await this.authenticator.sign({ token, claims, pathname });
+        const authInfo = await this.authenticator.sign({ token, did, claims, pathname });
         res.json(authInfo);
       } catch (err) {
         res.json({ error: err.message });
