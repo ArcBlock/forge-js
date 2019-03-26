@@ -3273,6 +3273,7 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
     var f,
       obj = {
         signer: jspb.Message.getFieldWithDefault(msg, 1, ''),
+        pk: msg.getPk(),
         signature: msg.getSignature(),
         data: (f = msg.getData()) && google_protobuf_any_pb.Any.toObject(includeInstance, f),
       };
@@ -3315,9 +3316,13 @@ proto.forge_abi.Multisig.deserializeBinaryFromReader = function(msg, reader) {
         break;
       case 2:
         var value = /** @type {!Uint8Array} */ (reader.readBytes());
-        msg.setSignature(value);
+        msg.setPk(value);
         break;
       case 3:
+        var value = /** @type {!Uint8Array} */ (reader.readBytes());
+        msg.setSignature(value);
+        break;
+      case 15:
         var value = new google_protobuf_any_pb.Any();
         reader.readMessage(value, google_protobuf_any_pb.Any.deserializeBinaryFromReader);
         msg.setData(value);
@@ -3353,13 +3358,17 @@ proto.forge_abi.Multisig.serializeBinaryToWriter = function(message, writer) {
   if (f.length > 0) {
     writer.writeString(1, f);
   }
-  f = message.getSignature_asU8();
+  f = message.getPk_asU8();
   if (f.length > 0) {
     writer.writeBytes(2, f);
   }
+  f = message.getSignature_asU8();
+  if (f.length > 0) {
+    writer.writeBytes(3, f);
+  }
   f = message.getData();
   if (f != null) {
-    writer.writeMessage(3, f, google_protobuf_any_pb.Any.serializeBinaryToWriter);
+    writer.writeMessage(15, f, google_protobuf_any_pb.Any.serializeBinaryToWriter);
   }
 };
 
@@ -3377,15 +3386,48 @@ proto.forge_abi.Multisig.prototype.setSigner = function(value) {
 };
 
 /**
- * optional bytes signature = 2;
+ * optional bytes pk = 2;
  * @return {!(string|Uint8Array)}
  */
-proto.forge_abi.Multisig.prototype.getSignature = function() {
+proto.forge_abi.Multisig.prototype.getPk = function() {
   return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 2, ''));
 };
 
 /**
- * optional bytes signature = 2;
+ * optional bytes pk = 2;
+ * This is a type-conversion wrapper around `getPk()`
+ * @return {string}
+ */
+proto.forge_abi.Multisig.prototype.getPk_asB64 = function() {
+  return /** @type {string} */ (jspb.Message.bytesAsB64(this.getPk()));
+};
+
+/**
+ * optional bytes pk = 2;
+ * Note that Uint8Array is not supported on all browsers.
+ * @see http://caniuse.com/Uint8Array
+ * This is a type-conversion wrapper around `getPk()`
+ * @return {!Uint8Array}
+ */
+proto.forge_abi.Multisig.prototype.getPk_asU8 = function() {
+  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(this.getPk()));
+};
+
+/** @param {!(string|Uint8Array)} value */
+proto.forge_abi.Multisig.prototype.setPk = function(value) {
+  jspb.Message.setProto3BytesField(this, 2, value);
+};
+
+/**
+ * optional bytes signature = 3;
+ * @return {!(string|Uint8Array)}
+ */
+proto.forge_abi.Multisig.prototype.getSignature = function() {
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 3, ''));
+};
+
+/**
+ * optional bytes signature = 3;
  * This is a type-conversion wrapper around `getSignature()`
  * @return {string}
  */
@@ -3394,7 +3436,7 @@ proto.forge_abi.Multisig.prototype.getSignature_asB64 = function() {
 };
 
 /**
- * optional bytes signature = 2;
+ * optional bytes signature = 3;
  * Note that Uint8Array is not supported on all browsers.
  * @see http://caniuse.com/Uint8Array
  * This is a type-conversion wrapper around `getSignature()`
@@ -3406,24 +3448,24 @@ proto.forge_abi.Multisig.prototype.getSignature_asU8 = function() {
 
 /** @param {!(string|Uint8Array)} value */
 proto.forge_abi.Multisig.prototype.setSignature = function(value) {
-  jspb.Message.setProto3BytesField(this, 2, value);
+  jspb.Message.setProto3BytesField(this, 3, value);
 };
 
 /**
- * optional google.protobuf.Any data = 3;
+ * optional google.protobuf.Any data = 15;
  * @return {?proto.google.protobuf.Any}
  */
 proto.forge_abi.Multisig.prototype.getData = function() {
   return /** @type{?proto.google.protobuf.Any} */ (jspb.Message.getWrapperField(
     this,
     google_protobuf_any_pb.Any,
-    3
+    15
   ));
 };
 
 /** @param {?proto.google.protobuf.Any|undefined} value */
 proto.forge_abi.Multisig.prototype.setData = function(value) {
-  jspb.Message.setWrapperField(this, 3, value);
+  jspb.Message.setWrapperField(this, 15, value);
 };
 
 proto.forge_abi.Multisig.prototype.clearData = function() {
@@ -3435,7 +3477,7 @@ proto.forge_abi.Multisig.prototype.clearData = function() {
  * @return {boolean}
  */
 proto.forge_abi.Multisig.prototype.hasData = function() {
-  return jspb.Message.getField(this, 3) != null;
+  return jspb.Message.getField(this, 15) != null;
 };
 
 /**
@@ -3460,7 +3502,7 @@ if (goog.DEBUG && !COMPILED) {
  * @private {!Array<number>}
  * @const
  */
-proto.forge_abi.Transaction.repeatedFields_ = [5];
+proto.forge_abi.Transaction.repeatedFields_ = [14];
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
   /**
@@ -3491,8 +3533,9 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
       obj = {
         from: jspb.Message.getFieldWithDefault(msg, 1, ''),
         nonce: jspb.Message.getFieldWithDefault(msg, 2, 0),
+        chainId: jspb.Message.getFieldWithDefault(msg, 3, ''),
+        pk: msg.getPk(),
         signature: msg.getSignature(),
-        chainId: jspb.Message.getFieldWithDefault(msg, 4, ''),
         signaturesList: jspb.Message.toObjectList(
           msg.getSignaturesList(),
           proto.forge_abi.Multisig.toObject,
@@ -3542,19 +3585,23 @@ proto.forge_abi.Transaction.deserializeBinaryFromReader = function(msg, reader) 
         msg.setNonce(value);
         break;
       case 3:
-        var value = /** @type {!Uint8Array} */ (reader.readBytes());
-        msg.setSignature(value);
-        break;
-      case 4:
         var value = /** @type {string} */ (reader.readString());
         msg.setChainId(value);
         break;
-      case 5:
+      case 4:
+        var value = /** @type {!Uint8Array} */ (reader.readBytes());
+        msg.setPk(value);
+        break;
+      case 13:
+        var value = /** @type {!Uint8Array} */ (reader.readBytes());
+        msg.setSignature(value);
+        break;
+      case 14:
         var value = new proto.forge_abi.Multisig();
         reader.readMessage(value, proto.forge_abi.Multisig.deserializeBinaryFromReader);
         msg.addSignatures(value);
         break;
-      case 7:
+      case 15:
         var value = new google_protobuf_any_pb.Any();
         reader.readMessage(value, google_protobuf_any_pb.Any.deserializeBinaryFromReader);
         msg.setItx(value);
@@ -3594,21 +3641,25 @@ proto.forge_abi.Transaction.serializeBinaryToWriter = function(message, writer) 
   if (f !== 0) {
     writer.writeUint64(2, f);
   }
-  f = message.getSignature_asU8();
-  if (f.length > 0) {
-    writer.writeBytes(3, f);
-  }
   f = message.getChainId();
   if (f.length > 0) {
-    writer.writeString(4, f);
+    writer.writeString(3, f);
+  }
+  f = message.getPk_asU8();
+  if (f.length > 0) {
+    writer.writeBytes(4, f);
+  }
+  f = message.getSignature_asU8();
+  if (f.length > 0) {
+    writer.writeBytes(13, f);
   }
   f = message.getSignaturesList();
   if (f.length > 0) {
-    writer.writeRepeatedMessage(5, f, proto.forge_abi.Multisig.serializeBinaryToWriter);
+    writer.writeRepeatedMessage(14, f, proto.forge_abi.Multisig.serializeBinaryToWriter);
   }
   f = message.getItx();
   if (f != null) {
-    writer.writeMessage(7, f, google_protobuf_any_pb.Any.serializeBinaryToWriter);
+    writer.writeMessage(15, f, google_protobuf_any_pb.Any.serializeBinaryToWriter);
   }
 };
 
@@ -3639,15 +3690,61 @@ proto.forge_abi.Transaction.prototype.setNonce = function(value) {
 };
 
 /**
- * optional bytes signature = 3;
- * @return {!(string|Uint8Array)}
+ * optional string chain_id = 3;
+ * @return {string}
  */
-proto.forge_abi.Transaction.prototype.getSignature = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 3, ''));
+proto.forge_abi.Transaction.prototype.getChainId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ''));
+};
+
+/** @param {string} value */
+proto.forge_abi.Transaction.prototype.setChainId = function(value) {
+  jspb.Message.setProto3StringField(this, 3, value);
 };
 
 /**
- * optional bytes signature = 3;
+ * optional bytes pk = 4;
+ * @return {!(string|Uint8Array)}
+ */
+proto.forge_abi.Transaction.prototype.getPk = function() {
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 4, ''));
+};
+
+/**
+ * optional bytes pk = 4;
+ * This is a type-conversion wrapper around `getPk()`
+ * @return {string}
+ */
+proto.forge_abi.Transaction.prototype.getPk_asB64 = function() {
+  return /** @type {string} */ (jspb.Message.bytesAsB64(this.getPk()));
+};
+
+/**
+ * optional bytes pk = 4;
+ * Note that Uint8Array is not supported on all browsers.
+ * @see http://caniuse.com/Uint8Array
+ * This is a type-conversion wrapper around `getPk()`
+ * @return {!Uint8Array}
+ */
+proto.forge_abi.Transaction.prototype.getPk_asU8 = function() {
+  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(this.getPk()));
+};
+
+/** @param {!(string|Uint8Array)} value */
+proto.forge_abi.Transaction.prototype.setPk = function(value) {
+  jspb.Message.setProto3BytesField(this, 4, value);
+};
+
+/**
+ * optional bytes signature = 13;
+ * @return {!(string|Uint8Array)}
+ */
+proto.forge_abi.Transaction.prototype.getSignature = function() {
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 13, ''));
+};
+
+/**
+ * optional bytes signature = 13;
  * This is a type-conversion wrapper around `getSignature()`
  * @return {string}
  */
@@ -3656,7 +3753,7 @@ proto.forge_abi.Transaction.prototype.getSignature_asB64 = function() {
 };
 
 /**
- * optional bytes signature = 3;
+ * optional bytes signature = 13;
  * Note that Uint8Array is not supported on all browsers.
  * @see http://caniuse.com/Uint8Array
  * This is a type-conversion wrapper around `getSignature()`
@@ -3668,37 +3765,24 @@ proto.forge_abi.Transaction.prototype.getSignature_asU8 = function() {
 
 /** @param {!(string|Uint8Array)} value */
 proto.forge_abi.Transaction.prototype.setSignature = function(value) {
-  jspb.Message.setProto3BytesField(this, 3, value);
+  jspb.Message.setProto3BytesField(this, 13, value);
 };
 
 /**
- * optional string chain_id = 4;
- * @return {string}
- */
-proto.forge_abi.Transaction.prototype.getChainId = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ''));
-};
-
-/** @param {string} value */
-proto.forge_abi.Transaction.prototype.setChainId = function(value) {
-  jspb.Message.setProto3StringField(this, 4, value);
-};
-
-/**
- * repeated Multisig signatures = 5;
+ * repeated Multisig signatures = 14;
  * @return {!Array<!proto.forge_abi.Multisig>}
  */
 proto.forge_abi.Transaction.prototype.getSignaturesList = function() {
   return /** @type{!Array<!proto.forge_abi.Multisig>} */ (jspb.Message.getRepeatedWrapperField(
     this,
     proto.forge_abi.Multisig,
-    5
+    14
   ));
 };
 
 /** @param {!Array<!proto.forge_abi.Multisig>} value */
 proto.forge_abi.Transaction.prototype.setSignaturesList = function(value) {
-  jspb.Message.setRepeatedWrapperField(this, 5, value);
+  jspb.Message.setRepeatedWrapperField(this, 14, value);
 };
 
 /**
@@ -3709,7 +3793,7 @@ proto.forge_abi.Transaction.prototype.setSignaturesList = function(value) {
 proto.forge_abi.Transaction.prototype.addSignatures = function(opt_value, opt_index) {
   return jspb.Message.addToRepeatedWrapperField(
     this,
-    5,
+    14,
     opt_value,
     proto.forge_abi.Multisig,
     opt_index
@@ -3721,20 +3805,20 @@ proto.forge_abi.Transaction.prototype.clearSignaturesList = function() {
 };
 
 /**
- * optional google.protobuf.Any itx = 7;
+ * optional google.protobuf.Any itx = 15;
  * @return {?proto.google.protobuf.Any}
  */
 proto.forge_abi.Transaction.prototype.getItx = function() {
   return /** @type{?proto.google.protobuf.Any} */ (jspb.Message.getWrapperField(
     this,
     google_protobuf_any_pb.Any,
-    7
+    15
   ));
 };
 
 /** @param {?proto.google.protobuf.Any|undefined} value */
 proto.forge_abi.Transaction.prototype.setItx = function(value) {
-  jspb.Message.setWrapperField(this, 7, value);
+  jspb.Message.setWrapperField(this, 15, value);
 };
 
 proto.forge_abi.Transaction.prototype.clearItx = function() {
@@ -3746,7 +3830,7 @@ proto.forge_abi.Transaction.prototype.clearItx = function() {
  * @return {boolean}
  */
 proto.forge_abi.Transaction.prototype.hasItx = function() {
-  return jspb.Message.getField(this, 7) != null;
+  return jspb.Message.getField(this, 15) != null;
 };
 
 /**
