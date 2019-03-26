@@ -22,23 +22,23 @@ module.exports = class Authenticator {
     this.client = new GraphQLClient(appInfo.chainHost);
   }
 
-  uri({ token }) {
+  uri({ token, pathname }) {
     const params = {
       appPk: this.appPk,
       appDid: `abt:did:${this.wallet.address}`,
       action: 'requestAuth',
-      url: `${this.baseUrl}/auth?${qs.stringify({ token })}`,
+      url: `${this.baseUrl}/${pathname}?${qs.stringify({ token })}`,
     };
 
     return `${this.appInfo.path}?${qs.stringify(params)}`;
   }
 
-  async sign({ token, claims }) {
+  async sign({ token, claims, pathname }) {
     const payload = {
       action: 'responseAuth',
       appInfo: this.appInfo,
       requestedClaims: await this.genRequestedClaims(claims),
-      url: `${this.baseUrl}/auth?${qs.stringify({ token })}`,
+      url: `${this.baseUrl}/${pathname}?${qs.stringify({ token })}`,
     };
 
     return {

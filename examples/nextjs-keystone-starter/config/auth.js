@@ -12,7 +12,7 @@ const wallet = fromSecretKey(process.env.APP_SK, type).toJSON();
 
 module.exports = new Authenticator({
   wallet,
-  baseUrl: 'http://wangshijun.natapp1.cc/api/login',
+  baseUrl: 'http://wangshijun.natapp1.cc',
   appInfo: {
     chainHost: 'http://did-workshop.arcblock.co:8210/api',
     chainId: 'forge',

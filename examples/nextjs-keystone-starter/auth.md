@@ -37,13 +37,13 @@
 
 Basic APIs that a token storage should support:
 
-- `async init()`, open a database connection, creating a embed database on file system
+- `async init()`, optional, open a database connection, creating a embed database on file system
 - `async create(token, status = created)`, create a new token record, persist in data store
-- `async exist?()`, check for token existense
+- `async exist?(token, did)`, check for token existense
 - `async read(token)`, read a token from database,
 - `async update(token, updates)`, update token record
 - `async delete(token)`, remove a token record
-- `async gc()`, run garbage collection on the token storage
+- `async gc()`, optional, run garbage collection on the token storage
 
 Plan to support:
 
