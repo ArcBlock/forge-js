@@ -13,19 +13,19 @@ import Layout from '../components/layout';
 import Auth from '../components/auth';
 import Avatar from '../components/avatar';
 
-import useSession from '../hooks/session';
-
-async function fetchPayment() {
-  const res = await axios.get('/api/payments');
-  return res.data;
+async function fetchStatus() {
+  const [{ data: payment }, { data: session }] = await Promise.all([
+    axios.get('/api/payments'),
+    axios.get('/api/session'),
+  ]);
+  return { payment, session };
 }
 
 export default function PaymentPage() {
-  const session = useSession();
-  const payment = useAsync(fetchPayment);
+  const state = useAsync(fetchStatus);
   const [open, toggle] = useToggle(false);
 
-  if (session.loading) {
+  if (state.loading) {
     return (
       <Layout>
         <Main>
@@ -35,15 +35,15 @@ export default function PaymentPage() {
     );
   }
 
-  if (session.error) {
+  if (state.error) {
     return (
       <Layout>
-        <Main>{session.error.message}</Main>
+        <Main>{state.error.message}</Main>
       </Layout>
     );
   }
 
-  if (!session.value.user) {
+  if (!state.value.session.user) {
     window.location.href = '/?openLogin=true';
     return null;
   }
@@ -72,15 +72,63 @@ export default function PaymentPage() {
           </Dialog>
         )}
         <div className="avatar">
-          <Avatar size={240} did={session.value.user.did} />
-          <Button color="primary" variant="outlined" onClick={() => toggle()}>
-            Do Payment
+          <Avatar size={240} did={state.value.session.user.did} />
+          <Button
+            color="primary"
+            disabled={state.value.payment}
+            variant="outlined"
+            onClick={() => toggle()}>
+            {state.value.payment ? 'Already Paid' : 'Make Payment'}
           </Button>
         </div>
         <div className="meta">
           <Typography component="h3" variant="h4">
-            My Payment
+            Secret Document
           </Typography>
+          <div className={`document ${state.value.payment ? 'document--unlocked' : ''}`}>
+            <Typography component="div" variant="body1" className="document__body">
+              What is Lorem Ipsum? Lorem Ipsum is simply dummy text of the printing and typesetting
+              industry. Lorem Ipsum has been the industry's standard dummy text ever since the
+              1500s, when an unknown printer took a galley of type and scrambled it to make a type
+              specimen book. It has survived not only five centuries, but also the leap into
+              electronic typesetting, remaining essentially unchanged. It was popularised in the
+              1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more
+              recently with desktop publishing software like Aldus PageMaker including versions of
+              Lorem Ipsum.
+              <br />
+              <br />
+              What is Lorem Ipsum? Lorem Ipsum is simply dummy text of the printing and typesetting
+              industry. Lorem Ipsum has been the industry's standard dummy text ever since the
+              1500s, when an unknown printer took a galley of type and scrambled it to make a type
+              specimen book. It has survived not only five centuries, but also the leap into
+              electronic typesetting, remaining essentially unchanged. It was popularised in the
+              1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more
+              recently with desktop publishing software like Aldus PageMaker including versions of
+              Lorem Ipsum.
+              <br />
+              <br />
+              What is Lorem Ipsum? Lorem Ipsum is simply dummy text of the printing and typesetting
+              industry. Lorem Ipsum has been the industry's standard dummy text ever since the
+              1500s, when an unknown printer took a galley of type and scrambled it to make a type
+              specimen book. It has survived not only five centuries, but also the leap into
+              electronic typesetting, remaining essentially unchanged. It was popularised in the
+              1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more
+              recently with desktop publishing software like Aldus PageMaker including versions of
+              Lorem Ipsum.
+              <br />
+              <br />
+              What is Lorem Ipsum? Lorem Ipsum is simply dummy text of the printing and typesetting
+              industry. Lorem Ipsum has been the industry's standard dummy text ever since the
+              1500s, when an unknown printer took a galley of type and scrambled it to make a type
+              specimen book. It has survived not only five centuries, but also the leap into
+              electronic typesetting, remaining essentially unchanged. It was popularised in the
+              1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more
+              recently with desktop publishing software like Aldus PageMaker including versions of
+              Lorem Ipsum.
+              <br />
+              <br />
+            </Typography>
+          </div>
         </div>
       </Main>
     </Layout>
@@ -113,5 +161,49 @@ const Main = styled.main`
 
   .meta-item {
     padding-left: 0;
+  }
+
+  .document {
+    margin-top: 30px;
+    position: relative;
+    width: 800px;
+
+    .document__body {
+      filter: blur(4px);
+      text-align: justify;
+    }
+
+    &:after {
+      color: #ff0000;
+      content: 'Pay 100 TBA to view this document';
+      font-size: 30px;
+      font-weight: bold;
+      height: 100%;
+      position: absolute;
+      text-transform: uppercase;
+      animation: blink 800ms ease;
+      top: 35%;
+      left: 15%;
+      width: 100%;
+    }
+
+    @keyframes blink {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+  }
+
+  .document--unlocked {
+    .document__body {
+      filter: none;
+    }
+
+    &:after {
+      display: none;
+    }
   }
 `;
