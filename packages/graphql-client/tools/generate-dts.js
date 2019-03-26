@@ -152,7 +152,7 @@ declare class GraphQLClient {
     .map(
       x =>
         `${x}(param: GraphQLClient.TxParam<GraphQLClient.${x.replace(
-          /^send/,
+          /^encode/,
           ''
         )}>): Promise<GraphQLClient.EncodeTxResult>;`
     )

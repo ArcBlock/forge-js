@@ -36,6 +36,11 @@ class GraphqlClient extends BaseClient {
     return transactions.map(x => camelcase(`encode_${x}`));
   }
 
+  decodeTx(buffer) {
+    const Transaction = getType('Transaction');
+    return Transaction.decode(buffer);
+  }
+
   _initTxMethods() {
     const toHex = bytes => stripHexPrefix(bytesToHex(bytes)).toUpperCase();
 
@@ -51,12 +56,11 @@ class GraphqlClient extends BaseClient {
        */
       const txEncodeFn = async ({ data, wallet }) => {
         // Determine sender address
-        const address = wallet.toAddress();
+        const address = data.from || wallet.toAddress();
 
-        // Determine chainId & nonce
-        let nonce = Date.now();
+        // Determine chainId & nonce, only attach new one when not exist
+        let nonce = data.nonce || Date.now();
         let chainId = data.chainId;
-        delete data.chainId;
         if (!chainId) {
           const { info } = await this.getChainInfo();
           chainId = info.network;
@@ -94,20 +98,22 @@ class GraphqlClient extends BaseClient {
        * @param {object} { data, wallet } data is the itx object, and wallet is an Wallet instance
        * @returns Promise
        */
-      const txSendFn = async ({ data, wallet, sig }) => {
-        const { object: txObj, buffer: txToSignBytes } = await txEncodeFn({ data, wallet });
-        const signature = sig ? sig : wallet.sign(bytesToHex(txToSignBytes));
-        debug({
-          txToSignBytes,
-          txToSignHex: toHex(txToSignBytes),
-          signature: stripHexPrefix(signature).toUpperCase(),
-        });
+      const txSendFn = async ({ data, wallet, signature }) => {
+        let txObj;
+        if (signature) {
+          txObj = data;
+          txObj.signature = Buffer.from(hexToBytes(signature));
+        } else {
+          const { object, buffer: txToSignBytes } = await txEncodeFn({ data, wallet });
+          const signature = wallet.sign(bytesToHex(txToSignBytes));
+          txObj = object;
+          txObj.signature = Buffer.from(hexToBytes(signature));
+        }
 
-        txObj.signature = Buffer.from(hexToBytes(signature));
         const tx = Transaction.fromObject(txObj);
         const txBytes = Transaction.encode(tx).finish();
         const txStr = base64.escape(Buffer.from(txBytes).toString('base64'));
-        debug({ txBytes, txHex: toHex(txBytes), txStr });
+        debug({ tx, txBytes, txHex: toHex(txBytes), txStr });
 
         return this.sendTx({ tx: txStr });
       };
