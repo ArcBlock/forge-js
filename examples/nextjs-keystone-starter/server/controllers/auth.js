@@ -23,7 +23,7 @@ module.exports = app => {
   // Enable payment
   handler.attach({
     app,
-    action: 'pay',
+    action: 'payment',
     claims: {
       signature: {
         txType: 'TransferTx',

@@ -1,8 +1,9 @@
 /* eslint no-return-assign:"off" */
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import qs from 'querystring';
 import styled from 'styled-components';
 import Link from 'next/link';
+import useToggle from 'react-use/lib/useToggle';
 
 import Button from '@material-ui/core/Button';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -16,16 +17,14 @@ import useSession from '../hooks/session';
 
 export default function Header() {
   const session = useSession();
-  const [open, setOpen] = useState(false);
-  const closeDialog = () => setOpen(false);
-  const openDialog = () => setOpen(true);
+  const [open, toggle] = useToggle(false);
 
   useEffect(() => {
     if (session.value && !session.value.user && window.location.search) {
       const params = qs.parse(window.location.search.slice(1));
       try {
         if (params.openLogin && JSON.parse(params.openLogin)) {
-          setOpen(true);
+          toggle(true);
         }
       } catch (err) {
         // Do nothing
@@ -56,7 +55,7 @@ export default function Header() {
         </Button>
       )}
       {session.value && !session.value.user && (
-        <Button color="primary" variant="outlined" onClick={openDialog}>
+        <Button color="primary" variant="outlined" onClick={toggle}>
           Login
         </Button>
       )}
@@ -66,10 +65,10 @@ export default function Header() {
         </Button>
       )}
       {open && (
-        <Dialog open maxWidth="sm" disableBackdropClick disableEscapeKeyDown onClose={closeDialog}>
+        <Dialog open maxWidth="sm" disableBackdropClick disableEscapeKeyDown onClose={toggle}>
           <Auth
             action="login"
-            onClose={closeDialog}
+            onClose={toggle}
             onSuccess={() => (window.location.href = '/me')}
             messages={{
               title: 'login',
