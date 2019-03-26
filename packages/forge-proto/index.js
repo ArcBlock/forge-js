@@ -193,7 +193,8 @@ function addSource({ baseDir, packageName, typeUrls: _typeUrls }) {
 
 // Search for a type and its fields descriptor
 function getMessageType(type) {
-  const { fields, oneofs } = get(spec, type) || get(extraSpec, type) || {};
+  const { fields, oneofs } =
+    get(spec, type) || get(extraSpec, type) || get(spec, `abci_vendor.${type}`) || {};
   return {
     fn: get(types, type) || get(vendorTypes, type) || get(extraTypes, type),
     fields,
