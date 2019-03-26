@@ -9,12 +9,16 @@ const Payment = new keystone.List('Payment', {
   noedit: true,
   nodelete: true,
   map: { name: 'hash' },
-  searchFields: 'hash',
+  searchFields: 'did hash',
   schema: { collection: 'payments' },
 });
 
 Payment.add({
-  user: { type: Types.Relationship, ref: 'User', index: true },
+  did: {
+    type: Types.Text,
+    label: 'DID',
+    index: true,
+  },
   hash: {
     type: Types.Text,
     label: 'TxHash',
@@ -33,5 +37,5 @@ Payment.add({
   },
 });
 
-Payment.defaultColumns = 'title, state|20%, author|20%, publishedDate|20%';
+Payment.defaultColumns = 'did, hash, block, status, createdAt';
 Payment.register();

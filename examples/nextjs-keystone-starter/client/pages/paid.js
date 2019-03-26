@@ -61,7 +61,7 @@ export default function PaymentPage() {
             <Auth
               action="payment"
               onClose={() => toggle()}
-              onSuccess={window.location.reload}
+              onSuccess={() => window.location.reload()}
               messages={{
                 title: 'Payment Required',
                 scan: 'Pay 100 TBA to view secret documented',

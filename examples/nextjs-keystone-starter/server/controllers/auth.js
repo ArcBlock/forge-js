@@ -1,5 +1,7 @@
 const keystone = require('keystone');
-const { fromTokenToUnit } = require('@arcblock/forge-util');
+const multibase = require('multibase');
+const { fromTokenToUnit, bytesToHex } = require('@arcblock/forge-util');
+const { fromAddress } = require('@arcblock/forge-wallet');
 const auth = require('../../config/auth');
 const AuthHandlers = require('../../config/handlers');
 const KeystoneStorage = require('../../config/storage/keystone');
@@ -34,11 +36,32 @@ module.exports = app => {
             minus: false,
           },
         },
-        description: 'Please provide your email and name to continue',
+        description: 'Please pay 100 TBA to unlock the secret document',
       },
     },
     onAuthSuccess: async ({ claims, did }) => {
-      console.log('pay.onAuthSuccess', { claims, did });
+      // console.log('pay.onAuthSuccess', { claims, did });
+      const Payment = keystone.list('Payment').model;
+
+      const claim = claims.find(x => x.type === 'signature');
+      const tx = auth.client.decodeTx(multibase.decode(claim.origin));
+      const wallet = fromAddress(did);
+      const sig = bytesToHex(multibase.decode(claim.sig));
+
+      const { hash } = await auth.client.sendTransferTx({
+        data: tx,
+        wallet,
+        signature: sig,
+      });
+
+      const payment = new Payment({
+        did,
+        hash,
+        status: 'confirmed',
+      });
+
+      await payment.save();
+      console.log('pay.send', hash);
     },
     onStatusCheck: (req, { did }) => {
       console.log('pay.onStatusCheck', { did });

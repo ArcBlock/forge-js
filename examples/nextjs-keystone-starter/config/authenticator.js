@@ -110,6 +110,7 @@ module.exports = class Authenticator {
     };
   }
 
+  // FIXME: Security Risk!! application should keep a copy of the buffer hash to avoid middle man attack
   async signature({ txData, txType, sender, description }, did) {
     debug('getClain.signature', { txData, txType, sender, did });
 
