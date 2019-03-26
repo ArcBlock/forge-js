@@ -55,7 +55,7 @@ export default function ProfilePage() {
         </div>
         <div className="meta">
           <Typography component="h3" variant="h4">
-            My Profile Info
+            My Profile
           </Typography>
           <List>
             <ListItem className="meta-item">

@@ -28,3 +28,26 @@
 7. When `C` got the token in step 3, it should check login status every second to get the login status
   - Login status should be notified on the web page when changed
   - Refresh the page when login status is `succeed`
+
+> The above workflow not only works for login process, but also works for payment/signature/agreement process
+
+## Token Storage Spec
+
+> Since tokens are used everywhere make achieve better QR code experience, we should allow users to customize how to generate/store/update token records.
+
+Basic APIs that a token storage should support:
+
+- `async init()`, open a database connection, creating a embed database on file system
+- `async create(token, status = created)`, create a new token record, persist in data store
+- `async exist?()`, check for token existense
+- `async read(token)`, read a token from database,
+- `async update(token, updates)`, update token record
+- `async delete(token)`, remove a token record
+- `async gc()`, run garbage collection on the token storage
+
+Plan to support:
+
+- token-storage-mongo
+- token-storage-psql
+- token-storage-nedb
+- token-storage-memory
