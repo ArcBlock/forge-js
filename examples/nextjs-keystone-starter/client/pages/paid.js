@@ -174,6 +174,7 @@ const Main = styled.main`
     .document__body {
       filter: blur(4px);
       text-align: justify;
+      user-select: none;
     }
 
     &:after {
