@@ -4,7 +4,7 @@ const camelcase = require('camelcase');
 const base64 = require('base64-url');
 const { hexToBytes, bytesToHex, stripHexPrefix } = require('@arcblock/forge-util');
 const { processSchema } = require('./protobuf');
-const debug = require('debug')('forge-graphql-client');
+const debug = require('debug')(require('../package.json').name);
 
 const graphqlSchema = require('./schema/graphql.json');
 const protobufSchema = require('./schema/protobuf.json');

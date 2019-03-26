@@ -6,10 +6,9 @@ const util = require('util');
 const sdk = require('../');
 const pretty = data => util.inspect(data, { depth: 8, colors: false, compact: false });
 const { enums } = require('@arcblock/forge-proto');
-const { RpcClient, parseConfig } = sdk;
-const client = new RpcClient(
-  parseConfig(path.resolve(__dirname, '../../../examples/simple/forge.toml'))
-);
+const { parse } = require('@arcblock/forge-config');
+const { RpcClient } = sdk;
+const client = new RpcClient(parse(path.resolve(__dirname, '../../../examples/simple/forge.toml')));
 
 const rpcMethods = client.listRpcMethods();
 // const shortcutMethods = []; // client.listShortcutMethods();
@@ -47,19 +46,19 @@ ${Object.keys(methods)
 \`\`\`js
 const ${result} = ${_await}client.${x}(${pretty(method.$requestExample())});
 ${
-      responseStream
-        ? `
+  responseStream
+    ? `
 // output
 ${pretty(method.$responseExample())}
 `
-        : `
+    : `
 // response is a stream
 ${result}.on('data', data => {
   // response data format
   ${pretty(method.$responseExample())}
 });
 `
-    }
+}
 \`\`\`
 `;
   })

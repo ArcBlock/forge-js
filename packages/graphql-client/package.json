@@ -1,7 +1,7 @@
 {
-  "name": "@arcblock/forge-graphql-client",
+  "name": "@arcblock/graphql-client",
   "version": "0.15.0",
-  "description": "GraphQL Client for forge core",
+  "description": "graphql client to read/write data on forge powered blockchain",
   "keywords": [
     "graphql",
     "client",
@@ -13,7 +13,7 @@
     "access": "public"
   },
   "author": "wangshijun <wangshijun2010@gmail.com>",
-  "homepage": "https://github.com/arcblock/forge-js/packages/forge-graphql-client",
+  "homepage": "https://github.com/arcblock/forge-js/packages/graphql-client",
   "license": "MIT",
   "main": "./lib/node.js",
   "browser": "./dist/browser.js",

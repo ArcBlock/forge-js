@@ -1,8 +1,9 @@
 const path = require('path');
 const net = require('net');
-const { TcpServer, parseConfig } = require('../../');
+const { parse } = require('@arcblock/forge-config');
+const { TcpServer } = require('../../');
 const { decode } = require('../../lib/util/socket_data');
-const config = parseConfig(path.resolve(__dirname, '../../../../examples/simple/forge.toml'));
+const config = parse(path.resolve(__dirname, '../../../../examples/simple/forge.toml'));
 
 /* eslint-disable */
 const infoBuffer = 'FBoICgYwLjExLjA=';

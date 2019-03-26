@@ -13,7 +13,8 @@ const prettyTime = require('pretty-ms');
 const prettyBytes = require('pretty-bytes');
 const figlet = require('figlet');
 const { get, set } = require('lodash');
-const { RpcClient, parseConfig } = require('@arcblock/forge-sdk');
+const { RpcClient } = require('@arcblock/grpc-client');
+const { parse } = require('@arcblock/forge-config');
 const { name, version, engines } = require('../../package.json');
 const debug = require('debug')(name);
 
@@ -226,7 +227,7 @@ async function ensureRunningNode() {
 }
 
 /**
- * Ensure we have an global rpc client <forge-sdk instance> before command run
+ * Ensure we have an global rpc client <grpc-client instance> before command run
  * Configure file priority: cli > env > release bundled
  *
  * @param {*} args
@@ -235,7 +236,7 @@ function ensureRpcClient(args) {
   const releaseConfig = path.join(path.dirname(requiredDirs.release), 'forge_release.toml');
   const configPath = args.configPath || process.env.FORGE_CONFIG || releaseConfig;
   if (configPath && fs.existsSync(configPath)) {
-    const forgeConfig = parseConfig(configPath);
+    const forgeConfig = parse(configPath);
     config.cli.forgeConfigPath = configPath;
     debug(`${symbols.success} Using forge config: ${configPath}`);
     Object.assign(config, forgeConfig);

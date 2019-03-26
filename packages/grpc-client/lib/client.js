@@ -3,13 +3,8 @@ const camelcase = require('camelcase');
 const { EventEmitter } = require('events');
 const { fromUnitToToken, fromTokenToUnit } = require('@arcblock/forge-util');
 const { messages, enums, rpcs, getMessageType } = require('@arcblock/forge-proto');
-const {
-  formatMessage,
-  createMessage,
-  attachFormatFn,
-  attachExampleFn,
-} = require('../util/message');
-const debug = require('debug')(`${require('../../package.json').name}:Client`);
+const { formatMessage, createMessage, attachFormatFn, attachExampleFn } = require('./util/message');
+const debug = require('debug')(`${require('../package.json').name}:Client`);
 
 class Client {
   constructor(config) {

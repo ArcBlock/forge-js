@@ -1,4 +1,4 @@
-import GraphqlClient from '@arcblock/forge-graphql-client';
+import GraphqlClient from '@arcblock/graphql-client';
 import { getGraphQLEndpoint } from './util';
 
 const client = new GraphqlClient(getGraphQLEndpoint());

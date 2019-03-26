@@ -1,3 +1,13 @@
+## 0.15.1 (March 26, 2019)
+  - chore: udpate yarn.lock
+  - chore: fix reference
+  - chore: fix tcp-server
+  - chore: fix grpc-client
+  - chore: split packages
+  - chore: rename graphql-client
+  - upgrade and did auth workflow (#206)
+  - update readme
+
 ## 0.15.0 (March 22, 2019)
   - chore: responsive design for universal explorer
   - fix: make file for release explorer

@@ -2,7 +2,7 @@ const fs = require('fs');
 const toml = require('@iarna/toml');
 const camelize = require('camelize');
 
-function parseConfig(configPath) {
+function parse(configPath) {
   if (!fs.existsSync(configPath)) {
     throw new Error(`config file not found: ${configPath}`);
   }
@@ -14,5 +14,5 @@ function parseConfig(configPath) {
 }
 
 module.exports = {
-  parseConfig,
+  parse,
 };

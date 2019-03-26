@@ -2,7 +2,7 @@ const fs = require('fs');
 const toml = require('@iarna/toml');
 const shell = require('shelljs');
 const chalk = require('chalk');
-const GraphQLClient = require('@arcblock/forge-graphql-client');
+const GraphQLClient = require('@arcblock/graphql-client');
 const { config } = require('core/env');
 const { symbols } = require('core/ui');
 

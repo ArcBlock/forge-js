@@ -30,7 +30,7 @@ Options:
   -r, --release-dir              Forge release directory path (unzipped), use your own copy forge release
   -c, --config-path              Forge config used when starting forge node and initializing gRPC clients
   -g, --socket-grpc              Socket gRPC endpoint to connect, with this you can use forge-cli with a remote node
-  -s, --setup-script             Path to a javascript file that loads application specific protobuf files into forge-sdk
+  -s, --setup-script             Path to a javascript file that loads application specific protobuf files into grpc-client
   -h, --help                     output usage information
 
 Commands:

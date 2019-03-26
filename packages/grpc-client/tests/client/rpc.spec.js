@@ -1,7 +1,8 @@
 const path = require('path');
-const { RpcClient, parseConfig } = require('../../');
+const { parse } = require('@arcblock/forge-config');
+const { RpcClient } = require('../../');
 const client = new RpcClient(
-  parseConfig(path.resolve(__dirname, '../../../../examples/simple/forge.toml'))
+  parse(path.resolve(__dirname, '../../../../examples/simple/forge.toml'))
 );
 
 describe('#fromUnitToToken & fromTokenToUnit', () => {

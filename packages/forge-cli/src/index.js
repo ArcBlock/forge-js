@@ -26,7 +26,7 @@ program
   )
   .option(
     '-s, --setup-script',
-    'Path to a javascript file that loads application specific protobuf files into forge-sdk'
+    'Path to a javascript file that loads application specific protobuf files into grpc-client'
   );
 
 initCli(program);

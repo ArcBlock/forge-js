@@ -1,6 +1,6 @@
 {
-  "name": "@arcblock/forge-sdk",
-  "description": "Node.js SDK for Forge Framework by ArcBlock",
+  "name": "@arcblock/grpc-client",
+  "description": "gRPC client to read/write data on forge powered blockchain",
   "version": "0.15.0",
   "author": "wangshijun <shijun@arcblock.io> (https://ocap.arcblock.io)",
   "engines": {
@@ -18,17 +18,15 @@
     "wangshijun <shijun@arcblock.io> (https://ocap.arcblock.io)"
   ],
   "dependencies": {
+    "@arcblock/forge-config": "^0.15.0",
     "@arcblock/forge-proto": "^0.15.0",
     "@arcblock/forge-util": "^0.15.0",
-    "@iarna/toml": "^2.2.1",
     "camelcase": "^5.0.0",
-    "camelize": "^1.0.0",
     "debug": "^4.1.1",
     "faker": "Marak/faker.js#d3ce6f1a2a9359574e7f31f14d4901648047c45a",
     "google-protobuf": "3.7.0-rc.2",
     "grpc": "^1.18.0",
-    "lodash": "^4.17.11",
-    "varint": "^5.0.0"
+    "lodash": "^4.17.11"
   },
   "devDependencies": {
     "j2d": "^1.0.3-dev",
@@ -47,7 +45,7 @@
       ]
     ]
   },
-  "homepage": "https://github.com/ArcBlock/forge-js/tree/master/packages/forge-sdk",
+  "homepage": "https://github.com/ArcBlock/forge-js/tree/master/packages/grpc-client",
   "keywords": [
     "forge",
     "blockchain",
@@ -63,7 +61,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/ArcBlock/forge-js/tree/master/packages/forge-sdk"
+    "url": "https://github.com/ArcBlock/forge-js/tree/master/packages/grpc-client"
   },
   "scripts": {
     "lint": "eslint lib index.js tests",

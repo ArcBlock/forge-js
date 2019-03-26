@@ -2,7 +2,7 @@
 const qs = require('querystring');
 const multibase = require('multibase');
 const Mcrypto = require('@arcblock/mcrypto');
-const GraphQLClient = require('@arcblock/forge-graphql-client');
+const GraphQLClient = require('@arcblock/graphql-client');
 const { hexToBytes, bytesToHex, isHex } = require('@arcblock/forge-util');
 const { fromAddress } = require('@arcblock/forge-wallet');
 const { jwtDecode, jwtVerify, jwtSign } = require('@arcblock/abt-did');

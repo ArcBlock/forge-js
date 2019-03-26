@@ -1,10 +1,10 @@
-# `forge-graphql-client`
+# `@arcblock/graphql-client`
 
 > Graphql Client for Forge, provided gRPC similar features to interact with a forge-powered app.
 
 ## Table of Contents
 
-- [`forge-graphql-client`](#forge-graphql-client)
+- [`@arcblock/graphql-client`](#arcblockgraphql-client)
   - [Table of Contents](#table-of-contents)
   - [Install](#install)
   - [Usage](#usage)
@@ -13,16 +13,16 @@
 ## Install
 
 ```shell
-npm i @arcblock/forge-graphql-client -S
+npm i @arcblock/graphql-client -S
 # OR
-yarn add @arcblock/forge-graphql-client
+yarn add @arcblock/graphql-client
 ```
 
 ## Usage
 
 ```js
 const Mcrypto = require('@arcblock/mcrypto');
-const GraphqlClient = require('@arcblock/forge-graphql-client');
+const GraphqlClient = require('@arcblock/graphql-client');
 const { fromRandom, WalletType } = require('@arcblock/forge-wallet');
 const { hexToBytes } = require('@arcblock/forge-util');
 

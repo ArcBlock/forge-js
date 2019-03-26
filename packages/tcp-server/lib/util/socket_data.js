@@ -1,5 +1,5 @@
 const { getMessageType } = require('@arcblock/forge-proto');
-const { createMessage, decodeAny } = require('./message');
+const { createMessage, decodeAny } = require('@arcblock/grpc-client');
 const { encodeZigzag, decodeZigzag } = require('./varint');
 
 function encode(data, type) {

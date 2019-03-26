@@ -63,7 +63,7 @@ upgrade:
 	@echo "Upgrade sdk to align with latest forge..."
 	@cd packages/graphql-client && npm run upgrade && git commit -m "chore: upgrade graphql-client with latest forge" . && yarn build
 	@cd packages/forge-proto && npm run upgrade && git commit -m "chore: upgrade forge-proto with latest forge" .
-	@cd packages/forge-sdk && npm run upgrade && git commit -m "chore: upgrade forge-sdk with latest forge" .
+	@cd packages/grpc-client && npm run upgrade && git commit -m "chore: upgrade grpc-client with latest forge" .
 
 run:
 	@echo "Running the software..."
