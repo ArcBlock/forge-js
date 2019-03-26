@@ -1,6 +1,6 @@
 {
   "name": "@arcblock/abt-did",
-  "version": "0.15.0",
+  "version": "0.15.1",
   "description": "Javascript lib to work with ArcBlock DID",
   "keywords": [
     "forge",

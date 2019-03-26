@@ -1,7 +1,7 @@
 {
   "name": "@arcblock/forge-config",
   "description": "Utility to parse/stringify forge config",
-  "version": "0.15.0",
+  "version": "0.15.1",
   "author": "wangshijun <shijun@arcblock.io> (https://ocap.arcblock.io)",
   "engines": {
     "node": ">=0.10.0",
