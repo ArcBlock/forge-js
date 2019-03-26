@@ -10,14 +10,16 @@
 
 ## Table of Contents
 
-* [Install](#install)
-* [Usage](#usage)
-  * [0. Make sure you get forge installed](#0-make-sure-you-get-forge-installed)
-  * [1. Prepare Example App](#1-prepare-example-app)
-  * [2. Call Rpc](#2-call-rpc)
-* [Documentation](#documentation)
-* [Contributors](#contributors)
-* [License](#license)
+- [**@arcblock/grpc-client**](#arcblockgrpc-client)
+  - [Table of Contents](#table-of-contents)
+  - [Install](#install)
+  - [Usage](#usage)
+    - [0. Make sure you get forge installed](#0-make-sure-you-get-forge-installed)
+    - [1. Prepare Example App](#1-prepare-example-app)
+    - [2. Call Rpc](#2-call-rpc)
+  - [Documentation](#documentation)
+  - [Contributors](#contributors)
+  - [License](#license)
 
 
 ## Install
@@ -42,9 +44,10 @@ Checkout our [examples](../../examples) folder
 ### 2. Call Rpc
 
 ```js
-const { RpcClient, parseConfig } = require('@arcblock/grpc-client');
+const { RpcClient } = require('@arcblock/grpc-client');
+const { parse } = require('@arcblock/forge-config');
 
-const client = new RpcClient(parseConfig('./forge.toml'));
+const client = new RpcClient(parse('./forge.toml'));
 (async () => {
   // fetch forge change info
   const { info } = await client.getChainInfo();
