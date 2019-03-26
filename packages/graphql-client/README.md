@@ -2,13 +2,13 @@
 
 > Graphql Client for Forge, provided gRPC similar features to interact with a forge-powered app.
 
+
 ## Table of Contents
 
-- [`@arcblock/graphql-client`](#arcblockgraphql-client)
-  - [Table of Contents](#table-of-contents)
-  - [Install](#install)
-  - [Usage](#usage)
-  - [Documentation](#documentation)
+* [Install](#install)
+* [Usage](#usage)
+* [Documentation](#documentation)
+
 
 ## Install
 
@@ -17,6 +17,7 @@ npm i @arcblock/graphql-client -S
 # OR
 yarn add @arcblock/graphql-client
 ```
+
 
 ## Usage
 
@@ -63,6 +64,7 @@ console.log({
   console.log(res);
 })();
 ```
+
 
 ## Documentation
 

@@ -1,6 +1,6 @@
 # Forge GraphQL API List
 
-> Updated on 2019-03-23T23:48:26.770Z
+> Updated on 2019-03-26T10:44:26.686Z
 
 
 ## Table of Contents
@@ -103,6 +103,7 @@
             nonce
             signature
             signatures {
+              pk
               signature
               signer
               data {
@@ -171,16 +172,9 @@
               ... on DeclareTx {
                 issuer
                 moniker
-                pk
                 data {
                   typeUrl
                   value
-                }
-                type {
-                  address
-                  hash
-                  pk
-                  role
                 }
               }
               ... on CreateAssetTx {
@@ -262,6 +256,7 @@
             nonce
             signature
             signatures {
+              pk
               signature
               signer
               data {
@@ -330,16 +325,9 @@
               ... on DeclareTx {
                 issuer
                 moniker
-                pk
                 data {
                   typeUrl
                   value
-                }
-                type {
-                  address
-                  hash
-                  pk
-                  role
                 }
               }
               ... on CreateAssetTx {
@@ -513,6 +501,7 @@
             nonce
             signature
             signatures {
+              pk
               signature
               signer
               data {
@@ -581,16 +570,9 @@
               ... on DeclareTx {
                 issuer
                 moniker
-                pk
                 data {
                   typeUrl
                   value
-                }
-                type {
-                  address
-                  hash
-                  pk
-                  role
                 }
               }
               ... on CreateAssetTx {
@@ -672,6 +654,7 @@
             nonce
             signature
             signatures {
+              pk
               signature
               signer
               data {
@@ -740,16 +723,9 @@
               ... on DeclareTx {
                 issuer
                 moniker
-                pk
                 data {
                   typeUrl
                   value
-                }
-                type {
-                  address
-                  hash
-                  pk
-                  role
                 }
               }
               ... on CreateAssetTx {
@@ -918,6 +894,7 @@
           nonce
           signature
           signatures {
+            pk
             signature
             signer
             data {
@@ -986,16 +963,9 @@
             ... on DeclareTx {
               issuer
               moniker
-              pk
               data {
                 typeUrl
                 value
-              }
-              type {
-                address
-                hash
-                pk
-                role
               }
             }
             ... on CreateAssetTx {
@@ -1084,6 +1054,7 @@
           nonce
           signature
           signatures {
+            pk
             signature
             signer
             data {
@@ -1152,16 +1123,9 @@
             ... on DeclareTx {
               issuer
               moniker
-              pk
               data {
                 typeUrl
                 value
-              }
-              type {
-                address
-                hash
-                pk
-                role
               }
             }
             ... on CreateAssetTx {
@@ -1283,6 +1247,7 @@
           nonce
           signature
           signatures {
+            pk
             signature
             signer
             data {
@@ -1351,16 +1316,9 @@
             ... on DeclareTx {
               issuer
               moniker
-              pk
               data {
                 typeUrl
                 value
-              }
-              type {
-                address
-                hash
-                pk
-                role
               }
             }
             ... on CreateAssetTx {
@@ -1449,6 +1407,7 @@
           nonce
           signature
           signatures {
+            pk
             signature
             signer
             data {
@@ -1517,16 +1476,9 @@
             ... on DeclareTx {
               issuer
               moniker
-              pk
               data {
                 typeUrl
                 value
-              }
-              type {
-                address
-                hash
-                pk
-                role
               }
             }
             ... on CreateAssetTx {
@@ -2024,6 +1976,7 @@ No arguments
             nonce
             signature
             signatures {
+              pk
               signature
               signer
               data {
@@ -2092,16 +2045,9 @@ No arguments
               ... on DeclareTx {
                 issuer
                 moniker
-                pk
                 data {
                   typeUrl
                   value
-                }
-                type {
-                  address
-                  hash
-                  pk
-                  role
                 }
               }
               ... on CreateAssetTx {
@@ -2183,6 +2129,7 @@ No arguments
             nonce
             signature
             signatures {
+              pk
               signature
               signer
               data {
@@ -2251,16 +2198,9 @@ No arguments
               ... on DeclareTx {
                 issuer
                 moniker
-                pk
                 data {
                   typeUrl
                   value
-                }
-                type {
-                  address
-                  hash
-                  pk
-                  role
                 }
               }
               ... on CreateAssetTx {
@@ -2433,6 +2373,7 @@ No arguments
         nonce
         signature
         signatures {
+          pk
           signature
           signer
           data {
@@ -2501,16 +2442,9 @@ No arguments
           ... on DeclareTx {
             issuer
             moniker
-            pk
             data {
               typeUrl
               value
-            }
-            type {
-              address
-              hash
-              pk
-              role
             }
           }
           ... on CreateAssetTx {
@@ -2594,6 +2528,7 @@ No arguments
         nonce
         signature
         signatures {
+          pk
           signature
           signer
           data {
@@ -2662,16 +2597,9 @@ No arguments
           ... on DeclareTx {
             issuer
             moniker
-            pk
             data {
               typeUrl
               value
-            }
-            type {
-              address
-              hash
-              pk
-              role
             }
           }
           ... on CreateAssetTx {
@@ -2813,6 +2741,7 @@ No arguments
         nonce
         signature
         signatures {
+          pk
           signature
           signer
           data {
@@ -2881,16 +2810,9 @@ No arguments
           ... on DeclareTx {
             issuer
             moniker
-            pk
             data {
               typeUrl
               value
-            }
-            type {
-              address
-              hash
-              pk
-              role
             }
           }
           ... on CreateAssetTx {
@@ -3081,6 +3003,7 @@ No arguments
         nonce
         signature
         signatures {
+          pk
           signature
           signer
           data {
@@ -3149,16 +3072,9 @@ No arguments
           ... on DeclareTx {
             issuer
             moniker
-            pk
             data {
               typeUrl
               value
-            }
-            type {
-              address
-              hash
-              pk
-              role
             }
           }
           ... on CreateAssetTx {
@@ -3309,6 +3225,7 @@ No arguments
       nonce
       signature
       signatures {
+        pk
         signature
         signer
         data {
@@ -3377,16 +3294,9 @@ No arguments
         ... on DeclareTx {
           issuer
           moniker
-          pk
           data {
             typeUrl
             value
-          }
-          type {
-            address
-            hash
-            pk
-            role
           }
         }
         ... on CreateAssetTx {
@@ -3500,6 +3410,7 @@ No arguments
         nonce
         signature
         signatures {
+          pk
           signature
           signer
           data {
@@ -3568,16 +3479,9 @@ No arguments
           ... on DeclareTx {
             issuer
             moniker
-            pk
             data {
               typeUrl
               value
-            }
-            type {
-              address
-              hash
-              pk
-              role
             }
           }
           ... on CreateAssetTx {
@@ -3683,6 +3587,7 @@ subscription {
       nonce
       signature
       signatures {
+        pk
         signature
         signer
         data {
@@ -3751,16 +3656,9 @@ subscription {
         ... on DeclareTx {
           issuer
           moniker
-          pk
           data {
             typeUrl
             value
-          }
-          type {
-            address
-            hash
-            pk
-            role
           }
         }
         ... on CreateAssetTx {
@@ -3825,6 +3723,7 @@ subscription {
       nonce
       signature
       signatures {
+        pk
         signature
         signer
         data {
@@ -3893,16 +3792,9 @@ subscription {
         ... on DeclareTx {
           issuer
           moniker
-          pk
           data {
             typeUrl
             value
-          }
-          type {
-            address
-            hash
-            pk
-            role
           }
         }
         ... on CreateAssetTx {
@@ -3967,6 +3859,7 @@ subscription {
       nonce
       signature
       signatures {
+        pk
         signature
         signer
         data {
@@ -4035,16 +3928,9 @@ subscription {
         ... on DeclareTx {
           issuer
           moniker
-          pk
           data {
             typeUrl
             value
-          }
-          type {
-            address
-            hash
-            pk
-            role
           }
         }
         ... on CreateAssetTx {
@@ -4159,6 +4045,7 @@ subscription {
       nonce
       signature
       signatures {
+        pk
         signature
         signer
         data {
@@ -4227,16 +4114,9 @@ subscription {
         ... on DeclareTx {
           issuer
           moniker
-          pk
           data {
             typeUrl
             value
-          }
-          type {
-            address
-            hash
-            pk
-            role
           }
         }
         ... on CreateAssetTx {
@@ -4301,6 +4181,7 @@ subscription {
       nonce
       signature
       signatures {
+        pk
         signature
         signer
         data {
@@ -4369,16 +4250,9 @@ subscription {
         ... on DeclareTx {
           issuer
           moniker
-          pk
           data {
             typeUrl
             value
-          }
-          type {
-            address
-            hash
-            pk
-            role
           }
         }
         ... on CreateAssetTx {
@@ -4443,6 +4317,7 @@ subscription {
       nonce
       signature
       signatures {
+        pk
         signature
         signer
         data {
@@ -4511,16 +4386,9 @@ subscription {
         ... on DeclareTx {
           issuer
           moniker
-          pk
           data {
             typeUrl
             value
-          }
-          type {
-            address
-            hash
-            pk
-            role
           }
         }
         ... on CreateAssetTx {
@@ -4585,6 +4453,7 @@ subscription {
       nonce
       signature
       signatures {
+        pk
         signature
         signer
         data {
@@ -4653,16 +4522,9 @@ subscription {
         ... on DeclareTx {
           issuer
           moniker
-          pk
           data {
             typeUrl
             value
-          }
-          type {
-            address
-            hash
-            pk
-            role
           }
         }
         ... on CreateAssetTx {
@@ -4727,6 +4589,7 @@ subscription {
       nonce
       signature
       signatures {
+        pk
         signature
         signer
         data {
@@ -4795,16 +4658,9 @@ subscription {
         ... on DeclareTx {
           issuer
           moniker
-          pk
           data {
             typeUrl
             value
-          }
-          type {
-            address
-            hash
-            pk
-            role
           }
         }
         ... on CreateAssetTx {
@@ -4872,6 +4728,7 @@ subscription {
       nonce
       signature
       signatures {
+        pk
         signature
         signer
         data {
@@ -4940,16 +4797,9 @@ subscription {
         ... on DeclareTx {
           issuer
           moniker
-          pk
           data {
             typeUrl
             value
-          }
-          type {
-            address
-            hash
-            pk
-            role
           }
         }
         ... on CreateAssetTx {
@@ -5014,6 +4864,7 @@ subscription {
       nonce
       signature
       signatures {
+        pk
         signature
         signer
         data {
@@ -5082,16 +4933,9 @@ subscription {
         ... on DeclareTx {
           issuer
           moniker
-          pk
           data {
             typeUrl
             value
-          }
-          type {
-            address
-            hash
-            pk
-            role
           }
         }
         ... on CreateAssetTx {
@@ -5156,6 +5000,7 @@ subscription {
       nonce
       signature
       signatures {
+        pk
         signature
         signer
         data {
@@ -5224,16 +5069,9 @@ subscription {
         ... on DeclareTx {
           issuer
           moniker
-          pk
           data {
             typeUrl
             value
-          }
-          type {
-            address
-            hash
-            pk
-            role
           }
         }
         ... on CreateAssetTx {
@@ -5298,6 +5136,7 @@ subscription {
       nonce
       signature
       signatures {
+        pk
         signature
         signer
         data {
@@ -5366,16 +5205,9 @@ subscription {
         ... on DeclareTx {
           issuer
           moniker
-          pk
           data {
             typeUrl
             value
-          }
-          type {
-            address
-            hash
-            pk
-            role
           }
         }
         ... on CreateAssetTx {
@@ -5440,6 +5272,7 @@ subscription {
       nonce
       signature
       signatures {
+        pk
         signature
         signer
         data {
@@ -5508,16 +5341,9 @@ subscription {
         ... on DeclareTx {
           issuer
           moniker
-          pk
           data {
             typeUrl
             value
-          }
-          type {
-            address
-            hash
-            pk
-            role
           }
         }
         ... on CreateAssetTx {
@@ -5582,6 +5408,7 @@ subscription {
       nonce
       signature
       signatures {
+        pk
         signature
         signer
         data {
@@ -5650,16 +5477,9 @@ subscription {
         ... on DeclareTx {
           issuer
           moniker
-          pk
           data {
             typeUrl
             value
-          }
-          type {
-            address
-            hash
-            pk
-            role
           }
         }
         ... on CreateAssetTx {
@@ -5724,6 +5544,7 @@ subscription {
       nonce
       signature
       signatures {
+        pk
         signature
         signer
         data {
@@ -5792,16 +5613,9 @@ subscription {
         ... on DeclareTx {
           issuer
           moniker
-          pk
           data {
             typeUrl
             value
-          }
-          type {
-            address
-            hash
-            pk
-            role
           }
         }
         ... on CreateAssetTx {
@@ -5866,6 +5680,7 @@ subscription {
       nonce
       signature
       signatures {
+        pk
         signature
         signer
         data {
@@ -5934,16 +5749,9 @@ subscription {
         ... on DeclareTx {
           issuer
           moniker
-          pk
           data {
             typeUrl
             value
-          }
-          type {
-            address
-            hash
-            pk
-            role
           }
         }
         ... on CreateAssetTx {
@@ -6032,6 +5840,7 @@ mutation {
       nonce
       signature
       signatures {
+        pk
         signature
         signer
         data {
@@ -6100,16 +5909,9 @@ mutation {
         ... on DeclareTx {
           issuer
           moniker
-          pk
           data {
             typeUrl
             value
-          }
-          type {
-            address
-            hash
-            pk
-            role
           }
         }
         ... on CreateAssetTx {
