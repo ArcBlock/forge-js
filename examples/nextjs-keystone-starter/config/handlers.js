@@ -27,7 +27,7 @@ module.exports = class Handlers {
     onAuthSuccess,
     onStatusCheck,
     // eslint-disable-next-line no-console
-    onError = console.log,
+    onError = console.error,
     prefix = '/api/did',
   }) {
     if (typeof onAuthSuccess !== 'function') {
