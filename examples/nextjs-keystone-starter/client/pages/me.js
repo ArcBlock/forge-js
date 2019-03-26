@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
 
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -12,12 +13,11 @@ import Layout from '../components/layout';
 import Avatar from '../components/avatar';
 
 import useSession from '../hooks/session';
-import api from '../libs/api';
 
 export default function ProfilePage() {
   const state = useSession();
   const onLogout = async () => {
-    await api.post('/logout');
+    await axios.post('/api/logout');
     window.location.href = '/';
   };
 

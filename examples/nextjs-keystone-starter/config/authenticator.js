@@ -27,7 +27,7 @@ module.exports = class Authenticator {
       appPk: this.appPk,
       appDid: `abt:did:${this.wallet.address}`,
       action: 'requestAuth',
-      url: `${this.baseUrl}/${pathname}?${qs.stringify({ token })}`,
+      url: `${this.baseUrl}${pathname}?${qs.stringify({ token })}`,
     };
 
     return `${this.appInfo.path}?${qs.stringify(params)}`;
@@ -38,7 +38,7 @@ module.exports = class Authenticator {
       action: 'responseAuth',
       appInfo: this.appInfo,
       requestedClaims: await this.genRequestedClaims(claims),
-      url: `${this.baseUrl}/${pathname}?${qs.stringify({ token })}`,
+      url: `${this.baseUrl}${pathname}?${qs.stringify({ token })}`,
     };
 
     return {

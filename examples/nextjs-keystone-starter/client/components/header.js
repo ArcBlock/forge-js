@@ -10,7 +10,7 @@ import Typography from '@material-ui/core/Typography';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Dialog from '@material-ui/core/Dialog';
 
-import Login from './login';
+import Auth from './auth';
 import UserAvatar from './avatar';
 import useSession from '../hooks/session';
 
@@ -67,7 +67,17 @@ export default function Header() {
       )}
       {open && (
         <Dialog open maxWidth="sm" disableBackdropClick disableEscapeKeyDown onClose={closeDialog}>
-          <Login onClose={closeDialog} onSuccess={() => (window.location.href = '/me')} />
+          <Auth
+            action="login"
+            onClose={closeDialog}
+            onSuccess={() => (window.location.href = '/me')}
+            messages={{
+              title: 'login',
+              scan: 'Scan QR code with ABT Wallet',
+              confirm: 'Confirm login on your ABT Wallet',
+              success: 'You have successfully signed in!',
+            }}
+          />
         </Dialog>
       )}
     </Nav>
