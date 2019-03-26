@@ -1,3 +1,4 @@
+/* eslint-disable object-curly-newline */
 const qs = require('querystring');
 const multibase = require('multibase');
 const Mcrypto = require('@arcblock/mcrypto');
@@ -6,6 +7,8 @@ const { hexToBytes, bytesToHex, isHex } = require('@arcblock/forge-util');
 const { fromAddress } = require('@arcblock/forge-wallet');
 const { jwtDecode, jwtVerify, jwtSign } = require('@arcblock/abt-did');
 const debug = require('debug')('DIDAuth:Authenticator');
+
+const base58Encode = buffer => multibase.encode('base58btc', buffer).toString();
 
 module.exports = class Authenticator {
   constructor({ wallet, appInfo, baseUrl }) {
@@ -36,7 +39,6 @@ module.exports = class Authenticator {
     return uri;
   }
 
-  // eslint-disable-next-line object-curly-newline
   async sign({ token, did, claims, pathname }) {
     const payload = {
       action: 'responseAuth',
@@ -45,6 +47,7 @@ module.exports = class Authenticator {
       url: `${this.baseUrl}${pathname}?${qs.stringify({ token })}`,
     };
 
+    debug('sign', payload);
     return {
       appPk: this.appPk,
       authInfo: jwtSign(`did:abt:${this.wallet.address}`, this.wallet.sk, payload),
@@ -107,22 +110,23 @@ module.exports = class Authenticator {
     };
   }
 
-  // eslint-disable-next-line object-curly-newline
   async signature({ txData, txType, sender, description }, did) {
+    debug('getClain.signature', { txData, txType, sender, did });
+
     // TODO: make this more robust
     const { buffer: txBuffer } = await this.client[`encode${txType}`]({
       data: txData,
-      wallet: fromAddress(sender, did),
+      wallet: fromAddress(sender || did),
     });
 
     return {
-      data: multibase.encode('base58btc', hexToBytes(Mcrypto.Hasher.SHA3.hash256(txBuffer))),
+      data: base58Encode(hexToBytes(Mcrypto.Hasher.SHA3.hash256(txBuffer))),
       meta: {
         description: description || 'You have to sign this transaction to continue.',
         typeUrl: 'fg:t:transaction',
       },
       method: 'sha3',
-      origin: multibase.encode('base58btc', txBuffer),
+      origin: base58Encode(txBuffer),
       sig: '',
       type: 'signature',
     };

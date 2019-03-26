@@ -29,7 +29,10 @@ module.exports = app => {
         txType: 'TransferTx',
         txData: {
           to: auth.wallet.address,
-          value: fromTokenToUnit(100),
+          value: {
+            value: fromTokenToUnit(100).toBuffer(),
+            minus: false,
+          },
         },
         description: 'Please provide your email and name to continue',
       },

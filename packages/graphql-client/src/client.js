@@ -62,19 +62,11 @@ class GraphqlClient extends BaseClient {
           chainId = info.network;
         }
 
-        debug({
-          pk: stripHexPrefix(wallet.publicKey).toUpperCase(),
-          sk: stripHexPrefix(wallet.secretKey).toUpperCase(),
-          address,
-          nonce,
-          chainId,
-        });
-
         const ItxType = getType(x);
 
         const itx = ItxType.fromObject(data);
         const itxBytes = ItxType.encode(itx).finish();
-        debug({ itxBytes, itxHex: toHex(itxBytes) });
+        debug({ itx, itxBytes, itxHex: toHex(itxBytes) });
 
         const txObj = {
           from: address,

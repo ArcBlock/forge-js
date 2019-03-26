@@ -92,6 +92,7 @@ module.exports = class Handlers {
         }
 
         const authInfo = await this.authenticator.sign({ token, did, claims, pathname });
+        debug('sign', authInfo);
         res.json(authInfo);
       } catch (err) {
         res.json({ error: err.message });
@@ -105,7 +106,7 @@ module.exports = class Handlers {
         const params = Object.assign({}, req.body, req.query);
         // eslint-disable-next-line no-shadow
         const { did, token, claims } = await this.authenticator.verify(params);
-        debug('verify auth', { did, token, claims });
+        debug('verify', { did, token, claims });
         await onAuthSuccess({ did, token, claims });
 
         if (token) {
