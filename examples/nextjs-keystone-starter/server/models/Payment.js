@@ -17,19 +17,23 @@ Payment.add({
   did: {
     type: Types.Text,
     label: 'DID',
+    index: true,
   },
   hash: {
     type: Types.Text,
     label: 'TxHash',
+    index: true,
   },
   block: {
     type: Types.Number,
     label: 'Block',
+    index: true,
   },
   status: {
     type: Types.Select,
     options: 'created, signed, confirmed',
     default: 'created',
+    index: true,
   },
 });
 
