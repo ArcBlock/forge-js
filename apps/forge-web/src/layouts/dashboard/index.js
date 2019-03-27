@@ -29,7 +29,7 @@ const getSecondaryLinks = location => {
   }
   if (/^\/developer\//.test(location.pathname)) {
     return {
-      title: 'Developer',
+      title: 'Tools',
       links: [
         { link: '/developer/query', title: 'Query' },
         { link: '/developer/simulator', title: 'Simulator' },
