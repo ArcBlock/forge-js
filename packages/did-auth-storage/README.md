@@ -1,17 +1,16 @@
 # [**@arcblock/did-auth-storage**](https://github.com/arcblock/forge-js)
 
-[![build status](https://img.shields.io/travis/ArcBlock/forge-js.svg)](https://travis-ci.org/ArcBlock/forge-js)
-[![code coverage](https://img.shields.io/codecov/c/github/ArcBlock/forge-js.svg)](https://codecov.io/gh/ArcBlock/forge-js)
 [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
-[![license](https://img.shields.io/github/license/ArcBlock/forge-js.svg)](LICENSE)
 
 > Interface for define a storage class that can be used by [@arcblock/did-auth].
 
 ## Table of Contents
 
-- [Table of Contents](#table-of-contents)
-- [Install](#install)
-- [Usage](#usage)
+- [**@arcblock/did-auth-storage**](#arcblockdid-auth-storage)
+  - [Table of Contents](#table-of-contents)
+  - [Motivation & Spec](#motivation--spec)
+  - [Install](#install)
+  - [Usage](#usage)
 
 ## Motivation & Spec
 

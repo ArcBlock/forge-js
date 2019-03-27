@@ -1,23 +1,20 @@
 # [**@arcblock/grpc-client**](https://github.com/arcblock/forge-js)
 
-[![build status](https://img.shields.io/travis/ArcBlock/forge-js.svg)](https://travis-ci.org/ArcBlock/forge-js)
-[![code coverage](https://img.shields.io/codecov/c/github/ArcBlock/forge-js.svg)](https://codecov.io/gh/ArcBlock/forge-js)
 [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
-[![license](https://img.shields.io/github/license/ArcBlock/forge-js.svg)](LICENSE)
 
 > gRPC client to read/write data on forge powered blockchain
 
 
 ## Table of Contents
 
-* [Install](#install)
-* [Usage](#usage)
-  * [0. Make sure you get forge installed](#0-make-sure-you-get-forge-installed)
-  * [1. Prepare Example App](#1-prepare-example-app)
-  * [2. Call Rpc](#2-call-rpc)
-* [Documentation](#documentation)
-* [Contributors](#contributors)
-* [License](#license)
+- [**@arcblock/grpc-client**](#arcblockgrpc-client)
+  - [Table of Contents](#table-of-contents)
+  - [Install](#install)
+  - [Usage](#usage)
+    - [0. Make sure you get forge installed](#0-make-sure-you-get-forge-installed)
+    - [1. Prepare Example App](#1-prepare-example-app)
+    - [2. Call Rpc](#2-call-rpc)
+  - [Documentation](#documentation)
 
 
 ## Install
@@ -67,17 +64,3 @@ const client = new RpcClient(parse('./forge.toml'));
 ## Documentation
 
 For complete API documentation please refer [API.md](./API.md)
-
-
-## Contributors
-
-| Name           | Website                    |
-| -------------- | -------------------------- |
-| **wangshijun** | <https://ocap.arcblock.io> |
-
-* [wangshijun](https://github.com/wangshijun)
-
-
-## License
-
-[MIT](LICENSE) © [wangshijun](https://ocap.arcblock.io)
