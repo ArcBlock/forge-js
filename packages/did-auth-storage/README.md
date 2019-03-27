@@ -13,6 +13,27 @@
 - [Install](#install)
 - [Usage](#usage)
 
+## Motivation & Spec
+
+> Since tokens are used everywhere make achieve better QR code experience, we should allow users to customize how to generate/store/update token records.
+
+Basic APIs that a token storage should support:
+
+- `async init()`, optional, open a database connection, creating a embed database on file system
+- `async create(token, status = created)`, create a new token record, persist in data store
+- `async exist?(token, did)`, check for token existense
+- `async read(token)`, read a token from database,
+- `async update(token, updates)`, update token record
+- `async delete(token)`, remove a token record
+- `async gc()`, optional, run garbage collection on the token storage
+
+Plan to support:
+
+- token-storage-mongo
+- token-storage-psql
+- token-storage-nedb
+- token-storage-memory
+
 ## Install
 
 ```sh
