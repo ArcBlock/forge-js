@@ -1,7 +1,7 @@
 {
   "name": "@arcblock/grpc-client",
   "description": "gRPC client to read/write data on forge powered blockchain",
-  "version": "0.15.2",
+  "version": "0.16.0",
   "author": "wangshijun <shijun@arcblock.io> (https://ocap.arcblock.io)",
   "engines": {
     "node": ">=0.10.0",
@@ -18,9 +18,9 @@
     "wangshijun <shijun@arcblock.io> (https://ocap.arcblock.io)"
   ],
   "dependencies": {
-    "@arcblock/forge-config": "^0.15.2",
-    "@arcblock/forge-proto": "^0.15.1",
-    "@arcblock/forge-util": "^0.15.0",
+    "@arcblock/forge-config": "^0.16.0",
+    "@arcblock/forge-proto": "^0.16.0",
+    "@arcblock/forge-util": "^0.16.0",
     "camelcase": "^5.0.0",
     "debug": "^4.1.1",
     "faker": "Marak/faker.js#d3ce6f1a2a9359574e7f31f14d4901648047c45a",

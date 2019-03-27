@@ -1,7 +1,7 @@
 {
   "name": "@arcblock/did-auth-storage",
   "description": "Storage interface for did-auth",
-  "version": "0.15.2",
+  "version": "0.16.0",
   "author": "wangshijun <shijun@arcblock.io> (https://ocap.arcblock.io)",
   "engines": {
     "node": ">=0.10.0",
