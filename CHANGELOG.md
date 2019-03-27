@@ -1,3 +1,12 @@
+## 0.15.2 (March 27, 2019)
+  - chore: update starter
+  - chore: extract did-auth-storage interface lib
+  - chore: update readme of did-auth lib
+  - chore: extract did auth lib
+  - chore: disable user-select on secret document
+  - chore: improve error handling
+  - update readme
+
 ## 0.15.1 (March 26, 2019)
   - chore: udpate yarn.lock
   - chore: fix reference
