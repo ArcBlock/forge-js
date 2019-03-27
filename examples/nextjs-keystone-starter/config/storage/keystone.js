@@ -1,7 +1,10 @@
+const StorageInterface = require('@arcblock/did-auth-storage');
 const keystone = require('keystone');
 
-module.exports = class KeystoneStorage {
+module.exports = class KeystoneStorage extends StorageInterface {
   constructor() {
+    super();
+
     this.model = keystone.list('LoginToken').model;
   }
 
