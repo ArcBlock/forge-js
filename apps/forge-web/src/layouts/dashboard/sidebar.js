@@ -5,6 +5,7 @@ import { withTheme } from '@material-ui/core/styles';
 
 import { withRouter, Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
+import Tooltip from '@material-ui/core/Tooltip';
 
 import Icon8 from '../../components/icon8';
 
@@ -42,13 +43,15 @@ class Sidebar extends React.Component {
   renderMenuItem(url, name, title) {
     const selected = this.isSelected(url, name);
     return (
-      <MenuItem component={Link} key={url} selected={selected} to={url} title={title}>
-        <Icon8
-          name={images[name]}
-          size={36}
-          color={selected ? '#00c2c4' : this.props.theme.typography.color.main}
-        />
-      </MenuItem>
+      <Tooltip title={title} placement="right">
+        <MenuItem component={Link} key={url} selected={selected} to={url} title={title}>
+          <Icon8
+            name={images[name]}
+            size={36}
+            color={selected ? '#00c2c4' : this.props.theme.typography.color.main}
+          />
+        </MenuItem>
+      </Tooltip>
     );
   }
 
