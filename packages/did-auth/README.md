@@ -5,7 +5,7 @@
 [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 [![license](https://img.shields.io/github/license/ArcBlock/forge-js.svg)](LICENSE)
 
-> gRPC client to read/write data on forge powered blockchain
+> Helper classes to help you setup a node.js web server that can handle DID Authentication
 
 ## Table of Contents
 
