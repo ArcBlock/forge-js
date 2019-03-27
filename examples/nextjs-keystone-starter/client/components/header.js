@@ -68,7 +68,7 @@ export default function Header() {
         <Dialog open maxWidth="sm" disableBackdropClick disableEscapeKeyDown onClose={toggle}>
           <Auth
             action="login"
-            onClose={toggle}
+            onClose={() => toggle()}
             onSuccess={() => (window.location.href = '/me')}
             messages={{
               title: 'login',

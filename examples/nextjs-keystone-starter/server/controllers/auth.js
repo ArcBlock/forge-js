@@ -2,11 +2,11 @@ const keystone = require('keystone');
 const multibase = require('multibase');
 const { fromTokenToUnit, bytesToHex } = require('@arcblock/forge-util');
 const { fromAddress } = require('@arcblock/forge-wallet');
+const { Handlers } = require('@arcblock/did-auth');
 const auth = require('../../config/auth');
-const AuthHandlers = require('../../config/handlers');
 const KeystoneStorage = require('../../config/storage/keystone');
 
-const handler = new AuthHandlers({
+const handler = new Handlers({
   tokenGenerator: req => req.sessionID + Date.now(),
   tokenStorage: new KeystoneStorage(),
   authenticator: auth,
