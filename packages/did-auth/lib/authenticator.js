@@ -6,7 +6,7 @@ const GraphQLClient = require('@arcblock/graphql-client');
 const { hexToBytes, bytesToHex, isHex } = require('@arcblock/forge-util');
 const { fromAddress } = require('@arcblock/forge-wallet');
 const { jwtDecode, jwtVerify, jwtSign } = require('@arcblock/abt-did');
-const debug = require('debug')('DIDAuth:Authenticator');
+const debug = require('debug')(`${require('../package.json').name}:authenticator`);
 
 const base58Encode = buffer => multibase.encode('base58btc', buffer).toString();
 

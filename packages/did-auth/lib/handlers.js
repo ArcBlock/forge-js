@@ -1,6 +1,6 @@
 /* eslint-disable object-curly-newline */
 const Mcrypto = require('@arcblock/mcrypto');
-const debug = require('debug')('DIDAuth:Handlers');
+const debug = require('debug')(`${require('../package.json').name}:handlers`);
 
 const sha3 = Mcrypto.Hasher.SHA3.hash256;
 
@@ -27,7 +27,7 @@ module.exports = class Handlers {
     onAuthSuccess,
     onStatusCheck,
     // eslint-disable-next-line no-console
-    onError = console.log,
+    onError = console.error,
     prefix = '/api/did',
   }) {
     if (typeof onAuthSuccess !== 'function') {
@@ -39,6 +39,7 @@ module.exports = class Handlers {
 
     // pathname for abt wallet, which will be included for authenticator signing
     const pathname = `${prefix}/${action}/auth`;
+    debug('attach routes', { action, prefix, pathname });
 
     // 1. WEB: to generate new token
     app.get(`${prefix}/${action}/token`, async (req, res) => {

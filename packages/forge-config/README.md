@@ -33,13 +33,3 @@ const { parseConfig } = require('@arcblock/forge-config');
 
 const config = parseConfig('./forge.toml');
 ```
-
-
-## Documentation
-
-For complete API documentation please refer [API.md](./API.md)
-
-
-## License
-
-[MIT](LICENSE) © [wangshijun](https://ocap.arcblock.io)

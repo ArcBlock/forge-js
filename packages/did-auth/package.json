@@ -1,6 +1,6 @@
 {
-  "name": "@arcblock/forge-config",
-  "description": "Utility to parse/stringify forge config",
+  "name": "@arcblock/did-auth",
+  "description": "Helper function to setup DID authentication support on a node.js web server",
   "version": "0.15.1",
   "author": "wangshijun <shijun@arcblock.io> (https://ocap.arcblock.io)",
   "engines": {
@@ -18,8 +18,13 @@
     "wangshijun <shijun@arcblock.io> (https://ocap.arcblock.io)"
   ],
   "dependencies": {
-    "@iarna/toml": "^2.2.1",
-    "camelize": "^1.0.0"
+    "@arcblock/abt-did": "^0.15.1",
+    "@arcblock/forge-util": "^0.15.0",
+    "@arcblock/forge-wallet": "^0.15.1",
+    "@arcblock/graphql-client": "^0.15.1",
+    "@arcblock/mcrypto": "^0.15.0",
+    "debug": "^4.1.1",
+    "multibase": "^0.6.0"
   },
   "devDependencies": {
     "j2d": "^1.0.3-dev",
@@ -38,7 +43,7 @@
       ]
     ]
   },
-  "homepage": "https://github.com/ArcBlock/forge-js/tree/master/packages/forge-config",
+  "homepage": "https://github.com/ArcBlock/forge-js/tree/master/packages/did-auth",
   "keywords": [
     "forge",
     "blockchain",
@@ -53,7 +58,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/ArcBlock/forge-js/tree/master/packages/forge-config"
+    "url": "https://github.com/ArcBlock/forge-js/tree/master/packages/did-auth"
   },
   "scripts": {
     "lint": "eslint lib tests",

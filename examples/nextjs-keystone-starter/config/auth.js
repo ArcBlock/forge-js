@@ -1,6 +1,6 @@
 const Mcrypto = require('@arcblock/mcrypto');
 const { fromSecretKey, WalletType } = require('@arcblock/forge-wallet');
-const Authenticator = require('./authenticator');
+const { Authenticator } = require('@arcblock/did-auth');
 
 const type = WalletType({
   role: Mcrypto.types.RoleType.ROLE_APPLICATION,
