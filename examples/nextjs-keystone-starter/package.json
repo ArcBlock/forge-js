@@ -1,11 +1,11 @@
 {
   "name": "forge-react-starter",
-  "version": "0.15.1",
+  "version": "0.15.2",
   "private": true,
   "dependencies": {
     "@arcblock/abt-did": "^0.15.1",
-    "@arcblock/did-auth": "^0.15.1",
-    "@arcblock/did-auth-storage": "^0.15.1",
+    "@arcblock/did-auth": "^0.15.2",
+    "@arcblock/did-auth-storage": "^0.15.2",
     "@arcblock/forge-util": "^0.15.0",
     "@arcblock/forge-wallet": "^0.15.1",
     "@arcblock/graphql-client": "^0.15.1",
