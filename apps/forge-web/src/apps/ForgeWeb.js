@@ -17,9 +17,9 @@ addLocaleData(localeData);
 const { locale, messages } = detectLocale();
 
 const PageStatus = AsyncComponent(() => import('../pages/node/status'));
-const PageQuery = AsyncComponent(() => import('../pages/node/query'));
 const PageStorage = AsyncComponent(() => import('../pages/node/storage'));
-const PageDeveloper = AsyncComponent(() => import('../pages/developer'));
+const PageQuery = AsyncComponent(() => import('../pages/developer/query'));
+const PageSimulator = AsyncComponent(() => import('../pages/developer/simulator'));
 const PageApplication = AsyncComponent(() => import('../pages/app'));
 const PageTasks = AsyncComponent(() => import('../pages/tasks'));
 const PageSettings = AsyncComponent(() => import('../pages/settings'));
@@ -67,8 +67,8 @@ const App = () => {
             <Route exact path="/node/explorer/assets/:address" component={PageAssetDetail} />
             <Route exact path="/node/status" component={PageStatus} />
             <Route exact path="/node/storage" component={PageStorage} />
-            <Route exact path="/node/query" component={PageQuery} />
-            <Route exact path="/developer" component={PageDeveloper} />
+            <Route exact path="/developer/query" component={PageQuery} />
+            <Route exact path="/developer/simulator" component={PageSimulator} />
             <Route exact path="/tasks" component={PageTasks} />
             <Route exact path="/settings" component={PageSettings} />
             <Redirect from="/" to="/dashboard" />

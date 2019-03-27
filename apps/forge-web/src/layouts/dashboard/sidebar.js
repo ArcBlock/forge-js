@@ -25,7 +25,6 @@ class Sidebar extends React.Component {
 
   // {this.renderMenuItem('/app', 'app', 'Application Management')}
   // {this.renderMenuItem('/tasks', 'tasks', 'Tasks')}
-  // {this.renderMenuItem('/developer', 'developer', 'Developer Tools')}
   // {this.renderMenuItem('/settings', 'settings', 'Settings')}
   render() {
     return (
@@ -33,6 +32,7 @@ class Sidebar extends React.Component {
         <div className="menu-top-items">
           {this.renderMenuItem('/dashboard', 'dashboard', 'Dashboard')}
           {this.renderMenuItem('/node/explorer/txs', 'node', 'Node Management')}
+          {this.renderMenuItem('/developer/query', 'developer', 'Developer Tools')}
         </div>
         <div className="menu-top-items" />
       </MenuItems>
