@@ -1,4 +1,4 @@
-# [**@arcblock/forge-config**](https://github.com/arcblock/forge-js)
+# [**@arcblock/did-auth**](https://github.com/arcblock/forge-js)
 
 [![build status](https://img.shields.io/travis/ArcBlock/forge-js.svg)](https://travis-ci.org/ArcBlock/forge-js)
 [![code coverage](https://img.shields.io/codecov/c/github/ArcBlock/forge-js.svg)](https://codecov.io/gh/ArcBlock/forge-js)
@@ -9,37 +9,49 @@
 
 ## Table of Contents
 
-- [**@arcblock/forge-config**](#arcblockforge-config)
+- [**@arcblock/did-auth**](#arcblockdid-auth)
   - [Table of Contents](#table-of-contents)
   - [Install](#install)
   - [Usage](#usage)
-  - [Documentation](#documentation)
-  - [License](#license)
-
 
 ## Install
 
 ```sh
-npm install @arcblock/forge-config
+npm install @arcblock/did-auth
 // or
-yarn add @arcblock/forge-config
+yarn add @arcblock/did-auth
 ```
-
 
 ## Usage
 
 ```js
-const { parseConfig } = require('@arcblock/forge-config');
+const { types } = require('@arcblock/mcrypto');
+const { Authenticator, Handlers } = require('@arcblock/did-auth');
+const { fromSecretKey, WalletType } = require('@arcblock/forge-wallet');
 
-const config = parseConfig('./forge.toml');
+const type = WalletType({
+  role: types.RoleType.ROLE_APPLICATION,
+  pk: types.KeyType.ED25519,
+  hash: types.HashType.SHA3,
+});
+
+const wallet = fromSecretKey(process.env.APP_SK, type).toJSON();
+
+module.exports = new Authenticator({
+  wallet,
+  baseUrl: 'http://wangshijun.natapp1.cc',
+  appInfo: {
+    chainHost: 'http://did-workshop.arcblock.co:8210/api',
+    chainId: 'forge',
+    chainToken: 'TBA',
+    copyright: 'https://example-application/copyright',
+    decimals: 16,
+    description: 'Starter projects to develop web application on forge',
+    icon: '/images/logo@2x.png',
+    name: 'Forge Web Starter',
+    path: 'https://arcwallet.io/i/',
+    publisher: `did:abt:${wallet.address}`,
+    subtitle: 'Starter projects to develop web application on forge',
+  },
+});
 ```
-
-
-## Documentation
-
-For complete API documentation please refer [API.md](./API.md)
-
-
-## License
-
-[MIT](LICENSE) © [wangshijun](https://ocap.arcblock.io)

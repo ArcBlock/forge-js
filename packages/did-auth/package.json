@@ -23,8 +23,6 @@
     "@arcblock/forge-wallet": "^0.15.1",
     "@arcblock/graphql-client": "^0.15.1",
     "@arcblock/mcrypto": "^0.15.0",
-    "@iarna/toml": "^2.2.1",
-    "camelize": "^1.0.0",
     "debug": "^4.1.1",
     "multibase": "^0.6.0"
   },
