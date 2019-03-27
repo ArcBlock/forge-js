@@ -649,13 +649,17 @@
               "type": "string",
               "id": 1
             },
-            "signature": {
+            "pk": {
               "type": "bytes",
               "id": 2
             },
+            "signature": {
+              "type": "bytes",
+              "id": 3
+            },
             "data": {
               "type": "google.protobuf.Any",
-              "id": 3
+              "id": 15
             }
           }
         },
@@ -669,22 +673,26 @@
               "type": "uint64",
               "id": 2
             },
-            "signature": {
-              "type": "bytes",
-              "id": 3
-            },
             "chainId": {
               "type": "string",
+              "id": 3
+            },
+            "pk": {
+              "type": "bytes",
               "id": 4
+            },
+            "signature": {
+              "type": "bytes",
+              "id": 13
             },
             "signatures": {
               "rule": "repeated",
               "type": "Multisig",
-              "id": 5
+              "id": 14
             },
             "itx": {
               "type": "google.protobuf.Any",
-              "id": 7
+              "id": 15
             }
           }
         },
@@ -2670,6 +2678,21 @@
             }
           }
         },
+        "RequestGetHealthStatus": {
+          "fields": {}
+        },
+        "ResponseGetHealthStatus": {
+          "fields": {
+            "code": {
+              "type": "StatusCode",
+              "id": 1
+            },
+            "healthStatus": {
+              "type": "HealthStatus",
+              "id": 2
+            }
+          }
+        },
         "AccountMigrateTx": {
           "fields": {
             "pk": {
@@ -2765,17 +2788,9 @@
               "type": "string",
               "id": 1
             },
-            "pk": {
-              "type": "bytes",
-              "id": 2
-            },
-            "type": {
-              "type": "WalletType",
-              "id": 3
-            },
             "issuer": {
               "type": "string",
-              "id": 4
+              "id": 2
             },
             "data": {
               "type": "google.protobuf.Any",
@@ -3303,6 +3318,118 @@
             }
           }
         },
+        "HealthStatus": {
+          "fields": {
+            "consensus": {
+              "type": "ConsensusStatus",
+              "id": 1
+            },
+            "network": {
+              "type": "NetworkStatus",
+              "id": 2
+            },
+            "storage": {
+              "type": "StorageStatus",
+              "id": 3
+            },
+            "forge": {
+              "type": "ForgeStatus",
+              "id": 4
+            }
+          }
+        },
+        "ConsensusStatus": {
+          "fields": {
+            "health": {
+              "type": "bool",
+              "id": 1
+            },
+            "synced": {
+              "type": "bool",
+              "id": 2
+            },
+            "blockHeight": {
+              "type": "uint64",
+              "id": 3
+            }
+          }
+        },
+        "NetworkStatus": {
+          "fields": {
+            "health": {
+              "type": "bool",
+              "id": 1
+            },
+            "numPeers": {
+              "type": "uint32",
+              "id": 2
+            }
+          }
+        },
+        "StorageStatus": {
+          "fields": {
+            "health": {
+              "type": "bool",
+              "id": 1
+            },
+            "indexerServer": {
+              "type": "string",
+              "id": 2
+            },
+            "stateDb": {
+              "type": "string",
+              "id": 3
+            },
+            "diskSpace": {
+              "type": "DiskSpaceStatus",
+              "id": 4
+            }
+          }
+        },
+        "DiskSpaceStatus": {
+          "fields": {
+            "forgeUsage": {
+              "type": "string",
+              "id": 1
+            },
+            "total": {
+              "type": "string",
+              "id": 2
+            }
+          }
+        },
+        "ForgeStatus": {
+          "fields": {
+            "health": {
+              "type": "bool",
+              "id": 1
+            },
+            "abiServer": {
+              "type": "string",
+              "id": 2
+            },
+            "forgeWeb": {
+              "type": "string",
+              "id": 3
+            },
+            "abciServer": {
+              "type": "AbciServerStatus",
+              "id": 4
+            }
+          }
+        },
+        "AbciServerStatus": {
+          "fields": {
+            "abciConsensus": {
+              "type": "string",
+              "id": 1
+            },
+            "abciInfo": {
+              "type": "string",
+              "id": 2
+            }
+          }
+        },
         "ChainRpc": {
           "methods": {
             "create_tx": {
@@ -3490,6 +3617,10 @@
             "list_assets": {
               "requestType": "RequestListAssets",
               "responseType": "ResponseListAssets"
+            },
+            "get_health_status": {
+              "requestType": "RequestGetHealthStatus",
+              "responseType": "ResponseGetHealthStatus"
             }
           }
         }

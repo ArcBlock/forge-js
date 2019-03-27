@@ -1,3 +1,14 @@
+## 0.16.0 (March 27, 2019)
+  - chore: add tooltip for forge web sidebar
+  - chore: fix readme badges
+  - feat: reorganize node and developer tools tab
+  - chore: donnot get nonce dynamically
+  - chore: fix graphql client
+  - chore: fix PartsHeader find
+  - chore: update dts
+  - chore: upgrade forge-proto with latest forge
+  - chore: upgrade graphql-client with latest forge
+
 ## 0.15.2 (March 27, 2019)
   - chore: update starter
   - chore: extract did-auth-storage interface lib

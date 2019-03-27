@@ -1059,9 +1059,7 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
     var f,
       obj = {
         moniker: jspb.Message.getFieldWithDefault(msg, 1, ''),
-        pk: msg.getPk(),
-        type: (f = msg.getType()) && type_pb.WalletType.toObject(includeInstance, f),
-        issuer: jspb.Message.getFieldWithDefault(msg, 4, ''),
+        issuer: jspb.Message.getFieldWithDefault(msg, 2, ''),
         data: (f = msg.getData()) && google_protobuf_any_pb.Any.toObject(includeInstance, f),
       };
 
@@ -1102,15 +1100,6 @@ proto.forge_abi.DeclareTx.deserializeBinaryFromReader = function(msg, reader) {
         msg.setMoniker(value);
         break;
       case 2:
-        var value = /** @type {!Uint8Array} */ (reader.readBytes());
-        msg.setPk(value);
-        break;
-      case 3:
-        var value = new type_pb.WalletType();
-        reader.readMessage(value, type_pb.WalletType.deserializeBinaryFromReader);
-        msg.setType(value);
-        break;
-      case 4:
         var value = /** @type {string} */ (reader.readString());
         msg.setIssuer(value);
         break;
@@ -1150,17 +1139,9 @@ proto.forge_abi.DeclareTx.serializeBinaryToWriter = function(message, writer) {
   if (f.length > 0) {
     writer.writeString(1, f);
   }
-  f = message.getPk_asU8();
-  if (f.length > 0) {
-    writer.writeBytes(2, f);
-  }
-  f = message.getType();
-  if (f != null) {
-    writer.writeMessage(3, f, type_pb.WalletType.serializeBinaryToWriter);
-  }
   f = message.getIssuer();
   if (f.length > 0) {
-    writer.writeString(4, f);
+    writer.writeString(2, f);
   }
   f = message.getData();
   if (f != null) {
@@ -1182,78 +1163,16 @@ proto.forge_abi.DeclareTx.prototype.setMoniker = function(value) {
 };
 
 /**
- * optional bytes pk = 2;
- * @return {!(string|Uint8Array)}
- */
-proto.forge_abi.DeclareTx.prototype.getPk = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 2, ''));
-};
-
-/**
- * optional bytes pk = 2;
- * This is a type-conversion wrapper around `getPk()`
- * @return {string}
- */
-proto.forge_abi.DeclareTx.prototype.getPk_asB64 = function() {
-  return /** @type {string} */ (jspb.Message.bytesAsB64(this.getPk()));
-};
-
-/**
- * optional bytes pk = 2;
- * Note that Uint8Array is not supported on all browsers.
- * @see http://caniuse.com/Uint8Array
- * This is a type-conversion wrapper around `getPk()`
- * @return {!Uint8Array}
- */
-proto.forge_abi.DeclareTx.prototype.getPk_asU8 = function() {
-  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(this.getPk()));
-};
-
-/** @param {!(string|Uint8Array)} value */
-proto.forge_abi.DeclareTx.prototype.setPk = function(value) {
-  jspb.Message.setProto3BytesField(this, 2, value);
-};
-
-/**
- * optional WalletType type = 3;
- * @return {?proto.forge_abi.WalletType}
- */
-proto.forge_abi.DeclareTx.prototype.getType = function() {
-  return /** @type{?proto.forge_abi.WalletType} */ (jspb.Message.getWrapperField(
-    this,
-    type_pb.WalletType,
-    3
-  ));
-};
-
-/** @param {?proto.forge_abi.WalletType|undefined} value */
-proto.forge_abi.DeclareTx.prototype.setType = function(value) {
-  jspb.Message.setWrapperField(this, 3, value);
-};
-
-proto.forge_abi.DeclareTx.prototype.clearType = function() {
-  this.setType(undefined);
-};
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.forge_abi.DeclareTx.prototype.hasType = function() {
-  return jspb.Message.getField(this, 3) != null;
-};
-
-/**
- * optional string issuer = 4;
+ * optional string issuer = 2;
  * @return {string}
  */
 proto.forge_abi.DeclareTx.prototype.getIssuer = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ''));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ''));
 };
 
 /** @param {string} value */
 proto.forge_abi.DeclareTx.prototype.setIssuer = function(value) {
-  jspb.Message.setProto3StringField(this, 4, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 /**

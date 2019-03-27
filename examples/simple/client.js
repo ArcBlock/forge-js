@@ -2,7 +2,8 @@
 const path = require('path');
 const onExit = require('death');
 const { enums } = require('@arcblock/forge-proto');
-const { RpcClient, parseConfig } = require('@arcblock/forge-sdk');
+const { RpcClient } = require('@arcblock/grpc-client');
+const { parse: parseConfig } = require('@arcblock/forge-config');
 const client = new RpcClient(parseConfig(path.resolve(__dirname, './forge.toml')));
 
 const debug = (...args) => {

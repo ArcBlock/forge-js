@@ -20,10 +20,19 @@ const getSecondaryLinks = location => {
     return {
       title: 'Node',
       links: [
-        // { link: '/node/status', title: 'Status' },
         { link: '/node/explorer/txs', title: 'Block Explorer' },
-        { link: '/node/query', title: 'Query' },
+        { link: '/node/status', title: 'Connected Peers' },
+        // { link: '/node/query', title: 'Query' },
         // { link: '/node/storage', title: 'Storage' },
+      ],
+    };
+  }
+  if (/^\/developer\//.test(location.pathname)) {
+    return {
+      title: 'Tools',
+      links: [
+        { link: '/developer/query', title: 'Query' },
+        { link: '/developer/simulator', title: 'Simulator' },
       ],
     };
   }

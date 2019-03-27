@@ -147,6 +147,17 @@ function deserialize_forge_abi_RequestGetForgeStatistics(buffer_arg) {
   return rpc_pb.RequestGetForgeStatistics.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_forge_abi_RequestGetHealthStatus(arg) {
+  if (!(arg instanceof rpc_pb.RequestGetHealthStatus)) {
+    throw new Error('Expected argument of type forge_abi.RequestGetHealthStatus');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_forge_abi_RequestGetHealthStatus(buffer_arg) {
+  return rpc_pb.RequestGetHealthStatus.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_forge_abi_RequestGetNetInfo(arg) {
   if (!(arg instanceof rpc_pb.RequestGetNetInfo)) {
     throw new Error('Expected argument of type forge_abi.RequestGetNetInfo');
@@ -563,6 +574,17 @@ function serialize_forge_abi_ResponseGetForgeStatistics(arg) {
 
 function deserialize_forge_abi_ResponseGetForgeStatistics(buffer_arg) {
   return rpc_pb.ResponseGetForgeStatistics.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_forge_abi_ResponseGetHealthStatus(arg) {
+  if (!(arg instanceof rpc_pb.ResponseGetHealthStatus)) {
+    throw new Error('Expected argument of type forge_abi.ResponseGetHealthStatus');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_forge_abi_ResponseGetHealthStatus(buffer_arg) {
+  return rpc_pb.ResponseGetHealthStatus.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_forge_abi_ResponseGetNetInfo(arg) {
@@ -1290,6 +1312,17 @@ var StatisticRpcService = (exports.StatisticRpcService = {
     requestDeserialize: deserialize_forge_abi_RequestListAssets,
     responseSerialize: serialize_forge_abi_ResponseListAssets,
     responseDeserialize: deserialize_forge_abi_ResponseListAssets,
+  },
+  get_health_status: {
+    path: '/forge_abi.StatisticRpc/get_health_status',
+    requestStream: false,
+    responseStream: false,
+    requestType: rpc_pb.RequestGetHealthStatus,
+    responseType: rpc_pb.ResponseGetHealthStatus,
+    requestSerialize: serialize_forge_abi_RequestGetHealthStatus,
+    requestDeserialize: deserialize_forge_abi_RequestGetHealthStatus,
+    responseSerialize: serialize_forge_abi_ResponseGetHealthStatus,
+    responseDeserialize: deserialize_forge_abi_ResponseGetHealthStatus,
   },
 });
 

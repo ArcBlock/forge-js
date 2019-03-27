@@ -290,43 +290,43 @@ declare namespace GraphQLClient {
   }
 
   export enum StatusCode {
-    READONLY_ASSET,
-    FORBIDDEN,
-    INVALID_PASSPHRASE,
-    INSUFFICIENT_STAKE,
-    INVALID_NONCE,
-    STORAGE_RPC_ERROR,
-    INVALID_MULTISIG,
-    INVALID_ASSET,
     INVALID_SIGNER_STATE,
+    INVALID_MULTISIG,
+    FORBIDDEN,
     EXPIRED_ASSET,
-    INVALID_TX_SIZE,
-    INVALID_WALLET,
-    CONSENSUS_RPC_ERROR,
-    INVALID_CHAIN_ID,
-    EXPIRED_TX,
-    INSUFFICIENT_FUND,
-    TOO_MANY_TXS,
-    INVALID_SENDER_STATE,
-    INVALID_RECEIVER_STATE,
-    UNSUPPORTED_TX,
-    INVALID_FORGE_STATE,
-    UNSUPPORTED_STAKE,
+    CONSUMED_ASSET,
     ACCOUNT_MIGRATED,
-    NOENT,
-    INVALID_MONIKER,
-    TIMEOUT,
-    INSUFFICIENT_DATA,
-    INVALID_SIGNATURE,
+    BANNED_UNSTAKE,
+    INVALID_CHAIN_ID,
     INVALID_STAKE_STATE,
     EXPIRED_WALLET_TOKEN,
-    CONSUMED_ASSET,
-    INVALID_OWNER,
-    BANNED_UNSTAKE,
-    UNTRANSFERRABLE_ASSET,
-    INVALID_TX,
+    INVALID_NONCE,
+    INVALID_WALLET,
     INTERNAL,
+    INVALID_TX_SIZE,
+    INVALID_TX,
+    INVALID_MONIKER,
+    INVALID_OWNER,
+    UNSUPPORTED_STAKE,
+    UNTRANSFERRABLE_ASSET,
+    INVALID_SIGNATURE,
+    INSUFFICIENT_FUND,
+    READONLY_ASSET,
+    INSUFFICIENT_DATA,
+    INSUFFICIENT_STAKE,
+    STORAGE_RPC_ERROR,
+    INVALID_FORGE_STATE,
+    INVALID_SENDER_STATE,
+    CONSENSUS_RPC_ERROR,
+    NOENT,
+    TIMEOUT,
+    UNSUPPORTED_TX,
+    EXPIRED_TX,
+    INVALID_PASSPHRASE,
+    INVALID_ASSET,
     OK,
+    TOO_MANY_TXS,
+    INVALID_RECEIVER_STATE,
   }
 
   export enum UpgradeAction {
@@ -514,8 +514,6 @@ declare namespace GraphQLClient {
     data: GraphQLClient.Any;
     issuer: string;
     moniker: string;
-    pk: string;
-    type: GraphQLClient.WalletType;
   }
 
   export interface Evidence {
@@ -719,6 +717,7 @@ declare namespace GraphQLClient {
 
   export interface Multisig {
     data: GraphQLClient.Any;
+    pk: string;
     signature: string;
     signer: string;
   }

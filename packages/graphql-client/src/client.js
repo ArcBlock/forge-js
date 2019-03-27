@@ -57,6 +57,7 @@ class GraphqlClient extends BaseClient {
       const txEncodeFn = async ({ data, wallet }) => {
         // Determine sender address
         const address = data.from || wallet.toAddress();
+        const pk = data.pk || Buffer.from(hexToBytes(wallet.publicKey));
 
         // Determine chainId & nonce, only attach new one when not exist
         let nonce = data.nonce || Date.now();
@@ -75,6 +76,7 @@ class GraphqlClient extends BaseClient {
         const txObj = {
           from: address,
           nonce,
+          pk,
           chainId: chainId,
           itx: Any.fromObject({
             type_url: typeUrls[x],
