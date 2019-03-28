@@ -14,7 +14,7 @@ function ThemeSwitcher({ theme, ...rest }) {
 
   return (
     <Tooltip {...rest} title={mode === 'light' ? 'Light Off' : 'Light On'}>
-      <IconButton onClick={toggle}>
+      <IconButton onClick={toggle} style={{ cursor: 'pointer' }}>
         <Icon8
           size={36}
           name={mode === 'light' ? 'no-idea' : 'light'}
