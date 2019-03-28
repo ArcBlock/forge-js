@@ -11,6 +11,13 @@
     babel-polyfill "^6.26.0"
     js-cookie "^2.2.0"
 
+"@arcblock/forge-proto@^0.15.0":
+  version "0.15.1"
+  resolved "https://registry.npmjs.org/@arcblock/forge-proto/-/forge-proto-0.15.1.tgz#01ff8dc8006c7cb07c5311830cce36aa4d470cfa"
+  integrity sha512-xzDp+yZEuy0sYexi9wQ9Zz4YZHMmw08CGCIuX7kMnRTS8NkEaAaL2Y+PHv4mEMYGDOx1Z1gRsjRuvE2DBzoEJA==
+  dependencies:
+    debug "^4.1.1"
+
 "@arcblock/forge-sdk@^0.15.0":
   version "0.15.0"
   resolved "https://registry.npmjs.org/@arcblock/forge-sdk/-/forge-sdk-0.15.0.tgz#630431aaf03a133a66fd0bfaea238133d1c80d4d"
@@ -27,6 +34,16 @@
     grpc "^1.18.0"
     lodash "^4.17.11"
     varint "^5.0.0"
+
+"@arcblock/forge-util@^0.15.0":
+  version "0.15.0"
+  resolved "https://registry.npmjs.org/@arcblock/forge-util/-/forge-util-0.15.0.tgz#481946717f1c3dd87cb93c71b28c64159acb9e18"
+  integrity sha512-RtXxTWHQOo4eNyrA/yS/EBPKUeGWTCD0gfqLSG/+XbXmLmLfVIbl8ptcNAntWZIWLkw6IC/siGvhbWrXZn0paQ==
+  dependencies:
+    bn.js "4.11.6"
+    lodash "^4.17.11"
+    number-to-bn "^1.7.0"
+    utf8 "^3.0.0"
 
 "@arcblock/sdk-util@^0.19.0", "@arcblock/sdk-util@^0.19.4":
   version "0.19.4"
@@ -16715,6 +16732,11 @@ react-color@2.11.1:
     material-colors "^1.2.1"
     reactcss "^1.1.1"
     tinycolor2 "^1.1.2"
+
+react-content-loader@^4.2.1:
+  version "4.2.1"
+  resolved "https://registry.npmjs.org/react-content-loader/-/react-content-loader-4.2.1.tgz#0d355134ed7d0987966abd0f784bc59e76976e91"
+  integrity sha512-XA5irUvZpQAEavfUBo7kc4tdvAbWwVKJolz/+2Pkj/XU7pn78AweAUtn+AxEajN0Srg/mraJ8XMKlUsXOFiknw==
 
 react-day-picker@2.5.0:
   version "2.5.0"
