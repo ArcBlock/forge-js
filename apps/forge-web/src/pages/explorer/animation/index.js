@@ -83,6 +83,7 @@ export default function Animation() {
             <Skeleton
               key={x}
               title={`${x}#${i}`}
+              width={1230}
               className="card"
               onWheel={onWheel}
               style={{

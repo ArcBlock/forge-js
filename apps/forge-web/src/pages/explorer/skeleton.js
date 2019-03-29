@@ -5,7 +5,46 @@ import PropTypes from 'prop-types';
 
 import Typography from '@material-ui/core/Typography';
 
-export default function Skeleton({ title, animate, ...rest }) {
+const renderMetrics = (width, count) => {
+  const metricWidth = width / count;
+  const metricBarWidth = metricWidth * 0.75;
+  const metricNameWidth = metricWidth * 0.45;
+
+  const elements = [];
+  for (let i = 0; i < count; i++) {
+    const metricLeft = i * metricWidth;
+    elements.push(
+      <rect key={`icon-${i}`} x={metricLeft} y="30" rx="0" ry="0" width="30" height="30" />
+    );
+    elements.push(
+      <rect
+        key={`bar-${i}`}
+        x={metricLeft}
+        y="65"
+        rx="0"
+        ry="0"
+        width={metricBarWidth}
+        height="50"
+      />
+    );
+    elements.push(
+      <rect
+        key={`name-${i}`}
+        x={metricLeft}
+        y="120"
+        rx="0"
+        ry="0"
+        width={metricNameWidth}
+        height="15"
+      />
+    );
+  }
+
+  return elements;
+};
+
+export default function Skeleton({ title, width, animate, metricCount, ...rest }) {
+  const halfWidth = width * 0.47;
   return (
     <Container {...rest}>
       <Typography component="h4" variant="h5" className="skeleton__title" gutterBottom>
@@ -13,63 +52,48 @@ export default function Skeleton({ title, animate, ...rest }) {
       </Typography>
       <ContentLoader
         height={1800}
-        width={1230}
+        width={width}
         animate={animate}
         primaryColor="#f3f3f3"
         secondaryColor="#ecebeb">
-        <rect x="0" y="30" rx="0" ry="0" width="30" height="30" />
-        <rect x="0" y="65" rx="0" ry="0" width="150" height="50" />
-        <rect x="0" y="120" rx="0" ry="0" width="90" height="15" />
-        <rect x="216" y="30" rx="0" ry="0" width="30" height="30" />
-        <rect x="216" y="65" rx="0" ry="0" width="150" height="50" />
-        <rect x="216" y="120" rx="0" ry="0" width="90" height="15" />
-        <rect x="432" y="30" rx="0" ry="0" width="30" height="30" />
-        <rect x="432" y="65" rx="0" ry="0" width="150" height="50" />
-        <rect x="432" y="120" rx="0" ry="0" width="90" height="15" />
-        <rect x="648" y="30" rx="0" ry="0" width="30" height="30" />
-        <rect x="648" y="65" rx="0" ry="0" width="150" height="50" />
-        <rect x="648" y="120" rx="0" ry="0" width="90" height="15" />
-        <rect x="864" y="30" rx="0" ry="0" width="30" height="30" />
-        <rect x="864" y="65" rx="0" ry="0" width="150" height="50" />
-        <rect x="864" y="120" rx="0" ry="0" width="90" height="15" />
-        <rect x="1080" y="30" rx="0" ry="0" width="30" height="30" />
-        <rect x="1080" y="65" rx="0" ry="0" width="150" height="50" />
-        <rect x="1080" y="120" rx="0" ry="0" width="90" height="15" />
+        {renderMetrics(width, metricCount)}
 
         <rect x="0" y="230" rx="0" ry="0" width="30" height="30" />
         <rect x="35" y="230" rx="0" ry="0" width="60" height="30" />
         <rect x="125" y="230" rx="0" ry="0" width="30" height="30" />
         <rect x="160" y="230" rx="0" ry="0" width="60" height="30" />
 
-        <rect x="0" y="280" rx="0" ry="0" width="600" height="90" />
-        <rect x="0" y="390" rx="0" ry="0" width="600" height="90" />
-        <rect x="0" y="500" rx="0" ry="0" width="600" height="90" />
-        <rect x="0" y="610" rx="0" ry="0" width="600" height="90" />
-        <rect x="0" y="720" rx="0" ry="0" width="600" height="90" />
+        <rect x="0" y="280" rx="0" ry="0" width={halfWidth} height="90" />
+        <rect x="0" y="390" rx="0" ry="0" width={halfWidth} height="90" />
+        <rect x="0" y="500" rx="0" ry="0" width={halfWidth} height="90" />
+        <rect x="0" y="610" rx="0" ry="0" width={halfWidth} height="90" />
+        <rect x="0" y="720" rx="0" ry="0" width={halfWidth} height="90" />
 
         <circle cx="960" cy="560" r="270" />
 
         <rect x="0" y="900" rx="0" ry="0" width="150" height="30" />
-        <rect x="0" y="950" rx="0" ry="0" width="1230" height="300" />
+        <rect x="0" y="950" rx="0" ry="0" width={width} height="300" />
 
         <rect x="0" y="1310" rx="0" ry="0" width="150" height="30" />
-        <rect x="0" y="1350" rx="0" ry="0" width="580" height="400" />
+        <rect x="0" y="1350" rx="0" ry="0" width={halfWidth} height="400" />
 
-        <rect x="650" y="1310" rx="0" ry="0" width="150" height="30" />
-        <rect x="650" y="1350" rx="0" ry="0" width="580" height="400" />
+        <rect x={width * 0.5} y="1310" rx="0" ry="0" width="150" height="30" />
+        <rect x={width * 0.5} y="1350" rx="0" ry="0" width={halfWidth} height="400" />
       </ContentLoader>
     </Container>
   );
 }
 
 Skeleton.propTypes = {
+  width: PropTypes.number.isRequired,
+  title: PropTypes.string.isRequired,
   animate: PropTypes.bool,
-  title: PropTypes.string,
+  metricCount: PropTypes.number,
 };
 
 Skeleton.defaultProps = {
   animate: false,
-  title: 'Main',
+  metricCount: 6,
 };
 
 const Container = styled.div`
