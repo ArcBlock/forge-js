@@ -4,10 +4,7 @@ import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-d
 import { IntlProvider, addLocaleData } from 'react-intl';
 
 import AsyncComponent from '../components/async';
-import Layout from '../layouts/explorer';
 import ActivityIndicator from '../components/activity_indicator';
-
-import PageHome from '../pages/explorer/home';
 
 import { localeData } from '../libs/locale';
 import { detectLocale } from '../libs/util';
@@ -17,6 +14,8 @@ addLocaleData(localeData);
 
 const { locale, messages } = detectLocale();
 
+const Layout = AsyncComponent(() => import('../layouts/explorer'));
+const PageHome = AsyncComponent(() => import('../pages/explorer/home'));
 const PageNetwork = AsyncComponent(() => import('../pages/explorer/network'));
 const PageBlockList = AsyncComponent(() => import('../pages/explorer/blocks'));
 const PageBlockDetail = AsyncComponent(() => import('../pages/explorer/block'));

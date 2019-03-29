@@ -3,8 +3,6 @@ import styled from 'styled-components';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import { IntlProvider, addLocaleData } from 'react-intl';
 
-import Layout from '../layouts/dashboard';
-import PageDashboard from '../pages/dashboard';
 import ActivityIndicator from '../components/activity_indicator';
 import AsyncComponent from '../components/async';
 
@@ -16,6 +14,8 @@ addLocaleData(localeData);
 
 const { locale, messages } = detectLocale();
 
+const Layout = AsyncComponent(() => import('../layouts/dashboard'));
+const PageDashboard = AsyncComponent(() => import('../pages/dashboard'));
 const PageStatus = AsyncComponent(() => import('../pages/node/status'));
 const PageStorage = AsyncComponent(() => import('../pages/node/storage'));
 const PageQuery = AsyncComponent(() => import('../pages/developer/query'));
