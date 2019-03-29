@@ -8,7 +8,7 @@ deploy-explorer-beta: dep
 	@cp public/_redirects.beta build/_redirects
 	@netlify deploy --prod --dir=build --site=3d20ed91-e432-4980-b419-f6c90aa6dbc3
 
-deploy-explorer-prod: dep
+deploy-explorer-prod:
 	@yarn build:explorer-prod
 	@cp public/_redirects.prod build/_redirects
 	@netlify deploy --prod --dir=build --site=be6b6c45-ad9a-47b7-9242-d8da535502a8
