@@ -6,6 +6,8 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 
 import ThemeSwitcher from '../../components/theme_switcher';
+import NetworkSwitcher from '../../components/network_switcher';
+
 import withI18n from '../../components/withI18n';
 import withRoot from '../../components/withRoot';
 import withTracker from '../../components/withTracker';
@@ -23,7 +25,10 @@ function Layout({ children }) {
       <AppBar position="absolute" className="appBar">
         <Toolbar disableGutters={false} className="toolbar">
           <Logo />
-          <ThemeSwitcher className="switcher" />
+          <div className="switchers">
+            <ThemeSwitcher className="switcher" />
+            <NetworkSwitcher className="switcher" />
+          </div>
         </Toolbar>
       </AppBar>
       <main className="main">
@@ -80,6 +85,12 @@ const Container = styled.div`
     margin-top: ${props => props.theme.spacing.unit}px;
     width: 100%;
     max-width: ${props => props.theme.pageWidth}px;
+
+    .switchers {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+    }
 
     .switcher {
       cursor: pointer;

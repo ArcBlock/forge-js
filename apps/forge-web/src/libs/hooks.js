@@ -71,6 +71,11 @@ export function useThemeMode() {
   return [mode, setMode];
 }
 
+export function useSwitcherState() {
+  const [state, setState] = useLocalStorage('is_switch_open', false);
+  return [state, setState];
+}
+
 export function useTokenInfo() {
   return useLocalStorage('token', {});
 }
