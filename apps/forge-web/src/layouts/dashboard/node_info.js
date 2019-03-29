@@ -1,18 +1,18 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { withTheme } from '@material-ui/core/styles';
 
 import Typography from '@material-ui/core/Typography';
 import CheckIcon from '@material-ui/icons/CheckCircleOutlineSharp';
 import SyncIcon from '@material-ui/icons/SyncSharp';
 
 import Icons8 from '../../components/icon8';
-import { useNodeInfo } from '../../libs/hooks';
+import { useNodeInfo, useThemeMode } from '../../libs/hooks';
+import { colors } from '../../libs/constant';
 
-function NodeInfo({ theme }) {
+export default function NodeInfo() {
   const [nodeInfo] = useNodeInfo();
+  const [mode] = useThemeMode();
   const [appInfo] = nodeInfo.forgeAppsVersion;
   const appName = appInfo ? appInfo.key : '';
   const appVersion = appInfo ? appInfo.value : '';
@@ -21,7 +21,7 @@ function NodeInfo({ theme }) {
     <Header synced={nodeInfo.synced}>
       <Link to="/">
         <div className="header-image">
-          <Icons8 name="text-input-form" color={theme.typography.color.main} />
+          <Icons8 name="text-input-form" color={mode === 'light' ? colors.gray : colors.white} />
           {nodeInfo.synced ? (
             <CheckIcon className="header-image__overlay" />
           ) : (
@@ -44,10 +44,6 @@ function NodeInfo({ theme }) {
     </Header>
   );
 }
-
-NodeInfo.propTypes = {
-  theme: PropTypes.object.isRequired,
-};
 
 const Header = styled.div`
   display: flex;
@@ -103,5 +99,3 @@ const Header = styled.div`
     }
   }
 `;
-
-export default withTheme()(NodeInfo);
