@@ -13,7 +13,7 @@ import { useSwitcher } from '../../../libs/hooks';
 export default function Switcher({ networks }) {
   const { open, current, setOpen, setCurrent } = useSwitcher();
   const currentNetwork = current || networks[0];
-  console.log('switcher', { open, current });
+  console.log('switcher', { open, currentNetwork });
   if (!open) {
     return (
       <Div fixWidth={true}>
@@ -78,7 +78,7 @@ const Div = styled(Wrapper)`
       }
 
       &:after {
-        border-top: 2px dotted ${props => props.theme.typography.color.main};
+        border-top: 1px dotted ${props => props.theme.typography.color.main};
         position: absolute;
         left: 0;
         top: 0;

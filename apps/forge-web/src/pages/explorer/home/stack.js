@@ -12,11 +12,11 @@ const deltaZ = 60;
 
 export default function Stack({ networks: original, current }) {
   const networks = [].concat(original);
-  const index = original.indexOf(current);
-  if (index > -1) {
-    networks.splice(index, 1);
-    networks.unshift(current);
-  }
+  // const index = original.indexOf(current);
+  // if (index > -1) {
+  //   networks.splice(index, 1);
+  //   networks.unshift(current);
+  // }
 
   const total = networks.length;
   const range = total * deltaY - deltaY;
