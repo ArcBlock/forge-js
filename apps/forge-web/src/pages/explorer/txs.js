@@ -24,7 +24,7 @@ async function fetchTransactions({ typeFilter, paging }) {
   if (typeFilter) {
     params.typeFilter = typeFilter;
   }
-  return forge.listTransactions(params);
+  return forge().listTransactions(params);
 }
 
 class TransactionList extends Page {
@@ -91,7 +91,7 @@ class TransactionList extends Page {
 
   async loadChainInfo() {
     this.setState({ loading: true });
-    const { info: nodeInfo } = await forge.getChainInfo();
+    const { info: nodeInfo } = await forge().getChainInfo();
     const { selectedTxs } = this.state;
     this.setState({
       loading: false,

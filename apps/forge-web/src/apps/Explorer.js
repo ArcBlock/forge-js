@@ -8,7 +8,7 @@ import ActivityIndicator from '../components/activity_indicator';
 
 import { localeData } from '../libs/locale';
 import { detectLocale } from '../libs/util';
-import { useStartupInfo } from '../libs/hooks';
+import { useStartupInfo, useThemeMode } from '../libs/hooks';
 
 addLocaleData(localeData);
 
@@ -26,10 +26,11 @@ const PageAssetDetail = AsyncComponent(() => import('../pages/explorer/asset'));
 
 const App = () => {
   const state = useStartupInfo();
+  const [mode] = useThemeMode();
 
   if (state.loading) {
     return (
-      <Wrapper>
+      <Wrapper mode={mode}>
         <ActivityIndicator
           messages={['Fetch chain info...', 'Fetching network state...']}
           interval={800}
@@ -40,7 +41,7 @@ const App = () => {
 
   if (state.error) {
     return (
-      <Wrapper>
+      <Wrapper mode={mode}>
         <p className="error">{state.error.message}</p>
       </Wrapper>
     );
@@ -73,7 +74,7 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #222222;
+  background: ${props => (props.mode === 'light' ? '#f7f8f8' : '#222')};
 `;
 
 export default App;

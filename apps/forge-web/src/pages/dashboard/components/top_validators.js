@@ -19,7 +19,7 @@ import { getExplorerUrl } from '../../../libs/util';
 async function fetchTopValidators() {
   const {
     validatorsInfo: { validators },
-  } = await forge.getValidatorsInfo();
+  } = await forge().getValidatorsInfo();
   return validators.sort((a, b) => b.votingPower - a.votingPower);
 }
 

@@ -196,7 +196,7 @@ export default class TransactionsSection extends React.Component {
     };
     const params = queryType === 'getForgeStatisticsByDay' ? rangeParams : { date: endDate };
 
-    const { forgeStatistics: rawData } = await forge[queryType](params);
+    const { forgeStatistics: rawData } = await forge()[queryType](params);
     const keys = Object.keys(rawData).filter(x => Array.isArray(rawData[x]));
     const data = rawData[keys[0]].map((v, i) => {
       let time = null;

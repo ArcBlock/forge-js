@@ -21,7 +21,7 @@ import forge from '../../libs/forge';
 import { getExplorerUrl } from '../../libs/util';
 
 async function fetchTxs({ address, paging }) {
-  return forge.listAssetTransactions({
+  return forge().listAssetTransactions({
     paging,
     address,
   });
@@ -107,7 +107,7 @@ class AssetDetail extends Page {
     try {
       const { address } = this.props.match.params;
       this.setState({ loading: true });
-      const { state: asset } = await forge.getAssetState(
+      const { state: asset } = await forge().getAssetState(
         { address },
         {
           ignoreFields: ['state.context.genesisTx.tx', 'state.context.renaissanceTx.tx'],

@@ -103,12 +103,12 @@ export function getExplorerUrl(url) {
 export async function fetchInfo(tokenInfo, nodeInfo) {
   try {
     if (isEmpty(tokenInfo)) {
-      const { state } = await forge.getForgeState();
+      const { state } = await forge().getForgeState();
       // eslint-disable-next-line
       tokenInfo = state.token;
     }
     if (isEmpty(nodeInfo)) {
-      const { info } = await forge.getNodeInfo();
+      const { info } = await forge().getNodeInfo();
       // eslint-disable-next-line
       nodeInfo = info;
     }

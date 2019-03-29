@@ -18,7 +18,7 @@ const tabs = {
     icon: 'receipt',
     component: TxList,
     async fetcher({ address, paging }) {
-      return forge.listTransactions({
+      return forge().listTransactions({
         paging,
         addressFilter: { sender: address, receiver: address, direction: 'UNION' },
       });
@@ -30,7 +30,7 @@ const tabs = {
     icon: 'gem',
     component: AssetList,
     async fetcher({ address, paging }) {
-      return forge.getAssets({
+      return forge().getAssets({
         paging,
         ownerAddress: address,
       });
@@ -43,7 +43,7 @@ const tabs = {
     icon: 'hand-point-right',
     component: TxList,
     async fetcher({ address, paging }) {
-      return forge.listTransactions({
+      return forge().listTransactions({
         paging,
         typeFilter: { types: ['stake'] },
         addressFilter: { sender: address },
@@ -57,7 +57,7 @@ const tabs = {
     icon: 'hand-receiving',
     component: TxList,
     async fetcher({ address, paging }) {
-      return forge.listTransactions({
+      return forge().listTransactions({
         paging,
         typeFilter: { types: ['stake'] },
         addressFilter: { receiver: address },

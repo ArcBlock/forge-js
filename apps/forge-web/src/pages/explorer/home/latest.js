@@ -16,11 +16,11 @@ async function fetchTransactions({ typeFilter, paging }) {
   if (typeFilter) {
     params.typeFilter = typeFilter;
   }
-  return forge.listTransactions(params);
+  return forge().listTransactions(params);
 }
 
 async function fetchBlocks({ paging }) {
-  return forge.getBlocks(
+  return forge().getBlocks(
     {
       emptyExcluded: true,
       paging,

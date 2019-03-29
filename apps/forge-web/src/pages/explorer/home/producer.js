@@ -10,7 +10,7 @@ import { useInterval, useThemeMode } from '../../../libs/hooks';
 const AsyncGlobe = AsyncComponent(() => import('../../../components/globe'));
 
 async function fetchPeers() {
-  const { netInfo } = await api.getNetInfo();
+  const { netInfo } = await api().getNetInfo();
   return netInfo.peers.map(x => ({
     id: x.id,
     latitude: x.geoInfo.latitude,
@@ -23,8 +23,8 @@ async function fetchPeers() {
 
 async function fetchLatestProposer() {
   try {
-    const { info } = await api.getChainInfo();
-    const { block } = await api.getBlock(
+    const { info } = await api().getChainInfo();
+    const { block } = await api().getBlock(
       { height: info.blockHeight },
       { ignoreFields: ['block.txs'] }
     );

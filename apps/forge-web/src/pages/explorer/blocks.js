@@ -67,13 +67,13 @@ class Blocks extends Page {
 
   async loadChainInfo() {
     this.setState({ loading: true });
-    const { info: nodeInfo } = await forge.getNodeInfo();
+    const { info: nodeInfo } = await forge().getNodeInfo();
     this.setState({ loading: false, nodeInfo });
   }
 
   async fetchBlocks({ paging }) {
     const { nodeInfo } = this.state;
-    return forge.getBlocks(
+    return forge().getBlocks(
       {
         emptyExcluded: true,
         maxHeight: nodeInfo.blockHeight,

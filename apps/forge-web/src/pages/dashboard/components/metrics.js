@@ -23,15 +23,15 @@ const SparkLine = AsyncComponent(() => import('../../../components/sparkline'));
 async function fetchBoth() {
   const date = dayjs.utc().format('YYYY-MM-DD');
   const [{ forgeStatistics: summary }, { forgeStatistics: trend }] = await Promise.all([
-    forge.getForgeStatistics(),
-    forge.getForgeStatisticsByHour({ date }),
+    forge().getForgeStatistics(),
+    forge().getForgeStatisticsByHour({ date }),
   ]);
 
   return { summary, trend };
 }
 
 async function fetchLatest() {
-  const [{ forgeStatistics: summary }] = await Promise.all([forge.getForgeStatistics()]);
+  const [{ forgeStatistics: summary }] = await Promise.all([forge().getForgeStatistics()]);
 
   return { summary };
 }

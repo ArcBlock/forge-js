@@ -32,10 +32,10 @@ export async function fetchStatus() {
         validatorsInfo: { validators },
       },
     ] = await Promise.all([
-      api.getNodeInfo(),
-      api.getForgeState(),
-      api.getNetInfo(),
-      api.getValidatorsInfo(),
+      api().getNodeInfo(),
+      api().getForgeState(),
+      api().getNetInfo(),
+      api().getValidatorsInfo(),
     ]);
 
     // Check application

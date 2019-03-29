@@ -81,7 +81,7 @@ class AccountDetail extends Page {
     try {
       const { address } = this.props.match.params;
       this.setState({ loading: true });
-      const { state } = await forge.getAccountState(
+      const { state } = await forge().getAccountState(
         { address },
         {
           ignoreFields: ['state.context.genesisTx.tx', 'state.context.renaissanceTx.tx'],

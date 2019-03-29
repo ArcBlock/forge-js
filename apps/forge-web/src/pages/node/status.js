@@ -30,7 +30,7 @@ class Network extends Page {
 
   async componentDidMount() {
     try {
-      const { netInfo } = await api.getNetInfo();
+      const { netInfo } = await api().getNetInfo();
       this.setState({
         markers: netInfo.peers.map(x => ({
           id: x.id,

@@ -95,7 +95,7 @@ class SearchBox extends React.Component {
   loadSuggest = async (type, spec, options) => {
     try {
       const { query, label, value, path } = spec;
-      const res = await forge.doRawQuery(query);
+      const res = await forge().doRawQuery(query);
       const v = get(res, path);
 
       if (v) {

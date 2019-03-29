@@ -136,7 +136,7 @@ class BlockDetail extends Page {
     try {
       const { height } = this.props.match.params;
       this.setState({ loading: true });
-      const { block } = await forge.getBlock({ height });
+      const { block } = await forge().getBlock({ height });
       this.setState({ loading: false, block });
     } catch (err) {
       console.error(err.errors);
