@@ -104,18 +104,7 @@ Dashboard.defaultProps = {
 
 const Container = styled.div`
   ${props => getBoxShadow(props)}
-  animation: fadeIn 200ms ease;
   background: ${props => props.theme.palette.background.default};
-
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-
-    to {
-      opacity: 1;
-    }
-  }
 
   .dashboard__title {
     text-transform: uppercase;

@@ -28,14 +28,6 @@ export default function Stack({ networks: original, current }) {
   const [styles, setStyles] = useState(min);
   const [mode] = useThemeMode();
 
-  useEffect(() => {
-    document.body.style.overflow = 'hidden';
-
-    return () => {
-      document.body.style.overflow = 'auto';
-    };
-  });
-
   // eslint-disable-next-line no-shadow
   const correctDelta = (key, value, index) => {
     if (value <= min[index][key]) {
@@ -53,6 +45,7 @@ export default function Stack({ networks: original, current }) {
       return;
     }
     if (e.deltaY < 0) {
+      // scroll down
       if (currentIndex >= networks.length) {
         return;
       }
@@ -67,6 +60,7 @@ export default function Stack({ networks: original, current }) {
       setCurrentIndex(newIndex);
       setCurrent(networks[newIndex - 1]);
     } else {
+      // scroll up
       if (currentIndex <= 1) {
         return;
       }
@@ -82,6 +76,14 @@ export default function Stack({ networks: original, current }) {
       setCurrent(networks[newIndex - 1]);
     }
   };
+
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  });
 
   return (
     <Container marginTop={deltaY}>

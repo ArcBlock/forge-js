@@ -13,7 +13,12 @@ import { useSwitcher } from '../../../libs/hooks';
 export default function Switcher({ networks }) {
   const { open, current, setOpen, setCurrent } = useSwitcher();
   const currentNetwork = current || networks[0];
-  console.log('switcher', { open, currentNetwork });
+  const createHandler = x => () => {
+    console.log('switcher.select', x);
+    setCurrent(x);
+    setOpen(false);
+  };
+
   if (!open) {
     return (
       <Div fixWidth={true}>
@@ -27,10 +32,7 @@ export default function Switcher({ networks }) {
       <div className="networks">
         {networks.map(x => (
           <div key={x} className={`network ${current === x ? 'network--active' : ''}`}>
-            <Button
-              color="default"
-              className="network__button"
-              onClick={() => setCurrent(x) && setOpen(false)}>
+            <Button color="default" className="network__button" onClick={createHandler(x)}>
               {x}
             </Button>
           </div>
