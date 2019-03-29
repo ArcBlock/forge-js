@@ -478,12 +478,12 @@ const Tooltip = styled.div`
   .description {
     margin: 0;
     font-size: 16px;
-    color: ${props => props.theme.typography.color.main};
+    color: #fff;
   }
 
   .description {
     margin-top: ${props => props.theme.spacing.unit}px;
-    color: ${props => props.theme.typography.color.gray};
+    color: #fff;
     font-size: 12px;
   }
 
