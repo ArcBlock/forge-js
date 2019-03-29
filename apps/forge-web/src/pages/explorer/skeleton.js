@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 import Typography from '@material-ui/core/Typography';
 
-export default function Skeleton({ title, ...rest }) {
+export default function Skeleton({ title, animate, ...rest }) {
   return (
     <Container {...rest}>
       <Typography component="h4" variant="h5" className="skeleton__title" gutterBottom>
@@ -14,7 +14,7 @@ export default function Skeleton({ title, ...rest }) {
       <ContentLoader
         height={1800}
         width={1230}
-        animate={false}
+        animate={animate}
         primaryColor="#f3f3f3"
         secondaryColor="#ecebeb">
         <rect x="0" y="30" rx="0" ry="0" width="30" height="30" />
@@ -63,10 +63,12 @@ export default function Skeleton({ title, ...rest }) {
 }
 
 Skeleton.propTypes = {
+  animate: PropTypes.bool,
   title: PropTypes.string,
 };
 
 Skeleton.defaultProps = {
+  animate: false,
   title: 'Main',
 };
 

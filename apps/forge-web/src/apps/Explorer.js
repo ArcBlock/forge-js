@@ -27,26 +27,26 @@ const PageAccountDetail = AsyncComponent(() => import('../pages/explorer/account
 const PageAssetDetail = AsyncComponent(() => import('../pages/explorer/asset'));
 
 const App = () => {
-  const state = useStartupInfo();
+  // const state = useStartupInfo();
 
-  if (state.loading) {
-    return (
-      <Wrapper>
-        <ActivityIndicator
-          messages={['Fetch chain info...', 'Fetching network state...']}
-          interval={800}
-        />
-      </Wrapper>
-    );
-  }
+  // if (state.loading) {
+  //   return (
+  //     <Wrapper>
+  //       <ActivityIndicator
+  //         messages={['Fetch chain info...', 'Fetching network state...']}
+  //         interval={800}
+  //       />
+  //     </Wrapper>
+  //   );
+  // }
 
-  if (state.error) {
-    return (
-      <Wrapper>
-        <p className="error">{state.error.message}</p>
-      </Wrapper>
-    );
-  }
+  // if (state.error) {
+  //   return (
+  //     <Wrapper>
+  //       <p className="error">{state.error.message}</p>
+  //     </Wrapper>
+  //   );
+  // }
 
   return (
     <IntlProvider locale={locale} messages={messages}>
