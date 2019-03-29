@@ -50,11 +50,12 @@ export default function Skeleton({ title, width, animate, theme, metricCount, ..
   return (
     <Container {...rest}>
       <Typography component="h4" variant="h5" className="skeleton__title" gutterBottom>
-        {title}
+        {title}<small>Click to explore this network</small>
       </Typography>
       <ContentLoader
         height={1800}
         width={width}
+        speed={4}
         animate={animate}
         primaryColor={theme === 'light' ? '#f3f3f3' : '#555555'}
         secondaryColor={theme === 'light' ? '#ecebeb' : '#444444'}>
@@ -95,7 +96,7 @@ Skeleton.propTypes = {
 };
 
 Skeleton.defaultProps = {
-  animate: false,
+  animate: true,
   theme: 'light',
   metricCount: 6,
 };
@@ -109,6 +110,12 @@ const Container = styled.div`
 
   .skeleton__title {
     text-transform: uppercase;
-    margin-bottom: 30px;
+    margin-bottom: 32px;
+
+    small {
+      margin-left: 32px;
+      font-size: 16px;
+      text-transform: none;
+    }
   }
 `;

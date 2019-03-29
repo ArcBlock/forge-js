@@ -13,7 +13,7 @@ function NetworkSwitcher({ theme, ...rest }) {
   const toggle = () => setOpen(!open);
 
   return (
-    <Tooltip {...rest} title={open ? 'Close Network Switcher' : 'Open Network Switcher'}>
+    <Tooltip {...rest} title={open ? 'Hide Network Switcher' : 'Show Network Switcher'}>
       <IconButton onClick={toggle} style={{ cursor: 'pointer' }}>
         <Icon8 size={36} set="wired" name="process" color={theme.typography.color.main} />
       </IconButton>

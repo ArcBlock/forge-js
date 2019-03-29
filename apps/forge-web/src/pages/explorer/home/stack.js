@@ -23,7 +23,7 @@ export default function Stack({ networks: original, current, fakeCurrent }) {
   const min = networks.map((_, i) => ({ y: -deltaY * (i + 1), z: -deltaZ * (i + 1) }));
   const max = min.map(d => ({ y: range + d.y, z: range + d.z }));
 
-  const { setCurrent } = useSwitcher();
+  const { setCurrent, setOpen } = useSwitcher();
   const [currentIndex, setCurrentIndex] = useState(1);
   const [styles, setStyles] = useState(min);
   const [mode] = useThemeMode();
@@ -85,6 +85,11 @@ export default function Stack({ networks: original, current, fakeCurrent }) {
     };
   });
 
+  const createHandler = x => () => {
+    setCurrent(x);
+    setOpen(false);
+  };
+
   return (
     <Container marginTop={deltaY}>
       <div className="view">
@@ -104,6 +109,7 @@ export default function Stack({ networks: original, current, fakeCurrent }) {
                   shadow={true}
                   className="card"
                   onWheel={onWheel}
+                  onClick={createHandler(x)}
                   style={{ ...style, padding: '32px' }}
                 />
               );
@@ -117,6 +123,7 @@ export default function Stack({ networks: original, current, fakeCurrent }) {
                 theme={mode}
                 shadow={true}
                 className="card"
+                onClick={createHandler(x)}
                 onWheel={onWheel}
                 style={style}
               />
@@ -170,6 +177,7 @@ const Container = styled.div`
     top: 0;
     width: 100%;
     height: 1800px;
-    transition: all 300ms linear;
+    transition: all 250ms linear;
+    cursor: pointer;
   }
 `;
