@@ -70,15 +70,18 @@ const Div = styled(Wrapper)`
       &:before {
         background: ${props => props.theme.typography.color.main};
         position: absolute;
-        left: 0;
+        left: -3px;
         top: -3px;
         content: '';
         width: 8px;
         height: 8px;
         border-radius: 50%;
+        z-index: 2;
+        transition: all 250ms linear;
       }
 
       &:after {
+        z-index: 1;
         border-top: 1px dotted ${props => props.theme.typography.color.main};
         position: absolute;
         left: 0;
@@ -97,14 +100,22 @@ const Div = styled(Wrapper)`
       }
 
       .network__button {
-        transition: color 200ms ease;
+        transition: all 250ms linear;
         position: absolute;
-        left: -8px;
+        left: -10px;
         top: 16px;
       }
     }
 
     .network--active {
+      &:before {
+        top: -8px;
+        left: -8px;
+        width: 16px;
+        height: 16px;
+        background: #4e6af6;
+      }
+
       .network__button {
         color: #4e6af6;
       }
