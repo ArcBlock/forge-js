@@ -85,8 +85,8 @@ export default function Stack({ networks: original, current, fakeCurrent }) {
     };
   });
 
-  const createHandler = x => () => {
-    setCurrent(x);
+  const createHandler = () => () => {
+    setCurrent(networks[currentIndex - 1]);
     setOpen(false);
   };
 
