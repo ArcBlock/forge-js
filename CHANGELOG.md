@@ -1,3 +1,23 @@
+## 0.16.2 (March 29, 2019)
+  - chore: revert changes on header
+  - chore: use endpoint from local storage
+  - chore: use endpoint from local storage
+  - chore: update logo
+  - chore: update logo
+  - chore: add fakeCurrent option for stack component
+  - chore: add fakeCurrent option for stack component
+  - chore: basic switch logic and workflow
+  - chore: basic switch logic and workflow
+  - chore: basic switch logic and workflow
+  - chore: add network switcher
+  - fix: skeleton
+  - chore: support dark mode for skeleton layers
+  - chore: fix network layer select range issue
+  - chore: fix network layer select range issue
+  - chore: fix network layer select range issue
+  - feat: first working version of network switcher
+  - update readme
+
 ## 0.16.1 (March 29, 2019)
   - chore: cleanup revert
   - Merge remote-tracking branch 'origin/wangshijun/fix-build' into wangshijun/explorer

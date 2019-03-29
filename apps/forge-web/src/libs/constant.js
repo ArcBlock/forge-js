@@ -23,3 +23,15 @@ export const colors = {
   red: '#FF7B8A',
   blue: '#4e6af6',
 };
+
+export function getBoxShadow(props) {
+  if (props.shadow) {
+    if (props.theme.mode === 'light') {
+      return 'box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.2);';
+    }
+
+    return 'box-shadow: 0 0 6px 0 rgba(255, 255, 255, 0.3);';
+  }
+
+  return '';
+}

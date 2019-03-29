@@ -71,6 +71,12 @@ export function useThemeMode() {
   return [mode, setMode];
 }
 
+export function useSwitcher() {
+  const [open, setOpen] = useLocalStorage('switcher.open', false);
+  const [current, setCurrent] = useLocalStorage('switcher.current', null);
+  return { open, setOpen, current, setCurrent };
+}
+
 export function useTokenInfo() {
   return useLocalStorage('token', {});
 }
