@@ -3,8 +3,8 @@ import styled from 'styled-components';
 
 import Skeleton from '../skeleton';
 
-const deltaY = 36;
-const deltaZ = 36;
+const deltaY = 48;
+const deltaZ = 48;
 
 export default function Animation() {
   const networks = ['Argon', 'Bromine', 'Titanium'];
@@ -12,7 +12,6 @@ export default function Animation() {
   const range = total * deltaY - deltaY;
   const min = networks.map((_, i) => ({ y: -deltaY * (i + 1), z: -deltaZ * (i + 1) }));
   const max = min.map(d => ({ y: range + d.y, z: range + d.z }));
-  console.log({ min, max });
 
   const [currentIndex, setCurrentIndex] = useState(1);
   const [styles, setStyles] = useState(min);
@@ -51,11 +50,7 @@ export default function Animation() {
         opacity: i < currentIndex ? 0 : 1,
       }));
       setStyles(newStyles);
-
-      console.log('onWheel.down', { deltaY: e.deltaY, currentIndex, newStyles });
-      setTimeout(() => {
-        setCurrentIndex(currentIndex + 1);
-      }, 50);
+      setCurrentIndex(currentIndex + 1);
     } else {
       if (currentIndex <= 1) {
         return;
@@ -67,23 +62,19 @@ export default function Animation() {
         opacity: i > currentIndex ? 0 : 1,
       }));
       setStyles(newStyles);
-
-      console.log('onWheel.up', { deltaY: e.deltaY, currentIndex, newStyles });
-      setTimeout(() => {
-        setCurrentIndex(currentIndex - 1);
-      }, 50);
+      setCurrentIndex(currentIndex - 1);
     }
   };
 
   return (
-    <Container cardCount={networks.length > 10 ? 10 : networks.length}>
+    <Container marginTop={range}>
       <div className="view">
         <div className="cards">
           {networks.map((x, i) => (
             <Skeleton
               key={x}
               title={`${x}#${i}`}
-              width={1230}
+              width={1440}
               className="card"
               onWheel={onWheel}
               style={{
@@ -112,9 +103,9 @@ const Container = styled.div`
   overflow: hidden;
 
   .view {
-    -webkit-perspective: 1200px;
-    -webkit-perspective-origin-x: 650px;
-    width: 1296px;
+    -webkit-perspective: ${props => props.theme.pageWidth * 0.8}px;
+    -webkit-perspective-origin-x: ${props => props.theme.pageWidth * 0.5}px;
+    width: ${props => props.theme.pageWidth}px;
     margin: 0 auto;
     height: 1800px;
     position: relative;
@@ -124,7 +115,7 @@ const Container = styled.div`
     position: relative;
     width: 100%;
     height: 100%;
-    margin-top: 10%;
+    margin-top: ${props => props.marginTop}px;
   }
 
   .card {

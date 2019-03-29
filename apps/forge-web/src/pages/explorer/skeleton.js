@@ -7,7 +7,7 @@ import Typography from '@material-ui/core/Typography';
 
 const renderMetrics = (width, count) => {
   const metricWidth = width / count;
-  const metricBarWidth = metricWidth * 0.75;
+  const metricBarWidth = metricWidth * 0.85;
   const metricNameWidth = metricWidth * 0.45;
 
   const elements = [];
