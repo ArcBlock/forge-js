@@ -6,14 +6,14 @@ import Tooltip from '@material-ui/core/Tooltip';
 import IconButton from '@material-ui/core/IconButton';
 import Icon8 from './icon8';
 
-import { useSwitcherState } from '../libs/hooks';
+import { useSwitcher } from '../libs/hooks';
 
 function NetworkSwitcher({ theme, ...rest }) {
-  const [state, setState] = useSwitcherState();
-  const toggle = () => setState(!state);
+  const { open, setOpen } = useSwitcher();
+  const toggle = () => setOpen(!open);
 
   return (
-    <Tooltip {...rest} title={state ? 'Close Network Switcher' : 'Open Network Switcher'}>
+    <Tooltip {...rest} title={open ? 'Close Network Switcher' : 'Open Network Switcher'}>
       <IconButton onClick={toggle} style={{ cursor: 'pointer' }}>
         <Icon8 size={36} set="wired" name="process" color={theme.typography.color.main} />
       </IconButton>

@@ -5,6 +5,8 @@ import PropTypes from 'prop-types';
 
 import Typography from '@material-ui/core/Typography';
 
+import { getBoxShadow } from '../../../libs/constant';
+
 const renderMetrics = (width, count) => {
   const metricWidth = width / count;
   const metricBarWidth = metricWidth * 0.85;
@@ -69,7 +71,7 @@ export default function Skeleton({ title, width, animate, theme, metricCount, ..
         <rect x="0" y="610" rx="0" ry="0" width={halfWidth} height="90" />
         <rect x="0" y="720" rx="0" ry="0" width={halfWidth} height="90" />
 
-        <circle cx={width * 0.75} cy="560" r={width * 0.20} />
+        <circle cx={width * 0.75} cy="560" r={width * 0.2} />
 
         <rect x="0" y="900" rx="0" ry="0" width="150" height="30" />
         <rect x="0" y="950" rx="0" ry="0" width={width} height="300" />
@@ -101,11 +103,9 @@ Skeleton.defaultProps = {
 const Container = styled.div`
   padding: 32px;
   width: 100%;
-  box-shadow: ${props =>
-    props.theme.mode === 'light'
-      ? '0 0 6px 0 rgba(0, 0, 0, 0.2)'
-      : '0 0 6px 0 rgba(255, 255, 255, 0.3)'};
+  ${props => getBoxShadow(props)}
   background: ${props => props.theme.palette.background.default};
+  box-sizing: border-box;
 
   .skeleton__title {
     text-transform: uppercase;

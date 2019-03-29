@@ -1,19 +1,29 @@
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-import Skeleton from '../home/skeleton';
-import { useThemeMode } from '../../../libs/hooks';
+import Skeleton from './skeleton';
+import Dashboard from './dashboard';
 
-const deltaY = 48;
-const deltaZ = 48;
+import { useThemeMode, useSwitcher } from '../../../libs/hooks';
 
-export default function Animation() {
-  const networks = ['Argon', 'Bromine', 'Titanium'];
+const deltaY = 60;
+const deltaZ = 60;
+
+export default function Stack({ networks: original, current }) {
+  const networks = [].concat(original);
+  const index = original.indexOf(current);
+  if (index > -1) {
+    networks.splice(index, 1);
+    networks.unshift(current);
+  }
+
   const total = networks.length;
   const range = total * deltaY - deltaY;
   const min = networks.map((_, i) => ({ y: -deltaY * (i + 1), z: -deltaZ * (i + 1) }));
   const max = min.map(d => ({ y: range + d.y, z: range + d.z }));
 
+  const { setCurrent } = useSwitcher();
   const [currentIndex, setCurrentIndex] = useState(1);
   const [styles, setStyles] = useState(min);
   const [mode] = useThemeMode();
@@ -26,6 +36,7 @@ export default function Animation() {
     };
   });
 
+  // eslint-disable-next-line no-shadow
   const correctDelta = (key, value, index) => {
     if (value <= min[index][key]) {
       return min[index][key];
@@ -52,7 +63,9 @@ export default function Animation() {
         opacity: i < currentIndex ? 0 : 1,
       }));
       setStyles(newStyles);
-      setCurrentIndex(currentIndex + 1);
+      const newIndex = currentIndex + 1;
+      setCurrentIndex(newIndex);
+      setCurrent(networks[newIndex - 1]);
     } else {
       if (currentIndex <= 1) {
         return;
@@ -64,40 +77,64 @@ export default function Animation() {
         opacity: i > currentIndex ? 0 : 1,
       }));
       setStyles(newStyles);
-      setCurrentIndex(currentIndex - 1);
+      const newIndex = currentIndex - 1;
+      setCurrentIndex(newIndex);
+      setCurrent(networks[newIndex - 1]);
     }
   };
 
   return (
-    <Container marginTop={range}>
+    <Container marginTop={deltaY}>
       <div className="view">
         <div className="cards">
-          {networks.map((x, i) => (
-            <Skeleton
-              key={x}
-              title={`${x}#${i}`}
-              width={1440}
-              theme={mode}
-              className="card"
-              onWheel={onWheel}
-              style={{
-                zIndex: total - i,
-                transform: `translate3d(0px, ${styles[i].y}px, ${styles[i].z}px)`,
-                opacity: styles[i].opacity === undefined ? 1 : styles[i].opacity,
-              }}
-            />
-          ))}
+          {networks.map((x, i) => {
+            const style = {
+              zIndex: total - i,
+              transform: `translate3d(0px, ${styles[i].y}px, ${styles[i].z}px)`,
+              opacity: styles[i].opacity === undefined ? 1 : styles[i].opacity,
+            };
+
+            if (x === current) {
+              return (
+                <Dashboard
+                  key={x}
+                  title={current}
+                  shadow={true}
+                  className="card"
+                  onWheel={onWheel}
+                  style={{ ...style, padding: '32px' }}
+                />
+              );
+            }
+
+            return (
+              <Skeleton
+                key={x}
+                title={x}
+                width={1440}
+                theme={mode}
+                shadow={true}
+                className="card"
+                onWheel={onWheel}
+                style={style}
+              />
+            );
+          })}
         </div>
       </div>
     </Container>
   );
 }
 
+Stack.propTypes = {
+  networks: PropTypes.arrayOf(PropTypes.string).isRequired,
+  current: PropTypes.string.isRequired,
+};
+
 const Container = styled.div`
   margin-top: 30px;
   width: 100%;
   height: 100%;
-  max-width: ${props => props.theme.pageWidth}px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -124,7 +161,6 @@ const Container = styled.div`
   .card {
     position: absolute;
     top: 0;
-    left: 0;
     width: 100%;
     height: 1800px;
     transition: all 300ms linear;
