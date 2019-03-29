@@ -69,7 +69,7 @@ export default function Skeleton({ title, width, animate, theme, metricCount, ..
         <rect x="0" y="610" rx="0" ry="0" width={halfWidth} height="90" />
         <rect x="0" y="720" rx="0" ry="0" width={halfWidth} height="90" />
 
-        <circle cx="960" cy="560" r="270" />
+        <circle cx={width * 0.75} cy="560" r={width * 0.20} />
 
         <rect x="0" y="900" rx="0" ry="0" width="150" height="30" />
         <rect x="0" y="950" rx="0" ry="0" width={width} height="300" />
