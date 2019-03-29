@@ -27,7 +27,7 @@ function Layout({ children }) {
           <Logo />
           <div className="switchers">
             <ThemeSwitcher className="switcher" />
-            <NetworkSwitcher className="switcher" />
+            {window.location.pathname === '/' && <NetworkSwitcher className="switcher" />}
           </div>
         </Toolbar>
       </AppBar>

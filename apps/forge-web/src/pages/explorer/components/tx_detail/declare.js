@@ -9,7 +9,7 @@ import IconFa from '../../../../components/iconfa';
 export default class DeclareAccountDetail extends TxDetail {
   renderHeader() {
     const { tx } = this.props.tx;
-    const chips = Object.keys(tx.itx.type).map(x => <Chip key={x} label={tx.itx.type[x]} />);
+    const chips = Object.keys(tx.itx.type || {}).map(x => <Chip key={x} label={tx.itx.type[x]} />);
     return (
       <SummaryHeader
         type="Declare Account"
