@@ -6,7 +6,6 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 
 import ThemeSwitcher from '../../components/theme_switcher';
-import SearchBox from '../../components/search_box';
 import withI18n from '../../components/withI18n';
 import withRoot from '../../components/withRoot';
 import withTracker from '../../components/withTracker';
@@ -24,7 +23,6 @@ function Layout({ children }) {
       <AppBar position="absolute" className="appBar">
         <Toolbar disableGutters={false} className="toolbar">
           <Logo />
-          <SearchBox className="search-box" />
           <ThemeSwitcher className="switcher" />
         </Toolbar>
       </AppBar>
@@ -82,14 +80,9 @@ const Container = styled.div`
     margin-top: ${props => props.theme.spacing.unit}px;
     width: 100%;
     max-width: ${props => props.theme.pageWidth}px;
-    position: relative;
 
     .switcher {
       cursor: pointer;
-      @media (min-width: ${props => props.theme.breakpoints.values.lg}px) {
-        position: absolute;
-        right: -48px;
-      }
     }
   }
 
@@ -99,12 +92,6 @@ const Container = styled.div`
     overflow: auto;
     box-sizing: border-box;
     position: relative;
-  }
-
-  @media (max-width: ${props => props.theme.breakpoints.values.sm}px) {
-    .search-box {
-      display: none;
-    }
   }
 `;
 

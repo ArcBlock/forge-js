@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import Skeleton from '../skeleton';
+import { useThemeMode } from '../../../libs/hooks';
 
 const deltaY = 48;
 const deltaZ = 48;
@@ -15,6 +16,7 @@ export default function Animation() {
 
   const [currentIndex, setCurrentIndex] = useState(1);
   const [styles, setStyles] = useState(min);
+  const [mode] = useThemeMode();
 
   useEffect(() => {
     document.body.style.overflow = 'hidden';
@@ -75,6 +77,7 @@ export default function Animation() {
               key={x}
               title={`${x}#${i}`}
               width={1440}
+              theme={mode}
               className="card"
               onWheel={onWheel}
               style={{

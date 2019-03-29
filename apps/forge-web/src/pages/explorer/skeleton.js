@@ -43,7 +43,7 @@ const renderMetrics = (width, count) => {
   return elements;
 };
 
-export default function Skeleton({ title, width, animate, metricCount, ...rest }) {
+export default function Skeleton({ title, width, animate, theme, metricCount, ...rest }) {
   const halfWidth = width * 0.47;
   return (
     <Container {...rest}>
@@ -54,8 +54,8 @@ export default function Skeleton({ title, width, animate, metricCount, ...rest }
         height={1800}
         width={width}
         animate={animate}
-        primaryColor="#f3f3f3"
-        secondaryColor="#ecebeb">
+        primaryColor={theme === 'light' ? '#f3f3f3' : '#555555'}
+        secondaryColor={theme === 'light' ? '#ecebeb' : '#444444'}>
         {renderMetrics(width, metricCount)}
 
         <rect x="0" y="230" rx="0" ry="0" width="30" height="30" />
@@ -87,20 +87,25 @@ export default function Skeleton({ title, width, animate, metricCount, ...rest }
 Skeleton.propTypes = {
   width: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
+  theme: PropTypes.string,
   animate: PropTypes.bool,
   metricCount: PropTypes.number,
 };
 
 Skeleton.defaultProps = {
   animate: false,
+  theme: 'light',
   metricCount: 6,
 };
 
 const Container = styled.div`
   padding: 32px;
   width: 100%;
-  box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.2);
-  background: #f7f8f8;
+  box-shadow: ${props =>
+    props.theme.mode === 'light'
+      ? '0 0 6px 0 rgba(0, 0, 0, 0.2)'
+      : '0 0 6px 0 rgba(255, 255, 255, 0.3)'};
+  background: ${props => props.theme.palette.background.default};
 
   .skeleton__title {
     text-transform: uppercase;
