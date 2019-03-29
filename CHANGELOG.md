@@ -1,3 +1,11 @@
+## 0.16.3 (March 29, 2019)
+  - chore: make validators dynamic
+  - fix: switcher position
+  - fix: api switch
+  - fix: current network selection
+  - fix: explorer deploy script
+  - update readme
+
 ## 0.16.2 (March 29, 2019)
   - chore: revert changes on header
   - chore: use endpoint from local storage
