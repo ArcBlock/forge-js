@@ -7,13 +7,15 @@ const deltaY = 36;
 const deltaZ = 36;
 
 export default function Animation() {
-  const networks = ['main', 'origin', 'nightly'];
-  const zIndex = networks.length;
+  const networks = ['Argon', 'Bromine', 'Titanium'];
+  const total = networks.length;
+  const range = total * deltaY - deltaY;
+  const min = networks.map((_, i) => ({ y: -deltaY * (i + 1), z: -deltaZ * (i + 1) }));
+  const max = min.map(d => ({ y: range + d.y, z: range + d.z }));
+  console.log({ min, max });
 
   const [currentIndex, setCurrentIndex] = useState(1);
-  const [styles, setStyles] = useState(
-    networks.map((_, i) => ({ y: -deltaY * (i + 1), z: -deltaZ * (i + 1) }))
-  );
+  const [styles, setStyles] = useState(min);
 
   useEffect(() => {
     document.body.style.overflow = 'hidden';
@@ -22,6 +24,17 @@ export default function Animation() {
       document.body.style.overflow = 'auto';
     };
   });
+
+  const correctDelta = (key, value, index) => {
+    if (value <= min[index][key]) {
+      return min[index][key];
+    }
+    if (value >= max[index][key]) {
+      return max[index][key];
+    }
+
+    return value;
+  };
 
   const onWheel = e => {
     if (Math.abs(e.deltaY) < 5) {
@@ -33,8 +46,8 @@ export default function Animation() {
       }
 
       const newStyles = styles.map((d, i) => ({
-        y: d.y + deltaY,
-        z: d.z + deltaZ,
+        y: correctDelta('y', d.y + deltaY, i),
+        z: correctDelta('z', d.z + deltaZ, i),
         opacity: i < currentIndex ? 0 : 1,
       }));
       setStyles(newStyles);
@@ -49,8 +62,8 @@ export default function Animation() {
       }
 
       const newStyles = styles.map((d, i) => ({
-        y: d.y - deltaY,
-        z: d.z - deltaZ,
+        y: correctDelta('y', d.y - deltaY, i),
+        z: correctDelta('z', d.z - deltaZ, i),
         opacity: i > currentIndex ? 0 : 1,
       }));
       setStyles(newStyles);
@@ -65,14 +78,15 @@ export default function Animation() {
   return (
     <Container cardCount={networks.length > 10 ? 10 : networks.length}>
       <div className="view">
-        <div className="cards" onWheel={onWheel}>
+        <div className="cards">
           {networks.map((x, i) => (
             <Skeleton
               key={x}
               title={`${x}#${i}`}
               className="card"
+              onWheel={onWheel}
               style={{
-                zIndex: zIndex - i,
+                zIndex: total - i,
                 transform: `translate3d(0px, ${styles[i].y}px, ${styles[i].z}px)`,
                 opacity: styles[i].opacity === undefined ? 1 : styles[i].opacity,
               }}
