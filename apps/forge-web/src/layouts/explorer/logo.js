@@ -17,7 +17,7 @@ export default function Logo() {
             height="40"
             viewBox="0 0 35 40"
             className="logo">
-            <g fill="none" fill-rule="evenodd">
+            <g fill="none" fillRule="evenodd">
               <path d="M-8-5h50v50H-8z" />
               <path
                 fill={mode === 'dark' ? '#fff' : '#222'}

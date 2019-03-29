@@ -43,8 +43,25 @@ export function getTxType(tx) {
 }
 
 export function getGraphQLEndpoint() {
-  if (window.localStorage && window.localStorage.getItem('GQL_ENDPOINT')) {
-    return window.localStorage.getItem('GQL_ENDPOINT');
+  if (window.localStorage) {
+    if (window.localStorage.getItem('GQL_ENDPOINT')) {
+      return window.localStorage.getItem('GQL_ENDPOINT');
+    }
+
+    try {
+      const endpoints = {
+        argon: 'https://argon.abtnetwork.io/api',
+        bromine: 'https://bromine.abtnetwork.io/api',
+        titanium: 'https://titanium.abtnetwork.io/api',
+      };
+
+      const current = JSON.parse(window.localStorage.getItem('switcher.current'));
+      if (current && endpoints[current]) {
+        return endpoints[current];
+      }
+    } catch (err) {
+      // Do nothing
+    }
   }
 
   if (process.env.NODE_ENV === 'production') {
