@@ -14,7 +14,6 @@ export default function Switcher({ networks }) {
   const { open, current, setOpen, setCurrent } = useSwitcher();
   const currentNetwork = current || networks[0];
   const createHandler = x => () => {
-    console.log('switcher.select', x);
     setCurrent(x);
     setOpen(false);
   };

@@ -10,7 +10,7 @@ import { useThemeMode, useSwitcher } from '../../../libs/hooks';
 const deltaY = 60;
 const deltaZ = 60;
 
-export default function Stack({ networks: original, current }) {
+export default function Stack({ networks: original, current, fakeCurrent }) {
   const networks = [].concat(original);
   // const index = original.indexOf(current);
   // if (index > -1) {
@@ -96,7 +96,7 @@ export default function Stack({ networks: original, current }) {
               opacity: styles[i].opacity === undefined ? 1 : styles[i].opacity,
             };
 
-            if (x === current) {
+            if (!fakeCurrent && x === current) {
               return (
                 <Dashboard
                   key={x}
@@ -131,6 +131,11 @@ export default function Stack({ networks: original, current }) {
 Stack.propTypes = {
   networks: PropTypes.arrayOf(PropTypes.string).isRequired,
   current: PropTypes.string.isRequired,
+  fakeCurrent: PropTypes.bool,
+};
+
+Stack.defaultProps = {
+  fakeCurrent: true,
 };
 
 const Container = styled.div`

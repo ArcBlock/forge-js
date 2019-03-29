@@ -105,6 +105,7 @@ Dashboard.defaultProps = {
 const Container = styled.div`
   ${props => getBoxShadow(props)}
   background: ${props => props.theme.palette.background.default};
+  width: 100%;
 
   .dashboard__title {
     text-transform: uppercase;
