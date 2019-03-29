@@ -43,6 +43,10 @@ export function getTxType(tx) {
 }
 
 export function getGraphQLEndpoint() {
+  if (window.localStorage && window.localStorage.getItem('GQL_ENDPOINT')) {
+    return window.localStorage.getItem('GQL_ENDPOINT');
+  }
+
   if (process.env.NODE_ENV === 'production') {
     const { protocol, host } = window.location;
     return `${protocol}//${host}/api`;

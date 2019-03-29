@@ -8,6 +8,7 @@ import Layout from '../layouts/explorer';
 import ActivityIndicator from '../components/activity_indicator';
 
 import PageHome from '../pages/explorer/home';
+import PageAnimation from '../pages/explorer/animation';
 
 import { localeData } from '../libs/locale';
 import { detectLocale } from '../libs/util';
@@ -60,6 +61,7 @@ const App = () => {
             <Route exact path="/accounts/:address" component={PageAccountDetail} />
             <Route exact path="/assets/:address" component={PageAssetDetail} />
             <Route exact path="/network" component={PageNetwork} />
+            <Route exact path="/switcher" component={PageAnimation} />
             <Redirect from="/*" to="/" />
           </Switch>
         </Layout>

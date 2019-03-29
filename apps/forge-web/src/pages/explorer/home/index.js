@@ -114,6 +114,7 @@ const Container = styled(Wrapper)`
   .section--network {
     @media (min-width: ${props => props.theme.breakpoints.values.md}px) {
       height: 772px;
+      margin-bottom: 120px;
     }
   }
 

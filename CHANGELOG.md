@@ -1,3 +1,14 @@
+## 0.16.1 (March 29, 2019)
+  - chore: cleanup revert
+  - Merge remote-tracking branch 'origin/wangshijun/fix-build' into wangshijun/explorer
+  - chore: try to fix forge web build, but no luck
+  - feat: support set/get graphql endpoint from localStorage
+  - fix: forge web build
+  - chore: basic explorer switch animation
+  - fix: cursor style for theme switcher
+  - fix: explorer style fix
+  - update readme
+
 ## 0.16.0 (March 27, 2019)
   - chore: add tooltip for forge web sidebar
   - chore: fix readme badges

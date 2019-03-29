@@ -6,7 +6,7 @@ import { AreaChart, Area, Tooltip, Legend, ResponsiveContainer } from 'recharts'
 import { useThemeMode } from '../libs/hooks';
 
 const renderTooltip = tip => {
-  if (tip.payload[0] && tip.payload[0].payload) {
+  if (tip.payload && tip.payload[0] && tip.payload[0].payload) {
     const d = tip.payload[0].payload;
     const series = Object.keys(d).filter(x => x !== 'time');
     return (
