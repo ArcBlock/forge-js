@@ -1,3 +1,7 @@
+## 0.16.4 (March 30, 2019)
+  - fix: forge web should load only peers on globe
+  - update readme
+
 ## 0.16.3 (March 29, 2019)
   - chore: make validators dynamic
   - fix: switcher position
