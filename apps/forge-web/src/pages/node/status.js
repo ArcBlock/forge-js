@@ -30,13 +30,13 @@ class Network extends Page {
 
   async componentDidMount() {
     try {
-      const { validatorsInfo } = await api().getNetInfo();
+      const { netInfo } = await api().getNetInfo();
       this.setState({
-        markers: (validatorsInfo.validators || []).map(x => ({
-          id: x.address,
+        markers: (netInfo.peers || []).map(x => ({
+          id: x.id,
           latitude: x.geoInfo.latitude,
           longitude: x.geoInfo.longitude,
-          title: x.address,
+          title: x.moniker,
           country: x.geoInfo.country,
           description: `Location: ${x.geoInfo.city},${x.geoInfo.country}`,
         })),
