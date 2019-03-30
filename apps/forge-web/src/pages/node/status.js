@@ -30,7 +30,7 @@ class Network extends Page {
 
   async componentDidMount() {
     try {
-      const { validatorsInfo } = await api().getValidatorsInfo();
+      const { validatorsInfo } = await api().getNetInfo();
       this.setState({
         markers: (validatorsInfo.validators || []).map(x => ({
           id: x.address,
