@@ -44,7 +44,7 @@ class Sidebar extends React.Component {
     const selected = this.isSelected(url, name);
     return (
       <Tooltip title={title} placement="right">
-        <MenuItem component={Link} key={url} selected={selected} to={url} title={title}>
+        <MenuItem component={Link} key={url} selected={selected} to={url}>
           <Icon8
             name={images[name]}
             size={36}
