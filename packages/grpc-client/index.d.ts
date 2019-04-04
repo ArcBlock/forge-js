@@ -679,6 +679,7 @@ declare namespace forge_abi {
     tps: Array<number>;
     maxTps: number;
     avgTps: number;
+    avgBlockTime: number;
   }
 
   export interface TxStatistics {
@@ -801,6 +802,10 @@ declare namespace forge_abi {
     numStakes: forge_abi.BigUint;
     numValidators: number;
     txStatistics: forge_abi.TxStatistics;
+  }
+
+  export interface BlacklistState {
+    address: Array<string>;
   }
 
   export interface RequestCreateTx {
@@ -1114,6 +1119,7 @@ declare namespace forge_abi {
     timeFilter: forge_abi.TimeFilter;
     addressFilter: forge_abi.AddressFilter;
     typeFilter: forge_abi.TypeFilter;
+    validityFilter: forge_abi.ValidityFilter;
   }
 
   export interface ResponseListTransactions {
@@ -1364,6 +1370,8 @@ declare namespace forge_abi {
     exchange: forge_abi.IndexedExchange;
     transfer: forge_abi.IndexedTransfer;
     updateAsset: forge_abi.IndexedUpdateAsset;
+    valid: forge_abi.bool;
+    code: forge_abi.StatusCode;
   }
 
   export interface IndexedAccountState {
@@ -1487,6 +1495,16 @@ declare namespace forge_abi {
   export interface AbciServerStatus {
     abciConsensus: string;
     abciInfo: string;
+  }
+
+  export enum Validity {
+    BOTH = 0,
+    VALID = 1,
+    INVALID = 2,
+  }
+
+  export interface ValidityFilter {
+    validity: forge_abi.Validity;
   }
 }
 
