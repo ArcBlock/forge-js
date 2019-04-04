@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import dayjs from 'dayjs';
 import { withTheme } from '@material-ui/core/styles';
 
 import { Link } from 'react-router-dom';
@@ -9,6 +8,7 @@ import Typography from '@material-ui/core/Typography';
 
 import IconFa from '../../../components/iconfa';
 import { getExplorerUrl } from '../../../libs/util';
+import dayjs from '../../../libs/dayjs';
 
 const BlockCard = React.memo(({ block, theme, ...rest }) => (
   <Container {...rest}>

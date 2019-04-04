@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import dayjs from 'dayjs';
 import get from 'lodash/get';
 import { withTheme } from '@material-ui/core/styles';
 
@@ -11,6 +10,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 
 import IconFa from '../../../../components/iconfa';
 import { getExplorerUrl } from '../../../../libs/util';
+import dayjs from '../../../../libs/dayjs';
 
 const CreateAssetTx = React.memo(({ tx, type, theme, ...rest }) => {
   const address = get(tx, 'createAsset.asset') || get(tx, 'updateAsset.asset');

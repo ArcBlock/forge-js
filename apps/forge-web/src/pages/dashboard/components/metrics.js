@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import dayjs from 'dayjs';
 import numeral from 'numeral';
 import useAsync from 'react-use/lib/useAsync';
 import useBoolean from 'react-use/lib/useBoolean';
@@ -16,6 +15,7 @@ import Icon8 from '../../../components/icon8';
 import AsyncComponent from '../../../components/async';
 import BlinkingDot from '../../../components/blinking_dot';
 import forge from '../../../libs/forge';
+import dayjs from '../../../libs/dayjs';
 import { createSeries } from '../../../libs/util';
 import { useInterval, useTokenInfo, useLiveUpdate } from '../../../libs/hooks';
 

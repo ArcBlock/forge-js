@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import dayjs from 'dayjs';
 import styled from 'styled-components';
 import useAsync from 'react-use/lib/useAsync';
 
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 import AsyncComponent from '../../../components/async';
+import dayjs from '../../../libs/dayjs';
 import { delay, createSeries } from '../../../libs/util';
 
 const SparkLine = AsyncComponent(() => import('../../../components/sparkline'));
