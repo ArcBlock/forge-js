@@ -55,7 +55,7 @@ class Query extends Page {
       <Layout title="Query" cookies={this.cookies}>
         <Container>
           <GraphiQL fetcher={graphqlFetcher} defaultQuery={defaultQuery}>
-            <GraphiQL.Logo>Forge GraphQL Playground</GraphiQL.Logo>
+            <GraphiQL.Logo>Query</GraphiQL.Logo>
           </GraphiQL>
         </Container>
       </Layout>
