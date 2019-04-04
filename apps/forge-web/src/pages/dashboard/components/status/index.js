@@ -40,7 +40,7 @@ export default function StatusSection() {
     return <p className="error">{state.error.message}</p>;
   }
 
-  const { layers, data, ok } = state.value;
+  const { layers, data } = state.value;
   const names = Object.keys(layers);
   const SummaryComponent = selected ? layers[selected].component : Summary;
 
@@ -50,7 +50,7 @@ export default function StatusSection() {
   return (
     <Container onMouseOut={onClickAway} onBlur={onClickAway}>
       <div className="greeting">
-        <p>Your node {ok ? 'works good' : 'is running'} now.</p>
+        <p>Your node is running.</p>
       </div>
       <div className="layers">
         <Grid container spacing={0}>
