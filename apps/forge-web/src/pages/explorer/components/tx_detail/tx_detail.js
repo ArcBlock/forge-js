@@ -20,6 +20,7 @@ export default class TxDetail extends React.Component {
 
   rows = {
     hash: { path: 'hash' },
+    time: { path: 'time' },
     from: { path: 'tx.from', link: v => getExplorerUrl(`/accounts/${v}`) },
     to: { path: 'tx.itx.to', link: v => getExplorerUrl(`/accounts/${v}`) },
     block: { path: 'height', link: v => getExplorerUrl(`/blocks/${v}`) },
