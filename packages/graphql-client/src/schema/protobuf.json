@@ -1198,6 +1198,10 @@
             "avgTps": {
               "type": "uint32",
               "id": 19
+            },
+            "avgBlockTime": {
+              "type": "float",
+              "id": 20
             }
           }
         },
@@ -1594,6 +1598,15 @@
             "txStatistics": {
               "type": "TxStatistics",
               "id": 6
+            }
+          }
+        },
+        "BlacklistState": {
+          "fields": {
+            "address": {
+              "rule": "repeated",
+              "type": "string",
+              "id": 1
             }
           }
         },
@@ -2412,6 +2425,10 @@
             "typeFilter": {
               "type": "TypeFilter",
               "id": 4
+            },
+            "validityFilter": {
+              "type": "ValidityFilter",
+              "id": 5
             }
           }
         },
@@ -3083,6 +3100,14 @@
             "updateAsset": {
               "type": "IndexedUpdateAsset",
               "id": 11
+            },
+            "valid": {
+              "type": "bool",
+              "id": 20
+            },
+            "code": {
+              "type": "StatusCode",
+              "id": 21
             }
           }
         },
@@ -3427,6 +3452,21 @@
             "abciInfo": {
               "type": "string",
               "id": 2
+            }
+          }
+        },
+        "Validity": {
+          "values": {
+            "both": 0,
+            "valid": 1,
+            "invalid": 2
+          }
+        },
+        "ValidityFilter": {
+          "fields": {
+            "validity": {
+              "type": "Validity",
+              "id": 1
             }
           }
         },
