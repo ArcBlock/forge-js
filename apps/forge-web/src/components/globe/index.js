@@ -1,6 +1,6 @@
 /* eslint consistent-return:"off" */
 import React, { useReducer, useRef, useEffect } from 'react';
-import { useSpring } from 'react-use';
+import useSpring from 'react-use/lib/useSpring';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import * as d3 from 'd3-geo';

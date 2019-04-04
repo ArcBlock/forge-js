@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import dayjs from 'dayjs';
 import styled from 'styled-components';
-import { useAsync } from 'react-use';
+import useAsync from 'react-use/lib/useAsync';
 
 import CircularProgress from '@material-ui/core/CircularProgress';
 

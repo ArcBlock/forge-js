@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import dayjs from 'dayjs';
 import numeral from 'numeral';
+import useAsync from 'react-use/lib/useAsync';
+import useBoolean from 'react-use/lib/useBoolean';
 import { fromUnitToToken } from '@arcblock/forge-util';
-import { useAsync, useBoolean } from 'react-use';
 import { withTheme } from '@material-ui/core/styles';
 
 import Grid from '@material-ui/core/Grid';
@@ -16,7 +17,7 @@ import AsyncComponent from '../../../components/async';
 import BlinkingDot from '../../../components/blinking_dot';
 import forge from '../../../libs/forge';
 import { createSeries } from '../../../libs/util';
-import { useInterval, useTokenInfo } from '../../../libs/hooks';
+import { useInterval, useTokenInfo, useLiveUpdate } from '../../../libs/hooks';
 
 const SparkLine = AsyncComponent(() => import('../../../components/sparkline'));
 
@@ -39,7 +40,7 @@ async function fetchLatest() {
 function Metrics({ theme, sparkline, itemSize, size }) {
   const state = useAsync(sparkline ? fetchBoth : fetchLatest);
   const [updates, setUpdates] = useState(null);
-  const [autoRefresh, setAutoRefresh] = useBoolean(true);
+  const [liveUpdate, setLiveUpdate] = useLiveUpdate();
   const [animation, setAnimation] = useBoolean(false);
   const [token] = useTokenInfo();
 
@@ -63,7 +64,7 @@ function Metrics({ theme, sparkline, itemSize, size }) {
         console.error(err);
       }
     },
-    autoRefresh ? 5000 : null
+    liveUpdate ? 5000 : null
   );
 
   if (state.loading) {
@@ -127,18 +128,18 @@ function Metrics({ theme, sparkline, itemSize, size }) {
     <Container>
       <Tooltip
         title={
-          autoRefresh
+          liveUpdate
             ? 'Live updates enabled, click to disable'
             : 'Live updates disabled, click to enable'
         }>
-        <span className="refresh-toggler" onClick={() => setAutoRefresh()}>
+        <span className="refresh-toggler" onClick={() => setLiveUpdate(!liveUpdate)}>
           <BlinkingDot
-            theme={autoRefresh ? 'green' : 'red'}
+            theme={liveUpdate ? 'green' : 'red'}
             size={14}
-            duration={autoRefresh ? '4s' : '0'}
+            duration={liveUpdate ? '5s' : '0'}
             style={{ marginRight: '8px' }}
           />
-          {autoRefresh ? 'Live Updates On' : 'Live Updates Off'}
+          {liveUpdate ? 'Live Updates On' : 'Live Updates Off'}
         </span>
       </Tooltip>
       <Grid container spacing={40}>

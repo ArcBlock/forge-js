@@ -2,7 +2,7 @@
 /* eslint react-hooks/rules-of-hooks:"off" */
 import { useState, useEffect, useRef } from 'react';
 import { EventTarget } from 'event-target-shim';
-import { useAsync } from 'react-use';
+import useAsync from 'react-use/lib/useAsync';
 
 import { fetchInfo } from './util';
 
@@ -83,6 +83,10 @@ export function useTokenInfo() {
 
 export function useNodeInfo() {
   return useLocalStorage('node', {});
+}
+
+export function useLiveUpdate() {
+  return useLocalStorage('live_update', false);
 }
 
 export function useStartupInfo() {

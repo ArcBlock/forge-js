@@ -1,7 +1,7 @@
 import React from 'react';
 import numeral from 'numeral';
 import PropTypes from 'prop-types';
-import { useAsync } from 'react-use';
+import useAsync from 'react-use/lib/useAsync';
 import { Link } from 'react-router-dom';
 import { fromUnitToToken } from '@arcblock/forge-util';
 

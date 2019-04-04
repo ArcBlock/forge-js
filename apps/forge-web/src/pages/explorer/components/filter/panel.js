@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useToggle } from 'react-use';
+import useToggle from 'react-use/lib/useToggle';
 import { withTheme } from '@material-ui/core/styles';
 
 import IconButton from '@material-ui/core/IconButton';
