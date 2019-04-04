@@ -62,6 +62,14 @@ async function main() {
       'forge web open'
     )}`
   );
+  shell.echo(
+    `${symbols.info} If you want to show above process list, please run ${chalk.cyan('forge ps')}`
+  );
+  shell.echo(
+    `${symbols.info} If you want to know forge status detail, please run ${chalk.cyan(
+      'forge status'
+    )}`
+  );
 }
 
 function waitUntilStarted() {
