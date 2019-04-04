@@ -48,7 +48,7 @@ class Network extends Page {
     }
   }
 
-  componentWillMount() {
+  componentWillUnmount() {
     if (this.timer) {
       clearInterval(this.timer);
     }
