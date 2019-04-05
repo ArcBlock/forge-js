@@ -48,17 +48,24 @@ class Network extends Page {
     }
   }
 
-  componentWillMount() {
+  componentWillUnmount() {
     if (this.timer) {
       clearInterval(this.timer);
     }
   }
 
-  setActiveMarker() {
-    const { markers } = this.state;
-    const ids = markers.map(x => x.id);
-    const index = Math.floor(Math.random() * ids.length);
-    this.setState({ activeMarkerId: ids[index] });
+  async setActiveMarker() {
+    try {
+      const { info } = await api().getChainInfo();
+      const { block } = await api().getBlock(
+        { height: info.blockHeight },
+        { ignoreFields: ['block.txs'] }
+      );
+      this.setState({ activeMarkerId: block.proposer });
+    } catch (err) {
+      console.error(err);
+    }
+
     this.timer = setTimeout(this.setActiveMarker, 5000);
   }
 
@@ -83,8 +90,8 @@ class Network extends Page {
           </div>
           <AsyncGlobe
             theme={this.props.theme.mode}
-            width={900}
-            height={900}
+            width={600}
+            height={600}
             markers={markers}
             activeMarkerId={activeMarkerId}
           />

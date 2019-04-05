@@ -208,6 +208,12 @@ declare namespace Enums {
     UNION = 2,
   }
 
+  export enum Validity {
+    BOTH = 0,
+    VALID = 1,
+    INVALID = 2,
+  }
+
   export enum SupportedTxs {
     0 = AccountMigrateTx,
     1 = ConsensusUpgradeTx,
@@ -242,6 +248,7 @@ declare namespace Enums {
     StateType: typeof Enums.StateType;
     StakeType: typeof Enums.StakeType;
     Direction: typeof Enums.Direction;
+    Validity: typeof Enums.Validity;
     SupportedTxs: typeof Enums.SupportedTxs;
     SupportedStakes: typeof Enums.SupportedStakes;
   }
@@ -390,6 +397,12 @@ declare namespace Messages {
     2 = UNION,
   }
 
+  export enum Validity {
+    0 = BOTH,
+    1 = VALID,
+    2 = INVALID,
+  }
+
   export interface main {
     StatusCode: typeof Messages.StatusCode;
     TopicType: typeof Messages.TopicType;
@@ -402,5 +415,6 @@ declare namespace Messages {
     StateType: typeof Messages.StateType;
     StakeType: typeof Messages.StakeType;
     Direction: typeof Messages.Direction;
+    Validity: typeof Messages.Validity;
   }
 }

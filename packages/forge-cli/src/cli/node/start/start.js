@@ -57,6 +57,19 @@ async function main() {
       `${forgeBinPath} remote_console`
     )}`
   );
+  shell.echo(
+    `${symbols.info} If you want to access forge web interface, please run ${chalk.cyan(
+      'forge web open'
+    )}`
+  );
+  shell.echo(
+    `${symbols.info} If you want to show above process list, please run ${chalk.cyan('forge ps')}`
+  );
+  shell.echo(
+    `${symbols.info} If you want to know forge status detail, please run ${chalk.cyan(
+      'forge status'
+    )}`
+  );
 }
 
 function waitUntilStarted() {

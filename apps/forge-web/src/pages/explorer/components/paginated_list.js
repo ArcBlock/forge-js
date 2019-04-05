@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import { useAsync } from 'react-use';
+import useAsync from 'react-use/lib/useAsync';
 import { Link } from 'react-router-dom';
 
 import CircularProgress from '@material-ui/core/CircularProgress';

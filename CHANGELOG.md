@@ -1,3 +1,17 @@
+## 0.17.0 (April 04, 2019)
+  - fix: date nan on ios
+  - fix: clear timer when unmount
+  - fix: use real producer for peer globe in forge web
+  - fix: show tx time on tx detail page
+  - fix: warning of material-ui
+  - fix: ios dayjs nan issue
+  - fix: cannot drag after liveUpdate is toggled
+  - chore: improve imports from react-use lib and make liveUpdate globe state
+  - chore: upgrade grpc-client with latest forge
+  - chore: upgrade forge-proto with latest forge
+  - chore: upgrade graphql-client with latest forge
+  - update readme
+
 ## 0.16.4 (March 30, 2019)
   - fix: forge web should load only peers on globe
   - update readme

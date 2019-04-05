@@ -8418,6 +8418,7 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
         tpsList: jspb.Message.getRepeatedField(msg, 17),
         maxTps: jspb.Message.getFieldWithDefault(msg, 18, 0),
         avgTps: jspb.Message.getFieldWithDefault(msg, 19, 0),
+        avgBlockTime: +jspb.Message.getFieldWithDefault(msg, 20, 0.0),
       };
 
     if (includeInstance) {
@@ -8529,6 +8530,10 @@ proto.forge_abi.ForgeStatistics.deserializeBinaryFromReader = function(msg, read
         var value = /** @type {number} */ (reader.readUint32());
         msg.setAvgTps(value);
         break;
+      case 20:
+        var value = /** @type {number} */ (reader.readFloat());
+        msg.setAvgBlockTime(value);
+        break;
       default:
         reader.skipField();
         break;
@@ -8631,6 +8636,10 @@ proto.forge_abi.ForgeStatistics.serializeBinaryToWriter = function(message, writ
   f = message.getAvgTps();
   if (f !== 0) {
     writer.writeUint32(19, f);
+  }
+  f = message.getAvgBlockTime();
+  if (f !== 0.0) {
+    writer.writeFloat(20, f);
   }
 };
 
@@ -9094,6 +9103,19 @@ proto.forge_abi.ForgeStatistics.prototype.getAvgTps = function() {
 /** @param {number} value */
 proto.forge_abi.ForgeStatistics.prototype.setAvgTps = function(value) {
   jspb.Message.setProto3IntField(this, 19, value);
+};
+
+/**
+ * optional float avg_block_time = 20;
+ * @return {number}
+ */
+proto.forge_abi.ForgeStatistics.prototype.getAvgBlockTime = function() {
+  return /** @type {number} */ (+jspb.Message.getFieldWithDefault(this, 20, 0.0));
+};
+
+/** @param {number} value */
+proto.forge_abi.ForgeStatistics.prototype.setAvgBlockTime = function(value) {
+  jspb.Message.setProto3FloatField(this, 20, value);
 };
 
 /**

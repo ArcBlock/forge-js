@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { useAsync, useWindowSize } from 'react-use';
+import useAsync from 'react-use/lib/useAsync';
+import useWindowSize from 'react-use/lib/useWindowSize';
 
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 import AsyncComponent from '../../../components/async';
 import api from '../../../libs/forge';
-import { useInterval, useThemeMode } from '../../../libs/hooks';
+import { useInterval, useThemeMode, useLiveUpdate } from '../../../libs/hooks';
 
 const AsyncGlobe = AsyncComponent(() => import('../../../components/globe'));
 
@@ -28,7 +29,7 @@ async function fetchLatestProposer() {
       { height: info.blockHeight },
       { ignoreFields: ['block.txs'] }
     );
-    return block.proposer.toLowerCase();
+    return block.proposer;
   } catch (err) {
     console.error(err);
     return undefined;
@@ -39,16 +40,18 @@ export default function ProducerGlobe() {
   const state = useAsync(fetchPeers);
   const { width } = useWindowSize();
   const [theme] = useThemeMode();
+  const [liveUpdate] = useLiveUpdate();
   const [activeMarkerId, setActiveMarker] = useState(null);
 
-  useInterval(async () => {
-    if (state.value) {
-      const proposer = await fetchLatestProposer();
-      const ids = state.value.map(x => x.id);
-      const index = Math.floor(Math.random() * ids.length);
-      setActiveMarker(ids[index] || proposer);
-    }
-  }, 5000);
+  useInterval(
+    async () => {
+      if (state.value) {
+        const proposer = await fetchLatestProposer();
+        setActiveMarker(proposer);
+      }
+    },
+    liveUpdate ? 5000 : null
+  );
 
   if (state.loading) {
     return <CircularProgress />;
@@ -64,7 +67,7 @@ export default function ProducerGlobe() {
       height={width > 540 ? 732 : width - 20}
       theme={theme}
       markers={state.value}
-      activeMarkerId={activeMarkerId}
+      activeMarkerId={liveUpdate ? activeMarkerId : null}
     />
   );
 }

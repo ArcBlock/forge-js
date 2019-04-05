@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import dayjs from 'dayjs';
 import { withRouter } from 'react-router-dom';
 
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -20,6 +19,7 @@ import Icon from '../../components/iconfa';
 import Alert from '../../components/alert';
 
 import forge from '../../libs/forge';
+import dayjs from '../../libs/dayjs';
 import { parseQuery } from '../../libs/util';
 
 class BlockDetail extends Page {

@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import dayjs from 'dayjs';
 import { withTheme } from '@material-ui/core/styles';
 
 import { Link } from 'react-router-dom';
@@ -10,6 +9,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 
 import IconFa from '../../../../components/iconfa';
 import { getExplorerUrl } from '../../../../libs/util';
+import dayjs from '../../../../libs/dayjs';
 import Payload from './payload';
 
 const StakeTxSummary = React.memo(({ tx, theme, ...rest }) => (

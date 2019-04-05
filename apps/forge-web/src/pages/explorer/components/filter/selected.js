@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { useList } from 'react-use';
+import useList from 'react-use/lib/useList';
 
 import Chip from '@material-ui/core/Chip';
 import Typography from '@material-ui/core/Typography';

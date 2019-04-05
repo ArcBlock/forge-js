@@ -10829,6 +10829,9 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
           (f = msg.getAddressFilter()) && trace_type_pb.AddressFilter.toObject(includeInstance, f),
         typeFilter:
           (f = msg.getTypeFilter()) && trace_type_pb.TypeFilter.toObject(includeInstance, f),
+        validityFilter:
+          (f = msg.getValidityFilter()) &&
+          trace_type_pb.ValidityFilter.toObject(includeInstance, f),
       };
 
     if (includeInstance) {
@@ -10883,6 +10886,11 @@ proto.forge_abi.RequestListTransactions.deserializeBinaryFromReader = function(m
         reader.readMessage(value, trace_type_pb.TypeFilter.deserializeBinaryFromReader);
         msg.setTypeFilter(value);
         break;
+      case 5:
+        var value = new trace_type_pb.ValidityFilter();
+        reader.readMessage(value, trace_type_pb.ValidityFilter.deserializeBinaryFromReader);
+        msg.setValidityFilter(value);
+        break;
       default:
         reader.skipField();
         break;
@@ -10925,6 +10933,10 @@ proto.forge_abi.RequestListTransactions.serializeBinaryToWriter = function(messa
   f = message.getTypeFilter();
   if (f != null) {
     writer.writeMessage(4, f, trace_type_pb.TypeFilter.serializeBinaryToWriter);
+  }
+  f = message.getValidityFilter();
+  if (f != null) {
+    writer.writeMessage(5, f, trace_type_pb.ValidityFilter.serializeBinaryToWriter);
   }
 };
 
@@ -11042,6 +11054,35 @@ proto.forge_abi.RequestListTransactions.prototype.clearTypeFilter = function() {
  */
 proto.forge_abi.RequestListTransactions.prototype.hasTypeFilter = function() {
   return jspb.Message.getField(this, 4) != null;
+};
+
+/**
+ * optional ValidityFilter validity_filter = 5;
+ * @return {?proto.forge_abi.ValidityFilter}
+ */
+proto.forge_abi.RequestListTransactions.prototype.getValidityFilter = function() {
+  return /** @type{?proto.forge_abi.ValidityFilter} */ (jspb.Message.getWrapperField(
+    this,
+    trace_type_pb.ValidityFilter,
+    5
+  ));
+};
+
+/** @param {?proto.forge_abi.ValidityFilter|undefined} value */
+proto.forge_abi.RequestListTransactions.prototype.setValidityFilter = function(value) {
+  jspb.Message.setWrapperField(this, 5, value);
+};
+
+proto.forge_abi.RequestListTransactions.prototype.clearValidityFilter = function() {
+  this.setValidityFilter(undefined);
+};
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.forge_abi.RequestListTransactions.prototype.hasValidityFilter = function() {
+  return jspb.Message.getField(this, 5) != null;
 };
 
 /**

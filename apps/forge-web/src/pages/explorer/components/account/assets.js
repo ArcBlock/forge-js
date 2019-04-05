@@ -1,7 +1,6 @@
 /* eslint no-nested-ternary:"off" */
 import React from 'react';
 import PropTypes from 'prop-types';
-import dayjs from 'dayjs';
 
 import { Link } from 'react-router-dom';
 import Table from '@material-ui/core/Table';
@@ -12,6 +11,7 @@ import TableRow from '@material-ui/core/TableRow';
 import PaginatedList from '../paginated_list';
 
 import { getExplorerUrl } from '../../../../libs/util';
+import dayjs from '../../../../libs/dayjs';
 
 function renderAssets(assets) {
   return (

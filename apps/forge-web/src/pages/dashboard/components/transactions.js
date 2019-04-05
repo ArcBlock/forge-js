@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import dayjs from 'dayjs';
 
 import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -17,6 +16,7 @@ import DownIcon from '@material-ui/icons/KeyboardArrowDown';
 
 import AsyncComponent from '../../../components/async';
 import forge from '../../../libs/forge';
+import dayjs from '../../../libs/dayjs';
 import { createSeries } from '../../../libs/util';
 
 const SparkLine = AsyncComponent(() => import('../../../components/sparkline'));

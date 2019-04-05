@@ -101,83 +101,85 @@ declare class GraphQLClient {
   encodePokeTx(
     param: GraphQLClient.TxParam<GraphQLClient.PokeTx>
   ): Promise<GraphQLClient.EncodeTxResult>;
-  getAccountState(
-    params: GraphQLClient.GetAccountStateParams
-  ): GraphQLClient.QueryResult<GraphQLClient.ResponseGetAccountState>;
-  getAssetAddress(
-    params: GraphQLClient.GetAssetAddressParams
-  ): GraphQLClient.QueryResult<GraphQLClient.ResponseGetAssetAddress>;
-  getAssetState(
-    params: GraphQLClient.GetAssetStateParams
-  ): GraphQLClient.QueryResult<GraphQLClient.ResponseGetAssetState>;
-  getAssets(
-    params: GraphQLClient.GetAssetsParams
-  ): GraphQLClient.QueryResult<GraphQLClient.ResponseGetAssets>;
   getBlock(
     params: GraphQLClient.GetBlockParams
   ): GraphQLClient.QueryResult<GraphQLClient.ResponseGetBlock>;
-  getBlocks(
-    params: GraphQLClient.GetBlocksParams
-  ): GraphQLClient.QueryResult<GraphQLClient.ResponseGetBlocks>;
-  getChainInfo(): GraphQLClient.QueryResult<GraphQLClient.ResponseGetChainInfo>;
-  getConfig(): GraphQLClient.QueryResult<GraphQLClient.ResponseGetConfig>;
-  getForgeState(
-    params: GraphQLClient.GetForgeStateParams
-  ): GraphQLClient.QueryResult<GraphQLClient.ResponseGetForgeState>;
-  getForgeStatistics(): GraphQLClient.QueryResult<GraphQLClient.ResponseGetForgeStatistics>;
-  getForgeStatisticsByDay(
-    params: GraphQLClient.GetForgeStatisticsByDayParams
-  ): GraphQLClient.QueryResult<GraphQLClient.ResponseGetForgeStatistics>;
-  getForgeStatisticsByHour(
-    params: GraphQLClient.GetForgeStatisticsByHourParams
-  ): GraphQLClient.QueryResult<GraphQLClient.ResponseGetForgeStatistics>;
-  getNetInfo(): GraphQLClient.QueryResult<GraphQLClient.ResponseGetNetInfo>;
-  getNodeInfo(): GraphQLClient.QueryResult<GraphQLClient.ResponseGetNodeInfo>;
   getStakeState(
     params: GraphQLClient.GetStakeStateParams
   ): GraphQLClient.QueryResult<GraphQLClient.ResponseGetStakeState>;
   getStakes(
     params: GraphQLClient.GetStakesParams
   ): GraphQLClient.QueryResult<GraphQLClient.ResponseGetStakes>;
-  getTopAccounts(
-    params: GraphQLClient.GetTopAccountsParams
-  ): GraphQLClient.QueryResult<GraphQLClient.ResponseGetTopAccounts>;
-  getTx(params: GraphQLClient.GetTxParams): GraphQLClient.QueryResult<GraphQLClient.ResponseGetTx>;
-  getUnconfirmedTxs(
-    params: GraphQLClient.GetUnconfirmedTxsParams
-  ): GraphQLClient.QueryResult<GraphQLClient.ResponseGetUnconfirmedTxs>;
-  getValidatorsInfo(): GraphQLClient.QueryResult<GraphQLClient.ResponseGetValidatorsInfo>;
-  listAssetTransactions(
-    params: GraphQLClient.ListAssetTransactionsParams
-  ): GraphQLClient.QueryResult<GraphQLClient.ResponseListAssetTransactions>;
-  listAssets(
-    params: GraphQLClient.ListAssetsParams
-  ): GraphQLClient.QueryResult<GraphQLClient.ResponseListAssets>;
-  listBlocks(
-    params: GraphQLClient.ListBlocksParams
-  ): GraphQLClient.QueryResult<GraphQLClient.ResponseListBlocks>;
-  listTransactions(
-    params: GraphQLClient.ListTransactionsParams
-  ): GraphQLClient.QueryResult<GraphQLClient.ResponseListTransactions>;
-  listWallet(): GraphQLClient.QueryResult<GraphQLClient.ResponseListWallet>;
-  loadFile(
-    params: GraphQLClient.LoadFileParams
-  ): GraphQLClient.QueryResult<GraphQLClient.ResponseLoadFile>;
-  loadWallet(
-    params: GraphQLClient.LoadWalletParams
-  ): GraphQLClient.QueryResult<GraphQLClient.ResponseLoadWallet>;
+  getAssets(
+    params: GraphQLClient.GetAssetsParams
+  ): GraphQLClient.QueryResult<GraphQLClient.ResponseGetAssets>;
   multisig(
     params: GraphQLClient.MultisigParams
   ): GraphQLClient.QueryResult<GraphQLClient.ResponseMultisig>;
-  pinFile(
-    params: GraphQLClient.PinFileParams
-  ): GraphQLClient.QueryResult<GraphQLClient.ResponsePinFile>;
-  search(
-    params: GraphQLClient.SearchParams
-  ): GraphQLClient.QueryResult<GraphQLClient.ResponseSearch>;
+  getBlocks(
+    params: GraphQLClient.GetBlocksParams
+  ): GraphQLClient.QueryResult<GraphQLClient.ResponseGetBlocks>;
+  getValidatorsInfo(): GraphQLClient.QueryResult<GraphQLClient.ResponseGetValidatorsInfo>;
+  getConfig(): GraphQLClient.QueryResult<GraphQLClient.ResponseGetConfig>;
+  listTransactions(
+    params: GraphQLClient.ListTransactionsParams
+  ): GraphQLClient.QueryResult<GraphQLClient.ResponseListTransactions>;
+  getSimulatorStatus(): GraphQLClient.QueryResult<GraphQLClient.ResponseGetSimulatorStatus>;
+  getNodeInfo(): GraphQLClient.QueryResult<GraphQLClient.ResponseGetNodeInfo>;
+  getAccountState(
+    params: GraphQLClient.GetAccountStateParams
+  ): GraphQLClient.QueryResult<GraphQLClient.ResponseGetAccountState>;
   signData(
     params: GraphQLClient.SignDataParams
   ): GraphQLClient.QueryResult<GraphQLClient.ResponseSignData>;
+  listAssets(
+    params: GraphQLClient.ListAssetsParams
+  ): GraphQLClient.QueryResult<GraphQLClient.ResponseListAssets>;
+  pinFile(
+    params: GraphQLClient.PinFileParams
+  ): GraphQLClient.QueryResult<GraphQLClient.ResponsePinFile>;
+  getForgeStatisticsByHour(
+    params: GraphQLClient.GetForgeStatisticsByHourParams
+  ): GraphQLClient.QueryResult<GraphQLClient.ResponseGetForgeStatistics>;
+  listWallet(): GraphQLClient.QueryResult<GraphQLClient.ResponseListWallet>;
+  getForgeStatistics(): GraphQLClient.QueryResult<GraphQLClient.ResponseGetForgeStatistics>;
+  getTx(params: GraphQLClient.GetTxParams): GraphQLClient.QueryResult<GraphQLClient.ResponseGetTx>;
+  getForgeStatisticsByDay(
+    params: GraphQLClient.GetForgeStatisticsByDayParams
+  ): GraphQLClient.QueryResult<GraphQLClient.ResponseGetForgeStatistics>;
+  getAssetState(
+    params: GraphQLClient.GetAssetStateParams
+  ): GraphQLClient.QueryResult<GraphQLClient.ResponseGetAssetState>;
+  search(
+    params: GraphQLClient.SearchParams
+  ): GraphQLClient.QueryResult<GraphQLClient.ResponseSearch>;
+  loadWallet(
+    params: GraphQLClient.LoadWalletParams
+  ): GraphQLClient.QueryResult<GraphQLClient.ResponseLoadWallet>;
+  getNetInfo(): GraphQLClient.QueryResult<GraphQLClient.ResponseGetNetInfo>;
+  listBlocks(
+    params: GraphQLClient.ListBlocksParams
+  ): GraphQLClient.QueryResult<GraphQLClient.ResponseListBlocks>;
+  getHealthStatus(): GraphQLClient.QueryResult<GraphQLClient.ResponseGetHealthStatus>;
+  listAssetTransactions(
+    params: GraphQLClient.ListAssetTransactionsParams
+  ): GraphQLClient.QueryResult<GraphQLClient.ResponseListAssetTransactions>;
+  getUnconfirmedTxs(
+    params: GraphQLClient.GetUnconfirmedTxsParams
+  ): GraphQLClient.QueryResult<GraphQLClient.ResponseGetUnconfirmedTxs>;
+  getForgeState(
+    params: GraphQLClient.GetForgeStateParams
+  ): GraphQLClient.QueryResult<GraphQLClient.ResponseGetForgeState>;
+  getTopAccounts(
+    params: GraphQLClient.GetTopAccountsParams
+  ): GraphQLClient.QueryResult<GraphQLClient.ResponseGetTopAccounts>;
+  loadFile(
+    params: GraphQLClient.LoadFileParams
+  ): GraphQLClient.QueryResult<GraphQLClient.ResponseLoadFile>;
+  getAssetAddress(
+    params: GraphQLClient.GetAssetAddressParams
+  ): GraphQLClient.QueryResult<GraphQLClient.ResponseGetAssetAddress>;
+  getChainInfo(): GraphQLClient.QueryResult<GraphQLClient.ResponseGetChainInfo>;
   createTx(
     params: GraphQLClient.CreateTxParams
   ): GraphQLClient.QueryResult<GraphQLClient.ResponseCreateTx>;
@@ -197,6 +199,8 @@ declare class GraphQLClient {
   sendTx(
     params: GraphQLClient.SendTxParams
   ): GraphQLClient.QueryResult<GraphQLClient.ResponseSendTx>;
+  startSimulator(): GraphQLClient.QueryResult<GraphQLClient.ResponseStartSimulator>;
+  stopSimulator(): GraphQLClient.QueryResult<GraphQLClient.ResponseStopSimulator>;
   storeFile(
     params: GraphQLClient.StoreFileParams
   ): GraphQLClient.QueryResult<GraphQLClient.ResponseStoreFile>;
@@ -290,43 +294,43 @@ declare namespace GraphQLClient {
   }
 
   export enum StatusCode {
-    INVALID_SIGNER_STATE,
-    INVALID_MULTISIG,
-    FORBIDDEN,
-    EXPIRED_ASSET,
-    CONSUMED_ASSET,
-    ACCOUNT_MIGRATED,
-    BANNED_UNSTAKE,
-    INVALID_CHAIN_ID,
-    INVALID_STAKE_STATE,
+    INSUFFICIENT_FUND,
     EXPIRED_WALLET_TOKEN,
-    INVALID_NONCE,
-    INVALID_WALLET,
-    INTERNAL,
-    INVALID_TX_SIZE,
+    FORBIDDEN,
+    NOENT,
+    INVALID_RECEIVER_STATE,
     INVALID_TX,
     INVALID_MONIKER,
-    INVALID_OWNER,
-    UNSUPPORTED_STAKE,
     UNTRANSFERRABLE_ASSET,
-    INVALID_SIGNATURE,
-    INSUFFICIENT_FUND,
     READONLY_ASSET,
-    INSUFFICIENT_DATA,
-    INSUFFICIENT_STAKE,
-    STORAGE_RPC_ERROR,
-    INVALID_FORGE_STATE,
-    INVALID_SENDER_STATE,
-    CONSENSUS_RPC_ERROR,
-    NOENT,
-    TIMEOUT,
-    UNSUPPORTED_TX,
-    EXPIRED_TX,
     INVALID_PASSPHRASE,
-    INVALID_ASSET,
-    OK,
+    INVALID_STAKE_STATE,
+    UNSUPPORTED_STAKE,
+    INVALID_SENDER_STATE,
+    CONSUMED_ASSET,
+    UNSUPPORTED_TX,
+    CONSENSUS_RPC_ERROR,
+    INVALID_NONCE,
+    INSUFFICIENT_DATA,
+    INVALID_WALLET,
     TOO_MANY_TXS,
-    INVALID_RECEIVER_STATE,
+    INVALID_OWNER,
+    BANNED_UNSTAKE,
+    ACCOUNT_MIGRATED,
+    INSUFFICIENT_STAKE,
+    EXPIRED_ASSET,
+    TIMEOUT,
+    STORAGE_RPC_ERROR,
+    INVALID_SIGNATURE,
+    INVALID_SIGNER_STATE,
+    INVALID_ASSET,
+    INVALID_CHAIN_ID,
+    INVALID_TX_SIZE,
+    INVALID_MULTISIG,
+    EXPIRED_TX,
+    INVALID_FORGE_STATE,
+    INTERNAL,
+    OK,
   }
 
   export enum UpgradeAction {
@@ -357,6 +361,12 @@ declare namespace GraphQLClient {
     EXE_P2P,
   }
 
+  export enum Validity {
+    BOTH,
+    INVALID,
+    VALID,
+  }
+
   export interface AddressFilter {}
 
   export interface HeightFilter {}
@@ -372,6 +382,13 @@ declare namespace GraphQLClient {
   export interface TimeFilter {}
 
   export interface TypeFilter {}
+
+  export interface ValidityFilter {}
+
+  export interface AbciServerStatus {
+    abciConsensus: string;
+    abciInfo: string;
+  }
 
   export interface AccountMigrateTx {
     data: GraphQLClient.Any;
@@ -482,6 +499,12 @@ declare namespace GraphQLClient {
     validators: Array<Validator>;
   }
 
+  export interface ConsensusStatus {
+    blockHeight: number;
+    health: boolean;
+    synced: boolean;
+  }
+
   export interface ConsensusUpgradeTx {
     data: GraphQLClient.Any;
     maxBytes: number;
@@ -514,6 +537,11 @@ declare namespace GraphQLClient {
     data: GraphQLClient.Any;
     issuer: string;
     moniker: string;
+  }
+
+  export interface DiskSpaceStatus {
+    forgeUsage: string;
+    total: string;
   }
 
   export interface Evidence {
@@ -566,6 +594,7 @@ declare namespace GraphQLClient {
   }
 
   export interface ForgeStatistics {
+    avgBlockTime: number;
     avgTps: number;
     maxTps: number;
     numAccountMigrateTxs: Array<number>;
@@ -585,6 +614,13 @@ declare namespace GraphQLClient {
     numUpdateAssetTxs: Array<number>;
     numValidators: Array<number>;
     tps: Array<number>;
+  }
+
+  export interface ForgeStatus {
+    abciServer: GraphQLClient.AbciServerStatus;
+    abiServer: string;
+    forgeWeb: string;
+    health: boolean;
   }
 
   export interface ForgeToken {
@@ -623,6 +659,13 @@ declare namespace GraphQLClient {
     totalTxs: number;
     validatorsHash: string;
     version: GraphQLClient.Version;
+  }
+
+  export interface HealthStatus {
+    consensus: GraphQLClient.ConsensusStatus;
+    forge: GraphQLClient.ForgeStatus;
+    network: GraphQLClient.NetworkStatus;
+    storage: GraphQLClient.StorageStatus;
   }
 
   export interface IndexedAccountState {
@@ -684,6 +727,7 @@ declare namespace GraphQLClient {
   }
 
   export interface IndexedTransaction {
+    code: GraphQLClient.StatusCode;
     consumeAsset: GraphQLClient.IndexedConsumeAsset;
     createAsset: GraphQLClient.IndexedCreateAsset;
     exchange: GraphQLClient.IndexedExchange;
@@ -695,6 +739,7 @@ declare namespace GraphQLClient {
     tx: GraphQLClient.Transaction;
     type: string;
     updateAsset: GraphQLClient.IndexedUpdateAsset;
+    valid: boolean;
   }
 
   export interface IndexedTransfer {
@@ -727,6 +772,11 @@ declare namespace GraphQLClient {
     listening: boolean;
     nPeers: number;
     peers: Array<PeerInfo>;
+  }
+
+  export interface NetworkStatus {
+    health: boolean;
+    numPeers: number;
   }
 
   export interface NodeInfo {
@@ -874,6 +924,11 @@ declare namespace GraphQLClient {
     forgeStatistics: GraphQLClient.ForgeStatistics;
   }
 
+  export interface ResponseGetHealthStatus {
+    code: GraphQLClient.StatusCode;
+    healthStatus: GraphQLClient.HealthStatus;
+  }
+
   export interface ResponseGetNetInfo {
     code: GraphQLClient.StatusCode;
     netInfo: GraphQLClient.NetInfo;
@@ -882,6 +937,11 @@ declare namespace GraphQLClient {
   export interface ResponseGetNodeInfo {
     code: GraphQLClient.StatusCode;
     info: GraphQLClient.NodeInfo;
+  }
+
+  export interface ResponseGetSimulatorStatus {
+    code: GraphQLClient.StatusCode;
+    result: string;
   }
 
   export interface ResponseGetStakeState {
@@ -991,6 +1051,14 @@ declare namespace GraphQLClient {
     signature: string;
   }
 
+  export interface ResponseStartSimulator {
+    code: GraphQLClient.StatusCode;
+  }
+
+  export interface ResponseStopSimulator {
+    code: GraphQLClient.StatusCode;
+  }
+
   export interface ResponseStoreFile {
     code: GraphQLClient.StatusCode;
     hash: string;
@@ -1075,6 +1143,13 @@ declare namespace GraphQLClient {
     renaissanceTx: GraphQLClient.TransactionInfo;
   }
 
+  export interface StorageStatus {
+    diskSpace: GraphQLClient.DiskSpaceStatus;
+    health: boolean;
+    indexerServer: string;
+    stateDb: string;
+  }
+
   export interface SysUpgradeTx {
     data: GraphQLClient.Any;
     gracePeriod: number;
@@ -1091,6 +1166,7 @@ declare namespace GraphQLClient {
     from: string;
     itx: Itx;
     nonce: number;
+    pk: string;
     signature: string;
     signatures: Array<Multisig>;
   }
@@ -1199,52 +1275,8 @@ declare namespace GraphQLClient {
     | GraphQLClient.PokeTx
     | GraphQLClient.AccountMigrateTx;
 
-  export interface GetAccountStateParams {
-    address: string;
-    height: number;
-    keys: Array<string>;
-  }
-
-  export interface GetAssetAddressParams {
-    itx: string;
-    senderAddress: string;
-    walletType: string;
-  }
-
-  export interface GetAssetStateParams {
-    address: string;
-    height: number;
-    keys: Array<string>;
-  }
-
-  export interface GetAssetsParams {
-    ownerAddress: string;
-    paging: undefined;
-  }
-
   export interface GetBlockParams {
     height: number;
-  }
-
-  export interface GetBlocksParams {
-    emptyExcluded: boolean;
-    maxHeight: number;
-    minHeight: number;
-    paging: undefined;
-  }
-
-  export interface GetForgeStateParams {
-    height: number;
-    keys: Array<string>;
-  }
-
-  export interface GetForgeStatisticsByDayParams {
-    endDate: string;
-    startDate: string;
-  }
-
-  export interface GetForgeStatisticsByHourParams {
-    date: string;
   }
 
   export interface GetStakeStateParams {
@@ -1258,26 +1290,81 @@ declare namespace GraphQLClient {
     paging: undefined;
   }
 
-  export interface GetTopAccountsParams {
+  export interface GetAssetsParams {
+    ownerAddress: string;
     paging: undefined;
+  }
+
+  export interface MultisigParams {
+    data: string;
+    token: string;
+    tx: string;
+    wallet: string;
+  }
+
+  export interface GetBlocksParams {
+    emptyExcluded: boolean;
+    maxHeight: number;
+    minHeight: number;
+    paging: undefined;
+  }
+
+  export interface ListTransactionsParams {
+    addressFilter: undefined;
+    paging: undefined;
+    timeFilter: undefined;
+    typeFilter: undefined;
+    validityFilter: undefined;
+  }
+
+  export interface GetAccountStateParams {
+    address: string;
+    height: number;
+    keys: Array<string>;
+  }
+
+  export interface SignDataParams {
+    data: string;
+    token: string;
+    wallet: string;
+  }
+
+  export interface ListAssetsParams {
+    ownerAddress: string;
+    paging: string;
+  }
+
+  export interface PinFileParams {
+    hash: string;
+  }
+
+  export interface GetForgeStatisticsByHourParams {
+    date: string;
   }
 
   export interface GetTxParams {
     hash: string;
   }
 
-  export interface GetUnconfirmedTxsParams {
-    limit: number;
+  export interface GetForgeStatisticsByDayParams {
+    endDate: string;
+    startDate: string;
   }
 
-  export interface ListAssetTransactionsParams {
+  export interface GetAssetStateParams {
     address: string;
-    paging: undefined;
+    height: number;
+    keys: Array<string>;
   }
 
-  export interface ListAssetsParams {
-    ownerAddress: string;
-    paging: string;
+  export interface SearchParams {
+    key: string;
+    value: string;
+  }
+
+  export interface LoadWalletParams {
+    address: string;
+    passphrase: string;
   }
 
   export interface ListBlocksParams {
@@ -1289,42 +1376,32 @@ declare namespace GraphQLClient {
     timeFilter: undefined;
   }
 
-  export interface ListTransactionsParams {
-    addressFilter: undefined;
+  export interface ListAssetTransactionsParams {
+    address: string;
     paging: undefined;
-    timeFilter: undefined;
-    typeFilter: undefined;
+  }
+
+  export interface GetUnconfirmedTxsParams {
+    limit: number;
+  }
+
+  export interface GetForgeStateParams {
+    height: number;
+    keys: Array<string>;
+  }
+
+  export interface GetTopAccountsParams {
+    paging: undefined;
   }
 
   export interface LoadFileParams {
     hash: string;
   }
 
-  export interface LoadWalletParams {
-    address: string;
-    passphrase: string;
-  }
-
-  export interface MultisigParams {
-    data: string;
-    token: string;
-    tx: string;
-    wallet: string;
-  }
-
-  export interface PinFileParams {
-    hash: string;
-  }
-
-  export interface SearchParams {
-    key: string;
-    value: string;
-  }
-
-  export interface SignDataParams {
-    data: string;
-    token: string;
-    wallet: string;
+  export interface GetAssetAddressParams {
+    itx: string;
+    senderAddress: string;
+    walletType: string;
   }
 
   export interface CreateTxParams {

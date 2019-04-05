@@ -1,6 +1,6 @@
 /* eslint consistent-return:"off" */
 import React, { useReducer, useRef, useEffect } from 'react';
-import { useSpring } from 'react-use';
+import useSpring from 'react-use/lib/useSpring';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import * as d3 from 'd3-geo';
@@ -103,7 +103,9 @@ export default function Globe({
     .geoOrthographic()
     .fitExtent([[30, 30], [width - 30, height - 30]], geoJson)
     .rotate(
-      t <= 1 || state.isDragging ? state.rotation : rotateRef.current.iv(t / state.animateDuration)
+      t <= 1 || state.isDragging || !activeMarkerId
+        ? state.rotation
+        : rotateRef.current.iv(t / state.animateDuration)
     );
 
   const pathGenerator = d3
@@ -131,7 +133,7 @@ export default function Globe({
         dispatch({
           type: 'rotate',
           payload: {
-            animateDuration: duration > 1e6 ? 2 : duration,
+            animateDuration: duration > 1e3 ? 2 : duration,
           },
         });
       }

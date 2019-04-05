@@ -1,7 +1,7 @@
 /* eslint no-use-before-define:"off" */
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { useAsync } from 'react-use';
+import useAsync from 'react-use/lib/useAsync';
 
 // TODO: use css transition group to make animation perfect
 import Grid from '@material-ui/core/Grid';
@@ -40,7 +40,7 @@ export default function StatusSection() {
     return <p className="error">{state.error.message}</p>;
   }
 
-  const { layers, data, ok } = state.value;
+  const { layers, data } = state.value;
   const names = Object.keys(layers);
   const SummaryComponent = selected ? layers[selected].component : Summary;
 
@@ -50,7 +50,7 @@ export default function StatusSection() {
   return (
     <Container onMouseOut={onClickAway} onBlur={onClickAway}>
       <div className="greeting">
-        <p>Your node {ok ? 'works good' : 'is running'} now.</p>
+        <p>Your node is running.</p>
       </div>
       <div className="layers">
         <Grid container spacing={0}>
