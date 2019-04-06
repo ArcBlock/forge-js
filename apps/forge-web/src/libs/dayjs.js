@@ -41,8 +41,6 @@ const fix = (date, c) => {
     date = dateFromString(date);
   }
 
-  console.log({ isUTC, date });
-
   return isUTC ? dayjs.utc(date, c) : dayjs(date, c);
 };
 
