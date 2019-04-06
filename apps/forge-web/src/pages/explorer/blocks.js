@@ -71,19 +71,28 @@ class Blocks extends Page {
     this.setState({ loading: false, nodeInfo });
   }
 
-  async fetchBlocks({ paging }) {
+  async fetchBlocks({ paging }, retry = true) {
     const { nodeInfo } = this.state;
-    return forge().getBlocks(
-      {
-        emptyExcluded: true,
-        maxHeight: nodeInfo.blockHeight,
-        minHeight: 0,
-        paging,
-      },
-      {
-        ignoreFields: ['blocks.txs'],
+    try {
+      const res = await forge().getBlocks(
+        {
+          emptyExcluded: true,
+          maxHeight: nodeInfo.blockHeight,
+          minHeight: 0,
+          paging,
+        },
+        {
+          ignoreFields: ['blocks.txs'],
+        }
+      );
+      return res;
+    } catch (err) {
+      if (retry) {
+        return this.fetchBlocks({ paging }, false);
       }
-    );
+
+      throw new Error('Too much traffic now, please try later');
+    }
   }
 }
 

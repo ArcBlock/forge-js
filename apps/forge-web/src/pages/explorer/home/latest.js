@@ -11,24 +11,42 @@ import BlockList from '../components/block_list';
 
 import forge from '../../../libs/forge';
 
-async function fetchTransactions({ typeFilter, paging }) {
-  const params = { paging };
-  if (typeFilter) {
-    params.typeFilter = typeFilter;
+async function fetchTransactions({ typeFilter, paging }, retry = true) {
+  try {
+    const params = { paging };
+    if (typeFilter) {
+      params.typeFilter = typeFilter;
+    }
+    const res = await forge().listTransactions(params);
+    return res;
+  } catch (err) {
+    if (retry) {
+      return fetchTransactions({ typeFilter, paging }, false);
+    }
+
+    throw new Error('Too much traffic now, please try later');
   }
-  return forge().listTransactions(params);
 }
 
-async function fetchBlocks({ paging }) {
-  return forge().getBlocks(
-    {
-      emptyExcluded: true,
-      paging,
-    },
-    {
-      ignoreFields: ['blocks.txs'],
+async function fetchBlocks({ paging }, retry = true) {
+  try {
+    const res = await forge().getBlocks(
+      {
+        emptyExcluded: true,
+        paging,
+      },
+      {
+        ignoreFields: ['blocks.txs'],
+      }
+    );
+    return res;
+  } catch (err) {
+    if (retry) {
+      return fetchBlocks({ paging }, false);
     }
-  );
+
+    throw new Error('Too much traffic now, please try later');
+  }
 }
 
 function LatestData({ theme }) {

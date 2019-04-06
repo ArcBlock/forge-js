@@ -19,12 +19,21 @@ import withRoot from '../../components/withRoot';
 import forge from '../../libs/forge';
 import { parseQuery, fromTypeUrl, toTypeUrl } from '../../libs/util';
 
-async function fetchTransactions({ typeFilter, paging }) {
-  const params = { paging };
-  if (typeFilter) {
-    params.typeFilter = typeFilter;
+async function fetchTransactions({ typeFilter, paging }, retry = true) {
+  try {
+    const params = { paging };
+    if (typeFilter) {
+      params.typeFilter = typeFilter;
+    }
+    const res = await forge().listTransactions(params);
+    return res;
+  } catch (err) {
+    if (retry) {
+      return this.fetchBlocks({ paging }, false);
+    }
+
+    throw new Error('Too much traffic now, please try later');
   }
-  return forge().listTransactions(params);
 }
 
 class TransactionList extends Page {
