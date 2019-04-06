@@ -5,7 +5,7 @@
   "dependencies": {
     "@arcblock/abt-did": "^0.17.0",
     "@arcblock/did-auth": "^0.17.0",
-    "@arcblock/did-auth-storage": "^0.17.0",
+    "@arcblock/did-auth-storage-keystone": "^0.17.0",
     "@arcblock/forge-util": "^0.17.0",
     "@arcblock/forge-wallet": "^0.17.0",
     "@arcblock/graphql-client": "^0.17.0",

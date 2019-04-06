@@ -5,6 +5,7 @@ require('dotenv').config();
 const path = require('path');
 const keystone = require('keystone');
 const session = require('express-session');
+const KeystoneStorage = require('@arcblock/did-auth-storage-keystone');
 const MongoStore = require('connect-mongo')(session);
 const next = require('next');
 
@@ -31,6 +32,10 @@ keystone.init({
 });
 
 keystone.import('./server/models');
+
+// Create models for did-auth-storage
+KeystoneStorage.init();
+
 keystone.set('nav', {
   posts: ['posts', 'post-categories'],
   users: ['users', 'internal-users'],
