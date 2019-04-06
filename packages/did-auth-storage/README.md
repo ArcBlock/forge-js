@@ -18,7 +18,7 @@
 
 Basic APIs that a token storage should support:
 
-- `async init()`, optional, open a database connection, creating a embed database on file system
+- `async init()`, optional, **should be called before creating any instance**, open a database connection, creating a embed database on file system
 - `async create(token, status = created)`, create a new token record, persist in data store
 - `async exist?(token, did)`, check for token existense
 - `async read(token)`, read a token from database,
