@@ -1,6 +1,6 @@
 {
   "name": "@arcblock/forge-cli",
-  "version": "0.16.0",
+  "version": "0.17.0",
   "description": "a general set of CLI for arcblock Forge framework",
   "main": "src/index.js",
   "files": [
@@ -32,10 +32,10 @@
   },
   "homepage": "https://github.com/arcblock/forge-js/packages/forge-cli#readme",
   "dependencies": {
-    "@arcblock/forge-config": "^0.16.0",
-    "@arcblock/forge-proto": "^0.16.0",
-    "@arcblock/graphql-client": "^0.16.0",
-    "@arcblock/grpc-client": "^0.16.0",
+    "@arcblock/forge-config": "^0.17.0",
+    "@arcblock/forge-proto": "^0.17.0",
+    "@arcblock/graphql-client": "^0.17.0",
+    "@arcblock/grpc-client": "^0.17.0",
     "@iarna/toml": "^2.2.3",
     "app-module-path": "^2.2.0",
     "chalk": "^2.4.1",
