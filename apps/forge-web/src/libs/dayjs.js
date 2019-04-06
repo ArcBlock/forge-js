@@ -9,11 +9,11 @@ dayjs.extend(relative);
 const fix = (date, c) => {
   if (typeof date === 'string') {
     const [dateStr, _] = date.split(/\s/);
-    const [timeStr] = _.split('.');
-    const str = `${dateStr.replace(/-/g, '/')} ${timeStr}`;
-
-    return dayjs(str, c);
+    const [timeStr] = _ ? _.split('.') : '';
+    // eslint-disable-next-line no-param-reassign
+    date = `${dateStr.replace(/-/g, '/')} ${timeStr}`.trim();
   }
+
   return dayjs(date, c);
 };
 
