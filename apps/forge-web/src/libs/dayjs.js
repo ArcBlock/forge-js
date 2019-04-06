@@ -32,8 +32,7 @@ function dateFromString(str) {
   );
 }
 
-// @link https://github.com/iamkun/dayjs/issues/254#issuecomment-415278024
-// @link https://stackoverflow.com/questions/9706688/what-does-the-z-mean-in-unix-timestamp-120314170138z
+// @link https://stackoverflow.com/questions/6427204/date-parsing-in-javascript-is-different-between-safari-and-chrome
 const fix = (date, c) => {
   let isUTC = false;
   if (typeof date === 'string') {
