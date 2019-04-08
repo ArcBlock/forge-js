@@ -1,3 +1,13 @@
+## 0.17.1 (April 08, 2019)
+  - chore: add hover for network details
+  - chore: add lines for network selector
+  - fix: body scroll trap
+  - fix: transaction trend line
+  - chore: basic coverflow effect for network selector
+  - chore: basic coverflow effect for network selector
+  - house keeping (#224)
+  - update readme
+
 ## 0.17.0 (April 04, 2019)
   - fix: date nan on ios
   - fix: clear timer when unmount

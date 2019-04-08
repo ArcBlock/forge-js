@@ -1,28 +1,61 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withTheme } from '@material-ui/core/styles';
+import styled from 'styled-components';
 
-import Tooltip from '@material-ui/core/Tooltip';
-import IconButton from '@material-ui/core/IconButton';
-import Icon8 from './icon8';
+import ToolTip from '@material-ui/core/Tooltip';
+import CoverFlow from 'react-coverflow';
 
+import NetworkCard from './network_card/mini';
+
+import { networks } from '../libs/constant';
 import { useSwitcher } from '../libs/hooks';
 
-function NetworkSwitcher({ theme, ...rest }) {
-  const { open, setOpen } = useSwitcher();
-  const toggle = () => setOpen(!open);
+export default function NetworkSwitcher({ ...rest }) {
+  const { current, setCurrent } = useSwitcher();
+  const names = Object.keys(networks);
+  let activeIndex = names.indexOf(current);
+  if (activeIndex === -1) {
+    activeIndex = 0;
+  }
 
   return (
-    <Tooltip {...rest} title={open ? 'Hide Network Switcher' : 'Show Network Switcher'}>
-      <IconButton onClick={toggle} style={{ cursor: 'pointer' }}>
-        <Icon8 size={36} set="wired" name="process" color={theme.typography.color.main} />
-      </IconButton>
-    </Tooltip>
+    <ToolTip title="Click to switch network">
+      <Switcher {...rest}>
+        <CoverFlow
+          width={200}
+          height={64}
+          displayQuantityOfSide={2}
+          navigation={false}
+          infiniteScroll={false}
+          enableHeading={false}
+          enableScroll={true}
+          currentFigureScale={1.2}
+          otherFigureScale={1}
+          clickable={true}
+          active={activeIndex}>
+          {names.map(x => (
+            <NetworkCard
+              key={x}
+              data={networks[x]}
+              selected={x === current}
+              onClick={() => setCurrent(x)}
+            />
+          ))}
+        </CoverFlow>
+      </Switcher>
+    </ToolTip>
   );
 }
 
-NetworkSwitcher.propTypes = {
-  theme: PropTypes.object.isRequired,
-};
+const Switcher = styled.div`
+  margin-top: 8px;
 
-export default withTheme()(NetworkSwitcher);
+  & > div > div > div {
+    z-index: 2;
+    background: transparent;
+    outline: none;
+
+    figure {
+      box-shadow: none;
+    }
+  }
+`;

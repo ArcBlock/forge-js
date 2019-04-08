@@ -1,15 +1,20 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { Link, withRouter } from 'react-router-dom';
+import useWindowSize from 'react-use/lib/useWindowSize';
 
 import Typography from '@material-ui/core/Typography';
 import { useThemeMode } from '../../libs/hooks';
 
-export default function Logo() {
+function Logo({ location }) {
   const [mode] = useThemeMode();
+  const { width } = useWindowSize();
+  const isHome = location.pathname === '/';
+
   return (
     <Link to="/">
-      <Header>
+      <Header windowWidth={width} isHome={isHome}>
         <div className="header-image">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -39,9 +44,22 @@ export default function Logo() {
   );
 }
 
+Logo.propTypes = {
+  location: PropTypes.object.isRequired,
+};
+
+const getLineWidth = props => {
+  if (props.windowWidth > props.theme.pageWidth) {
+    return Math.max(props.theme.pageWidth - 368, 168);
+  }
+
+  return Math.max(props.windowWidth - 368, 168);
+};
+
 const Header = styled.div`
   display: flex;
   margin-top: 8px;
+  position: relative;
 
   .header-image {
     margin-right: ${props => props.theme.spacing.unit * 4}px;
@@ -74,4 +92,38 @@ const Header = styled.div`
     letter-spacing: 2px;
     color: ${props => props.theme.typography.color.gray};
   }
+
+  &:after {
+    content: '';
+    z-index: 0;
+    height: 0px;
+    border-top: 1px dotted ${props => props.theme.typography.color.gray};
+    width: ${getLineWidth}px;
+    position: absolute;
+    left: 60%;
+    top: 32px;
+    opacity: 0.5;
+    display: ${props => (props.isHome ? 'block' : 'none')};
+  }
+
+  &:before {
+    content: '';
+    z-index: 0;
+    background: transparent;
+    border-right: 1px dotted ${props => props.theme.typography.color.gray};
+    border-bottom: 1px dotted ${props => props.theme.typography.color.gray};
+    width: 124px;
+    height: 25px;
+    position: absolute;
+    left: 44px;
+    top: 60px;
+    opacity: 0.5;
+    display: ${props => (props.isHome ? 'block' : 'none')};
+    @media (max-width: ${props => props.theme.breakpoints.values.sm}px) {
+      width: 114px;
+      left: 54px;
+    }
+  }
 `;
+
+export default withRouter(Logo);
