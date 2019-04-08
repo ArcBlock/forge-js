@@ -10,6 +10,15 @@ const packageList = packages.map(x => {
   }
 });
 
+const apps = fs.readdirSync(path.join(__dirname, '../apps'));
+const appList = apps.map(x => {
+  const packageFile = path.join(__dirname, '../apps', x, 'package.json');
+  if (fs.existsSync(packageFile)) {
+    const packageJson = require(packageFile);
+    return `- [${packageJson.name} v${packageJson.version}](./apps/${x})`;
+  }
+});
+
 const readmeFile = path.join(__dirname, '../README.md');
 const readmeContent = `# forge-js
 
@@ -19,8 +28,7 @@ const readmeContent = `# forge-js
 
 ## Packages Included
 
-${packageList.join('\n')}
-
+${packageList.concat(appList).join('\n')}
 `;
 
 fs.writeFileSync(readmeFile, readmeContent);
