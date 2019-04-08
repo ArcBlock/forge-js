@@ -206,7 +206,7 @@ export default class TransactionsSection extends React.Component {
           .format('YYYY-MM-DD');
       } else {
         time = dayjs(endDate)
-          .hours(i)
+          .set('hour', i)
           .startOf('hour')
           .format('YYYY-MM-DD HH:MM');
       }
