@@ -24,6 +24,31 @@ export const colors = {
   blue: '#4e6af6',
 };
 
+export const networks = {
+  argon: {
+    id: 1,
+    name: 'Argon',
+    abbr: 'Ar',
+    endpoint: 'https://argon.abtnetwork.io/api',
+    description: 'Public test network',
+  },
+  bromine: {
+    id: 2,
+    name: 'bromine',
+    abbr: 'Br',
+    endpoint: 'https://bromine.abtnetwork.io/api',
+    description: 'Public test network',
+    extra: 'nightly',
+  },
+  titanium: {
+    id: 3,
+    name: 'titanium',
+    abbr: 'Ti',
+    endpoint: 'https://titanium.abtnetwork.io/api',
+    description: 'Public test network',
+  },
+};
+
 export function getBoxShadow(props) {
   if (props.shadow) {
     if (props.theme.mode === 'light') {

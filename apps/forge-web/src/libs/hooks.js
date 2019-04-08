@@ -5,6 +5,7 @@ import { EventTarget } from 'event-target-shim';
 import useAsync from 'react-use/lib/useAsync';
 
 import { fetchInfo } from './util';
+import { networks } from './constant';
 
 export function useInterval(callback, delay) {
   const savedCallback = useRef();
@@ -73,7 +74,7 @@ export function useThemeMode() {
 
 export function useSwitcher() {
   const [open, setOpen] = useLocalStorage('switcher.open', false);
-  const [current, setCurrent] = useLocalStorage('switcher.current', null);
+  const [current, setCurrent] = useLocalStorage('switcher.current', Object.keys(networks)[0]);
   return { open, setOpen, current, setCurrent };
 }
 

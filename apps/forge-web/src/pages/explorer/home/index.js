@@ -6,15 +6,13 @@ import Layout from '../../../layouts/page';
 import withI18n from '../../../components/withI18n';
 import withRoot from '../../../components/withRoot';
 
-import Switcher from './switcher';
-
-const networks = ['argon', 'bromine', 'titanium'];
+import Dashboard from './dashboard';
 
 class Explorer extends Page {
   render() {
     return (
       <Layout title="Explorer" cookies={this.cookies}>
-        <Switcher networks={networks} />
+        <Dashboard />
       </Layout>
     );
   }

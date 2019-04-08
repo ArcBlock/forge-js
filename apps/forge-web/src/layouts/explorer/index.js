@@ -26,13 +26,13 @@ function Layout({ children }) {
         <Toolbar disableGutters={false} className="toolbar">
           <Logo />
           <div className="switchers">
-            <ThemeSwitcher className="switcher" />
             {window.location.pathname === '/' && <NetworkSwitcher className="switcher" />}
+            <ThemeSwitcher className="switcher" />
           </div>
         </Toolbar>
       </AppBar>
       <main className="main">
-        <Content direction="column">{children}</Content>
+        {children}
         <Version key={version}>
           forge v{nodeInfo.version}, explorer v{version}
         </Version>
@@ -44,15 +44,6 @@ function Layout({ children }) {
 Layout.propTypes = {
   children: PropTypes.any.isRequired,
 };
-
-const Content = styled.div`
-  height: ${props => (props.direction === 'row' ? '100%' : 'auto')};
-  overflow: ${props => (props.direction === 'row' ? 'hidden' : 'scroll')};
-  flex: 1 0 auto;
-  display: flex;
-  flex-direction: ${props => props.direction};
-  box-sizing: border-box;
-`;
 
 const Version = styled.div`
   color: ${props => props.theme.typography.color.gray};

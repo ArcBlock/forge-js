@@ -8,7 +8,7 @@ import numeral from 'numeral';
 import { fromUnitToToken } from '@arcblock/forge-util';
 
 import { languages, translations } from './locale';
-import { COOKIE_LANGUAGE } from './constant';
+import { COOKIE_LANGUAGE, networks } from './constant';
 import forge from './forge';
 
 export function detectLocale() {
@@ -48,19 +48,15 @@ export function getGraphQLEndpoint() {
       return window.localStorage.getItem('GQL_ENDPOINT');
     }
 
-    try {
-      const endpoints = {
-        argon: 'https://argon.abtnetwork.io/api',
-        bromine: 'https://bromine.abtnetwork.io/api',
-        titanium: 'https://titanium.abtnetwork.io/api',
-      };
-
-      const current = JSON.parse(window.localStorage.getItem('switcher.current'));
-      if (current && endpoints[current]) {
-        return endpoints[current];
+    if (process.env.NODE_ENV === 'production') {
+      try {
+        const current = JSON.parse(window.localStorage.getItem('switcher.current'));
+        if (current && networks[current]) {
+          return networks[current].endpoint;
+        }
+      } catch (err) {
+        // Do nothing
       }
-    } catch (err) {
-      // Do nothing
     }
   }
 
