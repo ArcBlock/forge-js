@@ -7,10 +7,10 @@ import IconFa from '../iconfa';
 import { useThemeMode } from '../../libs/hooks';
 import { colors } from '../../libs/constant';
 
-export default function NormalCard({ data, active, onClick }) {
+export default function NormalCard({ data }) {
   const [mode] = useThemeMode();
   return (
-    <Card active={active} mode={mode} onClick={onClick}>
+    <Card mode={mode}>
       <div className="card">
         <span className="network__meta">
           {!!data.extra && <span className="extra">{data.extra}</span>}
@@ -20,7 +20,10 @@ export default function NormalCard({ data, active, onClick }) {
         <span className="network__name">{data.name}</span>
       </div>
       <div className="info">
-        <span className="network__type"><IconFa name="globe" size={14} />Test Network</span>
+        <span className="network__type">
+          <IconFa name="globe" size={14} />
+          Test Network
+        </span>
         <span className="network__name">{data.name}</span>
         <span className="network__desc">{data.description}</span>
       </div>
@@ -32,8 +35,6 @@ NormalCard.propTypes = {
   data: PropTypes.shape({
     id: PropTypes.number.isRequired,
   }).isRequired,
-  active: PropTypes.bool.isRequired,
-  onClick: PropTypes.func.isRequired,
 };
 
 const Card = styled.div`

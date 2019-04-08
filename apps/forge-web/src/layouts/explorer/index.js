@@ -91,7 +91,6 @@ const Container = styled.div`
   .main {
     flex-grow: 1;
     padding-top: 80px;
-    overflow: auto;
     box-sizing: border-box;
     position: relative;
   }

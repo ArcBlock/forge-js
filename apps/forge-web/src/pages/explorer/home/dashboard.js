@@ -20,7 +20,7 @@ import Producer from './producer';
 import { networks } from '../../../libs/constant';
 import { useSwitcher } from '../../../libs/hooks';
 
-function Dashboard({ intl, title, ...rest }) {
+function Dashboard({ intl, ...rest }) {
   const { current } = useSwitcher();
 
   const t = (id, variables = {}) => intl.formatMessage({ id }, variables);
@@ -29,7 +29,7 @@ function Dashboard({ intl, title, ...rest }) {
     <Container {...rest}>
       <Grid container spacing={40}>
         <Grid item xs={12} sm={6} md={6}>
-          <NetworkCard data={networks[current]} active={true} onClick={() => {}} />
+          <NetworkCard data={networks[current]} />
         </Grid>
         <Grid item xs={12} sm={6} md={6} className="search-box">
           <SearchBox />

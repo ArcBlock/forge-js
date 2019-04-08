@@ -36,7 +36,7 @@ export default function NetworkSwitcher({ ...rest }) {
             <NetworkCard
               key={x}
               data={networks[x]}
-              active={x === current}
+              selected={x === current}
               onClick={() => setCurrent(x)}
             />
           ))}
