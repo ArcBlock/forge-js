@@ -12,7 +12,9 @@ export default function NormalCard({ data }) {
   return (
     <Card mode={mode}>
       <div className="card">
-        <span className="network__meta">
+        <span
+          className="network__meta"
+          style={{ justifyContent: data.extra ? 'space-between' : 'flex-end' }}>
           {!!data.extra && <span className="extra">{data.extra}</span>}
           <span className="network__id">{data.id}</span>
         </span>
@@ -42,6 +44,20 @@ const Card = styled.div`
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
+  position: relative;
+
+  &:before {
+    content: '';
+    z-index: 0;
+    background: transparent;
+    border-right: 1px dotted ${props => props.theme.typography.color.gray};
+    width: 0;
+    height: 25px;
+    position: absolute;
+    left: 44px;
+    top: -25px;
+    opacity: 0.5;
+  }
 
   span {
     font-family: Avenir;

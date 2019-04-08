@@ -22,12 +22,12 @@ export default function NetworkSwitcher({ ...rest }) {
       <Switcher {...rest}>
         <CoverFlow
           width={200}
-          height={72}
+          height={64}
           displayQuantityOfSide={2}
           navigation={false}
           infiniteScroll={false}
           enableHeading={false}
-          enableScroll={false}
+          enableScroll={true}
           currentFigureScale={1.2}
           otherFigureScale={1}
           clickable={true}
@@ -47,7 +47,10 @@ export default function NetworkSwitcher({ ...rest }) {
 }
 
 const Switcher = styled.div`
+  margin-top: 8px;
+
   & > div > div > div {
+    z-index: 2;
     background: transparent;
     outline: none;
 

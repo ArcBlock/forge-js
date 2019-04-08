@@ -35,6 +35,7 @@ MiniCard.propTypes = {
   onClick: PropTypes.func.isRequired,
 };
 
+// prettier-ignore
 const Card = styled.div`
   width: 48px;
   height: 50px;
@@ -47,16 +48,16 @@ const Card = styled.div`
 
   border: solid 1px
     ${props =>
-      props.selected ? themes[props.theme].border.selected : themes[props.theme].border.normal};
+    (props.selected ? themes[props.theme].border.selected : themes[props.theme].border.normal)};
   background-color: ${props =>
-    props.selected
+    (props.selected
       ? themes[props.theme].background.selected
-      : themes[props.theme].background.normal};
+      : themes[props.theme].background.normal)};
 
   .network__abbr {
     font-size: 24px;
     font-weight: 900;
     color: ${props =>
-      props.selected ? themes[props.theme].text.selected : themes[props.theme].text.normal};
+    (props.selected ? themes[props.theme].text.selected : themes[props.theme].text.normal)};
   }
 `;

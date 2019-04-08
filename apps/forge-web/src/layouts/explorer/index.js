@@ -93,6 +93,7 @@ const Container = styled.div`
     padding-top: 80px;
     box-sizing: border-box;
     position: relative;
+    width: 100%;
   }
 `;
 
