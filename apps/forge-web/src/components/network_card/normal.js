@@ -45,6 +45,7 @@ const Card = styled.div`
   justify-content: flex-start;
   align-items: center;
   position: relative;
+  cursor: pointer;
 
   &:before {
     content: '';
@@ -57,6 +58,12 @@ const Card = styled.div`
     left: 44px;
     top: -25px;
     opacity: 0.5;
+  }
+
+  &:hover {
+    .info {
+      display: flex;
+    }
   }
 
   span {
@@ -100,11 +107,15 @@ const Card = styled.div`
   }
 
   .info {
-    display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: flex-start;
     height: 100px;
+    display: none;
+    animation-name: fadeIn;
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease;
 
     border-left: 1px solid ${props => props.theme.typography.color.main};
     padding-left: 24px;
@@ -130,6 +141,16 @@ const Card = styled.div`
     .network__type {
       font-size: 14px;
       color: ${props => props.theme.typography.color.main};
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
     }
   }
 `;
