@@ -26,7 +26,7 @@ function Dashboard({ intl, ...rest }) {
   const t = (id, variables = {}) => intl.formatMessage({ id }, variables);
 
   return (
-    <Container {...rest}>
+    <Container key={current} {...rest}>
       <Grid container spacing={40}>
         <Grid item xs={12} sm={6} md={6}>
           <NetworkCard data={networks[current]} />

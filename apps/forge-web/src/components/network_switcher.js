@@ -2,12 +2,14 @@ import React from 'react';
 import styled from 'styled-components';
 
 import ToolTip from '@material-ui/core/Tooltip';
-import CoverFlow from 'react-coverflow';
 
 import NetworkCard from './network_card/mini';
+import AsyncComponent from './async';
 
 import { networks } from '../libs/constant';
 import { useSwitcher } from '../libs/hooks';
+
+const CoverFlow = AsyncComponent(() => import('react-coverflow'));
 
 export default function NetworkSwitcher({ ...rest }) {
   const { current, setCurrent } = useSwitcher();
