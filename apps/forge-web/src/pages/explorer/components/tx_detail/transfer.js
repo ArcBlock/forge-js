@@ -11,7 +11,6 @@ import { useTokenInfo } from '../../../../libs/hooks';
 
 export default function TransferDetail({ tx }) {
   const [token] = useTokenInfo();
-  console.log(token);
   return (
     <TxDetail tx={tx}>
       <SummaryHeader
