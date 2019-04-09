@@ -21,7 +21,9 @@ dep:
 	@echo "Install dependencies required for this repo..."
 	@lerna clean --yes
 	@lerna bootstrap
-	@cd apps/forge-web && rm -rf node_modules && yarn
+	@npx install-peerdeps -g eslint-config-airbnb
+	# @cd apps/forge-web && rm -rf node_modules && npm i
+	@cd packages/graphql-client && yarn build
 	@lerna link
 
 pre-build: install dep
