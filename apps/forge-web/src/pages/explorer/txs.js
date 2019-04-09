@@ -29,7 +29,7 @@ async function fetchTransactions({ typeFilter, paging }, retry = true) {
     return res;
   } catch (err) {
     if (retry) {
-      return this.fetchBlocks({ paging }, false);
+      return fetchTransactions({ paging }, false);
     }
 
     throw new Error('Too much traffic now, please try later');

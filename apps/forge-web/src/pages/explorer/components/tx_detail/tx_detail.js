@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import useToggle from 'react-use/lib/useToggle';
 
 import Collapse from '@material-ui/core/Collapse';
 import Button from '@material-ui/core/Button';
@@ -9,55 +10,45 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import InfoRows from './info_row';
 import { getExplorerUrl } from '../../../../libs/util';
 
-export default class TxDetail extends React.Component {
-  static propTypes = {
-    tx: PropTypes.object.isRequired,
-  };
+const rows = {
+  hash: { path: 'hash' },
+  time: { path: 'time' },
+  from: { path: 'tx.from', link: v => getExplorerUrl(`/accounts/${v}`) },
+  to: { path: 'tx.itx.to', link: v => getExplorerUrl(`/accounts/${v}`) },
+  block: { path: 'height', link: v => getExplorerUrl(`/blocks/${v}`) },
+  index: { path: 'index' },
+  nonce: { path: 'tx.nonce' },
+};
 
-  state = {
-    expanded: false,
-  };
-
-  rows = {
-    hash: { path: 'hash' },
-    time: { path: 'time' },
-    from: { path: 'tx.from', link: v => getExplorerUrl(`/accounts/${v}`) },
-    to: { path: 'tx.itx.to', link: v => getExplorerUrl(`/accounts/${v}`) },
-    block: { path: 'height', link: v => getExplorerUrl(`/blocks/${v}`) },
-    index: { path: 'index' },
-    nonce: { path: 'tx.nonce' },
-  };
-
-  render() {
-    const { tx, ...rest } = this.props;
-    return (
-      <Container {...rest}>
-        {this.renderHeader()}
-        <InfoRows rows={this.rows} data={tx} />
-
-        <div className="raw">
-          <Button
-            onClick={this.onExpand}
-            className="btn-expand"
-            variant="outlined"
-            size="small"
-            color="primary">
-            Raw Transaction <ExpandMoreIcon />
-          </Button>
-          <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
-            <pre>
-              <code>{JSON.stringify(tx, true, '  ')}</code>
-            </pre>
-          </Collapse>
-        </div>
-      </Container>
-    );
-  }
-
-  onExpand = () => {
-    this.setState(state => ({ expanded: !state.expanded }));
-  };
+export default function TxDetail({ tx, children, ...rest }) {
+  const [expanded, toggleExpanded] = useToggle(false);
+  return (
+    <Container {...rest}>
+      {children}
+      <InfoRows rows={rows} data={tx} />
+      <div className="raw">
+        <Button
+          onClick={() => toggleExpanded()}
+          className="btn-expand"
+          variant="outlined"
+          size="small"
+          color="primary">
+          Raw Transaction <ExpandMoreIcon />
+        </Button>
+        <Collapse in={expanded} timeout="auto" unmountOnExit>
+          <pre>
+            <code>{JSON.stringify(tx, true, '  ')}</code>
+          </pre>
+        </Collapse>
+      </div>
+    </Container>
+  );
 }
+
+TxDetail.propTypes = {
+  tx: PropTypes.object.isRequired,
+  children: PropTypes.any.isRequired,
+};
 
 const Container = styled.div`
   .raw {
