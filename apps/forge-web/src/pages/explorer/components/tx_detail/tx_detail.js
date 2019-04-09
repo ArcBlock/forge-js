@@ -3,19 +3,77 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import useToggle from 'react-use/lib/useToggle';
 
+import { Link } from 'react-router-dom';
 import Collapse from '@material-ui/core/Collapse';
 import Button from '@material-ui/core/Button';
+import Chip from '@material-ui/core/Chip';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import CheckIcon from '@material-ui/icons/CheckCircle';
+import ErrorIcon from '@material-ui/icons/Error';
 
 import InfoRows from './info_row';
+
+import dayjs from '../../../../libs/dayjs';
 import { getExplorerUrl } from '../../../../libs/util';
+import { colors } from '../../../../libs/constant';
+import { useNodeInfo } from '../../../../libs/hooks';
+
+// eslint-disable-next-line react/prop-types
+function TxStatus({ code }) {
+  const style = {
+    color: code === 'OK' ? colors.green : colors.red,
+    fontWeight: 'bold',
+    marginRight: '5px',
+  };
+  return (
+    <span style={Object.assign({ display: 'flex', alignItems: 'center', fontSize: '14px' }, style)}>
+      {code === 'OK' ? (
+        <CheckIcon style={style} size={12} />
+      ) : (
+        <ErrorIcon style={style} size={12} />
+      )}
+      {code}
+    </span>
+  );
+}
+
+// eslint-disable-next-line react/prop-types
+function ConfirmStatus({ height }) {
+  const [nodeInfo] = useNodeInfo();
+  const url = getExplorerUrl(`/blocks/${height}`);
+  return (
+    <span style={{ display: 'flex', alignItems: 'center' }}>
+      <Link to={url}>{height}</Link>
+      <Chip
+        variant="outlined"
+        style={{ color: colors.green, marginLeft: '16px', background: 'transparent' }}
+        label={`${nodeInfo.blockHeight - height} Confirmations`}
+      />
+    </span>
+  );
+}
+
+// eslint-disable-next-line react/prop-types
+function TimeStatus({ time }) {
+  return (
+    <span style={{ display: 'flex', alignItems: 'center' }}>
+      {time}
+      <Chip
+        variant="outlined"
+        style={{ color: colors.green, marginLeft: '16px', background: 'transparent' }}
+        label={dayjs(time).fromNow()}
+      />
+    </span>
+  );
+}
 
 const rows = {
   hash: { path: 'hash' },
-  time: { path: 'time' },
+  status: { path: 'code', markup: code => <TxStatus code={code} /> },
+  block: { path: 'height', markup: height => <ConfirmStatus height={height} /> },
+  time: { path: 'time', markup: time => <TimeStatus time={time} /> },
   from: { path: 'tx.from', link: v => getExplorerUrl(`/accounts/${v}`) },
   to: { path: 'tx.itx.to', link: v => getExplorerUrl(`/accounts/${v}`) },
-  block: { path: 'height', link: v => getExplorerUrl(`/blocks/${v}`) },
   index: { path: 'index' },
   nonce: { path: 'tx.nonce' },
 };

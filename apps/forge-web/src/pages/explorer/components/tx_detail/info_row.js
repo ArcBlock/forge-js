@@ -23,13 +23,14 @@ const InfoRows = ({ rows, data }) =>
   Object.keys(rows)
     .map(x => {
       const key = x;
-      const { path, link } = rows[key];
+      const { path, link, markup } = rows[key];
       const value = get(data, path);
       if (typeof value === 'undefined') {
         return null;
       }
       const linkValue = typeof link === 'function' ? <Link to={link(value)}>{value}</Link> : null;
-      return <InfoRow key={key} name={key} value={linkValue || value} />;
+      const markupValue = typeof markup === 'function' ? markup(value) : null;
+      return <InfoRow key={key} name={key} value={linkValue || markupValue || value} />;
     })
     .filter(Boolean);
 
