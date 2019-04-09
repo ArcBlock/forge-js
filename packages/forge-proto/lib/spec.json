@@ -846,6 +846,80 @@
             }
           }
         },
+        "BlockInfoSimple": {
+          "fields": {
+            "height": {
+              "type": "uint64",
+              "id": 1
+            },
+            "numTxs": {
+              "type": "uint32",
+              "id": 2
+            },
+            "time": {
+              "type": "google.protobuf.Timestamp",
+              "id": 3
+            },
+            "appHash": {
+              "type": "bytes",
+              "id": 4
+            },
+            "proposer": {
+              "type": "bytes",
+              "id": 5
+            },
+            "totalTxs": {
+              "type": "uint64",
+              "id": 6
+            },
+            "txsHashes": {
+              "rule": "repeated",
+              "type": "string",
+              "id": 7
+            },
+            "invalidTxsHashes": {
+              "rule": "repeated",
+              "type": "string",
+              "id": 8
+            },
+            "consensusHash": {
+              "type": "bytes",
+              "id": 9
+            },
+            "dataHash": {
+              "type": "bytes",
+              "id": 10
+            },
+            "evidenceHash": {
+              "type": "bytes",
+              "id": 11
+            },
+            "lastCommitHash": {
+              "type": "bytes",
+              "id": 12
+            },
+            "lastResultsHash": {
+              "type": "bytes",
+              "id": 13
+            },
+            "nextValidatorsHash": {
+              "type": "bytes",
+              "id": 14
+            },
+            "validatorsHash": {
+              "type": "bytes",
+              "id": 15
+            },
+            "version": {
+              "type": "abci_vendor.Version",
+              "id": 16
+            },
+            "lastBlockId": {
+              "type": "abci_vendor.BlockID",
+              "id": 17
+            }
+          }
+        },
         "TxStatus": {
           "fields": {
             "code": {
