@@ -1,3 +1,14 @@
+## 0.17.3 (April 09, 2019)
+ - chore: basic simulator page
+ - chore: fix account list
+ - chore: update test case for graphql client
+ - chore: upgradte graphql-client
+ - chore: make webport and web url from config
+ - chore: upgrade grpc-client with latest forge
+ - chore: upgrade forge-proto with latest forge
+ - chore: upgrade graphql-client with latest forge
+ - fix: remove forge_starter config patch on forge init
+
 ## 0.17.2 (April 09, 2019)
   - fix: `forge poke` not working anymore #211
   - chore: donot show empty data as error
