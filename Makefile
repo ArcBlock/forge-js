@@ -22,7 +22,7 @@ dep:
 	@lerna clean --yes
 	@lerna bootstrap
 	@npx install-peerdeps -g --yarn eslint-config-airbnb
-	# @cd apps/forge-web && rm -rf node_modules && npm i
+	@cd apps/forge-web && rm -rf node_modules && npm i
 	@cd packages/graphql-client && rm -rf node_modules && npm i && yarn build
 	@lerna link
 
