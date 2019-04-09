@@ -36,6 +36,10 @@ test:
 	@echo "Running test suites..."
 	@yarn test
 
+coverage:
+	@echo "Collecting test coverage ..."
+	@yarn coverage
+
 lint:
 	@echo "Linting the software..."
 	@yarn lint
@@ -45,7 +49,7 @@ doc:
 
 precommit: dep lint doc build test
 
-travis: precommit
+travis: init doc coverage
 
 travis-deploy:
 	@echo "Deploy the software by travis"
