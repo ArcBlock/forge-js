@@ -152,7 +152,7 @@ class Client {
       new Promise(async (resolve, reject) => {
         try {
           params.itx = { type: x, value: params.itx };
-          params.nonce = params.nonce || Date.now();
+          params.nonce = typeof params.nonce === 'undefined' ? Date.now() : params.nonce;
 
           const { tx } = await this.createTx(params);
           const { hash } = await this.sendTx({
