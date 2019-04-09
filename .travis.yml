@@ -10,7 +10,7 @@ script: make travis
 deploy:
 - provider: script
   skip_cleanup: true
-  script: npm run coverage
+  script: bash ./tools/publish.sh
   on:
     branch: master
 env:

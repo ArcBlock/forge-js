@@ -43,7 +43,7 @@
     "why-did-you-update": "^1.0.6"
   },
   "scripts": {
-    "lint": "eslint src",
+    "lint": "which eslint && ls -alh node_modules/.bin/ && ls -alh node_modules/@arcblock/ && eslint src",
     "clean": "rm -rf build",
     "precommit": "npm run lint && CI=1 yarn test",
     "prepush": "npm run lint && CI=1 yarn test",

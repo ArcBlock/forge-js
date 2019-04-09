@@ -2,7 +2,6 @@
 const fs = require('fs');
 const path = require('path');
 const yaml = require('yaml');
-const toml = require('@iarna/toml');
 const shell = require('shelljs');
 const chalk = require('chalk');
 const findProcess = require('find-process');
@@ -151,17 +150,6 @@ function copyReleaseConfig(version) {
     shell.echo(
       `${symbols.success} Forge config written to ${baseDir}/${path.basename(configPath)}`
     );
-
-    // Patch release config: to add forge_starter
-    const filePath = path.join(baseDir, path.basename(configPath));
-    const configObj = toml.parse(fs.readFileSync(filePath).toString());
-    if (!configObj.forge_starter) {
-      configObj.forge_starter = {
-        release_path: path.join(requiredDirs.release, 'forge'),
-      };
-
-      fs.writeFileSync(filePath, toml.stringify(configObj));
-    }
   } else {
     shell.echo(`${symbols.error} Forge config not found under release folder`);
     process.exit(1);

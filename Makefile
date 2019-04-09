@@ -19,11 +19,10 @@ install:
 
 dep:
 	@echo "Install dependencies required for this repo..."
-	@lerna clean --yes
 	@lerna bootstrap
-	# @cd apps/forge-web && rm -rf node_modules && npm i
-	# @cd packages/graphql-client && rm -rf node_modules && npm i
-	@lerna link
+	@npx install-peerdeps -g --yarn eslint-config-airbnb
+	@cd apps/forge-web && npm i
+	@cd packages/graphql-client && npm i && yarn build
 
 pre-build: install dep
 	@echo "Running scripts before the build..."
@@ -37,6 +36,10 @@ test:
 	@echo "Running test suites..."
 	@yarn test
 
+coverage:
+	@echo "Collecting test coverage ..."
+	@yarn coverage
+
 lint:
 	@echo "Linting the software..."
 	@yarn lint
@@ -46,7 +49,7 @@ doc:
 
 precommit: dep lint doc build test
 
-travis: precommit
+travis: init doc coverage
 
 travis-deploy:
 	@echo "Deploy the software by travis"

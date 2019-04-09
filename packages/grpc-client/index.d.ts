@@ -570,6 +570,26 @@ declare namespace forge_abi {
     lastBlockId: abci_vendor.BlockID;
   }
 
+  export interface BlockInfoSimple {
+    height: number;
+    numTxs: number;
+    time: google.protobuf.Timestamp;
+    appHash: Uint8Array;
+    proposer: Uint8Array;
+    totalTxs: number;
+    txsHashes: Array<string>;
+    invalidTxsHashes: Array<string>;
+    consensusHash: Uint8Array;
+    dataHash: Uint8Array;
+    evidenceHash: Uint8Array;
+    lastCommitHash: Uint8Array;
+    lastResultsHash: Uint8Array;
+    nextValidatorsHash: Uint8Array;
+    validatorsHash: Uint8Array;
+    version: abci_vendor.Version;
+    lastBlockId: abci_vendor.BlockID;
+  }
+
   export interface TxStatus {
     code: forge_abi.StatusCode;
     hash: string;

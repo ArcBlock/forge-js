@@ -6,6 +6,7 @@ git remote add origin "https://$GITHUB_TOKEN@github.com/$TRAVIS_REPO_SLUG.git"
 git remote -v
 
 changed=$(lerna changed)
+echo "lerna changed ${changed}"
 if [ "$changed" != "" ]; then
   DEBUG=* node tools/setup-ci.js
 
@@ -14,6 +15,7 @@ if [ "$changed" != "" ]; then
 
   # publish
   VERSION=$(cat version | awk '{$1=$1;print}')
+  echo "publish version ${VERSION}"
   lerna run build
   lerna publish $VERSION --yes
 

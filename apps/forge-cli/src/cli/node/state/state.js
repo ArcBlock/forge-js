@@ -35,9 +35,9 @@ function getWebInfo() {
   shell.echo(`${symbols.success} ${chalk.cyan('Forge Web')}`);
   shell.echo(hr);
   if (isForgeWebStarted()) {
-    shell.echo(`${symbols.info} forge web started at:     ${webUrl}`);
-    shell.echo(`${symbols.info} graphql endpoint at:      ${webUrl}/api`);
-    shell.echo(`${symbols.info} graphql playground at:    ${webUrl}/api/playground`);
+    shell.echo(`${symbols.info} forge web started at:     ${webUrl()}`);
+    shell.echo(`${symbols.info} graphql endpoint at:      ${webUrl()}/api`);
+    shell.echo(`${symbols.info} graphql playground at:    ${webUrl()}/api/playground`);
   } else {
     shell.echo(`${symbols.warning} forge web not started`);
     shell.echo(`${symbols.info} start forge web with ${chalk.cyan('forge web start')}`);
