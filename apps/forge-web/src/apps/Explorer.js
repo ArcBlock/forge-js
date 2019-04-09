@@ -16,7 +16,6 @@ const { locale, messages } = detectLocale();
 
 const Layout = AsyncComponent(() => import('../layouts/explorer'));
 const PageHome = AsyncComponent(() => import('../pages/explorer/home'));
-const PageNetwork = AsyncComponent(() => import('../pages/explorer/network'));
 const PageBlockList = AsyncComponent(() => import('../pages/explorer/blocks'));
 const PageBlockDetail = AsyncComponent(() => import('../pages/explorer/block'));
 const PageTxList = AsyncComponent(() => import('../pages/explorer/txs'));
@@ -53,13 +52,12 @@ const App = () => {
         <Layout>
           <Switch>
             <Route exact path="/" component={PageHome} />
-            <Route exact path="/blocks" component={PageBlockList} />
-            <Route exact path="/txs" component={PageTxList} />
-            <Route exact path="/blocks/:height" component={PageBlockDetail} />
-            <Route exact path="/txs/:hash" component={PageTxDetail} />
-            <Route exact path="/accounts/:address" component={PageAccountDetail} />
-            <Route exact path="/assets/:address" component={PageAssetDetail} />
-            <Route exact path="/network" component={PageNetwork} />
+            <Route exact path="/:network/blocks" component={PageBlockList} />
+            <Route exact path="/:network/txs" component={PageTxList} />
+            <Route exact path="/:network/blocks/:height" component={PageBlockDetail} />
+            <Route exact path="/:network/txs/:hash" component={PageTxDetail} />
+            <Route exact path="/:network/accounts/:address" component={PageAccountDetail} />
+            <Route exact path="/:network/assets/:address" component={PageAssetDetail} />
             <Redirect from="/*" to="/" />
           </Switch>
         </Layout>
