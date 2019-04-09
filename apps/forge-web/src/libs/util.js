@@ -42,21 +42,46 @@ export function getTxType(tx) {
   return upperFirst(camelCase(tx.type)) || tx.tx.itx.__typename.replace(/Tx$/, ''); // eslint-disable-line
 }
 
+/**
+ * Current network selection priority
+ *  - network param from `window.location.pathname`
+ *  - network param from query string
+ *  - network param from localStorage
+ *  - first network in the list
+ */
+export function selectNetwork() {
+  const names = Object.keys(networks);
+  let selected = names[0];
+  try {
+    const cached = JSON.parse(localStorage.getItem('switcher.current'));
+    if (cached && names.includes(cached)) {
+      selected = cached;
+    }
+
+    const params = parseQuery(typeof window === 'undefined' ? '' : window.location.search);
+    if (params.network && names.includes(params.network)) {
+      selected = params.network;
+    }
+
+    const paths =
+      typeof window === 'undefined' ? [] : window.location.pathname.split('/').filter(Boolean);
+    if (paths.length && names.includes(paths[0])) {
+      // eslint-disable-next-line prefer-destructuring
+      selected = paths[0];
+    }
+
+    localStorage.setItem('switcher.current', JSON.stringify(selected));
+  } catch (err) {
+    // Do nothing
+  }
+
+  return selected;
+}
+
 export function getGraphQLEndpoint() {
   if (window.localStorage) {
     if (window.localStorage.getItem('GQL_ENDPOINT')) {
       return window.localStorage.getItem('GQL_ENDPOINT');
-    }
-
-    if (process.env.NODE_ENV === 'production') {
-      try {
-        const current = JSON.parse(window.localStorage.getItem('switcher.current'));
-        if (current && networks[current]) {
-          return networks[current].endpoint;
-        }
-      } catch (err) {
-        // Do nothing
-      }
     }
   }
 
@@ -65,8 +90,14 @@ export function getGraphQLEndpoint() {
     return `${protocol}//${host}/api`;
   }
 
+  if (process.env.REACT_APP_NAME === 'explorer') {
+    const current = selectNetwork();
+    if (current && networks[current]) {
+      return networks[current].endpoint;
+    }
+  }
+
   return 'http://localhost:8210/api'; // local
-  // return 'http://abt-test.arcblock.co:8210/api'; // abt testnet
 }
 
 export function fromTypeUrl(url, camelcase = true) {
@@ -93,7 +124,8 @@ export function fromArcToReadable(bn) {
 }
 
 export function getExplorerUrl(url) {
-  return process.env.REACT_APP_NAME === 'explorer' ? url : `/node/explorer${url}`;
+  const network = selectNetwork();
+  return process.env.REACT_APP_NAME === 'explorer' ? `/${network}${url}` : `/node/explorer${url}`;
 }
 
 export async function fetchInfo(tokenInfo, nodeInfo) {

@@ -1,14 +1,14 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import TxDetail from './tx_detail';
 import SummaryHeader from '../summary_header';
 import IconFa from '../../../../components/iconfa';
 import Payload from './payload';
 
-export default class ExchangeDetail extends TxDetail {
-  renderHeader() {
-    const { tx } = this.props;
-    return (
+export default function ExchangeDetail({ tx }) {
+  return (
+    <TxDetail tx={tx}>
       <SummaryHeader
         type="Exchange"
         title="Exchange Transaction"
@@ -23,6 +23,10 @@ export default class ExchangeDetail extends TxDetail {
           },
         ]}
       />
-    );
-  }
+    </TxDetail>
+  );
 }
+
+ExchangeDetail.propTypes = {
+  tx: PropTypes.object.isRequired,
+};

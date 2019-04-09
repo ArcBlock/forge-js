@@ -60,7 +60,7 @@ class GraphqlClient extends BaseClient {
         const pk = data.pk || Buffer.from(hexToBytes(wallet.publicKey));
 
         // Determine chainId & nonce, only attach new one when not exist
-        let nonce = data.nonce || Date.now();
+        let nonce = typeof data.nonce === 'undefined' ? Date.now() : data.nonce;
         let chainId = data.chainId;
         if (!chainId) {
           const { info } = await this.getChainInfo();

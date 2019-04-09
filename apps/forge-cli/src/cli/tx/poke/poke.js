@@ -21,6 +21,7 @@ async function main() {
 
   try {
     const res = await client.sendPokeTx({
+      nonce: 0,
       from: wallet.address,
       token: wallet.token,
       itx,

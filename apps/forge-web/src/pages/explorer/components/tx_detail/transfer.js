@@ -1,21 +1,26 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { fromUnitToToken } from '@arcblock/forge-util';
 
 import TxDetail from './tx_detail';
 import SummaryHeader from '../summary_header';
 import IconFa from '../../../../components/iconfa';
 import { getExplorerUrl } from '../../../../libs/util';
+import { useTokenInfo } from '../../../../libs/hooks';
 
-export default class TransferDetail extends TxDetail {
-  renderHeader() {
-    const { tx } = this.props;
-    return (
+export default function TransferDetail({ tx }) {
+  const [token] = useTokenInfo();
+  return (
+    <TxDetail tx={tx}>
       <SummaryHeader
         type="Transfer"
         title={
           <span>
             <IconFa name="coins" size={20} className="meta-icon" />
-            <span>{tx.tx.itx.value} arc</span>
+            <span>
+              {fromUnitToToken(tx.tx.itx.value, token.decimal)} {token.symbol}
+            </span>
           </span>
         }
         meta={(tx.tx.itx.assets || []).map(x => ({
@@ -23,6 +28,10 @@ export default class TransferDetail extends TxDetail {
           value: <Link to={getExplorerUrl(`/assets/${x}`)}>{x}</Link>,
         }))}
       />
-    );
-  }
+    </TxDetail>
+  );
 }
+
+TransferDetail.propTypes = {
+  tx: PropTypes.object.isRequired,
+};

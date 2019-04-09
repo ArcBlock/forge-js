@@ -43,6 +43,10 @@ const Container = styled.div`
   i {
     margin-right: 16px;
   }
+
+  strong {
+    margin: 0 5px;
+  }
 `;
 
 Alert.propTypes = {

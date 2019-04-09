@@ -1,13 +1,13 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import TxDetail from './tx_detail';
 import SummaryHeader from '../summary_header';
 import IconFa from '../../../../components/iconfa';
 
-export default class StakeTxDetail extends TxDetail {
-  renderHeader() {
-    const { tx } = this.props;
-    return (
+export default function StakeDetail({ tx }) {
+  return (
+    <TxDetail tx={tx}>
       <SummaryHeader
         type="Stake"
         title={tx.tx.itx.message || 'No message attached to this stake'}
@@ -18,6 +18,10 @@ export default class StakeTxDetail extends TxDetail {
           },
         ]}
       />
-    );
-  }
+    </TxDetail>
+  );
 }
+
+StakeDetail.propTypes = {
+  tx: PropTypes.object.isRequired,
+};

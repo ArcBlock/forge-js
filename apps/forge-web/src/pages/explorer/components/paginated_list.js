@@ -54,7 +54,7 @@ function PaginatedList({ args, pageSize, pageLink, dataKey, dataLoaderFn, dataRe
       {Array.isArray(state.value[dataKey]) &&
         state.value[dataKey].length > 0 &&
         dataRenderFn(state.value[dataKey])}
-      {state.value[dataKey].length === 0 && <Alert type="error">No data found!</Alert>}
+      {state.value[dataKey].length === 0 && <Alert type="default">No data found!</Alert>}
       {!pageLink && state.value.page && state.value.page.cursor && state.value.page.next && (
         <p className="pager">
           <Button onClick={() => setCursor(state.value.page.cursor)}>
