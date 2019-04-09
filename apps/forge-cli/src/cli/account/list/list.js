@@ -10,8 +10,8 @@ async function getAccountState(argAddress, cached) {
 
   const streamChild = client.getAccountState({ address: argAddress });
   streamChild
-    .on('data', function({ code, state }) {
-      if (state && code === 0) {
+    .on('data', function({ state }) {
+      if (state) {
         const { moniker, address } = state;
         const symbol = cached && cached.address === address ? symbols.success : '';
         shell.echo(
@@ -20,8 +20,6 @@ async function getAccountState(argAddress, cached) {
             ' '
           )}`
         );
-      } else {
-        shell.echo(`${symbols.error} error, code: ${code}`);
       }
     })
     .on('error', err => {
