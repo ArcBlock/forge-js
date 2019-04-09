@@ -5,6 +5,5 @@ module.exports = {
   browser: false,
   clearMocks: true,
   coverageDirectory: 'coverage',
-  setupFiles: ['<rootDir>/tools/jest-before-each.js'],
   testEnvironment: 'node',
 };
