@@ -1,3 +1,11 @@
+## 0.17.2 (April 09, 2019)
+  - fix: `forge poke` not working anymore #211
+  - chore: donot show empty data as error
+  - feat: display obvious mark that the TX failed #226
+  - feat: Universal explorer should add chain id in url #221
+  - fix: error message miss a space #222
+  - fix: Unit miss match on TX list and TX details #219
+
 ## 0.17.1 (April 08, 2019)
   - chore: add hover for network details
   - chore: add lines for network selector
