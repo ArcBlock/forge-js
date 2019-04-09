@@ -22,6 +22,7 @@ dep:
 	@lerna clean --yes
 	@lerna bootstrap
 	@cd apps/forge-web && rm -rf node_modules && yarn
+	@lerna link
 
 pre-build: install dep
 	@echo "Running scripts before the build..."
