@@ -1,5 +1,6 @@
 const fs = require('fs');
 const os = require('os');
+const util = require('util');
 const path = require('path');
 const getos = require('getos');
 const chalk = require('chalk');
@@ -42,8 +43,6 @@ const requiredDirs = {
   release: path.join(baseDir, 'release'),
 };
 
-const webPort = '8210';
-const webUrl = `http://localhost:${webPort}`;
 const config = { cli: {} }; // global shared forge-cli run time config
 
 /**
@@ -238,8 +237,11 @@ function ensureRpcClient(args) {
   if (configPath && fs.existsSync(configPath)) {
     const forgeConfig = parse(configPath);
     config.cli.forgeConfigPath = configPath;
-    debug(`${symbols.success} Using forge config: ${configPath}`);
     Object.assign(config, forgeConfig);
+    debug(`${symbols.success} Using forge config: ${configPath}`);
+    debug(
+      `${symbols.success} Using forge config: ${util.inspect(config, { depth: 5, colors: true })}`
+    );
   } else if (args.socketGrpc) {
     const forgeConfig = {
       forge: {
@@ -572,6 +574,7 @@ function sleep(timeout = 1000) {
 }
 
 function isForgeWebStarted() {
+  const webPort = config.forge.web.port;
   const { stdout } = shell.exec(`lsof -i :${webPort} | grep ${webPort}`, { silent: true });
   if (/beam\.smp/.test(stdout) && /LISTEN/.test(stdout)) {
     return true;
@@ -601,8 +604,9 @@ module.exports = {
     read: readCache,
   },
 
-  webPort,
-  webUrl,
+  webUrl() {
+    return `http://localhost:${config.forge.web.port || 8210}`;
+  },
 
   debug,
   sleep,

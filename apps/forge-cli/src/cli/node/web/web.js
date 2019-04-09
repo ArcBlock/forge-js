@@ -27,9 +27,9 @@ async function main({ args: [action = 'none'], opts }) {
     case 'start':
       const { stdout, stderr } = startWebUI();
       processOutput(stdout || stderr, action);
-      shell.echo(`${symbols.info} forge web running at:     ${webUrl}`);
-      shell.echo(`${symbols.info} graphql endpoint at:      ${webUrl}/api`);
-      shell.echo(`${symbols.info} graphql playground at:    ${webUrl}/api/playground`);
+      shell.echo(`${symbols.info} forge web running at:     ${webUrl()}`);
+      shell.echo(`${symbols.info} graphql endpoint at:      ${webUrl()}/api`);
+      shell.echo(`${symbols.info} graphql playground at:    ${webUrl()}/api/playground`);
       break;
     case 'stop':
       const { stdout2, stderr2 } = stopWebUI();
@@ -41,7 +41,7 @@ async function main({ args: [action = 'none'], opts }) {
         shell.echo(`${symbols.info} forge web not started yet`);
         await main({ args: ['start'] });
       }
-      const url = opts.graphql ? `${webUrl}/api/playground` : webUrl;
+      const url = opts.graphql ? `${webUrl()}/api/playground` : webUrl();
       shell.echo(`Opening ${url}...`);
       shell.exec(`open ${url}`);
       break;
