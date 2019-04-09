@@ -13,6 +13,7 @@
   * [1. Prepare Example App](#1-prepare-example-app)
   * [2. Call Rpc](#2-call-rpc)
 * [Documentation](#documentation)
+* [Contributors](#contributors)
 
 
 ## Install
