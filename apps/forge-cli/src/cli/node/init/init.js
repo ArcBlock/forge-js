@@ -60,9 +60,9 @@ function fetchReleaseVersion() {
   process.exit(1);
 }
 
-function fetchAssetInfo(platform, version, key) {
+function fetchAssetInfo(platform, version, key, mirror = 'http://releases.arcblock.io') {
   const name = `${key}_${platform}_amd64.tgz`;
-  const url = `http://releases.arcblock.io/forge/${version}/${name}`;
+  const url = `${mirror}/forge/${version}/${name}`;
   const defaultSize = {
     forge: 60 * 1024 * 1024,
     simulator: 20 * 1024 * 1024,
@@ -97,6 +97,7 @@ function downloadAsset(asset) {
     } catch (err) {
       // Do nothing
     }
+    shell.echo(`${symbols.info} Start download ${asset.url}`);
     const progress = getProgress({
       title: `${symbols.info} Downloading ${asset.name}`,
       unit: 'MB',
@@ -174,13 +175,13 @@ function updateReleaseYaml(asset, version) {
   }
 }
 
-async function main() {
+async function main({ args: [userVersion], opts: { mirror } }) {
   try {
     printLogo();
 
     const platform = await getPlatform();
     shell.echo(`${symbols.info} Detected platform is: ${platform}`);
-    const version = fetchReleaseVersion();
+    const version = userVersion || fetchReleaseVersion();
 
     if (releaseDirExists()) {
       if (version === config.get('cli.currentVersion')) {
@@ -204,7 +205,7 @@ async function main() {
     // Start download and unzip
     const assets = ['forge', 'forge_starter', 'simulator'];
     for (const asset of assets) {
-      const assetInfo = fetchAssetInfo(platform, version, asset);
+      const assetInfo = fetchAssetInfo(platform, version, asset, mirror);
       debug(asset, assetInfo);
       const assetTarball = await downloadAsset(assetInfo);
       expandReleaseTarball(assetTarball, asset, version);
