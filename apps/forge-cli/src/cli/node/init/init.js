@@ -39,12 +39,12 @@ function releaseDirExists() {
   return false;
 }
 
-function fetchReleaseVersion() {
+function fetchReleaseVersion(mirror = 'http://releases.arcblock.io') {
   const spinner = getSpinner('Fetching forge release version...');
   spinner.start();
 
   try {
-    const url = 'http://releases.arcblock.io/forge/latest.json';
+    const url = `${mirror}/forge/latest.json`;
     const { code, stdout, stderr } = shell.exec(`curl "${url}"`, { silent: true });
     // debug('fetchReleaseVersion', { code, stdout, stderr, url });
     if (code === 0) {
@@ -181,7 +181,7 @@ async function main({ args: [userVersion], opts: { mirror } }) {
 
     const platform = await getPlatform();
     shell.echo(`${symbols.info} Detected platform is: ${platform}`);
-    const version = userVersion || fetchReleaseVersion();
+    const version = userVersion || fetchReleaseVersion(mirror);
 
     if (releaseDirExists()) {
       if (version === config.get('cli.currentVersion')) {
