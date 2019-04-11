@@ -64,7 +64,7 @@ function FilterStrip({ theme, location, showFilter, supportedTxs, onApplyFilter,
               onApplyFilter={onApplyFilter}
             />
           )}
-          {process.env.REACT_APP_NAME !== 'explorer' && <SearchBox />}
+          {process.env.REACT_APP_NAME.includes('explorer') === false && <SearchBox />}
         </div>
       </Container>
       {showFilter && !!selectedTxs.length && selectedTxs.length < supportedTxs.length && (

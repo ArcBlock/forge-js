@@ -66,7 +66,7 @@ export const useSessionStorage = useStorage(sessionStorage);
 
 export function useThemeMode() {
   const appName = process.env.REACT_APP_NAME;
-  const defaultMode = appName === 'explorer' ? 'dark' : 'light';
+  const defaultMode = appName.includes('explorer') ? 'dark' : 'light';
   const [mode, setMode] = useLocalStorage(`theme.${appName}`, defaultMode);
   return [mode, setMode];
 }

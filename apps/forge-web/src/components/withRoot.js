@@ -100,7 +100,7 @@ const createTheme = mode =>
         },
       },
     },
-    pageWidth: process.env.REACT_APP_NAME === 'explorer' ? 1296 : 1000,
+    pageWidth: process.env.REACT_APP_NAME.includes('explorer') ? 1296 : 1000,
     colors,
     sizes,
     mode,

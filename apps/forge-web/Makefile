@@ -3,7 +3,7 @@ dep:
 	@rm -rf node_modules
 	@yarn
 
-deploy-explorer-beta: dep
+deploy-explorer-beta:
 	@yarn build:explorer-beta
 	@cp public/_redirects.beta build/_redirects
 	@netlify deploy --prod --dir=build --site=3d20ed91-e432-4980-b419-f6c90aa6dbc3

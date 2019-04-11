@@ -28,7 +28,7 @@ module.exports = {
     // Add entries
     const oldEntry = config.entry.slice(0, config.entry.length - 1);
     config.entry = oldEntry.concat([
-      process.env.REACT_APP_NAME === 'explorer' ? paths.appExplorerJs : paths.appJs,
+      process.env.REACT_APP_NAME.includes('explorer') ? paths.appExplorerJs : paths.appJs,
     ]);
 
     if (env === 'production') {

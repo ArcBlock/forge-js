@@ -79,7 +79,10 @@ export function selectNetwork() {
 }
 
 export function getGraphQLEndpoint() {
-  if (process.env.REACT_APP_NAME === 'explorer') {
+  if (process.env.REACT_APP_NAME.includes('explorer')) {
+    if (process.env.REACT_APP_NAME === 'explorer-beta') {
+      return 'https://test.abtnetwork.io/api';
+    }
     const current = selectNetwork();
     if (current && networks[current]) {
       return networks[current].endpoint;
@@ -125,7 +128,9 @@ export function fromArcToReadable(bn) {
 
 export function getExplorerUrl(url) {
   const network = selectNetwork();
-  return process.env.REACT_APP_NAME === 'explorer' ? `/${network}${url}` : `/node/explorer${url}`;
+  return process.env.REACT_APP_NAME.includes('explorer')
+    ? `/${network}${url}`
+    : `/node/explorer${url}`;
 }
 
 export async function fetchInfo(tokenInfo, nodeInfo) {
