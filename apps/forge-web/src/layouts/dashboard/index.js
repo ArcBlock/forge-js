@@ -15,6 +15,8 @@ import withI18n from '../../components/withI18n';
 import withRoot from '../../components/withRoot';
 import withTracker from '../../components/withTracker';
 
+import { useNodeInfo } from '../../libs/hooks';
+
 const getSecondaryLinks = location => {
   if (/^\/node\//.test(location.pathname)) {
     return {
@@ -42,6 +44,7 @@ const getSecondaryLinks = location => {
 
 function Dashboard({ children, location }) {
   const { title, links } = getSecondaryLinks(location);
+  const [nodeInfo] = useNodeInfo();
   const hasSecondaryLinks = !!links.length;
   const version = process.env.REACT_APP_VERSION;
 
@@ -65,7 +68,7 @@ function Dashboard({ children, location }) {
         )}
         {!hasSecondaryLinks && <Content direction="column">{children}</Content>}
         <Version key={version}>
-          v{version} <span className="highlight">beta</span>
+          ABT Node v{version}, Forge Framework v{nodeInfo.version}
         </Version>
       </main>
     </Container>

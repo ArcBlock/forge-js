@@ -34,7 +34,7 @@ function Layout({ children }) {
       <main className="main">
         {children}
         <Version key={version}>
-          forge v{nodeInfo.version}, explorer v{version}
+          Forge Framework v{nodeInfo.version}, ABT Explorer v{version}
         </Version>
       </main>
     </Container>
