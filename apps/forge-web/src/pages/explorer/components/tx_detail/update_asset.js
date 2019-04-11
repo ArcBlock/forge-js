@@ -1,13 +1,13 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import TxDetail from './tx_detail';
 import SummaryHeader from '../summary_header';
 import IconFa from '../../../../components/iconfa';
 
-export default class UpdateAssetDetail extends TxDetail {
-  renderHeader() {
-    const { tx } = this.props;
-    return (
+export default function UpdateAssetDetail({ tx }) {
+  return (
+    <TxDetail tx={tx}>
       <SummaryHeader
         type="Update Asset"
         title={tx.tx.itx.moniker}
@@ -22,6 +22,10 @@ export default class UpdateAssetDetail extends TxDetail {
           },
         ]}
       />
-    );
-  }
+    </TxDetail>
+  );
 }
+
+UpdateAssetDetail.propTypes = {
+  tx: PropTypes.object.isRequired,
+};
