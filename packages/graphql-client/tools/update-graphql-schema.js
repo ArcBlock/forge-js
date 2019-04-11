@@ -4,8 +4,8 @@ const path = require('path');
 const { request } = require('graphql-request');
 const { introspectionQuery } = require('graphql');
 
-// const httpEndpoint = () => 'http://localhost:8211/api';
-const httpEndpoint = () => 'https://test.abtnetwork.io/api';
+const httpEndpoint = () => 'http://localhost:8211/api';
+// const httpEndpoint = () => 'https://test.abtnetwork.io/api';
 
 (async () => {
   const dataSource = 'graphql';
