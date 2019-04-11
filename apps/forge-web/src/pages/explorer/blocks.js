@@ -82,7 +82,7 @@ class Blocks extends Page {
           paging,
         },
         {
-          ignoreFields: ['blocks.txs'],
+          ignoreFields: ['blocks.txs', 'blocks.invalidTxs'],
         }
       );
       return res;
