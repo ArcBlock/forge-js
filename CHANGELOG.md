@@ -1,3 +1,8 @@
+## 0.17.6 (April 12, 2019)
+  - chore: refactor storage prefix
+  - chore: support building beta version for explorer
+  - update readme
+
 ## 0.17.5 (April 11, 2019)
   - fix: explorer network select
   - chore: add alias for forge log
