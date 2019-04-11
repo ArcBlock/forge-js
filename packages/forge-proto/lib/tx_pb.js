@@ -82,6 +82,7 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
       obj = {
         pk: msg.getPk(),
         type: (f = msg.getType()) && type_pb.WalletType.toObject(includeInstance, f),
+        address: jspb.Message.getFieldWithDefault(msg, 3, ''),
         data: (f = msg.getData()) && google_protobuf_any_pb.Any.toObject(includeInstance, f),
       };
 
@@ -126,6 +127,10 @@ proto.forge_abi.AccountMigrateTx.deserializeBinaryFromReader = function(msg, rea
         reader.readMessage(value, type_pb.WalletType.deserializeBinaryFromReader);
         msg.setType(value);
         break;
+      case 3:
+        var value = /** @type {string} */ (reader.readString());
+        msg.setAddress(value);
+        break;
       case 15:
         var value = new google_protobuf_any_pb.Any();
         reader.readMessage(value, google_protobuf_any_pb.Any.deserializeBinaryFromReader);
@@ -165,6 +170,10 @@ proto.forge_abi.AccountMigrateTx.serializeBinaryToWriter = function(message, wri
   f = message.getType();
   if (f != null) {
     writer.writeMessage(2, f, type_pb.WalletType.serializeBinaryToWriter);
+  }
+  f = message.getAddress();
+  if (f.length > 0) {
+    writer.writeString(3, f);
   }
   f = message.getData();
   if (f != null) {
@@ -232,6 +241,19 @@ proto.forge_abi.AccountMigrateTx.prototype.clearType = function() {
  */
 proto.forge_abi.AccountMigrateTx.prototype.hasType = function() {
   return jspb.Message.getField(this, 2) != null;
+};
+
+/**
+ * optional string address = 3;
+ * @return {string}
+ */
+proto.forge_abi.AccountMigrateTx.prototype.getAddress = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ''));
+};
+
+/** @param {string} value */
+proto.forge_abi.AccountMigrateTx.prototype.setAddress = function(value) {
+  jspb.Message.setProto3StringField(this, 3, value);
 };
 
 /**
@@ -803,6 +825,7 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
         transferrable: jspb.Message.getFieldWithDefault(msg, 4, false),
         ttl: jspb.Message.getFieldWithDefault(msg, 5, 0),
         parent: jspb.Message.getFieldWithDefault(msg, 6, ''),
+        address: jspb.Message.getFieldWithDefault(msg, 7, ''),
       };
 
     if (includeInstance) {
@@ -862,6 +885,10 @@ proto.forge_abi.CreateAssetTx.deserializeBinaryFromReader = function(msg, reader
         var value = /** @type {string} */ (reader.readString());
         msg.setParent(value);
         break;
+      case 7:
+        var value = /** @type {string} */ (reader.readString());
+        msg.setAddress(value);
+        break;
       default:
         reader.skipField();
         break;
@@ -912,6 +939,10 @@ proto.forge_abi.CreateAssetTx.serializeBinaryToWriter = function(message, writer
   f = message.getParent();
   if (f.length > 0) {
     writer.writeString(6, f);
+  }
+  f = message.getAddress();
+  if (f.length > 0) {
+    writer.writeString(7, f);
   }
 };
 
@@ -1011,6 +1042,19 @@ proto.forge_abi.CreateAssetTx.prototype.getParent = function() {
 /** @param {string} value */
 proto.forge_abi.CreateAssetTx.prototype.setParent = function(value) {
   jspb.Message.setProto3StringField(this, 6, value);
+};
+
+/**
+ * optional string address = 7;
+ * @return {string}
+ */
+proto.forge_abi.CreateAssetTx.prototype.getAddress = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 7, ''));
+};
+
+/** @param {string} value */
+proto.forge_abi.CreateAssetTx.prototype.setAddress = function(value) {
+  jspb.Message.setProto3StringField(this, 7, value);
 };
 
 /**

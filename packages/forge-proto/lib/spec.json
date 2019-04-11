@@ -1178,7 +1178,7 @@
             }
           }
         },
-        "ForgeStatistics": {
+        "ForgeStats": {
           "fields": {
             "numBlocks": {
               "rule": "repeated",
@@ -1830,17 +1830,13 @@
               "type": "PageInput",
               "id": 1
             },
-            "minHeight": {
-              "type": "uint64",
+            "heightFilter": {
+              "type": "RangeFilter",
               "id": 2
-            },
-            "maxHeight": {
-              "type": "uint64",
-              "id": 3
             },
             "emptyExcluded": {
               "type": "bool",
-              "id": 4
+              "id": 3
             }
           }
         },
@@ -1856,7 +1852,7 @@
             },
             "blocks": {
               "rule": "repeated",
-              "type": "BlockInfo",
+              "type": "BlockInfoSimple",
               "id": 3
             }
           }
@@ -2233,8 +2229,8 @@
         },
         "RequestGetUnconfirmedTxs": {
           "fields": {
-            "limit": {
-              "type": "uint32",
+            "paging": {
+              "type": "PageInput",
               "id": 1
             }
           }
@@ -2245,9 +2241,13 @@
               "type": "StatusCode",
               "id": 1
             },
+            "page": {
+              "type": "PageInfo",
+              "id": 2
+            },
             "unconfirmedTxs": {
               "type": "UnconfirmedTxs",
-              "id": 2
+              "id": 3
             }
           }
         },
@@ -2453,7 +2453,7 @@
             }
           }
         },
-        "RequestGetForgeStatistics": {
+        "RequestGetForgeStats": {
           "oneofs": {
             "value": {
               "oneof": ["dayInfo", "date"]
@@ -2470,14 +2470,14 @@
             }
           }
         },
-        "ResponseGetForgeStatistics": {
+        "ResponseGetForgeStats": {
           "fields": {
             "code": {
               "type": "StatusCode",
               "id": 1
             },
-            "forgeStatistics": {
-              "type": "ForgeStatistics",
+            "forgeStats": {
+              "type": "ForgeStats",
               "id": 2
             }
           }
@@ -2579,7 +2579,7 @@
             }
           }
         },
-        "RequestGetAssets": {
+        "RequestListAssets": {
           "fields": {
             "paging": {
               "type": "PageInput",
@@ -2591,7 +2591,7 @@
             }
           }
         },
-        "ResponseGetAssets": {
+        "ResponseListAssets": {
           "fields": {
             "code": {
               "type": "StatusCode",
@@ -2608,7 +2608,7 @@
             }
           }
         },
-        "RequestGetStakes": {
+        "RequestListStakes": {
           "fields": {
             "paging": {
               "type": "PageInput",
@@ -2620,7 +2620,7 @@
             }
           }
         },
-        "ResponseGetStakes": {
+        "ResponseListStakes": {
           "fields": {
             "code": {
               "type": "StatusCode",
@@ -2637,7 +2637,27 @@
             }
           }
         },
-        "RequestGetTopAccounts": {
+        "RequestListAccount": {
+          "fields": {
+            "ownerAddress": {
+              "type": "string",
+              "id": 1
+            }
+          }
+        },
+        "ResponseListAccount": {
+          "fields": {
+            "code": {
+              "type": "StatusCode",
+              "id": 1
+            },
+            "account": {
+              "type": "IndexedAccountState",
+              "id": 2
+            }
+          }
+        },
+        "RequestListTopAccounts": {
           "fields": {
             "paging": {
               "type": "PageInput",
@@ -2645,7 +2665,7 @@
             }
           }
         },
-        "ResponseGetTopAccounts": {
+        "ResponseListTopAccounts": {
           "fields": {
             "code": {
               "type": "StatusCode",
@@ -2706,15 +2726,15 @@
               "id": 3
             },
             "heightFilter": {
-              "type": "HeightFilter",
+              "type": "RangeFilter",
               "id": 4
             },
             "numTxsFilter": {
-              "type": "NumTxsFilter",
+              "type": "RangeFilter",
               "id": 5
             },
             "numInvalidTxsFilter": {
-              "type": "NumInvalidTxsFilter",
+              "type": "RangeFilter",
               "id": 6
             }
           }
@@ -2733,39 +2753,6 @@
               "rule": "repeated",
               "type": "IndexedBlock",
               "id": 3
-            }
-          }
-        },
-        "RequestListAssets": {
-          "fields": {
-            "paging": {
-              "type": "PageInput",
-              "id": 1
-            },
-            "ownerAddress": {
-              "type": "string",
-              "id": 2
-            }
-          }
-        },
-        "ResponseListAssets": {
-          "fields": {
-            "code": {
-              "type": "StatusCode",
-              "id": 1
-            },
-            "page": {
-              "type": "PageInfo",
-              "id": 2
-            },
-            "account": {
-              "type": "IndexedAccountState",
-              "id": 3
-            },
-            "assets": {
-              "rule": "repeated",
-              "type": "IndexedAssetState",
-              "id": 4
             }
           }
         },
@@ -2793,6 +2780,10 @@
             "type": {
               "type": "WalletType",
               "id": 2
+            },
+            "address": {
+              "type": "string",
+              "id": 3
             },
             "data": {
               "type": "google.protobuf.Any",
@@ -2870,6 +2861,10 @@
             "parent": {
               "type": "string",
               "id": 6
+            },
+            "address": {
+              "type": "string",
+              "id": 7
             }
           }
         },
@@ -3125,11 +3120,6 @@
           }
         },
         "IndexedTransaction": {
-          "oneofs": {
-            "value": {
-              "oneof": ["consumeAsset", "createAsset", "exchange", "transfer", "updateAsset"]
-            }
-          },
           "fields": {
             "hash": {
               "type": "string",
@@ -3154,26 +3144,6 @@
             "tx": {
               "type": "Transaction",
               "id": 6
-            },
-            "consumeAsset": {
-              "type": "IndexedConsumeAsset",
-              "id": 7
-            },
-            "createAsset": {
-              "type": "IndexedCreateAsset",
-              "id": 8
-            },
-            "exchange": {
-              "type": "IndexedExchange",
-              "id": 9
-            },
-            "transfer": {
-              "type": "IndexedTransfer",
-              "id": 10
-            },
-            "updateAsset": {
-              "type": "IndexedUpdateAsset",
-              "id": 11
             },
             "valid": {
               "type": "bool",
@@ -3307,89 +3277,6 @@
             "type": {
               "type": "uint32",
               "id": 8
-            }
-          }
-        },
-        "IndexedConsumeAsset": {
-          "fields": {
-            "asset": {
-              "type": "string",
-              "id": 1
-            }
-          }
-        },
-        "IndexedCreateAsset": {
-          "fields": {
-            "asset": {
-              "type": "string",
-              "id": 1
-            }
-          }
-        },
-        "IndexedExchange": {
-          "fields": {
-            "senderAssets": {
-              "rule": "repeated",
-              "type": "string",
-              "id": 1
-            },
-            "receiverAssets": {
-              "rule": "repeated",
-              "type": "string",
-              "id": 2
-            }
-          }
-        },
-        "IndexedTransfer": {
-          "fields": {
-            "assets": {
-              "rule": "repeated",
-              "type": "string",
-              "id": 1
-            }
-          }
-        },
-        "IndexedUpdateAsset": {
-          "fields": {
-            "asset": {
-              "type": "string",
-              "id": 1
-            }
-          }
-        },
-        "HeightFilter": {
-          "fields": {
-            "fromHeight": {
-              "type": "uint64",
-              "id": 1
-            },
-            "toHeight": {
-              "type": "uint64",
-              "id": 2
-            }
-          }
-        },
-        "NumTxsFilter": {
-          "fields": {
-            "minNumTxs": {
-              "type": "uint64",
-              "id": 1
-            },
-            "maxNumTxs": {
-              "type": "uint64",
-              "id": 2
-            }
-          }
-        },
-        "NumInvalidTxsFilter": {
-          "fields": {
-            "minNumInvalidTxs": {
-              "type": "uint64",
-              "id": 1
-            },
-            "maxNumInvalidTxs": {
-              "type": "uint64",
-              "id": 2
             }
           }
         },
@@ -3541,6 +3428,18 @@
             "validity": {
               "type": "Validity",
               "id": 1
+            }
+          }
+        },
+        "RangeFilter": {
+          "fields": {
+            "from": {
+              "type": "uint64",
+              "id": 1
+            },
+            "to": {
+              "type": "uint64",
+              "id": 2
             }
           }
         },
@@ -3698,27 +3597,31 @@
             }
           }
         },
-        "StatisticRpc": {
+        "StatsRpc": {
           "methods": {
-            "get_forge_statistics": {
-              "requestType": "RequestGetForgeStatistics",
-              "responseType": "ResponseGetForgeStatistics"
+            "get_forge_stats": {
+              "requestType": "RequestGetForgeStats",
+              "responseType": "ResponseGetForgeStats"
             },
             "list_transactions": {
               "requestType": "RequestListTransactions",
               "responseType": "ResponseListTransactions"
             },
-            "get_assets": {
-              "requestType": "RequestGetAssets",
-              "responseType": "ResponseGetAssets"
+            "list_assets": {
+              "requestType": "RequestListAssets",
+              "responseType": "ResponseListAssets"
             },
-            "get_stakes": {
-              "requestType": "RequestGetStakes",
-              "responseType": "ResponseGetStakes"
+            "list_stakes": {
+              "requestType": "RequestListStakes",
+              "responseType": "ResponseListStakes"
             },
-            "get_top_accounts": {
-              "requestType": "RequestGetTopAccounts",
-              "responseType": "ResponseGetTopAccounts"
+            "list_account": {
+              "requestType": "RequestListAccount",
+              "responseType": "ResponseListAccount"
+            },
+            "list_top_accounts": {
+              "requestType": "RequestListTopAccounts",
+              "responseType": "ResponseListTopAccounts"
             },
             "list_asset_transactions": {
               "requestType": "RequestListAssetTransactions",
@@ -3727,10 +3630,6 @@
             "list_blocks": {
               "requestType": "RequestListBlocks",
               "responseType": "ResponseListBlocks"
-            },
-            "list_assets": {
-              "requestType": "RequestListAssets",
-              "responseType": "ResponseListAssets"
             },
             "get_health_status": {
               "requestType": "RequestGetHealthStatus",

@@ -70,17 +70,6 @@ function deserialize_forge_abi_RequestGetAssetState(buffer_arg) {
   return rpc_pb.RequestGetAssetState.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_forge_abi_RequestGetAssets(arg) {
-  if (!(arg instanceof rpc_pb.RequestGetAssets)) {
-    throw new Error('Expected argument of type forge_abi.RequestGetAssets');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_forge_abi_RequestGetAssets(buffer_arg) {
-  return rpc_pb.RequestGetAssets.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
 function serialize_forge_abi_RequestGetBlock(arg) {
   if (!(arg instanceof rpc_pb.RequestGetBlock)) {
     throw new Error('Expected argument of type forge_abi.RequestGetBlock');
@@ -136,15 +125,15 @@ function deserialize_forge_abi_RequestGetForgeState(buffer_arg) {
   return rpc_pb.RequestGetForgeState.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_forge_abi_RequestGetForgeStatistics(arg) {
-  if (!(arg instanceof rpc_pb.RequestGetForgeStatistics)) {
-    throw new Error('Expected argument of type forge_abi.RequestGetForgeStatistics');
+function serialize_forge_abi_RequestGetForgeStats(arg) {
+  if (!(arg instanceof rpc_pb.RequestGetForgeStats)) {
+    throw new Error('Expected argument of type forge_abi.RequestGetForgeStats');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_forge_abi_RequestGetForgeStatistics(buffer_arg) {
-  return rpc_pb.RequestGetForgeStatistics.deserializeBinary(new Uint8Array(buffer_arg));
+function deserialize_forge_abi_RequestGetForgeStats(buffer_arg) {
+  return rpc_pb.RequestGetForgeStats.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_forge_abi_RequestGetHealthStatus(arg) {
@@ -191,28 +180,6 @@ function deserialize_forge_abi_RequestGetStakeState(buffer_arg) {
   return rpc_pb.RequestGetStakeState.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_forge_abi_RequestGetStakes(arg) {
-  if (!(arg instanceof rpc_pb.RequestGetStakes)) {
-    throw new Error('Expected argument of type forge_abi.RequestGetStakes');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_forge_abi_RequestGetStakes(buffer_arg) {
-  return rpc_pb.RequestGetStakes.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
-function serialize_forge_abi_RequestGetTopAccounts(arg) {
-  if (!(arg instanceof rpc_pb.RequestGetTopAccounts)) {
-    throw new Error('Expected argument of type forge_abi.RequestGetTopAccounts');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_forge_abi_RequestGetTopAccounts(buffer_arg) {
-  return rpc_pb.RequestGetTopAccounts.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
 function serialize_forge_abi_RequestGetTx(arg) {
   if (!(arg instanceof rpc_pb.RequestGetTx)) {
     throw new Error('Expected argument of type forge_abi.RequestGetTx');
@@ -246,6 +213,17 @@ function deserialize_forge_abi_RequestGetValidatorsInfo(buffer_arg) {
   return rpc_pb.RequestGetValidatorsInfo.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_forge_abi_RequestListAccount(arg) {
+  if (!(arg instanceof rpc_pb.RequestListAccount)) {
+    throw new Error('Expected argument of type forge_abi.RequestListAccount');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_forge_abi_RequestListAccount(buffer_arg) {
+  return rpc_pb.RequestListAccount.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_forge_abi_RequestListAssetTransactions(arg) {
   if (!(arg instanceof rpc_pb.RequestListAssetTransactions)) {
     throw new Error('Expected argument of type forge_abi.RequestListAssetTransactions');
@@ -277,6 +255,28 @@ function serialize_forge_abi_RequestListBlocks(arg) {
 
 function deserialize_forge_abi_RequestListBlocks(buffer_arg) {
   return rpc_pb.RequestListBlocks.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_forge_abi_RequestListStakes(arg) {
+  if (!(arg instanceof rpc_pb.RequestListStakes)) {
+    throw new Error('Expected argument of type forge_abi.RequestListStakes');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_forge_abi_RequestListStakes(buffer_arg) {
+  return rpc_pb.RequestListStakes.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_forge_abi_RequestListTopAccounts(arg) {
+  if (!(arg instanceof rpc_pb.RequestListTopAccounts)) {
+    throw new Error('Expected argument of type forge_abi.RequestListTopAccounts');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_forge_abi_RequestListTopAccounts(buffer_arg) {
+  return rpc_pb.RequestListTopAccounts.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_forge_abi_RequestListTransactions(arg) {
@@ -499,17 +499,6 @@ function deserialize_forge_abi_ResponseGetAssetState(buffer_arg) {
   return rpc_pb.ResponseGetAssetState.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_forge_abi_ResponseGetAssets(arg) {
-  if (!(arg instanceof rpc_pb.ResponseGetAssets)) {
-    throw new Error('Expected argument of type forge_abi.ResponseGetAssets');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_forge_abi_ResponseGetAssets(buffer_arg) {
-  return rpc_pb.ResponseGetAssets.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
 function serialize_forge_abi_ResponseGetBlock(arg) {
   if (!(arg instanceof rpc_pb.ResponseGetBlock)) {
     throw new Error('Expected argument of type forge_abi.ResponseGetBlock');
@@ -565,15 +554,15 @@ function deserialize_forge_abi_ResponseGetForgeState(buffer_arg) {
   return rpc_pb.ResponseGetForgeState.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_forge_abi_ResponseGetForgeStatistics(arg) {
-  if (!(arg instanceof rpc_pb.ResponseGetForgeStatistics)) {
-    throw new Error('Expected argument of type forge_abi.ResponseGetForgeStatistics');
+function serialize_forge_abi_ResponseGetForgeStats(arg) {
+  if (!(arg instanceof rpc_pb.ResponseGetForgeStats)) {
+    throw new Error('Expected argument of type forge_abi.ResponseGetForgeStats');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_forge_abi_ResponseGetForgeStatistics(buffer_arg) {
-  return rpc_pb.ResponseGetForgeStatistics.deserializeBinary(new Uint8Array(buffer_arg));
+function deserialize_forge_abi_ResponseGetForgeStats(buffer_arg) {
+  return rpc_pb.ResponseGetForgeStats.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_forge_abi_ResponseGetHealthStatus(arg) {
@@ -620,28 +609,6 @@ function deserialize_forge_abi_ResponseGetStakeState(buffer_arg) {
   return rpc_pb.ResponseGetStakeState.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_forge_abi_ResponseGetStakes(arg) {
-  if (!(arg instanceof rpc_pb.ResponseGetStakes)) {
-    throw new Error('Expected argument of type forge_abi.ResponseGetStakes');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_forge_abi_ResponseGetStakes(buffer_arg) {
-  return rpc_pb.ResponseGetStakes.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
-function serialize_forge_abi_ResponseGetTopAccounts(arg) {
-  if (!(arg instanceof rpc_pb.ResponseGetTopAccounts)) {
-    throw new Error('Expected argument of type forge_abi.ResponseGetTopAccounts');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_forge_abi_ResponseGetTopAccounts(buffer_arg) {
-  return rpc_pb.ResponseGetTopAccounts.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
 function serialize_forge_abi_ResponseGetTx(arg) {
   if (!(arg instanceof rpc_pb.ResponseGetTx)) {
     throw new Error('Expected argument of type forge_abi.ResponseGetTx');
@@ -675,6 +642,17 @@ function deserialize_forge_abi_ResponseGetValidatorsInfo(buffer_arg) {
   return rpc_pb.ResponseGetValidatorsInfo.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_forge_abi_ResponseListAccount(arg) {
+  if (!(arg instanceof rpc_pb.ResponseListAccount)) {
+    throw new Error('Expected argument of type forge_abi.ResponseListAccount');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_forge_abi_ResponseListAccount(buffer_arg) {
+  return rpc_pb.ResponseListAccount.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_forge_abi_ResponseListAssetTransactions(arg) {
   if (!(arg instanceof rpc_pb.ResponseListAssetTransactions)) {
     throw new Error('Expected argument of type forge_abi.ResponseListAssetTransactions');
@@ -706,6 +684,28 @@ function serialize_forge_abi_ResponseListBlocks(arg) {
 
 function deserialize_forge_abi_ResponseListBlocks(buffer_arg) {
   return rpc_pb.ResponseListBlocks.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_forge_abi_ResponseListStakes(arg) {
+  if (!(arg instanceof rpc_pb.ResponseListStakes)) {
+    throw new Error('Expected argument of type forge_abi.ResponseListStakes');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_forge_abi_ResponseListStakes(buffer_arg) {
+  return rpc_pb.ResponseListStakes.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_forge_abi_ResponseListTopAccounts(arg) {
+  if (!(arg instanceof rpc_pb.ResponseListTopAccounts)) {
+    throw new Error('Expected argument of type forge_abi.ResponseListTopAccounts');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_forge_abi_ResponseListTopAccounts(buffer_arg) {
+  return rpc_pb.ResponseListTopAccounts.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_forge_abi_ResponseListTransactions(arg) {
@@ -1224,20 +1224,20 @@ var WalletRpcService = (exports.WalletRpcService = {
 });
 
 exports.WalletRpcClient = grpc.makeGenericClientConstructor(WalletRpcService);
-var StatisticRpcService = (exports.StatisticRpcService = {
-  get_forge_statistics: {
-    path: '/forge_abi.StatisticRpc/get_forge_statistics',
+var StatsRpcService = (exports.StatsRpcService = {
+  get_forge_stats: {
+    path: '/forge_abi.StatsRpc/get_forge_stats',
     requestStream: false,
     responseStream: false,
-    requestType: rpc_pb.RequestGetForgeStatistics,
-    responseType: rpc_pb.ResponseGetForgeStatistics,
-    requestSerialize: serialize_forge_abi_RequestGetForgeStatistics,
-    requestDeserialize: deserialize_forge_abi_RequestGetForgeStatistics,
-    responseSerialize: serialize_forge_abi_ResponseGetForgeStatistics,
-    responseDeserialize: deserialize_forge_abi_ResponseGetForgeStatistics,
+    requestType: rpc_pb.RequestGetForgeStats,
+    responseType: rpc_pb.ResponseGetForgeStats,
+    requestSerialize: serialize_forge_abi_RequestGetForgeStats,
+    requestDeserialize: deserialize_forge_abi_RequestGetForgeStats,
+    responseSerialize: serialize_forge_abi_ResponseGetForgeStats,
+    responseDeserialize: deserialize_forge_abi_ResponseGetForgeStats,
   },
   list_transactions: {
-    path: '/forge_abi.StatisticRpc/list_transactions',
+    path: '/forge_abi.StatsRpc/list_transactions',
     requestStream: false,
     responseStream: false,
     requestType: rpc_pb.RequestListTransactions,
@@ -1247,41 +1247,52 @@ var StatisticRpcService = (exports.StatisticRpcService = {
     responseSerialize: serialize_forge_abi_ResponseListTransactions,
     responseDeserialize: deserialize_forge_abi_ResponseListTransactions,
   },
-  get_assets: {
-    path: '/forge_abi.StatisticRpc/get_assets',
+  list_assets: {
+    path: '/forge_abi.StatsRpc/list_assets',
     requestStream: false,
     responseStream: false,
-    requestType: rpc_pb.RequestGetAssets,
-    responseType: rpc_pb.ResponseGetAssets,
-    requestSerialize: serialize_forge_abi_RequestGetAssets,
-    requestDeserialize: deserialize_forge_abi_RequestGetAssets,
-    responseSerialize: serialize_forge_abi_ResponseGetAssets,
-    responseDeserialize: deserialize_forge_abi_ResponseGetAssets,
+    requestType: rpc_pb.RequestListAssets,
+    responseType: rpc_pb.ResponseListAssets,
+    requestSerialize: serialize_forge_abi_RequestListAssets,
+    requestDeserialize: deserialize_forge_abi_RequestListAssets,
+    responseSerialize: serialize_forge_abi_ResponseListAssets,
+    responseDeserialize: deserialize_forge_abi_ResponseListAssets,
   },
-  get_stakes: {
-    path: '/forge_abi.StatisticRpc/get_stakes',
+  list_stakes: {
+    path: '/forge_abi.StatsRpc/list_stakes',
     requestStream: false,
     responseStream: false,
-    requestType: rpc_pb.RequestGetStakes,
-    responseType: rpc_pb.ResponseGetStakes,
-    requestSerialize: serialize_forge_abi_RequestGetStakes,
-    requestDeserialize: deserialize_forge_abi_RequestGetStakes,
-    responseSerialize: serialize_forge_abi_ResponseGetStakes,
-    responseDeserialize: deserialize_forge_abi_ResponseGetStakes,
+    requestType: rpc_pb.RequestListStakes,
+    responseType: rpc_pb.ResponseListStakes,
+    requestSerialize: serialize_forge_abi_RequestListStakes,
+    requestDeserialize: deserialize_forge_abi_RequestListStakes,
+    responseSerialize: serialize_forge_abi_ResponseListStakes,
+    responseDeserialize: deserialize_forge_abi_ResponseListStakes,
   },
-  get_top_accounts: {
-    path: '/forge_abi.StatisticRpc/get_top_accounts',
+  list_account: {
+    path: '/forge_abi.StatsRpc/list_account',
     requestStream: false,
     responseStream: false,
-    requestType: rpc_pb.RequestGetTopAccounts,
-    responseType: rpc_pb.ResponseGetTopAccounts,
-    requestSerialize: serialize_forge_abi_RequestGetTopAccounts,
-    requestDeserialize: deserialize_forge_abi_RequestGetTopAccounts,
-    responseSerialize: serialize_forge_abi_ResponseGetTopAccounts,
-    responseDeserialize: deserialize_forge_abi_ResponseGetTopAccounts,
+    requestType: rpc_pb.RequestListAccount,
+    responseType: rpc_pb.ResponseListAccount,
+    requestSerialize: serialize_forge_abi_RequestListAccount,
+    requestDeserialize: deserialize_forge_abi_RequestListAccount,
+    responseSerialize: serialize_forge_abi_ResponseListAccount,
+    responseDeserialize: deserialize_forge_abi_ResponseListAccount,
+  },
+  list_top_accounts: {
+    path: '/forge_abi.StatsRpc/list_top_accounts',
+    requestStream: false,
+    responseStream: false,
+    requestType: rpc_pb.RequestListTopAccounts,
+    responseType: rpc_pb.ResponseListTopAccounts,
+    requestSerialize: serialize_forge_abi_RequestListTopAccounts,
+    requestDeserialize: deserialize_forge_abi_RequestListTopAccounts,
+    responseSerialize: serialize_forge_abi_ResponseListTopAccounts,
+    responseDeserialize: deserialize_forge_abi_ResponseListTopAccounts,
   },
   list_asset_transactions: {
-    path: '/forge_abi.StatisticRpc/list_asset_transactions',
+    path: '/forge_abi.StatsRpc/list_asset_transactions',
     requestStream: false,
     responseStream: false,
     requestType: rpc_pb.RequestListAssetTransactions,
@@ -1292,7 +1303,7 @@ var StatisticRpcService = (exports.StatisticRpcService = {
     responseDeserialize: deserialize_forge_abi_ResponseListAssetTransactions,
   },
   list_blocks: {
-    path: '/forge_abi.StatisticRpc/list_blocks',
+    path: '/forge_abi.StatsRpc/list_blocks',
     requestStream: false,
     responseStream: false,
     requestType: rpc_pb.RequestListBlocks,
@@ -1302,19 +1313,8 @@ var StatisticRpcService = (exports.StatisticRpcService = {
     responseSerialize: serialize_forge_abi_ResponseListBlocks,
     responseDeserialize: deserialize_forge_abi_ResponseListBlocks,
   },
-  list_assets: {
-    path: '/forge_abi.StatisticRpc/list_assets',
-    requestStream: false,
-    responseStream: false,
-    requestType: rpc_pb.RequestListAssets,
-    responseType: rpc_pb.ResponseListAssets,
-    requestSerialize: serialize_forge_abi_RequestListAssets,
-    requestDeserialize: deserialize_forge_abi_RequestListAssets,
-    responseSerialize: serialize_forge_abi_ResponseListAssets,
-    responseDeserialize: deserialize_forge_abi_ResponseListAssets,
-  },
   get_health_status: {
-    path: '/forge_abi.StatisticRpc/get_health_status',
+    path: '/forge_abi.StatsRpc/get_health_status',
     requestStream: false,
     responseStream: false,
     requestType: rpc_pb.RequestGetHealthStatus,
@@ -1326,4 +1326,4 @@ var StatisticRpcService = (exports.StatisticRpcService = {
   },
 });
 
-exports.StatisticRpcClient = grpc.makeGenericClientConstructor(StatisticRpcService);
+exports.StatsRpcClient = grpc.makeGenericClientConstructor(StatsRpcService);
