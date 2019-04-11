@@ -18,7 +18,7 @@ import { getExplorerUrl } from '../../../libs/util';
 import { useTokenInfo } from '../../../libs/hooks';
 
 async function fetchTopAccounts() {
-  const { accounts } = await forge().getTopAccounts();
+  const { accounts } = await forge().listTopAccounts();
   return accounts.map((x, i) => ({
     address: x.address,
     rank: i + 1,

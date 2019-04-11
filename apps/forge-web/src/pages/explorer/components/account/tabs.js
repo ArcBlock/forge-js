@@ -30,7 +30,7 @@ const tabs = {
     icon: 'gem',
     component: AssetList,
     async fetcher({ address, paging }) {
-      return forge().getAssets({
+      return forge().listAssets({
         paging,
         ownerAddress: address,
       });
