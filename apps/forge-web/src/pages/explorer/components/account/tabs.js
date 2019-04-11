@@ -30,7 +30,7 @@ const tabs = {
     icon: 'gem',
     component: AssetList,
     async fetcher({ address, paging }) {
-      return forge().getAssets({
+      return forge().listAssets({
         paging,
         ownerAddress: address,
       });
@@ -66,12 +66,17 @@ const tabs = {
   },
 };
 
-function AccountTabs({ account }) {
+function AccountTabs({ account, validator }) {
   const [selectedTab, set] = useState('txs');
   const renderTab = (name, { title, path, format, icon }) => {
-    const v = get(account, path);
+    let v = get(account, path);
     if (v === undefined) {
       return null;
+    }
+
+    // Hack: validator numTxs = numTxs - 1
+    if (validator && path === 'numTxs') {
+      v -= 1;
     }
 
     const value = typeof format === 'function' ? format(v) : v;
@@ -105,6 +110,11 @@ function AccountTabs({ account }) {
 
 AccountTabs.propTypes = {
   account: PropTypes.object.isRequired,
+  validator: PropTypes.bool,
+};
+
+AccountTabs.defaultProps = {
+  validator: false,
 };
 
 const Container = styled.div`

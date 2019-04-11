@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 const { fromRandom, WalletType } = require('@arcblock/forge-wallet');
 const Mcrypto = require('@arcblock/mcrypto');
 const { hexToBytes } = require('@arcblock/forge-util');
@@ -8,7 +9,12 @@ describe('GraphqlClient', () => {
     expect(typeof GraphqlClient).toEqual('function');
   });
 
-  const client = new GraphqlClient('https://test.abtnetwork.io/api');
+  let client;
+  if (process.env.CI === 1) {
+    client = new GraphqlClient('https://test.abtnetwork.io/api');
+  } else {
+    client = new GraphqlClient('http://127.0.0.1:8211/api');
+  }
 
   test('should have many query methods', () => {
     expect(client.getQueries().length).toBeGreaterThan(0);
@@ -23,9 +29,14 @@ describe('GraphqlClient', () => {
   });
 
   test('should support getBlock', async () => {
-    const res = await client.getBlock({ height: 2 });
-    expect(res.code).toEqual('OK');
-    expect(res.block.height).toEqual(2);
+    try {
+      const res = await client.getBlock({ height: 1 });
+      expect(res.code).toEqual('OK');
+      expect(res.block.height).toEqual('1');
+    } catch (err) {
+      console.log(err.errors);
+      expect(err).toBeFalsy();
+    }
   });
 
   test('should support getType', async () => {
@@ -42,18 +53,23 @@ describe('GraphqlClient', () => {
     });
 
     const wallet = fromRandom(type);
-    const res = await client.sendDeclareTx({
-      data: {
-        moniker: `wangshijun_${Math.round(Math.random() * 1000)}`,
-        pk: Buffer.from(hexToBytes(wallet.publicKey)),
-        type,
-        issuer: '',
-        data: null,
-      },
-      wallet,
-    });
+    try {
+      const res = await client.sendDeclareTx({
+        data: {
+          moniker: `wangshijun_${Math.round(Math.random() * 1000)}`,
+          pk: Buffer.from(hexToBytes(wallet.publicKey)),
+          type,
+          issuer: '',
+          data: null,
+        },
+        wallet,
+      });
 
-    expect(res.code).toEqual('OK');
-    expect(res.hash).toBeTruthy();
+      expect(res.code).toEqual('OK');
+      expect(res.hash).toBeTruthy();
+    } catch (err) {
+      console.log(err.errors);
+      expect(err).toBeFalsy();
+    }
   });
 });

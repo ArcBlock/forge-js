@@ -60,7 +60,7 @@ export default class TransactionsSection extends React.Component {
     last24Hours: {
       text: 'Last 24 hours',
       dateOffset: 0,
-      api: 'getForgeStatisticsByHour',
+      api: 'getForgeStatsByHour',
     },
     last7Days: {
       text: 'Last 7 days',
@@ -186,7 +186,7 @@ export default class TransactionsSection extends React.Component {
   async loadData() {
     this.setState({ loading: true });
     const dateRange = this.dateRanges[this.state.rangeKey];
-    const queryType = dateRange.api || 'getForgeStatisticsByDay';
+    const queryType = dateRange.api || 'getForgeStatsByDay';
     const endDate = dayjs().format('YYYY-MM-DD');
     const rangeParams = {
       endDate,
@@ -194,13 +194,13 @@ export default class TransactionsSection extends React.Component {
         .subtract(dateRange.offset, 'days')
         .format('YYYY-MM-DD'),
     };
-    const params = queryType === 'getForgeStatisticsByDay' ? rangeParams : { date: endDate };
+    const params = queryType === 'getForgeStatsByDay' ? rangeParams : { date: endDate };
 
-    const { forgeStatistics: rawData } = await forge()[queryType](params);
+    const { forgeStats: rawData } = await forge()[queryType](params);
     const keys = Object.keys(rawData).filter(x => Array.isArray(rawData[x]));
     const data = rawData[keys[0]].map((v, i) => {
       let time = null;
-      if (queryType === 'getForgeStatisticsByDay') {
+      if (queryType === 'getForgeStatsByDay') {
         time = dayjs(rangeParams.startDate)
           .add(i, 'days')
           .format('YYYY-MM-DD');

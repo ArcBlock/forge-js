@@ -29,7 +29,7 @@ goog.exportSymbol('proto.forge_abi.CircularQueue', null, global);
 goog.exportSymbol('proto.forge_abi.ConsensusParams', null, global);
 goog.exportSymbol('proto.forge_abi.ExtraAccountMigrate', null, global);
 goog.exportSymbol('proto.forge_abi.ExtraCreateAsset', null, global);
-goog.exportSymbol('proto.forge_abi.ForgeStatistics', null, global);
+goog.exportSymbol('proto.forge_abi.ForgeStats', null, global);
 goog.exportSymbol('proto.forge_abi.ForgeToken', null, global);
 goog.exportSymbol('proto.forge_abi.GenesisInfo', null, global);
 goog.exportSymbol('proto.forge_abi.GeoInfo', null, global);
@@ -9085,26 +9085,19 @@ proto.forge_abi.GenesisInfo.prototype.setAppHash = function(value) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.forge_abi.ForgeStatistics = function(opt_data) {
-  jspb.Message.initialize(
-    this,
-    opt_data,
-    0,
-    -1,
-    proto.forge_abi.ForgeStatistics.repeatedFields_,
-    null
-  );
+proto.forge_abi.ForgeStats = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.forge_abi.ForgeStats.repeatedFields_, null);
 };
-goog.inherits(proto.forge_abi.ForgeStatistics, jspb.Message);
+goog.inherits(proto.forge_abi.ForgeStats, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
-  proto.forge_abi.ForgeStatistics.displayName = 'proto.forge_abi.ForgeStatistics';
+  proto.forge_abi.ForgeStats.displayName = 'proto.forge_abi.ForgeStats';
 }
 /**
  * List of repeated fields within this message type.
  * @private {!Array<number>}
  * @const
  */
-proto.forge_abi.ForgeStatistics.repeatedFields_ = [
+proto.forge_abi.ForgeStats.repeatedFields_ = [
   1,
   2,
   3,
@@ -9135,8 +9128,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
    *     for transitional soy proto support: http://goto/soy-param-migration
    * @return {!Object}
    */
-  proto.forge_abi.ForgeStatistics.prototype.toObject = function(opt_includeInstance) {
-    return proto.forge_abi.ForgeStatistics.toObject(opt_includeInstance, this);
+  proto.forge_abi.ForgeStats.prototype.toObject = function(opt_includeInstance) {
+    return proto.forge_abi.ForgeStats.toObject(opt_includeInstance, this);
   };
 
   /**
@@ -9144,11 +9137,11 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
    * @param {boolean|undefined} includeInstance Whether to include the JSPB
    *     instance for transitional soy proto support:
    *     http://goto/soy-param-migration
-   * @param {!proto.forge_abi.ForgeStatistics} msg The msg instance to transform.
+   * @param {!proto.forge_abi.ForgeStats} msg The msg instance to transform.
    * @return {!Object}
    * @suppress {unusedLocalVariables} f is only used for nested messages
    */
-  proto.forge_abi.ForgeStatistics.toObject = function(includeInstance, msg) {
+  proto.forge_abi.ForgeStats.toObject = function(includeInstance, msg) {
     var f,
       obj = {
         numBlocksList: jspb.Message.getRepeatedField(msg, 1),
@@ -9187,22 +9180,22 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.forge_abi.ForgeStatistics}
+ * @return {!proto.forge_abi.ForgeStats}
  */
-proto.forge_abi.ForgeStatistics.deserializeBinary = function(bytes) {
+proto.forge_abi.ForgeStats.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.forge_abi.ForgeStatistics();
-  return proto.forge_abi.ForgeStatistics.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.forge_abi.ForgeStats();
+  return proto.forge_abi.ForgeStats.deserializeBinaryFromReader(msg, reader);
 };
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.forge_abi.ForgeStatistics} msg The message object to deserialize into.
+ * @param {!proto.forge_abi.ForgeStats} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.forge_abi.ForgeStatistics}
+ * @return {!proto.forge_abi.ForgeStats}
  */
-proto.forge_abi.ForgeStatistics.deserializeBinaryFromReader = function(msg, reader) {
+proto.forge_abi.ForgeStats.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -9302,20 +9295,20 @@ proto.forge_abi.ForgeStatistics.deserializeBinaryFromReader = function(msg, read
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.forge_abi.ForgeStatistics.prototype.serializeBinary = function() {
+proto.forge_abi.ForgeStats.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.forge_abi.ForgeStatistics.serializeBinaryToWriter(this, writer);
+  proto.forge_abi.ForgeStats.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.forge_abi.ForgeStatistics} message
+ * @param {!proto.forge_abi.ForgeStats} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.forge_abi.ForgeStatistics.serializeBinaryToWriter = function(message, writer) {
+proto.forge_abi.ForgeStats.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getNumBlocksList();
   if (f.length > 0) {
@@ -9403,12 +9396,12 @@ proto.forge_abi.ForgeStatistics.serializeBinaryToWriter = function(message, writ
  * repeated uint64 num_blocks = 1;
  * @return {!Array<number>}
  */
-proto.forge_abi.ForgeStatistics.prototype.getNumBlocksList = function() {
+proto.forge_abi.ForgeStats.prototype.getNumBlocksList = function() {
   return /** @type {!Array<number>} */ (jspb.Message.getRepeatedField(this, 1));
 };
 
 /** @param {!Array<number>} value */
-proto.forge_abi.ForgeStatistics.prototype.setNumBlocksList = function(value) {
+proto.forge_abi.ForgeStats.prototype.setNumBlocksList = function(value) {
   jspb.Message.setField(this, 1, value || []);
 };
 
@@ -9416,11 +9409,11 @@ proto.forge_abi.ForgeStatistics.prototype.setNumBlocksList = function(value) {
  * @param {number} value
  * @param {number=} opt_index
  */
-proto.forge_abi.ForgeStatistics.prototype.addNumBlocks = function(value, opt_index) {
+proto.forge_abi.ForgeStats.prototype.addNumBlocks = function(value, opt_index) {
   jspb.Message.addToRepeatedField(this, 1, value, opt_index);
 };
 
-proto.forge_abi.ForgeStatistics.prototype.clearNumBlocksList = function() {
+proto.forge_abi.ForgeStats.prototype.clearNumBlocksList = function() {
   this.setNumBlocksList([]);
 };
 
@@ -9428,12 +9421,12 @@ proto.forge_abi.ForgeStatistics.prototype.clearNumBlocksList = function() {
  * repeated uint64 num_txs = 2;
  * @return {!Array<number>}
  */
-proto.forge_abi.ForgeStatistics.prototype.getNumTxsList = function() {
+proto.forge_abi.ForgeStats.prototype.getNumTxsList = function() {
   return /** @type {!Array<number>} */ (jspb.Message.getRepeatedField(this, 2));
 };
 
 /** @param {!Array<number>} value */
-proto.forge_abi.ForgeStatistics.prototype.setNumTxsList = function(value) {
+proto.forge_abi.ForgeStats.prototype.setNumTxsList = function(value) {
   jspb.Message.setField(this, 2, value || []);
 };
 
@@ -9441,11 +9434,11 @@ proto.forge_abi.ForgeStatistics.prototype.setNumTxsList = function(value) {
  * @param {number} value
  * @param {number=} opt_index
  */
-proto.forge_abi.ForgeStatistics.prototype.addNumTxs = function(value, opt_index) {
+proto.forge_abi.ForgeStats.prototype.addNumTxs = function(value, opt_index) {
   jspb.Message.addToRepeatedField(this, 2, value, opt_index);
 };
 
-proto.forge_abi.ForgeStatistics.prototype.clearNumTxsList = function() {
+proto.forge_abi.ForgeStats.prototype.clearNumTxsList = function() {
   this.setNumTxsList([]);
 };
 
@@ -9453,7 +9446,7 @@ proto.forge_abi.ForgeStatistics.prototype.clearNumTxsList = function() {
  * repeated BigUint num_stakes = 3;
  * @return {!Array<!proto.forge_abi.BigUint>}
  */
-proto.forge_abi.ForgeStatistics.prototype.getNumStakesList = function() {
+proto.forge_abi.ForgeStats.prototype.getNumStakesList = function() {
   return /** @type{!Array<!proto.forge_abi.BigUint>} */ (jspb.Message.getRepeatedWrapperField(
     this,
     proto.forge_abi.BigUint,
@@ -9462,7 +9455,7 @@ proto.forge_abi.ForgeStatistics.prototype.getNumStakesList = function() {
 };
 
 /** @param {!Array<!proto.forge_abi.BigUint>} value */
-proto.forge_abi.ForgeStatistics.prototype.setNumStakesList = function(value) {
+proto.forge_abi.ForgeStats.prototype.setNumStakesList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 3, value);
 };
 
@@ -9471,7 +9464,7 @@ proto.forge_abi.ForgeStatistics.prototype.setNumStakesList = function(value) {
  * @param {number=} opt_index
  * @return {!proto.forge_abi.BigUint}
  */
-proto.forge_abi.ForgeStatistics.prototype.addNumStakes = function(opt_value, opt_index) {
+proto.forge_abi.ForgeStats.prototype.addNumStakes = function(opt_value, opt_index) {
   return jspb.Message.addToRepeatedWrapperField(
     this,
     3,
@@ -9481,7 +9474,7 @@ proto.forge_abi.ForgeStatistics.prototype.addNumStakes = function(opt_value, opt
   );
 };
 
-proto.forge_abi.ForgeStatistics.prototype.clearNumStakesList = function() {
+proto.forge_abi.ForgeStats.prototype.clearNumStakesList = function() {
   this.setNumStakesList([]);
 };
 
@@ -9489,12 +9482,12 @@ proto.forge_abi.ForgeStatistics.prototype.clearNumStakesList = function() {
  * repeated uint32 num_validators = 4;
  * @return {!Array<number>}
  */
-proto.forge_abi.ForgeStatistics.prototype.getNumValidatorsList = function() {
+proto.forge_abi.ForgeStats.prototype.getNumValidatorsList = function() {
   return /** @type {!Array<number>} */ (jspb.Message.getRepeatedField(this, 4));
 };
 
 /** @param {!Array<number>} value */
-proto.forge_abi.ForgeStatistics.prototype.setNumValidatorsList = function(value) {
+proto.forge_abi.ForgeStats.prototype.setNumValidatorsList = function(value) {
   jspb.Message.setField(this, 4, value || []);
 };
 
@@ -9502,11 +9495,11 @@ proto.forge_abi.ForgeStatistics.prototype.setNumValidatorsList = function(value)
  * @param {number} value
  * @param {number=} opt_index
  */
-proto.forge_abi.ForgeStatistics.prototype.addNumValidators = function(value, opt_index) {
+proto.forge_abi.ForgeStats.prototype.addNumValidators = function(value, opt_index) {
   jspb.Message.addToRepeatedField(this, 4, value, opt_index);
 };
 
-proto.forge_abi.ForgeStatistics.prototype.clearNumValidatorsList = function() {
+proto.forge_abi.ForgeStats.prototype.clearNumValidatorsList = function() {
   this.setNumValidatorsList([]);
 };
 
@@ -9514,12 +9507,12 @@ proto.forge_abi.ForgeStatistics.prototype.clearNumValidatorsList = function() {
  * repeated uint64 num_account_migrate_txs = 5;
  * @return {!Array<number>}
  */
-proto.forge_abi.ForgeStatistics.prototype.getNumAccountMigrateTxsList = function() {
+proto.forge_abi.ForgeStats.prototype.getNumAccountMigrateTxsList = function() {
   return /** @type {!Array<number>} */ (jspb.Message.getRepeatedField(this, 5));
 };
 
 /** @param {!Array<number>} value */
-proto.forge_abi.ForgeStatistics.prototype.setNumAccountMigrateTxsList = function(value) {
+proto.forge_abi.ForgeStats.prototype.setNumAccountMigrateTxsList = function(value) {
   jspb.Message.setField(this, 5, value || []);
 };
 
@@ -9527,11 +9520,11 @@ proto.forge_abi.ForgeStatistics.prototype.setNumAccountMigrateTxsList = function
  * @param {number} value
  * @param {number=} opt_index
  */
-proto.forge_abi.ForgeStatistics.prototype.addNumAccountMigrateTxs = function(value, opt_index) {
+proto.forge_abi.ForgeStats.prototype.addNumAccountMigrateTxs = function(value, opt_index) {
   jspb.Message.addToRepeatedField(this, 5, value, opt_index);
 };
 
-proto.forge_abi.ForgeStatistics.prototype.clearNumAccountMigrateTxsList = function() {
+proto.forge_abi.ForgeStats.prototype.clearNumAccountMigrateTxsList = function() {
   this.setNumAccountMigrateTxsList([]);
 };
 
@@ -9539,12 +9532,12 @@ proto.forge_abi.ForgeStatistics.prototype.clearNumAccountMigrateTxsList = functi
  * repeated uint64 num_create_asset_txs = 6;
  * @return {!Array<number>}
  */
-proto.forge_abi.ForgeStatistics.prototype.getNumCreateAssetTxsList = function() {
+proto.forge_abi.ForgeStats.prototype.getNumCreateAssetTxsList = function() {
   return /** @type {!Array<number>} */ (jspb.Message.getRepeatedField(this, 6));
 };
 
 /** @param {!Array<number>} value */
-proto.forge_abi.ForgeStatistics.prototype.setNumCreateAssetTxsList = function(value) {
+proto.forge_abi.ForgeStats.prototype.setNumCreateAssetTxsList = function(value) {
   jspb.Message.setField(this, 6, value || []);
 };
 
@@ -9552,11 +9545,11 @@ proto.forge_abi.ForgeStatistics.prototype.setNumCreateAssetTxsList = function(va
  * @param {number} value
  * @param {number=} opt_index
  */
-proto.forge_abi.ForgeStatistics.prototype.addNumCreateAssetTxs = function(value, opt_index) {
+proto.forge_abi.ForgeStats.prototype.addNumCreateAssetTxs = function(value, opt_index) {
   jspb.Message.addToRepeatedField(this, 6, value, opt_index);
 };
 
-proto.forge_abi.ForgeStatistics.prototype.clearNumCreateAssetTxsList = function() {
+proto.forge_abi.ForgeStats.prototype.clearNumCreateAssetTxsList = function() {
   this.setNumCreateAssetTxsList([]);
 };
 
@@ -9564,12 +9557,12 @@ proto.forge_abi.ForgeStatistics.prototype.clearNumCreateAssetTxsList = function(
  * repeated uint32 num_consensus_upgrade_txs = 7;
  * @return {!Array<number>}
  */
-proto.forge_abi.ForgeStatistics.prototype.getNumConsensusUpgradeTxsList = function() {
+proto.forge_abi.ForgeStats.prototype.getNumConsensusUpgradeTxsList = function() {
   return /** @type {!Array<number>} */ (jspb.Message.getRepeatedField(this, 7));
 };
 
 /** @param {!Array<number>} value */
-proto.forge_abi.ForgeStatistics.prototype.setNumConsensusUpgradeTxsList = function(value) {
+proto.forge_abi.ForgeStats.prototype.setNumConsensusUpgradeTxsList = function(value) {
   jspb.Message.setField(this, 7, value || []);
 };
 
@@ -9577,11 +9570,11 @@ proto.forge_abi.ForgeStatistics.prototype.setNumConsensusUpgradeTxsList = functi
  * @param {number} value
  * @param {number=} opt_index
  */
-proto.forge_abi.ForgeStatistics.prototype.addNumConsensusUpgradeTxs = function(value, opt_index) {
+proto.forge_abi.ForgeStats.prototype.addNumConsensusUpgradeTxs = function(value, opt_index) {
   jspb.Message.addToRepeatedField(this, 7, value, opt_index);
 };
 
-proto.forge_abi.ForgeStatistics.prototype.clearNumConsensusUpgradeTxsList = function() {
+proto.forge_abi.ForgeStats.prototype.clearNumConsensusUpgradeTxsList = function() {
   this.setNumConsensusUpgradeTxsList([]);
 };
 
@@ -9589,12 +9582,12 @@ proto.forge_abi.ForgeStatistics.prototype.clearNumConsensusUpgradeTxsList = func
  * repeated uint64 num_declare_txs = 8;
  * @return {!Array<number>}
  */
-proto.forge_abi.ForgeStatistics.prototype.getNumDeclareTxsList = function() {
+proto.forge_abi.ForgeStats.prototype.getNumDeclareTxsList = function() {
   return /** @type {!Array<number>} */ (jspb.Message.getRepeatedField(this, 8));
 };
 
 /** @param {!Array<number>} value */
-proto.forge_abi.ForgeStatistics.prototype.setNumDeclareTxsList = function(value) {
+proto.forge_abi.ForgeStats.prototype.setNumDeclareTxsList = function(value) {
   jspb.Message.setField(this, 8, value || []);
 };
 
@@ -9602,11 +9595,11 @@ proto.forge_abi.ForgeStatistics.prototype.setNumDeclareTxsList = function(value)
  * @param {number} value
  * @param {number=} opt_index
  */
-proto.forge_abi.ForgeStatistics.prototype.addNumDeclareTxs = function(value, opt_index) {
+proto.forge_abi.ForgeStats.prototype.addNumDeclareTxs = function(value, opt_index) {
   jspb.Message.addToRepeatedField(this, 8, value, opt_index);
 };
 
-proto.forge_abi.ForgeStatistics.prototype.clearNumDeclareTxsList = function() {
+proto.forge_abi.ForgeStats.prototype.clearNumDeclareTxsList = function() {
   this.setNumDeclareTxsList([]);
 };
 
@@ -9614,12 +9607,12 @@ proto.forge_abi.ForgeStatistics.prototype.clearNumDeclareTxsList = function() {
  * repeated uint64 num_declare_file_txs = 9;
  * @return {!Array<number>}
  */
-proto.forge_abi.ForgeStatistics.prototype.getNumDeclareFileTxsList = function() {
+proto.forge_abi.ForgeStats.prototype.getNumDeclareFileTxsList = function() {
   return /** @type {!Array<number>} */ (jspb.Message.getRepeatedField(this, 9));
 };
 
 /** @param {!Array<number>} value */
-proto.forge_abi.ForgeStatistics.prototype.setNumDeclareFileTxsList = function(value) {
+proto.forge_abi.ForgeStats.prototype.setNumDeclareFileTxsList = function(value) {
   jspb.Message.setField(this, 9, value || []);
 };
 
@@ -9627,11 +9620,11 @@ proto.forge_abi.ForgeStatistics.prototype.setNumDeclareFileTxsList = function(va
  * @param {number} value
  * @param {number=} opt_index
  */
-proto.forge_abi.ForgeStatistics.prototype.addNumDeclareFileTxs = function(value, opt_index) {
+proto.forge_abi.ForgeStats.prototype.addNumDeclareFileTxs = function(value, opt_index) {
   jspb.Message.addToRepeatedField(this, 9, value, opt_index);
 };
 
-proto.forge_abi.ForgeStatistics.prototype.clearNumDeclareFileTxsList = function() {
+proto.forge_abi.ForgeStats.prototype.clearNumDeclareFileTxsList = function() {
   this.setNumDeclareFileTxsList([]);
 };
 
@@ -9639,12 +9632,12 @@ proto.forge_abi.ForgeStatistics.prototype.clearNumDeclareFileTxsList = function(
  * repeated uint64 num_exchange_txs = 10;
  * @return {!Array<number>}
  */
-proto.forge_abi.ForgeStatistics.prototype.getNumExchangeTxsList = function() {
+proto.forge_abi.ForgeStats.prototype.getNumExchangeTxsList = function() {
   return /** @type {!Array<number>} */ (jspb.Message.getRepeatedField(this, 10));
 };
 
 /** @param {!Array<number>} value */
-proto.forge_abi.ForgeStatistics.prototype.setNumExchangeTxsList = function(value) {
+proto.forge_abi.ForgeStats.prototype.setNumExchangeTxsList = function(value) {
   jspb.Message.setField(this, 10, value || []);
 };
 
@@ -9652,11 +9645,11 @@ proto.forge_abi.ForgeStatistics.prototype.setNumExchangeTxsList = function(value
  * @param {number} value
  * @param {number=} opt_index
  */
-proto.forge_abi.ForgeStatistics.prototype.addNumExchangeTxs = function(value, opt_index) {
+proto.forge_abi.ForgeStats.prototype.addNumExchangeTxs = function(value, opt_index) {
   jspb.Message.addToRepeatedField(this, 10, value, opt_index);
 };
 
-proto.forge_abi.ForgeStatistics.prototype.clearNumExchangeTxsList = function() {
+proto.forge_abi.ForgeStats.prototype.clearNumExchangeTxsList = function() {
   this.setNumExchangeTxsList([]);
 };
 
@@ -9664,12 +9657,12 @@ proto.forge_abi.ForgeStatistics.prototype.clearNumExchangeTxsList = function() {
  * repeated uint64 num_stake_txs = 11;
  * @return {!Array<number>}
  */
-proto.forge_abi.ForgeStatistics.prototype.getNumStakeTxsList = function() {
+proto.forge_abi.ForgeStats.prototype.getNumStakeTxsList = function() {
   return /** @type {!Array<number>} */ (jspb.Message.getRepeatedField(this, 11));
 };
 
 /** @param {!Array<number>} value */
-proto.forge_abi.ForgeStatistics.prototype.setNumStakeTxsList = function(value) {
+proto.forge_abi.ForgeStats.prototype.setNumStakeTxsList = function(value) {
   jspb.Message.setField(this, 11, value || []);
 };
 
@@ -9677,11 +9670,11 @@ proto.forge_abi.ForgeStatistics.prototype.setNumStakeTxsList = function(value) {
  * @param {number} value
  * @param {number=} opt_index
  */
-proto.forge_abi.ForgeStatistics.prototype.addNumStakeTxs = function(value, opt_index) {
+proto.forge_abi.ForgeStats.prototype.addNumStakeTxs = function(value, opt_index) {
   jspb.Message.addToRepeatedField(this, 11, value, opt_index);
 };
 
-proto.forge_abi.ForgeStatistics.prototype.clearNumStakeTxsList = function() {
+proto.forge_abi.ForgeStats.prototype.clearNumStakeTxsList = function() {
   this.setNumStakeTxsList([]);
 };
 
@@ -9689,12 +9682,12 @@ proto.forge_abi.ForgeStatistics.prototype.clearNumStakeTxsList = function() {
  * repeated uint32 num_sys_upgrade_txs = 12;
  * @return {!Array<number>}
  */
-proto.forge_abi.ForgeStatistics.prototype.getNumSysUpgradeTxsList = function() {
+proto.forge_abi.ForgeStats.prototype.getNumSysUpgradeTxsList = function() {
   return /** @type {!Array<number>} */ (jspb.Message.getRepeatedField(this, 12));
 };
 
 /** @param {!Array<number>} value */
-proto.forge_abi.ForgeStatistics.prototype.setNumSysUpgradeTxsList = function(value) {
+proto.forge_abi.ForgeStats.prototype.setNumSysUpgradeTxsList = function(value) {
   jspb.Message.setField(this, 12, value || []);
 };
 
@@ -9702,11 +9695,11 @@ proto.forge_abi.ForgeStatistics.prototype.setNumSysUpgradeTxsList = function(val
  * @param {number} value
  * @param {number=} opt_index
  */
-proto.forge_abi.ForgeStatistics.prototype.addNumSysUpgradeTxs = function(value, opt_index) {
+proto.forge_abi.ForgeStats.prototype.addNumSysUpgradeTxs = function(value, opt_index) {
   jspb.Message.addToRepeatedField(this, 12, value, opt_index);
 };
 
-proto.forge_abi.ForgeStatistics.prototype.clearNumSysUpgradeTxsList = function() {
+proto.forge_abi.ForgeStats.prototype.clearNumSysUpgradeTxsList = function() {
   this.setNumSysUpgradeTxsList([]);
 };
 
@@ -9714,12 +9707,12 @@ proto.forge_abi.ForgeStatistics.prototype.clearNumSysUpgradeTxsList = function()
  * repeated uint64 num_transfer_txs = 13;
  * @return {!Array<number>}
  */
-proto.forge_abi.ForgeStatistics.prototype.getNumTransferTxsList = function() {
+proto.forge_abi.ForgeStats.prototype.getNumTransferTxsList = function() {
   return /** @type {!Array<number>} */ (jspb.Message.getRepeatedField(this, 13));
 };
 
 /** @param {!Array<number>} value */
-proto.forge_abi.ForgeStatistics.prototype.setNumTransferTxsList = function(value) {
+proto.forge_abi.ForgeStats.prototype.setNumTransferTxsList = function(value) {
   jspb.Message.setField(this, 13, value || []);
 };
 
@@ -9727,11 +9720,11 @@ proto.forge_abi.ForgeStatistics.prototype.setNumTransferTxsList = function(value
  * @param {number} value
  * @param {number=} opt_index
  */
-proto.forge_abi.ForgeStatistics.prototype.addNumTransferTxs = function(value, opt_index) {
+proto.forge_abi.ForgeStats.prototype.addNumTransferTxs = function(value, opt_index) {
   jspb.Message.addToRepeatedField(this, 13, value, opt_index);
 };
 
-proto.forge_abi.ForgeStatistics.prototype.clearNumTransferTxsList = function() {
+proto.forge_abi.ForgeStats.prototype.clearNumTransferTxsList = function() {
   this.setNumTransferTxsList([]);
 };
 
@@ -9739,12 +9732,12 @@ proto.forge_abi.ForgeStatistics.prototype.clearNumTransferTxsList = function() {
  * repeated uint64 num_update_asset_txs = 14;
  * @return {!Array<number>}
  */
-proto.forge_abi.ForgeStatistics.prototype.getNumUpdateAssetTxsList = function() {
+proto.forge_abi.ForgeStats.prototype.getNumUpdateAssetTxsList = function() {
   return /** @type {!Array<number>} */ (jspb.Message.getRepeatedField(this, 14));
 };
 
 /** @param {!Array<number>} value */
-proto.forge_abi.ForgeStatistics.prototype.setNumUpdateAssetTxsList = function(value) {
+proto.forge_abi.ForgeStats.prototype.setNumUpdateAssetTxsList = function(value) {
   jspb.Message.setField(this, 14, value || []);
 };
 
@@ -9752,11 +9745,11 @@ proto.forge_abi.ForgeStatistics.prototype.setNumUpdateAssetTxsList = function(va
  * @param {number} value
  * @param {number=} opt_index
  */
-proto.forge_abi.ForgeStatistics.prototype.addNumUpdateAssetTxs = function(value, opt_index) {
+proto.forge_abi.ForgeStats.prototype.addNumUpdateAssetTxs = function(value, opt_index) {
   jspb.Message.addToRepeatedField(this, 14, value, opt_index);
 };
 
-proto.forge_abi.ForgeStatistics.prototype.clearNumUpdateAssetTxsList = function() {
+proto.forge_abi.ForgeStats.prototype.clearNumUpdateAssetTxsList = function() {
   this.setNumUpdateAssetTxsList([]);
 };
 
@@ -9764,12 +9757,12 @@ proto.forge_abi.ForgeStatistics.prototype.clearNumUpdateAssetTxsList = function(
  * repeated uint64 num_consume_asset_txs = 15;
  * @return {!Array<number>}
  */
-proto.forge_abi.ForgeStatistics.prototype.getNumConsumeAssetTxsList = function() {
+proto.forge_abi.ForgeStats.prototype.getNumConsumeAssetTxsList = function() {
   return /** @type {!Array<number>} */ (jspb.Message.getRepeatedField(this, 15));
 };
 
 /** @param {!Array<number>} value */
-proto.forge_abi.ForgeStatistics.prototype.setNumConsumeAssetTxsList = function(value) {
+proto.forge_abi.ForgeStats.prototype.setNumConsumeAssetTxsList = function(value) {
   jspb.Message.setField(this, 15, value || []);
 };
 
@@ -9777,11 +9770,11 @@ proto.forge_abi.ForgeStatistics.prototype.setNumConsumeAssetTxsList = function(v
  * @param {number} value
  * @param {number=} opt_index
  */
-proto.forge_abi.ForgeStatistics.prototype.addNumConsumeAssetTxs = function(value, opt_index) {
+proto.forge_abi.ForgeStats.prototype.addNumConsumeAssetTxs = function(value, opt_index) {
   jspb.Message.addToRepeatedField(this, 15, value, opt_index);
 };
 
-proto.forge_abi.ForgeStatistics.prototype.clearNumConsumeAssetTxsList = function() {
+proto.forge_abi.ForgeStats.prototype.clearNumConsumeAssetTxsList = function() {
   this.setNumConsumeAssetTxsList([]);
 };
 
@@ -9789,12 +9782,12 @@ proto.forge_abi.ForgeStatistics.prototype.clearNumConsumeAssetTxsList = function
  * repeated uint64 num_poke_txs = 16;
  * @return {!Array<number>}
  */
-proto.forge_abi.ForgeStatistics.prototype.getNumPokeTxsList = function() {
+proto.forge_abi.ForgeStats.prototype.getNumPokeTxsList = function() {
   return /** @type {!Array<number>} */ (jspb.Message.getRepeatedField(this, 16));
 };
 
 /** @param {!Array<number>} value */
-proto.forge_abi.ForgeStatistics.prototype.setNumPokeTxsList = function(value) {
+proto.forge_abi.ForgeStats.prototype.setNumPokeTxsList = function(value) {
   jspb.Message.setField(this, 16, value || []);
 };
 
@@ -9802,11 +9795,11 @@ proto.forge_abi.ForgeStatistics.prototype.setNumPokeTxsList = function(value) {
  * @param {number} value
  * @param {number=} opt_index
  */
-proto.forge_abi.ForgeStatistics.prototype.addNumPokeTxs = function(value, opt_index) {
+proto.forge_abi.ForgeStats.prototype.addNumPokeTxs = function(value, opt_index) {
   jspb.Message.addToRepeatedField(this, 16, value, opt_index);
 };
 
-proto.forge_abi.ForgeStatistics.prototype.clearNumPokeTxsList = function() {
+proto.forge_abi.ForgeStats.prototype.clearNumPokeTxsList = function() {
   this.setNumPokeTxsList([]);
 };
 
@@ -9814,12 +9807,12 @@ proto.forge_abi.ForgeStatistics.prototype.clearNumPokeTxsList = function() {
  * repeated uint32 tps = 17;
  * @return {!Array<number>}
  */
-proto.forge_abi.ForgeStatistics.prototype.getTpsList = function() {
+proto.forge_abi.ForgeStats.prototype.getTpsList = function() {
   return /** @type {!Array<number>} */ (jspb.Message.getRepeatedField(this, 17));
 };
 
 /** @param {!Array<number>} value */
-proto.forge_abi.ForgeStatistics.prototype.setTpsList = function(value) {
+proto.forge_abi.ForgeStats.prototype.setTpsList = function(value) {
   jspb.Message.setField(this, 17, value || []);
 };
 
@@ -9827,11 +9820,11 @@ proto.forge_abi.ForgeStatistics.prototype.setTpsList = function(value) {
  * @param {number} value
  * @param {number=} opt_index
  */
-proto.forge_abi.ForgeStatistics.prototype.addTps = function(value, opt_index) {
+proto.forge_abi.ForgeStats.prototype.addTps = function(value, opt_index) {
   jspb.Message.addToRepeatedField(this, 17, value, opt_index);
 };
 
-proto.forge_abi.ForgeStatistics.prototype.clearTpsList = function() {
+proto.forge_abi.ForgeStats.prototype.clearTpsList = function() {
   this.setTpsList([]);
 };
 
@@ -9839,12 +9832,12 @@ proto.forge_abi.ForgeStatistics.prototype.clearTpsList = function() {
  * optional uint32 max_tps = 18;
  * @return {number}
  */
-proto.forge_abi.ForgeStatistics.prototype.getMaxTps = function() {
+proto.forge_abi.ForgeStats.prototype.getMaxTps = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 18, 0));
 };
 
 /** @param {number} value */
-proto.forge_abi.ForgeStatistics.prototype.setMaxTps = function(value) {
+proto.forge_abi.ForgeStats.prototype.setMaxTps = function(value) {
   jspb.Message.setProto3IntField(this, 18, value);
 };
 
@@ -9852,12 +9845,12 @@ proto.forge_abi.ForgeStatistics.prototype.setMaxTps = function(value) {
  * optional uint32 avg_tps = 19;
  * @return {number}
  */
-proto.forge_abi.ForgeStatistics.prototype.getAvgTps = function() {
+proto.forge_abi.ForgeStats.prototype.getAvgTps = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 19, 0));
 };
 
 /** @param {number} value */
-proto.forge_abi.ForgeStatistics.prototype.setAvgTps = function(value) {
+proto.forge_abi.ForgeStats.prototype.setAvgTps = function(value) {
   jspb.Message.setProto3IntField(this, 19, value);
 };
 
@@ -9865,12 +9858,12 @@ proto.forge_abi.ForgeStatistics.prototype.setAvgTps = function(value) {
  * optional float avg_block_time = 20;
  * @return {number}
  */
-proto.forge_abi.ForgeStatistics.prototype.getAvgBlockTime = function() {
+proto.forge_abi.ForgeStats.prototype.getAvgBlockTime = function() {
   return /** @type {number} */ (+jspb.Message.getFieldWithDefault(this, 20, 0.0));
 };
 
 /** @param {number} value */
-proto.forge_abi.ForgeStatistics.prototype.setAvgBlockTime = function(value) {
+proto.forge_abi.ForgeStats.prototype.setAvgBlockTime = function(value) {
   jspb.Message.setProto3FloatField(this, 20, value);
 };
 

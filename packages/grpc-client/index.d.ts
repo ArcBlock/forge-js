@@ -104,30 +104,30 @@ declare class RpcClient {
   declareNode(
     request: forge_abi.RequestDeclareNode
   ): RpcClient.UnaryResult<forge_abi.ResponseDeclareNode>;
-  getForgeStatistics(
-    request: forge_abi.RequestGetForgeStatistics
-  ): RpcClient.UnaryResult<forge_abi.ResponseGetForgeStatistics>;
+  getForgeStats(
+    request: forge_abi.RequestGetForgeStats
+  ): RpcClient.UnaryResult<forge_abi.ResponseGetForgeStats>;
   listTransactions(
     request: forge_abi.RequestListTransactions
   ): RpcClient.UnaryResult<forge_abi.ResponseListTransactions>;
-  getAssets(
-    request: forge_abi.RequestGetAssets
-  ): RpcClient.UnaryResult<forge_abi.ResponseGetAssets>;
-  getStakes(
-    request: forge_abi.RequestGetStakes
-  ): RpcClient.UnaryResult<forge_abi.ResponseGetStakes>;
-  getTopAccounts(
-    request: forge_abi.RequestGetTopAccounts
-  ): RpcClient.UnaryResult<forge_abi.ResponseGetTopAccounts>;
+  listAssets(
+    request: forge_abi.RequestListAssets
+  ): RpcClient.UnaryResult<forge_abi.ResponseListAssets>;
+  listStakes(
+    request: forge_abi.RequestListStakes
+  ): RpcClient.UnaryResult<forge_abi.ResponseListStakes>;
+  listAccount(
+    request: forge_abi.RequestListAccount
+  ): RpcClient.UnaryResult<forge_abi.ResponseListAccount>;
+  listTopAccounts(
+    request: forge_abi.RequestListTopAccounts
+  ): RpcClient.UnaryResult<forge_abi.ResponseListTopAccounts>;
   listAssetTransactions(
     request: forge_abi.RequestListAssetTransactions
   ): RpcClient.UnaryResult<forge_abi.ResponseListAssetTransactions>;
   listBlocks(
     request: forge_abi.RequestListBlocks
   ): RpcClient.UnaryResult<forge_abi.ResponseListBlocks>;
-  listAssets(
-    request: forge_abi.RequestListAssets
-  ): RpcClient.UnaryResult<forge_abi.ResponseListAssets>;
   getHealthStatus(
     request: forge_abi.RequestGetHealthStatus
   ): RpcClient.UnaryResult<forge_abi.ResponseGetHealthStatus>;
@@ -679,7 +679,7 @@ declare namespace forge_abi {
     appHash: string;
   }
 
-  export interface ForgeStatistics {
+  export interface ForgeStats {
     numBlocks: Array<number>;
     numTxs: Array<number>;
     numStakes: Array<forge_abi.BigUint>;
@@ -885,15 +885,14 @@ declare namespace forge_abi {
 
   export interface RequestGetBlocks {
     paging: forge_abi.PageInput;
-    minHeight: number;
-    maxHeight: number;
+    heightFilter: forge_abi.RangeFilter;
     emptyExcluded: forge_abi.bool;
   }
 
   export interface ResponseGetBlocks {
     code: forge_abi.StatusCode;
     page: forge_abi.PageInfo;
-    blocks: Array<forge_abi.BlockInfo>;
+    blocks: Array<forge_abi.BlockInfoSimple>;
   }
 
   export interface RequestCreateWallet {
@@ -1050,11 +1049,12 @@ declare namespace forge_abi {
   }
 
   export interface RequestGetUnconfirmedTxs {
-    limit: number;
+    paging: forge_abi.PageInput;
   }
 
   export interface ResponseGetUnconfirmedTxs {
     code: forge_abi.StatusCode;
+    page: forge_abi.PageInfo;
     unconfirmedTxs: forge_abi.UnconfirmedTxs;
   }
 
@@ -1124,14 +1124,14 @@ declare namespace forge_abi {
     date: string;
   }
 
-  export interface RequestGetForgeStatistics {
+  export interface RequestGetForgeStats {
     dayInfo: forge_abi.ByDay;
     date: forge_abi.ByHour;
   }
 
-  export interface ResponseGetForgeStatistics {
+  export interface ResponseGetForgeStats {
     code: forge_abi.StatusCode;
-    forgeStatistics: forge_abi.ForgeStatistics;
+    forgeStats: forge_abi.ForgeStats;
   }
 
   export interface RequestListTransactions {
@@ -1170,33 +1170,42 @@ declare namespace forge_abi {
     signature: Uint8Array;
   }
 
-  export interface RequestGetAssets {
+  export interface RequestListAssets {
     paging: forge_abi.PageInput;
     ownerAddress: string;
   }
 
-  export interface ResponseGetAssets {
+  export interface ResponseListAssets {
     code: forge_abi.StatusCode;
     page: forge_abi.PageInfo;
     assets: Array<forge_abi.IndexedAssetState>;
   }
 
-  export interface RequestGetStakes {
+  export interface RequestListStakes {
     paging: forge_abi.PageInput;
     addressFilter: forge_abi.AddressFilter;
   }
 
-  export interface ResponseGetStakes {
+  export interface ResponseListStakes {
     code: forge_abi.StatusCode;
     page: forge_abi.PageInfo;
     stakes: Array<forge_abi.IndexedStakeState>;
   }
 
-  export interface RequestGetTopAccounts {
+  export interface RequestListAccount {
+    ownerAddress: string;
+  }
+
+  export interface ResponseListAccount {
+    code: forge_abi.StatusCode;
+    account: forge_abi.IndexedAccountState;
+  }
+
+  export interface RequestListTopAccounts {
     paging: forge_abi.PageInput;
   }
 
-  export interface ResponseGetTopAccounts {
+  export interface ResponseListTopAccounts {
     code: forge_abi.StatusCode;
     page: forge_abi.PageInfo;
     accounts: Array<forge_abi.IndexedAccountState>;
@@ -1217,27 +1226,15 @@ declare namespace forge_abi {
     paging: forge_abi.PageInput;
     proposer: string;
     timeFilter: forge_abi.TimeFilter;
-    heightFilter: forge_abi.HeightFilter;
-    numTxsFilter: forge_abi.NumTxsFilter;
-    numInvalidTxsFilter: forge_abi.NumInvalidTxsFilter;
+    heightFilter: forge_abi.RangeFilter;
+    numTxsFilter: forge_abi.RangeFilter;
+    numInvalidTxsFilter: forge_abi.RangeFilter;
   }
 
   export interface ResponseListBlocks {
     code: forge_abi.StatusCode;
     page: forge_abi.PageInfo;
     blocks: Array<forge_abi.IndexedBlock>;
-  }
-
-  export interface RequestListAssets {
-    paging: forge_abi.PageInput;
-    ownerAddress: string;
-  }
-
-  export interface ResponseListAssets {
-    code: forge_abi.StatusCode;
-    page: forge_abi.PageInfo;
-    account: forge_abi.IndexedAccountState;
-    assets: Array<forge_abi.IndexedAssetState>;
   }
 
   export interface RequestGetHealthStatus {}
@@ -1250,6 +1247,7 @@ declare namespace forge_abi {
   export interface AccountMigrateTx {
     pk: Uint8Array;
     type: forge_abi.WalletType;
+    address: string;
     data: google.protobuf.Any;
   }
 
@@ -1275,6 +1273,7 @@ declare namespace forge_abi {
     transferrable: forge_abi.bool;
     ttl: number;
     parent: string;
+    address: string;
   }
 
   export interface DeclareTx {
@@ -1385,11 +1384,6 @@ declare namespace forge_abi {
     time: string;
     type: string;
     tx: forge_abi.Transaction;
-    consumeAsset: forge_abi.IndexedConsumeAsset;
-    createAsset: forge_abi.IndexedCreateAsset;
-    exchange: forge_abi.IndexedExchange;
-    transfer: forge_abi.IndexedTransfer;
-    updateAsset: forge_abi.IndexedUpdateAsset;
     valid: forge_abi.bool;
     code: forge_abi.StatusCode;
   }
@@ -1429,42 +1423,6 @@ declare namespace forge_abi {
     renaissanceTime: string;
     message: string;
     type: number;
-  }
-
-  export interface IndexedConsumeAsset {
-    asset: string;
-  }
-
-  export interface IndexedCreateAsset {
-    asset: string;
-  }
-
-  export interface IndexedExchange {
-    senderAssets: Array<string>;
-    receiverAssets: Array<string>;
-  }
-
-  export interface IndexedTransfer {
-    assets: Array<string>;
-  }
-
-  export interface IndexedUpdateAsset {
-    asset: string;
-  }
-
-  export interface HeightFilter {
-    fromHeight: number;
-    toHeight: number;
-  }
-
-  export interface NumTxsFilter {
-    minNumTxs: number;
-    maxNumTxs: number;
-  }
-
-  export interface NumInvalidTxsFilter {
-    minNumInvalidTxs: number;
-    maxNumInvalidTxs: number;
   }
 
   export interface IndexedBlock {
@@ -1525,6 +1483,11 @@ declare namespace forge_abi {
 
   export interface ValidityFilter {
     validity: forge_abi.Validity;
+  }
+
+  export interface RangeFilter {
+    from: number;
+    to: number;
   }
 }
 

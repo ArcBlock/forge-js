@@ -102,5 +102,15 @@ export function useStartupInfo() {
     }, 0);
   }
 
+  useInterval(async () => {
+    try {
+      const result = await fetchInfo();
+      localStorage.setItem('token', JSON.stringify(result.token));
+      localStorage.setItem('node', JSON.stringify(result.node));
+    } catch (err) {
+      // Do nothing
+    }
+  }, 5000);
+
   return state;
 }

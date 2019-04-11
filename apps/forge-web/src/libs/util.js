@@ -79,6 +79,13 @@ export function selectNetwork() {
 }
 
 export function getGraphQLEndpoint() {
+  if (process.env.REACT_APP_NAME === 'explorer') {
+    const current = selectNetwork();
+    if (current && networks[current]) {
+      return networks[current].endpoint;
+    }
+  }
+
   if (window.localStorage) {
     if (window.localStorage.getItem('GQL_ENDPOINT')) {
       return window.localStorage.getItem('GQL_ENDPOINT');
@@ -88,13 +95,6 @@ export function getGraphQLEndpoint() {
   if (process.env.NODE_ENV === 'production') {
     const { protocol, host } = window.location;
     return `${protocol}//${host}/api`;
-  }
-
-  if (process.env.REACT_APP_NAME === 'explorer') {
-    const current = selectNetwork();
-    if (current && networks[current]) {
-      return networks[current].endpoint;
-    }
   }
 
   return 'http://localhost:8210/api'; // local

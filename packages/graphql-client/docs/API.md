@@ -1,6 +1,6 @@
 # Forge GraphQL API List
 
-> Updated on 2019-04-09T08:43:19.363Z
+> Updated on 2019-04-11T08:42:47.371Z
 
 
 ## Table of Contents
@@ -8,28 +8,27 @@
 * [Queries](#queries)
   * [getAccountState](#getaccountstate)
   * [getAssetState](#getassetstate)
-  * [getAssets](#getassets)
   * [getBlock](#getblock)
   * [getBlocks](#getblocks)
   * [getChainInfo](#getchaininfo)
   * [getConfig](#getconfig)
   * [getForgeState](#getforgestate)
-  * [getForgeStatistics](#getforgestatistics)
-  * [getForgeStatisticsByDay](#getforgestatisticsbyday)
-  * [getForgeStatisticsByHour](#getforgestatisticsbyhour)
+  * [getForgeStats](#getforgestats)
+  * [getForgeStatsByDay](#getforgestatsbyday)
+  * [getForgeStatsByHour](#getforgestatsbyhour)
   * [getHealthStatus](#gethealthstatus)
   * [getNetInfo](#getnetinfo)
   * [getNodeInfo](#getnodeinfo)
   * [getSimulatorStatus](#getsimulatorstatus)
   * [getStakeState](#getstakestate)
-  * [getStakes](#getstakes)
-  * [getTopAccounts](#gettopaccounts)
   * [getTx](#gettx)
   * [getUnconfirmedTxs](#getunconfirmedtxs)
   * [getValidatorsInfo](#getvalidatorsinfo)
   * [listAssetTransactions](#listassettransactions)
   * [listAssets](#listassets)
   * [listBlocks](#listblocks)
+  * [listStakes](#liststakes)
+  * [listTopAccounts](#listtopaccounts)
   * [listTransactions](#listtransactions)
 * [Subscriptions](#subscriptions)
   * [subscribe](#subscribe)
@@ -54,7 +53,7 @@
 
 ```graphql
 {
-  getAccountState(address: "abc", height: 123, keys: ["abc"]) {
+  getAccountState(address: "abc", height: "abc", keys: ["abc"]) {
     code
     state {
       address
@@ -168,6 +167,7 @@
                 }
               }
               ... on CreateAssetTx {
+                address
                 moniker
                 parent
                 readonly
@@ -209,6 +209,7 @@
                 }
               }
               ... on AccountMigrateTx {
+                address
                 pk
                 data {
                   typeUrl
@@ -322,6 +323,7 @@
                 }
               }
               ... on CreateAssetTx {
+                address
                 moniker
                 parent
                 readonly
@@ -363,6 +365,7 @@
                 }
               }
               ... on AccountMigrateTx {
+                address
                 pk
                 data {
                   typeUrl
@@ -382,13 +385,6 @@
       data {
         typeUrl
         value
-      }
-      pinnedFiles {
-        circular
-        fifo
-        items
-        maxItems
-        typeUrl
       }
       poke {
         amount
@@ -437,7 +433,7 @@
 
 ```graphql
 {
-  getAssetState(address: "abc", height: 123, keys: ["abc"]) {
+  getAssetState(address: "abc", height: "abc", keys: ["abc"]) {
     code
     state {
       address
@@ -549,6 +545,7 @@
                 }
               }
               ... on CreateAssetTx {
+                address
                 moniker
                 parent
                 readonly
@@ -590,6 +587,7 @@
                 }
               }
               ... on AccountMigrateTx {
+                address
                 pk
                 data {
                   typeUrl
@@ -703,6 +701,7 @@
                 }
               }
               ... on CreateAssetTx {
+                address
                 moniker
                 parent
                 readonly
@@ -744,6 +743,7 @@
                 }
               }
               ... on AccountMigrateTx {
+                address
                 pk
                 data {
                   typeUrl
@@ -788,36 +788,6 @@
 }
 ```
 
-### getAssets
-
-#### Arguments
-
-* **ownerAddress**, optional, 
-* **paging**, optional, 
-
-#### Result Format
-
-```graphql
-{
-  getAssets(ownerAddress: "abc") {
-    code
-    assets {
-      address
-      genesisTime
-      moniker
-      owner
-      readonly
-      renaissanceTime
-    }
-    page {
-      cursor
-      next
-      total
-    }
-  }
-}
-```
-
 ### getBlock
 
 #### Arguments
@@ -828,7 +798,7 @@
 
 ```graphql
 {
-  getBlock(height: 123) {
+  getBlock(height: "abc") {
     code
     block {
       appHash
@@ -944,6 +914,7 @@
               }
             }
             ... on CreateAssetTx {
+              address
               moniker
               parent
               readonly
@@ -985,6 +956,7 @@
               }
             }
             ... on AccountMigrateTx {
+              address
               pk
               data {
                 typeUrl
@@ -1105,6 +1077,7 @@
               }
             }
             ... on CreateAssetTx {
+              address
               moniker
               parent
               readonly
@@ -1146,6 +1119,7 @@
               }
             }
             ... on AccountMigrateTx {
+              address
               pk
               data {
                 typeUrl
@@ -1175,15 +1149,14 @@
 #### Arguments
 
 * **emptyExcluded**, optional, 
-* **maxHeight**, optional, 
-* **minHeight**, optional, 
+* **heightFilter**, optional, 
 * **paging**, optional, 
 
 #### Result Format
 
 ```graphql
 {
-  getBlocks(emptyExcluded: true, maxHeight: 123, minHeight: 123) {
+  getBlocks(emptyExcluded: true) {
     code
     blocks {
       appHash
@@ -1201,319 +1174,11 @@
       totalTxs
       txsHashes
       validatorsHash
-      invalidTxs {
-        code
-        hash
-        height
-        index
-        time
-        accountMigrate {
-          address
-        }
-        createAsset {
-          asset
-        }
-        tags {
-          key
-          value
-        }
-        tx {
-          chainId
-          from
-          nonce
-          pk
-          signature
-          signatures {
-            pk
-            signature
-            signer
-            data {
-              typeUrl
-              value
-            }
-          }
-          itx {
-            __typename
-            ... on UpdateAssetTx {
-              address
-              moniker
-              data {
-                typeUrl
-                value
-              }
-            }
-            ... on TransferTx {
-              assets
-              to
-              value
-              data {
-                typeUrl
-                value
-              }
-            }
-            ... on SysUpgradeTx {
-              gracePeriod
-              data {
-                typeUrl
-                value
-              }
-              task {
-                actions
-                dataHash
-                type
-              }
-            }
-            ... on StakeTx {
-              message
-              to
-              value
-              data {
-                type
-              }
-            }
-            ... on ExchangeTx {
-              expiredAt
-              to
-              data {
-                typeUrl
-                value
-              }
-              receiver {
-                assets
-                value
-              }
-              sender {
-                assets
-                value
-              }
-            }
-            ... on DeclareFileTx {
-              hash
-            }
-            ... on DeclareTx {
-              issuer
-              moniker
-              data {
-                typeUrl
-                value
-              }
-            }
-            ... on CreateAssetTx {
-              moniker
-              parent
-              readonly
-              transferrable
-              ttl
-              data {
-                typeUrl
-                value
-              }
-            }
-            ... on ConsumeAssetTx {
-              address
-              issuer
-              data {
-                typeUrl
-                value
-              }
-            }
-            ... on ConsensusUpgradeTx {
-              maxBytes
-              maxCandidates
-              maxGas
-              maxValidators
-              data {
-                typeUrl
-                value
-              }
-              validators {
-                address
-                power
-              }
-            }
-            ... on PokeTx {
-              address
-              date
-              data {
-                typeUrl
-                value
-              }
-            }
-            ... on AccountMigrateTx {
-              pk
-              data {
-                typeUrl
-                value
-              }
-              type {
-                address
-                hash
-                pk
-                role
-              }
-            }
-          }
-        }
-      }
       lastBlockId {
         hash
         partsHeader {
           hash
           total
-        }
-      }
-      txs {
-        code
-        hash
-        height
-        index
-        time
-        accountMigrate {
-          address
-        }
-        createAsset {
-          asset
-        }
-        tags {
-          key
-          value
-        }
-        tx {
-          chainId
-          from
-          nonce
-          pk
-          signature
-          signatures {
-            pk
-            signature
-            signer
-            data {
-              typeUrl
-              value
-            }
-          }
-          itx {
-            __typename
-            ... on UpdateAssetTx {
-              address
-              moniker
-              data {
-                typeUrl
-                value
-              }
-            }
-            ... on TransferTx {
-              assets
-              to
-              value
-              data {
-                typeUrl
-                value
-              }
-            }
-            ... on SysUpgradeTx {
-              gracePeriod
-              data {
-                typeUrl
-                value
-              }
-              task {
-                actions
-                dataHash
-                type
-              }
-            }
-            ... on StakeTx {
-              message
-              to
-              value
-              data {
-                type
-              }
-            }
-            ... on ExchangeTx {
-              expiredAt
-              to
-              data {
-                typeUrl
-                value
-              }
-              receiver {
-                assets
-                value
-              }
-              sender {
-                assets
-                value
-              }
-            }
-            ... on DeclareFileTx {
-              hash
-            }
-            ... on DeclareTx {
-              issuer
-              moniker
-              data {
-                typeUrl
-                value
-              }
-            }
-            ... on CreateAssetTx {
-              moniker
-              parent
-              readonly
-              transferrable
-              ttl
-              data {
-                typeUrl
-                value
-              }
-            }
-            ... on ConsumeAssetTx {
-              address
-              issuer
-              data {
-                typeUrl
-                value
-              }
-            }
-            ... on ConsensusUpgradeTx {
-              maxBytes
-              maxCandidates
-              maxGas
-              maxValidators
-              data {
-                typeUrl
-                value
-              }
-              validators {
-                address
-                power
-              }
-            }
-            ... on PokeTx {
-              address
-              date
-              data {
-                typeUrl
-                value
-              }
-            }
-            ... on AccountMigrateTx {
-              pk
-              data {
-                typeUrl
-                value
-              }
-              type {
-                address
-                hash
-                pk
-                role
-              }
-            }
-          }
         }
       }
       version {
@@ -1595,7 +1260,7 @@ No arguments
 
 ```graphql
 {
-  getForgeState(height: 123, keys: ["abc"]) {
+  getForgeState(height: "abc", keys: ["abc"]) {
     code
     state {
       address
@@ -1720,7 +1385,7 @@ No arguments
 }
 ```
 
-### getForgeStatistics
+### getForgeStats
 
 #### Arguments
 
@@ -1730,9 +1395,9 @@ No arguments
 
 ```graphql
 {
-  getForgeStatistics {
+  getForgeStats {
     code
-    forgeStatistics {
+    forgeStats {
       avgBlockTime
       avgTps
       maxTps
@@ -1758,7 +1423,7 @@ No arguments
 }
 ```
 
-### getForgeStatisticsByDay
+### getForgeStatsByDay
 
 #### Arguments
 
@@ -1769,9 +1434,9 @@ No arguments
 
 ```graphql
 {
-  getForgeStatisticsByDay(endDate: "abc", startDate: "abc") {
+  getForgeStatsByDay(endDate: "abc", startDate: "abc") {
     code
-    forgeStatistics {
+    forgeStats {
       avgBlockTime
       avgTps
       maxTps
@@ -1797,7 +1462,7 @@ No arguments
 }
 ```
 
-### getForgeStatisticsByHour
+### getForgeStatsByHour
 
 #### Arguments
 
@@ -1807,9 +1472,9 @@ No arguments
 
 ```graphql
 {
-  getForgeStatisticsByHour(date: "abc") {
+  getForgeStatsByHour(date: "abc") {
     code
-    forgeStatistics {
+    forgeStats {
       avgBlockTime
       avgTps
       maxTps
@@ -1988,7 +1653,7 @@ No arguments
 
 ```graphql
 {
-  getStakeState(address: "abc", height: 123, keys: ["abc"]) {
+  getStakeState(address: "abc", height: "abc", keys: ["abc"]) {
     code
     state {
       address
@@ -2097,6 +1762,7 @@ No arguments
                 }
               }
               ... on CreateAssetTx {
+                address
                 moniker
                 parent
                 readonly
@@ -2138,6 +1804,7 @@ No arguments
                 }
               }
               ... on AccountMigrateTx {
+                address
                 pk
                 data {
                   typeUrl
@@ -2251,6 +1918,7 @@ No arguments
                 }
               }
               ... on CreateAssetTx {
+                address
                 moniker
                 parent
                 readonly
@@ -2292,6 +1960,7 @@ No arguments
                 }
               }
               ... on AccountMigrateTx {
+                address
                 pk
                 data {
                   typeUrl
@@ -2312,75 +1981,6 @@ No arguments
         typeUrl
         value
       }
-    }
-  }
-}
-```
-
-### getStakes
-
-#### Arguments
-
-* **addressFilter**, optional, 
-* **paging**, optional, 
-
-#### Result Format
-
-```graphql
-{
-  getStakes {
-    code
-    page {
-      cursor
-      next
-      total
-    }
-    stakes {
-      address
-      balance
-      genesisTime
-      message
-      receiver
-      renaissanceTime
-      sender
-      type
-    }
-  }
-}
-```
-
-### getTopAccounts
-
-#### Arguments
-
-* **paging**, optional, 
-
-#### Result Format
-
-```graphql
-{
-  getTopAccounts {
-    code
-    accounts {
-      address
-      balance
-      genesisTime
-      migratedFrom
-      migratedTo
-      moniker
-      nonce
-      numAssets
-      numTxs
-      recentNumTxs
-      renaissanceTime
-      totalReceivedStakes
-      totalStakes
-      totalUnstakes
-    }
-    page {
-      cursor
-      next
-      total
     }
   }
 }
@@ -2496,6 +2096,7 @@ No arguments
             }
           }
           ... on CreateAssetTx {
+            address
             moniker
             parent
             readonly
@@ -2537,6 +2138,7 @@ No arguments
             }
           }
           ... on AccountMigrateTx {
+            address
             pk
             data {
               typeUrl
@@ -2560,14 +2162,19 @@ No arguments
 
 #### Arguments
 
-* **limit**, optional, 
+* **paging**, optional, 
 
 #### Result Format
 
 ```graphql
 {
-  getUnconfirmedTxs(limit: 123) {
+  getUnconfirmedTxs {
     code
+    page {
+      cursor
+      next
+      total
+    }
     unconfirmedTxs {
       nTxs
       txs {
@@ -2652,6 +2259,7 @@ No arguments
             }
           }
           ... on CreateAssetTx {
+            address
             moniker
             parent
             readonly
@@ -2693,6 +2301,7 @@ No arguments
             }
           }
           ... on AccountMigrateTx {
+            address
             pk
             data {
               typeUrl
@@ -2773,19 +2382,6 @@ No arguments
       time
       type
       valid
-      consumeAsset {
-        asset
-      }
-      createAsset {
-        asset
-      }
-      exchange {
-        receiverAssets
-        senderAssets
-      }
-      transfer {
-        assets
-      }
       tx {
         chainId
         from
@@ -2868,6 +2464,7 @@ No arguments
             }
           }
           ... on CreateAssetTx {
+            address
             moniker
             parent
             readonly
@@ -2909,6 +2506,7 @@ No arguments
             }
           }
           ... on AccountMigrateTx {
+            address
             pk
             data {
               typeUrl
@@ -2922,9 +2520,6 @@ No arguments
             }
           }
         }
-      }
-      updateAsset {
-        asset
       }
     }
   }
@@ -3010,6 +2605,75 @@ No arguments
 }
 ```
 
+### listStakes
+
+#### Arguments
+
+* **addressFilter**, optional, 
+* **paging**, optional, 
+
+#### Result Format
+
+```graphql
+{
+  listStakes {
+    code
+    page {
+      cursor
+      next
+      total
+    }
+    stakes {
+      address
+      balance
+      genesisTime
+      message
+      receiver
+      renaissanceTime
+      sender
+      type
+    }
+  }
+}
+```
+
+### listTopAccounts
+
+#### Arguments
+
+* **paging**, optional, 
+
+#### Result Format
+
+```graphql
+{
+  listTopAccounts {
+    code
+    accounts {
+      address
+      balance
+      genesisTime
+      migratedFrom
+      migratedTo
+      moniker
+      nonce
+      numAssets
+      numTxs
+      recentNumTxs
+      renaissanceTime
+      totalReceivedStakes
+      totalStakes
+      totalUnstakes
+    }
+    page {
+      cursor
+      next
+      total
+    }
+  }
+}
+```
+
 ### listTransactions
 
 #### Arguments
@@ -3039,19 +2703,6 @@ No arguments
       time
       type
       valid
-      consumeAsset {
-        asset
-      }
-      createAsset {
-        asset
-      }
-      exchange {
-        receiverAssets
-        senderAssets
-      }
-      transfer {
-        assets
-      }
       tx {
         chainId
         from
@@ -3134,6 +2785,7 @@ No arguments
             }
           }
           ... on CreateAssetTx {
+            address
             moniker
             parent
             readonly
@@ -3175,6 +2827,7 @@ No arguments
             }
           }
           ... on AccountMigrateTx {
+            address
             pk
             data {
               typeUrl
@@ -3188,9 +2841,6 @@ No arguments
             }
           }
         }
-      }
-      updateAsset {
-        asset
       }
     }
   }
@@ -3296,6 +2946,7 @@ subscription {
           }
         }
         ... on CreateAssetTx {
+          address
           moniker
           parent
           readonly
@@ -3337,6 +2988,7 @@ subscription {
           }
         }
         ... on AccountMigrateTx {
+          address
           pk
           data {
             typeUrl
@@ -3433,6 +3085,7 @@ subscription {
           }
         }
         ... on CreateAssetTx {
+          address
           moniker
           parent
           readonly
@@ -3474,6 +3127,7 @@ subscription {
           }
         }
         ... on AccountMigrateTx {
+          address
           pk
           data {
             typeUrl
@@ -3570,6 +3224,7 @@ subscription {
           }
         }
         ... on CreateAssetTx {
+          address
           moniker
           parent
           readonly
@@ -3611,6 +3266,7 @@ subscription {
           }
         }
         ... on AccountMigrateTx {
+          address
           pk
           data {
             typeUrl
@@ -3757,6 +3413,7 @@ subscription {
           }
         }
         ... on CreateAssetTx {
+          address
           moniker
           parent
           readonly
@@ -3798,6 +3455,7 @@ subscription {
           }
         }
         ... on AccountMigrateTx {
+          address
           pk
           data {
             typeUrl
@@ -3894,6 +3552,7 @@ subscription {
           }
         }
         ... on CreateAssetTx {
+          address
           moniker
           parent
           readonly
@@ -3935,6 +3594,7 @@ subscription {
           }
         }
         ... on AccountMigrateTx {
+          address
           pk
           data {
             typeUrl
@@ -4031,6 +3691,7 @@ subscription {
           }
         }
         ... on CreateAssetTx {
+          address
           moniker
           parent
           readonly
@@ -4072,6 +3733,7 @@ subscription {
           }
         }
         ... on AccountMigrateTx {
+          address
           pk
           data {
             typeUrl
@@ -4168,6 +3830,7 @@ subscription {
           }
         }
         ... on CreateAssetTx {
+          address
           moniker
           parent
           readonly
@@ -4209,6 +3872,7 @@ subscription {
           }
         }
         ... on AccountMigrateTx {
+          address
           pk
           data {
             typeUrl
@@ -4305,6 +3969,7 @@ subscription {
           }
         }
         ... on CreateAssetTx {
+          address
           moniker
           parent
           readonly
@@ -4346,6 +4011,7 @@ subscription {
           }
         }
         ... on AccountMigrateTx {
+          address
           pk
           data {
             typeUrl
@@ -4445,6 +4111,7 @@ subscription {
           }
         }
         ... on CreateAssetTx {
+          address
           moniker
           parent
           readonly
@@ -4486,6 +4153,7 @@ subscription {
           }
         }
         ... on AccountMigrateTx {
+          address
           pk
           data {
             typeUrl
@@ -4582,6 +4250,7 @@ subscription {
           }
         }
         ... on CreateAssetTx {
+          address
           moniker
           parent
           readonly
@@ -4623,6 +4292,7 @@ subscription {
           }
         }
         ... on AccountMigrateTx {
+          address
           pk
           data {
             typeUrl
@@ -4719,6 +4389,7 @@ subscription {
           }
         }
         ... on CreateAssetTx {
+          address
           moniker
           parent
           readonly
@@ -4760,6 +4431,7 @@ subscription {
           }
         }
         ... on AccountMigrateTx {
+          address
           pk
           data {
             typeUrl
@@ -4856,6 +4528,7 @@ subscription {
           }
         }
         ... on CreateAssetTx {
+          address
           moniker
           parent
           readonly
@@ -4897,6 +4570,7 @@ subscription {
           }
         }
         ... on AccountMigrateTx {
+          address
           pk
           data {
             typeUrl
@@ -4993,6 +4667,7 @@ subscription {
           }
         }
         ... on CreateAssetTx {
+          address
           moniker
           parent
           readonly
@@ -5034,6 +4709,7 @@ subscription {
           }
         }
         ... on AccountMigrateTx {
+          address
           pk
           data {
             typeUrl
@@ -5130,6 +4806,7 @@ subscription {
           }
         }
         ... on CreateAssetTx {
+          address
           moniker
           parent
           readonly
@@ -5171,6 +4848,7 @@ subscription {
           }
         }
         ... on AccountMigrateTx {
+          address
           pk
           data {
             typeUrl
@@ -5267,6 +4945,7 @@ subscription {
           }
         }
         ... on CreateAssetTx {
+          address
           moniker
           parent
           readonly
@@ -5308,6 +4987,7 @@ subscription {
           }
         }
         ... on AccountMigrateTx {
+          address
           pk
           data {
             typeUrl
@@ -5404,6 +5084,7 @@ subscription {
           }
         }
         ... on CreateAssetTx {
+          address
           moniker
           parent
           readonly
@@ -5445,6 +5126,7 @@ subscription {
           }
         }
         ... on AccountMigrateTx {
+          address
           pk
           data {
             typeUrl

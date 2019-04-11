@@ -1,3 +1,8 @@
+## 0.17.5 (April 11, 2019)
+  - fix: explorer network select
+  - chore: add alias for forge log
+  - update readme
+
 ## 0.17.4 (April 10, 2019)
   - feat: support customize version and download mirror for forge init
   - update readme
