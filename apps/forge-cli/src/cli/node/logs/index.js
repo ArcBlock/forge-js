@@ -11,6 +11,7 @@ cli('logs [type]', 'Show logs for various forge components', input => action(exe
     wallet: false,
   },
   options: [],
+  alias: 'log',
   handlers: {
     '--help': () => {
       shell.echo(`
