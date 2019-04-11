@@ -17,7 +17,7 @@ import Icon from '../../components/iconfa';
 import Alert from '../../components/alert';
 
 import forge from '../../libs/forge';
-import { fromArcToReadable } from '../../libs/util';
+import { fromArcToReadable, parseQuery } from '../../libs/util';
 
 class AccountDetail extends Page {
   static propTypes = {
@@ -33,6 +33,8 @@ class AccountDetail extends Page {
       account: null,
       error: null,
     };
+
+    this.params = parseQuery(typeof window === 'undefined' ? '' : window.location.search);
   }
 
   componentDidMount() {
@@ -69,7 +71,7 @@ class AccountDetail extends Page {
                   { key: 'Last Seen', value: account.context.renaissanceTime },
                 ]}
               />
-              <AccountTabs account={account} />
+              <AccountTabs account={account} validator={this.params.validator} />
             </React.Fragment>
           )}
         </Container>
