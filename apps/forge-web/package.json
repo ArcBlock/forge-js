@@ -49,6 +49,7 @@
     "prepush": "npm run lint && CI=1 yarn test",
     "start:node": "REACT_APP_NAME=node ./tools/start.sh",
     "start:explorer": "REACT_APP_NAME=explorer ./tools/start.sh",
+    "start:beta": "REACT_APP_NAME=explorer-beta ./tools/start.sh",
     "build": "npm run build:node",
     "build:node": "REACT_APP_NAME=node REACT_APP_TITLE=\"ABT Chain Node\" ./tools/build.sh",
     "build:explorer-prod": "REACT_APP_NAME=explorer REACT_APP_TITLE=\"ABT Explorer\" PUBLIC_URL=https://explorer.abtnetwork.io ./tools/build.sh",

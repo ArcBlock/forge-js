@@ -28,14 +28,14 @@ export function useInterval(callback, delay) {
 }
 
 const evtTarget = new EventTarget();
-const useStorage = storage => (key, defaultValue) => {
-  const raw = storage.getItem(key);
-
+const useStorage = (storage, keyPrefix) => (key, defaultValue) => {
+  const storeKey = `${keyPrefix}.${key}`;
+  const raw = storage.getItem(storeKey);
   const [value, setValue] = useState(raw ? JSON.parse(raw) : defaultValue);
 
   const updater = updatedValue => {
     setValue(updatedValue);
-    storage.setItem(key, JSON.stringify(updatedValue));
+    storage.setItem(storeKey, JSON.stringify(updatedValue));
     evtTarget.dispatchEvent(new CustomEvent('storage_change', { detail: { key } }));
   };
 
@@ -46,7 +46,7 @@ const useStorage = storage => (key, defaultValue) => {
   useEffect(() => {
     const listener = ({ detail }) => {
       if (detail.key === key) {
-        const lraw = storage.getItem(key);
+        const lraw = storage.getItem(storeKey);
 
         if (lraw !== raw) {
           setValue(JSON.parse(lraw));
@@ -61,19 +61,18 @@ const useStorage = storage => (key, defaultValue) => {
   return [value, updater];
 };
 
-export const useLocalStorage = useStorage(localStorage);
-export const useSessionStorage = useStorage(sessionStorage);
+export const useLocalStorage = useStorage(localStorage, process.env.REACT_APP_NAME);
+export const useSessionStorage = useStorage(sessionStorage, process.env.REACT_APP_NAME);
 
 export function useThemeMode() {
-  const appName = process.env.REACT_APP_NAME;
-  const defaultMode = appName.includes('explorer') ? 'dark' : 'light';
-  const [mode, setMode] = useLocalStorage(`theme.${appName}`, defaultMode);
+  const defaultMode = process.env.REACT_APP_NAME.includes('explorer') ? 'dark' : 'light';
+  const [mode, setMode] = useLocalStorage('theme', defaultMode);
   return [mode, setMode];
 }
 
 export function useSwitcher() {
   const [open, setOpen] = useLocalStorage('switcher.open', false);
-  const [current, setCurrent] = useLocalStorage('switcher.current', selectNetwork);
+  const [current, setCurrent] = useLocalStorage('switcher.current', selectNetwork());
   return { open, setOpen, current, setCurrent };
 }
 
@@ -105,8 +104,8 @@ export function useStartupInfo() {
   useInterval(async () => {
     try {
       const result = await fetchInfo();
-      localStorage.setItem('token', JSON.stringify(result.token));
-      localStorage.setItem('node', JSON.stringify(result.node));
+      localStorage.setItem(`${process.env.REACT_APP_NAME}.token`, JSON.stringify(result.token));
+      localStorage.setItem(`${process.env.REACT_APP_NAME}.node`, JSON.stringify(result.node));
     } catch (err) {
       // Do nothing
     }

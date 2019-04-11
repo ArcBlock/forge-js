@@ -10,6 +10,7 @@ import { fromUnitToToken } from '@arcblock/forge-util';
 import { languages, translations } from './locale';
 import { COOKIE_LANGUAGE, networks } from './constant';
 import forge from './forge';
+import storage from './storage';
 
 export function detectLocale() {
   const locale =
@@ -53,7 +54,7 @@ export function selectNetwork() {
   const names = Object.keys(networks);
   let selected = names[0];
   try {
-    const cached = JSON.parse(localStorage.getItem('switcher.current'));
+    const cached = JSON.parse(storage.get('switcher.current') || '');
     if (cached && names.includes(cached)) {
       selected = cached;
     }
@@ -70,7 +71,7 @@ export function selectNetwork() {
       selected = paths[0];
     }
 
-    localStorage.setItem('switcher.current', JSON.stringify(selected));
+    storage.set('switcher.current', JSON.stringify(selected));
   } catch (err) {
     // Do nothing
   }
@@ -90,8 +91,8 @@ export function getGraphQLEndpoint() {
   }
 
   if (window.localStorage) {
-    if (window.localStorage.getItem('GQL_ENDPOINT')) {
-      return window.localStorage.getItem('GQL_ENDPOINT');
+    if (storage.getItem('GQL_ENDPOINT')) {
+      return storage('GQL_ENDPOINT');
     }
   }
 
