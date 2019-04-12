@@ -9,13 +9,7 @@ describe('GraphqlClient', () => {
     expect(typeof GraphqlClient).toEqual('function');
   });
 
-  let client;
-  if (process.env.CI === 1) {
-    client = new GraphqlClient('https://test.abtnetwork.io/api');
-  } else {
-    client = new GraphqlClient('http://127.0.0.1:8211/api');
-  }
-
+  const client = new GraphqlClient('http://127.0.0.1:8210/api');
   test('should have many query methods', () => {
     expect(client.getQueries().length).toBeGreaterThan(0);
   });
@@ -28,48 +22,52 @@ describe('GraphqlClient', () => {
     expect(client.getSubscriptions().length).toBeGreaterThan(0);
   });
 
-  test('should support getBlock', async () => {
-    try {
-      const res = await client.getBlock({ height: 1 });
-      expect(res.code).toEqual('OK');
-      expect(res.block.height).toEqual('1');
-    } catch (err) {
-      console.log(err.errors);
-      expect(err).toBeFalsy();
-    }
-  });
-
   test('should support getType', async () => {
     const type = client.getType('Transaction');
     expect(typeof type.fromObject).toEqual('function');
     expect(typeof type.encode).toEqual('function');
   });
 
-  test('should support declare account', async () => {
-    const type = WalletType({
-      role: Mcrypto.types.RoleType.ROLE_ACCOUNT,
-      pk: Mcrypto.types.KeyType.ED25519,
-      hash: Mcrypto.types.HashType.SHA3,
+  if (process.env.CI === 1) {
+    const client = new GraphqlClient('https://test.abtnetwork.io/api');
+
+    test('should support getBlock', async () => {
+      try {
+        const res = await client.getBlock({ height: 1 });
+        expect(res.code).toEqual('OK');
+        expect(res.block.height).toEqual('1');
+      } catch (err) {
+        console.log(err.errors);
+        expect(err).toBeFalsy();
+      }
     });
 
-    const wallet = fromRandom(type);
-    try {
-      const res = await client.sendDeclareTx({
-        data: {
-          moniker: `wangshijun_${Math.round(Math.random() * 1000)}`,
-          pk: Buffer.from(hexToBytes(wallet.publicKey)),
-          type,
-          issuer: '',
-          data: null,
-        },
-        wallet,
+    test('should support declare account', async () => {
+      const type = WalletType({
+        role: Mcrypto.types.RoleType.ROLE_ACCOUNT,
+        pk: Mcrypto.types.KeyType.ED25519,
+        hash: Mcrypto.types.HashType.SHA3,
       });
 
-      expect(res.code).toEqual('OK');
-      expect(res.hash).toBeTruthy();
-    } catch (err) {
-      console.log(err.errors);
-      expect(err).toBeFalsy();
-    }
-  });
+      const wallet = fromRandom(type);
+      try {
+        const res = await client.sendDeclareTx({
+          data: {
+            moniker: `wangshijun_${Math.round(Math.random() * 1000)}`,
+            pk: Buffer.from(hexToBytes(wallet.publicKey)),
+            type,
+            issuer: '',
+            data: null,
+          },
+          wallet,
+        });
+
+        expect(res.code).toEqual('OK');
+        expect(res.hash).toBeTruthy();
+      } catch (err) {
+        console.log(err.errors);
+        expect(err).toBeFalsy();
+      }
+    });
+  }
 });
