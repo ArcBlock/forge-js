@@ -1,3 +1,7 @@
+## 0.17.7 (April 12, 2019)
+  - fix: storage api error
+  - chore: update default join url
+
 ## 0.17.6 (April 12, 2019)
   - chore: refactor storage prefix
   - chore: support building beta version for explorer
