@@ -23,7 +23,7 @@ function graphqlFetcher(params) {
 }
 
 const defaultQuery = `{
-  getTopAccounts {
+  listTopAccounts {
     code
     accounts {
       address
