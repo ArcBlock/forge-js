@@ -10,7 +10,7 @@ async function main({ args: [endpoint = ''] }) {
   if (!endpoint) {
     shell.echo(`${symbols.error} forge web graphql endpoint must be provided!`);
     shell.echo(
-      `${symbols.info} if you want to join abt test net, use http://abt-test.arcblock.co:8210/api`
+      `${symbols.info} if you want to join our nightly test net, use https://test.abtnetwork.io/api`
     );
   }
 
