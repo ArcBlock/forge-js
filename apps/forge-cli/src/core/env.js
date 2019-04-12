@@ -232,9 +232,22 @@ async function ensureRunningNode() {
  * @param {*} args
  */
 function ensureRpcClient(args) {
+  const socketGrpc = args.socketGrpc || process.env.FORGE_CLI_SOCKET_GRPC;
   const releaseConfig = path.join(path.dirname(requiredDirs.release), 'forge_release.toml');
   const configPath = args.configPath || process.env.FORGE_CONFIG || releaseConfig;
-  if (configPath && fs.existsSync(configPath)) {
+  if (socketGrpc) {
+    const forgeConfig = {
+      forge: {
+        sockGrpc: socketGrpc,
+        unlockTtl: 300,
+        web: {
+          port: 8210,
+        },
+      },
+    };
+    debug(`${symbols.info} using forge-cli with remote node ${socketGrpc}`);
+    Object.assign(config, forgeConfig);
+  } else if (configPath && fs.existsSync(configPath)) {
     const forgeConfig = parse(configPath);
     config.cli.forgeConfigPath = configPath;
     Object.assign(config, forgeConfig);
@@ -242,16 +255,6 @@ function ensureRpcClient(args) {
     debug(
       `${symbols.success} Using forge config: ${util.inspect(config, { depth: 5, colors: true })}`
     );
-  } else if (args.socketGrpc) {
-    const forgeConfig = {
-      forge: {
-        decimal: 16,
-        sockGrpc: args.socketGrpc,
-        unlockTtl: 300,
-      },
-    };
-    debug(`${symbols.info} using forge-cli with remote node ${args.socketGrpc}`);
-    Object.assign(config, forgeConfig);
   } else {
     shell.echo(`${symbols.error} forge-cli requires an forge config file to start
 
