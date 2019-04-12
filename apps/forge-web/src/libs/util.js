@@ -54,7 +54,7 @@ export function selectNetwork() {
   const names = Object.keys(networks);
   let selected = names[0];
   try {
-    const cached = JSON.parse(storage.get('switcher.current') || '');
+    const cached = JSON.parse(storage.getItem('switcher.current') || '');
     if (cached && names.includes(cached)) {
       selected = cached;
     }
@@ -71,7 +71,7 @@ export function selectNetwork() {
       selected = paths[0];
     }
 
-    storage.set('switcher.current', JSON.stringify(selected));
+    storage.setItem('switcher.current', JSON.stringify(selected));
   } catch (err) {
     // Do nothing
   }
@@ -92,7 +92,7 @@ export function getGraphQLEndpoint() {
 
   if (window.localStorage) {
     if (storage.getItem('GQL_ENDPOINT')) {
-      return storage('GQL_ENDPOINT');
+      return storage.getItem('GQL_ENDPOINT');
     }
   }
 
@@ -101,6 +101,7 @@ export function getGraphQLEndpoint() {
     return `${protocol}//${host}/api`;
   }
 
+  // return 'https://test.abtnetwork.io/api';
   return 'http://localhost:8210/api'; // local
 }
 
@@ -149,7 +150,7 @@ export async function fetchInfo(tokenInfo, nodeInfo) {
 
     return { token: tokenInfo, node: nodeInfo };
   } catch (err) {
-    console.error(err.errors);
+    console.error(err.errors || err);
     throw new Error(
       Array.isArray(err.errors)
         ? err.errors.map(x => x.message).join(',')
