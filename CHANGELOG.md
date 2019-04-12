@@ -1,3 +1,7 @@
+## 0.17.8 (April 12, 2019)
+  - fix: forge join command now really works
+  - update readme
+
 ## 0.17.7 (April 12, 2019)
   - fix: storage api error
   - chore: update default join url
