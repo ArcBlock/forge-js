@@ -6,7 +6,7 @@
   "dependencies": {
     "@arcblock/analytics-js": "^0.16.0",
     "@arcblock/forge-util": "^0.17.0",
-    "@arcblock/graphql-client": "^0.17.5",
+    "@arcblock/graphql-client": "^0.17.6",
     "@material-ui/core": "^3.9.1",
     "@material-ui/icons": "^3.0.2",
     "babel-polyfill": "^6.26.0",

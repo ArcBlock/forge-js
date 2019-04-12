@@ -34,7 +34,7 @@
   "dependencies": {
     "@arcblock/forge-config": "^0.17.0",
     "@arcblock/forge-proto": "^0.17.5",
-    "@arcblock/graphql-client": "^0.17.5",
+    "@arcblock/graphql-client": "^0.17.6",
     "@arcblock/grpc-client": "^0.17.5",
     "@iarna/toml": "^2.2.3",
     "app-module-path": "^2.2.0",
