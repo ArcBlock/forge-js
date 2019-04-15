@@ -25,9 +25,9 @@ export const colors = {
 };
 
 export const gaAccounts = {
-  chain_node_web: 'UA-121627413-1',
-  chain_node_desktop: 'UA-121627413-1',
-  abt_explorer: 'UA-121627413-1',
+  chain_node_web: 'UA-121627413-4',
+  chain_node_desktop: 'UA-121627413-5',
+  abt_explorer: 'UA-121627413-3',
 };
 
 export const networks = {
