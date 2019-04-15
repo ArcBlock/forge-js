@@ -70,7 +70,7 @@ function Dashboard({ children, location }) {
         )}
         {!hasSecondaryLinks && <Content direction="column">{children}</Content>}
         <Version key={version}>
-          ABT Node v{version}, Forge Framework v{nodeInfo.version}
+          ABT Chain Node v{version}, Forge Framework v{nodeInfo.version}
         </Version>
       </main>
     </Container>

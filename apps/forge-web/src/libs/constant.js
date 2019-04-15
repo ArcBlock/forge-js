@@ -30,6 +30,12 @@ export const gaAccounts = {
   abt_explorer: 'UA-121627413-3',
 };
 
+export const sentryAccounts = {
+  chain_node_web: 'https://25af96fdf12640a3938a0ebc4aea0a83@sentry.io/1438897',
+  chain_node_desktop: 'https://77954eadc2524944913eaa88532e2034@sentry.io/1438923',
+  abt_explorer: 'https://a47f3106b4b740bfb7e9ae0699c94ce9@sentry.io/1438924',
+};
+
 export const networks = {
   argon: {
     id: 1,
