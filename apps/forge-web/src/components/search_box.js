@@ -13,10 +13,6 @@ import { getExplorerUrl } from '../libs/util';
 const AsyncSelect = AsyncComponent(() => import('react-select/lib/Async'));
 
 class SearchBox extends React.Component {
-  static propTypes = {
-    history: PropTypes.object.isRequired,
-  };
-
   state = {
     loading: false,
   };
