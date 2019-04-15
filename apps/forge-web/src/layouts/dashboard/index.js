@@ -29,13 +29,15 @@ const getSecondaryLinks = location => {
       ],
     };
   }
+
   if (/^\/developer\//.test(location.pathname)) {
+    const isLocalhost = window.location.hostname === 'localhost';
     return {
       title: 'Tools',
       links: [
         { link: '/developer/query', title: 'Query' },
-        { link: '/developer/simulator', title: 'Simulator' },
-      ],
+        isLocalhost ? { link: '/developer/simulator', title: 'Simulator' } : null,
+      ].filter(Boolean),
     };
   }
 
