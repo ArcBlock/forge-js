@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import { IntlProvider, addLocaleData } from 'react-intl';
 
+import Alert from '../components/alert';
 import AsyncComponent from '../components/async';
 import ActivityIndicator from '../components/activity_indicator';
 
@@ -39,9 +40,15 @@ const App = () => {
   }
 
   if (state.error) {
+    let { message } = state.error;
+    if (message.includes('Network Error')) {
+      message = 'Cannot connect to graphql endpoint, ensure you have started a node!';
+    }
     return (
       <Wrapper mode={mode}>
-        <p className="error">{state.error.message}</p>
+        <Alert type="error">
+          <p className="error">{message}</p>
+        </Alert>
       </Wrapper>
     );
   }

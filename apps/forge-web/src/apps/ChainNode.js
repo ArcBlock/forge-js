@@ -5,10 +5,11 @@ import { IntlProvider, addLocaleData } from 'react-intl';
 
 import ActivityIndicator from '../components/activity_indicator';
 import AsyncComponent from '../components/async';
+import Alert from '../components/alert';
 
 import { localeData } from '../libs/locale';
 import { detectLocale } from '../libs/util';
-import { useStartupInfo } from '../libs/hooks';
+import { useStartupInfo, useThemeMode } from '../libs/hooks';
 
 addLocaleData(localeData);
 
@@ -32,10 +33,11 @@ const PageAssetDetail = AsyncComponent(() => import('../pages/explorer/asset'));
 
 const App = () => {
   const state = useStartupInfo();
+  const [mode] = useThemeMode();
 
   if (state.loading) {
     return (
-      <Wrapper>
+      <Wrapper mode={mode}>
         <ActivityIndicator
           messages={['Fetch chain info...', 'Fetching forge state...']}
           interval={800}
@@ -45,9 +47,15 @@ const App = () => {
   }
 
   if (state.error) {
+    let { message } = state.error;
+    if (message.includes('Network Error')) {
+      message = 'Cannot connect to graphql endpoint, ensure you have started a node!';
+    }
     return (
-      <Wrapper>
-        <p className="error">{state.error.message}</p>
+      <Wrapper mode={mode}>
+        <Alert type="error">
+          <p className="error">{message}</p>
+        </Alert>
       </Wrapper>
     );
   }
@@ -85,7 +93,7 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #333333;
+  background: ${props => (props.mode === 'light' ? '#f7f8f8' : '#222')};
 `;
 
 export default App;

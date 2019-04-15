@@ -24,6 +24,12 @@ export const colors = {
   blue: '#4e6af6',
 };
 
+export const gaAccounts = {
+  chain_node_web: 'UA-121627413-1',
+  chain_node_desktop: 'UA-121627413-1',
+  abt_explorer: 'UA-121627413-1',
+};
+
 export const networks = {
   argon: {
     id: 1,

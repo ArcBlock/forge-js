@@ -19,6 +19,7 @@
     "graphiql": "^0.13.0",
     "hoist-non-react-statics": "^3.3.0",
     "humanize-string": "^1.0.2",
+    "is-electron": "^2.2.0",
     "js-cookie": "^2.2.0",
     "numeral": "^2.0.6",
     "prop-types": "^15.6.2",
@@ -43,15 +44,15 @@
     "why-did-you-update": "^1.0.6"
   },
   "scripts": {
-    "lint": "which eslint && ls -alh node_modules/.bin/ && ls -alh node_modules/@arcblock/ && eslint src",
+    "lint": "eslint src",
     "clean": "rm -rf build",
     "precommit": "npm run lint && CI=1 yarn test",
     "prepush": "npm run lint && CI=1 yarn test",
-    "start:node": "REACT_APP_NAME=node ./tools/start.sh",
+    "start:chain-node": "REACT_APP_NAME=chain-node ./tools/start.sh",
     "start:explorer": "REACT_APP_NAME=explorer ./tools/start.sh",
-    "start:beta": "REACT_APP_NAME=explorer-beta ./tools/start.sh",
-    "build": "npm run build:node",
-    "build:node": "REACT_APP_NAME=node REACT_APP_TITLE=\"ABT Chain Node\" ./tools/build.sh",
+    "start:explorer-beta": "REACT_APP_NAME=explorer-beta ./tools/start.sh",
+    "build": "npm run build:chain-node",
+    "build:chain-node": "REACT_APP_NAME=chain-node REACT_APP_TITLE=\"ABT Chain Node\" ./tools/build.sh",
     "build:explorer-prod": "REACT_APP_NAME=explorer REACT_APP_TITLE=\"ABT Explorer\" PUBLIC_URL=https://explorer.abtnetwork.io ./tools/build.sh",
     "build:explorer-beta": "REACT_APP_NAME=explorer-beta REACT_APP_TITLE=\"ABT Explorer Beta\" PUBLIC_URL=https://abt-explorer-beta.netlify.com ./tools/build.sh",
     "test": "REACT_APP_NAME=test react-app-rewired test"

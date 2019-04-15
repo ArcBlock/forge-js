@@ -6,10 +6,11 @@ import ABA from '@arcblock/analytics-js';
 
 import './libs/dayjs';
 import Explorer from './apps/Explorer';
+import { gaAccounts } from './libs/constant';
 
 if (process.env.NODE_ENV === 'production') {
-  ABA.initialize('forge_web');
-  ReactGA.initialize('UA-121627413-1');
+  ABA.initialize('abt_explorer');
+  ReactGA.initialize(gaAccounts.abt_explorer);
 }
 
 ReactDOM.render(<Explorer />, document.getElementById('root'));
