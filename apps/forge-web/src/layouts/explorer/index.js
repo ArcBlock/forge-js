@@ -4,6 +4,8 @@ import styled from 'styled-components';
 
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
+import Tooltip from '@material-ui/core/Tooltip';
+import InfoIcon from '@material-ui/icons/Info';
 
 import ThemeSwitcher from '../../components/theme_switcher';
 import NetworkSwitcher from '../../components/network_switcher';
@@ -34,7 +36,9 @@ function Layout({ children }) {
       <main className="main">
         {children}
         <Version key={version}>
-          Forge Framework v{nodeInfo.version}, ABT Explorer v{version}
+          <Tooltip title={`Forge Framework v${nodeInfo.version}, ABT Explorer v${version}`}>
+            <InfoIcon />
+          </Tooltip>
         </Version>
       </main>
     </Container>

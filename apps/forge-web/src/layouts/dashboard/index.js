@@ -5,6 +5,8 @@ import styled from 'styled-components';
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
+import Tooltip from '@material-ui/core/Tooltip';
+import InfoIcon from '@material-ui/icons/Info';
 
 import Sidebar from './sidebar';
 import SecondaryLinks from './secondary';
@@ -70,7 +72,9 @@ function Dashboard({ children, location }) {
         )}
         {!hasSecondaryLinks && <Content direction="column">{children}</Content>}
         <Version key={version}>
-          ABT Chain Node v{version}, Forge Framework v{nodeInfo.version}
+          <Tooltip title={`Forge Framework v${nodeInfo.version}, ABT Chain Node v${version}`}>
+            <InfoIcon />
+          </Tooltip>
         </Version>
       </main>
     </Container>
@@ -98,6 +102,7 @@ const Version = styled.div`
   margin: 0;
   font-size: 12px;
   z-index: 99;
+  opacity: 0.3;
 `;
 
 const Container = styled.div`
