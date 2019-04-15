@@ -1,19 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
-import { IntlProvider, addLocaleData } from 'react-intl';
 
 import ActivityIndicator from '../components/activity_indicator';
 import AsyncComponent from '../components/async';
 import Alert from '../components/alert';
+import I18n from '../components/i18n';
 
-import { localeData } from '../libs/locale';
-import { detectLocale } from '../libs/util';
 import { useStartupInfo, useThemeMode } from '../libs/hooks';
-
-addLocaleData(localeData);
-
-const { locale, messages } = detectLocale();
 
 const Layout = AsyncComponent(() => import('../layouts/dashboard'));
 const PageDashboard = AsyncComponent(() => import('../pages/dashboard'));
@@ -61,7 +55,7 @@ const App = () => {
   }
 
   return (
-    <IntlProvider locale={locale} messages={messages}>
+    <I18n>
       <Router>
         <Layout>
           <Switch>
@@ -83,7 +77,7 @@ const App = () => {
           </Switch>
         </Layout>
       </Router>
-    </IntlProvider>
+    </I18n>
   );
 };
 

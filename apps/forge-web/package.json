@@ -47,8 +47,8 @@
   "scripts": {
     "lint": "eslint src",
     "clean": "rm -rf build",
-    "precommit": "npm run lint && CI=1 yarn test",
-    "prepush": "npm run lint && CI=1 yarn test",
+    "precommit": "npm run lint && CI=1 REACT_APP_NAME=chain-node yarn test",
+    "prepush": "npm run lint && CI=1 REACT_APP_NAME=chain-node yarn test",
     "start:chain-node": "REACT_APP_TITLE=\"Forge Web\" REACT_APP_NAME=chain-node ./tools/start.sh",
     "start:explorer": "REACT_APP_TITLE=\"Forge Web\" REACT_APP_NAME=explorer ./tools/start.sh",
     "start:explorer-beta": "REACT_APP_TITLE=\"Forge Web\" REACT_APP_NAME=explorer-beta ./tools/start.sh",
@@ -95,6 +95,7 @@
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-react": "^7.12.4",
     "eslint-plugin-react-hooks": "^1.2.0",
+    "jest-localstorage-mock": "^2.4.0",
     "react-app-rewired": "^2.0.3",
     "webpack-bundle-analyzer": "^3.1.0"
   }

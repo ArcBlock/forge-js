@@ -2,11 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from '../../apps/Explorer';
 
-it('renders without crashing', done => {
+it('renders without crashing', () => {
   const div = document.createElement('div');
   ReactDOM.render(<App />, div);
-  setTimeout(() => {
-    ReactDOM.unmountComponentAtNode(div);
-    done();
-  }, 2000);
+  ReactDOM.unmountComponentAtNode(div);
 });

@@ -50,7 +50,7 @@ export function getTxType(tx) {
  *  - network param from localStorage
  *  - first network in the list
  */
-export function selectNetwork() {
+export function selectNetwork(search = '', pathname = '') {
   const names = Object.keys(networks);
   let selected = names[0];
   try {
@@ -59,13 +59,12 @@ export function selectNetwork() {
       selected = cached;
     }
 
-    const params = parseQuery(typeof window === 'undefined' ? '' : window.location.search);
+    const params = parseQuery(search || window.location.search);
     if (params.network && names.includes(params.network)) {
       selected = params.network;
     }
 
-    const paths =
-      typeof window === 'undefined' ? [] : window.location.pathname.split('/').filter(Boolean);
+    const paths = (pathname || window.location.pathname).split('/').filter(Boolean);
     if (paths.length && names.includes(paths[0])) {
       // eslint-disable-next-line prefer-destructuring
       selected = paths[0];
@@ -90,15 +89,15 @@ export function getGraphQLEndpoint() {
     }
   }
 
-  if (window.localStorage) {
+  if (localStorage) {
     if (storage.getItem('GQL_ENDPOINT')) {
       return storage.getItem('GQL_ENDPOINT');
     }
   }
 
   if (process.env.NODE_ENV === 'production') {
-    const { protocol, host } = window.location;
-    return `${protocol}//${host}/api`;
+    const { protocol, hostname } = window.location;
+    return `${protocol}//${hostname}/api`;
   }
 
   // return 'https://test.abtnetwork.io/api';

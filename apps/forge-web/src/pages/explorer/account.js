@@ -91,7 +91,7 @@ class AccountDetail extends Page {
       );
       this.setState({ loading: false, account: state });
     } catch (err) {
-      console.error(err.errors);
+      console.error(err);
       this.setState({
         loading: false,
         error: Array.isArray(err.errors)

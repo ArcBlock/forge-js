@@ -115,7 +115,7 @@ class AssetDetail extends Page {
       );
       this.setState({ loading: false, asset });
     } catch (err) {
-      console.error(err.errors);
+      console.error(err);
       this.setState({
         loading: false,
         error: Array.isArray(err.errors)

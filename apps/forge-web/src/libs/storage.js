@@ -7,4 +7,10 @@ export default {
   getItem(key, defaultValue) {
     return localStorage.getItem(`${prefix}.${key}`) || defaultValue;
   },
+  removeItem(key) {
+    return localStorage.removeItem(`${prefix}.${key}`);
+  },
+  clean() {
+    return localStorage.clear();
+  },
 };
