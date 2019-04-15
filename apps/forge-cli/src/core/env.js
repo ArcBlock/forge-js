@@ -498,7 +498,7 @@ async function getForgeProcesses() {
     );
 
     // Find app process with app command
-    const command = config.app.executable;
+    const command = config.app ? config.app.executable : '';
     const pattern = new RegExp(command, 'i');
 
     return results
