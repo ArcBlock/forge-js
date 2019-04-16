@@ -55,7 +55,7 @@
     "build": "npm run build:chain-node",
     "build:chain-node": "REACT_APP_NAME=chain-node REACT_APP_VERSION=$npm_package_version REACT_APP_TITLE=\"ABT Chain Node\" ./tools/build.sh",
     "build:explorer-prod": "REACT_APP_NAME=explorer REACT_APP_VERSION=$npm_package_version REACT_APP_TITLE=\"ABT Explorer\" PUBLIC_URL=https://explorer.abtnetwork.io ./tools/build.sh",
-    "build:explorer-beta": "REACT_APP_NAME=explorer-beta REACT_APP_VERSION=$npm_package_version REACT_APP_TITLE=\"ABT Explorer Beta\" PUBLIC_URL=https://abt-explorer-beta.netlify.com ./tools/build.sh",
+    "build:explorer-beta": "REACT_APP_NAME=explorer-beta REACT_APP_VERSION=$npm_package_version REACT_APP_TITLE=\"ABT Explorer Beta\" PUBLIC_URL=https://explorer-test.abtnetwork.io ./tools/build.sh",
     "test": "REACT_APP_NAME=test react-app-rewired test"
   },
   "config-overrides-path": "tools/config.js",
