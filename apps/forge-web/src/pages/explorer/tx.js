@@ -61,7 +61,7 @@ class TransactionDetail extends Page {
       const { info: tx } = await forge().getTx({ hash });
       this.setState({ loading: false, tx });
     } catch (err) {
-      console.error(err.errors);
+      console.error(err);
       this.setState({
         loading: false,
         error: Array.isArray(err.errors)

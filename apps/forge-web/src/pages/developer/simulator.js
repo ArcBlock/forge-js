@@ -23,8 +23,6 @@ class Simulator extends Page {
     };
   }
 
-  componentDidMount() {}
-
   render() {
     const { isRunning, isLoading } = this.state;
     return (
@@ -38,7 +36,7 @@ class Simulator extends Page {
             onClick={isRunning ? this.stopSimulator : this.startSimulator}
             disabled={isLoading}
             color="primary">
-            {isLoading ? <CircularProgress /> : isRunning ? 'Stop Simulator' : 'Stop Simulator'}
+            {isLoading ? <CircularProgress /> : isRunning ? 'Stop Simulator' : 'Start Simulator'}
           </Button>
         </Container>
       </Layout>
@@ -48,15 +46,13 @@ class Simulator extends Page {
   stopSimulator = async () => {
     this.setState({ isLoading: false });
     const res = await forge().stopSimulator();
-    console.log('stopSimulator', res);
-    this.setState({ isLoading: false });
+    this.setState({ isLoading: false, isRunning: res.code !== 'OK' });
   };
 
   startSimulator = async () => {
     this.setState({ isLoading: false });
     const res = await forge().startSimulator();
-    console.log('startSimulator', res);
-    this.setState({ isLoading: false });
+    this.setState({ isLoading: false, isRunning: res.code === 'OK' });
   };
 }
 

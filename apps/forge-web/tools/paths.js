@@ -40,7 +40,7 @@ module.exports = {
   appBuild: resolveApp('build'),
   appPublic: resolveApp('public'),
   appHtml: resolveApp('public/index.html'),
-  appJs: resolveApp('src/index.js'),
+  appJs: resolveApp('src/ChainNode.js'),
   appExplorerJs: resolveApp('src/Explorer.js'),
   appPackageJson: resolveApp('package.json'),
   appSrc: resolveApp('src'),

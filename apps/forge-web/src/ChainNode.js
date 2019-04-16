@@ -4,16 +4,18 @@ import ReactDOM from 'react-dom';
 import ReactGA from 'react-ga';
 import ABA from '@arcblock/analytics-js';
 import * as Sentry from '@sentry/browser';
+import isElectron from 'is-electron';
 
 import './libs/dayjs';
-import App from './apps/Explorer';
+import App from './apps/ChainNode';
 import ErrorBoundary from './components/ErrorBoundary';
 import { gaAccounts, sentryAccounts } from './libs/constant';
 
 if (process.env.NODE_ENV === 'production') {
-  ABA.initialize('abt_explorer');
-  ReactGA.initialize(gaAccounts.abt_explorer);
-  Sentry.init({ dsn: sentryAccounts.abt_explorer });
+  const appName = isElectron() ? 'chain_node_desktop' : 'chain_node_web';
+  ABA.initialize(appName);
+  ReactGA.initialize(gaAccounts[appName]);
+  Sentry.init({ dsn: sentryAccounts[appName] });
 }
 
 if (process.env.NODE_ENV === 'production') {

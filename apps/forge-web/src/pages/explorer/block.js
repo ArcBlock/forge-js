@@ -22,7 +22,7 @@ import forge from '../../libs/forge';
 import dayjs from '../../libs/dayjs';
 import { parseQuery } from '../../libs/util';
 
-class BlockDetail extends Page {
+export class BlockDetail extends Page {
   static propTypes = {
     match: PropTypes.object.isRequired,
     location: PropTypes.object.isRequired,
@@ -42,6 +42,7 @@ class BlockDetail extends Page {
     };
 
     this.onChangePage = this.onChangePage.bind(this);
+    console.log(props.match);
   }
 
   componentDidMount() {
@@ -139,7 +140,7 @@ class BlockDetail extends Page {
       const { block } = await forge().getBlock({ height });
       this.setState({ loading: false, block });
     } catch (err) {
-      console.error(err.errors);
+      console.error(err);
       this.setState({
         loading: false,
         error: Array.isArray(err.errors)
