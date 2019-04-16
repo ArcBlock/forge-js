@@ -13,7 +13,14 @@ function resolveLogPath(folder, file) {
 function findLogFiles() {
   return {
     app: resolveLogPath(config.get('app.path'), config.get('app.logfile', 'logs/app.log')),
-    core: resolveLogPath(config.get('forge.path'), config.get('forge.logfile', 'logs/forge.log')),
+    error: resolveLogPath(
+      config.get('forge.path'),
+      config.get('forge.logfile', 'logs/forge_error.log')
+    ),
+    tx: resolveLogPath(
+      config.get('forge.path'),
+      config.get('forge.logfile', 'logs/forge_transaction.log')
+    ),
     ipfs: resolveLogPath(config.get('ipfs.path'), config.get('ipfs.logfile', 'logs/ipfs.log')),
     tendermint: resolveLogPath(
       config.get('tendermint.path'),
