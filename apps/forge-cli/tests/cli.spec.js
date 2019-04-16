@@ -1,4 +1,5 @@
 const shell = require('shelljs');
+const bddStdin = require('bdd-stdin');
 const { runCommand, sleep } = require('../tools/jest-utils');
 
 // beforeAll(async () => {
@@ -79,6 +80,15 @@ describe('block', () => {
 describe('tx', () => {
   test('should return latest tx info', async () => {
     const output = await runCommand('tx');
+    console.log(output);
+  });
+});
+
+describe.skip('account', () => {
+  test('should create account', async () => {
+    bddStdin('123456', '\n', 'wangshijun', '\n', '\n', '\n', bddStdin.keys.down, '\n');
+
+    const output = await runCommand('account:create');
     console.log(output);
   });
 });

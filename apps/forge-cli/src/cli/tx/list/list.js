@@ -1,4 +1,3 @@
-const shell = require('shelljs');
 const { createRpcClient } = require('core/env');
 
 async function main() {

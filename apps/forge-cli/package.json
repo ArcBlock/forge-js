@@ -17,9 +17,9 @@
     "access": "public"
   },
   "scripts": {
-    "precommit": "CI=1 yarn test",
-    "prepush": "CI=1 yarn test",
-    "test": "yarn lint && node tools/jest.js",
+    "precommit": "yarn lint",
+    "prepush": "yarn lint",
+    "test": "yarn lint && CI=1 node tools/jest.js",
     "lint": "eslint src"
   },
   "repository": {
