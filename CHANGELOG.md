@@ -1,3 +1,9 @@
+## 0.18.0 (April 16, 2019)
+  - chore: improve sentry reporter config
+  - add smoke test for forge cli (#237)
+  - add error tracking and smoke test for forge-web (#236)
+  - update readme
+
 ## 0.17.8 (April 12, 2019)
   - fix: forge join command now really works
   - update readme
