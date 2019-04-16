@@ -13,7 +13,11 @@ import { gaAccounts, sentryAccounts } from './libs/constant';
 if (process.env.NODE_ENV === 'production') {
   ABA.initialize('abt_explorer');
   ReactGA.initialize(gaAccounts.abt_explorer);
-  Sentry.init({ dsn: sentryAccounts.abt_explorer });
+  Sentry.init({
+    dsn: sentryAccounts.abt_explorer,
+    release: process.env.REACT_APP_VERSION,
+    environment: process.env.NODE_ENV,
+  });
 }
 
 if (process.env.NODE_ENV === 'production') {

@@ -15,7 +15,11 @@ if (process.env.NODE_ENV === 'production') {
   const appName = isElectron() ? 'chain_node_desktop' : 'chain_node_web';
   ABA.initialize(appName);
   ReactGA.initialize(gaAccounts[appName]);
-  Sentry.init({ dsn: sentryAccounts[appName] });
+  Sentry.init({
+    dsn: sentryAccounts[appName],
+    release: process.env.REACT_APP_VERSION,
+    environment: process.env.NODE_ENV,
+  });
 }
 
 if (process.env.NODE_ENV === 'production') {
