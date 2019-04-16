@@ -17,6 +17,7 @@ const jest = require('jest');
 let argv = process.argv.slice(2);
 argv.push('--forceExit');
 argv.push('--runInBand');
+argv.push('--verbose');
 
 // Watch unless on CI or in coverage mode
 if (!process.env.CI && argv.indexOf('--coverage') < 0) {

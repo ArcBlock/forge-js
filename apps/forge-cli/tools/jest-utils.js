@@ -14,7 +14,7 @@ async function runCommand(command, silent = true) {
   });
 }
 
-async function sleep(timeout = 3000) {
+async function sleep(timeout = 1000) {
   return new Promise(resolve => {
     setTimeout(resolve, timeout);
   });

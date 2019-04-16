@@ -1,14 +1,17 @@
 const shell = require('shelljs');
 const bddStdin = require('bdd-stdin');
+const GraphQLClient = require('@arcblock/graphql-client');
 const { runCommand, sleep } = require('../tools/jest-utils');
 
-// beforeAll(async () => {
-//   shell.exec('rm -rf ~/.forge_release');
-//   shell.exec('rm -rf ~/.forge_cli/keys');
-//   const output = await runCommand('start');
-//   console.log(output);
-//   await sleep();
-// });
+const client = new GraphQLClient('http://localhost:8210/api');
+
+beforeAll(async () => {
+  shell.exec('rm -rf ~/.forge_release');
+  shell.exec('rm -rf ~/.forge_cli/keys');
+  const output = await runCommand('start');
+  console.log(output);
+  await sleep();
+});
 
 describe('core', () => {
   test('should return command list with no arguments', async () => {
@@ -78,22 +81,31 @@ describe('block', () => {
 });
 
 describe('tx', () => {
-  test('should return latest tx info', async () => {
-    const output = await runCommand('tx');
-    console.log(output);
+  test('should return tx info', async () => {
+    const res = await client.listTransactions({ paging: { size: 1 } });
+    const hash = res.transactions[0].hash;
+    const output = await runCommand(`tx ${hash}`);
+    expect(output).toBeTruthy();
   });
 });
 
-describe.skip('account', () => {
-  test('should create account', async () => {
+describe('account', () => {
+  test.skip('should create account', async () => {
     bddStdin('123456', '\n', 'wangshijun', '\n', '\n', '\n', bddStdin.keys.down, '\n');
 
     const output = await runCommand('account:create');
     console.log(output);
   });
+
+  test('should return account info', async () => {
+    const res = await client.listTopAccounts({ paging: { size: 1 } });
+    const address = res.accounts[0].address;
+    const output = await runCommand(`account ${address}`);
+    expect(output.includes(address)).toBeTruthy();
+  });
 });
 
-// afterAll(async () => {
-//   const output = await runCommand('stop');
-//   console.log(output);
-// });
+afterAll(async () => {
+  const output = await runCommand('stop');
+  console.log(output);
+});
