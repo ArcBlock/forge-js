@@ -1,3 +1,13 @@
+## 0.18.1 (April 17, 2019)
+  - fix: host selecting on chain node web
+  - update readme
+  - update readme
+  - update readme
+  - update readme
+  - update yarn.lock file
+  - fix: explorer beta resource domain
+  - update readme
+
 ## 0.18.0 (April 16, 2019)
   - chore: improve sentry reporter config
   - add smoke test for forge cli (#237)
