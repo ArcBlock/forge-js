@@ -96,8 +96,8 @@ export function getGraphQLEndpoint() {
   }
 
   if (process.env.NODE_ENV === 'production') {
-    const { protocol, hostname } = window.location;
-    return `${protocol}//${hostname}/api`;
+    const { protocol, host } = window.location;
+    return `${protocol}//${host}/api`;
   }
 
   // return 'https://test.abtnetwork.io/api';
