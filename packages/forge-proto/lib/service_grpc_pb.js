@@ -48,17 +48,6 @@ function deserialize_forge_abi_RequestGetAccountState(buffer_arg) {
   return rpc_pb.RequestGetAccountState.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_forge_abi_RequestGetAssetAddress(arg) {
-  if (!(arg instanceof rpc_pb.RequestGetAssetAddress)) {
-    throw new Error('Expected argument of type forge_abi.RequestGetAssetAddress');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_forge_abi_RequestGetAssetAddress(buffer_arg) {
-  return rpc_pb.RequestGetAssetAddress.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
 function serialize_forge_abi_RequestGetAssetState(arg) {
   if (!(arg instanceof rpc_pb.RequestGetAssetState)) {
     throw new Error('Expected argument of type forge_abi.RequestGetAssetState');
@@ -167,6 +156,17 @@ function serialize_forge_abi_RequestGetNodeInfo(arg) {
 
 function deserialize_forge_abi_RequestGetNodeInfo(buffer_arg) {
   return rpc_pb.RequestGetNodeInfo.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_forge_abi_RequestGetProtocolState(arg) {
+  if (!(arg instanceof rpc_pb.RequestGetProtocolState)) {
+    throw new Error('Expected argument of type forge_abi.RequestGetProtocolState');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_forge_abi_RequestGetProtocolState(buffer_arg) {
+  return rpc_pb.RequestGetProtocolState.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_forge_abi_RequestGetStakeState(arg) {
@@ -389,17 +389,6 @@ function deserialize_forge_abi_RequestSendTx(buffer_arg) {
   return rpc_pb.RequestSendTx.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_forge_abi_RequestSignData(arg) {
-  if (!(arg instanceof rpc_pb.RequestSignData)) {
-    throw new Error('Expected argument of type forge_abi.RequestSignData');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_forge_abi_RequestSignData(buffer_arg) {
-  return rpc_pb.RequestSignData.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
 function serialize_forge_abi_RequestStoreFile(arg) {
   if (!(arg instanceof rpc_pb.RequestStoreFile)) {
     throw new Error('Expected argument of type forge_abi.RequestStoreFile');
@@ -475,17 +464,6 @@ function serialize_forge_abi_ResponseGetAccountState(arg) {
 
 function deserialize_forge_abi_ResponseGetAccountState(buffer_arg) {
   return rpc_pb.ResponseGetAccountState.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
-function serialize_forge_abi_ResponseGetAssetAddress(arg) {
-  if (!(arg instanceof rpc_pb.ResponseGetAssetAddress)) {
-    throw new Error('Expected argument of type forge_abi.ResponseGetAssetAddress');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_forge_abi_ResponseGetAssetAddress(buffer_arg) {
-  return rpc_pb.ResponseGetAssetAddress.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_forge_abi_ResponseGetAssetState(arg) {
@@ -596,6 +574,17 @@ function serialize_forge_abi_ResponseGetNodeInfo(arg) {
 
 function deserialize_forge_abi_ResponseGetNodeInfo(buffer_arg) {
   return rpc_pb.ResponseGetNodeInfo.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_forge_abi_ResponseGetProtocolState(arg) {
+  if (!(arg instanceof rpc_pb.ResponseGetProtocolState)) {
+    throw new Error('Expected argument of type forge_abi.ResponseGetProtocolState');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_forge_abi_ResponseGetProtocolState(buffer_arg) {
+  return rpc_pb.ResponseGetProtocolState.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_forge_abi_ResponseGetStakeState(arg) {
@@ -818,17 +807,6 @@ function deserialize_forge_abi_ResponseSendTx(buffer_arg) {
   return rpc_pb.ResponseSendTx.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_forge_abi_ResponseSignData(arg) {
-  if (!(arg instanceof rpc_pb.ResponseSignData)) {
-    throw new Error('Expected argument of type forge_abi.ResponseSignData');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_forge_abi_ResponseSignData(buffer_arg) {
-  return rpc_pb.ResponseSignData.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
 function serialize_forge_abi_ResponseStoreFile(arg) {
   if (!(arg instanceof rpc_pb.ResponseStoreFile)) {
     throw new Error('Expected argument of type forge_abi.ResponseStoreFile');
@@ -1015,28 +993,6 @@ var ChainRpcService = (exports.ChainRpcService = {
     responseSerialize: serialize_forge_abi_ResponseGetConfig,
     responseDeserialize: deserialize_forge_abi_ResponseGetConfig,
   },
-  get_asset_address: {
-    path: '/forge_abi.ChainRpc/get_asset_address',
-    requestStream: false,
-    responseStream: false,
-    requestType: rpc_pb.RequestGetAssetAddress,
-    responseType: rpc_pb.ResponseGetAssetAddress,
-    requestSerialize: serialize_forge_abi_RequestGetAssetAddress,
-    requestDeserialize: deserialize_forge_abi_RequestGetAssetAddress,
-    responseSerialize: serialize_forge_abi_ResponseGetAssetAddress,
-    responseDeserialize: deserialize_forge_abi_ResponseGetAssetAddress,
-  },
-  sign_data: {
-    path: '/forge_abi.ChainRpc/sign_data',
-    requestStream: false,
-    responseStream: false,
-    requestType: rpc_pb.RequestSignData,
-    responseType: rpc_pb.ResponseSignData,
-    requestSerialize: serialize_forge_abi_RequestSignData,
-    requestDeserialize: deserialize_forge_abi_RequestSignData,
-    responseSerialize: serialize_forge_abi_ResponseSignData,
-    responseDeserialize: deserialize_forge_abi_ResponseSignData,
-  },
 });
 
 exports.ChainRpcClient = grpc.makeGenericClientConstructor(ChainRpcService);
@@ -1128,17 +1084,6 @@ var StateRpcService = (exports.StateRpcService = {
     responseSerialize: serialize_forge_abi_ResponseGetAssetState,
     responseDeserialize: deserialize_forge_abi_ResponseGetAssetState,
   },
-  get_stake_state: {
-    path: '/forge_abi.StateRpc/get_stake_state',
-    requestStream: true,
-    responseStream: true,
-    requestType: rpc_pb.RequestGetStakeState,
-    responseType: rpc_pb.ResponseGetStakeState,
-    requestSerialize: serialize_forge_abi_RequestGetStakeState,
-    requestDeserialize: deserialize_forge_abi_RequestGetStakeState,
-    responseSerialize: serialize_forge_abi_ResponseGetStakeState,
-    responseDeserialize: deserialize_forge_abi_ResponseGetStakeState,
-  },
   get_forge_state: {
     path: '/forge_abi.StateRpc/get_forge_state',
     requestStream: false,
@@ -1149,6 +1094,28 @@ var StateRpcService = (exports.StateRpcService = {
     requestDeserialize: deserialize_forge_abi_RequestGetForgeState,
     responseSerialize: serialize_forge_abi_ResponseGetForgeState,
     responseDeserialize: deserialize_forge_abi_ResponseGetForgeState,
+  },
+  get_protocol_state: {
+    path: '/forge_abi.StateRpc/get_protocol_state',
+    requestStream: true,
+    responseStream: true,
+    requestType: rpc_pb.RequestGetProtocolState,
+    responseType: rpc_pb.ResponseGetProtocolState,
+    requestSerialize: serialize_forge_abi_RequestGetProtocolState,
+    requestDeserialize: deserialize_forge_abi_RequestGetProtocolState,
+    responseSerialize: serialize_forge_abi_ResponseGetProtocolState,
+    responseDeserialize: deserialize_forge_abi_ResponseGetProtocolState,
+  },
+  get_stake_state: {
+    path: '/forge_abi.StateRpc/get_stake_state',
+    requestStream: true,
+    responseStream: true,
+    requestType: rpc_pb.RequestGetStakeState,
+    responseType: rpc_pb.ResponseGetStakeState,
+    requestSerialize: serialize_forge_abi_RequestGetStakeState,
+    requestDeserialize: deserialize_forge_abi_RequestGetStakeState,
+    responseSerialize: serialize_forge_abi_ResponseGetStakeState,
+    responseDeserialize: deserialize_forge_abi_ResponseGetStakeState,
   },
 });
 

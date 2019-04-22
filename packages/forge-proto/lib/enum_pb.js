@@ -14,6 +14,7 @@ var global = Function('return this')();
 goog.exportSymbol('proto.forge_abi.EncodingType', null, global);
 goog.exportSymbol('proto.forge_abi.HashType', null, global);
 goog.exportSymbol('proto.forge_abi.KeyType', null, global);
+goog.exportSymbol('proto.forge_abi.ProtocolStatus', null, global);
 goog.exportSymbol('proto.forge_abi.RoleType', null, global);
 goog.exportSymbol('proto.forge_abi.StakeType', null, global);
 goog.exportSymbol('proto.forge_abi.StateType', null, global);
@@ -87,6 +88,7 @@ proto.forge_abi.TopicType = {
   ASSET_STATE: 130,
   FORGE_STATE: 131,
   STAKE_STATE: 132,
+  PROTOCOL_STATE: 133,
 };
 
 /**
@@ -131,6 +133,7 @@ proto.forge_abi.RoleType = {
   ROLE_ASSET: 6,
   ROLE_STAKE: 7,
   ROLE_VALIDATOR: 8,
+  ROLE_TX: 9,
 };
 
 /**
@@ -186,6 +189,15 @@ proto.forge_abi.StakeType = {
   STAKE_USER: 1,
   STAKE_ASSET: 2,
   STAKE_CHAIN: 3,
+};
+
+/**
+ * @enum {number}
+ */
+proto.forge_abi.ProtocolStatus = {
+  RUNNING: 0,
+  PAUSED: 1,
+  TERMINATED: 2,
 };
 
 goog.object.extend(exports, proto.forge_abi);

@@ -21,8 +21,6 @@ var type_pb = require('./type_pb.js');
 goog.object.extend(proto, type_pb);
 var state_pb = require('./state_pb.js');
 goog.object.extend(proto, state_pb);
-var tx_pb = require('./tx_pb.js');
-goog.object.extend(proto, tx_pb);
 var trace_type_pb = require('./trace_type_pb.js');
 goog.object.extend(proto, trace_type_pb);
 goog.exportSymbol('proto.forge_abi.ByDay', null, global);
@@ -31,7 +29,6 @@ goog.exportSymbol('proto.forge_abi.RequestCreateTx', null, global);
 goog.exportSymbol('proto.forge_abi.RequestCreateWallet', null, global);
 goog.exportSymbol('proto.forge_abi.RequestDeclareNode', null, global);
 goog.exportSymbol('proto.forge_abi.RequestGetAccountState', null, global);
-goog.exportSymbol('proto.forge_abi.RequestGetAssetAddress', null, global);
 goog.exportSymbol('proto.forge_abi.RequestGetAssetState', null, global);
 goog.exportSymbol('proto.forge_abi.RequestGetBlock', null, global);
 goog.exportSymbol('proto.forge_abi.RequestGetBlocks', null, global);
@@ -42,6 +39,7 @@ goog.exportSymbol('proto.forge_abi.RequestGetForgeStats', null, global);
 goog.exportSymbol('proto.forge_abi.RequestGetHealthStatus', null, global);
 goog.exportSymbol('proto.forge_abi.RequestGetNetInfo', null, global);
 goog.exportSymbol('proto.forge_abi.RequestGetNodeInfo', null, global);
+goog.exportSymbol('proto.forge_abi.RequestGetProtocolState', null, global);
 goog.exportSymbol('proto.forge_abi.RequestGetStakeState', null, global);
 goog.exportSymbol('proto.forge_abi.RequestGetTx', null, global);
 goog.exportSymbol('proto.forge_abi.RequestGetUnconfirmedTxs', null, global);
@@ -62,7 +60,6 @@ goog.exportSymbol('proto.forge_abi.RequestRecoverWallet', null, global);
 goog.exportSymbol('proto.forge_abi.RequestRemoveWallet', null, global);
 goog.exportSymbol('proto.forge_abi.RequestSearch', null, global);
 goog.exportSymbol('proto.forge_abi.RequestSendTx', null, global);
-goog.exportSymbol('proto.forge_abi.RequestSignData', null, global);
 goog.exportSymbol('proto.forge_abi.RequestStoreFile', null, global);
 goog.exportSymbol('proto.forge_abi.RequestSubscribe', null, global);
 goog.exportSymbol('proto.forge_abi.RequestUnsubscribe', null, global);
@@ -70,7 +67,6 @@ goog.exportSymbol('proto.forge_abi.ResponseCreateTx', null, global);
 goog.exportSymbol('proto.forge_abi.ResponseCreateWallet', null, global);
 goog.exportSymbol('proto.forge_abi.ResponseDeclareNode', null, global);
 goog.exportSymbol('proto.forge_abi.ResponseGetAccountState', null, global);
-goog.exportSymbol('proto.forge_abi.ResponseGetAssetAddress', null, global);
 goog.exportSymbol('proto.forge_abi.ResponseGetAssetState', null, global);
 goog.exportSymbol('proto.forge_abi.ResponseGetBlock', null, global);
 goog.exportSymbol('proto.forge_abi.ResponseGetBlocks', null, global);
@@ -81,6 +77,7 @@ goog.exportSymbol('proto.forge_abi.ResponseGetForgeStats', null, global);
 goog.exportSymbol('proto.forge_abi.ResponseGetHealthStatus', null, global);
 goog.exportSymbol('proto.forge_abi.ResponseGetNetInfo', null, global);
 goog.exportSymbol('proto.forge_abi.ResponseGetNodeInfo', null, global);
+goog.exportSymbol('proto.forge_abi.ResponseGetProtocolState', null, global);
 goog.exportSymbol('proto.forge_abi.ResponseGetStakeState', null, global);
 goog.exportSymbol('proto.forge_abi.ResponseGetTx', null, global);
 goog.exportSymbol('proto.forge_abi.ResponseGetUnconfirmedTxs', null, global);
@@ -101,7 +98,6 @@ goog.exportSymbol('proto.forge_abi.ResponseRecoverWallet', null, global);
 goog.exportSymbol('proto.forge_abi.ResponseRemoveWallet', null, global);
 goog.exportSymbol('proto.forge_abi.ResponseSearch', null, global);
 goog.exportSymbol('proto.forge_abi.ResponseSendTx', null, global);
-goog.exportSymbol('proto.forge_abi.ResponseSignData', null, global);
 goog.exportSymbol('proto.forge_abi.ResponseStoreFile', null, global);
 goog.exportSymbol('proto.forge_abi.ResponseSubscribe', null, global);
 goog.exportSymbol('proto.forge_abi.ResponseUnsubscribe', null, global);
@@ -5083,6 +5079,374 @@ proto.forge_abi.ResponseGetAssetState.prototype.hasState = function() {
  * @extends {jspb.Message}
  * @constructor
  */
+proto.forge_abi.RequestGetProtocolState = function(opt_data) {
+  jspb.Message.initialize(
+    this,
+    opt_data,
+    0,
+    -1,
+    proto.forge_abi.RequestGetProtocolState.repeatedFields_,
+    null
+  );
+};
+goog.inherits(proto.forge_abi.RequestGetProtocolState, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.forge_abi.RequestGetProtocolState.displayName = 'proto.forge_abi.RequestGetProtocolState';
+}
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.forge_abi.RequestGetProtocolState.repeatedFields_ = [2];
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+  /**
+   * Creates an object representation of this proto suitable for use in Soy templates.
+   * Field names that are reserved in JavaScript and will be renamed to pb_name.
+   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+   * For the list of reserved names please see:
+   *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+   * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+   *     for transitional soy proto support: http://goto/soy-param-migration
+   * @return {!Object}
+   */
+  proto.forge_abi.RequestGetProtocolState.prototype.toObject = function(opt_includeInstance) {
+    return proto.forge_abi.RequestGetProtocolState.toObject(opt_includeInstance, this);
+  };
+
+  /**
+   * Static version of the {@see toObject} method.
+   * @param {boolean|undefined} includeInstance Whether to include the JSPB
+   *     instance for transitional soy proto support:
+   *     http://goto/soy-param-migration
+   * @param {!proto.forge_abi.RequestGetProtocolState} msg The msg instance to transform.
+   * @return {!Object}
+   * @suppress {unusedLocalVariables} f is only used for nested messages
+   */
+  proto.forge_abi.RequestGetProtocolState.toObject = function(includeInstance, msg) {
+    var f,
+      obj = {
+        address: jspb.Message.getFieldWithDefault(msg, 1, ''),
+        keysList: jspb.Message.getRepeatedField(msg, 2),
+        height: jspb.Message.getFieldWithDefault(msg, 3, 0),
+      };
+
+    if (includeInstance) {
+      obj.$jspbMessageInstance = msg;
+    }
+    return obj;
+  };
+}
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.forge_abi.RequestGetProtocolState}
+ */
+proto.forge_abi.RequestGetProtocolState.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.forge_abi.RequestGetProtocolState();
+  return proto.forge_abi.RequestGetProtocolState.deserializeBinaryFromReader(msg, reader);
+};
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.forge_abi.RequestGetProtocolState} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.forge_abi.RequestGetProtocolState}
+ */
+proto.forge_abi.RequestGetProtocolState.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+      case 1:
+        var value = /** @type {string} */ (reader.readString());
+        msg.setAddress(value);
+        break;
+      case 2:
+        var value = /** @type {string} */ (reader.readString());
+        msg.addKeys(value);
+        break;
+      case 3:
+        var value = /** @type {number} */ (reader.readUint64());
+        msg.setHeight(value);
+        break;
+      default:
+        reader.skipField();
+        break;
+    }
+  }
+  return msg;
+};
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.forge_abi.RequestGetProtocolState.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.forge_abi.RequestGetProtocolState.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.forge_abi.RequestGetProtocolState} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.forge_abi.RequestGetProtocolState.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getAddress();
+  if (f.length > 0) {
+    writer.writeString(1, f);
+  }
+  f = message.getKeysList();
+  if (f.length > 0) {
+    writer.writeRepeatedString(2, f);
+  }
+  f = message.getHeight();
+  if (f !== 0) {
+    writer.writeUint64(3, f);
+  }
+};
+
+/**
+ * optional string address = 1;
+ * @return {string}
+ */
+proto.forge_abi.RequestGetProtocolState.prototype.getAddress = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ''));
+};
+
+/** @param {string} value */
+proto.forge_abi.RequestGetProtocolState.prototype.setAddress = function(value) {
+  jspb.Message.setProto3StringField(this, 1, value);
+};
+
+/**
+ * repeated string keys = 2;
+ * @return {!Array<string>}
+ */
+proto.forge_abi.RequestGetProtocolState.prototype.getKeysList = function() {
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 2));
+};
+
+/** @param {!Array<string>} value */
+proto.forge_abi.RequestGetProtocolState.prototype.setKeysList = function(value) {
+  jspb.Message.setField(this, 2, value || []);
+};
+
+/**
+ * @param {string} value
+ * @param {number=} opt_index
+ */
+proto.forge_abi.RequestGetProtocolState.prototype.addKeys = function(value, opt_index) {
+  jspb.Message.addToRepeatedField(this, 2, value, opt_index);
+};
+
+proto.forge_abi.RequestGetProtocolState.prototype.clearKeysList = function() {
+  this.setKeysList([]);
+};
+
+/**
+ * optional uint64 height = 3;
+ * @return {number}
+ */
+proto.forge_abi.RequestGetProtocolState.prototype.getHeight = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
+};
+
+/** @param {number} value */
+proto.forge_abi.RequestGetProtocolState.prototype.setHeight = function(value) {
+  jspb.Message.setProto3IntField(this, 3, value);
+};
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.forge_abi.ResponseGetProtocolState = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.forge_abi.ResponseGetProtocolState, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.forge_abi.ResponseGetProtocolState.displayName = 'proto.forge_abi.ResponseGetProtocolState';
+}
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+  /**
+   * Creates an object representation of this proto suitable for use in Soy templates.
+   * Field names that are reserved in JavaScript and will be renamed to pb_name.
+   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+   * For the list of reserved names please see:
+   *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+   * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+   *     for transitional soy proto support: http://goto/soy-param-migration
+   * @return {!Object}
+   */
+  proto.forge_abi.ResponseGetProtocolState.prototype.toObject = function(opt_includeInstance) {
+    return proto.forge_abi.ResponseGetProtocolState.toObject(opt_includeInstance, this);
+  };
+
+  /**
+   * Static version of the {@see toObject} method.
+   * @param {boolean|undefined} includeInstance Whether to include the JSPB
+   *     instance for transitional soy proto support:
+   *     http://goto/soy-param-migration
+   * @param {!proto.forge_abi.ResponseGetProtocolState} msg The msg instance to transform.
+   * @return {!Object}
+   * @suppress {unusedLocalVariables} f is only used for nested messages
+   */
+  proto.forge_abi.ResponseGetProtocolState.toObject = function(includeInstance, msg) {
+    var f,
+      obj = {
+        code: jspb.Message.getFieldWithDefault(msg, 1, 0),
+        state: (f = msg.getState()) && state_pb.ProtocolState.toObject(includeInstance, f),
+      };
+
+    if (includeInstance) {
+      obj.$jspbMessageInstance = msg;
+    }
+    return obj;
+  };
+}
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.forge_abi.ResponseGetProtocolState}
+ */
+proto.forge_abi.ResponseGetProtocolState.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.forge_abi.ResponseGetProtocolState();
+  return proto.forge_abi.ResponseGetProtocolState.deserializeBinaryFromReader(msg, reader);
+};
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.forge_abi.ResponseGetProtocolState} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.forge_abi.ResponseGetProtocolState}
+ */
+proto.forge_abi.ResponseGetProtocolState.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+      case 1:
+        var value = /** @type {!proto.forge_abi.StatusCode} */ (reader.readEnum());
+        msg.setCode(value);
+        break;
+      case 2:
+        var value = new state_pb.ProtocolState();
+        reader.readMessage(value, state_pb.ProtocolState.deserializeBinaryFromReader);
+        msg.setState(value);
+        break;
+      default:
+        reader.skipField();
+        break;
+    }
+  }
+  return msg;
+};
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.forge_abi.ResponseGetProtocolState.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.forge_abi.ResponseGetProtocolState.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.forge_abi.ResponseGetProtocolState} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.forge_abi.ResponseGetProtocolState.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getCode();
+  if (f !== 0.0) {
+    writer.writeEnum(1, f);
+  }
+  f = message.getState();
+  if (f != null) {
+    writer.writeMessage(2, f, state_pb.ProtocolState.serializeBinaryToWriter);
+  }
+};
+
+/**
+ * optional StatusCode code = 1;
+ * @return {!proto.forge_abi.StatusCode}
+ */
+proto.forge_abi.ResponseGetProtocolState.prototype.getCode = function() {
+  return /** @type {!proto.forge_abi.StatusCode} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
+};
+
+/** @param {!proto.forge_abi.StatusCode} value */
+proto.forge_abi.ResponseGetProtocolState.prototype.setCode = function(value) {
+  jspb.Message.setProto3EnumField(this, 1, value);
+};
+
+/**
+ * optional ProtocolState state = 2;
+ * @return {?proto.forge_abi.ProtocolState}
+ */
+proto.forge_abi.ResponseGetProtocolState.prototype.getState = function() {
+  return /** @type{?proto.forge_abi.ProtocolState} */ (jspb.Message.getWrapperField(
+    this,
+    state_pb.ProtocolState,
+    2
+  ));
+};
+
+/** @param {?proto.forge_abi.ProtocolState|undefined} value */
+proto.forge_abi.ResponseGetProtocolState.prototype.setState = function(value) {
+  jspb.Message.setWrapperField(this, 2, value);
+};
+
+proto.forge_abi.ResponseGetProtocolState.prototype.clearState = function() {
+  this.setState(undefined);
+};
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.forge_abi.ResponseGetProtocolState.prototype.hasState = function() {
+  return jspb.Message.getField(this, 2) != null;
+};
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
 proto.forge_abi.RequestGetStakeState = function(opt_data) {
   jspb.Message.initialize(
     this,
@@ -8504,7 +8868,7 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
   proto.forge_abi.RequestSubscribe.toObject = function(includeInstance, msg) {
     var f,
       obj = {
-        type: jspb.Message.getFieldWithDefault(msg, 1, 0),
+        topic: jspb.Message.getFieldWithDefault(msg, 1, ''),
         filter: jspb.Message.getFieldWithDefault(msg, 2, ''),
       };
 
@@ -8541,8 +8905,8 @@ proto.forge_abi.RequestSubscribe.deserializeBinaryFromReader = function(msg, rea
     var field = reader.getFieldNumber();
     switch (field) {
       case 1:
-        var value = /** @type {!proto.forge_abi.TopicType} */ (reader.readEnum());
-        msg.setType(value);
+        var value = /** @type {string} */ (reader.readString());
+        msg.setTopic(value);
         break;
       case 2:
         var value = /** @type {string} */ (reader.readString());
@@ -8575,9 +8939,9 @@ proto.forge_abi.RequestSubscribe.prototype.serializeBinary = function() {
  */
 proto.forge_abi.RequestSubscribe.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getType();
-  if (f !== 0.0) {
-    writer.writeEnum(1, f);
+  f = message.getTopic();
+  if (f.length > 0) {
+    writer.writeString(1, f);
   }
   f = message.getFilter();
   if (f.length > 0) {
@@ -8586,16 +8950,16 @@ proto.forge_abi.RequestSubscribe.serializeBinaryToWriter = function(message, wri
 };
 
 /**
- * optional TopicType type = 1;
- * @return {!proto.forge_abi.TopicType}
+ * optional string topic = 1;
+ * @return {string}
  */
-proto.forge_abi.RequestSubscribe.prototype.getType = function() {
-  return /** @type {!proto.forge_abi.TopicType} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
+proto.forge_abi.RequestSubscribe.prototype.getTopic = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ''));
 };
 
-/** @param {!proto.forge_abi.TopicType} value */
-proto.forge_abi.RequestSubscribe.prototype.setType = function(value) {
-  jspb.Message.setProto3EnumField(this, 1, value);
+/** @param {string} value */
+proto.forge_abi.RequestSubscribe.prototype.setTopic = function(value) {
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 /**
@@ -8644,7 +9008,7 @@ if (goog.DEBUG && !COMPILED) {
  * @const
  */
 proto.forge_abi.ResponseSubscribe.oneofGroups_ = [
-  [2, 3, 4, 5, 6, 7, 8, 16, 17, 19, 20, 21, 22, 23, 24, 129, 130, 131, 132],
+  [2, 3, 4, 5, 6, 7, 8, 16, 17, 19, 20, 21, 22, 23, 24, 129, 130, 131, 132, 133],
 ];
 
 /**
@@ -8671,6 +9035,7 @@ proto.forge_abi.ResponseSubscribe.ValueCase = {
   ASSET_STATE: 130,
   FORGE_STATE: 131,
   STAKE_STATE: 132,
+  PROTOCOL_STATE: 133,
 };
 
 /**
@@ -8730,10 +9095,12 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
         sysUpgrade: (f = msg.getSysUpgrade()) && type_pb.Transaction.toObject(includeInstance, f),
         stake: (f = msg.getStake()) && type_pb.Transaction.toObject(includeInstance, f),
         accountState:
-          (f = msg.getAccountState()) && type_pb.Transaction.toObject(includeInstance, f),
-        assetState: (f = msg.getAssetState()) && type_pb.Transaction.toObject(includeInstance, f),
-        forgeState: (f = msg.getForgeState()) && type_pb.Transaction.toObject(includeInstance, f),
-        stakeState: (f = msg.getStakeState()) && type_pb.Transaction.toObject(includeInstance, f),
+          (f = msg.getAccountState()) && state_pb.AccountState.toObject(includeInstance, f),
+        assetState: (f = msg.getAssetState()) && state_pb.AssetState.toObject(includeInstance, f),
+        forgeState: (f = msg.getForgeState()) && state_pb.ForgeState.toObject(includeInstance, f),
+        stakeState: (f = msg.getStakeState()) && state_pb.StakeState.toObject(includeInstance, f),
+        protocolState:
+          (f = msg.getProtocolState()) && state_pb.ProtocolState.toObject(includeInstance, f),
       };
 
     if (includeInstance) {
@@ -8847,24 +9214,29 @@ proto.forge_abi.ResponseSubscribe.deserializeBinaryFromReader = function(msg, re
         msg.setStake(value);
         break;
       case 129:
-        var value = new type_pb.Transaction();
-        reader.readMessage(value, type_pb.Transaction.deserializeBinaryFromReader);
+        var value = new state_pb.AccountState();
+        reader.readMessage(value, state_pb.AccountState.deserializeBinaryFromReader);
         msg.setAccountState(value);
         break;
       case 130:
-        var value = new type_pb.Transaction();
-        reader.readMessage(value, type_pb.Transaction.deserializeBinaryFromReader);
+        var value = new state_pb.AssetState();
+        reader.readMessage(value, state_pb.AssetState.deserializeBinaryFromReader);
         msg.setAssetState(value);
         break;
       case 131:
-        var value = new type_pb.Transaction();
-        reader.readMessage(value, type_pb.Transaction.deserializeBinaryFromReader);
+        var value = new state_pb.ForgeState();
+        reader.readMessage(value, state_pb.ForgeState.deserializeBinaryFromReader);
         msg.setForgeState(value);
         break;
       case 132:
-        var value = new type_pb.Transaction();
-        reader.readMessage(value, type_pb.Transaction.deserializeBinaryFromReader);
+        var value = new state_pb.StakeState();
+        reader.readMessage(value, state_pb.StakeState.deserializeBinaryFromReader);
         msg.setStakeState(value);
+        break;
+      case 133:
+        var value = new state_pb.ProtocolState();
+        reader.readMessage(value, state_pb.ProtocolState.deserializeBinaryFromReader);
+        msg.setProtocolState(value);
         break;
       default:
         reader.skipField();
@@ -8959,19 +9331,23 @@ proto.forge_abi.ResponseSubscribe.serializeBinaryToWriter = function(message, wr
   }
   f = message.getAccountState();
   if (f != null) {
-    writer.writeMessage(129, f, type_pb.Transaction.serializeBinaryToWriter);
+    writer.writeMessage(129, f, state_pb.AccountState.serializeBinaryToWriter);
   }
   f = message.getAssetState();
   if (f != null) {
-    writer.writeMessage(130, f, type_pb.Transaction.serializeBinaryToWriter);
+    writer.writeMessage(130, f, state_pb.AssetState.serializeBinaryToWriter);
   }
   f = message.getForgeState();
   if (f != null) {
-    writer.writeMessage(131, f, type_pb.Transaction.serializeBinaryToWriter);
+    writer.writeMessage(131, f, state_pb.ForgeState.serializeBinaryToWriter);
   }
   f = message.getStakeState();
   if (f != null) {
-    writer.writeMessage(132, f, type_pb.Transaction.serializeBinaryToWriter);
+    writer.writeMessage(132, f, state_pb.StakeState.serializeBinaryToWriter);
+  }
+  f = message.getProtocolState();
+  if (f != null) {
+    writer.writeMessage(133, f, state_pb.ProtocolState.serializeBinaryToWriter);
   }
 };
 
@@ -9490,18 +9866,18 @@ proto.forge_abi.ResponseSubscribe.prototype.hasStake = function() {
 };
 
 /**
- * optional Transaction account_state = 129;
- * @return {?proto.forge_abi.Transaction}
+ * optional AccountState account_state = 129;
+ * @return {?proto.forge_abi.AccountState}
  */
 proto.forge_abi.ResponseSubscribe.prototype.getAccountState = function() {
-  return /** @type{?proto.forge_abi.Transaction} */ (jspb.Message.getWrapperField(
+  return /** @type{?proto.forge_abi.AccountState} */ (jspb.Message.getWrapperField(
     this,
-    type_pb.Transaction,
+    state_pb.AccountState,
     129
   ));
 };
 
-/** @param {?proto.forge_abi.Transaction|undefined} value */
+/** @param {?proto.forge_abi.AccountState|undefined} value */
 proto.forge_abi.ResponseSubscribe.prototype.setAccountState = function(value) {
   jspb.Message.setOneofWrapperField(
     this,
@@ -9524,18 +9900,18 @@ proto.forge_abi.ResponseSubscribe.prototype.hasAccountState = function() {
 };
 
 /**
- * optional Transaction asset_state = 130;
- * @return {?proto.forge_abi.Transaction}
+ * optional AssetState asset_state = 130;
+ * @return {?proto.forge_abi.AssetState}
  */
 proto.forge_abi.ResponseSubscribe.prototype.getAssetState = function() {
-  return /** @type{?proto.forge_abi.Transaction} */ (jspb.Message.getWrapperField(
+  return /** @type{?proto.forge_abi.AssetState} */ (jspb.Message.getWrapperField(
     this,
-    type_pb.Transaction,
+    state_pb.AssetState,
     130
   ));
 };
 
-/** @param {?proto.forge_abi.Transaction|undefined} value */
+/** @param {?proto.forge_abi.AssetState|undefined} value */
 proto.forge_abi.ResponseSubscribe.prototype.setAssetState = function(value) {
   jspb.Message.setOneofWrapperField(
     this,
@@ -9558,18 +9934,18 @@ proto.forge_abi.ResponseSubscribe.prototype.hasAssetState = function() {
 };
 
 /**
- * optional Transaction forge_state = 131;
- * @return {?proto.forge_abi.Transaction}
+ * optional ForgeState forge_state = 131;
+ * @return {?proto.forge_abi.ForgeState}
  */
 proto.forge_abi.ResponseSubscribe.prototype.getForgeState = function() {
-  return /** @type{?proto.forge_abi.Transaction} */ (jspb.Message.getWrapperField(
+  return /** @type{?proto.forge_abi.ForgeState} */ (jspb.Message.getWrapperField(
     this,
-    type_pb.Transaction,
+    state_pb.ForgeState,
     131
   ));
 };
 
-/** @param {?proto.forge_abi.Transaction|undefined} value */
+/** @param {?proto.forge_abi.ForgeState|undefined} value */
 proto.forge_abi.ResponseSubscribe.prototype.setForgeState = function(value) {
   jspb.Message.setOneofWrapperField(
     this,
@@ -9592,18 +9968,18 @@ proto.forge_abi.ResponseSubscribe.prototype.hasForgeState = function() {
 };
 
 /**
- * optional Transaction stake_state = 132;
- * @return {?proto.forge_abi.Transaction}
+ * optional StakeState stake_state = 132;
+ * @return {?proto.forge_abi.StakeState}
  */
 proto.forge_abi.ResponseSubscribe.prototype.getStakeState = function() {
-  return /** @type{?proto.forge_abi.Transaction} */ (jspb.Message.getWrapperField(
+  return /** @type{?proto.forge_abi.StakeState} */ (jspb.Message.getWrapperField(
     this,
-    type_pb.Transaction,
+    state_pb.StakeState,
     132
   ));
 };
 
-/** @param {?proto.forge_abi.Transaction|undefined} value */
+/** @param {?proto.forge_abi.StakeState|undefined} value */
 proto.forge_abi.ResponseSubscribe.prototype.setStakeState = function(value) {
   jspb.Message.setOneofWrapperField(
     this,
@@ -9623,6 +9999,40 @@ proto.forge_abi.ResponseSubscribe.prototype.clearStakeState = function() {
  */
 proto.forge_abi.ResponseSubscribe.prototype.hasStakeState = function() {
   return jspb.Message.getField(this, 132) != null;
+};
+
+/**
+ * optional ProtocolState protocol_state = 133;
+ * @return {?proto.forge_abi.ProtocolState}
+ */
+proto.forge_abi.ResponseSubscribe.prototype.getProtocolState = function() {
+  return /** @type{?proto.forge_abi.ProtocolState} */ (jspb.Message.getWrapperField(
+    this,
+    state_pb.ProtocolState,
+    133
+  ));
+};
+
+/** @param {?proto.forge_abi.ProtocolState|undefined} value */
+proto.forge_abi.ResponseSubscribe.prototype.setProtocolState = function(value) {
+  jspb.Message.setOneofWrapperField(
+    this,
+    133,
+    proto.forge_abi.ResponseSubscribe.oneofGroups_[0],
+    value
+  );
+};
+
+proto.forge_abi.ResponseSubscribe.prototype.clearProtocolState = function() {
+  this.setProtocolState(undefined);
+};
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.forge_abi.ResponseSubscribe.prototype.hasProtocolState = function() {
+  return jspb.Message.getField(this, 133) != null;
 };
 
 /**
@@ -11367,749 +11777,6 @@ proto.forge_abi.ResponseListTransactions.prototype.addTransactions = function(
 
 proto.forge_abi.ResponseListTransactions.prototype.clearTransactionsList = function() {
   this.setTransactionsList([]);
-};
-
-/**
- * Generated by JsPbCodeGenerator.
- * @param {Array=} opt_data Optional initial data array, typically from a
- * server response, or constructed directly in Javascript. The array is used
- * in place and becomes part of the constructed object. It is not cloned.
- * If no data is provided, the constructed object will be empty, but still
- * valid.
- * @extends {jspb.Message}
- * @constructor
- */
-proto.forge_abi.RequestGetAssetAddress = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
-};
-goog.inherits(proto.forge_abi.RequestGetAssetAddress, jspb.Message);
-if (goog.DEBUG && !COMPILED) {
-  proto.forge_abi.RequestGetAssetAddress.displayName = 'proto.forge_abi.RequestGetAssetAddress';
-}
-
-if (jspb.Message.GENERATE_TO_OBJECT) {
-  /**
-   * Creates an object representation of this proto suitable for use in Soy templates.
-   * Field names that are reserved in JavaScript and will be renamed to pb_name.
-   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
-   * For the list of reserved names please see:
-   *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
-   * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
-   *     for transitional soy proto support: http://goto/soy-param-migration
-   * @return {!Object}
-   */
-  proto.forge_abi.RequestGetAssetAddress.prototype.toObject = function(opt_includeInstance) {
-    return proto.forge_abi.RequestGetAssetAddress.toObject(opt_includeInstance, this);
-  };
-
-  /**
-   * Static version of the {@see toObject} method.
-   * @param {boolean|undefined} includeInstance Whether to include the JSPB
-   *     instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @param {!proto.forge_abi.RequestGetAssetAddress} msg The msg instance to transform.
-   * @return {!Object}
-   * @suppress {unusedLocalVariables} f is only used for nested messages
-   */
-  proto.forge_abi.RequestGetAssetAddress.toObject = function(includeInstance, msg) {
-    var f,
-      obj = {
-        senderAddress: jspb.Message.getFieldWithDefault(msg, 1, ''),
-        itx: (f = msg.getItx()) && tx_pb.CreateAssetTx.toObject(includeInstance, f),
-        walletType: (f = msg.getWalletType()) && type_pb.WalletType.toObject(includeInstance, f),
-      };
-
-    if (includeInstance) {
-      obj.$jspbMessageInstance = msg;
-    }
-    return obj;
-  };
-}
-
-/**
- * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.forge_abi.RequestGetAssetAddress}
- */
-proto.forge_abi.RequestGetAssetAddress.deserializeBinary = function(bytes) {
-  var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.forge_abi.RequestGetAssetAddress();
-  return proto.forge_abi.RequestGetAssetAddress.deserializeBinaryFromReader(msg, reader);
-};
-
-/**
- * Deserializes binary data (in protobuf wire format) from the
- * given reader into the given message object.
- * @param {!proto.forge_abi.RequestGetAssetAddress} msg The message object to deserialize into.
- * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.forge_abi.RequestGetAssetAddress}
- */
-proto.forge_abi.RequestGetAssetAddress.deserializeBinaryFromReader = function(msg, reader) {
-  while (reader.nextField()) {
-    if (reader.isEndGroup()) {
-      break;
-    }
-    var field = reader.getFieldNumber();
-    switch (field) {
-      case 1:
-        var value = /** @type {string} */ (reader.readString());
-        msg.setSenderAddress(value);
-        break;
-      case 2:
-        var value = new tx_pb.CreateAssetTx();
-        reader.readMessage(value, tx_pb.CreateAssetTx.deserializeBinaryFromReader);
-        msg.setItx(value);
-        break;
-      case 3:
-        var value = new type_pb.WalletType();
-        reader.readMessage(value, type_pb.WalletType.deserializeBinaryFromReader);
-        msg.setWalletType(value);
-        break;
-      default:
-        reader.skipField();
-        break;
-    }
-  }
-  return msg;
-};
-
-/**
- * Serializes the message to binary data (in protobuf wire format).
- * @return {!Uint8Array}
- */
-proto.forge_abi.RequestGetAssetAddress.prototype.serializeBinary = function() {
-  var writer = new jspb.BinaryWriter();
-  proto.forge_abi.RequestGetAssetAddress.serializeBinaryToWriter(this, writer);
-  return writer.getResultBuffer();
-};
-
-/**
- * Serializes the given message to binary data (in protobuf wire
- * format), writing to the given BinaryWriter.
- * @param {!proto.forge_abi.RequestGetAssetAddress} message
- * @param {!jspb.BinaryWriter} writer
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.forge_abi.RequestGetAssetAddress.serializeBinaryToWriter = function(message, writer) {
-  var f = undefined;
-  f = message.getSenderAddress();
-  if (f.length > 0) {
-    writer.writeString(1, f);
-  }
-  f = message.getItx();
-  if (f != null) {
-    writer.writeMessage(2, f, tx_pb.CreateAssetTx.serializeBinaryToWriter);
-  }
-  f = message.getWalletType();
-  if (f != null) {
-    writer.writeMessage(3, f, type_pb.WalletType.serializeBinaryToWriter);
-  }
-};
-
-/**
- * optional string sender_address = 1;
- * @return {string}
- */
-proto.forge_abi.RequestGetAssetAddress.prototype.getSenderAddress = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ''));
-};
-
-/** @param {string} value */
-proto.forge_abi.RequestGetAssetAddress.prototype.setSenderAddress = function(value) {
-  jspb.Message.setProto3StringField(this, 1, value);
-};
-
-/**
- * optional CreateAssetTx itx = 2;
- * @return {?proto.forge_abi.CreateAssetTx}
- */
-proto.forge_abi.RequestGetAssetAddress.prototype.getItx = function() {
-  return /** @type{?proto.forge_abi.CreateAssetTx} */ (jspb.Message.getWrapperField(
-    this,
-    tx_pb.CreateAssetTx,
-    2
-  ));
-};
-
-/** @param {?proto.forge_abi.CreateAssetTx|undefined} value */
-proto.forge_abi.RequestGetAssetAddress.prototype.setItx = function(value) {
-  jspb.Message.setWrapperField(this, 2, value);
-};
-
-proto.forge_abi.RequestGetAssetAddress.prototype.clearItx = function() {
-  this.setItx(undefined);
-};
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.forge_abi.RequestGetAssetAddress.prototype.hasItx = function() {
-  return jspb.Message.getField(this, 2) != null;
-};
-
-/**
- * optional WalletType wallet_type = 3;
- * @return {?proto.forge_abi.WalletType}
- */
-proto.forge_abi.RequestGetAssetAddress.prototype.getWalletType = function() {
-  return /** @type{?proto.forge_abi.WalletType} */ (jspb.Message.getWrapperField(
-    this,
-    type_pb.WalletType,
-    3
-  ));
-};
-
-/** @param {?proto.forge_abi.WalletType|undefined} value */
-proto.forge_abi.RequestGetAssetAddress.prototype.setWalletType = function(value) {
-  jspb.Message.setWrapperField(this, 3, value);
-};
-
-proto.forge_abi.RequestGetAssetAddress.prototype.clearWalletType = function() {
-  this.setWalletType(undefined);
-};
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.forge_abi.RequestGetAssetAddress.prototype.hasWalletType = function() {
-  return jspb.Message.getField(this, 3) != null;
-};
-
-/**
- * Generated by JsPbCodeGenerator.
- * @param {Array=} opt_data Optional initial data array, typically from a
- * server response, or constructed directly in Javascript. The array is used
- * in place and becomes part of the constructed object. It is not cloned.
- * If no data is provided, the constructed object will be empty, but still
- * valid.
- * @extends {jspb.Message}
- * @constructor
- */
-proto.forge_abi.ResponseGetAssetAddress = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
-};
-goog.inherits(proto.forge_abi.ResponseGetAssetAddress, jspb.Message);
-if (goog.DEBUG && !COMPILED) {
-  proto.forge_abi.ResponseGetAssetAddress.displayName = 'proto.forge_abi.ResponseGetAssetAddress';
-}
-
-if (jspb.Message.GENERATE_TO_OBJECT) {
-  /**
-   * Creates an object representation of this proto suitable for use in Soy templates.
-   * Field names that are reserved in JavaScript and will be renamed to pb_name.
-   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
-   * For the list of reserved names please see:
-   *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
-   * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
-   *     for transitional soy proto support: http://goto/soy-param-migration
-   * @return {!Object}
-   */
-  proto.forge_abi.ResponseGetAssetAddress.prototype.toObject = function(opt_includeInstance) {
-    return proto.forge_abi.ResponseGetAssetAddress.toObject(opt_includeInstance, this);
-  };
-
-  /**
-   * Static version of the {@see toObject} method.
-   * @param {boolean|undefined} includeInstance Whether to include the JSPB
-   *     instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @param {!proto.forge_abi.ResponseGetAssetAddress} msg The msg instance to transform.
-   * @return {!Object}
-   * @suppress {unusedLocalVariables} f is only used for nested messages
-   */
-  proto.forge_abi.ResponseGetAssetAddress.toObject = function(includeInstance, msg) {
-    var f,
-      obj = {
-        code: jspb.Message.getFieldWithDefault(msg, 1, 0),
-        assetAddress: jspb.Message.getFieldWithDefault(msg, 2, ''),
-      };
-
-    if (includeInstance) {
-      obj.$jspbMessageInstance = msg;
-    }
-    return obj;
-  };
-}
-
-/**
- * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.forge_abi.ResponseGetAssetAddress}
- */
-proto.forge_abi.ResponseGetAssetAddress.deserializeBinary = function(bytes) {
-  var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.forge_abi.ResponseGetAssetAddress();
-  return proto.forge_abi.ResponseGetAssetAddress.deserializeBinaryFromReader(msg, reader);
-};
-
-/**
- * Deserializes binary data (in protobuf wire format) from the
- * given reader into the given message object.
- * @param {!proto.forge_abi.ResponseGetAssetAddress} msg The message object to deserialize into.
- * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.forge_abi.ResponseGetAssetAddress}
- */
-proto.forge_abi.ResponseGetAssetAddress.deserializeBinaryFromReader = function(msg, reader) {
-  while (reader.nextField()) {
-    if (reader.isEndGroup()) {
-      break;
-    }
-    var field = reader.getFieldNumber();
-    switch (field) {
-      case 1:
-        var value = /** @type {!proto.forge_abi.StatusCode} */ (reader.readEnum());
-        msg.setCode(value);
-        break;
-      case 2:
-        var value = /** @type {string} */ (reader.readString());
-        msg.setAssetAddress(value);
-        break;
-      default:
-        reader.skipField();
-        break;
-    }
-  }
-  return msg;
-};
-
-/**
- * Serializes the message to binary data (in protobuf wire format).
- * @return {!Uint8Array}
- */
-proto.forge_abi.ResponseGetAssetAddress.prototype.serializeBinary = function() {
-  var writer = new jspb.BinaryWriter();
-  proto.forge_abi.ResponseGetAssetAddress.serializeBinaryToWriter(this, writer);
-  return writer.getResultBuffer();
-};
-
-/**
- * Serializes the given message to binary data (in protobuf wire
- * format), writing to the given BinaryWriter.
- * @param {!proto.forge_abi.ResponseGetAssetAddress} message
- * @param {!jspb.BinaryWriter} writer
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.forge_abi.ResponseGetAssetAddress.serializeBinaryToWriter = function(message, writer) {
-  var f = undefined;
-  f = message.getCode();
-  if (f !== 0.0) {
-    writer.writeEnum(1, f);
-  }
-  f = message.getAssetAddress();
-  if (f.length > 0) {
-    writer.writeString(2, f);
-  }
-};
-
-/**
- * optional StatusCode code = 1;
- * @return {!proto.forge_abi.StatusCode}
- */
-proto.forge_abi.ResponseGetAssetAddress.prototype.getCode = function() {
-  return /** @type {!proto.forge_abi.StatusCode} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
-};
-
-/** @param {!proto.forge_abi.StatusCode} value */
-proto.forge_abi.ResponseGetAssetAddress.prototype.setCode = function(value) {
-  jspb.Message.setProto3EnumField(this, 1, value);
-};
-
-/**
- * optional string asset_address = 2;
- * @return {string}
- */
-proto.forge_abi.ResponseGetAssetAddress.prototype.getAssetAddress = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ''));
-};
-
-/** @param {string} value */
-proto.forge_abi.ResponseGetAssetAddress.prototype.setAssetAddress = function(value) {
-  jspb.Message.setProto3StringField(this, 2, value);
-};
-
-/**
- * Generated by JsPbCodeGenerator.
- * @param {Array=} opt_data Optional initial data array, typically from a
- * server response, or constructed directly in Javascript. The array is used
- * in place and becomes part of the constructed object. It is not cloned.
- * If no data is provided, the constructed object will be empty, but still
- * valid.
- * @extends {jspb.Message}
- * @constructor
- */
-proto.forge_abi.RequestSignData = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
-};
-goog.inherits(proto.forge_abi.RequestSignData, jspb.Message);
-if (goog.DEBUG && !COMPILED) {
-  proto.forge_abi.RequestSignData.displayName = 'proto.forge_abi.RequestSignData';
-}
-
-if (jspb.Message.GENERATE_TO_OBJECT) {
-  /**
-   * Creates an object representation of this proto suitable for use in Soy templates.
-   * Field names that are reserved in JavaScript and will be renamed to pb_name.
-   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
-   * For the list of reserved names please see:
-   *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
-   * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
-   *     for transitional soy proto support: http://goto/soy-param-migration
-   * @return {!Object}
-   */
-  proto.forge_abi.RequestSignData.prototype.toObject = function(opt_includeInstance) {
-    return proto.forge_abi.RequestSignData.toObject(opt_includeInstance, this);
-  };
-
-  /**
-   * Static version of the {@see toObject} method.
-   * @param {boolean|undefined} includeInstance Whether to include the JSPB
-   *     instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @param {!proto.forge_abi.RequestSignData} msg The msg instance to transform.
-   * @return {!Object}
-   * @suppress {unusedLocalVariables} f is only used for nested messages
-   */
-  proto.forge_abi.RequestSignData.toObject = function(includeInstance, msg) {
-    var f,
-      obj = {
-        data: msg.getData(),
-        wallet: (f = msg.getWallet()) && type_pb.WalletInfo.toObject(includeInstance, f),
-        token: jspb.Message.getFieldWithDefault(msg, 3, ''),
-      };
-
-    if (includeInstance) {
-      obj.$jspbMessageInstance = msg;
-    }
-    return obj;
-  };
-}
-
-/**
- * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.forge_abi.RequestSignData}
- */
-proto.forge_abi.RequestSignData.deserializeBinary = function(bytes) {
-  var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.forge_abi.RequestSignData();
-  return proto.forge_abi.RequestSignData.deserializeBinaryFromReader(msg, reader);
-};
-
-/**
- * Deserializes binary data (in protobuf wire format) from the
- * given reader into the given message object.
- * @param {!proto.forge_abi.RequestSignData} msg The message object to deserialize into.
- * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.forge_abi.RequestSignData}
- */
-proto.forge_abi.RequestSignData.deserializeBinaryFromReader = function(msg, reader) {
-  while (reader.nextField()) {
-    if (reader.isEndGroup()) {
-      break;
-    }
-    var field = reader.getFieldNumber();
-    switch (field) {
-      case 1:
-        var value = /** @type {!Uint8Array} */ (reader.readBytes());
-        msg.setData(value);
-        break;
-      case 2:
-        var value = new type_pb.WalletInfo();
-        reader.readMessage(value, type_pb.WalletInfo.deserializeBinaryFromReader);
-        msg.setWallet(value);
-        break;
-      case 3:
-        var value = /** @type {string} */ (reader.readString());
-        msg.setToken(value);
-        break;
-      default:
-        reader.skipField();
-        break;
-    }
-  }
-  return msg;
-};
-
-/**
- * Serializes the message to binary data (in protobuf wire format).
- * @return {!Uint8Array}
- */
-proto.forge_abi.RequestSignData.prototype.serializeBinary = function() {
-  var writer = new jspb.BinaryWriter();
-  proto.forge_abi.RequestSignData.serializeBinaryToWriter(this, writer);
-  return writer.getResultBuffer();
-};
-
-/**
- * Serializes the given message to binary data (in protobuf wire
- * format), writing to the given BinaryWriter.
- * @param {!proto.forge_abi.RequestSignData} message
- * @param {!jspb.BinaryWriter} writer
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.forge_abi.RequestSignData.serializeBinaryToWriter = function(message, writer) {
-  var f = undefined;
-  f = message.getData_asU8();
-  if (f.length > 0) {
-    writer.writeBytes(1, f);
-  }
-  f = message.getWallet();
-  if (f != null) {
-    writer.writeMessage(2, f, type_pb.WalletInfo.serializeBinaryToWriter);
-  }
-  f = message.getToken();
-  if (f.length > 0) {
-    writer.writeString(3, f);
-  }
-};
-
-/**
- * optional bytes data = 1;
- * @return {!(string|Uint8Array)}
- */
-proto.forge_abi.RequestSignData.prototype.getData = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 1, ''));
-};
-
-/**
- * optional bytes data = 1;
- * This is a type-conversion wrapper around `getData()`
- * @return {string}
- */
-proto.forge_abi.RequestSignData.prototype.getData_asB64 = function() {
-  return /** @type {string} */ (jspb.Message.bytesAsB64(this.getData()));
-};
-
-/**
- * optional bytes data = 1;
- * Note that Uint8Array is not supported on all browsers.
- * @see http://caniuse.com/Uint8Array
- * This is a type-conversion wrapper around `getData()`
- * @return {!Uint8Array}
- */
-proto.forge_abi.RequestSignData.prototype.getData_asU8 = function() {
-  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(this.getData()));
-};
-
-/** @param {!(string|Uint8Array)} value */
-proto.forge_abi.RequestSignData.prototype.setData = function(value) {
-  jspb.Message.setProto3BytesField(this, 1, value);
-};
-
-/**
- * optional WalletInfo wallet = 2;
- * @return {?proto.forge_abi.WalletInfo}
- */
-proto.forge_abi.RequestSignData.prototype.getWallet = function() {
-  return /** @type{?proto.forge_abi.WalletInfo} */ (jspb.Message.getWrapperField(
-    this,
-    type_pb.WalletInfo,
-    2
-  ));
-};
-
-/** @param {?proto.forge_abi.WalletInfo|undefined} value */
-proto.forge_abi.RequestSignData.prototype.setWallet = function(value) {
-  jspb.Message.setWrapperField(this, 2, value);
-};
-
-proto.forge_abi.RequestSignData.prototype.clearWallet = function() {
-  this.setWallet(undefined);
-};
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.forge_abi.RequestSignData.prototype.hasWallet = function() {
-  return jspb.Message.getField(this, 2) != null;
-};
-
-/**
- * optional string token = 3;
- * @return {string}
- */
-proto.forge_abi.RequestSignData.prototype.getToken = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ''));
-};
-
-/** @param {string} value */
-proto.forge_abi.RequestSignData.prototype.setToken = function(value) {
-  jspb.Message.setProto3StringField(this, 3, value);
-};
-
-/**
- * Generated by JsPbCodeGenerator.
- * @param {Array=} opt_data Optional initial data array, typically from a
- * server response, or constructed directly in Javascript. The array is used
- * in place and becomes part of the constructed object. It is not cloned.
- * If no data is provided, the constructed object will be empty, but still
- * valid.
- * @extends {jspb.Message}
- * @constructor
- */
-proto.forge_abi.ResponseSignData = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
-};
-goog.inherits(proto.forge_abi.ResponseSignData, jspb.Message);
-if (goog.DEBUG && !COMPILED) {
-  proto.forge_abi.ResponseSignData.displayName = 'proto.forge_abi.ResponseSignData';
-}
-
-if (jspb.Message.GENERATE_TO_OBJECT) {
-  /**
-   * Creates an object representation of this proto suitable for use in Soy templates.
-   * Field names that are reserved in JavaScript and will be renamed to pb_name.
-   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
-   * For the list of reserved names please see:
-   *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
-   * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
-   *     for transitional soy proto support: http://goto/soy-param-migration
-   * @return {!Object}
-   */
-  proto.forge_abi.ResponseSignData.prototype.toObject = function(opt_includeInstance) {
-    return proto.forge_abi.ResponseSignData.toObject(opt_includeInstance, this);
-  };
-
-  /**
-   * Static version of the {@see toObject} method.
-   * @param {boolean|undefined} includeInstance Whether to include the JSPB
-   *     instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @param {!proto.forge_abi.ResponseSignData} msg The msg instance to transform.
-   * @return {!Object}
-   * @suppress {unusedLocalVariables} f is only used for nested messages
-   */
-  proto.forge_abi.ResponseSignData.toObject = function(includeInstance, msg) {
-    var f,
-      obj = {
-        code: jspb.Message.getFieldWithDefault(msg, 1, 0),
-        signature: msg.getSignature(),
-      };
-
-    if (includeInstance) {
-      obj.$jspbMessageInstance = msg;
-    }
-    return obj;
-  };
-}
-
-/**
- * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.forge_abi.ResponseSignData}
- */
-proto.forge_abi.ResponseSignData.deserializeBinary = function(bytes) {
-  var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.forge_abi.ResponseSignData();
-  return proto.forge_abi.ResponseSignData.deserializeBinaryFromReader(msg, reader);
-};
-
-/**
- * Deserializes binary data (in protobuf wire format) from the
- * given reader into the given message object.
- * @param {!proto.forge_abi.ResponseSignData} msg The message object to deserialize into.
- * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.forge_abi.ResponseSignData}
- */
-proto.forge_abi.ResponseSignData.deserializeBinaryFromReader = function(msg, reader) {
-  while (reader.nextField()) {
-    if (reader.isEndGroup()) {
-      break;
-    }
-    var field = reader.getFieldNumber();
-    switch (field) {
-      case 1:
-        var value = /** @type {!proto.forge_abi.StatusCode} */ (reader.readEnum());
-        msg.setCode(value);
-        break;
-      case 2:
-        var value = /** @type {!Uint8Array} */ (reader.readBytes());
-        msg.setSignature(value);
-        break;
-      default:
-        reader.skipField();
-        break;
-    }
-  }
-  return msg;
-};
-
-/**
- * Serializes the message to binary data (in protobuf wire format).
- * @return {!Uint8Array}
- */
-proto.forge_abi.ResponseSignData.prototype.serializeBinary = function() {
-  var writer = new jspb.BinaryWriter();
-  proto.forge_abi.ResponseSignData.serializeBinaryToWriter(this, writer);
-  return writer.getResultBuffer();
-};
-
-/**
- * Serializes the given message to binary data (in protobuf wire
- * format), writing to the given BinaryWriter.
- * @param {!proto.forge_abi.ResponseSignData} message
- * @param {!jspb.BinaryWriter} writer
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.forge_abi.ResponseSignData.serializeBinaryToWriter = function(message, writer) {
-  var f = undefined;
-  f = message.getCode();
-  if (f !== 0.0) {
-    writer.writeEnum(1, f);
-  }
-  f = message.getSignature_asU8();
-  if (f.length > 0) {
-    writer.writeBytes(2, f);
-  }
-};
-
-/**
- * optional StatusCode code = 1;
- * @return {!proto.forge_abi.StatusCode}
- */
-proto.forge_abi.ResponseSignData.prototype.getCode = function() {
-  return /** @type {!proto.forge_abi.StatusCode} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
-};
-
-/** @param {!proto.forge_abi.StatusCode} value */
-proto.forge_abi.ResponseSignData.prototype.setCode = function(value) {
-  jspb.Message.setProto3EnumField(this, 1, value);
-};
-
-/**
- * optional bytes signature = 2;
- * @return {!(string|Uint8Array)}
- */
-proto.forge_abi.ResponseSignData.prototype.getSignature = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 2, ''));
-};
-
-/**
- * optional bytes signature = 2;
- * This is a type-conversion wrapper around `getSignature()`
- * @return {string}
- */
-proto.forge_abi.ResponseSignData.prototype.getSignature_asB64 = function() {
-  return /** @type {string} */ (jspb.Message.bytesAsB64(this.getSignature()));
-};
-
-/**
- * optional bytes signature = 2;
- * Note that Uint8Array is not supported on all browsers.
- * @see http://caniuse.com/Uint8Array
- * This is a type-conversion wrapper around `getSignature()`
- * @return {!Uint8Array}
- */
-proto.forge_abi.ResponseSignData.prototype.getSignature_asU8 = function() {
-  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(this.getSignature()));
-};
-
-/** @param {!(string|Uint8Array)} value */
-proto.forge_abi.ResponseSignData.prototype.setSignature = function(value) {
-  jspb.Message.setProto3BytesField(this, 2, value);
 };
 
 /**
