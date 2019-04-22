@@ -25,7 +25,7 @@ function source(answers, input, type) {
 
 const questions = [
   {
-    type: 'text',
+    type: 'password',
     name: 'passphrase',
     message: 'Please input passphrase:',
     validate: input => {
