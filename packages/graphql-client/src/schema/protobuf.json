@@ -237,7 +237,8 @@
             "account_state": 129,
             "asset_state": 130,
             "forge_state": 131,
-            "stake_state": 132
+            "stake_state": 132,
+            "protocol_state": 133
           }
         },
         "KeyType": {
@@ -273,7 +274,8 @@
             "role_bot": 5,
             "role_asset": 6,
             "role_stake": 7,
-            "role_validator": 8
+            "role_validator": 8,
+            "role_tx": 9
           }
         },
         "UpgradeType": {
@@ -321,6 +323,13 @@
             "stake_user": 1,
             "stake_asset": 2,
             "stake_chain": 3
+          }
+        },
+        "ProtocolStatus": {
+          "values": {
+            "running": 0,
+            "paused": 1,
+            "terminated": 2
           }
         },
         "BigUint": {
@@ -1423,6 +1432,18 @@
             }
           }
         },
+        "UpgradeInfo": {
+          "fields": {
+            "height": {
+              "type": "uint64",
+              "id": 1
+            },
+            "version": {
+              "type": "string",
+              "id": 2
+            }
+          }
+        },
         "AccountState": {
           "fields": {
             "balance": {
@@ -1541,6 +1562,18 @@
             }
           }
         },
+        "CoreProtocol": {
+          "fields": {
+            "name": {
+              "type": "string",
+              "id": 1
+            },
+            "address": {
+              "type": "string",
+              "id": 2
+            }
+          }
+        },
         "ForgeState": {
           "fields": {
             "address": {
@@ -1588,6 +1621,15 @@
             "pokeConfig": {
               "type": "PokeConfig",
               "id": 11
+            },
+            "protocols": {
+              "rule": "repeated",
+              "type": "CoreProtocol",
+              "id": 12
+            },
+            "upgradeInfo": {
+              "type": "UpgradeInfo",
+              "id": 14
             },
             "data": {
               "type": "google.protobuf.Any",
@@ -1681,6 +1723,56 @@
               "rule": "repeated",
               "type": "string",
               "id": 1
+            }
+          }
+        },
+        "ProtocolState": {
+          "fields": {
+            "address": {
+              "type": "string",
+              "id": 1
+            },
+            "name": {
+              "type": "string",
+              "id": 2
+            },
+            "version": {
+              "type": "uint32",
+              "id": 3
+            },
+            "description": {
+              "type": "string",
+              "id": 4
+            },
+            "txHash": {
+              "type": "string",
+              "id": 5
+            },
+            "rootHash": {
+              "type": "bytes",
+              "id": 6
+            },
+            "status": {
+              "type": "ProtocolStatus",
+              "id": 7
+            },
+            "migratedTo": {
+              "rule": "repeated",
+              "type": "string",
+              "id": 12
+            },
+            "migratedFrom": {
+              "rule": "repeated",
+              "type": "string",
+              "id": 13
+            },
+            "context": {
+              "type": "StateContext",
+              "id": 14
+            },
+            "data": {
+              "type": "google.protobuf.Any",
+              "id": 15
             }
           }
         },
@@ -2062,6 +2154,35 @@
             }
           }
         },
+        "RequestGetProtocolState": {
+          "fields": {
+            "address": {
+              "type": "string",
+              "id": 1
+            },
+            "keys": {
+              "rule": "repeated",
+              "type": "string",
+              "id": 2
+            },
+            "height": {
+              "type": "uint64",
+              "id": 3
+            }
+          }
+        },
+        "ResponseGetProtocolState": {
+          "fields": {
+            "code": {
+              "type": "StatusCode",
+              "id": 1
+            },
+            "state": {
+              "type": "ProtocolState",
+              "id": 2
+            }
+          }
+        },
         "RequestGetStakeState": {
           "fields": {
             "address": {
@@ -2283,8 +2404,8 @@
         },
         "RequestSubscribe": {
           "fields": {
-            "type": {
-              "type": "TopicType",
+            "topic": {
+              "type": "string",
               "id": 1
             },
             "filter": {
@@ -2315,7 +2436,8 @@
                 "accountState",
                 "assetState",
                 "forgeState",
-                "stakeState"
+                "stakeState",
+                "protocolState"
               ]
             }
           },
@@ -2385,20 +2507,24 @@
               "id": 24
             },
             "accountState": {
-              "type": "Transaction",
+              "type": "AccountState",
               "id": 129
             },
             "assetState": {
-              "type": "Transaction",
+              "type": "AssetState",
               "id": 130
             },
             "forgeState": {
-              "type": "Transaction",
+              "type": "ForgeState",
               "id": 131
             },
             "stakeState": {
-              "type": "Transaction",
+              "type": "StakeState",
               "id": 132
+            },
+            "protocolState": {
+              "type": "ProtocolState",
+              "id": 133
             }
           }
         },
@@ -2520,62 +2646,6 @@
               "rule": "repeated",
               "type": "IndexedTransaction",
               "id": 3
-            }
-          }
-        },
-        "RequestGetAssetAddress": {
-          "fields": {
-            "senderAddress": {
-              "type": "string",
-              "id": 1
-            },
-            "itx": {
-              "type": "CreateAssetTx",
-              "id": 2
-            },
-            "walletType": {
-              "type": "WalletType",
-              "id": 3
-            }
-          }
-        },
-        "ResponseGetAssetAddress": {
-          "fields": {
-            "code": {
-              "type": "StatusCode",
-              "id": 1
-            },
-            "assetAddress": {
-              "type": "string",
-              "id": 2
-            }
-          }
-        },
-        "RequestSignData": {
-          "fields": {
-            "data": {
-              "type": "bytes",
-              "id": 1
-            },
-            "wallet": {
-              "type": "WalletInfo",
-              "id": 2
-            },
-            "token": {
-              "type": "string",
-              "id": 3
-            }
-          }
-        },
-        "ResponseSignData": {
-          "fields": {
-            "code": {
-              "type": "StatusCode",
-              "id": 1
-            },
-            "signature": {
-              "type": "bytes",
-              "id": 2
             }
           }
         },
@@ -2768,265 +2838,6 @@
             "healthStatus": {
               "type": "HealthStatus",
               "id": 2
-            }
-          }
-        },
-        "AccountMigrateTx": {
-          "fields": {
-            "pk": {
-              "type": "bytes",
-              "id": 1
-            },
-            "type": {
-              "type": "WalletType",
-              "id": 2
-            },
-            "address": {
-              "type": "string",
-              "id": 3
-            },
-            "data": {
-              "type": "google.protobuf.Any",
-              "id": 15
-            }
-          }
-        },
-        "ConsensusUpgradeTx": {
-          "fields": {
-            "validators": {
-              "rule": "repeated",
-              "type": "Validator",
-              "id": 1
-            },
-            "maxBytes": {
-              "type": "uint64",
-              "id": 2
-            },
-            "maxGas": {
-              "type": "sint64",
-              "id": 3
-            },
-            "maxValidators": {
-              "type": "uint32",
-              "id": 4
-            },
-            "maxCandidates": {
-              "type": "uint32",
-              "id": 5
-            },
-            "data": {
-              "type": "google.protobuf.Any",
-              "id": 15
-            }
-          }
-        },
-        "ConsumeAssetTx": {
-          "fields": {
-            "issuer": {
-              "type": "string",
-              "id": 1
-            },
-            "address": {
-              "type": "string",
-              "id": 2
-            },
-            "data": {
-              "type": "google.protobuf.Any",
-              "id": 15
-            }
-          }
-        },
-        "CreateAssetTx": {
-          "fields": {
-            "moniker": {
-              "type": "string",
-              "id": 1
-            },
-            "data": {
-              "type": "google.protobuf.Any",
-              "id": 2
-            },
-            "readonly": {
-              "type": "bool",
-              "id": 3
-            },
-            "transferrable": {
-              "type": "bool",
-              "id": 4
-            },
-            "ttl": {
-              "type": "uint32",
-              "id": 5
-            },
-            "parent": {
-              "type": "string",
-              "id": 6
-            },
-            "address": {
-              "type": "string",
-              "id": 7
-            }
-          }
-        },
-        "DeclareTx": {
-          "fields": {
-            "moniker": {
-              "type": "string",
-              "id": 1
-            },
-            "issuer": {
-              "type": "string",
-              "id": 2
-            },
-            "data": {
-              "type": "google.protobuf.Any",
-              "id": 15
-            }
-          }
-        },
-        "DeclareFileTx": {
-          "fields": {
-            "hash": {
-              "type": "string",
-              "id": 1
-            }
-          }
-        },
-        "ExchangeInfo": {
-          "fields": {
-            "value": {
-              "type": "BigUint",
-              "id": 1
-            },
-            "assets": {
-              "rule": "repeated",
-              "type": "string",
-              "id": 2
-            }
-          }
-        },
-        "ExchangeTx": {
-          "fields": {
-            "to": {
-              "type": "string",
-              "id": 1
-            },
-            "sender": {
-              "type": "ExchangeInfo",
-              "id": 2
-            },
-            "receiver": {
-              "type": "ExchangeInfo",
-              "id": 3
-            },
-            "expiredAt": {
-              "type": "google.protobuf.Timestamp",
-              "id": 4
-            },
-            "data": {
-              "type": "google.protobuf.Any",
-              "id": 15
-            }
-          }
-        },
-        "stakeForAsset": {
-          "fields": {}
-        },
-        "stakeForChain": {
-          "fields": {}
-        },
-        "StakeForNode": {
-          "fields": {}
-        },
-        "stakeForUser": {
-          "fields": {}
-        },
-        "StakeTx": {
-          "fields": {
-            "to": {
-              "type": "string",
-              "id": 1
-            },
-            "value": {
-              "type": "BigSint",
-              "id": 2
-            },
-            "message": {
-              "type": "string",
-              "id": 3
-            },
-            "data": {
-              "type": "google.protobuf.Any",
-              "id": 15
-            }
-          }
-        },
-        "SysUpgradeTx": {
-          "fields": {
-            "task": {
-              "type": "UpgradeTask",
-              "id": 1
-            },
-            "gracePeriod": {
-              "type": "uint64",
-              "id": 2
-            },
-            "data": {
-              "type": "google.protobuf.Any",
-              "id": 15
-            }
-          }
-        },
-        "TransferTx": {
-          "fields": {
-            "to": {
-              "type": "string",
-              "id": 1
-            },
-            "value": {
-              "type": "BigUint",
-              "id": 2
-            },
-            "assets": {
-              "rule": "repeated",
-              "type": "string",
-              "id": 3
-            },
-            "data": {
-              "type": "google.protobuf.Any",
-              "id": 15
-            }
-          }
-        },
-        "UpdateAssetTx": {
-          "fields": {
-            "address": {
-              "type": "string",
-              "id": 1
-            },
-            "moniker": {
-              "type": "string",
-              "id": 2
-            },
-            "data": {
-              "type": "google.protobuf.Any",
-              "id": 15
-            }
-          }
-        },
-        "PokeTx": {
-          "fields": {
-            "date": {
-              "type": "string",
-              "id": 1
-            },
-            "address": {
-              "type": "string",
-              "id": 2
-            },
-            "data": {
-              "type": "google.protobuf.Any",
-              "id": 15
             }
           }
         },
@@ -3500,14 +3311,6 @@
             "get_config": {
               "requestType": "RequestGetConfig",
               "responseType": "ResponseGetConfig"
-            },
-            "get_asset_address": {
-              "requestType": "RequestGetAssetAddress",
-              "responseType": "ResponseGetAssetAddress"
-            },
-            "sign_data": {
-              "requestType": "RequestSignData",
-              "responseType": "ResponseSignData"
             }
           }
         },
@@ -3556,15 +3359,21 @@
               "responseType": "ResponseGetAssetState",
               "responseStream": true
             },
+            "get_forge_state": {
+              "requestType": "RequestGetForgeState",
+              "responseType": "ResponseGetForgeState"
+            },
+            "get_protocol_state": {
+              "requestType": "RequestGetProtocolState",
+              "requestStream": true,
+              "responseType": "ResponseGetProtocolState",
+              "responseStream": true
+            },
             "get_stake_state": {
               "requestType": "RequestGetStakeState",
               "requestStream": true,
               "responseType": "ResponseGetStakeState",
               "responseStream": true
-            },
-            "get_forge_state": {
-              "requestType": "RequestGetForgeState",
-              "responseType": "ResponseGetForgeState"
             }
           }
         },
@@ -3634,6 +3443,142 @@
             "get_health_status": {
               "requestType": "RequestGetHealthStatus",
               "responseType": "ResponseGetHealthStatus"
+            }
+          }
+        },
+        "DeclareTx": {
+          "fields": {
+            "moniker": {
+              "type": "string",
+              "id": 1
+            },
+            "issuer": {
+              "type": "string",
+              "id": 2
+            },
+            "data": {
+              "type": "google.protobuf.Any",
+              "id": 15
+            }
+          }
+        },
+        "CodeInfo": {
+          "fields": {
+            "checksum": {
+              "type": "bytes",
+              "id": 1
+            },
+            "binary": {
+              "type": "bytes",
+              "id": 2
+            }
+          }
+        },
+        "TypeUrls": {
+          "fields": {
+            "url": {
+              "type": "string",
+              "id": 1
+            },
+            "module": {
+              "type": "string",
+              "id": 2
+            }
+          }
+        },
+        "DeployProtocolTx": {
+          "fields": {
+            "address": {
+              "type": "string",
+              "id": 1
+            },
+            "name": {
+              "type": "string",
+              "id": 2
+            },
+            "version": {
+              "type": "uint32",
+              "id": 3
+            },
+            "namespace": {
+              "type": "string",
+              "id": 4
+            },
+            "description": {
+              "type": "string",
+              "id": 5
+            },
+            "typeUrls": {
+              "rule": "repeated",
+              "type": "TypeUrls",
+              "id": 6
+            },
+            "proto": {
+              "type": "string",
+              "id": 7
+            },
+            "pipeline": {
+              "type": "string",
+              "id": 8
+            },
+            "sources": {
+              "rule": "repeated",
+              "type": "string",
+              "id": 9
+            },
+            "code": {
+              "rule": "repeated",
+              "type": "CodeInfo",
+              "id": 10
+            },
+            "data": {
+              "type": "google.protobuf.Any",
+              "id": 15
+            }
+          }
+        },
+        "ConsensusUpgradeTx": {
+          "fields": {
+            "validators": {
+              "rule": "repeated",
+              "type": "Validator",
+              "id": 1
+            },
+            "maxBytes": {
+              "type": "uint64",
+              "id": 2
+            },
+            "maxGas": {
+              "type": "sint64",
+              "id": 3
+            },
+            "maxValidators": {
+              "type": "uint32",
+              "id": 4
+            },
+            "maxCandidates": {
+              "type": "uint32",
+              "id": 5
+            },
+            "data": {
+              "type": "google.protobuf.Any",
+              "id": 15
+            }
+          }
+        },
+        "SysUpgradeTx": {
+          "fields": {
+            "task": {
+              "type": "UpgradeTask",
+              "id": 1
+            },
+            "gracePeriod": {
+              "type": "uint64",
+              "id": 2
+            },
+            "data": {
+              "type": "google.protobuf.Any",
+              "id": 15
             }
           }
         }

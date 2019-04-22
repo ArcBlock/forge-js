@@ -1,6 +1,6 @@
 # Forge GraphQL API List
 
-> Updated on 2019-04-11T08:42:47.371Z
+> Updated on 2019-04-22T07:15:09.267Z
 
 
 ## Table of Contents
@@ -1379,6 +1379,10 @@ No arguments
         maxListSize
         maxMultisig
         minimumStake
+      }
+      upgradeInfo {
+        height
+        version
       }
     }
   }

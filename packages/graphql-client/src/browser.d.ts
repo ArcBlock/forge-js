@@ -29,77 +29,29 @@ declare class GraphQLClient {
   generateSubscriptionFns(): void;
   generateMutationFns(): void;
 
-  sendAccountMigrateTx(
-    param: GraphQLClient.TxParam<GraphQLClient.AccountMigrateTx>
+  sendDeclareTx(
+    param: GraphQLClient.TxParam<GraphQLClient.DeclareTx>
+  ): Promise<GraphQLClient.ResponseSendTx>;
+  sendDeployProtocolTx(
+    param: GraphQLClient.TxParam<GraphQLClient.DeployProtocolTx>
   ): Promise<GraphQLClient.ResponseSendTx>;
   sendConsensusUpgradeTx(
     param: GraphQLClient.TxParam<GraphQLClient.ConsensusUpgradeTx>
   ): Promise<GraphQLClient.ResponseSendTx>;
-  sendConsumeAssetTx(
-    param: GraphQLClient.TxParam<GraphQLClient.ConsumeAssetTx>
-  ): Promise<GraphQLClient.ResponseSendTx>;
-  sendCreateAssetTx(
-    param: GraphQLClient.TxParam<GraphQLClient.CreateAssetTx>
-  ): Promise<GraphQLClient.ResponseSendTx>;
-  sendDeclareTx(
-    param: GraphQLClient.TxParam<GraphQLClient.DeclareTx>
-  ): Promise<GraphQLClient.ResponseSendTx>;
-  sendDeclareFileTx(
-    param: GraphQLClient.TxParam<GraphQLClient.DeclareFileTx>
-  ): Promise<GraphQLClient.ResponseSendTx>;
-  sendExchangeTx(
-    param: GraphQLClient.TxParam<GraphQLClient.ExchangeTx>
-  ): Promise<GraphQLClient.ResponseSendTx>;
-  sendStakeTx(
-    param: GraphQLClient.TxParam<GraphQLClient.StakeTx>
-  ): Promise<GraphQLClient.ResponseSendTx>;
   sendSysUpgradeTx(
     param: GraphQLClient.TxParam<GraphQLClient.SysUpgradeTx>
   ): Promise<GraphQLClient.ResponseSendTx>;
-  sendTransferTx(
-    param: GraphQLClient.TxParam<GraphQLClient.TransferTx>
-  ): Promise<GraphQLClient.ResponseSendTx>;
-  sendUpdateAssetTx(
-    param: GraphQLClient.TxParam<GraphQLClient.UpdateAssetTx>
-  ): Promise<GraphQLClient.ResponseSendTx>;
-  sendPokeTx(
-    param: GraphQLClient.TxParam<GraphQLClient.PokeTx>
-  ): Promise<GraphQLClient.ResponseSendTx>;
-  encodeAccountMigrateTx(
-    param: GraphQLClient.TxParam<GraphQLClient.AccountMigrateTx>
+  encodeDeclareTx(
+    param: GraphQLClient.TxParam<GraphQLClient.DeclareTx>
+  ): Promise<GraphQLClient.EncodeTxResult>;
+  encodeDeployProtocolTx(
+    param: GraphQLClient.TxParam<GraphQLClient.DeployProtocolTx>
   ): Promise<GraphQLClient.EncodeTxResult>;
   encodeConsensusUpgradeTx(
     param: GraphQLClient.TxParam<GraphQLClient.ConsensusUpgradeTx>
   ): Promise<GraphQLClient.EncodeTxResult>;
-  encodeConsumeAssetTx(
-    param: GraphQLClient.TxParam<GraphQLClient.ConsumeAssetTx>
-  ): Promise<GraphQLClient.EncodeTxResult>;
-  encodeCreateAssetTx(
-    param: GraphQLClient.TxParam<GraphQLClient.CreateAssetTx>
-  ): Promise<GraphQLClient.EncodeTxResult>;
-  encodeDeclareTx(
-    param: GraphQLClient.TxParam<GraphQLClient.DeclareTx>
-  ): Promise<GraphQLClient.EncodeTxResult>;
-  encodeDeclareFileTx(
-    param: GraphQLClient.TxParam<GraphQLClient.DeclareFileTx>
-  ): Promise<GraphQLClient.EncodeTxResult>;
-  encodeExchangeTx(
-    param: GraphQLClient.TxParam<GraphQLClient.ExchangeTx>
-  ): Promise<GraphQLClient.EncodeTxResult>;
-  encodeStakeTx(
-    param: GraphQLClient.TxParam<GraphQLClient.StakeTx>
-  ): Promise<GraphQLClient.EncodeTxResult>;
   encodeSysUpgradeTx(
     param: GraphQLClient.TxParam<GraphQLClient.SysUpgradeTx>
-  ): Promise<GraphQLClient.EncodeTxResult>;
-  encodeTransferTx(
-    param: GraphQLClient.TxParam<GraphQLClient.TransferTx>
-  ): Promise<GraphQLClient.EncodeTxResult>;
-  encodeUpdateAssetTx(
-    param: GraphQLClient.TxParam<GraphQLClient.UpdateAssetTx>
-  ): Promise<GraphQLClient.EncodeTxResult>;
-  encodePokeTx(
-    param: GraphQLClient.TxParam<GraphQLClient.PokeTx>
   ): Promise<GraphQLClient.EncodeTxResult>;
   getAccountState(
     params: GraphQLClient.GetAccountStateParams
@@ -250,43 +202,43 @@ declare namespace GraphQLClient {
   }
 
   export enum StatusCode {
-    UNSUPPORTED_TX,
-    INVALID_ASSET,
-    BANNED_UNSTAKE,
-    INVALID_NONCE,
-    UNSUPPORTED_STAKE,
-    UNTRANSFERRABLE_ASSET,
-    NOENT,
     INVALID_PASSPHRASE,
-    INVALID_TX_SIZE,
-    READONLY_ASSET,
     INVALID_SIGNER_STATE,
-    INTERNAL,
-    INVALID_CHAIN_ID,
-    INVALID_FORGE_STATE,
-    INVALID_MONIKER,
-    EXPIRED_TX,
-    INVALID_SIGNATURE,
-    INVALID_STAKE_STATE,
-    CONSUMED_ASSET,
-    EXPIRED_ASSET,
-    INVALID_SENDER_STATE,
-    STORAGE_RPC_ERROR,
-    INSUFFICIENT_STAKE,
-    FORBIDDEN,
-    CONSENSUS_RPC_ERROR,
-    INVALID_MULTISIG,
-    TIMEOUT,
-    INVALID_WALLET,
-    INSUFFICIENT_FUND,
-    INVALID_RECEIVER_STATE,
-    INSUFFICIENT_DATA,
-    OK,
-    TOO_MANY_TXS,
     EXPIRED_WALLET_TOKEN,
+    UNSUPPORTED_STAKE,
+    INVALID_MULTISIG,
+    INTERNAL,
+    INVALID_TX_SIZE,
+    INVALID_WALLET,
+    EXPIRED_ASSET,
+    UNSUPPORTED_TX,
+    CONSENSUS_RPC_ERROR,
+    INVALID_NONCE,
+    INVALID_ASSET,
+    NOENT,
+    INVALID_SIGNATURE,
+    INVALID_MONIKER,
+    UNTRANSFERRABLE_ASSET,
+    INVALID_SENDER_STATE,
+    FORBIDDEN,
+    BANNED_UNSTAKE,
+    INVALID_RECEIVER_STATE,
     INVALID_OWNER,
+    INVALID_CHAIN_ID,
+    EXPIRED_TX,
+    CONSUMED_ASSET,
+    READONLY_ASSET,
     INVALID_TX,
+    INVALID_STAKE_STATE,
+    TOO_MANY_TXS,
+    INSUFFICIENT_FUND,
+    INSUFFICIENT_DATA,
+    TIMEOUT,
+    INSUFFICIENT_STAKE,
+    INVALID_FORGE_STATE,
     ACCOUNT_MIGRATED,
+    OK,
+    STORAGE_RPC_ERROR,
   }
 
   export enum UpgradeAction {
@@ -563,6 +515,7 @@ declare namespace GraphQLClient {
     tasks: Array<TasksEntry>;
     token: GraphQLClient.ForgeToken;
     txConfig: GraphQLClient.TransactionConfig;
+    upgradeInfo: GraphQLClient.UpgradeInfo;
     version: string;
   }
 
@@ -1077,6 +1030,11 @@ declare namespace GraphQLClient {
     address: string;
     data: GraphQLClient.Any;
     moniker: string;
+  }
+
+  export interface UpgradeInfo {
+    height: string;
+    version: string;
   }
 
   export interface UpgradeTask {
