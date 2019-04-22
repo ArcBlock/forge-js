@@ -59,10 +59,6 @@ declare class RpcClient {
   getConfig(
     request: forge_abi.RequestGetConfig
   ): RpcClient.UnaryResult<forge_abi.ResponseGetConfig>;
-  getAssetAddress(
-    request: forge_abi.RequestGetAssetAddress
-  ): RpcClient.UnaryResult<forge_abi.ResponseGetAssetAddress>;
-  signData(request: forge_abi.RequestSignData): RpcClient.UnaryResult<forge_abi.ResponseSignData>;
   subscribe(
     request: forge_abi.RequestSubscribe
   ): RpcClient.StreamResult<forge_abi.ResponseSubscribe>;
@@ -80,12 +76,15 @@ declare class RpcClient {
   getAssetState(
     request: forge_abi.RequestGetAssetState | Array<forge_abi.RequestGetAssetState>
   ): RpcClient.StreamResult<forge_abi.ResponseGetAssetState>;
-  getStakeState(
-    request: forge_abi.RequestGetStakeState | Array<forge_abi.RequestGetStakeState>
-  ): RpcClient.StreamResult<forge_abi.ResponseGetStakeState>;
   getForgeState(
     request: forge_abi.RequestGetForgeState
   ): RpcClient.UnaryResult<forge_abi.ResponseGetForgeState>;
+  getProtocolState(
+    request: forge_abi.RequestGetProtocolState | Array<forge_abi.RequestGetProtocolState>
+  ): RpcClient.StreamResult<forge_abi.ResponseGetProtocolState>;
+  getStakeState(
+    request: forge_abi.RequestGetStakeState | Array<forge_abi.RequestGetStakeState>
+  ): RpcClient.StreamResult<forge_abi.ResponseGetStakeState>;
   createWallet(
     request: forge_abi.RequestCreateWallet
   ): RpcClient.UnaryResult<forge_abi.ResponseCreateWallet>;
@@ -335,6 +334,7 @@ declare namespace forge_abi {
     ASSET_STATE = 130,
     FORGE_STATE = 131,
     STAKE_STATE = 132,
+    PROTOCOL_STATE = 133,
   }
 
   export enum KeyType {
@@ -367,6 +367,7 @@ declare namespace forge_abi {
     ROLE_ASSET = 6,
     ROLE_STAKE = 7,
     ROLE_VALIDATOR = 8,
+    ROLE_TX = 9,
   }
 
   export enum UpgradeType {
@@ -410,6 +411,12 @@ declare namespace forge_abi {
     STAKE_USER = 1,
     STAKE_ASSET = 2,
     STAKE_CHAIN = 3,
+  }
+
+  export enum ProtocolStatus {
+    RUNNING = 0,
+    PAUSED = 1,
+    TERMINATED = 2,
   }
 
   export interface BigUint {
@@ -750,6 +757,11 @@ declare namespace forge_abi {
     address: string;
   }
 
+  export interface UpgradeInfo {
+    height: number;
+    version: string;
+  }
+
   export interface AccountState {
     balance: forge_abi.BigUint;
     nonce: number;
@@ -783,6 +795,11 @@ declare namespace forge_abi {
     data: google.protobuf.Any;
   }
 
+  export interface CoreProtocol {
+    name: string;
+    address: string;
+  }
+
   export interface ForgeState {
     address: string;
     consensus: forge_abi.ConsensusParams;
@@ -795,6 +812,8 @@ declare namespace forge_abi {
     txConfig: forge_abi.TransactionConfig;
     stakeConfig: forge_abi.StakeConfig;
     pokeConfig: forge_abi.PokeConfig;
+    protocols: Array<forge_abi.CoreProtocol>;
+    upgradeInfo: forge_abi.UpgradeInfo;
     data: google.protobuf.Any;
   }
 
@@ -826,6 +845,20 @@ declare namespace forge_abi {
 
   export interface BlacklistState {
     address: Array<string>;
+  }
+
+  export interface ProtocolState {
+    address: string;
+    name: string;
+    version: number;
+    description: string;
+    txHash: string;
+    rootHash: Uint8Array;
+    status: forge_abi.ProtocolStatus;
+    migratedTo: Array<string>;
+    migratedFrom: Array<string>;
+    context: forge_abi.StateContext;
+    data: google.protobuf.Any;
   }
 
   export interface RequestCreateTx {
@@ -977,6 +1010,17 @@ declare namespace forge_abi {
     state: forge_abi.AssetState;
   }
 
+  export interface RequestGetProtocolState {
+    address: string;
+    keys: Array<string>;
+    height: number;
+  }
+
+  export interface ResponseGetProtocolState {
+    code: forge_abi.StatusCode;
+    state: forge_abi.ProtocolState;
+  }
+
   export interface RequestGetStakeState {
     address: string;
     keys: Array<string>;
@@ -1073,7 +1117,7 @@ declare namespace forge_abi {
   }
 
   export interface RequestSubscribe {
-    type: forge_abi.TopicType;
+    topic: string;
     filter: string;
   }
 
@@ -1094,10 +1138,11 @@ declare namespace forge_abi {
     declareFile: forge_abi.Transaction;
     sysUpgrade: forge_abi.Transaction;
     stake: forge_abi.Transaction;
-    accountState: forge_abi.Transaction;
-    assetState: forge_abi.Transaction;
-    forgeState: forge_abi.Transaction;
-    stakeState: forge_abi.Transaction;
+    accountState: forge_abi.AccountState;
+    assetState: forge_abi.AssetState;
+    forgeState: forge_abi.ForgeState;
+    stakeState: forge_abi.StakeState;
+    protocolState: forge_abi.ProtocolState;
   }
 
   export interface RequestUnsubscribe {
@@ -1146,28 +1191,6 @@ declare namespace forge_abi {
     code: forge_abi.StatusCode;
     page: forge_abi.PageInfo;
     transactions: Array<forge_abi.IndexedTransaction>;
-  }
-
-  export interface RequestGetAssetAddress {
-    senderAddress: string;
-    itx: forge_abi.CreateAssetTx;
-    walletType: forge_abi.WalletType;
-  }
-
-  export interface ResponseGetAssetAddress {
-    code: forge_abi.StatusCode;
-    assetAddress: string;
-  }
-
-  export interface RequestSignData {
-    data: Uint8Array;
-    wallet: forge_abi.WalletInfo;
-    token: string;
-  }
-
-  export interface ResponseSignData {
-    code: forge_abi.StatusCode;
-    signature: Uint8Array;
   }
 
   export interface RequestListAssets {
@@ -1242,101 +1265,6 @@ declare namespace forge_abi {
   export interface ResponseGetHealthStatus {
     code: forge_abi.StatusCode;
     healthStatus: forge_abi.HealthStatus;
-  }
-
-  export interface AccountMigrateTx {
-    pk: Uint8Array;
-    type: forge_abi.WalletType;
-    address: string;
-    data: google.protobuf.Any;
-  }
-
-  export interface ConsensusUpgradeTx {
-    validators: Array<forge_abi.Validator>;
-    maxBytes: number;
-    maxGas: number;
-    maxValidators: number;
-    maxCandidates: number;
-    data: google.protobuf.Any;
-  }
-
-  export interface ConsumeAssetTx {
-    issuer: string;
-    address: string;
-    data: google.protobuf.Any;
-  }
-
-  export interface CreateAssetTx {
-    moniker: string;
-    data: google.protobuf.Any;
-    readonly: forge_abi.bool;
-    transferrable: forge_abi.bool;
-    ttl: number;
-    parent: string;
-    address: string;
-  }
-
-  export interface DeclareTx {
-    moniker: string;
-    issuer: string;
-    data: google.protobuf.Any;
-  }
-
-  export interface DeclareFileTx {
-    hash: string;
-  }
-
-  export interface ExchangeInfo {
-    value: forge_abi.BigUint;
-    assets: Array<string>;
-  }
-
-  export interface ExchangeTx {
-    to: string;
-    sender: forge_abi.ExchangeInfo;
-    receiver: forge_abi.ExchangeInfo;
-    expiredAt: google.protobuf.Timestamp;
-    data: google.protobuf.Any;
-  }
-
-  export interface stakeForAsset {}
-
-  export interface stakeForChain {}
-
-  export interface StakeForNode {}
-
-  export interface stakeForUser {}
-
-  export interface StakeTx {
-    to: string;
-    value: forge_abi.BigSint;
-    message: string;
-    data: google.protobuf.Any;
-  }
-
-  export interface SysUpgradeTx {
-    task: forge_abi.UpgradeTask;
-    gracePeriod: number;
-    data: google.protobuf.Any;
-  }
-
-  export interface TransferTx {
-    to: string;
-    value: forge_abi.BigUint;
-    assets: Array<string>;
-    data: google.protobuf.Any;
-  }
-
-  export interface UpdateAssetTx {
-    address: string;
-    moniker: string;
-    data: google.protobuf.Any;
-  }
-
-  export interface PokeTx {
-    date: string;
-    address: string;
-    data: google.protobuf.Any;
   }
 
   export interface PageOrder {
@@ -1488,6 +1416,125 @@ declare namespace forge_abi {
   export interface RangeFilter {
     from: number;
     to: number;
+  }
+
+  export interface DeclareTx {
+    moniker: string;
+    issuer: string;
+    data: google.protobuf.Any;
+  }
+
+  export interface CodeInfo {
+    checksum: Uint8Array;
+    binary: Uint8Array;
+  }
+
+  export interface TypeUrls {
+    url: string;
+    module: string;
+  }
+
+  export interface DeployProtocolTx {
+    address: string;
+    name: string;
+    version: number;
+    namespace: string;
+    description: string;
+    typeUrls: Array<forge_abi.TypeUrls>;
+    proto: string;
+    pipeline: string;
+    sources: Array<string>;
+    code: Array<forge_abi.CodeInfo>;
+    data: google.protobuf.Any;
+  }
+
+  export interface ConsensusUpgradeTx {
+    validators: Array<forge_abi.Validator>;
+    maxBytes: number;
+    maxGas: number;
+    maxValidators: number;
+    maxCandidates: number;
+    data: google.protobuf.Any;
+  }
+
+  export interface SysUpgradeTx {
+    task: forge_abi.UpgradeTask;
+    gracePeriod: number;
+    data: google.protobuf.Any;
+  }
+
+  export interface AccountMigrateTx {
+    pk: Uint8Array;
+    type: forge_abi.WalletType;
+    address: string;
+    data: google.protobuf.Any;
+  }
+
+  export interface ConsumeAssetTx {
+    issuer: string;
+    address: string;
+    data: google.protobuf.Any;
+  }
+
+  export interface CreateAssetTx {
+    moniker: string;
+    data: google.protobuf.Any;
+    readonly: forge_abi.bool;
+    transferrable: forge_abi.bool;
+    ttl: number;
+    parent: string;
+    address: string;
+  }
+
+  export interface DeclareFileTx {
+    hash: string;
+  }
+
+  export interface ExchangeInfo {
+    value: forge_abi.BigUint;
+    assets: Array<string>;
+  }
+
+  export interface ExchangeTx {
+    to: string;
+    sender: forge_abi.ExchangeInfo;
+    receiver: forge_abi.ExchangeInfo;
+    expiredAt: google.protobuf.Timestamp;
+    data: google.protobuf.Any;
+  }
+
+  export interface PokeTx {
+    date: string;
+    address: string;
+    data: google.protobuf.Any;
+  }
+
+  export interface stakeForAsset {}
+
+  export interface stakeForChain {}
+
+  export interface StakeForNode {}
+
+  export interface stakeForUser {}
+
+  export interface StakeTx {
+    to: string;
+    value: forge_abi.BigSint;
+    message: string;
+    data: google.protobuf.Any;
+  }
+
+  export interface TransferTx {
+    to: string;
+    value: forge_abi.BigUint;
+    assets: Array<string>;
+    data: google.protobuf.Any;
+  }
+
+  export interface UpdateAssetTx {
+    address: string;
+    moniker: string;
+    data: google.protobuf.Any;
   }
 }
 
