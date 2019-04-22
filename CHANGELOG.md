@@ -1,3 +1,14 @@
+## 0.19.0 (April 22, 2019)
+  - fix: account txs only list valida txs
+  - feat: support upgrade node tx in tx card
+  - chore: add more test for graphql-client
+  - chore: upgrade grpc-client with latest forge
+  - chore: upgrade graphql-client with latest forge
+  - chore: upgrade forge-proto with latest forge
+  - fix: one command upgrade
+  - feat: make passphrase as passwords when handling wallets
+  - update readme
+
 ## 0.18.1 (April 17, 2019)
   - fix: host selecting on chain node web
   - update readme

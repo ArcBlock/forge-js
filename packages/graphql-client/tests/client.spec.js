@@ -22,13 +22,23 @@ describe('GraphqlClient', () => {
     expect(client.getSubscriptions().length).toBeGreaterThan(0);
   });
 
+  test('should have tx send methods', () => {
+    expect(client.getTxSendMethods().length).toBeGreaterThan(0);
+    expect(typeof client.sendTransferTx).toEqual('function');
+  });
+
+  test('should have tx encode methods', () => {
+    expect(client.getTxEncodeMethods().length).toBeGreaterThan(0);
+    expect(typeof client.encodeTransferTx).toEqual('function');
+  });
+
   test('should support getType', async () => {
     const type = client.getType('Transaction');
     expect(typeof type.fromObject).toEqual('function');
     expect(typeof type.encode).toEqual('function');
   });
 
-  if (process.env.CI === 1) {
+  if (process.env.CI) {
     const client = new GraphqlClient('https://test.abtnetwork.io/api');
 
     test('should support getBlock', async () => {

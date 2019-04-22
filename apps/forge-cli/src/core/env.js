@@ -302,7 +302,7 @@ async function ensureWallet() {
       },
     },
     {
-      type: 'text',
+      type: 'password',
       name: 'passphrase',
       message: 'Please enter passphrase of the wallet:',
       validate: input => {

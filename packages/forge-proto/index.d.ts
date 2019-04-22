@@ -125,6 +125,7 @@ declare namespace Enums {
     ASSET_STATE = 130,
     FORGE_STATE = 131,
     STAKE_STATE = 132,
+    PROTOCOL_STATE = 133,
   }
 
   export enum KeyType {
@@ -157,6 +158,7 @@ declare namespace Enums {
     ROLE_ASSET = 6,
     ROLE_STAKE = 7,
     ROLE_VALIDATOR = 8,
+    ROLE_TX = 9,
   }
 
   export enum UpgradeType {
@@ -202,6 +204,12 @@ declare namespace Enums {
     STAKE_CHAIN = 3,
   }
 
+  export enum ProtocolStatus {
+    RUNNING = 0,
+    PAUSED = 1,
+    TERMINATED = 2,
+  }
+
   export enum Direction {
     MUTUAL = 0,
     ONE_WAY = 1,
@@ -216,17 +224,18 @@ declare namespace Enums {
 
   export enum SupportedTxs {
     0 = AccountMigrateTx,
-    1 = ConsensusUpgradeTx,
-    2 = ConsumeAssetTx,
-    3 = CreateAssetTx,
-    4 = DeclareFileTx,
-    5 = DeclareTx,
-    6 = ExchangeTx,
-    7 = PokeTx,
-    8 = StakeTx,
-    9 = SysUpgradeTx,
-    10 = TransferTx,
-    11 = UpdateAssetTx,
+    1 = ConsumeAssetTx,
+    2 = CreateAssetTx,
+    3 = DeclareFileTx,
+    4 = DeclareTx,
+    5 = ExchangeTx,
+    6 = PokeTx,
+    7 = StakeTx,
+    8 = TransferTx,
+    9 = ConsensusUpgradeTx,
+    10 = DeployProtocolTx,
+    11 = SysUpgradeTx,
+    12 = UpdateAssetTx,
   }
 
   export enum SupportedStakes {
@@ -247,6 +256,7 @@ declare namespace Enums {
     UpgradeAction: typeof Enums.UpgradeAction;
     StateType: typeof Enums.StateType;
     StakeType: typeof Enums.StakeType;
+    ProtocolStatus: typeof Enums.ProtocolStatus;
     Direction: typeof Enums.Direction;
     Validity: typeof Enums.Validity;
     SupportedTxs: typeof Enums.SupportedTxs;
@@ -314,6 +324,7 @@ declare namespace Messages {
     130 = ASSET_STATE,
     131 = FORGE_STATE,
     132 = STAKE_STATE,
+    133 = PROTOCOL_STATE,
   }
 
   export enum KeyType {
@@ -346,6 +357,7 @@ declare namespace Messages {
     6 = ROLE_ASSET,
     7 = ROLE_STAKE,
     8 = ROLE_VALIDATOR,
+    9 = ROLE_TX,
   }
 
   export enum UpgradeType {
@@ -391,6 +403,12 @@ declare namespace Messages {
     3 = STAKE_CHAIN,
   }
 
+  export enum ProtocolStatus {
+    0 = RUNNING,
+    1 = PAUSED,
+    2 = TERMINATED,
+  }
+
   export enum Direction {
     0 = MUTUAL,
     1 = ONE_WAY,
@@ -414,6 +432,7 @@ declare namespace Messages {
     UpgradeAction: typeof Messages.UpgradeAction;
     StateType: typeof Messages.StateType;
     StakeType: typeof Messages.StakeType;
+    ProtocolStatus: typeof Messages.ProtocolStatus;
     Direction: typeof Messages.Direction;
     Validity: typeof Messages.Validity;
   }

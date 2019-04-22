@@ -13,7 +13,7 @@ import forge from '../../../../libs/forge';
 
 const tabs = {
   txs: {
-    title: 'txs',
+    title: 'valid txs',
     path: 'numTxs',
     icon: 'receipt',
     component: TxList,
