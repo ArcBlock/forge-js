@@ -3581,6 +3581,204 @@
               "id": 15
             }
           }
+        },
+        "AccountMigrateTx": {
+          "fields": {
+            "pk": {
+              "type": "bytes",
+              "id": 1
+            },
+            "type": {
+              "type": "WalletType",
+              "id": 2
+            },
+            "address": {
+              "type": "string",
+              "id": 3
+            },
+            "data": {
+              "type": "google.protobuf.Any",
+              "id": 15
+            }
+          }
+        },
+        "ConsumeAssetTx": {
+          "fields": {
+            "issuer": {
+              "type": "string",
+              "id": 1
+            },
+            "address": {
+              "type": "string",
+              "id": 2
+            },
+            "data": {
+              "type": "google.protobuf.Any",
+              "id": 15
+            }
+          }
+        },
+        "CreateAssetTx": {
+          "fields": {
+            "moniker": {
+              "type": "string",
+              "id": 1
+            },
+            "data": {
+              "type": "google.protobuf.Any",
+              "id": 2
+            },
+            "readonly": {
+              "type": "bool",
+              "id": 3
+            },
+            "transferrable": {
+              "type": "bool",
+              "id": 4
+            },
+            "ttl": {
+              "type": "uint32",
+              "id": 5
+            },
+            "parent": {
+              "type": "string",
+              "id": 6
+            },
+            "address": {
+              "type": "string",
+              "id": 7
+            }
+          }
+        },
+        "DeclareFileTx": {
+          "fields": {
+            "hash": {
+              "type": "string",
+              "id": 1
+            }
+          }
+        },
+        "ExchangeInfo": {
+          "fields": {
+            "value": {
+              "type": "BigUint",
+              "id": 1
+            },
+            "assets": {
+              "rule": "repeated",
+              "type": "string",
+              "id": 2
+            }
+          }
+        },
+        "ExchangeTx": {
+          "fields": {
+            "to": {
+              "type": "string",
+              "id": 1
+            },
+            "sender": {
+              "type": "ExchangeInfo",
+              "id": 2
+            },
+            "receiver": {
+              "type": "ExchangeInfo",
+              "id": 3
+            },
+            "expiredAt": {
+              "type": "google.protobuf.Timestamp",
+              "id": 4
+            },
+            "data": {
+              "type": "google.protobuf.Any",
+              "id": 15
+            }
+          }
+        },
+        "PokeTx": {
+          "fields": {
+            "date": {
+              "type": "string",
+              "id": 1
+            },
+            "address": {
+              "type": "string",
+              "id": 2
+            },
+            "data": {
+              "type": "google.protobuf.Any",
+              "id": 15
+            }
+          }
+        },
+        "stakeForAsset": {
+          "fields": {}
+        },
+        "stakeForChain": {
+          "fields": {}
+        },
+        "StakeForNode": {
+          "fields": {}
+        },
+        "stakeForUser": {
+          "fields": {}
+        },
+        "StakeTx": {
+          "fields": {
+            "to": {
+              "type": "string",
+              "id": 1
+            },
+            "value": {
+              "type": "BigSint",
+              "id": 2
+            },
+            "message": {
+              "type": "string",
+              "id": 3
+            },
+            "data": {
+              "type": "google.protobuf.Any",
+              "id": 15
+            }
+          }
+        },
+        "TransferTx": {
+          "fields": {
+            "to": {
+              "type": "string",
+              "id": 1
+            },
+            "value": {
+              "type": "BigUint",
+              "id": 2
+            },
+            "assets": {
+              "rule": "repeated",
+              "type": "string",
+              "id": 3
+            },
+            "data": {
+              "type": "google.protobuf.Any",
+              "id": 15
+            }
+          }
+        },
+        "UpdateAssetTx": {
+          "fields": {
+            "address": {
+              "type": "string",
+              "id": 1
+            },
+            "moniker": {
+              "type": "string",
+              "id": 2
+            },
+            "data": {
+              "type": "google.protobuf.Any",
+              "id": 15
+            }
+          }
         }
       }
     },

@@ -41,6 +41,33 @@ declare class GraphQLClient {
   sendSysUpgradeTx(
     param: GraphQLClient.TxParam<GraphQLClient.SysUpgradeTx>
   ): Promise<GraphQLClient.ResponseSendTx>;
+  sendAccountMigrateTx(
+    param: GraphQLClient.TxParam<GraphQLClient.AccountMigrateTx>
+  ): Promise<GraphQLClient.ResponseSendTx>;
+  sendConsumeAssetTx(
+    param: GraphQLClient.TxParam<GraphQLClient.ConsumeAssetTx>
+  ): Promise<GraphQLClient.ResponseSendTx>;
+  sendCreateAssetTx(
+    param: GraphQLClient.TxParam<GraphQLClient.CreateAssetTx>
+  ): Promise<GraphQLClient.ResponseSendTx>;
+  sendDeclareFileTx(
+    param: GraphQLClient.TxParam<GraphQLClient.DeclareFileTx>
+  ): Promise<GraphQLClient.ResponseSendTx>;
+  sendExchangeTx(
+    param: GraphQLClient.TxParam<GraphQLClient.ExchangeTx>
+  ): Promise<GraphQLClient.ResponseSendTx>;
+  sendPokeTx(
+    param: GraphQLClient.TxParam<GraphQLClient.PokeTx>
+  ): Promise<GraphQLClient.ResponseSendTx>;
+  sendStakeTx(
+    param: GraphQLClient.TxParam<GraphQLClient.StakeTx>
+  ): Promise<GraphQLClient.ResponseSendTx>;
+  sendTransferTx(
+    param: GraphQLClient.TxParam<GraphQLClient.TransferTx>
+  ): Promise<GraphQLClient.ResponseSendTx>;
+  sendUpdateAssetTx(
+    param: GraphQLClient.TxParam<GraphQLClient.UpdateAssetTx>
+  ): Promise<GraphQLClient.ResponseSendTx>;
   encodeDeclareTx(
     param: GraphQLClient.TxParam<GraphQLClient.DeclareTx>
   ): Promise<GraphQLClient.EncodeTxResult>;
@@ -52,6 +79,33 @@ declare class GraphQLClient {
   ): Promise<GraphQLClient.EncodeTxResult>;
   encodeSysUpgradeTx(
     param: GraphQLClient.TxParam<GraphQLClient.SysUpgradeTx>
+  ): Promise<GraphQLClient.EncodeTxResult>;
+  encodeAccountMigrateTx(
+    param: GraphQLClient.TxParam<GraphQLClient.AccountMigrateTx>
+  ): Promise<GraphQLClient.EncodeTxResult>;
+  encodeConsumeAssetTx(
+    param: GraphQLClient.TxParam<GraphQLClient.ConsumeAssetTx>
+  ): Promise<GraphQLClient.EncodeTxResult>;
+  encodeCreateAssetTx(
+    param: GraphQLClient.TxParam<GraphQLClient.CreateAssetTx>
+  ): Promise<GraphQLClient.EncodeTxResult>;
+  encodeDeclareFileTx(
+    param: GraphQLClient.TxParam<GraphQLClient.DeclareFileTx>
+  ): Promise<GraphQLClient.EncodeTxResult>;
+  encodeExchangeTx(
+    param: GraphQLClient.TxParam<GraphQLClient.ExchangeTx>
+  ): Promise<GraphQLClient.EncodeTxResult>;
+  encodePokeTx(
+    param: GraphQLClient.TxParam<GraphQLClient.PokeTx>
+  ): Promise<GraphQLClient.EncodeTxResult>;
+  encodeStakeTx(
+    param: GraphQLClient.TxParam<GraphQLClient.StakeTx>
+  ): Promise<GraphQLClient.EncodeTxResult>;
+  encodeTransferTx(
+    param: GraphQLClient.TxParam<GraphQLClient.TransferTx>
+  ): Promise<GraphQLClient.EncodeTxResult>;
+  encodeUpdateAssetTx(
+    param: GraphQLClient.TxParam<GraphQLClient.UpdateAssetTx>
   ): Promise<GraphQLClient.EncodeTxResult>;
   getAccountState(
     params: GraphQLClient.GetAccountStateParams
