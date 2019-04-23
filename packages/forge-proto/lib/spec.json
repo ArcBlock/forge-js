@@ -3779,6 +3779,22 @@
               "id": 15
             }
           }
+        },
+        "UpgradeNodeTx": {
+          "fields": {
+            "height": {
+              "type": "uint64",
+              "id": 1
+            },
+            "version": {
+              "type": "string",
+              "id": 2
+            },
+            "override": {
+              "type": "bool",
+              "id": 3
+            }
+          }
         }
       }
     },
