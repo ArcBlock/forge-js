@@ -16,6 +16,8 @@ const {
   printLogo,
 } = require('core/env');
 
+const DEFAULT_MIRROR = 'https://releases.arcblock.io';
+
 async function isForgeStopped() {
   const processes = await findProcess('name', 'forge.sh');
   debug('Running forge process', processes);
@@ -39,7 +41,7 @@ function releaseDirExists() {
   return false;
 }
 
-function fetchReleaseVersion(mirror = 'http://releases.arcblock.io') {
+function fetchReleaseVersion(mirror = DEFAULT_MIRROR) {
   const spinner = getSpinner('Fetching forge release version...');
   spinner.start();
 
@@ -60,7 +62,7 @@ function fetchReleaseVersion(mirror = 'http://releases.arcblock.io') {
   process.exit(1);
 }
 
-function fetchAssetInfo(platform, version, key, mirror = 'http://releases.arcblock.io') {
+function fetchAssetInfo(platform, version, key, mirror = DEFAULT_MIRROR) {
   const name = `${key}_${platform}_amd64.tgz`;
   const url = `${mirror}/forge/${version}/${name}`;
   const defaultSize = {
