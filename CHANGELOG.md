@@ -1,3 +1,7 @@
+## 0.19.1 (April 23, 2019)
+  - chore: add deploy_*, upgrade_* tx protocols
+  - update readme
+
 ## 0.19.0 (April 22, 2019)
   - fix: account txs only list valida txs
   - feat: support upgrade node tx in tx card
