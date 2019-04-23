@@ -45,6 +45,16 @@ function processJs(baseDir) {
   const services = {};
   fs.readdirSync(baseDir)
     .filter(x => /\.js$/.test(x))
+    // Make sure all tx protocol overwrites the built-in ones
+    .sort((a, b) => {
+      if (/_tx_pb\.js$/.test(a)) {
+        return 1;
+      }
+      if (/_tx_pb\.js$/.test(b)) {
+        return -1;
+      }
+      return 0;
+    })
     .forEach(x => {
       const filePath = path.join(baseDir, x);
       if (/^vendor_/.test(x)) {

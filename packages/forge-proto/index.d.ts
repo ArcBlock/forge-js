@@ -223,19 +223,20 @@ declare namespace Enums {
   }
 
   export enum SupportedTxs {
-    0 = AccountMigrateTx,
-    1 = ConsumeAssetTx,
-    2 = CreateAssetTx,
-    3 = DeclareFileTx,
-    4 = DeclareTx,
-    5 = ExchangeTx,
-    6 = PokeTx,
-    7 = StakeTx,
-    8 = TransferTx,
-    9 = ConsensusUpgradeTx,
-    10 = DeployProtocolTx,
-    11 = SysUpgradeTx,
-    12 = UpdateAssetTx,
+    0 = ConsensusUpgradeTx,
+    1 = DeclareTx,
+    2 = DeployProtocolTx,
+    3 = SysUpgradeTx,
+    4 = DeclareFileTx,
+    5 = CreateAssetTx,
+    6 = StakeTx,
+    7 = ExchangeTx,
+    8 = AccountMigrateTx,
+    9 = UpgradeNodeTx,
+    10 = UpdateAssetTx,
+    11 = ConsumeAssetTx,
+    12 = PokeTx,
+    13 = TransferTx,
   }
 
   export enum SupportedStakes {
