@@ -9,6 +9,8 @@ const {
   decodeTimestamp,
   encodeBigInt,
   decodeBigInt,
+  attachExampleFn,
+  attachFormatFn,
 } = require('./lib/util/message');
 
 module.exports = {
@@ -21,4 +23,6 @@ module.exports = {
   decodeTimestamp,
   encodeBigInt,
   decodeBigInt,
+  attachExampleFn,
+  attachFormatFn,
 };
