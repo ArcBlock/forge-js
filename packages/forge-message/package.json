@@ -54,6 +54,7 @@
   "files": [
     "index.d.ts",
     "index.js",
+    "lite.js",
     "lib"
   ],
   "repository": {
@@ -61,7 +62,7 @@
     "url": "https://github.com/ArcBlock/forge-js/tree/master/packages/forge-message"
   },
   "scripts": {
-    "lint": "eslint lib index.js tests",
+    "lint": "eslint lib index.js lite.js tests",
     "upgrade": "npm run format-docs && npm run generate-dts",
     "format-docs": "remark . -o",
     "generate-dts": "j2d index.js",

@@ -8,7 +8,7 @@ const {
   decodeTimestamp,
   encodeBigInt,
   decodeBigInt,
-} = require('../../lib/util/message');
+} = require('../');
 
 describe('#createMessage', () => {
   test('should create simple message', () => {

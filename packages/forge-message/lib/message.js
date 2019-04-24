@@ -1,18 +1,12 @@
 /* eslint no-console:"off" */
 const util = require('util');
 const camelcase = require('camelcase');
-const {
-  enums,
-  messages,
-  getMessageType,
-  toTypeUrl,
-  fromTypeUrl,
-} = require('@arcblock/forge-proto');
 const jspb = require('google-protobuf');
 const { Any } = require('google-protobuf/google/protobuf/any_pb');
 const { Timestamp } = require('google-protobuf/google/protobuf/timestamp_pb');
 const { toBN, bytesToHex } = require('@arcblock/forge-util');
-const debug = require('debug')(`${require('../../package.json').name}:util`);
+const { enums, messages, getMessageType, toTypeUrl, fromTypeUrl } = require('./proto');
+const debug = require('debug')(`${require('../package.json').name}`);
 
 const enumTypes = Object.keys(enums);
 const { isUint8Array } = util.types;
