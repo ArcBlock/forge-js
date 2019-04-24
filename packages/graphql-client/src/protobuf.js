@@ -1,5 +1,5 @@
 /* eslint no-console:"off" */
-const protobuf = require('protobufjs');
+const protobuf = require('protobufjs/light');
 
 const txTypePattern = /Tx$/;
 const stateTypePattern = /State$/;
