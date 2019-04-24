@@ -1305,7 +1305,6 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
           ? f.toObject(includeInstance, proto.forge_abi.StakeSummary.toObject)
           : [],
         version: jspb.Message.getFieldWithDefault(msg, 5, ''),
-        dataVersion: jspb.Message.getFieldWithDefault(msg, 6, ''),
         forgeAppHash: msg.getForgeAppHash(),
         token: (f = msg.getToken()) && type_pb.ForgeToken.toObject(includeInstance, f),
         txConfig: (f = msg.getTxConfig()) && type_pb.TransactionConfig.toObject(includeInstance, f),
@@ -1390,10 +1389,6 @@ proto.forge_abi.ForgeState.deserializeBinaryFromReader = function(msg, reader) {
       case 5:
         var value = /** @type {string} */ (reader.readString());
         msg.setVersion(value);
-        break;
-      case 6:
-        var value = /** @type {string} */ (reader.readString());
-        msg.setDataVersion(value);
         break;
       case 7:
         var value = /** @type {!Uint8Array} */ (reader.readBytes());
@@ -1492,10 +1487,6 @@ proto.forge_abi.ForgeState.serializeBinaryToWriter = function(message, writer) {
   f = message.getVersion();
   if (f.length > 0) {
     writer.writeString(5, f);
-  }
-  f = message.getDataVersion();
-  if (f.length > 0) {
-    writer.writeString(6, f);
   }
   f = message.getForgeAppHash_asU8();
   if (f.length > 0) {
@@ -1622,19 +1613,6 @@ proto.forge_abi.ForgeState.prototype.getVersion = function() {
 /** @param {string} value */
 proto.forge_abi.ForgeState.prototype.setVersion = function(value) {
   jspb.Message.setProto3StringField(this, 5, value);
-};
-
-/**
- * optional string data_version = 6;
- * @return {string}
- */
-proto.forge_abi.ForgeState.prototype.getDataVersion = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ''));
-};
-
-/** @param {string} value */
-proto.forge_abi.ForgeState.prototype.setDataVersion = function(value) {
-  jspb.Message.setProto3StringField(this, 6, value);
 };
 
 /**

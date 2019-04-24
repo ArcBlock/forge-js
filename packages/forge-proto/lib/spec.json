@@ -446,10 +446,6 @@
               "type": "string",
               "id": 13
             },
-            "dataVersion": {
-              "type": "string",
-              "id": 14
-            },
             "forgeAppsVersion": {
               "keyType": "string",
               "type": "string",
@@ -515,10 +511,6 @@
             "version": {
               "type": "string",
               "id": 13
-            },
-            "dataVersion": {
-              "type": "string",
-              "id": 14
             },
             "forgeAppsVersion": {
               "keyType": "string",
@@ -1597,10 +1589,6 @@
             "version": {
               "type": "string",
               "id": 5
-            },
-            "dataVersion": {
-              "type": "string",
-              "id": 6
             },
             "forgeAppHash": {
               "type": "bytes",

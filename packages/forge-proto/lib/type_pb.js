@@ -901,7 +901,6 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
         votingPower: jspb.Message.getFieldWithDefault(msg, 11, 0),
         totalTxs: jspb.Message.getFieldWithDefault(msg, 12, 0),
         version: jspb.Message.getFieldWithDefault(msg, 13, ''),
-        dataVersion: jspb.Message.getFieldWithDefault(msg, 14, ''),
         forgeAppsVersionMap: (f = msg.getForgeAppsVersionMap())
           ? f.toObject(includeInstance, undefined)
           : [],
@@ -995,10 +994,6 @@ proto.forge_abi.ChainInfo.deserializeBinaryFromReader = function(msg, reader) {
       case 13:
         var value = /** @type {string} */ (reader.readString());
         msg.setVersion(value);
-        break;
-      case 14:
-        var value = /** @type {string} */ (reader.readString());
-        msg.setDataVersion(value);
         break;
       case 15:
         var value = msg.getForgeAppsVersionMap();
@@ -1095,10 +1090,6 @@ proto.forge_abi.ChainInfo.serializeBinaryToWriter = function(message, writer) {
   f = message.getVersion();
   if (f.length > 0) {
     writer.writeString(13, f);
-  }
-  f = message.getDataVersion();
-  if (f.length > 0) {
-    writer.writeString(14, f);
   }
   f = message.getForgeAppsVersionMap(true);
   if (f && f.getLength() > 0) {
@@ -1343,19 +1334,6 @@ proto.forge_abi.ChainInfo.prototype.setVersion = function(value) {
 };
 
 /**
- * optional string data_version = 14;
- * @return {string}
- */
-proto.forge_abi.ChainInfo.prototype.getDataVersion = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 14, ''));
-};
-
-/** @param {string} value */
-proto.forge_abi.ChainInfo.prototype.setDataVersion = function(value) {
-  jspb.Message.setProto3StringField(this, 14, value);
-};
-
-/**
  * map<string, string> forge_apps_version = 15;
  * @param {boolean=} opt_noLazyCreate Do not create the map if
  * empty, instead returning `undefined`
@@ -1465,7 +1443,6 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
         votingPower: jspb.Message.getFieldWithDefault(msg, 11, 0),
         totalTxs: jspb.Message.getFieldWithDefault(msg, 12, 0),
         version: jspb.Message.getFieldWithDefault(msg, 13, ''),
-        dataVersion: jspb.Message.getFieldWithDefault(msg, 14, ''),
         forgeAppsVersionMap: (f = msg.getForgeAppsVersionMap())
           ? f.toObject(includeInstance, undefined)
           : [],
@@ -1562,10 +1539,6 @@ proto.forge_abi.NodeInfo.deserializeBinaryFromReader = function(msg, reader) {
       case 13:
         var value = /** @type {string} */ (reader.readString());
         msg.setVersion(value);
-        break;
-      case 14:
-        var value = /** @type {string} */ (reader.readString());
-        msg.setDataVersion(value);
         break;
       case 15:
         var value = msg.getForgeAppsVersionMap();
@@ -1675,10 +1648,6 @@ proto.forge_abi.NodeInfo.serializeBinaryToWriter = function(message, writer) {
   f = message.getVersion();
   if (f.length > 0) {
     writer.writeString(13, f);
-  }
-  f = message.getDataVersion();
-  if (f.length > 0) {
-    writer.writeString(14, f);
   }
   f = message.getForgeAppsVersionMap(true);
   if (f && f.getLength() > 0) {
@@ -1932,19 +1901,6 @@ proto.forge_abi.NodeInfo.prototype.getVersion = function() {
 /** @param {string} value */
 proto.forge_abi.NodeInfo.prototype.setVersion = function(value) {
   jspb.Message.setProto3StringField(this, 13, value);
-};
-
-/**
- * optional string data_version = 14;
- * @return {string}
- */
-proto.forge_abi.NodeInfo.prototype.getDataVersion = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 14, ''));
-};
-
-/** @param {string} value */
-proto.forge_abi.NodeInfo.prototype.setDataVersion = function(value) {
-  jspb.Message.setProto3StringField(this, 14, value);
 };
 
 /**

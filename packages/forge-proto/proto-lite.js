@@ -1,4 +1,4 @@
-// Auto generated code (2019-04-24T09:40:19.954Z), DO NOT EDIT
+// Auto generated code (2019-04-24T11:04:45.071Z), DO NOT EDIT
 const typePb = require('./lib/type_pb.js');
 const enumPb = require('./lib/enum_pb.js');
 const transferTxPb = require('./lib/transfer_tx_pb.js');
