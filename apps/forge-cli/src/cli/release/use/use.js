@@ -23,7 +23,7 @@ async function main({ args: [version] }) {
         `${
           symbols.error
         } forge release v${version} not downloaded, please download it with ${chalk.cyan(
-          `forge release:download ${version}`
+          `forge download ${version}`
         )}`
       );
       return process.exit(1);
