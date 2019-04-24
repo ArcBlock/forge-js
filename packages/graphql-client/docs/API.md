@@ -1,6 +1,6 @@
 # Forge GraphQL API List
 
-> Updated on 2019-04-22T10:22:24.082Z
+> Updated on 2019-04-24T11:06:34.390Z
 
 
 ## Table of Contents
@@ -19,6 +19,7 @@
   * [getHealthStatus](#gethealthstatus)
   * [getNetInfo](#getnetinfo)
   * [getNodeInfo](#getnodeinfo)
+  * [getProtocolState](#getprotocolstate)
   * [getSimulatorStatus](#getsimulatorstatus)
   * [getStakeState](#getstakestate)
   * [getTx](#gettx)
@@ -1214,7 +1215,6 @@ No arguments
       blockHeight
       blockTime
       consensusVersion
-      dataVersion
       id
       moniker
       network
@@ -1289,6 +1289,10 @@ No arguments
         amount
         balance
         dailyLimit
+      }
+      protocols {
+        address
+        name
       }
       stakeConfig {
         timeoutGeneral
@@ -1622,6 +1626,355 @@ No arguments
         country
         latitude
         longitude
+      }
+    }
+  }
+}
+```
+
+### getProtocolState
+
+#### Arguments
+
+* **address**, optional, 
+* **height**, optional, 
+* **keys**, optional, 
+
+#### Result Format
+
+```graphql
+{
+  getProtocolState(address: "abc", height: "abc", keys: ["abc"]) {
+    code
+    state {
+      address
+      description
+      migratedFrom
+      migratedTo
+      name
+      rootHash
+      status
+      txHash
+      version
+      context {
+        genesisTime
+        renaissanceTime
+        genesisTx {
+          code
+          hash
+          height
+          index
+          time
+          accountMigrate {
+            address
+          }
+          createAsset {
+            asset
+          }
+          tags {
+            key
+            value
+          }
+          tx {
+            chainId
+            from
+            nonce
+            pk
+            signature
+            signatures {
+              pk
+              signature
+              signer
+              data {
+                typeUrl
+                value
+              }
+            }
+            itx {
+              __typename
+              ... on UpdateAssetTx {
+                address
+                moniker
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on TransferTx {
+                assets
+                to
+                value
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on SysUpgradeTx {
+                gracePeriod
+                data {
+                  typeUrl
+                  value
+                }
+                task {
+                  actions
+                  dataHash
+                  type
+                }
+              }
+              ... on StakeTx {
+                message
+                to
+                value
+                data {
+                  type
+                }
+              }
+              ... on ExchangeTx {
+                expiredAt
+                to
+                data {
+                  typeUrl
+                  value
+                }
+                receiver {
+                  assets
+                  value
+                }
+                sender {
+                  assets
+                  value
+                }
+              }
+              ... on DeclareFileTx {
+                hash
+              }
+              ... on DeclareTx {
+                issuer
+                moniker
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on CreateAssetTx {
+                address
+                moniker
+                parent
+                readonly
+                transferrable
+                ttl
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ConsumeAssetTx {
+                address
+                issuer
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ConsensusUpgradeTx {
+                maxBytes
+                maxCandidates
+                maxGas
+                maxValidators
+                data {
+                  typeUrl
+                  value
+                }
+                validators {
+                  address
+                  power
+                }
+              }
+              ... on PokeTx {
+                address
+                date
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on AccountMigrateTx {
+                address
+                pk
+                data {
+                  typeUrl
+                  value
+                }
+                type {
+                  address
+                  hash
+                  pk
+                  role
+                }
+              }
+            }
+          }
+        }
+        renaissanceTx {
+          code
+          hash
+          height
+          index
+          time
+          accountMigrate {
+            address
+          }
+          createAsset {
+            asset
+          }
+          tags {
+            key
+            value
+          }
+          tx {
+            chainId
+            from
+            nonce
+            pk
+            signature
+            signatures {
+              pk
+              signature
+              signer
+              data {
+                typeUrl
+                value
+              }
+            }
+            itx {
+              __typename
+              ... on UpdateAssetTx {
+                address
+                moniker
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on TransferTx {
+                assets
+                to
+                value
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on SysUpgradeTx {
+                gracePeriod
+                data {
+                  typeUrl
+                  value
+                }
+                task {
+                  actions
+                  dataHash
+                  type
+                }
+              }
+              ... on StakeTx {
+                message
+                to
+                value
+                data {
+                  type
+                }
+              }
+              ... on ExchangeTx {
+                expiredAt
+                to
+                data {
+                  typeUrl
+                  value
+                }
+                receiver {
+                  assets
+                  value
+                }
+                sender {
+                  assets
+                  value
+                }
+              }
+              ... on DeclareFileTx {
+                hash
+              }
+              ... on DeclareTx {
+                issuer
+                moniker
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on CreateAssetTx {
+                address
+                moniker
+                parent
+                readonly
+                transferrable
+                ttl
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ConsumeAssetTx {
+                address
+                issuer
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ConsensusUpgradeTx {
+                maxBytes
+                maxCandidates
+                maxGas
+                maxValidators
+                data {
+                  typeUrl
+                  value
+                }
+                validators {
+                  address
+                  power
+                }
+              }
+              ... on PokeTx {
+                address
+                date
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on AccountMigrateTx {
+                address
+                pk
+                data {
+                  typeUrl
+                  value
+                }
+                type {
+                  address
+                  hash
+                  pk
+                  role
+                }
+              }
+            }
+          }
+        }
+      }
+      data {
+        typeUrl
+        value
       }
     }
   }
@@ -2859,13 +3212,13 @@ No arguments
 #### Arguments
 
 * **filter**, optional, 
-* **type**, optional, 
+* **topic**, optional, 
 
 #### Result Format
 
 ```graphql
 subscription {
-  subscribe(filter: "abc", type: "abc") {
+  subscribe(filter: "abc", topic: "abc") {
     code
     topic
     accountMigrate {
@@ -3008,280 +3361,713 @@ subscription {
       }
     }
     accountState {
-      chainId
-      from
+      address
+      balance
+      issuer
+      migratedFrom
+      migratedTo
+      moniker
       nonce
+      numAssets
+      numTxs
       pk
-      signature
-      signatures {
-        pk
-        signature
-        signer
-        data {
-          typeUrl
-          value
+      context {
+        genesisTime
+        renaissanceTime
+        genesisTx {
+          code
+          hash
+          height
+          index
+          time
+          accountMigrate {
+            address
+          }
+          createAsset {
+            asset
+          }
+          tags {
+            key
+            value
+          }
+          tx {
+            chainId
+            from
+            nonce
+            pk
+            signature
+            signatures {
+              pk
+              signature
+              signer
+              data {
+                typeUrl
+                value
+              }
+            }
+            itx {
+              __typename
+              ... on UpdateAssetTx {
+                address
+                moniker
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on TransferTx {
+                assets
+                to
+                value
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on SysUpgradeTx {
+                gracePeriod
+                data {
+                  typeUrl
+                  value
+                }
+                task {
+                  actions
+                  dataHash
+                  type
+                }
+              }
+              ... on StakeTx {
+                message
+                to
+                value
+                data {
+                  type
+                }
+              }
+              ... on ExchangeTx {
+                expiredAt
+                to
+                data {
+                  typeUrl
+                  value
+                }
+                receiver {
+                  assets
+                  value
+                }
+                sender {
+                  assets
+                  value
+                }
+              }
+              ... on DeclareFileTx {
+                hash
+              }
+              ... on DeclareTx {
+                issuer
+                moniker
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on CreateAssetTx {
+                address
+                moniker
+                parent
+                readonly
+                transferrable
+                ttl
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ConsumeAssetTx {
+                address
+                issuer
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ConsensusUpgradeTx {
+                maxBytes
+                maxCandidates
+                maxGas
+                maxValidators
+                data {
+                  typeUrl
+                  value
+                }
+                validators {
+                  address
+                  power
+                }
+              }
+              ... on PokeTx {
+                address
+                date
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on AccountMigrateTx {
+                address
+                pk
+                data {
+                  typeUrl
+                  value
+                }
+                type {
+                  address
+                  hash
+                  pk
+                  role
+                }
+              }
+            }
+          }
+        }
+        renaissanceTx {
+          code
+          hash
+          height
+          index
+          time
+          accountMigrate {
+            address
+          }
+          createAsset {
+            asset
+          }
+          tags {
+            key
+            value
+          }
+          tx {
+            chainId
+            from
+            nonce
+            pk
+            signature
+            signatures {
+              pk
+              signature
+              signer
+              data {
+                typeUrl
+                value
+              }
+            }
+            itx {
+              __typename
+              ... on UpdateAssetTx {
+                address
+                moniker
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on TransferTx {
+                assets
+                to
+                value
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on SysUpgradeTx {
+                gracePeriod
+                data {
+                  typeUrl
+                  value
+                }
+                task {
+                  actions
+                  dataHash
+                  type
+                }
+              }
+              ... on StakeTx {
+                message
+                to
+                value
+                data {
+                  type
+                }
+              }
+              ... on ExchangeTx {
+                expiredAt
+                to
+                data {
+                  typeUrl
+                  value
+                }
+                receiver {
+                  assets
+                  value
+                }
+                sender {
+                  assets
+                  value
+                }
+              }
+              ... on DeclareFileTx {
+                hash
+              }
+              ... on DeclareTx {
+                issuer
+                moniker
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on CreateAssetTx {
+                address
+                moniker
+                parent
+                readonly
+                transferrable
+                ttl
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ConsumeAssetTx {
+                address
+                issuer
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ConsensusUpgradeTx {
+                maxBytes
+                maxCandidates
+                maxGas
+                maxValidators
+                data {
+                  typeUrl
+                  value
+                }
+                validators {
+                  address
+                  power
+                }
+              }
+              ... on PokeTx {
+                address
+                date
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on AccountMigrateTx {
+                address
+                pk
+                data {
+                  typeUrl
+                  value
+                }
+                type {
+                  address
+                  hash
+                  pk
+                  role
+                }
+              }
+            }
+          }
         }
       }
-      itx {
-        __typename
-        ... on UpdateAssetTx {
-          address
-          moniker
-          data {
-            typeUrl
-            value
-          }
+      data {
+        typeUrl
+        value
+      }
+      poke {
+        amount
+        dailyLimit
+        leftover
+      }
+      stake {
+        totalReceivedStakes
+        totalStakes
+        totalUnstakes
+        recentReceivedStakes {
+          circular
+          fifo
+          items
+          maxItems
+          typeUrl
         }
-        ... on TransferTx {
-          assets
-          to
-          value
-          data {
-            typeUrl
-            value
-          }
+        recentStakes {
+          circular
+          fifo
+          items
+          maxItems
+          typeUrl
         }
-        ... on SysUpgradeTx {
-          gracePeriod
-          data {
-            typeUrl
-            value
-          }
-          task {
-            actions
-            dataHash
-            type
-          }
-        }
-        ... on StakeTx {
-          message
-          to
-          value
-          data {
-            type
-          }
-        }
-        ... on ExchangeTx {
-          expiredAt
-          to
-          data {
-            typeUrl
-            value
-          }
-          receiver {
-            assets
-            value
-          }
-          sender {
-            assets
-            value
-          }
-        }
-        ... on DeclareFileTx {
-          hash
-        }
-        ... on DeclareTx {
-          issuer
-          moniker
-          data {
-            typeUrl
-            value
-          }
-        }
-        ... on CreateAssetTx {
-          address
-          moniker
-          parent
-          readonly
-          transferrable
-          ttl
-          data {
-            typeUrl
-            value
-          }
-        }
-        ... on ConsumeAssetTx {
-          address
-          issuer
-          data {
-            typeUrl
-            value
-          }
-        }
-        ... on ConsensusUpgradeTx {
-          maxBytes
-          maxCandidates
-          maxGas
-          maxValidators
-          data {
-            typeUrl
-            value
-          }
-          validators {
-            address
-            power
-          }
-        }
-        ... on PokeTx {
-          address
-          date
-          data {
-            typeUrl
-            value
-          }
-        }
-        ... on AccountMigrateTx {
-          address
-          pk
-          data {
-            typeUrl
-            value
-          }
-          type {
-            address
-            hash
-            pk
-            role
-          }
-        }
+      }
+      type {
+        address
+        hash
+        pk
+        role
       }
     }
     assetState {
-      chainId
-      from
-      nonce
-      pk
-      signature
-      signatures {
-        pk
-        signature
-        signer
-        data {
-          typeUrl
-          value
+      address
+      consumedTime
+      issuer
+      moniker
+      owner
+      readonly
+      transferrable
+      ttl
+      context {
+        genesisTime
+        renaissanceTime
+        genesisTx {
+          code
+          hash
+          height
+          index
+          time
+          accountMigrate {
+            address
+          }
+          createAsset {
+            asset
+          }
+          tags {
+            key
+            value
+          }
+          tx {
+            chainId
+            from
+            nonce
+            pk
+            signature
+            signatures {
+              pk
+              signature
+              signer
+              data {
+                typeUrl
+                value
+              }
+            }
+            itx {
+              __typename
+              ... on UpdateAssetTx {
+                address
+                moniker
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on TransferTx {
+                assets
+                to
+                value
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on SysUpgradeTx {
+                gracePeriod
+                data {
+                  typeUrl
+                  value
+                }
+                task {
+                  actions
+                  dataHash
+                  type
+                }
+              }
+              ... on StakeTx {
+                message
+                to
+                value
+                data {
+                  type
+                }
+              }
+              ... on ExchangeTx {
+                expiredAt
+                to
+                data {
+                  typeUrl
+                  value
+                }
+                receiver {
+                  assets
+                  value
+                }
+                sender {
+                  assets
+                  value
+                }
+              }
+              ... on DeclareFileTx {
+                hash
+              }
+              ... on DeclareTx {
+                issuer
+                moniker
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on CreateAssetTx {
+                address
+                moniker
+                parent
+                readonly
+                transferrable
+                ttl
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ConsumeAssetTx {
+                address
+                issuer
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ConsensusUpgradeTx {
+                maxBytes
+                maxCandidates
+                maxGas
+                maxValidators
+                data {
+                  typeUrl
+                  value
+                }
+                validators {
+                  address
+                  power
+                }
+              }
+              ... on PokeTx {
+                address
+                date
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on AccountMigrateTx {
+                address
+                pk
+                data {
+                  typeUrl
+                  value
+                }
+                type {
+                  address
+                  hash
+                  pk
+                  role
+                }
+              }
+            }
+          }
+        }
+        renaissanceTx {
+          code
+          hash
+          height
+          index
+          time
+          accountMigrate {
+            address
+          }
+          createAsset {
+            asset
+          }
+          tags {
+            key
+            value
+          }
+          tx {
+            chainId
+            from
+            nonce
+            pk
+            signature
+            signatures {
+              pk
+              signature
+              signer
+              data {
+                typeUrl
+                value
+              }
+            }
+            itx {
+              __typename
+              ... on UpdateAssetTx {
+                address
+                moniker
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on TransferTx {
+                assets
+                to
+                value
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on SysUpgradeTx {
+                gracePeriod
+                data {
+                  typeUrl
+                  value
+                }
+                task {
+                  actions
+                  dataHash
+                  type
+                }
+              }
+              ... on StakeTx {
+                message
+                to
+                value
+                data {
+                  type
+                }
+              }
+              ... on ExchangeTx {
+                expiredAt
+                to
+                data {
+                  typeUrl
+                  value
+                }
+                receiver {
+                  assets
+                  value
+                }
+                sender {
+                  assets
+                  value
+                }
+              }
+              ... on DeclareFileTx {
+                hash
+              }
+              ... on DeclareTx {
+                issuer
+                moniker
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on CreateAssetTx {
+                address
+                moniker
+                parent
+                readonly
+                transferrable
+                ttl
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ConsumeAssetTx {
+                address
+                issuer
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ConsensusUpgradeTx {
+                maxBytes
+                maxCandidates
+                maxGas
+                maxValidators
+                data {
+                  typeUrl
+                  value
+                }
+                validators {
+                  address
+                  power
+                }
+              }
+              ... on PokeTx {
+                address
+                date
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on AccountMigrateTx {
+                address
+                pk
+                data {
+                  typeUrl
+                  value
+                }
+                type {
+                  address
+                  hash
+                  pk
+                  role
+                }
+              }
+            }
+          }
         }
       }
-      itx {
-        __typename
-        ... on UpdateAssetTx {
-          address
-          moniker
-          data {
-            typeUrl
-            value
-          }
+      data {
+        typeUrl
+        value
+      }
+      stake {
+        totalReceivedStakes
+        totalStakes
+        totalUnstakes
+        recentReceivedStakes {
+          circular
+          fifo
+          items
+          maxItems
+          typeUrl
         }
-        ... on TransferTx {
-          assets
-          to
-          value
-          data {
-            typeUrl
-            value
-          }
-        }
-        ... on SysUpgradeTx {
-          gracePeriod
-          data {
-            typeUrl
-            value
-          }
-          task {
-            actions
-            dataHash
-            type
-          }
-        }
-        ... on StakeTx {
-          message
-          to
-          value
-          data {
-            type
-          }
-        }
-        ... on ExchangeTx {
-          expiredAt
-          to
-          data {
-            typeUrl
-            value
-          }
-          receiver {
-            assets
-            value
-          }
-          sender {
-            assets
-            value
-          }
-        }
-        ... on DeclareFileTx {
-          hash
-        }
-        ... on DeclareTx {
-          issuer
-          moniker
-          data {
-            typeUrl
-            value
-          }
-        }
-        ... on CreateAssetTx {
-          address
-          moniker
-          parent
-          readonly
-          transferrable
-          ttl
-          data {
-            typeUrl
-            value
-          }
-        }
-        ... on ConsumeAssetTx {
-          address
-          issuer
-          data {
-            typeUrl
-            value
-          }
-        }
-        ... on ConsensusUpgradeTx {
-          maxBytes
-          maxCandidates
-          maxGas
-          maxValidators
-          data {
-            typeUrl
-            value
-          }
-          validators {
-            address
-            power
-          }
-        }
-        ... on PokeTx {
-          address
-          date
-          data {
-            typeUrl
-            value
-          }
-        }
-        ... on AccountMigrateTx {
-          address
-          pk
-          data {
-            typeUrl
-            value
-          }
-          type {
-            address
-            hash
-            pk
-            role
-          }
+        recentStakes {
+          circular
+          fifo
+          items
+          maxItems
+          typeUrl
         }
       }
     }
@@ -4173,142 +4959,461 @@ subscription {
       }
     }
     forgeState {
-      chainId
-      from
-      nonce
-      pk
-      signature
-      signatures {
-        pk
-        signature
-        signer
-        data {
-          typeUrl
-          value
+      address
+      dataVersion
+      forgeAppHash
+      version
+      consensus {
+        maxBytes
+        maxCandidates
+        maxGas
+        maxValidators
+        paramChanged
+        pubKeyTypes
+        validatorChanged
+        validators {
+          address
+          power
         }
       }
-      itx {
-        __typename
-        ... on UpdateAssetTx {
-          address
-          moniker
-          data {
-            typeUrl
-            value
+      data {
+        typeUrl
+        value
+      }
+      pokeConfig {
+        address
+        amount
+        balance
+        dailyLimit
+      }
+      protocols {
+        address
+        name
+      }
+      stakeConfig {
+        timeoutGeneral
+        timeoutStakeForNode
+      }
+      stakeSummary {
+        key
+        value {
+          totalStakes
+          totalUnstakes
+          context {
+            genesisTime
+            renaissanceTime
+            genesisTx {
+              code
+              hash
+              height
+              index
+              time
+              accountMigrate {
+                address
+              }
+              createAsset {
+                asset
+              }
+              tags {
+                key
+                value
+              }
+              tx {
+                chainId
+                from
+                nonce
+                pk
+                signature
+              }
+            }
+            renaissanceTx {
+              code
+              hash
+              height
+              index
+              time
+              accountMigrate {
+                address
+              }
+              createAsset {
+                asset
+              }
+              tags {
+                key
+                value
+              }
+              tx {
+                chainId
+                from
+                nonce
+                pk
+                signature
+              }
+            }
           }
         }
-        ... on TransferTx {
-          assets
-          to
-          value
-          data {
-            typeUrl
-            value
-          }
-        }
-        ... on SysUpgradeTx {
-          gracePeriod
-          data {
-            typeUrl
-            value
-          }
-          task {
+      }
+      tasks {
+        key
+        value {
+          item {
             actions
             dataHash
             type
           }
         }
-        ... on StakeTx {
-          message
-          to
-          value
-          data {
-            type
-          }
-        }
-        ... on ExchangeTx {
-          expiredAt
-          to
-          data {
-            typeUrl
-            value
-          }
-          receiver {
-            assets
-            value
-          }
-          sender {
-            assets
-            value
-          }
-        }
-        ... on DeclareFileTx {
+      }
+      token {
+        decimal
+        description
+        icon
+        inflationRate
+        initialSupply
+        name
+        symbol
+        totalSupply
+        unit
+      }
+      txConfig {
+        maxAssetSize
+        maxListSize
+        maxMultisig
+        minimumStake
+      }
+      upgradeInfo {
+        height
+        version
+      }
+    }
+    protocolState {
+      address
+      description
+      migratedFrom
+      migratedTo
+      name
+      rootHash
+      status
+      txHash
+      version
+      context {
+        genesisTime
+        renaissanceTime
+        genesisTx {
+          code
           hash
-        }
-        ... on DeclareTx {
-          issuer
-          moniker
-          data {
-            typeUrl
-            value
-          }
-        }
-        ... on CreateAssetTx {
-          address
-          moniker
-          parent
-          readonly
-          transferrable
-          ttl
-          data {
-            typeUrl
-            value
-          }
-        }
-        ... on ConsumeAssetTx {
-          address
-          issuer
-          data {
-            typeUrl
-            value
-          }
-        }
-        ... on ConsensusUpgradeTx {
-          maxBytes
-          maxCandidates
-          maxGas
-          maxValidators
-          data {
-            typeUrl
-            value
-          }
-          validators {
+          height
+          index
+          time
+          accountMigrate {
             address
-            power
           }
-        }
-        ... on PokeTx {
-          address
-          date
-          data {
-            typeUrl
+          createAsset {
+            asset
+          }
+          tags {
+            key
             value
           }
-        }
-        ... on AccountMigrateTx {
-          address
-          pk
-          data {
-            typeUrl
-            value
-          }
-          type {
-            address
-            hash
+          tx {
+            chainId
+            from
+            nonce
             pk
-            role
+            signature
+            signatures {
+              pk
+              signature
+              signer
+              data {
+                typeUrl
+                value
+              }
+            }
+            itx {
+              __typename
+              ... on UpdateAssetTx {
+                address
+                moniker
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on TransferTx {
+                assets
+                to
+                value
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on SysUpgradeTx {
+                gracePeriod
+                data {
+                  typeUrl
+                  value
+                }
+                task {
+                  actions
+                  dataHash
+                  type
+                }
+              }
+              ... on StakeTx {
+                message
+                to
+                value
+                data {
+                  type
+                }
+              }
+              ... on ExchangeTx {
+                expiredAt
+                to
+                data {
+                  typeUrl
+                  value
+                }
+                receiver {
+                  assets
+                  value
+                }
+                sender {
+                  assets
+                  value
+                }
+              }
+              ... on DeclareFileTx {
+                hash
+              }
+              ... on DeclareTx {
+                issuer
+                moniker
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on CreateAssetTx {
+                address
+                moniker
+                parent
+                readonly
+                transferrable
+                ttl
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ConsumeAssetTx {
+                address
+                issuer
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ConsensusUpgradeTx {
+                maxBytes
+                maxCandidates
+                maxGas
+                maxValidators
+                data {
+                  typeUrl
+                  value
+                }
+                validators {
+                  address
+                  power
+                }
+              }
+              ... on PokeTx {
+                address
+                date
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on AccountMigrateTx {
+                address
+                pk
+                data {
+                  typeUrl
+                  value
+                }
+                type {
+                  address
+                  hash
+                  pk
+                  role
+                }
+              }
+            }
           }
         }
+        renaissanceTx {
+          code
+          hash
+          height
+          index
+          time
+          accountMigrate {
+            address
+          }
+          createAsset {
+            asset
+          }
+          tags {
+            key
+            value
+          }
+          tx {
+            chainId
+            from
+            nonce
+            pk
+            signature
+            signatures {
+              pk
+              signature
+              signer
+              data {
+                typeUrl
+                value
+              }
+            }
+            itx {
+              __typename
+              ... on UpdateAssetTx {
+                address
+                moniker
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on TransferTx {
+                assets
+                to
+                value
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on SysUpgradeTx {
+                gracePeriod
+                data {
+                  typeUrl
+                  value
+                }
+                task {
+                  actions
+                  dataHash
+                  type
+                }
+              }
+              ... on StakeTx {
+                message
+                to
+                value
+                data {
+                  type
+                }
+              }
+              ... on ExchangeTx {
+                expiredAt
+                to
+                data {
+                  typeUrl
+                  value
+                }
+                receiver {
+                  assets
+                  value
+                }
+                sender {
+                  assets
+                  value
+                }
+              }
+              ... on DeclareFileTx {
+                hash
+              }
+              ... on DeclareTx {
+                issuer
+                moniker
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on CreateAssetTx {
+                address
+                moniker
+                parent
+                readonly
+                transferrable
+                ttl
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ConsumeAssetTx {
+                address
+                issuer
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ConsensusUpgradeTx {
+                maxBytes
+                maxCandidates
+                maxGas
+                maxValidators
+                data {
+                  typeUrl
+                  value
+                }
+                validators {
+                  address
+                  power
+                }
+              }
+              ... on PokeTx {
+                address
+                date
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on AccountMigrateTx {
+                address
+                pk
+                data {
+                  typeUrl
+                  value
+                }
+                type {
+                  address
+                  hash
+                  pk
+                  role
+                }
+              }
+            }
+          }
+        }
+      }
+      data {
+        typeUrl
+        value
       }
     }
     revoke {
@@ -4590,142 +5695,330 @@ subscription {
       }
     }
     stakeState {
-      chainId
+      address
+      balance
       from
-      nonce
-      pk
-      signature
-      signatures {
-        pk
-        signature
-        signer
-        data {
-          typeUrl
-          value
+      message
+      to
+      context {
+        genesisTime
+        renaissanceTime
+        genesisTx {
+          code
+          hash
+          height
+          index
+          time
+          accountMigrate {
+            address
+          }
+          createAsset {
+            asset
+          }
+          tags {
+            key
+            value
+          }
+          tx {
+            chainId
+            from
+            nonce
+            pk
+            signature
+            signatures {
+              pk
+              signature
+              signer
+              data {
+                typeUrl
+                value
+              }
+            }
+            itx {
+              __typename
+              ... on UpdateAssetTx {
+                address
+                moniker
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on TransferTx {
+                assets
+                to
+                value
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on SysUpgradeTx {
+                gracePeriod
+                data {
+                  typeUrl
+                  value
+                }
+                task {
+                  actions
+                  dataHash
+                  type
+                }
+              }
+              ... on StakeTx {
+                message
+                to
+                value
+                data {
+                  type
+                }
+              }
+              ... on ExchangeTx {
+                expiredAt
+                to
+                data {
+                  typeUrl
+                  value
+                }
+                receiver {
+                  assets
+                  value
+                }
+                sender {
+                  assets
+                  value
+                }
+              }
+              ... on DeclareFileTx {
+                hash
+              }
+              ... on DeclareTx {
+                issuer
+                moniker
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on CreateAssetTx {
+                address
+                moniker
+                parent
+                readonly
+                transferrable
+                ttl
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ConsumeAssetTx {
+                address
+                issuer
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ConsensusUpgradeTx {
+                maxBytes
+                maxCandidates
+                maxGas
+                maxValidators
+                data {
+                  typeUrl
+                  value
+                }
+                validators {
+                  address
+                  power
+                }
+              }
+              ... on PokeTx {
+                address
+                date
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on AccountMigrateTx {
+                address
+                pk
+                data {
+                  typeUrl
+                  value
+                }
+                type {
+                  address
+                  hash
+                  pk
+                  role
+                }
+              }
+            }
+          }
+        }
+        renaissanceTx {
+          code
+          hash
+          height
+          index
+          time
+          accountMigrate {
+            address
+          }
+          createAsset {
+            asset
+          }
+          tags {
+            key
+            value
+          }
+          tx {
+            chainId
+            from
+            nonce
+            pk
+            signature
+            signatures {
+              pk
+              signature
+              signer
+              data {
+                typeUrl
+                value
+              }
+            }
+            itx {
+              __typename
+              ... on UpdateAssetTx {
+                address
+                moniker
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on TransferTx {
+                assets
+                to
+                value
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on SysUpgradeTx {
+                gracePeriod
+                data {
+                  typeUrl
+                  value
+                }
+                task {
+                  actions
+                  dataHash
+                  type
+                }
+              }
+              ... on StakeTx {
+                message
+                to
+                value
+                data {
+                  type
+                }
+              }
+              ... on ExchangeTx {
+                expiredAt
+                to
+                data {
+                  typeUrl
+                  value
+                }
+                receiver {
+                  assets
+                  value
+                }
+                sender {
+                  assets
+                  value
+                }
+              }
+              ... on DeclareFileTx {
+                hash
+              }
+              ... on DeclareTx {
+                issuer
+                moniker
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on CreateAssetTx {
+                address
+                moniker
+                parent
+                readonly
+                transferrable
+                ttl
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ConsumeAssetTx {
+                address
+                issuer
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ConsensusUpgradeTx {
+                maxBytes
+                maxCandidates
+                maxGas
+                maxValidators
+                data {
+                  typeUrl
+                  value
+                }
+                validators {
+                  address
+                  power
+                }
+              }
+              ... on PokeTx {
+                address
+                date
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on AccountMigrateTx {
+                address
+                pk
+                data {
+                  typeUrl
+                  value
+                }
+                type {
+                  address
+                  hash
+                  pk
+                  role
+                }
+              }
+            }
+          }
         }
       }
-      itx {
-        __typename
-        ... on UpdateAssetTx {
-          address
-          moniker
-          data {
-            typeUrl
-            value
-          }
-        }
-        ... on TransferTx {
-          assets
-          to
-          value
-          data {
-            typeUrl
-            value
-          }
-        }
-        ... on SysUpgradeTx {
-          gracePeriod
-          data {
-            typeUrl
-            value
-          }
-          task {
-            actions
-            dataHash
-            type
-          }
-        }
-        ... on StakeTx {
-          message
-          to
-          value
-          data {
-            type
-          }
-        }
-        ... on ExchangeTx {
-          expiredAt
-          to
-          data {
-            typeUrl
-            value
-          }
-          receiver {
-            assets
-            value
-          }
-          sender {
-            assets
-            value
-          }
-        }
-        ... on DeclareFileTx {
-          hash
-        }
-        ... on DeclareTx {
-          issuer
-          moniker
-          data {
-            typeUrl
-            value
-          }
-        }
-        ... on CreateAssetTx {
-          address
-          moniker
-          parent
-          readonly
-          transferrable
-          ttl
-          data {
-            typeUrl
-            value
-          }
-        }
-        ... on ConsumeAssetTx {
-          address
-          issuer
-          data {
-            typeUrl
-            value
-          }
-        }
-        ... on ConsensusUpgradeTx {
-          maxBytes
-          maxCandidates
-          maxGas
-          maxValidators
-          data {
-            typeUrl
-            value
-          }
-          validators {
-            address
-            power
-          }
-        }
-        ... on PokeTx {
-          address
-          date
-          data {
-            typeUrl
-            value
-          }
-        }
-        ... on AccountMigrateTx {
-          address
-          pk
-          data {
-            typeUrl
-            value
-          }
-          type {
-            address
-            hash
-            pk
-            role
-          }
-        }
+      data {
+        typeUrl
+        value
       }
     }
     sysUpgrade {

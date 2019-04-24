@@ -1,8 +1,8 @@
 {
-  "name": "@arcblock/tcp-server",
-  "description": "Node.js SDK for Forge Framework by ArcBlock",
+  "name": "@arcblock/forge-message",
+  "description": "Utility functions to encode and decode message that can send to forge",
   "version": "0.19.0",
-  "author": "wangshijun <shijun@arcblock.io> (https://ocap.arcblock.io)",
+  "author": "wangshijun <shijun@arcblock.io> (https://www.arcblock.io)",
   "engines": {
     "node": ">=0.10.0",
     "forge": ">=0.11.1"
@@ -18,13 +18,13 @@
     "wangshijun <shijun@arcblock.io> (https://ocap.arcblock.io)"
   ],
   "dependencies": {
-    "@arcblock/forge-message": "^0.19.0",
     "@arcblock/forge-proto": "^0.19.0",
     "@arcblock/forge-util": "^0.19.0",
-    "debug": "^4.1.1"
+    "camelcase": "^5.0.0",
+    "debug": "^4.1.1",
+    "google-protobuf": "3.7.0-rc.2"
   },
   "devDependencies": {
-    "@arcblock/forge-config": "^0.19.0",
     "j2d": "^1.0.3-dev",
     "jest": "^23.5.0",
     "remark-cli": "^5.0.0",
@@ -41,7 +41,7 @@
       ]
     ]
   },
-  "homepage": "https://github.com/ArcBlock/forge-js/tree/master/packages/tcp-server",
+  "homepage": "https://github.com/ArcBlock/forge-js/tree/master/packages/forge-message",
   "keywords": [
     "forge",
     "blockchain",
@@ -54,14 +54,15 @@
   "files": [
     "index.d.ts",
     "index.js",
+    "lite.js",
     "lib"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/ArcBlock/forge-js/tree/master/packages/tcp-server"
+    "url": "https://github.com/ArcBlock/forge-js/tree/master/packages/forge-message"
   },
   "scripts": {
-    "lint": "eslint lib index.js tests",
+    "lint": "eslint lib index.js lite.js tests",
     "upgrade": "npm run format-docs && npm run generate-dts",
     "format-docs": "remark . -o",
     "generate-dts": "j2d index.js",

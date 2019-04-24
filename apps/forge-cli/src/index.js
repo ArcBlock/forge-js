@@ -23,11 +23,11 @@ program
   .option(
     '-g, --socket-grpc',
     'Socket gRPC endpoint to connect, with this you can use forge-cli with a remote node'
-  )
-  .option(
-    '-s, --setup-script',
-    'Path to a javascript file that loads application specific protobuf files into grpc-client'
   );
+// .option(
+//   '-s, --setup-script',
+//   'Path to a javascript file that loads application specific protobuf files into grpc-client'
+// );
 
 initCli(program);
 

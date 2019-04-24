@@ -3,7 +3,7 @@ const inquirer = require('inquirer');
 const shell = require('shelljs');
 const safeEval = require('safe-eval');
 const { enums } = require('@arcblock/forge-proto');
-const { fakeMessage } = require('@arcblock/grpc-client');
+const { fakeMessage } = require('@arcblock/forge-message');
 const { symbols, hr, pretty } = require('core/ui');
 const { createRpcClient, config, debug } = require('core/env');
 

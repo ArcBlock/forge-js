@@ -8,7 +8,7 @@ const {
   decodeTimestamp,
   encodeBigInt,
   decodeBigInt,
-} = require('../../lib/util/message');
+} = require('../');
 
 describe('#createMessage', () => {
   test('should create simple message', () => {
@@ -79,7 +79,7 @@ describe('#createMessage', () => {
     expect(states[0].address).toEqual('states1');
   });
 
-  test('should support nested complex repeated fields', () => {
+  test.skip('should support nested complex repeated fields', () => {
     const params = {
       updateState: {
         code: 0,

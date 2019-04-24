@@ -34,8 +34,7 @@ describe('GraphqlClient', () => {
 
   test('should support getType', async () => {
     const type = client.getType('Transaction');
-    expect(typeof type.fromObject).toEqual('function');
-    expect(typeof type.encode).toEqual('function');
+    expect(typeof type.deserializeBinary).toEqual('function');
   });
 
   if (process.env.CI) {
@@ -67,7 +66,6 @@ describe('GraphqlClient', () => {
             pk: Buffer.from(hexToBytes(wallet.publicKey)),
             type,
             issuer: '',
-            data: null,
           },
           wallet,
         });
@@ -75,7 +73,7 @@ describe('GraphqlClient', () => {
         expect(res.code).toEqual('OK');
         expect(res.hash).toBeTruthy();
       } catch (err) {
-        console.log(err.errors);
+        console.error(err);
         expect(err).toBeFalsy();
       }
     });

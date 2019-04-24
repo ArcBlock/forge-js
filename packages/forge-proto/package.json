@@ -32,7 +32,12 @@
   "license": "MIT",
   "main": "index.js",
   "files": [
+    "lite.js",
     "index.js",
+    "index.d.ts",
+    "init.js",
+    "proto-full.js",
+    "proto-lite.js",
     "lib"
   ],
   "repository": {
@@ -40,9 +45,10 @@
     "url": "https://github.com/ArcBlock/forge-js/tree/master/packages/forge-proto"
   },
   "scripts": {
-    "upgrade": "bash ./tools/copy.sh && npm run generate-dts",
-    "copy": "bash ./tools/copy.sh",
-    "generate-dts": "j2d index.js && node tools/generate-dts.js && bash ./tools/patch-dts.sh",
+    "upgrade": "bash tools/copy.sh && npm run gen && npm run generate-dts",
+    "copy": "bash tools/copy.sh",
+    "gen": "node tools/gen-proto-entry.js full && node tools/gen-proto-entry.js lite",
+    "generate-dts": "j2d index.js && node tools/generate-dts.js && bash tools/patch-dts.sh",
     "lint": "eslint tests index.js",
     "precommit": "CI=1 npm run test",
     "prepush": "CI=1 npm run test",
@@ -50,7 +56,8 @@
     "coverage": "npm run lint && npm run test -- --coverage --collectCoverageFrom=index.js --collectCoverageFrom=!lib/*.js"
   },
   "dependencies": {
-    "debug": "^4.1.1"
+    "debug": "^4.1.1",
+    "lodash.get": "^4.4.2"
   },
   "gitHead": "87990c8b5e215107fc587c1ced0d6b3e2cd2483e"
 }

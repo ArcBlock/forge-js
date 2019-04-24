@@ -431,6 +431,16 @@ const fromTokenToUnit = (input, decimal = 16) => {
   return new BN(arc.toString(10), 10);
 };
 
+/**
+ *	Validates if a value is an Uint8Array.
+ *
+ * @param {*} value - value to validate
+ * @returns {Boolean} boolean indicating if a value is an Uint8Array
+ */
+function isUint8Array(value) {
+  return Object.prototype.toString.call(value) === '[object Uint8Array]';
+}
+
 module.exports = {
   isBN,
   isBigNumber,
@@ -444,6 +454,7 @@ module.exports = {
   numberToBN,
   isHex,
   isHexStrict,
+  isUint8Array,
   hexToBytes,
   bytesToHex,
   toHex,

@@ -137,7 +137,7 @@ export function getExplorerUrl(url) {
 export async function fetchInfo(tokenInfo, nodeInfo) {
   try {
     if (isEmpty(tokenInfo)) {
-      const { state } = await forge().getForgeState();
+      const { state } = await forge().getForgeState({}, { ignoreFields: ['state.protocols'] });
       // eslint-disable-next-line
       tokenInfo = state.token;
     }

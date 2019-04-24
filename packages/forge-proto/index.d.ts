@@ -1,65 +1,26 @@
 // Generate by [js2dts@0.3.2](https://github.com/whxaxes/js2dts#readme)
 
-/**
- * extract types and services from javascript code
- *
- * @param {FilePath} baseDir
- * @returns Object
- */
-declare function processJs(baseDir: any): ForgeProto.T101;
-/**
- * extract rpc descriptors
- *
- * @param {*} filePath
- * @param {*} packageName
- * @returns Object
- */
-declare function processJson(filePath: any, packageName: any): ForgeProto.T102;
-declare function getMessageType(type: any): ForgeProto.T103;
-declare function toTypeUrl(type: any): any;
-declare function fromTypeUrl(url: any): any;
-declare function addSource(T104: ForgeProto.T105): void;
-declare const ForgeProto: ForgeProto.T106;
+declare const ForgeProto: ForgeProto.T102;
 declare namespace ForgeProto {
   export interface T100 {
     [key: string]: any;
   }
   export interface T101 {
-    types: ForgeProto.T100;
-    vendorTypes: ForgeProto.T100;
-    services: ForgeProto.T100;
-    clients: ForgeProto.T100;
-    transactions: string[];
-    stakes: string[];
-  }
-  export interface T102 {
-    messages: Messages.main;
-    enums: Enums.main;
-    rpcs: ForgeProto.T100;
-    spec: any;
-    typeUrls: ForgeProto.T100;
-  }
-  export interface T103 {
     fn: any;
     fields: any;
     oneofs: any;
   }
-  export interface T105 {
-    baseDir: any;
-    packageName: any;
-    typeUrls: any;
-  }
-  export interface T106 {
+  export interface T102 {
     enums: Enums.main;
     messages: Messages.main;
+    transactions: any;
+    stakes: any;
     rpcs: ForgeProto.T100;
     compactSpec: (object: any) => any;
-    processJs: typeof processJs;
-    processJson: typeof processJson;
-    getMessageType: typeof getMessageType;
-    toTypeUrl: typeof toTypeUrl;
-    fromTypeUrl: typeof fromTypeUrl;
-    addSource: typeof addSource;
+    getMessageType: (type: any) => ForgeProto.T101;
+    typeUrls: ForgeProto.T100;
+    toTypeUrl: (type: any) => any;
+    fromTypeUrl: (url: any) => any;
   }
 }
 export = ForgeProto;

@@ -4,7 +4,7 @@
  */
 const assert = require('assert');
 const jspb = require('google-protobuf');
-const debug = require('debug')(`${require('../../package.json').name}:Map`);
+const debug = require('debug')(`${require('../package.json').name}:Map`);
 
 // FIXME: remove this patch when `google-protobuf` is enable to handle this
 // @link https://github.com/protocolbuffers/protobuf/blob/46a48e49aa/js/map.js#L469

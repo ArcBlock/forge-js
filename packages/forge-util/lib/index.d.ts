@@ -1,3 +1,12 @@
+// Generate by [js2dts@0.3.2](https://github.com/whxaxes/js2dts#readme)
+
+/**
+ *	Validates if a value is an Uint8Array.
+ *
+ * @param {*} value - value to validate
+ * @returns {Boolean} boolean indicating if a value is an Uint8Array
+ */
+declare function isUint8Array(value: any): boolean;
 declare const _Lib: _Lib.T100;
 declare namespace _Lib {
   export interface T100 {
@@ -13,6 +22,7 @@ declare namespace _Lib {
     numberToBN: any;
     isHex: (hex: string) => boolean;
     isHexStrict: (hex: string) => boolean;
+    isUint8Array: typeof isUint8Array;
     hexToBytes: (hex: string) => any[];
     bytesToHex: (bytes: any[]) => string;
     toHex: (value: any, returnType: boolean) => string;

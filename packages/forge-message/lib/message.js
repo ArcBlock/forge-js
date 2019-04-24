@@ -1,47 +1,33 @@
 /* eslint no-console:"off" */
-const util = require('util');
 const camelcase = require('camelcase');
-const faker = require('faker');
-const range = require('lodash/range');
-const random = require('lodash/random');
-const {
-  enums,
-  messages,
-  getMessageType,
-  toTypeUrl,
-  fromTypeUrl,
-} = require('@arcblock/forge-proto');
 const jspb = require('google-protobuf');
 const { Any } = require('google-protobuf/google/protobuf/any_pb');
 const { Timestamp } = require('google-protobuf/google/protobuf/timestamp_pb');
-const { toBN, bytesToHex } = require('@arcblock/forge-util');
-const debug = require('debug')(`${require('../../package.json').name}:util`);
+const { toBN, bytesToHex, isUint8Array } = require('@arcblock/forge-util');
+const { enums, messages, getMessageType, toTypeUrl, fromTypeUrl } = require('./proto');
+const debug = require('debug')(`${require('../package.json').name}`);
 
 const enumTypes = Object.keys(enums);
-const { isUint8Array } = util.types;
 
 // Utility map to generate random data when compose fake message
 const scalarTypes = {
-  sint32: faker.random.number,
-  uint32: faker.random.number,
-  sfixed32: faker.random.number,
+  sint32: 1,
+  uint32: 2,
+  sfixed32: 3,
 
-  sint64: faker.random.number,
-  uint64: faker.random.number,
-  sfixed64: faker.random.number,
+  sint64: 4,
+  uint64: 5,
+  sfixed64: 6,
 
-  BigUint: () => faker.random.number().toString(),
-  BigSint: () => faker.random.number().toString(),
+  BigUint: () => '1234',
+  BigSint: () => '4567',
 
-  float: faker.random.float,
-  double: faker.random.float,
+  float: '12.2',
+  double: '12.3',
 
-  string: faker.random.word,
-  bytes: length => Uint8Array.from(range(1, length).map(() => Math.ceil(faker.random.number()))),
-  enums: type => {
-    const values = Object.values(enums[type]);
-    return values[random(0, values.length - 1)];
-  },
+  string: 'arcblock',
+  bytes: Uint8Array.from([1, 2, 3, 4].map(() => Math.ceil(Math.random() * 100))),
+  enums: type => Object.values(enums[type])[0],
 };
 
 /**
@@ -55,7 +41,7 @@ function fakeMessage(type) {
   }
 
   if (scalarTypes[type]) {
-    return scalarTypes[type]();
+    return scalarTypes[type];
   }
 
   const { fields, oneofs } = getMessageType(type);
@@ -78,7 +64,7 @@ function fakeMessage(type) {
     }
     if (keyType) {
       result[key] = {
-        [scalarTypes[keyType]()]: fakeMessage(subType),
+        [scalarTypes[keyType]]: fakeMessage(subType),
       };
       return;
     }
@@ -89,12 +75,12 @@ function fakeMessage(type) {
     }
 
     if (['hash', 'appHash', 'txHash', 'address', 'from', 'to', 'proposer'].includes(key)) {
-      result[key] = faker.git.commitSha();
+      result[key] = 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55';
       return;
     }
 
     if (scalarTypes[subType]) {
-      result[key] = scalarTypes[subType]();
+      result[key] = scalarTypes[subType];
     }
 
     if (subType === 'google.protobuf.Timestamp') {

@@ -1,4 +1,5 @@
 const path = require('path');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = {
   entry: ['babel-polyfill', './dist/browser.js'],
@@ -8,4 +9,5 @@ module.exports = {
     library: 'ForgeGraphqlClient',
     libraryTarget: 'window',
   },
+  plugins: [new BundleAnalyzerPlugin({ analyzerMode: 'static', openAnalyzer: false })],
 };
