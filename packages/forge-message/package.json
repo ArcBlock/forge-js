@@ -22,8 +22,7 @@
     "@arcblock/forge-util": "^0.19.0",
     "camelcase": "^5.0.0",
     "debug": "^4.1.1",
-    "google-protobuf": "3.7.0-rc.2",
-    "lodash": "^4.17.11"
+    "google-protobuf": "3.7.0-rc.2"
   },
   "devDependencies": {
     "j2d": "^1.0.3-dev",
