@@ -4,7 +4,7 @@ const { cli, action } = require('core/cli');
 const { execute, run } = require('./download');
 
 cli(
-  'release:download [version]',
+  'download [version]',
   'Download a forge release without activate it',
   input => action(execute, run, input),
   {

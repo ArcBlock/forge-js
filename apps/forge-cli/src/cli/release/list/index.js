@@ -3,7 +3,7 @@ const { cli, action } = require('core/cli');
 const { execute, run } = require('./list');
 
 cli(
-  'release:list',
+  'list',
   'List forge releases installed locally',
   input => action(execute, run, input),
   {
@@ -13,6 +13,7 @@ cli(
       rpcClient: false,
       wallet: false,
     },
+    alias: 'ls',
     options: [],
   }
 );

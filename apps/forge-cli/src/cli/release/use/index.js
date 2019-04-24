@@ -3,7 +3,7 @@ const { cli, action } = require('core/cli');
 const { execute, run } = require('./use');
 
 cli(
-  'release:use [version]',
+  'use [version]',
   'Active an already downloaded forge release',
   input => action(execute, run, input),
   {
