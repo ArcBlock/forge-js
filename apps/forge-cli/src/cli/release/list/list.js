@@ -1,19 +1,16 @@
 const fs = require('fs');
 const path = require('path');
+const chalk = require('chalk');
 const shell = require('shelljs');
-const { config, debug } = require('core/env');
+const { config, debug, isDirectory } = require('core/env');
 
-function isDirectory(x) {
-  return fs.existsSync(x) && fs.statSync(x).isDirectory();
-}
-
-function printList(title, list) {
+function printList(title, list, current) {
   shell.echo(`${title}:`);
-  list.forEach(x => shell.echo(`  - ${x}`));
+  list.forEach(x => shell.echo(x === current ? chalk.cyan(`  ✓ ${x}`) : `  - ${x}`));
   shell.echo('');
 }
 
-function main() {
+function listReleases() {
   const { release } = config.get('cli').requiredDirs;
 
   const forgeReleases = fs
@@ -21,17 +18,29 @@ function main() {
     .filter(x => isDirectory(path.join(release, 'forge', x)));
   const starterReleases = fs
     .readdirSync(path.join(release, 'forge_starter'))
-    .filter(x => isDirectory(path.join(release, 'forge', x)));
+    .filter(x => isDirectory(path.join(release, 'forge_starter', x)));
   const simulatorReleases = fs
     .readdirSync(path.join(release, 'simulator'))
-    .filter(x => isDirectory(path.join(release, 'forge', x)));
+    .filter(x => isDirectory(path.join(release, 'simulator', x)));
 
-  debug({ forgeReleases, starterReleases, simulatorReleases });
+  return {
+    forge: forgeReleases,
+    starter: starterReleases,
+    simulator: simulatorReleases,
+  };
+}
 
-  printList('Forge Core', forgeReleases);
-  printList('Forge Starter', starterReleases);
-  printList('Simulator', simulatorReleases);
+function main() {
+  const current = config.get('cli.currentVersion');
+
+  const { forge, starter, simulator } = listReleases();
+  debug({ forge, starter, simulator, current });
+
+  printList('Forge Kernel', forge, current);
+  printList('Forge Starter', starter, current);
+  printList('Simulator', simulator, current);
 }
 
 exports.run = main;
 exports.execute = main;
+exports.listReleases = listReleases;

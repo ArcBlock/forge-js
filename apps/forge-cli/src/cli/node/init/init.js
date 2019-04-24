@@ -161,7 +161,7 @@ function copyReleaseConfig(version) {
 function updateReleaseYaml(asset, version) {
   const filePath = path.join(requiredDirs.release, asset, 'release.yml');
   try {
-    shell.exec(`touch ${filePath}`);
+    shell.exec(`touch ${filePath}`, { silent: true });
     debug('updateReleaseYaml', { asset, version, filePath });
     const yamlObj = fs.existsSync(filePath)
       ? yaml.parse(fs.readFileSync(filePath).toString()) || {}

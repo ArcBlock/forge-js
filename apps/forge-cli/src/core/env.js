@@ -84,6 +84,10 @@ async function setupEnv(args, requirements) {
   }
 }
 
+function isDirectory(x) {
+  return fs.existsSync(x) && fs.statSync(x).isDirectory();
+}
+
 /**
  * Ensure we have a forge release to work with, in which we find forge bin
  *
@@ -358,7 +362,7 @@ function createFileFinder(keyword, filePath) {
 
     const libDir = path.join(releaseDir, 'forge', version, 'lib');
     debug('createFileFinder', { keyword, filePath, libDir });
-    if (!fs.existsSync(libDir) || !fs.statSync(libDir).isDirectory()) {
+    if (!isDirectory(libDir)) {
       return '';
     }
 
@@ -389,7 +393,7 @@ function findReleaseVersion(releaseDir) {
   }
 
   const parentDir = path.join(releaseDir, 'forge/releases');
-  if (!fs.existsSync(parentDir) || !fs.statSync(parentDir).isDirectory()) {
+  if (!isDirectory(parentDir)) {
     return '';
   }
 
@@ -404,7 +408,7 @@ function findReleaseVersion(releaseDir) {
 function ensureRequiredDirs() {
   Object.keys(requiredDirs).forEach(x => {
     const dir = requiredDirs[x];
-    if (fs.existsSync(dir) && fs.statSync(dir).isDirectory()) {
+    if (isDirectory(dir)) {
       debug(`${symbols.info} ${x} dir already initialized: ${dir}`);
     } else {
       try {
@@ -630,5 +634,6 @@ module.exports = {
   getPlatform,
   createRpcClient,
   isForgeWebStarted,
+  isDirectory,
   printLogo,
 };
