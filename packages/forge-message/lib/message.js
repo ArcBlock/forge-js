@@ -1,5 +1,3 @@
-/* eslint no-console:"off" */
-const util = require('util');
 const camelcase = require('camelcase');
 const jspb = require('google-protobuf');
 const { Any } = require('google-protobuf/google/protobuf/any_pb');
@@ -9,7 +7,6 @@ const { enums, messages, getMessageType, toTypeUrl, fromTypeUrl } = require('./p
 const debug = require('debug')(`${require('../package.json').name}`);
 
 const enumTypes = Object.keys(enums);
-const { isUint8Array } = util.types;
 
 // Utility map to generate random data when compose fake message
 const scalarTypes = {
@@ -141,6 +138,7 @@ function formatMessage(type, data) {
   const result = {};
   const { fields } = getMessageType(type);
   if (!fields) {
+    // eslint-disable-next-line no-console
     console.log({ type, data });
     throw new Error(`Cannot get fields for type ${type}`);
   }
@@ -209,7 +207,7 @@ function formatMessage(type, data) {
       return;
     }
 
-    if (isUint8Array(value)) {
+    if (Buffer.isBuffer(value)) {
       if (['appHash', 'blockHash'].includes(key)) {
         result[key] = Buffer.from(value).toString('hex');
       }
@@ -255,6 +253,7 @@ function formatMessage(type, data) {
  */
 function createMessage(type, params) {
   if (!type && !params) {
+    // eslint-disable-next-line no-console
     console.log({ type, params });
     return;
   }
@@ -454,7 +453,7 @@ function decodeTimestamp(data) {
 function encodeBigInt(value, type) {
   const { fn: BigInt } = getMessageType(type);
   const message = new BigInt();
-  if (value && value.value && isUint8Array(value.value)) {
+  if (value && value.value && Buffer.isBuffer(value.value)) {
     message.setValue(value.value);
     if (type === 'BigSint') {
       message.setMinus(value.minus);

@@ -66,7 +66,6 @@ describe('GraphqlClient', () => {
             pk: Buffer.from(hexToBytes(wallet.publicKey)),
             type,
             issuer: '',
-            data: null,
           },
           wallet,
         });
@@ -74,7 +73,7 @@ describe('GraphqlClient', () => {
         expect(res.code).toEqual('OK');
         expect(res.hash).toBeTruthy();
       } catch (err) {
-        console.log(err.errors);
+        console.error(err);
         expect(err).toBeFalsy();
       }
     });
