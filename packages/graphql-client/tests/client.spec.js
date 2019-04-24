@@ -51,7 +51,7 @@ describe('GraphqlClient', () => {
       }
     });
 
-    test('should support declare account', async () => {
+    test.skip('should support declare account', async () => {
       const type = WalletType({
         role: Mcrypto.types.RoleType.ROLE_ACCOUNT,
         pk: Mcrypto.types.KeyType.ED25519,
