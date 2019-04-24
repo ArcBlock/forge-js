@@ -26,38 +26,42 @@ Run `forge` and get available options and subcommands.
 Usage: forge [options] [command]
 
 Options:
-  -v, --verbose                  Output runtime logs when execute the command, used for debug
-  -r, --release-dir              Forge release directory path (unzipped), use your own copy forge release
-  -c, --config-path              Forge config used when starting forge node and initializing gRPC clients
-  -g, --socket-grpc              Socket gRPC endpoint to connect, with this you can use forge-cli with a remote node
-  -s, --setup-script             Path to a javascript file that loads application specific protobuf files into grpc-client
-  -h, --help                     output usage information
+  -v, --verbose                 Output runtime logs when execute the command, used for debug
+  -r, --release-dir             Forge release directory path (unzipped), use your own copy forge release
+  -c, --config-path             Forge config used when starting forge node and initializing gRPC clients
+  -g, --socket-grpc             Socket gRPC endpoint to connect, with this you can use forge-cli with a remote node
+  -h, --help                    output usage information
 
 Commands:
-  account:create                 Interactively create an account, guarded by a passphrase
-  account:delete <address>       Delete an account by address
-  account <address>              Get an account info by address
-  account:list [role]            List all accounts stored in this node, role=[all], default role is all
-  block [options] [height]       Get the block info from the running node
-  help <subcommand>              Show help of a sub command
-  version                        Output version for all components, including forge-cli, forge, storage and consensus engine
-  config                         Read and display forge config
-  declare:node                   Declare the current node to be a validator candidate
-  init                           Download and setup latest forge-core release on this machine
-  join <forge-web-api-endpoint>  Join a network by providing an graphql endpoint to fetch config
-  logs [type]                    Show logs for various forge components
-  ps                             List application status for forge (includes tendermint and ipfs)
-  restart [app]                  Restart the forge managed applications: core/app/tendermint/ipfs
-  simulate|simulator [action]    Start/stop simulator and generate some random data
-  start                          Start forge as a daemon in the background
-  state|status [type]            List the information of the chain and the node, chain|core|net|validator|web
-  stop                           Stop the forge daemon (forge-core, forge-app, consensus engine, storage engine)
-  web [options] [action]         Start or stop the web UI of running forge node
-  tx [hash]                      Get a tx detail and display
-  tx:send                        Send a signed tx to the network
-  tx:sign                        Sign a transaction (base64) according to sender’s wallet
-  stake [options] [show]         Stake to various entities: node/user/asset
-  unstake                        Revert stakes to various entities
+  account:create                Interactively create an account, guarded by a passphrase
+  account:delete <address>      Delete an account by address
+  account <address>             Get an account info by address
+  account:list [role]           List all accounts stored in this node, role=[all], default role is all
+  block [options] [height]      Get the block info from the running node
+  help <subcommand>             Show help of a sub command
+  version                       Output version for all components, including forge-cli, forge, storage and consensus engine
+  config                        Read and display forge config
+  declare:node                  Declare the current node to be a validator candidate
+  init [options] [version]      Download and setup forge release on this machine
+  join <endpoint>               Join a network by providing an forge web graphql endpoint to fetch config
+  logs|log [type]               Show logs for various forge components
+  ps                            List application status for forge (includes tendermint and ipfs)
+  restart [app]                 Restart the forge managed applications: core/app/tendermint/ipfs
+  simulate|simulator [action]   Start/stop simulator and generate some random data
+  start                         Start forge as a daemon in the background
+  state|status [type]           List the information of the chain and the node, chain|core|net|validator|web
+  stop                          Stop the forge daemon (forge-core, forge-app, consensus engine, storage engine)
+  web [options] [action]        Start or stop the web UI of running forge node
+  download [options] [version]  Download a forge release without activate it
+  list|ls                       List forge releases installed locally
+  use [version]                 Active an already downloaded forge release
+  tx [hash]                     Get a tx detail and display
+  tx:list                       List latest transactions
+  checkin|poke                  Send a poke tx to the network to get tokens for test
+  tx:send                       Send a signed tx to the network
+  tx:sign                       Sign a transaction (base64) according to sender’s wallet
+  stake [options] [show]        Stake to various entities: node/user/asset
+  unstake                       Revert stakes to various entities
 
 Examples:
 

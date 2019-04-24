@@ -6,7 +6,7 @@ const Table = require('cli-table-redemption');
 const { createRpcClient, config, debug } = require('core/env');
 const { symbols } = require('core/ui');
 const { enums, getMessageType, fromTypeUrl } = require('@arcblock/forge-proto');
-const { formatMessage } = require('@arcblock/grpc-client');
+const { formatMessage } = require('@arcblock/forge-message');
 
 inquirer.registerPrompt('autocomplete', require('inquirer-autocomplete-prompt'));
 
