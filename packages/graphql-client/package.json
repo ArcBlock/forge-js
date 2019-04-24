@@ -47,6 +47,7 @@
     "remark-preset-github": "^0.0.9",
     "rimraf": "^2.6.2",
     "webpack": "^4.29.6",
+    "webpack-bundle-analyzer": "^3.3.2",
     "webpack-cli": "^3.3.0"
   },
   "remarkConfig": {
