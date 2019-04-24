@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const yaml = require('yaml');
 const chalk = require('chalk');
 const shell = require('shelljs');
 const { config, debug, isDirectory } = require('core/env');
@@ -31,7 +32,17 @@ function listReleases() {
 }
 
 function main() {
-  const current = config.get('cli.currentVersion');
+  let current = '';
+  try {
+    const { release } = config.get('cli').requiredDirs;
+    const filePath = path.join(release, 'forge', 'release.yml');
+    const yamlObj = fs.existsSync(filePath)
+      ? yaml.parse(fs.readFileSync(filePath).toString()) || {}
+      : {};
+    current = yamlObj.current;
+  } catch (err) {
+    debug.error(err);
+  }
 
   const { forge, starter, simulator } = listReleases();
   debug({ forge, starter, simulator, current });
