@@ -17,11 +17,11 @@ cli(
       '--help': () => {
         shell.echo(`
 Examples:
-  - ${chalk.cyan('forge init')}             download and install latest version
-  - ${chalk.cyan('forge init 0.22.0')}      download and install forge v0.22.0
+  - ${chalk.cyan('forge init')}             download and activate latest version
+  - ${chalk.cyan('forge init 0.22.0')}      download and activate forge v0.22.0
   - ${chalk.cyan(
     'forge init --mirror http://arcblock.oss-cn-beijing.aliyuncs.com'
-  )}      specify a mirror
+  )}      specify a custom mirror for download
         `);
       },
     },

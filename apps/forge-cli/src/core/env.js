@@ -43,7 +43,7 @@ const requiredDirs = {
   release: path.join(baseDir, 'release'),
 };
 
-const config = { cli: {} }; // global shared forge-cli run time config
+const config = { cli: { requiredDirs } }; // global shared forge-cli run time config
 
 /**
  * Setup running env for various commands, the check order for each requirement is important
@@ -610,6 +610,8 @@ module.exports = {
   webUrl() {
     return `http://localhost:${config.forge.web.port || 8210}`;
   },
+
+  DEFAULT_MIRROR: 'https://releases.arcblock.io',
 
   debug,
   sleep,
