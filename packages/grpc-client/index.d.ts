@@ -131,75 +131,6 @@ declare class RpcClient {
     request: forge_abi.RequestGetHealthStatus
   ): RpcClient.UnaryResult<forge_abi.ResponseGetHealthStatus>;
 }
-/**
- * Create an protobuf encoded Typed message with specified data, ready to send to rpc server
- *
- * @param {*} type
- * @param {*} params
- * @returns Message
- */
-declare function createMessage(type: any, params: any): any;
-/**
- * Format an message from RPC to UI friendly
- *
- * @param {*} type
- * @param {*} data
- * @returns object [almost same structure as input]
- */
-declare function formatMessage(type: any, data: any): any;
-/**
- * Generated a fake message for a type, the message can be RPC request/response
- *
- * @param {String} type
- */
-declare function fakeMessage(type: string): any;
-/**
- * Encode { type, value } => google.protobuf.Any%{ typeUrl, value }
- * Does nothing on already encoded message
- *
- * @param {*} data
- * @returns google.protobuf.Any
- */
-declare function encodeAny(data: any): any;
-/**
- * Decode an google.protobuf.Any%{ typeUrl, value } => { type, value }
- *
- * @param {*} data encoded data object
- * @returns Object%{type, value}
- */
-declare function decodeAny(data: any): any;
-/**
- * Convert an { seconds, nanos } | date-string to google.protobuf.Timestamp object
- *
- * @param {String|Object} value
- * @returns google.protobuf.Timestamp
- */
-declare function encodeTimestamp(value: any): any;
-/**
- * Decode google.protobuf.Timestamp message to ISO Date String
- *
- * FIXME: node strictly equal because we rounded the `nanos` field
- *
- * @param {*} data
- * @returns String
- */
-declare function decodeTimestamp(data: any): string;
-/**
- * Encode BigUint and BigSint types defined in forge-sdk, double encoding is avoided
- *
- * @param {*} value
- * @param {*} type
- * @returns Message
- */
-declare function encodeBigInt(value: any, type: any): any;
-/**
- * Convert BigUint and BigSint to string representation of numbers
- *
- * @link https://stackoverflow.com/questions/23948278/how-to-convert-byte-array-into-a-signed-big-integer-in-javascript
- * @param {*} data
- * @returns String
- */
-declare function decodeBigInt(data: any): string;
 declare const GrpcClient: GrpcClient.T101;
 declare namespace GrpcClient {
   export interface T100 {
@@ -207,15 +138,6 @@ declare namespace GrpcClient {
   }
   export interface T101 {
     RpcRpcClient: typeof RpcClient;
-    createMessage: typeof createMessage;
-    formatMessage: typeof formatMessage;
-    fakeMessage: typeof fakeMessage;
-    encodeAny: typeof encodeAny;
-    decodeAny: typeof decodeAny;
-    encodeTimestamp: typeof encodeTimestamp;
-    decodeTimestamp: typeof decodeTimestamp;
-    encodeBigInt: typeof encodeBigInt;
-    decodeBigInt: typeof decodeBigInt;
   }
 }
 export = GrpcClient;
@@ -454,7 +376,6 @@ declare namespace forge_abi {
     votingPower: number;
     totalTxs: number;
     version: string;
-    dataVersion: string;
     forgeAppsVersion: string;
     supportedTxs: Array<string>;
   }
@@ -473,7 +394,6 @@ declare namespace forge_abi {
     votingPower: number;
     totalTxs: number;
     version: string;
-    dataVersion: string;
     forgeAppsVersion: string;
     supportedTxs: Array<string>;
     ip: string;
@@ -804,7 +724,6 @@ declare namespace forge_abi {
     tasks: forge_abi.UpgradeTasks;
     stakeSummary: forge_abi.StakeSummary;
     version: string;
-    dataVersion: string;
     forgeAppHash: Uint8Array;
     token: forge_abi.ForgeToken;
     txConfig: forge_abi.TransactionConfig;
