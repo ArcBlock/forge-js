@@ -71,7 +71,7 @@ class GraphqlClient extends BaseClient {
 
         const itx = ItxType.fromObject(data);
         const itxBytes = ItxType.encode(itx).finish();
-        debug({ itx, itxBytes, itxHex: toHex(itxBytes) });
+        debug(`encodeTx.${x}.itx`, { nonce, chainId, pk, itx, itxBytes, itxHex: toHex(itxBytes) });
 
         const txObj = {
           from: address,
@@ -86,6 +86,12 @@ class GraphqlClient extends BaseClient {
 
         const txToSign = Transaction.fromObject(txObj);
         const txToSignBytes = Transaction.encode(txToSign).finish();
+        debug(`encodeTx.${x}.tx`, {
+          txObj,
+          txToSign,
+          txBytes: txToSignBytes,
+          txHex: toHex(txToSignBytes),
+        });
 
         return { object: txObj, buffer: txToSignBytes };
       };
@@ -115,7 +121,7 @@ class GraphqlClient extends BaseClient {
         const tx = Transaction.fromObject(txObj);
         const txBytes = Transaction.encode(tx).finish();
         const txStr = base64.escape(Buffer.from(txBytes).toString('base64'));
-        debug({ tx, txBytes, txHex: toHex(txBytes), txStr });
+        debug(`sendTx.${x}`, { tx, txBytes, txHex: toHex(txBytes), txStr });
 
         return this.sendTx({ tx: txStr });
       };
