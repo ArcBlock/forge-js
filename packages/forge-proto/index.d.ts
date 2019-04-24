@@ -13,9 +13,12 @@ declare namespace ForgeProto {
   export interface T102 {
     enums: Enums.main;
     messages: Messages.main;
+    transactions: any;
+    stakes: any;
     rpcs: ForgeProto.T100;
     compactSpec: (object: any) => any;
     getMessageType: (type: any) => ForgeProto.T101;
+    typeUrls: ForgeProto.T100;
     toTypeUrl: (type: any) => any;
     fromTypeUrl: (url: any) => any;
   }

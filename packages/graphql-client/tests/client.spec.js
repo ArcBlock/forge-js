@@ -34,8 +34,7 @@ describe('GraphqlClient', () => {
 
   test('should support getType', async () => {
     const type = client.getType('Transaction');
-    expect(typeof type.fromObject).toEqual('function');
-    expect(typeof type.encode).toEqual('function');
+    expect(typeof type.deserializeBinary).toEqual('function');
   });
 
   if (process.env.CI) {

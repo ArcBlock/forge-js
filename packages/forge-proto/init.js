@@ -136,6 +136,8 @@ module.exports = function(proto) {
   return {
     enums,
     messages,
+    transactions: enums.SupportedTxs,
+    stakes: enums.SupportedStakes,
     rpcs: Object.keys(clients).reduce((acc, x) => {
       acc[x] = clients[x];
       acc[x].methods = rpcs[x];
@@ -143,6 +145,7 @@ module.exports = function(proto) {
     }, {}),
     compactSpec,
     getMessageType,
+    typeUrls,
     toTypeUrl,
     fromTypeUrl,
   };

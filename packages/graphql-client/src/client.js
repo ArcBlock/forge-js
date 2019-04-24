@@ -2,13 +2,13 @@ const BaseClient = require('@arcblock/sdk-util');
 const md5 = require('blueimp-md5');
 const camelcase = require('camelcase');
 const base64 = require('base64-url');
+const { transactions, getMessageType } = require('@arcblock/forge-proto/lite');
+const { createMessage } = require('@arcblock/forge-message/lite');
 const { hexToBytes, bytesToHex, stripHexPrefix } = require('@arcblock/forge-util');
-const { processSchema } = require('./protobuf');
+
 const debug = require('debug')(require('../package.json').name);
 
 const graphqlSchema = require('./schema/graphql.json');
-const protobufSchema = require('./schema/protobuf.json');
-const { transactions, typeUrls, getType } = processSchema(protobufSchema);
 
 class GraphqlClient extends BaseClient {
   constructor(httpEndpoint = 'http://localhost:8210/api') {
@@ -25,7 +25,7 @@ class GraphqlClient extends BaseClient {
   }
 
   getType(x) {
-    return getType(x);
+    return getMessageType(x).fn;
   }
 
   getTxSendMethods() {
@@ -37,17 +37,14 @@ class GraphqlClient extends BaseClient {
   }
 
   decodeTx(buffer) {
-    const Transaction = getType('Transaction');
-    return Transaction.decode(buffer);
+    const Transaction = this.getType('Transaction');
+    return Transaction.deserializeBinary(buffer).toObject();
   }
 
   _initTxMethods() {
     const toHex = bytes => stripHexPrefix(bytesToHex(bytes)).toUpperCase();
 
     transactions.forEach(x => {
-      const Any = getType('google.protobuf.Any');
-      const Transaction = getType('Transaction');
-
       /**
        * Generate an transaction encoding function
        *
@@ -67,28 +64,22 @@ class GraphqlClient extends BaseClient {
           chainId = info.network;
         }
 
-        const ItxType = getType(x);
-
-        const itx = ItxType.fromObject(data);
-        const itxBytes = ItxType.encode(itx).finish();
-        debug(`encodeTx.${x}.itx`, { nonce, chainId, pk, itx, itxBytes, itxHex: toHex(itxBytes) });
-
         const txObj = {
           from: address,
           nonce,
           pk,
           chainId: chainId,
-          itx: Any.fromObject({
-            type_url: typeUrls[x],
-            value: itxBytes,
-          }),
+          itx: {
+            type: x,
+            value: data,
+          },
         };
 
-        const txToSign = Transaction.fromObject(txObj);
-        const txToSignBytes = Transaction.encode(txToSign).finish();
-        debug(`encodeTx.${x}.tx`, {
+        const tx = createMessage('Transaction', txObj);
+        const txToSignBytes = tx.serializeBinary();
+        debug(`encodeTx.${x}`, {
           txObj,
-          txToSign,
+          tx,
           txBytes: txToSignBytes,
           txHex: toHex(txToSignBytes),
         });
@@ -118,8 +109,8 @@ class GraphqlClient extends BaseClient {
           txObj.signature = Buffer.from(hexToBytes(signature));
         }
 
-        const tx = Transaction.fromObject(txObj);
-        const txBytes = Transaction.encode(tx).finish();
+        const tx = createMessage('Transaction', txObj);
+        const txBytes = tx.serializeBinary();
         const txStr = base64.escape(Buffer.from(txBytes).toString('base64'));
         debug(`sendTx.${x}`, { tx, txBytes, txHex: toHex(txBytes), txStr });
 
