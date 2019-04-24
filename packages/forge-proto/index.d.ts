@@ -1,65 +1,23 @@
 // Generate by [js2dts@0.3.2](https://github.com/whxaxes/js2dts#readme)
 
-/**
- * extract types and services from javascript code
- *
- * @param {FilePath} baseDir
- * @returns Object
- */
-declare function processJs(baseDir: any): ForgeProto.T101;
-/**
- * extract rpc descriptors
- *
- * @param {*} filePath
- * @param {*} packageName
- * @returns Object
- */
-declare function processJson(filePath: any, packageName: any): ForgeProto.T102;
-declare function getMessageType(type: any): ForgeProto.T103;
-declare function toTypeUrl(type: any): any;
-declare function fromTypeUrl(url: any): any;
-declare function addSource(T104: ForgeProto.T105): void;
-declare const ForgeProto: ForgeProto.T106;
+declare const ForgeProto: ForgeProto.T102;
 declare namespace ForgeProto {
   export interface T100 {
     [key: string]: any;
   }
   export interface T101 {
-    types: ForgeProto.T100;
-    vendorTypes: ForgeProto.T100;
-    services: ForgeProto.T100;
-    clients: ForgeProto.T100;
-    transactions: string[];
-    stakes: string[];
-  }
-  export interface T102 {
-    messages: Messages.main;
-    enums: Enums.main;
-    rpcs: ForgeProto.T100;
-    spec: any;
-    typeUrls: ForgeProto.T100;
-  }
-  export interface T103 {
     fn: any;
     fields: any;
     oneofs: any;
   }
-  export interface T105 {
-    baseDir: any;
-    packageName: any;
-    typeUrls: any;
-  }
-  export interface T106 {
+  export interface T102 {
     enums: Enums.main;
     messages: Messages.main;
     rpcs: ForgeProto.T100;
     compactSpec: (object: any) => any;
-    processJs: typeof processJs;
-    processJson: typeof processJson;
-    getMessageType: typeof getMessageType;
-    toTypeUrl: typeof toTypeUrl;
-    fromTypeUrl: typeof fromTypeUrl;
-    addSource: typeof addSource;
+    getMessageType: (type: any) => ForgeProto.T101;
+    toTypeUrl: (type: any) => any;
+    fromTypeUrl: (url: any) => any;
   }
 }
 export = ForgeProto;
@@ -227,16 +185,16 @@ declare namespace Enums {
     1 = DeclareTx,
     2 = DeployProtocolTx,
     3 = SysUpgradeTx,
-    4 = DeclareFileTx,
+    4 = TransferTx,
     5 = CreateAssetTx,
-    6 = StakeTx,
-    7 = ExchangeTx,
-    8 = AccountMigrateTx,
-    9 = UpgradeNodeTx,
-    10 = UpdateAssetTx,
-    11 = ConsumeAssetTx,
-    12 = PokeTx,
-    13 = TransferTx,
+    6 = PokeTx,
+    7 = AccountMigrateTx,
+    8 = UpgradeNodeTx,
+    9 = UpdateAssetTx,
+    10 = ConsumeAssetTx,
+    11 = StakeTx,
+    12 = ExchangeTx,
+    13 = DeclareFileTx,
   }
 
   export enum SupportedStakes {

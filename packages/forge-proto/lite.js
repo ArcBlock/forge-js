@@ -1,4 +1,4 @@
-const proto = require('./proto-full');
+const proto = require('./proto-lite');
 const init = require('./init');
 
 module.exports = init(proto);
