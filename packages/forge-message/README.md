@@ -1,72 +1,42 @@
-# [**@arcblock/grpc-client**](https://github.com/arcblock/forge-js)
+# [**@arcblock/forge-message**](https://github.com/arcblock/forge-js)
 
 [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 
-> gRPC client to read/write data on forge powered blockchain
-
+> Utility function to encode and format message that can be sent to or received from forge framework.
 
 ## Table of Contents
 
-* [Install](#install)
-* [Usage](#usage)
-  * [0. Make sure you get forge installed](#0-make-sure-you-get-forge-installed)
-  * [1. Prepare Example App](#1-prepare-example-app)
-  * [2. Call Rpc](#2-call-rpc)
-* [Documentation](#documentation)
-* [Contributors](#contributors)
-
+- [Install](#install)
+- [Usage](#usage)
+- [Documentation](#documentation)
+- [Contributors](#contributors)
 
 ## Install
 
 ```sh
-npm install @arcblock/grpc-client
+npm install @arcblock/forge-message
 // or
-yarn add @arcblock/grpc-client
+yarn add @arcblock/forge-message
 ```
-
 
 ## Usage
 
-### 0. Make sure you get forge installed
-
-**This step is required**
-
-### 1. Prepare Example App
-
-Checkout our [examples](../../examples) folder
-
-### 2. Call Rpc
-
 ```js
-const { RpcClient } = require('@arcblock/grpc-client');
-const { parse } = require('@arcblock/forge-config');
+const { createMessage, formatMessage } = require('@arcblock/forge-message');
 
-const client = new RpcClient(parse('./forge.toml'));
-(async () => {
-  // fetch forge change info
-  const { info } = await client.getChainInfo();
-  console.log('chainInfo', info);
+const message = createMessage('Transaction', {
+  from: '',
+  nonce: 0,
+  signature: 'abc',
+  itx: {
+    type: 'PokeTx',
+    value: {
+      date: '2019-04-25',
+      address: 'zzzzzzzzzzzzzzzzzzzzz',
+    },
+  },
+});
 
-  // get block info
-  const stream = client.getBlock({ height: 11 });
-  stream
-    .on('data', function({ block }) {
-      console.log('blockInfo:', block);
-    })
-    .on('error', err => {
-      console.error('error', err);
-    });
-})();
+const buffer = message.serializeBinary();
+// Then: send the buffer over the wire
 ```
-
-
-## Documentation
-
-For complete API documentation please refer [API.md](./API.md)
-
-
-## Contributors
-
-| Name           | Website                    |
-| -------------- | -------------------------- |
-| **wangshijun** | <https://ocap.arcblock.io> |
