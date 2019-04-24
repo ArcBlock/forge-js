@@ -1,4 +1,3 @@
-const { addSource } = require('@arcblock/forge-proto');
 const { encodeVarint, decodeVarint, encodeZigzag, decodeZigzag } = require('./lib/util/varint');
 const {
   encode: encodeSocketData,
@@ -8,8 +7,6 @@ const {
 
 module.exports = {
   TcpServer: require('./lib/server/tcp'),
-
-  addProtobuf: addSource,
 
   encodeVarint,
   decodeVarint,

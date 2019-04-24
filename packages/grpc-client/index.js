@@ -1,5 +1,4 @@
 require('./lib/util/patch');
-const { addSource } = require('@arcblock/forge-proto');
 const {
   formatMessage,
   createMessage,
@@ -14,8 +13,6 @@ const {
 
 module.exports = {
   RpcClient: require('./lib/client'),
-
-  addProtobuf: addSource,
 
   createMessage,
   formatMessage,

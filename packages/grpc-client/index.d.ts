@@ -131,7 +131,6 @@ declare class RpcClient {
     request: forge_abi.RequestGetHealthStatus
   ): RpcClient.UnaryResult<forge_abi.ResponseGetHealthStatus>;
 }
-declare function addSource(T104: T105): void;
 /**
  * Create an protobuf encoded Typed message with specified data, ready to send to rpc server
  *
@@ -208,7 +207,6 @@ declare namespace GrpcClient {
   }
   export interface T101 {
     RpcRpcClient: typeof RpcClient;
-    addProtobuf: typeof addSource;
     createMessage: typeof createMessage;
     formatMessage: typeof formatMessage;
     fakeMessage: typeof fakeMessage;
@@ -1535,6 +1533,12 @@ declare namespace forge_abi {
     address: string;
     moniker: string;
     data: google.protobuf.Any;
+  }
+
+  export interface UpgradeNodeTx {
+    height: number;
+    version: string;
+    override: forge_abi.bool;
   }
 }
 
