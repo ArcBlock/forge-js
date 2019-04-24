@@ -14,9 +14,8 @@ const {
   findReleaseConfig,
   getPlatform,
   printLogo,
+  DEFAULT_MIRROR,
 } = require('core/env');
-
-const DEFAULT_MIRROR = 'https://releases.arcblock.io';
 
 async function isForgeStopped() {
   const processes = await findProcess('name', 'forge.sh');
@@ -162,7 +161,7 @@ function copyReleaseConfig(version) {
 function updateReleaseYaml(asset, version) {
   const filePath = path.join(requiredDirs.release, asset, 'release.yml');
   try {
-    shell.exec(`touch ${filePath}`);
+    shell.exec(`touch ${filePath}`, { silent: true });
     debug('updateReleaseYaml', { asset, version, filePath });
     const yamlObj = fs.existsSync(filePath)
       ? yaml.parse(fs.readFileSync(filePath).toString()) || {}
@@ -232,6 +231,13 @@ async function main({ args: [userVersion], opts: { mirror } }) {
 
 exports.run = main;
 exports.execute = main;
+exports.isForgeStopped = isForgeStopped;
+exports.releaseDirExists = releaseDirExists;
+exports.fetchReleaseVersion = fetchReleaseVersion;
+exports.fetchAssetInfo = fetchAssetInfo;
+exports.downloadAsset = downloadAsset;
+exports.expandReleaseTarball = expandReleaseTarball;
+exports.updateReleaseYaml = updateReleaseYaml;
 
 // exports.run = () => updateReleaseYaml('forge', '0.16.0');
 // exports.execute = () => updateReleaseYaml('forge', '0.16.0');

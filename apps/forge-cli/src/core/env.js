@@ -43,7 +43,7 @@ const requiredDirs = {
   release: path.join(baseDir, 'release'),
 };
 
-const config = { cli: {} }; // global shared forge-cli run time config
+const config = { cli: { requiredDirs } }; // global shared forge-cli run time config
 
 /**
  * Setup running env for various commands, the check order for each requirement is important
@@ -82,6 +82,10 @@ async function setupEnv(args, requirements) {
   if (requirements.wallet) {
     await ensureWallet(args);
   }
+}
+
+function isDirectory(x) {
+  return fs.existsSync(x) && fs.statSync(x).isDirectory();
 }
 
 /**
@@ -358,7 +362,7 @@ function createFileFinder(keyword, filePath) {
 
     const libDir = path.join(releaseDir, 'forge', version, 'lib');
     debug('createFileFinder', { keyword, filePath, libDir });
-    if (!fs.existsSync(libDir) || !fs.statSync(libDir).isDirectory()) {
+    if (!isDirectory(libDir)) {
       return '';
     }
 
@@ -389,7 +393,7 @@ function findReleaseVersion(releaseDir) {
   }
 
   const parentDir = path.join(releaseDir, 'forge/releases');
-  if (!fs.existsSync(parentDir) || !fs.statSync(parentDir).isDirectory()) {
+  if (!isDirectory(parentDir)) {
     return '';
   }
 
@@ -404,7 +408,7 @@ function findReleaseVersion(releaseDir) {
 function ensureRequiredDirs() {
   Object.keys(requiredDirs).forEach(x => {
     const dir = requiredDirs[x];
-    if (fs.existsSync(dir) && fs.statSync(dir).isDirectory()) {
+    if (isDirectory(dir)) {
       debug(`${symbols.info} ${x} dir already initialized: ${dir}`);
     } else {
       try {
@@ -611,6 +615,8 @@ module.exports = {
     return `http://localhost:${config.forge.web.port || 8210}`;
   },
 
+  DEFAULT_MIRROR: 'https://releases.arcblock.io',
+
   debug,
   sleep,
   setupEnv,
@@ -628,5 +634,6 @@ module.exports = {
   getPlatform,
   createRpcClient,
   isForgeWebStarted,
+  isDirectory,
   printLogo,
 };
