@@ -68,7 +68,7 @@ class GraphqlClient extends BaseClient {
           from: address,
           nonce,
           pk,
-          chainId: chainId,
+          chainId,
           itx: {
             type: x,
             value: data,
