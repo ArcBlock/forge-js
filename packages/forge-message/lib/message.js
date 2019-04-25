@@ -366,7 +366,11 @@ function encodeAny(data) {
   if (data.typeUrl && data.value && !data.type) {
     // avoid duplicate serialization
     anyMessage.setTypeUrl(data.typeUrl);
-    anyMessage.setValue(Buffer.from(data.value, 'base64'));
+    if (data.typeUrl === 'json') {
+      anyMessage.setValue(Buffer.from(JSON.stringify(data.value)));
+    } else {
+      anyMessage.setValue(Buffer.from(data.value, 'base64'));
+    }
   } else {
     const { value: anyValue, type: anyType } = data;
     const typeUrl = toTypeUrl(anyType);
