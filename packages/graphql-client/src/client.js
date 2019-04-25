@@ -64,11 +64,22 @@ class GraphqlClient extends BaseClient {
           chainId = info.network;
         }
 
+        // Determine signatures for multi sig
+        let signatures = [];
+        if (Array.isArray(data.signatures)) {
+          signatures = data.signatures;
+        }
+        if (Array.isArray(data.signaturesList)) {
+          signatures = data.signaturesList;
+        }
+
         const txObj = {
           from: address,
           nonce,
           pk,
           chainId,
+          signature: data.signature || '',
+          signatures,
           itx: {
             type: x,
             value: data,
@@ -78,8 +89,7 @@ class GraphqlClient extends BaseClient {
         const tx = createMessage('Transaction', txObj);
         const txToSignBytes = tx.serializeBinary();
         debug(`encodeTx.${x}`, {
-          txObj,
-          tx,
+          txObj: tx.toObject(),
           txBytes: txToSignBytes,
           txHex: toHex(txToSignBytes),
         });
@@ -102,6 +112,7 @@ class GraphqlClient extends BaseClient {
         if (signature) {
           txObj = data;
           txObj.signature = Buffer.from(hexToBytes(signature));
+          debug(`sendTx.${x}.hasSignature`, txObj);
         } else {
           const { object, buffer: txToSignBytes } = await txEncodeFn({ data, wallet });
           const signature = wallet.sign(bytesToHex(txToSignBytes));
@@ -112,7 +123,7 @@ class GraphqlClient extends BaseClient {
         const tx = createMessage('Transaction', txObj);
         const txBytes = tx.serializeBinary();
         const txStr = base64.escape(Buffer.from(txBytes).toString('base64'));
-        debug(`sendTx.${x}`, { tx, txBytes, txHex: toHex(txBytes), txStr });
+        debug(`sendTx.${x}`, { txObj: tx.toObject(), txBytes, txHex: toHex(txBytes), txStr });
 
         return this.sendTx({ tx: txStr });
       };
