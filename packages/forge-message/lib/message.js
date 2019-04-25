@@ -339,6 +339,10 @@ function decodeAny(data) {
   }
 
   const { typeUrl, value } = data;
+  if (typeUrl === 'json') {
+    return { type: typeUrl, value: JSON.parse(Buffer.from(value)) };
+  }
+
   const type = fromTypeUrl(typeUrl);
   const { fn: Message } = getMessageType(type);
   if (!Message) {
