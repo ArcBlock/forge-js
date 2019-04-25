@@ -371,9 +371,9 @@ function encodeAny(data) {
     // avoid duplicate serialization
     anyMessage.setTypeUrl(data.typeUrl);
     if (data.typeUrl === 'json') {
-      anyMessage.setValue(Buffer.from(JSON.stringify(data.value)));
+      anyMessage.setValue(Uint8Array.from(Buffer.from(JSON.stringify(data.value))));
     } else {
-      anyMessage.setValue(Buffer.from(data.value, 'base64'));
+      anyMessage.setValue(Uint8Array.from(Buffer.from(data.value, 'base64')));
     }
   } else {
     const { value: anyValue, type: anyType } = data;

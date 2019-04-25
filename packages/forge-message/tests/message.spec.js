@@ -313,7 +313,9 @@ describe('#encodeAny & #decodeAny & json', () => {
     });
 
     expect(encoded.array[0]).toEqual('json');
-    expect(encoded.array[1]).toEqual(Buffer.from(JSON.stringify({ key: 'value1' })));
+    expect(encoded.array[1]).toEqual(
+      Uint8Array.from(Buffer.from(JSON.stringify({ key: 'value1' })))
+    );
 
     const decoded = decodeAny({
       typeUrl: 'json',
