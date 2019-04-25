@@ -204,7 +204,7 @@ async function main({ args: [userVersion], opts: { mirror } }) {
     }
 
     // Start download and unzip
-    const assets = ['forge', 'forge_starter', 'simulator'];
+    const assets = ['forge', 'forge_starter', 'simulator', 'forge_web'];
     for (const asset of assets) {
       const assetInfo = fetchAssetInfo(platform, version, asset, mirror);
       debug(asset, assetInfo);
