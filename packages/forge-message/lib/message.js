@@ -128,6 +128,10 @@ function formatMessage(type, data) {
     return data;
   }
 
+  if (type === 'json') {
+    return JSON.parse(Buffer.from(data, 'base64').toString('utf8'));
+  }
+
   if (typeof data !== 'object') {
     return data;
   }
