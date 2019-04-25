@@ -133,7 +133,9 @@ proto.forge_abi.RoleType = {
   ROLE_ASSET: 6,
   ROLE_STAKE: 7,
   ROLE_VALIDATOR: 8,
-  ROLE_TX: 9,
+  ROLE_GROUP: 9,
+  ROLE_TX: 10,
+  ROLE_ANY: 63,
 };
 
 /**

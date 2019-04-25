@@ -275,7 +275,9 @@
             "role_asset": 6,
             "role_stake": 7,
             "role_validator": 8,
-            "role_tx": 9
+            "role_group": 9,
+            "role_tx": 9,
+            "role_any": 63
           }
         },
         "UpgradeType": {
@@ -1642,6 +1644,10 @@
             "receipt": {
               "type": "bytes",
               "id": 4
+            },
+            "protocol": {
+              "type": "bytes",
+              "id": 5
             }
           }
         },
@@ -3832,31 +3838,6 @@
             }
           }
         },
-        "ProofOp": {
-          "fields": {
-            "type": {
-              "type": "string",
-              "id": 1
-            },
-            "key": {
-              "type": "bytes",
-              "id": 2
-            },
-            "data": {
-              "type": "bytes",
-              "id": 3
-            }
-          }
-        },
-        "Proof": {
-          "fields": {
-            "ops": {
-              "rule": "repeated",
-              "type": "ProofOp",
-              "id": 1
-            }
-          }
-        },
         "BlockParams": {
           "fields": {
             "maxBytes": {
@@ -4091,6 +4072,187 @@
             }
           }
         },
+        "RequestBeginBlock": {
+          "fields": {
+            "hash": {
+              "type": "bytes",
+              "id": 1
+            },
+            "header": {
+              "type": "Header",
+              "id": 2
+            },
+            "lastCommitInfo": {
+              "type": "LastCommitInfo",
+              "id": 3
+            },
+            "byzantineValidators": {
+              "rule": "repeated",
+              "type": "Evidence",
+              "id": 4
+            }
+          }
+        },
+        "RequestEndBlock": {
+          "fields": {
+            "height": {
+              "type": "int64",
+              "id": 1
+            }
+          }
+        },
+        "ResponseBeginBlock": {
+          "fields": {
+            "tags": {
+              "rule": "repeated",
+              "type": "KVPair",
+              "id": 1
+            }
+          }
+        },
+        "ResponseEndBlock": {
+          "fields": {
+            "validatorUpdates": {
+              "rule": "repeated",
+              "type": "ValidatorUpdate",
+              "id": 1
+            },
+            "consensusParamUpdates": {
+              "type": "ConsensusParams",
+              "id": 2
+            },
+            "tags": {
+              "rule": "repeated",
+              "type": "KVPair",
+              "id": 3
+            }
+          }
+        },
+        "ResponseCheckTx": {
+          "fields": {
+            "code": {
+              "type": "uint32",
+              "id": 1
+            },
+            "data": {
+              "type": "bytes",
+              "id": 2
+            },
+            "log": {
+              "type": "string",
+              "id": 3
+            },
+            "info": {
+              "type": "string",
+              "id": 4
+            },
+            "gasWanted": {
+              "type": "int64",
+              "id": 5
+            },
+            "gasUsed": {
+              "type": "int64",
+              "id": 6
+            },
+            "tags": {
+              "rule": "repeated",
+              "type": "KVPair",
+              "id": 7
+            },
+            "codespace": {
+              "type": "string",
+              "id": 8
+            }
+          }
+        },
+        "ResponseDeliverTx": {
+          "fields": {
+            "code": {
+              "type": "uint32",
+              "id": 1
+            },
+            "data": {
+              "type": "bytes",
+              "id": 2
+            },
+            "log": {
+              "type": "string",
+              "id": 3
+            },
+            "info": {
+              "type": "string",
+              "id": 4
+            },
+            "gasWanted": {
+              "type": "int64",
+              "id": 5
+            },
+            "gasUsed": {
+              "type": "int64",
+              "id": 6
+            },
+            "tags": {
+              "rule": "repeated",
+              "type": "KVPair",
+              "id": 7
+            },
+            "codespace": {
+              "type": "string",
+              "id": 8
+            }
+          }
+        },
+        "RequestPing": {
+          "fields": {}
+        },
+        "RequestBroadcastTx": {
+          "fields": {
+            "tx": {
+              "type": "bytes",
+              "id": 1
+            }
+          }
+        },
+        "ResponsePing": {
+          "fields": {}
+        },
+        "ResponseBroadcastTx": {
+          "fields": {
+            "checkTx": {
+              "type": "ResponseCheckTx",
+              "id": 1
+            },
+            "deliverTx": {
+              "type": "ResponseDeliverTx",
+              "id": 2
+            }
+          }
+        },
+        "ProofOp": {
+          "fields": {
+            "type": {
+              "type": "string",
+              "id": 1
+            },
+            "key": {
+              "type": "bytes",
+              "id": 2
+            },
+            "data": {
+              "type": "bytes",
+              "id": 3
+            }
+          }
+        },
+        "Proof": {
+          "fields": {
+            "ops": {
+              "rule": "repeated",
+              "type": "ProofOp",
+              "id": 1
+            }
+          }
+        },
         "RequestEcho": {
           "fields": {
             "message": {
@@ -4175,27 +4337,6 @@
             }
           }
         },
-        "RequestBeginBlock": {
-          "fields": {
-            "hash": {
-              "type": "bytes",
-              "id": 1
-            },
-            "header": {
-              "type": "Header",
-              "id": 2
-            },
-            "lastCommitInfo": {
-              "type": "LastCommitInfo",
-              "id": 3
-            },
-            "byzantineValidators": {
-              "rule": "repeated",
-              "type": "Evidence",
-              "id": 4
-            }
-          }
-        },
         "RequestCheckTx": {
           "fields": {
             "tx": {
@@ -4208,14 +4349,6 @@
           "fields": {
             "tx": {
               "type": "bytes",
-              "id": 1
-            }
-          }
-        },
-        "RequestEndBlock": {
-          "fields": {
-            "height": {
-              "type": "int64",
               "id": 1
             }
           }
@@ -4400,107 +4533,6 @@
             }
           }
         },
-        "ResponseBeginBlock": {
-          "fields": {
-            "tags": {
-              "rule": "repeated",
-              "type": "KVPair",
-              "id": 1
-            }
-          }
-        },
-        "ResponseCheckTx": {
-          "fields": {
-            "code": {
-              "type": "uint32",
-              "id": 1
-            },
-            "data": {
-              "type": "bytes",
-              "id": 2
-            },
-            "log": {
-              "type": "string",
-              "id": 3
-            },
-            "info": {
-              "type": "string",
-              "id": 4
-            },
-            "gasWanted": {
-              "type": "int64",
-              "id": 5
-            },
-            "gasUsed": {
-              "type": "int64",
-              "id": 6
-            },
-            "tags": {
-              "rule": "repeated",
-              "type": "KVPair",
-              "id": 7
-            },
-            "codespace": {
-              "type": "string",
-              "id": 8
-            }
-          }
-        },
-        "ResponseDeliverTx": {
-          "fields": {
-            "code": {
-              "type": "uint32",
-              "id": 1
-            },
-            "data": {
-              "type": "bytes",
-              "id": 2
-            },
-            "log": {
-              "type": "string",
-              "id": 3
-            },
-            "info": {
-              "type": "string",
-              "id": 4
-            },
-            "gasWanted": {
-              "type": "int64",
-              "id": 5
-            },
-            "gasUsed": {
-              "type": "int64",
-              "id": 6
-            },
-            "tags": {
-              "rule": "repeated",
-              "type": "KVPair",
-              "id": 7
-            },
-            "codespace": {
-              "type": "string",
-              "id": 8
-            }
-          }
-        },
-        "ResponseEndBlock": {
-          "fields": {
-            "validatorUpdates": {
-              "rule": "repeated",
-              "type": "ValidatorUpdate",
-              "id": 1
-            },
-            "consensusParamUpdates": {
-              "type": "ConsensusParams",
-              "id": 2
-            },
-            "tags": {
-              "rule": "repeated",
-              "type": "KVPair",
-              "id": 3
-            }
-          }
-        },
         "ResponseCommit": {
           "fields": {
             "data": {
@@ -4576,32 +4608,6 @@
             "commit": {
               "type": "ResponseCommit",
               "id": 12
-            }
-          }
-        },
-        "RequestPing": {
-          "fields": {}
-        },
-        "RequestBroadcastTx": {
-          "fields": {
-            "tx": {
-              "type": "bytes",
-              "id": 1
-            }
-          }
-        },
-        "ResponsePing": {
-          "fields": {}
-        },
-        "ResponseBroadcastTx": {
-          "fields": {
-            "checkTx": {
-              "type": "ResponseCheckTx",
-              "id": 1
-            },
-            "deliverTx": {
-              "type": "ResponseDeliverTx",
-              "id": 2
             }
           }
         },
