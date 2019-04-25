@@ -90,7 +90,7 @@ class GraphqlClient extends BaseClient {
         const txToSignBytes = tx.serializeBinary();
         debug(`encodeTx.${x}`, {
           txObj: tx.toObject(),
-          txBytes: txToSignBytes,
+          txBytes: txToSignBytes.toString(),
           txHex: toHex(txToSignBytes),
         });
 
@@ -123,7 +123,12 @@ class GraphqlClient extends BaseClient {
         const tx = createMessage('Transaction', txObj);
         const txBytes = tx.serializeBinary();
         const txStr = base64.escape(Buffer.from(txBytes).toString('base64'));
-        debug(`sendTx.${x}`, { txObj: tx.toObject(), txBytes, txHex: toHex(txBytes), txStr });
+        debug(`sendTx.${x}`, {
+          txObj: tx.toObject(),
+          txBytes: txBytes.toString(),
+          txHex: toHex(txBytes),
+          txStr,
+        });
 
         return this.sendTx({ tx: txStr });
       };
