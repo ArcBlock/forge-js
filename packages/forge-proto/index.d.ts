@@ -120,7 +120,7 @@ declare namespace Enums {
     ROLE_STAKE = 7,
     ROLE_VALIDATOR = 8,
     ROLE_GROUP = 9,
-    ROLE_TX = 9,
+    ROLE_TX = 10,
     ROLE_ANY = 63,
   }
 
@@ -321,7 +321,8 @@ declare namespace Messages {
     6 = ROLE_ASSET,
     7 = ROLE_STAKE,
     8 = ROLE_VALIDATOR,
-    9 = ROLE_TX,
+    9 = ROLE_GROUP,
+    10 = ROLE_TX,
     63 = ROLE_ANY,
   }
 

@@ -1,4 +1,4 @@
-// Auto generated code (2019-04-25T01:33:09.803Z), DO NOT EDIT
+// Auto generated code (2019-04-25T01:46:51.261Z), DO NOT EDIT
 const typePb = require('./lib/type_pb.js');
 const enumPb = require('./lib/enum_pb.js');
 const createAssetTxPb = require('./lib/create_asset_tx_pb.js');
