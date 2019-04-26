@@ -62,10 +62,18 @@ watch:
 	@echo "Watching templates and slides changes..."
 	@fswatch -o packages/ | xargs -n1 -I{} make build
 
-upgrade:
-	@echo "Upgrade sdk to align with latest forge..."
+upgrade: upgrade-forge-proto upgrade-graphql-client upgrade-grpc-client
+
+upgrade-forge-proto:
+	@echo "Upgrade forge-proto to align with latest forge..."
 	@cd packages/forge-proto && npm run upgrade && git commit -m "chore: upgrade forge-proto with latest forge" .
+
+upgrade-graphql-client:
+	@echo "Upgrade graphl-client to align with latest forge..."
 	@cd packages/graphql-client && npm run upgrade && git commit -m "chore: upgrade graphql-client with latest forge" . && yarn build
+
+upgrade-forge-proto:
+	@echo "Upgrade grpc-client to align with latest forge..."
 	@cd packages/grpc-client && npm run upgrade && git commit -m "chore: upgrade grpc-client with latest forge" .
 
 run:
