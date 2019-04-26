@@ -1907,6 +1907,7 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
         account: msg.getAccount(),
         asset: msg.getAsset(),
         receipt: msg.getReceipt(),
+        protocol: msg.getProtocol(),
       };
 
     if (includeInstance) {
@@ -1957,6 +1958,10 @@ proto.forge_abi.RootState.deserializeBinaryFromReader = function(msg, reader) {
         var value = /** @type {!Uint8Array} */ (reader.readBytes());
         msg.setReceipt(value);
         break;
+      case 5:
+        var value = /** @type {!Uint8Array} */ (reader.readBytes());
+        msg.setProtocol(value);
+        break;
       default:
         reader.skipField();
         break;
@@ -1999,6 +2004,10 @@ proto.forge_abi.RootState.serializeBinaryToWriter = function(message, writer) {
   f = message.getReceipt_asU8();
   if (f.length > 0) {
     writer.writeBytes(4, f);
+  }
+  f = message.getProtocol_asU8();
+  if (f.length > 0) {
+    writer.writeBytes(5, f);
   }
 };
 
@@ -2112,6 +2121,39 @@ proto.forge_abi.RootState.prototype.getReceipt_asU8 = function() {
 /** @param {!(string|Uint8Array)} value */
 proto.forge_abi.RootState.prototype.setReceipt = function(value) {
   jspb.Message.setProto3BytesField(this, 4, value);
+};
+
+/**
+ * optional bytes protocol = 5;
+ * @return {!(string|Uint8Array)}
+ */
+proto.forge_abi.RootState.prototype.getProtocol = function() {
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 5, ''));
+};
+
+/**
+ * optional bytes protocol = 5;
+ * This is a type-conversion wrapper around `getProtocol()`
+ * @return {string}
+ */
+proto.forge_abi.RootState.prototype.getProtocol_asB64 = function() {
+  return /** @type {string} */ (jspb.Message.bytesAsB64(this.getProtocol()));
+};
+
+/**
+ * optional bytes protocol = 5;
+ * Note that Uint8Array is not supported on all browsers.
+ * @see http://caniuse.com/Uint8Array
+ * This is a type-conversion wrapper around `getProtocol()`
+ * @return {!Uint8Array}
+ */
+proto.forge_abi.RootState.prototype.getProtocol_asU8 = function() {
+  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(this.getProtocol()));
+};
+
+/** @param {!(string|Uint8Array)} value */
+proto.forge_abi.RootState.prototype.setProtocol = function(value) {
+  jspb.Message.setProto3BytesField(this, 5, value);
 };
 
 /**

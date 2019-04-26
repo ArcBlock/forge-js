@@ -79,7 +79,7 @@ describe('#createMessage', () => {
     expect(states[0].address).toEqual('states1');
   });
 
-  test.skip('should support nested complex repeated fields', () => {
+  test('should support nested complex repeated fields', () => {
     const params = {
       updateState: {
         code: 0,
@@ -88,9 +88,11 @@ describe('#createMessage', () => {
             address: 'states1',
             nonce: 24,
             data: {
-              type: 'AccountKvState',
+              type: 'AccountState',
               value: {
-                store: [{ key: '123', value: '456' }, { key: '234', value: '567' }],
+                balance: '100000',
+                nonce: 1234556,
+                address: 'ADJAKDJKASDjkA',
               },
             },
           },
@@ -98,9 +100,11 @@ describe('#createMessage', () => {
             address: 'states2',
             nonce: 32,
             data: {
-              type: 'AccountKvState',
+              type: 'AccountState',
               value: {
-                store: [{ key: '123', value: '456' }, { key: '234', value: '567' }],
+                balance: '200000',
+                nonce: 2234556,
+                address: 'SDJAKDJKASDjkA',
               },
             },
           },
@@ -114,14 +118,6 @@ describe('#createMessage', () => {
       .getStatesList()
       .map(x => x.toObject());
     expect(states.length).toEqual(2);
-    const stores = states.map(x => decodeAny(x.data).value.storeList);
-    stores.forEach(store => {
-      expect(store.length).toEqual(2);
-      expect(store[0].key).toEqual('123');
-      expect(store[0].value).toEqual('456');
-      expect(store[1].key).toEqual('234');
-      expect(store[1].value).toEqual('567');
-    });
   });
 
   test('should support map fields', () => {
@@ -306,6 +302,27 @@ describe('#encodeAny', () => {
     expect(typeof message).toEqual('object');
     expect(message.typeUrl).toEqual('fg:t:transfer');
     expect(message.value).toEqual('CgNhYmM=');
+  });
+});
+
+describe('#encodeAny & #decodeAny & json', () => {
+  it('should encode and decode json type', () => {
+    const encoded = encodeAny({
+      typeUrl: 'json',
+      value: { key: 'value1' },
+    });
+
+    expect(encoded.array[0]).toEqual('json');
+    expect(encoded.array[1]).toEqual(
+      Uint8Array.from(Buffer.from(JSON.stringify({ key: 'value1' })))
+    );
+
+    const decoded = decodeAny({
+      typeUrl: 'json',
+      value: Buffer.from(JSON.stringify({ key: 'value1' })),
+    });
+    expect(decoded.value.key).toEqual('value1');
+    expect(decoded.type).toEqual('json');
   });
 });
 

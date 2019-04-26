@@ -1,3 +1,20 @@
+## 0.20.1 (April 26, 2019)
+  - chore: imporve graphql client debugging
+  - chore: update docs
+  - chore: update did lib dependency
+  - chore: add examples for common tasks with graphql-client
+  - chore: improve debug
+  - chore: improve graphql-client debugging
+  - chore: handle multisig in graphql-client
+  - chore: fix uint8array issue
+  - fix: eslint errors
+  - fix: json decode in decodeAny
+  - fix: json encode in createMessage.encodeAny
+  - fix: json decode in formatMessage
+  - fix: unrecoginized typeUrl display
+  - chore: use smaller vendor compiled js files
+  - update readme
+
 ## 0.20.0 (April 24, 2019)
 
 

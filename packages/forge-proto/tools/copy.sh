@@ -17,3 +17,4 @@ cat lib/core.json lib/tx.json | jq -s 'reduce .[] as $item ({}; . * $item)' > li
 
 # cleanup
 rm lib/tx.json lib/core.json
+rm -rf lib/txs
