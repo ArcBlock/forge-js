@@ -1,3 +1,7 @@
+## 0.20.3 (April 26, 2019)
+  - chore: add forge reset sub command
+  - update readme
+
 ## 0.20.2 (April 26, 2019)
   - chore: upgrade graphql-client to align with forge v0.24.1
   - chore: forge web related command to native forge_web
