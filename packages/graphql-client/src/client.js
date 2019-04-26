@@ -88,13 +88,11 @@ class GraphqlClient extends BaseClient {
 
         const tx = createMessage('Transaction', txObj);
         const txToSignBytes = tx.serializeBinary();
-        debug(`encodeTx.${x}`, {
-          txObj: tx.toObject(),
-          txBytes: txToSignBytes.toString(),
-          txHex: toHex(txToSignBytes),
-        });
+        debug(`encodeTx.${x}.txObj`, tx.toObject());
+        debug(`encodeTx.${x}.txBytes`, txToSignBytes.toString());
+        debug(`encodeTx.${x}.txHex`, toHex(txToSignBytes));
 
-        return { object: txObj, buffer: txToSignBytes };
+        return { object: tx.toObject(), buffer: txToSignBytes };
       };
 
       const encodeMethod = camelcase(`encode_${x}`);
@@ -123,12 +121,10 @@ class GraphqlClient extends BaseClient {
         const tx = createMessage('Transaction', txObj);
         const txBytes = tx.serializeBinary();
         const txStr = base64.escape(Buffer.from(txBytes).toString('base64'));
-        debug(`sendTx.${x}`, {
-          txObj: tx.toObject(),
-          txBytes: txBytes.toString(),
-          txHex: toHex(txBytes),
-          txStr,
-        });
+        debug(`sendTx.${x}.txObj`, tx.toObject());
+        debug(`sendTx.${x}.txBytes`, txBytes.toString());
+        debug(`sendTx.${x}.txHex`, toHex(txBytes));
+        debug(`sendTx.${x}.txB64`, txStr);
 
         return this.sendTx({ tx: txStr });
       };
