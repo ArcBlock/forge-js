@@ -92,7 +92,7 @@ class GraphqlClient extends BaseClient {
         debug(`encodeTx.${x}.txBytes`, txToSignBytes.toString());
         debug(`encodeTx.${x}.txHex`, toHex(txToSignBytes));
 
-        return { object: tx.toObject(), buffer: txToSignBytes };
+        return { object: tx.toObject(), buffer: Buffer.from(txToSignBytes)};
       };
 
       const encodeMethod = camelcase(`encode_${x}`);
