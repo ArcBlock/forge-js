@@ -1,15 +1,15 @@
 /* eslint-disable no-console */
 const { fromRandom, WalletType } = require('@arcblock/forge-wallet');
-const Mcrypto = require('@arcblock/mcrypto');
 const { hexToBytes } = require('@arcblock/forge-util');
-const GraphqlClient = require('../src/client');
+const Mcrypto = require('@arcblock/mcrypto');
+const GraphqlClient = require('../src/node');
 
 describe('GraphqlClient', () => {
   test('should be a function', () => {
     expect(typeof GraphqlClient).toEqual('function');
   });
 
-  const client = new GraphqlClient('http://127.0.0.1:8210/api');
+  let client = new GraphqlClient('http://127.0.0.1:8210/api');
   test('should have many query methods', () => {
     expect(client.getQueries().length).toBeGreaterThan(0);
   });
@@ -37,45 +37,35 @@ describe('GraphqlClient', () => {
     expect(typeof type.deserializeBinary).toEqual('function');
   });
 
-  if (process.env.CI) {
-    const client = new GraphqlClient('https://test.abtnetwork.io/api');
+  client = new GraphqlClient('https://argon.abtnetwork.io/api');
+  test('should support getBlock', async () => {
+    try {
+      const res = await client.getBlock({ height: 1 });
+      expect(res.code).toEqual('OK');
+      expect(res.block.height).toEqual('1');
+    } catch (err) {
+      console.log(err.errors);
+      expect(err).toBeFalsy();
+    }
+  });
 
-    test('should support getBlock', async () => {
-      try {
-        const res = await client.getBlock({ height: 1 });
-        expect(res.code).toEqual('OK');
-        expect(res.block.height).toEqual('1');
-      } catch (err) {
-        console.log(err.errors);
-        expect(err).toBeFalsy();
-      }
+  test('should support declare account', async () => {
+    const type = WalletType({
+      role: Mcrypto.types.RoleType.ROLE_ACCOUNT,
+      pk: Mcrypto.types.KeyType.ED25519,
+      hash: Mcrypto.types.HashType.SHA3,
     });
 
-    test.skip('should support declare account', async () => {
-      const type = WalletType({
-        role: Mcrypto.types.RoleType.ROLE_ACCOUNT,
-        pk: Mcrypto.types.KeyType.ED25519,
-        hash: Mcrypto.types.HashType.SHA3,
-      });
-
-      const wallet = fromRandom(type);
-      try {
-        const res = await client.sendDeclareTx({
-          data: {
-            moniker: `wangshijun_${Math.round(Math.random() * 1000)}`,
-            pk: Buffer.from(hexToBytes(wallet.publicKey)),
-            type,
-            issuer: '',
-          },
-          wallet,
-        });
-
-        expect(res.code).toEqual('OK');
-        expect(res.hash).toBeTruthy();
-      } catch (err) {
-        console.error(err);
-        expect(err).toBeFalsy();
-      }
+    const wallet = fromRandom(type);
+    const res = await client.sendDeclareTx({
+      data: {
+        moniker: `graphql_client_test_${Math.round(Math.random() * 10000)}`,
+        type,
+      },
+      wallet,
     });
-  }
+
+    expect(res.code).toEqual('OK');
+    expect(res.hash).toBeTruthy();
+  });
 });

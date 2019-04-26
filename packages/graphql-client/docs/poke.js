@@ -8,7 +8,6 @@
 const Mcrypto = require('@arcblock/mcrypto');
 const moment = require('moment');
 const { fromRandom, WalletType } = require('@arcblock/forge-wallet');
-const { hexToBytes } = require('@arcblock/forge-util');
 
 const GraphqlClient = require('../src/node');
 
@@ -28,7 +27,6 @@ const type = WalletType({
     let res = await client.sendDeclareTx({
       data: {
         moniker: `poke_user_${Math.round(Math.random() * 10000)}`,
-        pk: Buffer.from(hexToBytes(wallet.publicKey)),
         type,
       },
       wallet,

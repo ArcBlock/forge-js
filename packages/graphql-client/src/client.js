@@ -54,7 +54,7 @@ class GraphqlClient extends BaseClient {
       const txEncodeFn = async ({ data, wallet }) => {
         // Determine sender address
         const address = data.from || wallet.toAddress();
-        const pk = data.pk || Buffer.from(hexToBytes(wallet.publicKey));
+        const pk = data.pk || Uint8Array.from(hexToBytes(wallet.publicKey));
 
         // Determine chainId & nonce, only attach new one when not exist
         let nonce = typeof data.nonce === 'undefined' ? Date.now() : data.nonce;
@@ -92,7 +92,7 @@ class GraphqlClient extends BaseClient {
         debug(`encodeTx.${x}.txBytes`, txToSignBytes.toString());
         debug(`encodeTx.${x}.txHex`, toHex(txToSignBytes));
 
-        return { object: tx.toObject(), buffer: Buffer.from(txToSignBytes)};
+        return { object: tx.toObject(), buffer: Uint8Array.from(txToSignBytes) };
       };
 
       const encodeMethod = camelcase(`encode_${x}`);
@@ -109,13 +109,13 @@ class GraphqlClient extends BaseClient {
         let txObj;
         if (signature) {
           txObj = data;
-          txObj.signature = Buffer.from(hexToBytes(signature));
+          txObj.signature = Uint8Array.from(hexToBytes(signature));
           debug(`sendTx.${x}.hasSignature`, txObj);
         } else {
           const { object, buffer: txToSignBytes } = await txEncodeFn({ data, wallet });
           const signature = wallet.sign(bytesToHex(txToSignBytes));
           txObj = object;
-          txObj.signature = Buffer.from(hexToBytes(signature));
+          txObj.signature = Uint8Array.from(hexToBytes(signature));
         }
 
         const tx = createMessage('Transaction', txObj);
