@@ -133,6 +133,7 @@ function ensureForgeRelease(args, exitOn404 = true) {
       return false;
     }
 
+    // simulator
     const currentVersion = config.cli.currentVersion;
     const simulatorBinPath = path.join(releaseDir, 'simulator', currentVersion, './bin/simulator');
     if (fs.existsSync(simulatorBinPath) && fs.statSync(simulatorBinPath).isFile()) {
@@ -140,6 +141,7 @@ function ensureForgeRelease(args, exitOn404 = true) {
       config.cli.simulatorBinPath = simulatorBinPath;
     }
 
+    // forge_starter
     const starterBinPath = path.join(
       releaseDir,
       'forge_starter',
@@ -161,6 +163,14 @@ function ensureForgeRelease(args, exitOn404 = true) {
       return false;
     }
 
+    // forge_web
+    const webBinPath = path.join(releaseDir, 'forge_web', currentVersion, './bin/forge_web');
+    if (fs.existsSync(webBinPath) && fs.statSync(webBinPath).isFile()) {
+      debug(`${symbols.success} Using forge_web executable: ${webBinPath}`);
+      config.cli.webBinPath = webBinPath;
+    }
+
+    // forge_kernel
     const forgeBinPath = path.join(releaseDir, 'forge', currentVersion, './bin/forge');
     if (fs.existsSync(forgeBinPath) && fs.statSync(forgeBinPath).isFile()) {
       config.cli.releaseDir = releaseDir;
@@ -431,45 +441,21 @@ function createRpcClient() {
   return client;
 }
 
-function runNativeForgeCommand(subCommand, options = {}) {
-  return function() {
-    const { forgeBinPath, forgeConfigPath } = config.cli;
-    if (!forgeBinPath) {
-      shell.echo(`${symbols.error} forgeBinPath not found, abort!`);
-      return;
-    }
+function makeNativeCommandRunner(executable) {
+  return function runNativeForgeCommand(subCommand, options = {}) {
+    return function() {
+      const forgeConfigPath = config.cli.forgeConfigPath;
+      const binPath = config.cli[executable];
 
-    const command = `FORGE_CONFIG=${forgeConfigPath} ${forgeBinPath} ${subCommand}`;
-    debug('runNativeForgeCommand', command);
-    return shell.exec(command, options);
-  };
-}
+      if (!binPath) {
+        shell.echo(`${symbols.error} ${executable} not found, abort!`);
+        return;
+      }
 
-function runNativeStarterCommand(subCommand, options = {}) {
-  return function() {
-    const { starterBinPath, forgeConfigPath } = config.cli;
-    if (!starterBinPath) {
-      shell.echo(`${symbols.error} starterBinPath not found, abort!`);
-      return;
-    }
-
-    const command = `FORGE_CONFIG=${forgeConfigPath} ${starterBinPath} ${subCommand}`;
-    debug('runNativeStarterCommand', command);
-    return shell.exec(command, options);
-  };
-}
-
-function runNativeSimulatorCommand(subCommand, options = {}) {
-  return function() {
-    const { simulatorBinPath, forgeConfigPath } = config.cli;
-    if (!simulatorBinPath) {
-      shell.echo(`${symbols.error} simulatorBinPath not found, abort!`);
-      return;
-    }
-
-    const command = `FORGE_CONFIG=${forgeConfigPath} ${simulatorBinPath} ${subCommand}`;
-    debug('runNativeSimulatorCommand', command);
-    return shell.exec(command, options);
+      const command = `FORGE_CONFIG=${forgeConfigPath} ${binPath} ${subCommand}`;
+      debug(`runNativeCommand.${executable}`, command);
+      return shell.exec(command, options);
+    };
   };
 }
 
@@ -580,16 +566,6 @@ function sleep(timeout = 1000) {
   return new Promise(resolve => setTimeout(resolve, timeout));
 }
 
-function isForgeWebStarted() {
-  const webPort = config.forge.web.port;
-  const { stdout } = shell.exec(`lsof -i :${webPort} | grep ${webPort}`, { silent: true });
-  if (/beam\.smp/.test(stdout) && /LISTEN/.test(stdout)) {
-    return true;
-  }
-
-  return false;
-}
-
 function printLogo() {
   shell.echo('');
   shell.echo(chalk.red(figlet.textSync('By ArcBlock', { font: 'ANSI Shadow' })));
@@ -627,13 +603,13 @@ module.exports = {
   ensureRequiredDirs,
   ensureForgeRelease,
   ensureRpcClient,
-  runNativeForgeCommand,
-  runNativeStarterCommand,
-  runNativeSimulatorCommand,
+  runNativeForgeCommand: makeNativeCommandRunner('forgeBinPath'),
+  runNativeWebCommand: makeNativeCommandRunner('webBinPath'),
+  runNativeStarterCommand: makeNativeCommandRunner('starterBinPath'),
+  runNativeSimulatorCommand: makeNativeCommandRunner('simulatorBinPath'),
   getForgeProcesses,
   getPlatform,
   createRpcClient,
-  isForgeWebStarted,
   isDirectory,
   printLogo,
 };

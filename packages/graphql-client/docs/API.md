@@ -1,6 +1,6 @@
 # Forge GraphQL API List
 
-> Updated on 2019-04-24T11:06:34.390Z
+> Updated on 2019-04-26T05:58:34.434Z
 
 
 ## Table of Contents
@@ -1264,7 +1264,6 @@ No arguments
     code
     state {
       address
-      dataVersion
       forgeAppHash
       version
       consensus {
@@ -1606,7 +1605,6 @@ No arguments
       blockHeight
       blockTime
       consensusVersion
-      dataVersion
       id
       ip
       moniker
@@ -4960,7 +4958,6 @@ subscription {
     }
     forgeState {
       address
-      dataVersion
       forgeAppHash
       version
       consensus {
