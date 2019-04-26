@@ -25,13 +25,13 @@
     babel-polyfill "^6.26.0"
     js-cookie "^2.2.0"
 
-"@arcblock/did-util@^0.19.0":
-  version "0.19.0"
-  resolved "https://registry.npm.taobao.org/@arcblock/did-util/download/@arcblock/did-util-0.19.0.tgz#53304bedabbf9f6bc37ef7c8394dd8d2b88b60f0"
-  integrity sha1-UzBL7au/n2vDfvfIOU3Y0riLYPA=
+"@arcblock/did-util@^0.19.1":
+  version "0.19.1"
+  resolved "https://registry.npmjs.org/@arcblock/did-util/-/did-util-0.19.1.tgz#b76f4f3620fe105c3e3481aeeba8f8b2c0b3eba1"
+  integrity sha512-Rf2TOPKgyq1USH5xRjNjc+llPZQeGrMyCy02T7KEK41mriGNHfTlJ2WIU/pFwmTpT0puBtvZYbWWVRBI9kbYXA==
   dependencies:
     "@arcblock/abt-did" "^0.19.0"
-    "@arcblock/forge-message" "^0.20.0"
+    "@arcblock/forge-message" "^0.20.1"
     "@arcblock/forge-util" "^0.20.0"
     "@arcblock/forge-wallet" "^0.20.0"
     "@arcblock/mcrypto" "^0.20.0"

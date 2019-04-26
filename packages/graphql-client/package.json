@@ -36,7 +36,7 @@
     "wolfy87-eventemitter": "^5.2.5"
   },
   "devDependencies": {
-    "@arcblock/did-util": "^0.19.0",
+    "@arcblock/did-util": "^0.19.1",
     "axios": "^0.18.0",
     "axios-mock-adapter": "^1.15.0",
     "babel-cli": "^6.26.0",
