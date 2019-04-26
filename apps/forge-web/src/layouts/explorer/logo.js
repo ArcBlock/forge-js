@@ -104,6 +104,9 @@ const Header = styled.div`
     top: 32px;
     opacity: 0.5;
     display: ${props => (props.isHome ? 'block' : 'none')};
+    @media (max-width: ${props => props.theme.breakpoints.values.sm}px) {
+      display: none;
+    }
   }
 
   &:before {
@@ -120,8 +123,7 @@ const Header = styled.div`
     opacity: 0.5;
     display: ${props => (props.isHome ? 'block' : 'none')};
     @media (max-width: ${props => props.theme.breakpoints.values.sm}px) {
-      width: 114px;
-      left: 54px;
+      display: none;
     }
   }
 `;

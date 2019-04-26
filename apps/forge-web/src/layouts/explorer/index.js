@@ -28,7 +28,9 @@ function Layout({ children }) {
         <Toolbar disableGutters={false} className="toolbar">
           <Logo />
           <div className="switchers">
-            {window.location.pathname === '/' && <NetworkSwitcher className="switcher" />}
+            {window.location.pathname === '/' && (
+              <NetworkSwitcher className="switcher network-switcher" />
+            )}
             <ThemeSwitcher className="switcher" />
           </div>
         </Toolbar>
@@ -62,7 +64,7 @@ const Version = styled.div`
 
 const Container = styled.div`
   display: flex;
-
+  flex-direction: column;
   .appBar {
     display: flex;
     justify-content: space-between;
@@ -80,6 +82,7 @@ const Container = styled.div`
     margin-top: ${props => props.theme.spacing.unit}px;
     width: 100%;
     max-width: ${props => props.theme.pageWidth}px;
+    position: relative;
 
     .switchers {
       display: flex;
@@ -90,6 +93,29 @@ const Container = styled.div`
     .switcher {
       cursor: pointer;
     }
+
+    .network-switcher {
+      @media (max-width: ${props => props.theme.breakpoints.values.sm}px) {
+        position: absolute;
+        top: 80px;
+        left: 0px;
+        width: 100%;
+        &:before {
+          content: '';
+          z-index: 100;
+          background: transparent;
+          border-right: 1px dotted ${props => props.theme.typography.color.gray};
+          border-bottom: 1px dotted ${props => props.theme.typography.color.gray};
+          width: 104px;
+          height: 15px;
+          position: absolute;
+          left: 68px;
+          top: 65px;
+          opacity: 0.5;
+          display: block;
+        }
+      }
+    }
   }
 
   .main {
@@ -98,6 +124,9 @@ const Container = styled.div`
     box-sizing: border-box;
     position: relative;
     width: 100%;
+    @media (max-width: ${props => props.theme.breakpoints.values.sm}px) {
+      padding-top: 152px;
+    }
   }
 `;
 
