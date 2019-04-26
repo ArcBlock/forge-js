@@ -9,8 +9,21 @@ const debug = require('debug')(`${require('../package.json').name}`);
 
 const enumTypes = Object.keys(enums);
 
+const scalarTypes = [
+  'bytes',
+  'string',
+  'double',
+  'float',
+  'sint32',
+  'uint32',
+  'sfixed32',
+  'sint64',
+  'uint64',
+  'sfixed64',
+];
+
 // Utility map to generate random data when compose fake message
-const scalarTypes = {
+const fakeValues = {
   sint32: 1,
   uint32: 2,
   sfixed32: 3,
@@ -40,8 +53,8 @@ function fakeMessage(type) {
     return;
   }
 
-  if (scalarTypes[type]) {
-    return scalarTypes[type];
+  if (fakeValues[type]) {
+    return fakeValues[type];
   }
 
   const { fields, oneofs } = getMessageType(type);
@@ -64,13 +77,13 @@ function fakeMessage(type) {
     }
     if (keyType) {
       result[key] = {
-        [scalarTypes[keyType]]: fakeMessage(subType),
+        [fakeValues[keyType]]: fakeMessage(subType),
       };
       return;
     }
 
     if (enumTypes.includes(subType)) {
-      result[key] = scalarTypes.enums(subType);
+      result[key] = fakeValues.enums(subType);
       return;
     }
 
@@ -79,8 +92,8 @@ function fakeMessage(type) {
       return;
     }
 
-    if (scalarTypes[subType]) {
-      result[key] = scalarTypes[subType];
+    if (fakeValues[subType]) {
+      result[key] = fakeValues[subType];
     }
 
     if (subType === 'google.protobuf.Timestamp') {
@@ -90,7 +103,7 @@ function fakeMessage(type) {
 
     if (subType === 'google.protobuf.Any') {
       result[key] = {
-        type: 'fg:x:random_data',
+        type: 'string',
         value: 'ABCD 1234',
       };
       return;
@@ -115,24 +128,15 @@ function formatMessage(type, data) {
     return data;
   }
 
+  if (type === 'json') {
+    return JSON.parse(Buffer.from(data, 'base64').toString('utf8'));
+  }
+
   if (typeof data !== 'object') {
     return data;
   }
 
-  if (
-    [
-      'bytes',
-      'string',
-      'double',
-      'float',
-      'sint32',
-      'uint32',
-      'sfixed32',
-      'sint64',
-      'uint64',
-      'sfixed64',
-    ].includes(type)
-  ) {
+  if (scalarTypes.includes(type)) {
     return data;
   }
 
@@ -143,29 +147,6 @@ function formatMessage(type, data) {
     throw new Error(`Cannot get fields for type ${type}`);
   }
 
-  // "fields": {
-  //   "address": {
-  //     "type": "string",
-  //     "id": 1
-  //   },
-  //   "consensus": {
-  //     "type": "ConsensusParams",
-  //     "id": 2
-  //   },
-  //   "stakeSummary": {
-  //     "keyType": "uint32",
-  //     "type": "StakeSummary",
-  //     "id": 4
-  //   },
-  //   "forgeAppHash": {
-  //     "type": "bytes",
-  //     "id": 7
-  //   },
-  //   "data": {
-  //     "type": "google.protobuf.Any",
-  //     "id": 15
-  //   }
-  // }
   Object.keys(fields).forEach(key => {
     const { type: subType, keyType, rule } = fields[key];
     let value = data[key];
@@ -226,8 +207,8 @@ function formatMessage(type, data) {
       if (value) {
         const decoded = decodeAny(value);
         result[key] = {
-          type: decoded.type,
-          value: formatMessage(decoded.type, decoded.value),
+          type: decoded.type || value.typeUrl,
+          value: formatMessage(decoded.type || value.typeUrl, decoded.value),
         };
       }
       return;
@@ -358,6 +339,10 @@ function decodeAny(data) {
   }
 
   const { typeUrl, value } = data;
+  if (typeUrl === 'json') {
+    return { type: typeUrl, value: JSON.parse(Buffer.from(value)) };
+  }
+
   const type = fromTypeUrl(typeUrl);
   const { fn: Message } = getMessageType(type);
   if (!Message) {
@@ -385,7 +370,11 @@ function encodeAny(data) {
   if (data.typeUrl && data.value && !data.type) {
     // avoid duplicate serialization
     anyMessage.setTypeUrl(data.typeUrl);
-    anyMessage.setValue(Buffer.from(data.value, 'base64'));
+    if (data.typeUrl === 'json') {
+      anyMessage.setValue(Uint8Array.from(Buffer.from(JSON.stringify(data.value))));
+    } else {
+      anyMessage.setValue(Uint8Array.from(Buffer.from(data.value, 'base64')));
+    }
   } else {
     const { value: anyValue, type: anyType } = data;
     const typeUrl = toTypeUrl(anyType);

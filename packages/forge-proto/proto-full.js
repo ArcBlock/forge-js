@@ -1,4 +1,4 @@
-// Auto generated code (2019-04-24T11:04:44.883Z), DO NOT EDIT
+// Auto generated code (2019-04-25T01:46:51.069Z), DO NOT EDIT
 const servicePb = require('./lib/service_pb.js');
 const typePb = require('./lib/type_pb.js');
 const txPb = require('./lib/tx_pb.js');
