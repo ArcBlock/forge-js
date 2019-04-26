@@ -86,8 +86,6 @@ const type = WalletType({
 
     // assemble exchange tx: multisig
     const exchange = {
-      chainId: 'forge',
-      nonce: 576105131,
       pk: Buffer.from(hexToBytes(sender.publicKey)), // pk of application
       to: receiver.toAddress(),
       sender: {
