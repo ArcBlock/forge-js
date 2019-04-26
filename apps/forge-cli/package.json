@@ -1,6 +1,6 @@
 {
   "name": "@arcblock/forge-cli",
-  "version": "0.20.1",
+  "version": "0.20.2",
   "description": "a general set of CLI for arcblock Forge framework",
   "main": "src/index.js",
   "files": [
@@ -36,7 +36,7 @@
     "@arcblock/forge-config": "^0.20.0",
     "@arcblock/forge-message": "^0.20.1",
     "@arcblock/forge-proto": "^0.20.1",
-    "@arcblock/graphql-client": "^0.20.1",
+    "@arcblock/graphql-client": "^0.20.2",
     "@arcblock/grpc-client": "^0.20.1",
     "@iarna/toml": "^2.2.3",
     "app-module-path": "^2.2.0",
