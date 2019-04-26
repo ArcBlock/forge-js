@@ -1,3 +1,10 @@
+## 0.20.2 (April 26, 2019)
+  - chore: upgrade graphql-client to align with forge v0.24.1
+  - chore: forge web related command to native forge_web
+  - Merge branch 'master' into feature/download-forge-web-asset
+  - update readme
+  - dowload forge web
+
 ## 0.20.1 (April 26, 2019)
   - chore: imporve graphql client debugging
   - chore: update docs
