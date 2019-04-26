@@ -2,12 +2,13 @@
 # yarn lockfile v1
 
 
-"@arcblock/abt-did@^0.17.0":
-  version "0.17.0"
-  resolved "https://registry.npmjs.org/@arcblock/abt-did/-/abt-did-0.17.0.tgz#cf3ff48cf533b2c3dce6198094ded87c735a5d81"
+"@arcblock/abt-did@^0.19.0":
+  version "0.19.0"
+  resolved "https://registry.npm.taobao.org/@arcblock/abt-did/download/@arcblock/abt-did-0.19.0.tgz#96ac821bddc5ab0e02e2f1359f5a9808b7272856"
+  integrity sha1-lqyCG93Fqw4C4vE1n1qYCLcnKFY=
   dependencies:
-    "@arcblock/forge-util" "^0.17.0"
-    "@arcblock/mcrypto" "^0.17.0"
+    "@arcblock/forge-util" "^0.20.0"
+    "@arcblock/mcrypto" "^0.20.0"
     base64-url "^2.2.0"
     debug "^4.1.1"
     hdkey "^1.1.1"
@@ -24,26 +25,16 @@
     babel-polyfill "^6.26.0"
     js-cookie "^2.2.0"
 
-"@arcblock/forge-util@^0.17.0":
-  version "0.17.0"
-  resolved "https://registry.yarnpkg.com/@arcblock/forge-util/-/forge-util-0.17.0.tgz#3789899ca9d4961c406162fc4199e58dfdece20e"
+"@arcblock/did-util@^0.19.0":
+  version "0.19.0"
+  resolved "https://registry.npm.taobao.org/@arcblock/did-util/download/@arcblock/did-util-0.19.0.tgz#53304bedabbf9f6bc37ef7c8394dd8d2b88b60f0"
+  integrity sha1-UzBL7au/n2vDfvfIOU3Y0riLYPA=
   dependencies:
-    bn.js "4.11.6"
-    lodash "^4.17.11"
-    number-to-bn "^1.7.0"
-    utf8 "^3.0.0"
-
-"@arcblock/mcrypto@^0.17.0":
-  version "0.17.0"
-  resolved "https://registry.yarnpkg.com/@arcblock/mcrypto/-/mcrypto-0.17.0.tgz#d1055910648b3c2837a39647137475a6045c56aa"
-  dependencies:
-    "@arcblock/forge-util" "^0.17.0"
-    crypto-js "^3.1.9-1"
-    elliptic "^6.4.1"
-    interface "^1.2.1"
-    js-sha3 "^0.8.0"
-    randombytes "^2.0.6"
-    tweetnacl "^1.0.1"
+    "@arcblock/abt-did" "^0.19.0"
+    "@arcblock/forge-message" "^0.20.0"
+    "@arcblock/forge-util" "^0.20.0"
+    "@arcblock/forge-wallet" "^0.20.0"
+    "@arcblock/mcrypto" "^0.20.0"
 
 "@arcblock/sdk-util@^0.19.0", "@arcblock/sdk-util@^0.19.4":
   version "0.19.4"
