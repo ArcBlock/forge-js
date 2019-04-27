@@ -72,7 +72,7 @@ upgrade-graphql-client:
 	@echo "Upgrade graphl-client to align with latest forge..."
 	@cd packages/graphql-client && npm run upgrade && git commit -m "chore: upgrade graphql-client with latest forge" . && yarn build
 
-upgrade-forge-proto:
+upgrade-grpc-client:
 	@echo "Upgrade grpc-client to align with latest forge..."
 	@cd packages/grpc-client && npm run upgrade && git commit -m "chore: upgrade grpc-client with latest forge" .
 
