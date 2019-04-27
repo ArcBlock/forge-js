@@ -137,7 +137,6 @@ describe('#createMessage', () => {
         },
       },
       version: '0.13.2',
-      dataVersion: '1.2',
       forgeAppHash: '',
     };
     const message = createMessage('ForgeState', params);
