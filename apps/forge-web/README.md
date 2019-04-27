@@ -33,6 +33,7 @@ First, make sure you have a local forge graphql endpoint running at: `http://loc
 git pull origin master
 lerna bootstrap
 lerna link
+git checkout -b chore/upgrade-forge-web
 make upgrade-graphql-client
 make build
 make create-pr
