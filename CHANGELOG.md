@@ -1,3 +1,15 @@
+## 0.20.4 (April 27, 2019)
+  - chore: elimate data version
+  - chore: upgrade graphql-client with latest forge
+  - fix: typo in makefile
+  - chore: upgrade forge web readme
+  - fix: release asset list not including forge_web when download
+  - chore: update readme for forge-web
+  - fix: graphql client test case
+  - chore: add instructions on how to upgrade graphql-client
+  - chore: make a smaller forge-web release
+  - v0.20.3
+
 ## 0.20.3 (April 26, 2019)
   - chore: add forge reset sub command
   - update readme

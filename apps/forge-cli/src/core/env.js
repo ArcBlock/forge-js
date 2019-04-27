@@ -592,6 +592,7 @@ module.exports = {
   },
 
   DEFAULT_MIRROR: 'https://releases.arcblock.io',
+  RELEASE_ASSETS: ['forge', 'forge_starter', 'simulator', 'forge_web'],
 
   debug,
   sleep,
