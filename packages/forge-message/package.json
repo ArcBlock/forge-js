@@ -1,7 +1,7 @@
 {
   "name": "@arcblock/forge-message",
   "description": "Utility functions to encode and decode message that can send to forge",
-  "version": "0.20.1",
+  "version": "0.20.4",
   "author": "wangshijun <shijun@arcblock.io> (https://www.arcblock.io)",
   "engines": {
     "node": ">=0.10.0",
