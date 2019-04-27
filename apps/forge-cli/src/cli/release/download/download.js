@@ -1,7 +1,7 @@
 const shell = require('shelljs');
 const chalk = require('chalk');
 const { symbols } = require('core/ui');
-const { config, debug, getPlatform } = require('core/env');
+const { config, debug, getPlatform, RELEASE_ASSETS } = require('core/env');
 const {
   releaseDirExists,
   fetchAssetInfo,
@@ -26,8 +26,7 @@ async function main({ args: [userVersion], opts: { mirror } }) {
     }
 
     // Start download and unzip
-    const assets = ['forge', 'forge_starter', 'simulator'];
-    for (const asset of assets) {
+    for (const asset of RELEASE_ASSETS) {
       const assetInfo = fetchAssetInfo(platform, version, asset, mirror);
       debug(asset, assetInfo);
       const assetTarball = await downloadAsset(assetInfo);
