@@ -45,7 +45,9 @@ lint:
 	@yarn lint
 
 doc:
-	@echo "Building the documenation..."
+	@echo "Building and publishing the documenation..."
+	@yarn docs
+	@aws s3 sync ./docs s3://docs.arcblock.io/forge-js --region us-west-2 --profile prod
 
 precommit: dep lint doc build test
 
