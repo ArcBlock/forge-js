@@ -1,3 +1,7 @@
+/**
+ * @fileOverview This module defines basic interface for an client that can interact with forge powered node
+ * @module graphql-client
+ */
 const BaseClient = require('@arcblock/sdk-util');
 const md5 = require('blueimp-md5');
 const camelcase = require('camelcase');
@@ -15,14 +19,15 @@ const graphqlSchema = require('./schema/graphql.json');
  *
  * Please note that, due to internal implementation of google-protobuf, all `repeated fields` names are suffixed with `List`
  *
- * @package
+ * @class
+ * @memberof graphql-client
  */
 class GraphQLClient extends BaseClient {
   /**
    * Create an instance of GraphQLClient
    *
+   * @constructor
    * @param {string} [httpEndpoint='http://localhost:8210/api']
-   * @memberof GraphQLClient
    */
   constructor(httpEndpoint = 'http://localhost:8210/api') {
     super({
@@ -44,8 +49,8 @@ class GraphQLClient extends BaseClient {
   /**
    * List all transaction send methods, each method can send one kind of transactions supported by forge core, such as `DeclareTx`, `PokeTx`
    *
+   * @method
    * @returns {Array<string>} method name list
-   * @memberof GraphQLClient
    */
   getTxSendMethods() {
     return transactions.map(x => camelcase(`send_${x}`));
@@ -54,8 +59,8 @@ class GraphQLClient extends BaseClient {
   /**
    * List all transaction encode methods, each method can be used to encode transaction to buffer and object
    *
+   * @method
    * @returns {Array<string>} method name list
-   * @memberof GraphQLClient
    */
   getTxEncodeMethods() {
     return transactions.map(x => camelcase(`encode_${x}`));
@@ -64,9 +69,9 @@ class GraphQLClient extends BaseClient {
   /**
    * Decode transaction buffer to an object
    *
+   * @method
    * @param {buffer} buffer
    * @returns {object} transaction object
-   * @memberof GraphQLClient
    */
   decodeTx(buffer) {
     const Transaction = this.getType('Transaction');

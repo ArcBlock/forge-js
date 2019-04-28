@@ -1,48 +1,43 @@
 /**
  * List all query method names
  *
- * @function
+ * @method
  * @name GraphQLClient#getQueries
  * @returns {Array<string>} method name list
- * @memberof GraphQLClient
  */
 
 /**
  * List all mutation method names
  *
- * @function
+ * @method
  * @name GraphQLClient#getMutations
  * @returns {Array<string>} method name list
- * @memberof GraphQLClient
  */
 
 /**
  * List all subscription method names
  *
- * @function
+ * @method
  * @name GraphQLClient#getSubscription
  * @returns {Array<string>} method name list
- * @memberof GraphQLClient
  */
 
 /**
  * Send raw graphql query to forge graphql endpoint
  *
- * @function
+ * @method
  * @name GraphQLClient#doRawQuery
  * @param {string} query - graphql query string
  * @returns {Promise} usually axios response data
- * @memberof GraphQLClient
  */
 
 /**
  * Send raw graphql subscription to forge graphql endpoint
  *
- * @function
+ * @method
  * @name GraphQLClient#doRawSubscription
  * @param {string} query - graphql query string
  * @returns {Promise} usually axios response data
- * @memberof GraphQLClient
  */
 
 /**
@@ -1464,11 +1459,10 @@
 /**
  * Send transaction and get the hash, if you want to get transaction detail please use {@link GraphQLClient#getTx}
  *
- * @function
+ * @method
  * @name GraphQLClient#sendCreateAssetTx
  * @param {GraphQLClient.CreateAssetTxInput}
  * @returns {Promise} returns transaction hash if success, otherwise error was thrown
- * @memberof GraphQLClient
  */
 
 /**
@@ -1491,11 +1485,10 @@
 /**
  * Send transaction and get the hash, if you want to get transaction detail please use {@link GraphQLClient#getTx}
  *
- * @function
+ * @method
  * @name GraphQLClient#sendTransferTx
  * @param {GraphQLClient.TransferTxInput}
  * @returns {Promise} returns transaction hash if success, otherwise error was thrown
- * @memberof GraphQLClient
  */
 
 /**
@@ -1518,11 +1511,10 @@
 /**
  * Send transaction and get the hash, if you want to get transaction detail please use {@link GraphQLClient#getTx}
  *
- * @function
+ * @method
  * @name GraphQLClient#sendPokeTx
  * @param {GraphQLClient.PokeTxInput}
  * @returns {Promise} returns transaction hash if success, otherwise error was thrown
- * @memberof GraphQLClient
  */
 
 /**
@@ -1545,11 +1537,10 @@
 /**
  * Send transaction and get the hash, if you want to get transaction detail please use {@link GraphQLClient#getTx}
  *
- * @function
+ * @method
  * @name GraphQLClient#sendDeployProtocolTx
  * @param {GraphQLClient.DeployProtocolTxInput}
  * @returns {Promise} returns transaction hash if success, otherwise error was thrown
- * @memberof GraphQLClient
  */
 
 /**
@@ -1572,11 +1563,10 @@
 /**
  * Send transaction and get the hash, if you want to get transaction detail please use {@link GraphQLClient#getTx}
  *
- * @function
+ * @method
  * @name GraphQLClient#sendUpgradeNodeTx
  * @param {GraphQLClient.UpgradeNodeTxInput}
  * @returns {Promise} returns transaction hash if success, otherwise error was thrown
- * @memberof GraphQLClient
  */
 
 /**
@@ -1599,11 +1589,10 @@
 /**
  * Send transaction and get the hash, if you want to get transaction detail please use {@link GraphQLClient#getTx}
  *
- * @function
+ * @method
  * @name GraphQLClient#sendUpdateAssetTx
  * @param {GraphQLClient.UpdateAssetTxInput}
  * @returns {Promise} returns transaction hash if success, otherwise error was thrown
- * @memberof GraphQLClient
  */
 
 /**
@@ -1626,11 +1615,10 @@
 /**
  * Send transaction and get the hash, if you want to get transaction detail please use {@link GraphQLClient#getTx}
  *
- * @function
+ * @method
  * @name GraphQLClient#sendAccountMigrateTx
  * @param {GraphQLClient.AccountMigrateTxInput}
  * @returns {Promise} returns transaction hash if success, otherwise error was thrown
- * @memberof GraphQLClient
  */
 
 /**
@@ -1653,11 +1641,10 @@
 /**
  * Send transaction and get the hash, if you want to get transaction detail please use {@link GraphQLClient#getTx}
  *
- * @function
+ * @method
  * @name GraphQLClient#sendConsumeAssetTx
  * @param {GraphQLClient.ConsumeAssetTxInput}
  * @returns {Promise} returns transaction hash if success, otherwise error was thrown
- * @memberof GraphQLClient
  */
 
 /**
@@ -1680,11 +1667,10 @@
 /**
  * Send transaction and get the hash, if you want to get transaction detail please use {@link GraphQLClient#getTx}
  *
- * @function
+ * @method
  * @name GraphQLClient#sendDeclareTx
  * @param {GraphQLClient.DeclareTxInput}
  * @returns {Promise} returns transaction hash if success, otherwise error was thrown
- * @memberof GraphQLClient
  */
 
 /**
@@ -1707,11 +1693,10 @@
 /**
  * Send transaction and get the hash, if you want to get transaction detail please use {@link GraphQLClient#getTx}
  *
- * @function
+ * @method
  * @name GraphQLClient#sendExchangeTx
  * @param {GraphQLClient.ExchangeTxInput}
  * @returns {Promise} returns transaction hash if success, otherwise error was thrown
- * @memberof GraphQLClient
  */
 
 /**
@@ -1734,11 +1719,10 @@
 /**
  * Send transaction and get the hash, if you want to get transaction detail please use {@link GraphQLClient#getTx}
  *
- * @function
+ * @method
  * @name GraphQLClient#sendDeclareFileTx
  * @param {GraphQLClient.DeclareFileTxInput}
  * @returns {Promise} returns transaction hash if success, otherwise error was thrown
- * @memberof GraphQLClient
  */
 
 /**
@@ -1761,159 +1745,146 @@
 /**
  * Send transaction and get the hash, if you want to get transaction detail please use {@link GraphQLClient#getTx}
  *
- * @function
+ * @method
  * @name GraphQLClient#sendStakeTx
  * @param {GraphQLClient.StakeTxInput}
  * @returns {Promise} returns transaction hash if success, otherwise error was thrown
- * @memberof GraphQLClient
  */
 
 /**
  * Encode transaction, users can pass plain objects for itx.data field
  *
- * @function
+ * @method
  * @name GraphQLClient#encodeCreateAssetTx
  * @param {GraphQLClient.CreateAssetTxInput}
  * @returns {object} result - we provide two formats of the encoding result
  * @returns {buffer} result.buffer - binary presentation of the tx, can be used for further encoding or signing
  * @returns {object} result.object - human readable tx object
- * @memberof GraphQLClient
  */
 
 /**
  * Encode transaction, users can pass plain objects for itx.data field
  *
- * @function
+ * @method
  * @name GraphQLClient#encodeTransferTx
  * @param {GraphQLClient.TransferTxInput}
  * @returns {object} result - we provide two formats of the encoding result
  * @returns {buffer} result.buffer - binary presentation of the tx, can be used for further encoding or signing
  * @returns {object} result.object - human readable tx object
- * @memberof GraphQLClient
  */
 
 /**
  * Encode transaction, users can pass plain objects for itx.data field
  *
- * @function
+ * @method
  * @name GraphQLClient#encodePokeTx
  * @param {GraphQLClient.PokeTxInput}
  * @returns {object} result - we provide two formats of the encoding result
  * @returns {buffer} result.buffer - binary presentation of the tx, can be used for further encoding or signing
  * @returns {object} result.object - human readable tx object
- * @memberof GraphQLClient
  */
 
 /**
  * Encode transaction, users can pass plain objects for itx.data field
  *
- * @function
+ * @method
  * @name GraphQLClient#encodeDeployProtocolTx
  * @param {GraphQLClient.DeployProtocolTxInput}
  * @returns {object} result - we provide two formats of the encoding result
  * @returns {buffer} result.buffer - binary presentation of the tx, can be used for further encoding or signing
  * @returns {object} result.object - human readable tx object
- * @memberof GraphQLClient
  */
 
 /**
  * Encode transaction, users can pass plain objects for itx.data field
  *
- * @function
+ * @method
  * @name GraphQLClient#encodeUpgradeNodeTx
  * @param {GraphQLClient.UpgradeNodeTxInput}
  * @returns {object} result - we provide two formats of the encoding result
  * @returns {buffer} result.buffer - binary presentation of the tx, can be used for further encoding or signing
  * @returns {object} result.object - human readable tx object
- * @memberof GraphQLClient
  */
 
 /**
  * Encode transaction, users can pass plain objects for itx.data field
  *
- * @function
+ * @method
  * @name GraphQLClient#encodeUpdateAssetTx
  * @param {GraphQLClient.UpdateAssetTxInput}
  * @returns {object} result - we provide two formats of the encoding result
  * @returns {buffer} result.buffer - binary presentation of the tx, can be used for further encoding or signing
  * @returns {object} result.object - human readable tx object
- * @memberof GraphQLClient
  */
 
 /**
  * Encode transaction, users can pass plain objects for itx.data field
  *
- * @function
+ * @method
  * @name GraphQLClient#encodeAccountMigrateTx
  * @param {GraphQLClient.AccountMigrateTxInput}
  * @returns {object} result - we provide two formats of the encoding result
  * @returns {buffer} result.buffer - binary presentation of the tx, can be used for further encoding or signing
  * @returns {object} result.object - human readable tx object
- * @memberof GraphQLClient
  */
 
 /**
  * Encode transaction, users can pass plain objects for itx.data field
  *
- * @function
+ * @method
  * @name GraphQLClient#encodeConsumeAssetTx
  * @param {GraphQLClient.ConsumeAssetTxInput}
  * @returns {object} result - we provide two formats of the encoding result
  * @returns {buffer} result.buffer - binary presentation of the tx, can be used for further encoding or signing
  * @returns {object} result.object - human readable tx object
- * @memberof GraphQLClient
  */
 
 /**
  * Encode transaction, users can pass plain objects for itx.data field
  *
- * @function
+ * @method
  * @name GraphQLClient#encodeDeclareTx
  * @param {GraphQLClient.DeclareTxInput}
  * @returns {object} result - we provide two formats of the encoding result
  * @returns {buffer} result.buffer - binary presentation of the tx, can be used for further encoding or signing
  * @returns {object} result.object - human readable tx object
- * @memberof GraphQLClient
  */
 
 /**
  * Encode transaction, users can pass plain objects for itx.data field
  *
- * @function
+ * @method
  * @name GraphQLClient#encodeExchangeTx
  * @param {GraphQLClient.ExchangeTxInput}
  * @returns {object} result - we provide two formats of the encoding result
  * @returns {buffer} result.buffer - binary presentation of the tx, can be used for further encoding or signing
  * @returns {object} result.object - human readable tx object
- * @memberof GraphQLClient
  */
 
 /**
  * Encode transaction, users can pass plain objects for itx.data field
  *
- * @function
+ * @method
  * @name GraphQLClient#encodeDeclareFileTx
  * @param {GraphQLClient.DeclareFileTxInput}
  * @returns {object} result - we provide two formats of the encoding result
  * @returns {buffer} result.buffer - binary presentation of the tx, can be used for further encoding or signing
  * @returns {object} result.object - human readable tx object
- * @memberof GraphQLClient
  */
 
 /**
  * Encode transaction, users can pass plain objects for itx.data field
  *
- * @function
+ * @method
  * @name GraphQLClient#encodeStakeTx
  * @param {GraphQLClient.StakeTxInput}
  * @returns {object} result - we provide two formats of the encoding result
  * @returns {buffer} result.buffer - binary presentation of the tx, can be used for further encoding or signing
  * @returns {object} result.object - human readable tx object
- * @memberof GraphQLClient
  */
 
 /**
- * getAccountState, Use following query for result format reference
+ * Use following query for result format reference
  *
  * ```graphql
  * {
@@ -2286,15 +2257,14 @@
  *
  * ```
  *
- * @function
+ * @method
  * @name GraphQLClient#getAccountState
  * @param {...GraphQLClient.GetAccountStateParams}
  * @returns {Promise<GraphQLClient.ResponseGetAccountState>} Checkout {@link GraphQLClient.ResponseGetAccountState} for resolved data format
- * @memberof GraphQLClient
  */
 
 /**
- * getAssetState, Use following query for result format reference
+ * Use following query for result format reference
  *
  * ```graphql
  * {
@@ -2654,15 +2624,14 @@
  *
  * ```
  *
- * @function
+ * @method
  * @name GraphQLClient#getAssetState
  * @param {...GraphQLClient.GetAssetStateParams}
  * @returns {Promise<GraphQLClient.ResponseGetAssetState>} Checkout {@link GraphQLClient.ResponseGetAssetState} for resolved data format
- * @memberof GraphQLClient
  */
 
 /**
- * getBlock, Use following query for result format reference
+ * Use following query for result format reference
  *
  * ```graphql
  * {
@@ -3013,15 +2982,14 @@
  *
  * ```
  *
- * @function
+ * @method
  * @name GraphQLClient#getBlock
  * @param {...GraphQLClient.GetBlockParams}
  * @returns {Promise<GraphQLClient.ResponseGetBlock>} Checkout {@link GraphQLClient.ResponseGetBlock} for resolved data format
- * @memberof GraphQLClient
  */
 
 /**
- * getBlocks, Use following query for result format reference
+ * Use following query for result format reference
  *
  * ```graphql
  * {
@@ -3065,15 +3033,14 @@
  *
  * ```
  *
- * @function
+ * @method
  * @name GraphQLClient#getBlocks
  * @param {...GraphQLClient.GetBlocksParams}
  * @returns {Promise<GraphQLClient.ResponseGetBlocks>} Checkout {@link GraphQLClient.ResponseGetBlocks} for resolved data format
- * @memberof GraphQLClient
  */
 
 /**
- * getChainInfo, Use following query for result format reference
+ * Use following query for result format reference
  *
  * ```graphql
  * {
@@ -3104,14 +3071,13 @@
  *
  * ```
  *
- * @function
+ * @method
  * @name GraphQLClient#getChainInfo
  * @returns {Promise<GraphQLClient.ResponseGetChainInfo>} Checkout {@link GraphQLClient.ResponseGetChainInfo} for resolved data format
- * @memberof GraphQLClient
  */
 
 /**
- * getConfig, Use following query for result format reference
+ * Use following query for result format reference
  *
  * ```graphql
  * {
@@ -3123,14 +3089,13 @@
  *
  * ```
  *
- * @function
+ * @method
  * @name GraphQLClient#getConfig
  * @returns {Promise<GraphQLClient.ResponseGetConfig>} Checkout {@link GraphQLClient.ResponseGetConfig} for resolved data format
- * @memberof GraphQLClient
  */
 
 /**
- * getForgeState, Use following query for result format reference
+ * Use following query for result format reference
  *
  * ```graphql
  * {
@@ -3267,15 +3232,14 @@
  *
  * ```
  *
- * @function
+ * @method
  * @name GraphQLClient#getForgeState
  * @param {...GraphQLClient.GetForgeStateParams}
  * @returns {Promise<GraphQLClient.ResponseGetForgeState>} Checkout {@link GraphQLClient.ResponseGetForgeState} for resolved data format
- * @memberof GraphQLClient
  */
 
 /**
- * getForgeStats, Use following query for result format reference
+ * Use following query for result format reference
  *
  * ```graphql
  * {
@@ -3308,14 +3272,13 @@
  *
  * ```
  *
- * @function
+ * @method
  * @name GraphQLClient#getForgeStats
  * @returns {Promise<GraphQLClient.ResponseGetForgeStats>} Checkout {@link GraphQLClient.ResponseGetForgeStats} for resolved data format
- * @memberof GraphQLClient
  */
 
 /**
- * getForgeStatsByDay, Use following query for result format reference
+ * Use following query for result format reference
  *
  * ```graphql
  * {
@@ -3348,15 +3311,14 @@
  *
  * ```
  *
- * @function
+ * @method
  * @name GraphQLClient#getForgeStatsByDay
  * @param {...GraphQLClient.GetForgeStatsByDayParams}
  * @returns {Promise<GraphQLClient.ResponseGetForgeStats>} Checkout {@link GraphQLClient.ResponseGetForgeStats} for resolved data format
- * @memberof GraphQLClient
  */
 
 /**
- * getForgeStatsByHour, Use following query for result format reference
+ * Use following query for result format reference
  *
  * ```graphql
  * {
@@ -3389,15 +3351,14 @@
  *
  * ```
  *
- * @function
+ * @method
  * @name GraphQLClient#getForgeStatsByHour
  * @param {...GraphQLClient.GetForgeStatsByHourParams}
  * @returns {Promise<GraphQLClient.ResponseGetForgeStats>} Checkout {@link GraphQLClient.ResponseGetForgeStats} for resolved data format
- * @memberof GraphQLClient
  */
 
 /**
- * getHealthStatus, Use following query for result format reference
+ * Use following query for result format reference
  *
  * ```graphql
  * {
@@ -3437,14 +3398,13 @@
  *
  * ```
  *
- * @function
+ * @method
  * @name GraphQLClient#getHealthStatus
  * @returns {Promise<GraphQLClient.ResponseGetHealthStatus>} Checkout {@link GraphQLClient.ResponseGetHealthStatus} for resolved data format
- * @memberof GraphQLClient
  */
 
 /**
- * getNetInfo, Use following query for result format reference
+ * Use following query for result format reference
  *
  * ```graphql
  * {
@@ -3473,14 +3433,13 @@
  *
  * ```
  *
- * @function
+ * @method
  * @name GraphQLClient#getNetInfo
  * @returns {Promise<GraphQLClient.ResponseGetNetInfo>} Checkout {@link GraphQLClient.ResponseGetNetInfo} for resolved data format
- * @memberof GraphQLClient
  */
 
 /**
- * getNodeInfo, Use following query for result format reference
+ * Use following query for result format reference
  *
  * ```graphql
  * {
@@ -3519,14 +3478,13 @@
  *
  * ```
  *
- * @function
+ * @method
  * @name GraphQLClient#getNodeInfo
  * @returns {Promise<GraphQLClient.ResponseGetNodeInfo>} Checkout {@link GraphQLClient.ResponseGetNodeInfo} for resolved data format
- * @memberof GraphQLClient
  */
 
 /**
- * getProtocolState, Use following query for result format reference
+ * Use following query for result format reference
  *
  * ```graphql
  * {
@@ -3868,15 +3826,14 @@
  *
  * ```
  *
- * @function
+ * @method
  * @name GraphQLClient#getProtocolState
  * @param {...GraphQLClient.GetProtocolStateParams}
  * @returns {Promise<GraphQLClient.ResponseGetProtocolState>} Checkout {@link GraphQLClient.ResponseGetProtocolState} for resolved data format
- * @memberof GraphQLClient
  */
 
 /**
- * getSimulatorStatus, Use following query for result format reference
+ * Use following query for result format reference
  *
  * ```graphql
  * {
@@ -3888,14 +3845,13 @@
  *
  * ```
  *
- * @function
+ * @method
  * @name GraphQLClient#getSimulatorStatus
  * @returns {Promise<GraphQLClient.ResponseGetSimulatorStatus>} Checkout {@link GraphQLClient.ResponseGetSimulatorStatus} for resolved data format
- * @memberof GraphQLClient
  */
 
 /**
- * getStakeState, Use following query for result format reference
+ * Use following query for result format reference
  *
  * ```graphql
  * {
@@ -4233,15 +4189,14 @@
  *
  * ```
  *
- * @function
+ * @method
  * @name GraphQLClient#getStakeState
  * @param {...GraphQLClient.GetStakeStateParams}
  * @returns {Promise<GraphQLClient.ResponseGetStakeState>} Checkout {@link GraphQLClient.ResponseGetStakeState} for resolved data format
- * @memberof GraphQLClient
  */
 
 /**
- * getTx, Use following query for result format reference
+ * Use following query for result format reference
  *
  * ```graphql
  * {
@@ -4408,15 +4363,14 @@
  *
  * ```
  *
- * @function
+ * @method
  * @name GraphQLClient#getTx
  * @param {...GraphQLClient.GetTxParams}
  * @returns {Promise<GraphQLClient.ResponseGetTx>} Checkout {@link GraphQLClient.ResponseGetTx} for resolved data format
- * @memberof GraphQLClient
  */
 
 /**
- * getUnconfirmedTxs, Use following query for result format reference
+ * Use following query for result format reference
  *
  * ```graphql
  * {
@@ -4574,15 +4528,14 @@
  *
  * ```
  *
- * @function
+ * @method
  * @name GraphQLClient#getUnconfirmedTxs
  * @param {...GraphQLClient.GetUnconfirmedTxsParams}
  * @returns {Promise<GraphQLClient.ResponseGetUnconfirmedTxs>} Checkout {@link GraphQLClient.ResponseGetUnconfirmedTxs} for resolved data format
- * @memberof GraphQLClient
  */
 
 /**
- * getValidatorsInfo, Use following query for result format reference
+ * Use following query for result format reference
  *
  * ```graphql
  * {
@@ -4612,14 +4565,13 @@
  *
  * ```
  *
- * @function
+ * @method
  * @name GraphQLClient#getValidatorsInfo
  * @returns {Promise<GraphQLClient.ResponseGetValidatorsInfo>} Checkout {@link GraphQLClient.ResponseGetValidatorsInfo} for resolved data format
- * @memberof GraphQLClient
  */
 
 /**
- * listAssetTransactions, Use following query for result format reference
+ * Use following query for result format reference
  *
  * ```graphql
  * {
@@ -4783,15 +4735,14 @@
  *
  * ```
  *
- * @function
+ * @method
  * @name GraphQLClient#listAssetTransactions
  * @param {...GraphQLClient.ListAssetTransactionsParams}
  * @returns {Promise<GraphQLClient.ResponseListAssetTransactions>} Checkout {@link GraphQLClient.ResponseListAssetTransactions} for resolved data format
- * @memberof GraphQLClient
  */
 
 /**
- * listAssets, Use following query for result format reference
+ * Use following query for result format reference
  *
  * ```graphql
  * {
@@ -4831,15 +4782,14 @@
  *
  * ```
  *
- * @function
+ * @method
  * @name GraphQLClient#listAssets
  * @param {...GraphQLClient.ListAssetsParams}
  * @returns {Promise<GraphQLClient.ResponseListAssets>} Checkout {@link GraphQLClient.ResponseListAssets} for resolved data format
- * @memberof GraphQLClient
  */
 
 /**
- * listBlocks, Use following query for result format reference
+ * Use following query for result format reference
  *
  * ```graphql
  * {
@@ -4862,15 +4812,14 @@
  *
  * ```
  *
- * @function
+ * @method
  * @name GraphQLClient#listBlocks
  * @param {...GraphQLClient.ListBlocksParams}
  * @returns {Promise<GraphQLClient.ResponseListBlocks>} Checkout {@link GraphQLClient.ResponseListBlocks} for resolved data format
- * @memberof GraphQLClient
  */
 
 /**
- * listStakes, Use following query for result format reference
+ * Use following query for result format reference
  *
  * ```graphql
  * {
@@ -4896,15 +4845,14 @@
  *
  * ```
  *
- * @function
+ * @method
  * @name GraphQLClient#listStakes
  * @param {...GraphQLClient.ListStakesParams}
  * @returns {Promise<GraphQLClient.ResponseListStakes>} Checkout {@link GraphQLClient.ResponseListStakes} for resolved data format
- * @memberof GraphQLClient
  */
 
 /**
- * listTopAccounts, Use following query for result format reference
+ * Use following query for result format reference
  *
  * ```graphql
  * {
@@ -4936,15 +4884,14 @@
  *
  * ```
  *
- * @function
+ * @method
  * @name GraphQLClient#listTopAccounts
  * @param {...GraphQLClient.ListTopAccountsParams}
  * @returns {Promise<GraphQLClient.ResponseListTopAccounts>} Checkout {@link GraphQLClient.ResponseListTopAccounts} for resolved data format
- * @memberof GraphQLClient
  */
 
 /**
- * listTransactions, Use following query for result format reference
+ * Use following query for result format reference
  *
  * ```graphql
  * {
@@ -5108,15 +5055,14 @@
  *
  * ```
  *
- * @function
+ * @method
  * @name GraphQLClient#listTransactions
  * @param {...GraphQLClient.ListTransactionsParams}
  * @returns {Promise<GraphQLClient.ResponseListTransactions>} Checkout {@link GraphQLClient.ResponseListTransactions} for resolved data format
- * @memberof GraphQLClient
  */
 
 /**
- * sendTx, Use following query for result format reference
+ * Use following query for result format reference
  *
  * ```graphql
  * mutation {
@@ -5128,15 +5074,14 @@
  *
  * ```
  *
- * @function
+ * @method
  * @name GraphQLClient#sendTx
  * @param {...GraphQLClient.SendTxParams}
  * @returns {Promise<GraphQLClient.ResponseSendTx>} Checkout {@link GraphQLClient.ResponseSendTx} for resolved data format
- * @memberof GraphQLClient
  */
 
 /**
- * startSimulator, Use following query for result format reference
+ * Use following query for result format reference
  *
  * ```graphql
  * mutation {
@@ -5147,14 +5092,13 @@
  *
  * ```
  *
- * @function
+ * @method
  * @name GraphQLClient#startSimulator
  * @returns {Promise<GraphQLClient.ResponseStartSimulator>} Checkout {@link GraphQLClient.ResponseStartSimulator} for resolved data format
- * @memberof GraphQLClient
  */
 
 /**
- * stopSimulator, Use following query for result format reference
+ * Use following query for result format reference
  *
  * ```graphql
  * mutation {
@@ -5165,14 +5109,13 @@
  *
  * ```
  *
- * @function
+ * @method
  * @name GraphQLClient#stopSimulator
  * @returns {Promise<GraphQLClient.ResponseStopSimulator>} Checkout {@link GraphQLClient.ResponseStopSimulator} for resolved data format
- * @memberof GraphQLClient
  */
 
 /**
- * unsubscribe, Use following query for result format reference
+ * Use following query for result format reference
  *
  * ```graphql
  * mutation {
@@ -5183,15 +5126,14 @@
  *
  * ```
  *
- * @function
+ * @method
  * @name GraphQLClient#unsubscribe
  * @param {...GraphQLClient.UnsubscribeParams}
  * @returns {Promise<GraphQLClient.ResponseUnsubscribe>} Checkout {@link GraphQLClient.ResponseUnsubscribe} for resolved data format
- * @memberof GraphQLClient
  */
 
 /**
- * subscribe, Use following query for result format reference
+ * Use following query for result format reference
  *
  * ```graphql
  * subscription {
@@ -8419,9 +8361,8 @@
  *
  * ```
  *
- * @function
+ * @method
  * @name GraphQLClient#subscribe
  * @param {...GraphQLClient.SubscribeParams}
  * @returns {Promise<GraphQLClient.ResponseSubscribe>} Checkout {@link GraphQLClient.ResponseSubscribe} for resolved data format
- * @memberof GraphQLClient
  */

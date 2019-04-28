@@ -124,10 +124,9 @@ const generateMethods = (methods, ns) =>
 ${printFormat(x.name)}
  * \`\`\`
  *
- * @function
+ * @method
  * @name ${namespace}#${x.name}${argType ? `\n * @param {...${ns}.${argType}}` : ''}
  * @returns {Promise<${resultType}>} Checkout {@link ${resultType}} for resolved data format
- * @memberof ${namespace}
  */
 `;
     })
@@ -154,11 +153,10 @@ const getTxSendTypes = (name, tx, ns) => `
 /**
  * Send transaction and get the hash, if you want to get transaction detail please use {@link ${ns}#getTx}
  *
- * @function
+ * @method
  * @name ${ns}#${name}
  * @param {${ns}.${tx}Input}
  * @returns {Promise} returns transaction hash if success, otherwise error was thrown
- * @memberof ${ns}
  */
 `;
 
@@ -166,13 +164,12 @@ const getTxEncodeTypes = (name, tx, ns) => `
 /**
  * Encode transaction, users can pass plain objects for itx.data field
  *
- * @function
+ * @method
  * @name ${ns}#${name}
  * @param {${ns}.${tx}Input}
  * @returns {object} result - we provide two formats of the encoding result
  * @returns {buffer} result.buffer - binary presentation of the tx, can be used for further encoding or signing
  * @returns {object} result.object - human readable tx object
- * @memberof ${ns}
  */
 `;
 
@@ -180,48 +177,43 @@ const dtsContent = `
 /**
  * List all query method names
  *
- * @function
+ * @method
  * @name ${namespace}#getQueries
  * @returns {Array<string>} method name list
- * @memberof ${namespace}
  */
 
 /**
  * List all mutation method names
  *
- * @function
+ * @method
  * @name ${namespace}#getMutations
  * @returns {Array<string>} method name list
- * @memberof ${namespace}
  */
 
 /**
  * List all subscription method names
  *
- * @function
+ * @method
  * @name ${namespace}#getSubscription
  * @returns {Array<string>} method name list
- * @memberof ${namespace}
  */
 
 /**
  * Send raw graphql query to forge graphql endpoint
  *
- * @function
+ * @method
  * @name ${namespace}#doRawQuery
  * @param {string} query - graphql query string
  * @returns {Promise} usually axios response data
- * @memberof ${namespace}
  */
 
 /**
  * Send raw graphql subscription to forge graphql endpoint
  *
- * @function
+ * @method
  * @name ${namespace}#doRawSubscription
  * @param {string} query - graphql query string
  * @returns {Promise} usually axios response data
- * @memberof ${namespace}
  */
 
 /**
