@@ -17,6 +17,7 @@ const mapping = {
  * The structure of a forge wallet type
  *
  * @public
+ * @static
  * @typedef {Object} walletType
  * @prop {number} role - Enum field to identify wallet role type
  * @prop {number} pk - Crypto algorithm to derive publicKey from the secretKey
@@ -27,6 +28,7 @@ const mapping = {
  * Create an wallet type object that be used as param to create a new wallet
  *
  * @public
+ * @static
  * @param {...walletType} type
  * @returns {object}
  * @example
@@ -76,6 +78,7 @@ WalletType.fromJSON = json => {
  * Generate an wallet instance that can be used to sign a message or verify a signature
  *
  * @public
+ * @static
  * @param {object} keyPair - the key pair
  * @param {string} keyPair.sk - the secretKey
  * @param {string} keyPair.pk - the wallet publicKey
@@ -125,6 +128,7 @@ function Wallet(keyPair, type) {
  * Generate a wallet from secretKey
  *
  * @public
+ * @static
  * @param {string} sk - the secret key, `hex encoded string`
  * @param {...walletType} type - wallet type
  * @returns {object} wallet instance
@@ -153,6 +157,7 @@ function fromSecretKey(sk, _type) {
  * Generate a wallet from publicKey
  *
  * @public
+ * @static
  * @param {string} pk - the public key, `hex encoded string`
  * @param {...walletType} type - wallet type
  * @returns {object} wallet instance
@@ -167,6 +172,7 @@ function fromPublicKey(pk, _type) {
  * Since we do not know the publicKey and secretKey, this kind of wallet cannot be used for signing and verifying
  *
  * @public
+ * @static
  * @param {string} address - the wallet address
  * @returns wallet instance
  * @example
@@ -185,6 +191,7 @@ function fromAddress(address) {
  * Generate a wallet by generating a random secretKey
  *
  * @public
+ * @static
  * @param {...walletType} type - wallet type
  * @returns {object} wallet instance
  * @example
@@ -202,8 +209,11 @@ function fromRandom(_type) {
 /**
  * Generating a wallet from a serialized json presentation of another wallet
  *
+ * @public
+ * @static
  * @param {object} json
  * @returns wallet instance
+ * @example
  * const { fromJSON } = require('@arcblock/forge-wallet');
  * const wallet2 = fromJSON(wallet.toJSON());
  * // wallet2 is identical to wallet
