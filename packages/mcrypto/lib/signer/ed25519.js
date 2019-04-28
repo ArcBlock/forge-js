@@ -32,6 +32,7 @@ class Ed25519Signer extends Signer {
   }
 
   /**
+   * @public
    * @typedef KeyPair
    * @prop {string} publicKey - publicKey in hex format
    * @prop {string} secretKey - secretKey in hex format

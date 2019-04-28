@@ -13,7 +13,7 @@ npm i @arcblock/forge-wallet -S
 
 ```javascript
 const assert = require('assert');
-const { fromSecretKey, fromJSON } = require('@arcblock/forge-wallet');
+const { fromSecretKey, WalletType, fromJSON } = require('@arcblock/forge-wallet');
 const { types } = require('@arcblock/mcrypto');
 
 const sk =
@@ -22,11 +22,11 @@ const appId = 'zNKtCNqYWLYWYW3gWRA1vnRykfCBZYHZvzKr';
 const sig =
   '0x08a102851c38c072e42756c1cc70938b5499c8e9358dfe5f383823f56cdb282ffda60fcd581a02c6c673069e5afc0bf09abbe3639b61b84d64fd58ef9f083003';
 
-const type = {
+const type = WalletType({
   role: types.RoleType.ROLE_APPLICATION,
   pk: types.KeyType.ED25519,
   hash: types.HashType.SHA3,
-};
+});
 
 const wallet = fromSecretKey(sk, type);
 const message = 'data to sign';

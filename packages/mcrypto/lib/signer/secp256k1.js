@@ -1,5 +1,5 @@
 /**
- * @fileOverview signer implementation for ed25519, based on `tweetnacl`
+ * @fileOverview signer implementation for secp256k1, based on `elliptic`
  * @module @arcblock/mcrypto/signer/secp256k1
  * @requires @arcblock/forge-util
  * @requires elliptic
@@ -35,6 +35,7 @@ class Secp256k1Signer extends Signer {
   }
 
   /**
+   * @public
    * @typedef KeyPair
    * @prop {string} publicKey - publicKey in hex format
    * @prop {string} secretKey - secretKey in hex format
