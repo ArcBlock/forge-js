@@ -1,66 +1,6 @@
 # API Documentation
 
-
 ## Table of Contents
-
-* [Enums](#enums)
-  * [StatusCode](#statuscode)
-  * [TopicType](#topictype)
-  * [KeyType](#keytype)
-  * [HashType](#hashtype)
-  * [EncodingType](#encodingtype)
-  * [RoleType](#roletype)
-  * [UpgradeType](#upgradetype)
-  * [UpgradeAction](#upgradeaction)
-  * [StateType](#statetype)
-  * [StakeType](#staketype)
-  * [ProtocolStatus](#protocolstatus)
-  * [Direction](#direction)
-  * [Validity](#validity)
-  * [SupportedTxs](#supportedtxs)
-  * [SupportedStakes](#supportedstakes)
-* [RPC Methods](#rpc-methods)
-  * [createTx](#createtx)
-  * [createWallet](#createwallet)
-  * [declareNode](#declarenode)
-  * [getAccountState](#getaccountstate)
-  * [getAssetState](#getassetstate)
-  * [getBlock](#getblock)
-  * [getBlocks](#getblocks)
-  * [getChainInfo](#getchaininfo)
-  * [getConfig](#getconfig)
-  * [getForgeState](#getforgestate)
-  * [getForgeStats](#getforgestats)
-  * [getHealthStatus](#gethealthstatus)
-  * [getNetInfo](#getnetinfo)
-  * [getNodeInfo](#getnodeinfo)
-  * [getProtocolState](#getprotocolstate)
-  * [getStakeState](#getstakestate)
-  * [getTx](#gettx)
-  * [getUnconfirmedTxs](#getunconfirmedtxs)
-  * [getValidatorsInfo](#getvalidatorsinfo)
-  * [listAccount](#listaccount)
-  * [listAssetTransactions](#listassettransactions)
-  * [listAssets](#listassets)
-  * [listBlocks](#listblocks)
-  * [listStakes](#liststakes)
-  * [listTopAccounts](#listtopaccounts)
-  * [listTransactions](#listtransactions)
-  * [listWallet](#listwallet)
-  * [loadFile](#loadfile)
-  * [loadWallet](#loadwallet)
-  * [multisig](#multisig)
-  * [pinFile](#pinfile)
-  * [process](#process)
-  * [processOne](#processone)
-  * [recoverWallet](#recoverwallet)
-  * [removeWallet](#removewallet)
-  * [search](#search)
-  * [sendTx](#sendtx)
-  * [storeFile](#storefile)
-  * [subscribe](#subscribe)
-  * [unsubscribe](#unsubscribe)
-
 
 ## Enums
 
@@ -180,7 +120,9 @@
   ROLE_ASSET: 6,
   ROLE_STAKE: 7,
   ROLE_VALIDATOR: 8,
-  ROLE_TX: 9
+  ROLE_GROUP: 9,
+  ROLE_TX: 10,
+  ROLE_ANY: 63
 }
 ```
 
@@ -306,17 +248,19 @@
 ```
 
 
+
 ## RPC Methods
 
 > RPC response contains an `code` field, when `code=0` means success
 > Binary data in RPC response are `UInt8Array` instance and can be safely encoded to base64 string
+
 
 ### createTx
 
 ```js
 const result = await client.createTx({
   itx: {
-    type: 'fg:x:random_data',
+    type: 'string',
     value: 'ABCD 1234'
   },
   from: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
@@ -328,18 +272,8 @@ const result = await client.createTx({
       address: 0,
       role: 0
     },
-    sk: Uint8Array [
-      38,
-      26,
-      98,
-      8
-    ],
-    pk: Uint8Array [
-      38,
-      26,
-      98,
-      8
-    ],
+    sk: Uint8Array [],
+    pk: Uint8Array [],
     address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55'
   },
   token: 'arcblock'
@@ -354,65 +288,36 @@ result.on('data', data => {
     from: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
     nonce: 5,
     chainId: 'arcblock',
-    pk: Uint8Array [
-      38,
-      26,
-      98,
-      8
-    ],
-    signature: Uint8Array [
-      38,
-      26,
-      98,
-      8
-    ],
+    pk: Uint8Array [],
+    signature: Uint8Array [],
     signatures: [
       {
         signer: 'arcblock',
-        pk: Uint8Array [
-          38,
-          26,
-          98,
-          8
-        ],
-        signature: Uint8Array [
-          38,
-          26,
-          98,
-          8
-        ],
+        pk: Uint8Array [],
+        signature: Uint8Array [],
         data: {
-          type: 'fg:x:random_data',
+          type: 'string',
           value: 'ABCD 1234'
         }
       },
       {
         signer: 'arcblock',
-        pk: Uint8Array [
-          38,
-          26,
-          98,
-          8
-        ],
-        signature: Uint8Array [
-          38,
-          26,
-          98,
-          8
-        ],
+        pk: Uint8Array [],
+        signature: Uint8Array [],
         data: {
-          type: 'fg:x:random_data',
+          type: 'string',
           value: 'ABCD 1234'
         }
       }
     ],
     itx: {
-      type: 'fg:x:random_data',
+      type: 'string',
       value: 'ABCD 1234'
     }
   }
 }
 });
+
 ```
 
 ### createWallet
@@ -442,29 +347,20 @@ result.on('data', data => {
       address: 0,
       role: 0
     },
-    sk: Uint8Array [
-      38,
-      26,
-      98,
-      8
-    ],
-    pk: Uint8Array [
-      38,
-      26,
-      98,
-      8
-    ],
+    sk: Uint8Array [],
+    pk: Uint8Array [],
     address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55'
   }
 }
 });
+
 ```
 
 ### declareNode
 
 ```js
 const result = await client.declareNode({
-  validator: undefined
+  validator: true
 });
 
 // response is a stream
@@ -479,22 +375,13 @@ result.on('data', data => {
       address: 0,
       role: 0
     },
-    sk: Uint8Array [
-      38,
-      26,
-      98,
-      8
-    ],
-    pk: Uint8Array [
-      38,
-      26,
-      98,
-      8
-    ],
+    sk: Uint8Array [],
+    pk: Uint8Array [],
     address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55'
   }
 }
 });
+
 ```
 
 ### getAccountState
@@ -517,12 +404,7 @@ const stream = client.getAccountState({
     nonce: 5,
     numTxs: 5,
     address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-    pk: Uint8Array [
-      38,
-      26,
-      98,
-      8
-    ],
+    pk: Uint8Array [],
     type: {
       pk: 0,
       hash: 0,
@@ -533,8 +415,8 @@ const stream = client.getAccountState({
     context: {
       genesisTx: 'arcblock',
       renaissanceTx: 'arcblock',
-      genesisTime: '2019-04-24T11:08:55.978Z',
-      renaissanceTime: '2019-04-24T11:08:55.978Z'
+      genesisTime: '2019-04-28T06:09:29.273Z',
+      renaissanceTime: '2019-04-28T06:09:29.273Z'
     },
     issuer: 'arcblock',
     migratedTo: [
@@ -552,64 +434,34 @@ const stream = client.getAccountState({
       totalReceivedStakes: [Function: BigUint],
       recentStakes: {
         items: [
-          Uint8Array [
-            38,
-            26,
-            98,
-            8
-          ],
-          Uint8Array [
-            38,
-            26,
-            98,
-            8
-          ]
+          Uint8Array [],
+          Uint8Array []
         ],
         typeUrl: 'arcblock',
         maxItems: 2,
-        circular: undefined,
-        fifo: undefined
+        circular: true,
+        fifo: true
       },
       recentReceivedStakes: {
         items: [
-          Uint8Array [
-            38,
-            26,
-            98,
-            8
-          ],
-          Uint8Array [
-            38,
-            26,
-            98,
-            8
-          ]
+          Uint8Array [],
+          Uint8Array []
         ],
         typeUrl: 'arcblock',
         maxItems: 2,
-        circular: undefined,
-        fifo: undefined
+        circular: true,
+        fifo: true
       }
     },
     pinnedFiles: {
       items: [
-        Uint8Array [
-          38,
-          26,
-          98,
-          8
-        ],
-        Uint8Array [
-          38,
-          26,
-          98,
-          8
-        ]
+        Uint8Array [],
+        Uint8Array []
       ],
       typeUrl: 'arcblock',
       maxItems: 2,
-      circular: undefined,
-      fifo: undefined
+      circular: true,
+      fifo: true
     },
     poke: {
       dailyLimit: [Function: BigUint],
@@ -617,11 +469,12 @@ const stream = client.getAccountState({
       amount: [Function: BigUint]
     },
     data: {
-      type: 'fg:x:random_data',
+      type: 'string',
       value: 'ABCD 1234'
     }
   }
 }
+
 ```
 
 ### getAssetState
@@ -643,10 +496,10 @@ const stream = client.getAssetState({
     address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
     owner: 'arcblock',
     moniker: 'arcblock',
-    readonly: undefined,
-    transferrable: undefined,
+    readonly: true,
+    transferrable: true,
     ttl: 2,
-    consumedTime: '2019-04-24T11:08:55.978Z',
+    consumedTime: '2019-04-28T06:09:29.274Z',
     issuer: 'arcblock',
     stake: {
       totalStakes: [Function: BigUint],
@@ -654,57 +507,38 @@ const stream = client.getAssetState({
       totalReceivedStakes: [Function: BigUint],
       recentStakes: {
         items: [
-          Uint8Array [
-            38,
-            26,
-            98,
-            8
-          ],
-          Uint8Array [
-            38,
-            26,
-            98,
-            8
-          ]
+          Uint8Array [],
+          Uint8Array []
         ],
         typeUrl: 'arcblock',
         maxItems: 2,
-        circular: undefined,
-        fifo: undefined
+        circular: true,
+        fifo: true
       },
       recentReceivedStakes: {
         items: [
-          Uint8Array [
-            38,
-            26,
-            98,
-            8
-          ],
-          Uint8Array [
-            38,
-            26,
-            98,
-            8
-          ]
+          Uint8Array [],
+          Uint8Array []
         ],
         typeUrl: 'arcblock',
         maxItems: 2,
-        circular: undefined,
-        fifo: undefined
+        circular: true,
+        fifo: true
       }
     },
     context: {
       genesisTx: 'arcblock',
       renaissanceTx: 'arcblock',
-      genesisTime: '2019-04-24T11:08:55.978Z',
-      renaissanceTime: '2019-04-24T11:08:55.978Z'
+      genesisTime: '2019-04-28T06:09:29.274Z',
+      renaissanceTime: '2019-04-28T06:09:29.274Z'
     },
     data: {
-      type: 'fg:x:random_data',
+      type: 'string',
       value: 'ABCD 1234'
     }
   }
 }
+
 ```
 
 ### getBlock
@@ -720,7 +554,7 @@ const stream = client.getBlock({
   block: {
     height: 5,
     numTxs: 2,
-    time: '2019-04-24T11:08:55.978Z',
+    time: '2019-04-28T06:09:29.274Z',
     appHash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
     proposer: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
     txs: [
@@ -729,60 +563,30 @@ const stream = client.getBlock({
           from: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
           nonce: 5,
           chainId: 'arcblock',
-          pk: Uint8Array [
-            38,
-            26,
-            98,
-            8
-          ],
-          signature: Uint8Array [
-            38,
-            26,
-            98,
-            8
-          ],
+          pk: Uint8Array [],
+          signature: Uint8Array [],
           signatures: [
             {
               signer: 'arcblock',
-              pk: Uint8Array [
-                38,
-                26,
-                98,
-                8
-              ],
-              signature: Uint8Array [
-                38,
-                26,
-                98,
-                8
-              ],
+              pk: Uint8Array [],
+              signature: Uint8Array [],
               data: {
-                type: 'fg:x:random_data',
+                type: 'string',
                 value: 'ABCD 1234'
               }
             },
             {
               signer: 'arcblock',
-              pk: Uint8Array [
-                38,
-                26,
-                98,
-                8
-              ],
-              signature: Uint8Array [
-                38,
-                26,
-                98,
-                8
-              ],
+              pk: Uint8Array [],
+              signature: Uint8Array [],
               data: {
-                type: 'fg:x:random_data',
+                type: 'string',
                 value: 'ABCD 1234'
               }
             }
           ],
           itx: {
-            type: 'fg:x:random_data',
+            type: 'string',
             value: 'ABCD 1234'
           }
         },
@@ -791,36 +595,16 @@ const stream = client.getBlock({
         hash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
         tags: [
           {
-            key: Uint8Array [
-              38,
-              26,
-              98,
-              8
-            ],
-            value: Uint8Array [
-              38,
-              26,
-              98,
-              8
-            ]
+            key: Uint8Array [],
+            value: Uint8Array []
           },
           {
-            key: Uint8Array [
-              38,
-              26,
-              98,
-              8
-            ],
-            value: Uint8Array [
-              38,
-              26,
-              98,
-              8
-            ]
+            key: Uint8Array [],
+            value: Uint8Array []
           }
         ],
         code: 0,
-        time: '2019-04-24T11:08:55.978Z',
+        time: '2019-04-28T06:09:29.275Z',
         createAsset: {
           asset: 'arcblock'
         },
@@ -833,60 +617,30 @@ const stream = client.getBlock({
           from: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
           nonce: 5,
           chainId: 'arcblock',
-          pk: Uint8Array [
-            38,
-            26,
-            98,
-            8
-          ],
-          signature: Uint8Array [
-            38,
-            26,
-            98,
-            8
-          ],
+          pk: Uint8Array [],
+          signature: Uint8Array [],
           signatures: [
             {
               signer: 'arcblock',
-              pk: Uint8Array [
-                38,
-                26,
-                98,
-                8
-              ],
-              signature: Uint8Array [
-                38,
-                26,
-                98,
-                8
-              ],
+              pk: Uint8Array [],
+              signature: Uint8Array [],
               data: {
-                type: 'fg:x:random_data',
+                type: 'string',
                 value: 'ABCD 1234'
               }
             },
             {
               signer: 'arcblock',
-              pk: Uint8Array [
-                38,
-                26,
-                98,
-                8
-              ],
-              signature: Uint8Array [
-                38,
-                26,
-                98,
-                8
-              ],
+              pk: Uint8Array [],
+              signature: Uint8Array [],
               data: {
-                type: 'fg:x:random_data',
+                type: 'string',
                 value: 'ABCD 1234'
               }
             }
           ],
           itx: {
-            type: 'fg:x:random_data',
+            type: 'string',
             value: 'ABCD 1234'
           }
         },
@@ -895,36 +649,16 @@ const stream = client.getBlock({
         hash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
         tags: [
           {
-            key: Uint8Array [
-              38,
-              26,
-              98,
-              8
-            ],
-            value: Uint8Array [
-              38,
-              26,
-              98,
-              8
-            ]
+            key: Uint8Array [],
+            value: Uint8Array []
           },
           {
-            key: Uint8Array [
-              38,
-              26,
-              98,
-              8
-            ],
-            value: Uint8Array [
-              38,
-              26,
-              98,
-              8
-            ]
+            key: Uint8Array [],
+            value: Uint8Array []
           }
         ],
         code: 0,
-        time: '2019-04-24T11:08:55.978Z',
+        time: '2019-04-28T06:09:29.275Z',
         createAsset: {
           asset: 'arcblock'
         },
@@ -940,60 +674,30 @@ const stream = client.getBlock({
           from: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
           nonce: 5,
           chainId: 'arcblock',
-          pk: Uint8Array [
-            38,
-            26,
-            98,
-            8
-          ],
-          signature: Uint8Array [
-            38,
-            26,
-            98,
-            8
-          ],
+          pk: Uint8Array [],
+          signature: Uint8Array [],
           signatures: [
             {
               signer: 'arcblock',
-              pk: Uint8Array [
-                38,
-                26,
-                98,
-                8
-              ],
-              signature: Uint8Array [
-                38,
-                26,
-                98,
-                8
-              ],
+              pk: Uint8Array [],
+              signature: Uint8Array [],
               data: {
-                type: 'fg:x:random_data',
+                type: 'string',
                 value: 'ABCD 1234'
               }
             },
             {
               signer: 'arcblock',
-              pk: Uint8Array [
-                38,
-                26,
-                98,
-                8
-              ],
-              signature: Uint8Array [
-                38,
-                26,
-                98,
-                8
-              ],
+              pk: Uint8Array [],
+              signature: Uint8Array [],
               data: {
-                type: 'fg:x:random_data',
+                type: 'string',
                 value: 'ABCD 1234'
               }
             }
           ],
           itx: {
-            type: 'fg:x:random_data',
+            type: 'string',
             value: 'ABCD 1234'
           }
         },
@@ -1002,36 +706,16 @@ const stream = client.getBlock({
         hash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
         tags: [
           {
-            key: Uint8Array [
-              38,
-              26,
-              98,
-              8
-            ],
-            value: Uint8Array [
-              38,
-              26,
-              98,
-              8
-            ]
+            key: Uint8Array [],
+            value: Uint8Array []
           },
           {
-            key: Uint8Array [
-              38,
-              26,
-              98,
-              8
-            ],
-            value: Uint8Array [
-              38,
-              26,
-              98,
-              8
-            ]
+            key: Uint8Array [],
+            value: Uint8Array []
           }
         ],
         code: 0,
-        time: '2019-04-24T11:08:55.978Z',
+        time: '2019-04-28T06:09:29.275Z',
         createAsset: {
           asset: 'arcblock'
         },
@@ -1044,60 +728,30 @@ const stream = client.getBlock({
           from: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
           nonce: 5,
           chainId: 'arcblock',
-          pk: Uint8Array [
-            38,
-            26,
-            98,
-            8
-          ],
-          signature: Uint8Array [
-            38,
-            26,
-            98,
-            8
-          ],
+          pk: Uint8Array [],
+          signature: Uint8Array [],
           signatures: [
             {
               signer: 'arcblock',
-              pk: Uint8Array [
-                38,
-                26,
-                98,
-                8
-              ],
-              signature: Uint8Array [
-                38,
-                26,
-                98,
-                8
-              ],
+              pk: Uint8Array [],
+              signature: Uint8Array [],
               data: {
-                type: 'fg:x:random_data',
+                type: 'string',
                 value: 'ABCD 1234'
               }
             },
             {
               signer: 'arcblock',
-              pk: Uint8Array [
-                38,
-                26,
-                98,
-                8
-              ],
-              signature: Uint8Array [
-                38,
-                26,
-                98,
-                8
-              ],
+              pk: Uint8Array [],
+              signature: Uint8Array [],
               data: {
-                type: 'fg:x:random_data',
+                type: 'string',
                 value: 'ABCD 1234'
               }
             }
           ],
           itx: {
-            type: 'fg:x:random_data',
+            type: 'string',
             value: 'ABCD 1234'
           }
         },
@@ -1106,36 +760,16 @@ const stream = client.getBlock({
         hash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
         tags: [
           {
-            key: Uint8Array [
-              38,
-              26,
-              98,
-              8
-            ],
-            value: Uint8Array [
-              38,
-              26,
-              98,
-              8
-            ]
+            key: Uint8Array [],
+            value: Uint8Array []
           },
           {
-            key: Uint8Array [
-              38,
-              26,
-              98,
-              8
-            ],
-            value: Uint8Array [
-              38,
-              26,
-              98,
-              8
-            ]
+            key: Uint8Array [],
+            value: Uint8Array []
           }
         ],
         code: 0,
-        time: '2019-04-24T11:08:55.979Z',
+        time: '2019-04-28T06:09:29.275Z',
         createAsset: {
           asset: 'arcblock'
         },
@@ -1152,48 +786,13 @@ const stream = client.getBlock({
       'arcblock',
       'arcblock'
     ],
-    consensusHash: Uint8Array [
-      38,
-      26,
-      98,
-      8
-    ],
-    dataHash: Uint8Array [
-      38,
-      26,
-      98,
-      8
-    ],
-    evidenceHash: Uint8Array [
-      38,
-      26,
-      98,
-      8
-    ],
-    lastCommitHash: Uint8Array [
-      38,
-      26,
-      98,
-      8
-    ],
-    lastResultsHash: Uint8Array [
-      38,
-      26,
-      98,
-      8
-    ],
-    nextValidatorsHash: Uint8Array [
-      38,
-      26,
-      98,
-      8
-    ],
-    validatorsHash: Uint8Array [
-      38,
-      26,
-      98,
-      8
-    ],
+    consensusHash: Uint8Array [],
+    dataHash: Uint8Array [],
+    evidenceHash: Uint8Array [],
+    lastCommitHash: Uint8Array [],
+    lastResultsHash: Uint8Array [],
+    nextValidatorsHash: Uint8Array [],
+    validatorsHash: Uint8Array [],
     version: {
       Block: 5,
       App: 5
@@ -1207,6 +806,7 @@ const stream = client.getBlock({
     }
   }
 }
+
 ```
 
 ### getBlocks
@@ -1231,7 +831,7 @@ const result = await client.getBlocks({
     from: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
     to: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55'
   },
-  emptyExcluded: undefined
+  emptyExcluded: true
 });
 
 // response is a stream
@@ -1241,14 +841,14 @@ result.on('data', data => {
   code: 0,
   page: {
     cursor: 'arcblock',
-    next: undefined,
+    next: true,
     total: 2
   },
   blocks: [
     {
       height: 5,
       numTxs: 2,
-      time: '2019-04-24T11:08:55.979Z',
+      time: '2019-04-28T06:09:29.276Z',
       appHash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
       proposer: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
       totalTxs: 5,
@@ -1260,48 +860,13 @@ result.on('data', data => {
         'arcblock',
         'arcblock'
       ],
-      consensusHash: Uint8Array [
-        38,
-        26,
-        98,
-        8
-      ],
-      dataHash: Uint8Array [
-        38,
-        26,
-        98,
-        8
-      ],
-      evidenceHash: Uint8Array [
-        38,
-        26,
-        98,
-        8
-      ],
-      lastCommitHash: Uint8Array [
-        38,
-        26,
-        98,
-        8
-      ],
-      lastResultsHash: Uint8Array [
-        38,
-        26,
-        98,
-        8
-      ],
-      nextValidatorsHash: Uint8Array [
-        38,
-        26,
-        98,
-        8
-      ],
-      validatorsHash: Uint8Array [
-        38,
-        26,
-        98,
-        8
-      ],
+      consensusHash: Uint8Array [],
+      dataHash: Uint8Array [],
+      evidenceHash: Uint8Array [],
+      lastCommitHash: Uint8Array [],
+      lastResultsHash: Uint8Array [],
+      nextValidatorsHash: Uint8Array [],
+      validatorsHash: Uint8Array [],
       version: {
         Block: 5,
         App: 5
@@ -1317,7 +882,7 @@ result.on('data', data => {
     {
       height: 5,
       numTxs: 2,
-      time: '2019-04-24T11:08:55.979Z',
+      time: '2019-04-28T06:09:29.276Z',
       appHash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
       proposer: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
       totalTxs: 5,
@@ -1329,48 +894,13 @@ result.on('data', data => {
         'arcblock',
         'arcblock'
       ],
-      consensusHash: Uint8Array [
-        38,
-        26,
-        98,
-        8
-      ],
-      dataHash: Uint8Array [
-        38,
-        26,
-        98,
-        8
-      ],
-      evidenceHash: Uint8Array [
-        38,
-        26,
-        98,
-        8
-      ],
-      lastCommitHash: Uint8Array [
-        38,
-        26,
-        98,
-        8
-      ],
-      lastResultsHash: Uint8Array [
-        38,
-        26,
-        98,
-        8
-      ],
-      nextValidatorsHash: Uint8Array [
-        38,
-        26,
-        98,
-        8
-      ],
-      validatorsHash: Uint8Array [
-        38,
-        26,
-        98,
-        8
-      ],
+      consensusHash: Uint8Array [],
+      dataHash: Uint8Array [],
+      evidenceHash: Uint8Array [],
+      lastCommitHash: Uint8Array [],
+      lastResultsHash: Uint8Array [],
+      nextValidatorsHash: Uint8Array [],
+      validatorsHash: Uint8Array [],
       version: {
         Block: 5,
         App: 5
@@ -1386,6 +916,7 @@ result.on('data', data => {
   ]
 }
 });
+
 ```
 
 ### getChainInfo
@@ -1403,16 +934,11 @@ result.on('data', data => {
     network: 'arcblock',
     moniker: 'arcblock',
     consensusVersion: 'arcblock',
-    synced: undefined,
+    synced: true,
     appHash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-    blockHash: Uint8Array [
-      38,
-      26,
-      98,
-      8
-    ],
+    blockHash: Uint8Array [],
     blockHeight: 5,
-    blockTime: '2019-04-24T11:08:55.980Z',
+    blockTime: '2019-04-28T06:09:29.276Z',
     address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
     votingPower: 5,
     totalTxs: 5,
@@ -1427,6 +953,7 @@ result.on('data', data => {
   }
 }
 });
+
 ```
 
 ### getConfig
@@ -1442,6 +969,7 @@ result.on('data', data => {
   config: 'arcblock'
 }
 });
+
 ```
 
 ### getForgeState
@@ -1481,8 +1009,8 @@ result.on('data', data => {
           power: 5
         }
       ],
-      validatorChanged: undefined,
-      paramChanged: undefined
+      validatorChanged: true,
+      paramChanged: true
     },
     tasks: {
       '5': {
@@ -1513,29 +1041,19 @@ result.on('data', data => {
         context: {
           genesisTx: 'arcblock',
           renaissanceTx: 'arcblock',
-          genesisTime: '2019-04-24T11:08:55.980Z',
-          renaissanceTime: '2019-04-24T11:08:55.980Z'
+          genesisTime: '2019-04-28T06:09:29.276Z',
+          renaissanceTime: '2019-04-28T06:09:29.276Z'
         }
       }
     },
     version: 'arcblock',
-    forgeAppHash: Uint8Array [
-      38,
-      26,
-      98,
-      8
-    ],
+    forgeAppHash: Uint8Array [],
     token: {
       name: 'arcblock',
       symbol: 'arcblock',
       unit: 'arcblock',
       description: 'arcblock',
-      icon: Uint8Array [
-        38,
-        26,
-        98,
-        8
-      ],
+      icon: Uint8Array [],
       decimal: 2,
       initialSupply: 5,
       totalSupply: 5,
@@ -1572,12 +1090,13 @@ result.on('data', data => {
       version: 'arcblock'
     },
     data: {
-      type: 'fg:x:random_data',
+      type: 'string',
       value: 'ABCD 1234'
     }
   }
 }
 });
+
 ```
 
 ### getForgeStats
@@ -1670,6 +1189,7 @@ result.on('data', data => {
   }
 }
 });
+
 ```
 
 ### getHealthStatus
@@ -1684,16 +1204,16 @@ result.on('data', data => {
   code: 0,
   healthStatus: {
     consensus: {
-      health: undefined,
-      synced: undefined,
+      health: true,
+      synced: true,
       blockHeight: 5
     },
     network: {
-      health: undefined,
+      health: true,
       numPeers: 2
     },
     storage: {
-      health: undefined,
+      health: true,
       indexerServer: 'arcblock',
       stateDb: 'arcblock',
       diskSpace: {
@@ -1702,7 +1222,7 @@ result.on('data', data => {
       }
     },
     forge: {
-      health: undefined,
+      health: true,
       abiServer: 'arcblock',
       forgeWeb: 'arcblock',
       abciServer: {
@@ -1713,6 +1233,7 @@ result.on('data', data => {
   }
 }
 });
+
 ```
 
 ### getNetInfo
@@ -1726,7 +1247,7 @@ result.on('data', data => {
   {
   code: 0,
   netInfo: {
-    listening: undefined,
+    listening: true,
     listeners: [
       'arcblock',
       'arcblock'
@@ -1763,6 +1284,7 @@ result.on('data', data => {
   }
 }
 });
+
 ```
 
 ### getNodeInfo
@@ -1780,16 +1302,11 @@ result.on('data', data => {
     network: 'arcblock',
     moniker: 'arcblock',
     consensusVersion: 'arcblock',
-    synced: undefined,
+    synced: true,
     appHash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-    blockHash: Uint8Array [
-      38,
-      26,
-      98,
-      8
-    ],
+    blockHash: Uint8Array [],
     blockHeight: 5,
-    blockTime: '2019-04-24T11:08:55.981Z',
+    blockTime: '2019-04-28T06:09:29.277Z',
     address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
     votingPower: 5,
     totalTxs: 5,
@@ -1812,6 +1329,7 @@ result.on('data', data => {
   }
 }
 });
+
 ```
 
 ### getProtocolState
@@ -1835,12 +1353,7 @@ const stream = client.getProtocolState({
     version: 2,
     description: 'arcblock',
     txHash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-    rootHash: Uint8Array [
-      38,
-      26,
-      98,
-      8
-    ],
+    rootHash: Uint8Array [],
     status: 0,
     migratedTo: [
       'arcblock',
@@ -1853,15 +1366,16 @@ const stream = client.getProtocolState({
     context: {
       genesisTx: 'arcblock',
       renaissanceTx: 'arcblock',
-      genesisTime: '2019-04-24T11:08:55.981Z',
-      renaissanceTime: '2019-04-24T11:08:55.981Z'
+      genesisTime: '2019-04-28T06:09:29.278Z',
+      renaissanceTime: '2019-04-28T06:09:29.278Z'
     },
     data: {
-      type: 'fg:x:random_data',
+      type: 'string',
       value: 'ABCD 1234'
     }
   }
 }
+
 ```
 
 ### getStakeState
@@ -1888,15 +1402,16 @@ const stream = client.getStakeState({
     context: {
       genesisTx: 'arcblock',
       renaissanceTx: 'arcblock',
-      genesisTime: '2019-04-24T11:08:55.981Z',
-      renaissanceTime: '2019-04-24T11:08:55.981Z'
+      genesisTime: '2019-04-28T06:09:29.278Z',
+      renaissanceTime: '2019-04-28T06:09:29.278Z'
     },
     data: {
-      type: 'fg:x:random_data',
+      type: 'string',
       value: 'ABCD 1234'
     }
   }
 }
+
 ```
 
 ### getTx
@@ -1914,60 +1429,30 @@ const stream = client.getTx({
       from: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
       nonce: 5,
       chainId: 'arcblock',
-      pk: Uint8Array [
-        38,
-        26,
-        98,
-        8
-      ],
-      signature: Uint8Array [
-        38,
-        26,
-        98,
-        8
-      ],
+      pk: Uint8Array [],
+      signature: Uint8Array [],
       signatures: [
         {
           signer: 'arcblock',
-          pk: Uint8Array [
-            38,
-            26,
-            98,
-            8
-          ],
-          signature: Uint8Array [
-            38,
-            26,
-            98,
-            8
-          ],
+          pk: Uint8Array [],
+          signature: Uint8Array [],
           data: {
-            type: 'fg:x:random_data',
+            type: 'string',
             value: 'ABCD 1234'
           }
         },
         {
           signer: 'arcblock',
-          pk: Uint8Array [
-            38,
-            26,
-            98,
-            8
-          ],
-          signature: Uint8Array [
-            38,
-            26,
-            98,
-            8
-          ],
+          pk: Uint8Array [],
+          signature: Uint8Array [],
           data: {
-            type: 'fg:x:random_data',
+            type: 'string',
             value: 'ABCD 1234'
           }
         }
       ],
       itx: {
-        type: 'fg:x:random_data',
+        type: 'string',
         value: 'ABCD 1234'
       }
     },
@@ -1976,36 +1461,16 @@ const stream = client.getTx({
     hash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
     tags: [
       {
-        key: Uint8Array [
-          38,
-          26,
-          98,
-          8
-        ],
-        value: Uint8Array [
-          38,
-          26,
-          98,
-          8
-        ]
+        key: Uint8Array [],
+        value: Uint8Array []
       },
       {
-        key: Uint8Array [
-          38,
-          26,
-          98,
-          8
-        ],
-        value: Uint8Array [
-          38,
-          26,
-          98,
-          8
-        ]
+        key: Uint8Array [],
+        value: Uint8Array []
       }
     ],
     code: 0,
-    time: '2019-04-24T11:08:55.981Z',
+    time: '2019-04-28T06:09:29.278Z',
     createAsset: {
       asset: 'arcblock'
     },
@@ -2014,6 +1479,7 @@ const stream = client.getTx({
     }
   }
 }
+
 ```
 
 ### getUnconfirmedTxs
@@ -2043,7 +1509,7 @@ result.on('data', data => {
   code: 0,
   page: {
     cursor: 'arcblock',
-    next: undefined,
+    next: true,
     total: 2
   },
   unconfirmedTxs: {
@@ -2053,60 +1519,30 @@ result.on('data', data => {
         from: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
         nonce: 5,
         chainId: 'arcblock',
-        pk: Uint8Array [
-          38,
-          26,
-          98,
-          8
-        ],
-        signature: Uint8Array [
-          38,
-          26,
-          98,
-          8
-        ],
+        pk: Uint8Array [],
+        signature: Uint8Array [],
         signatures: [
           {
             signer: 'arcblock',
-            pk: Uint8Array [
-              38,
-              26,
-              98,
-              8
-            ],
-            signature: Uint8Array [
-              38,
-              26,
-              98,
-              8
-            ],
+            pk: Uint8Array [],
+            signature: Uint8Array [],
             data: {
-              type: 'fg:x:random_data',
+              type: 'string',
               value: 'ABCD 1234'
             }
           },
           {
             signer: 'arcblock',
-            pk: Uint8Array [
-              38,
-              26,
-              98,
-              8
-            ],
-            signature: Uint8Array [
-              38,
-              26,
-              98,
-              8
-            ],
+            pk: Uint8Array [],
+            signature: Uint8Array [],
             data: {
-              type: 'fg:x:random_data',
+              type: 'string',
               value: 'ABCD 1234'
             }
           }
         ],
         itx: {
-          type: 'fg:x:random_data',
+          type: 'string',
           value: 'ABCD 1234'
         }
       },
@@ -2114,60 +1550,30 @@ result.on('data', data => {
         from: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
         nonce: 5,
         chainId: 'arcblock',
-        pk: Uint8Array [
-          38,
-          26,
-          98,
-          8
-        ],
-        signature: Uint8Array [
-          38,
-          26,
-          98,
-          8
-        ],
+        pk: Uint8Array [],
+        signature: Uint8Array [],
         signatures: [
           {
             signer: 'arcblock',
-            pk: Uint8Array [
-              38,
-              26,
-              98,
-              8
-            ],
-            signature: Uint8Array [
-              38,
-              26,
-              98,
-              8
-            ],
+            pk: Uint8Array [],
+            signature: Uint8Array [],
             data: {
-              type: 'fg:x:random_data',
+              type: 'string',
               value: 'ABCD 1234'
             }
           },
           {
             signer: 'arcblock',
-            pk: Uint8Array [
-              38,
-              26,
-              98,
-              8
-            ],
-            signature: Uint8Array [
-              38,
-              26,
-              98,
-              8
-            ],
+            pk: Uint8Array [],
+            signature: Uint8Array [],
             data: {
-              type: 'fg:x:random_data',
+              type: 'string',
               value: 'ABCD 1234'
             }
           }
         ],
         itx: {
-          type: 'fg:x:random_data',
+          type: 'string',
           value: 'ABCD 1234'
         }
       }
@@ -2175,6 +1581,7 @@ result.on('data', data => {
   }
 }
 });
+
 ```
 
 ### getValidatorsInfo
@@ -2194,12 +1601,7 @@ result.on('data', data => {
         address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
         pubKey: {
           type: 'arcblock',
-          data: Uint8Array [
-            38,
-            26,
-            98,
-            8
-          ]
+          data: Uint8Array []
         },
         votingPower: 5,
         proposerPriority: 'arcblock',
@@ -2215,12 +1617,7 @@ result.on('data', data => {
         address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
         pubKey: {
           type: 'arcblock',
-          data: Uint8Array [
-            38,
-            26,
-            98,
-            8
-          ]
+          data: Uint8Array []
         },
         votingPower: 5,
         proposerPriority: 'arcblock',
@@ -2236,6 +1633,7 @@ result.on('data', data => {
   }
 }
 });
+
 ```
 
 ### listAccount
@@ -2271,6 +1669,7 @@ result.on('data', data => {
   }
 }
 });
+
 ```
 
 ### listAssetTransactions
@@ -2301,7 +1700,7 @@ result.on('data', data => {
   code: 0,
   page: {
     cursor: 'arcblock',
-    next: undefined,
+    next: true,
     total: 2
   },
   transactions: [
@@ -2315,64 +1714,34 @@ result.on('data', data => {
         from: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
         nonce: 5,
         chainId: 'arcblock',
-        pk: Uint8Array [
-          38,
-          26,
-          98,
-          8
-        ],
-        signature: Uint8Array [
-          38,
-          26,
-          98,
-          8
-        ],
+        pk: Uint8Array [],
+        signature: Uint8Array [],
         signatures: [
           {
             signer: 'arcblock',
-            pk: Uint8Array [
-              38,
-              26,
-              98,
-              8
-            ],
-            signature: Uint8Array [
-              38,
-              26,
-              98,
-              8
-            ],
+            pk: Uint8Array [],
+            signature: Uint8Array [],
             data: {
-              type: 'fg:x:random_data',
+              type: 'string',
               value: 'ABCD 1234'
             }
           },
           {
             signer: 'arcblock',
-            pk: Uint8Array [
-              38,
-              26,
-              98,
-              8
-            ],
-            signature: Uint8Array [
-              38,
-              26,
-              98,
-              8
-            ],
+            pk: Uint8Array [],
+            signature: Uint8Array [],
             data: {
-              type: 'fg:x:random_data',
+              type: 'string',
               value: 'ABCD 1234'
             }
           }
         ],
         itx: {
-          type: 'fg:x:random_data',
+          type: 'string',
           value: 'ABCD 1234'
         }
       },
-      valid: undefined,
+      valid: true,
       code: 0
     },
     {
@@ -2385,69 +1754,40 @@ result.on('data', data => {
         from: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
         nonce: 5,
         chainId: 'arcblock',
-        pk: Uint8Array [
-          38,
-          26,
-          98,
-          8
-        ],
-        signature: Uint8Array [
-          38,
-          26,
-          98,
-          8
-        ],
+        pk: Uint8Array [],
+        signature: Uint8Array [],
         signatures: [
           {
             signer: 'arcblock',
-            pk: Uint8Array [
-              38,
-              26,
-              98,
-              8
-            ],
-            signature: Uint8Array [
-              38,
-              26,
-              98,
-              8
-            ],
+            pk: Uint8Array [],
+            signature: Uint8Array [],
             data: {
-              type: 'fg:x:random_data',
+              type: 'string',
               value: 'ABCD 1234'
             }
           },
           {
             signer: 'arcblock',
-            pk: Uint8Array [
-              38,
-              26,
-              98,
-              8
-            ],
-            signature: Uint8Array [
-              38,
-              26,
-              98,
-              8
-            ],
+            pk: Uint8Array [],
+            signature: Uint8Array [],
             data: {
-              type: 'fg:x:random_data',
+              type: 'string',
               value: 'ABCD 1234'
             }
           }
         ],
         itx: {
-          type: 'fg:x:random_data',
+          type: 'string',
           value: 'ABCD 1234'
         }
       },
-      valid: undefined,
+      valid: true,
       code: 0
     }
   ]
 }
 });
+
 ```
 
 ### listAssets
@@ -2478,7 +1818,7 @@ result.on('data', data => {
   code: 0,
   page: {
     cursor: 'arcblock',
-    next: undefined,
+    next: true,
     total: 2
   },
   assets: [
@@ -2488,7 +1828,7 @@ result.on('data', data => {
       genesisTime: 'arcblock',
       renaissanceTime: 'arcblock',
       moniker: 'arcblock',
-      readonly: undefined
+      readonly: true
     },
     {
       address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
@@ -2496,11 +1836,12 @@ result.on('data', data => {
       genesisTime: 'arcblock',
       renaissanceTime: 'arcblock',
       moniker: 'arcblock',
-      readonly: undefined
+      readonly: true
     }
   ]
 }
 });
+
 ```
 
 ### listBlocks
@@ -2547,7 +1888,7 @@ result.on('data', data => {
   code: 0,
   page: {
     cursor: 'arcblock',
-    next: undefined,
+    next: true,
     total: 2
   },
   blocks: [
@@ -2568,6 +1909,7 @@ result.on('data', data => {
   ]
 }
 });
+
 ```
 
 ### listStakes
@@ -2602,7 +1944,7 @@ result.on('data', data => {
   code: 0,
   page: {
     cursor: 'arcblock',
-    next: undefined,
+    next: true,
     total: 2
   },
   stakes: [
@@ -2629,6 +1971,7 @@ result.on('data', data => {
   ]
 }
 });
+
 ```
 
 ### listTopAccounts
@@ -2658,7 +2001,7 @@ result.on('data', data => {
   code: 0,
   page: {
     cursor: 'arcblock',
-    next: undefined,
+    next: true,
     total: 2
   },
   accounts: [
@@ -2703,6 +2046,7 @@ result.on('data', data => {
   ]
 }
 });
+
 ```
 
 ### listTransactions
@@ -2750,7 +2094,7 @@ result.on('data', data => {
   code: 0,
   page: {
     cursor: 'arcblock',
-    next: undefined,
+    next: true,
     total: 2
   },
   transactions: [
@@ -2764,64 +2108,34 @@ result.on('data', data => {
         from: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
         nonce: 5,
         chainId: 'arcblock',
-        pk: Uint8Array [
-          38,
-          26,
-          98,
-          8
-        ],
-        signature: Uint8Array [
-          38,
-          26,
-          98,
-          8
-        ],
+        pk: Uint8Array [],
+        signature: Uint8Array [],
         signatures: [
           {
             signer: 'arcblock',
-            pk: Uint8Array [
-              38,
-              26,
-              98,
-              8
-            ],
-            signature: Uint8Array [
-              38,
-              26,
-              98,
-              8
-            ],
+            pk: Uint8Array [],
+            signature: Uint8Array [],
             data: {
-              type: 'fg:x:random_data',
+              type: 'string',
               value: 'ABCD 1234'
             }
           },
           {
             signer: 'arcblock',
-            pk: Uint8Array [
-              38,
-              26,
-              98,
-              8
-            ],
-            signature: Uint8Array [
-              38,
-              26,
-              98,
-              8
-            ],
+            pk: Uint8Array [],
+            signature: Uint8Array [],
             data: {
-              type: 'fg:x:random_data',
+              type: 'string',
               value: 'ABCD 1234'
             }
           }
         ],
         itx: {
-          type: 'fg:x:random_data',
+          type: 'string',
           value: 'ABCD 1234'
         }
       },
-      valid: undefined,
+      valid: true,
       code: 0
     },
     {
@@ -2834,69 +2148,40 @@ result.on('data', data => {
         from: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
         nonce: 5,
         chainId: 'arcblock',
-        pk: Uint8Array [
-          38,
-          26,
-          98,
-          8
-        ],
-        signature: Uint8Array [
-          38,
-          26,
-          98,
-          8
-        ],
+        pk: Uint8Array [],
+        signature: Uint8Array [],
         signatures: [
           {
             signer: 'arcblock',
-            pk: Uint8Array [
-              38,
-              26,
-              98,
-              8
-            ],
-            signature: Uint8Array [
-              38,
-              26,
-              98,
-              8
-            ],
+            pk: Uint8Array [],
+            signature: Uint8Array [],
             data: {
-              type: 'fg:x:random_data',
+              type: 'string',
               value: 'ABCD 1234'
             }
           },
           {
             signer: 'arcblock',
-            pk: Uint8Array [
-              38,
-              26,
-              98,
-              8
-            ],
-            signature: Uint8Array [
-              38,
-              26,
-              98,
-              8
-            ],
+            pk: Uint8Array [],
+            signature: Uint8Array [],
             data: {
-              type: 'fg:x:random_data',
+              type: 'string',
               value: 'ABCD 1234'
             }
           }
         ],
         itx: {
-          type: 'fg:x:random_data',
+          type: 'string',
           value: 'ABCD 1234'
         }
       },
-      valid: undefined,
+      valid: true,
       code: 0
     }
   ]
 }
 });
+
 ```
 
 ### listWallet
@@ -2909,6 +2194,7 @@ const stream = client.listWallet({});
   code: 0,
   address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55'
 }
+
 ```
 
 ### loadFile
@@ -2921,13 +2207,9 @@ const stream = client.loadFile({
 // output
 {
   code: 0,
-  chunk: Uint8Array [
-    38,
-    26,
-    98,
-    8
-  ]
+  chunk: Uint8Array []
 }
+
 ```
 
 ### loadWallet
@@ -2951,22 +2233,13 @@ result.on('data', data => {
       address: 0,
       role: 0
     },
-    sk: Uint8Array [
-      38,
-      26,
-      98,
-      8
-    ],
-    pk: Uint8Array [
-      38,
-      26,
-      98,
-      8
-    ],
+    sk: Uint8Array [],
+    pk: Uint8Array [],
     address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55'
   }
 }
 });
+
 ```
 
 ### multisig
@@ -2977,65 +2250,35 @@ const result = await client.multisig({
     from: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
     nonce: 5,
     chainId: 'arcblock',
-    pk: Uint8Array [
-      38,
-      26,
-      98,
-      8
-    ],
-    signature: Uint8Array [
-      38,
-      26,
-      98,
-      8
-    ],
+    pk: Uint8Array [],
+    signature: Uint8Array [],
     signatures: [
       {
         signer: 'arcblock',
-        pk: Uint8Array [
-          38,
-          26,
-          98,
-          8
-        ],
-        signature: Uint8Array [
-          38,
-          26,
-          98,
-          8
-        ],
+        pk: Uint8Array [],
+        signature: Uint8Array [],
         data: {
-          type: 'fg:x:random_data',
+          type: 'string',
           value: 'ABCD 1234'
         }
       },
       {
         signer: 'arcblock',
-        pk: Uint8Array [
-          38,
-          26,
-          98,
-          8
-        ],
-        signature: Uint8Array [
-          38,
-          26,
-          98,
-          8
-        ],
+        pk: Uint8Array [],
+        signature: Uint8Array [],
         data: {
-          type: 'fg:x:random_data',
+          type: 'string',
           value: 'ABCD 1234'
         }
       }
     ],
     itx: {
-      type: 'fg:x:random_data',
+      type: 'string',
       value: 'ABCD 1234'
     }
   },
   data: {
-    type: 'fg:x:random_data',
+    type: 'string',
     value: 'ABCD 1234'
   },
   wallet: {
@@ -3045,18 +2288,8 @@ const result = await client.multisig({
       address: 0,
       role: 0
     },
-    sk: Uint8Array [
-      38,
-      26,
-      98,
-      8
-    ],
-    pk: Uint8Array [
-      38,
-      26,
-      98,
-      8
-    ],
+    sk: Uint8Array [],
+    pk: Uint8Array [],
     address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55'
   },
   token: 'arcblock'
@@ -3071,65 +2304,36 @@ result.on('data', data => {
     from: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
     nonce: 5,
     chainId: 'arcblock',
-    pk: Uint8Array [
-      38,
-      26,
-      98,
-      8
-    ],
-    signature: Uint8Array [
-      38,
-      26,
-      98,
-      8
-    ],
+    pk: Uint8Array [],
+    signature: Uint8Array [],
     signatures: [
       {
         signer: 'arcblock',
-        pk: Uint8Array [
-          38,
-          26,
-          98,
-          8
-        ],
-        signature: Uint8Array [
-          38,
-          26,
-          98,
-          8
-        ],
+        pk: Uint8Array [],
+        signature: Uint8Array [],
         data: {
-          type: 'fg:x:random_data',
+          type: 'string',
           value: 'ABCD 1234'
         }
       },
       {
         signer: 'arcblock',
-        pk: Uint8Array [
-          38,
-          26,
-          98,
-          8
-        ],
-        signature: Uint8Array [
-          38,
-          26,
-          98,
-          8
-        ],
+        pk: Uint8Array [],
+        signature: Uint8Array [],
         data: {
-          type: 'fg:x:random_data',
+          type: 'string',
           value: 'ABCD 1234'
         }
       }
     ],
     itx: {
-      type: 'fg:x:random_data',
+      type: 'string',
       value: 'ABCD 1234'
     }
   }
 }
 });
+
 ```
 
 ### pinFile
@@ -3146,6 +2350,7 @@ result.on('data', data => {
   code: 0
 }
 });
+
 ```
 
 ### process
@@ -3157,60 +2362,30 @@ const stream = client.process({
       from: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
       nonce: 5,
       chainId: 'arcblock',
-      pk: Uint8Array [
-        38,
-        26,
-        98,
-        8
-      ],
-      signature: Uint8Array [
-        38,
-        26,
-        98,
-        8
-      ],
+      pk: Uint8Array [],
+      signature: Uint8Array [],
       signatures: [
         {
           signer: 'arcblock',
-          pk: Uint8Array [
-            38,
-            26,
-            98,
-            8
-          ],
-          signature: Uint8Array [
-            38,
-            26,
-            98,
-            8
-          ],
+          pk: Uint8Array [],
+          signature: Uint8Array [],
           data: {
-            type: 'fg:x:random_data',
+            type: 'string',
             value: 'ABCD 1234'
           }
         },
         {
           signer: 'arcblock',
-          pk: Uint8Array [
-            38,
-            26,
-            98,
-            8
-          ],
-          signature: Uint8Array [
-            38,
-            26,
-            98,
-            8
-          ],
+          pk: Uint8Array [],
+          signature: Uint8Array [],
           data: {
-            type: 'fg:x:random_data',
+            type: 'string',
             value: 'ABCD 1234'
           }
         }
       ],
       itx: {
-        type: 'fg:x:random_data',
+        type: 'string',
         value: 'ABCD 1234'
       }
     },
@@ -3220,12 +2395,7 @@ const stream = client.process({
         nonce: 5,
         numTxs: 5,
         address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-        pk: Uint8Array [
-          38,
-          26,
-          98,
-          8
-        ],
+        pk: Uint8Array [],
         type: {
           pk: 0,
           hash: 0,
@@ -3236,8 +2406,8 @@ const stream = client.process({
         context: {
           genesisTx: 'arcblock',
           renaissanceTx: 'arcblock',
-          genesisTime: '2019-04-24T11:08:55.984Z',
-          renaissanceTime: '2019-04-24T11:08:55.984Z'
+          genesisTime: '2019-04-28T06:09:29.281Z',
+          renaissanceTime: '2019-04-28T06:09:29.281Z'
         },
         issuer: 'arcblock',
         migratedTo: [
@@ -3255,64 +2425,34 @@ const stream = client.process({
           totalReceivedStakes: [Function: BigUint],
           recentStakes: {
             items: [
-              Uint8Array [
-                38,
-                26,
-                98,
-                8
-              ],
-              Uint8Array [
-                38,
-                26,
-                98,
-                8
-              ]
+              Uint8Array [],
+              Uint8Array []
             ],
             typeUrl: 'arcblock',
             maxItems: 2,
-            circular: undefined,
-            fifo: undefined
+            circular: true,
+            fifo: true
           },
           recentReceivedStakes: {
             items: [
-              Uint8Array [
-                38,
-                26,
-                98,
-                8
-              ],
-              Uint8Array [
-                38,
-                26,
-                98,
-                8
-              ]
+              Uint8Array [],
+              Uint8Array []
             ],
             typeUrl: 'arcblock',
             maxItems: 2,
-            circular: undefined,
-            fifo: undefined
+            circular: true,
+            fifo: true
           }
         },
         pinnedFiles: {
           items: [
-            Uint8Array [
-              38,
-              26,
-              98,
-              8
-            ],
-            Uint8Array [
-              38,
-              26,
-              98,
-              8
-            ]
+            Uint8Array [],
+            Uint8Array []
           ],
           typeUrl: 'arcblock',
           maxItems: 2,
-          circular: undefined,
-          fifo: undefined
+          circular: true,
+          fifo: true
         },
         poke: {
           dailyLimit: [Function: BigUint],
@@ -3320,7 +2460,7 @@ const stream = client.process({
           amount: [Function: BigUint]
         },
         data: {
-          type: 'fg:x:random_data',
+          type: 'string',
           value: 'ABCD 1234'
         }
       },
@@ -3329,12 +2469,7 @@ const stream = client.process({
         nonce: 5,
         numTxs: 5,
         address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-        pk: Uint8Array [
-          38,
-          26,
-          98,
-          8
-        ],
+        pk: Uint8Array [],
         type: {
           pk: 0,
           hash: 0,
@@ -3345,8 +2480,8 @@ const stream = client.process({
         context: {
           genesisTx: 'arcblock',
           renaissanceTx: 'arcblock',
-          genesisTime: '2019-04-24T11:08:55.984Z',
-          renaissanceTime: '2019-04-24T11:08:55.984Z'
+          genesisTime: '2019-04-28T06:09:29.281Z',
+          renaissanceTime: '2019-04-28T06:09:29.281Z'
         },
         issuer: 'arcblock',
         migratedTo: [
@@ -3364,64 +2499,34 @@ const stream = client.process({
           totalReceivedStakes: [Function: BigUint],
           recentStakes: {
             items: [
-              Uint8Array [
-                38,
-                26,
-                98,
-                8
-              ],
-              Uint8Array [
-                38,
-                26,
-                98,
-                8
-              ]
+              Uint8Array [],
+              Uint8Array []
             ],
             typeUrl: 'arcblock',
             maxItems: 2,
-            circular: undefined,
-            fifo: undefined
+            circular: true,
+            fifo: true
           },
           recentReceivedStakes: {
             items: [
-              Uint8Array [
-                38,
-                26,
-                98,
-                8
-              ],
-              Uint8Array [
-                38,
-                26,
-                98,
-                8
-              ]
+              Uint8Array [],
+              Uint8Array []
             ],
             typeUrl: 'arcblock',
             maxItems: 2,
-            circular: undefined,
-            fifo: undefined
+            circular: true,
+            fifo: true
           }
         },
         pinnedFiles: {
           items: [
-            Uint8Array [
-              38,
-              26,
-              98,
-              8
-            ],
-            Uint8Array [
-              38,
-              26,
-              98,
-              8
-            ]
+            Uint8Array [],
+            Uint8Array []
           ],
           typeUrl: 'arcblock',
           maxItems: 2,
-          circular: undefined,
-          fifo: undefined
+          circular: true,
+          fifo: true
         },
         poke: {
           dailyLimit: [Function: BigUint],
@@ -3429,7 +2534,7 @@ const stream = client.process({
           amount: [Function: BigUint]
         },
         data: {
-          type: 'fg:x:random_data',
+          type: 'string',
           value: 'ABCD 1234'
         }
       }
@@ -3439,10 +2544,10 @@ const stream = client.process({
         address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
         owner: 'arcblock',
         moniker: 'arcblock',
-        readonly: undefined,
-        transferrable: undefined,
+        readonly: true,
+        transferrable: true,
         ttl: 2,
-        consumedTime: '2019-04-24T11:08:55.984Z',
+        consumedTime: '2019-04-28T06:09:29.281Z',
         issuer: 'arcblock',
         stake: {
           totalStakes: [Function: BigUint],
@@ -3450,53 +2555,33 @@ const stream = client.process({
           totalReceivedStakes: [Function: BigUint],
           recentStakes: {
             items: [
-              Uint8Array [
-                38,
-                26,
-                98,
-                8
-              ],
-              Uint8Array [
-                38,
-                26,
-                98,
-                8
-              ]
+              Uint8Array [],
+              Uint8Array []
             ],
             typeUrl: 'arcblock',
             maxItems: 2,
-            circular: undefined,
-            fifo: undefined
+            circular: true,
+            fifo: true
           },
           recentReceivedStakes: {
             items: [
-              Uint8Array [
-                38,
-                26,
-                98,
-                8
-              ],
-              Uint8Array [
-                38,
-                26,
-                98,
-                8
-              ]
+              Uint8Array [],
+              Uint8Array []
             ],
             typeUrl: 'arcblock',
             maxItems: 2,
-            circular: undefined,
-            fifo: undefined
+            circular: true,
+            fifo: true
           }
         },
         context: {
           genesisTx: 'arcblock',
           renaissanceTx: 'arcblock',
-          genesisTime: '2019-04-24T11:08:55.984Z',
-          renaissanceTime: '2019-04-24T11:08:55.984Z'
+          genesisTime: '2019-04-28T06:09:29.281Z',
+          renaissanceTime: '2019-04-28T06:09:29.281Z'
         },
         data: {
-          type: 'fg:x:random_data',
+          type: 'string',
           value: 'ABCD 1234'
         }
       },
@@ -3504,10 +2589,10 @@ const stream = client.process({
         address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
         owner: 'arcblock',
         moniker: 'arcblock',
-        readonly: undefined,
-        transferrable: undefined,
+        readonly: true,
+        transferrable: true,
         ttl: 2,
-        consumedTime: '2019-04-24T11:08:55.984Z',
+        consumedTime: '2019-04-28T06:09:29.281Z',
         issuer: 'arcblock',
         stake: {
           totalStakes: [Function: BigUint],
@@ -3515,53 +2600,33 @@ const stream = client.process({
           totalReceivedStakes: [Function: BigUint],
           recentStakes: {
             items: [
-              Uint8Array [
-                38,
-                26,
-                98,
-                8
-              ],
-              Uint8Array [
-                38,
-                26,
-                98,
-                8
-              ]
+              Uint8Array [],
+              Uint8Array []
             ],
             typeUrl: 'arcblock',
             maxItems: 2,
-            circular: undefined,
-            fifo: undefined
+            circular: true,
+            fifo: true
           },
           recentReceivedStakes: {
             items: [
-              Uint8Array [
-                38,
-                26,
-                98,
-                8
-              ],
-              Uint8Array [
-                38,
-                26,
-                98,
-                8
-              ]
+              Uint8Array [],
+              Uint8Array []
             ],
             typeUrl: 'arcblock',
             maxItems: 2,
-            circular: undefined,
-            fifo: undefined
+            circular: true,
+            fifo: true
           }
         },
         context: {
           genesisTx: 'arcblock',
           renaissanceTx: 'arcblock',
-          genesisTime: '2019-04-24T11:08:55.984Z',
-          renaissanceTime: '2019-04-24T11:08:55.984Z'
+          genesisTime: '2019-04-28T06:09:29.281Z',
+          renaissanceTime: '2019-04-28T06:09:29.281Z'
         },
         data: {
-          type: 'fg:x:random_data',
+          type: 'string',
           value: 'ABCD 1234'
         }
       }
@@ -3576,11 +2641,11 @@ const stream = client.process({
         context: {
           genesisTx: 'arcblock',
           renaissanceTx: 'arcblock',
-          genesisTime: '2019-04-24T11:08:55.984Z',
-          renaissanceTime: '2019-04-24T11:08:55.984Z'
+          genesisTime: '2019-04-28T06:09:29.281Z',
+          renaissanceTime: '2019-04-28T06:09:29.281Z'
         },
         data: {
-          type: 'fg:x:random_data',
+          type: 'string',
           value: 'ABCD 1234'
         }
       },
@@ -3593,11 +2658,11 @@ const stream = client.process({
         context: {
           genesisTx: 'arcblock',
           renaissanceTx: 'arcblock',
-          genesisTime: '2019-04-24T11:08:55.984Z',
-          renaissanceTime: '2019-04-24T11:08:55.984Z'
+          genesisTime: '2019-04-28T06:09:29.281Z',
+          renaissanceTime: '2019-04-28T06:09:29.281Z'
         },
         data: {
-          type: 'fg:x:random_data',
+          type: 'string',
           value: 'ABCD 1234'
         }
       }
@@ -3605,7 +2670,7 @@ const stream = client.process({
     context: {
       txHash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
       blockHeight: 5,
-      blockTime: '2019-04-24T11:08:55.984Z',
+      blockTime: '2019-04-28T06:09:29.282Z',
       totalTxs: 5,
       txStatistics: {
         numAccountMigrateTxs: 5,
@@ -3622,7 +2687,7 @@ const stream = client.process({
         numPokeTxs: 5
       },
       txIndex: 2,
-      lastBlockTime: '2019-04-24T11:08:55.984Z'
+      lastBlockTime: '2019-04-28T06:09:29.282Z'
     },
     appState: {
       address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
@@ -3645,8 +2710,8 @@ const stream = client.process({
             power: 5
           }
         ],
-        validatorChanged: undefined,
-        paramChanged: undefined
+        validatorChanged: true,
+        paramChanged: true
       },
       tasks: {
         '5': {
@@ -3677,29 +2742,19 @@ const stream = client.process({
           context: {
             genesisTx: 'arcblock',
             renaissanceTx: 'arcblock',
-            genesisTime: '2019-04-24T11:08:55.984Z',
-            renaissanceTime: '2019-04-24T11:08:55.984Z'
+            genesisTime: '2019-04-28T06:09:29.282Z',
+            renaissanceTime: '2019-04-28T06:09:29.282Z'
           }
         }
       },
       version: 'arcblock',
-      forgeAppHash: Uint8Array [
-        38,
-        26,
-        98,
-        8
-      ],
+      forgeAppHash: Uint8Array [],
       token: {
         name: 'arcblock',
         symbol: 'arcblock',
         unit: 'arcblock',
         description: 'arcblock',
-        icon: Uint8Array [
-          38,
-          26,
-          98,
-          8
-        ],
+        icon: Uint8Array [],
         decimal: 2,
         initialSupply: 5,
         totalSupply: 5,
@@ -3736,7 +2791,7 @@ const stream = client.process({
         version: 'arcblock'
       },
       data: {
-        type: 'fg:x:random_data',
+        type: 'string',
         value: 'ABCD 1234'
       }
     }
@@ -3749,6 +2804,7 @@ const stream = client.process({
     code: 0
   }
 }
+
 ```
 
 ### processOne
@@ -3760,60 +2816,30 @@ const result = await client.processOne({
       from: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
       nonce: 5,
       chainId: 'arcblock',
-      pk: Uint8Array [
-        38,
-        26,
-        98,
-        8
-      ],
-      signature: Uint8Array [
-        38,
-        26,
-        98,
-        8
-      ],
+      pk: Uint8Array [],
+      signature: Uint8Array [],
       signatures: [
         {
           signer: 'arcblock',
-          pk: Uint8Array [
-            38,
-            26,
-            98,
-            8
-          ],
-          signature: Uint8Array [
-            38,
-            26,
-            98,
-            8
-          ],
+          pk: Uint8Array [],
+          signature: Uint8Array [],
           data: {
-            type: 'fg:x:random_data',
+            type: 'string',
             value: 'ABCD 1234'
           }
         },
         {
           signer: 'arcblock',
-          pk: Uint8Array [
-            38,
-            26,
-            98,
-            8
-          ],
-          signature: Uint8Array [
-            38,
-            26,
-            98,
-            8
-          ],
+          pk: Uint8Array [],
+          signature: Uint8Array [],
           data: {
-            type: 'fg:x:random_data',
+            type: 'string',
             value: 'ABCD 1234'
           }
         }
       ],
       itx: {
-        type: 'fg:x:random_data',
+        type: 'string',
         value: 'ABCD 1234'
       }
     },
@@ -3823,12 +2849,7 @@ const result = await client.processOne({
         nonce: 5,
         numTxs: 5,
         address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-        pk: Uint8Array [
-          38,
-          26,
-          98,
-          8
-        ],
+        pk: Uint8Array [],
         type: {
           pk: 0,
           hash: 0,
@@ -3839,8 +2860,8 @@ const result = await client.processOne({
         context: {
           genesisTx: 'arcblock',
           renaissanceTx: 'arcblock',
-          genesisTime: '2019-04-24T11:08:55.985Z',
-          renaissanceTime: '2019-04-24T11:08:55.985Z'
+          genesisTime: '2019-04-28T06:09:29.283Z',
+          renaissanceTime: '2019-04-28T06:09:29.283Z'
         },
         issuer: 'arcblock',
         migratedTo: [
@@ -3858,64 +2879,34 @@ const result = await client.processOne({
           totalReceivedStakes: [Function: BigUint],
           recentStakes: {
             items: [
-              Uint8Array [
-                38,
-                26,
-                98,
-                8
-              ],
-              Uint8Array [
-                38,
-                26,
-                98,
-                8
-              ]
+              Uint8Array [],
+              Uint8Array []
             ],
             typeUrl: 'arcblock',
             maxItems: 2,
-            circular: undefined,
-            fifo: undefined
+            circular: true,
+            fifo: true
           },
           recentReceivedStakes: {
             items: [
-              Uint8Array [
-                38,
-                26,
-                98,
-                8
-              ],
-              Uint8Array [
-                38,
-                26,
-                98,
-                8
-              ]
+              Uint8Array [],
+              Uint8Array []
             ],
             typeUrl: 'arcblock',
             maxItems: 2,
-            circular: undefined,
-            fifo: undefined
+            circular: true,
+            fifo: true
           }
         },
         pinnedFiles: {
           items: [
-            Uint8Array [
-              38,
-              26,
-              98,
-              8
-            ],
-            Uint8Array [
-              38,
-              26,
-              98,
-              8
-            ]
+            Uint8Array [],
+            Uint8Array []
           ],
           typeUrl: 'arcblock',
           maxItems: 2,
-          circular: undefined,
-          fifo: undefined
+          circular: true,
+          fifo: true
         },
         poke: {
           dailyLimit: [Function: BigUint],
@@ -3923,7 +2914,7 @@ const result = await client.processOne({
           amount: [Function: BigUint]
         },
         data: {
-          type: 'fg:x:random_data',
+          type: 'string',
           value: 'ABCD 1234'
         }
       },
@@ -3932,12 +2923,7 @@ const result = await client.processOne({
         nonce: 5,
         numTxs: 5,
         address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-        pk: Uint8Array [
-          38,
-          26,
-          98,
-          8
-        ],
+        pk: Uint8Array [],
         type: {
           pk: 0,
           hash: 0,
@@ -3948,8 +2934,8 @@ const result = await client.processOne({
         context: {
           genesisTx: 'arcblock',
           renaissanceTx: 'arcblock',
-          genesisTime: '2019-04-24T11:08:55.985Z',
-          renaissanceTime: '2019-04-24T11:08:55.985Z'
+          genesisTime: '2019-04-28T06:09:29.283Z',
+          renaissanceTime: '2019-04-28T06:09:29.283Z'
         },
         issuer: 'arcblock',
         migratedTo: [
@@ -3967,64 +2953,34 @@ const result = await client.processOne({
           totalReceivedStakes: [Function: BigUint],
           recentStakes: {
             items: [
-              Uint8Array [
-                38,
-                26,
-                98,
-                8
-              ],
-              Uint8Array [
-                38,
-                26,
-                98,
-                8
-              ]
+              Uint8Array [],
+              Uint8Array []
             ],
             typeUrl: 'arcblock',
             maxItems: 2,
-            circular: undefined,
-            fifo: undefined
+            circular: true,
+            fifo: true
           },
           recentReceivedStakes: {
             items: [
-              Uint8Array [
-                38,
-                26,
-                98,
-                8
-              ],
-              Uint8Array [
-                38,
-                26,
-                98,
-                8
-              ]
+              Uint8Array [],
+              Uint8Array []
             ],
             typeUrl: 'arcblock',
             maxItems: 2,
-            circular: undefined,
-            fifo: undefined
+            circular: true,
+            fifo: true
           }
         },
         pinnedFiles: {
           items: [
-            Uint8Array [
-              38,
-              26,
-              98,
-              8
-            ],
-            Uint8Array [
-              38,
-              26,
-              98,
-              8
-            ]
+            Uint8Array [],
+            Uint8Array []
           ],
           typeUrl: 'arcblock',
           maxItems: 2,
-          circular: undefined,
-          fifo: undefined
+          circular: true,
+          fifo: true
         },
         poke: {
           dailyLimit: [Function: BigUint],
@@ -4032,7 +2988,7 @@ const result = await client.processOne({
           amount: [Function: BigUint]
         },
         data: {
-          type: 'fg:x:random_data',
+          type: 'string',
           value: 'ABCD 1234'
         }
       }
@@ -4042,10 +2998,10 @@ const result = await client.processOne({
         address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
         owner: 'arcblock',
         moniker: 'arcblock',
-        readonly: undefined,
-        transferrable: undefined,
+        readonly: true,
+        transferrable: true,
         ttl: 2,
-        consumedTime: '2019-04-24T11:08:55.985Z',
+        consumedTime: '2019-04-28T06:09:29.283Z',
         issuer: 'arcblock',
         stake: {
           totalStakes: [Function: BigUint],
@@ -4053,53 +3009,33 @@ const result = await client.processOne({
           totalReceivedStakes: [Function: BigUint],
           recentStakes: {
             items: [
-              Uint8Array [
-                38,
-                26,
-                98,
-                8
-              ],
-              Uint8Array [
-                38,
-                26,
-                98,
-                8
-              ]
+              Uint8Array [],
+              Uint8Array []
             ],
             typeUrl: 'arcblock',
             maxItems: 2,
-            circular: undefined,
-            fifo: undefined
+            circular: true,
+            fifo: true
           },
           recentReceivedStakes: {
             items: [
-              Uint8Array [
-                38,
-                26,
-                98,
-                8
-              ],
-              Uint8Array [
-                38,
-                26,
-                98,
-                8
-              ]
+              Uint8Array [],
+              Uint8Array []
             ],
             typeUrl: 'arcblock',
             maxItems: 2,
-            circular: undefined,
-            fifo: undefined
+            circular: true,
+            fifo: true
           }
         },
         context: {
           genesisTx: 'arcblock',
           renaissanceTx: 'arcblock',
-          genesisTime: '2019-04-24T11:08:55.985Z',
-          renaissanceTime: '2019-04-24T11:08:55.985Z'
+          genesisTime: '2019-04-28T06:09:29.283Z',
+          renaissanceTime: '2019-04-28T06:09:29.283Z'
         },
         data: {
-          type: 'fg:x:random_data',
+          type: 'string',
           value: 'ABCD 1234'
         }
       },
@@ -4107,10 +3043,10 @@ const result = await client.processOne({
         address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
         owner: 'arcblock',
         moniker: 'arcblock',
-        readonly: undefined,
-        transferrable: undefined,
+        readonly: true,
+        transferrable: true,
         ttl: 2,
-        consumedTime: '2019-04-24T11:08:55.985Z',
+        consumedTime: '2019-04-28T06:09:29.283Z',
         issuer: 'arcblock',
         stake: {
           totalStakes: [Function: BigUint],
@@ -4118,53 +3054,33 @@ const result = await client.processOne({
           totalReceivedStakes: [Function: BigUint],
           recentStakes: {
             items: [
-              Uint8Array [
-                38,
-                26,
-                98,
-                8
-              ],
-              Uint8Array [
-                38,
-                26,
-                98,
-                8
-              ]
+              Uint8Array [],
+              Uint8Array []
             ],
             typeUrl: 'arcblock',
             maxItems: 2,
-            circular: undefined,
-            fifo: undefined
+            circular: true,
+            fifo: true
           },
           recentReceivedStakes: {
             items: [
-              Uint8Array [
-                38,
-                26,
-                98,
-                8
-              ],
-              Uint8Array [
-                38,
-                26,
-                98,
-                8
-              ]
+              Uint8Array [],
+              Uint8Array []
             ],
             typeUrl: 'arcblock',
             maxItems: 2,
-            circular: undefined,
-            fifo: undefined
+            circular: true,
+            fifo: true
           }
         },
         context: {
           genesisTx: 'arcblock',
           renaissanceTx: 'arcblock',
-          genesisTime: '2019-04-24T11:08:55.985Z',
-          renaissanceTime: '2019-04-24T11:08:55.985Z'
+          genesisTime: '2019-04-28T06:09:29.283Z',
+          renaissanceTime: '2019-04-28T06:09:29.283Z'
         },
         data: {
-          type: 'fg:x:random_data',
+          type: 'string',
           value: 'ABCD 1234'
         }
       }
@@ -4179,11 +3095,11 @@ const result = await client.processOne({
         context: {
           genesisTx: 'arcblock',
           renaissanceTx: 'arcblock',
-          genesisTime: '2019-04-24T11:08:55.985Z',
-          renaissanceTime: '2019-04-24T11:08:55.985Z'
+          genesisTime: '2019-04-28T06:09:29.283Z',
+          renaissanceTime: '2019-04-28T06:09:29.283Z'
         },
         data: {
-          type: 'fg:x:random_data',
+          type: 'string',
           value: 'ABCD 1234'
         }
       },
@@ -4196,11 +3112,11 @@ const result = await client.processOne({
         context: {
           genesisTx: 'arcblock',
           renaissanceTx: 'arcblock',
-          genesisTime: '2019-04-24T11:08:55.985Z',
-          renaissanceTime: '2019-04-24T11:08:55.985Z'
+          genesisTime: '2019-04-28T06:09:29.283Z',
+          renaissanceTime: '2019-04-28T06:09:29.283Z'
         },
         data: {
-          type: 'fg:x:random_data',
+          type: 'string',
           value: 'ABCD 1234'
         }
       }
@@ -4208,7 +3124,7 @@ const result = await client.processOne({
     context: {
       txHash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
       blockHeight: 5,
-      blockTime: '2019-04-24T11:08:55.985Z',
+      blockTime: '2019-04-28T06:09:29.283Z',
       totalTxs: 5,
       txStatistics: {
         numAccountMigrateTxs: 5,
@@ -4225,7 +3141,7 @@ const result = await client.processOne({
         numPokeTxs: 5
       },
       txIndex: 2,
-      lastBlockTime: '2019-04-24T11:08:55.985Z'
+      lastBlockTime: '2019-04-28T06:09:29.283Z'
     },
     appState: {
       address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
@@ -4248,8 +3164,8 @@ const result = await client.processOne({
             power: 5
           }
         ],
-        validatorChanged: undefined,
-        paramChanged: undefined
+        validatorChanged: true,
+        paramChanged: true
       },
       tasks: {
         '5': {
@@ -4280,29 +3196,19 @@ const result = await client.processOne({
           context: {
             genesisTx: 'arcblock',
             renaissanceTx: 'arcblock',
-            genesisTime: '2019-04-24T11:08:55.985Z',
-            renaissanceTime: '2019-04-24T11:08:55.985Z'
+            genesisTime: '2019-04-28T06:09:29.283Z',
+            renaissanceTime: '2019-04-28T06:09:29.283Z'
           }
         }
       },
       version: 'arcblock',
-      forgeAppHash: Uint8Array [
-        38,
-        26,
-        98,
-        8
-      ],
+      forgeAppHash: Uint8Array [],
       token: {
         name: 'arcblock',
         symbol: 'arcblock',
         unit: 'arcblock',
         description: 'arcblock',
-        icon: Uint8Array [
-          38,
-          26,
-          98,
-          8
-        ],
+        icon: Uint8Array [],
         decimal: 2,
         initialSupply: 5,
         totalSupply: 5,
@@ -4339,7 +3245,7 @@ const result = await client.processOne({
         version: 'arcblock'
       },
       data: {
-        type: 'fg:x:random_data',
+        type: 'string',
         value: 'ABCD 1234'
       }
     }
@@ -4355,18 +3261,14 @@ result.on('data', data => {
   }
 }
 });
+
 ```
 
 ### recoverWallet
 
 ```js
 const result = await client.recoverWallet({
-  data: Uint8Array [
-    38,
-    26,
-    98,
-    8
-  ],
+  data: Uint8Array [],
   type: {
     pk: 0,
     hash: 0,
@@ -4390,22 +3292,13 @@ result.on('data', data => {
       address: 0,
       role: 0
     },
-    sk: Uint8Array [
-      38,
-      26,
-      98,
-      8
-    ],
-    pk: Uint8Array [
-      38,
-      26,
-      98,
-      8
-    ],
+    sk: Uint8Array [],
+    pk: Uint8Array [],
     address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55'
   }
 }
 });
+
 ```
 
 ### removeWallet
@@ -4422,6 +3315,7 @@ result.on('data', data => {
   code: 0
 }
 });
+
 ```
 
 ### search
@@ -4443,60 +3337,30 @@ result.on('data', data => {
         from: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
         nonce: 5,
         chainId: 'arcblock',
-        pk: Uint8Array [
-          38,
-          26,
-          98,
-          8
-        ],
-        signature: Uint8Array [
-          38,
-          26,
-          98,
-          8
-        ],
+        pk: Uint8Array [],
+        signature: Uint8Array [],
         signatures: [
           {
             signer: 'arcblock',
-            pk: Uint8Array [
-              38,
-              26,
-              98,
-              8
-            ],
-            signature: Uint8Array [
-              38,
-              26,
-              98,
-              8
-            ],
+            pk: Uint8Array [],
+            signature: Uint8Array [],
             data: {
-              type: 'fg:x:random_data',
+              type: 'string',
               value: 'ABCD 1234'
             }
           },
           {
             signer: 'arcblock',
-            pk: Uint8Array [
-              38,
-              26,
-              98,
-              8
-            ],
-            signature: Uint8Array [
-              38,
-              26,
-              98,
-              8
-            ],
+            pk: Uint8Array [],
+            signature: Uint8Array [],
             data: {
-              type: 'fg:x:random_data',
+              type: 'string',
               value: 'ABCD 1234'
             }
           }
         ],
         itx: {
-          type: 'fg:x:random_data',
+          type: 'string',
           value: 'ABCD 1234'
         }
       },
@@ -4505,36 +3369,16 @@ result.on('data', data => {
       hash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
       tags: [
         {
-          key: Uint8Array [
-            38,
-            26,
-            98,
-            8
-          ],
-          value: Uint8Array [
-            38,
-            26,
-            98,
-            8
-          ]
+          key: Uint8Array [],
+          value: Uint8Array []
         },
         {
-          key: Uint8Array [
-            38,
-            26,
-            98,
-            8
-          ],
-          value: Uint8Array [
-            38,
-            26,
-            98,
-            8
-          ]
+          key: Uint8Array [],
+          value: Uint8Array []
         }
       ],
       code: 0,
-      time: '2019-04-24T11:08:55.987Z',
+      time: '2019-04-28T06:09:29.285Z',
       createAsset: {
         asset: 'arcblock'
       },
@@ -4547,60 +3391,30 @@ result.on('data', data => {
         from: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
         nonce: 5,
         chainId: 'arcblock',
-        pk: Uint8Array [
-          38,
-          26,
-          98,
-          8
-        ],
-        signature: Uint8Array [
-          38,
-          26,
-          98,
-          8
-        ],
+        pk: Uint8Array [],
+        signature: Uint8Array [],
         signatures: [
           {
             signer: 'arcblock',
-            pk: Uint8Array [
-              38,
-              26,
-              98,
-              8
-            ],
-            signature: Uint8Array [
-              38,
-              26,
-              98,
-              8
-            ],
+            pk: Uint8Array [],
+            signature: Uint8Array [],
             data: {
-              type: 'fg:x:random_data',
+              type: 'string',
               value: 'ABCD 1234'
             }
           },
           {
             signer: 'arcblock',
-            pk: Uint8Array [
-              38,
-              26,
-              98,
-              8
-            ],
-            signature: Uint8Array [
-              38,
-              26,
-              98,
-              8
-            ],
+            pk: Uint8Array [],
+            signature: Uint8Array [],
             data: {
-              type: 'fg:x:random_data',
+              type: 'string',
               value: 'ABCD 1234'
             }
           }
         ],
         itx: {
-          type: 'fg:x:random_data',
+          type: 'string',
           value: 'ABCD 1234'
         }
       },
@@ -4609,36 +3423,16 @@ result.on('data', data => {
       hash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
       tags: [
         {
-          key: Uint8Array [
-            38,
-            26,
-            98,
-            8
-          ],
-          value: Uint8Array [
-            38,
-            26,
-            98,
-            8
-          ]
+          key: Uint8Array [],
+          value: Uint8Array []
         },
         {
-          key: Uint8Array [
-            38,
-            26,
-            98,
-            8
-          ],
-          value: Uint8Array [
-            38,
-            26,
-            98,
-            8
-          ]
+          key: Uint8Array [],
+          value: Uint8Array []
         }
       ],
       code: 0,
-      time: '2019-04-24T11:08:55.987Z',
+      time: '2019-04-28T06:09:29.285Z',
       createAsset: {
         asset: 'arcblock'
       },
@@ -4649,6 +3443,7 @@ result.on('data', data => {
   ]
 }
 });
+
 ```
 
 ### sendTx
@@ -4659,60 +3454,30 @@ const result = await client.sendTx({
     from: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
     nonce: 5,
     chainId: 'arcblock',
-    pk: Uint8Array [
-      38,
-      26,
-      98,
-      8
-    ],
-    signature: Uint8Array [
-      38,
-      26,
-      98,
-      8
-    ],
+    pk: Uint8Array [],
+    signature: Uint8Array [],
     signatures: [
       {
         signer: 'arcblock',
-        pk: Uint8Array [
-          38,
-          26,
-          98,
-          8
-        ],
-        signature: Uint8Array [
-          38,
-          26,
-          98,
-          8
-        ],
+        pk: Uint8Array [],
+        signature: Uint8Array [],
         data: {
-          type: 'fg:x:random_data',
+          type: 'string',
           value: 'ABCD 1234'
         }
       },
       {
         signer: 'arcblock',
-        pk: Uint8Array [
-          38,
-          26,
-          98,
-          8
-        ],
-        signature: Uint8Array [
-          38,
-          26,
-          98,
-          8
-        ],
+        pk: Uint8Array [],
+        signature: Uint8Array [],
         data: {
-          type: 'fg:x:random_data',
+          type: 'string',
           value: 'ABCD 1234'
         }
       }
     ],
     itx: {
-      type: 'fg:x:random_data',
+      type: 'string',
       value: 'ABCD 1234'
     }
   },
@@ -4723,22 +3488,12 @@ const result = await client.sendTx({
       address: 0,
       role: 0
     },
-    sk: Uint8Array [
-      38,
-      26,
-      98,
-      8
-    ],
-    pk: Uint8Array [
-      38,
-      26,
-      98,
-      8
-    ],
+    sk: Uint8Array [],
+    pk: Uint8Array [],
     address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55'
   },
   token: 'arcblock',
-  commit: undefined
+  commit: true
 });
 
 // response is a stream
@@ -4749,18 +3504,14 @@ result.on('data', data => {
   hash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55'
 }
 });
+
 ```
 
 ### storeFile
 
 ```js
 const result = await client.storeFile({
-  chunk: Uint8Array [
-    38,
-    26,
-    98,
-    8
-  ]
+  chunk: Uint8Array []
 });
 
 // response is a stream
@@ -4771,6 +3522,7 @@ result.on('data', data => {
   hash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55'
 }
 });
+
 ```
 
 ### subscribe
@@ -4785,6 +3537,7 @@ const stream = client.subscribe({
 {
   topic: 'arcblock'
 }
+
 ```
 
 ### unsubscribe
@@ -4801,11 +3554,7 @@ result.on('data', data => {
   code: 0
 }
 });
+
 ```
 
 
-## Contributors
-
-| Name           | Website                    |
-| -------------- | -------------------------- |
-| **wangshijun** | <https://ocap.arcblock.io> |
