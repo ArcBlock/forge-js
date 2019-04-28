@@ -1,4 +1,7 @@
-// most functions are from: https://github.com/ethereum/web3.js/blob/1.0/packages/web3-utils/src/Utils.js
+/**
+ * @fileOverview Contains many utility functions to help developers manipulate encoding/decoding/formatting/bignumber
+ * @module forge-util
+ */
 const isBoolean = require('lodash/isBoolean');
 const isString = require('lodash/isString');
 const isNumber = require('lodash/isNumber');
@@ -13,6 +16,7 @@ const negative1 = new BN(-1);
 
 /**
  * Returns a `Boolean` on whether or not the a `String` starts with '0x'
+ *
  * @param {String} str the string input value
  * @return {Boolean} a boolean if it is or is not hex prefixed
  * @throws if the str input is not a string
@@ -27,6 +31,7 @@ const isHexPrefixed = str => {
 
 /**
  * Removes '0x' from a given `String` if present
+ *
  * @param {String} str the string value
  * @return {String|Optional} a string by pass if necessary
  */
@@ -42,9 +47,7 @@ const stripHexPrefix = str => {
  * Returns true if object is BN, otherwise false
  *
  * @method isBN
- *
  * @param {Object} object
- *
  * @returns {Boolean}
  */
 const isBN = object => {
@@ -55,9 +58,7 @@ const isBN = object => {
  * Returns true if object is BigNumber, otherwise false
  *
  * @method isBigNumber
- *
  * @param {Object} object
- *
  * @returns {Boolean}
  */
 const isBigNumber = object => {
@@ -68,9 +69,7 @@ const isBigNumber = object => {
  * Takes an input and transforms it into an BN
  *
  * @method toBN
- *
  * @param {Number|String|BN} number, string, HEX string or BN
- *
  * @returns {BN} BN
  */
 const toBN = number => {
@@ -85,9 +84,7 @@ const toBN = number => {
  * Should be called to get hex representation (prefixed by 0x) of utf8 string
  *
  * @method utf8ToHex
- *
  * @param {String} str
- *
  * @returns {String} hex representation of input string
  */
 const utf8ToHex = str => {
@@ -123,9 +120,7 @@ const utf8ToHex = str => {
  * Should be called to get utf8 from it's hex representation
  *
  * @method hexToUtf8
- *
  * @param {String} hex
- *
  * @returns {String} ascii string representation of hex value
  */
 const hexToUtf8 = hex => {
@@ -163,9 +158,7 @@ const hexToUtf8 = hex => {
  * Converts value to it's number representation
  *
  * @method hexToNumber
- *
  * @param {String|Number|BN} value
- *
  * @returns {Number}
  */
 const hexToNumber = value => {
@@ -180,9 +173,7 @@ const hexToNumber = value => {
  * Converts value to it's decimal representation in string
  *
  * @method hexToNumberString
- *
  * @param {String|Number|BN} value
- *
  * @returns {String}
  */
 const hexToNumberString = value => {
@@ -195,9 +186,7 @@ const hexToNumberString = value => {
  * Converts value to it's hex representation
  *
  * @method numberToHex
- *
  * @param {String|Number|BN} value
- *
  * @returns {String}
  */
 const numberToHex = value => {
@@ -221,9 +210,7 @@ const numberToHex = value => {
  * Note: Implementation from crypto-js
  *
  * @method bytesToHex
- *
  * @param {Array} bytes
- *
  * @returns {String} the hex string
  */
 const bytesToHex = bytes => {
@@ -243,9 +230,7 @@ const bytesToHex = bytes => {
  * Note: Implementation from crypto-js
  *
  * @method hexToBytes
- *
  * @param {String} hex
- *
  * @returns {Array} the byte array
  */
 const hexToBytes = hex => {
@@ -271,10 +256,8 @@ const hexToBytes = hex => {
  * And even stringifys objects before.
  *
  * @method toHex
- *
  * @param {String|Number|BN|Object|TypedArray|Buffer} value
  * @param {Boolean} returnType
- *
  * @returns {String}
  */
 const toHex = (value, returnType) => {
@@ -304,9 +287,7 @@ const toHex = (value, returnType) => {
  * Check if string is HEX, requires a 0x in front
  *
  * @method isHexStrict
- *
  * @param {String} hex to be checked
- *
  * @returns {Boolean}
  */
 const isHexStrict = hex => {
@@ -317,9 +298,7 @@ const isHexStrict = hex => {
  * Check if string is HEX
  *
  * @method isHex
- *
  * @param {String} hex to be checked
- *
  * @returns {Boolean}
  */
 const isHex = hex => {
@@ -349,6 +328,15 @@ const numberToString = arg => {
   );
 };
 
+/**
+ * Format a big number to human readable number, such as 1_0000_0000_0000_000 => 1 Token
+ *
+ * @method fromUintToToken
+ * @param {string|number} input
+ * @param {number} [decimal=16]
+ * @param {*} optionsInput
+ * @returns {string}
+ */
 const fromUnitToToken = (input, decimal = 16, optionsInput) => {
   let arc = numberToBN(input);
   const negative = arc.lt(zero);
@@ -382,6 +370,13 @@ const fromUnitToToken = (input, decimal = 16, optionsInput) => {
   return value;
 };
 
+/**
+ * Convert human readable token number to big number instance
+ *
+ * @param {string} input
+ * @param {number} [decimal=16]
+ * @returns BN
+ */
 const fromTokenToUnit = (input, decimal = 16) => {
   let ether = numberToString(input);
   const base = toBN(`1${'0'.repeat(decimal)}`, 10);
