@@ -12,7 +12,9 @@
       "packages/forge-wallet/lib",
       "packages/mcrypto/lib",
       "packages/graphql-client/src/client.js",
-      "packages/graphql-client/src/types.js"
+      "packages/graphql-client/src/types.js",
+      "packages/grpc-client/lib/client.js",
+      "packages/grpc-client/lib/types.js"
     ],
     "includePattern": ".js$",
     "excludePattern": "(node_modules/|docs)"

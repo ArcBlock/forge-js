@@ -1611,7 +1611,7 @@
  * @memberof GraphQLClient
  * @function
  * @name GraphQLClient#sendCreateAssetTx
- * @param {GraphQLClient.CreateAssetTxInput}
+ * @param {GraphQLClient.CreateAssetTxInput} params
  * @returns {Promise} returns transaction hash if success, otherwise error was thrown
  */
 
@@ -1641,7 +1641,7 @@
  * @memberof GraphQLClient
  * @function
  * @name GraphQLClient#sendTransferTx
- * @param {GraphQLClient.TransferTxInput}
+ * @param {GraphQLClient.TransferTxInput} params
  * @returns {Promise} returns transaction hash if success, otherwise error was thrown
  */
 
@@ -1671,7 +1671,7 @@
  * @memberof GraphQLClient
  * @function
  * @name GraphQLClient#sendPokeTx
- * @param {GraphQLClient.PokeTxInput}
+ * @param {GraphQLClient.PokeTxInput} params
  * @returns {Promise} returns transaction hash if success, otherwise error was thrown
  */
 
@@ -1701,7 +1701,7 @@
  * @memberof GraphQLClient
  * @function
  * @name GraphQLClient#sendDeployProtocolTx
- * @param {GraphQLClient.DeployProtocolTxInput}
+ * @param {GraphQLClient.DeployProtocolTxInput} params
  * @returns {Promise} returns transaction hash if success, otherwise error was thrown
  */
 
@@ -1731,7 +1731,7 @@
  * @memberof GraphQLClient
  * @function
  * @name GraphQLClient#sendUpgradeNodeTx
- * @param {GraphQLClient.UpgradeNodeTxInput}
+ * @param {GraphQLClient.UpgradeNodeTxInput} params
  * @returns {Promise} returns transaction hash if success, otherwise error was thrown
  */
 
@@ -1761,7 +1761,7 @@
  * @memberof GraphQLClient
  * @function
  * @name GraphQLClient#sendUpdateAssetTx
- * @param {GraphQLClient.UpdateAssetTxInput}
+ * @param {GraphQLClient.UpdateAssetTxInput} params
  * @returns {Promise} returns transaction hash if success, otherwise error was thrown
  */
 
@@ -1791,7 +1791,7 @@
  * @memberof GraphQLClient
  * @function
  * @name GraphQLClient#sendAccountMigrateTx
- * @param {GraphQLClient.AccountMigrateTxInput}
+ * @param {GraphQLClient.AccountMigrateTxInput} params
  * @returns {Promise} returns transaction hash if success, otherwise error was thrown
  */
 
@@ -1821,7 +1821,7 @@
  * @memberof GraphQLClient
  * @function
  * @name GraphQLClient#sendConsumeAssetTx
- * @param {GraphQLClient.ConsumeAssetTxInput}
+ * @param {GraphQLClient.ConsumeAssetTxInput} params
  * @returns {Promise} returns transaction hash if success, otherwise error was thrown
  */
 
@@ -1851,7 +1851,7 @@
  * @memberof GraphQLClient
  * @function
  * @name GraphQLClient#sendDeclareTx
- * @param {GraphQLClient.DeclareTxInput}
+ * @param {GraphQLClient.DeclareTxInput} params
  * @returns {Promise} returns transaction hash if success, otherwise error was thrown
  */
 
@@ -1881,7 +1881,7 @@
  * @memberof GraphQLClient
  * @function
  * @name GraphQLClient#sendExchangeTx
- * @param {GraphQLClient.ExchangeTxInput}
+ * @param {GraphQLClient.ExchangeTxInput} params
  * @returns {Promise} returns transaction hash if success, otherwise error was thrown
  */
 
@@ -1911,7 +1911,7 @@
  * @memberof GraphQLClient
  * @function
  * @name GraphQLClient#sendDeclareFileTx
- * @param {GraphQLClient.DeclareFileTxInput}
+ * @param {GraphQLClient.DeclareFileTxInput} params
  * @returns {Promise} returns transaction hash if success, otherwise error was thrown
  */
 
@@ -1941,7 +1941,7 @@
  * @memberof GraphQLClient
  * @function
  * @name GraphQLClient#sendStakeTx
- * @param {GraphQLClient.StakeTxInput}
+ * @param {GraphQLClient.StakeTxInput} params
  * @returns {Promise} returns transaction hash if success, otherwise error was thrown
  */
 
@@ -1953,7 +1953,7 @@
  * @name GraphQLClient#encodeCreateAssetTx
  * @function
  * @memberof GraphQLClient
- * @param {GraphQLClient.CreateAssetTxInput}
+ * @param {GraphQLClient.CreateAssetTxInput} params
  * @returns {object} result - we provide two formats of the encoding result
  * @returns {buffer} result.buffer - binary presentation of the tx, can be used for further encoding or signing
  * @returns {object} result.object - human readable tx object
@@ -1966,7 +1966,7 @@
  * @name GraphQLClient#encodeTransferTx
  * @function
  * @memberof GraphQLClient
- * @param {GraphQLClient.TransferTxInput}
+ * @param {GraphQLClient.TransferTxInput} params
  * @returns {object} result - we provide two formats of the encoding result
  * @returns {buffer} result.buffer - binary presentation of the tx, can be used for further encoding or signing
  * @returns {object} result.object - human readable tx object
@@ -1979,7 +1979,7 @@
  * @name GraphQLClient#encodePokeTx
  * @function
  * @memberof GraphQLClient
- * @param {GraphQLClient.PokeTxInput}
+ * @param {GraphQLClient.PokeTxInput} params
  * @returns {object} result - we provide two formats of the encoding result
  * @returns {buffer} result.buffer - binary presentation of the tx, can be used for further encoding or signing
  * @returns {object} result.object - human readable tx object
@@ -1992,7 +1992,7 @@
  * @name GraphQLClient#encodeDeployProtocolTx
  * @function
  * @memberof GraphQLClient
- * @param {GraphQLClient.DeployProtocolTxInput}
+ * @param {GraphQLClient.DeployProtocolTxInput} params
  * @returns {object} result - we provide two formats of the encoding result
  * @returns {buffer} result.buffer - binary presentation of the tx, can be used for further encoding or signing
  * @returns {object} result.object - human readable tx object
@@ -2005,7 +2005,7 @@
  * @name GraphQLClient#encodeUpgradeNodeTx
  * @function
  * @memberof GraphQLClient
- * @param {GraphQLClient.UpgradeNodeTxInput}
+ * @param {GraphQLClient.UpgradeNodeTxInput} params
  * @returns {object} result - we provide two formats of the encoding result
  * @returns {buffer} result.buffer - binary presentation of the tx, can be used for further encoding or signing
  * @returns {object} result.object - human readable tx object
@@ -2018,7 +2018,7 @@
  * @name GraphQLClient#encodeUpdateAssetTx
  * @function
  * @memberof GraphQLClient
- * @param {GraphQLClient.UpdateAssetTxInput}
+ * @param {GraphQLClient.UpdateAssetTxInput} params
  * @returns {object} result - we provide two formats of the encoding result
  * @returns {buffer} result.buffer - binary presentation of the tx, can be used for further encoding or signing
  * @returns {object} result.object - human readable tx object
@@ -2031,7 +2031,7 @@
  * @name GraphQLClient#encodeAccountMigrateTx
  * @function
  * @memberof GraphQLClient
- * @param {GraphQLClient.AccountMigrateTxInput}
+ * @param {GraphQLClient.AccountMigrateTxInput} params
  * @returns {object} result - we provide two formats of the encoding result
  * @returns {buffer} result.buffer - binary presentation of the tx, can be used for further encoding or signing
  * @returns {object} result.object - human readable tx object
@@ -2044,7 +2044,7 @@
  * @name GraphQLClient#encodeConsumeAssetTx
  * @function
  * @memberof GraphQLClient
- * @param {GraphQLClient.ConsumeAssetTxInput}
+ * @param {GraphQLClient.ConsumeAssetTxInput} params
  * @returns {object} result - we provide two formats of the encoding result
  * @returns {buffer} result.buffer - binary presentation of the tx, can be used for further encoding or signing
  * @returns {object} result.object - human readable tx object
@@ -2057,7 +2057,7 @@
  * @name GraphQLClient#encodeDeclareTx
  * @function
  * @memberof GraphQLClient
- * @param {GraphQLClient.DeclareTxInput}
+ * @param {GraphQLClient.DeclareTxInput} params
  * @returns {object} result - we provide two formats of the encoding result
  * @returns {buffer} result.buffer - binary presentation of the tx, can be used for further encoding or signing
  * @returns {object} result.object - human readable tx object
@@ -2070,7 +2070,7 @@
  * @name GraphQLClient#encodeExchangeTx
  * @function
  * @memberof GraphQLClient
- * @param {GraphQLClient.ExchangeTxInput}
+ * @param {GraphQLClient.ExchangeTxInput} params
  * @returns {object} result - we provide two formats of the encoding result
  * @returns {buffer} result.buffer - binary presentation of the tx, can be used for further encoding or signing
  * @returns {object} result.object - human readable tx object
@@ -2083,7 +2083,7 @@
  * @name GraphQLClient#encodeDeclareFileTx
  * @function
  * @memberof GraphQLClient
- * @param {GraphQLClient.DeclareFileTxInput}
+ * @param {GraphQLClient.DeclareFileTxInput} params
  * @returns {object} result - we provide two formats of the encoding result
  * @returns {buffer} result.buffer - binary presentation of the tx, can be used for further encoding or signing
  * @returns {object} result.object - human readable tx object
@@ -2096,7 +2096,7 @@
  * @name GraphQLClient#encodeStakeTx
  * @function
  * @memberof GraphQLClient
- * @param {GraphQLClient.StakeTxInput}
+ * @param {GraphQLClient.StakeTxInput} params
  * @returns {object} result - we provide two formats of the encoding result
  * @returns {buffer} result.buffer - binary presentation of the tx, can be used for further encoding or signing
  * @returns {object} result.object - human readable tx object
@@ -2479,7 +2479,7 @@
  * ```
  *
  * @name GraphQLClient#getAccountState
- * @param {...GraphQLClient.GetAccountStateParams}
+ * @param {...GraphQLClient.GetAccountStateParams} params
  * @function
  * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseGetAccountState>} Checkout {@link GraphQLClient.ResponseGetAccountState} for resolved data format
@@ -2848,7 +2848,7 @@
  * ```
  *
  * @name GraphQLClient#getAssetState
- * @param {...GraphQLClient.GetAssetStateParams}
+ * @param {...GraphQLClient.GetAssetStateParams} params
  * @function
  * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseGetAssetState>} Checkout {@link GraphQLClient.ResponseGetAssetState} for resolved data format
@@ -3208,7 +3208,7 @@
  * ```
  *
  * @name GraphQLClient#getBlock
- * @param {...GraphQLClient.GetBlockParams}
+ * @param {...GraphQLClient.GetBlockParams} params
  * @function
  * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseGetBlock>} Checkout {@link GraphQLClient.ResponseGetBlock} for resolved data format
@@ -3261,7 +3261,7 @@
  * ```
  *
  * @name GraphQLClient#getBlocks
- * @param {...GraphQLClient.GetBlocksParams}
+ * @param {...GraphQLClient.GetBlocksParams} params
  * @function
  * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseGetBlocks>} Checkout {@link GraphQLClient.ResponseGetBlocks} for resolved data format
@@ -3466,7 +3466,7 @@
  * ```
  *
  * @name GraphQLClient#getForgeState
- * @param {...GraphQLClient.GetForgeStateParams}
+ * @param {...GraphQLClient.GetForgeStateParams} params
  * @function
  * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseGetForgeState>} Checkout {@link GraphQLClient.ResponseGetForgeState} for resolved data format
@@ -3549,7 +3549,7 @@
  * ```
  *
  * @name GraphQLClient#getForgeStatsByDay
- * @param {...GraphQLClient.GetForgeStatsByDayParams}
+ * @param {...GraphQLClient.GetForgeStatsByDayParams} params
  * @function
  * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseGetForgeStats>} Checkout {@link GraphQLClient.ResponseGetForgeStats} for resolved data format
@@ -3591,7 +3591,7 @@
  * ```
  *
  * @name GraphQLClient#getForgeStatsByHour
- * @param {...GraphQLClient.GetForgeStatsByHourParams}
+ * @param {...GraphQLClient.GetForgeStatsByHourParams} params
  * @function
  * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseGetForgeStats>} Checkout {@link GraphQLClient.ResponseGetForgeStats} for resolved data format
@@ -4074,7 +4074,7 @@
  * ```
  *
  * @name GraphQLClient#getProtocolState
- * @param {...GraphQLClient.GetProtocolStateParams}
+ * @param {...GraphQLClient.GetProtocolStateParams} params
  * @function
  * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseGetProtocolState>} Checkout {@link GraphQLClient.ResponseGetProtocolState} for resolved data format
@@ -4441,7 +4441,7 @@
  * ```
  *
  * @name GraphQLClient#getStakeState
- * @param {...GraphQLClient.GetStakeStateParams}
+ * @param {...GraphQLClient.GetStakeStateParams} params
  * @function
  * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseGetStakeState>} Checkout {@link GraphQLClient.ResponseGetStakeState} for resolved data format
@@ -4617,7 +4617,7 @@
  * ```
  *
  * @name GraphQLClient#getTx
- * @param {...GraphQLClient.GetTxParams}
+ * @param {...GraphQLClient.GetTxParams} params
  * @function
  * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseGetTx>} Checkout {@link GraphQLClient.ResponseGetTx} for resolved data format
@@ -4784,7 +4784,7 @@
  * ```
  *
  * @name GraphQLClient#getUnconfirmedTxs
- * @param {...GraphQLClient.GetUnconfirmedTxsParams}
+ * @param {...GraphQLClient.GetUnconfirmedTxsParams} params
  * @function
  * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseGetUnconfirmedTxs>} Checkout {@link GraphQLClient.ResponseGetUnconfirmedTxs} for resolved data format
@@ -4995,7 +4995,7 @@
  * ```
  *
  * @name GraphQLClient#listAssetTransactions
- * @param {...GraphQLClient.ListAssetTransactionsParams}
+ * @param {...GraphQLClient.ListAssetTransactionsParams} params
  * @function
  * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseListAssetTransactions>} Checkout {@link GraphQLClient.ResponseListAssetTransactions} for resolved data format
@@ -5044,7 +5044,7 @@
  * ```
  *
  * @name GraphQLClient#listAssets
- * @param {...GraphQLClient.ListAssetsParams}
+ * @param {...GraphQLClient.ListAssetsParams} params
  * @function
  * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseListAssets>} Checkout {@link GraphQLClient.ResponseListAssets} for resolved data format
@@ -5076,7 +5076,7 @@
  * ```
  *
  * @name GraphQLClient#listBlocks
- * @param {...GraphQLClient.ListBlocksParams}
+ * @param {...GraphQLClient.ListBlocksParams} params
  * @function
  * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseListBlocks>} Checkout {@link GraphQLClient.ResponseListBlocks} for resolved data format
@@ -5111,7 +5111,7 @@
  * ```
  *
  * @name GraphQLClient#listStakes
- * @param {...GraphQLClient.ListStakesParams}
+ * @param {...GraphQLClient.ListStakesParams} params
  * @function
  * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseListStakes>} Checkout {@link GraphQLClient.ResponseListStakes} for resolved data format
@@ -5152,7 +5152,7 @@
  * ```
  *
  * @name GraphQLClient#listTopAccounts
- * @param {...GraphQLClient.ListTopAccountsParams}
+ * @param {...GraphQLClient.ListTopAccountsParams} params
  * @function
  * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseListTopAccounts>} Checkout {@link GraphQLClient.ResponseListTopAccounts} for resolved data format
@@ -5325,7 +5325,7 @@
  * ```
  *
  * @name GraphQLClient#listTransactions
- * @param {...GraphQLClient.ListTransactionsParams}
+ * @param {...GraphQLClient.ListTransactionsParams} params
  * @function
  * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseListTransactions>} Checkout {@link GraphQLClient.ResponseListTransactions} for resolved data format
@@ -5346,7 +5346,7 @@
  * ```
  *
  * @name GraphQLClient#sendTx
- * @param {...GraphQLClient.SendTxParams}
+ * @param {...GraphQLClient.SendTxParams} params
  * @function
  * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseSendTx>} Checkout {@link GraphQLClient.ResponseSendTx} for resolved data format
@@ -5404,7 +5404,7 @@
  * ```
  *
  * @name GraphQLClient#unsubscribe
- * @param {...GraphQLClient.UnsubscribeParams}
+ * @param {...GraphQLClient.UnsubscribeParams} params
  * @function
  * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseUnsubscribe>} Checkout {@link GraphQLClient.ResponseUnsubscribe} for resolved data format
@@ -8641,7 +8641,7 @@
  * ```
  *
  * @name GraphQLClient#subscribe
- * @param {...GraphQLClient.SubscribeParams}
+ * @param {...GraphQLClient.SubscribeParams} params
  * @function
  * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseSubscribe>} Checkout {@link GraphQLClient.ResponseSubscribe} for resolved data format

@@ -125,7 +125,7 @@ const generateMethods = (methods, ns) =>
 ${printFormat(x.name)}
  * \`\`\`
  *
- * @name ${namespace}#${x.name}${argType ? `\n * @param {...${ns}.${argType}}` : ''}
+ * @name ${namespace}#${x.name}${argType ? `\n * @param {...${ns}.${argType}} params` : ''}
  * @function
  * @memberof ${ns}
  * @returns {Promise<${resultType}>} Checkout {@link ${resultType}} for resolved data format
@@ -160,7 +160,7 @@ const getTxSendTypes = (name, tx, ns) => `
  * @memberof ${ns}
  * @function
  * @name ${ns}#${name}
- * @param {${ns}.${tx}Input}
+ * @param {${ns}.${tx}Input} params
  * @returns {Promise} returns transaction hash if success, otherwise error was thrown
  */
 `;
@@ -172,7 +172,7 @@ const getTxEncodeTypes = (name, tx, ns) => `
  * @name ${ns}#${name}
  * @function
  * @memberof ${ns}
- * @param {${ns}.${tx}Input}
+ * @param {${ns}.${tx}Input} params
  * @returns {object} result - we provide two formats of the encoding result
  * @returns {buffer} result.buffer - binary presentation of the tx, can be used for further encoding or signing
  * @returns {object} result.object - human readable tx object
