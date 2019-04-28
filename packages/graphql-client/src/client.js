@@ -10,7 +10,20 @@ const debug = require('debug')(require('../package.json').name);
 
 const graphqlSchema = require('./schema/graphql.json');
 
-class GraphqlClient extends BaseClient {
+/**
+ * An http client that can read/write data to a forge powered blockchain node, can be used in both node.js and browser.
+ *
+ * Please note that, due to internal implementation of google-protobuf, all `repeated fields` names are suffixed with `List`
+ *
+ * @class
+ */
+class GraphQLClient extends BaseClient {
+  /**
+   * Create an instance of GraphQLClient
+   *
+   * @constructor
+   * @param {string} [httpEndpoint='http://localhost:8210/api']
+   */
   constructor(httpEndpoint = 'http://localhost:8210/api') {
     super({
       dataSource: 'forge',
@@ -28,14 +41,33 @@ class GraphqlClient extends BaseClient {
     return getMessageType(x).fn;
   }
 
+  /**
+   * List all transaction send methods, each method can send one kind of transactions supported by forge core, such as `DeclareTx`, `PokeTx`
+   *
+   * @method
+   * @returns {Array<string>} method name list
+   */
   getTxSendMethods() {
     return transactions.map(x => camelcase(`send_${x}`));
   }
 
+  /**
+   * List all transaction encode methods, each method can be used to encode transaction to buffer and object
+   *
+   * @method
+   * @returns {Array<string>} method name list
+   */
   getTxEncodeMethods() {
     return transactions.map(x => camelcase(`encode_${x}`));
   }
 
+  /**
+   * Decode transaction buffer to an object
+   *
+   * @method
+   * @param {buffer} buffer
+   * @returns {object} transaction object
+   */
   decodeTx(buffer) {
     const Transaction = this.getType('Transaction');
     return Transaction.deserializeBinary(buffer).toObject();
@@ -102,7 +134,10 @@ class GraphqlClient extends BaseClient {
       /**
        * Generate an transaction sender function
        *
-       * @param {object} { data, wallet } data is the itx object, and wallet is an Wallet instance
+       * @param {object} input - input used to construct the transaction
+       * @param {object} input.data - should be the itx object in most simple case
+       * @param {object} input.wallet - should be a wallet instance constructed using `Wallet`
+       * @param {object} input.signature - the signature of the tx, if this parameter exist, we will not sign the transaction
        * @returns Promise
        */
       const txSendFn = async ({ data, wallet, signature }) => {
@@ -148,4 +183,4 @@ class GraphqlClient extends BaseClient {
   }
 }
 
-module.exports = GraphqlClient;
+module.exports = GraphQLClient;

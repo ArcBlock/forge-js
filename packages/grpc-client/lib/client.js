@@ -9,14 +9,46 @@ const {
   attachFormatFn,
   attachExampleFn,
 } = require('@arcblock/forge-message');
-const debug = require('debug')(`${require('../package.json').name}:Client`);
+const debug = require('debug')(`${require('../package.json').name}`);
 
-class Client {
+/**
+ * An grpc client that can read/write data to a forge powered blockchain node, can be used only in node.js
+ *
+ * Please note that, due to internal implementation of google-protobuf, all `repeated fields` names are suffixed with `List`
+ *
+```js
+const { RpcClient } = require('@arcblock/grpc-client');
+const { parse } = require('@arcblock/forge-config');
+
+const client = new RpcClient(parse('./forge.toml'));
+(async () => {
+  // fetch forge change info
+  const { info } = await client.getChainInfo();
+  console.log('chainInfo', info);
+
+  // get block info
+  const stream = client.getBlock({ height: 11 });
+  stream
+    .on('data', function({ block }) {
+      console.log('blockInfo:', block);
+    })
+    .on('error', err => {
+      console.error('error', err);
+    });
+})();
+```
+ * @class
+ */
+class GRpcClient {
+  /**
+   * Creates an instance of GRpcClient.
+   * @param {*} config
+   */
   constructor(config) {
     this.config = config || {};
     debug('new', this.config);
     if (!this.config.forge.sockGrpc) {
-      throw new Error('Client requires a valid `forge.sockGrpc` to start');
+      throw new Error('GRpcClient requires a valid `forge.sockGrpc` to start');
     }
 
     this._initRpcClients();
@@ -39,7 +71,7 @@ class Client {
   /**
    * Initialize grpc-node clients for each rpc service, lazy connection under the surface
    *
-   * @memberof Client
+   * @private
    */
   _initRpcClients() {
     const socket = this.config.forge.sockGrpc.split('//').pop();
@@ -53,7 +85,7 @@ class Client {
   /**
    * Initialize standard rpc methods defined in protobuf
    *
-   * @memberof Client
+   * @private
    */
   _initRpcMethods() {
     Object.keys(rpcs).forEach(x =>
@@ -115,7 +147,7 @@ class Client {
     }
 
     fn.rpc = true;
-    fn.meta = { group, requestStream, responseStream };
+    fn.meta = { group, requestStream, responseStream, requestType, responseType };
     fn.$format = data => formatMessage(responseType, data);
     attachExampleFn(requestType, fn, '$requestExample');
     attachExampleFn(responseType, fn, '$responseExample');
@@ -126,8 +158,7 @@ class Client {
   /**
    * List standard rpc methods
    *
-   * @returns Object
-   * @memberof Client
+   * @returns {object}
    */
   listRpcMethods() {
     return Object.keys(this)
@@ -142,7 +173,7 @@ class Client {
    * Generate shortcut methods for creating and sending transactions on all supported itx
    * With these shortcut methods, developers can sign/send with just one call
    *
-   * @memberof Client
+   * @private
    */
   _initTxMethods() {
     const requiredRpcMethods = ['getAccountState', 'createTx', 'sendTx'];
@@ -150,6 +181,7 @@ class Client {
       enums.SupportedTxs.forEach(x => this._initTxMethod(x));
     }
   }
+  // TODO: support both send and encode tx
   _initTxMethod(x) {
     const method = camelcase(`send_${x}`);
     debug('_initTxMethod', method);
@@ -181,8 +213,7 @@ class Client {
   /**
    * List standard rpc methods
    *
-   * @returns Object
-   * @memberof Client
+   * @returns {object}
    */
   listTxMethods() {
     return Object.keys(this)
@@ -196,10 +227,9 @@ class Client {
   /**
    * Create an request object from params object
    *
+   * @private
    * @param {String} requestType
    * @param {Object} [params={}]
-   * @returns
-   * @memberof Client
    */
   _createRequest(type, _params) {
     const { fn: Message, fields } = getMessageType(type);
@@ -218,11 +248,10 @@ class Client {
   /**
    * Create unary response handler
    *
+   * @private
    * @param {*} method
    * @param {*} resolve
    * @param {*} reject
-   * @returns
-   * @memberof Client
    */
   _createResponseHandler({ method, resolve, reject, responseType }) {
     return (err, response) => {
@@ -244,10 +273,9 @@ class Client {
   /**
    * Create stream response handler
    *
+   * @private
    * @param {*} method
    * @param {*} stream
-   * @returns
-   * @memberof Client
    */
   _createStreamHandler({ method, stream, responseType }) {
     const emitter = new EventEmitter();
@@ -278,4 +306,4 @@ class Client {
   }
 }
 
-module.exports = Client;
+module.exports = GRpcClient;

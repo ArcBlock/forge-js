@@ -1,3 +1,8 @@
+/**
+ * @fileOverview Contains all static generated javascript files from forge-abi and forge-core-protocols
+ * @module @arcblock/forge-proto
+ */
+
 const get = require('lodash.get');
 const json = require('./lib/spec.json');
 
@@ -110,7 +115,13 @@ module.exports = function(proto) {
     }, {});
   }
 
-  // Search for a type and its fields descriptor
+  //
+  /**
+   * Search for a type and its fields descriptor, then the result can be used to create a protobuf message
+   *
+   * @param {string} type - such as `Transaction`, or `TransferTx`
+   * @returns {object}
+   */
   function getMessageType(type) {
     const { fields, oneofs } = get(spec, type) || get(spec, `abci_vendor.${type}`) || {};
     return {
@@ -120,10 +131,30 @@ module.exports = function(proto) {
     };
   }
 
+  /**
+   * Convert type name to typeUrl, return input when no match found
+   *
+   * ```javascript
+   * toTypeUrl('StakeTx') // 'fg:t:stake'
+   * ```
+   *
+   * @param {string} type
+   * @returns {string}
+   */
   function toTypeUrl(type) {
     return get(typeUrls, type) || type;
   }
 
+  /**
+   * Convert typeUrl string to type constructor name, return input when no match found
+   *
+   * ```javascript
+   * fromTypeUrl('fg:t:stake') // StakeTx
+   * ```
+   *
+   * @param {string} url
+   * @returns {string}
+   */
   function fromTypeUrl(url) {
     const found = Object.entries(typeUrls).find(([, value]) => value === url);
     if (found) {
@@ -134,8 +165,20 @@ module.exports = function(proto) {
   }
 
   return {
+    /**
+     * All enum types and its values (number format), can be accessed from width: enums.KEY_TYPE.ED25519
+     *
+     * @member
+     */
     enums,
+
+    /**
+     * All enum types and its values (human readable string format), can be accessed from width: messages.KEY_TYPE.ED25519
+     *
+     * @member
+     */
     messages,
+
     transactions: enums.SupportedTxs,
     stakes: enums.SupportedStakes,
     rpcs: Object.keys(clients).reduce((acc, x) => {

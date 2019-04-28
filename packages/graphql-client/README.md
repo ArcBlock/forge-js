@@ -68,4 +68,4 @@ console.log({
 
 ## Documentation
 
-Checkout: [API.md](./docs/API.md).
+Checkout: [QUERIES.md](./QUERIES.md).

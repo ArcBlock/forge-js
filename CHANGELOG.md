@@ -1,9 +1,21 @@
 ## 0.20.5 (April 28, 2019)
-  - fix cycle dep
-  - back version for commit fail
-  - Merge branch 'master' into improve-header-on-mobile
+  - chore: ignore docs folder
+  - chore: add documentation sync command
+  - chore: refacot jsdoc config
+  - chore: improve docs
+  - chore: fix graphql-client doc markers
+  - chore: include grpc-client docs
+  - chore: include mcrypto documentation
+  - fix: fakeMessage not handling bool type correctly
+  - chore: add doc generation for forge-config
+  - fix: graphql-client doc generation error
+  - chore: update generated types for doc
+  - chore: fix graphql-client in generated docs
+  - chore: basic docs for forge-message and forge-proto
+  - chore: basic jsdoc generating infra
+  - chore: improve docs forge forge-util and forge-wallet
+  - chore: generate docs for graphql client
   - update readme
-  - improve header on mobile
 
 ## 0.20.4 (April 27, 2019)
   - chore: elimate data version

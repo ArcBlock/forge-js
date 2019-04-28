@@ -8,6 +8,11 @@ const secp256k1 = new EC('secp256k1');
 const compressed = false;
 const encoding = 'hex';
 
+/**
+ * Signer implementation for secp256k1, based on `elliptic`
+ *
+ * @class Secp256k1Signer
+ */
 class Secp256k1Signer extends Signer {
   constructor() {
     super();
@@ -22,6 +27,19 @@ class Secp256k1Signer extends Signer {
     return bn.cmp(secp256k1.curve.n) < 0 && !bn.isZero();
   }
 
+  /**
+   * @public
+   * @typedef KeyPair
+   * @prop {string} publicKey - publicKey in hex format
+   * @prop {string} secretKey - secretKey in hex format
+   * @memberof Secp256k1Signer
+   */
+
+  /**
+   * Generate random secret/public key pair
+   *
+   * @returns {KeyPair}
+   */
   genKeyPair() {
     let sk = null;
     do {
@@ -31,11 +49,24 @@ class Secp256k1Signer extends Signer {
     return { secretKey: bytesToHex(sk), publicKey: pk };
   }
 
+  /**
+   * Get publicKey from secretKey
+   *
+   * @param {string} sk - must be a hex encoded string
+   * @returns {string} hex encoded publicKey
+   */
   getPublicKey(sk) {
     const pk = secp256k1.keyFromPrivate(this.strip0x(sk), encoding).getPublic(compressed, encoding);
     return `0x${pk}`;
   }
 
+  /**
+   * Sign a message and get the signature hex
+   *
+   * @param {string} message
+   * @param {string} sk
+   * @returns {string} hex encoded signature
+   */
   sign(message, sk) {
     const signature = secp256k1
       .keyFromPrivate(this.strip0x(sk), encoding)
@@ -44,6 +75,14 @@ class Secp256k1Signer extends Signer {
     return `0x${signature}`;
   }
 
+  /**
+   * Verify if a signature is valid
+   *
+   * @param {string} message
+   * @param {string} signature
+   * @param {string} pk
+   * @returns {bool}
+   */
   verify(message, signature, pk) {
     return secp256k1
       .keyFromPublic(this.strip0x(pk), encoding)

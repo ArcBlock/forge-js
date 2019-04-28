@@ -1,17 +1,7 @@
 {
-  "version": "0.20.4",
+  "version": "0.20.5",
   "useWorkspaces": true,
   "npmClient": "yarn",
-  "ignoreChanges": [
-    "**/tools/**",
-    "**/docs/**",
-    "**/test/**",
-    "**/*.md",
-    "README.md"
-  ],
-  "packages": [
-    "packages/*",
-    "examples/*",
-    "apps/*"
-  ]
+  "ignoreChanges": ["**/tools/**", "**/docs/**", "**/test/**", "**/*.md", "README.md"],
+  "packages": ["packages/*", "examples/*", "apps/*"]
 }

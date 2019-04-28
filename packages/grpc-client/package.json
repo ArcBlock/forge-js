@@ -1,7 +1,7 @@
 {
   "name": "@arcblock/grpc-client",
   "description": "gRPC client to read/write data on forge powered blockchain",
-  "version": "0.20.4",
+  "version": "0.20.5",
   "author": "wangshijun <shijun@arcblock.io> (https://ocap.arcblock.io)",
   "engines": {
     "node": ">=0.10.0",
@@ -18,10 +18,10 @@
     "wangshijun <shijun@arcblock.io> (https://ocap.arcblock.io)"
   ],
   "dependencies": {
-    "@arcblock/forge-config": "^0.20.0",
-    "@arcblock/forge-message": "^0.20.4",
-    "@arcblock/forge-proto": "^0.20.1",
-    "@arcblock/forge-util": "^0.20.0",
+    "@arcblock/forge-config": "^0.20.5",
+    "@arcblock/forge-message": "^0.20.5",
+    "@arcblock/forge-proto": "^0.20.5",
+    "@arcblock/forge-util": "^0.20.5",
     "camelcase": "^5.0.0",
     "debug": "^4.1.1",
     "grpc": "^1.18.0"
@@ -65,7 +65,8 @@
   },
   "scripts": {
     "lint": "eslint lib index.js tests",
-    "upgrade": "npm run generate-docs && npm run format-docs && npm run generate-dts",
+    "upgrade": "npm run generate-docs && npm run generate-apis && npm run format-docs && npm run generate-dts",
+    "generate-apis": "node tools/generate-apis.js",
     "generate-docs": "node tools/generate-docs.js",
     "format-docs": "remark . -o",
     "generate-dts": "j2d index.js && ./tools/patch-dts.sh && node tools/generate-dts.js",

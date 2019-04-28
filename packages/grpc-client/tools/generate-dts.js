@@ -11,6 +11,7 @@ const types = compactSpec(specs);
 
 const scalarTypes = {
   bytes: 'Uint8Array',
+  bool: 'boolean',
   string: 'string',
   double: 'number',
   float: 'number',
