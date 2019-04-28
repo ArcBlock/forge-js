@@ -35,7 +35,7 @@ function Layout({ children }) {
           </div>
         </Toolbar>
       </AppBar>
-      <main className="main">
+      <main className={window.location.pathname === '/' ? 'main-home' : 'main'}>
         {children}
         <Version key={version}>
           <Tooltip title={`Forge Framework v${nodeInfo.version}, ABT Explorer v${version}`}>
@@ -118,7 +118,7 @@ const Container = styled.div`
     }
   }
 
-  .main {
+  .main-home {
     flex-grow: 1;
     padding-top: 80px;
     box-sizing: border-box;
@@ -126,6 +126,17 @@ const Container = styled.div`
     width: 100%;
     @media (max-width: ${props => props.theme.breakpoints.values.sm}px) {
       padding-top: 152px;
+    }
+  }
+
+  .main {
+    flex-grow: 1;
+    padding-top: 80px;
+    box-sizing: border-box;
+    position: relative;
+    width: 100%;
+    @media (max-width: ${props => props.theme.breakpoints.values.sm}px) {
+      padding-top: 80px;
     }
   }
 `;

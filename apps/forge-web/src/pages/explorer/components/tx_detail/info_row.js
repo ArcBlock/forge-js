@@ -30,7 +30,9 @@ const InfoRows = ({ rows, data }) =>
       }
       const linkValue = typeof link === 'function' ? <Link to={link(value)}>{value}</Link> : null;
       const markupValue = typeof markup === 'function' ? markup(value) : null;
-      return <InfoRow key={key} name={key} value={linkValue || markupValue || value} />;
+      return (
+        <InfoRow key={key} name={key} value={linkValue || markupValue || value} title={value} />
+      );
     })
     .filter(Boolean);
 
@@ -55,6 +57,9 @@ const Container = styled.div`
   }
 
   .info-row__value {
+    flex: 1;
+    overflow: scroll;
+    word-wrap: break-word;
     a {
       color: ${props => props.theme.typography.color.main};
       text-decoration: underline;

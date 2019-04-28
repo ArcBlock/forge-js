@@ -93,6 +93,8 @@ const Container = styled.div`
     font-weight: 900;
     letter-spacing: 2px;
     color: ${props => props.theme.typography.color.main};
+    overflow: scroll;
+    word-break: break-all;
   }
 
   .meta {
