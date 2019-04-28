@@ -1,8 +1,3 @@
-/**
- * @fileOverview signer implementation for ed25519, based on `tweetnacl`
- * @module @arcblock/mcrypto/signer/ed25519
- * @requires @arcblock/forge-util
- */
 const ed25519 = require('tweetnacl').sign;
 const randomBytes = require('randombytes');
 const { toHex, isHexStrict, hexToBytes, bytesToHex } = require('@arcblock/forge-util');
@@ -10,7 +5,7 @@ const { toHex, isHexStrict, hexToBytes, bytesToHex } = require('@arcblock/forge-
 const Signer = require('../protocols/signer');
 
 /**
- * Ed25519 keyPair generating and sign/verify
+ * Signer implementation for ed25519, based on `tweetnacl`
  *
  * @class Ed25519Signer
  */

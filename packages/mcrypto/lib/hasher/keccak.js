@@ -1,9 +1,3 @@
-/**
- * @fileOverview hasher implementation for keccak
- * @module @arcblock/mcrypto/hasher/keccak
- * @requires @arcblock/forge-util
- * @requires js-sha3
- */
 const sha3 = require('js-sha3');
 const { isHexStrict, hexToBytes } = require('@arcblock/forge-util');
 
@@ -29,50 +23,50 @@ class KeccakHasher {
       this[name] = (data, round = 1) => `0x${hashFn(data, round)}`;
     });
   }
-
-  /**
-   * Do hash with length of 224
-   *
-   * @function
-   * @name hash224
-   * @param {string} input - data to hash in hex format
-   * @param {number} round - how many round to do the hash, larger = safer = slower
-   * @returns {string} hash in hex format
-   * @memberof KeccakHasher
-   */
-
-  /**
-   * Do hash with length of 256
-   *
-   * @function
-   * @name hash256
-   * @param {string} input - data to hash in hex format
-   * @param {number} round - how many round to do the hash, larger = safer = slower
-   * @returns {string} hash in hex format
-   * @memberof KeccakHasher
-   */
-
-  /**
-   * Do hash with length of 384
-   *
-   * @function
-   * @name hash384
-   * @param {string} input - data to hash in hex format
-   * @param {number} round - how many round to do the hash, larger = safer = slower
-   * @returns {string} hash in hex format
-   * @memberof KeccakHasher
-   */
-
-  /**
-   * Do hash with length of 512
-   *
-   * @function
-   * @name hash512
-   * @param {string} input - data to hash in hex format
-   * @param {number} round - how many round to do the hash, larger = safer = slower
-   * @returns {string} hash in hex format
-   * @memberof KeccakHasher
-   */
 }
+
+/**
+ * Do hash with length of 224
+ *
+ * @function
+ * @name KeccakHasher#hash224
+ * @param {string} input - data to hash in hex format
+ * @param {number} [round=1] - how many round to do the hash, larger = safer = slower
+ * @returns {string} hash in hex format
+ * @memberof KeccakHasher
+ */
+
+/**
+ * Do hash with length of 256
+ *
+ * @function
+ * @name KeccakHasher#hash256
+ * @param {string} input - data to hash in hex format
+ * @param {number} [round=1] - how many round to do the hash, larger = safer = slower
+ * @returns {string} hash in hex format
+ * @memberof KeccakHasher
+ */
+
+/**
+ * Do hash with length of 384
+ *
+ * @function
+ * @name KeccakHasher#hash384
+ * @param {string} input - data to hash in hex format
+ * @param {number} [round=1] - how many round to do the hash, larger = safer = slower
+ * @returns {string} hash in hex format
+ * @memberof KeccakHasher
+ */
+
+/**
+ * Do hash with length of 512
+ *
+ * @function
+ * @name KeccakHasher#hash512
+ * @param {string} input - data to hash in hex format
+ * @param {number} [round=1] - how many round to do the hash, larger = safer = slower
+ * @returns {string} hash in hex format
+ * @memberof KeccakHasher
+ */
 
 module.exports = new KeccakHasher();

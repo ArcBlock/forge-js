@@ -1,9 +1,17 @@
 /**
- * @fileOverview Forge [mcrypto](https://github.com/ArcBlock/mcrypto) implementation for javascript, just a wrapper around existing javascript crypto libraries.
+ * @fileOverview Forge [mcrypto](https://github.com/ArcBlock/mcrypto) implementation for javascript.
+ * Just a wrapper around existing javascript crypto libraries, implementation details can be found:
+ *
+ * - Signer
+ *    - Ed25519 {@link Ed25519Signer}
+ *    - Secp256k1 {@link Secp256k1Signer}
+ * - Hasher
+ *    - SHA2 {@link Sha2Hasher}
+ *    - SHA3 {@link Sha3Hasher}
+ *    - KECCAK {@link KecaakHasher}
+ *
  * @module @arcblock/mcrypto
  * @example
-## Usage
-
 yarn add @arcblock/mcrypto
  */
 

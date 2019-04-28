@@ -1,10 +1,3 @@
-/**
- * @fileOverview signer implementation for secp256k1, based on `elliptic`
- * @module @arcblock/mcrypto/signer/secp256k1
- * @requires @arcblock/forge-util
- * @requires elliptic
- * @requires bn.js
- */
 const EC = require('elliptic').ec;
 const BN = require('bn.js');
 const randomBytes = require('randombytes');
@@ -16,7 +9,7 @@ const compressed = false;
 const encoding = 'hex';
 
 /**
- * Secp256k1Signer keyPair generating and sign/verify
+ * Signer implementation for secp256k1, based on `elliptic`
  *
  * @class Secp256k1Signer
  */
