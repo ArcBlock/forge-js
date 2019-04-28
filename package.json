@@ -46,7 +46,7 @@
     "lint": "lerna run lint",
     "build": "lerna run clean && lerna run build",
     "clean": "lerna clean",
-    "docs": "jsdoc --configure jsdoc.json --verbose",
+    "docs": "jsdoc --configure jsdoc.js --verbose",
     "test": "CI=1 lerna run test",
     "precommit": "lint-staged && lerna run precommit",
     "prepush": "lint-staged && lerna run prepush",
