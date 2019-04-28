@@ -49,9 +49,9 @@ doc:
 	@yarn docs
 	@aws s3 sync ./docs s3://docs.arcblock.io/forge-js --region us-west-2 --profile prod
 
-precommit: dep lint doc build test
+precommit: dep lint build test
 
-travis: init doc coverage
+travis: init coverage
 
 travis-deploy:
 	@echo "Deploy the software by travis"
