@@ -14,3 +14,4 @@ demo.js
 .next
 tmp
 docs
+package-lock.json

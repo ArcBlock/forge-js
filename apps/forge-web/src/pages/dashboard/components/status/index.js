@@ -112,7 +112,7 @@ const Container = styled.div`
         display: flex;
         flex-direction: row-reverse;
         justify-content: flex-end;
-        align-items: center;
+        align-items: flex-start;
         color: ${props => props.theme.typography.color.gray};
 
         p {

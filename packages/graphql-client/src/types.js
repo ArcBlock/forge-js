@@ -1,4 +1,3 @@
-
 /**
  * List all query method names
  *
@@ -86,7 +85,6 @@
  * @property {object} object - the transaction object, human readable
  * @property {buffer} buffer - the transaction binary presentation, can be used to signing, encoding to other formats
  */
-
 
 /**
  * Structure of GraphQLClient.AddressFilter
@@ -1396,7 +1394,6 @@
  * @property {...GraphQLClient.RoleType} role
  */
 
-
 /**
  * Structure of GraphQLClient.GetAccountStateParams
  *
@@ -1585,7 +1582,6 @@
  * @property {string} topic
  */
 
-
 /**
  * Structure of param.data for transaction sending/encoding method sendCreateAssetTx
  *
@@ -1614,7 +1610,6 @@
  * @param {GraphQLClient.CreateAssetTxInput} params
  * @returns {Promise} returns transaction hash if success, otherwise error was thrown
  */
-
 
 /**
  * Structure of param.data for transaction sending/encoding method sendTransferTx
@@ -1645,7 +1640,6 @@
  * @returns {Promise} returns transaction hash if success, otherwise error was thrown
  */
 
-
 /**
  * Structure of param.data for transaction sending/encoding method sendPokeTx
  *
@@ -1674,7 +1668,6 @@
  * @param {GraphQLClient.PokeTxInput} params
  * @returns {Promise} returns transaction hash if success, otherwise error was thrown
  */
-
 
 /**
  * Structure of param.data for transaction sending/encoding method sendDeployProtocolTx
@@ -1705,7 +1698,6 @@
  * @returns {Promise} returns transaction hash if success, otherwise error was thrown
  */
 
-
 /**
  * Structure of param.data for transaction sending/encoding method sendUpgradeNodeTx
  *
@@ -1734,7 +1726,6 @@
  * @param {GraphQLClient.UpgradeNodeTxInput} params
  * @returns {Promise} returns transaction hash if success, otherwise error was thrown
  */
-
 
 /**
  * Structure of param.data for transaction sending/encoding method sendUpdateAssetTx
@@ -1765,7 +1756,6 @@
  * @returns {Promise} returns transaction hash if success, otherwise error was thrown
  */
 
-
 /**
  * Structure of param.data for transaction sending/encoding method sendAccountMigrateTx
  *
@@ -1794,7 +1784,6 @@
  * @param {GraphQLClient.AccountMigrateTxInput} params
  * @returns {Promise} returns transaction hash if success, otherwise error was thrown
  */
-
 
 /**
  * Structure of param.data for transaction sending/encoding method sendConsumeAssetTx
@@ -1825,7 +1814,6 @@
  * @returns {Promise} returns transaction hash if success, otherwise error was thrown
  */
 
-
 /**
  * Structure of param.data for transaction sending/encoding method sendDeclareTx
  *
@@ -1854,7 +1842,6 @@
  * @param {GraphQLClient.DeclareTxInput} params
  * @returns {Promise} returns transaction hash if success, otherwise error was thrown
  */
-
 
 /**
  * Structure of param.data for transaction sending/encoding method sendExchangeTx
@@ -1885,7 +1872,6 @@
  * @returns {Promise} returns transaction hash if success, otherwise error was thrown
  */
 
-
 /**
  * Structure of param.data for transaction sending/encoding method sendDeclareFileTx
  *
@@ -1914,7 +1900,6 @@
  * @param {GraphQLClient.DeclareFileTxInput} params
  * @returns {Promise} returns transaction hash if success, otherwise error was thrown
  */
-
 
 /**
  * Structure of param.data for transaction sending/encoding method sendStakeTx
@@ -1945,8 +1930,6 @@
  * @returns {Promise} returns transaction hash if success, otherwise error was thrown
  */
 
-
-
 /**
  * Encode transaction, users can pass plain objects for itx.data field
  *
@@ -1958,7 +1941,6 @@
  * @returns {buffer} result.buffer - binary presentation of the tx, can be used for further encoding or signing
  * @returns {object} result.object - human readable tx object
  */
-
 
 /**
  * Encode transaction, users can pass plain objects for itx.data field
@@ -1972,7 +1954,6 @@
  * @returns {object} result.object - human readable tx object
  */
 
-
 /**
  * Encode transaction, users can pass plain objects for itx.data field
  *
@@ -1984,7 +1965,6 @@
  * @returns {buffer} result.buffer - binary presentation of the tx, can be used for further encoding or signing
  * @returns {object} result.object - human readable tx object
  */
-
 
 /**
  * Encode transaction, users can pass plain objects for itx.data field
@@ -1998,7 +1978,6 @@
  * @returns {object} result.object - human readable tx object
  */
 
-
 /**
  * Encode transaction, users can pass plain objects for itx.data field
  *
@@ -2010,7 +1989,6 @@
  * @returns {buffer} result.buffer - binary presentation of the tx, can be used for further encoding or signing
  * @returns {object} result.object - human readable tx object
  */
-
 
 /**
  * Encode transaction, users can pass plain objects for itx.data field
@@ -2024,7 +2002,6 @@
  * @returns {object} result.object - human readable tx object
  */
 
-
 /**
  * Encode transaction, users can pass plain objects for itx.data field
  *
@@ -2036,7 +2013,6 @@
  * @returns {buffer} result.buffer - binary presentation of the tx, can be used for further encoding or signing
  * @returns {object} result.object - human readable tx object
  */
-
 
 /**
  * Encode transaction, users can pass plain objects for itx.data field
@@ -2050,7 +2026,6 @@
  * @returns {object} result.object - human readable tx object
  */
 
-
 /**
  * Encode transaction, users can pass plain objects for itx.data field
  *
@@ -2062,7 +2037,6 @@
  * @returns {buffer} result.buffer - binary presentation of the tx, can be used for further encoding or signing
  * @returns {object} result.object - human readable tx object
  */
-
 
 /**
  * Encode transaction, users can pass plain objects for itx.data field
@@ -2076,7 +2050,6 @@
  * @returns {object} result.object - human readable tx object
  */
 
-
 /**
  * Encode transaction, users can pass plain objects for itx.data field
  *
@@ -2089,7 +2062,6 @@
  * @returns {object} result.object - human readable tx object
  */
 
-
 /**
  * Encode transaction, users can pass plain objects for itx.data field
  *
@@ -2101,8 +2073,6 @@
  * @returns {buffer} result.buffer - binary presentation of the tx, can be used for further encoding or signing
  * @returns {object} result.object - human readable tx object
  */
-
-
 
 /**
  * Checkout following query for result format reference:
@@ -2475,7 +2445,7 @@
  *     }
  *   }
  * }
- * 
+ *
  * ```
  *
  * @name GraphQLClient#getAccountState
@@ -2484,7 +2454,6 @@
  * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseGetAccountState>} Checkout {@link GraphQLClient.ResponseGetAccountState} for resolved data format
  */
-
 
 /**
  * Checkout following query for result format reference:
@@ -2844,7 +2813,7 @@
  *     }
  *   }
  * }
- * 
+ *
  * ```
  *
  * @name GraphQLClient#getAssetState
@@ -2853,7 +2822,6 @@
  * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseGetAssetState>} Checkout {@link GraphQLClient.ResponseGetAssetState} for resolved data format
  */
-
 
 /**
  * Checkout following query for result format reference:
@@ -3204,7 +3172,7 @@
  *     }
  *   }
  * }
- * 
+ *
  * ```
  *
  * @name GraphQLClient#getBlock
@@ -3213,7 +3181,6 @@
  * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseGetBlock>} Checkout {@link GraphQLClient.ResponseGetBlock} for resolved data format
  */
-
 
 /**
  * Checkout following query for result format reference:
@@ -3257,7 +3224,7 @@
  *     }
  *   }
  * }
- * 
+ *
  * ```
  *
  * @name GraphQLClient#getBlocks
@@ -3266,7 +3233,6 @@
  * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseGetBlocks>} Checkout {@link GraphQLClient.ResponseGetBlocks} for resolved data format
  */
-
 
 /**
  * Checkout following query for result format reference:
@@ -3297,7 +3263,7 @@
  *     }
  *   }
  * }
- * 
+ *
  * ```
  *
  * @name GraphQLClient#getChainInfo
@@ -3305,7 +3271,6 @@
  * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseGetChainInfo>} Checkout {@link GraphQLClient.ResponseGetChainInfo} for resolved data format
  */
-
 
 /**
  * Checkout following query for result format reference:
@@ -3317,7 +3282,7 @@
  *     config
  *   }
  * }
- * 
+ *
  * ```
  *
  * @name GraphQLClient#getConfig
@@ -3325,7 +3290,6 @@
  * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseGetConfig>} Checkout {@link GraphQLClient.ResponseGetConfig} for resolved data format
  */
-
 
 /**
  * Checkout following query for result format reference:
@@ -3462,7 +3426,7 @@
  *     }
  *   }
  * }
- * 
+ *
  * ```
  *
  * @name GraphQLClient#getForgeState
@@ -3471,7 +3435,6 @@
  * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseGetForgeState>} Checkout {@link GraphQLClient.ResponseGetForgeState} for resolved data format
  */
-
 
 /**
  * Checkout following query for result format reference:
@@ -3504,7 +3467,7 @@
  *     }
  *   }
  * }
- * 
+ *
  * ```
  *
  * @name GraphQLClient#getForgeStats
@@ -3512,7 +3475,6 @@
  * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseGetForgeStats>} Checkout {@link GraphQLClient.ResponseGetForgeStats} for resolved data format
  */
-
 
 /**
  * Checkout following query for result format reference:
@@ -3545,7 +3507,7 @@
  *     }
  *   }
  * }
- * 
+ *
  * ```
  *
  * @name GraphQLClient#getForgeStatsByDay
@@ -3554,7 +3516,6 @@
  * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseGetForgeStats>} Checkout {@link GraphQLClient.ResponseGetForgeStats} for resolved data format
  */
-
 
 /**
  * Checkout following query for result format reference:
@@ -3587,7 +3548,7 @@
  *     }
  *   }
  * }
- * 
+ *
  * ```
  *
  * @name GraphQLClient#getForgeStatsByHour
@@ -3596,7 +3557,6 @@
  * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseGetForgeStats>} Checkout {@link GraphQLClient.ResponseGetForgeStats} for resolved data format
  */
-
 
 /**
  * Checkout following query for result format reference:
@@ -3636,7 +3596,7 @@
  *     }
  *   }
  * }
- * 
+ *
  * ```
  *
  * @name GraphQLClient#getHealthStatus
@@ -3644,7 +3604,6 @@
  * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseGetHealthStatus>} Checkout {@link GraphQLClient.ResponseGetHealthStatus} for resolved data format
  */
-
 
 /**
  * Checkout following query for result format reference:
@@ -3673,7 +3632,7 @@
  *     }
  *   }
  * }
- * 
+ *
  * ```
  *
  * @name GraphQLClient#getNetInfo
@@ -3681,7 +3640,6 @@
  * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseGetNetInfo>} Checkout {@link GraphQLClient.ResponseGetNetInfo} for resolved data format
  */
-
 
 /**
  * Checkout following query for result format reference:
@@ -3720,7 +3678,7 @@
  *     }
  *   }
  * }
- * 
+ *
  * ```
  *
  * @name GraphQLClient#getNodeInfo
@@ -3728,7 +3686,6 @@
  * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseGetNodeInfo>} Checkout {@link GraphQLClient.ResponseGetNodeInfo} for resolved data format
  */
-
 
 /**
  * Checkout following query for result format reference:
@@ -4070,7 +4027,7 @@
  *     }
  *   }
  * }
- * 
+ *
  * ```
  *
  * @name GraphQLClient#getProtocolState
@@ -4079,7 +4036,6 @@
  * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseGetProtocolState>} Checkout {@link GraphQLClient.ResponseGetProtocolState} for resolved data format
  */
-
 
 /**
  * Checkout following query for result format reference:
@@ -4091,7 +4047,7 @@
  *     result
  *   }
  * }
- * 
+ *
  * ```
  *
  * @name GraphQLClient#getSimulatorStatus
@@ -4099,7 +4055,6 @@
  * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseGetSimulatorStatus>} Checkout {@link GraphQLClient.ResponseGetSimulatorStatus} for resolved data format
  */
-
 
 /**
  * Checkout following query for result format reference:
@@ -4437,7 +4392,7 @@
  *     }
  *   }
  * }
- * 
+ *
  * ```
  *
  * @name GraphQLClient#getStakeState
@@ -4446,7 +4401,6 @@
  * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseGetStakeState>} Checkout {@link GraphQLClient.ResponseGetStakeState} for resolved data format
  */
-
 
 /**
  * Checkout following query for result format reference:
@@ -4613,7 +4567,7 @@
  *     }
  *   }
  * }
- * 
+ *
  * ```
  *
  * @name GraphQLClient#getTx
@@ -4622,7 +4576,6 @@
  * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseGetTx>} Checkout {@link GraphQLClient.ResponseGetTx} for resolved data format
  */
-
 
 /**
  * Checkout following query for result format reference:
@@ -4780,7 +4733,7 @@
  *     }
  *   }
  * }
- * 
+ *
  * ```
  *
  * @name GraphQLClient#getUnconfirmedTxs
@@ -4789,7 +4742,6 @@
  * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseGetUnconfirmedTxs>} Checkout {@link GraphQLClient.ResponseGetUnconfirmedTxs} for resolved data format
  */
-
 
 /**
  * Checkout following query for result format reference:
@@ -4819,7 +4771,7 @@
  *     }
  *   }
  * }
- * 
+ *
  * ```
  *
  * @name GraphQLClient#getValidatorsInfo
@@ -4827,7 +4779,6 @@
  * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseGetValidatorsInfo>} Checkout {@link GraphQLClient.ResponseGetValidatorsInfo} for resolved data format
  */
-
 
 /**
  * Checkout following query for result format reference:
@@ -4991,7 +4942,7 @@
  *     }
  *   }
  * }
- * 
+ *
  * ```
  *
  * @name GraphQLClient#listAssetTransactions
@@ -5000,7 +4951,6 @@
  * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseListAssetTransactions>} Checkout {@link GraphQLClient.ResponseListAssetTransactions} for resolved data format
  */
-
 
 /**
  * Checkout following query for result format reference:
@@ -5040,7 +4990,7 @@
  *     }
  *   }
  * }
- * 
+ *
  * ```
  *
  * @name GraphQLClient#listAssets
@@ -5049,7 +4999,6 @@
  * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseListAssets>} Checkout {@link GraphQLClient.ResponseListAssets} for resolved data format
  */
-
 
 /**
  * Checkout following query for result format reference:
@@ -5072,7 +5021,7 @@
  *     }
  *   }
  * }
- * 
+ *
  * ```
  *
  * @name GraphQLClient#listBlocks
@@ -5081,7 +5030,6 @@
  * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseListBlocks>} Checkout {@link GraphQLClient.ResponseListBlocks} for resolved data format
  */
-
 
 /**
  * Checkout following query for result format reference:
@@ -5107,7 +5055,7 @@
  *     }
  *   }
  * }
- * 
+ *
  * ```
  *
  * @name GraphQLClient#listStakes
@@ -5116,7 +5064,6 @@
  * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseListStakes>} Checkout {@link GraphQLClient.ResponseListStakes} for resolved data format
  */
-
 
 /**
  * Checkout following query for result format reference:
@@ -5148,7 +5095,7 @@
  *     }
  *   }
  * }
- * 
+ *
  * ```
  *
  * @name GraphQLClient#listTopAccounts
@@ -5157,7 +5104,6 @@
  * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseListTopAccounts>} Checkout {@link GraphQLClient.ResponseListTopAccounts} for resolved data format
  */
-
 
 /**
  * Checkout following query for result format reference:
@@ -5321,7 +5267,7 @@
  *     }
  *   }
  * }
- * 
+ *
  * ```
  *
  * @name GraphQLClient#listTransactions
@@ -5330,7 +5276,6 @@
  * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseListTransactions>} Checkout {@link GraphQLClient.ResponseListTransactions} for resolved data format
  */
-
 
 /**
  * Checkout following query for result format reference:
@@ -5342,7 +5287,7 @@
  *     hash
  *   }
  * }
- * 
+ *
  * ```
  *
  * @name GraphQLClient#sendTx
@@ -5351,7 +5296,6 @@
  * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseSendTx>} Checkout {@link GraphQLClient.ResponseSendTx} for resolved data format
  */
-
 
 /**
  * Checkout following query for result format reference:
@@ -5362,7 +5306,7 @@
  *     code
  *   }
  * }
- * 
+ *
  * ```
  *
  * @name GraphQLClient#startSimulator
@@ -5370,7 +5314,6 @@
  * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseStartSimulator>} Checkout {@link GraphQLClient.ResponseStartSimulator} for resolved data format
  */
-
 
 /**
  * Checkout following query for result format reference:
@@ -5381,7 +5324,7 @@
  *     code
  *   }
  * }
- * 
+ *
  * ```
  *
  * @name GraphQLClient#stopSimulator
@@ -5389,7 +5332,6 @@
  * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseStopSimulator>} Checkout {@link GraphQLClient.ResponseStopSimulator} for resolved data format
  */
-
 
 /**
  * Checkout following query for result format reference:
@@ -5400,7 +5342,7 @@
  *     code
  *   }
  * }
- * 
+ *
  * ```
  *
  * @name GraphQLClient#unsubscribe
@@ -5409,7 +5351,6 @@
  * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseUnsubscribe>} Checkout {@link GraphQLClient.ResponseUnsubscribe} for resolved data format
  */
-
 
 /**
  * Checkout following query for result format reference:
@@ -8637,7 +8578,7 @@
  *     }
  *   }
  * }
- * 
+ *
  * ```
  *
  * @name GraphQLClient#subscribe
@@ -8646,4 +8587,3 @@
  * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseSubscribe>} Checkout {@link GraphQLClient.ResponseSubscribe} for resolved data format
  */
-

@@ -124,6 +124,7 @@ const Container = styled.div`
 
   .content {
     width: 100%;
+    overflow-x: auto;
   }
 `;
 

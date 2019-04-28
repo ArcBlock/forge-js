@@ -54,7 +54,7 @@ const Container = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     margin-bottom: 10px;
 
     &:nth-last-of-type() {

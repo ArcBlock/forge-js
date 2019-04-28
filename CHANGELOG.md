@@ -1,3 +1,15 @@
+## 0.20.6 (April 29, 2019)
+  - chore: ignore package-lock.json
+  - chore: remove package-lock.json
+  - chore: improve filter on mobile
+  - chore: improve tx detail asset detail account detail page on mobile
+  - chore: improve txs page on mobile
+  - chore: improve tx detail page on mobile
+  - fix: cycle dep
+  - chore: back version for commit fail
+  - chore: Merge branch 'master' into improve-header-on-mobile
+  - chore: improve detail
+
 ## 0.20.5 (April 28, 2019)
   - chore: ignore docs folder
   - chore: add documentation sync command

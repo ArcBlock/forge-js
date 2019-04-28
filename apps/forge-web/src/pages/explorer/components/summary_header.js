@@ -82,6 +82,8 @@ const Container = styled.div`
     letter-spacing: 2px;
     color: ${props => props.theme.typography.color.gray};
     margin-bottom: 10px;
+    overflow: scroll;
+    word-break: break-all;
 
     i {
       margin-right: 5px;
@@ -93,20 +95,26 @@ const Container = styled.div`
     font-weight: 900;
     letter-spacing: 2px;
     color: ${props => props.theme.typography.color.main};
+    overflow: scroll;
+    word-break: break-all;
   }
 
   .meta {
     font-size: 14px;
     display: flex;
     justify-content: flex-start;
-    align-items: flex-start;
+    align-items: center;
 
     .meta__key {
+      width: 80px;
       color: ${props => props.theme.typography.color.main};
       margin-right: 8px;
     }
 
     .meta__value {
+      flex: 1;
+      overflow: scroll;
+      word-break: break-all;
       color: ${props => props.theme.typography.color.gray};
     }
 

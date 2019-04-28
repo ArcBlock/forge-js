@@ -94,7 +94,7 @@ export default function TxDetail({ tx, children, ...rest }) {
           Raw Transaction <ExpandMoreIcon />
         </Button>
         <Collapse in={expanded} timeout="auto" unmountOnExit>
-          <pre>
+          <pre style={{ overflow: 'scroll' }}>
             <code>{JSON.stringify(tx, true, '  ')}</code>
           </pre>
         </Collapse>
