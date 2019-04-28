@@ -1,3 +1,10 @@
+/**
+ * @fileOverview Contains basic helper methods to encode/format/mock a protobuf message
+ * @module forge-message
+ * @requires forge-util
+ * @requires forge-proto
+ */
+
 /* eslint no-console:"off" */
 const camelcase = require('camelcase');
 const jspb = require('google-protobuf');
@@ -46,7 +53,8 @@ const fakeValues = {
 /**
  * Generated a fake message for a type, the message can be RPC request/response
  *
- * @param {String} type
+ * @param {string} type
+ * @returns {object}
  */
 function fakeMessage(type) {
   if (!type) {
@@ -119,9 +127,9 @@ function fakeMessage(type) {
 /**
  * Format an message from RPC to UI friendly
  *
- * @param {*} type
- * @param {*} data
- * @returns object [almost same structure as input]
+ * @param {string} type - input type
+ * @param {object} data - input data
+ * @returns {object} [almost same structure as input]
  */
 function formatMessage(type, data) {
   if (!type) {
@@ -228,9 +236,9 @@ function formatMessage(type, data) {
 /**
  * Create an protobuf encoded Typed message with specified data, ready to send to rpc server
  *
- * @param {*} type
- * @param {*} params
- * @returns Message
+ * @param {string} type - message type defined in forge-proto
+ * @param {object} params - message content
+ * @returns {object} Message instance
  */
 function createMessage(type, params) {
   if (!type && !params) {
@@ -330,8 +338,8 @@ function createMessage(type, params) {
 /**
  * Decode an google.protobuf.Any%{ typeUrl, value } => { type, value }
  *
- * @param {*} data encoded data object
- * @returns Object%{type, value}
+ * @param {object} data encoded data object
+ * @returns {object} Object%{type, value}
  */
 function decodeAny(data) {
   if (!data) {
@@ -358,8 +366,8 @@ function decodeAny(data) {
  * Encode { type, value } => google.protobuf.Any%{ typeUrl, value }
  * Does nothing on already encoded message
  *
- * @param {*} data
- * @returns google.protobuf.Any
+ * @param {object} data
+ * @returns {object} google.protobuf.Any
  */
 function encodeAny(data) {
   if (!data) {
@@ -389,8 +397,8 @@ function encodeAny(data) {
 /**
  * Convert an { seconds, nanos } | date-string to google.protobuf.Timestamp object
  *
- * @param {String|Object} value
- * @returns google.protobuf.Timestamp
+ * @param {string|object} value
+ * @returns {object} instanceof google.protobuf.Timestamp
  */
 function encodeTimestamp(value) {
   if (!value) {
@@ -418,8 +426,8 @@ function encodeTimestamp(value) {
  *
  * FIXME: node strictly equal because we rounded the `nanos` field
  *
- * @param {*} data
- * @returns String
+ * @param {object} data
+ * @returns {strong} String timestamp
  */
 function decodeTimestamp(data) {
   if (data && data.seconds) {
@@ -434,9 +442,9 @@ function decodeTimestamp(data) {
 /**
  * Encode BigUint and BigSint types defined in forge-sdk, double encoding is avoided
  *
- * @param {*} value
- * @param {*} type
- * @returns Message
+ * @param {buffer|string|number} value - value to encode
+ * @param {string} type - type names defined in forge-proto
+ * @returns {object} Message
  */
 function encodeBigInt(value, type) {
   const { fn: BigInt } = getMessageType(type);
@@ -463,8 +471,10 @@ function encodeBigInt(value, type) {
  * Convert BigUint and BigSint to string representation of numbers
  *
  * @link https://stackoverflow.com/questions/23948278/how-to-convert-byte-array-into-a-signed-big-integer-in-javascript
- * @param {*} data
- * @returns String
+ * @param {object} data - usually from encodeBigInt
+ * @param {buffer} data.value
+ * @param {boolean} data.minus
+ * @returns {string} human readable number
  */
 function decodeBigInt(data) {
   const bn = toBN(bytesToHex(data.value));
@@ -475,9 +485,8 @@ function decodeBigInt(data) {
 /**
  * Attach an $format method to rpc response
  *
- * @param {Object} data
- * @param {String} type
- * @memberof Client
+ * @param {object} data
+ * @param {string} type
  */
 function attachFormatFn(type, data, key = '$format') {
   Object.defineProperty(data, key, {
@@ -491,9 +500,8 @@ function attachFormatFn(type, data, key = '$format') {
 /**
  * Attach an example method to
  *
- * @param {Object} data
- * @param {String} type
- * @memberof Client
+ * @param {object} data
+ * @param {string} type
  */
 function attachExampleFn(type, host, key) {
   Object.defineProperty(host, key, {

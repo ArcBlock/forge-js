@@ -21,6 +21,7 @@ const graphqlSchema = require('./schema/graphql.json');
  *
  * @class
  * @memberof graphql-client
+ * @namespace GraphQLClient
  */
 class GraphQLClient extends BaseClient {
   /**

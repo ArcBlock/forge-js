@@ -6,21 +6,12 @@
   "source": {
     "include": [
       "packages/forge-util/lib",
-      "packages/forge-util/package.json",
-      "packages/forge-util/README.md",
-      "packages/forge-message/index.js",
-      "packages/forge-message/package.json",
-      "packages/forge-message/README.md",
+      "packages/forge-proto/init.js",
+      "packages/forge-message/lib/message.js",
       "packages/forge-wallet/lib",
-      "packages/forge-wallet/package.json",
-      "packages/forge-wallet/README.md",
       "packages/mcrypto/lib",
-      "packages/mcrypto/package.json",
-      "packages/mcrypto/README.md",
       "packages/graphql-client/src/client.js",
-      "packages/graphql-client/src/types.js",
-      "packages/graphql-client/package.json",
-      "packages/graphql-client/README.md"
+      "packages/graphql-client/src/types.js"
     ],
     "includePattern": ".js$",
     "excludePattern": "(node_modules/|docs)"
