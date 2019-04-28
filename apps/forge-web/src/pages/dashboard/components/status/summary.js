@@ -9,7 +9,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 
 import IconFa from '../../../../components/iconfa';
-import { getLayerColor } from './util';
+import getLayerColor from './layer_color';
 
 function SummaryStatus({ layers, theme }) {
   return (

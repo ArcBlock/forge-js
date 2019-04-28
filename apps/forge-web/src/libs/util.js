@@ -6,10 +6,11 @@ import camelCase from 'lodash/camelCase';
 import upperFirst from 'lodash/upperFirst';
 import numeral from 'numeral';
 import { fromUnitToToken } from '@arcblock/forge-util';
+import GraphqlClient from '@arcblock/graphql-client';
 
 import { languages, translations } from './locale';
 import { COOKIE_LANGUAGE, networks } from './constant';
-import forge from './forge';
+// import forge from './forge';
 import storage from './storage';
 
 export function detectLocale() {
@@ -134,15 +135,25 @@ export function getExplorerUrl(url) {
     : `/node/explorer${url}`;
 }
 
+const clients = {};
+const getClient = () => {
+  const endpoint = getGraphQLEndpoint();
+  if (!clients[endpoint]) {
+    clients[endpoint] = new GraphqlClient(endpoint);
+  }
+
+  return clients[endpoint];
+};
+
 export async function fetchInfo(tokenInfo, nodeInfo) {
   try {
     if (isEmpty(tokenInfo)) {
-      const { state } = await forge().getForgeState({}, { ignoreFields: ['state.protocols'] });
+      const { state } = await getClient().getForgeState({}, { ignoreFields: ['state.protocols'] });
       // eslint-disable-next-line
       tokenInfo = state.token;
     }
     if (isEmpty(nodeInfo)) {
-      const { info } = await forge().getNodeInfo();
+      const { info } = await getClient().getNodeInfo();
       // eslint-disable-next-line
       nodeInfo = info;
     }

@@ -11,7 +11,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import IconFa from '../../../../components/iconfa';
 import InfoRow from './info_row';
 
-import { getLayerColor } from './util';
+import getLayerColor from './layer_color';
 
 function ForgeStatus({ layer, theme, data }) {
   return (
