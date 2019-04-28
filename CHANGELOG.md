@@ -1,3 +1,10 @@
+## 0.20.5 (April 28, 2019)
+  - fix cycle dep
+  - back version for commit fail
+  - Merge branch 'master' into improve-header-on-mobile
+  - update readme
+  - improve header on mobile
+
 ## 0.20.4 (April 27, 2019)
   - chore: elimate data version
   - chore: upgrade graphql-client with latest forge
