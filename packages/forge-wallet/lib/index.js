@@ -29,6 +29,16 @@ const mapping = {
  * @public
  * @param {...walletType} type
  * @returns {object}
+ * @example
+ * const assert = require('assert');
+ * const { WalletType } = require('@arcblock/forge-wallet');
+ * const { types } = require('@arcblock/mcrypto');
+ *
+ * const type = WalletType({
+ *   role: types.RoleType.ROLE_APPLICATION,
+ *   pk: types.KeyType.ED25519,
+ *   hash: types.HashType.SHA3,
+ * });
  */
 function WalletType(type) {
   const { role, pk, hash } = type;
@@ -118,6 +128,20 @@ function Wallet(keyPair, type) {
  * @param {string} sk - the secret key, `hex encoded string`
  * @param {...walletType} type - wallet type
  * @returns {object} wallet instance
+ * @example
+ * const assert = require('assert');
+ * const { fromSecretKey } = require('@arcblock/forge-wallet');
+ *
+ * const sk =
+ *   '0xD67C071B6F51D2B61180B9B1AA9BE0DD0704619F0E30453AB4A592B036EDE644E4852B7091317E3622068E62A5127D1FB0D4AE2FC50213295E10652D2F0ABFC7';
+ * const sig =
+ *   '0x08a102851c38c072e42756c1cc70938b5499c8e9358dfe5f383823f56cdb282ffda60fcd581a02c6c673069e5afc0bf09abbe3639b61b84d64fd58ef9f083003';
+ *
+ * const wallet = fromSecretKey(sk, type);
+ * const message = 'data to sign';
+ * const signature = wallet.sign(message);
+ * assert.equal(signature, sig, "signature should match");
+ * assert.ok(wallet.verify(message, signature), "signature should be verified");
  */
 function fromSecretKey(sk, _type) {
   const type = WalletType(_type);
@@ -145,6 +169,13 @@ function fromPublicKey(pk, _type) {
  * @public
  * @param {string} address - the wallet address
  * @returns wallet instance
+ * @example
+ * const assert = require('assert');
+ * const { fromAddress } = require('@arcblock/forge-wallet');
+ *
+ * const address = 'zNKtCNqYWLYWYW3gWRA1vnRykfCBZYHZvzKr';
+ * const wallet = fromAddress(address);
+ * console.log(wallet.toJSON());
  */
 function fromAddress(address) {
   return Wallet({ address: toAddress(address) }, WalletType(toTypeInfo(address)));
@@ -156,6 +187,10 @@ function fromAddress(address) {
  * @public
  * @param {...walletType} type - wallet type
  * @returns {object} wallet instance
+ * @example
+ * const { fromRandom } = require('@arcblock/forge-wallet');
+ * const wallet = fromRandom(type);
+ * // Do something with wallet
  */
 function fromRandom(_type) {
   const type = WalletType(_type);
@@ -169,6 +204,9 @@ function fromRandom(_type) {
  *
  * @param {object} json
  * @returns wallet instance
+ * const { fromJSON } = require('@arcblock/forge-wallet');
+ * const wallet2 = fromJSON(wallet.toJSON());
+ * // wallet2 is identical to wallet
  */
 function fromJSON(json) {
   const type = WalletType.fromJSON(json.type);
