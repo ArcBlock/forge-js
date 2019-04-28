@@ -54,7 +54,7 @@ class GraphqlClient extends BaseClient {
       const txEncodeFn = async ({ data, wallet }) => {
         // Determine sender address
         const address = data.from || wallet.toAddress();
-        const pk = data.pk || Buffer.from(hexToBytes(wallet.publicKey));
+        const pk = data.pk || Uint8Array.from(hexToBytes(wallet.publicKey));
 
         // Determine chainId & nonce, only attach new one when not exist
         let nonce = typeof data.nonce === 'undefined' ? Date.now() : data.nonce;
@@ -64,11 +64,22 @@ class GraphqlClient extends BaseClient {
           chainId = info.network;
         }
 
+        // Determine signatures for multi sig
+        let signatures = [];
+        if (Array.isArray(data.signatures)) {
+          signatures = data.signatures;
+        }
+        if (Array.isArray(data.signaturesList)) {
+          signatures = data.signaturesList;
+        }
+
         const txObj = {
           from: address,
           nonce,
           pk,
-          chainId: chainId,
+          chainId,
+          signature: data.signature || '',
+          signatures,
           itx: {
             type: x,
             value: data,
@@ -77,14 +88,11 @@ class GraphqlClient extends BaseClient {
 
         const tx = createMessage('Transaction', txObj);
         const txToSignBytes = tx.serializeBinary();
-        debug(`encodeTx.${x}`, {
-          txObj,
-          tx,
-          txBytes: txToSignBytes,
-          txHex: toHex(txToSignBytes),
-        });
+        debug(`encodeTx.${x}.txObj`, tx.toObject());
+        debug(`encodeTx.${x}.txBytes`, txToSignBytes.toString());
+        debug(`encodeTx.${x}.txHex`, toHex(txToSignBytes));
 
-        return { object: txObj, buffer: txToSignBytes };
+        return { object: tx.toObject(), buffer: Uint8Array.from(txToSignBytes) };
       };
 
       const encodeMethod = camelcase(`encode_${x}`);
@@ -101,18 +109,22 @@ class GraphqlClient extends BaseClient {
         let txObj;
         if (signature) {
           txObj = data;
-          txObj.signature = Buffer.from(hexToBytes(signature));
+          txObj.signature = Uint8Array.from(hexToBytes(signature));
+          debug(`sendTx.${x}.hasSignature`, txObj);
         } else {
           const { object, buffer: txToSignBytes } = await txEncodeFn({ data, wallet });
           const signature = wallet.sign(bytesToHex(txToSignBytes));
           txObj = object;
-          txObj.signature = Buffer.from(hexToBytes(signature));
+          txObj.signature = Uint8Array.from(hexToBytes(signature));
         }
 
         const tx = createMessage('Transaction', txObj);
         const txBytes = tx.serializeBinary();
         const txStr = base64.escape(Buffer.from(txBytes).toString('base64'));
-        debug(`sendTx.${x}`, { tx, txBytes, txHex: toHex(txBytes), txStr });
+        debug(`sendTx.${x}.txObj`, tx.toObject());
+        debug(`sendTx.${x}.txBytes`, txBytes.toString());
+        debug(`sendTx.${x}.txHex`, toHex(txBytes));
+        debug(`sendTx.${x}.txB64`, txStr);
 
         return this.sendTx({ tx: txStr });
       };

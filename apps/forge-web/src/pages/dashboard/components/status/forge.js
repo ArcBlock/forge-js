@@ -26,7 +26,6 @@ function ForgeStatus({ layer, theme, data }) {
         <InfoRow label="Latest Block Height" value={data.chain.blockHeight} />
         <InfoRow label="Total Txs Count" value={data.chain.totalTxs} />
         <InfoRow label="Framework Version" value={data.forge.version} />
-        <InfoRow label="Data Version" value={data.forge.dataVersion} />
         <InfoRow label="App Hash" value={data.chain.appHash} />
       </List>
     </List>

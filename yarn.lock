@@ -2,12 +2,13 @@
 # yarn lockfile v1
 
 
-"@arcblock/abt-did@^0.17.0":
-  version "0.17.0"
-  resolved "https://registry.npmjs.org/@arcblock/abt-did/-/abt-did-0.17.0.tgz#cf3ff48cf533b2c3dce6198094ded87c735a5d81"
+"@arcblock/abt-did@^0.19.0":
+  version "0.19.0"
+  resolved "https://registry.npm.taobao.org/@arcblock/abt-did/download/@arcblock/abt-did-0.19.0.tgz#96ac821bddc5ab0e02e2f1359f5a9808b7272856"
+  integrity sha1-lqyCG93Fqw4C4vE1n1qYCLcnKFY=
   dependencies:
-    "@arcblock/forge-util" "^0.17.0"
-    "@arcblock/mcrypto" "^0.17.0"
+    "@arcblock/forge-util" "^0.20.0"
+    "@arcblock/mcrypto" "^0.20.0"
     base64-url "^2.2.0"
     debug "^4.1.1"
     hdkey "^1.1.1"
@@ -24,57 +25,16 @@
     babel-polyfill "^6.26.0"
     js-cookie "^2.2.0"
 
-"@arcblock/forge-proto@^0.15.0":
-  version "0.15.1"
-  resolved "https://registry.npmjs.org/@arcblock/forge-proto/-/forge-proto-0.15.1.tgz#01ff8dc8006c7cb07c5311830cce36aa4d470cfa"
+"@arcblock/did-util@^0.19.1":
+  version "0.19.1"
+  resolved "https://registry.npmjs.org/@arcblock/did-util/-/did-util-0.19.1.tgz#b76f4f3620fe105c3e3481aeeba8f8b2c0b3eba1"
+  integrity sha512-Rf2TOPKgyq1USH5xRjNjc+llPZQeGrMyCy02T7KEK41mriGNHfTlJ2WIU/pFwmTpT0puBtvZYbWWVRBI9kbYXA==
   dependencies:
-    debug "^4.1.1"
-
-"@arcblock/forge-sdk@^0.15.0":
-  version "0.15.0"
-  resolved "https://registry.npmjs.org/@arcblock/forge-sdk/-/forge-sdk-0.15.0.tgz#630431aaf03a133a66fd0bfaea238133d1c80d4d"
-  dependencies:
-    "@arcblock/forge-proto" "^0.15.0"
-    "@arcblock/forge-util" "^0.15.0"
-    "@iarna/toml" "^2.2.1"
-    camelcase "^5.0.0"
-    camelize "^1.0.0"
-    debug "^4.1.1"
-    faker Marak/faker.js#d3ce6f1a2a9359574e7f31f14d4901648047c45a
-    google-protobuf "3.7.0-rc.2"
-    grpc "^1.18.0"
-    lodash "^4.17.11"
-    varint "^5.0.0"
-
-"@arcblock/forge-util@^0.15.0":
-  version "0.15.0"
-  resolved "https://registry.npmjs.org/@arcblock/forge-util/-/forge-util-0.15.0.tgz#481946717f1c3dd87cb93c71b28c64159acb9e18"
-  dependencies:
-    bn.js "4.11.6"
-    lodash "^4.17.11"
-    number-to-bn "^1.7.0"
-    utf8 "^3.0.0"
-
-"@arcblock/forge-util@^0.17.0":
-  version "0.17.0"
-  resolved "https://registry.yarnpkg.com/@arcblock/forge-util/-/forge-util-0.17.0.tgz#3789899ca9d4961c406162fc4199e58dfdece20e"
-  dependencies:
-    bn.js "4.11.6"
-    lodash "^4.17.11"
-    number-to-bn "^1.7.0"
-    utf8 "^3.0.0"
-
-"@arcblock/mcrypto@^0.17.0":
-  version "0.17.0"
-  resolved "https://registry.yarnpkg.com/@arcblock/mcrypto/-/mcrypto-0.17.0.tgz#d1055910648b3c2837a39647137475a6045c56aa"
-  dependencies:
-    "@arcblock/forge-util" "^0.17.0"
-    crypto-js "^3.1.9-1"
-    elliptic "^6.4.1"
-    interface "^1.2.1"
-    js-sha3 "^0.8.0"
-    randombytes "^2.0.6"
-    tweetnacl "^1.0.1"
+    "@arcblock/abt-did" "^0.19.0"
+    "@arcblock/forge-message" "^0.20.1"
+    "@arcblock/forge-util" "^0.20.0"
+    "@arcblock/forge-wallet" "^0.20.0"
+    "@arcblock/mcrypto" "^0.20.0"
 
 "@arcblock/sdk-util@^0.19.0", "@arcblock/sdk-util@^0.19.4":
   version "0.19.4"
@@ -6368,10 +6328,6 @@ extsprintf@1.3.0:
 extsprintf@^1.2.0:
   version "1.4.0"
   resolved "https://registry.npmjs.org/extsprintf/-/extsprintf-1.4.0.tgz#e2689f8f356fad62cca65a3a91c5df5f9551692f"
-
-faker@Marak/faker.js#d3ce6f1a2a9359574e7f31f14d4901648047c45a:
-  version "4.1.0"
-  resolved "https://codeload.github.com/Marak/faker.js/tar.gz/d3ce6f1a2a9359574e7f31f14d4901648047c45a"
 
 fast-deep-equal@^2.0.1:
   version "2.0.1"
@@ -16184,10 +16140,6 @@ validate-npm-package-name@^3.0.0, validate-npm-package-name@~3.0.0:
 value-equal@^0.4.0:
   version "0.4.0"
   resolved "https://registry.npmjs.org/value-equal/-/value-equal-0.4.0.tgz#c5bdd2f54ee093c04839d71ce2e4758a6890abc7"
-
-varint@^5.0.0:
-  version "5.0.0"
-  resolved "https://registry.npmjs.org/varint/-/varint-5.0.0.tgz#d826b89f7490732fabc0c0ed693ed475dcb29ebf"
 
 vary@~1.1.2:
   version "1.1.2"

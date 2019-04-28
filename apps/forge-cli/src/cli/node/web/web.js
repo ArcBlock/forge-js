@@ -1,10 +1,20 @@
 /* eslint no-case-declarations:"off" */
 const shell = require('shelljs');
-const { runNativeForgeCommand, isForgeWebStarted, webUrl, debug } = require('core/env');
+const { runNativeWebCommand, webUrl, debug } = require('core/env');
 const { symbols } = require('core/ui');
 
-const startWebUI = runNativeForgeCommand('rpc "Application.start(:forge_web)"', { silent: true });
-const stopWebUI = runNativeForgeCommand('rpc "Application.stop(:forge_web)"', { silent: true });
+const startWebUI = runNativeWebCommand('start', { silent: true });
+const stopWebUI = runNativeWebCommand('stop', { silent: true });
+const pidWebUI = runNativeWebCommand('pid', { silent: true });
+
+function isForgeWebStarted() {
+  const { stdout } = pidWebUI();
+  if (Number(stdout)) {
+    return true;
+  }
+
+  return false;
+}
 
 function processOutput(output, action) {
   if (/:error/.test(output)) {

@@ -1,3 +1,43 @@
+## 0.20.4 (April 27, 2019)
+  - chore: elimate data version
+  - chore: upgrade graphql-client with latest forge
+  - fix: typo in makefile
+  - chore: upgrade forge web readme
+  - fix: release asset list not including forge_web when download
+  - chore: update readme for forge-web
+  - fix: graphql client test case
+  - chore: add instructions on how to upgrade graphql-client
+  - chore: make a smaller forge-web release
+  - v0.20.3
+
+## 0.20.3 (April 26, 2019)
+  - chore: add forge reset sub command
+  - update readme
+
+## 0.20.2 (April 26, 2019)
+  - chore: upgrade graphql-client to align with forge v0.24.1
+  - chore: forge web related command to native forge_web
+  - Merge branch 'master' into feature/download-forge-web-asset
+  - update readme
+  - dowload forge web
+
+## 0.20.1 (April 26, 2019)
+  - chore: imporve graphql client debugging
+  - chore: update docs
+  - chore: update did lib dependency
+  - chore: add examples for common tasks with graphql-client
+  - chore: improve debug
+  - chore: improve graphql-client debugging
+  - chore: handle multisig in graphql-client
+  - chore: fix uint8array issue
+  - fix: eslint errors
+  - fix: json decode in decodeAny
+  - fix: json encode in createMessage.encodeAny
+  - fix: json decode in formatMessage
+  - fix: unrecoginized typeUrl display
+  - chore: use smaller vendor compiled js files
+  - update readme
+
 ## 0.20.0 (April 24, 2019)
 
 
