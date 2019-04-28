@@ -56,6 +56,7 @@ const Container = styled.div`
   .info-row {
     .hash {
       width: 75%;
+      display: flex;
       a {
         word-break: break-all;
       }

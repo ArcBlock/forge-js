@@ -82,6 +82,8 @@ const Container = styled.div`
     letter-spacing: 2px;
     color: ${props => props.theme.typography.color.gray};
     margin-bottom: 10px;
+    overflow: scroll;
+    word-break: break-all;
 
     i {
       margin-right: 5px;
