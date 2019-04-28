@@ -129,6 +129,7 @@ const ChooserContainer = styled.div`
     }
 
     .header__close {
+      width: 40px;
       color: ${props => props.theme.typography.color.gray};
     }
   }
