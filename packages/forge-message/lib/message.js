@@ -17,6 +17,7 @@ const debug = require('debug')(`${require('../package.json').name}`);
 const enumTypes = Object.keys(enums);
 
 const scalarTypes = [
+  'bool',
   'bytes',
   'string',
   'double',
@@ -31,6 +32,7 @@ const scalarTypes = [
 
 // Utility map to generate random data when compose fake message
 const fakeValues = {
+  bool: true,
   sint32: 1,
   uint32: 2,
   sfixed32: 3,
@@ -46,7 +48,7 @@ const fakeValues = {
   double: '12.3',
 
   string: 'arcblock',
-  bytes: Uint8Array.from([1, 2, 3, 4].map(() => Math.ceil(Math.random() * 100))),
+  bytes: Uint8Array.from([]),
   enums: type => Object.values(enums[type])[0],
 };
 
