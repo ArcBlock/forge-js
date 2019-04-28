@@ -1,32 +1,42 @@
+
+/**
+ * @fileOverview This module defines generated types and functions for graphql-client
+ * @module graphql-client
+ */
+
 /**
  * List all query method names
  *
- * @method
  * @name GraphQLClient#getQueries
+ * @function
+ * @memberof GraphQLClient
  * @returns {Array<string>} method name list
  */
 
 /**
  * List all mutation method names
  *
- * @method
  * @name GraphQLClient#getMutations
+ * @function
+ * @memberof GraphQLClient
  * @returns {Array<string>} method name list
  */
 
 /**
  * List all subscription method names
  *
- * @method
  * @name GraphQLClient#getSubscription
+ * @function
+ * @memberof GraphQLClient
  * @returns {Array<string>} method name list
  */
 
 /**
  * Send raw graphql query to forge graphql endpoint
  *
- * @method
  * @name GraphQLClient#doRawQuery
+ * @function
+ * @memberof GraphQLClient
  * @param {string} query - graphql query string
  * @returns {Promise} usually axios response data
  */
@@ -34,8 +44,9 @@
 /**
  * Send raw graphql subscription to forge graphql endpoint
  *
- * @method
  * @name GraphQLClient#doRawSubscription
+ * @function
+ * @memberof GraphQLClient
  * @param {string} query - graphql query string
  * @returns {Promise} usually axios response data
  */
@@ -43,6 +54,7 @@
 /**
  * Common props for sending or encoding a transaction
  *
+ * @memberof GraphQLClient
  * @typedef {Object} GraphQLClient.TxInputExtra
  * @prop {string} chainId - if not specified, will fetch from graphql endpoint
  * @prop {number} nonce - if not specified, will use Date.now as nonce
@@ -53,6 +65,7 @@
 /**
  * Structure of GraphQLClient.WalletObject
  *
+ * @memberof GraphQLClient
  * @typedef {Object} GraphQLClient.WalletObject
  * @property {string} publicKey
  * @property {string} secretKey
@@ -62,6 +75,7 @@
 /**
  * Structure of GraphQLClient.WalletTypeObject
  *
+ * @memberof GraphQLClient
  * @typedef {Object} GraphQLClient.WalletTypeObject
  * @property {number} pk
  * @property {number} role
@@ -72,15 +86,18 @@
 /**
  * Structure of GraphQLClient.EncodeTxResult
  *
+ * @memberof GraphQLClient
  * @typedef {Object} GraphQLClient.EncodeTxResult
  * @property {object} object - the transaction object, human readable
  * @property {buffer} buffer - the transaction binary presentation, can be used to signing, encoding to other formats
  */
 
+
 /**
  * Structure of GraphQLClient.AddressFilter
  *
- * @typedef {Object} GraphQLClient.AddressFilter
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.AddressFilter
  * @property {...GraphQLClient.Direction} direction
  * @property {string} receiver
  * @property {string} sender
@@ -89,7 +106,8 @@
 /**
  * Structure of GraphQLClient.PageInput
  *
- * @typedef {Object} GraphQLClient.PageInput
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.PageInput
  * @property {string} cursor
  * @property {Array<...GraphQLClient.PageOrder>} order
  * @property {number} size
@@ -98,7 +116,8 @@
 /**
  * Structure of GraphQLClient.PageOrder
  *
- * @typedef {Object} GraphQLClient.PageOrder
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.PageOrder
  * @property {string} field
  * @property {string} type
  */
@@ -106,7 +125,8 @@
 /**
  * Structure of GraphQLClient.RangeFilter
  *
- * @typedef {Object} GraphQLClient.RangeFilter
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.RangeFilter
  * @property {string} from
  * @property {string} to
  */
@@ -114,7 +134,8 @@
 /**
  * Structure of GraphQLClient.TimeFilter
  *
- * @typedef {Object} GraphQLClient.TimeFilter
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.TimeFilter
  * @property {string} endDateTime
  * @property {string} startDateTime
  */
@@ -122,21 +143,24 @@
 /**
  * Structure of GraphQLClient.TypeFilter
  *
- * @typedef {Object} GraphQLClient.TypeFilter
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.TypeFilter
  * @property {Array<...GraphQLClient.string>} types
  */
 
 /**
  * Structure of GraphQLClient.ValidityFilter
  *
- * @typedef {Object} GraphQLClient.ValidityFilter
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.ValidityFilter
  * @property {...GraphQLClient.Validity} validity
  */
 
 /**
  * Structure of GraphQLClient.AbciServerStatus
  *
- * @typedef {Object} GraphQLClient.AbciServerStatus
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.AbciServerStatus
  * @property {string} abciConsensus
  * @property {string} abciInfo
  */
@@ -144,7 +168,8 @@
 /**
  * Structure of GraphQLClient.AccountMigrateTx
  *
- * @typedef {Object} GraphQLClient.AccountMigrateTx
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.AccountMigrateTx
  * @property {string} address
  * @property {...GraphQLClient.Any} data
  * @property {string} pk
@@ -154,7 +179,8 @@
 /**
  * Structure of GraphQLClient.AccountState
  *
- * @typedef {Object} GraphQLClient.AccountState
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.AccountState
  * @property {string} address
  * @property {string} balance
  * @property {...GraphQLClient.StateContext} context
@@ -175,7 +201,8 @@
 /**
  * Structure of GraphQLClient.Any
  *
- * @typedef {Object} GraphQLClient.Any
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.Any
  * @property {string} typeUrl
  * @property {string} value
  */
@@ -183,7 +210,8 @@
 /**
  * Structure of GraphQLClient.AssetState
  *
- * @typedef {Object} GraphQLClient.AssetState
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.AssetState
  * @property {string} address
  * @property {string} consumedTime
  * @property {...GraphQLClient.StateContext} context
@@ -200,7 +228,8 @@
 /**
  * Structure of GraphQLClient.BlockId
  *
- * @typedef {Object} GraphQLClient.BlockId
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.BlockId
  * @property {string} hash
  * @property {...GraphQLClient.PartSetHeader} partsHeader
  */
@@ -208,7 +237,8 @@
 /**
  * Structure of GraphQLClient.BlockInfo
  *
- * @typedef {Object} GraphQLClient.BlockInfo
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.BlockInfo
  * @property {string} appHash
  * @property {string} consensusHash
  * @property {string} dataHash
@@ -233,7 +263,8 @@
 /**
  * Structure of GraphQLClient.BlockInfoSimple
  *
- * @typedef {Object} GraphQLClient.BlockInfoSimple
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.BlockInfoSimple
  * @property {string} appHash
  * @property {string} consensusHash
  * @property {string} dataHash
@@ -256,7 +287,8 @@
 /**
  * Structure of GraphQLClient.ChainInfo
  *
- * @typedef {Object} GraphQLClient.ChainInfo
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.ChainInfo
  * @property {string} address
  * @property {string} appHash
  * @property {string} blockHash
@@ -277,7 +309,8 @@
 /**
  * Structure of GraphQLClient.CircularQueue
  *
- * @typedef {Object} GraphQLClient.CircularQueue
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.CircularQueue
  * @property {boolean} circular
  * @property {boolean} fifo
  * @property {Array<...GraphQLClient.string>} items
@@ -288,7 +321,8 @@
 /**
  * Structure of GraphQLClient.ConsensusParams
  *
- * @typedef {Object} GraphQLClient.ConsensusParams
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.ConsensusParams
  * @property {string} maxBytes
  * @property {number} maxCandidates
  * @property {string} maxGas
@@ -302,7 +336,8 @@
 /**
  * Structure of GraphQLClient.ConsensusStatus
  *
- * @typedef {Object} GraphQLClient.ConsensusStatus
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.ConsensusStatus
  * @property {string} blockHeight
  * @property {boolean} health
  * @property {boolean} synced
@@ -311,7 +346,8 @@
 /**
  * Structure of GraphQLClient.ConsensusUpgradeTx
  *
- * @typedef {Object} GraphQLClient.ConsensusUpgradeTx
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.ConsensusUpgradeTx
  * @property {...GraphQLClient.Any} data
  * @property {string} maxBytes
  * @property {number} maxCandidates
@@ -323,7 +359,8 @@
 /**
  * Structure of GraphQLClient.ConsumeAssetTx
  *
- * @typedef {Object} GraphQLClient.ConsumeAssetTx
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.ConsumeAssetTx
  * @property {string} address
  * @property {...GraphQLClient.Any} data
  * @property {string} issuer
@@ -332,7 +369,8 @@
 /**
  * Structure of GraphQLClient.CoreProtocol
  *
- * @typedef {Object} GraphQLClient.CoreProtocol
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.CoreProtocol
  * @property {string} address
  * @property {string} name
  */
@@ -340,7 +378,8 @@
 /**
  * Structure of GraphQLClient.CreateAssetTx
  *
- * @typedef {Object} GraphQLClient.CreateAssetTx
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.CreateAssetTx
  * @property {string} address
  * @property {...GraphQLClient.Any} data
  * @property {string} moniker
@@ -353,14 +392,16 @@
 /**
  * Structure of GraphQLClient.DeclareFileTx
  *
- * @typedef {Object} GraphQLClient.DeclareFileTx
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.DeclareFileTx
  * @property {string} hash
  */
 
 /**
  * Structure of GraphQLClient.DeclareTx
  *
- * @typedef {Object} GraphQLClient.DeclareTx
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.DeclareTx
  * @property {...GraphQLClient.Any} data
  * @property {string} issuer
  * @property {string} moniker
@@ -369,7 +410,8 @@
 /**
  * Structure of GraphQLClient.DiskSpaceStatus
  *
- * @typedef {Object} GraphQLClient.DiskSpaceStatus
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.DiskSpaceStatus
  * @property {string} forgeUsage
  * @property {string} total
  */
@@ -377,7 +419,8 @@
 /**
  * Structure of GraphQLClient.Evidence
  *
- * @typedef {Object} GraphQLClient.Evidence
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.Evidence
  * @property {string} height
  * @property {string} time
  * @property {string} totalVotingPower
@@ -388,7 +431,8 @@
 /**
  * Structure of GraphQLClient.ExchangeInfo
  *
- * @typedef {Object} GraphQLClient.ExchangeInfo
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.ExchangeInfo
  * @property {Array<...GraphQLClient.string>} assets
  * @property {string} value
  */
@@ -396,7 +440,8 @@
 /**
  * Structure of GraphQLClient.ExchangeTx
  *
- * @typedef {Object} GraphQLClient.ExchangeTx
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.ExchangeTx
  * @property {...GraphQLClient.Any} data
  * @property {string} expiredAt
  * @property {...GraphQLClient.ExchangeInfo} receiver
@@ -407,21 +452,24 @@
 /**
  * Structure of GraphQLClient.ExtraAccountMigrate
  *
- * @typedef {Object} GraphQLClient.ExtraAccountMigrate
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.ExtraAccountMigrate
  * @property {string} address
  */
 
 /**
  * Structure of GraphQLClient.ExtraCreateAsset
  *
- * @typedef {Object} GraphQLClient.ExtraCreateAsset
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.ExtraCreateAsset
  * @property {string} asset
  */
 
 /**
  * Structure of GraphQLClient.ForgeAppsVersionEntry
  *
- * @typedef {Object} GraphQLClient.ForgeAppsVersionEntry
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.ForgeAppsVersionEntry
  * @property {string} key
  * @property {string} value
  */
@@ -429,7 +477,8 @@
 /**
  * Structure of GraphQLClient.ForgeState
  *
- * @typedef {Object} GraphQLClient.ForgeState
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.ForgeState
  * @property {string} address
  * @property {...GraphQLClient.ConsensusParams} consensus
  * @property {...GraphQLClient.Any} data
@@ -448,7 +497,8 @@
 /**
  * Structure of GraphQLClient.ForgeStats
  *
- * @typedef {Object} GraphQLClient.ForgeStats
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.ForgeStats
  * @property {number} avgBlockTime
  * @property {number} avgTps
  * @property {number} maxTps
@@ -474,7 +524,8 @@
 /**
  * Structure of GraphQLClient.ForgeStatus
  *
- * @typedef {Object} GraphQLClient.ForgeStatus
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.ForgeStatus
  * @property {...GraphQLClient.AbciServerStatus} abciServer
  * @property {string} abiServer
  * @property {string} forgeWeb
@@ -484,7 +535,8 @@
 /**
  * Structure of GraphQLClient.ForgeToken
  *
- * @typedef {Object} GraphQLClient.ForgeToken
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.ForgeToken
  * @property {number} decimal
  * @property {string} description
  * @property {string} icon
@@ -499,7 +551,8 @@
 /**
  * Structure of GraphQLClient.GeoInfo
  *
- * @typedef {Object} GraphQLClient.GeoInfo
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.GeoInfo
  * @property {string} city
  * @property {string} country
  * @property {number} latitude
@@ -509,7 +562,8 @@
 /**
  * Structure of GraphQLClient.Header
  *
- * @typedef {Object} GraphQLClient.Header
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.Header
  * @property {string} appHash
  * @property {string} chainId
  * @property {string} consensusHash
@@ -531,7 +585,8 @@
 /**
  * Structure of GraphQLClient.HealthStatus
  *
- * @typedef {Object} GraphQLClient.HealthStatus
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.HealthStatus
  * @property {...GraphQLClient.ConsensusStatus} consensus
  * @property {...GraphQLClient.ForgeStatus} forge
  * @property {...GraphQLClient.NetworkStatus} network
@@ -541,7 +596,8 @@
 /**
  * Structure of GraphQLClient.IndexedAccountState
  *
- * @typedef {Object} GraphQLClient.IndexedAccountState
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.IndexedAccountState
  * @property {string} address
  * @property {string} balance
  * @property {string} genesisTime
@@ -561,7 +617,8 @@
 /**
  * Structure of GraphQLClient.IndexedAssetState
  *
- * @typedef {Object} GraphQLClient.IndexedAssetState
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.IndexedAssetState
  * @property {string} address
  * @property {string} genesisTime
  * @property {string} moniker
@@ -573,7 +630,8 @@
 /**
  * Structure of GraphQLClient.IndexedBlock
  *
- * @typedef {Object} GraphQLClient.IndexedBlock
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.IndexedBlock
  * @property {string} height
  * @property {string} numInvalidTxs
  * @property {string} numTxs
@@ -584,7 +642,8 @@
 /**
  * Structure of GraphQLClient.IndexedStakeState
  *
- * @typedef {Object} GraphQLClient.IndexedStakeState
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.IndexedStakeState
  * @property {string} address
  * @property {string} balance
  * @property {string} genesisTime
@@ -598,7 +657,8 @@
 /**
  * Structure of GraphQLClient.IndexedTransaction
  *
- * @typedef {Object} GraphQLClient.IndexedTransaction
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.IndexedTransaction
  * @property {...GraphQLClient.StatusCode} code
  * @property {string} hash
  * @property {string} receiver
@@ -612,7 +672,8 @@
 /**
  * Structure of GraphQLClient.KvPair
  *
- * @typedef {Object} GraphQLClient.KvPair
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.KvPair
  * @property {string} key
  * @property {string} value
  */
@@ -620,7 +681,8 @@
 /**
  * Structure of GraphQLClient.LastCommitInfo
  *
- * @typedef {Object} GraphQLClient.LastCommitInfo
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.LastCommitInfo
  * @property {number} round
  * @property {Array<...GraphQLClient.VoteInfo>} votes
  */
@@ -628,7 +690,8 @@
 /**
  * Structure of GraphQLClient.Multisig
  *
- * @typedef {Object} GraphQLClient.Multisig
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.Multisig
  * @property {...GraphQLClient.Any} data
  * @property {string} pk
  * @property {string} signature
@@ -638,7 +701,8 @@
 /**
  * Structure of GraphQLClient.NetInfo
  *
- * @typedef {Object} GraphQLClient.NetInfo
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.NetInfo
  * @property {Array<...GraphQLClient.string>} listeners
  * @property {boolean} listening
  * @property {number} nPeers
@@ -648,7 +712,8 @@
 /**
  * Structure of GraphQLClient.NetworkStatus
  *
- * @typedef {Object} GraphQLClient.NetworkStatus
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.NetworkStatus
  * @property {boolean} health
  * @property {number} numPeers
  */
@@ -656,7 +721,8 @@
 /**
  * Structure of GraphQLClient.NodeInfo
  *
- * @typedef {Object} GraphQLClient.NodeInfo
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.NodeInfo
  * @property {string} address
  * @property {string} appHash
  * @property {string} blockHash
@@ -680,7 +746,8 @@
 /**
  * Structure of GraphQLClient.PageInfo
  *
- * @typedef {Object} GraphQLClient.PageInfo
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.PageInfo
  * @property {string} cursor
  * @property {boolean} next
  * @property {number} total
@@ -689,7 +756,8 @@
 /**
  * Structure of GraphQLClient.PartSetHeader
  *
- * @typedef {Object} GraphQLClient.PartSetHeader
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.PartSetHeader
  * @property {string} hash
  * @property {number} total
  */
@@ -697,7 +765,8 @@
 /**
  * Structure of GraphQLClient.PeerInfo
  *
- * @typedef {Object} GraphQLClient.PeerInfo
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.PeerInfo
  * @property {string} consensusVersion
  * @property {...GraphQLClient.GeoInfo} geoInfo
  * @property {string} id
@@ -709,7 +778,8 @@
 /**
  * Structure of GraphQLClient.PokeConfig
  *
- * @typedef {Object} GraphQLClient.PokeConfig
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.PokeConfig
  * @property {string} address
  * @property {string} amount
  * @property {string} balance
@@ -719,7 +789,8 @@
 /**
  * Structure of GraphQLClient.PokeInfo
  *
- * @typedef {Object} GraphQLClient.PokeInfo
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.PokeInfo
  * @property {string} amount
  * @property {string} dailyLimit
  * @property {string} leftover
@@ -728,7 +799,8 @@
 /**
  * Structure of GraphQLClient.PokeTx
  *
- * @typedef {Object} GraphQLClient.PokeTx
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.PokeTx
  * @property {string} address
  * @property {...GraphQLClient.Any} data
  * @property {string} date
@@ -737,7 +809,8 @@
 /**
  * Structure of GraphQLClient.ProtocolState
  *
- * @typedef {Object} GraphQLClient.ProtocolState
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.ProtocolState
  * @property {string} address
  * @property {...GraphQLClient.StateContext} context
  * @property {...GraphQLClient.Any} data
@@ -754,7 +827,8 @@
 /**
  * Structure of GraphQLClient.PubKey
  *
- * @typedef {Object} GraphQLClient.PubKey
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.PubKey
  * @property {string} data
  * @property {string} type
  */
@@ -762,7 +836,8 @@
 /**
  * Structure of GraphQLClient.RequestBeginBlock
  *
- * @typedef {Object} GraphQLClient.RequestBeginBlock
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.RequestBeginBlock
  * @property {Array<...GraphQLClient.Evidence>} byzantineValidators
  * @property {string} hash
  * @property {...GraphQLClient.Header} header
@@ -772,14 +847,16 @@
 /**
  * Structure of GraphQLClient.RequestEndBlock
  *
- * @typedef {Object} GraphQLClient.RequestEndBlock
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.RequestEndBlock
  * @property {string} height
  */
 
 /**
  * Structure of GraphQLClient.ResponseGetAccountState
  *
- * @typedef {Object} GraphQLClient.ResponseGetAccountState
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.ResponseGetAccountState
  * @property {...GraphQLClient.StatusCode} code
  * @property {...GraphQLClient.AccountState} state
  */
@@ -787,7 +864,8 @@
 /**
  * Structure of GraphQLClient.ResponseGetAssetState
  *
- * @typedef {Object} GraphQLClient.ResponseGetAssetState
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.ResponseGetAssetState
  * @property {...GraphQLClient.StatusCode} code
  * @property {...GraphQLClient.AssetState} state
  */
@@ -795,7 +873,8 @@
 /**
  * Structure of GraphQLClient.ResponseGetBlock
  *
- * @typedef {Object} GraphQLClient.ResponseGetBlock
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.ResponseGetBlock
  * @property {...GraphQLClient.BlockInfo} block
  * @property {...GraphQLClient.StatusCode} code
  */
@@ -803,7 +882,8 @@
 /**
  * Structure of GraphQLClient.ResponseGetBlocks
  *
- * @typedef {Object} GraphQLClient.ResponseGetBlocks
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.ResponseGetBlocks
  * @property {Array<...GraphQLClient.BlockInfoSimple>} blocks
  * @property {...GraphQLClient.StatusCode} code
  * @property {...GraphQLClient.PageInfo} page
@@ -812,7 +892,8 @@
 /**
  * Structure of GraphQLClient.ResponseGetChainInfo
  *
- * @typedef {Object} GraphQLClient.ResponseGetChainInfo
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.ResponseGetChainInfo
  * @property {...GraphQLClient.StatusCode} code
  * @property {...GraphQLClient.ChainInfo} info
  */
@@ -820,7 +901,8 @@
 /**
  * Structure of GraphQLClient.ResponseGetConfig
  *
- * @typedef {Object} GraphQLClient.ResponseGetConfig
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.ResponseGetConfig
  * @property {...GraphQLClient.StatusCode} code
  * @property {string} config
  */
@@ -828,7 +910,8 @@
 /**
  * Structure of GraphQLClient.ResponseGetForgeState
  *
- * @typedef {Object} GraphQLClient.ResponseGetForgeState
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.ResponseGetForgeState
  * @property {...GraphQLClient.StatusCode} code
  * @property {...GraphQLClient.ForgeState} state
  */
@@ -836,7 +919,8 @@
 /**
  * Structure of GraphQLClient.ResponseGetForgeStats
  *
- * @typedef {Object} GraphQLClient.ResponseGetForgeStats
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.ResponseGetForgeStats
  * @property {...GraphQLClient.StatusCode} code
  * @property {...GraphQLClient.ForgeStats} forgeStats
  */
@@ -844,7 +928,8 @@
 /**
  * Structure of GraphQLClient.ResponseGetHealthStatus
  *
- * @typedef {Object} GraphQLClient.ResponseGetHealthStatus
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.ResponseGetHealthStatus
  * @property {...GraphQLClient.StatusCode} code
  * @property {...GraphQLClient.HealthStatus} healthStatus
  */
@@ -852,7 +937,8 @@
 /**
  * Structure of GraphQLClient.ResponseGetNetInfo
  *
- * @typedef {Object} GraphQLClient.ResponseGetNetInfo
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.ResponseGetNetInfo
  * @property {...GraphQLClient.StatusCode} code
  * @property {...GraphQLClient.NetInfo} netInfo
  */
@@ -860,7 +946,8 @@
 /**
  * Structure of GraphQLClient.ResponseGetNodeInfo
  *
- * @typedef {Object} GraphQLClient.ResponseGetNodeInfo
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.ResponseGetNodeInfo
  * @property {...GraphQLClient.StatusCode} code
  * @property {...GraphQLClient.NodeInfo} info
  */
@@ -868,7 +955,8 @@
 /**
  * Structure of GraphQLClient.ResponseGetProtocolState
  *
- * @typedef {Object} GraphQLClient.ResponseGetProtocolState
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.ResponseGetProtocolState
  * @property {...GraphQLClient.StatusCode} code
  * @property {...GraphQLClient.ProtocolState} state
  */
@@ -876,7 +964,8 @@
 /**
  * Structure of GraphQLClient.ResponseGetSimulatorStatus
  *
- * @typedef {Object} GraphQLClient.ResponseGetSimulatorStatus
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.ResponseGetSimulatorStatus
  * @property {...GraphQLClient.StatusCode} code
  * @property {string} result
  */
@@ -884,7 +973,8 @@
 /**
  * Structure of GraphQLClient.ResponseGetStakeState
  *
- * @typedef {Object} GraphQLClient.ResponseGetStakeState
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.ResponseGetStakeState
  * @property {...GraphQLClient.StatusCode} code
  * @property {...GraphQLClient.StakeState} state
  */
@@ -892,7 +982,8 @@
 /**
  * Structure of GraphQLClient.ResponseGetTx
  *
- * @typedef {Object} GraphQLClient.ResponseGetTx
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.ResponseGetTx
  * @property {...GraphQLClient.StatusCode} code
  * @property {...GraphQLClient.TransactionInfo} info
  */
@@ -900,7 +991,8 @@
 /**
  * Structure of GraphQLClient.ResponseGetUnconfirmedTxs
  *
- * @typedef {Object} GraphQLClient.ResponseGetUnconfirmedTxs
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.ResponseGetUnconfirmedTxs
  * @property {...GraphQLClient.StatusCode} code
  * @property {...GraphQLClient.PageInfo} page
  * @property {...GraphQLClient.UnconfirmedTxs} unconfirmedTxs
@@ -909,7 +1001,8 @@
 /**
  * Structure of GraphQLClient.ResponseGetValidatorsInfo
  *
- * @typedef {Object} GraphQLClient.ResponseGetValidatorsInfo
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.ResponseGetValidatorsInfo
  * @property {...GraphQLClient.StatusCode} code
  * @property {...GraphQLClient.ValidatorsInfo} validatorsInfo
  */
@@ -917,7 +1010,8 @@
 /**
  * Structure of GraphQLClient.ResponseListAssetTransactions
  *
- * @typedef {Object} GraphQLClient.ResponseListAssetTransactions
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.ResponseListAssetTransactions
  * @property {...GraphQLClient.StatusCode} code
  * @property {...GraphQLClient.PageInfo} page
  * @property {Array<...GraphQLClient.IndexedTransaction>} transactions
@@ -926,7 +1020,8 @@
 /**
  * Structure of GraphQLClient.ResponseListAssets
  *
- * @typedef {Object} GraphQLClient.ResponseListAssets
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.ResponseListAssets
  * @property {...GraphQLClient.IndexedAccountState} account
  * @property {Array<...GraphQLClient.IndexedAssetState>} assets
  * @property {...GraphQLClient.StatusCode} code
@@ -936,7 +1031,8 @@
 /**
  * Structure of GraphQLClient.ResponseListBlocks
  *
- * @typedef {Object} GraphQLClient.ResponseListBlocks
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.ResponseListBlocks
  * @property {Array<...GraphQLClient.IndexedBlock>} blocks
  * @property {...GraphQLClient.StatusCode} code
  * @property {...GraphQLClient.PageInfo} page
@@ -945,7 +1041,8 @@
 /**
  * Structure of GraphQLClient.ResponseListStakes
  *
- * @typedef {Object} GraphQLClient.ResponseListStakes
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.ResponseListStakes
  * @property {...GraphQLClient.StatusCode} code
  * @property {...GraphQLClient.PageInfo} page
  * @property {Array<...GraphQLClient.IndexedStakeState>} stakes
@@ -954,7 +1051,8 @@
 /**
  * Structure of GraphQLClient.ResponseListTopAccounts
  *
- * @typedef {Object} GraphQLClient.ResponseListTopAccounts
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.ResponseListTopAccounts
  * @property {Array<...GraphQLClient.IndexedAccountState>} accounts
  * @property {...GraphQLClient.StatusCode} code
  * @property {...GraphQLClient.PageInfo} page
@@ -963,7 +1061,8 @@
 /**
  * Structure of GraphQLClient.ResponseListTransactions
  *
- * @typedef {Object} GraphQLClient.ResponseListTransactions
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.ResponseListTransactions
  * @property {...GraphQLClient.StatusCode} code
  * @property {...GraphQLClient.PageInfo} page
  * @property {Array<...GraphQLClient.IndexedTransaction>} transactions
@@ -972,7 +1071,8 @@
 /**
  * Structure of GraphQLClient.ResponseSendTx
  *
- * @typedef {Object} GraphQLClient.ResponseSendTx
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.ResponseSendTx
  * @property {...GraphQLClient.StatusCode} code
  * @property {string} hash
  */
@@ -980,21 +1080,24 @@
 /**
  * Structure of GraphQLClient.ResponseStartSimulator
  *
- * @typedef {Object} GraphQLClient.ResponseStartSimulator
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.ResponseStartSimulator
  * @property {...GraphQLClient.StatusCode} code
  */
 
 /**
  * Structure of GraphQLClient.ResponseStopSimulator
  *
- * @typedef {Object} GraphQLClient.ResponseStopSimulator
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.ResponseStopSimulator
  * @property {...GraphQLClient.StatusCode} code
  */
 
 /**
  * Structure of GraphQLClient.ResponseSubscribe
  *
- * @typedef {Object} GraphQLClient.ResponseSubscribe
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.ResponseSubscribe
  * @property {...GraphQLClient.Transaction} accountMigrate
  * @property {...GraphQLClient.AccountState} accountState
  * @property {...GraphQLClient.AssetState} assetState
@@ -1021,14 +1124,16 @@
 /**
  * Structure of GraphQLClient.ResponseUnsubscribe
  *
- * @typedef {Object} GraphQLClient.ResponseUnsubscribe
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.ResponseUnsubscribe
  * @property {...GraphQLClient.StatusCode} code
  */
 
 /**
  * Structure of GraphQLClient.StakeConfig
  *
- * @typedef {Object} GraphQLClient.StakeConfig
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.StakeConfig
  * @property {number} timeoutGeneral
  * @property {number} timeoutStakeForNode
  */
@@ -1036,7 +1141,8 @@
 /**
  * Structure of GraphQLClient.StakeContext
  *
- * @typedef {Object} GraphQLClient.StakeContext
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.StakeContext
  * @property {...GraphQLClient.CircularQueue} recentReceivedStakes
  * @property {...GraphQLClient.CircularQueue} recentStakes
  * @property {string} totalReceivedStakes
@@ -1047,14 +1153,16 @@
 /**
  * Structure of GraphQLClient.StakeDataType
  *
- * @typedef {Object} GraphQLClient.StakeDataType
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.StakeDataType
  * @property {string} type
  */
 
 /**
  * Structure of GraphQLClient.StakeState
  *
- * @typedef {Object} GraphQLClient.StakeState
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.StakeState
  * @property {string} address
  * @property {string} balance
  * @property {...GraphQLClient.StateContext} context
@@ -1067,7 +1175,8 @@
 /**
  * Structure of GraphQLClient.StakeSummary
  *
- * @typedef {Object} GraphQLClient.StakeSummary
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.StakeSummary
  * @property {...GraphQLClient.StateContext} context
  * @property {string} totalStakes
  * @property {string} totalUnstakes
@@ -1076,7 +1185,8 @@
 /**
  * Structure of GraphQLClient.StakeSummaryEntry
  *
- * @typedef {Object} GraphQLClient.StakeSummaryEntry
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.StakeSummaryEntry
  * @property {number} key
  * @property {...GraphQLClient.StakeSummary} value
  */
@@ -1084,7 +1194,8 @@
 /**
  * Structure of GraphQLClient.StakeTx
  *
- * @typedef {Object} GraphQLClient.StakeTx
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.StakeTx
  * @property {...GraphQLClient.StakeDataType} data
  * @property {string} message
  * @property {string} to
@@ -1094,7 +1205,8 @@
 /**
  * Structure of GraphQLClient.StateContext
  *
- * @typedef {Object} GraphQLClient.StateContext
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.StateContext
  * @property {string} genesisTime
  * @property {...GraphQLClient.TransactionInfo} genesisTx
  * @property {string} renaissanceTime
@@ -1104,7 +1216,8 @@
 /**
  * Structure of GraphQLClient.StorageStatus
  *
- * @typedef {Object} GraphQLClient.StorageStatus
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.StorageStatus
  * @property {...GraphQLClient.DiskSpaceStatus} diskSpace
  * @property {boolean} health
  * @property {string} indexerServer
@@ -1114,7 +1227,8 @@
 /**
  * Structure of GraphQLClient.SysUpgradeTx
  *
- * @typedef {Object} GraphQLClient.SysUpgradeTx
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.SysUpgradeTx
  * @property {...GraphQLClient.Any} data
  * @property {string} gracePeriod
  * @property {...GraphQLClient.UpgradeTask} task
@@ -1123,7 +1237,8 @@
 /**
  * Structure of GraphQLClient.TasksEntry
  *
- * @typedef {Object} GraphQLClient.TasksEntry
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.TasksEntry
  * @property {string} key
  * @property {...GraphQLClient.UpgradeTasks} value
  */
@@ -1131,7 +1246,8 @@
 /**
  * Structure of GraphQLClient.Transaction
  *
- * @typedef {Object} GraphQLClient.Transaction
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.Transaction
  * @property {string} chainId
  * @property {string} from
  * @property {...Itx} itx
@@ -1144,7 +1260,8 @@
 /**
  * Structure of GraphQLClient.TransactionConfig
  *
- * @typedef {Object} GraphQLClient.TransactionConfig
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.TransactionConfig
  * @property {number} maxAssetSize
  * @property {number} maxListSize
  * @property {number} maxMultisig
@@ -1154,7 +1271,8 @@
 /**
  * Structure of GraphQLClient.TransactionInfo
  *
- * @typedef {Object} GraphQLClient.TransactionInfo
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.TransactionInfo
  * @property {...GraphQLClient.ExtraAccountMigrate} accountMigrate
  * @property {...GraphQLClient.StatusCode} code
  * @property {...GraphQLClient.ExtraCreateAsset} createAsset
@@ -1169,7 +1287,8 @@
 /**
  * Structure of GraphQLClient.TransferTx
  *
- * @typedef {Object} GraphQLClient.TransferTx
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.TransferTx
  * @property {Array<...GraphQLClient.string>} assets
  * @property {...GraphQLClient.Any} data
  * @property {string} to
@@ -1179,7 +1298,8 @@
 /**
  * Structure of GraphQLClient.UnconfirmedTxs
  *
- * @typedef {Object} GraphQLClient.UnconfirmedTxs
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.UnconfirmedTxs
  * @property {number} nTxs
  * @property {Array<...GraphQLClient.Transaction>} txs
  */
@@ -1187,7 +1307,8 @@
 /**
  * Structure of GraphQLClient.UpdateAssetTx
  *
- * @typedef {Object} GraphQLClient.UpdateAssetTx
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.UpdateAssetTx
  * @property {string} address
  * @property {...GraphQLClient.Any} data
  * @property {string} moniker
@@ -1196,7 +1317,8 @@
 /**
  * Structure of GraphQLClient.UpgradeInfo
  *
- * @typedef {Object} GraphQLClient.UpgradeInfo
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.UpgradeInfo
  * @property {string} height
  * @property {string} version
  */
@@ -1204,7 +1326,8 @@
 /**
  * Structure of GraphQLClient.UpgradeTask
  *
- * @typedef {Object} GraphQLClient.UpgradeTask
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.UpgradeTask
  * @property {Array<...GraphQLClient.UpgradeAction>} actions
  * @property {string} dataHash
  * @property {...GraphQLClient.UpgradeType} type
@@ -1213,14 +1336,16 @@
 /**
  * Structure of GraphQLClient.UpgradeTasks
  *
- * @typedef {Object} GraphQLClient.UpgradeTasks
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.UpgradeTasks
  * @property {Array<...GraphQLClient.UpgradeTask>} item
  */
 
 /**
  * Structure of GraphQLClient.Validator
  *
- * @typedef {Object} GraphQLClient.Validator
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.Validator
  * @property {string} address
  * @property {string} power
  */
@@ -1228,7 +1353,8 @@
 /**
  * Structure of GraphQLClient.ValidatorInfo
  *
- * @typedef {Object} GraphQLClient.ValidatorInfo
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.ValidatorInfo
  * @property {string} address
  * @property {...GraphQLClient.GeoInfo} geoInfo
  * @property {string} name
@@ -1240,7 +1366,8 @@
 /**
  * Structure of GraphQLClient.ValidatorsInfo
  *
- * @typedef {Object} GraphQLClient.ValidatorsInfo
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.ValidatorsInfo
  * @property {string} blockHeight
  * @property {Array<...GraphQLClient.ValidatorInfo>} validators
  */
@@ -1248,7 +1375,8 @@
 /**
  * Structure of GraphQLClient.Version
  *
- * @typedef {Object} GraphQLClient.Version
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.Version
  * @property {string} app
  * @property {string} block
  */
@@ -1256,7 +1384,8 @@
 /**
  * Structure of GraphQLClient.VoteInfo
  *
- * @typedef {Object} GraphQLClient.VoteInfo
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.VoteInfo
  * @property {boolean} signedLastBlock
  * @property {...GraphQLClient.Validator} validator
  */
@@ -1264,17 +1393,20 @@
 /**
  * Structure of GraphQLClient.WalletType
  *
- * @typedef {Object} GraphQLClient.WalletType
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.WalletType
  * @property {...GraphQLClient.EncodingType} address
  * @property {...GraphQLClient.HashType} hash
  * @property {...GraphQLClient.KeyType} pk
  * @property {...GraphQLClient.RoleType} role
  */
 
+
 /**
  * Structure of GraphQLClient.GetAccountStateParams
  *
- * @typedef {Object} GraphQLClient.GetAccountStateParams
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.GetAccountStateParams
  * @property {string} address
  * @property {string} height
  * @property {Array<...GraphQLClient.string>} keys
@@ -1283,7 +1415,8 @@
 /**
  * Structure of GraphQLClient.GetAssetStateParams
  *
- * @typedef {Object} GraphQLClient.GetAssetStateParams
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.GetAssetStateParams
  * @property {string} address
  * @property {string} height
  * @property {Array<...GraphQLClient.string>} keys
@@ -1292,14 +1425,16 @@
 /**
  * Structure of GraphQLClient.GetBlockParams
  *
- * @typedef {Object} GraphQLClient.GetBlockParams
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.GetBlockParams
  * @property {string} height
  */
 
 /**
  * Structure of GraphQLClient.GetBlocksParams
  *
- * @typedef {Object} GraphQLClient.GetBlocksParams
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.GetBlocksParams
  * @property {boolean} emptyExcluded
  * @property {...GraphQLClient.RangeFilter} heightFilter
  * @property {...GraphQLClient.PageInput} paging
@@ -1308,7 +1443,8 @@
 /**
  * Structure of GraphQLClient.GetForgeStateParams
  *
- * @typedef {Object} GraphQLClient.GetForgeStateParams
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.GetForgeStateParams
  * @property {string} height
  * @property {Array<...GraphQLClient.string>} keys
  */
@@ -1316,7 +1452,8 @@
 /**
  * Structure of GraphQLClient.GetForgeStatsByDayParams
  *
- * @typedef {Object} GraphQLClient.GetForgeStatsByDayParams
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.GetForgeStatsByDayParams
  * @property {string} endDate
  * @property {string} startDate
  */
@@ -1324,14 +1461,16 @@
 /**
  * Structure of GraphQLClient.GetForgeStatsByHourParams
  *
- * @typedef {Object} GraphQLClient.GetForgeStatsByHourParams
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.GetForgeStatsByHourParams
  * @property {string} date
  */
 
 /**
  * Structure of GraphQLClient.GetProtocolStateParams
  *
- * @typedef {Object} GraphQLClient.GetProtocolStateParams
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.GetProtocolStateParams
  * @property {string} address
  * @property {string} height
  * @property {Array<...GraphQLClient.string>} keys
@@ -1340,7 +1479,8 @@
 /**
  * Structure of GraphQLClient.GetStakeStateParams
  *
- * @typedef {Object} GraphQLClient.GetStakeStateParams
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.GetStakeStateParams
  * @property {string} address
  * @property {string} height
  * @property {Array<...GraphQLClient.string>} keys
@@ -1349,21 +1489,24 @@
 /**
  * Structure of GraphQLClient.GetTxParams
  *
- * @typedef {Object} GraphQLClient.GetTxParams
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.GetTxParams
  * @property {string} hash
  */
 
 /**
  * Structure of GraphQLClient.GetUnconfirmedTxsParams
  *
- * @typedef {Object} GraphQLClient.GetUnconfirmedTxsParams
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.GetUnconfirmedTxsParams
  * @property {...GraphQLClient.PageInput} paging
  */
 
 /**
  * Structure of GraphQLClient.ListAssetTransactionsParams
  *
- * @typedef {Object} GraphQLClient.ListAssetTransactionsParams
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.ListAssetTransactionsParams
  * @property {string} address
  * @property {...GraphQLClient.PageInput} paging
  */
@@ -1371,7 +1514,8 @@
 /**
  * Structure of GraphQLClient.ListAssetsParams
  *
- * @typedef {Object} GraphQLClient.ListAssetsParams
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.ListAssetsParams
  * @property {string} ownerAddress
  * @property {...GraphQLClient.PageInput} paging
  */
@@ -1379,7 +1523,8 @@
 /**
  * Structure of GraphQLClient.ListBlocksParams
  *
- * @typedef {Object} GraphQLClient.ListBlocksParams
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.ListBlocksParams
  * @property {...GraphQLClient.RangeFilter} heightFilter
  * @property {...GraphQLClient.RangeFilter} numInvalidTxsFilter
  * @property {...GraphQLClient.RangeFilter} numTxsFilter
@@ -1391,7 +1536,8 @@
 /**
  * Structure of GraphQLClient.ListStakesParams
  *
- * @typedef {Object} GraphQLClient.ListStakesParams
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.ListStakesParams
  * @property {...GraphQLClient.AddressFilter} addressFilter
  * @property {...GraphQLClient.PageInput} paging
  */
@@ -1399,14 +1545,16 @@
 /**
  * Structure of GraphQLClient.ListTopAccountsParams
  *
- * @typedef {Object} GraphQLClient.ListTopAccountsParams
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.ListTopAccountsParams
  * @property {...GraphQLClient.PageInput} paging
  */
 
 /**
  * Structure of GraphQLClient.ListTransactionsParams
  *
- * @typedef {Object} GraphQLClient.ListTransactionsParams
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.ListTransactionsParams
  * @property {...GraphQLClient.AddressFilter} addressFilter
  * @property {...GraphQLClient.PageInput} paging
  * @property {...GraphQLClient.TimeFilter} timeFilter
@@ -1417,7 +1565,8 @@
 /**
  * Structure of GraphQLClient.SendTxParams
  *
- * @typedef {Object} GraphQLClient.SendTxParams
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.SendTxParams
  * @property {boolean} commit
  * @property {string} token
  * @property {string} tx
@@ -1427,21 +1576,25 @@
 /**
  * Structure of GraphQLClient.UnsubscribeParams
  *
- * @typedef {Object} GraphQLClient.UnsubscribeParams
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.UnsubscribeParams
  * @property {string} topic
  */
 
 /**
  * Structure of GraphQLClient.SubscribeParams
  *
- * @typedef {Object} GraphQLClient.SubscribeParams
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.SubscribeParams
  * @property {string} filter
  * @property {string} topic
  */
 
+
 /**
  * Structure of param.data for transaction sending/encoding method sendCreateAssetTx
  *
+ * @memberof GraphQLClient
  * @typedef {Object} GraphQLClient.CreateAssetTxInputData
  * @prop {...GraphQLClient.CreateAssetTx}
  * @prop {...GraphQLClient.TxInputExtra}
@@ -1450,6 +1603,7 @@
 /**
  * Structure of param for transaction sending/encoding method sendCreateAssetTx
  *
+ * @memberof GraphQLClient
  * @typedef {Object} GraphQLClient.CreateAssetTxInput
  * @prop {...GraphQLClient.CreateAssetTxSendInputData} input.data - should be the CreateAssetTx object in most simple case
  * @prop {object} input.wallet - should be a wallet instance constructed using forge-wallet
@@ -1459,15 +1613,18 @@
 /**
  * Send transaction and get the hash, if you want to get transaction detail please use {@link GraphQLClient#getTx}
  *
- * @method
+ * @memberof GraphQLClient
+ * @function
  * @name GraphQLClient#sendCreateAssetTx
  * @param {GraphQLClient.CreateAssetTxInput}
  * @returns {Promise} returns transaction hash if success, otherwise error was thrown
  */
 
+
 /**
  * Structure of param.data for transaction sending/encoding method sendTransferTx
  *
+ * @memberof GraphQLClient
  * @typedef {Object} GraphQLClient.TransferTxInputData
  * @prop {...GraphQLClient.TransferTx}
  * @prop {...GraphQLClient.TxInputExtra}
@@ -1476,6 +1633,7 @@
 /**
  * Structure of param for transaction sending/encoding method sendTransferTx
  *
+ * @memberof GraphQLClient
  * @typedef {Object} GraphQLClient.TransferTxInput
  * @prop {...GraphQLClient.TransferTxSendInputData} input.data - should be the TransferTx object in most simple case
  * @prop {object} input.wallet - should be a wallet instance constructed using forge-wallet
@@ -1485,15 +1643,18 @@
 /**
  * Send transaction and get the hash, if you want to get transaction detail please use {@link GraphQLClient#getTx}
  *
- * @method
+ * @memberof GraphQLClient
+ * @function
  * @name GraphQLClient#sendTransferTx
  * @param {GraphQLClient.TransferTxInput}
  * @returns {Promise} returns transaction hash if success, otherwise error was thrown
  */
 
+
 /**
  * Structure of param.data for transaction sending/encoding method sendPokeTx
  *
+ * @memberof GraphQLClient
  * @typedef {Object} GraphQLClient.PokeTxInputData
  * @prop {...GraphQLClient.PokeTx}
  * @prop {...GraphQLClient.TxInputExtra}
@@ -1502,6 +1663,7 @@
 /**
  * Structure of param for transaction sending/encoding method sendPokeTx
  *
+ * @memberof GraphQLClient
  * @typedef {Object} GraphQLClient.PokeTxInput
  * @prop {...GraphQLClient.PokeTxSendInputData} input.data - should be the PokeTx object in most simple case
  * @prop {object} input.wallet - should be a wallet instance constructed using forge-wallet
@@ -1511,15 +1673,18 @@
 /**
  * Send transaction and get the hash, if you want to get transaction detail please use {@link GraphQLClient#getTx}
  *
- * @method
+ * @memberof GraphQLClient
+ * @function
  * @name GraphQLClient#sendPokeTx
  * @param {GraphQLClient.PokeTxInput}
  * @returns {Promise} returns transaction hash if success, otherwise error was thrown
  */
 
+
 /**
  * Structure of param.data for transaction sending/encoding method sendDeployProtocolTx
  *
+ * @memberof GraphQLClient
  * @typedef {Object} GraphQLClient.DeployProtocolTxInputData
  * @prop {...GraphQLClient.DeployProtocolTx}
  * @prop {...GraphQLClient.TxInputExtra}
@@ -1528,6 +1693,7 @@
 /**
  * Structure of param for transaction sending/encoding method sendDeployProtocolTx
  *
+ * @memberof GraphQLClient
  * @typedef {Object} GraphQLClient.DeployProtocolTxInput
  * @prop {...GraphQLClient.DeployProtocolTxSendInputData} input.data - should be the DeployProtocolTx object in most simple case
  * @prop {object} input.wallet - should be a wallet instance constructed using forge-wallet
@@ -1537,15 +1703,18 @@
 /**
  * Send transaction and get the hash, if you want to get transaction detail please use {@link GraphQLClient#getTx}
  *
- * @method
+ * @memberof GraphQLClient
+ * @function
  * @name GraphQLClient#sendDeployProtocolTx
  * @param {GraphQLClient.DeployProtocolTxInput}
  * @returns {Promise} returns transaction hash if success, otherwise error was thrown
  */
 
+
 /**
  * Structure of param.data for transaction sending/encoding method sendUpgradeNodeTx
  *
+ * @memberof GraphQLClient
  * @typedef {Object} GraphQLClient.UpgradeNodeTxInputData
  * @prop {...GraphQLClient.UpgradeNodeTx}
  * @prop {...GraphQLClient.TxInputExtra}
@@ -1554,6 +1723,7 @@
 /**
  * Structure of param for transaction sending/encoding method sendUpgradeNodeTx
  *
+ * @memberof GraphQLClient
  * @typedef {Object} GraphQLClient.UpgradeNodeTxInput
  * @prop {...GraphQLClient.UpgradeNodeTxSendInputData} input.data - should be the UpgradeNodeTx object in most simple case
  * @prop {object} input.wallet - should be a wallet instance constructed using forge-wallet
@@ -1563,15 +1733,18 @@
 /**
  * Send transaction and get the hash, if you want to get transaction detail please use {@link GraphQLClient#getTx}
  *
- * @method
+ * @memberof GraphQLClient
+ * @function
  * @name GraphQLClient#sendUpgradeNodeTx
  * @param {GraphQLClient.UpgradeNodeTxInput}
  * @returns {Promise} returns transaction hash if success, otherwise error was thrown
  */
 
+
 /**
  * Structure of param.data for transaction sending/encoding method sendUpdateAssetTx
  *
+ * @memberof GraphQLClient
  * @typedef {Object} GraphQLClient.UpdateAssetTxInputData
  * @prop {...GraphQLClient.UpdateAssetTx}
  * @prop {...GraphQLClient.TxInputExtra}
@@ -1580,6 +1753,7 @@
 /**
  * Structure of param for transaction sending/encoding method sendUpdateAssetTx
  *
+ * @memberof GraphQLClient
  * @typedef {Object} GraphQLClient.UpdateAssetTxInput
  * @prop {...GraphQLClient.UpdateAssetTxSendInputData} input.data - should be the UpdateAssetTx object in most simple case
  * @prop {object} input.wallet - should be a wallet instance constructed using forge-wallet
@@ -1589,15 +1763,18 @@
 /**
  * Send transaction and get the hash, if you want to get transaction detail please use {@link GraphQLClient#getTx}
  *
- * @method
+ * @memberof GraphQLClient
+ * @function
  * @name GraphQLClient#sendUpdateAssetTx
  * @param {GraphQLClient.UpdateAssetTxInput}
  * @returns {Promise} returns transaction hash if success, otherwise error was thrown
  */
 
+
 /**
  * Structure of param.data for transaction sending/encoding method sendAccountMigrateTx
  *
+ * @memberof GraphQLClient
  * @typedef {Object} GraphQLClient.AccountMigrateTxInputData
  * @prop {...GraphQLClient.AccountMigrateTx}
  * @prop {...GraphQLClient.TxInputExtra}
@@ -1606,6 +1783,7 @@
 /**
  * Structure of param for transaction sending/encoding method sendAccountMigrateTx
  *
+ * @memberof GraphQLClient
  * @typedef {Object} GraphQLClient.AccountMigrateTxInput
  * @prop {...GraphQLClient.AccountMigrateTxSendInputData} input.data - should be the AccountMigrateTx object in most simple case
  * @prop {object} input.wallet - should be a wallet instance constructed using forge-wallet
@@ -1615,15 +1793,18 @@
 /**
  * Send transaction and get the hash, if you want to get transaction detail please use {@link GraphQLClient#getTx}
  *
- * @method
+ * @memberof GraphQLClient
+ * @function
  * @name GraphQLClient#sendAccountMigrateTx
  * @param {GraphQLClient.AccountMigrateTxInput}
  * @returns {Promise} returns transaction hash if success, otherwise error was thrown
  */
 
+
 /**
  * Structure of param.data for transaction sending/encoding method sendConsumeAssetTx
  *
+ * @memberof GraphQLClient
  * @typedef {Object} GraphQLClient.ConsumeAssetTxInputData
  * @prop {...GraphQLClient.ConsumeAssetTx}
  * @prop {...GraphQLClient.TxInputExtra}
@@ -1632,6 +1813,7 @@
 /**
  * Structure of param for transaction sending/encoding method sendConsumeAssetTx
  *
+ * @memberof GraphQLClient
  * @typedef {Object} GraphQLClient.ConsumeAssetTxInput
  * @prop {...GraphQLClient.ConsumeAssetTxSendInputData} input.data - should be the ConsumeAssetTx object in most simple case
  * @prop {object} input.wallet - should be a wallet instance constructed using forge-wallet
@@ -1641,15 +1823,18 @@
 /**
  * Send transaction and get the hash, if you want to get transaction detail please use {@link GraphQLClient#getTx}
  *
- * @method
+ * @memberof GraphQLClient
+ * @function
  * @name GraphQLClient#sendConsumeAssetTx
  * @param {GraphQLClient.ConsumeAssetTxInput}
  * @returns {Promise} returns transaction hash if success, otherwise error was thrown
  */
 
+
 /**
  * Structure of param.data for transaction sending/encoding method sendDeclareTx
  *
+ * @memberof GraphQLClient
  * @typedef {Object} GraphQLClient.DeclareTxInputData
  * @prop {...GraphQLClient.DeclareTx}
  * @prop {...GraphQLClient.TxInputExtra}
@@ -1658,6 +1843,7 @@
 /**
  * Structure of param for transaction sending/encoding method sendDeclareTx
  *
+ * @memberof GraphQLClient
  * @typedef {Object} GraphQLClient.DeclareTxInput
  * @prop {...GraphQLClient.DeclareTxSendInputData} input.data - should be the DeclareTx object in most simple case
  * @prop {object} input.wallet - should be a wallet instance constructed using forge-wallet
@@ -1667,15 +1853,18 @@
 /**
  * Send transaction and get the hash, if you want to get transaction detail please use {@link GraphQLClient#getTx}
  *
- * @method
+ * @memberof GraphQLClient
+ * @function
  * @name GraphQLClient#sendDeclareTx
  * @param {GraphQLClient.DeclareTxInput}
  * @returns {Promise} returns transaction hash if success, otherwise error was thrown
  */
 
+
 /**
  * Structure of param.data for transaction sending/encoding method sendExchangeTx
  *
+ * @memberof GraphQLClient
  * @typedef {Object} GraphQLClient.ExchangeTxInputData
  * @prop {...GraphQLClient.ExchangeTx}
  * @prop {...GraphQLClient.TxInputExtra}
@@ -1684,6 +1873,7 @@
 /**
  * Structure of param for transaction sending/encoding method sendExchangeTx
  *
+ * @memberof GraphQLClient
  * @typedef {Object} GraphQLClient.ExchangeTxInput
  * @prop {...GraphQLClient.ExchangeTxSendInputData} input.data - should be the ExchangeTx object in most simple case
  * @prop {object} input.wallet - should be a wallet instance constructed using forge-wallet
@@ -1693,15 +1883,18 @@
 /**
  * Send transaction and get the hash, if you want to get transaction detail please use {@link GraphQLClient#getTx}
  *
- * @method
+ * @memberof GraphQLClient
+ * @function
  * @name GraphQLClient#sendExchangeTx
  * @param {GraphQLClient.ExchangeTxInput}
  * @returns {Promise} returns transaction hash if success, otherwise error was thrown
  */
 
+
 /**
  * Structure of param.data for transaction sending/encoding method sendDeclareFileTx
  *
+ * @memberof GraphQLClient
  * @typedef {Object} GraphQLClient.DeclareFileTxInputData
  * @prop {...GraphQLClient.DeclareFileTx}
  * @prop {...GraphQLClient.TxInputExtra}
@@ -1710,6 +1903,7 @@
 /**
  * Structure of param for transaction sending/encoding method sendDeclareFileTx
  *
+ * @memberof GraphQLClient
  * @typedef {Object} GraphQLClient.DeclareFileTxInput
  * @prop {...GraphQLClient.DeclareFileTxSendInputData} input.data - should be the DeclareFileTx object in most simple case
  * @prop {object} input.wallet - should be a wallet instance constructed using forge-wallet
@@ -1719,15 +1913,18 @@
 /**
  * Send transaction and get the hash, if you want to get transaction detail please use {@link GraphQLClient#getTx}
  *
- * @method
+ * @memberof GraphQLClient
+ * @function
  * @name GraphQLClient#sendDeclareFileTx
  * @param {GraphQLClient.DeclareFileTxInput}
  * @returns {Promise} returns transaction hash if success, otherwise error was thrown
  */
 
+
 /**
  * Structure of param.data for transaction sending/encoding method sendStakeTx
  *
+ * @memberof GraphQLClient
  * @typedef {Object} GraphQLClient.StakeTxInputData
  * @prop {...GraphQLClient.StakeTx}
  * @prop {...GraphQLClient.TxInputExtra}
@@ -1736,6 +1933,7 @@
 /**
  * Structure of param for transaction sending/encoding method sendStakeTx
  *
+ * @memberof GraphQLClient
  * @typedef {Object} GraphQLClient.StakeTxInput
  * @prop {...GraphQLClient.StakeTxSendInputData} input.data - should be the StakeTx object in most simple case
  * @prop {object} input.wallet - should be a wallet instance constructed using forge-wallet
@@ -1745,143 +1943,171 @@
 /**
  * Send transaction and get the hash, if you want to get transaction detail please use {@link GraphQLClient#getTx}
  *
- * @method
+ * @memberof GraphQLClient
+ * @function
  * @name GraphQLClient#sendStakeTx
  * @param {GraphQLClient.StakeTxInput}
  * @returns {Promise} returns transaction hash if success, otherwise error was thrown
  */
 
+
+
 /**
  * Encode transaction, users can pass plain objects for itx.data field
  *
- * @method
  * @name GraphQLClient#encodeCreateAssetTx
+ * @function
+ * @memberof GraphQLClient
  * @param {GraphQLClient.CreateAssetTxInput}
  * @returns {object} result - we provide two formats of the encoding result
  * @returns {buffer} result.buffer - binary presentation of the tx, can be used for further encoding or signing
  * @returns {object} result.object - human readable tx object
  */
 
+
 /**
  * Encode transaction, users can pass plain objects for itx.data field
  *
- * @method
  * @name GraphQLClient#encodeTransferTx
+ * @function
+ * @memberof GraphQLClient
  * @param {GraphQLClient.TransferTxInput}
  * @returns {object} result - we provide two formats of the encoding result
  * @returns {buffer} result.buffer - binary presentation of the tx, can be used for further encoding or signing
  * @returns {object} result.object - human readable tx object
  */
 
+
 /**
  * Encode transaction, users can pass plain objects for itx.data field
  *
- * @method
  * @name GraphQLClient#encodePokeTx
+ * @function
+ * @memberof GraphQLClient
  * @param {GraphQLClient.PokeTxInput}
  * @returns {object} result - we provide two formats of the encoding result
  * @returns {buffer} result.buffer - binary presentation of the tx, can be used for further encoding or signing
  * @returns {object} result.object - human readable tx object
  */
 
+
 /**
  * Encode transaction, users can pass plain objects for itx.data field
  *
- * @method
  * @name GraphQLClient#encodeDeployProtocolTx
+ * @function
+ * @memberof GraphQLClient
  * @param {GraphQLClient.DeployProtocolTxInput}
  * @returns {object} result - we provide two formats of the encoding result
  * @returns {buffer} result.buffer - binary presentation of the tx, can be used for further encoding or signing
  * @returns {object} result.object - human readable tx object
  */
 
+
 /**
  * Encode transaction, users can pass plain objects for itx.data field
  *
- * @method
  * @name GraphQLClient#encodeUpgradeNodeTx
+ * @function
+ * @memberof GraphQLClient
  * @param {GraphQLClient.UpgradeNodeTxInput}
  * @returns {object} result - we provide two formats of the encoding result
  * @returns {buffer} result.buffer - binary presentation of the tx, can be used for further encoding or signing
  * @returns {object} result.object - human readable tx object
  */
 
+
 /**
  * Encode transaction, users can pass plain objects for itx.data field
  *
- * @method
  * @name GraphQLClient#encodeUpdateAssetTx
+ * @function
+ * @memberof GraphQLClient
  * @param {GraphQLClient.UpdateAssetTxInput}
  * @returns {object} result - we provide two formats of the encoding result
  * @returns {buffer} result.buffer - binary presentation of the tx, can be used for further encoding or signing
  * @returns {object} result.object - human readable tx object
  */
 
+
 /**
  * Encode transaction, users can pass plain objects for itx.data field
  *
- * @method
  * @name GraphQLClient#encodeAccountMigrateTx
+ * @function
+ * @memberof GraphQLClient
  * @param {GraphQLClient.AccountMigrateTxInput}
  * @returns {object} result - we provide two formats of the encoding result
  * @returns {buffer} result.buffer - binary presentation of the tx, can be used for further encoding or signing
  * @returns {object} result.object - human readable tx object
  */
 
+
 /**
  * Encode transaction, users can pass plain objects for itx.data field
  *
- * @method
  * @name GraphQLClient#encodeConsumeAssetTx
+ * @function
+ * @memberof GraphQLClient
  * @param {GraphQLClient.ConsumeAssetTxInput}
  * @returns {object} result - we provide two formats of the encoding result
  * @returns {buffer} result.buffer - binary presentation of the tx, can be used for further encoding or signing
  * @returns {object} result.object - human readable tx object
  */
 
+
 /**
  * Encode transaction, users can pass plain objects for itx.data field
  *
- * @method
  * @name GraphQLClient#encodeDeclareTx
+ * @function
+ * @memberof GraphQLClient
  * @param {GraphQLClient.DeclareTxInput}
  * @returns {object} result - we provide two formats of the encoding result
  * @returns {buffer} result.buffer - binary presentation of the tx, can be used for further encoding or signing
  * @returns {object} result.object - human readable tx object
  */
 
+
 /**
  * Encode transaction, users can pass plain objects for itx.data field
  *
- * @method
  * @name GraphQLClient#encodeExchangeTx
+ * @function
+ * @memberof GraphQLClient
  * @param {GraphQLClient.ExchangeTxInput}
  * @returns {object} result - we provide two formats of the encoding result
  * @returns {buffer} result.buffer - binary presentation of the tx, can be used for further encoding or signing
  * @returns {object} result.object - human readable tx object
  */
 
+
 /**
  * Encode transaction, users can pass plain objects for itx.data field
  *
- * @method
  * @name GraphQLClient#encodeDeclareFileTx
+ * @function
+ * @memberof GraphQLClient
  * @param {GraphQLClient.DeclareFileTxInput}
  * @returns {object} result - we provide two formats of the encoding result
  * @returns {buffer} result.buffer - binary presentation of the tx, can be used for further encoding or signing
  * @returns {object} result.object - human readable tx object
  */
 
+
 /**
  * Encode transaction, users can pass plain objects for itx.data field
  *
- * @method
  * @name GraphQLClient#encodeStakeTx
+ * @function
+ * @memberof GraphQLClient
  * @param {GraphQLClient.StakeTxInput}
  * @returns {object} result - we provide two formats of the encoding result
  * @returns {buffer} result.buffer - binary presentation of the tx, can be used for further encoding or signing
  * @returns {object} result.object - human readable tx object
  */
+
+
 
 /**
  * Use following query for result format reference
@@ -2254,14 +2480,16 @@
  *     }
  *   }
  * }
- *
+ * 
  * ```
  *
- * @method
  * @name GraphQLClient#getAccountState
  * @param {...GraphQLClient.GetAccountStateParams}
+ * @function
+ * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseGetAccountState>} Checkout {@link GraphQLClient.ResponseGetAccountState} for resolved data format
  */
+
 
 /**
  * Use following query for result format reference
@@ -2621,14 +2849,16 @@
  *     }
  *   }
  * }
- *
+ * 
  * ```
  *
- * @method
  * @name GraphQLClient#getAssetState
  * @param {...GraphQLClient.GetAssetStateParams}
+ * @function
+ * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseGetAssetState>} Checkout {@link GraphQLClient.ResponseGetAssetState} for resolved data format
  */
+
 
 /**
  * Use following query for result format reference
@@ -2979,14 +3209,16 @@
  *     }
  *   }
  * }
- *
+ * 
  * ```
  *
- * @method
  * @name GraphQLClient#getBlock
  * @param {...GraphQLClient.GetBlockParams}
+ * @function
+ * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseGetBlock>} Checkout {@link GraphQLClient.ResponseGetBlock} for resolved data format
  */
+
 
 /**
  * Use following query for result format reference
@@ -3030,14 +3262,16 @@
  *     }
  *   }
  * }
- *
+ * 
  * ```
  *
- * @method
  * @name GraphQLClient#getBlocks
  * @param {...GraphQLClient.GetBlocksParams}
+ * @function
+ * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseGetBlocks>} Checkout {@link GraphQLClient.ResponseGetBlocks} for resolved data format
  */
+
 
 /**
  * Use following query for result format reference
@@ -3068,13 +3302,15 @@
  *     }
  *   }
  * }
- *
+ * 
  * ```
  *
- * @method
  * @name GraphQLClient#getChainInfo
+ * @function
+ * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseGetChainInfo>} Checkout {@link GraphQLClient.ResponseGetChainInfo} for resolved data format
  */
+
 
 /**
  * Use following query for result format reference
@@ -3086,13 +3322,15 @@
  *     config
  *   }
  * }
- *
+ * 
  * ```
  *
- * @method
  * @name GraphQLClient#getConfig
+ * @function
+ * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseGetConfig>} Checkout {@link GraphQLClient.ResponseGetConfig} for resolved data format
  */
+
 
 /**
  * Use following query for result format reference
@@ -3229,14 +3467,16 @@
  *     }
  *   }
  * }
- *
+ * 
  * ```
  *
- * @method
  * @name GraphQLClient#getForgeState
  * @param {...GraphQLClient.GetForgeStateParams}
+ * @function
+ * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseGetForgeState>} Checkout {@link GraphQLClient.ResponseGetForgeState} for resolved data format
  */
+
 
 /**
  * Use following query for result format reference
@@ -3269,13 +3509,15 @@
  *     }
  *   }
  * }
- *
+ * 
  * ```
  *
- * @method
  * @name GraphQLClient#getForgeStats
+ * @function
+ * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseGetForgeStats>} Checkout {@link GraphQLClient.ResponseGetForgeStats} for resolved data format
  */
+
 
 /**
  * Use following query for result format reference
@@ -3308,14 +3550,16 @@
  *     }
  *   }
  * }
- *
+ * 
  * ```
  *
- * @method
  * @name GraphQLClient#getForgeStatsByDay
  * @param {...GraphQLClient.GetForgeStatsByDayParams}
+ * @function
+ * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseGetForgeStats>} Checkout {@link GraphQLClient.ResponseGetForgeStats} for resolved data format
  */
+
 
 /**
  * Use following query for result format reference
@@ -3348,14 +3592,16 @@
  *     }
  *   }
  * }
- *
+ * 
  * ```
  *
- * @method
  * @name GraphQLClient#getForgeStatsByHour
  * @param {...GraphQLClient.GetForgeStatsByHourParams}
+ * @function
+ * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseGetForgeStats>} Checkout {@link GraphQLClient.ResponseGetForgeStats} for resolved data format
  */
+
 
 /**
  * Use following query for result format reference
@@ -3395,13 +3641,15 @@
  *     }
  *   }
  * }
- *
+ * 
  * ```
  *
- * @method
  * @name GraphQLClient#getHealthStatus
+ * @function
+ * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseGetHealthStatus>} Checkout {@link GraphQLClient.ResponseGetHealthStatus} for resolved data format
  */
+
 
 /**
  * Use following query for result format reference
@@ -3430,13 +3678,15 @@
  *     }
  *   }
  * }
- *
+ * 
  * ```
  *
- * @method
  * @name GraphQLClient#getNetInfo
+ * @function
+ * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseGetNetInfo>} Checkout {@link GraphQLClient.ResponseGetNetInfo} for resolved data format
  */
+
 
 /**
  * Use following query for result format reference
@@ -3475,13 +3725,15 @@
  *     }
  *   }
  * }
- *
+ * 
  * ```
  *
- * @method
  * @name GraphQLClient#getNodeInfo
+ * @function
+ * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseGetNodeInfo>} Checkout {@link GraphQLClient.ResponseGetNodeInfo} for resolved data format
  */
+
 
 /**
  * Use following query for result format reference
@@ -3823,14 +4075,16 @@
  *     }
  *   }
  * }
- *
+ * 
  * ```
  *
- * @method
  * @name GraphQLClient#getProtocolState
  * @param {...GraphQLClient.GetProtocolStateParams}
+ * @function
+ * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseGetProtocolState>} Checkout {@link GraphQLClient.ResponseGetProtocolState} for resolved data format
  */
+
 
 /**
  * Use following query for result format reference
@@ -3842,13 +4096,15 @@
  *     result
  *   }
  * }
- *
+ * 
  * ```
  *
- * @method
  * @name GraphQLClient#getSimulatorStatus
+ * @function
+ * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseGetSimulatorStatus>} Checkout {@link GraphQLClient.ResponseGetSimulatorStatus} for resolved data format
  */
+
 
 /**
  * Use following query for result format reference
@@ -4186,14 +4442,16 @@
  *     }
  *   }
  * }
- *
+ * 
  * ```
  *
- * @method
  * @name GraphQLClient#getStakeState
  * @param {...GraphQLClient.GetStakeStateParams}
+ * @function
+ * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseGetStakeState>} Checkout {@link GraphQLClient.ResponseGetStakeState} for resolved data format
  */
+
 
 /**
  * Use following query for result format reference
@@ -4360,14 +4618,16 @@
  *     }
  *   }
  * }
- *
+ * 
  * ```
  *
- * @method
  * @name GraphQLClient#getTx
  * @param {...GraphQLClient.GetTxParams}
+ * @function
+ * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseGetTx>} Checkout {@link GraphQLClient.ResponseGetTx} for resolved data format
  */
+
 
 /**
  * Use following query for result format reference
@@ -4525,14 +4785,16 @@
  *     }
  *   }
  * }
- *
+ * 
  * ```
  *
- * @method
  * @name GraphQLClient#getUnconfirmedTxs
  * @param {...GraphQLClient.GetUnconfirmedTxsParams}
+ * @function
+ * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseGetUnconfirmedTxs>} Checkout {@link GraphQLClient.ResponseGetUnconfirmedTxs} for resolved data format
  */
+
 
 /**
  * Use following query for result format reference
@@ -4562,13 +4824,15 @@
  *     }
  *   }
  * }
- *
+ * 
  * ```
  *
- * @method
  * @name GraphQLClient#getValidatorsInfo
+ * @function
+ * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseGetValidatorsInfo>} Checkout {@link GraphQLClient.ResponseGetValidatorsInfo} for resolved data format
  */
+
 
 /**
  * Use following query for result format reference
@@ -4732,14 +4996,16 @@
  *     }
  *   }
  * }
- *
+ * 
  * ```
  *
- * @method
  * @name GraphQLClient#listAssetTransactions
  * @param {...GraphQLClient.ListAssetTransactionsParams}
+ * @function
+ * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseListAssetTransactions>} Checkout {@link GraphQLClient.ResponseListAssetTransactions} for resolved data format
  */
+
 
 /**
  * Use following query for result format reference
@@ -4779,14 +5045,16 @@
  *     }
  *   }
  * }
- *
+ * 
  * ```
  *
- * @method
  * @name GraphQLClient#listAssets
  * @param {...GraphQLClient.ListAssetsParams}
+ * @function
+ * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseListAssets>} Checkout {@link GraphQLClient.ResponseListAssets} for resolved data format
  */
+
 
 /**
  * Use following query for result format reference
@@ -4809,14 +5077,16 @@
  *     }
  *   }
  * }
- *
+ * 
  * ```
  *
- * @method
  * @name GraphQLClient#listBlocks
  * @param {...GraphQLClient.ListBlocksParams}
+ * @function
+ * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseListBlocks>} Checkout {@link GraphQLClient.ResponseListBlocks} for resolved data format
  */
+
 
 /**
  * Use following query for result format reference
@@ -4842,14 +5112,16 @@
  *     }
  *   }
  * }
- *
+ * 
  * ```
  *
- * @method
  * @name GraphQLClient#listStakes
  * @param {...GraphQLClient.ListStakesParams}
+ * @function
+ * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseListStakes>} Checkout {@link GraphQLClient.ResponseListStakes} for resolved data format
  */
+
 
 /**
  * Use following query for result format reference
@@ -4881,14 +5153,16 @@
  *     }
  *   }
  * }
- *
+ * 
  * ```
  *
- * @method
  * @name GraphQLClient#listTopAccounts
  * @param {...GraphQLClient.ListTopAccountsParams}
+ * @function
+ * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseListTopAccounts>} Checkout {@link GraphQLClient.ResponseListTopAccounts} for resolved data format
  */
+
 
 /**
  * Use following query for result format reference
@@ -5052,14 +5326,16 @@
  *     }
  *   }
  * }
- *
+ * 
  * ```
  *
- * @method
  * @name GraphQLClient#listTransactions
  * @param {...GraphQLClient.ListTransactionsParams}
+ * @function
+ * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseListTransactions>} Checkout {@link GraphQLClient.ResponseListTransactions} for resolved data format
  */
+
 
 /**
  * Use following query for result format reference
@@ -5071,14 +5347,16 @@
  *     hash
  *   }
  * }
- *
+ * 
  * ```
  *
- * @method
  * @name GraphQLClient#sendTx
  * @param {...GraphQLClient.SendTxParams}
+ * @function
+ * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseSendTx>} Checkout {@link GraphQLClient.ResponseSendTx} for resolved data format
  */
+
 
 /**
  * Use following query for result format reference
@@ -5089,13 +5367,15 @@
  *     code
  *   }
  * }
- *
+ * 
  * ```
  *
- * @method
  * @name GraphQLClient#startSimulator
+ * @function
+ * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseStartSimulator>} Checkout {@link GraphQLClient.ResponseStartSimulator} for resolved data format
  */
+
 
 /**
  * Use following query for result format reference
@@ -5106,13 +5386,15 @@
  *     code
  *   }
  * }
- *
+ * 
  * ```
  *
- * @method
  * @name GraphQLClient#stopSimulator
+ * @function
+ * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseStopSimulator>} Checkout {@link GraphQLClient.ResponseStopSimulator} for resolved data format
  */
+
 
 /**
  * Use following query for result format reference
@@ -5123,14 +5405,16 @@
  *     code
  *   }
  * }
- *
+ * 
  * ```
  *
- * @method
  * @name GraphQLClient#unsubscribe
  * @param {...GraphQLClient.UnsubscribeParams}
+ * @function
+ * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseUnsubscribe>} Checkout {@link GraphQLClient.ResponseUnsubscribe} for resolved data format
  */
+
 
 /**
  * Use following query for result format reference
@@ -8358,11 +8642,13 @@
  *     }
  *   }
  * }
- *
+ * 
  * ```
  *
- * @method
  * @name GraphQLClient#subscribe
  * @param {...GraphQLClient.SubscribeParams}
+ * @function
+ * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseSubscribe>} Checkout {@link GraphQLClient.ResponseSubscribe} for resolved data format
  */
+

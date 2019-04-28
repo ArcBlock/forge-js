@@ -72,7 +72,8 @@ const generateInterface = ({ fields, name }, ns = '') => `
 /**
  * Structure of ${ns}.${name}
  *
- * @typedef {Object} ${ns}.${name}
+ * @memberof ${ns}
+ * @typedef {object} ${ns}.${name}
 ${(fields || []).map(x => ` * @property {${getFieldType(x.type, ns)}} ${x.name}`).join('\n')}
  */`;
 
@@ -124,8 +125,9 @@ const generateMethods = (methods, ns) =>
 ${printFormat(x.name)}
  * \`\`\`
  *
- * @method
  * @name ${namespace}#${x.name}${argType ? `\n * @param {...${ns}.${argType}}` : ''}
+ * @function
+ * @memberof ${ns}
  * @returns {Promise<${resultType}>} Checkout {@link ${resultType}} for resolved data format
  */
 `;
@@ -136,6 +138,7 @@ const getTxSendTypes = (name, tx, ns) => `
 /**
  * Structure of param.data for transaction sending/encoding method ${name}
  *
+ * @memberof ${ns}
  * @typedef {Object} ${ns}.${tx}InputData
  * @prop {...${ns}.${tx}}
  * @prop {...${ns}.TxInputExtra}
@@ -144,6 +147,7 @@ const getTxSendTypes = (name, tx, ns) => `
 /**
  * Structure of param for transaction sending/encoding method ${name}
  *
+ * @memberof ${ns}
  * @typedef {Object} ${ns}.${tx}Input
  * @prop {...${ns}.${tx}SendInputData} input.data - should be the ${tx} object in most simple case
  * @prop {object} input.wallet - should be a wallet instance constructed using forge-wallet
@@ -153,7 +157,8 @@ const getTxSendTypes = (name, tx, ns) => `
 /**
  * Send transaction and get the hash, if you want to get transaction detail please use {@link ${ns}#getTx}
  *
- * @method
+ * @memberof ${ns}
+ * @function
  * @name ${ns}#${name}
  * @param {${ns}.${tx}Input}
  * @returns {Promise} returns transaction hash if success, otherwise error was thrown
@@ -164,8 +169,9 @@ const getTxEncodeTypes = (name, tx, ns) => `
 /**
  * Encode transaction, users can pass plain objects for itx.data field
  *
- * @method
  * @name ${ns}#${name}
+ * @function
+ * @memberof ${ns}
  * @param {${ns}.${tx}Input}
  * @returns {object} result - we provide two formats of the encoding result
  * @returns {buffer} result.buffer - binary presentation of the tx, can be used for further encoding or signing
@@ -175,34 +181,43 @@ const getTxEncodeTypes = (name, tx, ns) => `
 
 const dtsContent = `
 /**
+ * @fileOverview This module defines generated types and functions for graphql-client
+ * @module graphql-client
+ */
+
+/**
  * List all query method names
  *
- * @method
  * @name ${namespace}#getQueries
+ * @function
+ * @memberof ${namespace}
  * @returns {Array<string>} method name list
  */
 
 /**
  * List all mutation method names
  *
- * @method
  * @name ${namespace}#getMutations
+ * @function
+ * @memberof ${namespace}
  * @returns {Array<string>} method name list
  */
 
 /**
  * List all subscription method names
  *
- * @method
  * @name ${namespace}#getSubscription
+ * @function
+ * @memberof ${namespace}
  * @returns {Array<string>} method name list
  */
 
 /**
  * Send raw graphql query to forge graphql endpoint
  *
- * @method
  * @name ${namespace}#doRawQuery
+ * @function
+ * @memberof ${namespace}
  * @param {string} query - graphql query string
  * @returns {Promise} usually axios response data
  */
@@ -210,8 +225,9 @@ const dtsContent = `
 /**
  * Send raw graphql subscription to forge graphql endpoint
  *
- * @method
  * @name ${namespace}#doRawSubscription
+ * @function
+ * @memberof ${namespace}
  * @param {string} query - graphql query string
  * @returns {Promise} usually axios response data
  */
@@ -219,6 +235,7 @@ const dtsContent = `
 /**
  * Common props for sending or encoding a transaction
  *
+ * @memberof ${namespace}
  * @typedef {Object} ${namespace}.TxInputExtra
  * @prop {string} chainId - if not specified, will fetch from graphql endpoint
  * @prop {number} nonce - if not specified, will use Date.now as nonce
@@ -229,6 +246,7 @@ const dtsContent = `
 /**
  * Structure of GraphQLClient.WalletObject
  *
+ * @memberof ${namespace}
  * @typedef {Object} GraphQLClient.WalletObject
  * @property {string} publicKey
  * @property {string} secretKey
@@ -238,6 +256,7 @@ const dtsContent = `
 /**
  * Structure of GraphQLClient.WalletTypeObject
  *
+ * @memberof ${namespace}
  * @typedef {Object} GraphQLClient.WalletTypeObject
  * @property {number} pk
  * @property {number} role
@@ -248,6 +267,7 @@ const dtsContent = `
 /**
  * Structure of GraphQLClient.EncodeTxResult
  *
+ * @memberof ${namespace}
  * @typedef {Object} GraphQLClient.EncodeTxResult
  * @property {object} object - the transaction object, human readable
  * @property {buffer} buffer - the transaction binary presentation, can be used to signing, encoding to other formats
