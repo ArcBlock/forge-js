@@ -101,14 +101,18 @@ const Container = styled.div`
     font-size: 14px;
     display: flex;
     justify-content: flex-start;
-    align-items: flex-start;
+    align-items: center;
 
     .meta__key {
+      width: 80px;
       color: ${props => props.theme.typography.color.main};
       margin-right: 8px;
     }
 
     .meta__value {
+      flex: 1;
+      overflow: scroll;
+      word-break: break-all;
       color: ${props => props.theme.typography.color.gray};
     }
 
