@@ -2,105 +2,292 @@
 /* eslint indent:"off" */
 const fs = require('fs');
 const path = require('path');
+const sortBy = require('lodash/sortBy');
+const camelcase = require('lodash/camelcase');
+const upperFirst = require('lodash/upperFirst');
 const { print, parse } = require('graphql');
-const { randomArg, randomArgs } = require('@arcblock/sdk-util/lib/util');
 
 const Client = require('../src/client');
+const { generateFormats } = require('./doc-util');
 
-const genSectionDoc = (title, methods) => {
-  return `
-## ${title}
-${
-  methods.length > 0
-    ? methods
-        .map(
-          method => `
-### ${method.name}
+const client = new Client('http://localhost:4000/api');
+const schema = client._getSchema();
+const { types, queryType, mutationType, subscriptionType } = schema;
 
-#### Arguments
-
-${
-  Object.values(method.args).length
-    ? Object.values(method.args)
-        .map(
-          arg =>
-            `* **${arg.name}**, ${arg.type.kind === 'NON_NULL' ? '**required**' : 'optional'}, ${
-              arg.description
-            }`
-        )
-        .join('\n')
-    : 'No arguments'
-}
-
-#### Result Format
-
-\`\`\`graphql
-${print(parse(method.result))}
-\`\`\``
-        )
-        .join('\n')
-    : `\nNo ${title} supported yet.\n`
-}`;
-};
-
-const client = new Client();
-const map = {
-  Queries: client.getQueries(),
-  Subscriptions: client.getSubscriptions(),
-  Mutations: client.getMutations(),
-};
-
-const { types } = client._getSchema();
-const typesMap = types.reduce((map, x) => {
-  map[x.name] = x;
-  return map;
+const typesMap = types.reduce((acc, x) => {
+  if (x.name.startsWith('__') === false) {
+    acc[x.name] = x;
+  }
+  return acc;
 }, {});
 
-const getResultFormat = m => {
-  const args = client[m].args;
-  const argValues = Object.values(args)
-    // .filter(x => x.type.kind === 'NON_NULL') // Uncomment this to random only required fields
-    .reduce((obj, x) => {
-      if (x.type.ofType) {
-        if (x.type.kind === 'LIST') {
-          obj[x.name] = [randomArg(x.type.ofType, typesMap)];
-        } else if (x.type.ofType.kind === 'SCALAR') {
-          obj[x.name] = randomArg(x.type.ofType, typesMap);
-        } else if (['INPUT_OBJECT', 'OBJECT'].includes(x.type.ofType.kind)) {
-          obj[x.name] = randomArgs(typesMap[x.type.ofType.name], typesMap);
-        } else {
-          console.log('ignoreX', x);
-        }
-      } else {
-        if (x.type.kind === 'SCALAR') {
-          obj[x.name] = randomArg(x.type, typesMap);
-        }
-      }
+const queries = queryType.name ? typesMap[queryType.name].fields : [];
+const mutations = mutationType.name ? typesMap[mutationType.name].fields : [];
+const subscriptions = subscriptionType.name ? typesMap[subscriptionType.name].fields : [];
+const formats = generateFormats(false);
+const namespace = 'GraphQLClient';
 
-      return obj;
-    }, {});
-
-  console.log(m, argValues);
-
-  return client[m].builder(argValues);
+const scalarTypes = {
+  Int: 'number',
+  Float: 'number',
+  String: 'string',
+  HexString: 'string',
+  DateTime: 'string',
+  Boolean: 'boolean',
 };
 
-const docs = Object.keys(map).map(x =>
-  genSectionDoc(
-    x,
-    map[x].map(m => ({ name: m, args: client[m].args || {}, result: getResultFormat(m) }))
-  )
-);
+const printFormat = name => {
+  if (formats[name] && formats[name].result) {
+    const gql = print(parse(formats[name].result));
+    return gql
+      .split('\n')
+      .map(x => ` * ${x}`)
+      .join('\n');
+  }
 
-const docFile = path.join(__dirname, '../docs/API.md');
-fs.writeFileSync(
-  docFile,
-  `# Forge GraphQL API List\n
+  return '';
+};
 
-> Updated on ${new Date().toISOString()}
+const getFieldType = (type, ns = '') => {
+  if (type.kind === 'NON_NULL') {
+    return getFieldType(type.ofType);
+  }
 
-## Table of Contents
+  if (type.kind === 'SCALAR') {
+    return scalarTypes[type.name];
+  }
 
-${docs.join('\n')}`
-);
-console.log('generated docs: ', docFile);
+  if (type.kind === 'LIST') {
+    return `Array<...${ns ? `${ns}.` : ''}${
+      type.ofType.kind === 'SCALAR' ? scalarTypes[type.ofType.name] : type.ofType.name
+    }>`;
+  }
+
+  if (['OBJECT', 'ENUM', 'UNION', 'INPUT_OBJECT'].includes(type.kind)) {
+    return `...${ns ? `${ns}.` : ''}${type.name}`;
+  }
+};
+
+const generateInterface = ({ fields, name }, ns = '') => `
+/**
+ * Structure of ${ns}.${name}
+ *
+ * @typedef {Object} ${ns}.${name}
+${(fields || []).map(x => ` * @property {${getFieldType(x.type, ns)}} ${x.name}`).join('\n')}
+ */`;
+
+const generateTypeExport = (type, ns) => {
+  if (type.kind === 'ENUM') {
+    return '';
+  }
+  if (type.kind === 'UNION') {
+    return '';
+  }
+  if (type.kind === 'INPUT_OBJECT') {
+    console.log('generate input object', type.name);
+    return generateInterface({ name: type.name, fields: type.inputFields }, ns);
+  }
+
+  return generateInterface(type, ns);
+};
+
+const getArgTypeName = type =>
+  Array.isArray(type.args) && type.args.length ? upperFirst(camelcase(`${type.name}_params`)) : '';
+
+const generateArgType = (type, ns) =>
+  generateInterface(
+    {
+      fields: type.args,
+      name: getArgTypeName(type),
+    },
+    ns
+  );
+
+const generateMethodsExports = (methods, ns) =>
+  methods
+    .filter(x => Array.isArray(x.args) && x.args.length)
+    .map(x => generateArgType(x, ns))
+    .join('\n');
+
+const generateMethods = (methods, ns) =>
+  methods
+    .map(x => {
+      const namespace = ns ? `${ns}` : '';
+      const argType = getArgTypeName(x);
+      const returnType = getFieldType(x.type, ns) || 'void';
+      const resultType = returnType.replace('...', '');
+      return `
+/**
+ * Use following query for result format reference
+ *
+ * \`\`\`graphql
+${printFormat(x.name)}
+ * \`\`\`
+ *
+ * @function
+ * @name ${namespace}#${x.name}${argType ? `\n * @param {...${ns}.${argType}}` : ''}
+ * @returns {Promise<${resultType}>} Checkout {@link ${resultType}} for resolved data format
+ * @memberof ${namespace}
+ */
+`;
+    })
+    .join('\n');
+
+const getTxSendTypes = (name, tx, ns) => `
+/**
+ * Structure of param.data for transaction sending/encoding method ${name}
+ *
+ * @typedef {Object} ${ns}.${tx}InputData
+ * @prop {...${ns}.${tx}}
+ * @prop {...${ns}.TxInputExtra}
+ */
+
+/**
+ * Structure of param for transaction sending/encoding method ${name}
+ *
+ * @typedef {Object} ${ns}.${tx}Input
+ * @prop {...${ns}.${tx}SendInputData} input.data - should be the ${tx} object in most simple case
+ * @prop {object} input.wallet - should be a wallet instance constructed using forge-wallet
+ * @prop {object} input.signature - the signature of the tx, if this parameter exist, we will not sign the transaction
+ */
+
+/**
+ * Send transaction and get the hash, if you want to get transaction detail please use {@link ${ns}#getTx}
+ *
+ * @function
+ * @name ${ns}#${name}
+ * @param {${ns}.${tx}Input}
+ * @returns {Promise} returns transaction hash if success, otherwise error was thrown
+ * @memberof ${ns}
+ */
+`;
+
+const getTxEncodeTypes = (name, tx, ns) => `
+/**
+ * Encode transaction, users can pass plain objects for itx.data field
+ *
+ * @function
+ * @name ${ns}#${name}
+ * @param {${ns}.${tx}Input}
+ * @returns {object} result - we provide two formats of the encoding result
+ * @returns {buffer} result.buffer - binary presentation of the tx, can be used for further encoding or signing
+ * @returns {object} result.object - human readable tx object
+ * @memberof ${ns}
+ */
+`;
+
+const dtsContent = `
+/**
+ * List all query method names
+ *
+ * @function
+ * @name ${namespace}#getQueries
+ * @returns {Array<string>} method name list
+ * @memberof ${namespace}
+ */
+
+/**
+ * List all mutation method names
+ *
+ * @function
+ * @name ${namespace}#getMutations
+ * @returns {Array<string>} method name list
+ * @memberof ${namespace}
+ */
+
+/**
+ * List all subscription method names
+ *
+ * @function
+ * @name ${namespace}#getSubscription
+ * @returns {Array<string>} method name list
+ * @memberof ${namespace}
+ */
+
+/**
+ * Send raw graphql query to forge graphql endpoint
+ *
+ * @function
+ * @name ${namespace}#doRawQuery
+ * @param {string} query - graphql query string
+ * @returns {Promise} usually axios response data
+ * @memberof ${namespace}
+ */
+
+/**
+ * Send raw graphql subscription to forge graphql endpoint
+ *
+ * @function
+ * @name ${namespace}#doRawSubscription
+ * @param {string} query - graphql query string
+ * @returns {Promise} usually axios response data
+ * @memberof ${namespace}
+ */
+
+/**
+ * Common props for sending or encoding a transaction
+ *
+ * @typedef {Object} ${namespace}.TxInputExtra
+ * @prop {string} chainId - if not specified, will fetch from graphql endpoint
+ * @prop {number} nonce - if not specified, will use Date.now as nonce
+ * @prop {string} from - sender address, if not specified, will use wallet.toAddress
+ * @prop {string} pk - sender publicKey, if not specified, will use wallet.publicKey
+ */
+
+/**
+ * Structure of GraphQLClient.WalletObject
+ *
+ * @typedef {Object} GraphQLClient.WalletObject
+ * @property {string} publicKey
+ * @property {string} secretKey
+ * @property {GraphQLClient~WalletTypeObject} type
+ */
+
+/**
+ * Structure of GraphQLClient.WalletTypeObject
+ *
+ * @typedef {Object} GraphQLClient.WalletTypeObject
+ * @property {number} pk
+ * @property {number} role
+ * @property {number} hash
+ * @property {number} address - defaults to base58btc
+ */
+
+/**
+ * Structure of GraphQLClient.EncodeTxResult
+ *
+ * @typedef {Object} GraphQLClient.EncodeTxResult
+ * @property {object} object - the transaction object, human readable
+ * @property {buffer} buffer - the transaction binary presentation, can be used to signing, encoding to other formats
+ */
+
+${sortBy(types, ['kind', 'name'])
+  .filter(x => !x.name.startsWith('__'))
+  .filter(x => !x.name.startsWith('Root'))
+  .filter(x => x.kind !== 'SCALAR')
+  .map(x => generateTypeExport(x, namespace))
+  .filter(Boolean)
+  .join('\n')}
+
+${generateMethodsExports(queries, namespace)}
+${generateMethodsExports(mutations, namespace)}
+${generateMethodsExports(subscriptions, namespace)}
+
+${client
+  .getTxSendMethods()
+  .map(x => getTxSendTypes(x, x.replace(/^send/, ''), namespace))
+  .join('\n')}
+
+${client
+  .getTxEncodeMethods()
+  .map(x => getTxEncodeTypes(x, x.replace(/^encode/, ''), namespace))
+  .join('\n')}
+
+${generateMethods(queries, namespace, 'QueryResult')}
+${generateMethods(mutations, namespace, 'QueryResult')}
+${generateMethods(subscriptions, namespace, 'SubscriptionResult')}
+`;
+
+const dtsFile = path.join(__dirname, '../src/types.js');
+fs.writeFileSync(dtsFile, dtsContent);
+console.log('generated types definitions: ', dtsFile);

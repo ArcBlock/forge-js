@@ -1,43 +1,9 @@
 # Forge GraphQL API List
 
-> Updated on 2019-04-27T01:11:16.209Z
 
+> Updated on 2019-04-28T00:36:50.700Z
 
 ## Table of Contents
-
-* [Queries](#queries)
-  * [getAccountState](#getaccountstate)
-  * [getAssetState](#getassetstate)
-  * [getBlock](#getblock)
-  * [getBlocks](#getblocks)
-  * [getChainInfo](#getchaininfo)
-  * [getConfig](#getconfig)
-  * [getForgeState](#getforgestate)
-  * [getForgeStats](#getforgestats)
-  * [getForgeStatsByDay](#getforgestatsbyday)
-  * [getForgeStatsByHour](#getforgestatsbyhour)
-  * [getHealthStatus](#gethealthstatus)
-  * [getNetInfo](#getnetinfo)
-  * [getNodeInfo](#getnodeinfo)
-  * [getProtocolState](#getprotocolstate)
-  * [getSimulatorStatus](#getsimulatorstatus)
-  * [getStakeState](#getstakestate)
-  * [getTx](#gettx)
-  * [getUnconfirmedTxs](#getunconfirmedtxs)
-  * [getValidatorsInfo](#getvalidatorsinfo)
-  * [listAssetTransactions](#listassettransactions)
-  * [listAssets](#listassets)
-  * [listBlocks](#listblocks)
-  * [listStakes](#liststakes)
-  * [listTopAccounts](#listtopaccounts)
-  * [listTransactions](#listtransactions)
-* [Subscriptions](#subscriptions)
-  * [subscribe](#subscribe)
-* [Mutations](#mutations)
-  * [sendTx](#sendtx)
-  * [startSimulator](#startsimulator)
-  * [stopSimulator](#stopsimulator)
-  * [unsubscribe](#unsubscribe)
 
 
 ## Queries
@@ -420,6 +386,7 @@
     }
   }
 }
+
 ```
 
 ### getAssetState
@@ -787,6 +754,7 @@
     }
   }
 }
+
 ```
 
 ### getBlock
@@ -1143,6 +1111,7 @@
     }
   }
 }
+
 ```
 
 ### getBlocks
@@ -1194,6 +1163,7 @@
     }
   }
 }
+
 ```
 
 ### getChainInfo
@@ -1230,6 +1200,7 @@ No arguments
     }
   }
 }
+
 ```
 
 ### getConfig
@@ -1247,6 +1218,7 @@ No arguments
     config
   }
 }
+
 ```
 
 ### getForgeState
@@ -1390,6 +1362,7 @@ No arguments
     }
   }
 }
+
 ```
 
 ### getForgeStats
@@ -1428,6 +1401,7 @@ No arguments
     }
   }
 }
+
 ```
 
 ### getForgeStatsByDay
@@ -1467,6 +1441,7 @@ No arguments
     }
   }
 }
+
 ```
 
 ### getForgeStatsByHour
@@ -1505,6 +1480,7 @@ No arguments
     }
   }
 }
+
 ```
 
 ### getHealthStatus
@@ -1550,6 +1526,7 @@ No arguments
     }
   }
 }
+
 ```
 
 ### getNetInfo
@@ -1584,6 +1561,7 @@ No arguments
     }
   }
 }
+
 ```
 
 ### getNodeInfo
@@ -1628,6 +1606,7 @@ No arguments
     }
   }
 }
+
 ```
 
 ### getProtocolState
@@ -1977,6 +1956,7 @@ No arguments
     }
   }
 }
+
 ```
 
 ### getSimulatorStatus
@@ -1994,6 +1974,7 @@ No arguments
     result
   }
 }
+
 ```
 
 ### getStakeState
@@ -2339,6 +2320,7 @@ No arguments
     }
   }
 }
+
 ```
 
 ### getTx
@@ -2511,6 +2493,7 @@ No arguments
     }
   }
 }
+
 ```
 
 ### getUnconfirmedTxs
@@ -2674,6 +2657,7 @@ No arguments
     }
   }
 }
+
 ```
 
 ### getValidatorsInfo
@@ -2709,6 +2693,7 @@ No arguments
     }
   }
 }
+
 ```
 
 ### listAssetTransactions
@@ -2879,6 +2864,7 @@ No arguments
     }
   }
 }
+
 ```
 
 ### listAssets
@@ -2925,6 +2911,7 @@ No arguments
     }
   }
 }
+
 ```
 
 ### listBlocks
@@ -2958,6 +2945,7 @@ No arguments
     }
   }
 }
+
 ```
 
 ### listStakes
@@ -2990,6 +2978,7 @@ No arguments
     }
   }
 }
+
 ```
 
 ### listTopAccounts
@@ -3027,6 +3016,7 @@ No arguments
     }
   }
 }
+
 ```
 
 ### listTransactions
@@ -3200,8 +3190,8 @@ No arguments
     }
   }
 }
-```
 
+```
 
 ## Subscriptions
 
@@ -6437,8 +6427,8 @@ subscription {
     }
   }
 }
-```
 
+```
 
 ## Mutations
 
@@ -6460,6 +6450,7 @@ mutation {
     hash
   }
 }
+
 ```
 
 ### startSimulator
@@ -6476,6 +6467,7 @@ mutation {
     code
   }
 }
+
 ```
 
 ### stopSimulator
@@ -6492,6 +6484,7 @@ mutation {
     code
   }
 }
+
 ```
 
 ### unsubscribe
@@ -6508,4 +6501,5 @@ mutation {
     code
   }
 }
+
 ```
