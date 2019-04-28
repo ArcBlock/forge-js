@@ -47,6 +47,7 @@ const Mcrypto = (module.exports = {
    * @readonly
    * @type {object}
    * @name Signer
+   * @static
    */
   Signer: {
     Ed25519: require('./signer/ed25519'),
@@ -59,6 +60,7 @@ const Mcrypto = (module.exports = {
    * @readonly
    * @type {object}
    * @name Hasher
+   * @static
    */
   Hasher: {
     SHA2: require('./hasher/sha2'),
@@ -70,6 +72,7 @@ const Mcrypto = (module.exports = {
    * Contains all supported crypter, eg: `AES`, each of them supports `encrypt`, `decrypt`
    *
    * @name Crypter
+   * @static
    */
   Crypter: {
     AES: require('./crypter/aes'),
@@ -84,6 +87,7 @@ const Mcrypto = (module.exports = {
    * @readonly
    * @type {object}
    * @name types
+   * @static
    */
   types,
 

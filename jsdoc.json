@@ -10,7 +10,7 @@
       "packages/forge-proto/init.js",
       "packages/forge-message/lib/message.js",
       "packages/forge-wallet/lib",
-      "packages/mcrypto/lib/index.js",
+      "packages/mcrypto/lib",
       "packages/graphql-client/src/client.js",
       "packages/graphql-client/src/types.js",
       "packages/grpc-client/lib/client.js",
