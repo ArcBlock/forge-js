@@ -1,3 +1,8 @@
+/**
+ * @fileOverview Contains helper methods to parse forge config file
+ * @module mcrypto
+ */
+
 // FIXME: enum definition of forge-abi and abt-did-elixir are not exactly the same
 const types = {
   KeyType: {
@@ -36,16 +41,25 @@ const Mcrypto = {
     Ed25519: require('./signer/ed25519'),
     Secp256k1: require('./signer/secp256k1'),
   },
+
   Hasher: {
     SHA2: require('./hasher/sha2'),
     SHA3: require('./hasher/sha3'),
     Keccak: require('./hasher/keccak'),
   },
+
   Crypter: {
     AES: require('./crypter/aes'),
   },
 
   types,
+
+  /**
+   * Get signer instance
+   *
+   * @param {number} type - algorithm used to derive key pair
+   * @returns {object} signer instance
+   */
   getSigner(type) {
     if (typeof Signers[type] === 'undefined') {
       throw new Error(`Unsupported signer type: ${type}`);
@@ -53,6 +67,13 @@ const Mcrypto = {
 
     return Signers[type];
   },
+
+  /**
+   * Get hasher instance
+   *
+   * @param {number} type - algorithm used to hash data
+   * @returns {object} hasher instance
+   */
   getHasher(type) {
     if (typeof Hashers[type] === 'undefined') {
       throw new Error(`Unsupported hash type: ${type}`);
