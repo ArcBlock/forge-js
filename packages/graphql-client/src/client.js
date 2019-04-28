@@ -20,8 +20,6 @@ const graphqlSchema = require('./schema/graphql.json');
  * Please note that, due to internal implementation of google-protobuf, all `repeated fields` names are suffixed with `List`
  *
  * @class
- * @memberof graphql-client
- * @namespace GraphQLClient
  */
 class GraphQLClient extends BaseClient {
   /**
