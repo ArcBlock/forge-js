@@ -1,4 +1,3 @@
-
 /**
  * Structure of GRpcClient.RequestVerifyTx
  *
@@ -549,18 +548,6 @@
  * @prop {GRpcClient.ResponseUpdateState} updateState
  * @prop {GRpcClient.ResponseInfo} info
  */
-
-
-
-
-
-
-
-
-
-
-
-
 
 /**
  * Structure of GRpcClient.BigUint
@@ -4444,7 +4431,6 @@
  * @prop {string} endDateTime
  */
 
-
 /**
  * Structure of GRpcClient.AddressFilter
  *
@@ -4639,7 +4625,6 @@
  * @prop {string} abciInfo
  */
 
-
 /**
  * Structure of GRpcClient.ValidityFilter
  *
@@ -4660,12 +4645,6 @@
  * @prop {number} from
  * @prop {number} to
  */
-
-
-
-
-
-
 
 /**
  * Structure of GRpcClient.DeclareTx
@@ -5256,7 +5235,7 @@
  * @function
  * @name GRpcClient#processOne
  * @param {GRpcClient.Request} params
- * @returns {Promise.<GRpcClient.Response>} 
+ * @returns {Promise.<GRpcClient.Response>}
  */
 
 /**
@@ -5276,7 +5255,7 @@
  * @function
  * @name GRpcClient#createTx
  * @param {GRpcClient.RequestCreateTx} params
- * @returns {Promise.<GRpcClient.ResponseCreateTx>} 
+ * @returns {Promise.<GRpcClient.ResponseCreateTx>}
  */
 
 /**
@@ -5286,7 +5265,7 @@
  * @function
  * @name GRpcClient#multisig
  * @param {GRpcClient.RequestMultisig} params
- * @returns {Promise.<GRpcClient.ResponseMultisig>} 
+ * @returns {Promise.<GRpcClient.ResponseMultisig>}
  */
 
 /**
@@ -5296,7 +5275,7 @@
  * @function
  * @name GRpcClient#sendTx
  * @param {GRpcClient.RequestSendTx} params
- * @returns {Promise.<GRpcClient.ResponseSendTx>} 
+ * @returns {Promise.<GRpcClient.ResponseSendTx>}
  */
 
 /**
@@ -5326,7 +5305,7 @@
  * @function
  * @name GRpcClient#getBlocks
  * @param {GRpcClient.RequestGetBlocks} params
- * @returns {Promise.<GRpcClient.ResponseGetBlocks>} 
+ * @returns {Promise.<GRpcClient.ResponseGetBlocks>}
  */
 
 /**
@@ -5336,7 +5315,7 @@
  * @function
  * @name GRpcClient#getUnconfirmedTxs
  * @param {GRpcClient.RequestGetUnconfirmedTxs} params
- * @returns {Promise.<GRpcClient.ResponseGetUnconfirmedTxs>} 
+ * @returns {Promise.<GRpcClient.ResponseGetUnconfirmedTxs>}
  */
 
 /**
@@ -5346,7 +5325,7 @@
  * @function
  * @name GRpcClient#getChainInfo
  * @param {GRpcClient.RequestGetChainInfo} params
- * @returns {Promise.<GRpcClient.ResponseGetChainInfo>} 
+ * @returns {Promise.<GRpcClient.ResponseGetChainInfo>}
  */
 
 /**
@@ -5356,7 +5335,7 @@
  * @function
  * @name GRpcClient#getNodeInfo
  * @param {GRpcClient.RequestGetNodeInfo} params
- * @returns {Promise.<GRpcClient.ResponseGetNodeInfo>} 
+ * @returns {Promise.<GRpcClient.ResponseGetNodeInfo>}
  */
 
 /**
@@ -5366,7 +5345,7 @@
  * @function
  * @name GRpcClient#search
  * @param {GRpcClient.RequestSearch} params
- * @returns {Promise.<GRpcClient.ResponseSearch>} 
+ * @returns {Promise.<GRpcClient.ResponseSearch>}
  */
 
 /**
@@ -5376,7 +5355,7 @@
  * @function
  * @name GRpcClient#getNetInfo
  * @param {GRpcClient.RequestGetNetInfo} params
- * @returns {Promise.<GRpcClient.ResponseGetNetInfo>} 
+ * @returns {Promise.<GRpcClient.ResponseGetNetInfo>}
  */
 
 /**
@@ -5386,7 +5365,7 @@
  * @function
  * @name GRpcClient#getValidatorsInfo
  * @param {GRpcClient.RequestGetValidatorsInfo} params
- * @returns {Promise.<GRpcClient.ResponseGetValidatorsInfo>} 
+ * @returns {Promise.<GRpcClient.ResponseGetValidatorsInfo>}
  */
 
 /**
@@ -5396,7 +5375,7 @@
  * @function
  * @name GRpcClient#getConfig
  * @param {GRpcClient.RequestGetConfig} params
- * @returns {Promise.<GRpcClient.ResponseGetConfig>} 
+ * @returns {Promise.<GRpcClient.ResponseGetConfig>}
  */
 
 /**
@@ -5416,7 +5395,7 @@
  * @function
  * @name GRpcClient#unsubscribe
  * @param {GRpcClient.RequestUnsubscribe} params
- * @returns {Promise.<GRpcClient.ResponseUnsubscribe>} 
+ * @returns {Promise.<GRpcClient.ResponseUnsubscribe>}
  */
 
 /**
@@ -5426,7 +5405,7 @@
  * @function
  * @name GRpcClient#storeFile
  * @param {GRpcClient.RequestStoreFile} params
- * @returns {Promise.<GRpcClient.ResponseStoreFile>} 
+ * @returns {Promise.<GRpcClient.ResponseStoreFile>}
  */
 
 /**
@@ -5446,7 +5425,7 @@
  * @function
  * @name GRpcClient#pinFile
  * @param {GRpcClient.RequestPinFile} params
- * @returns {Promise.<GRpcClient.ResponsePinFile>} 
+ * @returns {Promise.<GRpcClient.ResponsePinFile>}
  */
 
 /**
@@ -5476,7 +5455,7 @@
  * @function
  * @name GRpcClient#getForgeState
  * @param {GRpcClient.RequestGetForgeState} params
- * @returns {Promise.<GRpcClient.ResponseGetForgeState>} 
+ * @returns {Promise.<GRpcClient.ResponseGetForgeState>}
  */
 
 /**
@@ -5506,7 +5485,7 @@
  * @function
  * @name GRpcClient#createWallet
  * @param {GRpcClient.RequestCreateWallet} params
- * @returns {Promise.<GRpcClient.ResponseCreateWallet>} 
+ * @returns {Promise.<GRpcClient.ResponseCreateWallet>}
  */
 
 /**
@@ -5516,7 +5495,7 @@
  * @function
  * @name GRpcClient#loadWallet
  * @param {GRpcClient.RequestLoadWallet} params
- * @returns {Promise.<GRpcClient.ResponseLoadWallet>} 
+ * @returns {Promise.<GRpcClient.ResponseLoadWallet>}
  */
 
 /**
@@ -5526,7 +5505,7 @@
  * @function
  * @name GRpcClient#recoverWallet
  * @param {GRpcClient.RequestRecoverWallet} params
- * @returns {Promise.<GRpcClient.ResponseRecoverWallet>} 
+ * @returns {Promise.<GRpcClient.ResponseRecoverWallet>}
  */
 
 /**
@@ -5546,7 +5525,7 @@
  * @function
  * @name GRpcClient#removeWallet
  * @param {GRpcClient.RequestRemoveWallet} params
- * @returns {Promise.<GRpcClient.ResponseRemoveWallet>} 
+ * @returns {Promise.<GRpcClient.ResponseRemoveWallet>}
  */
 
 /**
@@ -5556,7 +5535,7 @@
  * @function
  * @name GRpcClient#declareNode
  * @param {GRpcClient.RequestDeclareNode} params
- * @returns {Promise.<GRpcClient.ResponseDeclareNode>} 
+ * @returns {Promise.<GRpcClient.ResponseDeclareNode>}
  */
 
 /**
@@ -5566,7 +5545,7 @@
  * @function
  * @name GRpcClient#getForgeStats
  * @param {GRpcClient.RequestGetForgeStats} params
- * @returns {Promise.<GRpcClient.ResponseGetForgeStats>} 
+ * @returns {Promise.<GRpcClient.ResponseGetForgeStats>}
  */
 
 /**
@@ -5576,7 +5555,7 @@
  * @function
  * @name GRpcClient#listTransactions
  * @param {GRpcClient.RequestListTransactions} params
- * @returns {Promise.<GRpcClient.ResponseListTransactions>} 
+ * @returns {Promise.<GRpcClient.ResponseListTransactions>}
  */
 
 /**
@@ -5586,7 +5565,7 @@
  * @function
  * @name GRpcClient#listAssets
  * @param {GRpcClient.RequestListAssets} params
- * @returns {Promise.<GRpcClient.ResponseListAssets>} 
+ * @returns {Promise.<GRpcClient.ResponseListAssets>}
  */
 
 /**
@@ -5596,7 +5575,7 @@
  * @function
  * @name GRpcClient#listStakes
  * @param {GRpcClient.RequestListStakes} params
- * @returns {Promise.<GRpcClient.ResponseListStakes>} 
+ * @returns {Promise.<GRpcClient.ResponseListStakes>}
  */
 
 /**
@@ -5606,7 +5585,7 @@
  * @function
  * @name GRpcClient#listAccount
  * @param {GRpcClient.RequestListAccount} params
- * @returns {Promise.<GRpcClient.ResponseListAccount>} 
+ * @returns {Promise.<GRpcClient.ResponseListAccount>}
  */
 
 /**
@@ -5616,7 +5595,7 @@
  * @function
  * @name GRpcClient#listTopAccounts
  * @param {GRpcClient.RequestListTopAccounts} params
- * @returns {Promise.<GRpcClient.ResponseListTopAccounts>} 
+ * @returns {Promise.<GRpcClient.ResponseListTopAccounts>}
  */
 
 /**
@@ -5626,7 +5605,7 @@
  * @function
  * @name GRpcClient#listAssetTransactions
  * @param {GRpcClient.RequestListAssetTransactions} params
- * @returns {Promise.<GRpcClient.ResponseListAssetTransactions>} 
+ * @returns {Promise.<GRpcClient.ResponseListAssetTransactions>}
  */
 
 /**
@@ -5636,7 +5615,7 @@
  * @function
  * @name GRpcClient#listBlocks
  * @param {GRpcClient.RequestListBlocks} params
- * @returns {Promise.<GRpcClient.ResponseListBlocks>} 
+ * @returns {Promise.<GRpcClient.ResponseListBlocks>}
  */
 
 /**
@@ -5646,5 +5625,5 @@
  * @function
  * @name GRpcClient#getHealthStatus
  * @param {GRpcClient.RequestGetHealthStatus} params
- * @returns {Promise.<GRpcClient.ResponseGetHealthStatus>} 
+ * @returns {Promise.<GRpcClient.ResponseGetHealthStatus>}
  */

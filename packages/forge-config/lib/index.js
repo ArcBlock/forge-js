@@ -1,6 +1,6 @@
 /**
  * @fileOverview Contains helper methods to parse forge config file
- * @module forge-config
+ * @module @arcblock/forge-config
  */
 
 const fs = require('fs');

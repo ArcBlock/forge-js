@@ -1,8 +1,8 @@
 /**
  * @fileOverview Contains basic helper methods to encode/format/mock a protobuf message
- * @module forge-message
- * @requires forge-util
- * @requires forge-proto
+ * @module @arcblock/forge-message
+ * @requires @arcblock/forge-util
+ * @requires @arcblock/forge-proto
  */
 
 /* eslint no-console:"off" */

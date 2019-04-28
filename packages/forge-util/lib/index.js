@@ -1,6 +1,6 @@
 /**
  * @fileOverview Contains many utility functions to help developers manipulate encoding/decoding/formatting/bignumber
- * @module forge-util
+ * @module @arcblock/forge-util
  */
 const isBoolean = require('lodash/isBoolean');
 const isString = require('lodash/isString');

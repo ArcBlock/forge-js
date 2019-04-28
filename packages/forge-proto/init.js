@@ -1,6 +1,6 @@
 /**
  * @fileOverview Contains all static generated javascript files from forge-abi and forge-core-protocols
- * @module forge-proto
+ * @module @arcblock/forge-proto
  */
 
 const get = require('lodash.get');

@@ -1,8 +1,8 @@
 /**
  * @fileOverview This module wraps common utility functions to help developers manipulate crypto wallets
- * @module forge-wallet
- * @requires mcrypto
- * @requires abt-did
+ * @module @arcblock/forge-wallet
+ * @requires @arcblock/mcrypto
+ * @requires @arcblock/abt-did
  */
 const upperFirst = require('lodash/upperFirst');
 const { types, getSigner, getHasher } = require('@arcblock/mcrypto');
