@@ -1,7 +1,3 @@
-/**
- * @fileOverview This module defines basic interface for an client that can interact with forge powered node
- * @module graphql-client
- */
 const BaseClient = require('@arcblock/sdk-util');
 const md5 = require('blueimp-md5');
 const camelcase = require('camelcase');

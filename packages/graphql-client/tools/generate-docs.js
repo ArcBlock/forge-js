@@ -119,7 +119,7 @@ const generateMethods = (methods, ns) =>
       const resultType = returnType.replace('...', '');
       return `
 /**
- * Use following query for result format reference
+ * Checkout following query for result format reference:
  *
  * \`\`\`graphql
 ${printFormat(x.name)}
@@ -180,11 +180,6 @@ const getTxEncodeTypes = (name, tx, ns) => `
 `;
 
 const dtsContent = `
-/**
- * @fileOverview This module defines generated types and functions for graphql-client
- * @module graphql-client
- */
-
 /**
  * List all query method names
  *

@@ -1,10 +1,5 @@
 
 /**
- * @fileOverview This module defines generated types and functions for graphql-client
- * @module graphql-client
- */
-
-/**
  * List all query method names
  *
  * @name GraphQLClient#getQueries
@@ -2110,7 +2105,7 @@
 
 
 /**
- * Use following query for result format reference
+ * Checkout following query for result format reference:
  *
  * ```graphql
  * {
@@ -2492,7 +2487,7 @@
 
 
 /**
- * Use following query for result format reference
+ * Checkout following query for result format reference:
  *
  * ```graphql
  * {
@@ -2861,7 +2856,7 @@
 
 
 /**
- * Use following query for result format reference
+ * Checkout following query for result format reference:
  *
  * ```graphql
  * {
@@ -3221,7 +3216,7 @@
 
 
 /**
- * Use following query for result format reference
+ * Checkout following query for result format reference:
  *
  * ```graphql
  * {
@@ -3274,7 +3269,7 @@
 
 
 /**
- * Use following query for result format reference
+ * Checkout following query for result format reference:
  *
  * ```graphql
  * {
@@ -3313,7 +3308,7 @@
 
 
 /**
- * Use following query for result format reference
+ * Checkout following query for result format reference:
  *
  * ```graphql
  * {
@@ -3333,7 +3328,7 @@
 
 
 /**
- * Use following query for result format reference
+ * Checkout following query for result format reference:
  *
  * ```graphql
  * {
@@ -3479,7 +3474,7 @@
 
 
 /**
- * Use following query for result format reference
+ * Checkout following query for result format reference:
  *
  * ```graphql
  * {
@@ -3520,7 +3515,7 @@
 
 
 /**
- * Use following query for result format reference
+ * Checkout following query for result format reference:
  *
  * ```graphql
  * {
@@ -3562,7 +3557,7 @@
 
 
 /**
- * Use following query for result format reference
+ * Checkout following query for result format reference:
  *
  * ```graphql
  * {
@@ -3604,7 +3599,7 @@
 
 
 /**
- * Use following query for result format reference
+ * Checkout following query for result format reference:
  *
  * ```graphql
  * {
@@ -3652,7 +3647,7 @@
 
 
 /**
- * Use following query for result format reference
+ * Checkout following query for result format reference:
  *
  * ```graphql
  * {
@@ -3689,7 +3684,7 @@
 
 
 /**
- * Use following query for result format reference
+ * Checkout following query for result format reference:
  *
  * ```graphql
  * {
@@ -3736,7 +3731,7 @@
 
 
 /**
- * Use following query for result format reference
+ * Checkout following query for result format reference:
  *
  * ```graphql
  * {
@@ -4087,7 +4082,7 @@
 
 
 /**
- * Use following query for result format reference
+ * Checkout following query for result format reference:
  *
  * ```graphql
  * {
@@ -4107,7 +4102,7 @@
 
 
 /**
- * Use following query for result format reference
+ * Checkout following query for result format reference:
  *
  * ```graphql
  * {
@@ -4454,7 +4449,7 @@
 
 
 /**
- * Use following query for result format reference
+ * Checkout following query for result format reference:
  *
  * ```graphql
  * {
@@ -4630,7 +4625,7 @@
 
 
 /**
- * Use following query for result format reference
+ * Checkout following query for result format reference:
  *
  * ```graphql
  * {
@@ -4797,7 +4792,7 @@
 
 
 /**
- * Use following query for result format reference
+ * Checkout following query for result format reference:
  *
  * ```graphql
  * {
@@ -4835,7 +4830,7 @@
 
 
 /**
- * Use following query for result format reference
+ * Checkout following query for result format reference:
  *
  * ```graphql
  * {
@@ -5008,7 +5003,7 @@
 
 
 /**
- * Use following query for result format reference
+ * Checkout following query for result format reference:
  *
  * ```graphql
  * {
@@ -5057,7 +5052,7 @@
 
 
 /**
- * Use following query for result format reference
+ * Checkout following query for result format reference:
  *
  * ```graphql
  * {
@@ -5089,7 +5084,7 @@
 
 
 /**
- * Use following query for result format reference
+ * Checkout following query for result format reference:
  *
  * ```graphql
  * {
@@ -5124,7 +5119,7 @@
 
 
 /**
- * Use following query for result format reference
+ * Checkout following query for result format reference:
  *
  * ```graphql
  * {
@@ -5165,7 +5160,7 @@
 
 
 /**
- * Use following query for result format reference
+ * Checkout following query for result format reference:
  *
  * ```graphql
  * {
@@ -5338,7 +5333,7 @@
 
 
 /**
- * Use following query for result format reference
+ * Checkout following query for result format reference:
  *
  * ```graphql
  * mutation {
@@ -5359,7 +5354,7 @@
 
 
 /**
- * Use following query for result format reference
+ * Checkout following query for result format reference:
  *
  * ```graphql
  * mutation {
@@ -5378,7 +5373,7 @@
 
 
 /**
- * Use following query for result format reference
+ * Checkout following query for result format reference:
  *
  * ```graphql
  * mutation {
@@ -5397,7 +5392,7 @@
 
 
 /**
- * Use following query for result format reference
+ * Checkout following query for result format reference:
  *
  * ```graphql
  * mutation {
@@ -5417,7 +5412,7 @@
 
 
 /**
- * Use following query for result format reference
+ * Checkout following query for result format reference:
  *
  * ```graphql
  * subscription {
