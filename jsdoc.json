@@ -5,6 +5,7 @@
   },
   "source": {
     "include": [
+      "packages/forge-config/lib",
       "packages/forge-util/lib",
       "packages/forge-proto/init.js",
       "packages/forge-message/lib/message.js",
@@ -34,13 +35,13 @@
     "static": true,
     "sort": true,
     "sectionOrder": [
-      "Classes",
+      "Tutorials",
       "Modules",
+      "Classes",
       "Externals",
       "Events",
       "Namespaces",
       "Mixins",
-      "Tutorials",
       "Interfaces"
     ],
     "meta": {
