@@ -179,8 +179,9 @@ declare namespace ${namespace} {
   }
 
   export interface TxParam<T> {
-    input: ItxParam<T>;
+    tx: ItxParam<T>;
     wallet: GraphQLClient.WalletObject,
+    signature: string;
   }
 
   export interface ItxParam<T> {
