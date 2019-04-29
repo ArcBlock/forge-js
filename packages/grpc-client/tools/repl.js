@@ -4,12 +4,8 @@
  * @link https://stackoverflow.com/questions/8425102/how-do-i-load-my-script-into-the-node-js-repl
  **/
 
-const path = require('path');
-const sdk = require('../');
-const { RpcClient, parseConfig } = sdk;
-const client = new RpcClient(
-  parseConfig(path.resolve(__dirname, '../../../examples/simple/forge.toml'))
-);
+const { RpcClient } = require('../');
+const client = new RpcClient('tcp://127.0.0.1:28210');
 const debug = (...args) => {
   console.log('x'.repeat(80));
   console.log(...args);
@@ -18,4 +14,3 @@ const debug = (...args) => {
 
 global.debug = debug;
 global.client = client;
-global.sdk = sdk;

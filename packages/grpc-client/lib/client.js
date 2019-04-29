@@ -1,7 +1,6 @@
 const grpc = require('grpc');
 const camelcase = require('camelcase');
 const { EventEmitter } = require('events');
-const { fromUnitToToken, fromTokenToUnit } = require('@arcblock/forge-util');
 const { messages, enums, rpcs, getMessageType } = require('@arcblock/forge-proto');
 const {
   formatMessage,
@@ -18,9 +17,7 @@ const debug = require('debug')(`${require('../package.json').name}`);
  *
 ```js
 const { RpcClient } = require('@arcblock/grpc-client');
-const { parse } = require('@arcblock/forge-config');
-
-const client = new RpcClient(parse('./forge.toml'));
+const client = new RpcClient("tcp://127.0.0.1:28210");
 (async () => {
   // fetch forge change info
   const { info } = await client.getChainInfo();
@@ -41,31 +38,25 @@ const client = new RpcClient(parse('./forge.toml'));
  */
 class GRpcClient {
   /**
-   * Creates an instance of GRpcClient.
-   * @param {*} config
+   * Creates an instance of GRpcClient, and generate transaction sending and receiving methods
+   *
+   * @param {string} [grpcEndpoint="tcp://127.0.0.1:28210"] - grpc endpoint the client can connect to
+   * @see GRpcClient.getQueries
+   * @see GRpcClient.getMutations
+   * @see GRpcClient.getSubscriptions
+   * @see GRpcClient.listRpcMethods
+   * @see GRpcClient.listTxSendMethods
    */
-  constructor(config) {
-    this.config = config || {};
-    debug('new', this.config);
-    if (!this.config.forge.sockGrpc) {
-      throw new Error('GRpcClient requires a valid `forge.sockGrpc` to start');
+  constructor(grpcEndpoint) {
+    if (!grpcEndpoint) {
+      throw new Error('GRpcClient requires a valid `grpcEndpoint` to initialize');
     }
+
+    this._grpcEndpoint = grpcEndpoint;
 
     this._initRpcClients();
     this._initRpcMethods();
     this._initTxMethods();
-  }
-
-  /**
-   * Arc is the smallest, infungible unit used for Forge Apps. If app define decimal as 16,
-   * then 1 token (e.g. ABT) = 10^16 arc. When sending transfer tx or exchange tx,
-   * the value shall be created with Arc.
-   */
-  fromUnitToToken(value) {
-    return fromUnitToToken(value, this.config.decimal || 16).toString(10);
-  }
-  fromTokenToUnit(value) {
-    return fromTokenToUnit(value, this.config.decimal || 16).toString(10);
   }
 
   /**
@@ -74,7 +65,7 @@ class GRpcClient {
    * @private
    */
   _initRpcClients() {
-    const socket = this.config.forge.sockGrpc.split('//').pop();
+    const socket = this._grpcEndpoint.split('//').pop();
     this.clients = Object.keys(rpcs).reduce((acc, x) => {
       debug('initRpcClient', x);
       acc[x] = new rpcs[x](socket, grpc.credentials.createInsecure());
@@ -211,11 +202,11 @@ class GRpcClient {
   }
 
   /**
-   * List standard rpc methods
+   * List generated transaction send methods
    *
    * @returns {object}
    */
-  listTxMethods() {
+  listTxSendMethods() {
     return Object.keys(this)
       .filter(x => typeof this[x] === 'function' && this[x].tx)
       .reduce((acc, x) => {

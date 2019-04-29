@@ -14,7 +14,7 @@ const prettyTime = require('pretty-ms');
 const prettyBytes = require('pretty-bytes');
 const figlet = require('figlet');
 const { get, set } = require('lodash');
-const { RpcClient } = require('@arcblock/grpc-client');
+const GRpcClient = require('@arcblock/grpc-client');
 const { parse } = require('@arcblock/forge-config');
 const { name, version, engines } = require('../../package.json');
 const debug = require('debug')(name);
@@ -437,7 +437,7 @@ function createRpcClient() {
     return client;
   }
 
-  client = new RpcClient(config);
+  client = new GRpcClient(config.forge.sockGrpc);
   return client;
 }
 

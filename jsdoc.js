@@ -14,7 +14,7 @@ module.exports = {
       'packages/graphql-client/src/module.js',
       'packages/graphql-client/src/client.js',
       'packages/graphql-client/src/types.js',
-      'packages/grpc-client/lib/module.js',
+      'packages/grpc-client/index.js',
       'packages/grpc-client/lib/client.js',
       'packages/grpc-client/lib/types.js',
       '../abt-did-js/packages/did/lib/index.js',
@@ -33,7 +33,7 @@ module.exports = {
   opts: {
     destination: './docs/',
     encoding: 'utf8',
-    private: true,
+    private: false,
     recurse: true,
     template: 'node_modules/@arcblock/docblock',
   },

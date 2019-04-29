@@ -6,10 +6,11 @@
 
 ## Table of Contents
 
-- [Install](#install)
-- [Usage](#usage)
-- [Documentation](#documentation)
-- [Contributors](#contributors)
+- [**@arcblock/grpc-client**](#arcblockgrpc-client)
+  - [Table of Contents](#table-of-contents)
+  - [Install](#install)
+  - [Usage](#usage)
+  - [Documentation](#documentation)
 
 ## Install
 
@@ -22,10 +23,9 @@ yarn add @arcblock/grpc-client
 ## Usage
 
 ```js
-const { RpcClient } = require('@arcblock/grpc-client');
-const { parse } = require('@arcblock/forge-config');
+const { GRpcClient } = require('@arcblock/grpc-client');
 
-const client = new RpcClient(parse('./forge.toml'));
+const client = new GRpcClient('tcp://127.0.0.1:28210');
 (async () => {
   // fetch forge change info
   const { info } = await client.getChainInfo();
