@@ -1,6 +1,5 @@
 /* eslint-disable no-console */
 const { fromRandom, WalletType } = require('@arcblock/forge-wallet');
-const { hexToBytes } = require('@arcblock/forge-util');
 const Mcrypto = require('@arcblock/mcrypto');
 const GraphqlClient = require('../src/node');
 
