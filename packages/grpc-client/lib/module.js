@@ -4,6 +4,10 @@
  * GRpcClient can only be used in node.js, and is more efficient thant {@link GraphQLClient} which connect your app with forge node through http endpoint.
  *
  * @module @arcblock/grpc-client
+ * @requires @arcblock/forge-proto
+ * @requires @arcblock/forge-wallet
+ * @requires @arcblock/forge-message
+ * @requires @arcblock/forge-util
  * @see GRpcClient
  * @see GraphQLClient
  */
