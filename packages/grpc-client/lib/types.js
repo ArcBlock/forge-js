@@ -1,5 +1,430 @@
 /**
- * Structure of GRpcClient.RequestVerifyTx
+ * Structure of GRpcClient.TxEncodeOutput
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.TxEncodeOutput
+ * @property {object} object - the transaction object, human readable
+ * @property {buffer} buffer - the transaction binary presentation, can be used to signing, encoding to other formats
+ */
+
+/**
+ * Structure of GRpcClient.RequestVerifyTx 
+ *
+```javascript
+{
+  "tx": {
+    "from": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+    "nonce": 5,
+    "chainId": "arcblock",
+    "pk": {},
+    "signature": {},
+    "signatures": [
+      {
+        "signer": "arcblock",
+        "pk": {},
+        "signature": {},
+        "data": {
+          "type": "string",
+          "value": "ABCD 1234"
+        }
+      },
+      {
+        "signer": "arcblock",
+        "pk": {},
+        "signature": {},
+        "data": {
+          "type": "string",
+          "value": "ABCD 1234"
+        }
+      }
+    ],
+    "itx": {
+      "type": "string",
+      "value": "ABCD 1234"
+    }
+  },
+  "states": [
+    {
+      "nonce": 5,
+      "numTxs": 5,
+      "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+      "pk": {},
+      "type": {
+        "pk": 0,
+        "hash": 0,
+        "address": 0,
+        "role": 0
+      },
+      "moniker": "arcblock",
+      "context": {
+        "genesisTx": "arcblock",
+        "renaissanceTx": "arcblock",
+        "genesisTime": "2019-04-29T10:15:32.968Z",
+        "renaissanceTime": "2019-04-29T10:15:32.968Z"
+      },
+      "issuer": "arcblock",
+      "migratedTo": [
+        "arcblock",
+        "arcblock"
+      ],
+      "migratedFrom": [
+        "arcblock",
+        "arcblock"
+      ],
+      "numAssets": 5,
+      "stake": {
+        "recentStakes": {
+          "items": [
+            {},
+            {}
+          ],
+          "typeUrl": "arcblock",
+          "maxItems": 2,
+          "circular": true,
+          "fifo": true
+        },
+        "recentReceivedStakes": {
+          "items": [
+            {},
+            {}
+          ],
+          "typeUrl": "arcblock",
+          "maxItems": 2,
+          "circular": true,
+          "fifo": true
+        }
+      },
+      "pinnedFiles": {
+        "items": [
+          {},
+          {}
+        ],
+        "typeUrl": "arcblock",
+        "maxItems": 2,
+        "circular": true,
+        "fifo": true
+      },
+      "poke": {},
+      "data": {
+        "type": "string",
+        "value": "ABCD 1234"
+      }
+    },
+    {
+      "nonce": 5,
+      "numTxs": 5,
+      "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+      "pk": {},
+      "type": {
+        "pk": 0,
+        "hash": 0,
+        "address": 0,
+        "role": 0
+      },
+      "moniker": "arcblock",
+      "context": {
+        "genesisTx": "arcblock",
+        "renaissanceTx": "arcblock",
+        "genesisTime": "2019-04-29T10:15:32.968Z",
+        "renaissanceTime": "2019-04-29T10:15:32.968Z"
+      },
+      "issuer": "arcblock",
+      "migratedTo": [
+        "arcblock",
+        "arcblock"
+      ],
+      "migratedFrom": [
+        "arcblock",
+        "arcblock"
+      ],
+      "numAssets": 5,
+      "stake": {
+        "recentStakes": {
+          "items": [
+            {},
+            {}
+          ],
+          "typeUrl": "arcblock",
+          "maxItems": 2,
+          "circular": true,
+          "fifo": true
+        },
+        "recentReceivedStakes": {
+          "items": [
+            {},
+            {}
+          ],
+          "typeUrl": "arcblock",
+          "maxItems": 2,
+          "circular": true,
+          "fifo": true
+        }
+      },
+      "pinnedFiles": {
+        "items": [
+          {},
+          {}
+        ],
+        "typeUrl": "arcblock",
+        "maxItems": 2,
+        "circular": true,
+        "fifo": true
+      },
+      "poke": {},
+      "data": {
+        "type": "string",
+        "value": "ABCD 1234"
+      }
+    }
+  ],
+  "assets": [
+    {
+      "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+      "owner": "arcblock",
+      "moniker": "arcblock",
+      "readonly": true,
+      "transferrable": true,
+      "ttl": 2,
+      "consumedTime": "2019-04-29T10:15:32.968Z",
+      "issuer": "arcblock",
+      "stake": {
+        "recentStakes": {
+          "items": [
+            {},
+            {}
+          ],
+          "typeUrl": "arcblock",
+          "maxItems": 2,
+          "circular": true,
+          "fifo": true
+        },
+        "recentReceivedStakes": {
+          "items": [
+            {},
+            {}
+          ],
+          "typeUrl": "arcblock",
+          "maxItems": 2,
+          "circular": true,
+          "fifo": true
+        }
+      },
+      "context": {
+        "genesisTx": "arcblock",
+        "renaissanceTx": "arcblock",
+        "genesisTime": "2019-04-29T10:15:32.968Z",
+        "renaissanceTime": "2019-04-29T10:15:32.968Z"
+      },
+      "data": {
+        "type": "string",
+        "value": "ABCD 1234"
+      }
+    },
+    {
+      "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+      "owner": "arcblock",
+      "moniker": "arcblock",
+      "readonly": true,
+      "transferrable": true,
+      "ttl": 2,
+      "consumedTime": "2019-04-29T10:15:32.968Z",
+      "issuer": "arcblock",
+      "stake": {
+        "recentStakes": {
+          "items": [
+            {},
+            {}
+          ],
+          "typeUrl": "arcblock",
+          "maxItems": 2,
+          "circular": true,
+          "fifo": true
+        },
+        "recentReceivedStakes": {
+          "items": [
+            {},
+            {}
+          ],
+          "typeUrl": "arcblock",
+          "maxItems": 2,
+          "circular": true,
+          "fifo": true
+        }
+      },
+      "context": {
+        "genesisTx": "arcblock",
+        "renaissanceTx": "arcblock",
+        "genesisTime": "2019-04-29T10:15:32.968Z",
+        "renaissanceTime": "2019-04-29T10:15:32.968Z"
+      },
+      "data": {
+        "type": "string",
+        "value": "ABCD 1234"
+      }
+    }
+  ],
+  "stakes": [
+    {
+      "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+      "from": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+      "to": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+      "message": "arcblock",
+      "context": {
+        "genesisTx": "arcblock",
+        "renaissanceTx": "arcblock",
+        "genesisTime": "2019-04-29T10:15:32.968Z",
+        "renaissanceTime": "2019-04-29T10:15:32.968Z"
+      },
+      "data": {
+        "type": "string",
+        "value": "ABCD 1234"
+      }
+    },
+    {
+      "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+      "from": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+      "to": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+      "message": "arcblock",
+      "context": {
+        "genesisTx": "arcblock",
+        "renaissanceTx": "arcblock",
+        "genesisTime": "2019-04-29T10:15:32.968Z",
+        "renaissanceTime": "2019-04-29T10:15:32.968Z"
+      },
+      "data": {
+        "type": "string",
+        "value": "ABCD 1234"
+      }
+    }
+  ],
+  "context": {
+    "txHash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+    "blockHeight": 5,
+    "blockTime": "2019-04-29T10:15:32.968Z",
+    "totalTxs": 5,
+    "txStatistics": {
+      "numAccountMigrateTxs": 5,
+      "numCreateAssetTxs": 5,
+      "numConsensusUpgradeTxs": 2,
+      "numDeclareTxs": 5,
+      "numDeclareFileTxs": 5,
+      "numExchangeTxs": 5,
+      "numStakeTxs": 5,
+      "numSysUpgradeTxs": 2,
+      "numTransferTxs": 5,
+      "numUpdateAssetTxs": 5,
+      "numConsumeAssetTxs": 5,
+      "numPokeTxs": 5
+    },
+    "txIndex": 2,
+    "lastBlockTime": "2019-04-29T10:15:32.968Z"
+  },
+  "appState": {
+    "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+    "consensus": {
+      "maxBytes": 5,
+      "maxGas": 4,
+      "maxValidators": 2,
+      "maxCandidates": 2,
+      "pubKeyTypes": [
+        "arcblock",
+        "arcblock"
+      ],
+      "validators": [
+        {
+          "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+          "power": 5
+        },
+        {
+          "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+          "power": 5
+        }
+      ],
+      "validatorChanged": true,
+      "paramChanged": true
+    },
+    "tasks": {
+      "5": {
+        "item": [
+          {
+            "type": 0,
+            "dataHash": "arcblock",
+            "actions": [
+              null,
+              null
+            ]
+          },
+          {
+            "type": 0,
+            "dataHash": "arcblock",
+            "actions": [
+              null,
+              null
+            ]
+          }
+        ]
+      }
+    },
+    "stakeSummary": {
+      "2": {
+        "context": {
+          "genesisTx": "arcblock",
+          "renaissanceTx": "arcblock",
+          "genesisTime": "2019-04-29T10:15:32.969Z",
+          "renaissanceTime": "2019-04-29T10:15:32.969Z"
+        }
+      }
+    },
+    "version": "arcblock",
+    "forgeAppHash": {},
+    "token": {
+      "name": "arcblock",
+      "symbol": "arcblock",
+      "unit": "arcblock",
+      "description": "arcblock",
+      "icon": {},
+      "decimal": 2,
+      "initialSupply": 5,
+      "totalSupply": 5,
+      "inflationRate": 2
+    },
+    "txConfig": {
+      "maxAssetSize": 2,
+      "maxListSize": 2,
+      "maxMultisig": 2,
+      "minimumStake": 5
+    },
+    "stakeConfig": {
+      "timeoutGeneral": 2,
+      "timeoutStakeForNode": 2
+    },
+    "pokeConfig": {
+      "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+      "dailyLimit": 5,
+      "balance": 5,
+      "amount": 5
+    },
+    "protocols": [
+      {
+        "name": "arcblock",
+        "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55"
+      },
+      {
+        "name": "arcblock",
+        "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55"
+      }
+    ],
+    "upgradeInfo": {
+      "height": 5,
+      "version": "arcblock"
+    },
+    "data": {
+      "type": "string",
+      "value": "ABCD 1234"
+    }
+  }
+}
+```
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.RequestVerifyTx
@@ -12,7 +437,13 @@
  */
 
 /**
- * Structure of GRpcClient.ResponseVerifyTx
+ * Structure of GRpcClient.ResponseVerifyTx 
+ *
+```javascript
+{
+  "code": 0
+}
+```
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.ResponseVerifyTx
@@ -66,442 +497,416 @@
  *
 ```javascript
 {
-  verifyTx: {
-    tx: {
-      from: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-      nonce: 5,
-      chainId: 'arcblock',
-      pk: Uint8Array [],
-      signature: Uint8Array [],
-      signatures: [
+  "verifyTx": {
+    "tx": {
+      "from": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+      "nonce": 5,
+      "chainId": "arcblock",
+      "pk": {},
+      "signature": {},
+      "signatures": [
         {
-          signer: 'arcblock',
-          pk: Uint8Array [],
-          signature: Uint8Array [],
-          data: {
-            type: 'string',
-            value: 'ABCD 1234'
+          "signer": "arcblock",
+          "pk": {},
+          "signature": {},
+          "data": {
+            "type": "string",
+            "value": "ABCD 1234"
           }
         },
         {
-          signer: 'arcblock',
-          pk: Uint8Array [],
-          signature: Uint8Array [],
-          data: {
-            type: 'string',
-            value: 'ABCD 1234'
+          "signer": "arcblock",
+          "pk": {},
+          "signature": {},
+          "data": {
+            "type": "string",
+            "value": "ABCD 1234"
           }
         }
       ],
-      itx: {
-        type: 'string',
-        value: 'ABCD 1234'
+      "itx": {
+        "type": "string",
+        "value": "ABCD 1234"
       }
     },
-    states: [
+    "states": [
       {
-        balance: [Function: BigUint],
-        nonce: 5,
-        numTxs: 5,
-        address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-        pk: Uint8Array [],
-        type: {
-          pk: 0,
-          hash: 0,
-          address: 0,
-          role: 0
+        "nonce": 5,
+        "numTxs": 5,
+        "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+        "pk": {},
+        "type": {
+          "pk": 0,
+          "hash": 0,
+          "address": 0,
+          "role": 0
         },
-        moniker: 'arcblock',
-        context: {
-          genesisTx: 'arcblock',
-          renaissanceTx: 'arcblock',
-          genesisTime: '2019-04-29T07:49:13.421Z',
-          renaissanceTime: '2019-04-29T07:49:13.421Z'
+        "moniker": "arcblock",
+        "context": {
+          "genesisTx": "arcblock",
+          "renaissanceTx": "arcblock",
+          "genesisTime": "2019-04-29T10:15:32.964Z",
+          "renaissanceTime": "2019-04-29T10:15:32.964Z"
         },
-        issuer: 'arcblock',
-        migratedTo: [
-          'arcblock',
-          'arcblock'
+        "issuer": "arcblock",
+        "migratedTo": [
+          "arcblock",
+          "arcblock"
         ],
-        migratedFrom: [
-          'arcblock',
-          'arcblock'
+        "migratedFrom": [
+          "arcblock",
+          "arcblock"
         ],
-        numAssets: 5,
-        stake: {
-          totalStakes: [Function: BigUint],
-          totalUnstakes: [Function: BigUint],
-          totalReceivedStakes: [Function: BigUint],
-          recentStakes: {
-            items: [
-              Uint8Array [],
-              Uint8Array []
+        "numAssets": 5,
+        "stake": {
+          "recentStakes": {
+            "items": [
+              {},
+              {}
             ],
-            typeUrl: 'arcblock',
-            maxItems: 2,
-            circular: true,
-            fifo: true
+            "typeUrl": "arcblock",
+            "maxItems": 2,
+            "circular": true,
+            "fifo": true
           },
-          recentReceivedStakes: {
-            items: [
-              Uint8Array [],
-              Uint8Array []
+          "recentReceivedStakes": {
+            "items": [
+              {},
+              {}
             ],
-            typeUrl: 'arcblock',
-            maxItems: 2,
-            circular: true,
-            fifo: true
+            "typeUrl": "arcblock",
+            "maxItems": 2,
+            "circular": true,
+            "fifo": true
           }
         },
-        pinnedFiles: {
-          items: [
-            Uint8Array [],
-            Uint8Array []
+        "pinnedFiles": {
+          "items": [
+            {},
+            {}
           ],
-          typeUrl: 'arcblock',
-          maxItems: 2,
-          circular: true,
-          fifo: true
+          "typeUrl": "arcblock",
+          "maxItems": 2,
+          "circular": true,
+          "fifo": true
         },
-        poke: {
-          dailyLimit: [Function: BigUint],
-          leftover: [Function: BigUint],
-          amount: [Function: BigUint]
-        },
-        data: {
-          type: 'string',
-          value: 'ABCD 1234'
+        "poke": {},
+        "data": {
+          "type": "string",
+          "value": "ABCD 1234"
         }
       },
       {
-        balance: [Function: BigUint],
-        nonce: 5,
-        numTxs: 5,
-        address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-        pk: Uint8Array [],
-        type: {
-          pk: 0,
-          hash: 0,
-          address: 0,
-          role: 0
+        "nonce": 5,
+        "numTxs": 5,
+        "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+        "pk": {},
+        "type": {
+          "pk": 0,
+          "hash": 0,
+          "address": 0,
+          "role": 0
         },
-        moniker: 'arcblock',
-        context: {
-          genesisTx: 'arcblock',
-          renaissanceTx: 'arcblock',
-          genesisTime: '2019-04-29T07:49:13.421Z',
-          renaissanceTime: '2019-04-29T07:49:13.421Z'
+        "moniker": "arcblock",
+        "context": {
+          "genesisTx": "arcblock",
+          "renaissanceTx": "arcblock",
+          "genesisTime": "2019-04-29T10:15:32.964Z",
+          "renaissanceTime": "2019-04-29T10:15:32.964Z"
         },
-        issuer: 'arcblock',
-        migratedTo: [
-          'arcblock',
-          'arcblock'
+        "issuer": "arcblock",
+        "migratedTo": [
+          "arcblock",
+          "arcblock"
         ],
-        migratedFrom: [
-          'arcblock',
-          'arcblock'
+        "migratedFrom": [
+          "arcblock",
+          "arcblock"
         ],
-        numAssets: 5,
-        stake: {
-          totalStakes: [Function: BigUint],
-          totalUnstakes: [Function: BigUint],
-          totalReceivedStakes: [Function: BigUint],
-          recentStakes: {
-            items: [
-              Uint8Array [],
-              Uint8Array []
+        "numAssets": 5,
+        "stake": {
+          "recentStakes": {
+            "items": [
+              {},
+              {}
             ],
-            typeUrl: 'arcblock',
-            maxItems: 2,
-            circular: true,
-            fifo: true
+            "typeUrl": "arcblock",
+            "maxItems": 2,
+            "circular": true,
+            "fifo": true
           },
-          recentReceivedStakes: {
-            items: [
-              Uint8Array [],
-              Uint8Array []
+          "recentReceivedStakes": {
+            "items": [
+              {},
+              {}
             ],
-            typeUrl: 'arcblock',
-            maxItems: 2,
-            circular: true,
-            fifo: true
+            "typeUrl": "arcblock",
+            "maxItems": 2,
+            "circular": true,
+            "fifo": true
           }
         },
-        pinnedFiles: {
-          items: [
-            Uint8Array [],
-            Uint8Array []
+        "pinnedFiles": {
+          "items": [
+            {},
+            {}
           ],
-          typeUrl: 'arcblock',
-          maxItems: 2,
-          circular: true,
-          fifo: true
+          "typeUrl": "arcblock",
+          "maxItems": 2,
+          "circular": true,
+          "fifo": true
         },
-        poke: {
-          dailyLimit: [Function: BigUint],
-          leftover: [Function: BigUint],
-          amount: [Function: BigUint]
-        },
-        data: {
-          type: 'string',
-          value: 'ABCD 1234'
+        "poke": {},
+        "data": {
+          "type": "string",
+          "value": "ABCD 1234"
         }
       }
     ],
-    assets: [
+    "assets": [
       {
-        address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-        owner: 'arcblock',
-        moniker: 'arcblock',
-        readonly: true,
-        transferrable: true,
-        ttl: 2,
-        consumedTime: '2019-04-29T07:49:13.421Z',
-        issuer: 'arcblock',
-        stake: {
-          totalStakes: [Function: BigUint],
-          totalUnstakes: [Function: BigUint],
-          totalReceivedStakes: [Function: BigUint],
-          recentStakes: {
-            items: [
-              Uint8Array [],
-              Uint8Array []
+        "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+        "owner": "arcblock",
+        "moniker": "arcblock",
+        "readonly": true,
+        "transferrable": true,
+        "ttl": 2,
+        "consumedTime": "2019-04-29T10:15:32.964Z",
+        "issuer": "arcblock",
+        "stake": {
+          "recentStakes": {
+            "items": [
+              {},
+              {}
             ],
-            typeUrl: 'arcblock',
-            maxItems: 2,
-            circular: true,
-            fifo: true
+            "typeUrl": "arcblock",
+            "maxItems": 2,
+            "circular": true,
+            "fifo": true
           },
-          recentReceivedStakes: {
-            items: [
-              Uint8Array [],
-              Uint8Array []
+          "recentReceivedStakes": {
+            "items": [
+              {},
+              {}
             ],
-            typeUrl: 'arcblock',
-            maxItems: 2,
-            circular: true,
-            fifo: true
+            "typeUrl": "arcblock",
+            "maxItems": 2,
+            "circular": true,
+            "fifo": true
           }
         },
-        context: {
-          genesisTx: 'arcblock',
-          renaissanceTx: 'arcblock',
-          genesisTime: '2019-04-29T07:49:13.421Z',
-          renaissanceTime: '2019-04-29T07:49:13.421Z'
+        "context": {
+          "genesisTx": "arcblock",
+          "renaissanceTx": "arcblock",
+          "genesisTime": "2019-04-29T10:15:32.964Z",
+          "renaissanceTime": "2019-04-29T10:15:32.964Z"
         },
-        data: {
-          type: 'string',
-          value: 'ABCD 1234'
+        "data": {
+          "type": "string",
+          "value": "ABCD 1234"
         }
       },
       {
-        address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-        owner: 'arcblock',
-        moniker: 'arcblock',
-        readonly: true,
-        transferrable: true,
-        ttl: 2,
-        consumedTime: '2019-04-29T07:49:13.421Z',
-        issuer: 'arcblock',
-        stake: {
-          totalStakes: [Function: BigUint],
-          totalUnstakes: [Function: BigUint],
-          totalReceivedStakes: [Function: BigUint],
-          recentStakes: {
-            items: [
-              Uint8Array [],
-              Uint8Array []
+        "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+        "owner": "arcblock",
+        "moniker": "arcblock",
+        "readonly": true,
+        "transferrable": true,
+        "ttl": 2,
+        "consumedTime": "2019-04-29T10:15:32.964Z",
+        "issuer": "arcblock",
+        "stake": {
+          "recentStakes": {
+            "items": [
+              {},
+              {}
             ],
-            typeUrl: 'arcblock',
-            maxItems: 2,
-            circular: true,
-            fifo: true
+            "typeUrl": "arcblock",
+            "maxItems": 2,
+            "circular": true,
+            "fifo": true
           },
-          recentReceivedStakes: {
-            items: [
-              Uint8Array [],
-              Uint8Array []
+          "recentReceivedStakes": {
+            "items": [
+              {},
+              {}
             ],
-            typeUrl: 'arcblock',
-            maxItems: 2,
-            circular: true,
-            fifo: true
+            "typeUrl": "arcblock",
+            "maxItems": 2,
+            "circular": true,
+            "fifo": true
           }
         },
-        context: {
-          genesisTx: 'arcblock',
-          renaissanceTx: 'arcblock',
-          genesisTime: '2019-04-29T07:49:13.421Z',
-          renaissanceTime: '2019-04-29T07:49:13.421Z'
+        "context": {
+          "genesisTx": "arcblock",
+          "renaissanceTx": "arcblock",
+          "genesisTime": "2019-04-29T10:15:32.964Z",
+          "renaissanceTime": "2019-04-29T10:15:32.964Z"
         },
-        data: {
-          type: 'string',
-          value: 'ABCD 1234'
+        "data": {
+          "type": "string",
+          "value": "ABCD 1234"
         }
       }
     ],
-    stakes: [
+    "stakes": [
       {
-        address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-        from: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-        to: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-        balance: [Function: BigUint],
-        message: 'arcblock',
-        context: {
-          genesisTx: 'arcblock',
-          renaissanceTx: 'arcblock',
-          genesisTime: '2019-04-29T07:49:13.421Z',
-          renaissanceTime: '2019-04-29T07:49:13.421Z'
+        "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+        "from": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+        "to": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+        "message": "arcblock",
+        "context": {
+          "genesisTx": "arcblock",
+          "renaissanceTx": "arcblock",
+          "genesisTime": "2019-04-29T10:15:32.964Z",
+          "renaissanceTime": "2019-04-29T10:15:32.964Z"
         },
-        data: {
-          type: 'string',
-          value: 'ABCD 1234'
+        "data": {
+          "type": "string",
+          "value": "ABCD 1234"
         }
       },
       {
-        address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-        from: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-        to: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-        balance: [Function: BigUint],
-        message: 'arcblock',
-        context: {
-          genesisTx: 'arcblock',
-          renaissanceTx: 'arcblock',
-          genesisTime: '2019-04-29T07:49:13.421Z',
-          renaissanceTime: '2019-04-29T07:49:13.421Z'
+        "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+        "from": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+        "to": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+        "message": "arcblock",
+        "context": {
+          "genesisTx": "arcblock",
+          "renaissanceTx": "arcblock",
+          "genesisTime": "2019-04-29T10:15:32.964Z",
+          "renaissanceTime": "2019-04-29T10:15:32.964Z"
         },
-        data: {
-          type: 'string',
-          value: 'ABCD 1234'
+        "data": {
+          "type": "string",
+          "value": "ABCD 1234"
         }
       }
     ],
-    context: {
-      txHash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-      blockHeight: 5,
-      blockTime: '2019-04-29T07:49:13.421Z',
-      totalTxs: 5,
-      txStatistics: {
-        numAccountMigrateTxs: 5,
-        numCreateAssetTxs: 5,
-        numConsensusUpgradeTxs: 2,
-        numDeclareTxs: 5,
-        numDeclareFileTxs: 5,
-        numExchangeTxs: 5,
-        numStakeTxs: 5,
-        numSysUpgradeTxs: 2,
-        numTransferTxs: 5,
-        numUpdateAssetTxs: 5,
-        numConsumeAssetTxs: 5,
-        numPokeTxs: 5
+    "context": {
+      "txHash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+      "blockHeight": 5,
+      "blockTime": "2019-04-29T10:15:32.964Z",
+      "totalTxs": 5,
+      "txStatistics": {
+        "numAccountMigrateTxs": 5,
+        "numCreateAssetTxs": 5,
+        "numConsensusUpgradeTxs": 2,
+        "numDeclareTxs": 5,
+        "numDeclareFileTxs": 5,
+        "numExchangeTxs": 5,
+        "numStakeTxs": 5,
+        "numSysUpgradeTxs": 2,
+        "numTransferTxs": 5,
+        "numUpdateAssetTxs": 5,
+        "numConsumeAssetTxs": 5,
+        "numPokeTxs": 5
       },
-      txIndex: 2,
-      lastBlockTime: '2019-04-29T07:49:13.421Z'
+      "txIndex": 2,
+      "lastBlockTime": "2019-04-29T10:15:32.964Z"
     },
-    appState: {
-      address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-      consensus: {
-        maxBytes: 5,
-        maxGas: 4,
-        maxValidators: 2,
-        maxCandidates: 2,
-        pubKeyTypes: [
-          'arcblock',
-          'arcblock'
+    "appState": {
+      "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+      "consensus": {
+        "maxBytes": 5,
+        "maxGas": 4,
+        "maxValidators": 2,
+        "maxCandidates": 2,
+        "pubKeyTypes": [
+          "arcblock",
+          "arcblock"
         ],
-        validators: [
+        "validators": [
           {
-            address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-            power: 5
+            "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+            "power": 5
           },
           {
-            address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-            power: 5
+            "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+            "power": 5
           }
         ],
-        validatorChanged: true,
-        paramChanged: true
+        "validatorChanged": true,
+        "paramChanged": true
       },
-      tasks: {
-        '5': {
-          item: [
+      "tasks": {
+        "5": {
+          "item": [
             {
-              type: 0,
-              dataHash: 'arcblock',
-              actions: [
-                undefined,
-                undefined
+              "type": 0,
+              "dataHash": "arcblock",
+              "actions": [
+                null,
+                null
               ]
             },
             {
-              type: 0,
-              dataHash: 'arcblock',
-              actions: [
-                undefined,
-                undefined
+              "type": 0,
+              "dataHash": "arcblock",
+              "actions": [
+                null,
+                null
               ]
             }
           ]
         }
       },
-      stakeSummary: {
-        '2': {
-          totalStakes: [Function: BigUint],
-          totalUnstakes: [Function: BigUint],
-          context: {
-            genesisTx: 'arcblock',
-            renaissanceTx: 'arcblock',
-            genesisTime: '2019-04-29T07:49:13.421Z',
-            renaissanceTime: '2019-04-29T07:49:13.421Z'
+      "stakeSummary": {
+        "2": {
+          "context": {
+            "genesisTx": "arcblock",
+            "renaissanceTx": "arcblock",
+            "genesisTime": "2019-04-29T10:15:32.964Z",
+            "renaissanceTime": "2019-04-29T10:15:32.964Z"
           }
         }
       },
-      version: 'arcblock',
-      forgeAppHash: Uint8Array [],
-      token: {
-        name: 'arcblock',
-        symbol: 'arcblock',
-        unit: 'arcblock',
-        description: 'arcblock',
-        icon: Uint8Array [],
-        decimal: 2,
-        initialSupply: 5,
-        totalSupply: 5,
-        inflationRate: 2
+      "version": "arcblock",
+      "forgeAppHash": {},
+      "token": {
+        "name": "arcblock",
+        "symbol": "arcblock",
+        "unit": "arcblock",
+        "description": "arcblock",
+        "icon": {},
+        "decimal": 2,
+        "initialSupply": 5,
+        "totalSupply": 5,
+        "inflationRate": 2
       },
-      txConfig: {
-        maxAssetSize: 2,
-        maxListSize: 2,
-        maxMultisig: 2,
-        minimumStake: 5
+      "txConfig": {
+        "maxAssetSize": 2,
+        "maxListSize": 2,
+        "maxMultisig": 2,
+        "minimumStake": 5
       },
-      stakeConfig: {
-        timeoutGeneral: 2,
-        timeoutStakeForNode: 2
+      "stakeConfig": {
+        "timeoutGeneral": 2,
+        "timeoutStakeForNode": 2
       },
-      pokeConfig: {
-        address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-        dailyLimit: 5,
-        balance: 5,
-        amount: 5
+      "pokeConfig": {
+        "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+        "dailyLimit": 5,
+        "balance": 5,
+        "amount": 5
       },
-      protocols: [
+      "protocols": [
         {
-          name: 'arcblock',
-          address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55'
+          "name": "arcblock",
+          "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55"
         },
         {
-          name: 'arcblock',
-          address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55'
+          "name": "arcblock",
+          "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55"
         }
       ],
-      upgradeInfo: {
-        height: 5,
-        version: 'arcblock'
+      "upgradeInfo": {
+        "height": 5,
+        "version": "arcblock"
       },
-      data: {
-        type: 'string',
-        value: 'ABCD 1234'
+      "data": {
+        "type": "string",
+        "value": "ABCD 1234"
       }
     }
   }
@@ -520,8 +925,8 @@
  *
 ```javascript
 {
-  verifyTx: {
-    code: 0
+  "verifyTx": {
+    "code": 0
   }
 }
 ```
@@ -1166,24 +1571,24 @@
  *
 ```javascript
 {
-  itx: {
-    type: 'string',
-    value: 'ABCD 1234'
+  "itx": {
+    "type": "string",
+    "value": "ABCD 1234"
   },
-  from: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-  nonce: 5,
-  wallet: {
-    type: {
-      pk: 0,
-      hash: 0,
-      address: 0,
-      role: 0
+  "from": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+  "nonce": 5,
+  "wallet": {
+    "type": {
+      "pk": 0,
+      "hash": 0,
+      "address": 0,
+      "role": 0
     },
-    sk: Uint8Array [],
-    pk: Uint8Array [],
-    address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55'
+    "sk": {},
+    "pk": {},
+    "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55"
   },
-  token: 'arcblock'
+  "token": "arcblock"
 }
 ```
  *
@@ -1201,36 +1606,36 @@
  *
 ```javascript
 {
-  code: 0,
-  tx: {
-    from: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-    nonce: 5,
-    chainId: 'arcblock',
-    pk: Uint8Array [],
-    signature: Uint8Array [],
-    signatures: [
+  "code": 0,
+  "tx": {
+    "from": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+    "nonce": 5,
+    "chainId": "arcblock",
+    "pk": {},
+    "signature": {},
+    "signatures": [
       {
-        signer: 'arcblock',
-        pk: Uint8Array [],
-        signature: Uint8Array [],
-        data: {
-          type: 'string',
-          value: 'ABCD 1234'
+        "signer": "arcblock",
+        "pk": {},
+        "signature": {},
+        "data": {
+          "type": "string",
+          "value": "ABCD 1234"
         }
       },
       {
-        signer: 'arcblock',
-        pk: Uint8Array [],
-        signature: Uint8Array [],
-        data: {
-          type: 'string',
-          value: 'ABCD 1234'
+        "signer": "arcblock",
+        "pk": {},
+        "signature": {},
+        "data": {
+          "type": "string",
+          "value": "ABCD 1234"
         }
       }
     ],
-    itx: {
-      type: 'string',
-      value: 'ABCD 1234'
+    "itx": {
+      "type": "string",
+      "value": "ABCD 1234"
     }
   }
 }
@@ -1247,53 +1652,53 @@
  *
 ```javascript
 {
-  tx: {
-    from: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-    nonce: 5,
-    chainId: 'arcblock',
-    pk: Uint8Array [],
-    signature: Uint8Array [],
-    signatures: [
+  "tx": {
+    "from": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+    "nonce": 5,
+    "chainId": "arcblock",
+    "pk": {},
+    "signature": {},
+    "signatures": [
       {
-        signer: 'arcblock',
-        pk: Uint8Array [],
-        signature: Uint8Array [],
-        data: {
-          type: 'string',
-          value: 'ABCD 1234'
+        "signer": "arcblock",
+        "pk": {},
+        "signature": {},
+        "data": {
+          "type": "string",
+          "value": "ABCD 1234"
         }
       },
       {
-        signer: 'arcblock',
-        pk: Uint8Array [],
-        signature: Uint8Array [],
-        data: {
-          type: 'string',
-          value: 'ABCD 1234'
+        "signer": "arcblock",
+        "pk": {},
+        "signature": {},
+        "data": {
+          "type": "string",
+          "value": "ABCD 1234"
         }
       }
     ],
-    itx: {
-      type: 'string',
-      value: 'ABCD 1234'
+    "itx": {
+      "type": "string",
+      "value": "ABCD 1234"
     }
   },
-  data: {
-    type: 'string',
-    value: 'ABCD 1234'
+  "data": {
+    "type": "string",
+    "value": "ABCD 1234"
   },
-  wallet: {
-    type: {
-      pk: 0,
-      hash: 0,
-      address: 0,
-      role: 0
+  "wallet": {
+    "type": {
+      "pk": 0,
+      "hash": 0,
+      "address": 0,
+      "role": 0
     },
-    sk: Uint8Array [],
-    pk: Uint8Array [],
-    address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55'
+    "sk": {},
+    "pk": {},
+    "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55"
   },
-  token: 'arcblock'
+  "token": "arcblock"
 }
 ```
  *
@@ -1310,36 +1715,36 @@
  *
 ```javascript
 {
-  code: 0,
-  tx: {
-    from: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-    nonce: 5,
-    chainId: 'arcblock',
-    pk: Uint8Array [],
-    signature: Uint8Array [],
-    signatures: [
+  "code": 0,
+  "tx": {
+    "from": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+    "nonce": 5,
+    "chainId": "arcblock",
+    "pk": {},
+    "signature": {},
+    "signatures": [
       {
-        signer: 'arcblock',
-        pk: Uint8Array [],
-        signature: Uint8Array [],
-        data: {
-          type: 'string',
-          value: 'ABCD 1234'
+        "signer": "arcblock",
+        "pk": {},
+        "signature": {},
+        "data": {
+          "type": "string",
+          "value": "ABCD 1234"
         }
       },
       {
-        signer: 'arcblock',
-        pk: Uint8Array [],
-        signature: Uint8Array [],
-        data: {
-          type: 'string',
-          value: 'ABCD 1234'
+        "signer": "arcblock",
+        "pk": {},
+        "signature": {},
+        "data": {
+          "type": "string",
+          "value": "ABCD 1234"
         }
       }
     ],
-    itx: {
-      type: 'string',
-      value: 'ABCD 1234'
+    "itx": {
+      "type": "string",
+      "value": "ABCD 1234"
     }
   }
 }
@@ -1356,50 +1761,50 @@
  *
 ```javascript
 {
-  tx: {
-    from: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-    nonce: 5,
-    chainId: 'arcblock',
-    pk: Uint8Array [],
-    signature: Uint8Array [],
-    signatures: [
+  "tx": {
+    "from": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+    "nonce": 5,
+    "chainId": "arcblock",
+    "pk": {},
+    "signature": {},
+    "signatures": [
       {
-        signer: 'arcblock',
-        pk: Uint8Array [],
-        signature: Uint8Array [],
-        data: {
-          type: 'string',
-          value: 'ABCD 1234'
+        "signer": "arcblock",
+        "pk": {},
+        "signature": {},
+        "data": {
+          "type": "string",
+          "value": "ABCD 1234"
         }
       },
       {
-        signer: 'arcblock',
-        pk: Uint8Array [],
-        signature: Uint8Array [],
-        data: {
-          type: 'string',
-          value: 'ABCD 1234'
+        "signer": "arcblock",
+        "pk": {},
+        "signature": {},
+        "data": {
+          "type": "string",
+          "value": "ABCD 1234"
         }
       }
     ],
-    itx: {
-      type: 'string',
-      value: 'ABCD 1234'
+    "itx": {
+      "type": "string",
+      "value": "ABCD 1234"
     }
   },
-  wallet: {
-    type: {
-      pk: 0,
-      hash: 0,
-      address: 0,
-      role: 0
+  "wallet": {
+    "type": {
+      "pk": 0,
+      "hash": 0,
+      "address": 0,
+      "role": 0
     },
-    sk: Uint8Array [],
-    pk: Uint8Array [],
-    address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55'
+    "sk": {},
+    "pk": {},
+    "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55"
   },
-  token: 'arcblock',
-  commit: true
+  "token": "arcblock",
+  "commit": true
 }
 ```
  *
@@ -1416,8 +1821,8 @@
  *
 ```javascript
 {
-  code: 0,
-  hash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55'
+  "code": 0,
+  "hash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55"
 }
 ```
  *
@@ -1432,7 +1837,7 @@
  *
 ```javascript
 {
-  hash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55'
+  "hash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55"
 }
 ```
  *
@@ -1446,59 +1851,59 @@
  *
 ```javascript
 {
-  code: 0,
-  info: {
-    tx: {
-      from: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-      nonce: 5,
-      chainId: 'arcblock',
-      pk: Uint8Array [],
-      signature: Uint8Array [],
-      signatures: [
+  "code": 0,
+  "info": {
+    "tx": {
+      "from": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+      "nonce": 5,
+      "chainId": "arcblock",
+      "pk": {},
+      "signature": {},
+      "signatures": [
         {
-          signer: 'arcblock',
-          pk: Uint8Array [],
-          signature: Uint8Array [],
-          data: {
-            type: 'string',
-            value: 'ABCD 1234'
+          "signer": "arcblock",
+          "pk": {},
+          "signature": {},
+          "data": {
+            "type": "string",
+            "value": "ABCD 1234"
           }
         },
         {
-          signer: 'arcblock',
-          pk: Uint8Array [],
-          signature: Uint8Array [],
-          data: {
-            type: 'string',
-            value: 'ABCD 1234'
+          "signer": "arcblock",
+          "pk": {},
+          "signature": {},
+          "data": {
+            "type": "string",
+            "value": "ABCD 1234"
           }
         }
       ],
-      itx: {
-        type: 'string',
-        value: 'ABCD 1234'
+      "itx": {
+        "type": "string",
+        "value": "ABCD 1234"
       }
     },
-    height: 5,
-    index: 2,
-    hash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-    tags: [
+    "height": 5,
+    "index": 2,
+    "hash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+    "tags": [
       {
-        key: Uint8Array [],
-        value: Uint8Array []
+        "key": {},
+        "value": {}
       },
       {
-        key: Uint8Array [],
-        value: Uint8Array []
+        "key": {},
+        "value": {}
       }
     ],
-    code: 0,
-    time: '2019-04-29T07:49:13.422Z',
-    createAsset: {
-      asset: 'arcblock'
+    "code": 0,
+    "time": "2019-04-29T10:15:32.969Z",
+    "createAsset": {
+      "asset": "arcblock"
     },
-    accountMigrate: {
-      address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55'
+    "accountMigrate": {
+      "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55"
     }
   }
 }
@@ -1515,7 +1920,7 @@
  *
 ```javascript
 {
-  height: 5
+  "height": 5
 }
 ```
  *
@@ -1529,258 +1934,257 @@
  *
 ```javascript
 {
-  code: 0,
-  block: {
-    height: 5,
-    numTxs: 2,
-    time: '2019-04-29T07:49:13.423Z',
-    appHash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-    proposer: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-    txs: [
+  "code": 0,
+  "block": {
+    "height": 5,
+    "numTxs": 2,
+    "time": "2019-04-29T10:15:32.965Z",
+    "appHash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+    "proposer": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+    "txs": [
       {
-        tx: {
-          from: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-          nonce: 5,
-          chainId: 'arcblock',
-          pk: Uint8Array [],
-          signature: Uint8Array [],
-          signatures: [
+        "tx": {
+          "from": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+          "nonce": 5,
+          "chainId": "arcblock",
+          "pk": {},
+          "signature": {},
+          "signatures": [
             {
-              signer: 'arcblock',
-              pk: Uint8Array [],
-              signature: Uint8Array [],
-              data: {
-                type: 'string',
-                value: 'ABCD 1234'
+              "signer": "arcblock",
+              "pk": {},
+              "signature": {},
+              "data": {
+                "type": "string",
+                "value": "ABCD 1234"
               }
             },
             {
-              signer: 'arcblock',
-              pk: Uint8Array [],
-              signature: Uint8Array [],
-              data: {
-                type: 'string',
-                value: 'ABCD 1234'
+              "signer": "arcblock",
+              "pk": {},
+              "signature": {},
+              "data": {
+                "type": "string",
+                "value": "ABCD 1234"
               }
             }
           ],
-          itx: {
-            type: 'string',
-            value: 'ABCD 1234'
+          "itx": {
+            "type": "string",
+            "value": "ABCD 1234"
           }
         },
-        height: 5,
-        index: 2,
-        hash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-        tags: [
+        "height": 5,
+        "index": 2,
+        "hash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+        "tags": [
           {
-            key: Uint8Array [],
-            value: Uint8Array []
+            "key": {},
+            "value": {}
           },
           {
-            key: Uint8Array [],
-            value: Uint8Array []
+            "key": {},
+            "value": {}
           }
         ],
-        code: 0,
-        time: '2019-04-29T07:49:13.423Z',
-        createAsset: {
-          asset: 'arcblock'
+        "code": 0,
+        "time": "2019-04-29T10:15:32.965Z",
+        "createAsset": {
+          "asset": "arcblock"
         },
-        accountMigrate: {
-          address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55'
+        "accountMigrate": {
+          "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55"
         }
       },
       {
-        tx: {
-          from: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-          nonce: 5,
-          chainId: 'arcblock',
-          pk: Uint8Array [],
-          signature: Uint8Array [],
-          signatures: [
+        "tx": {
+          "from": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+          "nonce": 5,
+          "chainId": "arcblock",
+          "pk": {},
+          "signature": {},
+          "signatures": [
             {
-              signer: 'arcblock',
-              pk: Uint8Array [],
-              signature: Uint8Array [],
-              data: {
-                type: 'string',
-                value: 'ABCD 1234'
+              "signer": "arcblock",
+              "pk": {},
+              "signature": {},
+              "data": {
+                "type": "string",
+                "value": "ABCD 1234"
               }
             },
             {
-              signer: 'arcblock',
-              pk: Uint8Array [],
-              signature: Uint8Array [],
-              data: {
-                type: 'string',
-                value: 'ABCD 1234'
+              "signer": "arcblock",
+              "pk": {},
+              "signature": {},
+              "data": {
+                "type": "string",
+                "value": "ABCD 1234"
               }
             }
           ],
-          itx: {
-            type: 'string',
-            value: 'ABCD 1234'
+          "itx": {
+            "type": "string",
+            "value": "ABCD 1234"
           }
         },
-        height: 5,
-        index: 2,
-        hash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-        tags: [
+        "height": 5,
+        "index": 2,
+        "hash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+        "tags": [
           {
-            key: Uint8Array [],
-            value: Uint8Array []
+            "key": {},
+            "value": {}
           },
           {
-            key: Uint8Array [],
-            value: Uint8Array []
+            "key": {},
+            "value": {}
           }
         ],
-        code: 0,
-        time: '2019-04-29T07:49:13.423Z',
-        createAsset: {
-          asset: 'arcblock'
+        "code": 0,
+        "time": "2019-04-29T10:15:32.965Z",
+        "createAsset": {
+          "asset": "arcblock"
         },
-        accountMigrate: {
-          address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55'
+        "accountMigrate": {
+          "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55"
         }
       }
     ],
-    totalTxs: 5,
-    invalidTxs: [
+    "totalTxs": 5,
+    "invalidTxs": [
       {
-        tx: {
-          from: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-          nonce: 5,
-          chainId: 'arcblock',
-          pk: Uint8Array [],
-          signature: Uint8Array [],
-          signatures: [
+        "tx": {
+          "from": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+          "nonce": 5,
+          "chainId": "arcblock",
+          "pk": {},
+          "signature": {},
+          "signatures": [
             {
-              signer: 'arcblock',
-              pk: Uint8Array [],
-              signature: Uint8Array [],
-              data: {
-                type: 'string',
-                value: 'ABCD 1234'
+              "signer": "arcblock",
+              "pk": {},
+              "signature": {},
+              "data": {
+                "type": "string",
+                "value": "ABCD 1234"
               }
             },
             {
-              signer: 'arcblock',
-              pk: Uint8Array [],
-              signature: Uint8Array [],
-              data: {
-                type: 'string',
-                value: 'ABCD 1234'
+              "signer": "arcblock",
+              "pk": {},
+              "signature": {},
+              "data": {
+                "type": "string",
+                "value": "ABCD 1234"
               }
             }
           ],
-          itx: {
-            type: 'string',
-            value: 'ABCD 1234'
+          "itx": {
+            "type": "string",
+            "value": "ABCD 1234"
           }
         },
-        height: 5,
-        index: 2,
-        hash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-        tags: [
+        "height": 5,
+        "index": 2,
+        "hash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+        "tags": [
           {
-            key: Uint8Array [],
-            value: Uint8Array []
+            "key": {},
+            "value": {}
           },
           {
-            key: Uint8Array [],
-            value: Uint8Array []
+            "key": {},
+            "value": {}
           }
         ],
-        code: 0,
-        time: '2019-04-29T07:49:13.423Z',
-        createAsset: {
-          asset: 'arcblock'
+        "code": 0,
+        "time": "2019-04-29T10:15:32.965Z",
+        "createAsset": {
+          "asset": "arcblock"
         },
-        accountMigrate: {
-          address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55'
+        "accountMigrate": {
+          "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55"
         }
       },
       {
-        tx: {
-          from: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-          nonce: 5,
-          chainId: 'arcblock',
-          pk: Uint8Array [],
-          signature: Uint8Array [],
-          signatures: [
+        "tx": {
+          "from": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+          "nonce": 5,
+          "chainId": "arcblock",
+          "pk": {},
+          "signature": {},
+          "signatures": [
             {
-              signer: 'arcblock',
-              pk: Uint8Array [],
-              signature: Uint8Array [],
-              data: {
-                type: 'string',
-                value: 'ABCD 1234'
+              "signer": "arcblock",
+              "pk": {},
+              "signature": {},
+              "data": {
+                "type": "string",
+                "value": "ABCD 1234"
               }
             },
             {
-              signer: 'arcblock',
-              pk: Uint8Array [],
-              signature: Uint8Array [],
-              data: {
-                type: 'string',
-                value: 'ABCD 1234'
+              "signer": "arcblock",
+              "pk": {},
+              "signature": {},
+              "data": {
+                "type": "string",
+                "value": "ABCD 1234"
               }
             }
           ],
-          itx: {
-            type: 'string',
-            value: 'ABCD 1234'
+          "itx": {
+            "type": "string",
+            "value": "ABCD 1234"
           }
         },
-        height: 5,
-        index: 2,
-        hash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-        tags: [
+        "height": 5,
+        "index": 2,
+        "hash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+        "tags": [
           {
-            key: Uint8Array [],
-            value: Uint8Array []
+            "key": {},
+            "value": {}
           },
           {
-            key: Uint8Array [],
-            value: Uint8Array []
+            "key": {},
+            "value": {}
           }
         ],
-        code: 0,
-        time: '2019-04-29T07:49:13.423Z',
-        createAsset: {
-          asset: 'arcblock'
+        "code": 0,
+        "time": "2019-04-29T10:15:32.965Z",
+        "createAsset": {
+          "asset": "arcblock"
         },
-        accountMigrate: {
-          address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55'
+        "accountMigrate": {
+          "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55"
         }
       }
     ],
-    txsHashes: [
-      'arcblock',
-      'arcblock'
+    "txsHashes": [
+      "arcblock",
+      "arcblock"
     ],
-    invalidTxsHashes: [
-      'arcblock',
-      'arcblock'
+    "invalidTxsHashes": [
+      "arcblock",
+      "arcblock"
     ],
-    consensusHash: Uint8Array [],
-    dataHash: Uint8Array [],
-    evidenceHash: Uint8Array [],
-    lastCommitHash: Uint8Array [],
-    lastResultsHash: Uint8Array [],
-    nextValidatorsHash: Uint8Array [],
-    validatorsHash: Uint8Array [],
-    version: {
-      Block: 5,
-      App: 5
+    "consensusHash": {},
+    "dataHash": {},
+    "evidenceHash": {},
+    "lastCommitHash": {},
+    "lastResultsHash": {},
+    "nextValidatorsHash": {},
+    "validatorsHash": {},
+    "version": {
+      "Block": 5,
+      "App": 5
     },
-    lastBlockId: {
-      hash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-      partsHeader: {
-        total: undefined,
-        hash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55'
+    "lastBlockId": {
+      "hash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+      "partsHeader": {
+        "hash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55"
       }
     }
   }
@@ -1798,25 +2202,25 @@
  *
 ```javascript
 {
-  paging: {
-    cursor: 'arcblock',
-    size: 2,
-    order: [
+  "paging": {
+    "cursor": "arcblock",
+    "size": 2,
+    "order": [
       {
-        field: 'arcblock',
-        type: 'arcblock'
+        "field": "arcblock",
+        "type": "arcblock"
       },
       {
-        field: 'arcblock',
-        type: 'arcblock'
+        "field": "arcblock",
+        "type": "arcblock"
       }
     ]
   },
-  heightFilter: {
-    from: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-    to: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55'
+  "heightFilter": {
+    "from": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+    "to": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55"
   },
-  emptyExcluded: true
+  "emptyExcluded": true
 }
 ```
  *
@@ -1832,78 +2236,76 @@
  *
 ```javascript
 {
-  code: 0,
-  page: {
-    cursor: 'arcblock',
-    next: true,
-    total: 2
+  "code": 0,
+  "page": {
+    "cursor": "arcblock",
+    "next": true,
+    "total": 2
   },
-  blocks: [
+  "blocks": [
     {
-      height: 5,
-      numTxs: 2,
-      time: '2019-04-29T07:49:13.423Z',
-      appHash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-      proposer: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-      totalTxs: 5,
-      txsHashes: [
-        'arcblock',
-        'arcblock'
+      "height": 5,
+      "numTxs": 2,
+      "time": "2019-04-29T10:15:32.965Z",
+      "appHash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+      "proposer": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+      "totalTxs": 5,
+      "txsHashes": [
+        "arcblock",
+        "arcblock"
       ],
-      invalidTxsHashes: [
-        'arcblock',
-        'arcblock'
+      "invalidTxsHashes": [
+        "arcblock",
+        "arcblock"
       ],
-      consensusHash: Uint8Array [],
-      dataHash: Uint8Array [],
-      evidenceHash: Uint8Array [],
-      lastCommitHash: Uint8Array [],
-      lastResultsHash: Uint8Array [],
-      nextValidatorsHash: Uint8Array [],
-      validatorsHash: Uint8Array [],
-      version: {
-        Block: 5,
-        App: 5
+      "consensusHash": {},
+      "dataHash": {},
+      "evidenceHash": {},
+      "lastCommitHash": {},
+      "lastResultsHash": {},
+      "nextValidatorsHash": {},
+      "validatorsHash": {},
+      "version": {
+        "Block": 5,
+        "App": 5
       },
-      lastBlockId: {
-        hash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-        partsHeader: {
-          total: undefined,
-          hash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55'
+      "lastBlockId": {
+        "hash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+        "partsHeader": {
+          "hash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55"
         }
       }
     },
     {
-      height: 5,
-      numTxs: 2,
-      time: '2019-04-29T07:49:13.423Z',
-      appHash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-      proposer: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-      totalTxs: 5,
-      txsHashes: [
-        'arcblock',
-        'arcblock'
+      "height": 5,
+      "numTxs": 2,
+      "time": "2019-04-29T10:15:32.966Z",
+      "appHash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+      "proposer": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+      "totalTxs": 5,
+      "txsHashes": [
+        "arcblock",
+        "arcblock"
       ],
-      invalidTxsHashes: [
-        'arcblock',
-        'arcblock'
+      "invalidTxsHashes": [
+        "arcblock",
+        "arcblock"
       ],
-      consensusHash: Uint8Array [],
-      dataHash: Uint8Array [],
-      evidenceHash: Uint8Array [],
-      lastCommitHash: Uint8Array [],
-      lastResultsHash: Uint8Array [],
-      nextValidatorsHash: Uint8Array [],
-      validatorsHash: Uint8Array [],
-      version: {
-        Block: 5,
-        App: 5
+      "consensusHash": {},
+      "dataHash": {},
+      "evidenceHash": {},
+      "lastCommitHash": {},
+      "lastResultsHash": {},
+      "nextValidatorsHash": {},
+      "validatorsHash": {},
+      "version": {
+        "Block": 5,
+        "App": 5
       },
-      lastBlockId: {
-        hash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-        partsHeader: {
-          total: undefined,
-          hash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55'
+      "lastBlockId": {
+        "hash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+        "partsHeader": {
+          "hash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55"
         }
       }
     }
@@ -1923,14 +2325,14 @@
  *
 ```javascript
 {
-  passphrase: 'arcblock',
-  type: {
-    pk: 0,
-    hash: 0,
-    address: 0,
-    role: 0
+  "passphrase": "arcblock",
+  "type": {
+    "pk": 0,
+    "hash": 0,
+    "address": 0,
+    "role": 0
   },
-  moniker: 'arcblock'
+  "moniker": "arcblock"
 }
 ```
  *
@@ -1946,18 +2348,18 @@
  *
 ```javascript
 {
-  code: 0,
-  token: 'arcblock',
-  wallet: {
-    type: {
-      pk: 0,
-      hash: 0,
-      address: 0,
-      role: 0
+  "code": 0,
+  "token": "arcblock",
+  "wallet": {
+    "type": {
+      "pk": 0,
+      "hash": 0,
+      "address": 0,
+      "role": 0
     },
-    sk: Uint8Array [],
-    pk: Uint8Array [],
-    address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55'
+    "sk": {},
+    "pk": {},
+    "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55"
   }
 }
 ```
@@ -1974,8 +2376,8 @@
  *
 ```javascript
 {
-  address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-  passphrase: 'arcblock'
+  "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+  "passphrase": "arcblock"
 }
 ```
  *
@@ -1990,18 +2392,18 @@
  *
 ```javascript
 {
-  code: 0,
-  token: 'arcblock',
-  wallet: {
-    type: {
-      pk: 0,
-      hash: 0,
-      address: 0,
-      role: 0
+  "code": 0,
+  "token": "arcblock",
+  "wallet": {
+    "type": {
+      "pk": 0,
+      "hash": 0,
+      "address": 0,
+      "role": 0
     },
-    sk: Uint8Array [],
-    pk: Uint8Array [],
-    address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55'
+    "sk": {},
+    "pk": {},
+    "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55"
   }
 }
 ```
@@ -2018,15 +2420,15 @@
  *
 ```javascript
 {
-  data: Uint8Array [],
-  type: {
-    pk: 0,
-    hash: 0,
-    address: 0,
-    role: 0
+  "data": {},
+  "type": {
+    "pk": 0,
+    "hash": 0,
+    "address": 0,
+    "role": 0
   },
-  passphrase: 'arcblock',
-  moniker: 'arcblock'
+  "passphrase": "arcblock",
+  "moniker": "arcblock"
 }
 ```
  *
@@ -2043,18 +2445,18 @@
  *
 ```javascript
 {
-  code: 0,
-  token: 'arcblock',
-  wallet: {
-    type: {
-      pk: 0,
-      hash: 0,
-      address: 0,
-      role: 0
+  "code": 0,
+  "token": "arcblock",
+  "wallet": {
+    "type": {
+      "pk": 0,
+      "hash": 0,
+      "address": 0,
+      "role": 0
     },
-    sk: Uint8Array [],
-    pk: Uint8Array [],
-    address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55'
+    "sk": {},
+    "pk": {},
+    "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55"
   }
 }
 ```
@@ -2083,8 +2485,8 @@
  *
 ```javascript
 {
-  code: 0,
-  address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55'
+  "code": 0,
+  "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55"
 }
 ```
  *
@@ -2099,7 +2501,7 @@
  *
 ```javascript
 {
-  address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55'
+  "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55"
 }
 ```
  *
@@ -2113,7 +2515,7 @@
  *
 ```javascript
 {
-  code: 0
+  "code": 0
 }
 ```
  *
@@ -2127,7 +2529,7 @@
  *
 ```javascript
 {
-  validator: true
+  "validator": true
 }
 ```
  *
@@ -2141,17 +2543,17 @@
  *
 ```javascript
 {
-  code: 0,
-  wallet: {
-    type: {
-      pk: 0,
-      hash: 0,
-      address: 0,
-      role: 0
+  "code": 0,
+  "wallet": {
+    "type": {
+      "pk": 0,
+      "hash": 0,
+      "address": 0,
+      "role": 0
     },
-    sk: Uint8Array [],
-    pk: Uint8Array [],
-    address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55'
+    "sk": {},
+    "pk": {},
+    "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55"
   }
 }
 ```
@@ -2167,12 +2569,12 @@
  *
 ```javascript
 {
-  address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-  keys: [
-    'arcblock',
-    'arcblock'
+  "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+  "keys": [
+    "arcblock",
+    "arcblock"
   ],
-  height: 5
+  "height": 5
 }
 ```
  *
@@ -2188,79 +2590,71 @@
  *
 ```javascript
 {
-  code: 0,
-  state: {
-    balance: [Function: BigUint],
-    nonce: 5,
-    numTxs: 5,
-    address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-    pk: Uint8Array [],
-    type: {
-      pk: 0,
-      hash: 0,
-      address: 0,
-      role: 0
+  "code": 0,
+  "state": {
+    "nonce": 5,
+    "numTxs": 5,
+    "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+    "pk": {},
+    "type": {
+      "pk": 0,
+      "hash": 0,
+      "address": 0,
+      "role": 0
     },
-    moniker: 'arcblock',
-    context: {
-      genesisTx: 'arcblock',
-      renaissanceTx: 'arcblock',
-      genesisTime: '2019-04-29T07:49:13.425Z',
-      renaissanceTime: '2019-04-29T07:49:13.425Z'
+    "moniker": "arcblock",
+    "context": {
+      "genesisTx": "arcblock",
+      "renaissanceTx": "arcblock",
+      "genesisTime": "2019-04-29T10:15:32.966Z",
+      "renaissanceTime": "2019-04-29T10:15:32.966Z"
     },
-    issuer: 'arcblock',
-    migratedTo: [
-      'arcblock',
-      'arcblock'
+    "issuer": "arcblock",
+    "migratedTo": [
+      "arcblock",
+      "arcblock"
     ],
-    migratedFrom: [
-      'arcblock',
-      'arcblock'
+    "migratedFrom": [
+      "arcblock",
+      "arcblock"
     ],
-    numAssets: 5,
-    stake: {
-      totalStakes: [Function: BigUint],
-      totalUnstakes: [Function: BigUint],
-      totalReceivedStakes: [Function: BigUint],
-      recentStakes: {
-        items: [
-          Uint8Array [],
-          Uint8Array []
+    "numAssets": 5,
+    "stake": {
+      "recentStakes": {
+        "items": [
+          {},
+          {}
         ],
-        typeUrl: 'arcblock',
-        maxItems: 2,
-        circular: true,
-        fifo: true
+        "typeUrl": "arcblock",
+        "maxItems": 2,
+        "circular": true,
+        "fifo": true
       },
-      recentReceivedStakes: {
-        items: [
-          Uint8Array [],
-          Uint8Array []
+      "recentReceivedStakes": {
+        "items": [
+          {},
+          {}
         ],
-        typeUrl: 'arcblock',
-        maxItems: 2,
-        circular: true,
-        fifo: true
+        "typeUrl": "arcblock",
+        "maxItems": 2,
+        "circular": true,
+        "fifo": true
       }
     },
-    pinnedFiles: {
-      items: [
-        Uint8Array [],
-        Uint8Array []
+    "pinnedFiles": {
+      "items": [
+        {},
+        {}
       ],
-      typeUrl: 'arcblock',
-      maxItems: 2,
-      circular: true,
-      fifo: true
+      "typeUrl": "arcblock",
+      "maxItems": 2,
+      "circular": true,
+      "fifo": true
     },
-    poke: {
-      dailyLimit: [Function: BigUint],
-      leftover: [Function: BigUint],
-      amount: [Function: BigUint]
-    },
-    data: {
-      type: 'string',
-      value: 'ABCD 1234'
+    "poke": {},
+    "data": {
+      "type": "string",
+      "value": "ABCD 1234"
     }
   }
 }
@@ -2277,12 +2671,12 @@
  *
 ```javascript
 {
-  address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-  keys: [
-    'arcblock',
-    'arcblock'
+  "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+  "keys": [
+    "arcblock",
+    "arcblock"
   ],
-  height: 5
+  "height": 5
 }
 ```
  *
@@ -2298,50 +2692,47 @@
  *
 ```javascript
 {
-  code: 0,
-  state: {
-    address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-    owner: 'arcblock',
-    moniker: 'arcblock',
-    readonly: true,
-    transferrable: true,
-    ttl: 2,
-    consumedTime: '2019-04-29T07:49:13.425Z',
-    issuer: 'arcblock',
-    stake: {
-      totalStakes: [Function: BigUint],
-      totalUnstakes: [Function: BigUint],
-      totalReceivedStakes: [Function: BigUint],
-      recentStakes: {
-        items: [
-          Uint8Array [],
-          Uint8Array []
+  "code": 0,
+  "state": {
+    "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+    "owner": "arcblock",
+    "moniker": "arcblock",
+    "readonly": true,
+    "transferrable": true,
+    "ttl": 2,
+    "consumedTime": "2019-04-29T10:15:32.966Z",
+    "issuer": "arcblock",
+    "stake": {
+      "recentStakes": {
+        "items": [
+          {},
+          {}
         ],
-        typeUrl: 'arcblock',
-        maxItems: 2,
-        circular: true,
-        fifo: true
+        "typeUrl": "arcblock",
+        "maxItems": 2,
+        "circular": true,
+        "fifo": true
       },
-      recentReceivedStakes: {
-        items: [
-          Uint8Array [],
-          Uint8Array []
+      "recentReceivedStakes": {
+        "items": [
+          {},
+          {}
         ],
-        typeUrl: 'arcblock',
-        maxItems: 2,
-        circular: true,
-        fifo: true
+        "typeUrl": "arcblock",
+        "maxItems": 2,
+        "circular": true,
+        "fifo": true
       }
     },
-    context: {
-      genesisTx: 'arcblock',
-      renaissanceTx: 'arcblock',
-      genesisTime: '2019-04-29T07:49:13.425Z',
-      renaissanceTime: '2019-04-29T07:49:13.425Z'
+    "context": {
+      "genesisTx": "arcblock",
+      "renaissanceTx": "arcblock",
+      "genesisTime": "2019-04-29T10:15:32.966Z",
+      "renaissanceTime": "2019-04-29T10:15:32.966Z"
     },
-    data: {
-      type: 'string',
-      value: 'ABCD 1234'
+    "data": {
+      "type": "string",
+      "value": "ABCD 1234"
     }
   }
 }
@@ -2358,12 +2749,12 @@
  *
 ```javascript
 {
-  address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-  keys: [
-    'arcblock',
-    'arcblock'
+  "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+  "keys": [
+    "arcblock",
+    "arcblock"
   ],
-  height: 5
+  "height": 5
 }
 ```
  *
@@ -2379,32 +2770,32 @@
  *
 ```javascript
 {
-  code: 0,
-  state: {
-    address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-    name: 'arcblock',
-    version: 2,
-    description: 'arcblock',
-    txHash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-    rootHash: Uint8Array [],
-    status: 0,
-    migratedTo: [
-      'arcblock',
-      'arcblock'
+  "code": 0,
+  "state": {
+    "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+    "name": "arcblock",
+    "version": 2,
+    "description": "arcblock",
+    "txHash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+    "rootHash": {},
+    "status": 0,
+    "migratedTo": [
+      "arcblock",
+      "arcblock"
     ],
-    migratedFrom: [
-      'arcblock',
-      'arcblock'
+    "migratedFrom": [
+      "arcblock",
+      "arcblock"
     ],
-    context: {
-      genesisTx: 'arcblock',
-      renaissanceTx: 'arcblock',
-      genesisTime: '2019-04-29T07:49:13.425Z',
-      renaissanceTime: '2019-04-29T07:49:13.425Z'
+    "context": {
+      "genesisTx": "arcblock",
+      "renaissanceTx": "arcblock",
+      "genesisTime": "2019-04-29T10:15:32.967Z",
+      "renaissanceTime": "2019-04-29T10:15:32.967Z"
     },
-    data: {
-      type: 'string',
-      value: 'ABCD 1234'
+    "data": {
+      "type": "string",
+      "value": "ABCD 1234"
     }
   }
 }
@@ -2421,12 +2812,12 @@
  *
 ```javascript
 {
-  address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-  keys: [
-    'arcblock',
-    'arcblock'
+  "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+  "keys": [
+    "arcblock",
+    "arcblock"
   ],
-  height: 5
+  "height": 5
 }
 ```
  *
@@ -2442,22 +2833,21 @@
  *
 ```javascript
 {
-  code: 0,
-  state: {
-    address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-    from: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-    to: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-    balance: [Function: BigUint],
-    message: 'arcblock',
-    context: {
-      genesisTx: 'arcblock',
-      renaissanceTx: 'arcblock',
-      genesisTime: '2019-04-29T07:49:13.425Z',
-      renaissanceTime: '2019-04-29T07:49:13.425Z'
+  "code": 0,
+  "state": {
+    "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+    "from": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+    "to": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+    "message": "arcblock",
+    "context": {
+      "genesisTx": "arcblock",
+      "renaissanceTx": "arcblock",
+      "genesisTime": "2019-04-29T10:15:32.967Z",
+      "renaissanceTime": "2019-04-29T10:15:32.967Z"
     },
-    data: {
-      type: 'string',
-      value: 'ABCD 1234'
+    "data": {
+      "type": "string",
+      "value": "ABCD 1234"
     }
   }
 }
@@ -2474,11 +2864,11 @@
  *
 ```javascript
 {
-  keys: [
-    'arcblock',
-    'arcblock'
+  "keys": [
+    "arcblock",
+    "arcblock"
   ],
-  height: 5
+  "height": 5
 }
 ```
  *
@@ -2493,111 +2883,109 @@
  *
 ```javascript
 {
-  code: 0,
-  state: {
-    address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-    consensus: {
-      maxBytes: 5,
-      maxGas: 4,
-      maxValidators: 2,
-      maxCandidates: 2,
-      pubKeyTypes: [
-        'arcblock',
-        'arcblock'
+  "code": 0,
+  "state": {
+    "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+    "consensus": {
+      "maxBytes": 5,
+      "maxGas": 4,
+      "maxValidators": 2,
+      "maxCandidates": 2,
+      "pubKeyTypes": [
+        "arcblock",
+        "arcblock"
       ],
-      validators: [
+      "validators": [
         {
-          address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-          power: 5
+          "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+          "power": 5
         },
         {
-          address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-          power: 5
+          "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+          "power": 5
         }
       ],
-      validatorChanged: true,
-      paramChanged: true
+      "validatorChanged": true,
+      "paramChanged": true
     },
-    tasks: {
-      '5': {
-        item: [
+    "tasks": {
+      "5": {
+        "item": [
           {
-            type: 0,
-            dataHash: 'arcblock',
-            actions: [
-              undefined,
-              undefined
+            "type": 0,
+            "dataHash": "arcblock",
+            "actions": [
+              null,
+              null
             ]
           },
           {
-            type: 0,
-            dataHash: 'arcblock',
-            actions: [
-              undefined,
-              undefined
+            "type": 0,
+            "dataHash": "arcblock",
+            "actions": [
+              null,
+              null
             ]
           }
         ]
       }
     },
-    stakeSummary: {
-      '2': {
-        totalStakes: [Function: BigUint],
-        totalUnstakes: [Function: BigUint],
-        context: {
-          genesisTx: 'arcblock',
-          renaissanceTx: 'arcblock',
-          genesisTime: '2019-04-29T07:49:13.425Z',
-          renaissanceTime: '2019-04-29T07:49:13.425Z'
+    "stakeSummary": {
+      "2": {
+        "context": {
+          "genesisTx": "arcblock",
+          "renaissanceTx": "arcblock",
+          "genesisTime": "2019-04-29T10:15:32.966Z",
+          "renaissanceTime": "2019-04-29T10:15:32.966Z"
         }
       }
     },
-    version: 'arcblock',
-    forgeAppHash: Uint8Array [],
-    token: {
-      name: 'arcblock',
-      symbol: 'arcblock',
-      unit: 'arcblock',
-      description: 'arcblock',
-      icon: Uint8Array [],
-      decimal: 2,
-      initialSupply: 5,
-      totalSupply: 5,
-      inflationRate: 2
+    "version": "arcblock",
+    "forgeAppHash": {},
+    "token": {
+      "name": "arcblock",
+      "symbol": "arcblock",
+      "unit": "arcblock",
+      "description": "arcblock",
+      "icon": {},
+      "decimal": 2,
+      "initialSupply": 5,
+      "totalSupply": 5,
+      "inflationRate": 2
     },
-    txConfig: {
-      maxAssetSize: 2,
-      maxListSize: 2,
-      maxMultisig: 2,
-      minimumStake: 5
+    "txConfig": {
+      "maxAssetSize": 2,
+      "maxListSize": 2,
+      "maxMultisig": 2,
+      "minimumStake": 5
     },
-    stakeConfig: {
-      timeoutGeneral: 2,
-      timeoutStakeForNode: 2
+    "stakeConfig": {
+      "timeoutGeneral": 2,
+      "timeoutStakeForNode": 2
     },
-    pokeConfig: {
-      address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-      dailyLimit: 5,
-      balance: 5,
-      amount: 5
+    "pokeConfig": {
+      "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+      "dailyLimit": 5,
+      "balance": 5,
+      "amount": 5
     },
-    protocols: [
+    "protocols": [
       {
-        name: 'arcblock',
-        address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55'
+        "name": "arcblock",
+        "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55"
       },
       {
-        name: 'arcblock',
-        address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55'
+        "name": "arcblock",
+        "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55"
       }
     ],
-    upgradeInfo: {
-      height: 5,
-      version: 'arcblock'
+    "upgradeInfo": {
+      "height": 5,
+      "version": "arcblock"
     },
-    data: {
-      type: 'string',
-      value: 'ABCD 1234'
+    "data": {
+      "type": "string",
+      "value": "ABCD 1234"
     }
   }
 }
@@ -2614,7 +3002,7 @@
  *
 ```javascript
 {
-  chunk: Uint8Array []
+  "chunk": {}
 }
 ```
  *
@@ -2628,8 +3016,8 @@
  *
 ```javascript
 {
-  code: 0,
-  hash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55'
+  "code": 0,
+  "hash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55"
 }
 ```
  *
@@ -2644,7 +3032,7 @@
  *
 ```javascript
 {
-  hash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55'
+  "hash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55"
 }
 ```
  *
@@ -2658,8 +3046,8 @@
  *
 ```javascript
 {
-  code: 0,
-  chunk: Uint8Array []
+  "code": 0,
+  "chunk": {}
 }
 ```
  *
@@ -2674,7 +3062,7 @@
  *
 ```javascript
 {
-  hash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55'
+  "hash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55"
 }
 ```
  *
@@ -2688,7 +3076,7 @@
  *
 ```javascript
 {
-  code: 0
+  "code": 0
 }
 ```
  *
@@ -2714,27 +3102,27 @@
  *
 ```javascript
 {
-  code: 0,
-  info: {
-    id: 'arcblock',
-    network: 'arcblock',
-    moniker: 'arcblock',
-    consensusVersion: 'arcblock',
-    synced: true,
-    appHash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-    blockHash: Uint8Array [],
-    blockHeight: 5,
-    blockTime: '2019-04-29T07:49:13.424Z',
-    address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-    votingPower: 5,
-    totalTxs: 5,
-    version: 'arcblock',
-    forgeAppsVersion: {
-      arcblock: 'arcblock'
+  "code": 0,
+  "info": {
+    "id": "arcblock",
+    "network": "arcblock",
+    "moniker": "arcblock",
+    "consensusVersion": "arcblock",
+    "synced": true,
+    "appHash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+    "blockHash": {},
+    "blockHeight": 5,
+    "blockTime": "2019-04-29T10:15:32.966Z",
+    "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+    "votingPower": 5,
+    "totalTxs": 5,
+    "version": "arcblock",
+    "forgeAppsVersion": {
+      "arcblock": "arcblock"
     },
-    supportedTxs: [
-      'arcblock',
-      'arcblock'
+    "supportedTxs": [
+      "arcblock",
+      "arcblock"
     ]
   }
 }
@@ -2763,36 +3151,36 @@
  *
 ```javascript
 {
-  code: 0,
-  info: {
-    id: 'arcblock',
-    network: 'arcblock',
-    moniker: 'arcblock',
-    consensusVersion: 'arcblock',
-    synced: true,
-    appHash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-    blockHash: Uint8Array [],
-    blockHeight: 5,
-    blockTime: '2019-04-29T07:49:13.424Z',
-    address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-    votingPower: 5,
-    totalTxs: 5,
-    version: 'arcblock',
-    forgeAppsVersion: {
-      arcblock: 'arcblock'
+  "code": 0,
+  "info": {
+    "id": "arcblock",
+    "network": "arcblock",
+    "moniker": "arcblock",
+    "consensusVersion": "arcblock",
+    "synced": true,
+    "appHash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+    "blockHash": {},
+    "blockHeight": 5,
+    "blockTime": "2019-04-29T10:15:32.966Z",
+    "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+    "votingPower": 5,
+    "totalTxs": 5,
+    "version": "arcblock",
+    "forgeAppsVersion": {
+      "arcblock": "arcblock"
     },
-    supportedTxs: [
-      'arcblock',
-      'arcblock'
+    "supportedTxs": [
+      "arcblock",
+      "arcblock"
     ],
-    ip: 'arcblock',
-    geoInfo: {
-      city: 'arcblock',
-      country: 'arcblock',
-      latitude: '12.2',
-      longitude: '12.2'
+    "ip": "arcblock",
+    "geoInfo": {
+      "city": "arcblock",
+      "country": "arcblock",
+      "latitude": "12.2",
+      "longitude": "12.2"
     },
-    p2pAddress: 'arcblock'
+    "p2pAddress": "arcblock"
   }
 }
 ```
@@ -2808,8 +3196,8 @@
  *
 ```javascript
 {
-  key: 'arcblock',
-  value: 'arcblock'
+  "key": "arcblock",
+  "value": "arcblock"
 }
 ```
  *
@@ -2824,114 +3212,114 @@
  *
 ```javascript
 {
-  code: 0,
-  txs: [
+  "code": 0,
+  "txs": [
     {
-      tx: {
-        from: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-        nonce: 5,
-        chainId: 'arcblock',
-        pk: Uint8Array [],
-        signature: Uint8Array [],
-        signatures: [
+      "tx": {
+        "from": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+        "nonce": 5,
+        "chainId": "arcblock",
+        "pk": {},
+        "signature": {},
+        "signatures": [
           {
-            signer: 'arcblock',
-            pk: Uint8Array [],
-            signature: Uint8Array [],
-            data: {
-              type: 'string',
-              value: 'ABCD 1234'
+            "signer": "arcblock",
+            "pk": {},
+            "signature": {},
+            "data": {
+              "type": "string",
+              "value": "ABCD 1234"
             }
           },
           {
-            signer: 'arcblock',
-            pk: Uint8Array [],
-            signature: Uint8Array [],
-            data: {
-              type: 'string',
-              value: 'ABCD 1234'
+            "signer": "arcblock",
+            "pk": {},
+            "signature": {},
+            "data": {
+              "type": "string",
+              "value": "ABCD 1234"
             }
           }
         ],
-        itx: {
-          type: 'string',
-          value: 'ABCD 1234'
+        "itx": {
+          "type": "string",
+          "value": "ABCD 1234"
         }
       },
-      height: 5,
-      index: 2,
-      hash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-      tags: [
+      "height": 5,
+      "index": 2,
+      "hash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+      "tags": [
         {
-          key: Uint8Array [],
-          value: Uint8Array []
+          "key": {},
+          "value": {}
         },
         {
-          key: Uint8Array [],
-          value: Uint8Array []
+          "key": {},
+          "value": {}
         }
       ],
-      code: 0,
-      time: '2019-04-29T07:49:13.424Z',
-      createAsset: {
-        asset: 'arcblock'
+      "code": 0,
+      "time": "2019-04-29T10:15:32.966Z",
+      "createAsset": {
+        "asset": "arcblock"
       },
-      accountMigrate: {
-        address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55'
+      "accountMigrate": {
+        "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55"
       }
     },
     {
-      tx: {
-        from: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-        nonce: 5,
-        chainId: 'arcblock',
-        pk: Uint8Array [],
-        signature: Uint8Array [],
-        signatures: [
+      "tx": {
+        "from": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+        "nonce": 5,
+        "chainId": "arcblock",
+        "pk": {},
+        "signature": {},
+        "signatures": [
           {
-            signer: 'arcblock',
-            pk: Uint8Array [],
-            signature: Uint8Array [],
-            data: {
-              type: 'string',
-              value: 'ABCD 1234'
+            "signer": "arcblock",
+            "pk": {},
+            "signature": {},
+            "data": {
+              "type": "string",
+              "value": "ABCD 1234"
             }
           },
           {
-            signer: 'arcblock',
-            pk: Uint8Array [],
-            signature: Uint8Array [],
-            data: {
-              type: 'string',
-              value: 'ABCD 1234'
+            "signer": "arcblock",
+            "pk": {},
+            "signature": {},
+            "data": {
+              "type": "string",
+              "value": "ABCD 1234"
             }
           }
         ],
-        itx: {
-          type: 'string',
-          value: 'ABCD 1234'
+        "itx": {
+          "type": "string",
+          "value": "ABCD 1234"
         }
       },
-      height: 5,
-      index: 2,
-      hash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-      tags: [
+      "height": 5,
+      "index": 2,
+      "hash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+      "tags": [
         {
-          key: Uint8Array [],
-          value: Uint8Array []
+          "key": {},
+          "value": {}
         },
         {
-          key: Uint8Array [],
-          value: Uint8Array []
+          "key": {},
+          "value": {}
         }
       ],
-      code: 0,
-      time: '2019-04-29T07:49:13.424Z',
-      createAsset: {
-        asset: 'arcblock'
+      "code": 0,
+      "time": "2019-04-29T10:15:32.966Z",
+      "createAsset": {
+        "asset": "arcblock"
       },
-      accountMigrate: {
-        address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55'
+      "accountMigrate": {
+        "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55"
       }
     }
   ]
@@ -2949,17 +3337,17 @@
  *
 ```javascript
 {
-  paging: {
-    cursor: 'arcblock',
-    size: 2,
-    order: [
+  "paging": {
+    "cursor": "arcblock",
+    "size": 2,
+    "order": [
       {
-        field: 'arcblock',
-        type: 'arcblock'
+        "field": "arcblock",
+        "type": "arcblock"
       },
       {
-        field: 'arcblock',
-        type: 'arcblock'
+        "field": "arcblock",
+        "type": "arcblock"
       }
     ]
   }
@@ -2976,75 +3364,75 @@
  *
 ```javascript
 {
-  code: 0,
-  page: {
-    cursor: 'arcblock',
-    next: true,
-    total: 2
+  "code": 0,
+  "page": {
+    "cursor": "arcblock",
+    "next": true,
+    "total": 2
   },
-  unconfirmedTxs: {
-    nTxs: 2,
-    txs: [
+  "unconfirmedTxs": {
+    "nTxs": 2,
+    "txs": [
       {
-        from: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-        nonce: 5,
-        chainId: 'arcblock',
-        pk: Uint8Array [],
-        signature: Uint8Array [],
-        signatures: [
+        "from": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+        "nonce": 5,
+        "chainId": "arcblock",
+        "pk": {},
+        "signature": {},
+        "signatures": [
           {
-            signer: 'arcblock',
-            pk: Uint8Array [],
-            signature: Uint8Array [],
-            data: {
-              type: 'string',
-              value: 'ABCD 1234'
+            "signer": "arcblock",
+            "pk": {},
+            "signature": {},
+            "data": {
+              "type": "string",
+              "value": "ABCD 1234"
             }
           },
           {
-            signer: 'arcblock',
-            pk: Uint8Array [],
-            signature: Uint8Array [],
-            data: {
-              type: 'string',
-              value: 'ABCD 1234'
+            "signer": "arcblock",
+            "pk": {},
+            "signature": {},
+            "data": {
+              "type": "string",
+              "value": "ABCD 1234"
             }
           }
         ],
-        itx: {
-          type: 'string',
-          value: 'ABCD 1234'
+        "itx": {
+          "type": "string",
+          "value": "ABCD 1234"
         }
       },
       {
-        from: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-        nonce: 5,
-        chainId: 'arcblock',
-        pk: Uint8Array [],
-        signature: Uint8Array [],
-        signatures: [
+        "from": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+        "nonce": 5,
+        "chainId": "arcblock",
+        "pk": {},
+        "signature": {},
+        "signatures": [
           {
-            signer: 'arcblock',
-            pk: Uint8Array [],
-            signature: Uint8Array [],
-            data: {
-              type: 'string',
-              value: 'ABCD 1234'
+            "signer": "arcblock",
+            "pk": {},
+            "signature": {},
+            "data": {
+              "type": "string",
+              "value": "ABCD 1234"
             }
           },
           {
-            signer: 'arcblock',
-            pk: Uint8Array [],
-            signature: Uint8Array [],
-            data: {
-              type: 'string',
-              value: 'ABCD 1234'
+            "signer": "arcblock",
+            "pk": {},
+            "signature": {},
+            "data": {
+              "type": "string",
+              "value": "ABCD 1234"
             }
           }
         ],
-        itx: {
-          type: 'string',
-          value: 'ABCD 1234'
+        "itx": {
+          "type": "string",
+          "value": "ABCD 1234"
         }
       }
     ]
@@ -3076,39 +3464,39 @@
  *
 ```javascript
 {
-  code: 0,
-  netInfo: {
-    listening: true,
-    listeners: [
-      'arcblock',
-      'arcblock'
+  "code": 0,
+  "netInfo": {
+    "listening": true,
+    "listeners": [
+      "arcblock",
+      "arcblock"
     ],
-    nPeers: 2,
-    peers: [
+    "nPeers": 2,
+    "peers": [
       {
-        id: 'arcblock',
-        network: 'arcblock',
-        consensusVersion: 'arcblock',
-        moniker: 'arcblock',
-        ip: 'arcblock',
-        geoInfo: {
-          city: 'arcblock',
-          country: 'arcblock',
-          latitude: '12.2',
-          longitude: '12.2'
+        "id": "arcblock",
+        "network": "arcblock",
+        "consensusVersion": "arcblock",
+        "moniker": "arcblock",
+        "ip": "arcblock",
+        "geoInfo": {
+          "city": "arcblock",
+          "country": "arcblock",
+          "latitude": "12.2",
+          "longitude": "12.2"
         }
       },
       {
-        id: 'arcblock',
-        network: 'arcblock',
-        consensusVersion: 'arcblock',
-        moniker: 'arcblock',
-        ip: 'arcblock',
-        geoInfo: {
-          city: 'arcblock',
-          country: 'arcblock',
-          latitude: '12.2',
-          longitude: '12.2'
+        "id": "arcblock",
+        "network": "arcblock",
+        "consensusVersion": "arcblock",
+        "moniker": "arcblock",
+        "ip": "arcblock",
+        "geoInfo": {
+          "city": "arcblock",
+          "country": "arcblock",
+          "latitude": "12.2",
+          "longitude": "12.2"
         }
       }
     ]
@@ -3139,40 +3527,40 @@
  *
 ```javascript
 {
-  code: 0,
-  validatorsInfo: {
-    blockHeight: 5,
-    validators: [
+  "code": 0,
+  "validatorsInfo": {
+    "blockHeight": 5,
+    "validators": [
       {
-        address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-        pubKey: {
-          type: 'arcblock',
-          data: Uint8Array []
+        "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+        "pubKey": {
+          "type": "arcblock",
+          "data": {}
         },
-        votingPower: 5,
-        proposerPriority: 'arcblock',
-        name: 'arcblock',
-        geoInfo: {
-          city: 'arcblock',
-          country: 'arcblock',
-          latitude: '12.2',
-          longitude: '12.2'
+        "votingPower": 5,
+        "proposerPriority": "arcblock",
+        "name": "arcblock",
+        "geoInfo": {
+          "city": "arcblock",
+          "country": "arcblock",
+          "latitude": "12.2",
+          "longitude": "12.2"
         }
       },
       {
-        address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-        pubKey: {
-          type: 'arcblock',
-          data: Uint8Array []
+        "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+        "pubKey": {
+          "type": "arcblock",
+          "data": {}
         },
-        votingPower: 5,
-        proposerPriority: 'arcblock',
-        name: 'arcblock',
-        geoInfo: {
-          city: 'arcblock',
-          country: 'arcblock',
-          latitude: '12.2',
-          longitude: '12.2'
+        "votingPower": 5,
+        "proposerPriority": "arcblock",
+        "name": "arcblock",
+        "geoInfo": {
+          "city": "arcblock",
+          "country": "arcblock",
+          "latitude": "12.2",
+          "longitude": "12.2"
         }
       }
     ]
@@ -3191,8 +3579,8 @@
  *
 ```javascript
 {
-  topic: 'arcblock',
-  filter: 'arcblock'
+  "topic": "arcblock",
+  "filter": "arcblock"
 }
 ```
  *
@@ -3207,7 +3595,7 @@
  *
 ```javascript
 {
-  topic: 'arcblock'
+  "topic": "arcblock"
 }
 ```
  *
@@ -3241,7 +3629,7 @@
  *
 ```javascript
 {
-  topic: 'arcblock'
+  "topic": "arcblock"
 }
 ```
  *
@@ -3255,7 +3643,7 @@
  *
 ```javascript
 {
-  code: 0
+  "code": 0
 }
 ```
  *
@@ -3281,8 +3669,8 @@
  *
 ```javascript
 {
-  code: 0,
-  config: 'arcblock'
+  "code": 0,
+  "config": "arcblock"
 }
 ```
  *
@@ -3314,9 +3702,9 @@
  *
 ```javascript
 {
-  dayInfo: {
-    startDate: 'arcblock',
-    endDate: 'arcblock'
+  "dayInfo": {
+    "startDate": "arcblock",
+    "endDate": "arcblock"
   }
 }
 ```
@@ -3332,79 +3720,79 @@
  *
 ```javascript
 {
-  code: 0,
-  forgeStats: {
-    numBlocks: [
+  "code": 0,
+  "forgeStats": {
+    "numBlocks": [
       5,
       5
     ],
-    numTxs: [
+    "numTxs": [
       5,
       5
     ],
-    numStakes: [
-      [Function: BigUint],
-      [Function: BigUint]
+    "numStakes": [
+      null,
+      null
     ],
-    numValidators: [
+    "numValidators": [
       2,
       2
     ],
-    numAccountMigrateTxs: [
+    "numAccountMigrateTxs": [
       5,
       5
     ],
-    numCreateAssetTxs: [
+    "numCreateAssetTxs": [
       5,
       5
     ],
-    numConsensusUpgradeTxs: [
+    "numConsensusUpgradeTxs": [
       2,
       2
     ],
-    numDeclareTxs: [
+    "numDeclareTxs": [
       5,
       5
     ],
-    numDeclareFileTxs: [
+    "numDeclareFileTxs": [
       5,
       5
     ],
-    numExchangeTxs: [
+    "numExchangeTxs": [
       5,
       5
     ],
-    numStakeTxs: [
+    "numStakeTxs": [
       5,
       5
     ],
-    numSysUpgradeTxs: [
+    "numSysUpgradeTxs": [
       2,
       2
     ],
-    numTransferTxs: [
+    "numTransferTxs": [
       5,
       5
     ],
-    numUpdateAssetTxs: [
+    "numUpdateAssetTxs": [
       5,
       5
     ],
-    numConsumeAssetTxs: [
+    "numConsumeAssetTxs": [
       5,
       5
     ],
-    numPokeTxs: [
+    "numPokeTxs": [
       5,
       5
     ],
-    tps: [
+    "tps": [
       2,
       2
     ],
-    maxTps: 2,
-    avgTps: 2,
-    avgBlockTime: '12.2'
+    "maxTps": 2,
+    "avgTps": 2,
+    "avgBlockTime": "12.2"
   }
 }
 ```
@@ -3420,37 +3808,37 @@
  *
 ```javascript
 {
-  paging: {
-    cursor: 'arcblock',
-    size: 2,
-    order: [
+  "paging": {
+    "cursor": "arcblock",
+    "size": 2,
+    "order": [
       {
-        field: 'arcblock',
-        type: 'arcblock'
+        "field": "arcblock",
+        "type": "arcblock"
       },
       {
-        field: 'arcblock',
-        type: 'arcblock'
+        "field": "arcblock",
+        "type": "arcblock"
       }
     ]
   },
-  timeFilter: {
-    startDateTime: 'arcblock',
-    endDateTime: 'arcblock'
+  "timeFilter": {
+    "startDateTime": "arcblock",
+    "endDateTime": "arcblock"
   },
-  addressFilter: {
-    sender: 'arcblock',
-    receiver: 'arcblock',
-    direction: 0
+  "addressFilter": {
+    "sender": "arcblock",
+    "receiver": "arcblock",
+    "direction": 0
   },
-  typeFilter: {
-    types: [
-      'arcblock',
-      'arcblock'
+  "typeFilter": {
+    "types": [
+      "arcblock",
+      "arcblock"
     ]
   },
-  validityFilter: {
-    validity: 0
+  "validityFilter": {
+    "validity": 0
   }
 }
 ```
@@ -3469,92 +3857,92 @@
  *
 ```javascript
 {
-  code: 0,
-  page: {
-    cursor: 'arcblock',
-    next: true,
-    total: 2
+  "code": 0,
+  "page": {
+    "cursor": "arcblock",
+    "next": true,
+    "total": 2
   },
-  transactions: [
+  "transactions": [
     {
-      hash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-      sender: 'arcblock',
-      receiver: 'arcblock',
-      time: 'arcblock',
-      type: 'arcblock',
-      tx: {
-        from: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-        nonce: 5,
-        chainId: 'arcblock',
-        pk: Uint8Array [],
-        signature: Uint8Array [],
-        signatures: [
+      "hash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+      "sender": "arcblock",
+      "receiver": "arcblock",
+      "time": "arcblock",
+      "type": "arcblock",
+      "tx": {
+        "from": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+        "nonce": 5,
+        "chainId": "arcblock",
+        "pk": {},
+        "signature": {},
+        "signatures": [
           {
-            signer: 'arcblock',
-            pk: Uint8Array [],
-            signature: Uint8Array [],
-            data: {
-              type: 'string',
-              value: 'ABCD 1234'
+            "signer": "arcblock",
+            "pk": {},
+            "signature": {},
+            "data": {
+              "type": "string",
+              "value": "ABCD 1234"
             }
           },
           {
-            signer: 'arcblock',
-            pk: Uint8Array [],
-            signature: Uint8Array [],
-            data: {
-              type: 'string',
-              value: 'ABCD 1234'
+            "signer": "arcblock",
+            "pk": {},
+            "signature": {},
+            "data": {
+              "type": "string",
+              "value": "ABCD 1234"
             }
           }
         ],
-        itx: {
-          type: 'string',
-          value: 'ABCD 1234'
+        "itx": {
+          "type": "string",
+          "value": "ABCD 1234"
         }
       },
-      valid: true,
-      code: 0
+      "valid": true,
+      "code": 0
     },
     {
-      hash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-      sender: 'arcblock',
-      receiver: 'arcblock',
-      time: 'arcblock',
-      type: 'arcblock',
-      tx: {
-        from: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-        nonce: 5,
-        chainId: 'arcblock',
-        pk: Uint8Array [],
-        signature: Uint8Array [],
-        signatures: [
+      "hash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+      "sender": "arcblock",
+      "receiver": "arcblock",
+      "time": "arcblock",
+      "type": "arcblock",
+      "tx": {
+        "from": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+        "nonce": 5,
+        "chainId": "arcblock",
+        "pk": {},
+        "signature": {},
+        "signatures": [
           {
-            signer: 'arcblock',
-            pk: Uint8Array [],
-            signature: Uint8Array [],
-            data: {
-              type: 'string',
-              value: 'ABCD 1234'
+            "signer": "arcblock",
+            "pk": {},
+            "signature": {},
+            "data": {
+              "type": "string",
+              "value": "ABCD 1234"
             }
           },
           {
-            signer: 'arcblock',
-            pk: Uint8Array [],
-            signature: Uint8Array [],
-            data: {
-              type: 'string',
-              value: 'ABCD 1234'
+            "signer": "arcblock",
+            "pk": {},
+            "signature": {},
+            "data": {
+              "type": "string",
+              "value": "ABCD 1234"
             }
           }
         ],
-        itx: {
-          type: 'string',
-          value: 'ABCD 1234'
+        "itx": {
+          "type": "string",
+          "value": "ABCD 1234"
         }
       },
-      valid: true,
-      code: 0
+      "valid": true,
+      "code": 0
     }
   ]
 }
@@ -3572,21 +3960,21 @@
  *
 ```javascript
 {
-  paging: {
-    cursor: 'arcblock',
-    size: 2,
-    order: [
+  "paging": {
+    "cursor": "arcblock",
+    "size": 2,
+    "order": [
       {
-        field: 'arcblock',
-        type: 'arcblock'
+        "field": "arcblock",
+        "type": "arcblock"
       },
       {
-        field: 'arcblock',
-        type: 'arcblock'
+        "field": "arcblock",
+        "type": "arcblock"
       }
     ]
   },
-  ownerAddress: 'arcblock'
+  "ownerAddress": "arcblock"
 }
 ```
  *
@@ -3601,28 +3989,28 @@
  *
 ```javascript
 {
-  code: 0,
-  page: {
-    cursor: 'arcblock',
-    next: true,
-    total: 2
+  "code": 0,
+  "page": {
+    "cursor": "arcblock",
+    "next": true,
+    "total": 2
   },
-  assets: [
+  "assets": [
     {
-      address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-      owner: 'arcblock',
-      genesisTime: 'arcblock',
-      renaissanceTime: 'arcblock',
-      moniker: 'arcblock',
-      readonly: true
+      "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+      "owner": "arcblock",
+      "genesisTime": "arcblock",
+      "renaissanceTime": "arcblock",
+      "moniker": "arcblock",
+      "readonly": true
     },
     {
-      address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-      owner: 'arcblock',
-      genesisTime: 'arcblock',
-      renaissanceTime: 'arcblock',
-      moniker: 'arcblock',
-      readonly: true
+      "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+      "owner": "arcblock",
+      "genesisTime": "arcblock",
+      "renaissanceTime": "arcblock",
+      "moniker": "arcblock",
+      "readonly": true
     }
   ]
 }
@@ -3640,24 +4028,24 @@
  *
 ```javascript
 {
-  paging: {
-    cursor: 'arcblock',
-    size: 2,
-    order: [
+  "paging": {
+    "cursor": "arcblock",
+    "size": 2,
+    "order": [
       {
-        field: 'arcblock',
-        type: 'arcblock'
+        "field": "arcblock",
+        "type": "arcblock"
       },
       {
-        field: 'arcblock',
-        type: 'arcblock'
+        "field": "arcblock",
+        "type": "arcblock"
       }
     ]
   },
-  addressFilter: {
-    sender: 'arcblock',
-    receiver: 'arcblock',
-    direction: 0
+  "addressFilter": {
+    "sender": "arcblock",
+    "receiver": "arcblock",
+    "direction": 0
   }
 }
 ```
@@ -3673,32 +4061,30 @@
  *
 ```javascript
 {
-  code: 0,
-  page: {
-    cursor: 'arcblock',
-    next: true,
-    total: 2
+  "code": 0,
+  "page": {
+    "cursor": "arcblock",
+    "next": true,
+    "total": 2
   },
-  stakes: [
+  "stakes": [
     {
-      address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-      balance: [Function: BigUint],
-      sender: 'arcblock',
-      receiver: 'arcblock',
-      genesisTime: 'arcblock',
-      renaissanceTime: 'arcblock',
-      message: 'arcblock',
-      type: 2
+      "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+      "sender": "arcblock",
+      "receiver": "arcblock",
+      "genesisTime": "arcblock",
+      "renaissanceTime": "arcblock",
+      "message": "arcblock",
+      "type": 2
     },
     {
-      address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-      balance: [Function: BigUint],
-      sender: 'arcblock',
-      receiver: 'arcblock',
-      genesisTime: 'arcblock',
-      renaissanceTime: 'arcblock',
-      message: 'arcblock',
-      type: 2
+      "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+      "sender": "arcblock",
+      "receiver": "arcblock",
+      "genesisTime": "arcblock",
+      "renaissanceTime": "arcblock",
+      "message": "arcblock",
+      "type": 2
     }
   ]
 }
@@ -3716,7 +4102,7 @@
  *
 ```javascript
 {
-  ownerAddress: 'arcblock'
+  "ownerAddress": "arcblock"
 }
 ```
  *
@@ -3730,22 +4116,18 @@
  *
 ```javascript
 {
-  code: 0,
-  account: {
-    address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-    balance: [Function: BigUint],
-    numAssets: 5,
-    numTxs: 5,
-    nonce: 5,
-    genesisTime: 'arcblock',
-    renaissanceTime: 'arcblock',
-    moniker: 'arcblock',
-    migratedFrom: 'arcblock',
-    migratedTo: 'arcblock',
-    totalReceivedStakes: [Function: BigUint],
-    totalStakes: [Function: BigUint],
-    totalUnstakes: [Function: BigUint],
-    recentNumTxs: [
+  "code": 0,
+  "account": {
+    "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+    "numAssets": 5,
+    "numTxs": 5,
+    "nonce": 5,
+    "genesisTime": "arcblock",
+    "renaissanceTime": "arcblock",
+    "moniker": "arcblock",
+    "migratedFrom": "arcblock",
+    "migratedTo": "arcblock",
+    "recentNumTxs": [
       5,
       5
     ]
@@ -3764,17 +4146,17 @@
  *
 ```javascript
 {
-  paging: {
-    cursor: 'arcblock',
-    size: 2,
-    order: [
+  "paging": {
+    "cursor": "arcblock",
+    "size": 2,
+    "order": [
       {
-        field: 'arcblock',
-        type: 'arcblock'
+        "field": "arcblock",
+        "type": "arcblock"
       },
       {
-        field: 'arcblock',
-        type: 'arcblock'
+        "field": "arcblock",
+        "type": "arcblock"
       }
     ]
   }
@@ -3791,47 +4173,39 @@
  *
 ```javascript
 {
-  code: 0,
-  page: {
-    cursor: 'arcblock',
-    next: true,
-    total: 2
+  "code": 0,
+  "page": {
+    "cursor": "arcblock",
+    "next": true,
+    "total": 2
   },
-  accounts: [
+  "accounts": [
     {
-      address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-      balance: [Function: BigUint],
-      numAssets: 5,
-      numTxs: 5,
-      nonce: 5,
-      genesisTime: 'arcblock',
-      renaissanceTime: 'arcblock',
-      moniker: 'arcblock',
-      migratedFrom: 'arcblock',
-      migratedTo: 'arcblock',
-      totalReceivedStakes: [Function: BigUint],
-      totalStakes: [Function: BigUint],
-      totalUnstakes: [Function: BigUint],
-      recentNumTxs: [
+      "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+      "numAssets": 5,
+      "numTxs": 5,
+      "nonce": 5,
+      "genesisTime": "arcblock",
+      "renaissanceTime": "arcblock",
+      "moniker": "arcblock",
+      "migratedFrom": "arcblock",
+      "migratedTo": "arcblock",
+      "recentNumTxs": [
         5,
         5
       ]
     },
     {
-      address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-      balance: [Function: BigUint],
-      numAssets: 5,
-      numTxs: 5,
-      nonce: 5,
-      genesisTime: 'arcblock',
-      renaissanceTime: 'arcblock',
-      moniker: 'arcblock',
-      migratedFrom: 'arcblock',
-      migratedTo: 'arcblock',
-      totalReceivedStakes: [Function: BigUint],
-      totalStakes: [Function: BigUint],
-      totalUnstakes: [Function: BigUint],
-      recentNumTxs: [
+      "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+      "numAssets": 5,
+      "numTxs": 5,
+      "nonce": 5,
+      "genesisTime": "arcblock",
+      "renaissanceTime": "arcblock",
+      "moniker": "arcblock",
+      "migratedFrom": "arcblock",
+      "migratedTo": "arcblock",
+      "recentNumTxs": [
         5,
         5
       ]
@@ -3852,21 +4226,21 @@
  *
 ```javascript
 {
-  paging: {
-    cursor: 'arcblock',
-    size: 2,
-    order: [
+  "paging": {
+    "cursor": "arcblock",
+    "size": 2,
+    "order": [
       {
-        field: 'arcblock',
-        type: 'arcblock'
+        "field": "arcblock",
+        "type": "arcblock"
       },
       {
-        field: 'arcblock',
-        type: 'arcblock'
+        "field": "arcblock",
+        "type": "arcblock"
       }
     ]
   },
-  address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55'
+  "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55"
 }
 ```
  *
@@ -3881,92 +4255,92 @@
  *
 ```javascript
 {
-  code: 0,
-  page: {
-    cursor: 'arcblock',
-    next: true,
-    total: 2
+  "code": 0,
+  "page": {
+    "cursor": "arcblock",
+    "next": true,
+    "total": 2
   },
-  transactions: [
+  "transactions": [
     {
-      hash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-      sender: 'arcblock',
-      receiver: 'arcblock',
-      time: 'arcblock',
-      type: 'arcblock',
-      tx: {
-        from: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-        nonce: 5,
-        chainId: 'arcblock',
-        pk: Uint8Array [],
-        signature: Uint8Array [],
-        signatures: [
+      "hash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+      "sender": "arcblock",
+      "receiver": "arcblock",
+      "time": "arcblock",
+      "type": "arcblock",
+      "tx": {
+        "from": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+        "nonce": 5,
+        "chainId": "arcblock",
+        "pk": {},
+        "signature": {},
+        "signatures": [
           {
-            signer: 'arcblock',
-            pk: Uint8Array [],
-            signature: Uint8Array [],
-            data: {
-              type: 'string',
-              value: 'ABCD 1234'
+            "signer": "arcblock",
+            "pk": {},
+            "signature": {},
+            "data": {
+              "type": "string",
+              "value": "ABCD 1234"
             }
           },
           {
-            signer: 'arcblock',
-            pk: Uint8Array [],
-            signature: Uint8Array [],
-            data: {
-              type: 'string',
-              value: 'ABCD 1234'
+            "signer": "arcblock",
+            "pk": {},
+            "signature": {},
+            "data": {
+              "type": "string",
+              "value": "ABCD 1234"
             }
           }
         ],
-        itx: {
-          type: 'string',
-          value: 'ABCD 1234'
+        "itx": {
+          "type": "string",
+          "value": "ABCD 1234"
         }
       },
-      valid: true,
-      code: 0
+      "valid": true,
+      "code": 0
     },
     {
-      hash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-      sender: 'arcblock',
-      receiver: 'arcblock',
-      time: 'arcblock',
-      type: 'arcblock',
-      tx: {
-        from: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-        nonce: 5,
-        chainId: 'arcblock',
-        pk: Uint8Array [],
-        signature: Uint8Array [],
-        signatures: [
+      "hash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+      "sender": "arcblock",
+      "receiver": "arcblock",
+      "time": "arcblock",
+      "type": "arcblock",
+      "tx": {
+        "from": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+        "nonce": 5,
+        "chainId": "arcblock",
+        "pk": {},
+        "signature": {},
+        "signatures": [
           {
-            signer: 'arcblock',
-            pk: Uint8Array [],
-            signature: Uint8Array [],
-            data: {
-              type: 'string',
-              value: 'ABCD 1234'
+            "signer": "arcblock",
+            "pk": {},
+            "signature": {},
+            "data": {
+              "type": "string",
+              "value": "ABCD 1234"
             }
           },
           {
-            signer: 'arcblock',
-            pk: Uint8Array [],
-            signature: Uint8Array [],
-            data: {
-              type: 'string',
-              value: 'ABCD 1234'
+            "signer": "arcblock",
+            "pk": {},
+            "signature": {},
+            "data": {
+              "type": "string",
+              "value": "ABCD 1234"
             }
           }
         ],
-        itx: {
-          type: 'string',
-          value: 'ABCD 1234'
+        "itx": {
+          "type": "string",
+          "value": "ABCD 1234"
         }
       },
-      valid: true,
-      code: 0
+      "valid": true,
+      "code": 0
     }
   ]
 }
@@ -3984,36 +4358,36 @@
  *
 ```javascript
 {
-  paging: {
-    cursor: 'arcblock',
-    size: 2,
-    order: [
+  "paging": {
+    "cursor": "arcblock",
+    "size": 2,
+    "order": [
       {
-        field: 'arcblock',
-        type: 'arcblock'
+        "field": "arcblock",
+        "type": "arcblock"
       },
       {
-        field: 'arcblock',
-        type: 'arcblock'
+        "field": "arcblock",
+        "type": "arcblock"
       }
     ]
   },
-  proposer: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-  timeFilter: {
-    startDateTime: 'arcblock',
-    endDateTime: 'arcblock'
+  "proposer": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+  "timeFilter": {
+    "startDateTime": "arcblock",
+    "endDateTime": "arcblock"
   },
-  heightFilter: {
-    from: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-    to: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55'
+  "heightFilter": {
+    "from": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+    "to": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55"
   },
-  numTxsFilter: {
-    from: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-    to: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55'
+  "numTxsFilter": {
+    "from": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+    "to": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55"
   },
-  numInvalidTxsFilter: {
-    from: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-    to: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55'
+  "numInvalidTxsFilter": {
+    "from": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+    "to": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55"
   }
 }
 ```
@@ -4033,26 +4407,26 @@
  *
 ```javascript
 {
-  code: 0,
-  page: {
-    cursor: 'arcblock',
-    next: true,
-    total: 2
+  "code": 0,
+  "page": {
+    "cursor": "arcblock",
+    "next": true,
+    "total": 2
   },
-  blocks: [
+  "blocks": [
     {
-      height: 5,
-      time: 'arcblock',
-      proposer: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-      numTxs: 5,
-      numInvalidTxs: 5
+      "height": 5,
+      "time": "arcblock",
+      "proposer": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+      "numTxs": 5,
+      "numInvalidTxs": 5
     },
     {
-      height: 5,
-      time: 'arcblock',
-      proposer: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-      numTxs: 5,
-      numInvalidTxs: 5
+      "height": 5,
+      "time": "arcblock",
+      "proposer": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+      "numTxs": 5,
+      "numInvalidTxs": 5
     }
   ]
 }
@@ -4082,33 +4456,33 @@
  *
 ```javascript
 {
-  code: 0,
-  healthStatus: {
-    consensus: {
-      health: true,
-      synced: true,
-      blockHeight: 5
+  "code": 0,
+  "healthStatus": {
+    "consensus": {
+      "health": true,
+      "synced": true,
+      "blockHeight": 5
     },
-    network: {
-      health: true,
-      numPeers: 2
+    "network": {
+      "health": true,
+      "numPeers": 2
     },
-    storage: {
-      health: true,
-      indexerServer: 'arcblock',
-      stateDb: 'arcblock',
-      diskSpace: {
-        forgeUsage: 'arcblock',
-        total: 'arcblock'
+    "storage": {
+      "health": true,
+      "indexerServer": "arcblock",
+      "stateDb": "arcblock",
+      "diskSpace": {
+        "forgeUsage": "arcblock",
+        "total": "arcblock"
       }
     },
-    forge: {
-      health: true,
-      abiServer: 'arcblock',
-      forgeWeb: 'arcblock',
-      abciServer: {
-        abciConsensus: 'arcblock',
-        abciInfo: 'arcblock'
+    "forge": {
+      "health": true,
+      "abiServer": "arcblock",
+      "forgeWeb": "arcblock",
+      "abciServer": {
+        "abciConsensus": "arcblock",
+        "abciInfo": "arcblock"
       }
     }
   }
@@ -4341,7 +4715,18 @@
  */
 
 /**
- * Structure of GRpcClient.DeclareTx
+ * Structure of GRpcClient.DeclareTx 
+ *
+```javascript
+{
+  "moniker": "arcblock",
+  "issuer": "arcblock",
+  "data": {
+    "type": "string",
+    "value": "ABCD 1234"
+  }
+}
+```
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.DeclareTx
@@ -4369,7 +4754,47 @@
  */
 
 /**
- * Structure of GRpcClient.DeployProtocolTx
+ * Structure of GRpcClient.DeployProtocolTx 
+ *
+```javascript
+{
+  "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+  "name": "arcblock",
+  "version": 2,
+  "namespace": "arcblock",
+  "description": "arcblock",
+  "typeUrls": [
+    {
+      "url": "arcblock",
+      "module": "arcblock"
+    },
+    {
+      "url": "arcblock",
+      "module": "arcblock"
+    }
+  ],
+  "proto": "arcblock",
+  "pipeline": "arcblock",
+  "sources": [
+    "arcblock",
+    "arcblock"
+  ],
+  "code": [
+    {
+      "checksum": {},
+      "binary": {}
+    },
+    {
+      "checksum": {},
+      "binary": {}
+    }
+  ],
+  "data": {
+    "type": "string",
+    "value": "ABCD 1234"
+  }
+}
+```
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.DeployProtocolTx
@@ -4387,7 +4812,30 @@
  */
 
 /**
- * Structure of GRpcClient.ConsensusUpgradeTx
+ * Structure of GRpcClient.ConsensusUpgradeTx 
+ *
+```javascript
+{
+  "validators": [
+    {
+      "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+      "power": 5
+    },
+    {
+      "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+      "power": 5
+    }
+  ],
+  "maxBytes": 5,
+  "maxGas": 4,
+  "maxValidators": 2,
+  "maxCandidates": 2,
+  "data": {
+    "type": "string",
+    "value": "ABCD 1234"
+  }
+}
+```
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.ConsensusUpgradeTx
@@ -4400,7 +4848,25 @@
  */
 
 /**
- * Structure of GRpcClient.SysUpgradeTx
+ * Structure of GRpcClient.SysUpgradeTx 
+ *
+```javascript
+{
+  "task": {
+    "type": 0,
+    "dataHash": "arcblock",
+    "actions": [
+      null,
+      null
+    ]
+  },
+  "gracePeriod": 5,
+  "data": {
+    "type": "string",
+    "value": "ABCD 1234"
+  }
+}
+```
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.SysUpgradeTx
@@ -4410,7 +4876,24 @@
  */
 
 /**
- * Structure of GRpcClient.AccountMigrateTx
+ * Structure of GRpcClient.AccountMigrateTx 
+ *
+```javascript
+{
+  "pk": {},
+  "type": {
+    "pk": 0,
+    "hash": 0,
+    "address": 0,
+    "role": 0
+  },
+  "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+  "data": {
+    "type": "string",
+    "value": "ABCD 1234"
+  }
+}
+```
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.AccountMigrateTx
@@ -4421,7 +4904,18 @@
  */
 
 /**
- * Structure of GRpcClient.ConsumeAssetTx
+ * Structure of GRpcClient.ConsumeAssetTx 
+ *
+```javascript
+{
+  "issuer": "arcblock",
+  "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+  "data": {
+    "type": "string",
+    "value": "ABCD 1234"
+  }
+}
+```
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.ConsumeAssetTx
@@ -4431,7 +4925,22 @@
  */
 
 /**
- * Structure of GRpcClient.CreateAssetTx
+ * Structure of GRpcClient.CreateAssetTx 
+ *
+```javascript
+{
+  "moniker": "arcblock",
+  "data": {
+    "type": "string",
+    "value": "ABCD 1234"
+  },
+  "readonly": true,
+  "transferrable": true,
+  "ttl": 2,
+  "parent": "arcblock",
+  "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55"
+}
+```
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.CreateAssetTx
@@ -4445,7 +4954,13 @@
  */
 
 /**
- * Structure of GRpcClient.DeclareFileTx
+ * Structure of GRpcClient.DeclareFileTx 
+ *
+```javascript
+{
+  "hash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55"
+}
+```
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.DeclareFileTx
@@ -4462,7 +4977,30 @@
  */
 
 /**
- * Structure of GRpcClient.ExchangeTx
+ * Structure of GRpcClient.ExchangeTx 
+ *
+```javascript
+{
+  "to": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+  "sender": {
+    "assets": [
+      "arcblock",
+      "arcblock"
+    ]
+  },
+  "receiver": {
+    "assets": [
+      "arcblock",
+      "arcblock"
+    ]
+  },
+  "expiredAt": "2019-04-29T10:15:32.970Z",
+  "data": {
+    "type": "string",
+    "value": "ABCD 1234"
+  }
+}
+```
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.ExchangeTx
@@ -4474,7 +5012,18 @@
  */
 
 /**
- * Structure of GRpcClient.PokeTx
+ * Structure of GRpcClient.PokeTx 
+ *
+```javascript
+{
+  "date": "arcblock",
+  "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+  "data": {
+    "type": "string",
+    "value": "ABCD 1234"
+  }
+}
+```
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.PokeTx
@@ -4516,7 +5065,18 @@
  */
 
 /**
- * Structure of GRpcClient.StakeTx
+ * Structure of GRpcClient.StakeTx 
+ *
+```javascript
+{
+  "to": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+  "message": "arcblock",
+  "data": {
+    "type": "string",
+    "value": "ABCD 1234"
+  }
+}
+```
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.StakeTx
@@ -4527,7 +5087,21 @@
  */
 
 /**
- * Structure of GRpcClient.TransferTx
+ * Structure of GRpcClient.TransferTx 
+ *
+```javascript
+{
+  "to": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+  "assets": [
+    "arcblock",
+    "arcblock"
+  ],
+  "data": {
+    "type": "string",
+    "value": "ABCD 1234"
+  }
+}
+```
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.TransferTx
@@ -4538,7 +5112,18 @@
  */
 
 /**
- * Structure of GRpcClient.UpdateAssetTx
+ * Structure of GRpcClient.UpdateAssetTx 
+ *
+```javascript
+{
+  "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+  "moniker": "arcblock",
+  "data": {
+    "type": "string",
+    "value": "ABCD 1234"
+  }
+}
+```
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.UpdateAssetTx
@@ -4548,7 +5133,15 @@
  */
 
 /**
- * Structure of GRpcClient.UpgradeNodeTx
+ * Structure of GRpcClient.UpgradeNodeTx 
+ *
+```javascript
+{
+  "height": 5,
+  "version": "arcblock",
+  "override": true
+}
+```
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.UpgradeNodeTx
@@ -4764,7 +5357,27 @@
  */
 
 /**
- * Structure of GRpcClient.ResponseCheckTx
+ * Structure of GRpcClient.ResponseCheckTx 
+ *
+```javascript
+{
+  "code": 2,
+  "data": {},
+  "log": "arcblock",
+  "info": "arcblock",
+  "tags": [
+    {
+      "key": {},
+      "value": {}
+    },
+    {
+      "key": {},
+      "value": {}
+    }
+  ],
+  "codespace": "arcblock"
+}
+```
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.ResponseCheckTx
@@ -4779,7 +5392,27 @@
  */
 
 /**
- * Structure of GRpcClient.ResponseDeliverTx
+ * Structure of GRpcClient.ResponseDeliverTx 
+ *
+```javascript
+{
+  "code": 2,
+  "data": {},
+  "log": "arcblock",
+  "info": "arcblock",
+  "tags": [
+    {
+      "key": {},
+      "value": {}
+    },
+    {
+      "key": {},
+      "value": {}
+    }
+  ],
+  "codespace": "arcblock"
+}
+```
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.ResponseDeliverTx
@@ -4802,7 +5435,13 @@
  */
 
 /**
- * Structure of GRpcClient.RequestBroadcastTx
+ * Structure of GRpcClient.RequestBroadcastTx 
+ *
+```javascript
+{
+  "tx": {}
+}
+```
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.RequestBroadcastTx
@@ -4818,7 +5457,46 @@
  */
 
 /**
- * Structure of GRpcClient.ResponseBroadcastTx
+ * Structure of GRpcClient.ResponseBroadcastTx 
+ *
+```javascript
+{
+  "checkTx": {
+    "code": 2,
+    "data": {},
+    "log": "arcblock",
+    "info": "arcblock",
+    "tags": [
+      {
+        "key": {},
+        "value": {}
+      },
+      {
+        "key": {},
+        "value": {}
+      }
+    ],
+    "codespace": "arcblock"
+  },
+  "deliverTx": {
+    "code": 2,
+    "data": {},
+    "log": "arcblock",
+    "info": "arcblock",
+    "tags": [
+      {
+        "key": {},
+        "value": {}
+      },
+      {
+        "key": {},
+        "value": {}
+      }
+    ],
+    "codespace": "arcblock"
+  }
+}
+```
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.ResponseBroadcastTx
@@ -5224,4 +5902,494 @@
  * @name GRpcClient#getHealthStatus
  * @param {GRpcClient.RequestGetHealthStatus} params
  * @returns {Promise.<GRpcClient.ResponseGetHealthStatus>}
+ */
+
+/**
+ * @memberof GRpcClient
+ * @typedef {Object} GRpcClient.ConsensusUpgradeTxInput
+ * @prop {object} input
+ * @prop {object} input.tx - data of the transaction
+ * @prop {GRpcClient.ConsensusUpgradeTx} input.tx.itx - the actual transaction object
+ * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
+ * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
+ * @prop {string} [input.tx.chainId] - the chainId
+ * @prop {string} [input.tx.signature] - transaction signature
+ * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transactio
+ * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
+ * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
+ */
+
+/**
+ * Send ConsensusUpgradeTx transaction and get the hash, use {@link GRpcClient#getTx} to get transaction detail
+ *
+ * @memberof GRpcClient
+ * @function
+ * @name GRpcClient#sendConsensusUpgradeTx
+ * @param {GRpcClient.ConsensusUpgradeTxInput} params
+ * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
+ */
+
+/**
+ * @memberof GRpcClient
+ * @typedef {Object} GRpcClient.DeclareTxInput
+ * @prop {object} input
+ * @prop {object} input.tx - data of the transaction
+ * @prop {GRpcClient.DeclareTx} input.tx.itx - the actual transaction object
+ * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
+ * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
+ * @prop {string} [input.tx.chainId] - the chainId
+ * @prop {string} [input.tx.signature] - transaction signature
+ * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transactio
+ * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
+ * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
+ */
+
+/**
+ * Send DeclareTx transaction and get the hash, use {@link GRpcClient#getTx} to get transaction detail
+ *
+ * @memberof GRpcClient
+ * @function
+ * @name GRpcClient#sendDeclareTx
+ * @param {GRpcClient.DeclareTxInput} params
+ * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
+ */
+
+/**
+ * @memberof GRpcClient
+ * @typedef {Object} GRpcClient.DeployProtocolTxInput
+ * @prop {object} input
+ * @prop {object} input.tx - data of the transaction
+ * @prop {GRpcClient.DeployProtocolTx} input.tx.itx - the actual transaction object
+ * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
+ * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
+ * @prop {string} [input.tx.chainId] - the chainId
+ * @prop {string} [input.tx.signature] - transaction signature
+ * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transactio
+ * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
+ * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
+ */
+
+/**
+ * Send DeployProtocolTx transaction and get the hash, use {@link GRpcClient#getTx} to get transaction detail
+ *
+ * @memberof GRpcClient
+ * @function
+ * @name GRpcClient#sendDeployProtocolTx
+ * @param {GRpcClient.DeployProtocolTxInput} params
+ * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
+ */
+
+/**
+ * @memberof GRpcClient
+ * @typedef {Object} GRpcClient.SysUpgradeTxInput
+ * @prop {object} input
+ * @prop {object} input.tx - data of the transaction
+ * @prop {GRpcClient.SysUpgradeTx} input.tx.itx - the actual transaction object
+ * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
+ * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
+ * @prop {string} [input.tx.chainId] - the chainId
+ * @prop {string} [input.tx.signature] - transaction signature
+ * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transactio
+ * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
+ * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
+ */
+
+/**
+ * Send SysUpgradeTx transaction and get the hash, use {@link GRpcClient#getTx} to get transaction detail
+ *
+ * @memberof GRpcClient
+ * @function
+ * @name GRpcClient#sendSysUpgradeTx
+ * @param {GRpcClient.SysUpgradeTxInput} params
+ * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
+ */
+
+/**
+ * @memberof GRpcClient
+ * @typedef {Object} GRpcClient.DeclareFileTxInput
+ * @prop {object} input
+ * @prop {object} input.tx - data of the transaction
+ * @prop {GRpcClient.DeclareFileTx} input.tx.itx - the actual transaction object
+ * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
+ * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
+ * @prop {string} [input.tx.chainId] - the chainId
+ * @prop {string} [input.tx.signature] - transaction signature
+ * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transactio
+ * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
+ * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
+ */
+
+/**
+ * Send DeclareFileTx transaction and get the hash, use {@link GRpcClient#getTx} to get transaction detail
+ *
+ * @memberof GRpcClient
+ * @function
+ * @name GRpcClient#sendDeclareFileTx
+ * @param {GRpcClient.DeclareFileTxInput} params
+ * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
+ */
+
+/**
+ * @memberof GRpcClient
+ * @typedef {Object} GRpcClient.CreateAssetTxInput
+ * @prop {object} input
+ * @prop {object} input.tx - data of the transaction
+ * @prop {GRpcClient.CreateAssetTx} input.tx.itx - the actual transaction object
+ * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
+ * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
+ * @prop {string} [input.tx.chainId] - the chainId
+ * @prop {string} [input.tx.signature] - transaction signature
+ * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transactio
+ * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
+ * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
+ */
+
+/**
+ * Send CreateAssetTx transaction and get the hash, use {@link GRpcClient#getTx} to get transaction detail
+ *
+ * @memberof GRpcClient
+ * @function
+ * @name GRpcClient#sendCreateAssetTx
+ * @param {GRpcClient.CreateAssetTxInput} params
+ * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
+ */
+
+/**
+ * @memberof GRpcClient
+ * @typedef {Object} GRpcClient.StakeTxInput
+ * @prop {object} input
+ * @prop {object} input.tx - data of the transaction
+ * @prop {GRpcClient.StakeTx} input.tx.itx - the actual transaction object
+ * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
+ * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
+ * @prop {string} [input.tx.chainId] - the chainId
+ * @prop {string} [input.tx.signature] - transaction signature
+ * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transactio
+ * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
+ * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
+ */
+
+/**
+ * Send StakeTx transaction and get the hash, use {@link GRpcClient#getTx} to get transaction detail
+ *
+ * @memberof GRpcClient
+ * @function
+ * @name GRpcClient#sendStakeTx
+ * @param {GRpcClient.StakeTxInput} params
+ * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
+ */
+
+/**
+ * @memberof GRpcClient
+ * @typedef {Object} GRpcClient.ExchangeTxInput
+ * @prop {object} input
+ * @prop {object} input.tx - data of the transaction
+ * @prop {GRpcClient.ExchangeTx} input.tx.itx - the actual transaction object
+ * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
+ * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
+ * @prop {string} [input.tx.chainId] - the chainId
+ * @prop {string} [input.tx.signature] - transaction signature
+ * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transactio
+ * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
+ * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
+ */
+
+/**
+ * Send ExchangeTx transaction and get the hash, use {@link GRpcClient#getTx} to get transaction detail
+ *
+ * @memberof GRpcClient
+ * @function
+ * @name GRpcClient#sendExchangeTx
+ * @param {GRpcClient.ExchangeTxInput} params
+ * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
+ */
+
+/**
+ * @memberof GRpcClient
+ * @typedef {Object} GRpcClient.AccountMigrateTxInput
+ * @prop {object} input
+ * @prop {object} input.tx - data of the transaction
+ * @prop {GRpcClient.AccountMigrateTx} input.tx.itx - the actual transaction object
+ * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
+ * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
+ * @prop {string} [input.tx.chainId] - the chainId
+ * @prop {string} [input.tx.signature] - transaction signature
+ * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transactio
+ * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
+ * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
+ */
+
+/**
+ * Send AccountMigrateTx transaction and get the hash, use {@link GRpcClient#getTx} to get transaction detail
+ *
+ * @memberof GRpcClient
+ * @function
+ * @name GRpcClient#sendAccountMigrateTx
+ * @param {GRpcClient.AccountMigrateTxInput} params
+ * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
+ */
+
+/**
+ * @memberof GRpcClient
+ * @typedef {Object} GRpcClient.UpgradeNodeTxInput
+ * @prop {object} input
+ * @prop {object} input.tx - data of the transaction
+ * @prop {GRpcClient.UpgradeNodeTx} input.tx.itx - the actual transaction object
+ * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
+ * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
+ * @prop {string} [input.tx.chainId] - the chainId
+ * @prop {string} [input.tx.signature] - transaction signature
+ * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transactio
+ * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
+ * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
+ */
+
+/**
+ * Send UpgradeNodeTx transaction and get the hash, use {@link GRpcClient#getTx} to get transaction detail
+ *
+ * @memberof GRpcClient
+ * @function
+ * @name GRpcClient#sendUpgradeNodeTx
+ * @param {GRpcClient.UpgradeNodeTxInput} params
+ * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
+ */
+
+/**
+ * @memberof GRpcClient
+ * @typedef {Object} GRpcClient.UpdateAssetTxInput
+ * @prop {object} input
+ * @prop {object} input.tx - data of the transaction
+ * @prop {GRpcClient.UpdateAssetTx} input.tx.itx - the actual transaction object
+ * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
+ * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
+ * @prop {string} [input.tx.chainId] - the chainId
+ * @prop {string} [input.tx.signature] - transaction signature
+ * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transactio
+ * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
+ * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
+ */
+
+/**
+ * Send UpdateAssetTx transaction and get the hash, use {@link GRpcClient#getTx} to get transaction detail
+ *
+ * @memberof GRpcClient
+ * @function
+ * @name GRpcClient#sendUpdateAssetTx
+ * @param {GRpcClient.UpdateAssetTxInput} params
+ * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
+ */
+
+/**
+ * @memberof GRpcClient
+ * @typedef {Object} GRpcClient.ConsumeAssetTxInput
+ * @prop {object} input
+ * @prop {object} input.tx - data of the transaction
+ * @prop {GRpcClient.ConsumeAssetTx} input.tx.itx - the actual transaction object
+ * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
+ * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
+ * @prop {string} [input.tx.chainId] - the chainId
+ * @prop {string} [input.tx.signature] - transaction signature
+ * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transactio
+ * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
+ * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
+ */
+
+/**
+ * Send ConsumeAssetTx transaction and get the hash, use {@link GRpcClient#getTx} to get transaction detail
+ *
+ * @memberof GRpcClient
+ * @function
+ * @name GRpcClient#sendConsumeAssetTx
+ * @param {GRpcClient.ConsumeAssetTxInput} params
+ * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
+ */
+
+/**
+ * @memberof GRpcClient
+ * @typedef {Object} GRpcClient.PokeTxInput
+ * @prop {object} input
+ * @prop {object} input.tx - data of the transaction
+ * @prop {GRpcClient.PokeTx} input.tx.itx - the actual transaction object
+ * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
+ * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
+ * @prop {string} [input.tx.chainId] - the chainId
+ * @prop {string} [input.tx.signature] - transaction signature
+ * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transactio
+ * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
+ * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
+ */
+
+/**
+ * Send PokeTx transaction and get the hash, use {@link GRpcClient#getTx} to get transaction detail
+ *
+ * @memberof GRpcClient
+ * @function
+ * @name GRpcClient#sendPokeTx
+ * @param {GRpcClient.PokeTxInput} params
+ * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
+ */
+
+/**
+ * @memberof GRpcClient
+ * @typedef {Object} GRpcClient.TransferTxInput
+ * @prop {object} input
+ * @prop {object} input.tx - data of the transaction
+ * @prop {GRpcClient.TransferTx} input.tx.itx - the actual transaction object
+ * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
+ * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
+ * @prop {string} [input.tx.chainId] - the chainId
+ * @prop {string} [input.tx.signature] - transaction signature
+ * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transactio
+ * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
+ * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
+ */
+
+/**
+ * Send TransferTx transaction and get the hash, use {@link GRpcClient#getTx} to get transaction detail
+ *
+ * @memberof GRpcClient
+ * @function
+ * @name GRpcClient#sendTransferTx
+ * @param {GRpcClient.TransferTxInput} params
+ * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
+ */
+
+/**
+ * Encode a ConsensusUpgradeTx transaction for later use
+ *
+ * @name GRpcClient#encodeConsensusUpgradeTx
+ * @function
+ * @memberof GRpcClient
+ * @param {GRpcClient.ConsensusUpgradeTxInput} params
+ * @returns {Promise<GRpcClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
+ */
+
+/**
+ * Encode a DeclareTx transaction for later use
+ *
+ * @name GRpcClient#encodeDeclareTx
+ * @function
+ * @memberof GRpcClient
+ * @param {GRpcClient.DeclareTxInput} params
+ * @returns {Promise<GRpcClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
+ */
+
+/**
+ * Encode a DeployProtocolTx transaction for later use
+ *
+ * @name GRpcClient#encodeDeployProtocolTx
+ * @function
+ * @memberof GRpcClient
+ * @param {GRpcClient.DeployProtocolTxInput} params
+ * @returns {Promise<GRpcClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
+ */
+
+/**
+ * Encode a SysUpgradeTx transaction for later use
+ *
+ * @name GRpcClient#encodeSysUpgradeTx
+ * @function
+ * @memberof GRpcClient
+ * @param {GRpcClient.SysUpgradeTxInput} params
+ * @returns {Promise<GRpcClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
+ */
+
+/**
+ * Encode a DeclareFileTx transaction for later use
+ *
+ * @name GRpcClient#encodeDeclareFileTx
+ * @function
+ * @memberof GRpcClient
+ * @param {GRpcClient.DeclareFileTxInput} params
+ * @returns {Promise<GRpcClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
+ */
+
+/**
+ * Encode a CreateAssetTx transaction for later use
+ *
+ * @name GRpcClient#encodeCreateAssetTx
+ * @function
+ * @memberof GRpcClient
+ * @param {GRpcClient.CreateAssetTxInput} params
+ * @returns {Promise<GRpcClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
+ */
+
+/**
+ * Encode a StakeTx transaction for later use
+ *
+ * @name GRpcClient#encodeStakeTx
+ * @function
+ * @memberof GRpcClient
+ * @param {GRpcClient.StakeTxInput} params
+ * @returns {Promise<GRpcClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
+ */
+
+/**
+ * Encode a ExchangeTx transaction for later use
+ *
+ * @name GRpcClient#encodeExchangeTx
+ * @function
+ * @memberof GRpcClient
+ * @param {GRpcClient.ExchangeTxInput} params
+ * @returns {Promise<GRpcClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
+ */
+
+/**
+ * Encode a AccountMigrateTx transaction for later use
+ *
+ * @name GRpcClient#encodeAccountMigrateTx
+ * @function
+ * @memberof GRpcClient
+ * @param {GRpcClient.AccountMigrateTxInput} params
+ * @returns {Promise<GRpcClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
+ */
+
+/**
+ * Encode a UpgradeNodeTx transaction for later use
+ *
+ * @name GRpcClient#encodeUpgradeNodeTx
+ * @function
+ * @memberof GRpcClient
+ * @param {GRpcClient.UpgradeNodeTxInput} params
+ * @returns {Promise<GRpcClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
+ */
+
+/**
+ * Encode a UpdateAssetTx transaction for later use
+ *
+ * @name GRpcClient#encodeUpdateAssetTx
+ * @function
+ * @memberof GRpcClient
+ * @param {GRpcClient.UpdateAssetTxInput} params
+ * @returns {Promise<GRpcClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
+ */
+
+/**
+ * Encode a ConsumeAssetTx transaction for later use
+ *
+ * @name GRpcClient#encodeConsumeAssetTx
+ * @function
+ * @memberof GRpcClient
+ * @param {GRpcClient.ConsumeAssetTxInput} params
+ * @returns {Promise<GRpcClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
+ */
+
+/**
+ * Encode a PokeTx transaction for later use
+ *
+ * @name GRpcClient#encodePokeTx
+ * @function
+ * @memberof GRpcClient
+ * @param {GRpcClient.PokeTxInput} params
+ * @returns {Promise<GRpcClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
+ */
+
+/**
+ * Encode a TransferTx transaction for later use
+ *
+ * @name GRpcClient#encodeTransferTx
+ * @function
+ * @memberof GRpcClient
+ * @param {GRpcClient.TransferTxInput} params
+ * @returns {Promise<GRpcClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */

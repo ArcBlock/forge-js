@@ -8,6 +8,7 @@ const {
   attachFormatFn,
   attachExampleFn,
 } = require('@arcblock/forge-message');
+const { hexToBytes, bytesToHex, stripHexPrefix } = require('@arcblock/forge-util');
 const debug = require('debug')(`${require('../package.json').name}`);
 
 /**
@@ -40,19 +41,31 @@ class GRpcClient {
   /**
    * Creates an instance of GRpcClient, and generate transaction sending and receiving methods
    *
-   * @param {string} [grpcEndpoint="tcp://127.0.0.1:28210"] - grpc endpoint the client can connect to
+   * @param {object|string} config - config object, if a string passed, will be used as the endpoint
+   * @param {string} [config.endpoint="tcp://127.0.0.1:28210"] - grpc endpoint the client can connect to
+   * @param {string} [config.chainId=""] - chainId used to construct transaction
    * @see GRpcClient.getQueries
    * @see GRpcClient.getMutations
    * @see GRpcClient.getSubscriptions
    * @see GRpcClient.getRpcMethods
    * @see GRpcClient.getTxSendMethods
    */
-  constructor(grpcEndpoint) {
-    if (!grpcEndpoint) {
-      throw new Error('GRpcClient requires a valid `grpcEndpoint` to initialize');
+  constructor(config = 'tcp://127.0.0.1:28210') {
+    let endpoint = '';
+    let chainId = '';
+    if (typeof config === 'string') {
+      endpoint = config;
+    } else {
+      endpoint = config.endpoint;
+      chainId = config.chainId;
     }
 
-    this._grpcEndpoint = grpcEndpoint;
+    if (!endpoint) {
+      throw new Error('GRpcClient requires a valid `endpoint` to initialize');
+    }
+
+    this._endpoint = endpoint;
+    this._chainId = chainId;
 
     this._initRpcClients();
     this._initRpcMethods();
@@ -65,7 +78,7 @@ class GRpcClient {
    * @private
    */
   _initRpcClients() {
-    const socket = this._grpcEndpoint.split('//').pop();
+    const socket = this._endpoint.split('//').pop();
     this.clients = Object.keys(rpcs).reduce((acc, x) => {
       debug('initRpcClient', x);
       acc[x] = new rpcs[x](socket, grpc.credentials.createInsecure());
@@ -167,38 +180,159 @@ class GRpcClient {
    * @private
    */
   _initTxMethods() {
-    const requiredRpcMethods = ['getAccountState', 'createTx', 'sendTx'];
-    if (requiredRpcMethods.every(x => typeof this[x] === 'function' && this[x].rpc)) {
-      enums.SupportedTxs.forEach(x => this._initTxMethod(x));
-    }
-  }
-  // TODO: support both send and encode tx
-  _initTxMethod(x) {
-    const method = camelcase(`send_${x}`);
-    debug('_initTxMethod', method);
-    const fn = params =>
-      new Promise(async (resolve, reject) => {
-        try {
-          params.itx = { type: x, value: params.itx };
-          params.nonce = typeof params.nonce === 'undefined' ? Date.now() : params.nonce;
+    const toHex = bytes => stripHexPrefix(bytesToHex(bytes)).toUpperCase();
 
-          const { tx } = await this.createTx(params);
-          const { hash } = await this.sendTx({
-            tx,
-            token: params.token,
-            wallet: params.wallet,
-            commit: params.commit,
+    // Unify a client wallet | forge managed wallet
+    const getWallet = wallet => {
+      if (typeof wallet.toAddress === 'function') {
+        return {
+          address: wallet.toAddress(),
+          publicKey: Uint8Array.from(hexToBytes(wallet.publicKey)),
+        };
+      }
+
+      return {
+        address: wallet.address,
+        publicKey: wallet.pk || wallet.publicKey || '',
+      };
+    };
+
+    enums.SupportedTxs.forEach(x => {
+      /**
+       * Generate an transaction encoding function
+       *
+       * @param {object} input
+       * @param {object} input.tx - data of the transaction
+       * @param {object} input.tx.itx - the actual transaction object
+       * @param {object} [input.tx.from] - the sender address, can be derived from wallet
+       * @param {object} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
+       * @param {object} [input.tx.chainId] - the chainId
+       * @param {object} [input.tx.signature] - the signature
+       * @param {object} [input.tx.signatures] - the signature list, should be set when it's a multisig transaction
+       * @param {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
+       * @returns Promise
+       */
+      const txEncodeFn = async ({ tx, wallet }) => {
+        const w = getWallet(wallet);
+
+        // Determine sender address
+        const address = tx.from || w.address || '';
+        const pk = tx.pk || w.publicKey || '';
+
+        // Determine chainId & nonce, only attach new one when not exist
+        let nonce = typeof tx.nonce === 'undefined' ? Date.now() : tx.nonce;
+        let chainId = tx.chainId || this._chainId;
+        if (!chainId) {
+          const { info } = await this.getChainInfo();
+          chainId = info.network;
+        }
+
+        // Determine signatures for multi sig
+        let signatures = [];
+        if (Array.isArray(tx.signatures)) {
+          signatures = tx.signatures;
+        }
+        if (Array.isArray(tx.signaturesList)) {
+          signatures = tx.signaturesList;
+        }
+
+        const txObj = createMessage('Transaction', {
+          from: address,
+          nonce,
+          pk,
+          chainId,
+          signature: tx.signature || '',
+          signatures,
+          itx: {
+            type: x,
+            value: tx.itx,
+          },
+        });
+        const txToSignBytes = txObj.serializeBinary();
+
+        debug(`encodeTx.${x}.txObj`, txObj.toObject());
+        debug(`encodeTx.${x}.txBytes`, txToSignBytes.toString());
+        debug(`encodeTx.${x}.txHex`, toHex(txToSignBytes));
+
+        return { object: txObj.toObject(), buffer: Uint8Array.from(txToSignBytes) };
+      };
+
+      const encodeMethod = camelcase(`encode_${x}`);
+      txEncodeFn.__type__ = 'encode';
+      txEncodeFn.__tx__ = encodeMethod;
+      txEncodeFn.__itx__ = x;
+      this[encodeMethod] = txEncodeFn;
+
+      /**
+       * Generate an transaction sender function
+       *
+       *
+       * @param {object} input
+       * @param {object} input.tx - data of the transaction
+       * @param {object} input.tx.itx - the actual transaction object
+       * @param {object} [input.tx.from] - the sender address, can be derived from wallet
+       * @param {object} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
+       * @param {object} [input.tx.chainId] - the chainId
+       * @param {object} [input.tx.signature] - the signature
+       * @param {object} [input.tx.signatures] - the signature list, should be set when it's a multisig transaction
+       * @param {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
+       * @param {object} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
+       * @param {object} [input.token] - token used to unlock a wallet
+       * @returns Promise
+       */
+      const txSendFn = async input => {
+        const { tx, wallet, signature } = input;
+
+        let txResult;
+        let walletResult = wallet;
+
+        // Native wallet
+        if (typeof wallet.sign === 'function') {
+          if (signature) {
+            tx.signature = Uint8Array.from(hexToBytes(signature));
+            const result = await txEncodeFn({ tx, wallet });
+            txResult = result.object;
+          } else {
+            const { object, buffer: txToSignBytes } = await txEncodeFn({ tx, wallet });
+            const signature = wallet.sign(bytesToHex(txToSignBytes));
+            txResult = object;
+            txResult.signature = Uint8Array.from(hexToBytes(signature));
+          }
+
+          walletResult = wallet.toJSON();
+        } else {
+          const txParams = Object.assign({}, tx, {
+            itx: { type: x, value: tx.itx },
+            nonce: typeof tx.nonce === 'undefined' ? Date.now() : tx.nonce,
           });
 
-          resolve(hash);
-        } catch (err) {
-          reject(err);
+          const result = await this.createTx(txParams);
+          txResult = result.tx;
         }
-      });
 
-    fn.tx = true;
-    fn.itx = x;
-    this[method] = fn;
+        // Create tx using rpc, sign the transaction using forge
+        return new Promise(async (resolve, reject) => {
+          try {
+            const { hash } = await this.sendTx({
+              tx: txResult,
+              wallet: walletResult,
+              token: input.token,
+              commit: input.commit,
+            });
+
+            resolve(hash);
+          } catch (err) {
+            reject(err);
+          }
+        });
+      };
+
+      const sendMethod = camelcase(`send_${x}`);
+      txSendFn.__type__ = 'send';
+      txSendFn.__tx__ = sendMethod;
+      txSendFn.__itx__ = x;
+      this[sendMethod] = txSendFn;
+    });
   }
 
   /**
@@ -208,9 +342,23 @@ class GRpcClient {
    */
   getTxSendMethods() {
     return Object.keys(this)
-      .filter(x => typeof this[x] === 'function' && this[x].tx)
+      .filter(x => typeof this[x] === 'function' && this[x].__type__ === 'send')
       .reduce((acc, x) => {
-        acc[x] = this[x].itx;
+        acc[x] = this[x].__itx__;
+        return acc;
+      }, {});
+  }
+
+  /**
+   * List generated transaction send methods
+   *
+   * @returns {object}
+   */
+  getTxEncodeMethods() {
+    return Object.keys(this)
+      .filter(x => typeof this[x] === 'function' && this[x].__type__ === 'encode')
+      .reduce((acc, x) => {
+        acc[x] = this[x].__itx__;
         return acc;
       }, {});
   }

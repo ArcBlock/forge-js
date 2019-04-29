@@ -30,14 +30,16 @@ declare class GRpcClient {
   /**
    * Creates an instance of GRpcClient, and generate transaction sending and receiving methods
    *
-   * @param {string} [grpcEndpoint="tcp://127.0.0.1:28210"] - grpc endpoint the client can connect to
+   * @param {object|string} config - config object, if a string passed, will be used as the endpoint
+   * @param {string} [config.endpoint="tcp://127.0.0.1:28210"] - grpc endpoint the client can connect to
+   * @param {string} [config.chainId=""] - chainId used to construct transaction
    * @see GRpcClient.getQueries
    * @see GRpcClient.getMutations
    * @see GRpcClient.getSubscriptions
    * @see GRpcClient.getRpcMethods
    * @see GRpcClient.getTxSendMethods
    */
-  constructor(grpcEndpoint: string);
+  constructor(config?: any);
   /**
    * List standard rpc methods
    *
@@ -156,6 +158,89 @@ declare class GRpcClient {
   getHealthStatus(
     request: forge_abi.RequestGetHealthStatus
   ): GRpcClient.UnaryResult<forge_abi.ResponseGetHealthStatus>;
+  encodeConsensusUpgradeTx(
+    param: GRpcClient.TxParam<GRpcClient.ConsensusUpgradeTx>
+  ): Promise<GRpcClient.ResponseSendTx>;
+  encodeDeclareTx(
+    param: GRpcClient.TxParam<GRpcClient.DeclareTx>
+  ): Promise<GRpcClient.ResponseSendTx>;
+  encodeDeployProtocolTx(
+    param: GRpcClient.TxParam<GRpcClient.DeployProtocolTx>
+  ): Promise<GRpcClient.ResponseSendTx>;
+  encodeSysUpgradeTx(
+    param: GRpcClient.TxParam<GRpcClient.SysUpgradeTx>
+  ): Promise<GRpcClient.ResponseSendTx>;
+  encodeDeclareFileTx(
+    param: GRpcClient.TxParam<GRpcClient.DeclareFileTx>
+  ): Promise<GRpcClient.ResponseSendTx>;
+  encodeCreateAssetTx(
+    param: GRpcClient.TxParam<GRpcClient.CreateAssetTx>
+  ): Promise<GRpcClient.ResponseSendTx>;
+  encodeStakeTx(param: GRpcClient.TxParam<GRpcClient.StakeTx>): Promise<GRpcClient.ResponseSendTx>;
+  encodeExchangeTx(
+    param: GRpcClient.TxParam<GRpcClient.ExchangeTx>
+  ): Promise<GRpcClient.ResponseSendTx>;
+  encodeAccountMigrateTx(
+    param: GRpcClient.TxParam<GRpcClient.AccountMigrateTx>
+  ): Promise<GRpcClient.ResponseSendTx>;
+  encodeUpgradeNodeTx(
+    param: GRpcClient.TxParam<GRpcClient.UpgradeNodeTx>
+  ): Promise<GRpcClient.ResponseSendTx>;
+  encodeUpdateAssetTx(
+    param: GRpcClient.TxParam<GRpcClient.UpdateAssetTx>
+  ): Promise<GRpcClient.ResponseSendTx>;
+  encodeConsumeAssetTx(
+    param: GRpcClient.TxParam<GRpcClient.ConsumeAssetTx>
+  ): Promise<GRpcClient.ResponseSendTx>;
+  encodePokeTx(param: GRpcClient.TxParam<GRpcClient.PokeTx>): Promise<GRpcClient.ResponseSendTx>;
+  encodeTransferTx(
+    param: GRpcClient.TxParam<GRpcClient.TransferTx>
+  ): Promise<GRpcClient.ResponseSendTx>;
+  sendConsensusUpgradeTx(
+    param: GRpcClient.TxParam<GRpcClient.ConsensusUpgradeTx>
+  ): Promise<GRpcClient.EncodeTxResult>;
+  sendDeclareTx(
+    param: GRpcClient.TxParam<GRpcClient.DeclareTx>
+  ): Promise<GRpcClient.EncodeTxResult>;
+  sendDeployProtocolTx(
+    param: GRpcClient.TxParam<GRpcClient.DeployProtocolTx>
+  ): Promise<GRpcClient.EncodeTxResult>;
+  sendSysUpgradeTx(
+    param: GRpcClient.TxParam<GRpcClient.SysUpgradeTx>
+  ): Promise<GRpcClient.EncodeTxResult>;
+  sendDeclareFileTx(
+    param: GRpcClient.TxParam<GRpcClient.DeclareFileTx>
+  ): Promise<GRpcClient.EncodeTxResult>;
+  sendCreateAssetTx(
+    param: GRpcClient.TxParam<GRpcClient.CreateAssetTx>
+  ): Promise<GRpcClient.EncodeTxResult>;
+  sendStakeTx(param: GRpcClient.TxParam<GRpcClient.StakeTx>): Promise<GRpcClient.EncodeTxResult>;
+  sendExchangeTx(
+    param: GRpcClient.TxParam<GRpcClient.ExchangeTx>
+  ): Promise<GRpcClient.EncodeTxResult>;
+  sendAccountMigrateTx(
+    param: GRpcClient.TxParam<GRpcClient.AccountMigrateTx>
+  ): Promise<GRpcClient.EncodeTxResult>;
+  sendUpgradeNodeTx(
+    param: GRpcClient.TxParam<GRpcClient.UpgradeNodeTx>
+  ): Promise<GRpcClient.EncodeTxResult>;
+  sendUpdateAssetTx(
+    param: GRpcClient.TxParam<GRpcClient.UpdateAssetTx>
+  ): Promise<GRpcClient.EncodeTxResult>;
+  sendConsumeAssetTx(
+    param: GRpcClient.TxParam<GRpcClient.ConsumeAssetTx>
+  ): Promise<GRpcClient.EncodeTxResult>;
+  sendPokeTx(param: GRpcClient.TxParam<GRpcClient.PokeTx>): Promise<GRpcClient.EncodeTxResult>;
+  sendTransferTx(
+    param: GRpcClient.TxParam<GRpcClient.TransferTx>
+  ): Promise<GRpcClient.EncodeTxResult>;
+
+  /**
+   * List generated transaction send methods
+   *
+   * @returns {object}
+   */
+  getTxEncodeMethods(): any;
 }
 declare const GRpcClient: typeof GRpcClient;
 export = GRpcClient;
@@ -1652,5 +1737,42 @@ declare namespace GRpcClient {
   export interface StreamResult<T> {
     on(event: 'data', fn: (data: T) => any): this;
     on(event: 'error', fn: (err: Error) => void): this;
+  }
+
+  export interface TxParam<T> {
+    input: ItxParam<T>;
+    wallet: GraphQLClient.WalletObject;
+  }
+
+  export interface ItxParam<T> {
+    nonce: number;
+    from: string;
+    pk: string;
+    chainId: string;
+    signature: string;
+    signatures: array;
+    itx: T;
+  }
+
+  export interface WalletObject {
+    publicKey: string;
+    secretKey: string;
+    type: GRpcClient.WalletTypeObject;
+    sign(message: string): string;
+    verify(message: string, signature: string): boolean;
+    toJSON(): object;
+    toAddress(): string;
+  }
+
+  export interface WalletTypeObject {
+    pk: number;
+    role: number;
+    address: number;
+    hash: number;
+  }
+
+  export interface EncodeTxResult {
+    object: object;
+    buffer: buffer;
   }
 }

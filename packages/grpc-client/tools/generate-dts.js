@@ -6,6 +6,10 @@ const get = require('lodash/get');
 const camelcase = require('lodash/camelcase');
 const { compactSpec } = require('@arcblock/forge-proto');
 const specs = require('@arcblock/forge-proto/lib/spec.json');
+const GRpcClient = require('../');
+
+const client = new GRpcClient('tcp://127.0.0.1:28210');
+const ns = 'GRpcClient';
 
 const types = compactSpec(specs);
 
@@ -106,6 +110,43 @@ declare namespace GRpcClient {
     on(event: 'data', fn: (data: T) => any): this;
     on(event: 'error', fn: (err: Error) => void): this;
   }
+
+  export interface TxParam<T> {
+    input: ItxParam<T>;
+    wallet: GraphQLClient.WalletObject,
+  }
+
+  export interface ItxParam<T> {
+    nonce: number;
+    from: string;
+    pk: string;
+    chainId: string;
+    signature: string;
+    signatures: array;
+    itx: T;
+  }
+
+  export interface WalletObject {
+    publicKey: string;
+    secretKey: string;
+    type: GRpcClient.WalletTypeObject,
+    sign(message: string): string;
+    verify(message: string, signature: string): boolean;
+    toJSON(): object;
+    toAddress(): string;
+  }
+
+  export interface WalletTypeObject {
+    pk: number;
+    role: number;
+    address: number;
+    hash: number;
+  }
+
+  export interface EncodeTxResult {
+    object: object;
+    buffer: buffer;
+  }
 }
 `);
 console.log('rpc namespaces generated', namespaces.length);
@@ -116,11 +157,23 @@ const methods = services.map(x => generateMethods(x.methods, 'forge_abi', 'GRpcC
 console.log('rpc services generated', methods.length);
 
 // 3. generate shortcut transaction send/encode methods
+const encodeMethods = client.getTxEncodeMethods();
+const encodeMethodDocs = Object.keys(encodeMethods).map(
+  x => `${x}(param: ${ns}.TxParam<${ns}.${encodeMethods[x]}>): Promise<${ns}.ResponseSendTx>;`
+);
+
+const sendMethods = client.getTxSendMethods();
+const sendMethodDocs = Object.keys(sendMethods).map(
+  x => `${x}(param: ${ns}.TxParam<${ns}.${sendMethods[x]}>): Promise<${ns}.EncodeTxResult>;`
+);
 
 // 4. mix everything together
 const filePath = path.join(__dirname, '../index.d.ts');
 let fileContent = fs.readFileSync(filePath).toString();
-fileContent = fileContent.replace(/__GRpcClientMethods__/, `\n${methods.join('\n')}\n`);
+fileContent = fileContent.replace(
+  /__GRpcClientMethods__/,
+  `\n${methods.concat(encodeMethodDocs, sendMethodDocs).join('\n')}\n`
+);
 fileContent = fileContent + namespaces.join('\n');
 fs.writeFileSync(filePath, fileContent);
 

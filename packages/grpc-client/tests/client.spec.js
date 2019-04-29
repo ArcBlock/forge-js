@@ -15,12 +15,19 @@ describe('#getRpcMethods', () => {
 describe('#getTxSendMethods', () => {
   test('should be function', () => {
     expect(typeof client.getTxSendMethods).toEqual('function');
+    expect(typeof client.getTxEncodeMethods).toEqual('function');
   });
 
   test('should have at least sendTransferTx method', () => {
     const methods = client.getTxSendMethods();
     expect(typeof client.sendTransferTx).toEqual('function');
     expect(methods.sendTransferTx).toEqual('TransferTx');
+  });
+
+  test('should have at least encodeTransferTx method', () => {
+    const methods = client.getTxEncodeMethods();
+    expect(typeof client.encodeTransferTx).toEqual('function');
+    expect(methods.encodeTransferTx).toEqual('TransferTx');
   });
 });
 
