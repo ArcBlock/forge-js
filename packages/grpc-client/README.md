@@ -23,7 +23,7 @@ yarn add @arcblock/grpc-client
 ## Usage
 
 ```js
-const { GRpcClient } = require('@arcblock/grpc-client');
+const GRpcClient = require('@arcblock/grpc-client');
 
 const client = new GRpcClient('tcp://127.0.0.1:28210');
 (async () => {

@@ -16,8 +16,8 @@ const debug = require('debug')(`${require('../package.json').name}`);
  * Please note that, due to internal implementation of google-protobuf, all `repeated fields` names are suffixed with `List`
  *
 ```js
-const { RpcClient } = require('@arcblock/grpc-client');
-const client = new RpcClient("tcp://127.0.0.1:28210");
+const GRpcClient = require('@arcblock/grpc-client');
+const client = new GRpcClient("tcp://127.0.0.1:28210");
 (async () => {
   // fetch forge change info
   const { info } = await client.getChainInfo();
