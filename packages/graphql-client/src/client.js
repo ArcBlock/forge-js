@@ -25,11 +25,11 @@ class GraphQLClient extends BaseClient {
    * @param {object|string} config - config object, if a string passed, will be used as the endpoint
    * @param {string} [config.endpoint='http://localhost:8210/api'] - the graphql endpoint
    * @param {string} [config.chainId=''] - the chainId of the network
-   * @see GraphQLClient.getQueries
-   * @see GraphQLClient.getMutations
-   * @see GraphQLClient.getSubscriptions
-   * @see GraphQLClient.getTxSendMethods
-   * @see GraphQLClient.getTxEncodeMethods
+   * @see GraphQLClient#getQueries
+   * @see GraphQLClient#getMutations
+   * @see GraphQLClient#getSubscriptions
+   * @see GraphQLClient#getTxSendMethods
+   * @see GraphQLClient#getTxEncodeMethods
    */
   constructor(config = 'http://localhost:8210/api') {
     let httpEndpoint = '';
