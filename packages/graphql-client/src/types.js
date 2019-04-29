@@ -159,7 +159,25 @@
  */
 
 /**
- * Structure of GraphQLClient.AccountMigrateTx
+ * Structure of GraphQLClient.AccountMigrateTx 
+ *
+ * Checkout the following snippet for the format of AccountMigrateTx:
+ * ```json
+{
+  "address": "abc",
+  "data": {
+    "typeUrl": "abc",
+    "value": "abc"
+  },
+  "pk": "abc",
+  "type": {
+    "address": "BASE16",
+    "hash": "KECCAK",
+    "pk": "ED25519",
+    "role": "ROLE_ACCOUNT"
+  }
+}
+ * ```
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.AccountMigrateTx
@@ -312,7 +330,28 @@
  */
 
 /**
- * Structure of GraphQLClient.ConsensusParams
+ * Structure of GraphQLClient.ConsensusParams 
+ *
+ * Checkout the following snippet for the format of ConsensusParams:
+ * ```json
+{
+  "maxBytes": "abc",
+  "maxCandidates": 123,
+  "maxGas": "abc",
+  "maxValidators": 123,
+  "paramChanged": true,
+  "pubKeyTypes": [
+    {}
+  ],
+  "validatorChanged": true,
+  "validators": [
+    {
+      "address": "abc",
+      "power": "abc"
+    }
+  ]
+}
+ * ```
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.ConsensusParams
@@ -337,7 +376,27 @@
  */
 
 /**
- * Structure of GraphQLClient.ConsensusUpgradeTx
+ * Structure of GraphQLClient.ConsensusUpgradeTx 
+ *
+ * Checkout the following snippet for the format of ConsensusUpgradeTx:
+ * ```json
+{
+  "data": {
+    "typeUrl": "abc",
+    "value": "abc"
+  },
+  "maxBytes": "abc",
+  "maxCandidates": 123,
+  "maxGas": "abc",
+  "maxValidators": 123,
+  "validators": [
+    {
+      "address": "abc",
+      "power": "abc"
+    }
+  ]
+}
+ * ```
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.ConsensusUpgradeTx
@@ -350,7 +409,19 @@
  */
 
 /**
- * Structure of GraphQLClient.ConsumeAssetTx
+ * Structure of GraphQLClient.ConsumeAssetTx 
+ *
+ * Checkout the following snippet for the format of ConsumeAssetTx:
+ * ```json
+{
+  "address": "abc",
+  "data": {
+    "typeUrl": "abc",
+    "value": "abc"
+  },
+  "issuer": "abc"
+}
+ * ```
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.ConsumeAssetTx
@@ -369,7 +440,23 @@
  */
 
 /**
- * Structure of GraphQLClient.CreateAssetTx
+ * Structure of GraphQLClient.CreateAssetTx 
+ *
+ * Checkout the following snippet for the format of CreateAssetTx:
+ * ```json
+{
+  "address": "abc",
+  "data": {
+    "typeUrl": "abc",
+    "value": "abc"
+  },
+  "moniker": "abc",
+  "parent": "abc",
+  "readonly": true,
+  "transferrable": true,
+  "ttl": 123
+}
+ * ```
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.CreateAssetTx
@@ -383,7 +470,14 @@
  */
 
 /**
- * Structure of GraphQLClient.DeclareFileTx
+ * Structure of GraphQLClient.DeclareFileTx 
+ *
+ * Checkout the following snippet for the format of DeclareFileTx:
+ * ```json
+{
+  "hash": "abc"
+}
+ * ```
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.DeclareFileTx
@@ -391,7 +485,19 @@
  */
 
 /**
- * Structure of GraphQLClient.DeclareTx
+ * Structure of GraphQLClient.DeclareTx 
+ *
+ * Checkout the following snippet for the format of DeclareTx:
+ * ```json
+{
+  "data": {
+    "typeUrl": "abc",
+    "value": "abc"
+  },
+  "issuer": "abc",
+  "moniker": "abc"
+}
+ * ```
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.DeclareTx
@@ -431,7 +537,31 @@
  */
 
 /**
- * Structure of GraphQLClient.ExchangeTx
+ * Structure of GraphQLClient.ExchangeTx 
+ *
+ * Checkout the following snippet for the format of ExchangeTx:
+ * ```json
+{
+  "data": {
+    "typeUrl": "abc",
+    "value": "abc"
+  },
+  "expiredAt": "2019-04-29T00:00:00.000Z",
+  "receiver": {
+    "assets": [
+      {}
+    ],
+    "value": "abc"
+  },
+  "sender": {
+    "assets": [
+      {}
+    ],
+    "value": "abc"
+  },
+  "to": "abc"
+}
+ * ```
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.ExchangeTx
@@ -790,7 +920,19 @@
  */
 
 /**
- * Structure of GraphQLClient.PokeTx
+ * Structure of GraphQLClient.PokeTx 
+ *
+ * Checkout the following snippet for the format of PokeTx:
+ * ```json
+{
+  "address": "abc",
+  "data": {
+    "typeUrl": "abc",
+    "value": "abc"
+  },
+  "date": "abc"
+}
+ * ```
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.PokeTx
@@ -827,7 +969,65 @@
  */
 
 /**
- * Structure of GraphQLClient.RequestBeginBlock
+ * Structure of GraphQLClient.RequestBeginBlock 
+ *
+ * Checkout the following snippet for the format of RequestBeginBlock:
+ * ```json
+{
+  "byzantineValidators": [
+    {
+      "height": "abc",
+      "time": "2019-04-29T00:00:00.000Z",
+      "totalVotingPower": "abc",
+      "type": "abc",
+      "validator": {
+        "address": "abc",
+        "power": "abc"
+      }
+    }
+  ],
+  "hash": "abc",
+  "header": {
+    "appHash": "abc",
+    "chainId": "abc",
+    "consensusHash": "abc",
+    "dataHash": "abc",
+    "evidenceHash": "abc",
+    "height": "abc",
+    "lastBlockId": {
+      "hash": "abc",
+      "partsHeader": {
+        "hash": "abc",
+        "total": 123
+      }
+    },
+    "lastCommitHash": "abc",
+    "lastResultsHash": "abc",
+    "nextValidatorsHash": "abc",
+    "numTxs": "abc",
+    "proposerAddress": "abc",
+    "time": "2019-04-29T00:00:00.000Z",
+    "totalTxs": "abc",
+    "validatorsHash": "abc",
+    "version": {
+      "app": "abc",
+      "block": "abc"
+    }
+  },
+  "lastCommitInfo": {
+    "round": 123,
+    "votes": [
+      {
+        "signedLastBlock": true,
+        "validator": {
+          "address": "abc",
+          "power": "abc"
+        }
+      }
+    ]
+  }
+}
+ * ```
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.RequestBeginBlock
@@ -838,7 +1038,14 @@
  */
 
 /**
- * Structure of GraphQLClient.RequestEndBlock
+ * Structure of GraphQLClient.RequestEndBlock 
+ *
+ * Checkout the following snippet for the format of RequestEndBlock:
+ * ```json
+{
+  "height": "abc"
+}
+ * ```
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.RequestEndBlock
@@ -846,7 +1053,146 @@
  */
 
 /**
- * Structure of GraphQLClient.ResponseGetAccountState
+ * Structure of GraphQLClient.ResponseGetAccountState 
+ *
+ * Checkout the following snippet for the format of ResponseGetAccountState:
+ * ```json
+{
+  "code": "UNSUPPORTED_TX",
+  "state": {
+    "address": "abc",
+    "balance": "abc",
+    "context": {
+      "genesisTime": "2019-04-29T00:00:00.000Z",
+      "genesisTx": {
+        "accountMigrate": {
+          "address": "abc"
+        },
+        "code": "UNSUPPORTED_TX",
+        "createAsset": {
+          "asset": "abc"
+        },
+        "hash": "abc",
+        "height": "abc",
+        "index": 123,
+        "tags": [
+          {
+            "key": "abc",
+            "value": "abc"
+          }
+        ],
+        "time": "2019-04-29T00:00:00.000Z",
+        "tx": {
+          "chainId": "abc",
+          "from": "abc",
+          "nonce": "abc",
+          "pk": "abc",
+          "signature": "abc",
+          "signatures": [
+            {
+              "data": {
+                "typeUrl": "abc",
+                "value": "abc"
+              },
+              "pk": "abc",
+              "signature": "abc",
+              "signer": "abc"
+            }
+          ]
+        }
+      },
+      "renaissanceTime": "2019-04-29T00:00:00.000Z",
+      "renaissanceTx": {
+        "accountMigrate": {
+          "address": "abc"
+        },
+        "code": "UNSUPPORTED_TX",
+        "createAsset": {
+          "asset": "abc"
+        },
+        "hash": "abc",
+        "height": "abc",
+        "index": 123,
+        "tags": [
+          {
+            "key": "abc",
+            "value": "abc"
+          }
+        ],
+        "time": "2019-04-29T00:00:00.000Z",
+        "tx": {
+          "chainId": "abc",
+          "from": "abc",
+          "nonce": "abc",
+          "pk": "abc",
+          "signature": "abc",
+          "signatures": [
+            {
+              "data": {
+                "typeUrl": "abc",
+                "value": "abc"
+              },
+              "pk": "abc",
+              "signature": "abc",
+              "signer": "abc"
+            }
+          ]
+        }
+      }
+    },
+    "data": {
+      "typeUrl": "abc",
+      "value": "abc"
+    },
+    "issuer": "abc",
+    "migratedFrom": [
+      {}
+    ],
+    "migratedTo": [
+      {}
+    ],
+    "moniker": "abc",
+    "nonce": "abc",
+    "numAssets": "abc",
+    "numTxs": "abc",
+    "pk": "abc",
+    "poke": {
+      "amount": "abc",
+      "dailyLimit": "abc",
+      "leftover": "abc"
+    },
+    "stake": {
+      "recentReceivedStakes": {
+        "circular": true,
+        "fifo": true,
+        "items": [
+          {}
+        ],
+        "maxItems": 123,
+        "typeUrl": "abc"
+      },
+      "recentStakes": {
+        "circular": true,
+        "fifo": true,
+        "items": [
+          {}
+        ],
+        "maxItems": 123,
+        "typeUrl": "abc"
+      },
+      "totalReceivedStakes": "abc",
+      "totalStakes": "abc",
+      "totalUnstakes": "abc"
+    },
+    "type": {
+      "address": "BASE16",
+      "hash": "KECCAK",
+      "pk": "ED25519",
+      "role": "ROLE_ACCOUNT"
+    }
+  }
+}
+ * ```
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.ResponseGetAccountState
@@ -855,7 +1201,129 @@
  */
 
 /**
- * Structure of GraphQLClient.ResponseGetAssetState
+ * Structure of GraphQLClient.ResponseGetAssetState 
+ *
+ * Checkout the following snippet for the format of ResponseGetAssetState:
+ * ```json
+{
+  "code": "UNSUPPORTED_TX",
+  "state": {
+    "address": "abc",
+    "consumedTime": "2019-04-29T00:00:00.000Z",
+    "context": {
+      "genesisTime": "2019-04-29T00:00:00.000Z",
+      "genesisTx": {
+        "accountMigrate": {
+          "address": "abc"
+        },
+        "code": "UNSUPPORTED_TX",
+        "createAsset": {
+          "asset": "abc"
+        },
+        "hash": "abc",
+        "height": "abc",
+        "index": 123,
+        "tags": [
+          {
+            "key": "abc",
+            "value": "abc"
+          }
+        ],
+        "time": "2019-04-29T00:00:00.000Z",
+        "tx": {
+          "chainId": "abc",
+          "from": "abc",
+          "nonce": "abc",
+          "pk": "abc",
+          "signature": "abc",
+          "signatures": [
+            {
+              "data": {
+                "typeUrl": "abc",
+                "value": "abc"
+              },
+              "pk": "abc",
+              "signature": "abc",
+              "signer": "abc"
+            }
+          ]
+        }
+      },
+      "renaissanceTime": "2019-04-29T00:00:00.000Z",
+      "renaissanceTx": {
+        "accountMigrate": {
+          "address": "abc"
+        },
+        "code": "UNSUPPORTED_TX",
+        "createAsset": {
+          "asset": "abc"
+        },
+        "hash": "abc",
+        "height": "abc",
+        "index": 123,
+        "tags": [
+          {
+            "key": "abc",
+            "value": "abc"
+          }
+        ],
+        "time": "2019-04-29T00:00:00.000Z",
+        "tx": {
+          "chainId": "abc",
+          "from": "abc",
+          "nonce": "abc",
+          "pk": "abc",
+          "signature": "abc",
+          "signatures": [
+            {
+              "data": {
+                "typeUrl": "abc",
+                "value": "abc"
+              },
+              "pk": "abc",
+              "signature": "abc",
+              "signer": "abc"
+            }
+          ]
+        }
+      }
+    },
+    "data": {
+      "typeUrl": "abc",
+      "value": "abc"
+    },
+    "issuer": "abc",
+    "moniker": "abc",
+    "owner": "abc",
+    "readonly": true,
+    "stake": {
+      "recentReceivedStakes": {
+        "circular": true,
+        "fifo": true,
+        "items": [
+          {}
+        ],
+        "maxItems": 123,
+        "typeUrl": "abc"
+      },
+      "recentStakes": {
+        "circular": true,
+        "fifo": true,
+        "items": [
+          {}
+        ],
+        "maxItems": 123,
+        "typeUrl": "abc"
+      },
+      "totalReceivedStakes": "abc",
+      "totalStakes": "abc",
+      "totalUnstakes": "abc"
+    },
+    "transferrable": true,
+    "ttl": 123
+  }
+}
+ * ```
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.ResponseGetAssetState
@@ -864,7 +1332,124 @@
  */
 
 /**
- * Structure of GraphQLClient.ResponseGetBlock
+ * Structure of GraphQLClient.ResponseGetBlock 
+ *
+ * Checkout the following snippet for the format of ResponseGetBlock:
+ * ```json
+{
+  "block": {
+    "appHash": "abc",
+    "consensusHash": "abc",
+    "dataHash": "abc",
+    "evidenceHash": "abc",
+    "height": "abc",
+    "invalidTxs": [
+      {
+        "accountMigrate": {
+          "address": "abc"
+        },
+        "code": "UNSUPPORTED_TX",
+        "createAsset": {
+          "asset": "abc"
+        },
+        "hash": "abc",
+        "height": "abc",
+        "index": 123,
+        "tags": [
+          {
+            "key": "abc",
+            "value": "abc"
+          }
+        ],
+        "time": "2019-04-29T00:00:00.000Z",
+        "tx": {
+          "chainId": "abc",
+          "from": "abc",
+          "nonce": "abc",
+          "pk": "abc",
+          "signature": "abc",
+          "signatures": [
+            {
+              "data": {
+                "typeUrl": "abc",
+                "value": "abc"
+              },
+              "pk": "abc",
+              "signature": "abc",
+              "signer": "abc"
+            }
+          ]
+        }
+      }
+    ],
+    "invalidTxsHashes": [
+      {}
+    ],
+    "lastBlockId": {
+      "hash": "abc",
+      "partsHeader": {
+        "hash": "abc",
+        "total": 123
+      }
+    },
+    "lastCommitHash": "abc",
+    "lastResultsHash": "abc",
+    "nextValidatorsHash": "abc",
+    "numTxs": 123,
+    "proposer": "abc",
+    "time": "2019-04-29T00:00:00.000Z",
+    "totalTxs": "abc",
+    "txs": [
+      {
+        "accountMigrate": {
+          "address": "abc"
+        },
+        "code": "UNSUPPORTED_TX",
+        "createAsset": {
+          "asset": "abc"
+        },
+        "hash": "abc",
+        "height": "abc",
+        "index": 123,
+        "tags": [
+          {
+            "key": "abc",
+            "value": "abc"
+          }
+        ],
+        "time": "2019-04-29T00:00:00.000Z",
+        "tx": {
+          "chainId": "abc",
+          "from": "abc",
+          "nonce": "abc",
+          "pk": "abc",
+          "signature": "abc",
+          "signatures": [
+            {
+              "data": {
+                "typeUrl": "abc",
+                "value": "abc"
+              },
+              "pk": "abc",
+              "signature": "abc",
+              "signer": "abc"
+            }
+          ]
+        }
+      }
+    ],
+    "txsHashes": [
+      {}
+    ],
+    "validatorsHash": "abc",
+    "version": {
+      "app": "abc",
+      "block": "abc"
+    }
+  },
+  "code": "UNSUPPORTED_TX"
+}
+ * ```
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.ResponseGetBlock
@@ -873,7 +1458,53 @@
  */
 
 /**
- * Structure of GraphQLClient.ResponseGetBlocks
+ * Structure of GraphQLClient.ResponseGetBlocks 
+ *
+ * Checkout the following snippet for the format of ResponseGetBlocks:
+ * ```json
+{
+  "blocks": [
+    {
+      "appHash": "abc",
+      "consensusHash": "abc",
+      "dataHash": "abc",
+      "evidenceHash": "abc",
+      "height": "abc",
+      "invalidTxsHashes": [
+        {}
+      ],
+      "lastBlockId": {
+        "hash": "abc",
+        "partsHeader": {
+          "hash": "abc",
+          "total": 123
+        }
+      },
+      "lastCommitHash": "abc",
+      "lastResultsHash": "abc",
+      "nextValidatorsHash": "abc",
+      "numTxs": 123,
+      "proposer": "abc",
+      "time": "2019-04-29T00:00:00.000Z",
+      "totalTxs": "abc",
+      "txsHashes": [
+        {}
+      ],
+      "validatorsHash": "abc",
+      "version": {
+        "app": "abc",
+        "block": "abc"
+      }
+    }
+  ],
+  "code": "UNSUPPORTED_TX",
+  "page": {
+    "cursor": "abc",
+    "next": true,
+    "total": 123
+  }
+}
+ * ```
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.ResponseGetBlocks
@@ -883,7 +1514,38 @@
  */
 
 /**
- * Structure of GraphQLClient.ResponseGetChainInfo
+ * Structure of GraphQLClient.ResponseGetChainInfo 
+ *
+ * Checkout the following snippet for the format of ResponseGetChainInfo:
+ * ```json
+{
+  "code": "UNSUPPORTED_TX",
+  "info": {
+    "address": "abc",
+    "appHash": "abc",
+    "blockHash": "abc",
+    "blockHeight": "abc",
+    "blockTime": "2019-04-29T00:00:00.000Z",
+    "consensusVersion": "abc",
+    "forgeAppsVersion": [
+      {
+        "key": "abc",
+        "value": "abc"
+      }
+    ],
+    "id": "abc",
+    "moniker": "abc",
+    "network": "abc",
+    "supportedTxs": [
+      {}
+    ],
+    "synced": true,
+    "totalTxs": "abc",
+    "version": "abc",
+    "votingPower": "abc"
+  }
+}
+ * ```
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.ResponseGetChainInfo
@@ -892,7 +1554,15 @@
  */
 
 /**
- * Structure of GraphQLClient.ResponseGetConfig
+ * Structure of GraphQLClient.ResponseGetConfig 
+ *
+ * Checkout the following snippet for the format of ResponseGetConfig:
+ * ```json
+{
+  "code": "UNSUPPORTED_TX",
+  "config": "abc"
+}
+ * ```
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.ResponseGetConfig
@@ -901,7 +1571,178 @@
  */
 
 /**
- * Structure of GraphQLClient.ResponseGetForgeState
+ * Structure of GraphQLClient.ResponseGetForgeState 
+ *
+ * Checkout the following snippet for the format of ResponseGetForgeState:
+ * ```json
+{
+  "code": "UNSUPPORTED_TX",
+  "state": {
+    "address": "abc",
+    "consensus": {
+      "maxBytes": "abc",
+      "maxCandidates": 123,
+      "maxGas": "abc",
+      "maxValidators": 123,
+      "paramChanged": true,
+      "pubKeyTypes": [
+        {}
+      ],
+      "validatorChanged": true,
+      "validators": [
+        {
+          "address": "abc",
+          "power": "abc"
+        }
+      ]
+    },
+    "data": {
+      "typeUrl": "abc",
+      "value": "abc"
+    },
+    "forgeAppHash": "abc",
+    "pokeConfig": {
+      "address": "abc",
+      "amount": "abc",
+      "balance": "abc",
+      "dailyLimit": "abc"
+    },
+    "protocols": [
+      {
+        "address": "abc",
+        "name": "abc"
+      }
+    ],
+    "stakeConfig": {
+      "timeoutGeneral": 123,
+      "timeoutStakeForNode": 123
+    },
+    "stakeSummary": [
+      {
+        "key": 123,
+        "value": {
+          "context": {
+            "genesisTime": "2019-04-29T00:00:00.000Z",
+            "genesisTx": {
+              "accountMigrate": {
+                "address": "abc"
+              },
+              "code": "UNSUPPORTED_TX",
+              "createAsset": {
+                "asset": "abc"
+              },
+              "hash": "abc",
+              "height": "abc",
+              "index": 123,
+              "tags": [
+                {
+                  "key": "abc",
+                  "value": "abc"
+                }
+              ],
+              "time": "2019-04-29T00:00:00.000Z",
+              "tx": {
+                "chainId": "abc",
+                "from": "abc",
+                "nonce": "abc",
+                "pk": "abc",
+                "signature": "abc",
+                "signatures": [
+                  {
+                    "data": {
+                      "typeUrl": "abc",
+                      "value": "abc"
+                    },
+                    "pk": "abc",
+                    "signature": "abc",
+                    "signer": "abc"
+                  }
+                ]
+              }
+            },
+            "renaissanceTime": "2019-04-29T00:00:00.000Z",
+            "renaissanceTx": {
+              "accountMigrate": {
+                "address": "abc"
+              },
+              "code": "UNSUPPORTED_TX",
+              "createAsset": {
+                "asset": "abc"
+              },
+              "hash": "abc",
+              "height": "abc",
+              "index": 123,
+              "tags": [
+                {
+                  "key": "abc",
+                  "value": "abc"
+                }
+              ],
+              "time": "2019-04-29T00:00:00.000Z",
+              "tx": {
+                "chainId": "abc",
+                "from": "abc",
+                "nonce": "abc",
+                "pk": "abc",
+                "signature": "abc",
+                "signatures": [
+                  {
+                    "data": {
+                      "typeUrl": "abc",
+                      "value": "abc"
+                    },
+                    "pk": "abc",
+                    "signature": "abc",
+                    "signer": "abc"
+                  }
+                ]
+              }
+            }
+          },
+          "totalStakes": "abc",
+          "totalUnstakes": "abc"
+        }
+      }
+    ],
+    "tasks": [
+      {
+        "key": "abc",
+        "value": [
+          {
+            "actions": [
+              {}
+            ],
+            "dataHash": "abc",
+            "type": "CONFIG_APP"
+          }
+        ]
+      }
+    ],
+    "token": {
+      "decimal": 123,
+      "description": "abc",
+      "icon": "abc",
+      "inflationRate": 123,
+      "initialSupply": "abc",
+      "name": "abc",
+      "symbol": "abc",
+      "totalSupply": "abc",
+      "unit": "abc"
+    },
+    "txConfig": {
+      "maxAssetSize": 123,
+      "maxListSize": 123,
+      "maxMultisig": 123,
+      "minimumStake": "abc"
+    },
+    "upgradeInfo": {
+      "height": "abc",
+      "version": "abc"
+    },
+    "version": "abc"
+  }
+}
+ * ```
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.ResponseGetForgeState
@@ -910,7 +1751,70 @@
  */
 
 /**
- * Structure of GraphQLClient.ResponseGetForgeStats
+ * Structure of GraphQLClient.ResponseGetForgeStats 
+ *
+ * Checkout the following snippet for the format of ResponseGetForgeStats:
+ * ```json
+{
+  "code": "UNSUPPORTED_TX",
+  "forgeStats": {
+    "avgBlockTime": 123,
+    "avgTps": 123,
+    "maxTps": 123,
+    "numAccountMigrateTxs": [
+      {}
+    ],
+    "numBlocks": [
+      {}
+    ],
+    "numConsensusUpgradeTxs": [
+      {}
+    ],
+    "numConsumeAssetTxs": [
+      {}
+    ],
+    "numCreateAssetTxs": [
+      {}
+    ],
+    "numDeclareFileTxs": [
+      {}
+    ],
+    "numDeclareTxs": [
+      {}
+    ],
+    "numExchangeTxs": [
+      {}
+    ],
+    "numPokeTxs": [
+      {}
+    ],
+    "numStakeTxs": [
+      {}
+    ],
+    "numStakes": [
+      {}
+    ],
+    "numSysUpgradeTxs": [
+      {}
+    ],
+    "numTransferTxs": [
+      {}
+    ],
+    "numTxs": [
+      {}
+    ],
+    "numUpdateAssetTxs": [
+      {}
+    ],
+    "numValidators": [
+      {}
+    ],
+    "tps": [
+      {}
+    ]
+  }
+}
+ * ```
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.ResponseGetForgeStats
@@ -919,7 +1823,43 @@
  */
 
 /**
- * Structure of GraphQLClient.ResponseGetHealthStatus
+ * Structure of GraphQLClient.ResponseGetHealthStatus 
+ *
+ * Checkout the following snippet for the format of ResponseGetHealthStatus:
+ * ```json
+{
+  "code": "UNSUPPORTED_TX",
+  "healthStatus": {
+    "consensus": {
+      "blockHeight": "abc",
+      "health": true,
+      "synced": true
+    },
+    "forge": {
+      "abciServer": {
+        "abciConsensus": "abc",
+        "abciInfo": "abc"
+      },
+      "abiServer": "abc",
+      "forgeWeb": "abc",
+      "health": true
+    },
+    "network": {
+      "health": true,
+      "numPeers": 123
+    },
+    "storage": {
+      "diskSpace": {
+        "forgeUsage": "abc",
+        "total": "abc"
+      },
+      "health": true,
+      "indexerServer": "abc",
+      "stateDb": "abc"
+    }
+  }
+}
+ * ```
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.ResponseGetHealthStatus
@@ -928,7 +1868,36 @@
  */
 
 /**
- * Structure of GraphQLClient.ResponseGetNetInfo
+ * Structure of GraphQLClient.ResponseGetNetInfo 
+ *
+ * Checkout the following snippet for the format of ResponseGetNetInfo:
+ * ```json
+{
+  "code": "UNSUPPORTED_TX",
+  "netInfo": {
+    "listeners": [
+      {}
+    ],
+    "listening": true,
+    "nPeers": 123,
+    "peers": [
+      {
+        "consensusVersion": "abc",
+        "geoInfo": {
+          "city": "abc",
+          "country": "abc",
+          "latitude": 123,
+          "longitude": 123
+        },
+        "id": "abc",
+        "ip": "abc",
+        "moniker": "abc",
+        "network": "abc"
+      }
+    ]
+  }
+}
+ * ```
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.ResponseGetNetInfo
@@ -937,7 +1906,46 @@
  */
 
 /**
- * Structure of GraphQLClient.ResponseGetNodeInfo
+ * Structure of GraphQLClient.ResponseGetNodeInfo 
+ *
+ * Checkout the following snippet for the format of ResponseGetNodeInfo:
+ * ```json
+{
+  "code": "UNSUPPORTED_TX",
+  "info": {
+    "address": "abc",
+    "appHash": "abc",
+    "blockHash": "abc",
+    "blockHeight": "abc",
+    "blockTime": "2019-04-29T00:00:00.000Z",
+    "consensusVersion": "abc",
+    "forgeAppsVersion": [
+      {
+        "key": "abc",
+        "value": "abc"
+      }
+    ],
+    "geoInfo": {
+      "city": "abc",
+      "country": "abc",
+      "latitude": 123,
+      "longitude": 123
+    },
+    "id": "abc",
+    "ip": "abc",
+    "moniker": "abc",
+    "network": "abc",
+    "p2pAddress": "abc",
+    "supportedTxs": [
+      {}
+    ],
+    "synced": true,
+    "totalTxs": "abc",
+    "version": "abc",
+    "votingPower": "abc"
+  }
+}
+ * ```
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.ResponseGetNodeInfo
@@ -946,7 +1954,111 @@
  */
 
 /**
- * Structure of GraphQLClient.ResponseGetProtocolState
+ * Structure of GraphQLClient.ResponseGetProtocolState 
+ *
+ * Checkout the following snippet for the format of ResponseGetProtocolState:
+ * ```json
+{
+  "code": "UNSUPPORTED_TX",
+  "state": {
+    "address": "abc",
+    "context": {
+      "genesisTime": "2019-04-29T00:00:00.000Z",
+      "genesisTx": {
+        "accountMigrate": {
+          "address": "abc"
+        },
+        "code": "UNSUPPORTED_TX",
+        "createAsset": {
+          "asset": "abc"
+        },
+        "hash": "abc",
+        "height": "abc",
+        "index": 123,
+        "tags": [
+          {
+            "key": "abc",
+            "value": "abc"
+          }
+        ],
+        "time": "2019-04-29T00:00:00.000Z",
+        "tx": {
+          "chainId": "abc",
+          "from": "abc",
+          "nonce": "abc",
+          "pk": "abc",
+          "signature": "abc",
+          "signatures": [
+            {
+              "data": {
+                "typeUrl": "abc",
+                "value": "abc"
+              },
+              "pk": "abc",
+              "signature": "abc",
+              "signer": "abc"
+            }
+          ]
+        }
+      },
+      "renaissanceTime": "2019-04-29T00:00:00.000Z",
+      "renaissanceTx": {
+        "accountMigrate": {
+          "address": "abc"
+        },
+        "code": "UNSUPPORTED_TX",
+        "createAsset": {
+          "asset": "abc"
+        },
+        "hash": "abc",
+        "height": "abc",
+        "index": 123,
+        "tags": [
+          {
+            "key": "abc",
+            "value": "abc"
+          }
+        ],
+        "time": "2019-04-29T00:00:00.000Z",
+        "tx": {
+          "chainId": "abc",
+          "from": "abc",
+          "nonce": "abc",
+          "pk": "abc",
+          "signature": "abc",
+          "signatures": [
+            {
+              "data": {
+                "typeUrl": "abc",
+                "value": "abc"
+              },
+              "pk": "abc",
+              "signature": "abc",
+              "signer": "abc"
+            }
+          ]
+        }
+      }
+    },
+    "data": {
+      "typeUrl": "abc",
+      "value": "abc"
+    },
+    "description": "abc",
+    "migratedFrom": [
+      {}
+    ],
+    "migratedTo": [
+      {}
+    ],
+    "name": "abc",
+    "rootHash": "abc",
+    "status": "PAUSED",
+    "txHash": "abc",
+    "version": 123
+  }
+}
+ * ```
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.ResponseGetProtocolState
@@ -955,7 +2067,15 @@
  */
 
 /**
- * Structure of GraphQLClient.ResponseGetSimulatorStatus
+ * Structure of GraphQLClient.ResponseGetSimulatorStatus 
+ *
+ * Checkout the following snippet for the format of ResponseGetSimulatorStatus:
+ * ```json
+{
+  "code": "UNSUPPORTED_TX",
+  "result": "abc"
+}
+ * ```
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.ResponseGetSimulatorStatus
@@ -964,7 +2084,103 @@
  */
 
 /**
- * Structure of GraphQLClient.ResponseGetStakeState
+ * Structure of GraphQLClient.ResponseGetStakeState 
+ *
+ * Checkout the following snippet for the format of ResponseGetStakeState:
+ * ```json
+{
+  "code": "UNSUPPORTED_TX",
+  "state": {
+    "address": "abc",
+    "balance": "abc",
+    "context": {
+      "genesisTime": "2019-04-29T00:00:00.000Z",
+      "genesisTx": {
+        "accountMigrate": {
+          "address": "abc"
+        },
+        "code": "UNSUPPORTED_TX",
+        "createAsset": {
+          "asset": "abc"
+        },
+        "hash": "abc",
+        "height": "abc",
+        "index": 123,
+        "tags": [
+          {
+            "key": "abc",
+            "value": "abc"
+          }
+        ],
+        "time": "2019-04-29T00:00:00.000Z",
+        "tx": {
+          "chainId": "abc",
+          "from": "abc",
+          "nonce": "abc",
+          "pk": "abc",
+          "signature": "abc",
+          "signatures": [
+            {
+              "data": {
+                "typeUrl": "abc",
+                "value": "abc"
+              },
+              "pk": "abc",
+              "signature": "abc",
+              "signer": "abc"
+            }
+          ]
+        }
+      },
+      "renaissanceTime": "2019-04-29T00:00:00.000Z",
+      "renaissanceTx": {
+        "accountMigrate": {
+          "address": "abc"
+        },
+        "code": "UNSUPPORTED_TX",
+        "createAsset": {
+          "asset": "abc"
+        },
+        "hash": "abc",
+        "height": "abc",
+        "index": 123,
+        "tags": [
+          {
+            "key": "abc",
+            "value": "abc"
+          }
+        ],
+        "time": "2019-04-29T00:00:00.000Z",
+        "tx": {
+          "chainId": "abc",
+          "from": "abc",
+          "nonce": "abc",
+          "pk": "abc",
+          "signature": "abc",
+          "signatures": [
+            {
+              "data": {
+                "typeUrl": "abc",
+                "value": "abc"
+              },
+              "pk": "abc",
+              "signature": "abc",
+              "signer": "abc"
+            }
+          ]
+        }
+      }
+    },
+    "data": {
+      "typeUrl": "abc",
+      "value": "abc"
+    },
+    "from": "abc",
+    "message": "abc",
+    "to": "abc"
+  }
+}
+ * ```
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.ResponseGetStakeState
@@ -973,7 +2189,51 @@
  */
 
 /**
- * Structure of GraphQLClient.ResponseGetTx
+ * Structure of GraphQLClient.ResponseGetTx 
+ *
+ * Checkout the following snippet for the format of ResponseGetTx:
+ * ```json
+{
+  "code": "UNSUPPORTED_TX",
+  "info": {
+    "accountMigrate": {
+      "address": "abc"
+    },
+    "code": "UNSUPPORTED_TX",
+    "createAsset": {
+      "asset": "abc"
+    },
+    "hash": "abc",
+    "height": "abc",
+    "index": 123,
+    "tags": [
+      {
+        "key": "abc",
+        "value": "abc"
+      }
+    ],
+    "time": "2019-04-29T00:00:00.000Z",
+    "tx": {
+      "chainId": "abc",
+      "from": "abc",
+      "nonce": "abc",
+      "pk": "abc",
+      "signature": "abc",
+      "signatures": [
+        {
+          "data": {
+            "typeUrl": "abc",
+            "value": "abc"
+          },
+          "pk": "abc",
+          "signature": "abc",
+          "signer": "abc"
+        }
+      ]
+    }
+  }
+}
+ * ```
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.ResponseGetTx
@@ -982,7 +2242,42 @@
  */
 
 /**
- * Structure of GraphQLClient.ResponseGetUnconfirmedTxs
+ * Structure of GraphQLClient.ResponseGetUnconfirmedTxs 
+ *
+ * Checkout the following snippet for the format of ResponseGetUnconfirmedTxs:
+ * ```json
+{
+  "code": "UNSUPPORTED_TX",
+  "page": {
+    "cursor": "abc",
+    "next": true,
+    "total": 123
+  },
+  "unconfirmedTxs": {
+    "nTxs": 123,
+    "txs": [
+      {
+        "chainId": "abc",
+        "from": "abc",
+        "nonce": "abc",
+        "pk": "abc",
+        "signature": "abc",
+        "signatures": [
+          {
+            "data": {
+              "typeUrl": "abc",
+              "value": "abc"
+            },
+            "pk": "abc",
+            "signature": "abc",
+            "signer": "abc"
+          }
+        ]
+      }
+    ]
+  }
+}
+ * ```
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.ResponseGetUnconfirmedTxs
@@ -992,7 +2287,35 @@
  */
 
 /**
- * Structure of GraphQLClient.ResponseGetValidatorsInfo
+ * Structure of GraphQLClient.ResponseGetValidatorsInfo 
+ *
+ * Checkout the following snippet for the format of ResponseGetValidatorsInfo:
+ * ```json
+{
+  "code": "UNSUPPORTED_TX",
+  "validatorsInfo": {
+    "blockHeight": "abc",
+    "validators": [
+      {
+        "address": "abc",
+        "geoInfo": {
+          "city": "abc",
+          "country": "abc",
+          "latitude": 123,
+          "longitude": 123
+        },
+        "name": "abc",
+        "proposerPriority": "abc",
+        "pubKey": {
+          "data": "abc",
+          "type": "abc"
+        },
+        "votingPower": "abc"
+      }
+    ]
+  }
+}
+ * ```
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.ResponseGetValidatorsInfo
@@ -1001,7 +2324,48 @@
  */
 
 /**
- * Structure of GraphQLClient.ResponseListAssetTransactions
+ * Structure of GraphQLClient.ResponseListAssetTransactions 
+ *
+ * Checkout the following snippet for the format of ResponseListAssetTransactions:
+ * ```json
+{
+  "code": "UNSUPPORTED_TX",
+  "page": {
+    "cursor": "abc",
+    "next": true,
+    "total": 123
+  },
+  "transactions": [
+    {
+      "code": "UNSUPPORTED_TX",
+      "hash": "abc",
+      "receiver": "abc",
+      "sender": "abc",
+      "time": "abc",
+      "tx": {
+        "chainId": "abc",
+        "from": "abc",
+        "nonce": "abc",
+        "pk": "abc",
+        "signature": "abc",
+        "signatures": [
+          {
+            "data": {
+              "typeUrl": "abc",
+              "value": "abc"
+            },
+            "pk": "abc",
+            "signature": "abc",
+            "signer": "abc"
+          }
+        ]
+      },
+      "type": "abc",
+      "valid": true
+    }
+  ]
+}
+ * ```
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.ResponseListAssetTransactions
@@ -1011,7 +2375,47 @@
  */
 
 /**
- * Structure of GraphQLClient.ResponseListAssets
+ * Structure of GraphQLClient.ResponseListAssets 
+ *
+ * Checkout the following snippet for the format of ResponseListAssets:
+ * ```json
+{
+  "account": {
+    "address": "abc",
+    "balance": "abc",
+    "genesisTime": "abc",
+    "migratedFrom": "abc",
+    "migratedTo": "abc",
+    "moniker": "abc",
+    "nonce": "abc",
+    "numAssets": "abc",
+    "numTxs": "abc",
+    "recentNumTxs": [
+      {}
+    ],
+    "renaissanceTime": "abc",
+    "totalReceivedStakes": "abc",
+    "totalStakes": "abc",
+    "totalUnstakes": "abc"
+  },
+  "assets": [
+    {
+      "address": "abc",
+      "genesisTime": "abc",
+      "moniker": "abc",
+      "owner": "abc",
+      "readonly": true,
+      "renaissanceTime": "abc"
+    }
+  ],
+  "code": "UNSUPPORTED_TX",
+  "page": {
+    "cursor": "abc",
+    "next": true,
+    "total": 123
+  }
+}
+ * ```
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.ResponseListAssets
@@ -1022,7 +2426,28 @@
  */
 
 /**
- * Structure of GraphQLClient.ResponseListBlocks
+ * Structure of GraphQLClient.ResponseListBlocks 
+ *
+ * Checkout the following snippet for the format of ResponseListBlocks:
+ * ```json
+{
+  "blocks": [
+    {
+      "height": "abc",
+      "numInvalidTxs": "abc",
+      "numTxs": "abc",
+      "proposer": "abc",
+      "time": "abc"
+    }
+  ],
+  "code": "UNSUPPORTED_TX",
+  "page": {
+    "cursor": "abc",
+    "next": true,
+    "total": 123
+  }
+}
+ * ```
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.ResponseListBlocks
@@ -1032,7 +2457,31 @@
  */
 
 /**
- * Structure of GraphQLClient.ResponseListStakes
+ * Structure of GraphQLClient.ResponseListStakes 
+ *
+ * Checkout the following snippet for the format of ResponseListStakes:
+ * ```json
+{
+  "code": "UNSUPPORTED_TX",
+  "page": {
+    "cursor": "abc",
+    "next": true,
+    "total": 123
+  },
+  "stakes": [
+    {
+      "address": "abc",
+      "balance": "abc",
+      "genesisTime": "abc",
+      "message": "abc",
+      "receiver": "abc",
+      "renaissanceTime": "abc",
+      "sender": "abc",
+      "type": 123
+    }
+  ]
+}
+ * ```
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.ResponseListStakes
@@ -1042,7 +2491,39 @@
  */
 
 /**
- * Structure of GraphQLClient.ResponseListTopAccounts
+ * Structure of GraphQLClient.ResponseListTopAccounts 
+ *
+ * Checkout the following snippet for the format of ResponseListTopAccounts:
+ * ```json
+{
+  "accounts": [
+    {
+      "address": "abc",
+      "balance": "abc",
+      "genesisTime": "abc",
+      "migratedFrom": "abc",
+      "migratedTo": "abc",
+      "moniker": "abc",
+      "nonce": "abc",
+      "numAssets": "abc",
+      "numTxs": "abc",
+      "recentNumTxs": [
+        {}
+      ],
+      "renaissanceTime": "abc",
+      "totalReceivedStakes": "abc",
+      "totalStakes": "abc",
+      "totalUnstakes": "abc"
+    }
+  ],
+  "code": "UNSUPPORTED_TX",
+  "page": {
+    "cursor": "abc",
+    "next": true,
+    "total": 123
+  }
+}
+ * ```
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.ResponseListTopAccounts
@@ -1052,7 +2533,48 @@
  */
 
 /**
- * Structure of GraphQLClient.ResponseListTransactions
+ * Structure of GraphQLClient.ResponseListTransactions 
+ *
+ * Checkout the following snippet for the format of ResponseListTransactions:
+ * ```json
+{
+  "code": "UNSUPPORTED_TX",
+  "page": {
+    "cursor": "abc",
+    "next": true,
+    "total": 123
+  },
+  "transactions": [
+    {
+      "code": "UNSUPPORTED_TX",
+      "hash": "abc",
+      "receiver": "abc",
+      "sender": "abc",
+      "time": "abc",
+      "tx": {
+        "chainId": "abc",
+        "from": "abc",
+        "nonce": "abc",
+        "pk": "abc",
+        "signature": "abc",
+        "signatures": [
+          {
+            "data": {
+              "typeUrl": "abc",
+              "value": "abc"
+            },
+            "pk": "abc",
+            "signature": "abc",
+            "signer": "abc"
+          }
+        ]
+      },
+      "type": "abc",
+      "valid": true
+    }
+  ]
+}
+ * ```
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.ResponseListTransactions
@@ -1062,7 +2584,15 @@
  */
 
 /**
- * Structure of GraphQLClient.ResponseSendTx
+ * Structure of GraphQLClient.ResponseSendTx 
+ *
+ * Checkout the following snippet for the format of ResponseSendTx:
+ * ```json
+{
+  "code": "UNSUPPORTED_TX",
+  "hash": "abc"
+}
+ * ```
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.ResponseSendTx
@@ -1071,7 +2601,14 @@
  */
 
 /**
- * Structure of GraphQLClient.ResponseStartSimulator
+ * Structure of GraphQLClient.ResponseStartSimulator 
+ *
+ * Checkout the following snippet for the format of ResponseStartSimulator:
+ * ```json
+{
+  "code": "UNSUPPORTED_TX"
+}
+ * ```
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.ResponseStartSimulator
@@ -1079,7 +2616,14 @@
  */
 
 /**
- * Structure of GraphQLClient.ResponseStopSimulator
+ * Structure of GraphQLClient.ResponseStopSimulator 
+ *
+ * Checkout the following snippet for the format of ResponseStopSimulator:
+ * ```json
+{
+  "code": "UNSUPPORTED_TX"
+}
+ * ```
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.ResponseStopSimulator
@@ -1087,7 +2631,885 @@
  */
 
 /**
- * Structure of GraphQLClient.ResponseSubscribe
+ * Structure of GraphQLClient.ResponseSubscribe 
+ *
+ * Checkout the following snippet for the format of ResponseSubscribe:
+ * ```json
+{
+  "accountMigrate": {
+    "chainId": "abc",
+    "from": "abc",
+    "nonce": "abc",
+    "pk": "abc",
+    "signature": "abc",
+    "signatures": [
+      {
+        "data": {
+          "typeUrl": "abc",
+          "value": "abc"
+        },
+        "pk": "abc",
+        "signature": "abc",
+        "signer": "abc"
+      }
+    ]
+  },
+  "accountState": {
+    "address": "abc",
+    "balance": "abc",
+    "context": {
+      "genesisTime": "2019-04-29T00:00:00.000Z",
+      "genesisTx": {
+        "accountMigrate": {
+          "address": "abc"
+        },
+        "code": "UNSUPPORTED_TX",
+        "createAsset": {
+          "asset": "abc"
+        },
+        "hash": "abc",
+        "height": "abc",
+        "index": 123,
+        "tags": [
+          {
+            "key": "abc",
+            "value": "abc"
+          }
+        ],
+        "time": "2019-04-29T00:00:00.000Z",
+        "tx": {
+          "chainId": "abc",
+          "from": "abc",
+          "nonce": "abc",
+          "pk": "abc",
+          "signature": "abc",
+          "signatures": [
+            {
+              "data": {
+                "typeUrl": "abc",
+                "value": "abc"
+              },
+              "pk": "abc",
+              "signature": "abc",
+              "signer": "abc"
+            }
+          ]
+        }
+      },
+      "renaissanceTime": "2019-04-29T00:00:00.000Z",
+      "renaissanceTx": {
+        "accountMigrate": {
+          "address": "abc"
+        },
+        "code": "UNSUPPORTED_TX",
+        "createAsset": {
+          "asset": "abc"
+        },
+        "hash": "abc",
+        "height": "abc",
+        "index": 123,
+        "tags": [
+          {
+            "key": "abc",
+            "value": "abc"
+          }
+        ],
+        "time": "2019-04-29T00:00:00.000Z",
+        "tx": {
+          "chainId": "abc",
+          "from": "abc",
+          "nonce": "abc",
+          "pk": "abc",
+          "signature": "abc",
+          "signatures": [
+            {
+              "data": {
+                "typeUrl": "abc",
+                "value": "abc"
+              },
+              "pk": "abc",
+              "signature": "abc",
+              "signer": "abc"
+            }
+          ]
+        }
+      }
+    },
+    "data": {
+      "typeUrl": "abc",
+      "value": "abc"
+    },
+    "issuer": "abc",
+    "migratedFrom": [
+      {}
+    ],
+    "migratedTo": [
+      {}
+    ],
+    "moniker": "abc",
+    "nonce": "abc",
+    "numAssets": "abc",
+    "numTxs": "abc",
+    "pk": "abc",
+    "poke": {
+      "amount": "abc",
+      "dailyLimit": "abc",
+      "leftover": "abc"
+    },
+    "stake": {
+      "recentReceivedStakes": {
+        "circular": true,
+        "fifo": true,
+        "items": [
+          {}
+        ],
+        "maxItems": 123,
+        "typeUrl": "abc"
+      },
+      "recentStakes": {
+        "circular": true,
+        "fifo": true,
+        "items": [
+          {}
+        ],
+        "maxItems": 123,
+        "typeUrl": "abc"
+      },
+      "totalReceivedStakes": "abc",
+      "totalStakes": "abc",
+      "totalUnstakes": "abc"
+    },
+    "type": {
+      "address": "BASE16",
+      "hash": "KECCAK",
+      "pk": "ED25519",
+      "role": "ROLE_ACCOUNT"
+    }
+  },
+  "assetState": {
+    "address": "abc",
+    "consumedTime": "2019-04-29T00:00:00.000Z",
+    "context": {
+      "genesisTime": "2019-04-29T00:00:00.000Z",
+      "genesisTx": {
+        "accountMigrate": {
+          "address": "abc"
+        },
+        "code": "UNSUPPORTED_TX",
+        "createAsset": {
+          "asset": "abc"
+        },
+        "hash": "abc",
+        "height": "abc",
+        "index": 123,
+        "tags": [
+          {
+            "key": "abc",
+            "value": "abc"
+          }
+        ],
+        "time": "2019-04-29T00:00:00.000Z",
+        "tx": {
+          "chainId": "abc",
+          "from": "abc",
+          "nonce": "abc",
+          "pk": "abc",
+          "signature": "abc",
+          "signatures": [
+            {
+              "data": {
+                "typeUrl": "abc",
+                "value": "abc"
+              },
+              "pk": "abc",
+              "signature": "abc",
+              "signer": "abc"
+            }
+          ]
+        }
+      },
+      "renaissanceTime": "2019-04-29T00:00:00.000Z",
+      "renaissanceTx": {
+        "accountMigrate": {
+          "address": "abc"
+        },
+        "code": "UNSUPPORTED_TX",
+        "createAsset": {
+          "asset": "abc"
+        },
+        "hash": "abc",
+        "height": "abc",
+        "index": 123,
+        "tags": [
+          {
+            "key": "abc",
+            "value": "abc"
+          }
+        ],
+        "time": "2019-04-29T00:00:00.000Z",
+        "tx": {
+          "chainId": "abc",
+          "from": "abc",
+          "nonce": "abc",
+          "pk": "abc",
+          "signature": "abc",
+          "signatures": [
+            {
+              "data": {
+                "typeUrl": "abc",
+                "value": "abc"
+              },
+              "pk": "abc",
+              "signature": "abc",
+              "signer": "abc"
+            }
+          ]
+        }
+      }
+    },
+    "data": {
+      "typeUrl": "abc",
+      "value": "abc"
+    },
+    "issuer": "abc",
+    "moniker": "abc",
+    "owner": "abc",
+    "readonly": true,
+    "stake": {
+      "recentReceivedStakes": {
+        "circular": true,
+        "fifo": true,
+        "items": [
+          {}
+        ],
+        "maxItems": 123,
+        "typeUrl": "abc"
+      },
+      "recentStakes": {
+        "circular": true,
+        "fifo": true,
+        "items": [
+          {}
+        ],
+        "maxItems": 123,
+        "typeUrl": "abc"
+      },
+      "totalReceivedStakes": "abc",
+      "totalStakes": "abc",
+      "totalUnstakes": "abc"
+    },
+    "transferrable": true,
+    "ttl": 123
+  },
+  "beginBlock": {
+    "byzantineValidators": [
+      {
+        "height": "abc",
+        "time": "2019-04-29T00:00:00.000Z",
+        "totalVotingPower": "abc",
+        "type": "abc",
+        "validator": {
+          "address": "abc",
+          "power": "abc"
+        }
+      }
+    ],
+    "hash": "abc",
+    "header": {
+      "appHash": "abc",
+      "chainId": "abc",
+      "consensusHash": "abc",
+      "dataHash": "abc",
+      "evidenceHash": "abc",
+      "height": "abc",
+      "lastBlockId": {
+        "hash": "abc",
+        "partsHeader": {
+          "hash": "abc",
+          "total": 123
+        }
+      },
+      "lastCommitHash": "abc",
+      "lastResultsHash": "abc",
+      "nextValidatorsHash": "abc",
+      "numTxs": "abc",
+      "proposerAddress": "abc",
+      "time": "2019-04-29T00:00:00.000Z",
+      "totalTxs": "abc",
+      "validatorsHash": "abc",
+      "version": {
+        "app": "abc",
+        "block": "abc"
+      }
+    },
+    "lastCommitInfo": {
+      "round": 123,
+      "votes": [
+        {
+          "signedLastBlock": true,
+          "validator": {
+            "address": "abc",
+            "power": "abc"
+          }
+        }
+      ]
+    }
+  },
+  "code": "UNSUPPORTED_TX",
+  "confirm": {
+    "chainId": "abc",
+    "from": "abc",
+    "nonce": "abc",
+    "pk": "abc",
+    "signature": "abc",
+    "signatures": [
+      {
+        "data": {
+          "typeUrl": "abc",
+          "value": "abc"
+        },
+        "pk": "abc",
+        "signature": "abc",
+        "signer": "abc"
+      }
+    ]
+  },
+  "consensusUpgrade": {
+    "chainId": "abc",
+    "from": "abc",
+    "nonce": "abc",
+    "pk": "abc",
+    "signature": "abc",
+    "signatures": [
+      {
+        "data": {
+          "typeUrl": "abc",
+          "value": "abc"
+        },
+        "pk": "abc",
+        "signature": "abc",
+        "signer": "abc"
+      }
+    ]
+  },
+  "createAsset": {
+    "chainId": "abc",
+    "from": "abc",
+    "nonce": "abc",
+    "pk": "abc",
+    "signature": "abc",
+    "signatures": [
+      {
+        "data": {
+          "typeUrl": "abc",
+          "value": "abc"
+        },
+        "pk": "abc",
+        "signature": "abc",
+        "signer": "abc"
+      }
+    ]
+  },
+  "declare": {
+    "chainId": "abc",
+    "from": "abc",
+    "nonce": "abc",
+    "pk": "abc",
+    "signature": "abc",
+    "signatures": [
+      {
+        "data": {
+          "typeUrl": "abc",
+          "value": "abc"
+        },
+        "pk": "abc",
+        "signature": "abc",
+        "signer": "abc"
+      }
+    ]
+  },
+  "declareFile": {
+    "chainId": "abc",
+    "from": "abc",
+    "nonce": "abc",
+    "pk": "abc",
+    "signature": "abc",
+    "signatures": [
+      {
+        "data": {
+          "typeUrl": "abc",
+          "value": "abc"
+        },
+        "pk": "abc",
+        "signature": "abc",
+        "signer": "abc"
+      }
+    ]
+  },
+  "endBlock": {
+    "height": "abc"
+  },
+  "exchange": {
+    "chainId": "abc",
+    "from": "abc",
+    "nonce": "abc",
+    "pk": "abc",
+    "signature": "abc",
+    "signatures": [
+      {
+        "data": {
+          "typeUrl": "abc",
+          "value": "abc"
+        },
+        "pk": "abc",
+        "signature": "abc",
+        "signer": "abc"
+      }
+    ]
+  },
+  "forgeState": {
+    "address": "abc",
+    "consensus": {
+      "maxBytes": "abc",
+      "maxCandidates": 123,
+      "maxGas": "abc",
+      "maxValidators": 123,
+      "paramChanged": true,
+      "pubKeyTypes": [
+        {}
+      ],
+      "validatorChanged": true,
+      "validators": [
+        {
+          "address": "abc",
+          "power": "abc"
+        }
+      ]
+    },
+    "data": {
+      "typeUrl": "abc",
+      "value": "abc"
+    },
+    "forgeAppHash": "abc",
+    "pokeConfig": {
+      "address": "abc",
+      "amount": "abc",
+      "balance": "abc",
+      "dailyLimit": "abc"
+    },
+    "protocols": [
+      {
+        "address": "abc",
+        "name": "abc"
+      }
+    ],
+    "stakeConfig": {
+      "timeoutGeneral": 123,
+      "timeoutStakeForNode": 123
+    },
+    "stakeSummary": [
+      {
+        "key": 123,
+        "value": {
+          "context": {
+            "genesisTime": "2019-04-29T00:00:00.000Z",
+            "genesisTx": {
+              "accountMigrate": {
+                "address": "abc"
+              },
+              "code": "UNSUPPORTED_TX",
+              "createAsset": {
+                "asset": "abc"
+              },
+              "hash": "abc",
+              "height": "abc",
+              "index": 123,
+              "tags": [
+                {
+                  "key": "abc",
+                  "value": "abc"
+                }
+              ],
+              "time": "2019-04-29T00:00:00.000Z",
+              "tx": {
+                "chainId": "abc",
+                "from": "abc",
+                "nonce": "abc",
+                "pk": "abc",
+                "signature": "abc",
+                "signatures": [
+                  {
+                    "data": {
+                      "typeUrl": "abc",
+                      "value": "abc"
+                    },
+                    "pk": "abc",
+                    "signature": "abc",
+                    "signer": "abc"
+                  }
+                ]
+              }
+            },
+            "renaissanceTime": "2019-04-29T00:00:00.000Z",
+            "renaissanceTx": {
+              "accountMigrate": {
+                "address": "abc"
+              },
+              "code": "UNSUPPORTED_TX",
+              "createAsset": {
+                "asset": "abc"
+              },
+              "hash": "abc",
+              "height": "abc",
+              "index": 123,
+              "tags": [
+                {
+                  "key": "abc",
+                  "value": "abc"
+                }
+              ],
+              "time": "2019-04-29T00:00:00.000Z",
+              "tx": {
+                "chainId": "abc",
+                "from": "abc",
+                "nonce": "abc",
+                "pk": "abc",
+                "signature": "abc",
+                "signatures": [
+                  {
+                    "data": {
+                      "typeUrl": "abc",
+                      "value": "abc"
+                    },
+                    "pk": "abc",
+                    "signature": "abc",
+                    "signer": "abc"
+                  }
+                ]
+              }
+            }
+          },
+          "totalStakes": "abc",
+          "totalUnstakes": "abc"
+        }
+      }
+    ],
+    "tasks": [
+      {
+        "key": "abc",
+        "value": [
+          {
+            "actions": [
+              {}
+            ],
+            "dataHash": "abc",
+            "type": "CONFIG_APP"
+          }
+        ]
+      }
+    ],
+    "token": {
+      "decimal": 123,
+      "description": "abc",
+      "icon": "abc",
+      "inflationRate": 123,
+      "initialSupply": "abc",
+      "name": "abc",
+      "symbol": "abc",
+      "totalSupply": "abc",
+      "unit": "abc"
+    },
+    "txConfig": {
+      "maxAssetSize": 123,
+      "maxListSize": 123,
+      "maxMultisig": 123,
+      "minimumStake": "abc"
+    },
+    "upgradeInfo": {
+      "height": "abc",
+      "version": "abc"
+    },
+    "version": "abc"
+  },
+  "protocolState": {
+    "address": "abc",
+    "context": {
+      "genesisTime": "2019-04-29T00:00:00.000Z",
+      "genesisTx": {
+        "accountMigrate": {
+          "address": "abc"
+        },
+        "code": "UNSUPPORTED_TX",
+        "createAsset": {
+          "asset": "abc"
+        },
+        "hash": "abc",
+        "height": "abc",
+        "index": 123,
+        "tags": [
+          {
+            "key": "abc",
+            "value": "abc"
+          }
+        ],
+        "time": "2019-04-29T00:00:00.000Z",
+        "tx": {
+          "chainId": "abc",
+          "from": "abc",
+          "nonce": "abc",
+          "pk": "abc",
+          "signature": "abc",
+          "signatures": [
+            {
+              "data": {
+                "typeUrl": "abc",
+                "value": "abc"
+              },
+              "pk": "abc",
+              "signature": "abc",
+              "signer": "abc"
+            }
+          ]
+        }
+      },
+      "renaissanceTime": "2019-04-29T00:00:00.000Z",
+      "renaissanceTx": {
+        "accountMigrate": {
+          "address": "abc"
+        },
+        "code": "UNSUPPORTED_TX",
+        "createAsset": {
+          "asset": "abc"
+        },
+        "hash": "abc",
+        "height": "abc",
+        "index": 123,
+        "tags": [
+          {
+            "key": "abc",
+            "value": "abc"
+          }
+        ],
+        "time": "2019-04-29T00:00:00.000Z",
+        "tx": {
+          "chainId": "abc",
+          "from": "abc",
+          "nonce": "abc",
+          "pk": "abc",
+          "signature": "abc",
+          "signatures": [
+            {
+              "data": {
+                "typeUrl": "abc",
+                "value": "abc"
+              },
+              "pk": "abc",
+              "signature": "abc",
+              "signer": "abc"
+            }
+          ]
+        }
+      }
+    },
+    "data": {
+      "typeUrl": "abc",
+      "value": "abc"
+    },
+    "description": "abc",
+    "migratedFrom": [
+      {}
+    ],
+    "migratedTo": [
+      {}
+    ],
+    "name": "abc",
+    "rootHash": "abc",
+    "status": "PAUSED",
+    "txHash": "abc",
+    "version": 123
+  },
+  "revoke": {
+    "chainId": "abc",
+    "from": "abc",
+    "nonce": "abc",
+    "pk": "abc",
+    "signature": "abc",
+    "signatures": [
+      {
+        "data": {
+          "typeUrl": "abc",
+          "value": "abc"
+        },
+        "pk": "abc",
+        "signature": "abc",
+        "signer": "abc"
+      }
+    ]
+  },
+  "stake": {
+    "chainId": "abc",
+    "from": "abc",
+    "nonce": "abc",
+    "pk": "abc",
+    "signature": "abc",
+    "signatures": [
+      {
+        "data": {
+          "typeUrl": "abc",
+          "value": "abc"
+        },
+        "pk": "abc",
+        "signature": "abc",
+        "signer": "abc"
+      }
+    ]
+  },
+  "stakeState": {
+    "address": "abc",
+    "balance": "abc",
+    "context": {
+      "genesisTime": "2019-04-29T00:00:00.000Z",
+      "genesisTx": {
+        "accountMigrate": {
+          "address": "abc"
+        },
+        "code": "UNSUPPORTED_TX",
+        "createAsset": {
+          "asset": "abc"
+        },
+        "hash": "abc",
+        "height": "abc",
+        "index": 123,
+        "tags": [
+          {
+            "key": "abc",
+            "value": "abc"
+          }
+        ],
+        "time": "2019-04-29T00:00:00.000Z",
+        "tx": {
+          "chainId": "abc",
+          "from": "abc",
+          "nonce": "abc",
+          "pk": "abc",
+          "signature": "abc",
+          "signatures": [
+            {
+              "data": {
+                "typeUrl": "abc",
+                "value": "abc"
+              },
+              "pk": "abc",
+              "signature": "abc",
+              "signer": "abc"
+            }
+          ]
+        }
+      },
+      "renaissanceTime": "2019-04-29T00:00:00.000Z",
+      "renaissanceTx": {
+        "accountMigrate": {
+          "address": "abc"
+        },
+        "code": "UNSUPPORTED_TX",
+        "createAsset": {
+          "asset": "abc"
+        },
+        "hash": "abc",
+        "height": "abc",
+        "index": 123,
+        "tags": [
+          {
+            "key": "abc",
+            "value": "abc"
+          }
+        ],
+        "time": "2019-04-29T00:00:00.000Z",
+        "tx": {
+          "chainId": "abc",
+          "from": "abc",
+          "nonce": "abc",
+          "pk": "abc",
+          "signature": "abc",
+          "signatures": [
+            {
+              "data": {
+                "typeUrl": "abc",
+                "value": "abc"
+              },
+              "pk": "abc",
+              "signature": "abc",
+              "signer": "abc"
+            }
+          ]
+        }
+      }
+    },
+    "data": {
+      "typeUrl": "abc",
+      "value": "abc"
+    },
+    "from": "abc",
+    "message": "abc",
+    "to": "abc"
+  },
+  "sysUpgrade": {
+    "chainId": "abc",
+    "from": "abc",
+    "nonce": "abc",
+    "pk": "abc",
+    "signature": "abc",
+    "signatures": [
+      {
+        "data": {
+          "typeUrl": "abc",
+          "value": "abc"
+        },
+        "pk": "abc",
+        "signature": "abc",
+        "signer": "abc"
+      }
+    ]
+  },
+  "topic": "abc",
+  "transfer": {
+    "chainId": "abc",
+    "from": "abc",
+    "nonce": "abc",
+    "pk": "abc",
+    "signature": "abc",
+    "signatures": [
+      {
+        "data": {
+          "typeUrl": "abc",
+          "value": "abc"
+        },
+        "pk": "abc",
+        "signature": "abc",
+        "signer": "abc"
+      }
+    ]
+  },
+  "updateAsset": {
+    "chainId": "abc",
+    "from": "abc",
+    "nonce": "abc",
+    "pk": "abc",
+    "signature": "abc",
+    "signatures": [
+      {
+        "data": {
+          "typeUrl": "abc",
+          "value": "abc"
+        },
+        "pk": "abc",
+        "signature": "abc",
+        "signer": "abc"
+      }
+    ]
+  }
+}
+ * ```
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.ResponseSubscribe
@@ -1115,7 +3537,14 @@
  */
 
 /**
- * Structure of GraphQLClient.ResponseUnsubscribe
+ * Structure of GraphQLClient.ResponseUnsubscribe 
+ *
+ * Checkout the following snippet for the format of ResponseUnsubscribe:
+ * ```json
+{
+  "code": "UNSUPPORTED_TX"
+}
+ * ```
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.ResponseUnsubscribe
@@ -1185,7 +3614,19 @@
  */
 
 /**
- * Structure of GraphQLClient.StakeTx
+ * Structure of GraphQLClient.StakeTx 
+ *
+ * Checkout the following snippet for the format of StakeTx:
+ * ```json
+{
+  "data": {
+    "type": "abc"
+  },
+  "message": "abc",
+  "to": "abc",
+  "value": "abc"
+}
+ * ```
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.StakeTx
@@ -1218,7 +3659,25 @@
  */
 
 /**
- * Structure of GraphQLClient.SysUpgradeTx
+ * Structure of GraphQLClient.SysUpgradeTx 
+ *
+ * Checkout the following snippet for the format of SysUpgradeTx:
+ * ```json
+{
+  "data": {
+    "typeUrl": "abc",
+    "value": "abc"
+  },
+  "gracePeriod": "abc",
+  "task": {
+    "actions": [
+      {}
+    ],
+    "dataHash": "abc",
+    "type": "CONFIG_APP"
+  }
+}
+ * ```
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.SysUpgradeTx
@@ -1278,7 +3737,22 @@
  */
 
 /**
- * Structure of GraphQLClient.TransferTx
+ * Structure of GraphQLClient.TransferTx 
+ *
+ * Checkout the following snippet for the format of TransferTx:
+ * ```json
+{
+  "assets": [
+    {}
+  ],
+  "data": {
+    "typeUrl": "abc",
+    "value": "abc"
+  },
+  "to": "abc",
+  "value": "abc"
+}
+ * ```
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.TransferTx
@@ -1298,7 +3772,19 @@
  */
 
 /**
- * Structure of GraphQLClient.UpdateAssetTx
+ * Structure of GraphQLClient.UpdateAssetTx 
+ *
+ * Checkout the following snippet for the format of UpdateAssetTx:
+ * ```json
+{
+  "address": "abc",
+  "data": {
+    "typeUrl": "abc",
+    "value": "abc"
+  },
+  "moniker": "abc"
+}
+ * ```
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.UpdateAssetTx
@@ -1395,7 +3881,18 @@
  */
 
 /**
- * Structure of GraphQLClient.GetAccountStateParams
+ * Structure of GraphQLClient.GetAccountStateParams 
+ *
+ * Checkout the following snippet for the format of GetAccountStateParams:
+ * ```json
+{
+  "address": "abc",
+  "height": "abc",
+  "keys": [
+    {}
+  ]
+}
+ * ```
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.GetAccountStateParams
@@ -1405,7 +3902,18 @@
  */
 
 /**
- * Structure of GraphQLClient.GetAssetStateParams
+ * Structure of GraphQLClient.GetAssetStateParams 
+ *
+ * Checkout the following snippet for the format of GetAssetStateParams:
+ * ```json
+{
+  "address": "abc",
+  "height": "abc",
+  "keys": [
+    {}
+  ]
+}
+ * ```
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.GetAssetStateParams
@@ -1415,7 +3923,14 @@
  */
 
 /**
- * Structure of GraphQLClient.GetBlockParams
+ * Structure of GraphQLClient.GetBlockParams 
+ *
+ * Checkout the following snippet for the format of GetBlockParams:
+ * ```json
+{
+  "height": "abc"
+}
+ * ```
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.GetBlockParams
@@ -1423,7 +3938,14 @@
  */
 
 /**
- * Structure of GraphQLClient.GetBlocksParams
+ * Structure of GraphQLClient.GetBlocksParams 
+ *
+ * Checkout the following snippet for the format of GetBlocksParams:
+ * ```json
+{
+  "emptyExcluded": true
+}
+ * ```
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.GetBlocksParams
@@ -1433,7 +3955,17 @@
  */
 
 /**
- * Structure of GraphQLClient.GetForgeStateParams
+ * Structure of GraphQLClient.GetForgeStateParams 
+ *
+ * Checkout the following snippet for the format of GetForgeStateParams:
+ * ```json
+{
+  "height": "abc",
+  "keys": [
+    {}
+  ]
+}
+ * ```
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.GetForgeStateParams
@@ -1442,7 +3974,15 @@
  */
 
 /**
- * Structure of GraphQLClient.GetForgeStatsByDayParams
+ * Structure of GraphQLClient.GetForgeStatsByDayParams 
+ *
+ * Checkout the following snippet for the format of GetForgeStatsByDayParams:
+ * ```json
+{
+  "endDate": "abc",
+  "startDate": "abc"
+}
+ * ```
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.GetForgeStatsByDayParams
@@ -1451,7 +3991,14 @@
  */
 
 /**
- * Structure of GraphQLClient.GetForgeStatsByHourParams
+ * Structure of GraphQLClient.GetForgeStatsByHourParams 
+ *
+ * Checkout the following snippet for the format of GetForgeStatsByHourParams:
+ * ```json
+{
+  "date": "abc"
+}
+ * ```
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.GetForgeStatsByHourParams
@@ -1459,7 +4006,18 @@
  */
 
 /**
- * Structure of GraphQLClient.GetProtocolStateParams
+ * Structure of GraphQLClient.GetProtocolStateParams 
+ *
+ * Checkout the following snippet for the format of GetProtocolStateParams:
+ * ```json
+{
+  "address": "abc",
+  "height": "abc",
+  "keys": [
+    {}
+  ]
+}
+ * ```
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.GetProtocolStateParams
@@ -1469,7 +4027,18 @@
  */
 
 /**
- * Structure of GraphQLClient.GetStakeStateParams
+ * Structure of GraphQLClient.GetStakeStateParams 
+ *
+ * Checkout the following snippet for the format of GetStakeStateParams:
+ * ```json
+{
+  "address": "abc",
+  "height": "abc",
+  "keys": [
+    {}
+  ]
+}
+ * ```
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.GetStakeStateParams
@@ -1479,7 +4048,14 @@
  */
 
 /**
- * Structure of GraphQLClient.GetTxParams
+ * Structure of GraphQLClient.GetTxParams 
+ *
+ * Checkout the following snippet for the format of GetTxParams:
+ * ```json
+{
+  "hash": "abc"
+}
+ * ```
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.GetTxParams
@@ -1487,7 +4063,12 @@
  */
 
 /**
- * Structure of GraphQLClient.GetUnconfirmedTxsParams
+ * Structure of GraphQLClient.GetUnconfirmedTxsParams 
+ *
+ * Checkout the following snippet for the format of GetUnconfirmedTxsParams:
+ * ```json
+{}
+ * ```
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.GetUnconfirmedTxsParams
@@ -1495,7 +4076,14 @@
  */
 
 /**
- * Structure of GraphQLClient.ListAssetTransactionsParams
+ * Structure of GraphQLClient.ListAssetTransactionsParams 
+ *
+ * Checkout the following snippet for the format of ListAssetTransactionsParams:
+ * ```json
+{
+  "address": "abc"
+}
+ * ```
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.ListAssetTransactionsParams
@@ -1504,7 +4092,14 @@
  */
 
 /**
- * Structure of GraphQLClient.ListAssetsParams
+ * Structure of GraphQLClient.ListAssetsParams 
+ *
+ * Checkout the following snippet for the format of ListAssetsParams:
+ * ```json
+{
+  "ownerAddress": "abc"
+}
+ * ```
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.ListAssetsParams
@@ -1513,7 +4108,14 @@
  */
 
 /**
- * Structure of GraphQLClient.ListBlocksParams
+ * Structure of GraphQLClient.ListBlocksParams 
+ *
+ * Checkout the following snippet for the format of ListBlocksParams:
+ * ```json
+{
+  "proposer": "abc"
+}
+ * ```
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.ListBlocksParams
@@ -1526,7 +4128,12 @@
  */
 
 /**
- * Structure of GraphQLClient.ListStakesParams
+ * Structure of GraphQLClient.ListStakesParams 
+ *
+ * Checkout the following snippet for the format of ListStakesParams:
+ * ```json
+{}
+ * ```
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.ListStakesParams
@@ -1535,7 +4142,12 @@
  */
 
 /**
- * Structure of GraphQLClient.ListTopAccountsParams
+ * Structure of GraphQLClient.ListTopAccountsParams 
+ *
+ * Checkout the following snippet for the format of ListTopAccountsParams:
+ * ```json
+{}
+ * ```
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.ListTopAccountsParams
@@ -1543,7 +4155,12 @@
  */
 
 /**
- * Structure of GraphQLClient.ListTransactionsParams
+ * Structure of GraphQLClient.ListTransactionsParams 
+ *
+ * Checkout the following snippet for the format of ListTransactionsParams:
+ * ```json
+{}
+ * ```
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.ListTransactionsParams
@@ -1555,7 +4172,17 @@
  */
 
 /**
- * Structure of GraphQLClient.SendTxParams
+ * Structure of GraphQLClient.SendTxParams 
+ *
+ * Checkout the following snippet for the format of SendTxParams:
+ * ```json
+{
+  "commit": true,
+  "token": "abc",
+  "tx": "abc",
+  "wallet": "abc"
+}
+ * ```
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.SendTxParams
@@ -1566,7 +4193,14 @@
  */
 
 /**
- * Structure of GraphQLClient.UnsubscribeParams
+ * Structure of GraphQLClient.UnsubscribeParams 
+ *
+ * Checkout the following snippet for the format of UnsubscribeParams:
+ * ```json
+{
+  "topic": "abc"
+}
+ * ```
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.UnsubscribeParams
@@ -1574,7 +4208,15 @@
  */
 
 /**
- * Structure of GraphQLClient.SubscribeParams
+ * Structure of GraphQLClient.SubscribeParams 
+ *
+ * Checkout the following snippet for the format of SubscribeParams:
+ * ```json
+{
+  "filter": "abc",
+  "topic": "abc"
+}
+ * ```
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.SubscribeParams
@@ -1596,7 +4238,7 @@
  *
  * @memberof GraphQLClient
  * @typedef {Object} GraphQLClient.CreateAssetTxInput
- * @prop {...GraphQLClient.CreateAssetTxSendInputData} input.data - should be the CreateAssetTx object in most simple case
+ * @prop {...GraphQLClient.CreateAssetTxInputData} input.data - should be the CreateAssetTx object in most simple case
  * @prop {object} input.wallet - should be a wallet instance constructed using forge-wallet
  * @prop {object} input.signature - the signature of the tx, if this parameter exist, we will not sign the transaction
  */
@@ -1625,7 +4267,7 @@
  *
  * @memberof GraphQLClient
  * @typedef {Object} GraphQLClient.TransferTxInput
- * @prop {...GraphQLClient.TransferTxSendInputData} input.data - should be the TransferTx object in most simple case
+ * @prop {...GraphQLClient.TransferTxInputData} input.data - should be the TransferTx object in most simple case
  * @prop {object} input.wallet - should be a wallet instance constructed using forge-wallet
  * @prop {object} input.signature - the signature of the tx, if this parameter exist, we will not sign the transaction
  */
@@ -1654,7 +4296,7 @@
  *
  * @memberof GraphQLClient
  * @typedef {Object} GraphQLClient.PokeTxInput
- * @prop {...GraphQLClient.PokeTxSendInputData} input.data - should be the PokeTx object in most simple case
+ * @prop {...GraphQLClient.PokeTxInputData} input.data - should be the PokeTx object in most simple case
  * @prop {object} input.wallet - should be a wallet instance constructed using forge-wallet
  * @prop {object} input.signature - the signature of the tx, if this parameter exist, we will not sign the transaction
  */
@@ -1683,7 +4325,7 @@
  *
  * @memberof GraphQLClient
  * @typedef {Object} GraphQLClient.DeployProtocolTxInput
- * @prop {...GraphQLClient.DeployProtocolTxSendInputData} input.data - should be the DeployProtocolTx object in most simple case
+ * @prop {...GraphQLClient.DeployProtocolTxInputData} input.data - should be the DeployProtocolTx object in most simple case
  * @prop {object} input.wallet - should be a wallet instance constructed using forge-wallet
  * @prop {object} input.signature - the signature of the tx, if this parameter exist, we will not sign the transaction
  */
@@ -1712,7 +4354,7 @@
  *
  * @memberof GraphQLClient
  * @typedef {Object} GraphQLClient.UpgradeNodeTxInput
- * @prop {...GraphQLClient.UpgradeNodeTxSendInputData} input.data - should be the UpgradeNodeTx object in most simple case
+ * @prop {...GraphQLClient.UpgradeNodeTxInputData} input.data - should be the UpgradeNodeTx object in most simple case
  * @prop {object} input.wallet - should be a wallet instance constructed using forge-wallet
  * @prop {object} input.signature - the signature of the tx, if this parameter exist, we will not sign the transaction
  */
@@ -1741,7 +4383,7 @@
  *
  * @memberof GraphQLClient
  * @typedef {Object} GraphQLClient.UpdateAssetTxInput
- * @prop {...GraphQLClient.UpdateAssetTxSendInputData} input.data - should be the UpdateAssetTx object in most simple case
+ * @prop {...GraphQLClient.UpdateAssetTxInputData} input.data - should be the UpdateAssetTx object in most simple case
  * @prop {object} input.wallet - should be a wallet instance constructed using forge-wallet
  * @prop {object} input.signature - the signature of the tx, if this parameter exist, we will not sign the transaction
  */
@@ -1770,7 +4412,7 @@
  *
  * @memberof GraphQLClient
  * @typedef {Object} GraphQLClient.AccountMigrateTxInput
- * @prop {...GraphQLClient.AccountMigrateTxSendInputData} input.data - should be the AccountMigrateTx object in most simple case
+ * @prop {...GraphQLClient.AccountMigrateTxInputData} input.data - should be the AccountMigrateTx object in most simple case
  * @prop {object} input.wallet - should be a wallet instance constructed using forge-wallet
  * @prop {object} input.signature - the signature of the tx, if this parameter exist, we will not sign the transaction
  */
@@ -1799,7 +4441,7 @@
  *
  * @memberof GraphQLClient
  * @typedef {Object} GraphQLClient.ConsumeAssetTxInput
- * @prop {...GraphQLClient.ConsumeAssetTxSendInputData} input.data - should be the ConsumeAssetTx object in most simple case
+ * @prop {...GraphQLClient.ConsumeAssetTxInputData} input.data - should be the ConsumeAssetTx object in most simple case
  * @prop {object} input.wallet - should be a wallet instance constructed using forge-wallet
  * @prop {object} input.signature - the signature of the tx, if this parameter exist, we will not sign the transaction
  */
@@ -1828,7 +4470,7 @@
  *
  * @memberof GraphQLClient
  * @typedef {Object} GraphQLClient.DeclareTxInput
- * @prop {...GraphQLClient.DeclareTxSendInputData} input.data - should be the DeclareTx object in most simple case
+ * @prop {...GraphQLClient.DeclareTxInputData} input.data - should be the DeclareTx object in most simple case
  * @prop {object} input.wallet - should be a wallet instance constructed using forge-wallet
  * @prop {object} input.signature - the signature of the tx, if this parameter exist, we will not sign the transaction
  */
@@ -1857,7 +4499,7 @@
  *
  * @memberof GraphQLClient
  * @typedef {Object} GraphQLClient.ExchangeTxInput
- * @prop {...GraphQLClient.ExchangeTxSendInputData} input.data - should be the ExchangeTx object in most simple case
+ * @prop {...GraphQLClient.ExchangeTxInputData} input.data - should be the ExchangeTx object in most simple case
  * @prop {object} input.wallet - should be a wallet instance constructed using forge-wallet
  * @prop {object} input.signature - the signature of the tx, if this parameter exist, we will not sign the transaction
  */
@@ -1886,7 +4528,7 @@
  *
  * @memberof GraphQLClient
  * @typedef {Object} GraphQLClient.DeclareFileTxInput
- * @prop {...GraphQLClient.DeclareFileTxSendInputData} input.data - should be the DeclareFileTx object in most simple case
+ * @prop {...GraphQLClient.DeclareFileTxInputData} input.data - should be the DeclareFileTx object in most simple case
  * @prop {object} input.wallet - should be a wallet instance constructed using forge-wallet
  * @prop {object} input.signature - the signature of the tx, if this parameter exist, we will not sign the transaction
  */
@@ -1915,7 +4557,7 @@
  *
  * @memberof GraphQLClient
  * @typedef {Object} GraphQLClient.StakeTxInput
- * @prop {...GraphQLClient.StakeTxSendInputData} input.data - should be the StakeTx object in most simple case
+ * @prop {...GraphQLClient.StakeTxInputData} input.data - should be the StakeTx object in most simple case
  * @prop {object} input.wallet - should be a wallet instance constructed using forge-wallet
  * @prop {object} input.signature - the signature of the tx, if this parameter exist, we will not sign the transaction
  */
@@ -2075,378 +4717,7 @@
  */
 
 /**
- * Checkout following query for result format reference:
- *
- * ```graphql
- * {
- *   getAccountState(address: "abc", height: "abc", keys: ["abc"]) {
- *     code
- *     state {
- *       address
- *       balance
- *       issuer
- *       migratedFrom
- *       migratedTo
- *       moniker
- *       nonce
- *       numAssets
- *       numTxs
- *       pk
- *       context {
- *         genesisTime
- *         renaissanceTime
- *         genesisTx {
- *           code
- *           hash
- *           height
- *           index
- *           time
- *           accountMigrate {
- *             address
- *           }
- *           createAsset {
- *             asset
- *           }
- *           tags {
- *             key
- *             value
- *           }
- *           tx {
- *             chainId
- *             from
- *             nonce
- *             pk
- *             signature
- *             signatures {
- *               pk
- *               signature
- *               signer
- *               data {
- *                 typeUrl
- *                 value
- *               }
- *             }
- *             itx {
- *               __typename
- *               ... on UpdateAssetTx {
- *                 address
- *                 moniker
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *               }
- *               ... on TransferTx {
- *                 assets
- *                 to
- *                 value
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *               }
- *               ... on SysUpgradeTx {
- *                 gracePeriod
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *                 task {
- *                   actions
- *                   dataHash
- *                   type
- *                 }
- *               }
- *               ... on StakeTx {
- *                 message
- *                 to
- *                 value
- *                 data {
- *                   type
- *                 }
- *               }
- *               ... on ExchangeTx {
- *                 expiredAt
- *                 to
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *                 receiver {
- *                   assets
- *                   value
- *                 }
- *                 sender {
- *                   assets
- *                   value
- *                 }
- *               }
- *               ... on DeclareFileTx {
- *                 hash
- *               }
- *               ... on DeclareTx {
- *                 issuer
- *                 moniker
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *               }
- *               ... on CreateAssetTx {
- *                 address
- *                 moniker
- *                 parent
- *                 readonly
- *                 transferrable
- *                 ttl
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *               }
- *               ... on ConsumeAssetTx {
- *                 address
- *                 issuer
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *               }
- *               ... on ConsensusUpgradeTx {
- *                 maxBytes
- *                 maxCandidates
- *                 maxGas
- *                 maxValidators
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *                 validators {
- *                   address
- *                   power
- *                 }
- *               }
- *               ... on PokeTx {
- *                 address
- *                 date
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *               }
- *               ... on AccountMigrateTx {
- *                 address
- *                 pk
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *                 type {
- *                   address
- *                   hash
- *                   pk
- *                   role
- *                 }
- *               }
- *             }
- *           }
- *         }
- *         renaissanceTx {
- *           code
- *           hash
- *           height
- *           index
- *           time
- *           accountMigrate {
- *             address
- *           }
- *           createAsset {
- *             asset
- *           }
- *           tags {
- *             key
- *             value
- *           }
- *           tx {
- *             chainId
- *             from
- *             nonce
- *             pk
- *             signature
- *             signatures {
- *               pk
- *               signature
- *               signer
- *               data {
- *                 typeUrl
- *                 value
- *               }
- *             }
- *             itx {
- *               __typename
- *               ... on UpdateAssetTx {
- *                 address
- *                 moniker
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *               }
- *               ... on TransferTx {
- *                 assets
- *                 to
- *                 value
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *               }
- *               ... on SysUpgradeTx {
- *                 gracePeriod
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *                 task {
- *                   actions
- *                   dataHash
- *                   type
- *                 }
- *               }
- *               ... on StakeTx {
- *                 message
- *                 to
- *                 value
- *                 data {
- *                   type
- *                 }
- *               }
- *               ... on ExchangeTx {
- *                 expiredAt
- *                 to
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *                 receiver {
- *                   assets
- *                   value
- *                 }
- *                 sender {
- *                   assets
- *                   value
- *                 }
- *               }
- *               ... on DeclareFileTx {
- *                 hash
- *               }
- *               ... on DeclareTx {
- *                 issuer
- *                 moniker
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *               }
- *               ... on CreateAssetTx {
- *                 address
- *                 moniker
- *                 parent
- *                 readonly
- *                 transferrable
- *                 ttl
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *               }
- *               ... on ConsumeAssetTx {
- *                 address
- *                 issuer
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *               }
- *               ... on ConsensusUpgradeTx {
- *                 maxBytes
- *                 maxCandidates
- *                 maxGas
- *                 maxValidators
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *                 validators {
- *                   address
- *                   power
- *                 }
- *               }
- *               ... on PokeTx {
- *                 address
- *                 date
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *               }
- *               ... on AccountMigrateTx {
- *                 address
- *                 pk
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *                 type {
- *                   address
- *                   hash
- *                   pk
- *                   role
- *                 }
- *               }
- *             }
- *           }
- *         }
- *       }
- *       data {
- *         typeUrl
- *         value
- *       }
- *       poke {
- *         amount
- *         dailyLimit
- *         leftover
- *       }
- *       stake {
- *         totalReceivedStakes
- *         totalStakes
- *         totalUnstakes
- *         recentReceivedStakes {
- *           circular
- *           fifo
- *           items
- *           maxItems
- *           typeUrl
- *         }
- *         recentStakes {
- *           circular
- *           fifo
- *           items
- *           maxItems
- *           typeUrl
- *         }
- *       }
- *       type {
- *         address
- *         hash
- *         pk
- *         role
- *       }
- *     }
- *   }
- * }
- *
- * ```
+ * getAccountState
  *
  * @name GraphQLClient#getAccountState
  * @param {...GraphQLClient.GetAccountStateParams} params
@@ -2456,365 +4727,7 @@
  */
 
 /**
- * Checkout following query for result format reference:
- *
- * ```graphql
- * {
- *   getAssetState(address: "abc", height: "abc", keys: ["abc"]) {
- *     code
- *     state {
- *       address
- *       consumedTime
- *       issuer
- *       moniker
- *       owner
- *       readonly
- *       transferrable
- *       ttl
- *       context {
- *         genesisTime
- *         renaissanceTime
- *         genesisTx {
- *           code
- *           hash
- *           height
- *           index
- *           time
- *           accountMigrate {
- *             address
- *           }
- *           createAsset {
- *             asset
- *           }
- *           tags {
- *             key
- *             value
- *           }
- *           tx {
- *             chainId
- *             from
- *             nonce
- *             pk
- *             signature
- *             signatures {
- *               pk
- *               signature
- *               signer
- *               data {
- *                 typeUrl
- *                 value
- *               }
- *             }
- *             itx {
- *               __typename
- *               ... on UpdateAssetTx {
- *                 address
- *                 moniker
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *               }
- *               ... on TransferTx {
- *                 assets
- *                 to
- *                 value
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *               }
- *               ... on SysUpgradeTx {
- *                 gracePeriod
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *                 task {
- *                   actions
- *                   dataHash
- *                   type
- *                 }
- *               }
- *               ... on StakeTx {
- *                 message
- *                 to
- *                 value
- *                 data {
- *                   type
- *                 }
- *               }
- *               ... on ExchangeTx {
- *                 expiredAt
- *                 to
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *                 receiver {
- *                   assets
- *                   value
- *                 }
- *                 sender {
- *                   assets
- *                   value
- *                 }
- *               }
- *               ... on DeclareFileTx {
- *                 hash
- *               }
- *               ... on DeclareTx {
- *                 issuer
- *                 moniker
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *               }
- *               ... on CreateAssetTx {
- *                 address
- *                 moniker
- *                 parent
- *                 readonly
- *                 transferrable
- *                 ttl
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *               }
- *               ... on ConsumeAssetTx {
- *                 address
- *                 issuer
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *               }
- *               ... on ConsensusUpgradeTx {
- *                 maxBytes
- *                 maxCandidates
- *                 maxGas
- *                 maxValidators
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *                 validators {
- *                   address
- *                   power
- *                 }
- *               }
- *               ... on PokeTx {
- *                 address
- *                 date
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *               }
- *               ... on AccountMigrateTx {
- *                 address
- *                 pk
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *                 type {
- *                   address
- *                   hash
- *                   pk
- *                   role
- *                 }
- *               }
- *             }
- *           }
- *         }
- *         renaissanceTx {
- *           code
- *           hash
- *           height
- *           index
- *           time
- *           accountMigrate {
- *             address
- *           }
- *           createAsset {
- *             asset
- *           }
- *           tags {
- *             key
- *             value
- *           }
- *           tx {
- *             chainId
- *             from
- *             nonce
- *             pk
- *             signature
- *             signatures {
- *               pk
- *               signature
- *               signer
- *               data {
- *                 typeUrl
- *                 value
- *               }
- *             }
- *             itx {
- *               __typename
- *               ... on UpdateAssetTx {
- *                 address
- *                 moniker
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *               }
- *               ... on TransferTx {
- *                 assets
- *                 to
- *                 value
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *               }
- *               ... on SysUpgradeTx {
- *                 gracePeriod
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *                 task {
- *                   actions
- *                   dataHash
- *                   type
- *                 }
- *               }
- *               ... on StakeTx {
- *                 message
- *                 to
- *                 value
- *                 data {
- *                   type
- *                 }
- *               }
- *               ... on ExchangeTx {
- *                 expiredAt
- *                 to
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *                 receiver {
- *                   assets
- *                   value
- *                 }
- *                 sender {
- *                   assets
- *                   value
- *                 }
- *               }
- *               ... on DeclareFileTx {
- *                 hash
- *               }
- *               ... on DeclareTx {
- *                 issuer
- *                 moniker
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *               }
- *               ... on CreateAssetTx {
- *                 address
- *                 moniker
- *                 parent
- *                 readonly
- *                 transferrable
- *                 ttl
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *               }
- *               ... on ConsumeAssetTx {
- *                 address
- *                 issuer
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *               }
- *               ... on ConsensusUpgradeTx {
- *                 maxBytes
- *                 maxCandidates
- *                 maxGas
- *                 maxValidators
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *                 validators {
- *                   address
- *                   power
- *                 }
- *               }
- *               ... on PokeTx {
- *                 address
- *                 date
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *               }
- *               ... on AccountMigrateTx {
- *                 address
- *                 pk
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *                 type {
- *                   address
- *                   hash
- *                   pk
- *                   role
- *                 }
- *               }
- *             }
- *           }
- *         }
- *       }
- *       data {
- *         typeUrl
- *         value
- *       }
- *       stake {
- *         totalReceivedStakes
- *         totalStakes
- *         totalUnstakes
- *         recentReceivedStakes {
- *           circular
- *           fifo
- *           items
- *           maxItems
- *           typeUrl
- *         }
- *         recentStakes {
- *           circular
- *           fifo
- *           items
- *           maxItems
- *           typeUrl
- *         }
- *       }
- *     }
- *   }
- * }
- *
- * ```
+ * getAssetState
  *
  * @name GraphQLClient#getAssetState
  * @param {...GraphQLClient.GetAssetStateParams} params
@@ -2824,356 +4737,7 @@
  */
 
 /**
- * Checkout following query for result format reference:
- *
- * ```graphql
- * {
- *   getBlock(height: "abc") {
- *     code
- *     block {
- *       appHash
- *       consensusHash
- *       dataHash
- *       evidenceHash
- *       height
- *       invalidTxsHashes
- *       lastCommitHash
- *       lastResultsHash
- *       nextValidatorsHash
- *       numTxs
- *       proposer
- *       time
- *       totalTxs
- *       txsHashes
- *       validatorsHash
- *       invalidTxs {
- *         code
- *         hash
- *         height
- *         index
- *         time
- *         accountMigrate {
- *           address
- *         }
- *         createAsset {
- *           asset
- *         }
- *         tags {
- *           key
- *           value
- *         }
- *         tx {
- *           chainId
- *           from
- *           nonce
- *           pk
- *           signature
- *           signatures {
- *             pk
- *             signature
- *             signer
- *             data {
- *               typeUrl
- *               value
- *             }
- *           }
- *           itx {
- *             __typename
- *             ... on UpdateAssetTx {
- *               address
- *               moniker
- *               data {
- *                 typeUrl
- *                 value
- *               }
- *             }
- *             ... on TransferTx {
- *               assets
- *               to
- *               value
- *               data {
- *                 typeUrl
- *                 value
- *               }
- *             }
- *             ... on SysUpgradeTx {
- *               gracePeriod
- *               data {
- *                 typeUrl
- *                 value
- *               }
- *               task {
- *                 actions
- *                 dataHash
- *                 type
- *               }
- *             }
- *             ... on StakeTx {
- *               message
- *               to
- *               value
- *               data {
- *                 type
- *               }
- *             }
- *             ... on ExchangeTx {
- *               expiredAt
- *               to
- *               data {
- *                 typeUrl
- *                 value
- *               }
- *               receiver {
- *                 assets
- *                 value
- *               }
- *               sender {
- *                 assets
- *                 value
- *               }
- *             }
- *             ... on DeclareFileTx {
- *               hash
- *             }
- *             ... on DeclareTx {
- *               issuer
- *               moniker
- *               data {
- *                 typeUrl
- *                 value
- *               }
- *             }
- *             ... on CreateAssetTx {
- *               address
- *               moniker
- *               parent
- *               readonly
- *               transferrable
- *               ttl
- *               data {
- *                 typeUrl
- *                 value
- *               }
- *             }
- *             ... on ConsumeAssetTx {
- *               address
- *               issuer
- *               data {
- *                 typeUrl
- *                 value
- *               }
- *             }
- *             ... on ConsensusUpgradeTx {
- *               maxBytes
- *               maxCandidates
- *               maxGas
- *               maxValidators
- *               data {
- *                 typeUrl
- *                 value
- *               }
- *               validators {
- *                 address
- *                 power
- *               }
- *             }
- *             ... on PokeTx {
- *               address
- *               date
- *               data {
- *                 typeUrl
- *                 value
- *               }
- *             }
- *             ... on AccountMigrateTx {
- *               address
- *               pk
- *               data {
- *                 typeUrl
- *                 value
- *               }
- *               type {
- *                 address
- *                 hash
- *                 pk
- *                 role
- *               }
- *             }
- *           }
- *         }
- *       }
- *       lastBlockId {
- *         hash
- *         partsHeader {
- *           hash
- *           total
- *         }
- *       }
- *       txs {
- *         code
- *         hash
- *         height
- *         index
- *         time
- *         accountMigrate {
- *           address
- *         }
- *         createAsset {
- *           asset
- *         }
- *         tags {
- *           key
- *           value
- *         }
- *         tx {
- *           chainId
- *           from
- *           nonce
- *           pk
- *           signature
- *           signatures {
- *             pk
- *             signature
- *             signer
- *             data {
- *               typeUrl
- *               value
- *             }
- *           }
- *           itx {
- *             __typename
- *             ... on UpdateAssetTx {
- *               address
- *               moniker
- *               data {
- *                 typeUrl
- *                 value
- *               }
- *             }
- *             ... on TransferTx {
- *               assets
- *               to
- *               value
- *               data {
- *                 typeUrl
- *                 value
- *               }
- *             }
- *             ... on SysUpgradeTx {
- *               gracePeriod
- *               data {
- *                 typeUrl
- *                 value
- *               }
- *               task {
- *                 actions
- *                 dataHash
- *                 type
- *               }
- *             }
- *             ... on StakeTx {
- *               message
- *               to
- *               value
- *               data {
- *                 type
- *               }
- *             }
- *             ... on ExchangeTx {
- *               expiredAt
- *               to
- *               data {
- *                 typeUrl
- *                 value
- *               }
- *               receiver {
- *                 assets
- *                 value
- *               }
- *               sender {
- *                 assets
- *                 value
- *               }
- *             }
- *             ... on DeclareFileTx {
- *               hash
- *             }
- *             ... on DeclareTx {
- *               issuer
- *               moniker
- *               data {
- *                 typeUrl
- *                 value
- *               }
- *             }
- *             ... on CreateAssetTx {
- *               address
- *               moniker
- *               parent
- *               readonly
- *               transferrable
- *               ttl
- *               data {
- *                 typeUrl
- *                 value
- *               }
- *             }
- *             ... on ConsumeAssetTx {
- *               address
- *               issuer
- *               data {
- *                 typeUrl
- *                 value
- *               }
- *             }
- *             ... on ConsensusUpgradeTx {
- *               maxBytes
- *               maxCandidates
- *               maxGas
- *               maxValidators
- *               data {
- *                 typeUrl
- *                 value
- *               }
- *               validators {
- *                 address
- *                 power
- *               }
- *             }
- *             ... on PokeTx {
- *               address
- *               date
- *               data {
- *                 typeUrl
- *                 value
- *               }
- *             }
- *             ... on AccountMigrateTx {
- *               address
- *               pk
- *               data {
- *                 typeUrl
- *                 value
- *               }
- *               type {
- *                 address
- *                 hash
- *                 pk
- *                 role
- *               }
- *             }
- *           }
- *         }
- *       }
- *       version {
- *         app
- *         block
- *       }
- *     }
- *   }
- * }
- *
- * ```
+ * getBlock
  *
  * @name GraphQLClient#getBlock
  * @param {...GraphQLClient.GetBlockParams} params
@@ -3183,49 +4747,7 @@
  */
 
 /**
- * Checkout following query for result format reference:
- *
- * ```graphql
- * {
- *   getBlocks(emptyExcluded: true) {
- *     code
- *     blocks {
- *       appHash
- *       consensusHash
- *       dataHash
- *       evidenceHash
- *       height
- *       invalidTxsHashes
- *       lastCommitHash
- *       lastResultsHash
- *       nextValidatorsHash
- *       numTxs
- *       proposer
- *       time
- *       totalTxs
- *       txsHashes
- *       validatorsHash
- *       lastBlockId {
- *         hash
- *         partsHeader {
- *           hash
- *           total
- *         }
- *       }
- *       version {
- *         app
- *         block
- *       }
- *     }
- *     page {
- *       cursor
- *       next
- *       total
- *     }
- *   }
- * }
- *
- * ```
+ * getBlocks
  *
  * @name GraphQLClient#getBlocks
  * @param {...GraphQLClient.GetBlocksParams} params
@@ -3235,36 +4757,7 @@
  */
 
 /**
- * Checkout following query for result format reference:
- *
- * ```graphql
- * {
- *   getChainInfo {
- *     code
- *     info {
- *       address
- *       appHash
- *       blockHash
- *       blockHeight
- *       blockTime
- *       consensusVersion
- *       id
- *       moniker
- *       network
- *       supportedTxs
- *       synced
- *       totalTxs
- *       version
- *       votingPower
- *       forgeAppsVersion {
- *         key
- *         value
- *       }
- *     }
- *   }
- * }
- *
- * ```
+ * getChainInfo
  *
  * @name GraphQLClient#getChainInfo
  * @function
@@ -3273,17 +4766,7 @@
  */
 
 /**
- * Checkout following query for result format reference:
- *
- * ```graphql
- * {
- *   getConfig {
- *     code
- *     config
- *   }
- * }
- *
- * ```
+ * getConfig
  *
  * @name GraphQLClient#getConfig
  * @function
@@ -3292,142 +4775,7 @@
  */
 
 /**
- * Checkout following query for result format reference:
- *
- * ```graphql
- * {
- *   getForgeState(height: "abc", keys: ["abc"]) {
- *     code
- *     state {
- *       address
- *       forgeAppHash
- *       version
- *       consensus {
- *         maxBytes
- *         maxCandidates
- *         maxGas
- *         maxValidators
- *         paramChanged
- *         pubKeyTypes
- *         validatorChanged
- *         validators {
- *           address
- *           power
- *         }
- *       }
- *       data {
- *         typeUrl
- *         value
- *       }
- *       pokeConfig {
- *         address
- *         amount
- *         balance
- *         dailyLimit
- *       }
- *       protocols {
- *         address
- *         name
- *       }
- *       stakeConfig {
- *         timeoutGeneral
- *         timeoutStakeForNode
- *       }
- *       stakeSummary {
- *         key
- *         value {
- *           totalStakes
- *           totalUnstakes
- *           context {
- *             genesisTime
- *             renaissanceTime
- *             genesisTx {
- *               code
- *               hash
- *               height
- *               index
- *               time
- *               accountMigrate {
- *                 address
- *               }
- *               createAsset {
- *                 asset
- *               }
- *               tags {
- *                 key
- *                 value
- *               }
- *               tx {
- *                 chainId
- *                 from
- *                 nonce
- *                 pk
- *                 signature
- *               }
- *             }
- *             renaissanceTx {
- *               code
- *               hash
- *               height
- *               index
- *               time
- *               accountMigrate {
- *                 address
- *               }
- *               createAsset {
- *                 asset
- *               }
- *               tags {
- *                 key
- *                 value
- *               }
- *               tx {
- *                 chainId
- *                 from
- *                 nonce
- *                 pk
- *                 signature
- *               }
- *             }
- *           }
- *         }
- *       }
- *       tasks {
- *         key
- *         value {
- *           item {
- *             actions
- *             dataHash
- *             type
- *           }
- *         }
- *       }
- *       token {
- *         decimal
- *         description
- *         icon
- *         inflationRate
- *         initialSupply
- *         name
- *         symbol
- *         totalSupply
- *         unit
- *       }
- *       txConfig {
- *         maxAssetSize
- *         maxListSize
- *         maxMultisig
- *         minimumStake
- *       }
- *       upgradeInfo {
- *         height
- *         version
- *       }
- *     }
- *   }
- * }
- *
- * ```
+ * getForgeState
  *
  * @name GraphQLClient#getForgeState
  * @param {...GraphQLClient.GetForgeStateParams} params
@@ -3437,38 +4785,7 @@
  */
 
 /**
- * Checkout following query for result format reference:
- *
- * ```graphql
- * {
- *   getForgeStats {
- *     code
- *     forgeStats {
- *       avgBlockTime
- *       avgTps
- *       maxTps
- *       numAccountMigrateTxs
- *       numBlocks
- *       numConsensusUpgradeTxs
- *       numConsumeAssetTxs
- *       numCreateAssetTxs
- *       numDeclareFileTxs
- *       numDeclareTxs
- *       numExchangeTxs
- *       numPokeTxs
- *       numStakes
- *       numStakeTxs
- *       numSysUpgradeTxs
- *       numTransferTxs
- *       numTxs
- *       numUpdateAssetTxs
- *       numValidators
- *       tps
- *     }
- *   }
- * }
- *
- * ```
+ * getForgeStats
  *
  * @name GraphQLClient#getForgeStats
  * @function
@@ -3477,38 +4794,7 @@
  */
 
 /**
- * Checkout following query for result format reference:
- *
- * ```graphql
- * {
- *   getForgeStatsByDay(endDate: "abc", startDate: "abc") {
- *     code
- *     forgeStats {
- *       avgBlockTime
- *       avgTps
- *       maxTps
- *       numAccountMigrateTxs
- *       numBlocks
- *       numConsensusUpgradeTxs
- *       numConsumeAssetTxs
- *       numCreateAssetTxs
- *       numDeclareFileTxs
- *       numDeclareTxs
- *       numExchangeTxs
- *       numPokeTxs
- *       numStakes
- *       numStakeTxs
- *       numSysUpgradeTxs
- *       numTransferTxs
- *       numTxs
- *       numUpdateAssetTxs
- *       numValidators
- *       tps
- *     }
- *   }
- * }
- *
- * ```
+ * getForgeStatsByDay
  *
  * @name GraphQLClient#getForgeStatsByDay
  * @param {...GraphQLClient.GetForgeStatsByDayParams} params
@@ -3518,38 +4804,7 @@
  */
 
 /**
- * Checkout following query for result format reference:
- *
- * ```graphql
- * {
- *   getForgeStatsByHour(date: "abc") {
- *     code
- *     forgeStats {
- *       avgBlockTime
- *       avgTps
- *       maxTps
- *       numAccountMigrateTxs
- *       numBlocks
- *       numConsensusUpgradeTxs
- *       numConsumeAssetTxs
- *       numCreateAssetTxs
- *       numDeclareFileTxs
- *       numDeclareTxs
- *       numExchangeTxs
- *       numPokeTxs
- *       numStakes
- *       numStakeTxs
- *       numSysUpgradeTxs
- *       numTransferTxs
- *       numTxs
- *       numUpdateAssetTxs
- *       numValidators
- *       tps
- *     }
- *   }
- * }
- *
- * ```
+ * getForgeStatsByHour
  *
  * @name GraphQLClient#getForgeStatsByHour
  * @param {...GraphQLClient.GetForgeStatsByHourParams} params
@@ -3559,45 +4814,7 @@
  */
 
 /**
- * Checkout following query for result format reference:
- *
- * ```graphql
- * {
- *   getHealthStatus {
- *     code
- *     healthStatus {
- *       consensus {
- *         blockHeight
- *         health
- *         synced
- *       }
- *       forge {
- *         abiServer
- *         forgeWeb
- *         health
- *         abciServer {
- *           abciConsensus
- *           abciInfo
- *         }
- *       }
- *       network {
- *         health
- *         numPeers
- *       }
- *       storage {
- *         health
- *         indexerServer
- *         stateDb
- *         diskSpace {
- *           forgeUsage
- *           total
- *         }
- *       }
- *     }
- *   }
- * }
- *
- * ```
+ * getHealthStatus
  *
  * @name GraphQLClient#getHealthStatus
  * @function
@@ -3606,34 +4823,7 @@
  */
 
 /**
- * Checkout following query for result format reference:
- *
- * ```graphql
- * {
- *   getNetInfo {
- *     code
- *     netInfo {
- *       listeners
- *       listening
- *       nPeers
- *       peers {
- *         consensusVersion
- *         id
- *         ip
- *         moniker
- *         network
- *         geoInfo {
- *           city
- *           country
- *           latitude
- *           longitude
- *         }
- *       }
- *     }
- *   }
- * }
- *
- * ```
+ * getNetInfo
  *
  * @name GraphQLClient#getNetInfo
  * @function
@@ -3642,44 +4832,7 @@
  */
 
 /**
- * Checkout following query for result format reference:
- *
- * ```graphql
- * {
- *   getNodeInfo {
- *     code
- *     info {
- *       address
- *       appHash
- *       blockHash
- *       blockHeight
- *       blockTime
- *       consensusVersion
- *       id
- *       ip
- *       moniker
- *       network
- *       p2pAddress
- *       supportedTxs
- *       synced
- *       totalTxs
- *       version
- *       votingPower
- *       forgeAppsVersion {
- *         key
- *         value
- *       }
- *       geoInfo {
- *         city
- *         country
- *         latitude
- *         longitude
- *       }
- *     }
- *   }
- * }
- *
- * ```
+ * getNodeInfo
  *
  * @name GraphQLClient#getNodeInfo
  * @function
@@ -3688,347 +4841,7 @@
  */
 
 /**
- * Checkout following query for result format reference:
- *
- * ```graphql
- * {
- *   getProtocolState(address: "abc", height: "abc", keys: ["abc"]) {
- *     code
- *     state {
- *       address
- *       description
- *       migratedFrom
- *       migratedTo
- *       name
- *       rootHash
- *       status
- *       txHash
- *       version
- *       context {
- *         genesisTime
- *         renaissanceTime
- *         genesisTx {
- *           code
- *           hash
- *           height
- *           index
- *           time
- *           accountMigrate {
- *             address
- *           }
- *           createAsset {
- *             asset
- *           }
- *           tags {
- *             key
- *             value
- *           }
- *           tx {
- *             chainId
- *             from
- *             nonce
- *             pk
- *             signature
- *             signatures {
- *               pk
- *               signature
- *               signer
- *               data {
- *                 typeUrl
- *                 value
- *               }
- *             }
- *             itx {
- *               __typename
- *               ... on UpdateAssetTx {
- *                 address
- *                 moniker
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *               }
- *               ... on TransferTx {
- *                 assets
- *                 to
- *                 value
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *               }
- *               ... on SysUpgradeTx {
- *                 gracePeriod
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *                 task {
- *                   actions
- *                   dataHash
- *                   type
- *                 }
- *               }
- *               ... on StakeTx {
- *                 message
- *                 to
- *                 value
- *                 data {
- *                   type
- *                 }
- *               }
- *               ... on ExchangeTx {
- *                 expiredAt
- *                 to
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *                 receiver {
- *                   assets
- *                   value
- *                 }
- *                 sender {
- *                   assets
- *                   value
- *                 }
- *               }
- *               ... on DeclareFileTx {
- *                 hash
- *               }
- *               ... on DeclareTx {
- *                 issuer
- *                 moniker
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *               }
- *               ... on CreateAssetTx {
- *                 address
- *                 moniker
- *                 parent
- *                 readonly
- *                 transferrable
- *                 ttl
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *               }
- *               ... on ConsumeAssetTx {
- *                 address
- *                 issuer
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *               }
- *               ... on ConsensusUpgradeTx {
- *                 maxBytes
- *                 maxCandidates
- *                 maxGas
- *                 maxValidators
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *                 validators {
- *                   address
- *                   power
- *                 }
- *               }
- *               ... on PokeTx {
- *                 address
- *                 date
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *               }
- *               ... on AccountMigrateTx {
- *                 address
- *                 pk
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *                 type {
- *                   address
- *                   hash
- *                   pk
- *                   role
- *                 }
- *               }
- *             }
- *           }
- *         }
- *         renaissanceTx {
- *           code
- *           hash
- *           height
- *           index
- *           time
- *           accountMigrate {
- *             address
- *           }
- *           createAsset {
- *             asset
- *           }
- *           tags {
- *             key
- *             value
- *           }
- *           tx {
- *             chainId
- *             from
- *             nonce
- *             pk
- *             signature
- *             signatures {
- *               pk
- *               signature
- *               signer
- *               data {
- *                 typeUrl
- *                 value
- *               }
- *             }
- *             itx {
- *               __typename
- *               ... on UpdateAssetTx {
- *                 address
- *                 moniker
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *               }
- *               ... on TransferTx {
- *                 assets
- *                 to
- *                 value
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *               }
- *               ... on SysUpgradeTx {
- *                 gracePeriod
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *                 task {
- *                   actions
- *                   dataHash
- *                   type
- *                 }
- *               }
- *               ... on StakeTx {
- *                 message
- *                 to
- *                 value
- *                 data {
- *                   type
- *                 }
- *               }
- *               ... on ExchangeTx {
- *                 expiredAt
- *                 to
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *                 receiver {
- *                   assets
- *                   value
- *                 }
- *                 sender {
- *                   assets
- *                   value
- *                 }
- *               }
- *               ... on DeclareFileTx {
- *                 hash
- *               }
- *               ... on DeclareTx {
- *                 issuer
- *                 moniker
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *               }
- *               ... on CreateAssetTx {
- *                 address
- *                 moniker
- *                 parent
- *                 readonly
- *                 transferrable
- *                 ttl
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *               }
- *               ... on ConsumeAssetTx {
- *                 address
- *                 issuer
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *               }
- *               ... on ConsensusUpgradeTx {
- *                 maxBytes
- *                 maxCandidates
- *                 maxGas
- *                 maxValidators
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *                 validators {
- *                   address
- *                   power
- *                 }
- *               }
- *               ... on PokeTx {
- *                 address
- *                 date
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *               }
- *               ... on AccountMigrateTx {
- *                 address
- *                 pk
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *                 type {
- *                   address
- *                   hash
- *                   pk
- *                   role
- *                 }
- *               }
- *             }
- *           }
- *         }
- *       }
- *       data {
- *         typeUrl
- *         value
- *       }
- *     }
- *   }
- * }
- *
- * ```
+ * getProtocolState
  *
  * @name GraphQLClient#getProtocolState
  * @param {...GraphQLClient.GetProtocolStateParams} params
@@ -4038,17 +4851,7 @@
  */
 
 /**
- * Checkout following query for result format reference:
- *
- * ```graphql
- * {
- *   getSimulatorStatus {
- *     code
- *     result
- *   }
- * }
- *
- * ```
+ * getSimulatorStatus
  *
  * @name GraphQLClient#getSimulatorStatus
  * @function
@@ -4057,343 +4860,7 @@
  */
 
 /**
- * Checkout following query for result format reference:
- *
- * ```graphql
- * {
- *   getStakeState(address: "abc", height: "abc", keys: ["abc"]) {
- *     code
- *     state {
- *       address
- *       balance
- *       from
- *       message
- *       to
- *       context {
- *         genesisTime
- *         renaissanceTime
- *         genesisTx {
- *           code
- *           hash
- *           height
- *           index
- *           time
- *           accountMigrate {
- *             address
- *           }
- *           createAsset {
- *             asset
- *           }
- *           tags {
- *             key
- *             value
- *           }
- *           tx {
- *             chainId
- *             from
- *             nonce
- *             pk
- *             signature
- *             signatures {
- *               pk
- *               signature
- *               signer
- *               data {
- *                 typeUrl
- *                 value
- *               }
- *             }
- *             itx {
- *               __typename
- *               ... on UpdateAssetTx {
- *                 address
- *                 moniker
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *               }
- *               ... on TransferTx {
- *                 assets
- *                 to
- *                 value
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *               }
- *               ... on SysUpgradeTx {
- *                 gracePeriod
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *                 task {
- *                   actions
- *                   dataHash
- *                   type
- *                 }
- *               }
- *               ... on StakeTx {
- *                 message
- *                 to
- *                 value
- *                 data {
- *                   type
- *                 }
- *               }
- *               ... on ExchangeTx {
- *                 expiredAt
- *                 to
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *                 receiver {
- *                   assets
- *                   value
- *                 }
- *                 sender {
- *                   assets
- *                   value
- *                 }
- *               }
- *               ... on DeclareFileTx {
- *                 hash
- *               }
- *               ... on DeclareTx {
- *                 issuer
- *                 moniker
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *               }
- *               ... on CreateAssetTx {
- *                 address
- *                 moniker
- *                 parent
- *                 readonly
- *                 transferrable
- *                 ttl
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *               }
- *               ... on ConsumeAssetTx {
- *                 address
- *                 issuer
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *               }
- *               ... on ConsensusUpgradeTx {
- *                 maxBytes
- *                 maxCandidates
- *                 maxGas
- *                 maxValidators
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *                 validators {
- *                   address
- *                   power
- *                 }
- *               }
- *               ... on PokeTx {
- *                 address
- *                 date
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *               }
- *               ... on AccountMigrateTx {
- *                 address
- *                 pk
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *                 type {
- *                   address
- *                   hash
- *                   pk
- *                   role
- *                 }
- *               }
- *             }
- *           }
- *         }
- *         renaissanceTx {
- *           code
- *           hash
- *           height
- *           index
- *           time
- *           accountMigrate {
- *             address
- *           }
- *           createAsset {
- *             asset
- *           }
- *           tags {
- *             key
- *             value
- *           }
- *           tx {
- *             chainId
- *             from
- *             nonce
- *             pk
- *             signature
- *             signatures {
- *               pk
- *               signature
- *               signer
- *               data {
- *                 typeUrl
- *                 value
- *               }
- *             }
- *             itx {
- *               __typename
- *               ... on UpdateAssetTx {
- *                 address
- *                 moniker
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *               }
- *               ... on TransferTx {
- *                 assets
- *                 to
- *                 value
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *               }
- *               ... on SysUpgradeTx {
- *                 gracePeriod
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *                 task {
- *                   actions
- *                   dataHash
- *                   type
- *                 }
- *               }
- *               ... on StakeTx {
- *                 message
- *                 to
- *                 value
- *                 data {
- *                   type
- *                 }
- *               }
- *               ... on ExchangeTx {
- *                 expiredAt
- *                 to
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *                 receiver {
- *                   assets
- *                   value
- *                 }
- *                 sender {
- *                   assets
- *                   value
- *                 }
- *               }
- *               ... on DeclareFileTx {
- *                 hash
- *               }
- *               ... on DeclareTx {
- *                 issuer
- *                 moniker
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *               }
- *               ... on CreateAssetTx {
- *                 address
- *                 moniker
- *                 parent
- *                 readonly
- *                 transferrable
- *                 ttl
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *               }
- *               ... on ConsumeAssetTx {
- *                 address
- *                 issuer
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *               }
- *               ... on ConsensusUpgradeTx {
- *                 maxBytes
- *                 maxCandidates
- *                 maxGas
- *                 maxValidators
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *                 validators {
- *                   address
- *                   power
- *                 }
- *               }
- *               ... on PokeTx {
- *                 address
- *                 date
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *               }
- *               ... on AccountMigrateTx {
- *                 address
- *                 pk
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *                 type {
- *                   address
- *                   hash
- *                   pk
- *                   role
- *                 }
- *               }
- *             }
- *           }
- *         }
- *       }
- *       data {
- *         typeUrl
- *         value
- *       }
- *     }
- *   }
- * }
- *
- * ```
+ * getStakeState
  *
  * @name GraphQLClient#getStakeState
  * @param {...GraphQLClient.GetStakeStateParams} params
@@ -4403,172 +4870,7 @@
  */
 
 /**
- * Checkout following query for result format reference:
- *
- * ```graphql
- * {
- *   getTx(hash: "abc") {
- *     code
- *     info {
- *       code
- *       hash
- *       height
- *       index
- *       time
- *       accountMigrate {
- *         address
- *       }
- *       createAsset {
- *         asset
- *       }
- *       tags {
- *         key
- *         value
- *       }
- *       tx {
- *         chainId
- *         from
- *         nonce
- *         pk
- *         signature
- *         signatures {
- *           pk
- *           signature
- *           signer
- *           data {
- *             typeUrl
- *             value
- *           }
- *         }
- *         itx {
- *           __typename
- *           ... on UpdateAssetTx {
- *             address
- *             moniker
- *             data {
- *               typeUrl
- *               value
- *             }
- *           }
- *           ... on TransferTx {
- *             assets
- *             to
- *             value
- *             data {
- *               typeUrl
- *               value
- *             }
- *           }
- *           ... on SysUpgradeTx {
- *             gracePeriod
- *             data {
- *               typeUrl
- *               value
- *             }
- *             task {
- *               actions
- *               dataHash
- *               type
- *             }
- *           }
- *           ... on StakeTx {
- *             message
- *             to
- *             value
- *             data {
- *               type
- *             }
- *           }
- *           ... on ExchangeTx {
- *             expiredAt
- *             to
- *             data {
- *               typeUrl
- *               value
- *             }
- *             receiver {
- *               assets
- *               value
- *             }
- *             sender {
- *               assets
- *               value
- *             }
- *           }
- *           ... on DeclareFileTx {
- *             hash
- *           }
- *           ... on DeclareTx {
- *             issuer
- *             moniker
- *             data {
- *               typeUrl
- *               value
- *             }
- *           }
- *           ... on CreateAssetTx {
- *             address
- *             moniker
- *             parent
- *             readonly
- *             transferrable
- *             ttl
- *             data {
- *               typeUrl
- *               value
- *             }
- *           }
- *           ... on ConsumeAssetTx {
- *             address
- *             issuer
- *             data {
- *               typeUrl
- *               value
- *             }
- *           }
- *           ... on ConsensusUpgradeTx {
- *             maxBytes
- *             maxCandidates
- *             maxGas
- *             maxValidators
- *             data {
- *               typeUrl
- *               value
- *             }
- *             validators {
- *               address
- *               power
- *             }
- *           }
- *           ... on PokeTx {
- *             address
- *             date
- *             data {
- *               typeUrl
- *               value
- *             }
- *           }
- *           ... on AccountMigrateTx {
- *             address
- *             pk
- *             data {
- *               typeUrl
- *               value
- *             }
- *             type {
- *               address
- *               hash
- *               pk
- *               role
- *             }
- *           }
- *         }
- *       }
- *     }
- *   }
- * }
- *
- * ```
+ * getTx
  *
  * @name GraphQLClient#getTx
  * @param {...GraphQLClient.GetTxParams} params
@@ -4578,163 +4880,7 @@
  */
 
 /**
- * Checkout following query for result format reference:
- *
- * ```graphql
- * {
- *   getUnconfirmedTxs {
- *     code
- *     page {
- *       cursor
- *       next
- *       total
- *     }
- *     unconfirmedTxs {
- *       nTxs
- *       txs {
- *         chainId
- *         from
- *         nonce
- *         pk
- *         signature
- *         signatures {
- *           pk
- *           signature
- *           signer
- *           data {
- *             typeUrl
- *             value
- *           }
- *         }
- *         itx {
- *           __typename
- *           ... on UpdateAssetTx {
- *             address
- *             moniker
- *             data {
- *               typeUrl
- *               value
- *             }
- *           }
- *           ... on TransferTx {
- *             assets
- *             to
- *             value
- *             data {
- *               typeUrl
- *               value
- *             }
- *           }
- *           ... on SysUpgradeTx {
- *             gracePeriod
- *             data {
- *               typeUrl
- *               value
- *             }
- *             task {
- *               actions
- *               dataHash
- *               type
- *             }
- *           }
- *           ... on StakeTx {
- *             message
- *             to
- *             value
- *             data {
- *               type
- *             }
- *           }
- *           ... on ExchangeTx {
- *             expiredAt
- *             to
- *             data {
- *               typeUrl
- *               value
- *             }
- *             receiver {
- *               assets
- *               value
- *             }
- *             sender {
- *               assets
- *               value
- *             }
- *           }
- *           ... on DeclareFileTx {
- *             hash
- *           }
- *           ... on DeclareTx {
- *             issuer
- *             moniker
- *             data {
- *               typeUrl
- *               value
- *             }
- *           }
- *           ... on CreateAssetTx {
- *             address
- *             moniker
- *             parent
- *             readonly
- *             transferrable
- *             ttl
- *             data {
- *               typeUrl
- *               value
- *             }
- *           }
- *           ... on ConsumeAssetTx {
- *             address
- *             issuer
- *             data {
- *               typeUrl
- *               value
- *             }
- *           }
- *           ... on ConsensusUpgradeTx {
- *             maxBytes
- *             maxCandidates
- *             maxGas
- *             maxValidators
- *             data {
- *               typeUrl
- *               value
- *             }
- *             validators {
- *               address
- *               power
- *             }
- *           }
- *           ... on PokeTx {
- *             address
- *             date
- *             data {
- *               typeUrl
- *               value
- *             }
- *           }
- *           ... on AccountMigrateTx {
- *             address
- *             pk
- *             data {
- *               typeUrl
- *               value
- *             }
- *             type {
- *               address
- *               hash
- *               pk
- *               role
- *             }
- *           }
- *         }
- *       }
- *     }
- *   }
- * }
- *
- * ```
+ * getUnconfirmedTxs
  *
  * @name GraphQLClient#getUnconfirmedTxs
  * @param {...GraphQLClient.GetUnconfirmedTxsParams} params
@@ -4744,35 +4890,7 @@
  */
 
 /**
- * Checkout following query for result format reference:
- *
- * ```graphql
- * {
- *   getValidatorsInfo {
- *     code
- *     validatorsInfo {
- *       blockHeight
- *       validators {
- *         address
- *         name
- *         proposerPriority
- *         votingPower
- *         geoInfo {
- *           city
- *           country
- *           latitude
- *           longitude
- *         }
- *         pubKey {
- *           data
- *           type
- *         }
- *       }
- *     }
- *   }
- * }
- *
- * ```
+ * getValidatorsInfo
  *
  * @name GraphQLClient#getValidatorsInfo
  * @function
@@ -4781,169 +4899,7 @@
  */
 
 /**
- * Checkout following query for result format reference:
- *
- * ```graphql
- * {
- *   listAssetTransactions(address: "abc") {
- *     code
- *     page {
- *       cursor
- *       next
- *       total
- *     }
- *     transactions {
- *       code
- *       hash
- *       receiver
- *       sender
- *       time
- *       type
- *       valid
- *       tx {
- *         chainId
- *         from
- *         nonce
- *         pk
- *         signature
- *         signatures {
- *           pk
- *           signature
- *           signer
- *           data {
- *             typeUrl
- *             value
- *           }
- *         }
- *         itx {
- *           __typename
- *           ... on UpdateAssetTx {
- *             address
- *             moniker
- *             data {
- *               typeUrl
- *               value
- *             }
- *           }
- *           ... on TransferTx {
- *             assets
- *             to
- *             value
- *             data {
- *               typeUrl
- *               value
- *             }
- *           }
- *           ... on SysUpgradeTx {
- *             gracePeriod
- *             data {
- *               typeUrl
- *               value
- *             }
- *             task {
- *               actions
- *               dataHash
- *               type
- *             }
- *           }
- *           ... on StakeTx {
- *             message
- *             to
- *             value
- *             data {
- *               type
- *             }
- *           }
- *           ... on ExchangeTx {
- *             expiredAt
- *             to
- *             data {
- *               typeUrl
- *               value
- *             }
- *             receiver {
- *               assets
- *               value
- *             }
- *             sender {
- *               assets
- *               value
- *             }
- *           }
- *           ... on DeclareFileTx {
- *             hash
- *           }
- *           ... on DeclareTx {
- *             issuer
- *             moniker
- *             data {
- *               typeUrl
- *               value
- *             }
- *           }
- *           ... on CreateAssetTx {
- *             address
- *             moniker
- *             parent
- *             readonly
- *             transferrable
- *             ttl
- *             data {
- *               typeUrl
- *               value
- *             }
- *           }
- *           ... on ConsumeAssetTx {
- *             address
- *             issuer
- *             data {
- *               typeUrl
- *               value
- *             }
- *           }
- *           ... on ConsensusUpgradeTx {
- *             maxBytes
- *             maxCandidates
- *             maxGas
- *             maxValidators
- *             data {
- *               typeUrl
- *               value
- *             }
- *             validators {
- *               address
- *               power
- *             }
- *           }
- *           ... on PokeTx {
- *             address
- *             date
- *             data {
- *               typeUrl
- *               value
- *             }
- *           }
- *           ... on AccountMigrateTx {
- *             address
- *             pk
- *             data {
- *               typeUrl
- *               value
- *             }
- *             type {
- *               address
- *               hash
- *               pk
- *               role
- *             }
- *           }
- *         }
- *       }
- *     }
- *   }
- * }
- *
- * ```
+ * listAssetTransactions
  *
  * @name GraphQLClient#listAssetTransactions
  * @param {...GraphQLClient.ListAssetTransactionsParams} params
@@ -4953,45 +4909,7 @@
  */
 
 /**
- * Checkout following query for result format reference:
- *
- * ```graphql
- * {
- *   listAssets(ownerAddress: "abc") {
- *     code
- *     account {
- *       address
- *       balance
- *       genesisTime
- *       migratedFrom
- *       migratedTo
- *       moniker
- *       nonce
- *       numAssets
- *       numTxs
- *       recentNumTxs
- *       renaissanceTime
- *       totalReceivedStakes
- *       totalStakes
- *       totalUnstakes
- *     }
- *     assets {
- *       address
- *       genesisTime
- *       moniker
- *       owner
- *       readonly
- *       renaissanceTime
- *     }
- *     page {
- *       cursor
- *       next
- *       total
- *     }
- *   }
- * }
- *
- * ```
+ * listAssets
  *
  * @name GraphQLClient#listAssets
  * @param {...GraphQLClient.ListAssetsParams} params
@@ -5001,28 +4919,7 @@
  */
 
 /**
- * Checkout following query for result format reference:
- *
- * ```graphql
- * {
- *   listBlocks(proposer: "abc") {
- *     code
- *     blocks {
- *       height
- *       numInvalidTxs
- *       numTxs
- *       proposer
- *       time
- *     }
- *     page {
- *       cursor
- *       next
- *       total
- *     }
- *   }
- * }
- *
- * ```
+ * listBlocks
  *
  * @name GraphQLClient#listBlocks
  * @param {...GraphQLClient.ListBlocksParams} params
@@ -5032,31 +4929,7 @@
  */
 
 /**
- * Checkout following query for result format reference:
- *
- * ```graphql
- * {
- *   listStakes {
- *     code
- *     page {
- *       cursor
- *       next
- *       total
- *     }
- *     stakes {
- *       address
- *       balance
- *       genesisTime
- *       message
- *       receiver
- *       renaissanceTime
- *       sender
- *       type
- *     }
- *   }
- * }
- *
- * ```
+ * listStakes
  *
  * @name GraphQLClient#listStakes
  * @param {...GraphQLClient.ListStakesParams} params
@@ -5066,37 +4939,7 @@
  */
 
 /**
- * Checkout following query for result format reference:
- *
- * ```graphql
- * {
- *   listTopAccounts {
- *     code
- *     accounts {
- *       address
- *       balance
- *       genesisTime
- *       migratedFrom
- *       migratedTo
- *       moniker
- *       nonce
- *       numAssets
- *       numTxs
- *       recentNumTxs
- *       renaissanceTime
- *       totalReceivedStakes
- *       totalStakes
- *       totalUnstakes
- *     }
- *     page {
- *       cursor
- *       next
- *       total
- *     }
- *   }
- * }
- *
- * ```
+ * listTopAccounts
  *
  * @name GraphQLClient#listTopAccounts
  * @param {...GraphQLClient.ListTopAccountsParams} params
@@ -5106,169 +4949,7 @@
  */
 
 /**
- * Checkout following query for result format reference:
- *
- * ```graphql
- * {
- *   listTransactions {
- *     code
- *     page {
- *       cursor
- *       next
- *       total
- *     }
- *     transactions {
- *       code
- *       hash
- *       receiver
- *       sender
- *       time
- *       type
- *       valid
- *       tx {
- *         chainId
- *         from
- *         nonce
- *         pk
- *         signature
- *         signatures {
- *           pk
- *           signature
- *           signer
- *           data {
- *             typeUrl
- *             value
- *           }
- *         }
- *         itx {
- *           __typename
- *           ... on UpdateAssetTx {
- *             address
- *             moniker
- *             data {
- *               typeUrl
- *               value
- *             }
- *           }
- *           ... on TransferTx {
- *             assets
- *             to
- *             value
- *             data {
- *               typeUrl
- *               value
- *             }
- *           }
- *           ... on SysUpgradeTx {
- *             gracePeriod
- *             data {
- *               typeUrl
- *               value
- *             }
- *             task {
- *               actions
- *               dataHash
- *               type
- *             }
- *           }
- *           ... on StakeTx {
- *             message
- *             to
- *             value
- *             data {
- *               type
- *             }
- *           }
- *           ... on ExchangeTx {
- *             expiredAt
- *             to
- *             data {
- *               typeUrl
- *               value
- *             }
- *             receiver {
- *               assets
- *               value
- *             }
- *             sender {
- *               assets
- *               value
- *             }
- *           }
- *           ... on DeclareFileTx {
- *             hash
- *           }
- *           ... on DeclareTx {
- *             issuer
- *             moniker
- *             data {
- *               typeUrl
- *               value
- *             }
- *           }
- *           ... on CreateAssetTx {
- *             address
- *             moniker
- *             parent
- *             readonly
- *             transferrable
- *             ttl
- *             data {
- *               typeUrl
- *               value
- *             }
- *           }
- *           ... on ConsumeAssetTx {
- *             address
- *             issuer
- *             data {
- *               typeUrl
- *               value
- *             }
- *           }
- *           ... on ConsensusUpgradeTx {
- *             maxBytes
- *             maxCandidates
- *             maxGas
- *             maxValidators
- *             data {
- *               typeUrl
- *               value
- *             }
- *             validators {
- *               address
- *               power
- *             }
- *           }
- *           ... on PokeTx {
- *             address
- *             date
- *             data {
- *               typeUrl
- *               value
- *             }
- *           }
- *           ... on AccountMigrateTx {
- *             address
- *             pk
- *             data {
- *               typeUrl
- *               value
- *             }
- *             type {
- *               address
- *               hash
- *               pk
- *               role
- *             }
- *           }
- *         }
- *       }
- *     }
- *   }
- * }
- *
- * ```
+ * listTransactions
  *
  * @name GraphQLClient#listTransactions
  * @param {...GraphQLClient.ListTransactionsParams} params
@@ -5278,17 +4959,7 @@
  */
 
 /**
- * Checkout following query for result format reference:
- *
- * ```graphql
- * mutation {
- *   sendTx(commit: true, token: "abc", tx: "abc", wallet: "abc") {
- *     code
- *     hash
- *   }
- * }
- *
- * ```
+ * sendTx
  *
  * @name GraphQLClient#sendTx
  * @param {...GraphQLClient.SendTxParams} params
@@ -5298,16 +4969,7 @@
  */
 
 /**
- * Checkout following query for result format reference:
- *
- * ```graphql
- * mutation {
- *   startSimulator {
- *     code
- *   }
- * }
- *
- * ```
+ * startSimulator
  *
  * @name GraphQLClient#startSimulator
  * @function
@@ -5316,16 +4978,7 @@
  */
 
 /**
- * Checkout following query for result format reference:
- *
- * ```graphql
- * mutation {
- *   stopSimulator {
- *     code
- *   }
- * }
- *
- * ```
+ * stopSimulator
  *
  * @name GraphQLClient#stopSimulator
  * @function
@@ -5334,16 +4987,7 @@
  */
 
 /**
- * Checkout following query for result format reference:
- *
- * ```graphql
- * mutation {
- *   unsubscribe(topic: "abc") {
- *     code
- *   }
- * }
- *
- * ```
+ * unsubscribe
  *
  * @name GraphQLClient#unsubscribe
  * @param {...GraphQLClient.UnsubscribeParams} params
@@ -5353,3233 +4997,7 @@
  */
 
 /**
- * Checkout following query for result format reference:
- *
- * ```graphql
- * subscription {
- *   subscribe(filter: "abc", topic: "abc") {
- *     code
- *     topic
- *     accountMigrate {
- *       chainId
- *       from
- *       nonce
- *       pk
- *       signature
- *       signatures {
- *         pk
- *         signature
- *         signer
- *         data {
- *           typeUrl
- *           value
- *         }
- *       }
- *       itx {
- *         __typename
- *         ... on UpdateAssetTx {
- *           address
- *           moniker
- *           data {
- *             typeUrl
- *             value
- *           }
- *         }
- *         ... on TransferTx {
- *           assets
- *           to
- *           value
- *           data {
- *             typeUrl
- *             value
- *           }
- *         }
- *         ... on SysUpgradeTx {
- *           gracePeriod
- *           data {
- *             typeUrl
- *             value
- *           }
- *           task {
- *             actions
- *             dataHash
- *             type
- *           }
- *         }
- *         ... on StakeTx {
- *           message
- *           to
- *           value
- *           data {
- *             type
- *           }
- *         }
- *         ... on ExchangeTx {
- *           expiredAt
- *           to
- *           data {
- *             typeUrl
- *             value
- *           }
- *           receiver {
- *             assets
- *             value
- *           }
- *           sender {
- *             assets
- *             value
- *           }
- *         }
- *         ... on DeclareFileTx {
- *           hash
- *         }
- *         ... on DeclareTx {
- *           issuer
- *           moniker
- *           data {
- *             typeUrl
- *             value
- *           }
- *         }
- *         ... on CreateAssetTx {
- *           address
- *           moniker
- *           parent
- *           readonly
- *           transferrable
- *           ttl
- *           data {
- *             typeUrl
- *             value
- *           }
- *         }
- *         ... on ConsumeAssetTx {
- *           address
- *           issuer
- *           data {
- *             typeUrl
- *             value
- *           }
- *         }
- *         ... on ConsensusUpgradeTx {
- *           maxBytes
- *           maxCandidates
- *           maxGas
- *           maxValidators
- *           data {
- *             typeUrl
- *             value
- *           }
- *           validators {
- *             address
- *             power
- *           }
- *         }
- *         ... on PokeTx {
- *           address
- *           date
- *           data {
- *             typeUrl
- *             value
- *           }
- *         }
- *         ... on AccountMigrateTx {
- *           address
- *           pk
- *           data {
- *             typeUrl
- *             value
- *           }
- *           type {
- *             address
- *             hash
- *             pk
- *             role
- *           }
- *         }
- *       }
- *     }
- *     accountState {
- *       address
- *       balance
- *       issuer
- *       migratedFrom
- *       migratedTo
- *       moniker
- *       nonce
- *       numAssets
- *       numTxs
- *       pk
- *       context {
- *         genesisTime
- *         renaissanceTime
- *         genesisTx {
- *           code
- *           hash
- *           height
- *           index
- *           time
- *           accountMigrate {
- *             address
- *           }
- *           createAsset {
- *             asset
- *           }
- *           tags {
- *             key
- *             value
- *           }
- *           tx {
- *             chainId
- *             from
- *             nonce
- *             pk
- *             signature
- *             signatures {
- *               pk
- *               signature
- *               signer
- *               data {
- *                 typeUrl
- *                 value
- *               }
- *             }
- *             itx {
- *               __typename
- *               ... on UpdateAssetTx {
- *                 address
- *                 moniker
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *               }
- *               ... on TransferTx {
- *                 assets
- *                 to
- *                 value
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *               }
- *               ... on SysUpgradeTx {
- *                 gracePeriod
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *                 task {
- *                   actions
- *                   dataHash
- *                   type
- *                 }
- *               }
- *               ... on StakeTx {
- *                 message
- *                 to
- *                 value
- *                 data {
- *                   type
- *                 }
- *               }
- *               ... on ExchangeTx {
- *                 expiredAt
- *                 to
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *                 receiver {
- *                   assets
- *                   value
- *                 }
- *                 sender {
- *                   assets
- *                   value
- *                 }
- *               }
- *               ... on DeclareFileTx {
- *                 hash
- *               }
- *               ... on DeclareTx {
- *                 issuer
- *                 moniker
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *               }
- *               ... on CreateAssetTx {
- *                 address
- *                 moniker
- *                 parent
- *                 readonly
- *                 transferrable
- *                 ttl
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *               }
- *               ... on ConsumeAssetTx {
- *                 address
- *                 issuer
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *               }
- *               ... on ConsensusUpgradeTx {
- *                 maxBytes
- *                 maxCandidates
- *                 maxGas
- *                 maxValidators
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *                 validators {
- *                   address
- *                   power
- *                 }
- *               }
- *               ... on PokeTx {
- *                 address
- *                 date
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *               }
- *               ... on AccountMigrateTx {
- *                 address
- *                 pk
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *                 type {
- *                   address
- *                   hash
- *                   pk
- *                   role
- *                 }
- *               }
- *             }
- *           }
- *         }
- *         renaissanceTx {
- *           code
- *           hash
- *           height
- *           index
- *           time
- *           accountMigrate {
- *             address
- *           }
- *           createAsset {
- *             asset
- *           }
- *           tags {
- *             key
- *             value
- *           }
- *           tx {
- *             chainId
- *             from
- *             nonce
- *             pk
- *             signature
- *             signatures {
- *               pk
- *               signature
- *               signer
- *               data {
- *                 typeUrl
- *                 value
- *               }
- *             }
- *             itx {
- *               __typename
- *               ... on UpdateAssetTx {
- *                 address
- *                 moniker
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *               }
- *               ... on TransferTx {
- *                 assets
- *                 to
- *                 value
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *               }
- *               ... on SysUpgradeTx {
- *                 gracePeriod
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *                 task {
- *                   actions
- *                   dataHash
- *                   type
- *                 }
- *               }
- *               ... on StakeTx {
- *                 message
- *                 to
- *                 value
- *                 data {
- *                   type
- *                 }
- *               }
- *               ... on ExchangeTx {
- *                 expiredAt
- *                 to
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *                 receiver {
- *                   assets
- *                   value
- *                 }
- *                 sender {
- *                   assets
- *                   value
- *                 }
- *               }
- *               ... on DeclareFileTx {
- *                 hash
- *               }
- *               ... on DeclareTx {
- *                 issuer
- *                 moniker
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *               }
- *               ... on CreateAssetTx {
- *                 address
- *                 moniker
- *                 parent
- *                 readonly
- *                 transferrable
- *                 ttl
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *               }
- *               ... on ConsumeAssetTx {
- *                 address
- *                 issuer
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *               }
- *               ... on ConsensusUpgradeTx {
- *                 maxBytes
- *                 maxCandidates
- *                 maxGas
- *                 maxValidators
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *                 validators {
- *                   address
- *                   power
- *                 }
- *               }
- *               ... on PokeTx {
- *                 address
- *                 date
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *               }
- *               ... on AccountMigrateTx {
- *                 address
- *                 pk
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *                 type {
- *                   address
- *                   hash
- *                   pk
- *                   role
- *                 }
- *               }
- *             }
- *           }
- *         }
- *       }
- *       data {
- *         typeUrl
- *         value
- *       }
- *       poke {
- *         amount
- *         dailyLimit
- *         leftover
- *       }
- *       stake {
- *         totalReceivedStakes
- *         totalStakes
- *         totalUnstakes
- *         recentReceivedStakes {
- *           circular
- *           fifo
- *           items
- *           maxItems
- *           typeUrl
- *         }
- *         recentStakes {
- *           circular
- *           fifo
- *           items
- *           maxItems
- *           typeUrl
- *         }
- *       }
- *       type {
- *         address
- *         hash
- *         pk
- *         role
- *       }
- *     }
- *     assetState {
- *       address
- *       consumedTime
- *       issuer
- *       moniker
- *       owner
- *       readonly
- *       transferrable
- *       ttl
- *       context {
- *         genesisTime
- *         renaissanceTime
- *         genesisTx {
- *           code
- *           hash
- *           height
- *           index
- *           time
- *           accountMigrate {
- *             address
- *           }
- *           createAsset {
- *             asset
- *           }
- *           tags {
- *             key
- *             value
- *           }
- *           tx {
- *             chainId
- *             from
- *             nonce
- *             pk
- *             signature
- *             signatures {
- *               pk
- *               signature
- *               signer
- *               data {
- *                 typeUrl
- *                 value
- *               }
- *             }
- *             itx {
- *               __typename
- *               ... on UpdateAssetTx {
- *                 address
- *                 moniker
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *               }
- *               ... on TransferTx {
- *                 assets
- *                 to
- *                 value
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *               }
- *               ... on SysUpgradeTx {
- *                 gracePeriod
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *                 task {
- *                   actions
- *                   dataHash
- *                   type
- *                 }
- *               }
- *               ... on StakeTx {
- *                 message
- *                 to
- *                 value
- *                 data {
- *                   type
- *                 }
- *               }
- *               ... on ExchangeTx {
- *                 expiredAt
- *                 to
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *                 receiver {
- *                   assets
- *                   value
- *                 }
- *                 sender {
- *                   assets
- *                   value
- *                 }
- *               }
- *               ... on DeclareFileTx {
- *                 hash
- *               }
- *               ... on DeclareTx {
- *                 issuer
- *                 moniker
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *               }
- *               ... on CreateAssetTx {
- *                 address
- *                 moniker
- *                 parent
- *                 readonly
- *                 transferrable
- *                 ttl
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *               }
- *               ... on ConsumeAssetTx {
- *                 address
- *                 issuer
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *               }
- *               ... on ConsensusUpgradeTx {
- *                 maxBytes
- *                 maxCandidates
- *                 maxGas
- *                 maxValidators
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *                 validators {
- *                   address
- *                   power
- *                 }
- *               }
- *               ... on PokeTx {
- *                 address
- *                 date
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *               }
- *               ... on AccountMigrateTx {
- *                 address
- *                 pk
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *                 type {
- *                   address
- *                   hash
- *                   pk
- *                   role
- *                 }
- *               }
- *             }
- *           }
- *         }
- *         renaissanceTx {
- *           code
- *           hash
- *           height
- *           index
- *           time
- *           accountMigrate {
- *             address
- *           }
- *           createAsset {
- *             asset
- *           }
- *           tags {
- *             key
- *             value
- *           }
- *           tx {
- *             chainId
- *             from
- *             nonce
- *             pk
- *             signature
- *             signatures {
- *               pk
- *               signature
- *               signer
- *               data {
- *                 typeUrl
- *                 value
- *               }
- *             }
- *             itx {
- *               __typename
- *               ... on UpdateAssetTx {
- *                 address
- *                 moniker
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *               }
- *               ... on TransferTx {
- *                 assets
- *                 to
- *                 value
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *               }
- *               ... on SysUpgradeTx {
- *                 gracePeriod
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *                 task {
- *                   actions
- *                   dataHash
- *                   type
- *                 }
- *               }
- *               ... on StakeTx {
- *                 message
- *                 to
- *                 value
- *                 data {
- *                   type
- *                 }
- *               }
- *               ... on ExchangeTx {
- *                 expiredAt
- *                 to
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *                 receiver {
- *                   assets
- *                   value
- *                 }
- *                 sender {
- *                   assets
- *                   value
- *                 }
- *               }
- *               ... on DeclareFileTx {
- *                 hash
- *               }
- *               ... on DeclareTx {
- *                 issuer
- *                 moniker
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *               }
- *               ... on CreateAssetTx {
- *                 address
- *                 moniker
- *                 parent
- *                 readonly
- *                 transferrable
- *                 ttl
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *               }
- *               ... on ConsumeAssetTx {
- *                 address
- *                 issuer
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *               }
- *               ... on ConsensusUpgradeTx {
- *                 maxBytes
- *                 maxCandidates
- *                 maxGas
- *                 maxValidators
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *                 validators {
- *                   address
- *                   power
- *                 }
- *               }
- *               ... on PokeTx {
- *                 address
- *                 date
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *               }
- *               ... on AccountMigrateTx {
- *                 address
- *                 pk
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *                 type {
- *                   address
- *                   hash
- *                   pk
- *                   role
- *                 }
- *               }
- *             }
- *           }
- *         }
- *       }
- *       data {
- *         typeUrl
- *         value
- *       }
- *       stake {
- *         totalReceivedStakes
- *         totalStakes
- *         totalUnstakes
- *         recentReceivedStakes {
- *           circular
- *           fifo
- *           items
- *           maxItems
- *           typeUrl
- *         }
- *         recentStakes {
- *           circular
- *           fifo
- *           items
- *           maxItems
- *           typeUrl
- *         }
- *       }
- *     }
- *     beginBlock {
- *       hash
- *       byzantineValidators {
- *         height
- *         time
- *         totalVotingPower
- *         type
- *         validator {
- *           address
- *           power
- *         }
- *       }
- *       header {
- *         appHash
- *         chainId
- *         consensusHash
- *         dataHash
- *         evidenceHash
- *         height
- *         lastCommitHash
- *         lastResultsHash
- *         nextValidatorsHash
- *         numTxs
- *         proposerAddress
- *         time
- *         totalTxs
- *         validatorsHash
- *         lastBlockId {
- *           hash
- *           partsHeader {
- *             hash
- *             total
- *           }
- *         }
- *         version {
- *           app
- *           block
- *         }
- *       }
- *       lastCommitInfo {
- *         round
- *         votes {
- *           signedLastBlock
- *           validator {
- *             address
- *             power
- *           }
- *         }
- *       }
- *     }
- *     confirm {
- *       chainId
- *       from
- *       nonce
- *       pk
- *       signature
- *       signatures {
- *         pk
- *         signature
- *         signer
- *         data {
- *           typeUrl
- *           value
- *         }
- *       }
- *       itx {
- *         __typename
- *         ... on UpdateAssetTx {
- *           address
- *           moniker
- *           data {
- *             typeUrl
- *             value
- *           }
- *         }
- *         ... on TransferTx {
- *           assets
- *           to
- *           value
- *           data {
- *             typeUrl
- *             value
- *           }
- *         }
- *         ... on SysUpgradeTx {
- *           gracePeriod
- *           data {
- *             typeUrl
- *             value
- *           }
- *           task {
- *             actions
- *             dataHash
- *             type
- *           }
- *         }
- *         ... on StakeTx {
- *           message
- *           to
- *           value
- *           data {
- *             type
- *           }
- *         }
- *         ... on ExchangeTx {
- *           expiredAt
- *           to
- *           data {
- *             typeUrl
- *             value
- *           }
- *           receiver {
- *             assets
- *             value
- *           }
- *           sender {
- *             assets
- *             value
- *           }
- *         }
- *         ... on DeclareFileTx {
- *           hash
- *         }
- *         ... on DeclareTx {
- *           issuer
- *           moniker
- *           data {
- *             typeUrl
- *             value
- *           }
- *         }
- *         ... on CreateAssetTx {
- *           address
- *           moniker
- *           parent
- *           readonly
- *           transferrable
- *           ttl
- *           data {
- *             typeUrl
- *             value
- *           }
- *         }
- *         ... on ConsumeAssetTx {
- *           address
- *           issuer
- *           data {
- *             typeUrl
- *             value
- *           }
- *         }
- *         ... on ConsensusUpgradeTx {
- *           maxBytes
- *           maxCandidates
- *           maxGas
- *           maxValidators
- *           data {
- *             typeUrl
- *             value
- *           }
- *           validators {
- *             address
- *             power
- *           }
- *         }
- *         ... on PokeTx {
- *           address
- *           date
- *           data {
- *             typeUrl
- *             value
- *           }
- *         }
- *         ... on AccountMigrateTx {
- *           address
- *           pk
- *           data {
- *             typeUrl
- *             value
- *           }
- *           type {
- *             address
- *             hash
- *             pk
- *             role
- *           }
- *         }
- *       }
- *     }
- *     consensusUpgrade {
- *       chainId
- *       from
- *       nonce
- *       pk
- *       signature
- *       signatures {
- *         pk
- *         signature
- *         signer
- *         data {
- *           typeUrl
- *           value
- *         }
- *       }
- *       itx {
- *         __typename
- *         ... on UpdateAssetTx {
- *           address
- *           moniker
- *           data {
- *             typeUrl
- *             value
- *           }
- *         }
- *         ... on TransferTx {
- *           assets
- *           to
- *           value
- *           data {
- *             typeUrl
- *             value
- *           }
- *         }
- *         ... on SysUpgradeTx {
- *           gracePeriod
- *           data {
- *             typeUrl
- *             value
- *           }
- *           task {
- *             actions
- *             dataHash
- *             type
- *           }
- *         }
- *         ... on StakeTx {
- *           message
- *           to
- *           value
- *           data {
- *             type
- *           }
- *         }
- *         ... on ExchangeTx {
- *           expiredAt
- *           to
- *           data {
- *             typeUrl
- *             value
- *           }
- *           receiver {
- *             assets
- *             value
- *           }
- *           sender {
- *             assets
- *             value
- *           }
- *         }
- *         ... on DeclareFileTx {
- *           hash
- *         }
- *         ... on DeclareTx {
- *           issuer
- *           moniker
- *           data {
- *             typeUrl
- *             value
- *           }
- *         }
- *         ... on CreateAssetTx {
- *           address
- *           moniker
- *           parent
- *           readonly
- *           transferrable
- *           ttl
- *           data {
- *             typeUrl
- *             value
- *           }
- *         }
- *         ... on ConsumeAssetTx {
- *           address
- *           issuer
- *           data {
- *             typeUrl
- *             value
- *           }
- *         }
- *         ... on ConsensusUpgradeTx {
- *           maxBytes
- *           maxCandidates
- *           maxGas
- *           maxValidators
- *           data {
- *             typeUrl
- *             value
- *           }
- *           validators {
- *             address
- *             power
- *           }
- *         }
- *         ... on PokeTx {
- *           address
- *           date
- *           data {
- *             typeUrl
- *             value
- *           }
- *         }
- *         ... on AccountMigrateTx {
- *           address
- *           pk
- *           data {
- *             typeUrl
- *             value
- *           }
- *           type {
- *             address
- *             hash
- *             pk
- *             role
- *           }
- *         }
- *       }
- *     }
- *     createAsset {
- *       chainId
- *       from
- *       nonce
- *       pk
- *       signature
- *       signatures {
- *         pk
- *         signature
- *         signer
- *         data {
- *           typeUrl
- *           value
- *         }
- *       }
- *       itx {
- *         __typename
- *         ... on UpdateAssetTx {
- *           address
- *           moniker
- *           data {
- *             typeUrl
- *             value
- *           }
- *         }
- *         ... on TransferTx {
- *           assets
- *           to
- *           value
- *           data {
- *             typeUrl
- *             value
- *           }
- *         }
- *         ... on SysUpgradeTx {
- *           gracePeriod
- *           data {
- *             typeUrl
- *             value
- *           }
- *           task {
- *             actions
- *             dataHash
- *             type
- *           }
- *         }
- *         ... on StakeTx {
- *           message
- *           to
- *           value
- *           data {
- *             type
- *           }
- *         }
- *         ... on ExchangeTx {
- *           expiredAt
- *           to
- *           data {
- *             typeUrl
- *             value
- *           }
- *           receiver {
- *             assets
- *             value
- *           }
- *           sender {
- *             assets
- *             value
- *           }
- *         }
- *         ... on DeclareFileTx {
- *           hash
- *         }
- *         ... on DeclareTx {
- *           issuer
- *           moniker
- *           data {
- *             typeUrl
- *             value
- *           }
- *         }
- *         ... on CreateAssetTx {
- *           address
- *           moniker
- *           parent
- *           readonly
- *           transferrable
- *           ttl
- *           data {
- *             typeUrl
- *             value
- *           }
- *         }
- *         ... on ConsumeAssetTx {
- *           address
- *           issuer
- *           data {
- *             typeUrl
- *             value
- *           }
- *         }
- *         ... on ConsensusUpgradeTx {
- *           maxBytes
- *           maxCandidates
- *           maxGas
- *           maxValidators
- *           data {
- *             typeUrl
- *             value
- *           }
- *           validators {
- *             address
- *             power
- *           }
- *         }
- *         ... on PokeTx {
- *           address
- *           date
- *           data {
- *             typeUrl
- *             value
- *           }
- *         }
- *         ... on AccountMigrateTx {
- *           address
- *           pk
- *           data {
- *             typeUrl
- *             value
- *           }
- *           type {
- *             address
- *             hash
- *             pk
- *             role
- *           }
- *         }
- *       }
- *     }
- *     declare {
- *       chainId
- *       from
- *       nonce
- *       pk
- *       signature
- *       signatures {
- *         pk
- *         signature
- *         signer
- *         data {
- *           typeUrl
- *           value
- *         }
- *       }
- *       itx {
- *         __typename
- *         ... on UpdateAssetTx {
- *           address
- *           moniker
- *           data {
- *             typeUrl
- *             value
- *           }
- *         }
- *         ... on TransferTx {
- *           assets
- *           to
- *           value
- *           data {
- *             typeUrl
- *             value
- *           }
- *         }
- *         ... on SysUpgradeTx {
- *           gracePeriod
- *           data {
- *             typeUrl
- *             value
- *           }
- *           task {
- *             actions
- *             dataHash
- *             type
- *           }
- *         }
- *         ... on StakeTx {
- *           message
- *           to
- *           value
- *           data {
- *             type
- *           }
- *         }
- *         ... on ExchangeTx {
- *           expiredAt
- *           to
- *           data {
- *             typeUrl
- *             value
- *           }
- *           receiver {
- *             assets
- *             value
- *           }
- *           sender {
- *             assets
- *             value
- *           }
- *         }
- *         ... on DeclareFileTx {
- *           hash
- *         }
- *         ... on DeclareTx {
- *           issuer
- *           moniker
- *           data {
- *             typeUrl
- *             value
- *           }
- *         }
- *         ... on CreateAssetTx {
- *           address
- *           moniker
- *           parent
- *           readonly
- *           transferrable
- *           ttl
- *           data {
- *             typeUrl
- *             value
- *           }
- *         }
- *         ... on ConsumeAssetTx {
- *           address
- *           issuer
- *           data {
- *             typeUrl
- *             value
- *           }
- *         }
- *         ... on ConsensusUpgradeTx {
- *           maxBytes
- *           maxCandidates
- *           maxGas
- *           maxValidators
- *           data {
- *             typeUrl
- *             value
- *           }
- *           validators {
- *             address
- *             power
- *           }
- *         }
- *         ... on PokeTx {
- *           address
- *           date
- *           data {
- *             typeUrl
- *             value
- *           }
- *         }
- *         ... on AccountMigrateTx {
- *           address
- *           pk
- *           data {
- *             typeUrl
- *             value
- *           }
- *           type {
- *             address
- *             hash
- *             pk
- *             role
- *           }
- *         }
- *       }
- *     }
- *     declareFile {
- *       chainId
- *       from
- *       nonce
- *       pk
- *       signature
- *       signatures {
- *         pk
- *         signature
- *         signer
- *         data {
- *           typeUrl
- *           value
- *         }
- *       }
- *       itx {
- *         __typename
- *         ... on UpdateAssetTx {
- *           address
- *           moniker
- *           data {
- *             typeUrl
- *             value
- *           }
- *         }
- *         ... on TransferTx {
- *           assets
- *           to
- *           value
- *           data {
- *             typeUrl
- *             value
- *           }
- *         }
- *         ... on SysUpgradeTx {
- *           gracePeriod
- *           data {
- *             typeUrl
- *             value
- *           }
- *           task {
- *             actions
- *             dataHash
- *             type
- *           }
- *         }
- *         ... on StakeTx {
- *           message
- *           to
- *           value
- *           data {
- *             type
- *           }
- *         }
- *         ... on ExchangeTx {
- *           expiredAt
- *           to
- *           data {
- *             typeUrl
- *             value
- *           }
- *           receiver {
- *             assets
- *             value
- *           }
- *           sender {
- *             assets
- *             value
- *           }
- *         }
- *         ... on DeclareFileTx {
- *           hash
- *         }
- *         ... on DeclareTx {
- *           issuer
- *           moniker
- *           data {
- *             typeUrl
- *             value
- *           }
- *         }
- *         ... on CreateAssetTx {
- *           address
- *           moniker
- *           parent
- *           readonly
- *           transferrable
- *           ttl
- *           data {
- *             typeUrl
- *             value
- *           }
- *         }
- *         ... on ConsumeAssetTx {
- *           address
- *           issuer
- *           data {
- *             typeUrl
- *             value
- *           }
- *         }
- *         ... on ConsensusUpgradeTx {
- *           maxBytes
- *           maxCandidates
- *           maxGas
- *           maxValidators
- *           data {
- *             typeUrl
- *             value
- *           }
- *           validators {
- *             address
- *             power
- *           }
- *         }
- *         ... on PokeTx {
- *           address
- *           date
- *           data {
- *             typeUrl
- *             value
- *           }
- *         }
- *         ... on AccountMigrateTx {
- *           address
- *           pk
- *           data {
- *             typeUrl
- *             value
- *           }
- *           type {
- *             address
- *             hash
- *             pk
- *             role
- *           }
- *         }
- *       }
- *     }
- *     endBlock {
- *       height
- *     }
- *     exchange {
- *       chainId
- *       from
- *       nonce
- *       pk
- *       signature
- *       signatures {
- *         pk
- *         signature
- *         signer
- *         data {
- *           typeUrl
- *           value
- *         }
- *       }
- *       itx {
- *         __typename
- *         ... on UpdateAssetTx {
- *           address
- *           moniker
- *           data {
- *             typeUrl
- *             value
- *           }
- *         }
- *         ... on TransferTx {
- *           assets
- *           to
- *           value
- *           data {
- *             typeUrl
- *             value
- *           }
- *         }
- *         ... on SysUpgradeTx {
- *           gracePeriod
- *           data {
- *             typeUrl
- *             value
- *           }
- *           task {
- *             actions
- *             dataHash
- *             type
- *           }
- *         }
- *         ... on StakeTx {
- *           message
- *           to
- *           value
- *           data {
- *             type
- *           }
- *         }
- *         ... on ExchangeTx {
- *           expiredAt
- *           to
- *           data {
- *             typeUrl
- *             value
- *           }
- *           receiver {
- *             assets
- *             value
- *           }
- *           sender {
- *             assets
- *             value
- *           }
- *         }
- *         ... on DeclareFileTx {
- *           hash
- *         }
- *         ... on DeclareTx {
- *           issuer
- *           moniker
- *           data {
- *             typeUrl
- *             value
- *           }
- *         }
- *         ... on CreateAssetTx {
- *           address
- *           moniker
- *           parent
- *           readonly
- *           transferrable
- *           ttl
- *           data {
- *             typeUrl
- *             value
- *           }
- *         }
- *         ... on ConsumeAssetTx {
- *           address
- *           issuer
- *           data {
- *             typeUrl
- *             value
- *           }
- *         }
- *         ... on ConsensusUpgradeTx {
- *           maxBytes
- *           maxCandidates
- *           maxGas
- *           maxValidators
- *           data {
- *             typeUrl
- *             value
- *           }
- *           validators {
- *             address
- *             power
- *           }
- *         }
- *         ... on PokeTx {
- *           address
- *           date
- *           data {
- *             typeUrl
- *             value
- *           }
- *         }
- *         ... on AccountMigrateTx {
- *           address
- *           pk
- *           data {
- *             typeUrl
- *             value
- *           }
- *           type {
- *             address
- *             hash
- *             pk
- *             role
- *           }
- *         }
- *       }
- *     }
- *     forgeState {
- *       address
- *       forgeAppHash
- *       version
- *       consensus {
- *         maxBytes
- *         maxCandidates
- *         maxGas
- *         maxValidators
- *         paramChanged
- *         pubKeyTypes
- *         validatorChanged
- *         validators {
- *           address
- *           power
- *         }
- *       }
- *       data {
- *         typeUrl
- *         value
- *       }
- *       pokeConfig {
- *         address
- *         amount
- *         balance
- *         dailyLimit
- *       }
- *       protocols {
- *         address
- *         name
- *       }
- *       stakeConfig {
- *         timeoutGeneral
- *         timeoutStakeForNode
- *       }
- *       stakeSummary {
- *         key
- *         value {
- *           totalStakes
- *           totalUnstakes
- *           context {
- *             genesisTime
- *             renaissanceTime
- *             genesisTx {
- *               code
- *               hash
- *               height
- *               index
- *               time
- *               accountMigrate {
- *                 address
- *               }
- *               createAsset {
- *                 asset
- *               }
- *               tags {
- *                 key
- *                 value
- *               }
- *               tx {
- *                 chainId
- *                 from
- *                 nonce
- *                 pk
- *                 signature
- *               }
- *             }
- *             renaissanceTx {
- *               code
- *               hash
- *               height
- *               index
- *               time
- *               accountMigrate {
- *                 address
- *               }
- *               createAsset {
- *                 asset
- *               }
- *               tags {
- *                 key
- *                 value
- *               }
- *               tx {
- *                 chainId
- *                 from
- *                 nonce
- *                 pk
- *                 signature
- *               }
- *             }
- *           }
- *         }
- *       }
- *       tasks {
- *         key
- *         value {
- *           item {
- *             actions
- *             dataHash
- *             type
- *           }
- *         }
- *       }
- *       token {
- *         decimal
- *         description
- *         icon
- *         inflationRate
- *         initialSupply
- *         name
- *         symbol
- *         totalSupply
- *         unit
- *       }
- *       txConfig {
- *         maxAssetSize
- *         maxListSize
- *         maxMultisig
- *         minimumStake
- *       }
- *       upgradeInfo {
- *         height
- *         version
- *       }
- *     }
- *     protocolState {
- *       address
- *       description
- *       migratedFrom
- *       migratedTo
- *       name
- *       rootHash
- *       status
- *       txHash
- *       version
- *       context {
- *         genesisTime
- *         renaissanceTime
- *         genesisTx {
- *           code
- *           hash
- *           height
- *           index
- *           time
- *           accountMigrate {
- *             address
- *           }
- *           createAsset {
- *             asset
- *           }
- *           tags {
- *             key
- *             value
- *           }
- *           tx {
- *             chainId
- *             from
- *             nonce
- *             pk
- *             signature
- *             signatures {
- *               pk
- *               signature
- *               signer
- *               data {
- *                 typeUrl
- *                 value
- *               }
- *             }
- *             itx {
- *               __typename
- *               ... on UpdateAssetTx {
- *                 address
- *                 moniker
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *               }
- *               ... on TransferTx {
- *                 assets
- *                 to
- *                 value
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *               }
- *               ... on SysUpgradeTx {
- *                 gracePeriod
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *                 task {
- *                   actions
- *                   dataHash
- *                   type
- *                 }
- *               }
- *               ... on StakeTx {
- *                 message
- *                 to
- *                 value
- *                 data {
- *                   type
- *                 }
- *               }
- *               ... on ExchangeTx {
- *                 expiredAt
- *                 to
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *                 receiver {
- *                   assets
- *                   value
- *                 }
- *                 sender {
- *                   assets
- *                   value
- *                 }
- *               }
- *               ... on DeclareFileTx {
- *                 hash
- *               }
- *               ... on DeclareTx {
- *                 issuer
- *                 moniker
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *               }
- *               ... on CreateAssetTx {
- *                 address
- *                 moniker
- *                 parent
- *                 readonly
- *                 transferrable
- *                 ttl
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *               }
- *               ... on ConsumeAssetTx {
- *                 address
- *                 issuer
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *               }
- *               ... on ConsensusUpgradeTx {
- *                 maxBytes
- *                 maxCandidates
- *                 maxGas
- *                 maxValidators
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *                 validators {
- *                   address
- *                   power
- *                 }
- *               }
- *               ... on PokeTx {
- *                 address
- *                 date
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *               }
- *               ... on AccountMigrateTx {
- *                 address
- *                 pk
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *                 type {
- *                   address
- *                   hash
- *                   pk
- *                   role
- *                 }
- *               }
- *             }
- *           }
- *         }
- *         renaissanceTx {
- *           code
- *           hash
- *           height
- *           index
- *           time
- *           accountMigrate {
- *             address
- *           }
- *           createAsset {
- *             asset
- *           }
- *           tags {
- *             key
- *             value
- *           }
- *           tx {
- *             chainId
- *             from
- *             nonce
- *             pk
- *             signature
- *             signatures {
- *               pk
- *               signature
- *               signer
- *               data {
- *                 typeUrl
- *                 value
- *               }
- *             }
- *             itx {
- *               __typename
- *               ... on UpdateAssetTx {
- *                 address
- *                 moniker
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *               }
- *               ... on TransferTx {
- *                 assets
- *                 to
- *                 value
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *               }
- *               ... on SysUpgradeTx {
- *                 gracePeriod
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *                 task {
- *                   actions
- *                   dataHash
- *                   type
- *                 }
- *               }
- *               ... on StakeTx {
- *                 message
- *                 to
- *                 value
- *                 data {
- *                   type
- *                 }
- *               }
- *               ... on ExchangeTx {
- *                 expiredAt
- *                 to
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *                 receiver {
- *                   assets
- *                   value
- *                 }
- *                 sender {
- *                   assets
- *                   value
- *                 }
- *               }
- *               ... on DeclareFileTx {
- *                 hash
- *               }
- *               ... on DeclareTx {
- *                 issuer
- *                 moniker
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *               }
- *               ... on CreateAssetTx {
- *                 address
- *                 moniker
- *                 parent
- *                 readonly
- *                 transferrable
- *                 ttl
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *               }
- *               ... on ConsumeAssetTx {
- *                 address
- *                 issuer
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *               }
- *               ... on ConsensusUpgradeTx {
- *                 maxBytes
- *                 maxCandidates
- *                 maxGas
- *                 maxValidators
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *                 validators {
- *                   address
- *                   power
- *                 }
- *               }
- *               ... on PokeTx {
- *                 address
- *                 date
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *               }
- *               ... on AccountMigrateTx {
- *                 address
- *                 pk
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *                 type {
- *                   address
- *                   hash
- *                   pk
- *                   role
- *                 }
- *               }
- *             }
- *           }
- *         }
- *       }
- *       data {
- *         typeUrl
- *         value
- *       }
- *     }
- *     revoke {
- *       chainId
- *       from
- *       nonce
- *       pk
- *       signature
- *       signatures {
- *         pk
- *         signature
- *         signer
- *         data {
- *           typeUrl
- *           value
- *         }
- *       }
- *       itx {
- *         __typename
- *         ... on UpdateAssetTx {
- *           address
- *           moniker
- *           data {
- *             typeUrl
- *             value
- *           }
- *         }
- *         ... on TransferTx {
- *           assets
- *           to
- *           value
- *           data {
- *             typeUrl
- *             value
- *           }
- *         }
- *         ... on SysUpgradeTx {
- *           gracePeriod
- *           data {
- *             typeUrl
- *             value
- *           }
- *           task {
- *             actions
- *             dataHash
- *             type
- *           }
- *         }
- *         ... on StakeTx {
- *           message
- *           to
- *           value
- *           data {
- *             type
- *           }
- *         }
- *         ... on ExchangeTx {
- *           expiredAt
- *           to
- *           data {
- *             typeUrl
- *             value
- *           }
- *           receiver {
- *             assets
- *             value
- *           }
- *           sender {
- *             assets
- *             value
- *           }
- *         }
- *         ... on DeclareFileTx {
- *           hash
- *         }
- *         ... on DeclareTx {
- *           issuer
- *           moniker
- *           data {
- *             typeUrl
- *             value
- *           }
- *         }
- *         ... on CreateAssetTx {
- *           address
- *           moniker
- *           parent
- *           readonly
- *           transferrable
- *           ttl
- *           data {
- *             typeUrl
- *             value
- *           }
- *         }
- *         ... on ConsumeAssetTx {
- *           address
- *           issuer
- *           data {
- *             typeUrl
- *             value
- *           }
- *         }
- *         ... on ConsensusUpgradeTx {
- *           maxBytes
- *           maxCandidates
- *           maxGas
- *           maxValidators
- *           data {
- *             typeUrl
- *             value
- *           }
- *           validators {
- *             address
- *             power
- *           }
- *         }
- *         ... on PokeTx {
- *           address
- *           date
- *           data {
- *             typeUrl
- *             value
- *           }
- *         }
- *         ... on AccountMigrateTx {
- *           address
- *           pk
- *           data {
- *             typeUrl
- *             value
- *           }
- *           type {
- *             address
- *             hash
- *             pk
- *             role
- *           }
- *         }
- *       }
- *     }
- *     stake {
- *       chainId
- *       from
- *       nonce
- *       pk
- *       signature
- *       signatures {
- *         pk
- *         signature
- *         signer
- *         data {
- *           typeUrl
- *           value
- *         }
- *       }
- *       itx {
- *         __typename
- *         ... on UpdateAssetTx {
- *           address
- *           moniker
- *           data {
- *             typeUrl
- *             value
- *           }
- *         }
- *         ... on TransferTx {
- *           assets
- *           to
- *           value
- *           data {
- *             typeUrl
- *             value
- *           }
- *         }
- *         ... on SysUpgradeTx {
- *           gracePeriod
- *           data {
- *             typeUrl
- *             value
- *           }
- *           task {
- *             actions
- *             dataHash
- *             type
- *           }
- *         }
- *         ... on StakeTx {
- *           message
- *           to
- *           value
- *           data {
- *             type
- *           }
- *         }
- *         ... on ExchangeTx {
- *           expiredAt
- *           to
- *           data {
- *             typeUrl
- *             value
- *           }
- *           receiver {
- *             assets
- *             value
- *           }
- *           sender {
- *             assets
- *             value
- *           }
- *         }
- *         ... on DeclareFileTx {
- *           hash
- *         }
- *         ... on DeclareTx {
- *           issuer
- *           moniker
- *           data {
- *             typeUrl
- *             value
- *           }
- *         }
- *         ... on CreateAssetTx {
- *           address
- *           moniker
- *           parent
- *           readonly
- *           transferrable
- *           ttl
- *           data {
- *             typeUrl
- *             value
- *           }
- *         }
- *         ... on ConsumeAssetTx {
- *           address
- *           issuer
- *           data {
- *             typeUrl
- *             value
- *           }
- *         }
- *         ... on ConsensusUpgradeTx {
- *           maxBytes
- *           maxCandidates
- *           maxGas
- *           maxValidators
- *           data {
- *             typeUrl
- *             value
- *           }
- *           validators {
- *             address
- *             power
- *           }
- *         }
- *         ... on PokeTx {
- *           address
- *           date
- *           data {
- *             typeUrl
- *             value
- *           }
- *         }
- *         ... on AccountMigrateTx {
- *           address
- *           pk
- *           data {
- *             typeUrl
- *             value
- *           }
- *           type {
- *             address
- *             hash
- *             pk
- *             role
- *           }
- *         }
- *       }
- *     }
- *     stakeState {
- *       address
- *       balance
- *       from
- *       message
- *       to
- *       context {
- *         genesisTime
- *         renaissanceTime
- *         genesisTx {
- *           code
- *           hash
- *           height
- *           index
- *           time
- *           accountMigrate {
- *             address
- *           }
- *           createAsset {
- *             asset
- *           }
- *           tags {
- *             key
- *             value
- *           }
- *           tx {
- *             chainId
- *             from
- *             nonce
- *             pk
- *             signature
- *             signatures {
- *               pk
- *               signature
- *               signer
- *               data {
- *                 typeUrl
- *                 value
- *               }
- *             }
- *             itx {
- *               __typename
- *               ... on UpdateAssetTx {
- *                 address
- *                 moniker
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *               }
- *               ... on TransferTx {
- *                 assets
- *                 to
- *                 value
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *               }
- *               ... on SysUpgradeTx {
- *                 gracePeriod
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *                 task {
- *                   actions
- *                   dataHash
- *                   type
- *                 }
- *               }
- *               ... on StakeTx {
- *                 message
- *                 to
- *                 value
- *                 data {
- *                   type
- *                 }
- *               }
- *               ... on ExchangeTx {
- *                 expiredAt
- *                 to
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *                 receiver {
- *                   assets
- *                   value
- *                 }
- *                 sender {
- *                   assets
- *                   value
- *                 }
- *               }
- *               ... on DeclareFileTx {
- *                 hash
- *               }
- *               ... on DeclareTx {
- *                 issuer
- *                 moniker
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *               }
- *               ... on CreateAssetTx {
- *                 address
- *                 moniker
- *                 parent
- *                 readonly
- *                 transferrable
- *                 ttl
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *               }
- *               ... on ConsumeAssetTx {
- *                 address
- *                 issuer
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *               }
- *               ... on ConsensusUpgradeTx {
- *                 maxBytes
- *                 maxCandidates
- *                 maxGas
- *                 maxValidators
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *                 validators {
- *                   address
- *                   power
- *                 }
- *               }
- *               ... on PokeTx {
- *                 address
- *                 date
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *               }
- *               ... on AccountMigrateTx {
- *                 address
- *                 pk
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *                 type {
- *                   address
- *                   hash
- *                   pk
- *                   role
- *                 }
- *               }
- *             }
- *           }
- *         }
- *         renaissanceTx {
- *           code
- *           hash
- *           height
- *           index
- *           time
- *           accountMigrate {
- *             address
- *           }
- *           createAsset {
- *             asset
- *           }
- *           tags {
- *             key
- *             value
- *           }
- *           tx {
- *             chainId
- *             from
- *             nonce
- *             pk
- *             signature
- *             signatures {
- *               pk
- *               signature
- *               signer
- *               data {
- *                 typeUrl
- *                 value
- *               }
- *             }
- *             itx {
- *               __typename
- *               ... on UpdateAssetTx {
- *                 address
- *                 moniker
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *               }
- *               ... on TransferTx {
- *                 assets
- *                 to
- *                 value
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *               }
- *               ... on SysUpgradeTx {
- *                 gracePeriod
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *                 task {
- *                   actions
- *                   dataHash
- *                   type
- *                 }
- *               }
- *               ... on StakeTx {
- *                 message
- *                 to
- *                 value
- *                 data {
- *                   type
- *                 }
- *               }
- *               ... on ExchangeTx {
- *                 expiredAt
- *                 to
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *                 receiver {
- *                   assets
- *                   value
- *                 }
- *                 sender {
- *                   assets
- *                   value
- *                 }
- *               }
- *               ... on DeclareFileTx {
- *                 hash
- *               }
- *               ... on DeclareTx {
- *                 issuer
- *                 moniker
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *               }
- *               ... on CreateAssetTx {
- *                 address
- *                 moniker
- *                 parent
- *                 readonly
- *                 transferrable
- *                 ttl
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *               }
- *               ... on ConsumeAssetTx {
- *                 address
- *                 issuer
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *               }
- *               ... on ConsensusUpgradeTx {
- *                 maxBytes
- *                 maxCandidates
- *                 maxGas
- *                 maxValidators
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *                 validators {
- *                   address
- *                   power
- *                 }
- *               }
- *               ... on PokeTx {
- *                 address
- *                 date
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *               }
- *               ... on AccountMigrateTx {
- *                 address
- *                 pk
- *                 data {
- *                   typeUrl
- *                   value
- *                 }
- *                 type {
- *                   address
- *                   hash
- *                   pk
- *                   role
- *                 }
- *               }
- *             }
- *           }
- *         }
- *       }
- *       data {
- *         typeUrl
- *         value
- *       }
- *     }
- *     sysUpgrade {
- *       chainId
- *       from
- *       nonce
- *       pk
- *       signature
- *       signatures {
- *         pk
- *         signature
- *         signer
- *         data {
- *           typeUrl
- *           value
- *         }
- *       }
- *       itx {
- *         __typename
- *         ... on UpdateAssetTx {
- *           address
- *           moniker
- *           data {
- *             typeUrl
- *             value
- *           }
- *         }
- *         ... on TransferTx {
- *           assets
- *           to
- *           value
- *           data {
- *             typeUrl
- *             value
- *           }
- *         }
- *         ... on SysUpgradeTx {
- *           gracePeriod
- *           data {
- *             typeUrl
- *             value
- *           }
- *           task {
- *             actions
- *             dataHash
- *             type
- *           }
- *         }
- *         ... on StakeTx {
- *           message
- *           to
- *           value
- *           data {
- *             type
- *           }
- *         }
- *         ... on ExchangeTx {
- *           expiredAt
- *           to
- *           data {
- *             typeUrl
- *             value
- *           }
- *           receiver {
- *             assets
- *             value
- *           }
- *           sender {
- *             assets
- *             value
- *           }
- *         }
- *         ... on DeclareFileTx {
- *           hash
- *         }
- *         ... on DeclareTx {
- *           issuer
- *           moniker
- *           data {
- *             typeUrl
- *             value
- *           }
- *         }
- *         ... on CreateAssetTx {
- *           address
- *           moniker
- *           parent
- *           readonly
- *           transferrable
- *           ttl
- *           data {
- *             typeUrl
- *             value
- *           }
- *         }
- *         ... on ConsumeAssetTx {
- *           address
- *           issuer
- *           data {
- *             typeUrl
- *             value
- *           }
- *         }
- *         ... on ConsensusUpgradeTx {
- *           maxBytes
- *           maxCandidates
- *           maxGas
- *           maxValidators
- *           data {
- *             typeUrl
- *             value
- *           }
- *           validators {
- *             address
- *             power
- *           }
- *         }
- *         ... on PokeTx {
- *           address
- *           date
- *           data {
- *             typeUrl
- *             value
- *           }
- *         }
- *         ... on AccountMigrateTx {
- *           address
- *           pk
- *           data {
- *             typeUrl
- *             value
- *           }
- *           type {
- *             address
- *             hash
- *             pk
- *             role
- *           }
- *         }
- *       }
- *     }
- *     transfer {
- *       chainId
- *       from
- *       nonce
- *       pk
- *       signature
- *       signatures {
- *         pk
- *         signature
- *         signer
- *         data {
- *           typeUrl
- *           value
- *         }
- *       }
- *       itx {
- *         __typename
- *         ... on UpdateAssetTx {
- *           address
- *           moniker
- *           data {
- *             typeUrl
- *             value
- *           }
- *         }
- *         ... on TransferTx {
- *           assets
- *           to
- *           value
- *           data {
- *             typeUrl
- *             value
- *           }
- *         }
- *         ... on SysUpgradeTx {
- *           gracePeriod
- *           data {
- *             typeUrl
- *             value
- *           }
- *           task {
- *             actions
- *             dataHash
- *             type
- *           }
- *         }
- *         ... on StakeTx {
- *           message
- *           to
- *           value
- *           data {
- *             type
- *           }
- *         }
- *         ... on ExchangeTx {
- *           expiredAt
- *           to
- *           data {
- *             typeUrl
- *             value
- *           }
- *           receiver {
- *             assets
- *             value
- *           }
- *           sender {
- *             assets
- *             value
- *           }
- *         }
- *         ... on DeclareFileTx {
- *           hash
- *         }
- *         ... on DeclareTx {
- *           issuer
- *           moniker
- *           data {
- *             typeUrl
- *             value
- *           }
- *         }
- *         ... on CreateAssetTx {
- *           address
- *           moniker
- *           parent
- *           readonly
- *           transferrable
- *           ttl
- *           data {
- *             typeUrl
- *             value
- *           }
- *         }
- *         ... on ConsumeAssetTx {
- *           address
- *           issuer
- *           data {
- *             typeUrl
- *             value
- *           }
- *         }
- *         ... on ConsensusUpgradeTx {
- *           maxBytes
- *           maxCandidates
- *           maxGas
- *           maxValidators
- *           data {
- *             typeUrl
- *             value
- *           }
- *           validators {
- *             address
- *             power
- *           }
- *         }
- *         ... on PokeTx {
- *           address
- *           date
- *           data {
- *             typeUrl
- *             value
- *           }
- *         }
- *         ... on AccountMigrateTx {
- *           address
- *           pk
- *           data {
- *             typeUrl
- *             value
- *           }
- *           type {
- *             address
- *             hash
- *             pk
- *             role
- *           }
- *         }
- *       }
- *     }
- *     updateAsset {
- *       chainId
- *       from
- *       nonce
- *       pk
- *       signature
- *       signatures {
- *         pk
- *         signature
- *         signer
- *         data {
- *           typeUrl
- *           value
- *         }
- *       }
- *       itx {
- *         __typename
- *         ... on UpdateAssetTx {
- *           address
- *           moniker
- *           data {
- *             typeUrl
- *             value
- *           }
- *         }
- *         ... on TransferTx {
- *           assets
- *           to
- *           value
- *           data {
- *             typeUrl
- *             value
- *           }
- *         }
- *         ... on SysUpgradeTx {
- *           gracePeriod
- *           data {
- *             typeUrl
- *             value
- *           }
- *           task {
- *             actions
- *             dataHash
- *             type
- *           }
- *         }
- *         ... on StakeTx {
- *           message
- *           to
- *           value
- *           data {
- *             type
- *           }
- *         }
- *         ... on ExchangeTx {
- *           expiredAt
- *           to
- *           data {
- *             typeUrl
- *             value
- *           }
- *           receiver {
- *             assets
- *             value
- *           }
- *           sender {
- *             assets
- *             value
- *           }
- *         }
- *         ... on DeclareFileTx {
- *           hash
- *         }
- *         ... on DeclareTx {
- *           issuer
- *           moniker
- *           data {
- *             typeUrl
- *             value
- *           }
- *         }
- *         ... on CreateAssetTx {
- *           address
- *           moniker
- *           parent
- *           readonly
- *           transferrable
- *           ttl
- *           data {
- *             typeUrl
- *             value
- *           }
- *         }
- *         ... on ConsumeAssetTx {
- *           address
- *           issuer
- *           data {
- *             typeUrl
- *             value
- *           }
- *         }
- *         ... on ConsensusUpgradeTx {
- *           maxBytes
- *           maxCandidates
- *           maxGas
- *           maxValidators
- *           data {
- *             typeUrl
- *             value
- *           }
- *           validators {
- *             address
- *             power
- *           }
- *         }
- *         ... on PokeTx {
- *           address
- *           date
- *           data {
- *             typeUrl
- *             value
- *           }
- *         }
- *         ... on AccountMigrateTx {
- *           address
- *           pk
- *           data {
- *             typeUrl
- *             value
- *           }
- *           type {
- *             address
- *             hash
- *             pk
- *             role
- *           }
- *         }
- *       }
- *     }
- *   }
- * }
- *
- * ```
+ * subscribe
  *
  * @name GraphQLClient#subscribe
  * @param {...GraphQLClient.SubscribeParams} params

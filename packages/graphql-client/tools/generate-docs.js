@@ -5,10 +5,9 @@ const path = require('path');
 const sortBy = require('lodash/sortBy');
 const camelcase = require('lodash/camelcase');
 const upperFirst = require('lodash/upperFirst');
-const { print, parse } = require('graphql');
+const { fakeMessage } = require('@arcblock/sdk-util/lib/util');
 
 const Client = require('../src/client');
-const { generateFormats } = require('./doc-util');
 
 const client = new Client('http://localhost:4000/api');
 const schema = client._getSchema();
@@ -24,7 +23,6 @@ const typesMap = types.reduce((acc, x) => {
 const queries = queryType.name ? typesMap[queryType.name].fields : [];
 const mutations = mutationType.name ? typesMap[mutationType.name].fields : [];
 const subscriptions = subscriptionType.name ? typesMap[subscriptionType.name].fields : [];
-const formats = generateFormats(false);
 const namespace = 'GraphQLClient';
 
 const scalarTypes = {
@@ -34,18 +32,6 @@ const scalarTypes = {
   HexString: 'string',
   DateTime: 'string',
   Boolean: 'boolean',
-};
-
-const printFormat = name => {
-  if (formats[name] && formats[name].result) {
-    const gql = print(parse(formats[name].result));
-    return gql
-      .split('\n')
-      .map(x => ` * ${x}`)
-      .join('\n');
-  }
-
-  return '';
 };
 
 const getFieldType = (type, ns = '') => {
@@ -68,9 +54,41 @@ const getFieldType = (type, ns = '') => {
   }
 };
 
-const generateInterface = ({ fields, name }, ns = '') => `
+const printFakeMessage = (name, originName) => {
+  try {
+    let type = typesMap[name];
+    if (originName && !type) {
+      type =
+        queries.find(x => x.name === originName) ||
+        mutations.find(x => x.name === originName) ||
+        subscriptions.find(x => x.name === originName);
+
+      if (type) {
+        type.fields = type.args;
+      }
+    }
+    return `
+ *
+ * Checkout the following snippet for the format of ${name}:
+ * \`\`\`json
+${JSON.stringify(fakeMessage(type, typesMap, 'fields'), true, '  ')}
+ * \`\`\``;
+  } catch (err) {
+    console.error('cannot print fake message', name);
+    return '';
+  }
+};
+
+const generateInterface = ({ fields, name, originName }, ns = '') => `
 /**
- * Structure of ${ns}.${name}
+ * Structure of ${ns}.${name} ${
+  name.startsWith('Response') ||
+  name.startsWith('Request') ||
+  name.endsWith('Params') ||
+  name.endsWith('Tx')
+    ? printFakeMessage(name, originName)
+    : ''
+}
  *
  * @memberof ${ns}
  * @typedef {object} ${ns}.${name}
@@ -100,11 +118,12 @@ const generateArgType = (type, ns) =>
     {
       fields: type.args,
       name: getArgTypeName(type),
+      originName: type.name,
     },
     ns
   );
 
-const generateMethodsExports = (methods, ns) =>
+const generateArgs = (methods, ns) =>
   methods
     .filter(x => Array.isArray(x.args) && x.args.length)
     .map(x => generateArgType(x, ns))
@@ -119,11 +138,7 @@ const generateMethods = (methods, ns) =>
       const resultType = returnType.replace('...', '');
       return `
 /**
- * Checkout following query for result format reference:
- *
- * \`\`\`graphql
-${printFormat(x.name)}
- * \`\`\`
+ * ${x.name}
  *
  * @name ${namespace}#${x.name}${argType ? `\n * @param {...${ns}.${argType}} params` : ''}
  * @function
@@ -149,7 +164,7 @@ const getTxSendTypes = (name, tx, ns) => `
  *
  * @memberof ${ns}
  * @typedef {Object} ${ns}.${tx}Input
- * @prop {...${ns}.${tx}SendInputData} input.data - should be the ${tx} object in most simple case
+ * @prop {...${ns}.${tx}InputData} input.data - should be the ${tx} object in most simple case
  * @prop {object} input.wallet - should be a wallet instance constructed using forge-wallet
  * @prop {object} input.signature - the signature of the tx, if this parameter exist, we will not sign the transaction
  */
@@ -276,9 +291,9 @@ ${sortBy(types, ['kind', 'name'])
   .filter(Boolean)
   .join('\n')}
 
-${generateMethodsExports(queries, namespace)}
-${generateMethodsExports(mutations, namespace)}
-${generateMethodsExports(subscriptions, namespace)}
+${generateArgs(queries, namespace)}
+${generateArgs(mutations, namespace)}
+${generateArgs(subscriptions, namespace)}
 
 ${client
   .getTxSendMethods()
