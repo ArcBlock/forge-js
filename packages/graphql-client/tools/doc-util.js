@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-const { randomArg, randomArgs } = require('@arcblock/sdk-util/lib/util');
+const { fakeField, fakeMessage } = require('@arcblock/sdk-util/lib/util');
 
 const Client = require('../src/client');
 
@@ -23,17 +23,17 @@ const getResultFormat = m => {
     .reduce((obj, x) => {
       if (x.type.ofType) {
         if (x.type.kind === 'LIST') {
-          obj[x.name] = [randomArg(x.type.ofType, typesMap)];
+          obj[x.name] = [fakeField(x.type.ofType, typesMap)];
         } else if (x.type.ofType.kind === 'SCALAR') {
-          obj[x.name] = randomArg(x.type.ofType, typesMap);
+          obj[x.name] = fakeField(x.type.ofType, typesMap);
         } else if (['INPUT_OBJECT', 'OBJECT'].includes(x.type.ofType.kind)) {
-          obj[x.name] = randomArgs(typesMap[x.type.ofType.name], typesMap);
+          obj[x.name] = fakeMessage(typesMap[x.type.ofType.name], typesMap);
         } else {
           console.log('ignoreX', x);
         }
       } else {
         if (x.type.kind === 'SCALAR') {
-          obj[x.name] = randomArg(x.type, typesMap);
+          obj[x.name] = fakeField(x.type, typesMap);
         }
       }
 

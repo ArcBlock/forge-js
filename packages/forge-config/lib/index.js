@@ -10,6 +10,8 @@ const camelize = require('camelize');
 /**
  * Parse config from a file
  *
+ * @public
+ * @static
  * @param {string} configPath
  * @returns object
  * @throws Error when file not found

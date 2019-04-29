@@ -1,6 +1,5 @@
 /* eslint-disable no-console */
 const { fromRandom, WalletType } = require('@arcblock/forge-wallet');
-const { hexToBytes } = require('@arcblock/forge-util');
 const Mcrypto = require('@arcblock/mcrypto');
 const GraphqlClient = require('../src/node');
 
@@ -58,9 +57,11 @@ describe('GraphqlClient', () => {
 
     const wallet = fromRandom(type);
     const res = await client.sendDeclareTx({
-      data: {
-        moniker: `graphql_client_test_${Math.round(Math.random() * 10000)}`,
-        type,
+      tx: {
+        itx: {
+          moniker: `graphql_client_test_${Math.round(Math.random() * 10000)}`,
+          type,
+        },
       },
       wallet,
     });

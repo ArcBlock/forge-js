@@ -1,146 +1,249 @@
 // Generate by [js2dts@0.3.2](https://github.com/whxaxes/js2dts#readme)
 
-declare class RpcClient {
-  config: any;
-  constructor(config: any);
+/**
+ * An grpc client that can read/write data to a forge powered blockchain node, can be used only in node.js
+ *
+ * Please note that, due to internal implementation of google-protobuf, all `repeated fields` names are suffixed with `List`
+ *
+ ```js
+ const GRpcClient = require('@arcblock/grpc-client');
+ const client = new GRpcClient("tcp://127.0.0.1:28210");
+ (async () => {
+ // fetch forge change info
+ const { info } = await client.getChainInfo();
+ console.log('chainInfo', info);
+ 
+ // get block info
+ const stream = client.getBlock({ height: 11 });
+ stream
+ .on('data', function({ block }) {
+ console.log('blockInfo:', block);
+ })
+ .on('error', err => {
+ console.error('error', err);
+ });
+ })();
+ ```
+ * @class
+ */
+declare class GRpcClient {
   /**
-   * Arc is the smallest, infungible unit used for Forge Apps. If app define decimal as 16,
-   * then 1 token (e.g. ABT) = 10^16 arc. When sending transfer tx or exchange tx,
-   * the value shall be created with Arc.
+   * Creates an instance of GRpcClient, and generate transaction sending and receiving methods
+   *
+   * @param {object|string} config - config object, if a string passed, will be used as the endpoint
+   * @param {string} [config.endpoint="tcp://127.0.0.1:28210"] - grpc endpoint the client can connect to
+   * @param {string} [config.chainId=""] - chainId used to construct transaction
+   * @see GRpcClient.getQueries
+   * @see GRpcClient.getMutations
+   * @see GRpcClient.getSubscriptions
+   * @see GRpcClient.getRpcMethods
+   * @see GRpcClient.getTxSendMethods
    */
-  fromUnitToToken(value: any): string;
-  fromTokenToUnit(value: any): any;
+  constructor(config?: any);
   /**
    * List standard rpc methods
    *
-   * @returns Object
-   * @memberof RpcClient
+   * @returns {object}
    */
-  listRpcMethods(): GrpcClient.T100;
+  getRpcMethods(): any;
   /**
-   * List standard rpc methods
+   * List generated transaction send methods
    *
-   * @returns Object
-   * @memberof RpcClient
+   * @returns {object}
    */
-  listTxMethods(): GrpcClient.T100;
-  processOne(request: forge_abi.Request): RpcClient.UnaryResult<forge_abi.Response>;
+  getTxSendMethods(): any;
+  processOne(request: forge_abi.Request): GRpcClient.UnaryResult<forge_abi.Response>;
   process(
     request: forge_abi.Request | Array<forge_abi.Request>
-  ): RpcClient.StreamResult<forge_abi.Response>;
-  createTx(request: forge_abi.RequestCreateTx): RpcClient.UnaryResult<forge_abi.ResponseCreateTx>;
-  multisig(request: forge_abi.RequestMultisig): RpcClient.UnaryResult<forge_abi.ResponseMultisig>;
-  sendTx(request: forge_abi.RequestSendTx): RpcClient.UnaryResult<forge_abi.ResponseSendTx>;
+  ): GRpcClient.StreamResult<forge_abi.Response>;
+  createTx(request: forge_abi.RequestCreateTx): GRpcClient.UnaryResult<forge_abi.ResponseCreateTx>;
+  multisig(request: forge_abi.RequestMultisig): GRpcClient.UnaryResult<forge_abi.ResponseMultisig>;
+  sendTx(request: forge_abi.RequestSendTx): GRpcClient.UnaryResult<forge_abi.ResponseSendTx>;
   getTx(
     request: forge_abi.RequestGetTx | Array<forge_abi.RequestGetTx>
-  ): RpcClient.StreamResult<forge_abi.ResponseGetTx>;
+  ): GRpcClient.StreamResult<forge_abi.ResponseGetTx>;
   getBlock(
     request: forge_abi.RequestGetBlock | Array<forge_abi.RequestGetBlock>
-  ): RpcClient.StreamResult<forge_abi.ResponseGetBlock>;
+  ): GRpcClient.StreamResult<forge_abi.ResponseGetBlock>;
   getBlocks(
     request: forge_abi.RequestGetBlocks
-  ): RpcClient.UnaryResult<forge_abi.ResponseGetBlocks>;
+  ): GRpcClient.UnaryResult<forge_abi.ResponseGetBlocks>;
   getUnconfirmedTxs(
     request: forge_abi.RequestGetUnconfirmedTxs
-  ): RpcClient.UnaryResult<forge_abi.ResponseGetUnconfirmedTxs>;
+  ): GRpcClient.UnaryResult<forge_abi.ResponseGetUnconfirmedTxs>;
   getChainInfo(
     request: forge_abi.RequestGetChainInfo
-  ): RpcClient.UnaryResult<forge_abi.ResponseGetChainInfo>;
+  ): GRpcClient.UnaryResult<forge_abi.ResponseGetChainInfo>;
   getNodeInfo(
     request: forge_abi.RequestGetNodeInfo
-  ): RpcClient.UnaryResult<forge_abi.ResponseGetNodeInfo>;
-  search(request: forge_abi.RequestSearch): RpcClient.UnaryResult<forge_abi.ResponseSearch>;
+  ): GRpcClient.UnaryResult<forge_abi.ResponseGetNodeInfo>;
+  search(request: forge_abi.RequestSearch): GRpcClient.UnaryResult<forge_abi.ResponseSearch>;
   getNetInfo(
     request: forge_abi.RequestGetNetInfo
-  ): RpcClient.UnaryResult<forge_abi.ResponseGetNetInfo>;
+  ): GRpcClient.UnaryResult<forge_abi.ResponseGetNetInfo>;
   getValidatorsInfo(
     request: forge_abi.RequestGetValidatorsInfo
-  ): RpcClient.UnaryResult<forge_abi.ResponseGetValidatorsInfo>;
+  ): GRpcClient.UnaryResult<forge_abi.ResponseGetValidatorsInfo>;
   getConfig(
     request: forge_abi.RequestGetConfig
-  ): RpcClient.UnaryResult<forge_abi.ResponseGetConfig>;
+  ): GRpcClient.UnaryResult<forge_abi.ResponseGetConfig>;
   subscribe(
     request: forge_abi.RequestSubscribe
-  ): RpcClient.StreamResult<forge_abi.ResponseSubscribe>;
+  ): GRpcClient.StreamResult<forge_abi.ResponseSubscribe>;
   unsubscribe(
     request: forge_abi.RequestUnsubscribe
-  ): RpcClient.UnaryResult<forge_abi.ResponseUnsubscribe>;
+  ): GRpcClient.UnaryResult<forge_abi.ResponseUnsubscribe>;
   storeFile(
     request: forge_abi.RequestStoreFile | Array<forge_abi.RequestStoreFile>
-  ): RpcClient.UnaryResult<forge_abi.ResponseStoreFile>;
-  loadFile(request: forge_abi.RequestLoadFile): RpcClient.StreamResult<forge_abi.ResponseLoadFile>;
-  pinFile(request: forge_abi.RequestPinFile): RpcClient.UnaryResult<forge_abi.ResponsePinFile>;
+  ): GRpcClient.UnaryResult<forge_abi.ResponseStoreFile>;
+  loadFile(request: forge_abi.RequestLoadFile): GRpcClient.StreamResult<forge_abi.ResponseLoadFile>;
+  pinFile(request: forge_abi.RequestPinFile): GRpcClient.UnaryResult<forge_abi.ResponsePinFile>;
   getAccountState(
     request: forge_abi.RequestGetAccountState | Array<forge_abi.RequestGetAccountState>
-  ): RpcClient.StreamResult<forge_abi.ResponseGetAccountState>;
+  ): GRpcClient.StreamResult<forge_abi.ResponseGetAccountState>;
   getAssetState(
     request: forge_abi.RequestGetAssetState | Array<forge_abi.RequestGetAssetState>
-  ): RpcClient.StreamResult<forge_abi.ResponseGetAssetState>;
+  ): GRpcClient.StreamResult<forge_abi.ResponseGetAssetState>;
   getForgeState(
     request: forge_abi.RequestGetForgeState
-  ): RpcClient.UnaryResult<forge_abi.ResponseGetForgeState>;
+  ): GRpcClient.UnaryResult<forge_abi.ResponseGetForgeState>;
   getProtocolState(
     request: forge_abi.RequestGetProtocolState | Array<forge_abi.RequestGetProtocolState>
-  ): RpcClient.StreamResult<forge_abi.ResponseGetProtocolState>;
+  ): GRpcClient.StreamResult<forge_abi.ResponseGetProtocolState>;
   getStakeState(
     request: forge_abi.RequestGetStakeState | Array<forge_abi.RequestGetStakeState>
-  ): RpcClient.StreamResult<forge_abi.ResponseGetStakeState>;
+  ): GRpcClient.StreamResult<forge_abi.ResponseGetStakeState>;
   createWallet(
     request: forge_abi.RequestCreateWallet
-  ): RpcClient.UnaryResult<forge_abi.ResponseCreateWallet>;
+  ): GRpcClient.UnaryResult<forge_abi.ResponseCreateWallet>;
   loadWallet(
     request: forge_abi.RequestLoadWallet
-  ): RpcClient.UnaryResult<forge_abi.ResponseLoadWallet>;
+  ): GRpcClient.UnaryResult<forge_abi.ResponseLoadWallet>;
   recoverWallet(
     request: forge_abi.RequestRecoverWallet
-  ): RpcClient.UnaryResult<forge_abi.ResponseRecoverWallet>;
+  ): GRpcClient.UnaryResult<forge_abi.ResponseRecoverWallet>;
   listWallet(
     request: forge_abi.RequestListWallet
-  ): RpcClient.StreamResult<forge_abi.ResponseListWallet>;
+  ): GRpcClient.StreamResult<forge_abi.ResponseListWallet>;
   removeWallet(
     request: forge_abi.RequestRemoveWallet
-  ): RpcClient.UnaryResult<forge_abi.ResponseRemoveWallet>;
+  ): GRpcClient.UnaryResult<forge_abi.ResponseRemoveWallet>;
   declareNode(
     request: forge_abi.RequestDeclareNode
-  ): RpcClient.UnaryResult<forge_abi.ResponseDeclareNode>;
+  ): GRpcClient.UnaryResult<forge_abi.ResponseDeclareNode>;
   getForgeStats(
     request: forge_abi.RequestGetForgeStats
-  ): RpcClient.UnaryResult<forge_abi.ResponseGetForgeStats>;
+  ): GRpcClient.UnaryResult<forge_abi.ResponseGetForgeStats>;
   listTransactions(
     request: forge_abi.RequestListTransactions
-  ): RpcClient.UnaryResult<forge_abi.ResponseListTransactions>;
+  ): GRpcClient.UnaryResult<forge_abi.ResponseListTransactions>;
   listAssets(
     request: forge_abi.RequestListAssets
-  ): RpcClient.UnaryResult<forge_abi.ResponseListAssets>;
+  ): GRpcClient.UnaryResult<forge_abi.ResponseListAssets>;
   listStakes(
     request: forge_abi.RequestListStakes
-  ): RpcClient.UnaryResult<forge_abi.ResponseListStakes>;
+  ): GRpcClient.UnaryResult<forge_abi.ResponseListStakes>;
   listAccount(
     request: forge_abi.RequestListAccount
-  ): RpcClient.UnaryResult<forge_abi.ResponseListAccount>;
+  ): GRpcClient.UnaryResult<forge_abi.ResponseListAccount>;
   listTopAccounts(
     request: forge_abi.RequestListTopAccounts
-  ): RpcClient.UnaryResult<forge_abi.ResponseListTopAccounts>;
+  ): GRpcClient.UnaryResult<forge_abi.ResponseListTopAccounts>;
   listAssetTransactions(
     request: forge_abi.RequestListAssetTransactions
-  ): RpcClient.UnaryResult<forge_abi.ResponseListAssetTransactions>;
+  ): GRpcClient.UnaryResult<forge_abi.ResponseListAssetTransactions>;
   listBlocks(
     request: forge_abi.RequestListBlocks
-  ): RpcClient.UnaryResult<forge_abi.ResponseListBlocks>;
+  ): GRpcClient.UnaryResult<forge_abi.ResponseListBlocks>;
   getHealthStatus(
     request: forge_abi.RequestGetHealthStatus
-  ): RpcClient.UnaryResult<forge_abi.ResponseGetHealthStatus>;
+  ): GRpcClient.UnaryResult<forge_abi.ResponseGetHealthStatus>;
+  encodeConsensusUpgradeTx(
+    param: GRpcClient.TxParam<GRpcClient.ConsensusUpgradeTx>
+  ): Promise<GRpcClient.ResponseSendTx>;
+  encodeDeclareTx(
+    param: GRpcClient.TxParam<GRpcClient.DeclareTx>
+  ): Promise<GRpcClient.ResponseSendTx>;
+  encodeDeployProtocolTx(
+    param: GRpcClient.TxParam<GRpcClient.DeployProtocolTx>
+  ): Promise<GRpcClient.ResponseSendTx>;
+  encodeSysUpgradeTx(
+    param: GRpcClient.TxParam<GRpcClient.SysUpgradeTx>
+  ): Promise<GRpcClient.ResponseSendTx>;
+  encodeDeclareFileTx(
+    param: GRpcClient.TxParam<GRpcClient.DeclareFileTx>
+  ): Promise<GRpcClient.ResponseSendTx>;
+  encodeCreateAssetTx(
+    param: GRpcClient.TxParam<GRpcClient.CreateAssetTx>
+  ): Promise<GRpcClient.ResponseSendTx>;
+  encodeStakeTx(param: GRpcClient.TxParam<GRpcClient.StakeTx>): Promise<GRpcClient.ResponseSendTx>;
+  encodeExchangeTx(
+    param: GRpcClient.TxParam<GRpcClient.ExchangeTx>
+  ): Promise<GRpcClient.ResponseSendTx>;
+  encodeAccountMigrateTx(
+    param: GRpcClient.TxParam<GRpcClient.AccountMigrateTx>
+  ): Promise<GRpcClient.ResponseSendTx>;
+  encodeUpgradeNodeTx(
+    param: GRpcClient.TxParam<GRpcClient.UpgradeNodeTx>
+  ): Promise<GRpcClient.ResponseSendTx>;
+  encodeUpdateAssetTx(
+    param: GRpcClient.TxParam<GRpcClient.UpdateAssetTx>
+  ): Promise<GRpcClient.ResponseSendTx>;
+  encodeConsumeAssetTx(
+    param: GRpcClient.TxParam<GRpcClient.ConsumeAssetTx>
+  ): Promise<GRpcClient.ResponseSendTx>;
+  encodePokeTx(param: GRpcClient.TxParam<GRpcClient.PokeTx>): Promise<GRpcClient.ResponseSendTx>;
+  encodeTransferTx(
+    param: GRpcClient.TxParam<GRpcClient.TransferTx>
+  ): Promise<GRpcClient.ResponseSendTx>;
+  sendConsensusUpgradeTx(
+    param: GRpcClient.TxParam<GRpcClient.ConsensusUpgradeTx>
+  ): Promise<GRpcClient.EncodeTxResult>;
+  sendDeclareTx(
+    param: GRpcClient.TxParam<GRpcClient.DeclareTx>
+  ): Promise<GRpcClient.EncodeTxResult>;
+  sendDeployProtocolTx(
+    param: GRpcClient.TxParam<GRpcClient.DeployProtocolTx>
+  ): Promise<GRpcClient.EncodeTxResult>;
+  sendSysUpgradeTx(
+    param: GRpcClient.TxParam<GRpcClient.SysUpgradeTx>
+  ): Promise<GRpcClient.EncodeTxResult>;
+  sendDeclareFileTx(
+    param: GRpcClient.TxParam<GRpcClient.DeclareFileTx>
+  ): Promise<GRpcClient.EncodeTxResult>;
+  sendCreateAssetTx(
+    param: GRpcClient.TxParam<GRpcClient.CreateAssetTx>
+  ): Promise<GRpcClient.EncodeTxResult>;
+  sendStakeTx(param: GRpcClient.TxParam<GRpcClient.StakeTx>): Promise<GRpcClient.EncodeTxResult>;
+  sendExchangeTx(
+    param: GRpcClient.TxParam<GRpcClient.ExchangeTx>
+  ): Promise<GRpcClient.EncodeTxResult>;
+  sendAccountMigrateTx(
+    param: GRpcClient.TxParam<GRpcClient.AccountMigrateTx>
+  ): Promise<GRpcClient.EncodeTxResult>;
+  sendUpgradeNodeTx(
+    param: GRpcClient.TxParam<GRpcClient.UpgradeNodeTx>
+  ): Promise<GRpcClient.EncodeTxResult>;
+  sendUpdateAssetTx(
+    param: GRpcClient.TxParam<GRpcClient.UpdateAssetTx>
+  ): Promise<GRpcClient.EncodeTxResult>;
+  sendConsumeAssetTx(
+    param: GRpcClient.TxParam<GRpcClient.ConsumeAssetTx>
+  ): Promise<GRpcClient.EncodeTxResult>;
+  sendPokeTx(param: GRpcClient.TxParam<GRpcClient.PokeTx>): Promise<GRpcClient.EncodeTxResult>;
+  sendTransferTx(
+    param: GRpcClient.TxParam<GRpcClient.TransferTx>
+  ): Promise<GRpcClient.EncodeTxResult>;
+
+  /**
+   * List generated transaction send methods
+   *
+   * @returns {object}
+   */
+  getTxEncodeMethods(): any;
 }
-declare const GrpcClient: GrpcClient.T101;
-declare namespace GrpcClient {
-  export interface T100 {
-    [key: string]: any;
-  }
-  export interface T101 {
-    RpcRpcClient: typeof RpcClient;
-  }
-}
-export = GrpcClient;
+declare const GRpcClient: typeof GRpcClient;
+export = GRpcClient;
 
 declare namespace forge_abi {
   export interface RequestVerifyTx {
@@ -287,7 +390,9 @@ declare namespace forge_abi {
     ROLE_ASSET = 6,
     ROLE_STAKE = 7,
     ROLE_VALIDATOR = 8,
-    ROLE_TX = 9,
+    ROLE_GROUP = 9,
+    ROLE_TX = 10,
+    ROLE_ANY = 63,
   }
 
   export enum UpgradeType {
@@ -345,7 +450,7 @@ declare namespace forge_abi {
 
   export interface BigSint {
     value: Uint8Array;
-    minus: forge_abi.bool;
+    minus: boolean;
   }
 
   export interface WalletType {
@@ -367,7 +472,7 @@ declare namespace forge_abi {
     network: string;
     moniker: string;
     consensusVersion: string;
-    synced: forge_abi.bool;
+    synced: boolean;
     appHash: Uint8Array;
     blockHash: Uint8Array;
     blockHeight: number;
@@ -385,7 +490,7 @@ declare namespace forge_abi {
     network: string;
     moniker: string;
     consensusVersion: string;
-    synced: forge_abi.bool;
+    synced: boolean;
     appHash: Uint8Array;
     blockHash: Uint8Array;
     blockHeight: number;
@@ -413,8 +518,8 @@ declare namespace forge_abi {
     maxCandidates: number;
     pubKeyTypes: Array<string>;
     validators: Array<forge_abi.Validator>;
-    validatorChanged: forge_abi.bool;
-    paramChanged: forge_abi.bool;
+    validatorChanged: boolean;
+    paramChanged: boolean;
   }
 
   export interface UpgradeTask {
@@ -524,8 +629,8 @@ declare namespace forge_abi {
     items: Array<Uint8Array>;
     typeUrl: string;
     maxItems: number;
-    circular: forge_abi.bool;
-    fifo: forge_abi.bool;
+    circular: boolean;
+    fifo: boolean;
   }
 
   export interface StateContext {
@@ -560,7 +665,7 @@ declare namespace forge_abi {
   }
 
   export interface NetInfo {
-    listening: forge_abi.bool;
+    listening: boolean;
     listeners: Array<string>;
     nPeers: number;
     peers: Array<forge_abi.PeerInfo>;
@@ -703,8 +808,8 @@ declare namespace forge_abi {
     address: string;
     owner: string;
     moniker: string;
-    readonly: forge_abi.bool;
-    transferrable: forge_abi.bool;
+    readonly: boolean;
+    transferrable: boolean;
     ttl: number;
     consumedTime: google.protobuf.Timestamp;
     issuer: string;
@@ -739,6 +844,7 @@ declare namespace forge_abi {
     account: Uint8Array;
     asset: Uint8Array;
     receipt: Uint8Array;
+    protocol: Uint8Array;
   }
 
   export interface StakeState {
@@ -807,7 +913,7 @@ declare namespace forge_abi {
     tx: forge_abi.Transaction;
     wallet: forge_abi.WalletInfo;
     token: string;
-    commit: forge_abi.bool;
+    commit: boolean;
   }
 
   export interface ResponseSendTx {
@@ -836,7 +942,7 @@ declare namespace forge_abi {
   export interface RequestGetBlocks {
     paging: forge_abi.PageInput;
     heightFilter: forge_abi.RangeFilter;
-    emptyExcluded: forge_abi.bool;
+    emptyExcluded: boolean;
   }
 
   export interface ResponseGetBlocks {
@@ -897,7 +1003,7 @@ declare namespace forge_abi {
   }
 
   export interface RequestDeclareNode {
-    validator: forge_abi.bool;
+    validator: boolean;
   }
 
   export interface ResponseDeclareNode {
@@ -1218,7 +1324,7 @@ declare namespace forge_abi {
 
   export interface PageInfo {
     cursor: string;
-    next: forge_abi.bool;
+    next: boolean;
     total: number;
   }
 
@@ -1229,7 +1335,7 @@ declare namespace forge_abi {
     time: string;
     type: string;
     tx: forge_abi.Transaction;
-    valid: forge_abi.bool;
+    valid: boolean;
     code: forge_abi.StatusCode;
   }
 
@@ -1256,7 +1362,7 @@ declare namespace forge_abi {
     genesisTime: string;
     renaissanceTime: string;
     moniker: string;
-    readonly: forge_abi.bool;
+    readonly: boolean;
   }
 
   export interface IndexedStakeState {
@@ -1286,18 +1392,18 @@ declare namespace forge_abi {
   }
 
   export interface ConsensusStatus {
-    health: forge_abi.bool;
-    synced: forge_abi.bool;
+    health: boolean;
+    synced: boolean;
     blockHeight: number;
   }
 
   export interface NetworkStatus {
-    health: forge_abi.bool;
+    health: boolean;
     numPeers: number;
   }
 
   export interface StorageStatus {
-    health: forge_abi.bool;
+    health: boolean;
     indexerServer: string;
     stateDb: string;
     diskSpace: forge_abi.DiskSpaceStatus;
@@ -1309,7 +1415,7 @@ declare namespace forge_abi {
   }
 
   export interface ForgeStatus {
-    health: forge_abi.bool;
+    health: boolean;
     abiServer: string;
     forgeWeb: string;
     abciServer: forge_abi.AbciServerStatus;
@@ -1396,8 +1502,8 @@ declare namespace forge_abi {
   export interface CreateAssetTx {
     moniker: string;
     data: google.protobuf.Any;
-    readonly: forge_abi.bool;
-    transferrable: forge_abi.bool;
+    readonly: boolean;
+    transferrable: boolean;
     ttl: number;
     parent: string;
     address: string;
@@ -1457,7 +1563,7 @@ declare namespace forge_abi {
   export interface UpgradeNodeTx {
     height: number;
     version: string;
-    override: forge_abi.bool;
+    override: boolean;
   }
 }
 
@@ -1477,16 +1583,6 @@ declare namespace abci_vendor {
   export interface KVPair {
     key: Uint8Array;
     value: Uint8Array;
-  }
-
-  export interface ProofOp {
-    type: string;
-    key: Uint8Array;
-    data: Uint8Array;
-  }
-
-  export interface Proof {
-    ops: Array<abci_vendor.ProofOp>;
   }
 
   export interface BlockParams {
@@ -1540,7 +1636,7 @@ declare namespace abci_vendor {
 
   export interface VoteInfo {
     validator: abci_vendor.Validator;
-    signedLastBlock: abci_vendor.bool;
+    signedLastBlock: boolean;
   }
 
   export interface PubKey {
@@ -1575,38 +1671,6 @@ declare namespace abci_vendor {
     proposerAddress: Uint8Array;
   }
 
-  export interface RequestEcho {
-    message: string;
-  }
-
-  export interface RequestFlush {}
-
-  export interface RequestInfo {
-    version: string;
-    blockVersion: number;
-    p2pVersion: number;
-  }
-
-  export interface RequestSetOption {
-    key: string;
-    value: string;
-  }
-
-  export interface RequestInitChain {
-    time: google.protobuf.Timestamp;
-    chainId: string;
-    consensusParams: abci_vendor.ConsensusParams;
-    validators: Array<abci_vendor.ValidatorUpdate>;
-    appStateBytes: Uint8Array;
-  }
-
-  export interface RequestQuery {
-    data: Uint8Array;
-    path: string;
-    height: abci_vendor.int64;
-    prove: abci_vendor.bool;
-  }
-
   export interface RequestBeginBlock {
     hash: Uint8Array;
     header: abci_vendor.Header;
@@ -1614,76 +1678,17 @@ declare namespace abci_vendor {
     byzantineValidators: Array<abci_vendor.Evidence>;
   }
 
-  export interface RequestCheckTx {
-    tx: Uint8Array;
-  }
-
-  export interface RequestDeliverTx {
-    tx: Uint8Array;
-  }
-
   export interface RequestEndBlock {
     height: abci_vendor.int64;
   }
 
-  export interface RequestCommit {}
-
-  export interface Request {
-    echo: abci_vendor.RequestEcho;
-    flush: abci_vendor.RequestFlush;
-    info: abci_vendor.RequestInfo;
-    setOption: abci_vendor.RequestSetOption;
-    initChain: abci_vendor.RequestInitChain;
-    query: abci_vendor.RequestQuery;
-    beginBlock: abci_vendor.RequestBeginBlock;
-    checkTx: abci_vendor.RequestCheckTx;
-    deliverTx: abci_vendor.RequestDeliverTx;
-    endBlock: abci_vendor.RequestEndBlock;
-    commit: abci_vendor.RequestCommit;
-  }
-
-  export interface ResponseException {
-    error: string;
-  }
-
-  export interface ResponseEcho {
-    message: string;
-  }
-
-  export interface ResponseFlush {}
-
-  export interface ResponseInfo {
-    data: string;
-    version: string;
-    appVersion: number;
-    lastBlockHeight: abci_vendor.int64;
-    lastBlockAppHash: Uint8Array;
-  }
-
-  export interface ResponseSetOption {
-    code: number;
-    log: string;
-    info: string;
-  }
-
-  export interface ResponseInitChain {
-    consensusParams: abci_vendor.ConsensusParams;
-    validators: Array<abci_vendor.ValidatorUpdate>;
-  }
-
-  export interface ResponseQuery {
-    code: number;
-    log: string;
-    info: string;
-    index: abci_vendor.int64;
-    key: Uint8Array;
-    value: Uint8Array;
-    proof: abci_vendor.Proof;
-    height: abci_vendor.int64;
-    codespace: string;
-  }
-
   export interface ResponseBeginBlock {
+    tags: Array<abci_vendor.KVPair>;
+  }
+
+  export interface ResponseEndBlock {
+    validatorUpdates: Array<abci_vendor.ValidatorUpdate>;
+    consensusParamUpdates: abci_vendor.ConsensusParams;
     tags: Array<abci_vendor.KVPair>;
   }
 
@@ -1709,31 +1714,6 @@ declare namespace abci_vendor {
     codespace: string;
   }
 
-  export interface ResponseEndBlock {
-    validatorUpdates: Array<abci_vendor.ValidatorUpdate>;
-    consensusParamUpdates: abci_vendor.ConsensusParams;
-    tags: Array<abci_vendor.KVPair>;
-  }
-
-  export interface ResponseCommit {
-    data: Uint8Array;
-  }
-
-  export interface Response {
-    exception: abci_vendor.ResponseException;
-    echo: abci_vendor.ResponseEcho;
-    flush: abci_vendor.ResponseFlush;
-    info: abci_vendor.ResponseInfo;
-    setOption: abci_vendor.ResponseSetOption;
-    initChain: abci_vendor.ResponseInitChain;
-    query: abci_vendor.ResponseQuery;
-    beginBlock: abci_vendor.ResponseBeginBlock;
-    checkTx: abci_vendor.ResponseCheckTx;
-    deliverTx: abci_vendor.ResponseDeliverTx;
-    endBlock: abci_vendor.ResponseEndBlock;
-    commit: abci_vendor.ResponseCommit;
-  }
-
   export interface RequestPing {}
 
   export interface RequestBroadcastTx {
@@ -1748,7 +1728,7 @@ declare namespace abci_vendor {
   }
 }
 
-declare namespace RpcClient {
+declare namespace GRpcClient {
   export interface UnaryResult<T> {
     then(fn: (result: T) => any): Promise<any>;
     catch(fn: (err: Error) => any): Promise<any>;
@@ -1757,5 +1737,43 @@ declare namespace RpcClient {
   export interface StreamResult<T> {
     on(event: 'data', fn: (data: T) => any): this;
     on(event: 'error', fn: (err: Error) => void): this;
+  }
+
+  export interface TxParam<T> {
+    tx: ItxParam<T>;
+    wallet: GraphQLClient.WalletObject;
+    signature: string;
+  }
+
+  export interface ItxParam<T> {
+    nonce: number;
+    from: string;
+    pk: string;
+    chainId: string;
+    signature: string;
+    signatures: array;
+    itx: T;
+  }
+
+  export interface WalletObject {
+    publicKey: string;
+    secretKey: string;
+    type: GRpcClient.WalletTypeObject;
+    sign(message: string): string;
+    verify(message: string, signature: string): boolean;
+    toJSON(): object;
+    toAddress(): string;
+  }
+
+  export interface WalletTypeObject {
+    pk: number;
+    role: number;
+    address: number;
+    hash: number;
+  }
+
+  export interface EncodeTxResult {
+    object: object;
+    buffer: buffer;
   }
 }

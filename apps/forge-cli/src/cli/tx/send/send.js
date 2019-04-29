@@ -58,9 +58,11 @@ async function main(data) {
   try {
     const method = `send${type}`;
     const res = await client[method]({
-      from: wallet.address,
       token: wallet.token,
-      itx,
+      tx: {
+        from: wallet.address,
+        itx,
+      },
     });
 
     debug(`send ${type} tx`, res);

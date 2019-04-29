@@ -55,6 +55,8 @@ const fakeValues = {
 /**
  * Generated a fake message for a type, the message can be RPC request/response
  *
+ * @public
+ * @static
  * @param {string} type
  * @returns {object}
  */
@@ -129,6 +131,8 @@ function fakeMessage(type) {
 /**
  * Format an message from RPC to UI friendly
  *
+ * @public
+ * @static
  * @param {string} type - input type
  * @param {object} data - input data
  * @returns {object} [almost same structure as input]
@@ -238,6 +242,8 @@ function formatMessage(type, data) {
 /**
  * Create an protobuf encoded Typed message with specified data, ready to send to rpc server
  *
+ * @public
+ * @static
  * @param {string} type - message type defined in forge-proto
  * @param {object} params - message content
  * @returns {object} Message instance
@@ -340,6 +346,8 @@ function createMessage(type, params) {
 /**
  * Decode an google.protobuf.Any%{ typeUrl, value } => { type, value }
  *
+ * @public
+ * @static
  * @param {object} data encoded data object
  * @returns {object} Object%{type, value}
  */
@@ -368,6 +376,8 @@ function decodeAny(data) {
  * Encode { type, value } => google.protobuf.Any%{ typeUrl, value }
  * Does nothing on already encoded message
  *
+ * @public
+ * @static
  * @param {object} data
  * @returns {object} google.protobuf.Any
  */
@@ -399,6 +409,8 @@ function encodeAny(data) {
 /**
  * Convert an { seconds, nanos } | date-string to google.protobuf.Timestamp object
  *
+ * @public
+ * @static
  * @param {string|object} value
  * @returns {object} instanceof google.protobuf.Timestamp
  */
@@ -428,6 +440,8 @@ function encodeTimestamp(value) {
  *
  * FIXME: node strictly equal because we rounded the `nanos` field
  *
+ * @public
+ * @static
  * @param {object} data
  * @returns {strong} String timestamp
  */
@@ -444,6 +458,8 @@ function decodeTimestamp(data) {
 /**
  * Encode BigUint and BigSint types defined in forge-sdk, double encoding is avoided
  *
+ * @public
+ * @static
  * @param {buffer|string|number} value - value to encode
  * @param {string} type - type names defined in forge-proto
  * @returns {object} Message
@@ -472,6 +488,8 @@ function encodeBigInt(value, type) {
 /**
  * Convert BigUint and BigSint to string representation of numbers
  *
+ * @public
+ * @static
  * @link https://stackoverflow.com/questions/23948278/how-to-convert-byte-array-into-a-signed-big-integer-in-javascript
  * @param {object} data - usually from encodeBigInt
  * @param {buffer} data.value
@@ -487,6 +505,7 @@ function decodeBigInt(data) {
 /**
  * Attach an $format method to rpc response
  *
+ * @private
  * @param {object} data
  * @param {string} type
  */
@@ -502,6 +521,7 @@ function attachFormatFn(type, data, key = '$format') {
 /**
  * Attach an example method to
  *
+ * @private
  * @param {object} data
  * @param {string} type
  */

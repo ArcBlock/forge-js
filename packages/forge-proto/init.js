@@ -83,12 +83,6 @@ module.exports = function(proto) {
   );
   enums.SupportedStakes = Object.keys(types).filter(x => stakeTypePattern.test(x));
 
-  /**
-   * Generate type_url field for google.protobuf.Any
-   *
-   * @param {*} type
-   * @returns String
-   */
   function createTypeUrls(abi) {
     return Object.keys(abi).reduce((typeUrls, type) => {
       let typeUrl = type;
@@ -119,6 +113,8 @@ module.exports = function(proto) {
   /**
    * Search for a type and its fields descriptor, then the result can be used to create a protobuf message
    *
+   * @public
+   * @static
    * @param {string} type - such as `Transaction`, or `TransferTx`
    * @returns {object}
    */
@@ -138,6 +134,8 @@ module.exports = function(proto) {
    * toTypeUrl('StakeTx') // 'fg:t:stake'
    * ```
    *
+   * @public
+   * @static
    * @param {string} type
    * @returns {string}
    */
@@ -152,6 +150,8 @@ module.exports = function(proto) {
    * fromTypeUrl('fg:t:stake') // StakeTx
    * ```
    *
+   * @public
+   * @static
    * @param {string} url
    * @returns {string}
    */
@@ -169,6 +169,9 @@ module.exports = function(proto) {
      * All enum types and its values (number format), can be accessed from width: enums.KEY_TYPE.ED25519
      *
      * @member
+     * @public
+     * @static
+     * @readonly
      */
     enums,
 
@@ -176,6 +179,9 @@ module.exports = function(proto) {
      * All enum types and its values (human readable string format), can be accessed from width: messages.KEY_TYPE.ED25519
      *
      * @member
+     * @public
+     * @static
+     * @readonly
      */
     messages,
 

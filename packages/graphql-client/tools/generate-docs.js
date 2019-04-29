@@ -5,10 +5,9 @@ const path = require('path');
 const sortBy = require('lodash/sortBy');
 const camelcase = require('lodash/camelcase');
 const upperFirst = require('lodash/upperFirst');
-const { print, parse } = require('graphql');
+const { fakeMessage } = require('@arcblock/sdk-util/lib/util');
 
 const Client = require('../src/client');
-const { generateFormats } = require('./doc-util');
 
 const client = new Client('http://localhost:4000/api');
 const schema = client._getSchema();
@@ -24,7 +23,6 @@ const typesMap = types.reduce((acc, x) => {
 const queries = queryType.name ? typesMap[queryType.name].fields : [];
 const mutations = mutationType.name ? typesMap[mutationType.name].fields : [];
 const subscriptions = subscriptionType.name ? typesMap[subscriptionType.name].fields : [];
-const formats = generateFormats(false);
 const namespace = 'GraphQLClient';
 
 const scalarTypes = {
@@ -34,18 +32,6 @@ const scalarTypes = {
   HexString: 'string',
   DateTime: 'string',
   Boolean: 'boolean',
-};
-
-const printFormat = name => {
-  if (formats[name] && formats[name].result) {
-    const gql = print(parse(formats[name].result));
-    return gql
-      .split('\n')
-      .map(x => ` * ${x}`)
-      .join('\n');
-  }
-
-  return '';
 };
 
 const getFieldType = (type, ns = '') => {
@@ -68,9 +54,41 @@ const getFieldType = (type, ns = '') => {
   }
 };
 
-const generateInterface = ({ fields, name }, ns = '') => `
+const printFakeMessage = (name, originName) => {
+  try {
+    let type = typesMap[name];
+    if (originName && !type) {
+      type =
+        queries.find(x => x.name === originName) ||
+        mutations.find(x => x.name === originName) ||
+        subscriptions.find(x => x.name === originName);
+
+      if (type) {
+        type.fields = type.args;
+      }
+    }
+    return `
+ *
+ * Checkout the following snippet for the format of ${name}:
+ * \`\`\`json
+${JSON.stringify(fakeMessage(type, typesMap, 'fields'), true, '  ')}
+ * \`\`\``;
+  } catch (err) {
+    console.error('cannot print fake message', name);
+    return '';
+  }
+};
+
+const generateInterface = ({ fields, name, originName }, ns = '') => `
 /**
- * Structure of ${ns}.${name}
+ * Structure of ${ns}.${name} ${
+  name.startsWith('Response') ||
+  name.startsWith('Request') ||
+  name.endsWith('Params') ||
+  name.endsWith('Tx')
+    ? printFakeMessage(name, originName)
+    : ''
+}
  *
  * @memberof ${ns}
  * @typedef {object} ${ns}.${name}
@@ -100,11 +118,12 @@ const generateArgType = (type, ns) =>
     {
       fields: type.args,
       name: getArgTypeName(type),
+      originName: type.name,
     },
     ns
   );
 
-const generateMethodsExports = (methods, ns) =>
+const generateArgs = (methods, ns) =>
   methods
     .filter(x => Array.isArray(x.args) && x.args.length)
     .map(x => generateArgType(x, ns))
@@ -119,13 +138,9 @@ const generateMethods = (methods, ns) =>
       const resultType = returnType.replace('...', '');
       return `
 /**
- * Checkout following query for result format reference:
+ * ${x.name}
  *
- * \`\`\`graphql
-${printFormat(x.name)}
- * \`\`\`
- *
- * @name ${namespace}#${x.name}${argType ? `\n * @param {...${ns}.${argType}} params` : ''}
+ * @name ${namespace}#${x.name}${argType ? `\n * @param {${ns}.${argType}} params` : ''}
  * @function
  * @memberof ${ns}
  * @returns {Promise<${resultType}>} Checkout {@link ${resultType}} for resolved data format
@@ -136,46 +151,41 @@ ${printFormat(x.name)}
 
 const getTxSendTypes = (name, tx, ns) => `
 /**
- * Structure of param.data for transaction sending/encoding method ${name}
- *
- * @memberof ${ns}
- * @typedef {Object} ${ns}.${tx}InputData
- * @prop {...${ns}.${tx}}
- * @prop {...${ns}.TxInputExtra}
- */
-
-/**
- * Structure of param for transaction sending/encoding method ${name}
- *
  * @memberof ${ns}
  * @typedef {Object} ${ns}.${tx}Input
- * @prop {...${ns}.${tx}SendInputData} input.data - should be the ${tx} object in most simple case
- * @prop {object} input.wallet - should be a wallet instance constructed using forge-wallet
- * @prop {object} input.signature - the signature of the tx, if this parameter exist, we will not sign the transaction
+ * @prop {object} input
+ * @prop {object} input.tx - data of the transaction
+ * @prop {${ns}.${tx}} input.tx.itx - the actual transaction object
+ * @prop {string} [input.tx.pk] - the sender pk
+ * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
+ * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
+ * @prop {string} [input.tx.chainId] - the chainId
+ * @prop {string} [input.tx.signature] - transaction signature
+ * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transaction
+ * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
+ * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
  */
 
 /**
- * Send transaction and get the hash, if you want to get transaction detail please use {@link ${ns}#getTx}
+ * Send ${tx} transaction and get the hash, use {@link ${ns}#getTx} to get transaction detail
  *
  * @memberof ${ns}
  * @function
  * @name ${ns}#${name}
  * @param {${ns}.${tx}Input} params
- * @returns {Promise} returns transaction hash if success, otherwise error was thrown
+ * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
 `;
 
 const getTxEncodeTypes = (name, tx, ns) => `
 /**
- * Encode transaction, users can pass plain objects for itx.data field
+ * Encode a ${tx} transaction for later use
  *
  * @name ${ns}#${name}
  * @function
  * @memberof ${ns}
  * @param {${ns}.${tx}Input} params
- * @returns {object} result - we provide two formats of the encoding result
- * @returns {buffer} result.buffer - binary presentation of the tx, can be used for further encoding or signing
- * @returns {object} result.object - human readable tx object
+ * @returns {Promise<${ns}.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
 `;
 
@@ -228,17 +238,6 @@ const dtsContent = `
  */
 
 /**
- * Common props for sending or encoding a transaction
- *
- * @memberof ${namespace}
- * @typedef {Object} ${namespace}.TxInputExtra
- * @prop {string} chainId - if not specified, will fetch from graphql endpoint
- * @prop {number} nonce - if not specified, will use Date.now as nonce
- * @prop {string} from - sender address, if not specified, will use wallet.toAddress
- * @prop {string} pk - sender publicKey, if not specified, will use wallet.publicKey
- */
-
-/**
  * Structure of GraphQLClient.WalletObject
  *
  * @memberof ${namespace}
@@ -260,10 +259,10 @@ const dtsContent = `
  */
 
 /**
- * Structure of GraphQLClient.EncodeTxResult
+ * Structure of ${namespace}.TxEncodeOutput
  *
  * @memberof ${namespace}
- * @typedef {Object} GraphQLClient.EncodeTxResult
+ * @typedef {object} ${namespace}.TxEncodeOutput
  * @property {object} object - the transaction object, human readable
  * @property {buffer} buffer - the transaction binary presentation, can be used to signing, encoding to other formats
  */
@@ -276,9 +275,9 @@ ${sortBy(types, ['kind', 'name'])
   .filter(Boolean)
   .join('\n')}
 
-${generateMethodsExports(queries, namespace)}
-${generateMethodsExports(mutations, namespace)}
-${generateMethodsExports(subscriptions, namespace)}
+${generateArgs(queries, namespace)}
+${generateArgs(mutations, namespace)}
+${generateArgs(subscriptions, namespace)}
 
 ${client
   .getTxSendMethods()

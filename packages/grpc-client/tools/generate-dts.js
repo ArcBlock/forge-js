@@ -6,6 +6,10 @@ const get = require('lodash/get');
 const camelcase = require('lodash/camelcase');
 const { compactSpec } = require('@arcblock/forge-proto');
 const specs = require('@arcblock/forge-proto/lib/spec.json');
+const GRpcClient = require('../');
+
+const client = new GRpcClient('tcp://127.0.0.1:28210');
+const ns = 'GRpcClient';
 
 const types = compactSpec(specs);
 
@@ -81,23 +85,22 @@ const generateMethods = (methods, ns, ns2) =>
     })
     .join('\n');
 
+// 1. generate type definitions
 const generateNamespace = (types, ns) => `
 declare namespace ${ns} {
 ${types.map(x => generateTypeExport(x, ns)).join('\n')}
 }`;
-
 const getTypesArray = namespace => {
   const obj = get(types, namespace);
   return Object.keys(obj).map(x => Object.assign(obj[x], { name: x }));
 };
-
 const namespaces = ['forge_abi', 'google.protobuf', 'abci_vendor'].map(ns =>
   generateNamespace(getTypesArray(ns), ns)
 );
 
 // Extra namespace to make rpc methods work
 namespaces.push(`
-declare namespace RpcClient {
+declare namespace GRpcClient {
   export interface UnaryResult<T> {
     then(fn: (result: T) => any): Promise<any>;
     catch(fn: (err: Error) => any): Promise<any>;
@@ -107,19 +110,71 @@ declare namespace RpcClient {
     on(event: 'data', fn: (data: T) => any): this;
     on(event: 'error', fn: (err: Error) => void): this;
   }
+
+  export interface TxParam<T> {
+    tx: ItxParam<T>;
+    wallet: GraphQLClient.WalletObject,
+    signature: string;
+  }
+
+  export interface ItxParam<T> {
+    nonce: number;
+    from: string;
+    pk: string;
+    chainId: string;
+    signature: string;
+    signatures: array;
+    itx: T;
+  }
+
+  export interface WalletObject {
+    publicKey: string;
+    secretKey: string;
+    type: GRpcClient.WalletTypeObject,
+    sign(message: string): string;
+    verify(message: string, signature: string): boolean;
+    toJSON(): object;
+    toAddress(): string;
+  }
+
+  export interface WalletTypeObject {
+    pk: number;
+    role: number;
+    address: number;
+    hash: number;
+  }
+
+  export interface EncodeTxResult {
+    object: object;
+    buffer: buffer;
+  }
 }
 `);
 console.log('rpc namespaces generated', namespaces.length);
 
+// 2. generate standard grpc methods
 const services = getTypesArray('forge_abi').filter(x => x.methods);
-const methods = services.map(x => generateMethods(x.methods, 'forge_abi', 'RpcClient'));
+const methods = services.map(x => generateMethods(x.methods, 'forge_abi', 'GRpcClient'));
 console.log('rpc services generated', methods.length);
 
-// TODO: generate shortcut methods
+// 3. generate shortcut transaction send/encode methods
+const encodeMethods = client.getTxEncodeMethods();
+const encodeMethodDocs = Object.keys(encodeMethods).map(
+  x => `${x}(param: ${ns}.TxParam<${ns}.${encodeMethods[x]}>): Promise<${ns}.ResponseSendTx>;`
+);
 
+const sendMethods = client.getTxSendMethods();
+const sendMethodDocs = Object.keys(sendMethods).map(
+  x => `${x}(param: ${ns}.TxParam<${ns}.${sendMethods[x]}>): Promise<${ns}.EncodeTxResult>;`
+);
+
+// 4. mix everything together
 const filePath = path.join(__dirname, '../index.d.ts');
 let fileContent = fs.readFileSync(filePath).toString();
-fileContent = fileContent.replace(/__RpcClientMethods__/, `\n${methods.join('\n')}\n`);
+fileContent = fileContent.replace(
+  /__GRpcClientMethods__/,
+  `\n${methods.concat(encodeMethodDocs, sendMethodDocs).join('\n')}\n`
+);
 fileContent = fileContent + namespaces.join('\n');
 fs.writeFileSync(filePath, fileContent);
 

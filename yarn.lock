@@ -17,11 +17,12 @@
     multibase "^0.6.0"
     randombytes "^2.0.6"
 
-"@arcblock/analytics-js@^0.16.0":
-  version "0.16.0"
-  resolved "https://registry.npmjs.org/@arcblock/analytics-js/-/analytics-js-0.16.0.tgz#31e1773fc215a1f59fab916d86f80c135e43d1df"
+"@arcblock/analytics-js@^0.17.1":
+  version "0.17.1"
+  resolved "https://registry.npmjs.org/@arcblock/analytics-js/-/analytics-js-0.17.1.tgz#221dd2f79e3434fdf7a90ce000308e933152e13d"
+  integrity sha512-uoHp2FH+PMN+DvVit/R5O5E/UiabWi30h+9Gxk5Pu98a/+Tiw03VYXX78TvYgmgwf/o3UM4H/YNf6wR2g4b8Sg==
   dependencies:
-    "@arcblock/sdk-util" "^0.19.0"
+    "@arcblock/sdk-util" "^0.19.6"
     babel-polyfill "^6.26.0"
     js-cookie "^2.2.0"
 
@@ -41,9 +42,10 @@
   resolved "https://registry.npmjs.org/@arcblock/docblock/-/docblock-1.2.0.tgz#507a428a9276c3cd5c9b74cdda98d1479ce6ca9a"
   integrity sha512-Wy0tGMr0uP3pBzdnkWXvHaNST6GMcluTFuapd6y8FwS2KjpXtkiQs8QBzVgRA+NpZv13a3boO3HW1MwUTDTLbA==
 
-"@arcblock/sdk-util@^0.19.0", "@arcblock/sdk-util@^0.19.4":
-  version "0.19.4"
-  resolved "https://registry.npmjs.org/@arcblock/sdk-util/-/sdk-util-0.19.4.tgz#55e44fe3402e03806478a579b62415789bb801c2"
+"@arcblock/sdk-util@^0.19.6":
+  version "0.19.6"
+  resolved "https://registry.npmjs.org/@arcblock/sdk-util/-/sdk-util-0.19.6.tgz#c3d06264caba4e0fc8e1bc1bf3f123ce2115ba15"
+  integrity sha512-feXs3NJMj7yF55K8sSFAme2OAu8Ni1frbUkDGJky+GSCmW+5kgdBOmPOIwYrjmWivNN9H9iy4p/H1lZTCWONOQ==
   dependencies:
     axios "^0.18.0"
     debug "^3.1.0"

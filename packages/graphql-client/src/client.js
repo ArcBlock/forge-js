@@ -22,9 +22,25 @@ class GraphQLClient extends BaseClient {
    * Create an instance of GraphQLClient
    *
    * @constructor
-   * @param {string} [httpEndpoint='http://localhost:8210/api']
+   * @param {object|string} config - config object, if a string passed, will be used as the endpoint
+   * @param {string} [config.endpoint='http://localhost:8210/api'] - the graphql endpoint
+   * @param {string} [config.chainId=''] - the chainId of the network
+   * @see GraphQLClient#getQueries
+   * @see GraphQLClient#getMutations
+   * @see GraphQLClient#getSubscriptions
+   * @see GraphQLClient#getTxSendMethods
+   * @see GraphQLClient#getTxEncodeMethods
    */
-  constructor(httpEndpoint = 'http://localhost:8210/api') {
+  constructor(config = 'http://localhost:8210/api') {
+    let httpEndpoint = '';
+    let chainId = '';
+    if (typeof config === 'string') {
+      httpEndpoint = config;
+    } else {
+      httpEndpoint = config.endpoint;
+      chainId = config.chainId;
+    }
+
     super({
       dataSource: 'forge',
       httpEndpoint,
@@ -33,6 +49,9 @@ class GraphQLClient extends BaseClient {
       enableMutation: true,
       maxQueryDepth: 6,
     });
+
+    this._endpoint = httpEndpoint;
+    this._chainId = chainId;
 
     this._initTxMethods();
   }
@@ -80,17 +99,25 @@ class GraphQLClient extends BaseClient {
       /**
        * Generate an transaction encoding function
        *
-       * @param {object} { data, wallet } data is the itx object, and wallet is an Wallet instance
+       * @param {object} input
+       * @param {object} input.tx - data of the transaction
+       * @param {object} input.tx.itx - the actual transaction object
+       * @param {object} [input.tx.from] - the sender address, can be derived from wallet
+       * @param {object} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
+       * @param {object} [input.tx.chainId] - the chainId
+       * @param {object} [input.tx.signature] - the chainId
+       * @param {object} [input.tx.signatures] - the chainId
+       * @param {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
        * @returns Promise
        */
-      const txEncodeFn = async ({ data, wallet }) => {
+      const txEncodeFn = async ({ tx, wallet }) => {
         // Determine sender address
-        const address = data.from || wallet.toAddress();
-        const pk = data.pk || Uint8Array.from(hexToBytes(wallet.publicKey));
+        const address = tx.from || wallet.toAddress();
+        const pk = tx.pk || Uint8Array.from(hexToBytes(wallet.publicKey));
 
         // Determine chainId & nonce, only attach new one when not exist
-        let nonce = typeof data.nonce === 'undefined' ? Date.now() : data.nonce;
-        let chainId = data.chainId;
+        let nonce = typeof tx.nonce === 'undefined' ? Date.now() : tx.nonce;
+        let chainId = tx.chainId || this._chainId;
         if (!chainId) {
           const { info } = await this.getChainInfo();
           chainId = info.network;
@@ -98,33 +125,32 @@ class GraphQLClient extends BaseClient {
 
         // Determine signatures for multi sig
         let signatures = [];
-        if (Array.isArray(data.signatures)) {
-          signatures = data.signatures;
+        if (Array.isArray(tx.signatures)) {
+          signatures = tx.signatures;
         }
-        if (Array.isArray(data.signaturesList)) {
-          signatures = data.signaturesList;
+        if (Array.isArray(tx.signaturesList)) {
+          signatures = tx.signaturesList;
         }
 
-        const txObj = {
+        const txObj = createMessage('Transaction', {
           from: address,
           nonce,
           pk,
           chainId,
-          signature: data.signature || '',
+          signature: tx.signature || '',
           signatures,
           itx: {
             type: x,
-            value: data,
+            value: tx.itx,
           },
-        };
+        });
+        const txToSignBytes = txObj.serializeBinary();
 
-        const tx = createMessage('Transaction', txObj);
-        const txToSignBytes = tx.serializeBinary();
-        debug(`encodeTx.${x}.txObj`, tx.toObject());
+        debug(`encodeTx.${x}.txObj`, txObj.toObject());
         debug(`encodeTx.${x}.txBytes`, txToSignBytes.toString());
         debug(`encodeTx.${x}.txHex`, toHex(txToSignBytes));
 
-        return { object: tx.toObject(), buffer: Uint8Array.from(txToSignBytes) };
+        return { object: txObj.toObject(), buffer: Uint8Array.from(txToSignBytes) };
       };
 
       const encodeMethod = camelcase(`encode_${x}`);
@@ -134,29 +160,36 @@ class GraphQLClient extends BaseClient {
       /**
        * Generate an transaction sender function
        *
-       * @param {object} input - input used to construct the transaction
-       * @param {object} input.data - should be the itx object in most simple case
-       * @param {object} input.wallet - should be a wallet instance constructed using `Wallet`
-       * @param {object} input.signature - the signature of the tx, if this parameter exist, we will not sign the transaction
+       *
+       * @param {object} input
+       * @param {object} input.tx - data of the transaction
+       * @param {object} input.tx.itx - the actual transaction object
+       * @param {object} [input.tx.from] - the sender address, can be derived from wallet
+       * @param {object} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
+       * @param {object} [input.tx.chainId] - the chainId
+       * @param {object} [input.tx.signature] - the chainId
+       * @param {object} [input.tx.signatures] - the chainId
+       * @param {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
+       * @param {object} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
        * @returns Promise
        */
-      const txSendFn = async ({ data, wallet, signature }) => {
-        let txObj;
+      const txSendFn = async ({ tx, wallet, signature }) => {
+        let obj;
         if (signature) {
-          txObj = data;
-          txObj.signature = Uint8Array.from(hexToBytes(signature));
-          debug(`sendTx.${x}.hasSignature`, txObj);
+          obj = tx;
+          obj.signature = Uint8Array.from(hexToBytes(signature));
+          debug(`sendTx.${x}.hasSignature`, obj);
         } else {
-          const { object, buffer: txToSignBytes } = await txEncodeFn({ data, wallet });
+          const { object, buffer: txToSignBytes } = await txEncodeFn({ tx, wallet });
           const signature = wallet.sign(bytesToHex(txToSignBytes));
-          txObj = object;
-          txObj.signature = Uint8Array.from(hexToBytes(signature));
+          obj = object;
+          obj.signature = Uint8Array.from(hexToBytes(signature));
         }
 
-        const tx = createMessage('Transaction', txObj);
-        const txBytes = tx.serializeBinary();
+        const txObj = createMessage('Transaction', obj);
+        const txBytes = txObj.serializeBinary();
         const txStr = base64.escape(Buffer.from(txBytes).toString('base64'));
-        debug(`sendTx.${x}.txObj`, tx.toObject());
+        debug(`sendTx.${x}.txObj`, txObj.toObject());
         debug(`sendTx.${x}.txBytes`, txBytes.toString());
         debug(`sendTx.${x}.txHex`, toHex(txBytes));
         debug(`sendTx.${x}.txB64`, txStr);

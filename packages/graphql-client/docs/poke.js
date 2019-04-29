@@ -25,9 +25,11 @@ const type = WalletType({
   try {
     const wallet = fromRandom(type);
     let res = await client.sendDeclareTx({
-      data: {
-        moniker: `poke_user_${Math.round(Math.random() * 10000)}`,
-        type,
+      tx: {
+        itx: {
+          moniker: `poke_user_${Math.round(Math.random() * 10000)}`,
+          type,
+        },
       },
       wallet,
     });
@@ -35,12 +37,14 @@ const type = WalletType({
     console.log('declare.result', res);
 
     res = await client.sendPokeTx({
-      data: {
+      tx: {
         nonce: 0,
-        date: moment(new Date().toISOString())
-          .utc()
-          .format('YYYY-MM-DD'),
-        address: 'zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz',
+        itx: {
+          date: moment(new Date().toISOString())
+            .utc()
+            .format('YYYY-MM-DD'),
+          address: 'zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz',
+        },
       },
       wallet,
     });

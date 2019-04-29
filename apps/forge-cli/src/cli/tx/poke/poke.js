@@ -21,10 +21,12 @@ async function main() {
 
   try {
     const res = await client.sendPokeTx({
-      nonce: 0,
-      from: wallet.address,
       token: wallet.token,
-      itx,
+      tx: {
+        nonce: 0,
+        from: wallet.address,
+        itx,
+      },
     });
     shell.echo(`${symbols.success} poke success!`);
     shell.echo(`${symbols.info} check tx with: ${chalk.cyan(`forge tx ${res}`)}`);

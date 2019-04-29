@@ -24,7 +24,8 @@ const { hexToBytes, fromTokenToUnit } = require('@arcblock/forge-util');
 const GraphqlClient = require('../src/node');
 
 // const client = new GraphqlClient('https://test.abtnetwork.io/api'); // test
-const client = new GraphqlClient('http://127.0.0.1:8210/api'); // local
+// const client = new GraphqlClient('http://127.0.0.1:8210/api'); // local
+const client = new GraphqlClient('http://did-workshop.arcblock.co:8210/api'); // workshop
 const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
 
 const type = WalletType({
@@ -44,10 +45,12 @@ const type = WalletType({
 
     // Declare sender
     let res = await client.sendDeclareTx({
-      data: {
-        moniker: 'sender',
-        pk: Buffer.from(hexToBytes(sender.publicKey)),
-        type,
+      tx: {
+        itx: {
+          moniker: 'sender',
+          pk: Buffer.from(hexToBytes(sender.publicKey)),
+          type,
+        },
       },
       wallet: sender,
     });
@@ -55,10 +58,12 @@ const type = WalletType({
 
     // Declare receiver
     res = await client.sendDeclareTx({
-      data: {
-        moniker: 'receiver',
-        pk: Buffer.from(hexToBytes(receiver.publicKey)),
-        type,
+      tx: {
+        itx: {
+          moniker: 'receiver',
+          pk: Buffer.from(hexToBytes(receiver.publicKey)),
+          type,
+        },
       },
       wallet: receiver,
     });
@@ -79,7 +84,7 @@ const type = WalletType({
     const assetAddress = toAssetAddress(asset, sender.toAddress());
     asset.address = assetAddress;
     res = await client.sendCreateAssetTx({
-      data: asset,
+      tx: { itx: asset },
       wallet: sender,
     });
     console.log('create_asset.result', res, assetAddress);
@@ -87,16 +92,18 @@ const type = WalletType({
     // assemble exchange tx: multisig
     const exchange = {
       pk: Buffer.from(hexToBytes(sender.publicKey)), // pk of application
-      to: receiver.toAddress(),
-      sender: {
-        // What we offer
-        assets: [assetAddress],
-      },
-      receiver: {
-        // What user offer
-        value: {
-          value: Buffer.from(fromTokenToUnit(0).toBuffer()),
-          minus: false,
+      itx: {
+        to: receiver.toAddress(),
+        sender: {
+          // What we offer
+          assets: [assetAddress],
+        },
+        receiver: {
+          // What user offer
+          value: {
+            value: Buffer.from(fromTokenToUnit(0).toBuffer()),
+            minus: false,
+          },
         },
       },
     };
@@ -108,7 +115,7 @@ const type = WalletType({
     console.log('');
 
     const { buffer: senderBuffer, object: encoded1 } = await client.encodeExchangeTx({
-      data: exchange,
+      tx: exchange,
       wallet: sender,
     });
     const senderSignature = sender.sign(senderBuffer);
@@ -138,7 +145,7 @@ const type = WalletType({
     ];
 
     const { buffer: receiverBuffer, object: encoded2 } = await client.encodeExchangeTx({
-      data: exchange,
+      tx: exchange,
       wallet: receiver,
     });
     encoded2.signatures = encoded2.signaturesList;
@@ -159,7 +166,7 @@ const type = WalletType({
 
     await sleep(5000);
     res = await client.sendExchangeTx({
-      data: encoded2,
+      tx: encoded2,
       wallet: sender,
       signature: senderSignature,
     });
