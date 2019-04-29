@@ -10,8 +10,8 @@ const { parse } = require('@arcblock/forge-config');
 const { RpcClient } = sdk;
 const client = new RpcClient(parse(path.resolve(__dirname, '../../../examples/simple/forge.toml')));
 
-const rpcMethods = client.listRpcMethods();
-// const shortcutMethods = []; // client.listShortcutMethods();
+const rpcMethods = client.getRpcMethods();
+// const shortcutMethods = []; // client.getShortcutMethods();
 
 const generateEnumDocs = () => `## Enums
 ${Object.keys(enums)

@@ -1,24 +1,24 @@
 const GRpcClient = require('..');
 const client = new GRpcClient('tcp://127.0.0.1:28210');
 
-describe('#listRpcMethods', () => {
+describe('#getRpcMethods', () => {
   test('should be function', () => {
-    expect(typeof client.listRpcMethods).toEqual('function');
+    expect(typeof client.getRpcMethods).toEqual('function');
   });
 
   test('should have at least getBlock method', () => {
-    const methods = client.listRpcMethods();
+    const methods = client.getRpcMethods();
     expect(typeof methods.getBlock).toEqual('object');
   });
 });
 
-describe('#listTxSendMethods', () => {
+describe('#getTxSendMethods', () => {
   test('should be function', () => {
-    expect(typeof client.listTxSendMethods).toEqual('function');
+    expect(typeof client.getTxSendMethods).toEqual('function');
   });
 
   test('should have at least sendTransferTx method', () => {
-    const methods = client.listTxSendMethods();
+    const methods = client.getTxSendMethods();
     expect(typeof client.sendTransferTx).toEqual('function');
     expect(methods.sendTransferTx).toEqual('TransferTx');
   });

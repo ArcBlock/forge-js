@@ -81,23 +81,22 @@ const generateMethods = (methods, ns, ns2) =>
     })
     .join('\n');
 
+// 1. generate type definitions
 const generateNamespace = (types, ns) => `
 declare namespace ${ns} {
 ${types.map(x => generateTypeExport(x, ns)).join('\n')}
 }`;
-
 const getTypesArray = namespace => {
   const obj = get(types, namespace);
   return Object.keys(obj).map(x => Object.assign(obj[x], { name: x }));
 };
-
 const namespaces = ['forge_abi', 'google.protobuf', 'abci_vendor'].map(ns =>
   generateNamespace(getTypesArray(ns), ns)
 );
 
 // Extra namespace to make rpc methods work
 namespaces.push(`
-declare namespace RpcClient {
+declare namespace GRpcClient {
   export interface UnaryResult<T> {
     then(fn: (result: T) => any): Promise<any>;
     catch(fn: (err: Error) => any): Promise<any>;
@@ -111,15 +110,17 @@ declare namespace RpcClient {
 `);
 console.log('rpc namespaces generated', namespaces.length);
 
+// 2. generate standard grpc methods
 const services = getTypesArray('forge_abi').filter(x => x.methods);
-const methods = services.map(x => generateMethods(x.methods, 'forge_abi', 'RpcClient'));
+const methods = services.map(x => generateMethods(x.methods, 'forge_abi', 'GRpcClient'));
 console.log('rpc services generated', methods.length);
 
-// TODO: generate shortcut methods
+// 3. generate shortcut transaction send/encode methods
 
+// 4. mix everything together
 const filePath = path.join(__dirname, '../index.d.ts');
 let fileContent = fs.readFileSync(filePath).toString();
-fileContent = fileContent.replace(/__RpcClientMethods__/, `\n${methods.join('\n')}\n`);
+fileContent = fileContent.replace(/__GRpcClientMethods__/, `\n${methods.join('\n')}\n`);
 fileContent = fileContent + namespaces.join('\n');
 fs.writeFileSync(filePath, fileContent);
 

@@ -44,8 +44,8 @@ class GRpcClient {
    * @see GRpcClient.getQueries
    * @see GRpcClient.getMutations
    * @see GRpcClient.getSubscriptions
-   * @see GRpcClient.listRpcMethods
-   * @see GRpcClient.listTxSendMethods
+   * @see GRpcClient.getRpcMethods
+   * @see GRpcClient.getTxSendMethods
    */
   constructor(grpcEndpoint) {
     if (!grpcEndpoint) {
@@ -151,7 +151,7 @@ class GRpcClient {
    *
    * @returns {object}
    */
-  listRpcMethods() {
+  getRpcMethods() {
     return Object.keys(this)
       .filter(x => typeof this[x] === 'function' && this[x].rpc)
       .reduce((acc, x) => {
@@ -206,7 +206,7 @@ class GRpcClient {
    *
    * @returns {object}
    */
-  listTxSendMethods() {
+  getTxSendMethods() {
     return Object.keys(this)
       .filter(x => typeof this[x] === 'function' && this[x].tx)
       .reduce((acc, x) => {

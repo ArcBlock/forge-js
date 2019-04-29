@@ -4,14 +4,13 @@ const fs = require('fs');
 const path = require('path');
 const util = require('util');
 const get = require('lodash/get');
-const { parse } = require('@arcblock/forge-config');
 const { compactSpec } = require('@arcblock/forge-proto');
 const specs = require('@arcblock/forge-proto/lib/spec.json');
 
-const { RpcClient } = require('../');
+const GRpcClient = require('../');
 
 const pretty = data => util.inspect(data, { depth: 8, colors: false, compact: false });
-const client = new RpcClient(parse(path.resolve(__dirname, '../../../examples/simple/forge.toml')));
+const client = new GRpcClient('tcp://127.0.0.1:28210');
 const namespace = 'GRpcClient';
 const examples = {};
 
@@ -49,19 +48,21 @@ const getFieldType = (field, ns = '') => {
   return `${prefix}${type}`;
 };
 
-const generateInterface = ({ fields, name }, ns = '') => `
-/**
- * Structure of ${ns}.${name}
+const printExample = name => {
+  if (examples[name]) {
+    return `
  *
-${
-  examples[name]
-    ? `
 \`\`\`javascript
 ${examples[name]}
-\`\`\`
-`
-    : ''
-}
+\`\`\``;
+  }
+
+  return '';
+};
+
+const generateInterface = ({ fields, name }, ns = '') => `
+/**
+ * Structure of ${ns}.${name} ${printExample(name)}
  *
  * @memberof ${ns}
  * @typedef {object} ${ns}.${name}
@@ -89,7 +90,7 @@ const getTypesArray = namespace => {
 };
 
 // 1. Generate typedef for all rpc methods
-const methods = client.listRpcMethods();
+const methods = client.getRpcMethods();
 const docs = Object.keys(methods).map(x => {
   const { requestType, responseType, responseStream } = methods[x];
   const returns = responseStream ? 'EventEmitter' : `Promise.<${namespace}.${responseType}>`;

@@ -1,8 +1,6 @@
 /**
  * Structure of GRpcClient.RequestVerifyTx
  *
-
- *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.RequestVerifyTx
  * @prop {GRpcClient.Transaction} tx
@@ -16,8 +14,6 @@
 /**
  * Structure of GRpcClient.ResponseVerifyTx
  *
-
- *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.ResponseVerifyTx
  * @prop {GRpcClient.StatusCode} code
@@ -25,8 +21,6 @@
 
 /**
  * Structure of GRpcClient.RequestUpdateState
- *
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.RequestUpdateState
@@ -41,8 +35,6 @@
 /**
  * Structure of GRpcClient.ResponseUpdateState
  *
-
- *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.ResponseUpdateState
  * @prop {GRpcClient.StatusCode} code
@@ -55,8 +47,6 @@
 /**
  * Structure of GRpcClient.RequestInfo
  *
-
- *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.RequestInfo
  * @prop {string} forgeVersion
@@ -65,8 +55,6 @@
 /**
  * Structure of GRpcClient.ResponseInfo
  *
-
- *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.ResponseInfo
  * @prop {Array<string>} typeUrls
@@ -74,9 +62,8 @@
  */
 
 /**
- * Structure of GRpcClient.Request
+ * Structure of GRpcClient.Request 
  *
-
 ```javascript
 {
   verifyTx: {
@@ -128,8 +115,8 @@
         context: {
           genesisTx: 'arcblock',
           renaissanceTx: 'arcblock',
-          genesisTime: '2019-04-28T06:09:24.506Z',
-          renaissanceTime: '2019-04-28T06:09:24.506Z'
+          genesisTime: '2019-04-29T07:49:13.421Z',
+          renaissanceTime: '2019-04-29T07:49:13.421Z'
         },
         issuer: 'arcblock',
         migratedTo: [
@@ -202,8 +189,8 @@
         context: {
           genesisTx: 'arcblock',
           renaissanceTx: 'arcblock',
-          genesisTime: '2019-04-28T06:09:24.506Z',
-          renaissanceTime: '2019-04-28T06:09:24.506Z'
+          genesisTime: '2019-04-29T07:49:13.421Z',
+          renaissanceTime: '2019-04-29T07:49:13.421Z'
         },
         issuer: 'arcblock',
         migratedTo: [
@@ -269,7 +256,7 @@
         readonly: true,
         transferrable: true,
         ttl: 2,
-        consumedTime: '2019-04-28T06:09:24.506Z',
+        consumedTime: '2019-04-29T07:49:13.421Z',
         issuer: 'arcblock',
         stake: {
           totalStakes: [Function: BigUint],
@@ -299,8 +286,8 @@
         context: {
           genesisTx: 'arcblock',
           renaissanceTx: 'arcblock',
-          genesisTime: '2019-04-28T06:09:24.506Z',
-          renaissanceTime: '2019-04-28T06:09:24.506Z'
+          genesisTime: '2019-04-29T07:49:13.421Z',
+          renaissanceTime: '2019-04-29T07:49:13.421Z'
         },
         data: {
           type: 'string',
@@ -314,7 +301,7 @@
         readonly: true,
         transferrable: true,
         ttl: 2,
-        consumedTime: '2019-04-28T06:09:24.506Z',
+        consumedTime: '2019-04-29T07:49:13.421Z',
         issuer: 'arcblock',
         stake: {
           totalStakes: [Function: BigUint],
@@ -344,8 +331,8 @@
         context: {
           genesisTx: 'arcblock',
           renaissanceTx: 'arcblock',
-          genesisTime: '2019-04-28T06:09:24.506Z',
-          renaissanceTime: '2019-04-28T06:09:24.506Z'
+          genesisTime: '2019-04-29T07:49:13.421Z',
+          renaissanceTime: '2019-04-29T07:49:13.421Z'
         },
         data: {
           type: 'string',
@@ -363,8 +350,8 @@
         context: {
           genesisTx: 'arcblock',
           renaissanceTx: 'arcblock',
-          genesisTime: '2019-04-28T06:09:24.506Z',
-          renaissanceTime: '2019-04-28T06:09:24.506Z'
+          genesisTime: '2019-04-29T07:49:13.421Z',
+          renaissanceTime: '2019-04-29T07:49:13.421Z'
         },
         data: {
           type: 'string',
@@ -380,8 +367,8 @@
         context: {
           genesisTx: 'arcblock',
           renaissanceTx: 'arcblock',
-          genesisTime: '2019-04-28T06:09:24.506Z',
-          renaissanceTime: '2019-04-28T06:09:24.506Z'
+          genesisTime: '2019-04-29T07:49:13.421Z',
+          renaissanceTime: '2019-04-29T07:49:13.421Z'
         },
         data: {
           type: 'string',
@@ -392,7 +379,7 @@
     context: {
       txHash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
       blockHeight: 5,
-      blockTime: '2019-04-28T06:09:24.506Z',
+      blockTime: '2019-04-29T07:49:13.421Z',
       totalTxs: 5,
       txStatistics: {
         numAccountMigrateTxs: 5,
@@ -409,7 +396,7 @@
         numPokeTxs: 5
       },
       txIndex: 2,
-      lastBlockTime: '2019-04-28T06:09:24.506Z'
+      lastBlockTime: '2019-04-29T07:49:13.421Z'
     },
     appState: {
       address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
@@ -464,8 +451,8 @@
           context: {
             genesisTx: 'arcblock',
             renaissanceTx: 'arcblock',
-            genesisTime: '2019-04-28T06:09:24.506Z',
-            renaissanceTime: '2019-04-28T06:09:24.506Z'
+            genesisTime: '2019-04-29T07:49:13.421Z',
+            renaissanceTime: '2019-04-29T07:49:13.421Z'
           }
         }
       },
@@ -520,7 +507,6 @@
   }
 }
 ```
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.Request
@@ -530,9 +516,8 @@
  */
 
 /**
- * Structure of GRpcClient.Response
+ * Structure of GRpcClient.Response 
  *
-
 ```javascript
 {
   verifyTx: {
@@ -540,7 +525,6 @@
   }
 }
 ```
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.Response
@@ -552,8 +536,6 @@
 /**
  * Structure of GRpcClient.BigUint
  *
-
- *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.BigUint
  * @prop {Uint8Array} value
@@ -561,8 +543,6 @@
 
 /**
  * Structure of GRpcClient.BigSint
- *
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.BigSint
@@ -572,8 +552,6 @@
 
 /**
  * Structure of GRpcClient.WalletType
- *
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.WalletType
@@ -586,8 +564,6 @@
 /**
  * Structure of GRpcClient.WalletInfo
  *
-
- *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.WalletInfo
  * @prop {GRpcClient.WalletType} type
@@ -598,8 +574,6 @@
 
 /**
  * Structure of GRpcClient.ChainInfo
- *
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.ChainInfo
@@ -622,8 +596,6 @@
 
 /**
  * Structure of GRpcClient.NodeInfo
- *
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.NodeInfo
@@ -650,8 +622,6 @@
 /**
  * Structure of GRpcClient.Validator
  *
-
- *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.Validator
  * @prop {string} address
@@ -660,8 +630,6 @@
 
 /**
  * Structure of GRpcClient.ConsensusParams
- *
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.ConsensusParams
@@ -678,8 +646,6 @@
 /**
  * Structure of GRpcClient.UpgradeTask
  *
-
- *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.UpgradeTask
  * @prop {GRpcClient.UpgradeType} type
@@ -690,8 +656,6 @@
 /**
  * Structure of GRpcClient.UpgradeTasks
  *
-
- *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.UpgradeTasks
  * @prop {Array<GRpcClient.UpgradeTask>} item
@@ -699,8 +663,6 @@
 
 /**
  * Structure of GRpcClient.AbciContext
- *
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.AbciContext
@@ -716,8 +678,6 @@
 /**
  * Structure of GRpcClient.Multisig
  *
-
- *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.Multisig
  * @prop {string} signer
@@ -728,8 +688,6 @@
 
 /**
  * Structure of GRpcClient.Transaction
- *
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.Transaction
@@ -744,8 +702,6 @@
 
 /**
  * Structure of GRpcClient.TransactionInfo
- *
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.TransactionInfo
@@ -763,8 +719,6 @@
 /**
  * Structure of GRpcClient.TransactionConfig
  *
-
- *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.TransactionConfig
  * @prop {number} maxAssetSize
@@ -775,8 +729,6 @@
 
 /**
  * Structure of GRpcClient.BlockInfo
- *
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.BlockInfo
@@ -804,8 +756,6 @@
 /**
  * Structure of GRpcClient.BlockInfoSimple
  *
-
- *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.BlockInfoSimple
  * @prop {number} height
@@ -830,8 +780,6 @@
 /**
  * Structure of GRpcClient.TxStatus
  *
-
- *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.TxStatus
  * @prop {GRpcClient.StatusCode} code
@@ -840,8 +788,6 @@
 
 /**
  * Structure of GRpcClient.CircularQueue
- *
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.CircularQueue
@@ -855,8 +801,6 @@
 /**
  * Structure of GRpcClient.StateContext
  *
-
- *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.StateContext
  * @prop {string} genesisTx
@@ -867,8 +811,6 @@
 
 /**
  * Structure of GRpcClient.StakeContext
- *
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.StakeContext
@@ -882,8 +824,6 @@
 /**
  * Structure of GRpcClient.StakeSummary
  *
-
- *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.StakeSummary
  * @prop {GRpcClient.BigUint} totalStakes
@@ -894,8 +834,6 @@
 /**
  * Structure of GRpcClient.StakeConfig
  *
-
- *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.StakeConfig
  * @prop {number} timeoutGeneral
@@ -905,8 +843,6 @@
 /**
  * Structure of GRpcClient.UnconfirmedTxs
  *
-
- *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.UnconfirmedTxs
  * @prop {number} nTxs
@@ -915,8 +851,6 @@
 
 /**
  * Structure of GRpcClient.NetInfo
- *
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.NetInfo
@@ -929,8 +863,6 @@
 /**
  * Structure of GRpcClient.GeoInfo
  *
-
- *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.GeoInfo
  * @prop {string} city
@@ -941,8 +873,6 @@
 
 /**
  * Structure of GRpcClient.PeerInfo
- *
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.PeerInfo
@@ -957,8 +887,6 @@
 /**
  * Structure of GRpcClient.ValidatorsInfo
  *
-
- *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.ValidatorsInfo
  * @prop {number} blockHeight
@@ -967,8 +895,6 @@
 
 /**
  * Structure of GRpcClient.ValidatorInfo
- *
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.ValidatorInfo
@@ -983,8 +909,6 @@
 /**
  * Structure of GRpcClient.GenesisInfo
  *
-
- *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.GenesisInfo
  * @prop {string} genesisTime
@@ -996,8 +920,6 @@
 
 /**
  * Structure of GRpcClient.ForgeStats
- *
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.ForgeStats
@@ -1026,8 +948,6 @@
 /**
  * Structure of GRpcClient.TxStatistics
  *
-
- *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.TxStatistics
  * @prop {number} numAccountMigrateTxs
@@ -1047,8 +967,6 @@
 /**
  * Structure of GRpcClient.ForgeToken
  *
-
- *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.ForgeToken
  * @prop {string} name
@@ -1065,8 +983,6 @@
 /**
  * Structure of GRpcClient.PokeInfo
  *
-
- *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.PokeInfo
  * @prop {GRpcClient.BigUint} dailyLimit
@@ -1076,8 +992,6 @@
 
 /**
  * Structure of GRpcClient.PokeConfig
- *
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.PokeConfig
@@ -1090,8 +1004,6 @@
 /**
  * Structure of GRpcClient.ExtraCreateAsset
  *
-
- *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.ExtraCreateAsset
  * @prop {string} asset
@@ -1099,8 +1011,6 @@
 
 /**
  * Structure of GRpcClient.ExtraAccountMigrate
- *
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.ExtraAccountMigrate
@@ -1110,8 +1020,6 @@
 /**
  * Structure of GRpcClient.UpgradeInfo
  *
-
- *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.UpgradeInfo
  * @prop {number} height
@@ -1120,8 +1028,6 @@
 
 /**
  * Structure of GRpcClient.AccountState
- *
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.AccountState
@@ -1146,8 +1052,6 @@
 /**
  * Structure of GRpcClient.AssetState
  *
-
- *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.AssetState
  * @prop {string} address
@@ -1166,8 +1070,6 @@
 /**
  * Structure of GRpcClient.CoreProtocol
  *
-
- *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.CoreProtocol
  * @prop {string} name
@@ -1176,8 +1078,6 @@
 
 /**
  * Structure of GRpcClient.ForgeState
- *
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.ForgeState
@@ -1199,8 +1099,6 @@
 /**
  * Structure of GRpcClient.RootState
  *
-
- *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.RootState
  * @prop {string} address
@@ -1212,8 +1110,6 @@
 
 /**
  * Structure of GRpcClient.StakeState
- *
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.StakeState
@@ -1229,8 +1125,6 @@
 /**
  * Structure of GRpcClient.StatisticsState
  *
-
- *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.StatisticsState
  * @prop {string} address
@@ -1244,8 +1138,6 @@
 /**
  * Structure of GRpcClient.BlacklistState
  *
-
- *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.BlacklistState
  * @prop {Array<string>} address
@@ -1253,8 +1145,6 @@
 
 /**
  * Structure of GRpcClient.ProtocolState
- *
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.ProtocolState
@@ -1272,9 +1162,8 @@
  */
 
 /**
- * Structure of GRpcClient.RequestCreateTx
+ * Structure of GRpcClient.RequestCreateTx 
  *
-
 ```javascript
 {
   itx: {
@@ -1297,7 +1186,6 @@
   token: 'arcblock'
 }
 ```
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.RequestCreateTx
@@ -1309,9 +1197,8 @@
  */
 
 /**
- * Structure of GRpcClient.ResponseCreateTx
+ * Structure of GRpcClient.ResponseCreateTx 
  *
-
 ```javascript
 {
   code: 0,
@@ -1348,7 +1235,6 @@
   }
 }
 ```
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.ResponseCreateTx
@@ -1357,9 +1243,8 @@
  */
 
 /**
- * Structure of GRpcClient.RequestMultisig
+ * Structure of GRpcClient.RequestMultisig 
  *
-
 ```javascript
 {
   tx: {
@@ -1411,7 +1296,6 @@
   token: 'arcblock'
 }
 ```
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.RequestMultisig
@@ -1422,9 +1306,8 @@
  */
 
 /**
- * Structure of GRpcClient.ResponseMultisig
+ * Structure of GRpcClient.ResponseMultisig 
  *
-
 ```javascript
 {
   code: 0,
@@ -1461,7 +1344,6 @@
   }
 }
 ```
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.ResponseMultisig
@@ -1470,9 +1352,8 @@
  */
 
 /**
- * Structure of GRpcClient.RequestSendTx
+ * Structure of GRpcClient.RequestSendTx 
  *
-
 ```javascript
 {
   tx: {
@@ -1521,7 +1402,6 @@
   commit: true
 }
 ```
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.RequestSendTx
@@ -1532,16 +1412,14 @@
  */
 
 /**
- * Structure of GRpcClient.ResponseSendTx
+ * Structure of GRpcClient.ResponseSendTx 
  *
-
 ```javascript
 {
   code: 0,
   hash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55'
 }
 ```
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.ResponseSendTx
@@ -1550,15 +1428,13 @@
  */
 
 /**
- * Structure of GRpcClient.RequestGetTx
+ * Structure of GRpcClient.RequestGetTx 
  *
-
 ```javascript
 {
   hash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55'
 }
 ```
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.RequestGetTx
@@ -1566,9 +1442,8 @@
  */
 
 /**
- * Structure of GRpcClient.ResponseGetTx
+ * Structure of GRpcClient.ResponseGetTx 
  *
-
 ```javascript
 {
   code: 0,
@@ -1618,7 +1493,7 @@
       }
     ],
     code: 0,
-    time: '2019-04-28T06:09:24.509Z',
+    time: '2019-04-29T07:49:13.422Z',
     createAsset: {
       asset: 'arcblock'
     },
@@ -1628,7 +1503,6 @@
   }
 }
 ```
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.ResponseGetTx
@@ -1637,15 +1511,13 @@
  */
 
 /**
- * Structure of GRpcClient.RequestGetBlock
+ * Structure of GRpcClient.RequestGetBlock 
  *
-
 ```javascript
 {
   height: 5
 }
 ```
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.RequestGetBlock
@@ -1653,16 +1525,15 @@
  */
 
 /**
- * Structure of GRpcClient.ResponseGetBlock
+ * Structure of GRpcClient.ResponseGetBlock 
  *
-
 ```javascript
 {
   code: 0,
   block: {
     height: 5,
     numTxs: 2,
-    time: '2019-04-28T06:09:24.509Z',
+    time: '2019-04-29T07:49:13.423Z',
     appHash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
     proposer: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
     txs: [
@@ -1712,7 +1583,7 @@
           }
         ],
         code: 0,
-        time: '2019-04-28T06:09:24.509Z',
+        time: '2019-04-29T07:49:13.423Z',
         createAsset: {
           asset: 'arcblock'
         },
@@ -1766,7 +1637,7 @@
           }
         ],
         code: 0,
-        time: '2019-04-28T06:09:24.509Z',
+        time: '2019-04-29T07:49:13.423Z',
         createAsset: {
           asset: 'arcblock'
         },
@@ -1823,7 +1694,7 @@
           }
         ],
         code: 0,
-        time: '2019-04-28T06:09:24.509Z',
+        time: '2019-04-29T07:49:13.423Z',
         createAsset: {
           asset: 'arcblock'
         },
@@ -1877,7 +1748,7 @@
           }
         ],
         code: 0,
-        time: '2019-04-28T06:09:24.509Z',
+        time: '2019-04-29T07:49:13.423Z',
         createAsset: {
           asset: 'arcblock'
         },
@@ -1915,7 +1786,6 @@
   }
 }
 ```
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.ResponseGetBlock
@@ -1924,9 +1794,8 @@
  */
 
 /**
- * Structure of GRpcClient.RequestGetBlocks
+ * Structure of GRpcClient.RequestGetBlocks 
  *
-
 ```javascript
 {
   paging: {
@@ -1950,7 +1819,6 @@
   emptyExcluded: true
 }
 ```
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.RequestGetBlocks
@@ -1960,9 +1828,8 @@
  */
 
 /**
- * Structure of GRpcClient.ResponseGetBlocks
+ * Structure of GRpcClient.ResponseGetBlocks 
  *
-
 ```javascript
 {
   code: 0,
@@ -1975,7 +1842,7 @@
     {
       height: 5,
       numTxs: 2,
-      time: '2019-04-28T06:09:24.510Z',
+      time: '2019-04-29T07:49:13.423Z',
       appHash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
       proposer: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
       totalTxs: 5,
@@ -2009,7 +1876,7 @@
     {
       height: 5,
       numTxs: 2,
-      time: '2019-04-28T06:09:24.510Z',
+      time: '2019-04-29T07:49:13.423Z',
       appHash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
       proposer: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
       totalTxs: 5,
@@ -2043,7 +1910,6 @@
   ]
 }
 ```
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.ResponseGetBlocks
@@ -2053,9 +1919,8 @@
  */
 
 /**
- * Structure of GRpcClient.RequestCreateWallet
+ * Structure of GRpcClient.RequestCreateWallet 
  *
-
 ```javascript
 {
   passphrase: 'arcblock',
@@ -2068,7 +1933,6 @@
   moniker: 'arcblock'
 }
 ```
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.RequestCreateWallet
@@ -2078,9 +1942,8 @@
  */
 
 /**
- * Structure of GRpcClient.ResponseCreateWallet
+ * Structure of GRpcClient.ResponseCreateWallet 
  *
-
 ```javascript
 {
   code: 0,
@@ -2098,7 +1961,6 @@
   }
 }
 ```
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.ResponseCreateWallet
@@ -2108,16 +1970,14 @@
  */
 
 /**
- * Structure of GRpcClient.RequestLoadWallet
+ * Structure of GRpcClient.RequestLoadWallet 
  *
-
 ```javascript
 {
   address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
   passphrase: 'arcblock'
 }
 ```
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.RequestLoadWallet
@@ -2126,9 +1986,8 @@
  */
 
 /**
- * Structure of GRpcClient.ResponseLoadWallet
+ * Structure of GRpcClient.ResponseLoadWallet 
  *
-
 ```javascript
 {
   code: 0,
@@ -2146,7 +2005,6 @@
   }
 }
 ```
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.ResponseLoadWallet
@@ -2156,9 +2014,8 @@
  */
 
 /**
- * Structure of GRpcClient.RequestRecoverWallet
+ * Structure of GRpcClient.RequestRecoverWallet 
  *
-
 ```javascript
 {
   data: Uint8Array [],
@@ -2172,7 +2029,6 @@
   moniker: 'arcblock'
 }
 ```
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.RequestRecoverWallet
@@ -2183,9 +2039,8 @@
  */
 
 /**
- * Structure of GRpcClient.ResponseRecoverWallet
+ * Structure of GRpcClient.ResponseRecoverWallet 
  *
-
 ```javascript
 {
   code: 0,
@@ -2203,7 +2058,6 @@
   }
 }
 ```
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.ResponseRecoverWallet
@@ -2213,13 +2067,11 @@
  */
 
 /**
- * Structure of GRpcClient.RequestListWallet
+ * Structure of GRpcClient.RequestListWallet 
  *
-
 ```javascript
 {}
 ```
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.RequestListWallet
@@ -2227,16 +2079,14 @@
  */
 
 /**
- * Structure of GRpcClient.ResponseListWallet
+ * Structure of GRpcClient.ResponseListWallet 
  *
-
 ```javascript
 {
   code: 0,
   address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55'
 }
 ```
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.ResponseListWallet
@@ -2245,15 +2095,13 @@
  */
 
 /**
- * Structure of GRpcClient.RequestRemoveWallet
+ * Structure of GRpcClient.RequestRemoveWallet 
  *
-
 ```javascript
 {
   address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55'
 }
 ```
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.RequestRemoveWallet
@@ -2261,15 +2109,13 @@
  */
 
 /**
- * Structure of GRpcClient.ResponseRemoveWallet
+ * Structure of GRpcClient.ResponseRemoveWallet 
  *
-
 ```javascript
 {
   code: 0
 }
 ```
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.ResponseRemoveWallet
@@ -2277,15 +2123,13 @@
  */
 
 /**
- * Structure of GRpcClient.RequestDeclareNode
+ * Structure of GRpcClient.RequestDeclareNode 
  *
-
 ```javascript
 {
   validator: true
 }
 ```
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.RequestDeclareNode
@@ -2293,9 +2137,8 @@
  */
 
 /**
- * Structure of GRpcClient.ResponseDeclareNode
+ * Structure of GRpcClient.ResponseDeclareNode 
  *
-
 ```javascript
 {
   code: 0,
@@ -2312,7 +2155,6 @@
   }
 }
 ```
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.ResponseDeclareNode
@@ -2321,9 +2163,8 @@
  */
 
 /**
- * Structure of GRpcClient.RequestGetAccountState
+ * Structure of GRpcClient.RequestGetAccountState 
  *
-
 ```javascript
 {
   address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
@@ -2334,7 +2175,6 @@
   height: 5
 }
 ```
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.RequestGetAccountState
@@ -2344,9 +2184,8 @@
  */
 
 /**
- * Structure of GRpcClient.ResponseGetAccountState
+ * Structure of GRpcClient.ResponseGetAccountState 
  *
-
 ```javascript
 {
   code: 0,
@@ -2366,8 +2205,8 @@
     context: {
       genesisTx: 'arcblock',
       renaissanceTx: 'arcblock',
-      genesisTime: '2019-04-28T06:09:24.513Z',
-      renaissanceTime: '2019-04-28T06:09:24.513Z'
+      genesisTime: '2019-04-29T07:49:13.425Z',
+      renaissanceTime: '2019-04-29T07:49:13.425Z'
     },
     issuer: 'arcblock',
     migratedTo: [
@@ -2426,7 +2265,6 @@
   }
 }
 ```
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.ResponseGetAccountState
@@ -2435,9 +2273,8 @@
  */
 
 /**
- * Structure of GRpcClient.RequestGetAssetState
+ * Structure of GRpcClient.RequestGetAssetState 
  *
-
 ```javascript
 {
   address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
@@ -2448,7 +2285,6 @@
   height: 5
 }
 ```
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.RequestGetAssetState
@@ -2458,9 +2294,8 @@
  */
 
 /**
- * Structure of GRpcClient.ResponseGetAssetState
+ * Structure of GRpcClient.ResponseGetAssetState 
  *
-
 ```javascript
 {
   code: 0,
@@ -2471,7 +2306,7 @@
     readonly: true,
     transferrable: true,
     ttl: 2,
-    consumedTime: '2019-04-28T06:09:24.513Z',
+    consumedTime: '2019-04-29T07:49:13.425Z',
     issuer: 'arcblock',
     stake: {
       totalStakes: [Function: BigUint],
@@ -2501,8 +2336,8 @@
     context: {
       genesisTx: 'arcblock',
       renaissanceTx: 'arcblock',
-      genesisTime: '2019-04-28T06:09:24.513Z',
-      renaissanceTime: '2019-04-28T06:09:24.513Z'
+      genesisTime: '2019-04-29T07:49:13.425Z',
+      renaissanceTime: '2019-04-29T07:49:13.425Z'
     },
     data: {
       type: 'string',
@@ -2511,7 +2346,6 @@
   }
 }
 ```
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.ResponseGetAssetState
@@ -2520,9 +2354,8 @@
  */
 
 /**
- * Structure of GRpcClient.RequestGetProtocolState
+ * Structure of GRpcClient.RequestGetProtocolState 
  *
-
 ```javascript
 {
   address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
@@ -2533,7 +2366,6 @@
   height: 5
 }
 ```
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.RequestGetProtocolState
@@ -2543,9 +2375,8 @@
  */
 
 /**
- * Structure of GRpcClient.ResponseGetProtocolState
+ * Structure of GRpcClient.ResponseGetProtocolState 
  *
-
 ```javascript
 {
   code: 0,
@@ -2568,8 +2399,8 @@
     context: {
       genesisTx: 'arcblock',
       renaissanceTx: 'arcblock',
-      genesisTime: '2019-04-28T06:09:24.514Z',
-      renaissanceTime: '2019-04-28T06:09:24.514Z'
+      genesisTime: '2019-04-29T07:49:13.425Z',
+      renaissanceTime: '2019-04-29T07:49:13.425Z'
     },
     data: {
       type: 'string',
@@ -2578,7 +2409,6 @@
   }
 }
 ```
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.ResponseGetProtocolState
@@ -2587,9 +2417,8 @@
  */
 
 /**
- * Structure of GRpcClient.RequestGetStakeState
+ * Structure of GRpcClient.RequestGetStakeState 
  *
-
 ```javascript
 {
   address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
@@ -2600,7 +2429,6 @@
   height: 5
 }
 ```
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.RequestGetStakeState
@@ -2610,9 +2438,8 @@
  */
 
 /**
- * Structure of GRpcClient.ResponseGetStakeState
+ * Structure of GRpcClient.ResponseGetStakeState 
  *
-
 ```javascript
 {
   code: 0,
@@ -2625,8 +2452,8 @@
     context: {
       genesisTx: 'arcblock',
       renaissanceTx: 'arcblock',
-      genesisTime: '2019-04-28T06:09:24.514Z',
-      renaissanceTime: '2019-04-28T06:09:24.514Z'
+      genesisTime: '2019-04-29T07:49:13.425Z',
+      renaissanceTime: '2019-04-29T07:49:13.425Z'
     },
     data: {
       type: 'string',
@@ -2635,7 +2462,6 @@
   }
 }
 ```
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.ResponseGetStakeState
@@ -2644,9 +2470,8 @@
  */
 
 /**
- * Structure of GRpcClient.RequestGetForgeState
+ * Structure of GRpcClient.RequestGetForgeState 
  *
-
 ```javascript
 {
   keys: [
@@ -2656,7 +2481,6 @@
   height: 5
 }
 ```
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.RequestGetForgeState
@@ -2665,9 +2489,8 @@
  */
 
 /**
- * Structure of GRpcClient.ResponseGetForgeState
+ * Structure of GRpcClient.ResponseGetForgeState 
  *
-
 ```javascript
 {
   code: 0,
@@ -2724,8 +2547,8 @@
         context: {
           genesisTx: 'arcblock',
           renaissanceTx: 'arcblock',
-          genesisTime: '2019-04-28T06:09:24.513Z',
-          renaissanceTime: '2019-04-28T06:09:24.513Z'
+          genesisTime: '2019-04-29T07:49:13.425Z',
+          renaissanceTime: '2019-04-29T07:49:13.425Z'
         }
       }
     },
@@ -2779,7 +2602,6 @@
   }
 }
 ```
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.ResponseGetForgeState
@@ -2788,15 +2610,13 @@
  */
 
 /**
- * Structure of GRpcClient.RequestStoreFile
+ * Structure of GRpcClient.RequestStoreFile 
  *
-
 ```javascript
 {
   chunk: Uint8Array []
 }
 ```
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.RequestStoreFile
@@ -2804,16 +2624,14 @@
  */
 
 /**
- * Structure of GRpcClient.ResponseStoreFile
+ * Structure of GRpcClient.ResponseStoreFile 
  *
-
 ```javascript
 {
   code: 0,
   hash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55'
 }
 ```
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.ResponseStoreFile
@@ -2822,15 +2640,13 @@
  */
 
 /**
- * Structure of GRpcClient.RequestLoadFile
+ * Structure of GRpcClient.RequestLoadFile 
  *
-
 ```javascript
 {
   hash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55'
 }
 ```
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.RequestLoadFile
@@ -2838,16 +2654,14 @@
  */
 
 /**
- * Structure of GRpcClient.ResponseLoadFile
+ * Structure of GRpcClient.ResponseLoadFile 
  *
-
 ```javascript
 {
   code: 0,
   chunk: Uint8Array []
 }
 ```
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.ResponseLoadFile
@@ -2856,15 +2670,13 @@
  */
 
 /**
- * Structure of GRpcClient.RequestPinFile
+ * Structure of GRpcClient.RequestPinFile 
  *
-
 ```javascript
 {
   hash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55'
 }
 ```
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.RequestPinFile
@@ -2872,15 +2684,13 @@
  */
 
 /**
- * Structure of GRpcClient.ResponsePinFile
+ * Structure of GRpcClient.ResponsePinFile 
  *
-
 ```javascript
 {
   code: 0
 }
 ```
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.ResponsePinFile
@@ -2888,13 +2698,11 @@
  */
 
 /**
- * Structure of GRpcClient.RequestGetChainInfo
+ * Structure of GRpcClient.RequestGetChainInfo 
  *
-
 ```javascript
 {}
 ```
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.RequestGetChainInfo
@@ -2902,9 +2710,8 @@
  */
 
 /**
- * Structure of GRpcClient.ResponseGetChainInfo
+ * Structure of GRpcClient.ResponseGetChainInfo 
  *
-
 ```javascript
 {
   code: 0,
@@ -2917,7 +2724,7 @@
     appHash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
     blockHash: Uint8Array [],
     blockHeight: 5,
-    blockTime: '2019-04-28T06:09:24.511Z',
+    blockTime: '2019-04-29T07:49:13.424Z',
     address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
     votingPower: 5,
     totalTxs: 5,
@@ -2932,7 +2739,6 @@
   }
 }
 ```
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.ResponseGetChainInfo
@@ -2941,13 +2747,11 @@
  */
 
 /**
- * Structure of GRpcClient.RequestGetNodeInfo
+ * Structure of GRpcClient.RequestGetNodeInfo 
  *
-
 ```javascript
 {}
 ```
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.RequestGetNodeInfo
@@ -2955,9 +2759,8 @@
  */
 
 /**
- * Structure of GRpcClient.ResponseGetNodeInfo
+ * Structure of GRpcClient.ResponseGetNodeInfo 
  *
-
 ```javascript
 {
   code: 0,
@@ -2970,7 +2773,7 @@
     appHash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
     blockHash: Uint8Array [],
     blockHeight: 5,
-    blockTime: '2019-04-28T06:09:24.511Z',
+    blockTime: '2019-04-29T07:49:13.424Z',
     address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
     votingPower: 5,
     totalTxs: 5,
@@ -2993,7 +2796,6 @@
   }
 }
 ```
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.ResponseGetNodeInfo
@@ -3002,16 +2804,14 @@
  */
 
 /**
- * Structure of GRpcClient.RequestSearch
+ * Structure of GRpcClient.RequestSearch 
  *
-
 ```javascript
 {
   key: 'arcblock',
   value: 'arcblock'
 }
 ```
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.RequestSearch
@@ -3020,9 +2820,8 @@
  */
 
 /**
- * Structure of GRpcClient.ResponseSearch
+ * Structure of GRpcClient.ResponseSearch 
  *
-
 ```javascript
 {
   code: 0,
@@ -3073,7 +2872,7 @@
         }
       ],
       code: 0,
-      time: '2019-04-28T06:09:24.512Z',
+      time: '2019-04-29T07:49:13.424Z',
       createAsset: {
         asset: 'arcblock'
       },
@@ -3127,7 +2926,7 @@
         }
       ],
       code: 0,
-      time: '2019-04-28T06:09:24.512Z',
+      time: '2019-04-29T07:49:13.424Z',
       createAsset: {
         asset: 'arcblock'
       },
@@ -3138,7 +2937,6 @@
   ]
 }
 ```
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.ResponseSearch
@@ -3147,9 +2945,8 @@
  */
 
 /**
- * Structure of GRpcClient.RequestGetUnconfirmedTxs
+ * Structure of GRpcClient.RequestGetUnconfirmedTxs 
  *
-
 ```javascript
 {
   paging: {
@@ -3168,7 +2965,6 @@
   }
 }
 ```
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.RequestGetUnconfirmedTxs
@@ -3176,9 +2972,8 @@
  */
 
 /**
- * Structure of GRpcClient.ResponseGetUnconfirmedTxs
+ * Structure of GRpcClient.ResponseGetUnconfirmedTxs 
  *
-
 ```javascript
 {
   code: 0,
@@ -3256,7 +3051,6 @@
   }
 }
 ```
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.ResponseGetUnconfirmedTxs
@@ -3266,13 +3060,11 @@
  */
 
 /**
- * Structure of GRpcClient.RequestGetNetInfo
+ * Structure of GRpcClient.RequestGetNetInfo 
  *
-
 ```javascript
 {}
 ```
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.RequestGetNetInfo
@@ -3280,9 +3072,8 @@
  */
 
 /**
- * Structure of GRpcClient.ResponseGetNetInfo
+ * Structure of GRpcClient.ResponseGetNetInfo 
  *
-
 ```javascript
 {
   code: 0,
@@ -3324,7 +3115,6 @@
   }
 }
 ```
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.ResponseGetNetInfo
@@ -3333,13 +3123,11 @@
  */
 
 /**
- * Structure of GRpcClient.RequestGetValidatorsInfo
+ * Structure of GRpcClient.RequestGetValidatorsInfo 
  *
-
 ```javascript
 {}
 ```
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.RequestGetValidatorsInfo
@@ -3347,9 +3135,8 @@
  */
 
 /**
- * Structure of GRpcClient.ResponseGetValidatorsInfo
+ * Structure of GRpcClient.ResponseGetValidatorsInfo 
  *
-
 ```javascript
 {
   code: 0,
@@ -3392,7 +3179,6 @@
   }
 }
 ```
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.ResponseGetValidatorsInfo
@@ -3401,16 +3187,14 @@
  */
 
 /**
- * Structure of GRpcClient.RequestSubscribe
+ * Structure of GRpcClient.RequestSubscribe 
  *
-
 ```javascript
 {
   topic: 'arcblock',
   filter: 'arcblock'
 }
 ```
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.RequestSubscribe
@@ -3419,15 +3203,13 @@
  */
 
 /**
- * Structure of GRpcClient.ResponseSubscribe
+ * Structure of GRpcClient.ResponseSubscribe 
  *
-
 ```javascript
 {
   topic: 'arcblock'
 }
 ```
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.ResponseSubscribe
@@ -3455,15 +3237,13 @@
  */
 
 /**
- * Structure of GRpcClient.RequestUnsubscribe
+ * Structure of GRpcClient.RequestUnsubscribe 
  *
-
 ```javascript
 {
   topic: 'arcblock'
 }
 ```
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.RequestUnsubscribe
@@ -3471,15 +3251,13 @@
  */
 
 /**
- * Structure of GRpcClient.ResponseUnsubscribe
+ * Structure of GRpcClient.ResponseUnsubscribe 
  *
-
 ```javascript
 {
   code: 0
 }
 ```
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.ResponseUnsubscribe
@@ -3487,13 +3265,11 @@
  */
 
 /**
- * Structure of GRpcClient.RequestGetConfig
+ * Structure of GRpcClient.RequestGetConfig 
  *
-
 ```javascript
 {}
 ```
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.RequestGetConfig
@@ -3501,16 +3277,14 @@
  */
 
 /**
- * Structure of GRpcClient.ResponseGetConfig
+ * Structure of GRpcClient.ResponseGetConfig 
  *
-
 ```javascript
 {
   code: 0,
   config: 'arcblock'
 }
 ```
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.ResponseGetConfig
@@ -3521,8 +3295,6 @@
 /**
  * Structure of GRpcClient.ByDay
  *
-
- *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.ByDay
  * @prop {string} startDate
@@ -3532,17 +3304,14 @@
 /**
  * Structure of GRpcClient.ByHour
  *
-
- *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.ByHour
  * @prop {string} date
  */
 
 /**
- * Structure of GRpcClient.RequestGetForgeStats
+ * Structure of GRpcClient.RequestGetForgeStats 
  *
-
 ```javascript
 {
   dayInfo: {
@@ -3551,7 +3320,6 @@
   }
 }
 ```
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.RequestGetForgeStats
@@ -3560,9 +3328,8 @@
  */
 
 /**
- * Structure of GRpcClient.ResponseGetForgeStats
+ * Structure of GRpcClient.ResponseGetForgeStats 
  *
-
 ```javascript
 {
   code: 0,
@@ -3641,7 +3408,6 @@
   }
 }
 ```
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.ResponseGetForgeStats
@@ -3650,9 +3416,8 @@
  */
 
 /**
- * Structure of GRpcClient.RequestListTransactions
+ * Structure of GRpcClient.RequestListTransactions 
  *
-
 ```javascript
 {
   paging: {
@@ -3689,7 +3454,6 @@
   }
 }
 ```
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.RequestListTransactions
@@ -3701,9 +3465,8 @@
  */
 
 /**
- * Structure of GRpcClient.ResponseListTransactions
+ * Structure of GRpcClient.ResponseListTransactions 
  *
-
 ```javascript
 {
   code: 0,
@@ -3796,7 +3559,6 @@
   ]
 }
 ```
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.ResponseListTransactions
@@ -3806,9 +3568,8 @@
  */
 
 /**
- * Structure of GRpcClient.RequestListAssets
+ * Structure of GRpcClient.RequestListAssets 
  *
-
 ```javascript
 {
   paging: {
@@ -3828,7 +3589,6 @@
   ownerAddress: 'arcblock'
 }
 ```
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.RequestListAssets
@@ -3837,9 +3597,8 @@
  */
 
 /**
- * Structure of GRpcClient.ResponseListAssets
+ * Structure of GRpcClient.ResponseListAssets 
  *
-
 ```javascript
 {
   code: 0,
@@ -3868,7 +3627,6 @@
   ]
 }
 ```
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.ResponseListAssets
@@ -3878,9 +3636,8 @@
  */
 
 /**
- * Structure of GRpcClient.RequestListStakes
+ * Structure of GRpcClient.RequestListStakes 
  *
-
 ```javascript
 {
   paging: {
@@ -3904,7 +3661,6 @@
   }
 }
 ```
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.RequestListStakes
@@ -3913,9 +3669,8 @@
  */
 
 /**
- * Structure of GRpcClient.ResponseListStakes
+ * Structure of GRpcClient.ResponseListStakes 
  *
-
 ```javascript
 {
   code: 0,
@@ -3948,7 +3703,6 @@
   ]
 }
 ```
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.ResponseListStakes
@@ -3958,15 +3712,13 @@
  */
 
 /**
- * Structure of GRpcClient.RequestListAccount
+ * Structure of GRpcClient.RequestListAccount 
  *
-
 ```javascript
 {
   ownerAddress: 'arcblock'
 }
 ```
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.RequestListAccount
@@ -3974,9 +3726,8 @@
  */
 
 /**
- * Structure of GRpcClient.ResponseListAccount
+ * Structure of GRpcClient.ResponseListAccount 
  *
-
 ```javascript
 {
   code: 0,
@@ -4001,7 +3752,6 @@
   }
 }
 ```
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.ResponseListAccount
@@ -4010,9 +3760,8 @@
  */
 
 /**
- * Structure of GRpcClient.RequestListTopAccounts
+ * Structure of GRpcClient.RequestListTopAccounts 
  *
-
 ```javascript
 {
   paging: {
@@ -4031,7 +3780,6 @@
   }
 }
 ```
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.RequestListTopAccounts
@@ -4039,9 +3787,8 @@
  */
 
 /**
- * Structure of GRpcClient.ResponseListTopAccounts
+ * Structure of GRpcClient.ResponseListTopAccounts 
  *
-
 ```javascript
 {
   code: 0,
@@ -4092,7 +3839,6 @@
   ]
 }
 ```
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.ResponseListTopAccounts
@@ -4102,9 +3848,8 @@
  */
 
 /**
- * Structure of GRpcClient.RequestListAssetTransactions
+ * Structure of GRpcClient.RequestListAssetTransactions 
  *
-
 ```javascript
 {
   paging: {
@@ -4124,7 +3869,6 @@
   address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55'
 }
 ```
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.RequestListAssetTransactions
@@ -4133,9 +3877,8 @@
  */
 
 /**
- * Structure of GRpcClient.ResponseListAssetTransactions
+ * Structure of GRpcClient.ResponseListAssetTransactions 
  *
-
 ```javascript
 {
   code: 0,
@@ -4228,7 +3971,6 @@
   ]
 }
 ```
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.ResponseListAssetTransactions
@@ -4238,9 +3980,8 @@
  */
 
 /**
- * Structure of GRpcClient.RequestListBlocks
+ * Structure of GRpcClient.RequestListBlocks 
  *
-
 ```javascript
 {
   paging: {
@@ -4276,7 +4017,6 @@
   }
 }
 ```
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.RequestListBlocks
@@ -4289,9 +4029,8 @@
  */
 
 /**
- * Structure of GRpcClient.ResponseListBlocks
+ * Structure of GRpcClient.ResponseListBlocks 
  *
-
 ```javascript
 {
   code: 0,
@@ -4318,7 +4057,6 @@
   ]
 }
 ```
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.ResponseListBlocks
@@ -4328,13 +4066,11 @@
  */
 
 /**
- * Structure of GRpcClient.RequestGetHealthStatus
+ * Structure of GRpcClient.RequestGetHealthStatus 
  *
-
 ```javascript
 {}
 ```
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.RequestGetHealthStatus
@@ -4342,9 +4078,8 @@
  */
 
 /**
- * Structure of GRpcClient.ResponseGetHealthStatus
+ * Structure of GRpcClient.ResponseGetHealthStatus 
  *
-
 ```javascript
 {
   code: 0,
@@ -4379,7 +4114,6 @@
   }
 }
 ```
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.ResponseGetHealthStatus
@@ -4390,8 +4124,6 @@
 /**
  * Structure of GRpcClient.PageOrder
  *
-
- *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.PageOrder
  * @prop {string} field
@@ -4400,8 +4132,6 @@
 
 /**
  * Structure of GRpcClient.PageInput
- *
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.PageInput
@@ -4413,8 +4143,6 @@
 /**
  * Structure of GRpcClient.TypeFilter
  *
-
- *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.TypeFilter
  * @prop {Array<string>} types
@@ -4422,8 +4150,6 @@
 
 /**
  * Structure of GRpcClient.TimeFilter
- *
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.TimeFilter
@@ -4433,8 +4159,6 @@
 
 /**
  * Structure of GRpcClient.AddressFilter
- *
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.AddressFilter
@@ -4446,8 +4170,6 @@
 /**
  * Structure of GRpcClient.PageInfo
  *
-
- *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.PageInfo
  * @prop {string} cursor
@@ -4457,8 +4179,6 @@
 
 /**
  * Structure of GRpcClient.IndexedTransaction
- *
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.IndexedTransaction
@@ -4474,8 +4194,6 @@
 
 /**
  * Structure of GRpcClient.IndexedAccountState
- *
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.IndexedAccountState
@@ -4498,8 +4216,6 @@
 /**
  * Structure of GRpcClient.IndexedAssetState
  *
-
- *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.IndexedAssetState
  * @prop {string} address
@@ -4512,8 +4228,6 @@
 
 /**
  * Structure of GRpcClient.IndexedStakeState
- *
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.IndexedStakeState
@@ -4530,8 +4244,6 @@
 /**
  * Structure of GRpcClient.IndexedBlock
  *
-
- *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.IndexedBlock
  * @prop {number} height
@@ -4544,8 +4256,6 @@
 /**
  * Structure of GRpcClient.HealthStatus
  *
-
- *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.HealthStatus
  * @prop {GRpcClient.ConsensusStatus} consensus
@@ -4557,8 +4267,6 @@
 /**
  * Structure of GRpcClient.ConsensusStatus
  *
-
- *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.ConsensusStatus
  * @prop {boolean} health
@@ -4569,8 +4277,6 @@
 /**
  * Structure of GRpcClient.NetworkStatus
  *
-
- *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.NetworkStatus
  * @prop {boolean} health
@@ -4579,8 +4285,6 @@
 
 /**
  * Structure of GRpcClient.StorageStatus
- *
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.StorageStatus
@@ -4593,8 +4297,6 @@
 /**
  * Structure of GRpcClient.DiskSpaceStatus
  *
-
- *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.DiskSpaceStatus
  * @prop {string} forgeUsage
@@ -4603,8 +4305,6 @@
 
 /**
  * Structure of GRpcClient.ForgeStatus
- *
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.ForgeStatus
@@ -4617,8 +4317,6 @@
 /**
  * Structure of GRpcClient.AbciServerStatus
  *
-
- *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.AbciServerStatus
  * @prop {string} abciConsensus
@@ -4628,8 +4326,6 @@
 /**
  * Structure of GRpcClient.ValidityFilter
  *
-
- *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.ValidityFilter
  * @prop {GRpcClient.Validity} validity
@@ -4637,8 +4333,6 @@
 
 /**
  * Structure of GRpcClient.RangeFilter
- *
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.RangeFilter
@@ -4648,8 +4342,6 @@
 
 /**
  * Structure of GRpcClient.DeclareTx
- *
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.DeclareTx
@@ -4661,8 +4353,6 @@
 /**
  * Structure of GRpcClient.CodeInfo
  *
-
- *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.CodeInfo
  * @prop {Uint8Array} checksum
@@ -4672,8 +4362,6 @@
 /**
  * Structure of GRpcClient.TypeUrls
  *
-
- *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.TypeUrls
  * @prop {string} url
@@ -4682,8 +4370,6 @@
 
 /**
  * Structure of GRpcClient.DeployProtocolTx
- *
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.DeployProtocolTx
@@ -4703,8 +4389,6 @@
 /**
  * Structure of GRpcClient.ConsensusUpgradeTx
  *
-
- *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.ConsensusUpgradeTx
  * @prop {Array<GRpcClient.Validator>} validators
@@ -4718,8 +4402,6 @@
 /**
  * Structure of GRpcClient.SysUpgradeTx
  *
-
- *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.SysUpgradeTx
  * @prop {GRpcClient.UpgradeTask} task
@@ -4729,8 +4411,6 @@
 
 /**
  * Structure of GRpcClient.AccountMigrateTx
- *
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.AccountMigrateTx
@@ -4743,8 +4423,6 @@
 /**
  * Structure of GRpcClient.ConsumeAssetTx
  *
-
- *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.ConsumeAssetTx
  * @prop {string} issuer
@@ -4754,8 +4432,6 @@
 
 /**
  * Structure of GRpcClient.CreateAssetTx
- *
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.CreateAssetTx
@@ -4771,8 +4447,6 @@
 /**
  * Structure of GRpcClient.DeclareFileTx
  *
-
- *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.DeclareFileTx
  * @prop {string} hash
@@ -4780,8 +4454,6 @@
 
 /**
  * Structure of GRpcClient.ExchangeInfo
- *
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.ExchangeInfo
@@ -4791,8 +4463,6 @@
 
 /**
  * Structure of GRpcClient.ExchangeTx
- *
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.ExchangeTx
@@ -4806,8 +4476,6 @@
 /**
  * Structure of GRpcClient.PokeTx
  *
-
- *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.PokeTx
  * @prop {string} date
@@ -4816,9 +4484,7 @@
  */
 
 /**
- * Structure of GRpcClient.stakeForAsset
- *
-
+ * Structure of GRpcClient.stakeForAsset 
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.stakeForAsset
@@ -4826,9 +4492,7 @@
  */
 
 /**
- * Structure of GRpcClient.stakeForChain
- *
-
+ * Structure of GRpcClient.stakeForChain 
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.stakeForChain
@@ -4836,9 +4500,7 @@
  */
 
 /**
- * Structure of GRpcClient.StakeForNode
- *
-
+ * Structure of GRpcClient.StakeForNode 
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.StakeForNode
@@ -4846,9 +4508,7 @@
  */
 
 /**
- * Structure of GRpcClient.stakeForUser
- *
-
+ * Structure of GRpcClient.stakeForUser 
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.stakeForUser
@@ -4857,8 +4517,6 @@
 
 /**
  * Structure of GRpcClient.StakeTx
- *
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.StakeTx
@@ -4871,8 +4529,6 @@
 /**
  * Structure of GRpcClient.TransferTx
  *
-
- *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.TransferTx
  * @prop {string} to
@@ -4884,8 +4540,6 @@
 /**
  * Structure of GRpcClient.UpdateAssetTx
  *
-
- *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.UpdateAssetTx
  * @prop {string} address
@@ -4895,8 +4549,6 @@
 
 /**
  * Structure of GRpcClient.UpgradeNodeTx
- *
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.UpgradeNodeTx
@@ -4908,8 +4560,6 @@
 /**
  * Structure of GRpcClient.Timestamp
  *
-
- *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.Timestamp
  * @prop {number} seconds
@@ -4918,8 +4568,6 @@
 
 /**
  * Structure of GRpcClient.Any
- *
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.Any
@@ -4930,8 +4578,6 @@
 /**
  * Structure of GRpcClient.KVPair
  *
-
- *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.KVPair
  * @prop {Uint8Array} key
@@ -4940,8 +4586,6 @@
 
 /**
  * Structure of GRpcClient.BlockParams
- *
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.BlockParams
@@ -4952,8 +4596,6 @@
 /**
  * Structure of GRpcClient.EvidenceParams
  *
-
- *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.EvidenceParams
  * @prop {number} maxAge
@@ -4962,8 +4604,6 @@
 /**
  * Structure of GRpcClient.ValidatorParams
  *
-
- *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.ValidatorParams
  * @prop {Array<string>} pubKeyTypes
@@ -4971,8 +4611,6 @@
 
 /**
  * Structure of GRpcClient.ConsensusParams
- *
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.ConsensusParams
@@ -4984,8 +4622,6 @@
 /**
  * Structure of GRpcClient.LastCommitInfo
  *
-
- *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.LastCommitInfo
  * @prop {number} round
@@ -4994,8 +4630,6 @@
 
 /**
  * Structure of GRpcClient.Version
- *
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.Version
@@ -5006,8 +4640,6 @@
 /**
  * Structure of GRpcClient.BlockID
  *
-
- *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.BlockID
  * @prop {Uint8Array} hash
@@ -5016,8 +4648,6 @@
 
 /**
  * Structure of GRpcClient.PartSetHeader
- *
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.PartSetHeader
@@ -5028,8 +4658,6 @@
 /**
  * Structure of GRpcClient.Validator
  *
-
- *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.Validator
  * @prop {Uint8Array} address
@@ -5038,8 +4666,6 @@
 
 /**
  * Structure of GRpcClient.ValidatorUpdate
- *
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.ValidatorUpdate
@@ -5050,8 +4676,6 @@
 /**
  * Structure of GRpcClient.VoteInfo
  *
-
- *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.VoteInfo
  * @prop {GRpcClient.Validator} validator
@@ -5061,8 +4685,6 @@
 /**
  * Structure of GRpcClient.PubKey
  *
-
- *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.PubKey
  * @prop {string} type
@@ -5071,8 +4693,6 @@
 
 /**
  * Structure of GRpcClient.Evidence
- *
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.Evidence
@@ -5085,8 +4705,6 @@
 
 /**
  * Structure of GRpcClient.Header
- *
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.Header
@@ -5111,8 +4729,6 @@
 /**
  * Structure of GRpcClient.RequestBeginBlock
  *
-
- *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.RequestBeginBlock
  * @prop {Uint8Array} hash
@@ -5124,8 +4740,6 @@
 /**
  * Structure of GRpcClient.RequestEndBlock
  *
-
- *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.RequestEndBlock
  * @prop {number} height
@@ -5134,8 +4748,6 @@
 /**
  * Structure of GRpcClient.ResponseBeginBlock
  *
-
- *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.ResponseBeginBlock
  * @prop {Array<GRpcClient.KVPair>} tags
@@ -5143,8 +4755,6 @@
 
 /**
  * Structure of GRpcClient.ResponseEndBlock
- *
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.ResponseEndBlock
@@ -5155,8 +4765,6 @@
 
 /**
  * Structure of GRpcClient.ResponseCheckTx
- *
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.ResponseCheckTx
@@ -5173,8 +4781,6 @@
 /**
  * Structure of GRpcClient.ResponseDeliverTx
  *
-
- *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.ResponseDeliverTx
  * @prop {number} code
@@ -5188,9 +4794,7 @@
  */
 
 /**
- * Structure of GRpcClient.RequestPing
- *
-
+ * Structure of GRpcClient.RequestPing 
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.RequestPing
@@ -5200,17 +4804,13 @@
 /**
  * Structure of GRpcClient.RequestBroadcastTx
  *
-
- *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.RequestBroadcastTx
  * @prop {Uint8Array} tx
  */
 
 /**
- * Structure of GRpcClient.ResponsePing
- *
-
+ * Structure of GRpcClient.ResponsePing 
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.ResponsePing
@@ -5219,8 +4819,6 @@
 
 /**
  * Structure of GRpcClient.ResponseBroadcastTx
- *
-
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.ResponseBroadcastTx
