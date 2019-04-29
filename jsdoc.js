@@ -15,7 +15,7 @@ module.exports = {
       'packages/graphql-client/src/types.js',
       'packages/grpc-client/lib/client.js',
       'packages/grpc-client/lib/types.js',
-      '../abt-did-js/packages/did/lib',
+      '../abt-did-js/packages/did/lib/index.js',
       '../abt-did-js/packages/util/lib',
     ],
     includePattern: '.js$',

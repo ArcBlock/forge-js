@@ -17,6 +17,8 @@ const negative1 = new BN(-1);
 /**
  * Returns a `Boolean` on whether or not the a `String` starts with '0x'
  *
+ * @public
+ * @static
  * @param {String} str the string input value
  * @return {Boolean} a boolean if it is or is not hex prefixed
  * @throws if the str input is not a string
@@ -32,6 +34,8 @@ const isHexPrefixed = str => {
 /**
  * Removes '0x' from a given `String` if present
  *
+ * @public
+ * @static
  * @param {String} str the string value
  * @return {String|Optional} a string by pass if necessary
  */
@@ -46,6 +50,8 @@ const stripHexPrefix = str => {
 /**
  * Returns true if object is BN, otherwise false
  *
+ * @public
+ * @static
  * @method isBN
  * @param {Object} object
  * @returns {Boolean}
@@ -57,6 +63,8 @@ const isBN = object => {
 /**
  * Returns true if object is BigNumber, otherwise false
  *
+ * @public
+ * @static
  * @method isBigNumber
  * @param {Object} object
  * @returns {Boolean}
@@ -68,6 +76,8 @@ const isBigNumber = object => {
 /**
  * Takes an input and transforms it into an BN
  *
+ * @public
+ * @static
  * @method toBN
  * @param {Number|String|BN} number, string, HEX string or BN
  * @returns {BN} BN
@@ -83,6 +93,8 @@ const toBN = number => {
 /**
  * Should be called to get hex representation (prefixed by 0x) of utf8 string
  *
+ * @public
+ * @static
  * @method utf8ToHex
  * @param {String} str
  * @returns {String} hex representation of input string
@@ -119,6 +131,8 @@ const utf8ToHex = str => {
 /**
  * Should be called to get utf8 from it's hex representation
  *
+ * @public
+ * @static
  * @method hexToUtf8
  * @param {String} hex
  * @returns {String} ascii string representation of hex value
@@ -157,6 +171,8 @@ const hexToUtf8 = hex => {
 /**
  * Converts value to it's number representation
  *
+ * @public
+ * @static
  * @method hexToNumber
  * @param {String|Number|BN} value
  * @returns {Number}
@@ -172,6 +188,8 @@ const hexToNumber = value => {
 /**
  * Converts value to it's decimal representation in string
  *
+ * @public
+ * @static
  * @method hexToNumberString
  * @param {String|Number|BN} value
  * @returns {String}
@@ -185,6 +203,8 @@ const hexToNumberString = value => {
 /**
  * Converts value to it's hex representation
  *
+ * @public
+ * @static
  * @method numberToHex
  * @param {String|Number|BN} value
  * @returns {String}
@@ -209,6 +229,8 @@ const numberToHex = value => {
  *
  * Note: Implementation from crypto-js
  *
+ * @public
+ * @static
  * @method bytesToHex
  * @param {Array} bytes
  * @returns {String} the hex string
@@ -229,6 +251,8 @@ const bytesToHex = bytes => {
  *
  * Note: Implementation from crypto-js
  *
+ * @public
+ * @static
  * @method hexToBytes
  * @param {String} hex
  * @returns {Array} the byte array
@@ -255,6 +279,8 @@ const hexToBytes = hex => {
  * Auto converts any given value into it's hex representation.
  * And even stringifys objects before.
  *
+ * @public
+ * @static
  * @method toHex
  * @param {String|Number|BN|Object|TypedArray|Buffer} value
  * @param {Boolean} returnType
@@ -286,6 +312,8 @@ const toHex = (value, returnType) => {
 /**
  * Check if string is HEX, requires a 0x in front
  *
+ * @public
+ * @static
  * @method isHexStrict
  * @param {String} hex to be checked
  * @returns {Boolean}
@@ -297,6 +325,8 @@ const isHexStrict = hex => {
 /**
  * Check if string is HEX
  *
+ * @public
+ * @static
  * @method isHex
  * @param {String} hex to be checked
  * @returns {Boolean}
@@ -331,6 +361,8 @@ const numberToString = arg => {
 /**
  * Format a big number to human readable number, such as 1_0000_0000_0000_000 => 1 Token
  *
+ * @public
+ * @static
  * @method fromUintToToken
  * @param {string|number} input
  * @param {number} [decimal=16]
@@ -373,6 +405,8 @@ const fromUnitToToken = (input, decimal = 16, optionsInput) => {
 /**
  * Convert human readable token number to big number instance
  *
+ * @public
+ * @static
  * @param {string} input
  * @param {number} [decimal=16]
  * @returns BN
@@ -429,6 +463,8 @@ const fromTokenToUnit = (input, decimal = 16) => {
 /**
  *	Validates if a value is an Uint8Array.
  *
+ * @public
+ * @static
  * @param {*} value - value to validate
  * @returns {Boolean} boolean indicating if a value is an Uint8Array
  */
