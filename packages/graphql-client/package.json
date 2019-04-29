@@ -25,7 +25,7 @@
     "@arcblock/forge-message": "^0.20.5",
     "@arcblock/forge-proto": "^0.20.5",
     "@arcblock/forge-wallet": "^0.20.5",
-    "@arcblock/sdk-util": "^0.19.4",
+    "@arcblock/sdk-util": "^0.19.5",
     "babel-polyfill": "^6.26.0",
     "base64-url": "^2.2.0",
     "blueimp-md5": "^2.10.0",
