@@ -57,9 +57,11 @@ describe('GraphqlClient', () => {
 
     const wallet = fromRandom(type);
     const res = await client.sendDeclareTx({
-      data: {
-        moniker: `graphql_client_test_${Math.round(Math.random() * 10000)}`,
-        type,
+      tx: {
+        itx: {
+          moniker: `graphql_client_test_${Math.round(Math.random() * 10000)}`,
+          type,
+        },
       },
       wallet,
     });

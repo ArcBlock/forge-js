@@ -151,46 +151,40 @@ const generateMethods = (methods, ns) =>
 
 const getTxSendTypes = (name, tx, ns) => `
 /**
- * Structure of param.data for transaction sending/encoding method ${name}
- *
- * @memberof ${ns}
- * @typedef {Object} ${ns}.${tx}InputData
- * @prop {...${ns}.${tx}}
- * @prop {...${ns}.TxInputExtra}
- */
-
-/**
- * Structure of param for transaction sending/encoding method ${name}
- *
  * @memberof ${ns}
  * @typedef {Object} ${ns}.${tx}Input
- * @prop {...${ns}.${tx}InputData} input.data - should be the ${tx} object in most simple case
- * @prop {object} input.wallet - should be a wallet instance constructed using forge-wallet
- * @prop {object} input.signature - the signature of the tx, if this parameter exist, we will not sign the transaction
+ * @prop {object} input
+ * @prop {object} input.tx - data of the transaction
+ * @prop {${ns}.${tx}} input.tx.itx - the actual transaction object
+ * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
+ * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
+ * @prop {string} [input.tx.chainId] - the chainId
+ * @prop {string} [input.tx.signature] - transaction signature
+ * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transactio
+ * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
+ * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
  */
 
 /**
- * Send transaction and get the hash, if you want to get transaction detail please use {@link ${ns}#getTx}
+ * Send ${tx} transaction and get the hash, use {@link ${ns}#getTx} to get transaction detail
  *
  * @memberof ${ns}
  * @function
  * @name ${ns}#${name}
  * @param {${ns}.${tx}Input} params
- * @returns {Promise} returns transaction hash if success, otherwise error was thrown
+ * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
 `;
 
 const getTxEncodeTypes = (name, tx, ns) => `
 /**
- * Encode transaction, users can pass plain objects for itx.data field
+ * Encode a ${tx} transaction for later use
  *
  * @name ${ns}#${name}
  * @function
  * @memberof ${ns}
  * @param {${ns}.${tx}Input} params
- * @returns {object} result - we provide two formats of the encoding result
- * @returns {buffer} result.buffer - binary presentation of the tx, can be used for further encoding or signing
- * @returns {object} result.object - human readable tx object
+ * @returns {Promise<${ns}.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
 `;
 
@@ -243,17 +237,6 @@ const dtsContent = `
  */
 
 /**
- * Common props for sending or encoding a transaction
- *
- * @memberof ${namespace}
- * @typedef {Object} ${namespace}.TxInputExtra
- * @prop {string} chainId - if not specified, will fetch from graphql endpoint
- * @prop {number} nonce - if not specified, will use Date.now as nonce
- * @prop {string} from - sender address, if not specified, will use wallet.toAddress
- * @prop {string} pk - sender publicKey, if not specified, will use wallet.publicKey
- */
-
-/**
  * Structure of GraphQLClient.WalletObject
  *
  * @memberof ${namespace}
@@ -275,10 +258,10 @@ const dtsContent = `
  */
 
 /**
- * Structure of GraphQLClient.EncodeTxResult
+ * Structure of ${namespace}.TxEncodeOutput
  *
  * @memberof ${namespace}
- * @typedef {Object} GraphQLClient.EncodeTxResult
+ * @typedef {object} ${namespace}.TxEncodeOutput
  * @property {object} object - the transaction object, human readable
  * @property {buffer} buffer - the transaction binary presentation, can be used to signing, encoding to other formats
  */

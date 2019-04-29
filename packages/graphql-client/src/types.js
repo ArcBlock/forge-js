@@ -1,4 +1,3 @@
-
 /**
  * List all query method names
  *
@@ -47,17 +46,6 @@
  */
 
 /**
- * Common props for sending or encoding a transaction
- *
- * @memberof GraphQLClient
- * @typedef {Object} GraphQLClient.TxInputExtra
- * @prop {string} chainId - if not specified, will fetch from graphql endpoint
- * @prop {number} nonce - if not specified, will use Date.now as nonce
- * @prop {string} from - sender address, if not specified, will use wallet.toAddress
- * @prop {string} pk - sender publicKey, if not specified, will use wallet.publicKey
- */
-
-/**
  * Structure of GraphQLClient.WalletObject
  *
  * @memberof GraphQLClient
@@ -79,17 +67,16 @@
  */
 
 /**
- * Structure of GraphQLClient.EncodeTxResult
+ * Structure of GraphQLClient.TxEncodeOutput
  *
  * @memberof GraphQLClient
- * @typedef {Object} GraphQLClient.EncodeTxResult
+ * @typedef {object} GraphQLClient.TxEncodeOutput
  * @property {object} object - the transaction object, human readable
  * @property {buffer} buffer - the transaction binary presentation, can be used to signing, encoding to other formats
  */
 
-
 /**
- * Structure of GraphQLClient.AddressFilter 
+ * Structure of GraphQLClient.AddressFilter
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.AddressFilter
@@ -99,7 +86,7 @@
  */
 
 /**
- * Structure of GraphQLClient.PageInput 
+ * Structure of GraphQLClient.PageInput
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.PageInput
@@ -109,7 +96,7 @@
  */
 
 /**
- * Structure of GraphQLClient.PageOrder 
+ * Structure of GraphQLClient.PageOrder
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.PageOrder
@@ -118,7 +105,7 @@
  */
 
 /**
- * Structure of GraphQLClient.RangeFilter 
+ * Structure of GraphQLClient.RangeFilter
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.RangeFilter
@@ -127,7 +114,7 @@
  */
 
 /**
- * Structure of GraphQLClient.TimeFilter 
+ * Structure of GraphQLClient.TimeFilter
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.TimeFilter
@@ -136,7 +123,7 @@
  */
 
 /**
- * Structure of GraphQLClient.TypeFilter 
+ * Structure of GraphQLClient.TypeFilter
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.TypeFilter
@@ -144,7 +131,7 @@
  */
 
 /**
- * Structure of GraphQLClient.ValidityFilter 
+ * Structure of GraphQLClient.ValidityFilter
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.ValidityFilter
@@ -152,7 +139,7 @@
  */
 
 /**
- * Structure of GraphQLClient.AbciServerStatus 
+ * Structure of GraphQLClient.AbciServerStatus
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.AbciServerStatus
@@ -190,7 +177,7 @@
  */
 
 /**
- * Structure of GraphQLClient.AccountState 
+ * Structure of GraphQLClient.AccountState
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.AccountState
@@ -212,7 +199,7 @@
  */
 
 /**
- * Structure of GraphQLClient.Any 
+ * Structure of GraphQLClient.Any
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.Any
@@ -221,7 +208,7 @@
  */
 
 /**
- * Structure of GraphQLClient.AssetState 
+ * Structure of GraphQLClient.AssetState
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.AssetState
@@ -239,7 +226,7 @@
  */
 
 /**
- * Structure of GraphQLClient.BlockId 
+ * Structure of GraphQLClient.BlockId
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.BlockId
@@ -248,7 +235,7 @@
  */
 
 /**
- * Structure of GraphQLClient.BlockInfo 
+ * Structure of GraphQLClient.BlockInfo
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.BlockInfo
@@ -274,7 +261,7 @@
  */
 
 /**
- * Structure of GraphQLClient.BlockInfoSimple 
+ * Structure of GraphQLClient.BlockInfoSimple
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.BlockInfoSimple
@@ -298,7 +285,7 @@
  */
 
 /**
- * Structure of GraphQLClient.ChainInfo 
+ * Structure of GraphQLClient.ChainInfo
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.ChainInfo
@@ -320,7 +307,7 @@
  */
 
 /**
- * Structure of GraphQLClient.CircularQueue 
+ * Structure of GraphQLClient.CircularQueue
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.CircularQueue
@@ -368,7 +355,7 @@
  */
 
 /**
- * Structure of GraphQLClient.ConsensusStatus 
+ * Structure of GraphQLClient.ConsensusStatus
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.ConsensusStatus
@@ -433,7 +420,7 @@
  */
 
 /**
- * Structure of GraphQLClient.CoreProtocol 
+ * Structure of GraphQLClient.CoreProtocol
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.CoreProtocol
@@ -509,7 +496,7 @@
  */
 
 /**
- * Structure of GraphQLClient.DiskSpaceStatus 
+ * Structure of GraphQLClient.DiskSpaceStatus
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.DiskSpaceStatus
@@ -518,7 +505,7 @@
  */
 
 /**
- * Structure of GraphQLClient.Evidence 
+ * Structure of GraphQLClient.Evidence
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.Evidence
@@ -530,7 +517,7 @@
  */
 
 /**
- * Structure of GraphQLClient.ExchangeInfo 
+ * Structure of GraphQLClient.ExchangeInfo
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.ExchangeInfo
@@ -575,7 +562,7 @@
  */
 
 /**
- * Structure of GraphQLClient.ExtraAccountMigrate 
+ * Structure of GraphQLClient.ExtraAccountMigrate
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.ExtraAccountMigrate
@@ -583,7 +570,7 @@
  */
 
 /**
- * Structure of GraphQLClient.ExtraCreateAsset 
+ * Structure of GraphQLClient.ExtraCreateAsset
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.ExtraCreateAsset
@@ -591,7 +578,7 @@
  */
 
 /**
- * Structure of GraphQLClient.ForgeAppsVersionEntry 
+ * Structure of GraphQLClient.ForgeAppsVersionEntry
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.ForgeAppsVersionEntry
@@ -600,7 +587,7 @@
  */
 
 /**
- * Structure of GraphQLClient.ForgeState 
+ * Structure of GraphQLClient.ForgeState
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.ForgeState
@@ -620,7 +607,7 @@
  */
 
 /**
- * Structure of GraphQLClient.ForgeStats 
+ * Structure of GraphQLClient.ForgeStats
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.ForgeStats
@@ -647,7 +634,7 @@
  */
 
 /**
- * Structure of GraphQLClient.ForgeStatus 
+ * Structure of GraphQLClient.ForgeStatus
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.ForgeStatus
@@ -658,7 +645,7 @@
  */
 
 /**
- * Structure of GraphQLClient.ForgeToken 
+ * Structure of GraphQLClient.ForgeToken
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.ForgeToken
@@ -674,7 +661,7 @@
  */
 
 /**
- * Structure of GraphQLClient.GeoInfo 
+ * Structure of GraphQLClient.GeoInfo
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.GeoInfo
@@ -685,7 +672,7 @@
  */
 
 /**
- * Structure of GraphQLClient.Header 
+ * Structure of GraphQLClient.Header
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.Header
@@ -708,7 +695,7 @@
  */
 
 /**
- * Structure of GraphQLClient.HealthStatus 
+ * Structure of GraphQLClient.HealthStatus
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.HealthStatus
@@ -719,7 +706,7 @@
  */
 
 /**
- * Structure of GraphQLClient.IndexedAccountState 
+ * Structure of GraphQLClient.IndexedAccountState
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.IndexedAccountState
@@ -740,7 +727,7 @@
  */
 
 /**
- * Structure of GraphQLClient.IndexedAssetState 
+ * Structure of GraphQLClient.IndexedAssetState
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.IndexedAssetState
@@ -753,7 +740,7 @@
  */
 
 /**
- * Structure of GraphQLClient.IndexedBlock 
+ * Structure of GraphQLClient.IndexedBlock
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.IndexedBlock
@@ -765,7 +752,7 @@
  */
 
 /**
- * Structure of GraphQLClient.IndexedStakeState 
+ * Structure of GraphQLClient.IndexedStakeState
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.IndexedStakeState
@@ -780,7 +767,7 @@
  */
 
 /**
- * Structure of GraphQLClient.IndexedTransaction 
+ * Structure of GraphQLClient.IndexedTransaction
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.IndexedTransaction
@@ -795,7 +782,7 @@
  */
 
 /**
- * Structure of GraphQLClient.KvPair 
+ * Structure of GraphQLClient.KvPair
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.KvPair
@@ -804,7 +791,7 @@
  */
 
 /**
- * Structure of GraphQLClient.LastCommitInfo 
+ * Structure of GraphQLClient.LastCommitInfo
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.LastCommitInfo
@@ -813,7 +800,7 @@
  */
 
 /**
- * Structure of GraphQLClient.Multisig 
+ * Structure of GraphQLClient.Multisig
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.Multisig
@@ -824,7 +811,7 @@
  */
 
 /**
- * Structure of GraphQLClient.NetInfo 
+ * Structure of GraphQLClient.NetInfo
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.NetInfo
@@ -835,7 +822,7 @@
  */
 
 /**
- * Structure of GraphQLClient.NetworkStatus 
+ * Structure of GraphQLClient.NetworkStatus
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.NetworkStatus
@@ -844,7 +831,7 @@
  */
 
 /**
- * Structure of GraphQLClient.NodeInfo 
+ * Structure of GraphQLClient.NodeInfo
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.NodeInfo
@@ -869,7 +856,7 @@
  */
 
 /**
- * Structure of GraphQLClient.PageInfo 
+ * Structure of GraphQLClient.PageInfo
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.PageInfo
@@ -879,7 +866,7 @@
  */
 
 /**
- * Structure of GraphQLClient.PartSetHeader 
+ * Structure of GraphQLClient.PartSetHeader
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.PartSetHeader
@@ -888,7 +875,7 @@
  */
 
 /**
- * Structure of GraphQLClient.PeerInfo 
+ * Structure of GraphQLClient.PeerInfo
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.PeerInfo
@@ -901,7 +888,7 @@
  */
 
 /**
- * Structure of GraphQLClient.PokeConfig 
+ * Structure of GraphQLClient.PokeConfig
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.PokeConfig
@@ -912,7 +899,7 @@
  */
 
 /**
- * Structure of GraphQLClient.PokeInfo 
+ * Structure of GraphQLClient.PokeInfo
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.PokeInfo
@@ -944,7 +931,7 @@
  */
 
 /**
- * Structure of GraphQLClient.ProtocolState 
+ * Structure of GraphQLClient.ProtocolState
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.ProtocolState
@@ -962,7 +949,7 @@
  */
 
 /**
- * Structure of GraphQLClient.PubKey 
+ * Structure of GraphQLClient.PubKey
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.PubKey
@@ -3554,7 +3541,7 @@
  */
 
 /**
- * Structure of GraphQLClient.StakeConfig 
+ * Structure of GraphQLClient.StakeConfig
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.StakeConfig
@@ -3563,7 +3550,7 @@
  */
 
 /**
- * Structure of GraphQLClient.StakeContext 
+ * Structure of GraphQLClient.StakeContext
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.StakeContext
@@ -3575,7 +3562,7 @@
  */
 
 /**
- * Structure of GraphQLClient.StakeDataType 
+ * Structure of GraphQLClient.StakeDataType
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.StakeDataType
@@ -3583,7 +3570,7 @@
  */
 
 /**
- * Structure of GraphQLClient.StakeState 
+ * Structure of GraphQLClient.StakeState
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.StakeState
@@ -3597,7 +3584,7 @@
  */
 
 /**
- * Structure of GraphQLClient.StakeSummary 
+ * Structure of GraphQLClient.StakeSummary
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.StakeSummary
@@ -3607,7 +3594,7 @@
  */
 
 /**
- * Structure of GraphQLClient.StakeSummaryEntry 
+ * Structure of GraphQLClient.StakeSummaryEntry
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.StakeSummaryEntry
@@ -3639,7 +3626,7 @@
  */
 
 /**
- * Structure of GraphQLClient.StateContext 
+ * Structure of GraphQLClient.StateContext
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.StateContext
@@ -3650,7 +3637,7 @@
  */
 
 /**
- * Structure of GraphQLClient.StorageStatus 
+ * Structure of GraphQLClient.StorageStatus
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.StorageStatus
@@ -3689,7 +3676,7 @@
  */
 
 /**
- * Structure of GraphQLClient.TasksEntry 
+ * Structure of GraphQLClient.TasksEntry
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.TasksEntry
@@ -3698,7 +3685,7 @@
  */
 
 /**
- * Structure of GraphQLClient.Transaction 
+ * Structure of GraphQLClient.Transaction
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.Transaction
@@ -3712,7 +3699,7 @@
  */
 
 /**
- * Structure of GraphQLClient.TransactionConfig 
+ * Structure of GraphQLClient.TransactionConfig
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.TransactionConfig
@@ -3723,7 +3710,7 @@
  */
 
 /**
- * Structure of GraphQLClient.TransactionInfo 
+ * Structure of GraphQLClient.TransactionInfo
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.TransactionInfo
@@ -3765,7 +3752,7 @@
  */
 
 /**
- * Structure of GraphQLClient.UnconfirmedTxs 
+ * Structure of GraphQLClient.UnconfirmedTxs
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.UnconfirmedTxs
@@ -3796,7 +3783,7 @@
  */
 
 /**
- * Structure of GraphQLClient.UpgradeInfo 
+ * Structure of GraphQLClient.UpgradeInfo
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.UpgradeInfo
@@ -3805,7 +3792,7 @@
  */
 
 /**
- * Structure of GraphQLClient.UpgradeTask 
+ * Structure of GraphQLClient.UpgradeTask
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.UpgradeTask
@@ -3815,7 +3802,7 @@
  */
 
 /**
- * Structure of GraphQLClient.UpgradeTasks 
+ * Structure of GraphQLClient.UpgradeTasks
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.UpgradeTasks
@@ -3823,7 +3810,7 @@
  */
 
 /**
- * Structure of GraphQLClient.Validator 
+ * Structure of GraphQLClient.Validator
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.Validator
@@ -3832,7 +3819,7 @@
  */
 
 /**
- * Structure of GraphQLClient.ValidatorInfo 
+ * Structure of GraphQLClient.ValidatorInfo
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.ValidatorInfo
@@ -3845,7 +3832,7 @@
  */
 
 /**
- * Structure of GraphQLClient.ValidatorsInfo 
+ * Structure of GraphQLClient.ValidatorsInfo
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.ValidatorsInfo
@@ -3854,7 +3841,7 @@
  */
 
 /**
- * Structure of GraphQLClient.Version 
+ * Structure of GraphQLClient.Version
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.Version
@@ -3863,7 +3850,7 @@
  */
 
 /**
- * Structure of GraphQLClient.VoteInfo 
+ * Structure of GraphQLClient.VoteInfo
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.VoteInfo
@@ -3872,7 +3859,7 @@
  */
 
 /**
- * Structure of GraphQLClient.WalletType 
+ * Structure of GraphQLClient.WalletType
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.WalletType
@@ -3881,7 +3868,6 @@
  * @property {...GraphQLClient.KeyType} pk
  * @property {...GraphQLClient.RoleType} role
  */
-
 
 /**
  * Structure of GraphQLClient.GetAccountStateParams 
@@ -4227,524 +4213,425 @@
  * @property {string} topic
  */
 
-
 /**
- * Structure of param.data for transaction sending/encoding method sendCreateAssetTx
- *
- * @memberof GraphQLClient
- * @typedef {Object} GraphQLClient.CreateAssetTxInputData
- * @prop {...GraphQLClient.CreateAssetTx}
- * @prop {...GraphQLClient.TxInputExtra}
- */
-
-/**
- * Structure of param for transaction sending/encoding method sendCreateAssetTx
- *
  * @memberof GraphQLClient
  * @typedef {Object} GraphQLClient.CreateAssetTxInput
- * @prop {...GraphQLClient.CreateAssetTxInputData} input.data - should be the CreateAssetTx object in most simple case
- * @prop {object} input.wallet - should be a wallet instance constructed using forge-wallet
- * @prop {object} input.signature - the signature of the tx, if this parameter exist, we will not sign the transaction
+ * @prop {object} input
+ * @prop {object} input.tx - data of the transaction
+ * @prop {GraphQLClient.CreateAssetTx} input.tx.itx - the actual transaction object
+ * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
+ * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
+ * @prop {string} [input.tx.chainId] - the chainId
+ * @prop {string} [input.tx.signature] - transaction signature
+ * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transactio
+ * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
+ * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
  */
 
 /**
- * Send transaction and get the hash, if you want to get transaction detail please use {@link GraphQLClient#getTx}
+ * Send CreateAssetTx transaction and get the hash, use {@link GraphQLClient#getTx} to get transaction detail
  *
  * @memberof GraphQLClient
  * @function
  * @name GraphQLClient#sendCreateAssetTx
  * @param {GraphQLClient.CreateAssetTxInput} params
- * @returns {Promise} returns transaction hash if success, otherwise error was thrown
- */
-
-
-/**
- * Structure of param.data for transaction sending/encoding method sendTransferTx
- *
- * @memberof GraphQLClient
- * @typedef {Object} GraphQLClient.TransferTxInputData
- * @prop {...GraphQLClient.TransferTx}
- * @prop {...GraphQLClient.TxInputExtra}
+ * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
 
 /**
- * Structure of param for transaction sending/encoding method sendTransferTx
- *
  * @memberof GraphQLClient
  * @typedef {Object} GraphQLClient.TransferTxInput
- * @prop {...GraphQLClient.TransferTxInputData} input.data - should be the TransferTx object in most simple case
- * @prop {object} input.wallet - should be a wallet instance constructed using forge-wallet
- * @prop {object} input.signature - the signature of the tx, if this parameter exist, we will not sign the transaction
+ * @prop {object} input
+ * @prop {object} input.tx - data of the transaction
+ * @prop {GraphQLClient.TransferTx} input.tx.itx - the actual transaction object
+ * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
+ * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
+ * @prop {string} [input.tx.chainId] - the chainId
+ * @prop {string} [input.tx.signature] - transaction signature
+ * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transactio
+ * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
+ * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
  */
 
 /**
- * Send transaction and get the hash, if you want to get transaction detail please use {@link GraphQLClient#getTx}
+ * Send TransferTx transaction and get the hash, use {@link GraphQLClient#getTx} to get transaction detail
  *
  * @memberof GraphQLClient
  * @function
  * @name GraphQLClient#sendTransferTx
  * @param {GraphQLClient.TransferTxInput} params
- * @returns {Promise} returns transaction hash if success, otherwise error was thrown
- */
-
-
-/**
- * Structure of param.data for transaction sending/encoding method sendPokeTx
- *
- * @memberof GraphQLClient
- * @typedef {Object} GraphQLClient.PokeTxInputData
- * @prop {...GraphQLClient.PokeTx}
- * @prop {...GraphQLClient.TxInputExtra}
+ * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
 
 /**
- * Structure of param for transaction sending/encoding method sendPokeTx
- *
  * @memberof GraphQLClient
  * @typedef {Object} GraphQLClient.PokeTxInput
- * @prop {...GraphQLClient.PokeTxInputData} input.data - should be the PokeTx object in most simple case
- * @prop {object} input.wallet - should be a wallet instance constructed using forge-wallet
- * @prop {object} input.signature - the signature of the tx, if this parameter exist, we will not sign the transaction
+ * @prop {object} input
+ * @prop {object} input.tx - data of the transaction
+ * @prop {GraphQLClient.PokeTx} input.tx.itx - the actual transaction object
+ * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
+ * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
+ * @prop {string} [input.tx.chainId] - the chainId
+ * @prop {string} [input.tx.signature] - transaction signature
+ * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transactio
+ * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
+ * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
  */
 
 /**
- * Send transaction and get the hash, if you want to get transaction detail please use {@link GraphQLClient#getTx}
+ * Send PokeTx transaction and get the hash, use {@link GraphQLClient#getTx} to get transaction detail
  *
  * @memberof GraphQLClient
  * @function
  * @name GraphQLClient#sendPokeTx
  * @param {GraphQLClient.PokeTxInput} params
- * @returns {Promise} returns transaction hash if success, otherwise error was thrown
- */
-
-
-/**
- * Structure of param.data for transaction sending/encoding method sendDeployProtocolTx
- *
- * @memberof GraphQLClient
- * @typedef {Object} GraphQLClient.DeployProtocolTxInputData
- * @prop {...GraphQLClient.DeployProtocolTx}
- * @prop {...GraphQLClient.TxInputExtra}
+ * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
 
 /**
- * Structure of param for transaction sending/encoding method sendDeployProtocolTx
- *
  * @memberof GraphQLClient
  * @typedef {Object} GraphQLClient.DeployProtocolTxInput
- * @prop {...GraphQLClient.DeployProtocolTxInputData} input.data - should be the DeployProtocolTx object in most simple case
- * @prop {object} input.wallet - should be a wallet instance constructed using forge-wallet
- * @prop {object} input.signature - the signature of the tx, if this parameter exist, we will not sign the transaction
+ * @prop {object} input
+ * @prop {object} input.tx - data of the transaction
+ * @prop {GraphQLClient.DeployProtocolTx} input.tx.itx - the actual transaction object
+ * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
+ * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
+ * @prop {string} [input.tx.chainId] - the chainId
+ * @prop {string} [input.tx.signature] - transaction signature
+ * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transactio
+ * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
+ * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
  */
 
 /**
- * Send transaction and get the hash, if you want to get transaction detail please use {@link GraphQLClient#getTx}
+ * Send DeployProtocolTx transaction and get the hash, use {@link GraphQLClient#getTx} to get transaction detail
  *
  * @memberof GraphQLClient
  * @function
  * @name GraphQLClient#sendDeployProtocolTx
  * @param {GraphQLClient.DeployProtocolTxInput} params
- * @returns {Promise} returns transaction hash if success, otherwise error was thrown
- */
-
-
-/**
- * Structure of param.data for transaction sending/encoding method sendUpgradeNodeTx
- *
- * @memberof GraphQLClient
- * @typedef {Object} GraphQLClient.UpgradeNodeTxInputData
- * @prop {...GraphQLClient.UpgradeNodeTx}
- * @prop {...GraphQLClient.TxInputExtra}
+ * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
 
 /**
- * Structure of param for transaction sending/encoding method sendUpgradeNodeTx
- *
  * @memberof GraphQLClient
  * @typedef {Object} GraphQLClient.UpgradeNodeTxInput
- * @prop {...GraphQLClient.UpgradeNodeTxInputData} input.data - should be the UpgradeNodeTx object in most simple case
- * @prop {object} input.wallet - should be a wallet instance constructed using forge-wallet
- * @prop {object} input.signature - the signature of the tx, if this parameter exist, we will not sign the transaction
+ * @prop {object} input
+ * @prop {object} input.tx - data of the transaction
+ * @prop {GraphQLClient.UpgradeNodeTx} input.tx.itx - the actual transaction object
+ * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
+ * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
+ * @prop {string} [input.tx.chainId] - the chainId
+ * @prop {string} [input.tx.signature] - transaction signature
+ * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transactio
+ * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
+ * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
  */
 
 /**
- * Send transaction and get the hash, if you want to get transaction detail please use {@link GraphQLClient#getTx}
+ * Send UpgradeNodeTx transaction and get the hash, use {@link GraphQLClient#getTx} to get transaction detail
  *
  * @memberof GraphQLClient
  * @function
  * @name GraphQLClient#sendUpgradeNodeTx
  * @param {GraphQLClient.UpgradeNodeTxInput} params
- * @returns {Promise} returns transaction hash if success, otherwise error was thrown
- */
-
-
-/**
- * Structure of param.data for transaction sending/encoding method sendUpdateAssetTx
- *
- * @memberof GraphQLClient
- * @typedef {Object} GraphQLClient.UpdateAssetTxInputData
- * @prop {...GraphQLClient.UpdateAssetTx}
- * @prop {...GraphQLClient.TxInputExtra}
+ * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
 
 /**
- * Structure of param for transaction sending/encoding method sendUpdateAssetTx
- *
  * @memberof GraphQLClient
  * @typedef {Object} GraphQLClient.UpdateAssetTxInput
- * @prop {...GraphQLClient.UpdateAssetTxInputData} input.data - should be the UpdateAssetTx object in most simple case
- * @prop {object} input.wallet - should be a wallet instance constructed using forge-wallet
- * @prop {object} input.signature - the signature of the tx, if this parameter exist, we will not sign the transaction
+ * @prop {object} input
+ * @prop {object} input.tx - data of the transaction
+ * @prop {GraphQLClient.UpdateAssetTx} input.tx.itx - the actual transaction object
+ * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
+ * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
+ * @prop {string} [input.tx.chainId] - the chainId
+ * @prop {string} [input.tx.signature] - transaction signature
+ * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transactio
+ * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
+ * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
  */
 
 /**
- * Send transaction and get the hash, if you want to get transaction detail please use {@link GraphQLClient#getTx}
+ * Send UpdateAssetTx transaction and get the hash, use {@link GraphQLClient#getTx} to get transaction detail
  *
  * @memberof GraphQLClient
  * @function
  * @name GraphQLClient#sendUpdateAssetTx
  * @param {GraphQLClient.UpdateAssetTxInput} params
- * @returns {Promise} returns transaction hash if success, otherwise error was thrown
- */
-
-
-/**
- * Structure of param.data for transaction sending/encoding method sendAccountMigrateTx
- *
- * @memberof GraphQLClient
- * @typedef {Object} GraphQLClient.AccountMigrateTxInputData
- * @prop {...GraphQLClient.AccountMigrateTx}
- * @prop {...GraphQLClient.TxInputExtra}
+ * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
 
 /**
- * Structure of param for transaction sending/encoding method sendAccountMigrateTx
- *
  * @memberof GraphQLClient
  * @typedef {Object} GraphQLClient.AccountMigrateTxInput
- * @prop {...GraphQLClient.AccountMigrateTxInputData} input.data - should be the AccountMigrateTx object in most simple case
- * @prop {object} input.wallet - should be a wallet instance constructed using forge-wallet
- * @prop {object} input.signature - the signature of the tx, if this parameter exist, we will not sign the transaction
+ * @prop {object} input
+ * @prop {object} input.tx - data of the transaction
+ * @prop {GraphQLClient.AccountMigrateTx} input.tx.itx - the actual transaction object
+ * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
+ * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
+ * @prop {string} [input.tx.chainId] - the chainId
+ * @prop {string} [input.tx.signature] - transaction signature
+ * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transactio
+ * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
+ * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
  */
 
 /**
- * Send transaction and get the hash, if you want to get transaction detail please use {@link GraphQLClient#getTx}
+ * Send AccountMigrateTx transaction and get the hash, use {@link GraphQLClient#getTx} to get transaction detail
  *
  * @memberof GraphQLClient
  * @function
  * @name GraphQLClient#sendAccountMigrateTx
  * @param {GraphQLClient.AccountMigrateTxInput} params
- * @returns {Promise} returns transaction hash if success, otherwise error was thrown
- */
-
-
-/**
- * Structure of param.data for transaction sending/encoding method sendConsumeAssetTx
- *
- * @memberof GraphQLClient
- * @typedef {Object} GraphQLClient.ConsumeAssetTxInputData
- * @prop {...GraphQLClient.ConsumeAssetTx}
- * @prop {...GraphQLClient.TxInputExtra}
+ * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
 
 /**
- * Structure of param for transaction sending/encoding method sendConsumeAssetTx
- *
  * @memberof GraphQLClient
  * @typedef {Object} GraphQLClient.ConsumeAssetTxInput
- * @prop {...GraphQLClient.ConsumeAssetTxInputData} input.data - should be the ConsumeAssetTx object in most simple case
- * @prop {object} input.wallet - should be a wallet instance constructed using forge-wallet
- * @prop {object} input.signature - the signature of the tx, if this parameter exist, we will not sign the transaction
+ * @prop {object} input
+ * @prop {object} input.tx - data of the transaction
+ * @prop {GraphQLClient.ConsumeAssetTx} input.tx.itx - the actual transaction object
+ * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
+ * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
+ * @prop {string} [input.tx.chainId] - the chainId
+ * @prop {string} [input.tx.signature] - transaction signature
+ * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transactio
+ * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
+ * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
  */
 
 /**
- * Send transaction and get the hash, if you want to get transaction detail please use {@link GraphQLClient#getTx}
+ * Send ConsumeAssetTx transaction and get the hash, use {@link GraphQLClient#getTx} to get transaction detail
  *
  * @memberof GraphQLClient
  * @function
  * @name GraphQLClient#sendConsumeAssetTx
  * @param {GraphQLClient.ConsumeAssetTxInput} params
- * @returns {Promise} returns transaction hash if success, otherwise error was thrown
- */
-
-
-/**
- * Structure of param.data for transaction sending/encoding method sendDeclareTx
- *
- * @memberof GraphQLClient
- * @typedef {Object} GraphQLClient.DeclareTxInputData
- * @prop {...GraphQLClient.DeclareTx}
- * @prop {...GraphQLClient.TxInputExtra}
+ * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
 
 /**
- * Structure of param for transaction sending/encoding method sendDeclareTx
- *
  * @memberof GraphQLClient
  * @typedef {Object} GraphQLClient.DeclareTxInput
- * @prop {...GraphQLClient.DeclareTxInputData} input.data - should be the DeclareTx object in most simple case
- * @prop {object} input.wallet - should be a wallet instance constructed using forge-wallet
- * @prop {object} input.signature - the signature of the tx, if this parameter exist, we will not sign the transaction
+ * @prop {object} input
+ * @prop {object} input.tx - data of the transaction
+ * @prop {GraphQLClient.DeclareTx} input.tx.itx - the actual transaction object
+ * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
+ * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
+ * @prop {string} [input.tx.chainId] - the chainId
+ * @prop {string} [input.tx.signature] - transaction signature
+ * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transactio
+ * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
+ * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
  */
 
 /**
- * Send transaction and get the hash, if you want to get transaction detail please use {@link GraphQLClient#getTx}
+ * Send DeclareTx transaction and get the hash, use {@link GraphQLClient#getTx} to get transaction detail
  *
  * @memberof GraphQLClient
  * @function
  * @name GraphQLClient#sendDeclareTx
  * @param {GraphQLClient.DeclareTxInput} params
- * @returns {Promise} returns transaction hash if success, otherwise error was thrown
- */
-
-
-/**
- * Structure of param.data for transaction sending/encoding method sendExchangeTx
- *
- * @memberof GraphQLClient
- * @typedef {Object} GraphQLClient.ExchangeTxInputData
- * @prop {...GraphQLClient.ExchangeTx}
- * @prop {...GraphQLClient.TxInputExtra}
+ * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
 
 /**
- * Structure of param for transaction sending/encoding method sendExchangeTx
- *
  * @memberof GraphQLClient
  * @typedef {Object} GraphQLClient.ExchangeTxInput
- * @prop {...GraphQLClient.ExchangeTxInputData} input.data - should be the ExchangeTx object in most simple case
- * @prop {object} input.wallet - should be a wallet instance constructed using forge-wallet
- * @prop {object} input.signature - the signature of the tx, if this parameter exist, we will not sign the transaction
+ * @prop {object} input
+ * @prop {object} input.tx - data of the transaction
+ * @prop {GraphQLClient.ExchangeTx} input.tx.itx - the actual transaction object
+ * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
+ * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
+ * @prop {string} [input.tx.chainId] - the chainId
+ * @prop {string} [input.tx.signature] - transaction signature
+ * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transactio
+ * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
+ * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
  */
 
 /**
- * Send transaction and get the hash, if you want to get transaction detail please use {@link GraphQLClient#getTx}
+ * Send ExchangeTx transaction and get the hash, use {@link GraphQLClient#getTx} to get transaction detail
  *
  * @memberof GraphQLClient
  * @function
  * @name GraphQLClient#sendExchangeTx
  * @param {GraphQLClient.ExchangeTxInput} params
- * @returns {Promise} returns transaction hash if success, otherwise error was thrown
- */
-
-
-/**
- * Structure of param.data for transaction sending/encoding method sendDeclareFileTx
- *
- * @memberof GraphQLClient
- * @typedef {Object} GraphQLClient.DeclareFileTxInputData
- * @prop {...GraphQLClient.DeclareFileTx}
- * @prop {...GraphQLClient.TxInputExtra}
+ * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
 
 /**
- * Structure of param for transaction sending/encoding method sendDeclareFileTx
- *
  * @memberof GraphQLClient
  * @typedef {Object} GraphQLClient.DeclareFileTxInput
- * @prop {...GraphQLClient.DeclareFileTxInputData} input.data - should be the DeclareFileTx object in most simple case
- * @prop {object} input.wallet - should be a wallet instance constructed using forge-wallet
- * @prop {object} input.signature - the signature of the tx, if this parameter exist, we will not sign the transaction
+ * @prop {object} input
+ * @prop {object} input.tx - data of the transaction
+ * @prop {GraphQLClient.DeclareFileTx} input.tx.itx - the actual transaction object
+ * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
+ * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
+ * @prop {string} [input.tx.chainId] - the chainId
+ * @prop {string} [input.tx.signature] - transaction signature
+ * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transactio
+ * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
+ * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
  */
 
 /**
- * Send transaction and get the hash, if you want to get transaction detail please use {@link GraphQLClient#getTx}
+ * Send DeclareFileTx transaction and get the hash, use {@link GraphQLClient#getTx} to get transaction detail
  *
  * @memberof GraphQLClient
  * @function
  * @name GraphQLClient#sendDeclareFileTx
  * @param {GraphQLClient.DeclareFileTxInput} params
- * @returns {Promise} returns transaction hash if success, otherwise error was thrown
- */
-
-
-/**
- * Structure of param.data for transaction sending/encoding method sendStakeTx
- *
- * @memberof GraphQLClient
- * @typedef {Object} GraphQLClient.StakeTxInputData
- * @prop {...GraphQLClient.StakeTx}
- * @prop {...GraphQLClient.TxInputExtra}
+ * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
 
 /**
- * Structure of param for transaction sending/encoding method sendStakeTx
- *
  * @memberof GraphQLClient
  * @typedef {Object} GraphQLClient.StakeTxInput
- * @prop {...GraphQLClient.StakeTxInputData} input.data - should be the StakeTx object in most simple case
- * @prop {object} input.wallet - should be a wallet instance constructed using forge-wallet
- * @prop {object} input.signature - the signature of the tx, if this parameter exist, we will not sign the transaction
+ * @prop {object} input
+ * @prop {object} input.tx - data of the transaction
+ * @prop {GraphQLClient.StakeTx} input.tx.itx - the actual transaction object
+ * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
+ * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
+ * @prop {string} [input.tx.chainId] - the chainId
+ * @prop {string} [input.tx.signature] - transaction signature
+ * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transactio
+ * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
+ * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
  */
 
 /**
- * Send transaction and get the hash, if you want to get transaction detail please use {@link GraphQLClient#getTx}
+ * Send StakeTx transaction and get the hash, use {@link GraphQLClient#getTx} to get transaction detail
  *
  * @memberof GraphQLClient
  * @function
  * @name GraphQLClient#sendStakeTx
  * @param {GraphQLClient.StakeTxInput} params
- * @returns {Promise} returns transaction hash if success, otherwise error was thrown
+ * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
 
-
-
 /**
- * Encode transaction, users can pass plain objects for itx.data field
+ * Encode a CreateAssetTx transaction for later use
  *
  * @name GraphQLClient#encodeCreateAssetTx
  * @function
  * @memberof GraphQLClient
  * @param {GraphQLClient.CreateAssetTxInput} params
- * @returns {object} result - we provide two formats of the encoding result
- * @returns {buffer} result.buffer - binary presentation of the tx, can be used for further encoding or signing
- * @returns {object} result.object - human readable tx object
+ * @returns {Promise<GraphQLClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
 
-
 /**
- * Encode transaction, users can pass plain objects for itx.data field
+ * Encode a TransferTx transaction for later use
  *
  * @name GraphQLClient#encodeTransferTx
  * @function
  * @memberof GraphQLClient
  * @param {GraphQLClient.TransferTxInput} params
- * @returns {object} result - we provide two formats of the encoding result
- * @returns {buffer} result.buffer - binary presentation of the tx, can be used for further encoding or signing
- * @returns {object} result.object - human readable tx object
+ * @returns {Promise<GraphQLClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
 
-
 /**
- * Encode transaction, users can pass plain objects for itx.data field
+ * Encode a PokeTx transaction for later use
  *
  * @name GraphQLClient#encodePokeTx
  * @function
  * @memberof GraphQLClient
  * @param {GraphQLClient.PokeTxInput} params
- * @returns {object} result - we provide two formats of the encoding result
- * @returns {buffer} result.buffer - binary presentation of the tx, can be used for further encoding or signing
- * @returns {object} result.object - human readable tx object
+ * @returns {Promise<GraphQLClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
 
-
 /**
- * Encode transaction, users can pass plain objects for itx.data field
+ * Encode a DeployProtocolTx transaction for later use
  *
  * @name GraphQLClient#encodeDeployProtocolTx
  * @function
  * @memberof GraphQLClient
  * @param {GraphQLClient.DeployProtocolTxInput} params
- * @returns {object} result - we provide two formats of the encoding result
- * @returns {buffer} result.buffer - binary presentation of the tx, can be used for further encoding or signing
- * @returns {object} result.object - human readable tx object
+ * @returns {Promise<GraphQLClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
 
-
 /**
- * Encode transaction, users can pass plain objects for itx.data field
+ * Encode a UpgradeNodeTx transaction for later use
  *
  * @name GraphQLClient#encodeUpgradeNodeTx
  * @function
  * @memberof GraphQLClient
  * @param {GraphQLClient.UpgradeNodeTxInput} params
- * @returns {object} result - we provide two formats of the encoding result
- * @returns {buffer} result.buffer - binary presentation of the tx, can be used for further encoding or signing
- * @returns {object} result.object - human readable tx object
+ * @returns {Promise<GraphQLClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
 
-
 /**
- * Encode transaction, users can pass plain objects for itx.data field
+ * Encode a UpdateAssetTx transaction for later use
  *
  * @name GraphQLClient#encodeUpdateAssetTx
  * @function
  * @memberof GraphQLClient
  * @param {GraphQLClient.UpdateAssetTxInput} params
- * @returns {object} result - we provide two formats of the encoding result
- * @returns {buffer} result.buffer - binary presentation of the tx, can be used for further encoding or signing
- * @returns {object} result.object - human readable tx object
+ * @returns {Promise<GraphQLClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
 
-
 /**
- * Encode transaction, users can pass plain objects for itx.data field
+ * Encode a AccountMigrateTx transaction for later use
  *
  * @name GraphQLClient#encodeAccountMigrateTx
  * @function
  * @memberof GraphQLClient
  * @param {GraphQLClient.AccountMigrateTxInput} params
- * @returns {object} result - we provide two formats of the encoding result
- * @returns {buffer} result.buffer - binary presentation of the tx, can be used for further encoding or signing
- * @returns {object} result.object - human readable tx object
+ * @returns {Promise<GraphQLClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
 
-
 /**
- * Encode transaction, users can pass plain objects for itx.data field
+ * Encode a ConsumeAssetTx transaction for later use
  *
  * @name GraphQLClient#encodeConsumeAssetTx
  * @function
  * @memberof GraphQLClient
  * @param {GraphQLClient.ConsumeAssetTxInput} params
- * @returns {object} result - we provide two formats of the encoding result
- * @returns {buffer} result.buffer - binary presentation of the tx, can be used for further encoding or signing
- * @returns {object} result.object - human readable tx object
+ * @returns {Promise<GraphQLClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
 
-
 /**
- * Encode transaction, users can pass plain objects for itx.data field
+ * Encode a DeclareTx transaction for later use
  *
  * @name GraphQLClient#encodeDeclareTx
  * @function
  * @memberof GraphQLClient
  * @param {GraphQLClient.DeclareTxInput} params
- * @returns {object} result - we provide two formats of the encoding result
- * @returns {buffer} result.buffer - binary presentation of the tx, can be used for further encoding or signing
- * @returns {object} result.object - human readable tx object
+ * @returns {Promise<GraphQLClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
 
-
 /**
- * Encode transaction, users can pass plain objects for itx.data field
+ * Encode a ExchangeTx transaction for later use
  *
  * @name GraphQLClient#encodeExchangeTx
  * @function
  * @memberof GraphQLClient
  * @param {GraphQLClient.ExchangeTxInput} params
- * @returns {object} result - we provide two formats of the encoding result
- * @returns {buffer} result.buffer - binary presentation of the tx, can be used for further encoding or signing
- * @returns {object} result.object - human readable tx object
+ * @returns {Promise<GraphQLClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
 
-
 /**
- * Encode transaction, users can pass plain objects for itx.data field
+ * Encode a DeclareFileTx transaction for later use
  *
  * @name GraphQLClient#encodeDeclareFileTx
  * @function
  * @memberof GraphQLClient
  * @param {GraphQLClient.DeclareFileTxInput} params
- * @returns {object} result - we provide two formats of the encoding result
- * @returns {buffer} result.buffer - binary presentation of the tx, can be used for further encoding or signing
- * @returns {object} result.object - human readable tx object
+ * @returns {Promise<GraphQLClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
 
-
 /**
- * Encode transaction, users can pass plain objects for itx.data field
+ * Encode a StakeTx transaction for later use
  *
  * @name GraphQLClient#encodeStakeTx
  * @function
  * @memberof GraphQLClient
  * @param {GraphQLClient.StakeTxInput} params
- * @returns {object} result - we provide two formats of the encoding result
- * @returns {buffer} result.buffer - binary presentation of the tx, can be used for further encoding or signing
- * @returns {object} result.object - human readable tx object
+ * @returns {Promise<GraphQLClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
-
-
 
 /**
  * getAccountState
@@ -4756,7 +4643,6 @@
  * @returns {Promise<GraphQLClient.ResponseGetAccountState>} Checkout {@link GraphQLClient.ResponseGetAccountState} for resolved data format
  */
 
-
 /**
  * getAssetState
  *
@@ -4766,7 +4652,6 @@
  * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseGetAssetState>} Checkout {@link GraphQLClient.ResponseGetAssetState} for resolved data format
  */
-
 
 /**
  * getBlock
@@ -4778,7 +4663,6 @@
  * @returns {Promise<GraphQLClient.ResponseGetBlock>} Checkout {@link GraphQLClient.ResponseGetBlock} for resolved data format
  */
 
-
 /**
  * getBlocks
  *
@@ -4789,7 +4673,6 @@
  * @returns {Promise<GraphQLClient.ResponseGetBlocks>} Checkout {@link GraphQLClient.ResponseGetBlocks} for resolved data format
  */
 
-
 /**
  * getChainInfo
  *
@@ -4799,7 +4682,6 @@
  * @returns {Promise<GraphQLClient.ResponseGetChainInfo>} Checkout {@link GraphQLClient.ResponseGetChainInfo} for resolved data format
  */
 
-
 /**
  * getConfig
  *
@@ -4808,7 +4690,6 @@
  * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseGetConfig>} Checkout {@link GraphQLClient.ResponseGetConfig} for resolved data format
  */
-
 
 /**
  * getForgeState
@@ -4820,7 +4701,6 @@
  * @returns {Promise<GraphQLClient.ResponseGetForgeState>} Checkout {@link GraphQLClient.ResponseGetForgeState} for resolved data format
  */
 
-
 /**
  * getForgeStats
  *
@@ -4829,7 +4709,6 @@
  * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseGetForgeStats>} Checkout {@link GraphQLClient.ResponseGetForgeStats} for resolved data format
  */
-
 
 /**
  * getForgeStatsByDay
@@ -4841,7 +4720,6 @@
  * @returns {Promise<GraphQLClient.ResponseGetForgeStats>} Checkout {@link GraphQLClient.ResponseGetForgeStats} for resolved data format
  */
 
-
 /**
  * getForgeStatsByHour
  *
@@ -4852,7 +4730,6 @@
  * @returns {Promise<GraphQLClient.ResponseGetForgeStats>} Checkout {@link GraphQLClient.ResponseGetForgeStats} for resolved data format
  */
 
-
 /**
  * getHealthStatus
  *
@@ -4861,7 +4738,6 @@
  * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseGetHealthStatus>} Checkout {@link GraphQLClient.ResponseGetHealthStatus} for resolved data format
  */
-
 
 /**
  * getNetInfo
@@ -4872,7 +4748,6 @@
  * @returns {Promise<GraphQLClient.ResponseGetNetInfo>} Checkout {@link GraphQLClient.ResponseGetNetInfo} for resolved data format
  */
 
-
 /**
  * getNodeInfo
  *
@@ -4881,7 +4756,6 @@
  * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseGetNodeInfo>} Checkout {@link GraphQLClient.ResponseGetNodeInfo} for resolved data format
  */
-
 
 /**
  * getProtocolState
@@ -4893,7 +4767,6 @@
  * @returns {Promise<GraphQLClient.ResponseGetProtocolState>} Checkout {@link GraphQLClient.ResponseGetProtocolState} for resolved data format
  */
 
-
 /**
  * getSimulatorStatus
  *
@@ -4902,7 +4775,6 @@
  * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseGetSimulatorStatus>} Checkout {@link GraphQLClient.ResponseGetSimulatorStatus} for resolved data format
  */
-
 
 /**
  * getStakeState
@@ -4914,7 +4786,6 @@
  * @returns {Promise<GraphQLClient.ResponseGetStakeState>} Checkout {@link GraphQLClient.ResponseGetStakeState} for resolved data format
  */
 
-
 /**
  * getTx
  *
@@ -4924,7 +4795,6 @@
  * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseGetTx>} Checkout {@link GraphQLClient.ResponseGetTx} for resolved data format
  */
-
 
 /**
  * getUnconfirmedTxs
@@ -4936,7 +4806,6 @@
  * @returns {Promise<GraphQLClient.ResponseGetUnconfirmedTxs>} Checkout {@link GraphQLClient.ResponseGetUnconfirmedTxs} for resolved data format
  */
 
-
 /**
  * getValidatorsInfo
  *
@@ -4945,7 +4814,6 @@
  * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseGetValidatorsInfo>} Checkout {@link GraphQLClient.ResponseGetValidatorsInfo} for resolved data format
  */
-
 
 /**
  * listAssetTransactions
@@ -4957,7 +4825,6 @@
  * @returns {Promise<GraphQLClient.ResponseListAssetTransactions>} Checkout {@link GraphQLClient.ResponseListAssetTransactions} for resolved data format
  */
 
-
 /**
  * listAssets
  *
@@ -4967,7 +4834,6 @@
  * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseListAssets>} Checkout {@link GraphQLClient.ResponseListAssets} for resolved data format
  */
-
 
 /**
  * listBlocks
@@ -4979,7 +4845,6 @@
  * @returns {Promise<GraphQLClient.ResponseListBlocks>} Checkout {@link GraphQLClient.ResponseListBlocks} for resolved data format
  */
 
-
 /**
  * listStakes
  *
@@ -4989,7 +4854,6 @@
  * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseListStakes>} Checkout {@link GraphQLClient.ResponseListStakes} for resolved data format
  */
-
 
 /**
  * listTopAccounts
@@ -5001,7 +4865,6 @@
  * @returns {Promise<GraphQLClient.ResponseListTopAccounts>} Checkout {@link GraphQLClient.ResponseListTopAccounts} for resolved data format
  */
 
-
 /**
  * listTransactions
  *
@@ -5011,7 +4874,6 @@
  * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseListTransactions>} Checkout {@link GraphQLClient.ResponseListTransactions} for resolved data format
  */
-
 
 /**
  * sendTx
@@ -5023,7 +4885,6 @@
  * @returns {Promise<GraphQLClient.ResponseSendTx>} Checkout {@link GraphQLClient.ResponseSendTx} for resolved data format
  */
 
-
 /**
  * startSimulator
  *
@@ -5033,7 +4894,6 @@
  * @returns {Promise<GraphQLClient.ResponseStartSimulator>} Checkout {@link GraphQLClient.ResponseStartSimulator} for resolved data format
  */
 
-
 /**
  * stopSimulator
  *
@@ -5042,7 +4902,6 @@
  * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseStopSimulator>} Checkout {@link GraphQLClient.ResponseStopSimulator} for resolved data format
  */
-
 
 /**
  * unsubscribe
@@ -5054,7 +4913,6 @@
  * @returns {Promise<GraphQLClient.ResponseUnsubscribe>} Checkout {@link GraphQLClient.ResponseUnsubscribe} for resolved data format
  */
 
-
 /**
  * subscribe
  *
@@ -5064,4 +4922,3 @@
  * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseSubscribe>} Checkout {@link GraphQLClient.ResponseSubscribe} for resolved data format
  */
-
