@@ -140,7 +140,7 @@ const generateMethods = (methods, ns) =>
 /**
  * ${x.name}
  *
- * @name ${namespace}#${x.name}${argType ? `\n * @param {...${ns}.${argType}} params` : ''}
+ * @name ${namespace}#${x.name}${argType ? `\n * @param {${ns}.${argType}} params` : ''}
  * @function
  * @memberof ${ns}
  * @returns {Promise<${resultType}>} Checkout {@link ${resultType}} for resolved data format

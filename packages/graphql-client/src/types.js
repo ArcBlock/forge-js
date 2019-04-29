@@ -4720,7 +4720,7 @@
  * getAccountState
  *
  * @name GraphQLClient#getAccountState
- * @param {...GraphQLClient.GetAccountStateParams} params
+ * @param {GraphQLClient.GetAccountStateParams} params
  * @function
  * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseGetAccountState>} Checkout {@link GraphQLClient.ResponseGetAccountState} for resolved data format
@@ -4730,7 +4730,7 @@
  * getAssetState
  *
  * @name GraphQLClient#getAssetState
- * @param {...GraphQLClient.GetAssetStateParams} params
+ * @param {GraphQLClient.GetAssetStateParams} params
  * @function
  * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseGetAssetState>} Checkout {@link GraphQLClient.ResponseGetAssetState} for resolved data format
@@ -4740,7 +4740,7 @@
  * getBlock
  *
  * @name GraphQLClient#getBlock
- * @param {...GraphQLClient.GetBlockParams} params
+ * @param {GraphQLClient.GetBlockParams} params
  * @function
  * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseGetBlock>} Checkout {@link GraphQLClient.ResponseGetBlock} for resolved data format
@@ -4750,7 +4750,7 @@
  * getBlocks
  *
  * @name GraphQLClient#getBlocks
- * @param {...GraphQLClient.GetBlocksParams} params
+ * @param {GraphQLClient.GetBlocksParams} params
  * @function
  * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseGetBlocks>} Checkout {@link GraphQLClient.ResponseGetBlocks} for resolved data format
@@ -4778,7 +4778,7 @@
  * getForgeState
  *
  * @name GraphQLClient#getForgeState
- * @param {...GraphQLClient.GetForgeStateParams} params
+ * @param {GraphQLClient.GetForgeStateParams} params
  * @function
  * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseGetForgeState>} Checkout {@link GraphQLClient.ResponseGetForgeState} for resolved data format
@@ -4797,7 +4797,7 @@
  * getForgeStatsByDay
  *
  * @name GraphQLClient#getForgeStatsByDay
- * @param {...GraphQLClient.GetForgeStatsByDayParams} params
+ * @param {GraphQLClient.GetForgeStatsByDayParams} params
  * @function
  * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseGetForgeStats>} Checkout {@link GraphQLClient.ResponseGetForgeStats} for resolved data format
@@ -4807,7 +4807,7 @@
  * getForgeStatsByHour
  *
  * @name GraphQLClient#getForgeStatsByHour
- * @param {...GraphQLClient.GetForgeStatsByHourParams} params
+ * @param {GraphQLClient.GetForgeStatsByHourParams} params
  * @function
  * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseGetForgeStats>} Checkout {@link GraphQLClient.ResponseGetForgeStats} for resolved data format
@@ -4844,7 +4844,7 @@
  * getProtocolState
  *
  * @name GraphQLClient#getProtocolState
- * @param {...GraphQLClient.GetProtocolStateParams} params
+ * @param {GraphQLClient.GetProtocolStateParams} params
  * @function
  * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseGetProtocolState>} Checkout {@link GraphQLClient.ResponseGetProtocolState} for resolved data format
@@ -4863,7 +4863,7 @@
  * getStakeState
  *
  * @name GraphQLClient#getStakeState
- * @param {...GraphQLClient.GetStakeStateParams} params
+ * @param {GraphQLClient.GetStakeStateParams} params
  * @function
  * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseGetStakeState>} Checkout {@link GraphQLClient.ResponseGetStakeState} for resolved data format
@@ -4873,7 +4873,7 @@
  * getTx
  *
  * @name GraphQLClient#getTx
- * @param {...GraphQLClient.GetTxParams} params
+ * @param {GraphQLClient.GetTxParams} params
  * @function
  * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseGetTx>} Checkout {@link GraphQLClient.ResponseGetTx} for resolved data format
@@ -4883,7 +4883,7 @@
  * getUnconfirmedTxs
  *
  * @name GraphQLClient#getUnconfirmedTxs
- * @param {...GraphQLClient.GetUnconfirmedTxsParams} params
+ * @param {GraphQLClient.GetUnconfirmedTxsParams} params
  * @function
  * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseGetUnconfirmedTxs>} Checkout {@link GraphQLClient.ResponseGetUnconfirmedTxs} for resolved data format
@@ -4902,7 +4902,7 @@
  * listAssetTransactions
  *
  * @name GraphQLClient#listAssetTransactions
- * @param {...GraphQLClient.ListAssetTransactionsParams} params
+ * @param {GraphQLClient.ListAssetTransactionsParams} params
  * @function
  * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseListAssetTransactions>} Checkout {@link GraphQLClient.ResponseListAssetTransactions} for resolved data format
@@ -4912,7 +4912,7 @@
  * listAssets
  *
  * @name GraphQLClient#listAssets
- * @param {...GraphQLClient.ListAssetsParams} params
+ * @param {GraphQLClient.ListAssetsParams} params
  * @function
  * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseListAssets>} Checkout {@link GraphQLClient.ResponseListAssets} for resolved data format
@@ -4922,7 +4922,7 @@
  * listBlocks
  *
  * @name GraphQLClient#listBlocks
- * @param {...GraphQLClient.ListBlocksParams} params
+ * @param {GraphQLClient.ListBlocksParams} params
  * @function
  * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseListBlocks>} Checkout {@link GraphQLClient.ResponseListBlocks} for resolved data format
@@ -4932,7 +4932,7 @@
  * listStakes
  *
  * @name GraphQLClient#listStakes
- * @param {...GraphQLClient.ListStakesParams} params
+ * @param {GraphQLClient.ListStakesParams} params
  * @function
  * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseListStakes>} Checkout {@link GraphQLClient.ResponseListStakes} for resolved data format
@@ -4942,7 +4942,7 @@
  * listTopAccounts
  *
  * @name GraphQLClient#listTopAccounts
- * @param {...GraphQLClient.ListTopAccountsParams} params
+ * @param {GraphQLClient.ListTopAccountsParams} params
  * @function
  * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseListTopAccounts>} Checkout {@link GraphQLClient.ResponseListTopAccounts} for resolved data format
@@ -4952,7 +4952,7 @@
  * listTransactions
  *
  * @name GraphQLClient#listTransactions
- * @param {...GraphQLClient.ListTransactionsParams} params
+ * @param {GraphQLClient.ListTransactionsParams} params
  * @function
  * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseListTransactions>} Checkout {@link GraphQLClient.ResponseListTransactions} for resolved data format
@@ -4962,7 +4962,7 @@
  * sendTx
  *
  * @name GraphQLClient#sendTx
- * @param {...GraphQLClient.SendTxParams} params
+ * @param {GraphQLClient.SendTxParams} params
  * @function
  * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseSendTx>} Checkout {@link GraphQLClient.ResponseSendTx} for resolved data format
@@ -4990,7 +4990,7 @@
  * unsubscribe
  *
  * @name GraphQLClient#unsubscribe
- * @param {...GraphQLClient.UnsubscribeParams} params
+ * @param {GraphQLClient.UnsubscribeParams} params
  * @function
  * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseUnsubscribe>} Checkout {@link GraphQLClient.ResponseUnsubscribe} for resolved data format
@@ -5000,7 +5000,7 @@
  * subscribe
  *
  * @name GraphQLClient#subscribe
- * @param {...GraphQLClient.SubscribeParams} params
+ * @param {GraphQLClient.SubscribeParams} params
  * @function
  * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseSubscribe>} Checkout {@link GraphQLClient.ResponseSubscribe} for resolved data format
