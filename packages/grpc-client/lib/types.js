@@ -59,8 +59,8 @@
       "context": {
         "genesisTx": "arcblock",
         "renaissanceTx": "arcblock",
-        "genesisTime": "2019-04-29T10:15:32.968Z",
-        "renaissanceTime": "2019-04-29T10:15:32.968Z"
+        "genesisTime": "2019-04-29T10:50:31.638Z",
+        "renaissanceTime": "2019-04-29T10:50:31.638Z"
       },
       "issuer": "arcblock",
       "migratedTo": [
@@ -125,8 +125,8 @@
       "context": {
         "genesisTx": "arcblock",
         "renaissanceTx": "arcblock",
-        "genesisTime": "2019-04-29T10:15:32.968Z",
-        "renaissanceTime": "2019-04-29T10:15:32.968Z"
+        "genesisTime": "2019-04-29T10:50:31.639Z",
+        "renaissanceTime": "2019-04-29T10:50:31.639Z"
       },
       "issuer": "arcblock",
       "migratedTo": [
@@ -185,7 +185,7 @@
       "readonly": true,
       "transferrable": true,
       "ttl": 2,
-      "consumedTime": "2019-04-29T10:15:32.968Z",
+      "consumedTime": "2019-04-29T10:50:31.639Z",
       "issuer": "arcblock",
       "stake": {
         "recentStakes": {
@@ -212,8 +212,8 @@
       "context": {
         "genesisTx": "arcblock",
         "renaissanceTx": "arcblock",
-        "genesisTime": "2019-04-29T10:15:32.968Z",
-        "renaissanceTime": "2019-04-29T10:15:32.968Z"
+        "genesisTime": "2019-04-29T10:50:31.640Z",
+        "renaissanceTime": "2019-04-29T10:50:31.640Z"
       },
       "data": {
         "type": "string",
@@ -227,7 +227,7 @@
       "readonly": true,
       "transferrable": true,
       "ttl": 2,
-      "consumedTime": "2019-04-29T10:15:32.968Z",
+      "consumedTime": "2019-04-29T10:50:31.640Z",
       "issuer": "arcblock",
       "stake": {
         "recentStakes": {
@@ -254,8 +254,8 @@
       "context": {
         "genesisTx": "arcblock",
         "renaissanceTx": "arcblock",
-        "genesisTime": "2019-04-29T10:15:32.968Z",
-        "renaissanceTime": "2019-04-29T10:15:32.968Z"
+        "genesisTime": "2019-04-29T10:50:31.640Z",
+        "renaissanceTime": "2019-04-29T10:50:31.640Z"
       },
       "data": {
         "type": "string",
@@ -272,8 +272,8 @@
       "context": {
         "genesisTx": "arcblock",
         "renaissanceTx": "arcblock",
-        "genesisTime": "2019-04-29T10:15:32.968Z",
-        "renaissanceTime": "2019-04-29T10:15:32.968Z"
+        "genesisTime": "2019-04-29T10:50:31.640Z",
+        "renaissanceTime": "2019-04-29T10:50:31.640Z"
       },
       "data": {
         "type": "string",
@@ -288,8 +288,8 @@
       "context": {
         "genesisTx": "arcblock",
         "renaissanceTx": "arcblock",
-        "genesisTime": "2019-04-29T10:15:32.968Z",
-        "renaissanceTime": "2019-04-29T10:15:32.968Z"
+        "genesisTime": "2019-04-29T10:50:31.640Z",
+        "renaissanceTime": "2019-04-29T10:50:31.640Z"
       },
       "data": {
         "type": "string",
@@ -300,7 +300,7 @@
   "context": {
     "txHash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
     "blockHeight": 5,
-    "blockTime": "2019-04-29T10:15:32.968Z",
+    "blockTime": "2019-04-29T10:50:31.640Z",
     "totalTxs": 5,
     "txStatistics": {
       "numAccountMigrateTxs": 5,
@@ -317,7 +317,7 @@
       "numPokeTxs": 5
     },
     "txIndex": 2,
-    "lastBlockTime": "2019-04-29T10:15:32.968Z"
+    "lastBlockTime": "2019-04-29T10:50:31.640Z"
   },
   "appState": {
     "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
@@ -370,8 +370,8 @@
         "context": {
           "genesisTx": "arcblock",
           "renaissanceTx": "arcblock",
-          "genesisTime": "2019-04-29T10:15:32.969Z",
-          "renaissanceTime": "2019-04-29T10:15:32.969Z"
+          "genesisTime": "2019-04-29T10:50:31.640Z",
+          "renaissanceTime": "2019-04-29T10:50:31.640Z"
         }
       }
     },
@@ -545,8 +545,8 @@
         "context": {
           "genesisTx": "arcblock",
           "renaissanceTx": "arcblock",
-          "genesisTime": "2019-04-29T10:15:32.964Z",
-          "renaissanceTime": "2019-04-29T10:15:32.964Z"
+          "genesisTime": "2019-04-29T10:50:31.634Z",
+          "renaissanceTime": "2019-04-29T10:50:31.634Z"
         },
         "issuer": "arcblock",
         "migratedTo": [
@@ -611,8 +611,8 @@
         "context": {
           "genesisTx": "arcblock",
           "renaissanceTx": "arcblock",
-          "genesisTime": "2019-04-29T10:15:32.964Z",
-          "renaissanceTime": "2019-04-29T10:15:32.964Z"
+          "genesisTime": "2019-04-29T10:50:31.634Z",
+          "renaissanceTime": "2019-04-29T10:50:31.634Z"
         },
         "issuer": "arcblock",
         "migratedTo": [
@@ -671,7 +671,7 @@
         "readonly": true,
         "transferrable": true,
         "ttl": 2,
-        "consumedTime": "2019-04-29T10:15:32.964Z",
+        "consumedTime": "2019-04-29T10:50:31.634Z",
         "issuer": "arcblock",
         "stake": {
           "recentStakes": {
@@ -698,8 +698,8 @@
         "context": {
           "genesisTx": "arcblock",
           "renaissanceTx": "arcblock",
-          "genesisTime": "2019-04-29T10:15:32.964Z",
-          "renaissanceTime": "2019-04-29T10:15:32.964Z"
+          "genesisTime": "2019-04-29T10:50:31.634Z",
+          "renaissanceTime": "2019-04-29T10:50:31.634Z"
         },
         "data": {
           "type": "string",
@@ -713,7 +713,7 @@
         "readonly": true,
         "transferrable": true,
         "ttl": 2,
-        "consumedTime": "2019-04-29T10:15:32.964Z",
+        "consumedTime": "2019-04-29T10:50:31.634Z",
         "issuer": "arcblock",
         "stake": {
           "recentStakes": {
@@ -740,8 +740,8 @@
         "context": {
           "genesisTx": "arcblock",
           "renaissanceTx": "arcblock",
-          "genesisTime": "2019-04-29T10:15:32.964Z",
-          "renaissanceTime": "2019-04-29T10:15:32.964Z"
+          "genesisTime": "2019-04-29T10:50:31.634Z",
+          "renaissanceTime": "2019-04-29T10:50:31.634Z"
         },
         "data": {
           "type": "string",
@@ -758,8 +758,8 @@
         "context": {
           "genesisTx": "arcblock",
           "renaissanceTx": "arcblock",
-          "genesisTime": "2019-04-29T10:15:32.964Z",
-          "renaissanceTime": "2019-04-29T10:15:32.964Z"
+          "genesisTime": "2019-04-29T10:50:31.634Z",
+          "renaissanceTime": "2019-04-29T10:50:31.634Z"
         },
         "data": {
           "type": "string",
@@ -774,8 +774,8 @@
         "context": {
           "genesisTx": "arcblock",
           "renaissanceTx": "arcblock",
-          "genesisTime": "2019-04-29T10:15:32.964Z",
-          "renaissanceTime": "2019-04-29T10:15:32.964Z"
+          "genesisTime": "2019-04-29T10:50:31.634Z",
+          "renaissanceTime": "2019-04-29T10:50:31.634Z"
         },
         "data": {
           "type": "string",
@@ -786,7 +786,7 @@
     "context": {
       "txHash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
       "blockHeight": 5,
-      "blockTime": "2019-04-29T10:15:32.964Z",
+      "blockTime": "2019-04-29T10:50:31.634Z",
       "totalTxs": 5,
       "txStatistics": {
         "numAccountMigrateTxs": 5,
@@ -803,7 +803,7 @@
         "numPokeTxs": 5
       },
       "txIndex": 2,
-      "lastBlockTime": "2019-04-29T10:15:32.964Z"
+      "lastBlockTime": "2019-04-29T10:50:31.634Z"
     },
     "appState": {
       "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
@@ -856,8 +856,8 @@
           "context": {
             "genesisTx": "arcblock",
             "renaissanceTx": "arcblock",
-            "genesisTime": "2019-04-29T10:15:32.964Z",
-            "renaissanceTime": "2019-04-29T10:15:32.964Z"
+            "genesisTime": "2019-04-29T10:50:31.634Z",
+            "renaissanceTime": "2019-04-29T10:50:31.634Z"
           }
         }
       },
@@ -1898,7 +1898,7 @@
       }
     ],
     "code": 0,
-    "time": "2019-04-29T10:15:32.969Z",
+    "time": "2019-04-29T10:50:31.640Z",
     "createAsset": {
       "asset": "arcblock"
     },
@@ -1938,7 +1938,7 @@
   "block": {
     "height": 5,
     "numTxs": 2,
-    "time": "2019-04-29T10:15:32.965Z",
+    "time": "2019-04-29T10:50:31.635Z",
     "appHash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
     "proposer": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
     "txs": [
@@ -1988,7 +1988,7 @@
           }
         ],
         "code": 0,
-        "time": "2019-04-29T10:15:32.965Z",
+        "time": "2019-04-29T10:50:31.635Z",
         "createAsset": {
           "asset": "arcblock"
         },
@@ -2042,7 +2042,7 @@
           }
         ],
         "code": 0,
-        "time": "2019-04-29T10:15:32.965Z",
+        "time": "2019-04-29T10:50:31.635Z",
         "createAsset": {
           "asset": "arcblock"
         },
@@ -2099,7 +2099,7 @@
           }
         ],
         "code": 0,
-        "time": "2019-04-29T10:15:32.965Z",
+        "time": "2019-04-29T10:50:31.636Z",
         "createAsset": {
           "asset": "arcblock"
         },
@@ -2153,7 +2153,7 @@
           }
         ],
         "code": 0,
-        "time": "2019-04-29T10:15:32.965Z",
+        "time": "2019-04-29T10:50:31.636Z",
         "createAsset": {
           "asset": "arcblock"
         },
@@ -2246,7 +2246,7 @@
     {
       "height": 5,
       "numTxs": 2,
-      "time": "2019-04-29T10:15:32.965Z",
+      "time": "2019-04-29T10:50:31.636Z",
       "appHash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
       "proposer": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
       "totalTxs": 5,
@@ -2279,7 +2279,7 @@
     {
       "height": 5,
       "numTxs": 2,
-      "time": "2019-04-29T10:15:32.966Z",
+      "time": "2019-04-29T10:50:31.636Z",
       "appHash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
       "proposer": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
       "totalTxs": 5,
@@ -2606,8 +2606,8 @@
     "context": {
       "genesisTx": "arcblock",
       "renaissanceTx": "arcblock",
-      "genesisTime": "2019-04-29T10:15:32.966Z",
-      "renaissanceTime": "2019-04-29T10:15:32.966Z"
+      "genesisTime": "2019-04-29T10:50:31.637Z",
+      "renaissanceTime": "2019-04-29T10:50:31.637Z"
     },
     "issuer": "arcblock",
     "migratedTo": [
@@ -2700,7 +2700,7 @@
     "readonly": true,
     "transferrable": true,
     "ttl": 2,
-    "consumedTime": "2019-04-29T10:15:32.966Z",
+    "consumedTime": "2019-04-29T10:50:31.637Z",
     "issuer": "arcblock",
     "stake": {
       "recentStakes": {
@@ -2727,8 +2727,8 @@
     "context": {
       "genesisTx": "arcblock",
       "renaissanceTx": "arcblock",
-      "genesisTime": "2019-04-29T10:15:32.966Z",
-      "renaissanceTime": "2019-04-29T10:15:32.966Z"
+      "genesisTime": "2019-04-29T10:50:31.637Z",
+      "renaissanceTime": "2019-04-29T10:50:31.637Z"
     },
     "data": {
       "type": "string",
@@ -2790,8 +2790,8 @@
     "context": {
       "genesisTx": "arcblock",
       "renaissanceTx": "arcblock",
-      "genesisTime": "2019-04-29T10:15:32.967Z",
-      "renaissanceTime": "2019-04-29T10:15:32.967Z"
+      "genesisTime": "2019-04-29T10:50:31.637Z",
+      "renaissanceTime": "2019-04-29T10:50:31.637Z"
     },
     "data": {
       "type": "string",
@@ -2842,8 +2842,8 @@
     "context": {
       "genesisTx": "arcblock",
       "renaissanceTx": "arcblock",
-      "genesisTime": "2019-04-29T10:15:32.967Z",
-      "renaissanceTime": "2019-04-29T10:15:32.967Z"
+      "genesisTime": "2019-04-29T10:50:31.637Z",
+      "renaissanceTime": "2019-04-29T10:50:31.637Z"
     },
     "data": {
       "type": "string",
@@ -2935,8 +2935,8 @@
         "context": {
           "genesisTx": "arcblock",
           "renaissanceTx": "arcblock",
-          "genesisTime": "2019-04-29T10:15:32.966Z",
-          "renaissanceTime": "2019-04-29T10:15:32.966Z"
+          "genesisTime": "2019-04-29T10:50:31.637Z",
+          "renaissanceTime": "2019-04-29T10:50:31.637Z"
         }
       }
     },
@@ -3112,7 +3112,7 @@
     "appHash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
     "blockHash": {},
     "blockHeight": 5,
-    "blockTime": "2019-04-29T10:15:32.966Z",
+    "blockTime": "2019-04-29T10:50:31.636Z",
     "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
     "votingPower": 5,
     "totalTxs": 5,
@@ -3161,7 +3161,7 @@
     "appHash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
     "blockHash": {},
     "blockHeight": 5,
-    "blockTime": "2019-04-29T10:15:32.966Z",
+    "blockTime": "2019-04-29T10:50:31.636Z",
     "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
     "votingPower": 5,
     "totalTxs": 5,
@@ -3260,7 +3260,7 @@
         }
       ],
       "code": 0,
-      "time": "2019-04-29T10:15:32.966Z",
+      "time": "2019-04-29T10:50:31.636Z",
       "createAsset": {
         "asset": "arcblock"
       },
@@ -3314,7 +3314,7 @@
         }
       ],
       "code": 0,
-      "time": "2019-04-29T10:15:32.966Z",
+      "time": "2019-04-29T10:50:31.636Z",
       "createAsset": {
         "asset": "arcblock"
       },
@@ -4994,7 +4994,7 @@
       "arcblock"
     ]
   },
-  "expiredAt": "2019-04-29T10:15:32.970Z",
+  "expiredAt": "2019-04-29T10:50:31.641Z",
   "data": {
     "type": "string",
     "value": "ABCD 1234"
@@ -5910,11 +5910,12 @@
  * @prop {object} input
  * @prop {object} input.tx - data of the transaction
  * @prop {GRpcClient.ConsensusUpgradeTx} input.tx.itx - the actual transaction object
+ * @prop {string} [input.tx.pk] - the sender pk
  * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
  * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
  * @prop {string} [input.tx.chainId] - the chainId
  * @prop {string} [input.tx.signature] - transaction signature
- * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transactio
+ * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transaction
  * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
  * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
  */
@@ -5935,11 +5936,12 @@
  * @prop {object} input
  * @prop {object} input.tx - data of the transaction
  * @prop {GRpcClient.DeclareTx} input.tx.itx - the actual transaction object
+ * @prop {string} [input.tx.pk] - the sender pk
  * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
  * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
  * @prop {string} [input.tx.chainId] - the chainId
  * @prop {string} [input.tx.signature] - transaction signature
- * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transactio
+ * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transaction
  * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
  * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
  */
@@ -5960,11 +5962,12 @@
  * @prop {object} input
  * @prop {object} input.tx - data of the transaction
  * @prop {GRpcClient.DeployProtocolTx} input.tx.itx - the actual transaction object
+ * @prop {string} [input.tx.pk] - the sender pk
  * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
  * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
  * @prop {string} [input.tx.chainId] - the chainId
  * @prop {string} [input.tx.signature] - transaction signature
- * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transactio
+ * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transaction
  * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
  * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
  */
@@ -5985,11 +5988,12 @@
  * @prop {object} input
  * @prop {object} input.tx - data of the transaction
  * @prop {GRpcClient.SysUpgradeTx} input.tx.itx - the actual transaction object
+ * @prop {string} [input.tx.pk] - the sender pk
  * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
  * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
  * @prop {string} [input.tx.chainId] - the chainId
  * @prop {string} [input.tx.signature] - transaction signature
- * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transactio
+ * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transaction
  * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
  * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
  */
@@ -6010,11 +6014,12 @@
  * @prop {object} input
  * @prop {object} input.tx - data of the transaction
  * @prop {GRpcClient.DeclareFileTx} input.tx.itx - the actual transaction object
+ * @prop {string} [input.tx.pk] - the sender pk
  * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
  * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
  * @prop {string} [input.tx.chainId] - the chainId
  * @prop {string} [input.tx.signature] - transaction signature
- * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transactio
+ * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transaction
  * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
  * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
  */
@@ -6035,11 +6040,12 @@
  * @prop {object} input
  * @prop {object} input.tx - data of the transaction
  * @prop {GRpcClient.CreateAssetTx} input.tx.itx - the actual transaction object
+ * @prop {string} [input.tx.pk] - the sender pk
  * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
  * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
  * @prop {string} [input.tx.chainId] - the chainId
  * @prop {string} [input.tx.signature] - transaction signature
- * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transactio
+ * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transaction
  * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
  * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
  */
@@ -6060,11 +6066,12 @@
  * @prop {object} input
  * @prop {object} input.tx - data of the transaction
  * @prop {GRpcClient.StakeTx} input.tx.itx - the actual transaction object
+ * @prop {string} [input.tx.pk] - the sender pk
  * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
  * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
  * @prop {string} [input.tx.chainId] - the chainId
  * @prop {string} [input.tx.signature] - transaction signature
- * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transactio
+ * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transaction
  * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
  * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
  */
@@ -6085,11 +6092,12 @@
  * @prop {object} input
  * @prop {object} input.tx - data of the transaction
  * @prop {GRpcClient.ExchangeTx} input.tx.itx - the actual transaction object
+ * @prop {string} [input.tx.pk] - the sender pk
  * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
  * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
  * @prop {string} [input.tx.chainId] - the chainId
  * @prop {string} [input.tx.signature] - transaction signature
- * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transactio
+ * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transaction
  * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
  * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
  */
@@ -6110,11 +6118,12 @@
  * @prop {object} input
  * @prop {object} input.tx - data of the transaction
  * @prop {GRpcClient.AccountMigrateTx} input.tx.itx - the actual transaction object
+ * @prop {string} [input.tx.pk] - the sender pk
  * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
  * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
  * @prop {string} [input.tx.chainId] - the chainId
  * @prop {string} [input.tx.signature] - transaction signature
- * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transactio
+ * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transaction
  * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
  * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
  */
@@ -6135,11 +6144,12 @@
  * @prop {object} input
  * @prop {object} input.tx - data of the transaction
  * @prop {GRpcClient.UpgradeNodeTx} input.tx.itx - the actual transaction object
+ * @prop {string} [input.tx.pk] - the sender pk
  * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
  * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
  * @prop {string} [input.tx.chainId] - the chainId
  * @prop {string} [input.tx.signature] - transaction signature
- * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transactio
+ * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transaction
  * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
  * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
  */
@@ -6160,11 +6170,12 @@
  * @prop {object} input
  * @prop {object} input.tx - data of the transaction
  * @prop {GRpcClient.UpdateAssetTx} input.tx.itx - the actual transaction object
+ * @prop {string} [input.tx.pk] - the sender pk
  * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
  * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
  * @prop {string} [input.tx.chainId] - the chainId
  * @prop {string} [input.tx.signature] - transaction signature
- * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transactio
+ * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transaction
  * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
  * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
  */
@@ -6185,11 +6196,12 @@
  * @prop {object} input
  * @prop {object} input.tx - data of the transaction
  * @prop {GRpcClient.ConsumeAssetTx} input.tx.itx - the actual transaction object
+ * @prop {string} [input.tx.pk] - the sender pk
  * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
  * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
  * @prop {string} [input.tx.chainId] - the chainId
  * @prop {string} [input.tx.signature] - transaction signature
- * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transactio
+ * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transaction
  * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
  * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
  */
@@ -6210,11 +6222,12 @@
  * @prop {object} input
  * @prop {object} input.tx - data of the transaction
  * @prop {GRpcClient.PokeTx} input.tx.itx - the actual transaction object
+ * @prop {string} [input.tx.pk] - the sender pk
  * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
  * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
  * @prop {string} [input.tx.chainId] - the chainId
  * @prop {string} [input.tx.signature] - transaction signature
- * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transactio
+ * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transaction
  * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
  * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
  */
@@ -6235,11 +6248,12 @@
  * @prop {object} input
  * @prop {object} input.tx - data of the transaction
  * @prop {GRpcClient.TransferTx} input.tx.itx - the actual transaction object
+ * @prop {string} [input.tx.pk] - the sender pk
  * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
  * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
  * @prop {string} [input.tx.chainId] - the chainId
  * @prop {string} [input.tx.signature] - transaction signature
- * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transactio
+ * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transaction
  * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
  * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
  */

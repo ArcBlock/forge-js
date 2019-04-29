@@ -156,11 +156,12 @@ const getTxSendTypes = (name, tx, ns) => `
  * @prop {object} input
  * @prop {object} input.tx - data of the transaction
  * @prop {${ns}.${tx}} input.tx.itx - the actual transaction object
+ * @prop {string} [input.tx.pk] - the sender pk
  * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
  * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
  * @prop {string} [input.tx.chainId] - the chainId
  * @prop {string} [input.tx.signature] - transaction signature
- * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transactio
+ * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transaction
  * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
  * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
  */
