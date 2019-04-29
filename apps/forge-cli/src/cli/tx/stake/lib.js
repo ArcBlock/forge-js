@@ -78,15 +78,17 @@ async function main(answers, action) {
 
   try {
     const hash = await client.sendStakeTx({
-      from: address,
       token,
-      itx: {
-        to: target,
-        value: client.fromTokenToUnit(action === 'stake' ? amount : -amount),
-        message,
-        data: {
-          type,
-          value: {},
+      tx: {
+        from: address,
+        itx: {
+          to: target,
+          value: client.fromTokenToUnit(action === 'stake' ? amount : -amount),
+          message,
+          data: {
+            type,
+            value: {},
+          },
         },
       },
     });
