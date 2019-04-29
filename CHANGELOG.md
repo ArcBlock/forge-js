@@ -1,5 +1,22 @@
+## 0.21.0 (April 29, 2019)
+  - chore: update forge-cli usage for grpc-client
+  - chore: refactor grpc client to align with graphql client
+  - chore: upgrade dts
+  - fix: graphql-client demo examples
+  - chore: rename transaction encoding/sending input.data => input.tx for graphql-client
+  - chore: improve grpc-client dts and doc gen
+  - chore: make grpc client more simple to use
+  - chore: update client lib docs and dependency
+  - fix: sdk-util generated fake messages
+  - chore: add module placeholders for jsdoc
+  - chore: fix code in generated docs
+  - chore: upgrade sdk-util dependency version
+  - chore: improve graphql-client doc generating
+  - fix: eslint errors
+  - fix: inner marker for some field in generated docs
+  - update readme
+
 ## 0.20.6 (April 29, 2019)
-  - chore: ignore package-lock.json
   - chore: remove package-lock.json
   - chore: improve filter on mobile
   - chore: improve tx detail asset detail account detail page on mobile
