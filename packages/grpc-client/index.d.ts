@@ -94,6 +94,9 @@ declare class GRpcClient {
   getStakeState(
     request: forge_abi.RequestGetStakeState | Array<forge_abi.RequestGetStakeState>
   ): GRpcClient.StreamResult<forge_abi.ResponseGetStakeState>;
+  getTetherInfo(
+    request: forge_abi.RequestGetTetherInfo | Array<forge_abi.RequestGetTetherInfo>
+  ): GRpcClient.StreamResult<forge_abi.ResponseGetTetherInfo>;
   createWallet(
     request: forge_abi.RequestCreateWallet
   ): GRpcClient.UnaryResult<forge_abi.ResponseCreateWallet>;
@@ -157,7 +160,10 @@ declare class GRpcClient {
   encodeCreateAssetTx(
     param: GRpcClient.TxParam<GRpcClient.CreateAssetTx>
   ): Promise<GRpcClient.ResponseSendTx>;
-  encodeStakeTx(param: GRpcClient.TxParam<GRpcClient.StakeTx>): Promise<GRpcClient.ResponseSendTx>;
+  encodePokeTx(param: GRpcClient.TxParam<GRpcClient.PokeTx>): Promise<GRpcClient.ResponseSendTx>;
+  encodeConsumeAssetTx(
+    param: GRpcClient.TxParam<GRpcClient.ConsumeAssetTx>
+  ): Promise<GRpcClient.ResponseSendTx>;
   encodeExchangeTx(
     param: GRpcClient.TxParam<GRpcClient.ExchangeTx>
   ): Promise<GRpcClient.ResponseSendTx>;
@@ -170,10 +176,13 @@ declare class GRpcClient {
   encodeUpdateAssetTx(
     param: GRpcClient.TxParam<GRpcClient.UpdateAssetTx>
   ): Promise<GRpcClient.ResponseSendTx>;
-  encodeConsumeAssetTx(
-    param: GRpcClient.TxParam<GRpcClient.ConsumeAssetTx>
+  encodeAcquireAssetTx(
+    param: GRpcClient.TxParam<GRpcClient.AcquireAssetTx>
   ): Promise<GRpcClient.ResponseSendTx>;
-  encodePokeTx(param: GRpcClient.TxParam<GRpcClient.PokeTx>): Promise<GRpcClient.ResponseSendTx>;
+  encodeDepositTetherTx(
+    param: GRpcClient.TxParam<GRpcClient.DepositTetherTx>
+  ): Promise<GRpcClient.ResponseSendTx>;
+  encodeStakeTx(param: GRpcClient.TxParam<GRpcClient.StakeTx>): Promise<GRpcClient.ResponseSendTx>;
   encodeTransferTx(
     param: GRpcClient.TxParam<GRpcClient.TransferTx>
   ): Promise<GRpcClient.ResponseSendTx>;
@@ -195,7 +204,10 @@ declare class GRpcClient {
   sendCreateAssetTx(
     param: GRpcClient.TxParam<GRpcClient.CreateAssetTx>
   ): Promise<GRpcClient.EncodeTxResult>;
-  sendStakeTx(param: GRpcClient.TxParam<GRpcClient.StakeTx>): Promise<GRpcClient.EncodeTxResult>;
+  sendPokeTx(param: GRpcClient.TxParam<GRpcClient.PokeTx>): Promise<GRpcClient.EncodeTxResult>;
+  sendConsumeAssetTx(
+    param: GRpcClient.TxParam<GRpcClient.ConsumeAssetTx>
+  ): Promise<GRpcClient.EncodeTxResult>;
   sendExchangeTx(
     param: GRpcClient.TxParam<GRpcClient.ExchangeTx>
   ): Promise<GRpcClient.EncodeTxResult>;
@@ -208,10 +220,13 @@ declare class GRpcClient {
   sendUpdateAssetTx(
     param: GRpcClient.TxParam<GRpcClient.UpdateAssetTx>
   ): Promise<GRpcClient.EncodeTxResult>;
-  sendConsumeAssetTx(
-    param: GRpcClient.TxParam<GRpcClient.ConsumeAssetTx>
+  sendAcquireAssetTx(
+    param: GRpcClient.TxParam<GRpcClient.AcquireAssetTx>
   ): Promise<GRpcClient.EncodeTxResult>;
-  sendPokeTx(param: GRpcClient.TxParam<GRpcClient.PokeTx>): Promise<GRpcClient.EncodeTxResult>;
+  sendDepositTetherTx(
+    param: GRpcClient.TxParam<GRpcClient.DepositTetherTx>
+  ): Promise<GRpcClient.EncodeTxResult>;
+  sendStakeTx(param: GRpcClient.TxParam<GRpcClient.StakeTx>): Promise<GRpcClient.EncodeTxResult>;
   sendTransferTx(
     param: GRpcClient.TxParam<GRpcClient.TransferTx>
   ): Promise<GRpcClient.EncodeTxResult>;
@@ -291,6 +306,7 @@ declare namespace forge_abi {
     UNSUPPORTED_TX = 9,
     EXPIRED_TX = 10,
     TOO_MANY_TXS = 11,
+    INVALID_LOCK_STATUS = 12,
     INVALID_MONIKER = 16,
     INVALID_PASSPHRASE = 17,
     INVALID_MULTISIG = 20,
@@ -313,6 +329,8 @@ declare namespace forge_abi {
     UNTRANSFERRABLE_ASSET = 40,
     READONLY_ASSET = 41,
     CONSUMED_ASSET = 42,
+    INVALID_DEPOSIT_VALUE = 43,
+    EXCEED_DEPOSIT_CAP = 44,
     FORBIDDEN = 403,
     INTERNAL = 500,
     TIMEOUT = 504,
@@ -753,14 +771,6 @@ declare namespace forge_abi {
     amount: number;
   }
 
-  export interface ExtraCreateAsset {
-    asset: string;
-  }
-
-  export interface ExtraAccountMigrate {
-    address: string;
-  }
-
   export interface UpgradeInfo {
     height: number;
     version: string;
@@ -782,6 +792,7 @@ declare namespace forge_abi {
     stake: forge_abi.StakeContext;
     pinnedFiles: forge_abi.CircularQueue;
     poke: forge_abi.PokeInfo;
+    depositReceived: forge_abi.BigUint;
     data: google.protobuf.Any;
   }
 
@@ -863,6 +874,23 @@ declare namespace forge_abi {
     migratedFrom: Array<string>;
     context: forge_abi.StateContext;
     data: google.protobuf.Any;
+  }
+
+  export interface TetherState {
+    available: boolean;
+  }
+
+  export interface TetherInfo {
+    hash: string;
+    available: boolean;
+    custodian: string;
+    depositor: string;
+    withdrawer: string;
+    value: forge_abi.BigUint;
+    commission: forge_abi.BigUint;
+    charge: forge_abi.BigUint;
+    target: string;
+    locktime: google.protobuf.Timestamp;
   }
 
   export interface RequestCreateTx {
@@ -1044,6 +1072,17 @@ declare namespace forge_abi {
   export interface ResponseGetForgeState {
     code: forge_abi.StatusCode;
     state: forge_abi.ForgeState;
+  }
+
+  export interface RequestGetTetherInfo {
+    hash: string;
+    keys: Array<string>;
+    height: number;
+  }
+
+  export interface ResponseGetTetherInfo {
+    code: forge_abi.StatusCode;
+    info: forge_abi.TetherInfo;
   }
 
   export interface RequestStoreFile {
@@ -1474,6 +1513,25 @@ declare namespace forge_abi {
     data: google.protobuf.Any;
   }
 
+  export interface ExtraCreateAsset {
+    asset: string;
+  }
+
+  export interface ExtraAccountMigrate {
+    address: string;
+  }
+
+  export interface AssetSpec {
+    address: string;
+    data: string;
+  }
+
+  export interface AcquireAssetTx {
+    to: string;
+    specs: Array<forge_abi.AssetSpec>;
+    data: google.protobuf.Any;
+  }
+
   export interface ConsumeAssetTx {
     issuer: string;
     address: string;
@@ -1490,8 +1548,43 @@ declare namespace forge_abi {
     address: string;
   }
 
+  export interface AssetAttributes {
+    transferrable: boolean;
+    ttl: number;
+  }
+
+  export interface AssetFactory {
+    description: string;
+    limit: number;
+    price: forge_abi.BigUint;
+    template: string;
+    allowedSpecArgs: Array<string>;
+    assetName: string;
+    attributes: forge_abi.AssetAttributes;
+  }
+
+  export interface AssetFactoryState {
+    description: string;
+    limit: number;
+    price: forge_abi.BigUint;
+    template: string;
+    allowedSpecArgs: Array<string>;
+    assetName: string;
+    attributes: forge_abi.AssetAttributes;
+    numCreated: number;
+  }
+
   export interface DeclareFileTx {
     hash: string;
+  }
+
+  export interface DepositTetherTx {
+    value: forge_abi.BigUint;
+    commission: forge_abi.BigUint;
+    charge: forge_abi.BigUint;
+    target: string;
+    withdrawer: string;
+    locktime: google.protobuf.Timestamp;
   }
 
   export interface ExchangeInfo {

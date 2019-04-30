@@ -59,8 +59,8 @@
       "context": {
         "genesisTx": "arcblock",
         "renaissanceTx": "arcblock",
-        "genesisTime": "2019-04-30T08:11:49.809Z",
-        "renaissanceTime": "2019-04-30T08:11:49.809Z"
+        "genesisTime": "2019-04-30T10:16:51.727Z",
+        "renaissanceTime": "2019-04-30T10:16:51.727Z"
       },
       "issuer": "arcblock",
       "migratedTo": [
@@ -125,8 +125,8 @@
       "context": {
         "genesisTx": "arcblock",
         "renaissanceTx": "arcblock",
-        "genesisTime": "2019-04-30T08:11:49.809Z",
-        "renaissanceTime": "2019-04-30T08:11:49.809Z"
+        "genesisTime": "2019-04-30T10:16:51.727Z",
+        "renaissanceTime": "2019-04-30T10:16:51.727Z"
       },
       "issuer": "arcblock",
       "migratedTo": [
@@ -185,7 +185,7 @@
       "readonly": true,
       "transferrable": true,
       "ttl": 2,
-      "consumedTime": "2019-04-30T08:11:49.810Z",
+      "consumedTime": "2019-04-30T10:16:51.727Z",
       "issuer": "arcblock",
       "stake": {
         "recentStakes": {
@@ -212,8 +212,8 @@
       "context": {
         "genesisTx": "arcblock",
         "renaissanceTx": "arcblock",
-        "genesisTime": "2019-04-30T08:11:49.810Z",
-        "renaissanceTime": "2019-04-30T08:11:49.810Z"
+        "genesisTime": "2019-04-30T10:16:51.727Z",
+        "renaissanceTime": "2019-04-30T10:16:51.727Z"
       },
       "data": {
         "type": "string",
@@ -227,7 +227,7 @@
       "readonly": true,
       "transferrable": true,
       "ttl": 2,
-      "consumedTime": "2019-04-30T08:11:49.810Z",
+      "consumedTime": "2019-04-30T10:16:51.727Z",
       "issuer": "arcblock",
       "stake": {
         "recentStakes": {
@@ -254,8 +254,8 @@
       "context": {
         "genesisTx": "arcblock",
         "renaissanceTx": "arcblock",
-        "genesisTime": "2019-04-30T08:11:49.810Z",
-        "renaissanceTime": "2019-04-30T08:11:49.810Z"
+        "genesisTime": "2019-04-30T10:16:51.727Z",
+        "renaissanceTime": "2019-04-30T10:16:51.727Z"
       },
       "data": {
         "type": "string",
@@ -272,8 +272,8 @@
       "context": {
         "genesisTx": "arcblock",
         "renaissanceTx": "arcblock",
-        "genesisTime": "2019-04-30T08:11:49.810Z",
-        "renaissanceTime": "2019-04-30T08:11:49.810Z"
+        "genesisTime": "2019-04-30T10:16:51.727Z",
+        "renaissanceTime": "2019-04-30T10:16:51.727Z"
       },
       "data": {
         "type": "string",
@@ -288,8 +288,8 @@
       "context": {
         "genesisTx": "arcblock",
         "renaissanceTx": "arcblock",
-        "genesisTime": "2019-04-30T08:11:49.810Z",
-        "renaissanceTime": "2019-04-30T08:11:49.810Z"
+        "genesisTime": "2019-04-30T10:16:51.727Z",
+        "renaissanceTime": "2019-04-30T10:16:51.727Z"
       },
       "data": {
         "type": "string",
@@ -300,7 +300,7 @@
   "context": {
     "txHash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
     "blockHeight": 5,
-    "blockTime": "2019-04-30T08:11:49.810Z",
+    "blockTime": "2019-04-30T10:16:51.727Z",
     "totalTxs": 5,
     "txStatistics": {
       "numAccountMigrateTxs": 5,
@@ -317,7 +317,7 @@
       "numPokeTxs": 5
     },
     "txIndex": 2,
-    "lastBlockTime": "2019-04-30T08:11:49.810Z"
+    "lastBlockTime": "2019-04-30T10:16:51.727Z"
   },
   "appState": {
     "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
@@ -370,8 +370,8 @@
         "context": {
           "genesisTx": "arcblock",
           "renaissanceTx": "arcblock",
-          "genesisTime": "2019-04-30T08:11:49.810Z",
-          "renaissanceTime": "2019-04-30T08:11:49.810Z"
+          "genesisTime": "2019-04-30T10:16:51.727Z",
+          "renaissanceTime": "2019-04-30T10:16:51.727Z"
         }
       }
     },
@@ -545,8 +545,8 @@
         "context": {
           "genesisTx": "arcblock",
           "renaissanceTx": "arcblock",
-          "genesisTime": "2019-04-30T08:11:49.806Z",
-          "renaissanceTime": "2019-04-30T08:11:49.806Z"
+          "genesisTime": "2019-04-30T10:16:51.726Z",
+          "renaissanceTime": "2019-04-30T10:16:51.726Z"
         },
         "issuer": "arcblock",
         "migratedTo": [
@@ -611,8 +611,8 @@
         "context": {
           "genesisTx": "arcblock",
           "renaissanceTx": "arcblock",
-          "genesisTime": "2019-04-30T08:11:49.806Z",
-          "renaissanceTime": "2019-04-30T08:11:49.806Z"
+          "genesisTime": "2019-04-30T10:16:51.726Z",
+          "renaissanceTime": "2019-04-30T10:16:51.726Z"
         },
         "issuer": "arcblock",
         "migratedTo": [
@@ -671,7 +671,7 @@
         "readonly": true,
         "transferrable": true,
         "ttl": 2,
-        "consumedTime": "2019-04-30T08:11:49.806Z",
+        "consumedTime": "2019-04-30T10:16:51.726Z",
         "issuer": "arcblock",
         "stake": {
           "recentStakes": {
@@ -698,8 +698,8 @@
         "context": {
           "genesisTx": "arcblock",
           "renaissanceTx": "arcblock",
-          "genesisTime": "2019-04-30T08:11:49.806Z",
-          "renaissanceTime": "2019-04-30T08:11:49.806Z"
+          "genesisTime": "2019-04-30T10:16:51.726Z",
+          "renaissanceTime": "2019-04-30T10:16:51.726Z"
         },
         "data": {
           "type": "string",
@@ -713,7 +713,7 @@
         "readonly": true,
         "transferrable": true,
         "ttl": 2,
-        "consumedTime": "2019-04-30T08:11:49.806Z",
+        "consumedTime": "2019-04-30T10:16:51.726Z",
         "issuer": "arcblock",
         "stake": {
           "recentStakes": {
@@ -740,8 +740,8 @@
         "context": {
           "genesisTx": "arcblock",
           "renaissanceTx": "arcblock",
-          "genesisTime": "2019-04-30T08:11:49.806Z",
-          "renaissanceTime": "2019-04-30T08:11:49.806Z"
+          "genesisTime": "2019-04-30T10:16:51.726Z",
+          "renaissanceTime": "2019-04-30T10:16:51.726Z"
         },
         "data": {
           "type": "string",
@@ -758,8 +758,8 @@
         "context": {
           "genesisTx": "arcblock",
           "renaissanceTx": "arcblock",
-          "genesisTime": "2019-04-30T08:11:49.806Z",
-          "renaissanceTime": "2019-04-30T08:11:49.806Z"
+          "genesisTime": "2019-04-30T10:16:51.726Z",
+          "renaissanceTime": "2019-04-30T10:16:51.726Z"
         },
         "data": {
           "type": "string",
@@ -774,8 +774,8 @@
         "context": {
           "genesisTx": "arcblock",
           "renaissanceTx": "arcblock",
-          "genesisTime": "2019-04-30T08:11:49.806Z",
-          "renaissanceTime": "2019-04-30T08:11:49.806Z"
+          "genesisTime": "2019-04-30T10:16:51.726Z",
+          "renaissanceTime": "2019-04-30T10:16:51.726Z"
         },
         "data": {
           "type": "string",
@@ -786,7 +786,7 @@
     "context": {
       "txHash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
       "blockHeight": 5,
-      "blockTime": "2019-04-30T08:11:49.806Z",
+      "blockTime": "2019-04-30T10:16:51.726Z",
       "totalTxs": 5,
       "txStatistics": {
         "numAccountMigrateTxs": 5,
@@ -803,7 +803,7 @@
         "numPokeTxs": 5
       },
       "txIndex": 2,
-      "lastBlockTime": "2019-04-30T08:11:49.806Z"
+      "lastBlockTime": "2019-04-30T10:16:51.726Z"
     },
     "appState": {
       "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
@@ -856,8 +856,8 @@
           "context": {
             "genesisTx": "arcblock",
             "renaissanceTx": "arcblock",
-            "genesisTime": "2019-04-30T08:11:49.806Z",
-            "renaissanceTime": "2019-04-30T08:11:49.806Z"
+            "genesisTime": "2019-04-30T10:16:51.726Z",
+            "renaissanceTime": "2019-04-30T10:16:51.726Z"
           }
         }
       },
@@ -1407,22 +1407,6 @@
  */
 
 /**
- * Structure of GRpcClient.ExtraCreateAsset
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.ExtraCreateAsset
- * @prop {string} asset
- */
-
-/**
- * Structure of GRpcClient.ExtraAccountMigrate
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.ExtraAccountMigrate
- * @prop {string} address
- */
-
-/**
  * Structure of GRpcClient.UpgradeInfo
  *
  * @memberof GRpcClient
@@ -1451,6 +1435,7 @@
  * @prop {GRpcClient.StakeContext} stake
  * @prop {GRpcClient.CircularQueue} pinnedFiles
  * @prop {GRpcClient.PokeInfo} poke
+ * @prop {GRpcClient.BigUint} depositReceived
  * @prop {GRpcClient.Any} data
  */
 
@@ -1564,6 +1549,31 @@
  * @prop {Array<string>} migratedFrom
  * @prop {GRpcClient.StateContext} context
  * @prop {GRpcClient.Any} data
+ */
+
+/**
+ * Structure of GRpcClient.TetherState
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.TetherState
+ * @prop {boolean} available
+ */
+
+/**
+ * Structure of GRpcClient.TetherInfo
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.TetherInfo
+ * @prop {string} hash
+ * @prop {boolean} available
+ * @prop {string} custodian
+ * @prop {string} depositor
+ * @prop {string} withdrawer
+ * @prop {GRpcClient.BigUint} value
+ * @prop {GRpcClient.BigUint} commission
+ * @prop {GRpcClient.BigUint} charge
+ * @prop {string} target
+ * @prop {GRpcClient.Timestamp} locktime
  */
 
 /**
@@ -1898,7 +1908,7 @@
       }
     ],
     "code": 0,
-    "time": "2019-04-30T08:11:49.810Z",
+    "time": "2019-04-30T10:16:51.728Z",
     "createAsset": {
       "asset": "arcblock"
     },
@@ -1938,7 +1948,7 @@
   "block": {
     "height": 5,
     "numTxs": 2,
-    "time": "2019-04-30T08:11:49.807Z",
+    "time": "2019-04-30T10:16:51.723Z",
     "appHash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
     "proposer": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
     "txs": [
@@ -1988,7 +1998,7 @@
           }
         ],
         "code": 0,
-        "time": "2019-04-30T08:11:49.807Z",
+        "time": "2019-04-30T10:16:51.723Z",
         "createAsset": {
           "asset": "arcblock"
         },
@@ -2042,7 +2052,7 @@
           }
         ],
         "code": 0,
-        "time": "2019-04-30T08:11:49.807Z",
+        "time": "2019-04-30T10:16:51.723Z",
         "createAsset": {
           "asset": "arcblock"
         },
@@ -2099,7 +2109,7 @@
           }
         ],
         "code": 0,
-        "time": "2019-04-30T08:11:49.807Z",
+        "time": "2019-04-30T10:16:51.723Z",
         "createAsset": {
           "asset": "arcblock"
         },
@@ -2153,7 +2163,7 @@
           }
         ],
         "code": 0,
-        "time": "2019-04-30T08:11:49.807Z",
+        "time": "2019-04-30T10:16:51.723Z",
         "createAsset": {
           "asset": "arcblock"
         },
@@ -2246,7 +2256,7 @@
     {
       "height": 5,
       "numTxs": 2,
-      "time": "2019-04-30T08:11:49.807Z",
+      "time": "2019-04-30T10:16:51.723Z",
       "appHash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
       "proposer": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
       "totalTxs": 5,
@@ -2279,7 +2289,7 @@
     {
       "height": 5,
       "numTxs": 2,
-      "time": "2019-04-30T08:11:49.807Z",
+      "time": "2019-04-30T10:16:51.723Z",
       "appHash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
       "proposer": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
       "totalTxs": 5,
@@ -2606,8 +2616,8 @@
     "context": {
       "genesisTx": "arcblock",
       "renaissanceTx": "arcblock",
-      "genesisTime": "2019-04-30T08:11:49.808Z",
-      "renaissanceTime": "2019-04-30T08:11:49.808Z"
+      "genesisTime": "2019-04-30T10:16:51.724Z",
+      "renaissanceTime": "2019-04-30T10:16:51.724Z"
     },
     "issuer": "arcblock",
     "migratedTo": [
@@ -2700,7 +2710,7 @@
     "readonly": true,
     "transferrable": true,
     "ttl": 2,
-    "consumedTime": "2019-04-30T08:11:49.808Z",
+    "consumedTime": "2019-04-30T10:16:51.724Z",
     "issuer": "arcblock",
     "stake": {
       "recentStakes": {
@@ -2727,8 +2737,8 @@
     "context": {
       "genesisTx": "arcblock",
       "renaissanceTx": "arcblock",
-      "genesisTime": "2019-04-30T08:11:49.808Z",
-      "renaissanceTime": "2019-04-30T08:11:49.808Z"
+      "genesisTime": "2019-04-30T10:16:51.724Z",
+      "renaissanceTime": "2019-04-30T10:16:51.724Z"
     },
     "data": {
       "type": "string",
@@ -2790,8 +2800,8 @@
     "context": {
       "genesisTx": "arcblock",
       "renaissanceTx": "arcblock",
-      "genesisTime": "2019-04-30T08:11:49.808Z",
-      "renaissanceTime": "2019-04-30T08:11:49.808Z"
+      "genesisTime": "2019-04-30T10:16:51.724Z",
+      "renaissanceTime": "2019-04-30T10:16:51.724Z"
     },
     "data": {
       "type": "string",
@@ -2842,8 +2852,8 @@
     "context": {
       "genesisTx": "arcblock",
       "renaissanceTx": "arcblock",
-      "genesisTime": "2019-04-30T08:11:49.808Z",
-      "renaissanceTime": "2019-04-30T08:11:49.808Z"
+      "genesisTime": "2019-04-30T10:16:51.724Z",
+      "renaissanceTime": "2019-04-30T10:16:51.724Z"
     },
     "data": {
       "type": "string",
@@ -2935,8 +2945,8 @@
         "context": {
           "genesisTx": "arcblock",
           "renaissanceTx": "arcblock",
-          "genesisTime": "2019-04-30T08:11:49.808Z",
-          "renaissanceTime": "2019-04-30T08:11:49.808Z"
+          "genesisTime": "2019-04-30T10:16:51.724Z",
+          "renaissanceTime": "2019-04-30T10:16:51.724Z"
         }
       }
     },
@@ -2995,6 +3005,51 @@
  * @typedef {object} GRpcClient.ResponseGetForgeState
  * @prop {GRpcClient.StatusCode} code
  * @prop {GRpcClient.ForgeState} state
+ */
+
+/**
+ * Structure of GRpcClient.RequestGetTetherInfo 
+ *
+```javascript
+{
+  "hash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+  "keys": [
+    "arcblock",
+    "arcblock"
+  ],
+  "height": 5
+}
+```
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.RequestGetTetherInfo
+ * @prop {string} hash
+ * @prop {Array<string>} keys
+ * @prop {number} height
+ */
+
+/**
+ * Structure of GRpcClient.ResponseGetTetherInfo 
+ *
+```javascript
+{
+  "code": 0,
+  "info": {
+    "hash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+    "available": true,
+    "custodian": "arcblock",
+    "depositor": "arcblock",
+    "withdrawer": "arcblock",
+    "target": "arcblock",
+    "locktime": "2019-04-30T10:16:51.724Z"
+  }
+}
+```
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.ResponseGetTetherInfo
+ * @prop {GRpcClient.StatusCode} code
+ * @prop {GRpcClient.TetherInfo} info
  */
 
 /**
@@ -3112,7 +3167,7 @@
     "appHash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
     "blockHash": {},
     "blockHeight": 5,
-    "blockTime": "2019-04-30T08:11:49.807Z",
+    "blockTime": "2019-04-30T10:16:51.723Z",
     "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
     "votingPower": 5,
     "totalTxs": 5,
@@ -3161,7 +3216,7 @@
     "appHash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
     "blockHash": {},
     "blockHeight": 5,
-    "blockTime": "2019-04-30T08:11:49.807Z",
+    "blockTime": "2019-04-30T10:16:51.723Z",
     "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
     "votingPower": 5,
     "totalTxs": 5,
@@ -3260,7 +3315,7 @@
         }
       ],
       "code": 0,
-      "time": "2019-04-30T08:11:49.808Z",
+      "time": "2019-04-30T10:16:51.723Z",
       "createAsset": {
         "asset": "arcblock"
       },
@@ -3314,7 +3369,7 @@
         }
       ],
       "code": 0,
-      "time": "2019-04-30T08:11:49.808Z",
+      "time": "2019-04-30T10:16:51.723Z",
       "createAsset": {
         "asset": "arcblock"
       },
@@ -4904,6 +4959,61 @@
  */
 
 /**
+ * Structure of GRpcClient.ExtraCreateAsset
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.ExtraCreateAsset
+ * @prop {string} asset
+ */
+
+/**
+ * Structure of GRpcClient.ExtraAccountMigrate
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.ExtraAccountMigrate
+ * @prop {string} address
+ */
+
+/**
+ * Structure of GRpcClient.AssetSpec
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.AssetSpec
+ * @prop {string} address
+ * @prop {string} data
+ */
+
+/**
+ * Structure of GRpcClient.AcquireAssetTx 
+ *
+```javascript
+{
+  "to": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+  "specs": [
+    {
+      "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+      "data": "arcblock"
+    },
+    {
+      "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+      "data": "arcblock"
+    }
+  ],
+  "data": {
+    "type": "string",
+    "value": "ABCD 1234"
+  }
+}
+```
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.AcquireAssetTx
+ * @prop {string} to
+ * @prop {Array<GRpcClient.AssetSpec>} specs
+ * @prop {GRpcClient.Any} data
+ */
+
+/**
  * Structure of GRpcClient.ConsumeAssetTx 
  *
 ```javascript
@@ -4954,6 +5064,44 @@
  */
 
 /**
+ * Structure of GRpcClient.AssetAttributes
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.AssetAttributes
+ * @prop {boolean} transferrable
+ * @prop {number} ttl
+ */
+
+/**
+ * Structure of GRpcClient.AssetFactory
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.AssetFactory
+ * @prop {string} description
+ * @prop {number} limit
+ * @prop {GRpcClient.BigUint} price
+ * @prop {string} template
+ * @prop {Array<string>} allowedSpecArgs
+ * @prop {string} assetName
+ * @prop {GRpcClient.AssetAttributes} attributes
+ */
+
+/**
+ * Structure of GRpcClient.AssetFactoryState
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.AssetFactoryState
+ * @prop {string} description
+ * @prop {number} limit
+ * @prop {GRpcClient.BigUint} price
+ * @prop {string} template
+ * @prop {Array<string>} allowedSpecArgs
+ * @prop {string} assetName
+ * @prop {GRpcClient.AssetAttributes} attributes
+ * @prop {number} numCreated
+ */
+
+/**
  * Structure of GRpcClient.DeclareFileTx 
  *
 ```javascript
@@ -4965,6 +5113,27 @@
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.DeclareFileTx
  * @prop {string} hash
+ */
+
+/**
+ * Structure of GRpcClient.DepositTetherTx 
+ *
+```javascript
+{
+  "target": "arcblock",
+  "withdrawer": "arcblock",
+  "locktime": "2019-04-30T10:16:51.729Z"
+}
+```
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.DepositTetherTx
+ * @prop {GRpcClient.BigUint} value
+ * @prop {GRpcClient.BigUint} commission
+ * @prop {GRpcClient.BigUint} charge
+ * @prop {string} target
+ * @prop {string} withdrawer
+ * @prop {GRpcClient.Timestamp} locktime
  */
 
 /**
@@ -4994,7 +5163,7 @@
       "arcblock"
     ]
   },
-  "expiredAt": "2019-04-30T08:11:49.811Z",
+  "expiredAt": "2019-04-30T10:16:51.729Z",
   "data": {
     "type": "string",
     "value": "ABCD 1234"
@@ -5509,26 +5678,6 @@
  *
  * @memberof GRpcClient
  * @function
- * @name GRpcClient#processOne
- * @param {GRpcClient.Request} params
- * @returns {Promise.<GRpcClient.Response>}
- */
-
-/**
- * Send gRPC call and return the result
- *
- * @memberof GRpcClient
- * @function
- * @name GRpcClient#process
- * @param {GRpcClient.Request} params
- * @returns {EventEmitter} EventEmitter that emits `data` event when new data received, checkout {@link GRpcClient.Response} for payload format.
- */
-
-/**
- * Send gRPC call and return the result
- *
- * @memberof GRpcClient
- * @function
  * @name GRpcClient#createTx
  * @param {GRpcClient.RequestCreateTx} params
  * @returns {Promise.<GRpcClient.ResponseCreateTx>}
@@ -5759,6 +5908,16 @@
  *
  * @memberof GRpcClient
  * @function
+ * @name GRpcClient#getTetherInfo
+ * @param {GRpcClient.RequestGetTetherInfo} params
+ * @returns {EventEmitter} EventEmitter that emits `data` event when new data received, checkout {@link GRpcClient.ResponseGetTetherInfo} for payload format.
+ */
+
+/**
+ * Send gRPC call and return the result
+ *
+ * @memberof GRpcClient
+ * @function
  * @name GRpcClient#createWallet
  * @param {GRpcClient.RequestCreateWallet} params
  * @returns {Promise.<GRpcClient.ResponseCreateWallet>}
@@ -5902,6 +6061,26 @@
  * @name GRpcClient#getHealthStatus
  * @param {GRpcClient.RequestGetHealthStatus} params
  * @returns {Promise.<GRpcClient.ResponseGetHealthStatus>}
+ */
+
+/**
+ * Send gRPC call and return the result
+ *
+ * @memberof GRpcClient
+ * @function
+ * @name GRpcClient#processOne
+ * @param {GRpcClient.Request} params
+ * @returns {Promise.<GRpcClient.Response>}
+ */
+
+/**
+ * Send gRPC call and return the result
+ *
+ * @memberof GRpcClient
+ * @function
+ * @name GRpcClient#process
+ * @param {GRpcClient.Request} params
+ * @returns {EventEmitter} EventEmitter that emits `data` event when new data received, checkout {@link GRpcClient.Response} for payload format.
  */
 
 /**
@@ -6062,10 +6241,10 @@
 
 /**
  * @memberof GRpcClient
- * @typedef {Object} GRpcClient.StakeTxInput
+ * @typedef {Object} GRpcClient.PokeTxInput
  * @prop {object} input
  * @prop {object} input.tx - data of the transaction
- * @prop {GRpcClient.StakeTx} input.tx.itx - the actual transaction object
+ * @prop {GRpcClient.PokeTx} input.tx.itx - the actual transaction object
  * @prop {string} [input.tx.pk] - the sender pk
  * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
  * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
@@ -6077,12 +6256,38 @@
  */
 
 /**
- * Send StakeTx transaction and get the hash, use {@link GRpcClient#getTx} to get transaction detail
+ * Send PokeTx transaction and get the hash, use {@link GRpcClient#getTx} to get transaction detail
  *
  * @memberof GRpcClient
  * @function
- * @name GRpcClient#sendStakeTx
- * @param {GRpcClient.StakeTxInput} params
+ * @name GRpcClient#sendPokeTx
+ * @param {GRpcClient.PokeTxInput} params
+ * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
+ */
+
+/**
+ * @memberof GRpcClient
+ * @typedef {Object} GRpcClient.ConsumeAssetTxInput
+ * @prop {object} input
+ * @prop {object} input.tx - data of the transaction
+ * @prop {GRpcClient.ConsumeAssetTx} input.tx.itx - the actual transaction object
+ * @prop {string} [input.tx.pk] - the sender pk
+ * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
+ * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
+ * @prop {string} [input.tx.chainId] - the chainId
+ * @prop {string} [input.tx.signature] - transaction signature
+ * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transaction
+ * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
+ * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
+ */
+
+/**
+ * Send ConsumeAssetTx transaction and get the hash, use {@link GRpcClient#getTx} to get transaction detail
+ *
+ * @memberof GRpcClient
+ * @function
+ * @name GRpcClient#sendConsumeAssetTx
+ * @param {GRpcClient.ConsumeAssetTxInput} params
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
 
@@ -6192,10 +6397,10 @@
 
 /**
  * @memberof GRpcClient
- * @typedef {Object} GRpcClient.ConsumeAssetTxInput
+ * @typedef {Object} GRpcClient.AcquireAssetTxInput
  * @prop {object} input
  * @prop {object} input.tx - data of the transaction
- * @prop {GRpcClient.ConsumeAssetTx} input.tx.itx - the actual transaction object
+ * @prop {GRpcClient.AcquireAssetTx} input.tx.itx - the actual transaction object
  * @prop {string} [input.tx.pk] - the sender pk
  * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
  * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
@@ -6207,21 +6412,21 @@
  */
 
 /**
- * Send ConsumeAssetTx transaction and get the hash, use {@link GRpcClient#getTx} to get transaction detail
+ * Send AcquireAssetTx transaction and get the hash, use {@link GRpcClient#getTx} to get transaction detail
  *
  * @memberof GRpcClient
  * @function
- * @name GRpcClient#sendConsumeAssetTx
- * @param {GRpcClient.ConsumeAssetTxInput} params
+ * @name GRpcClient#sendAcquireAssetTx
+ * @param {GRpcClient.AcquireAssetTxInput} params
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
 
 /**
  * @memberof GRpcClient
- * @typedef {Object} GRpcClient.PokeTxInput
+ * @typedef {Object} GRpcClient.DepositTetherTxInput
  * @prop {object} input
  * @prop {object} input.tx - data of the transaction
- * @prop {GRpcClient.PokeTx} input.tx.itx - the actual transaction object
+ * @prop {GRpcClient.DepositTetherTx} input.tx.itx - the actual transaction object
  * @prop {string} [input.tx.pk] - the sender pk
  * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
  * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
@@ -6233,12 +6438,38 @@
  */
 
 /**
- * Send PokeTx transaction and get the hash, use {@link GRpcClient#getTx} to get transaction detail
+ * Send DepositTetherTx transaction and get the hash, use {@link GRpcClient#getTx} to get transaction detail
  *
  * @memberof GRpcClient
  * @function
- * @name GRpcClient#sendPokeTx
- * @param {GRpcClient.PokeTxInput} params
+ * @name GRpcClient#sendDepositTetherTx
+ * @param {GRpcClient.DepositTetherTxInput} params
+ * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
+ */
+
+/**
+ * @memberof GRpcClient
+ * @typedef {Object} GRpcClient.StakeTxInput
+ * @prop {object} input
+ * @prop {object} input.tx - data of the transaction
+ * @prop {GRpcClient.StakeTx} input.tx.itx - the actual transaction object
+ * @prop {string} [input.tx.pk] - the sender pk
+ * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
+ * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
+ * @prop {string} [input.tx.chainId] - the chainId
+ * @prop {string} [input.tx.signature] - transaction signature
+ * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transaction
+ * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
+ * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
+ */
+
+/**
+ * Send StakeTx transaction and get the hash, use {@link GRpcClient#getTx} to get transaction detail
+ *
+ * @memberof GRpcClient
+ * @function
+ * @name GRpcClient#sendStakeTx
+ * @param {GRpcClient.StakeTxInput} params
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
 
@@ -6329,12 +6560,22 @@
  */
 
 /**
- * Encode a StakeTx transaction for later use
+ * Encode a PokeTx transaction for later use
  *
- * @name GRpcClient#encodeStakeTx
+ * @name GRpcClient#encodePokeTx
  * @function
  * @memberof GRpcClient
- * @param {GRpcClient.StakeTxInput} params
+ * @param {GRpcClient.PokeTxInput} params
+ * @returns {Promise<GRpcClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
+ */
+
+/**
+ * Encode a ConsumeAssetTx transaction for later use
+ *
+ * @name GRpcClient#encodeConsumeAssetTx
+ * @function
+ * @memberof GRpcClient
+ * @param {GRpcClient.ConsumeAssetTxInput} params
  * @returns {Promise<GRpcClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
 
@@ -6379,22 +6620,32 @@
  */
 
 /**
- * Encode a ConsumeAssetTx transaction for later use
+ * Encode a AcquireAssetTx transaction for later use
  *
- * @name GRpcClient#encodeConsumeAssetTx
+ * @name GRpcClient#encodeAcquireAssetTx
  * @function
  * @memberof GRpcClient
- * @param {GRpcClient.ConsumeAssetTxInput} params
+ * @param {GRpcClient.AcquireAssetTxInput} params
  * @returns {Promise<GRpcClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
 
 /**
- * Encode a PokeTx transaction for later use
+ * Encode a DepositTetherTx transaction for later use
  *
- * @name GRpcClient#encodePokeTx
+ * @name GRpcClient#encodeDepositTetherTx
  * @function
  * @memberof GRpcClient
- * @param {GRpcClient.PokeTxInput} params
+ * @param {GRpcClient.DepositTetherTxInput} params
+ * @returns {Promise<GRpcClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
+ */
+
+/**
+ * Encode a StakeTx transaction for later use
+ *
+ * @name GRpcClient#encodeStakeTx
+ * @function
+ * @memberof GRpcClient
+ * @param {GRpcClient.StakeTxInput} params
  * @returns {Promise<GRpcClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
 

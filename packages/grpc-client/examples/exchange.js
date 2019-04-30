@@ -91,7 +91,7 @@ const type = WalletType({
 
     // assemble exchange tx: multisig
     const exchange = {
-      pk: Buffer.from(hexToBytes(sender.publicKey)), // pk of application
+      pk: Buffer.from(hexToBytes(sender.publicKey)),
       itx: {
         to: receiver.toAddress(),
         sender: {

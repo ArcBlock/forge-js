@@ -36,6 +36,7 @@
   * [getNodeInfo](#getnodeinfo)
   * [getProtocolState](#getprotocolstate)
   * [getStakeState](#getstakestate)
+  * [getTetherInfo](#gettetherinfo)
   * [getTx](#gettx)
   * [getUnconfirmedTxs](#getunconfirmedtxs)
   * [getValidatorsInfo](#getvalidatorsinfo)
@@ -60,7 +61,6 @@
   * [storeFile](#storefile)
   * [subscribe](#subscribe)
   * [unsubscribe](#unsubscribe)
-* [Contributors](#contributors)
 
 
 ## Enums
@@ -81,6 +81,7 @@
   UNSUPPORTED_TX: 9,
   EXPIRED_TX: 10,
   TOO_MANY_TXS: 11,
+  INVALID_LOCK_STATUS: 12,
   INVALID_MONIKER: 16,
   INVALID_PASSPHRASE: 17,
   INVALID_MULTISIG: 20,
@@ -103,6 +104,8 @@
   UNTRANSFERRABLE_ASSET: 40,
   READONLY_ASSET: 41,
   CONSUMED_ASSET: 42,
+  INVALID_DEPOSIT_VALUE: 43,
+  EXCEED_DEPOSIT_CAP: 44,
   FORBIDDEN: 403,
   INTERNAL: 500,
   TIMEOUT: 504
@@ -286,13 +289,15 @@
   'SysUpgradeTx',
   'DeclareFileTx',
   'CreateAssetTx',
-  'StakeTx',
+  'PokeTx',
+  'ConsumeAssetTx',
   'ExchangeTx',
   'AccountMigrateTx',
   'UpgradeNodeTx',
   'UpdateAssetTx',
-  'ConsumeAssetTx',
-  'PokeTx',
+  'AcquireAssetTx',
+  'DepositTetherTx',
+  'StakeTx',
   'TransferTx'
 ]
 ```
@@ -471,8 +476,8 @@ const stream = client.getAccountState({
     context: {
       genesisTx: 'arcblock',
       renaissanceTx: 'arcblock',
-      genesisTime: '2019-04-30T08:11:50.278Z',
-      renaissanceTime: '2019-04-30T08:11:50.278Z'
+      genesisTime: '2019-04-30T10:16:52.222Z',
+      renaissanceTime: '2019-04-30T10:16:52.222Z'
     },
     issuer: 'arcblock',
     migratedTo: [
@@ -524,6 +529,7 @@ const stream = client.getAccountState({
       leftover: [Function: BigUint],
       amount: [Function: BigUint]
     },
+    depositReceived: [Function: BigUint],
     data: {
       type: 'string',
       value: 'ABCD 1234'
@@ -554,7 +560,7 @@ const stream = client.getAssetState({
     readonly: true,
     transferrable: true,
     ttl: 2,
-    consumedTime: '2019-04-30T08:11:50.278Z',
+    consumedTime: '2019-04-30T10:16:52.222Z',
     issuer: 'arcblock',
     stake: {
       totalStakes: [Function: BigUint],
@@ -584,8 +590,8 @@ const stream = client.getAssetState({
     context: {
       genesisTx: 'arcblock',
       renaissanceTx: 'arcblock',
-      genesisTime: '2019-04-30T08:11:50.278Z',
-      renaissanceTime: '2019-04-30T08:11:50.278Z'
+      genesisTime: '2019-04-30T10:16:52.222Z',
+      renaissanceTime: '2019-04-30T10:16:52.222Z'
     },
     data: {
       type: 'string',
@@ -608,7 +614,7 @@ const stream = client.getBlock({
   block: {
     height: 5,
     numTxs: 2,
-    time: '2019-04-30T08:11:50.278Z',
+    time: '2019-04-30T10:16:52.222Z',
     appHash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
     proposer: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
     txs: [
@@ -658,7 +664,7 @@ const stream = client.getBlock({
           }
         ],
         code: 0,
-        time: '2019-04-30T08:11:50.279Z',
+        time: '2019-04-30T10:16:52.223Z',
         createAsset: {
           asset: 'arcblock'
         },
@@ -712,7 +718,7 @@ const stream = client.getBlock({
           }
         ],
         code: 0,
-        time: '2019-04-30T08:11:50.279Z',
+        time: '2019-04-30T10:16:52.223Z',
         createAsset: {
           asset: 'arcblock'
         },
@@ -769,7 +775,7 @@ const stream = client.getBlock({
           }
         ],
         code: 0,
-        time: '2019-04-30T08:11:50.279Z',
+        time: '2019-04-30T10:16:52.223Z',
         createAsset: {
           asset: 'arcblock'
         },
@@ -823,7 +829,7 @@ const stream = client.getBlock({
           }
         ],
         code: 0,
-        time: '2019-04-30T08:11:50.279Z',
+        time: '2019-04-30T10:16:52.223Z',
         createAsset: {
           asset: 'arcblock'
         },
@@ -901,7 +907,7 @@ result.on('data', data => {
     {
       height: 5,
       numTxs: 2,
-      time: '2019-04-30T08:11:50.279Z',
+      time: '2019-04-30T10:16:52.223Z',
       appHash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
       proposer: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
       totalTxs: 5,
@@ -935,7 +941,7 @@ result.on('data', data => {
     {
       height: 5,
       numTxs: 2,
-      time: '2019-04-30T08:11:50.279Z',
+      time: '2019-04-30T10:16:52.223Z',
       appHash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
       proposer: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
       totalTxs: 5,
@@ -990,7 +996,7 @@ result.on('data', data => {
     appHash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
     blockHash: Uint8Array [],
     blockHeight: 5,
-    blockTime: '2019-04-30T08:11:50.279Z',
+    blockTime: '2019-04-30T10:16:52.223Z',
     address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
     votingPower: 5,
     totalTxs: 5,
@@ -1091,8 +1097,8 @@ result.on('data', data => {
         context: {
           genesisTx: 'arcblock',
           renaissanceTx: 'arcblock',
-          genesisTime: '2019-04-30T08:11:50.280Z',
-          renaissanceTime: '2019-04-30T08:11:50.280Z'
+          genesisTime: '2019-04-30T10:16:52.224Z',
+          renaissanceTime: '2019-04-30T10:16:52.224Z'
         }
       }
     },
@@ -1352,7 +1358,7 @@ result.on('data', data => {
     appHash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
     blockHash: Uint8Array [],
     blockHeight: 5,
-    blockTime: '2019-04-30T08:11:50.280Z',
+    blockTime: '2019-04-30T10:16:52.224Z',
     address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
     votingPower: 5,
     totalTxs: 5,
@@ -1411,8 +1417,8 @@ const stream = client.getProtocolState({
     context: {
       genesisTx: 'arcblock',
       renaissanceTx: 'arcblock',
-      genesisTime: '2019-04-30T08:11:50.281Z',
-      renaissanceTime: '2019-04-30T08:11:50.281Z'
+      genesisTime: '2019-04-30T10:16:52.224Z',
+      renaissanceTime: '2019-04-30T10:16:52.224Z'
     },
     data: {
       type: 'string',
@@ -1446,13 +1452,43 @@ const stream = client.getStakeState({
     context: {
       genesisTx: 'arcblock',
       renaissanceTx: 'arcblock',
-      genesisTime: '2019-04-30T08:11:50.281Z',
-      renaissanceTime: '2019-04-30T08:11:50.281Z'
+      genesisTime: '2019-04-30T10:16:52.225Z',
+      renaissanceTime: '2019-04-30T10:16:52.225Z'
     },
     data: {
       type: 'string',
       value: 'ABCD 1234'
     }
+  }
+}
+```
+
+### getTetherInfo
+
+```js
+const stream = client.getTetherInfo({
+  hash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
+  keys: [
+    'arcblock',
+    'arcblock'
+  ],
+  height: 5
+});
+
+// output
+{
+  code: 0,
+  info: {
+    hash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
+    available: true,
+    custodian: 'arcblock',
+    depositor: 'arcblock',
+    withdrawer: 'arcblock',
+    value: [Function: BigUint],
+    commission: [Function: BigUint],
+    charge: [Function: BigUint],
+    target: 'arcblock',
+    locktime: '2019-04-30T10:16:52.225Z'
   }
 }
 ```
@@ -1513,7 +1549,7 @@ const stream = client.getTx({
       }
     ],
     code: 0,
-    time: '2019-04-30T08:11:50.281Z',
+    time: '2019-04-30T10:16:52.225Z',
     createAsset: {
       asset: 'arcblock'
     },
@@ -2434,8 +2470,8 @@ const stream = client.process({
         context: {
           genesisTx: 'arcblock',
           renaissanceTx: 'arcblock',
-          genesisTime: '2019-04-30T08:11:50.283Z',
-          renaissanceTime: '2019-04-30T08:11:50.283Z'
+          genesisTime: '2019-04-30T10:16:52.227Z',
+          renaissanceTime: '2019-04-30T10:16:52.227Z'
         },
         issuer: 'arcblock',
         migratedTo: [
@@ -2487,6 +2523,7 @@ const stream = client.process({
           leftover: [Function: BigUint],
           amount: [Function: BigUint]
         },
+        depositReceived: [Function: BigUint],
         data: {
           type: 'string',
           value: 'ABCD 1234'
@@ -2508,8 +2545,8 @@ const stream = client.process({
         context: {
           genesisTx: 'arcblock',
           renaissanceTx: 'arcblock',
-          genesisTime: '2019-04-30T08:11:50.283Z',
-          renaissanceTime: '2019-04-30T08:11:50.283Z'
+          genesisTime: '2019-04-30T10:16:52.227Z',
+          renaissanceTime: '2019-04-30T10:16:52.227Z'
         },
         issuer: 'arcblock',
         migratedTo: [
@@ -2561,6 +2598,7 @@ const stream = client.process({
           leftover: [Function: BigUint],
           amount: [Function: BigUint]
         },
+        depositReceived: [Function: BigUint],
         data: {
           type: 'string',
           value: 'ABCD 1234'
@@ -2575,7 +2613,7 @@ const stream = client.process({
         readonly: true,
         transferrable: true,
         ttl: 2,
-        consumedTime: '2019-04-30T08:11:50.283Z',
+        consumedTime: '2019-04-30T10:16:52.227Z',
         issuer: 'arcblock',
         stake: {
           totalStakes: [Function: BigUint],
@@ -2605,8 +2643,8 @@ const stream = client.process({
         context: {
           genesisTx: 'arcblock',
           renaissanceTx: 'arcblock',
-          genesisTime: '2019-04-30T08:11:50.283Z',
-          renaissanceTime: '2019-04-30T08:11:50.283Z'
+          genesisTime: '2019-04-30T10:16:52.227Z',
+          renaissanceTime: '2019-04-30T10:16:52.227Z'
         },
         data: {
           type: 'string',
@@ -2620,7 +2658,7 @@ const stream = client.process({
         readonly: true,
         transferrable: true,
         ttl: 2,
-        consumedTime: '2019-04-30T08:11:50.283Z',
+        consumedTime: '2019-04-30T10:16:52.227Z',
         issuer: 'arcblock',
         stake: {
           totalStakes: [Function: BigUint],
@@ -2650,8 +2688,8 @@ const stream = client.process({
         context: {
           genesisTx: 'arcblock',
           renaissanceTx: 'arcblock',
-          genesisTime: '2019-04-30T08:11:50.283Z',
-          renaissanceTime: '2019-04-30T08:11:50.283Z'
+          genesisTime: '2019-04-30T10:16:52.227Z',
+          renaissanceTime: '2019-04-30T10:16:52.227Z'
         },
         data: {
           type: 'string',
@@ -2669,8 +2707,8 @@ const stream = client.process({
         context: {
           genesisTx: 'arcblock',
           renaissanceTx: 'arcblock',
-          genesisTime: '2019-04-30T08:11:50.283Z',
-          renaissanceTime: '2019-04-30T08:11:50.283Z'
+          genesisTime: '2019-04-30T10:16:52.227Z',
+          renaissanceTime: '2019-04-30T10:16:52.227Z'
         },
         data: {
           type: 'string',
@@ -2686,8 +2724,8 @@ const stream = client.process({
         context: {
           genesisTx: 'arcblock',
           renaissanceTx: 'arcblock',
-          genesisTime: '2019-04-30T08:11:50.283Z',
-          renaissanceTime: '2019-04-30T08:11:50.283Z'
+          genesisTime: '2019-04-30T10:16:52.227Z',
+          renaissanceTime: '2019-04-30T10:16:52.227Z'
         },
         data: {
           type: 'string',
@@ -2698,7 +2736,7 @@ const stream = client.process({
     context: {
       txHash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
       blockHeight: 5,
-      blockTime: '2019-04-30T08:11:50.283Z',
+      blockTime: '2019-04-30T10:16:52.227Z',
       totalTxs: 5,
       txStatistics: {
         numAccountMigrateTxs: 5,
@@ -2715,7 +2753,7 @@ const stream = client.process({
         numPokeTxs: 5
       },
       txIndex: 2,
-      lastBlockTime: '2019-04-30T08:11:50.283Z'
+      lastBlockTime: '2019-04-30T10:16:52.227Z'
     },
     appState: {
       address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
@@ -2770,8 +2808,8 @@ const stream = client.process({
           context: {
             genesisTx: 'arcblock',
             renaissanceTx: 'arcblock',
-            genesisTime: '2019-04-30T08:11:50.283Z',
-            renaissanceTime: '2019-04-30T08:11:50.283Z'
+            genesisTime: '2019-04-30T10:16:52.227Z',
+            renaissanceTime: '2019-04-30T10:16:52.227Z'
           }
         }
       },
@@ -2887,8 +2925,8 @@ const result = await client.processOne({
         context: {
           genesisTx: 'arcblock',
           renaissanceTx: 'arcblock',
-          genesisTime: '2019-04-30T08:11:50.283Z',
-          renaissanceTime: '2019-04-30T08:11:50.283Z'
+          genesisTime: '2019-04-30T10:16:52.228Z',
+          renaissanceTime: '2019-04-30T10:16:52.228Z'
         },
         issuer: 'arcblock',
         migratedTo: [
@@ -2940,6 +2978,7 @@ const result = await client.processOne({
           leftover: [Function: BigUint],
           amount: [Function: BigUint]
         },
+        depositReceived: [Function: BigUint],
         data: {
           type: 'string',
           value: 'ABCD 1234'
@@ -2961,8 +3000,8 @@ const result = await client.processOne({
         context: {
           genesisTx: 'arcblock',
           renaissanceTx: 'arcblock',
-          genesisTime: '2019-04-30T08:11:50.284Z',
-          renaissanceTime: '2019-04-30T08:11:50.284Z'
+          genesisTime: '2019-04-30T10:16:52.228Z',
+          renaissanceTime: '2019-04-30T10:16:52.228Z'
         },
         issuer: 'arcblock',
         migratedTo: [
@@ -3014,6 +3053,7 @@ const result = await client.processOne({
           leftover: [Function: BigUint],
           amount: [Function: BigUint]
         },
+        depositReceived: [Function: BigUint],
         data: {
           type: 'string',
           value: 'ABCD 1234'
@@ -3028,7 +3068,7 @@ const result = await client.processOne({
         readonly: true,
         transferrable: true,
         ttl: 2,
-        consumedTime: '2019-04-30T08:11:50.284Z',
+        consumedTime: '2019-04-30T10:16:52.228Z',
         issuer: 'arcblock',
         stake: {
           totalStakes: [Function: BigUint],
@@ -3058,8 +3098,8 @@ const result = await client.processOne({
         context: {
           genesisTx: 'arcblock',
           renaissanceTx: 'arcblock',
-          genesisTime: '2019-04-30T08:11:50.284Z',
-          renaissanceTime: '2019-04-30T08:11:50.284Z'
+          genesisTime: '2019-04-30T10:16:52.228Z',
+          renaissanceTime: '2019-04-30T10:16:52.228Z'
         },
         data: {
           type: 'string',
@@ -3073,7 +3113,7 @@ const result = await client.processOne({
         readonly: true,
         transferrable: true,
         ttl: 2,
-        consumedTime: '2019-04-30T08:11:50.284Z',
+        consumedTime: '2019-04-30T10:16:52.228Z',
         issuer: 'arcblock',
         stake: {
           totalStakes: [Function: BigUint],
@@ -3103,8 +3143,8 @@ const result = await client.processOne({
         context: {
           genesisTx: 'arcblock',
           renaissanceTx: 'arcblock',
-          genesisTime: '2019-04-30T08:11:50.284Z',
-          renaissanceTime: '2019-04-30T08:11:50.284Z'
+          genesisTime: '2019-04-30T10:16:52.228Z',
+          renaissanceTime: '2019-04-30T10:16:52.228Z'
         },
         data: {
           type: 'string',
@@ -3122,8 +3162,8 @@ const result = await client.processOne({
         context: {
           genesisTx: 'arcblock',
           renaissanceTx: 'arcblock',
-          genesisTime: '2019-04-30T08:11:50.284Z',
-          renaissanceTime: '2019-04-30T08:11:50.284Z'
+          genesisTime: '2019-04-30T10:16:52.228Z',
+          renaissanceTime: '2019-04-30T10:16:52.228Z'
         },
         data: {
           type: 'string',
@@ -3139,8 +3179,8 @@ const result = await client.processOne({
         context: {
           genesisTx: 'arcblock',
           renaissanceTx: 'arcblock',
-          genesisTime: '2019-04-30T08:11:50.284Z',
-          renaissanceTime: '2019-04-30T08:11:50.284Z'
+          genesisTime: '2019-04-30T10:16:52.228Z',
+          renaissanceTime: '2019-04-30T10:16:52.228Z'
         },
         data: {
           type: 'string',
@@ -3151,7 +3191,7 @@ const result = await client.processOne({
     context: {
       txHash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
       blockHeight: 5,
-      blockTime: '2019-04-30T08:11:50.284Z',
+      blockTime: '2019-04-30T10:16:52.228Z',
       totalTxs: 5,
       txStatistics: {
         numAccountMigrateTxs: 5,
@@ -3168,7 +3208,7 @@ const result = await client.processOne({
         numPokeTxs: 5
       },
       txIndex: 2,
-      lastBlockTime: '2019-04-30T08:11:50.284Z'
+      lastBlockTime: '2019-04-30T10:16:52.228Z'
     },
     appState: {
       address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
@@ -3223,8 +3263,8 @@ const result = await client.processOne({
           context: {
             genesisTx: 'arcblock',
             renaissanceTx: 'arcblock',
-            genesisTime: '2019-04-30T08:11:50.284Z',
-            renaissanceTime: '2019-04-30T08:11:50.284Z'
+            genesisTime: '2019-04-30T10:16:52.228Z',
+            renaissanceTime: '2019-04-30T10:16:52.228Z'
           }
         }
       },
@@ -3402,7 +3442,7 @@ result.on('data', data => {
         }
       ],
       code: 0,
-      time: '2019-04-30T08:11:50.285Z',
+      time: '2019-04-30T10:16:52.229Z',
       createAsset: {
         asset: 'arcblock'
       },
@@ -3456,7 +3496,7 @@ result.on('data', data => {
         }
       ],
       code: 0,
-      time: '2019-04-30T08:11:50.285Z',
+      time: '2019-04-30T10:16:52.229Z',
       createAsset: {
         asset: 'arcblock'
       },
