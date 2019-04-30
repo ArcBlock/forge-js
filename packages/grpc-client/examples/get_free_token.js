@@ -25,14 +25,13 @@ const type = WalletType({
       tx: {
         itx: {
           moniker: `poke_user_${Math.round(Math.random() * 10000)}`,
-          type,
         },
       },
       wallet,
     });
 
-    console.log('declare.result', res);
     console.log('view account', `${endpoint}/node/explorer/accounts/${wallet.toAddress()}`);
+    console.log('declare tx', `${endpoint}/node/explorer/txs/${res}`);
 
     res = await client.sendPokeTx({
       tx: {
@@ -46,8 +45,7 @@ const type = WalletType({
       },
       wallet,
     });
-    console.log('poke.result', res);
-    console.log('view tx', `${endpoint}/node/explorer/txs/${res}`);
+    console.log('poke tx', `${endpoint}/node/explorer/txs/${res}`);
   } catch (err) {
     console.error(err);
     console.log(JSON.stringify(err.errors));

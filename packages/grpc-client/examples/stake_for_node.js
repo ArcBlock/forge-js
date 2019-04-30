@@ -30,7 +30,6 @@ const type = WalletType({
       tx: {
         itx: {
           moniker: `stake_user_${Math.round(Math.random() * 10000)}`,
-          type,
         },
       },
       wallet: user,

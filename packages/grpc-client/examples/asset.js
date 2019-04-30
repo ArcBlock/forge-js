@@ -10,7 +10,6 @@ const Mcrypto = require('@arcblock/mcrypto');
 const GRpcClient = require('@arcblock/grpc-client');
 const { toAssetAddress } = require('@arcblock/did-util');
 const { fromRandom, WalletType } = require('@arcblock/forge-wallet');
-const { hexToBytes } = require('@arcblock/forge-util');
 
 const endpoint = 'http://localhost:8210';
 const client = new GRpcClient({ endpoint: 'tcp://127.0.0.1:28210' });
@@ -32,8 +31,6 @@ const type = WalletType({
       tx: {
         itx: {
           moniker: 'owner',
-          pk: Buffer.from(hexToBytes(owner.publicKey)),
-          type,
         },
       },
       wallet: owner,

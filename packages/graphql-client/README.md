@@ -13,11 +13,13 @@ A `GraphQLClient` instance mainly supports 5 groups of methods that saves you ti
 
 ## Table of Contents
 
-* [Install](#install)
-* [Usage](#usage)
-* [Examples](#examples)
-* [Debugging](#debugging)
-* [Documentation](#documentation)
+- [`@arcblock/graphql-client`](#arcblockgraphql-client)
+  - [Table of Contents](#table-of-contents)
+  - [Install](#install)
+  - [Usage](#usage)
+  - [Examples](#examples)
+  - [Debugging](#debugging)
+  - [Documentation](#documentation)
 
 
 ## Install
@@ -67,8 +69,6 @@ console.log({
     tx: {
       itx: {
         moniker: 'username',
-        pk: Buffer.from(hexToBytes(wallet.publicKey)),
-        type,
       },
     },
     wallet,
