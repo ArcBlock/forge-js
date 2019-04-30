@@ -1,3 +1,45 @@
+## 0.22.0 (April 30, 2019)
+  - fix: forge web error on new graphql endpoint
+  - chore: donot encode twice if we already have signature
+  - feat: support deploy protocol tx card
+  - chore: upgrade grpc-client to align with forge v0.24.1
+  - chore: commit missing tx files
+  - chore: upgrade graphql-client to align with forge v0.25.1
+  - chore: upgrade forge-proto to align with forge v0.25.1
+  - chore: upgrade graphql-client to align with forge v0.25.1
+  - chore: fix grpc-client examples
+  - chore: update graphql-client examples
+  - fix: grpc-client can send transaction with local signed tx
+  - fix: formatMesage and decodeAny not working properly together
+  - chore: support forge asset xxx command
+  - fix: grpc-client examples
+  - fix: grpc-client cause forge poke not working
+  - chore: generate markdown docs for each package
+  - chore: generate markdown docs for each package
+  - chore: reorganize docs for grpc-client
+  - chore: reorganize docs for graphql-client
+  - chore: add asset consume example
+  - chore: add encode any support for fg:x:address
+  - chore: fix forge release:list to use full RELEASE_ASSET list
+  - chore: rename declare account => declare
+  - chore: add stake for node example
+  - fix: stake in forge-cli
+  - chore: fix stake amount display
+  - chore: add more example files: transfer_asset and migrate_account
+  - fix: forge web not rendering transfers with zero token
+  - chore: update types for graphql list methods
+  - chore: add asset create/update docs
+  - chore: improve examples for graphql-client
+  - chore: improve doc tooling for graphql-client
+  - chore: update docs for graphql-client and grpc-client
+  - chore: update docs for graphql-client and grpc-client
+  - chore: update docs for graphql-client
+  - chore: update docs for libs
+  - chore: update dependency
+  - chore: graphql-client returns tx hash for sendTx methods
+  - chore: imporve mcrypto docs
+  - update readme
+
 ## 0.21.0 (April 29, 2019)
   - chore: update forge-cli usage for grpc-client
   - chore: refactor grpc client to align with graphql client
