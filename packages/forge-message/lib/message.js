@@ -415,20 +415,27 @@ function encodeAny(data) {
   }
 
   const anyMessage = new Any();
-  if (data.typeUrl && data.value && !data.type) {
-    // avoid duplicate serialization
-    anyMessage.setTypeUrl(data.typeUrl);
-    if (data.typeUrl === 'json') {
-      anyMessage.setValue(Uint8Array.from(Buffer.from(JSON.stringify(data.value))));
+  try {
+    if (data.typeUrl && data.value && !data.type) {
+      // avoid duplicate serialization
+      anyMessage.setTypeUrl(data.typeUrl);
+      if (data.typeUrl === 'fg:x:address') {
+        anyMessage.setValue(Uint8Array.from(data.value));
+      } else if (data.typeUrl === 'json') {
+        anyMessage.setValue(Uint8Array.from(Buffer.from(JSON.stringify(data.value))));
+      } else {
+        anyMessage.setValue(Uint8Array.from(Buffer.from(data.value, 'base64')));
+      }
     } else {
-      anyMessage.setValue(Uint8Array.from(Buffer.from(data.value, 'base64')));
+      const { value: anyValue, type: anyType } = data;
+      const typeUrl = toTypeUrl(anyType);
+      const anyValueBinary = createMessage(anyType, anyValue);
+      anyMessage.setTypeUrl(typeUrl);
+      anyMessage.setValue(anyValueBinary.serializeBinary());
     }
-  } else {
-    const { value: anyValue, type: anyType } = data;
-    const typeUrl = toTypeUrl(anyType);
-    const anyValueBinary = createMessage(anyType, anyValue);
-    anyMessage.setTypeUrl(typeUrl);
-    anyMessage.setValue(anyValueBinary.serializeBinary());
+  } catch (err) {
+    console.error('error encode any type', data);
+    throw err;
   }
 
   return anyMessage;
