@@ -13,13 +13,11 @@ A `GraphQLClient` instance mainly supports 5 groups of methods that saves you ti
 
 ## Table of Contents
 
-- [`@arcblock/graphql-client`](#arcblockgraphql-client)
-  - [Table of Contents](#table-of-contents)
-  - [Install](#install)
-  - [Usage](#usage)
-  - [Examples](#examples)
-  - [Debugging](#debugging)
-  - [Documentation](#documentation)
+* [Install](#install)
+* [Usage](#usage)
+* [Examples](#examples)
+* [Debugging](#debugging)
+* [Documentation](#documentation)
 
 
 ## Install

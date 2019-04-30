@@ -2386,7 +2386,7 @@ Checkout the following snippet for the format of ResponseGetAccountState:
 
 ```json
 {
-  "code": "OK",
+  "code": "TOO_MANY_TXS",
   "state": {
     "address": "abc",
     "balance": "abc",
@@ -2396,7 +2396,7 @@ Checkout the following snippet for the format of ResponseGetAccountState:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "OK",
+        "code": "TOO_MANY_TXS",
         "createAsset": {
           "asset": "abc"
         },
@@ -2434,7 +2434,7 @@ Checkout the following snippet for the format of ResponseGetAccountState:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "OK",
+        "code": "TOO_MANY_TXS",
         "createAsset": {
           "asset": "abc"
         },
@@ -2540,7 +2540,7 @@ Checkout the following snippet for the format of ResponseGetAssetState:
 
 ```json
 {
-  "code": "OK",
+  "code": "TOO_MANY_TXS",
   "state": {
     "address": "abc",
     "consumedTime": "2019-04-29T00:00:00.000Z",
@@ -2550,7 +2550,7 @@ Checkout the following snippet for the format of ResponseGetAssetState:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "OK",
+        "code": "TOO_MANY_TXS",
         "createAsset": {
           "asset": "abc"
         },
@@ -2588,7 +2588,7 @@ Checkout the following snippet for the format of ResponseGetAssetState:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "OK",
+        "code": "TOO_MANY_TXS",
         "createAsset": {
           "asset": "abc"
         },
@@ -2688,7 +2688,7 @@ Checkout the following snippet for the format of ResponseGetBlock:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "OK",
+        "code": "TOO_MANY_TXS",
         "createAsset": {
           "asset": "abc"
         },
@@ -2744,7 +2744,7 @@ Checkout the following snippet for the format of ResponseGetBlock:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "OK",
+        "code": "TOO_MANY_TXS",
         "createAsset": {
           "asset": "abc"
         },
@@ -2787,7 +2787,7 @@ Checkout the following snippet for the format of ResponseGetBlock:
       "block": "abc"
     }
   },
-  "code": "OK"
+  "code": "TOO_MANY_TXS"
 }
 ```
 
@@ -2843,7 +2843,7 @@ Checkout the following snippet for the format of ResponseGetBlocks:
       }
     }
   ],
-  "code": "OK",
+  "code": "TOO_MANY_TXS",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -2871,7 +2871,7 @@ Checkout the following snippet for the format of ResponseGetChainInfo:
 
 ```json
 {
-  "code": "OK",
+  "code": "TOO_MANY_TXS",
   "info": {
     "address": "abc",
     "appHash": "abc",
@@ -2917,7 +2917,7 @@ Checkout the following snippet for the format of ResponseGetConfig:
 
 ```json
 {
-  "code": "OK",
+  "code": "TOO_MANY_TXS",
   "config": "abc"
 }
 ```
@@ -2940,7 +2940,7 @@ Checkout the following snippet for the format of ResponseGetForgeState:
 
 ```json
 {
-  "code": "OK",
+  "code": "TOO_MANY_TXS",
   "state": {
     "address": "abc",
     "consensus": {
@@ -2991,7 +2991,7 @@ Checkout the following snippet for the format of ResponseGetForgeState:
               "accountMigrate": {
                 "address": "abc"
               },
-              "code": "OK",
+              "code": "TOO_MANY_TXS",
               "createAsset": {
                 "asset": "abc"
               },
@@ -3029,7 +3029,7 @@ Checkout the following snippet for the format of ResponseGetForgeState:
               "accountMigrate": {
                 "address": "abc"
               },
-              "code": "OK",
+              "code": "TOO_MANY_TXS",
               "createAsset": {
                 "asset": "abc"
               },
@@ -3126,7 +3126,7 @@ Checkout the following snippet for the format of ResponseGetForgeStats:
 
 ```json
 {
-  "code": "OK",
+  "code": "TOO_MANY_TXS",
   "forgeStats": {
     "avgBlockTime": 123,
     "avgTps": 123,
@@ -3204,7 +3204,7 @@ Checkout the following snippet for the format of ResponseGetHealthStatus:
 
 ```json
 {
-  "code": "OK",
+  "code": "TOO_MANY_TXS",
   "healthStatus": {
     "consensus": {
       "blockHeight": "abc",
@@ -3255,7 +3255,7 @@ Checkout the following snippet for the format of ResponseGetNetInfo:
 
 ```json
 {
-  "code": "OK",
+  "code": "TOO_MANY_TXS",
   "netInfo": {
     "listeners": [
       "abc"
@@ -3299,7 +3299,7 @@ Checkout the following snippet for the format of ResponseGetNodeInfo:
 
 ```json
 {
-  "code": "OK",
+  "code": "TOO_MANY_TXS",
   "info": {
     "address": "abc",
     "appHash": "abc",
@@ -3353,7 +3353,7 @@ Checkout the following snippet for the format of ResponseGetProtocolState:
 
 ```json
 {
-  "code": "OK",
+  "code": "TOO_MANY_TXS",
   "state": {
     "address": "abc",
     "context": {
@@ -3362,7 +3362,7 @@ Checkout the following snippet for the format of ResponseGetProtocolState:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "OK",
+        "code": "TOO_MANY_TXS",
         "createAsset": {
           "asset": "abc"
         },
@@ -3400,7 +3400,7 @@ Checkout the following snippet for the format of ResponseGetProtocolState:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "OK",
+        "code": "TOO_MANY_TXS",
         "createAsset": {
           "asset": "abc"
         },
@@ -3472,7 +3472,7 @@ Checkout the following snippet for the format of ResponseGetSimulatorStatus:
 
 ```json
 {
-  "code": "OK",
+  "code": "TOO_MANY_TXS",
   "result": "abc"
 }
 ```
@@ -3495,7 +3495,7 @@ Checkout the following snippet for the format of ResponseGetStakeState:
 
 ```json
 {
-  "code": "OK",
+  "code": "TOO_MANY_TXS",
   "state": {
     "address": "abc",
     "balance": "abc",
@@ -3505,7 +3505,7 @@ Checkout the following snippet for the format of ResponseGetStakeState:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "OK",
+        "code": "TOO_MANY_TXS",
         "createAsset": {
           "asset": "abc"
         },
@@ -3543,7 +3543,7 @@ Checkout the following snippet for the format of ResponseGetStakeState:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "OK",
+        "code": "TOO_MANY_TXS",
         "createAsset": {
           "asset": "abc"
         },
@@ -3606,12 +3606,12 @@ Checkout the following snippet for the format of ResponseGetTx:
 
 ```json
 {
-  "code": "OK",
+  "code": "TOO_MANY_TXS",
   "info": {
     "accountMigrate": {
       "address": "abc"
     },
-    "code": "OK",
+    "code": "TOO_MANY_TXS",
     "createAsset": {
       "asset": "abc"
     },
@@ -3665,7 +3665,7 @@ Checkout the following snippet for the format of ResponseGetUnconfirmedTxs:
 
 ```json
 {
-  "code": "OK",
+  "code": "TOO_MANY_TXS",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -3716,7 +3716,7 @@ Checkout the following snippet for the format of ResponseGetValidatorsInfo:
 
 ```json
 {
-  "code": "OK",
+  "code": "TOO_MANY_TXS",
   "validatorsInfo": {
     "blockHeight": "abc",
     "validators": [
@@ -3759,7 +3759,7 @@ Checkout the following snippet for the format of ResponseListAssetTransactions:
 
 ```json
 {
-  "code": "OK",
+  "code": "TOO_MANY_TXS",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -3767,7 +3767,7 @@ Checkout the following snippet for the format of ResponseListAssetTransactions:
   },
   "transactions": [
     {
-      "code": "OK",
+      "code": "TOO_MANY_TXS",
       "hash": "abc",
       "receiver": "abc",
       "sender": "abc",
@@ -3844,7 +3844,7 @@ Checkout the following snippet for the format of ResponseListAssets:
       "renaissanceTime": "abc"
     }
   ],
-  "code": "OK",
+  "code": "TOO_MANY_TXS",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -3882,7 +3882,7 @@ Checkout the following snippet for the format of ResponseListBlocks:
       "time": "abc"
     }
   ],
-  "code": "OK",
+  "code": "TOO_MANY_TXS",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -3910,7 +3910,7 @@ Checkout the following snippet for the format of ResponseListStakes:
 
 ```json
 {
-  "code": "OK",
+  "code": "TOO_MANY_TXS",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -3970,7 +3970,7 @@ Checkout the following snippet for the format of ResponseListTopAccounts:
       "totalUnstakes": "abc"
     }
   ],
-  "code": "OK",
+  "code": "TOO_MANY_TXS",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -3998,7 +3998,7 @@ Checkout the following snippet for the format of ResponseListTransactions:
 
 ```json
 {
-  "code": "OK",
+  "code": "TOO_MANY_TXS",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -4006,7 +4006,7 @@ Checkout the following snippet for the format of ResponseListTransactions:
   },
   "transactions": [
     {
-      "code": "OK",
+      "code": "TOO_MANY_TXS",
       "hash": "abc",
       "receiver": "abc",
       "sender": "abc",
@@ -4055,7 +4055,7 @@ Checkout the following snippet for the format of ResponseSendTx:
 
 ```json
 {
-  "code": "OK",
+  "code": "TOO_MANY_TXS",
   "hash": "abc"
 }
 ```
@@ -4078,7 +4078,7 @@ Checkout the following snippet for the format of ResponseStartSimulator:
 
 ```json
 {
-  "code": "OK"
+  "code": "TOO_MANY_TXS"
 }
 ```
 
@@ -4099,7 +4099,7 @@ Checkout the following snippet for the format of ResponseStopSimulator:
 
 ```json
 {
-  "code": "OK"
+  "code": "TOO_MANY_TXS"
 }
 ```
 
@@ -4147,7 +4147,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "OK",
+        "code": "TOO_MANY_TXS",
         "createAsset": {
           "asset": "abc"
         },
@@ -4185,7 +4185,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "OK",
+        "code": "TOO_MANY_TXS",
         "createAsset": {
           "asset": "abc"
         },
@@ -4279,7 +4279,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "OK",
+        "code": "TOO_MANY_TXS",
         "createAsset": {
           "asset": "abc"
         },
@@ -4317,7 +4317,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "OK",
+        "code": "TOO_MANY_TXS",
         "createAsset": {
           "asset": "abc"
         },
@@ -4439,7 +4439,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
       ]
     }
   },
-  "code": "OK",
+  "code": "TOO_MANY_TXS",
   "confirm": {
     "chainId": "abc",
     "from": "abc",
@@ -4601,7 +4601,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
               "accountMigrate": {
                 "address": "abc"
               },
-              "code": "OK",
+              "code": "TOO_MANY_TXS",
               "createAsset": {
                 "asset": "abc"
               },
@@ -4639,7 +4639,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
               "accountMigrate": {
                 "address": "abc"
               },
-              "code": "OK",
+              "code": "TOO_MANY_TXS",
               "createAsset": {
                 "asset": "abc"
               },
@@ -4723,7 +4723,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "OK",
+        "code": "TOO_MANY_TXS",
         "createAsset": {
           "asset": "abc"
         },
@@ -4761,7 +4761,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "OK",
+        "code": "TOO_MANY_TXS",
         "createAsset": {
           "asset": "abc"
         },
@@ -4857,7 +4857,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "OK",
+        "code": "TOO_MANY_TXS",
         "createAsset": {
           "asset": "abc"
         },
@@ -4895,7 +4895,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "OK",
+        "code": "TOO_MANY_TXS",
         "createAsset": {
           "asset": "abc"
         },
@@ -5032,7 +5032,7 @@ Checkout the following snippet for the format of ResponseUnsubscribe:
 
 ```json
 {
-  "code": "OK"
+  "code": "TOO_MANY_TXS"
 }
 ```
 
