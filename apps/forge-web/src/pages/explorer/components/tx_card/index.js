@@ -13,6 +13,7 @@ import TxPoke from './poke';
 import TxDeclareFile from './declare_file';
 import TxAccountMigrate from './account_migrate';
 import TxUpgradeNode from './upgrade_node';
+import TxDeployProtocol from './deploy_protocol';
 import TxDefault from './default';
 
 import { getTxType } from '../../../../libs/util';
@@ -26,6 +27,7 @@ const components = {
   Exchange: TxExchange,
   DeclareFile: TxDeclareFile,
   UpgradeNode: TxUpgradeNode,
+  DeployProtocol: TxDeployProtocol,
   Declare: TxDeclare,
   Poke: TxPoke,
   AccountMigrate: TxAccountMigrate,
