@@ -1,6 +1,11 @@
 /**
  * @fileOverview Contains all static generated javascript files from forge-abi and forge-core-protocols
  * @module @arcblock/forge-proto
+ * @example
+ * yarn add @arcblock/forge-proto
+ *
+ * const { enums, fromTypeUrl, toTypeUrl } = require('@arcblock/forge-proto'); // full version, larger bundle
+ * const { enums, fromTypeUrl, toTypeUrl } = require('@arcblock/forge-proto/lite'); // lite version, smaller bundle
  */
 
 const get = require('lodash.get');
