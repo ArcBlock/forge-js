@@ -3,20 +3,17 @@
 /**
  * This script demonstrates how to transfer tokens between 2 accounts
  *
- * Run script with: `DEBUG=@arcblock/graphql-client node examples/transfer_token.js`
+ * Run script with: `DEBUG=@arcblock/grpc-client node examples/transfer_token.js`
  */
 
 const moment = require('moment');
 const Mcrypto = require('@arcblock/mcrypto');
-const GraphqlClient = require('@arcblock/graphql-client');
+const GRpcClient = require('@arcblock/grpc-client');
 const { fromRandom, WalletType } = require('@arcblock/forge-wallet');
 const { hexToBytes, fromTokenToUnit } = require('@arcblock/forge-util');
 
-const endpoint = 'https://test.abtnetwork.io'; // testnet
-// const endpoint = 'http://127.0.0.1:8210'; // local
-// const endpoint = 'http://did-workshop.arcblock.co:8210'; // workshop
-
-const client = new GraphqlClient(`${endpoint}/api`);
+const endpoint = 'http://localhost:8210';
+const client = new GRpcClient({ endpoint: 'tcp://127.0.0.1:28210' });
 const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
 
 const type = WalletType({
