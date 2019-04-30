@@ -78,12 +78,12 @@ console.log({
 
 ## Examples
 
-- [Declare account on the blockchain](./examples/declare_account.js)
+- [Declare identify on the blockchain](./examples/declare.js)
 - [Get free token for newly created account](./examples/get_free_token.js)
 - [Transfer assets between 2 accounts](./examples/transfer_asset.js)
 - [Transfer tokens between 2 accounts](./examples/transfer_token.js)
 - [Exchange asset and token between 2 newly created accounts](./examples/exchange.js)
-- [Crate/update an asset on the blockchain](./examples/asset.js)
+- [Create/update asset on the blockchain](./examples/asset.js)
 - [Consume newly create asset](./examples/consume_asset.js)
 - [Stake for the connected node](./examples/stake_for_node.js)
 
