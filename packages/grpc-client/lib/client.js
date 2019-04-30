@@ -82,7 +82,7 @@ class GRpcClient {
     const rpc = client[method].bind(client);
     const spec = rpcs[group].methods[method];
     const { requestStream = false, responseStream = false, requestType, responseType } = spec;
-    debug('_initRpcMethod', { method, requestStream, responseStream, requestType, responseType });
+    // debug('_initRpcMethod', { method, requestStream, responseStream, requestType, responseType });
 
     let fn = null;
     // unary call, return Promise
@@ -231,6 +231,7 @@ class GRpcClient {
         });
         const txToSignBytes = txObj.serializeBinary();
 
+        debug(`encodeTx.${x}.input`, tx);
         debug(`encodeTx.${x}.txObj`, txObj.toObject());
         debug(`encodeTx.${x}.txBytes`, txToSignBytes.toString());
         debug(`encodeTx.${x}.txHex`, toHex(txToSignBytes));
@@ -278,9 +279,11 @@ class GRpcClient {
             const signature = wallet.sign(bytesToHex(txToSignBytes));
             txResult = object;
             txResult.signature = Uint8Array.from(hexToBytes(signature));
+            debug(`send.${x}.sign`, txResult.signature);
           }
 
-          walletResult = wallet.toJSON();
+          // since we have signed the tx, wallet is not required when sent the tx
+          walletResult = null;
         } else {
           const txParams = {
             itx: { type: x, value: tx.itx },
