@@ -272,18 +272,18 @@ class GRpcClient {
         if (wallet && typeof wallet.sign === 'function') {
           if (signature) {
             tx.signature = Uint8Array.from(hexToBytes(signature));
-            const result = await txEncodeFn({ tx, wallet });
-            txResult = result.object;
+            txResult = tx;
           } else {
             const { object, buffer: txToSignBytes } = await txEncodeFn({ tx, wallet });
-            const signature = wallet.sign(bytesToHex(txToSignBytes));
             txResult = object;
-            txResult.signature = Uint8Array.from(hexToBytes(signature));
+            txResult.signature = Uint8Array.from(
+              hexToBytes(wallet.sign(bytesToHex(txToSignBytes)))
+            );
             debug(`send.${x}.sign`, txResult.signature);
           }
 
           // since we have signed the tx, wallet is not required when sent the tx
-          walletResult = null;
+          walletResult = undefined;
         } else {
           const txParams = {
             itx: { type: x, value: tx.itx },
@@ -314,13 +314,17 @@ class GRpcClient {
         // Create tx using rpc, sign the transaction using forge
         return new Promise(async (resolve, reject) => {
           try {
-            const { hash } = await this.sendTx({
+            const sendParams = {
               tx: txResult,
-              wallet: walletResult,
               token: input.token,
               commit: input.commit,
-            });
+            };
+            if (walletResult) {
+              sendParams.wallet = walletResult;
+            }
 
+            debug(`send.${x}.do`, sendParams);
+            const { hash } = await this.sendTx(sendParams);
             resolve(hash);
           } catch (err) {
             reject(err);
