@@ -4,13 +4,13 @@
 
 > Utility to parse forge config
 
+
 ## Table of Contents
 
-- [**@arcblock/forge-config**](#arcblockforge-config)
-  - [Table of Contents](#table-of-contents)
-  - [Install](#install)
-  - [Usage](#usage)
-  - [Documentation](#documentation)
+* [Install](#install)
+* [Usage](#usage)
+* [Documentation](#documentation)
+
 
 ## Install
 
@@ -20,6 +20,7 @@ npm install @arcblock/forge-config
 yarn add @arcblock/forge-config
 ```
 
+
 ## Usage
 
 ```js
@@ -28,6 +29,14 @@ const { parseConfig } = require('@arcblock/forge-config');
 const config = parseConfig('./forge.toml');
 ```
 
+
 ## Documentation
 
 For full documentation, checkout [README.md](./docs/README.md).
+
+
+## Contributors
+
+| Name           | Website                    |
+| -------------- | -------------------------- |
+| **wangshijun** | <https://ocap.arcblock.io> |

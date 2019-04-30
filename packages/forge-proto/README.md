@@ -4,13 +4,13 @@
 
 > Javascript modules generated using protoc from ForgeSDK protobuf
 
+
 ## Table of Contents
 
-- [**@arcblock/forge-proto**](#arcblockforge-proto)
-  - [Table of Contents](#table-of-contents)
-  - [Install](#install)
-  - [Usage](#usage)
-  - [Documentation](#documentation)
+* [Install](#install)
+* [Usage](#usage)
+* [Documentation](#documentation)
+
 
 ## Install
 
@@ -19,6 +19,7 @@ npm install @arcblock/forge-proto
 // or
 yarn add @arcblock/forge-proto
 ```
+
 
 ## Usage
 
@@ -34,6 +35,14 @@ const message = new Message({
 });
 ```
 
+
 ## Documentation
 
 For full documentation, checkout [README.md](./docs/README.md).
+
+
+## Contributors
+
+| Name           | Website                   |
+| -------------- | ------------------------- |
+| **wangshijun** | <https://www.arcblock.io> |

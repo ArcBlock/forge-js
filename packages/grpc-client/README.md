@@ -18,6 +18,7 @@ A `GRpcClient` instance mainly supports 3 groups of methods that saves you time 
 * [Examples](#examples)
 * [Debugging](#debugging)
 * [Documentation](#documentation)
+* [Contributors](#contributors)
 
 
 ## Install
