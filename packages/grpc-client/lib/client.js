@@ -268,7 +268,7 @@ class GRpcClient {
         let walletResult = wallet;
 
         // Native wallet
-        if (typeof wallet.sign === 'function') {
+        if (wallet && typeof wallet.sign === 'function') {
           if (signature) {
             tx.signature = Uint8Array.from(hexToBytes(signature));
             const result = await txEncodeFn({ tx, wallet });
@@ -282,12 +282,29 @@ class GRpcClient {
 
           walletResult = wallet.toJSON();
         } else {
-          const txParams = Object.assign({}, tx, {
+          const txParams = {
             itx: { type: x, value: tx.itx },
-            nonce: typeof tx.nonce === 'undefined' ? Date.now() : tx.nonce,
+            nonce: Date.now(),
+            chainId: this._chainId,
+            wallet: walletResult,
+            token: input.token,
+          };
+
+          const keys = ['from', 'pk', 'chainId', 'signature', 'signatures', 'nonce'];
+          keys.forEach(x => {
+            if (typeof tx[x] !== 'undefined') {
+              txParams[x] = tx[x];
+            }
           });
 
+          if (!txParams.chainId) {
+            const { info } = await this.getChainInfo();
+            txParams.chainId = info.network;
+          }
+
+          debug(`${x}.create.params`, tx, txParams);
           const result = await this.createTx(txParams);
+          debug(`${x}.create.result`, result);
           txResult = result.tx;
         }
 
