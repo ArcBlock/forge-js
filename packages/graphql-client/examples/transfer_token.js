@@ -10,7 +10,7 @@ const moment = require('moment');
 const Mcrypto = require('@arcblock/mcrypto');
 const GraphqlClient = require('@arcblock/graphql-client');
 const { fromRandom, WalletType } = require('@arcblock/forge-wallet');
-const { hexToBytes, fromTokenToUnit } = require('@arcblock/forge-util');
+const { fromTokenToUnit } = require('@arcblock/forge-util');
 
 const endpoint = 'https://test.abtnetwork.io'; // testnet
 // const endpoint = 'http://127.0.0.1:8210'; // local
@@ -39,8 +39,6 @@ const type = WalletType({
       tx: {
         itx: {
           moniker: 'sender',
-          pk: Buffer.from(hexToBytes(sender.publicKey)),
-          type,
         },
       },
       wallet: sender,
@@ -53,8 +51,6 @@ const type = WalletType({
       tx: {
         itx: {
           moniker: 'receiver',
-          pk: Buffer.from(hexToBytes(receiver.publicKey)),
-          type,
         },
       },
       wallet: receiver,

@@ -49,8 +49,6 @@ const type = WalletType({
       tx: {
         itx: {
           moniker: 'sender',
-          pk: Buffer.from(hexToBytes(sender.publicKey)),
-          type,
         },
       },
       wallet: sender,
@@ -63,8 +61,6 @@ const type = WalletType({
       tx: {
         itx: {
           moniker: 'receiver',
-          pk: Buffer.from(hexToBytes(receiver.publicKey)),
-          type,
         },
       },
       wallet: receiver,

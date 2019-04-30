@@ -36,8 +36,6 @@ const type = WalletType({
       tx: {
         itx: {
           moniker: 'issuer',
-          pk: Buffer.from(hexToBytes(issuer.publicKey)),
-          type,
         },
       },
       wallet: issuer,
@@ -50,8 +48,6 @@ const type = WalletType({
       tx: {
         itx: {
           moniker: 'consumer',
-          pk: Buffer.from(hexToBytes(consumer.publicKey)),
-          type,
         },
       },
       wallet: consumer,

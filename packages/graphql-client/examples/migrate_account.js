@@ -33,7 +33,6 @@ const type = WalletType({
       tx: {
         itx: {
           moniker: `migrate_from_${Math.round(Math.random() * 10000)}`,
-          type,
         },
       },
       wallet: migrateFrom,
@@ -47,7 +46,6 @@ const type = WalletType({
       tx: {
         itx: {
           moniker: `migrate_to_${Math.round(Math.random() * 10000)}`,
-          type,
         },
       },
       wallet: migrateTo,
