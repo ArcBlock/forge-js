@@ -2,9 +2,12 @@
 
 > Forge [mcrypto](https://github.com/ArcBlock/mcrypto) implementation for javascript, just a wrapper around existing javascript crypto libraries.
 
+
 ## Usage
 
 ```shell
+npm i @arcblock/mcrypto -S
+# OR
 yarn add @arcblock/mcrypto
 ```
 
@@ -31,19 +34,23 @@ const hash = Hasher.SHA2.hash256(message);
 
 **Important Note: results from signer and hasher are all hex encoded string**
 
+## Documentation
+
+For full documentation, checkout [README.md](./docs/README.md).
+
 ## Implementation
 
 ### Hasher
 
-- keccakf1600: crypto-js
-- sha2: crypto-js
-- sha3: jssha3
+* keccakf1600: crypto-js
+* sha2: crypto-js
+* sha3: jssha3
 
 ### Signer
 
-- ed25519: tweetnacl
-- secp256k1: elliptic
+* [`ed25519`](https://github.com/ArcBlock/forge-js/commit/ed25519): tweetnacl
+* secp256k1: elliptic
 
 ### Crypter
 
-- aes-cbc-256: crypto-js
+* aes-cbc-256: crypto-js

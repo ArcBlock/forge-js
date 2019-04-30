@@ -2,11 +2,11 @@
 
 > Utility function to create and use a forge compatible wallet, the wallet is also DID compatible.
 
+
 ## Usage
 
 ```shell
 yarn add @arcblock/forge-wallet
-
 # OR
 npm i @arcblock/forge-wallet -S
 ```
@@ -37,3 +37,8 @@ assert.ok(wallet.verify(message, signature), "signature should be verified");
 const wallet2 = fromJSON(wallet.toJSON());
 // Do something with wallet 2
 ```
+
+
+## Documentation
+
+For full documentation, checkout [README.md](./docs/README.md).

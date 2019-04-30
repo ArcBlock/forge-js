@@ -19,7 +19,7 @@ export default function TransferDetail({ tx }) {
           <span>
             <IconFa name="coins" size={20} className="meta-icon" />
             <span>
-              {fromUnitToToken(tx.tx.itx.value, token.decimal)} {token.symbol}
+              {fromUnitToToken(tx.tx.itx.value || '0', token.decimal)} {token.symbol}
             </span>
           </span>
         }

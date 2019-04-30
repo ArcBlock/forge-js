@@ -16,25 +16,6 @@ const debug = require('debug')(`${require('../package.json').name}`);
  *
  * Please note that, due to internal implementation of google-protobuf, all `repeated fields` names are suffixed with `List`
  *
-```js
-const GRpcClient = require('@arcblock/grpc-client');
-const client = new GRpcClient("tcp://127.0.0.1:28210");
-(async () => {
-  // fetch forge change info
-  const { info } = await client.getChainInfo();
-  console.log('chainInfo', info);
-
-  // get block info
-  const stream = client.getBlock({ height: 11 });
-  stream
-    .on('data', function({ block }) {
-      console.log('blockInfo:', block);
-    })
-    .on('error', err => {
-      console.error('error', err);
-    });
-})();
-```
  * @class
  */
 class GRpcClient {
@@ -101,7 +82,7 @@ class GRpcClient {
     const rpc = client[method].bind(client);
     const spec = rpcs[group].methods[method];
     const { requestStream = false, responseStream = false, requestType, responseType } = spec;
-    debug('_initRpcMethod', { method, requestStream, responseStream, requestType, responseType });
+    // debug('_initRpcMethod', { method, requestStream, responseStream, requestType, responseType });
 
     let fn = null;
     // unary call, return Promise
@@ -250,6 +231,7 @@ class GRpcClient {
         });
         const txToSignBytes = txObj.serializeBinary();
 
+        debug(`encodeTx.${x}.input`, tx);
         debug(`encodeTx.${x}.txObj`, txObj.toObject());
         debug(`encodeTx.${x}.txBytes`, txToSignBytes.toString());
         debug(`encodeTx.${x}.txHex`, toHex(txToSignBytes));
@@ -287,39 +269,62 @@ class GRpcClient {
         let walletResult = wallet;
 
         // Native wallet
-        if (typeof wallet.sign === 'function') {
+        if (wallet && typeof wallet.sign === 'function') {
           if (signature) {
             tx.signature = Uint8Array.from(hexToBytes(signature));
-            const result = await txEncodeFn({ tx, wallet });
-            txResult = result.object;
+            txResult = tx;
           } else {
             const { object, buffer: txToSignBytes } = await txEncodeFn({ tx, wallet });
-            const signature = wallet.sign(bytesToHex(txToSignBytes));
             txResult = object;
-            txResult.signature = Uint8Array.from(hexToBytes(signature));
+            txResult.signature = Uint8Array.from(
+              hexToBytes(wallet.sign(bytesToHex(txToSignBytes)))
+            );
+            debug(`send.${x}.sign`, txResult.signature);
           }
 
-          walletResult = wallet.toJSON();
+          // since we have signed the tx, wallet is not required when sent the tx
+          walletResult = undefined;
         } else {
-          const txParams = Object.assign({}, tx, {
+          const txParams = {
             itx: { type: x, value: tx.itx },
-            nonce: typeof tx.nonce === 'undefined' ? Date.now() : tx.nonce,
+            nonce: Date.now(),
+            chainId: this._chainId,
+            wallet: walletResult,
+            token: input.token,
+          };
+
+          const keys = ['from', 'pk', 'chainId', 'signature', 'signatures', 'nonce'];
+          keys.forEach(x => {
+            if (typeof tx[x] !== 'undefined') {
+              txParams[x] = tx[x];
+            }
           });
 
+          if (!txParams.chainId) {
+            const { info } = await this.getChainInfo();
+            txParams.chainId = info.network;
+          }
+
+          debug(`${x}.create.params`, tx, txParams);
           const result = await this.createTx(txParams);
+          debug(`${x}.create.result`, result);
           txResult = result.tx;
         }
 
         // Create tx using rpc, sign the transaction using forge
         return new Promise(async (resolve, reject) => {
           try {
-            const { hash } = await this.sendTx({
+            const sendParams = {
               tx: txResult,
-              wallet: walletResult,
               token: input.token,
               commit: input.commit,
-            });
+            };
+            if (walletResult) {
+              sendParams.wallet = walletResult;
+            }
 
+            debug(`send.${x}.do`, sendParams);
+            const { hash } = await this.sendTx(sendParams);
             resolve(hash);
           } catch (err) {
             reject(err);

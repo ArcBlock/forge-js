@@ -3,18 +3,15 @@
 /**
  * This script demonstrates how to declare account and get some free token for the account
  *
- * Run script with: `DEBUG=@arcblokc/graphql-client node docs/poke.js`
+ * Run script with: `DEBUG=@arcblock/grpc-client node examples/get_free_token.js`
  */
-const Mcrypto = require('@arcblock/mcrypto');
 const moment = require('moment');
+const Mcrypto = require('@arcblock/mcrypto');
+const GRpcClient = require('@arcblock/grpc-client');
 const { fromRandom, WalletType } = require('@arcblock/forge-wallet');
 
-const GraphqlClient = require('../src/node');
-
-// const client = new GraphqlClient('https://test.abtnetwork.io/api'); // test
-const client = new GraphqlClient('http://127.0.0.1:8210/api'); // local
-// const client = new GraphqlClient('http://did-workshop.arcblock.co:8210/api'); // workshop
-
+const endpoint = 'http://localhost:8210';
+const client = new GRpcClient({ endpoint: 'tcp://127.0.0.1:28210' });
 const type = WalletType({
   role: Mcrypto.types.RoleType.ROLE_ACCOUNT,
   pk: Mcrypto.types.KeyType.ED25519,
@@ -28,13 +25,13 @@ const type = WalletType({
       tx: {
         itx: {
           moniker: `poke_user_${Math.round(Math.random() * 10000)}`,
-          type,
         },
       },
       wallet,
     });
 
-    console.log('declare.result', res);
+    console.log('view account', `${endpoint}/node/explorer/accounts/${wallet.toAddress()}`);
+    console.log('declare tx', `${endpoint}/node/explorer/txs/${res}`);
 
     res = await client.sendPokeTx({
       tx: {
@@ -48,7 +45,7 @@ const type = WalletType({
       },
       wallet,
     });
-    console.log('poke.result', res);
+    console.log('poke tx', `${endpoint}/node/explorer/txs/${res}`);
   } catch (err) {
     console.error(err);
     console.log(JSON.stringify(err.errors));

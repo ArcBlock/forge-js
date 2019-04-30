@@ -7,7 +7,7 @@ const { compactSpec } = require('@arcblock/forge-proto');
 const { fakeMessage } = require('@arcblock/forge-message');
 const specs = require('@arcblock/forge-proto/lib/spec.json');
 
-const GRpcClient = require('../');
+const GRpcClient = require('..');
 
 const client = new GRpcClient('tcp://127.0.0.1:28210');
 const namespace = 'GRpcClient';

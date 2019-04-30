@@ -1,4 +1,5 @@
 const shell = require('shelljs');
+const { fromUnitToToken } = require('@arcblock/forge-util');
 const { createRpcClient, config } = require('core/env');
 const { symbols, pretty } = require('core/ui');
 
@@ -12,7 +13,7 @@ async function execute({ args: [addr] }) {
         if (result && result.code === 0) {
           const { state } = result.$format();
           if (state) {
-            state.balance = `${client.fromUnitToToken(state.balance)} TOKEN`;
+            state.balance = `${fromUnitToToken(state.balance)} TOKEN`;
             shell.echo(`${pretty(state)}`);
           } else {
             shell.echo(

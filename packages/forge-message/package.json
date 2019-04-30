@@ -27,6 +27,7 @@
   "devDependencies": {
     "j2d": "^1.0.3-dev",
     "jest": "^23.5.0",
+    "jsdoc-to-markdown": "^4.0.1",
     "remark-cli": "^5.0.0",
     "remark-preset-github": "^0.0.9"
   },
@@ -63,13 +64,14 @@
   },
   "scripts": {
     "lint": "eslint lib index.js lite.js tests",
-    "upgrade": "npm run format-docs && npm run generate-dts",
+    "upgrade": "yarn format-docs && yarn generate-dts",
+    "generate-docs": "jsdoc2md lib/message.js > docs/README.md",
     "format-docs": "remark . -o",
     "generate-dts": "j2d index.js",
     "precommit": "CI=1 yarn test",
     "prepush": "CI=1 yarn test",
-    "test": "npm run lint && node tools/jest.js",
-    "coverage": "npm run lint && yarn test -- --coverage"
+    "test": "yarn lint && node tools/jest.js",
+    "coverage": "yarn lint && yarn test -- --coverage"
   },
   "gitHead": "87990c8b5e215107fc587c1ced0d6b3e2cd2483e"
 }

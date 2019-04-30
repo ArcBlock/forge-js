@@ -56,7 +56,7 @@ describe('GraphqlClient', () => {
     });
 
     const wallet = fromRandom(type);
-    const res = await client.sendDeclareTx({
+    const hash = await client.sendDeclareTx({
       tx: {
         itx: {
           moniker: `graphql_client_test_${Math.round(Math.random() * 10000)}`,
@@ -66,7 +66,6 @@ describe('GraphqlClient', () => {
       wallet,
     });
 
-    expect(res.code).toEqual('OK');
-    expect(res.hash).toBeTruthy();
+    expect(hash).toBeTruthy();
   });
 });

@@ -65,9 +65,10 @@
   },
   "scripts": {
     "lint": "eslint lib index.js tests",
-    "upgrade": "npm run generate-docs && npm run generate-apis && npm run format-docs && npm run generate-dts",
+    "upgrade": "yarn generate-types && yarn generate-apis && yarn generate-docs && yarn format-docs && yarn generate-dts",
     "generate-apis": "node tools/generate-apis.js",
-    "generate-docs": "node tools/generate-docs.js",
+    "generate-docs": "jsdoc2md lib/client.js lib/types.js > docs/README.md",
+    "generate-types": "node tools/generate-types.js",
     "format-docs": "remark . -o",
     "generate-dts": "j2d index.js && ./tools/patch-dts.sh && node tools/generate-dts.js",
     "precommit": "CI=1 yarn test",

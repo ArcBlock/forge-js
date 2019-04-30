@@ -2,23 +2,33 @@
 
 [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 
-> gRPC client to read/write data on forge powered blockchain
+gRpc Client library to connect your app with forge powered blockchain node, all requests are sent over tcp, can be used in only Node.js environment.
+
+A `GRpcClient` instance mainly supports 3 groups of methods that saves you time when read/write data from/to blockchain.
+
+* `rpcs`: read/write block/transaction/account/asset/chain/node data form/to the blockchain
+* `senders`: shortcut methods that takes a `wallet` and a `tx` object, then do the signing, and sending
+* `encoders`: shortcut methods that takes a `wallet` and a `tx` object, encode the transaction for later signing, used internally by senders
+
 
 ## Table of Contents
 
-- [**@arcblock/grpc-client**](#arcblockgrpc-client)
-  - [Table of Contents](#table-of-contents)
-  - [Install](#install)
-  - [Usage](#usage)
-  - [Documentation](#documentation)
+* [Install](#install)
+* [Usage](#usage)
+* [Examples](#examples)
+* [Debugging](#debugging)
+* [Documentation](#documentation)
+* [Contributors](#contributors)
+
 
 ## Install
 
 ```sh
-npm install @arcblock/grpc-client
+npm i @arcblock/grpc-client
 // or
 yarn add @arcblock/grpc-client
 ```
+
 
 ## Usage
 
@@ -26,6 +36,12 @@ yarn add @arcblock/grpc-client
 const GRpcClient = require('@arcblock/grpc-client');
 
 const client = new GRpcClient('tcp://127.0.0.1:28210');
+console.log({
+  rpcs: client.getRpcMethods(),
+  senders: client.getTxSendMethods(),
+  encoders: client.getTxEncodeMethods(),
+});
+
 (async () => {
   // fetch forge change info
   const { info } = await client.getChainInfo();
@@ -43,6 +59,32 @@ const client = new GRpcClient('tcp://127.0.0.1:28210');
 })();
 ```
 
+
+## Examples
+
+* [Declare identify on the blockchain](./examples/declare.js)
+* [Get free token for newly created account](./examples/get_free_token.js)
+* [Transfer assets between 2 accounts](./examples/transfer_asset.js)
+* [Transfer tokens between 2 accounts](./examples/transfer_token.js)
+* [Exchange asset and token between 2 newly created accounts](./examples/exchange.js)
+* [Create/update asset on the blockchain](./examples/asset.js)
+* [Consume newly create asset](./examples/consume_asset.js)
+* [Stake for the connected node](./examples/stake_for_node.js)
+
+
+## Debugging
+
+* If you are in Node.js: `DEBUG=@arcblock/grpc-client node script.js`
+
+
 ## Documentation
 
-For complete API documentation please refer [API.md](./API.md)
+* Complete method list can be found here: [README.md](./docs/README.md)
+* Rpc arguments and response structure can be found here: [API.md](./docs/API.md)
+
+
+## Contributors
+
+| Name           | Website                    |
+| -------------- | -------------------------- |
+| **wangshijun** | <https://ocap.arcblock.io> |

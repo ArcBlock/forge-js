@@ -3,6 +3,10 @@
  * @module @arcblock/forge-message
  * @requires @arcblock/forge-util
  * @requires @arcblock/forge-proto
+ * @example
+ * yarn add @arcblock/forge-message
+ *
+ * const { createMessage, fakeMessage, formatMessage } = require('@arcblock/forge-message');
  */
 
 /* eslint no-console:"off" */
@@ -57,8 +61,21 @@ const fakeValues = {
  *
  * @public
  * @static
- * @param {string} type
+ * @param {string} type - Message type string, should be defined in forge-abi or forge-core-protocol
  * @returns {object}
+ * @example
+ * const { fakeMessage} = require('@arcblock/forge-message');
+ * const message = fakeMessage('CreateAssetTx');
+ * // will output
+ * {
+ *   moniker: 'arcblock',
+ *   data: { type: 'string', value: 'ABCD 1234' },
+ *   readonly: true,
+ *   transferrable: true,
+ *   ttl: 2,
+ *   parent: 'arcblock',
+ *   address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
+ * }
  */
 function fakeMessage(type) {
   if (!type) {
@@ -143,7 +160,7 @@ function formatMessage(type, data) {
   }
 
   if (type === 'json') {
-    return JSON.parse(Buffer.from(data, 'base64').toString('utf8'));
+    return data;
   }
 
   if (typeof data !== 'object') {
@@ -247,6 +264,17 @@ function formatMessage(type, data) {
  * @param {string} type - message type defined in forge-proto
  * @param {object} params - message content
  * @returns {object} Message instance
+ * @example
+ * const { createMessage } = require('@arcblock/forge-message');
+ * const message = createMessage ('CreateAssetTx', {
+ *   moniker: 'asset',
+ *   address: 'zaAKEJRKQWsdfjksdfjkASRD',
+ * });
+ *
+ * message.getMoniker();  // 'asset'
+ * message.getAddress();  // 'zaAKEJRKQWsdfjksdfjkASRD'
+ * message.getReadonly(); // false
+ * message.setReadonly(true);
  */
 function createMessage(type, params) {
   if (!type && !params) {
@@ -358,7 +386,7 @@ function decodeAny(data) {
 
   const { typeUrl, value } = data;
   if (typeUrl === 'json') {
-    return { type: typeUrl, value: JSON.parse(Buffer.from(value)) };
+    return { type: typeUrl, value: JSON.parse(Buffer.from(value, 'base64')) };
   }
 
   const type = fromTypeUrl(typeUrl);
@@ -387,20 +415,27 @@ function encodeAny(data) {
   }
 
   const anyMessage = new Any();
-  if (data.typeUrl && data.value && !data.type) {
-    // avoid duplicate serialization
-    anyMessage.setTypeUrl(data.typeUrl);
-    if (data.typeUrl === 'json') {
-      anyMessage.setValue(Uint8Array.from(Buffer.from(JSON.stringify(data.value))));
+  try {
+    if (data.typeUrl && data.value && !data.type) {
+      // avoid duplicate serialization
+      anyMessage.setTypeUrl(data.typeUrl);
+      if (data.typeUrl === 'fg:x:address') {
+        anyMessage.setValue(data.value);
+      } else if (data.typeUrl === 'json') {
+        anyMessage.setValue(Uint8Array.from(Buffer.from(JSON.stringify(data.value))));
+      } else {
+        anyMessage.setValue(Uint8Array.from(Buffer.from(data.value, 'base64')));
+      }
     } else {
-      anyMessage.setValue(Uint8Array.from(Buffer.from(data.value, 'base64')));
+      const { value: anyValue, type: anyType } = data;
+      const typeUrl = toTypeUrl(anyType);
+      const anyValueBinary = createMessage(anyType, anyValue);
+      anyMessage.setTypeUrl(typeUrl);
+      anyMessage.setValue(anyValueBinary.serializeBinary());
     }
-  } else {
-    const { value: anyValue, type: anyType } = data;
-    const typeUrl = toTypeUrl(anyType);
-    const anyValueBinary = createMessage(anyType, anyValue);
-    anyMessage.setTypeUrl(typeUrl);
-    anyMessage.setValue(anyValueBinary.serializeBinary());
+  } catch (err) {
+    console.error('error encode any type', data);
+    throw err;
   }
 
   return anyMessage;

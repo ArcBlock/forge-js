@@ -45,15 +45,17 @@
     "url": "https://github.com/ArcBlock/forge-js/tree/master/packages/forge-proto"
   },
   "scripts": {
-    "upgrade": "bash tools/copy.sh && npm run gen && npm run generate-dts",
+    "upgrade": "bash tools/copy.sh && yarn gen && yarn generate-dts && yarn generate-docs && yarn format-docs",
     "copy": "bash tools/copy.sh",
     "gen": "node tools/gen-proto-entry.js full && node tools/gen-proto-entry.js lite",
+    "format-docs": "remark . -o",
+    "generate-docs": "jsdoc2md init.js > docs/README.md",
     "generate-dts": "j2d index.js && node tools/generate-dts.js && bash tools/patch-dts.sh",
     "lint": "eslint tests index.js",
-    "precommit": "CI=1 npm run test",
-    "prepush": "CI=1 npm run test",
-    "test": "npm run lint && node tools/jest.js",
-    "coverage": "npm run lint && npm run test -- --coverage --collectCoverageFrom=index.js --collectCoverageFrom=!lib/*.js"
+    "precommit": "CI=1 yarn test",
+    "prepush": "CI=1 yarn test",
+    "test": "yarn lint && node tools/jest.js",
+    "coverage": "yarn lint && yarn test -- --coverage --collectCoverageFrom=index.js --collectCoverageFrom=!lib/*.js"
   },
   "dependencies": {
     "debug": "^4.1.1",

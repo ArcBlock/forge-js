@@ -2,14 +2,14 @@
 
 [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 
-> gRPC client to read/write data on forge powered blockchain
+> Utility to parse forge config
+
 
 ## Table of Contents
 
-- [**@arcblock/forge-config**](#arcblockforge-config)
-  - [Table of Contents](#table-of-contents)
-  - [Install](#install)
-  - [Usage](#usage)
+* [Install](#install)
+* [Usage](#usage)
+* [Documentation](#documentation)
 
 
 ## Install
@@ -28,3 +28,15 @@ const { parseConfig } = require('@arcblock/forge-config');
 
 const config = parseConfig('./forge.toml');
 ```
+
+
+## Documentation
+
+For full documentation, checkout [README.md](./docs/README.md).
+
+
+## Contributors
+
+| Name           | Website                    |
+| -------------- | -------------------------- |
+| **wangshijun** | <https://ocap.arcblock.io> |

@@ -3,6 +3,8 @@
  * @module @arcblock/forge-wallet
  * @requires @arcblock/mcrypto
  * @requires @arcblock/abt-did
+ * @example
+ * yarn add @arcblock/forge-wallet
  */
 const upperFirst = require('lodash/upperFirst');
 const { types, getSigner, getHasher } = require('@arcblock/mcrypto');
@@ -18,7 +20,8 @@ const mapping = {
  *
  * @public
  * @static
- * @typedef {Object} walletType
+ * @global
+ * @typedef {Object} WalletTypeObject
  * @prop {number} role - Enum field to identify wallet role type
  * @prop {number} pk - Crypto algorithm to derive publicKey from the secretKey
  * @prop {number} hash - Hash algorithm used to hash data before sign them
@@ -29,7 +32,7 @@ const mapping = {
  *
  * @public
  * @static
- * @param {...walletType} type
+ * @param {WalletTypeObject} type
  * @returns {object}
  * @example
  * const assert = require('assert');
@@ -75,6 +78,21 @@ WalletType.fromJSON = json => {
 };
 
 /**
+ * @public
+ * @static
+ * @global
+ * @name WalletObject
+ * @typedef WalletObject
+ * @prop {WalletTypeObject} type - Indicates the wallet type
+ * @prop {secretKey} secretKey - Wallet secretKey
+ * @prop {publicKey} publicKey - Wallet publicKey
+ * @prop {function} sign - Sign `data`, data is hashed using the `HashType` defined in type before signing
+ * @prop {function} verify - Verify `signature`, data is hashed using the `HashType` defined in type before verifying
+ * @prop {function} toAddress - Get wallet address without `did:abt:` prefix
+ * @prop {function} toJSON - Serialize wallet to json object, checkout {@link fromJSON} for deserialisation
+ */
+
+/**
  * Generate an wallet instance that can be used to sign a message or verify a signature
  *
  * @public
@@ -82,8 +100,8 @@ WalletType.fromJSON = json => {
  * @param {object} keyPair - the key pair
  * @param {string} keyPair.sk - the secretKey
  * @param {string} keyPair.pk - the wallet publicKey
- * @param {...walletType} type - wallet type
- * @returns {object} generated wallet instance
+ * @param {WalletTypeObject} type - wallet type
+ * @returns {WalletObject} wallet object that can be used to sign/verify/getAddress
  */
 function Wallet(keyPair, type) {
   const signer = getSigner(type.pk);
@@ -130,8 +148,8 @@ function Wallet(keyPair, type) {
  * @public
  * @static
  * @param {string} sk - the secret key, `hex encoded string`
- * @param {...walletType} type - wallet type
- * @returns {object} wallet instance
+ * @param {WalletTypeObject} type - wallet type
+ * @returns {WalletObject} wallet object that can be used to sign/verify/getAddress
  * @example
  * const assert = require('assert');
  * const { fromSecretKey } = require('@arcblock/forge-wallet');
@@ -159,8 +177,8 @@ function fromSecretKey(sk, _type) {
  * @public
  * @static
  * @param {string} pk - the public key, `hex encoded string`
- * @param {...walletType} type - wallet type
- * @returns {object} wallet instance
+ * @param {WalletTypeObject} type - wallet type
+ * @returns {WalletObject} wallet object that can be used to sign/verify/getAddress
  */
 function fromPublicKey(pk, _type) {
   return Wallet({ pk }, WalletType(_type));
@@ -174,7 +192,7 @@ function fromPublicKey(pk, _type) {
  * @public
  * @static
  * @param {string} address - the wallet address
- * @returns wallet instance
+ * @returns {WalletObject} wallet object that can be used to sign/verify/getAddress
  * @example
  * const assert = require('assert');
  * const { fromAddress } = require('@arcblock/forge-wallet');
@@ -192,8 +210,8 @@ function fromAddress(address) {
  *
  * @public
  * @static
- * @param {...walletType} type - wallet type
- * @returns {object} wallet instance
+ * @param {WalletTypeObject} type - wallet type
+ * @returns {WalletObject} wallet object that can be used to sign/verify/getAddress
  * @example
  * const { fromRandom } = require('@arcblock/forge-wallet');
  * const wallet = fromRandom(type);
@@ -211,10 +229,11 @@ function fromRandom(_type) {
  *
  * @public
  * @static
- * @param {object} json
- * @returns wallet instance
+ * @param {object} json - json presentation of a wallet
+ * @returns {WalletObject} wallet object that can be used to sign/verify/getAddress
  * @example
- * const { fromJSON } = require('@arcblock/forge-wallet');
+ * const { fromJSON, fromRandom } = require('@arcblock/forge-wallet');
+ * const wallet = fromRandom(type);
  * const wallet2 = fromJSON(wallet.toJSON());
  * // wallet2 is identical to wallet
  */

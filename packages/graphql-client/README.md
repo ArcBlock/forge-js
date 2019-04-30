@@ -1,12 +1,22 @@
 # `@arcblock/graphql-client`
 
-> Graphql Client for Forge, provided gRPC similar features to interact with a forge-powered app.
+Client library to connect your app with forge powered blockchain node, all requests are sent over http/https, can be used in both Node.js and browser environment.
+
+A `GraphQLClient` instance mainly supports 5 groups of methods that saves you time when read/write data from/to blockchain.
+
+* `queries`: query block/transaction/account/asset/chain/node data form the blockchain
+* `mutations`: send transaction to the blockchain, `sendTx`, all transactions should be signed before sending out to the blockchain
+* `subscriptions`: listen to changes of any data on the blockchain
+* `senders`: shortcut methods that takes a `wallet` and a `tx` object, then do the signing, and sending
+* `encoders`: shortcut methods that takes a `wallet` and a `tx` object, encode the transaction for later signing, used internally by senders
 
 
 ## Table of Contents
 
 * [Install](#install)
 * [Usage](#usage)
+* [Examples](#examples)
+* [Debugging](#debugging)
 * [Documentation](#documentation)
 
 
@@ -23,11 +33,11 @@ yarn add @arcblock/graphql-client
 
 ```js
 const Mcrypto = require('@arcblock/mcrypto');
-const GraphqlClient = require('@arcblock/graphql-client');
+const GraphQLClient = require('@arcblock/graphql-client');
 const { fromRandom, WalletType } = require('@arcblock/forge-wallet');
 const { hexToBytes } = require('@arcblock/forge-util');
 
-const client = new GraphqlClient('http://localhost:8210/api');
+const client = new GraphQLClient('http://localhost:8210/api');
 console.log({
   queries: client.getQueries(),
   subscriptions: client.getSubscriptions(),
@@ -37,7 +47,7 @@ console.log({
 });
 
 (async () => {
-  // Query Data
+  // Query chain state data
   const chainInfo = await client.getChainInfo();
   const forgeState = await client.getForgeState();
   const block = await client.getBlock({ height: 2 });
@@ -45,7 +55,7 @@ console.log({
   console.log('getForgeState', forgeState);
   console.log('getBlock', block);
 
-  // Send Transaction
+  // Send transaction
   const wallet = fromRandom(
     WalletType({
       role: Mcrypto.types.RoleType.ROLE_ACCOUNT,
@@ -53,19 +63,38 @@ console.log({
       hash: Mcrypto.types.HashType.SHA3,
     })
   );
-  const res = await client.sendDeclareTx({
-    data: {
-      moniker: `wangshijun_${Math.round(Math.random() * 1000)}`,
-      pk: Buffer.from(hexToBytes(wallet.publicKey)),
-      type,
+  const hash = await client.sendDeclareTx({
+    tx: {
+      itx: {
+        moniker: 'username',
+      },
     },
     wallet,
   });
-  console.log(res);
+  console.log(hash);
 })();
 ```
 
 
+## Examples
+
+* [Declare identify on the blockchain](./examples/declare.js)
+* [Get free token for newly created account](./examples/get_free_token.js)
+* [Transfer assets between 2 accounts](./examples/transfer_asset.js)
+* [Transfer tokens between 2 accounts](./examples/transfer_token.js)
+* [Exchange asset and token between 2 newly created accounts](./examples/exchange.js)
+* [Create/update asset on the blockchain](./examples/asset.js)
+* [Consume newly create asset](./examples/consume_asset.js)
+* [Stake for the connected node](./examples/stake_for_node.js)
+
+
+## Debugging
+
+* If you are in Node.js: `DEBUG=@arcblock/graphql-client node script.js`
+* If you are in browser: `localStorage.setItem('DEBUG', '@arcblock/graphql-client')`
+
+
 ## Documentation
 
-Checkout: [QUERIES.md](./QUERIES.md).
+* Query arguments and response structure can be found here: [QUERIES.md](./docs/QUERIES.md)
+* Complete method list can be found here: [README.md](./docs/README.md)

@@ -13,19 +13,20 @@
  * Then put the signed result into the `signature` field of the `Multisig` structure
  * of the 1st element of `tx.signatures`.
  *
- * Run script with: `DEBUG=@arcblokc/graphql-client node docs/exchange.js`
+ * Run script with: `DEBUG=@arcblock/graphql-client node examples/exchange.js`
  */
 
 const Mcrypto = require('@arcblock/mcrypto');
+const GraphqlClient = require('@arcblock/graphql-client');
 const { toAssetAddress } = require('@arcblock/did-util');
 const { fromRandom, WalletType } = require('@arcblock/forge-wallet');
 const { hexToBytes, fromTokenToUnit } = require('@arcblock/forge-util');
 
-const GraphqlClient = require('../src/node');
+// const endpoint = 'https://test.abtnetwork.io'; // testnet
+const endpoint = 'http://127.0.0.1:8210'; // local
+// const endpoint = 'http://did-workshop.arcblock.co:8210'; // workshop
 
-// const client = new GraphqlClient('https://test.abtnetwork.io/api'); // test
-// const client = new GraphqlClient('http://127.0.0.1:8210/api'); // local
-const client = new GraphqlClient('http://did-workshop.arcblock.co:8210/api'); // workshop
+const client = new GraphqlClient({ endpoint: `${endpoint}/api`, chainId: 'forge' });
 const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
 
 const type = WalletType({
@@ -43,33 +44,34 @@ const type = WalletType({
       receiver: receiver.toJSON(),
     });
 
-    // Declare sender
+    // 1. declare sender
     let res = await client.sendDeclareTx({
       tx: {
         itx: {
           moniker: 'sender',
-          pk: Buffer.from(hexToBytes(sender.publicKey)),
-          type,
         },
       },
       wallet: sender,
     });
     console.log('declare.sender.result', res);
+    console.log('view sender account', `${endpoint}/node/explorer/accounts/${sender.toAddress()}`);
 
-    // Declare receiver
+    // 2. declare receiver
     res = await client.sendDeclareTx({
       tx: {
         itx: {
           moniker: 'receiver',
-          pk: Buffer.from(hexToBytes(receiver.publicKey)),
-          type,
         },
       },
       wallet: receiver,
     });
     console.log('declare.receiver.result', res);
+    console.log(
+      'view receiver account',
+      `${endpoint}/node/explorer/accounts/${receiver.toAddress()}`
+    );
 
-    // Create asset for sender
+    // 3. create asset for sender
     const asset = {
       moniker: 'asset',
       readonly: true,
@@ -88,6 +90,7 @@ const type = WalletType({
       wallet: sender,
     });
     console.log('create_asset.result', res, assetAddress);
+    console.log('view asset', `${endpoint}/node/explorer/assets/${assetAddress}`);
 
     // assemble exchange tx: multisig
     const exchange = {
@@ -114,6 +117,7 @@ const type = WalletType({
     console.log('---------ENCODE.1-----------------------------------------');
     console.log('');
 
+    // 4.1 Sender: encode and sign the transaction
     const { buffer: senderBuffer, object: encoded1 } = await client.encodeExchangeTx({
       tx: exchange,
       wallet: sender,
@@ -134,6 +138,7 @@ const type = WalletType({
     console.log('---------ENCODE.2-----------------------------------------');
     console.log('');
 
+    // 4.2 Receiver: do the multi sig
     exchange.signature = Buffer.from(hexToBytes(senderSignature));
     exchange.nonce = encoded1.nonce;
     exchange.from = encoded1.from;
@@ -164,6 +169,7 @@ const type = WalletType({
 
     delete encoded2.signature;
 
+    // 4.3 Send the exchange tx
     await sleep(5000);
     res = await client.sendExchangeTx({
       tx: encoded2,
@@ -171,6 +177,7 @@ const type = WalletType({
       signature: senderSignature,
     });
     console.log('exchange.result', res);
+    console.log('view exchange tx', `${endpoint}/node/explorer/txs/${res}`);
   } catch (err) {
     console.error(err);
     console.log(JSON.stringify(err.errors));

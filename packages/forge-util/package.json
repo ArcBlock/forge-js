@@ -19,7 +19,8 @@
     "utf8": "^3.0.0"
   },
   "devDependencies": {
-    "jest": "^23.5.0"
+    "jest": "^23.5.0",
+    "jsdoc-to-markdown": "^4.0.1"
   },
   "author": "wangshijun <wangshijun2010@gmail.com>",
   "homepage": "https://github.com/ArcBlock/forge-js#readme",
@@ -34,10 +35,12 @@
   },
   "scripts": {
     "lint": "eslint lib tests",
+    "generate-docs": "jsdoc2md lib/index.js > docs/README.md",
+    "format-docs": "remark . -o",
     "precommit": "CI=1 yarn test",
     "prepush": "CI=1 yarn test",
-    "test": "npm run lint && node tools/jest.js",
-    "coverage": "npm run lint && yarn test -- --coverage"
+    "test": "yarn lint && node tools/jest.js",
+    "coverage": "yarn lint && yarn test -- --coverage"
   },
   "bugs": {
     "url": "https://github.com/ArcBlock/forge-js/issues"

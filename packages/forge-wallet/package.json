@@ -12,14 +12,15 @@
     "access": "public"
   },
   "author": "wangshijun <wangshijun2010@gmail.com>",
-  "homepage": "https://github.com/ArcBlock/forge-js/tree/master/packages/abt-did",
+  "homepage": "https://github.com/ArcBlock/forge-js/tree/master/packages/forge-wallet",
   "license": "MIT",
   "main": "lib/index.js",
   "files": [
     "lib"
   ],
   "devDependencies": {
-    "jest": "^23.5.0"
+    "jest": "^23.5.0",
+    "jsdoc-to-markdown": "^4.0.1"
   },
   "repository": {
     "type": "git",
@@ -27,16 +28,18 @@
   },
   "scripts": {
     "lint": "eslint tests lib",
-    "precommit": "CI=1 npm run test",
-    "prepush": "CI=1 npm run test",
-    "test": "npm run lint && node tools/jest.js",
-    "coverage": "npm run lint && npm run test -- --coverage"
+    "generate-docs": "jsdoc2md lib/index.js > docs/README.md",
+    "format-docs": "remark . -o",
+    "precommit": "CI=1 yarn test",
+    "prepush": "CI=1 yarn test",
+    "test": "yarn lint && node tools/jest.js",
+    "coverage": "yarn lint && yarn test -- --coverage"
   },
   "bugs": {
     "url": "https://github.com/ArcBlock/forge-js/issues"
   },
   "dependencies": {
-    "@arcblock/abt-did": "^0.19.0",
+    "@arcblock/abt-did": "^0.19.5",
     "@arcblock/mcrypto": "^0.21.0"
   }
 }

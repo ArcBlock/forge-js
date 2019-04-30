@@ -4,20 +4,23 @@
 
 > Utility function to encode and format message that can be sent to or received from forge framework.
 
+
 ## Table of Contents
 
-- [Install](#install)
-- [Usage](#usage)
-- [Documentation](#documentation)
-- [Contributors](#contributors)
+* [Install](#install)
+* [Usage](#usage)
+* [Documentation](#documentation)
+* [Contributors](#contributors)
+
 
 ## Install
 
 ```sh
-npm install @arcblock/forge-message
-// or
+npm i @arcblock/forge-message
+// OR
 yarn add @arcblock/forge-message
 ```
+
 
 ## Usage
 
@@ -40,3 +43,15 @@ const message = createMessage('Transaction', {
 const buffer = message.serializeBinary();
 // Then: send the buffer over the wire
 ```
+
+
+## Documentation
+
+For full documentation, checkout [README.md](./docs/README.md).
+
+
+## Contributors
+
+| Name           | Website                    |
+| -------------- | -------------------------- |
+| **wangshijun** | <https://ocap.arcblock.io> |
