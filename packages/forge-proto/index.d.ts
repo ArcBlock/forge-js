@@ -1,26 +1,37 @@
 // Generate by [js2dts@0.3.2](https://github.com/whxaxes/js2dts#readme)
 
-declare const ForgeProto: ForgeProto.T102;
+declare const ForgeProto: ForgeProto.T101;
 declare namespace ForgeProto {
   export interface T100 {
     [key: string]: any;
   }
   export interface T101 {
-    fn: any;
-    fields: any;
-    oneofs: any;
-  }
-  export interface T102 {
+    /**
+     * All enum types and its values (number format), can be accessed from width: enums.KEY_TYPE.ED25519
+     *
+     * @member
+     * @public
+     * @static
+     * @readonly
+     */
     enums: Enums.main;
+    /**
+     * All enum types and its values (human readable string format), can be accessed from width: messages.KEY_TYPE.ED25519
+     *
+     * @member
+     * @public
+     * @static
+     * @readonly
+     */
     messages: Messages.main;
     transactions: any;
     stakes: any;
     rpcs: ForgeProto.T100;
     compactSpec: (object: any) => any;
-    getMessageType: (type: any) => ForgeProto.T101;
+    getMessageType: (type: string) => any;
     typeUrls: ForgeProto.T100;
-    toTypeUrl: (type: any) => any;
-    fromTypeUrl: (url: any) => any;
+    toTypeUrl: (type: string) => string;
+    fromTypeUrl: (url: string) => string;
   }
 }
 export = ForgeProto;
@@ -39,6 +50,7 @@ declare namespace Enums {
     UNSUPPORTED_TX = 9,
     EXPIRED_TX = 10,
     TOO_MANY_TXS = 11,
+    INVALID_LOCK_STATUS = 12,
     INVALID_MONIKER = 16,
     INVALID_PASSPHRASE = 17,
     INVALID_MULTISIG = 20,
@@ -61,6 +73,8 @@ declare namespace Enums {
     UNTRANSFERRABLE_ASSET = 40,
     READONLY_ASSET = 41,
     CONSUMED_ASSET = 42,
+    INVALID_DEPOSIT_VALUE = 43,
+    EXCEED_DEPOSIT_CAP = 44,
     FORBIDDEN = 403,
     INTERNAL = 500,
     TIMEOUT = 504,
@@ -192,14 +206,16 @@ declare namespace Enums {
     3 = SysUpgradeTx,
     4 = DeclareFileTx,
     5 = CreateAssetTx,
-    6 = StakeTx,
-    7 = ExchangeTx,
-    8 = AccountMigrateTx,
-    9 = UpgradeNodeTx,
-    10 = UpdateAssetTx,
-    11 = ConsumeAssetTx,
-    12 = PokeTx,
-    13 = TransferTx,
+    6 = PokeTx,
+    7 = ConsumeAssetTx,
+    8 = ExchangeTx,
+    9 = AccountMigrateTx,
+    10 = UpgradeNodeTx,
+    11 = UpdateAssetTx,
+    12 = AcquireAssetTx,
+    13 = DepositTetherTx,
+    14 = StakeTx,
+    15 = TransferTx,
   }
 
   export enum SupportedStakes {
@@ -241,6 +257,7 @@ declare namespace Messages {
     9 = UNSUPPORTED_TX,
     10 = EXPIRED_TX,
     11 = TOO_MANY_TXS,
+    12 = INVALID_LOCK_STATUS,
     16 = INVALID_MONIKER,
     17 = INVALID_PASSPHRASE,
     20 = INVALID_MULTISIG,
@@ -263,6 +280,8 @@ declare namespace Messages {
     40 = UNTRANSFERRABLE_ASSET,
     41 = READONLY_ASSET,
     42 = CONSUMED_ASSET,
+    43 = INVALID_DEPOSIT_VALUE,
+    44 = EXCEED_DEPOSIT_CAP,
     403 = FORBIDDEN,
     500 = INTERNAL,
     504 = TIMEOUT,

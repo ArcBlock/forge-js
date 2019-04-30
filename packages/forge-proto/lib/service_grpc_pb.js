@@ -180,6 +180,17 @@ function deserialize_forge_abi_RequestGetStakeState(buffer_arg) {
   return rpc_pb.RequestGetStakeState.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_forge_abi_RequestGetTetherInfo(arg) {
+  if (!(arg instanceof rpc_pb.RequestGetTetherInfo)) {
+    throw new Error('Expected argument of type forge_abi.RequestGetTetherInfo');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_forge_abi_RequestGetTetherInfo(buffer_arg) {
+  return rpc_pb.RequestGetTetherInfo.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_forge_abi_RequestGetTx(arg) {
   if (!(arg instanceof rpc_pb.RequestGetTx)) {
     throw new Error('Expected argument of type forge_abi.RequestGetTx');
@@ -596,6 +607,17 @@ function serialize_forge_abi_ResponseGetStakeState(arg) {
 
 function deserialize_forge_abi_ResponseGetStakeState(buffer_arg) {
   return rpc_pb.ResponseGetStakeState.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_forge_abi_ResponseGetTetherInfo(arg) {
+  if (!(arg instanceof rpc_pb.ResponseGetTetherInfo)) {
+    throw new Error('Expected argument of type forge_abi.ResponseGetTetherInfo');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_forge_abi_ResponseGetTetherInfo(buffer_arg) {
+  return rpc_pb.ResponseGetTetherInfo.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_forge_abi_ResponseGetTx(arg) {
@@ -1116,6 +1138,17 @@ var StateRpcService = (exports.StateRpcService = {
     requestDeserialize: deserialize_forge_abi_RequestGetStakeState,
     responseSerialize: serialize_forge_abi_ResponseGetStakeState,
     responseDeserialize: deserialize_forge_abi_ResponseGetStakeState,
+  },
+  get_tether_info: {
+    path: '/forge_abi.StateRpc/get_tether_info',
+    requestStream: true,
+    responseStream: true,
+    requestType: rpc_pb.RequestGetTetherInfo,
+    responseType: rpc_pb.ResponseGetTetherInfo,
+    requestSerialize: serialize_forge_abi_RequestGetTetherInfo,
+    requestDeserialize: deserialize_forge_abi_RequestGetTetherInfo,
+    responseSerialize: serialize_forge_abi_ResponseGetTetherInfo,
+    responseDeserialize: deserialize_forge_abi_ResponseGetTetherInfo,
   },
 });
 

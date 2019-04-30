@@ -10,6 +10,7 @@
 * [Install](#install)
 * [Usage](#usage)
 * [Documentation](#documentation)
+* [Contributors](#contributors)
 
 
 ## Install
