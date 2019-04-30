@@ -2,13 +2,13 @@
 # yarn lockfile v1
 
 
-"@arcblock/abt-did@^0.19.0":
-  version "0.19.0"
-  resolved "https://registry.npm.taobao.org/@arcblock/abt-did/download/@arcblock/abt-did-0.19.0.tgz#96ac821bddc5ab0e02e2f1359f5a9808b7272856"
-  integrity sha1-lqyCG93Fqw4C4vE1n1qYCLcnKFY=
+"@arcblock/abt-did@^0.19.5":
+  version "0.19.5"
+  resolved "https://registry.npmjs.org/@arcblock/abt-did/-/abt-did-0.19.5.tgz#2434bb44ad3890adbd82b46d5ef4b83c401ddd56"
+  integrity sha512-whibmG1IETsJ6sMKyVPU9V8q3hbfoy5V3vXzz5q1CpWgq91QDL6GOuqX/mPfDXRIiINnnCO19bP+Vrr59XbL1w==
   dependencies:
-    "@arcblock/forge-util" "^0.20.0"
-    "@arcblock/mcrypto" "^0.20.0"
+    "@arcblock/forge-util" "^0.21.0"
+    "@arcblock/mcrypto" "^0.21.0"
     base64-url "^2.2.0"
     debug "^4.1.1"
     hdkey "^1.1.1"
@@ -26,16 +26,16 @@
     babel-polyfill "^6.26.0"
     js-cookie "^2.2.0"
 
-"@arcblock/did-util@^0.19.1":
-  version "0.19.1"
-  resolved "https://registry.npmjs.org/@arcblock/did-util/-/did-util-0.19.1.tgz#b76f4f3620fe105c3e3481aeeba8f8b2c0b3eba1"
-  integrity sha512-Rf2TOPKgyq1USH5xRjNjc+llPZQeGrMyCy02T7KEK41mriGNHfTlJ2WIU/pFwmTpT0puBtvZYbWWVRBI9kbYXA==
+"@arcblock/did-util@^0.19.5":
+  version "0.19.5"
+  resolved "https://registry.npmjs.org/@arcblock/did-util/-/did-util-0.19.5.tgz#99eb2d22d528efe2f3ab3be2f09b7e084d82561a"
+  integrity sha512-S2CJDBbcV1l6AmFqIq5y6E/AUVIPVupLkD7Pe21XXFz1WmhIRpWiWQJxzFJnbwxf6JK2bB8IjmONHePqqVIa8Q==
   dependencies:
-    "@arcblock/abt-did" "^0.19.0"
-    "@arcblock/forge-message" "^0.20.1"
-    "@arcblock/forge-util" "^0.20.0"
-    "@arcblock/forge-wallet" "^0.20.0"
-    "@arcblock/mcrypto" "^0.20.0"
+    "@arcblock/abt-did" "^0.19.5"
+    "@arcblock/forge-message" "^0.21.0"
+    "@arcblock/forge-util" "^0.21.0"
+    "@arcblock/forge-wallet" "^0.21.0"
+    "@arcblock/mcrypto" "^0.21.0"
 
 "@arcblock/docblock@1.2.0":
   version "1.2.0"
