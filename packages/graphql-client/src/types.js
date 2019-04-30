@@ -5,6 +5,36 @@
  * @function
  * @memberof GraphQLClient
  * @returns {Array<string>} method name list
+ * @example
+ * const methods = client.getQueries();
+ * // list of query methods
+ * // [
+ * //   getAccountState,
+ * //   getAssetState,
+ * //   getBlock,
+ * //   getBlocks,
+ * //   getChainInfo,
+ * //   getConfig,
+ * //   getForgeState,
+ * //   getForgeStats,
+ * //   getForgeStatsByDay,
+ * //   getForgeStatsByHour,
+ * //   getHealthStatus,
+ * //   getNetInfo,
+ * //   getNodeInfo,
+ * //   getProtocolState,
+ * //   getSimulatorStatus,
+ * //   getStakeState,
+ * //   getTx,
+ * //   getUnconfirmedTxs,
+ * //   getValidatorsInfo,
+ * //   listAssetTransactions,
+ * //   listAssets,
+ * //   listBlocks,
+ * //   listStakes,
+ * //   listTopAccounts,
+ * //   listTransactions,
+ * // ]
  */
 
 /**
@@ -14,6 +44,15 @@
  * @function
  * @memberof GraphQLClient
  * @returns {Array<string>} method name list
+ * @example
+ * const methods = client.getMutations();
+ * // list of mutation methods
+ * // [
+ * //   sendTx,
+ * //   startSimulator,
+ * //   stopSimulator,
+ * //   unsubscribe,
+ * // ]
  */
 
 /**
@@ -23,6 +62,12 @@
  * @function
  * @memberof GraphQLClient
  * @returns {Array<string>} method name list
+ * @example
+ * const methods = client.getSubscriptions();
+ * // list of subscription methods
+ * // [
+ * //   subscribe,
+ * // ]
  */
 
 /**

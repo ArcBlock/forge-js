@@ -197,6 +197,15 @@ const dtsContent = `
  * @function
  * @memberof ${namespace}
  * @returns {Array<string>} method name list
+ * @example
+ * const methods = client.getQueries();
+ * // list of query methods
+ * // [
+${client
+  .getQueries()
+  .map(x => ` * //   ${x},`)
+  .join('\n')}
+ * // ]
  */
 
 /**
@@ -206,6 +215,15 @@ const dtsContent = `
  * @function
  * @memberof ${namespace}
  * @returns {Array<string>} method name list
+ * @example
+ * const methods = client.getMutations();
+ * // list of mutation methods
+ * // [
+${client
+  .getMutations()
+  .map(x => ` * //   ${x},`)
+  .join('\n')}
+ * // ]
  */
 
 /**
@@ -215,6 +233,15 @@ const dtsContent = `
  * @function
  * @memberof ${namespace}
  * @returns {Array<string>} method name list
+ * @example
+ * const methods = client.getSubscriptions();
+ * // list of subscription methods
+ * // [
+${client
+  .getSubscriptions()
+  .map(x => ` * //   ${x},`)
+  .join('\n')}
+ * // ]
  */
 
 /**
