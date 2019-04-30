@@ -194,7 +194,14 @@ class GraphQLClient extends BaseClient {
         debug(`sendTx.${x}.txHex`, toHex(txBytes));
         debug(`sendTx.${x}.txB64`, txStr);
 
-        return this.sendTx({ tx: txStr });
+        return new Promise(async (resolve, reject) => {
+          try {
+            const { hash } = await this.sendTx({ tx: txStr });
+            resolve(hash);
+          } catch (err) {
+            reject(err);
+          }
+        });
       };
 
       const sendMethod = camelcase(`send_${x}`);
