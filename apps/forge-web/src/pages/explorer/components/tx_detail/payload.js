@@ -26,7 +26,7 @@ const Payload = ({ itx }) => {
         <li>
           <IconFa name="coins" size={14} className="meta-icon" />
           <span>
-            {fromUnitToToken(itx.value, token.decimal)} {token.symbol}
+            {fromUnitToToken(itx.value || '0', token.decimal)} {token.symbol}
           </span>
         </li>
       )}
