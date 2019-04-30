@@ -48,6 +48,7 @@
     "upgrade": "bash tools/copy.sh && npm run gen && npm run generate-dts",
     "copy": "bash tools/copy.sh",
     "gen": "node tools/gen-proto-entry.js full && node tools/gen-proto-entry.js lite",
+    "generate-docs": "jsdoc2md init.js > docs/README.md",
     "generate-dts": "j2d index.js && node tools/generate-dts.js && bash tools/patch-dts.sh",
     "lint": "eslint tests index.js",
     "precommit": "CI=1 npm run test",

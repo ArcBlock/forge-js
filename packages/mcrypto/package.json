@@ -20,7 +20,8 @@
     "lib"
   ],
   "devDependencies": {
-    "jest": "^23.5.0"
+    "jest": "^23.5.0",
+    "jsdoc-to-markdown": "^4.0.1"
   },
   "repository": {
     "type": "git",
@@ -31,6 +32,7 @@
     "precommit": "CI=1 npm run test",
     "prepush": "CI=1 npm run test",
     "test": "npm run lint && node tools/jest.js",
+    "generate-docs": "jsdoc2md lib/index.js > docs/README.md",
     "coverage": "npm run lint && npm run test -- --coverage"
   },
   "bugs": {

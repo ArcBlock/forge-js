@@ -10,6 +10,7 @@
   - [Table of Contents](#table-of-contents)
   - [Install](#install)
   - [Usage](#usage)
+  - [Documentation](#documentation)
 
 ## Install
 
@@ -32,3 +33,7 @@ const message = new Message({
   from: 'abc',
 });
 ```
+
+## Documentation
+
+For full documentation, checkout [README.md](./docs/README.md).

@@ -27,6 +27,7 @@
   "devDependencies": {
     "j2d": "^1.0.3-dev",
     "jest": "^23.5.0",
+    "jsdoc-to-markdown": "^4.0.1",
     "remark-cli": "^5.0.0",
     "remark-preset-github": "^0.0.9"
   },
@@ -64,6 +65,7 @@
   "scripts": {
     "lint": "eslint lib index.js lite.js tests",
     "upgrade": "npm run format-docs && npm run generate-dts",
+    "generate-docs": "jsdoc2md lib/message.js > docs/README.md",
     "format-docs": "remark . -o",
     "generate-dts": "j2d index.js",
     "precommit": "CI=1 yarn test",

@@ -19,3 +19,7 @@ console.log(Util.isStrictHex('0x123abc'));        // true
 ```
 
 Checkout [lib/index.d.ts](./lib/index.d.ts) for more API.
+
+## Documentation
+
+For full documentation, checkout [README.md](./docs/README.md).

@@ -420,7 +420,7 @@ function encodeAny(data) {
       // avoid duplicate serialization
       anyMessage.setTypeUrl(data.typeUrl);
       if (data.typeUrl === 'fg:x:address') {
-        anyMessage.setValue(Uint8Array.from(data.value));
+        anyMessage.setValue(data.value);
       } else if (data.typeUrl === 'json') {
         anyMessage.setValue(Uint8Array.from(Buffer.from(JSON.stringify(data.value))));
       } else {

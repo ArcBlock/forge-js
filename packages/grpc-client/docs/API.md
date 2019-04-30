@@ -60,6 +60,7 @@
   * [storeFile](#storefile)
   * [subscribe](#subscribe)
   * [unsubscribe](#unsubscribe)
+* [Contributors](#contributors)
 
 
 ## Enums

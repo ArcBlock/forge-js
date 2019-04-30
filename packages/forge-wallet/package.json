@@ -19,7 +19,8 @@
     "lib"
   ],
   "devDependencies": {
-    "jest": "^23.5.0"
+    "jest": "^23.5.0",
+    "jsdoc-to-markdown": "^4.0.1"
   },
   "repository": {
     "type": "git",
@@ -27,6 +28,7 @@
   },
   "scripts": {
     "lint": "eslint tests lib",
+    "generate-docs": "jsdoc2md lib/index.js > docs/README.md",
     "precommit": "CI=1 npm run test",
     "prepush": "CI=1 npm run test",
     "test": "npm run lint && node tools/jest.js",
