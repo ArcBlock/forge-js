@@ -6,7 +6,6 @@
 
 ```shell
 yarn add @arcblock/forge-wallet
-
 # OR
 npm i @arcblock/forge-wallet -S
 ```

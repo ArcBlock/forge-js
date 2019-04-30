@@ -6,7 +6,6 @@
 
 ```shell
 yarn add @arcblock/forge-util
-
 # OR
 npm i @arcblock/forge-util -S
 ```

@@ -6,16 +6,16 @@
 
 ## Table of Contents
 
-- [Install](#install)
-- [Usage](#usage)
-- [Documentation](#documentation)
-- [Contributors](#contributors)
+- [**@arcblock/forge-message**](#arcblockforge-message)
+  - [Table of Contents](#table-of-contents)
+  - [Install](#install)
+  - [Usage](#usage)
 
 ## Install
 
 ```sh
-npm install @arcblock/forge-message
-// or
+npm i @arcblock/forge-message
+// OR
 yarn add @arcblock/forge-message
 ```
 

@@ -5,6 +5,8 @@
 ## Usage
 
 ```shell
+npm i @arcblock/mcrypto -S
+# OR
 yarn add @arcblock/mcrypto
 ```
 

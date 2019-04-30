@@ -21,7 +21,7 @@ A `GRpcClient` instance mainly supports 3 groups of methods that saves you time 
 ## Install
 
 ```sh
-npm install @arcblock/grpc-client
+npm i @arcblock/grpc-client
 // or
 yarn add @arcblock/grpc-client
 ```
