@@ -2,7 +2,13 @@
 
 [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 
-> gRPC client to read/write data on forge powered blockchain
+gRpc Client library to connect your app with forge powered blockchain node, all requests are sent over tcp, can be used in only Node.js environment.
+
+A `GRpcClient` instance mainly supports 3 groups of methods that saves you time when read/write data from/to blockchain.
+
+- `rpcs`: read/write block/transaction/account/asset/chain/node data form/to the blockchain
+- `senders`: shortcut methods that takes a `wallet` and a `tx` object, then do the signing, and sending
+- `encoders`: shortcut methods that takes a `wallet` and a `tx` object, encode the transaction for later signing, used internally by senders
 
 ## Table of Contents
 
@@ -26,6 +32,12 @@ yarn add @arcblock/grpc-client
 const GRpcClient = require('@arcblock/grpc-client');
 
 const client = new GRpcClient('tcp://127.0.0.1:28210');
+console.log({
+  rpcs: client.getRpcMethods(),
+  senders: client.getTxSendMethods(),
+  encoders: client.getTxEncodeMethods(),
+});
+
 (async () => {
   // fetch forge change info
   const { info } = await client.getChainInfo();
