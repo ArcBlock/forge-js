@@ -94,5 +94,5 @@ console.log({
 
 ## Documentation
 
-- Query arguments and response structure can be found here: [QUERIES.md](./QUERIES.md)
-- Complete method list can be found here: [API.md](./API.md)
+- Query arguments and response structure can be found here: [QUERIES.md](./docs/QUERIES.md)
+- Complete method list can be found here: [README.md](./docs/README.md)
