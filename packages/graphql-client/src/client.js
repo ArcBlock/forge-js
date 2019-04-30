@@ -16,6 +16,13 @@ const graphqlSchema = require('./schema/graphql.json');
  * Please note that, due to internal implementation of google-protobuf, all `repeated fields` names are suffixed with `List`
  *
  * @class
+ * @example
+ * const GraphQLClient = require('@arcblock/graphql-client');
+ *
+ * const client = new GraphQLClient('https://argon.abtnetwork.io/api');
+ * // const client = new GraphQLClient({ endpoint: 'https://argon.abtnetwork.io/api' });
+ *
+ * const res = await client.getChainInfo();
  */
 class GraphQLClient extends BaseClient {
   /**

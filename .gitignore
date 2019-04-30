@@ -13,5 +13,5 @@ demo.js
 .netlify
 .next
 tmp
-docs
+./docs/
 package-lock.json

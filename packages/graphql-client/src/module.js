@@ -10,4 +10,7 @@
  * @requires @arcblock/forge-util
  * @see GraphQLClient
  * @see GRpcClient
+ * @example
+ * yarn add @arcblock/graphql-client
+ * npm i @arcblock/graphql-client -S
  */

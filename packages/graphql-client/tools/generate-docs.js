@@ -225,6 +225,20 @@ const dtsContent = `
  * @memberof ${namespace}
  * @param {string} query - graphql query string
  * @returns {Promise} usually axios response data
+ * @example
+ * const res = await client.doRawQuery('
+ *   getChainInfo {
+ *     code
+ *     info {
+ *       address
+ *       blockHeight
+ *     }
+ *   }
+ * ');
+ *
+ * // Then
+ * // res.getChainInfo.code
+ * // res.getChainInfo.info
  */
 
 /**

@@ -23,9 +23,9 @@ const { hexToBytes, fromTokenToUnit } = require('@arcblock/forge-util');
 
 const GraphqlClient = require('../src/node');
 
-// const client = new GraphqlClient('https://test.abtnetwork.io/api'); // test
+const client = new GraphqlClient('https://test.abtnetwork.io/api'); // test
 // const client = new GraphqlClient('http://127.0.0.1:8210/api'); // local
-const client = new GraphqlClient('http://did-workshop.arcblock.co:8210/api'); // workshop
+// const client = new GraphqlClient('http://did-workshop.arcblock.co:8210/api'); // workshop
 const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
 
 const type = WalletType({
