@@ -13,7 +13,7 @@
  * Then put the signed result into the `signature` field of the `Multisig` structure
  * of the 1st element of `tx.signatures`.
  *
- * Run script with: `DEBUG=@arcblokc/graphql-client node docs/exchange.js`
+ * Run script with: `DEBUG=@arcblock/graphql-client node docs/exchange.js`
  */
 
 const Mcrypto = require('@arcblock/mcrypto');

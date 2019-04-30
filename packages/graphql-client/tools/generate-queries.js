@@ -44,7 +44,7 @@ ${print(parse(method.result))}
 const map = generateFormats(true);
 const docs = Object.keys(map).map(x => genSectionDoc(x, map[x]));
 
-const docFile = path.join(__dirname, '../QUERIES.md');
+const docFile = path.join(__dirname, '../docs/QUERIES.md');
 fs.writeFileSync(
   docFile,
   `# Forge GraphQL API List\n
