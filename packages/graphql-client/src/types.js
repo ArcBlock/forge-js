@@ -4274,10 +4274,10 @@
 
 /**
  * @memberof GraphQLClient
- * @typedef {Object} GraphQLClient.CreateAssetTxInput
+ * @typedef {Object} GraphQLClient.ConsumeAssetTxInput
  * @prop {object} input
  * @prop {object} input.tx - data of the transaction
- * @prop {GraphQLClient.CreateAssetTx} input.tx.itx - the actual transaction object
+ * @prop {GraphQLClient.ConsumeAssetTx} input.tx.itx - the actual transaction object
  * @prop {string} [input.tx.pk] - the sender pk
  * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
  * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
@@ -4289,12 +4289,38 @@
  */
 
 /**
- * Send CreateAssetTx transaction and get the hash, use {@link GraphQLClient#getTx} to get transaction detail
+ * Send ConsumeAssetTx transaction and get the hash, use {@link GraphQLClient#getTx} to get transaction detail
  *
  * @memberof GraphQLClient
  * @function
- * @name GraphQLClient#sendCreateAssetTx
- * @param {GraphQLClient.CreateAssetTxInput} params
+ * @name GraphQLClient#sendConsumeAssetTx
+ * @param {GraphQLClient.ConsumeAssetTxInput} params
+ * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
+ */
+
+/**
+ * @memberof GraphQLClient
+ * @typedef {Object} GraphQLClient.PokeTxInput
+ * @prop {object} input
+ * @prop {object} input.tx - data of the transaction
+ * @prop {GraphQLClient.PokeTx} input.tx.itx - the actual transaction object
+ * @prop {string} [input.tx.pk] - the sender pk
+ * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
+ * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
+ * @prop {string} [input.tx.chainId] - the chainId
+ * @prop {string} [input.tx.signature] - transaction signature
+ * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transaction
+ * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
+ * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
+ */
+
+/**
+ * Send PokeTx transaction and get the hash, use {@link GraphQLClient#getTx} to get transaction detail
+ *
+ * @memberof GraphQLClient
+ * @function
+ * @name GraphQLClient#sendPokeTx
+ * @param {GraphQLClient.PokeTxInput} params
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
 
@@ -4326,10 +4352,10 @@
 
 /**
  * @memberof GraphQLClient
- * @typedef {Object} GraphQLClient.PokeTxInput
+ * @typedef {Object} GraphQLClient.ExchangeTxInput
  * @prop {object} input
  * @prop {object} input.tx - data of the transaction
- * @prop {GraphQLClient.PokeTx} input.tx.itx - the actual transaction object
+ * @prop {GraphQLClient.ExchangeTx} input.tx.itx - the actual transaction object
  * @prop {string} [input.tx.pk] - the sender pk
  * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
  * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
@@ -4341,12 +4367,12 @@
  */
 
 /**
- * Send PokeTx transaction and get the hash, use {@link GraphQLClient#getTx} to get transaction detail
+ * Send ExchangeTx transaction and get the hash, use {@link GraphQLClient#getTx} to get transaction detail
  *
  * @memberof GraphQLClient
  * @function
- * @name GraphQLClient#sendPokeTx
- * @param {GraphQLClient.PokeTxInput} params
+ * @name GraphQLClient#sendExchangeTx
+ * @param {GraphQLClient.ExchangeTxInput} params
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
 
@@ -4456,10 +4482,10 @@
 
 /**
  * @memberof GraphQLClient
- * @typedef {Object} GraphQLClient.ConsumeAssetTxInput
+ * @typedef {Object} GraphQLClient.AcquireAssetTxInput
  * @prop {object} input
  * @prop {object} input.tx - data of the transaction
- * @prop {GraphQLClient.ConsumeAssetTx} input.tx.itx - the actual transaction object
+ * @prop {GraphQLClient.AcquireAssetTx} input.tx.itx - the actual transaction object
  * @prop {string} [input.tx.pk] - the sender pk
  * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
  * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
@@ -4471,12 +4497,12 @@
  */
 
 /**
- * Send ConsumeAssetTx transaction and get the hash, use {@link GraphQLClient#getTx} to get transaction detail
+ * Send AcquireAssetTx transaction and get the hash, use {@link GraphQLClient#getTx} to get transaction detail
  *
  * @memberof GraphQLClient
  * @function
- * @name GraphQLClient#sendConsumeAssetTx
- * @param {GraphQLClient.ConsumeAssetTxInput} params
+ * @name GraphQLClient#sendAcquireAssetTx
+ * @param {GraphQLClient.AcquireAssetTxInput} params
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
 
@@ -4508,10 +4534,10 @@
 
 /**
  * @memberof GraphQLClient
- * @typedef {Object} GraphQLClient.ExchangeTxInput
+ * @typedef {Object} GraphQLClient.DepositTetherTxInput
  * @prop {object} input
  * @prop {object} input.tx - data of the transaction
- * @prop {GraphQLClient.ExchangeTx} input.tx.itx - the actual transaction object
+ * @prop {GraphQLClient.DepositTetherTx} input.tx.itx - the actual transaction object
  * @prop {string} [input.tx.pk] - the sender pk
  * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
  * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
@@ -4523,21 +4549,21 @@
  */
 
 /**
- * Send ExchangeTx transaction and get the hash, use {@link GraphQLClient#getTx} to get transaction detail
+ * Send DepositTetherTx transaction and get the hash, use {@link GraphQLClient#getTx} to get transaction detail
  *
  * @memberof GraphQLClient
  * @function
- * @name GraphQLClient#sendExchangeTx
- * @param {GraphQLClient.ExchangeTxInput} params
+ * @name GraphQLClient#sendDepositTetherTx
+ * @param {GraphQLClient.DepositTetherTxInput} params
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
 
 /**
  * @memberof GraphQLClient
- * @typedef {Object} GraphQLClient.DeclareFileTxInput
+ * @typedef {Object} GraphQLClient.CreateAssetTxInput
  * @prop {object} input
  * @prop {object} input.tx - data of the transaction
- * @prop {GraphQLClient.DeclareFileTx} input.tx.itx - the actual transaction object
+ * @prop {GraphQLClient.CreateAssetTx} input.tx.itx - the actual transaction object
  * @prop {string} [input.tx.pk] - the sender pk
  * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
  * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
@@ -4549,12 +4575,12 @@
  */
 
 /**
- * Send DeclareFileTx transaction and get the hash, use {@link GraphQLClient#getTx} to get transaction detail
+ * Send CreateAssetTx transaction and get the hash, use {@link GraphQLClient#getTx} to get transaction detail
  *
  * @memberof GraphQLClient
  * @function
- * @name GraphQLClient#sendDeclareFileTx
- * @param {GraphQLClient.DeclareFileTxInput} params
+ * @name GraphQLClient#sendCreateAssetTx
+ * @param {GraphQLClient.CreateAssetTxInput} params
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
 
@@ -4585,12 +4611,48 @@
  */
 
 /**
- * Encode a CreateAssetTx transaction for later use
+ * @memberof GraphQLClient
+ * @typedef {Object} GraphQLClient.DeclareFileTxInput
+ * @prop {object} input
+ * @prop {object} input.tx - data of the transaction
+ * @prop {GraphQLClient.DeclareFileTx} input.tx.itx - the actual transaction object
+ * @prop {string} [input.tx.pk] - the sender pk
+ * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
+ * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
+ * @prop {string} [input.tx.chainId] - the chainId
+ * @prop {string} [input.tx.signature] - transaction signature
+ * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transaction
+ * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
+ * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
+ */
+
+/**
+ * Send DeclareFileTx transaction and get the hash, use {@link GraphQLClient#getTx} to get transaction detail
  *
- * @name GraphQLClient#encodeCreateAssetTx
+ * @memberof GraphQLClient
+ * @function
+ * @name GraphQLClient#sendDeclareFileTx
+ * @param {GraphQLClient.DeclareFileTxInput} params
+ * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
+ */
+
+/**
+ * Encode a ConsumeAssetTx transaction for later use
+ *
+ * @name GraphQLClient#encodeConsumeAssetTx
  * @function
  * @memberof GraphQLClient
- * @param {GraphQLClient.CreateAssetTxInput} params
+ * @param {GraphQLClient.ConsumeAssetTxInput} params
+ * @returns {Promise<GraphQLClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
+ */
+
+/**
+ * Encode a PokeTx transaction for later use
+ *
+ * @name GraphQLClient#encodePokeTx
+ * @function
+ * @memberof GraphQLClient
+ * @param {GraphQLClient.PokeTxInput} params
  * @returns {Promise<GraphQLClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
 
@@ -4605,12 +4667,12 @@
  */
 
 /**
- * Encode a PokeTx transaction for later use
+ * Encode a ExchangeTx transaction for later use
  *
- * @name GraphQLClient#encodePokeTx
+ * @name GraphQLClient#encodeExchangeTx
  * @function
  * @memberof GraphQLClient
- * @param {GraphQLClient.PokeTxInput} params
+ * @param {GraphQLClient.ExchangeTxInput} params
  * @returns {Promise<GraphQLClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
 
@@ -4655,12 +4717,12 @@
  */
 
 /**
- * Encode a ConsumeAssetTx transaction for later use
+ * Encode a AcquireAssetTx transaction for later use
  *
- * @name GraphQLClient#encodeConsumeAssetTx
+ * @name GraphQLClient#encodeAcquireAssetTx
  * @function
  * @memberof GraphQLClient
- * @param {GraphQLClient.ConsumeAssetTxInput} params
+ * @param {GraphQLClient.AcquireAssetTxInput} params
  * @returns {Promise<GraphQLClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
 
@@ -4675,22 +4737,22 @@
  */
 
 /**
- * Encode a ExchangeTx transaction for later use
+ * Encode a DepositTetherTx transaction for later use
  *
- * @name GraphQLClient#encodeExchangeTx
+ * @name GraphQLClient#encodeDepositTetherTx
  * @function
  * @memberof GraphQLClient
- * @param {GraphQLClient.ExchangeTxInput} params
+ * @param {GraphQLClient.DepositTetherTxInput} params
  * @returns {Promise<GraphQLClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
 
 /**
- * Encode a DeclareFileTx transaction for later use
+ * Encode a CreateAssetTx transaction for later use
  *
- * @name GraphQLClient#encodeDeclareFileTx
+ * @name GraphQLClient#encodeCreateAssetTx
  * @function
  * @memberof GraphQLClient
- * @param {GraphQLClient.DeclareFileTxInput} params
+ * @param {GraphQLClient.CreateAssetTxInput} params
  * @returns {Promise<GraphQLClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
 
@@ -4701,6 +4763,16 @@
  * @function
  * @memberof GraphQLClient
  * @param {GraphQLClient.StakeTxInput} params
+ * @returns {Promise<GraphQLClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
+ */
+
+/**
+ * Encode a DeclareFileTx transaction for later use
+ *
+ * @name GraphQLClient#encodeDeclareFileTx
+ * @function
+ * @memberof GraphQLClient
+ * @param {GraphQLClient.DeclareFileTxInput} params
  * @returns {Promise<GraphQLClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
 

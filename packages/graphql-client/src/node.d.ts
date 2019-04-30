@@ -29,14 +29,17 @@ declare class GraphQLClient {
   generateSubscriptionFns(): void;
   generateMutationFns(): void;
 
-  sendCreateAssetTx(
-    param: GraphQLClient.TxParam<GraphQLClient.CreateAssetTx>
+  sendConsumeAssetTx(
+    param: GraphQLClient.TxParam<GraphQLClient.ConsumeAssetTx>
+  ): Promise<GraphQLClient.ResponseSendTx>;
+  sendPokeTx(
+    param: GraphQLClient.TxParam<GraphQLClient.PokeTx>
   ): Promise<GraphQLClient.ResponseSendTx>;
   sendTransferTx(
     param: GraphQLClient.TxParam<GraphQLClient.TransferTx>
   ): Promise<GraphQLClient.ResponseSendTx>;
-  sendPokeTx(
-    param: GraphQLClient.TxParam<GraphQLClient.PokeTx>
+  sendExchangeTx(
+    param: GraphQLClient.TxParam<GraphQLClient.ExchangeTx>
   ): Promise<GraphQLClient.ResponseSendTx>;
   sendDeployProtocolTx(
     param: GraphQLClient.TxParam<GraphQLClient.DeployProtocolTx>
@@ -50,29 +53,35 @@ declare class GraphQLClient {
   sendAccountMigrateTx(
     param: GraphQLClient.TxParam<GraphQLClient.AccountMigrateTx>
   ): Promise<GraphQLClient.ResponseSendTx>;
-  sendConsumeAssetTx(
-    param: GraphQLClient.TxParam<GraphQLClient.ConsumeAssetTx>
+  sendAcquireAssetTx(
+    param: GraphQLClient.TxParam<GraphQLClient.AcquireAssetTx>
   ): Promise<GraphQLClient.ResponseSendTx>;
   sendDeclareTx(
     param: GraphQLClient.TxParam<GraphQLClient.DeclareTx>
   ): Promise<GraphQLClient.ResponseSendTx>;
-  sendExchangeTx(
-    param: GraphQLClient.TxParam<GraphQLClient.ExchangeTx>
+  sendDepositTetherTx(
+    param: GraphQLClient.TxParam<GraphQLClient.DepositTetherTx>
   ): Promise<GraphQLClient.ResponseSendTx>;
-  sendDeclareFileTx(
-    param: GraphQLClient.TxParam<GraphQLClient.DeclareFileTx>
+  sendCreateAssetTx(
+    param: GraphQLClient.TxParam<GraphQLClient.CreateAssetTx>
   ): Promise<GraphQLClient.ResponseSendTx>;
   sendStakeTx(
     param: GraphQLClient.TxParam<GraphQLClient.StakeTx>
   ): Promise<GraphQLClient.ResponseSendTx>;
-  encodeCreateAssetTx(
-    param: GraphQLClient.TxParam<GraphQLClient.CreateAssetTx>
+  sendDeclareFileTx(
+    param: GraphQLClient.TxParam<GraphQLClient.DeclareFileTx>
+  ): Promise<GraphQLClient.ResponseSendTx>;
+  encodeConsumeAssetTx(
+    param: GraphQLClient.TxParam<GraphQLClient.ConsumeAssetTx>
+  ): Promise<GraphQLClient.EncodeTxResult>;
+  encodePokeTx(
+    param: GraphQLClient.TxParam<GraphQLClient.PokeTx>
   ): Promise<GraphQLClient.EncodeTxResult>;
   encodeTransferTx(
     param: GraphQLClient.TxParam<GraphQLClient.TransferTx>
   ): Promise<GraphQLClient.EncodeTxResult>;
-  encodePokeTx(
-    param: GraphQLClient.TxParam<GraphQLClient.PokeTx>
+  encodeExchangeTx(
+    param: GraphQLClient.TxParam<GraphQLClient.ExchangeTx>
   ): Promise<GraphQLClient.EncodeTxResult>;
   encodeDeployProtocolTx(
     param: GraphQLClient.TxParam<GraphQLClient.DeployProtocolTx>
@@ -86,20 +95,23 @@ declare class GraphQLClient {
   encodeAccountMigrateTx(
     param: GraphQLClient.TxParam<GraphQLClient.AccountMigrateTx>
   ): Promise<GraphQLClient.EncodeTxResult>;
-  encodeConsumeAssetTx(
-    param: GraphQLClient.TxParam<GraphQLClient.ConsumeAssetTx>
+  encodeAcquireAssetTx(
+    param: GraphQLClient.TxParam<GraphQLClient.AcquireAssetTx>
   ): Promise<GraphQLClient.EncodeTxResult>;
   encodeDeclareTx(
     param: GraphQLClient.TxParam<GraphQLClient.DeclareTx>
   ): Promise<GraphQLClient.EncodeTxResult>;
-  encodeExchangeTx(
-    param: GraphQLClient.TxParam<GraphQLClient.ExchangeTx>
+  encodeDepositTetherTx(
+    param: GraphQLClient.TxParam<GraphQLClient.DepositTetherTx>
   ): Promise<GraphQLClient.EncodeTxResult>;
-  encodeDeclareFileTx(
-    param: GraphQLClient.TxParam<GraphQLClient.DeclareFileTx>
+  encodeCreateAssetTx(
+    param: GraphQLClient.TxParam<GraphQLClient.CreateAssetTx>
   ): Promise<GraphQLClient.EncodeTxResult>;
   encodeStakeTx(
     param: GraphQLClient.TxParam<GraphQLClient.StakeTx>
+  ): Promise<GraphQLClient.EncodeTxResult>;
+  encodeDeclareFileTx(
+    param: GraphQLClient.TxParam<GraphQLClient.DeclareFileTx>
   ): Promise<GraphQLClient.EncodeTxResult>;
   getAccountState(
     params: GraphQLClient.GetAccountStateParams
