@@ -85,6 +85,7 @@ console.log({
 - [Exchange asset and token between 2 newly created accounts](./examples/exchange.js)
 - [Crate/update an asset on the blockchain](./examples/asset.js)
 - [Consume newly create asset](./examples/consume_asset.js)
+- [Stake for the connected node](./examples/stake_for_node.js)
 
 ## Debugging
 
