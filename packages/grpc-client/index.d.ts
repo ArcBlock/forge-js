@@ -5,25 +5,6 @@
  *
  * Please note that, due to internal implementation of google-protobuf, all `repeated fields` names are suffixed with `List`
  *
- ```js
- const GRpcClient = require('@arcblock/grpc-client');
- const client = new GRpcClient("tcp://127.0.0.1:28210");
- (async () => {
- // fetch forge change info
- const { info } = await client.getChainInfo();
- console.log('chainInfo', info);
- 
- // get block info
- const stream = client.getBlock({ height: 11 });
- stream
- .on('data', function({ block }) {
- console.log('blockInfo:', block);
- })
- .on('error', err => {
- console.error('error', err);
- });
- })();
- ```
  * @class
  */
 declare class GRpcClient {

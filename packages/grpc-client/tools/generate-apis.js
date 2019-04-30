@@ -1,14 +1,11 @@
 /* eslint no-console:"off" */
 /* eslint indent:"off" */
 const fs = require('fs');
-const path = require('path');
 const util = require('util');
-const sdk = require('../');
+const GRpcClient = require('../');
 const pretty = data => util.inspect(data, { depth: 8, colors: false, compact: false });
 const { enums } = require('@arcblock/forge-proto');
-const { parse } = require('@arcblock/forge-config');
-const { RpcClient } = sdk;
-const client = new RpcClient(parse(path.resolve(__dirname, '../../../examples/simple/forge.toml')));
+const client = new GRpcClient({ endpoint: 'tcp://127.0.0.1:28210' });
 
 const rpcMethods = client.getRpcMethods();
 // const shortcutMethods = []; // client.getShortcutMethods();
@@ -66,7 +63,7 @@ ${result}.on('data', data => {
 `;
 
 fs.writeFileSync(
-  './API.md',
+  './docs/API.md',
   `# API Documentation
 
 ## Table of Contents
@@ -77,4 +74,4 @@ ${generateMethodDocs('RPC', rpcMethods)}
 `
 );
 
-console.log('generated api documentation to API.md');
+console.log('generated api documentation to docs/API.md');

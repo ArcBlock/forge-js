@@ -16,6 +16,8 @@ A `GRpcClient` instance mainly supports 3 groups of methods that saves you time 
   - [Table of Contents](#table-of-contents)
   - [Install](#install)
   - [Usage](#usage)
+  - [Examples](#examples)
+  - [Debugging](#debugging)
   - [Documentation](#documentation)
 
 ## Install
@@ -55,6 +57,22 @@ console.log({
 })();
 ```
 
+## Examples
+
+- [Declare identify on the blockchain](./examples/declare.js)
+- [Get free token for newly created account](./examples/get_free_token.js)
+- [Transfer assets between 2 accounts](./examples/transfer_asset.js)
+- [Transfer tokens between 2 accounts](./examples/transfer_token.js)
+- [Exchange asset and token between 2 newly created accounts](./examples/exchange.js)
+- [Create/update asset on the blockchain](./examples/asset.js)
+- [Consume newly create asset](./examples/consume_asset.js)
+- [Stake for the connected node](./examples/stake_for_node.js)
+
+## Debugging
+
+- If you are in Node.js: `DEBUG=@arcblock/grpc-client node script.js`
+
 ## Documentation
 
-For complete API documentation please refer [API.md](./API.md)
+- Complete method list can be found here: [README.md](./docs/README.md)
+- Rpc arguments and response structure can be found here: [API.md](./docs/API.md)
