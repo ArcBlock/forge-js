@@ -18,6 +18,8 @@
   "main": "./lib/node.js",
   "browser": "./dist/browser.js",
   "files": [
+    "docs",
+    "examples",
     "dist",
     "lib"
   ],
