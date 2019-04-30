@@ -6,6 +6,7 @@ const Table = require('cli-table-redemption');
 const { createRpcClient, config, debug } = require('core/env');
 const { symbols } = require('core/ui');
 const { enums, getMessageType, fromTypeUrl } = require('@arcblock/forge-proto');
+const { fromTokenToUnit, fromUnitToToken } = require('@arcblock/forge-util');
 const { formatMessage } = require('@arcblock/forge-message');
 
 inquirer.registerPrompt('autocomplete', require('inquirer-autocomplete-prompt'));
@@ -83,7 +84,7 @@ async function main(answers, action) {
         from: address,
         itx: {
           to: target,
-          value: client.fromTokenToUnit(action === 'stake' ? amount : -amount),
+          value: fromTokenToUnit(action === 'stake' ? amount : -amount),
           message,
           data: {
             type,
@@ -125,9 +126,9 @@ function getState() {
         if (result && result.code === 0) {
           const { state } = result.$format();
           debug('getState', result.$format().state);
-          state.balance = client.fromUnitToToken(state.balance);
-          state.stake.totalStakes = client.fromUnitToToken(state.stake.totalStakes);
-          state.stake.totalUnstakes = client.fromUnitToToken(state.stake.totalUnstakes);
+          state.balance = fromUnitToToken(state.balance);
+          state.stake.totalStakes = fromUnitToToken(state.stake.totalStakes);
+          state.stake.totalUnstakes = fromUnitToToken(state.stake.totalUnstakes);
 
           resolve(state);
         } else {
