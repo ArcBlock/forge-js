@@ -160,7 +160,7 @@ function formatMessage(type, data) {
   }
 
   if (type === 'json') {
-    return JSON.parse(Buffer.from(data, 'base64').toString('utf8'));
+    return data;
   }
 
   if (typeof data !== 'object') {
@@ -386,7 +386,7 @@ function decodeAny(data) {
 
   const { typeUrl, value } = data;
   if (typeUrl === 'json') {
-    return { type: typeUrl, value: JSON.parse(Buffer.from(value)) };
+    return { type: typeUrl, value: JSON.parse(Buffer.from(value, 'base64')) };
   }
 
   const type = fromTypeUrl(typeUrl);
