@@ -17,7 +17,7 @@ export default function StakeDetail({ tx }) {
         meta={[
           {
             key: <IconFa name="coins" size={12} className="meta-icon" />,
-            value: `${fromUnitToToken(tx.tx.itx.value || '0', token.decimal)} {token.symbol}`,
+            value: `${fromUnitToToken(tx.tx.itx.value || '0', token.decimal)} ${token.symbol}`,
           },
         ]}
       />

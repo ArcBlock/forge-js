@@ -58,7 +58,10 @@ class TransactionDetail extends Page {
     try {
       this.setState({ loading: true });
       const { hash } = this.props.match.params;
-      const { info: tx } = await forge().getTx({ hash });
+      const { info: tx } = await forge().getTx(
+        { hash },
+        { ignoreFields: 'info.tx.signatures.data' }
+      );
       this.setState({ loading: false, tx });
     } catch (err) {
       console.error(err);

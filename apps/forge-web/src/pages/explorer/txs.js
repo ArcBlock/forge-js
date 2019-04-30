@@ -25,7 +25,9 @@ async function fetchTransactions({ typeFilter, paging }, retry = true) {
     if (typeFilter) {
       params.typeFilter = typeFilter;
     }
-    const res = await forge().listTransactions(params);
+    const res = await forge().listTransactions(params, {
+      ignoreFields: 'transactions.tx.signatures.data',
+    });
     return res;
   } catch (err) {
     if (retry) {
