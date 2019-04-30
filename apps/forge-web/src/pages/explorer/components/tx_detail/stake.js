@@ -1,11 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { fromUnitToToken } from '@arcblock/forge-util';
 
 import TxDetail from './tx_detail';
 import SummaryHeader from '../summary_header';
 import IconFa from '../../../../components/iconfa';
+import { useTokenInfo } from '../../../../libs/hooks';
 
 export default function StakeDetail({ tx }) {
+  const [token] = useTokenInfo();
   return (
     <TxDetail tx={tx}>
       <SummaryHeader
@@ -14,7 +17,7 @@ export default function StakeDetail({ tx }) {
         meta={[
           {
             key: <IconFa name="coins" size={12} className="meta-icon" />,
-            value: `${tx.tx.itx.value} arc`,
+            value: `${fromUnitToToken(tx.tx.itx.value || '0', token.decimal)} {token.symbol}`,
           },
         ]}
       />
