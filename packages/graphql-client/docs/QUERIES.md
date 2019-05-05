@@ -1,6 +1,6 @@
 # Forge GraphQL API List
 
-> Updated on 2019-04-30T10:14:10.230Z
+> Updated on 2019-05-05T01:53:35.325Z
 
 
 ## Table of Contents
@@ -20,8 +20,10 @@
   * [getNetInfo](#getnetinfo)
   * [getNodeInfo](#getnodeinfo)
   * [getProtocolState](#getprotocolstate)
+  * [getProtocols](#getprotocols)
   * [getSimulatorStatus](#getsimulatorstatus)
   * [getStakeState](#getstakestate)
+  * [getTetherState](#gettetherstate)
   * [getTx](#gettx)
   * [getUnconfirmedTxs](#getunconfirmedtxs)
   * [getValidatorsInfo](#getvalidatorsinfo)
@@ -1382,6 +1384,10 @@ No arguments
         maxListSize
         maxMultisig
         minimumStake
+        declare {
+          hierarchy
+          restricted
+        }
       }
       upgradeInfo {
         height
@@ -1646,14 +1652,10 @@ No arguments
     code
     state {
       address
-      description
       migratedFrom
       migratedTo
-      name
       rootHash
       status
-      txHash
-      version
       context {
         genesisTime
         renaissanceTime
@@ -1973,6 +1975,69 @@ No arguments
       data {
         typeUrl
         value
+      }
+      itx {
+        address
+        description
+        name
+        namespace
+        pipeline
+        proto
+        sources
+        tags
+        version
+        code {
+          binary
+          checksum
+        }
+        data {
+          typeUrl
+          value
+        }
+        typeUrls {
+          module
+          url
+        }
+      }
+    }
+  }
+}
+```
+
+### getProtocols
+
+#### Arguments
+
+* **address**, optional, 
+
+#### Result Format
+
+```graphql
+{
+  getProtocols(address: "abc") {
+    code
+    protocols {
+      address
+      description
+      group
+      installedAt
+      name
+      namespace
+      pipeline
+      proto
+      sources
+      version
+      code {
+        binary
+        checksum
+      }
+      data {
+        typeUrl
+        value
+      }
+      typeUrls {
+        module
+        url
       }
     }
   }
@@ -2336,6 +2401,37 @@ No arguments
         typeUrl
         value
       }
+    }
+  }
+}
+```
+
+### getTetherState
+
+#### Arguments
+
+* **address**, optional, 
+* **height**, optional, 
+* **keys**, optional, 
+
+#### Result Format
+
+```graphql
+{
+  getTetherState(address: "abc", height: "abc", keys: ["abc"]) {
+    code
+    state {
+      address
+      available
+      charge
+      commission
+      custodian
+      depositor
+      hash
+      locktime
+      target
+      value
+      withdrawer
     }
   }
 }
@@ -5076,6 +5172,10 @@ subscription {
         maxListSize
         maxMultisig
         minimumStake
+        declare {
+          hierarchy
+          restricted
+        }
       }
       upgradeInfo {
         height
@@ -5084,14 +5184,10 @@ subscription {
     }
     protocolState {
       address
-      description
       migratedFrom
       migratedTo
-      name
       rootHash
       status
-      txHash
-      version
       context {
         genesisTime
         renaissanceTime
@@ -5411,6 +5507,29 @@ subscription {
       data {
         typeUrl
         value
+      }
+      itx {
+        address
+        description
+        name
+        namespace
+        pipeline
+        proto
+        sources
+        tags
+        version
+        code {
+          binary
+          checksum
+        }
+        data {
+          typeUrl
+          value
+        }
+        typeUrls {
+          module
+          url
+        }
       }
     }
     revoke {

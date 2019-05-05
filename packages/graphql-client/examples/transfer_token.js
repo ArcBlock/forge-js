@@ -12,9 +12,7 @@ const GraphqlClient = require('@arcblock/graphql-client');
 const { fromRandom, WalletType } = require('@arcblock/forge-wallet');
 const { fromTokenToUnit } = require('@arcblock/forge-util');
 
-const endpoint = 'https://test.abtnetwork.io'; // testnet
-// const endpoint = 'http://127.0.0.1:8210'; // local
-// const endpoint = 'http://did-workshop.arcblock.co:8210'; // workshop
+const endpoint = process.env.FORGE_API_HOST || 'http://127.0.0.1:8210'; // testnet
 
 const client = new GraphqlClient(`${endpoint}/api`);
 const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));

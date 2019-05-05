@@ -1,4 +1,8 @@
 #!/usr/bin/env node
 
+if (process.env.TRAVIS && process.env.CI) {
+  return;
+}
+
 const path = require('path');
 require(path.resolve(__dirname, '../src/index.js'));

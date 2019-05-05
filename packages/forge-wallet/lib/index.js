@@ -2,13 +2,13 @@
  * @fileOverview This module wraps common utility functions to help developers manipulate crypto wallets
  * @module @arcblock/forge-wallet
  * @requires @arcblock/mcrypto
- * @requires @arcblock/abt-did
+ * @requires @arcblock/did
  * @example
  * yarn add @arcblock/forge-wallet
  */
 const upperFirst = require('lodash/upperFirst');
 const { types, getSigner, getHasher } = require('@arcblock/mcrypto');
-const { toAddress, fromPublicKey: DIDFromPublicKey, toTypeInfo } = require('@arcblock/abt-did');
+const { toAddress, fromPublicKey: DIDFromPublicKey, toTypeInfo } = require('@arcblock/did');
 
 const mapping = {
   pk: 'key',

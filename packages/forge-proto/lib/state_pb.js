@@ -19,6 +19,8 @@ var enum_pb = require('./enum_pb.js');
 goog.object.extend(proto, enum_pb);
 var type_pb = require('./type_pb.js');
 goog.object.extend(proto, type_pb);
+var tx_pb = require('./tx_pb.js');
+goog.object.extend(proto, tx_pb);
 goog.exportSymbol('proto.forge_abi.AccountState', null, global);
 goog.exportSymbol('proto.forge_abi.AssetState', null, global);
 goog.exportSymbol('proto.forge_abi.BlacklistState', null, global);
@@ -3000,12 +3002,9 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
     var f,
       obj = {
         address: jspb.Message.getFieldWithDefault(msg, 1, ''),
-        name: jspb.Message.getFieldWithDefault(msg, 2, ''),
-        version: jspb.Message.getFieldWithDefault(msg, 3, 0),
-        description: jspb.Message.getFieldWithDefault(msg, 4, ''),
-        txHash: jspb.Message.getFieldWithDefault(msg, 5, ''),
+        itx: (f = msg.getItx()) && tx_pb.DeployProtocolTx.toObject(includeInstance, f),
         rootHash: msg.getRootHash(),
-        status: jspb.Message.getFieldWithDefault(msg, 7, 0),
+        status: jspb.Message.getFieldWithDefault(msg, 4, 0),
         migratedToList: jspb.Message.getRepeatedField(msg, 12),
         migratedFromList: jspb.Message.getRepeatedField(msg, 13),
         context: (f = msg.getContext()) && type_pb.StateContext.toObject(includeInstance, f),
@@ -3049,26 +3048,15 @@ proto.forge_abi.ProtocolState.deserializeBinaryFromReader = function(msg, reader
         msg.setAddress(value);
         break;
       case 2:
-        var value = /** @type {string} */ (reader.readString());
-        msg.setName(value);
+        var value = new tx_pb.DeployProtocolTx();
+        reader.readMessage(value, tx_pb.DeployProtocolTx.deserializeBinaryFromReader);
+        msg.setItx(value);
         break;
       case 3:
-        var value = /** @type {number} */ (reader.readUint32());
-        msg.setVersion(value);
-        break;
-      case 4:
-        var value = /** @type {string} */ (reader.readString());
-        msg.setDescription(value);
-        break;
-      case 5:
-        var value = /** @type {string} */ (reader.readString());
-        msg.setTxHash(value);
-        break;
-      case 6:
         var value = /** @type {!Uint8Array} */ (reader.readBytes());
         msg.setRootHash(value);
         break;
-      case 7:
+      case 4:
         var value = /** @type {!proto.forge_abi.ProtocolStatus} */ (reader.readEnum());
         msg.setStatus(value);
         break;
@@ -3121,29 +3109,17 @@ proto.forge_abi.ProtocolState.serializeBinaryToWriter = function(message, writer
   if (f.length > 0) {
     writer.writeString(1, f);
   }
-  f = message.getName();
-  if (f.length > 0) {
-    writer.writeString(2, f);
-  }
-  f = message.getVersion();
-  if (f !== 0) {
-    writer.writeUint32(3, f);
-  }
-  f = message.getDescription();
-  if (f.length > 0) {
-    writer.writeString(4, f);
-  }
-  f = message.getTxHash();
-  if (f.length > 0) {
-    writer.writeString(5, f);
+  f = message.getItx();
+  if (f != null) {
+    writer.writeMessage(2, f, tx_pb.DeployProtocolTx.serializeBinaryToWriter);
   }
   f = message.getRootHash_asU8();
   if (f.length > 0) {
-    writer.writeBytes(6, f);
+    writer.writeBytes(3, f);
   }
   f = message.getStatus();
   if (f !== 0.0) {
-    writer.writeEnum(7, f);
+    writer.writeEnum(4, f);
   }
   f = message.getMigratedToList();
   if (f.length > 0) {
@@ -3177,67 +3153,44 @@ proto.forge_abi.ProtocolState.prototype.setAddress = function(value) {
 };
 
 /**
- * optional string name = 2;
- * @return {string}
+ * optional DeployProtocolTx itx = 2;
+ * @return {?proto.forge_abi.DeployProtocolTx}
  */
-proto.forge_abi.ProtocolState.prototype.getName = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ''));
+proto.forge_abi.ProtocolState.prototype.getItx = function() {
+  return /** @type{?proto.forge_abi.DeployProtocolTx} */ (jspb.Message.getWrapperField(
+    this,
+    tx_pb.DeployProtocolTx,
+    2
+  ));
 };
 
-/** @param {string} value */
-proto.forge_abi.ProtocolState.prototype.setName = function(value) {
-  jspb.Message.setProto3StringField(this, 2, value);
+/** @param {?proto.forge_abi.DeployProtocolTx|undefined} value */
+proto.forge_abi.ProtocolState.prototype.setItx = function(value) {
+  jspb.Message.setWrapperField(this, 2, value);
+};
+
+proto.forge_abi.ProtocolState.prototype.clearItx = function() {
+  this.setItx(undefined);
 };
 
 /**
- * optional uint32 version = 3;
- * @return {number}
+ * Returns whether this field is set.
+ * @return {boolean}
  */
-proto.forge_abi.ProtocolState.prototype.getVersion = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
-};
-
-/** @param {number} value */
-proto.forge_abi.ProtocolState.prototype.setVersion = function(value) {
-  jspb.Message.setProto3IntField(this, 3, value);
+proto.forge_abi.ProtocolState.prototype.hasItx = function() {
+  return jspb.Message.getField(this, 2) != null;
 };
 
 /**
- * optional string description = 4;
- * @return {string}
- */
-proto.forge_abi.ProtocolState.prototype.getDescription = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ''));
-};
-
-/** @param {string} value */
-proto.forge_abi.ProtocolState.prototype.setDescription = function(value) {
-  jspb.Message.setProto3StringField(this, 4, value);
-};
-
-/**
- * optional string tx_hash = 5;
- * @return {string}
- */
-proto.forge_abi.ProtocolState.prototype.getTxHash = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ''));
-};
-
-/** @param {string} value */
-proto.forge_abi.ProtocolState.prototype.setTxHash = function(value) {
-  jspb.Message.setProto3StringField(this, 5, value);
-};
-
-/**
- * optional bytes root_hash = 6;
+ * optional bytes root_hash = 3;
  * @return {!(string|Uint8Array)}
  */
 proto.forge_abi.ProtocolState.prototype.getRootHash = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 6, ''));
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 3, ''));
 };
 
 /**
- * optional bytes root_hash = 6;
+ * optional bytes root_hash = 3;
  * This is a type-conversion wrapper around `getRootHash()`
  * @return {string}
  */
@@ -3246,7 +3199,7 @@ proto.forge_abi.ProtocolState.prototype.getRootHash_asB64 = function() {
 };
 
 /**
- * optional bytes root_hash = 6;
+ * optional bytes root_hash = 3;
  * Note that Uint8Array is not supported on all browsers.
  * @see http://caniuse.com/Uint8Array
  * This is a type-conversion wrapper around `getRootHash()`
@@ -3258,24 +3211,24 @@ proto.forge_abi.ProtocolState.prototype.getRootHash_asU8 = function() {
 
 /** @param {!(string|Uint8Array)} value */
 proto.forge_abi.ProtocolState.prototype.setRootHash = function(value) {
-  jspb.Message.setProto3BytesField(this, 6, value);
+  jspb.Message.setProto3BytesField(this, 3, value);
 };
 
 /**
- * optional ProtocolStatus status = 7;
+ * optional ProtocolStatus status = 4;
  * @return {!proto.forge_abi.ProtocolStatus}
  */
 proto.forge_abi.ProtocolState.prototype.getStatus = function() {
   return /** @type {!proto.forge_abi.ProtocolStatus} */ (jspb.Message.getFieldWithDefault(
     this,
-    7,
+    4,
     0
   ));
 };
 
 /** @param {!proto.forge_abi.ProtocolStatus} value */
 proto.forge_abi.ProtocolState.prototype.setStatus = function(value) {
-  jspb.Message.setProto3EnumField(this, 7, value);
+  jspb.Message.setProto3EnumField(this, 4, value);
 };
 
 /**
@@ -3431,7 +3384,19 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
   proto.forge_abi.TetherState.toObject = function(includeInstance, msg) {
     var f,
       obj = {
-        available: jspb.Message.getFieldWithDefault(msg, 1, false),
+        hash: jspb.Message.getFieldWithDefault(msg, 1, ''),
+        available: jspb.Message.getFieldWithDefault(msg, 2, false),
+        custodian: jspb.Message.getFieldWithDefault(msg, 3, ''),
+        depositor: jspb.Message.getFieldWithDefault(msg, 4, ''),
+        withdrawer: jspb.Message.getFieldWithDefault(msg, 5, ''),
+        value: (f = msg.getValue()) && type_pb.BigUint.toObject(includeInstance, f),
+        commission: (f = msg.getCommission()) && type_pb.BigUint.toObject(includeInstance, f),
+        charge: (f = msg.getCharge()) && type_pb.BigUint.toObject(includeInstance, f),
+        target: jspb.Message.getFieldWithDefault(msg, 9, ''),
+        locktime:
+          (f = msg.getLocktime()) &&
+          google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+        address: jspb.Message.getFieldWithDefault(msg, 11, ''),
       };
 
     if (includeInstance) {
@@ -3460,149 +3425,6 @@ proto.forge_abi.TetherState.deserializeBinary = function(bytes) {
  * @return {!proto.forge_abi.TetherState}
  */
 proto.forge_abi.TetherState.deserializeBinaryFromReader = function(msg, reader) {
-  while (reader.nextField()) {
-    if (reader.isEndGroup()) {
-      break;
-    }
-    var field = reader.getFieldNumber();
-    switch (field) {
-      case 1:
-        var value = /** @type {boolean} */ (reader.readBool());
-        msg.setAvailable(value);
-        break;
-      default:
-        reader.skipField();
-        break;
-    }
-  }
-  return msg;
-};
-
-/**
- * Serializes the message to binary data (in protobuf wire format).
- * @return {!Uint8Array}
- */
-proto.forge_abi.TetherState.prototype.serializeBinary = function() {
-  var writer = new jspb.BinaryWriter();
-  proto.forge_abi.TetherState.serializeBinaryToWriter(this, writer);
-  return writer.getResultBuffer();
-};
-
-/**
- * Serializes the given message to binary data (in protobuf wire
- * format), writing to the given BinaryWriter.
- * @param {!proto.forge_abi.TetherState} message
- * @param {!jspb.BinaryWriter} writer
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.forge_abi.TetherState.serializeBinaryToWriter = function(message, writer) {
-  var f = undefined;
-  f = message.getAvailable();
-  if (f) {
-    writer.writeBool(1, f);
-  }
-};
-
-/**
- * optional bool available = 1;
- * Note that Boolean fields may be set to 0/1 when serialized from a Java server.
- * You should avoid comparisons like {@code val === true/false} in those cases.
- * @return {boolean}
- */
-proto.forge_abi.TetherState.prototype.getAvailable = function() {
-  return /** @type {boolean} */ (jspb.Message.getFieldWithDefault(this, 1, false));
-};
-
-/** @param {boolean} value */
-proto.forge_abi.TetherState.prototype.setAvailable = function(value) {
-  jspb.Message.setProto3BooleanField(this, 1, value);
-};
-
-/**
- * Generated by JsPbCodeGenerator.
- * @param {Array=} opt_data Optional initial data array, typically from a
- * server response, or constructed directly in Javascript. The array is used
- * in place and becomes part of the constructed object. It is not cloned.
- * If no data is provided, the constructed object will be empty, but still
- * valid.
- * @extends {jspb.Message}
- * @constructor
- */
-proto.forge_abi.TetherInfo = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
-};
-goog.inherits(proto.forge_abi.TetherInfo, jspb.Message);
-if (goog.DEBUG && !COMPILED) {
-  proto.forge_abi.TetherInfo.displayName = 'proto.forge_abi.TetherInfo';
-}
-
-if (jspb.Message.GENERATE_TO_OBJECT) {
-  /**
-   * Creates an object representation of this proto suitable for use in Soy templates.
-   * Field names that are reserved in JavaScript and will be renamed to pb_name.
-   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
-   * For the list of reserved names please see:
-   *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
-   * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
-   *     for transitional soy proto support: http://goto/soy-param-migration
-   * @return {!Object}
-   */
-  proto.forge_abi.TetherInfo.prototype.toObject = function(opt_includeInstance) {
-    return proto.forge_abi.TetherInfo.toObject(opt_includeInstance, this);
-  };
-
-  /**
-   * Static version of the {@see toObject} method.
-   * @param {boolean|undefined} includeInstance Whether to include the JSPB
-   *     instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @param {!proto.forge_abi.TetherInfo} msg The msg instance to transform.
-   * @return {!Object}
-   * @suppress {unusedLocalVariables} f is only used for nested messages
-   */
-  proto.forge_abi.TetherInfo.toObject = function(includeInstance, msg) {
-    var f,
-      obj = {
-        hash: jspb.Message.getFieldWithDefault(msg, 1, ''),
-        available: jspb.Message.getFieldWithDefault(msg, 2, false),
-        custodian: jspb.Message.getFieldWithDefault(msg, 3, ''),
-        depositor: jspb.Message.getFieldWithDefault(msg, 4, ''),
-        withdrawer: jspb.Message.getFieldWithDefault(msg, 5, ''),
-        value: (f = msg.getValue()) && type_pb.BigUint.toObject(includeInstance, f),
-        commission: (f = msg.getCommission()) && type_pb.BigUint.toObject(includeInstance, f),
-        charge: (f = msg.getCharge()) && type_pb.BigUint.toObject(includeInstance, f),
-        target: jspb.Message.getFieldWithDefault(msg, 9, ''),
-        locktime:
-          (f = msg.getLocktime()) &&
-          google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-      };
-
-    if (includeInstance) {
-      obj.$jspbMessageInstance = msg;
-    }
-    return obj;
-  };
-}
-
-/**
- * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.forge_abi.TetherInfo}
- */
-proto.forge_abi.TetherInfo.deserializeBinary = function(bytes) {
-  var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.forge_abi.TetherInfo();
-  return proto.forge_abi.TetherInfo.deserializeBinaryFromReader(msg, reader);
-};
-
-/**
- * Deserializes binary data (in protobuf wire format) from the
- * given reader into the given message object.
- * @param {!proto.forge_abi.TetherInfo} msg The message object to deserialize into.
- * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.forge_abi.TetherInfo}
- */
-proto.forge_abi.TetherInfo.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -3656,6 +3478,10 @@ proto.forge_abi.TetherInfo.deserializeBinaryFromReader = function(msg, reader) {
         );
         msg.setLocktime(value);
         break;
+      case 11:
+        var value = /** @type {string} */ (reader.readString());
+        msg.setAddress(value);
+        break;
       default:
         reader.skipField();
         break;
@@ -3668,20 +3494,20 @@ proto.forge_abi.TetherInfo.deserializeBinaryFromReader = function(msg, reader) {
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.forge_abi.TetherInfo.prototype.serializeBinary = function() {
+proto.forge_abi.TetherState.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.forge_abi.TetherInfo.serializeBinaryToWriter(this, writer);
+  proto.forge_abi.TetherState.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.forge_abi.TetherInfo} message
+ * @param {!proto.forge_abi.TetherState} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.forge_abi.TetherInfo.serializeBinaryToWriter = function(message, writer) {
+proto.forge_abi.TetherState.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getHash();
   if (f.length > 0) {
@@ -3723,18 +3549,22 @@ proto.forge_abi.TetherInfo.serializeBinaryToWriter = function(message, writer) {
   if (f != null) {
     writer.writeMessage(10, f, google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter);
   }
+  f = message.getAddress();
+  if (f.length > 0) {
+    writer.writeString(11, f);
+  }
 };
 
 /**
  * optional string hash = 1;
  * @return {string}
  */
-proto.forge_abi.TetherInfo.prototype.getHash = function() {
+proto.forge_abi.TetherState.prototype.getHash = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ''));
 };
 
 /** @param {string} value */
-proto.forge_abi.TetherInfo.prototype.setHash = function(value) {
+proto.forge_abi.TetherState.prototype.setHash = function(value) {
   jspb.Message.setProto3StringField(this, 1, value);
 };
 
@@ -3744,12 +3574,12 @@ proto.forge_abi.TetherInfo.prototype.setHash = function(value) {
  * You should avoid comparisons like {@code val === true/false} in those cases.
  * @return {boolean}
  */
-proto.forge_abi.TetherInfo.prototype.getAvailable = function() {
+proto.forge_abi.TetherState.prototype.getAvailable = function() {
   return /** @type {boolean} */ (jspb.Message.getFieldWithDefault(this, 2, false));
 };
 
 /** @param {boolean} value */
-proto.forge_abi.TetherInfo.prototype.setAvailable = function(value) {
+proto.forge_abi.TetherState.prototype.setAvailable = function(value) {
   jspb.Message.setProto3BooleanField(this, 2, value);
 };
 
@@ -3757,12 +3587,12 @@ proto.forge_abi.TetherInfo.prototype.setAvailable = function(value) {
  * optional string custodian = 3;
  * @return {string}
  */
-proto.forge_abi.TetherInfo.prototype.getCustodian = function() {
+proto.forge_abi.TetherState.prototype.getCustodian = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ''));
 };
 
 /** @param {string} value */
-proto.forge_abi.TetherInfo.prototype.setCustodian = function(value) {
+proto.forge_abi.TetherState.prototype.setCustodian = function(value) {
   jspb.Message.setProto3StringField(this, 3, value);
 };
 
@@ -3770,12 +3600,12 @@ proto.forge_abi.TetherInfo.prototype.setCustodian = function(value) {
  * optional string depositor = 4;
  * @return {string}
  */
-proto.forge_abi.TetherInfo.prototype.getDepositor = function() {
+proto.forge_abi.TetherState.prototype.getDepositor = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ''));
 };
 
 /** @param {string} value */
-proto.forge_abi.TetherInfo.prototype.setDepositor = function(value) {
+proto.forge_abi.TetherState.prototype.setDepositor = function(value) {
   jspb.Message.setProto3StringField(this, 4, value);
 };
 
@@ -3783,12 +3613,12 @@ proto.forge_abi.TetherInfo.prototype.setDepositor = function(value) {
  * optional string withdrawer = 5;
  * @return {string}
  */
-proto.forge_abi.TetherInfo.prototype.getWithdrawer = function() {
+proto.forge_abi.TetherState.prototype.getWithdrawer = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ''));
 };
 
 /** @param {string} value */
-proto.forge_abi.TetherInfo.prototype.setWithdrawer = function(value) {
+proto.forge_abi.TetherState.prototype.setWithdrawer = function(value) {
   jspb.Message.setProto3StringField(this, 5, value);
 };
 
@@ -3796,7 +3626,7 @@ proto.forge_abi.TetherInfo.prototype.setWithdrawer = function(value) {
  * optional BigUint value = 6;
  * @return {?proto.forge_abi.BigUint}
  */
-proto.forge_abi.TetherInfo.prototype.getValue = function() {
+proto.forge_abi.TetherState.prototype.getValue = function() {
   return /** @type{?proto.forge_abi.BigUint} */ (jspb.Message.getWrapperField(
     this,
     type_pb.BigUint,
@@ -3805,11 +3635,11 @@ proto.forge_abi.TetherInfo.prototype.getValue = function() {
 };
 
 /** @param {?proto.forge_abi.BigUint|undefined} value */
-proto.forge_abi.TetherInfo.prototype.setValue = function(value) {
+proto.forge_abi.TetherState.prototype.setValue = function(value) {
   jspb.Message.setWrapperField(this, 6, value);
 };
 
-proto.forge_abi.TetherInfo.prototype.clearValue = function() {
+proto.forge_abi.TetherState.prototype.clearValue = function() {
   this.setValue(undefined);
 };
 
@@ -3817,7 +3647,7 @@ proto.forge_abi.TetherInfo.prototype.clearValue = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.forge_abi.TetherInfo.prototype.hasValue = function() {
+proto.forge_abi.TetherState.prototype.hasValue = function() {
   return jspb.Message.getField(this, 6) != null;
 };
 
@@ -3825,7 +3655,7 @@ proto.forge_abi.TetherInfo.prototype.hasValue = function() {
  * optional BigUint commission = 7;
  * @return {?proto.forge_abi.BigUint}
  */
-proto.forge_abi.TetherInfo.prototype.getCommission = function() {
+proto.forge_abi.TetherState.prototype.getCommission = function() {
   return /** @type{?proto.forge_abi.BigUint} */ (jspb.Message.getWrapperField(
     this,
     type_pb.BigUint,
@@ -3834,11 +3664,11 @@ proto.forge_abi.TetherInfo.prototype.getCommission = function() {
 };
 
 /** @param {?proto.forge_abi.BigUint|undefined} value */
-proto.forge_abi.TetherInfo.prototype.setCommission = function(value) {
+proto.forge_abi.TetherState.prototype.setCommission = function(value) {
   jspb.Message.setWrapperField(this, 7, value);
 };
 
-proto.forge_abi.TetherInfo.prototype.clearCommission = function() {
+proto.forge_abi.TetherState.prototype.clearCommission = function() {
   this.setCommission(undefined);
 };
 
@@ -3846,7 +3676,7 @@ proto.forge_abi.TetherInfo.prototype.clearCommission = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.forge_abi.TetherInfo.prototype.hasCommission = function() {
+proto.forge_abi.TetherState.prototype.hasCommission = function() {
   return jspb.Message.getField(this, 7) != null;
 };
 
@@ -3854,7 +3684,7 @@ proto.forge_abi.TetherInfo.prototype.hasCommission = function() {
  * optional BigUint charge = 8;
  * @return {?proto.forge_abi.BigUint}
  */
-proto.forge_abi.TetherInfo.prototype.getCharge = function() {
+proto.forge_abi.TetherState.prototype.getCharge = function() {
   return /** @type{?proto.forge_abi.BigUint} */ (jspb.Message.getWrapperField(
     this,
     type_pb.BigUint,
@@ -3863,11 +3693,11 @@ proto.forge_abi.TetherInfo.prototype.getCharge = function() {
 };
 
 /** @param {?proto.forge_abi.BigUint|undefined} value */
-proto.forge_abi.TetherInfo.prototype.setCharge = function(value) {
+proto.forge_abi.TetherState.prototype.setCharge = function(value) {
   jspb.Message.setWrapperField(this, 8, value);
 };
 
-proto.forge_abi.TetherInfo.prototype.clearCharge = function() {
+proto.forge_abi.TetherState.prototype.clearCharge = function() {
   this.setCharge(undefined);
 };
 
@@ -3875,7 +3705,7 @@ proto.forge_abi.TetherInfo.prototype.clearCharge = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.forge_abi.TetherInfo.prototype.hasCharge = function() {
+proto.forge_abi.TetherState.prototype.hasCharge = function() {
   return jspb.Message.getField(this, 8) != null;
 };
 
@@ -3883,12 +3713,12 @@ proto.forge_abi.TetherInfo.prototype.hasCharge = function() {
  * optional string target = 9;
  * @return {string}
  */
-proto.forge_abi.TetherInfo.prototype.getTarget = function() {
+proto.forge_abi.TetherState.prototype.getTarget = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 9, ''));
 };
 
 /** @param {string} value */
-proto.forge_abi.TetherInfo.prototype.setTarget = function(value) {
+proto.forge_abi.TetherState.prototype.setTarget = function(value) {
   jspb.Message.setProto3StringField(this, 9, value);
 };
 
@@ -3896,7 +3726,7 @@ proto.forge_abi.TetherInfo.prototype.setTarget = function(value) {
  * optional google.protobuf.Timestamp locktime = 10;
  * @return {?proto.google.protobuf.Timestamp}
  */
-proto.forge_abi.TetherInfo.prototype.getLocktime = function() {
+proto.forge_abi.TetherState.prototype.getLocktime = function() {
   return /** @type{?proto.google.protobuf.Timestamp} */ (jspb.Message.getWrapperField(
     this,
     google_protobuf_timestamp_pb.Timestamp,
@@ -3905,11 +3735,11 @@ proto.forge_abi.TetherInfo.prototype.getLocktime = function() {
 };
 
 /** @param {?proto.google.protobuf.Timestamp|undefined} value */
-proto.forge_abi.TetherInfo.prototype.setLocktime = function(value) {
+proto.forge_abi.TetherState.prototype.setLocktime = function(value) {
   jspb.Message.setWrapperField(this, 10, value);
 };
 
-proto.forge_abi.TetherInfo.prototype.clearLocktime = function() {
+proto.forge_abi.TetherState.prototype.clearLocktime = function() {
   this.setLocktime(undefined);
 };
 
@@ -3917,8 +3747,175 @@ proto.forge_abi.TetherInfo.prototype.clearLocktime = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.forge_abi.TetherInfo.prototype.hasLocktime = function() {
+proto.forge_abi.TetherState.prototype.hasLocktime = function() {
   return jspb.Message.getField(this, 10) != null;
+};
+
+/**
+ * optional string address = 11;
+ * @return {string}
+ */
+proto.forge_abi.TetherState.prototype.getAddress = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 11, ''));
+};
+
+/** @param {string} value */
+proto.forge_abi.TetherState.prototype.setAddress = function(value) {
+  jspb.Message.setProto3StringField(this, 11, value);
+};
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.forge_abi.TetherInfo = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.forge_abi.TetherInfo, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.forge_abi.TetherInfo.displayName = 'proto.forge_abi.TetherInfo';
+}
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+  /**
+   * Creates an object representation of this proto suitable for use in Soy templates.
+   * Field names that are reserved in JavaScript and will be renamed to pb_name.
+   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+   * For the list of reserved names please see:
+   *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+   * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+   *     for transitional soy proto support: http://goto/soy-param-migration
+   * @return {!Object}
+   */
+  proto.forge_abi.TetherInfo.prototype.toObject = function(opt_includeInstance) {
+    return proto.forge_abi.TetherInfo.toObject(opt_includeInstance, this);
+  };
+
+  /**
+   * Static version of the {@see toObject} method.
+   * @param {boolean|undefined} includeInstance Whether to include the JSPB
+   *     instance for transitional soy proto support:
+   *     http://goto/soy-param-migration
+   * @param {!proto.forge_abi.TetherInfo} msg The msg instance to transform.
+   * @return {!Object}
+   * @suppress {unusedLocalVariables} f is only used for nested messages
+   */
+  proto.forge_abi.TetherInfo.toObject = function(includeInstance, msg) {
+    var f,
+      obj = {
+        available: jspb.Message.getFieldWithDefault(msg, 1, false),
+        hash: jspb.Message.getFieldWithDefault(msg, 2, ''),
+      };
+
+    if (includeInstance) {
+      obj.$jspbMessageInstance = msg;
+    }
+    return obj;
+  };
+}
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.forge_abi.TetherInfo}
+ */
+proto.forge_abi.TetherInfo.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.forge_abi.TetherInfo();
+  return proto.forge_abi.TetherInfo.deserializeBinaryFromReader(msg, reader);
+};
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.forge_abi.TetherInfo} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.forge_abi.TetherInfo}
+ */
+proto.forge_abi.TetherInfo.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+      case 1:
+        var value = /** @type {boolean} */ (reader.readBool());
+        msg.setAvailable(value);
+        break;
+      case 2:
+        var value = /** @type {string} */ (reader.readString());
+        msg.setHash(value);
+        break;
+      default:
+        reader.skipField();
+        break;
+    }
+  }
+  return msg;
+};
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.forge_abi.TetherInfo.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.forge_abi.TetherInfo.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.forge_abi.TetherInfo} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.forge_abi.TetherInfo.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getAvailable();
+  if (f) {
+    writer.writeBool(1, f);
+  }
+  f = message.getHash();
+  if (f.length > 0) {
+    writer.writeString(2, f);
+  }
+};
+
+/**
+ * optional bool available = 1;
+ * Note that Boolean fields may be set to 0/1 when serialized from a Java server.
+ * You should avoid comparisons like {@code val === true/false} in those cases.
+ * @return {boolean}
+ */
+proto.forge_abi.TetherInfo.prototype.getAvailable = function() {
+  return /** @type {boolean} */ (jspb.Message.getFieldWithDefault(this, 1, false));
+};
+
+/** @param {boolean} value */
+proto.forge_abi.TetherInfo.prototype.setAvailable = function(value) {
+  jspb.Message.setProto3BooleanField(this, 1, value);
+};
+
+/**
+ * optional string hash = 2;
+ * @return {string}
+ */
+proto.forge_abi.TetherInfo.prototype.getHash = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ''));
+};
+
+/** @param {string} value */
+proto.forge_abi.TetherInfo.prototype.setHash = function(value) {
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 goog.object.extend(exports, proto.forge_abi);

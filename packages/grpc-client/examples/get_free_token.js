@@ -10,7 +10,7 @@ const Mcrypto = require('@arcblock/mcrypto');
 const GRpcClient = require('@arcblock/grpc-client');
 const { fromRandom, WalletType } = require('@arcblock/forge-wallet');
 
-const endpoint = 'http://localhost:8210';
+const endpoint = process.env.FORGE_API_HOST || 'http://127.0.0.1:8210'; // testnet
 const client = new GRpcClient({ endpoint: 'tcp://127.0.0.1:28210' });
 const type = WalletType({
   role: Mcrypto.types.RoleType.ROLE_ACCOUNT,

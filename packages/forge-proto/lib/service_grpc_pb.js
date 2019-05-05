@@ -180,15 +180,15 @@ function deserialize_forge_abi_RequestGetStakeState(buffer_arg) {
   return rpc_pb.RequestGetStakeState.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_forge_abi_RequestGetTetherInfo(arg) {
-  if (!(arg instanceof rpc_pb.RequestGetTetherInfo)) {
-    throw new Error('Expected argument of type forge_abi.RequestGetTetherInfo');
+function serialize_forge_abi_RequestGetTetherState(arg) {
+  if (!(arg instanceof rpc_pb.RequestGetTetherState)) {
+    throw new Error('Expected argument of type forge_abi.RequestGetTetherState');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_forge_abi_RequestGetTetherInfo(buffer_arg) {
-  return rpc_pb.RequestGetTetherInfo.deserializeBinary(new Uint8Array(buffer_arg));
+function deserialize_forge_abi_RequestGetTetherState(buffer_arg) {
+  return rpc_pb.RequestGetTetherState.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_forge_abi_RequestGetTx(arg) {
@@ -609,15 +609,15 @@ function deserialize_forge_abi_ResponseGetStakeState(buffer_arg) {
   return rpc_pb.ResponseGetStakeState.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_forge_abi_ResponseGetTetherInfo(arg) {
-  if (!(arg instanceof rpc_pb.ResponseGetTetherInfo)) {
-    throw new Error('Expected argument of type forge_abi.ResponseGetTetherInfo');
+function serialize_forge_abi_ResponseGetTetherState(arg) {
+  if (!(arg instanceof rpc_pb.ResponseGetTetherState)) {
+    throw new Error('Expected argument of type forge_abi.ResponseGetTetherState');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_forge_abi_ResponseGetTetherInfo(buffer_arg) {
-  return rpc_pb.ResponseGetTetherInfo.deserializeBinary(new Uint8Array(buffer_arg));
+function deserialize_forge_abi_ResponseGetTetherState(buffer_arg) {
+  return rpc_pb.ResponseGetTetherState.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_forge_abi_ResponseGetTx(arg) {
@@ -1139,16 +1139,16 @@ var StateRpcService = (exports.StateRpcService = {
     responseSerialize: serialize_forge_abi_ResponseGetStakeState,
     responseDeserialize: deserialize_forge_abi_ResponseGetStakeState,
   },
-  get_tether_info: {
-    path: '/forge_abi.StateRpc/get_tether_info',
+  get_tether_state: {
+    path: '/forge_abi.StateRpc/get_tether_state',
     requestStream: true,
     responseStream: true,
-    requestType: rpc_pb.RequestGetTetherInfo,
-    responseType: rpc_pb.ResponseGetTetherInfo,
-    requestSerialize: serialize_forge_abi_RequestGetTetherInfo,
-    requestDeserialize: deserialize_forge_abi_RequestGetTetherInfo,
-    responseSerialize: serialize_forge_abi_ResponseGetTetherInfo,
-    responseDeserialize: deserialize_forge_abi_ResponseGetTetherInfo,
+    requestType: rpc_pb.RequestGetTetherState,
+    responseType: rpc_pb.ResponseGetTetherState,
+    requestSerialize: serialize_forge_abi_RequestGetTetherState,
+    requestDeserialize: deserialize_forge_abi_RequestGetTetherState,
+    responseSerialize: serialize_forge_abi_ResponseGetTetherState,
+    responseDeserialize: deserialize_forge_abi_ResponseGetTetherState,
   },
 });
 

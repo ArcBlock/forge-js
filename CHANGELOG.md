@@ -1,3 +1,16 @@
+## 0.25.0 (May 05, 2019)
+  - chore: merge did related packages back to this repo
+  - chore: support update check for forge-cli
+  - chore: add post install tips for forge
+  - fix: forge-web account page not refresh data on switch account
+  - chore: add script to run all examples
+  - chore: fix test case for forge-message
+  - chore: upgrade graphql-client with forge v0.25.3
+  - chore: upgrade grpc-client with forge v0.25.3
+  - chore: upgrade forge-proto with forge v0.25.3
+  - fix: forge download / forge init with not exist version #253
+  - update readme
+
 ## 0.22.0 (April 30, 2019)
   - fix: forge web error on new graphql endpoint
   - chore: donot encode twice if we already have signature

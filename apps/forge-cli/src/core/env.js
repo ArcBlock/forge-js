@@ -64,6 +64,7 @@ async function setupEnv(args, requirements) {
   debug('setupEnv.args', { args, requirements });
 
   ensureRequiredDirs();
+  checkUpdate();
 
   if (requirements.forgeRelease || requirements.runningNode) {
     await ensureForgeRelease(args);
@@ -569,6 +570,38 @@ function sleep(timeout = 1000) {
 function printLogo() {
   shell.echo('');
   shell.echo(chalk.red(figlet.textSync('By ArcBlock', { font: 'ANSI Shadow' })));
+}
+
+function checkUpdate() {
+  const lastCheck = readCache('check-update');
+  const now = Math.floor(Date.now() / 1000);
+  const secondsOfDay = 24 * 60 * 60;
+  debug('check update', { lastCheck, now });
+  if (lastCheck && lastCheck + secondsOfDay > now) {
+    return;
+  }
+  writeCache('check-update', now);
+
+  const { stdout: latest } = shell.exec('npm view @arcblock/forge-cli version', { silent: true });
+  const { stdout: installed } = shell.exec('forge --version', { silent: true });
+  debug('check update', { latest, installed });
+
+  if (semver.gt(latest.trim(), installed.trim())) {
+    shell.echo('');
+    shell.echo(
+      chalk.red(
+        `${
+          symbols.info
+        } Latest forge-cli version is v${latest.trim()}, your local version v${installed.trim()}`
+      )
+    );
+    shell.echo(
+      chalk.red(
+        `${symbols.info} Please upgrade with ${chalk.cyan('npm install -g @arcblock/forge-cli')}`
+      )
+    );
+    shell.echo('');
+  }
 }
 
 debug.error = (...args) => {

@@ -32,6 +32,7 @@ class AccountDetail extends Page {
       loading: false,
       account: null,
       error: null,
+      address: props.match.params.address,
     };
 
     this.params = parseQuery(typeof window === 'undefined' ? '' : window.location.search);
@@ -41,9 +42,17 @@ class AccountDetail extends Page {
     this.loadAccount();
   }
 
+  componentDidUpdate() {
+    if (this.props.match.params.address !== this.state.address) {
+      // eslint-disable-next-line react/no-did-update-set-state
+      this.setState({ address: this.props.match.params.address }, () => {
+        this.loadAccount();
+      });
+    }
+  }
+
   render() {
-    const { address } = this.props.match.params;
-    const { loading, error, account } = this.state;
+    const { loading, error, account, address } = this.state;
     return (
       <Layout title="Account" cookies={this.cookies}>
         <Container>
@@ -81,7 +90,7 @@ class AccountDetail extends Page {
 
   async loadAccount() {
     try {
-      const { address } = this.props.match.params;
+      const { address } = this.state;
       this.setState({ loading: true });
       const { state } = await forge().getAccountState(
         { address },

@@ -8,7 +8,7 @@
   ],
   "engines": {
     "node": ">=0.10.0",
-    "forge": ">=0.11.1"
+    "forge": ">=0.25.1"
   },
   "bin": {
     "forge": "bin/forge"
@@ -19,6 +19,7 @@
   "scripts": {
     "precommit": "yarn lint",
     "prepush": "yarn lint",
+    "postinstall": "bin/forge",
     "test:smoke": "yarn lint && node tools/jest.js",
     "lint": "eslint src"
   },

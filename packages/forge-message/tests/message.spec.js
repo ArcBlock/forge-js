@@ -55,69 +55,44 @@ describe('#createMessage', () => {
   test('should support complex repeated fields', () => {
     const params = {
       tx: {
-        from: '123',
-      },
-      states: [{ address: 'states1', nonce: 24 }, { address: 'states2', nonce: 32 }],
-    };
-
-    const message = createMessage('RequestVerifyTx', params);
-    expect(message.getTx().toObject().from).toEqual(params.tx.from);
-    const states = message.getStatesList().map(x => x.toObject());
-    expect(states[0].address).toEqual('states1');
-    expect(states[1].address).toEqual('states2');
-  });
-
-  test('should support complex repeated fields', () => {
-    const params = {
-      code: 0,
-      states: [{ address: 'states1', nonce: 24 }],
-    };
-
-    const message = createMessage('ResponseUpdateState', params);
-    expect(message.getCode()).toEqual(params.code);
-    const states = message.getStatesList().map(x => x.toObject());
-    expect(states[0].address).toEqual('states1');
-  });
-
-  test('should support nested complex repeated fields', () => {
-    const params = {
-      updateState: {
-        code: 0,
-        states: [
+        from: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
+        nonce: 5,
+        chainId: 'arcblock',
+        signatures: [
           {
-            address: 'states1',
-            nonce: 24,
+            signer: 'arcblock',
             data: {
-              type: 'AccountState',
-              value: {
-                balance: '100000',
-                nonce: 1234556,
-                address: 'ADJAKDJKASDjkA',
-              },
+              typeUrl: 'json',
+              value: 'ABCD 1234',
             },
           },
           {
-            address: 'states2',
-            nonce: 32,
+            signer: 'arcblock',
             data: {
-              type: 'AccountState',
-              value: {
-                balance: '200000',
-                nonce: 2234556,
-                address: 'SDJAKDJKASDjkA',
-              },
+              typeUrl: 'json',
+              value: 'ABCD 1234',
             },
           },
         ],
+        itx: {
+          typeUrl: 'json',
+          value: 'ABCD 1234',
+        },
       },
+      wallet: {
+        address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
+      },
+      token: 'arcblock',
+      commit: true,
     };
 
-    const message = createMessage('Response', params);
-    const states = message
-      .getUpdateState()
-      .getStatesList()
+    const message = createMessage('RequestSendTx', params);
+    expect(message.getTx().toObject().from).toEqual(params.tx.from);
+    const signatures = message
+      .getTx()
+      .getSignaturesList()
       .map(x => x.toObject());
-    expect(states.length).toEqual(2);
+    expect(signatures[0].signer).toEqual('arcblock');
   });
 
   test('should support map fields', () => {
