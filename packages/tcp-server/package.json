@@ -1,7 +1,7 @@
 {
   "name": "@arcblock/tcp-server",
   "description": "Node.js SDK for Forge Framework by ArcBlock",
-  "version": "0.22.0",
+  "version": "0.25.0",
   "author": "wangshijun <shijun@arcblock.io> (https://ocap.arcblock.io)",
   "engines": {
     "node": ">=0.10.0",
@@ -18,13 +18,13 @@
     "wangshijun <shijun@arcblock.io> (https://ocap.arcblock.io)"
   ],
   "dependencies": {
-    "@arcblock/forge-message": "^0.22.0",
-    "@arcblock/forge-proto": "^0.22.0",
-    "@arcblock/forge-util": "^0.22.0",
+    "@arcblock/forge-message": "^0.25.0",
+    "@arcblock/forge-proto": "^0.25.0",
+    "@arcblock/forge-util": "^0.25.0",
     "debug": "^4.1.1"
   },
   "devDependencies": {
-    "@arcblock/forge-config": "^0.22.0",
+    "@arcblock/forge-config": "^0.25.0",
     "j2d": "^1.0.3-dev",
     "jest": "^23.5.0",
     "remark-cli": "^5.0.0",
