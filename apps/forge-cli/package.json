@@ -19,6 +19,7 @@
   "scripts": {
     "precommit": "yarn lint",
     "prepush": "yarn lint",
+    "postinstall": "forge",
     "test:smoke": "yarn lint && node tools/jest.js",
     "lint": "eslint src"
   },
