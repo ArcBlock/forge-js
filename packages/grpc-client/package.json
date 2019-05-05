@@ -64,13 +64,14 @@
     "url": "https://github.com/ArcBlock/forge-js/tree/master/packages/grpc-client"
   },
   "scripts": {
-    "lint": "eslint lib index.js tests",
+    "lint": "eslint lib index.js tests examples",
     "upgrade": "yarn generate-types && yarn generate-apis && yarn generate-docs && yarn format-docs && yarn generate-dts",
     "generate-apis": "node tools/generate-apis.js",
     "generate-docs": "jsdoc2md lib/client.js lib/types.js > docs/README.md",
     "generate-types": "node tools/generate-types.js",
     "format-docs": "remark . -o",
     "generate-dts": "j2d index.js && ./tools/patch-dts.sh && node tools/generate-dts.js",
+    "examples": "node tools/run-example.js",
     "precommit": "CI=1 yarn test",
     "prepush": "CI=1 yarn test",
     "repl": "node -r ./tools/repl.js",

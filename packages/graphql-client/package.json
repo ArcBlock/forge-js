@@ -69,7 +69,7 @@
     ]
   },
   "scripts": {
-    "lint": "eslint src",
+    "lint": "eslint src examples tests",
     "clean": "rimraf lib && rimraf dist",
     "build-browser": "BABEL_ENV=browser babel ./src --out-dir ./dist --source-maps --copy-files && webpack -p",
     "build-node": "babel ./src --out-dir ./lib --source-maps --copy-files",
@@ -78,6 +78,7 @@
     "generate-types": "node tools/generate-types.js && sed -i -E \"s/UNSUPPORTED_TX/OK/\" src/types.js",
     "generate-queries": "node tools/generate-queries.js",
     "format-docs": "remark . -o",
+    "examples": "node tools/run-example.js",
     "generate-dts": "node tools/generate-dts.js",
     "update-schema": "rm -f src/schema/graphql.json && node tools/update-graphql-schema.js",
     "upgrade": "yarn update-schema && yarn generate-queries && yarn generate-types && yarn generate-dts && yarn generate-docs && yarn format-docs && yarn build",
