@@ -36,7 +36,7 @@
   * [getNodeInfo](#getnodeinfo)
   * [getProtocolState](#getprotocolstate)
   * [getStakeState](#getstakestate)
-  * [getTetherInfo](#gettetherinfo)
+  * [getTetherState](#gettetherstate)
   * [getTx](#gettx)
   * [getUnconfirmedTxs](#getunconfirmedtxs)
   * [getValidatorsInfo](#getvalidatorsinfo)
@@ -52,8 +52,6 @@
   * [loadWallet](#loadwallet)
   * [multisig](#multisig)
   * [pinFile](#pinfile)
-  * [process](#process)
-  * [processOne](#processone)
   * [recoverWallet](#recoverwallet)
   * [removeWallet](#removewallet)
   * [search](#search)
@@ -82,6 +80,7 @@
   EXPIRED_TX: 10,
   TOO_MANY_TXS: 11,
   INVALID_LOCK_STATUS: 12,
+  INVALID_REQUEST: 13,
   INVALID_MONIKER: 16,
   INVALID_PASSPHRASE: 17,
   INVALID_MULTISIG: 20,
@@ -106,6 +105,11 @@
   CONSUMED_ASSET: 42,
   INVALID_DEPOSIT_VALUE: 43,
   EXCEED_DEPOSIT_CAP: 44,
+  INVALID_DEPOSIT_TARGET: 45,
+  INVALID_DEPOSITOR: 46,
+  INVALID_WITHDRAWER: 47,
+  DUPLICATE_TETHER: 48,
+  INVALID_EXPIRY_DATE: 49,
   FORBIDDEN: 403,
   INTERNAL: 500,
   TIMEOUT: 504
@@ -186,6 +190,7 @@
   ROLE_VALIDATOR: 8,
   ROLE_GROUP: 9,
   ROLE_TX: 10,
+  ROLE_TETHER: 11,
   ROLE_ANY: 63
 }
 ```
@@ -284,19 +289,20 @@
 ```js
 [
   'ConsensusUpgradeTx',
-  'DeclareTx',
   'DeployProtocolTx',
   'SysUpgradeTx',
-  'DeclareFileTx',
-  'CreateAssetTx',
-  'PokeTx',
-  'ConsumeAssetTx',
-  'ExchangeTx',
   'AccountMigrateTx',
+  'DeclareTx',
+  'AcquireAssetTx',
+  'DeclareFileTx',
+  'PokeTx',
+  'ExchangeTetherTx',
+  'ConsumeAssetTx',
   'UpgradeNodeTx',
   'UpdateAssetTx',
-  'AcquireAssetTx',
+  'CreateAssetTx',
   'DepositTetherTx',
+  'ExchangeTx',
   'StakeTx',
   'TransferTx'
 ]
@@ -476,8 +482,8 @@ const stream = client.getAccountState({
     context: {
       genesisTx: 'arcblock',
       renaissanceTx: 'arcblock',
-      genesisTime: '2019-04-30T10:16:52.222Z',
-      renaissanceTime: '2019-04-30T10:16:52.222Z'
+      genesisTime: '2019-05-05T01:47:09.093Z',
+      renaissanceTime: '2019-05-05T01:47:09.093Z'
     },
     issuer: 'arcblock',
     migratedTo: [
@@ -560,7 +566,7 @@ const stream = client.getAssetState({
     readonly: true,
     transferrable: true,
     ttl: 2,
-    consumedTime: '2019-04-30T10:16:52.222Z',
+    consumedTime: '2019-05-05T01:47:09.094Z',
     issuer: 'arcblock',
     stake: {
       totalStakes: [Function: BigUint],
@@ -590,8 +596,8 @@ const stream = client.getAssetState({
     context: {
       genesisTx: 'arcblock',
       renaissanceTx: 'arcblock',
-      genesisTime: '2019-04-30T10:16:52.222Z',
-      renaissanceTime: '2019-04-30T10:16:52.222Z'
+      genesisTime: '2019-05-05T01:47:09.094Z',
+      renaissanceTime: '2019-05-05T01:47:09.094Z'
     },
     data: {
       type: 'string',
@@ -614,7 +620,7 @@ const stream = client.getBlock({
   block: {
     height: 5,
     numTxs: 2,
-    time: '2019-04-30T10:16:52.222Z',
+    time: '2019-05-05T01:47:09.094Z',
     appHash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
     proposer: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
     txs: [
@@ -664,7 +670,7 @@ const stream = client.getBlock({
           }
         ],
         code: 0,
-        time: '2019-04-30T10:16:52.223Z',
+        time: '2019-05-05T01:47:09.094Z',
         createAsset: {
           asset: 'arcblock'
         },
@@ -718,7 +724,7 @@ const stream = client.getBlock({
           }
         ],
         code: 0,
-        time: '2019-04-30T10:16:52.223Z',
+        time: '2019-05-05T01:47:09.094Z',
         createAsset: {
           asset: 'arcblock'
         },
@@ -775,7 +781,7 @@ const stream = client.getBlock({
           }
         ],
         code: 0,
-        time: '2019-04-30T10:16:52.223Z',
+        time: '2019-05-05T01:47:09.094Z',
         createAsset: {
           asset: 'arcblock'
         },
@@ -829,7 +835,7 @@ const stream = client.getBlock({
           }
         ],
         code: 0,
-        time: '2019-04-30T10:16:52.223Z',
+        time: '2019-05-05T01:47:09.094Z',
         createAsset: {
           asset: 'arcblock'
         },
@@ -907,7 +913,7 @@ result.on('data', data => {
     {
       height: 5,
       numTxs: 2,
-      time: '2019-04-30T10:16:52.223Z',
+      time: '2019-05-05T01:47:09.095Z',
       appHash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
       proposer: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
       totalTxs: 5,
@@ -941,7 +947,7 @@ result.on('data', data => {
     {
       height: 5,
       numTxs: 2,
-      time: '2019-04-30T10:16:52.223Z',
+      time: '2019-05-05T01:47:09.095Z',
       appHash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
       proposer: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
       totalTxs: 5,
@@ -996,7 +1002,7 @@ result.on('data', data => {
     appHash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
     blockHash: Uint8Array [],
     blockHeight: 5,
-    blockTime: '2019-04-30T10:16:52.223Z',
+    blockTime: '2019-05-05T01:47:09.095Z',
     address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
     votingPower: 5,
     totalTxs: 5,
@@ -1097,8 +1103,8 @@ result.on('data', data => {
         context: {
           genesisTx: 'arcblock',
           renaissanceTx: 'arcblock',
-          genesisTime: '2019-04-30T10:16:52.224Z',
-          renaissanceTime: '2019-04-30T10:16:52.224Z'
+          genesisTime: '2019-05-05T01:47:09.095Z',
+          renaissanceTime: '2019-05-05T01:47:09.095Z'
         }
       }
     },
@@ -1119,7 +1125,11 @@ result.on('data', data => {
       maxAssetSize: 2,
       maxListSize: 2,
       maxMultisig: 2,
-      minimumStake: 5
+      minimumStake: 5,
+      declare: {
+        restricted: true,
+        hierarchy: 2
+      }
     },
     stakeConfig: {
       timeoutGeneral: 2,
@@ -1358,7 +1368,7 @@ result.on('data', data => {
     appHash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
     blockHash: Uint8Array [],
     blockHeight: 5,
-    blockTime: '2019-04-30T10:16:52.224Z',
+    blockTime: '2019-05-05T01:47:09.096Z',
     address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
     votingPower: 5,
     totalTxs: 5,
@@ -1400,10 +1410,47 @@ const stream = client.getProtocolState({
   code: 0,
   state: {
     address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-    name: 'arcblock',
-    version: 2,
-    description: 'arcblock',
-    txHash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
+    itx: {
+      address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
+      name: 'arcblock',
+      version: 2,
+      namespace: 'arcblock',
+      description: 'arcblock',
+      typeUrls: [
+        {
+          url: 'arcblock',
+          module: 'arcblock'
+        },
+        {
+          url: 'arcblock',
+          module: 'arcblock'
+        }
+      ],
+      proto: 'arcblock',
+      pipeline: 'arcblock',
+      sources: [
+        'arcblock',
+        'arcblock'
+      ],
+      code: [
+        {
+          checksum: Uint8Array [],
+          binary: Uint8Array []
+        },
+        {
+          checksum: Uint8Array [],
+          binary: Uint8Array []
+        }
+      ],
+      tags: [
+        'arcblock',
+        'arcblock'
+      ],
+      data: {
+        type: 'string',
+        value: 'ABCD 1234'
+      }
+    },
     rootHash: Uint8Array [],
     status: 0,
     migratedTo: [
@@ -1417,8 +1464,8 @@ const stream = client.getProtocolState({
     context: {
       genesisTx: 'arcblock',
       renaissanceTx: 'arcblock',
-      genesisTime: '2019-04-30T10:16:52.224Z',
-      renaissanceTime: '2019-04-30T10:16:52.224Z'
+      genesisTime: '2019-05-05T01:47:09.096Z',
+      renaissanceTime: '2019-05-05T01:47:09.096Z'
     },
     data: {
       type: 'string',
@@ -1452,8 +1499,8 @@ const stream = client.getStakeState({
     context: {
       genesisTx: 'arcblock',
       renaissanceTx: 'arcblock',
-      genesisTime: '2019-04-30T10:16:52.225Z',
-      renaissanceTime: '2019-04-30T10:16:52.225Z'
+      genesisTime: '2019-05-05T01:47:09.096Z',
+      renaissanceTime: '2019-05-05T01:47:09.096Z'
     },
     data: {
       type: 'string',
@@ -1463,11 +1510,11 @@ const stream = client.getStakeState({
 }
 ```
 
-### getTetherInfo
+### getTetherState
 
 ```js
-const stream = client.getTetherInfo({
-  hash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
+const stream = client.getTetherState({
+  address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
   keys: [
     'arcblock',
     'arcblock'
@@ -1478,7 +1525,7 @@ const stream = client.getTetherInfo({
 // output
 {
   code: 0,
-  info: {
+  state: {
     hash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
     available: true,
     custodian: 'arcblock',
@@ -1488,7 +1535,8 @@ const stream = client.getTetherInfo({
     commission: [Function: BigUint],
     charge: [Function: BigUint],
     target: 'arcblock',
-    locktime: '2019-04-30T10:16:52.225Z'
+    locktime: '2019-05-05T01:47:09.097Z',
+    address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55'
   }
 }
 ```
@@ -1549,7 +1597,7 @@ const stream = client.getTx({
       }
     ],
     code: 0,
-    time: '2019-04-30T10:16:52.225Z',
+    time: '2019-05-05T01:47:09.097Z',
     createAsset: {
       asset: 'arcblock'
     },
@@ -2417,919 +2465,6 @@ result.on('data', data => {
 });
 ```
 
-### process
-
-```js
-const stream = client.process({
-  verifyTx: {
-    tx: {
-      from: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-      nonce: 5,
-      chainId: 'arcblock',
-      pk: Uint8Array [],
-      signature: Uint8Array [],
-      signatures: [
-        {
-          signer: 'arcblock',
-          pk: Uint8Array [],
-          signature: Uint8Array [],
-          data: {
-            type: 'string',
-            value: 'ABCD 1234'
-          }
-        },
-        {
-          signer: 'arcblock',
-          pk: Uint8Array [],
-          signature: Uint8Array [],
-          data: {
-            type: 'string',
-            value: 'ABCD 1234'
-          }
-        }
-      ],
-      itx: {
-        type: 'string',
-        value: 'ABCD 1234'
-      }
-    },
-    states: [
-      {
-        balance: [Function: BigUint],
-        nonce: 5,
-        numTxs: 5,
-        address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-        pk: Uint8Array [],
-        type: {
-          pk: 0,
-          hash: 0,
-          address: 0,
-          role: 0
-        },
-        moniker: 'arcblock',
-        context: {
-          genesisTx: 'arcblock',
-          renaissanceTx: 'arcblock',
-          genesisTime: '2019-04-30T10:16:52.227Z',
-          renaissanceTime: '2019-04-30T10:16:52.227Z'
-        },
-        issuer: 'arcblock',
-        migratedTo: [
-          'arcblock',
-          'arcblock'
-        ],
-        migratedFrom: [
-          'arcblock',
-          'arcblock'
-        ],
-        numAssets: 5,
-        stake: {
-          totalStakes: [Function: BigUint],
-          totalUnstakes: [Function: BigUint],
-          totalReceivedStakes: [Function: BigUint],
-          recentStakes: {
-            items: [
-              Uint8Array [],
-              Uint8Array []
-            ],
-            typeUrl: 'arcblock',
-            maxItems: 2,
-            circular: true,
-            fifo: true
-          },
-          recentReceivedStakes: {
-            items: [
-              Uint8Array [],
-              Uint8Array []
-            ],
-            typeUrl: 'arcblock',
-            maxItems: 2,
-            circular: true,
-            fifo: true
-          }
-        },
-        pinnedFiles: {
-          items: [
-            Uint8Array [],
-            Uint8Array []
-          ],
-          typeUrl: 'arcblock',
-          maxItems: 2,
-          circular: true,
-          fifo: true
-        },
-        poke: {
-          dailyLimit: [Function: BigUint],
-          leftover: [Function: BigUint],
-          amount: [Function: BigUint]
-        },
-        depositReceived: [Function: BigUint],
-        data: {
-          type: 'string',
-          value: 'ABCD 1234'
-        }
-      },
-      {
-        balance: [Function: BigUint],
-        nonce: 5,
-        numTxs: 5,
-        address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-        pk: Uint8Array [],
-        type: {
-          pk: 0,
-          hash: 0,
-          address: 0,
-          role: 0
-        },
-        moniker: 'arcblock',
-        context: {
-          genesisTx: 'arcblock',
-          renaissanceTx: 'arcblock',
-          genesisTime: '2019-04-30T10:16:52.227Z',
-          renaissanceTime: '2019-04-30T10:16:52.227Z'
-        },
-        issuer: 'arcblock',
-        migratedTo: [
-          'arcblock',
-          'arcblock'
-        ],
-        migratedFrom: [
-          'arcblock',
-          'arcblock'
-        ],
-        numAssets: 5,
-        stake: {
-          totalStakes: [Function: BigUint],
-          totalUnstakes: [Function: BigUint],
-          totalReceivedStakes: [Function: BigUint],
-          recentStakes: {
-            items: [
-              Uint8Array [],
-              Uint8Array []
-            ],
-            typeUrl: 'arcblock',
-            maxItems: 2,
-            circular: true,
-            fifo: true
-          },
-          recentReceivedStakes: {
-            items: [
-              Uint8Array [],
-              Uint8Array []
-            ],
-            typeUrl: 'arcblock',
-            maxItems: 2,
-            circular: true,
-            fifo: true
-          }
-        },
-        pinnedFiles: {
-          items: [
-            Uint8Array [],
-            Uint8Array []
-          ],
-          typeUrl: 'arcblock',
-          maxItems: 2,
-          circular: true,
-          fifo: true
-        },
-        poke: {
-          dailyLimit: [Function: BigUint],
-          leftover: [Function: BigUint],
-          amount: [Function: BigUint]
-        },
-        depositReceived: [Function: BigUint],
-        data: {
-          type: 'string',
-          value: 'ABCD 1234'
-        }
-      }
-    ],
-    assets: [
-      {
-        address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-        owner: 'arcblock',
-        moniker: 'arcblock',
-        readonly: true,
-        transferrable: true,
-        ttl: 2,
-        consumedTime: '2019-04-30T10:16:52.227Z',
-        issuer: 'arcblock',
-        stake: {
-          totalStakes: [Function: BigUint],
-          totalUnstakes: [Function: BigUint],
-          totalReceivedStakes: [Function: BigUint],
-          recentStakes: {
-            items: [
-              Uint8Array [],
-              Uint8Array []
-            ],
-            typeUrl: 'arcblock',
-            maxItems: 2,
-            circular: true,
-            fifo: true
-          },
-          recentReceivedStakes: {
-            items: [
-              Uint8Array [],
-              Uint8Array []
-            ],
-            typeUrl: 'arcblock',
-            maxItems: 2,
-            circular: true,
-            fifo: true
-          }
-        },
-        context: {
-          genesisTx: 'arcblock',
-          renaissanceTx: 'arcblock',
-          genesisTime: '2019-04-30T10:16:52.227Z',
-          renaissanceTime: '2019-04-30T10:16:52.227Z'
-        },
-        data: {
-          type: 'string',
-          value: 'ABCD 1234'
-        }
-      },
-      {
-        address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-        owner: 'arcblock',
-        moniker: 'arcblock',
-        readonly: true,
-        transferrable: true,
-        ttl: 2,
-        consumedTime: '2019-04-30T10:16:52.227Z',
-        issuer: 'arcblock',
-        stake: {
-          totalStakes: [Function: BigUint],
-          totalUnstakes: [Function: BigUint],
-          totalReceivedStakes: [Function: BigUint],
-          recentStakes: {
-            items: [
-              Uint8Array [],
-              Uint8Array []
-            ],
-            typeUrl: 'arcblock',
-            maxItems: 2,
-            circular: true,
-            fifo: true
-          },
-          recentReceivedStakes: {
-            items: [
-              Uint8Array [],
-              Uint8Array []
-            ],
-            typeUrl: 'arcblock',
-            maxItems: 2,
-            circular: true,
-            fifo: true
-          }
-        },
-        context: {
-          genesisTx: 'arcblock',
-          renaissanceTx: 'arcblock',
-          genesisTime: '2019-04-30T10:16:52.227Z',
-          renaissanceTime: '2019-04-30T10:16:52.227Z'
-        },
-        data: {
-          type: 'string',
-          value: 'ABCD 1234'
-        }
-      }
-    ],
-    stakes: [
-      {
-        address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-        from: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-        to: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-        balance: [Function: BigUint],
-        message: 'arcblock',
-        context: {
-          genesisTx: 'arcblock',
-          renaissanceTx: 'arcblock',
-          genesisTime: '2019-04-30T10:16:52.227Z',
-          renaissanceTime: '2019-04-30T10:16:52.227Z'
-        },
-        data: {
-          type: 'string',
-          value: 'ABCD 1234'
-        }
-      },
-      {
-        address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-        from: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-        to: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-        balance: [Function: BigUint],
-        message: 'arcblock',
-        context: {
-          genesisTx: 'arcblock',
-          renaissanceTx: 'arcblock',
-          genesisTime: '2019-04-30T10:16:52.227Z',
-          renaissanceTime: '2019-04-30T10:16:52.227Z'
-        },
-        data: {
-          type: 'string',
-          value: 'ABCD 1234'
-        }
-      }
-    ],
-    context: {
-      txHash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-      blockHeight: 5,
-      blockTime: '2019-04-30T10:16:52.227Z',
-      totalTxs: 5,
-      txStatistics: {
-        numAccountMigrateTxs: 5,
-        numCreateAssetTxs: 5,
-        numConsensusUpgradeTxs: 2,
-        numDeclareTxs: 5,
-        numDeclareFileTxs: 5,
-        numExchangeTxs: 5,
-        numStakeTxs: 5,
-        numSysUpgradeTxs: 2,
-        numTransferTxs: 5,
-        numUpdateAssetTxs: 5,
-        numConsumeAssetTxs: 5,
-        numPokeTxs: 5
-      },
-      txIndex: 2,
-      lastBlockTime: '2019-04-30T10:16:52.227Z'
-    },
-    appState: {
-      address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-      consensus: {
-        maxBytes: 5,
-        maxGas: 4,
-        maxValidators: 2,
-        maxCandidates: 2,
-        pubKeyTypes: [
-          'arcblock',
-          'arcblock'
-        ],
-        validators: [
-          {
-            address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-            power: 5
-          },
-          {
-            address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-            power: 5
-          }
-        ],
-        validatorChanged: true,
-        paramChanged: true
-      },
-      tasks: {
-        '5': {
-          item: [
-            {
-              type: 0,
-              dataHash: 'arcblock',
-              actions: [
-                undefined,
-                undefined
-              ]
-            },
-            {
-              type: 0,
-              dataHash: 'arcblock',
-              actions: [
-                undefined,
-                undefined
-              ]
-            }
-          ]
-        }
-      },
-      stakeSummary: {
-        '2': {
-          totalStakes: [Function: BigUint],
-          totalUnstakes: [Function: BigUint],
-          context: {
-            genesisTx: 'arcblock',
-            renaissanceTx: 'arcblock',
-            genesisTime: '2019-04-30T10:16:52.227Z',
-            renaissanceTime: '2019-04-30T10:16:52.227Z'
-          }
-        }
-      },
-      version: 'arcblock',
-      forgeAppHash: Uint8Array [],
-      token: {
-        name: 'arcblock',
-        symbol: 'arcblock',
-        unit: 'arcblock',
-        description: 'arcblock',
-        icon: Uint8Array [],
-        decimal: 2,
-        initialSupply: 5,
-        totalSupply: 5,
-        inflationRate: 2
-      },
-      txConfig: {
-        maxAssetSize: 2,
-        maxListSize: 2,
-        maxMultisig: 2,
-        minimumStake: 5
-      },
-      stakeConfig: {
-        timeoutGeneral: 2,
-        timeoutStakeForNode: 2
-      },
-      pokeConfig: {
-        address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-        dailyLimit: 5,
-        balance: 5,
-        amount: 5
-      },
-      protocols: [
-        {
-          name: 'arcblock',
-          address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55'
-        },
-        {
-          name: 'arcblock',
-          address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55'
-        }
-      ],
-      upgradeInfo: {
-        height: 5,
-        version: 'arcblock'
-      },
-      data: {
-        type: 'string',
-        value: 'ABCD 1234'
-      }
-    }
-  }
-});
-
-// output
-{
-  verifyTx: {
-    code: 0
-  }
-}
-```
-
-### processOne
-
-```js
-const result = await client.processOne({
-  verifyTx: {
-    tx: {
-      from: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-      nonce: 5,
-      chainId: 'arcblock',
-      pk: Uint8Array [],
-      signature: Uint8Array [],
-      signatures: [
-        {
-          signer: 'arcblock',
-          pk: Uint8Array [],
-          signature: Uint8Array [],
-          data: {
-            type: 'string',
-            value: 'ABCD 1234'
-          }
-        },
-        {
-          signer: 'arcblock',
-          pk: Uint8Array [],
-          signature: Uint8Array [],
-          data: {
-            type: 'string',
-            value: 'ABCD 1234'
-          }
-        }
-      ],
-      itx: {
-        type: 'string',
-        value: 'ABCD 1234'
-      }
-    },
-    states: [
-      {
-        balance: [Function: BigUint],
-        nonce: 5,
-        numTxs: 5,
-        address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-        pk: Uint8Array [],
-        type: {
-          pk: 0,
-          hash: 0,
-          address: 0,
-          role: 0
-        },
-        moniker: 'arcblock',
-        context: {
-          genesisTx: 'arcblock',
-          renaissanceTx: 'arcblock',
-          genesisTime: '2019-04-30T10:16:52.228Z',
-          renaissanceTime: '2019-04-30T10:16:52.228Z'
-        },
-        issuer: 'arcblock',
-        migratedTo: [
-          'arcblock',
-          'arcblock'
-        ],
-        migratedFrom: [
-          'arcblock',
-          'arcblock'
-        ],
-        numAssets: 5,
-        stake: {
-          totalStakes: [Function: BigUint],
-          totalUnstakes: [Function: BigUint],
-          totalReceivedStakes: [Function: BigUint],
-          recentStakes: {
-            items: [
-              Uint8Array [],
-              Uint8Array []
-            ],
-            typeUrl: 'arcblock',
-            maxItems: 2,
-            circular: true,
-            fifo: true
-          },
-          recentReceivedStakes: {
-            items: [
-              Uint8Array [],
-              Uint8Array []
-            ],
-            typeUrl: 'arcblock',
-            maxItems: 2,
-            circular: true,
-            fifo: true
-          }
-        },
-        pinnedFiles: {
-          items: [
-            Uint8Array [],
-            Uint8Array []
-          ],
-          typeUrl: 'arcblock',
-          maxItems: 2,
-          circular: true,
-          fifo: true
-        },
-        poke: {
-          dailyLimit: [Function: BigUint],
-          leftover: [Function: BigUint],
-          amount: [Function: BigUint]
-        },
-        depositReceived: [Function: BigUint],
-        data: {
-          type: 'string',
-          value: 'ABCD 1234'
-        }
-      },
-      {
-        balance: [Function: BigUint],
-        nonce: 5,
-        numTxs: 5,
-        address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-        pk: Uint8Array [],
-        type: {
-          pk: 0,
-          hash: 0,
-          address: 0,
-          role: 0
-        },
-        moniker: 'arcblock',
-        context: {
-          genesisTx: 'arcblock',
-          renaissanceTx: 'arcblock',
-          genesisTime: '2019-04-30T10:16:52.228Z',
-          renaissanceTime: '2019-04-30T10:16:52.228Z'
-        },
-        issuer: 'arcblock',
-        migratedTo: [
-          'arcblock',
-          'arcblock'
-        ],
-        migratedFrom: [
-          'arcblock',
-          'arcblock'
-        ],
-        numAssets: 5,
-        stake: {
-          totalStakes: [Function: BigUint],
-          totalUnstakes: [Function: BigUint],
-          totalReceivedStakes: [Function: BigUint],
-          recentStakes: {
-            items: [
-              Uint8Array [],
-              Uint8Array []
-            ],
-            typeUrl: 'arcblock',
-            maxItems: 2,
-            circular: true,
-            fifo: true
-          },
-          recentReceivedStakes: {
-            items: [
-              Uint8Array [],
-              Uint8Array []
-            ],
-            typeUrl: 'arcblock',
-            maxItems: 2,
-            circular: true,
-            fifo: true
-          }
-        },
-        pinnedFiles: {
-          items: [
-            Uint8Array [],
-            Uint8Array []
-          ],
-          typeUrl: 'arcblock',
-          maxItems: 2,
-          circular: true,
-          fifo: true
-        },
-        poke: {
-          dailyLimit: [Function: BigUint],
-          leftover: [Function: BigUint],
-          amount: [Function: BigUint]
-        },
-        depositReceived: [Function: BigUint],
-        data: {
-          type: 'string',
-          value: 'ABCD 1234'
-        }
-      }
-    ],
-    assets: [
-      {
-        address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-        owner: 'arcblock',
-        moniker: 'arcblock',
-        readonly: true,
-        transferrable: true,
-        ttl: 2,
-        consumedTime: '2019-04-30T10:16:52.228Z',
-        issuer: 'arcblock',
-        stake: {
-          totalStakes: [Function: BigUint],
-          totalUnstakes: [Function: BigUint],
-          totalReceivedStakes: [Function: BigUint],
-          recentStakes: {
-            items: [
-              Uint8Array [],
-              Uint8Array []
-            ],
-            typeUrl: 'arcblock',
-            maxItems: 2,
-            circular: true,
-            fifo: true
-          },
-          recentReceivedStakes: {
-            items: [
-              Uint8Array [],
-              Uint8Array []
-            ],
-            typeUrl: 'arcblock',
-            maxItems: 2,
-            circular: true,
-            fifo: true
-          }
-        },
-        context: {
-          genesisTx: 'arcblock',
-          renaissanceTx: 'arcblock',
-          genesisTime: '2019-04-30T10:16:52.228Z',
-          renaissanceTime: '2019-04-30T10:16:52.228Z'
-        },
-        data: {
-          type: 'string',
-          value: 'ABCD 1234'
-        }
-      },
-      {
-        address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-        owner: 'arcblock',
-        moniker: 'arcblock',
-        readonly: true,
-        transferrable: true,
-        ttl: 2,
-        consumedTime: '2019-04-30T10:16:52.228Z',
-        issuer: 'arcblock',
-        stake: {
-          totalStakes: [Function: BigUint],
-          totalUnstakes: [Function: BigUint],
-          totalReceivedStakes: [Function: BigUint],
-          recentStakes: {
-            items: [
-              Uint8Array [],
-              Uint8Array []
-            ],
-            typeUrl: 'arcblock',
-            maxItems: 2,
-            circular: true,
-            fifo: true
-          },
-          recentReceivedStakes: {
-            items: [
-              Uint8Array [],
-              Uint8Array []
-            ],
-            typeUrl: 'arcblock',
-            maxItems: 2,
-            circular: true,
-            fifo: true
-          }
-        },
-        context: {
-          genesisTx: 'arcblock',
-          renaissanceTx: 'arcblock',
-          genesisTime: '2019-04-30T10:16:52.228Z',
-          renaissanceTime: '2019-04-30T10:16:52.228Z'
-        },
-        data: {
-          type: 'string',
-          value: 'ABCD 1234'
-        }
-      }
-    ],
-    stakes: [
-      {
-        address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-        from: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-        to: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-        balance: [Function: BigUint],
-        message: 'arcblock',
-        context: {
-          genesisTx: 'arcblock',
-          renaissanceTx: 'arcblock',
-          genesisTime: '2019-04-30T10:16:52.228Z',
-          renaissanceTime: '2019-04-30T10:16:52.228Z'
-        },
-        data: {
-          type: 'string',
-          value: 'ABCD 1234'
-        }
-      },
-      {
-        address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-        from: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-        to: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-        balance: [Function: BigUint],
-        message: 'arcblock',
-        context: {
-          genesisTx: 'arcblock',
-          renaissanceTx: 'arcblock',
-          genesisTime: '2019-04-30T10:16:52.228Z',
-          renaissanceTime: '2019-04-30T10:16:52.228Z'
-        },
-        data: {
-          type: 'string',
-          value: 'ABCD 1234'
-        }
-      }
-    ],
-    context: {
-      txHash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-      blockHeight: 5,
-      blockTime: '2019-04-30T10:16:52.228Z',
-      totalTxs: 5,
-      txStatistics: {
-        numAccountMigrateTxs: 5,
-        numCreateAssetTxs: 5,
-        numConsensusUpgradeTxs: 2,
-        numDeclareTxs: 5,
-        numDeclareFileTxs: 5,
-        numExchangeTxs: 5,
-        numStakeTxs: 5,
-        numSysUpgradeTxs: 2,
-        numTransferTxs: 5,
-        numUpdateAssetTxs: 5,
-        numConsumeAssetTxs: 5,
-        numPokeTxs: 5
-      },
-      txIndex: 2,
-      lastBlockTime: '2019-04-30T10:16:52.228Z'
-    },
-    appState: {
-      address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-      consensus: {
-        maxBytes: 5,
-        maxGas: 4,
-        maxValidators: 2,
-        maxCandidates: 2,
-        pubKeyTypes: [
-          'arcblock',
-          'arcblock'
-        ],
-        validators: [
-          {
-            address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-            power: 5
-          },
-          {
-            address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-            power: 5
-          }
-        ],
-        validatorChanged: true,
-        paramChanged: true
-      },
-      tasks: {
-        '5': {
-          item: [
-            {
-              type: 0,
-              dataHash: 'arcblock',
-              actions: [
-                undefined,
-                undefined
-              ]
-            },
-            {
-              type: 0,
-              dataHash: 'arcblock',
-              actions: [
-                undefined,
-                undefined
-              ]
-            }
-          ]
-        }
-      },
-      stakeSummary: {
-        '2': {
-          totalStakes: [Function: BigUint],
-          totalUnstakes: [Function: BigUint],
-          context: {
-            genesisTx: 'arcblock',
-            renaissanceTx: 'arcblock',
-            genesisTime: '2019-04-30T10:16:52.228Z',
-            renaissanceTime: '2019-04-30T10:16:52.228Z'
-          }
-        }
-      },
-      version: 'arcblock',
-      forgeAppHash: Uint8Array [],
-      token: {
-        name: 'arcblock',
-        symbol: 'arcblock',
-        unit: 'arcblock',
-        description: 'arcblock',
-        icon: Uint8Array [],
-        decimal: 2,
-        initialSupply: 5,
-        totalSupply: 5,
-        inflationRate: 2
-      },
-      txConfig: {
-        maxAssetSize: 2,
-        maxListSize: 2,
-        maxMultisig: 2,
-        minimumStake: 5
-      },
-      stakeConfig: {
-        timeoutGeneral: 2,
-        timeoutStakeForNode: 2
-      },
-      pokeConfig: {
-        address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-        dailyLimit: 5,
-        balance: 5,
-        amount: 5
-      },
-      protocols: [
-        {
-          name: 'arcblock',
-          address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55'
-        },
-        {
-          name: 'arcblock',
-          address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55'
-        }
-      ],
-      upgradeInfo: {
-        height: 5,
-        version: 'arcblock'
-      },
-      data: {
-        type: 'string',
-        value: 'ABCD 1234'
-      }
-    }
-  }
-});
-
-// response is a stream
-result.on('data', data => {
-  // response data format
-  {
-  verifyTx: {
-    code: 0
-  }
-}
-});
-```
-
 ### recoverWallet
 
 ```js
@@ -3442,7 +2577,7 @@ result.on('data', data => {
         }
       ],
       code: 0,
-      time: '2019-04-30T10:16:52.229Z',
+      time: '2019-05-05T01:47:09.099Z',
       createAsset: {
         asset: 'arcblock'
       },
@@ -3496,7 +2631,7 @@ result.on('data', data => {
         }
       ],
       code: 0,
-      time: '2019-04-30T10:16:52.229Z',
+      time: '2019-05-05T01:47:09.099Z',
       createAsset: {
         asset: 'arcblock'
       },

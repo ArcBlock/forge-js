@@ -8,1575 +8,6 @@
  */
 
 /**
- * Structure of GRpcClient.RequestVerifyTx 
- *
-```javascript
-{
-  "tx": {
-    "from": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
-    "nonce": 5,
-    "chainId": "arcblock",
-    "pk": {},
-    "signature": {},
-    "signatures": [
-      {
-        "signer": "arcblock",
-        "pk": {},
-        "signature": {},
-        "data": {
-          "type": "string",
-          "value": "ABCD 1234"
-        }
-      },
-      {
-        "signer": "arcblock",
-        "pk": {},
-        "signature": {},
-        "data": {
-          "type": "string",
-          "value": "ABCD 1234"
-        }
-      }
-    ],
-    "itx": {
-      "type": "string",
-      "value": "ABCD 1234"
-    }
-  },
-  "states": [
-    {
-      "nonce": 5,
-      "numTxs": 5,
-      "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
-      "pk": {},
-      "type": {
-        "pk": 0,
-        "hash": 0,
-        "address": 0,
-        "role": 0
-      },
-      "moniker": "arcblock",
-      "context": {
-        "genesisTx": "arcblock",
-        "renaissanceTx": "arcblock",
-        "genesisTime": "2019-04-30T10:16:51.727Z",
-        "renaissanceTime": "2019-04-30T10:16:51.727Z"
-      },
-      "issuer": "arcblock",
-      "migratedTo": [
-        "arcblock",
-        "arcblock"
-      ],
-      "migratedFrom": [
-        "arcblock",
-        "arcblock"
-      ],
-      "numAssets": 5,
-      "stake": {
-        "recentStakes": {
-          "items": [
-            {},
-            {}
-          ],
-          "typeUrl": "arcblock",
-          "maxItems": 2,
-          "circular": true,
-          "fifo": true
-        },
-        "recentReceivedStakes": {
-          "items": [
-            {},
-            {}
-          ],
-          "typeUrl": "arcblock",
-          "maxItems": 2,
-          "circular": true,
-          "fifo": true
-        }
-      },
-      "pinnedFiles": {
-        "items": [
-          {},
-          {}
-        ],
-        "typeUrl": "arcblock",
-        "maxItems": 2,
-        "circular": true,
-        "fifo": true
-      },
-      "poke": {},
-      "data": {
-        "type": "string",
-        "value": "ABCD 1234"
-      }
-    },
-    {
-      "nonce": 5,
-      "numTxs": 5,
-      "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
-      "pk": {},
-      "type": {
-        "pk": 0,
-        "hash": 0,
-        "address": 0,
-        "role": 0
-      },
-      "moniker": "arcblock",
-      "context": {
-        "genesisTx": "arcblock",
-        "renaissanceTx": "arcblock",
-        "genesisTime": "2019-04-30T10:16:51.727Z",
-        "renaissanceTime": "2019-04-30T10:16:51.727Z"
-      },
-      "issuer": "arcblock",
-      "migratedTo": [
-        "arcblock",
-        "arcblock"
-      ],
-      "migratedFrom": [
-        "arcblock",
-        "arcblock"
-      ],
-      "numAssets": 5,
-      "stake": {
-        "recentStakes": {
-          "items": [
-            {},
-            {}
-          ],
-          "typeUrl": "arcblock",
-          "maxItems": 2,
-          "circular": true,
-          "fifo": true
-        },
-        "recentReceivedStakes": {
-          "items": [
-            {},
-            {}
-          ],
-          "typeUrl": "arcblock",
-          "maxItems": 2,
-          "circular": true,
-          "fifo": true
-        }
-      },
-      "pinnedFiles": {
-        "items": [
-          {},
-          {}
-        ],
-        "typeUrl": "arcblock",
-        "maxItems": 2,
-        "circular": true,
-        "fifo": true
-      },
-      "poke": {},
-      "data": {
-        "type": "string",
-        "value": "ABCD 1234"
-      }
-    }
-  ],
-  "assets": [
-    {
-      "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
-      "owner": "arcblock",
-      "moniker": "arcblock",
-      "readonly": true,
-      "transferrable": true,
-      "ttl": 2,
-      "consumedTime": "2019-04-30T10:16:51.727Z",
-      "issuer": "arcblock",
-      "stake": {
-        "recentStakes": {
-          "items": [
-            {},
-            {}
-          ],
-          "typeUrl": "arcblock",
-          "maxItems": 2,
-          "circular": true,
-          "fifo": true
-        },
-        "recentReceivedStakes": {
-          "items": [
-            {},
-            {}
-          ],
-          "typeUrl": "arcblock",
-          "maxItems": 2,
-          "circular": true,
-          "fifo": true
-        }
-      },
-      "context": {
-        "genesisTx": "arcblock",
-        "renaissanceTx": "arcblock",
-        "genesisTime": "2019-04-30T10:16:51.727Z",
-        "renaissanceTime": "2019-04-30T10:16:51.727Z"
-      },
-      "data": {
-        "type": "string",
-        "value": "ABCD 1234"
-      }
-    },
-    {
-      "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
-      "owner": "arcblock",
-      "moniker": "arcblock",
-      "readonly": true,
-      "transferrable": true,
-      "ttl": 2,
-      "consumedTime": "2019-04-30T10:16:51.727Z",
-      "issuer": "arcblock",
-      "stake": {
-        "recentStakes": {
-          "items": [
-            {},
-            {}
-          ],
-          "typeUrl": "arcblock",
-          "maxItems": 2,
-          "circular": true,
-          "fifo": true
-        },
-        "recentReceivedStakes": {
-          "items": [
-            {},
-            {}
-          ],
-          "typeUrl": "arcblock",
-          "maxItems": 2,
-          "circular": true,
-          "fifo": true
-        }
-      },
-      "context": {
-        "genesisTx": "arcblock",
-        "renaissanceTx": "arcblock",
-        "genesisTime": "2019-04-30T10:16:51.727Z",
-        "renaissanceTime": "2019-04-30T10:16:51.727Z"
-      },
-      "data": {
-        "type": "string",
-        "value": "ABCD 1234"
-      }
-    }
-  ],
-  "stakes": [
-    {
-      "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
-      "from": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
-      "to": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
-      "message": "arcblock",
-      "context": {
-        "genesisTx": "arcblock",
-        "renaissanceTx": "arcblock",
-        "genesisTime": "2019-04-30T10:16:51.727Z",
-        "renaissanceTime": "2019-04-30T10:16:51.727Z"
-      },
-      "data": {
-        "type": "string",
-        "value": "ABCD 1234"
-      }
-    },
-    {
-      "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
-      "from": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
-      "to": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
-      "message": "arcblock",
-      "context": {
-        "genesisTx": "arcblock",
-        "renaissanceTx": "arcblock",
-        "genesisTime": "2019-04-30T10:16:51.727Z",
-        "renaissanceTime": "2019-04-30T10:16:51.727Z"
-      },
-      "data": {
-        "type": "string",
-        "value": "ABCD 1234"
-      }
-    }
-  ],
-  "context": {
-    "txHash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
-    "blockHeight": 5,
-    "blockTime": "2019-04-30T10:16:51.727Z",
-    "totalTxs": 5,
-    "txStatistics": {
-      "numAccountMigrateTxs": 5,
-      "numCreateAssetTxs": 5,
-      "numConsensusUpgradeTxs": 2,
-      "numDeclareTxs": 5,
-      "numDeclareFileTxs": 5,
-      "numExchangeTxs": 5,
-      "numStakeTxs": 5,
-      "numSysUpgradeTxs": 2,
-      "numTransferTxs": 5,
-      "numUpdateAssetTxs": 5,
-      "numConsumeAssetTxs": 5,
-      "numPokeTxs": 5
-    },
-    "txIndex": 2,
-    "lastBlockTime": "2019-04-30T10:16:51.727Z"
-  },
-  "appState": {
-    "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
-    "consensus": {
-      "maxBytes": 5,
-      "maxGas": 4,
-      "maxValidators": 2,
-      "maxCandidates": 2,
-      "pubKeyTypes": [
-        "arcblock",
-        "arcblock"
-      ],
-      "validators": [
-        {
-          "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
-          "power": 5
-        },
-        {
-          "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
-          "power": 5
-        }
-      ],
-      "validatorChanged": true,
-      "paramChanged": true
-    },
-    "tasks": {
-      "5": {
-        "item": [
-          {
-            "type": 0,
-            "dataHash": "arcblock",
-            "actions": [
-              null,
-              null
-            ]
-          },
-          {
-            "type": 0,
-            "dataHash": "arcblock",
-            "actions": [
-              null,
-              null
-            ]
-          }
-        ]
-      }
-    },
-    "stakeSummary": {
-      "2": {
-        "context": {
-          "genesisTx": "arcblock",
-          "renaissanceTx": "arcblock",
-          "genesisTime": "2019-04-30T10:16:51.727Z",
-          "renaissanceTime": "2019-04-30T10:16:51.727Z"
-        }
-      }
-    },
-    "version": "arcblock",
-    "forgeAppHash": {},
-    "token": {
-      "name": "arcblock",
-      "symbol": "arcblock",
-      "unit": "arcblock",
-      "description": "arcblock",
-      "icon": {},
-      "decimal": 2,
-      "initialSupply": 5,
-      "totalSupply": 5,
-      "inflationRate": 2
-    },
-    "txConfig": {
-      "maxAssetSize": 2,
-      "maxListSize": 2,
-      "maxMultisig": 2,
-      "minimumStake": 5
-    },
-    "stakeConfig": {
-      "timeoutGeneral": 2,
-      "timeoutStakeForNode": 2
-    },
-    "pokeConfig": {
-      "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
-      "dailyLimit": 5,
-      "balance": 5,
-      "amount": 5
-    },
-    "protocols": [
-      {
-        "name": "arcblock",
-        "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55"
-      },
-      {
-        "name": "arcblock",
-        "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55"
-      }
-    ],
-    "upgradeInfo": {
-      "height": 5,
-      "version": "arcblock"
-    },
-    "data": {
-      "type": "string",
-      "value": "ABCD 1234"
-    }
-  }
-}
-```
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.RequestVerifyTx
- * @prop {GRpcClient.Transaction} tx
- * @prop {Array<GRpcClient.AccountState>} states
- * @prop {Array<GRpcClient.AssetState>} assets
- * @prop {Array<GRpcClient.StakeState>} stakes
- * @prop {GRpcClient.AbciContext} context
- * @prop {GRpcClient.ForgeState} appState
- */
-
-/**
- * Structure of GRpcClient.ResponseVerifyTx 
- *
-```javascript
-{
-  "code": 0
-}
-```
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.ResponseVerifyTx
- * @prop {GRpcClient.StatusCode} code
- */
-
-/**
- * Structure of GRpcClient.RequestUpdateState
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.RequestUpdateState
- * @prop {GRpcClient.Transaction} tx
- * @prop {Array<GRpcClient.AccountState>} states
- * @prop {Array<GRpcClient.AssetState>} assets
- * @prop {Array<GRpcClient.StakeState>} stakes
- * @prop {GRpcClient.AbciContext} context
- * @prop {GRpcClient.ForgeState} appState
- */
-
-/**
- * Structure of GRpcClient.ResponseUpdateState
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.ResponseUpdateState
- * @prop {GRpcClient.StatusCode} code
- * @prop {Array<GRpcClient.AccountState>} states
- * @prop {Array<GRpcClient.AssetState>} assets
- * @prop {Array<GRpcClient.StakeState>} stakes
- * @prop {GRpcClient.ForgeState} appState
- */
-
-/**
- * Structure of GRpcClient.RequestInfo
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.RequestInfo
- * @prop {string} forgeVersion
- */
-
-/**
- * Structure of GRpcClient.ResponseInfo
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.ResponseInfo
- * @prop {Array<string>} typeUrls
- * @prop {Uint8Array} appHash
- */
-
-/**
- * Structure of GRpcClient.Request 
- *
-```javascript
-{
-  "verifyTx": {
-    "tx": {
-      "from": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
-      "nonce": 5,
-      "chainId": "arcblock",
-      "pk": {},
-      "signature": {},
-      "signatures": [
-        {
-          "signer": "arcblock",
-          "pk": {},
-          "signature": {},
-          "data": {
-            "type": "string",
-            "value": "ABCD 1234"
-          }
-        },
-        {
-          "signer": "arcblock",
-          "pk": {},
-          "signature": {},
-          "data": {
-            "type": "string",
-            "value": "ABCD 1234"
-          }
-        }
-      ],
-      "itx": {
-        "type": "string",
-        "value": "ABCD 1234"
-      }
-    },
-    "states": [
-      {
-        "nonce": 5,
-        "numTxs": 5,
-        "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
-        "pk": {},
-        "type": {
-          "pk": 0,
-          "hash": 0,
-          "address": 0,
-          "role": 0
-        },
-        "moniker": "arcblock",
-        "context": {
-          "genesisTx": "arcblock",
-          "renaissanceTx": "arcblock",
-          "genesisTime": "2019-04-30T10:16:51.726Z",
-          "renaissanceTime": "2019-04-30T10:16:51.726Z"
-        },
-        "issuer": "arcblock",
-        "migratedTo": [
-          "arcblock",
-          "arcblock"
-        ],
-        "migratedFrom": [
-          "arcblock",
-          "arcblock"
-        ],
-        "numAssets": 5,
-        "stake": {
-          "recentStakes": {
-            "items": [
-              {},
-              {}
-            ],
-            "typeUrl": "arcblock",
-            "maxItems": 2,
-            "circular": true,
-            "fifo": true
-          },
-          "recentReceivedStakes": {
-            "items": [
-              {},
-              {}
-            ],
-            "typeUrl": "arcblock",
-            "maxItems": 2,
-            "circular": true,
-            "fifo": true
-          }
-        },
-        "pinnedFiles": {
-          "items": [
-            {},
-            {}
-          ],
-          "typeUrl": "arcblock",
-          "maxItems": 2,
-          "circular": true,
-          "fifo": true
-        },
-        "poke": {},
-        "data": {
-          "type": "string",
-          "value": "ABCD 1234"
-        }
-      },
-      {
-        "nonce": 5,
-        "numTxs": 5,
-        "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
-        "pk": {},
-        "type": {
-          "pk": 0,
-          "hash": 0,
-          "address": 0,
-          "role": 0
-        },
-        "moniker": "arcblock",
-        "context": {
-          "genesisTx": "arcblock",
-          "renaissanceTx": "arcblock",
-          "genesisTime": "2019-04-30T10:16:51.726Z",
-          "renaissanceTime": "2019-04-30T10:16:51.726Z"
-        },
-        "issuer": "arcblock",
-        "migratedTo": [
-          "arcblock",
-          "arcblock"
-        ],
-        "migratedFrom": [
-          "arcblock",
-          "arcblock"
-        ],
-        "numAssets": 5,
-        "stake": {
-          "recentStakes": {
-            "items": [
-              {},
-              {}
-            ],
-            "typeUrl": "arcblock",
-            "maxItems": 2,
-            "circular": true,
-            "fifo": true
-          },
-          "recentReceivedStakes": {
-            "items": [
-              {},
-              {}
-            ],
-            "typeUrl": "arcblock",
-            "maxItems": 2,
-            "circular": true,
-            "fifo": true
-          }
-        },
-        "pinnedFiles": {
-          "items": [
-            {},
-            {}
-          ],
-          "typeUrl": "arcblock",
-          "maxItems": 2,
-          "circular": true,
-          "fifo": true
-        },
-        "poke": {},
-        "data": {
-          "type": "string",
-          "value": "ABCD 1234"
-        }
-      }
-    ],
-    "assets": [
-      {
-        "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
-        "owner": "arcblock",
-        "moniker": "arcblock",
-        "readonly": true,
-        "transferrable": true,
-        "ttl": 2,
-        "consumedTime": "2019-04-30T10:16:51.726Z",
-        "issuer": "arcblock",
-        "stake": {
-          "recentStakes": {
-            "items": [
-              {},
-              {}
-            ],
-            "typeUrl": "arcblock",
-            "maxItems": 2,
-            "circular": true,
-            "fifo": true
-          },
-          "recentReceivedStakes": {
-            "items": [
-              {},
-              {}
-            ],
-            "typeUrl": "arcblock",
-            "maxItems": 2,
-            "circular": true,
-            "fifo": true
-          }
-        },
-        "context": {
-          "genesisTx": "arcblock",
-          "renaissanceTx": "arcblock",
-          "genesisTime": "2019-04-30T10:16:51.726Z",
-          "renaissanceTime": "2019-04-30T10:16:51.726Z"
-        },
-        "data": {
-          "type": "string",
-          "value": "ABCD 1234"
-        }
-      },
-      {
-        "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
-        "owner": "arcblock",
-        "moniker": "arcblock",
-        "readonly": true,
-        "transferrable": true,
-        "ttl": 2,
-        "consumedTime": "2019-04-30T10:16:51.726Z",
-        "issuer": "arcblock",
-        "stake": {
-          "recentStakes": {
-            "items": [
-              {},
-              {}
-            ],
-            "typeUrl": "arcblock",
-            "maxItems": 2,
-            "circular": true,
-            "fifo": true
-          },
-          "recentReceivedStakes": {
-            "items": [
-              {},
-              {}
-            ],
-            "typeUrl": "arcblock",
-            "maxItems": 2,
-            "circular": true,
-            "fifo": true
-          }
-        },
-        "context": {
-          "genesisTx": "arcblock",
-          "renaissanceTx": "arcblock",
-          "genesisTime": "2019-04-30T10:16:51.726Z",
-          "renaissanceTime": "2019-04-30T10:16:51.726Z"
-        },
-        "data": {
-          "type": "string",
-          "value": "ABCD 1234"
-        }
-      }
-    ],
-    "stakes": [
-      {
-        "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
-        "from": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
-        "to": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
-        "message": "arcblock",
-        "context": {
-          "genesisTx": "arcblock",
-          "renaissanceTx": "arcblock",
-          "genesisTime": "2019-04-30T10:16:51.726Z",
-          "renaissanceTime": "2019-04-30T10:16:51.726Z"
-        },
-        "data": {
-          "type": "string",
-          "value": "ABCD 1234"
-        }
-      },
-      {
-        "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
-        "from": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
-        "to": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
-        "message": "arcblock",
-        "context": {
-          "genesisTx": "arcblock",
-          "renaissanceTx": "arcblock",
-          "genesisTime": "2019-04-30T10:16:51.726Z",
-          "renaissanceTime": "2019-04-30T10:16:51.726Z"
-        },
-        "data": {
-          "type": "string",
-          "value": "ABCD 1234"
-        }
-      }
-    ],
-    "context": {
-      "txHash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
-      "blockHeight": 5,
-      "blockTime": "2019-04-30T10:16:51.726Z",
-      "totalTxs": 5,
-      "txStatistics": {
-        "numAccountMigrateTxs": 5,
-        "numCreateAssetTxs": 5,
-        "numConsensusUpgradeTxs": 2,
-        "numDeclareTxs": 5,
-        "numDeclareFileTxs": 5,
-        "numExchangeTxs": 5,
-        "numStakeTxs": 5,
-        "numSysUpgradeTxs": 2,
-        "numTransferTxs": 5,
-        "numUpdateAssetTxs": 5,
-        "numConsumeAssetTxs": 5,
-        "numPokeTxs": 5
-      },
-      "txIndex": 2,
-      "lastBlockTime": "2019-04-30T10:16:51.726Z"
-    },
-    "appState": {
-      "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
-      "consensus": {
-        "maxBytes": 5,
-        "maxGas": 4,
-        "maxValidators": 2,
-        "maxCandidates": 2,
-        "pubKeyTypes": [
-          "arcblock",
-          "arcblock"
-        ],
-        "validators": [
-          {
-            "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
-            "power": 5
-          },
-          {
-            "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
-            "power": 5
-          }
-        ],
-        "validatorChanged": true,
-        "paramChanged": true
-      },
-      "tasks": {
-        "5": {
-          "item": [
-            {
-              "type": 0,
-              "dataHash": "arcblock",
-              "actions": [
-                null,
-                null
-              ]
-            },
-            {
-              "type": 0,
-              "dataHash": "arcblock",
-              "actions": [
-                null,
-                null
-              ]
-            }
-          ]
-        }
-      },
-      "stakeSummary": {
-        "2": {
-          "context": {
-            "genesisTx": "arcblock",
-            "renaissanceTx": "arcblock",
-            "genesisTime": "2019-04-30T10:16:51.726Z",
-            "renaissanceTime": "2019-04-30T10:16:51.726Z"
-          }
-        }
-      },
-      "version": "arcblock",
-      "forgeAppHash": {},
-      "token": {
-        "name": "arcblock",
-        "symbol": "arcblock",
-        "unit": "arcblock",
-        "description": "arcblock",
-        "icon": {},
-        "decimal": 2,
-        "initialSupply": 5,
-        "totalSupply": 5,
-        "inflationRate": 2
-      },
-      "txConfig": {
-        "maxAssetSize": 2,
-        "maxListSize": 2,
-        "maxMultisig": 2,
-        "minimumStake": 5
-      },
-      "stakeConfig": {
-        "timeoutGeneral": 2,
-        "timeoutStakeForNode": 2
-      },
-      "pokeConfig": {
-        "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
-        "dailyLimit": 5,
-        "balance": 5,
-        "amount": 5
-      },
-      "protocols": [
-        {
-          "name": "arcblock",
-          "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55"
-        },
-        {
-          "name": "arcblock",
-          "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55"
-        }
-      ],
-      "upgradeInfo": {
-        "height": 5,
-        "version": "arcblock"
-      },
-      "data": {
-        "type": "string",
-        "value": "ABCD 1234"
-      }
-    }
-  }
-}
-```
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.Request
- * @prop {GRpcClient.RequestVerifyTx} verifyTx
- * @prop {GRpcClient.RequestUpdateState} updateState
- * @prop {GRpcClient.RequestInfo} info
- */
-
-/**
- * Structure of GRpcClient.Response 
- *
-```javascript
-{
-  "verifyTx": {
-    "code": 0
-  }
-}
-```
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.Response
- * @prop {GRpcClient.ResponseVerifyTx} verifyTx
- * @prop {GRpcClient.ResponseUpdateState} updateState
- * @prop {GRpcClient.ResponseInfo} info
- */
-
-/**
- * Structure of GRpcClient.BigUint
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.BigUint
- * @prop {Uint8Array} value
- */
-
-/**
- * Structure of GRpcClient.BigSint
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.BigSint
- * @prop {Uint8Array} value
- * @prop {boolean} minus
- */
-
-/**
- * Structure of GRpcClient.WalletType
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.WalletType
- * @prop {GRpcClient.KeyType} pk
- * @prop {GRpcClient.HashType} hash
- * @prop {GRpcClient.EncodingType} address
- * @prop {GRpcClient.RoleType} role
- */
-
-/**
- * Structure of GRpcClient.WalletInfo
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.WalletInfo
- * @prop {GRpcClient.WalletType} type
- * @prop {Uint8Array} sk
- * @prop {Uint8Array} pk
- * @prop {string} address
- */
-
-/**
- * Structure of GRpcClient.ChainInfo
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.ChainInfo
- * @prop {string} id
- * @prop {string} network
- * @prop {string} moniker
- * @prop {string} consensusVersion
- * @prop {boolean} synced
- * @prop {Uint8Array} appHash
- * @prop {Uint8Array} blockHash
- * @prop {number} blockHeight
- * @prop {GRpcClient.Timestamp} blockTime
- * @prop {string} address
- * @prop {number} votingPower
- * @prop {number} totalTxs
- * @prop {string} version
- * @prop {string} forgeAppsVersion
- * @prop {Array<string>} supportedTxs
- */
-
-/**
- * Structure of GRpcClient.NodeInfo
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.NodeInfo
- * @prop {string} id
- * @prop {string} network
- * @prop {string} moniker
- * @prop {string} consensusVersion
- * @prop {boolean} synced
- * @prop {Uint8Array} appHash
- * @prop {Uint8Array} blockHash
- * @prop {number} blockHeight
- * @prop {GRpcClient.Timestamp} blockTime
- * @prop {string} address
- * @prop {number} votingPower
- * @prop {number} totalTxs
- * @prop {string} version
- * @prop {string} forgeAppsVersion
- * @prop {Array<string>} supportedTxs
- * @prop {string} ip
- * @prop {GRpcClient.GeoInfo} geoInfo
- * @prop {string} p2pAddress
- */
-
-/**
- * Structure of GRpcClient.Validator
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.Validator
- * @prop {string} address
- * @prop {number} power
- */
-
-/**
- * Structure of GRpcClient.ConsensusParams
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.ConsensusParams
- * @prop {number} maxBytes
- * @prop {number} maxGas
- * @prop {number} maxValidators
- * @prop {number} maxCandidates
- * @prop {Array<string>} pubKeyTypes
- * @prop {Array<GRpcClient.Validator>} validators
- * @prop {boolean} validatorChanged
- * @prop {boolean} paramChanged
- */
-
-/**
- * Structure of GRpcClient.UpgradeTask
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.UpgradeTask
- * @prop {GRpcClient.UpgradeType} type
- * @prop {string} dataHash
- * @prop {Array<GRpcClient.UpgradeAction>} actions
- */
-
-/**
- * Structure of GRpcClient.UpgradeTasks
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.UpgradeTasks
- * @prop {Array<GRpcClient.UpgradeTask>} item
- */
-
-/**
- * Structure of GRpcClient.AbciContext
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.AbciContext
- * @prop {string} txHash
- * @prop {number} blockHeight
- * @prop {GRpcClient.Timestamp} blockTime
- * @prop {number} totalTxs
- * @prop {GRpcClient.TxStatistics} txStatistics
- * @prop {number} txIndex
- * @prop {GRpcClient.Timestamp} lastBlockTime
- */
-
-/**
- * Structure of GRpcClient.Multisig
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.Multisig
- * @prop {string} signer
- * @prop {Uint8Array} pk
- * @prop {Uint8Array} signature
- * @prop {GRpcClient.Any} data
- */
-
-/**
- * Structure of GRpcClient.Transaction
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.Transaction
- * @prop {string} from
- * @prop {number} nonce
- * @prop {string} chainId
- * @prop {Uint8Array} pk
- * @prop {Uint8Array} signature
- * @prop {Array<GRpcClient.Multisig>} signatures
- * @prop {GRpcClient.Any} itx
- */
-
-/**
- * Structure of GRpcClient.TransactionInfo
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.TransactionInfo
- * @prop {GRpcClient.Transaction} tx
- * @prop {number} height
- * @prop {number} index
- * @prop {string} hash
- * @prop {Array<GRpcClient.KVPair>} tags
- * @prop {GRpcClient.StatusCode} code
- * @prop {GRpcClient.Timestamp} time
- * @prop {GRpcClient.ExtraCreateAsset} createAsset
- * @prop {GRpcClient.ExtraAccountMigrate} accountMigrate
- */
-
-/**
- * Structure of GRpcClient.TransactionConfig
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.TransactionConfig
- * @prop {number} maxAssetSize
- * @prop {number} maxListSize
- * @prop {number} maxMultisig
- * @prop {number} minimumStake
- */
-
-/**
- * Structure of GRpcClient.BlockInfo
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.BlockInfo
- * @prop {number} height
- * @prop {number} numTxs
- * @prop {GRpcClient.Timestamp} time
- * @prop {Uint8Array} appHash
- * @prop {Uint8Array} proposer
- * @prop {Array<GRpcClient.TransactionInfo>} txs
- * @prop {number} totalTxs
- * @prop {Array<GRpcClient.TransactionInfo>} invalidTxs
- * @prop {Array<string>} txsHashes
- * @prop {Array<string>} invalidTxsHashes
- * @prop {Uint8Array} consensusHash
- * @prop {Uint8Array} dataHash
- * @prop {Uint8Array} evidenceHash
- * @prop {Uint8Array} lastCommitHash
- * @prop {Uint8Array} lastResultsHash
- * @prop {Uint8Array} nextValidatorsHash
- * @prop {Uint8Array} validatorsHash
- * @prop {GRpcClient.Version} version
- * @prop {GRpcClient.BlockID} lastBlockId
- */
-
-/**
- * Structure of GRpcClient.BlockInfoSimple
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.BlockInfoSimple
- * @prop {number} height
- * @prop {number} numTxs
- * @prop {GRpcClient.Timestamp} time
- * @prop {Uint8Array} appHash
- * @prop {Uint8Array} proposer
- * @prop {number} totalTxs
- * @prop {Array<string>} txsHashes
- * @prop {Array<string>} invalidTxsHashes
- * @prop {Uint8Array} consensusHash
- * @prop {Uint8Array} dataHash
- * @prop {Uint8Array} evidenceHash
- * @prop {Uint8Array} lastCommitHash
- * @prop {Uint8Array} lastResultsHash
- * @prop {Uint8Array} nextValidatorsHash
- * @prop {Uint8Array} validatorsHash
- * @prop {GRpcClient.Version} version
- * @prop {GRpcClient.BlockID} lastBlockId
- */
-
-/**
- * Structure of GRpcClient.TxStatus
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.TxStatus
- * @prop {GRpcClient.StatusCode} code
- * @prop {string} hash
- */
-
-/**
- * Structure of GRpcClient.CircularQueue
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.CircularQueue
- * @prop {Array<Uint8Array>} items
- * @prop {string} typeUrl
- * @prop {number} maxItems
- * @prop {boolean} circular
- * @prop {boolean} fifo
- */
-
-/**
- * Structure of GRpcClient.StateContext
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.StateContext
- * @prop {string} genesisTx
- * @prop {string} renaissanceTx
- * @prop {GRpcClient.Timestamp} genesisTime
- * @prop {GRpcClient.Timestamp} renaissanceTime
- */
-
-/**
- * Structure of GRpcClient.StakeContext
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.StakeContext
- * @prop {GRpcClient.BigUint} totalStakes
- * @prop {GRpcClient.BigUint} totalUnstakes
- * @prop {GRpcClient.BigUint} totalReceivedStakes
- * @prop {GRpcClient.CircularQueue} recentStakes
- * @prop {GRpcClient.CircularQueue} recentReceivedStakes
- */
-
-/**
- * Structure of GRpcClient.StakeSummary
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.StakeSummary
- * @prop {GRpcClient.BigUint} totalStakes
- * @prop {GRpcClient.BigUint} totalUnstakes
- * @prop {GRpcClient.StateContext} context
- */
-
-/**
- * Structure of GRpcClient.StakeConfig
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.StakeConfig
- * @prop {number} timeoutGeneral
- * @prop {number} timeoutStakeForNode
- */
-
-/**
- * Structure of GRpcClient.UnconfirmedTxs
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.UnconfirmedTxs
- * @prop {number} nTxs
- * @prop {Array<GRpcClient.Transaction>} txs
- */
-
-/**
- * Structure of GRpcClient.NetInfo
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.NetInfo
- * @prop {boolean} listening
- * @prop {Array<string>} listeners
- * @prop {number} nPeers
- * @prop {Array<GRpcClient.PeerInfo>} peers
- */
-
-/**
- * Structure of GRpcClient.GeoInfo
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.GeoInfo
- * @prop {string} city
- * @prop {string} country
- * @prop {number} latitude
- * @prop {number} longitude
- */
-
-/**
- * Structure of GRpcClient.PeerInfo
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.PeerInfo
- * @prop {string} id
- * @prop {string} network
- * @prop {string} consensusVersion
- * @prop {string} moniker
- * @prop {string} ip
- * @prop {GRpcClient.GeoInfo} geoInfo
- */
-
-/**
- * Structure of GRpcClient.ValidatorsInfo
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.ValidatorsInfo
- * @prop {number} blockHeight
- * @prop {Array<GRpcClient.ValidatorInfo>} validators
- */
-
-/**
- * Structure of GRpcClient.ValidatorInfo
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.ValidatorInfo
- * @prop {string} address
- * @prop {GRpcClient.PubKey} pubKey
- * @prop {number} votingPower
- * @prop {string} proposerPriority
- * @prop {string} name
- * @prop {GRpcClient.GeoInfo} geoInfo
- */
-
-/**
- * Structure of GRpcClient.GenesisInfo
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.GenesisInfo
- * @prop {string} genesisTime
- * @prop {string} chainId
- * @prop {GRpcClient.ConsensusParams} consensusParams
- * @prop {Array<GRpcClient.ValidatorInfo>} validators
- * @prop {string} appHash
- */
-
-/**
- * Structure of GRpcClient.ForgeStats
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.ForgeStats
- * @prop {Array<number>} numBlocks
- * @prop {Array<number>} numTxs
- * @prop {Array<GRpcClient.BigUint>} numStakes
- * @prop {Array<number>} numValidators
- * @prop {Array<number>} numAccountMigrateTxs
- * @prop {Array<number>} numCreateAssetTxs
- * @prop {Array<number>} numConsensusUpgradeTxs
- * @prop {Array<number>} numDeclareTxs
- * @prop {Array<number>} numDeclareFileTxs
- * @prop {Array<number>} numExchangeTxs
- * @prop {Array<number>} numStakeTxs
- * @prop {Array<number>} numSysUpgradeTxs
- * @prop {Array<number>} numTransferTxs
- * @prop {Array<number>} numUpdateAssetTxs
- * @prop {Array<number>} numConsumeAssetTxs
- * @prop {Array<number>} numPokeTxs
- * @prop {Array<number>} tps
- * @prop {number} maxTps
- * @prop {number} avgTps
- * @prop {number} avgBlockTime
- */
-
-/**
- * Structure of GRpcClient.TxStatistics
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.TxStatistics
- * @prop {number} numAccountMigrateTxs
- * @prop {number} numCreateAssetTxs
- * @prop {number} numConsensusUpgradeTxs
- * @prop {number} numDeclareTxs
- * @prop {number} numDeclareFileTxs
- * @prop {number} numExchangeTxs
- * @prop {number} numStakeTxs
- * @prop {number} numSysUpgradeTxs
- * @prop {number} numTransferTxs
- * @prop {number} numUpdateAssetTxs
- * @prop {number} numConsumeAssetTxs
- * @prop {number} numPokeTxs
- */
-
-/**
- * Structure of GRpcClient.ForgeToken
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.ForgeToken
- * @prop {string} name
- * @prop {string} symbol
- * @prop {string} unit
- * @prop {string} description
- * @prop {Uint8Array} icon
- * @prop {number} decimal
- * @prop {number} initialSupply
- * @prop {number} totalSupply
- * @prop {number} inflationRate
- */
-
-/**
- * Structure of GRpcClient.PokeInfo
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.PokeInfo
- * @prop {GRpcClient.BigUint} dailyLimit
- * @prop {GRpcClient.BigUint} leftover
- * @prop {GRpcClient.BigUint} amount
- */
-
-/**
- * Structure of GRpcClient.PokeConfig
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.PokeConfig
- * @prop {string} address
- * @prop {number} dailyLimit
- * @prop {number} balance
- * @prop {number} amount
- */
-
-/**
- * Structure of GRpcClient.UpgradeInfo
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.UpgradeInfo
- * @prop {number} height
- * @prop {string} version
- */
-
-/**
- * Structure of GRpcClient.AccountState
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.AccountState
- * @prop {GRpcClient.BigUint} balance
- * @prop {number} nonce
- * @prop {number} numTxs
- * @prop {string} address
- * @prop {Uint8Array} pk
- * @prop {GRpcClient.WalletType} type
- * @prop {string} moniker
- * @prop {GRpcClient.StateContext} context
- * @prop {string} issuer
- * @prop {Array<string>} migratedTo
- * @prop {Array<string>} migratedFrom
- * @prop {number} numAssets
- * @prop {GRpcClient.StakeContext} stake
- * @prop {GRpcClient.CircularQueue} pinnedFiles
- * @prop {GRpcClient.PokeInfo} poke
- * @prop {GRpcClient.BigUint} depositReceived
- * @prop {GRpcClient.Any} data
- */
-
-/**
- * Structure of GRpcClient.AssetState
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.AssetState
- * @prop {string} address
- * @prop {string} owner
- * @prop {string} moniker
- * @prop {boolean} readonly
- * @prop {boolean} transferrable
- * @prop {number} ttl
- * @prop {GRpcClient.Timestamp} consumedTime
- * @prop {string} issuer
- * @prop {GRpcClient.StakeContext} stake
- * @prop {GRpcClient.StateContext} context
- * @prop {GRpcClient.Any} data
- */
-
-/**
- * Structure of GRpcClient.CoreProtocol
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.CoreProtocol
- * @prop {string} name
- * @prop {string} address
- */
-
-/**
- * Structure of GRpcClient.ForgeState
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.ForgeState
- * @prop {string} address
- * @prop {GRpcClient.ConsensusParams} consensus
- * @prop {GRpcClient.UpgradeTasks} tasks
- * @prop {GRpcClient.StakeSummary} stakeSummary
- * @prop {string} version
- * @prop {Uint8Array} forgeAppHash
- * @prop {GRpcClient.ForgeToken} token
- * @prop {GRpcClient.TransactionConfig} txConfig
- * @prop {GRpcClient.StakeConfig} stakeConfig
- * @prop {GRpcClient.PokeConfig} pokeConfig
- * @prop {Array<GRpcClient.CoreProtocol>} protocols
- * @prop {GRpcClient.UpgradeInfo} upgradeInfo
- * @prop {GRpcClient.Any} data
- */
-
-/**
- * Structure of GRpcClient.RootState
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.RootState
- * @prop {string} address
- * @prop {Uint8Array} account
- * @prop {Uint8Array} asset
- * @prop {Uint8Array} receipt
- * @prop {Uint8Array} protocol
- */
-
-/**
- * Structure of GRpcClient.StakeState
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.StakeState
- * @prop {string} address
- * @prop {string} from
- * @prop {string} to
- * @prop {GRpcClient.BigUint} balance
- * @prop {string} message
- * @prop {GRpcClient.StateContext} context
- * @prop {GRpcClient.Any} data
- */
-
-/**
- * Structure of GRpcClient.StatisticsState
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.StatisticsState
- * @prop {string} address
- * @prop {number} numBlocks
- * @prop {number} numTxs
- * @prop {GRpcClient.BigUint} numStakes
- * @prop {number} numValidators
- * @prop {GRpcClient.TxStatistics} txStatistics
- */
-
-/**
- * Structure of GRpcClient.BlacklistState
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.BlacklistState
- * @prop {Array<string>} address
- */
-
-/**
- * Structure of GRpcClient.ProtocolState
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.ProtocolState
- * @prop {string} address
- * @prop {string} name
- * @prop {number} version
- * @prop {string} description
- * @prop {string} txHash
- * @prop {Uint8Array} rootHash
- * @prop {GRpcClient.ProtocolStatus} status
- * @prop {Array<string>} migratedTo
- * @prop {Array<string>} migratedFrom
- * @prop {GRpcClient.StateContext} context
- * @prop {GRpcClient.Any} data
- */
-
-/**
- * Structure of GRpcClient.TetherState
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.TetherState
- * @prop {boolean} available
- */
-
-/**
- * Structure of GRpcClient.TetherInfo
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.TetherInfo
- * @prop {string} hash
- * @prop {boolean} available
- * @prop {string} custodian
- * @prop {string} depositor
- * @prop {string} withdrawer
- * @prop {GRpcClient.BigUint} value
- * @prop {GRpcClient.BigUint} commission
- * @prop {GRpcClient.BigUint} charge
- * @prop {string} target
- * @prop {GRpcClient.Timestamp} locktime
- */
-
-/**
  * Structure of GRpcClient.RequestCreateTx 
  *
 ```javascript
@@ -1908,7 +339,7 @@
       }
     ],
     "code": 0,
-    "time": "2019-04-30T10:16:51.728Z",
+    "time": "2019-05-05T01:47:08.608Z",
     "createAsset": {
       "asset": "arcblock"
     },
@@ -1948,7 +379,7 @@
   "block": {
     "height": 5,
     "numTxs": 2,
-    "time": "2019-04-30T10:16:51.723Z",
+    "time": "2019-05-05T01:47:08.605Z",
     "appHash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
     "proposer": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
     "txs": [
@@ -1998,7 +429,7 @@
           }
         ],
         "code": 0,
-        "time": "2019-04-30T10:16:51.723Z",
+        "time": "2019-05-05T01:47:08.605Z",
         "createAsset": {
           "asset": "arcblock"
         },
@@ -2052,7 +483,7 @@
           }
         ],
         "code": 0,
-        "time": "2019-04-30T10:16:51.723Z",
+        "time": "2019-05-05T01:47:08.605Z",
         "createAsset": {
           "asset": "arcblock"
         },
@@ -2109,7 +540,7 @@
           }
         ],
         "code": 0,
-        "time": "2019-04-30T10:16:51.723Z",
+        "time": "2019-05-05T01:47:08.605Z",
         "createAsset": {
           "asset": "arcblock"
         },
@@ -2163,7 +594,7 @@
           }
         ],
         "code": 0,
-        "time": "2019-04-30T10:16:51.723Z",
+        "time": "2019-05-05T01:47:08.605Z",
         "createAsset": {
           "asset": "arcblock"
         },
@@ -2256,7 +687,7 @@
     {
       "height": 5,
       "numTxs": 2,
-      "time": "2019-04-30T10:16:51.723Z",
+      "time": "2019-05-05T01:47:08.605Z",
       "appHash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
       "proposer": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
       "totalTxs": 5,
@@ -2289,7 +720,7 @@
     {
       "height": 5,
       "numTxs": 2,
-      "time": "2019-04-30T10:16:51.723Z",
+      "time": "2019-05-05T01:47:08.605Z",
       "appHash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
       "proposer": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
       "totalTxs": 5,
@@ -2616,8 +1047,8 @@
     "context": {
       "genesisTx": "arcblock",
       "renaissanceTx": "arcblock",
-      "genesisTime": "2019-04-30T10:16:51.724Z",
-      "renaissanceTime": "2019-04-30T10:16:51.724Z"
+      "genesisTime": "2019-05-05T01:47:08.606Z",
+      "renaissanceTime": "2019-05-05T01:47:08.606Z"
     },
     "issuer": "arcblock",
     "migratedTo": [
@@ -2710,7 +1141,7 @@
     "readonly": true,
     "transferrable": true,
     "ttl": 2,
-    "consumedTime": "2019-04-30T10:16:51.724Z",
+    "consumedTime": "2019-05-05T01:47:08.606Z",
     "issuer": "arcblock",
     "stake": {
       "recentStakes": {
@@ -2737,8 +1168,8 @@
     "context": {
       "genesisTx": "arcblock",
       "renaissanceTx": "arcblock",
-      "genesisTime": "2019-04-30T10:16:51.724Z",
-      "renaissanceTime": "2019-04-30T10:16:51.724Z"
+      "genesisTime": "2019-05-05T01:47:08.606Z",
+      "renaissanceTime": "2019-05-05T01:47:08.606Z"
     },
     "data": {
       "type": "string",
@@ -2783,10 +1214,47 @@
   "code": 0,
   "state": {
     "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
-    "name": "arcblock",
-    "version": 2,
-    "description": "arcblock",
-    "txHash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+    "itx": {
+      "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+      "name": "arcblock",
+      "version": 2,
+      "namespace": "arcblock",
+      "description": "arcblock",
+      "typeUrls": [
+        {
+          "url": "arcblock",
+          "module": "arcblock"
+        },
+        {
+          "url": "arcblock",
+          "module": "arcblock"
+        }
+      ],
+      "proto": "arcblock",
+      "pipeline": "arcblock",
+      "sources": [
+        "arcblock",
+        "arcblock"
+      ],
+      "code": [
+        {
+          "checksum": {},
+          "binary": {}
+        },
+        {
+          "checksum": {},
+          "binary": {}
+        }
+      ],
+      "tags": [
+        "arcblock",
+        "arcblock"
+      ],
+      "data": {
+        "type": "string",
+        "value": "ABCD 1234"
+      }
+    },
     "rootHash": {},
     "status": 0,
     "migratedTo": [
@@ -2800,8 +1268,8 @@
     "context": {
       "genesisTx": "arcblock",
       "renaissanceTx": "arcblock",
-      "genesisTime": "2019-04-30T10:16:51.724Z",
-      "renaissanceTime": "2019-04-30T10:16:51.724Z"
+      "genesisTime": "2019-05-05T01:47:08.606Z",
+      "renaissanceTime": "2019-05-05T01:47:08.606Z"
     },
     "data": {
       "type": "string",
@@ -2852,8 +1320,8 @@
     "context": {
       "genesisTx": "arcblock",
       "renaissanceTx": "arcblock",
-      "genesisTime": "2019-04-30T10:16:51.724Z",
-      "renaissanceTime": "2019-04-30T10:16:51.724Z"
+      "genesisTime": "2019-05-05T01:47:08.606Z",
+      "renaissanceTime": "2019-05-05T01:47:08.606Z"
     },
     "data": {
       "type": "string",
@@ -2945,8 +1413,8 @@
         "context": {
           "genesisTx": "arcblock",
           "renaissanceTx": "arcblock",
-          "genesisTime": "2019-04-30T10:16:51.724Z",
-          "renaissanceTime": "2019-04-30T10:16:51.724Z"
+          "genesisTime": "2019-05-05T01:47:08.606Z",
+          "renaissanceTime": "2019-05-05T01:47:08.606Z"
         }
       }
     },
@@ -2967,7 +1435,11 @@
       "maxAssetSize": 2,
       "maxListSize": 2,
       "maxMultisig": 2,
-      "minimumStake": 5
+      "minimumStake": 5,
+      "declare": {
+        "restricted": true,
+        "hierarchy": 2
+      }
     },
     "stakeConfig": {
       "timeoutGeneral": 2,
@@ -3008,11 +1480,11 @@
  */
 
 /**
- * Structure of GRpcClient.RequestGetTetherInfo 
+ * Structure of GRpcClient.RequestGetTetherState 
  *
 ```javascript
 {
-  "hash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+  "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
   "keys": [
     "arcblock",
     "arcblock"
@@ -3022,34 +1494,35 @@
 ```
  *
  * @memberof GRpcClient
- * @typedef {object} GRpcClient.RequestGetTetherInfo
- * @prop {string} hash
+ * @typedef {object} GRpcClient.RequestGetTetherState
+ * @prop {string} address
  * @prop {Array<string>} keys
  * @prop {number} height
  */
 
 /**
- * Structure of GRpcClient.ResponseGetTetherInfo 
+ * Structure of GRpcClient.ResponseGetTetherState 
  *
 ```javascript
 {
   "code": 0,
-  "info": {
+  "state": {
     "hash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
     "available": true,
     "custodian": "arcblock",
     "depositor": "arcblock",
     "withdrawer": "arcblock",
     "target": "arcblock",
-    "locktime": "2019-04-30T10:16:51.724Z"
+    "locktime": "2019-05-05T01:47:08.606Z",
+    "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55"
   }
 }
 ```
  *
  * @memberof GRpcClient
- * @typedef {object} GRpcClient.ResponseGetTetherInfo
+ * @typedef {object} GRpcClient.ResponseGetTetherState
  * @prop {GRpcClient.StatusCode} code
- * @prop {GRpcClient.TetherInfo} info
+ * @prop {GRpcClient.TetherState} state
  */
 
 /**
@@ -3167,7 +1640,7 @@
     "appHash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
     "blockHash": {},
     "blockHeight": 5,
-    "blockTime": "2019-04-30T10:16:51.723Z",
+    "blockTime": "2019-05-05T01:47:08.605Z",
     "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
     "votingPower": 5,
     "totalTxs": 5,
@@ -3216,7 +1689,7 @@
     "appHash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
     "blockHash": {},
     "blockHeight": 5,
-    "blockTime": "2019-04-30T10:16:51.723Z",
+    "blockTime": "2019-05-05T01:47:08.605Z",
     "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
     "votingPower": 5,
     "totalTxs": 5,
@@ -3315,7 +1788,7 @@
         }
       ],
       "code": 0,
-      "time": "2019-04-30T10:16:51.723Z",
+      "time": "2019-05-05T01:47:08.606Z",
       "createAsset": {
         "asset": "arcblock"
       },
@@ -3369,7 +1842,7 @@
         }
       ],
       "code": 0,
-      "time": "2019-04-30T10:16:51.723Z",
+      "time": "2019-05-05T01:47:08.606Z",
       "createAsset": {
         "asset": "arcblock"
       },
@@ -4551,6 +3024,798 @@
  */
 
 /**
+ * Structure of GRpcClient.BigUint
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.BigUint
+ * @prop {Uint8Array} value
+ */
+
+/**
+ * Structure of GRpcClient.BigSint
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.BigSint
+ * @prop {Uint8Array} value
+ * @prop {boolean} minus
+ */
+
+/**
+ * Structure of GRpcClient.WalletType
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.WalletType
+ * @prop {GRpcClient.KeyType} pk
+ * @prop {GRpcClient.HashType} hash
+ * @prop {GRpcClient.EncodingType} address
+ * @prop {GRpcClient.RoleType} role
+ */
+
+/**
+ * Structure of GRpcClient.WalletInfo
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.WalletInfo
+ * @prop {GRpcClient.WalletType} type
+ * @prop {Uint8Array} sk
+ * @prop {Uint8Array} pk
+ * @prop {string} address
+ */
+
+/**
+ * Structure of GRpcClient.ChainInfo
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.ChainInfo
+ * @prop {string} id
+ * @prop {string} network
+ * @prop {string} moniker
+ * @prop {string} consensusVersion
+ * @prop {boolean} synced
+ * @prop {Uint8Array} appHash
+ * @prop {Uint8Array} blockHash
+ * @prop {number} blockHeight
+ * @prop {GRpcClient.Timestamp} blockTime
+ * @prop {string} address
+ * @prop {number} votingPower
+ * @prop {number} totalTxs
+ * @prop {string} version
+ * @prop {string} forgeAppsVersion
+ * @prop {Array<string>} supportedTxs
+ */
+
+/**
+ * Structure of GRpcClient.NodeInfo
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.NodeInfo
+ * @prop {string} id
+ * @prop {string} network
+ * @prop {string} moniker
+ * @prop {string} consensusVersion
+ * @prop {boolean} synced
+ * @prop {Uint8Array} appHash
+ * @prop {Uint8Array} blockHash
+ * @prop {number} blockHeight
+ * @prop {GRpcClient.Timestamp} blockTime
+ * @prop {string} address
+ * @prop {number} votingPower
+ * @prop {number} totalTxs
+ * @prop {string} version
+ * @prop {string} forgeAppsVersion
+ * @prop {Array<string>} supportedTxs
+ * @prop {string} ip
+ * @prop {GRpcClient.GeoInfo} geoInfo
+ * @prop {string} p2pAddress
+ */
+
+/**
+ * Structure of GRpcClient.Validator
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.Validator
+ * @prop {string} address
+ * @prop {number} power
+ */
+
+/**
+ * Structure of GRpcClient.ConsensusParams
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.ConsensusParams
+ * @prop {number} maxBytes
+ * @prop {number} maxGas
+ * @prop {number} maxValidators
+ * @prop {number} maxCandidates
+ * @prop {Array<string>} pubKeyTypes
+ * @prop {Array<GRpcClient.Validator>} validators
+ * @prop {boolean} validatorChanged
+ * @prop {boolean} paramChanged
+ */
+
+/**
+ * Structure of GRpcClient.UpgradeTask
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.UpgradeTask
+ * @prop {GRpcClient.UpgradeType} type
+ * @prop {string} dataHash
+ * @prop {Array<GRpcClient.UpgradeAction>} actions
+ */
+
+/**
+ * Structure of GRpcClient.UpgradeTasks
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.UpgradeTasks
+ * @prop {Array<GRpcClient.UpgradeTask>} item
+ */
+
+/**
+ * Structure of GRpcClient.AbciContext
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.AbciContext
+ * @prop {string} txHash
+ * @prop {number} blockHeight
+ * @prop {GRpcClient.Timestamp} blockTime
+ * @prop {number} totalTxs
+ * @prop {GRpcClient.TxStatistics} txStatistics
+ * @prop {number} txIndex
+ * @prop {GRpcClient.Timestamp} lastBlockTime
+ */
+
+/**
+ * Structure of GRpcClient.Multisig
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.Multisig
+ * @prop {string} signer
+ * @prop {Uint8Array} pk
+ * @prop {Uint8Array} signature
+ * @prop {GRpcClient.Any} data
+ */
+
+/**
+ * Structure of GRpcClient.Transaction
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.Transaction
+ * @prop {string} from
+ * @prop {number} nonce
+ * @prop {string} chainId
+ * @prop {Uint8Array} pk
+ * @prop {Uint8Array} signature
+ * @prop {Array<GRpcClient.Multisig>} signatures
+ * @prop {GRpcClient.Any} itx
+ */
+
+/**
+ * Structure of GRpcClient.TransactionInfo
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.TransactionInfo
+ * @prop {GRpcClient.Transaction} tx
+ * @prop {number} height
+ * @prop {number} index
+ * @prop {string} hash
+ * @prop {Array<GRpcClient.KVPair>} tags
+ * @prop {GRpcClient.StatusCode} code
+ * @prop {GRpcClient.Timestamp} time
+ * @prop {GRpcClient.ExtraCreateAsset} createAsset
+ * @prop {GRpcClient.ExtraAccountMigrate} accountMigrate
+ */
+
+/**
+ * Structure of GRpcClient.DeclareConfig
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.DeclareConfig
+ * @prop {boolean} restricted
+ * @prop {number} hierarchy
+ */
+
+/**
+ * Structure of GRpcClient.TransactionConfig
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.TransactionConfig
+ * @prop {number} maxAssetSize
+ * @prop {number} maxListSize
+ * @prop {number} maxMultisig
+ * @prop {number} minimumStake
+ * @prop {GRpcClient.DeclareConfig} declare
+ */
+
+/**
+ * Structure of GRpcClient.BlockInfo
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.BlockInfo
+ * @prop {number} height
+ * @prop {number} numTxs
+ * @prop {GRpcClient.Timestamp} time
+ * @prop {Uint8Array} appHash
+ * @prop {Uint8Array} proposer
+ * @prop {Array<GRpcClient.TransactionInfo>} txs
+ * @prop {number} totalTxs
+ * @prop {Array<GRpcClient.TransactionInfo>} invalidTxs
+ * @prop {Array<string>} txsHashes
+ * @prop {Array<string>} invalidTxsHashes
+ * @prop {Uint8Array} consensusHash
+ * @prop {Uint8Array} dataHash
+ * @prop {Uint8Array} evidenceHash
+ * @prop {Uint8Array} lastCommitHash
+ * @prop {Uint8Array} lastResultsHash
+ * @prop {Uint8Array} nextValidatorsHash
+ * @prop {Uint8Array} validatorsHash
+ * @prop {GRpcClient.Version} version
+ * @prop {GRpcClient.BlockID} lastBlockId
+ */
+
+/**
+ * Structure of GRpcClient.BlockInfoSimple
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.BlockInfoSimple
+ * @prop {number} height
+ * @prop {number} numTxs
+ * @prop {GRpcClient.Timestamp} time
+ * @prop {Uint8Array} appHash
+ * @prop {Uint8Array} proposer
+ * @prop {number} totalTxs
+ * @prop {Array<string>} txsHashes
+ * @prop {Array<string>} invalidTxsHashes
+ * @prop {Uint8Array} consensusHash
+ * @prop {Uint8Array} dataHash
+ * @prop {Uint8Array} evidenceHash
+ * @prop {Uint8Array} lastCommitHash
+ * @prop {Uint8Array} lastResultsHash
+ * @prop {Uint8Array} nextValidatorsHash
+ * @prop {Uint8Array} validatorsHash
+ * @prop {GRpcClient.Version} version
+ * @prop {GRpcClient.BlockID} lastBlockId
+ */
+
+/**
+ * Structure of GRpcClient.TxStatus
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.TxStatus
+ * @prop {GRpcClient.StatusCode} code
+ * @prop {string} hash
+ */
+
+/**
+ * Structure of GRpcClient.CircularQueue
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.CircularQueue
+ * @prop {Array<Uint8Array>} items
+ * @prop {string} typeUrl
+ * @prop {number} maxItems
+ * @prop {boolean} circular
+ * @prop {boolean} fifo
+ */
+
+/**
+ * Structure of GRpcClient.StateContext
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.StateContext
+ * @prop {string} genesisTx
+ * @prop {string} renaissanceTx
+ * @prop {GRpcClient.Timestamp} genesisTime
+ * @prop {GRpcClient.Timestamp} renaissanceTime
+ */
+
+/**
+ * Structure of GRpcClient.StakeContext
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.StakeContext
+ * @prop {GRpcClient.BigUint} totalStakes
+ * @prop {GRpcClient.BigUint} totalUnstakes
+ * @prop {GRpcClient.BigUint} totalReceivedStakes
+ * @prop {GRpcClient.CircularQueue} recentStakes
+ * @prop {GRpcClient.CircularQueue} recentReceivedStakes
+ */
+
+/**
+ * Structure of GRpcClient.StakeSummary
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.StakeSummary
+ * @prop {GRpcClient.BigUint} totalStakes
+ * @prop {GRpcClient.BigUint} totalUnstakes
+ * @prop {GRpcClient.StateContext} context
+ */
+
+/**
+ * Structure of GRpcClient.StakeConfig
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.StakeConfig
+ * @prop {number} timeoutGeneral
+ * @prop {number} timeoutStakeForNode
+ */
+
+/**
+ * Structure of GRpcClient.UnconfirmedTxs
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.UnconfirmedTxs
+ * @prop {number} nTxs
+ * @prop {Array<GRpcClient.Transaction>} txs
+ */
+
+/**
+ * Structure of GRpcClient.NetInfo
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.NetInfo
+ * @prop {boolean} listening
+ * @prop {Array<string>} listeners
+ * @prop {number} nPeers
+ * @prop {Array<GRpcClient.PeerInfo>} peers
+ */
+
+/**
+ * Structure of GRpcClient.GeoInfo
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.GeoInfo
+ * @prop {string} city
+ * @prop {string} country
+ * @prop {number} latitude
+ * @prop {number} longitude
+ */
+
+/**
+ * Structure of GRpcClient.PeerInfo
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.PeerInfo
+ * @prop {string} id
+ * @prop {string} network
+ * @prop {string} consensusVersion
+ * @prop {string} moniker
+ * @prop {string} ip
+ * @prop {GRpcClient.GeoInfo} geoInfo
+ */
+
+/**
+ * Structure of GRpcClient.ValidatorsInfo
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.ValidatorsInfo
+ * @prop {number} blockHeight
+ * @prop {Array<GRpcClient.ValidatorInfo>} validators
+ */
+
+/**
+ * Structure of GRpcClient.ValidatorInfo
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.ValidatorInfo
+ * @prop {string} address
+ * @prop {GRpcClient.PubKey} pubKey
+ * @prop {number} votingPower
+ * @prop {string} proposerPriority
+ * @prop {string} name
+ * @prop {GRpcClient.GeoInfo} geoInfo
+ */
+
+/**
+ * Structure of GRpcClient.GenesisInfo
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.GenesisInfo
+ * @prop {string} genesisTime
+ * @prop {string} chainId
+ * @prop {GRpcClient.ConsensusParams} consensusParams
+ * @prop {Array<GRpcClient.ValidatorInfo>} validators
+ * @prop {string} appHash
+ */
+
+/**
+ * Structure of GRpcClient.ForgeStats
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.ForgeStats
+ * @prop {Array<number>} numBlocks
+ * @prop {Array<number>} numTxs
+ * @prop {Array<GRpcClient.BigUint>} numStakes
+ * @prop {Array<number>} numValidators
+ * @prop {Array<number>} numAccountMigrateTxs
+ * @prop {Array<number>} numCreateAssetTxs
+ * @prop {Array<number>} numConsensusUpgradeTxs
+ * @prop {Array<number>} numDeclareTxs
+ * @prop {Array<number>} numDeclareFileTxs
+ * @prop {Array<number>} numExchangeTxs
+ * @prop {Array<number>} numStakeTxs
+ * @prop {Array<number>} numSysUpgradeTxs
+ * @prop {Array<number>} numTransferTxs
+ * @prop {Array<number>} numUpdateAssetTxs
+ * @prop {Array<number>} numConsumeAssetTxs
+ * @prop {Array<number>} numPokeTxs
+ * @prop {Array<number>} tps
+ * @prop {number} maxTps
+ * @prop {number} avgTps
+ * @prop {number} avgBlockTime
+ */
+
+/**
+ * Structure of GRpcClient.TxStatistics
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.TxStatistics
+ * @prop {number} numAccountMigrateTxs
+ * @prop {number} numCreateAssetTxs
+ * @prop {number} numConsensusUpgradeTxs
+ * @prop {number} numDeclareTxs
+ * @prop {number} numDeclareFileTxs
+ * @prop {number} numExchangeTxs
+ * @prop {number} numStakeTxs
+ * @prop {number} numSysUpgradeTxs
+ * @prop {number} numTransferTxs
+ * @prop {number} numUpdateAssetTxs
+ * @prop {number} numConsumeAssetTxs
+ * @prop {number} numPokeTxs
+ */
+
+/**
+ * Structure of GRpcClient.ForgeToken
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.ForgeToken
+ * @prop {string} name
+ * @prop {string} symbol
+ * @prop {string} unit
+ * @prop {string} description
+ * @prop {Uint8Array} icon
+ * @prop {number} decimal
+ * @prop {number} initialSupply
+ * @prop {number} totalSupply
+ * @prop {number} inflationRate
+ */
+
+/**
+ * Structure of GRpcClient.PokeInfo
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.PokeInfo
+ * @prop {GRpcClient.BigUint} dailyLimit
+ * @prop {GRpcClient.BigUint} leftover
+ * @prop {GRpcClient.BigUint} amount
+ */
+
+/**
+ * Structure of GRpcClient.PokeConfig
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.PokeConfig
+ * @prop {string} address
+ * @prop {number} dailyLimit
+ * @prop {number} balance
+ * @prop {number} amount
+ */
+
+/**
+ * Structure of GRpcClient.UpgradeInfo
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.UpgradeInfo
+ * @prop {number} height
+ * @prop {string} version
+ */
+
+/**
+ * Structure of GRpcClient.AccountState
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.AccountState
+ * @prop {GRpcClient.BigUint} balance
+ * @prop {number} nonce
+ * @prop {number} numTxs
+ * @prop {string} address
+ * @prop {Uint8Array} pk
+ * @prop {GRpcClient.WalletType} type
+ * @prop {string} moniker
+ * @prop {GRpcClient.StateContext} context
+ * @prop {string} issuer
+ * @prop {Array<string>} migratedTo
+ * @prop {Array<string>} migratedFrom
+ * @prop {number} numAssets
+ * @prop {GRpcClient.StakeContext} stake
+ * @prop {GRpcClient.CircularQueue} pinnedFiles
+ * @prop {GRpcClient.PokeInfo} poke
+ * @prop {GRpcClient.BigUint} depositReceived
+ * @prop {GRpcClient.Any} data
+ */
+
+/**
+ * Structure of GRpcClient.AssetState
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.AssetState
+ * @prop {string} address
+ * @prop {string} owner
+ * @prop {string} moniker
+ * @prop {boolean} readonly
+ * @prop {boolean} transferrable
+ * @prop {number} ttl
+ * @prop {GRpcClient.Timestamp} consumedTime
+ * @prop {string} issuer
+ * @prop {GRpcClient.StakeContext} stake
+ * @prop {GRpcClient.StateContext} context
+ * @prop {GRpcClient.Any} data
+ */
+
+/**
+ * Structure of GRpcClient.CoreProtocol
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.CoreProtocol
+ * @prop {string} name
+ * @prop {string} address
+ */
+
+/**
+ * Structure of GRpcClient.ForgeState
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.ForgeState
+ * @prop {string} address
+ * @prop {GRpcClient.ConsensusParams} consensus
+ * @prop {GRpcClient.UpgradeTasks} tasks
+ * @prop {GRpcClient.StakeSummary} stakeSummary
+ * @prop {string} version
+ * @prop {Uint8Array} forgeAppHash
+ * @prop {GRpcClient.ForgeToken} token
+ * @prop {GRpcClient.TransactionConfig} txConfig
+ * @prop {GRpcClient.StakeConfig} stakeConfig
+ * @prop {GRpcClient.PokeConfig} pokeConfig
+ * @prop {Array<GRpcClient.CoreProtocol>} protocols
+ * @prop {GRpcClient.UpgradeInfo} upgradeInfo
+ * @prop {GRpcClient.Any} data
+ */
+
+/**
+ * Structure of GRpcClient.RootState
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.RootState
+ * @prop {string} address
+ * @prop {Uint8Array} account
+ * @prop {Uint8Array} asset
+ * @prop {Uint8Array} receipt
+ * @prop {Uint8Array} protocol
+ */
+
+/**
+ * Structure of GRpcClient.StakeState
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.StakeState
+ * @prop {string} address
+ * @prop {string} from
+ * @prop {string} to
+ * @prop {GRpcClient.BigUint} balance
+ * @prop {string} message
+ * @prop {GRpcClient.StateContext} context
+ * @prop {GRpcClient.Any} data
+ */
+
+/**
+ * Structure of GRpcClient.StatisticsState
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.StatisticsState
+ * @prop {string} address
+ * @prop {number} numBlocks
+ * @prop {number} numTxs
+ * @prop {GRpcClient.BigUint} numStakes
+ * @prop {number} numValidators
+ * @prop {GRpcClient.TxStatistics} txStatistics
+ */
+
+/**
+ * Structure of GRpcClient.BlacklistState
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.BlacklistState
+ * @prop {Array<string>} address
+ */
+
+/**
+ * Structure of GRpcClient.ProtocolState
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.ProtocolState
+ * @prop {string} address
+ * @prop {GRpcClient.DeployProtocolTx} itx
+ * @prop {Uint8Array} rootHash
+ * @prop {GRpcClient.ProtocolStatus} status
+ * @prop {Array<string>} migratedTo
+ * @prop {Array<string>} migratedFrom
+ * @prop {GRpcClient.StateContext} context
+ * @prop {GRpcClient.Any} data
+ */
+
+/**
+ * Structure of GRpcClient.TetherState
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.TetherState
+ * @prop {string} hash
+ * @prop {boolean} available
+ * @prop {string} custodian
+ * @prop {string} depositor
+ * @prop {string} withdrawer
+ * @prop {GRpcClient.BigUint} value
+ * @prop {GRpcClient.BigUint} commission
+ * @prop {GRpcClient.BigUint} charge
+ * @prop {string} target
+ * @prop {GRpcClient.Timestamp} locktime
+ * @prop {string} address
+ */
+
+/**
+ * Structure of GRpcClient.TetherInfo
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.TetherInfo
+ * @prop {boolean} available
+ * @prop {string} hash
+ */
+
+/**
+ * Structure of GRpcClient.CodeInfo
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.CodeInfo
+ * @prop {Uint8Array} checksum
+ * @prop {Uint8Array} binary
+ */
+
+/**
+ * Structure of GRpcClient.TypeUrls
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.TypeUrls
+ * @prop {string} url
+ * @prop {string} module
+ */
+
+/**
+ * Structure of GRpcClient.DeployProtocolTx 
+ *
+```javascript
+{
+  "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+  "name": "arcblock",
+  "version": 2,
+  "namespace": "arcblock",
+  "description": "arcblock",
+  "typeUrls": [
+    {
+      "url": "arcblock",
+      "module": "arcblock"
+    },
+    {
+      "url": "arcblock",
+      "module": "arcblock"
+    }
+  ],
+  "proto": "arcblock",
+  "pipeline": "arcblock",
+  "sources": [
+    "arcblock",
+    "arcblock"
+  ],
+  "code": [
+    {
+      "checksum": {},
+      "binary": {}
+    },
+    {
+      "checksum": {},
+      "binary": {}
+    }
+  ],
+  "tags": [
+    "arcblock",
+    "arcblock"
+  ],
+  "data": {
+    "type": "string",
+    "value": "ABCD 1234"
+  }
+}
+```
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.DeployProtocolTx
+ * @prop {string} address
+ * @prop {string} name
+ * @prop {number} version
+ * @prop {string} namespace
+ * @prop {string} description
+ * @prop {Array<GRpcClient.TypeUrls>} typeUrls
+ * @prop {string} proto
+ * @prop {string} pipeline
+ * @prop {Array<string>} sources
+ * @prop {Array<GRpcClient.CodeInfo>} code
+ * @prop {Array<string>} tags
+ * @prop {GRpcClient.Any} data
+ */
+
+/**
+ * Structure of GRpcClient.ConsensusUpgradeTx 
+ *
+```javascript
+{
+  "validators": [
+    {
+      "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+      "power": 5
+    },
+    {
+      "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+      "power": 5
+    }
+  ],
+  "maxBytes": 5,
+  "maxGas": 4,
+  "maxValidators": 2,
+  "maxCandidates": 2,
+  "data": {
+    "type": "string",
+    "value": "ABCD 1234"
+  }
+}
+```
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.ConsensusUpgradeTx
+ * @prop {Array<GRpcClient.Validator>} validators
+ * @prop {number} maxBytes
+ * @prop {number} maxGas
+ * @prop {number} maxValidators
+ * @prop {number} maxCandidates
+ * @prop {GRpcClient.Any} data
+ */
+
+/**
+ * Structure of GRpcClient.SysUpgradeTx 
+ *
+```javascript
+{
+  "task": {
+    "type": 0,
+    "dataHash": "arcblock",
+    "actions": [
+      null,
+      null
+    ]
+  },
+  "gracePeriod": 5,
+  "data": {
+    "type": "string",
+    "value": "ABCD 1234"
+  }
+}
+```
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.SysUpgradeTx
+ * @prop {GRpcClient.UpgradeTask} task
+ * @prop {number} gracePeriod
+ * @prop {GRpcClient.Any} data
+ */
+
+/**
  * Structure of GRpcClient.PageOrder
  *
  * @memberof GRpcClient
@@ -4770,167 +4035,6 @@
  */
 
 /**
- * Structure of GRpcClient.DeclareTx 
- *
-```javascript
-{
-  "moniker": "arcblock",
-  "issuer": "arcblock",
-  "data": {
-    "type": "string",
-    "value": "ABCD 1234"
-  }
-}
-```
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.DeclareTx
- * @prop {string} moniker
- * @prop {string} issuer
- * @prop {GRpcClient.Any} data
- */
-
-/**
- * Structure of GRpcClient.CodeInfo
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.CodeInfo
- * @prop {Uint8Array} checksum
- * @prop {Uint8Array} binary
- */
-
-/**
- * Structure of GRpcClient.TypeUrls
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.TypeUrls
- * @prop {string} url
- * @prop {string} module
- */
-
-/**
- * Structure of GRpcClient.DeployProtocolTx 
- *
-```javascript
-{
-  "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
-  "name": "arcblock",
-  "version": 2,
-  "namespace": "arcblock",
-  "description": "arcblock",
-  "typeUrls": [
-    {
-      "url": "arcblock",
-      "module": "arcblock"
-    },
-    {
-      "url": "arcblock",
-      "module": "arcblock"
-    }
-  ],
-  "proto": "arcblock",
-  "pipeline": "arcblock",
-  "sources": [
-    "arcblock",
-    "arcblock"
-  ],
-  "code": [
-    {
-      "checksum": {},
-      "binary": {}
-    },
-    {
-      "checksum": {},
-      "binary": {}
-    }
-  ],
-  "data": {
-    "type": "string",
-    "value": "ABCD 1234"
-  }
-}
-```
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.DeployProtocolTx
- * @prop {string} address
- * @prop {string} name
- * @prop {number} version
- * @prop {string} namespace
- * @prop {string} description
- * @prop {Array<GRpcClient.TypeUrls>} typeUrls
- * @prop {string} proto
- * @prop {string} pipeline
- * @prop {Array<string>} sources
- * @prop {Array<GRpcClient.CodeInfo>} code
- * @prop {GRpcClient.Any} data
- */
-
-/**
- * Structure of GRpcClient.ConsensusUpgradeTx 
- *
-```javascript
-{
-  "validators": [
-    {
-      "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
-      "power": 5
-    },
-    {
-      "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
-      "power": 5
-    }
-  ],
-  "maxBytes": 5,
-  "maxGas": 4,
-  "maxValidators": 2,
-  "maxCandidates": 2,
-  "data": {
-    "type": "string",
-    "value": "ABCD 1234"
-  }
-}
-```
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.ConsensusUpgradeTx
- * @prop {Array<GRpcClient.Validator>} validators
- * @prop {number} maxBytes
- * @prop {number} maxGas
- * @prop {number} maxValidators
- * @prop {number} maxCandidates
- * @prop {GRpcClient.Any} data
- */
-
-/**
- * Structure of GRpcClient.SysUpgradeTx 
- *
-```javascript
-{
-  "task": {
-    "type": 0,
-    "dataHash": "arcblock",
-    "actions": [
-      null,
-      null
-    ]
-  },
-  "gracePeriod": 5,
-  "data": {
-    "type": "string",
-    "value": "ABCD 1234"
-  }
-}
-```
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.SysUpgradeTx
- * @prop {GRpcClient.UpgradeTask} task
- * @prop {number} gracePeriod
- * @prop {GRpcClient.Any} data
- */
-
-/**
  * Structure of GRpcClient.AccountMigrateTx 
  *
 ```javascript
@@ -5102,6 +4206,27 @@
  */
 
 /**
+ * Structure of GRpcClient.DeclareTx 
+ *
+```javascript
+{
+  "moniker": "arcblock",
+  "issuer": "arcblock",
+  "data": {
+    "type": "string",
+    "value": "ABCD 1234"
+  }
+}
+```
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.DeclareTx
+ * @prop {string} moniker
+ * @prop {string} issuer
+ * @prop {GRpcClient.Any} data
+ */
+
+/**
  * Structure of GRpcClient.DeclareFileTx 
  *
 ```javascript
@@ -5122,7 +4247,7 @@
 {
   "target": "arcblock",
   "withdrawer": "arcblock",
-  "locktime": "2019-04-30T10:16:51.729Z"
+  "locktime": "2019-05-05T01:47:08.609Z"
 }
 ```
  *
@@ -5163,7 +4288,7 @@
       "arcblock"
     ]
   },
-  "expiredAt": "2019-04-30T10:16:51.729Z",
+  "expiredAt": "2019-05-05T01:47:08.609Z",
   "data": {
     "type": "string",
     "value": "ABCD 1234"
@@ -5176,6 +4301,113 @@
  * @prop {string} to
  * @prop {GRpcClient.ExchangeInfo} sender
  * @prop {GRpcClient.ExchangeInfo} receiver
+ * @prop {GRpcClient.Timestamp} expiredAt
+ * @prop {GRpcClient.Any} data
+ */
+
+/**
+ * Structure of GRpcClient.TetherExchangeInfo
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.TetherExchangeInfo
+ * @prop {GRpcClient.BigUint} value
+ * @prop {Array<string>} assets
+ * @prop {Array<GRpcClient.Transaction>} deposits
+ */
+
+/**
+ * Structure of GRpcClient.ExchangeTetherTx 
+ *
+```javascript
+{
+  "sender": {
+    "assets": [
+      "arcblock",
+      "arcblock"
+    ]
+  },
+  "receiver": {
+    "assets": [
+      "arcblock",
+      "arcblock"
+    ],
+    "deposits": [
+      {
+        "from": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+        "nonce": 5,
+        "chainId": "arcblock",
+        "pk": {},
+        "signature": {},
+        "signatures": [
+          {
+            "signer": "arcblock",
+            "pk": {},
+            "signature": {},
+            "data": {
+              "type": "string",
+              "value": "ABCD 1234"
+            }
+          },
+          {
+            "signer": "arcblock",
+            "pk": {},
+            "signature": {},
+            "data": {
+              "type": "string",
+              "value": "ABCD 1234"
+            }
+          }
+        ],
+        "itx": {
+          "type": "string",
+          "value": "ABCD 1234"
+        }
+      },
+      {
+        "from": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+        "nonce": 5,
+        "chainId": "arcblock",
+        "pk": {},
+        "signature": {},
+        "signatures": [
+          {
+            "signer": "arcblock",
+            "pk": {},
+            "signature": {},
+            "data": {
+              "type": "string",
+              "value": "ABCD 1234"
+            }
+          },
+          {
+            "signer": "arcblock",
+            "pk": {},
+            "signature": {},
+            "data": {
+              "type": "string",
+              "value": "ABCD 1234"
+            }
+          }
+        ],
+        "itx": {
+          "type": "string",
+          "value": "ABCD 1234"
+        }
+      }
+    ]
+  },
+  "expiredAt": "2019-05-05T01:47:08.609Z",
+  "data": {
+    "type": "string",
+    "value": "ABCD 1234"
+  }
+}
+```
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.ExchangeTetherTx
+ * @prop {GRpcClient.ExchangeInfo} sender
+ * @prop {GRpcClient.TetherExchangeInfo} receiver
  * @prop {GRpcClient.Timestamp} expiredAt
  * @prop {GRpcClient.Any} data
  */
@@ -5320,21 +4552,21 @@
  */
 
 /**
- * Structure of GRpcClient.Timestamp
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.Timestamp
- * @prop {number} seconds
- * @prop {number} nanos
- */
-
-/**
  * Structure of GRpcClient.Any
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.Any
  * @prop {string} type_url
  * @prop {Uint8Array} value
+ */
+
+/**
+ * Structure of GRpcClient.Timestamp
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.Timestamp
+ * @prop {number} seconds
+ * @prop {number} nanos
  */
 
 /**
@@ -5908,9 +5140,9 @@
  *
  * @memberof GRpcClient
  * @function
- * @name GRpcClient#getTetherInfo
- * @param {GRpcClient.RequestGetTetherInfo} params
- * @returns {EventEmitter} EventEmitter that emits `data` event when new data received, checkout {@link GRpcClient.ResponseGetTetherInfo} for payload format.
+ * @name GRpcClient#getTetherState
+ * @param {GRpcClient.RequestGetTetherState} params
+ * @returns {EventEmitter} EventEmitter that emits `data` event when new data received, checkout {@link GRpcClient.ResponseGetTetherState} for payload format.
  */
 
 /**
@@ -6064,26 +5296,6 @@
  */
 
 /**
- * Send gRPC call and return the result
- *
- * @memberof GRpcClient
- * @function
- * @name GRpcClient#processOne
- * @param {GRpcClient.Request} params
- * @returns {Promise.<GRpcClient.Response>}
- */
-
-/**
- * Send gRPC call and return the result
- *
- * @memberof GRpcClient
- * @function
- * @name GRpcClient#process
- * @param {GRpcClient.Request} params
- * @returns {EventEmitter} EventEmitter that emits `data` event when new data received, checkout {@link GRpcClient.Response} for payload format.
- */
-
-/**
  * @memberof GRpcClient
  * @typedef {Object} GRpcClient.ConsensusUpgradeTxInput
  * @prop {object} input
@@ -6106,32 +5318,6 @@
  * @function
  * @name GRpcClient#sendConsensusUpgradeTx
  * @param {GRpcClient.ConsensusUpgradeTxInput} params
- * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
- */
-
-/**
- * @memberof GRpcClient
- * @typedef {Object} GRpcClient.DeclareTxInput
- * @prop {object} input
- * @prop {object} input.tx - data of the transaction
- * @prop {GRpcClient.DeclareTx} input.tx.itx - the actual transaction object
- * @prop {string} [input.tx.pk] - the sender pk
- * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
- * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
- * @prop {string} [input.tx.chainId] - the chainId
- * @prop {string} [input.tx.signature] - transaction signature
- * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transaction
- * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
- * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
- */
-
-/**
- * Send DeclareTx transaction and get the hash, use {@link GRpcClient#getTx} to get transaction detail
- *
- * @memberof GRpcClient
- * @function
- * @name GRpcClient#sendDeclareTx
- * @param {GRpcClient.DeclareTxInput} params
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
 
@@ -6189,6 +5375,84 @@
 
 /**
  * @memberof GRpcClient
+ * @typedef {Object} GRpcClient.AccountMigrateTxInput
+ * @prop {object} input
+ * @prop {object} input.tx - data of the transaction
+ * @prop {GRpcClient.AccountMigrateTx} input.tx.itx - the actual transaction object
+ * @prop {string} [input.tx.pk] - the sender pk
+ * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
+ * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
+ * @prop {string} [input.tx.chainId] - the chainId
+ * @prop {string} [input.tx.signature] - transaction signature
+ * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transaction
+ * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
+ * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
+ */
+
+/**
+ * Send AccountMigrateTx transaction and get the hash, use {@link GRpcClient#getTx} to get transaction detail
+ *
+ * @memberof GRpcClient
+ * @function
+ * @name GRpcClient#sendAccountMigrateTx
+ * @param {GRpcClient.AccountMigrateTxInput} params
+ * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
+ */
+
+/**
+ * @memberof GRpcClient
+ * @typedef {Object} GRpcClient.DeclareTxInput
+ * @prop {object} input
+ * @prop {object} input.tx - data of the transaction
+ * @prop {GRpcClient.DeclareTx} input.tx.itx - the actual transaction object
+ * @prop {string} [input.tx.pk] - the sender pk
+ * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
+ * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
+ * @prop {string} [input.tx.chainId] - the chainId
+ * @prop {string} [input.tx.signature] - transaction signature
+ * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transaction
+ * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
+ * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
+ */
+
+/**
+ * Send DeclareTx transaction and get the hash, use {@link GRpcClient#getTx} to get transaction detail
+ *
+ * @memberof GRpcClient
+ * @function
+ * @name GRpcClient#sendDeclareTx
+ * @param {GRpcClient.DeclareTxInput} params
+ * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
+ */
+
+/**
+ * @memberof GRpcClient
+ * @typedef {Object} GRpcClient.AcquireAssetTxInput
+ * @prop {object} input
+ * @prop {object} input.tx - data of the transaction
+ * @prop {GRpcClient.AcquireAssetTx} input.tx.itx - the actual transaction object
+ * @prop {string} [input.tx.pk] - the sender pk
+ * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
+ * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
+ * @prop {string} [input.tx.chainId] - the chainId
+ * @prop {string} [input.tx.signature] - transaction signature
+ * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transaction
+ * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
+ * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
+ */
+
+/**
+ * Send AcquireAssetTx transaction and get the hash, use {@link GRpcClient#getTx} to get transaction detail
+ *
+ * @memberof GRpcClient
+ * @function
+ * @name GRpcClient#sendAcquireAssetTx
+ * @param {GRpcClient.AcquireAssetTxInput} params
+ * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
+ */
+
+/**
+ * @memberof GRpcClient
  * @typedef {Object} GRpcClient.DeclareFileTxInput
  * @prop {object} input
  * @prop {object} input.tx - data of the transaction
@@ -6210,32 +5474,6 @@
  * @function
  * @name GRpcClient#sendDeclareFileTx
  * @param {GRpcClient.DeclareFileTxInput} params
- * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
- */
-
-/**
- * @memberof GRpcClient
- * @typedef {Object} GRpcClient.CreateAssetTxInput
- * @prop {object} input
- * @prop {object} input.tx - data of the transaction
- * @prop {GRpcClient.CreateAssetTx} input.tx.itx - the actual transaction object
- * @prop {string} [input.tx.pk] - the sender pk
- * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
- * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
- * @prop {string} [input.tx.chainId] - the chainId
- * @prop {string} [input.tx.signature] - transaction signature
- * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transaction
- * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
- * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
- */
-
-/**
- * Send CreateAssetTx transaction and get the hash, use {@link GRpcClient#getTx} to get transaction detail
- *
- * @memberof GRpcClient
- * @function
- * @name GRpcClient#sendCreateAssetTx
- * @param {GRpcClient.CreateAssetTxInput} params
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
 
@@ -6267,6 +5505,32 @@
 
 /**
  * @memberof GRpcClient
+ * @typedef {Object} GRpcClient.ExchangeTetherTxInput
+ * @prop {object} input
+ * @prop {object} input.tx - data of the transaction
+ * @prop {GRpcClient.ExchangeTetherTx} input.tx.itx - the actual transaction object
+ * @prop {string} [input.tx.pk] - the sender pk
+ * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
+ * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
+ * @prop {string} [input.tx.chainId] - the chainId
+ * @prop {string} [input.tx.signature] - transaction signature
+ * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transaction
+ * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
+ * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
+ */
+
+/**
+ * Send ExchangeTetherTx transaction and get the hash, use {@link GRpcClient#getTx} to get transaction detail
+ *
+ * @memberof GRpcClient
+ * @function
+ * @name GRpcClient#sendExchangeTetherTx
+ * @param {GRpcClient.ExchangeTetherTxInput} params
+ * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
+ */
+
+/**
+ * @memberof GRpcClient
  * @typedef {Object} GRpcClient.ConsumeAssetTxInput
  * @prop {object} input
  * @prop {object} input.tx - data of the transaction
@@ -6288,58 +5552,6 @@
  * @function
  * @name GRpcClient#sendConsumeAssetTx
  * @param {GRpcClient.ConsumeAssetTxInput} params
- * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
- */
-
-/**
- * @memberof GRpcClient
- * @typedef {Object} GRpcClient.ExchangeTxInput
- * @prop {object} input
- * @prop {object} input.tx - data of the transaction
- * @prop {GRpcClient.ExchangeTx} input.tx.itx - the actual transaction object
- * @prop {string} [input.tx.pk] - the sender pk
- * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
- * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
- * @prop {string} [input.tx.chainId] - the chainId
- * @prop {string} [input.tx.signature] - transaction signature
- * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transaction
- * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
- * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
- */
-
-/**
- * Send ExchangeTx transaction and get the hash, use {@link GRpcClient#getTx} to get transaction detail
- *
- * @memberof GRpcClient
- * @function
- * @name GRpcClient#sendExchangeTx
- * @param {GRpcClient.ExchangeTxInput} params
- * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
- */
-
-/**
- * @memberof GRpcClient
- * @typedef {Object} GRpcClient.AccountMigrateTxInput
- * @prop {object} input
- * @prop {object} input.tx - data of the transaction
- * @prop {GRpcClient.AccountMigrateTx} input.tx.itx - the actual transaction object
- * @prop {string} [input.tx.pk] - the sender pk
- * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
- * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
- * @prop {string} [input.tx.chainId] - the chainId
- * @prop {string} [input.tx.signature] - transaction signature
- * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transaction
- * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
- * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
- */
-
-/**
- * Send AccountMigrateTx transaction and get the hash, use {@link GRpcClient#getTx} to get transaction detail
- *
- * @memberof GRpcClient
- * @function
- * @name GRpcClient#sendAccountMigrateTx
- * @param {GRpcClient.AccountMigrateTxInput} params
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
 
@@ -6397,10 +5609,10 @@
 
 /**
  * @memberof GRpcClient
- * @typedef {Object} GRpcClient.AcquireAssetTxInput
+ * @typedef {Object} GRpcClient.CreateAssetTxInput
  * @prop {object} input
  * @prop {object} input.tx - data of the transaction
- * @prop {GRpcClient.AcquireAssetTx} input.tx.itx - the actual transaction object
+ * @prop {GRpcClient.CreateAssetTx} input.tx.itx - the actual transaction object
  * @prop {string} [input.tx.pk] - the sender pk
  * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
  * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
@@ -6412,12 +5624,12 @@
  */
 
 /**
- * Send AcquireAssetTx transaction and get the hash, use {@link GRpcClient#getTx} to get transaction detail
+ * Send CreateAssetTx transaction and get the hash, use {@link GRpcClient#getTx} to get transaction detail
  *
  * @memberof GRpcClient
  * @function
- * @name GRpcClient#sendAcquireAssetTx
- * @param {GRpcClient.AcquireAssetTxInput} params
+ * @name GRpcClient#sendCreateAssetTx
+ * @param {GRpcClient.CreateAssetTxInput} params
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
 
@@ -6444,6 +5656,32 @@
  * @function
  * @name GRpcClient#sendDepositTetherTx
  * @param {GRpcClient.DepositTetherTxInput} params
+ * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
+ */
+
+/**
+ * @memberof GRpcClient
+ * @typedef {Object} GRpcClient.ExchangeTxInput
+ * @prop {object} input
+ * @prop {object} input.tx - data of the transaction
+ * @prop {GRpcClient.ExchangeTx} input.tx.itx - the actual transaction object
+ * @prop {string} [input.tx.pk] - the sender pk
+ * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
+ * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
+ * @prop {string} [input.tx.chainId] - the chainId
+ * @prop {string} [input.tx.signature] - transaction signature
+ * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transaction
+ * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
+ * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
+ */
+
+/**
+ * Send ExchangeTx transaction and get the hash, use {@link GRpcClient#getTx} to get transaction detail
+ *
+ * @memberof GRpcClient
+ * @function
+ * @name GRpcClient#sendExchangeTx
+ * @param {GRpcClient.ExchangeTxInput} params
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
 
@@ -6510,16 +5748,6 @@
  */
 
 /**
- * Encode a DeclareTx transaction for later use
- *
- * @name GRpcClient#encodeDeclareTx
- * @function
- * @memberof GRpcClient
- * @param {GRpcClient.DeclareTxInput} params
- * @returns {Promise<GRpcClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
- */
-
-/**
  * Encode a DeployProtocolTx transaction for later use
  *
  * @name GRpcClient#encodeDeployProtocolTx
@@ -6540,22 +5768,42 @@
  */
 
 /**
+ * Encode a AccountMigrateTx transaction for later use
+ *
+ * @name GRpcClient#encodeAccountMigrateTx
+ * @function
+ * @memberof GRpcClient
+ * @param {GRpcClient.AccountMigrateTxInput} params
+ * @returns {Promise<GRpcClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
+ */
+
+/**
+ * Encode a DeclareTx transaction for later use
+ *
+ * @name GRpcClient#encodeDeclareTx
+ * @function
+ * @memberof GRpcClient
+ * @param {GRpcClient.DeclareTxInput} params
+ * @returns {Promise<GRpcClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
+ */
+
+/**
+ * Encode a AcquireAssetTx transaction for later use
+ *
+ * @name GRpcClient#encodeAcquireAssetTx
+ * @function
+ * @memberof GRpcClient
+ * @param {GRpcClient.AcquireAssetTxInput} params
+ * @returns {Promise<GRpcClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
+ */
+
+/**
  * Encode a DeclareFileTx transaction for later use
  *
  * @name GRpcClient#encodeDeclareFileTx
  * @function
  * @memberof GRpcClient
  * @param {GRpcClient.DeclareFileTxInput} params
- * @returns {Promise<GRpcClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
- */
-
-/**
- * Encode a CreateAssetTx transaction for later use
- *
- * @name GRpcClient#encodeCreateAssetTx
- * @function
- * @memberof GRpcClient
- * @param {GRpcClient.CreateAssetTxInput} params
  * @returns {Promise<GRpcClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
 
@@ -6570,32 +5818,22 @@
  */
 
 /**
+ * Encode a ExchangeTetherTx transaction for later use
+ *
+ * @name GRpcClient#encodeExchangeTetherTx
+ * @function
+ * @memberof GRpcClient
+ * @param {GRpcClient.ExchangeTetherTxInput} params
+ * @returns {Promise<GRpcClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
+ */
+
+/**
  * Encode a ConsumeAssetTx transaction for later use
  *
  * @name GRpcClient#encodeConsumeAssetTx
  * @function
  * @memberof GRpcClient
  * @param {GRpcClient.ConsumeAssetTxInput} params
- * @returns {Promise<GRpcClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
- */
-
-/**
- * Encode a ExchangeTx transaction for later use
- *
- * @name GRpcClient#encodeExchangeTx
- * @function
- * @memberof GRpcClient
- * @param {GRpcClient.ExchangeTxInput} params
- * @returns {Promise<GRpcClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
- */
-
-/**
- * Encode a AccountMigrateTx transaction for later use
- *
- * @name GRpcClient#encodeAccountMigrateTx
- * @function
- * @memberof GRpcClient
- * @param {GRpcClient.AccountMigrateTxInput} params
  * @returns {Promise<GRpcClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
 
@@ -6620,12 +5858,12 @@
  */
 
 /**
- * Encode a AcquireAssetTx transaction for later use
+ * Encode a CreateAssetTx transaction for later use
  *
- * @name GRpcClient#encodeAcquireAssetTx
+ * @name GRpcClient#encodeCreateAssetTx
  * @function
  * @memberof GRpcClient
- * @param {GRpcClient.AcquireAssetTxInput} params
+ * @param {GRpcClient.CreateAssetTxInput} params
  * @returns {Promise<GRpcClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
 
@@ -6636,6 +5874,16 @@
  * @function
  * @memberof GRpcClient
  * @param {GRpcClient.DepositTetherTxInput} params
+ * @returns {Promise<GRpcClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
+ */
+
+/**
+ * Encode a ExchangeTx transaction for later use
+ *
+ * @name GRpcClient#encodeExchangeTx
+ * @function
+ * @memberof GRpcClient
+ * @param {GRpcClient.ExchangeTxInput} params
  * @returns {Promise<GRpcClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
 

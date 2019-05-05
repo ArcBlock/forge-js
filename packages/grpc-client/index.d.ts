@@ -33,10 +33,6 @@ declare class GRpcClient {
    * @returns {object}
    */
   getTxSendMethods(): any;
-  processOne(request: forge_abi.Request): GRpcClient.UnaryResult<forge_abi.Response>;
-  process(
-    request: forge_abi.Request | Array<forge_abi.Request>
-  ): GRpcClient.StreamResult<forge_abi.Response>;
   createTx(request: forge_abi.RequestCreateTx): GRpcClient.UnaryResult<forge_abi.ResponseCreateTx>;
   multisig(request: forge_abi.RequestMultisig): GRpcClient.UnaryResult<forge_abi.ResponseMultisig>;
   sendTx(request: forge_abi.RequestSendTx): GRpcClient.UnaryResult<forge_abi.ResponseSendTx>;
@@ -94,9 +90,9 @@ declare class GRpcClient {
   getStakeState(
     request: forge_abi.RequestGetStakeState | Array<forge_abi.RequestGetStakeState>
   ): GRpcClient.StreamResult<forge_abi.ResponseGetStakeState>;
-  getTetherInfo(
-    request: forge_abi.RequestGetTetherInfo | Array<forge_abi.RequestGetTetherInfo>
-  ): GRpcClient.StreamResult<forge_abi.ResponseGetTetherInfo>;
+  getTetherState(
+    request: forge_abi.RequestGetTetherState | Array<forge_abi.RequestGetTetherState>
+  ): GRpcClient.StreamResult<forge_abi.ResponseGetTetherState>;
   createWallet(
     request: forge_abi.RequestCreateWallet
   ): GRpcClient.UnaryResult<forge_abi.ResponseCreateWallet>;
@@ -145,30 +141,30 @@ declare class GRpcClient {
   encodeConsensusUpgradeTx(
     param: GRpcClient.TxParam<GRpcClient.ConsensusUpgradeTx>
   ): Promise<GRpcClient.ResponseSendTx>;
-  encodeDeclareTx(
-    param: GRpcClient.TxParam<GRpcClient.DeclareTx>
-  ): Promise<GRpcClient.ResponseSendTx>;
   encodeDeployProtocolTx(
     param: GRpcClient.TxParam<GRpcClient.DeployProtocolTx>
   ): Promise<GRpcClient.ResponseSendTx>;
   encodeSysUpgradeTx(
     param: GRpcClient.TxParam<GRpcClient.SysUpgradeTx>
   ): Promise<GRpcClient.ResponseSendTx>;
+  encodeAccountMigrateTx(
+    param: GRpcClient.TxParam<GRpcClient.AccountMigrateTx>
+  ): Promise<GRpcClient.ResponseSendTx>;
+  encodeDeclareTx(
+    param: GRpcClient.TxParam<GRpcClient.DeclareTx>
+  ): Promise<GRpcClient.ResponseSendTx>;
+  encodeAcquireAssetTx(
+    param: GRpcClient.TxParam<GRpcClient.AcquireAssetTx>
+  ): Promise<GRpcClient.ResponseSendTx>;
   encodeDeclareFileTx(
     param: GRpcClient.TxParam<GRpcClient.DeclareFileTx>
   ): Promise<GRpcClient.ResponseSendTx>;
-  encodeCreateAssetTx(
-    param: GRpcClient.TxParam<GRpcClient.CreateAssetTx>
-  ): Promise<GRpcClient.ResponseSendTx>;
   encodePokeTx(param: GRpcClient.TxParam<GRpcClient.PokeTx>): Promise<GRpcClient.ResponseSendTx>;
+  encodeExchangeTetherTx(
+    param: GRpcClient.TxParam<GRpcClient.ExchangeTetherTx>
+  ): Promise<GRpcClient.ResponseSendTx>;
   encodeConsumeAssetTx(
     param: GRpcClient.TxParam<GRpcClient.ConsumeAssetTx>
-  ): Promise<GRpcClient.ResponseSendTx>;
-  encodeExchangeTx(
-    param: GRpcClient.TxParam<GRpcClient.ExchangeTx>
-  ): Promise<GRpcClient.ResponseSendTx>;
-  encodeAccountMigrateTx(
-    param: GRpcClient.TxParam<GRpcClient.AccountMigrateTx>
   ): Promise<GRpcClient.ResponseSendTx>;
   encodeUpgradeNodeTx(
     param: GRpcClient.TxParam<GRpcClient.UpgradeNodeTx>
@@ -176,11 +172,14 @@ declare class GRpcClient {
   encodeUpdateAssetTx(
     param: GRpcClient.TxParam<GRpcClient.UpdateAssetTx>
   ): Promise<GRpcClient.ResponseSendTx>;
-  encodeAcquireAssetTx(
-    param: GRpcClient.TxParam<GRpcClient.AcquireAssetTx>
+  encodeCreateAssetTx(
+    param: GRpcClient.TxParam<GRpcClient.CreateAssetTx>
   ): Promise<GRpcClient.ResponseSendTx>;
   encodeDepositTetherTx(
     param: GRpcClient.TxParam<GRpcClient.DepositTetherTx>
+  ): Promise<GRpcClient.ResponseSendTx>;
+  encodeExchangeTx(
+    param: GRpcClient.TxParam<GRpcClient.ExchangeTx>
   ): Promise<GRpcClient.ResponseSendTx>;
   encodeStakeTx(param: GRpcClient.TxParam<GRpcClient.StakeTx>): Promise<GRpcClient.ResponseSendTx>;
   encodeTransferTx(
@@ -189,30 +188,30 @@ declare class GRpcClient {
   sendConsensusUpgradeTx(
     param: GRpcClient.TxParam<GRpcClient.ConsensusUpgradeTx>
   ): Promise<GRpcClient.EncodeTxResult>;
-  sendDeclareTx(
-    param: GRpcClient.TxParam<GRpcClient.DeclareTx>
-  ): Promise<GRpcClient.EncodeTxResult>;
   sendDeployProtocolTx(
     param: GRpcClient.TxParam<GRpcClient.DeployProtocolTx>
   ): Promise<GRpcClient.EncodeTxResult>;
   sendSysUpgradeTx(
     param: GRpcClient.TxParam<GRpcClient.SysUpgradeTx>
   ): Promise<GRpcClient.EncodeTxResult>;
+  sendAccountMigrateTx(
+    param: GRpcClient.TxParam<GRpcClient.AccountMigrateTx>
+  ): Promise<GRpcClient.EncodeTxResult>;
+  sendDeclareTx(
+    param: GRpcClient.TxParam<GRpcClient.DeclareTx>
+  ): Promise<GRpcClient.EncodeTxResult>;
+  sendAcquireAssetTx(
+    param: GRpcClient.TxParam<GRpcClient.AcquireAssetTx>
+  ): Promise<GRpcClient.EncodeTxResult>;
   sendDeclareFileTx(
     param: GRpcClient.TxParam<GRpcClient.DeclareFileTx>
   ): Promise<GRpcClient.EncodeTxResult>;
-  sendCreateAssetTx(
-    param: GRpcClient.TxParam<GRpcClient.CreateAssetTx>
-  ): Promise<GRpcClient.EncodeTxResult>;
   sendPokeTx(param: GRpcClient.TxParam<GRpcClient.PokeTx>): Promise<GRpcClient.EncodeTxResult>;
+  sendExchangeTetherTx(
+    param: GRpcClient.TxParam<GRpcClient.ExchangeTetherTx>
+  ): Promise<GRpcClient.EncodeTxResult>;
   sendConsumeAssetTx(
     param: GRpcClient.TxParam<GRpcClient.ConsumeAssetTx>
-  ): Promise<GRpcClient.EncodeTxResult>;
-  sendExchangeTx(
-    param: GRpcClient.TxParam<GRpcClient.ExchangeTx>
-  ): Promise<GRpcClient.EncodeTxResult>;
-  sendAccountMigrateTx(
-    param: GRpcClient.TxParam<GRpcClient.AccountMigrateTx>
   ): Promise<GRpcClient.EncodeTxResult>;
   sendUpgradeNodeTx(
     param: GRpcClient.TxParam<GRpcClient.UpgradeNodeTx>
@@ -220,11 +219,14 @@ declare class GRpcClient {
   sendUpdateAssetTx(
     param: GRpcClient.TxParam<GRpcClient.UpdateAssetTx>
   ): Promise<GRpcClient.EncodeTxResult>;
-  sendAcquireAssetTx(
-    param: GRpcClient.TxParam<GRpcClient.AcquireAssetTx>
+  sendCreateAssetTx(
+    param: GRpcClient.TxParam<GRpcClient.CreateAssetTx>
   ): Promise<GRpcClient.EncodeTxResult>;
   sendDepositTetherTx(
     param: GRpcClient.TxParam<GRpcClient.DepositTetherTx>
+  ): Promise<GRpcClient.EncodeTxResult>;
+  sendExchangeTx(
+    param: GRpcClient.TxParam<GRpcClient.ExchangeTx>
   ): Promise<GRpcClient.EncodeTxResult>;
   sendStakeTx(param: GRpcClient.TxParam<GRpcClient.StakeTx>): Promise<GRpcClient.EncodeTxResult>;
   sendTransferTx(
@@ -242,57 +244,6 @@ declare const GRpcClient: typeof GRpcClient;
 export = GRpcClient;
 
 declare namespace forge_abi {
-  export interface RequestVerifyTx {
-    tx: forge_abi.Transaction;
-    states: Array<forge_abi.AccountState>;
-    assets: Array<forge_abi.AssetState>;
-    stakes: Array<forge_abi.StakeState>;
-    context: forge_abi.AbciContext;
-    appState: forge_abi.ForgeState;
-  }
-
-  export interface ResponseVerifyTx {
-    code: forge_abi.StatusCode;
-  }
-
-  export interface RequestUpdateState {
-    tx: forge_abi.Transaction;
-    states: Array<forge_abi.AccountState>;
-    assets: Array<forge_abi.AssetState>;
-    stakes: Array<forge_abi.StakeState>;
-    context: forge_abi.AbciContext;
-    appState: forge_abi.ForgeState;
-  }
-
-  export interface ResponseUpdateState {
-    code: forge_abi.StatusCode;
-    states: Array<forge_abi.AccountState>;
-    assets: Array<forge_abi.AssetState>;
-    stakes: Array<forge_abi.StakeState>;
-    appState: forge_abi.ForgeState;
-  }
-
-  export interface RequestInfo {
-    forgeVersion: string;
-  }
-
-  export interface ResponseInfo {
-    typeUrls: Array<string>;
-    appHash: Uint8Array;
-  }
-
-  export interface Request {
-    verifyTx: forge_abi.RequestVerifyTx;
-    updateState: forge_abi.RequestUpdateState;
-    info: forge_abi.RequestInfo;
-  }
-
-  export interface Response {
-    verifyTx: forge_abi.ResponseVerifyTx;
-    updateState: forge_abi.ResponseUpdateState;
-    info: forge_abi.ResponseInfo;
-  }
-
   export enum StatusCode {
     OK = 0,
     INVALID_NONCE = 1,
@@ -307,6 +258,7 @@ declare namespace forge_abi {
     EXPIRED_TX = 10,
     TOO_MANY_TXS = 11,
     INVALID_LOCK_STATUS = 12,
+    INVALID_REQUEST = 13,
     INVALID_MONIKER = 16,
     INVALID_PASSPHRASE = 17,
     INVALID_MULTISIG = 20,
@@ -331,6 +283,11 @@ declare namespace forge_abi {
     CONSUMED_ASSET = 42,
     INVALID_DEPOSIT_VALUE = 43,
     EXCEED_DEPOSIT_CAP = 44,
+    INVALID_DEPOSIT_TARGET = 45,
+    INVALID_DEPOSITOR = 46,
+    INVALID_WITHDRAWER = 47,
+    DUPLICATE_TETHER = 48,
+    INVALID_EXPIRY_DATE = 49,
     FORBIDDEN = 403,
     INTERNAL = 500,
     TIMEOUT = 504,
@@ -391,6 +348,7 @@ declare namespace forge_abi {
     ROLE_VALIDATOR = 8,
     ROLE_GROUP = 9,
     ROLE_TX = 10,
+    ROLE_TETHER = 11,
     ROLE_ANY = 63,
   }
 
@@ -441,6 +399,423 @@ declare namespace forge_abi {
     RUNNING = 0,
     PAUSED = 1,
     TERMINATED = 2,
+  }
+
+  export interface RequestCreateTx {
+    itx: google.protobuf.Any;
+    from: string;
+    nonce: number;
+    wallet: forge_abi.WalletInfo;
+    token: string;
+  }
+
+  export interface ResponseCreateTx {
+    code: forge_abi.StatusCode;
+    tx: forge_abi.Transaction;
+  }
+
+  export interface RequestMultisig {
+    tx: forge_abi.Transaction;
+    data: google.protobuf.Any;
+    wallet: forge_abi.WalletInfo;
+    token: string;
+  }
+
+  export interface ResponseMultisig {
+    code: forge_abi.StatusCode;
+    tx: forge_abi.Transaction;
+  }
+
+  export interface RequestSendTx {
+    tx: forge_abi.Transaction;
+    wallet: forge_abi.WalletInfo;
+    token: string;
+    commit: boolean;
+  }
+
+  export interface ResponseSendTx {
+    code: forge_abi.StatusCode;
+    hash: string;
+  }
+
+  export interface RequestGetTx {
+    hash: string;
+  }
+
+  export interface ResponseGetTx {
+    code: forge_abi.StatusCode;
+    info: forge_abi.TransactionInfo;
+  }
+
+  export interface RequestGetBlock {
+    height: number;
+  }
+
+  export interface ResponseGetBlock {
+    code: forge_abi.StatusCode;
+    block: forge_abi.BlockInfo;
+  }
+
+  export interface RequestGetBlocks {
+    paging: forge_abi.PageInput;
+    heightFilter: forge_abi.RangeFilter;
+    emptyExcluded: boolean;
+  }
+
+  export interface ResponseGetBlocks {
+    code: forge_abi.StatusCode;
+    page: forge_abi.PageInfo;
+    blocks: Array<forge_abi.BlockInfoSimple>;
+  }
+
+  export interface RequestCreateWallet {
+    passphrase: string;
+    type: forge_abi.WalletType;
+    moniker: string;
+  }
+
+  export interface ResponseCreateWallet {
+    code: forge_abi.StatusCode;
+    token: string;
+    wallet: forge_abi.WalletInfo;
+  }
+
+  export interface RequestLoadWallet {
+    address: string;
+    passphrase: string;
+  }
+
+  export interface ResponseLoadWallet {
+    code: forge_abi.StatusCode;
+    token: string;
+    wallet: forge_abi.WalletInfo;
+  }
+
+  export interface RequestRecoverWallet {
+    data: Uint8Array;
+    type: forge_abi.WalletType;
+    passphrase: string;
+    moniker: string;
+  }
+
+  export interface ResponseRecoverWallet {
+    code: forge_abi.StatusCode;
+    token: string;
+    wallet: forge_abi.WalletInfo;
+  }
+
+  export interface RequestListWallet {}
+
+  export interface ResponseListWallet {
+    code: forge_abi.StatusCode;
+    address: string;
+  }
+
+  export interface RequestRemoveWallet {
+    address: string;
+  }
+
+  export interface ResponseRemoveWallet {
+    code: forge_abi.StatusCode;
+  }
+
+  export interface RequestDeclareNode {
+    validator: boolean;
+  }
+
+  export interface ResponseDeclareNode {
+    code: forge_abi.StatusCode;
+    wallet: forge_abi.WalletInfo;
+  }
+
+  export interface RequestGetAccountState {
+    address: string;
+    keys: Array<string>;
+    height: number;
+  }
+
+  export interface ResponseGetAccountState {
+    code: forge_abi.StatusCode;
+    state: forge_abi.AccountState;
+  }
+
+  export interface RequestGetAssetState {
+    address: string;
+    keys: Array<string>;
+    height: number;
+  }
+
+  export interface ResponseGetAssetState {
+    code: forge_abi.StatusCode;
+    state: forge_abi.AssetState;
+  }
+
+  export interface RequestGetProtocolState {
+    address: string;
+    keys: Array<string>;
+    height: number;
+  }
+
+  export interface ResponseGetProtocolState {
+    code: forge_abi.StatusCode;
+    state: forge_abi.ProtocolState;
+  }
+
+  export interface RequestGetStakeState {
+    address: string;
+    keys: Array<string>;
+    height: number;
+  }
+
+  export interface ResponseGetStakeState {
+    code: forge_abi.StatusCode;
+    state: forge_abi.StakeState;
+  }
+
+  export interface RequestGetForgeState {
+    keys: Array<string>;
+    height: number;
+  }
+
+  export interface ResponseGetForgeState {
+    code: forge_abi.StatusCode;
+    state: forge_abi.ForgeState;
+  }
+
+  export interface RequestGetTetherState {
+    address: string;
+    keys: Array<string>;
+    height: number;
+  }
+
+  export interface ResponseGetTetherState {
+    code: forge_abi.StatusCode;
+    state: forge_abi.TetherState;
+  }
+
+  export interface RequestStoreFile {
+    chunk: Uint8Array;
+  }
+
+  export interface ResponseStoreFile {
+    code: forge_abi.StatusCode;
+    hash: string;
+  }
+
+  export interface RequestLoadFile {
+    hash: string;
+  }
+
+  export interface ResponseLoadFile {
+    code: forge_abi.StatusCode;
+    chunk: Uint8Array;
+  }
+
+  export interface RequestPinFile {
+    hash: string;
+  }
+
+  export interface ResponsePinFile {
+    code: forge_abi.StatusCode;
+  }
+
+  export interface RequestGetChainInfo {}
+
+  export interface ResponseGetChainInfo {
+    code: forge_abi.StatusCode;
+    info: forge_abi.ChainInfo;
+  }
+
+  export interface RequestGetNodeInfo {}
+
+  export interface ResponseGetNodeInfo {
+    code: forge_abi.StatusCode;
+    info: forge_abi.NodeInfo;
+  }
+
+  export interface RequestSearch {
+    key: string;
+    value: string;
+  }
+
+  export interface ResponseSearch {
+    code: forge_abi.StatusCode;
+    txs: Array<forge_abi.TransactionInfo>;
+  }
+
+  export interface RequestGetUnconfirmedTxs {
+    paging: forge_abi.PageInput;
+  }
+
+  export interface ResponseGetUnconfirmedTxs {
+    code: forge_abi.StatusCode;
+    page: forge_abi.PageInfo;
+    unconfirmedTxs: forge_abi.UnconfirmedTxs;
+  }
+
+  export interface RequestGetNetInfo {}
+
+  export interface ResponseGetNetInfo {
+    code: forge_abi.StatusCode;
+    netInfo: forge_abi.NetInfo;
+  }
+
+  export interface RequestGetValidatorsInfo {}
+
+  export interface ResponseGetValidatorsInfo {
+    code: forge_abi.StatusCode;
+    validatorsInfo: forge_abi.ValidatorsInfo;
+  }
+
+  export interface RequestSubscribe {
+    topic: string;
+    filter: string;
+  }
+
+  export interface ResponseSubscribe {
+    code: forge_abi.StatusCode;
+    topic: string;
+    transfer: forge_abi.Transaction;
+    accountMigrate: forge_abi.Transaction;
+    confirm: forge_abi.Transaction;
+    createAsset: forge_abi.Transaction;
+    exchange: forge_abi.Transaction;
+    revoke: forge_abi.Transaction;
+    beginBlock: abci_vendor.RequestBeginBlock;
+    endBlock: abci_vendor.RequestEndBlock;
+    declare: forge_abi.Transaction;
+    updateAsset: forge_abi.Transaction;
+    consensusUpgrade: forge_abi.Transaction;
+    declareFile: forge_abi.Transaction;
+    sysUpgrade: forge_abi.Transaction;
+    stake: forge_abi.Transaction;
+    accountState: forge_abi.AccountState;
+    assetState: forge_abi.AssetState;
+    forgeState: forge_abi.ForgeState;
+    stakeState: forge_abi.StakeState;
+    protocolState: forge_abi.ProtocolState;
+  }
+
+  export interface RequestUnsubscribe {
+    topic: string;
+  }
+
+  export interface ResponseUnsubscribe {
+    code: forge_abi.StatusCode;
+  }
+
+  export interface RequestGetConfig {}
+
+  export interface ResponseGetConfig {
+    code: forge_abi.StatusCode;
+    config: string;
+  }
+
+  export interface ByDay {
+    startDate: string;
+    endDate: string;
+  }
+
+  export interface ByHour {
+    date: string;
+  }
+
+  export interface RequestGetForgeStats {
+    dayInfo: forge_abi.ByDay;
+    date: forge_abi.ByHour;
+  }
+
+  export interface ResponseGetForgeStats {
+    code: forge_abi.StatusCode;
+    forgeStats: forge_abi.ForgeStats;
+  }
+
+  export interface RequestListTransactions {
+    paging: forge_abi.PageInput;
+    timeFilter: forge_abi.TimeFilter;
+    addressFilter: forge_abi.AddressFilter;
+    typeFilter: forge_abi.TypeFilter;
+    validityFilter: forge_abi.ValidityFilter;
+  }
+
+  export interface ResponseListTransactions {
+    code: forge_abi.StatusCode;
+    page: forge_abi.PageInfo;
+    transactions: Array<forge_abi.IndexedTransaction>;
+  }
+
+  export interface RequestListAssets {
+    paging: forge_abi.PageInput;
+    ownerAddress: string;
+  }
+
+  export interface ResponseListAssets {
+    code: forge_abi.StatusCode;
+    page: forge_abi.PageInfo;
+    assets: Array<forge_abi.IndexedAssetState>;
+  }
+
+  export interface RequestListStakes {
+    paging: forge_abi.PageInput;
+    addressFilter: forge_abi.AddressFilter;
+  }
+
+  export interface ResponseListStakes {
+    code: forge_abi.StatusCode;
+    page: forge_abi.PageInfo;
+    stakes: Array<forge_abi.IndexedStakeState>;
+  }
+
+  export interface RequestListAccount {
+    ownerAddress: string;
+  }
+
+  export interface ResponseListAccount {
+    code: forge_abi.StatusCode;
+    account: forge_abi.IndexedAccountState;
+  }
+
+  export interface RequestListTopAccounts {
+    paging: forge_abi.PageInput;
+  }
+
+  export interface ResponseListTopAccounts {
+    code: forge_abi.StatusCode;
+    page: forge_abi.PageInfo;
+    accounts: Array<forge_abi.IndexedAccountState>;
+  }
+
+  export interface RequestListAssetTransactions {
+    paging: forge_abi.PageInput;
+    address: string;
+  }
+
+  export interface ResponseListAssetTransactions {
+    code: forge_abi.StatusCode;
+    page: forge_abi.PageInfo;
+    transactions: Array<forge_abi.IndexedTransaction>;
+  }
+
+  export interface RequestListBlocks {
+    paging: forge_abi.PageInput;
+    proposer: string;
+    timeFilter: forge_abi.TimeFilter;
+    heightFilter: forge_abi.RangeFilter;
+    numTxsFilter: forge_abi.RangeFilter;
+    numInvalidTxsFilter: forge_abi.RangeFilter;
+  }
+
+  export interface ResponseListBlocks {
+    code: forge_abi.StatusCode;
+    page: forge_abi.PageInfo;
+    blocks: Array<forge_abi.IndexedBlock>;
+  }
+
+  export interface RequestGetHealthStatus {}
+
+  export interface ResponseGetHealthStatus {
+    code: forge_abi.StatusCode;
+    healthStatus: forge_abi.HealthStatus;
   }
 
   export interface BigUint {
@@ -570,11 +945,17 @@ declare namespace forge_abi {
     accountMigrate: forge_abi.ExtraAccountMigrate;
   }
 
+  export interface DeclareConfig {
+    restricted: boolean;
+    hierarchy: number;
+  }
+
   export interface TransactionConfig {
     maxAssetSize: number;
     maxListSize: number;
     maxMultisig: number;
     minimumStake: number;
+    declare: forge_abi.DeclareConfig;
   }
 
   export interface BlockInfo {
@@ -864,10 +1245,7 @@ declare namespace forge_abi {
 
   export interface ProtocolState {
     address: string;
-    name: string;
-    version: number;
-    description: string;
-    txHash: string;
+    itx: forge_abi.DeployProtocolTx;
     rootHash: Uint8Array;
     status: forge_abi.ProtocolStatus;
     migratedTo: Array<string>;
@@ -877,10 +1255,6 @@ declare namespace forge_abi {
   }
 
   export interface TetherState {
-    available: boolean;
-  }
-
-  export interface TetherInfo {
     hash: string;
     available: boolean;
     custodian: string;
@@ -891,423 +1265,52 @@ declare namespace forge_abi {
     charge: forge_abi.BigUint;
     target: string;
     locktime: google.protobuf.Timestamp;
+    address: string;
   }
 
-  export interface RequestCreateTx {
-    itx: google.protobuf.Any;
-    from: string;
-    nonce: number;
-    wallet: forge_abi.WalletInfo;
-    token: string;
+  export interface TetherInfo {
+    available: boolean;
+    hash: string;
   }
 
-  export interface ResponseCreateTx {
-    code: forge_abi.StatusCode;
-    tx: forge_abi.Transaction;
+  export interface CodeInfo {
+    checksum: Uint8Array;
+    binary: Uint8Array;
   }
 
-  export interface RequestMultisig {
-    tx: forge_abi.Transaction;
+  export interface TypeUrls {
+    url: string;
+    module: string;
+  }
+
+  export interface DeployProtocolTx {
+    address: string;
+    name: string;
+    version: number;
+    namespace: string;
+    description: string;
+    typeUrls: Array<forge_abi.TypeUrls>;
+    proto: string;
+    pipeline: string;
+    sources: Array<string>;
+    code: Array<forge_abi.CodeInfo>;
+    tags: Array<string>;
     data: google.protobuf.Any;
-    wallet: forge_abi.WalletInfo;
-    token: string;
   }
 
-  export interface ResponseMultisig {
-    code: forge_abi.StatusCode;
-    tx: forge_abi.Transaction;
+  export interface ConsensusUpgradeTx {
+    validators: Array<forge_abi.Validator>;
+    maxBytes: number;
+    maxGas: number;
+    maxValidators: number;
+    maxCandidates: number;
+    data: google.protobuf.Any;
   }
 
-  export interface RequestSendTx {
-    tx: forge_abi.Transaction;
-    wallet: forge_abi.WalletInfo;
-    token: string;
-    commit: boolean;
-  }
-
-  export interface ResponseSendTx {
-    code: forge_abi.StatusCode;
-    hash: string;
-  }
-
-  export interface RequestGetTx {
-    hash: string;
-  }
-
-  export interface ResponseGetTx {
-    code: forge_abi.StatusCode;
-    info: forge_abi.TransactionInfo;
-  }
-
-  export interface RequestGetBlock {
-    height: number;
-  }
-
-  export interface ResponseGetBlock {
-    code: forge_abi.StatusCode;
-    block: forge_abi.BlockInfo;
-  }
-
-  export interface RequestGetBlocks {
-    paging: forge_abi.PageInput;
-    heightFilter: forge_abi.RangeFilter;
-    emptyExcluded: boolean;
-  }
-
-  export interface ResponseGetBlocks {
-    code: forge_abi.StatusCode;
-    page: forge_abi.PageInfo;
-    blocks: Array<forge_abi.BlockInfoSimple>;
-  }
-
-  export interface RequestCreateWallet {
-    passphrase: string;
-    type: forge_abi.WalletType;
-    moniker: string;
-  }
-
-  export interface ResponseCreateWallet {
-    code: forge_abi.StatusCode;
-    token: string;
-    wallet: forge_abi.WalletInfo;
-  }
-
-  export interface RequestLoadWallet {
-    address: string;
-    passphrase: string;
-  }
-
-  export interface ResponseLoadWallet {
-    code: forge_abi.StatusCode;
-    token: string;
-    wallet: forge_abi.WalletInfo;
-  }
-
-  export interface RequestRecoverWallet {
-    data: Uint8Array;
-    type: forge_abi.WalletType;
-    passphrase: string;
-    moniker: string;
-  }
-
-  export interface ResponseRecoverWallet {
-    code: forge_abi.StatusCode;
-    token: string;
-    wallet: forge_abi.WalletInfo;
-  }
-
-  export interface RequestListWallet {}
-
-  export interface ResponseListWallet {
-    code: forge_abi.StatusCode;
-    address: string;
-  }
-
-  export interface RequestRemoveWallet {
-    address: string;
-  }
-
-  export interface ResponseRemoveWallet {
-    code: forge_abi.StatusCode;
-  }
-
-  export interface RequestDeclareNode {
-    validator: boolean;
-  }
-
-  export interface ResponseDeclareNode {
-    code: forge_abi.StatusCode;
-    wallet: forge_abi.WalletInfo;
-  }
-
-  export interface RequestGetAccountState {
-    address: string;
-    keys: Array<string>;
-    height: number;
-  }
-
-  export interface ResponseGetAccountState {
-    code: forge_abi.StatusCode;
-    state: forge_abi.AccountState;
-  }
-
-  export interface RequestGetAssetState {
-    address: string;
-    keys: Array<string>;
-    height: number;
-  }
-
-  export interface ResponseGetAssetState {
-    code: forge_abi.StatusCode;
-    state: forge_abi.AssetState;
-  }
-
-  export interface RequestGetProtocolState {
-    address: string;
-    keys: Array<string>;
-    height: number;
-  }
-
-  export interface ResponseGetProtocolState {
-    code: forge_abi.StatusCode;
-    state: forge_abi.ProtocolState;
-  }
-
-  export interface RequestGetStakeState {
-    address: string;
-    keys: Array<string>;
-    height: number;
-  }
-
-  export interface ResponseGetStakeState {
-    code: forge_abi.StatusCode;
-    state: forge_abi.StakeState;
-  }
-
-  export interface RequestGetForgeState {
-    keys: Array<string>;
-    height: number;
-  }
-
-  export interface ResponseGetForgeState {
-    code: forge_abi.StatusCode;
-    state: forge_abi.ForgeState;
-  }
-
-  export interface RequestGetTetherInfo {
-    hash: string;
-    keys: Array<string>;
-    height: number;
-  }
-
-  export interface ResponseGetTetherInfo {
-    code: forge_abi.StatusCode;
-    info: forge_abi.TetherInfo;
-  }
-
-  export interface RequestStoreFile {
-    chunk: Uint8Array;
-  }
-
-  export interface ResponseStoreFile {
-    code: forge_abi.StatusCode;
-    hash: string;
-  }
-
-  export interface RequestLoadFile {
-    hash: string;
-  }
-
-  export interface ResponseLoadFile {
-    code: forge_abi.StatusCode;
-    chunk: Uint8Array;
-  }
-
-  export interface RequestPinFile {
-    hash: string;
-  }
-
-  export interface ResponsePinFile {
-    code: forge_abi.StatusCode;
-  }
-
-  export interface RequestGetChainInfo {}
-
-  export interface ResponseGetChainInfo {
-    code: forge_abi.StatusCode;
-    info: forge_abi.ChainInfo;
-  }
-
-  export interface RequestGetNodeInfo {}
-
-  export interface ResponseGetNodeInfo {
-    code: forge_abi.StatusCode;
-    info: forge_abi.NodeInfo;
-  }
-
-  export interface RequestSearch {
-    key: string;
-    value: string;
-  }
-
-  export interface ResponseSearch {
-    code: forge_abi.StatusCode;
-    txs: Array<forge_abi.TransactionInfo>;
-  }
-
-  export interface RequestGetUnconfirmedTxs {
-    paging: forge_abi.PageInput;
-  }
-
-  export interface ResponseGetUnconfirmedTxs {
-    code: forge_abi.StatusCode;
-    page: forge_abi.PageInfo;
-    unconfirmedTxs: forge_abi.UnconfirmedTxs;
-  }
-
-  export interface RequestGetNetInfo {}
-
-  export interface ResponseGetNetInfo {
-    code: forge_abi.StatusCode;
-    netInfo: forge_abi.NetInfo;
-  }
-
-  export interface RequestGetValidatorsInfo {}
-
-  export interface ResponseGetValidatorsInfo {
-    code: forge_abi.StatusCode;
-    validatorsInfo: forge_abi.ValidatorsInfo;
-  }
-
-  export interface RequestSubscribe {
-    topic: string;
-    filter: string;
-  }
-
-  export interface ResponseSubscribe {
-    code: forge_abi.StatusCode;
-    topic: string;
-    transfer: forge_abi.Transaction;
-    accountMigrate: forge_abi.Transaction;
-    confirm: forge_abi.Transaction;
-    createAsset: forge_abi.Transaction;
-    exchange: forge_abi.Transaction;
-    revoke: forge_abi.Transaction;
-    beginBlock: abci_vendor.RequestBeginBlock;
-    endBlock: abci_vendor.RequestEndBlock;
-    declare: forge_abi.Transaction;
-    updateAsset: forge_abi.Transaction;
-    consensusUpgrade: forge_abi.Transaction;
-    declareFile: forge_abi.Transaction;
-    sysUpgrade: forge_abi.Transaction;
-    stake: forge_abi.Transaction;
-    accountState: forge_abi.AccountState;
-    assetState: forge_abi.AssetState;
-    forgeState: forge_abi.ForgeState;
-    stakeState: forge_abi.StakeState;
-    protocolState: forge_abi.ProtocolState;
-  }
-
-  export interface RequestUnsubscribe {
-    topic: string;
-  }
-
-  export interface ResponseUnsubscribe {
-    code: forge_abi.StatusCode;
-  }
-
-  export interface RequestGetConfig {}
-
-  export interface ResponseGetConfig {
-    code: forge_abi.StatusCode;
-    config: string;
-  }
-
-  export interface ByDay {
-    startDate: string;
-    endDate: string;
-  }
-
-  export interface ByHour {
-    date: string;
-  }
-
-  export interface RequestGetForgeStats {
-    dayInfo: forge_abi.ByDay;
-    date: forge_abi.ByHour;
-  }
-
-  export interface ResponseGetForgeStats {
-    code: forge_abi.StatusCode;
-    forgeStats: forge_abi.ForgeStats;
-  }
-
-  export interface RequestListTransactions {
-    paging: forge_abi.PageInput;
-    timeFilter: forge_abi.TimeFilter;
-    addressFilter: forge_abi.AddressFilter;
-    typeFilter: forge_abi.TypeFilter;
-    validityFilter: forge_abi.ValidityFilter;
-  }
-
-  export interface ResponseListTransactions {
-    code: forge_abi.StatusCode;
-    page: forge_abi.PageInfo;
-    transactions: Array<forge_abi.IndexedTransaction>;
-  }
-
-  export interface RequestListAssets {
-    paging: forge_abi.PageInput;
-    ownerAddress: string;
-  }
-
-  export interface ResponseListAssets {
-    code: forge_abi.StatusCode;
-    page: forge_abi.PageInfo;
-    assets: Array<forge_abi.IndexedAssetState>;
-  }
-
-  export interface RequestListStakes {
-    paging: forge_abi.PageInput;
-    addressFilter: forge_abi.AddressFilter;
-  }
-
-  export interface ResponseListStakes {
-    code: forge_abi.StatusCode;
-    page: forge_abi.PageInfo;
-    stakes: Array<forge_abi.IndexedStakeState>;
-  }
-
-  export interface RequestListAccount {
-    ownerAddress: string;
-  }
-
-  export interface ResponseListAccount {
-    code: forge_abi.StatusCode;
-    account: forge_abi.IndexedAccountState;
-  }
-
-  export interface RequestListTopAccounts {
-    paging: forge_abi.PageInput;
-  }
-
-  export interface ResponseListTopAccounts {
-    code: forge_abi.StatusCode;
-    page: forge_abi.PageInfo;
-    accounts: Array<forge_abi.IndexedAccountState>;
-  }
-
-  export interface RequestListAssetTransactions {
-    paging: forge_abi.PageInput;
-    address: string;
-  }
-
-  export interface ResponseListAssetTransactions {
-    code: forge_abi.StatusCode;
-    page: forge_abi.PageInfo;
-    transactions: Array<forge_abi.IndexedTransaction>;
-  }
-
-  export interface RequestListBlocks {
-    paging: forge_abi.PageInput;
-    proposer: string;
-    timeFilter: forge_abi.TimeFilter;
-    heightFilter: forge_abi.RangeFilter;
-    numTxsFilter: forge_abi.RangeFilter;
-    numInvalidTxsFilter: forge_abi.RangeFilter;
-  }
-
-  export interface ResponseListBlocks {
-    code: forge_abi.StatusCode;
-    page: forge_abi.PageInfo;
-    blocks: Array<forge_abi.IndexedBlock>;
-  }
-
-  export interface RequestGetHealthStatus {}
-
-  export interface ResponseGetHealthStatus {
-    code: forge_abi.StatusCode;
-    healthStatus: forge_abi.HealthStatus;
+  export interface SysUpgradeTx {
+    task: forge_abi.UpgradeTask;
+    gracePeriod: number;
+    data: google.protobuf.Any;
   }
 
   export interface PageOrder {
@@ -1461,51 +1464,6 @@ declare namespace forge_abi {
     to: number;
   }
 
-  export interface DeclareTx {
-    moniker: string;
-    issuer: string;
-    data: google.protobuf.Any;
-  }
-
-  export interface CodeInfo {
-    checksum: Uint8Array;
-    binary: Uint8Array;
-  }
-
-  export interface TypeUrls {
-    url: string;
-    module: string;
-  }
-
-  export interface DeployProtocolTx {
-    address: string;
-    name: string;
-    version: number;
-    namespace: string;
-    description: string;
-    typeUrls: Array<forge_abi.TypeUrls>;
-    proto: string;
-    pipeline: string;
-    sources: Array<string>;
-    code: Array<forge_abi.CodeInfo>;
-    data: google.protobuf.Any;
-  }
-
-  export interface ConsensusUpgradeTx {
-    validators: Array<forge_abi.Validator>;
-    maxBytes: number;
-    maxGas: number;
-    maxValidators: number;
-    maxCandidates: number;
-    data: google.protobuf.Any;
-  }
-
-  export interface SysUpgradeTx {
-    task: forge_abi.UpgradeTask;
-    gracePeriod: number;
-    data: google.protobuf.Any;
-  }
-
   export interface AccountMigrateTx {
     pk: Uint8Array;
     type: forge_abi.WalletType;
@@ -1574,6 +1532,12 @@ declare namespace forge_abi {
     numCreated: number;
   }
 
+  export interface DeclareTx {
+    moniker: string;
+    issuer: string;
+    data: google.protobuf.Any;
+  }
+
   export interface DeclareFileTx {
     hash: string;
   }
@@ -1596,6 +1560,19 @@ declare namespace forge_abi {
     to: string;
     sender: forge_abi.ExchangeInfo;
     receiver: forge_abi.ExchangeInfo;
+    expiredAt: google.protobuf.Timestamp;
+    data: google.protobuf.Any;
+  }
+
+  export interface TetherExchangeInfo {
+    value: forge_abi.BigUint;
+    assets: Array<string>;
+    deposits: Array<forge_abi.Transaction>;
+  }
+
+  export interface ExchangeTetherTx {
+    sender: forge_abi.ExchangeInfo;
+    receiver: forge_abi.TetherExchangeInfo;
     expiredAt: google.protobuf.Timestamp;
     data: google.protobuf.Any;
   }
@@ -1642,14 +1619,14 @@ declare namespace forge_abi {
 }
 
 declare namespace google.protobuf {
-  export interface Timestamp {
-    seconds: google.protobuf.int64;
-    nanos: google.protobuf.int32;
-  }
-
   export interface Any {
     type_url: string;
     value: Uint8Array;
+  }
+
+  export interface Timestamp {
+    seconds: google.protobuf.int64;
+    nanos: google.protobuf.int32;
   }
 }
 
