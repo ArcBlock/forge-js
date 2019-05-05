@@ -29,20 +29,26 @@ declare class GraphQLClient {
   generateSubscriptionFns(): void;
   generateMutationFns(): void;
 
-  sendConsumeAssetTx(
-    param: GraphQLClient.TxParam<GraphQLClient.ConsumeAssetTx>
+  sendDeclareTx(
+    param: GraphQLClient.TxParam<GraphQLClient.DeclareTx>
   ): Promise<GraphQLClient.ResponseSendTx>;
-  sendPokeTx(
-    param: GraphQLClient.TxParam<GraphQLClient.PokeTx>
+  sendAccountMigrateTx(
+    param: GraphQLClient.TxParam<GraphQLClient.AccountMigrateTx>
+  ): Promise<GraphQLClient.ResponseSendTx>;
+  sendDeclareFileTx(
+    param: GraphQLClient.TxParam<GraphQLClient.DeclareFileTx>
+  ): Promise<GraphQLClient.ResponseSendTx>;
+  sendExchangeTetherTx(
+    param: GraphQLClient.TxParam<GraphQLClient.ExchangeTetherTx>
   ): Promise<GraphQLClient.ResponseSendTx>;
   sendTransferTx(
     param: GraphQLClient.TxParam<GraphQLClient.TransferTx>
   ): Promise<GraphQLClient.ResponseSendTx>;
-  sendExchangeTx(
-    param: GraphQLClient.TxParam<GraphQLClient.ExchangeTx>
+  sendPokeTx(
+    param: GraphQLClient.TxParam<GraphQLClient.PokeTx>
   ): Promise<GraphQLClient.ResponseSendTx>;
-  sendDeployProtocolTx(
-    param: GraphQLClient.TxParam<GraphQLClient.DeployProtocolTx>
+  sendDepositTetherTx(
+    param: GraphQLClient.TxParam<GraphQLClient.DepositTetherTx>
   ): Promise<GraphQLClient.ResponseSendTx>;
   sendUpgradeNodeTx(
     param: GraphQLClient.TxParam<GraphQLClient.UpgradeNodeTx>
@@ -50,41 +56,44 @@ declare class GraphQLClient {
   sendUpdateAssetTx(
     param: GraphQLClient.TxParam<GraphQLClient.UpdateAssetTx>
   ): Promise<GraphQLClient.ResponseSendTx>;
-  sendAccountMigrateTx(
-    param: GraphQLClient.TxParam<GraphQLClient.AccountMigrateTx>
-  ): Promise<GraphQLClient.ResponseSendTx>;
-  sendAcquireAssetTx(
-    param: GraphQLClient.TxParam<GraphQLClient.AcquireAssetTx>
-  ): Promise<GraphQLClient.ResponseSendTx>;
-  sendDeclareTx(
-    param: GraphQLClient.TxParam<GraphQLClient.DeclareTx>
-  ): Promise<GraphQLClient.ResponseSendTx>;
-  sendDepositTetherTx(
-    param: GraphQLClient.TxParam<GraphQLClient.DepositTetherTx>
+  sendConsumeAssetTx(
+    param: GraphQLClient.TxParam<GraphQLClient.ConsumeAssetTx>
   ): Promise<GraphQLClient.ResponseSendTx>;
   sendCreateAssetTx(
     param: GraphQLClient.TxParam<GraphQLClient.CreateAssetTx>
   ): Promise<GraphQLClient.ResponseSendTx>;
+  sendDeployProtocolTx(
+    param: GraphQLClient.TxParam<GraphQLClient.DeployProtocolTx>
+  ): Promise<GraphQLClient.ResponseSendTx>;
+  sendAcquireAssetTx(
+    param: GraphQLClient.TxParam<GraphQLClient.AcquireAssetTx>
+  ): Promise<GraphQLClient.ResponseSendTx>;
+  sendExchangeTx(
+    param: GraphQLClient.TxParam<GraphQLClient.ExchangeTx>
+  ): Promise<GraphQLClient.ResponseSendTx>;
   sendStakeTx(
     param: GraphQLClient.TxParam<GraphQLClient.StakeTx>
   ): Promise<GraphQLClient.ResponseSendTx>;
-  sendDeclareFileTx(
-    param: GraphQLClient.TxParam<GraphQLClient.DeclareFileTx>
-  ): Promise<GraphQLClient.ResponseSendTx>;
-  encodeConsumeAssetTx(
-    param: GraphQLClient.TxParam<GraphQLClient.ConsumeAssetTx>
+  encodeDeclareTx(
+    param: GraphQLClient.TxParam<GraphQLClient.DeclareTx>
   ): Promise<GraphQLClient.EncodeTxResult>;
-  encodePokeTx(
-    param: GraphQLClient.TxParam<GraphQLClient.PokeTx>
+  encodeAccountMigrateTx(
+    param: GraphQLClient.TxParam<GraphQLClient.AccountMigrateTx>
+  ): Promise<GraphQLClient.EncodeTxResult>;
+  encodeDeclareFileTx(
+    param: GraphQLClient.TxParam<GraphQLClient.DeclareFileTx>
+  ): Promise<GraphQLClient.EncodeTxResult>;
+  encodeExchangeTetherTx(
+    param: GraphQLClient.TxParam<GraphQLClient.ExchangeTetherTx>
   ): Promise<GraphQLClient.EncodeTxResult>;
   encodeTransferTx(
     param: GraphQLClient.TxParam<GraphQLClient.TransferTx>
   ): Promise<GraphQLClient.EncodeTxResult>;
-  encodeExchangeTx(
-    param: GraphQLClient.TxParam<GraphQLClient.ExchangeTx>
+  encodePokeTx(
+    param: GraphQLClient.TxParam<GraphQLClient.PokeTx>
   ): Promise<GraphQLClient.EncodeTxResult>;
-  encodeDeployProtocolTx(
-    param: GraphQLClient.TxParam<GraphQLClient.DeployProtocolTx>
+  encodeDepositTetherTx(
+    param: GraphQLClient.TxParam<GraphQLClient.DepositTetherTx>
   ): Promise<GraphQLClient.EncodeTxResult>;
   encodeUpgradeNodeTx(
     param: GraphQLClient.TxParam<GraphQLClient.UpgradeNodeTx>
@@ -92,26 +101,23 @@ declare class GraphQLClient {
   encodeUpdateAssetTx(
     param: GraphQLClient.TxParam<GraphQLClient.UpdateAssetTx>
   ): Promise<GraphQLClient.EncodeTxResult>;
-  encodeAccountMigrateTx(
-    param: GraphQLClient.TxParam<GraphQLClient.AccountMigrateTx>
-  ): Promise<GraphQLClient.EncodeTxResult>;
-  encodeAcquireAssetTx(
-    param: GraphQLClient.TxParam<GraphQLClient.AcquireAssetTx>
-  ): Promise<GraphQLClient.EncodeTxResult>;
-  encodeDeclareTx(
-    param: GraphQLClient.TxParam<GraphQLClient.DeclareTx>
-  ): Promise<GraphQLClient.EncodeTxResult>;
-  encodeDepositTetherTx(
-    param: GraphQLClient.TxParam<GraphQLClient.DepositTetherTx>
+  encodeConsumeAssetTx(
+    param: GraphQLClient.TxParam<GraphQLClient.ConsumeAssetTx>
   ): Promise<GraphQLClient.EncodeTxResult>;
   encodeCreateAssetTx(
     param: GraphQLClient.TxParam<GraphQLClient.CreateAssetTx>
   ): Promise<GraphQLClient.EncodeTxResult>;
+  encodeDeployProtocolTx(
+    param: GraphQLClient.TxParam<GraphQLClient.DeployProtocolTx>
+  ): Promise<GraphQLClient.EncodeTxResult>;
+  encodeAcquireAssetTx(
+    param: GraphQLClient.TxParam<GraphQLClient.AcquireAssetTx>
+  ): Promise<GraphQLClient.EncodeTxResult>;
+  encodeExchangeTx(
+    param: GraphQLClient.TxParam<GraphQLClient.ExchangeTx>
+  ): Promise<GraphQLClient.EncodeTxResult>;
   encodeStakeTx(
     param: GraphQLClient.TxParam<GraphQLClient.StakeTx>
-  ): Promise<GraphQLClient.EncodeTxResult>;
-  encodeDeclareFileTx(
-    param: GraphQLClient.TxParam<GraphQLClient.DeclareFileTx>
   ): Promise<GraphQLClient.EncodeTxResult>;
   getAccountState(
     params: GraphQLClient.GetAccountStateParams
@@ -143,10 +149,16 @@ declare class GraphQLClient {
   getProtocolState(
     params: GraphQLClient.GetProtocolStateParams
   ): GraphQLClient.QueryResult<GraphQLClient.ResponseGetProtocolState>;
+  getProtocols(
+    params: GraphQLClient.GetProtocolsParams
+  ): GraphQLClient.QueryResult<GraphQLClient.ResponseGetProtocols>;
   getSimulatorStatus(): GraphQLClient.QueryResult<GraphQLClient.ResponseGetSimulatorStatus>;
   getStakeState(
     params: GraphQLClient.GetStakeStateParams
   ): GraphQLClient.QueryResult<GraphQLClient.ResponseGetStakeState>;
+  getTetherState(
+    params: GraphQLClient.GetTetherStateParams
+  ): GraphQLClient.QueryResult<GraphQLClient.ResponseGetTetherState>;
   getTx(params: GraphQLClient.GetTxParams): GraphQLClient.QueryResult<GraphQLClient.ResponseGetTx>;
   getUnconfirmedTxs(
     params: GraphQLClient.GetUnconfirmedTxsParams
@@ -280,47 +292,57 @@ declare namespace GraphQLClient {
     ROLE_NODE,
     ROLE_SMART_CONTRACT,
     ROLE_STAKE,
+    ROLE_TETHER,
     ROLE_TX,
     ROLE_VALIDATOR,
   }
 
   export enum StatusCode {
-    TOO_MANY_TXS,
+    INSUFFICIENT_FUND,
+    INVALID_MONIKER,
+    DUPLICATE_TETHER,
+    EXCEED_DEPOSIT_CAP,
+    INVALID_LOCK_STATUS,
+    INVALID_SIGNER_STATE,
+    CONSUMED_ASSET,
+    UNSUPPORTED_STAKE,
+    INVALID_NONCE,
+    INSUFFICIENT_DATA,
+    EXPIRED_WALLET_TOKEN,
+    INVALID_SIGNATURE,
     INVALID_TX,
     INVALID_TX_SIZE,
-    ACCOUNT_MIGRATED,
-    INSUFFICIENT_DATA,
-    INVALID_ASSET,
-    BANNED_UNSTAKE,
-    INVALID_MULTISIG,
-    INVALID_STAKE_STATE,
-    EXPIRED_WALLET_TOKEN,
-    STORAGE_RPC_ERROR,
-    INVALID_SIGNATURE,
-    READONLY_ASSET,
-    INVALID_CHAIN_ID,
-    INVALID_NONCE,
     INVALID_RECEIVER_STATE,
-    INVALID_MONIKER,
+    STORAGE_RPC_ERROR,
+    ACCOUNT_MIGRATED,
+    INVALID_MULTISIG,
     FORBIDDEN,
-    INVALID_FORGE_STATE,
-    UNSUPPORTED_TX,
-    UNSUPPORTED_STAKE,
-    CONSUMED_ASSET,
-    INVALID_SIGNER_STATE,
-    INSUFFICIENT_STAKE,
-    CONSENSUS_RPC_ERROR,
-    INSUFFICIENT_FUND,
-    INVALID_PASSPHRASE,
-    EXPIRED_ASSET,
-    TIMEOUT,
-    EXPIRED_TX,
-    INVALID_OWNER,
-    INVALID_SENDER_STATE,
-    UNTRANSFERRABLE_ASSET,
+    INVALID_DEPOSITOR,
     NOENT,
-    INTERNAL,
+    UNTRANSFERRABLE_ASSET,
     INVALID_WALLET,
+    READONLY_ASSET,
+    INVALID_PASSPHRASE,
+    INSUFFICIENT_STAKE,
+    INVALID_EXPIRY_DATE,
+    CONSENSUS_RPC_ERROR,
+    INVALID_SENDER_STATE,
+    INVALID_DEPOSIT_VALUE,
+    INVALID_REQUEST,
+    INVALID_WITHDRAWER,
+    INVALID_CHAIN_ID,
+    TIMEOUT,
+    INVALID_OWNER,
+    INVALID_STAKE_STATE,
+    INVALID_DEPOSIT_TARGET,
+    BANNED_UNSTAKE,
+    UNSUPPORTED_TX,
+    INVALID_FORGE_STATE,
+    TOO_MANY_TXS,
+    INVALID_ASSET,
+    EXPIRED_TX,
+    INTERNAL,
+    EXPIRED_ASSET,
     OK,
   }
 
@@ -494,6 +516,11 @@ declare namespace GraphQLClient {
     typeUrl: string;
   }
 
+  export interface CodeInfo {
+    binary: string;
+    checksum: string;
+  }
+
   export interface ConsensusParams {
     maxBytes: string;
     maxCandidates: number;
@@ -541,6 +568,11 @@ declare namespace GraphQLClient {
     ttl: number;
   }
 
+  export interface DeclareConfig {
+    hierarchy: number;
+    restricted: boolean;
+  }
+
   export interface DeclareFileTx {
     hash: string;
   }
@@ -549,6 +581,21 @@ declare namespace GraphQLClient {
     data: GraphQLClient.Any;
     issuer: string;
     moniker: string;
+  }
+
+  export interface DeployProtocolTx {
+    address: string;
+    code: Array<CodeInfo>;
+    data: GraphQLClient.Any;
+    description: string;
+    name: string;
+    namespace: string;
+    pipeline: string;
+    proto: string;
+    sources: Array<string>;
+    tags: Array<string>;
+    typeUrls: Array<TypeUrls>;
+    version: number;
   }
 
   export interface DiskSpaceStatus {
@@ -826,18 +873,31 @@ declare namespace GraphQLClient {
     date: string;
   }
 
+  export interface Protocol {
+    address: string;
+    code: Array<CodeInfo>;
+    data: GraphQLClient.Any;
+    description: string;
+    group: string;
+    installedAt: string;
+    name: string;
+    namespace: string;
+    pipeline: string;
+    proto: string;
+    sources: Array<string>;
+    typeUrls: Array<TypeUrls>;
+    version: number;
+  }
+
   export interface ProtocolState {
     address: string;
     context: GraphQLClient.StateContext;
     data: GraphQLClient.Any;
-    description: string;
+    itx: GraphQLClient.DeployProtocolTx;
     migratedFrom: Array<string>;
     migratedTo: Array<string>;
-    name: string;
     rootHash: string;
     status: GraphQLClient.ProtocolStatus;
-    txHash: string;
-    version: number;
   }
 
   export interface PubKey {
@@ -917,6 +977,11 @@ declare namespace GraphQLClient {
     state: GraphQLClient.ProtocolState;
   }
 
+  export interface ResponseGetProtocols {
+    code: GraphQLClient.StatusCode;
+    protocols: Array<Protocol>;
+  }
+
   export interface ResponseGetSimulatorStatus {
     code: GraphQLClient.StatusCode;
     result: string;
@@ -925,6 +990,11 @@ declare namespace GraphQLClient {
   export interface ResponseGetStakeState {
     code: GraphQLClient.StatusCode;
     state: GraphQLClient.StakeState;
+  }
+
+  export interface ResponseGetTetherState {
+    code: GraphQLClient.StatusCode;
+    state: GraphQLClient.TetherState;
   }
 
   export interface ResponseGetTx {
@@ -1091,6 +1161,20 @@ declare namespace GraphQLClient {
     value: GraphQLClient.UpgradeTasks;
   }
 
+  export interface TetherState {
+    address: string;
+    available: boolean;
+    charge: string;
+    commission: string;
+    custodian: string;
+    depositor: string;
+    hash: string;
+    locktime: string;
+    target: string;
+    value: string;
+    withdrawer: string;
+  }
+
   export interface Transaction {
     chainId: string;
     from: string;
@@ -1102,6 +1186,7 @@ declare namespace GraphQLClient {
   }
 
   export interface TransactionConfig {
+    declare: GraphQLClient.DeclareConfig;
     maxAssetSize: number;
     maxListSize: number;
     maxMultisig: number;
@@ -1125,6 +1210,11 @@ declare namespace GraphQLClient {
     data: GraphQLClient.Any;
     to: string;
     value: string;
+  }
+
+  export interface TypeUrls {
+    module: string;
+    url: string;
   }
 
   export interface UnconfirmedTxs {
@@ -1245,7 +1335,17 @@ declare namespace GraphQLClient {
     keys: Array<string>;
   }
 
+  export interface GetProtocolsParams {
+    address: string;
+  }
+
   export interface GetStakeStateParams {
+    address: string;
+    height: string;
+    keys: Array<string>;
+  }
+
+  export interface GetTetherStateParams {
     address: string;
     height: string;
     keys: Array<string>;

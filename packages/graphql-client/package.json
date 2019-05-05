@@ -9,6 +9,9 @@
     "blockchain",
     "arcblock"
   ],
+  "engines": {
+    "forge": ">=0.25.3"
+  },
   "publishConfig": {
     "access": "public"
   },

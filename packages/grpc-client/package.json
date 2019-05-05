@@ -5,7 +5,7 @@
   "author": "wangshijun <shijun@arcblock.io> (https://ocap.arcblock.io)",
   "engines": {
     "node": ">=0.10.0",
-    "forge": ">=0.11.1"
+    "forge": ">=0.25.3"
   },
   "bugs": {
     "url": "https://github.com/ArcBlock/forge-js/issues",
