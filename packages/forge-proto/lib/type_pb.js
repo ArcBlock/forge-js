@@ -27,6 +27,7 @@ goog.exportSymbol('proto.forge_abi.BlockInfoSimple', null, global);
 goog.exportSymbol('proto.forge_abi.ChainInfo', null, global);
 goog.exportSymbol('proto.forge_abi.CircularQueue', null, global);
 goog.exportSymbol('proto.forge_abi.ConsensusParams', null, global);
+goog.exportSymbol('proto.forge_abi.DeclareConfig', null, global);
 goog.exportSymbol('proto.forge_abi.ForgeStats', null, global);
 goog.exportSymbol('proto.forge_abi.ForgeToken', null, global);
 goog.exportSymbol('proto.forge_abi.GenesisInfo', null, global);
@@ -4141,6 +4142,160 @@ proto.forge_abi.TransactionInfo.prototype.hasTime = function() {
  * @extends {jspb.Message}
  * @constructor
  */
+proto.forge_abi.DeclareConfig = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.forge_abi.DeclareConfig, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.forge_abi.DeclareConfig.displayName = 'proto.forge_abi.DeclareConfig';
+}
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+  /**
+   * Creates an object representation of this proto suitable for use in Soy templates.
+   * Field names that are reserved in JavaScript and will be renamed to pb_name.
+   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+   * For the list of reserved names please see:
+   *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+   * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+   *     for transitional soy proto support: http://goto/soy-param-migration
+   * @return {!Object}
+   */
+  proto.forge_abi.DeclareConfig.prototype.toObject = function(opt_includeInstance) {
+    return proto.forge_abi.DeclareConfig.toObject(opt_includeInstance, this);
+  };
+
+  /**
+   * Static version of the {@see toObject} method.
+   * @param {boolean|undefined} includeInstance Whether to include the JSPB
+   *     instance for transitional soy proto support:
+   *     http://goto/soy-param-migration
+   * @param {!proto.forge_abi.DeclareConfig} msg The msg instance to transform.
+   * @return {!Object}
+   * @suppress {unusedLocalVariables} f is only used for nested messages
+   */
+  proto.forge_abi.DeclareConfig.toObject = function(includeInstance, msg) {
+    var f,
+      obj = {
+        restricted: jspb.Message.getFieldWithDefault(msg, 1, false),
+        hierarchy: jspb.Message.getFieldWithDefault(msg, 2, 0),
+      };
+
+    if (includeInstance) {
+      obj.$jspbMessageInstance = msg;
+    }
+    return obj;
+  };
+}
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.forge_abi.DeclareConfig}
+ */
+proto.forge_abi.DeclareConfig.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.forge_abi.DeclareConfig();
+  return proto.forge_abi.DeclareConfig.deserializeBinaryFromReader(msg, reader);
+};
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.forge_abi.DeclareConfig} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.forge_abi.DeclareConfig}
+ */
+proto.forge_abi.DeclareConfig.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+      case 1:
+        var value = /** @type {boolean} */ (reader.readBool());
+        msg.setRestricted(value);
+        break;
+      case 2:
+        var value = /** @type {number} */ (reader.readUint32());
+        msg.setHierarchy(value);
+        break;
+      default:
+        reader.skipField();
+        break;
+    }
+  }
+  return msg;
+};
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.forge_abi.DeclareConfig.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.forge_abi.DeclareConfig.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.forge_abi.DeclareConfig} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.forge_abi.DeclareConfig.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getRestricted();
+  if (f) {
+    writer.writeBool(1, f);
+  }
+  f = message.getHierarchy();
+  if (f !== 0) {
+    writer.writeUint32(2, f);
+  }
+};
+
+/**
+ * optional bool restricted = 1;
+ * Note that Boolean fields may be set to 0/1 when serialized from a Java server.
+ * You should avoid comparisons like {@code val === true/false} in those cases.
+ * @return {boolean}
+ */
+proto.forge_abi.DeclareConfig.prototype.getRestricted = function() {
+  return /** @type {boolean} */ (jspb.Message.getFieldWithDefault(this, 1, false));
+};
+
+/** @param {boolean} value */
+proto.forge_abi.DeclareConfig.prototype.setRestricted = function(value) {
+  jspb.Message.setProto3BooleanField(this, 1, value);
+};
+
+/**
+ * optional uint32 hierarchy = 2;
+ * @return {number}
+ */
+proto.forge_abi.DeclareConfig.prototype.getHierarchy = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
+};
+
+/** @param {number} value */
+proto.forge_abi.DeclareConfig.prototype.setHierarchy = function(value) {
+  jspb.Message.setProto3IntField(this, 2, value);
+};
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
 proto.forge_abi.TransactionConfig = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
@@ -4180,6 +4335,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
         maxListSize: jspb.Message.getFieldWithDefault(msg, 2, 0),
         maxMultisig: jspb.Message.getFieldWithDefault(msg, 3, 0),
         minimumStake: jspb.Message.getFieldWithDefault(msg, 4, 0),
+        declare:
+          (f = msg.getDeclare()) && proto.forge_abi.DeclareConfig.toObject(includeInstance, f),
       };
 
     if (includeInstance) {
@@ -4230,6 +4387,11 @@ proto.forge_abi.TransactionConfig.deserializeBinaryFromReader = function(msg, re
         var value = /** @type {number} */ (reader.readUint64());
         msg.setMinimumStake(value);
         break;
+      case 5:
+        var value = new proto.forge_abi.DeclareConfig();
+        reader.readMessage(value, proto.forge_abi.DeclareConfig.deserializeBinaryFromReader);
+        msg.setDeclare(value);
+        break;
       default:
         reader.skipField();
         break;
@@ -4272,6 +4434,10 @@ proto.forge_abi.TransactionConfig.serializeBinaryToWriter = function(message, wr
   f = message.getMinimumStake();
   if (f !== 0) {
     writer.writeUint64(4, f);
+  }
+  f = message.getDeclare();
+  if (f != null) {
+    writer.writeMessage(5, f, proto.forge_abi.DeclareConfig.serializeBinaryToWriter);
   }
 };
 
@@ -4325,6 +4491,35 @@ proto.forge_abi.TransactionConfig.prototype.getMinimumStake = function() {
 /** @param {number} value */
 proto.forge_abi.TransactionConfig.prototype.setMinimumStake = function(value) {
   jspb.Message.setProto3IntField(this, 4, value);
+};
+
+/**
+ * optional DeclareConfig declare = 5;
+ * @return {?proto.forge_abi.DeclareConfig}
+ */
+proto.forge_abi.TransactionConfig.prototype.getDeclare = function() {
+  return /** @type{?proto.forge_abi.DeclareConfig} */ (jspb.Message.getWrapperField(
+    this,
+    proto.forge_abi.DeclareConfig,
+    5
+  ));
+};
+
+/** @param {?proto.forge_abi.DeclareConfig|undefined} value */
+proto.forge_abi.TransactionConfig.prototype.setDeclare = function(value) {
+  jspb.Message.setWrapperField(this, 5, value);
+};
+
+proto.forge_abi.TransactionConfig.prototype.clearDeclare = function() {
+  this.setDeclare(undefined);
+};
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.forge_abi.TransactionConfig.prototype.hasDeclare = function() {
+  return jspb.Message.getField(this, 5) != null;
 };
 
 /**

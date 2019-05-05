@@ -41,7 +41,7 @@ goog.exportSymbol('proto.forge_abi.RequestGetNetInfo', null, global);
 goog.exportSymbol('proto.forge_abi.RequestGetNodeInfo', null, global);
 goog.exportSymbol('proto.forge_abi.RequestGetProtocolState', null, global);
 goog.exportSymbol('proto.forge_abi.RequestGetStakeState', null, global);
-goog.exportSymbol('proto.forge_abi.RequestGetTetherInfo', null, global);
+goog.exportSymbol('proto.forge_abi.RequestGetTetherState', null, global);
 goog.exportSymbol('proto.forge_abi.RequestGetTx', null, global);
 goog.exportSymbol('proto.forge_abi.RequestGetUnconfirmedTxs', null, global);
 goog.exportSymbol('proto.forge_abi.RequestGetValidatorsInfo', null, global);
@@ -80,7 +80,7 @@ goog.exportSymbol('proto.forge_abi.ResponseGetNetInfo', null, global);
 goog.exportSymbol('proto.forge_abi.ResponseGetNodeInfo', null, global);
 goog.exportSymbol('proto.forge_abi.ResponseGetProtocolState', null, global);
 goog.exportSymbol('proto.forge_abi.ResponseGetStakeState', null, global);
-goog.exportSymbol('proto.forge_abi.ResponseGetTetherInfo', null, global);
+goog.exportSymbol('proto.forge_abi.ResponseGetTetherState', null, global);
 goog.exportSymbol('proto.forge_abi.ResponseGetTx', null, global);
 goog.exportSymbol('proto.forge_abi.ResponseGetUnconfirmedTxs', null, global);
 goog.exportSymbol('proto.forge_abi.ResponseGetValidatorsInfo', null, global);
@@ -6163,26 +6163,26 @@ proto.forge_abi.ResponseGetForgeState.prototype.hasState = function() {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.forge_abi.RequestGetTetherInfo = function(opt_data) {
+proto.forge_abi.RequestGetTetherState = function(opt_data) {
   jspb.Message.initialize(
     this,
     opt_data,
     0,
     -1,
-    proto.forge_abi.RequestGetTetherInfo.repeatedFields_,
+    proto.forge_abi.RequestGetTetherState.repeatedFields_,
     null
   );
 };
-goog.inherits(proto.forge_abi.RequestGetTetherInfo, jspb.Message);
+goog.inherits(proto.forge_abi.RequestGetTetherState, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
-  proto.forge_abi.RequestGetTetherInfo.displayName = 'proto.forge_abi.RequestGetTetherInfo';
+  proto.forge_abi.RequestGetTetherState.displayName = 'proto.forge_abi.RequestGetTetherState';
 }
 /**
  * List of repeated fields within this message type.
  * @private {!Array<number>}
  * @const
  */
-proto.forge_abi.RequestGetTetherInfo.repeatedFields_ = [2];
+proto.forge_abi.RequestGetTetherState.repeatedFields_ = [2];
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
   /**
@@ -6195,8 +6195,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
    *     for transitional soy proto support: http://goto/soy-param-migration
    * @return {!Object}
    */
-  proto.forge_abi.RequestGetTetherInfo.prototype.toObject = function(opt_includeInstance) {
-    return proto.forge_abi.RequestGetTetherInfo.toObject(opt_includeInstance, this);
+  proto.forge_abi.RequestGetTetherState.prototype.toObject = function(opt_includeInstance) {
+    return proto.forge_abi.RequestGetTetherState.toObject(opt_includeInstance, this);
   };
 
   /**
@@ -6204,14 +6204,14 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
    * @param {boolean|undefined} includeInstance Whether to include the JSPB
    *     instance for transitional soy proto support:
    *     http://goto/soy-param-migration
-   * @param {!proto.forge_abi.RequestGetTetherInfo} msg The msg instance to transform.
+   * @param {!proto.forge_abi.RequestGetTetherState} msg The msg instance to transform.
    * @return {!Object}
    * @suppress {unusedLocalVariables} f is only used for nested messages
    */
-  proto.forge_abi.RequestGetTetherInfo.toObject = function(includeInstance, msg) {
+  proto.forge_abi.RequestGetTetherState.toObject = function(includeInstance, msg) {
     var f,
       obj = {
-        hash: jspb.Message.getFieldWithDefault(msg, 1, ''),
+        address: jspb.Message.getFieldWithDefault(msg, 1, ''),
         keysList: jspb.Message.getRepeatedField(msg, 2),
         height: jspb.Message.getFieldWithDefault(msg, 3, 0),
       };
@@ -6226,22 +6226,22 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.forge_abi.RequestGetTetherInfo}
+ * @return {!proto.forge_abi.RequestGetTetherState}
  */
-proto.forge_abi.RequestGetTetherInfo.deserializeBinary = function(bytes) {
+proto.forge_abi.RequestGetTetherState.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.forge_abi.RequestGetTetherInfo();
-  return proto.forge_abi.RequestGetTetherInfo.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.forge_abi.RequestGetTetherState();
+  return proto.forge_abi.RequestGetTetherState.deserializeBinaryFromReader(msg, reader);
 };
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.forge_abi.RequestGetTetherInfo} msg The message object to deserialize into.
+ * @param {!proto.forge_abi.RequestGetTetherState} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.forge_abi.RequestGetTetherInfo}
+ * @return {!proto.forge_abi.RequestGetTetherState}
  */
-proto.forge_abi.RequestGetTetherInfo.deserializeBinaryFromReader = function(msg, reader) {
+proto.forge_abi.RequestGetTetherState.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -6250,7 +6250,7 @@ proto.forge_abi.RequestGetTetherInfo.deserializeBinaryFromReader = function(msg,
     switch (field) {
       case 1:
         var value = /** @type {string} */ (reader.readString());
-        msg.setHash(value);
+        msg.setAddress(value);
         break;
       case 2:
         var value = /** @type {string} */ (reader.readString());
@@ -6272,22 +6272,22 @@ proto.forge_abi.RequestGetTetherInfo.deserializeBinaryFromReader = function(msg,
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.forge_abi.RequestGetTetherInfo.prototype.serializeBinary = function() {
+proto.forge_abi.RequestGetTetherState.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.forge_abi.RequestGetTetherInfo.serializeBinaryToWriter(this, writer);
+  proto.forge_abi.RequestGetTetherState.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.forge_abi.RequestGetTetherInfo} message
+ * @param {!proto.forge_abi.RequestGetTetherState} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.forge_abi.RequestGetTetherInfo.serializeBinaryToWriter = function(message, writer) {
+proto.forge_abi.RequestGetTetherState.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getHash();
+  f = message.getAddress();
   if (f.length > 0) {
     writer.writeString(1, f);
   }
@@ -6302,15 +6302,15 @@ proto.forge_abi.RequestGetTetherInfo.serializeBinaryToWriter = function(message,
 };
 
 /**
- * optional string hash = 1;
+ * optional string address = 1;
  * @return {string}
  */
-proto.forge_abi.RequestGetTetherInfo.prototype.getHash = function() {
+proto.forge_abi.RequestGetTetherState.prototype.getAddress = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ''));
 };
 
 /** @param {string} value */
-proto.forge_abi.RequestGetTetherInfo.prototype.setHash = function(value) {
+proto.forge_abi.RequestGetTetherState.prototype.setAddress = function(value) {
   jspb.Message.setProto3StringField(this, 1, value);
 };
 
@@ -6318,12 +6318,12 @@ proto.forge_abi.RequestGetTetherInfo.prototype.setHash = function(value) {
  * repeated string keys = 2;
  * @return {!Array<string>}
  */
-proto.forge_abi.RequestGetTetherInfo.prototype.getKeysList = function() {
+proto.forge_abi.RequestGetTetherState.prototype.getKeysList = function() {
   return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 2));
 };
 
 /** @param {!Array<string>} value */
-proto.forge_abi.RequestGetTetherInfo.prototype.setKeysList = function(value) {
+proto.forge_abi.RequestGetTetherState.prototype.setKeysList = function(value) {
   jspb.Message.setField(this, 2, value || []);
 };
 
@@ -6331,11 +6331,11 @@ proto.forge_abi.RequestGetTetherInfo.prototype.setKeysList = function(value) {
  * @param {string} value
  * @param {number=} opt_index
  */
-proto.forge_abi.RequestGetTetherInfo.prototype.addKeys = function(value, opt_index) {
+proto.forge_abi.RequestGetTetherState.prototype.addKeys = function(value, opt_index) {
   jspb.Message.addToRepeatedField(this, 2, value, opt_index);
 };
 
-proto.forge_abi.RequestGetTetherInfo.prototype.clearKeysList = function() {
+proto.forge_abi.RequestGetTetherState.prototype.clearKeysList = function() {
   this.setKeysList([]);
 };
 
@@ -6343,12 +6343,12 @@ proto.forge_abi.RequestGetTetherInfo.prototype.clearKeysList = function() {
  * optional uint64 height = 3;
  * @return {number}
  */
-proto.forge_abi.RequestGetTetherInfo.prototype.getHeight = function() {
+proto.forge_abi.RequestGetTetherState.prototype.getHeight = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
 };
 
 /** @param {number} value */
-proto.forge_abi.RequestGetTetherInfo.prototype.setHeight = function(value) {
+proto.forge_abi.RequestGetTetherState.prototype.setHeight = function(value) {
   jspb.Message.setProto3IntField(this, 3, value);
 };
 
@@ -6362,12 +6362,12 @@ proto.forge_abi.RequestGetTetherInfo.prototype.setHeight = function(value) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.forge_abi.ResponseGetTetherInfo = function(opt_data) {
+proto.forge_abi.ResponseGetTetherState = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.forge_abi.ResponseGetTetherInfo, jspb.Message);
+goog.inherits(proto.forge_abi.ResponseGetTetherState, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
-  proto.forge_abi.ResponseGetTetherInfo.displayName = 'proto.forge_abi.ResponseGetTetherInfo';
+  proto.forge_abi.ResponseGetTetherState.displayName = 'proto.forge_abi.ResponseGetTetherState';
 }
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
@@ -6381,8 +6381,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
    *     for transitional soy proto support: http://goto/soy-param-migration
    * @return {!Object}
    */
-  proto.forge_abi.ResponseGetTetherInfo.prototype.toObject = function(opt_includeInstance) {
-    return proto.forge_abi.ResponseGetTetherInfo.toObject(opt_includeInstance, this);
+  proto.forge_abi.ResponseGetTetherState.prototype.toObject = function(opt_includeInstance) {
+    return proto.forge_abi.ResponseGetTetherState.toObject(opt_includeInstance, this);
   };
 
   /**
@@ -6390,15 +6390,15 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
    * @param {boolean|undefined} includeInstance Whether to include the JSPB
    *     instance for transitional soy proto support:
    *     http://goto/soy-param-migration
-   * @param {!proto.forge_abi.ResponseGetTetherInfo} msg The msg instance to transform.
+   * @param {!proto.forge_abi.ResponseGetTetherState} msg The msg instance to transform.
    * @return {!Object}
    * @suppress {unusedLocalVariables} f is only used for nested messages
    */
-  proto.forge_abi.ResponseGetTetherInfo.toObject = function(includeInstance, msg) {
+  proto.forge_abi.ResponseGetTetherState.toObject = function(includeInstance, msg) {
     var f,
       obj = {
         code: jspb.Message.getFieldWithDefault(msg, 1, 0),
-        info: (f = msg.getInfo()) && state_pb.TetherInfo.toObject(includeInstance, f),
+        state: (f = msg.getState()) && state_pb.TetherState.toObject(includeInstance, f),
       };
 
     if (includeInstance) {
@@ -6411,22 +6411,22 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.forge_abi.ResponseGetTetherInfo}
+ * @return {!proto.forge_abi.ResponseGetTetherState}
  */
-proto.forge_abi.ResponseGetTetherInfo.deserializeBinary = function(bytes) {
+proto.forge_abi.ResponseGetTetherState.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.forge_abi.ResponseGetTetherInfo();
-  return proto.forge_abi.ResponseGetTetherInfo.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.forge_abi.ResponseGetTetherState();
+  return proto.forge_abi.ResponseGetTetherState.deserializeBinaryFromReader(msg, reader);
 };
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.forge_abi.ResponseGetTetherInfo} msg The message object to deserialize into.
+ * @param {!proto.forge_abi.ResponseGetTetherState} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.forge_abi.ResponseGetTetherInfo}
+ * @return {!proto.forge_abi.ResponseGetTetherState}
  */
-proto.forge_abi.ResponseGetTetherInfo.deserializeBinaryFromReader = function(msg, reader) {
+proto.forge_abi.ResponseGetTetherState.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -6438,9 +6438,9 @@ proto.forge_abi.ResponseGetTetherInfo.deserializeBinaryFromReader = function(msg
         msg.setCode(value);
         break;
       case 2:
-        var value = new state_pb.TetherInfo();
-        reader.readMessage(value, state_pb.TetherInfo.deserializeBinaryFromReader);
-        msg.setInfo(value);
+        var value = new state_pb.TetherState();
+        reader.readMessage(value, state_pb.TetherState.deserializeBinaryFromReader);
+        msg.setState(value);
         break;
       default:
         reader.skipField();
@@ -6454,28 +6454,28 @@ proto.forge_abi.ResponseGetTetherInfo.deserializeBinaryFromReader = function(msg
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.forge_abi.ResponseGetTetherInfo.prototype.serializeBinary = function() {
+proto.forge_abi.ResponseGetTetherState.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.forge_abi.ResponseGetTetherInfo.serializeBinaryToWriter(this, writer);
+  proto.forge_abi.ResponseGetTetherState.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.forge_abi.ResponseGetTetherInfo} message
+ * @param {!proto.forge_abi.ResponseGetTetherState} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.forge_abi.ResponseGetTetherInfo.serializeBinaryToWriter = function(message, writer) {
+proto.forge_abi.ResponseGetTetherState.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getCode();
   if (f !== 0.0) {
     writer.writeEnum(1, f);
   }
-  f = message.getInfo();
+  f = message.getState();
   if (f != null) {
-    writer.writeMessage(2, f, state_pb.TetherInfo.serializeBinaryToWriter);
+    writer.writeMessage(2, f, state_pb.TetherState.serializeBinaryToWriter);
   }
 };
 
@@ -6483,41 +6483,41 @@ proto.forge_abi.ResponseGetTetherInfo.serializeBinaryToWriter = function(message
  * optional StatusCode code = 1;
  * @return {!proto.forge_abi.StatusCode}
  */
-proto.forge_abi.ResponseGetTetherInfo.prototype.getCode = function() {
+proto.forge_abi.ResponseGetTetherState.prototype.getCode = function() {
   return /** @type {!proto.forge_abi.StatusCode} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
 };
 
 /** @param {!proto.forge_abi.StatusCode} value */
-proto.forge_abi.ResponseGetTetherInfo.prototype.setCode = function(value) {
+proto.forge_abi.ResponseGetTetherState.prototype.setCode = function(value) {
   jspb.Message.setProto3EnumField(this, 1, value);
 };
 
 /**
- * optional TetherInfo info = 2;
- * @return {?proto.forge_abi.TetherInfo}
+ * optional TetherState state = 2;
+ * @return {?proto.forge_abi.TetherState}
  */
-proto.forge_abi.ResponseGetTetherInfo.prototype.getInfo = function() {
-  return /** @type{?proto.forge_abi.TetherInfo} */ (jspb.Message.getWrapperField(
+proto.forge_abi.ResponseGetTetherState.prototype.getState = function() {
+  return /** @type{?proto.forge_abi.TetherState} */ (jspb.Message.getWrapperField(
     this,
-    state_pb.TetherInfo,
+    state_pb.TetherState,
     2
   ));
 };
 
-/** @param {?proto.forge_abi.TetherInfo|undefined} value */
-proto.forge_abi.ResponseGetTetherInfo.prototype.setInfo = function(value) {
+/** @param {?proto.forge_abi.TetherState|undefined} value */
+proto.forge_abi.ResponseGetTetherState.prototype.setState = function(value) {
   jspb.Message.setWrapperField(this, 2, value);
 };
 
-proto.forge_abi.ResponseGetTetherInfo.prototype.clearInfo = function() {
-  this.setInfo(undefined);
+proto.forge_abi.ResponseGetTetherState.prototype.clearState = function() {
+  this.setState(undefined);
 };
 
 /**
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.forge_abi.ResponseGetTetherInfo.prototype.hasInfo = function() {
+proto.forge_abi.ResponseGetTetherState.prototype.hasState = function() {
   return jspb.Message.getField(this, 2) != null;
 };
 

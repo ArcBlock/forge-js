@@ -2,180 +2,6 @@
   "nested": {
     "forge_abi": {
       "nested": {
-        "RequestVerifyTx": {
-          "fields": {
-            "tx": {
-              "type": "Transaction",
-              "id": 1
-            },
-            "states": {
-              "rule": "repeated",
-              "type": "AccountState",
-              "id": 2
-            },
-            "assets": {
-              "rule": "repeated",
-              "type": "AssetState",
-              "id": 3
-            },
-            "stakes": {
-              "rule": "repeated",
-              "type": "StakeState",
-              "id": 4
-            },
-            "context": {
-              "type": "AbciContext",
-              "id": 5
-            },
-            "appState": {
-              "type": "ForgeState",
-              "id": 15
-            }
-          }
-        },
-        "ResponseVerifyTx": {
-          "fields": {
-            "code": {
-              "type": "StatusCode",
-              "id": 1
-            }
-          }
-        },
-        "RequestUpdateState": {
-          "fields": {
-            "tx": {
-              "type": "Transaction",
-              "id": 1
-            },
-            "states": {
-              "rule": "repeated",
-              "type": "AccountState",
-              "id": 2
-            },
-            "assets": {
-              "rule": "repeated",
-              "type": "AssetState",
-              "id": 3
-            },
-            "stakes": {
-              "rule": "repeated",
-              "type": "StakeState",
-              "id": 4
-            },
-            "context": {
-              "type": "AbciContext",
-              "id": 5
-            },
-            "appState": {
-              "type": "ForgeState",
-              "id": 15
-            }
-          }
-        },
-        "ResponseUpdateState": {
-          "fields": {
-            "code": {
-              "type": "StatusCode",
-              "id": 1
-            },
-            "states": {
-              "rule": "repeated",
-              "type": "AccountState",
-              "id": 2
-            },
-            "assets": {
-              "rule": "repeated",
-              "type": "AssetState",
-              "id": 3
-            },
-            "stakes": {
-              "rule": "repeated",
-              "type": "StakeState",
-              "id": 4
-            },
-            "appState": {
-              "type": "ForgeState",
-              "id": 15
-            }
-          }
-        },
-        "RequestInfo": {
-          "fields": {
-            "forgeVersion": {
-              "type": "string",
-              "id": 1
-            }
-          }
-        },
-        "ResponseInfo": {
-          "fields": {
-            "typeUrls": {
-              "rule": "repeated",
-              "type": "string",
-              "id": 1
-            },
-            "appHash": {
-              "type": "bytes",
-              "id": 2
-            }
-          }
-        },
-        "Request": {
-          "oneofs": {
-            "value": {
-              "oneof": ["verifyTx", "updateState", "info"]
-            }
-          },
-          "fields": {
-            "verifyTx": {
-              "type": "RequestVerifyTx",
-              "id": 1
-            },
-            "updateState": {
-              "type": "RequestUpdateState",
-              "id": 2
-            },
-            "info": {
-              "type": "RequestInfo",
-              "id": 3
-            }
-          }
-        },
-        "Response": {
-          "oneofs": {
-            "value": {
-              "oneof": ["verifyTx", "updateState", "info"]
-            }
-          },
-          "fields": {
-            "verifyTx": {
-              "type": "ResponseVerifyTx",
-              "id": 1
-            },
-            "updateState": {
-              "type": "ResponseUpdateState",
-              "id": 2
-            },
-            "info": {
-              "type": "ResponseInfo",
-              "id": 3
-            }
-          }
-        },
-        "ForgeAppRpc": {
-          "methods": {
-            "process_one": {
-              "requestType": "Request",
-              "responseType": "Response"
-            },
-            "process": {
-              "requestType": "Request",
-              "requestStream": true,
-              "responseType": "Response",
-              "responseStream": true
-            }
-          }
-        },
         "StatusCode": {
           "values": {
             "ok": 0,
@@ -191,6 +17,7 @@
             "expired_tx": 10,
             "too_many_txs": 11,
             "invalid_lock_status": 12,
+            "invalid_request": 13,
             "invalid_moniker": 16,
             "invalid_passphrase": 17,
             "invalid_multisig": 20,
@@ -215,6 +42,11 @@
             "consumed_asset": 42,
             "invalid_deposit_value": 43,
             "exceed_deposit_cap": 44,
+            "invalid_deposit_target": 45,
+            "invalid_depositor": 46,
+            "invalid_withdrawer": 47,
+            "duplicate_tether": 48,
+            "invalid_expiry_date": 49,
             "forbidden": 403,
             "internal": 500,
             "timeout": 504
@@ -280,6 +112,7 @@
             "role_validator": 8,
             "role_group": 9,
             "role_tx": 10,
+            "role_tether": 11,
             "role_any": 63
           }
         },
@@ -337,6 +170,1100 @@
             "terminated": 2
           }
         },
+        "RequestCreateTx": {
+          "fields": {
+            "itx": {
+              "type": "google.protobuf.Any",
+              "id": 1
+            },
+            "from": {
+              "type": "string",
+              "id": 2
+            },
+            "nonce": {
+              "type": "uint64",
+              "id": 3
+            },
+            "wallet": {
+              "type": "WalletInfo",
+              "id": 4
+            },
+            "token": {
+              "type": "string",
+              "id": 5
+            }
+          }
+        },
+        "ResponseCreateTx": {
+          "fields": {
+            "code": {
+              "type": "StatusCode",
+              "id": 1
+            },
+            "tx": {
+              "type": "Transaction",
+              "id": 2
+            }
+          }
+        },
+        "RequestMultisig": {
+          "fields": {
+            "tx": {
+              "type": "Transaction",
+              "id": 1
+            },
+            "data": {
+              "type": "google.protobuf.Any",
+              "id": 2
+            },
+            "wallet": {
+              "type": "WalletInfo",
+              "id": 3
+            },
+            "token": {
+              "type": "string",
+              "id": 4
+            }
+          }
+        },
+        "ResponseMultisig": {
+          "fields": {
+            "code": {
+              "type": "StatusCode",
+              "id": 1
+            },
+            "tx": {
+              "type": "Transaction",
+              "id": 2
+            }
+          }
+        },
+        "RequestSendTx": {
+          "fields": {
+            "tx": {
+              "type": "Transaction",
+              "id": 1
+            },
+            "wallet": {
+              "type": "WalletInfo",
+              "id": 2
+            },
+            "token": {
+              "type": "string",
+              "id": 3
+            },
+            "commit": {
+              "type": "bool",
+              "id": 4
+            }
+          }
+        },
+        "ResponseSendTx": {
+          "fields": {
+            "code": {
+              "type": "StatusCode",
+              "id": 1
+            },
+            "hash": {
+              "type": "string",
+              "id": 2
+            }
+          }
+        },
+        "RequestGetTx": {
+          "fields": {
+            "hash": {
+              "type": "string",
+              "id": 1
+            }
+          }
+        },
+        "ResponseGetTx": {
+          "fields": {
+            "code": {
+              "type": "StatusCode",
+              "id": 1
+            },
+            "info": {
+              "type": "TransactionInfo",
+              "id": 2
+            }
+          }
+        },
+        "RequestGetBlock": {
+          "fields": {
+            "height": {
+              "type": "uint64",
+              "id": 1
+            }
+          }
+        },
+        "ResponseGetBlock": {
+          "fields": {
+            "code": {
+              "type": "StatusCode",
+              "id": 1
+            },
+            "block": {
+              "type": "BlockInfo",
+              "id": 2
+            }
+          }
+        },
+        "RequestGetBlocks": {
+          "fields": {
+            "paging": {
+              "type": "PageInput",
+              "id": 1
+            },
+            "heightFilter": {
+              "type": "RangeFilter",
+              "id": 2
+            },
+            "emptyExcluded": {
+              "type": "bool",
+              "id": 3
+            }
+          }
+        },
+        "ResponseGetBlocks": {
+          "fields": {
+            "code": {
+              "type": "StatusCode",
+              "id": 1
+            },
+            "page": {
+              "type": "PageInfo",
+              "id": 2
+            },
+            "blocks": {
+              "rule": "repeated",
+              "type": "BlockInfoSimple",
+              "id": 3
+            }
+          }
+        },
+        "RequestCreateWallet": {
+          "fields": {
+            "passphrase": {
+              "type": "string",
+              "id": 1
+            },
+            "type": {
+              "type": "WalletType",
+              "id": 2
+            },
+            "moniker": {
+              "type": "string",
+              "id": 3
+            }
+          }
+        },
+        "ResponseCreateWallet": {
+          "fields": {
+            "code": {
+              "type": "StatusCode",
+              "id": 1
+            },
+            "token": {
+              "type": "string",
+              "id": 2
+            },
+            "wallet": {
+              "type": "WalletInfo",
+              "id": 3
+            }
+          }
+        },
+        "RequestLoadWallet": {
+          "fields": {
+            "address": {
+              "type": "string",
+              "id": 1
+            },
+            "passphrase": {
+              "type": "string",
+              "id": 2
+            }
+          }
+        },
+        "ResponseLoadWallet": {
+          "fields": {
+            "code": {
+              "type": "StatusCode",
+              "id": 1
+            },
+            "token": {
+              "type": "string",
+              "id": 2
+            },
+            "wallet": {
+              "type": "WalletInfo",
+              "id": 3
+            }
+          }
+        },
+        "RequestRecoverWallet": {
+          "fields": {
+            "data": {
+              "type": "bytes",
+              "id": 1
+            },
+            "type": {
+              "type": "WalletType",
+              "id": 2
+            },
+            "passphrase": {
+              "type": "string",
+              "id": 3
+            },
+            "moniker": {
+              "type": "string",
+              "id": 4
+            }
+          }
+        },
+        "ResponseRecoverWallet": {
+          "fields": {
+            "code": {
+              "type": "StatusCode",
+              "id": 1
+            },
+            "token": {
+              "type": "string",
+              "id": 2
+            },
+            "wallet": {
+              "type": "WalletInfo",
+              "id": 3
+            }
+          }
+        },
+        "RequestListWallet": {
+          "fields": {}
+        },
+        "ResponseListWallet": {
+          "fields": {
+            "code": {
+              "type": "StatusCode",
+              "id": 1
+            },
+            "address": {
+              "type": "string",
+              "id": 2
+            }
+          }
+        },
+        "RequestRemoveWallet": {
+          "fields": {
+            "address": {
+              "type": "string",
+              "id": 1
+            }
+          }
+        },
+        "ResponseRemoveWallet": {
+          "fields": {
+            "code": {
+              "type": "StatusCode",
+              "id": 1
+            }
+          }
+        },
+        "RequestDeclareNode": {
+          "fields": {
+            "validator": {
+              "type": "bool",
+              "id": 1
+            }
+          }
+        },
+        "ResponseDeclareNode": {
+          "fields": {
+            "code": {
+              "type": "StatusCode",
+              "id": 1
+            },
+            "wallet": {
+              "type": "WalletInfo",
+              "id": 3
+            }
+          }
+        },
+        "RequestGetAccountState": {
+          "fields": {
+            "address": {
+              "type": "string",
+              "id": 1
+            },
+            "keys": {
+              "rule": "repeated",
+              "type": "string",
+              "id": 2
+            },
+            "height": {
+              "type": "uint64",
+              "id": 3
+            }
+          }
+        },
+        "ResponseGetAccountState": {
+          "fields": {
+            "code": {
+              "type": "StatusCode",
+              "id": 1
+            },
+            "state": {
+              "type": "AccountState",
+              "id": 2
+            }
+          }
+        },
+        "RequestGetAssetState": {
+          "fields": {
+            "address": {
+              "type": "string",
+              "id": 1
+            },
+            "keys": {
+              "rule": "repeated",
+              "type": "string",
+              "id": 2
+            },
+            "height": {
+              "type": "uint64",
+              "id": 3
+            }
+          }
+        },
+        "ResponseGetAssetState": {
+          "fields": {
+            "code": {
+              "type": "StatusCode",
+              "id": 1
+            },
+            "state": {
+              "type": "AssetState",
+              "id": 2
+            }
+          }
+        },
+        "RequestGetProtocolState": {
+          "fields": {
+            "address": {
+              "type": "string",
+              "id": 1
+            },
+            "keys": {
+              "rule": "repeated",
+              "type": "string",
+              "id": 2
+            },
+            "height": {
+              "type": "uint64",
+              "id": 3
+            }
+          }
+        },
+        "ResponseGetProtocolState": {
+          "fields": {
+            "code": {
+              "type": "StatusCode",
+              "id": 1
+            },
+            "state": {
+              "type": "ProtocolState",
+              "id": 2
+            }
+          }
+        },
+        "RequestGetStakeState": {
+          "fields": {
+            "address": {
+              "type": "string",
+              "id": 1
+            },
+            "keys": {
+              "rule": "repeated",
+              "type": "string",
+              "id": 2
+            },
+            "height": {
+              "type": "uint64",
+              "id": 3
+            }
+          }
+        },
+        "ResponseGetStakeState": {
+          "fields": {
+            "code": {
+              "type": "StatusCode",
+              "id": 1
+            },
+            "state": {
+              "type": "StakeState",
+              "id": 2
+            }
+          }
+        },
+        "RequestGetForgeState": {
+          "fields": {
+            "keys": {
+              "rule": "repeated",
+              "type": "string",
+              "id": 1
+            },
+            "height": {
+              "type": "uint64",
+              "id": 3
+            }
+          }
+        },
+        "ResponseGetForgeState": {
+          "fields": {
+            "code": {
+              "type": "StatusCode",
+              "id": 1
+            },
+            "state": {
+              "type": "ForgeState",
+              "id": 2
+            }
+          }
+        },
+        "RequestGetTetherState": {
+          "fields": {
+            "address": {
+              "type": "string",
+              "id": 1
+            },
+            "keys": {
+              "rule": "repeated",
+              "type": "string",
+              "id": 2
+            },
+            "height": {
+              "type": "uint64",
+              "id": 3
+            }
+          }
+        },
+        "ResponseGetTetherState": {
+          "fields": {
+            "code": {
+              "type": "StatusCode",
+              "id": 1
+            },
+            "state": {
+              "type": "TetherState",
+              "id": 2
+            }
+          }
+        },
+        "RequestStoreFile": {
+          "fields": {
+            "chunk": {
+              "type": "bytes",
+              "id": 1
+            }
+          }
+        },
+        "ResponseStoreFile": {
+          "fields": {
+            "code": {
+              "type": "StatusCode",
+              "id": 1
+            },
+            "hash": {
+              "type": "string",
+              "id": 2
+            }
+          }
+        },
+        "RequestLoadFile": {
+          "fields": {
+            "hash": {
+              "type": "string",
+              "id": 1
+            }
+          }
+        },
+        "ResponseLoadFile": {
+          "fields": {
+            "code": {
+              "type": "StatusCode",
+              "id": 1
+            },
+            "chunk": {
+              "type": "bytes",
+              "id": 2
+            }
+          }
+        },
+        "RequestPinFile": {
+          "fields": {
+            "hash": {
+              "type": "string",
+              "id": 1
+            }
+          }
+        },
+        "ResponsePinFile": {
+          "fields": {
+            "code": {
+              "type": "StatusCode",
+              "id": 1
+            }
+          }
+        },
+        "RequestGetChainInfo": {
+          "fields": {}
+        },
+        "ResponseGetChainInfo": {
+          "fields": {
+            "code": {
+              "type": "StatusCode",
+              "id": 1
+            },
+            "info": {
+              "type": "ChainInfo",
+              "id": 2
+            }
+          }
+        },
+        "RequestGetNodeInfo": {
+          "fields": {}
+        },
+        "ResponseGetNodeInfo": {
+          "fields": {
+            "code": {
+              "type": "StatusCode",
+              "id": 1
+            },
+            "info": {
+              "type": "NodeInfo",
+              "id": 2
+            }
+          }
+        },
+        "RequestSearch": {
+          "fields": {
+            "key": {
+              "type": "string",
+              "id": 1
+            },
+            "value": {
+              "type": "string",
+              "id": 2
+            }
+          }
+        },
+        "ResponseSearch": {
+          "fields": {
+            "code": {
+              "type": "StatusCode",
+              "id": 1
+            },
+            "txs": {
+              "rule": "repeated",
+              "type": "TransactionInfo",
+              "id": 2
+            }
+          }
+        },
+        "RequestGetUnconfirmedTxs": {
+          "fields": {
+            "paging": {
+              "type": "PageInput",
+              "id": 1
+            }
+          }
+        },
+        "ResponseGetUnconfirmedTxs": {
+          "fields": {
+            "code": {
+              "type": "StatusCode",
+              "id": 1
+            },
+            "page": {
+              "type": "PageInfo",
+              "id": 2
+            },
+            "unconfirmedTxs": {
+              "type": "UnconfirmedTxs",
+              "id": 3
+            }
+          }
+        },
+        "RequestGetNetInfo": {
+          "fields": {}
+        },
+        "ResponseGetNetInfo": {
+          "fields": {
+            "code": {
+              "type": "StatusCode",
+              "id": 1
+            },
+            "netInfo": {
+              "type": "NetInfo",
+              "id": 2
+            }
+          }
+        },
+        "RequestGetValidatorsInfo": {
+          "fields": {}
+        },
+        "ResponseGetValidatorsInfo": {
+          "fields": {
+            "code": {
+              "type": "StatusCode",
+              "id": 1
+            },
+            "validatorsInfo": {
+              "type": "ValidatorsInfo",
+              "id": 2
+            }
+          }
+        },
+        "RequestSubscribe": {
+          "fields": {
+            "topic": {
+              "type": "string",
+              "id": 1
+            },
+            "filter": {
+              "type": "string",
+              "id": 2
+            }
+          }
+        },
+        "ResponseSubscribe": {
+          "oneofs": {
+            "value": {
+              "oneof": [
+                "topic",
+                "transfer",
+                "accountMigrate",
+                "confirm",
+                "createAsset",
+                "exchange",
+                "revoke",
+                "beginBlock",
+                "endBlock",
+                "declare",
+                "updateAsset",
+                "consensusUpgrade",
+                "declareFile",
+                "sysUpgrade",
+                "stake",
+                "accountState",
+                "assetState",
+                "forgeState",
+                "stakeState",
+                "protocolState"
+              ]
+            }
+          },
+          "fields": {
+            "code": {
+              "type": "StatusCode",
+              "id": 1
+            },
+            "topic": {
+              "type": "string",
+              "id": 2
+            },
+            "transfer": {
+              "type": "Transaction",
+              "id": 3
+            },
+            "accountMigrate": {
+              "type": "Transaction",
+              "id": 4
+            },
+            "confirm": {
+              "type": "Transaction",
+              "id": 5
+            },
+            "createAsset": {
+              "type": "Transaction",
+              "id": 6
+            },
+            "exchange": {
+              "type": "Transaction",
+              "id": 7
+            },
+            "revoke": {
+              "type": "Transaction",
+              "id": 8
+            },
+            "beginBlock": {
+              "type": "abci_vendor.RequestBeginBlock",
+              "id": 16
+            },
+            "endBlock": {
+              "type": "abci_vendor.RequestEndBlock",
+              "id": 17
+            },
+            "declare": {
+              "type": "Transaction",
+              "id": 19
+            },
+            "updateAsset": {
+              "type": "Transaction",
+              "id": 20
+            },
+            "consensusUpgrade": {
+              "type": "Transaction",
+              "id": 21
+            },
+            "declareFile": {
+              "type": "Transaction",
+              "id": 22
+            },
+            "sysUpgrade": {
+              "type": "Transaction",
+              "id": 23
+            },
+            "stake": {
+              "type": "Transaction",
+              "id": 24
+            },
+            "accountState": {
+              "type": "AccountState",
+              "id": 129
+            },
+            "assetState": {
+              "type": "AssetState",
+              "id": 130
+            },
+            "forgeState": {
+              "type": "ForgeState",
+              "id": 131
+            },
+            "stakeState": {
+              "type": "StakeState",
+              "id": 132
+            },
+            "protocolState": {
+              "type": "ProtocolState",
+              "id": 133
+            }
+          }
+        },
+        "RequestUnsubscribe": {
+          "fields": {
+            "topic": {
+              "type": "string",
+              "id": 1
+            }
+          }
+        },
+        "ResponseUnsubscribe": {
+          "fields": {
+            "code": {
+              "type": "StatusCode",
+              "id": 1
+            }
+          }
+        },
+        "RequestGetConfig": {
+          "fields": {}
+        },
+        "ResponseGetConfig": {
+          "fields": {
+            "code": {
+              "type": "StatusCode",
+              "id": 1
+            },
+            "config": {
+              "type": "string",
+              "id": 2
+            }
+          }
+        },
+        "ByDay": {
+          "fields": {
+            "startDate": {
+              "type": "string",
+              "id": 1
+            },
+            "endDate": {
+              "type": "string",
+              "id": 2
+            }
+          }
+        },
+        "ByHour": {
+          "fields": {
+            "date": {
+              "type": "string",
+              "id": 1
+            }
+          }
+        },
+        "RequestGetForgeStats": {
+          "oneofs": {
+            "value": {
+              "oneof": ["dayInfo", "date"]
+            }
+          },
+          "fields": {
+            "dayInfo": {
+              "type": "ByDay",
+              "id": 1
+            },
+            "date": {
+              "type": "ByHour",
+              "id": 2
+            }
+          }
+        },
+        "ResponseGetForgeStats": {
+          "fields": {
+            "code": {
+              "type": "StatusCode",
+              "id": 1
+            },
+            "forgeStats": {
+              "type": "ForgeStats",
+              "id": 2
+            }
+          }
+        },
+        "RequestListTransactions": {
+          "fields": {
+            "paging": {
+              "type": "PageInput",
+              "id": 1
+            },
+            "timeFilter": {
+              "type": "TimeFilter",
+              "id": 2
+            },
+            "addressFilter": {
+              "type": "AddressFilter",
+              "id": 3
+            },
+            "typeFilter": {
+              "type": "TypeFilter",
+              "id": 4
+            },
+            "validityFilter": {
+              "type": "ValidityFilter",
+              "id": 5
+            }
+          }
+        },
+        "ResponseListTransactions": {
+          "fields": {
+            "code": {
+              "type": "StatusCode",
+              "id": 1
+            },
+            "page": {
+              "type": "PageInfo",
+              "id": 2
+            },
+            "transactions": {
+              "rule": "repeated",
+              "type": "IndexedTransaction",
+              "id": 3
+            }
+          }
+        },
+        "RequestListAssets": {
+          "fields": {
+            "paging": {
+              "type": "PageInput",
+              "id": 1
+            },
+            "ownerAddress": {
+              "type": "string",
+              "id": 2
+            }
+          }
+        },
+        "ResponseListAssets": {
+          "fields": {
+            "code": {
+              "type": "StatusCode",
+              "id": 1
+            },
+            "page": {
+              "type": "PageInfo",
+              "id": 2
+            },
+            "assets": {
+              "rule": "repeated",
+              "type": "IndexedAssetState",
+              "id": 3
+            }
+          }
+        },
+        "RequestListStakes": {
+          "fields": {
+            "paging": {
+              "type": "PageInput",
+              "id": 1
+            },
+            "addressFilter": {
+              "type": "AddressFilter",
+              "id": 2
+            }
+          }
+        },
+        "ResponseListStakes": {
+          "fields": {
+            "code": {
+              "type": "StatusCode",
+              "id": 1
+            },
+            "page": {
+              "type": "PageInfo",
+              "id": 2
+            },
+            "stakes": {
+              "rule": "repeated",
+              "type": "IndexedStakeState",
+              "id": 3
+            }
+          }
+        },
+        "RequestListAccount": {
+          "fields": {
+            "ownerAddress": {
+              "type": "string",
+              "id": 1
+            }
+          }
+        },
+        "ResponseListAccount": {
+          "fields": {
+            "code": {
+              "type": "StatusCode",
+              "id": 1
+            },
+            "account": {
+              "type": "IndexedAccountState",
+              "id": 2
+            }
+          }
+        },
+        "RequestListTopAccounts": {
+          "fields": {
+            "paging": {
+              "type": "PageInput",
+              "id": 1
+            }
+          }
+        },
+        "ResponseListTopAccounts": {
+          "fields": {
+            "code": {
+              "type": "StatusCode",
+              "id": 1
+            },
+            "page": {
+              "type": "PageInfo",
+              "id": 2
+            },
+            "accounts": {
+              "rule": "repeated",
+              "type": "IndexedAccountState",
+              "id": 3
+            }
+          }
+        },
+        "RequestListAssetTransactions": {
+          "fields": {
+            "paging": {
+              "type": "PageInput",
+              "id": 1
+            },
+            "address": {
+              "type": "string",
+              "id": 2
+            }
+          }
+        },
+        "ResponseListAssetTransactions": {
+          "fields": {
+            "code": {
+              "type": "StatusCode",
+              "id": 1
+            },
+            "page": {
+              "type": "PageInfo",
+              "id": 2
+            },
+            "transactions": {
+              "rule": "repeated",
+              "type": "IndexedTransaction",
+              "id": 3
+            }
+          }
+        },
+        "RequestListBlocks": {
+          "fields": {
+            "paging": {
+              "type": "PageInput",
+              "id": 1
+            },
+            "proposer": {
+              "type": "string",
+              "id": 2
+            },
+            "timeFilter": {
+              "type": "TimeFilter",
+              "id": 3
+            },
+            "heightFilter": {
+              "type": "RangeFilter",
+              "id": 4
+            },
+            "numTxsFilter": {
+              "type": "RangeFilter",
+              "id": 5
+            },
+            "numInvalidTxsFilter": {
+              "type": "RangeFilter",
+              "id": 6
+            }
+          }
+        },
+        "ResponseListBlocks": {
+          "fields": {
+            "code": {
+              "type": "StatusCode",
+              "id": 1
+            },
+            "page": {
+              "type": "PageInfo",
+              "id": 2
+            },
+            "blocks": {
+              "rule": "repeated",
+              "type": "IndexedBlock",
+              "id": 3
+            }
+          }
+        },
+        "RequestGetHealthStatus": {
+          "fields": {}
+        },
+        "ResponseGetHealthStatus": {
+          "fields": {
+            "code": {
+              "type": "StatusCode",
+              "id": 1
+            },
+            "healthStatus": {
+              "type": "HealthStatus",
+              "id": 2
+            }
+          }
+        },
         "BigUint": {
           "fields": {
             "value": {
@@ -381,7 +1308,10 @@
           "fields": {
             "type": {
               "type": "WalletType",
-              "id": 1
+              "id": 1,
+              "options": {
+                "deprecated": true
+              }
             },
             "sk": {
               "type": "bytes",
@@ -748,6 +1678,18 @@
             }
           }
         },
+        "DeclareConfig": {
+          "fields": {
+            "restricted": {
+              "type": "bool",
+              "id": 1
+            },
+            "hierarchy": {
+              "type": "uint32",
+              "id": 2
+            }
+          }
+        },
         "TransactionConfig": {
           "fields": {
             "maxAssetSize": {
@@ -765,6 +1707,10 @@
             "minimumStake": {
               "type": "uint64",
               "id": 4
+            },
+            "declare": {
+              "type": "DeclareConfig",
+              "id": 5
             }
           }
         },
@@ -1449,7 +2395,10 @@
             },
             "type": {
               "type": "WalletType",
-              "id": 6
+              "id": 6,
+              "options": {
+                "deprecated": true
+              }
             },
             "moniker": {
               "type": "string",
@@ -1717,29 +2666,17 @@
               "type": "string",
               "id": 1
             },
-            "name": {
-              "type": "string",
+            "itx": {
+              "type": "DeployProtocolTx",
               "id": 2
-            },
-            "version": {
-              "type": "uint32",
-              "id": 3
-            },
-            "description": {
-              "type": "string",
-              "id": 4
-            },
-            "txHash": {
-              "type": "string",
-              "id": 5
             },
             "rootHash": {
               "type": "bytes",
-              "id": 6
+              "id": 3
             },
             "status": {
               "type": "ProtocolStatus",
-              "id": 7
+              "id": 4
             },
             "migratedTo": {
               "rule": "repeated",
@@ -1762,14 +2699,6 @@
           }
         },
         "TetherState": {
-          "fields": {
-            "available": {
-              "type": "bool",
-              "id": 1
-            }
-          }
-        },
-        "TetherInfo": {
           "fields": {
             "hash": {
               "type": "string",
@@ -1810,1100 +2739,147 @@
             "locktime": {
               "type": "google.protobuf.Timestamp",
               "id": 10
+            },
+            "address": {
+              "type": "string",
+              "id": 11
             }
           }
         },
-        "RequestCreateTx": {
+        "TetherInfo": {
           "fields": {
-            "itx": {
-              "type": "google.protobuf.Any",
+            "available": {
+              "type": "bool",
               "id": 1
             },
-            "from": {
+            "hash": {
+              "type": "string",
+              "id": 2
+            }
+          }
+        },
+        "CodeInfo": {
+          "fields": {
+            "checksum": {
+              "type": "bytes",
+              "id": 1
+            },
+            "binary": {
+              "type": "bytes",
+              "id": 2
+            }
+          }
+        },
+        "TypeUrls": {
+          "fields": {
+            "url": {
+              "type": "string",
+              "id": 1
+            },
+            "module": {
+              "type": "string",
+              "id": 2
+            }
+          }
+        },
+        "DeployProtocolTx": {
+          "fields": {
+            "address": {
+              "type": "string",
+              "id": 1
+            },
+            "name": {
               "type": "string",
               "id": 2
             },
-            "nonce": {
-              "type": "uint64",
+            "version": {
+              "type": "uint32",
               "id": 3
             },
-            "wallet": {
-              "type": "WalletInfo",
+            "namespace": {
+              "type": "string",
               "id": 4
             },
-            "token": {
+            "description": {
               "type": "string",
               "id": 5
-            }
-          }
-        },
-        "ResponseCreateTx": {
-          "fields": {
-            "code": {
-              "type": "StatusCode",
-              "id": 1
             },
-            "tx": {
-              "type": "Transaction",
-              "id": 2
-            }
-          }
-        },
-        "RequestMultisig": {
-          "fields": {
-            "tx": {
-              "type": "Transaction",
-              "id": 1
-            },
-            "data": {
-              "type": "google.protobuf.Any",
-              "id": 2
-            },
-            "wallet": {
-              "type": "WalletInfo",
-              "id": 3
-            },
-            "token": {
-              "type": "string",
-              "id": 4
-            }
-          }
-        },
-        "ResponseMultisig": {
-          "fields": {
-            "code": {
-              "type": "StatusCode",
-              "id": 1
-            },
-            "tx": {
-              "type": "Transaction",
-              "id": 2
-            }
-          }
-        },
-        "RequestSendTx": {
-          "fields": {
-            "tx": {
-              "type": "Transaction",
-              "id": 1
-            },
-            "wallet": {
-              "type": "WalletInfo",
-              "id": 2
-            },
-            "token": {
-              "type": "string",
-              "id": 3
-            },
-            "commit": {
-              "type": "bool",
-              "id": 4
-            }
-          }
-        },
-        "ResponseSendTx": {
-          "fields": {
-            "code": {
-              "type": "StatusCode",
-              "id": 1
-            },
-            "hash": {
-              "type": "string",
-              "id": 2
-            }
-          }
-        },
-        "RequestGetTx": {
-          "fields": {
-            "hash": {
-              "type": "string",
-              "id": 1
-            }
-          }
-        },
-        "ResponseGetTx": {
-          "fields": {
-            "code": {
-              "type": "StatusCode",
-              "id": 1
-            },
-            "info": {
-              "type": "TransactionInfo",
-              "id": 2
-            }
-          }
-        },
-        "RequestGetBlock": {
-          "fields": {
-            "height": {
-              "type": "uint64",
-              "id": 1
-            }
-          }
-        },
-        "ResponseGetBlock": {
-          "fields": {
-            "code": {
-              "type": "StatusCode",
-              "id": 1
-            },
-            "block": {
-              "type": "BlockInfo",
-              "id": 2
-            }
-          }
-        },
-        "RequestGetBlocks": {
-          "fields": {
-            "paging": {
-              "type": "PageInput",
-              "id": 1
-            },
-            "heightFilter": {
-              "type": "RangeFilter",
-              "id": 2
-            },
-            "emptyExcluded": {
-              "type": "bool",
-              "id": 3
-            }
-          }
-        },
-        "ResponseGetBlocks": {
-          "fields": {
-            "code": {
-              "type": "StatusCode",
-              "id": 1
-            },
-            "page": {
-              "type": "PageInfo",
-              "id": 2
-            },
-            "blocks": {
+            "typeUrls": {
               "rule": "repeated",
-              "type": "BlockInfoSimple",
-              "id": 3
-            }
-          }
-        },
-        "RequestCreateWallet": {
-          "fields": {
-            "passphrase": {
-              "type": "string",
-              "id": 1
-            },
-            "type": {
-              "type": "WalletType",
-              "id": 2
-            },
-            "moniker": {
-              "type": "string",
-              "id": 3
-            }
-          }
-        },
-        "ResponseCreateWallet": {
-          "fields": {
-            "code": {
-              "type": "StatusCode",
-              "id": 1
-            },
-            "token": {
-              "type": "string",
-              "id": 2
-            },
-            "wallet": {
-              "type": "WalletInfo",
-              "id": 3
-            }
-          }
-        },
-        "RequestLoadWallet": {
-          "fields": {
-            "address": {
-              "type": "string",
-              "id": 1
-            },
-            "passphrase": {
-              "type": "string",
-              "id": 2
-            }
-          }
-        },
-        "ResponseLoadWallet": {
-          "fields": {
-            "code": {
-              "type": "StatusCode",
-              "id": 1
-            },
-            "token": {
-              "type": "string",
-              "id": 2
-            },
-            "wallet": {
-              "type": "WalletInfo",
-              "id": 3
-            }
-          }
-        },
-        "RequestRecoverWallet": {
-          "fields": {
-            "data": {
-              "type": "bytes",
-              "id": 1
-            },
-            "type": {
-              "type": "WalletType",
-              "id": 2
-            },
-            "passphrase": {
-              "type": "string",
-              "id": 3
-            },
-            "moniker": {
-              "type": "string",
-              "id": 4
-            }
-          }
-        },
-        "ResponseRecoverWallet": {
-          "fields": {
-            "code": {
-              "type": "StatusCode",
-              "id": 1
-            },
-            "token": {
-              "type": "string",
-              "id": 2
-            },
-            "wallet": {
-              "type": "WalletInfo",
-              "id": 3
-            }
-          }
-        },
-        "RequestListWallet": {
-          "fields": {}
-        },
-        "ResponseListWallet": {
-          "fields": {
-            "code": {
-              "type": "StatusCode",
-              "id": 1
-            },
-            "address": {
-              "type": "string",
-              "id": 2
-            }
-          }
-        },
-        "RequestRemoveWallet": {
-          "fields": {
-            "address": {
-              "type": "string",
-              "id": 1
-            }
-          }
-        },
-        "ResponseRemoveWallet": {
-          "fields": {
-            "code": {
-              "type": "StatusCode",
-              "id": 1
-            }
-          }
-        },
-        "RequestDeclareNode": {
-          "fields": {
-            "validator": {
-              "type": "bool",
-              "id": 1
-            }
-          }
-        },
-        "ResponseDeclareNode": {
-          "fields": {
-            "code": {
-              "type": "StatusCode",
-              "id": 1
-            },
-            "wallet": {
-              "type": "WalletInfo",
-              "id": 3
-            }
-          }
-        },
-        "RequestGetAccountState": {
-          "fields": {
-            "address": {
-              "type": "string",
-              "id": 1
-            },
-            "keys": {
-              "rule": "repeated",
-              "type": "string",
-              "id": 2
-            },
-            "height": {
-              "type": "uint64",
-              "id": 3
-            }
-          }
-        },
-        "ResponseGetAccountState": {
-          "fields": {
-            "code": {
-              "type": "StatusCode",
-              "id": 1
-            },
-            "state": {
-              "type": "AccountState",
-              "id": 2
-            }
-          }
-        },
-        "RequestGetAssetState": {
-          "fields": {
-            "address": {
-              "type": "string",
-              "id": 1
-            },
-            "keys": {
-              "rule": "repeated",
-              "type": "string",
-              "id": 2
-            },
-            "height": {
-              "type": "uint64",
-              "id": 3
-            }
-          }
-        },
-        "ResponseGetAssetState": {
-          "fields": {
-            "code": {
-              "type": "StatusCode",
-              "id": 1
-            },
-            "state": {
-              "type": "AssetState",
-              "id": 2
-            }
-          }
-        },
-        "RequestGetProtocolState": {
-          "fields": {
-            "address": {
-              "type": "string",
-              "id": 1
-            },
-            "keys": {
-              "rule": "repeated",
-              "type": "string",
-              "id": 2
-            },
-            "height": {
-              "type": "uint64",
-              "id": 3
-            }
-          }
-        },
-        "ResponseGetProtocolState": {
-          "fields": {
-            "code": {
-              "type": "StatusCode",
-              "id": 1
-            },
-            "state": {
-              "type": "ProtocolState",
-              "id": 2
-            }
-          }
-        },
-        "RequestGetStakeState": {
-          "fields": {
-            "address": {
-              "type": "string",
-              "id": 1
-            },
-            "keys": {
-              "rule": "repeated",
-              "type": "string",
-              "id": 2
-            },
-            "height": {
-              "type": "uint64",
-              "id": 3
-            }
-          }
-        },
-        "ResponseGetStakeState": {
-          "fields": {
-            "code": {
-              "type": "StatusCode",
-              "id": 1
-            },
-            "state": {
-              "type": "StakeState",
-              "id": 2
-            }
-          }
-        },
-        "RequestGetForgeState": {
-          "fields": {
-            "keys": {
-              "rule": "repeated",
-              "type": "string",
-              "id": 1
-            },
-            "height": {
-              "type": "uint64",
-              "id": 3
-            }
-          }
-        },
-        "ResponseGetForgeState": {
-          "fields": {
-            "code": {
-              "type": "StatusCode",
-              "id": 1
-            },
-            "state": {
-              "type": "ForgeState",
-              "id": 2
-            }
-          }
-        },
-        "RequestGetTetherInfo": {
-          "fields": {
-            "hash": {
-              "type": "string",
-              "id": 1
-            },
-            "keys": {
-              "rule": "repeated",
-              "type": "string",
-              "id": 2
-            },
-            "height": {
-              "type": "uint64",
-              "id": 3
-            }
-          }
-        },
-        "ResponseGetTetherInfo": {
-          "fields": {
-            "code": {
-              "type": "StatusCode",
-              "id": 1
-            },
-            "info": {
-              "type": "TetherInfo",
-              "id": 2
-            }
-          }
-        },
-        "RequestStoreFile": {
-          "fields": {
-            "chunk": {
-              "type": "bytes",
-              "id": 1
-            }
-          }
-        },
-        "ResponseStoreFile": {
-          "fields": {
-            "code": {
-              "type": "StatusCode",
-              "id": 1
-            },
-            "hash": {
-              "type": "string",
-              "id": 2
-            }
-          }
-        },
-        "RequestLoadFile": {
-          "fields": {
-            "hash": {
-              "type": "string",
-              "id": 1
-            }
-          }
-        },
-        "ResponseLoadFile": {
-          "fields": {
-            "code": {
-              "type": "StatusCode",
-              "id": 1
-            },
-            "chunk": {
-              "type": "bytes",
-              "id": 2
-            }
-          }
-        },
-        "RequestPinFile": {
-          "fields": {
-            "hash": {
-              "type": "string",
-              "id": 1
-            }
-          }
-        },
-        "ResponsePinFile": {
-          "fields": {
-            "code": {
-              "type": "StatusCode",
-              "id": 1
-            }
-          }
-        },
-        "RequestGetChainInfo": {
-          "fields": {}
-        },
-        "ResponseGetChainInfo": {
-          "fields": {
-            "code": {
-              "type": "StatusCode",
-              "id": 1
-            },
-            "info": {
-              "type": "ChainInfo",
-              "id": 2
-            }
-          }
-        },
-        "RequestGetNodeInfo": {
-          "fields": {}
-        },
-        "ResponseGetNodeInfo": {
-          "fields": {
-            "code": {
-              "type": "StatusCode",
-              "id": 1
-            },
-            "info": {
-              "type": "NodeInfo",
-              "id": 2
-            }
-          }
-        },
-        "RequestSearch": {
-          "fields": {
-            "key": {
-              "type": "string",
-              "id": 1
-            },
-            "value": {
-              "type": "string",
-              "id": 2
-            }
-          }
-        },
-        "ResponseSearch": {
-          "fields": {
-            "code": {
-              "type": "StatusCode",
-              "id": 1
-            },
-            "txs": {
-              "rule": "repeated",
-              "type": "TransactionInfo",
-              "id": 2
-            }
-          }
-        },
-        "RequestGetUnconfirmedTxs": {
-          "fields": {
-            "paging": {
-              "type": "PageInput",
-              "id": 1
-            }
-          }
-        },
-        "ResponseGetUnconfirmedTxs": {
-          "fields": {
-            "code": {
-              "type": "StatusCode",
-              "id": 1
-            },
-            "page": {
-              "type": "PageInfo",
-              "id": 2
-            },
-            "unconfirmedTxs": {
-              "type": "UnconfirmedTxs",
-              "id": 3
-            }
-          }
-        },
-        "RequestGetNetInfo": {
-          "fields": {}
-        },
-        "ResponseGetNetInfo": {
-          "fields": {
-            "code": {
-              "type": "StatusCode",
-              "id": 1
-            },
-            "netInfo": {
-              "type": "NetInfo",
-              "id": 2
-            }
-          }
-        },
-        "RequestGetValidatorsInfo": {
-          "fields": {}
-        },
-        "ResponseGetValidatorsInfo": {
-          "fields": {
-            "code": {
-              "type": "StatusCode",
-              "id": 1
-            },
-            "validatorsInfo": {
-              "type": "ValidatorsInfo",
-              "id": 2
-            }
-          }
-        },
-        "RequestSubscribe": {
-          "fields": {
-            "topic": {
-              "type": "string",
-              "id": 1
-            },
-            "filter": {
-              "type": "string",
-              "id": 2
-            }
-          }
-        },
-        "ResponseSubscribe": {
-          "oneofs": {
-            "value": {
-              "oneof": [
-                "topic",
-                "transfer",
-                "accountMigrate",
-                "confirm",
-                "createAsset",
-                "exchange",
-                "revoke",
-                "beginBlock",
-                "endBlock",
-                "declare",
-                "updateAsset",
-                "consensusUpgrade",
-                "declareFile",
-                "sysUpgrade",
-                "stake",
-                "accountState",
-                "assetState",
-                "forgeState",
-                "stakeState",
-                "protocolState"
-              ]
-            }
-          },
-          "fields": {
-            "code": {
-              "type": "StatusCode",
-              "id": 1
-            },
-            "topic": {
-              "type": "string",
-              "id": 2
-            },
-            "transfer": {
-              "type": "Transaction",
-              "id": 3
-            },
-            "accountMigrate": {
-              "type": "Transaction",
-              "id": 4
-            },
-            "confirm": {
-              "type": "Transaction",
-              "id": 5
-            },
-            "createAsset": {
-              "type": "Transaction",
+              "type": "TypeUrls",
               "id": 6
             },
-            "exchange": {
-              "type": "Transaction",
+            "proto": {
+              "type": "string",
               "id": 7
             },
-            "revoke": {
-              "type": "Transaction",
+            "pipeline": {
+              "type": "string",
               "id": 8
             },
-            "beginBlock": {
-              "type": "abci_vendor.RequestBeginBlock",
-              "id": 16
-            },
-            "endBlock": {
-              "type": "abci_vendor.RequestEndBlock",
-              "id": 17
-            },
-            "declare": {
-              "type": "Transaction",
-              "id": 19
-            },
-            "updateAsset": {
-              "type": "Transaction",
-              "id": 20
-            },
-            "consensusUpgrade": {
-              "type": "Transaction",
-              "id": 21
-            },
-            "declareFile": {
-              "type": "Transaction",
-              "id": 22
-            },
-            "sysUpgrade": {
-              "type": "Transaction",
-              "id": 23
-            },
-            "stake": {
-              "type": "Transaction",
-              "id": 24
-            },
-            "accountState": {
-              "type": "AccountState",
-              "id": 129
-            },
-            "assetState": {
-              "type": "AssetState",
-              "id": 130
-            },
-            "forgeState": {
-              "type": "ForgeState",
-              "id": 131
-            },
-            "stakeState": {
-              "type": "StakeState",
-              "id": 132
-            },
-            "protocolState": {
-              "type": "ProtocolState",
-              "id": 133
-            }
-          }
-        },
-        "RequestUnsubscribe": {
-          "fields": {
-            "topic": {
+            "sources": {
+              "rule": "repeated",
               "type": "string",
-              "id": 1
-            }
-          }
-        },
-        "ResponseUnsubscribe": {
-          "fields": {
+              "id": 9
+            },
             "code": {
-              "type": "StatusCode",
-              "id": 1
-            }
-          }
-        },
-        "RequestGetConfig": {
-          "fields": {}
-        },
-        "ResponseGetConfig": {
-          "fields": {
-            "code": {
-              "type": "StatusCode",
-              "id": 1
+              "rule": "repeated",
+              "type": "CodeInfo",
+              "id": 10
             },
-            "config": {
+            "tags": {
+              "rule": "repeated",
               "type": "string",
-              "id": 2
+              "id": 11
+            },
+            "data": {
+              "type": "google.protobuf.Any",
+              "id": 15
             }
           }
         },
-        "ByDay": {
+        "ConsensusUpgradeTx": {
           "fields": {
-            "startDate": {
-              "type": "string",
+            "validators": {
+              "rule": "repeated",
+              "type": "Validator",
               "id": 1
             },
-            "endDate": {
-              "type": "string",
-              "id": 2
-            }
-          }
-        },
-        "ByHour": {
-          "fields": {
-            "date": {
-              "type": "string",
-              "id": 1
-            }
-          }
-        },
-        "RequestGetForgeStats": {
-          "oneofs": {
-            "value": {
-              "oneof": ["dayInfo", "date"]
-            }
-          },
-          "fields": {
-            "dayInfo": {
-              "type": "ByDay",
-              "id": 1
-            },
-            "date": {
-              "type": "ByHour",
-              "id": 2
-            }
-          }
-        },
-        "ResponseGetForgeStats": {
-          "fields": {
-            "code": {
-              "type": "StatusCode",
-              "id": 1
-            },
-            "forgeStats": {
-              "type": "ForgeStats",
-              "id": 2
-            }
-          }
-        },
-        "RequestListTransactions": {
-          "fields": {
-            "paging": {
-              "type": "PageInput",
-              "id": 1
-            },
-            "timeFilter": {
-              "type": "TimeFilter",
+            "maxBytes": {
+              "type": "uint64",
               "id": 2
             },
-            "addressFilter": {
-              "type": "AddressFilter",
+            "maxGas": {
+              "type": "sint64",
               "id": 3
             },
-            "typeFilter": {
-              "type": "TypeFilter",
+            "maxValidators": {
+              "type": "uint32",
               "id": 4
             },
-            "validityFilter": {
-              "type": "ValidityFilter",
-              "id": 5
-            }
-          }
-        },
-        "ResponseListTransactions": {
-          "fields": {
-            "code": {
-              "type": "StatusCode",
-              "id": 1
-            },
-            "page": {
-              "type": "PageInfo",
-              "id": 2
-            },
-            "transactions": {
-              "rule": "repeated",
-              "type": "IndexedTransaction",
-              "id": 3
-            }
-          }
-        },
-        "RequestListAssets": {
-          "fields": {
-            "paging": {
-              "type": "PageInput",
-              "id": 1
-            },
-            "ownerAddress": {
-              "type": "string",
-              "id": 2
-            }
-          }
-        },
-        "ResponseListAssets": {
-          "fields": {
-            "code": {
-              "type": "StatusCode",
-              "id": 1
-            },
-            "page": {
-              "type": "PageInfo",
-              "id": 2
-            },
-            "assets": {
-              "rule": "repeated",
-              "type": "IndexedAssetState",
-              "id": 3
-            }
-          }
-        },
-        "RequestListStakes": {
-          "fields": {
-            "paging": {
-              "type": "PageInput",
-              "id": 1
-            },
-            "addressFilter": {
-              "type": "AddressFilter",
-              "id": 2
-            }
-          }
-        },
-        "ResponseListStakes": {
-          "fields": {
-            "code": {
-              "type": "StatusCode",
-              "id": 1
-            },
-            "page": {
-              "type": "PageInfo",
-              "id": 2
-            },
-            "stakes": {
-              "rule": "repeated",
-              "type": "IndexedStakeState",
-              "id": 3
-            }
-          }
-        },
-        "RequestListAccount": {
-          "fields": {
-            "ownerAddress": {
-              "type": "string",
-              "id": 1
-            }
-          }
-        },
-        "ResponseListAccount": {
-          "fields": {
-            "code": {
-              "type": "StatusCode",
-              "id": 1
-            },
-            "account": {
-              "type": "IndexedAccountState",
-              "id": 2
-            }
-          }
-        },
-        "RequestListTopAccounts": {
-          "fields": {
-            "paging": {
-              "type": "PageInput",
-              "id": 1
-            }
-          }
-        },
-        "ResponseListTopAccounts": {
-          "fields": {
-            "code": {
-              "type": "StatusCode",
-              "id": 1
-            },
-            "page": {
-              "type": "PageInfo",
-              "id": 2
-            },
-            "accounts": {
-              "rule": "repeated",
-              "type": "IndexedAccountState",
-              "id": 3
-            }
-          }
-        },
-        "RequestListAssetTransactions": {
-          "fields": {
-            "paging": {
-              "type": "PageInput",
-              "id": 1
-            },
-            "address": {
-              "type": "string",
-              "id": 2
-            }
-          }
-        },
-        "ResponseListAssetTransactions": {
-          "fields": {
-            "code": {
-              "type": "StatusCode",
-              "id": 1
-            },
-            "page": {
-              "type": "PageInfo",
-              "id": 2
-            },
-            "transactions": {
-              "rule": "repeated",
-              "type": "IndexedTransaction",
-              "id": 3
-            }
-          }
-        },
-        "RequestListBlocks": {
-          "fields": {
-            "paging": {
-              "type": "PageInput",
-              "id": 1
-            },
-            "proposer": {
-              "type": "string",
-              "id": 2
-            },
-            "timeFilter": {
-              "type": "TimeFilter",
-              "id": 3
-            },
-            "heightFilter": {
-              "type": "RangeFilter",
-              "id": 4
-            },
-            "numTxsFilter": {
-              "type": "RangeFilter",
+            "maxCandidates": {
+              "type": "uint32",
               "id": 5
             },
-            "numInvalidTxsFilter": {
-              "type": "RangeFilter",
-              "id": 6
+            "data": {
+              "type": "google.protobuf.Any",
+              "id": 15
             }
           }
         },
-        "ResponseListBlocks": {
+        "SysUpgradeTx": {
           "fields": {
-            "code": {
-              "type": "StatusCode",
+            "task": {
+              "type": "UpgradeTask",
               "id": 1
             },
-            "page": {
-              "type": "PageInfo",
+            "gracePeriod": {
+              "type": "uint64",
               "id": 2
             },
-            "blocks": {
-              "rule": "repeated",
-              "type": "IndexedBlock",
-              "id": 3
-            }
-          }
-        },
-        "RequestGetHealthStatus": {
-          "fields": {}
-        },
-        "ResponseGetHealthStatus": {
-          "fields": {
-            "code": {
-              "type": "StatusCode",
-              "id": 1
-            },
-            "healthStatus": {
-              "type": "HealthStatus",
-              "id": 2
+            "data": {
+              "type": "google.protobuf.Any",
+              "id": 15
             }
           }
         },
@@ -3441,10 +3417,10 @@
               "responseType": "ResponseGetStakeState",
               "responseStream": true
             },
-            "get_tether_info": {
-              "requestType": "RequestGetTetherInfo",
+            "get_tether_state": {
+              "requestType": "RequestGetTetherState",
               "requestStream": true,
-              "responseType": "ResponseGetTetherInfo",
+              "responseType": "ResponseGetTetherState",
               "responseStream": true
             }
           }
@@ -3515,142 +3491,6 @@
             "get_health_status": {
               "requestType": "RequestGetHealthStatus",
               "responseType": "ResponseGetHealthStatus"
-            }
-          }
-        },
-        "DeclareTx": {
-          "fields": {
-            "moniker": {
-              "type": "string",
-              "id": 1
-            },
-            "issuer": {
-              "type": "string",
-              "id": 2
-            },
-            "data": {
-              "type": "google.protobuf.Any",
-              "id": 15
-            }
-          }
-        },
-        "CodeInfo": {
-          "fields": {
-            "checksum": {
-              "type": "bytes",
-              "id": 1
-            },
-            "binary": {
-              "type": "bytes",
-              "id": 2
-            }
-          }
-        },
-        "TypeUrls": {
-          "fields": {
-            "url": {
-              "type": "string",
-              "id": 1
-            },
-            "module": {
-              "type": "string",
-              "id": 2
-            }
-          }
-        },
-        "DeployProtocolTx": {
-          "fields": {
-            "address": {
-              "type": "string",
-              "id": 1
-            },
-            "name": {
-              "type": "string",
-              "id": 2
-            },
-            "version": {
-              "type": "uint32",
-              "id": 3
-            },
-            "namespace": {
-              "type": "string",
-              "id": 4
-            },
-            "description": {
-              "type": "string",
-              "id": 5
-            },
-            "typeUrls": {
-              "rule": "repeated",
-              "type": "TypeUrls",
-              "id": 6
-            },
-            "proto": {
-              "type": "string",
-              "id": 7
-            },
-            "pipeline": {
-              "type": "string",
-              "id": 8
-            },
-            "sources": {
-              "rule": "repeated",
-              "type": "string",
-              "id": 9
-            },
-            "code": {
-              "rule": "repeated",
-              "type": "CodeInfo",
-              "id": 10
-            },
-            "data": {
-              "type": "google.protobuf.Any",
-              "id": 15
-            }
-          }
-        },
-        "ConsensusUpgradeTx": {
-          "fields": {
-            "validators": {
-              "rule": "repeated",
-              "type": "Validator",
-              "id": 1
-            },
-            "maxBytes": {
-              "type": "uint64",
-              "id": 2
-            },
-            "maxGas": {
-              "type": "sint64",
-              "id": 3
-            },
-            "maxValidators": {
-              "type": "uint32",
-              "id": 4
-            },
-            "maxCandidates": {
-              "type": "uint32",
-              "id": 5
-            },
-            "data": {
-              "type": "google.protobuf.Any",
-              "id": 15
-            }
-          }
-        },
-        "SysUpgradeTx": {
-          "fields": {
-            "task": {
-              "type": "UpgradeTask",
-              "id": 1
-            },
-            "gracePeriod": {
-              "type": "uint64",
-              "id": 2
-            },
-            "data": {
-              "type": "google.protobuf.Any",
-              "id": 15
             }
           }
         },
@@ -3849,6 +3689,22 @@
             }
           }
         },
+        "DeclareTx": {
+          "fields": {
+            "moniker": {
+              "type": "string",
+              "id": 1
+            },
+            "issuer": {
+              "type": "string",
+              "id": 2
+            },
+            "data": {
+              "type": "google.protobuf.Any",
+              "id": 15
+            }
+          }
+        },
         "DeclareFileTx": {
           "fields": {
             "hash": {
@@ -3915,6 +3771,44 @@
             "expiredAt": {
               "type": "google.protobuf.Timestamp",
               "id": 4
+            },
+            "data": {
+              "type": "google.protobuf.Any",
+              "id": 15
+            }
+          }
+        },
+        "TetherExchangeInfo": {
+          "fields": {
+            "value": {
+              "type": "BigUint",
+              "id": 1
+            },
+            "assets": {
+              "rule": "repeated",
+              "type": "string",
+              "id": 2
+            },
+            "deposits": {
+              "rule": "repeated",
+              "type": "Transaction",
+              "id": 3
+            }
+          }
+        },
+        "ExchangeTetherTx": {
+          "fields": {
+            "sender": {
+              "type": "ExchangeInfo",
+              "id": 1
+            },
+            "receiver": {
+              "type": "TetherExchangeInfo",
+              "id": 2
+            },
+            "expiredAt": {
+              "type": "google.protobuf.Timestamp",
+              "id": 3
             },
             "data": {
               "type": "google.protobuf.Any",
@@ -4020,38 +3914,6 @@
             "override": {
               "type": "bool",
               "id": 3
-            }
-          }
-        }
-      }
-    },
-    "google": {
-      "nested": {
-        "protobuf": {
-          "nested": {
-            "Timestamp": {
-              "fields": {
-                "seconds": {
-                  "type": "int64",
-                  "id": 1
-                },
-                "nanos": {
-                  "type": "int32",
-                  "id": 2
-                }
-              }
-            },
-            "Any": {
-              "fields": {
-                "type_url": {
-                  "type": "string",
-                  "id": 1
-                },
-                "value": {
-                  "type": "bytes",
-                  "id": 2
-                }
-              }
             }
           }
         }
@@ -4458,6 +4320,38 @@
             "deliverTx": {
               "type": "ResponseDeliverTx",
               "id": 2
+            }
+          }
+        }
+      }
+    },
+    "google": {
+      "nested": {
+        "protobuf": {
+          "nested": {
+            "Any": {
+              "fields": {
+                "type_url": {
+                  "type": "string",
+                  "id": 1
+                },
+                "value": {
+                  "type": "bytes",
+                  "id": 2
+                }
+              }
+            },
+            "Timestamp": {
+              "fields": {
+                "seconds": {
+                  "type": "int64",
+                  "id": 1
+                },
+                "nanos": {
+                  "type": "int32",
+                  "id": 2
+                }
+              }
             }
           }
         }

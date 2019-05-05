@@ -13,8 +13,6 @@ var global = Function('return this')();
 
 var google_protobuf_any_pb = require('google-protobuf/google/protobuf/any_pb.js');
 goog.object.extend(proto, google_protobuf_any_pb);
-var type_pb = require('./type_pb.js');
-goog.object.extend(proto, type_pb);
 goog.exportSymbol('proto.forge_abi.AcquireAssetTx', null, global);
 goog.exportSymbol('proto.forge_abi.AssetSpec', null, global);
 
