@@ -75,8 +75,13 @@ function fetchAssetInfo(platform, version, key, mirror = DEFAULT_MIRROR) {
 
   try {
     const { code, stdout, stderr } = shell.exec(`curl -I --silent "${url}"`, { silent: true });
-    // debug('fetchAssetInfo', { url, platform, version, code, stdout, stderr });
-    if (code === 0) {
+    debug('fetchAssetInfo', { url, platform, version, code, stdout, stderr });
+    if (code === 0 && stdout) {
+      const notFound = stdout.split('\r\n').find(x => x.indexOf('HTTP/1.1 404') === 0);
+      if (notFound) {
+        spinner.fail(`Release asset "${url}" not found`);
+        process.exit(1);
+      }
       spinner.succeed(`Release asset info fetch success ${name}`);
       const header = stdout.split('\r\n').find(x => x.indexOf('Content-Length:') === 0);
       const size = header ? Number(header.split(':').pop().trim()) : defaultSize[key]; // prettier-ignore
