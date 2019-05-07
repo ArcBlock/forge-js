@@ -21,7 +21,7 @@ const appList = apps.map(x => {
 });
 
 const readmeFile = path.join(__dirname, '../README.md');
-const readmeContent = `# forge-js
+const readmeContent = `# [forge-javascript-sdk](https://github.com/ArcBlock/forge-js)
 
 [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lernajs.io/)
 [![docs](https://img.shields.io/badge/powered%20by-arcblock-green.svg)](https://docs.arcblock.io)
