@@ -1,11 +1,11 @@
-# [forge-javascript-sdk](https://github.com/ArcBlock/forge-js){target="_blank"}
+# [forge-javascript-sdk](https://github.com/ArcBlock/forge-js)
 
-[![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lernajs.io/){target="_blank"}
-[![docs](https://img.shields.io/badge/powered%20by-arcblock-green.svg)](https://docs.arcblock.io){target="_blank"}
+[![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lernajs.io/)
+[![docs](https://img.shields.io/badge/powered%20by-arcblock-green.svg)](https://docs.arcblock.io)
 
 > Javascript SDK for [forge](https://docs.arcblock.io/forge/latest/), which is an awesome framework to write distributed blockchain applications.
 
-> Last updated at 5/7/2019, 3:26:04 PM
+> Last updated at 5/7/2019, 3:31:19 PM
 
 ## Packages Included
 
@@ -34,4 +34,4 @@ Checkout [CONTRIBUTION.md](./CONTRIBUTION.md)
 
 ## Report a Bug?
 
-Bugs and feature requests please create new issues [here](https://github.com/ArcBlock/forge-js/issues){target="_blank"}
+Bugs and feature requests please create new issues [here](https://github.com/ArcBlock/forge-js/issues)
