@@ -21,10 +21,10 @@ const appList = apps.map(x => {
 });
 
 const readmeFile = path.join(__dirname, '../README.md');
-const readmeContent = `# [forge-javascript-sdk](https://github.com/ArcBlock/forge-js)
+const readmeContent = `# [forge-javascript-sdk](https://github.com/ArcBlock/forge-js){target="_blank"}
 
-[![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lernajs.io/)
-[![docs](https://img.shields.io/badge/powered%20by-arcblock-green.svg)](https://docs.arcblock.io)
+[![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lernajs.io/){target="_blank"}
+[![docs](https://img.shields.io/badge/powered%20by-arcblock-green.svg)](https://docs.arcblock.io){target="_blank"}
 
 > Javascript SDK for [forge](https://docs.arcblock.io/forge/latest/), which is an awesome framework to write distributed blockchain applications.
 
@@ -44,7 +44,7 @@ Checkout [CONTRIBUTION.md](./CONTRIBUTION.md)
 
 ## Report a Bug?
 
-Bugs and feature requests please create new issues [here](/issues)
+Bugs and feature requests please create new issues [here](https://github.com/ArcBlock/forge-js/issues){target="_blank"}
 `;
 
 fs.writeFileSync(readmeFile, readmeContent);
