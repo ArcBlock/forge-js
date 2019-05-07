@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 const fs = require('fs');
 const path = require('path');
 
@@ -24,7 +25,7 @@ const readmeContent = `# forge-js
 
 [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lernajs.io/)
 
-> Javascript libraries to work with forge, an awesome framework to write distributed blockchain applications, last updated at ${new Date().toLocaleString()}
+> Javascript SDK for forge, an awesome framework to write distributed blockchain applications, last updated at ${new Date().toLocaleString()}
 
 ## Packages Included
 
@@ -32,4 +33,4 @@ ${packageList.concat(appList).join('\n')}
 `;
 
 fs.writeFileSync(readmeFile, readmeContent);
-console.log('README.md upated');
+console.log('README.md updated');
