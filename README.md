@@ -1,10 +1,14 @@
-# forge-js
+# [forge-javascript-sdk](https://github.com/ArcBlock/forge-js)
 
 [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lernajs.io/)
+[![docs](https://img.shields.io/badge/powered%20by-arcblock-green.svg)](https://docs.arcblock.io)
 
-> Javascript libraries to work with forge, an awesome framework to write distributed blockchain applications, last updated at 5/5/2019, 7:03:46 AM
+> Javascript SDK for [forge](https://docs.arcblock.io/forge/latest/), which is an awesome framework to write distributed blockchain applications.
+
+> Last updated at 5/7/2019, 3:31:19 PM
 
 ## Packages Included
+
 
 - [@arcblock/did v0.25.0](./packages/did)
 - [@arcblock/did-auth v0.25.0](./packages/did-auth)
@@ -19,4 +23,15 @@
 - [@arcblock/mcrypto v0.25.0](./packages/mcrypto)
 - [@arcblock/tcp-server v0.25.0](./packages/tcp-server)
 - [@arcblock/forge-cli v0.25.0](./apps/forge-cli)
-- [@arcblock/forge-web v0.25.0](./apps/forge-web)
+
+## Documentation
+
+[https://docs.arcblock.io/forge/sdks/javascript/latest/](https://docs.arcblock.io/forge/sdks/javascript/latest/)
+
+## Contribution
+
+Checkout [CONTRIBUTION.md](./CONTRIBUTION.md)
+
+## Report a Bug?
+
+Bugs and feature requests please create new issues [here](https://github.com/ArcBlock/forge-js/issues)

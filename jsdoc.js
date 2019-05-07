@@ -5,6 +5,7 @@ module.exports = {
   },
   source: {
     include: [
+      'README.md',
       'packages/forge-config/lib',
       'packages/forge-util/lib',
       'packages/forge-proto/init.js',

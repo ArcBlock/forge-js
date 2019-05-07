@@ -4,6 +4,7 @@ const yaml = require('yaml');
 const chalk = require('chalk');
 const shell = require('shelljs');
 const { config, debug, isDirectory, RELEASE_ASSETS } = require('core/env');
+const { symbols } = require('core/ui');
 
 function printList(title, list, current) {
   shell.echo(`${title}:`);
@@ -25,6 +26,13 @@ function main() {
   let current = '';
   try {
     const { release } = config.get('cli').requiredDirs;
+    if (fs.existsSync(path.join(release, 'forge')) === false) {
+      shell.echo(
+        `${symbols.error} forge not initialized, please run ${chalk.cyan('forge init')} first`
+      );
+      process.exit(1);
+      return;
+    }
     const filePath = path.join(release, 'forge', 'release.yml');
     const yamlObj = fs.existsSync(filePath)
       ? yaml.parse(fs.readFileSync(filePath).toString()) || {}

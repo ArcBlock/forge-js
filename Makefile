@@ -1,5 +1,6 @@
 TOP_DIR=.
 README=$(TOP_DIR)/README.md
+SDK_VERSION=0.25
 
 VERSION=$(strip $(shell cat version))
 
@@ -21,7 +22,6 @@ dep:
 	@echo "Install dependencies required for this repo..."
 	@lerna bootstrap
 	@npx install-peerdeps -g --yarn eslint-config-airbnb
-	@cd apps/forge-web && npm i
 	@cd packages/graphql-client && npm i && yarn build
 
 pre-build: install dep
@@ -47,7 +47,8 @@ lint:
 doc:
 	@echo "Building and publishing the documenation..."
 	@yarn jsdocs
-	@aws s3 sync ./docs s3://docs.arcblock.io/forge-js --region us-west-2 --profile prod
+	@aws s3 sync ./docs s3://docs.arcblock.io/forge/sdks/javascript/latest --region us-west-2 --profile prod
+	@aws s3 sync ./docs s3://docs.arcblock.io/forge/sdks/javascript/$(SDK_VERSION) --region us-west-2 --profile prod
 
 precommit: dep lint build test
 

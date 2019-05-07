@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 const fs = require('fs');
 const path = require('path');
 
@@ -20,16 +21,31 @@ const appList = apps.map(x => {
 });
 
 const readmeFile = path.join(__dirname, '../README.md');
-const readmeContent = `# forge-js
+const readmeContent = `# [forge-javascript-sdk](https://github.com/ArcBlock/forge-js)
 
 [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lernajs.io/)
+[![docs](https://img.shields.io/badge/powered%20by-arcblock-green.svg)](https://docs.arcblock.io)
 
-> Javascript libraries to work with forge, an awesome framework to write distributed blockchain applications, last updated at ${new Date().toLocaleString()}
+> Javascript SDK for [forge](https://docs.arcblock.io/forge/latest/), which is an awesome framework to write distributed blockchain applications.
+
+> Last updated at ${new Date().toLocaleString()}
 
 ## Packages Included
 
 ${packageList.concat(appList).join('\n')}
+
+## Documentation
+
+[https://docs.arcblock.io/forge/sdks/javascript/latest/](https://docs.arcblock.io/forge/sdks/javascript/latest/)
+
+## Contribution
+
+Checkout [CONTRIBUTION.md](./CONTRIBUTION.md)
+
+## Report a Bug?
+
+Bugs and feature requests please create new issues [here](https://github.com/ArcBlock/forge-js/issues)
 `;
 
 fs.writeFileSync(readmeFile, readmeContent);
-console.log('README.md upated');
+console.log('README.md updated');

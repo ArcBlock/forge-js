@@ -1,3 +1,10 @@
+## 0.25.1 (May 07, 2019)
+  - chore: update readme
+  - chore: update scripts
+  - chore: cleanup useless files
+  - chore: deploy versioned docs
+  - update readme
+
 ## 0.25.0 (May 05, 2019)
   - chore: merge did related packages back to this repo
   - chore: support update check for forge-cli
