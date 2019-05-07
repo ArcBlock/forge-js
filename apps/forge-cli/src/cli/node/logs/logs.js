@@ -9,7 +9,6 @@ function resolveLogPath(folder, file) {
   return folder ? path.resolve(`${folder.replace('~', os.homedir())}/${file}`) : '';
 }
 
-// TODO: log file path construction use consensus and storage engine config
 function findLogFiles() {
   return {
     app: resolveLogPath(config.get('app.path'), config.get('app.logfile', 'logs/app.log')),
@@ -17,7 +16,7 @@ function findLogFiles() {
       config.get('forge.path'),
       config.get('forge.logfile', 'logs/forge_error.log')
     ),
-    tx: resolveLogPath(
+    transaction: resolveLogPath(
       config.get('forge.path'),
       config.get('forge.logfile', 'logs/forge_transaction.log')
     ),
