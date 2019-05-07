@@ -1,5 +1,6 @@
 TOP_DIR=.
 README=$(TOP_DIR)/README.md
+SDK_VERSION=0.25
 
 VERSION=$(strip $(shell cat version))
 
@@ -47,7 +48,8 @@ lint:
 doc:
 	@echo "Building and publishing the documenation..."
 	@yarn jsdocs
-	@aws s3 sync ./docs s3://docs.arcblock.io/forge-js --region us-west-2 --profile prod
+	@aws s3 sync ./docs s3://docs.arcblock.io/forge/sdks/javascript/latest --region us-west-2 --profile prod
+	@aws s3 sync ./docs s3://docs.arcblock.io/forge/sdks/javascript/$(SDK_VERSION) --region us-west-2 --profile prod
 
 precommit: dep lint build test
 
