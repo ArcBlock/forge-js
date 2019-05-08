@@ -5,25 +5,23 @@
 
 > Javascript SDK for [forge](https://docs.arcblock.io/forge/latest/), which is an awesome framework to write distributed blockchain applications.
 
-> Last updated at 5/8/2019, 11:34:55 AM
+> Last updated at 5/8/2019, 5:16:58 AM
 
 ## Packages Included
 
-
-- [@arcblock/did v0.25.0](./packages/did)
-- [@arcblock/did-auth v0.25.0](./packages/did-auth)
-- [@arcblock/did-util v0.25.0](./packages/did-util)
-- [@arcblock/forge-config v0.25.0](./packages/forge-config)
-- [@arcblock/forge-message v0.25.0](./packages/forge-message)
-- [@arcblock/forge-proto v0.25.0](./packages/forge-proto)
-- [@arcblock/forge-util v0.25.0](./packages/forge-util)
-- [@arcblock/forge-wallet v0.25.0](./packages/forge-wallet)
-- [@arcblock/graphql-client v0.25.0](./packages/graphql-client)
-- [@arcblock/grpc-client v0.25.0](./packages/grpc-client)
-- [@arcblock/mcrypto v0.25.0](./packages/mcrypto)
-- [@arcblock/tcp-server v0.25.0](./packages/tcp-server)
-
-- [@arcblock/forge-cli v0.25.1](./apps/forge-cli)
+- [@arcblock/did v0.25.2](./packages/did)
+- [@arcblock/did-auth v0.25.2](./packages/did-auth)
+- [@arcblock/did-util v0.25.2](./packages/did-util)
+- [@arcblock/forge-config v0.25.2](./packages/forge-config)
+- [@arcblock/forge-message v0.25.2](./packages/forge-message)
+- [@arcblock/forge-proto v0.25.2](./packages/forge-proto)
+- [@arcblock/forge-util v0.25.2](./packages/forge-util)
+- [@arcblock/forge-wallet v0.25.2](./packages/forge-wallet)
+- [@arcblock/graphql-client v0.25.2](./packages/graphql-client)
+- [@arcblock/grpc-client v0.25.2](./packages/grpc-client)
+- [@arcblock/mcrypto v0.25.2](./packages/mcrypto)
+- [@arcblock/tcp-server v0.25.2](./packages/tcp-server)
+- [@arcblock/forge-cli v0.25.2](./apps/forge-cli)
 
 ## Documentation
 
