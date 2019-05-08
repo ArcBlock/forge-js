@@ -1,6 +1,6 @@
 {
   "name": "@arcblock/graphql-client",
-  "version": "0.25.0",
+  "version": "0.25.2",
   "description": "graphql client to read/write data on forge powered blockchain",
   "keywords": [
     "graphql",
@@ -31,9 +31,9 @@
     "lib"
   ],
   "dependencies": {
-    "@arcblock/forge-message": "^0.25.0",
-    "@arcblock/forge-proto": "^0.25.0",
-    "@arcblock/forge-wallet": "^0.25.0",
+    "@arcblock/forge-message": "^0.25.2",
+    "@arcblock/forge-proto": "^0.25.2",
+    "@arcblock/forge-wallet": "^0.25.2",
     "@arcblock/sdk-util": "^0.19.6",
     "babel-polyfill": "^6.26.0",
     "base64-url": "^2.2.0",
@@ -45,7 +45,7 @@
     "wolfy87-eventemitter": "^5.2.5"
   },
   "devDependencies": {
-    "@arcblock/did-util": "^0.25.0",
+    "@arcblock/did-util": "^0.25.2",
     "axios": "^0.18.0",
     "axios-mock-adapter": "^1.15.0",
     "babel-cli": "^6.26.0",
