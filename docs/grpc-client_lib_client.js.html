@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>grpc-client/lib/client.js - Documentation</title>
+    
+    
+    
+    
+    
+    <script src="scripts/highlight/highlight.pack.js"></script>
+    <script src="scripts/highlight/highlight.graphql.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/solarized-light.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav class="wrap">
+    
+    <input type="text" id="nav-search" placeholder="Search" />
+    
+    <h2><a href="index.html">Home</a></h2><h2><a href="https://www.arcblock.io" target="_blank" class="menu-item" id="website_link" >ArcBlock</a></h2><h2><a href="https://docs.arcblock.io/forge" target="_blank" class="menu-item" id="forum_link" >Forge</a></h2><h3>Modules</h3><ul><li><a href="module-@arcblock_did.html">@arcblock/did</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-@arcblock_did.html#.fromAppDID">fromAppDID</a></li><li data-type='method' style='display: none;'><a href="module-@arcblock_did.html#.fromPublicKey">fromPublicKey</a></li><li data-type='method' style='display: none;'><a href="module-@arcblock_did.html#.fromSecretKey">fromSecretKey</a></li><li data-type='method' style='display: none;'><a href="module-@arcblock_did.html#.fromTypeInfo">fromTypeInfo</a></li><li data-type='method' style='display: none;'><a href="module-@arcblock_did.html#.isFromPublicKey">isFromPublicKey</a></li><li data-type='method' style='display: none;'><a href="module-@arcblock_did.html#.isValid">isValid</a></li><li data-type='method' style='display: none;'><a href="module-@arcblock_did.html#.jwtDecode">jwtDecode</a></li><li data-type='method' style='display: none;'><a href="module-@arcblock_did.html#.jwtSign">jwtSign</a></li><li data-type='method' style='display: none;'><a href="module-@arcblock_did.html#.jwtVerify">jwtVerify</a></li><li data-type='method' style='display: none;'><a href="module-@arcblock_did.html#.toAddress">toAddress</a></li><li data-type='method' style='display: none;'><a href="module-@arcblock_did.html#.toDid">toDid</a></li><li data-type='method' style='display: none;'><a href="module-@arcblock_did.html#.toTypeInfo">toTypeInfo</a></li></ul></li><li><a href="module-@arcblock_did-util.html">@arcblock/did-util</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-@arcblock_did-util.html#.toAssetAddress">toAssetAddress</a></li><li data-type='method' style='display: none;'><a href="module-@arcblock_did-util.html#.toStakeAddress">toStakeAddress</a></li></ul></li><li><a href="module-@arcblock_forge-config.html">@arcblock/forge-config</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-@arcblock_forge-config.html#.parse">parse</a></li></ul></li><li><a href="module-@arcblock_forge-message.html">@arcblock/forge-message</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-@arcblock_forge-message.html#.createMessage">createMessage</a></li><li data-type='method' style='display: none;'><a href="module-@arcblock_forge-message.html#.decodeAny">decodeAny</a></li><li data-type='method' style='display: none;'><a href="module-@arcblock_forge-message.html#.decodeBigInt">decodeBigInt</a></li><li data-type='method' style='display: none;'><a href="module-@arcblock_forge-message.html#.decodeTimestamp">decodeTimestamp</a></li><li data-type='method' style='display: none;'><a href="module-@arcblock_forge-message.html#.encodeAny">encodeAny</a></li><li data-type='method' style='display: none;'><a href="module-@arcblock_forge-message.html#.encodeBigInt">encodeBigInt</a></li><li data-type='method' style='display: none;'><a href="module-@arcblock_forge-message.html#.encodeTimestamp">encodeTimestamp</a></li><li data-type='method' style='display: none;'><a href="module-@arcblock_forge-message.html#.fakeMessage">fakeMessage</a></li><li data-type='method' style='display: none;'><a href="module-@arcblock_forge-message.html#.formatMessage">formatMessage</a></li></ul></li><li><a href="module-@arcblock_forge-proto.html">@arcblock/forge-proto</a><ul class='members'><li data-type='member' style='display: none;'><a href="module-@arcblock_forge-proto.html#.enums">enums</a></li><li data-type='member' style='display: none;'><a href="module-@arcblock_forge-proto.html#.messages">messages</a></li></ul><ul class='methods'><li data-type='method' style='display: none;'><a href="module-@arcblock_forge-proto.html#~fromTypeUrl">fromTypeUrl</a></li><li data-type='method' style='display: none;'><a href="module-@arcblock_forge-proto.html#~getMessageType">getMessageType</a></li><li data-type='method' style='display: none;'><a href="module-@arcblock_forge-proto.html#~toTypeUrl">toTypeUrl</a></li></ul></li><li><a href="module-@arcblock_forge-util.html">@arcblock/forge-util</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-@arcblock_forge-util.html#.bytesToHex">bytesToHex</a></li><li data-type='method' style='display: none;'><a href="module-@arcblock_forge-util.html#.fromTokenToUnit">fromTokenToUnit</a></li><li data-type='method' style='display: none;'><a href="module-@arcblock_forge-util.html#.fromUintToToken">fromUintToToken</a></li><li data-type='method' style='display: none;'><a href="module-@arcblock_forge-util.html#.hexToBytes">hexToBytes</a></li><li data-type='method' style='display: none;'><a href="module-@arcblock_forge-util.html#.hexToNumber">hexToNumber</a></li><li data-type='method' style='display: none;'><a href="module-@arcblock_forge-util.html#.hexToNumberString">hexToNumberString</a></li><li data-type='method' style='display: none;'><a href="module-@arcblock_forge-util.html#.hexToUtf8">hexToUtf8</a></li><li data-type='method' style='display: none;'><a href="module-@arcblock_forge-util.html#.isBigNumber">isBigNumber</a></li><li data-type='method' style='display: none;'><a href="module-@arcblock_forge-util.html#.isBN">isBN</a></li><li data-type='method' style='display: none;'><a href="module-@arcblock_forge-util.html#.isHex">isHex</a></li><li data-type='method' style='display: none;'><a href="module-@arcblock_forge-util.html#.isHexPrefixed">isHexPrefixed</a></li><li data-type='method' style='display: none;'><a href="module-@arcblock_forge-util.html#.isHexStrict">isHexStrict</a></li><li data-type='method' style='display: none;'><a href="module-@arcblock_forge-util.html#.isUint8Array">isUint8Array</a></li><li data-type='method' style='display: none;'><a href="module-@arcblock_forge-util.html#.numberToHex">numberToHex</a></li><li data-type='method' style='display: none;'><a href="module-@arcblock_forge-util.html#.stripHexPrefix">stripHexPrefix</a></li><li data-type='method' style='display: none;'><a href="module-@arcblock_forge-util.html#.toBN">toBN</a></li><li data-type='method' style='display: none;'><a href="module-@arcblock_forge-util.html#.toHex">toHex</a></li><li data-type='method' style='display: none;'><a href="module-@arcblock_forge-util.html#.utf8ToHex">utf8ToHex</a></li></ul></li><li><a href="module-@arcblock_forge-wallet.html">@arcblock/forge-wallet</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-@arcblock_forge-wallet.html#.fromAddress">fromAddress</a></li><li data-type='method' style='display: none;'><a href="module-@arcblock_forge-wallet.html#.fromJSON">fromJSON</a></li><li data-type='method' style='display: none;'><a href="module-@arcblock_forge-wallet.html#.fromPublicKey">fromPublicKey</a></li><li data-type='method' style='display: none;'><a href="module-@arcblock_forge-wallet.html#.fromRandom">fromRandom</a></li><li data-type='method' style='display: none;'><a href="module-@arcblock_forge-wallet.html#.fromSecretKey">fromSecretKey</a></li><li data-type='method' style='display: none;'><a href="module-@arcblock_forge-wallet.html#.Wallet">Wallet</a></li><li data-type='method' style='display: none;'><a href="module-@arcblock_forge-wallet.html#.WalletType">WalletType</a></li></ul></li><li><a href="module-@arcblock_graphql-client.html">@arcblock/graphql-client</a></li><li><a href="module-@arcblock_grpc-client.html">@arcblock/grpc-client</a></li><li><a href="module-@arcblock_mcrypto.html">@arcblock/mcrypto</a><ul class='members'><li data-type='member' style='display: none;'><a href="module-@arcblock_mcrypto.html#.Crypter">Crypter</a></li><li data-type='member' style='display: none;'><a href="module-@arcblock_mcrypto.html#.Hasher">Hasher</a></li><li data-type='member' style='display: none;'><a href="module-@arcblock_mcrypto.html#.Signer">Signer</a></li><li data-type='member' style='display: none;'><a href="module-@arcblock_mcrypto.html#.types">types</a></li></ul><ul class='methods'><li data-type='method' style='display: none;'><a href="module-@arcblock_mcrypto.html#.getHasher">getHasher</a></li><li data-type='method' style='display: none;'><a href="module-@arcblock_mcrypto.html#.getSigner">getSigner</a></li></ul></li></ul><h3>Classes</h3><ul><li><a href="Ed25519Signer.html">Ed25519Signer</a><ul class='methods'><li data-type='method' style='display: none;'><a href="Ed25519Signer.html#genKeyPair">genKeyPair</a></li><li data-type='method' style='display: none;'><a href="Ed25519Signer.html#getPublicKey">getPublicKey</a></li><li data-type='method' style='display: none;'><a href="Ed25519Signer.html#sign">sign</a></li><li data-type='method' style='display: none;'><a href="Ed25519Signer.html#verify">verify</a></li></ul></li><li><a href="GraphQLClient.html">GraphQLClient</a><ul class='methods'><li data-type='method' style='display: none;'><a href="GraphQLClient.html#decodeTx">decodeTx</a></li><li data-type='method' style='display: none;'><a href="GraphQLClient.html#doRawQuery">doRawQuery</a></li><li data-type='method' style='display: none;'><a href="GraphQLClient.html#doRawSubscription">doRawSubscription</a></li><li data-type='method' style='display: none;'><a href="GraphQLClient.html#encodeAccountMigrateTx">encodeAccountMigrateTx</a></li><li data-type='method' style='display: none;'><a href="GraphQLClient.html#encodeAcquireAssetTx">encodeAcquireAssetTx</a></li><li data-type='method' style='display: none;'><a href="GraphQLClient.html#encodeConsumeAssetTx">encodeConsumeAssetTx</a></li><li data-type='method' style='display: none;'><a href="GraphQLClient.html#encodeCreateAssetTx">encodeCreateAssetTx</a></li><li data-type='method' style='display: none;'><a href="GraphQLClient.html#encodeDeclareFileTx">encodeDeclareFileTx</a></li><li data-type='method' style='display: none;'><a href="GraphQLClient.html#encodeDeclareTx">encodeDeclareTx</a></li><li data-type='method' style='display: none;'><a href="GraphQLClient.html#encodeDeployProtocolTx">encodeDeployProtocolTx</a></li><li data-type='method' style='display: none;'><a href="GraphQLClient.html#encodeDepositTetherTx">encodeDepositTetherTx</a></li><li data-type='method' style='display: none;'><a href="GraphQLClient.html#encodeExchangeTetherTx">encodeExchangeTetherTx</a></li><li data-type='method' style='display: none;'><a href="GraphQLClient.html#encodeExchangeTx">encodeExchangeTx</a></li><li data-type='method' style='display: none;'><a href="GraphQLClient.html#encodePokeTx">encodePokeTx</a></li><li data-type='method' style='display: none;'><a href="GraphQLClient.html#encodeStakeTx">encodeStakeTx</a></li><li data-type='method' style='display: none;'><a href="GraphQLClient.html#encodeTransferTx">encodeTransferTx</a></li><li data-type='method' style='display: none;'><a href="GraphQLClient.html#encodeUpdateAssetTx">encodeUpdateAssetTx</a></li><li data-type='method' style='display: none;'><a href="GraphQLClient.html#encodeUpgradeNodeTx">encodeUpgradeNodeTx</a></li><li data-type='method' style='display: none;'><a href="GraphQLClient.html#getAccountState">getAccountState</a></li><li data-type='method' style='display: none;'><a href="GraphQLClient.html#getAssetState">getAssetState</a></li><li data-type='method' style='display: none;'><a href="GraphQLClient.html#getBlock">getBlock</a></li><li data-type='method' style='display: none;'><a href="GraphQLClient.html#getBlocks">getBlocks</a></li><li data-type='method' style='display: none;'><a href="GraphQLClient.html#getChainInfo">getChainInfo</a></li><li data-type='method' style='display: none;'><a href="GraphQLClient.html#getConfig">getConfig</a></li><li data-type='method' style='display: none;'><a href="GraphQLClient.html#getForgeState">getForgeState</a></li><li data-type='method' style='display: none;'><a href="GraphQLClient.html#getForgeStats">getForgeStats</a></li><li data-type='method' style='display: none;'><a href="GraphQLClient.html#getForgeStatsByDay">getForgeStatsByDay</a></li><li data-type='method' style='display: none;'><a href="GraphQLClient.html#getForgeStatsByHour">getForgeStatsByHour</a></li><li data-type='method' style='display: none;'><a href="GraphQLClient.html#getHealthStatus">getHealthStatus</a></li><li data-type='method' style='display: none;'><a href="GraphQLClient.html#getMutations">getMutations</a></li><li data-type='method' style='display: none;'><a href="GraphQLClient.html#getNetInfo">getNetInfo</a></li><li data-type='method' style='display: none;'><a href="GraphQLClient.html#getNodeInfo">getNodeInfo</a></li><li data-type='method' style='display: none;'><a href="GraphQLClient.html#getProtocols">getProtocols</a></li><li data-type='method' style='display: none;'><a href="GraphQLClient.html#getProtocolState">getProtocolState</a></li><li data-type='method' style='display: none;'><a href="GraphQLClient.html#getQueries">getQueries</a></li><li data-type='method' style='display: none;'><a href="GraphQLClient.html#getSimulatorStatus">getSimulatorStatus</a></li><li data-type='method' style='display: none;'><a href="GraphQLClient.html#getStakeState">getStakeState</a></li><li data-type='method' style='display: none;'><a href="GraphQLClient.html#getSubscription">getSubscription</a></li><li data-type='method' style='display: none;'><a href="GraphQLClient.html#getTetherState">getTetherState</a></li><li data-type='method' style='display: none;'><a href="GraphQLClient.html#getTx">getTx</a></li><li data-type='method' style='display: none;'><a href="GraphQLClient.html#getTxEncodeMethods">getTxEncodeMethods</a></li><li data-type='method' style='display: none;'><a href="GraphQLClient.html#getTxSendMethods">getTxSendMethods</a></li><li data-type='method' style='display: none;'><a href="GraphQLClient.html#getUnconfirmedTxs">getUnconfirmedTxs</a></li><li data-type='method' style='display: none;'><a href="GraphQLClient.html#getValidatorsInfo">getValidatorsInfo</a></li><li data-type='method' style='display: none;'><a href="GraphQLClient.html#listAssets">listAssets</a></li><li data-type='method' style='display: none;'><a href="GraphQLClient.html#listAssetTransactions">listAssetTransactions</a></li><li data-type='method' style='display: none;'><a href="GraphQLClient.html#listBlocks">listBlocks</a></li><li data-type='method' style='display: none;'><a href="GraphQLClient.html#listStakes">listStakes</a></li><li data-type='method' style='display: none;'><a href="GraphQLClient.html#listTopAccounts">listTopAccounts</a></li><li data-type='method' style='display: none;'><a href="GraphQLClient.html#listTransactions">listTransactions</a></li><li data-type='method' style='display: none;'><a href="GraphQLClient.html#sendAccountMigrateTx">sendAccountMigrateTx</a></li><li data-type='method' style='display: none;'><a href="GraphQLClient.html#sendAcquireAssetTx">sendAcquireAssetTx</a></li><li data-type='method' style='display: none;'><a href="GraphQLClient.html#sendConsumeAssetTx">sendConsumeAssetTx</a></li><li data-type='method' style='display: none;'><a href="GraphQLClient.html#sendCreateAssetTx">sendCreateAssetTx</a></li><li data-type='method' style='display: none;'><a href="GraphQLClient.html#sendDeclareFileTx">sendDeclareFileTx</a></li><li data-type='method' style='display: none;'><a href="GraphQLClient.html#sendDeclareTx">sendDeclareTx</a></li><li data-type='method' style='display: none;'><a href="GraphQLClient.html#sendDeployProtocolTx">sendDeployProtocolTx</a></li><li data-type='method' style='display: none;'><a href="GraphQLClient.html#sendDepositTetherTx">sendDepositTetherTx</a></li><li data-type='method' style='display: none;'><a href="GraphQLClient.html#sendExchangeTetherTx">sendExchangeTetherTx</a></li><li data-type='method' style='display: none;'><a href="GraphQLClient.html#sendExchangeTx">sendExchangeTx</a></li><li data-type='method' style='display: none;'><a href="GraphQLClient.html#sendPokeTx">sendPokeTx</a></li><li data-type='method' style='display: none;'><a href="GraphQLClient.html#sendStakeTx">sendStakeTx</a></li><li data-type='method' style='display: none;'><a href="GraphQLClient.html#sendTransferTx">sendTransferTx</a></li><li data-type='method' style='display: none;'><a href="GraphQLClient.html#sendTx">sendTx</a></li><li data-type='method' style='display: none;'><a href="GraphQLClient.html#sendUpdateAssetTx">sendUpdateAssetTx</a></li><li data-type='method' style='display: none;'><a href="GraphQLClient.html#sendUpgradeNodeTx">sendUpgradeNodeTx</a></li><li data-type='method' style='display: none;'><a href="GraphQLClient.html#startSimulator">startSimulator</a></li><li data-type='method' style='display: none;'><a href="GraphQLClient.html#stopSimulator">stopSimulator</a></li><li data-type='method' style='display: none;'><a href="GraphQLClient.html#subscribe">subscribe</a></li><li data-type='method' style='display: none;'><a href="GraphQLClient.html#unsubscribe">unsubscribe</a></li></ul></li><li><a href="GRpcClient.html">GRpcClient</a><ul class='methods'><li data-type='method' style='display: none;'><a href="GRpcClient.html#createTx">createTx</a></li><li data-type='method' style='display: none;'><a href="GRpcClient.html#createWallet">createWallet</a></li><li data-type='method' style='display: none;'><a href="GRpcClient.html#declareNode">declareNode</a></li><li data-type='method' style='display: none;'><a href="GRpcClient.html#encodeAccountMigrateTx">encodeAccountMigrateTx</a></li><li data-type='method' style='display: none;'><a href="GRpcClient.html#encodeAcquireAssetTx">encodeAcquireAssetTx</a></li><li data-type='method' style='display: none;'><a href="GRpcClient.html#encodeConsensusUpgradeTx">encodeConsensusUpgradeTx</a></li><li data-type='method' style='display: none;'><a href="GRpcClient.html#encodeConsumeAssetTx">encodeConsumeAssetTx</a></li><li data-type='method' style='display: none;'><a href="GRpcClient.html#encodeCreateAssetTx">encodeCreateAssetTx</a></li><li data-type='method' style='display: none;'><a href="GRpcClient.html#encodeDeclareFileTx">encodeDeclareFileTx</a></li><li data-type='method' style='display: none;'><a href="GRpcClient.html#encodeDeclareTx">encodeDeclareTx</a></li><li data-type='method' style='display: none;'><a href="GRpcClient.html#encodeDeployProtocolTx">encodeDeployProtocolTx</a></li><li data-type='method' style='display: none;'><a href="GRpcClient.html#encodeDepositTetherTx">encodeDepositTetherTx</a></li><li data-type='method' style='display: none;'><a href="GRpcClient.html#encodeExchangeTetherTx">encodeExchangeTetherTx</a></li><li data-type='method' style='display: none;'><a href="GRpcClient.html#encodeExchangeTx">encodeExchangeTx</a></li><li data-type='method' style='display: none;'><a href="GRpcClient.html#encodePokeTx">encodePokeTx</a></li><li data-type='method' style='display: none;'><a href="GRpcClient.html#encodeStakeTx">encodeStakeTx</a></li><li data-type='method' style='display: none;'><a href="GRpcClient.html#encodeSysUpgradeTx">encodeSysUpgradeTx</a></li><li data-type='method' style='display: none;'><a href="GRpcClient.html#encodeTransferTx">encodeTransferTx</a></li><li data-type='method' style='display: none;'><a href="GRpcClient.html#encodeUpdateAssetTx">encodeUpdateAssetTx</a></li><li data-type='method' style='display: none;'><a href="GRpcClient.html#encodeUpgradeNodeTx">encodeUpgradeNodeTx</a></li><li data-type='method' style='display: none;'><a href="GRpcClient.html#getAccountState">getAccountState</a></li><li data-type='method' style='display: none;'><a href="GRpcClient.html#getAssetState">getAssetState</a></li><li data-type='method' style='display: none;'><a href="GRpcClient.html#getBlock">getBlock</a></li><li data-type='method' style='display: none;'><a href="GRpcClient.html#getBlocks">getBlocks</a></li><li data-type='method' style='display: none;'><a href="GRpcClient.html#getChainInfo">getChainInfo</a></li><li data-type='method' style='display: none;'><a href="GRpcClient.html#getConfig">getConfig</a></li><li data-type='method' style='display: none;'><a href="GRpcClient.html#getForgeState">getForgeState</a></li><li data-type='method' style='display: none;'><a href="GRpcClient.html#getForgeStats">getForgeStats</a></li><li data-type='method' style='display: none;'><a href="GRpcClient.html#getHealthStatus">getHealthStatus</a></li><li data-type='method' style='display: none;'><a href="GRpcClient.html#getNetInfo">getNetInfo</a></li><li data-type='method' style='display: none;'><a href="GRpcClient.html#getNodeInfo">getNodeInfo</a></li><li data-type='method' style='display: none;'><a href="GRpcClient.html#getProtocolState">getProtocolState</a></li><li data-type='method' style='display: none;'><a href="GRpcClient.html#getRpcMethods">getRpcMethods</a></li><li data-type='method' style='display: none;'><a href="GRpcClient.html#getStakeState">getStakeState</a></li><li data-type='method' style='display: none;'><a href="GRpcClient.html#getTetherState">getTetherState</a></li><li data-type='method' style='display: none;'><a href="GRpcClient.html#getTx">getTx</a></li><li data-type='method' style='display: none;'><a href="GRpcClient.html#getTxEncodeMethods">getTxEncodeMethods</a></li><li data-type='method' style='display: none;'><a href="GRpcClient.html#getTxSendMethods">getTxSendMethods</a></li><li data-type='method' style='display: none;'><a href="GRpcClient.html#getUnconfirmedTxs">getUnconfirmedTxs</a></li><li data-type='method' style='display: none;'><a href="GRpcClient.html#getValidatorsInfo">getValidatorsInfo</a></li><li data-type='method' style='display: none;'><a href="GRpcClient.html#listAccount">listAccount</a></li><li data-type='method' style='display: none;'><a href="GRpcClient.html#listAssets">listAssets</a></li><li data-type='method' style='display: none;'><a href="GRpcClient.html#listAssetTransactions">listAssetTransactions</a></li><li data-type='method' style='display: none;'><a href="GRpcClient.html#listBlocks">listBlocks</a></li><li data-type='method' style='display: none;'><a href="GRpcClient.html#listStakes">listStakes</a></li><li data-type='method' style='display: none;'><a href="GRpcClient.html#listTopAccounts">listTopAccounts</a></li><li data-type='method' style='display: none;'><a href="GRpcClient.html#listTransactions">listTransactions</a></li><li data-type='method' style='display: none;'><a href="GRpcClient.html#listWallet">listWallet</a></li><li data-type='method' style='display: none;'><a href="GRpcClient.html#loadFile">loadFile</a></li><li data-type='method' style='display: none;'><a href="GRpcClient.html#loadWallet">loadWallet</a></li><li data-type='method' style='display: none;'><a href="GRpcClient.html#multisig">multisig</a></li><li data-type='method' style='display: none;'><a href="GRpcClient.html#pinFile">pinFile</a></li><li data-type='method' style='display: none;'><a href="GRpcClient.html#recoverWallet">recoverWallet</a></li><li data-type='method' style='display: none;'><a href="GRpcClient.html#removeWallet">removeWallet</a></li><li data-type='method' style='display: none;'><a href="GRpcClient.html#search">search</a></li><li data-type='method' style='display: none;'><a href="GRpcClient.html#sendAccountMigrateTx">sendAccountMigrateTx</a></li><li data-type='method' style='display: none;'><a href="GRpcClient.html#sendAcquireAssetTx">sendAcquireAssetTx</a></li><li data-type='method' style='display: none;'><a href="GRpcClient.html#sendConsensusUpgradeTx">sendConsensusUpgradeTx</a></li><li data-type='method' style='display: none;'><a href="GRpcClient.html#sendConsumeAssetTx">sendConsumeAssetTx</a></li><li data-type='method' style='display: none;'><a href="GRpcClient.html#sendCreateAssetTx">sendCreateAssetTx</a></li><li data-type='method' style='display: none;'><a href="GRpcClient.html#sendDeclareFileTx">sendDeclareFileTx</a></li><li data-type='method' style='display: none;'><a href="GRpcClient.html#sendDeclareTx">sendDeclareTx</a></li><li data-type='method' style='display: none;'><a href="GRpcClient.html#sendDeployProtocolTx">sendDeployProtocolTx</a></li><li data-type='method' style='display: none;'><a href="GRpcClient.html#sendDepositTetherTx">sendDepositTetherTx</a></li><li data-type='method' style='display: none;'><a href="GRpcClient.html#sendExchangeTetherTx">sendExchangeTetherTx</a></li><li data-type='method' style='display: none;'><a href="GRpcClient.html#sendExchangeTx">sendExchangeTx</a></li><li data-type='method' style='display: none;'><a href="GRpcClient.html#sendPokeTx">sendPokeTx</a></li><li data-type='method' style='display: none;'><a href="GRpcClient.html#sendStakeTx">sendStakeTx</a></li><li data-type='method' style='display: none;'><a href="GRpcClient.html#sendSysUpgradeTx">sendSysUpgradeTx</a></li><li data-type='method' style='display: none;'><a href="GRpcClient.html#sendTransferTx">sendTransferTx</a></li><li data-type='method' style='display: none;'><a href="GRpcClient.html#sendTx">sendTx</a></li><li data-type='method' style='display: none;'><a href="GRpcClient.html#sendUpdateAssetTx">sendUpdateAssetTx</a></li><li data-type='method' style='display: none;'><a href="GRpcClient.html#sendUpgradeNodeTx">sendUpgradeNodeTx</a></li><li data-type='method' style='display: none;'><a href="GRpcClient.html#storeFile">storeFile</a></li><li data-type='method' style='display: none;'><a href="GRpcClient.html#subscribe">subscribe</a></li><li data-type='method' style='display: none;'><a href="GRpcClient.html#unsubscribe">unsubscribe</a></li></ul></li><li><a href="KeccakHasher.html">KeccakHasher</a><ul class='methods'><li data-type='method' style='display: none;'><a href="KeccakHasher.html#hash224">hash224</a></li><li data-type='method' style='display: none;'><a href="KeccakHasher.html#hash256">hash256</a></li><li data-type='method' style='display: none;'><a href="KeccakHasher.html#hash384">hash384</a></li><li data-type='method' style='display: none;'><a href="KeccakHasher.html#hash512">hash512</a></li></ul></li><li><a href="Secp256k1Signer.html">Secp256k1Signer</a><ul class='methods'><li data-type='method' style='display: none;'><a href="Secp256k1Signer.html#genKeyPair">genKeyPair</a></li><li data-type='method' style='display: none;'><a href="Secp256k1Signer.html#getPublicKey">getPublicKey</a></li><li data-type='method' style='display: none;'><a href="Secp256k1Signer.html#sign">sign</a></li><li data-type='method' style='display: none;'><a href="Secp256k1Signer.html#verify">verify</a></li></ul></li><li><a href="Sha2Hasher.html">Sha2Hasher</a><ul class='methods'><li data-type='method' style='display: none;'><a href="Sha2Hasher.html#hash224">hash224</a></li><li data-type='method' style='display: none;'><a href="Sha2Hasher.html#hash256">hash256</a></li><li data-type='method' style='display: none;'><a href="Sha2Hasher.html#hash384">hash384</a></li><li data-type='method' style='display: none;'><a href="Sha2Hasher.html#hash512">hash512</a></li></ul></li><li><a href="Sha3Hasher.html">Sha3Hasher</a><ul class='methods'><li data-type='method' style='display: none;'><a href="Sha3Hasher.html#hash224">hash224</a></li><li data-type='method' style='display: none;'><a href="Sha3Hasher.html#hash256">hash256</a></li><li data-type='method' style='display: none;'><a href="Sha3Hasher.html#hash384">hash384</a></li><li data-type='method' style='display: none;'><a href="Sha3Hasher.html#hash512">hash512</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html#WalletObject">WalletObject</a></li><li><a href="global.html#WalletTypeObject">WalletTypeObject</a></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">grpc-client/lib/client.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>const grpc = require('grpc');
+const camelcase = require('camelcase');
+const { EventEmitter } = require('events');
+const { messages, enums, rpcs, getMessageType } = require('@arcblock/forge-proto');
+const {
+  formatMessage,
+  createMessage,
+  attachFormatFn,
+  attachExampleFn,
+} = require('@arcblock/forge-message');
+const { hexToBytes, bytesToHex, stripHexPrefix } = require('@arcblock/forge-util');
+const debug = require('debug')(`${require('../package.json').name}`);
+
+/**
+ * An grpc client that can read/write data to a forge powered blockchain node, can be used only in node.js
+ *
+ * Please note that, due to internal implementation of google-protobuf, all `repeated fields` names are suffixed with `List`
+ *
+ * @class
+ */
+class GRpcClient {
+  /**
+   * Creates an instance of GRpcClient, and generate transaction sending and receiving methods
+   *
+   * @param {object|string} config - config object, if a string passed, will be used as the endpoint
+   * @param {string} [config.endpoint="tcp://127.0.0.1:28210"] - grpc endpoint the client can connect to
+   * @param {string} [config.chainId=""] - chainId used to construct transaction
+   * @see GRpcClient.getQueries
+   * @see GRpcClient.getMutations
+   * @see GRpcClient.getSubscriptions
+   * @see GRpcClient.getRpcMethods
+   * @see GRpcClient.getTxSendMethods
+   */
+  constructor(config = 'tcp://127.0.0.1:28210') {
+    let endpoint = '';
+    let chainId = '';
+    if (typeof config === 'string') {
+      endpoint = config;
+    } else {
+      endpoint = config.endpoint;
+      chainId = config.chainId;
+    }
+
+    if (!endpoint) {
+      throw new Error('GRpcClient requires a valid `endpoint` to initialize');
+    }
+
+    this._endpoint = endpoint;
+    this._chainId = chainId;
+
+    this._initRpcClients();
+    this._initRpcMethods();
+    this._initTxMethods();
+  }
+
+  /**
+   * Initialize grpc-node clients for each rpc service, lazy connection under the surface
+   *
+   * @private
+   */
+  _initRpcClients() {
+    const socket = this._endpoint.split('//').pop();
+    this.clients = Object.keys(rpcs).reduce((acc, x) => {
+      debug('initRpcClient', x);
+      acc[x] = new rpcs[x](socket, grpc.credentials.createInsecure());
+      return acc;
+    }, {});
+  }
+
+  /**
+   * Initialize standard rpc methods defined in protobuf
+   *
+   * @private
+   */
+  _initRpcMethods() {
+    Object.keys(rpcs).forEach(x =>
+      Object.keys(rpcs[x].methods).forEach(m => this._initRpcMethod(x, m))
+    );
+  }
+  _initRpcMethod(group, method) {
+    const client = this.clients[group];
+    const rpc = client[method].bind(client);
+    const spec = rpcs[group].methods[method];
+    const { requestStream = false, responseStream = false, requestType, responseType } = spec;
+    // debug('_initRpcMethod', { method, requestStream, responseStream, requestType, responseType });
+
+    let fn = null;
+    // unary call, return Promise
+    if (requestStream === false &amp;&amp; responseStream === false) {
+      fn = params =>
+        new Promise((resolve, reject) => {
+          const request = this._createRequest(requestType, params);
+          rpc(request, this._createResponseHandler({ method, resolve, reject, responseType }));
+        });
+
+      // response streaming: return EventEmitter
+    } else if (requestStream === false &amp;&amp; responseStream) {
+      fn = params => {
+        const request = this._createRequest(requestType, params);
+        const stream = rpc(request);
+        const emitter = this._createStreamHandler({ method, stream, responseType });
+        return emitter;
+      };
+
+      // request streaming: return Promise
+    } else if (requestStream &amp;&amp; responseStream === false) {
+      fn = params =>
+        new Promise((resolve, reject) => {
+          const stream = rpc(
+            this._createResponseHandler({ method, resolve, reject, responseType })
+          );
+          (Array.isArray(params) ? params : [params]).forEach(x => {
+            const request = this._createRequest(requestType, x);
+            stream.write(request);
+          });
+          stream.end();
+        });
+
+      // request &amp; response streaming: return EventEmitter
+    } else {
+      fn = params => {
+        const stream = rpc();
+        const emitter = this._createStreamHandler({ method, stream, responseType });
+        (Array.isArray(params) ? params : [params]).forEach(x => {
+          debug('stream request', { method, requestType, x });
+          const request = this._createRequest(requestType, x);
+          stream.write(request);
+        });
+        stream.end();
+        return emitter;
+      };
+    }
+
+    fn.rpc = true;
+    fn.meta = { group, requestStream, responseStream, requestType, responseType };
+    fn.$format = data => formatMessage(responseType, data);
+    attachExampleFn(requestType, fn, '$requestExample');
+    attachExampleFn(responseType, fn, '$responseExample');
+
+    this[camelcase(method)] = fn;
+  }
+
+  /**
+   * List standard rpc methods
+   *
+   * @returns {object}
+   */
+  getRpcMethods() {
+    return Object.keys(this)
+      .filter(x => typeof this[x] === 'function' &amp;&amp; this[x].rpc)
+      .reduce((acc, x) => {
+        acc[x] = this[x].meta;
+        return acc;
+      }, {});
+  }
+
+  /**
+   * Generate shortcut methods for creating and sending transactions on all supported itx
+   * With these shortcut methods, developers can sign/send with just one call
+   *
+   * @private
+   */
+  _initTxMethods() {
+    const toHex = bytes => stripHexPrefix(bytesToHex(bytes)).toUpperCase();
+
+    // Unify a client wallet | forge managed wallet
+    const getWallet = wallet => {
+      if (typeof wallet.toAddress === 'function') {
+        return {
+          address: wallet.toAddress(),
+          publicKey: Uint8Array.from(hexToBytes(wallet.publicKey)),
+        };
+      }
+
+      return {
+        address: wallet.address,
+        publicKey: wallet.pk || wallet.publicKey || '',
+      };
+    };
+
+    enums.SupportedTxs.forEach(x => {
+      /**
+       * Generate an transaction encoding function
+       *
+       * @param {object} input
+       * @param {object} input.tx - data of the transaction
+       * @param {object} input.tx.itx - the actual transaction object
+       * @param {object} [input.tx.from] - the sender address, can be derived from wallet
+       * @param {object} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
+       * @param {object} [input.tx.chainId] - the chainId
+       * @param {object} [input.tx.signature] - the signature
+       * @param {object} [input.tx.signatures] - the signature list, should be set when it's a multisig transaction
+       * @param {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
+       * @returns Promise
+       */
+      const txEncodeFn = async ({ tx, wallet }) => {
+        const w = getWallet(wallet);
+
+        // Determine sender address
+        const address = tx.from || w.address || '';
+        const pk = tx.pk || w.publicKey || '';
+
+        // Determine chainId &amp; nonce, only attach new one when not exist
+        let nonce = typeof tx.nonce === 'undefined' ? Date.now() : tx.nonce;
+        let chainId = tx.chainId || this._chainId;
+        if (!chainId) {
+          const { info } = await this.getChainInfo();
+          chainId = info.network;
+        }
+
+        // Determine signatures for multi sig
+        let signatures = [];
+        if (Array.isArray(tx.signatures)) {
+          signatures = tx.signatures;
+        }
+        if (Array.isArray(tx.signaturesList)) {
+          signatures = tx.signaturesList;
+        }
+
+        const txObj = createMessage('Transaction', {
+          from: address,
+          nonce,
+          pk,
+          chainId,
+          signature: tx.signature || '',
+          signatures,
+          itx: {
+            type: x,
+            value: tx.itx,
+          },
+        });
+        const txToSignBytes = txObj.serializeBinary();
+
+        debug(`encodeTx.${x}.input`, tx);
+        debug(`encodeTx.${x}.txObj`, txObj.toObject());
+        debug(`encodeTx.${x}.txBytes`, txToSignBytes.toString());
+        debug(`encodeTx.${x}.txHex`, toHex(txToSignBytes));
+
+        return { object: txObj.toObject(), buffer: Uint8Array.from(txToSignBytes) };
+      };
+
+      const encodeMethod = camelcase(`encode_${x}`);
+      txEncodeFn.__type__ = 'encode';
+      txEncodeFn.__tx__ = encodeMethod;
+      txEncodeFn.__itx__ = x;
+      this[encodeMethod] = txEncodeFn;
+
+      /**
+       * Generate an transaction sender function
+       *
+       *
+       * @param {object} input
+       * @param {object} input.tx - data of the transaction
+       * @param {object} input.tx.itx - the actual transaction object
+       * @param {object} [input.tx.from] - the sender address, can be derived from wallet
+       * @param {object} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
+       * @param {object} [input.tx.chainId] - the chainId
+       * @param {object} [input.tx.signature] - the signature
+       * @param {object} [input.tx.signatures] - the signature list, should be set when it's a multisig transaction
+       * @param {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
+       * @param {object} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
+       * @param {object} [input.token] - token used to unlock a wallet
+       * @returns Promise
+       */
+      const txSendFn = async input => {
+        const { tx, wallet, signature } = input;
+
+        let txResult;
+        let walletResult = wallet;
+
+        // Native wallet
+        if (wallet &amp;&amp; typeof wallet.sign === 'function') {
+          if (signature) {
+            tx.signature = Uint8Array.from(hexToBytes(signature));
+            txResult = tx;
+          } else {
+            const { object, buffer: txToSignBytes } = await txEncodeFn({ tx, wallet });
+            txResult = object;
+            txResult.signature = Uint8Array.from(
+              hexToBytes(wallet.sign(bytesToHex(txToSignBytes)))
+            );
+            debug(`send.${x}.sign`, txResult.signature);
+          }
+
+          // since we have signed the tx, wallet is not required when sent the tx
+          walletResult = undefined;
+        } else {
+          const txParams = {
+            itx: { type: x, value: tx.itx },
+            nonce: Date.now(),
+            chainId: this._chainId,
+            wallet: walletResult,
+            token: input.token,
+          };
+
+          const keys = ['from', 'pk', 'chainId', 'signature', 'signatures', 'nonce'];
+          keys.forEach(x => {
+            if (typeof tx[x] !== 'undefined') {
+              txParams[x] = tx[x];
+            }
+          });
+
+          if (!txParams.chainId) {
+            const { info } = await this.getChainInfo();
+            txParams.chainId = info.network;
+          }
+
+          debug(`${x}.create.params`, tx, txParams);
+          const result = await this.createTx(txParams);
+          debug(`${x}.create.result`, result);
+          txResult = result.tx;
+        }
+
+        // Create tx using rpc, sign the transaction using forge
+        return new Promise(async (resolve, reject) => {
+          try {
+            const sendParams = {
+              tx: txResult,
+              token: input.token,
+              commit: input.commit,
+            };
+            if (walletResult) {
+              sendParams.wallet = walletResult;
+            }
+
+            debug(`send.${x}.do`, sendParams);
+            const { hash } = await this.sendTx(sendParams);
+            resolve(hash);
+          } catch (err) {
+            reject(err);
+          }
+        });
+      };
+
+      const sendMethod = camelcase(`send_${x}`);
+      txSendFn.__type__ = 'send';
+      txSendFn.__tx__ = sendMethod;
+      txSendFn.__itx__ = x;
+      this[sendMethod] = txSendFn;
+    });
+  }
+
+  /**
+   * List generated transaction send methods
+   *
+   * @returns {object}
+   */
+  getTxSendMethods() {
+    return Object.keys(this)
+      .filter(x => typeof this[x] === 'function' &amp;&amp; this[x].__type__ === 'send')
+      .reduce((acc, x) => {
+        acc[x] = this[x].__itx__;
+        return acc;
+      }, {});
+  }
+
+  /**
+   * List generated transaction send methods
+   *
+   * @returns {object}
+   */
+  getTxEncodeMethods() {
+    return Object.keys(this)
+      .filter(x => typeof this[x] === 'function' &amp;&amp; this[x].__type__ === 'encode')
+      .reduce((acc, x) => {
+        acc[x] = this[x].__itx__;
+        return acc;
+      }, {});
+  }
+
+  /**
+   * Create an request object from params object
+   *
+   * @private
+   * @param {String} requestType
+   * @param {Object} [params={}]
+   */
+  _createRequest(type, _params) {
+    const { fn: Message, fields } = getMessageType(type);
+    if (!Message) {
+      throw new Error(`Unsupported messageType: ${type}`);
+    }
+    if (!fields) {
+      throw new Error(`Unsupported messageFields: ${type}`);
+    }
+
+    const request = createMessage(type, _params || {});
+    debug('_createRequest', { type, request: request.toObject() });
+    return request;
+  }
+
+  /**
+   * Create unary response handler
+   *
+   * @private
+   * @param {*} method
+   * @param {*} resolve
+   * @param {*} reject
+   */
+  _createResponseHandler({ method, resolve, reject, responseType }) {
+    return (err, response) => {
+      if (err) {
+        return reject(err);
+      }
+
+      const res = response.toObject();
+      debug('Rpc Response', method, res);
+      if (res.code) {
+        return reject(this._createResponseError(res.code, method));
+      }
+
+      attachFormatFn(responseType, res);
+      return resolve(res);
+    };
+  }
+
+  /**
+   * Create stream response handler
+   *
+   * @private
+   * @param {*} method
+   * @param {*} stream
+   */
+  _createStreamHandler({ method, stream, responseType }) {
+    const emitter = new EventEmitter();
+
+    stream
+      .on('data', response => {
+        const res = response.toObject();
+        if (res.code) {
+          emitter.emit('error', this._createResponseError(res.code, method));
+          return;
+        }
+
+        attachFormatFn(responseType, res);
+        emitter.emit('data', res);
+      })
+      .on('error', err => emitter.emit('error', err))
+      .on('close', () => emitter.emit('close', undefined))
+      .on('end', () => emitter.emit('end', undefined));
+
+    return emitter;
+  }
+
+  _createResponseError(code, method) {
+    const error = new Error(`gRPC response error: ${messages.StatusCode[code]}, method: ${method}`);
+    error.errcode = messages.StatusCode[code];
+    error.errno = code;
+    return error;
+  }
+}
+
+module.exports = GRpcClient;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Tue May 07 2019 15:31:31 GMT+0800 (China Standard Time) using the <a href="https://github.com/clenemt/docblock">docblock</a> theme.
+</footer>
+
+<script>
+window.addEventListener('load', function () {
+  hljs.initHighlighting();
+});
+</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+<script src="scripts/search.js" defer></script>
+
+
+<script src="scripts/collapse.js" defer></script>
+
+
+</body>
+</html>
