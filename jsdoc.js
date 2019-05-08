@@ -22,7 +22,7 @@ module.exports = {
       'packages/did-util/lib/index.js',
     ],
     includePattern: '.js$',
-    excludePattern: '(node_modules/|docs)',
+    excludePattern: '(node_modules/|dist)',
   },
   plugins: ['plugins/markdown'],
   templates: {
@@ -32,7 +32,7 @@ module.exports = {
     showInheritedInNav: true,
   },
   opts: {
-    destination: './docs/',
+    destination: './dist/',
     encoding: 'utf8',
     private: false,
     recurse: true,
