@@ -13,12 +13,13 @@ A `GRpcClient` instance mainly supports 3 groups of methods that saves you time 
 
 ## Table of Contents
 
-* [Install](#install)
-* [Usage](#usage)
-* [Examples](#examples)
-* [Debugging](#debugging)
-* [Documentation](#documentation)
-* [Contributors](#contributors)
+- [**@arcblock/grpc-client**](#arcblockgrpc-client)
+  - [Table of Contents](#table-of-contents)
+  - [Install](#install)
+  - [Usage](#usage)
+  - [Examples](#examples)
+  - [Debugging](#debugging)
+  - [Documentation](#documentation)
 
 
 ## Install
@@ -81,10 +82,3 @@ console.log({
 
 * Complete method list can be found here: [README.md](./docs/README.md)
 * Rpc arguments and response structure can be found here: [API.md](./docs/API.md)
-
-
-## Contributors
-
-| Name           | Website                    |
-| -------------- | -------------------------- |
-| **wangshijun** | <https://ocap.arcblock.io> |
