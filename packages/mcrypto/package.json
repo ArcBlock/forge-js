@@ -12,9 +12,13 @@
   "publishConfig": {
     "access": "public"
   },
-  "author": "wangshijun <wangshijun2010@gmail.com>",
+  "author": {
+    "name": "wangshijun",
+    "email": "shijun@arcblock.io",
+    "url": "https://github.com/wangshijun"
+  },
   "homepage": "https://github.com/ArcBlock/forge-js/tree/master/packages/mcrypto",
-  "license": "MIT",
+  "license": "Apache-2.0",
   "main": "lib/index.js",
   "files": [
     "lib"

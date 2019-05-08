@@ -1,3 +1,10 @@
+## 0.25.2 (May 08, 2019)
+  - chore: update readme
+  - chore: add license in readme
+  - chore: update license/author field in package.json
+  - chore: add license file
+  - update readme
+
 ## 0.25.1 (May 07, 2019)
   - chore: update readme
   - chore: update scripts

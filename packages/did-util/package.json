@@ -2,7 +2,11 @@
   "name": "@arcblock/did-util",
   "description": "Helper function to calculate did",
   "version": "0.25.0",
-  "author": "wangshijun <shijun@arcblock.io> (https://ocap.arcblock.io)",
+  "author": {
+    "name": "wangshijun",
+    "email": "shijun@arcblock.io",
+    "url": "https://github.com/wangshijun"
+  },
   "engines": {
     "node": ">=10.15.0"
   },
@@ -48,7 +52,7 @@
     "sdk",
     "nodejs"
   ],
-  "license": "MIT",
+  "license": "Apache-2.0",
   "main": "./lib/index.js",
   "files": [
     "lib"
