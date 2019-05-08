@@ -1,11 +1,17 @@
 {
   "name": "root",
   "private": true,
+  "license": "Apache-2.0",
   "workspaces": [
     "packages/*",
     "apps/*",
     "examples/*"
   ],
+  "author": {
+    "name": "wangshijun",
+    "email": "shijun@arcblock.io",
+    "url": "https://github.com/wangshijun"
+  },
   "devDependencies": {
     "eslint": "5.6.0",
     "eslint-config-prettier": "latest",

@@ -2,7 +2,11 @@
   "name": "@arcblock/tcp-server",
   "description": "Node.js SDK for Forge Framework by ArcBlock",
   "version": "0.25.0",
-  "author": "wangshijun <shijun@arcblock.io> (https://ocap.arcblock.io)",
+  "author": {
+    "name": "wangshijun",
+    "email": "shijun@arcblock.io",
+    "url": "https://github.com/wangshijun"
+  },
   "engines": {
     "node": ">=0.10.0",
     "forge": ">=0.11.1"
@@ -14,9 +18,6 @@
   "publishConfig": {
     "access": "public"
   },
-  "contributors": [
-    "wangshijun <shijun@arcblock.io> (https://ocap.arcblock.io)"
-  ],
   "dependencies": {
     "@arcblock/forge-message": "^0.25.0",
     "@arcblock/forge-proto": "^0.25.0",
@@ -49,7 +50,7 @@
     "sdk",
     "nodejs"
   ],
-  "license": "MIT",
+  "license": "Apache-2.0",
   "main": "./index.js",
   "files": [
     "index.d.ts",

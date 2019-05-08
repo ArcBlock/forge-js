@@ -2,7 +2,11 @@
   "name": "@arcblock/forge-proto",
   "description": "Static modules generated from forge-sdk protobuf files",
   "version": "0.25.0",
-  "author": "wangshijun <shijun@arcblock.io> (https://www.arcblock.io)",
+  "author": {
+    "name": "wangshijun",
+    "email": "shijun@arcblock.io",
+    "url": "https://github.com/wangshijun"
+  },
   "engines": {
     "node": ">=0.10.0",
     "forge": ">=0.25.3"
@@ -14,9 +18,6 @@
   "publishConfig": {
     "access": "public"
   },
-  "contributors": [
-    "wangshijun <shijun@arcblock.io> (https://www.arcblock.io)"
-  ],
   "devDependencies": {
     "j2d": "^1.0.3-dev",
     "jest": "^23.5.0"
@@ -29,7 +30,7 @@
     "sdk",
     "nodejs"
   ],
-  "license": "MIT",
+  "license": "Apache-2.0",
   "main": "index.js",
   "files": [
     "lite.js",

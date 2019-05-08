@@ -2,6 +2,7 @@
   "name": "@arcblock/forge-cli",
   "version": "0.25.1",
   "description": "a general set of CLI for arcblock Forge framework",
+  "license": "Apache-2.0",
   "main": "src/index.js",
   "files": [
     "src"
@@ -27,8 +28,18 @@
     "type": "git",
     "url": "git+https://github.com/arcblock/forge-js.git"
   },
-  "author": "Tyr Chen",
-  "license": "MIT",
+  "author": {
+    "name": "Tyr Chen",
+    "email": "tyr@arcblock.io",
+    "url": "https://github.com/tyrchen"
+  },
+  "contributors": [
+    {
+      "name": "wangshijun",
+      "email": "shijun@arcblock.io",
+      "url": "https://github.com/wangshijun"
+    }
+  ],
   "bugs": {
     "url": "https://github.com/arcblock/forge-js/packages/forge-cli/issues"
   },
