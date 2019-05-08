@@ -5,9 +5,10 @@
 
 > Javascript SDK for [forge](https://docs.arcblock.io/forge/latest/), which is an awesome framework to write distributed blockchain applications.
 
-> Last updated at 5/7/2019, 8:22:20 AM
+> Last updated at 5/8/2019, 11:34:55 AM
 
 ## Packages Included
+
 
 - [@arcblock/did v0.25.0](./packages/did)
 - [@arcblock/did-auth v0.25.0](./packages/did-auth)
@@ -21,6 +22,7 @@
 - [@arcblock/grpc-client v0.25.0](./packages/grpc-client)
 - [@arcblock/mcrypto v0.25.0](./packages/mcrypto)
 - [@arcblock/tcp-server v0.25.0](./packages/tcp-server)
+
 - [@arcblock/forge-cli v0.25.1](./apps/forge-cli)
 
 ## Documentation
@@ -34,3 +36,19 @@ Checkout [CONTRIBUTION.md](./CONTRIBUTION.md)
 ## Report a Bug?
 
 Bugs and feature requests please create new issues [here](https://github.com/ArcBlock/forge-js/issues)
+
+## License
+
+Copyright 2018-2019 ArcBlock
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
