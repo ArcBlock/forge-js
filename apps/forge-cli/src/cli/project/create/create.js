@@ -97,8 +97,8 @@ function createDirectoryContents(fromPath, toPath) {
 
     if (stats.isFile()) {
       try {
-        const contents = fs.readFileSync(origFilePath, 'utf8');
-        fs.writeFileSync(targetPath, contents, 'utf8');
+        const contents = fs.readFileSync(origFilePath);
+        fs.writeFileSync(targetPath, contents);
         shell.echo(`${symbols.success} created file ${targetPath}`);
       } catch (err) {
         shell.echo(`${symbols.error} error sync file ${targetPath}`);
@@ -107,7 +107,9 @@ function createDirectoryContents(fromPath, toPath) {
       }
     } else if (stats.isDirectory()) {
       try {
-        fs.mkdirSync(targetPath);
+        if (!fs.existsSync(targetPath)) {
+          fs.mkdirSync(targetPath);
+        }
         createDirectoryContents(`${fromPath}/${file}`, `${toPath}/${file}`);
         shell.echo(`${symbols.success} created dir ${targetPath}`);
       } catch (err) {
@@ -154,7 +156,9 @@ async function main({ args: [_target], opts: { yes } }) {
     shell.echo(hr);
 
     // Sync files
-    shell.mkdir(targetDir);
+    if (!fs.existsSync(targetDir)) {
+      shell.mkdir(targetDir);
+    }
     createDirectoryContents(templateDir, targetDir);
     shell.echo(hr);
 
