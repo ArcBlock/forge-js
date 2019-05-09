@@ -621,7 +621,7 @@ module.exports = {
   },
 
   webUrl() {
-    return `http://localhost:${config.forge.web.port || 8210}`;
+    return `http://localhost:${get(config, 'forge.web.port') || 8210}`;
   },
 
   DEFAULT_MIRROR: 'https://releases.arcblock.io',

@@ -5,6 +5,8 @@
   "license": "Apache-2.0",
   "main": "src/index.js",
   "files": [
+    "bin",
+    "templates",
     "src"
   ],
   "engines": {
@@ -48,8 +50,10 @@
     "@arcblock/forge-config": "^0.25.2",
     "@arcblock/forge-message": "^0.25.2",
     "@arcblock/forge-proto": "^0.25.2",
+    "@arcblock/forge-wallet": "^0.25.2",
     "@arcblock/graphql-client": "^0.25.2",
     "@arcblock/grpc-client": "^0.25.2",
+    "@arcblock/mcrypto": "^0.25.2",
     "@iarna/toml": "^2.2.3",
     "app-module-path": "^2.2.0",
     "chalk": "^2.4.1",

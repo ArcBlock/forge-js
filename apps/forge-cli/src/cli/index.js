@@ -1,4 +1,5 @@
 exports.account = require('./account');
+exports.project = require('./project');
 exports.asset = require('./asset');
 exports.block = require('./block');
 exports.misc = require('./misc');
