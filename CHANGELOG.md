@@ -1,3 +1,10 @@
+## 0.26.0 (May 09, 2019)
+  - fix: binary file copying
+  - fix: node_modules install
+  - chore: support creating react start project
+  - chore: add submodule
+  - update readme
+
 ## 0.25.2 (May 08, 2019)
   - chore: update readme
   - chore: add license in readme
