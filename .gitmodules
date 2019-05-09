@@ -1,0 +1,3 @@
+[submodule "apps/forge-cli/templates/forge-react-starter"]
+	path = apps/forge-cli/templates/forge-react-starter
+	url = git@github.com:ArcBlock/forge-react-starter.git
