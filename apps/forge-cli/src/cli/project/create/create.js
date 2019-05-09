@@ -161,7 +161,7 @@ async function main({ args: [_target], opts: { yes } }) {
     // Run npm install
     const pm = shell.which('yarn') ? 'yarn' : 'npm';
     shell.echo(`${symbols.info} installing dependencies...`);
-    // execSync(`cd ${targetDir} && ${pm} install`, { stdio: [0, 1, 2] });
+    execSync(`cd ${targetDir} && ${pm} install`, { stdio: [0, 1, 2] });
     shell.echo(hr);
 
     // Get chainId
