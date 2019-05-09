@@ -1,3 +1,8 @@
+## 0.26.2 (May 10, 2019)
+  - fix: project create speed
+  - chore: update template
+  - update readme
+
 ## 0.26.1 (May 09, 2019)
   - fix: ip dependency not found
   - update readme
