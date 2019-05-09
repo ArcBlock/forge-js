@@ -1,7 +1,7 @@
 {
   "name": "@arcblock/forge-config",
   "description": "Utility to parse/stringify forge config",
-  "version": "0.25.2",
+  "version": "0.26.0",
   "author": {
     "name": "wangshijun",
     "email": "shijun@arcblock.io",
