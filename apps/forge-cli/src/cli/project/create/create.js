@@ -16,7 +16,7 @@ const { symbols, hr } = require('core/ui');
 const templatesDir = path.resolve(__dirname, '../../../../templates');
 const templates = fs.readdirSync(templatesDir).filter(x => isDirectory(path.join(templatesDir, x)));
 
-debug('templates', templates);
+debug('project templates', templates);
 
 inquirer.registerPrompt('autocomplete', require('inquirer-autocomplete-prompt'));
 
@@ -28,11 +28,13 @@ const defaults = {
   mongoUri: 'mongodb://127.0.0.1:27017/forge-starter',
 };
 
+debug('application defaults', defaults);
+
 const questions = [
   {
     type: 'autocomplete',
     name: 'template',
-    message: 'Select a project template:',
+    message: 'Select a application template:',
     default: defaults.template,
     source: (_, inp) => {
       const input = inp || '';
@@ -45,20 +47,20 @@ const questions = [
   {
     type: 'text',
     name: 'appName',
-    message: 'Project name:',
+    message: 'Application name:',
     default: defaults.appName,
     validate: input => {
-      if (!input) return 'Project name should not be empty';
+      if (!input) return 'Application name should not be empty';
       return true;
     },
   },
   {
     type: 'text',
     name: 'appPort',
-    message: 'Project listening port:',
+    message: 'Application listening port:',
     default: defaults.appPort,
     validate: input => {
-      if (!input) return 'Project listening port should not be empty';
+      if (!input) return 'Application listening port should not be empty';
       return true;
     },
   },
@@ -84,7 +86,7 @@ const questions = [
   },
 ];
 
-const backList = ['.git', 'yarn.lock'];
+const backList = ['.git'];
 function createDirectoryContents(fromPath, toPath) {
   const filesToCreate = fs.readdirSync(fromPath).filter(x => !backList.includes(x));
 
@@ -125,7 +127,7 @@ async function main({ args: [_target], opts: { yes } }) {
   try {
     const target = _target.startsWith('/') ? _target : path.join(process.cwd(), _target);
     if (!target) {
-      shell.echo(`${symbols.error} Please specify a folder for creating the new project`);
+      shell.echo(`${symbols.error} Please specify a folder for creating the new application`);
       shell.echo(`${symbols.info} You can try ${chalk.cyan('forge create-project hello-forge')}`);
       process.exit(1);
     }
@@ -143,7 +145,7 @@ async function main({ args: [_target], opts: { yes } }) {
     const templateDir = path.join(templatesDir, template);
 
     const ipAddress = ip.address();
-    shell.echo(`${symbols.info} project config`, {
+    shell.echo(`${symbols.info} application config`, {
       appName,
       appPort,
       targetDir,
@@ -162,17 +164,11 @@ async function main({ args: [_target], opts: { yes } }) {
     createDirectoryContents(templateDir, targetDir);
     shell.echo(hr);
 
-    // Run npm install
-    const pm = shell.which('yarn') ? 'yarn' : 'npm';
-    shell.echo(`${symbols.info} installing dependencies...`);
-    execSync(`cd ${targetDir} && ${pm} install`, { stdio: [0, 1, 2] });
-    shell.echo(hr);
-
     // Get chainId
     const client = new GraphQLClient({ endpoint: chainHost });
     const { info } = await client.getChainInfo();
     const chainId = info.moniker;
-    shell.echo(`${symbols.info} project chainId: ${chainId}`);
+    shell.echo(`${symbols.info} application chainId: ${chainId}`);
 
     // Declare application on chain
     const wallet = fromRandom(
@@ -207,10 +203,16 @@ APP_SK="${wallet.secretKey}"
 APP_ID="${wallet.toAddress()}"
 BASE_URL="http://${ipAddress}:${appPort}"`;
     fs.writeFileSync(configPath, configContent);
-    shell.echo(`${symbols.success} config generated ${configPath}`);
+    shell.echo(`${symbols.success} application config generated ${configPath}`);
+
+    // Run npm install
+    const pm = shell.which('yarn') ? 'yarn' : 'npm';
+    shell.echo(`${symbols.info} installing application dependencies...`);
+    execSync(`cd ${targetDir} && ${pm} install`, { stdio: [0, 1, 2] });
+    shell.echo(hr);
 
     // Prompt cd and start
-    shell.echo(`${symbols.success} project created successfully...`);
+    shell.echo(`${symbols.success} application created successfully...`);
     shell.echo(hr);
     shell.echo(chalk.cyan(`cd ${targetDir}`));
     shell.echo(chalk.cyan(`${pm} start`));
