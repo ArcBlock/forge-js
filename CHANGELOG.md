@@ -1,3 +1,7 @@
+## 0.26.1 (May 09, 2019)
+  - fix: ip dependency not found
+  - update readme
+
 ## 0.26.0 (May 09, 2019)
   - fix: binary file copying
   - fix: node_modules install
