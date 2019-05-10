@@ -1,3 +1,8 @@
+## 0.26.4 (May 10, 2019)
+  - chore: upgrade react starter version
+  - fix: forge tx on 404 should warn gently
+  - update readme
+
 ## 0.26.3 (May 10, 2019)
   - fix: should exit with non-zero code when bin path not found #268
   - update readme
