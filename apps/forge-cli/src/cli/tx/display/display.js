@@ -12,7 +12,7 @@ async function execute({ args: [hash] }) {
     const stream = await client.getTx({ hash: hash });
     stream
       .on('data', function(result) {
-        if (result && result.code === 0) {
+        if (result && result.code === 0 && result.info) {
           shell.echo(`${pretty(result.$format().info.tx)}`);
         } else {
           shell.echo(`${symbols.error} get tx error: ${pretty(result)}`);
