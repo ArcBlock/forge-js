@@ -42,7 +42,7 @@ async function main({ args: [action = 'none'], opts }) {
       shell.echo(`${symbols.info} graphql playground at:    ${webUrl()}/api/playground`);
       break;
     case 'stop':
-      const { stdout2, stderr2 } = stopWebUI();
+      const { stdout: stdout2, stderr: stderr2 } = stopWebUI();
       debug('stop', { stdout2, stderr2 });
       processOutput(stdout2 || stderr2, action);
       break;

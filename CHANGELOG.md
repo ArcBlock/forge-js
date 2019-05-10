@@ -1,3 +1,7 @@
+## 0.26.3 (May 10, 2019)
+  - fix: should exit with non-zero code when bin path not found #268
+  - update readme
+
 ## 0.26.2 (May 10, 2019)
   - fix: project create speed
   - chore: update template
