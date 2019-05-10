@@ -450,7 +450,15 @@ function makeNativeCommandRunner(executable) {
 
       if (!binPath) {
         shell.echo(`${symbols.error} ${executable} not found, abort!`);
-        return;
+        shell.echo(`${symbols.info} we recommend a clean setup from scratch with following steps:`);
+        shell.echo(hr);
+        shell.echo(`${chalk.cyan('forge stop')}`);
+        shell.echo(`${chalk.cyan('rm -rf ~/.forge_cli')}`);
+        shell.echo(`${chalk.cyan('rm -rf ~/.forge_release')}`);
+        shell.echo(`${chalk.cyan('npm install -g @arcblock/forge-cli')}`);
+        shell.echo(`${chalk.cyan('forge init')}`);
+        shell.echo('');
+        return process.exit(1);
       }
 
       const command = `FORGE_CONFIG=${forgeConfigPath} ${binPath} ${subCommand}`;
