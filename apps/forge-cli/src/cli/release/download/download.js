@@ -12,10 +12,12 @@ const {
 } = require('cli/node/init/init');
 
 async function main({ args: [userVersion], opts: { mirror } }) {
-  const userVer = semver.coerce(userVersion).version;
   try {
     const platform = await getPlatform();
     shell.echo(`${symbols.info} Detected platform is: ${platform}`);
+
+    const userVer =
+      userVersion && semver.coerce(userVersion) ? semver.coerce(userVersion).version : '';
     const version = userVer || fetchReleaseVersion(mirror);
     if (releaseDirExists()) {
       if (version === config.get('cli.currentVersion')) {
