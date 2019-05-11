@@ -1,3 +1,7 @@
+## 0.26.5 (May 11, 2019)
+  - chore: remove node version requirement
+  - update readme
+
 ## 0.26.4 (May 10, 2019)
   - chore: upgrade react starter version
   - fix: forge tx on 404 should warn gently
