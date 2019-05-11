@@ -19,6 +19,7 @@ cli(
 Examples:
   - ${chalk.cyan('forge init')}             download and activate latest version
   - ${chalk.cyan('forge init 0.22.0')}      download and activate forge v0.22.0
+  - ${chalk.cyan('forge init v0.22.0')}     download and activate forge v0.22.0
   - ${chalk.cyan(
     'forge init --mirror http://arcblock.oss-cn-beijing.aliyuncs.com'
   )}      specify a custom mirror for download

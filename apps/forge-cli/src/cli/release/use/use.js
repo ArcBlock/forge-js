@@ -1,11 +1,13 @@
 const chalk = require('chalk');
 const shell = require('shelljs');
+const semver = require('semver');
 const { symbols } = require('core/ui');
 const { config, debug } = require('core/env');
 const { isForgeStopped, updateReleaseYaml } = require('cli/node/init/init');
 const { listReleases } = require('cli/release/list/list');
 
-async function main({ args: [version] }) {
+async function main({ args: [userVersion] }) {
+  const version = semver.coerce(userVersion).version;
   try {
     if (version === config.get('cli.currentVersion')) {
       shell.echo(`${symbols.warning} Already using forge release v${version}`);
