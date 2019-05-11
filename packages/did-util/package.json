@@ -1,7 +1,7 @@
 {
   "name": "@arcblock/did-util",
   "description": "Helper function to calculate did",
-  "version": "0.26.0",
+  "version": "0.26.5",
   "author": {
     "name": "wangshijun",
     "email": "shijun@arcblock.io",
