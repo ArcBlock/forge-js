@@ -78,7 +78,9 @@ function fetchAssetInfo(platform, version, key, mirror = DEFAULT_MIRROR) {
     const { code, stdout, stderr } = shell.exec(`curl -I --silent "${url}"`, { silent: true });
     debug('fetchAssetInfo', { url, platform, version, code, stdout, stderr });
     if (code === 0 && stdout) {
-      const notFound = stdout.split('\r\n').find(x => x.indexOf('HTTP/1.1 404') === 0);
+      const notFound = stdout
+        .split('\r\n')
+        .find(x => x.indexOf('HTTP/1.1 404') === 0 || x.indexOf('HTTP/2 404') === 0);
       if (notFound) {
         spinner.fail(`Release asset "${url}" not found`);
         process.exit(1);
@@ -184,12 +186,14 @@ function updateReleaseYaml(asset, version) {
 }
 
 async function main({ args: [userVersion], opts: { mirror } }) {
-  const userVer = semver.coerce(userVersion).version;
   try {
     printLogo();
 
     const platform = await getPlatform();
     shell.echo(`${symbols.info} Detected platform is: ${platform}`);
+
+    const userVer =
+      userVersion && semver.coerce(userVersion) ? semver.coerce(userVersion).version : '';
     const version = userVer || fetchReleaseVersion(mirror);
 
     if (releaseDirExists()) {
