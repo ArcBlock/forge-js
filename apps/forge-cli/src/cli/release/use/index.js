@@ -1,4 +1,5 @@
-// eslint-disable-next-line import/no-unresolved
+const shell = require('shelljs');
+const chalk = require('chalk');
 const { cli, action } = require('core/cli');
 const { execute, run } = require('./use');
 
@@ -14,5 +15,14 @@ cli(
       wallet: false,
     },
     options: [],
+    handlers: {
+      '--help': () => {
+        shell.echo(`
+Examples:
+  - ${chalk.cyan('forge use 0.22.0')}      activate forge v0.22.0
+  - ${chalk.cyan('forge use v0.22.0')}     activate forge v0.22.0
+        `);
+      },
+    },
   }
 );

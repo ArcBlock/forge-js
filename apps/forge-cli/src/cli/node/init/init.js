@@ -4,6 +4,7 @@ const path = require('path');
 const yaml = require('yaml');
 const shell = require('shelljs');
 const chalk = require('chalk');
+const semver = require('semver');
 const findProcess = require('find-process');
 const { symbols, hr, getSpinner, getProgress } = require('core/ui');
 const {
@@ -183,12 +184,13 @@ function updateReleaseYaml(asset, version) {
 }
 
 async function main({ args: [userVersion], opts: { mirror } }) {
+  const userVer = semver.coerce(userVersion).version;
   try {
     printLogo();
 
     const platform = await getPlatform();
     shell.echo(`${symbols.info} Detected platform is: ${platform}`);
-    const version = userVersion || fetchReleaseVersion(mirror);
+    const version = userVer || fetchReleaseVersion(mirror);
 
     if (releaseDirExists()) {
       if (version === config.get('cli.currentVersion')) {

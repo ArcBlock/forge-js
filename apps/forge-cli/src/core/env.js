@@ -89,6 +89,10 @@ function isDirectory(x) {
   return fs.existsSync(x) && fs.statSync(x).isDirectory();
 }
 
+function isEmptyDirectory(x) {
+  return isDirectory(x) && fs.readdirSync(x).length === 0;
+}
+
 /**
  * Ensure we have a forge release to work with, in which we find forge bin
  *
@@ -653,5 +657,6 @@ module.exports = {
   getPlatform,
   createRpcClient,
   isDirectory,
+  isEmptyDirectory,
   printLogo,
 };

@@ -1,5 +1,6 @@
 const shell = require('shelljs');
 const chalk = require('chalk');
+const semver = require('semver');
 const { symbols } = require('core/ui');
 const { config, debug, getPlatform, RELEASE_ASSETS } = require('core/env');
 const {
@@ -11,17 +12,18 @@ const {
 } = require('cli/node/init/init');
 
 async function main({ args: [userVersion], opts: { mirror } }) {
+  const userVer = semver.coerce(userVersion).version;
   try {
     const platform = await getPlatform();
     shell.echo(`${symbols.info} Detected platform is: ${platform}`);
-    const version = userVersion || fetchReleaseVersion(mirror);
+    const version = userVer || fetchReleaseVersion(mirror);
     if (releaseDirExists()) {
       if (version === config.get('cli.currentVersion')) {
         return process.exit(1);
       }
     }
 
-    if (!userVersion) {
+    if (!userVer) {
       shell.echo(`${symbols.info} Download latest version: v${version}`);
     }
 

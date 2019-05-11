@@ -21,6 +21,7 @@ cli(
 Examples:
   - ${chalk.cyan('forge download')}           download latest version
   - ${chalk.cyan('forge download 0.22.0')}    download forge v0.22.0
+  - ${chalk.cyan('forge download v0.22.0')}   download forge v0.22.0
   - ${chalk.cyan(
     'forge download --mirror http://arcblock.oss-cn-beijing.aliyuncs.com'
   )}      specify a mirror
