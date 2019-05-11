@@ -105,11 +105,16 @@ module.exports = class Authenticator {
   // ---------------------------------------
   // Request claim related methods
   // ---------------------------------------
-  genRequestedClaims(params, did, userPk) {
-    return Promise.all(Object.keys(params).map(x => this[x](params[x], did, userPk)));
+  genRequestedClaims(claims, did, userPk) {
+    return Promise.all(Object.keys(claims).map(x => this[x](claims[x], did, userPk)));
   }
 
-  profile({ fields, description }) {
+  async profile(claim, did, userPk) {
+    const userPkHex = getUserPkHex(userPk);
+    const { fields, description } =
+      typeof claim === 'function'
+        ? await claim({ userDid: did, userAddress: toAddress(did), userPk, userPkHex })
+        : claim;
     return {
       items: fields || ['fullName'],
       meta: {
@@ -120,12 +125,12 @@ module.exports = class Authenticator {
   }
 
   // FIXME: Security Risk!! application should keep a copy of the buffer hash to avoid middle man attack
-  async signature(param, did, userPk) {
+  async signature(claim, did, userPk) {
     const userPkHex = getUserPkHex(userPk);
     const { txData, txType, wallet, sender, description } =
-      typeof param === 'function'
-        ? await param({ userDid: did, userAddress: toAddress(did), userPk, userPkHex })
-        : param;
+      typeof claim === 'function'
+        ? await claim({ userDid: did, userAddress: toAddress(did), userPk, userPkHex })
+        : claim;
 
     if (userPkHex && !txData.pk) {
       txData.pk = Buffer.from(hexToBytes(userPkHex));
