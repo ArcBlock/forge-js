@@ -1,3 +1,7 @@
+## 0.26.7 (May 12, 2019)
+  - fix: user version parsing when forge download/init/use
+  - update readme
+
 ## 0.26.6 (May 11, 2019)
   - chore: support both 0.25.3 and v0.25.3 as version arg when init/download/use #258
   - fix: should not list invalid forge release installs when forge ls #259
