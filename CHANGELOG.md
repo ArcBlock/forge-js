@@ -1,3 +1,9 @@
+## 0.26.6 (May 11, 2019)
+  - chore: support both 0.25.3 and v0.25.3 as version arg when init/download/use #258
+  - fix: should not list invalid forge release installs when forge ls #259
+  - chore: upgrade react starter version
+  - update readme
+
 ## 0.26.5 (May 11, 2019)
   - chore: remove node version requirement
   - update readme
