@@ -38,12 +38,12 @@ module.exports = class Authenticator {
     this.appPk = multibase.encode('base58btc', Buffer.from(hexToBytes(wallet.pk))).toString();
   }
 
-  uri({ token, pathname }) {
+  uri({ token, pathname, query = {} }) {
     const params = {
       appPk: this.appPk,
       appDid: toDid(this.wallet.address),
       action: 'requestAuth',
-      url: `${this.baseUrl}${pathname}?${qs.stringify({ token })}`,
+      url: `${this.baseUrl}${pathname}?${qs.stringify(Object.assign({}, query, { token }))}`,
     };
 
     const uri = `${this.appInfo.path}?${qs.stringify(params)}`;
@@ -51,12 +51,12 @@ module.exports = class Authenticator {
     return uri;
   }
 
-  async sign({ token, did, userPk, claims, pathname }) {
+  async sign({ token, did, userPk, claims, pathname, extraParam }) {
     const payload = {
       action: 'responseAuth',
       appInfo: this.appInfo,
-      requestedClaims: await this.genRequestedClaims(claims, did, userPk),
-      url: `${this.baseUrl}${pathname}?${qs.stringify({ token })}`,
+      requestedClaims: await this.genRequestedClaims(claims, did, userPk, extraParam),
+      url: `${this.baseUrl}${pathname}?${qs.stringify(Object.assign({ token }, extraParam))}`,
     };
 
     debug('sign', payload);
@@ -105,31 +105,48 @@ module.exports = class Authenticator {
   // ---------------------------------------
   // Request claim related methods
   // ---------------------------------------
-  genRequestedClaims(claims, did, userPk) {
-    return Promise.all(Object.keys(claims).map(x => this[x](claims[x], did, userPk)));
+  genRequestedClaims(claims, did, userPk, extraParam) {
+    return Promise.all(Object.keys(claims).map(x => this[x](claims[x], did, userPk, extraParam)));
   }
 
-  async profile(claim, did, userPk) {
+  async agreement(claim, did, userPk, extraParam) {
+    const userPkHex = getUserPkHex(userPk);
+    const { uri, hash, description } =
+      typeof claim === 'function'
+        ? await claim({ userDid: did, userAddress: toAddress(did), userPk, userPkHex, extraParam })
+        : claim;
+
+    return {
+      type: 'agreement',
+      meta: {
+        description: description || 'Confirm your agreement to the document',
+      },
+      uri,
+      hash,
+    };
+  }
+
+  async profile(claim, did, userPk, extraParam) {
     const userPkHex = getUserPkHex(userPk);
     const { fields, description } =
       typeof claim === 'function'
-        ? await claim({ userDid: did, userAddress: toAddress(did), userPk, userPkHex })
+        ? await claim({ userDid: did, userAddress: toAddress(did), userPk, userPkHex, extraParam })
         : claim;
     return {
+      type: 'profile',
       items: fields || ['fullName'],
       meta: {
         description: description || 'Please provide your profile information.',
       },
-      type: 'profile',
     };
   }
 
   // FIXME: Security Risk!! application should keep a copy of the buffer hash to avoid middle man attack
-  async signature(claim, did, userPk) {
+  async signature(claim, did, userPk, extraParam) {
     const userPkHex = getUserPkHex(userPk);
     const { txData, txType, wallet, sender, description } =
       typeof claim === 'function'
-        ? await claim({ userDid: did, userAddress: toAddress(did), userPk, userPkHex })
+        ? await claim({ userDid: did, userAddress: toAddress(did), userPk, userPkHex, extraParam })
         : claim;
 
     if (userPkHex && !txData.pk) {
@@ -143,6 +160,7 @@ module.exports = class Authenticator {
     });
 
     return {
+      type: 'signature',
       data: base58Encode(hexToBytes(Mcrypto.Hasher.SHA3.hash256(txBuffer))),
       meta: {
         description: description || 'You have to sign this transaction to continue.',
@@ -151,7 +169,6 @@ module.exports = class Authenticator {
       method: 'sha3',
       origin: base58Encode(txBuffer),
       sig: '',
-      type: 'signature',
     };
   }
 };

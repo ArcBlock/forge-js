@@ -59,7 +59,7 @@ module.exports = class Handlers {
 
         res.json({
           token,
-          url: this.authenticator.uri({ token, pathname }),
+          url: this.authenticator.uri({ token, pathname, query: req.query }),
         });
       } catch (err) {
         res.json({ error: err.message });
@@ -79,7 +79,7 @@ module.exports = class Handlers {
         const session = await this.storage.read(token);
         if (session) {
           if (session.status === 'succeed') {
-            await onComplete(req, session);
+            await onComplete(req, session, req.query);
           }
 
           res.status(200).json(session);
@@ -109,7 +109,20 @@ module.exports = class Handlers {
           await this.storage.update(token, { did, status: 'scanned' });
         }
 
-        const authInfo = await this.authenticator.sign({ token, did, userPk, claims, pathname });
+        const authInfo = await this.authenticator.sign({
+          token,
+          did,
+          userPk,
+          claims,
+          pathname,
+          extraParam: Object.keys(req.query)
+            .filter(x => !['userDid', 'userPk', 'token'].includes(x))
+            .reduce((obj, x) => {
+              obj[x] = req.query[x];
+              return obj;
+            }, {}),
+        });
+
         debug('sign', authInfo);
         res.json(authInfo);
       } catch (err) {
@@ -139,7 +152,7 @@ module.exports = class Handlers {
         });
 
         debug('verify', { did, token, claims });
-        await onAuth({ did, userAddress: toAddress(did), token, claims });
+        await onAuth({ did, userAddress: toAddress(did), token, claims, extraParam: req.query });
 
         if (token) {
           const exist = await this.storage.exist(token, did);
