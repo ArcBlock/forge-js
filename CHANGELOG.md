@@ -1,3 +1,8 @@
+## 0.26.9 (May 12, 2019)
+  - Merge branch 'master' of github.com:ArcBlock/forge-js
+  - fix: did authenticator not proper encoding url param
+  - update readme
+
 ## 0.26.8 (May 12, 2019)
   - feat: support extra query params in did auth process
   - update readme
