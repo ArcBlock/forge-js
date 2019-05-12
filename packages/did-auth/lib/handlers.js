@@ -123,7 +123,7 @@ module.exports = class Handlers {
             }, {}),
         });
 
-        debug('sign', authInfo);
+        debug('sign.result', authInfo);
         res.json(authInfo);
       } catch (err) {
         if (session) {

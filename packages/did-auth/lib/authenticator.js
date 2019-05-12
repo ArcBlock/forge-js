@@ -39,15 +39,16 @@ module.exports = class Authenticator {
   }
 
   uri({ token, pathname, query = {} }) {
-    const params = {
+    const params = Object.assign({}, query, { token });
+    const payload = {
       appPk: this.appPk,
       appDid: toDid(this.wallet.address),
       action: 'requestAuth',
-      url: `${this.baseUrl}${pathname}?${qs.stringify(Object.assign({}, query, { token }))}`,
+      url: encodeURIComponent(`${this.baseUrl}${pathname}?${qs.stringify(params)}`),
     };
 
-    const uri = `${this.appInfo.path}?${qs.stringify(params)}`;
-    debug('uri', { token, pathname, uri });
+    const uri = `${this.appInfo.path}?${qs.stringify(payload)}`;
+    debug('requestAuth.uri', { token, pathname, uri, params, payload });
     return uri;
   }
 
@@ -59,7 +60,7 @@ module.exports = class Authenticator {
       url: `${this.baseUrl}${pathname}?${qs.stringify(Object.assign({ token }, extraParams))}`,
     };
 
-    debug('sign', payload);
+    debug('responseAuth.sign', { token, did, payload, extraParams });
     return {
       appPk: this.appPk,
       authInfo: jwtSign(toDid(this.wallet.address), this.wallet.sk, payload),
