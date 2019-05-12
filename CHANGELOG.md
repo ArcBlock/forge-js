@@ -1,3 +1,7 @@
+## 0.26.8 (May 12, 2019)
+  - feat: support extra query params in did auth process
+  - update readme
+
 ## 0.26.7 (May 12, 2019)
   - fix: user version parsing when forge download/init/use
   - update readme
