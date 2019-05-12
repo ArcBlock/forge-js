@@ -115,7 +115,7 @@ module.exports = class Handlers {
           userPk,
           claims,
           pathname,
-          extraParam: Object.keys(req.query)
+          extraParams: Object.keys(req.query)
             .filter(x => !['userDid', 'userPk', 'token'].includes(x))
             .reduce((obj, x) => {
               obj[x] = req.query[x];
@@ -152,7 +152,7 @@ module.exports = class Handlers {
         });
 
         debug('verify', { did, token, claims });
-        await onAuth({ did, userAddress: toAddress(did), token, claims, extraParam: req.query });
+        await onAuth({ did, userAddress: toAddress(did), token, claims, extraParams: req.query });
 
         if (token) {
           const exist = await this.storage.exist(token, did);
