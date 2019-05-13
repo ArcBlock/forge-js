@@ -7,7 +7,7 @@ import { Buffer } from 'node/globals';
  * @param {*} config
  * @returns net.Server
  */
-declare function create(config: any): Readonly<TcpServer.T100>;
+declare function create(config: any): Readonly<_ArcblockTcpServer.T100>;
 declare function encode(data: any, type: any): Buffer;
 /**
  * Decode socket data from forge-core
@@ -25,8 +25,8 @@ declare function decode(buffer: any, type: any): any;
  * @returns payload
  */
 declare function decodePayload(payload: any): any;
-declare const TcpServer: TcpServer.T102;
-declare namespace TcpServer {
+declare const _ArcblockTcpServer: _ArcblockTcpServer.T102;
+declare namespace _ArcblockTcpServer {
   export interface T100 {
     host: any;
     port: any;
@@ -39,7 +39,7 @@ declare namespace TcpServer {
     create: typeof create;
   }
   export interface T102 {
-    TcpServer: TcpServer.T101;
+    TcpServer: _ArcblockTcpServer.T101;
     encodeVarint: (v: any) => any;
     decodeVarint: (buffer: any) => any;
     encodeZigzag: (v: any) => any;
@@ -49,4 +49,4 @@ declare namespace TcpServer {
     decodePayload: typeof decodePayload;
   }
 }
-export = TcpServer;
+export = _ArcblockTcpServer;

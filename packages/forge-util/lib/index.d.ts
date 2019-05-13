@@ -3,6 +3,8 @@
 /**
  *	Validates if a value is an Uint8Array.
  *
+ * @public
+ * @static
  * @param {*} value - value to validate
  * @returns {Boolean} boolean indicating if a value is an Uint8Array
  */
@@ -27,8 +29,8 @@ declare namespace _Lib {
     bytesToHex: (bytes: any[]) => string;
     toHex: (value: any, returnType: boolean) => string;
     numberToString: (arg: any) => any;
-    fromUnitToToken: (input: any, decimal?: number, optionsInput: any) => string;
-    fromTokenToUnit: (input: any, decimal?: number) => any;
+    fromUnitToToken: (input: string | number, decimal?: number, optionsInput: any) => string;
+    fromTokenToUnit: (input: string, decimal?: number) => any;
     toBN: (number: any) => any;
   }
 }
