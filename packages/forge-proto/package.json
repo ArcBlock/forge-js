@@ -51,7 +51,7 @@
     "gen": "node tools/gen-proto-entry.js full && node tools/gen-proto-entry.js lite",
     "format-docs": "remark . -o",
     "generate-docs": "jsdoc2md init.js > docs/README.md",
-    "generate-dts": "j2d index.js && node tools/generate-dts.js && bash tools/patch-dts.sh",
+    "generate-dts": "j2d index.js && j2d lite.js && node tools/generate-dts.js && bash tools/patch-dts.sh",
     "lint": "eslint tests index.js",
     "precommit": "CI=1 yarn test",
     "prepush": "CI=1 yarn test",
