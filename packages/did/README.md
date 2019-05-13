@@ -10,7 +10,6 @@ yarn add @arcblock/mcrypto @arcblock/did
 
 ```javascript
 const Mcrypto = require('@arcblock/mcrypto');
-const randomBytes = require('randombytes');
 const { fromSecretKey, fromPublicKey, fromAppDID } = require('@arcblock/did');
 
 const { types } = Mcrypto;

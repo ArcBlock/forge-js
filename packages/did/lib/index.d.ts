@@ -23,7 +23,6 @@ declare namespace _Lib {
   export interface T100 {
     types: T107;
     toStrictHex: (hex: string, length: number) => string;
-    fromAppDID: (appDID: string, seed: string, type?: any, index?: number) => string;
     fromSecretKey: (sk: string, type: any) => string;
     fromPublicKey: (pk: string, type: any) => string;
     toTypeInfo: (did: string, returnString?: boolean) => any;
