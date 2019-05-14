@@ -92,7 +92,24 @@ module.exports = class Handlers {
       }
     });
 
-    // 3. Wallet: fetch auth request
+    // 3. WEB: to expire old token
+    app.get(`${prefix}/${action}/timeout`, async (req, res) => {
+      try {
+        const { token } = req.query;
+        if (!token) {
+          res.status(400).json({ error: 'token is required to mark as expired' });
+          return;
+        }
+
+        await this.storage.delete(token);
+        res.status(200).json({ token });
+      } catch (err) {
+        res.json({ error: err.message });
+        onError(err);
+      }
+    });
+
+    // 4. Wallet: fetch auth request
     app.get(pathname, async (req, res) => {
       const { userDid: did, userPk, token } = req.query;
       if (!did) {
@@ -134,7 +151,7 @@ module.exports = class Handlers {
       }
     });
 
-    // 4. Wallet: submit auth response
+    // 5. Wallet: submit auth response
     app.post(pathname, async (req, res) => {
       try {
         const params = Object.assign({}, req.body, req.query);
