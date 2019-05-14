@@ -1,3 +1,7 @@
+## 0.26.11 (May 14, 2019)
+  - feat: add api to mark token as expired in did handler
+  - update readme
+
 ## 0.26.10 (May 13, 2019)
   - chore: move `fromAppDiD` out of abt-did lib since it will not be used widely and has many dependency #277
   - chore: enable travis ci on node 8,10,12
