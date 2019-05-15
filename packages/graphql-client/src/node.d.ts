@@ -29,26 +29,38 @@ declare class GraphQLClient {
   generateSubscriptionFns(): void;
   generateMutationFns(): void;
 
-  sendDeclareTx(
-    param: GraphQLClient.TxParam<GraphQLClient.DeclareTx>
-  ): Promise<GraphQLClient.ResponseSendTx>;
-  sendAccountMigrateTx(
-    param: GraphQLClient.TxParam<GraphQLClient.AccountMigrateTx>
-  ): Promise<GraphQLClient.ResponseSendTx>;
-  sendDeclareFileTx(
-    param: GraphQLClient.TxParam<GraphQLClient.DeclareFileTx>
+  sendRevokeTetherTx(
+    param: GraphQLClient.TxParam<GraphQLClient.RevokeTetherTx>
   ): Promise<GraphQLClient.ResponseSendTx>;
   sendExchangeTetherTx(
     param: GraphQLClient.TxParam<GraphQLClient.ExchangeTetherTx>
   ): Promise<GraphQLClient.ResponseSendTx>;
+  sendWithdrawTetherTx(
+    param: GraphQLClient.TxParam<GraphQLClient.WithdrawTetherTx>
+  ): Promise<GraphQLClient.ResponseSendTx>;
+  sendDeclareFileTx(
+    param: GraphQLClient.TxParam<GraphQLClient.DeclareFileTx>
+  ): Promise<GraphQLClient.ResponseSendTx>;
+  sendAccountMigrateTx(
+    param: GraphQLClient.TxParam<GraphQLClient.AccountMigrateTx>
+  ): Promise<GraphQLClient.ResponseSendTx>;
   sendTransferTx(
     param: GraphQLClient.TxParam<GraphQLClient.TransferTx>
   ): Promise<GraphQLClient.ResponseSendTx>;
-  sendPokeTx(
-    param: GraphQLClient.TxParam<GraphQLClient.PokeTx>
+  sendExchangeTx(
+    param: GraphQLClient.TxParam<GraphQLClient.ExchangeTx>
+  ): Promise<GraphQLClient.ResponseSendTx>;
+  sendCreateAssetTx(
+    param: GraphQLClient.TxParam<GraphQLClient.CreateAssetTx>
+  ): Promise<GraphQLClient.ResponseSendTx>;
+  sendAcquireAssetTx(
+    param: GraphQLClient.TxParam<GraphQLClient.AcquireAssetTx>
   ): Promise<GraphQLClient.ResponseSendTx>;
   sendDepositTetherTx(
     param: GraphQLClient.TxParam<GraphQLClient.DepositTetherTx>
+  ): Promise<GraphQLClient.ResponseSendTx>;
+  sendApproveTetherTx(
+    param: GraphQLClient.TxParam<GraphQLClient.ApproveTetherTx>
   ): Promise<GraphQLClient.ResponseSendTx>;
   sendUpgradeNodeTx(
     param: GraphQLClient.TxParam<GraphQLClient.UpgradeNodeTx>
@@ -59,41 +71,50 @@ declare class GraphQLClient {
   sendConsumeAssetTx(
     param: GraphQLClient.TxParam<GraphQLClient.ConsumeAssetTx>
   ): Promise<GraphQLClient.ResponseSendTx>;
-  sendCreateAssetTx(
-    param: GraphQLClient.TxParam<GraphQLClient.CreateAssetTx>
-  ): Promise<GraphQLClient.ResponseSendTx>;
   sendDeployProtocolTx(
     param: GraphQLClient.TxParam<GraphQLClient.DeployProtocolTx>
   ): Promise<GraphQLClient.ResponseSendTx>;
-  sendAcquireAssetTx(
-    param: GraphQLClient.TxParam<GraphQLClient.AcquireAssetTx>
+  sendPokeTx(
+    param: GraphQLClient.TxParam<GraphQLClient.PokeTx>
   ): Promise<GraphQLClient.ResponseSendTx>;
-  sendExchangeTx(
-    param: GraphQLClient.TxParam<GraphQLClient.ExchangeTx>
+  sendDeclareTx(
+    param: GraphQLClient.TxParam<GraphQLClient.DeclareTx>
   ): Promise<GraphQLClient.ResponseSendTx>;
   sendStakeTx(
     param: GraphQLClient.TxParam<GraphQLClient.StakeTx>
   ): Promise<GraphQLClient.ResponseSendTx>;
-  encodeDeclareTx(
-    param: GraphQLClient.TxParam<GraphQLClient.DeclareTx>
-  ): Promise<GraphQLClient.EncodeTxResult>;
-  encodeAccountMigrateTx(
-    param: GraphQLClient.TxParam<GraphQLClient.AccountMigrateTx>
-  ): Promise<GraphQLClient.EncodeTxResult>;
-  encodeDeclareFileTx(
-    param: GraphQLClient.TxParam<GraphQLClient.DeclareFileTx>
+  encodeRevokeTetherTx(
+    param: GraphQLClient.TxParam<GraphQLClient.RevokeTetherTx>
   ): Promise<GraphQLClient.EncodeTxResult>;
   encodeExchangeTetherTx(
     param: GraphQLClient.TxParam<GraphQLClient.ExchangeTetherTx>
   ): Promise<GraphQLClient.EncodeTxResult>;
+  encodeWithdrawTetherTx(
+    param: GraphQLClient.TxParam<GraphQLClient.WithdrawTetherTx>
+  ): Promise<GraphQLClient.EncodeTxResult>;
+  encodeDeclareFileTx(
+    param: GraphQLClient.TxParam<GraphQLClient.DeclareFileTx>
+  ): Promise<GraphQLClient.EncodeTxResult>;
+  encodeAccountMigrateTx(
+    param: GraphQLClient.TxParam<GraphQLClient.AccountMigrateTx>
+  ): Promise<GraphQLClient.EncodeTxResult>;
   encodeTransferTx(
     param: GraphQLClient.TxParam<GraphQLClient.TransferTx>
   ): Promise<GraphQLClient.EncodeTxResult>;
-  encodePokeTx(
-    param: GraphQLClient.TxParam<GraphQLClient.PokeTx>
+  encodeExchangeTx(
+    param: GraphQLClient.TxParam<GraphQLClient.ExchangeTx>
+  ): Promise<GraphQLClient.EncodeTxResult>;
+  encodeCreateAssetTx(
+    param: GraphQLClient.TxParam<GraphQLClient.CreateAssetTx>
+  ): Promise<GraphQLClient.EncodeTxResult>;
+  encodeAcquireAssetTx(
+    param: GraphQLClient.TxParam<GraphQLClient.AcquireAssetTx>
   ): Promise<GraphQLClient.EncodeTxResult>;
   encodeDepositTetherTx(
     param: GraphQLClient.TxParam<GraphQLClient.DepositTetherTx>
+  ): Promise<GraphQLClient.EncodeTxResult>;
+  encodeApproveTetherTx(
+    param: GraphQLClient.TxParam<GraphQLClient.ApproveTetherTx>
   ): Promise<GraphQLClient.EncodeTxResult>;
   encodeUpgradeNodeTx(
     param: GraphQLClient.TxParam<GraphQLClient.UpgradeNodeTx>
@@ -104,17 +125,14 @@ declare class GraphQLClient {
   encodeConsumeAssetTx(
     param: GraphQLClient.TxParam<GraphQLClient.ConsumeAssetTx>
   ): Promise<GraphQLClient.EncodeTxResult>;
-  encodeCreateAssetTx(
-    param: GraphQLClient.TxParam<GraphQLClient.CreateAssetTx>
-  ): Promise<GraphQLClient.EncodeTxResult>;
   encodeDeployProtocolTx(
     param: GraphQLClient.TxParam<GraphQLClient.DeployProtocolTx>
   ): Promise<GraphQLClient.EncodeTxResult>;
-  encodeAcquireAssetTx(
-    param: GraphQLClient.TxParam<GraphQLClient.AcquireAssetTx>
+  encodePokeTx(
+    param: GraphQLClient.TxParam<GraphQLClient.PokeTx>
   ): Promise<GraphQLClient.EncodeTxResult>;
-  encodeExchangeTx(
-    param: GraphQLClient.TxParam<GraphQLClient.ExchangeTx>
+  encodeDeclareTx(
+    param: GraphQLClient.TxParam<GraphQLClient.DeclareTx>
   ): Promise<GraphQLClient.EncodeTxResult>;
   encodeStakeTx(
     param: GraphQLClient.TxParam<GraphQLClient.StakeTx>
@@ -298,51 +316,53 @@ declare namespace GraphQLClient {
   }
 
   export enum StatusCode {
-    INSUFFICIENT_FUND,
-    INVALID_MONIKER,
-    DUPLICATE_TETHER,
-    EXCEED_DEPOSIT_CAP,
-    INVALID_LOCK_STATUS,
-    INVALID_SIGNER_STATE,
-    CONSUMED_ASSET,
-    UNSUPPORTED_STAKE,
-    INVALID_NONCE,
-    INSUFFICIENT_DATA,
-    EXPIRED_WALLET_TOKEN,
-    INVALID_SIGNATURE,
-    INVALID_TX,
-    INVALID_TX_SIZE,
-    INVALID_RECEIVER_STATE,
     STORAGE_RPC_ERROR,
-    ACCOUNT_MIGRATED,
-    INVALID_MULTISIG,
-    FORBIDDEN,
-    INVALID_DEPOSITOR,
-    NOENT,
-    UNTRANSFERRABLE_ASSET,
-    INVALID_WALLET,
-    READONLY_ASSET,
-    INVALID_PASSPHRASE,
-    INSUFFICIENT_STAKE,
-    INVALID_EXPIRY_DATE,
-    CONSENSUS_RPC_ERROR,
-    INVALID_SENDER_STATE,
-    INVALID_DEPOSIT_VALUE,
-    INVALID_REQUEST,
-    INVALID_WITHDRAWER,
-    INVALID_CHAIN_ID,
-    TIMEOUT,
-    INVALID_OWNER,
-    INVALID_STAKE_STATE,
-    INVALID_DEPOSIT_TARGET,
-    BANNED_UNSTAKE,
-    UNSUPPORTED_TX,
-    INVALID_FORGE_STATE,
     TOO_MANY_TXS,
-    INVALID_ASSET,
-    EXPIRED_TX,
-    INTERNAL,
+    INVALID_CHAIN_ID,
+    ACCOUNT_MIGRATED,
+    INVALID_FORGE_STATE,
+    INVALID_PASSPHRASE,
+    INVALID_CUSTODIAN,
+    INVALID_SIGNER_STATE,
+    READONLY_ASSET,
+    INVALID_EXPIRY_DATE,
+    INVALID_MONIKER,
+    UNTRANSFERRABLE_ASSET,
+    INVALID_RECEIVER_STATE,
     EXPIRED_ASSET,
+    INVALID_ASSET,
+    INVALID_STAKE_STATE,
+    EXPIRED_TX,
+    DUPLICATE_TETHER,
+    BANNED_UNSTAKE,
+    INVALID_LOCK_STATUS,
+    INVALID_WALLET,
+    INVALID_SENDER_STATE,
+    INVALID_REQUEST,
+    INVALID_SIGNATURE,
+    INSUFFICIENT_DATA,
+    CONSUMED_ASSET,
+    INVALID_DEPOSIT_TARGET,
+    NOENT,
+    INVALID_OWNER,
+    INVALID_DEPOSIT,
+    INVALID_MULTISIG,
+    INVALID_TX_SIZE,
+    INVALID_DEPOSIT_VALUE,
+    INSUFFICIENT_STAKE,
+    TIMEOUT,
+    EXPIRED_WALLET_TOKEN,
+    INVALID_NONCE,
+    INVALID_DEPOSITOR,
+    INVALID_TX,
+    EXCEED_DEPOSIT_CAP,
+    INVALID_WITHDRAWER,
+    FORBIDDEN,
+    INSUFFICIENT_FUND,
+    CONSENSUS_RPC_ERROR,
+    UNSUPPORTED_TX,
+    INTERNAL,
+    UNSUPPORTED_STAKE,
     OK,
   }
 

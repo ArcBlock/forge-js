@@ -1,6 +1,6 @@
 TOP_DIR=.
 README=$(TOP_DIR)/README.md
-SDK_VERSION=0.25
+SDK_VERSION=0.27
 
 VERSION=$(strip $(shell cat version))
 
