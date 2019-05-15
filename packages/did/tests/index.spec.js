@@ -1,8 +1,11 @@
 const base64 = require('base64-url');
+const Mcrypto = require('@arcblock/mcrypto');
 const {
   types,
   fromSecretKey,
   fromPublicKey,
+  fromPublicKeyHash,
+  fromHash,
   toTypeInfo,
   fromTypeInfo,
   isValid,
@@ -27,6 +30,8 @@ describe('@arcblock/did', () => {
   it('should have functions', () => {
     expect(typeof fromSecretKey).toEqual('function');
     expect(typeof fromPublicKey).toEqual('function');
+    expect(typeof fromPublicKeyHash).toEqual('function');
+    expect(typeof fromHash).toEqual('function');
 
     expect(typeof fromTypeInfo).toEqual('function');
     expect(typeof toTypeInfo).toEqual('function');
@@ -52,6 +57,16 @@ describe('@arcblock/did', () => {
         hash: types.HashType.SHA3,
       })
     ).toEqual(appIdSecp256k1);
+  });
+
+  it('should generate expected did from public key hash', () => {
+    const address = fromPublicKeyHash(Mcrypto.Hasher.SHA3.hash256(pk), appType);
+    expect(address).toEqual(appId);
+  });
+
+  it('should generate expected did from hash', () => {
+    const address = fromHash(Mcrypto.Hasher.SHA3.hash256(pk), types.RoleType.ROLE_APPLICATION);
+    expect(address).toEqual(appId);
   });
 
   it('should get type info as expected', () => {
