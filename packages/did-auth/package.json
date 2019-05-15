@@ -23,7 +23,6 @@
     "multibase": "^0.6.0"
   },
   "devDependencies": {
-    "j2d": "^1.0.3-dev",
     "jest": "^23.5.0",
     "remark-cli": "^5.0.0",
     "remark-preset-github": "^0.0.9"

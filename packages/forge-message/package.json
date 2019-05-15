@@ -26,7 +26,6 @@
     "google-protobuf": "3.7.0-rc.2"
   },
   "devDependencies": {
-    "j2d": "^1.0.3-dev",
     "jest": "^23.5.0",
     "jsdoc-to-markdown": "^4.0.1",
     "remark-cli": "^5.0.0",
