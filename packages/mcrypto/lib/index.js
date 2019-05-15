@@ -113,6 +113,7 @@ const Mcrypto = (module.exports = {
       SHA3_384: 3,
       KECCAK_512: 4,
       SHA3_512: 5,
+      SHA2: 6,
     },
     /**
      * DID wallet role type
@@ -134,6 +135,8 @@ const Mcrypto = (module.exports = {
       ROLE_STAKE: 7,
       ROLE_VALIDATOR: 8,
       ROLE_GROUP: 9,
+      ROLE_TX: 10,
+      ROLE_TETHER: 11,
       ROLE_ANY: 63,
     },
     /**

@@ -17,7 +17,7 @@ describe('#toAssetAddress', () => {
       })
     );
     const itx = {
-      moniker: 'ABTWalletHelloWorld',
+      moniker: 'ABT Wallet Demo Course',
       pk: Buffer.from(hexToBytes(wallet.publicKey)),
       readonly: true,
       transferrable: false,
@@ -37,7 +37,7 @@ describe('#toAssetAddress', () => {
       },
     };
 
-    expect(toAssetAddress(itx, wallet.toAddress())).toEqual('zjdjo9SJJ6CLn2CBMn84fD4f6spiyKDJA8ov');
+    expect(toAssetAddress(itx, wallet.toAddress())).toEqual('zjdfDYa9m3eBHnAy2djWENwsuDbVQDP9Cz4M');
   });
 });
 
