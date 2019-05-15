@@ -1,7 +1,7 @@
-// Generate by [js2dts@0.3.2](https://github.com/whxaxes/js2dts#readme)
+// Generate by [js2dts@0.3.3](https://github.com/whxaxes/js2dts#readme)
 
-declare const ForgeProto: ForgeProto.T101;
-declare namespace ForgeProto {
+declare const _ArcblockForgeProto: _ArcblockForgeProto.T101;
+declare namespace _ArcblockForgeProto {
   export interface T100 {
     [key: string]: any;
   }
@@ -14,7 +14,7 @@ declare namespace ForgeProto {
      * @static
      * @readonly
      */
-    enums: Enums.main;
+    enums: _ArcblockForgeProto.T100;
     /**
      * All enum types and its values (human readable string format), can be accessed from width: messages.KEY_TYPE.ED25519
      *
@@ -23,18 +23,18 @@ declare namespace ForgeProto {
      * @static
      * @readonly
      */
-    messages: Messages.main;
+    messages: _ArcblockForgeProto.T100;
     transactions: any;
     stakes: any;
-    rpcs: ForgeProto.T100;
+    rpcs: _ArcblockForgeProto.T100;
     compactSpec: (object: any) => any;
     getMessageType: (type: string) => any;
-    typeUrls: ForgeProto.T100;
+    typeUrls: _ArcblockForgeProto.T100;
     toTypeUrl: (type: string) => string;
     fromTypeUrl: (url: string) => string;
   }
 }
-export = ForgeProto;
+export = _ArcblockForgeProto;
 
 declare namespace Enums {
   export enum StatusCode {
@@ -81,6 +81,8 @@ declare namespace Enums {
     INVALID_WITHDRAWER = 47,
     DUPLICATE_TETHER = 48,
     INVALID_EXPIRY_DATE = 49,
+    INVALID_DEPOSIT = 50,
+    INVALID_CUSTODIAN = 51,
     FORBIDDEN = 403,
     INTERNAL = 500,
     TIMEOUT = 504,
@@ -210,20 +212,23 @@ declare namespace Enums {
     0 = ConsensusUpgradeTx,
     1 = DeployProtocolTx,
     2 = SysUpgradeTx,
-    3 = AccountMigrateTx,
-    4 = DeclareTx,
-    5 = AcquireAssetTx,
-    6 = DeclareFileTx,
-    7 = PokeTx,
-    8 = ExchangeTetherTx,
-    9 = ConsumeAssetTx,
-    10 = UpgradeNodeTx,
-    11 = UpdateAssetTx,
-    12 = CreateAssetTx,
-    13 = DepositTetherTx,
-    14 = ExchangeTx,
-    15 = StakeTx,
-    16 = TransferTx,
+    3 = ExchangeTetherTx,
+    4 = WithdrawTetherTx,
+    5 = AccountMigrateTx,
+    6 = DeclareTx,
+    7 = AcquireAssetTx,
+    8 = DeclareFileTx,
+    9 = StakeTx,
+    10 = CreateAssetTx,
+    11 = ExchangeTx,
+    12 = DepositTetherTx,
+    13 = ApproveTetherTx,
+    14 = ConsumeAssetTx,
+    15 = UpgradeNodeTx,
+    16 = UpdateAssetTx,
+    17 = TransferTx,
+    18 = PokeTx,
+    19 = RevokeTetherTx,
   }
 
   export enum SupportedStakes {
@@ -296,6 +301,8 @@ declare namespace Messages {
     47 = INVALID_WITHDRAWER,
     48 = DUPLICATE_TETHER,
     49 = INVALID_EXPIRY_DATE,
+    50 = INVALID_DEPOSIT,
+    51 = INVALID_CUSTODIAN,
     403 = FORBIDDEN,
     500 = INTERNAL,
     504 = TIMEOUT,
