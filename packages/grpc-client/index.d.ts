@@ -1,4 +1,4 @@
-// Generate by [js2dts@0.3.2](https://github.com/whxaxes/js2dts#readme)
+// Generate by [js2dts@0.3.3](https://github.com/whxaxes/js2dts#readme)
 
 /**
  * An grpc client that can read/write data to a forge powered blockchain node, can be used only in node.js
@@ -147,6 +147,12 @@ declare class GRpcClient {
   encodeSysUpgradeTx(
     param: GRpcClient.TxParam<GRpcClient.SysUpgradeTx>
   ): Promise<GRpcClient.ResponseSendTx>;
+  encodeExchangeTetherTx(
+    param: GRpcClient.TxParam<GRpcClient.ExchangeTetherTx>
+  ): Promise<GRpcClient.ResponseSendTx>;
+  encodeWithdrawTetherTx(
+    param: GRpcClient.TxParam<GRpcClient.WithdrawTetherTx>
+  ): Promise<GRpcClient.ResponseSendTx>;
   encodeAccountMigrateTx(
     param: GRpcClient.TxParam<GRpcClient.AccountMigrateTx>
   ): Promise<GRpcClient.ResponseSendTx>;
@@ -159,9 +165,18 @@ declare class GRpcClient {
   encodeDeclareFileTx(
     param: GRpcClient.TxParam<GRpcClient.DeclareFileTx>
   ): Promise<GRpcClient.ResponseSendTx>;
-  encodePokeTx(param: GRpcClient.TxParam<GRpcClient.PokeTx>): Promise<GRpcClient.ResponseSendTx>;
-  encodeExchangeTetherTx(
-    param: GRpcClient.TxParam<GRpcClient.ExchangeTetherTx>
+  encodeStakeTx(param: GRpcClient.TxParam<GRpcClient.StakeTx>): Promise<GRpcClient.ResponseSendTx>;
+  encodeCreateAssetTx(
+    param: GRpcClient.TxParam<GRpcClient.CreateAssetTx>
+  ): Promise<GRpcClient.ResponseSendTx>;
+  encodeExchangeTx(
+    param: GRpcClient.TxParam<GRpcClient.ExchangeTx>
+  ): Promise<GRpcClient.ResponseSendTx>;
+  encodeDepositTetherTx(
+    param: GRpcClient.TxParam<GRpcClient.DepositTetherTx>
+  ): Promise<GRpcClient.ResponseSendTx>;
+  encodeApproveTetherTx(
+    param: GRpcClient.TxParam<GRpcClient.ApproveTetherTx>
   ): Promise<GRpcClient.ResponseSendTx>;
   encodeConsumeAssetTx(
     param: GRpcClient.TxParam<GRpcClient.ConsumeAssetTx>
@@ -172,18 +187,12 @@ declare class GRpcClient {
   encodeUpdateAssetTx(
     param: GRpcClient.TxParam<GRpcClient.UpdateAssetTx>
   ): Promise<GRpcClient.ResponseSendTx>;
-  encodeCreateAssetTx(
-    param: GRpcClient.TxParam<GRpcClient.CreateAssetTx>
-  ): Promise<GRpcClient.ResponseSendTx>;
-  encodeDepositTetherTx(
-    param: GRpcClient.TxParam<GRpcClient.DepositTetherTx>
-  ): Promise<GRpcClient.ResponseSendTx>;
-  encodeExchangeTx(
-    param: GRpcClient.TxParam<GRpcClient.ExchangeTx>
-  ): Promise<GRpcClient.ResponseSendTx>;
-  encodeStakeTx(param: GRpcClient.TxParam<GRpcClient.StakeTx>): Promise<GRpcClient.ResponseSendTx>;
   encodeTransferTx(
     param: GRpcClient.TxParam<GRpcClient.TransferTx>
+  ): Promise<GRpcClient.ResponseSendTx>;
+  encodePokeTx(param: GRpcClient.TxParam<GRpcClient.PokeTx>): Promise<GRpcClient.ResponseSendTx>;
+  encodeRevokeTetherTx(
+    param: GRpcClient.TxParam<GRpcClient.RevokeTetherTx>
   ): Promise<GRpcClient.ResponseSendTx>;
   sendConsensusUpgradeTx(
     param: GRpcClient.TxParam<GRpcClient.ConsensusUpgradeTx>
@@ -193,6 +202,12 @@ declare class GRpcClient {
   ): Promise<GRpcClient.EncodeTxResult>;
   sendSysUpgradeTx(
     param: GRpcClient.TxParam<GRpcClient.SysUpgradeTx>
+  ): Promise<GRpcClient.EncodeTxResult>;
+  sendExchangeTetherTx(
+    param: GRpcClient.TxParam<GRpcClient.ExchangeTetherTx>
+  ): Promise<GRpcClient.EncodeTxResult>;
+  sendWithdrawTetherTx(
+    param: GRpcClient.TxParam<GRpcClient.WithdrawTetherTx>
   ): Promise<GRpcClient.EncodeTxResult>;
   sendAccountMigrateTx(
     param: GRpcClient.TxParam<GRpcClient.AccountMigrateTx>
@@ -206,9 +221,18 @@ declare class GRpcClient {
   sendDeclareFileTx(
     param: GRpcClient.TxParam<GRpcClient.DeclareFileTx>
   ): Promise<GRpcClient.EncodeTxResult>;
-  sendPokeTx(param: GRpcClient.TxParam<GRpcClient.PokeTx>): Promise<GRpcClient.EncodeTxResult>;
-  sendExchangeTetherTx(
-    param: GRpcClient.TxParam<GRpcClient.ExchangeTetherTx>
+  sendStakeTx(param: GRpcClient.TxParam<GRpcClient.StakeTx>): Promise<GRpcClient.EncodeTxResult>;
+  sendCreateAssetTx(
+    param: GRpcClient.TxParam<GRpcClient.CreateAssetTx>
+  ): Promise<GRpcClient.EncodeTxResult>;
+  sendExchangeTx(
+    param: GRpcClient.TxParam<GRpcClient.ExchangeTx>
+  ): Promise<GRpcClient.EncodeTxResult>;
+  sendDepositTetherTx(
+    param: GRpcClient.TxParam<GRpcClient.DepositTetherTx>
+  ): Promise<GRpcClient.EncodeTxResult>;
+  sendApproveTetherTx(
+    param: GRpcClient.TxParam<GRpcClient.ApproveTetherTx>
   ): Promise<GRpcClient.EncodeTxResult>;
   sendConsumeAssetTx(
     param: GRpcClient.TxParam<GRpcClient.ConsumeAssetTx>
@@ -219,18 +243,12 @@ declare class GRpcClient {
   sendUpdateAssetTx(
     param: GRpcClient.TxParam<GRpcClient.UpdateAssetTx>
   ): Promise<GRpcClient.EncodeTxResult>;
-  sendCreateAssetTx(
-    param: GRpcClient.TxParam<GRpcClient.CreateAssetTx>
-  ): Promise<GRpcClient.EncodeTxResult>;
-  sendDepositTetherTx(
-    param: GRpcClient.TxParam<GRpcClient.DepositTetherTx>
-  ): Promise<GRpcClient.EncodeTxResult>;
-  sendExchangeTx(
-    param: GRpcClient.TxParam<GRpcClient.ExchangeTx>
-  ): Promise<GRpcClient.EncodeTxResult>;
-  sendStakeTx(param: GRpcClient.TxParam<GRpcClient.StakeTx>): Promise<GRpcClient.EncodeTxResult>;
   sendTransferTx(
     param: GRpcClient.TxParam<GRpcClient.TransferTx>
+  ): Promise<GRpcClient.EncodeTxResult>;
+  sendPokeTx(param: GRpcClient.TxParam<GRpcClient.PokeTx>): Promise<GRpcClient.EncodeTxResult>;
+  sendRevokeTetherTx(
+    param: GRpcClient.TxParam<GRpcClient.RevokeTetherTx>
   ): Promise<GRpcClient.EncodeTxResult>;
 
   /**
@@ -288,6 +306,8 @@ declare namespace forge_abi {
     INVALID_WITHDRAWER = 47,
     DUPLICATE_TETHER = 48,
     INVALID_EXPIRY_DATE = 49,
+    INVALID_DEPOSIT = 50,
+    INVALID_CUSTODIAN = 51,
     FORBIDDEN = 403,
     INTERNAL = 500,
     TIMEOUT = 504,
@@ -1490,6 +1510,11 @@ declare namespace forge_abi {
     data: google.protobuf.Any;
   }
 
+  export interface ApproveTetherTx {
+    withdraw: string;
+    data: google.protobuf.Any;
+  }
+
   export interface ConsumeAssetTx {
     issuer: string;
     address: string;
@@ -1519,6 +1544,7 @@ declare namespace forge_abi {
     allowedSpecArgs: Array<string>;
     assetName: string;
     attributes: forge_abi.AssetAttributes;
+    data: google.protobuf.Any;
   }
 
   export interface AssetFactoryState {
@@ -1530,6 +1556,7 @@ declare namespace forge_abi {
     assetName: string;
     attributes: forge_abi.AssetAttributes;
     numCreated: number;
+    data: google.protobuf.Any;
   }
 
   export interface DeclareTx {
@@ -1567,7 +1594,7 @@ declare namespace forge_abi {
   export interface TetherExchangeInfo {
     value: forge_abi.BigUint;
     assets: Array<string>;
-    deposits: Array<forge_abi.Transaction>;
+    deposit: forge_abi.Transaction;
   }
 
   export interface ExchangeTetherTx {
@@ -1583,6 +1610,11 @@ declare namespace forge_abi {
     data: google.protobuf.Any;
   }
 
+  export interface RevokeTetherTx {
+    tether: string;
+    data: google.protobuf.Any;
+  }
+
   export interface stakeForAsset {}
 
   export interface stakeForChain {}
@@ -1595,6 +1627,7 @@ declare namespace forge_abi {
     to: string;
     value: forge_abi.BigSint;
     message: string;
+    address: string;
     data: google.protobuf.Any;
   }
 
@@ -1615,6 +1648,25 @@ declare namespace forge_abi {
     height: number;
     version: string;
     override: boolean;
+  }
+
+  export interface TetherTradeInfo {
+    value: forge_abi.BigUint;
+    assets: Array<string>;
+    tether: string;
+  }
+
+  export interface WithdrawTetherTx {
+    from: string;
+    nonce: number;
+    chainId: string;
+    pk: Uint8Array;
+    signature: Uint8Array;
+    signatures: Array<forge_abi.Multisig>;
+    sender: forge_abi.ExchangeInfo;
+    receiver: forge_abi.TetherTradeInfo;
+    expiredAt: google.protobuf.Timestamp;
+    data: google.protobuf.Any;
   }
 }
 

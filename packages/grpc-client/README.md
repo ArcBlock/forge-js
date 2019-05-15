@@ -13,13 +13,11 @@ A `GRpcClient` instance mainly supports 3 groups of methods that saves you time 
 
 ## Table of Contents
 
-- [**@arcblock/grpc-client**](#arcblockgrpc-client)
-  - [Table of Contents](#table-of-contents)
-  - [Install](#install)
-  - [Usage](#usage)
-  - [Examples](#examples)
-  - [Debugging](#debugging)
-  - [Documentation](#documentation)
+* [Install](#install)
+* [Usage](#usage)
+* [Examples](#examples)
+* [Debugging](#debugging)
+* [Documentation](#documentation)
 
 
 ## Install
