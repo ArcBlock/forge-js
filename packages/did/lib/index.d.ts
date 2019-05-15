@@ -1,4 +1,4 @@
-// Generate by [js2dts@0.3.2](https://github.com/whxaxes/js2dts#readme)
+// Generate by [js2dts@0.3.3](https://github.com/whxaxes/js2dts#readme)
 
 /**
  * Convert did to address: remove `did:abt:` prefix if exists
@@ -25,6 +25,8 @@ declare namespace _Lib {
     toStrictHex: (hex: string, length: number) => string;
     fromSecretKey: (sk: string, type: any) => string;
     fromPublicKey: (pk: string, type: any) => string;
+    fromPublicKeyHash: (buffer: any, type: any) => any;
+    fromHash: (hash: string, role: any) => string;
     toTypeInfo: (did: string, returnString?: boolean) => any;
     toAddress: typeof toAddress;
     toDid: typeof toDid;

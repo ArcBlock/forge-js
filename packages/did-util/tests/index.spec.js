@@ -1,6 +1,3 @@
-const { types } = require('@arcblock/mcrypto');
-const { fromSecretKey, WalletType } = require('@arcblock/forge-wallet');
-const { hexToBytes } = require('@arcblock/forge-util');
 const { toAssetAddress, toStakeAddress } = require('../lib');
 
 describe('#toAssetAddress', () => {
@@ -8,17 +5,8 @@ describe('#toAssetAddress', () => {
     expect(typeof toAssetAddress).toEqual('function');
   });
   test('should return correct address', () => {
-    const wallet = fromSecretKey(
-      '0xac6d1d66322add9e67eb31d26eb30ef108a9cb601bd1323acb637d40469a342cd50c92de3e9387c848c9f8a8d6180502da85ebb761b888cba74c6af090ec65f9',
-      WalletType({
-        role: types.RoleType.ROLE_APPLICATION,
-        pk: types.KeyType.ED25519,
-        hash: types.HashType.SHA3,
-      })
-    );
     const itx = {
       moniker: 'ABT Wallet Demo Course',
-      pk: Buffer.from(hexToBytes(wallet.publicKey)),
       readonly: true,
       transferrable: false,
       parent: '',
@@ -37,7 +25,7 @@ describe('#toAssetAddress', () => {
       },
     };
 
-    expect(toAssetAddress(itx, wallet.toAddress())).toEqual('zjdfDYa9m3eBHnAy2djWENwsuDbVQDP9Cz4M');
+    expect(toAssetAddress(itx)).toEqual('zjdfDYa9m3eBHnAy2djWENwsuDbVQDP9Cz4M');
   });
 });
 
