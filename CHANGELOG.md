@@ -1,3 +1,7 @@
+## 0.27.1 (May 16, 2019)
+  - chore: upgrade node-grpc, and make this lib work with node.js v8.x or above
+  - update readme
+
 ## 0.27.0 (May 16, 2019)
   - chore: upgrade sdk-util dependency version
   - chore: update dts and cleanup test case
