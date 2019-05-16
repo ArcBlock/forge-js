@@ -1,3 +1,15 @@
+## 0.27.0 (May 16, 2019)
+  - chore: upgrade sdk-util dependency version
+  - chore: update dts and cleanup test case
+  - feat: support new asset address generating algorithm
+  - chore: add fromHash and fromPublicKeyHash for did
+  - chore: upgrade graphql-client with forge v0.27.0
+  - chore: upgrade grpc-client with forge v0.27.0
+  - chore: upgrade forge-proto with forge v0.27.0
+  - fix: js2dts dependency
+  - chore: support --yes on forge reset
+  - update readme
+
 ## 0.26.11 (May 14, 2019)
   - feat: add api to mark token as expired in did handler
   - update readme
