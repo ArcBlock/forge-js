@@ -42,6 +42,10 @@ ${packageList.concat(appList).join('\n')}
 
 Checkout [CONTRIBUTION.md](./CONTRIBUTION.md)
 
+## Compatibility
+
+Forge javascript sdk works with node.js v8.x or above, checkout [Travis](https://travis-ci.com/ArcBlock/forge-js/builds) for status.
+
 ## Report a Bug?
 
 Bugs and feature requests please create new issues [here](https://github.com/ArcBlock/forge-js/issues)
