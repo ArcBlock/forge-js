@@ -6,9 +6,10 @@
   version "1.2.0"
   resolved "https://registry.npmjs.org/@arcblock/docblock/-/docblock-1.2.0.tgz#507a428a9276c3cd5c9b74cdda98d1479ce6ca9a"
 
-"@arcblock/sdk-util@^0.19.6":
-  version "0.19.6"
-  resolved "https://registry.npmjs.org/@arcblock/sdk-util/-/sdk-util-0.19.6.tgz#c3d06264caba4e0fc8e1bc1bf3f123ce2115ba15"
+"@arcblock/sdk-util@^0.20.0":
+  version "0.20.0"
+  resolved "https://registry.npmjs.org/@arcblock/sdk-util/-/sdk-util-0.20.0.tgz#5e98f44b00ef560fd44a919bda0a59a20b6bbdfe"
+  integrity sha512-w82gSBrbYexelTVvaJHz6iY6of4M90VplpCr9rEoiQvaBYjMK0t5b2A1gSDL97+up2uKQauqh8OPQsR5z6li6w==
   dependencies:
     axios "^0.18.0"
     debug "^3.1.0"

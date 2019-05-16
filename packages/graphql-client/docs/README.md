@@ -2710,7 +2710,7 @@ Checkout the following snippet for the format of ResponseGetAccountState:
 
 ```json
 {
-  "code": "STORAGE_RPC_ERROR",
+  "code": "INVALID_STAKE_STATE",
   "state": {
     "address": "abc",
     "balance": "abc",
@@ -2720,7 +2720,7 @@ Checkout the following snippet for the format of ResponseGetAccountState:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "STORAGE_RPC_ERROR",
+        "code": "INVALID_STAKE_STATE",
         "createAsset": {
           "asset": "abc"
         },
@@ -2758,7 +2758,7 @@ Checkout the following snippet for the format of ResponseGetAccountState:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "STORAGE_RPC_ERROR",
+        "code": "INVALID_STAKE_STATE",
         "createAsset": {
           "asset": "abc"
         },
@@ -2864,7 +2864,7 @@ Checkout the following snippet for the format of ResponseGetAssetState:
 
 ```json
 {
-  "code": "STORAGE_RPC_ERROR",
+  "code": "INVALID_STAKE_STATE",
   "state": {
     "address": "abc",
     "consumedTime": "2019-04-29T00:00:00.000Z",
@@ -2874,7 +2874,7 @@ Checkout the following snippet for the format of ResponseGetAssetState:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "STORAGE_RPC_ERROR",
+        "code": "INVALID_STAKE_STATE",
         "createAsset": {
           "asset": "abc"
         },
@@ -2912,7 +2912,7 @@ Checkout the following snippet for the format of ResponseGetAssetState:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "STORAGE_RPC_ERROR",
+        "code": "INVALID_STAKE_STATE",
         "createAsset": {
           "asset": "abc"
         },
@@ -3012,7 +3012,7 @@ Checkout the following snippet for the format of ResponseGetBlock:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "STORAGE_RPC_ERROR",
+        "code": "INVALID_STAKE_STATE",
         "createAsset": {
           "asset": "abc"
         },
@@ -3068,7 +3068,7 @@ Checkout the following snippet for the format of ResponseGetBlock:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "STORAGE_RPC_ERROR",
+        "code": "INVALID_STAKE_STATE",
         "createAsset": {
           "asset": "abc"
         },
@@ -3111,7 +3111,7 @@ Checkout the following snippet for the format of ResponseGetBlock:
       "block": "abc"
     }
   },
-  "code": "STORAGE_RPC_ERROR"
+  "code": "INVALID_STAKE_STATE"
 }
 ```
 
@@ -3167,7 +3167,7 @@ Checkout the following snippet for the format of ResponseGetBlocks:
       }
     }
   ],
-  "code": "STORAGE_RPC_ERROR",
+  "code": "INVALID_STAKE_STATE",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -3195,7 +3195,7 @@ Checkout the following snippet for the format of ResponseGetChainInfo:
 
 ```json
 {
-  "code": "STORAGE_RPC_ERROR",
+  "code": "INVALID_STAKE_STATE",
   "info": {
     "address": "abc",
     "appHash": "abc",
@@ -3241,7 +3241,7 @@ Checkout the following snippet for the format of ResponseGetConfig:
 
 ```json
 {
-  "code": "STORAGE_RPC_ERROR",
+  "code": "INVALID_STAKE_STATE",
   "config": "abc"
 }
 ```
@@ -3264,7 +3264,7 @@ Checkout the following snippet for the format of ResponseGetForgeState:
 
 ```json
 {
-  "code": "STORAGE_RPC_ERROR",
+  "code": "INVALID_STAKE_STATE",
   "state": {
     "address": "abc",
     "consensus": {
@@ -3315,7 +3315,7 @@ Checkout the following snippet for the format of ResponseGetForgeState:
               "accountMigrate": {
                 "address": "abc"
               },
-              "code": "STORAGE_RPC_ERROR",
+              "code": "INVALID_STAKE_STATE",
               "createAsset": {
                 "asset": "abc"
               },
@@ -3353,7 +3353,7 @@ Checkout the following snippet for the format of ResponseGetForgeState:
               "accountMigrate": {
                 "address": "abc"
               },
-              "code": "STORAGE_RPC_ERROR",
+              "code": "INVALID_STAKE_STATE",
               "createAsset": {
                 "asset": "abc"
               },
@@ -3454,7 +3454,7 @@ Checkout the following snippet for the format of ResponseGetForgeStats:
 
 ```json
 {
-  "code": "STORAGE_RPC_ERROR",
+  "code": "INVALID_STAKE_STATE",
   "forgeStats": {
     "avgBlockTime": 123,
     "avgTps": 123,
@@ -3532,7 +3532,7 @@ Checkout the following snippet for the format of ResponseGetHealthStatus:
 
 ```json
 {
-  "code": "STORAGE_RPC_ERROR",
+  "code": "INVALID_STAKE_STATE",
   "healthStatus": {
     "consensus": {
       "blockHeight": "abc",
@@ -3583,7 +3583,7 @@ Checkout the following snippet for the format of ResponseGetNetInfo:
 
 ```json
 {
-  "code": "STORAGE_RPC_ERROR",
+  "code": "INVALID_STAKE_STATE",
   "netInfo": {
     "listeners": [
       "abc"
@@ -3627,7 +3627,7 @@ Checkout the following snippet for the format of ResponseGetNodeInfo:
 
 ```json
 {
-  "code": "STORAGE_RPC_ERROR",
+  "code": "INVALID_STAKE_STATE",
   "info": {
     "address": "abc",
     "appHash": "abc",
@@ -3681,7 +3681,7 @@ Checkout the following snippet for the format of ResponseGetProtocolState:
 
 ```json
 {
-  "code": "STORAGE_RPC_ERROR",
+  "code": "INVALID_STAKE_STATE",
   "state": {
     "address": "abc",
     "context": {
@@ -3690,7 +3690,7 @@ Checkout the following snippet for the format of ResponseGetProtocolState:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "STORAGE_RPC_ERROR",
+        "code": "INVALID_STAKE_STATE",
         "createAsset": {
           "asset": "abc"
         },
@@ -3728,7 +3728,7 @@ Checkout the following snippet for the format of ResponseGetProtocolState:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "STORAGE_RPC_ERROR",
+        "code": "INVALID_STAKE_STATE",
         "createAsset": {
           "asset": "abc"
         },
@@ -3827,7 +3827,7 @@ Checkout the following snippet for the format of ResponseGetProtocols:
 
 ```json
 {
-  "code": "STORAGE_RPC_ERROR",
+  "code": "INVALID_STAKE_STATE",
   "protocols": [
     {
       "address": "abc",
@@ -3881,7 +3881,7 @@ Checkout the following snippet for the format of ResponseGetSimulatorStatus:
 
 ```json
 {
-  "code": "STORAGE_RPC_ERROR",
+  "code": "INVALID_STAKE_STATE",
   "result": "abc"
 }
 ```
@@ -3904,7 +3904,7 @@ Checkout the following snippet for the format of ResponseGetStakeState:
 
 ```json
 {
-  "code": "STORAGE_RPC_ERROR",
+  "code": "INVALID_STAKE_STATE",
   "state": {
     "address": "abc",
     "balance": "abc",
@@ -3914,7 +3914,7 @@ Checkout the following snippet for the format of ResponseGetStakeState:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "STORAGE_RPC_ERROR",
+        "code": "INVALID_STAKE_STATE",
         "createAsset": {
           "asset": "abc"
         },
@@ -3952,7 +3952,7 @@ Checkout the following snippet for the format of ResponseGetStakeState:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "STORAGE_RPC_ERROR",
+        "code": "INVALID_STAKE_STATE",
         "createAsset": {
           "asset": "abc"
         },
@@ -4015,7 +4015,7 @@ Checkout the following snippet for the format of ResponseGetTetherState:
 
 ```json
 {
-  "code": "STORAGE_RPC_ERROR",
+  "code": "INVALID_STAKE_STATE",
   "state": {
     "address": "abc",
     "available": true,
@@ -4050,12 +4050,12 @@ Checkout the following snippet for the format of ResponseGetTx:
 
 ```json
 {
-  "code": "STORAGE_RPC_ERROR",
+  "code": "INVALID_STAKE_STATE",
   "info": {
     "accountMigrate": {
       "address": "abc"
     },
-    "code": "STORAGE_RPC_ERROR",
+    "code": "INVALID_STAKE_STATE",
     "createAsset": {
       "asset": "abc"
     },
@@ -4109,7 +4109,7 @@ Checkout the following snippet for the format of ResponseGetUnconfirmedTxs:
 
 ```json
 {
-  "code": "STORAGE_RPC_ERROR",
+  "code": "INVALID_STAKE_STATE",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -4160,7 +4160,7 @@ Checkout the following snippet for the format of ResponseGetValidatorsInfo:
 
 ```json
 {
-  "code": "STORAGE_RPC_ERROR",
+  "code": "INVALID_STAKE_STATE",
   "validatorsInfo": {
     "blockHeight": "abc",
     "validators": [
@@ -4203,7 +4203,7 @@ Checkout the following snippet for the format of ResponseListAssetTransactions:
 
 ```json
 {
-  "code": "STORAGE_RPC_ERROR",
+  "code": "INVALID_STAKE_STATE",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -4211,7 +4211,7 @@ Checkout the following snippet for the format of ResponseListAssetTransactions:
   },
   "transactions": [
     {
-      "code": "STORAGE_RPC_ERROR",
+      "code": "INVALID_STAKE_STATE",
       "hash": "abc",
       "receiver": "abc",
       "sender": "abc",
@@ -4288,7 +4288,7 @@ Checkout the following snippet for the format of ResponseListAssets:
       "renaissanceTime": "abc"
     }
   ],
-  "code": "STORAGE_RPC_ERROR",
+  "code": "INVALID_STAKE_STATE",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -4326,7 +4326,7 @@ Checkout the following snippet for the format of ResponseListBlocks:
       "time": "abc"
     }
   ],
-  "code": "STORAGE_RPC_ERROR",
+  "code": "INVALID_STAKE_STATE",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -4354,7 +4354,7 @@ Checkout the following snippet for the format of ResponseListStakes:
 
 ```json
 {
-  "code": "STORAGE_RPC_ERROR",
+  "code": "INVALID_STAKE_STATE",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -4414,7 +4414,7 @@ Checkout the following snippet for the format of ResponseListTopAccounts:
       "totalUnstakes": "abc"
     }
   ],
-  "code": "STORAGE_RPC_ERROR",
+  "code": "INVALID_STAKE_STATE",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -4442,7 +4442,7 @@ Checkout the following snippet for the format of ResponseListTransactions:
 
 ```json
 {
-  "code": "STORAGE_RPC_ERROR",
+  "code": "INVALID_STAKE_STATE",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -4450,7 +4450,7 @@ Checkout the following snippet for the format of ResponseListTransactions:
   },
   "transactions": [
     {
-      "code": "STORAGE_RPC_ERROR",
+      "code": "INVALID_STAKE_STATE",
       "hash": "abc",
       "receiver": "abc",
       "sender": "abc",
@@ -4499,7 +4499,7 @@ Checkout the following snippet for the format of ResponseSendTx:
 
 ```json
 {
-  "code": "STORAGE_RPC_ERROR",
+  "code": "INVALID_STAKE_STATE",
   "hash": "abc"
 }
 ```
@@ -4522,7 +4522,7 @@ Checkout the following snippet for the format of ResponseStartSimulator:
 
 ```json
 {
-  "code": "STORAGE_RPC_ERROR"
+  "code": "INVALID_STAKE_STATE"
 }
 ```
 
@@ -4543,7 +4543,7 @@ Checkout the following snippet for the format of ResponseStopSimulator:
 
 ```json
 {
-  "code": "STORAGE_RPC_ERROR"
+  "code": "INVALID_STAKE_STATE"
 }
 ```
 
@@ -4591,7 +4591,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "STORAGE_RPC_ERROR",
+        "code": "INVALID_STAKE_STATE",
         "createAsset": {
           "asset": "abc"
         },
@@ -4629,7 +4629,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "STORAGE_RPC_ERROR",
+        "code": "INVALID_STAKE_STATE",
         "createAsset": {
           "asset": "abc"
         },
@@ -4723,7 +4723,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "STORAGE_RPC_ERROR",
+        "code": "INVALID_STAKE_STATE",
         "createAsset": {
           "asset": "abc"
         },
@@ -4761,7 +4761,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "STORAGE_RPC_ERROR",
+        "code": "INVALID_STAKE_STATE",
         "createAsset": {
           "asset": "abc"
         },
@@ -4883,7 +4883,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
       ]
     }
   },
-  "code": "STORAGE_RPC_ERROR",
+  "code": "INVALID_STAKE_STATE",
   "confirm": {
     "chainId": "abc",
     "from": "abc",
@@ -5045,7 +5045,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
               "accountMigrate": {
                 "address": "abc"
               },
-              "code": "STORAGE_RPC_ERROR",
+              "code": "INVALID_STAKE_STATE",
               "createAsset": {
                 "asset": "abc"
               },
@@ -5083,7 +5083,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
               "accountMigrate": {
                 "address": "abc"
               },
-              "code": "STORAGE_RPC_ERROR",
+              "code": "INVALID_STAKE_STATE",
               "createAsset": {
                 "asset": "abc"
               },
@@ -5171,7 +5171,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "STORAGE_RPC_ERROR",
+        "code": "INVALID_STAKE_STATE",
         "createAsset": {
           "asset": "abc"
         },
@@ -5209,7 +5209,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "STORAGE_RPC_ERROR",
+        "code": "INVALID_STAKE_STATE",
         "createAsset": {
           "asset": "abc"
         },
@@ -5332,7 +5332,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "STORAGE_RPC_ERROR",
+        "code": "INVALID_STAKE_STATE",
         "createAsset": {
           "asset": "abc"
         },
@@ -5370,7 +5370,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "STORAGE_RPC_ERROR",
+        "code": "INVALID_STAKE_STATE",
         "createAsset": {
           "asset": "abc"
         },
@@ -5507,7 +5507,7 @@ Checkout the following snippet for the format of ResponseUnsubscribe:
 
 ```json
 {
-  "code": "STORAGE_RPC_ERROR"
+  "code": "INVALID_STAKE_STATE"
 }
 ```
 

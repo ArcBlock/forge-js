@@ -1,6 +1,6 @@
 # Forge GraphQL API List
 
-> Updated on 2019-05-15T09:34:54.963Z
+> Updated on 2019-05-16T01:25:13.589Z
 
 
 ## Table of Contents
@@ -412,12 +412,6 @@
           maxItems
           typeUrl
         }
-      }
-      type {
-        address
-        hash
-        pk
-        role
       }
     }
   }
@@ -3808,12 +3802,6 @@ subscription {
           maxItems
           typeUrl
         }
-      }
-      type {
-        address
-        hash
-        pk
-        role
       }
     }
     assetState {
