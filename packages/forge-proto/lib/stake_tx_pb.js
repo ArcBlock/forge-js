@@ -497,6 +497,7 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
         to: jspb.Message.getFieldWithDefault(msg, 1, ''),
         value: (f = msg.getValue()) && type_pb.BigSint.toObject(includeInstance, f),
         message: jspb.Message.getFieldWithDefault(msg, 3, ''),
+        address: jspb.Message.getFieldWithDefault(msg, 4, ''),
         data: (f = msg.getData()) && google_protobuf_any_pb.Any.toObject(includeInstance, f),
       };
 
@@ -545,6 +546,10 @@ proto.forge_abi.StakeTx.deserializeBinaryFromReader = function(msg, reader) {
         var value = /** @type {string} */ (reader.readString());
         msg.setMessage(value);
         break;
+      case 4:
+        var value = /** @type {string} */ (reader.readString());
+        msg.setAddress(value);
+        break;
       case 15:
         var value = new google_protobuf_any_pb.Any();
         reader.readMessage(value, google_protobuf_any_pb.Any.deserializeBinaryFromReader);
@@ -588,6 +593,10 @@ proto.forge_abi.StakeTx.serializeBinaryToWriter = function(message, writer) {
   f = message.getMessage();
   if (f.length > 0) {
     writer.writeString(3, f);
+  }
+  f = message.getAddress();
+  if (f.length > 0) {
+    writer.writeString(4, f);
   }
   f = message.getData();
   if (f != null) {
@@ -648,6 +657,19 @@ proto.forge_abi.StakeTx.prototype.getMessage = function() {
 /** @param {string} value */
 proto.forge_abi.StakeTx.prototype.setMessage = function(value) {
   jspb.Message.setProto3StringField(this, 3, value);
+};
+
+/**
+ * optional string address = 4;
+ * @return {string}
+ */
+proto.forge_abi.StakeTx.prototype.getAddress = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ''));
+};
+
+/** @param {string} value */
+proto.forge_abi.StakeTx.prototype.setAddress = function(value) {
+  jspb.Message.setProto3StringField(this, 4, value);
 };
 
 /**

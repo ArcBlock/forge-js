@@ -9,34 +9,64 @@
  * @requires @arcblock/forge-message
  */
 const { types, Hasher } = require('@arcblock/mcrypto');
-const { WalletType } = require('@arcblock/forge-wallet');
-const { hexToBytes } = require('@arcblock/forge-util');
-const { fromPublicKey, toTypeInfo } = require('@arcblock/did');
+const { fromHash, toDid } = require('@arcblock/did');
 const { createMessage } = require('@arcblock/forge-message/lite');
+const { transactions } = require('@arcblock/forge-proto/lite');
 
 /**
- * Create an asset address, eg: the did of an asset
+ * Create an asset address
  *
  * @public
  * @static
  * @param {object} itx - an object of `CreateAssetTx`
- * @param {string} sender - creator address, also the initial owner of the asset
  * @returns {string} asset address without `did:abt:` prefix
  */
-function toAssetAddress(itx, sender) {
-  const walletType = toTypeInfo(sender);
-  walletType.role = types.RoleType.ROLE_ASSET;
+function toAssetAddress(itx) {
+  return toItxAddress(itx, 'CreateAssetTx');
+}
 
-  itx.address = '';
+/**
+ * Create an asset did
+ *
+ * @public
+ * @static
+ * @param {object} itx - an object of `CreateAssetTx`
+ * @returns {string} asset address without `did:abt:` prefix
+ */
+function toAssetDid(itx) {
+  return toDid(toAssetAddress(itx));
+}
 
-  const addressBuffer = Buffer.from(sender);
-  const message = createMessage('CreateAssetTx', itx);
+/**
+ * Create an itx address
+ *
+ * @public
+ * @static
+ * @param {object} itx - an object of forge supported itx
+ * @returns {string} itx address without `did:abt:` prefix
+ */
+function toItxAddress(itx, type) {
+  if (transactions.indexOf(type) === -1) {
+    throw new Error(`Unsupported itx type ${type}`);
+  }
+
+  const message = createMessage(type, itx);
   const itxBytes = message.serializeBinary();
-  const itxSha3Buffer = Buffer.from(hexToBytes(Hasher.SHA3.hash256(itxBytes)));
-  const buffer = Buffer.concat([addressBuffer, itxSha3Buffer]);
-
-  const address = fromPublicKey(buffer, WalletType(walletType));
+  const hash = Hasher.SHA3.hash256(itxBytes);
+  const address = fromHash(hash, types.RoleType.ROLE_ASSET);
   return address;
+}
+
+/**
+ * Create an itx did
+ *
+ * @public
+ * @static
+ * @param {object} itx - an object of forge supported itx
+ * @returns {string} itx address without `did:abt:` prefix
+ */
+function toItxDid(itx, type) {
+  return toDid(toItxAddress(itx, type));
 }
 
 /**
@@ -51,20 +81,31 @@ function toAssetAddress(itx, sender) {
 function toStakeAddress(sender, receiver) {
   const senderBuffer = Buffer.from(sender);
   const receiverBuffer = Buffer.from(receiver);
-
   const buffer = Buffer.concat(
     sender < receiver ? [senderBuffer, receiverBuffer] : [receiverBuffer, senderBuffer]
   );
-  const walletType = WalletType({
-    role: types.RoleType.ROLE_STAKE,
-    pk: types.KeyType.ED25519,
-    hash: types.HashType.SHA3,
-  });
+  const hash = Hasher.SHA3.hash256(buffer);
+  return fromHash(hash, types.RoleType.ROLE_STAKE);
+}
 
-  return fromPublicKey(buffer, walletType);
+/**
+ * Generate an stake address, eg: the did of the stake
+ *
+ * @public
+ * @static
+ * @param {string} sender - sender address
+ * @param {string} receiver - receiver address
+ * @returns {string} stake address without `did:abt:` prefix
+ */
+function toStakeDid(sender, receiver) {
+  toDid(toStakeAddress(sender, receiver));
 }
 
 module.exports = {
   toAssetAddress,
+  toAssetDid,
+  toItxAddress,
+  toItxDid,
   toStakeAddress,
+  toStakeDid,
 };

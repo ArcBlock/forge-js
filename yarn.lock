@@ -6,9 +6,10 @@
   version "1.2.0"
   resolved "https://registry.npmjs.org/@arcblock/docblock/-/docblock-1.2.0.tgz#507a428a9276c3cd5c9b74cdda98d1479ce6ca9a"
 
-"@arcblock/sdk-util@^0.19.6":
-  version "0.19.6"
-  resolved "https://registry.npmjs.org/@arcblock/sdk-util/-/sdk-util-0.19.6.tgz#c3d06264caba4e0fc8e1bc1bf3f123ce2115ba15"
+"@arcblock/sdk-util@^0.20.0":
+  version "0.20.0"
+  resolved "https://registry.npmjs.org/@arcblock/sdk-util/-/sdk-util-0.20.0.tgz#5e98f44b00ef560fd44a919bda0a59a20b6bbdfe"
+  integrity sha512-w82gSBrbYexelTVvaJHz6iY6of4M90VplpCr9rEoiQvaBYjMK0t5b2A1gSDL97+up2uKQauqh8OPQsR5z6li6w==
   dependencies:
     axios "^0.18.0"
     debug "^3.1.0"
@@ -5492,10 +5493,6 @@ iterall@^1.2.2:
   version "1.2.2"
   resolved "https://registry.npmjs.org/iterall/-/iterall-1.2.2.tgz#92d70deb8028e0c39ff3164fdbf4d8b088130cd7"
 
-j2d@^1.0.3-dev:
-  version "1.0.3-dev"
-  resolved "https://registry.npmjs.org/j2d/-/j2d-1.0.3-dev.tgz#dfeeca4e16440a9f8b940b58de2cc073d44989a5"
-
 jest-changed-files@^23.4.2:
   version "23.4.2"
   resolved "https://registry.npmjs.org/jest-changed-files/-/jest-changed-files-23.4.2.tgz#1eed688370cd5eebafe4ae93d34bb3b64968fe83"
@@ -6428,6 +6425,17 @@ js-yaml@^3.12.0, js-yaml@^3.13.0, js-yaml@^3.6.1, js-yaml@^3.7.0:
   dependencies:
     argparse "^1.0.7"
     esprima "^4.0.0"
+
+js2dts@^0.3.3:
+  version "0.3.3"
+  resolved "https://registry.npmjs.org/js2dts/-/js2dts-0.3.3.tgz#30f98f1904c908df38ad4d5205d56af946172b06"
+  integrity sha512-g7zdPSNUZol2TFWE8PGWfVLyy9uRo8jnkzaDx6SozOmXe6edkhZVHg8xqUuFmTE9mYe7m2OrhIqnjvpDttKEmg==
+  dependencies:
+    commander "^2.19.0"
+    lodash "^4.17.11"
+    mkdirp "^0.5.1"
+    tslib "^1.9.3"
+    typescript "^3.2.2"
 
 js2xmlparser@~3.0.0:
   version "3.0.0"
@@ -10994,7 +11002,7 @@ tryer@^1.0.0:
   version "1.0.1"
   resolved "https://registry.npmjs.org/tryer/-/tryer-1.0.1.tgz#f2c85406800b9b0f74c9f7465b81eaad241252f8"
 
-tslib@^1.9.0:
+tslib@^1.9.0, tslib@^1.9.3:
   version "1.9.3"
   resolved "https://registry.npmjs.org/tslib/-/tslib-1.9.3.tgz#d7e4dd79245d85428c4d7e4822a79917954ca286"
 
@@ -11042,6 +11050,11 @@ typedarray-to-buffer@^3.1.5:
 typedarray@^0.0.6:
   version "0.0.6"
   resolved "https://registry.npmjs.org/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
+
+typescript@^3.2.2:
+  version "3.4.5"
+  resolved "https://registry.npmjs.org/typescript/-/typescript-3.4.5.tgz#2d2618d10bb566572b8d7aad5180d84257d70a99"
+  integrity sha512-YycBxUb49UUhdNMU5aJ7z5Ej2XGmaIBL0x34vZ82fn3hGvD+bgrMrVDpatgz2f7YxUMJxMkbWxJZeAvDxVe7Vw==
 
 typical@^2.4.2, typical@^2.6.0, typical@^2.6.1:
   version "2.6.1"

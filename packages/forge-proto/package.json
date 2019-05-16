@@ -19,7 +19,6 @@
     "access": "public"
   },
   "devDependencies": {
-    "j2d": "^1.0.3-dev",
     "jest": "^23.5.0"
   },
   "homepage": "https://github.com/ArcBlock/forge-js/tree/master/packages/forge-proto",

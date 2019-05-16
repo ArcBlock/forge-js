@@ -10,7 +10,7 @@
     "arcblock"
   ],
   "engines": {
-    "forge": ">=0.25.3"
+    "forge": ">=0.27.0"
   },
   "publishConfig": {
     "access": "public"
@@ -34,7 +34,7 @@
     "@arcblock/forge-message": "^0.26.10",
     "@arcblock/forge-proto": "^0.26.10",
     "@arcblock/forge-wallet": "^0.26.10",
-    "@arcblock/sdk-util": "^0.19.6",
+    "@arcblock/sdk-util": "^0.20.0",
     "babel-polyfill": "^6.26.0",
     "base64-url": "^2.2.0",
     "blueimp-md5": "^2.10.0",

@@ -47,15 +47,54 @@ const fromSecretKey = (sk, type) => {
 const fromPublicKey = (pk, type) => {
   const { hash = types.HashType.SHA3 } = type || {};
   const hashFn = getHasher(hash);
+  const pkHash = hashFn(pk);
+  return fromPublicKeyHash(pkHash, type);
+};
 
+const fromPublicKeyHash = (buffer, type) => {
+  const { hash = types.HashType.SHA3 } = type || {};
+  const pkHash = stripHexPrefix(buffer).slice(0, 40); // 20 bytes
+  const hashFn = getHasher(hash);
   const typeHex = fromTypeInfo(type);
-  const pkHash = stripHexPrefix(hashFn(pk));
-
-  const checksum = stripHexPrefix(hashFn(`0x${typeHex}${pkHash.slice(0, 40)}`)).slice(0, 8);
-  const didHash = `${typeHex}${pkHash.slice(0, 40)}${checksum}`;
+  const checksum = stripHexPrefix(hashFn(`0x${typeHex}${pkHash}`)).slice(0, 8); // 4 bytes
+  const didHash = `${typeHex}${pkHash}${checksum}`;
 
   const address = multibase.encode('base58btc', Buffer.from(didHash, 'hex'));
   return address.toString();
+};
+
+/**
+ * Gen DID from an hex encoded hash and role type
+ *
+ * @public
+ * @static
+ * @param {string} hash - hex encoded hash
+ * @param {enum} role - role type, {@see @arcblock/mcrypto#types}
+ * @returns {string} DID string
+ */
+const fromHash = (hash, role) => {
+  const roleKeys = Object.keys(types.RoleType);
+  const roleValues = Object.values(types.RoleType);
+  if (roleValues.indexOf(role) === -1) {
+    throw new Error(`Unsupported role type ${role} when gen ddi from hash`);
+  }
+
+  const type = {
+    role: types.RoleType[roleKeys[roleValues.indexOf(role)]],
+    pk: types.KeyType.ED25519,
+    hash: types.HashType.SHA3,
+  };
+
+  const sha2Roles = [
+    types.RoleType.ROLE_NODE,
+    types.RoleType.ROLE_VALIDATOR,
+    types.RoleType.ROLE_TETHER,
+  ];
+  if (sha2Roles.includes(role)) {
+    type.hash = types.HashType.SHA2;
+  }
+
+  return fromPublicKeyHash(hash, type);
 };
 
 /**
@@ -346,6 +385,8 @@ module.exports = {
   toStrictHex,
   fromSecretKey,
   fromPublicKey,
+  fromPublicKeyHash,
+  fromHash,
   toTypeInfo,
   toAddress,
   toDid,
