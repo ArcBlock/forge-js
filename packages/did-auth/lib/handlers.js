@@ -6,6 +6,7 @@ const { toAddress } = require('@arcblock/did');
 const debug = require('debug')(`${require('../package.json').name}:handlers`);
 
 const sha3 = Mcrypto.Hasher.SHA3.hash256;
+const getLocale = req => (req.acceptsLanguages('en-US', 'zh-CN') || 'en-US').split('-').shift();
 
 module.exports = class Handlers {
   constructor({ tokenGenerator, tokenStorage, authenticator }) {
@@ -29,6 +30,8 @@ module.exports = class Handlers {
     claims,
     onAuth,
     onComplete,
+    // eslint-disable-next-line no-console
+    onExpire = console.log,
     // eslint-disable-next-line no-console
     onError = console.error,
     prefix = '/api/did',
@@ -63,7 +66,7 @@ module.exports = class Handlers {
         });
       } catch (err) {
         res.json({ error: err.message });
-        onError(err);
+        onError({ stage: 'generate-token', err });
       }
     });
 
@@ -79,7 +82,13 @@ module.exports = class Handlers {
         const session = await this.storage.read(token);
         if (session) {
           if (session.status === 'succeed') {
-            await onComplete(req, session, req.query);
+            await onComplete({
+              req,
+              did: session.did,
+              userAddress: toAddress(session.did),
+              token,
+              extraParams: Object.assign({ locale: getLocale(req) }, req.query),
+            });
           }
 
           res.status(200).json(session);
@@ -88,7 +97,7 @@ module.exports = class Handlers {
         }
       } catch (err) {
         res.json({ error: err.message });
-        onError(err);
+        onError({ stage: 'check-token-status', err });
       }
     });
 
@@ -101,11 +110,12 @@ module.exports = class Handlers {
           return;
         }
 
+        onExpire({ token });
         await this.storage.delete(token);
         res.status(200).json({ token });
       } catch (err) {
         res.json({ error: err.message });
-        onError(err);
+        onError({ stage: 'token-timeout', err });
       }
     });
 
@@ -132,12 +142,15 @@ module.exports = class Handlers {
           userPk,
           claims,
           pathname,
-          extraParams: Object.keys(req.query)
-            .filter(x => !['userDid', 'userPk', 'token'].includes(x))
-            .reduce((obj, x) => {
-              obj[x] = req.query[x];
-              return obj;
-            }, {}),
+          extraParams: Object.assign(
+            { locale: getLocale(req) },
+            Object.keys(req.query)
+              .filter(x => !['userDid', 'userPk', 'token'].includes(x))
+              .reduce((obj, x) => {
+                obj[x] = req.query[x];
+                return obj;
+              }, {})
+          ),
         });
 
         debug('sign.result', authInfo);
@@ -147,21 +160,23 @@ module.exports = class Handlers {
           await this.storage.update(token, { did, status: 'error' });
         }
         res.json({ error: err.message });
-        onError(err);
+        onError({ stage: 'auth-response', err });
       }
     });
 
     // 5. Wallet: submit auth response
     app.post(pathname, async (req, res) => {
-      try {
-        const params = Object.assign({}, req.body, req.query);
-        debug('verify.input', params);
-        if (!params.token) {
-          debug('verify.input.warn', 'action token not found in input param');
-        }
+      const params = Object.assign({}, req.body, req.query);
+      debug('verify.input', params);
+      if (!params.token) {
+        debug('verify.input.warn', 'action token not found in input param');
+      }
+      const token = params.token;
+      const session = token ? await this.storage.read(token) : null;
 
+      try {
         // eslint-disable-next-line no-shadow
-        const { did, token, claims } = await this.authenticator.verify(params);
+        const { did, claims } = await this.authenticator.verify(params);
         claims.forEach(x => {
           if (x.type === 'signature') {
             x.sigHex = bytesToHex(multibase.decode(x.sig));
@@ -169,11 +184,16 @@ module.exports = class Handlers {
         });
 
         debug('verify', { did, token, claims });
-        await onAuth({ did, userAddress: toAddress(did), token, claims, extraParams: req.query });
+        await onAuth({
+          did,
+          userAddress: toAddress(did),
+          token,
+          claims,
+          extraParams: Object.assign({ locale: getLocale(req) }, req.query),
+        });
 
         if (token) {
-          const exist = await this.storage.exist(token, did);
-          if (exist) {
+          if (session) {
             await this.storage.update(token, { status: 'succeed' });
           } else {
             return res.json({ error: 'Bad request, token is invalid' });
@@ -182,8 +202,13 @@ module.exports = class Handlers {
 
         res.json({ status: 0 });
       } catch (err) {
+        if (session) {
+          debug('verify.error', token);
+          await this.storage.update(token, { status: 'error' });
+        }
+
         res.json({ error: err.message });
-        onError(err);
+        onError({ stage: 'auth-request', err });
       }
     });
   }

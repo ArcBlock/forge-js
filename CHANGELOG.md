@@ -1,3 +1,9 @@
+## 0.27.2 (May 17, 2019)
+  - fix: error on token.status not properly handled on request
+  - chore: add onExpire hook for did-auth lib
+  - feat: support parsing accept-language header in did-auth
+  - update readme
+
 ## 0.27.1 (May 16, 2019)
   - chore: upgrade node-grpc, and make this lib work with node.js v8.x or above
   - update readme
