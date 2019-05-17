@@ -6,6 +6,7 @@ const { toAddress } = require('@arcblock/did');
 const debug = require('debug')(`${require('../package.json').name}:handlers`);
 
 const sha3 = Mcrypto.Hasher.SHA3.hash256;
+const getLocale = req => (req.acceptsLanguages('en-US', 'zh-CN') || 'en-US').split('-').shift();
 
 module.exports = class Handlers {
   constructor({ tokenGenerator, tokenStorage, authenticator }) {
@@ -132,12 +133,15 @@ module.exports = class Handlers {
           userPk,
           claims,
           pathname,
-          extraParams: Object.keys(req.query)
-            .filter(x => !['userDid', 'userPk', 'token'].includes(x))
-            .reduce((obj, x) => {
-              obj[x] = req.query[x];
-              return obj;
-            }, {}),
+          extraParams: Object.assign(
+            { locale: getLocale(req) },
+            Object.keys(req.query)
+              .filter(x => !['userDid', 'userPk', 'token'].includes(x))
+              .reduce((obj, x) => {
+                obj[x] = req.query[x];
+                return obj;
+              }, {})
+          ),
         });
 
         debug('sign.result', authInfo);
@@ -169,7 +173,13 @@ module.exports = class Handlers {
         });
 
         debug('verify', { did, token, claims });
-        await onAuth({ did, userAddress: toAddress(did), token, claims, extraParams: req.query });
+        await onAuth({
+          did,
+          userAddress: toAddress(did),
+          token,
+          claims,
+          extraParams: Object.assign({ locale: getLocale(req) }, req.query),
+        });
 
         if (token) {
           const exist = await this.storage.exist(token, did);

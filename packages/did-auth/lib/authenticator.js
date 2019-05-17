@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 /* eslint-disable object-curly-newline */
 const qs = require('querystring');
 const multibase = require('multibase');
@@ -56,7 +57,7 @@ module.exports = class Authenticator {
     const payload = {
       action: 'responseAuth',
       appInfo: this.appInfo,
-      requestedClaims: await this.genRequestedClaims(claims, did, userPk, extraParams),
+      requestedClaims: await this.genRequestedClaims({ claims, did, userPk, extraParams }),
       url: `${this.baseUrl}${pathname}?${qs.stringify(Object.assign({ token }, extraParams))}`,
     };
 
@@ -106,15 +107,23 @@ module.exports = class Authenticator {
   // ---------------------------------------
   // Request claim related methods
   // ---------------------------------------
-  genRequestedClaims(claims, did, userPk, extraParams) {
-    return Promise.all(Object.keys(claims).map(x => this[x](claims[x], did, userPk, extraParams)));
+  genRequestedClaims({ claims, did, userPk, extraParams }) {
+    return Promise.all(
+      Object.keys(claims).map(x => this[x]({ claim: claims[x], did, userPk, extraParams }))
+    );
   }
 
-  async agreement(claim, did, userPk, extraParams) {
+  async agreement({ claim, did, userPk, extraParams }) {
     const userPkHex = getUserPkHex(userPk);
     const { uri, hash, description } =
       typeof claim === 'function'
-        ? await claim({ userDid: did, userAddress: toAddress(did), userPk, userPkHex, extraParams })
+        ? await claim({
+            userDid: did,
+            userAddress: toAddress(did),
+            userPk,
+            userPkHex,
+            extraParams,
+          })
         : claim;
 
     return {
@@ -127,11 +136,17 @@ module.exports = class Authenticator {
     };
   }
 
-  async profile(claim, did, userPk, extraParams) {
+  async profile({ claim, did, userPk, extraParams }) {
     const userPkHex = getUserPkHex(userPk);
     const { fields, description } =
       typeof claim === 'function'
-        ? await claim({ userDid: did, userAddress: toAddress(did), userPk, userPkHex, extraParams })
+        ? await claim({
+            userDid: did,
+            userAddress: toAddress(did),
+            userPk,
+            userPkHex,
+            extraParams,
+          })
         : claim;
     return {
       type: 'profile',
@@ -143,11 +158,17 @@ module.exports = class Authenticator {
   }
 
   // FIXME: Security Risk!! application should keep a copy of the buffer hash to avoid middle man attack
-  async signature(claim, did, userPk, extraParams) {
+  async signature({ claim, did, userPk, extraParams }) {
     const userPkHex = getUserPkHex(userPk);
     const { txData, txType, wallet, sender, description } =
       typeof claim === 'function'
-        ? await claim({ userDid: did, userAddress: toAddress(did), userPk, userPkHex, extraParams })
+        ? await claim({
+            userDid: did,
+            userAddress: toAddress(did),
+            userPk,
+            userPkHex,
+            extraParams,
+          })
         : claim;
 
     if (userPkHex && !txData.pk) {
