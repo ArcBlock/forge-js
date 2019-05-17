@@ -1,3 +1,7 @@
+## 0.27.3 (May 17, 2019)
+  - chore: upgrade forge-react-starter to v0.5
+  - update readme
+
 ## 0.27.2 (May 17, 2019)
   - fix: error on token.status not properly handled on request
   - chore: add onExpire hook for did-auth lib
