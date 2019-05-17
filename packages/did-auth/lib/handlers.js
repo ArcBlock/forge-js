@@ -31,6 +31,8 @@ module.exports = class Handlers {
     onAuth,
     onComplete,
     // eslint-disable-next-line no-console
+    onExpire = console.log,
+    // eslint-disable-next-line no-console
     onError = console.error,
     prefix = '/api/did',
   }) {
@@ -64,7 +66,7 @@ module.exports = class Handlers {
         });
       } catch (err) {
         res.json({ error: err.message });
-        onError(err);
+        onError({ stage: 'generate-token', err });
       }
     });
 
@@ -80,7 +82,13 @@ module.exports = class Handlers {
         const session = await this.storage.read(token);
         if (session) {
           if (session.status === 'succeed') {
-            await onComplete(req, session, req.query);
+            await onComplete({
+              req,
+              did: session.did,
+              userAddress: toAddress(session.did),
+              token,
+              extraParams: Object.assign({ locale: getLocale(req) }, req.query),
+            });
           }
 
           res.status(200).json(session);
@@ -89,7 +97,7 @@ module.exports = class Handlers {
         }
       } catch (err) {
         res.json({ error: err.message });
-        onError(err);
+        onError({ stage: 'check-token-status', err });
       }
     });
 
@@ -102,11 +110,12 @@ module.exports = class Handlers {
           return;
         }
 
+        onExpire({ token });
         await this.storage.delete(token);
         res.status(200).json({ token });
       } catch (err) {
         res.json({ error: err.message });
-        onError(err);
+        onError({ stage: 'token-timeout', err });
       }
     });
 
@@ -151,7 +160,7 @@ module.exports = class Handlers {
           await this.storage.update(token, { did, status: 'error' });
         }
         res.json({ error: err.message });
-        onError(err);
+        onError({ stage: 'auth-response', err });
       }
     });
 
@@ -193,7 +202,7 @@ module.exports = class Handlers {
         res.json({ status: 0 });
       } catch (err) {
         res.json({ error: err.message });
-        onError(err);
+        onError({ stage: 'auth-request', err });
       }
     });
   }
