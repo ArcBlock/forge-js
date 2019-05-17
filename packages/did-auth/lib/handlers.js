@@ -166,15 +166,17 @@ module.exports = class Handlers {
 
     // 5. Wallet: submit auth response
     app.post(pathname, async (req, res) => {
-      try {
-        const params = Object.assign({}, req.body, req.query);
-        debug('verify.input', params);
-        if (!params.token) {
-          debug('verify.input.warn', 'action token not found in input param');
-        }
+      const params = Object.assign({}, req.body, req.query);
+      debug('verify.input', params);
+      if (!params.token) {
+        debug('verify.input.warn', 'action token not found in input param');
+      }
+      const token = params.token;
+      const session = token ? await this.storage.read(token) : null;
 
+      try {
         // eslint-disable-next-line no-shadow
-        const { did, token, claims } = await this.authenticator.verify(params);
+        const { did, claims } = await this.authenticator.verify(params);
         claims.forEach(x => {
           if (x.type === 'signature') {
             x.sigHex = bytesToHex(multibase.decode(x.sig));
@@ -191,8 +193,7 @@ module.exports = class Handlers {
         });
 
         if (token) {
-          const exist = await this.storage.exist(token, did);
-          if (exist) {
+          if (session) {
             await this.storage.update(token, { status: 'succeed' });
           } else {
             return res.json({ error: 'Bad request, token is invalid' });
@@ -201,6 +202,11 @@ module.exports = class Handlers {
 
         res.json({ status: 0 });
       } catch (err) {
+        if (session) {
+          debug('verify.error', token);
+          await this.storage.update(token, { status: 'error' });
+        }
+
         res.json({ error: err.message });
         onError({ stage: 'auth-request', err });
       }
