@@ -16,24 +16,27 @@ declare class Authenticator {
    * @returns Promise<>
    */
   verify(data: any): Promise<any>;
-  genRequestedClaims(claims: any, did: any, userPk: any, extraParams: any): Promise<any[]>;
-  agreement(claim: any, did: any, userPk: any, extraParams: any): Promise<_Lib.T109>;
-  profile(claim: any, did: any, userPk: any, extraParams: any): Promise<_Lib.T110>;
-  signature(claim: any, did: any, userPk: any, extraParams: any): Promise<_Lib.T112>;
+  genRequestedClaims(T108: _Lib.T109): Promise<any[]>;
+  getClaimInfo(T110: _Lib.T111): Promise<any>;
+  agreement(T112: _Lib.T111): Promise<_Lib.T114>;
+  profile(T115: _Lib.T111): Promise<_Lib.T116>;
+  signature(T117: _Lib.T111): Promise<_Lib.T119>;
+  holdingOfAsset(T120: _Lib.T111): Promise<_Lib.T121>;
+  holdingOfToken(T122: _Lib.T111): Promise<_Lib.T123>;
 }
 declare class Handlers {
   authenticator: any;
   generator: any;
   storage: any;
-  constructor(T113: _Lib.T114);
+  constructor(T124: _Lib.T125);
   /**
    * Attach routes and handlers for authenticator
    *
    * @param {object} { app, action, claims, prefix = '/api' }
    */
-  attach(T115: any): void;
+  attach(T126: any): void;
 }
-declare const _Lib: _Lib.T116;
+declare const _Lib: _Lib.T127;
 declare namespace _Lib {
   export interface T101 {
     wallet: any;
@@ -61,38 +64,64 @@ declare namespace _Lib {
     appPk: any;
     authInfo: string;
   }
-  export interface T108 {
+  export interface T109 {
+    claims: any;
+    did: any;
+    userPk: any;
+    extraParams: any;
+  }
+  export interface T111 {
+    claim: any;
+    did: any;
+    userPk: any;
+    extraParams: any;
+  }
+  export interface T113 {
     description: any;
   }
-  export interface T109 {
+  export interface T114 {
     type: string;
-    meta: _Lib.T108;
+    meta: _Lib.T113;
     uri: any;
     hash: any;
   }
-  export interface T110 {
+  export interface T116 {
     type: string;
     items: any;
-    meta: _Lib.T108;
+    meta: _Lib.T113;
   }
-  export interface T111 {
+  export interface T118 {
     description: any;
     typeUrl: string;
   }
-  export interface T112 {
+  export interface T119 {
     type: string;
     data: any;
-    meta: _Lib.T111;
+    meta: _Lib.T118;
     method: string;
     origin: any;
     sig: string;
   }
-  export interface T114 {
+  export interface T121 {
+    type: string;
+    did_type: string;
+    target: any;
+    did: string;
+    meta: _Lib.T113;
+  }
+  export interface T123 {
+    type: string;
+    did_type: string;
+    target: number;
+    did: string;
+    meta: _Lib.T113;
+  }
+  export interface T125 {
     tokenGenerator: any;
     tokenStorage: any;
     authenticator: any;
   }
-  export interface T116 {
+  export interface T127 {
     Authenticator: typeof Authenticator;
     Handlers: typeof Handlers;
   }
