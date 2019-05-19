@@ -112,10 +112,9 @@ module.exports = class Authenticator {
       Object.keys(claims).map(x => this[x]({ claim: claims[x], did, userPk, extraParams }))
     );
   }
-
-  async agreement({ claim, did, userPk, extraParams }) {
+  async getClaimInfo({ claim, did, userPk, extraParams }) {
     const userPkHex = getUserPkHex(userPk);
-    const { uri, hash, description } =
+    const result =
       typeof claim === 'function'
         ? await claim({
             userDid: did,
@@ -125,6 +124,14 @@ module.exports = class Authenticator {
             extraParams,
           })
         : claim;
+
+    result.userPkHex = userPkHex;
+    return result;
+  }
+
+  // 要求同意协议
+  async agreement({ claim, did, userPk, extraParams }) {
+    const { uri, hash, description } = await this.getClaimInfo({ claim, did, userPk, extraParams });
 
     return {
       type: 'agreement',
@@ -136,18 +143,9 @@ module.exports = class Authenticator {
     };
   }
 
+  // 要求用户信息
   async profile({ claim, did, userPk, extraParams }) {
-    const userPkHex = getUserPkHex(userPk);
-    const { fields, description } =
-      typeof claim === 'function'
-        ? await claim({
-            userDid: did,
-            userAddress: toAddress(did),
-            userPk,
-            userPkHex,
-            extraParams,
-          })
-        : claim;
+    const { fields, description } = await this.getClaimInfo({ claim, did, userPk, extraParams });
     return {
       type: 'profile',
       items: fields || ['fullName'],
@@ -157,20 +155,14 @@ module.exports = class Authenticator {
     };
   }
 
-  // FIXME: Security Risk!! application should keep a copy of the buffer hash to avoid middle man attack
+  // 要求签名
   async signature({ claim, did, userPk, extraParams }) {
-    const userPkHex = getUserPkHex(userPk);
-    const { txData, txType, wallet, sender, description } =
-      typeof claim === 'function'
-        ? await claim({
-            userDid: did,
-            userAddress: toAddress(did),
-            userPk,
-            userPkHex,
-            extraParams,
-          })
-        : claim;
-
+    const { txData, txType, wallet, sender, description, userPkHex } = await this.getClaimInfo({
+      claim,
+      did,
+      userPk,
+      extraParams,
+    });
     if (userPkHex && !txData.pk) {
       txData.pk = Buffer.from(hexToBytes(userPkHex));
     }
@@ -191,6 +183,34 @@ module.exports = class Authenticator {
       method: 'sha3',
       origin: base58Encode(txBuffer),
       sig: '',
+    };
+  }
+
+  // 资产持有证明
+  async holdingOfAsset({ claim, did, userPk, extraParams }) {
+    const { target, description } = await this.getClaimInfo({ claim, did, userPk, extraParams });
+    return {
+      type: 'did',
+      did_type: 'asset',
+      target,
+      did: '',
+      meta: {
+        description: description || 'Please prove that you hold the asset',
+      },
+    };
+  }
+
+  // 通证持有证明
+  async holdingOfToken({ claim, did, userPk, extraParams }) {
+    const { target, description } = await this.getClaimInfo({ claim, did, userPk, extraParams });
+    return {
+      type: 'did',
+      did_type: 'account',
+      target: Number(target),
+      did: '',
+      meta: {
+        description: description || `Please prove that you have ${target} token`,
+      },
     };
   }
 };
