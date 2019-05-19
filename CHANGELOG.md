@@ -1,3 +1,8 @@
+## 0.27.4 (May 19, 2019)
+  - chore: update forge-react-starter version
+  - feat: support proofOfAsset and proofOfToken in did-auth lib
+  - update readme
+
 ## 0.27.3 (May 17, 2019)
   - chore: upgrade forge-react-starter to v0.5
   - update readme
