@@ -1,3 +1,9 @@
+## 0.27.5 (May 20, 2019)
+  - chore: add test case for did-auth
+  - chore: remove token storage when complete
+  - feat: expose token storage when onAuth and onComplete
+  - update readme
+
 ## 0.27.4 (May 19, 2019)
   - chore: update forge-react-starter version
   - feat: support proofOfAsset and proofOfToken in did-auth lib
