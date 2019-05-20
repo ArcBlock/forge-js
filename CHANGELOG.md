@@ -1,3 +1,8 @@
+## 0.27.6 (May 21, 2019)
+  - chore: remove forge-react-starter as submodule
+  - feat: implement starter spec when creating new projects from starters
+  - update readme
+
 ## 0.27.5 (May 20, 2019)
   - chore: add test case for did-auth
   - chore: remove token storage when complete
