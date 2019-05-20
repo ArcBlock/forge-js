@@ -83,12 +83,12 @@ module.exports = class Handlers {
         const session = await this.storage.read(token);
         if (session) {
           if (session.status === 'succeed') {
+            await this.storage.delete(token);
             await onComplete({
               req,
               did: session.did,
               userAddress: toAddress(session.did),
               token,
-              storage: this.storage,
               extraParams: Object.assign({ locale: getLocale(req) }, req.query),
             });
           }
