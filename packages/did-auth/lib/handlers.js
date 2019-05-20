@@ -7,6 +7,7 @@ const debug = require('debug')(`${require('../package.json').name}:handlers`);
 
 const sha3 = Mcrypto.Hasher.SHA3.hash256;
 const getLocale = req => (req.acceptsLanguages('en-US', 'zh-CN') || 'en-US').split('-').shift();
+const noop = () => {};
 
 module.exports = class Handlers {
   constructor({ tokenGenerator, tokenStorage, authenticator }) {
@@ -29,9 +30,8 @@ module.exports = class Handlers {
     action,
     claims,
     onAuth,
-    onComplete,
-    // eslint-disable-next-line no-console
-    onExpire = console.log,
+    onComplete = noop,
+    onExpire = noop,
     // eslint-disable-next-line no-console
     onError = console.error,
     prefix = '/api/did',
@@ -50,6 +50,7 @@ module.exports = class Handlers {
     // Now express app have route handlers attached to the following url
     // - `GET /api/did/{action}/token` create new token
     // - `GET /api/did/{action}/status` check for token status
+    // - `GET /api/did/{action}/timeout` expire a token
     // - `GET /api/did/{action}/auth` create auth response
     // - `POST /api/did/{action}/auth` process payment request
 
@@ -82,6 +83,7 @@ module.exports = class Handlers {
         const session = await this.storage.read(token);
         if (session) {
           if (session.status === 'succeed') {
+            await this.storage.delete(token);
             await onComplete({
               req,
               did: session.did,
@@ -110,7 +112,7 @@ module.exports = class Handlers {
           return;
         }
 
-        onExpire({ token });
+        onExpire({ token, status: 'expired' });
         await this.storage.delete(token);
         res.status(200).json({ token });
       } catch (err) {
@@ -189,6 +191,7 @@ module.exports = class Handlers {
           userAddress: toAddress(did),
           token,
           claims,
+          storage: this.storage,
           extraParams: Object.assign({ locale: getLocale(req) }, req.query),
         });
 
