@@ -16,6 +16,7 @@ const templates = fs
   .readdirSync(templatesDir)
   .filter(
     x =>
+      /forge-[-a-zA-Z0-9_]+-starter/.test(x) &&
       isDirectory(path.join(templatesDir, x)) &&
       isFile(path.join(templatesDir, x, 'starter.config.js'))
   );
@@ -91,6 +92,16 @@ function createDirectoryContents(fromPath, toPath, blackList) {
 
 async function main({ args: [_target], opts: { yes } }) {
   try {
+    if (templates.length === 0) {
+      shell.echo(`${symbols.error} No starter project templates found`);
+      shell.echo(
+        `${symbols.info} Run ${chalk.cyan(
+          'npm install -g forge-react-starter'
+        )} to install react-starter`
+      );
+      process.exit(1);
+    }
+
     const target = _target.startsWith('/') ? _target : path.join(process.cwd(), _target);
     if (!target) {
       shell.echo(`${symbols.error} Please specify a folder for creating the new application`);
