@@ -89,6 +89,10 @@ function isDirectory(x) {
   return fs.existsSync(x) && fs.statSync(x).isDirectory();
 }
 
+function isFile(x) {
+  return fs.existsSync(x) && fs.statSync(x).isFile();
+}
+
 function isEmptyDirectory(x) {
   return isDirectory(x) && fs.readdirSync(x).length === 0;
 }
@@ -657,6 +661,7 @@ module.exports = {
   getPlatform,
   createRpcClient,
   isDirectory,
+  isFile,
   isEmptyDirectory,
   printLogo,
 };

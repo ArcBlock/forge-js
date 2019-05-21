@@ -1,40 +1,38 @@
-const ip = require('ip');
 const fs = require('fs');
 const path = require('path');
 const chalk = require('chalk');
 const fuzzy = require('fuzzy');
 const inquirer = require('inquirer');
 const shell = require('shelljs');
-const camelcase = require('camelcase');
-const execSync = require('child_process').execSync;
 const GraphQLClient = require('@arcblock/graphql-client');
-const { types } = require('@arcblock/mcrypto');
-const { fromRandom, WalletType } = require('@arcblock/forge-wallet');
-const { isDirectory, debug, webUrl } = require('core/env');
+const { isDirectory, isFile, debug, webUrl } = require('core/env');
 const { symbols, hr } = require('core/ui');
-
-const templatesDir = path.resolve(__dirname, '../../../../templates');
-const templates = fs.readdirSync(templatesDir).filter(x => isDirectory(path.join(templatesDir, x)));
-
-debug('project templates', templates);
-
 inquirer.registerPrompt('autocomplete', require('inquirer-autocomplete-prompt'));
+
+// get starter templates
+const { stdout } = shell.exec('npm prefix -g', { silent: true });
+const templatesDir = path.join(stdout.trim(), 'lib/node_modules');
+const templates = fs
+  .readdirSync(templatesDir)
+  .filter(
+    x =>
+      /forge-[-a-zA-Z0-9_]+-starter/.test(x) &&
+      isDirectory(path.join(templatesDir, x)) &&
+      isFile(path.join(templatesDir, x, 'starter.config.js'))
+  );
+debug('project templates', templates);
 
 const defaults = {
   template: templates[0],
-  appName: 'Forge Starter',
-  appPort: 3030,
   chainHost: `${webUrl()}/api`,
-  mongoUri: 'mongodb://127.0.0.1:27017/forge-starter',
 };
-
 debug('application defaults', defaults);
 
 const questions = [
   {
     type: 'autocomplete',
     name: 'template',
-    message: 'Select a application template:',
+    message: 'Select a starter template:',
     default: defaults.template,
     source: (_, inp) => {
       const input = inp || '';
@@ -42,26 +40,6 @@ const questions = [
         const result = fuzzy.filter(input, templates);
         resolve(result.map(item => item.original));
       });
-    },
-  },
-  {
-    type: 'text',
-    name: 'appName',
-    message: 'Application name:',
-    default: defaults.appName,
-    validate: input => {
-      if (!input) return 'Application name should not be empty';
-      return true;
-    },
-  },
-  {
-    type: 'text',
-    name: 'appPort',
-    message: 'Application listening port:',
-    default: defaults.appPort,
-    validate: input => {
-      if (!input) return 'Application listening port should not be empty';
-      return true;
     },
   },
   {
@@ -74,21 +52,10 @@ const questions = [
       return true;
     },
   },
-  {
-    type: 'text',
-    name: 'mongoUri',
-    message: 'Mongodb URI:',
-    default: defaults.mongoUri,
-    validate: input => {
-      if (!input) return 'Mongodb connection string:';
-      return true;
-    },
-  },
 ];
 
-const backList = ['.git'];
-function createDirectoryContents(fromPath, toPath) {
-  const filesToCreate = fs.readdirSync(fromPath).filter(x => !backList.includes(x));
+function createDirectoryContents(fromPath, toPath, blackList) {
+  const filesToCreate = fs.readdirSync(fromPath).filter(x => !blackList.includes(x));
 
   filesToCreate.forEach(file => {
     const origFilePath = `${fromPath}/${file}`;
@@ -112,7 +79,7 @@ function createDirectoryContents(fromPath, toPath) {
         if (!fs.existsSync(targetPath)) {
           fs.mkdirSync(targetPath);
         }
-        createDirectoryContents(`${fromPath}/${file}`, `${toPath}/${file}`);
+        createDirectoryContents(`${fromPath}/${file}`, `${toPath}/${file}`, blackList);
         shell.echo(`${symbols.success} created dir ${targetPath}`);
       } catch (err) {
         shell.echo(`${symbols.error} error sync file ${targetPath}`);
@@ -125,6 +92,16 @@ function createDirectoryContents(fromPath, toPath) {
 
 async function main({ args: [_target], opts: { yes } }) {
   try {
+    if (templates.length === 0) {
+      shell.echo(`${symbols.error} No starter project templates found`);
+      shell.echo(
+        `${symbols.info} Run ${chalk.cyan(
+          'npm install -g forge-react-starter'
+        )} to install react-starter`
+      );
+      process.exit(1);
+    }
+
     const target = _target.startsWith('/') ? _target : path.join(process.cwd(), _target);
     if (!target) {
       shell.echo(`${symbols.error} Please specify a folder for creating the new application`);
@@ -132,90 +109,63 @@ async function main({ args: [_target], opts: { yes } }) {
       process.exit(1);
     }
 
+    // Determine targetDir
     const targetDir = path.resolve(target);
     if (isDirectory(targetDir) && fs.readdirSync(targetDir).length > 0) {
       shell.echo(`${symbols.error} target folder ${target} already exist and not empty`);
       process.exit(1);
     }
 
-    // Collecting
-    const { template, appName, appPort, mongoUri, chainHost } = yes
-      ? defaults
-      : await inquirer.prompt(questions);
-    const templateDir = path.join(templatesDir, template);
+    // Collecting starter config
+    const { template, chainHost } = yes ? defaults : await inquirer.prompt(questions);
+    const client = new GraphQLClient({ endpoint: chainHost });
+    const { info } = await client.getChainInfo();
+    const chainId = info.network;
+    const starterDir = path.join(templatesDir, template);
+    const starter = require(path.join(starterDir, './starter.config.js'));
+    const config = { starterDir, targetDir, template, chainHost, chainId };
+    if (yes || (Array.isArray(starter.questions) && starter.questions.length === 0)) {
+      Object.assign(config, defaults, starter.defaults || {});
+    } else {
+      const answers = await inquirer.prompt(starter.questions);
+      Object.assign(config, answers);
+    }
 
-    const ipAddress = ip.address();
-    shell.echo(`${symbols.info} application config`, {
-      appName,
-      appPort,
-      targetDir,
-      ipAddress,
-      mongoUri,
-      chainHost,
-    });
+    // Sync files
+    shell.echo(`${symbols.info} application config`, config);
     shell.echo(`${symbols.info} project folder: ${targetDir}`);
     shell.echo(`${symbols.info} creating project files...`);
     shell.echo(hr);
-
-    // Sync files
     if (!fs.existsSync(targetDir)) {
       shell.mkdir(targetDir);
     }
-    createDirectoryContents(templateDir, targetDir);
+    const blackList = [
+      '.git',
+      '.cache',
+      '.vscode',
+      '.netlify',
+      '.next',
+      'node_modules',
+      'dist',
+    ].concat(starter.backList || []);
+    createDirectoryContents(starterDir, targetDir, blackList);
     shell.echo(hr);
 
-    // Get chainId
-    const client = new GraphQLClient({ endpoint: chainHost });
-    const { info } = await client.getChainInfo();
-    const chainId = info.moniker;
-    shell.echo(`${symbols.info} application chainId: ${chainId}`);
+    // Create configuration files, etc
+    if (typeof starter.onConfigured === 'function') {
+      await starter.onConfigured(Object.assign({ client, symbols }, config));
+    }
 
-    // Declare application on chain
-    const wallet = fromRandom(
-      WalletType({
-        role: types.RoleType.ROLE_APPLICATION,
-        pk: types.KeyType.ED25519,
-        hash: types.HashType.SHA3,
-      })
-    );
-    debug('application wallet', wallet.toJSON());
-    const hash = await client.sendDeclareTx({
-      tx: {
-        chainId,
-        itx: {
-          moniker: camelcase(appName),
-        },
-      },
-      wallet,
-    });
-    debug('application declare tx', hash);
-    shell.echo(`${symbols.success} application account declared on chain: ${wallet.toAddress()}`);
+    // Install dependencies, etc
+    if (typeof starter.onCreated === 'function') {
+      await starter.onCreated(Object.assign({ client, symbols }, config));
+    }
 
-    // Generate config
-    const configPath = path.join(`${targetDir}`, '.env');
-    const configContent = `MONGO_URI="${mongoUri}"
-COOKIE_SECRET="${wallet.publicKey}"
-CHAIN_ID="${chainId}"
-CHAIN_HOST="${chainHost.replace('127.0.0.1', ipAddress).replace('localhost', ipAddress)}"
-APP_NAME="${appName}"
-APP_PORT="${appPort}"
-APP_SK="${wallet.secretKey}"
-APP_ID="${wallet.toAddress()}"
-BASE_URL="http://${ipAddress}:${appPort}"`;
-    fs.writeFileSync(configPath, configContent);
-    shell.echo(`${symbols.success} application config generated ${configPath}`);
-
-    // Run npm install
-    const pm = shell.which('yarn') ? 'yarn' : 'npm';
-    shell.echo(`${symbols.info} installing application dependencies...`);
-    execSync(`cd ${targetDir} && ${pm} install`, { stdio: [0, 1, 2] });
-    shell.echo(hr);
-
-    // Prompt cd and start
+    // Prompt getting started command
     shell.echo(`${symbols.success} application created successfully...`);
-    shell.echo(hr);
-    shell.echo(chalk.cyan(`cd ${targetDir}`));
-    shell.echo(chalk.cyan(`${pm} start`));
+    if (typeof starter.onComplete === 'function') {
+      await starter.onComplete(Object.assign({ client, symbols }, config));
+    }
     shell.echo(hr);
   } catch (err) {
     console.error(err);

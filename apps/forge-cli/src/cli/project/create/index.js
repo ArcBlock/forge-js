@@ -9,9 +9,9 @@ cli(
   input => action(execute, run, input),
   {
     requirements: {
-      forgeRelease: true,
-      runningNode: true,
-      rpcClient: true,
+      forgeRelease: false,
+      runningNode: false,
+      rpcClient: false,
       wallet: false,
     },
     options: [['-y, --yes', 'Use default value for all options']],
