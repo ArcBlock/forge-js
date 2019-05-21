@@ -1,6 +1,6 @@
 {
   "name": "@arcblock/forge-cli",
-  "version": "0.27.4",
+  "version": "0.27.6",
   "description": "a general set of CLI for arcblock Forge framework",
   "license": "Apache-2.0",
   "main": "src/index.js",
@@ -50,8 +50,8 @@
     "@arcblock/forge-config": "^0.27.0",
     "@arcblock/forge-message": "^0.27.0",
     "@arcblock/forge-proto": "^0.27.0",
-    "@arcblock/forge-wallet": "^0.27.0",
-    "@arcblock/graphql-client": "^0.27.0",
+    "@arcblock/forge-wallet": "^0.27.6",
+    "@arcblock/graphql-client": "^0.27.6",
     "@arcblock/grpc-client": "^0.27.1",
     "@arcblock/mcrypto": "^0.27.0",
     "@iarna/toml": "^2.2.3",
