@@ -195,7 +195,7 @@ module.exports = class Handlers {
         });
 
         debug('verify', { did, token, claims });
-        await onAuth({
+        const result = await onAuth({
           did,
           userAddress: toAddress(did),
           token,
@@ -212,7 +212,7 @@ module.exports = class Handlers {
           }
         }
 
-        res.json({ status: 0 });
+        res.json(Object.assign({}, result || {}, { status: 0 }));
       } catch (err) {
         if (session) {
           debug('verify.error', token);

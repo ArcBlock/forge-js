@@ -1,3 +1,8 @@
+## 0.27.9 (May 22, 2019)
+  - feat: support collect return data from onAuth callback
+  - chore: add docs for did-auth
+  - update readme
+
 ## 0.27.8 (May 22, 2019)
   - chore: add docs for did-auth
   - update readme
