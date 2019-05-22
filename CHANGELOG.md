@@ -1,3 +1,7 @@
+## 0.27.8 (May 22, 2019)
+  - chore: add docs for did-auth
+  - update readme
+
 ## 0.27.7 (May 22, 2019)
   - fix: forge create-project checking for target dir error
   - update readme
