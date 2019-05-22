@@ -102,13 +102,13 @@ async function main({ args: [_target], opts: { yes } }) {
       process.exit(1);
     }
 
-    const target = _target.startsWith('/') ? _target : path.join(process.cwd(), _target);
-    if (!target) {
+    if (!_target) {
       shell.echo(`${symbols.error} Please specify a folder for creating the new application`);
       shell.echo(`${symbols.info} You can try ${chalk.cyan('forge create-project hello-forge')}`);
       process.exit(1);
     }
 
+    const target = _target.startsWith('/') ? _target : path.join(process.cwd(), _target);
     // Determine targetDir
     const targetDir = path.resolve(target);
     if (isDirectory(targetDir) && fs.readdirSync(targetDir).length > 0) {
