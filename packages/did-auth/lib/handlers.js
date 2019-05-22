@@ -23,7 +23,16 @@ module.exports = class Handlers {
   /**
    * Attach routes and handlers for authenticator
    *
-   * @param {object} { app, action, claims, prefix = '/api' }
+   * @param {object} config - attach config { app, action, claims, prefix = '/api' }
+   * @param {object} config.app - express instance to attach routes to
+   * @param {object} config.claims - claims for this request
+   * @param {string} config.action - action of this group of routes
+   * @param {function} config.onAuth - callback when user completed auth in abt wallet, and data posted back
+   * @param {function} [config.onComplete=noop] - callback when the whole auth process is done, action token is removed
+   * @param {function} [config.onExpire=noop] - callback when the action token expired
+   * @param {function} [config.onError=console.error] - callback when there are some errors
+   * @param {string} [config.action='/api/did'] - url prefix for this group endpoints
+   * @return void
    */
   attach({
     app,

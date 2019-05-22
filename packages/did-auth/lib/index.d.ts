@@ -1,4 +1,4 @@
-// Generate by [js2dts@0.3.2](https://github.com/whxaxes/js2dts#readme)
+// Generate by [js2dts@0.3.3](https://github.com/whxaxes/js2dts#readme)
 
 declare class Authenticator {
   client: any;
@@ -32,11 +32,20 @@ declare class Handlers {
   /**
    * Attach routes and handlers for authenticator
    *
-   * @param {object} { app, action, claims, prefix = '/api' }
+   * @param {object} config - attach config { app, action, claims, prefix = '/api' }
+   * @param {object} config.app - express instance to attach routes to
+   * @param {object} config.claims - claims for this request
+   * @param {string} config.action - action of this group of routes
+   * @param {function} config.onAuth - callback when user completed auth in abt wallet, and data posted back
+   * @param {function} [config.onComplete=noop] - callback when the whole auth process is done, action token is removed
+   * @param {function} [config.onExpire=noop] - callback when the action token expired
+   * @param {function} [config.onError=console.error] - callback when there are some errors
+   * @param {string} [config.action='/api/did'] - url prefix for this group endpoints
+   * @return void
    */
-  attach(T126: any): void;
+  attach(T126: _Lib.T127): void;
 }
-declare const _Lib: _Lib.T127;
+declare const _Lib: _Lib.T128;
 declare namespace _Lib {
   export interface T101 {
     wallet: any;
@@ -122,6 +131,15 @@ declare namespace _Lib {
     authenticator: any;
   }
   export interface T127 {
+    app: any;
+    claims: any;
+    action?: string;
+    onAuth: (...args: any[]) => any;
+    onComplete?: (...args: any[]) => any;
+    onExpire?: (...args: any[]) => any;
+    onError?: (...args: any[]) => any;
+  }
+  export interface T128 {
     Authenticator: typeof Authenticator;
     Handlers: typeof Handlers;
   }
