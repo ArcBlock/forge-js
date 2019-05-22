@@ -1,3 +1,7 @@
+## 0.27.7 (May 22, 2019)
+  - fix: forge create-project checking for target dir error
+  - update readme
+
 ## 0.27.6 (May 21, 2019)
   - chore: remove forge-react-starter as submodule
   - feat: implement starter spec when creating new projects from starters
