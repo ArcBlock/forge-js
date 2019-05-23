@@ -1,4 +1,5 @@
 /* eslint-disable object-curly-newline */
+const get = require('lodash.get');
 const multibase = require('multibase');
 const Mcrypto = require('@arcblock/mcrypto');
 const { bytesToHex } = require('@arcblock/forge-util');
@@ -8,6 +9,35 @@ const debug = require('debug')(`${require('../package.json').name}:handlers`);
 const sha3 = Mcrypto.Hasher.SHA3.hash256;
 const getLocale = req => (req.acceptsLanguages('en-US', 'zh-CN') || 'en-US').split('-').shift();
 const noop = () => {};
+
+const errors = {
+  tokenMissing: {
+    en: 'Token is required to check status',
+    zh: '缺少令牌参数',
+  },
+  didMismatch: {
+    en: 'Login user and wallet user mismatch, please relogin and try again',
+    zh: '当前会话用户和扫码用户不匹配，为保障数据安全，请注销重新登录',
+  },
+  token404: {
+    en: 'Token not found',
+    zh: '令牌不合法',
+  },
+  didMissing: {
+    en: 'userDid is required to start auth',
+    zh: 'userDid 参数缺失',
+  },
+  pkMissing: {
+    en: 'userPk is required to start auth',
+    zh: 'userPk 参数缺失',
+  },
+};
+
+const STATUS_CREATED = 'created';
+const STATUS_SUCCEED = 'succeed';
+const STATUS_ERROR = 'error';
+const STATUS_SCANNED = 'scanned';
+const STATUS_FORBIDDEN = 'forbidden';
 
 module.exports = class Handlers {
   /**
@@ -46,6 +76,7 @@ module.exports = class Handlers {
    * @param {function} [config.onExpire=noop] - callback when the action token expired
    * @param {function} [config.onError=console.error] - callback when there are some errors
    * @param {string} [config.action='/api/did'] - url prefix for this group endpoints
+   * @param {string} [config.sessionDidKey='user.did'] - key path to extract session user did from request object
    * @return void
    */
   attach({
@@ -58,6 +89,7 @@ module.exports = class Handlers {
     // eslint-disable-next-line no-console
     onError = console.error,
     prefix = '/api/did',
+    sessionDidKey = 'user.did',
   }) {
     if (typeof onAuth !== 'function') {
       throw new Error('onAuth callback is required to attach did auth handlers');
@@ -81,9 +113,12 @@ module.exports = class Handlers {
     app.get(`${prefix}/${action}/token`, async (req, res) => {
       try {
         const token = sha3(this.generator(req, { action, prefix })).replace(/^0x/, '');
-        await this.storage.create(token, 'created');
+        await this.storage.create(token, STATUS_CREATED);
         debug('generate token', { action, prefix, token });
 
+        // TODO: generate checksum from sessionDid if we have a login user,
+        // And check that checksum against userDid from when wallet ask for appInfo
+        // Then we can find did mismatch as early as possible
         res.json({
           token,
           url: this.authenticator.uri({ token, pathname, query: req.query }),
@@ -97,29 +132,39 @@ module.exports = class Handlers {
     // 2. WEB: check for token status
     app.get(`${prefix}/${action}/status`, async (req, res) => {
       try {
+        const locale = getLocale(req);
         const { token } = req.query;
         if (!token) {
-          res.status(400).json({ error: 'token is required to check status' });
+          res.status(400).json({ error: errors.tokenMissing[locale] });
           return;
         }
 
-        const session = await this.storage.read(token);
-        if (session) {
-          if (session.status === 'succeed') {
+        const store = await this.storage.read(token);
+        if (store) {
+          // Force client logout if the did of session user and wallet user mismatch
+          // Set token status to forbidden, so that wallet auth request will be rejected
+          const sessionDid = get(req, sessionDidKey);
+          if (sessionDid && sessionDid !== store.did) {
+            res.status(403).json({ error: errors.didMismatch[locale] });
+            await this.storage.update(token, { status: STATUS_FORBIDDEN });
+            return;
+          }
+
+          if (store.status === STATUS_SUCCEED) {
             await this.storage.delete(token);
             await onComplete({
               req,
               action,
-              token,
-              did: session.did,
-              userAddress: toAddress(session.did),
-              extraParams: Object.assign({ locale: getLocale(req) }, req.query),
+              store,
+              did: store.did,
+              userAddress: toAddress(store.did),
+              extraParams: Object.assign({ locale }, req.query),
             });
           }
 
-          res.status(200).json(session);
+          res.status(200).json(store);
         } else {
-          res.status(404).json({ error: 'token not found' });
+          res.status(404).json({ error: errors.token404[locale] });
         }
       } catch (err) {
         res.json({ error: err.message });
@@ -130,9 +175,10 @@ module.exports = class Handlers {
     // 3. WEB: to expire old token
     app.get(`${prefix}/${action}/timeout`, async (req, res) => {
       try {
+        const locale = getLocale(req);
         const { token } = req.query;
         if (!token) {
-          res.status(400).json({ error: 'token is required to mark as expired' });
+          res.status(400).json({ error: errors.tokenMissing[locale] });
           return;
         }
 
@@ -147,19 +193,20 @@ module.exports = class Handlers {
 
     // 4. Wallet: fetch auth request
     app.get(pathname, async (req, res) => {
+      const locale = getLocale(req);
       const { userDid: did, userPk, token } = req.query;
       if (!did) {
-        return res.json({ error: 'userDid is required to start auth' });
+        return res.json({ error: errors.didMissing[locale] });
       }
       if (!userPk) {
-        return res.json({ error: 'userPk is required to start auth' });
+        return res.json({ error: errors.pkMissing[locale] });
       }
 
       debug('sign.input', req.query);
-      const session = await this.storage.read(token);
+      const store = await this.storage.read(token);
       try {
-        if (session) {
-          await this.storage.update(token, { did, status: 'scanned' });
+        if (store) {
+          await this.storage.update(token, { did, status: STATUS_SCANNED });
         }
 
         const authInfo = await this.authenticator.sign({
@@ -169,7 +216,7 @@ module.exports = class Handlers {
           claims,
           pathname,
           extraParams: Object.assign(
-            { locale: getLocale(req) },
+            { locale },
             Object.keys(req.query)
               .filter(x => !['userDid', 'userPk', 'token'].includes(x))
               .reduce((obj, x) => {
@@ -182,8 +229,8 @@ module.exports = class Handlers {
         debug('sign.result', authInfo);
         res.json(authInfo);
       } catch (err) {
-        if (session) {
-          await this.storage.update(token, { did, status: 'error' });
+        if (store) {
+          await this.storage.update(token, { did, status: STATUS_ERROR });
         }
         res.json({ error: err.message });
         onError({ stage: 'auth-response', err });
@@ -197,8 +244,9 @@ module.exports = class Handlers {
       if (!params.token) {
         debug('verify.input.warn', 'action token not found in input param');
       }
+      const locale = getLocale(req);
       const token = params.token;
-      const session = token ? await this.storage.read(token) : null;
+      const store = token ? await this.storage.read(token) : null;
 
       try {
         // eslint-disable-next-line no-shadow
@@ -213,20 +261,24 @@ module.exports = class Handlers {
         const cbParams = {
           req,
           did,
-          token,
+          store,
           claims,
           userAddress: toAddress(did),
           storage: this.storage,
-          extraParams: Object.assign({ locale: getLocale(req), action }, req.query),
+          extraParams: Object.assign({ locale, action }, req.query),
         };
 
         // onPreAuth: error thrown from this callback will halt the auth process
         await this.onPreAuth(cbParams);
         if (token) {
-          if (session) {
-            await this.storage.update(token, { status: 'succeed' });
+          if (store) {
+            if (store.status === STATUS_FORBIDDEN) {
+              return res.json({ error: errors.didMismatch[locale] });
+            }
+
+            await this.storage.update(token, { status: STATUS_SUCCEED });
           } else {
-            return res.json({ error: 'Bad request, token is invalid' });
+            return res.json({ error: errors.token404[locale] });
           }
         }
 
@@ -234,9 +286,9 @@ module.exports = class Handlers {
         const result = await onAuth(cbParams);
         res.json(Object.assign({}, result || {}, { status: 0 }));
       } catch (err) {
-        if (session) {
+        if (store) {
           debug('verify.error', token);
-          await this.storage.update(token, { status: 'error' });
+          await this.storage.update(token, { status: STATUS_ERROR });
         }
 
         res.json({ error: err.message });
