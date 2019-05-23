@@ -112,7 +112,9 @@ module.exports = class Handlers {
     // 1. WEB: to generate new token
     app.get(`${prefix}/${action}/token`, async (req, res) => {
       try {
-        const token = sha3(this.generator({ req, action, prefix })).replace(/^0x/, '');
+        const token = sha3(this.generator({ req, action, prefix }))
+          .replace(/^0x/, '')
+          .slice(0, 8);
         await this.storage.create(token, STATUS_CREATED);
         debug('generate token', { action, prefix, token });
 
