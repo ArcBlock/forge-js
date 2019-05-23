@@ -86,8 +86,6 @@
     "generate-dts": "node tools/generate-dts.js",
     "update-schema": "rm -f src/schema/graphql.json && node tools/update-graphql-schema.js",
     "upgrade": "yarn update-schema && yarn generate-queries && yarn generate-types && yarn generate-dts && yarn generate-docs && yarn format-docs && yarn build",
-    "precommit": "CI=1 yarn test",
-    "prepush": "CI=1 yarn test",
     "test": "yarn lint && node tools/jest.js",
     "coverage": "yarn test -- --coverage"
   },
@@ -97,5 +95,11 @@
   },
   "bugs": {
     "url": "https://github.com/ArcBlock/forge-js/issues"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "CI=1 yarn test",
+      "pre-push": "CI=1 yarn test"
+    }
   }
 }

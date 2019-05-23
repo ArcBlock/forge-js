@@ -52,8 +52,6 @@
     "generate-docs": "jsdoc2md init.js > docs/README.md",
     "generate-dts": "j2d index.js && j2d lite.js && node tools/generate-dts.js && bash tools/patch-dts.sh",
     "lint": "eslint tests index.js",
-    "precommit": "CI=1 yarn test",
-    "prepush": "CI=1 yarn test",
     "test": "yarn lint && node tools/jest.js",
     "coverage": "yarn lint && yarn test -- --coverage --collectCoverageFrom=index.js --collectCoverageFrom=!lib/*.js"
   },
@@ -61,5 +59,11 @@
     "debug": "^4.1.1",
     "lodash.get": "^4.4.2"
   },
-  "gitHead": "87990c8b5e215107fc587c1ced0d6b3e2cd2483e"
+  "gitHead": "87990c8b5e215107fc587c1ced0d6b3e2cd2483e",
+  "husky": {
+    "hooks": {
+      "pre-commit": "CI=1 yarn test",
+      "pre-push": "CI=1 yarn test"
+    }
+  }
 }
