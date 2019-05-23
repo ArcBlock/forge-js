@@ -112,7 +112,7 @@ module.exports = class Handlers {
     // 1. WEB: to generate new token
     app.get(`${prefix}/${action}/token`, async (req, res) => {
       try {
-        const token = sha3(this.generator(req, { action, prefix })).replace(/^0x/, '');
+        const token = sha3(this.generator({ req, action, prefix })).replace(/^0x/, '');
         await this.storage.create(token, STATUS_CREATED);
         debug('generate token', { action, prefix, token });
 
@@ -144,7 +144,7 @@ module.exports = class Handlers {
           // Force client logout if the did of session user and wallet user mismatch
           // Set token status to forbidden, so that wallet auth request will be rejected
           const sessionDid = get(req, sessionDidKey);
-          if (sessionDid && sessionDid !== store.did) {
+          if (sessionDid && store.did && sessionDid !== store.did) {
             debug('did mismatch', { sessionDid, store });
             res.status(403).json({ error: errors.didMismatch[locale] });
             await this.storage.update(token, { status: STATUS_FORBIDDEN });
@@ -206,6 +206,10 @@ module.exports = class Handlers {
       debug('sign.input', req.query);
       const store = await this.storage.read(token);
       try {
+        if (token && store && store.status === STATUS_FORBIDDEN) {
+          return res.json({ error: errors.didMismatch[locale] });
+        }
+
         if (store) {
           await this.storage.update(token, { did, status: STATUS_SCANNED });
         }
@@ -269,6 +273,10 @@ module.exports = class Handlers {
           extraParams: Object.assign({ locale, action }, req.query),
         };
 
+        if (token && store && store.status === STATUS_FORBIDDEN) {
+          return res.json({ error: errors.didMismatch[locale] });
+        }
+
         // onPreAuth: error thrown from this callback will halt the auth process
         await this.onPreAuth(cbParams);
 
@@ -277,10 +285,6 @@ module.exports = class Handlers {
 
         if (token) {
           if (store) {
-            if (store.status === STATUS_FORBIDDEN) {
-              return res.json({ error: errors.didMismatch[locale] });
-            }
-
             await this.storage.update(token, { status: STATUS_SUCCEED });
           } else {
             return res.json({ error: errors.token404[locale] });
