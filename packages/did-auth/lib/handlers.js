@@ -18,7 +18,7 @@ const errors = {
   },
   didMismatch: {
     en: 'Login user and wallet user mismatch, please relogin and try again',
-    zh: '当前会话用户和扫码用户不匹配，为保障数据安全，请注销重新登录',
+    zh: '登录用户和扫码用户不匹配，为保障安全，请重新登录应用',
   },
   token404: {
     en: 'Token not found',
@@ -151,6 +151,11 @@ module.exports = class Handlers {
 
         const store = await this.storage.read(token);
         if (store) {
+          if (store.status === STATUS_FORBIDDEN) {
+            res.status(403).json({ error: errors.didMismatch[locale] });
+            return;
+          }
+
           // Force client logout if the did of session user and wallet user mismatch
           // Set token status to forbidden, so that wallet auth request will be rejected
           const sessionDid = get(req, sessionDidKey);

@@ -48,7 +48,7 @@ module.exports = class Authenticator {
    * @param {GraphQLClient} config.client - GraphQLClient instance {@see @arcblock/graphql-client}
    * @param {string} [config.tokenKey='_t_'] - query param key for `token`
    */
-  constructor({ wallet, appInfo, baseUrl, client, tokenKey }) {
+  constructor({ wallet, appInfo, baseUrl, client, tokenKey = '_t_' }) {
     if (typeof wallet.sk === 'undefined') {
       throw new Error('DID Authenticator cannot work without secretKey');
     }
