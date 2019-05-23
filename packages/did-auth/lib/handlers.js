@@ -109,9 +109,10 @@ module.exports = class Handlers {
             await this.storage.delete(token);
             await onComplete({
               req,
+              action,
+              token,
               did: session.did,
               userAddress: toAddress(session.did),
-              token,
               extraParams: Object.assign({ locale: getLocale(req) }, req.query),
             });
           }
@@ -202,34 +203,25 @@ module.exports = class Handlers {
       try {
         // eslint-disable-next-line no-shadow
         const { did, claims } = await this.authenticator.verify(params);
-        const extraParams = Object.assign({ locale: getLocale(req) }, req.query);
-
-        debug('verify', { did, token, claims });
         claims.forEach(x => {
           if (x.type === 'signature') {
             x.sigHex = bytesToHex(multibase.decode(x.sig));
           }
         });
-
-        await this.onPreAuth({
-          did,
-          userAddress: toAddress(did),
-          token,
-          claims,
-          storage: this.storage,
-          extraParams,
-        });
-
         debug('verify', { did, token, claims });
-        const result = await onAuth({
+
+        const cbParams = {
+          req,
           did,
-          userAddress: toAddress(did),
           token,
           claims,
+          userAddress: toAddress(did),
           storage: this.storage,
-          extraParams: Object.assign({ locale: getLocale(req) }, req.query),
-        });
+          extraParams: Object.assign({ locale: getLocale(req), action }, req.query),
+        };
 
+        // onPreAuth: error thrown from this callback will halt the auth process
+        await this.onPreAuth(cbParams);
         if (token) {
           if (session) {
             await this.storage.update(token, { status: 'succeed' });
@@ -238,6 +230,8 @@ module.exports = class Handlers {
           }
         }
 
+        // onAuth: send the tx/do the transfer, etc.
+        const result = await onAuth(cbParams);
         res.json(Object.assign({}, result || {}, { status: 0 }));
       } catch (err) {
         if (session) {
