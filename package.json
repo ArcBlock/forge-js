@@ -56,9 +56,13 @@
     "jsdocs": "jsdoc --configure jsdoc.js --verbose",
     "docs": "lerna run generate-docs && yarn run format-docs",
     "test": "CI=1 lerna run test",
-    "precommit": "lint-staged && lerna run precommit",
-    "prepush": "lint-staged && lerna run prepush",
     "coverage": "CI=1 lerna run coverage"
   },
-  "dependencies": {}
+  "dependencies": {},
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged && lerna run precommit",
+      "pre-push": "lint-staged && lerna run prepush"
+    }
+  }
 }
