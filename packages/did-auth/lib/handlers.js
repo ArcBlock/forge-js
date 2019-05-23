@@ -10,7 +10,16 @@ const getLocale = req => (req.acceptsLanguages('en-US', 'zh-CN') || 'en-US').spl
 const noop = () => {};
 
 module.exports = class Handlers {
-  constructor({ tokenGenerator, tokenStorage, authenticator }) {
+  /**
+   * Creates an instance of DID Auth Handlers.
+   *
+   * @param {object} config
+   * @param {function} config.tokenGenerator - function to generate action token
+   * @param {object} config.tokenStorage - function to generate action token
+   * @param {object} config.authenticator - Authenticator instance that can to jwt sign/verify
+   * @param {function} [config.onAuth=noop] - function called before each auth request send back to app, used to check for permission, throw error to halt the auth process
+   */
+  constructor({ tokenGenerator, tokenStorage, authenticator, onPreAuth = noop }) {
     if (typeof tokenGenerator !== 'function') {
       throw new Error('tokenGenerator must be a function');
     }
@@ -18,6 +27,11 @@ module.exports = class Handlers {
     this.authenticator = authenticator;
     this.generator = tokenGenerator;
     this.storage = tokenStorage;
+    if (typeof onPreAuth === 'function') {
+      this.onPreAuth = onPreAuth;
+    } else {
+      this.onPreAuth = noop;
+    }
   }
 
   /**
@@ -188,10 +202,22 @@ module.exports = class Handlers {
       try {
         // eslint-disable-next-line no-shadow
         const { did, claims } = await this.authenticator.verify(params);
+        const extraParams = Object.assign({ locale: getLocale(req) }, req.query);
+
+        debug('verify', { did, token, claims });
         claims.forEach(x => {
           if (x.type === 'signature') {
             x.sigHex = bytesToHex(multibase.decode(x.sig));
           }
+        });
+
+        await this.onPreAuth({
+          did,
+          userAddress: toAddress(did),
+          token,
+          claims,
+          storage: this.storage,
+          extraParams,
         });
 
         debug('verify', { did, token, claims });
