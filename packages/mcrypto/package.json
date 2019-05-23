@@ -33,12 +33,12 @@
   },
   "scripts": {
     "lint": "eslint tests lib",
-    "precommit": "CI=1 npm run test",
-    "prepush": "CI=1 npm run test",
-    "test": "npm run lint && node tools/jest.js",
+    "precommit": "CI=1 yarn test",
+    "prepush": "CI=1 yarn test",
+    "test": "yarn lint && node tools/jest.js",
     "format-docs": "remark . -o",
     "generate-docs": "jsdoc2md lib/index.js > docs/README.md",
-    "coverage": "npm run lint && npm run test -- --coverage"
+    "coverage": "yarn lint && yarn test -- --coverage"
   },
   "bugs": {
     "url": "https://github.com/ArcBlock/forge-js/issues"

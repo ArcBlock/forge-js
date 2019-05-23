@@ -24,7 +24,31 @@ const getUserPkHex = userPk => {
 };
 
 module.exports = class Authenticator {
-  constructor({ wallet, appInfo, baseUrl, client }) {
+  /**
+   * @typedef ApplicationInfo
+   * @prop {string} chainId - chain id
+   * @prop {string} chainHost - graphql endpoint of the chain
+   * @prop {string} chainToken - token symbol
+   * @prop {string} decimals - token decimals
+   * @prop {string} name - application name
+   * @prop {string} description - application description
+   * @prop {string} icon - application icon/logo url
+   * @prop {string} path - application icon/logo url
+   * @prop {string} publisher - application did with `did:abt:` prefix
+   */
+
+  /**
+   * Creates an instance of DID Authenticator.
+   *
+   * @public
+   * @param {object} config
+   * @param {Wallet} config.wallet - wallet instance {@see @arcblock/forge-wallet}
+   * @param {ApplicationInfo} config.appInfo - application basic info
+   * @param {object} config.baseUrl - url to assemble wallet request uri
+   * @param {GraphQLClient} config.client - GraphQLClient instance {@see @arcblock/graphql-client}
+   * @param {string} [config.tokenKey='_t_'] - query param key for `token`
+   */
+  constructor({ wallet, appInfo, baseUrl, client, tokenKey = '_t_' }) {
     if (typeof wallet.sk === 'undefined') {
       throw new Error('DID Authenticator cannot work without secretKey');
     }
@@ -36,11 +60,12 @@ module.exports = class Authenticator {
     this.wallet = wallet;
     this.appInfo = appInfo;
     this.baseUrl = baseUrl;
+    this.tokenKey = tokenKey;
     this.appPk = multibase.encode('base58btc', Buffer.from(hexToBytes(wallet.pk))).toString();
   }
 
   uri({ token, pathname, query = {} }) {
-    const params = Object.assign({}, query, { token });
+    const params = Object.assign({}, query, { [this.tokenKey]: token });
     const payload = {
       appPk: this.appPk,
       appDid: toDid(this.wallet.address),
@@ -58,7 +83,9 @@ module.exports = class Authenticator {
       action: 'responseAuth',
       appInfo: this.appInfo,
       requestedClaims: await this.genRequestedClaims({ claims, did, userPk, extraParams }),
-      url: `${this.baseUrl}${pathname}?${qs.stringify(Object.assign({ token }, extraParams))}`,
+      url: `${this.baseUrl}${pathname}?${qs.stringify(
+        Object.assign({ [this.tokenKey]: token }, extraParams)
+      )}`,
     };
 
     debug('responseAuth.sign', { token, did, payload, extraParams });

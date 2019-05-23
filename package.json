@@ -18,7 +18,7 @@
     "eslint-config-prettier": "latest",
     "eslint-plugin-prettier": "latest",
     "eslint-plugin-react-hooks": "^1.6.0",
-    "husky": "^0.14.3",
+    "husky": "^2.3.0",
     "js2dts": "^0.3.3",
     "jsdoc": "^3.5.5",
     "lerna": "^3.3.2",
@@ -56,9 +56,13 @@
     "jsdocs": "jsdoc --configure jsdoc.js --verbose",
     "docs": "lerna run generate-docs && yarn run format-docs",
     "test": "CI=1 lerna run test",
-    "precommit": "lint-staged && lerna run precommit",
-    "prepush": "lint-staged && lerna run prepush",
     "coverage": "CI=1 lerna run coverage"
   },
-  "dependencies": {}
+  "dependencies": {},
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged && lerna run precommit",
+      "pre-push": "lint-staged && lerna run prepush"
+    }
+  }
 }
