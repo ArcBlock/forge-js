@@ -5,6 +5,7 @@ declare class Authenticator {
   wallet: any;
   appInfo: any;
   baseUrl: any;
+  tokenKey: any;
   appPk: any;
   /**
    * @typedef ApplicationInfo
@@ -28,6 +29,7 @@ declare class Authenticator {
    * @param {ApplicationInfo} config.appInfo - application basic info
    * @param {object} config.baseUrl - url to assemble wallet request uri
    * @param {GraphQLClient} config.client - GraphQLClient instance {@see @arcblock/graphql-client}
+   * @param {string} [config.tokenKey='_t_'] - query param key for `token`
    */
   constructor(T100: _Lib.T101);
   uri(T102: _Lib.T104): string;
@@ -74,6 +76,9 @@ declare class Handlers {
    * @param {function} [config.onExpire=noop] - callback when the action token expired
    * @param {function} [config.onError=console.error] - callback when there are some errors
    * @param {string} [config.action='/api/did'] - url prefix for this group endpoints
+   * @param {string} [config.sessionDidKey='user.did'] - key path to extract session user did from request object
+   * @param {string} [config.tokenKey='_t_'] - query param key for `token`
+   * @param {string} [config.checksumKey='_cs_'] - query param key for `checksum`
    * @return void
    */
   attach(T126: _Lib.T127): void;
@@ -169,6 +174,9 @@ declare namespace _Lib {
     onComplete?: (...args: any[]) => any;
     onExpire?: (...args: any[]) => any;
     onError?: (...args: any[]) => any;
+    sessionDidKey?: string;
+    tokenKey?: string;
+    checksumKey?: string;
   }
   export interface T128 {
     Authenticator: typeof Authenticator;
