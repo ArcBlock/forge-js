@@ -1,3 +1,13 @@
+## 0.27.10 (May 23, 2019)
+  - chore: fix husky hooks
+  - chore: fix husky hooks
+  - Revert "chore: fix husky hooks"
+  - chore: fix husky hooks
+  - chore: fix husky hooks
+  - chore: update docs for did authenticator and handler
+  - feat: add onPreAuth hook for AuthHandler, so the application can do some check for the auth
+  - update readme
+
 ## 0.27.9 (May 22, 2019)
   - feat: support collect return data from onAuth callback
   - chore: add docs for did-auth
