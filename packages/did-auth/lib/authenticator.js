@@ -24,6 +24,29 @@ const getUserPkHex = userPk => {
 };
 
 module.exports = class Authenticator {
+  /**
+   * @typedef ApplicationInfo
+   * @prop {string} chainId - chain id
+   * @prop {string} chainHost - graphql endpoint of the chain
+   * @prop {string} chainToken - token symbol
+   * @prop {string} decimals - token decimals
+   * @prop {string} name - application name
+   * @prop {string} description - application description
+   * @prop {string} icon - application icon/logo url
+   * @prop {string} path - application icon/logo url
+   * @prop {string} publisher - application did with `did:abt:` prefix
+   */
+
+  /**
+   * Creates an instance of DID Authenticator.
+   *
+   * @public
+   * @param {object} config
+   * @param {Wallet} config.wallet - wallet instance {@see @arcblock/forge-wallet}
+   * @param {ApplicationInfo} config.appInfo - application basic info
+   * @param {object} config.baseUrl - url to assemble wallet request uri
+   * @param {GraphQLClient} config.client - GraphQLClient instance {@see @arcblock/graphql-client}
+   */
   constructor({ wallet, appInfo, baseUrl, client }) {
     if (typeof wallet.sk === 'undefined') {
       throw new Error('DID Authenticator cannot work without secretKey');
