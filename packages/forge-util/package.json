@@ -42,16 +42,12 @@
     "generate-docs": "jsdoc2md lib/index.js > docs/README.md",
     "generate-dts": "j2d lib/index.js",
     "format-docs": "remark . -o",
+    "precommit": "CI=1 yarn test",
+    "prepush": "CI=1 yarn test",
     "test": "yarn lint && node tools/jest.js",
     "coverage": "yarn lint && yarn test -- --coverage"
   },
   "bugs": {
     "url": "https://github.com/ArcBlock/forge-js/issues"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "CI=1 yarn test",
-      "pre-push": "CI=1 yarn test"
-    }
   }
 }

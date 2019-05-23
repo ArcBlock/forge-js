@@ -35,6 +35,8 @@
     "generate-docs": "jsdoc2md lib/index.js > docs/README.md",
     "generate-dts": "j2d lib/index.js",
     "format-docs": "remark . -o",
+    "precommit": "CI=1 yarn test",
+    "prepush": "CI=1 yarn test",
     "test": "yarn lint && node tools/jest.js",
     "coverage": "yarn lint && yarn test -- --coverage"
   },
@@ -49,11 +51,5 @@
     "json-stable-stringify": "^1.0.1",
     "lodash": "^4.17.11",
     "multibase": "^0.6.0"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "CI=1 yarn test",
-      "pre-push": "CI=1 yarn test"
-    }
   }
 }

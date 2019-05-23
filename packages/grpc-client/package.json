@@ -72,15 +72,11 @@
     "format-docs": "remark . -o",
     "generate-dts": "j2d index.js && ./tools/patch-dts.sh && node tools/generate-dts.js",
     "examples": "node tools/run-example.js",
+    "precommit": "CI=1 yarn test",
+    "prepush": "CI=1 yarn test",
     "repl": "node -r ./tools/repl.js",
     "test": "npm run lint && node tools/jest.js",
     "coverage": "npm run lint && yarn test -- --coverage"
   },
-  "gitHead": "87990c8b5e215107fc587c1ced0d6b3e2cd2483e",
-  "husky": {
-    "hooks": {
-      "pre-commit": "CI=1 yarn test",
-      "pre-push": "CI=1 yarn test"
-    }
-  }
+  "gitHead": "87990c8b5e215107fc587c1ced0d6b3e2cd2483e"
 }

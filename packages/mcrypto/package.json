@@ -33,6 +33,8 @@
   },
   "scripts": {
     "lint": "eslint tests lib",
+    "precommit": "CI=1 npm run test",
+    "prepush": "CI=1 npm run test",
     "test": "npm run lint && node tools/jest.js",
     "format-docs": "remark . -o",
     "generate-docs": "jsdoc2md lib/index.js > docs/README.md",
@@ -49,11 +51,5 @@
     "js-sha3": "^0.8.0",
     "randombytes": "^2.0.6",
     "tweetnacl": "^1.0.1"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "CI=1 yarn test",
-      "pre-push": "CI=1 yarn test"
-    }
   }
 }
