@@ -219,9 +219,7 @@ module.exports = class Handlers {
       // check did mismatch
       const didChecksum = getDidCheckSum(did);
       if (didChecksum && checksum && didChecksum !== checksum) {
-        if (token) {
-          this.storage.update(token, { status: STATUS_FORBIDDEN });
-        }
+        await this.storage.update(token, { status: STATUS_FORBIDDEN });
         return res.json({ error: errors.didMismatch[locale] });
       }
 
