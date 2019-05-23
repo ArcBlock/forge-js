@@ -46,8 +46,9 @@ module.exports = class Authenticator {
    * @param {ApplicationInfo} config.appInfo - application basic info
    * @param {object} config.baseUrl - url to assemble wallet request uri
    * @param {GraphQLClient} config.client - GraphQLClient instance {@see @arcblock/graphql-client}
+   * @param {string} [config.tokenKey='_t_'] - query param key for `token`
    */
-  constructor({ wallet, appInfo, baseUrl, client }) {
+  constructor({ wallet, appInfo, baseUrl, client, tokenKey }) {
     if (typeof wallet.sk === 'undefined') {
       throw new Error('DID Authenticator cannot work without secretKey');
     }
@@ -59,11 +60,12 @@ module.exports = class Authenticator {
     this.wallet = wallet;
     this.appInfo = appInfo;
     this.baseUrl = baseUrl;
+    this.tokenKey = tokenKey;
     this.appPk = multibase.encode('base58btc', Buffer.from(hexToBytes(wallet.pk))).toString();
   }
 
   uri({ token, pathname, query = {} }) {
-    const params = Object.assign({}, query, { token });
+    const params = Object.assign({}, query, { [this.tokenKey]: token });
     const payload = {
       appPk: this.appPk,
       appDid: toDid(this.wallet.address),
@@ -81,7 +83,9 @@ module.exports = class Authenticator {
       action: 'responseAuth',
       appInfo: this.appInfo,
       requestedClaims: await this.genRequestedClaims({ claims, did, userPk, extraParams }),
-      url: `${this.baseUrl}${pathname}?${qs.stringify(Object.assign({ token }, extraParams))}`,
+      url: `${this.baseUrl}${pathname}?${qs.stringify(
+        Object.assign({ [this.tokenKey]: token }, extraParams)
+      )}`,
     };
 
     debug('responseAuth.sign', { token, did, payload, extraParams });

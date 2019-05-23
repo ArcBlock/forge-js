@@ -8,6 +8,7 @@ const debug = require('debug')(`${require('../package.json').name}:handlers`);
 
 const sha3 = Mcrypto.Hasher.SHA3.hash256;
 const getLocale = req => (req.acceptsLanguages('en-US', 'zh-CN') || 'en-US').split('-').shift();
+const getDidCheckSum = did => sha3(did).slice(2, 8);
 const noop = () => {};
 
 const errors = {
@@ -77,6 +78,8 @@ module.exports = class Handlers {
    * @param {function} [config.onError=console.error] - callback when there are some errors
    * @param {string} [config.action='/api/did'] - url prefix for this group endpoints
    * @param {string} [config.sessionDidKey='user.did'] - key path to extract session user did from request object
+   * @param {string} [config.tokenKey='_t_'] - query param key for `token`
+   * @param {string} [config.checksumKey='_cs_'] - query param key for `checksum`
    * @return void
    */
   attach({
@@ -90,6 +93,8 @@ module.exports = class Handlers {
     onError = console.error,
     prefix = '/api/did',
     sessionDidKey = 'user.did',
+    tokenKey = '_t_',
+    checksumKey = '_cs_',
   }) {
     if (typeof onAuth !== 'function') {
       throw new Error('onAuth callback is required to attach did auth handlers');
@@ -118,12 +123,15 @@ module.exports = class Handlers {
         await this.storage.create(token, STATUS_CREATED);
         debug('generate token', { action, prefix, token });
 
-        // TODO: generate checksum from sessionDid if we have a login user,
-        // And check that checksum against userDid from when wallet ask for appInfo
-        // Then we can find did mismatch as early as possible
+        const sessionDid = get(req, sessionDidKey);
+        const checksum = sessionDid ? getDidCheckSum(sessionDid) : '';
         res.json({
           token,
-          url: this.authenticator.uri({ token, pathname, query: req.query }),
+          url: this.authenticator.uri({
+            token,
+            pathname,
+            query: Object.assign({ [checksumKey]: checksum }, req.query),
+          }),
         });
       } catch (err) {
         res.json({ error: err.message });
@@ -135,7 +143,7 @@ module.exports = class Handlers {
     app.get(`${prefix}/${action}/status`, async (req, res) => {
       try {
         const locale = getLocale(req);
-        const { token } = req.query;
+        const { [tokenKey]: token } = req.query;
         if (!token) {
           res.status(400).json({ error: errors.tokenMissing[locale] });
           return;
@@ -179,7 +187,7 @@ module.exports = class Handlers {
     app.get(`${prefix}/${action}/timeout`, async (req, res) => {
       try {
         const locale = getLocale(req);
-        const { token } = req.query;
+        const { [tokenKey]: token } = req.query;
         if (!token) {
           res.status(400).json({ error: errors.tokenMissing[locale] });
           return;
@@ -197,7 +205,7 @@ module.exports = class Handlers {
     // 4. Wallet: fetch auth request
     app.get(pathname, async (req, res) => {
       const locale = getLocale(req);
-      const { userDid: did, userPk, token } = req.query;
+      const { userDid: did, userPk, [tokenKey]: token, [checksumKey]: checksum } = req.query;
       if (!did) {
         return res.json({ error: errors.didMissing[locale] });
       }
@@ -207,6 +215,16 @@ module.exports = class Handlers {
 
       debug('sign.input', req.query);
       const store = await this.storage.read(token);
+
+      // check did mismatch
+      const didChecksum = getDidCheckSum(did);
+      if (didChecksum && checksum && didChecksum !== checksum) {
+        if (token) {
+          this.storage.update(token, { status: STATUS_FORBIDDEN });
+        }
+        return res.json({ error: errors.didMismatch[locale] });
+      }
+
       try {
         if (token && store && store.status === STATUS_FORBIDDEN) {
           return res.json({ error: errors.didMismatch[locale] });
@@ -248,11 +266,11 @@ module.exports = class Handlers {
     app.post(pathname, async (req, res) => {
       const params = Object.assign({}, req.body, req.query);
       debug('verify.input', params);
-      if (!params.token) {
+      const token = params[tokenKey];
+      if (!token) {
         debug('verify.input.warn', 'action token not found in input param');
       }
       const locale = getLocale(req);
-      const token = params.token;
       const store = token ? await this.storage.read(token) : null;
 
       try {
