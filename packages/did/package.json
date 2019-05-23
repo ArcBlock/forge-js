@@ -1,6 +1,6 @@
 {
   "name": "@arcblock/did",
-  "version": "0.27.6",
+  "version": "0.27.10",
   "description": "Javascript lib to work with ArcBlock DID",
   "keywords": [
     "forge",
@@ -45,7 +45,7 @@
   },
   "dependencies": {
     "@arcblock/forge-util": "^0.27.0",
-    "@arcblock/mcrypto": "^0.27.0",
+    "@arcblock/mcrypto": "^0.27.10",
     "base64-url": "^2.2.0",
     "debug": "^4.1.1",
     "json-stable-stringify": "^1.0.1",
