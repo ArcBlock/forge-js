@@ -145,6 +145,7 @@ module.exports = class Handlers {
           // Set token status to forbidden, so that wallet auth request will be rejected
           const sessionDid = get(req, sessionDidKey);
           if (sessionDid && sessionDid !== store.did) {
+            debug('did mismatch', { sessionDid, store });
             res.status(403).json({ error: errors.didMismatch[locale] });
             await this.storage.update(token, { status: STATUS_FORBIDDEN });
             return;
@@ -155,7 +156,7 @@ module.exports = class Handlers {
             await onComplete({
               req,
               action,
-              store,
+              token,
               did: store.did,
               userAddress: toAddress(store.did),
               extraParams: Object.assign({ locale }, req.query),
@@ -261,7 +262,7 @@ module.exports = class Handlers {
         const cbParams = {
           req,
           did,
-          store,
+          token,
           claims,
           userAddress: toAddress(did),
           storage: this.storage,
@@ -270,6 +271,10 @@ module.exports = class Handlers {
 
         // onPreAuth: error thrown from this callback will halt the auth process
         await this.onPreAuth(cbParams);
+
+        // onAuth: send the tx/do the transfer, etc.
+        const result = await onAuth(cbParams);
+
         if (token) {
           if (store) {
             if (store.status === STATUS_FORBIDDEN) {
@@ -282,8 +287,6 @@ module.exports = class Handlers {
           }
         }
 
-        // onAuth: send the tx/do the transfer, etc.
-        const result = await onAuth(cbParams);
         res.json(Object.assign({}, result || {}, { status: 0 }));
       } catch (err) {
         if (store) {
