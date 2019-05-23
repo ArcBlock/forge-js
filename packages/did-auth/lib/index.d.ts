@@ -51,7 +51,7 @@ declare class Handlers {
   authenticator: any;
   generator(...args: any[]): any;
   storage: any;
-  onPreAuth: any;
+  onPreAuth(...args: any[]): any;
   /**
    * Creates an instance of DID Auth Handlers.
    *
@@ -59,7 +59,7 @@ declare class Handlers {
    * @param {function} config.tokenGenerator - function to generate action token
    * @param {object} config.tokenStorage - function to generate action token
    * @param {object} config.authenticator - Authenticator instance that can to jwt sign/verify
-   * @param {function} [config.onAuth=noop] - function called before each auth request send back to app, used to check for permission, throw error to halt the auth process
+   * @param {function} [config.onPreAuth=noop] - function called before each auth request send back to app, used to check for permission, throw error to halt the auth process
    */
   constructor(T124: _Lib.T125);
   /**
@@ -159,7 +159,7 @@ declare namespace _Lib {
     tokenGenerator: (...args: any[]) => any;
     tokenStorage: any;
     authenticator: any;
-    onAuth?: (...args: any[]) => any;
+    onPreAuth?: (...args: any[]) => any;
   }
   export interface T127 {
     app: any;

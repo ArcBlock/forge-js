@@ -17,7 +17,7 @@ module.exports = class Handlers {
    * @param {function} config.tokenGenerator - function to generate action token
    * @param {object} config.tokenStorage - function to generate action token
    * @param {object} config.authenticator - Authenticator instance that can to jwt sign/verify
-   * @param {function} [config.onAuth=noop] - function called before each auth request send back to app, used to check for permission, throw error to halt the auth process
+   * @param {function} [config.onPreAuth=noop] - function called before each auth request send back to app, used to check for permission, throw error to halt the auth process
    */
   constructor({ tokenGenerator, tokenStorage, authenticator, onPreAuth = noop }) {
     if (typeof tokenGenerator !== 'function') {
