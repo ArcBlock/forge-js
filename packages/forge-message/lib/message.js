@@ -304,8 +304,9 @@ function createMessage(type, params) {
 
   // Attach each field to message
   Object.keys(fields).forEach(key => {
-    const value = params[key];
     const { type: subType, keyType, rule, id } = fields[key];
+    // Hack: protobuf tools renamed list fields
+    const value = params[key] || params[camelcase(`${key}_list`)];
     if (value === undefined) {
       return;
     }
