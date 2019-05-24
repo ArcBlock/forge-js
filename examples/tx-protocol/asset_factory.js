@@ -63,6 +63,7 @@ const type = WalletType({
     const assetAddress = toAssetAddress(asset);
     asset.address = assetAddress;
     res = await client.sendCreateAssetTx({ tx: { itx: asset }, wallet: merchant });
+    console.log('factory template', asset.data.value.template);
     console.log('view asset state', `${endpoint}/node/explorer/assets/${assetAddress}`);
     console.log('create asset tx', `${endpoint}/node/explorer/txs/${res}`);
 
@@ -106,6 +107,7 @@ const type = WalletType({
       },
     };
     const goodAddress = toAssetAddress(good);
+    console.log('good value', good.data.value);
 
     // 7. acquire asset
     res = await client.sendAcquireAssetTx({
