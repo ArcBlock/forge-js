@@ -3,7 +3,7 @@ let enums = {};
 let messages = {};
 
 function getMessageType(type) {
-  const provider = providers.find(x => x.getMessageType(type));
+  const provider = providers.find(x => x.getMessageType(type).fn);
   if (provider) {
     return provider.getMessageType(type);
   }
