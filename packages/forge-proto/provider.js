@@ -9,10 +9,16 @@
  */
 
 const get = require('lodash.get');
-const json = require('./lib/spec.json');
 
-module.exports = function(proto) {
-  const { types, services, vendorTypes } = proto;
+/**
+ * Generate type provider from types map and json spec
+ *
+ * @param {object} proto - collection of types
+ * @param {object} json - collection of fields/types used in the types map
+ * @returns {object}
+ */
+module.exports = function(proto, json) {
+  const { types, services = {}, vendorTypes = {} } = proto;
 
   const txTypePattern = /Tx$/;
   const stateTypePattern = /State$/;
@@ -103,6 +109,9 @@ module.exports = function(proto) {
         }
         if (['TransactionInfo', 'TxStatus'].includes(type)) {
           typeUrl = `fg:x:${lowerUnder(type)}`;
+        }
+        if (type === 'AssetFactory') {
+          typeUrl = 'fg:x:asset_factory';
         }
         if (type === 'DummyCodec') {
           typeUrl = 'fg:x:address';
