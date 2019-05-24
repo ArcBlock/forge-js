@@ -1,5 +1,6 @@
 require('./lib/patch');
-const proto = require('./lib/proto');
-Object.assign(proto, require('@arcblock/forge-proto/lite'));
+const provider = require('./lib/provider');
+const forgeLite = require('@arcblock/forge-proto/lite');
+provider.addProvider(forgeLite);
 
 module.exports = require('./lib/message');
