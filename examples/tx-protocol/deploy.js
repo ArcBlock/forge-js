@@ -5,11 +5,15 @@ const base64 = require('base64-url');
 const Mcrypto = require('@arcblock/mcrypto');
 const GRpcClient = require('@arcblock/grpc-client');
 const provider = require('@arcblock/forge-proto/provider');
+const { toItxAddress } = require('@arcblock/did-util');
 const { addProvider } = require('@arcblock/forge-message');
 const { fromSecretKey, WalletType } = require('@arcblock/forge-wallet');
+const { bytesToHex } = require('@arcblock/forge-util');
+
 const types = require('./gen_js/protocol_pb');
 const json = require('./gen_js/protocol.json');
-addProvider(provider(types, json));
+
+addProvider(provider({ types }, json));
 
 const endpoint = 'http://127.0.0.1:8210';
 const client = new GRpcClient({ endpoint: 'tcp://127.0.0.1:28210' });
@@ -47,14 +51,23 @@ const type = WalletType({
         require('./GEN/create_stock/create_stock.itx.json').create_stock
       );
       console.log(itxB64);
+
       const itxBuffer = Buffer.from(itxB64, 'base64');
       console.log(itxBuffer);
+
+      const itxHex = bytesToHex(itxBuffer);
+      console.log(itxHex.slice(2).toUpperCase());
+
       const DeployProtocolTx = client.getType('DeployProtocolTx');
-      const itxObj = DeployProtocolTx.deserializeBinary(itxBuffer);
-      console.log(itxObj.toObject());
+      const itxObj = DeployProtocolTx.deserializeBinary(itxBuffer).toObject();
+      itxObj.address = toItxAddress(itxObj, 'DeployProtocolTx');
+      console.log(itxObj);
 
       const hash = await client.sendDeployProtocolTx({
-        tx: { itx: itxObj },
+        tx: {
+          nonce: 0,
+          itx: itxObj,
+        },
         wallet: moderator,
       });
       console.log('protocol deploy tx', hash);
