@@ -2,8 +2,8 @@ const BaseClient = require('@arcblock/sdk-util');
 const md5 = require('blueimp-md5');
 const camelcase = require('camelcase');
 const base64 = require('base64-url');
-const { transactions, getMessageType } = require('@arcblock/forge-proto/lite');
-const { createMessage } = require('@arcblock/forge-message/lite');
+const { transactions } = require('@arcblock/forge-proto/lite');
+const { createMessage, getMessageType } = require('@arcblock/forge-message/lite');
 const { hexToBytes, bytesToHex, stripHexPrefix } = require('@arcblock/forge-util');
 
 const debug = require('debug')(require('../package.json').name);

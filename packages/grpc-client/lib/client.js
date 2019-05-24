@@ -1,12 +1,13 @@
 const grpc = require('grpc');
 const camelcase = require('camelcase');
 const { EventEmitter } = require('events');
-const { messages, enums, rpcs, getMessageType } = require('@arcblock/forge-proto');
+const { messages, enums, rpcs } = require('@arcblock/forge-proto');
 const {
   formatMessage,
   createMessage,
   attachFormatFn,
   attachExampleFn,
+  getMessageType,
 } = require('@arcblock/forge-message');
 const { hexToBytes, bytesToHex, stripHexPrefix } = require('@arcblock/forge-util');
 const debug = require('debug')(`${require('../package.json').name}`);

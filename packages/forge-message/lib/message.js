@@ -588,5 +588,9 @@ module.exports = {
   decodeBigInt,
   attachFormatFn,
   attachExampleFn,
+
   addProvider,
+  getMessageType,
+  toTypeUrl,
+  fromTypeUrl,
 };

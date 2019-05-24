@@ -136,6 +136,9 @@ declare function attachExampleFn(type: string, host: any, key: any): void;
  * @param {object} provider - proto generated from {@see @arcblock/forge-proto}
  */
 declare function addProvider(provider: any): void;
+declare function getMessageType(type: any): any;
+declare function toTypeUrl(type: any): any;
+declare function fromTypeUrl(url: any): any;
 declare const _ArcblockForgeMessage: _ArcblockForgeMessage.T101;
 declare namespace _ArcblockForgeMessage {
   export interface T100 {
@@ -155,6 +158,9 @@ declare namespace _ArcblockForgeMessage {
     attachFormatFn: typeof attachFormatFn;
     attachExampleFn: typeof attachExampleFn;
     addProvider: typeof addProvider;
+    getMessageType: typeof getMessageType;
+    toTypeUrl: typeof toTypeUrl;
+    fromTypeUrl: typeof fromTypeUrl;
   }
 }
 export = _ArcblockForgeMessage;
