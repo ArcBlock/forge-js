@@ -22,6 +22,22 @@ declare class GRpcClient {
    */
   constructor(config?: any);
   /**
+   * Get protobuf message class by name, only supports forge-built-in types
+   *
+   * @method
+   * @param {string} x
+   * @returns {class|null} message type
+   */
+  getType(x: string): any;
+  /**
+   * Decode transaction buffer to an object
+   *
+   * @method
+   * @param {buffer} buffer
+   * @returns {object} transaction object
+   */
+  decodeTx(buffer: any): any;
+  /**
    * List standard rpc methods
    *
    * @returns {object}
