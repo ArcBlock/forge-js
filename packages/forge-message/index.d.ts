@@ -1,4 +1,4 @@
-// Generate by [js2dts@0.3.2](https://github.com/whxaxes/js2dts#readme)
+// Generate by [js2dts@0.3.3](https://github.com/whxaxes/js2dts#readme)
 
 /**
  * Format an message from RPC to UI friendly
@@ -130,6 +130,12 @@ declare function attachFormatFn(type: string, data: any, key?: string): void;
  * @param {string} type
  */
 declare function attachExampleFn(type: string, host: any, key: any): void;
+/**
+ * Add type provider that can be used to format/create messages
+ *
+ * @param {object} provider - proto generated from {@see @arcblock/forge-proto}
+ */
+declare function addProvider(provider: any): void;
 declare const _ArcblockForgeMessage: _ArcblockForgeMessage.T101;
 declare namespace _ArcblockForgeMessage {
   export interface T100 {
@@ -148,6 +154,7 @@ declare namespace _ArcblockForgeMessage {
     decodeBigInt: typeof decodeBigInt;
     attachFormatFn: typeof attachFormatFn;
     attachExampleFn: typeof attachExampleFn;
+    addProvider: typeof addProvider;
   }
 }
 export = _ArcblockForgeMessage;
