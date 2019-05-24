@@ -124,9 +124,7 @@ const type = WalletType({
       wallet: consumer,
     });
     const receiverSignature = consumer.sign(consumerBuffer);
-    encoded2.signatures = encoded2.signaturesList;
-    delete encoded2.signaturesList;
-    const receiverSig = encoded2.signatures.find(x => x.signer === consumer.toAddress());
+    const receiverSig = encoded2.signaturesList.find(x => x.signer === consumer.toAddress());
     receiverSig.signature = Buffer.from(hexToBytes(receiverSignature));
 
     console.log('consumer.encoded', encoded2);
