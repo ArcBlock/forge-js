@@ -10,8 +10,8 @@
  */
 const { types, Hasher } = require('@arcblock/mcrypto');
 const { fromHash, toDid } = require('@arcblock/did');
-const { createMessage } = require('@arcblock/forge-message/lite');
-const { transactions } = require('@arcblock/forge-proto/lite');
+const { createMessage } = require('@arcblock/forge-message');
+const { transactions } = require('@arcblock/forge-proto');
 
 /**
  * Create an asset address
@@ -22,7 +22,7 @@ const { transactions } = require('@arcblock/forge-proto/lite');
  * @returns {string} asset address without `did:abt:` prefix
  */
 function toAssetAddress(itx) {
-  return toItxAddress(itx, 'CreateAssetTx');
+  return toItxAddress(itx, 'CreateAssetTx', types.RoleType.ROLE_ASSET);
 }
 
 /**
@@ -43,17 +43,20 @@ function toAssetDid(itx) {
  * @public
  * @static
  * @param {object} itx - an object of forge supported itx
+ * @param {string} type - itx type string
+ * @param {enum} [role=types.RoleType.ROLE_TX] - role type
  * @returns {string} itx address without `did:abt:` prefix
  */
-function toItxAddress(itx, type) {
+function toItxAddress(itx, type, role = types.RoleType.ROLE_TX) {
   if (transactions.indexOf(type) === -1) {
     throw new Error(`Unsupported itx type ${type}`);
   }
 
   const message = createMessage(type, itx);
+  // console.log({ message: message.toObject(), itx });
   const itxBytes = message.serializeBinary();
   const hash = Hasher.SHA3.hash256(itxBytes);
-  const address = fromHash(hash, types.RoleType.ROLE_ASSET);
+  const address = fromHash(hash, role);
   return address;
 }
 
