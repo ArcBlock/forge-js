@@ -7,5 +7,3 @@ type_urls:
   fg:t:create_stock: ForgeAbi.CreateStockTx
   fg:x:stock: ForgeAbi.Stock
 proto: protocol.proto
-sources: []
-tags: []
