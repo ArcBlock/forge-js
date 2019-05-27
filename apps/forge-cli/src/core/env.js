@@ -39,6 +39,7 @@ if (process.env.FORGE_CLI_DIR) {
 
 const requiredDirs = {
   tmp: path.join(baseDir, 'tmp'),
+  bin: path.join(baseDir, 'bin'),
   cache: path.join(baseDir, 'cache'),
   release: path.join(baseDir, 'release'),
 };

@@ -1,9 +1,61 @@
 const fs = require('fs');
 const path = require('path');
 const shell = require('shelljs');
+const chalk = require('chalk');
 const yaml = require('yaml');
-const { symbols } = require('core/ui');
-const { isDirectory, isFile } = require('core/env');
+const { symbols, getSpinner } = require('core/ui');
+const { debug, requiredDirs, isDirectory, isFile, DEFAULT_MIRROR } = require('core/env');
+const { downloadAsset } = require('../../node/init/init');
+
+function fetchCompilerVersion(mirror = DEFAULT_MIRROR) {
+  const spinner = getSpinner('Fetching forge-compiler release version...');
+  spinner.start();
+
+  try {
+    const url = `${mirror}/forge-compiler/latest.json`;
+    const { code, stdout, stderr } = shell.exec(`curl "${url}"`, { silent: true });
+    // debug('fetchReleaseVersion', { code, stdout, stderr, url });
+    if (code === 0) {
+      const { latest: version } = JSON.parse(stdout.trim()) || {};
+      spinner.succeed(`Latest forge compiler version: v${version}`);
+      return version;
+    }
+    spinner.fail(`forge-compiler version fetch error: ${stderr}`);
+  } catch (err) {
+    spinner.fail(`forge-compiler version fetch error: ${err.message}`);
+  }
+
+  process.exit(1);
+}
+
+function fetchCompilerInfo(version, mirror = DEFAULT_MIRROR) {
+  const url = `${mirror}/forge-compiler/${version}/forge-compiler`;
+  const spinner = getSpinner('Fetching forge compiler info...');
+  spinner.start();
+
+  try {
+    const { code, stdout, stderr } = shell.exec(`curl -I --silent "${url}"`, { silent: true });
+    debug('fetchAssetInfo', { url, version, code, stdout, stderr });
+    if (code === 0 && stdout) {
+      const notFound = stdout
+        .split('\r\n')
+        .find(x => x.indexOf('HTTP/1.1 404') === 0 || x.indexOf('HTTP/2 404') === 0);
+      if (notFound) {
+        spinner.fail(`forge-compiler binary "${url}" not found`);
+        process.exit(1);
+      }
+      spinner.succeed('forge-compiler info fetch success');
+      const header = stdout.split('\r\n').find(x => x.indexOf('Content-Length:') === 0);
+      const size = header ? Number(header.split(':').pop().trim()) : 3 * 1024 * 1024; // prettier-ignore
+      return { url, size, header, name: 'forge-compiler' };
+    }
+    spinner.fail(`forge-compiler info error: ${stderr}`);
+  } catch (err) {
+    spinner.fail(`forge-compiler info error: ${err.message}`);
+  }
+
+  process.exit(1);
+}
 
 async function ensureForgeCompiler() {
   const { stdout } = shell.which('forge-compiler');
@@ -11,12 +63,43 @@ async function ensureForgeCompiler() {
     return stdout.trim();
   }
 
-  // FIXME: if not found, download and install forge-compiler directly
-  throw new Error('forge-compiler not found');
+  const targetPath = path.join(requiredDirs.bin, asset.name);
+  if (isFile(targetPath)) {
+    return targetPath;
+  }
+
+  // Download forge-compiler binary
+  const version = fetchCompilerVersion();
+  const asset = fetchCompilerInfo(version);
+  const compilerPath = await downloadAsset(asset);
+  debug('download compiler to: ', compilerPath);
+  shell.mv(compilerPath, targetPath);
+  shell.exec(`chmod a+x ${targetPath}`);
+  return targetPath;
 }
 
-async function ensureJavascriptTools() {
-  // FIXME: ensure all command lines tools need to compile javascript files
+async function ensureJavascriptCompiler() {
+  const { stdout: protoc } = shell.which('grpc_tools_node_protoc') || {};
+  if (protoc && fs.existsSync(protoc.trim())) {
+    const { stdout: pbjs } = shell.which('pbjs') || {};
+    if (pbjs && fs.existsSync(pbjs.trim())) {
+      return true;
+    }
+
+    shell.echo(
+      `${symbols.error} protobufjs not installed, please install with ${chalk.cyan(
+        'npm install -g protobufjs'
+      )}`
+    );
+    process.exit(1);
+  }
+
+  shell.echo(
+    `${symbols.error} grpc-tools not installed, please install with ${chalk.cyan(
+      'npm install -g grpc-tools'
+    )}`
+  );
+  process.exit(1);
 }
 
 async function compileElixir({ targetDir, config, configFile, outputPrefix }) {
@@ -40,6 +123,7 @@ async function compileElixir({ targetDir, config, configFile, outputPrefix }) {
 }
 
 async function compileJavascript({ sourceDir, targetDir, config, protoFile, outputPrefix }) {
+  await ensureJavascriptCompiler();
   shell.echo(`${symbols.info} generating javascript language support:`);
 
   const { name, type_urls: typeUrls } = config;
@@ -104,7 +188,6 @@ module.exports = { types, specs, urls };
 
 async function main({ args: [dir], opts: { targets = 'elixir,javascript' } }) {
   try {
-    await ensureJavascriptTools();
     const sourceDir = path.resolve(dir);
     const outputDir = process.cwd();
     const outputPrefix = `${outputDir}/`;
