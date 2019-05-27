@@ -11,7 +11,12 @@ const { fromRandom, WalletType } = require('@arcblock/forge-wallet');
 const types = require('./gen_js/protocol_pb');
 const json = require('./gen_js/protocol.json');
 
-addProvider(provider({ types }, json));
+addProvider(
+  provider({ types }, json, {
+    CreateStockTx: 'fg:t:create_stock',
+    Stock: 'fg:x:stock',
+  })
+);
 
 const endpoint = process.env.FORGE_API_HOST || 'http://127.0.0.1:8210'; // testnet
 
@@ -38,10 +43,10 @@ const type = WalletType({
     console.log('merchant declare tx', res);
     console.log('merchant view link', `${endpoint}/node/explorer/accounts/${merchant.toAddress()}`);
 
-    // 2. create asset for merchant
-    const asset = {
-      moniker: 'Unlimited Vending Machine',
-      readonly: false, // if we want to update the asset, we should set this to false
+    // 2. create vendor machine
+    const machine = {
+      moniker: `Vending_Machine_${merchant.toAddress()}`,
+      readonly: false, // if we want to update the machine, we should set this to false
       transferrable: false,
       data: {
         type: 'AssetFactory',
@@ -60,19 +65,19 @@ const type = WalletType({
         },
       },
     };
-    const assetAddress = toAssetAddress(asset);
-    asset.address = assetAddress;
-    res = await client.sendCreateAssetTx({ tx: { itx: asset }, wallet: merchant });
-    console.log('factory template', asset.data.value.template);
-    console.log('view asset state', `${endpoint}/node/explorer/assets/${assetAddress}`);
-    console.log('create asset tx', `${endpoint}/node/explorer/txs/${res}`);
+    const assetAddress = toAssetAddress(machine);
+    machine.address = assetAddress;
+    res = await client.sendCreateAssetTx({ tx: { itx: machine }, wallet: merchant });
+    console.log('factory template', machine.data.value.template);
+    console.log('view machine state', `${endpoint}/node/explorer/assets/${assetAddress}`);
+    console.log('create machine tx', `${endpoint}/node/explorer/txs/${res}`);
 
-    // wait for asset state consolidates
+    // wait for machine state consolidates
     await sleep(3000);
 
-    // 3. read asset
+    // 3. read machine
     const { state } = await client.getAssetState({ address: assetAddress });
-    console.log('asset state', state);
+    console.log('machine state', state);
 
     // 4. declare customer
     res = await client.sendDeclareTx({ tx: { itx: { moniker: 'customer' } }, wallet: customer });
@@ -98,9 +103,10 @@ const type = WalletType({
 
     // 6. create good and its address
     const good = {
+      ttl: 0,
       readonly: true,
       transferrable: false,
-      parent: asset.address,
+      parent: machine.address,
       data: {
         type: 'Stock',
         value: { name: 'Coca', brand: 'Pepsi' },
@@ -113,20 +119,20 @@ const type = WalletType({
     res = await client.sendAcquireAssetTx({
       tx: {
         itx: {
-          to: asset.address,
+          to: machine.address,
           specs: [
             {
               address: goodAddress,
               data: JSON.stringify(good.data.value),
             },
           ],
-          data: {
-            typeUrl: 'json',
-            value: {},
-          },
         },
       },
       wallet: customer,
+    });
+    console.log('good spec', {
+      address: goodAddress,
+      data: JSON.stringify(good.data.value),
     });
     console.log('good address', goodAddress);
     console.log('acquire tx', res);

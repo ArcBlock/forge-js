@@ -61,6 +61,12 @@ const type = WalletType({
       itxObj.address = toItxAddress(itxObj, 'DeployProtocolTx');
       console.log('itxObj', itxObj);
 
+      /**
+       * Known issues
+       *
+       *   - nonce must be `0` to deploy a protocol
+       *   - deploy the same protocol twice will result in `INVALID_NONCE` error
+       */
       const hash = await client.sendDeployProtocolTx({
         tx: {
           nonce: 0,
