@@ -22,6 +22,7 @@ dep:
 	@echo "Install dependencies required for this repo..."
 	@lerna bootstrap
 	@npx install-peerdeps -g --yarn eslint-config-airbnb
+	@cd packages/graphql-client && lerna link && yarn build
 
 pre-build: install dep
 	@echo "Running scripts before the build..."
