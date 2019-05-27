@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const shell = require('shelljs');
 const yaml = require('yaml');
-const { symbols, hr } = require('core/ui');
+const { symbols } = require('core/ui');
 const { isDirectory, isFile } = require('core/env');
 
 async function ensureForgeCompiler() {
@@ -21,7 +21,6 @@ async function ensureJavascriptTools() {
 
 async function compileElixir({ targetDir, config, configFile, outputPrefix }) {
   shell.echo(`${symbols.info} generating elixir language support:`);
-  shell.echo(hr);
 
   const compiler = await ensureForgeCompiler();
   const { name } = config;
@@ -42,7 +41,6 @@ async function compileElixir({ targetDir, config, configFile, outputPrefix }) {
 
 async function compileJavascript({ sourceDir, targetDir, config, protoFile, outputPrefix }) {
   shell.echo(`${symbols.info} generating javascript language support:`);
-  shell.echo(hr);
 
   const { name, type_urls: typeUrls } = config;
   const targetJsDir = path.join(targetDir, name, 'javascript');

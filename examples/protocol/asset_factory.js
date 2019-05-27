@@ -1,22 +1,12 @@
 /* eslint-disable no-console */
+require('./.compiled/create_stock/javascript/index');
+
 const moment = require('moment');
 const Mcrypto = require('@arcblock/mcrypto');
-const provider = require('@arcblock/forge-proto/provider');
 const GraphqlClient = require('@arcblock/graphql-client');
-const { addProvider } = require('@arcblock/forge-message/lite');
 const { toAssetAddress } = require('@arcblock/did-util');
 const { fromTokenToUnit } = require('@arcblock/forge-util');
 const { fromRandom, WalletType } = require('@arcblock/forge-wallet');
-
-const types = require('./gen_js/protocol_pb');
-const json = require('./gen_js/protocol.json');
-
-addProvider(
-  provider({ types }, json, {
-    CreateStockTx: 'fg:t:create_stock',
-    Stock: 'fg:x:stock',
-  })
-);
 
 const endpoint = process.env.FORGE_API_HOST || 'http://127.0.0.1:8210'; // testnet
 
