@@ -9,15 +9,18 @@
  */
 
 const get = require('lodash.get');
+const debug = require('debug')(require('./package.json').name);
 
 /**
  * Generate type provider from types map and json spec
  *
  * @param {object} proto - collection of types
  * @param {object} json - collection of fields/types used in the types map
+ * @param {object} urls - collection of typeUrls registered to forge-core
  * @returns {object}
  */
-module.exports = function(proto, json) {
+module.exports = function(proto, json, urls = {}) {
+  debug('provider.create', { urls });
   const { types, services = {}, vendorTypes = {} } = proto;
 
   const txTypePattern = /Tx$/;
@@ -86,7 +89,7 @@ module.exports = function(proto, json) {
     }, {});
 
   // extract typeUrls
-  const typeUrls = createTypeUrls(abi);
+  const typeUrls = Object.assign(createTypeUrls(abi), urls || {});
 
   // extract transactions and stakes
   enums.SupportedTxs = Object.keys(types).filter(
