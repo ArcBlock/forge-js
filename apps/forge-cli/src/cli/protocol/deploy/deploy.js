@@ -6,9 +6,24 @@ const Mcrypto = require('@arcblock/mcrypto');
 const GRpcClient = require('@arcblock/grpc-client');
 const { toItxAddress } = require('@arcblock/did-util');
 const { fromSecretKey, WalletType } = require('@arcblock/forge-wallet');
-const { bytesToHex } = require('@arcblock/forge-util');
+const { bytesToHex, isHexStrict } = require('@arcblock/forge-util');
 const { symbols } = require('core/ui');
 const { isFile, debug } = require('core/env');
+
+function ensureModeratorSecretKey() {
+  const sk = process.env.FORGE_MODERATOR_SK;
+  if (!sk) {
+    shell.echo(`${symbols.error} please set FORGE_MODERATOR_SK to continue`);
+    process.exit(1);
+  }
+
+  if (isHexStrict(sk)) {
+    return sk;
+  }
+
+  // debug('detected base64 moderator sk', base64.unescape(sk));
+  return bytesToHex(Buffer.from(base64.unescape(sk), 'base64'));
+}
 
 async function main({ args: [itxPath] }) {
   try {
@@ -18,18 +33,14 @@ async function main({ args: [itxPath] }) {
       process.exit(1);
     }
 
-    if (!process.env.FORGE_MODERATOR_SK) {
-      shell.echo(`${symbols.error} please set FORGE_MODERATOR_SK to continue`);
-      process.exit(1);
-    }
-
     const type = WalletType({
       role: Mcrypto.types.RoleType.ROLE_ACCOUNT,
       pk: Mcrypto.types.KeyType.ED25519,
       hash: Mcrypto.types.HashType.SHA3,
     });
 
-    const moderator = fromSecretKey(process.env.FORGE_MODERATOR_SK, type);
+    const sk = ensureModeratorSecretKey();
+    const moderator = fromSecretKey(sk, type);
     shell.echo(`${symbols.info} moderator address ${moderator.toAddress()}`);
 
     const client = new GRpcClient({ endpoint: 'tcp://127.0.0.1:28210' });
