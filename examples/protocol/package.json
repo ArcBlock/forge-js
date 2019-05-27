@@ -1,13 +1,13 @@
 {
   "name": "tx-protocol-example",
   "private": true,
-  "version": "0.27.10",
+  "version": "0.27.11",
   "description": "Simple demo on how to deploy customized tx protocol to forge",
   "scripts": {},
   "dependencies": {
     "@arcblock/forge-config": "^0.27.0",
-    "@arcblock/forge-proto": "^0.27.0",
-    "@arcblock/grpc-client": "^0.27.10",
+    "@arcblock/forge-proto": "^0.27.11",
+    "@arcblock/grpc-client": "^0.27.11",
     "death": "^1.1.0"
   },
   "keywords": [],

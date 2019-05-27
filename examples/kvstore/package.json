@@ -1,7 +1,7 @@
 {
   "name": "@arcblock/forge-app-kvstore",
   "private": true,
-  "version": "0.27.0",
+  "version": "0.27.11",
   "description": "",
   "main": "app.js",
   "scripts": {},
@@ -12,7 +12,7 @@
     "node": ">=0.10.0"
   },
   "dependencies": {
-    "@arcblock/forge-proto": "^0.27.0",
+    "@arcblock/forge-proto": "^0.27.11",
     "nodemon": "^1.18.9"
   },
   "gitHead": "87990c8b5e215107fc587c1ced0d6b3e2cd2483e"

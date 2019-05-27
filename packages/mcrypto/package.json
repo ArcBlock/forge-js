@@ -1,6 +1,6 @@
 {
   "name": "@arcblock/mcrypto",
-  "version": "0.27.10",
+  "version": "0.27.11",
   "description": "Crypto lib that provides signer,crypter,hasher interface",
   "keywords": [
     "crypto",
