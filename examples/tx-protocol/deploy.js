@@ -1,6 +1,4 @@
 /* eslint-disable no-console */
-// const fs = require('fs');
-// const path = require('path');
 const base64 = require('base64-url');
 const Mcrypto = require('@arcblock/mcrypto');
 const GRpcClient = require('@arcblock/grpc-client');
@@ -50,18 +48,18 @@ const type = WalletType({
       const itxB64 = base64.unescape(
         require('./GEN/create_stock/create_stock.itx.json').create_stock
       );
-      console.log(itxB64);
+      console.log('itxB64', itxB64);
 
       const itxBuffer = Buffer.from(itxB64, 'base64');
-      console.log(itxBuffer);
+      console.log('itxBuffer', itxBuffer);
 
       const itxHex = bytesToHex(itxBuffer);
-      console.log(itxHex.slice(2).toUpperCase());
+      console.log('itxHex', itxHex.slice(2).toUpperCase());
 
       const DeployProtocolTx = client.getType('DeployProtocolTx');
       const itxObj = DeployProtocolTx.deserializeBinary(itxBuffer).toObject();
       itxObj.address = toItxAddress(itxObj, 'DeployProtocolTx');
-      console.log(itxObj);
+      console.log('itxObj', itxObj);
 
       const hash = await client.sendDeployProtocolTx({
         tx: {
