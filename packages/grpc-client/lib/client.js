@@ -1,12 +1,13 @@
 const grpc = require('grpc');
 const camelcase = require('camelcase');
 const { EventEmitter } = require('events');
-const { messages, enums, rpcs, getMessageType } = require('@arcblock/forge-proto');
+const { messages, enums, rpcs } = require('@arcblock/forge-proto');
 const {
   formatMessage,
   createMessage,
   attachFormatFn,
   attachExampleFn,
+  getMessageType,
 } = require('@arcblock/forge-message');
 const { hexToBytes, bytesToHex, stripHexPrefix } = require('@arcblock/forge-util');
 const debug = require('debug')(`${require('../package.json').name}`);
@@ -51,6 +52,29 @@ class GRpcClient {
     this._initRpcClients();
     this._initRpcMethods();
     this._initTxMethods();
+  }
+
+  /**
+   * Get protobuf message class by name, only supports forge-built-in types
+   *
+   * @method
+   * @param {string} x
+   * @returns {class|null} message type
+   */
+  getType(x) {
+    return getMessageType(x).fn;
+  }
+
+  /**
+   * Decode transaction buffer to an object
+   *
+   * @method
+   * @param {buffer} buffer
+   * @returns {object} transaction object
+   */
+  decodeTx(buffer) {
+    const Transaction = this.getType('Transaction');
+    return Transaction.deserializeBinary(buffer).toObject();
   }
 
   /**

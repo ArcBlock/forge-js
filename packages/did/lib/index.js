@@ -12,6 +12,7 @@ const multibase = require('multibase');
 const base64 = require('base64-url');
 const { toHex, numberToHex, stripHexPrefix } = require('@arcblock/forge-util');
 const { DID_PREFIX, toBits, toBytes, toStrictHex } = require('./util');
+const debug = require('debug')(require('../package.json').name);
 const { types, getSigner, getHasher } = Mcrypto;
 
 const mapping = {
@@ -58,6 +59,7 @@ const fromPublicKeyHash = (buffer, type) => {
   const typeHex = fromTypeInfo(type);
   const checksum = stripHexPrefix(hashFn(`0x${typeHex}${pkHash}`)).slice(0, 8); // 4 bytes
   const didHash = `${typeHex}${pkHash}${checksum}`;
+  debug('fromPublicKeyHash', { pkHash, typeHex, checksum, didHash });
 
   const address = multibase.encode('base58btc', Buffer.from(didHash, 'hex'));
   return address.toString();
@@ -94,6 +96,7 @@ const fromHash = (hash, role) => {
     type.hash = types.HashType.SHA2;
   }
 
+  debug('fromHash', { hash, role, type });
   return fromPublicKeyHash(hash, type);
 };
 

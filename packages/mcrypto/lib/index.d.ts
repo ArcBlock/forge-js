@@ -81,6 +81,10 @@ declare namespace _Lib {
     ROLE_ASSET: number;
     ROLE_STAKE: number;
     ROLE_VALIDATOR: number;
+    ROLE_GROUP: number;
+    ROLE_TX: number;
+    ROLE_TETHER: number;
+    ROLE_ANY: number;
   }
   export interface T107 {
     KeyType: _Lib.T104;

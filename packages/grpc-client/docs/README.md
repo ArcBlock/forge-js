@@ -12,6 +12,8 @@ Please note that, due to internal implementation of google-protobuf, all `repeat
 * [GRpcClient](#GRpcClient)
   * [new GRpcClient(config)](#new_GRpcClient_new)
   * _instance_
+    * [.getType(x)](#GRpcClient+getType) ⇒ <code>class</code> \| <code>null</code>
+    * [.decodeTx(buffer)](#GRpcClient+decodeTx) ⇒ <code>object</code>
     * [.getRpcMethods()](#GRpcClient+getRpcMethods) ⇒ <code>object</code>
     * [.getTxSendMethods()](#GRpcClient+getTxSendMethods) ⇒ <code>object</code>
     * [.getTxEncodeMethods()](#GRpcClient+getTxEncodeMethods) ⇒ <code>object</code>
@@ -338,6 +340,32 @@ Creates an instance of GRpcClient, and generate transaction sending and receivin
 | config            | <code>object</code> \| <code>string</code> | <code>tcp://127.0.0.1:28210</code>         | config object, if a string passed, will be used as the endpoint |
 | [config.endpoint] | <code>string</code>                        | <code>"\\"tcp://127.0.0.1:28210\\""</code> | grpc endpoint the client can connect to                         |
 | [config.chainId]  | <code>string</code>                        | <code>"\\"\\""</code>                      | chainId used to construct transaction                           |
+
+<a name="GRpcClient+getType"></a>
+
+### gRpcClient.getType(x) ⇒ <code>class</code> \| <code>null</code>
+
+Get protobuf message class by name, only supports forge-built-in types
+
+**Kind**: instance method of [<code>GRpcClient</code>](#GRpcClient)  
+**Returns**: <code>class</code> \| <code>null</code> - message type  
+
+| Param | Type                |
+| ----- | ------------------- |
+| x     | <code>string</code> |
+
+<a name="GRpcClient+decodeTx"></a>
+
+### gRpcClient.decodeTx(buffer) ⇒ <code>object</code>
+
+Decode transaction buffer to an object
+
+**Kind**: instance method of [<code>GRpcClient</code>](#GRpcClient)  
+**Returns**: <code>object</code> - transaction object  
+
+| Param  | Type                |
+| ------ | ------------------- |
+| buffer | <code>buffer</code> |
 
 <a name="GRpcClient+getRpcMethods"></a>
 
@@ -1742,7 +1770,7 @@ Structure of GRpcClient.ResponseGetTx
       }
     ],
     "code": 0,
-    "time": "2019-05-15T09:33:33.145Z",
+    "time": "2019-05-24T09:00:38.310Z",
     "createAsset": {
       "asset": "arcblock"
     },
@@ -1792,7 +1820,7 @@ Structure of GRpcClient.ResponseGetBlock
   "block": {
     "height": 5,
     "numTxs": 2,
-    "time": "2019-05-15T09:33:33.141Z",
+    "time": "2019-05-24T09:00:38.306Z",
     "appHash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
     "proposer": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
     "txs": [
@@ -1842,7 +1870,7 @@ Structure of GRpcClient.ResponseGetBlock
           }
         ],
         "code": 0,
-        "time": "2019-05-15T09:33:33.141Z",
+        "time": "2019-05-24T09:00:38.306Z",
         "createAsset": {
           "asset": "arcblock"
         },
@@ -1896,7 +1924,7 @@ Structure of GRpcClient.ResponseGetBlock
           }
         ],
         "code": 0,
-        "time": "2019-05-15T09:33:33.142Z",
+        "time": "2019-05-24T09:00:38.306Z",
         "createAsset": {
           "asset": "arcblock"
         },
@@ -1953,7 +1981,7 @@ Structure of GRpcClient.ResponseGetBlock
           }
         ],
         "code": 0,
-        "time": "2019-05-15T09:33:33.142Z",
+        "time": "2019-05-24T09:00:38.306Z",
         "createAsset": {
           "asset": "arcblock"
         },
@@ -2007,7 +2035,7 @@ Structure of GRpcClient.ResponseGetBlock
           }
         ],
         "code": 0,
-        "time": "2019-05-15T09:33:33.142Z",
+        "time": "2019-05-24T09:00:38.306Z",
         "createAsset": {
           "asset": "arcblock"
         },
@@ -2110,7 +2138,7 @@ Structure of GRpcClient.ResponseGetBlocks
     {
       "height": 5,
       "numTxs": 2,
-      "time": "2019-05-15T09:33:33.142Z",
+      "time": "2019-05-24T09:00:38.306Z",
       "appHash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
       "proposer": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
       "totalTxs": 5,
@@ -2143,7 +2171,7 @@ Structure of GRpcClient.ResponseGetBlocks
     {
       "height": 5,
       "numTxs": 2,
-      "time": "2019-05-15T09:33:33.142Z",
+      "time": "2019-05-24T09:00:38.306Z",
       "appHash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
       "proposer": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
       "totalTxs": 5,
@@ -2534,8 +2562,8 @@ Structure of GRpcClient.ResponseGetAccountState
     "context": {
       "genesisTx": "arcblock",
       "renaissanceTx": "arcblock",
-      "genesisTime": "2019-05-15T09:33:33.142Z",
-      "renaissanceTime": "2019-05-15T09:33:33.142Z"
+      "genesisTime": "2019-05-24T09:00:38.307Z",
+      "renaissanceTime": "2019-05-24T09:00:38.307Z"
     },
     "issuer": "arcblock",
     "migratedTo": [
@@ -2638,7 +2666,7 @@ Structure of GRpcClient.ResponseGetAssetState
     "readonly": true,
     "transferrable": true,
     "ttl": 2,
-    "consumedTime": "2019-05-15T09:33:33.143Z",
+    "consumedTime": "2019-05-24T09:00:38.307Z",
     "issuer": "arcblock",
     "stake": {
       "recentStakes": {
@@ -2665,8 +2693,8 @@ Structure of GRpcClient.ResponseGetAssetState
     "context": {
       "genesisTx": "arcblock",
       "renaissanceTx": "arcblock",
-      "genesisTime": "2019-05-15T09:33:33.143Z",
-      "renaissanceTime": "2019-05-15T09:33:33.143Z"
+      "genesisTime": "2019-05-24T09:00:38.307Z",
+      "renaissanceTime": "2019-05-24T09:00:38.307Z"
     },
     "data": {
       "type": "string",
@@ -2775,8 +2803,8 @@ Structure of GRpcClient.ResponseGetProtocolState
     "context": {
       "genesisTx": "arcblock",
       "renaissanceTx": "arcblock",
-      "genesisTime": "2019-05-15T09:33:33.143Z",
-      "renaissanceTime": "2019-05-15T09:33:33.143Z"
+      "genesisTime": "2019-05-24T09:00:38.308Z",
+      "renaissanceTime": "2019-05-24T09:00:38.308Z"
     },
     "data": {
       "type": "string",
@@ -2837,8 +2865,8 @@ Structure of GRpcClient.ResponseGetStakeState
     "context": {
       "genesisTx": "arcblock",
       "renaissanceTx": "arcblock",
-      "genesisTime": "2019-05-15T09:33:33.143Z",
-      "renaissanceTime": "2019-05-15T09:33:33.143Z"
+      "genesisTime": "2019-05-24T09:00:38.308Z",
+      "renaissanceTime": "2019-05-24T09:00:38.308Z"
     },
     "data": {
       "type": "string",
@@ -2940,8 +2968,8 @@ Structure of GRpcClient.ResponseGetForgeState
         "context": {
           "genesisTx": "arcblock",
           "renaissanceTx": "arcblock",
-          "genesisTime": "2019-05-15T09:33:33.143Z",
-          "renaissanceTime": "2019-05-15T09:33:33.143Z"
+          "genesisTime": "2019-05-24T09:00:38.308Z",
+          "renaissanceTime": "2019-05-24T09:00:38.308Z"
         }
       }
     },
@@ -3050,7 +3078,7 @@ Structure of GRpcClient.ResponseGetTetherState
     "depositor": "arcblock",
     "withdrawer": "arcblock",
     "target": "arcblock",
-    "locktime": "2019-05-15T09:33:33.143Z",
+    "locktime": "2019-05-24T09:00:38.308Z",
     "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55"
   }
 }
@@ -3211,7 +3239,7 @@ Structure of GRpcClient.ResponseGetChainInfo
     "appHash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
     "blockHash": {},
     "blockHeight": 5,
-    "blockTime": "2019-05-15T09:33:33.142Z",
+    "blockTime": "2019-05-24T09:00:38.307Z",
     "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
     "votingPower": 5,
     "totalTxs": 5,
@@ -3264,7 +3292,7 @@ Structure of GRpcClient.ResponseGetNodeInfo
     "appHash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
     "blockHash": {},
     "blockHeight": 5,
-    "blockTime": "2019-05-15T09:33:33.142Z",
+    "blockTime": "2019-05-24T09:00:38.307Z",
     "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
     "votingPower": 5,
     "totalTxs": 5,
@@ -3373,7 +3401,7 @@ Structure of GRpcClient.ResponseSearch
         }
       ],
       "code": 0,
-      "time": "2019-05-15T09:33:33.142Z",
+      "time": "2019-05-24T09:00:38.307Z",
       "createAsset": {
         "asset": "arcblock"
       },
@@ -3427,7 +3455,7 @@ Structure of GRpcClient.ResponseSearch
         }
       ],
       "code": 0,
-      "time": "2019-05-15T09:33:33.142Z",
+      "time": "2019-05-24T09:00:38.307Z",
       "createAsset": {
         "asset": "arcblock"
       },
@@ -6424,7 +6452,7 @@ Structure of GRpcClient.DepositTetherTx
 {
   "target": "arcblock",
   "withdrawer": "arcblock",
-  "locktime": "2019-05-15T09:33:33.146Z"
+  "locktime": "2019-05-24T09:00:38.312Z"
 }
 ```
 
@@ -6475,7 +6503,7 @@ Structure of GRpcClient.ExchangeTx
       "arcblock"
     ]
   },
-  "expiredAt": "2019-05-15T09:33:33.146Z",
+  "expiredAt": "2019-05-24T09:00:38.312Z",
   "data": {
     "type": "string",
     "value": "ABCD 1234"
@@ -6560,7 +6588,7 @@ Structure of GRpcClient.ExchangeTetherTx
       }
     }
   },
-  "expiredAt": "2019-05-15T09:33:33.146Z",
+  "expiredAt": "2019-05-24T09:00:38.312Z",
   "data": {
     "type": "string",
     "value": "ABCD 1234"
@@ -6825,7 +6853,7 @@ Structure of GRpcClient.WithdrawTetherTx
     ],
     "tether": "arcblock"
   },
-  "expiredAt": "2019-05-15T09:33:33.146Z",
+  "expiredAt": "2019-05-24T09:00:38.312Z",
   "data": {
     "type": "string",
     "value": "ABCD 1234"

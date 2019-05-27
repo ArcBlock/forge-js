@@ -1,4 +1,4 @@
-const { toAssetAddress, toStakeAddress } = require('../lib');
+const { toAssetAddress, toItxAddress, toStakeAddress } = require('../lib');
 
 describe('#toAssetAddress', () => {
   test('should be a function', () => {
@@ -32,5 +32,17 @@ describe('#toAssetAddress', () => {
 describe('#toStakeAddress', () => {
   test('should be a function', () => {
     expect(typeof toStakeAddress).toEqual('function');
+  });
+});
+
+describe('#toItxAddress', () => {
+  test('should be a function', () => {
+    expect(typeof toItxAddress).toEqual('function');
+  });
+
+  test('should return correct address', () => {
+    expect(toItxAddress({ moniker: 'wangshijun' }, 'DeclareTx')).toEqual(
+      'z2E44GA1A8KD8j49zMkL8Eacey2RRCtXo9ecT'
+    );
   });
 });

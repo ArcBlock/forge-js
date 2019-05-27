@@ -1,4 +1,5 @@
 const proto = require('./proto-full');
-const init = require('./init');
+const provider = require('./provider');
+const json = require('./lib/spec.json');
 
-module.exports = init(proto);
+module.exports = provider(proto, json);

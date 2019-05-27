@@ -150,10 +150,8 @@ const type = WalletType({
       tx: exchange,
       wallet: receiver,
     });
-    encoded2.signatures = encoded2.signaturesList;
-    delete encoded2.signaturesList;
     const receiverSignature = receiver.sign(receiverBuffer);
-    const receiverSig = encoded2.signatures.find(x => x.signer === receiver.toAddress());
+    const receiverSig = encoded2.signaturesList.find(x => x.signer === receiver.toAddress());
     receiverSig.signature = Buffer.from(hexToBytes(receiverSignature));
 
     console.log('exchange.receiver.encoded', encoded2);

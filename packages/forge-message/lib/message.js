@@ -15,7 +15,14 @@ const jspb = require('google-protobuf');
 const { Any } = require('google-protobuf/google/protobuf/any_pb');
 const { Timestamp } = require('google-protobuf/google/protobuf/timestamp_pb');
 const { toBN, bytesToHex, isUint8Array } = require('@arcblock/forge-util');
-const { enums, messages, getMessageType, toTypeUrl, fromTypeUrl } = require('./proto');
+const {
+  enums,
+  messages,
+  getMessageType,
+  toTypeUrl,
+  fromTypeUrl,
+  addProvider,
+} = require('./provider');
 const debug = require('debug')(`${require('../package.json').name}`);
 
 const enumTypes = Object.keys(enums);
@@ -297,8 +304,9 @@ function createMessage(type, params) {
 
   // Attach each field to message
   Object.keys(fields).forEach(key => {
-    const value = params[key];
     const { type: subType, keyType, rule, id } = fields[key];
+    // Hack: protobuf tools renamed list fields
+    const value = params[key] || params[camelcase(`${key}_list`)];
     if (value === undefined) {
       return;
     }
@@ -581,4 +589,9 @@ module.exports = {
   decodeBigInt,
   attachFormatFn,
   attachExampleFn,
+
+  addProvider,
+  getMessageType,
+  toTypeUrl,
+  fromTypeUrl,
 };

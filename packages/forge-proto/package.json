@@ -33,9 +33,10 @@
   "main": "index.js",
   "files": [
     "lite.js",
+    "lite.d.ts",
     "index.js",
     "index.d.ts",
-    "init.js",
+    "provider.js",
     "proto-full.js",
     "proto-lite.js",
     "lib"

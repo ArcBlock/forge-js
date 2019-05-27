@@ -15,3 +15,4 @@ demo.js
 tmp
 ./docs/
 package-lock.json
+.compiled

@@ -2,8 +2,8 @@ const BaseClient = require('@arcblock/sdk-util');
 const md5 = require('blueimp-md5');
 const camelcase = require('camelcase');
 const base64 = require('base64-url');
-const { transactions, getMessageType } = require('@arcblock/forge-proto/lite');
-const { createMessage } = require('@arcblock/forge-message/lite');
+const { transactions } = require('@arcblock/forge-proto/lite');
+const { createMessage, getMessageType } = require('@arcblock/forge-message/lite');
 const { hexToBytes, bytesToHex, stripHexPrefix } = require('@arcblock/forge-util');
 
 const debug = require('debug')(require('../package.json').name);
@@ -63,12 +63,9 @@ class GraphQLClient extends BaseClient {
     this._initTxMethods();
   }
 
-  getType(x) {
-    return getMessageType(x).fn;
-  }
-
   /**
-   * List all transaction send methods, each method can send one kind of transactions supported by forge core, such as `DeclareTx`, `PokeTx`
+   * List all transaction send methods
+   * Each method can send one kind of transactions supported by forge core, such as `DeclareTx`, `PokeTx`
    *
    * @method
    * @returns {Array<string>} method name list
@@ -85,6 +82,17 @@ class GraphQLClient extends BaseClient {
    */
   getTxEncodeMethods() {
     return transactions.map(x => camelcase(`encode_${x}`));
+  }
+
+  /**
+   * Get protobuf message class by name, only supports forge-built-in types
+   *
+   * @method
+   * @param {string} x
+   * @returns {class|null} message type
+   */
+  getType(x) {
+    return getMessageType(x).fn;
   }
 
   /**

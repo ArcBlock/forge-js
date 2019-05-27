@@ -1,3 +1,37 @@
+## 0.27.11 (May 27, 2019)
+  - fix: support both base64 and hex format moderator sdk
+  - fix: travis build
+  - chore: complete compiler ensure login for protocol compile
+  - chore: fix forge protocol compile command with new vending machine proto
+  - chore: cleanup useless files
+  - chore: update readme of protocol compile and deploy protocol
+  - feat: support forge protocol:deploy command
+  - feat: support forge protocol:compile command
+  - chore: refactor protocol example
+  - feat: forge-proto providers can provide custom type_urls list when init
+  - chore: tune vending machine proto
+  - chore: improve logging
+  - chore: add asset factory and asset acquire script
+  - fix: forge-message.Provider not handling getMessageType properly
+  - chore: protocol deploy script now works
+  - chore: cleanup signatures related code with multisig example files
+  - fix: forge.createMessage not handling list fields properly
+  - chore: add debug statements
+  - fix: make toItxAddress align with forge-elixir-sdk
+  - fix: mcrypto dts
+  - fix: use getMessageType method from forge-message
+  - chore: basic flow of javascript protocol deploy
+  - chore: update docs for GRpcClient
+  - chore: support GRpcClient.getType and GrpcClient.decodeTx
+  - chore: update doc for GraphQLClient.getType
+  - chore: update docs for forge-message
+  - feat: support proto provider mechanism in forge-message
+  - chore: make forge-proto provider generator extensible
+  - chore: update docs for did-auth lib
+  - chore: make protocol build
+  - chore: add tx protocol example: part
+  - update readme
+
 ## 0.27.10 (May 23, 2019)
 
 - chore: bump version

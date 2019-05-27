@@ -1,0 +1,11 @@
+syntax = "proto3";
+package forge_abi;
+
+message CreateProductTx {
+  Product product = 1;
+}
+
+message Product {
+  string name = 1;
+  string brand = 2;
+}
