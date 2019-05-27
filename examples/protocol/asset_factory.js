@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-require('./.compiled/create_stock/javascript/index');
+require('./.compiled/create_product/javascript/index');
 
 const moment = require('moment');
 const Mcrypto = require('@arcblock/mcrypto');
@@ -48,7 +48,7 @@ const type = WalletType({
           },
           template: JSON.stringify({ name: '{{name}}', brand: '{{brand}}' }),
           allowedSpecArgs: ['name', 'brand'],
-          assetName: 'Stock',
+          assetName: 'Product',
           attributes: {
             transferrable: false,
           },
@@ -91,19 +91,19 @@ const type = WalletType({
     console.log('poke link', `${endpoint}/node/explorer/txs/${res}`);
     await sleep(3000);
 
-    // 6. create good and its address
-    const good = {
+    // 6. create product and its address
+    const product = {
       ttl: 0,
       readonly: true,
       transferrable: false,
       parent: machine.address,
       data: {
-        type: 'Stock',
+        type: 'Product',
         value: { name: 'Coca', brand: 'Pepsi' },
       },
     };
-    const goodAddress = toAssetAddress(good);
-    console.log('good value', good.data.value);
+    const goodAddress = toAssetAddress(product);
+    console.log('product value', product.data.value);
 
     // 7. acquire asset
     res = await client.sendAcquireAssetTx({
@@ -113,18 +113,18 @@ const type = WalletType({
           specs: [
             {
               address: goodAddress,
-              data: JSON.stringify(good.data.value),
+              data: JSON.stringify(product.data.value),
             },
           ],
         },
       },
       wallet: customer,
     });
-    console.log('good spec', {
+    console.log('product spec', {
       address: goodAddress,
-      data: JSON.stringify(good.data.value),
+      data: JSON.stringify(product.data.value),
     });
-    console.log('good address', goodAddress);
+    console.log('product address', goodAddress);
     console.log('acquire tx', res);
     console.log('acquire link', `${endpoint}/node/explorer/txs/${res}`);
   } catch (err) {

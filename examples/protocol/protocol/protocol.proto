@@ -1,11 +1,11 @@
 syntax = "proto3";
 package forge_abi;
 
-message CreateStockTx {
-  Stock stock = 1;
+message CreateProductTx {
+  Product product = 1;
 }
 
-message Stock {
+message Product {
   string name = 1;
   string brand = 2;
 }

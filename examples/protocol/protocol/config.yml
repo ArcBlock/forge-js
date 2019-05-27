@@ -1,9 +1,9 @@
 ---
-name: create_stock
+name: create_product
 version: 1
 namespace: CoreTx
-description: Create stock that can be sold within the vending machine
+description: Create product that can be sold within the vending machine
 type_urls:
-  fg:t:create_stock: ForgeAbi.CreateStockTx
-  fg:x:stock: ForgeAbi.Stock
+  fg:t:create_product: ForgeAbi.CreateProductTx
+  fg:x:product: ForgeAbi.Product
 proto: protocol.proto
