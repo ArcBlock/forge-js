@@ -8,5 +8,4 @@ message CreateStockTx {
 message Stock {
   string name = 1;
   string brand = 2;
-  uint32 price = 3;
 }

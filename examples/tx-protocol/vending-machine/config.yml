@@ -1,6 +1,6 @@
 ---
 name: create_stock
-version: 0
+version: 1
 namespace: CoreTx
 description: Create stock that can be sold within the vending machine
 type_urls:
