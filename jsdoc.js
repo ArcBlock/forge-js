@@ -8,7 +8,7 @@ module.exports = {
       'README.md',
       'packages/forge-config/lib',
       'packages/forge-util/lib',
-      'packages/forge-proto/init.js',
+      'packages/forge-proto/provider.js',
       'packages/forge-message/lib/message.js',
       'packages/forge-wallet/lib',
       'packages/mcrypto/lib',
