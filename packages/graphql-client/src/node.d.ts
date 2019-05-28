@@ -29,17 +29,14 @@ declare class GraphQLClient {
   generateSubscriptionFns(): void;
   generateMutationFns(): void;
 
-  sendRevokeTetherTx(
-    param: GraphQLClient.TxParam<GraphQLClient.RevokeTetherTx>
-  ): Promise<GraphQLClient.ResponseSendTx>;
   sendExchangeTetherTx(
     param: GraphQLClient.TxParam<GraphQLClient.ExchangeTetherTx>
   ): Promise<GraphQLClient.ResponseSendTx>;
   sendWithdrawTetherTx(
     param: GraphQLClient.TxParam<GraphQLClient.WithdrawTetherTx>
   ): Promise<GraphQLClient.ResponseSendTx>;
-  sendDeclareFileTx(
-    param: GraphQLClient.TxParam<GraphQLClient.DeclareFileTx>
+  sendDeclareTx(
+    param: GraphQLClient.TxParam<GraphQLClient.DeclareTx>
   ): Promise<GraphQLClient.ResponseSendTx>;
   sendAccountMigrateTx(
     param: GraphQLClient.TxParam<GraphQLClient.AccountMigrateTx>
@@ -53,8 +50,8 @@ declare class GraphQLClient {
   sendCreateAssetTx(
     param: GraphQLClient.TxParam<GraphQLClient.CreateAssetTx>
   ): Promise<GraphQLClient.ResponseSendTx>;
-  sendAcquireAssetTx(
-    param: GraphQLClient.TxParam<GraphQLClient.AcquireAssetTx>
+  sendRevokeTetherTx(
+    param: GraphQLClient.TxParam<GraphQLClient.RevokeTetherTx>
   ): Promise<GraphQLClient.ResponseSendTx>;
   sendDepositTetherTx(
     param: GraphQLClient.TxParam<GraphQLClient.DepositTetherTx>
@@ -71,29 +68,26 @@ declare class GraphQLClient {
   sendConsumeAssetTx(
     param: GraphQLClient.TxParam<GraphQLClient.ConsumeAssetTx>
   ): Promise<GraphQLClient.ResponseSendTx>;
-  sendDeployProtocolTx(
-    param: GraphQLClient.TxParam<GraphQLClient.DeployProtocolTx>
+  sendAcquireAssetTx(
+    param: GraphQLClient.TxParam<GraphQLClient.AcquireAssetTx>
   ): Promise<GraphQLClient.ResponseSendTx>;
   sendPokeTx(
     param: GraphQLClient.TxParam<GraphQLClient.PokeTx>
   ): Promise<GraphQLClient.ResponseSendTx>;
-  sendDeclareTx(
-    param: GraphQLClient.TxParam<GraphQLClient.DeclareTx>
+  sendDeployProtocolTx(
+    param: GraphQLClient.TxParam<GraphQLClient.DeployProtocolTx>
   ): Promise<GraphQLClient.ResponseSendTx>;
   sendStakeTx(
     param: GraphQLClient.TxParam<GraphQLClient.StakeTx>
   ): Promise<GraphQLClient.ResponseSendTx>;
-  encodeRevokeTetherTx(
-    param: GraphQLClient.TxParam<GraphQLClient.RevokeTetherTx>
-  ): Promise<GraphQLClient.EncodeTxResult>;
   encodeExchangeTetherTx(
     param: GraphQLClient.TxParam<GraphQLClient.ExchangeTetherTx>
   ): Promise<GraphQLClient.EncodeTxResult>;
   encodeWithdrawTetherTx(
     param: GraphQLClient.TxParam<GraphQLClient.WithdrawTetherTx>
   ): Promise<GraphQLClient.EncodeTxResult>;
-  encodeDeclareFileTx(
-    param: GraphQLClient.TxParam<GraphQLClient.DeclareFileTx>
+  encodeDeclareTx(
+    param: GraphQLClient.TxParam<GraphQLClient.DeclareTx>
   ): Promise<GraphQLClient.EncodeTxResult>;
   encodeAccountMigrateTx(
     param: GraphQLClient.TxParam<GraphQLClient.AccountMigrateTx>
@@ -107,8 +101,8 @@ declare class GraphQLClient {
   encodeCreateAssetTx(
     param: GraphQLClient.TxParam<GraphQLClient.CreateAssetTx>
   ): Promise<GraphQLClient.EncodeTxResult>;
-  encodeAcquireAssetTx(
-    param: GraphQLClient.TxParam<GraphQLClient.AcquireAssetTx>
+  encodeRevokeTetherTx(
+    param: GraphQLClient.TxParam<GraphQLClient.RevokeTetherTx>
   ): Promise<GraphQLClient.EncodeTxResult>;
   encodeDepositTetherTx(
     param: GraphQLClient.TxParam<GraphQLClient.DepositTetherTx>
@@ -125,14 +119,14 @@ declare class GraphQLClient {
   encodeConsumeAssetTx(
     param: GraphQLClient.TxParam<GraphQLClient.ConsumeAssetTx>
   ): Promise<GraphQLClient.EncodeTxResult>;
-  encodeDeployProtocolTx(
-    param: GraphQLClient.TxParam<GraphQLClient.DeployProtocolTx>
+  encodeAcquireAssetTx(
+    param: GraphQLClient.TxParam<GraphQLClient.AcquireAssetTx>
   ): Promise<GraphQLClient.EncodeTxResult>;
   encodePokeTx(
     param: GraphQLClient.TxParam<GraphQLClient.PokeTx>
   ): Promise<GraphQLClient.EncodeTxResult>;
-  encodeDeclareTx(
-    param: GraphQLClient.TxParam<GraphQLClient.DeclareTx>
+  encodeDeployProtocolTx(
+    param: GraphQLClient.TxParam<GraphQLClient.DeployProtocolTx>
   ): Promise<GraphQLClient.EncodeTxResult>;
   encodeStakeTx(
     param: GraphQLClient.TxParam<GraphQLClient.StakeTx>
@@ -316,53 +310,53 @@ declare namespace GraphQLClient {
   }
 
   export enum StatusCode {
+    READONLY_ASSET,
     INVALID_STAKE_STATE,
-    INVALID_OWNER,
-    INVALID_PASSPHRASE,
+    INVALID_TX,
+    BANNED_UNSTAKE,
+    INVALID_CHAIN_ID,
+    INVALID_EXPIRY_DATE,
+    INSUFFICIENT_FUND,
+    INVALID_MULTISIG,
+    INVALID_SIGNER_STATE,
+    INVALID_ASSET,
+    NOENT,
+    FORBIDDEN,
+    INVALID_DEPOSIT,
+    INVALID_WITHDRAWER,
+    INVALID_FORGE_STATE,
+    INSUFFICIENT_DATA,
+    INVALID_NONCE,
     ACCOUNT_MIGRATED,
     EXPIRED_TX,
-    UNTRANSFERRABLE_ASSET,
-    INVALID_CHAIN_ID,
-    BANNED_UNSTAKE,
-    INVALID_DEPOSIT_VALUE,
-    INVALID_NONCE,
-    EXPIRED_ASSET,
-    INVALID_SIGNER_STATE,
-    INSUFFICIENT_DATA,
-    INVALID_SENDER_STATE,
+    INVALID_SIGNATURE,
+    CONSENSUS_RPC_ERROR,
     INVALID_CUSTODIAN,
-    INVALID_DEPOSITOR,
-    EXPIRED_WALLET_TOKEN,
+    INVALID_RECEIVER_STATE,
+    INVALID_MONIKER,
     INVALID_LOCK_STATUS,
-    INVALID_DEPOSIT_TARGET,
-    INVALID_DEPOSIT,
+    EXCEED_DEPOSIT_CAP,
+    EXPIRED_WALLET_TOKEN,
+    EXPIRED_ASSET,
     TOO_MANY_TXS,
-    INVALID_TX_SIZE,
-    INVALID_TX,
-    INVALID_WITHDRAWER,
+    STORAGE_RPC_ERROR,
+    UNSUPPORTED_TX,
+    DUPLICATE_TETHER,
+    INVALID_SENDER_STATE,
+    INVALID_DEPOSITOR,
+    INVALID_DEPOSIT_TARGET,
+    INVALID_PASSPHRASE,
+    INSUFFICIENT_STAKE,
+    UNTRANSFERRABLE_ASSET,
+    TIMEOUT,
+    INVALID_DEPOSIT_VALUE,
+    INVALID_OWNER,
+    INVALID_REQUEST,
     UNSUPPORTED_STAKE,
     CONSUMED_ASSET,
-    INVALID_MULTISIG,
-    STORAGE_RPC_ERROR,
-    INVALID_ASSET,
-    CONSENSUS_RPC_ERROR,
-    INSUFFICIENT_FUND,
-    INVALID_FORGE_STATE,
-    DUPLICATE_TETHER,
-    INVALID_SIGNATURE,
-    NOENT,
-    TIMEOUT,
-    INSUFFICIENT_STAKE,
-    EXCEED_DEPOSIT_CAP,
-    INVALID_EXPIRY_DATE,
-    READONLY_ASSET,
-    INVALID_MONIKER,
-    FORBIDDEN,
-    UNSUPPORTED_TX,
     INVALID_WALLET,
-    INVALID_REQUEST,
     INTERNAL,
-    INVALID_RECEIVER_STATE,
+    INVALID_TX_SIZE,
     OK,
   }
 

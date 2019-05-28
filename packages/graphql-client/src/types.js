@@ -1197,7 +1197,7 @@
  * Checkout the following snippet for the format of ResponseGetAccountState:
  * ```json
 {
-  "code": "INVALID_STAKE_STATE",
+  "code": "READONLY_ASSET",
   "state": {
     "address": "abc",
     "balance": "abc",
@@ -1207,7 +1207,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INVALID_STAKE_STATE",
+        "code": "READONLY_ASSET",
         "createAsset": {
           "asset": "abc"
         },
@@ -1245,7 +1245,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INVALID_STAKE_STATE",
+        "code": "READONLY_ASSET",
         "createAsset": {
           "asset": "abc"
         },
@@ -1345,7 +1345,7 @@
  * Checkout the following snippet for the format of ResponseGetAssetState:
  * ```json
 {
-  "code": "INVALID_STAKE_STATE",
+  "code": "READONLY_ASSET",
   "state": {
     "address": "abc",
     "consumedTime": "2019-04-29T00:00:00.000Z",
@@ -1355,7 +1355,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INVALID_STAKE_STATE",
+        "code": "READONLY_ASSET",
         "createAsset": {
           "asset": "abc"
         },
@@ -1393,7 +1393,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INVALID_STAKE_STATE",
+        "code": "READONLY_ASSET",
         "createAsset": {
           "asset": "abc"
         },
@@ -1487,7 +1487,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INVALID_STAKE_STATE",
+        "code": "READONLY_ASSET",
         "createAsset": {
           "asset": "abc"
         },
@@ -1543,7 +1543,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INVALID_STAKE_STATE",
+        "code": "READONLY_ASSET",
         "createAsset": {
           "asset": "abc"
         },
@@ -1586,7 +1586,7 @@
       "block": "abc"
     }
   },
-  "code": "INVALID_STAKE_STATE"
+  "code": "READONLY_ASSET"
 }
  * ```
  *
@@ -1636,7 +1636,7 @@
       }
     }
   ],
-  "code": "INVALID_STAKE_STATE",
+  "code": "READONLY_ASSET",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -1658,7 +1658,7 @@
  * Checkout the following snippet for the format of ResponseGetChainInfo:
  * ```json
 {
-  "code": "INVALID_STAKE_STATE",
+  "code": "READONLY_ASSET",
   "info": {
     "address": "abc",
     "appHash": "abc",
@@ -1698,7 +1698,7 @@
  * Checkout the following snippet for the format of ResponseGetConfig:
  * ```json
 {
-  "code": "INVALID_STAKE_STATE",
+  "code": "READONLY_ASSET",
   "config": "abc"
 }
  * ```
@@ -1715,7 +1715,7 @@
  * Checkout the following snippet for the format of ResponseGetForgeState:
  * ```json
 {
-  "code": "INVALID_STAKE_STATE",
+  "code": "READONLY_ASSET",
   "state": {
     "address": "abc",
     "consensus": {
@@ -1766,7 +1766,7 @@
               "accountMigrate": {
                 "address": "abc"
               },
-              "code": "INVALID_STAKE_STATE",
+              "code": "READONLY_ASSET",
               "createAsset": {
                 "asset": "abc"
               },
@@ -1804,7 +1804,7 @@
               "accountMigrate": {
                 "address": "abc"
               },
-              "code": "INVALID_STAKE_STATE",
+              "code": "READONLY_ASSET",
               "createAsset": {
                 "asset": "abc"
               },
@@ -1899,7 +1899,7 @@
  * Checkout the following snippet for the format of ResponseGetForgeStats:
  * ```json
 {
-  "code": "INVALID_STAKE_STATE",
+  "code": "READONLY_ASSET",
   "forgeStats": {
     "avgBlockTime": 123,
     "avgTps": 123,
@@ -1971,7 +1971,7 @@
  * Checkout the following snippet for the format of ResponseGetHealthStatus:
  * ```json
 {
-  "code": "INVALID_STAKE_STATE",
+  "code": "READONLY_ASSET",
   "healthStatus": {
     "consensus": {
       "blockHeight": "abc",
@@ -2016,7 +2016,7 @@
  * Checkout the following snippet for the format of ResponseGetNetInfo:
  * ```json
 {
-  "code": "INVALID_STAKE_STATE",
+  "code": "READONLY_ASSET",
   "netInfo": {
     "listeners": [
       "abc"
@@ -2054,7 +2054,7 @@
  * Checkout the following snippet for the format of ResponseGetNodeInfo:
  * ```json
 {
-  "code": "INVALID_STAKE_STATE",
+  "code": "READONLY_ASSET",
   "info": {
     "address": "abc",
     "appHash": "abc",
@@ -2102,7 +2102,7 @@
  * Checkout the following snippet for the format of ResponseGetProtocolState:
  * ```json
 {
-  "code": "INVALID_STAKE_STATE",
+  "code": "READONLY_ASSET",
   "state": {
     "address": "abc",
     "context": {
@@ -2111,7 +2111,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INVALID_STAKE_STATE",
+        "code": "READONLY_ASSET",
         "createAsset": {
           "asset": "abc"
         },
@@ -2149,7 +2149,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INVALID_STAKE_STATE",
+        "code": "READONLY_ASSET",
         "createAsset": {
           "asset": "abc"
         },
@@ -2242,7 +2242,7 @@
  * Checkout the following snippet for the format of ResponseGetProtocols:
  * ```json
 {
-  "code": "INVALID_STAKE_STATE",
+  "code": "READONLY_ASSET",
   "protocols": [
     {
       "address": "abc",
@@ -2290,7 +2290,7 @@
  * Checkout the following snippet for the format of ResponseGetSimulatorStatus:
  * ```json
 {
-  "code": "INVALID_STAKE_STATE",
+  "code": "READONLY_ASSET",
   "result": "abc"
 }
  * ```
@@ -2307,7 +2307,7 @@
  * Checkout the following snippet for the format of ResponseGetStakeState:
  * ```json
 {
-  "code": "INVALID_STAKE_STATE",
+  "code": "READONLY_ASSET",
   "state": {
     "address": "abc",
     "balance": "abc",
@@ -2317,7 +2317,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INVALID_STAKE_STATE",
+        "code": "READONLY_ASSET",
         "createAsset": {
           "asset": "abc"
         },
@@ -2355,7 +2355,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INVALID_STAKE_STATE",
+        "code": "READONLY_ASSET",
         "createAsset": {
           "asset": "abc"
         },
@@ -2412,7 +2412,7 @@
  * Checkout the following snippet for the format of ResponseGetTetherState:
  * ```json
 {
-  "code": "INVALID_STAKE_STATE",
+  "code": "READONLY_ASSET",
   "state": {
     "address": "abc",
     "available": true,
@@ -2441,12 +2441,12 @@
  * Checkout the following snippet for the format of ResponseGetTx:
  * ```json
 {
-  "code": "INVALID_STAKE_STATE",
+  "code": "READONLY_ASSET",
   "info": {
     "accountMigrate": {
       "address": "abc"
     },
-    "code": "INVALID_STAKE_STATE",
+    "code": "READONLY_ASSET",
     "createAsset": {
       "asset": "abc"
     },
@@ -2494,7 +2494,7 @@
  * Checkout the following snippet for the format of ResponseGetUnconfirmedTxs:
  * ```json
 {
-  "code": "INVALID_STAKE_STATE",
+  "code": "READONLY_ASSET",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -2539,7 +2539,7 @@
  * Checkout the following snippet for the format of ResponseGetValidatorsInfo:
  * ```json
 {
-  "code": "INVALID_STAKE_STATE",
+  "code": "READONLY_ASSET",
   "validatorsInfo": {
     "blockHeight": "abc",
     "validators": [
@@ -2576,7 +2576,7 @@
  * Checkout the following snippet for the format of ResponseListAssetTransactions:
  * ```json
 {
-  "code": "INVALID_STAKE_STATE",
+  "code": "READONLY_ASSET",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -2584,7 +2584,7 @@
   },
   "transactions": [
     {
-      "code": "INVALID_STAKE_STATE",
+      "code": "READONLY_ASSET",
       "hash": "abc",
       "receiver": "abc",
       "sender": "abc",
@@ -2655,7 +2655,7 @@
       "renaissanceTime": "abc"
     }
   ],
-  "code": "INVALID_STAKE_STATE",
+  "code": "READONLY_ASSET",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -2687,7 +2687,7 @@
       "time": "abc"
     }
   ],
-  "code": "INVALID_STAKE_STATE",
+  "code": "READONLY_ASSET",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -2709,7 +2709,7 @@
  * Checkout the following snippet for the format of ResponseListStakes:
  * ```json
 {
-  "code": "INVALID_STAKE_STATE",
+  "code": "READONLY_ASSET",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -2763,7 +2763,7 @@
       "totalUnstakes": "abc"
     }
   ],
-  "code": "INVALID_STAKE_STATE",
+  "code": "READONLY_ASSET",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -2785,7 +2785,7 @@
  * Checkout the following snippet for the format of ResponseListTransactions:
  * ```json
 {
-  "code": "INVALID_STAKE_STATE",
+  "code": "READONLY_ASSET",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -2793,7 +2793,7 @@
   },
   "transactions": [
     {
-      "code": "INVALID_STAKE_STATE",
+      "code": "READONLY_ASSET",
       "hash": "abc",
       "receiver": "abc",
       "sender": "abc",
@@ -2836,7 +2836,7 @@
  * Checkout the following snippet for the format of ResponseSendTx:
  * ```json
 {
-  "code": "INVALID_STAKE_STATE",
+  "code": "READONLY_ASSET",
   "hash": "abc"
 }
  * ```
@@ -2853,7 +2853,7 @@
  * Checkout the following snippet for the format of ResponseStartSimulator:
  * ```json
 {
-  "code": "INVALID_STAKE_STATE"
+  "code": "READONLY_ASSET"
 }
  * ```
  *
@@ -2868,7 +2868,7 @@
  * Checkout the following snippet for the format of ResponseStopSimulator:
  * ```json
 {
-  "code": "INVALID_STAKE_STATE"
+  "code": "READONLY_ASSET"
 }
  * ```
  *
@@ -2910,7 +2910,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INVALID_STAKE_STATE",
+        "code": "READONLY_ASSET",
         "createAsset": {
           "asset": "abc"
         },
@@ -2948,7 +2948,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INVALID_STAKE_STATE",
+        "code": "READONLY_ASSET",
         "createAsset": {
           "asset": "abc"
         },
@@ -3042,7 +3042,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INVALID_STAKE_STATE",
+        "code": "READONLY_ASSET",
         "createAsset": {
           "asset": "abc"
         },
@@ -3080,7 +3080,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INVALID_STAKE_STATE",
+        "code": "READONLY_ASSET",
         "createAsset": {
           "asset": "abc"
         },
@@ -3202,7 +3202,7 @@
       ]
     }
   },
-  "code": "INVALID_STAKE_STATE",
+  "code": "READONLY_ASSET",
   "confirm": {
     "chainId": "abc",
     "from": "abc",
@@ -3364,7 +3364,7 @@
               "accountMigrate": {
                 "address": "abc"
               },
-              "code": "INVALID_STAKE_STATE",
+              "code": "READONLY_ASSET",
               "createAsset": {
                 "asset": "abc"
               },
@@ -3402,7 +3402,7 @@
               "accountMigrate": {
                 "address": "abc"
               },
-              "code": "INVALID_STAKE_STATE",
+              "code": "READONLY_ASSET",
               "createAsset": {
                 "asset": "abc"
               },
@@ -3490,7 +3490,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INVALID_STAKE_STATE",
+        "code": "READONLY_ASSET",
         "createAsset": {
           "asset": "abc"
         },
@@ -3528,7 +3528,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INVALID_STAKE_STATE",
+        "code": "READONLY_ASSET",
         "createAsset": {
           "asset": "abc"
         },
@@ -3651,7 +3651,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INVALID_STAKE_STATE",
+        "code": "READONLY_ASSET",
         "createAsset": {
           "asset": "abc"
         },
@@ -3689,7 +3689,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INVALID_STAKE_STATE",
+        "code": "READONLY_ASSET",
         "createAsset": {
           "asset": "abc"
         },
@@ -3820,7 +3820,7 @@
  * Checkout the following snippet for the format of ResponseUnsubscribe:
  * ```json
 {
-  "code": "INVALID_STAKE_STATE"
+  "code": "READONLY_ASSET"
 }
  * ```
  *
@@ -4568,32 +4568,6 @@
 
 /**
  * @memberof GraphQLClient
- * @typedef {Object} GraphQLClient.RevokeTetherTxInput
- * @prop {object} input
- * @prop {object} input.tx - data of the transaction
- * @prop {GraphQLClient.RevokeTetherTx} input.tx.itx - the actual transaction object
- * @prop {string} [input.tx.pk] - the sender pk
- * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
- * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
- * @prop {string} [input.tx.chainId] - the chainId
- * @prop {string} [input.tx.signature] - transaction signature
- * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transaction
- * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
- * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
- */
-
-/**
- * Send RevokeTetherTx transaction and get the hash, use {@link GraphQLClient#getTx} to get transaction detail
- *
- * @memberof GraphQLClient
- * @function
- * @name GraphQLClient#sendRevokeTetherTx
- * @param {GraphQLClient.RevokeTetherTxInput} params
- * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
- */
-
-/**
- * @memberof GraphQLClient
  * @typedef {Object} GraphQLClient.ExchangeTetherTxInput
  * @prop {object} input
  * @prop {object} input.tx - data of the transaction
@@ -4646,10 +4620,10 @@
 
 /**
  * @memberof GraphQLClient
- * @typedef {Object} GraphQLClient.DeclareFileTxInput
+ * @typedef {Object} GraphQLClient.DeclareTxInput
  * @prop {object} input
  * @prop {object} input.tx - data of the transaction
- * @prop {GraphQLClient.DeclareFileTx} input.tx.itx - the actual transaction object
+ * @prop {GraphQLClient.DeclareTx} input.tx.itx - the actual transaction object
  * @prop {string} [input.tx.pk] - the sender pk
  * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
  * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
@@ -4661,12 +4635,12 @@
  */
 
 /**
- * Send DeclareFileTx transaction and get the hash, use {@link GraphQLClient#getTx} to get transaction detail
+ * Send DeclareTx transaction and get the hash, use {@link GraphQLClient#getTx} to get transaction detail
  *
  * @memberof GraphQLClient
  * @function
- * @name GraphQLClient#sendDeclareFileTx
- * @param {GraphQLClient.DeclareFileTxInput} params
+ * @name GraphQLClient#sendDeclareTx
+ * @param {GraphQLClient.DeclareTxInput} params
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
 
@@ -4776,10 +4750,10 @@
 
 /**
  * @memberof GraphQLClient
- * @typedef {Object} GraphQLClient.AcquireAssetTxInput
+ * @typedef {Object} GraphQLClient.RevokeTetherTxInput
  * @prop {object} input
  * @prop {object} input.tx - data of the transaction
- * @prop {GraphQLClient.AcquireAssetTx} input.tx.itx - the actual transaction object
+ * @prop {GraphQLClient.RevokeTetherTx} input.tx.itx - the actual transaction object
  * @prop {string} [input.tx.pk] - the sender pk
  * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
  * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
@@ -4791,12 +4765,12 @@
  */
 
 /**
- * Send AcquireAssetTx transaction and get the hash, use {@link GraphQLClient#getTx} to get transaction detail
+ * Send RevokeTetherTx transaction and get the hash, use {@link GraphQLClient#getTx} to get transaction detail
  *
  * @memberof GraphQLClient
  * @function
- * @name GraphQLClient#sendAcquireAssetTx
- * @param {GraphQLClient.AcquireAssetTxInput} params
+ * @name GraphQLClient#sendRevokeTetherTx
+ * @param {GraphQLClient.RevokeTetherTxInput} params
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
 
@@ -4932,10 +4906,10 @@
 
 /**
  * @memberof GraphQLClient
- * @typedef {Object} GraphQLClient.DeployProtocolTxInput
+ * @typedef {Object} GraphQLClient.AcquireAssetTxInput
  * @prop {object} input
  * @prop {object} input.tx - data of the transaction
- * @prop {GraphQLClient.DeployProtocolTx} input.tx.itx - the actual transaction object
+ * @prop {GraphQLClient.AcquireAssetTx} input.tx.itx - the actual transaction object
  * @prop {string} [input.tx.pk] - the sender pk
  * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
  * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
@@ -4947,12 +4921,12 @@
  */
 
 /**
- * Send DeployProtocolTx transaction and get the hash, use {@link GraphQLClient#getTx} to get transaction detail
+ * Send AcquireAssetTx transaction and get the hash, use {@link GraphQLClient#getTx} to get transaction detail
  *
  * @memberof GraphQLClient
  * @function
- * @name GraphQLClient#sendDeployProtocolTx
- * @param {GraphQLClient.DeployProtocolTxInput} params
+ * @name GraphQLClient#sendAcquireAssetTx
+ * @param {GraphQLClient.AcquireAssetTxInput} params
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
 
@@ -4984,10 +4958,10 @@
 
 /**
  * @memberof GraphQLClient
- * @typedef {Object} GraphQLClient.DeclareTxInput
+ * @typedef {Object} GraphQLClient.DeployProtocolTxInput
  * @prop {object} input
  * @prop {object} input.tx - data of the transaction
- * @prop {GraphQLClient.DeclareTx} input.tx.itx - the actual transaction object
+ * @prop {GraphQLClient.DeployProtocolTx} input.tx.itx - the actual transaction object
  * @prop {string} [input.tx.pk] - the sender pk
  * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
  * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
@@ -4999,12 +4973,12 @@
  */
 
 /**
- * Send DeclareTx transaction and get the hash, use {@link GraphQLClient#getTx} to get transaction detail
+ * Send DeployProtocolTx transaction and get the hash, use {@link GraphQLClient#getTx} to get transaction detail
  *
  * @memberof GraphQLClient
  * @function
- * @name GraphQLClient#sendDeclareTx
- * @param {GraphQLClient.DeclareTxInput} params
+ * @name GraphQLClient#sendDeployProtocolTx
+ * @param {GraphQLClient.DeployProtocolTxInput} params
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
 
@@ -5035,16 +5009,6 @@
  */
 
 /**
- * Encode a RevokeTetherTx transaction for later use
- *
- * @name GraphQLClient#encodeRevokeTetherTx
- * @function
- * @memberof GraphQLClient
- * @param {GraphQLClient.RevokeTetherTxInput} params
- * @returns {Promise<GraphQLClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
- */
-
-/**
  * Encode a ExchangeTetherTx transaction for later use
  *
  * @name GraphQLClient#encodeExchangeTetherTx
@@ -5065,12 +5029,12 @@
  */
 
 /**
- * Encode a DeclareFileTx transaction for later use
+ * Encode a DeclareTx transaction for later use
  *
- * @name GraphQLClient#encodeDeclareFileTx
+ * @name GraphQLClient#encodeDeclareTx
  * @function
  * @memberof GraphQLClient
- * @param {GraphQLClient.DeclareFileTxInput} params
+ * @param {GraphQLClient.DeclareTxInput} params
  * @returns {Promise<GraphQLClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
 
@@ -5115,12 +5079,12 @@
  */
 
 /**
- * Encode a AcquireAssetTx transaction for later use
+ * Encode a RevokeTetherTx transaction for later use
  *
- * @name GraphQLClient#encodeAcquireAssetTx
+ * @name GraphQLClient#encodeRevokeTetherTx
  * @function
  * @memberof GraphQLClient
- * @param {GraphQLClient.AcquireAssetTxInput} params
+ * @param {GraphQLClient.RevokeTetherTxInput} params
  * @returns {Promise<GraphQLClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
 
@@ -5175,12 +5139,12 @@
  */
 
 /**
- * Encode a DeployProtocolTx transaction for later use
+ * Encode a AcquireAssetTx transaction for later use
  *
- * @name GraphQLClient#encodeDeployProtocolTx
+ * @name GraphQLClient#encodeAcquireAssetTx
  * @function
  * @memberof GraphQLClient
- * @param {GraphQLClient.DeployProtocolTxInput} params
+ * @param {GraphQLClient.AcquireAssetTxInput} params
  * @returns {Promise<GraphQLClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
 
@@ -5195,12 +5159,12 @@
  */
 
 /**
- * Encode a DeclareTx transaction for later use
+ * Encode a DeployProtocolTx transaction for later use
  *
- * @name GraphQLClient#encodeDeclareTx
+ * @name GraphQLClient#encodeDeployProtocolTx
  * @function
  * @memberof GraphQLClient
- * @param {GraphQLClient.DeclareTxInput} params
+ * @param {GraphQLClient.DeployProtocolTxInput} params
  * @returns {Promise<GraphQLClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
 
