@@ -1,3 +1,7 @@
+## 0.27.13 (May 28, 2019)
+  - chore: improve forge protocol compile command
+  - update readme
+
 ## 0.27.12 (May 28, 2019)
   - fix: eslint errors in tcp-server
   - fix: eslint errors in forge-cli
