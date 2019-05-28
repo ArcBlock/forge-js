@@ -83,6 +83,7 @@ async function streamingBlocks(client, opts) {
       if (res.topic) {
         shell.echo(`${symbols.success} Subscribe success, topic: ${res.topic}`);
         shell.echo(`${symbols.info} Waiting for new blocks...`);
+        // eslint-disable-next-line prefer-destructuring
         topic = res.topic;
         return;
       }

@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 const shell = require('shelljs');
 const { symbols, getSpinner } = require('core/ui');
 const { config, getForgeProcesses, sleep } = require('core/env');

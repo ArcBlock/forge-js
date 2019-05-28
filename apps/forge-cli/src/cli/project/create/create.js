@@ -122,6 +122,7 @@ async function main({ args: [_target], opts: { yes } }) {
     const { info } = await client.getChainInfo();
     const chainId = info.network;
     const starterDir = path.join(templatesDir, template);
+    // eslint-disable-next-line
     const starter = require(path.join(starterDir, './starter.config.js'));
     const config = { starterDir, targetDir, template, chainHost, chainId };
     if (yes || (Array.isArray(starter.questions) && starter.questions.length === 0)) {
@@ -168,6 +169,7 @@ async function main({ args: [_target], opts: { yes } }) {
     }
     shell.echo(hr);
   } catch (err) {
+    // eslint-disable-next-line no-console
     console.error(err);
   }
 }

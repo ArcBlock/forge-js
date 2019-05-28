@@ -82,6 +82,7 @@ function createCli({
   const [action, name] = cliName.split(':');
   const targetPath = path.join(cliPath, `${action}/${name}`);
   const templatePath = path.join(__dirname, 'templates');
+  // eslint-disable-next-line max-len
   const env = `NAME="${name}" ACTION=${action} DESCRIPTION="${description}" REQUIRE_RELEASE=${requireRelease} REQUIRE_RPC_CLIENT=${requireRpcClient} REQUIRE_RUNNING_NODE=${requireRunningNode} REQUIRE_WALLET=${requireWallet}`;
 
   shell.exec(`mkdir -p ${targetPath}`);

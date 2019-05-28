@@ -20,6 +20,7 @@ module.exports = {
     'object-curly-newline': 'off',
     'implicit-arrow-linebreak': 'off',
     'class-methods-use-this': 'off',
+    'import/no-unresolved': ['error', { caseSensitive: true, ignore: ['core/'] }],
     'max-len': ['error', { code: 120, ignoreStrings: true, ignoreComments: true }],
     'comma-dangle': [
       'error',

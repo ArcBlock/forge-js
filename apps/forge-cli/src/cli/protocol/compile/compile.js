@@ -134,6 +134,7 @@ async function compileJavascript({ sourceDir, targetDir, config, protoFile, outp
   shell.exec(`mkdir -p ${targetJsDir}`);
 
   shell.exec(
+    // eslint-disable-next-line max-len
     `grpc_tools_node_protoc --proto_path=${sourceDir} --js_out=import_style=commonjs,binary:${targetJsDir} --plugin=protoc-gen-grpc=\`which grpc_tools_node_protoc_plugin\` ${protoFile}`
   );
   shell.echo(
@@ -235,7 +236,8 @@ async function main({ args: [dir], opts: { targets = 'elixir,javascript' } }) {
       await compileJavascript(params);
     }
   } catch (err) {
-    console.log(err);
+    debug.error(err);
+    shell.echo(`${symbols.error} transaction protocol compile failed`);
   }
 }
 

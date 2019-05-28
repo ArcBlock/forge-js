@@ -7,6 +7,7 @@ const { config, webUrl } = require('core/env');
 async function main({ opts: { peer } }) {
   if (peer) {
     const client = new GraphQLClient(`${webUrl()}/api`);
+    // eslint-disable-next-line no-shadow
     const { config } = await client.getConfig();
     shell.echo(`${symbols.success} config for peer:`);
     shell.echo(hr);

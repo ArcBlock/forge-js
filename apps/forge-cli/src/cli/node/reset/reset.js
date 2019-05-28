@@ -33,6 +33,7 @@ async function main({ opts: { yes } }) {
       },
     ];
     const answers = await inquirer.prompt(questions);
+    // eslint-disable-next-line prefer-destructuring
     confirm = answers.confirm;
   }
 

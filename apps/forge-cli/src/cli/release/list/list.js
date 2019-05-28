@@ -39,12 +39,14 @@ function main() {
     const yamlObj = fs.existsSync(filePath)
       ? yaml.parse(fs.readFileSync(filePath).toString()) || {}
       : {};
+    // eslint-disable-next-line prefer-destructuring
     current = yamlObj.current;
   } catch (err) {
     debug.error(err);
   }
 
   try {
+    // eslint-disable-next-line camelcase
     const { forge, forge_starter, simulator, forge_web } = listReleases();
     debug({ forge, forge_starter, simulator, current });
 

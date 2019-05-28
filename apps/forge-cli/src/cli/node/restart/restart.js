@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 const shell = require('shelljs');
 const chalk = require('chalk');
 const { getForgeProcesses } = require('core/env');

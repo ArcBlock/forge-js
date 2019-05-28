@@ -1,12 +1,9 @@
 // eslint-disable-next-line import/no-unresolved
 const { cli, action } = require('core/cli');
-const { execute, run } = require('./list');
 const { enums } = require('@arcblock/forge-proto');
+const { execute, run } = require('./list');
 
-const roles = ['all'];
-for (const role in enums.AccountRole) {
-  roles.push(role.toLowerCase());
-}
+const roles = ['all'].concat(Object.keys(enums.AccountRole).map(x => x.toLowerCase()));
 
 cli(
   'account:list [role]',

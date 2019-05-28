@@ -7,18 +7,12 @@ const { symbols, hr, pretty } = require('core/ui');
 const { enums } = require('@arcblock/forge-proto');
 inquirer.registerPrompt('autocomplete', require('inquirer-autocomplete-prompt'));
 
-function source(answers, input, type) {
-  const origins = [];
-  for (const item in enums[type]) {
-    origins.push(item);
-  }
-  input = input || '';
-  return new Promise(((resolve) => {
+function source(answers, input = '', type) {
+  const origins = Object.keys(enums[type]);
+  return new Promise(resolve => {
     const fuzzyResult = fuzzy.filter(input, origins);
-    resolve(
-      fuzzyResult.map((el) => el.original)
-    );
-  }));
+    resolve(fuzzyResult.map(el => el.original));
+  });
 }
 
 const questions = [
@@ -38,7 +32,9 @@ const questions = [
     message: 'Please input moniker:',
     validate: input => {
       if (!input) return 'The moniker should not empty';
-      if (!/^[a-zA-Z0-9][a-zA-Z0-9_]{3,15}$/.test(input)) return 'The moniker should only contain 0-9,a-z,A-Z, and length between 3~15';
+      if (!/^[a-zA-Z0-9][a-zA-Z0-9_]{3,15}$/.test(input)) {
+        return 'The moniker should only contain 0-9,a-z,A-Z, and length between 3~15';
+      }
       return true;
     },
   },
@@ -106,6 +102,7 @@ async function execute(data) {
       )} to inspect account state`
     );
   } catch (err) {
+    // eslint-disable-next-line no-console
     console.error('error', err);
   }
 }

@@ -61,7 +61,7 @@ function initCli(program) {
       command.alias(x.alias);
     }
 
-    (x.options || []).forEach(x => command.option(...x));
+    (x.options || []).forEach(o => command.option(...o));
 
     if (Object.keys(x.handlers).length) {
       Object.keys(x.handlers).forEach(k => command.on(k, x.handlers[k]));
@@ -69,7 +69,7 @@ function initCli(program) {
 
     command.action(async (...params) => {
       await setupEnv(args, x.requirements);
-      await x.handler({ args: params.filter(x => typeof x === 'string'), opts: command.opts() });
+      await x.handler({ args: params.filter(p => typeof p === 'string'), opts: command.opts() });
     });
   });
 }

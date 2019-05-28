@@ -59,6 +59,7 @@
     "@arcblock/mcrypto": "^0.27.11",
     "@iarna/toml": "^2.2.3",
     "app-module-path": "^2.2.0",
+    "base64-url": "^2.2.1",
     "chalk": "^2.4.1",
     "cli-progress": "^2.1.1",
     "cli-table-redemption": "^1.0.1",
