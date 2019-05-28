@@ -1,3 +1,17 @@
+## 0.27.12 (May 28, 2019)
+  - fix: eslint errors in tcp-server
+  - fix: eslint errors in forge-cli
+  - fix: eslint errors in did-auth
+  - fix: eslint errors in forge-wallet
+  - fix: eslint errors in forge-message
+  - fix: eslint errors in grpc-client
+  - fix: eslint errors in graphql-client
+  - fix: eslint errors in mcrypto
+  - fix: eslint errors in forge-proto
+  - chore: add lint fix script
+  - chore: use eslint config airbnb base
+  - update readme
+
 ## 0.27.11 (May 27, 2019)
   - fix: support both base64 and hex format moderator sdk
   - fix: travis build
