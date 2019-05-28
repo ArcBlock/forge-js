@@ -19,7 +19,7 @@ const debug = require('debug')(require('./package.json').name);
  * @param {object} urls - collection of typeUrls registered to forge-core
  * @returns {object}
  */
-module.exports = function(proto, json, urls = {}) {
+module.exports = function (proto, json, urls = {}) {
   debug('provider.create', { urls });
   const { types, services = {}, vendorTypes = {} } = proto;
 

@@ -74,6 +74,7 @@
   },
   "scripts": {
     "lint": "eslint src examples tests",
+    "lint:fix": "eslint --fix src examples tests",
     "clean": "rimraf lib && rimraf dist",
     "build-browser": "BABEL_ENV=browser babel ./src --out-dir ./dist --source-maps --copy-files && webpack -p",
     "build-node": "babel ./src --out-dir ./lib --source-maps --copy-files",

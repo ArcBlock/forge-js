@@ -52,6 +52,7 @@
   },
   "scripts": {
     "lint": "lerna run lint",
+    "lint:fix": "lerna run lint:fix",
     "build": "lerna run clean && lerna run build",
     "clean": "lerna clean",
     "jsdocs": "jsdoc --configure jsdoc.js --verbose",

@@ -58,6 +58,7 @@
   },
   "scripts": {
     "lint": "eslint lib tests",
+    "lint:fix": "eslint --fix lib tests",
     "generate-docs": "jsdoc2md lib/index.js > docs/README.md",
     "generate-dts": "j2d lib/index.js",
     "format-docs": "remark . -o",

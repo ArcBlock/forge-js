@@ -33,6 +33,7 @@
   },
   "scripts": {
     "lint": "eslint tests lib",
+    "lint:fix": "eslint --fix tests lib",
     "precommit": "CI=1 yarn test",
     "prepush": "CI=1 yarn test",
     "test": "yarn lint && node tools/jest.js",

@@ -59,6 +59,7 @@
   },
   "scripts": {
     "lint": "eslint lib tests",
+    "lint:fix": "eslint --fix lib tests",
     "precommit": "CI=1 yarn test",
     "prepush": "CI=1 yarn test",
     "generate-docs": "jsdoc2md lib/index.js > docs/README.md",
