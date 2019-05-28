@@ -60,13 +60,15 @@ function fetchCompilerInfo(version, mirror = DEFAULT_MIRROR) {
 }
 
 async function ensureForgeCompiler() {
-  const { stdout } = shell.which('forge-compiler');
+  const { stdout } = shell.which('forge-compiler') || {};
   if (stdout && fs.existsSync(stdout.trim())) {
+    debug('using forge-compiler from', stdout.trim());
     return stdout.trim();
   }
 
   const targetPath = path.join(requiredDirs.bin, 'forge-compiler');
   if (isFile(targetPath)) {
+    debug('using forge-compiler from', targetPath);
     return targetPath;
   }
 
@@ -84,8 +86,11 @@ async function ensureForgeCompiler() {
 async function ensureJavascriptCompiler() {
   const { stdout: protoc } = shell.which('grpc_tools_node_protoc') || {};
   if (protoc && fs.existsSync(protoc.trim())) {
+    debug('using protoc from', protoc.trim());
+
     const { stdout: pbjs } = shell.which('pbjs') || {};
     if (pbjs && fs.existsSync(pbjs.trim())) {
+      debug('using pbjs from', pbjs.trim());
       return true;
     }
 
@@ -115,13 +120,19 @@ async function compileElixir({ targetDir, config, configFile, outputPrefix }) {
   const targetExDir = path.join(targetDir, name, 'elixir');
   shell.exec(`mkdir -p ${targetExDir}`);
 
-  shell.exec(`${compiler} ${configFile} ${targetExDir}`);
-  shell.echo(
-    `${symbols.success} elixir itx generated: ${targetExDir.replace(
-      outputPrefix,
-      ''
-    )}/${name}/${name}.itx.json`
-  );
+  const { code, stdout, stderr } = shell.exec(`${compiler} ${configFile} ${targetExDir}`, {
+    silent: true,
+  });
+  if (Number(code) === 0) {
+    shell.echo(
+      `${symbols.success} elixir itx generated: ${targetExDir.replace(
+        outputPrefix,
+        ''
+      )}/${name}/${name}.itx.json`
+    );
+  } else {
+    shell.echo(`${symbols.error} elixir generate failed: ${stderr || stdout}`);
+  }
   shell.echo('');
 }
 
