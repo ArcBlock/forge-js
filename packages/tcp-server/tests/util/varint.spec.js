@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-properties */
 const { encodeVarint, decodeVarint, encodeZigzag, decodeZigzag } = require('../../lib/util/varint');
 
 describe('#encodeVarint', () => {

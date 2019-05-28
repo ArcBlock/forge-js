@@ -2,6 +2,7 @@ const path = require('path');
 const net = require('net');
 const { parse } = require('@arcblock/forge-config');
 const { TcpServer } = require('../../');
+// eslint-disable-next-line import/newline-after-import
 const { decode } = require('../../lib/util/socket_data');
 const config = parse(path.resolve(__dirname, '../../../../examples/simple/forge.toml'));
 

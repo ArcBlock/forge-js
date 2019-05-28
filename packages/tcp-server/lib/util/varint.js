@@ -1,3 +1,4 @@
+/* eslint-disable no-bitwise */
 const encodeVarint = v => {
   if (typeof v !== 'number') {
     throw new Error('encodeZigzag require v to be a valid number');
@@ -53,6 +54,7 @@ const decodeZigzag = buffer => {
   }
 
   const [varint, rest] = result;
+  // eslint-disable-next-line no-self-compare
   const int = varint & (1 === 1) ? -((varint + 1) >> 1) : varint >> 1;
   return [int, rest];
 };
