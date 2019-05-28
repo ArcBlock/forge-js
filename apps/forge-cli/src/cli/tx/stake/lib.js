@@ -122,7 +122,7 @@ function getState() {
     const { address } = config.get('cli.wallet');
     const stream = client.getAccountState({ address });
     stream
-      .on('data', function(result) {
+      .on('data', (result) => {
         if (result && result.code === 0) {
           const { state } = result.$format();
           debug('getState', result.$format().state);

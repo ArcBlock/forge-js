@@ -4,6 +4,7 @@ const multibase = require('multibase');
 const Mcrypto = require('@arcblock/mcrypto');
 const { bytesToHex } = require('@arcblock/forge-util');
 const { toAddress } = require('@arcblock/did');
+// eslint-disable-next-line
 const debug = require('debug')(`${require('../package.json').name}:handlers`);
 
 const sha3 = Mcrypto.Hasher.SHA3.hash256;
@@ -208,6 +209,7 @@ module.exports = class Handlers {
     });
 
     // 4. Wallet: fetch auth request
+    // eslint-disable-next-line consistent-return
     app.get(pathname, async (req, res) => {
       const locale = getLocale(req);
       const { userDid: did, userPk, [tokenKey]: token, [checksumKey]: checksum } = req.query;
@@ -266,6 +268,7 @@ module.exports = class Handlers {
     });
 
     // 5. Wallet: submit auth response
+    // eslint-disable-next-line consistent-return
     app.post(pathname, async (req, res) => {
       const params = Object.assign({}, req.body, req.query);
       debug('verify.input', params);

@@ -1,7 +1,8 @@
+/* eslint-disable no-underscore-dangle */
 const { get, set } = require('lodash');
 const Runner = require('./runner');
 
-const noop = function() {};
+const noop = () => {};
 
 class HandlerManager {
   constructor() {
@@ -16,9 +17,11 @@ class HandlerManager {
     const handlers = get(this._handlers, 'key', []);
     handlers.push(handler);
     set(this._handlers, key, handlers);
+    // eslint-disable-next-line consistent-return
     return this;
   }
 
+  // eslint-disable-next-line consistent-return
   remove(key, handler) {
     const handlers = get(this._handlers, 'key', []);
     const index = handlers.indexOf(handler);

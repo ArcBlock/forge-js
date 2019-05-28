@@ -63,7 +63,8 @@
     "url": "https://github.com/ArcBlock/forge-js/tree/master/packages/forge-message"
   },
   "scripts": {
-    "lint": "eslint lib index.js lite.js tests",
+    "lint": "eslint lib *.js tests",
+    "lint:fix": "eslint --fix lib *.js tests",
     "upgrade": "yarn format-docs && yarn generate-dts",
     "generate-docs": "jsdoc2md lib/message.js > docs/README.md",
     "format-docs": "remark . -o",

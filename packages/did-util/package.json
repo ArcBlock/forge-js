@@ -20,6 +20,7 @@
   "dependencies": {
     "@arcblock/did": "^0.27.11",
     "@arcblock/forge-message": "^0.27.11",
+    "@arcblock/forge-proto": "^0.27.11",
     "@arcblock/forge-util": "^0.27.0",
     "@arcblock/forge-wallet": "^0.27.11",
     "@arcblock/mcrypto": "^0.27.11"
@@ -59,6 +60,7 @@
   },
   "scripts": {
     "lint": "eslint lib tests",
+    "lint:fix": "eslint --fix lib tests",
     "precommit": "CI=1 yarn test",
     "prepush": "CI=1 yarn test",
     "generate-docs": "jsdoc2md lib/index.js > docs/README.md",

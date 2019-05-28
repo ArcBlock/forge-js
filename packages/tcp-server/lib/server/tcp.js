@@ -4,6 +4,7 @@ const { enums } = require('@arcblock/forge-proto');
 const { encode, decode, decodePayload } = require('../util/socket_data');
 const HandlerManager = require('../util/handler/manager');
 
+// eslint-disable-next-line
 const debug = require('debug')(`${require('../../package.json').name}:TCPServer`);
 
 const { OK } = enums.StatusCode;

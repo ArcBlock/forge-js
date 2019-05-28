@@ -1,4 +1,8 @@
-const noop = function() {};
+/* eslint-disable no-shadow */
+/* eslint-disable consistent-return */
+/* eslint-disable func-names */
+/* eslint-disable wrap-iife */
+const noop = () => {};
 
 /**
  * Utility to run stack of middleware sequetially
@@ -47,9 +51,9 @@ class HandlerRunner {
     const { req, res } = this;
 
     // replace #run with a wrapper in which calls itself first and then the `fn`
-    instance.run = (function(req, res, stack) {
-      return function(_req, _res, next = noop) {
-        stack(req, res, function(err) {
+    instance.run = (function (req, res, stack) {
+      return function (_req, _res, next = noop) {
+        stack(req, res, (err) => {
           if (err) {
             return next.call(instance.context || instance, err);
           }

@@ -6,10 +6,10 @@ const { config, debug } = require('core/env');
 const { isForgeStopped, updateReleaseYaml } = require('cli/node/init/init');
 const { listReleases } = require('cli/release/list/list');
 
+// eslint-disable-next-line consistent-return
 async function main({ args: [userVersion] }) {
   try {
-    const version =
-      userVersion && semver.coerce(userVersion) ? semver.coerce(userVersion).version : '';
+    const version = userVersion && semver.coerce(userVersion) ? semver.coerce(userVersion).version : '';
     if (version === config.get('cli.currentVersion')) {
       shell.echo(`${symbols.warning} Already using forge release v${version}`);
       return process.exit(1);

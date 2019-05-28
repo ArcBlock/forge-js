@@ -1,7 +1,7 @@
 const shell = require('shelljs');
-const { version: forgeCliVersion } = require('../../../../package.json');
 const { config, debug, createFileFinder, getPlatform } = require('core/env');
 const { symbols } = require('core/ui');
+const { version: forgeCliVersion } = require('../../../../package.json');
 
 async function main() {
   const { releaseDir, currentVersion } = config.get('cli');

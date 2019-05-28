@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 const fs = require('fs');
 const shell = require('shelljs');
 const chalk = require('chalk');

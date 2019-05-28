@@ -7,19 +7,11 @@ const { symbols, hr, pretty } = require('core/ui');
 const { enums } = require('@arcblock/forge-proto');
 inquirer.registerPrompt('autocomplete', require('inquirer-autocomplete-prompt'));
 
-function source(answers, input, type) {
-  const origins = [];
-  for (let item in enums[type]) {
-    origins.push(item);
-  }
-  input = input || '';
-  return new Promise(function(resolve) {
-    var fuzzyResult = fuzzy.filter(input, origins);
-    resolve(
-      fuzzyResult.map(function(el) {
-        return el.original;
-      })
-    );
+function source(answers, input = '', type) {
+  const origins = Object.keys(enums[type]);
+  return new Promise(resolve => {
+    const fuzzyResult = fuzzy.filter(input, origins);
+    resolve(fuzzyResult.map(el => el.original));
   });
 }
 
@@ -40,8 +32,9 @@ const questions = [
     message: 'Please input moniker:',
     validate: input => {
       if (!input) return 'The moniker should not empty';
-      if (!/^[a-zA-Z0-9][a-zA-Z0-9_]{3,15}$/.test(input))
+      if (!/^[a-zA-Z0-9][a-zA-Z0-9_]{3,15}$/.test(input)) {
         return 'The moniker should only contain 0-9,a-z,A-Z, and length between 3~15';
+      }
       return true;
     },
   },
@@ -50,7 +43,7 @@ const questions = [
     name: 'role',
     default: enums.RoleType.ROLE_ACCOUNT,
     message: 'Please select a account role type?',
-    source: function(answersSoFar, input) {
+    source(answersSoFar, input) {
       return source(answersSoFar, input, 'RoleType');
     },
   },
@@ -59,7 +52,7 @@ const questions = [
     name: 'pk',
     default: enums.KeyType.ED25519,
     message: 'Please select a key pair algorithm?',
-    source: function(answersSoFar, input) {
+    source(answersSoFar, input) {
       return source(answersSoFar, input, 'KeyType');
     },
   },
@@ -68,7 +61,7 @@ const questions = [
     name: 'hash',
     default: enums.HashType.SHA3,
     message: 'Please select a hash algorithm?',
-    source: function(answersSoFar, input) {
+    source(answersSoFar, input) {
       return source(answersSoFar, input, 'HashType');
     },
   },
@@ -109,6 +102,7 @@ async function execute(data) {
       )} to inspect account state`
     );
   } catch (err) {
+    // eslint-disable-next-line no-console
     console.error('error', err);
   }
 }

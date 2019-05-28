@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 /**
  * @fileOverview Contains basic helper methods to encode/format/mock a protobuf message
  * @module @arcblock/forge-message
@@ -23,6 +24,7 @@ const {
   fromTypeUrl,
   addProvider,
 } = require('./provider');
+// eslint-disable-next-line
 const debug = require('debug')(`${require('../package.json').name}`);
 
 const enumTypes = Object.keys(enums);
@@ -465,6 +467,7 @@ function encodeTimestamp(value) {
   const timestamp = new Timestamp();
   if (typeof value === 'string') {
     const millionSeconds = Date.parse(value);
+    // eslint-disable-next-line no-restricted-globals
     if (isNaN(millionSeconds) === false) {
       timestamp.setSeconds(Math.floor(millionSeconds / 1e3));
       timestamp.setNanos(Math.floor((millionSeconds % 1e3) * 1e6));

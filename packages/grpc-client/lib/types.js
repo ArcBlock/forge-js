@@ -8,7 +8,7 @@
  */
 
 /**
- * Structure of GRpcClient.RequestCreateTx 
+ * Structure of GRpcClient.RequestCreateTx
  *
 ```javascript
 {
@@ -43,7 +43,7 @@
  */
 
 /**
- * Structure of GRpcClient.ResponseCreateTx 
+ * Structure of GRpcClient.ResponseCreateTx
  *
 ```javascript
 {
@@ -89,7 +89,7 @@
  */
 
 /**
- * Structure of GRpcClient.RequestMultisig 
+ * Structure of GRpcClient.RequestMultisig
  *
 ```javascript
 {
@@ -152,7 +152,7 @@
  */
 
 /**
- * Structure of GRpcClient.ResponseMultisig 
+ * Structure of GRpcClient.ResponseMultisig
  *
 ```javascript
 {
@@ -198,7 +198,7 @@
  */
 
 /**
- * Structure of GRpcClient.RequestSendTx 
+ * Structure of GRpcClient.RequestSendTx
  *
 ```javascript
 {
@@ -258,7 +258,7 @@
  */
 
 /**
- * Structure of GRpcClient.ResponseSendTx 
+ * Structure of GRpcClient.ResponseSendTx
  *
 ```javascript
 {
@@ -274,7 +274,7 @@
  */
 
 /**
- * Structure of GRpcClient.RequestGetTx 
+ * Structure of GRpcClient.RequestGetTx
  *
 ```javascript
 {
@@ -288,7 +288,7 @@
  */
 
 /**
- * Structure of GRpcClient.ResponseGetTx 
+ * Structure of GRpcClient.ResponseGetTx
  *
 ```javascript
 {
@@ -357,7 +357,7 @@
  */
 
 /**
- * Structure of GRpcClient.RequestGetBlock 
+ * Structure of GRpcClient.RequestGetBlock
  *
 ```javascript
 {
@@ -371,7 +371,7 @@
  */
 
 /**
- * Structure of GRpcClient.ResponseGetBlock 
+ * Structure of GRpcClient.ResponseGetBlock
  *
 ```javascript
 {
@@ -639,7 +639,7 @@
  */
 
 /**
- * Structure of GRpcClient.RequestGetBlocks 
+ * Structure of GRpcClient.RequestGetBlocks
  *
 ```javascript
 {
@@ -673,7 +673,7 @@
  */
 
 /**
- * Structure of GRpcClient.ResponseGetBlocks 
+ * Structure of GRpcClient.ResponseGetBlocks
  *
 ```javascript
 {
@@ -762,7 +762,7 @@
  */
 
 /**
- * Structure of GRpcClient.RequestCreateWallet 
+ * Structure of GRpcClient.RequestCreateWallet
  *
 ```javascript
 {
@@ -785,7 +785,7 @@
  */
 
 /**
- * Structure of GRpcClient.ResponseCreateWallet 
+ * Structure of GRpcClient.ResponseCreateWallet
  *
 ```javascript
 {
@@ -813,7 +813,7 @@
  */
 
 /**
- * Structure of GRpcClient.RequestLoadWallet 
+ * Structure of GRpcClient.RequestLoadWallet
  *
 ```javascript
 {
@@ -829,7 +829,7 @@
  */
 
 /**
- * Structure of GRpcClient.ResponseLoadWallet 
+ * Structure of GRpcClient.ResponseLoadWallet
  *
 ```javascript
 {
@@ -857,7 +857,7 @@
  */
 
 /**
- * Structure of GRpcClient.RequestRecoverWallet 
+ * Structure of GRpcClient.RequestRecoverWallet
  *
 ```javascript
 {
@@ -882,7 +882,7 @@
  */
 
 /**
- * Structure of GRpcClient.ResponseRecoverWallet 
+ * Structure of GRpcClient.ResponseRecoverWallet
  *
 ```javascript
 {
@@ -910,7 +910,7 @@
  */
 
 /**
- * Structure of GRpcClient.RequestListWallet 
+ * Structure of GRpcClient.RequestListWallet
  *
 ```javascript
 {}
@@ -922,7 +922,7 @@
  */
 
 /**
- * Structure of GRpcClient.ResponseListWallet 
+ * Structure of GRpcClient.ResponseListWallet
  *
 ```javascript
 {
@@ -938,7 +938,7 @@
  */
 
 /**
- * Structure of GRpcClient.RequestRemoveWallet 
+ * Structure of GRpcClient.RequestRemoveWallet
  *
 ```javascript
 {
@@ -952,7 +952,7 @@
  */
 
 /**
- * Structure of GRpcClient.ResponseRemoveWallet 
+ * Structure of GRpcClient.ResponseRemoveWallet
  *
 ```javascript
 {
@@ -966,7 +966,7 @@
  */
 
 /**
- * Structure of GRpcClient.RequestDeclareNode 
+ * Structure of GRpcClient.RequestDeclareNode
  *
 ```javascript
 {
@@ -980,7 +980,7 @@
  */
 
 /**
- * Structure of GRpcClient.ResponseDeclareNode 
+ * Structure of GRpcClient.ResponseDeclareNode
  *
 ```javascript
 {
@@ -1006,7 +1006,7 @@
  */
 
 /**
- * Structure of GRpcClient.RequestGetAccountState 
+ * Structure of GRpcClient.RequestGetAccountState
  *
 ```javascript
 {
@@ -1027,7 +1027,7 @@
  */
 
 /**
- * Structure of GRpcClient.ResponseGetAccountState 
+ * Structure of GRpcClient.ResponseGetAccountState
  *
 ```javascript
 {
@@ -1108,7 +1108,7 @@
  */
 
 /**
- * Structure of GRpcClient.RequestGetAssetState 
+ * Structure of GRpcClient.RequestGetAssetState
  *
 ```javascript
 {
@@ -1129,7 +1129,7 @@
  */
 
 /**
- * Structure of GRpcClient.ResponseGetAssetState 
+ * Structure of GRpcClient.ResponseGetAssetState
  *
 ```javascript
 {
@@ -1186,7 +1186,7 @@
  */
 
 /**
- * Structure of GRpcClient.RequestGetProtocolState 
+ * Structure of GRpcClient.RequestGetProtocolState
  *
 ```javascript
 {
@@ -1207,7 +1207,7 @@
  */
 
 /**
- * Structure of GRpcClient.ResponseGetProtocolState 
+ * Structure of GRpcClient.ResponseGetProtocolState
  *
 ```javascript
 {
@@ -1286,7 +1286,7 @@
  */
 
 /**
- * Structure of GRpcClient.RequestGetStakeState 
+ * Structure of GRpcClient.RequestGetStakeState
  *
 ```javascript
 {
@@ -1307,7 +1307,7 @@
  */
 
 /**
- * Structure of GRpcClient.ResponseGetStakeState 
+ * Structure of GRpcClient.ResponseGetStakeState
  *
 ```javascript
 {
@@ -1338,7 +1338,7 @@
  */
 
 /**
- * Structure of GRpcClient.RequestGetForgeState 
+ * Structure of GRpcClient.RequestGetForgeState
  *
 ```javascript
 {
@@ -1357,7 +1357,7 @@
  */
 
 /**
- * Structure of GRpcClient.ResponseGetForgeState 
+ * Structure of GRpcClient.ResponseGetForgeState
  *
 ```javascript
 {
@@ -1480,7 +1480,7 @@
  */
 
 /**
- * Structure of GRpcClient.RequestGetTetherState 
+ * Structure of GRpcClient.RequestGetTetherState
  *
 ```javascript
 {
@@ -1501,7 +1501,7 @@
  */
 
 /**
- * Structure of GRpcClient.ResponseGetTetherState 
+ * Structure of GRpcClient.ResponseGetTetherState
  *
 ```javascript
 {
@@ -1526,7 +1526,7 @@
  */
 
 /**
- * Structure of GRpcClient.RequestStoreFile 
+ * Structure of GRpcClient.RequestStoreFile
  *
 ```javascript
 {
@@ -1540,7 +1540,7 @@
  */
 
 /**
- * Structure of GRpcClient.ResponseStoreFile 
+ * Structure of GRpcClient.ResponseStoreFile
  *
 ```javascript
 {
@@ -1556,7 +1556,7 @@
  */
 
 /**
- * Structure of GRpcClient.RequestLoadFile 
+ * Structure of GRpcClient.RequestLoadFile
  *
 ```javascript
 {
@@ -1570,7 +1570,7 @@
  */
 
 /**
- * Structure of GRpcClient.ResponseLoadFile 
+ * Structure of GRpcClient.ResponseLoadFile
  *
 ```javascript
 {
@@ -1586,7 +1586,7 @@
  */
 
 /**
- * Structure of GRpcClient.RequestPinFile 
+ * Structure of GRpcClient.RequestPinFile
  *
 ```javascript
 {
@@ -1600,7 +1600,7 @@
  */
 
 /**
- * Structure of GRpcClient.ResponsePinFile 
+ * Structure of GRpcClient.ResponsePinFile
  *
 ```javascript
 {
@@ -1614,7 +1614,7 @@
  */
 
 /**
- * Structure of GRpcClient.RequestGetChainInfo 
+ * Structure of GRpcClient.RequestGetChainInfo
  *
 ```javascript
 {}
@@ -1626,7 +1626,7 @@
  */
 
 /**
- * Structure of GRpcClient.ResponseGetChainInfo 
+ * Structure of GRpcClient.ResponseGetChainInfo
  *
 ```javascript
 {
@@ -1663,7 +1663,7 @@
  */
 
 /**
- * Structure of GRpcClient.RequestGetNodeInfo 
+ * Structure of GRpcClient.RequestGetNodeInfo
  *
 ```javascript
 {}
@@ -1675,7 +1675,7 @@
  */
 
 /**
- * Structure of GRpcClient.ResponseGetNodeInfo 
+ * Structure of GRpcClient.ResponseGetNodeInfo
  *
 ```javascript
 {
@@ -1720,7 +1720,7 @@
  */
 
 /**
- * Structure of GRpcClient.RequestSearch 
+ * Structure of GRpcClient.RequestSearch
  *
 ```javascript
 {
@@ -1736,7 +1736,7 @@
  */
 
 /**
- * Structure of GRpcClient.ResponseSearch 
+ * Structure of GRpcClient.ResponseSearch
  *
 ```javascript
 {
@@ -1861,7 +1861,7 @@
  */
 
 /**
- * Structure of GRpcClient.RequestGetUnconfirmedTxs 
+ * Structure of GRpcClient.RequestGetUnconfirmedTxs
  *
 ```javascript
 {
@@ -1888,7 +1888,7 @@
  */
 
 /**
- * Structure of GRpcClient.ResponseGetUnconfirmedTxs 
+ * Structure of GRpcClient.ResponseGetUnconfirmedTxs
  *
 ```javascript
 {
@@ -1976,7 +1976,7 @@
  */
 
 /**
- * Structure of GRpcClient.RequestGetNetInfo 
+ * Structure of GRpcClient.RequestGetNetInfo
  *
 ```javascript
 {}
@@ -1988,7 +1988,7 @@
  */
 
 /**
- * Structure of GRpcClient.ResponseGetNetInfo 
+ * Structure of GRpcClient.ResponseGetNetInfo
  *
 ```javascript
 {
@@ -2039,7 +2039,7 @@
  */
 
 /**
- * Structure of GRpcClient.RequestGetValidatorsInfo 
+ * Structure of GRpcClient.RequestGetValidatorsInfo
  *
 ```javascript
 {}
@@ -2051,7 +2051,7 @@
  */
 
 /**
- * Structure of GRpcClient.ResponseGetValidatorsInfo 
+ * Structure of GRpcClient.ResponseGetValidatorsInfo
  *
 ```javascript
 {
@@ -2103,7 +2103,7 @@
  */
 
 /**
- * Structure of GRpcClient.RequestSubscribe 
+ * Structure of GRpcClient.RequestSubscribe
  *
 ```javascript
 {
@@ -2119,7 +2119,7 @@
  */
 
 /**
- * Structure of GRpcClient.ResponseSubscribe 
+ * Structure of GRpcClient.ResponseSubscribe
  *
 ```javascript
 {
@@ -2153,7 +2153,7 @@
  */
 
 /**
- * Structure of GRpcClient.RequestUnsubscribe 
+ * Structure of GRpcClient.RequestUnsubscribe
  *
 ```javascript
 {
@@ -2167,7 +2167,7 @@
  */
 
 /**
- * Structure of GRpcClient.ResponseUnsubscribe 
+ * Structure of GRpcClient.ResponseUnsubscribe
  *
 ```javascript
 {
@@ -2181,7 +2181,7 @@
  */
 
 /**
- * Structure of GRpcClient.RequestGetConfig 
+ * Structure of GRpcClient.RequestGetConfig
  *
 ```javascript
 {}
@@ -2193,7 +2193,7 @@
  */
 
 /**
- * Structure of GRpcClient.ResponseGetConfig 
+ * Structure of GRpcClient.ResponseGetConfig
  *
 ```javascript
 {
@@ -2226,7 +2226,7 @@
  */
 
 /**
- * Structure of GRpcClient.RequestGetForgeStats 
+ * Structure of GRpcClient.RequestGetForgeStats
  *
 ```javascript
 {
@@ -2244,7 +2244,7 @@
  */
 
 /**
- * Structure of GRpcClient.ResponseGetForgeStats 
+ * Structure of GRpcClient.ResponseGetForgeStats
  *
 ```javascript
 {
@@ -2332,7 +2332,7 @@
  */
 
 /**
- * Structure of GRpcClient.RequestListTransactions 
+ * Structure of GRpcClient.RequestListTransactions
  *
 ```javascript
 {
@@ -2381,7 +2381,7 @@
  */
 
 /**
- * Structure of GRpcClient.ResponseListTransactions 
+ * Structure of GRpcClient.ResponseListTransactions
  *
 ```javascript
 {
@@ -2484,7 +2484,7 @@
  */
 
 /**
- * Structure of GRpcClient.RequestListAssets 
+ * Structure of GRpcClient.RequestListAssets
  *
 ```javascript
 {
@@ -2513,7 +2513,7 @@
  */
 
 /**
- * Structure of GRpcClient.ResponseListAssets 
+ * Structure of GRpcClient.ResponseListAssets
  *
 ```javascript
 {
@@ -2552,7 +2552,7 @@
  */
 
 /**
- * Structure of GRpcClient.RequestListStakes 
+ * Structure of GRpcClient.RequestListStakes
  *
 ```javascript
 {
@@ -2585,7 +2585,7 @@
  */
 
 /**
- * Structure of GRpcClient.ResponseListStakes 
+ * Structure of GRpcClient.ResponseListStakes
  *
 ```javascript
 {
@@ -2626,7 +2626,7 @@
  */
 
 /**
- * Structure of GRpcClient.RequestListAccount 
+ * Structure of GRpcClient.RequestListAccount
  *
 ```javascript
 {
@@ -2640,7 +2640,7 @@
  */
 
 /**
- * Structure of GRpcClient.ResponseListAccount 
+ * Structure of GRpcClient.ResponseListAccount
  *
 ```javascript
 {
@@ -2670,7 +2670,7 @@
  */
 
 /**
- * Structure of GRpcClient.RequestListTopAccounts 
+ * Structure of GRpcClient.RequestListTopAccounts
  *
 ```javascript
 {
@@ -2697,7 +2697,7 @@
  */
 
 /**
- * Structure of GRpcClient.ResponseListTopAccounts 
+ * Structure of GRpcClient.ResponseListTopAccounts
  *
 ```javascript
 {
@@ -2750,7 +2750,7 @@
  */
 
 /**
- * Structure of GRpcClient.RequestListAssetTransactions 
+ * Structure of GRpcClient.RequestListAssetTransactions
  *
 ```javascript
 {
@@ -2779,7 +2779,7 @@
  */
 
 /**
- * Structure of GRpcClient.ResponseListAssetTransactions 
+ * Structure of GRpcClient.ResponseListAssetTransactions
  *
 ```javascript
 {
@@ -2882,7 +2882,7 @@
  */
 
 /**
- * Structure of GRpcClient.RequestListBlocks 
+ * Structure of GRpcClient.RequestListBlocks
  *
 ```javascript
 {
@@ -2931,7 +2931,7 @@
  */
 
 /**
- * Structure of GRpcClient.ResponseListBlocks 
+ * Structure of GRpcClient.ResponseListBlocks
  *
 ```javascript
 {
@@ -2968,7 +2968,7 @@
  */
 
 /**
- * Structure of GRpcClient.RequestGetHealthStatus 
+ * Structure of GRpcClient.RequestGetHealthStatus
  *
 ```javascript
 {}
@@ -2980,7 +2980,7 @@
  */
 
 /**
- * Structure of GRpcClient.ResponseGetHealthStatus 
+ * Structure of GRpcClient.ResponseGetHealthStatus
  *
 ```javascript
 {
@@ -3689,7 +3689,7 @@
  */
 
 /**
- * Structure of GRpcClient.DeployProtocolTx 
+ * Structure of GRpcClient.DeployProtocolTx
  *
 ```javascript
 {
@@ -3752,7 +3752,7 @@
  */
 
 /**
- * Structure of GRpcClient.ConsensusUpgradeTx 
+ * Structure of GRpcClient.ConsensusUpgradeTx
  *
 ```javascript
 {
@@ -3788,7 +3788,7 @@
  */
 
 /**
- * Structure of GRpcClient.SysUpgradeTx 
+ * Structure of GRpcClient.SysUpgradeTx
  *
 ```javascript
 {
@@ -4035,7 +4035,7 @@
  */
 
 /**
- * Structure of GRpcClient.AccountMigrateTx 
+ * Structure of GRpcClient.AccountMigrateTx
  *
 ```javascript
 {
@@ -4088,7 +4088,7 @@
  */
 
 /**
- * Structure of GRpcClient.AcquireAssetTx 
+ * Structure of GRpcClient.AcquireAssetTx
  *
 ```javascript
 {
@@ -4118,7 +4118,7 @@
  */
 
 /**
- * Structure of GRpcClient.ApproveTetherTx 
+ * Structure of GRpcClient.ApproveTetherTx
  *
 ```javascript
 {
@@ -4137,7 +4137,7 @@
  */
 
 /**
- * Structure of GRpcClient.ConsumeAssetTx 
+ * Structure of GRpcClient.ConsumeAssetTx
  *
 ```javascript
 {
@@ -4158,7 +4158,7 @@
  */
 
 /**
- * Structure of GRpcClient.CreateAssetTx 
+ * Structure of GRpcClient.CreateAssetTx
  *
 ```javascript
 {
@@ -4227,7 +4227,7 @@
  */
 
 /**
- * Structure of GRpcClient.DeclareTx 
+ * Structure of GRpcClient.DeclareTx
  *
 ```javascript
 {
@@ -4248,7 +4248,7 @@
  */
 
 /**
- * Structure of GRpcClient.DeclareFileTx 
+ * Structure of GRpcClient.DeclareFileTx
  *
 ```javascript
 {
@@ -4262,7 +4262,7 @@
  */
 
 /**
- * Structure of GRpcClient.DepositTetherTx 
+ * Structure of GRpcClient.DepositTetherTx
  *
 ```javascript
 {
@@ -4292,7 +4292,7 @@
  */
 
 /**
- * Structure of GRpcClient.ExchangeTx 
+ * Structure of GRpcClient.ExchangeTx
  *
 ```javascript
 {
@@ -4337,7 +4337,7 @@
  */
 
 /**
- * Structure of GRpcClient.ExchangeTetherTx 
+ * Structure of GRpcClient.ExchangeTetherTx
  *
 ```javascript
 {
@@ -4401,7 +4401,7 @@
  */
 
 /**
- * Structure of GRpcClient.PokeTx 
+ * Structure of GRpcClient.PokeTx
  *
 ```javascript
 {
@@ -4422,7 +4422,7 @@
  */
 
 /**
- * Structure of GRpcClient.RevokeTetherTx 
+ * Structure of GRpcClient.RevokeTetherTx
  *
 ```javascript
 {
@@ -4441,7 +4441,7 @@
  */
 
 /**
- * Structure of GRpcClient.stakeForAsset 
+ * Structure of GRpcClient.stakeForAsset
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.stakeForAsset
@@ -4449,7 +4449,7 @@
  */
 
 /**
- * Structure of GRpcClient.stakeForChain 
+ * Structure of GRpcClient.stakeForChain
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.stakeForChain
@@ -4457,7 +4457,7 @@
  */
 
 /**
- * Structure of GRpcClient.StakeForNode 
+ * Structure of GRpcClient.StakeForNode
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.StakeForNode
@@ -4465,7 +4465,7 @@
  */
 
 /**
- * Structure of GRpcClient.stakeForUser 
+ * Structure of GRpcClient.stakeForUser
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.stakeForUser
@@ -4473,7 +4473,7 @@
  */
 
 /**
- * Structure of GRpcClient.StakeTx 
+ * Structure of GRpcClient.StakeTx
  *
 ```javascript
 {
@@ -4497,7 +4497,7 @@
  */
 
 /**
- * Structure of GRpcClient.TransferTx 
+ * Structure of GRpcClient.TransferTx
  *
 ```javascript
 {
@@ -4522,7 +4522,7 @@
  */
 
 /**
- * Structure of GRpcClient.UpdateAssetTx 
+ * Structure of GRpcClient.UpdateAssetTx
  *
 ```javascript
 {
@@ -4543,7 +4543,7 @@
  */
 
 /**
- * Structure of GRpcClient.UpgradeNodeTx 
+ * Structure of GRpcClient.UpgradeNodeTx
  *
 ```javascript
 {
@@ -4571,7 +4571,7 @@
  */
 
 /**
- * Structure of GRpcClient.WithdrawTetherTx 
+ * Structure of GRpcClient.WithdrawTetherTx
  *
 ```javascript
 {
@@ -4842,7 +4842,7 @@
  */
 
 /**
- * Structure of GRpcClient.ResponseCheckTx 
+ * Structure of GRpcClient.ResponseCheckTx
  *
 ```javascript
 {
@@ -4877,7 +4877,7 @@
  */
 
 /**
- * Structure of GRpcClient.ResponseDeliverTx 
+ * Structure of GRpcClient.ResponseDeliverTx
  *
 ```javascript
 {
@@ -4912,7 +4912,7 @@
  */
 
 /**
- * Structure of GRpcClient.RequestPing 
+ * Structure of GRpcClient.RequestPing
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.RequestPing
@@ -4920,7 +4920,7 @@
  */
 
 /**
- * Structure of GRpcClient.RequestBroadcastTx 
+ * Structure of GRpcClient.RequestBroadcastTx
  *
 ```javascript
 {
@@ -4934,7 +4934,7 @@
  */
 
 /**
- * Structure of GRpcClient.ResponsePing 
+ * Structure of GRpcClient.ResponsePing
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.ResponsePing
@@ -4942,7 +4942,7 @@
  */
 
 /**
- * Structure of GRpcClient.ResponseBroadcastTx 
+ * Structure of GRpcClient.ResponseBroadcastTx
  *
 ```javascript
 {

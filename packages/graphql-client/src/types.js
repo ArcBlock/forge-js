@@ -209,7 +209,7 @@
  */
 
 /**
- * Structure of GraphQLClient.AccountMigrateTx 
+ * Structure of GraphQLClient.AccountMigrateTx
  *
  * Checkout the following snippet for the format of AccountMigrateTx:
  * ```json
@@ -389,7 +389,7 @@
  */
 
 /**
- * Structure of GraphQLClient.ConsensusParams 
+ * Structure of GraphQLClient.ConsensusParams
  *
  * Checkout the following snippet for the format of ConsensusParams:
  * ```json
@@ -435,7 +435,7 @@
  */
 
 /**
- * Structure of GraphQLClient.ConsensusUpgradeTx 
+ * Structure of GraphQLClient.ConsensusUpgradeTx
  *
  * Checkout the following snippet for the format of ConsensusUpgradeTx:
  * ```json
@@ -468,7 +468,7 @@
  */
 
 /**
- * Structure of GraphQLClient.ConsumeAssetTx 
+ * Structure of GraphQLClient.ConsumeAssetTx
  *
  * Checkout the following snippet for the format of ConsumeAssetTx:
  * ```json
@@ -499,7 +499,7 @@
  */
 
 /**
- * Structure of GraphQLClient.CreateAssetTx 
+ * Structure of GraphQLClient.CreateAssetTx
  *
  * Checkout the following snippet for the format of CreateAssetTx:
  * ```json
@@ -538,7 +538,7 @@
  */
 
 /**
- * Structure of GraphQLClient.DeclareFileTx 
+ * Structure of GraphQLClient.DeclareFileTx
  *
  * Checkout the following snippet for the format of DeclareFileTx:
  * ```json
@@ -553,7 +553,7 @@
  */
 
 /**
- * Structure of GraphQLClient.DeclareTx 
+ * Structure of GraphQLClient.DeclareTx
  *
  * Checkout the following snippet for the format of DeclareTx:
  * ```json
@@ -575,7 +575,7 @@
  */
 
 /**
- * Structure of GraphQLClient.DeployProtocolTx 
+ * Structure of GraphQLClient.DeployProtocolTx
  *
  * Checkout the following snippet for the format of DeployProtocolTx:
  * ```json
@@ -659,7 +659,7 @@
  */
 
 /**
- * Structure of GraphQLClient.ExchangeTx 
+ * Structure of GraphQLClient.ExchangeTx
  *
  * Checkout the following snippet for the format of ExchangeTx:
  * ```json
@@ -1042,7 +1042,7 @@
  */
 
 /**
- * Structure of GraphQLClient.PokeTx 
+ * Structure of GraphQLClient.PokeTx
  *
  * Checkout the following snippet for the format of PokeTx:
  * ```json
@@ -1108,7 +1108,7 @@
  */
 
 /**
- * Structure of GraphQLClient.RequestBeginBlock 
+ * Structure of GraphQLClient.RequestBeginBlock
  *
  * Checkout the following snippet for the format of RequestBeginBlock:
  * ```json
@@ -1177,7 +1177,7 @@
  */
 
 /**
- * Structure of GraphQLClient.RequestEndBlock 
+ * Structure of GraphQLClient.RequestEndBlock
  *
  * Checkout the following snippet for the format of RequestEndBlock:
  * ```json
@@ -1192,7 +1192,7 @@
  */
 
 /**
- * Structure of GraphQLClient.ResponseGetAccountState 
+ * Structure of GraphQLClient.ResponseGetAccountState
  *
  * Checkout the following snippet for the format of ResponseGetAccountState:
  * ```json
@@ -1340,7 +1340,7 @@
  */
 
 /**
- * Structure of GraphQLClient.ResponseGetAssetState 
+ * Structure of GraphQLClient.ResponseGetAssetState
  *
  * Checkout the following snippet for the format of ResponseGetAssetState:
  * ```json
@@ -1471,7 +1471,7 @@
  */
 
 /**
- * Structure of GraphQLClient.ResponseGetBlock 
+ * Structure of GraphQLClient.ResponseGetBlock
  *
  * Checkout the following snippet for the format of ResponseGetBlock:
  * ```json
@@ -1597,7 +1597,7 @@
  */
 
 /**
- * Structure of GraphQLClient.ResponseGetBlocks 
+ * Structure of GraphQLClient.ResponseGetBlocks
  *
  * Checkout the following snippet for the format of ResponseGetBlocks:
  * ```json
@@ -1653,7 +1653,7 @@
  */
 
 /**
- * Structure of GraphQLClient.ResponseGetChainInfo 
+ * Structure of GraphQLClient.ResponseGetChainInfo
  *
  * Checkout the following snippet for the format of ResponseGetChainInfo:
  * ```json
@@ -1693,7 +1693,7 @@
  */
 
 /**
- * Structure of GraphQLClient.ResponseGetConfig 
+ * Structure of GraphQLClient.ResponseGetConfig
  *
  * Checkout the following snippet for the format of ResponseGetConfig:
  * ```json
@@ -1710,7 +1710,7 @@
  */
 
 /**
- * Structure of GraphQLClient.ResponseGetForgeState 
+ * Structure of GraphQLClient.ResponseGetForgeState
  *
  * Checkout the following snippet for the format of ResponseGetForgeState:
  * ```json
@@ -1894,7 +1894,7 @@
  */
 
 /**
- * Structure of GraphQLClient.ResponseGetForgeStats 
+ * Structure of GraphQLClient.ResponseGetForgeStats
  *
  * Checkout the following snippet for the format of ResponseGetForgeStats:
  * ```json
@@ -1966,7 +1966,7 @@
  */
 
 /**
- * Structure of GraphQLClient.ResponseGetHealthStatus 
+ * Structure of GraphQLClient.ResponseGetHealthStatus
  *
  * Checkout the following snippet for the format of ResponseGetHealthStatus:
  * ```json
@@ -2011,7 +2011,7 @@
  */
 
 /**
- * Structure of GraphQLClient.ResponseGetNetInfo 
+ * Structure of GraphQLClient.ResponseGetNetInfo
  *
  * Checkout the following snippet for the format of ResponseGetNetInfo:
  * ```json
@@ -2049,7 +2049,7 @@
  */
 
 /**
- * Structure of GraphQLClient.ResponseGetNodeInfo 
+ * Structure of GraphQLClient.ResponseGetNodeInfo
  *
  * Checkout the following snippet for the format of ResponseGetNodeInfo:
  * ```json
@@ -2097,7 +2097,7 @@
  */
 
 /**
- * Structure of GraphQLClient.ResponseGetProtocolState 
+ * Structure of GraphQLClient.ResponseGetProtocolState
  *
  * Checkout the following snippet for the format of ResponseGetProtocolState:
  * ```json
@@ -2237,7 +2237,7 @@
  */
 
 /**
- * Structure of GraphQLClient.ResponseGetProtocols 
+ * Structure of GraphQLClient.ResponseGetProtocols
  *
  * Checkout the following snippet for the format of ResponseGetProtocols:
  * ```json
@@ -2285,7 +2285,7 @@
  */
 
 /**
- * Structure of GraphQLClient.ResponseGetSimulatorStatus 
+ * Structure of GraphQLClient.ResponseGetSimulatorStatus
  *
  * Checkout the following snippet for the format of ResponseGetSimulatorStatus:
  * ```json
@@ -2302,7 +2302,7 @@
  */
 
 /**
- * Structure of GraphQLClient.ResponseGetStakeState 
+ * Structure of GraphQLClient.ResponseGetStakeState
  *
  * Checkout the following snippet for the format of ResponseGetStakeState:
  * ```json
@@ -2407,7 +2407,7 @@
  */
 
 /**
- * Structure of GraphQLClient.ResponseGetTetherState 
+ * Structure of GraphQLClient.ResponseGetTetherState
  *
  * Checkout the following snippet for the format of ResponseGetTetherState:
  * ```json
@@ -2436,7 +2436,7 @@
  */
 
 /**
- * Structure of GraphQLClient.ResponseGetTx 
+ * Structure of GraphQLClient.ResponseGetTx
  *
  * Checkout the following snippet for the format of ResponseGetTx:
  * ```json
@@ -2489,7 +2489,7 @@
  */
 
 /**
- * Structure of GraphQLClient.ResponseGetUnconfirmedTxs 
+ * Structure of GraphQLClient.ResponseGetUnconfirmedTxs
  *
  * Checkout the following snippet for the format of ResponseGetUnconfirmedTxs:
  * ```json
@@ -2534,7 +2534,7 @@
  */
 
 /**
- * Structure of GraphQLClient.ResponseGetValidatorsInfo 
+ * Structure of GraphQLClient.ResponseGetValidatorsInfo
  *
  * Checkout the following snippet for the format of ResponseGetValidatorsInfo:
  * ```json
@@ -2571,7 +2571,7 @@
  */
 
 /**
- * Structure of GraphQLClient.ResponseListAssetTransactions 
+ * Structure of GraphQLClient.ResponseListAssetTransactions
  *
  * Checkout the following snippet for the format of ResponseListAssetTransactions:
  * ```json
@@ -2622,7 +2622,7 @@
  */
 
 /**
- * Structure of GraphQLClient.ResponseListAssets 
+ * Structure of GraphQLClient.ResponseListAssets
  *
  * Checkout the following snippet for the format of ResponseListAssets:
  * ```json
@@ -2673,7 +2673,7 @@
  */
 
 /**
- * Structure of GraphQLClient.ResponseListBlocks 
+ * Structure of GraphQLClient.ResponseListBlocks
  *
  * Checkout the following snippet for the format of ResponseListBlocks:
  * ```json
@@ -2704,7 +2704,7 @@
  */
 
 /**
- * Structure of GraphQLClient.ResponseListStakes 
+ * Structure of GraphQLClient.ResponseListStakes
  *
  * Checkout the following snippet for the format of ResponseListStakes:
  * ```json
@@ -2738,7 +2738,7 @@
  */
 
 /**
- * Structure of GraphQLClient.ResponseListTopAccounts 
+ * Structure of GraphQLClient.ResponseListTopAccounts
  *
  * Checkout the following snippet for the format of ResponseListTopAccounts:
  * ```json
@@ -2780,7 +2780,7 @@
  */
 
 /**
- * Structure of GraphQLClient.ResponseListTransactions 
+ * Structure of GraphQLClient.ResponseListTransactions
  *
  * Checkout the following snippet for the format of ResponseListTransactions:
  * ```json
@@ -2831,7 +2831,7 @@
  */
 
 /**
- * Structure of GraphQLClient.ResponseSendTx 
+ * Structure of GraphQLClient.ResponseSendTx
  *
  * Checkout the following snippet for the format of ResponseSendTx:
  * ```json
@@ -2848,7 +2848,7 @@
  */
 
 /**
- * Structure of GraphQLClient.ResponseStartSimulator 
+ * Structure of GraphQLClient.ResponseStartSimulator
  *
  * Checkout the following snippet for the format of ResponseStartSimulator:
  * ```json
@@ -2863,7 +2863,7 @@
  */
 
 /**
- * Structure of GraphQLClient.ResponseStopSimulator 
+ * Structure of GraphQLClient.ResponseStopSimulator
  *
  * Checkout the following snippet for the format of ResponseStopSimulator:
  * ```json
@@ -2878,7 +2878,7 @@
  */
 
 /**
- * Structure of GraphQLClient.ResponseSubscribe 
+ * Structure of GraphQLClient.ResponseSubscribe
  *
  * Checkout the following snippet for the format of ResponseSubscribe:
  * ```json
@@ -3815,7 +3815,7 @@
  */
 
 /**
- * Structure of GraphQLClient.ResponseUnsubscribe 
+ * Structure of GraphQLClient.ResponseUnsubscribe
  *
  * Checkout the following snippet for the format of ResponseUnsubscribe:
  * ```json
@@ -3892,7 +3892,7 @@
  */
 
 /**
- * Structure of GraphQLClient.StakeTx 
+ * Structure of GraphQLClient.StakeTx
  *
  * Checkout the following snippet for the format of StakeTx:
  * ```json
@@ -3937,7 +3937,7 @@
  */
 
 /**
- * Structure of GraphQLClient.SysUpgradeTx 
+ * Structure of GraphQLClient.SysUpgradeTx
  *
  * Checkout the following snippet for the format of SysUpgradeTx:
  * ```json
@@ -4034,7 +4034,7 @@
  */
 
 /**
- * Structure of GraphQLClient.TransferTx 
+ * Structure of GraphQLClient.TransferTx
  *
  * Checkout the following snippet for the format of TransferTx:
  * ```json
@@ -4078,7 +4078,7 @@
  */
 
 /**
- * Structure of GraphQLClient.UpdateAssetTx 
+ * Structure of GraphQLClient.UpdateAssetTx
  *
  * Checkout the following snippet for the format of UpdateAssetTx:
  * ```json
@@ -4187,7 +4187,7 @@
  */
 
 /**
- * Structure of GraphQLClient.GetAccountStateParams 
+ * Structure of GraphQLClient.GetAccountStateParams
  *
  * Checkout the following snippet for the format of GetAccountStateParams:
  * ```json
@@ -4208,7 +4208,7 @@
  */
 
 /**
- * Structure of GraphQLClient.GetAssetStateParams 
+ * Structure of GraphQLClient.GetAssetStateParams
  *
  * Checkout the following snippet for the format of GetAssetStateParams:
  * ```json
@@ -4229,7 +4229,7 @@
  */
 
 /**
- * Structure of GraphQLClient.GetBlockParams 
+ * Structure of GraphQLClient.GetBlockParams
  *
  * Checkout the following snippet for the format of GetBlockParams:
  * ```json
@@ -4244,7 +4244,7 @@
  */
 
 /**
- * Structure of GraphQLClient.GetBlocksParams 
+ * Structure of GraphQLClient.GetBlocksParams
  *
  * Checkout the following snippet for the format of GetBlocksParams:
  * ```json
@@ -4261,7 +4261,7 @@
  */
 
 /**
- * Structure of GraphQLClient.GetForgeStateParams 
+ * Structure of GraphQLClient.GetForgeStateParams
  *
  * Checkout the following snippet for the format of GetForgeStateParams:
  * ```json
@@ -4280,7 +4280,7 @@
  */
 
 /**
- * Structure of GraphQLClient.GetForgeStatsByDayParams 
+ * Structure of GraphQLClient.GetForgeStatsByDayParams
  *
  * Checkout the following snippet for the format of GetForgeStatsByDayParams:
  * ```json
@@ -4297,7 +4297,7 @@
  */
 
 /**
- * Structure of GraphQLClient.GetForgeStatsByHourParams 
+ * Structure of GraphQLClient.GetForgeStatsByHourParams
  *
  * Checkout the following snippet for the format of GetForgeStatsByHourParams:
  * ```json
@@ -4312,7 +4312,7 @@
  */
 
 /**
- * Structure of GraphQLClient.GetProtocolStateParams 
+ * Structure of GraphQLClient.GetProtocolStateParams
  *
  * Checkout the following snippet for the format of GetProtocolStateParams:
  * ```json
@@ -4333,7 +4333,7 @@
  */
 
 /**
- * Structure of GraphQLClient.GetProtocolsParams 
+ * Structure of GraphQLClient.GetProtocolsParams
  *
  * Checkout the following snippet for the format of GetProtocolsParams:
  * ```json
@@ -4348,7 +4348,7 @@
  */
 
 /**
- * Structure of GraphQLClient.GetStakeStateParams 
+ * Structure of GraphQLClient.GetStakeStateParams
  *
  * Checkout the following snippet for the format of GetStakeStateParams:
  * ```json
@@ -4369,7 +4369,7 @@
  */
 
 /**
- * Structure of GraphQLClient.GetTetherStateParams 
+ * Structure of GraphQLClient.GetTetherStateParams
  *
  * Checkout the following snippet for the format of GetTetherStateParams:
  * ```json
@@ -4390,7 +4390,7 @@
  */
 
 /**
- * Structure of GraphQLClient.GetTxParams 
+ * Structure of GraphQLClient.GetTxParams
  *
  * Checkout the following snippet for the format of GetTxParams:
  * ```json
@@ -4405,7 +4405,7 @@
  */
 
 /**
- * Structure of GraphQLClient.GetUnconfirmedTxsParams 
+ * Structure of GraphQLClient.GetUnconfirmedTxsParams
  *
  * Checkout the following snippet for the format of GetUnconfirmedTxsParams:
  * ```json
@@ -4418,7 +4418,7 @@
  */
 
 /**
- * Structure of GraphQLClient.ListAssetTransactionsParams 
+ * Structure of GraphQLClient.ListAssetTransactionsParams
  *
  * Checkout the following snippet for the format of ListAssetTransactionsParams:
  * ```json
@@ -4434,7 +4434,7 @@
  */
 
 /**
- * Structure of GraphQLClient.ListAssetsParams 
+ * Structure of GraphQLClient.ListAssetsParams
  *
  * Checkout the following snippet for the format of ListAssetsParams:
  * ```json
@@ -4450,7 +4450,7 @@
  */
 
 /**
- * Structure of GraphQLClient.ListBlocksParams 
+ * Structure of GraphQLClient.ListBlocksParams
  *
  * Checkout the following snippet for the format of ListBlocksParams:
  * ```json
@@ -4470,7 +4470,7 @@
  */
 
 /**
- * Structure of GraphQLClient.ListStakesParams 
+ * Structure of GraphQLClient.ListStakesParams
  *
  * Checkout the following snippet for the format of ListStakesParams:
  * ```json
@@ -4484,7 +4484,7 @@
  */
 
 /**
- * Structure of GraphQLClient.ListTopAccountsParams 
+ * Structure of GraphQLClient.ListTopAccountsParams
  *
  * Checkout the following snippet for the format of ListTopAccountsParams:
  * ```json
@@ -4497,7 +4497,7 @@
  */
 
 /**
- * Structure of GraphQLClient.ListTransactionsParams 
+ * Structure of GraphQLClient.ListTransactionsParams
  *
  * Checkout the following snippet for the format of ListTransactionsParams:
  * ```json
@@ -4514,7 +4514,7 @@
  */
 
 /**
- * Structure of GraphQLClient.SendTxParams 
+ * Structure of GraphQLClient.SendTxParams
  *
  * Checkout the following snippet for the format of SendTxParams:
  * ```json
@@ -4535,7 +4535,7 @@
  */
 
 /**
- * Structure of GraphQLClient.UnsubscribeParams 
+ * Structure of GraphQLClient.UnsubscribeParams
  *
  * Checkout the following snippet for the format of UnsubscribeParams:
  * ```json
@@ -4550,7 +4550,7 @@
  */
 
 /**
- * Structure of GraphQLClient.SubscribeParams 
+ * Structure of GraphQLClient.SubscribeParams
  *
  * Checkout the following snippet for the format of SubscribeParams:
  * ```json

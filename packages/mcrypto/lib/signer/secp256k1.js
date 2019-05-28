@@ -1,3 +1,5 @@
+/* eslint-disable class-methods-use-this */
+/* eslint-disable no-useless-constructor */
 const EC = require('elliptic').ec;
 const BN = require('bn.js');
 const randomBytes = require('randombytes');

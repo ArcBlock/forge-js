@@ -17,10 +17,10 @@ const questions = [
     message: 'name of the cli (use ":" to differentiate action and object. e.g. create:repo):',
     validate: input => {
       if (
-        !input ||
-        input.length < 6 ||
-        (input.match(/:/g) || []).length !== 1 ||
-        (input.match(/[^_a-z:]/g) || []).length !== 0
+        !input
+        || input.length < 6
+        || (input.match(/:/g) || []).length !== 1
+        || (input.match(/[^_a-z:]/g) || []).length !== 0
       ) {
         return 'input shall contain only 1 ":" and lowercase characters and at least 6 chars';
       }
@@ -82,6 +82,7 @@ function createCli({
   const [action, name] = cliName.split(':');
   const targetPath = path.join(cliPath, `${action}/${name}`);
   const templatePath = path.join(__dirname, 'templates');
+  // eslint-disable-next-line max-len
   const env = `NAME="${name}" ACTION=${action} DESCRIPTION="${description}" REQUIRE_RELEASE=${requireRelease} REQUIRE_RPC_CLIENT=${requireRpcClient} REQUIRE_RUNNING_NODE=${requireRunningNode} REQUIRE_WALLET=${requireWallet}`;
 
   shell.exec(`mkdir -p ${targetPath}`);

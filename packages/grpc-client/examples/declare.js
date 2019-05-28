@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint no-console:"off" */
 
 /**
@@ -23,7 +24,7 @@ const type = WalletType({
 (async () => {
   try {
     const wallet = fromRandom(type);
-    let res = await client.sendDeclareTx({
+    const res = await client.sendDeclareTx({
       tx: {
         itx: {
           moniker: `grpc_user_${Math.round(Math.random() * 10000)}`,

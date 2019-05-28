@@ -32,6 +32,7 @@
   },
   "scripts": {
     "lint": "eslint tests lib",
+    "lint:fix": "eslint --fix tests lib",
     "generate-docs": "jsdoc2md lib/index.js > docs/README.md",
     "generate-dts": "j2d lib/index.js",
     "format-docs": "remark . -o",
@@ -45,6 +46,7 @@
   },
   "dependencies": {
     "@arcblock/did": "^0.27.11",
-    "@arcblock/mcrypto": "^0.27.11"
+    "@arcblock/mcrypto": "^0.27.11",
+    "lodash.upperfirst": "^4.3.1"
   }
 }

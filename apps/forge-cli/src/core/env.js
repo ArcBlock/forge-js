@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 const fs = require('fs');
 const os = require('os');
 const util = require('util');
@@ -17,6 +18,7 @@ const { get, set } = require('lodash');
 const GRpcClient = require('@arcblock/grpc-client');
 const { parse } = require('@arcblock/forge-config');
 const { name, version, engines } = require('../../package.json');
+// eslint-disable-next-line import/order
 const debug = require('debug')(name);
 
 const { symbols, hr } = require('./ui');
@@ -144,6 +146,7 @@ function ensureForgeRelease(args, exitOn404 = true) {
     }
 
     // simulator
+    // eslint-disable-next-line prefer-destructuring
     const currentVersion = config.cli.currentVersion;
     const simulatorBinPath = path.join(releaseDir, 'simulator', currentVersion, './bin/simulator');
     if (fs.existsSync(simulatorBinPath) && fs.statSync(simulatorBinPath).isFile()) {
@@ -207,27 +210,23 @@ function ensureForgeRelease(args, exitOn404 = true) {
         shell.echo(`3. install latest version of forge: ${chalk.cyan('forge init')}`);
         process.exit(1);
       }
-    } else {
-      if (exitOn404) {
-        shell.echo(
-          `${symbols.error} forge release binary not found, please run ${chalk.cyan(
-            'forge init'
-          )} first`
-        );
-        process.exit(1);
-      }
+    } else if (exitOn404) {
+      shell.echo(
+        `${symbols.error} forge release binary not found, please run ${chalk.cyan(
+          'forge init'
+        )} first`
+      );
+      process.exit(1);
     }
-  } else {
-    if (exitOn404) {
-      shell.echo(`${symbols.error} forge release dir does not exist
+  } else if (exitOn404) {
+    shell.echo(`${symbols.error} forge release dir does not exist
 
   You can either run ${chalk.cyan('forge init')} to get the latest forge release.
   Or start node with custom forge release folder
   > ${chalk.cyan('forge start --release-dir ~/Downloads/forge/')}
   > ${chalk.cyan('FORGE_RELEASE_DIR=~/Downloads/forge/ forge start')}
       `);
-      process.exit(1);
-    }
+    process.exit(1);
   }
 
   return false;
@@ -365,6 +364,7 @@ function ensureSetupScript(args) {
   const setupScript = args.setupScript || process.env.FORGE_SDK_SETUP_SCRIPT;
   if (setupScript && fs.existsSync(setupScript) && fs.statSync(setupScript).isFile()) {
     debug(`${symbols.warning} loading custom scripts: ${setupScript}`);
+    // eslint-disable-next-line
     require(path.resolve(setupScript));
   }
 }
@@ -375,12 +375,12 @@ function ensureSetupScript(args) {
  * @returns String
  */
 function createFileFinder(keyword, filePath) {
-  return function(releaseDir, version) {
+  return function fileFinder(releaseDir, ver) {
     if (!releaseDir) {
       return '';
     }
 
-    const libDir = path.join(releaseDir, 'forge', version, 'lib');
+    const libDir = path.join(releaseDir, 'forge', ver, 'lib');
     debug('createFileFinder', { keyword, filePath, libDir });
     if (!isDirectory(libDir)) {
       return '';
@@ -453,7 +453,8 @@ function createRpcClient() {
 
 function makeNativeCommandRunner(executable) {
   return function runNativeForgeCommand(subCommand, options = {}) {
-    return function() {
+    return function rumCommand() {
+      // eslint-disable-next-line prefer-destructuring
       const forgeConfigPath = config.cli.forgeConfigPath;
       const binPath = config.cli[executable];
 

@@ -6,6 +6,7 @@ const {
 } = require('./lib/util/socket_data');
 
 module.exports = {
+  // eslint-disable-next-line global-require
   TcpServer: require('./lib/server/tcp'),
 
   encodeVarint,

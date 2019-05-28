@@ -12,7 +12,9 @@ const multibase = require('multibase');
 const base64 = require('base64-url');
 const { toHex, numberToHex, stripHexPrefix } = require('@arcblock/forge-util');
 const { DID_PREFIX, toBits, toBytes, toStrictHex } = require('./util');
+// eslint-disable-next-line
 const debug = require('debug')(require('../package.json').name);
+
 const { types, getSigner, getHasher } = Mcrypto;
 
 const mapping = {

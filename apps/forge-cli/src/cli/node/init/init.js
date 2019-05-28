@@ -1,3 +1,5 @@
+/* eslint-disable no-restricted-syntax */
+/* eslint-disable consistent-return */
 // const wget = require('wget');
 const fs = require('fs');
 const path = require('path');
@@ -192,8 +194,7 @@ async function main({ args: [userVersion], opts: { mirror } }) {
     const platform = await getPlatform();
     shell.echo(`${symbols.info} Detected platform is: ${platform}`);
 
-    const userVer =
-      userVersion && semver.coerce(userVersion) ? semver.coerce(userVersion).version : '';
+    const userVer = userVersion && semver.coerce(userVersion) ? semver.coerce(userVersion).version : '';
     const version = userVer || fetchReleaseVersion(mirror);
 
     if (releaseDirExists()) {
@@ -219,6 +220,7 @@ async function main({ args: [userVersion], opts: { mirror } }) {
     for (const asset of RELEASE_ASSETS) {
       const assetInfo = fetchAssetInfo(platform, version, asset, mirror);
       debug(asset, assetInfo);
+      // eslint-disable-next-line no-await-in-loop
       const assetTarball = await downloadAsset(assetInfo);
       expandReleaseTarball(assetTarball, asset, version);
       if (asset === 'forge') {

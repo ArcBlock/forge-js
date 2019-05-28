@@ -1,4 +1,6 @@
+/* eslint-disable global-require */
 const { isHexStrict, hexToBytes } = require('@arcblock/forge-util');
+
 const hashFns = {
   sha224: require('crypto-js/sha224'),
   sha256: require('crypto-js/sha256'),

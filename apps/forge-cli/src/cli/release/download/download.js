@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-syntax */
 const shell = require('shelljs');
 const chalk = require('chalk');
 const semver = require('semver');
@@ -11,13 +12,13 @@ const {
   fetchReleaseVersion,
 } = require('cli/node/init/init');
 
+// eslint-disable-next-line consistent-return
 async function main({ args: [userVersion], opts: { mirror } }) {
   try {
     const platform = await getPlatform();
     shell.echo(`${symbols.info} Detected platform is: ${platform}`);
 
-    const userVer =
-      userVersion && semver.coerce(userVersion) ? semver.coerce(userVersion).version : '';
+    const userVer = userVersion && semver.coerce(userVersion) ? semver.coerce(userVersion).version : '';
     const version = userVer || fetchReleaseVersion(mirror);
     if (releaseDirExists()) {
       if (version === config.get('cli.currentVersion')) {
@@ -33,6 +34,7 @@ async function main({ args: [userVersion], opts: { mirror } }) {
     for (const asset of RELEASE_ASSETS) {
       const assetInfo = fetchAssetInfo(platform, version, asset, mirror);
       debug(asset, assetInfo);
+      // eslint-disable-next-line no-await-in-loop
       const assetTarball = await downloadAsset(assetInfo);
       expandReleaseTarball(assetTarball, asset, version);
     }

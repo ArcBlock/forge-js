@@ -33,7 +33,9 @@
   "dependencies": {
     "@arcblock/forge-message": "^0.27.11",
     "@arcblock/forge-proto": "^0.27.11",
+    "@arcblock/forge-util": "^0.27.0",
     "@arcblock/forge-wallet": "^0.27.11",
+    "@arcblock/mcrypto": "^0.27.11",
     "@arcblock/sdk-util": "^0.20.0",
     "babel-polyfill": "^6.26.0",
     "base64-url": "^2.2.0",
@@ -74,6 +76,7 @@
   },
   "scripts": {
     "lint": "eslint src examples tests",
+    "lint:fix": "eslint --fix src examples tests",
     "clean": "rimraf lib && rimraf dist",
     "build-browser": "BABEL_ENV=browser babel ./src --out-dir ./dist --source-maps --copy-files && webpack -p",
     "build-node": "babel ./src --out-dir ./lib --source-maps --copy-files",

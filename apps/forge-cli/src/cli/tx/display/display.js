@@ -9,9 +9,9 @@ async function execute({ args: [hash] }) {
   }
   try {
     const client = createRpcClient();
-    const stream = await client.getTx({ hash: hash });
+    const stream = await client.getTx({ hash });
     stream
-      .on('data', function(result) {
+      .on('data', (result) => {
         if (result && result.code === 0 && result.info) {
           shell.echo(`${pretty(result.$format().info.tx)}`);
         } else {

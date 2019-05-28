@@ -78,11 +78,12 @@ async function streamingBlocks(client, opts) {
   let topic = '';
   client
     .subscribe({ type: enums.TopicType.END_BLOCK, filter: '' })
-    .on('data', function(res) {
+    .on('data', (res) => {
       debug('streamingBlocks.data', res);
       if (res.topic) {
         shell.echo(`${symbols.success} Subscribe success, topic: ${res.topic}`);
         shell.echo(`${symbols.info} Waiting for new blocks...`);
+        // eslint-disable-next-line prefer-destructuring
         topic = res.topic;
         return;
       }

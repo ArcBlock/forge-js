@@ -7,9 +7,9 @@ async function execute({ args: [addr] }) {
   try {
     const client = createRpcClient();
     const address = addr === 'me' ? config.get('cli.wallet').address : addr;
-    const stream = await client.getAccountState({ address: address });
+    const stream = await client.getAccountState({ address });
     stream
-      .on('data', function(result) {
+      .on('data', (result) => {
         if (result && result.code === 0) {
           const { state } = result.$format();
           if (state) {

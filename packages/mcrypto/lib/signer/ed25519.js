@@ -1,3 +1,5 @@
+/* eslint-disable class-methods-use-this */
+/* eslint-disable no-useless-constructor */
 const ed25519 = require('tweetnacl').sign;
 const randomBytes = require('randombytes');
 const { toHex, isHexStrict, hexToBytes, bytesToHex } = require('@arcblock/forge-util');

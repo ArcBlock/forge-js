@@ -6,6 +6,7 @@ const Mcrypto = require('@arcblock/mcrypto');
 const { hexToBytes, bytesToHex, isHex } = require('@arcblock/forge-util');
 const { fromAddress } = require('@arcblock/forge-wallet');
 const { jwtDecode, jwtVerify, jwtSign, toAddress, toDid } = require('@arcblock/did');
+// eslint-disable-next-line
 const debug = require('debug')(`${require('../package.json').name}:authenticator`);
 
 const base58Encode = buffer => multibase.encode('base58btc', buffer).toString();
@@ -139,10 +140,10 @@ module.exports = class Authenticator {
       Object.keys(claims).map(x => this[x]({ claim: claims[x], did, userPk, extraParams }))
     );
   }
+
   async getClaimInfo({ claim, did, userPk, extraParams }) {
     const userPkHex = getUserPkHex(userPk);
-    const result =
-      typeof claim === 'function'
+    const result = typeof claim === 'function'
         ? await claim({
             userDid: did,
             userAddress: toAddress(did),

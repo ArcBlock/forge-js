@@ -14,7 +14,7 @@ async function main() {
     shell.echo(
       `${
         symbols.warning
-      } If you are running forge in standalone mode, it is automatically declared on initialization (since it is the only validator), you do not need to declare!`
+      } If you are running forge in standalone mode, it is declared on init, you do not need to declare!`
     );
   }
 }

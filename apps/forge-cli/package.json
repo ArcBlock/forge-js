@@ -24,7 +24,8 @@
     "prepush": "yarn lint",
     "postinstall": "bin/forge",
     "test:smoke": "yarn lint && node tools/jest.js",
-    "lint": "eslint src"
+    "lint": "eslint src",
+    "lint:fix": "eslint --fix src"
   },
   "repository": {
     "type": "git",
@@ -47,15 +48,18 @@
   },
   "homepage": "https://github.com/arcblock/forge-js/packages/forge-cli#readme",
   "dependencies": {
+    "@arcblock/did-util": "^0.27.11",
     "@arcblock/forge-config": "^0.27.0",
     "@arcblock/forge-message": "^0.27.11",
     "@arcblock/forge-proto": "^0.27.11",
+    "@arcblock/forge-util": "^0.27.0",
     "@arcblock/forge-wallet": "^0.27.11",
     "@arcblock/graphql-client": "^0.27.11",
     "@arcblock/grpc-client": "^0.27.11",
     "@arcblock/mcrypto": "^0.27.11",
     "@iarna/toml": "^2.2.3",
     "app-module-path": "^2.2.0",
+    "base64-url": "^2.2.1",
     "chalk": "^2.4.1",
     "cli-progress": "^2.1.1",
     "cli-table-redemption": "^1.0.1",

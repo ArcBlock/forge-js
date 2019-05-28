@@ -1,3 +1,4 @@
+/* eslint-disable */
 /**
  * This patch fixes an issue in `google-protobuf` package
  * After this patch is applied: The deserialize of `map` fields can accept empty values
@@ -9,7 +10,7 @@ const debug = require('debug')(`${require('../package.json').name}:Map`);
 // FIXME: remove this patch when `google-protobuf` is enable to handle this
 // @link https://github.com/protocolbuffers/protobuf/blob/46a48e49aa/js/map.js#L469
 if (typeof jspb.Map.deserializeBinary === 'function' && !jspb.Map.deserializeBinary.__patched__) {
-  jspb.Map.deserializeBinary = function(
+  jspb.Map.deserializeBinary = function (
     map,
     reader,
     keyReaderFn,
@@ -17,14 +18,14 @@ if (typeof jspb.Map.deserializeBinary === 'function' && !jspb.Map.deserializeBin
     opt_valueReaderCallback,
     opt_defaultKey = 0
   ) {
-    var key = opt_defaultKey;
-    var value = undefined;
+    let key = opt_defaultKey;
+    let value;
 
     while (reader.nextField()) {
       if (reader.isEndGroup()) {
         break;
       }
-      var field = reader.getFieldNumber();
+      const field = reader.getFieldNumber();
       debug('deserializeBinary.field', field);
 
       if (field == 1) {

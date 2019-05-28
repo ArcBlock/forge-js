@@ -33,6 +33,7 @@ async function main({ opts: { yes } }) {
       },
     ];
     const answers = await inquirer.prompt(questions);
+    // eslint-disable-next-line prefer-destructuring
     confirm = answers.confirm;
   }
 
@@ -44,7 +45,6 @@ async function main({ opts: { yes } }) {
   } else {
     shell.echo(`${symbols.info} User abort, nothing changed!`);
     process.exit();
-    return;
   }
 }
 

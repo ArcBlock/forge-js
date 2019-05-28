@@ -1,4 +1,8 @@
+/* eslint-disable class-methods-use-this */
+/* eslint-disable no-useless-constructor */
+/* eslint-disable global-require */
 const AES = require('crypto-js/aes');
+
 const encoders = {
   latin1: require('crypto-js/enc-latin1'),
   utf8: require('crypto-js/enc-utf8'),

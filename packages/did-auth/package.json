@@ -18,6 +18,7 @@
     "@arcblock/did": "^0.27.11",
     "@arcblock/forge-util": "^0.27.0",
     "@arcblock/forge-wallet": "^0.27.11",
+    "@arcblock/graphql-client": "^0.27.11",
     "@arcblock/mcrypto": "^0.27.11",
     "debug": "^4.1.1",
     "lodash.get": "^4.4.2",
@@ -58,6 +59,7 @@
   },
   "scripts": {
     "lint": "eslint lib tests",
+    "lint:fix": "eslint --fix lib tests",
     "generate-docs": "jsdoc2md lib/index.js > docs/README.md",
     "generate-dts": "j2d lib/index.js",
     "format-docs": "remark . -o",

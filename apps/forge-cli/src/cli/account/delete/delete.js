@@ -5,7 +5,7 @@ const { symbols } = require('core/ui');
 async function execute({ args: [address] }) {
   try {
     const client = createRpcClient();
-    await client.removeWallet({ address: address });
+    await client.removeWallet({ address });
     shell.echo(`${symbols.success} remove account success: ${address}`);
   } catch (err) {
     shell.echo(`${symbols.error} error: ${err}`);

@@ -10,7 +10,7 @@ async function getAccountState(argAddress, cached) {
 
   const streamChild = client.getAccountState({ address: argAddress });
   streamChild
-    .on('data', function({ state }) {
+    .on('data', ({ state }) => {
       if (state) {
         const { moniker, address } = state;
         const symbol = cached && cached.address === address ? symbols.success : '';
@@ -36,7 +36,7 @@ function execute() {
 
   const stream = client.listWallet({});
   stream
-    .on('data', function(result) {
+    .on('data', (result) => {
       if (isHeaderPrinted === false) {
         shell.echo(`${''.padEnd(80, '-')}`);
         shell.echo(
