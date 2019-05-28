@@ -46,6 +46,7 @@
   },
   "dependencies": {
     "@arcblock/did": "^0.27.11",
-    "@arcblock/mcrypto": "^0.27.11"
+    "@arcblock/mcrypto": "^0.27.11",
+    "lodash.upperfirst": "^4.3.1"
   }
 }

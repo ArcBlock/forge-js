@@ -6,7 +6,7 @@
  * @example
  * yarn add @arcblock/forge-wallet
  */
-const upperFirst = require('lodash/upperFirst');
+const upperFirst = require('lodash.upperfirst');
 const { types, getSigner, getHasher } = require('@arcblock/mcrypto');
 const { toAddress, fromPublicKey: DIDFromPublicKey, toTypeInfo } = require('@arcblock/did');
 
@@ -57,25 +57,21 @@ function WalletType(type) {
   return { role, pk, hash, address: types.EncodingType.BASE58 };
 }
 
-WalletType.toJSON = type => {
-  return Object.keys(type).reduce((acc, x) => {
-    const key = upperFirst(`${mapping[x] || x}Type`);
-    const typeStr = Object.keys(types[key]);
-    const typeValues = Object.values(types[key]);
-    acc[x] = typeStr[typeValues.indexOf(type[x])];
-    return acc;
-  }, {});
-};
+WalletType.toJSON = type => Object.keys(type).reduce((acc, x) => {
+  const key = upperFirst(`${mapping[x] || x}Type`);
+  const typeStr = Object.keys(types[key]);
+  const typeValues = Object.values(types[key]);
+  acc[x] = typeStr[typeValues.indexOf(type[x])];
+  return acc;
+}, {});
 
-WalletType.fromJSON = json => {
-  return Object.keys(json).reduce((acc, x) => {
-    const key = upperFirst(`${mapping[x] || x}Type`);
-    const typeStr = Object.keys(types[key]);
-    const typeValues = Object.values(types[key]);
-    acc[x] = typeValues[typeStr.indexOf(json[x])];
-    return acc;
-  }, {});
-};
+WalletType.fromJSON = json => Object.keys(json).reduce((acc, x) => {
+  const key = upperFirst(`${mapping[x] || x}Type`);
+  const typeStr = Object.keys(types[key]);
+  const typeValues = Object.values(types[key]);
+  acc[x] = typeValues[typeStr.indexOf(json[x])];
+  return acc;
+}, {});
 
 /**
  * @public

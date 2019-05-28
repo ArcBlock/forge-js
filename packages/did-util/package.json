@@ -20,6 +20,7 @@
   "dependencies": {
     "@arcblock/did": "^0.27.11",
     "@arcblock/forge-message": "^0.27.11",
+    "@arcblock/forge-proto": "^0.27.11",
     "@arcblock/forge-util": "^0.27.0",
     "@arcblock/forge-wallet": "^0.27.11",
     "@arcblock/mcrypto": "^0.27.11"
