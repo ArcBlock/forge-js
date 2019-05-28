@@ -1,4 +1,5 @@
 const GRpcClient = require('..');
+
 const client = new GRpcClient('tcp://127.0.0.1:28210');
 
 describe('#getRpcMethods', () => {

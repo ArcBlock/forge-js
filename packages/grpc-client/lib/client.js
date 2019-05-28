@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 const grpc = require('grpc');
 const camelcase = require('camelcase');
 const { EventEmitter } = require('events');
@@ -10,6 +11,7 @@ const {
   getMessageType,
 } = require('@arcblock/forge-message');
 const { hexToBytes, bytesToHex, stripHexPrefix } = require('@arcblock/forge-util');
+// eslint-disable-next-line global-require
 const debug = require('debug')(`${require('../package.json').name}`);
 
 /**
@@ -38,7 +40,9 @@ class GRpcClient {
     if (typeof config === 'string') {
       endpoint = config;
     } else {
+      // eslint-disable-next-line prefer-destructuring
       endpoint = config.endpoint;
+      // eslint-disable-next-line prefer-destructuring
       chainId = config.chainId;
     }
 
@@ -98,9 +102,9 @@ class GRpcClient {
    */
   _initRpcMethods() {
     Object.keys(rpcs).forEach(x =>
-      Object.keys(rpcs[x].methods).forEach(m => this._initRpcMethod(x, m))
-    );
+      Object.keys(rpcs[x].methods).forEach(m => this._initRpcMethod(x, m)));
   }
+
   _initRpcMethod(group, method) {
     const client = this.clients[group];
     const rpc = client[method].bind(client);
@@ -225,7 +229,7 @@ class GRpcClient {
         const pk = tx.pk || w.publicKey || '';
 
         // Determine chainId & nonce, only attach new one when not exist
-        let nonce = typeof tx.nonce === 'undefined' ? Date.now() : tx.nonce;
+        const nonce = typeof tx.nonce === 'undefined' ? Date.now() : tx.nonce;
         let chainId = tx.chainId || this._chainId;
         if (!chainId) {
           const { info } = await this.getChainInfo();
@@ -235,6 +239,7 @@ class GRpcClient {
         // Determine signatures for multi sig
         let signatures = [];
         if (Array.isArray(tx.signatures)) {
+          // eslint-disable-next-line prefer-destructuring
           signatures = tx.signatures;
         }
         if (Array.isArray(tx.signaturesList)) {
@@ -318,9 +323,9 @@ class GRpcClient {
           };
 
           const keys = ['from', 'pk', 'chainId', 'signature', 'signatures', 'nonce'];
-          keys.forEach(x => {
-            if (typeof tx[x] !== 'undefined') {
-              txParams[x] = tx[x];
+          keys.forEach(k => {
+            if (typeof tx[k] !== 'undefined') {
+              txParams[k] = tx[k];
             }
           });
 
