@@ -5,9 +5,9 @@ const { symbols, pretty } = require('core/ui');
 async function execute({ args: [address] }) {
   try {
     const client = createRpcClient();
-    const stream = await client.getAssetState({ address: address });
+    const stream = await client.getAssetState({ address });
     stream
-      .on('data', function(result) {
+      .on('data', (result) => {
         if (result && result.code === 0) {
           const { state } = result.$format();
           if (state) {

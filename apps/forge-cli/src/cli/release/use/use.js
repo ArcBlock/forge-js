@@ -8,8 +8,7 @@ const { listReleases } = require('cli/release/list/list');
 
 async function main({ args: [userVersion] }) {
   try {
-    const version =
-      userVersion && semver.coerce(userVersion) ? semver.coerce(userVersion).version : '';
+    const version = userVersion && semver.coerce(userVersion) ? semver.coerce(userVersion).version : '';
     if (version === config.get('cli.currentVersion')) {
       shell.echo(`${symbols.warning} Already using forge release v${version}`);
       return process.exit(1);

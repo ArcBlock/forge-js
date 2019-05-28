@@ -43,7 +43,7 @@ Examples:
   `);
 });
 
-program.on('command:*', function() {
+program.on('command:*', () => {
   shell.echo(hr);
   shell.echo(`${symbols.error} Unsupported command: ${chalk.cyan(program.args.join(' '))}`);
   shell.echo(hr);

@@ -207,27 +207,23 @@ function ensureForgeRelease(args, exitOn404 = true) {
         shell.echo(`3. install latest version of forge: ${chalk.cyan('forge init')}`);
         process.exit(1);
       }
-    } else {
-      if (exitOn404) {
-        shell.echo(
-          `${symbols.error} forge release binary not found, please run ${chalk.cyan(
-            'forge init'
-          )} first`
-        );
-        process.exit(1);
-      }
+    } else if (exitOn404) {
+      shell.echo(
+        `${symbols.error} forge release binary not found, please run ${chalk.cyan(
+          'forge init'
+        )} first`
+      );
+      process.exit(1);
     }
-  } else {
-    if (exitOn404) {
-      shell.echo(`${symbols.error} forge release dir does not exist
+  } else if (exitOn404) {
+    shell.echo(`${symbols.error} forge release dir does not exist
 
   You can either run ${chalk.cyan('forge init')} to get the latest forge release.
   Or start node with custom forge release folder
   > ${chalk.cyan('forge start --release-dir ~/Downloads/forge/')}
   > ${chalk.cyan('FORGE_RELEASE_DIR=~/Downloads/forge/ forge start')}
       `);
-      process.exit(1);
-    }
+    process.exit(1);
   }
 
   return false;
@@ -375,7 +371,7 @@ function ensureSetupScript(args) {
  * @returns String
  */
 function createFileFinder(keyword, filePath) {
-  return function(releaseDir, version) {
+  return function (releaseDir, version) {
     if (!releaseDir) {
       return '';
     }
@@ -453,7 +449,7 @@ function createRpcClient() {
 
 function makeNativeCommandRunner(executable) {
   return function runNativeForgeCommand(subCommand, options = {}) {
-    return function() {
+    return function () {
       const forgeConfigPath = config.cli.forgeConfigPath;
       const binPath = config.cli[executable];
 

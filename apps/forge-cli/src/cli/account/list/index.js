@@ -4,7 +4,7 @@ const { execute, run } = require('./list');
 const { enums } = require('@arcblock/forge-proto');
 
 const roles = ['all'];
-for (let role in enums.AccountRole) {
+for (const role in enums.AccountRole) {
   roles.push(role.toLowerCase());
 }
 

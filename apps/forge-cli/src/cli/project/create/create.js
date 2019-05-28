@@ -16,9 +16,9 @@ const templates = fs
   .readdirSync(templatesDir)
   .filter(
     x =>
-      /forge-[-a-zA-Z0-9_]+-starter/.test(x) &&
-      isDirectory(path.join(templatesDir, x)) &&
-      isFile(path.join(templatesDir, x, 'starter.config.js'))
+      /forge-[-a-zA-Z0-9_]+-starter/.test(x)
+      && isDirectory(path.join(templatesDir, x))
+      && isFile(path.join(templatesDir, x, 'starter.config.js'))
   );
 debug('project templates', templates);
 

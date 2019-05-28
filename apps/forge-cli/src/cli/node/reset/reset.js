@@ -44,7 +44,6 @@ async function main({ opts: { yes } }) {
   } else {
     shell.echo(`${symbols.info} User abort, nothing changed!`);
     process.exit();
-    return;
   }
 }
 
