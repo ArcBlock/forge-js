@@ -33,7 +33,9 @@
   "dependencies": {
     "@arcblock/forge-message": "^0.27.11",
     "@arcblock/forge-proto": "^0.27.11",
+    "@arcblock/forge-util": "^0.27.0",
     "@arcblock/forge-wallet": "^0.27.11",
+    "@arcblock/mcrypto": "^0.27.11",
     "@arcblock/sdk-util": "^0.20.0",
     "babel-polyfill": "^6.26.0",
     "base64-url": "^2.2.0",

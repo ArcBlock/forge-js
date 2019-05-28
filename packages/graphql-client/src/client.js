@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 const BaseClient = require('@arcblock/sdk-util');
 const md5 = require('blueimp-md5');
 const camelcase = require('camelcase');
@@ -45,6 +46,7 @@ class GraphQLClient extends BaseClient {
       httpEndpoint = config;
     } else {
       httpEndpoint = config.endpoint;
+      // eslint-disable-next-line prefer-destructuring
       chainId = config.chainId;
     }
 
@@ -131,7 +133,7 @@ class GraphQLClient extends BaseClient {
         const pk = tx.pk || Uint8Array.from(hexToBytes(wallet.publicKey));
 
         // Determine chainId & nonce, only attach new one when not exist
-        let nonce = typeof tx.nonce === 'undefined' ? Date.now() : tx.nonce;
+        const nonce = typeof tx.nonce === 'undefined' ? Date.now() : tx.nonce;
         let chainId = tx.chainId || this._chainId;
         if (!chainId) {
           const { info } = await this.getChainInfo();
@@ -141,6 +143,7 @@ class GraphQLClient extends BaseClient {
         // Determine signatures for multi sig
         let signatures = [];
         if (Array.isArray(tx.signatures)) {
+          // eslint-disable-next-line prefer-destructuring
           signatures = tx.signatures;
         }
         if (Array.isArray(tx.signaturesList)) {
@@ -196,9 +199,9 @@ class GraphQLClient extends BaseClient {
           debug(`sendTx.${x}.hasSignature`, obj);
         } else {
           const { object, buffer: txToSignBytes } = await txEncodeFn({ tx, wallet });
-          const signature = wallet.sign(bytesToHex(txToSignBytes));
+          const sig = wallet.sign(bytesToHex(txToSignBytes));
           obj = object;
-          obj.signature = Uint8Array.from(hexToBytes(signature));
+          obj.signature = Uint8Array.from(hexToBytes(sig));
         }
 
         const txObj = createMessage('Transaction', obj);
