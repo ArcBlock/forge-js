@@ -36,7 +36,7 @@ describe('GraphqlClient', () => {
     expect(typeof type.deserializeBinary).toEqual('function');
   });
 
-  client = new GraphqlClient('https://argon.abtnetwork.io/api');
+  client = new GraphqlClient('https://zinc.abtnetwork.io/api');
   test('should support getBlock', async () => {
     try {
       const res = await client.getBlock({ height: 1 });

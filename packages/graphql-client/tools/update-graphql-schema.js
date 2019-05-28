@@ -1,11 +1,12 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint no-console:"off" */
 const fs = require('fs');
 const path = require('path');
 const { request } = require('graphql-request');
 const { introspectionQuery } = require('graphql');
 
-const httpEndpoint = () => 'http://localhost:8210/api';
-// const httpEndpoint = () => 'https://test.abtnetwork.io/api';
+// const httpEndpoint = () => 'http://localhost:8210/api';
+const httpEndpoint = () => 'https://zinc.abtnetwork.io/api';
 
 (async () => {
   const dataSource = 'graphql';

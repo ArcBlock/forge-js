@@ -310,53 +310,53 @@ declare namespace GraphQLClient {
   }
 
   export enum StatusCode {
-    READONLY_ASSET,
-    INVALID_STAKE_STATE,
-    INVALID_TX,
-    BANNED_UNSTAKE,
-    INVALID_CHAIN_ID,
-    INVALID_EXPIRY_DATE,
-    INSUFFICIENT_FUND,
-    INVALID_MULTISIG,
-    INVALID_SIGNER_STATE,
-    INVALID_ASSET,
-    NOENT,
-    FORBIDDEN,
     INVALID_DEPOSIT,
-    INVALID_WITHDRAWER,
-    INVALID_FORGE_STATE,
-    INSUFFICIENT_DATA,
-    INVALID_NONCE,
-    ACCOUNT_MIGRATED,
-    EXPIRED_TX,
-    INVALID_SIGNATURE,
-    CONSENSUS_RPC_ERROR,
-    INVALID_CUSTODIAN,
     INVALID_RECEIVER_STATE,
-    INVALID_MONIKER,
-    INVALID_LOCK_STATUS,
-    EXCEED_DEPOSIT_CAP,
-    EXPIRED_WALLET_TOKEN,
-    EXPIRED_ASSET,
-    TOO_MANY_TXS,
-    STORAGE_RPC_ERROR,
-    UNSUPPORTED_TX,
-    DUPLICATE_TETHER,
-    INVALID_SENDER_STATE,
-    INVALID_DEPOSITOR,
-    INVALID_DEPOSIT_TARGET,
+    INSUFFICIENT_DATA,
+    INSUFFICIENT_FUND,
     INVALID_PASSPHRASE,
-    INSUFFICIENT_STAKE,
-    UNTRANSFERRABLE_ASSET,
-    TIMEOUT,
-    INVALID_DEPOSIT_VALUE,
-    INVALID_OWNER,
+    INVALID_WITHDRAWER,
+    BANNED_UNSTAKE,
+    EXPIRED_WALLET_TOKEN,
+    INVALID_SENDER_STATE,
+    INVALID_CUSTODIAN,
+    INVALID_CHAIN_ID,
+    FORBIDDEN,
+    CONSENSUS_RPC_ERROR,
+    READONLY_ASSET,
+    STORAGE_RPC_ERROR,
+    INVALID_TX,
+    EXCEED_DEPOSIT_CAP,
+    ACCOUNT_MIGRATED,
     INVALID_REQUEST,
-    UNSUPPORTED_STAKE,
-    CONSUMED_ASSET,
+    INVALID_MULTISIG,
+    UNSUPPORTED_TX,
+    TOO_MANY_TXS,
+    UNTRANSFERRABLE_ASSET,
+    INVALID_DEPOSIT_VALUE,
+    INVALID_STAKE_STATE,
+    INVALID_DEPOSIT_TARGET,
+    INVALID_EXPIRY_DATE,
+    INVALID_NONCE,
+    EXPIRED_TX,
     INVALID_WALLET,
-    INTERNAL,
+    INVALID_MONIKER,
+    INVALID_SIGNATURE,
+    DUPLICATE_TETHER,
     INVALID_TX_SIZE,
+    UNSUPPORTED_STAKE,
+    INVALID_FORGE_STATE,
+    TIMEOUT,
+    INVALID_SIGNER_STATE,
+    NOENT,
+    CONSUMED_ASSET,
+    INVALID_LOCK_STATUS,
+    EXPIRED_ASSET,
+    INVALID_OWNER,
+    INVALID_DEPOSITOR,
+    INVALID_ASSET,
+    INTERNAL,
+    INSUFFICIENT_STAKE,
     OK,
   }
 
@@ -438,9 +438,25 @@ declare namespace GraphQLClient {
     type: GraphQLClient.WalletType;
   }
 
+  export interface AcquireAssetTx {
+    data: GraphQLClient.Any;
+    specs: Array<AssetSpec>;
+    to: string;
+  }
+
   export interface Any {
     typeUrl: string;
     value: string;
+  }
+
+  export interface ApproveTetherTx {
+    data: GraphQLClient.Any;
+    withdraw: string;
+  }
+
+  export interface AssetSpec {
+    address: string;
+    data: string;
   }
 
   export interface AssetState {
@@ -451,6 +467,7 @@ declare namespace GraphQLClient {
     issuer: string;
     moniker: string;
     owner: string;
+    parent: string;
     readonly: boolean;
     stake: GraphQLClient.StakeContext;
     transferrable: boolean;
@@ -612,6 +629,15 @@ declare namespace GraphQLClient {
     version: number;
   }
 
+  export interface DepositTetherTx {
+    charge: string;
+    commission: string;
+    locktime: string;
+    target: string;
+    value: string;
+    withdrawer: string;
+  }
+
   export interface DiskSpaceStatus {
     forgeUsage: string;
     total: string;
@@ -628,6 +654,13 @@ declare namespace GraphQLClient {
   export interface ExchangeInfo {
     assets: Array<string>;
     value: string;
+  }
+
+  export interface ExchangeTetherTx {
+    data: GraphQLClient.Any;
+    expiredAt: string;
+    receiver: GraphQLClient.TetherExchangeInfo;
+    sender: GraphQLClient.ExchangeInfo;
   }
 
   export interface ExchangeTx {
@@ -1105,6 +1138,11 @@ declare namespace GraphQLClient {
     code: GraphQLClient.StatusCode;
   }
 
+  export interface RevokeTetherTx {
+    data: GraphQLClient.Any;
+    tether: string;
+  }
+
   export interface StakeConfig {
     timeoutGeneral: number;
     timeoutStakeForNode: number;
@@ -1175,6 +1213,12 @@ declare namespace GraphQLClient {
     value: GraphQLClient.UpgradeTasks;
   }
 
+  export interface TetherExchangeInfo {
+    assets: Array<string>;
+    deposit: GraphQLClient.Transaction;
+    value: string;
+  }
+
   export interface TetherState {
     address: string;
     available: boolean;
@@ -1187,6 +1231,12 @@ declare namespace GraphQLClient {
     target: string;
     value: string;
     withdrawer: string;
+  }
+
+  export interface TetherTradeInfo {
+    assets: Array<string>;
+    tether: string;
+    value: string;
   }
 
   export interface Transaction {
@@ -1247,6 +1297,12 @@ declare namespace GraphQLClient {
     version: string;
   }
 
+  export interface UpgradeNodeTx {
+    height: string;
+    override: boolean;
+    version: string;
+  }
+
   export interface UpgradeTask {
     actions: Array<UpgradeAction>;
     dataHash: string;
@@ -1293,18 +1349,39 @@ declare namespace GraphQLClient {
     role: GraphQLClient.RoleType;
   }
 
+  export interface WithdrawTetherTx {
+    chainId: string;
+    data: GraphQLClient.Any;
+    expiredAt: string;
+    from: string;
+    nonce: string;
+    pk: string;
+    receiver: GraphQLClient.TetherTradeInfo;
+    sender: GraphQLClient.ExchangeInfo;
+    signature: string;
+    signatures: Array<Multisig>;
+  }
+
   export type Itx =
+    | GraphQLClient.WithdrawTetherTx
+    | GraphQLClient.UpgradeNodeTx
     | GraphQLClient.UpdateAssetTx
     | GraphQLClient.TransferTx
     | GraphQLClient.SysUpgradeTx
     | GraphQLClient.StakeTx
+    | GraphQLClient.RevokeTetherTx
+    | GraphQLClient.PokeTx
+    | GraphQLClient.ExchangeTetherTx
     | GraphQLClient.ExchangeTx
-    | GraphQLClient.DeclareFileTx
+    | GraphQLClient.DepositTetherTx
+    | GraphQLClient.DeployProtocolTx
     | GraphQLClient.DeclareTx
+    | GraphQLClient.DeclareFileTx
     | GraphQLClient.CreateAssetTx
     | GraphQLClient.ConsumeAssetTx
     | GraphQLClient.ConsensusUpgradeTx
-    | GraphQLClient.PokeTx
+    | GraphQLClient.ApproveTetherTx
+    | GraphQLClient.AcquireAssetTx
     | GraphQLClient.AccountMigrateTx;
 
   export interface GetAccountStateParams {

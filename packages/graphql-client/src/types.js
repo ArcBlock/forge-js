@@ -260,12 +260,68 @@
  */
 
 /**
+ * Structure of GraphQLClient.AcquireAssetTx
+ *
+ * Checkout the following snippet for the format of AcquireAssetTx:
+ * ```json
+{
+  "data": {
+    "typeUrl": "abc",
+    "value": "abc"
+  },
+  "specs": [
+    {
+      "address": "abc",
+      "data": "abc"
+    }
+  ],
+  "to": "abc"
+}
+ * ```
+ *
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.AcquireAssetTx
+ * @property {...GraphQLClient.Any} data
+ * @property {Array<...GraphQLClient.AssetSpec>} specs
+ * @property {string} to
+ */
+
+/**
  * Structure of GraphQLClient.Any
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.Any
  * @property {string} typeUrl
  * @property {string} value
+ */
+
+/**
+ * Structure of GraphQLClient.ApproveTetherTx
+ *
+ * Checkout the following snippet for the format of ApproveTetherTx:
+ * ```json
+{
+  "data": {
+    "typeUrl": "abc",
+    "value": "abc"
+  },
+  "withdraw": "abc"
+}
+ * ```
+ *
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.ApproveTetherTx
+ * @property {...GraphQLClient.Any} data
+ * @property {string} withdraw
+ */
+
+/**
+ * Structure of GraphQLClient.AssetSpec
+ *
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.AssetSpec
+ * @property {string} address
+ * @property {string} data
  */
 
 /**
@@ -280,6 +336,7 @@
  * @property {string} issuer
  * @property {string} moniker
  * @property {string} owner
+ * @property {string} parent
  * @property {boolean} readonly
  * @property {...GraphQLClient.StakeContext} stake
  * @property {boolean} transferrable
@@ -629,6 +686,31 @@
  */
 
 /**
+ * Structure of GraphQLClient.DepositTetherTx
+ *
+ * Checkout the following snippet for the format of DepositTetherTx:
+ * ```json
+{
+  "charge": "abc",
+  "commission": "abc",
+  "locktime": "2019-04-29T00:00:00.000Z",
+  "target": "abc",
+  "value": "abc",
+  "withdrawer": "abc"
+}
+ * ```
+ *
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.DepositTetherTx
+ * @property {string} charge
+ * @property {string} commission
+ * @property {string} locktime
+ * @property {string} target
+ * @property {string} value
+ * @property {string} withdrawer
+ */
+
+/**
  * Structure of GraphQLClient.DiskSpaceStatus
  *
  * @memberof GraphQLClient
@@ -656,6 +738,58 @@
  * @typedef {object} GraphQLClient.ExchangeInfo
  * @property {Array<...GraphQLClient.string>} assets
  * @property {string} value
+ */
+
+/**
+ * Structure of GraphQLClient.ExchangeTetherTx
+ *
+ * Checkout the following snippet for the format of ExchangeTetherTx:
+ * ```json
+{
+  "data": {
+    "typeUrl": "abc",
+    "value": "abc"
+  },
+  "expiredAt": "2019-04-29T00:00:00.000Z",
+  "receiver": {
+    "assets": [
+      "abc"
+    ],
+    "deposit": {
+      "chainId": "abc",
+      "from": "abc",
+      "nonce": "abc",
+      "pk": "abc",
+      "signature": "abc",
+      "signatures": [
+        {
+          "data": {
+            "typeUrl": "abc",
+            "value": "abc"
+          },
+          "pk": "abc",
+          "signature": "abc",
+          "signer": "abc"
+        }
+      ]
+    },
+    "value": "abc"
+  },
+  "sender": {
+    "assets": [
+      "abc"
+    ],
+    "value": "abc"
+  }
+}
+ * ```
+ *
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.ExchangeTetherTx
+ * @property {...GraphQLClient.Any} data
+ * @property {string} expiredAt
+ * @property {...GraphQLClient.TetherExchangeInfo} receiver
+ * @property {...GraphQLClient.ExchangeInfo} sender
  */
 
 /**
@@ -1197,7 +1331,7 @@
  * Checkout the following snippet for the format of ResponseGetAccountState:
  * ```json
 {
-  "code": "READONLY_ASSET",
+  "code": "INVALID_DEPOSIT",
   "state": {
     "address": "abc",
     "balance": "abc",
@@ -1207,7 +1341,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "READONLY_ASSET",
+        "code": "INVALID_DEPOSIT",
         "createAsset": {
           "asset": "abc"
         },
@@ -1245,7 +1379,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "READONLY_ASSET",
+        "code": "INVALID_DEPOSIT",
         "createAsset": {
           "asset": "abc"
         },
@@ -1345,7 +1479,7 @@
  * Checkout the following snippet for the format of ResponseGetAssetState:
  * ```json
 {
-  "code": "READONLY_ASSET",
+  "code": "INVALID_DEPOSIT",
   "state": {
     "address": "abc",
     "consumedTime": "2019-04-29T00:00:00.000Z",
@@ -1355,7 +1489,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "READONLY_ASSET",
+        "code": "INVALID_DEPOSIT",
         "createAsset": {
           "asset": "abc"
         },
@@ -1393,7 +1527,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "READONLY_ASSET",
+        "code": "INVALID_DEPOSIT",
         "createAsset": {
           "asset": "abc"
         },
@@ -1434,6 +1568,7 @@
     "issuer": "abc",
     "moniker": "abc",
     "owner": "abc",
+    "parent": "abc",
     "readonly": true,
     "stake": {
       "recentReceivedStakes": {
@@ -1487,7 +1622,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "READONLY_ASSET",
+        "code": "INVALID_DEPOSIT",
         "createAsset": {
           "asset": "abc"
         },
@@ -1543,7 +1678,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "READONLY_ASSET",
+        "code": "INVALID_DEPOSIT",
         "createAsset": {
           "asset": "abc"
         },
@@ -1586,7 +1721,7 @@
       "block": "abc"
     }
   },
-  "code": "READONLY_ASSET"
+  "code": "INVALID_DEPOSIT"
 }
  * ```
  *
@@ -1636,7 +1771,7 @@
       }
     }
   ],
-  "code": "READONLY_ASSET",
+  "code": "INVALID_DEPOSIT",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -1658,7 +1793,7 @@
  * Checkout the following snippet for the format of ResponseGetChainInfo:
  * ```json
 {
-  "code": "READONLY_ASSET",
+  "code": "INVALID_DEPOSIT",
   "info": {
     "address": "abc",
     "appHash": "abc",
@@ -1698,7 +1833,7 @@
  * Checkout the following snippet for the format of ResponseGetConfig:
  * ```json
 {
-  "code": "READONLY_ASSET",
+  "code": "INVALID_DEPOSIT",
   "config": "abc"
 }
  * ```
@@ -1715,7 +1850,7 @@
  * Checkout the following snippet for the format of ResponseGetForgeState:
  * ```json
 {
-  "code": "READONLY_ASSET",
+  "code": "INVALID_DEPOSIT",
   "state": {
     "address": "abc",
     "consensus": {
@@ -1766,7 +1901,7 @@
               "accountMigrate": {
                 "address": "abc"
               },
-              "code": "READONLY_ASSET",
+              "code": "INVALID_DEPOSIT",
               "createAsset": {
                 "asset": "abc"
               },
@@ -1804,7 +1939,7 @@
               "accountMigrate": {
                 "address": "abc"
               },
-              "code": "READONLY_ASSET",
+              "code": "INVALID_DEPOSIT",
               "createAsset": {
                 "asset": "abc"
               },
@@ -1899,7 +2034,7 @@
  * Checkout the following snippet for the format of ResponseGetForgeStats:
  * ```json
 {
-  "code": "READONLY_ASSET",
+  "code": "INVALID_DEPOSIT",
   "forgeStats": {
     "avgBlockTime": 123,
     "avgTps": 123,
@@ -1971,7 +2106,7 @@
  * Checkout the following snippet for the format of ResponseGetHealthStatus:
  * ```json
 {
-  "code": "READONLY_ASSET",
+  "code": "INVALID_DEPOSIT",
   "healthStatus": {
     "consensus": {
       "blockHeight": "abc",
@@ -2016,7 +2151,7 @@
  * Checkout the following snippet for the format of ResponseGetNetInfo:
  * ```json
 {
-  "code": "READONLY_ASSET",
+  "code": "INVALID_DEPOSIT",
   "netInfo": {
     "listeners": [
       "abc"
@@ -2054,7 +2189,7 @@
  * Checkout the following snippet for the format of ResponseGetNodeInfo:
  * ```json
 {
-  "code": "READONLY_ASSET",
+  "code": "INVALID_DEPOSIT",
   "info": {
     "address": "abc",
     "appHash": "abc",
@@ -2102,7 +2237,7 @@
  * Checkout the following snippet for the format of ResponseGetProtocolState:
  * ```json
 {
-  "code": "READONLY_ASSET",
+  "code": "INVALID_DEPOSIT",
   "state": {
     "address": "abc",
     "context": {
@@ -2111,7 +2246,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "READONLY_ASSET",
+        "code": "INVALID_DEPOSIT",
         "createAsset": {
           "asset": "abc"
         },
@@ -2149,7 +2284,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "READONLY_ASSET",
+        "code": "INVALID_DEPOSIT",
         "createAsset": {
           "asset": "abc"
         },
@@ -2242,7 +2377,7 @@
  * Checkout the following snippet for the format of ResponseGetProtocols:
  * ```json
 {
-  "code": "READONLY_ASSET",
+  "code": "INVALID_DEPOSIT",
   "protocols": [
     {
       "address": "abc",
@@ -2290,7 +2425,7 @@
  * Checkout the following snippet for the format of ResponseGetSimulatorStatus:
  * ```json
 {
-  "code": "READONLY_ASSET",
+  "code": "INVALID_DEPOSIT",
   "result": "abc"
 }
  * ```
@@ -2307,7 +2442,7 @@
  * Checkout the following snippet for the format of ResponseGetStakeState:
  * ```json
 {
-  "code": "READONLY_ASSET",
+  "code": "INVALID_DEPOSIT",
   "state": {
     "address": "abc",
     "balance": "abc",
@@ -2317,7 +2452,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "READONLY_ASSET",
+        "code": "INVALID_DEPOSIT",
         "createAsset": {
           "asset": "abc"
         },
@@ -2355,7 +2490,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "READONLY_ASSET",
+        "code": "INVALID_DEPOSIT",
         "createAsset": {
           "asset": "abc"
         },
@@ -2412,7 +2547,7 @@
  * Checkout the following snippet for the format of ResponseGetTetherState:
  * ```json
 {
-  "code": "READONLY_ASSET",
+  "code": "INVALID_DEPOSIT",
   "state": {
     "address": "abc",
     "available": true,
@@ -2441,12 +2576,12 @@
  * Checkout the following snippet for the format of ResponseGetTx:
  * ```json
 {
-  "code": "READONLY_ASSET",
+  "code": "INVALID_DEPOSIT",
   "info": {
     "accountMigrate": {
       "address": "abc"
     },
-    "code": "READONLY_ASSET",
+    "code": "INVALID_DEPOSIT",
     "createAsset": {
       "asset": "abc"
     },
@@ -2494,7 +2629,7 @@
  * Checkout the following snippet for the format of ResponseGetUnconfirmedTxs:
  * ```json
 {
-  "code": "READONLY_ASSET",
+  "code": "INVALID_DEPOSIT",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -2539,7 +2674,7 @@
  * Checkout the following snippet for the format of ResponseGetValidatorsInfo:
  * ```json
 {
-  "code": "READONLY_ASSET",
+  "code": "INVALID_DEPOSIT",
   "validatorsInfo": {
     "blockHeight": "abc",
     "validators": [
@@ -2576,7 +2711,7 @@
  * Checkout the following snippet for the format of ResponseListAssetTransactions:
  * ```json
 {
-  "code": "READONLY_ASSET",
+  "code": "INVALID_DEPOSIT",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -2584,7 +2719,7 @@
   },
   "transactions": [
     {
-      "code": "READONLY_ASSET",
+      "code": "INVALID_DEPOSIT",
       "hash": "abc",
       "receiver": "abc",
       "sender": "abc",
@@ -2655,7 +2790,7 @@
       "renaissanceTime": "abc"
     }
   ],
-  "code": "READONLY_ASSET",
+  "code": "INVALID_DEPOSIT",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -2687,7 +2822,7 @@
       "time": "abc"
     }
   ],
-  "code": "READONLY_ASSET",
+  "code": "INVALID_DEPOSIT",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -2709,7 +2844,7 @@
  * Checkout the following snippet for the format of ResponseListStakes:
  * ```json
 {
-  "code": "READONLY_ASSET",
+  "code": "INVALID_DEPOSIT",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -2763,7 +2898,7 @@
       "totalUnstakes": "abc"
     }
   ],
-  "code": "READONLY_ASSET",
+  "code": "INVALID_DEPOSIT",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -2785,7 +2920,7 @@
  * Checkout the following snippet for the format of ResponseListTransactions:
  * ```json
 {
-  "code": "READONLY_ASSET",
+  "code": "INVALID_DEPOSIT",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -2793,7 +2928,7 @@
   },
   "transactions": [
     {
-      "code": "READONLY_ASSET",
+      "code": "INVALID_DEPOSIT",
       "hash": "abc",
       "receiver": "abc",
       "sender": "abc",
@@ -2836,7 +2971,7 @@
  * Checkout the following snippet for the format of ResponseSendTx:
  * ```json
 {
-  "code": "READONLY_ASSET",
+  "code": "INVALID_DEPOSIT",
   "hash": "abc"
 }
  * ```
@@ -2853,7 +2988,7 @@
  * Checkout the following snippet for the format of ResponseStartSimulator:
  * ```json
 {
-  "code": "READONLY_ASSET"
+  "code": "INVALID_DEPOSIT"
 }
  * ```
  *
@@ -2868,7 +3003,7 @@
  * Checkout the following snippet for the format of ResponseStopSimulator:
  * ```json
 {
-  "code": "READONLY_ASSET"
+  "code": "INVALID_DEPOSIT"
 }
  * ```
  *
@@ -2910,7 +3045,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "READONLY_ASSET",
+        "code": "INVALID_DEPOSIT",
         "createAsset": {
           "asset": "abc"
         },
@@ -2948,7 +3083,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "READONLY_ASSET",
+        "code": "INVALID_DEPOSIT",
         "createAsset": {
           "asset": "abc"
         },
@@ -3042,7 +3177,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "READONLY_ASSET",
+        "code": "INVALID_DEPOSIT",
         "createAsset": {
           "asset": "abc"
         },
@@ -3080,7 +3215,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "READONLY_ASSET",
+        "code": "INVALID_DEPOSIT",
         "createAsset": {
           "asset": "abc"
         },
@@ -3121,6 +3256,7 @@
     "issuer": "abc",
     "moniker": "abc",
     "owner": "abc",
+    "parent": "abc",
     "readonly": true,
     "stake": {
       "recentReceivedStakes": {
@@ -3202,7 +3338,7 @@
       ]
     }
   },
-  "code": "READONLY_ASSET",
+  "code": "INVALID_DEPOSIT",
   "confirm": {
     "chainId": "abc",
     "from": "abc",
@@ -3364,7 +3500,7 @@
               "accountMigrate": {
                 "address": "abc"
               },
-              "code": "READONLY_ASSET",
+              "code": "INVALID_DEPOSIT",
               "createAsset": {
                 "asset": "abc"
               },
@@ -3402,7 +3538,7 @@
               "accountMigrate": {
                 "address": "abc"
               },
-              "code": "READONLY_ASSET",
+              "code": "INVALID_DEPOSIT",
               "createAsset": {
                 "asset": "abc"
               },
@@ -3490,7 +3626,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "READONLY_ASSET",
+        "code": "INVALID_DEPOSIT",
         "createAsset": {
           "asset": "abc"
         },
@@ -3528,7 +3664,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "READONLY_ASSET",
+        "code": "INVALID_DEPOSIT",
         "createAsset": {
           "asset": "abc"
         },
@@ -3651,7 +3787,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "READONLY_ASSET",
+        "code": "INVALID_DEPOSIT",
         "createAsset": {
           "asset": "abc"
         },
@@ -3689,7 +3825,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "READONLY_ASSET",
+        "code": "INVALID_DEPOSIT",
         "createAsset": {
           "asset": "abc"
         },
@@ -3820,13 +3956,33 @@
  * Checkout the following snippet for the format of ResponseUnsubscribe:
  * ```json
 {
-  "code": "READONLY_ASSET"
+  "code": "INVALID_DEPOSIT"
 }
  * ```
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.ResponseUnsubscribe
  * @property {...GraphQLClient.StatusCode} code
+ */
+
+/**
+ * Structure of GraphQLClient.RevokeTetherTx
+ *
+ * Checkout the following snippet for the format of RevokeTetherTx:
+ * ```json
+{
+  "data": {
+    "typeUrl": "abc",
+    "value": "abc"
+  },
+  "tether": "abc"
+}
+ * ```
+ *
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.RevokeTetherTx
+ * @property {...GraphQLClient.Any} data
+ * @property {string} tether
  */
 
 /**
@@ -3974,6 +4130,16 @@
  */
 
 /**
+ * Structure of GraphQLClient.TetherExchangeInfo
+ *
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.TetherExchangeInfo
+ * @property {Array<...GraphQLClient.string>} assets
+ * @property {...GraphQLClient.Transaction} deposit
+ * @property {string} value
+ */
+
+/**
  * Structure of GraphQLClient.TetherState
  *
  * @memberof GraphQLClient
@@ -3989,6 +4155,16 @@
  * @property {string} target
  * @property {string} value
  * @property {string} withdrawer
+ */
+
+/**
+ * Structure of GraphQLClient.TetherTradeInfo
+ *
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.TetherTradeInfo
+ * @property {Array<...GraphQLClient.string>} assets
+ * @property {string} tether
+ * @property {string} value
  */
 
 /**
@@ -4109,6 +4285,25 @@
  */
 
 /**
+ * Structure of GraphQLClient.UpgradeNodeTx
+ *
+ * Checkout the following snippet for the format of UpgradeNodeTx:
+ * ```json
+{
+  "height": "abc",
+  "override": true,
+  "version": "abc"
+}
+ * ```
+ *
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.UpgradeNodeTx
+ * @property {string} height
+ * @property {boolean} override
+ * @property {string} version
+ */
+
+/**
  * Structure of GraphQLClient.UpgradeTask
  *
  * @memberof GraphQLClient
@@ -4184,6 +4379,63 @@
  * @property {...GraphQLClient.HashType} hash
  * @property {...GraphQLClient.KeyType} pk
  * @property {...GraphQLClient.RoleType} role
+ */
+
+/**
+ * Structure of GraphQLClient.WithdrawTetherTx
+ *
+ * Checkout the following snippet for the format of WithdrawTetherTx:
+ * ```json
+{
+  "chainId": "abc",
+  "data": {
+    "typeUrl": "abc",
+    "value": "abc"
+  },
+  "expiredAt": "2019-04-29T00:00:00.000Z",
+  "from": "abc",
+  "nonce": "abc",
+  "pk": "abc",
+  "receiver": {
+    "assets": [
+      "abc"
+    ],
+    "tether": "abc",
+    "value": "abc"
+  },
+  "sender": {
+    "assets": [
+      "abc"
+    ],
+    "value": "abc"
+  },
+  "signature": "abc",
+  "signatures": [
+    {
+      "data": {
+        "typeUrl": "abc",
+        "value": "abc"
+      },
+      "pk": "abc",
+      "signature": "abc",
+      "signer": "abc"
+    }
+  ]
+}
+ * ```
+ *
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.WithdrawTetherTx
+ * @property {string} chainId
+ * @property {...GraphQLClient.Any} data
+ * @property {string} expiredAt
+ * @property {string} from
+ * @property {string} nonce
+ * @property {string} pk
+ * @property {...GraphQLClient.TetherTradeInfo} receiver
+ * @property {...GraphQLClient.ExchangeInfo} sender
+ * @property {string} signature
+ * @property {Array<...GraphQLClient.Multisig>} signatures
  */
 
 /**
