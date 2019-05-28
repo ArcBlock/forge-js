@@ -47,7 +47,6 @@
   },
   "homepage": "https://github.com/arcblock/forge-js/packages/forge-cli#readme",
   "dependencies": {
-    "@arcblock/did-util": "^0.27.11",
     "@arcblock/forge-config": "^0.27.0",
     "@arcblock/forge-message": "^0.27.11",
     "@arcblock/forge-proto": "^0.27.11",

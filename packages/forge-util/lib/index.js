@@ -1,3 +1,6 @@
+/* eslint-disable no-bitwise */
+/* eslint-disable implicit-arrow-linebreak */
+/* eslint-disable no-param-reassign */
 /**
  * @fileOverview Contains many utility functions to help developers manipulate encoding/decoding/formatting/bignumber
  * @module @arcblock/forge-util
@@ -58,9 +61,8 @@ const stripHexPrefix = str => {
  * @param {Object} object
  * @returns {Boolean}
  */
-const isBN = object => {
-  return object instanceof BN || (object && object.constructor && object.constructor.name === 'BN');
-};
+const isBN = object =>
+  object instanceof BN || (object && object.constructor && object.constructor.name === 'BN');
 
 /**
  * Returns true if object is BigNumber, otherwise false
@@ -71,9 +73,30 @@ const isBN = object => {
  * @param {Object} object
  * @returns {Boolean}
  */
-const isBigNumber = object => {
-  return object && object.constructor && object.constructor.name === 'BigNumber';
-};
+const isBigNumber = object =>
+  object && object.constructor && object.constructor.name === 'BigNumber';
+
+/**
+ * Check if string is HEX, requires a 0x in front
+ *
+ * @public
+ * @static
+ * @method isHexStrict
+ * @param {String} hex to be checked
+ * @returns {Boolean}
+ */
+const isHexStrict = hex => (isString(hex) || isNumber(hex)) && /^(-)?0x[0-9a-f]*$/i.test(hex);
+
+/**
+ * Check if string is HEX
+ *
+ * @public
+ * @static
+ * @method isHex
+ * @param {String} hex to be checked
+ * @returns {Boolean}
+ */
+const isHex = hex => (isString(hex) || isNumber(hex)) && /^(-0x|0x)?[0-9a-f]*$/i.test(hex);
 
 /**
  * Takes an input and transforms it into an BN
@@ -216,6 +239,7 @@ const numberToHex = value => {
     return value;
   }
 
+  // eslint-disable-next-line no-restricted-globals
   if (!isFinite(value) && !isHex(value)) {
     throw new Error(`Given input "${value}" is not a number.`);
   }
@@ -238,7 +262,7 @@ const numberToHex = value => {
  * @returns {String} the hex string
  */
 const bytesToHex = bytes => {
-  let hex = [];
+  const hex = [];
 
   for (let i = 0; i < bytes.length; i++) {
     hex.push((bytes[i] >>> 4).toString(16));
@@ -267,9 +291,9 @@ const hexToBytes = hex => {
   }
 
   hex = hex.replace(/^0x/i, '');
-  hex = hex.length % 2 ? '0' + hex : hex;
+  hex = hex.length % 2 ? `0${hex}` : hex;
 
-  let bytes = [];
+  const bytes = [];
   for (let c = 0; c < hex.length; c += 2) {
     bytes.push(parseInt(hex.substr(c, 2), 16));
   }
@@ -290,6 +314,7 @@ const hexToBytes = hex => {
  */
 const toHex = (value, returnType) => {
   if (isBoolean(value)) {
+    // eslint-disable-next-line no-nested-ternary
     return returnType ? 'bool' : value ? '0x01' : '0x00';
   }
 
@@ -301,40 +326,18 @@ const toHex = (value, returnType) => {
   if (isString(value)) {
     if (value.indexOf('-0x') === 0 || value.indexOf('-0X') === 0) {
       return returnType ? 'int256' : numberToHex(value);
-    } else if (value.indexOf('0x') === 0 || value.indexOf('0X') === 0) {
+    }
+    if (value.indexOf('0x') === 0 || value.indexOf('0X') === 0) {
       return returnType ? 'bytes' : value;
-    } else if (!isFinite(value)) {
+    }
+    // eslint-disable-next-line no-restricted-globals
+    if (!isFinite(value)) {
       return returnType ? 'string' : utf8ToHex(value);
     }
   }
 
+  // eslint-disable-next-line no-nested-ternary
   return returnType ? (value < 0 ? 'int256' : 'uint256') : numberToHex(value);
-};
-
-/**
- * Check if string is HEX, requires a 0x in front
- *
- * @public
- * @static
- * @method isHexStrict
- * @param {String} hex to be checked
- * @returns {Boolean}
- */
-const isHexStrict = hex => {
-  return (isString(hex) || isNumber(hex)) && /^(-)?0x[0-9a-f]*$/i.test(hex);
-};
-
-/**
- * Check if string is HEX
- *
- * @public
- * @static
- * @method isHex
- * @param {String} hex to be checked
- * @returns {Boolean}
- */
-const isHex = hex => {
-  return (isString(hex) || isNumber(hex)) && /^(-0x|0x)?[0-9a-f]*$/i.test(hex);
 };
 
 const numberToString = arg => {
@@ -345,16 +348,18 @@ const numberToString = arg => {
       );
     }
     return arg;
-  } else if (typeof arg === 'number') {
+  }
+  if (typeof arg === 'number') {
     return String(arg);
-  } else if (typeof arg === 'object' && arg.toString && (arg.toTwos || arg.dividedToIntegerBy)) {
+  }
+
+  if (typeof arg === 'object' && arg.toString && (arg.toTwos || arg.dividedToIntegerBy)) {
     if (arg.toPrecision) {
       return String(arg.toPrecision());
-    } else {
-      // eslint-disable-line
-      return arg.toString(10);
     }
+    return arg.toString(10);
   }
+
   throw new Error(
     `while converting number to string, invalid number value '${arg}' type ${typeof arg}.`
   );
@@ -388,6 +393,7 @@ const fromUnitToToken = (input, decimal = 16, optionsInput) => {
   }
 
   if (!options.pad) {
+    // eslint-disable-next-line prefer-destructuring
     fraction = fraction.match(/^([0-9]*[1-9]|0)(0*)/)[1];
   }
 
@@ -396,7 +402,7 @@ const fromUnitToToken = (input, decimal = 16, optionsInput) => {
     whole = whole.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   }
 
-  let value = `${whole}${fraction == '0' ? '' : `.${fraction}`}`;
+  let value = `${whole}${fraction === '0' ? '' : `.${fraction}`}`;
   if (negative) {
     value = `-${value}`;
   }
@@ -419,7 +425,7 @@ const fromTokenToUnit = (input, decimal = 16) => {
   const baseLength = base.toString(10).length - 1 || 1;
 
   // Is it negative?
-  let negative = ether.substring(0, 1) === '-';
+  const negative = ether.substring(0, 1) === '-';
   if (negative) {
     ether = ether.substring(1);
   }
@@ -429,7 +435,7 @@ const fromTokenToUnit = (input, decimal = 16) => {
   }
 
   // Split it into a whole and fractional part
-  let comps = ether.split('.');
+  const comps = ether.split('.');
   if (comps.length > 2) {
     throw new Error(`error converting number ${input} to arc, too many decimal points`);
   }
@@ -463,7 +469,7 @@ const fromTokenToUnit = (input, decimal = 16) => {
 };
 
 /**
- *	Validates if a value is an Uint8Array.
+ * Validates if a value is an Uint8Array.
  *
  * @public
  * @static

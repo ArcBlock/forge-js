@@ -7,6 +7,7 @@ const { symbols, getSpinner } = require('core/ui');
 const { debug, requiredDirs, isDirectory, isFile, DEFAULT_MIRROR } = require('core/env');
 const { downloadAsset } = require('../../node/init/init');
 
+// eslint-disable-next-line consistent-return
 function fetchCompilerVersion(mirror = DEFAULT_MIRROR) {
   const spinner = getSpinner('Fetching forge-compiler release version...');
   spinner.start();
@@ -28,6 +29,7 @@ function fetchCompilerVersion(mirror = DEFAULT_MIRROR) {
   process.exit(1);
 }
 
+// eslint-disable-next-line consistent-return
 function fetchCompilerInfo(version, mirror = DEFAULT_MIRROR) {
   const url = `${mirror}/forge-compiler/${version}/forge-compiler`;
   const spinner = getSpinner('Fetching forge compiler info...');
@@ -63,7 +65,7 @@ async function ensureForgeCompiler() {
     return stdout.trim();
   }
 
-  const targetPath = path.join(requiredDirs.bin, asset.name);
+  const targetPath = path.join(requiredDirs.bin, 'forge-compiler');
   if (isFile(targetPath)) {
     return targetPath;
   }
@@ -78,6 +80,7 @@ async function ensureForgeCompiler() {
   return targetPath;
 }
 
+// eslint-disable-next-line consistent-return
 async function ensureJavascriptCompiler() {
   const { stdout: protoc } = shell.which('grpc_tools_node_protoc') || {};
   if (protoc && fs.existsSync(protoc.trim())) {
