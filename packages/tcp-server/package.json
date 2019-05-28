@@ -22,7 +22,8 @@
     "@arcblock/forge-message": "^0.27.11",
     "@arcblock/forge-proto": "^0.27.11",
     "@arcblock/forge-util": "^0.27.0",
-    "debug": "^4.1.1"
+    "debug": "^4.1.1",
+    "lodash": "^4.17.11"
   },
   "devDependencies": {
     "@arcblock/forge-config": "^0.27.0",
