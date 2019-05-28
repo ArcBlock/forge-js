@@ -88,7 +88,7 @@
     "examples": "node tools/run-example.js",
     "generate-dts": "node tools/generate-dts.js",
     "update-schema": "rm -f src/schema/graphql.json && node tools/update-graphql-schema.js",
-    "upgrade": "yarn update-schema && yarn generate-queries && yarn generate-types && yarn generate-dts && yarn generate-docs && yarn format-docs && yarn build",
+    "upgrade": "yarn update-schema && yarn generate-queries && yarn generate-types && yarn generate-dts && yarn generate-docs && yarn format-docs && yarn build && yarn lint:fix",
     "precommit": "CI=1 yarn test",
     "prepush": "CI=1 yarn test",
     "test": "yarn lint && node tools/jest.js",
