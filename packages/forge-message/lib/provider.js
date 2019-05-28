@@ -1,6 +1,6 @@
 const providers = [];
-let enums = {};
-let messages = {};
+const enums = {};
+const messages = {};
 
 function getMessageType(type) {
   const provider = providers.find(x => x.getMessageType(type).fn);

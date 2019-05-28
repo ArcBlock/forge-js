@@ -100,7 +100,7 @@ describe('#createMessage', () => {
       address: 'forge_state',
       tasks: {},
       stakeSummary: {
-        '0': {
+        0: {
           totalStakes: '1000000000000000000',
           totalUnstakes: '0',
           context: {
@@ -307,8 +307,8 @@ describe('#encodeBigInt & decodeBitIng', () => {
   });
 
   test('should encode encoded properly', () => {
-    let params = { value: Uint8Array.from([13, 224, 182, 179, 167, 100, 0, 0]) };
-    let encoded = encodeBigInt(params, 'BigUint').toObject();
+    const params = { value: Uint8Array.from([13, 224, 182, 179, 167, 100, 0, 0]) };
+    const encoded = encodeBigInt(params, 'BigUint').toObject();
     expect(encoded.value).toEqual(params.value);
   });
 
@@ -341,8 +341,8 @@ describe('#encodeTimestamp & decodeTimestamp', () => {
   });
 
   test('should decode timestamp properly', () => {
-    let params = { value: Uint8Array.from([13, 224, 182, 179, 167, 100, 0, 0]) };
-    let encoded = encodeBigInt(params, 'BigUint').toObject();
+    const params = { value: Uint8Array.from([13, 224, 182, 179, 167, 100, 0, 0]) };
+    const encoded = encodeBigInt(params, 'BigUint').toObject();
     expect(encoded.value).toEqual(params.value);
   });
 

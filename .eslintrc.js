@@ -19,6 +19,7 @@ module.exports = {
     'no-use-before-define': 'off',
     'object-curly-newline': 'off',
     'implicit-arrow-linebreak': 'off',
+    'class-methods-use-this': 'off',
     'max-len': ['error', { code: 120, ignoreStrings: true, ignoreComments: true }],
     'comma-dangle': [
       'error',
