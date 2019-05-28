@@ -1,3 +1,5 @@
+/* eslint-disable no-multi-assign */
+/* eslint-disable global-require */
 /**
  * @fileOverview Forge [mcrypto](https://github.com/ArcBlock/mcrypto) implementation for javascript.
  * Just a wrapper around existing javascript crypto libraries, implementation details can be found:

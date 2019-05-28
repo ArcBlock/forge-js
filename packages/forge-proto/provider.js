@@ -19,7 +19,7 @@ const debug = require('debug')(require('./package.json').name);
  * @param {object} urls - collection of typeUrls registered to forge-core
  * @returns {object}
  */
-module.exports = function (proto, json, urls = {}) {
+module.exports = function createProvider(proto, json, urls = {}) {
   debug('provider.create', { urls });
   const { types, services = {}, vendorTypes = {} } = proto;
 
@@ -37,6 +37,7 @@ module.exports = function (proto, json, urls = {}) {
   // extract spec
   const compactSpec = object => {
     if (object.nested) {
+      // eslint-disable-next-line no-param-reassign
       object = object.nested;
     }
 
@@ -53,9 +54,9 @@ module.exports = function (proto, json, urls = {}) {
   const clients = Object.keys(services)
     .filter(x => x.includes('Client'))
     .map(x => x.replace(/Client$/, ''))
-    .reduce((clients, x) => {
-      clients[x] = services[`${x}Client`];
-      return clients;
+    .reduce((obj, x) => {
+      obj[x] = services[`${x}Client`];
+      return obj;
     }, {});
 
   // extract rpc descriptors
@@ -69,23 +70,23 @@ module.exports = function (proto, json, urls = {}) {
   const messages = {};
   const enums = Object.keys(abi)
     .filter(x => abi[x].values)
-    .reduce((enums, x) => {
+    .reduce((obj, x) => {
       messages[x] = {};
-      enums[x] = Object.keys(abi[x].values).reduce((values, k) => {
+      obj[x] = Object.keys(abi[x].values).reduce((values, k) => {
         values[k.toUpperCase()] = abi[x].values[k];
         messages[x][abi[x].values[k]] = k.toUpperCase();
         return values;
       }, {});
 
-      return enums;
+      return obj;
     }, {});
 
   // extract rpcs
   const rpcs = Object.keys(abi)
     .filter(x => abi[x].methods)
-    .reduce((rpcs, x) => {
-      rpcs[x] = abi[x].methods;
-      return rpcs;
+    .reduce((obj, x) => {
+      obj[x] = abi[x].methods;
+      return obj;
     }, {});
 
   // extract typeUrls
@@ -97,8 +98,9 @@ module.exports = function (proto, json, urls = {}) {
   );
   enums.SupportedStakes = Object.keys(types).filter(x => stakeTypePattern.test(x));
 
+  // eslint-disable-next-line no-shadow
   function createTypeUrls(abi) {
-    return Object.keys(abi).reduce((typeUrls, type) => {
+    return Object.keys(abi).reduce((obj, type) => {
       let typeUrl = type;
       if (!requestTypePattern.test(type) && !responseTypePattern.test(type)) {
         if (txTypePattern.test(type)) {
@@ -121,8 +123,8 @@ module.exports = function (proto, json, urls = {}) {
         }
       }
 
-      typeUrls[type] = typeUrl;
-      return typeUrls;
+      obj[type] = typeUrl;
+      return obj;
     }, {});
   }
 
