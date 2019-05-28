@@ -15,48 +15,63 @@ const { enums, fromTypeUrl, toTypeUrl } = require('@arcblock/forge-proto/lite');
 ```
 
 * [@arcblock/forge-proto](#module_@arcblock/forge-proto)
-  * _static_
-    * [.enums](#module_@arcblock/forge-proto.enums)
-    * [.messages](#module_@arcblock/forge-proto.messages)
-  * _inner_
-    * [~getMessageType(type)](#module_@arcblock/forge-proto..getMessageType) ⇒ <code>object</code>
-    * [~toTypeUrl(type)](#module_@arcblock/forge-proto..toTypeUrl) ⇒ <code>string</code>
-    * [~fromTypeUrl(url)](#module_@arcblock/forge-proto..fromTypeUrl) ⇒ <code>string</code>
+  * [module.exports(proto, json, urls)](#exp_module_@arcblock/forge-proto--module.exports) ⇒ <code>object</code> ⏏
+    * _static_
+      * [.enums](#module_@arcblock/forge-proto--module.exports.enums)
+      * [.messages](#module_@arcblock/forge-proto--module.exports.messages)
+    * _inner_
+      * [~getMessageType(type)](#module_@arcblock/forge-proto--module.exports..getMessageType) ⇒ <code>object</code>
+      * [~toTypeUrl(type)](#module_@arcblock/forge-proto--module.exports..toTypeUrl) ⇒ <code>string</code>
+      * [~fromTypeUrl(url)](#module_@arcblock/forge-proto--module.exports..fromTypeUrl) ⇒ <code>string</code>
 
-<a name="module_@arcblock/forge-proto.enums"></a>
+<a name="exp_module_@arcblock/forge-proto--module.exports"></a>
 
-### [**@arcblock/forge-proto**](https://github.com/arcblock/forge-proto).enums
+### module.exports(proto, json, urls) ⇒ <code>object</code> ⏏
+
+Generate type provider from types map and json spec
+
+**Kind**: Exported function  
+
+| Param | Type                | Description                                      |
+| ----- | ------------------- | ------------------------------------------------ |
+| proto | <code>object</code> | collection of types                              |
+| json  | <code>object</code> | collection of fields/types used in the types map |
+| urls  | <code>object</code> | collection of typeUrls registered to forge-core  |
+
+<a name="module_@arcblock/forge-proto--module.exports.enums"></a>
+
+#### module.exports.enums
 
 All enum types and its values (number format), can be accessed from width: enums.KEY_TYPE.[`ED25519`](https://github.com/ArcBlock/forge-js/commit/ED25519)
 
-**Kind**: static property of [<code>@arcblock/forge-proto</code>](#module_@arcblock/forge-proto)  
+**Kind**: static property of [<code>module.exports</code>](#exp_module_@arcblock/forge-proto--module.exports)  
 **Access**: public  
 **Read only**: true  
-<a name="module_@arcblock/forge-proto.messages"></a>
+<a name="module_@arcblock/forge-proto--module.exports.messages"></a>
 
-### [**@arcblock/forge-proto**](https://github.com/arcblock/forge-proto).messages
+#### module.exports.messages
 
 All enum types and its values (human readable string format), can be accessed from width: messages.KEY_TYPE.[`ED25519`](https://github.com/ArcBlock/forge-js/commit/ED25519)
 
-**Kind**: static property of [<code>@arcblock/forge-proto</code>](#module_@arcblock/forge-proto)  
+**Kind**: static property of [<code>module.exports</code>](#exp_module_@arcblock/forge-proto--module.exports)  
 **Access**: public  
 **Read only**: true  
-<a name="module_@arcblock/forge-proto..getMessageType"></a>
+<a name="module_@arcblock/forge-proto--module.exports..getMessageType"></a>
 
-### [**@arcblock/forge-proto**](https://github.com/arcblock/forge-proto)~getMessageType(type) ⇒ <code>object</code>
+#### module.exports~getMessageType(type) ⇒ <code>object</code>
 
 Search for a type and its fields descriptor, then the result can be used to create a protobuf message
 
-**Kind**: inner method of [<code>@arcblock/forge-proto</code>](#module_@arcblock/forge-proto)  
+**Kind**: inner method of [<code>module.exports</code>](#exp_module_@arcblock/forge-proto--module.exports)  
 **Access**: public  
 
 | Param | Type                | Description                            |
 | ----- | ------------------- | -------------------------------------- |
 | type  | <code>string</code> | such as `Transaction`, or `TransferTx` |
 
-<a name="module_@arcblock/forge-proto..toTypeUrl"></a>
+<a name="module_@arcblock/forge-proto--module.exports..toTypeUrl"></a>
 
-### [**@arcblock/forge-proto**](https://github.com/arcblock/forge-proto)~toTypeUrl(type) ⇒ <code>string</code>
+#### module.exports~toTypeUrl(type) ⇒ <code>string</code>
 
 Convert type name to typeUrl, return input when no match found
 
@@ -64,16 +79,16 @@ Convert type name to typeUrl, return input when no match found
 toTypeUrl('StakeTx') // 'fg:t:stake'
 ```
 
-**Kind**: inner method of [<code>@arcblock/forge-proto</code>](#module_@arcblock/forge-proto)  
+**Kind**: inner method of [<code>module.exports</code>](#exp_module_@arcblock/forge-proto--module.exports)  
 **Access**: public  
 
 | Param | Type                |
 | ----- | ------------------- |
 | type  | <code>string</code> |
 
-<a name="module_@arcblock/forge-proto..fromTypeUrl"></a>
+<a name="module_@arcblock/forge-proto--module.exports..fromTypeUrl"></a>
 
-### [**@arcblock/forge-proto**](https://github.com/arcblock/forge-proto)~fromTypeUrl(url) ⇒ <code>string</code>
+#### module.exports~fromTypeUrl(url) ⇒ <code>string</code>
 
 Convert typeUrl string to type constructor name, return input when no match found
 
@@ -81,7 +96,7 @@ Convert typeUrl string to type constructor name, return input when no match foun
 fromTypeUrl('fg:t:stake') // StakeTx
 ```
 
-**Kind**: inner method of [<code>@arcblock/forge-proto</code>](#module_@arcblock/forge-proto)  
+**Kind**: inner method of [<code>module.exports</code>](#exp_module_@arcblock/forge-proto--module.exports)  
 **Access**: public  
 
 | Param | Type                |

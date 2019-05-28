@@ -91,8 +91,8 @@ const vendorServices = ${toAssign(vendorServiceFiles)};
 module.exports = {
   types: forgeTypes,
   services: forgeServices,
-  vendorTypes: vendorTypes,
-  vendorServices: vendorServices,
+  vendorTypes,
+  vendorServices,
 };
 `;
 

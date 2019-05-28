@@ -279,6 +279,17 @@ function deserialize_forge_abi_RequestListStakes(buffer_arg) {
   return rpc_pb.RequestListStakes.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_forge_abi_RequestListTethers(arg) {
+  if (!(arg instanceof rpc_pb.RequestListTethers)) {
+    throw new Error('Expected argument of type forge_abi.RequestListTethers');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_forge_abi_RequestListTethers(buffer_arg) {
+  return rpc_pb.RequestListTethers.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_forge_abi_RequestListTopAccounts(arg) {
   if (!(arg instanceof rpc_pb.RequestListTopAccounts)) {
     throw new Error('Expected argument of type forge_abi.RequestListTopAccounts');
@@ -706,6 +717,17 @@ function serialize_forge_abi_ResponseListStakes(arg) {
 
 function deserialize_forge_abi_ResponseListStakes(buffer_arg) {
   return rpc_pb.ResponseListStakes.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_forge_abi_ResponseListTethers(arg) {
+  if (!(arg instanceof rpc_pb.ResponseListTethers)) {
+    throw new Error('Expected argument of type forge_abi.ResponseListTethers');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_forge_abi_ResponseListTethers(buffer_arg) {
+  return rpc_pb.ResponseListTethers.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_forge_abi_ResponseListTopAccounts(arg) {
@@ -1323,6 +1345,17 @@ var StatsRpcService = (exports.StatsRpcService = {
     requestDeserialize: deserialize_forge_abi_RequestGetHealthStatus,
     responseSerialize: serialize_forge_abi_ResponseGetHealthStatus,
     responseDeserialize: deserialize_forge_abi_ResponseGetHealthStatus,
+  },
+  list_tethers: {
+    path: '/forge_abi.StatsRpc/list_tethers',
+    requestStream: false,
+    responseStream: false,
+    requestType: rpc_pb.RequestListTethers,
+    responseType: rpc_pb.ResponseListTethers,
+    requestSerialize: serialize_forge_abi_RequestListTethers,
+    requestDeserialize: deserialize_forge_abi_RequestListTethers,
+    responseSerialize: serialize_forge_abi_ResponseListTethers,
+    responseDeserialize: deserialize_forge_abi_ResponseListTethers,
   },
 });
 

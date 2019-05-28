@@ -390,7 +390,7 @@ if (goog.DEBUG && !COMPILED) {
  * @private {!Array<number>}
  * @const
  */
-proto.forge_abi.DeployProtocolTx.repeatedFields_ = [6, 9, 10];
+proto.forge_abi.DeployProtocolTx.repeatedFields_ = [6, 9, 10, 11];
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
   /**
@@ -437,6 +437,7 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
           proto.forge_abi.CodeInfo.toObject,
           includeInstance
         ),
+        tagsList: jspb.Message.getRepeatedField(msg, 11),
         data: (f = msg.getData()) && google_protobuf_any_pb.Any.toObject(includeInstance, f),
       };
 
@@ -514,6 +515,10 @@ proto.forge_abi.DeployProtocolTx.deserializeBinaryFromReader = function(msg, rea
         reader.readMessage(value, proto.forge_abi.CodeInfo.deserializeBinaryFromReader);
         msg.addCode(value);
         break;
+      case 11:
+        var value = /** @type {string} */ (reader.readString());
+        msg.addTags(value);
+        break;
       case 15:
         var value = new google_protobuf_any_pb.Any();
         reader.readMessage(value, google_protobuf_any_pb.Any.deserializeBinaryFromReader);
@@ -585,6 +590,10 @@ proto.forge_abi.DeployProtocolTx.serializeBinaryToWriter = function(message, wri
   f = message.getCodeList();
   if (f.length > 0) {
     writer.writeRepeatedMessage(10, f, proto.forge_abi.CodeInfo.serializeBinaryToWriter);
+  }
+  f = message.getTagsList();
+  if (f.length > 0) {
+    writer.writeRepeatedString(11, f);
   }
   f = message.getData();
   if (f != null) {
@@ -778,6 +787,31 @@ proto.forge_abi.DeployProtocolTx.prototype.addCode = function(opt_value, opt_ind
 
 proto.forge_abi.DeployProtocolTx.prototype.clearCodeList = function() {
   this.setCodeList([]);
+};
+
+/**
+ * repeated string tags = 11;
+ * @return {!Array<string>}
+ */
+proto.forge_abi.DeployProtocolTx.prototype.getTagsList = function() {
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 11));
+};
+
+/** @param {!Array<string>} value */
+proto.forge_abi.DeployProtocolTx.prototype.setTagsList = function(value) {
+  jspb.Message.setField(this, 11, value || []);
+};
+
+/**
+ * @param {string} value
+ * @param {number=} opt_index
+ */
+proto.forge_abi.DeployProtocolTx.prototype.addTags = function(value, opt_index) {
+  jspb.Message.addToRepeatedField(this, 11, value, opt_index);
+};
+
+proto.forge_abi.DeployProtocolTx.prototype.clearTagsList = function() {
+  this.setTagsList([]);
 };
 
 /**

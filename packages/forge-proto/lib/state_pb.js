@@ -765,6 +765,7 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
           (f = msg.getConsumedTime()) &&
           google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
         issuer: jspb.Message.getFieldWithDefault(msg, 8, ''),
+        parent: jspb.Message.getFieldWithDefault(msg, 9, ''),
         stake: (f = msg.getStake()) && type_pb.StakeContext.toObject(includeInstance, f),
         context: (f = msg.getContext()) && type_pb.StateContext.toObject(includeInstance, f),
         data: (f = msg.getData()) && google_protobuf_any_pb.Any.toObject(includeInstance, f),
@@ -837,6 +838,10 @@ proto.forge_abi.AssetState.deserializeBinaryFromReader = function(msg, reader) {
       case 8:
         var value = /** @type {string} */ (reader.readString());
         msg.setIssuer(value);
+        break;
+      case 9:
+        var value = /** @type {string} */ (reader.readString());
+        msg.setParent(value);
         break;
       case 13:
         var value = new type_pb.StakeContext();
@@ -911,6 +916,10 @@ proto.forge_abi.AssetState.serializeBinaryToWriter = function(message, writer) {
   f = message.getIssuer();
   if (f.length > 0) {
     writer.writeString(8, f);
+  }
+  f = message.getParent();
+  if (f.length > 0) {
+    writer.writeString(9, f);
   }
   f = message.getStake();
   if (f != null) {
@@ -1048,6 +1057,19 @@ proto.forge_abi.AssetState.prototype.getIssuer = function() {
 /** @param {string} value */
 proto.forge_abi.AssetState.prototype.setIssuer = function(value) {
   jspb.Message.setProto3StringField(this, 8, value);
+};
+
+/**
+ * optional string parent = 9;
+ * @return {string}
+ */
+proto.forge_abi.AssetState.prototype.getParent = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 9, ''));
+};
+
+/** @param {string} value */
+proto.forge_abi.AssetState.prototype.setParent = function(value) {
+  jspb.Message.setProto3StringField(this, 9, value);
 };
 
 /**
