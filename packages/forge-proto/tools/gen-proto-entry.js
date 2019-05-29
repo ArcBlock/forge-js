@@ -20,6 +20,7 @@ const files = fs
   })
   .filter(x => {
     const file = path.join(__dirname, '../lib/', x);
+    // eslint-disable-next-line
     const module = require(file);
     if (Object.keys(module).length === 0) {
       fs.unlinkSync(file);
@@ -90,8 +91,8 @@ const vendorServices = ${toAssign(vendorServiceFiles)};
 module.exports = {
   types: forgeTypes,
   services: forgeServices,
-  vendorTypes: vendorTypes,
-  vendorServices: vendorServices,
+  vendorTypes,
+  vendorServices,
 };
 `;
 

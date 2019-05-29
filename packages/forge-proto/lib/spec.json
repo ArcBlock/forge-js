@@ -1251,6 +1251,47 @@
             }
           }
         },
+        "RequestListTethers": {
+          "fields": {
+            "paging": {
+              "type": "PageInput",
+              "id": 1
+            },
+            "depositor": {
+              "type": "string",
+              "id": 2
+            },
+            "withdrawer": {
+              "type": "string",
+              "id": 3
+            },
+            "custodian": {
+              "type": "string",
+              "id": 4
+            },
+            "available": {
+              "type": "bool",
+              "id": 5
+            }
+          }
+        },
+        "ResponseListTethers": {
+          "fields": {
+            "code": {
+              "type": "StatusCode",
+              "id": 1
+            },
+            "page": {
+              "type": "PageInfo",
+              "id": 2
+            },
+            "tethers": {
+              "rule": "repeated",
+              "type": "TetherState",
+              "id": 3
+            }
+          }
+        },
         "RequestGetHealthStatus": {
           "fields": {}
         },
@@ -2484,6 +2525,10 @@
               "type": "string",
               "id": 8
             },
+            "parent": {
+              "type": "string",
+              "id": 9
+            },
             "stake": {
               "type": "StakeContext",
               "id": 13
@@ -3493,6 +3538,10 @@
             "get_health_status": {
               "requestType": "RequestGetHealthStatus",
               "responseType": "ResponseGetHealthStatus"
+            },
+            "list_tethers": {
+              "requestType": "RequestListTethers",
+              "responseType": "ResponseListTethers"
             }
           }
         },
@@ -3727,14 +3776,6 @@
             "data": {
               "type": "google.protobuf.Any",
               "id": 15
-            }
-          }
-        },
-        "DeclareFileTx": {
-          "fields": {
-            "hash": {
-              "type": "string",
-              "id": 1
             }
           }
         },

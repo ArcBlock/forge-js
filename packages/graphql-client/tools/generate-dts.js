@@ -1,3 +1,5 @@
+/* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable no-underscore-dangle */
 /* eslint no-console:"off" */
 /* eslint indent:"off" */
 const fs = require('fs');
@@ -98,6 +100,7 @@ const generateMethodsExports = (methods, ns) =>
 const generateMethods = (methods, ns, resultType) =>
   methods
     .map(x => {
+      // eslint-disable-next-line no-shadow
       const namespace = ns ? `${ns}.` : '';
       const argType = getArgTypeName(x);
       const params = argType ? `params: ${namespace}${argType}` : '';

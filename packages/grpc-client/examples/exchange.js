@@ -81,7 +81,7 @@ const type = WalletType({
         },
       },
     };
-    const assetAddress = toAssetAddress(asset, sender.toAddress());
+    const assetAddress = toAssetAddress(asset);
     asset.address = assetAddress;
     res = await client.sendCreateAssetTx({
       tx: { itx: asset },

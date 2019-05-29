@@ -52,7 +52,7 @@
     "copy": "bash tools/copy.sh",
     "gen": "node tools/gen-proto-entry.js full && node tools/gen-proto-entry.js lite",
     "format-docs": "remark . -o",
-    "generate-docs": "jsdoc2md init.js > docs/README.md",
+    "generate-docs": "jsdoc2md provider.js > docs/README.md",
     "generate-dts": "j2d index.js && j2d lite.js && node tools/generate-dts.js && bash tools/patch-dts.sh",
     "precommit": "CI=1 yarn test",
     "prepush": "CI=1 yarn test",
@@ -60,6 +60,7 @@
     "coverage": "yarn lint && yarn test -- --coverage --collectCoverageFrom=index.js --collectCoverageFrom=!lib/*.js"
   },
   "dependencies": {
+    "camelcase": "^5.3.1",
     "debug": "^4.1.1",
     "lodash.get": "^4.4.2"
   },

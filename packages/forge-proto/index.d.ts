@@ -1,39 +1,6 @@
 // Generate by [js2dts@0.3.3](https://github.com/whxaxes/js2dts#readme)
 
-declare const _ArcblockForgeProto: _ArcblockForgeProto.T101;
-declare namespace _ArcblockForgeProto {
-  export interface T100 {
-    [key: string]: any;
-  }
-  export interface T101 {
-    /**
-     * All enum types and its values (number format), can be accessed from width: enums.KEY_TYPE.ED25519
-     *
-     * @member
-     * @public
-     * @static
-     * @readonly
-     */
-    enums: _ArcblockForgeProto.T100;
-    /**
-     * All enum types and its values (human readable string format), can be accessed from width: messages.KEY_TYPE.ED25519
-     *
-     * @member
-     * @public
-     * @static
-     * @readonly
-     */
-    messages: _ArcblockForgeProto.T100;
-    transactions: any;
-    stakes: any;
-    rpcs: _ArcblockForgeProto.T100;
-    compactSpec: (object: any) => any;
-    getMessageType: (type: string) => any;
-    typeUrls: _ArcblockForgeProto.T100;
-    toTypeUrl: (type: string) => string;
-    fromTypeUrl: (url: string) => string;
-  }
-}
+declare const _ArcblockForgeProto: any;
 export = _ArcblockForgeProto;
 
 declare namespace Enums {
@@ -217,18 +184,17 @@ declare namespace Enums {
     5 = AccountMigrateTx,
     6 = DeclareTx,
     7 = AcquireAssetTx,
-    8 = DeclareFileTx,
-    9 = StakeTx,
-    10 = CreateAssetTx,
-    11 = ExchangeTx,
-    12 = DepositTetherTx,
-    13 = ApproveTetherTx,
-    14 = ConsumeAssetTx,
-    15 = UpgradeNodeTx,
-    16 = UpdateAssetTx,
-    17 = TransferTx,
-    18 = PokeTx,
-    19 = RevokeTetherTx,
+    8 = CreateAssetTx,
+    9 = RevokeTetherTx,
+    10 = ExchangeTx,
+    11 = ApproveTetherTx,
+    12 = ConsumeAssetTx,
+    13 = UpgradeNodeTx,
+    14 = UpdateAssetTx,
+    15 = DepositTetherTx,
+    16 = PokeTx,
+    17 = StakeTx,
+    18 = TransferTx,
   }
 
   export enum SupportedStakes {

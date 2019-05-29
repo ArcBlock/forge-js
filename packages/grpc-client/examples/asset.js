@@ -51,7 +51,7 @@ const type = WalletType({
         },
       },
     };
-    const assetAddress = toAssetAddress(asset, owner.toAddress());
+    const assetAddress = toAssetAddress(asset);
     asset.address = assetAddress;
     res = await client.sendCreateAssetTx({ tx: { itx: asset }, wallet: owner });
     console.log('view asset state', `${endpoint}/node/explorer/assets/${assetAddress}`);

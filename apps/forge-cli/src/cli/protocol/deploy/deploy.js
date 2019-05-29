@@ -44,6 +44,7 @@ async function main({ args: [itxPath] }) {
     shell.echo(`${symbols.info} moderator address ${moderator.toAddress()}`);
 
     const client = new GRpcClient({ endpoint: 'tcp://127.0.0.1:28210' });
+
     // eslint-disable-next-line
     const json = require(itxFile);
     const itxStr = json[Object.keys(json).shift()];
