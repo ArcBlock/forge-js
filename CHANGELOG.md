@@ -1,3 +1,17 @@
+## 0.28.0 (May 29, 2019)
+  - chore: use lite forge-proto in did-util
+  - fix: stop forge-web when stop forge #298
+  - chore: complete step on how to use protocol example
+  - chore: update readme in protocol example
+  - chore: upgrade graphql-client with forge v0.28.0
+  - fix: doc building
+  - chore: upgrade grpc-client with forge v0.28.0
+  - chore: update example files: cleanup param for toAssetAddress
+  - chore: upgrade graphql-client with forge v0.28.0
+  - chore: upgrade forge-proto with forge v0.28.0
+  - fix: eslint in tool scripts
+  - update readme
+
 ## 0.27.13 (May 28, 2019)
   - chore: improve forge protocol compile command
   - update readme
