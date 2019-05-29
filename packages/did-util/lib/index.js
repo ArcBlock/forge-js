@@ -11,7 +11,7 @@
 const { types, Hasher } = require('@arcblock/mcrypto');
 const { fromHash, toDid } = require('@arcblock/did');
 const { createMessage } = require('@arcblock/forge-message');
-const { transactions } = require('@arcblock/forge-proto');
+const { transactions } = require('@arcblock/forge-proto/lite');
 
 /**
  * Create an asset address
