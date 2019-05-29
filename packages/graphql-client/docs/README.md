@@ -2869,7 +2869,7 @@ Checkout the following snippet for the format of ResponseGetAccountState:
 
 ```json
 {
-  "code": "INVALID_DEPOSIT",
+  "code": "UNSUPPORTED_STAKE",
   "state": {
     "address": "abc",
     "balance": "abc",
@@ -2879,7 +2879,7 @@ Checkout the following snippet for the format of ResponseGetAccountState:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INVALID_DEPOSIT",
+        "code": "UNSUPPORTED_STAKE",
         "createAsset": {
           "asset": "abc"
         },
@@ -2917,7 +2917,7 @@ Checkout the following snippet for the format of ResponseGetAccountState:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INVALID_DEPOSIT",
+        "code": "UNSUPPORTED_STAKE",
         "createAsset": {
           "asset": "abc"
         },
@@ -3023,7 +3023,7 @@ Checkout the following snippet for the format of ResponseGetAssetState:
 
 ```json
 {
-  "code": "INVALID_DEPOSIT",
+  "code": "UNSUPPORTED_STAKE",
   "state": {
     "address": "abc",
     "consumedTime": "2019-04-29T00:00:00.000Z",
@@ -3033,7 +3033,7 @@ Checkout the following snippet for the format of ResponseGetAssetState:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INVALID_DEPOSIT",
+        "code": "UNSUPPORTED_STAKE",
         "createAsset": {
           "asset": "abc"
         },
@@ -3071,7 +3071,7 @@ Checkout the following snippet for the format of ResponseGetAssetState:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INVALID_DEPOSIT",
+        "code": "UNSUPPORTED_STAKE",
         "createAsset": {
           "asset": "abc"
         },
@@ -3172,7 +3172,7 @@ Checkout the following snippet for the format of ResponseGetBlock:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INVALID_DEPOSIT",
+        "code": "UNSUPPORTED_STAKE",
         "createAsset": {
           "asset": "abc"
         },
@@ -3228,7 +3228,7 @@ Checkout the following snippet for the format of ResponseGetBlock:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INVALID_DEPOSIT",
+        "code": "UNSUPPORTED_STAKE",
         "createAsset": {
           "asset": "abc"
         },
@@ -3271,7 +3271,7 @@ Checkout the following snippet for the format of ResponseGetBlock:
       "block": "abc"
     }
   },
-  "code": "INVALID_DEPOSIT"
+  "code": "UNSUPPORTED_STAKE"
 }
 ```
 
@@ -3327,7 +3327,7 @@ Checkout the following snippet for the format of ResponseGetBlocks:
       }
     }
   ],
-  "code": "INVALID_DEPOSIT",
+  "code": "UNSUPPORTED_STAKE",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -3355,7 +3355,7 @@ Checkout the following snippet for the format of ResponseGetChainInfo:
 
 ```json
 {
-  "code": "INVALID_DEPOSIT",
+  "code": "UNSUPPORTED_STAKE",
   "info": {
     "address": "abc",
     "appHash": "abc",
@@ -3401,7 +3401,7 @@ Checkout the following snippet for the format of ResponseGetConfig:
 
 ```json
 {
-  "code": "INVALID_DEPOSIT",
+  "code": "UNSUPPORTED_STAKE",
   "config": "abc"
 }
 ```
@@ -3424,7 +3424,7 @@ Checkout the following snippet for the format of ResponseGetForgeState:
 
 ```json
 {
-  "code": "INVALID_DEPOSIT",
+  "code": "UNSUPPORTED_STAKE",
   "state": {
     "address": "abc",
     "consensus": {
@@ -3475,7 +3475,7 @@ Checkout the following snippet for the format of ResponseGetForgeState:
               "accountMigrate": {
                 "address": "abc"
               },
-              "code": "INVALID_DEPOSIT",
+              "code": "UNSUPPORTED_STAKE",
               "createAsset": {
                 "asset": "abc"
               },
@@ -3513,7 +3513,7 @@ Checkout the following snippet for the format of ResponseGetForgeState:
               "accountMigrate": {
                 "address": "abc"
               },
-              "code": "INVALID_DEPOSIT",
+              "code": "UNSUPPORTED_STAKE",
               "createAsset": {
                 "asset": "abc"
               },
@@ -3614,7 +3614,7 @@ Checkout the following snippet for the format of ResponseGetForgeStats:
 
 ```json
 {
-  "code": "INVALID_DEPOSIT",
+  "code": "UNSUPPORTED_STAKE",
   "forgeStats": {
     "avgBlockTime": 123,
     "avgTps": 123,
@@ -3692,7 +3692,7 @@ Checkout the following snippet for the format of ResponseGetHealthStatus:
 
 ```json
 {
-  "code": "INVALID_DEPOSIT",
+  "code": "UNSUPPORTED_STAKE",
   "healthStatus": {
     "consensus": {
       "blockHeight": "abc",
@@ -3743,7 +3743,7 @@ Checkout the following snippet for the format of ResponseGetNetInfo:
 
 ```json
 {
-  "code": "INVALID_DEPOSIT",
+  "code": "UNSUPPORTED_STAKE",
   "netInfo": {
     "listeners": [
       "abc"
@@ -3787,7 +3787,7 @@ Checkout the following snippet for the format of ResponseGetNodeInfo:
 
 ```json
 {
-  "code": "INVALID_DEPOSIT",
+  "code": "UNSUPPORTED_STAKE",
   "info": {
     "address": "abc",
     "appHash": "abc",
@@ -3841,7 +3841,7 @@ Checkout the following snippet for the format of ResponseGetProtocolState:
 
 ```json
 {
-  "code": "INVALID_DEPOSIT",
+  "code": "UNSUPPORTED_STAKE",
   "state": {
     "address": "abc",
     "context": {
@@ -3850,7 +3850,7 @@ Checkout the following snippet for the format of ResponseGetProtocolState:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INVALID_DEPOSIT",
+        "code": "UNSUPPORTED_STAKE",
         "createAsset": {
           "asset": "abc"
         },
@@ -3888,7 +3888,7 @@ Checkout the following snippet for the format of ResponseGetProtocolState:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INVALID_DEPOSIT",
+        "code": "UNSUPPORTED_STAKE",
         "createAsset": {
           "asset": "abc"
         },
@@ -3987,7 +3987,7 @@ Checkout the following snippet for the format of ResponseGetProtocols:
 
 ```json
 {
-  "code": "INVALID_DEPOSIT",
+  "code": "UNSUPPORTED_STAKE",
   "protocols": [
     {
       "address": "abc",
@@ -4041,7 +4041,7 @@ Checkout the following snippet for the format of ResponseGetSimulatorStatus:
 
 ```json
 {
-  "code": "INVALID_DEPOSIT",
+  "code": "UNSUPPORTED_STAKE",
   "result": "abc"
 }
 ```
@@ -4064,7 +4064,7 @@ Checkout the following snippet for the format of ResponseGetStakeState:
 
 ```json
 {
-  "code": "INVALID_DEPOSIT",
+  "code": "UNSUPPORTED_STAKE",
   "state": {
     "address": "abc",
     "balance": "abc",
@@ -4074,7 +4074,7 @@ Checkout the following snippet for the format of ResponseGetStakeState:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INVALID_DEPOSIT",
+        "code": "UNSUPPORTED_STAKE",
         "createAsset": {
           "asset": "abc"
         },
@@ -4112,7 +4112,7 @@ Checkout the following snippet for the format of ResponseGetStakeState:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INVALID_DEPOSIT",
+        "code": "UNSUPPORTED_STAKE",
         "createAsset": {
           "asset": "abc"
         },
@@ -4175,7 +4175,7 @@ Checkout the following snippet for the format of ResponseGetTetherState:
 
 ```json
 {
-  "code": "INVALID_DEPOSIT",
+  "code": "UNSUPPORTED_STAKE",
   "state": {
     "address": "abc",
     "available": true,
@@ -4210,12 +4210,12 @@ Checkout the following snippet for the format of ResponseGetTx:
 
 ```json
 {
-  "code": "INVALID_DEPOSIT",
+  "code": "UNSUPPORTED_STAKE",
   "info": {
     "accountMigrate": {
       "address": "abc"
     },
-    "code": "INVALID_DEPOSIT",
+    "code": "UNSUPPORTED_STAKE",
     "createAsset": {
       "asset": "abc"
     },
@@ -4269,7 +4269,7 @@ Checkout the following snippet for the format of ResponseGetUnconfirmedTxs:
 
 ```json
 {
-  "code": "INVALID_DEPOSIT",
+  "code": "UNSUPPORTED_STAKE",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -4320,7 +4320,7 @@ Checkout the following snippet for the format of ResponseGetValidatorsInfo:
 
 ```json
 {
-  "code": "INVALID_DEPOSIT",
+  "code": "UNSUPPORTED_STAKE",
   "validatorsInfo": {
     "blockHeight": "abc",
     "validators": [
@@ -4363,7 +4363,7 @@ Checkout the following snippet for the format of ResponseListAssetTransactions:
 
 ```json
 {
-  "code": "INVALID_DEPOSIT",
+  "code": "UNSUPPORTED_STAKE",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -4371,7 +4371,7 @@ Checkout the following snippet for the format of ResponseListAssetTransactions:
   },
   "transactions": [
     {
-      "code": "INVALID_DEPOSIT",
+      "code": "UNSUPPORTED_STAKE",
       "hash": "abc",
       "receiver": "abc",
       "sender": "abc",
@@ -4448,7 +4448,7 @@ Checkout the following snippet for the format of ResponseListAssets:
       "renaissanceTime": "abc"
     }
   ],
-  "code": "INVALID_DEPOSIT",
+  "code": "UNSUPPORTED_STAKE",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -4486,7 +4486,7 @@ Checkout the following snippet for the format of ResponseListBlocks:
       "time": "abc"
     }
   ],
-  "code": "INVALID_DEPOSIT",
+  "code": "UNSUPPORTED_STAKE",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -4514,7 +4514,7 @@ Checkout the following snippet for the format of ResponseListStakes:
 
 ```json
 {
-  "code": "INVALID_DEPOSIT",
+  "code": "UNSUPPORTED_STAKE",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -4574,7 +4574,7 @@ Checkout the following snippet for the format of ResponseListTopAccounts:
       "totalUnstakes": "abc"
     }
   ],
-  "code": "INVALID_DEPOSIT",
+  "code": "UNSUPPORTED_STAKE",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -4602,7 +4602,7 @@ Checkout the following snippet for the format of ResponseListTransactions:
 
 ```json
 {
-  "code": "INVALID_DEPOSIT",
+  "code": "UNSUPPORTED_STAKE",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -4610,7 +4610,7 @@ Checkout the following snippet for the format of ResponseListTransactions:
   },
   "transactions": [
     {
-      "code": "INVALID_DEPOSIT",
+      "code": "UNSUPPORTED_STAKE",
       "hash": "abc",
       "receiver": "abc",
       "sender": "abc",
@@ -4659,7 +4659,7 @@ Checkout the following snippet for the format of ResponseSendTx:
 
 ```json
 {
-  "code": "INVALID_DEPOSIT",
+  "code": "UNSUPPORTED_STAKE",
   "hash": "abc"
 }
 ```
@@ -4682,7 +4682,7 @@ Checkout the following snippet for the format of ResponseStartSimulator:
 
 ```json
 {
-  "code": "INVALID_DEPOSIT"
+  "code": "UNSUPPORTED_STAKE"
 }
 ```
 
@@ -4703,7 +4703,7 @@ Checkout the following snippet for the format of ResponseStopSimulator:
 
 ```json
 {
-  "code": "INVALID_DEPOSIT"
+  "code": "UNSUPPORTED_STAKE"
 }
 ```
 
@@ -4751,7 +4751,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INVALID_DEPOSIT",
+        "code": "UNSUPPORTED_STAKE",
         "createAsset": {
           "asset": "abc"
         },
@@ -4789,7 +4789,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INVALID_DEPOSIT",
+        "code": "UNSUPPORTED_STAKE",
         "createAsset": {
           "asset": "abc"
         },
@@ -4883,7 +4883,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INVALID_DEPOSIT",
+        "code": "UNSUPPORTED_STAKE",
         "createAsset": {
           "asset": "abc"
         },
@@ -4921,7 +4921,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INVALID_DEPOSIT",
+        "code": "UNSUPPORTED_STAKE",
         "createAsset": {
           "asset": "abc"
         },
@@ -5044,7 +5044,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
       ]
     }
   },
-  "code": "INVALID_DEPOSIT",
+  "code": "UNSUPPORTED_STAKE",
   "confirm": {
     "chainId": "abc",
     "from": "abc",
@@ -5206,7 +5206,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
               "accountMigrate": {
                 "address": "abc"
               },
-              "code": "INVALID_DEPOSIT",
+              "code": "UNSUPPORTED_STAKE",
               "createAsset": {
                 "asset": "abc"
               },
@@ -5244,7 +5244,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
               "accountMigrate": {
                 "address": "abc"
               },
-              "code": "INVALID_DEPOSIT",
+              "code": "UNSUPPORTED_STAKE",
               "createAsset": {
                 "asset": "abc"
               },
@@ -5332,7 +5332,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INVALID_DEPOSIT",
+        "code": "UNSUPPORTED_STAKE",
         "createAsset": {
           "asset": "abc"
         },
@@ -5370,7 +5370,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INVALID_DEPOSIT",
+        "code": "UNSUPPORTED_STAKE",
         "createAsset": {
           "asset": "abc"
         },
@@ -5493,7 +5493,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INVALID_DEPOSIT",
+        "code": "UNSUPPORTED_STAKE",
         "createAsset": {
           "asset": "abc"
         },
@@ -5531,7 +5531,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INVALID_DEPOSIT",
+        "code": "UNSUPPORTED_STAKE",
         "createAsset": {
           "asset": "abc"
         },
@@ -5668,7 +5668,7 @@ Checkout the following snippet for the format of ResponseUnsubscribe:
 
 ```json
 {
-  "code": "INVALID_DEPOSIT"
+  "code": "UNSUPPORTED_STAKE"
 }
 ```
 
