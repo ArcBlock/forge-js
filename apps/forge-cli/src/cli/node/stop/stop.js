@@ -1,7 +1,9 @@
 /* eslint-disable consistent-return */
 const shell = require('shelljs');
 const { symbols, getSpinner } = require('core/ui');
-const { config, getForgeProcesses, sleep } = require('core/env');
+const { config, getForgeProcesses, sleep, runNativeWebCommand } = require('core/env');
+
+const stopForgeWeb = runNativeWebCommand('stop');
 
 function isStopped() {
   const { starterBinPath, forgeConfigPath } = config.get('cli');
@@ -45,6 +47,11 @@ async function main() {
       return;
     }
 
+    try {
+      await stopForgeWeb();
+    } catch (err) {
+      // do nothing
+    }
     await waitUntilStopped();
     await sleep(5000);
     spinner.succeed('Forge daemon stopped!');
