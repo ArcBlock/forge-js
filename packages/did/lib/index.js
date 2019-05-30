@@ -246,13 +246,13 @@ const jwtSign = (did, sk, payload = {}) => {
   const headerB64 = base64.escape(base64.encode(stringify(header)));
 
   // make body
-  const timestamp = Math.floor(Date.now() / 1000);
+  const now = Math.floor(Date.now() / 1000);
   let body = Object.assign(
     {
       iss: did.indexOf(DID_PREFIX) === 0 ? did : `${DID_PREFIX}${did}`,
-      iat: timestamp,
-      nbf: timestamp,
-      exp: timestamp + 30 * 60,
+      iat: now,
+      nbf: now,
+      exp: now + 5 * 60,
     },
     payload || {}
   );
@@ -307,37 +307,52 @@ const jwtDecode = (token, payloadOnly = true) => {
  * @static
  * @param {string} token - the jwt token
  * @param {string} pk - hex encoded public key
+ * @param {number} [tolerance=5] - number of seconds to tolerant expire
+ * @param {boolean} [verifyTimestamp=true] - whether should be verify timestamps?
  * @returns {boolean}
  */
-const jwtVerify = (token, pk, tolerance = 5) => {
+const jwtVerify = (token, pk, tolerance = 5, verifyTimestamp = true) => {
   try {
     const [headerB64, bodyB64] = token.split('.');
     const { header, body, signature } = jwtDecode(token, false);
     if (!signature) {
+      debug('jwtVerify.error.emptySig');
       return false;
     }
     if (!header.alg) {
+      debug('jwtVerify.error.emptyAlg');
       return false;
     }
 
     const did = body.iss;
     if (!did) {
+      debug('jwtVerify.error.emptyDid');
       return false;
     }
 
     if (isFromPublicKey(did, pk) === false) {
+      debug('jwtVerify.error.did_pk_mismatch');
       return false;
     }
 
-    const timestamp = Math.ceil(Date.now() / 1000) + tolerance;
-    if (body.exp && body.exp < timestamp) {
-      return false;
-    }
-    if (body.iat && body.iat > timestamp) {
-      return false;
-    }
-    if (body.nbf && body.nbf > timestamp) {
-      return false;
+    if (verifyTimestamp) {
+      const now = Math.ceil(Date.now() / 1000) + tolerance;
+      const exp = Number(body.exp) || 0;
+      const iat = Number(body.iat) || 0;
+      const nbf = Number(body.nbf) || 0;
+      debug('jwtVerify.verifyTimestamp', { now, exp, iat, nbf });
+      if (exp && exp < now) {
+        debug('jwtVerify.error.expired');
+        return false;
+      }
+      if (iat && iat > now) {
+        debug('jwtVerify.error.issuedAt');
+        return false;
+      }
+      if (nbf && nbf > now) {
+        debug('jwtVerify.error.notBefore');
+        return false;
+      }
     }
 
     const signers = {
@@ -351,8 +366,11 @@ const jwtVerify = (token, pk, tolerance = 5) => {
       return signers[alg].verify(msgHex, signature, pk);
     }
 
+    debug('jwtVerify.error.crypto');
     return false;
   } catch (err) {
+    debug('jwtVerify.error.exception');
+
     if (process.env.NODE_ENV !== 'test') {
       // eslint-disable-next-line
       console.error('jwtVerify.error', err);

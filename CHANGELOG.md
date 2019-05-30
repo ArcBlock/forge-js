@@ -1,3 +1,8 @@
+## 0.28.1 (May 30, 2019)
+  - chore: improve error message when wallet signature invalid
+  - chore: improve jwtVerify process, add debugging statements
+  - update readme
+
 ## 0.28.0 (May 29, 2019)
   - chore: use lite forge-proto in did-util
   - fix: stop forge-web when stop forge #298

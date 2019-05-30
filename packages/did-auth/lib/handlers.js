@@ -281,7 +281,7 @@ module.exports = class Handlers {
 
       try {
         // eslint-disable-next-line no-shadow
-        const { did, claims } = await this.authenticator.verify(params);
+        const { did, claims } = await this.authenticator.verify(params, locale);
         claims.forEach(x => {
           if (x.type === 'signature') {
             x.sigHex = bytesToHex(multibase.decode(x.sig));
