@@ -10,7 +10,7 @@
  */
 const { types, Hasher } = require('@arcblock/mcrypto');
 const { fromHash, toDid } = require('@arcblock/did');
-const { createMessage } = require('@arcblock/forge-message');
+const { createMessage } = require('@arcblock/forge-message/lite');
 const { transactions } = require('@arcblock/forge-proto/lite');
 
 /**

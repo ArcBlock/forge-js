@@ -1,3 +1,7 @@
+## 0.28.2 (May 31, 2019)
+  - fix: did-util is causing www-wallet build failing on netlify
+  - update readme
+
 ## 0.28.1 (May 30, 2019)
   - chore: improve error message when wallet signature invalid
   - chore: improve jwtVerify process, add debugging statements
