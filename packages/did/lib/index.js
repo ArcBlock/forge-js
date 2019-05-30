@@ -246,13 +246,13 @@ const jwtSign = (did, sk, payload = {}) => {
   const headerB64 = base64.escape(base64.encode(stringify(header)));
 
   // make body
-  const timestamp = Math.floor(Date.now() / 1000);
+  const now = Math.floor(Date.now() / 1000);
   let body = Object.assign(
     {
       iss: did.indexOf(DID_PREFIX) === 0 ? did : `${DID_PREFIX}${did}`,
-      iat: timestamp,
-      nbf: timestamp,
-      exp: timestamp + 5 * 60,
+      iat: now,
+      nbf: now,
+      exp: now + 5 * 60,
     },
     payload || {}
   );
@@ -307,11 +307,11 @@ const jwtDecode = (token, payloadOnly = true) => {
  * @static
  * @param {string} token - the jwt token
  * @param {string} pk - hex encoded public key
- * @param {number} tolerance - number of seconds to tolerant expire
- * @param {boolean} verifyTimestamp - whether should be verify timestamps?
+ * @param {number} [tolerance=5] - number of seconds to tolerant expire
+ * @param {boolean} [verifyTimestamp=true] - whether should be verify timestamps?
  * @returns {boolean}
  */
-const jwtVerify = (token, pk, tolerance = 60, verifyTimestamp = true) => {
+const jwtVerify = (token, pk, tolerance = 5, verifyTimestamp = true) => {
   try {
     const [headerB64, bodyB64] = token.split('.');
     const { header, body, signature } = jwtDecode(token, false);
@@ -336,19 +336,20 @@ const jwtVerify = (token, pk, tolerance = 60, verifyTimestamp = true) => {
     }
 
     if (verifyTimestamp) {
-      const timestamp = Math.ceil(Date.now() / 1000) + tolerance;
+      const now = Math.ceil(Date.now() / 1000) + tolerance;
       const exp = Number(body.exp) || 0;
       const iat = Number(body.iat) || 0;
       const nbf = Number(body.nbf) || 0;
-      if (exp && exp < timestamp) {
+      debug('jwtVerify.verifyTimestamp', { now, exp, iat, nbf });
+      if (exp && exp < now) {
         debug('jwtVerify.error.expired');
         return false;
       }
-      if (iat && iat > timestamp) {
+      if (iat && iat > now) {
         debug('jwtVerify.error.issuedAt');
         return false;
       }
-      if (nbf && nbf > timestamp) {
+      if (nbf && nbf > now) {
         debug('jwtVerify.error.notBefore');
         return false;
       }

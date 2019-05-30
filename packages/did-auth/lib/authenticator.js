@@ -147,7 +147,7 @@ module.exports = class Authenticator {
       if (!isValid) {
         // NOTE: since the token can be invalid because of wallet-app clock not in sync
         // We should tell the user that if it's caused by clock
-        const error = jwtVerify(userInfo, userPkHex, 60, false)
+        const error = jwtVerify(userInfo, userPkHex, 0, false)
           ? errors.timeInvalid[locale]
           : errors.tokenInvalid[locale];
         return reject(new Error(error));
