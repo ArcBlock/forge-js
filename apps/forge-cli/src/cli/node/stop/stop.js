@@ -3,7 +3,7 @@ const shell = require('shelljs');
 const { symbols, getSpinner } = require('core/ui');
 const { config, getForgeProcesses, sleep, runNativeWebCommand } = require('core/env');
 
-const stopForgeWeb = runNativeWebCommand('stop');
+const stopForgeWeb = runNativeWebCommand('stop', { silent: true });
 
 function isStopped() {
   const { starterBinPath, forgeConfigPath } = config.get('cli');
