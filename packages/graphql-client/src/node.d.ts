@@ -144,7 +144,9 @@ declare class GraphQLClient {
     params: GraphQLClient.GetBlocksParams
   ): GraphQLClient.QueryResult<GraphQLClient.ResponseGetBlocks>;
   getChainInfo(): GraphQLClient.QueryResult<GraphQLClient.ResponseGetChainInfo>;
-  getConfig(): GraphQLClient.QueryResult<GraphQLClient.ResponseGetConfig>;
+  getConfig(
+    params: GraphQLClient.GetConfigParams
+  ): GraphQLClient.QueryResult<GraphQLClient.ResponseGetConfig>;
   getForgeState(
     params: GraphQLClient.GetForgeStateParams
   ): GraphQLClient.QueryResult<GraphQLClient.ResponseGetForgeState>;
@@ -188,6 +190,9 @@ declare class GraphQLClient {
   listStakes(
     params: GraphQLClient.ListStakesParams
   ): GraphQLClient.QueryResult<GraphQLClient.ResponseListStakes>;
+  listTethers(
+    params: GraphQLClient.ListTethersParams
+  ): GraphQLClient.QueryResult<GraphQLClient.ResponseListTethers>;
   listTopAccounts(
     params: GraphQLClient.ListTopAccountsParams
   ): GraphQLClient.QueryResult<GraphQLClient.ResponseListTopAccounts>;
@@ -310,53 +315,53 @@ declare namespace GraphQLClient {
   }
 
   export enum StatusCode {
-    UNSUPPORTED_STAKE,
-    INVALID_WALLET,
-    INVALID_WITHDRAWER,
-    INSUFFICIENT_DATA,
-    INVALID_DEPOSIT_TARGET,
-    INVALID_MONIKER,
-    INSUFFICIENT_FUND,
-    INVALID_PASSPHRASE,
-    INVALID_TX_SIZE,
-    INVALID_DEPOSIT,
-    TOO_MANY_TXS,
-    INVALID_DEPOSITOR,
-    STORAGE_RPC_ERROR,
-    INVALID_MULTISIG,
+    INVALID_SIGNER_STATE,
+    UNTRANSFERRABLE_ASSET,
+    INVALID_NONCE,
+    INVALID_OWNER,
     BANNED_UNSTAKE,
     EXPIRED_WALLET_TOKEN,
-    INVALID_RECEIVER_STATE,
-    CONSUMED_ASSET,
-    FORBIDDEN,
-    INVALID_DEPOSIT_VALUE,
-    INVALID_SIGNER_STATE,
-    INVALID_OWNER,
-    INVALID_NONCE,
-    ACCOUNT_MIGRATED,
-    EXCEED_DEPOSIT_CAP,
-    CONSENSUS_RPC_ERROR,
-    UNTRANSFERRABLE_ASSET,
     UNSUPPORTED_TX,
     INVALID_ASSET,
-    INVALID_SIGNATURE,
-    INVALID_TX,
-    INVALID_LOCK_STATUS,
-    INSUFFICIENT_STAKE,
-    INVALID_EXPIRY_DATE,
-    INVALID_SENDER_STATE,
-    INVALID_CHAIN_ID,
+    CONSENSUS_RPC_ERROR,
+    INVALID_DEPOSIT_TARGET,
+    INVALID_MULTISIG,
     EXPIRED_TX,
-    TIMEOUT,
-    DUPLICATE_TETHER,
-    INVALID_FORGE_STATE,
-    INVALID_CUSTODIAN,
+    INVALID_SENDER_STATE,
+    INSUFFICIENT_DATA,
     INVALID_REQUEST,
+    INVALID_CHAIN_ID,
+    ACCOUNT_MIGRATED,
+    INVALID_DEPOSIT_VALUE,
+    INVALID_FORGE_STATE,
+    INVALID_DEPOSIT,
+    INVALID_SIGNATURE,
+    INVALID_CUSTODIAN,
+    STORAGE_RPC_ERROR,
+    INVALID_TX,
     INVALID_STAKE_STATE,
-    EXPIRED_ASSET,
+    INVALID_WALLET,
+    TOO_MANY_TXS,
+    DUPLICATE_TETHER,
+    INVALID_MONIKER,
     READONLY_ASSET,
-    INTERNAL,
+    INSUFFICIENT_STAKE,
+    CONSUMED_ASSET,
+    INSUFFICIENT_FUND,
+    INVALID_EXPIRY_DATE,
+    EXCEED_DEPOSIT_CAP,
+    INVALID_WITHDRAWER,
+    TIMEOUT,
+    EXPIRED_ASSET,
+    INVALID_DEPOSITOR,
     NOENT,
+    INVALID_LOCK_STATUS,
+    FORBIDDEN,
+    UNSUPPORTED_STAKE,
+    INVALID_TX_SIZE,
+    INVALID_RECEIVER_STATE,
+    INTERNAL,
+    INVALID_PASSPHRASE,
     OK,
   }
 
@@ -1085,6 +1090,12 @@ declare namespace GraphQLClient {
     stakes: Array<IndexedStakeState>;
   }
 
+  export interface ResponseListTethers {
+    code: GraphQLClient.StatusCode;
+    page: GraphQLClient.PageInfo;
+    tethers: Array<TetherState>;
+  }
+
   export interface ResponseListTopAccounts {
     accounts: Array<IndexedAccountState>;
     code: GraphQLClient.StatusCode;
@@ -1406,6 +1417,10 @@ declare namespace GraphQLClient {
     paging: undefined;
   }
 
+  export interface GetConfigParams {
+    parsed: boolean;
+  }
+
   export interface GetForgeStateParams {
     height: string;
     keys: Array<string>;
@@ -1472,6 +1487,14 @@ declare namespace GraphQLClient {
   export interface ListStakesParams {
     addressFilter: undefined;
     paging: undefined;
+  }
+
+  export interface ListTethersParams {
+    available: boolean;
+    custodian: string;
+    depositor: string;
+    paging: string;
+    withdrawer: string;
   }
 
   export interface ListTopAccountsParams {
