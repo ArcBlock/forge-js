@@ -399,7 +399,8 @@ function createFileFinder(keyword, filePath) {
     return '';
   };
 }
-const findReleaseConfig = createFileFinder('forge_sdk', 'priv/forge_release.toml');
+const findReleaseConfig = createFileFinder('forge', 'priv/forge_release.toml');
+const findReleaseConfigOld = createFileFinder('forge_sdk', 'priv/forge_release.toml');
 
 /**
  * Find version of current forge release
@@ -650,6 +651,7 @@ module.exports = {
   setupEnv,
   requiredDirs,
   findReleaseConfig,
+  findReleaseConfigOld,
   findReleaseVersion,
   createFileFinder,
   ensureRequiredDirs,

@@ -15,6 +15,7 @@ const {
   requiredDirs,
   ensureForgeRelease,
   findReleaseConfig,
+  findReleaseConfigOld,
   getPlatform,
   printLogo,
   RELEASE_ASSETS,
@@ -155,7 +156,9 @@ function expandReleaseTarball(filePath, subFolder, version) {
 }
 
 function copyReleaseConfig(version) {
-  const configPath = findReleaseConfig(requiredDirs.release, version);
+  const configPath =
+    findReleaseConfig(requiredDirs.release, version) ||
+    findReleaseConfigOld(requiredDirs.release, version);
   if (configPath) {
     const baseDir = path.dirname(requiredDirs.release);
     shell.echo(`${symbols.success} Extract forge config from ${configPath}`);
@@ -194,7 +197,8 @@ async function main({ args: [userVersion], opts: { mirror } }) {
     const platform = await getPlatform();
     shell.echo(`${symbols.info} Detected platform is: ${platform}`);
 
-    const userVer = userVersion && semver.coerce(userVersion) ? semver.coerce(userVersion).version : '';
+    const userVer =
+      userVersion && semver.coerce(userVersion) ? semver.coerce(userVersion).version : '';
     const version = userVer || fetchReleaseVersion(mirror);
 
     if (releaseDirExists()) {
