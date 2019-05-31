@@ -333,7 +333,7 @@
       null
     ],
     "code": 0,
-    "time": "2019-05-28T07:04:33.813Z"
+    "time": "2019-05-31T23:01:58.957Z"
   }
 }
 ```
@@ -367,7 +367,7 @@
   "block": {
     "height": 5,
     "numTxs": 2,
-    "time": "2019-05-28T07:04:33.810Z",
+    "time": "2019-05-31T23:01:58.953Z",
     "appHash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
     "proposer": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
     "txs": [
@@ -411,7 +411,7 @@
           null
         ],
         "code": 0,
-        "time": "2019-05-28T07:04:33.810Z"
+        "time": "2019-05-31T23:01:58.953Z"
       },
       {
         "tx": {
@@ -453,7 +453,7 @@
           null
         ],
         "code": 0,
-        "time": "2019-05-28T07:04:33.810Z"
+        "time": "2019-05-31T23:01:58.953Z"
       }
     ],
     "totalTxs": 5,
@@ -498,7 +498,7 @@
           null
         ],
         "code": 0,
-        "time": "2019-05-28T07:04:33.810Z"
+        "time": "2019-05-31T23:01:58.953Z"
       },
       {
         "tx": {
@@ -540,7 +540,7 @@
           null
         ],
         "code": 0,
-        "time": "2019-05-28T07:04:33.810Z"
+        "time": "2019-05-31T23:01:58.953Z"
       }
     ],
     "txsHashes": [
@@ -617,7 +617,7 @@
     {
       "height": 5,
       "numTxs": 2,
-      "time": "2019-05-28T07:04:33.810Z",
+      "time": "2019-05-31T23:01:58.953Z",
       "appHash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
       "proposer": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
       "totalTxs": 5,
@@ -640,7 +640,7 @@
     {
       "height": 5,
       "numTxs": 2,
-      "time": "2019-05-28T07:04:33.810Z",
+      "time": "2019-05-31T23:01:58.953Z",
       "appHash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
       "proposer": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
       "totalTxs": 5,
@@ -957,8 +957,8 @@
     "context": {
       "genesisTx": "arcblock",
       "renaissanceTx": "arcblock",
-      "genesisTime": "2019-05-28T07:04:33.811Z",
-      "renaissanceTime": "2019-05-28T07:04:33.811Z"
+      "genesisTime": "2019-05-31T23:01:58.954Z",
+      "renaissanceTime": "2019-05-31T23:01:58.954Z"
     },
     "issuer": "arcblock",
     "migratedTo": [
@@ -1051,7 +1051,7 @@
     "readonly": true,
     "transferrable": true,
     "ttl": 2,
-    "consumedTime": "2019-05-28T07:04:33.811Z",
+    "consumedTime": "2019-05-31T23:01:58.954Z",
     "issuer": "arcblock",
     "parent": "arcblock",
     "stake": {
@@ -1079,8 +1079,8 @@
     "context": {
       "genesisTx": "arcblock",
       "renaissanceTx": "arcblock",
-      "genesisTime": "2019-05-28T07:04:33.811Z",
-      "renaissanceTime": "2019-05-28T07:04:33.811Z"
+      "genesisTime": "2019-05-31T23:01:58.954Z",
+      "renaissanceTime": "2019-05-31T23:01:58.954Z"
     },
     "data": {
       "type": "string",
@@ -1179,8 +1179,8 @@
     "context": {
       "genesisTx": "arcblock",
       "renaissanceTx": "arcblock",
-      "genesisTime": "2019-05-28T07:04:33.811Z",
-      "renaissanceTime": "2019-05-28T07:04:33.811Z"
+      "genesisTime": "2019-05-31T23:01:58.955Z",
+      "renaissanceTime": "2019-05-31T23:01:58.955Z"
     },
     "data": {
       "type": "string",
@@ -1231,8 +1231,8 @@
     "context": {
       "genesisTx": "arcblock",
       "renaissanceTx": "arcblock",
-      "genesisTime": "2019-05-28T07:04:33.811Z",
-      "renaissanceTime": "2019-05-28T07:04:33.811Z"
+      "genesisTime": "2019-05-31T23:01:58.955Z",
+      "renaissanceTime": "2019-05-31T23:01:58.955Z"
     },
     "data": {
       "type": "string",
@@ -1324,8 +1324,8 @@
         "context": {
           "genesisTx": "arcblock",
           "renaissanceTx": "arcblock",
-          "genesisTime": "2019-05-28T07:04:33.811Z",
-          "renaissanceTime": "2019-05-28T07:04:33.811Z"
+          "genesisTime": "2019-05-31T23:01:58.955Z",
+          "renaissanceTime": "2019-05-31T23:01:58.955Z"
         }
       }
     },
@@ -1424,7 +1424,7 @@
     "depositor": "arcblock",
     "withdrawer": "arcblock",
     "target": "arcblock",
-    "locktime": "2019-05-28T07:04:33.811Z",
+    "locktime": "2019-05-31T23:01:58.955Z",
     "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55"
   }
 }
@@ -1551,7 +1551,7 @@
     "appHash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
     "blockHash": {},
     "blockHeight": 5,
-    "blockTime": "2019-05-28T07:04:33.810Z",
+    "blockTime": "2019-05-31T23:01:58.954Z",
     "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
     "votingPower": 5,
     "totalTxs": 5,
@@ -1600,7 +1600,7 @@
     "appHash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
     "blockHash": {},
     "blockHeight": 5,
-    "blockTime": "2019-05-28T07:04:33.810Z",
+    "blockTime": "2019-05-31T23:01:58.954Z",
     "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
     "votingPower": 5,
     "totalTxs": 5,
@@ -1693,7 +1693,7 @@
         null
       ],
       "code": 0,
-      "time": "2019-05-28T07:04:33.810Z"
+      "time": "2019-05-31T23:01:58.954Z"
     },
     {
       "tx": {
@@ -1735,7 +1735,7 @@
         null
       ],
       "code": 0,
-      "time": "2019-05-28T07:04:33.810Z"
+      "time": "2019-05-31T23:01:58.954Z"
     }
   ]
 }
@@ -2063,12 +2063,14 @@
  * Structure of GRpcClient.RequestGetConfig
  *
 ```javascript
-{}
+{
+  "parsed": true
+}
 ```
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.RequestGetConfig
-
+ * @prop {boolean} parsed
  */
 
 /**
@@ -2900,7 +2902,7 @@
       "depositor": "arcblock",
       "withdrawer": "arcblock",
       "target": "arcblock",
-      "locktime": "2019-05-28T07:04:33.812Z",
+      "locktime": "2019-05-31T23:01:58.956Z",
       "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55"
     },
     {
@@ -2910,7 +2912,7 @@
       "depositor": "arcblock",
       "withdrawer": "arcblock",
       "target": "arcblock",
-      "locktime": "2019-05-28T07:04:33.812Z",
+      "locktime": "2019-05-31T23:01:58.956Z",
       "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55"
     }
   ]
@@ -3159,8 +3161,6 @@
  * @prop {Array<GRpcClient.KVPair>} tags
  * @prop {GRpcClient.StatusCode} code
  * @prop {GRpcClient.Timestamp} time
- * @prop {GRpcClient.ExtraCreateAsset} createAsset
- * @prop {GRpcClient.ExtraAccountMigrate} accountMigrate
  */
 
 /**
@@ -4021,22 +4021,6 @@
  */
 
 /**
- * Structure of GRpcClient.ExtraCreateAsset
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.ExtraCreateAsset
- * @prop {string} asset
- */
-
-/**
- * Structure of GRpcClient.ExtraAccountMigrate
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.ExtraAccountMigrate
- * @prop {string} address
- */
-
-/**
  * Structure of GRpcClient.AssetSpec
  *
  * @memberof GRpcClient
@@ -4212,7 +4196,7 @@
 {
   "target": "arcblock",
   "withdrawer": "arcblock",
-  "locktime": "2019-05-28T07:04:33.814Z"
+  "locktime": "2019-05-31T23:01:58.959Z"
 }
 ```
  *
@@ -4253,7 +4237,7 @@
       "arcblock"
     ]
   },
-  "expiredAt": "2019-05-28T07:04:33.814Z",
+  "expiredAt": "2019-05-31T23:01:58.959Z",
   "data": {
     "type": "string",
     "value": "ABCD 1234"
@@ -4328,7 +4312,7 @@
       }
     }
   },
-  "expiredAt": "2019-05-28T07:04:33.814Z",
+  "expiredAt": "2019-05-31T23:01:58.959Z",
   "data": {
     "type": "string",
     "value": "ABCD 1234"
@@ -4557,7 +4541,7 @@
     ],
     "tether": "arcblock"
   },
-  "expiredAt": "2019-05-28T07:04:33.815Z",
+  "expiredAt": "2019-05-31T23:01:58.959Z",
   "data": {
     "type": "string",
     "value": "ABCD 1234"
@@ -4853,39 +4837,6 @@
  * @prop {number} gasUsed
  * @prop {Array<GRpcClient.KVPair>} tags
  * @prop {string} codespace
- */
-
-/**
- * Structure of GRpcClient.RequestPing
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.RequestPing
-
- */
-
-/**
- * Structure of GRpcClient.RequestBroadcastTx
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.RequestBroadcastTx
- * @prop {Uint8Array} tx
- */
-
-/**
- * Structure of GRpcClient.ResponsePing
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.ResponsePing
-
- */
-
-/**
- * Structure of GRpcClient.ResponseBroadcastTx
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.ResponseBroadcastTx
- * @prop {GRpcClient.ResponseCheckTx} checkTx
- * @prop {GRpcClient.ResponseDeliverTx} deliverTx
  */
 
 /**
