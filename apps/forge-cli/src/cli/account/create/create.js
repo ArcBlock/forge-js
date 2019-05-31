@@ -1,19 +1,9 @@
-const fuzzy = require('fuzzy');
 const chalk = require('chalk');
 const shell = require('shelljs');
 const inquirer = require('inquirer');
 const { config, createRpcClient, cache } = require('core/env');
 const { symbols, hr, pretty } = require('core/ui');
 const { enums } = require('@arcblock/forge-proto');
-inquirer.registerPrompt('autocomplete', require('inquirer-autocomplete-prompt'));
-
-function source(answers, input = '', type) {
-  const origins = Object.keys(enums[type]);
-  return new Promise(resolve => {
-    const fuzzyResult = fuzzy.filter(input, origins);
-    resolve(fuzzyResult.map(el => el.original));
-  });
-}
 
 const questions = [
   {
@@ -39,31 +29,25 @@ const questions = [
     },
   },
   {
-    type: 'autocomplete',
+    type: 'list',
     name: 'role',
     default: enums.RoleType.ROLE_ACCOUNT,
-    message: 'Please select a account role type?',
-    source(answersSoFar, input) {
-      return source(answersSoFar, input, 'RoleType');
-    },
+    message: 'Please select a role type:',
+    choices: Object.keys(enums.RoleType),
   },
   {
-    type: 'autocomplete',
+    type: 'list',
     name: 'pk',
     default: enums.KeyType.ED25519,
-    message: 'Please select a key pair algorithm?',
-    source(answersSoFar, input) {
-      return source(answersSoFar, input, 'KeyType');
-    },
+    message: 'Please select a key pair algorithm:',
+    choices: Object.keys(enums.KeyType),
   },
   {
-    type: 'autocomplete',
+    type: 'list',
     name: 'hash',
     default: enums.HashType.SHA3,
-    message: 'Please select a hash algorithm?',
-    source(answersSoFar, input) {
-      return source(answersSoFar, input, 'HashType');
-    },
+    message: 'Please select a hash algorithm:',
+    choices: Object.keys(enums.HashType),
   },
 ];
 
@@ -78,8 +62,8 @@ async function execute(data) {
       type: {
         pk: enums.KeyType[pk],
         hash: enums.HashType[hash],
-        address: enums.EncodingType.BASE58,
         role: enums.RoleType[role],
+        address: enums.EncodingType.BASE58,
       },
     });
     shell.echo(hr);
