@@ -737,7 +737,9 @@ declare namespace forge_abi {
     code: forge_abi.StatusCode;
   }
 
-  export interface RequestGetConfig {}
+  export interface RequestGetConfig {
+    parsed: boolean;
+  }
 
   export interface ResponseGetConfig {
     code: forge_abi.StatusCode;
@@ -988,8 +990,6 @@ declare namespace forge_abi {
     tags: Array<abci_vendor.KVPair>;
     code: forge_abi.StatusCode;
     time: google.protobuf.Timestamp;
-    createAsset: forge_abi.ExtraCreateAsset;
-    accountMigrate: forge_abi.ExtraAccountMigrate;
   }
 
   export interface DeclareConfig {
@@ -1519,14 +1519,6 @@ declare namespace forge_abi {
     data: google.protobuf.Any;
   }
 
-  export interface ExtraCreateAsset {
-    asset: string;
-  }
-
-  export interface ExtraAccountMigrate {
-    address: string;
-  }
-
   export interface AssetSpec {
     address: string;
     data: string;
@@ -1839,19 +1831,6 @@ declare namespace abci_vendor {
     gasUsed: abci_vendor.int64;
     tags: Array<abci_vendor.KVPair>;
     codespace: string;
-  }
-
-  export interface RequestPing {}
-
-  export interface RequestBroadcastTx {
-    tx: Uint8Array;
-  }
-
-  export interface ResponsePing {}
-
-  export interface ResponseBroadcastTx {
-    checkTx: abci_vendor.ResponseCheckTx;
-    deliverTx: abci_vendor.ResponseDeliverTx;
   }
 }
 

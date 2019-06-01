@@ -1,6 +1,6 @@
 # Forge GraphQL API List
 
-> Updated on 2019-05-29T03:20:18.800Z
+> Updated on 2019-05-31T23:24:42.323Z
 
 
 ## Table of Contents
@@ -31,6 +31,7 @@
   * [listAssets](#listassets)
   * [listBlocks](#listblocks)
   * [listStakes](#liststakes)
+  * [listTethers](#listtethers)
   * [listTopAccounts](#listtopaccounts)
   * [listTransactions](#listtransactions)
 * [Subscriptions](#subscriptions)
@@ -1831,13 +1832,13 @@ No arguments
 
 #### Arguments
 
-No arguments
+* **parsed**, optional, 
 
 #### Result Format
 
 ```graphql
 {
-  getConfig {
+  getConfig(parsed: true) {
     code
     config
   }
@@ -4699,6 +4700,44 @@ No arguments
       renaissanceTime
       sender
       type
+    }
+  }
+}
+```
+
+### listTethers
+
+#### Arguments
+
+* **available**, optional, 
+* **custodian**, optional, 
+* **depositor**, optional, 
+* **paging**, optional, 
+* **withdrawer**, optional, 
+
+#### Result Format
+
+```graphql
+{
+  listTethers(available: true, custodian: "abc", depositor: "abc", paging: "abc", withdrawer: "abc") {
+    code
+    page {
+      cursor
+      next
+      total
+    }
+    tethers {
+      address
+      available
+      charge
+      commission
+      custodian
+      depositor
+      hash
+      locktime
+      target
+      value
+      withdrawer
     }
   }
 }

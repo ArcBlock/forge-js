@@ -34,6 +34,7 @@
  * //   listAssets,
  * //   listBlocks,
  * //   listStakes,
+ * //   listTethers,
  * //   listTopAccounts,
  * //   listTransactions,
  * // ]
@@ -1331,7 +1332,7 @@
  * Checkout the following snippet for the format of ResponseGetAccountState:
  * ```json
 {
-  "code": "UNSUPPORTED_STAKE",
+  "code": "INVALID_SIGNER_STATE",
   "state": {
     "address": "abc",
     "balance": "abc",
@@ -1341,7 +1342,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "UNSUPPORTED_STAKE",
+        "code": "INVALID_SIGNER_STATE",
         "createAsset": {
           "asset": "abc"
         },
@@ -1379,7 +1380,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "UNSUPPORTED_STAKE",
+        "code": "INVALID_SIGNER_STATE",
         "createAsset": {
           "asset": "abc"
         },
@@ -1479,7 +1480,7 @@
  * Checkout the following snippet for the format of ResponseGetAssetState:
  * ```json
 {
-  "code": "UNSUPPORTED_STAKE",
+  "code": "INVALID_SIGNER_STATE",
   "state": {
     "address": "abc",
     "consumedTime": "2019-04-29T00:00:00.000Z",
@@ -1489,7 +1490,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "UNSUPPORTED_STAKE",
+        "code": "INVALID_SIGNER_STATE",
         "createAsset": {
           "asset": "abc"
         },
@@ -1527,7 +1528,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "UNSUPPORTED_STAKE",
+        "code": "INVALID_SIGNER_STATE",
         "createAsset": {
           "asset": "abc"
         },
@@ -1622,7 +1623,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "UNSUPPORTED_STAKE",
+        "code": "INVALID_SIGNER_STATE",
         "createAsset": {
           "asset": "abc"
         },
@@ -1678,7 +1679,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "UNSUPPORTED_STAKE",
+        "code": "INVALID_SIGNER_STATE",
         "createAsset": {
           "asset": "abc"
         },
@@ -1721,7 +1722,7 @@
       "block": "abc"
     }
   },
-  "code": "UNSUPPORTED_STAKE"
+  "code": "INVALID_SIGNER_STATE"
 }
  * ```
  *
@@ -1771,7 +1772,7 @@
       }
     }
   ],
-  "code": "UNSUPPORTED_STAKE",
+  "code": "INVALID_SIGNER_STATE",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -1793,7 +1794,7 @@
  * Checkout the following snippet for the format of ResponseGetChainInfo:
  * ```json
 {
-  "code": "UNSUPPORTED_STAKE",
+  "code": "INVALID_SIGNER_STATE",
   "info": {
     "address": "abc",
     "appHash": "abc",
@@ -1833,7 +1834,7 @@
  * Checkout the following snippet for the format of ResponseGetConfig:
  * ```json
 {
-  "code": "UNSUPPORTED_STAKE",
+  "code": "INVALID_SIGNER_STATE",
   "config": "abc"
 }
  * ```
@@ -1850,7 +1851,7 @@
  * Checkout the following snippet for the format of ResponseGetForgeState:
  * ```json
 {
-  "code": "UNSUPPORTED_STAKE",
+  "code": "INVALID_SIGNER_STATE",
   "state": {
     "address": "abc",
     "consensus": {
@@ -1901,7 +1902,7 @@
               "accountMigrate": {
                 "address": "abc"
               },
-              "code": "UNSUPPORTED_STAKE",
+              "code": "INVALID_SIGNER_STATE",
               "createAsset": {
                 "asset": "abc"
               },
@@ -1939,7 +1940,7 @@
               "accountMigrate": {
                 "address": "abc"
               },
-              "code": "UNSUPPORTED_STAKE",
+              "code": "INVALID_SIGNER_STATE",
               "createAsset": {
                 "asset": "abc"
               },
@@ -2034,7 +2035,7 @@
  * Checkout the following snippet for the format of ResponseGetForgeStats:
  * ```json
 {
-  "code": "UNSUPPORTED_STAKE",
+  "code": "INVALID_SIGNER_STATE",
   "forgeStats": {
     "avgBlockTime": 123,
     "avgTps": 123,
@@ -2106,7 +2107,7 @@
  * Checkout the following snippet for the format of ResponseGetHealthStatus:
  * ```json
 {
-  "code": "UNSUPPORTED_STAKE",
+  "code": "INVALID_SIGNER_STATE",
   "healthStatus": {
     "consensus": {
       "blockHeight": "abc",
@@ -2151,7 +2152,7 @@
  * Checkout the following snippet for the format of ResponseGetNetInfo:
  * ```json
 {
-  "code": "UNSUPPORTED_STAKE",
+  "code": "INVALID_SIGNER_STATE",
   "netInfo": {
     "listeners": [
       "abc"
@@ -2189,7 +2190,7 @@
  * Checkout the following snippet for the format of ResponseGetNodeInfo:
  * ```json
 {
-  "code": "UNSUPPORTED_STAKE",
+  "code": "INVALID_SIGNER_STATE",
   "info": {
     "address": "abc",
     "appHash": "abc",
@@ -2237,7 +2238,7 @@
  * Checkout the following snippet for the format of ResponseGetProtocolState:
  * ```json
 {
-  "code": "UNSUPPORTED_STAKE",
+  "code": "INVALID_SIGNER_STATE",
   "state": {
     "address": "abc",
     "context": {
@@ -2246,7 +2247,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "UNSUPPORTED_STAKE",
+        "code": "INVALID_SIGNER_STATE",
         "createAsset": {
           "asset": "abc"
         },
@@ -2284,7 +2285,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "UNSUPPORTED_STAKE",
+        "code": "INVALID_SIGNER_STATE",
         "createAsset": {
           "asset": "abc"
         },
@@ -2377,7 +2378,7 @@
  * Checkout the following snippet for the format of ResponseGetProtocols:
  * ```json
 {
-  "code": "UNSUPPORTED_STAKE",
+  "code": "INVALID_SIGNER_STATE",
   "protocols": [
     {
       "address": "abc",
@@ -2425,7 +2426,7 @@
  * Checkout the following snippet for the format of ResponseGetSimulatorStatus:
  * ```json
 {
-  "code": "UNSUPPORTED_STAKE",
+  "code": "INVALID_SIGNER_STATE",
   "result": "abc"
 }
  * ```
@@ -2442,7 +2443,7 @@
  * Checkout the following snippet for the format of ResponseGetStakeState:
  * ```json
 {
-  "code": "UNSUPPORTED_STAKE",
+  "code": "INVALID_SIGNER_STATE",
   "state": {
     "address": "abc",
     "balance": "abc",
@@ -2452,7 +2453,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "UNSUPPORTED_STAKE",
+        "code": "INVALID_SIGNER_STATE",
         "createAsset": {
           "asset": "abc"
         },
@@ -2490,7 +2491,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "UNSUPPORTED_STAKE",
+        "code": "INVALID_SIGNER_STATE",
         "createAsset": {
           "asset": "abc"
         },
@@ -2547,7 +2548,7 @@
  * Checkout the following snippet for the format of ResponseGetTetherState:
  * ```json
 {
-  "code": "UNSUPPORTED_STAKE",
+  "code": "INVALID_SIGNER_STATE",
   "state": {
     "address": "abc",
     "available": true,
@@ -2576,12 +2577,12 @@
  * Checkout the following snippet for the format of ResponseGetTx:
  * ```json
 {
-  "code": "UNSUPPORTED_STAKE",
+  "code": "INVALID_SIGNER_STATE",
   "info": {
     "accountMigrate": {
       "address": "abc"
     },
-    "code": "UNSUPPORTED_STAKE",
+    "code": "INVALID_SIGNER_STATE",
     "createAsset": {
       "asset": "abc"
     },
@@ -2629,7 +2630,7 @@
  * Checkout the following snippet for the format of ResponseGetUnconfirmedTxs:
  * ```json
 {
-  "code": "UNSUPPORTED_STAKE",
+  "code": "INVALID_SIGNER_STATE",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -2674,7 +2675,7 @@
  * Checkout the following snippet for the format of ResponseGetValidatorsInfo:
  * ```json
 {
-  "code": "UNSUPPORTED_STAKE",
+  "code": "INVALID_SIGNER_STATE",
   "validatorsInfo": {
     "blockHeight": "abc",
     "validators": [
@@ -2711,7 +2712,7 @@
  * Checkout the following snippet for the format of ResponseListAssetTransactions:
  * ```json
 {
-  "code": "UNSUPPORTED_STAKE",
+  "code": "INVALID_SIGNER_STATE",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -2719,7 +2720,7 @@
   },
   "transactions": [
     {
-      "code": "UNSUPPORTED_STAKE",
+      "code": "INVALID_SIGNER_STATE",
       "hash": "abc",
       "receiver": "abc",
       "sender": "abc",
@@ -2790,7 +2791,7 @@
       "renaissanceTime": "abc"
     }
   ],
-  "code": "UNSUPPORTED_STAKE",
+  "code": "INVALID_SIGNER_STATE",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -2822,7 +2823,7 @@
       "time": "abc"
     }
   ],
-  "code": "UNSUPPORTED_STAKE",
+  "code": "INVALID_SIGNER_STATE",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -2844,7 +2845,7 @@
  * Checkout the following snippet for the format of ResponseListStakes:
  * ```json
 {
-  "code": "UNSUPPORTED_STAKE",
+  "code": "INVALID_SIGNER_STATE",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -2873,6 +2874,43 @@
  */
 
 /**
+ * Structure of GraphQLClient.ResponseListTethers
+ *
+ * Checkout the following snippet for the format of ResponseListTethers:
+ * ```json
+{
+  "code": "INVALID_SIGNER_STATE",
+  "page": {
+    "cursor": "abc",
+    "next": true,
+    "total": 123
+  },
+  "tethers": [
+    {
+      "address": "abc",
+      "available": true,
+      "charge": "abc",
+      "commission": "abc",
+      "custodian": "abc",
+      "depositor": "abc",
+      "hash": "abc",
+      "locktime": "2019-04-29T00:00:00.000Z",
+      "target": "abc",
+      "value": "abc",
+      "withdrawer": "abc"
+    }
+  ]
+}
+ * ```
+ *
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.ResponseListTethers
+ * @property {...GraphQLClient.StatusCode} code
+ * @property {...GraphQLClient.PageInfo} page
+ * @property {Array<...GraphQLClient.TetherState>} tethers
+ */
+
+/**
  * Structure of GraphQLClient.ResponseListTopAccounts
  *
  * Checkout the following snippet for the format of ResponseListTopAccounts:
@@ -2898,7 +2936,7 @@
       "totalUnstakes": "abc"
     }
   ],
-  "code": "UNSUPPORTED_STAKE",
+  "code": "INVALID_SIGNER_STATE",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -2920,7 +2958,7 @@
  * Checkout the following snippet for the format of ResponseListTransactions:
  * ```json
 {
-  "code": "UNSUPPORTED_STAKE",
+  "code": "INVALID_SIGNER_STATE",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -2928,7 +2966,7 @@
   },
   "transactions": [
     {
-      "code": "UNSUPPORTED_STAKE",
+      "code": "INVALID_SIGNER_STATE",
       "hash": "abc",
       "receiver": "abc",
       "sender": "abc",
@@ -2971,7 +3009,7 @@
  * Checkout the following snippet for the format of ResponseSendTx:
  * ```json
 {
-  "code": "UNSUPPORTED_STAKE",
+  "code": "INVALID_SIGNER_STATE",
   "hash": "abc"
 }
  * ```
@@ -2988,7 +3026,7 @@
  * Checkout the following snippet for the format of ResponseStartSimulator:
  * ```json
 {
-  "code": "UNSUPPORTED_STAKE"
+  "code": "INVALID_SIGNER_STATE"
 }
  * ```
  *
@@ -3003,7 +3041,7 @@
  * Checkout the following snippet for the format of ResponseStopSimulator:
  * ```json
 {
-  "code": "UNSUPPORTED_STAKE"
+  "code": "INVALID_SIGNER_STATE"
 }
  * ```
  *
@@ -3045,7 +3083,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "UNSUPPORTED_STAKE",
+        "code": "INVALID_SIGNER_STATE",
         "createAsset": {
           "asset": "abc"
         },
@@ -3083,7 +3121,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "UNSUPPORTED_STAKE",
+        "code": "INVALID_SIGNER_STATE",
         "createAsset": {
           "asset": "abc"
         },
@@ -3177,7 +3215,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "UNSUPPORTED_STAKE",
+        "code": "INVALID_SIGNER_STATE",
         "createAsset": {
           "asset": "abc"
         },
@@ -3215,7 +3253,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "UNSUPPORTED_STAKE",
+        "code": "INVALID_SIGNER_STATE",
         "createAsset": {
           "asset": "abc"
         },
@@ -3338,7 +3376,7 @@
       ]
     }
   },
-  "code": "UNSUPPORTED_STAKE",
+  "code": "INVALID_SIGNER_STATE",
   "confirm": {
     "chainId": "abc",
     "from": "abc",
@@ -3500,7 +3538,7 @@
               "accountMigrate": {
                 "address": "abc"
               },
-              "code": "UNSUPPORTED_STAKE",
+              "code": "INVALID_SIGNER_STATE",
               "createAsset": {
                 "asset": "abc"
               },
@@ -3538,7 +3576,7 @@
               "accountMigrate": {
                 "address": "abc"
               },
-              "code": "UNSUPPORTED_STAKE",
+              "code": "INVALID_SIGNER_STATE",
               "createAsset": {
                 "asset": "abc"
               },
@@ -3626,7 +3664,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "UNSUPPORTED_STAKE",
+        "code": "INVALID_SIGNER_STATE",
         "createAsset": {
           "asset": "abc"
         },
@@ -3664,7 +3702,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "UNSUPPORTED_STAKE",
+        "code": "INVALID_SIGNER_STATE",
         "createAsset": {
           "asset": "abc"
         },
@@ -3787,7 +3825,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "UNSUPPORTED_STAKE",
+        "code": "INVALID_SIGNER_STATE",
         "createAsset": {
           "asset": "abc"
         },
@@ -3825,7 +3863,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "UNSUPPORTED_STAKE",
+        "code": "INVALID_SIGNER_STATE",
         "createAsset": {
           "asset": "abc"
         },
@@ -3956,7 +3994,7 @@
  * Checkout the following snippet for the format of ResponseUnsubscribe:
  * ```json
 {
-  "code": "UNSUPPORTED_STAKE"
+  "code": "INVALID_SIGNER_STATE"
 }
  * ```
  *
@@ -4513,6 +4551,21 @@
  */
 
 /**
+ * Structure of GraphQLClient.GetConfigParams
+ *
+ * Checkout the following snippet for the format of GetConfigParams:
+ * ```json
+{
+  "parsed": true
+}
+ * ```
+ *
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.GetConfigParams
+ * @property {boolean} parsed
+ */
+
+/**
  * Structure of GraphQLClient.GetForgeStateParams
  *
  * Checkout the following snippet for the format of GetForgeStateParams:
@@ -4733,6 +4786,29 @@
  * @typedef {object} GraphQLClient.ListStakesParams
  * @property {...GraphQLClient.AddressFilter} addressFilter
  * @property {...GraphQLClient.PageInput} paging
+ */
+
+/**
+ * Structure of GraphQLClient.ListTethersParams
+ *
+ * Checkout the following snippet for the format of ListTethersParams:
+ * ```json
+{
+  "available": true,
+  "custodian": "abc",
+  "depositor": "abc",
+  "paging": "abc",
+  "withdrawer": "abc"
+}
+ * ```
+ *
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.ListTethersParams
+ * @property {boolean} available
+ * @property {string} custodian
+ * @property {string} depositor
+ * @property {string} paging
+ * @property {string} withdrawer
  */
 
 /**
@@ -5483,6 +5559,7 @@
  * getConfig
  *
  * @name GraphQLClient#getConfig
+ * @param {GraphQLClient.GetConfigParams} params
  * @function
  * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseGetConfig>} Checkout {@link GraphQLClient.ResponseGetConfig} for resolved data format
@@ -5670,6 +5747,16 @@
  * @function
  * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseListStakes>} Checkout {@link GraphQLClient.ResponseListStakes} for resolved data format
+ */
+
+/**
+ * listTethers
+ *
+ * @name GraphQLClient#listTethers
+ * @param {GraphQLClient.ListTethersParams} params
+ * @function
+ * @memberof GraphQLClient
+ * @returns {Promise<GraphQLClient.ResponseListTethers>} Checkout {@link GraphQLClient.ResponseListTethers} for resolved data format
  */
 
 /**

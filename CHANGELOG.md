@@ -1,3 +1,12 @@
+## 0.28.3 (June 01, 2019)
+  - chore: upgrade graphql-client with forge v0.28.1
+  - fix: forge_web and simulator not working with forge 0.28.1
+  - chore: upgrade grpc-client with forge v0.28.1
+  - chore: support finding config from both forge release and forge-sdk release
+  - fix: force forge-web stop to be silent
+  - chore: upgrade forge-proto with forge v0.28.1
+  - update readme
+
 ## 0.28.2 (May 31, 2019)
   - fix: did-util is causing www-wallet build failing on netlify
   - update readme

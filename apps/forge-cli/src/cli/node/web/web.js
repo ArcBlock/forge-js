@@ -1,6 +1,6 @@
 /* eslint no-case-declarations:"off" */
 const shell = require('shelljs');
-const { runNativeWebCommand, webUrl, debug } = require('core/env');
+const { runNativeWebCommand, webUrl, debug, sleep } = require('core/env');
 const { symbols } = require('core/ui');
 
 const startWebUI = runNativeWebCommand('start', { silent: true });
@@ -50,6 +50,7 @@ async function main({ args: [action = 'none'], opts }) {
       if (isForgeWebStarted() === false) {
         shell.echo(`${symbols.info} forge web not started yet`);
         await main({ args: ['start'] });
+        await sleep(2000);
       }
       const url = opts.graphql ? `${webUrl()}/api/playground` : webUrl();
       shell.echo(`Opening ${url}...`);

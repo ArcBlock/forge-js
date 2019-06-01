@@ -10711,7 +10711,9 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
    */
   proto.forge_abi.RequestGetConfig.toObject = function(includeInstance, msg) {
     var f,
-      obj = {};
+      obj = {
+        parsed: jspb.Message.getFieldWithDefault(msg, 1, false),
+      };
 
     if (includeInstance) {
       obj.$jspbMessageInstance = msg;
@@ -10745,6 +10747,10 @@ proto.forge_abi.RequestGetConfig.deserializeBinaryFromReader = function(msg, rea
     }
     var field = reader.getFieldNumber();
     switch (field) {
+      case 1:
+        var value = /** @type {boolean} */ (reader.readBool());
+        msg.setParsed(value);
+        break;
       default:
         reader.skipField();
         break;
@@ -10772,6 +10778,25 @@ proto.forge_abi.RequestGetConfig.prototype.serializeBinary = function() {
  */
 proto.forge_abi.RequestGetConfig.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
+  f = message.getParsed();
+  if (f) {
+    writer.writeBool(1, f);
+  }
+};
+
+/**
+ * optional bool parsed = 1;
+ * Note that Boolean fields may be set to 0/1 when serialized from a Java server.
+ * You should avoid comparisons like {@code val === true/false} in those cases.
+ * @return {boolean}
+ */
+proto.forge_abi.RequestGetConfig.prototype.getParsed = function() {
+  return /** @type {boolean} */ (jspb.Message.getFieldWithDefault(this, 1, false));
+};
+
+/** @param {boolean} value */
+proto.forge_abi.RequestGetConfig.prototype.setParsed = function(value) {
+  jspb.Message.setProto3BooleanField(this, 1, value);
 };
 
 /**

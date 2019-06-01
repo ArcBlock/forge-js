@@ -399,7 +399,8 @@ function createFileFinder(keyword, filePath) {
     return '';
   };
 }
-const findReleaseConfig = createFileFinder('forge_sdk', 'priv/forge_release.toml');
+const findReleaseConfig = createFileFinder('forge', 'priv/forge_release.toml');
+const findReleaseConfigOld = createFileFinder('forge_sdk', 'priv/forge_release.toml');
 
 /**
  * Find version of current forge release
@@ -471,7 +472,11 @@ function makeNativeCommandRunner(executable) {
         return process.exit(1);
       }
 
-      const command = `FORGE_CONFIG=${forgeConfigPath} ${binPath} ${subCommand}`;
+      const sockGrpc = get(config, 'forge.sock_grpc') || 'tcp://127.0.0.1:28210';
+      let command = `FORGE_CONFIG=${forgeConfigPath} ${binPath} ${subCommand}`;
+      if (['webBinPath', 'simulatorBinPath'].includes(executable)) {
+        command = `FORGE_CONFIG=${forgeConfigPath} FORGE_SOCK_GRPC=${sockGrpc} ${binPath} ${subCommand}`;
+      }
       debug(`runNativeCommand.${executable}`, command);
       return shell.exec(command, options);
     };
@@ -650,6 +655,7 @@ module.exports = {
   setupEnv,
   requiredDirs,
   findReleaseConfig,
+  findReleaseConfigOld,
   findReleaseVersion,
   createFileFinder,
   ensureRequiredDirs,

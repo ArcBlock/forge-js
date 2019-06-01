@@ -970,7 +970,12 @@
           }
         },
         "RequestGetConfig": {
-          "fields": {}
+          "fields": {
+            "parsed": {
+              "type": "bool",
+              "id": 1
+            }
+          }
         },
         "ResponseGetConfig": {
           "fields": {
@@ -1705,19 +1710,6 @@
             "time": {
               "type": "google.protobuf.Timestamp",
               "id": 7
-            },
-            "createAsset": {
-              "type": "ExtraCreateAsset",
-              "id": 8
-            },
-            "accountMigrate": {
-              "type": "ExtraAccountMigrate",
-              "id": 9
-            }
-          },
-          "oneofs": {
-            "extraMeta": {
-              "oneof": ["createAsset", "accountMigrate"]
             }
           }
         },
@@ -3568,22 +3560,6 @@
             }
           }
         },
-        "ExtraCreateAsset": {
-          "fields": {
-            "asset": {
-              "type": "string",
-              "id": 1
-            }
-          }
-        },
-        "ExtraAccountMigrate": {
-          "fields": {
-            "address": {
-              "type": "string",
-              "id": 1
-            }
-          }
-        },
         "AssetSpec": {
           "fields": {
             "address": {
@@ -4437,32 +4413,6 @@
             "codespace": {
               "type": "string",
               "id": 8
-            }
-          }
-        },
-        "RequestPing": {
-          "fields": {}
-        },
-        "RequestBroadcastTx": {
-          "fields": {
-            "tx": {
-              "type": "bytes",
-              "id": 1
-            }
-          }
-        },
-        "ResponsePing": {
-          "fields": {}
-        },
-        "ResponseBroadcastTx": {
-          "fields": {
-            "checkTx": {
-              "type": "ResponseCheckTx",
-              "id": 1
-            },
-            "deliverTx": {
-              "type": "ResponseDeliverTx",
-              "id": 2
             }
           }
         }

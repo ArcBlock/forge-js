@@ -1,4 +1,4 @@
-// Auto generated code (2019-05-28T06:55:03.693Z), DO NOT EDIT
+// Auto generated code (2019-05-31T11:24:28.257Z), DO NOT EDIT
 const typePb = require('./lib/type_pb.js');
 const enumPb = require('./lib/enum_pb.js');
 const withdrawTetherTxPb = require('./lib/withdraw_tether_tx_pb.js');
