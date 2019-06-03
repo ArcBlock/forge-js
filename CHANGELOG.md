@@ -1,3 +1,7 @@
+## 0.28.5 (June 04, 2019)
+  - chore: use wrap to replace sdk method delegate for compatibility
+  - update readme
+
 ## 0.28.4 (June 03, 2019)
   - chore: add dts generating script
   - fix: typo in grpc-client
