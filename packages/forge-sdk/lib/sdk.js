@@ -23,7 +23,7 @@ const DidUtil = require('@arcblock/did-util');
 
 const debug = require('debug')(`${require('../package.json').name}`);
 
-module.exports = function bootstrap({ message, clients }) {
+module.exports = function bootstrap({ message, clients, proxy }) {
   const connections = {};
 
   const sdk = {
@@ -159,5 +159,6 @@ module.exports = function bootstrap({ message, clients }) {
     };
   };
 
-  return new Proxy(sdk, { get: sdkProxy });
+  // eslint-disable-next-line new-cap
+  return new proxy(sdk, { get: sdkProxy });
 };
