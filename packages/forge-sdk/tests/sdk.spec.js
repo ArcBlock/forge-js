@@ -1,4 +1,6 @@
 /* eslint-disable global-require */
+const { getAllKeys } = require('../lib/sdk');
+
 const sdk = {
   ForgeSDK: require('../index'),
   ForgeSDKLite: require('../lite'),
@@ -49,5 +51,26 @@ Object.keys(sdk).forEach(x => {
     test('should delegate to did-util', async () => {
       expect(typeof SDK.Util.toAssetAddress).toEqual('function');
     });
+  });
+});
+
+describe('#getAllKeys', () => {
+  test('should work with object', () => {
+    expect(getAllKeys(Array.prototype).includes('push')).toBeTruthy();
+  });
+
+  test('includeObjectPrototype option', () => {
+    class Parent {
+      foo() {}
+    }
+
+    class Child extends Parent {
+      bar() {}
+    }
+
+    expect(getAllKeys(Child.prototype).includes('foo')).toBeTruthy();
+    expect(getAllKeys(Child.prototype).includes('bar')).toBeTruthy();
+    expect(getAllKeys(new Child()).includes('foo')).toBeTruthy();
+    expect(getAllKeys(new Child()).includes('bar')).toBeTruthy();
   });
 });
