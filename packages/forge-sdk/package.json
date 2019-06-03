@@ -1,15 +1,11 @@
 {
-  "name": "@arcblock/forge-message",
-  "description": "Utility functions to encode and decode message that can send to forge",
+  "name": "@arcblock/forge-sdk",
+  "description": "Forge javascript SDK packages all-in-one",
   "version": "0.28.3",
   "author": {
     "name": "wangshijun",
     "email": "shijun@arcblock.io",
     "url": "https://github.com/wangshijun"
-  },
-  "engines": {
-    "node": ">=0.10.0",
-    "forge": ">=0.11.1"
   },
   "bugs": {
     "url": "https://github.com/ArcBlock/forge-js/issues",
@@ -19,11 +15,9 @@
     "access": "public"
   },
   "dependencies": {
-    "@arcblock/forge-proto": "^0.28.3",
-    "@arcblock/forge-util": "^0.28.0",
-    "camelcase": "^5.0.0",
-    "debug": "^4.1.1",
-    "google-protobuf": "3.7.0-rc.2"
+    "@arcblock/graphql-client": "^0.28.3",
+    "@arcblock/grpc-client": "^0.28.3",
+    "debug": "^4.1.1"
   },
   "devDependencies": {
     "jest": "^23.5.0",
@@ -42,7 +36,7 @@
       ]
     ]
   },
-  "homepage": "https://github.com/ArcBlock/forge-js/tree/master/packages/forge-message",
+  "homepage": "https://github.com/ArcBlock/forge-js/tree/master/packages/forge-sdk",
   "keywords": [
     "forge",
     "blockchain",
@@ -61,7 +55,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/ArcBlock/forge-js/tree/master/packages/forge-message"
+    "url": "https://github.com/ArcBlock/forge-js/tree/master/packages/forge-sdk"
   },
   "scripts": {
     "lint": "eslint lib *.js tests",
