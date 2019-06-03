@@ -472,7 +472,12 @@ function makeNativeCommandRunner(executable) {
         return process.exit(1);
       }
 
-      const sockGrpc = get(config, 'forge.sock_grpc') || 'tcp://127.0.0.1:28210';
+      const sockGrpc =
+        process.env.FORGE_SOCK_GRPC ||
+        process.env.FORGE_CLI_SOCKET_GRPC ||
+        get(config, 'forge.sock_grpc') ||
+        'tcp://127.0.0.1:28210';
+
       let command = `FORGE_CONFIG=${forgeConfigPath} ${binPath} ${subCommand}`;
       if (['webBinPath', 'simulatorBinPath'].includes(executable)) {
         command = `FORGE_CONFIG=${forgeConfigPath} FORGE_SOCK_GRPC=${sockGrpc} ${binPath} ${subCommand}`;
