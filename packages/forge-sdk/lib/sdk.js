@@ -1,3 +1,4 @@
+/* eslint-disable no-continue */
 /* eslint-disable global-require */
 /**
  * @fileOverview Contains basic helper methods to encode/format/mock a protobuf message
@@ -23,8 +24,119 @@ const DidUtil = require('@arcblock/did-util');
 
 const debug = require('debug')(`${require('../package.json').name}`);
 
-module.exports = function bootstrap({ message, clients, proxy }) {
+/**
+ * Get all keys of an object including its inherited
+ *
+ * @private
+ * @param {*} object
+ * @param {*} opts
+ * @returns
+ */
+const getAllKeys = (object, keyFilter = () => true) => {
+  let getKeys = Object.keys;
+  if (typeof Object.getOwnPropertyNames === 'function') {
+    getKeys = Object.getOwnPropertyNames;
+  }
+
+  let proto = object;
+  const properties = {};
+
+  // eslint-disable-next-line no-cond-assign
+  do {
+    // eslint-disable-next-line no-restricted-syntax
+    for (const key of getKeys(proto)) {
+      if (keyFilter(key)) {
+        properties[key] = true;
+      }
+    }
+  } while ((proto = Object.getPrototypeOf(proto)) && proto !== Object.prototype);
+
+  return Object.keys(properties);
+};
+
+module.exports = ({ message, clients }) => {
   const connections = {};
+
+  /**
+   * Get current connection from connection pool
+   *
+   * @private
+   * @param {string} [conn=undefined] - connection name
+   */
+  const getClient = (conn = undefined) => {
+    const names = Object.keys(connections);
+    if (names.length === 0) {
+      throw new Error('ForgeSDK not connected to any endpoint');
+    }
+
+    if (conn) {
+      if (connections[conn]) {
+        debug('pick connection by name', conn);
+        return connections[conn].client;
+      }
+
+      throw new Error(`ForgeSDK not connected to ${conn}`);
+    }
+
+    for (let i = 0; i < names.length; i++) {
+      if (connections[names[i]].options.default) {
+        debug('pick default connection', names[i]);
+        return connections[names[i]].client;
+      }
+    }
+
+    debug('pick first connection', names[0]);
+    return connections[names[0]].client;
+  };
+
+  /**
+   * Wrap all methods from `source` object and attach them to target object
+   * We can have a much cleaner implementation with ES6 proxy here
+   * But because it's not well supported by js runtime environments yet
+   *
+   * @param {*} source
+   * @param {*} target
+   */
+  const wrapMethods = (source, target) => {
+    if (typeof source !== 'object') {
+      return;
+    }
+
+    // We want all methods on the `source` prototype chain
+    const keys = getAllKeys(source, key => {
+      if (['constructor'].includes(key)) {
+        return false;
+      }
+
+      if (key.startsWith('_')) {
+        return false;
+      }
+
+      if (typeof source[key] !== 'function') {
+        return false;
+      }
+
+      if (target[key]) {
+        return false;
+      }
+
+      return true;
+    });
+
+    keys.forEach(key => {
+      debug('proxy method', key);
+      target[key] = function proxyMethod(...args) {
+        const options = Array.from(args).pop() || {};
+        const client = getClient(options.conn);
+        const method = client[key];
+        if (typeof method === 'function') {
+          return method.apply(client, args);
+        }
+
+        throw new Error(`ForgeSDK.${key} is not supported in current connection`);
+      };
+    });
+  };
 
   const sdk = Object.assign(
     {
@@ -81,82 +193,21 @@ module.exports = function bootstrap({ message, clients, proxy }) {
           const ForgeClient = clients.tcp;
           const client = new ForgeClient(Object.assign({ endpoint }, options));
           connections[name] = { client, options };
+          wrapMethods(client, sdk);
         }
 
         if (['http', 'https'].includes(parsed.protocol)) {
           const ForgeClient = clients.http;
           const client = new ForgeClient(Object.assign({ endpoint }, options));
           connections[name] = { client, options };
+          wrapMethods(client, sdk);
         }
       },
     },
     message
   );
 
-  /**
-   * Get current connection
-   *
-   * @private
-   * @param {string} [conn=undefined] - connection name
-   */
-  const getClient = (conn = undefined) => {
-    const names = Object.keys(connections);
-    if (names.length === 0) {
-      throw new Error('ForgeSDK not connected to any endpoint');
-    }
-
-    if (conn) {
-      if (connections[conn]) {
-        return connections[conn].client;
-      }
-
-      throw new Error(`ForgeSDK not connected to ${conn}`);
-    }
-
-    for (let i = 0; i < names.length; i++) {
-      if (connections[names[i]].options.default) {
-        return connections[names[i]].client;
-      }
-    }
-
-    return connections[names[0]].client;
-  };
-
-  /**
-   * Delegate to util/wallet/clients
-   *
-   * @private
-   * @param {object} target
-   * @param {string} propKey
-   */
-  const sdkProxy = (target, propKey) => {
-    if (propKey === 'Util') {
-      return sdk.Util;
-    }
-
-    if (propKey === 'Wallet') {
-      return sdk.Wallet;
-    }
-
-    // Proxy any further method call to the current connection object
-    return function proxyMethod(...args) {
-      debug('proxy call', propKey);
-      if (propKey === 'connect') {
-        return sdk.connect.apply(null, args);
-      }
-
-      // Delegate to GRpcClient or GraphQLClient
-      const [, options = {}] = args;
-      const client = getClient(options.conn);
-      const method = client[propKey];
-      if (typeof method === 'function') {
-        return method.apply(client, args);
-      }
-
-      throw new Error(`ForgeSDK.${propKey} is not supported in current connection`);
-    };
-  };
-
-  // eslint-disable-next-line new-cap
-  return new proxy(sdk, { get: sdkProxy });
+  return sdk;
 };
+
+module.exports.getAllKeys = getAllKeys;

@@ -21,8 +21,7 @@
     "@arcblock/forge-wallet": "^0.28.4",
     "@arcblock/graphql-client": "^0.28.4",
     "@arcblock/grpc-client": "^0.28.4",
-    "debug": "^4.1.1",
-    "proxy-polyfill": "^0.3.0"
+    "debug": "^4.1.1"
   },
   "devDependencies": {
     "jest": "^23.5.0",
