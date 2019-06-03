@@ -1,3 +1,15 @@
+## 0.28.4 (June 03, 2019)
+  - chore: add dts generating script
+  - fix: typo in grpc-client
+  - chore: add more test case
+  - fix: support customized FORGE_SOCK_GRPC when run forge web and simulator commands
+  - chore: more api on forge sdk
+  - feat: freeze GraphQLClient and GRpcClient instances after initialize
+  - feat: add default wallet type for forge-wallet
+  - chore: expose more from forge-sdk: util/wallet
+  - chore: basic implementation of forge sdk package
+  - update readme
+
 ## 0.28.3 (June 01, 2019)
   - chore: upgrade graphql-client with forge v0.28.1
   - fix: forge_web and simulator not working with forge 0.28.1
