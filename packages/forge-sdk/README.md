@@ -4,13 +4,11 @@
 
 > Forge Javascript SDK packages all in one
 
-
 ## Table of Contents
 
-* [Install](#install)
-* [Usage](#usage)
-* [TODO](#todo)
-
+- [Install](#install)
+- [Usage](#usage)
+- [TODO](#todo)
 
 ## Install
 
@@ -20,21 +18,41 @@ npm i @arcblock/forge-sdk
 yarn add @arcblock/forge-sdk
 ```
 
-
 ## Usage
 
-```js
-ForgeSDK.connect('http://127.0.0.1:8210/api', { name: 'local' });
+### ES5(commonjs)
 
-(async () => {
-  const res = await ForgeSDK.getChainInfo();
-  console.log(res);
-})();
+> Support Node.js
+
+```js
+const ForgeSDK = require('@arcblock/forge-sdk');
+
+ForgeSDK.connect('http://127.0.0.1:8210/api', { name: 'http' });
+ForgeSDK.connect('tcp://127.0.0.1:28210', { name: 'tcp' });
+
+// http as default
+ForgeSDK.getChainInfo().then(console.log);
+ForgeSDK.sendDeclareTx({
+  tx: { itx: { moniker: 'abcd' } },
+  wallet: ForgeSDK.Wallet.fromRandom(),
+}).then(console.log);
+
+// use tcp explicitly
+ForgeSDK.getChainInfo(null, { conn: 'tcp' }).then(console.log);
 ```
 
+### ES6 (lite version)
 
-## TODO
+> Support both node.js and browser
 
-* add test case
-* expose more modules: Util, Wallet, Message
-* generate dts
+```js
+import ForgeSDK from '@arcblock/forge-sdk/lite';
+
+ForgeSDK.connect('https://test.abtnetwork.io/api', { name: 'test' });
+
+ForgeSDK.getChainInfo().then(console.log);
+ForgeSDK.sendDeclareTx({
+  tx: { itx: { moniker: 'abcd' } },
+  wallet: ForgeSDK.Wallet.fromRandom(),
+}).then(console.log);
+```
