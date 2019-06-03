@@ -60,7 +60,7 @@ module.exports = function bootstrap({ message, clients }) {
      */
     connect(endpoint, options = {}) {
       const parsed = url.parse(endpoint);
-      parsed.protocol = (parsed.protocol || '').replace(/:$/, '');
+      parsed.protocol = (parsed.protocol || '').replace(/s?:$/, '');
       debug('parsed endpoint', parsed);
       if (!parsed.protocol || !['tcp', 'http', 'https'].includes(parsed.protocol)) {
         throw new Error(
@@ -148,7 +148,7 @@ module.exports = function bootstrap({ message, clients }) {
       }
 
       // Delegate to GRpcClient or GraphQLClient
-      const [, options] = args;
+      const [, options = {}] = args;
       const client = getClient(options.conn);
       const method = client[propKey];
       if (typeof method === 'function') {
