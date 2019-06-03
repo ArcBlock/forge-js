@@ -8,7 +8,6 @@
 
 - [Install](#install)
 - [Usage](#usage)
-- [TODO](#todo)
 
 ## Install
 
