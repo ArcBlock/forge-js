@@ -113,7 +113,7 @@ declare namespace GRpcClient {
 
   export interface TxParam<T> {
     tx: ItxParam<T>;
-    wallet: GraphQLClient.WalletObject,
+    wallet: GRpcClient.WalletObject,
     signature: string;
   }
 
