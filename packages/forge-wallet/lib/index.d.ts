@@ -1,4 +1,4 @@
-// Generate by [js2dts@0.3.2](https://github.com/whxaxes/js2dts#readme)
+// Generate by [js2dts@0.3.3](https://github.com/whxaxes/js2dts#readme)
 
 /**
  * Generate a wallet from secretKey
@@ -6,7 +6,7 @@
  * @public
  * @static
  * @param {string} sk - the secret key, `hex encoded string`
- * @param {WalletTypeObject} type - wallet type
+ * @param {WalletTypeObject} [type=defaultWalletType] - wallet type
  * @returns {WalletObject} wallet object that can be used to sign/verify/getAddress
  * @example
  * const assert = require('assert');
@@ -23,30 +23,30 @@
  * assert.equal(signature, sig, "signature should match");
  * assert.ok(wallet.verify(message, signature), "signature should be verified");
  */
-declare function fromSecretKey(sk: string, _type: any): WalletObject;
+declare function fromSecretKey(sk: string, _type?: _Lib.T100): WalletObject;
 /**
  * Generate a wallet from publicKey
  *
  * @public
  * @static
  * @param {string} pk - the public key, `hex encoded string`
- * @param {WalletTypeObject} type - wallet type
+ * @param {WalletTypeObject} [type=defaultWalletType] - wallet type
  * @returns {WalletObject} wallet object that can be used to sign/verify/getAddress
  */
-declare function fromPublicKey(pk: string, _type: any): WalletObject;
+declare function fromPublicKey(pk: string, _type?: _Lib.T100): WalletObject;
 /**
  * Generate a wallet by generating a random secretKey
  *
  * @public
  * @static
- * @param {WalletTypeObject} type - wallet type
+ * @param {WalletTypeObject} [type=defaultWalletType] - wallet type
  * @returns {WalletObject} wallet object that can be used to sign/verify/getAddress
  * @example
  * const { fromRandom } = require('@arcblock/forge-wallet');
- * const wallet = fromRandom(type);
+ * const wallet = fromRandom();
  * // Do something with wallet
  */
-declare function fromRandom(_type: any): WalletObject;
+declare function fromRandom(_type?: _Lib.T100): WalletObject;
 /**
  * Generate a wallet from address (did)
  *
@@ -74,7 +74,7 @@ declare function fromAddress(address: string): WalletObject;
  * @returns {WalletObject} wallet object that can be used to sign/verify/getAddress
  * @example
  * const { fromJSON, fromRandom } = require('@arcblock/forge-wallet');
- * const wallet = fromRandom(type);
+ * const wallet = fromRandom();
  * const wallet2 = fromJSON(wallet.toJSON());
  * // wallet2 is identical to wallet
  */
@@ -102,10 +102,10 @@ declare function fromJSON(json: any): WalletObject;
  * @param {object} keyPair - the key pair
  * @param {string} keyPair.sk - the secretKey
  * @param {string} keyPair.pk - the wallet publicKey
- * @param {WalletTypeObject} type - wallet type
+ * @param {WalletTypeObject} [type=defaultWalletType] - wallet type
  * @returns {WalletObject} wallet object that can be used to sign/verify/getAddress
  */
-declare function Wallet(keyPair: _Lib.T100, type: WalletTypeObject): WalletObject;
+declare function Wallet(keyPair: _Lib.T101, type?: WalletTypeObject): WalletObject;
 /**
  * The structure of a forge wallet type
  *
@@ -123,7 +123,7 @@ declare function Wallet(keyPair: _Lib.T100, type: WalletTypeObject): WalletObjec
  *
  * @public
  * @static
- * @param {WalletTypeObject} type
+ * @param {WalletTypeObject} [type=defaultWalletType]
  * @returns {object}
  * @example
  * const assert = require('assert');
@@ -136,9 +136,14 @@ declare function Wallet(keyPair: _Lib.T100, type: WalletTypeObject): WalletObjec
  *   hash: types.HashType.SHA3,
  * });
  */
-declare function WalletType(type: WalletTypeObject): any;
-declare const _Lib: _Lib.T102;
+declare function WalletType(type?: WalletTypeObject): any;
+declare const _Lib: _Lib.T103;
 declare namespace _Lib {
+  export interface T100 {
+    pk: number;
+    role: number;
+    hash: number;
+  }
   export interface WalletTypeObject {
     role: number;
     pk: number;
@@ -153,14 +158,14 @@ declare namespace _Lib {
     toAddress: (...args: any[]) => any;
     toJSON: (...args: any[]) => any;
   }
-  export interface T100 {
+  export interface T101 {
     sk: string;
     pk: string;
   }
-  export interface T101 {
+  export interface T102 {
     [key: string]: any;
   }
-  export interface T102 {
+  export interface T103 {
     fromSecretKey: typeof fromSecretKey;
     fromPublicKey: typeof fromPublicKey;
     fromRandom: typeof fromRandom;

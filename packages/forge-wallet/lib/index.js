@@ -15,6 +15,12 @@ const mapping = {
   address: 'encoding',
 };
 
+const defaultWalletType = {
+  pk: types.KeyType.ED25519,
+  role: types.RoleType.ROLE_ACCOUNT,
+  hash: types.HashType.SHA3,
+};
+
 /**
  * The structure of a forge wallet type
  *
@@ -32,7 +38,7 @@ const mapping = {
  *
  * @public
  * @static
- * @param {WalletTypeObject} type
+ * @param {WalletTypeObject} [type=defaultWalletType]
  * @returns {object}
  * @example
  * const assert = require('assert');
@@ -45,7 +51,7 @@ const mapping = {
  *   hash: types.HashType.SHA3,
  * });
  */
-function WalletType(type) {
+function WalletType(type = defaultWalletType) {
   const { role, pk, hash } = type;
   Object.keys(type).forEach(x => {
     const key = upperFirst(`${mapping[x] || x}Type`);
@@ -57,21 +63,23 @@ function WalletType(type) {
   return { role, pk, hash, address: types.EncodingType.BASE58 };
 }
 
-WalletType.toJSON = type => Object.keys(type).reduce((acc, x) => {
-  const key = upperFirst(`${mapping[x] || x}Type`);
-  const typeStr = Object.keys(types[key]);
-  const typeValues = Object.values(types[key]);
-  acc[x] = typeStr[typeValues.indexOf(type[x])];
-  return acc;
-}, {});
+WalletType.toJSON = type =>
+  Object.keys(type).reduce((acc, x) => {
+    const key = upperFirst(`${mapping[x] || x}Type`);
+    const typeStr = Object.keys(types[key]);
+    const typeValues = Object.values(types[key]);
+    acc[x] = typeStr[typeValues.indexOf(type[x])];
+    return acc;
+  }, {});
 
-WalletType.fromJSON = json => Object.keys(json).reduce((acc, x) => {
-  const key = upperFirst(`${mapping[x] || x}Type`);
-  const typeStr = Object.keys(types[key]);
-  const typeValues = Object.values(types[key]);
-  acc[x] = typeValues[typeStr.indexOf(json[x])];
-  return acc;
-}, {});
+WalletType.fromJSON = json =>
+  Object.keys(json).reduce((acc, x) => {
+    const key = upperFirst(`${mapping[x] || x}Type`);
+    const typeStr = Object.keys(types[key]);
+    const typeValues = Object.values(types[key]);
+    acc[x] = typeValues[typeStr.indexOf(json[x])];
+    return acc;
+  }, {});
 
 /**
  * @public
@@ -96,10 +104,10 @@ WalletType.fromJSON = json => Object.keys(json).reduce((acc, x) => {
  * @param {object} keyPair - the key pair
  * @param {string} keyPair.sk - the secretKey
  * @param {string} keyPair.pk - the wallet publicKey
- * @param {WalletTypeObject} type - wallet type
+ * @param {WalletTypeObject} [type=defaultWalletType] - wallet type
  * @returns {WalletObject} wallet object that can be used to sign/verify/getAddress
  */
-function Wallet(keyPair, type) {
+function Wallet(keyPair, type = defaultWalletType) {
   const signer = getSigner(type.pk);
   const hasher = getHasher(type.hash);
 
@@ -144,7 +152,7 @@ function Wallet(keyPair, type) {
  * @public
  * @static
  * @param {string} sk - the secret key, `hex encoded string`
- * @param {WalletTypeObject} type - wallet type
+ * @param {WalletTypeObject} [type=defaultWalletType] - wallet type
  * @returns {WalletObject} wallet object that can be used to sign/verify/getAddress
  * @example
  * const assert = require('assert');
@@ -161,7 +169,7 @@ function Wallet(keyPair, type) {
  * assert.equal(signature, sig, "signature should match");
  * assert.ok(wallet.verify(message, signature), "signature should be verified");
  */
-function fromSecretKey(sk, _type) {
+function fromSecretKey(sk, _type = defaultWalletType) {
   const type = WalletType(_type);
   const keyPair = { sk, pk: getSigner(type.pk).getPublicKey(sk) };
   return Wallet(keyPair, type);
@@ -173,10 +181,10 @@ function fromSecretKey(sk, _type) {
  * @public
  * @static
  * @param {string} pk - the public key, `hex encoded string`
- * @param {WalletTypeObject} type - wallet type
+ * @param {WalletTypeObject} [type=defaultWalletType] - wallet type
  * @returns {WalletObject} wallet object that can be used to sign/verify/getAddress
  */
-function fromPublicKey(pk, _type) {
+function fromPublicKey(pk, _type = defaultWalletType) {
   return Wallet({ pk }, WalletType(_type));
 }
 
@@ -206,14 +214,14 @@ function fromAddress(address) {
  *
  * @public
  * @static
- * @param {WalletTypeObject} type - wallet type
+ * @param {WalletTypeObject} [type=defaultWalletType] - wallet type
  * @returns {WalletObject} wallet object that can be used to sign/verify/getAddress
  * @example
  * const { fromRandom } = require('@arcblock/forge-wallet');
- * const wallet = fromRandom(type);
+ * const wallet = fromRandom();
  * // Do something with wallet
  */
-function fromRandom(_type) {
+function fromRandom(_type = defaultWalletType) {
   const type = WalletType(_type);
   const signer = getSigner(type.pk);
   const keyPair = signer.genKeyPair();
@@ -229,7 +237,7 @@ function fromRandom(_type) {
  * @returns {WalletObject} wallet object that can be used to sign/verify/getAddress
  * @example
  * const { fromJSON, fromRandom } = require('@arcblock/forge-wallet');
- * const wallet = fromRandom(type);
+ * const wallet = fromRandom();
  * const wallet2 = fromJSON(wallet.toJSON());
  * // wallet2 is identical to wallet
  */
