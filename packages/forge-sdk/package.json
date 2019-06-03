@@ -67,7 +67,7 @@
     "upgrade": "yarn generate-docs && yarn generate-dts && yarn format-docs",
     "generate-docs": "jsdoc2md lib/sdk.js > docs/README.md",
     "format-docs": "remark . -o",
-    "generate-dts": "j2d index.js && j2d lite.js",
+    "generate-dts": "./tools/generate-dts.sh lite && ./tools/generate-dts.sh index",
     "precommit": "CI=1 yarn test",
     "prepush": "CI=1 yarn test",
     "test": "yarn lint && node tools/jest.js",
