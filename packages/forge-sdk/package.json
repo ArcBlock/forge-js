@@ -15,6 +15,10 @@
     "access": "public"
   },
   "dependencies": {
+    "@arcblock/did-util": "^0.28.3",
+    "@arcblock/forge-message": "^0.28.3",
+    "@arcblock/forge-util": "^0.28.0",
+    "@arcblock/forge-wallet": "^0.28.1",
     "@arcblock/graphql-client": "^0.28.3",
     "@arcblock/grpc-client": "^0.28.3",
     "debug": "^4.1.1"

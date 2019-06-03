@@ -13,12 +13,19 @@
  */
 
 const url = require('url');
+const ForgeUtil = require('@arcblock/forge-util');
+const ForgeWallet = require('@arcblock/forge-wallet');
+const DidUtil = require('@arcblock/did-util');
+
 const debug = require('debug')(`${require('../package.json').name}`);
 
-module.exports = function bootstrap(clients) {
+module.exports = function bootstrap({ message, clients }) {
   const connections = {};
 
   const sdk = {
+    Util: Object.assign({}, ForgeUtil, DidUtil),
+    Wallet: ForgeWallet,
+
     /**
      * Connect to a forge grpc/graphql endpoint
      * Then switch the current connection of ForgeSDK to that connection
@@ -99,15 +106,22 @@ module.exports = function bootstrap(clients) {
    * @param {string} propKey
    */
   const methodProxy = (target, propKey) =>
-    function proxyMethod(args, options) {
+    function proxyMethod(...args) {
       if (propKey === 'connect') {
-        return sdk.connect(args, options);
+        return sdk.connect.apply(null, args);
       }
 
+      // Delegate to forge-message
+      if (typeof message[propKey] === 'function') {
+        return message[propKey];
+      }
+
+      // Delegate to GRpcClient or GraphQLClient
+      const [, options] = args;
       const client = getClient(options);
       const method = client[propKey];
       if (typeof method === 'function') {
-        return method.call(client, args);
+        return method.apply(client, args);
       }
 
       throw new Error(`ForgeSDK.${propKey} is not supported in current connection`);

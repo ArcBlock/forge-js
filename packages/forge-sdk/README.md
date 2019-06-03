@@ -10,6 +10,7 @@
   - [Table of Contents](#table-of-contents)
   - [Install](#install)
   - [Usage](#usage)
+  - [TODO](#todo)
 
 ## Install
 
@@ -29,3 +30,9 @@ ForgeSDK.connect('http://127.0.0.1:8210/api', { name: 'local' });
   console.log(res);
 })();
 ```
+
+## TODO
+
+- add test case
+- expose more modules: Util, Wallet, Message
+- generate dts

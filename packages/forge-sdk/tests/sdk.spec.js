@@ -1,4 +1,4 @@
-const { connect } = require('../');
+const { connect } = require('..');
 
 describe('#connect', () => {
   test('should be function', () => {
