@@ -56,6 +56,8 @@ class GRpcClient {
     this._initRpcClients();
     this._initRpcMethods();
     this._initTxMethods();
+
+    Object.freeze(this);
   }
 
   /**
@@ -101,8 +103,8 @@ class GRpcClient {
    * @private
    */
   _initRpcMethods() {
-    Object.keys(rpcs).forEach(x =>
-      Object.keys(rpcs[x].methods).forEach(m => this._initRpcMethod(x, m)));
+    const groups = Object.keys(rpcs);
+    groups.forEach(x => Object.keys(rpcs[x].methods).forEach(m => this._initRpcMethod(x, m)));
   }
 
   _initRpcMethod(group, method) {

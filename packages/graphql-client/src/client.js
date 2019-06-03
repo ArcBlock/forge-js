@@ -63,6 +63,8 @@ class GraphQLClient extends BaseClient {
     this._chainId = chainId;
 
     this._initTxMethods();
+
+    Object.freeze(this);
   }
 
   /**
