@@ -64,8 +64,8 @@
   "scripts": {
     "lint": "eslint lib *.js tests",
     "lint:fix": "eslint --fix lib *.js tests",
-    "upgrade": "yarn format-docs && yarn generate-dts",
-    "generate-docs": "jsdoc2md lib/message.js > docs/README.md",
+    "upgrade": "yarn generate-docs && yarn generate-dts && yarn format-docs",
+    "generate-docs": "jsdoc2md lib/sdk.js > docs/README.md",
     "format-docs": "remark . -o",
     "generate-dts": "j2d index.js && j2d lite.js",
     "precommit": "CI=1 yarn test",

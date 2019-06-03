@@ -3,13 +3,17 @@
  * @fileOverview Contains basic helper methods to encode/format/mock a protobuf message
  * @module @arcblock/forge-sdk
  * @requires @arcblock/forge-util
- * @requires @arcblock/forge-proto
+ * @requires @arcblock/forge-message
+ * @requires @arcblock/forge-wallet
+ * @requires @arcblock/grpc-client
+ * @requires @arcblock/graphql-client
+ * @requires @arcblock/did-util
  * @example
  * yarn add @arcblock/forge-sdk
  *
  * const ForgeSDK = require('@arcblock/forge-sdk');
  * ForgeSDK.connect('tcp://127.0.0.1:28211', { default: true });
- * ForgeSDK.createWallet({});
+ * ForgeSDK.getChainInfo().then(console.log);
  */
 
 const url = require('url');
@@ -23,17 +27,36 @@ module.exports = function bootstrap({ message, clients }) {
   const connections = {};
 
   const sdk = {
+    /**
+     * Helper functions to do encoding/decoding and did address generating
+     *
+     * @public
+     * @see @arcblock/forge-util
+     * @see @arcblock/did-util
+     */
     Util: Object.assign({}, ForgeUtil, DidUtil),
+
+    /**
+     * Helper functions to manipulate wallets
+     *
+     * @public
+     * @see @arcblock/forge-util
+     * @see @arcblock/did-util
+     */
     Wallet: ForgeWallet,
 
     /**
      * Connect to a forge grpc/graphql endpoint
      * Then switch the current connection of ForgeSDK to that connection
      *
+     * @public
+     * @function
      * @param {string} endpoint - endpoint url string
      * @param {object} options - connection config
      * @param {string} options.name - connection name
      * @param {string} options.default - set this connection as default?
+     * @see GraphQLClient for methods available when connected to graphql endpoint
+     * @see GRpcClient for methods available when connected to grpc endpoint
      */
     connect(endpoint, options = {}) {
       const parsed = url.parse(endpoint);
@@ -55,18 +78,14 @@ module.exports = function bootstrap({ message, clients }) {
       debug(`create connection ${endpoint}`);
       if (parsed.protocol === 'tcp') {
         const ForgeClient = clients.tcp;
-        connections[name] = {
-          client: new ForgeClient(Object.assign({ endpoint }, options)),
-          options,
-        };
+        const client = new ForgeClient(Object.assign({ endpoint }, options));
+        connections[name] = { client, options };
       }
 
       if (['http', 'https'].includes(parsed.protocol)) {
         const ForgeClient = clients.http;
-        connections[name] = {
-          client: new ForgeClient(Object.assign({ endpoint }, options)),
-          options,
-        };
+        const client = new ForgeClient(Object.assign({ endpoint }, options));
+        connections[name] = { client, options };
       }
     },
   };
@@ -74,6 +93,7 @@ module.exports = function bootstrap({ message, clients }) {
   /**
    * Get current connection
    *
+   * @private
    * @param {string} [conn=undefined] - connection name
    */
   const getClient = (conn = undefined) => {
@@ -100,25 +120,36 @@ module.exports = function bootstrap({ message, clients }) {
   };
 
   /**
-   * Proxy any further method call to the current connection object
+   * Delegate to util/wallet/clients
    *
+   * @private
    * @param {object} target
    * @param {string} propKey
    */
-  const methodProxy = (target, propKey) =>
-    function proxyMethod(...args) {
+  const sdkProxy = (target, propKey) => {
+    if (propKey === 'Util') {
+      return sdk.Util;
+    }
+
+    if (propKey === 'Wallet') {
+      return sdk.Wallet;
+    }
+
+    // Proxy any further method call to the current connection object
+    return function proxyMethod(...args) {
+      debug('proxy call', propKey);
       if (propKey === 'connect') {
         return sdk.connect.apply(null, args);
       }
 
       // Delegate to forge-message
       if (typeof message[propKey] === 'function') {
-        return message[propKey];
+        return message[propKey].apply(null, args);
       }
 
       // Delegate to GRpcClient or GraphQLClient
       const [, options] = args;
-      const client = getClient(options);
+      const client = getClient(options.conn);
       const method = client[propKey];
       if (typeof method === 'function') {
         return method.apply(client, args);
@@ -126,6 +157,7 @@ module.exports = function bootstrap({ message, clients }) {
 
       throw new Error(`ForgeSDK.${propKey} is not supported in current connection`);
     };
+  };
 
-  return new Proxy(sdk, { get: methodProxy });
+  return new Proxy(sdk, { get: sdkProxy });
 };

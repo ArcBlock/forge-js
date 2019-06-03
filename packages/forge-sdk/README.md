@@ -4,13 +4,13 @@
 
 > Forge Javascript SDK packages all in one
 
+
 ## Table of Contents
 
-- [**@arcblock/forge-sdk**](#arcblockforge-sdk)
-  - [Table of Contents](#table-of-contents)
-  - [Install](#install)
-  - [Usage](#usage)
-  - [TODO](#todo)
+* [Install](#install)
+* [Usage](#usage)
+* [TODO](#todo)
+
 
 ## Install
 
@@ -19,6 +19,7 @@ npm i @arcblock/forge-sdk
 // OR
 yarn add @arcblock/forge-sdk
 ```
+
 
 ## Usage
 
@@ -31,8 +32,9 @@ ForgeSDK.connect('http://127.0.0.1:8210/api', { name: 'local' });
 })();
 ```
 
+
 ## TODO
 
-- add test case
-- expose more modules: Util, Wallet, Message
-- generate dts
+* add test case
+* expose more modules: Util, Wallet, Message
+* generate dts
