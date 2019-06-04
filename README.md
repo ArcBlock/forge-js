@@ -5,9 +5,10 @@
 
 > Javascript SDK for [forge](https://docs.arcblock.io/forge/latest/), which is an awesome framework to write distributed blockchain applications.
 
-> Last updated at 6/4/2019, 1:12:35 AM
+> Last updated at 6/4/2019, 10:08:17 AM
 
 ## Packages Included
+
 
 - [@arcblock/did v0.28.1](./packages/did)
 - [@arcblock/did-auth v0.28.4](./packages/did-auth)
@@ -22,7 +23,79 @@
 - [@arcblock/grpc-client v0.28.4](./packages/grpc-client)
 - [@arcblock/mcrypto v0.28.0](./packages/mcrypto)
 - [@arcblock/tcp-server v0.28.4](./packages/tcp-server)
+
 - [@arcblock/forge-cli v0.28.4](./apps/forge-cli)
+
+## Install
+
+```sh
+npm i @arcblock/forge-sdk
+// OR
+yarn add @arcblock/forge-sdk
+```
+
+
+## Usage
+
+### ES5(commonjs)
+
+> Support Node.js
+
+```js
+const ForgeSDK = require('@arcblock/forge-sdk');
+
+// Connect to multi endpoints
+ForgeSDK.connect('https://test.abtnetwork.io/api', { name: 'test' });
+ForgeSDK.connect('https://zinc.abtnetwork.io/api', { name: 'zinc' });
+ForgeSDK.connect('tcp://127.0.0.1:28210', { name: 'local' });
+
+// Declare on test chain
+ForgeSDK.sendDeclareTx({
+  tx: { itx: { moniker: 'abcd' } },
+  wallet: ForgeSDK.Wallet.fromRandom(),
+}).then(console.log);
+
+// Get zinc chain info
+ForgeSDK.getChainInfo({ conn: 'zinc' }).then(console.log);
+
+// Get local chain info
+ForgeSDK.getChainInfo({ conn: 'local' }).then(console.log);
+```
+
+### ES6
+
+> If you want to support both node.js and browser, please use lite version
+> And the lite version only supports http connections
+
+```js
+import ForgeSDK from '@arcblock/forge-sdk/lite';
+
+ForgeSDK.connect('https://test.abtnetwork.io/api', { name: 'test' });
+
+ForgeSDK.getChainInfo().then(console.log);
+ForgeSDK.sendDeclareTx({
+  tx: { itx: { moniker: 'abcd' } },
+  wallet: ForgeSDK.Wallet.fromRandom(),
+}).then(console.log);
+```
+
+### Util
+
+```javascript
+const ForgeSDK from '@arcblock/forge-sdk';
+
+const bn = ForgeSDK.Util.fromTokenToUnit(10, 16);
+console.log(bn);
+```
+
+### Wallet
+
+```javascript
+const ForgeSDK from '@arcblock/forge-sdk';
+
+const wallet = ForgeSDK.Wallet.fromRandom();
+console.log(wallet.toJSON());
+```
 
 ## Documentation
 
