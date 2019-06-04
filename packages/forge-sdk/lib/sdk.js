@@ -141,7 +141,7 @@ module.exports = ({ message, clients }) => {
   const sdk = Object.assign(
     {
       /**
-       * Helper functions to do encoding/decoding and did address generating
+       * Helper functions to do data encoding/decoding and did address generating
        *
        * @public
        * @see @arcblock/forge-util
