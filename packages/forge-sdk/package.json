@@ -1,7 +1,7 @@
 {
   "name": "@arcblock/forge-sdk",
   "description": "Forge javascript SDK packages all-in-one",
-  "version": "0.28.4",
+  "version": "0.28.5",
   "author": {
     "name": "wangshijun",
     "email": "shijun@arcblock.io",
