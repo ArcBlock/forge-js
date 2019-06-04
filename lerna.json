@@ -2,16 +2,5 @@
   "version": "0.28.5",
   "useWorkspaces": true,
   "npmClient": "yarn",
-  "ignoreChanges": [
-    "**/tools/**",
-    "**/docs/**",
-    "**/test/**",
-    "**/*.md",
-    "README.md"
-  ],
-  "packages": [
-    "packages/*",
-    "examples/*",
-    "apps/*"
-  ]
+  "packages": ["packages/*", "examples/*", "apps/*"]
 }
