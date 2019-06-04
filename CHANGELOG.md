@@ -1,3 +1,7 @@
+## 0.28.8 (June 04, 2019)
+  - chore: update lerna ignore settings
+  - update readme
+
 ## 0.28.7 (June 04, 2019)
 
 
