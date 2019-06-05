@@ -1,3 +1,7 @@
+## 0.28.9 (June 05, 2019)
+  - chore: move forge-cli out of forge-sdk repo
+  - update readme
+
 ## 0.28.8 (June 04, 2019)
   - chore: update lerna ignore settings
   - update readme
