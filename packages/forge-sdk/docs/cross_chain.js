@@ -5,34 +5,100 @@
  * This script demonstrates how to do cross-chain with forge-sdk
  * Run script with: `DEBUG=@arcblock/* node docs/cross_chain.js`
  *
+ * Deploy protocol
+forge protocol:deploy _build/protocols/stake/stake.itx.json
+forge protocol:deploy _build/protocols/deposit_tether/deposit_tether.itx.json
+forge protocol:deploy _build/protocols/exchange_tether/exchange_tether.itx.json
+forge protocol:deploy _build/protocols/withdraw_tether/withdraw_tether.itx.json
+forge protocol:deploy _build/protocols/approve_tether/approve_tether.itx.json
+forge protocol:deploy _build/protocols/revoke_tether/revoke_tether.itx.json
+ *
  * @link https://github.com/ArcBlock/cross-chain/blob/master/src/v2_custodian.md
  */
+const moment = require('moment');
 const ForgeSDK = require('../index');
 
 const { hexToBytes, fromTokenToUnit } = ForgeSDK.Util;
 const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
 
 // Connect application and asset chain
+// ForgeSDK.connect('http://did-workshop.arcblock.co:8220/api', {
+ForgeSDK.connect('http://127.0.0.1:8210/api', {
+  chainId: 'forge',
+  name: 'asset',
+  default: true,
+});
+ForgeSDK.connect('http://did-workshop.arcblock.co:8210/api', {
+  chainId: 'forge_workshop',
+  name: 'app',
+});
+
+const doCheckin = async (wallet, { conn = '' }) =>
+  ForgeSDK.sendPokeTx(
+    {
+      tx: {
+        nonce: 0,
+        itx: {
+          date: moment(new Date().toISOString())
+            .utc()
+            .format('YYYY-MM-DD'),
+          address: 'zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz',
+        },
+      },
+      wallet,
+    },
+    { conn }
+  );
+
+const createAccount = async (moniker, wallet) => {
+  console.log(`${moniker}.prepare`, wallet.toAddress());
+  let hash = await ForgeSDK.sendDeclareTx({ tx: { itx: { moniker } }, wallet }, { conn: 'asset' });
+  console.log(`${moniker}.declare.asset`, hash);
+  hash = await doCheckin(wallet, { conn: 'asset' });
+  console.log(`${moniker}.checkin.asset`, hash);
+
+  hash = await ForgeSDK.sendDeclareTx({ tx: { itx: { moniker } }, wallet }, { conn: 'app' });
+  console.log(`${moniker}.declare.app`, hash);
+  hash = await doCheckin(wallet, { conn: 'app' });
+  console.log(`${moniker}.checkin.app`, hash);
+};
+
+const doCustodianStake = async wallet => {
+  const anchor = 'zyt4TpbBV6kTaoPBggQpytQfBWQHSfuGmYma';
+  console.log('custodian.stake.from', wallet.toAddress());
+  console.log('custodian.stake.to', anchor);
+
+  const stake = {
+    to: anchor,
+    value: ForgeSDK.Util.fromTokenToUnit(10),
+    message: 'custodian stake',
+    address: ForgeSDK.Util.toStakeAddress(wallet.toAddress(), anchor),
+    data: {
+      type: 'stakeForUser',
+      value: {},
+    },
+  };
+  console.log('custodian.stake.address', stake.address);
+
+  const hash = await ForgeSDK.sendStakeTx({ tx: { itx: stake }, wallet }, { conn: 'asset' });
+  console.log('custodian.stake.tx', hash);
+};
 
 (async () => {
   try {
+    // 1. prepare wallets and accounts
     const buyer = ForgeSDK.Wallet.fromRandom(); // alice
     const seller = ForgeSDK.Wallet.fromRandom(); // bob
-    console.log({ buyer: buyer.toJSON(), seller: seller.toJSON() });
+    const custodian = ForgeSDK.Wallet.fromRandom(); // custodian
 
-    // 1. declare buyer
-    let res = await ForgeSDK.sendDeclareTx({
-      tx: { itx: { moniker: 'buyer' } },
-      wallet: buyer,
-    });
-    console.log('declare.buyer.result', res);
+    await createAccount('buyer', buyer);
+    await createAccount('seller', seller);
+    await createAccount('custodian', custodian);
 
-    // 2. declare seller
-    res = await ForgeSDK.sendDeclareTx({
-      tx: { itx: { moniker: 'seller' } },
-      wallet: seller,
-    });
-    console.log('declare.seller.result', res);
+    // 2. stake for custodian
+    await doCustodianStake(custodian);
+
+    return;
 
     // 3. create asset for buyer
     const asset = {
