@@ -1,1 +1,0 @@
-exports.display = require('./display');

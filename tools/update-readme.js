@@ -16,15 +16,6 @@ const packageList = packages.map(x => {
   }
 });
 
-const apps = fs.readdirSync(path.join(__dirname, '../apps'));
-const appList = apps.map(x => {
-  const packageFile = path.join(__dirname, '../apps', x, 'package.json');
-  if (fs.existsSync(packageFile)) {
-    const packageJson = require(packageFile);
-    return `- [${packageJson.name} v${packageJson.version}](./apps/${x})`;
-  }
-});
-
 const readmeFile = path.join(__dirname, '../README.md');
 const readmeContent = `# [forge-javascript-sdk](https://github.com/ArcBlock/forge-js)
 
@@ -37,7 +28,7 @@ const readmeContent = `# [forge-javascript-sdk](https://github.com/ArcBlock/forg
 
 ## Packages Included
 
-${packageList.concat(appList).join('\n')}
+${packageList.join('\n')}
 
 ## Install
 
