@@ -1,3 +1,6 @@
+## 0.28.10 (June 05, 2019)
+  - chore: cleanup forge-cli files
+
 ## 0.28.9 (June 05, 2019)
   - chore: move forge-cli out of forge-sdk repo
   - update readme
