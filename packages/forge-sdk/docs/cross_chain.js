@@ -22,6 +22,9 @@ const ForgeSDK = require('../index');
 const { hexToBytes, bytesToHex, fromTokenToUnit, toStakeAddress } = ForgeSDK.Util;
 const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
 const inspect = d => util.inspect(d, { depth: 8, colors: true });
+const getOffsetTime = days => ({
+  seconds: Math.round(Date.now() / 1000) + days * 24 * 60 * 60,
+});
 
 // This is confuse
 const CHAIN_ID_ASSET = 'forge';
@@ -147,8 +150,6 @@ const doCustodianStake = async wallet => {
       process.exit(1);
       return;
     }
-
-    console.log('custodian stake confirmed', res.info);
     printLine();
 
     // 3. buyer and custodian to do deposit
@@ -160,10 +161,7 @@ const doCustodianStake = async wallet => {
       charge: fromTokenToUnit(0.01), // 回滚手续费
       target: CHAIN_ID_APP,
       withdrawer: seller.toAddress(),
-      locktime: moment()
-        .add(7, 'days')
-        .utc()
-        .toString(),
+      locktime: getOffsetTime(7),
     };
 
     // 3.1 buyer sign the tx
@@ -222,10 +220,7 @@ const doCustodianStake = async wallet => {
 
     // 5.2 assemble exchange tether tx
     const exchange = {
-      expired_at: moment()
-        .add(6, 'days')
-        .utc()
-        .toString(),
+      expiredAt: getOffsetTime(6),
       sender: {
         assets: [assetAddress],
       },
@@ -246,7 +241,7 @@ const doCustodianStake = async wallet => {
       },
       { conn: 'app' }
     );
-    const sellerSignature = buyer.sign(exchangeTxBuffer);
+    const sellerSignature = seller.sign(exchangeTxBuffer);
     exchangeTxObj.signature = Buffer.from(hexToBytes(sellerSignature));
     console.log('sellerSignature', sellerSignature);
 
@@ -268,7 +263,10 @@ const doCustodianStake = async wallet => {
         signature: Buffer.from(hexToBytes(buyerSignature2)),
       },
     ];
-    console.log('exchangeTxNewObj', inspect(ForgeSDK.formatMessage('Transaction', exchangeTxNewObj)));
+    console.log(
+      'exchangeTxNewObj',
+      inspect(ForgeSDK.formatMessage('Transaction', exchangeTxNewObj))
+    );
     console.log('buyerSignature2', buyerSignature2);
 
     // 5.5 seller send the tx
