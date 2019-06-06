@@ -1,13 +1,12 @@
 /* eslint-disable global-require */
-const { isHexStrict, hexToBytes } = require('@arcblock/forge-util');
+const { isHexStrict, stripHexPrefix } = require('@arcblock/forge-util');
 
 const hashFns = {
-  sha224: require('crypto-js/sha224'),
-  sha256: require('crypto-js/sha256'),
-  sha384: require('crypto-js/sha384'),
-  sha512: require('crypto-js/sha512'),
+  sha224: require('hash.js/lib/hash/sha/224'),
+  sha256: require('hash.js/lib/hash/sha/256'),
+  sha384: require('hash.js/lib/hash/sha/384'),
+  sha512: require('hash.js/lib/hash/sha/512'),
 };
-const hex = require('crypto-js/enc-hex');
 
 /**
  * Sha2 support with different hash length
@@ -20,15 +19,17 @@ class Sha2Hasher {
       const name = `hash${x}`;
       const hasher = hashFns[`sha${x}`];
       const hashFn = (data, round) => {
-        const input = isHexStrict(data) ? hexToBytes(data) : data;
+        const input = isHexStrict(data) ? Buffer.from(stripHexPrefix(data), 'hex') : data;
         if (round === 1) {
-          return hasher(input).toString(hex);
+          return `0x${hasher()
+            .update(input)
+            .digest('hex')}`;
         }
 
-        return hashFn(hasher(input), round - 1);
+        return hashFn(hashFn(input, 1), round - 1);
       };
 
-      this[name] = (data, round = 2) => `0x${hashFn(data, round)}`;
+      this[name] = (data, round = 2) => hashFn(data, round);
     });
   }
 }
