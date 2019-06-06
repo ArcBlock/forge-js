@@ -15,26 +15,34 @@ forge protocol:deploy _build/protocols/revoke_tether/revoke_tether.itx.json
  *
  * @link https://github.com/ArcBlock/cross-chain/blob/master/src/v2_custodian.md
  */
+const util = require('util');
 const moment = require('moment');
 const ForgeSDK = require('../index');
 
-const { hexToBytes, bytesToHex, fromTokenToUnit } = ForgeSDK.Util;
+const { hexToBytes, bytesToHex, fromTokenToUnit, toStakeAddress } = ForgeSDK.Util;
 const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
+const inspect = d => util.inspect(d, { depth: 8, colors: true });
 
+// This is confuse
 const CHAIN_ID_ASSET = 'forge';
-const CHAIN_ID_APP = 'test-2019-06-05';
+const CHAIN_ID_APP = 'asset';
 
 // Connect application and asset chain
-// ForgeSDK.connect('http://did-workshop.arcblock.co:8220/api', {
 ForgeSDK.connect('http://127.0.0.1:8210/api', {
   chainId: CHAIN_ID_ASSET,
   name: 'asset',
   default: true,
 });
-ForgeSDK.connect('https://test.abtnetwork.io/api', {
+ForgeSDK.connect('http://47.104.23.85:8210/api', {
   chainId: CHAIN_ID_APP,
   name: 'app',
 });
+
+const printLine = () => {
+  console.log('');
+  console.log('-'.repeat(80));
+  console.log('');
+};
 
 const doCheckin = async (wallet, { conn = '' }) =>
   ForgeSDK.sendPokeTx(
@@ -54,30 +62,57 @@ const doCheckin = async (wallet, { conn = '' }) =>
   );
 
 const createAccount = async (moniker, wallet) => {
-  console.log(`${moniker}.prepare`, wallet.toAddress());
+  console.log(`${moniker}.prepare`, wallet.toJSON());
   let hash = await ForgeSDK.sendDeclareTx({ tx: { itx: { moniker } }, wallet }, { conn: 'asset' });
   console.log(`${moniker}.declare.asset`, hash);
   hash = await doCheckin(wallet, { conn: 'asset' });
-  console.log(`${moniker}.checkin.asset`, hash);
+  console.log(`${moniker}.poke.asset`, hash);
 
-  hash = await ForgeSDK.sendDeclareTx({ tx: { itx: { moniker } }, wallet }, { conn: 'app' });
-  console.log(`${moniker}.declare.app`, hash);
-  hash = await doCheckin(wallet, { conn: 'app' });
-  console.log(`${moniker}.checkin.app`, hash);
+  if (CHAIN_ID_APP !== CHAIN_ID_ASSET) {
+    hash = await ForgeSDK.sendDeclareTx({ tx: { itx: { moniker } }, wallet }, { conn: 'app' });
+    console.log(`${moniker}.declare.app`, hash);
+    hash = await doCheckin(wallet, { conn: 'app' });
+    console.log(`${moniker}.poke.app`, hash);
+  }
+  printLine();
+};
+
+const createAsset = async (moniker, wallet) => {
+  const asset = {
+    moniker,
+    readonly: true,
+    transferrable: true,
+    data: {
+      typeUrl: 'json',
+      value: {
+        size: 'xxl',
+        color: 'red',
+      },
+    },
+  };
+  asset.address = ForgeSDK.Util.toAssetAddress(asset);
+  const hash = await ForgeSDK.sendCreateAssetTx({ tx: { itx: asset }, wallet }, { conn: 'app' });
+  console.log('asset.create.address', asset.address);
+  console.log('asset.create.tx', hash);
+
+  return asset.address;
 };
 
 const doCustodianStake = async wallet => {
-  const anchor = 'zyt4TpbBV6kTaoPBggQpytQfBWQHSfuGmYma';
+  // FIXME: this should be the address of a node
+  // because stake is still not well supported by forge
+  const anchor = 'zyszYYCzecsLCyKgksYd7SG3d2DKjb52mw1q';
   console.log('custodian.stake.from', wallet.toAddress());
   console.log('custodian.stake.to', anchor);
 
   const stake = {
     to: anchor,
-    value: ForgeSDK.Util.fromTokenToUnit(20),
+    value: fromTokenToUnit(20),
     message: 'custodian stake',
-    address: ForgeSDK.Util.toStakeAddress(wallet.toAddress(), anchor),
+    address: toStakeAddress(wallet.toAddress(), anchor),
     data: {
-      type: 'stakeForUser',
+      // FIXME: this is the only supported one
+      type: 'StakeForNode',
       value: {},
     },
   };
@@ -85,6 +120,7 @@ const doCustodianStake = async wallet => {
 
   const hash = await ForgeSDK.sendStakeTx({ tx: { itx: stake }, wallet }, { conn: 'asset' });
   console.log('custodian.stake.tx', hash);
+  return hash;
 };
 
 (async () => {
@@ -97,17 +133,31 @@ const doCustodianStake = async wallet => {
     await createAccount('buyer', buyer);
     await createAccount('seller', seller);
     await createAccount('custodian', custodian);
+    await sleep(3000);
 
     // 2. stake to become a real custodian
-    await doCustodianStake(custodian);
+    const stakeHash = await doCustodianStake(custodian);
+    printLine();
+
+    // We must wait for the custodian stake to complete
+    await sleep(5000);
+    const res = await ForgeSDK.getTx({ hash: stakeHash }, { conn: 'asset' });
+    console.log('custodian stake tx', res);
+    if (!res.info || res.info.code !== 'OK') {
+      process.exit(1);
+      return;
+    }
+
+    console.log('custodian stake confirmed', res.info);
+    printLine();
 
     // 3. buyer and custodian to do deposit
     // In real world applications, custodian should create this transaction
     // And ask buyer to sign first, then sign the transaction by him self
     const deposit = {
-      value: ForgeSDK.Util.fromTokenToUnit(2),
-      commission: ForgeSDK.Util.fromTokenToUnit(0.1), // 交易手续费
-      charge: ForgeSDK.Util.fromTokenToUnit(0.01), // 回滚手续费
+      value: fromTokenToUnit(2),
+      commission: fromTokenToUnit(0.1), // 交易手续费
+      charge: fromTokenToUnit(0.01), // 回滚手续费
       target: CHAIN_ID_APP,
       withdrawer: seller.toAddress(),
       locktime: moment()
@@ -117,17 +167,19 @@ const doCustodianStake = async wallet => {
     };
 
     // 3.1 buyer sign the tx
-    const { object: depositTxObj, buffer: depositTxBuffer } = await ForgeSDK.encodeDepositTetherTx({
-      tx: { itx: deposit },
-      wallet: buyer,
-    });
-    console.log('deposit', deposit);
-    console.log('depositTxObj', depositTxObj);
+    const { object: depositTxObj, buffer: depositTxBuffer } = await ForgeSDK.encodeDepositTetherTx(
+      {
+        tx: { itx: deposit },
+        wallet: buyer,
+      },
+      { conn: 'asset' }
+    );
     const buyerSignature = buyer.sign(bytesToHex(depositTxBuffer));
     depositTxObj.signature = Buffer.from(hexToBytes(buyerSignature));
+    console.log('buyerSignature', buyerSignature);
 
     // 3.2 custodian sign the tx
-    depositTxObj.signatures = [
+    depositTxObj.signaturesList = [
       {
         signer: custodian.toAddress(),
         pk: Buffer.from(hexToBytes(custodian.publicKey)),
@@ -137,8 +189,7 @@ const doCustodianStake = async wallet => {
     const depositBufferNew = depositTxNew.serializeBinary();
     const custodianSignature = custodian.sign(bytesToHex(depositBufferNew));
     const depositTxNewObj = depositTxNew.toObject();
-    console.log('depositTxNewObj', depositTxNewObj);
-    depositTxNewObj.signatures = [
+    depositTxNewObj.signaturesList = [
       {
         signer: custodian.toAddress(),
         pk: Buffer.from(hexToBytes(custodian.publicKey)),
@@ -146,7 +197,9 @@ const doCustodianStake = async wallet => {
       },
     ];
 
-    const hash = await ForgeSDK.sendDepositTetherTx(
+    console.log('custodianSignature', custodianSignature);
+    console.log('depositTxNewObj', inspect(ForgeSDK.formatMessage('Transaction', depositTxNewObj)));
+    const depositHash = await ForgeSDK.sendDepositTetherTx(
       {
         tx: depositTxNewObj,
         wallet: custodian,
@@ -154,120 +207,86 @@ const doCustodianStake = async wallet => {
       },
       { conn: 'asset' }
     );
-    console.log('depositTether.tx', hash);
+    console.log('depositTether.tx', depositHash);
+    printLine();
 
+    // =========================================================================
     // TODO: 4. verify the deposit
+    // =========================================================================
 
     // 5. exchange on the app chain
+
+    // 5.1 create asset for seller
+    const assetAddress = await createAsset('T Shirt', seller);
+    printLine();
+
+    // 5.2 assemble exchange tether tx
+    const exchange = {
+      expired_at: moment()
+        .add(6, 'days')
+        .utc()
+        .toString(),
+      sender: {
+        assets: [assetAddress],
+      },
+      receiver: {
+        value: fromTokenToUnit(20),
+        deposit: depositTxNewObj,
+      },
+    };
+
+    // 5.3 seller sign the transaction
+    const {
+      object: exchangeTxObj,
+      buffer: exchangeTxBuffer,
+    } = await ForgeSDK.encodeExchangeTetherTx(
+      {
+        tx: { itx: exchange },
+        wallet: seller,
+      },
+      { conn: 'app' }
+    );
+    const sellerSignature = buyer.sign(exchangeTxBuffer);
+    exchangeTxObj.signature = Buffer.from(hexToBytes(sellerSignature));
+    console.log('sellerSignature', sellerSignature);
+
+    // 5.4 buyer sign the tx
+    exchangeTxObj.signaturesList = [
+      {
+        signer: buyer.toAddress(),
+        pk: Buffer.from(hexToBytes(buyer.publicKey)),
+      },
+    ];
+    const exchangeTxNew = ForgeSDK.createMessage('Transaction', exchangeTxObj);
+    const exchangeBufferNew = exchangeTxNew.serializeBinary();
+    const buyerSignature2 = buyer.sign(bytesToHex(exchangeBufferNew));
+    const exchangeTxNewObj = exchangeTxNew.toObject();
+    exchangeTxNewObj.signaturesList = [
+      {
+        signer: buyer.toAddress(),
+        pk: Buffer.from(hexToBytes(buyer.publicKey)),
+        signature: Buffer.from(hexToBytes(buyerSignature2)),
+      },
+    ];
+    console.log('exchangeTxNewObj', inspect(ForgeSDK.formatMessage('Transaction', exchangeTxNewObj)));
+    console.log('buyerSignature2', buyerSignature2);
+
+    // 5.5 seller send the tx
+    const exchangeHash = await ForgeSDK.sendExchangeTetherTx(
+      {
+        tx: exchangeTxNewObj,
+        wallet: seller,
+        signature: sellerSignature,
+      },
+      { conn: 'app' }
+    );
+    console.log('exchangeTether.tx', exchangeHash);
 
     // 6. withdraw tether
     // 7. approve tether
     // 8. revoke tether
 
     return;
-
-    // 3. create asset for buyer
-    const asset = {
-      moniker: 'asset',
-      readonly: true,
-      transferrable: true,
-      data: {
-        typeUrl: 'json',
-        value: {
-          key: 'value2',
-        },
-      },
-    };
-    const assetAddress = ForgeSDK.Util.toAssetAddress(asset);
-    asset.address = assetAddress;
-    res = await ForgeSDK.sendCreateAssetTx({
-      tx: { itx: asset },
-      wallet: buyer,
-    });
-    console.log('create_asset.result', res, assetAddress);
-
-    // assemble exchange tx: multisig
-    const exchange = {
-      pk: Buffer.from(hexToBytes(buyer.publicKey)), // pk of application
-      itx: {
-        to: seller.toAddress(),
-        buyer: {
-          // What we offer
-          assets: [assetAddress],
-        },
-        receiver: {
-          // What user offer
-          value: {
-            value: Buffer.from(fromTokenToUnit(0).toBuffer()),
-            minus: false,
-          },
-        },
-      },
-    };
-
-    console.log('exchange.input', exchange);
-
-    console.log('');
-    console.log('---------ENCODE.1-----------------------------------------');
-    console.log('');
-
-    // 4.1 buyer: encode and sign the transaction
-    const { buffer: senderBuffer, object: encoded1 } = await ForgeSDK.encodeExchangeTx({
-      tx: exchange,
-      wallet: buyer,
-    });
-    const senderSignature = buyer.sign(senderBuffer);
-    console.log('exchange.buyer.encoded', encoded1);
-    console.log(
-      'exchange.buyer.encoded.itx',
-      Uint8Array.from(Buffer.from(encoded1.itx.value, 'base64')).toString()
-    );
-    console.log('exchange.buyer.signature', senderSignature);
-    console.log(
-      'exchange.buyer.signatureBin',
-      Uint8Array.from(hexToBytes(senderSignature)).toString()
-    );
-
-    console.log('');
-    console.log('---------ENCODE.2-----------------------------------------');
-    console.log('');
-
-    // 4.2 seller: do the multi sig
-    exchange.signature = Buffer.from(hexToBytes(senderSignature));
-    exchange.nonce = encoded1.nonce;
-    exchange.from = encoded1.from;
-    exchange.signatures = [
-      {
-        pk: Buffer.from(hexToBytes(seller.publicKey)),
-        signer: seller.toAddress(),
-      },
-    ];
-
-    const { buffer: receiverBuffer, object: encoded2 } = await ForgeSDK.encodeExchangeTx({
-      tx: exchange,
-      wallet: seller,
-    });
-    const receiverSignature = seller.sign(receiverBuffer);
-    const receiverSig = encoded2.signaturesList.find(x => x.signer === seller.toAddress());
-    receiverSig.signature = Buffer.from(hexToBytes(receiverSignature));
-
-    console.log('exchange.seller.encoded', encoded2);
-    console.log('exchange.seller.signature', receiverSignature);
-
-    console.log('');
-    console.log('---------ENCODE.3-----------------------------------------');
-    console.log('');
-
-    delete encoded2.signature;
-
-    // 4.3 Send the exchange tx
-    await sleep(5000);
-    res = await ForgeSDK.sendExchangeTx({
-      tx: encoded2,
-      wallet: buyer,
-      signature: senderSignature,
-    });
-    console.log('exchange.result', res);
   } catch (err) {
     console.error(err);
     console.log(JSON.stringify(err.errors));
