@@ -300,7 +300,7 @@ const doCustodianStake = async wallet => {
       exchange
     );
     withdraw.receiver.tether = ForgeSDK.Util.toTetherAddress(toHex(depositHash));
-    console.log('withdraw', inspect(withdraw));
+    console.log('withdrawTether.tetherAddress', withdraw.receiver.tether);
     const withdrawHash = await ForgeSDK.sendWithdrawTetherTx(
       {
         tx: { itx: withdraw },
@@ -312,7 +312,30 @@ const doCustodianStake = async wallet => {
     await sleep(4000);
 
     // 7. approve tether
-    // 8. revoke tether
+    const approveHash = await ForgeSDK.sendApproveTetherTx(
+      {
+        tx: {
+          itx: {
+            withdraw: withdrawHash,
+          },
+        },
+        wallet: custodian,
+      },
+      { conn: 'asset' }
+    );
+    console.log('approveTether.tx', approveHash);
+    await sleep(4000);
+
+    // 8. check custodian balance
+    const { state: sellerState } = await ForgeSDK.getAccountState(
+      {
+        address: seller.toAddress(),
+      },
+      { conn: 'asset' }
+    );
+    console.log('sellerState', sellerState);
+
+    // TODO: 8. revoke tether
 
     return;
   } catch (err) {
