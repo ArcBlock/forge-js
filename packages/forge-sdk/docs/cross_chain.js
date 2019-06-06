@@ -90,6 +90,7 @@ const createAsset = async (moniker, wallet) => {
       value: {
         size: 'xxl',
         color: 'red',
+        serial: ForgeSDK.Wallet.fromRandom().publicKey,
       },
     },
   };
@@ -207,6 +208,7 @@ const doCustodianStake = async wallet => {
     );
     console.log('depositTether.tx', depositHash);
     printLine();
+    await sleep(3000);
 
     // =========================================================================
     // TODO: 4. verify the deposit
@@ -217,6 +219,7 @@ const doCustodianStake = async wallet => {
     // 5.1 create asset for seller
     const assetAddress = await createAsset('T Shirt', seller);
     printLine();
+    await sleep(3000);
 
     // 5.2 assemble exchange tether tx
     const exchange = {
@@ -279,6 +282,7 @@ const doCustodianStake = async wallet => {
       { conn: 'app' }
     );
     console.log('exchangeTether.tx', exchangeHash);
+    await sleep(3000);
 
     // 6. withdraw tether
     // 7. approve tether
