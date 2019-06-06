@@ -33,6 +33,13 @@ describe('#toStakeAddress', () => {
   test('should be a function', () => {
     expect(typeof toStakeAddress).toEqual('function');
   });
+
+  test('should return different result on reversed input', () => {
+    const address1 = 'z1gV8DHM8nBdrGBnZyR48qutN8BrKbSVcEU';
+    const address2 = 'z1VFy8hB9ndynkWAAH9P1a2L5WaU7AvtKGy';
+    expect(toStakeAddress(address1, address2)).toEqual('zrjtNfbkAMkrnx8YmtMLScgkcyWRxoB1696x');
+    expect(toStakeAddress(address2, address1)).toEqual('zrjwrePam5hV689TGTByVL8qYzTiAww8bDs4');
+  });
 });
 
 describe('#toItxAddress', () => {

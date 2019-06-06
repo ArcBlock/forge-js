@@ -84,9 +84,7 @@ function toItxDid(itx, type) {
 function toStakeAddress(sender, receiver) {
   const senderBuffer = Buffer.from(sender);
   const receiverBuffer = Buffer.from(receiver);
-  const buffer = Buffer.concat(
-    sender < receiver ? [senderBuffer, receiverBuffer] : [receiverBuffer, senderBuffer]
-  );
+  const buffer = Buffer.concat([senderBuffer, receiverBuffer]);
   const hash = Hasher.SHA3.hash256(buffer);
   return fromHash(hash, types.RoleType.ROLE_STAKE);
 }
