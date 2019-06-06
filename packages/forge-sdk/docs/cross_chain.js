@@ -19,9 +19,22 @@ const util = require('util');
 const moment = require('moment');
 const ForgeSDK = require('../index');
 
-const { hexToBytes, bytesToHex, fromTokenToUnit, toStakeAddress } = ForgeSDK.Util;
-const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
+const { hexToBytes, bytesToHex, toHex, fromTokenToUnit, toStakeAddress } = ForgeSDK.Util;
 const inspect = d => util.inspect(d, { depth: 8, colors: true });
+const printLine = () => {
+  console.log('');
+  console.log('-'.repeat(80));
+  console.log('');
+};
+
+const sleep = timeout =>
+  new Promise(resolve => {
+    printLine();
+    setTimeout(() => {
+      resolve();
+    }, timeout);
+  });
+
 const getOffsetTime = days => ({
   seconds: Math.round(Date.now() / 1000) + days * 24 * 60 * 60,
 });
@@ -40,12 +53,6 @@ ForgeSDK.connect('http://47.104.23.85:8210/api', {
   chainId: CHAIN_ID_APP,
   name: 'app',
 });
-
-const printLine = () => {
-  console.log('');
-  console.log('-'.repeat(80));
-  console.log('');
-};
 
 const doCheckin = async (wallet, { conn = '' }) =>
   ForgeSDK.sendPokeTx(
@@ -137,21 +144,19 @@ const doCustodianStake = async wallet => {
     await createAccount('buyer', buyer);
     await createAccount('seller', seller);
     await createAccount('custodian', custodian);
-    await sleep(3000);
+    await sleep(4000);
 
     // 2. stake to become a real custodian
     const stakeHash = await doCustodianStake(custodian);
-    printLine();
+    await sleep(4000);
 
     // We must wait for the custodian stake to complete
-    await sleep(5000);
     const res = await ForgeSDK.getTx({ hash: stakeHash }, { conn: 'asset' });
     console.log('custodian stake tx', res);
     if (!res.info || res.info.code !== 'OK') {
       process.exit(1);
       return;
     }
-    printLine();
 
     // 3. buyer and custodian to do deposit
     // In real world applications, custodian should create this transaction
@@ -207,8 +212,7 @@ const doCustodianStake = async wallet => {
       { conn: 'asset' }
     );
     console.log('depositTether.tx', depositHash);
-    printLine();
-    await sleep(3000);
+    await sleep(4000);
 
     // =========================================================================
     // TODO: 4. verify the deposit
@@ -218,8 +222,7 @@ const doCustodianStake = async wallet => {
 
     // 5.1 create asset for seller
     const assetAddress = await createAsset('T Shirt', seller);
-    printLine();
-    await sleep(3000);
+    await sleep(4000);
 
     // 5.2 assemble exchange tether tx
     const exchange = {
@@ -282,9 +285,32 @@ const doCustodianStake = async wallet => {
       { conn: 'app' }
     );
     console.log('exchangeTether.tx', exchangeHash);
-    await sleep(3000);
+    await sleep(4000);
 
-    // 6. withdraw tether
+    // 6. withdraw tether tx, should contain enough info to recreate exchange tether tx
+    const withdraw = Object.assign(
+      {
+        from: exchangeTxNewObj.from,
+        nonce: exchangeTxNewObj.nonce,
+        chainId: exchangeTxNewObj.chainId,
+        pk: exchangeTxNewObj.pk,
+        signature: exchangeTxNewObj.signature,
+        signatures: exchangeTxNewObj.signatures || exchangeTxNewObj.signaturesList,
+      },
+      exchange
+    );
+    withdraw.receiver.tether = ForgeSDK.Util.toTetherAddress(toHex(depositHash));
+    console.log('withdraw', inspect(withdraw));
+    const withdrawHash = await ForgeSDK.sendWithdrawTetherTx(
+      {
+        tx: { itx: withdraw },
+        wallet: seller,
+      },
+      { conn: 'asset' }
+    );
+    console.log('withdrawTether.tx', withdrawHash);
+    await sleep(4000);
+
     // 7. approve tether
     // 8. revoke tether
 
