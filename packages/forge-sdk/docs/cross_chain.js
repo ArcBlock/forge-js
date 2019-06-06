@@ -18,18 +18,21 @@ forge protocol:deploy _build/protocols/revoke_tether/revoke_tether.itx.json
 const moment = require('moment');
 const ForgeSDK = require('../index');
 
-const { hexToBytes, fromTokenToUnit } = ForgeSDK.Util;
+const { hexToBytes, bytesToHex, fromTokenToUnit } = ForgeSDK.Util;
 const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
+
+const CHAIN_ID_ASSET = 'forge';
+const CHAIN_ID_APP = 'test-2019-06-05';
 
 // Connect application and asset chain
 // ForgeSDK.connect('http://did-workshop.arcblock.co:8220/api', {
 ForgeSDK.connect('http://127.0.0.1:8210/api', {
-  chainId: 'forge',
+  chainId: CHAIN_ID_ASSET,
   name: 'asset',
   default: true,
 });
-ForgeSDK.connect('http://did-workshop.arcblock.co:8210/api', {
-  chainId: 'forge_workshop',
+ForgeSDK.connect('https://test.abtnetwork.io/api', {
+  chainId: CHAIN_ID_APP,
   name: 'app',
 });
 
@@ -70,7 +73,7 @@ const doCustodianStake = async wallet => {
 
   const stake = {
     to: anchor,
-    value: ForgeSDK.Util.fromTokenToUnit(10),
+    value: ForgeSDK.Util.fromTokenToUnit(20),
     message: 'custodian stake',
     address: ForgeSDK.Util.toStakeAddress(wallet.toAddress(), anchor),
     data: {
@@ -95,8 +98,71 @@ const doCustodianStake = async wallet => {
     await createAccount('seller', seller);
     await createAccount('custodian', custodian);
 
-    // 2. stake for custodian
+    // 2. stake to become a real custodian
     await doCustodianStake(custodian);
+
+    // 3. buyer and custodian to do deposit
+    // In real world applications, custodian should create this transaction
+    // And ask buyer to sign first, then sign the transaction by him self
+    const deposit = {
+      value: ForgeSDK.Util.fromTokenToUnit(2),
+      commission: ForgeSDK.Util.fromTokenToUnit(0.1), // 交易手续费
+      charge: ForgeSDK.Util.fromTokenToUnit(0.01), // 回滚手续费
+      target: CHAIN_ID_APP,
+      withdrawer: seller.toAddress(),
+      locktime: moment()
+        .add(7, 'days')
+        .utc()
+        .toString(),
+    };
+
+    // 3.1 buyer sign the tx
+    const { object: depositTxObj, buffer: depositTxBuffer } = await ForgeSDK.encodeDepositTetherTx({
+      tx: { itx: deposit },
+      wallet: buyer,
+    });
+    console.log('deposit', deposit);
+    console.log('depositTxObj', depositTxObj);
+    const buyerSignature = buyer.sign(bytesToHex(depositTxBuffer));
+    depositTxObj.signature = Buffer.from(hexToBytes(buyerSignature));
+
+    // 3.2 custodian sign the tx
+    depositTxObj.signatures = [
+      {
+        signer: custodian.toAddress(),
+        pk: Buffer.from(hexToBytes(custodian.publicKey)),
+      },
+    ];
+    const depositTxNew = ForgeSDK.createMessage('Transaction', depositTxObj);
+    const depositBufferNew = depositTxNew.serializeBinary();
+    const custodianSignature = custodian.sign(bytesToHex(depositBufferNew));
+    const depositTxNewObj = depositTxNew.toObject();
+    console.log('depositTxNewObj', depositTxNewObj);
+    depositTxNewObj.signatures = [
+      {
+        signer: custodian.toAddress(),
+        pk: Buffer.from(hexToBytes(custodian.publicKey)),
+        signature: Buffer.from(hexToBytes(custodianSignature)),
+      },
+    ];
+
+    const hash = await ForgeSDK.sendDepositTetherTx(
+      {
+        tx: depositTxNewObj,
+        wallet: custodian,
+        signature: buyerSignature,
+      },
+      { conn: 'asset' }
+    );
+    console.log('depositTether.tx', hash);
+
+    // TODO: 4. verify the deposit
+
+    // 5. exchange on the app chain
+
+    // 6. withdraw tether
+    // 7. approve tether
+    // 8. revoke tether
 
     return;
 
