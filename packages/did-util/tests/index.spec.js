@@ -61,7 +61,7 @@ describe('#toTetherAddress', () => {
 
   test('should return correct tether address', () => {
     expect(
-      toTetherAddress('CE922DEDAA0E2C141B040BB8034AF17BF9962266F1EF179E05B46FC5FAD43258')
+      toTetherAddress('0xCE922DEDAA0E2C141B040BB8034AF17BF9962266F1EF179E05B46FC5FAD43258')
     ).toEqual('z2MC8w872CYeZ3zZSERMkaKSmiDrHHr7vDxYE');
   });
 });
