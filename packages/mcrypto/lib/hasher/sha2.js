@@ -19,14 +19,14 @@ class Sha2Hasher {
       const name = `hash${x}`;
       const hasher = hashFns[`sha${x}`];
       const hashFn = (data, round) => {
-        const input = isHexStrict(data) ? Buffer.from(stripHexPrefix(data), 'hex') : data;
         if (round === 1) {
+          const input = isHexStrict(data) ? Buffer.from(stripHexPrefix(data), 'hex') : data;
           return `0x${hasher()
             .update(input)
             .digest('hex')}`;
         }
 
-        return hashFn(hashFn(input, 1), round - 1);
+        return hashFn(hashFn(data, 1), round - 1);
       };
 
       this[name] = (data, round = 2) => hashFn(data, round);
