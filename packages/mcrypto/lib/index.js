@@ -221,4 +221,5 @@ const Hashers = Object.freeze({
   [Mcrypto.types.HashType.SHA3]: Mcrypto.Hasher.SHA3.hash256,
   [Mcrypto.types.HashType.SHA3_384]: Mcrypto.Hasher.SHA3.hash384,
   [Mcrypto.types.HashType.SHA3_512]: Mcrypto.Hasher.SHA3.hash512,
+  [Mcrypto.types.HashType.SHA2]: Mcrypto.Hasher.SHA2.hash256,
 });
