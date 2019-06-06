@@ -90,6 +90,18 @@ function toStakeAddress(sender, receiver) {
 }
 
 /**
+ * Generate a tether address from the deposit tether tx hash
+ *
+ * @public
+ * @static
+ * @param {string} hash - DepositTetherTx hash
+ * @returns {string} stake address without `did:abt:` prefix
+ */
+function toTetherAddress(hash) {
+  return fromHash(hash, types.RoleType.ROLE_TETHER);
+}
+
+/**
  * Generate an stake address, eg: the did of the stake
  *
  * @public
@@ -109,4 +121,5 @@ module.exports = {
   toItxDid,
   toStakeAddress,
   toStakeDid,
+  toTetherAddress,
 };

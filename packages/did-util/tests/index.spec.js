@@ -1,4 +1,4 @@
-const { toAssetAddress, toItxAddress, toStakeAddress } = require('../lib');
+const { toAssetAddress, toItxAddress, toStakeAddress, toTetherAddress } = require('../lib');
 
 describe('#toAssetAddress', () => {
   test('should be a function', () => {
@@ -51,5 +51,17 @@ describe('#toItxAddress', () => {
     expect(toItxAddress({ moniker: 'wangshijun' }, 'DeclareTx')).toEqual(
       'z2E44GA1A8KD8j49zMkL8Eacey2RRCtXo9ecT'
     );
+  });
+});
+
+describe('#toTetherAddress', () => {
+  test('should be a function', () => {
+    expect(typeof toTetherAddress).toEqual('function');
+  });
+
+  test('should return correct tether address', () => {
+    expect(
+      toTetherAddress('CE922DEDAA0E2C141B040BB8034AF17BF9962266F1EF179E05B46FC5FAD43258')
+    ).toEqual('z2MC8w872CYeZ3zZSERMkaKSmiDrHHr7vDxYE');
   });
 });
