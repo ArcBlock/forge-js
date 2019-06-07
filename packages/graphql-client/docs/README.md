@@ -1448,7 +1448,7 @@ Structure of GraphQLClient.AbciServerStatus
 
 ### GraphQLClient.AccountMigrateTx : <code>object</code>
 
-Structure of GraphQLClient.AccountMigrateTx 
+Structure of GraphQLClient.AccountMigrateTx
 
 Checkout the following snippet for the format of AccountMigrateTx:
 
@@ -1510,7 +1510,7 @@ Structure of GraphQLClient.AccountState
 
 ### GraphQLClient.AcquireAssetTx : <code>object</code>
 
-Structure of GraphQLClient.AcquireAssetTx 
+Structure of GraphQLClient.AcquireAssetTx
 
 Checkout the following snippet for the format of AcquireAssetTx:
 
@@ -1557,7 +1557,7 @@ Structure of GraphQLClient.Any
 
 ### GraphQLClient.ApproveTetherTx : <code>object</code>
 
-Structure of GraphQLClient.ApproveTetherTx 
+Structure of GraphQLClient.ApproveTetherTx
 
 Checkout the following snippet for the format of ApproveTetherTx:
 
@@ -1753,7 +1753,7 @@ Structure of GraphQLClient.CodeInfo
 
 ### GraphQLClient.ConsensusParams : <code>object</code>
 
-Structure of GraphQLClient.ConsensusParams 
+Structure of GraphQLClient.ConsensusParams
 
 Checkout the following snippet for the format of ConsensusParams:
 
@@ -1810,7 +1810,7 @@ Structure of GraphQLClient.ConsensusStatus
 
 ### GraphQLClient.ConsensusUpgradeTx : <code>object</code>
 
-Structure of GraphQLClient.ConsensusUpgradeTx 
+Structure of GraphQLClient.ConsensusUpgradeTx
 
 Checkout the following snippet for the format of ConsensusUpgradeTx:
 
@@ -1849,7 +1849,7 @@ Checkout the following snippet for the format of ConsensusUpgradeTx:
 
 ### GraphQLClient.ConsumeAssetTx : <code>object</code>
 
-Structure of GraphQLClient.ConsumeAssetTx 
+Structure of GraphQLClient.ConsumeAssetTx
 
 Checkout the following snippet for the format of ConsumeAssetTx:
 
@@ -1891,7 +1891,7 @@ Structure of GraphQLClient.CoreProtocol
 
 ### GraphQLClient.CreateAssetTx : <code>object</code>
 
-Structure of GraphQLClient.CreateAssetTx 
+Structure of GraphQLClient.CreateAssetTx
 
 Checkout the following snippet for the format of CreateAssetTx:
 
@@ -1941,7 +1941,7 @@ Structure of GraphQLClient.DeclareConfig
 
 ### GraphQLClient.DeclareFileTx : <code>object</code>
 
-Structure of GraphQLClient.DeclareFileTx 
+Structure of GraphQLClient.DeclareFileTx
 
 Checkout the following snippet for the format of DeclareFileTx:
 
@@ -1962,7 +1962,7 @@ Checkout the following snippet for the format of DeclareFileTx:
 
 ### GraphQLClient.DeclareTx : <code>object</code>
 
-Structure of GraphQLClient.DeclareTx 
+Structure of GraphQLClient.DeclareTx
 
 Checkout the following snippet for the format of DeclareTx:
 
@@ -1990,7 +1990,7 @@ Checkout the following snippet for the format of DeclareTx:
 
 ### GraphQLClient.DeployProtocolTx : <code>object</code>
 
-Structure of GraphQLClient.DeployProtocolTx 
+Structure of GraphQLClient.DeployProtocolTx
 
 Checkout the following snippet for the format of DeployProtocolTx:
 
@@ -2050,7 +2050,7 @@ Checkout the following snippet for the format of DeployProtocolTx:
 
 ### GraphQLClient.DepositTetherTx : <code>object</code>
 
-Structure of GraphQLClient.DepositTetherTx 
+Structure of GraphQLClient.DepositTetherTx
 
 Checkout the following snippet for the format of DepositTetherTx:
 
@@ -2126,7 +2126,7 @@ Structure of GraphQLClient.ExchangeInfo
 
 ### GraphQLClient.ExchangeTetherTx : <code>object</code>
 
-Structure of GraphQLClient.ExchangeTetherTx 
+Structure of GraphQLClient.ExchangeTetherTx
 
 Checkout the following snippet for the format of ExchangeTetherTx:
 
@@ -2184,7 +2184,7 @@ Checkout the following snippet for the format of ExchangeTetherTx:
 
 ### GraphQLClient.ExchangeTx : <code>object</code>
 
-Structure of GraphQLClient.ExchangeTx 
+Structure of GraphQLClient.ExchangeTx
 
 Checkout the following snippet for the format of ExchangeTx:
 
@@ -2703,7 +2703,7 @@ Structure of GraphQLClient.PokeInfo
 
 ### GraphQLClient.PokeTx : <code>object</code>
 
-Structure of GraphQLClient.PokeTx 
+Structure of GraphQLClient.PokeTx
 
 Checkout the following snippet for the format of PokeTx:
 
@@ -2790,7 +2790,7 @@ Structure of GraphQLClient.PubKey
 
 ### GraphQLClient.RequestBeginBlock : <code>object</code>
 
-Structure of GraphQLClient.RequestBeginBlock 
+Structure of GraphQLClient.RequestBeginBlock
 
 Checkout the following snippet for the format of RequestBeginBlock:
 
@@ -2865,7 +2865,7 @@ Checkout the following snippet for the format of RequestBeginBlock:
 
 ### GraphQLClient.RequestEndBlock : <code>object</code>
 
-Structure of GraphQLClient.RequestEndBlock 
+Structure of GraphQLClient.RequestEndBlock
 
 Checkout the following snippet for the format of RequestEndBlock:
 
@@ -2886,13 +2886,13 @@ Checkout the following snippet for the format of RequestEndBlock:
 
 ### GraphQLClient.ResponseGetAccountState : <code>object</code>
 
-Structure of GraphQLClient.ResponseGetAccountState 
+Structure of GraphQLClient.ResponseGetAccountState
 
 Checkout the following snippet for the format of ResponseGetAccountState:
 
 ```json
 {
-  "code": "INVALID_SIGNER_STATE",
+  "code": "INVALID_DEPOSIT_TARGET",
   "state": {
     "address": "abc",
     "balance": "abc",
@@ -2902,7 +2902,7 @@ Checkout the following snippet for the format of ResponseGetAccountState:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INVALID_SIGNER_STATE",
+        "code": "INVALID_DEPOSIT_TARGET",
         "createAsset": {
           "asset": "abc"
         },
@@ -2940,7 +2940,7 @@ Checkout the following snippet for the format of ResponseGetAccountState:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INVALID_SIGNER_STATE",
+        "code": "INVALID_DEPOSIT_TARGET",
         "createAsset": {
           "asset": "abc"
         },
@@ -3040,13 +3040,13 @@ Checkout the following snippet for the format of ResponseGetAccountState:
 
 ### GraphQLClient.ResponseGetAssetState : <code>object</code>
 
-Structure of GraphQLClient.ResponseGetAssetState 
+Structure of GraphQLClient.ResponseGetAssetState
 
 Checkout the following snippet for the format of ResponseGetAssetState:
 
 ```json
 {
-  "code": "INVALID_SIGNER_STATE",
+  "code": "INVALID_DEPOSIT_TARGET",
   "state": {
     "address": "abc",
     "consumedTime": "2019-04-29T00:00:00.000Z",
@@ -3056,7 +3056,7 @@ Checkout the following snippet for the format of ResponseGetAssetState:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INVALID_SIGNER_STATE",
+        "code": "INVALID_DEPOSIT_TARGET",
         "createAsset": {
           "asset": "abc"
         },
@@ -3094,7 +3094,7 @@ Checkout the following snippet for the format of ResponseGetAssetState:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INVALID_SIGNER_STATE",
+        "code": "INVALID_DEPOSIT_TARGET",
         "createAsset": {
           "asset": "abc"
         },
@@ -3178,7 +3178,7 @@ Checkout the following snippet for the format of ResponseGetAssetState:
 
 ### GraphQLClient.ResponseGetBlock : <code>object</code>
 
-Structure of GraphQLClient.ResponseGetBlock 
+Structure of GraphQLClient.ResponseGetBlock
 
 Checkout the following snippet for the format of ResponseGetBlock:
 
@@ -3195,7 +3195,7 @@ Checkout the following snippet for the format of ResponseGetBlock:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INVALID_SIGNER_STATE",
+        "code": "INVALID_DEPOSIT_TARGET",
         "createAsset": {
           "asset": "abc"
         },
@@ -3251,7 +3251,7 @@ Checkout the following snippet for the format of ResponseGetBlock:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INVALID_SIGNER_STATE",
+        "code": "INVALID_DEPOSIT_TARGET",
         "createAsset": {
           "asset": "abc"
         },
@@ -3294,7 +3294,7 @@ Checkout the following snippet for the format of ResponseGetBlock:
       "block": "abc"
     }
   },
-  "code": "INVALID_SIGNER_STATE"
+  "code": "INVALID_DEPOSIT_TARGET"
 }
 ```
 
@@ -3310,7 +3310,7 @@ Checkout the following snippet for the format of ResponseGetBlock:
 
 ### GraphQLClient.ResponseGetBlocks : <code>object</code>
 
-Structure of GraphQLClient.ResponseGetBlocks 
+Structure of GraphQLClient.ResponseGetBlocks
 
 Checkout the following snippet for the format of ResponseGetBlocks:
 
@@ -3350,7 +3350,7 @@ Checkout the following snippet for the format of ResponseGetBlocks:
       }
     }
   ],
-  "code": "INVALID_SIGNER_STATE",
+  "code": "INVALID_DEPOSIT_TARGET",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -3372,13 +3372,13 @@ Checkout the following snippet for the format of ResponseGetBlocks:
 
 ### GraphQLClient.ResponseGetChainInfo : <code>object</code>
 
-Structure of GraphQLClient.ResponseGetChainInfo 
+Structure of GraphQLClient.ResponseGetChainInfo
 
 Checkout the following snippet for the format of ResponseGetChainInfo:
 
 ```json
 {
-  "code": "INVALID_SIGNER_STATE",
+  "code": "INVALID_DEPOSIT_TARGET",
   "info": {
     "address": "abc",
     "appHash": "abc",
@@ -3418,13 +3418,13 @@ Checkout the following snippet for the format of ResponseGetChainInfo:
 
 ### GraphQLClient.ResponseGetConfig : <code>object</code>
 
-Structure of GraphQLClient.ResponseGetConfig 
+Structure of GraphQLClient.ResponseGetConfig
 
 Checkout the following snippet for the format of ResponseGetConfig:
 
 ```json
 {
-  "code": "INVALID_SIGNER_STATE",
+  "code": "INVALID_DEPOSIT_TARGET",
   "config": "abc"
 }
 ```
@@ -3441,13 +3441,13 @@ Checkout the following snippet for the format of ResponseGetConfig:
 
 ### GraphQLClient.ResponseGetForgeState : <code>object</code>
 
-Structure of GraphQLClient.ResponseGetForgeState 
+Structure of GraphQLClient.ResponseGetForgeState
 
 Checkout the following snippet for the format of ResponseGetForgeState:
 
 ```json
 {
-  "code": "INVALID_SIGNER_STATE",
+  "code": "INVALID_DEPOSIT_TARGET",
   "state": {
     "address": "abc",
     "consensus": {
@@ -3498,7 +3498,7 @@ Checkout the following snippet for the format of ResponseGetForgeState:
               "accountMigrate": {
                 "address": "abc"
               },
-              "code": "INVALID_SIGNER_STATE",
+              "code": "INVALID_DEPOSIT_TARGET",
               "createAsset": {
                 "asset": "abc"
               },
@@ -3536,7 +3536,7 @@ Checkout the following snippet for the format of ResponseGetForgeState:
               "accountMigrate": {
                 "address": "abc"
               },
-              "code": "INVALID_SIGNER_STATE",
+              "code": "INVALID_DEPOSIT_TARGET",
               "createAsset": {
                 "asset": "abc"
               },
@@ -3631,13 +3631,13 @@ Checkout the following snippet for the format of ResponseGetForgeState:
 
 ### GraphQLClient.ResponseGetForgeStats : <code>object</code>
 
-Structure of GraphQLClient.ResponseGetForgeStats 
+Structure of GraphQLClient.ResponseGetForgeStats
 
 Checkout the following snippet for the format of ResponseGetForgeStats:
 
 ```json
 {
-  "code": "INVALID_SIGNER_STATE",
+  "code": "INVALID_DEPOSIT_TARGET",
   "forgeStats": {
     "avgBlockTime": 123,
     "avgTps": 123,
@@ -3709,13 +3709,13 @@ Checkout the following snippet for the format of ResponseGetForgeStats:
 
 ### GraphQLClient.ResponseGetHealthStatus : <code>object</code>
 
-Structure of GraphQLClient.ResponseGetHealthStatus 
+Structure of GraphQLClient.ResponseGetHealthStatus
 
 Checkout the following snippet for the format of ResponseGetHealthStatus:
 
 ```json
 {
-  "code": "INVALID_SIGNER_STATE",
+  "code": "INVALID_DEPOSIT_TARGET",
   "healthStatus": {
     "consensus": {
       "blockHeight": "abc",
@@ -3760,13 +3760,13 @@ Checkout the following snippet for the format of ResponseGetHealthStatus:
 
 ### GraphQLClient.ResponseGetNetInfo : <code>object</code>
 
-Structure of GraphQLClient.ResponseGetNetInfo 
+Structure of GraphQLClient.ResponseGetNetInfo
 
 Checkout the following snippet for the format of ResponseGetNetInfo:
 
 ```json
 {
-  "code": "INVALID_SIGNER_STATE",
+  "code": "INVALID_DEPOSIT_TARGET",
   "netInfo": {
     "listeners": [
       "abc"
@@ -3804,13 +3804,13 @@ Checkout the following snippet for the format of ResponseGetNetInfo:
 
 ### GraphQLClient.ResponseGetNodeInfo : <code>object</code>
 
-Structure of GraphQLClient.ResponseGetNodeInfo 
+Structure of GraphQLClient.ResponseGetNodeInfo
 
 Checkout the following snippet for the format of ResponseGetNodeInfo:
 
 ```json
 {
-  "code": "INVALID_SIGNER_STATE",
+  "code": "INVALID_DEPOSIT_TARGET",
   "info": {
     "address": "abc",
     "appHash": "abc",
@@ -3858,13 +3858,13 @@ Checkout the following snippet for the format of ResponseGetNodeInfo:
 
 ### GraphQLClient.ResponseGetProtocolState : <code>object</code>
 
-Structure of GraphQLClient.ResponseGetProtocolState 
+Structure of GraphQLClient.ResponseGetProtocolState
 
 Checkout the following snippet for the format of ResponseGetProtocolState:
 
 ```json
 {
-  "code": "INVALID_SIGNER_STATE",
+  "code": "INVALID_DEPOSIT_TARGET",
   "state": {
     "address": "abc",
     "context": {
@@ -3873,7 +3873,7 @@ Checkout the following snippet for the format of ResponseGetProtocolState:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INVALID_SIGNER_STATE",
+        "code": "INVALID_DEPOSIT_TARGET",
         "createAsset": {
           "asset": "abc"
         },
@@ -3911,7 +3911,7 @@ Checkout the following snippet for the format of ResponseGetProtocolState:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INVALID_SIGNER_STATE",
+        "code": "INVALID_DEPOSIT_TARGET",
         "createAsset": {
           "asset": "abc"
         },
@@ -4004,13 +4004,13 @@ Checkout the following snippet for the format of ResponseGetProtocolState:
 
 ### GraphQLClient.ResponseGetProtocols : <code>object</code>
 
-Structure of GraphQLClient.ResponseGetProtocols 
+Structure of GraphQLClient.ResponseGetProtocols
 
 Checkout the following snippet for the format of ResponseGetProtocols:
 
 ```json
 {
-  "code": "INVALID_SIGNER_STATE",
+  "code": "INVALID_DEPOSIT_TARGET",
   "protocols": [
     {
       "address": "abc",
@@ -4058,13 +4058,13 @@ Checkout the following snippet for the format of ResponseGetProtocols:
 
 ### GraphQLClient.ResponseGetSimulatorStatus : <code>object</code>
 
-Structure of GraphQLClient.ResponseGetSimulatorStatus 
+Structure of GraphQLClient.ResponseGetSimulatorStatus
 
 Checkout the following snippet for the format of ResponseGetSimulatorStatus:
 
 ```json
 {
-  "code": "INVALID_SIGNER_STATE",
+  "code": "INVALID_DEPOSIT_TARGET",
   "result": "abc"
 }
 ```
@@ -4081,13 +4081,13 @@ Checkout the following snippet for the format of ResponseGetSimulatorStatus:
 
 ### GraphQLClient.ResponseGetStakeState : <code>object</code>
 
-Structure of GraphQLClient.ResponseGetStakeState 
+Structure of GraphQLClient.ResponseGetStakeState
 
 Checkout the following snippet for the format of ResponseGetStakeState:
 
 ```json
 {
-  "code": "INVALID_SIGNER_STATE",
+  "code": "INVALID_DEPOSIT_TARGET",
   "state": {
     "address": "abc",
     "balance": "abc",
@@ -4097,7 +4097,7 @@ Checkout the following snippet for the format of ResponseGetStakeState:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INVALID_SIGNER_STATE",
+        "code": "INVALID_DEPOSIT_TARGET",
         "createAsset": {
           "asset": "abc"
         },
@@ -4135,7 +4135,7 @@ Checkout the following snippet for the format of ResponseGetStakeState:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INVALID_SIGNER_STATE",
+        "code": "INVALID_DEPOSIT_TARGET",
         "createAsset": {
           "asset": "abc"
         },
@@ -4192,13 +4192,13 @@ Checkout the following snippet for the format of ResponseGetStakeState:
 
 ### GraphQLClient.ResponseGetTetherState : <code>object</code>
 
-Structure of GraphQLClient.ResponseGetTetherState 
+Structure of GraphQLClient.ResponseGetTetherState
 
 Checkout the following snippet for the format of ResponseGetTetherState:
 
 ```json
 {
-  "code": "INVALID_SIGNER_STATE",
+  "code": "INVALID_DEPOSIT_TARGET",
   "state": {
     "address": "abc",
     "available": true,
@@ -4227,18 +4227,18 @@ Checkout the following snippet for the format of ResponseGetTetherState:
 
 ### GraphQLClient.ResponseGetTx : <code>object</code>
 
-Structure of GraphQLClient.ResponseGetTx 
+Structure of GraphQLClient.ResponseGetTx
 
 Checkout the following snippet for the format of ResponseGetTx:
 
 ```json
 {
-  "code": "INVALID_SIGNER_STATE",
+  "code": "INVALID_DEPOSIT_TARGET",
   "info": {
     "accountMigrate": {
       "address": "abc"
     },
-    "code": "INVALID_SIGNER_STATE",
+    "code": "INVALID_DEPOSIT_TARGET",
     "createAsset": {
       "asset": "abc"
     },
@@ -4286,13 +4286,13 @@ Checkout the following snippet for the format of ResponseGetTx:
 
 ### GraphQLClient.ResponseGetUnconfirmedTxs : <code>object</code>
 
-Structure of GraphQLClient.ResponseGetUnconfirmedTxs 
+Structure of GraphQLClient.ResponseGetUnconfirmedTxs
 
 Checkout the following snippet for the format of ResponseGetUnconfirmedTxs:
 
 ```json
 {
-  "code": "INVALID_SIGNER_STATE",
+  "code": "INVALID_DEPOSIT_TARGET",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -4337,13 +4337,13 @@ Checkout the following snippet for the format of ResponseGetUnconfirmedTxs:
 
 ### GraphQLClient.ResponseGetValidatorsInfo : <code>object</code>
 
-Structure of GraphQLClient.ResponseGetValidatorsInfo 
+Structure of GraphQLClient.ResponseGetValidatorsInfo
 
 Checkout the following snippet for the format of ResponseGetValidatorsInfo:
 
 ```json
 {
-  "code": "INVALID_SIGNER_STATE",
+  "code": "INVALID_DEPOSIT_TARGET",
   "validatorsInfo": {
     "blockHeight": "abc",
     "validators": [
@@ -4380,13 +4380,13 @@ Checkout the following snippet for the format of ResponseGetValidatorsInfo:
 
 ### GraphQLClient.ResponseListAssetTransactions : <code>object</code>
 
-Structure of GraphQLClient.ResponseListAssetTransactions 
+Structure of GraphQLClient.ResponseListAssetTransactions
 
 Checkout the following snippet for the format of ResponseListAssetTransactions:
 
 ```json
 {
-  "code": "INVALID_SIGNER_STATE",
+  "code": "INVALID_DEPOSIT_TARGET",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -4394,7 +4394,7 @@ Checkout the following snippet for the format of ResponseListAssetTransactions:
   },
   "transactions": [
     {
-      "code": "INVALID_SIGNER_STATE",
+      "code": "INVALID_DEPOSIT_TARGET",
       "hash": "abc",
       "receiver": "abc",
       "sender": "abc",
@@ -4437,7 +4437,7 @@ Checkout the following snippet for the format of ResponseListAssetTransactions:
 
 ### GraphQLClient.ResponseListAssets : <code>object</code>
 
-Structure of GraphQLClient.ResponseListAssets 
+Structure of GraphQLClient.ResponseListAssets
 
 Checkout the following snippet for the format of ResponseListAssets:
 
@@ -4471,7 +4471,7 @@ Checkout the following snippet for the format of ResponseListAssets:
       "renaissanceTime": "abc"
     }
   ],
-  "code": "INVALID_SIGNER_STATE",
+  "code": "INVALID_DEPOSIT_TARGET",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -4494,7 +4494,7 @@ Checkout the following snippet for the format of ResponseListAssets:
 
 ### GraphQLClient.ResponseListBlocks : <code>object</code>
 
-Structure of GraphQLClient.ResponseListBlocks 
+Structure of GraphQLClient.ResponseListBlocks
 
 Checkout the following snippet for the format of ResponseListBlocks:
 
@@ -4509,7 +4509,7 @@ Checkout the following snippet for the format of ResponseListBlocks:
       "time": "abc"
     }
   ],
-  "code": "INVALID_SIGNER_STATE",
+  "code": "INVALID_DEPOSIT_TARGET",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -4531,13 +4531,13 @@ Checkout the following snippet for the format of ResponseListBlocks:
 
 ### GraphQLClient.ResponseListStakes : <code>object</code>
 
-Structure of GraphQLClient.ResponseListStakes 
+Structure of GraphQLClient.ResponseListStakes
 
 Checkout the following snippet for the format of ResponseListStakes:
 
 ```json
 {
-  "code": "INVALID_SIGNER_STATE",
+  "code": "INVALID_DEPOSIT_TARGET",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -4571,13 +4571,13 @@ Checkout the following snippet for the format of ResponseListStakes:
 
 ### GraphQLClient.ResponseListTethers : <code>object</code>
 
-Structure of GraphQLClient.ResponseListTethers 
+Structure of GraphQLClient.ResponseListTethers
 
 Checkout the following snippet for the format of ResponseListTethers:
 
 ```json
 {
-  "code": "INVALID_SIGNER_STATE",
+  "code": "INVALID_DEPOSIT_TARGET",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -4614,7 +4614,7 @@ Checkout the following snippet for the format of ResponseListTethers:
 
 ### GraphQLClient.ResponseListTopAccounts : <code>object</code>
 
-Structure of GraphQLClient.ResponseListTopAccounts 
+Structure of GraphQLClient.ResponseListTopAccounts
 
 Checkout the following snippet for the format of ResponseListTopAccounts:
 
@@ -4640,7 +4640,7 @@ Checkout the following snippet for the format of ResponseListTopAccounts:
       "totalUnstakes": "abc"
     }
   ],
-  "code": "INVALID_SIGNER_STATE",
+  "code": "INVALID_DEPOSIT_TARGET",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -4662,13 +4662,13 @@ Checkout the following snippet for the format of ResponseListTopAccounts:
 
 ### GraphQLClient.ResponseListTransactions : <code>object</code>
 
-Structure of GraphQLClient.ResponseListTransactions 
+Structure of GraphQLClient.ResponseListTransactions
 
 Checkout the following snippet for the format of ResponseListTransactions:
 
 ```json
 {
-  "code": "INVALID_SIGNER_STATE",
+  "code": "INVALID_DEPOSIT_TARGET",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -4676,7 +4676,7 @@ Checkout the following snippet for the format of ResponseListTransactions:
   },
   "transactions": [
     {
-      "code": "INVALID_SIGNER_STATE",
+      "code": "INVALID_DEPOSIT_TARGET",
       "hash": "abc",
       "receiver": "abc",
       "sender": "abc",
@@ -4719,13 +4719,13 @@ Checkout the following snippet for the format of ResponseListTransactions:
 
 ### GraphQLClient.ResponseSendTx : <code>object</code>
 
-Structure of GraphQLClient.ResponseSendTx 
+Structure of GraphQLClient.ResponseSendTx
 
 Checkout the following snippet for the format of ResponseSendTx:
 
 ```json
 {
-  "code": "INVALID_SIGNER_STATE",
+  "code": "INVALID_DEPOSIT_TARGET",
   "hash": "abc"
 }
 ```
@@ -4742,13 +4742,13 @@ Checkout the following snippet for the format of ResponseSendTx:
 
 ### GraphQLClient.ResponseStartSimulator : <code>object</code>
 
-Structure of GraphQLClient.ResponseStartSimulator 
+Structure of GraphQLClient.ResponseStartSimulator
 
 Checkout the following snippet for the format of ResponseStartSimulator:
 
 ```json
 {
-  "code": "INVALID_SIGNER_STATE"
+  "code": "INVALID_DEPOSIT_TARGET"
 }
 ```
 
@@ -4763,13 +4763,13 @@ Checkout the following snippet for the format of ResponseStartSimulator:
 
 ### GraphQLClient.ResponseStopSimulator : <code>object</code>
 
-Structure of GraphQLClient.ResponseStopSimulator 
+Structure of GraphQLClient.ResponseStopSimulator
 
 Checkout the following snippet for the format of ResponseStopSimulator:
 
 ```json
 {
-  "code": "INVALID_SIGNER_STATE"
+  "code": "INVALID_DEPOSIT_TARGET"
 }
 ```
 
@@ -4784,7 +4784,7 @@ Checkout the following snippet for the format of ResponseStopSimulator:
 
 ### GraphQLClient.ResponseSubscribe : <code>object</code>
 
-Structure of GraphQLClient.ResponseSubscribe 
+Structure of GraphQLClient.ResponseSubscribe
 
 Checkout the following snippet for the format of ResponseSubscribe:
 
@@ -4817,7 +4817,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INVALID_SIGNER_STATE",
+        "code": "INVALID_DEPOSIT_TARGET",
         "createAsset": {
           "asset": "abc"
         },
@@ -4855,7 +4855,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INVALID_SIGNER_STATE",
+        "code": "INVALID_DEPOSIT_TARGET",
         "createAsset": {
           "asset": "abc"
         },
@@ -4949,7 +4949,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INVALID_SIGNER_STATE",
+        "code": "INVALID_DEPOSIT_TARGET",
         "createAsset": {
           "asset": "abc"
         },
@@ -4987,7 +4987,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INVALID_SIGNER_STATE",
+        "code": "INVALID_DEPOSIT_TARGET",
         "createAsset": {
           "asset": "abc"
         },
@@ -5110,7 +5110,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
       ]
     }
   },
-  "code": "INVALID_SIGNER_STATE",
+  "code": "INVALID_DEPOSIT_TARGET",
   "confirm": {
     "chainId": "abc",
     "from": "abc",
@@ -5272,7 +5272,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
               "accountMigrate": {
                 "address": "abc"
               },
-              "code": "INVALID_SIGNER_STATE",
+              "code": "INVALID_DEPOSIT_TARGET",
               "createAsset": {
                 "asset": "abc"
               },
@@ -5310,7 +5310,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
               "accountMigrate": {
                 "address": "abc"
               },
-              "code": "INVALID_SIGNER_STATE",
+              "code": "INVALID_DEPOSIT_TARGET",
               "createAsset": {
                 "asset": "abc"
               },
@@ -5398,7 +5398,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INVALID_SIGNER_STATE",
+        "code": "INVALID_DEPOSIT_TARGET",
         "createAsset": {
           "asset": "abc"
         },
@@ -5436,7 +5436,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INVALID_SIGNER_STATE",
+        "code": "INVALID_DEPOSIT_TARGET",
         "createAsset": {
           "asset": "abc"
         },
@@ -5559,7 +5559,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INVALID_SIGNER_STATE",
+        "code": "INVALID_DEPOSIT_TARGET",
         "createAsset": {
           "asset": "abc"
         },
@@ -5597,7 +5597,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INVALID_SIGNER_STATE",
+        "code": "INVALID_DEPOSIT_TARGET",
         "createAsset": {
           "asset": "abc"
         },
@@ -5728,13 +5728,13 @@ Checkout the following snippet for the format of ResponseSubscribe:
 
 ### GraphQLClient.ResponseUnsubscribe : <code>object</code>
 
-Structure of GraphQLClient.ResponseUnsubscribe 
+Structure of GraphQLClient.ResponseUnsubscribe
 
 Checkout the following snippet for the format of ResponseUnsubscribe:
 
 ```json
 {
-  "code": "INVALID_SIGNER_STATE"
+  "code": "INVALID_DEPOSIT_TARGET"
 }
 ```
 
@@ -5749,7 +5749,7 @@ Checkout the following snippet for the format of ResponseUnsubscribe:
 
 ### GraphQLClient.RevokeTetherTx : <code>object</code>
 
-Structure of GraphQLClient.RevokeTetherTx 
+Structure of GraphQLClient.RevokeTetherTx
 
 Checkout the following snippet for the format of RevokeTetherTx:
 
@@ -5867,7 +5867,7 @@ Structure of GraphQLClient.StakeSummaryEntry
 
 ### GraphQLClient.StakeTx : <code>object</code>
 
-Structure of GraphQLClient.StakeTx 
+Structure of GraphQLClient.StakeTx
 
 Checkout the following snippet for the format of StakeTx:
 
@@ -5928,7 +5928,7 @@ Structure of GraphQLClient.StorageStatus
 
 ### GraphQLClient.SysUpgradeTx : <code>object</code>
 
-Structure of GraphQLClient.SysUpgradeTx 
+Structure of GraphQLClient.SysUpgradeTx
 
 Checkout the following snippet for the format of SysUpgradeTx:
 
@@ -6086,7 +6086,7 @@ Structure of GraphQLClient.TransactionInfo
 
 ### GraphQLClient.TransferTx : <code>object</code>
 
-Structure of GraphQLClient.TransferTx 
+Structure of GraphQLClient.TransferTx
 
 Checkout the following snippet for the format of TransferTx:
 
@@ -6146,7 +6146,7 @@ Structure of GraphQLClient.UnconfirmedTxs
 
 ### GraphQLClient.UpdateAssetTx : <code>object</code>
 
-Structure of GraphQLClient.UpdateAssetTx 
+Structure of GraphQLClient.UpdateAssetTx
 
 Checkout the following snippet for the format of UpdateAssetTx:
 
@@ -6188,7 +6188,7 @@ Structure of GraphQLClient.UpgradeInfo
 
 ### GraphQLClient.UpgradeNodeTx : <code>object</code>
 
-Structure of GraphQLClient.UpgradeNodeTx 
+Structure of GraphQLClient.UpgradeNodeTx
 
 Checkout the following snippet for the format of UpgradeNodeTx:
 
@@ -6331,7 +6331,7 @@ Structure of GraphQLClient.WalletType
 
 ### GraphQLClient.WithdrawTetherTx : <code>object</code>
 
-Structure of GraphQLClient.WithdrawTetherTx 
+Structure of GraphQLClient.WithdrawTetherTx
 
 Checkout the following snippet for the format of WithdrawTetherTx:
 
@@ -6394,7 +6394,7 @@ Checkout the following snippet for the format of WithdrawTetherTx:
 
 ### GraphQLClient.GetAccountStateParams : <code>object</code>
 
-Structure of GraphQLClient.GetAccountStateParams 
+Structure of GraphQLClient.GetAccountStateParams
 
 Checkout the following snippet for the format of GetAccountStateParams:
 
@@ -6421,7 +6421,7 @@ Checkout the following snippet for the format of GetAccountStateParams:
 
 ### GraphQLClient.GetAssetStateParams : <code>object</code>
 
-Structure of GraphQLClient.GetAssetStateParams 
+Structure of GraphQLClient.GetAssetStateParams
 
 Checkout the following snippet for the format of GetAssetStateParams:
 
@@ -6448,7 +6448,7 @@ Checkout the following snippet for the format of GetAssetStateParams:
 
 ### GraphQLClient.GetBlockParams : <code>object</code>
 
-Structure of GraphQLClient.GetBlockParams 
+Structure of GraphQLClient.GetBlockParams
 
 Checkout the following snippet for the format of GetBlockParams:
 
@@ -6469,7 +6469,7 @@ Checkout the following snippet for the format of GetBlockParams:
 
 ### GraphQLClient.GetBlocksParams : <code>object</code>
 
-Structure of GraphQLClient.GetBlocksParams 
+Structure of GraphQLClient.GetBlocksParams
 
 Checkout the following snippet for the format of GetBlocksParams:
 
@@ -6492,7 +6492,7 @@ Checkout the following snippet for the format of GetBlocksParams:
 
 ### GraphQLClient.GetConfigParams : <code>object</code>
 
-Structure of GraphQLClient.GetConfigParams 
+Structure of GraphQLClient.GetConfigParams
 
 Checkout the following snippet for the format of GetConfigParams:
 
@@ -6513,7 +6513,7 @@ Checkout the following snippet for the format of GetConfigParams:
 
 ### GraphQLClient.GetForgeStateParams : <code>object</code>
 
-Structure of GraphQLClient.GetForgeStateParams 
+Structure of GraphQLClient.GetForgeStateParams
 
 Checkout the following snippet for the format of GetForgeStateParams:
 
@@ -6538,7 +6538,7 @@ Checkout the following snippet for the format of GetForgeStateParams:
 
 ### GraphQLClient.GetForgeStatsByDayParams : <code>object</code>
 
-Structure of GraphQLClient.GetForgeStatsByDayParams 
+Structure of GraphQLClient.GetForgeStatsByDayParams
 
 Checkout the following snippet for the format of GetForgeStatsByDayParams:
 
@@ -6561,7 +6561,7 @@ Checkout the following snippet for the format of GetForgeStatsByDayParams:
 
 ### GraphQLClient.GetForgeStatsByHourParams : <code>object</code>
 
-Structure of GraphQLClient.GetForgeStatsByHourParams 
+Structure of GraphQLClient.GetForgeStatsByHourParams
 
 Checkout the following snippet for the format of GetForgeStatsByHourParams:
 
@@ -6582,7 +6582,7 @@ Checkout the following snippet for the format of GetForgeStatsByHourParams:
 
 ### GraphQLClient.GetProtocolStateParams : <code>object</code>
 
-Structure of GraphQLClient.GetProtocolStateParams 
+Structure of GraphQLClient.GetProtocolStateParams
 
 Checkout the following snippet for the format of GetProtocolStateParams:
 
@@ -6609,7 +6609,7 @@ Checkout the following snippet for the format of GetProtocolStateParams:
 
 ### GraphQLClient.GetProtocolsParams : <code>object</code>
 
-Structure of GraphQLClient.GetProtocolsParams 
+Structure of GraphQLClient.GetProtocolsParams
 
 Checkout the following snippet for the format of GetProtocolsParams:
 
@@ -6630,7 +6630,7 @@ Checkout the following snippet for the format of GetProtocolsParams:
 
 ### GraphQLClient.GetStakeStateParams : <code>object</code>
 
-Structure of GraphQLClient.GetStakeStateParams 
+Structure of GraphQLClient.GetStakeStateParams
 
 Checkout the following snippet for the format of GetStakeStateParams:
 
@@ -6657,7 +6657,7 @@ Checkout the following snippet for the format of GetStakeStateParams:
 
 ### GraphQLClient.GetTetherStateParams : <code>object</code>
 
-Structure of GraphQLClient.GetTetherStateParams 
+Structure of GraphQLClient.GetTetherStateParams
 
 Checkout the following snippet for the format of GetTetherStateParams:
 
@@ -6684,7 +6684,7 @@ Checkout the following snippet for the format of GetTetherStateParams:
 
 ### GraphQLClient.GetTxParams : <code>object</code>
 
-Structure of GraphQLClient.GetTxParams 
+Structure of GraphQLClient.GetTxParams
 
 Checkout the following snippet for the format of GetTxParams:
 
@@ -6705,7 +6705,7 @@ Checkout the following snippet for the format of GetTxParams:
 
 ### GraphQLClient.GetUnconfirmedTxsParams : <code>object</code>
 
-Structure of GraphQLClient.GetUnconfirmedTxsParams 
+Structure of GraphQLClient.GetUnconfirmedTxsParams
 
 Checkout the following snippet for the format of GetUnconfirmedTxsParams:
 
@@ -6724,7 +6724,7 @@ Checkout the following snippet for the format of GetUnconfirmedTxsParams:
 
 ### GraphQLClient.ListAssetTransactionsParams : <code>object</code>
 
-Structure of GraphQLClient.ListAssetTransactionsParams 
+Structure of GraphQLClient.ListAssetTransactionsParams
 
 Checkout the following snippet for the format of ListAssetTransactionsParams:
 
@@ -6746,7 +6746,7 @@ Checkout the following snippet for the format of ListAssetTransactionsParams:
 
 ### GraphQLClient.ListAssetsParams : <code>object</code>
 
-Structure of GraphQLClient.ListAssetsParams 
+Structure of GraphQLClient.ListAssetsParams
 
 Checkout the following snippet for the format of ListAssetsParams:
 
@@ -6768,7 +6768,7 @@ Checkout the following snippet for the format of ListAssetsParams:
 
 ### GraphQLClient.ListBlocksParams : <code>object</code>
 
-Structure of GraphQLClient.ListBlocksParams 
+Structure of GraphQLClient.ListBlocksParams
 
 Checkout the following snippet for the format of ListBlocksParams:
 
@@ -6794,7 +6794,7 @@ Checkout the following snippet for the format of ListBlocksParams:
 
 ### GraphQLClient.ListStakesParams : <code>object</code>
 
-Structure of GraphQLClient.ListStakesParams 
+Structure of GraphQLClient.ListStakesParams
 
 Checkout the following snippet for the format of ListStakesParams:
 
@@ -6814,7 +6814,7 @@ Checkout the following snippet for the format of ListStakesParams:
 
 ### GraphQLClient.ListTethersParams : <code>object</code>
 
-Structure of GraphQLClient.ListTethersParams 
+Structure of GraphQLClient.ListTethersParams
 
 Checkout the following snippet for the format of ListTethersParams:
 
@@ -6843,7 +6843,7 @@ Checkout the following snippet for the format of ListTethersParams:
 
 ### GraphQLClient.ListTopAccountsParams : <code>object</code>
 
-Structure of GraphQLClient.ListTopAccountsParams 
+Structure of GraphQLClient.ListTopAccountsParams
 
 Checkout the following snippet for the format of ListTopAccountsParams:
 
@@ -6862,7 +6862,7 @@ Checkout the following snippet for the format of ListTopAccountsParams:
 
 ### GraphQLClient.ListTransactionsParams : <code>object</code>
 
-Structure of GraphQLClient.ListTransactionsParams 
+Structure of GraphQLClient.ListTransactionsParams
 
 Checkout the following snippet for the format of ListTransactionsParams:
 
@@ -6885,7 +6885,7 @@ Checkout the following snippet for the format of ListTransactionsParams:
 
 ### GraphQLClient.SendTxParams : <code>object</code>
 
-Structure of GraphQLClient.SendTxParams 
+Structure of GraphQLClient.SendTxParams
 
 Checkout the following snippet for the format of SendTxParams:
 
@@ -6912,7 +6912,7 @@ Checkout the following snippet for the format of SendTxParams:
 
 ### GraphQLClient.UnsubscribeParams : <code>object</code>
 
-Structure of GraphQLClient.UnsubscribeParams 
+Structure of GraphQLClient.UnsubscribeParams
 
 Checkout the following snippet for the format of UnsubscribeParams:
 
@@ -6933,7 +6933,7 @@ Checkout the following snippet for the format of UnsubscribeParams:
 
 ### GraphQLClient.SubscribeParams : <code>object</code>
 
-Structure of GraphQLClient.SubscribeParams 
+Structure of GraphQLClient.SubscribeParams
 
 Checkout the following snippet for the format of SubscribeParams:
 

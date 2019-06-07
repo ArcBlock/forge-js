@@ -1,7 +1,7 @@
-// Generate by [js2dts@0.3.2](https://github.com/whxaxes/js2dts#readme)
+// Generate by [js2dts@0.3.3](https://github.com/whxaxes/js2dts#readme)
 
 /**
- *	Validates if a value is an Uint8Array.
+ * Validates if a value is an Uint8Array.
  *
  * @public
  * @static

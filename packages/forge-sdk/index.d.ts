@@ -175,7 +175,7 @@ declare namespace ForgeSdkWallet {
 }
 
 /**
- *	Validates if a value is an Uint8Array.
+ * Validates if a value is an Uint8Array.
  *
  * @public
  * @static
@@ -321,7 +321,7 @@ declare function encodeBigInt(value: any, type: string): any;
  * @param {boolean} data.minus
  * @returns {string} human readable number
  */
-declare function decodeBigInt(data: ForgeSDK.T100): string;
+declare function decodeBigInt(data: ForgeSDKMessage.T100): string;
 /**
  * Attach an $format method to rpc response
  *
@@ -347,7 +347,7 @@ declare function addProvider(provider: any): void;
 declare function getMessageType(type: any): any;
 declare function toTypeUrl(type: any): any;
 declare function fromTypeUrl(url: any): any;
-declare namespace ForgeSDK {
+declare namespace ForgeSDKMessage {
   export interface T100 {
     value: any;
     minus: boolean;
@@ -395,9 +395,11 @@ declare function toAssetDid(itx: any): string;
  * @public
  * @static
  * @param {object} itx - an object of forge supported itx
+ * @param {string} type - itx type string
+ * @param {enum} [role=types.RoleType.ROLE_TX] - role type
  * @returns {string} itx address without `did:abt:` prefix
  */
-declare function toItxAddress(itx: any, type: any): string;
+declare function toItxAddress(itx: any, type: string, role?: any): string;
 /**
  * Create an itx did
  *
@@ -427,6 +429,15 @@ declare function toStakeAddress(sender: string, receiver: string): string;
  * @returns {string} stake address without `did:abt:` prefix
  */
 declare function toStakeDid(sender: string, receiver: string): string;
+/**
+ * Generate a tether address from the deposit tether tx hash
+ *
+ * @public
+ * @static
+ * @param {string} hash - DepositTetherTx hash
+ * @returns {string} stake address without `did:abt:` prefix
+ */
+declare function toTetherAddress(hash: string): string;
 declare namespace ForgeSdkUtil {
   export interface T100 {
     toAssetAddress: typeof toAssetAddress;
@@ -435,6 +446,7 @@ declare namespace ForgeSdkUtil {
     toItxDid: typeof toItxDid;
     toStakeAddress: typeof toStakeAddress;
     toStakeDid: typeof toStakeDid;
+    toTetherAddress: typeof toTetherAddress;
   }
 }
 
@@ -1700,6 +1712,8 @@ declare namespace forge_abi {
     asset: Uint8Array;
     receipt: Uint8Array;
     protocol: Uint8Array;
+    governance: Uint8Array;
+    custom: Uint8Array;
   }
 
   export interface StakeState {
@@ -2628,53 +2642,53 @@ declare namespace GraphQLClient {
   }
 
   export enum StatusCode {
-    INVALID_SIGNER_STATE,
-    UNTRANSFERRABLE_ASSET,
-    INVALID_NONCE,
-    INVALID_OWNER,
-    BANNED_UNSTAKE,
-    EXPIRED_WALLET_TOKEN,
-    UNSUPPORTED_TX,
-    INVALID_ASSET,
-    CONSENSUS_RPC_ERROR,
     INVALID_DEPOSIT_TARGET,
-    INVALID_MULTISIG,
-    EXPIRED_TX,
-    INVALID_SENDER_STATE,
+    INVALID_MONIKER,
+    UNTRANSFERRABLE_ASSET,
+    INSUFFICIENT_FUND,
+    INSUFFICIENT_STAKE,
+    UNSUPPORTED_TX,
+    CONSENSUS_RPC_ERROR,
     INSUFFICIENT_DATA,
     INVALID_REQUEST,
-    INVALID_CHAIN_ID,
-    ACCOUNT_MIGRATED,
-    INVALID_DEPOSIT_VALUE,
-    INVALID_FORGE_STATE,
     INVALID_DEPOSIT,
-    INVALID_SIGNATURE,
-    INVALID_CUSTODIAN,
-    STORAGE_RPC_ERROR,
-    INVALID_TX,
-    INVALID_STAKE_STATE,
-    INVALID_WALLET,
-    TOO_MANY_TXS,
-    DUPLICATE_TETHER,
-    INVALID_MONIKER,
-    READONLY_ASSET,
-    INSUFFICIENT_STAKE,
-    CONSUMED_ASSET,
-    INSUFFICIENT_FUND,
-    INVALID_EXPIRY_DATE,
-    EXCEED_DEPOSIT_CAP,
-    INVALID_WITHDRAWER,
-    TIMEOUT,
-    EXPIRED_ASSET,
-    INVALID_DEPOSITOR,
-    NOENT,
-    INVALID_LOCK_STATUS,
-    FORBIDDEN,
     UNSUPPORTED_STAKE,
-    INVALID_TX_SIZE,
-    INVALID_RECEIVER_STATE,
-    INTERNAL,
+    INVALID_CUSTODIAN,
+    CONSUMED_ASSET,
+    INVALID_SIGNER_STATE,
+    INVALID_TX,
+    FORBIDDEN,
+    INVALID_STAKE_STATE,
+    EXPIRED_ASSET,
+    BANNED_UNSTAKE,
+    ACCOUNT_MIGRATED,
+    INVALID_SENDER_STATE,
     INVALID_PASSPHRASE,
+    INVALID_RECEIVER_STATE,
+    INVALID_WALLET,
+    INVALID_DEPOSITOR,
+    INVALID_SIGNATURE,
+    INVALID_DEPOSIT_VALUE,
+    INVALID_LOCK_STATUS,
+    EXPIRED_WALLET_TOKEN,
+    INVALID_FORGE_STATE,
+    STORAGE_RPC_ERROR,
+    EXCEED_DEPOSIT_CAP,
+    TOO_MANY_TXS,
+    INVALID_NONCE,
+    INVALID_EXPIRY_DATE,
+    TIMEOUT,
+    INVALID_TX_SIZE,
+    INVALID_MULTISIG,
+    INVALID_OWNER,
+    DUPLICATE_TETHER,
+    EXPIRED_TX,
+    NOENT,
+    READONLY_ASSET,
+    INVALID_CHAIN_ID,
+    INVALID_WITHDRAWER,
+    INTERNAL,
+    INVALID_ASSET,
     OK,
   }
 
@@ -3861,6 +3875,7 @@ declare interface ConnectOptions {
 declare interface ForgeSDK {
   Util: ForgeSdkUtil.T100;
   Wallet: ForgeSdkWallet.T103;
+  Message: ForgeSDKMessage.T101;
   connect: typeof connect;
 }
 

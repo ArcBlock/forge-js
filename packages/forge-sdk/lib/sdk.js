@@ -30,7 +30,7 @@ const debug = require('debug')(`${require('../package.json').name}`);
  * @private
  * @param {*} object
  * @param {*} opts
- * @returns
+ * @returns {array}
  */
 const getAllKeys = (object, keyFilter = () => true) => {
   let getKeys = Object.keys;
@@ -138,74 +138,79 @@ module.exports = ({ message, clients }) => {
     });
   };
 
-  const sdk = Object.assign(
-    {
-      /**
-       * Helper functions to do data encoding/decoding and did address generating
-       *
-       * @public
-       * @see @arcblock/forge-util
-       * @see @arcblock/did-util
-       */
-      Util: Object.assign({}, ForgeUtil, DidUtil),
+  const sdk = {
+    /**
+     * Helper functions to do data encoding/decoding and did address generating
+     *
+     * @public
+     * @see @arcblock/forge-util
+     * @see @arcblock/did-util
+     */
+    Util: Object.assign({}, ForgeUtil, DidUtil),
 
-      /**
-       * Helper functions to manipulate wallets
-       *
-       * @public
-       * @see @arcblock/forge-util
-       * @see @arcblock/did-util
-       */
-      Wallet: ForgeWallet,
+    /**
+     * Helper functions to manipulate wallets
+     *
+     * @public
+     * @see @arcblock/forge-util
+     * @see @arcblock/did-util
+     */
+    Wallet: ForgeWallet,
 
-      /**
-       * Connect to a forge grpc/graphql endpoint
-       * Then switch the current connection of ForgeSDK to that connection
-       *
-       * @public
-       * @function
-       * @param {string} endpoint - endpoint url string
-       * @param {object} options - connection config
-       * @param {string} options.name - connection name
-       * @param {string} options.default - set this connection as default?
-       * @see GraphQLClient for methods available when connected to graphql endpoint
-       * @see GRpcClient for methods available when connected to grpc endpoint
-       */
-      connect(endpoint, options = {}) {
-        const parsed = url.parse(endpoint);
-        parsed.protocol = (parsed.protocol || '').replace(/s?:$/, '');
-        debug('parsed endpoint', parsed);
-        if (!parsed.protocol || !['tcp', 'http', 'https'].includes(parsed.protocol)) {
-          throw new Error(
-            'ForgeSDK.connect expects endpoint to be valid url, only tcp and http protocol supported'
-          );
-        }
+    /**
+     * Helper functions to manipulate messages
+     *
+     * @public
+     * @see @arcblock/forge-message
+     */
+    Message: message,
 
-        if (!clients[parsed.protocol]) {
-          throw new Error(
-            `The ForgeSDK bundle you are using does not support ${parsed.protocol} protocol`
-          );
-        }
+    /**
+     * Connect to a forge grpc/graphql endpoint
+     * Then switch the current connection of ForgeSDK to that connection
+     *
+     * @public
+     * @function
+     * @param {string} endpoint - endpoint url string
+     * @param {object} options - connection config
+     * @param {string} options.name - connection name
+     * @param {string} options.default - set this connection as default?
+     * @see GraphQLClient for methods available when connected to graphql endpoint
+     * @see GRpcClient for methods available when connected to grpc endpoint
+     */
+    connect(endpoint, options = {}) {
+      const parsed = url.parse(endpoint);
+      parsed.protocol = (parsed.protocol || '').replace(/s?:$/, '');
+      debug('parsed endpoint', parsed);
+      if (!parsed.protocol || !['tcp', 'http', 'https'].includes(parsed.protocol)) {
+        throw new Error(
+          'ForgeSDK.connect expects endpoint to be valid url, only tcp and http protocol supported'
+        );
+      }
 
-        const name = options.name || endpoint;
-        debug(`create connection ${endpoint}`);
-        if (parsed.protocol === 'tcp') {
-          const ForgeClient = clients.tcp;
-          const client = new ForgeClient(Object.assign({ endpoint }, options));
-          connections[name] = { client, options };
-          wrapMethods(client, sdk);
-        }
+      if (!clients[parsed.protocol]) {
+        throw new Error(
+          `The ForgeSDK bundle you are using does not support ${parsed.protocol} protocol`
+        );
+      }
 
-        if (['http', 'https'].includes(parsed.protocol)) {
-          const ForgeClient = clients.http;
-          const client = new ForgeClient(Object.assign({ endpoint }, options));
-          connections[name] = { client, options };
-          wrapMethods(client, sdk);
-        }
-      },
+      const name = options.name || endpoint;
+      debug(`create connection ${endpoint}`);
+      if (parsed.protocol === 'tcp') {
+        const ForgeClient = clients.tcp;
+        const client = new ForgeClient(Object.assign({ endpoint }, options));
+        connections[name] = { client, options };
+        wrapMethods(client, sdk);
+      }
+
+      if (['http', 'https'].includes(parsed.protocol)) {
+        const ForgeClient = clients.http;
+        const client = new ForgeClient(Object.assign({ endpoint }, options));
+        connections[name] = { client, options };
+        wrapMethods(client, sdk);
+      }
     },
-    message
-  );
+  };
 
   return sdk;
 };

@@ -8,6 +8,8 @@ const sdk = {
 
 Object.keys(sdk).forEach(x => {
   describe(x, () => {
+    jest.setTimeout(10000);
+
     const SDK = sdk[x];
 
     test('should have connect function', () => {
@@ -37,7 +39,7 @@ Object.keys(sdk).forEach(x => {
     });
 
     test('should delegate to forge-message', async () => {
-      expect(typeof SDK.formatMessage).toEqual('function');
+      expect(typeof SDK.Message.formatMessage).toEqual('function');
     });
 
     test('should delegate to forge-wallet', async () => {

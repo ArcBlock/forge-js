@@ -59,7 +59,7 @@ const fromPublicKeyHash = (buffer, type) => {
   const pkHash = stripHexPrefix(buffer).slice(0, 40); // 20 bytes
   const hashFn = getHasher(hash);
   const typeHex = fromTypeInfo(type);
-  const checksum = stripHexPrefix(hashFn(`0x${typeHex}${pkHash}`)).slice(0, 8); // 4 bytes
+  const checksum = stripHexPrefix(hashFn(`0x${typeHex}${pkHash}`, 1)).slice(0, 8); // 4 bytes
   const didHash = `${typeHex}${pkHash}${checksum}`;
   debug('fromPublicKeyHash', { pkHash, typeHex, checksum, didHash });
 

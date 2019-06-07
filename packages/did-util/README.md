@@ -4,13 +4,13 @@
 
 > Helper functions to calculate did
 
+
 ## Table of Contents
 
-- [**@arcblock/did-util**](#arcblockdid-util)
-  - [Table of Contents](#table-of-contents)
-  - [Install](#install)
-  - [Usage](#usage)
-  - [Documentation](#documentation)
+* [Install](#install)
+* [Usage](#usage)
+* [Documentation](#documentation)
+
 
 ## Install
 
@@ -19,6 +19,7 @@ npm install @arcblock/did-util
 // or
 yarn add @arcblock/did-util
 ```
+
 
 ## Usage
 
@@ -54,6 +55,14 @@ module.exports = new Authenticator({
 });
 ```
 
+
 ## Documentation
 
 For full documentation, checkout [README.md](./docs/README.md).
+
+
+## Contributors
+
+| Name           | Website                    |
+| -------------- | -------------------------- |
+| **wangshijun** | <https://ocap.arcblock.io> |

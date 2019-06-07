@@ -36,4 +36,13 @@ describe('#sha2', () => {
       });
     });
   });
+
+  test('should return expected on hex', () => {
+    expect(
+      hasher.hash256('CE922DEDAA0E2C141B040BB8034AF17BF9962266F1EF179E05B46FC5FAD43258', 1)
+    ).toEqual('0x8c64fe3542fef5fa19d549b8f95c83ea2d72830e6e9410565d82c5156a8e87e2');
+    expect(
+      hasher.hash256('0xCE922DEDAA0E2C141B040BB8034AF17BF9962266F1EF179E05B46FC5FAD43258', 1)
+    ).toEqual('0xf2c9d6a800eb82f415501c344cc8e8df68065c704b4c34b4d5313b81356b2967');
+  });
 });

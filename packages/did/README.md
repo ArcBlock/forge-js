@@ -1,6 +1,7 @@
 # `@arcblock/did`
 
-> Javascript library to manipulate ArcBlock DID: https://github.com/ArcBlock/abt-did-spec
+> Javascript library to manipulate ArcBlock DID: <https://github.com/ArcBlock/abt-did-spec>
+
 
 ## Usage
 
@@ -42,6 +43,7 @@ const userDID = fromAppDID(appDID, keyPir.publicKey, {
 });
 console.log(`abt:did:${userDID}`);
 ```
+
 
 ## Documentation
 

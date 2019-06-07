@@ -1,4 +1,4 @@
-const { toAssetAddress, toItxAddress, toStakeAddress } = require('../lib');
+const { toAssetAddress, toItxAddress, toStakeAddress, toTetherAddress } = require('../lib');
 
 describe('#toAssetAddress', () => {
   test('should be a function', () => {
@@ -33,6 +33,13 @@ describe('#toStakeAddress', () => {
   test('should be a function', () => {
     expect(typeof toStakeAddress).toEqual('function');
   });
+
+  test('should return different result on reversed input', () => {
+    const address1 = 'z1gV8DHM8nBdrGBnZyR48qutN8BrKbSVcEU';
+    const address2 = 'z1VFy8hB9ndynkWAAH9P1a2L5WaU7AvtKGy';
+    expect(toStakeAddress(address1, address2)).toEqual('zrjtNfbkAMkrnx8YmtMLScgkcyWRxoB1696x');
+    expect(toStakeAddress(address2, address1)).toEqual('zrjwrePam5hV689TGTByVL8qYzTiAww8bDs4');
+  });
 });
 
 describe('#toItxAddress', () => {
@@ -44,5 +51,20 @@ describe('#toItxAddress', () => {
     expect(toItxAddress({ moniker: 'wangshijun' }, 'DeclareTx')).toEqual(
       'z2E44GA1A8KD8j49zMkL8Eacey2RRCtXo9ecT'
     );
+  });
+});
+
+describe('#toTetherAddress', () => {
+  test('should be a function', () => {
+    expect(typeof toTetherAddress).toEqual('function');
+  });
+
+  test('should return correct tether address', () => {
+    expect(
+      toTetherAddress('0xCE922DEDAA0E2C141B040BB8034AF17BF9962266F1EF179E05B46FC5FAD43258')
+    ).toEqual('z2MC8w872CYeZ3zZSERMkaKSmiDrHHr7vDxYE');
+    expect(
+      toTetherAddress('0xF7CA36EDB52048EA9CE61842C522A2176B7613883B42B70798DD19D6BAF9E3BC')
+    ).toEqual('z2MCCh4wH3kJTvZQZNiVwDt3PNCqzqvZWvnz1');
   });
 });

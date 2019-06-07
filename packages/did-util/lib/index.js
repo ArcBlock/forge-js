@@ -84,11 +84,21 @@ function toItxDid(itx, type) {
 function toStakeAddress(sender, receiver) {
   const senderBuffer = Buffer.from(sender);
   const receiverBuffer = Buffer.from(receiver);
-  const buffer = Buffer.concat(
-    sender < receiver ? [senderBuffer, receiverBuffer] : [receiverBuffer, senderBuffer]
-  );
+  const buffer = Buffer.concat([senderBuffer, receiverBuffer]);
   const hash = Hasher.SHA3.hash256(buffer);
   return fromHash(hash, types.RoleType.ROLE_STAKE);
+}
+
+/**
+ * Generate a tether address from the deposit tether tx hash
+ *
+ * @public
+ * @static
+ * @param {string} hash - DepositTetherTx hash
+ * @returns {string} stake address without `did:abt:` prefix
+ */
+function toTetherAddress(hash) {
+  return fromHash(hash, types.RoleType.ROLE_TETHER);
 }
 
 /**
@@ -111,4 +121,5 @@ module.exports = {
   toItxDid,
   toStakeAddress,
   toStakeDid,
+  toTetherAddress,
 };
