@@ -19,7 +19,7 @@ const util = require('util');
 const moment = require('moment');
 const ForgeSDK = require('../index');
 
-const { hexToBytes, bytesToHex, toHex, fromTokenToUnit, toStakeAddress } = ForgeSDK.Util;
+const { hexToBytes, bytesToHex, fromTokenToUnit, toStakeAddress } = ForgeSDK.Util;
 const inspect = d => util.inspect(d, { depth: 8, colors: true });
 const printLine = () => {
   console.log('');
@@ -299,7 +299,7 @@ const doCustodianStake = async wallet => {
       },
       exchange
     );
-    withdraw.receiver.tether = ForgeSDK.Util.toTetherAddress(toHex(depositHash));
+    withdraw.receiver.tether = ForgeSDK.Util.toTetherAddress(`0x${depositHash}`);
     console.log('withdrawTether.tetherAddress', withdraw.receiver.tether);
     const withdrawHash = await ForgeSDK.sendWithdrawTetherTx(
       {
