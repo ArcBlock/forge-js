@@ -19,6 +19,11 @@ const util = require('util');
 const moment = require('moment');
 const ForgeSDK = require('../index');
 
+// chain ids should match your setup, both chains should be up with forge v0.29+
+const CHAIN_ID_ASSET = 'forge';
+const CHAIN_ID_APP = 'asset';
+const ANCHOR_ADDRESS = 'zyszYYCzecsLCyKgksYd7SG3d2DKjb52mw1q';
+
 const { hexToBytes, bytesToHex, fromTokenToUnit, toStakeAddress } = ForgeSDK.Util;
 const inspect = d => util.inspect(d, { depth: 8, colors: true });
 const printLine = () => {
@@ -38,10 +43,6 @@ const sleep = timeout =>
 const getOffsetTime = days => ({
   seconds: Math.round(Date.now() / 1000) + days * 24 * 60 * 60,
 });
-
-// This is confuse
-const CHAIN_ID_ASSET = 'forge';
-const CHAIN_ID_APP = 'asset';
 
 // Connect application and asset chain
 ForgeSDK.connect('http://127.0.0.1:8210/api', {
@@ -112,15 +113,14 @@ const createAsset = async (moniker, wallet) => {
 const doCustodianStake = async wallet => {
   // FIXME: this should be the address of a node
   // because stake is still not well supported by forge
-  const anchor = 'zyszYYCzecsLCyKgksYd7SG3d2DKjb52mw1q';
   console.log('custodian.stake.from', wallet.toAddress());
-  console.log('custodian.stake.to', anchor);
+  console.log('custodian.stake.to', ANCHOR_ADDRESS);
 
   const stake = {
-    to: anchor,
+    to: ANCHOR_ADDRESS,
     value: fromTokenToUnit(20),
     message: 'custodian stake',
-    address: toStakeAddress(wallet.toAddress(), anchor),
+    address: toStakeAddress(wallet.toAddress(), ANCHOR_ADDRESS),
     data: {
       // FIXME: this is the only supported one
       type: 'StakeForNode',
