@@ -1974,6 +1974,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
         asset: msg.getAsset(),
         receipt: msg.getReceipt(),
         protocol: msg.getProtocol(),
+        governance: msg.getGovernance(),
+        custom: msg.getCustom(),
       };
 
     if (includeInstance) {
@@ -2028,6 +2030,14 @@ proto.forge_abi.RootState.deserializeBinaryFromReader = function(msg, reader) {
         var value = /** @type {!Uint8Array} */ (reader.readBytes());
         msg.setProtocol(value);
         break;
+      case 6:
+        var value = /** @type {!Uint8Array} */ (reader.readBytes());
+        msg.setGovernance(value);
+        break;
+      case 7:
+        var value = /** @type {!Uint8Array} */ (reader.readBytes());
+        msg.setCustom(value);
+        break;
       default:
         reader.skipField();
         break;
@@ -2074,6 +2084,14 @@ proto.forge_abi.RootState.serializeBinaryToWriter = function(message, writer) {
   f = message.getProtocol_asU8();
   if (f.length > 0) {
     writer.writeBytes(5, f);
+  }
+  f = message.getGovernance_asU8();
+  if (f.length > 0) {
+    writer.writeBytes(6, f);
+  }
+  f = message.getCustom_asU8();
+  if (f.length > 0) {
+    writer.writeBytes(7, f);
   }
 };
 
@@ -2220,6 +2238,72 @@ proto.forge_abi.RootState.prototype.getProtocol_asU8 = function() {
 /** @param {!(string|Uint8Array)} value */
 proto.forge_abi.RootState.prototype.setProtocol = function(value) {
   jspb.Message.setProto3BytesField(this, 5, value);
+};
+
+/**
+ * optional bytes governance = 6;
+ * @return {!(string|Uint8Array)}
+ */
+proto.forge_abi.RootState.prototype.getGovernance = function() {
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 6, ''));
+};
+
+/**
+ * optional bytes governance = 6;
+ * This is a type-conversion wrapper around `getGovernance()`
+ * @return {string}
+ */
+proto.forge_abi.RootState.prototype.getGovernance_asB64 = function() {
+  return /** @type {string} */ (jspb.Message.bytesAsB64(this.getGovernance()));
+};
+
+/**
+ * optional bytes governance = 6;
+ * Note that Uint8Array is not supported on all browsers.
+ * @see http://caniuse.com/Uint8Array
+ * This is a type-conversion wrapper around `getGovernance()`
+ * @return {!Uint8Array}
+ */
+proto.forge_abi.RootState.prototype.getGovernance_asU8 = function() {
+  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(this.getGovernance()));
+};
+
+/** @param {!(string|Uint8Array)} value */
+proto.forge_abi.RootState.prototype.setGovernance = function(value) {
+  jspb.Message.setProto3BytesField(this, 6, value);
+};
+
+/**
+ * optional bytes custom = 7;
+ * @return {!(string|Uint8Array)}
+ */
+proto.forge_abi.RootState.prototype.getCustom = function() {
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 7, ''));
+};
+
+/**
+ * optional bytes custom = 7;
+ * This is a type-conversion wrapper around `getCustom()`
+ * @return {string}
+ */
+proto.forge_abi.RootState.prototype.getCustom_asB64 = function() {
+  return /** @type {string} */ (jspb.Message.bytesAsB64(this.getCustom()));
+};
+
+/**
+ * optional bytes custom = 7;
+ * Note that Uint8Array is not supported on all browsers.
+ * @see http://caniuse.com/Uint8Array
+ * This is a type-conversion wrapper around `getCustom()`
+ * @return {!Uint8Array}
+ */
+proto.forge_abi.RootState.prototype.getCustom_asU8 = function() {
+  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(this.getCustom()));
+};
+
+/** @param {!(string|Uint8Array)} value */
+proto.forge_abi.RootState.prototype.setCustom = function(value) {
+  jspb.Message.setProto3BytesField(this, 7, value);
 };
 
 /**

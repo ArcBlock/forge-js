@@ -2627,6 +2627,14 @@
             "protocol": {
               "type": "bytes",
               "id": 5
+            },
+            "governance": {
+              "type": "bytes",
+              "id": 6
+            },
+            "custom": {
+              "type": "bytes",
+              "id": 7
             }
           }
         },

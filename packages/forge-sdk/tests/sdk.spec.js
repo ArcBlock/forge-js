@@ -8,6 +8,8 @@ const sdk = {
 
 Object.keys(sdk).forEach(x => {
   describe(x, () => {
+    jest.setTimeout(10000);
+
     const SDK = sdk[x];
 
     test('should have connect function', () => {

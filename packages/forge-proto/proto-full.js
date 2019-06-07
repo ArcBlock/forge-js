@@ -1,4 +1,4 @@
-// Auto generated code (2019-05-31T11:24:28.018Z), DO NOT EDIT
+// Auto generated code (2019-06-07T07:22:07.208Z), DO NOT EDIT
 const enumPb = require('./lib/enum_pb.js');
 const typePb = require('./lib/type_pb.js');
 const txPb = require('./lib/tx_pb.js');
