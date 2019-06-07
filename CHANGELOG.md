@@ -1,3 +1,27 @@
+## 0.29.0 (June 07, 2019)
+  - chore: move all message related methods to ForgeSDK.message
+  - chore: update readme and typescript declaration
+  - chore: upgrade grpc-client with forge v0.29.0
+  - chore: upgrade graphql-client with forge v0.29.0
+  - chore: upgrade forge-proto with forge v0.29.0
+  - chore: add cross chain docs
+  - chore: add more test case for did util
+  - fix: cross chain script final works :joy
+  - chore: complete cross chain workflow
+  - fix: DidUtil.toTetherAddress aligns with elixir
+  - fix: sha2 included in mcrypto not strictly aligning with elixir, using hash.js instead
+  - fix: sha2 included in mcrypto not strictly aligning with elixir, using hash.js instead
+  - chore: try to add toTetherAdderss
+  - chore: try to make withdraw tether work
+  - chore: export sha2.hash256
+  - chore: ensure successful exchange tether transaction
+  - chore: working exchagne tether
+  - chore: basic flow of exchange, but not working
+  - fix: DidUtil.toStakeAddress to align with elixir
+  - chore: support deposit tether tx in xchain example
+  - chore: add prepare steps for cross chain
+  - chore: add cross chain example in forge-sdk
+
 ## 0.28.10 (June 05, 2019)
   - chore: cleanup forge-cli files
 
