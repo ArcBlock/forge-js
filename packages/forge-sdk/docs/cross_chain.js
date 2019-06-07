@@ -25,6 +25,8 @@ const CHAIN_ID_APP = 'asset';
 const ANCHOR_ADDRESS = 'zyszYYCzecsLCyKgksYd7SG3d2DKjb52mw1q';
 
 const { hexToBytes, bytesToHex, fromTokenToUnit, toStakeAddress } = ForgeSDK.Util;
+const { createMessage, formatMessage } = ForgeSDK.Message;
+
 const inspect = d => util.inspect(d, { depth: 8, colors: true });
 const printLine = () => {
   console.log('');
@@ -189,7 +191,7 @@ const doCustodianStake = async wallet => {
         pk: Buffer.from(hexToBytes(custodian.publicKey)),
       },
     ];
-    const depositTxNew = ForgeSDK.createMessage('Transaction', depositTxObj);
+    const depositTxNew = createMessage('Transaction', depositTxObj);
     const depositBufferNew = depositTxNew.serializeBinary();
     const custodianSignature = custodian.sign(bytesToHex(depositBufferNew));
     const depositTxNewObj = depositTxNew.toObject();
@@ -202,7 +204,7 @@ const doCustodianStake = async wallet => {
     ];
 
     console.log('custodianSignature', custodianSignature);
-    console.log('depositTxNewObj', inspect(ForgeSDK.formatMessage('Transaction', depositTxNewObj)));
+    console.log('depositTxNewObj', inspect(formatMessage('Transaction', depositTxNewObj)));
     const depositHash = await ForgeSDK.sendDepositTetherTx(
       {
         tx: depositTxNewObj,
@@ -258,7 +260,7 @@ const doCustodianStake = async wallet => {
         pk: Buffer.from(hexToBytes(buyer.publicKey)),
       },
     ];
-    const exchangeTxNew = ForgeSDK.createMessage('Transaction', exchangeTxObj);
+    const exchangeTxNew = createMessage('Transaction', exchangeTxObj);
     const exchangeBufferNew = exchangeTxNew.serializeBinary();
     const buyerSignature2 = buyer.sign(bytesToHex(exchangeBufferNew));
     const exchangeTxNewObj = exchangeTxNew.toObject();
@@ -269,10 +271,7 @@ const doCustodianStake = async wallet => {
         signature: Buffer.from(hexToBytes(buyerSignature2)),
       },
     ];
-    console.log(
-      'exchangeTxNewObj',
-      inspect(ForgeSDK.formatMessage('Transaction', exchangeTxNewObj))
-    );
+    console.log('exchangeTxNewObj', inspect(formatMessage('Transaction', exchangeTxNewObj)));
     console.log('buyerSignature2', buyerSignature2);
 
     // 5.5 seller send the tx

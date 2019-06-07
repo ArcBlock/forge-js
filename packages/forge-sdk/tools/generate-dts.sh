@@ -24,9 +24,9 @@ cat /tmp/forge-util.d.ts >> $filename
 echo "forge-util.d.ts was patched and merged";
 
 cp ../forge-message/index.d.ts /tmp/forge-message.d.ts
-sed -i -E "s/_ArcblockForgeMessage/ForgeSDK/g" /tmp/forge-message.d.ts
-sed -i -E "/export = ForgeSDK/d" /tmp/forge-message.d.ts
-sed -i -E "/declare const ForgeSDK:/d" /tmp/forge-message.d.ts
+sed -i -E "s/_ArcblockForgeMessage/ForgeSDKMessage/g" /tmp/forge-message.d.ts
+sed -i -E "/export = ForgeSDKMessage/d" /tmp/forge-message.d.ts
+sed -i -E "/declare const ForgeSDKMessage:/d" /tmp/forge-message.d.ts
 cat /tmp/forge-message.d.ts >> $filename
 echo "forge-message.d.ts was patched and merged";
 
@@ -84,6 +84,7 @@ declare interface ConnectOptions {
 declare interface ForgeSDK {
   Util: ForgeSdkUtil.T100;
   Wallet: ForgeSdkWallet.T103;
+  Message: ForgeSDKMessage.T101;
   connect: typeof connect;
 }
 

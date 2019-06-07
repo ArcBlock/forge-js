@@ -321,7 +321,7 @@ declare function encodeBigInt(value: any, type: string): any;
  * @param {boolean} data.minus
  * @returns {string} human readable number
  */
-declare function decodeBigInt(data: ForgeSDK.T100): string;
+declare function decodeBigInt(data: ForgeSDKMessage.T100): string;
 /**
  * Attach an $format method to rpc response
  *
@@ -347,7 +347,7 @@ declare function addProvider(provider: any): void;
 declare function getMessageType(type: any): any;
 declare function toTypeUrl(type: any): any;
 declare function fromTypeUrl(url: any): any;
-declare namespace ForgeSDK {
+declare namespace ForgeSDKMessage {
   export interface T100 {
     value: any;
     minus: boolean;
@@ -3875,6 +3875,7 @@ declare interface ConnectOptions {
 declare interface ForgeSDK {
   Util: ForgeSdkUtil.T100;
   Wallet: ForgeSdkWallet.T103;
+  Message: ForgeSDKMessage.T101;
   connect: typeof connect;
 }
 

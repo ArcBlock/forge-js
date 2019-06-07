@@ -4,17 +4,18 @@
 
 > Forge Javascript SDK packages all in one
 
-
 ## Table of Contents
 
-* [Install](#install)
-* [Usage](#usage)
-  * [ES5(commonjs)](#es5commonjs)
-  * [ES6](#es6)
-  * [Util](#util)
-  * [Wallet](#wallet)
-* [Packages Included](#packages-included)
-
+- [**@arcblock/forge-sdk**](#arcblockforge-sdk)
+  - [Table of Contents](#table-of-contents)
+  - [Install](#install)
+  - [Usage](#usage)
+    - [ES5(commonjs)](#es5commonjs)
+    - [ES6](#es6)
+    - [Util](#util)
+    - [Wallet](#wallet)
+    - [Message](#message)
+  - [Packages Included](#packages-included)
 
 ## Install
 
@@ -23,7 +24,6 @@ npm i @arcblock/forge-sdk
 // OR
 yarn add @arcblock/forge-sdk
 ```
-
 
 ## Usage
 
@@ -87,12 +87,24 @@ const wallet = ForgeSDK.Wallet.fromRandom();
 console.log(wallet.toJSON());
 ```
 
+### Message
+
+```javascript
+const ForgeSDK from '@arcblock/forge-sdk';
+
+const message = ForgeSDK.Message.createMessage('Transaction', {
+  from: 'xxx',
+  nonce: 1234,
+  itx: {}
+});
+console.log(message);
+```
 
 ## Packages Included
 
-* [graphql-client](https://www.npmjs.com/package/@arcblock/graphql-client), available after `ForgeSDK.connect`
-* [grpc-client](https://www.npmjs.com/package/@arcblock/grpc-client), available after `ForgeSDK.connect`
-* [forge-util](https://www.npmjs.com/package/@arcblock/forge-util), available on `ForgeSDK.Util`
-* [did-util](https://www.npmjs.com/package/@arcblock/did-util), available on `ForgeSDK.Util`
-* [forge-wallet](https://www.npmjs.com/package/@arcblock/forge-wallet), available on `ForgeSDK.Wallet`
-* [forge-message](https://www.npmjs.com/package/@arcblock/forge-message), available on `ForgeSDK`
+- [graphql-client](https://www.npmjs.com/package/@arcblock/graphql-client), available after `ForgeSDK.connect`
+- [grpc-client](https://www.npmjs.com/package/@arcblock/grpc-client), available after `ForgeSDK.connect`
+- [forge-util](https://www.npmjs.com/package/@arcblock/forge-util), available on `ForgeSDK.Util`
+- [did-util](https://www.npmjs.com/package/@arcblock/did-util), available on `ForgeSDK.Util`
+- [forge-wallet](https://www.npmjs.com/package/@arcblock/forge-wallet), available on `ForgeSDK.Wallet`
+- [forge-message](https://www.npmjs.com/package/@arcblock/forge-message), available on `ForgeSDK.Message`
