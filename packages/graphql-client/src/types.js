@@ -1332,7 +1332,7 @@
  * Checkout the following snippet for the format of ResponseGetAccountState:
  * ```json
 {
-  "code": "INVALID_SIGNER_STATE",
+  "code": "INVALID_DEPOSIT_TARGET",
   "state": {
     "address": "abc",
     "balance": "abc",
@@ -1342,7 +1342,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INVALID_SIGNER_STATE",
+        "code": "INVALID_DEPOSIT_TARGET",
         "createAsset": {
           "asset": "abc"
         },
@@ -1380,7 +1380,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INVALID_SIGNER_STATE",
+        "code": "INVALID_DEPOSIT_TARGET",
         "createAsset": {
           "asset": "abc"
         },
@@ -1480,7 +1480,7 @@
  * Checkout the following snippet for the format of ResponseGetAssetState:
  * ```json
 {
-  "code": "INVALID_SIGNER_STATE",
+  "code": "INVALID_DEPOSIT_TARGET",
   "state": {
     "address": "abc",
     "consumedTime": "2019-04-29T00:00:00.000Z",
@@ -1490,7 +1490,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INVALID_SIGNER_STATE",
+        "code": "INVALID_DEPOSIT_TARGET",
         "createAsset": {
           "asset": "abc"
         },
@@ -1528,7 +1528,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INVALID_SIGNER_STATE",
+        "code": "INVALID_DEPOSIT_TARGET",
         "createAsset": {
           "asset": "abc"
         },
@@ -1623,7 +1623,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INVALID_SIGNER_STATE",
+        "code": "INVALID_DEPOSIT_TARGET",
         "createAsset": {
           "asset": "abc"
         },
@@ -1679,7 +1679,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INVALID_SIGNER_STATE",
+        "code": "INVALID_DEPOSIT_TARGET",
         "createAsset": {
           "asset": "abc"
         },
@@ -1722,7 +1722,7 @@
       "block": "abc"
     }
   },
-  "code": "INVALID_SIGNER_STATE"
+  "code": "INVALID_DEPOSIT_TARGET"
 }
  * ```
  *
@@ -1772,7 +1772,7 @@
       }
     }
   ],
-  "code": "INVALID_SIGNER_STATE",
+  "code": "INVALID_DEPOSIT_TARGET",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -1794,7 +1794,7 @@
  * Checkout the following snippet for the format of ResponseGetChainInfo:
  * ```json
 {
-  "code": "INVALID_SIGNER_STATE",
+  "code": "INVALID_DEPOSIT_TARGET",
   "info": {
     "address": "abc",
     "appHash": "abc",
@@ -1834,7 +1834,7 @@
  * Checkout the following snippet for the format of ResponseGetConfig:
  * ```json
 {
-  "code": "INVALID_SIGNER_STATE",
+  "code": "INVALID_DEPOSIT_TARGET",
   "config": "abc"
 }
  * ```
@@ -1851,7 +1851,7 @@
  * Checkout the following snippet for the format of ResponseGetForgeState:
  * ```json
 {
-  "code": "INVALID_SIGNER_STATE",
+  "code": "INVALID_DEPOSIT_TARGET",
   "state": {
     "address": "abc",
     "consensus": {
@@ -1902,7 +1902,7 @@
               "accountMigrate": {
                 "address": "abc"
               },
-              "code": "INVALID_SIGNER_STATE",
+              "code": "INVALID_DEPOSIT_TARGET",
               "createAsset": {
                 "asset": "abc"
               },
@@ -1940,7 +1940,7 @@
               "accountMigrate": {
                 "address": "abc"
               },
-              "code": "INVALID_SIGNER_STATE",
+              "code": "INVALID_DEPOSIT_TARGET",
               "createAsset": {
                 "asset": "abc"
               },
@@ -2035,7 +2035,7 @@
  * Checkout the following snippet for the format of ResponseGetForgeStats:
  * ```json
 {
-  "code": "INVALID_SIGNER_STATE",
+  "code": "INVALID_DEPOSIT_TARGET",
   "forgeStats": {
     "avgBlockTime": 123,
     "avgTps": 123,
@@ -2107,7 +2107,7 @@
  * Checkout the following snippet for the format of ResponseGetHealthStatus:
  * ```json
 {
-  "code": "INVALID_SIGNER_STATE",
+  "code": "INVALID_DEPOSIT_TARGET",
   "healthStatus": {
     "consensus": {
       "blockHeight": "abc",
@@ -2152,7 +2152,7 @@
  * Checkout the following snippet for the format of ResponseGetNetInfo:
  * ```json
 {
-  "code": "INVALID_SIGNER_STATE",
+  "code": "INVALID_DEPOSIT_TARGET",
   "netInfo": {
     "listeners": [
       "abc"
@@ -2190,7 +2190,7 @@
  * Checkout the following snippet for the format of ResponseGetNodeInfo:
  * ```json
 {
-  "code": "INVALID_SIGNER_STATE",
+  "code": "INVALID_DEPOSIT_TARGET",
   "info": {
     "address": "abc",
     "appHash": "abc",
@@ -2238,7 +2238,7 @@
  * Checkout the following snippet for the format of ResponseGetProtocolState:
  * ```json
 {
-  "code": "INVALID_SIGNER_STATE",
+  "code": "INVALID_DEPOSIT_TARGET",
   "state": {
     "address": "abc",
     "context": {
@@ -2247,7 +2247,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INVALID_SIGNER_STATE",
+        "code": "INVALID_DEPOSIT_TARGET",
         "createAsset": {
           "asset": "abc"
         },
@@ -2285,7 +2285,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INVALID_SIGNER_STATE",
+        "code": "INVALID_DEPOSIT_TARGET",
         "createAsset": {
           "asset": "abc"
         },
@@ -2378,7 +2378,7 @@
  * Checkout the following snippet for the format of ResponseGetProtocols:
  * ```json
 {
-  "code": "INVALID_SIGNER_STATE",
+  "code": "INVALID_DEPOSIT_TARGET",
   "protocols": [
     {
       "address": "abc",
@@ -2426,7 +2426,7 @@
  * Checkout the following snippet for the format of ResponseGetSimulatorStatus:
  * ```json
 {
-  "code": "INVALID_SIGNER_STATE",
+  "code": "INVALID_DEPOSIT_TARGET",
   "result": "abc"
 }
  * ```
@@ -2443,7 +2443,7 @@
  * Checkout the following snippet for the format of ResponseGetStakeState:
  * ```json
 {
-  "code": "INVALID_SIGNER_STATE",
+  "code": "INVALID_DEPOSIT_TARGET",
   "state": {
     "address": "abc",
     "balance": "abc",
@@ -2453,7 +2453,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INVALID_SIGNER_STATE",
+        "code": "INVALID_DEPOSIT_TARGET",
         "createAsset": {
           "asset": "abc"
         },
@@ -2491,7 +2491,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INVALID_SIGNER_STATE",
+        "code": "INVALID_DEPOSIT_TARGET",
         "createAsset": {
           "asset": "abc"
         },
@@ -2548,7 +2548,7 @@
  * Checkout the following snippet for the format of ResponseGetTetherState:
  * ```json
 {
-  "code": "INVALID_SIGNER_STATE",
+  "code": "INVALID_DEPOSIT_TARGET",
   "state": {
     "address": "abc",
     "available": true,
@@ -2577,12 +2577,12 @@
  * Checkout the following snippet for the format of ResponseGetTx:
  * ```json
 {
-  "code": "INVALID_SIGNER_STATE",
+  "code": "INVALID_DEPOSIT_TARGET",
   "info": {
     "accountMigrate": {
       "address": "abc"
     },
-    "code": "INVALID_SIGNER_STATE",
+    "code": "INVALID_DEPOSIT_TARGET",
     "createAsset": {
       "asset": "abc"
     },
@@ -2630,7 +2630,7 @@
  * Checkout the following snippet for the format of ResponseGetUnconfirmedTxs:
  * ```json
 {
-  "code": "INVALID_SIGNER_STATE",
+  "code": "INVALID_DEPOSIT_TARGET",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -2675,7 +2675,7 @@
  * Checkout the following snippet for the format of ResponseGetValidatorsInfo:
  * ```json
 {
-  "code": "INVALID_SIGNER_STATE",
+  "code": "INVALID_DEPOSIT_TARGET",
   "validatorsInfo": {
     "blockHeight": "abc",
     "validators": [
@@ -2712,7 +2712,7 @@
  * Checkout the following snippet for the format of ResponseListAssetTransactions:
  * ```json
 {
-  "code": "INVALID_SIGNER_STATE",
+  "code": "INVALID_DEPOSIT_TARGET",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -2720,7 +2720,7 @@
   },
   "transactions": [
     {
-      "code": "INVALID_SIGNER_STATE",
+      "code": "INVALID_DEPOSIT_TARGET",
       "hash": "abc",
       "receiver": "abc",
       "sender": "abc",
@@ -2791,7 +2791,7 @@
       "renaissanceTime": "abc"
     }
   ],
-  "code": "INVALID_SIGNER_STATE",
+  "code": "INVALID_DEPOSIT_TARGET",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -2823,7 +2823,7 @@
       "time": "abc"
     }
   ],
-  "code": "INVALID_SIGNER_STATE",
+  "code": "INVALID_DEPOSIT_TARGET",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -2845,7 +2845,7 @@
  * Checkout the following snippet for the format of ResponseListStakes:
  * ```json
 {
-  "code": "INVALID_SIGNER_STATE",
+  "code": "INVALID_DEPOSIT_TARGET",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -2879,7 +2879,7 @@
  * Checkout the following snippet for the format of ResponseListTethers:
  * ```json
 {
-  "code": "INVALID_SIGNER_STATE",
+  "code": "INVALID_DEPOSIT_TARGET",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -2936,7 +2936,7 @@
       "totalUnstakes": "abc"
     }
   ],
-  "code": "INVALID_SIGNER_STATE",
+  "code": "INVALID_DEPOSIT_TARGET",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -2958,7 +2958,7 @@
  * Checkout the following snippet for the format of ResponseListTransactions:
  * ```json
 {
-  "code": "INVALID_SIGNER_STATE",
+  "code": "INVALID_DEPOSIT_TARGET",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -2966,7 +2966,7 @@
   },
   "transactions": [
     {
-      "code": "INVALID_SIGNER_STATE",
+      "code": "INVALID_DEPOSIT_TARGET",
       "hash": "abc",
       "receiver": "abc",
       "sender": "abc",
@@ -3009,7 +3009,7 @@
  * Checkout the following snippet for the format of ResponseSendTx:
  * ```json
 {
-  "code": "INVALID_SIGNER_STATE",
+  "code": "INVALID_DEPOSIT_TARGET",
   "hash": "abc"
 }
  * ```
@@ -3026,7 +3026,7 @@
  * Checkout the following snippet for the format of ResponseStartSimulator:
  * ```json
 {
-  "code": "INVALID_SIGNER_STATE"
+  "code": "INVALID_DEPOSIT_TARGET"
 }
  * ```
  *
@@ -3041,7 +3041,7 @@
  * Checkout the following snippet for the format of ResponseStopSimulator:
  * ```json
 {
-  "code": "INVALID_SIGNER_STATE"
+  "code": "INVALID_DEPOSIT_TARGET"
 }
  * ```
  *
@@ -3083,7 +3083,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INVALID_SIGNER_STATE",
+        "code": "INVALID_DEPOSIT_TARGET",
         "createAsset": {
           "asset": "abc"
         },
@@ -3121,7 +3121,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INVALID_SIGNER_STATE",
+        "code": "INVALID_DEPOSIT_TARGET",
         "createAsset": {
           "asset": "abc"
         },
@@ -3215,7 +3215,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INVALID_SIGNER_STATE",
+        "code": "INVALID_DEPOSIT_TARGET",
         "createAsset": {
           "asset": "abc"
         },
@@ -3253,7 +3253,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INVALID_SIGNER_STATE",
+        "code": "INVALID_DEPOSIT_TARGET",
         "createAsset": {
           "asset": "abc"
         },
@@ -3376,7 +3376,7 @@
       ]
     }
   },
-  "code": "INVALID_SIGNER_STATE",
+  "code": "INVALID_DEPOSIT_TARGET",
   "confirm": {
     "chainId": "abc",
     "from": "abc",
@@ -3538,7 +3538,7 @@
               "accountMigrate": {
                 "address": "abc"
               },
-              "code": "INVALID_SIGNER_STATE",
+              "code": "INVALID_DEPOSIT_TARGET",
               "createAsset": {
                 "asset": "abc"
               },
@@ -3576,7 +3576,7 @@
               "accountMigrate": {
                 "address": "abc"
               },
-              "code": "INVALID_SIGNER_STATE",
+              "code": "INVALID_DEPOSIT_TARGET",
               "createAsset": {
                 "asset": "abc"
               },
@@ -3664,7 +3664,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INVALID_SIGNER_STATE",
+        "code": "INVALID_DEPOSIT_TARGET",
         "createAsset": {
           "asset": "abc"
         },
@@ -3702,7 +3702,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INVALID_SIGNER_STATE",
+        "code": "INVALID_DEPOSIT_TARGET",
         "createAsset": {
           "asset": "abc"
         },
@@ -3825,7 +3825,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INVALID_SIGNER_STATE",
+        "code": "INVALID_DEPOSIT_TARGET",
         "createAsset": {
           "asset": "abc"
         },
@@ -3863,7 +3863,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INVALID_SIGNER_STATE",
+        "code": "INVALID_DEPOSIT_TARGET",
         "createAsset": {
           "asset": "abc"
         },
@@ -3994,7 +3994,7 @@
  * Checkout the following snippet for the format of ResponseUnsubscribe:
  * ```json
 {
-  "code": "INVALID_SIGNER_STATE"
+  "code": "INVALID_DEPOSIT_TARGET"
 }
  * ```
  *
