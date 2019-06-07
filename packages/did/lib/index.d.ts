@@ -34,7 +34,12 @@ declare namespace _Lib {
     isFromPublicKey: (did: string, pk: string) => boolean;
     isValid: (did: string) => boolean;
     jwtSign: (did: string, sk: string, payload?: any) => string;
-    jwtVerify: (token: string, pk: string, tolerance?: number) => boolean;
+    jwtVerify: (
+      token: string,
+      pk: string,
+      tolerance?: number,
+      verifyTimestamp?: boolean
+    ) => boolean;
     jwtDecode: (token: string, payloadOnly?: boolean) => any;
   }
 }

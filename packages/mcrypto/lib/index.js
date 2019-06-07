@@ -65,9 +65,9 @@ const Mcrypto = (module.exports = {
    * @name Crypter
    * @static
    */
-  Crypter: {
-    AES: require('./crypter/aes'),
-  },
+  // Crypter: {
+  //   AES: require('./crypter/aes'),
+  // },
 
   /**
    * Contains type constants that represent can be used to compose different crypto method, each crypto method consist one of:

@@ -37,10 +37,11 @@ declare class Authenticator {
   /**
    * Verify a DID auth response sent from ABT Wallet
    *
-   * @param {*} data
+   * @param {object} data
+   * @param {string} locale
    * @returns Promise<>
    */
-  verify(data: any): Promise<any>;
+  verify(data: any, locale?: string): Promise<any>;
   genRequestedClaims(T108: _Lib.T109): Promise<any[]>;
   getClaimInfo(T110: _Lib.T111): Promise<any>;
   agreement(T112: _Lib.T111): Promise<_Lib.T114>;

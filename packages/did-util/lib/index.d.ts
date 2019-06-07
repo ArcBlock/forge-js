@@ -24,9 +24,11 @@ declare function toAssetDid(itx: any): string;
  * @public
  * @static
  * @param {object} itx - an object of forge supported itx
+ * @param {string} type - itx type string
+ * @param {enum} [role=types.RoleType.ROLE_TX] - role type
  * @returns {string} itx address without `did:abt:` prefix
  */
-declare function toItxAddress(itx: any, type: any): string;
+declare function toItxAddress(itx: any, type: string, role?: any): string;
 /**
  * Create an itx did
  *
@@ -56,6 +58,15 @@ declare function toStakeAddress(sender: string, receiver: string): string;
  * @returns {string} stake address without `did:abt:` prefix
  */
 declare function toStakeDid(sender: string, receiver: string): string;
+/**
+ * Generate a tether address from the deposit tether tx hash
+ *
+ * @public
+ * @static
+ * @param {string} hash - DepositTetherTx hash
+ * @returns {string} stake address without `did:abt:` prefix
+ */
+declare function toTetherAddress(hash: string): string;
 declare const _Lib: _Lib.T100;
 declare namespace _Lib {
   export interface T100 {
@@ -65,6 +76,7 @@ declare namespace _Lib {
     toItxDid: typeof toItxDid;
     toStakeAddress: typeof toStakeAddress;
     toStakeDid: typeof toStakeDid;
+    toTetherAddress: typeof toTetherAddress;
   }
 }
 export = _Lib;

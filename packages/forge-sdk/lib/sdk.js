@@ -30,7 +30,7 @@ const debug = require('debug')(`${require('../package.json').name}`);
  * @private
  * @param {*} object
  * @param {*} opts
- * @returns
+ * @returns {array}
  */
 const getAllKeys = (object, keyFilter = () => true) => {
   let getKeys = Object.keys;
