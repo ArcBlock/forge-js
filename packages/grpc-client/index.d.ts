@@ -1266,6 +1266,8 @@ declare namespace forge_abi {
     asset: Uint8Array;
     receipt: Uint8Array;
     protocol: Uint8Array;
+    governance: Uint8Array;
+    custom: Uint8Array;
   }
 
   export interface StakeState {
