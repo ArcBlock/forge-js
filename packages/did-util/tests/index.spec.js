@@ -63,5 +63,8 @@ describe('#toTetherAddress', () => {
     expect(
       toTetherAddress('0xCE922DEDAA0E2C141B040BB8034AF17BF9962266F1EF179E05B46FC5FAD43258')
     ).toEqual('z2MC8w872CYeZ3zZSERMkaKSmiDrHHr7vDxYE');
+    expect(
+      toTetherAddress('0xF7CA36EDB52048EA9CE61842C522A2176B7613883B42B70798DD19D6BAF9E3BC')
+    ).toEqual('z2MCCh4wH3kJTvZQZNiVwDt3PNCqzqvZWvnz1');
   });
 });
