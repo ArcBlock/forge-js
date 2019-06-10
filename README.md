@@ -5,20 +5,20 @@
 
 > Javascript SDK for [forge](https://docs.arcblock.io/forge/latest/), which is an awesome framework to write distributed blockchain applications.
 
-> Last updated at 6/10/2019, 3:21:08 AM
+> Last updated at 6/10/2019, 10:52:19 AM
 
 ## Packages Included
 
-- [@arcblock/did v0.29.1](./packages/did)
-- [@arcblock/did-auth v0.29.1](./packages/did-auth)
-- [@arcblock/did-util v0.29.1](./packages/did-util)
+- [@arcblock/did v0.29.2](./packages/did)
+- [@arcblock/did-auth v0.29.2](./packages/did-auth)
+- [@arcblock/did-util v0.29.2](./packages/did-util)
 - [@arcblock/forge-config v0.29.0](./packages/forge-config)
 - [@arcblock/forge-message v0.29.0](./packages/forge-message)
 - [@arcblock/forge-proto v0.29.0](./packages/forge-proto)
-- [@arcblock/forge-sdk v0.29.1](./packages/forge-sdk)
+- [@arcblock/forge-sdk v0.29.2](./packages/forge-sdk)
 - [@arcblock/forge-util v0.29.0](./packages/forge-util)
-- [@arcblock/forge-wallet v0.29.1](./packages/forge-wallet)
-- [@arcblock/graphql-client v0.29.1](./packages/graphql-client)
+- [@arcblock/forge-wallet v0.29.2](./packages/forge-wallet)
+- [@arcblock/graphql-client v0.29.2](./packages/graphql-client)
 - [@arcblock/grpc-client v0.29.0](./packages/grpc-client)
 - [@arcblock/mcrypto v0.29.0](./packages/mcrypto)
 - [@arcblock/tcp-server v0.29.0](./packages/tcp-server)
