@@ -5,7 +5,9 @@ const multibase = require('multibase');
 const Mcrypto = require('@arcblock/mcrypto');
 const { hexToBytes, bytesToHex, isHex } = require('@arcblock/forge-util');
 const { fromAddress } = require('@arcblock/forge-wallet');
-const { jwtDecode, jwtVerify, jwtSign, toAddress, toDid } = require('@arcblock/did');
+const { toAddress, toDid } = require('@arcblock/did');
+const { decode, verify, sign } = require('./jwt');
+
 // eslint-disable-next-line
 const debug = require('debug')(`${require('../package.json').name}:authenticator`);
 
@@ -92,7 +94,7 @@ module.exports = class Authenticator {
     debug('responseAuth.sign', { token, did, payload, extraParams });
     return {
       appPk: this.appPk,
-      authInfo: jwtSign(toDid(this.wallet.address), this.wallet.sk, payload),
+      authInfo: sign(toDid(this.wallet.address), this.wallet.sk, payload),
     };
   }
 
@@ -143,17 +145,17 @@ module.exports = class Authenticator {
         return reject(new Error(errors.pkFormat[locale]));
       }
 
-      const isValid = jwtVerify(userInfo, userPkHex);
+      const isValid = verify(userInfo, userPkHex);
       if (!isValid) {
         // NOTE: since the token can be invalid because of wallet-app clock not in sync
         // We should tell the user that if it's caused by clock
-        const error = jwtVerify(userInfo, userPkHex, 0, false)
+        const error = verify(userInfo, userPkHex, 0, false)
           ? errors.timeInvalid[locale]
           : errors.tokenInvalid[locale];
         return reject(new Error(error));
       }
 
-      const { iss, requestedClaims } = jwtDecode(userInfo);
+      const { iss, requestedClaims } = decode(userInfo);
       debug('decode', { iss, requestedClaims });
 
       // check timestamp

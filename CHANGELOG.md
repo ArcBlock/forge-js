@@ -1,3 +1,7 @@
+## 0.29.1 (June 10, 2019)
+  - chore: move jwt related functions to did-auth package
+  - update readme
+
 ## 0.29.0 (June 07, 2019)
   - chore: move all message related methods to ForgeSDK.message
   - chore: update readme and typescript declaration

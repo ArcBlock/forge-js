@@ -20,7 +20,9 @@
     "@arcblock/forge-wallet": "^0.29.0",
     "@arcblock/graphql-client": "^0.29.0",
     "@arcblock/mcrypto": "^0.29.0",
+    "base64-url": "^2.2.1",
     "debug": "^4.1.1",
+    "json-stable-stringify": "^1.0.1",
     "lodash.get": "^4.4.2",
     "multibase": "^0.6.0"
   },

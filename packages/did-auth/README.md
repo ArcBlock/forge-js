@@ -7,12 +7,14 @@
 
 ## Table of Contents
 
-* [Install](#install)
-* [Usage](#usage)
-* [Documentation](#documentation)
-* [Motivation and workflow](#motivation-and-workflow)
-  * [Parties](#parties)
-  * [Workflow](#workflow)
+- [**@arcblock/did-auth**](#arcblockdid-auth)
+  - [Table of Contents](#table-of-contents)
+  - [Install](#install)
+  - [Usage](#usage)
+  - [Documentation](#documentation)
+  - [Motivation and workflow](#motivation-and-workflow)
+    - [Parties](#parties)
+    - [Workflow](#workflow)
 
 
 ## Install
@@ -28,7 +30,7 @@ yarn add @arcblock/did-auth
 
 ```js
 const { types } = require('@arcblock/mcrypto');
-const { Authenticator, Handlers } = require('@arcblock/did-auth');
+const { Authenticator, Handlers, JWT } = require('@arcblock/did-auth');
 const { fromSecretKey, WalletType } = require('@arcblock/forge-wallet');
 
 const type = WalletType({
