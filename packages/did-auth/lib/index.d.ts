@@ -84,7 +84,7 @@ declare class Handlers {
    */
   attach(T126: _Lib.T127): void;
 }
-declare const _Lib: _Lib.T128;
+declare const _Lib: _Lib.T129;
 declare namespace _Lib {
   export interface T101 {
     wallet: any;
@@ -180,8 +180,14 @@ declare namespace _Lib {
     checksumKey?: string;
   }
   export interface T128 {
+    sign: (did: string, sk: string, payload?: any) => string;
+    verify: (token: string, pk: string, tolerance?: number, verifyTimestamp?: boolean) => boolean;
+    decode: (token: string, payloadOnly?: boolean) => any;
+  }
+  export interface T129 {
     Authenticator: typeof Authenticator;
     Handlers: typeof Handlers;
+    JWT: _Lib.T128;
   }
 }
 export = _Lib;
