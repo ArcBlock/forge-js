@@ -234,7 +234,7 @@ function toAddress(did) {
  * @returns {string}
  */
 function toDid(address) {
-  return `${DID_PREFIX}${address}`;
+  return `${DID_PREFIX}${toAddress(address)}`;
 }
 
 module.exports = {

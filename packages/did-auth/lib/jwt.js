@@ -66,6 +66,7 @@ const sign = (did, sk, payload = {}) => {
     }, {});
 
   const bodyB64 = base64.escape(base64.encode(stringify(body)));
+  debug('sign.body', body);
 
   // make signature
   const msgHex = toHex(`${headerB64}.${bodyB64}`);

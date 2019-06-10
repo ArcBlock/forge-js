@@ -1,5 +1,6 @@
 const multibase = require('multibase');
 const base64 = require('base64-url');
+const { toDid } = require('@arcblock/did');
 const { bytesToHex } = require('@arcblock/forge-util');
 const { sign, verify } = require('../lib/jwt');
 
@@ -9,7 +10,7 @@ const pk = '0xE4852B7091317E3622068E62A5127D1FB0D4AE2FC50213295E10652D2F0ABFC7';
 const appId = 'zNKtCNqYWLYWYW3gWRA1vnRykfCBZYHZvzKr';
 
 describe('#jwt', () => {
-  it('should do stable sort on sign', () => {
+  test('should do stable sort on sign', () => {
     const token1 = sign(appId, sk, {
       key: 'value',
       value: 'key',
@@ -27,7 +28,7 @@ describe('#jwt', () => {
     expect(token1).toEqual(token2);
   });
 
-  it('should sign and verify jwt token', () => {
+  test('should sign and verify jwt token', () => {
     const token = sign(appId, sk, { key: 'value' });
     const [, bodyB64] = token.split('.');
     const body = JSON.parse(base64.decode(base64.unescape(bodyB64)));
@@ -36,7 +37,13 @@ describe('#jwt', () => {
     expect(body.key).toEqual('value');
   });
 
-  it('should be able to verify jwt token signed by elixir', () => {
+  test('should sign with/without did prefix', () => {
+    const token = sign(appId, sk, { key: 'value' });
+    const token2 = sign(toDid(appId), sk, { key: 'value' });
+    expect(token).toEqual(token2);
+  });
+
+  test('should be able to verify jwt token signed by elixir', () => {
     // eslint-disable-next-line no-shadow
     const pk = '0xE4852B7091317E3622068E62A5127D1FB0D4AE2FC50213295E10652D2F0ABFC7';
     const token =
@@ -45,7 +52,7 @@ describe('#jwt', () => {
     expect(result).toEqual(true);
   });
 
-  it('should be able to verify jwt token signed by java', () => {
+  test('should be able to verify jwt token signed by java', () => {
     // eslint-disable-next-line no-shadow
     const pk = bytesToHex(multibase.decode('z2wxiRgf3fm2hmBGPJRbhLhMhYLzU5UviMitDnpELJz9a'));
     const token =

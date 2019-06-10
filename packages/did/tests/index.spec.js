@@ -10,6 +10,8 @@ const {
   fromTypeInfo,
   isValid,
   isFromPublicKey,
+  toDid,
+  toAddress,
 } = require('../lib/index');
 
 const sk =
@@ -25,7 +27,7 @@ const appType = {
 };
 
 describe('@arcblock/did', () => {
-  it('should have functions', () => {
+  test('should have functions', () => {
     expect(typeof fromSecretKey).toEqual('function');
     expect(typeof fromPublicKey).toEqual('function');
     expect(typeof fromPublicKeyHash).toEqual('function');
@@ -37,12 +39,12 @@ describe('@arcblock/did', () => {
     expect(typeof isFromPublicKey).toEqual('function');
   });
 
-  it('should generate expected did from secretKey', () => {
+  test('should generate expected did from secretKey', () => {
     const address = fromSecretKey(sk, appType);
     expect(address).toEqual(appId);
   });
 
-  it('should generate expected did from publicKey', () => {
+  test('should generate expected did from publicKey', () => {
     const address = fromPublicKey(pk, appType);
     expect(address).toEqual(appId);
     expect(
@@ -54,34 +56,34 @@ describe('@arcblock/did', () => {
     ).toEqual(appIdSecp256k1);
   });
 
-  it('should generate expected did from public key hash', () => {
+  test('should generate expected did from public key hash', () => {
     const address = fromPublicKeyHash(Mcrypto.Hasher.SHA3.hash256(pk), appType);
     expect(address).toEqual(appId);
   });
 
-  it('should generate expected did from hash', () => {
+  test('should generate expected did from hash', () => {
     const address = fromHash(Mcrypto.Hasher.SHA3.hash256(pk), types.RoleType.ROLE_APPLICATION);
     expect(address).toEqual(appId);
   });
 
-  it('should get type info as expected', () => {
+  test('should get type info as expected', () => {
     const typeInfo = toTypeInfo(appId);
     expect(typeInfo).toEqual(appType);
   });
 
-  it('should get type info as expected: string', () => {
+  test('should get type info as expected: string', () => {
     const typeInfo = toTypeInfo(appId, true);
     expect(typeInfo.role).toEqual('ROLE_APPLICATION');
     expect(typeInfo.pk).toEqual('ED25519');
     expect(typeInfo.hash).toEqual('SHA3');
   });
 
-  it('should get type hex as expected', () => {
+  test('should get type hex as expected', () => {
     const typeHex = fromTypeInfo(appType);
     expect(typeHex).toEqual('0c01');
   });
 
-  it('should validate did as expected', () => {
+  test('should validate did as expected', () => {
     expect(isValid(appId)).toEqual(true);
     expect(isValid(userId)).toEqual(true);
     expect(isValid(`did:abt:${appId}`)).toEqual(true);
@@ -89,12 +91,12 @@ describe('@arcblock/did', () => {
     expect(isValid('abc')).toEqual(false);
   });
 
-  it('should match did and pk work as expected', () => {
+  test('should match did and pk work as expected', () => {
     expect(isFromPublicKey(appId, pk)).toEqual(true);
     expect(isFromPublicKey('abc', pk)).toEqual(false);
   });
 
-  it('should match elixir did test case', () => {
+  test('should match elixir did test case', () => {
     expect(
       fromSecretKey(
         '0x3E0F9A313300226D51E33D5D98A126E86396956122E97E32D31CEE2277380B83FF47B3022FA503EAA1E9FA4B20FA8B16694EA56096F3A2E9109714062B3486D9'
@@ -111,5 +113,25 @@ describe('@arcblock/did', () => {
     expect(isValid('z1muQ3xqHQK2uiACHyChikobsiY5kLqtShA')).toEqual(true);
     expect(isValid('z2muQ3xqHQK2uiACHyChikobsiY5kLqtShA')).toEqual(false);
     expect(isValid('z1muQ3xqHQK2uiACHyChikobsiY5kLqtSha')).toEqual(false);
+  });
+});
+
+describe('toDid & toAddress', () => {
+  test('should remove prefix', () => {
+    expect(toDid('did:abt:z1muQ3xqHQK2uiACHyChikobsiY5kLqtShA')).toEqual(
+      'did:abt:z1muQ3xqHQK2uiACHyChikobsiY5kLqtShA'
+    );
+    expect(toDid('z1muQ3xqHQK2uiACHyChikobsiY5kLqtShA')).toEqual(
+      'did:abt:z1muQ3xqHQK2uiACHyChikobsiY5kLqtShA'
+    );
+  });
+
+  test('should prepend prefix', () => {
+    expect(toAddress('did:abt:z1muQ3xqHQK2uiACHyChikobsiY5kLqtShA')).toEqual(
+      'z1muQ3xqHQK2uiACHyChikobsiY5kLqtShA'
+    );
+    expect(toAddress('z1muQ3xqHQK2uiACHyChikobsiY5kLqtShA')).toEqual(
+      'z1muQ3xqHQK2uiACHyChikobsiY5kLqtShA'
+    );
   });
 });
