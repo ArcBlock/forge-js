@@ -194,7 +194,12 @@ module.exports = ({ message, clients }) => {
         );
       }
 
+      // Do not create duplication connections
       const name = options.name || endpoint;
+      if (connections[name]) {
+        return;
+      }
+
       debug(`create connection ${endpoint}`);
       if (parsed.protocol === 'tcp') {
         const ForgeClient = clients.tcp;
