@@ -1,3 +1,7 @@
+## 0.29.2 (June 10, 2019)
+  - fix: jwt.sign should avoid duplicate did prefix
+  - update readme
+
 ## 0.29.1 (June 10, 2019)
   - chore: move jwt related functions to did-auth package
   - update readme
