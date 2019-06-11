@@ -183,6 +183,19 @@ declare namespace ForgeSdkWallet {
  * @returns {Boolean} boolean indicating if a value is an Uint8Array
  */
 declare function isUint8Array(value: any): boolean;
+/**
+ * Generate a random UUID
+ *
+ * @returns {string} generated uuid
+ */
+declare function UUID(): string;
+/**
+ * Check if a string is valid UUID
+ *
+ * @param {string} str
+ * @returns {boolean}
+ */
+declare function isUUID(str: string): boolean;
 declare namespace ForgeSdkUtil {
   export interface T100 {
     isBN: (object: any) => boolean;
@@ -205,6 +218,8 @@ declare namespace ForgeSdkUtil {
     fromUnitToToken: (input: string | number, decimal?: number, optionsInput: any) => string;
     fromTokenToUnit: (input: string, decimal?: number) => any;
     toBN: (number: any) => any;
+    UUID: typeof UUID;
+    isUUID: typeof isUUID;
   }
 }
 
