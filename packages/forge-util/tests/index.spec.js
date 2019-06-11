@@ -10,6 +10,8 @@ const {
   hexToUtf8,
   utf8ToHex,
   stripHexPrefix,
+  UUID,
+  isUUID,
 } = require('../lib/index');
 
 describe('#fromUnitToToken & fromTokenToUnit', () => {
@@ -330,5 +332,11 @@ describe('#stripHexPrefix', () => {
     expect(stripHexPrefix(undefined)).toEqual(undefined);
     expect(stripHexPrefix(242423)).toEqual(242423);
     expect(stripHexPrefix(true)).toEqual(true);
+  });
+});
+
+describe('#uuid', () => {
+  test('should generate valid uuid', () => {
+    expect(isUUID(UUID())).toEqual(true);
   });
 });

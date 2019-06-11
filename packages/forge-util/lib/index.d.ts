@@ -9,6 +9,19 @@
  * @returns {Boolean} boolean indicating if a value is an Uint8Array
  */
 declare function isUint8Array(value: any): boolean;
+/**
+ * Generate a random UUID
+ *
+ * @returns {string} generated uuid
+ */
+declare function UUID(): string;
+/**
+ * Check if a string is valid UUID
+ *
+ * @param {string} str
+ * @returns {boolean}
+ */
+declare function isUUID(str: string): boolean;
 declare const _Lib: _Lib.T100;
 declare namespace _Lib {
   export interface T100 {
@@ -32,6 +45,8 @@ declare namespace _Lib {
     fromUnitToToken: (input: string | number, decimal?: number, optionsInput: any) => string;
     fromTokenToUnit: (input: string, decimal?: number) => any;
     toBN: (number: any) => any;
+    UUID: typeof UUID;
+    isUUID: typeof isUUID;
   }
 }
 export = _Lib;

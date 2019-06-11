@@ -480,6 +480,29 @@ function isUint8Array(value) {
   return Object.prototype.toString.call(value) === '[object Uint8Array]';
 }
 
+/**
+ * Generate a random UUID
+ *
+ * @returns {string} generated uuid
+ */
+function UUID() {
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, c => {
+    const r = (Math.random() * 16) | 0;
+    const v = c === 'x' ? r : (r & 0x3) | 0x8;
+    return v.toString(16);
+  });
+}
+
+/**
+ * Check if a string is valid UUID
+ *
+ * @param {string} str
+ * @returns {boolean}
+ */
+function isUUID(str) {
+  return /[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/.test(str);
+}
+
 module.exports = {
   isBN,
   isBigNumber,
@@ -501,4 +524,6 @@ module.exports = {
   fromUnitToToken,
   fromTokenToUnit,
   toBN,
+  UUID,
+  isUUID,
 };
