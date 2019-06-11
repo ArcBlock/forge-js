@@ -81,17 +81,17 @@ module.exports = class Authenticator {
     return uri;
   }
 
-  async sign({ token, did, userPk, claims, pathname, extraParams }) {
+  async sign({ token, userDid, userPk, claims, pathname, extraParams }) {
     const payload = {
       action: 'responseAuth',
       appInfo: this.appInfo,
-      requestedClaims: await this.genRequestedClaims({ claims, did, userPk, extraParams }),
+      requestedClaims: await this.genRequestedClaims({ claims, userDid, userPk, extraParams }),
       url: `${this.baseUrl}${pathname}?${qs.stringify(
         Object.assign({ [this.tokenKey]: token }, extraParams)
       )}`,
     };
 
-    debug('responseAuth.sign', { token, did, payload, extraParams });
+    debug('responseAuth.sign', { token, userDid, payload, extraParams });
     return {
       appPk: this.appPk,
       authInfo: sign(toDid(this.wallet.address), this.wallet.sk, payload),
@@ -159,26 +159,26 @@ module.exports = class Authenticator {
       debug('decode', { iss, requestedClaims });
 
       // check timestamp
-      return resolve({ token, did: iss, claims: requestedClaims });
+      return resolve({ token, userDid: iss, claims: requestedClaims });
     });
   }
 
   // ---------------------------------------
   // Request claim related methods
   // ---------------------------------------
-  genRequestedClaims({ claims, did, userPk, extraParams }) {
+  genRequestedClaims({ claims, userDid, userPk, extraParams }) {
     return Promise.all(
-      Object.keys(claims).map(x => this[x]({ claim: claims[x], did, userPk, extraParams }))
+      Object.keys(claims).map(x => this[x]({ claim: claims[x], userDid, userPk, extraParams }))
     );
   }
 
-  async getClaimInfo({ claim, did, userPk, extraParams }) {
+  async getClaimInfo({ claim, userDid, userPk, extraParams }) {
     const userPkHex = getUserPkHex(userPk);
     const result =
       typeof claim === 'function'
         ? await claim({
-            userDid: did,
-            userAddress: toAddress(did),
+            userDid,
+            userAddress: toAddress(userDid),
             userPk,
             userPkHex,
             extraParams,
@@ -190,8 +190,13 @@ module.exports = class Authenticator {
   }
 
   // 要求同意协议
-  async agreement({ claim, did, userPk, extraParams }) {
-    const { uri, hash, description } = await this.getClaimInfo({ claim, did, userPk, extraParams });
+  async agreement({ claim, userDid, userPk, extraParams }) {
+    const { uri, hash, description } = await this.getClaimInfo({
+      claim,
+      userDid,
+      userPk,
+      extraParams,
+    });
 
     return {
       type: 'agreement',
@@ -204,8 +209,13 @@ module.exports = class Authenticator {
   }
 
   // 要求用户信息
-  async profile({ claim, did, userPk, extraParams }) {
-    const { fields, description } = await this.getClaimInfo({ claim, did, userPk, extraParams });
+  async profile({ claim, userDid, userPk, extraParams }) {
+    const { fields, description } = await this.getClaimInfo({
+      claim,
+      userDid,
+      userPk,
+      extraParams,
+    });
     return {
       type: 'profile',
       items: fields || ['fullName'],
@@ -216,10 +226,10 @@ module.exports = class Authenticator {
   }
 
   // 要求签名
-  async signature({ claim, did, userPk, extraParams }) {
+  async signature({ claim, userDid, userPk, extraParams }) {
     const { txData, txType, wallet, sender, description, userPkHex } = await this.getClaimInfo({
       claim,
-      did,
+      userDid,
       userPk,
       extraParams,
     });
@@ -227,10 +237,10 @@ module.exports = class Authenticator {
       txData.pk = Buffer.from(hexToBytes(userPkHex));
     }
 
-    debug('getClaim.signature', { txData, txType, sender, did, userPk });
+    debug('getClaim.signature', { txData, txType, sender, userDid, userPk });
     const { buffer: txBuffer } = await this.client[`encode${txType}`]({
       tx: txData,
-      wallet: wallet || fromAddress(sender || did),
+      wallet: wallet || fromAddress(sender || userDid),
     });
 
     return {
@@ -247,8 +257,13 @@ module.exports = class Authenticator {
   }
 
   // 资产持有证明
-  async holdingOfAsset({ claim, did, userPk, extraParams }) {
-    const { target, description } = await this.getClaimInfo({ claim, did, userPk, extraParams });
+  async holdingOfAsset({ claim, userDid, userPk, extraParams }) {
+    const { target, description } = await this.getClaimInfo({
+      claim,
+      userDid,
+      userPk,
+      extraParams,
+    });
     return {
       type: 'did',
       did_type: 'asset',
@@ -261,8 +276,13 @@ module.exports = class Authenticator {
   }
 
   // 通证持有证明
-  async holdingOfToken({ claim, did, userPk, extraParams }) {
-    const { target, description } = await this.getClaimInfo({ claim, did, userPk, extraParams });
+  async holdingOfToken({ claim, userDid, userPk, extraParams }) {
+    const { target, description } = await this.getClaimInfo({
+      claim,
+      userDid,
+      userPk,
+      extraParams,
+    });
     return {
       type: 'did',
       did_type: 'account',

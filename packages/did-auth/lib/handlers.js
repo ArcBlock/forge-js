@@ -173,7 +173,7 @@ module.exports = class Handlers {
               req,
               action,
               token,
-              did: store.did,
+              userDid: store.did,
               userAddress: toAddress(store.did),
               extraParams: Object.assign({ locale }, req.query),
             });
@@ -212,8 +212,8 @@ module.exports = class Handlers {
     // eslint-disable-next-line consistent-return
     app.get(pathname, async (req, res) => {
       const locale = getLocale(req);
-      const { userDid: did, userPk, [tokenKey]: token, [checksumKey]: checksum } = req.query;
-      if (!did) {
+      const { userDid, userPk, [tokenKey]: token, [checksumKey]: checksum } = req.query;
+      if (!userDid) {
         return res.json({ error: errors.didMissing[locale] });
       }
       if (!userPk) {
@@ -223,8 +223,8 @@ module.exports = class Handlers {
       debug('sign.input', req.query);
       const store = await this.storage.read(token);
 
-      // check did mismatch
-      const didChecksum = getDidCheckSum(did);
+      // check userDid mismatch
+      const didChecksum = getDidCheckSum(userDid);
       if (didChecksum && checksum && didChecksum !== checksum) {
         await this.storage.update(token, { status: STATUS_FORBIDDEN });
         return res.json({ error: errors.didMismatch[locale] });
@@ -236,12 +236,12 @@ module.exports = class Handlers {
         }
 
         if (store) {
-          await this.storage.update(token, { did, status: STATUS_SCANNED });
+          await this.storage.update(token, { did: userDid, status: STATUS_SCANNED });
         }
 
         const authInfo = await this.authenticator.sign({
           token,
-          did,
+          userDid,
           userPk,
           claims,
           pathname,
@@ -260,7 +260,7 @@ module.exports = class Handlers {
         res.json(authInfo);
       } catch (err) {
         if (store) {
-          await this.storage.update(token, { did, status: STATUS_ERROR });
+          await this.storage.update(token, { did: userDid, status: STATUS_ERROR });
         }
         res.json({ error: err.message });
         onError({ stage: 'auth-response', err });
@@ -281,20 +281,20 @@ module.exports = class Handlers {
 
       try {
         // eslint-disable-next-line no-shadow
-        const { did, claims } = await this.authenticator.verify(params, locale);
+        const { userDid, claims } = await this.authenticator.verify(params, locale);
         claims.forEach(x => {
           if (x.type === 'signature') {
             x.sigHex = bytesToHex(multibase.decode(x.sig));
           }
         });
-        debug('verify', { did, token, claims });
+        debug('verify', { userDid, token, claims });
 
         const cbParams = {
           req,
-          did,
+          userDid,
           token,
           claims,
-          userAddress: toAddress(did),
+          userAddress: toAddress(userDid),
           storage: this.storage,
           extraParams: Object.assign({ locale, action }, req.query),
         };
