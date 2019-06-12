@@ -12,10 +12,18 @@
 
 /* eslint no-console:"off" */
 const camelcase = require('camelcase');
+const multibase = require('multibase');
 const jspb = require('google-protobuf');
 const { Any } = require('google-protobuf/google/protobuf/any_pb');
 const { Timestamp } = require('google-protobuf/google/protobuf/timestamp_pb');
-const { toBN, bytesToHex, isUint8Array } = require('@arcblock/forge-util');
+const {
+  toBN,
+  bytesToHex,
+  hexToBytes,
+  isUint8Array,
+  isHex,
+  isHexStrict,
+} = require('@arcblock/forge-util');
 const {
   enums,
   messages,
@@ -357,6 +365,32 @@ function createMessage(type, params) {
 
         if (subType === 'google.protobuf.Any') {
           message[fn](encodeAny(v));
+          return;
+        }
+
+        // Support different input types of `bytes`: Buffer, Uint8Array, Hex, Base58
+        if (subType === 'bytes') {
+          let vb = null;
+          if (Buffer.isBuffer(v)) {
+            vb = Uint8Array.from(v);
+          } else if (isHex(v)) {
+            if (!isHexStrict(v)) {
+              console.warn(
+                `It seems you provided an hex encoded string without '0x' prefix for bytes field ${key}`
+              );
+            }
+            vb = Uint8Array.from(hexToBytes(v));
+          } else if (multibase.isEncoded(v)) {
+            vb = Uint8Array.from(multibase.decode(v));
+          } else if (isUint8Array(v)) {
+            vb = Uint8Array.from(v);
+          } else {
+            throw new Error(
+              `Unsupported type detected for bytes field ${key}, only Uint8Array/Buffer/Hex/Base58 supported`
+            );
+          }
+
+          message[fn](vb);
           return;
         }
 
