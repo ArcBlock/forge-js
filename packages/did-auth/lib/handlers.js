@@ -260,7 +260,11 @@ module.exports = class Handlers {
         res.json(authInfo);
       } catch (err) {
         if (store) {
-          await this.storage.update(token, { did: userDid, status: STATUS_ERROR });
+          await this.storage.update(token, {
+            did: userDid,
+            status: STATUS_ERROR,
+            error: err.message,
+          });
         }
         res.json({ error: err.message });
         onError({ stage: 'auth-response', err });
@@ -321,7 +325,7 @@ module.exports = class Handlers {
       } catch (err) {
         if (store) {
           debug('verify.error', token);
-          await this.storage.update(token, { status: STATUS_ERROR });
+          await this.storage.update(token, { status: STATUS_ERROR, error: err.message });
         }
 
         res.json({ error: err.message });
