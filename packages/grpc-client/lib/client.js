@@ -302,14 +302,12 @@ class GRpcClient {
         // Native wallet
         if (wallet && typeof wallet.sign === 'function') {
           if (signature) {
-            tx.signature = Uint8Array.from(hexToBytes(signature));
+            tx.signature = signature;
             txResult = tx;
           } else {
             const { object, buffer: txToSignBytes } = await txEncodeFn({ tx, wallet });
             txResult = object;
-            txResult.signature = Uint8Array.from(
-              hexToBytes(wallet.sign(bytesToHex(txToSignBytes)))
-            );
+            txResult.signature = wallet.sign(bytesToHex(txToSignBytes));
             debug(`send.${x}.sign`, txResult.signature);
           }
 

@@ -1,3 +1,5 @@
+const { fromRandom, WalletType } = require('@arcblock/forge-wallet');
+const Mcrypto = require('@arcblock/mcrypto');
 const GRpcClient = require('..');
 
 const client = new GRpcClient('tcp://127.0.0.1:28210');
@@ -47,4 +49,36 @@ describe('#magicMethods', () => {
     expect(example.code).toBeDefined();
     expect(example.block).toBeDefined();
   });
+
+  if (!process.env.CI) {
+    test('should support getBlock', done => {
+      const stream = client.getBlock({ height: 1 });
+      stream.on('data', res => {
+        expect(res.code).toEqual(0);
+        expect(res.block.height).toEqual(1);
+        done();
+      });
+    });
+
+    test('should support declare account', async () => {
+      const type = WalletType({
+        role: Mcrypto.types.RoleType.ROLE_ACCOUNT,
+        pk: Mcrypto.types.KeyType.ED25519,
+        hash: Mcrypto.types.HashType.SHA3,
+      });
+
+      const wallet = fromRandom(type);
+      const hash = await client.sendDeclareTx({
+        tx: {
+          itx: {
+            moniker: `graphql_client_test_${Math.round(Math.random() * 10000)}`,
+            type,
+          },
+        },
+        wallet,
+      });
+
+      expect(hash).toBeTruthy();
+    });
+  }
 });
