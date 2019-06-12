@@ -1,4 +1,4 @@
-const Handlers = require('../lib/handlers');
+const Handlers = require('../../lib/handlers/app');
 
 describe('#Handlers', () => {
   test('should be a function', () => {

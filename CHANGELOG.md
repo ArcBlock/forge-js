@@ -1,3 +1,12 @@
+## 0.29.3 (June 12, 2019)
+  - chore: refactor did auth
+  - chore: add tx-util lib for code that can be reused when handling transactions
+  - chore: save error messages in action token storage
+  - chore: update forge-sdk docs after forge-util updated
+  - chore: unify variable naming: did => userDid in did-auth lib
+  - chore: add uuid generating methods
+  - update readme
+
 ## 0.29.2 (June 10, 2019)
   - fix: jwt.sign should avoid duplicate did prefix
   - update readme
