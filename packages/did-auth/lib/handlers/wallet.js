@@ -5,7 +5,7 @@ const Mcrypto = require('@arcblock/mcrypto');
 const { bytesToHex } = require('@arcblock/forge-util');
 const { toAddress } = require('@arcblock/did');
 // eslint-disable-next-line
-const debug = require('debug')(`${require('../package.json').name}:handlers`);
+const debug = require('debug')(`${require('../../package.json').name}:handlers:wallet`);
 
 const sha3 = Mcrypto.Hasher.SHA3.hash256;
 const getLocale = req => (req.acceptsLanguages('en-US', 'zh-CN') || 'en-US').split('-').shift();
@@ -41,7 +41,7 @@ const STATUS_ERROR = 'error';
 const STATUS_SCANNED = 'scanned';
 const STATUS_FORBIDDEN = 'forbidden';
 
-module.exports = class Handlers {
+module.exports = class WalletHandlers {
   /**
    * Creates an instance of DID Auth Handlers.
    *

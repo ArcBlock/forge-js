@@ -1,6 +1,6 @@
 // Generate by [js2dts@0.3.3](https://github.com/whxaxes/js2dts#readme)
 
-declare class Authenticator {
+declare class WalletAuthenticator {
   client: any;
   wallet: any;
   appInfo: any;
@@ -50,7 +50,33 @@ declare class Authenticator {
   holdingOfAsset(T120: _Lib.T111): Promise<_Lib.T121>;
   holdingOfToken(T122: _Lib.T111): Promise<_Lib.T123>;
 }
-declare class Handlers {
+declare class AppAuthenticator {
+  wallet: any;
+  /**
+   * Creates an instance of DID Authenticator.
+   *
+   * @public
+   * @param {Wallet} wallet - wallet instance {@see @arcblock/forge-wallet}
+   */
+  constructor(wallet: any);
+  /**
+   * Generate and sign a jwt token, used to inter-application-communication
+   *
+   * @public
+   * @param {object} payload - data to be included before signing
+   * @returns {object} { appPk, appInfo }
+   */
+  sign(payload: any): any;
+  /**
+   * Verify a jwt token signed by another application, used for inter-application communication
+   *
+   * @param {object} data
+   * @param {string} locale
+   * @returns Promise<>
+   */
+  verify(data: any, locale?: string): Promise<any>;
+}
+declare class WalletHandlers {
   authenticator: any;
   generator(...args: any[]): any;
   storage: any;
@@ -84,7 +110,20 @@ declare class Handlers {
    */
   attach(T126: _Lib.T127): void;
 }
-declare const _Lib: _Lib.T129;
+declare class AppHandlers {
+  authenticator: any;
+  /**
+   * Creates an instance of Application DID Auth handler
+   *
+   * @public
+   * @param {AppAuthenticator} authenticator - wallet instance {@see @arcblock/forge-wallet}
+   */
+  constructor(authenticator: any);
+  attach(): (req: any, res: any, next: any) => void[];
+  getSecureResponseHandler(): (req: any, res: any, next: any) => void;
+  getRequestValidateHandler(): (req: any, res: any, next: any) => Promise<void>;
+}
+declare const _Lib: _Lib.T130;
 declare namespace _Lib {
   export interface T101 {
     wallet: any;
@@ -99,7 +138,7 @@ declare namespace _Lib {
   }
   export interface T106 {
     token: any;
-    did: any;
+    userDid: any;
     userPk: any;
     claims: any;
     pathname: any;
@@ -111,13 +150,13 @@ declare namespace _Lib {
   }
   export interface T109 {
     claims: any;
-    did: any;
+    userDid: any;
     userPk: any;
     extraParams: any;
   }
   export interface T111 {
     claim: any;
-    did: any;
+    userDid: any;
     userPk: any;
     extraParams: any;
   }
@@ -185,9 +224,18 @@ declare namespace _Lib {
     decode: (token: string, payloadOnly?: boolean) => any;
   }
   export interface T129 {
-    Authenticator: typeof Authenticator;
-    Handlers: typeof Handlers;
+    toHex: (appPk: any) => string;
+    base58Encode: (buffer: any) => any;
+  }
+  export interface T130 {
+    Authenticator: typeof WalletAuthenticator;
+    WalletAuthenticator: typeof WalletAuthenticator;
+    AppAuthenticator: typeof AppAuthenticator;
+    Handlers: typeof WalletHandlers;
+    WalletHandlers: typeof WalletHandlers;
+    AppHandlers: typeof AppHandlers;
     JWT: _Lib.T128;
+    Util: _Lib.T129;
   }
 }
 export = _Lib;

@@ -3,30 +3,16 @@
 const qs = require('querystring');
 const multibase = require('multibase');
 const Mcrypto = require('@arcblock/mcrypto');
-const { hexToBytes, bytesToHex, isHex } = require('@arcblock/forge-util');
+const { hexToBytes } = require('@arcblock/forge-util');
 const { fromAddress } = require('@arcblock/forge-wallet');
 const { toAddress, toDid } = require('@arcblock/did');
-const { decode, verify, sign } = require('./jwt');
+const { decode, verify, sign } = require('../jwt');
+const { toHex, base58Encode } = require('./util');
 
 // eslint-disable-next-line
-const debug = require('debug')(`${require('../package.json').name}:authenticator`);
+const debug = require('debug')(`${require('../../package.json').name}:authenticator:wallet`);
 
-const base58Encode = buffer => multibase.encode('base58btc', buffer).toString();
-
-const getUserPkHex = userPk => {
-  let userPkHex = '';
-  // We should support both base16 and base58 format
-  if (multibase.isEncoded(userPk)) {
-    userPkHex = bytesToHex(multibase.decode(userPk));
-  } else if (isHex(userPk)) {
-    userPkHex = `0x${userPk}`;
-  }
-
-  debug('getUserPkHex', { userPk, userPkHex });
-  return userPkHex;
-};
-
-module.exports = class Authenticator {
+module.exports = class WalletAuthenticator {
   /**
    * @typedef ApplicationInfo
    * @prop {string} chainId - chain id
@@ -140,7 +126,7 @@ module.exports = class Authenticator {
         return reject(new Error(errors.tokenMissing[locale]));
       }
 
-      const userPkHex = getUserPkHex(userPk);
+      const userPkHex = toHex(userPk);
       if (!userPkHex) {
         return reject(new Error(errors.pkFormat[locale]));
       }
@@ -173,7 +159,7 @@ module.exports = class Authenticator {
   }
 
   async getClaimInfo({ claim, userDid, userPk, extraParams }) {
-    const userPkHex = getUserPkHex(userPk);
+    const userPkHex = toHex(userPk);
     const result =
       typeof claim === 'function'
         ? await claim({
