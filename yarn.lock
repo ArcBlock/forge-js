@@ -2,9 +2,54 @@
 # yarn lockfile v1
 
 
+"@arcblock/did@^0.29.3":
+  version "0.29.3"
+  resolved "https://registry.npmjs.org/@arcblock/did/-/did-0.29.3.tgz#7bbfa929a8e5c593e98b2adc6fc12d0735af9fe5"
+  integrity sha512-Vkj4xx+E/fzOhzCyyx24IlXPk8GzTHhSnzfLrRUB9xW1Y7IhjB/HnyLuSGN4nnmfFeGWdpkYCFJ49uf6XGhkAw==
+  dependencies:
+    "@arcblock/forge-util" "^0.29.3"
+    "@arcblock/mcrypto" "^0.29.3"
+    debug "^4.1.1"
+    lodash "^4.17.11"
+    multibase "^0.6.0"
+
 "@arcblock/docblock@1.2.0":
   version "1.2.0"
   resolved "https://registry.npmjs.org/@arcblock/docblock/-/docblock-1.2.0.tgz#507a428a9276c3cd5c9b74cdda98d1479ce6ca9a"
+
+"@arcblock/forge-util@^0.29.3":
+  version "0.29.3"
+  resolved "https://registry.npmjs.org/@arcblock/forge-util/-/forge-util-0.29.3.tgz#00beb2826c21273bbc0430c8c893663117c40512"
+  integrity sha512-sF3gxyQ1VGkNMJxKRdT+ZbOnpxQr0U0+fSRXdjLvYWKHL7fKXpRPIFZC1h3weSVt+UqEDIoQjh8CCNDsJ7urEA==
+  dependencies:
+    bn.js "4.11.6"
+    lodash "^4.17.11"
+    number-to-bn "^1.7.0"
+    utf8 "^3.0.0"
+
+"@arcblock/forge-wallet@^0.29.3":
+  version "0.29.3"
+  resolved "https://registry.npmjs.org/@arcblock/forge-wallet/-/forge-wallet-0.29.3.tgz#2666b44424c02cc138cb89f3a7e0e5769b71aeb3"
+  integrity sha512-2QWd6VpK0PMVpH64z6B2iqb27ejjWge/yjibNffLvs3aMa4TG9VRCHtq7mKh7D5Sh5HUQf8WrMlNw7yor0SVBA==
+  dependencies:
+    "@arcblock/did" "^0.29.3"
+    "@arcblock/mcrypto" "^0.29.3"
+    lodash.upperfirst "^4.3.1"
+
+"@arcblock/mcrypto@^0.29.3":
+  version "0.29.3"
+  resolved "https://registry.npmjs.org/@arcblock/mcrypto/-/mcrypto-0.29.3.tgz#f6a06ee6eb9bac2fa39ce25fa4263de8a04d381b"
+  integrity sha512-uNIh7bnw63qQBHPqSHJH5OaKJhBTHvI01eDa0hLNy7R5LQn1FIyWj7n7FC7NH/4mfF4i7KTFJGqnwAhMOnRKpg==
+  dependencies:
+    "@arcblock/forge-util" "^0.29.3"
+    bn.js "4.11.8"
+    crypto-js "^3.1.9-1"
+    elliptic "^6.4.1"
+    hash.js "^1.1.7"
+    interface "^1.2.1"
+    js-sha3 "^0.8.0"
+    randombytes "^2.0.6"
+    tweetnacl "^1.0.1"
 
 "@arcblock/sdk-util@^0.21.0":
   version "0.21.0"
@@ -6838,6 +6883,7 @@ ms@^2.0.0, ms@^2.1.1:
 multibase@^0.6.0:
   version "0.6.0"
   resolved "https://registry.npmjs.org/multibase/-/multibase-0.6.0.tgz#0216e350614c7456da5e8e5b20d3fcd4c9104f56"
+  integrity sha512-R9bNLQhbD7MsitPm1NeY7w9sDgu6d7cuj25snAWH7k5PSNPSwIQQBpcpj8jx1W96dLbdigZqmUWOdQRMnAmgjA==
   dependencies:
     base-x "3.0.4"
 
