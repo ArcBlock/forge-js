@@ -53,6 +53,7 @@ module.exports = class AppHandlers {
 
         next();
       } catch (err) {
+        // eslint-disable-next-line no-console
         console.error('payload jwt verify error', err);
         res.jsonSecure({ error: 'request payload not correctly signed' });
       }
