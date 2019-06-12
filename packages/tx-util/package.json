@@ -1,0 +1,69 @@
+{
+  "name": "@arcblock/tx-util",
+  "description": "Utility to work with forge transactions",
+  "version": "0.29.0",
+  "author": {
+    "name": "wangshijun",
+    "email": "shijun@arcblock.io",
+    "url": "https://github.com/wangshijun"
+  },
+  "engines": {
+    "node": ">=0.10.0",
+    "forge": ">=0.11.1"
+  },
+  "bugs": {
+    "url": "https://github.com/ArcBlock/forge-js/issues",
+    "email": "shijun@arcblock.io"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@arcblock/forge-sdk": "^0.29.2",
+    "debug": "^4.1.1"
+  },
+  "devDependencies": {
+    "jest": "^23.5.0",
+    "remark-cli": "^5.0.0",
+    "remark-preset-github": "^0.0.9"
+  },
+  "remarkConfig": {
+    "plugins": [
+      "preset-github",
+      [
+        "validate-links",
+        {
+          "repository": "ArcBlock/forge-js"
+        }
+      ]
+    ]
+  },
+  "homepage": "https://github.com/ArcBlock/forge-js/tree/master/packages/tx-util",
+  "keywords": [
+    "forge",
+    "blockchain",
+    "arcblock",
+    "sdk",
+    "nodejs"
+  ],
+  "license": "Apache-2.0",
+  "main": "./lib/index.js",
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ArcBlock/forge-js/tree/master/packages/forge-config"
+  },
+  "scripts": {
+    "lint": "eslint lib tests",
+    "lint:fix": "eslint --fix lib tests",
+    "generate-docs": "jsdoc2md lib/index.js > docs/README.md",
+    "format-docs": "remark . -o",
+    "precommit": "CI=1 yarn test",
+    "prepush": "CI=1 yarn test",
+    "test": "yarn lint && node tools/jest.js",
+    "coverage": "yarn lint && yarn test -- --coverage"
+  },
+  "gitHead": "87990c8b5e215107fc587c1ced0d6b3e2cd2483e"
+}
