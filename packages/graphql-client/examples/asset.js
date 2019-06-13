@@ -7,25 +7,18 @@
  * Run script with: `DEBUG=@arcblock/graphql-client node examples/asset.js`
  */
 
-const Mcrypto = require('@arcblock/mcrypto');
 const GraphqlClient = require('@arcblock/graphql-client');
 const { toAssetAddress } = require('@arcblock/did-util');
-const { fromRandom, WalletType } = require('@arcblock/forge-wallet');
+const { fromRandom } = require('@arcblock/forge-wallet');
 
 const endpoint = process.env.FORGE_API_HOST || 'http://127.0.0.1:8210'; // testnet
 
 const client = new GraphqlClient(`${endpoint}/api`);
 const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
 
-const type = WalletType({
-  role: Mcrypto.types.RoleType.ROLE_ACCOUNT,
-  pk: Mcrypto.types.KeyType.ED25519,
-  hash: Mcrypto.types.HashType.SHA3,
-});
-
 (async () => {
   try {
-    const owner = fromRandom(type);
+    const owner = fromRandom();
     console.log({ owner: owner.toJSON() });
 
     // 1. declare owner
@@ -49,6 +42,7 @@ const type = WalletType({
         typeUrl: 'json',
         value: {
           key: 'value',
+          sn: Math.random(),
         },
       },
     };
@@ -75,6 +69,7 @@ const type = WalletType({
             typeUrl: 'json',
             value: {
               key: 'value updated',
+              sn: Math.random(),
             },
           },
         },

@@ -68,6 +68,7 @@ const type = WalletType({
         typeUrl: 'json',
         value: {
           value: 'something valuable',
+          sn: Math.random(),
         },
       },
     };

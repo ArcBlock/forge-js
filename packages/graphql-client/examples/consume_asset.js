@@ -7,27 +7,19 @@
  * Run script with: `DEBUG=@arcblock/graphql-client node examples/consume_asset.js`
  */
 
-const Mcrypto = require('@arcblock/mcrypto');
 const GraphqlClient = require('@arcblock/graphql-client');
 const { toAssetAddress } = require('@arcblock/did-util');
-const { fromRandom, WalletType } = require('@arcblock/forge-wallet');
-const { hexToBytes } = require('@arcblock/forge-util');
+const { fromRandom } = require('@arcblock/forge-wallet');
 
 const endpoint = process.env.FORGE_API_HOST || 'http://127.0.0.1:8210'; // testnet
 
 const client = new GraphqlClient(`${endpoint}/api`);
 const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
 
-const type = WalletType({
-  role: Mcrypto.types.RoleType.ROLE_ACCOUNT,
-  pk: Mcrypto.types.KeyType.ED25519,
-  hash: Mcrypto.types.HashType.SHA3,
-});
-
 (async () => {
   try {
-    const issuer = fromRandom(type); // the one create asset and responsible for consuming asset
-    const consumer = fromRandom(type); // the one bought the asset and want to use it
+    const issuer = fromRandom(); // the one create asset and responsible for consuming asset
+    const consumer = fromRandom(); // the one bought the asset and want to use it
     console.log({ issuer: issuer.toJSON(), consumer: consumer.toJSON() });
 
     // 1. declare issuer
@@ -62,6 +54,7 @@ const type = WalletType({
       data: {
         typeUrl: 'json',
         value: {
+          sn: Math.random(), // To make this asset uniq every time this script runs
           key: 'value2',
         },
       },
@@ -79,7 +72,7 @@ const type = WalletType({
 
     const tx = {
       from: issuer.toAddress(),
-      pk: Buffer.from(hexToBytes(issuer.publicKey)), // pk of application
+      pk: issuer.publicKey, // pk of application
       itx: {
         issuer: issuer.toAddress(),
       },
@@ -94,20 +87,15 @@ const type = WalletType({
     });
     const issuerSignature = issuer.sign(buffer);
     console.log('issuer.encoded', encoded1);
-    console.log(
-      'issuer.encoded.itx',
-      Uint8Array.from(Buffer.from(encoded1.itx.value, 'base64')).toString()
-    );
     console.log('issuer.signature', issuerSignature);
-    console.log('issuer.signatureBin', Uint8Array.from(hexToBytes(issuerSignature)).toString());
 
     // 4.2 consumer: populate signatures field
-    tx.signature = Buffer.from(hexToBytes(issuerSignature));
+    tx.signature = issuerSignature;
     tx.nonce = encoded1.nonce;
     tx.from = encoded1.from;
     tx.signatures = [
       {
-        pk: Buffer.from(hexToBytes(consumer.publicKey)),
+        pk: consumer.publicKey,
         signer: consumer.toAddress(),
         data: {
           typeUrl: 'fg:x:address',
@@ -123,7 +111,7 @@ const type = WalletType({
     });
     const receiverSignature = consumer.sign(consumerBuffer);
     const receiverSig = encoded2.signaturesList.find(x => x.signer === consumer.toAddress());
-    receiverSig.signature = Buffer.from(hexToBytes(receiverSignature));
+    receiverSig.signature = receiverSignature;
 
     console.log('consumer.encoded', encoded2);
     console.log('consumer.signature', receiverSignature);
