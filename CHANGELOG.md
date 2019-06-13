@@ -1,3 +1,17 @@
+## 0.30.0 (June 13, 2019)
+  - chore: commit missing file
+  - chore: merge with master
+  - chore: use multi formats for mcrypto.signers
+  - chore: elimate multibase dependency in did-auth package
+  - chore: elimate multibase dependency in forge-message/graphql-client/did
+  - chore: add toUint8Array/toBuffer/toBase58/fromBase58 to forge-util
+  - chore: add alias methods for graphql-client and grpc-client
+  - chore: update graphql-client example files
+  - chore: use plain string format for signature and pk in graphql-client
+  - feat: support more formats of bytes type when createMessage
+  - chore: make grpc-client support more input format of bytes type and add test for it
+  - update readme
+
 ## 0.29.3 (June 12, 2019)
   - chore: refactor did auth
   - chore: add tx-util lib for code that can be reused when handling transactions
