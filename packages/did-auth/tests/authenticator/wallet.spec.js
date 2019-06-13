@@ -1,7 +1,7 @@
 const Mcrypto = require('@arcblock/mcrypto');
 const GraphQLClient = require('@arcblock/graphql-client');
 const { fromRandom, WalletType } = require('@arcblock/forge-wallet');
-const Authenticator = require('../../lib/authenticator/wallet');
+const Authenticator = require('../../lib').WalletAuthenticator;
 
 const type = WalletType({
   role: Mcrypto.types.RoleType.ROLE_APPLICATION,
