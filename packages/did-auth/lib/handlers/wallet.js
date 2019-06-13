@@ -1,8 +1,6 @@
 /* eslint-disable object-curly-newline */
 const get = require('lodash.get');
-const multibase = require('multibase');
 const Mcrypto = require('@arcblock/mcrypto');
-const { bytesToHex } = require('@arcblock/forge-util');
 const { toAddress } = require('@arcblock/did');
 // eslint-disable-next-line
 const debug = require('debug')(`${require('../../package.json').name}:handlers:wallet`);
@@ -286,11 +284,6 @@ module.exports = class WalletHandlers {
       try {
         // eslint-disable-next-line no-shadow
         const { userDid, claims } = await this.authenticator.verify(params, locale);
-        claims.forEach(x => {
-          if (x.type === 'signature') {
-            x.sigHex = bytesToHex(multibase.decode(x.sig));
-          }
-        });
         debug('verify', { userDid, token, claims });
 
         const cbParams = {

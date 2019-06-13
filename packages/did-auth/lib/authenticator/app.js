@@ -1,9 +1,7 @@
 /* eslint-disable object-curly-newline */
 // Inter application did-auth process
-const multibase = require('multibase');
 const { toDid } = require('@arcblock/did');
-const { hexToBytes } = require('@arcblock/forge-util');
-const { toHex, base58Encode } = require('./util');
+const { toHex, toBase58 } = require('@arcblock/forge-util');
 const JWT = require('../jwt');
 
 // eslint-disable-next-line
@@ -37,7 +35,7 @@ module.exports = class AppAuthenticator {
   sign(payload) {
     const { pk, sk, address } = this.wallet;
     return {
-      appPk: multibase.isEncoded(pk) ? pk : base58Encode(hexToBytes(pk)),
+      appPk: toBase58(pk),
       appInfo: JWT.sign(toDid(address), sk, payload),
     };
   }
