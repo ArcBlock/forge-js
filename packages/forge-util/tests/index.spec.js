@@ -10,6 +10,10 @@ const {
   hexToUtf8,
   utf8ToHex,
   stripHexPrefix,
+  toUint8Array,
+  toBuffer,
+  toBase58,
+  fromBase58,
   UUID,
   isUUID,
 } = require('../lib/index');
@@ -229,6 +233,14 @@ describe('#web-util-test-case', () => {
         value: '내가 제일 잘 나가',
         expected: '0xeb82b4eab08020eca09cec9dbc20ec9e9820eb8298eab080',
       },
+      {
+        value: toUint8Array('0xeb82b4eab08020eca09cec9dbc20ec9e9820eb8298eab081'),
+        expected: '0xeb82b4eab08020eca09cec9dbc20ec9e9820eb8298eab081',
+      },
+      {
+        value: toBuffer('0xeb82b4eab08020eca09cec9dbc20ec9e9820eb8298eab082'),
+        expected: '0xeb82b4eab08020eca09cec9dbc20ec9e9820eb8298eab082',
+      },
     ];
 
     tests.forEach(test => {
@@ -338,5 +350,39 @@ describe('#stripHexPrefix', () => {
 describe('#uuid', () => {
   test('should generate valid uuid', () => {
     expect(isUUID(UUID())).toEqual(true);
+  });
+});
+
+describe('#base58', () => {
+  test('should generate valid base58', () => {
+    expect(toBase58('0xeb82b4eab08020eca09cec9dbc20ec9e9820eb8298eab082')).toEqual(
+      'zNUGNjzjLkdZquWnzE9a8iLK7d8dGKA7w7'
+    );
+    expect(toBase58(toBuffer('0xeb82b4eab08020eca09cec9dbc20ec9e9820eb8298eab082'))).toEqual(
+      'zNUGNjzjLkdZquWnzE9a8iLK7d8dGKA7w7'
+    );
+    expect(toBase58(toUint8Array('0xeb82b4eab08020eca09cec9dbc20ec9e9820eb8298eab082'))).toEqual(
+      'zNUGNjzjLkdZquWnzE9a8iLK7d8dGKA7w7'
+    );
+  });
+
+  test('should generate buffer from base58', () => {
+    expect(fromBase58('zNUGNjzjLkdZquWnzE9a8iLK7d8dGKA7w7')).toEqual(
+      toBuffer('0xeb82b4eab08020eca09cec9dbc20ec9e9820eb8298eab082')
+    );
+  });
+
+  test('should generate save after a long way', () => {
+    expect(
+      toUint8Array(
+        toBase58(
+          '0x15D0014A9CF581EC068B67500683A2784A15E1F68057E5E37AAF3A0F58F3C43F083D6A5630130399D4E5003EA191FDE30849'
+        )
+      )
+    ).toEqual(
+      toUint8Array(
+        '0x15D0014A9CF581EC068B67500683A2784A15E1F68057E5E37AAF3A0F58F3C43F083D6A5630130399D4E5003EA191FDE30849'
+      )
+    );
   });
 });

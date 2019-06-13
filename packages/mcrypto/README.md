@@ -32,8 +32,6 @@ const message = 'message to hash';
 const hash = Hasher.SHA2.hash256(message);
 ```
 
-**Important Note: results from signer and hasher are all hex encoded string**
-
 
 ## Documentation
 
@@ -44,9 +42,9 @@ For full documentation, checkout [README.md](./docs/README.md).
 
 ### Hasher
 
-* keccakf1600: crypto-js
-* sha2: crypto-js
-* sha3: jssha3
+* keccakf1600: js-sha3
+* sha2: hash.js
+* sha3: js-sha3
 
 ### Signer
 

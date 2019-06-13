@@ -1,7 +1,6 @@
-const multibase = require('multibase');
 const base64 = require('base64-url');
+const { fromBase58 } = require('@arcblock/forge-util');
 const { toDid } = require('@arcblock/did');
-const { bytesToHex } = require('@arcblock/forge-util');
 const { sign, verify } = require('../lib/jwt');
 
 const sk =
@@ -54,7 +53,7 @@ describe('#jwt', () => {
 
   test('should be able to verify jwt token signed by java', () => {
     // eslint-disable-next-line no-shadow
-    const pk = bytesToHex(multibase.decode('z2wxiRgf3fm2hmBGPJRbhLhMhYLzU5UviMitDnpELJz9a'));
+    const pk = fromBase58('z2wxiRgf3fm2hmBGPJRbhLhMhYLzU5UviMitDnpELJz9a');
     const token =
       'eyJhbGciOiJFZDI1NTE5IiwidHlwIjoiSldUIn0.eyJleHAiOiIxNTU4MzQ1NDExIiwiaWF0IjoiMTU1ODM0NTM1MSIsImlzcyI6ImRpZDphYnQ6ejFiWVhqWWR0ZE52MlZoM0doSGlFYlg1ZkRmc2JiV1NjWlgiLCJuYmYiOiIxNTU4MzQ1MzUxIiwicmVxdWVzdGVkQ2xhaW1zIjpbeyJ0eXBlIjoicHJvZmlsZSIsImZ1bGxOYW1lIjoiYnVkZHkiLCJlbWFpbCI6IjE4NDYxMzIzM0BxcS5jb20ifV19.HxPj8bbKFYDSK_rdRe2BdK_7YJ_cP-MLiXOVqqUlF34hTlwLAjgHXZs5z6EiASFCDLz2Q622JbJbsiLKz558Cg';
     const result = verify(token, pk, 60, false);

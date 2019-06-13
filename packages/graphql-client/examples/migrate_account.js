@@ -9,7 +9,6 @@
 const Mcrypto = require('@arcblock/mcrypto');
 const GraphqlClient = require('@arcblock/graphql-client');
 const { fromRandom, WalletType } = require('@arcblock/forge-wallet');
-const { hexToBytes } = require('@arcblock/forge-util');
 
 const endpoint = process.env.FORGE_API_HOST || 'http://127.0.0.1:8210'; // testnet
 
@@ -51,14 +50,14 @@ const type = WalletType({
     });
     console.log('to account', `${endpoint}/node/explorer/accounts/${migrateTo.toAddress()}`);
     console.log('to account tx', `${endpoint}/node/explorer/txs/${res}`);
-    await sleep(3000);
+    await sleep(5000);
 
     // 3. FIXME: migrate: with from's pk/sk
     res = await client.sendAccountMigrateTx({
       tx: {
         itx: {
           address: migrateTo.toAddress(),
-          pk: Buffer.from(hexToBytes(migrateTo.publicKey)),
+          pk: migrateTo.publicKey,
           type,
         },
       },

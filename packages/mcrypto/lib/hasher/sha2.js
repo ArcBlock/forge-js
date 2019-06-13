@@ -1,5 +1,6 @@
 /* eslint-disable global-require */
-const { isHexStrict, stripHexPrefix } = require('@arcblock/forge-util');
+const { toUint8Array } = require('@arcblock/forge-util');
+const encode = require('../encode');
 
 const hashFns = {
   sha224: require('hash.js/lib/hash/sha/224'),
@@ -18,18 +19,26 @@ class Sha2Hasher {
     [224, 256, 384, 512].forEach(x => {
       const name = `hash${x}`;
       const hasher = hashFns[`sha${x}`];
-      const hashFn = (data, round) => {
+      const hashFn = (input, round) => {
         if (round === 1) {
-          const input = isHexStrict(data) ? Buffer.from(stripHexPrefix(data), 'hex') : data;
           return `0x${hasher()
             .update(input)
             .digest('hex')}`;
         }
 
-        return hashFn(hashFn(data, 1), round - 1);
+        return hashFn(hashFn(input, 1), round - 1);
       };
 
-      this[name] = (data, round = 2) => hashFn(data, round);
+      this[name] = (data, round = 2, encoding = 'hex') => {
+        let input = data;
+        try {
+          input = toUint8Array(data, false, true);
+        } catch (err) {
+          // Do nothing
+        }
+        const res = hashFn(input, round);
+        return encode(res, encoding);
+      };
     });
   }
 }
@@ -39,9 +48,10 @@ class Sha2Hasher {
  *
  * @function
  * @name Sha2Hasher#hash224
- * @param {string} input - data to hash in hex format
+ * @param {hex|buffer|base58|Uint8Array|string} input - data to hash
  * @param {number} [round=2] - how many round to do the hash, larger = safer = slower
- * @returns {string} hash in hex format
+ * @param {string} [encoding="hex"] - output encoding
+ * @returns {string} depends on encoding param, hex by default
  * @memberof Sha2Hasher
  */
 
@@ -50,9 +60,10 @@ class Sha2Hasher {
  *
  * @function
  * @name Sha2Hasher#hash256
- * @param {string} input - data to hash in hex format
+ * @param {hex|buffer|base58|Uint8Array|string} input - data to hash
  * @param {number} [round=2] - how many round to do the hash, larger = safer = slower
- * @returns {string} hash in hex format
+ * @param {string} [encoding="hex"] - output encoding
+ * @returns {string} depends on encoding param, hex by default
  * @memberof Sha2Hasher
  */
 
@@ -61,9 +72,10 @@ class Sha2Hasher {
  *
  * @function
  * @name Sha2Hasher#hash384
- * @param {string} input - data to hash in hex format
+ * @param {hex|buffer|base58|Uint8Array|string} input - data to hash
  * @param {number} [round=2] - how many round to do the hash, larger = safer = slower
- * @returns {string} hash in hex format
+ * @param {string} [encoding="hex"] - output encoding
+ * @returns {string} depends on encoding param, hex by default
  * @memberof Sha2Hasher
  */
 
@@ -72,9 +84,10 @@ class Sha2Hasher {
  *
  * @function
  * @name Sha2Hasher#hash512
- * @param {string} input - data to hash in hex format
+ * @param {hex|buffer|base58|Uint8Array|string} input - data to hash
  * @param {number} [round=2] - how many round to do the hash, larger = safer = slower
- * @returns {string} hash in hex format
+ * @param {string} [encoding="hex"] - output encoding
+ * @returns {string} depends on encoding param, hex by default
  * @memberof Sha2Hasher
  */
 module.exports = new Sha2Hasher();

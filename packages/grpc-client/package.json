@@ -22,6 +22,8 @@
     "@arcblock/forge-config": "^0.29.0",
     "@arcblock/forge-message": "^0.29.3",
     "@arcblock/forge-proto": "^0.29.0",
+    "@arcblock/forge-wallet": "^0.29.3",
+    "@arcblock/mcrypto": "^0.29.3",
     "@arcblock/forge-util": "^0.29.3",
     "camelcase": "^5.0.0",
     "debug": "^4.1.1",

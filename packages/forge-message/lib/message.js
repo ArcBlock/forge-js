@@ -15,7 +15,7 @@ const camelcase = require('camelcase');
 const jspb = require('google-protobuf');
 const { Any } = require('google-protobuf/google/protobuf/any_pb');
 const { Timestamp } = require('google-protobuf/google/protobuf/timestamp_pb');
-const { toBN, bytesToHex, isUint8Array } = require('@arcblock/forge-util');
+const { toBN, bytesToHex, isUint8Array, toUint8Array } = require('@arcblock/forge-util');
 const {
   enums,
   messages,
@@ -357,6 +357,12 @@ function createMessage(type, params) {
 
         if (subType === 'google.protobuf.Any') {
           message[fn](encodeAny(v));
+          return;
+        }
+
+        // Support different input types of `bytes`: Buffer, Uint8Array, Hex, Base58
+        if (subType === 'bytes') {
+          message[fn](toUint8Array(v));
           return;
         }
 

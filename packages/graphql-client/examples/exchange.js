@@ -79,6 +79,7 @@ const type = WalletType({
         typeUrl: 'json',
         value: {
           key: 'value2',
+          sn: Math.random(),
         },
       },
     };
@@ -93,7 +94,7 @@ const type = WalletType({
 
     // assemble exchange tx: multisig
     const exchange = {
-      pk: Buffer.from(hexToBytes(sender.publicKey)), // pk of application
+      pk: sender.publicKey, // pk of application
       itx: {
         to: receiver.toAddress(),
         sender: {
@@ -102,10 +103,7 @@ const type = WalletType({
         },
         receiver: {
           // What user offer
-          value: {
-            value: Buffer.from(fromTokenToUnit(0).toBuffer()),
-            minus: false,
-          },
+          value: fromTokenToUnit(0),
         },
       },
     };
@@ -138,12 +136,12 @@ const type = WalletType({
     console.log('');
 
     // 4.2 Receiver: do the multi sig
-    exchange.signature = Buffer.from(hexToBytes(senderSignature));
+    exchange.signature = senderSignature;
     exchange.nonce = encoded1.nonce;
     exchange.from = encoded1.from;
     exchange.signatures = [
       {
-        pk: Buffer.from(hexToBytes(receiver.publicKey)),
+        pk: receiver.publicKey,
         signer: receiver.toAddress(),
       },
     ];
@@ -154,7 +152,7 @@ const type = WalletType({
     });
     const receiverSignature = receiver.sign(receiverBuffer);
     const receiverSig = encoded2.signaturesList.find(x => x.signer === receiver.toAddress());
-    receiverSig.signature = Buffer.from(hexToBytes(receiverSignature));
+    receiverSig.signature = receiverSignature;
 
     console.log('exchange.receiver.encoded', encoded2);
     console.log('exchange.receiver.signature', receiverSignature);

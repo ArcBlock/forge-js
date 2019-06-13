@@ -96,9 +96,7 @@ const type = WalletType({
       tx: {
         itx: {
           to: receiver.toAddress(),
-          value: {
-            value: Buffer.from(fromTokenToUnit(10).toBuffer()),
-          },
+          value: fromTokenToUnit(10),
         },
       },
       wallet: sender,

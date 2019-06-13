@@ -2,9 +2,10 @@
 /* eslint-disable no-useless-constructor */
 const ed25519 = require('tweetnacl').sign;
 const randomBytes = require('randombytes');
-const { toHex, isHexStrict, hexToBytes, bytesToHex } = require('@arcblock/forge-util');
+const { toUint8Array } = require('@arcblock/forge-util');
 
 const Signer = require('../protocols/signer');
+const encode = require('../encode');
 
 /**
  * Signer implementation for ed25519, based on `tweetnacl`
@@ -14,18 +15,6 @@ const Signer = require('../protocols/signer');
 class Ed25519Signer extends Signer {
   constructor() {
     super();
-  }
-
-  toUint8Array(input) {
-    let bytes = input;
-    if (typeof input === 'string') {
-      bytes = hexToBytes(this.toHex(input));
-    }
-    return Uint8Array.from(bytes);
-  }
-
-  toHex(input) {
-    return (isHexStrict(input) ? input : toHex(input)).replace(/^0x/i, '');
   }
 
   /**
@@ -39,14 +28,16 @@ class Ed25519Signer extends Signer {
   /**
    * Generate random secret/public key pair
    *
+   * @param {string} [encoding='hex']
    * @returns {KeyPair}
+   * @memberof Ed25519Signer
    */
-  genKeyPair() {
+  genKeyPair(encoding = 'hex') {
     const seed = Uint8Array.from(randomBytes(32));
     const keyPair = ed25519.keyPair.fromSeed(seed);
 
-    keyPair.publicKey = bytesToHex(keyPair.publicKey);
-    keyPair.secretKey = bytesToHex(keyPair.secretKey);
+    keyPair.publicKey = encode(keyPair.publicKey, encoding);
+    keyPair.secretKey = encode(keyPair.secretKey, encoding);
 
     return keyPair;
   }
@@ -54,28 +45,27 @@ class Ed25519Signer extends Signer {
   /**
    * Get publicKey from secretKey
    *
-   * @param {string|buffer} sk - can be either a hex encoded string or a buffer
+   * @param {hex|buffer|base58|Uint8Array} sk - can be either a hex encoded string or a buffer
    * @returns {string} hex encoded publicKey
    */
-  getPublicKey(sk) {
-    const skBytes = this.toUint8Array(sk);
+  getPublicKey(sk, encoding = 'hex') {
+    const skBytes = toUint8Array(sk);
     const pk = ed25519.keyPair.fromSecretKey(skBytes).publicKey;
-    return bytesToHex(pk);
+    return encode(pk, encoding);
   }
 
   /**
    * Sign a message and get the signature hex
    *
-   * @param {string|buffer} message
-   * @param {string|buffer} sk
+   * @param {hex|base58|buffer|Uint8Array} message
+   * @param {hex|base58|buffer|Uint8Array} sk
    * @returns {string} hex encoded signature
    */
-  sign(message, sk) {
-    const skBytes = this.toUint8Array(sk);
-    const messageBytes = this.toUint8Array(message);
-    // console.log('mcrypto.sign', { skBytes, sk, messageBytes, message });
+  sign(message, sk, encoding = 'hex') {
+    const skBytes = toUint8Array(sk, true);
+    const messageBytes = toUint8Array(message, true);
     const signature = ed25519.detached(messageBytes, skBytes);
-    return bytesToHex(signature);
+    return encode(signature, encoding);
   }
 
   /**
@@ -87,9 +77,9 @@ class Ed25519Signer extends Signer {
    * @returns {bool}
    */
   verify(message, signature, pk) {
-    const pkBytes = this.toUint8Array(pk);
-    const messageBytes = this.toUint8Array(message);
-    const signatureBytes = this.toUint8Array(signature);
+    const pkBytes = toUint8Array(pk, true);
+    const messageBytes = toUint8Array(message, true);
+    const signatureBytes = toUint8Array(signature, true);
     return ed25519.detached.verify(messageBytes, signatureBytes, pkBytes);
   }
 }

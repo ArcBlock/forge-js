@@ -9,6 +9,10 @@ describe('GraphqlClient', () => {
   });
 
   let client = new GraphqlClient('http://127.0.0.1:8210/api');
+  test('should have alias methods', () => {
+    expect(typeof client.checkin).toEqual('function');
+  });
+
   test('should have many query methods', () => {
     expect(client.getQueries().length).toBeGreaterThan(0);
   });

@@ -1,13 +1,11 @@
 /* eslint-disable indent */
 /* eslint-disable object-curly-newline */
 const qs = require('querystring');
-const multibase = require('multibase');
 const Mcrypto = require('@arcblock/mcrypto');
-const { hexToBytes } = require('@arcblock/forge-util');
+const { toHex, toBase58 } = require('@arcblock/forge-util');
 const { fromAddress } = require('@arcblock/forge-wallet');
 const { toAddress, toDid } = require('@arcblock/did');
 const { decode, verify, sign } = require('../jwt');
-const { toHex, base58Encode } = require('./util');
 
 // eslint-disable-next-line
 const debug = require('debug')(`${require('../../package.json').name}:authenticator:wallet`);
@@ -50,7 +48,7 @@ module.exports = class WalletAuthenticator {
     this.appInfo = appInfo;
     this.baseUrl = baseUrl;
     this.tokenKey = tokenKey;
-    this.appPk = multibase.encode('base58btc', Buffer.from(hexToBytes(wallet.pk))).toString();
+    this.appPk = toBase58(wallet.pk);
   }
 
   uri({ token, pathname, query = {} }) {
@@ -220,7 +218,7 @@ module.exports = class WalletAuthenticator {
       extraParams,
     });
     if (userPkHex && !txData.pk) {
-      txData.pk = Buffer.from(hexToBytes(userPkHex));
+      txData.pk = userPkHex;
     }
 
     debug('getClaim.signature', { txData, txType, sender, userDid, userPk });
@@ -231,13 +229,13 @@ module.exports = class WalletAuthenticator {
 
     return {
       type: 'signature',
-      data: base58Encode(hexToBytes(Mcrypto.Hasher.SHA3.hash256(txBuffer))),
+      data: toBase58(Mcrypto.Hasher.SHA3.hash256(txBuffer)),
       meta: {
         description: description || 'You have to sign this transaction to continue.',
         typeUrl: 'fg:t:transaction',
       },
       method: 'sha3',
-      origin: base58Encode(txBuffer),
+      origin: toBase58(txBuffer),
       sig: '',
     };
   }

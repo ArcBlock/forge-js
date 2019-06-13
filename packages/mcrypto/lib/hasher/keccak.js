@@ -1,5 +1,6 @@
 const sha3 = require('js-sha3');
-const { isHexStrict, hexToBytes } = require('@arcblock/forge-util');
+const { toUint8Array } = require('@arcblock/forge-util');
+const encode = require('../encode');
 
 /**
  * Keccak support with different hash length
@@ -11,8 +12,7 @@ class KeccakHasher {
     [224, 256, 384, 512].forEach(x => {
       const name = `hash${x}`;
       const hasher = data => sha3[`keccak${x}`](data);
-      const hashFn = (data, round) => {
-        const input = isHexStrict(data) ? hexToBytes(data) : data;
+      const hashFn = (input, round) => {
         if (round === 1) {
           return hasher(input);
         }
@@ -20,7 +20,16 @@ class KeccakHasher {
         return hashFn(hasher(input), round - 1);
       };
 
-      this[name] = (data, round = 1) => `0x${hashFn(data, round)}`;
+      this[name] = (data, round = 1, encoding = 'hex') => {
+        let input = data;
+        try {
+          input = toUint8Array(data, false, true);
+        } catch (err) {
+          // Do nothing
+        }
+        const res = hashFn(input, round);
+        return encode(`0x${res}`, encoding);
+      };
     });
   }
 }
@@ -30,9 +39,10 @@ class KeccakHasher {
  *
  * @function
  * @name KeccakHasher#hash224
- * @param {string} input - data to hash in hex format
+ * @param {hex|buffer|base58|Uint8Array|string} input - data to hash
  * @param {number} [round=1] - how many round to do the hash, larger = safer = slower
- * @returns {string} hash in hex format
+ * @param {string} [encoding="hex"] - output encoding
+ * @returns {string} depends on encoding param, hex by default
  * @memberof KeccakHasher
  */
 
@@ -41,9 +51,10 @@ class KeccakHasher {
  *
  * @function
  * @name KeccakHasher#hash256
- * @param {string} input - data to hash in hex format
+ * @param {hex|buffer|base58|Uint8Array|string} input - data to hash
  * @param {number} [round=1] - how many round to do the hash, larger = safer = slower
- * @returns {string} hash in hex format
+ * @param {string} [encoding="hex"] - output encoding
+ * @returns {string} depends on encoding param, hex by default
  * @memberof KeccakHasher
  */
 
@@ -52,9 +63,10 @@ class KeccakHasher {
  *
  * @function
  * @name KeccakHasher#hash384
- * @param {string} input - data to hash in hex format
+ * @param {hex|buffer|base58|Uint8Array|string} input - data to hash
  * @param {number} [round=1] - how many round to do the hash, larger = safer = slower
- * @returns {string} hash in hex format
+ * @param {string} [encoding="hex"] - output encoding
+ * @returns {string} depends on encoding param, hex by default
  * @memberof KeccakHasher
  */
 
@@ -63,9 +75,10 @@ class KeccakHasher {
  *
  * @function
  * @name KeccakHasher#hash512
- * @param {string} input - data to hash in hex format
+ * @param {hex|buffer|base58|Uint8Array|string} input - data to hash
  * @param {number} [round=1] - how many round to do the hash, larger = safer = slower
- * @returns {string} hash in hex format
+ * @param {string} [encoding="hex"] - output encoding
+ * @returns {string} depends on encoding param, hex by default
  * @memberof KeccakHasher
  */
 

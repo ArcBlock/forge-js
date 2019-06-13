@@ -1,3 +1,4 @@
+const { toUint8Array } = require('@arcblock/forge-util');
 const {
   createMessage,
   formatMessage,
@@ -61,17 +62,10 @@ describe('#createMessage', () => {
         signatures: [
           {
             signer: 'arcblock',
-            data: {
-              typeUrl: 'json',
-              value: 'ABCD 1234',
-            },
+            pk: '0xF2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
           },
           {
             signer: 'arcblock',
-            data: {
-              typeUrl: 'json',
-              value: 'ABCD 1234',
-            },
           },
         ],
         itx: {
@@ -93,6 +87,7 @@ describe('#createMessage', () => {
       .getSignaturesList()
       .map(x => x.toObject());
     expect(signatures[0].signer).toEqual('arcblock');
+    expect(signatures[0].pk).toEqual(toUint8Array(params.tx.signatures[0].pk));
   });
 
   test('should support map fields', () => {
