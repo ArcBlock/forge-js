@@ -97,7 +97,7 @@ const isHexStrict = hex => (isString(hex) || isNumber(hex)) && /^(-)?0x[0-9a-f]*
  * @param {String} hex to be checked
  * @returns {Boolean}
  */
-const isHex = hex => (isString(hex) || isNumber(hex)) && /^(-0x|0x)?[0-9a-f]*$/i.test(hex);
+const isHex = hex => (isString(hex) || isNumber(hex)) && /^(-0x|0x|0X|-0X)?[0-9a-f]*$/i.test(hex);
 
 /**
  * Takes an input and transforms it into an BN
@@ -518,10 +518,10 @@ function toUint8Array(v, autoHex = false) {
       console.warn('It seems you provided an hex encoded string without `0x` prefix for toBuffer');
     }
     vb = Uint8Array.from(hexToBytes(v));
-  } else if (multibase.isEncoded(v)) {
-    vb = Uint8Array.from(multibase.decode(v));
   } else if (isUint8Array(v)) {
     vb = Uint8Array.from(v);
+  } else if (multibase.isEncoded(v) === 'base58btc') {
+    vb = Uint8Array.from(multibase.decode(v));
   } else if (autoHex) {
     // eslint-disable-next-line no-console
     console.warn(
@@ -546,7 +546,7 @@ function toBase58(v, autoHex = false) {
 }
 
 function fromBase58(v) {
-  if (!multibase.isEncoded(v)) {
+  if (!multibase.isEncoded(v) === 'base58btc') {
     throw new Error('fromBase58 expect strict base58 encoded string format');
   }
 

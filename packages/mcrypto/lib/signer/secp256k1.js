@@ -3,12 +3,12 @@
 const EC = require('elliptic').ec;
 const BN = require('bn.js');
 const randomBytes = require('randombytes');
-const { isHexStrict, bytesToHex } = require('@arcblock/forge-util');
+const { isHexStrict, toHex } = require('@arcblock/forge-util');
 const Signer = require('../protocols/signer');
 
 const secp256k1 = new EC('secp256k1');
 const compressed = false;
-const encoding = 'hex';
+const encode = require('../encode');
 
 /**
  * Signer implementation for secp256k1, based on `elliptic`
@@ -40,26 +40,32 @@ class Secp256k1Signer extends Signer {
   /**
    * Generate random secret/public key pair
    *
+   * @param {string} [encoding='hex']
    * @returns {KeyPair}
+   * @memberof Secp256k1Signer
    */
-  genKeyPair() {
+  genKeyPair(encoding = 'hex') {
     let sk = null;
     do {
       sk = Uint8Array.from(randomBytes(32));
     } while (!this.isValidSK(sk));
-    const pk = this.getPublicKey(bytesToHex(sk));
-    return { secretKey: bytesToHex(sk), publicKey: pk };
+    const pk = this.getPublicKey(toHex(sk));
+    return { secretKey: encode(sk, encoding), publicKey: encode(pk, encoding) };
   }
 
   /**
    * Get publicKey from secretKey
    *
    * @param {string} sk - must be a hex encoded string
+   * @param {string} [encoding='hex']
    * @returns {string} hex encoded publicKey
+   * @memberof Secp256k1Signer
    */
-  getPublicKey(sk) {
-    const pk = secp256k1.keyFromPrivate(this.strip0x(sk), encoding).getPublic(compressed, encoding);
-    return `0x${pk}`;
+  getPublicKey(sk, encoding = 'hex') {
+    const pk = secp256k1
+      .keyFromPrivate(this.strip0x(toHex(sk)), 'hex')
+      .getPublic(compressed, 'hex');
+    return encode(`0x${pk}`, encoding);
   }
 
   /**
@@ -67,14 +73,16 @@ class Secp256k1Signer extends Signer {
    *
    * @param {string} message
    * @param {string} sk
+   * @param {string} [encoding='hex']
    * @returns {string} hex encoded signature
+   * @memberof Secp256k1Signer
    */
-  sign(message, sk) {
+  sign(message, sk, encoding = 'hex') {
     const signature = secp256k1
-      .keyFromPrivate(this.strip0x(sk), encoding)
+      .keyFromPrivate(this.strip0x(sk), 'hex')
       .sign(this.strip0x(message))
-      .toDER(encoding);
-    return `0x${signature}`;
+      .toDER('hex');
+    return encode(`0x${signature}`, encoding);
   }
 
   /**
@@ -87,7 +95,7 @@ class Secp256k1Signer extends Signer {
    */
   verify(message, signature, pk) {
     return secp256k1
-      .keyFromPublic(this.strip0x(pk), encoding)
+      .keyFromPublic(this.strip0x(pk), 'hex')
       .verify(this.strip0x(message), this.strip0x(signature));
   }
 }
