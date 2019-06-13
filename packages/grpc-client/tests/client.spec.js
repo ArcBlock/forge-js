@@ -35,6 +35,10 @@ describe('#getTxSendMethods', () => {
 });
 
 describe('#magicMethods', () => {
+  test('should have alias methods', () => {
+    expect(typeof client.checkin).toEqual('function');
+  });
+
   test('should be function', () => {
     expect(typeof client.getBlock).toEqual('function');
   });

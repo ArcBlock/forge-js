@@ -14,6 +14,11 @@ const { hexToBytes, bytesToHex, stripHexPrefix } = require('@arcblock/forge-util
 // eslint-disable-next-line global-require
 const debug = require('debug')(`${require('../package.json').name}`);
 
+// Alias methods
+const aliases = {
+  PokeTx: 'checkin',
+};
+
 /**
  * An grpc client that can read/write data to a forge powered blockchain node, can be used only in node.js
  *
@@ -28,9 +33,6 @@ class GRpcClient {
    * @param {object|string} config - config object, if a string passed, will be used as the endpoint
    * @param {string} [config.endpoint="tcp://127.0.0.1:28210"] - grpc endpoint the client can connect to
    * @param {string} [config.chainId=""] - chainId used to construct transaction
-   * @see GRpcClient.getQueries
-   * @see GRpcClient.getMutations
-   * @see GRpcClient.getSubscriptions
    * @see GRpcClient.getRpcMethods
    * @see GRpcClient.getTxSendMethods
    */
@@ -366,6 +368,10 @@ class GRpcClient {
       txSendFn.__tx__ = sendMethod;
       txSendFn.__itx__ = x;
       this[sendMethod] = txSendFn;
+
+      if (aliases[x]) {
+        this[aliases[x]] = txSendFn;
+      }
     });
   }
 

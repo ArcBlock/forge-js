@@ -11,6 +11,11 @@ const debug = require('debug')(require('../package.json').name);
 
 const graphqlSchema = require('./schema/graphql.json');
 
+// Alias methods
+const aliases = {
+  PokeTx: 'checkin',
+};
+
 /**
  * An http client that can read/write data to a forge powered blockchain node, can be used in both node.js and browser.
  *
@@ -225,6 +230,10 @@ class GraphQLClient extends BaseClient {
       const sendMethod = camelcase(`send_${x}`);
       txSendFn.__tx__ = sendMethod;
       this[sendMethod] = txSendFn;
+
+      if (aliases[x]) {
+        this[aliases[x]] = txSendFn;
+      }
     });
   }
 
