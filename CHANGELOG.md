@@ -1,180 +1,197 @@
 ## 0.30.1 (June 13, 2019)
 
-- (HEAD -> fix/forge-sdk-readme) fix: require and import for forge-sdk readme
+- fix: require and import for forge-sdk readme
 - chore: remove ci test for Node.js v11
 
 ## 0.30.0 (June 13, 2019)
-  - chore: commit missing file
-  - chore: merge with master
-  - chore: use multi formats for mcrypto.signers
-  - chore: elimate multibase dependency in did-auth package
-  - chore: elimate multibase dependency in forge-message/graphql-client/did
-  - chore: add toUint8Array/toBuffer/toBase58/fromBase58 to forge-util
-  - chore: add alias methods for graphql-client and grpc-client
-  - chore: update graphql-client example files
-  - chore: use plain string format for signature and pk in graphql-client
-  - feat: support more formats of bytes type when createMessage
-  - chore: make grpc-client support more input format of bytes type and add test for it
-  - update readme
+
+- chore: commit missing file
+- chore: merge with master
+- chore: use multi formats for mcrypto.signers
+- chore: elimate multibase dependency in did-auth package
+- chore: elimate multibase dependency in forge-message/graphql-client/did
+- chore: add toUint8Array/toBuffer/toBase58/fromBase58 to forge-util
+- chore: add alias methods for graphql-client and grpc-client
+- chore: update graphql-client example files
+- chore: use plain string format for signature and pk in graphql-client
+- feat: support more formats of bytes type when createMessage
+- chore: make grpc-client support more input format of bytes type and add test for it
+- update readme
 
 ## 0.29.3 (June 12, 2019)
-  - chore: refactor did auth
-  - chore: add tx-util lib for code that can be reused when handling transactions
-  - chore: save error messages in action token storage
-  - chore: update forge-sdk docs after forge-util updated
-  - chore: unify variable naming: did => userDid in did-auth lib
-  - chore: add uuid generating methods
-  - update readme
+
+- chore: refactor did auth
+- chore: add tx-util lib for code that can be reused when handling transactions
+- chore: save error messages in action token storage
+- chore: update forge-sdk docs after forge-util updated
+- chore: unify variable naming: did => userDid in did-auth lib
+- chore: add uuid generating methods
+- update readme
 
 ## 0.29.2 (June 10, 2019)
-  - fix: jwt.sign should avoid duplicate did prefix
-  - update readme
+
+- fix: jwt.sign should avoid duplicate did prefix
+- update readme
 
 ## 0.29.1 (June 10, 2019)
-  - chore: move jwt related functions to did-auth package
-  - update readme
+
+- chore: move jwt related functions to did-auth package
+- update readme
 
 ## 0.29.0 (June 07, 2019)
-  - chore: move all message related methods to ForgeSDK.message
-  - chore: update readme and typescript declaration
-  - chore: upgrade grpc-client with forge v0.29.0
-  - chore: upgrade graphql-client with forge v0.29.0
-  - chore: upgrade forge-proto with forge v0.29.0
-  - chore: add cross chain docs
-  - chore: add more test case for did util
-  - fix: cross chain script final works :joy
-  - chore: complete cross chain workflow
-  - fix: DidUtil.toTetherAddress aligns with elixir
-  - fix: sha2 included in mcrypto not strictly aligning with elixir, using hash.js instead
-  - fix: sha2 included in mcrypto not strictly aligning with elixir, using hash.js instead
-  - chore: try to add toTetherAdderss
-  - chore: try to make withdraw tether work
-  - chore: export sha2.hash256
-  - chore: ensure successful exchange tether transaction
-  - chore: working exchagne tether
-  - chore: basic flow of exchange, but not working
-  - fix: DidUtil.toStakeAddress to align with elixir
-  - chore: support deposit tether tx in xchain example
-  - chore: add prepare steps for cross chain
-  - chore: add cross chain example in forge-sdk
+
+- chore: move all message related methods to ForgeSDK.message
+- chore: update readme and typescript declaration
+- chore: upgrade grpc-client with forge v0.29.0
+- chore: upgrade graphql-client with forge v0.29.0
+- chore: upgrade forge-proto with forge v0.29.0
+- chore: add cross chain docs
+- chore: add more test case for did util
+- fix: cross chain script final works :joy
+- chore: complete cross chain workflow
+- fix: DidUtil.toTetherAddress aligns with elixir
+- fix: sha2 included in mcrypto not strictly aligning with elixir, using hash.js instead
+- fix: sha2 included in mcrypto not strictly aligning with elixir, using hash.js instead
+- chore: try to add toTetherAdderss
+- chore: try to make withdraw tether work
+- chore: export sha2.hash256
+- chore: ensure successful exchange tether transaction
+- chore: working exchagne tether
+- chore: basic flow of exchange, but not working
+- fix: DidUtil.toStakeAddress to align with elixir
+- chore: support deposit tether tx in xchain example
+- chore: add prepare steps for cross chain
+- chore: add cross chain example in forge-sdk
 
 ## 0.28.10 (June 05, 2019)
-  - chore: cleanup forge-cli files
+
+- chore: cleanup forge-cli files
 
 ## 0.28.9 (June 05, 2019)
-  - chore: move forge-cli out of forge-sdk repo
-  - update readme
+
+- chore: move forge-cli out of forge-sdk repo
+- update readme
 
 ## 0.28.8 (June 04, 2019)
-  - chore: update lerna ignore settings
-  - update readme
+
+- chore: update lerna ignore settings
+- update readme
 
 ## 0.28.7 (June 04, 2019)
 
-
 ## 0.28.6 (June 04, 2019)
-  - chore: update forge-sdk readme
-  - update readme
+
+- chore: update forge-sdk readme
+- update readme
 
 ## 0.28.5 (June 04, 2019)
-  - chore: use wrap to replace sdk method delegate for compatibility
-  - update readme
+
+- chore: use wrap to replace sdk method delegate for compatibility
+- update readme
 
 ## 0.28.4 (June 03, 2019)
-  - chore: add dts generating script
-  - fix: typo in grpc-client
-  - chore: add more test case
-  - fix: support customized FORGE_SOCK_GRPC when run forge web and simulator commands
-  - chore: more api on forge sdk
-  - feat: freeze GraphQLClient and GRpcClient instances after initialize
-  - feat: add default wallet type for forge-wallet
-  - chore: expose more from forge-sdk: util/wallet
-  - chore: basic implementation of forge sdk package
-  - update readme
+
+- chore: add dts generating script
+- fix: typo in grpc-client
+- chore: add more test case
+- fix: support customized FORGE_SOCK_GRPC when run forge web and simulator commands
+- chore: more api on forge sdk
+- feat: freeze GraphQLClient and GRpcClient instances after initialize
+- feat: add default wallet type for forge-wallet
+- chore: expose more from forge-sdk: util/wallet
+- chore: basic implementation of forge sdk package
+- update readme
 
 ## 0.28.3 (June 01, 2019)
-  - chore: upgrade graphql-client with forge v0.28.1
-  - fix: forge_web and simulator not working with forge 0.28.1
-  - chore: upgrade grpc-client with forge v0.28.1
-  - chore: support finding config from both forge release and forge-sdk release
-  - fix: force forge-web stop to be silent
-  - chore: upgrade forge-proto with forge v0.28.1
-  - update readme
+
+- chore: upgrade graphql-client with forge v0.28.1
+- fix: forge_web and simulator not working with forge 0.28.1
+- chore: upgrade grpc-client with forge v0.28.1
+- chore: support finding config from both forge release and forge-sdk release
+- fix: force forge-web stop to be silent
+- chore: upgrade forge-proto with forge v0.28.1
+- update readme
 
 ## 0.28.2 (May 31, 2019)
-  - fix: did-util is causing www-wallet build failing on netlify
-  - update readme
+
+- fix: did-util is causing www-wallet build failing on netlify
+- update readme
 
 ## 0.28.1 (May 30, 2019)
-  - chore: improve error message when wallet signature invalid
-  - chore: improve jwtVerify process, add debugging statements
-  - update readme
+
+- chore: improve error message when wallet signature invalid
+- chore: improve jwtVerify process, add debugging statements
+- update readme
 
 ## 0.28.0 (May 29, 2019)
-  - chore: use lite forge-proto in did-util
-  - fix: stop forge-web when stop forge #298
-  - chore: complete step on how to use protocol example
-  - chore: update readme in protocol example
-  - chore: upgrade graphql-client with forge v0.28.0
-  - fix: doc building
-  - chore: upgrade grpc-client with forge v0.28.0
-  - chore: update example files: cleanup param for toAssetAddress
-  - chore: upgrade graphql-client with forge v0.28.0
-  - chore: upgrade forge-proto with forge v0.28.0
-  - fix: eslint in tool scripts
-  - update readme
+
+- chore: use lite forge-proto in did-util
+- fix: stop forge-web when stop forge #298
+- chore: complete step on how to use protocol example
+- chore: update readme in protocol example
+- chore: upgrade graphql-client with forge v0.28.0
+- fix: doc building
+- chore: upgrade grpc-client with forge v0.28.0
+- chore: update example files: cleanup param for toAssetAddress
+- chore: upgrade graphql-client with forge v0.28.0
+- chore: upgrade forge-proto with forge v0.28.0
+- fix: eslint in tool scripts
+- update readme
 
 ## 0.27.13 (May 28, 2019)
-  - chore: improve forge protocol compile command
-  - update readme
+
+- chore: improve forge protocol compile command
+- update readme
 
 ## 0.27.12 (May 28, 2019)
-  - fix: eslint errors in tcp-server
-  - fix: eslint errors in forge-cli
-  - fix: eslint errors in did-auth
-  - fix: eslint errors in forge-wallet
-  - fix: eslint errors in forge-message
-  - fix: eslint errors in grpc-client
-  - fix: eslint errors in graphql-client
-  - fix: eslint errors in mcrypto
-  - fix: eslint errors in forge-proto
-  - chore: add lint fix script
-  - chore: use eslint config airbnb base
-  - update readme
+
+- fix: eslint errors in tcp-server
+- fix: eslint errors in forge-cli
+- fix: eslint errors in did-auth
+- fix: eslint errors in forge-wallet
+- fix: eslint errors in forge-message
+- fix: eslint errors in grpc-client
+- fix: eslint errors in graphql-client
+- fix: eslint errors in mcrypto
+- fix: eslint errors in forge-proto
+- chore: add lint fix script
+- chore: use eslint config airbnb base
+- update readme
 
 ## 0.27.11 (May 27, 2019)
-  - fix: support both base64 and hex format moderator sdk
-  - fix: travis build
-  - chore: complete compiler ensure login for protocol compile
-  - chore: fix forge protocol compile command with new vending machine proto
-  - chore: cleanup useless files
-  - chore: update readme of protocol compile and deploy protocol
-  - feat: support forge protocol:deploy command
-  - feat: support forge protocol:compile command
-  - chore: refactor protocol example
-  - feat: forge-proto providers can provide custom type_urls list when init
-  - chore: tune vending machine proto
-  - chore: improve logging
-  - chore: add asset factory and asset acquire script
-  - fix: forge-message.Provider not handling getMessageType properly
-  - chore: protocol deploy script now works
-  - chore: cleanup signatures related code with multisig example files
-  - fix: forge.createMessage not handling list fields properly
-  - chore: add debug statements
-  - fix: make toItxAddress align with forge-elixir-sdk
-  - fix: mcrypto dts
-  - fix: use getMessageType method from forge-message
-  - chore: basic flow of javascript protocol deploy
-  - chore: update docs for GRpcClient
-  - chore: support GRpcClient.getType and GrpcClient.decodeTx
-  - chore: update doc for GraphQLClient.getType
-  - chore: update docs for forge-message
-  - feat: support proto provider mechanism in forge-message
-  - chore: make forge-proto provider generator extensible
-  - chore: update docs for did-auth lib
-  - chore: make protocol build
-  - chore: add tx protocol example: part
-  - update readme
+
+- fix: support both base64 and hex format moderator sdk
+- fix: travis build
+- chore: complete compiler ensure login for protocol compile
+- chore: fix forge protocol compile command with new vending machine proto
+- chore: cleanup useless files
+- chore: update readme of protocol compile and deploy protocol
+- feat: support forge protocol:deploy command
+- feat: support forge protocol:compile command
+- chore: refactor protocol example
+- feat: forge-proto providers can provide custom type_urls list when init
+- chore: tune vending machine proto
+- chore: improve logging
+- chore: add asset factory and asset acquire script
+- fix: forge-message.Provider not handling getMessageType properly
+- chore: protocol deploy script now works
+- chore: cleanup signatures related code with multisig example files
+- fix: forge.createMessage not handling list fields properly
+- chore: add debug statements
+- fix: make toItxAddress align with forge-elixir-sdk
+- fix: mcrypto dts
+- fix: use getMessageType method from forge-message
+- chore: basic flow of javascript protocol deploy
+- chore: update docs for GRpcClient
+- chore: support GRpcClient.getType and GrpcClient.decodeTx
+- chore: update doc for GraphQLClient.getType
+- chore: update docs for forge-message
+- feat: support proto provider mechanism in forge-message
+- chore: make forge-proto provider generator extensible
+- chore: update docs for did-auth lib
+- chore: make protocol build
+- chore: add tx protocol example: part
+- update readme
 
 ## 0.27.10 (May 23, 2019)
 
