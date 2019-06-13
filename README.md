@@ -5,7 +5,7 @@
 
 > Javascript SDK for [forge](https://docs.arcblock.io/forge/latest/), which is an awesome framework to write distributed blockchain applications.
 
-> Last updated at 6/13/2019, 7:50:07 AM
+> Last updated at 6/13/2019, 8:10:30 AM
 
 ## Packages Included
 
@@ -15,14 +15,14 @@
 - [@arcblock/forge-config v0.30.0](./packages/forge-config)
 - [@arcblock/forge-message v0.30.0](./packages/forge-message)
 - [@arcblock/forge-proto v0.30.0](./packages/forge-proto)
-- [@arcblock/forge-sdk v0.30.0](./packages/forge-sdk)
+- [@arcblock/forge-sdk v0.30.1](./packages/forge-sdk)
 - [@arcblock/forge-util v0.30.0](./packages/forge-util)
 - [@arcblock/forge-wallet v0.30.0](./packages/forge-wallet)
 - [@arcblock/graphql-client v0.30.0](./packages/graphql-client)
 - [@arcblock/grpc-client v0.30.0](./packages/grpc-client)
 - [@arcblock/mcrypto v0.30.0](./packages/mcrypto)
 - [@arcblock/tcp-server v0.30.0](./packages/tcp-server)
-- [@arcblock/tx-util v0.30.0](./packages/tx-util)
+- [@arcblock/tx-util v0.30.1](./packages/tx-util)
 
 ## Install
 
@@ -80,7 +80,7 @@ ForgeSDK.sendDeclareTx({
 ### Util
 
 ```javascript
-const ForgeSDK from '@arcblock/forge-sdk';
+const ForgeSDK = require('@arcblock/forge-sdk');
 
 const bn = ForgeSDK.Util.fromTokenToUnit(10, 16);
 console.log(bn);
@@ -89,10 +89,19 @@ console.log(bn);
 ### Wallet
 
 ```javascript
-const ForgeSDK from '@arcblock/forge-sdk';
+const ForgeSDK = require('@arcblock/forge-sdk');
 
 const wallet = ForgeSDK.Wallet.fromRandom();
 console.log(wallet.toJSON());
+```
+
+### Message
+
+```javascript
+const ForgeSDK = require('@arcblock/forge-sdk');
+
+const message = ForgeSDK.Message.createMessage('Transaction', { from: 'abcd' });
+console.log(message);
 ```
 
 ## Documentation
