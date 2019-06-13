@@ -1,5 +1,6 @@
 // Generate by [js2dts@0.3.3](https://github.com/whxaxes/js2dts#readme)
 
+import { Buffer } from 'node/globals';
 /**
  * Validates if a value is an Uint8Array.
  *
@@ -9,6 +10,10 @@
  * @returns {Boolean} boolean indicating if a value is an Uint8Array
  */
 declare function isUint8Array(value: any): boolean;
+declare function toUint8Array(v: any, autoHex?: boolean): Uint8Array;
+declare function toBuffer(v: any, autoHex?: boolean): Buffer;
+declare function toBase58(v: any, autoHex?: boolean): any;
+declare function fromBase58(v: any): any;
 /**
  * Generate a random UUID
  *
@@ -45,6 +50,10 @@ declare namespace _Lib {
     fromUnitToToken: (input: string | number, decimal?: number, optionsInput: any) => string;
     fromTokenToUnit: (input: string, decimal?: number) => any;
     toBN: (number: any) => any;
+    toUint8Array: typeof toUint8Array;
+    toBuffer: typeof toBuffer;
+    toBase58: typeof toBase58;
+    fromBase58: typeof fromBase58;
     UUID: typeof UUID;
     isUUID: typeof isUUID;
   }

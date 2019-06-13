@@ -7,8 +7,7 @@
  */
 const upperFirst = require('lodash/upperFirst');
 const Mcrypto = require('@arcblock/mcrypto');
-const multibase = require('multibase');
-const { numberToHex, stripHexPrefix } = require('@arcblock/forge-util');
+const { numberToHex, stripHexPrefix, toBase58 } = require('@arcblock/forge-util');
 const { DID_PREFIX, toBits, toBytes, toStrictHex } = require('./util');
 
 // eslint-disable-next-line
@@ -59,11 +58,10 @@ const fromPublicKeyHash = (buffer, type) => {
   const hashFn = getHasher(hash);
   const typeHex = fromTypeInfo(type);
   const checksum = stripHexPrefix(hashFn(`0x${typeHex}${pkHash}`, 1)).slice(0, 8); // 4 bytes
-  const didHash = `${typeHex}${pkHash}${checksum}`;
+  const didHash = `0x${typeHex}${pkHash}${checksum}`;
   debug('fromPublicKeyHash', { pkHash, typeHex, checksum, didHash });
 
-  const address = multibase.encode('base58btc', Buffer.from(didHash, 'hex'));
-  return address.toString();
+  return toBase58(didHash);
 };
 
 /**

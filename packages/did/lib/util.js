@@ -1,6 +1,5 @@
 const padStart = require('lodash/padStart');
-const { toBN } = require('@arcblock/forge-util');
-const multibase = require('multibase');
+const { toBN, fromBase58 } = require('@arcblock/forge-util');
 
 const DID_PREFIX = 'did:abt:';
 
@@ -12,7 +11,7 @@ const DID_PREFIX = 'did:abt:';
  */
 const toBytes = did => {
   try {
-    let bytes = multibase.decode(did.replace(DID_PREFIX, ''));
+    let bytes = fromBase58(did.replace(DID_PREFIX, ''));
     while (bytes.length < 26) {
       bytes = Buffer.concat([Buffer.from([0]), bytes]);
     }
