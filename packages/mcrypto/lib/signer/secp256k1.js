@@ -3,7 +3,7 @@
 const EC = require('elliptic').ec;
 const BN = require('bn.js');
 const randomBytes = require('randombytes');
-const { isHexStrict, toHex } = require('@arcblock/forge-util');
+const { isHexStrict, toHex, toUint8Array } = require('@arcblock/forge-util');
 const Signer = require('../protocols/signer');
 
 const secp256k1 = new EC('secp256k1');
@@ -78,9 +78,16 @@ class Secp256k1Signer extends Signer {
    * @memberof Secp256k1Signer
    */
   sign(message, sk, encoding = 'hex') {
+    let msg = message;
+    try {
+      msg = toUint8Array(message, false, true);
+    } catch (err) {
+      // Do nothing;
+    }
+
     const signature = secp256k1
-      .keyFromPrivate(this.strip0x(sk), 'hex')
-      .sign(this.strip0x(message))
+      .keyFromPrivate(this.strip0x(toHex(sk)), 'hex')
+      .sign(this.strip0x(msg))
       .toDER('hex');
     return encode(`0x${signature}`, encoding);
   }
@@ -94,9 +101,16 @@ class Secp256k1Signer extends Signer {
    * @returns {bool}
    */
   verify(message, signature, pk) {
+    let msg = message;
+    try {
+      msg = toUint8Array(message, false, true);
+    } catch (err) {
+      // Do nothing;
+    }
+
     return secp256k1
-      .keyFromPublic(this.strip0x(pk), 'hex')
-      .verify(this.strip0x(message), this.strip0x(signature));
+      .keyFromPublic(this.strip0x(toHex(pk)), 'hex')
+      .verify(this.strip0x(msg), this.strip0x(toHex(signature)));
   }
 }
 

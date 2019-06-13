@@ -318,6 +318,10 @@ const toHex = (value, returnType) => {
     return returnType ? 'bytes' : bytesToHex(value);
   }
 
+  if (multibase.isEncoded(value) === 'base58btc') {
+    return returnType ? 'bytes' : bytesToHex(multibase.decode(value));
+  }
+
   if (isBoolean(value)) {
     // eslint-disable-next-line no-nested-ternary
     return returnType ? 'bool' : value ? '0x01' : '0x00';

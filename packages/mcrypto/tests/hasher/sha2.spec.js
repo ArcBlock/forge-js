@@ -1,3 +1,4 @@
+const { toBase58, toUint8Array, toBuffer, toHex } = require('@arcblock/forge-util');
 const hasher = require('../../lib/hasher/sha2');
 
 const testVectors = {
@@ -44,5 +45,15 @@ describe('#sha2', () => {
     expect(
       hasher.hash256('0xCE922DEDAA0E2C141B040BB8034AF17BF9962266F1EF179E05B46FC5FAD43258', 1)
     ).toEqual('0xf2c9d6a800eb82f415501c344cc8e8df68065c704b4c34b4d5313b81356b2967');
+  });
+
+  test('should return same result on different input formats', () => {
+    const input = '0xDD886B5FD8421FB3871D24E39E53967CE4FC80DD348BEDBEA0109C0E';
+    const output = '0x8b9fa64610041de6981c80cc8da018b09499c5ede7631fb5fc73ad76aec9a6c0';
+    expect(hasher.hash256(input)).toEqual(output);
+    expect(hasher.hash256(toBase58(input))).toEqual(output);
+    expect(hasher.hash256(toUint8Array(input))).toEqual(output);
+    expect(hasher.hash256(toHex(input))).toEqual(output);
+    expect(hasher.hash256(toBuffer(input))).toEqual(output);
   });
 });

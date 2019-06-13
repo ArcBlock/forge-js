@@ -1,3 +1,4 @@
+const { toBase58, toUint8Array, toBuffer, toHex } = require('@arcblock/forge-util');
 const hasher = require('../../lib/hasher/sha3');
 
 const testVectors = {
@@ -36,5 +37,15 @@ describe('#sha3', () => {
         expect(hasher[fn](key, 1).toUpperCase()).toEqual(testVectors[key][length]);
       });
     });
+  });
+
+  test('should return same result on different input formats', () => {
+    const input = '0xDD886B5FD8421FB3871D24E39E53967CE4FC80DD348BEDBEA0109C0E';
+    const output = '0xbcca664205f8c56f3645e323da4e0fed8362e3caf2071433caf7bce221d49a61';
+    expect(hasher.hash256(input)).toEqual(output);
+    expect(hasher.hash256(toBase58(input))).toEqual(output);
+    expect(hasher.hash256(toUint8Array(input))).toEqual(output);
+    expect(hasher.hash256(toHex(input))).toEqual(output);
+    expect(hasher.hash256(toBuffer(input))).toEqual(output);
   });
 });
