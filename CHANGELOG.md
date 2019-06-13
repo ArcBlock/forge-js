@@ -1,3 +1,8 @@
+## 0.30.1 (June 13, 2019)
+
+- (HEAD -> fix/forge-sdk-readme) fix: require and import for forge-sdk readme
+- chore: remove ci test for Node.js v11
+
 ## 0.30.0 (June 13, 2019)
   - chore: commit missing file
   - chore: merge with master
