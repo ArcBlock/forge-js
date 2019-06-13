@@ -86,7 +86,7 @@ ForgeSDK.sendDeclareTx({
 ### Util
 
 \`\`\`javascript
-const ForgeSDK from '@arcblock/forge-sdk';
+const ForgeSDK = require('@arcblock/forge-sdk');
 
 const bn = ForgeSDK.Util.fromTokenToUnit(10, 16);
 console.log(bn);
@@ -95,10 +95,19 @@ console.log(bn);
 ### Wallet
 
 \`\`\`javascript
-const ForgeSDK from '@arcblock/forge-sdk';
+const ForgeSDK = require('@arcblock/forge-sdk');
 
 const wallet = ForgeSDK.Wallet.fromRandom();
 console.log(wallet.toJSON());
+\`\`\`
+
+### Message
+
+\`\`\`javascript
+const ForgeSDK = require('@arcblock/forge-sdk');
+
+const message = ForgeSDK.Message.createMessage('Transaction', { from: 'abcd' });
+console.log(message);
 \`\`\`
 
 ## Documentation
