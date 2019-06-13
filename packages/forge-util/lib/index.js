@@ -508,14 +508,29 @@ function isUUID(str) {
   return /[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/.test(str);
 }
 
-function toUint8Array(v, autoHex = false) {
+/**
+ * Convert input to Uint8Array on best effort
+ *
+ * @param {buffer|base58|hex|Uint8Array} v
+ * @param {boolean} [autoHex=false]
+ * @param {boolean} [enforceStrictHex=false]
+ * @returns {Uint8Array}
+ * @throws {Error}
+ */
+function toUint8Array(v, autoHex = false, enforceStrictHex = false) {
   let vb = null;
   if (Buffer.isBuffer(v)) {
     vb = Uint8Array.from(v);
   } else if (isHex(v)) {
     if (!isHexStrict(v)) {
+      if (enforceStrictHex) {
+        throw new Error('toUint8Array expect strict hex encoded string');
+      }
+
       // eslint-disable-next-line no-console
-      console.warn('It seems you provided an hex encoded string without `0x` prefix for toBuffer');
+      console.warn(
+        'It seems you provided an hex encoded string without `0x` prefix for toUint8Array'
+      );
     }
     vb = Uint8Array.from(hexToBytes(v));
   } else if (isUint8Array(v)) {
@@ -525,7 +540,7 @@ function toUint8Array(v, autoHex = false) {
   } else if (autoHex) {
     // eslint-disable-next-line no-console
     console.warn(
-      'It seems you provided an non-supported input to toBuffer, its converted to hex implicitly'
+      'It seems you provided an non-supported input to toUint8Array, its converted to hex implicitly'
     );
     vb = Uint8Array.from(hexToBytes(toHex(v)));
   } else {
@@ -537,14 +552,38 @@ function toUint8Array(v, autoHex = false) {
   return vb;
 }
 
-function toBuffer(v, autoHex = false) {
-  return Buffer.from(toUint8Array(v, autoHex));
+/**
+ * Convert input to Buffer on best effort
+ *
+ * @param {buffer|base58|hex|Uint8Array} v
+ * @param {boolean} [autoHex=false]
+ * @param {boolean} [enforceStrictHex=false]
+ * @returns {buffer}
+ * @throws {Error}
+ */
+function toBuffer(v, autoHex = false, enforceStrictHex = false) {
+  return Buffer.from(toUint8Array(v, autoHex, enforceStrictHex));
 }
 
-function toBase58(v, autoHex = false) {
-  return multibase.encode('base58btc', toBuffer(v, autoHex)).toString();
+/**
+ * Convert input to base58btc format on best effort
+ *
+ * @param {buffer|base58|hex|Uint8Array} v
+ * @param {boolean} [autoHex=false]
+ * @param {boolean} [enforceStrictHex=false]
+ * @returns {string}
+ * @throws {Error}
+ */
+function toBase58(v, autoHex = false, enforceStrictHex = false) {
+  return multibase.encode('base58btc', toBuffer(v, autoHex, enforceStrictHex)).toString();
 }
 
+/**
+ * Decode base58 string
+ *
+ * @param {string} v
+ * @returns {buffer}
+ */
 function fromBase58(v) {
   if (!multibase.isEncoded(v) === 'base58btc') {
     throw new Error('fromBase58 expect strict base58 encoded string format');
