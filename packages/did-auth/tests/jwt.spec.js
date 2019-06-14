@@ -1,7 +1,7 @@
 const base64 = require('base64-url');
 const { fromBase58 } = require('@arcblock/forge-util');
 const { toDid } = require('@arcblock/did');
-const { sign, verify } = require('../lib/jwt');
+const { sign, verify } = require('../lib').JWT;
 
 const sk =
   '0xD67C071B6F51D2B61180B9B1AA9BE0DD0704619F0E30453AB4A592B036EDE644E4852B7091317E3622068E62A5127D1FB0D4AE2FC50213295E10652D2F0ABFC7';

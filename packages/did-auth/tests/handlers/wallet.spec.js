@@ -1,4 +1,4 @@
-const Handlers = require('../../lib/handlers/wallet');
+const Handlers = require('../../lib').WalletHandlers;
 
 describe('#Handlers', () => {
   test('should be a function', () => {

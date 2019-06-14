@@ -1,3 +1,7 @@
+## 0.30.2 (June 14, 2019)
+  - fix: did-auth export error
+  - update readme
+
 ## 0.30.1 (June 13, 2019)
 
 - fix: require and import for forge-sdk readme
