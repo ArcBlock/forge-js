@@ -1,3 +1,7 @@
+## 0.30.4 (June 17, 2019)
+  - feat: move chainInfo outof appInfo when do DidAuth
+  - update readme
+
 ## 0.30.3 (June 17, 2019)
   - fix: forge status` and `forge bock` throw error #314
   - update readme
