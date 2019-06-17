@@ -13,15 +13,19 @@ const debug = require('debug')(`${require('../../package.json').name}:authentica
 module.exports = class WalletAuthenticator {
   /**
    * @typedef ApplicationInfo
-   * @prop {string} chainId - chain id
-   * @prop {string} chainHost - graphql endpoint of the chain
-   * @prop {string} chainToken - token symbol
-   * @prop {string} decimals - token decimals
    * @prop {string} name - application name
    * @prop {string} description - application description
    * @prop {string} icon - application icon/logo url
    * @prop {string} path - application icon/logo url
    * @prop {string} publisher - application did with `did:abt:` prefix
+   */
+
+  /**
+   * @typedef ChainInfo
+   * @prop {string} chainId - application chain id
+   * @prop {string} chainHost - graphql endpoint of the application chain
+   * @prop {string} chainToken - token symbol
+   * @prop {string} decimals - token decimals
    */
 
   /**
@@ -31,11 +35,13 @@ module.exports = class WalletAuthenticator {
    * @param {object} config
    * @param {Wallet} config.wallet - wallet instance {@see @arcblock/forge-wallet}
    * @param {ApplicationInfo} config.appInfo - application basic info
+   * @param {ChainInfo} config.chainInfo - application chain info
+   * @param {ChainInfo} [config.crossChainInfo={}] - asset chain info
    * @param {object} config.baseUrl - url to assemble wallet request uri
    * @param {GraphQLClient} config.client - GraphQLClient instance {@see @arcblock/graphql-client}
    * @param {string} [config.tokenKey='_t_'] - query param key for `token`
    */
-  constructor({ wallet, appInfo, baseUrl, client, tokenKey = '_t_' }) {
+  constructor({ wallet, appInfo, chainInfo, crossChainInfo, baseUrl, client, tokenKey = '_t_' }) {
     if (typeof wallet.sk === 'undefined') {
       throw new Error('DID Authenticator cannot work without secretKey');
     }
@@ -46,6 +52,8 @@ module.exports = class WalletAuthenticator {
     this.client = client;
     this.wallet = wallet;
     this.appInfo = appInfo;
+    this.chainInfo = chainInfo;
+    this.crossChainInfo = crossChainInfo;
     this.baseUrl = baseUrl;
     this.tokenKey = tokenKey;
     this.appPk = toBase58(wallet.pk);
@@ -69,11 +77,16 @@ module.exports = class WalletAuthenticator {
     const payload = {
       action: 'responseAuth',
       appInfo: this.appInfo,
+      chainInfo: this.chainInfo,
       requestedClaims: await this.genRequestedClaims({ claims, userDid, userPk, extraParams }),
       url: `${this.baseUrl}${pathname}?${qs.stringify(
         Object.assign({ [this.tokenKey]: token }, extraParams)
       )}`,
     };
+
+    if (this.crossChainInfo && this.crossChainInfo.chainId && this.crossChainInfo.chainHost) {
+      payload.crossChainInfo = this.crossChainInfo;
+    }
 
     debug('responseAuth.sign', { token, userDid, payload, extraParams });
     return {
