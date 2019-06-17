@@ -2,6 +2,7 @@
 /* eslint-disable object-curly-newline */
 const qs = require('querystring');
 const Mcrypto = require('@arcblock/mcrypto');
+const ForgeSDK = require('@arcblock/forge-sdk');
 const { toHex, toBase58 } = require('@arcblock/forge-util');
 const { fromAddress } = require('@arcblock/forge-wallet');
 const { toAddress, toDid } = require('@arcblock/did');
@@ -38,18 +39,28 @@ module.exports = class WalletAuthenticator {
    * @param {ChainInfo} config.chainInfo - application chain info
    * @param {ChainInfo} [config.crossChainInfo={}] - asset chain info
    * @param {object} config.baseUrl - url to assemble wallet request uri
-   * @param {GraphQLClient} config.client - GraphQLClient instance {@see @arcblock/graphql-client}
    * @param {string} [config.tokenKey='_t_'] - query param key for `token`
    */
-  constructor({ wallet, appInfo, chainInfo, crossChainInfo, baseUrl, client, tokenKey = '_t_' }) {
+  constructor({ wallet, appInfo, chainInfo, crossChainInfo, baseUrl, tokenKey = '_t_' }) {
     if (typeof wallet.sk === 'undefined') {
-      throw new Error('DID Authenticator cannot work without secretKey');
+      throw new Error('WalletAuthenticator cannot work without wallet.sk');
     }
     if (typeof wallet.pk === 'undefined') {
-      throw new Error('DID Authenticator cannot work without publicKey');
+      throw new Error('WalletAuthenticator cannot work without wallet.pk');
+    }
+    if (!appInfo) {
+      throw new Error('WalletAuthenticator cannot work without appInfo');
+    }
+    if (!chainInfo) {
+      throw new Error('WalletAuthenticator cannot work without chainInfo');
+    }
+    if (typeof chainInfo.chainHost === 'undefined') {
+      throw new Error('WalletAuthenticator cannot work without chainInfo.chainHost');
+    }
+    if (typeof chainInfo.chainId === 'undefined') {
+      throw new Error('WalletAuthenticator cannot work without chainInfo.chainId');
     }
 
-    this.client = client;
     this.wallet = wallet;
     this.appInfo = appInfo;
     this.chainInfo = chainInfo;
@@ -57,6 +68,8 @@ module.exports = class WalletAuthenticator {
     this.baseUrl = baseUrl;
     this.tokenKey = tokenKey;
     this.appPk = toBase58(wallet.pk);
+
+    ForgeSDK.connect(chainInfo.chainHost, { chainId: chainInfo.chainId, name: chainInfo.chainId });
   }
 
   uri({ token, pathname, query = {} }) {
@@ -235,10 +248,13 @@ module.exports = class WalletAuthenticator {
     }
 
     debug('getClaim.signature', { txData, txType, sender, userDid, userPk });
-    const { buffer: txBuffer } = await this.client[`encode${txType}`]({
-      tx: txData,
-      wallet: wallet || fromAddress(sender || userDid),
-    });
+    const { buffer: txBuffer } = await ForgeSDK[`encode${txType}`](
+      {
+        tx: txData,
+        wallet: wallet || fromAddress(sender || userDid),
+      },
+      { conn: this.chainInfo.chainId }
+    );
 
     return {
       type: 'signature',
