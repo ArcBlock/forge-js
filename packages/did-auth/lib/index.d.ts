@@ -1,23 +1,28 @@
 // Generate by [js2dts@0.3.3](https://github.com/whxaxes/js2dts#readme)
 
 declare class WalletAuthenticator {
-  client: any;
   wallet: any;
   appInfo: any;
+  chainInfo: any;
+  crossChainInfo: any;
   baseUrl: any;
   tokenKey: any;
   appPk: any;
   /**
    * @typedef ApplicationInfo
-   * @prop {string} chainId - chain id
-   * @prop {string} chainHost - graphql endpoint of the chain
-   * @prop {string} chainToken - token symbol
-   * @prop {string} decimals - token decimals
    * @prop {string} name - application name
    * @prop {string} description - application description
    * @prop {string} icon - application icon/logo url
    * @prop {string} path - application icon/logo url
    * @prop {string} publisher - application did with `did:abt:` prefix
+   */
+
+  /**
+   * @typedef ChainInfo
+   * @prop {string} chainId - application chain id
+   * @prop {string} chainHost - graphql endpoint of the application chain
+   * @prop {string} chainToken - token symbol
+   * @prop {string} decimals - token decimals
    */
 
   /**
@@ -27,8 +32,9 @@ declare class WalletAuthenticator {
    * @param {object} config
    * @param {Wallet} config.wallet - wallet instance {@see @arcblock/forge-wallet}
    * @param {ApplicationInfo} config.appInfo - application basic info
+   * @param {ChainInfo} config.chainInfo - application chain info
+   * @param {ChainInfo} [config.crossChainInfo={}] - asset chain info
    * @param {object} config.baseUrl - url to assemble wallet request uri
-   * @param {GraphQLClient} config.client - GraphQLClient instance {@see @arcblock/graphql-client}
    * @param {string} [config.tokenKey='_t_'] - query param key for `token`
    */
   constructor(T100: _Lib.T101);
@@ -123,7 +129,7 @@ declare class AppHandlers {
   getSecureResponseHandler(): (req: any, res: any, next: any) => void;
   getRequestValidateHandler(): (req: any, res: any, next: any) => Promise<void>;
 }
-declare const _Lib: _Lib.T130;
+declare const _Lib: _Lib.T129;
 declare namespace _Lib {
   export interface T101 {
     wallet: any;
@@ -224,10 +230,6 @@ declare namespace _Lib {
     decode: (token: string, payloadOnly?: boolean) => any;
   }
   export interface T129 {
-    toHex: (appPk: any) => string;
-    base58Encode: (buffer: any) => any;
-  }
-  export interface T130 {
     Authenticator: typeof WalletAuthenticator;
     WalletAuthenticator: typeof WalletAuthenticator;
     AppAuthenticator: typeof AppAuthenticator;
@@ -235,7 +237,6 @@ declare namespace _Lib {
     WalletHandlers: typeof WalletHandlers;
     AppHandlers: typeof AppHandlers;
     JWT: _Lib.T128;
-    Util: _Lib.T129;
   }
 }
 export = _Lib;
