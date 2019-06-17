@@ -32,7 +32,7 @@ describe('#getMessageType', () => {
     expect(typeof getMessageType === 'function').toBeTruthy();
   });
 
-  test('should return struct', () => {
+  test('should return forge type', () => {
     const { fn, fields } = getMessageType('AccountState');
 
     expect(typeof fn === 'function').toBeTruthy();
@@ -40,6 +40,13 @@ describe('#getMessageType', () => {
     expect(fields.balance.type).toEqual('BigUint');
     expect(fields.nonce).toBeTruthy();
     expect(fields.nonce.type).toEqual('uint64');
+  });
+
+  test('should return vendor type', () => {
+    const { fn, fields } = getMessageType('abci_vendor.Version');
+
+    expect(typeof fn === 'function').toBeTruthy();
+    expect(Object.keys(fields).length).toBeGreaterThan(1);
   });
 });
 

@@ -1,3 +1,7 @@
+## 0.30.3 (June 17, 2019)
+  - fix: forge status` and `forge bock` throw error #314
+  - update readme
+
 ## 0.30.2 (June 14, 2019)
   - fix: did-auth export error
   - update readme

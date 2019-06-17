@@ -128,7 +128,6 @@ module.exports = function createProvider(proto, json, urls = {}) {
     }, {});
   }
 
-  //
   /**
    * Search for a type and its fields descriptor, then the result can be used to create a protobuf message
    *
@@ -140,7 +139,7 @@ module.exports = function createProvider(proto, json, urls = {}) {
   function getMessageType(type) {
     const { fields, oneofs } = get(spec, type) || get(spec, `abci_vendor.${type}`) || {};
     return {
-      fn: get(types, type) || get(vendorTypes, type),
+      fn: get(types, type) || get(vendorTypes, type) || get(vendorTypes, type.split('.').pop()),
       fields,
       oneofs,
     };
