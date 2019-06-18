@@ -12,7 +12,10 @@ const packageList = packages.map(x => {
   const packageFile = path.join(__dirname, '../packages', x, 'package.json');
   if (fs.existsSync(packageFile)) {
     const packageJson = require(packageFile);
-    return `- [${packageJson.name} v${packageJson.version}](./packages/${x})`;
+    const npmPackageName = `@arcblock/${x}`;
+    return `- [${
+      packageJson.name
+    } <img src="https://img.shields.io/npm/v/${npmPackageName}.svg" alt="Version">](https://www.npmjs.com/package/${npmPackageName})`;
   }
 });
 
@@ -77,10 +80,6 @@ import ForgeSDK from '@arcblock/forge-sdk/lite';
 ForgeSDK.connect('https://test.abtnetwork.io/api', { name: 'test' });
 
 ForgeSDK.getChainInfo().then(console.log);
-ForgeSDK.sendDeclareTx({
-  tx: { itx: { moniker: 'abcd' } },
-  wallet: ForgeSDK.Wallet.fromRandom(),
-}).then(console.log);
 \`\`\`
 
 ### Util
