@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 const { fromRandom, WalletType } = require('@arcblock/forge-wallet');
 const Mcrypto = require('@arcblock/mcrypto');
-const GraphqlClient = require('../src/node');
+const GraphqlClient = require('../');
 
 describe('GraphqlClient', () => {
   test('should be a function', () => {

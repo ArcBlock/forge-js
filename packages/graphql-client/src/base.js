@@ -1,8 +1,9 @@
 /* eslint-disable no-underscore-dangle */
-const BaseClient = require('@arcblock/sdk-util');
-const md5 = require('blueimp-md5');
+import packedSchema from './schema/graphql.txt';
 
-const graphqlSchema = require('./schema/graphql.json');
+const BaseClient = require('@arcblock/sdk-util');
+const jsonpack = require('jsonpack');
+const md5 = require('blueimp-md5');
 
 /**
  * Provides a readonly client to forge
@@ -39,7 +40,7 @@ class GraphQLClientBase extends BaseClient {
   }
 
   _getSchema() {
-    return graphqlSchema;
+    return jsonpack.unpack(packedSchema);
   }
 
   _getIgnoreFields() {
