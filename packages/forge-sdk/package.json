@@ -1,7 +1,7 @@
 {
   "name": "@arcblock/forge-sdk",
   "description": "Forge javascript SDK packages all-in-one",
-  "version": "0.30.3",
+  "version": "0.30.4",
   "author": {
     "name": "wangshijun",
     "email": "shijun@arcblock.io",
@@ -19,18 +19,18 @@
     "@arcblock/forge-message": "^0.30.3",
     "@arcblock/forge-util": "^0.30.0",
     "@arcblock/forge-wallet": "^0.30.0",
-    "@arcblock/graphql-client": "^0.30.3",
+    "@arcblock/graphql-client": "^0.30.4",
     "@arcblock/grpc-client": "^0.30.3",
     "debug": "^4.1.1"
   },
   "devDependencies": {
+    "inspectpack": "^4.2.1",
     "jest": "^23.5.0",
     "jsdoc-to-markdown": "^4.0.1",
     "remark-cli": "^5.0.0",
     "remark-preset-github": "^0.0.9",
     "webpack": "^4.29.6",
     "webpack-bundle-analyzer": "^3.3.2",
-    "inspectpack": "^4.2.1",
     "webpack-cli": "^3.3.0"
   },
   "remarkConfig": {

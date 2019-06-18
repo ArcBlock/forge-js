@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@arcblock/did": "^0.30.0",
-    "@arcblock/forge-sdk": "^0.30.3",
+    "@arcblock/forge-sdk": "^0.30.4",
     "@arcblock/forge-util": "^0.30.0",
     "@arcblock/forge-wallet": "^0.30.0",
     "@arcblock/mcrypto": "^0.30.0",

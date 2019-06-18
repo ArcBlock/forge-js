@@ -1,6 +1,6 @@
 {
   "name": "@arcblock/graphql-client",
-  "version": "0.30.3",
+  "version": "0.30.4",
   "description": "graphql client to read/write data on forge powered blockchain",
   "keywords": [
     "graphql",
