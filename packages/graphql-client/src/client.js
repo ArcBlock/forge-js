@@ -1,6 +1,4 @@
 /* eslint-disable no-underscore-dangle */
-const BaseClient = require('@arcblock/sdk-util');
-const md5 = require('blueimp-md5');
 const camelcase = require('camelcase');
 const base64 = require('base64-url');
 const { transactions } = require('@arcblock/forge-proto/lite');
@@ -9,7 +7,7 @@ const { bytesToHex, stripHexPrefix } = require('@arcblock/forge-util');
 
 const debug = require('debug')(require('../package.json').name);
 
-const graphqlSchema = require('./schema/graphql.json');
+const GraphQLClientBase = require('./base');
 
 // Alias methods
 const aliases = {
@@ -30,7 +28,7 @@ const aliases = {
  *
  * const res = await client.getChainInfo();
  */
-class GraphQLClient extends BaseClient {
+class GraphQLClient extends GraphQLClientBase {
   /**
    * Create an instance of GraphQLClient
    *
@@ -45,30 +43,8 @@ class GraphQLClient extends BaseClient {
    * @see GraphQLClient#getTxEncodeMethods
    */
   constructor(config = 'http://localhost:8210/api') {
-    let httpEndpoint = '';
-    let chainId = '';
-    if (typeof config === 'string') {
-      httpEndpoint = config;
-    } else {
-      httpEndpoint = config.endpoint;
-      // eslint-disable-next-line prefer-destructuring
-      chainId = config.chainId;
-    }
-
-    super({
-      dataSource: 'forge',
-      httpEndpoint,
-      enableQuery: true,
-      enableSubscription: true,
-      enableMutation: true,
-      maxQueryDepth: 6,
-    });
-
-    this._endpoint = httpEndpoint;
-    this._chainId = chainId;
-
+    super(config);
     this._initTxMethods();
-
     Object.freeze(this);
   }
 
@@ -235,18 +211,6 @@ class GraphQLClient extends BaseClient {
         this[aliases[x]] = txSendFn;
       }
     });
-  }
-
-  _getSchema() {
-    return graphqlSchema;
-  }
-
-  _getIgnoreFields() {
-    return [];
-  }
-
-  _getQueryId(query) {
-    return md5(query);
   }
 }
 

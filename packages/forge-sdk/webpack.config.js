@@ -3,11 +3,11 @@ const { DuplicatesPlugin } = require('inspectpack/plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 module.exports = {
-  entry: ['@babel/polyfill', './dist/lite.js'],
+  entry: ['@babel/polyfill', './lite.js'],
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
-    library: 'ForgeGraphqlClient',
+    library: 'ForgeSDK',
     libraryTarget: 'window',
   },
   resolve: {

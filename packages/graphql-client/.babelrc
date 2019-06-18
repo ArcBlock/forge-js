@@ -11,7 +11,7 @@
           }
         ]
       ],
-      "plugins": []
+      "plugins": [["babel-plugin-inline-import", { "extensions": [".txt"] }]]
     },
     "browser": {
       "presets": [
@@ -19,13 +19,13 @@
           "babel-preset-env",
           {
             "targets": {
-              "browsers": "last 2 versions, ie 10-11"
+              "browsers": "last 10 chrome versions"
             },
             "modules": false
           }
         ]
       ],
-      "plugins": []
+      "plugins": [["babel-plugin-inline-import", { "extensions": [".txt"] }]]
     }
   },
   "sourceMaps": true

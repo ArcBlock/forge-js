@@ -1,8 +1,9 @@
-const GraphQLClient = require('@arcblock/graphql-client');
-const message = require('@arcblock/forge-message/lite');
+const GraphQLClient = require('@arcblock/graphql-client/dist/lite');
+const ForgeUtil = require('@arcblock/forge-util');
 
+// Lite version of forge sdk, better used in browser
 module.exports = require('./lib/sdk')({
-  message,
+  util: ForgeUtil,
   clients: {
     http: GraphQLClient,
   },

@@ -27,7 +27,11 @@
     "jest": "^23.5.0",
     "jsdoc-to-markdown": "^4.0.1",
     "remark-cli": "^5.0.0",
-    "remark-preset-github": "^0.0.9"
+    "remark-preset-github": "^0.0.9",
+    "webpack": "^4.29.6",
+    "webpack-bundle-analyzer": "^3.3.2",
+    "inspectpack": "^4.2.1",
+    "webpack-cli": "^3.3.0"
   },
   "remarkConfig": {
     "plugins": [
@@ -55,6 +59,7 @@
     "index.js",
     "lite.d.ts",
     "lite.js",
+    "bundle.js",
     "lib"
   ],
   "repository": {
@@ -64,7 +69,8 @@
   "scripts": {
     "lint": "eslint lib *.js tests",
     "lint:fix": "eslint --fix lib *.js tests",
-    "upgrade": "yarn generate-docs && yarn generate-dts && yarn format-docs",
+    "build": "webpack -p",
+    "upgrade": "yarn generate-docs && yarn generate-dts && yarn format-docs && yarn build",
     "generate-docs": "jsdoc2md lib/sdk.js > docs/README.md",
     "format-docs": "remark . -o",
     "generate-dts": "./tools/generate-dts.sh lite && ./tools/generate-dts.sh index",
