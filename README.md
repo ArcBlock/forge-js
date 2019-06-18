@@ -5,7 +5,7 @@
 
 > Javascript SDK for [forge](https://docs.arcblock.io/forge/latest/), which is an awesome framework to write distributed blockchain applications.
 
-> Last updated at 2019-6-18 08:36:20
+> Last updated at 6/18/2019, 8:41:08 AM
 
 ## Packages Included
 
