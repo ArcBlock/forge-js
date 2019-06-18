@@ -37,7 +37,7 @@
     "@arcblock/forge-wallet": "^0.30.0",
     "@arcblock/mcrypto": "^0.30.0",
     "@arcblock/sdk-util": "^0.21.0",
-    "babel-polyfill": "^6.26.0",
+    "@babel/polyfill": "^7.4.4",
     "base64-url": "^2.2.0",
     "blueimp-md5": "^2.10.0",
     "camelcase": "^5.2.0",
