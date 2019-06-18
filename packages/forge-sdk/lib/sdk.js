@@ -18,10 +18,6 @@
  */
 
 const url = require('url');
-const ForgeUtil = require('@arcblock/forge-util');
-const ForgeWallet = require('@arcblock/forge-wallet');
-const DidUtil = require('@arcblock/did-util');
-
 const debug = require('debug')(`${require('../package.json').name}`);
 
 /**
@@ -54,7 +50,7 @@ const getAllKeys = (object, keyFilter = () => true) => {
   return Object.keys(properties);
 };
 
-module.exports = ({ message, clients }) => {
+module.exports = ({ message, util, wallet, clients }) => {
   const connections = {};
 
   /**
@@ -146,7 +142,7 @@ module.exports = ({ message, clients }) => {
      * @see @arcblock/forge-util
      * @see @arcblock/did-util
      */
-    Util: Object.assign({}, ForgeUtil, DidUtil),
+    Util: util,
 
     /**
      * Helper functions to manipulate wallets
@@ -155,7 +151,7 @@ module.exports = ({ message, clients }) => {
      * @see @arcblock/forge-util
      * @see @arcblock/did-util
      */
-    Wallet: ForgeWallet,
+    Wallet: wallet,
 
     /**
      * Helper functions to manipulate messages

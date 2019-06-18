@@ -9,13 +9,6 @@ echo "generate dts for $filename"
 
 rm $filename
 
-cp ../forge-wallet/lib/index.d.ts /tmp/forge-wallet.d.ts
-sed -i -E "s/_Lib/ForgeSdkWallet/g" /tmp/forge-wallet.d.ts
-sed -i -E "/export = ForgeSdkWallet/d" /tmp/forge-wallet.d.ts
-sed -i -E "/declare const ForgeSdkWallet:/d" /tmp/forge-wallet.d.ts
-cat /tmp/forge-wallet.d.ts >> $filename
-echo "forge-wallet.d.ts was patched and merged";
-
 cp ../forge-util/lib/index.d.ts /tmp/forge-util.d.ts
 sed -i -E "s/_Lib/ForgeSdkUtil/g" /tmp/forge-util.d.ts
 sed -i -E "/export = ForgeSdkUtil/d" /tmp/forge-util.d.ts
@@ -23,22 +16,29 @@ sed -i -E "/declare const ForgeSdkUtil:/d" /tmp/forge-util.d.ts
 cat /tmp/forge-util.d.ts >> $filename
 echo "forge-util.d.ts was patched and merged";
 
-cp ../forge-message/index.d.ts /tmp/forge-message.d.ts
-sed -i -E "s/_ArcblockForgeMessage/ForgeSDKMessage/g" /tmp/forge-message.d.ts
-sed -i -E "/export = ForgeSDKMessage/d" /tmp/forge-message.d.ts
-sed -i -E "/declare const ForgeSDKMessage:/d" /tmp/forge-message.d.ts
-cat /tmp/forge-message.d.ts >> $filename
-echo "forge-message.d.ts was patched and merged";
-
-cp ../did-util/lib/index.d.ts /tmp/did-util.d.ts
-sed -i -E "s/_Lib/ForgeSdkUtil/g" /tmp/did-util.d.ts
-sed -i -E "/export = ForgeSdkUtil/d" /tmp/did-util.d.ts
-sed -i -E "/declare const ForgeSdkUtil:/d" /tmp/did-util.d.ts
-cat /tmp/did-util.d.ts >> $filename
-echo "did-util.d.ts was patched and merged";
-
 if [ "$1" == "index" ]
 then
+  cp ../forge-wallet/lib/index.d.ts /tmp/forge-wallet.d.ts
+  sed -i -E "s/_Lib/ForgeSdkWallet/g" /tmp/forge-wallet.d.ts
+  sed -i -E "/export = ForgeSdkWallet/d" /tmp/forge-wallet.d.ts
+  sed -i -E "/declare const ForgeSdkWallet:/d" /tmp/forge-wallet.d.ts
+  cat /tmp/forge-wallet.d.ts >> $filename
+  echo "forge-wallet.d.ts was patched and merged";
+
+  cp ../forge-message/index.d.ts /tmp/forge-message.d.ts
+  sed -i -E "s/_ArcblockForgeMessage/ForgeSDKMessage/g" /tmp/forge-message.d.ts
+  sed -i -E "/export = ForgeSDKMessage/d" /tmp/forge-message.d.ts
+  sed -i -E "/declare const ForgeSDKMessage:/d" /tmp/forge-message.d.ts
+  cat /tmp/forge-message.d.ts >> $filename
+  echo "forge-message.d.ts was patched and merged";
+
+  cp ../did-util/lib/index.d.ts /tmp/did-util.d.ts
+  sed -i -E "s/_Lib/ForgeSdkUtil/g" /tmp/did-util.d.ts
+  sed -i -E "/export = ForgeSdkUtil/d" /tmp/did-util.d.ts
+  sed -i -E "/declare const ForgeSdkUtil:/d" /tmp/did-util.d.ts
+  cat /tmp/did-util.d.ts >> $filename
+  echo "did-util.d.ts was patched and merged";
+
   cp ../grpc-client/index.d.ts /tmp/grpc-client.d.ts
   sed -i -E "s/declare class GRpcClient/declare interface ForgeSDK/g" /tmp/grpc-client.d.ts
   sed -i -E "/@class/d" /tmp/grpc-client.d.ts
@@ -80,15 +80,28 @@ declare interface ConnectOptions {
   name: string;
   default: bool;
 }
+" >> $filename
 
-declare interface ForgeSDK {
-  Util: ForgeSdkUtil.T100;
-  Wallet: ForgeSdkWallet.T103;
-  Message: ForgeSDKMessage.T101;
-  connect: typeof connect;
-}
+if [ "$1" == "index" ]
+then
+  echo "
+  declare interface ForgeSDK {
+    Util: ForgeSdkUtil.T100;
+    Wallet: ForgeSdkWallet.T103;
+    Message: ForgeSDKMessage.T101;
+    connect: typeof connect;
+  }
 
-declare const _Lib: ForgeSDK;
-export = _Lib;" >> $filename
+  declare const _Lib: ForgeSDK;
+  export = _Lib;" >> $filename
+else
+  echo "
+  declare interface ForgeSDK {
+    connect: typeof connect;
+  }
+
+  declare const _Lib: ForgeSDK;
+  export = _Lib;" >> $filename
+fi
 
 sed -i -E "/Generate by/d" $filename

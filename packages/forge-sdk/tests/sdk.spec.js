@@ -19,11 +19,13 @@ Object.keys(sdk).forEach(x => {
     test('should delegate to graphql-client after connect', async () => {
       SDK.connect('https://test.abtnetwork.io/api', { name: 'test' });
       expect(typeof SDK.getChainInfo).toEqual('function');
-      expect(typeof SDK.getType).toEqual('function');
       expect(typeof SDK.doRawQuery).toEqual('function');
       expect(typeof SDK.getQueries).toEqual('function');
       expect(typeof SDK.getMutations).toEqual('function');
-      expect(typeof SDK.decodeTx).toEqual('function');
+      if (x === 'ForgeSDK') {
+        expect(typeof SDK.getType).toEqual('function');
+        expect(typeof SDK.decodeTx).toEqual('function');
+      }
       const res = await SDK.getChainInfo();
       expect(res.info).toBeTruthy();
     });
@@ -38,20 +40,22 @@ Object.keys(sdk).forEach(x => {
       expect(res2.info.network).toContain('zinc');
     });
 
-    test('should delegate to forge-message', async () => {
-      expect(typeof SDK.Message.formatMessage).toEqual('function');
-    });
+    if (x === 'ForgeSDK') {
+      test('should delegate to forge-message', async () => {
+        expect(typeof SDK.Message.formatMessage).toEqual('function');
+      });
 
-    test('should delegate to forge-wallet', async () => {
-      expect(typeof SDK.Wallet.fromSecretKey).toEqual('function');
-    });
+      test('should delegate to forge-wallet', async () => {
+        expect(typeof SDK.Wallet.fromSecretKey).toEqual('function');
+      });
+
+      test('should delegate to did-util', async () => {
+        expect(typeof SDK.Util.toAssetAddress).toEqual('function');
+      });
+    }
 
     test('should delegate to forge-util', async () => {
       expect(typeof SDK.Util.fromUnitToToken).toEqual('function');
-    });
-
-    test('should delegate to did-util', async () => {
-      expect(typeof SDK.Util.toAssetAddress).toEqual('function');
     });
   });
 });
