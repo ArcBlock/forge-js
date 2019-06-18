@@ -19,7 +19,7 @@
           "babel-preset-env",
           {
             "targets": {
-              "browsers": "last 2 versions, ie 10-11"
+              "browsers": "last 10 chrome versions"
             },
             "modules": false
           }

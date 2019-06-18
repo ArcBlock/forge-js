@@ -35,8 +35,6 @@ class GraphQLClientBase extends BaseClient {
 
     this._endpoint = httpEndpoint;
     this._chainId = chainId;
-
-    this._initTxMethods();
   }
 
   _getSchema() {
