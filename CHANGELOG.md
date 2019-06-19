@@ -1,21 +1,5 @@
 ## 0.30.5 (June 18, 2019)
   - fix package 404
-  - update readme
-  - update readme
-  - update readme
-  - update readme
-  - update readme
-  - update readme
-  - update readme
-  - update readme
-  - update readme
-  - update readme
-  - update readme
-  - update readme
-  - update readme
-  - update readme
-  - update readme
-  - v0.30.4
   - Chore: lite version of graphql-client and forge-sdk (#320)
   - update readme
 
