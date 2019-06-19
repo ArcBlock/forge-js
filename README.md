@@ -5,25 +5,24 @@
 
 > Javascript SDK for [forge](https://docs.arcblock.io/forge/latest/), which is an awesome framework to write distributed blockchain applications.
 
-> Last updated at 6/18/2019, 5:11:52 PM
+> Last updated at 6/19/2019, 3:14:12 AM
 
 ## Packages Included
 
-
-- [@arcblock/did v0.30.0](./packages/did)
-- [@arcblock/did-auth v0.30.4](./packages/did-auth)
-- [@arcblock/did-util v0.30.3](./packages/did-util)
-- [@arcblock/forge-config v0.30.0](./packages/forge-config)
-- [@arcblock/forge-message v0.30.3](./packages/forge-message)
-- [@arcblock/forge-proto v0.30.3](./packages/forge-proto)
-- [@arcblock/forge-sdk v0.30.4](./packages/forge-sdk)
-- [@arcblock/forge-util v0.30.0](./packages/forge-util)
-- [@arcblock/forge-wallet v0.30.0](./packages/forge-wallet)
-- [@arcblock/graphql-client v0.30.4](./packages/graphql-client)
-- [@arcblock/grpc-client v0.30.3](./packages/grpc-client)
-- [@arcblock/mcrypto v0.30.0](./packages/mcrypto)
-- [@arcblock/tcp-server v0.30.3](./packages/tcp-server)
-- [@arcblock/tx-util v0.30.4](./packages/tx-util)
+- [@arcblock/did <img src="https://img.shields.io/npm/v/@arcblock/did.svg" alt="Version">](https://www.npmjs.com/package/@arcblock/did)
+- [@arcblock/did-auth <img src="https://img.shields.io/npm/v/@arcblock/did-auth.svg" alt="Version">](https://www.npmjs.com/package/@arcblock/did-auth)
+- [@arcblock/did-util <img src="https://img.shields.io/npm/v/@arcblock/did-util.svg" alt="Version">](https://www.npmjs.com/package/@arcblock/did-util)
+- [@arcblock/forge-config <img src="https://img.shields.io/npm/v/@arcblock/forge-config.svg" alt="Version">](https://www.npmjs.com/package/@arcblock/forge-config)
+- [@arcblock/forge-message <img src="https://img.shields.io/npm/v/@arcblock/forge-message.svg" alt="Version">](https://www.npmjs.com/package/@arcblock/forge-message)
+- [@arcblock/forge-proto <img src="https://img.shields.io/npm/v/@arcblock/forge-proto.svg" alt="Version">](https://www.npmjs.com/package/@arcblock/forge-proto)
+- [@arcblock/forge-sdk <img src="https://img.shields.io/npm/v/@arcblock/forge-sdk.svg" alt="Version">](https://www.npmjs.com/package/@arcblock/forge-sdk)
+- [@arcblock/forge-util <img src="https://img.shields.io/npm/v/@arcblock/forge-util.svg" alt="Version">](https://www.npmjs.com/package/@arcblock/forge-util)
+- [@arcblock/forge-wallet <img src="https://img.shields.io/npm/v/@arcblock/forge-wallet.svg" alt="Version">](https://www.npmjs.com/package/@arcblock/forge-wallet)
+- [@arcblock/graphql-client <img src="https://img.shields.io/npm/v/@arcblock/graphql-client.svg" alt="Version">](https://www.npmjs.com/package/@arcblock/graphql-client)
+- [@arcblock/grpc-client <img src="https://img.shields.io/npm/v/@arcblock/grpc-client.svg" alt="Version">](https://www.npmjs.com/package/@arcblock/grpc-client)
+- [@arcblock/mcrypto <img src="https://img.shields.io/npm/v/@arcblock/mcrypto.svg" alt="Version">](https://www.npmjs.com/package/@arcblock/mcrypto)
+- [@arcblock/tcp-server <img src="https://img.shields.io/npm/v/@arcblock/tcp-server.svg" alt="Version">](https://www.npmjs.com/package/@arcblock/tcp-server)
+- [@arcblock/tx-util <img src="https://img.shields.io/npm/v/@arcblock/tx-util.svg" alt="Version">](https://www.npmjs.com/package/@arcblock/tx-util)
 
 ## Install
 
@@ -72,10 +71,6 @@ import ForgeSDK from '@arcblock/forge-sdk/lite';
 ForgeSDK.connect('https://test.abtnetwork.io/api', { name: 'test' });
 
 ForgeSDK.getChainInfo().then(console.log);
-ForgeSDK.sendDeclareTx({
-  tx: { itx: { moniker: 'abcd' } },
-  wallet: ForgeSDK.Wallet.fromRandom(),
-}).then(console.log);
 ```
 
 ### Util
@@ -111,7 +106,7 @@ console.log(message);
 
 ## Contribution
 
-Checkout [CONTRIBUTION.md](./CONTRIBUTION.md)
+Checkout [CONTRIBUTION.md](https://github.com/ArcBlock/forge-js/blob/master/CONTRIBUTION.md)
 
 ## Compatibility
 
