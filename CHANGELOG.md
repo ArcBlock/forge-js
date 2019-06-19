@@ -1,3 +1,8 @@
+## 0.30.5 (June 18, 2019)
+  - fix package 404
+  - Chore: lite version of graphql-client and forge-sdk (#320)
+  - update readme
+
 ## 0.30.4 (June 17, 2019)
   - feat: move chainInfo outof appInfo when do DidAuth
   - update readme
