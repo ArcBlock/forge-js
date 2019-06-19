@@ -115,7 +115,7 @@ console.log(message);
 
 ## Contribution
 
-Checkout [CONTRIBUTION.md](./CONTRIBUTION.md)
+Checkout [CONTRIBUTION.md](https://github.com/ArcBlock/forge-js/blob/master/CONTRIBUTION.md)
 
 ## Compatibility
 
