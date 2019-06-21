@@ -72,6 +72,15 @@ module.exports = class WalletAuthenticator {
     ForgeSDK.connect(chainInfo.chainHost, { chainId: chainInfo.chainId, name: chainInfo.chainId });
   }
 
+  /**
+   * Generate a deep link url that can be displayed as QRCode for ABT Wallet to consume
+   *
+   * @param {object} params
+   * @param {string} params.token - action token
+   * @param {string} params.pathname - wallet callback pathname
+   * @param {object} params.query - params that should be persisted in wallet callback url
+   * @returns
+   */
   uri({ token, pathname, query = {} }) {
     const params = Object.assign({}, query, { [this.tokenKey]: token });
     const payload = {
@@ -86,18 +95,40 @@ module.exports = class WalletAuthenticator {
     return uri;
   }
 
+  /**
+   * Sign a auth response that returned to wallet: tell the wallet the appInfo/chainInfo/crossChainInfo
+   *
+   * @param {object} params
+   * @param {string} params.token - action token
+   * @param {string} params.userDid - decoded from req.query, base58
+   * @param {string} params.userPk - decoded from req.query, base58
+   * @param {object} params.claims - info required by application to complete the auth
+   * @param {object} params.extraParams - extra query params and locale
+   * @returns {object} { appPk, authInfo }
+   */
   async sign({ token, userDid, userPk, claims, pathname, extraParams }) {
+    const isValidChainInfo = x => x && x.chainId && x.chainHost;
+
+    const claimsInfo = await this.genRequestedClaims({ claims, userDid, userPk, extraParams });
+    const tmp = claimsInfo.find(x => isValidChainInfo(x.chainInfo));
+
     const payload = {
       action: 'responseAuth',
       appInfo: this.appInfo,
-      chainInfo: this.chainInfo,
-      requestedClaims: await this.genRequestedClaims({ claims, userDid, userPk, extraParams }),
+      chainInfo: tmp ? tmp.chainInfo : this.chainInfo,
+      requestedClaims: claimsInfo.map(x => {
+        delete x.chainInfo;
+        return x;
+      }),
       url: `${this.baseUrl}${pathname}?${qs.stringify(
         Object.assign({ [this.tokenKey]: token }, extraParams)
       )}`,
     };
 
-    if (this.crossChainInfo && this.crossChainInfo.chainId && this.crossChainInfo.chainHost) {
+    if (
+      isValidChainInfo(this.crossChainInfo) &&
+      this.crossChainInfo.chainHost !== payload.chainInfo.chainHost
+    ) {
       payload.crossChainInfo = this.crossChainInfo;
     }
 
@@ -237,7 +268,15 @@ module.exports = class WalletAuthenticator {
 
   // 要求签名
   async signature({ claim, userDid, userPk, extraParams }) {
-    const { txData, txType, wallet, sender, description, userPkHex } = await this.getClaimInfo({
+    const {
+      txData,
+      txType,
+      wallet,
+      sender,
+      description,
+      userPkHex,
+      chainInfo,
+    } = await this.getClaimInfo({
       claim,
       userDid,
       userPk,
@@ -266,6 +305,7 @@ module.exports = class WalletAuthenticator {
       method: 'sha3',
       origin: toBase58(txBuffer),
       sig: '',
+      chainInfo,
     };
   }
 

@@ -1,3 +1,8 @@
+## 0.30.6 (June 21, 2019)
+  - feat: support custom chainInfo for each action #323
+  - chore: update documentation for did-auth lib #318
+  - update readme
+
 ## 0.30.5 (June 18, 2019)
   - fix package 404
   - Chore: lite version of graphql-client and forge-sdk (#320)
