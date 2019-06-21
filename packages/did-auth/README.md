@@ -2,20 +2,22 @@
 
 [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 
-> Helper classes to help you setup a node.js web server that can handle DID Authentication
+This library aims to ease the process of handling `Did-Auth` process between different parts, its implemented according to [ABT-DID-Protocol](https://github.com/ArcBlock/abt-did-spec), and can eliminate the threat of middle-man attach if properly used, there are typically 2 use case for the library:
 
+- `dApp <--> dApp`: for inter application communication, we provide `AppAuthenticator` and `AppHandlers`
+- `dApp <--> ABT Wallet`: for application and wallet communication, we provide `WalletAuthenticator` and `WalletHandlers`
 
 ## Table of Contents
 
 - [**@arcblock/did-auth**](#arcblockdid-auth)
-  - [Table of Contents](#table-of-contents)
-  - [Install](#install)
-  - [Usage](#usage)
-  - [Documentation](#documentation)
-  - [Motivation and workflow](#motivation-and-workflow)
-    - [Parties](#parties)
-    - [Workflow](#workflow)
-
+  - [Table of Contents](#Table-of-Contents)
+  - [Install](#Install)
+  - [Usage](#Usage)
+    - [Between dApp and ABT Wallet](#Between-dApp-and-ABT-Wallet)
+    - [Between dApp and dApp](#Between-dApp-and-dApp)
+      - [Initialize authenticator and handlers](#Initialize-authenticator-and-handlers)
+      - [For the server](#For-the-server)
+      - [For the client](#For-the-client)
 
 ## Install
 
@@ -25,31 +27,22 @@ npm install @arcblock/did-auth
 yarn add @arcblock/did-auth
 ```
 
-
 ## Usage
 
+### Between dApp and ABT Wallet
+
+`WalletAuthenticator` and `WalletHandlers` should be used together with [@arcblock/react-forge](https://www.npmjs.com/package/@arcblock/react-forge).
+
 ```js
-const { types } = require('@arcblock/mcrypto');
-const { Authenticator, Handlers, JWT } = require('@arcblock/did-auth');
-const { fromSecretKey, WalletType } = require('@arcblock/forge-wallet');
+const ForgeSDK = require('@arcblock/forge-sdk');
+const { WalletAuthenticator, WalletHandlers } = require('@arcblock/did-auth');
 
-const type = WalletType({
-  role: types.RoleType.ROLE_APPLICATION,
-  pk: types.KeyType.ED25519,
-  hash: types.HashType.SHA3,
-});
-
-const wallet = fromSecretKey(process.env.APP_SK, type).toJSON();
-
-module.exports = new Authenticator({
+// First setup authenticator and handler factory
+const wallet = ForgeSDK.Wallet.fromRandom().toJSON();
+const authenticator = new WalletAuthenticator({
   wallet,
   baseUrl: 'http://wangshijun.natapp1.cc',
   appInfo: {
-    chainHost: 'http://did-workshop.arcblock.co:8210/api',
-    chainId: 'forge',
-    chainToken: 'TBA',
-    copyright: 'https://example-application/copyright',
-    decimals: 16,
     description: 'Starter projects to develop web application on forge',
     icon: '/images/logo@2x.png',
     name: 'Forge Web Starter',
@@ -57,46 +50,111 @@ module.exports = new Authenticator({
     publisher: `did:abt:${wallet.address}`,
     subtitle: 'Starter projects to develop web application on forge',
   },
+  chainInfo: {
+    chainHost: 'http://did-workshop.arcblock.co:8210/api',
+    chainId: 'forge',
+    chainToken: 'TBA',
+    decimals: 16,
+  },
+
+  // Should be set when the application need to do Cross-Chain transactions
+  crossChainInfo: {
+    chainHost: 'http://did-workshop.arcblock.co:8210/api',
+    chainId: 'forge',
+    chainToken: 'TBA',
+    decimals: 16,
+  },
+});
+
+const handlers = new WalletHandlers({
+  authenticator,
+  tokenGenerator: () => Date.now().toString(),
+  tokenStorage: new MongoStorage({
+    url: process.env.MONGO_URI,
+  }),
+});
+
+// Then attach handler to express server
+const express = require('express');
+const app = express();
+
+handlers.attach({
+  prefix: '/api/did',
+  action: 'login',
+  claims: {
+    profile: () => ({
+      fields: ['fullName', 'email'],
+      description: 'Please provide your name and email to continue',
+    }),
+  },
+  onAuth: async ({ claims, userDid }) => {
+    try {
+      const profile = claims.find(x => x.type === 'profile');
+      console.info('login.success', { userDid, profile });
+    } catch (err) {
+      console.error('login.error', err);
+    }
+  },
+});
+
+// Then your app will have 5 api endpoints that can be consumed by AuthComponent
+// - `GET /api/did/login/token` create new token
+// - `GET /api/did/login/status` check for token status
+// - `GET /api/did/login/timeout` expire a token
+// - `GET /api/did/login/auth` create auth response
+// - `POST /api/did/login/auth` process login request
+```
+
+### Between dApp and dApp
+
+Please note that `AppAuthenticator` and `AppHandlers` should be used to sign and verify the message sent between dApps, so there must are both a client and a server.
+
+#### Initialize authenticator and handlers
+
+```js
+const ForgeSDK = require('@arcblock/forge-sdk');
+const { AppAuthenticator, AppHandlers } = require('@arcblock/did-auth');
+
+// First setup authenticator and handler factory
+const wallet = ForgeSDK.Wallet.fromRandom().toJSON();
+const authenticator = new AppAuthenticator(wallet);
+const handlers = new AppHandlers(authenticator);
+```
+
+#### For the server
+
+```js
+const express = require('express');
+const app = express();
+
+app.post('/api/endpoint', handlers.attach(), (req, res) => {
+  console.log('client.appPk', req.appPk);
+  console.log('verified payload', req.payload);
+
+  // Sent signed response: sensitive info should not be here
+  res.jsonSecure({
+    key: 'value',
+  });
 });
 ```
 
+#### For the client
 
-## Documentation
+```js
+const axios = require('axios');
 
-For full documentation, checkout [README.md](./docs/README.md).
+const signedPayload = authenticator.sign({
+  amount,
+  depositorDid,
+  depositorPk,
+  withdrawer: appAuth.wallet.address,
+  merchantId: process.env.MERCHANT_ID,
+});
 
-
-## Motivation and workflow
-
-> Basic DID Auth Workflow for WEB Applications
-
-### Parties
-
-* S: WEB Server
-* A: ABT Wallet
-* C: Web Client
-* T: action token {token, did, status}
-
-### Workflow
-
-1. A web application that plan to use DID auth is hosted on `S`, web server
-2. `C` loads a webpage from `S`, `C` found that user is not logged in
-3. `C` ask `S` for a action token and login uri, the uri is used to display qrcode for `A` to scan
-   * When `S` generates the action token, the action token is persisted in data store
-   * The uri for `A` should contain the action token, so when `A` sends requests to `S`, `S` knows how to merge the session after authentication
-   * `T = { token, status = created }`
-4. `A` scan the qrcode displayed on `C`
-5. `A` send `GET` request to `S`, to get application meta info, and requested claims
-   * `S` should mark the qrcode status as `scanned` when receive this request
-   * `A` should add `did` on the request url, so `S` knows how to merge the session
-   * `T = { token, did, status = scanned }`
-6. `A` collects user authenticated info and sign the payload, then send `POST` request to `S`
-   * `S` should verify the jwt signature before any further processing
-   * `S` should create/update the user when processing this request
-   * `S` should only update login status when `token` and `did` match the stored ones
-   * `T = { token, did, status = succeed | failed }`
-7. When `C` got the token in step 3, it should check login status every second to get the login status
-   * Login status should be notified on the web page when changed
-   * Refresh the page when login status is `succeed`
-
-> The above workflow not only works for login process, but also works for payment/signature/agreement process
+const res = await axios.post('http://example.com/api/endpoint', signedPayload);
+const payload = await authenticator.verify(res.data);
+if (payload.error) {
+  throw new Error(payload.error);
+}
+// Do something with the payload
+```
