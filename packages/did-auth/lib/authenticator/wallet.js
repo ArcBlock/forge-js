@@ -116,7 +116,10 @@ module.exports = class WalletAuthenticator {
       action: 'responseAuth',
       appInfo: this.appInfo,
       chainInfo: tmp ? tmp.chainInfo : this.chainInfo,
-      requestedClaims: claimsInfo,
+      requestedClaims: claimsInfo.map(x => {
+        delete x.chainInfo;
+        return x;
+      }),
       url: `${this.baseUrl}${pathname}?${qs.stringify(
         Object.assign({ [this.tokenKey]: token }, extraParams)
       )}`,
@@ -262,7 +265,15 @@ module.exports = class WalletAuthenticator {
 
   // 要求签名
   async signature({ claim, userDid, userPk, extraParams }) {
-    const { txData, txType, wallet, sender, description, userPkHex } = await this.getClaimInfo({
+    const {
+      txData,
+      txType,
+      wallet,
+      sender,
+      description,
+      userPkHex,
+      chainInfo,
+    } = await this.getClaimInfo({
       claim,
       userDid,
       userPk,
@@ -291,6 +302,7 @@ module.exports = class WalletAuthenticator {
       method: 'sha3',
       origin: toBase58(txBuffer),
       sig: '',
+      chainInfo,
     };
   }
 
