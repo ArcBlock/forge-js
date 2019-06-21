@@ -125,7 +125,10 @@ module.exports = class WalletAuthenticator {
       )}`,
     };
 
-    if (isValidChainInfo(this.crossChainInfo)) {
+    if (
+      isValidChainInfo(this.crossChainInfo) &&
+      this.crossChainInfo.chainHost !== payload.chainInfo.chainHost
+    ) {
       payload.crossChainInfo = this.crossChainInfo;
     }
 
