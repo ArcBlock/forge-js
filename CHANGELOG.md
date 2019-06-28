@@ -1,3 +1,7 @@
+## 0.31.0 (June 28, 2019)
+  - chore: loose restriction on timestamp fields when verify jwt token
+  - update readme
+
 ## 0.30.6 (June 21, 2019)
   - feat: support custom chainInfo for each action #323
   - chore: update documentation for did-auth lib #318
