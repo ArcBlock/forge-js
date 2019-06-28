@@ -141,11 +141,11 @@ const verify = (token, pk, tolerance = 5, verifyTimestamp = true) => {
         debug('verify.error.expired');
         return false;
       }
-      if (iat && Math.abs(iat - now) > tolerance) {
+      if (iat && iat > now && iat - now > tolerance) {
         debug('verify.error.issuedAt');
         return false;
       }
-      if (nbf && Math.abs(nbf - now) > tolerance) {
+      if (nbf && nbf > now && nbf - now > tolerance) {
         debug('verify.error.notBefore');
         return false;
       }
