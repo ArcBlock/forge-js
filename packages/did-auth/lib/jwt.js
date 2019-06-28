@@ -137,7 +137,7 @@ const verify = (token, pk, tolerance = 5, verifyTimestamp = true) => {
       const iat = Number(body.iat) || 0;
       const nbf = Number(body.nbf) || 0;
       debug('verify.verifyTimestamp', { now, exp, iat, nbf });
-      if (exp && exp < now + tolerance) {
+      if (exp && exp + tolerance < now) {
         debug('verify.error.expired');
         return false;
       }
