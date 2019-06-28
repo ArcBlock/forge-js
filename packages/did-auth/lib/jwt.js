@@ -132,20 +132,20 @@ const verify = (token, pk, tolerance = 5, verifyTimestamp = true) => {
     }
 
     if (verifyTimestamp) {
-      const now = Math.ceil(Date.now() / 1000) + tolerance;
+      const now = Math.ceil(Date.now() / 1000);
       const exp = Number(body.exp) || 0;
       const iat = Number(body.iat) || 0;
       const nbf = Number(body.nbf) || 0;
       debug('verify.verifyTimestamp', { now, exp, iat, nbf });
-      if (exp && exp < now) {
+      if (exp && exp + tolerance < now) {
         debug('verify.error.expired');
         return false;
       }
-      if (iat && iat > now) {
+      if (iat && iat > now && iat - now > tolerance) {
         debug('verify.error.issuedAt');
         return false;
       }
-      if (nbf && nbf > now) {
+      if (nbf && nbf > now && nbf - now > tolerance) {
         debug('verify.error.notBefore');
         return false;
       }
