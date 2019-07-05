@@ -7,15 +7,14 @@
 
 ## Table of Contents
 
-- [Table of Contents](#Table-of-Contents)
-- [Install](#Install)
-- [Usage](#Usage)
-  - [ES5(commonjs)](#ES5commonjs)
-  - [ES6](#ES6)
-  - [Util](#Util)
-  - [Wallet](#Wallet)
-  - [Message](#Message)
-- [Packages Included](#Packages-Included)
+* [Install](#install)
+* [Usage](#usage)
+  * [ES5(commonjs)](#es5commonjs)
+  * [ES6](#es6)
+  * [Util](#util)
+  * [Wallet](#wallet)
+  * [Message](#message)
+* [Packages Included](#packages-included)
 
 
 ## Install
