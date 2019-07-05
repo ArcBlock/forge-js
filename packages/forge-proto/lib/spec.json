@@ -3881,6 +3881,34 @@
             }
           }
         },
+        "RetrieveSwapTx": {
+          "fields": {
+            "address": {
+              "type": "string",
+              "id": 1
+            },
+            "hashkey": {
+              "type": "bytes",
+              "id": 2
+            },
+            "data": {
+              "type": "google.protobuf.Any",
+              "id": 15
+            }
+          }
+        },
+        "RevokeSwapTx": {
+          "fields": {
+            "address": {
+              "type": "string",
+              "id": 1
+            },
+            "data": {
+              "type": "google.protobuf.Any",
+              "id": 15
+            }
+          }
+        },
         "RevokeTetherTx": {
           "fields": {
             "tether": {
@@ -3890,6 +3918,80 @@
             "data": {
               "type": "google.protobuf.Any",
               "id": 15
+            }
+          }
+        },
+        "SetupSwapTx": {
+          "fields": {
+            "value": {
+              "type": "BigUint",
+              "id": 1
+            },
+            "assets": {
+              "rule": "repeated",
+              "type": "string",
+              "id": 2
+            },
+            "receiver": {
+              "type": "string",
+              "id": 3
+            },
+            "hashlock": {
+              "type": "bytes",
+              "id": 4
+            },
+            "locktime": {
+              "type": "uint32",
+              "id": 5
+            },
+            "data": {
+              "type": "google.protobuf.Any",
+              "id": 15
+            }
+          }
+        },
+        "SwapState": {
+          "fields": {
+            "hash": {
+              "type": "string",
+              "id": 1
+            },
+            "address": {
+              "type": "string",
+              "id": 2
+            },
+            "hashkey": {
+              "type": "bytes",
+              "id": 3
+            },
+            "sender": {
+              "type": "string",
+              "id": 4
+            },
+            "receiver": {
+              "type": "string",
+              "id": 5
+            },
+            "value": {
+              "type": "BigUint",
+              "id": 6
+            },
+            "assets": {
+              "rule": "repeated",
+              "type": "string",
+              "id": 7
+            },
+            "locktime": {
+              "type": "uint32",
+              "id": 8
+            },
+            "hashlock": {
+              "type": "bytes",
+              "id": 9
+            },
+            "context": {
+              "type": "StateContext",
+              "id": 10
             }
           }
         },
