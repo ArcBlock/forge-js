@@ -53,43 +53,45 @@ if (goog.DEBUG && !COMPILED) {
   proto.abci_vendor.KVPair.displayName = 'proto.abci_vendor.KVPair';
 }
 
+
 if (jspb.Message.GENERATE_TO_OBJECT) {
-  /**
-   * Creates an object representation of this proto suitable for use in Soy templates.
-   * Field names that are reserved in JavaScript and will be renamed to pb_name.
-   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
-   * For the list of reserved names please see:
-   *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
-   * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
-   *     for transitional soy proto support: http://goto/soy-param-migration
-   * @return {!Object}
-   */
-  proto.abci_vendor.KVPair.prototype.toObject = function(opt_includeInstance) {
-    return proto.abci_vendor.KVPair.toObject(opt_includeInstance, this);
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.abci_vendor.KVPair.prototype.toObject = function(opt_includeInstance) {
+  return proto.abci_vendor.KVPair.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.abci_vendor.KVPair} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.abci_vendor.KVPair.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    key: msg.getKey(),
+    value: msg.getValue()
   };
 
-  /**
-   * Static version of the {@see toObject} method.
-   * @param {boolean|undefined} includeInstance Whether to include the JSPB
-   *     instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @param {!proto.abci_vendor.KVPair} msg The msg instance to transform.
-   * @return {!Object}
-   * @suppress {unusedLocalVariables} f is only used for nested messages
-   */
-  proto.abci_vendor.KVPair.toObject = function(includeInstance, msg) {
-    var f,
-      obj = {
-        key: msg.getKey(),
-        value: msg.getValue(),
-      };
-
-    if (includeInstance) {
-      obj.$jspbMessageInstance = msg;
-    }
-    return obj;
-  };
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
 }
+
 
 /**
  * Deserializes binary data (in protobuf wire format).
@@ -98,9 +100,10 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  */
 proto.abci_vendor.KVPair.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.abci_vendor.KVPair();
+  var msg = new proto.abci_vendor.KVPair;
   return proto.abci_vendor.KVPair.deserializeBinaryFromReader(msg, reader);
 };
+
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -116,21 +119,22 @@ proto.abci_vendor.KVPair.deserializeBinaryFromReader = function(msg, reader) {
     }
     var field = reader.getFieldNumber();
     switch (field) {
-      case 1:
-        var value = /** @type {!Uint8Array} */ (reader.readBytes());
-        msg.setKey(value);
-        break;
-      case 2:
-        var value = /** @type {!Uint8Array} */ (reader.readBytes());
-        msg.setValue(value);
-        break;
-      default:
-        reader.skipField();
-        break;
+    case 1:
+      var value = /** @type {!Uint8Array} */ (reader.readBytes());
+      msg.setKey(value);
+      break;
+    case 2:
+      var value = /** @type {!Uint8Array} */ (reader.readBytes());
+      msg.setValue(value);
+      break;
+    default:
+      reader.skipField();
+      break;
     }
   }
   return msg;
 };
+
 
 /**
  * Serializes the message to binary data (in protobuf wire format).
@@ -141,6 +145,7 @@ proto.abci_vendor.KVPair.prototype.serializeBinary = function() {
   proto.abci_vendor.KVPair.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
+
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -153,21 +158,29 @@ proto.abci_vendor.KVPair.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getKey_asU8();
   if (f.length > 0) {
-    writer.writeBytes(1, f);
+    writer.writeBytes(
+      1,
+      f
+    );
   }
   f = message.getValue_asU8();
   if (f.length > 0) {
-    writer.writeBytes(2, f);
+    writer.writeBytes(
+      2,
+      f
+    );
   }
 };
+
 
 /**
  * optional bytes key = 1;
  * @return {!(string|Uint8Array)}
  */
 proto.abci_vendor.KVPair.prototype.getKey = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 1, ''));
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
+
 
 /**
  * optional bytes key = 1;
@@ -175,8 +188,10 @@ proto.abci_vendor.KVPair.prototype.getKey = function() {
  * @return {string}
  */
 proto.abci_vendor.KVPair.prototype.getKey_asB64 = function() {
-  return /** @type {string} */ (jspb.Message.bytesAsB64(this.getKey()));
+  return /** @type {string} */ (jspb.Message.bytesAsB64(
+      this.getKey()));
 };
+
 
 /**
  * optional bytes key = 1;
@@ -186,21 +201,25 @@ proto.abci_vendor.KVPair.prototype.getKey_asB64 = function() {
  * @return {!Uint8Array}
  */
 proto.abci_vendor.KVPair.prototype.getKey_asU8 = function() {
-  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(this.getKey()));
+  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
+      this.getKey()));
 };
+
 
 /** @param {!(string|Uint8Array)} value */
 proto.abci_vendor.KVPair.prototype.setKey = function(value) {
   jspb.Message.setProto3BytesField(this, 1, value);
 };
 
+
 /**
  * optional bytes value = 2;
  * @return {!(string|Uint8Array)}
  */
 proto.abci_vendor.KVPair.prototype.getValue = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 2, ''));
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
+
 
 /**
  * optional bytes value = 2;
@@ -208,8 +227,10 @@ proto.abci_vendor.KVPair.prototype.getValue = function() {
  * @return {string}
  */
 proto.abci_vendor.KVPair.prototype.getValue_asB64 = function() {
-  return /** @type {string} */ (jspb.Message.bytesAsB64(this.getValue()));
+  return /** @type {string} */ (jspb.Message.bytesAsB64(
+      this.getValue()));
 };
+
 
 /**
  * optional bytes value = 2;
@@ -219,13 +240,17 @@ proto.abci_vendor.KVPair.prototype.getValue_asB64 = function() {
  * @return {!Uint8Array}
  */
 proto.abci_vendor.KVPair.prototype.getValue_asU8 = function() {
-  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(this.getValue()));
+  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
+      this.getValue()));
 };
+
 
 /** @param {!(string|Uint8Array)} value */
 proto.abci_vendor.KVPair.prototype.setValue = function(value) {
   jspb.Message.setProto3BytesField(this, 2, value);
 };
+
+
 
 /**
  * Generated by JsPbCodeGenerator.
@@ -245,43 +270,45 @@ if (goog.DEBUG && !COMPILED) {
   proto.abci_vendor.BlockParams.displayName = 'proto.abci_vendor.BlockParams';
 }
 
+
 if (jspb.Message.GENERATE_TO_OBJECT) {
-  /**
-   * Creates an object representation of this proto suitable for use in Soy templates.
-   * Field names that are reserved in JavaScript and will be renamed to pb_name.
-   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
-   * For the list of reserved names please see:
-   *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
-   * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
-   *     for transitional soy proto support: http://goto/soy-param-migration
-   * @return {!Object}
-   */
-  proto.abci_vendor.BlockParams.prototype.toObject = function(opt_includeInstance) {
-    return proto.abci_vendor.BlockParams.toObject(opt_includeInstance, this);
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.abci_vendor.BlockParams.prototype.toObject = function(opt_includeInstance) {
+  return proto.abci_vendor.BlockParams.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.abci_vendor.BlockParams} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.abci_vendor.BlockParams.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    maxBytes: jspb.Message.getFieldWithDefault(msg, 1, 0),
+    maxGas: jspb.Message.getFieldWithDefault(msg, 2, 0)
   };
 
-  /**
-   * Static version of the {@see toObject} method.
-   * @param {boolean|undefined} includeInstance Whether to include the JSPB
-   *     instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @param {!proto.abci_vendor.BlockParams} msg The msg instance to transform.
-   * @return {!Object}
-   * @suppress {unusedLocalVariables} f is only used for nested messages
-   */
-  proto.abci_vendor.BlockParams.toObject = function(includeInstance, msg) {
-    var f,
-      obj = {
-        maxBytes: jspb.Message.getFieldWithDefault(msg, 1, 0),
-        maxGas: jspb.Message.getFieldWithDefault(msg, 2, 0),
-      };
-
-    if (includeInstance) {
-      obj.$jspbMessageInstance = msg;
-    }
-    return obj;
-  };
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
 }
+
 
 /**
  * Deserializes binary data (in protobuf wire format).
@@ -290,9 +317,10 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  */
 proto.abci_vendor.BlockParams.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.abci_vendor.BlockParams();
+  var msg = new proto.abci_vendor.BlockParams;
   return proto.abci_vendor.BlockParams.deserializeBinaryFromReader(msg, reader);
 };
+
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -308,21 +336,22 @@ proto.abci_vendor.BlockParams.deserializeBinaryFromReader = function(msg, reader
     }
     var field = reader.getFieldNumber();
     switch (field) {
-      case 1:
-        var value = /** @type {number} */ (reader.readInt64());
-        msg.setMaxBytes(value);
-        break;
-      case 2:
-        var value = /** @type {number} */ (reader.readInt64());
-        msg.setMaxGas(value);
-        break;
-      default:
-        reader.skipField();
-        break;
+    case 1:
+      var value = /** @type {number} */ (reader.readInt64());
+      msg.setMaxBytes(value);
+      break;
+    case 2:
+      var value = /** @type {number} */ (reader.readInt64());
+      msg.setMaxGas(value);
+      break;
+    default:
+      reader.skipField();
+      break;
     }
   }
   return msg;
 };
+
 
 /**
  * Serializes the message to binary data (in protobuf wire format).
@@ -333,6 +362,7 @@ proto.abci_vendor.BlockParams.prototype.serializeBinary = function() {
   proto.abci_vendor.BlockParams.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
+
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -345,13 +375,20 @@ proto.abci_vendor.BlockParams.serializeBinaryToWriter = function(message, writer
   var f = undefined;
   f = message.getMaxBytes();
   if (f !== 0) {
-    writer.writeInt64(1, f);
+    writer.writeInt64(
+      1,
+      f
+    );
   }
   f = message.getMaxGas();
   if (f !== 0) {
-    writer.writeInt64(2, f);
+    writer.writeInt64(
+      2,
+      f
+    );
   }
 };
+
 
 /**
  * optional int64 max_bytes = 1;
@@ -361,10 +398,12 @@ proto.abci_vendor.BlockParams.prototype.getMaxBytes = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
 };
 
+
 /** @param {number} value */
 proto.abci_vendor.BlockParams.prototype.setMaxBytes = function(value) {
   jspb.Message.setProto3IntField(this, 1, value);
 };
+
 
 /**
  * optional int64 max_gas = 2;
@@ -374,10 +413,13 @@ proto.abci_vendor.BlockParams.prototype.getMaxGas = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
 };
 
+
 /** @param {number} value */
 proto.abci_vendor.BlockParams.prototype.setMaxGas = function(value) {
   jspb.Message.setProto3IntField(this, 2, value);
 };
+
+
 
 /**
  * Generated by JsPbCodeGenerator.
@@ -397,42 +439,44 @@ if (goog.DEBUG && !COMPILED) {
   proto.abci_vendor.EvidenceParams.displayName = 'proto.abci_vendor.EvidenceParams';
 }
 
+
 if (jspb.Message.GENERATE_TO_OBJECT) {
-  /**
-   * Creates an object representation of this proto suitable for use in Soy templates.
-   * Field names that are reserved in JavaScript and will be renamed to pb_name.
-   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
-   * For the list of reserved names please see:
-   *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
-   * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
-   *     for transitional soy proto support: http://goto/soy-param-migration
-   * @return {!Object}
-   */
-  proto.abci_vendor.EvidenceParams.prototype.toObject = function(opt_includeInstance) {
-    return proto.abci_vendor.EvidenceParams.toObject(opt_includeInstance, this);
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.abci_vendor.EvidenceParams.prototype.toObject = function(opt_includeInstance) {
+  return proto.abci_vendor.EvidenceParams.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.abci_vendor.EvidenceParams} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.abci_vendor.EvidenceParams.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    maxAge: jspb.Message.getFieldWithDefault(msg, 1, 0)
   };
 
-  /**
-   * Static version of the {@see toObject} method.
-   * @param {boolean|undefined} includeInstance Whether to include the JSPB
-   *     instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @param {!proto.abci_vendor.EvidenceParams} msg The msg instance to transform.
-   * @return {!Object}
-   * @suppress {unusedLocalVariables} f is only used for nested messages
-   */
-  proto.abci_vendor.EvidenceParams.toObject = function(includeInstance, msg) {
-    var f,
-      obj = {
-        maxAge: jspb.Message.getFieldWithDefault(msg, 1, 0),
-      };
-
-    if (includeInstance) {
-      obj.$jspbMessageInstance = msg;
-    }
-    return obj;
-  };
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
 }
+
 
 /**
  * Deserializes binary data (in protobuf wire format).
@@ -441,9 +485,10 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  */
 proto.abci_vendor.EvidenceParams.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.abci_vendor.EvidenceParams();
+  var msg = new proto.abci_vendor.EvidenceParams;
   return proto.abci_vendor.EvidenceParams.deserializeBinaryFromReader(msg, reader);
 };
+
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -459,17 +504,18 @@ proto.abci_vendor.EvidenceParams.deserializeBinaryFromReader = function(msg, rea
     }
     var field = reader.getFieldNumber();
     switch (field) {
-      case 1:
-        var value = /** @type {number} */ (reader.readInt64());
-        msg.setMaxAge(value);
-        break;
-      default:
-        reader.skipField();
-        break;
+    case 1:
+      var value = /** @type {number} */ (reader.readInt64());
+      msg.setMaxAge(value);
+      break;
+    default:
+      reader.skipField();
+      break;
     }
   }
   return msg;
 };
+
 
 /**
  * Serializes the message to binary data (in protobuf wire format).
@@ -480,6 +526,7 @@ proto.abci_vendor.EvidenceParams.prototype.serializeBinary = function() {
   proto.abci_vendor.EvidenceParams.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
+
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -492,9 +539,13 @@ proto.abci_vendor.EvidenceParams.serializeBinaryToWriter = function(message, wri
   var f = undefined;
   f = message.getMaxAge();
   if (f !== 0) {
-    writer.writeInt64(1, f);
+    writer.writeInt64(
+      1,
+      f
+    );
   }
 };
+
 
 /**
  * optional int64 max_age = 1;
@@ -504,10 +555,13 @@ proto.abci_vendor.EvidenceParams.prototype.getMaxAge = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
 };
 
+
 /** @param {number} value */
 proto.abci_vendor.EvidenceParams.prototype.setMaxAge = function(value) {
   jspb.Message.setProto3IntField(this, 1, value);
 };
+
+
 
 /**
  * Generated by JsPbCodeGenerator.
@@ -520,14 +574,7 @@ proto.abci_vendor.EvidenceParams.prototype.setMaxAge = function(value) {
  * @constructor
  */
 proto.abci_vendor.ValidatorParams = function(opt_data) {
-  jspb.Message.initialize(
-    this,
-    opt_data,
-    0,
-    -1,
-    proto.abci_vendor.ValidatorParams.repeatedFields_,
-    null
-  );
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.abci_vendor.ValidatorParams.repeatedFields_, null);
 };
 goog.inherits(proto.abci_vendor.ValidatorParams, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -540,42 +587,45 @@ if (goog.DEBUG && !COMPILED) {
  */
 proto.abci_vendor.ValidatorParams.repeatedFields_ = [1];
 
+
+
 if (jspb.Message.GENERATE_TO_OBJECT) {
-  /**
-   * Creates an object representation of this proto suitable for use in Soy templates.
-   * Field names that are reserved in JavaScript and will be renamed to pb_name.
-   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
-   * For the list of reserved names please see:
-   *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
-   * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
-   *     for transitional soy proto support: http://goto/soy-param-migration
-   * @return {!Object}
-   */
-  proto.abci_vendor.ValidatorParams.prototype.toObject = function(opt_includeInstance) {
-    return proto.abci_vendor.ValidatorParams.toObject(opt_includeInstance, this);
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.abci_vendor.ValidatorParams.prototype.toObject = function(opt_includeInstance) {
+  return proto.abci_vendor.ValidatorParams.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.abci_vendor.ValidatorParams} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.abci_vendor.ValidatorParams.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    pubKeyTypesList: jspb.Message.getRepeatedField(msg, 1)
   };
 
-  /**
-   * Static version of the {@see toObject} method.
-   * @param {boolean|undefined} includeInstance Whether to include the JSPB
-   *     instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @param {!proto.abci_vendor.ValidatorParams} msg The msg instance to transform.
-   * @return {!Object}
-   * @suppress {unusedLocalVariables} f is only used for nested messages
-   */
-  proto.abci_vendor.ValidatorParams.toObject = function(includeInstance, msg) {
-    var f,
-      obj = {
-        pubKeyTypesList: jspb.Message.getRepeatedField(msg, 1),
-      };
-
-    if (includeInstance) {
-      obj.$jspbMessageInstance = msg;
-    }
-    return obj;
-  };
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
 }
+
 
 /**
  * Deserializes binary data (in protobuf wire format).
@@ -584,9 +634,10 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  */
 proto.abci_vendor.ValidatorParams.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.abci_vendor.ValidatorParams();
+  var msg = new proto.abci_vendor.ValidatorParams;
   return proto.abci_vendor.ValidatorParams.deserializeBinaryFromReader(msg, reader);
 };
+
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -602,17 +653,18 @@ proto.abci_vendor.ValidatorParams.deserializeBinaryFromReader = function(msg, re
     }
     var field = reader.getFieldNumber();
     switch (field) {
-      case 1:
-        var value = /** @type {string} */ (reader.readString());
-        msg.addPubKeyTypes(value);
-        break;
-      default:
-        reader.skipField();
-        break;
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.addPubKeyTypes(value);
+      break;
+    default:
+      reader.skipField();
+      break;
     }
   }
   return msg;
 };
+
 
 /**
  * Serializes the message to binary data (in protobuf wire format).
@@ -623,6 +675,7 @@ proto.abci_vendor.ValidatorParams.prototype.serializeBinary = function() {
   proto.abci_vendor.ValidatorParams.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
+
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -635,9 +688,13 @@ proto.abci_vendor.ValidatorParams.serializeBinaryToWriter = function(message, wr
   var f = undefined;
   f = message.getPubKeyTypesList();
   if (f.length > 0) {
-    writer.writeRepeatedString(1, f);
+    writer.writeRepeatedString(
+      1,
+      f
+    );
   }
 };
+
 
 /**
  * repeated string pub_key_types = 1;
@@ -647,10 +704,12 @@ proto.abci_vendor.ValidatorParams.prototype.getPubKeyTypesList = function() {
   return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 1));
 };
 
+
 /** @param {!Array<string>} value */
 proto.abci_vendor.ValidatorParams.prototype.setPubKeyTypesList = function(value) {
   jspb.Message.setField(this, 1, value || []);
 };
+
 
 /**
  * @param {string} value
@@ -660,9 +719,12 @@ proto.abci_vendor.ValidatorParams.prototype.addPubKeyTypes = function(value, opt
   jspb.Message.addToRepeatedField(this, 1, value, opt_index);
 };
 
+
 proto.abci_vendor.ValidatorParams.prototype.clearPubKeyTypesList = function() {
   this.setPubKeyTypesList([]);
 };
+
+
 
 /**
  * Generated by JsPbCodeGenerator.
@@ -682,47 +744,46 @@ if (goog.DEBUG && !COMPILED) {
   proto.abci_vendor.ConsensusParams.displayName = 'proto.abci_vendor.ConsensusParams';
 }
 
+
 if (jspb.Message.GENERATE_TO_OBJECT) {
-  /**
-   * Creates an object representation of this proto suitable for use in Soy templates.
-   * Field names that are reserved in JavaScript and will be renamed to pb_name.
-   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
-   * For the list of reserved names please see:
-   *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
-   * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
-   *     for transitional soy proto support: http://goto/soy-param-migration
-   * @return {!Object}
-   */
-  proto.abci_vendor.ConsensusParams.prototype.toObject = function(opt_includeInstance) {
-    return proto.abci_vendor.ConsensusParams.toObject(opt_includeInstance, this);
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.abci_vendor.ConsensusParams.prototype.toObject = function(opt_includeInstance) {
+  return proto.abci_vendor.ConsensusParams.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.abci_vendor.ConsensusParams} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.abci_vendor.ConsensusParams.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    block: (f = msg.getBlock()) && proto.abci_vendor.BlockParams.toObject(includeInstance, f),
+    evidence: (f = msg.getEvidence()) && proto.abci_vendor.EvidenceParams.toObject(includeInstance, f),
+    validator: (f = msg.getValidator()) && proto.abci_vendor.ValidatorParams.toObject(includeInstance, f)
   };
 
-  /**
-   * Static version of the {@see toObject} method.
-   * @param {boolean|undefined} includeInstance Whether to include the JSPB
-   *     instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @param {!proto.abci_vendor.ConsensusParams} msg The msg instance to transform.
-   * @return {!Object}
-   * @suppress {unusedLocalVariables} f is only used for nested messages
-   */
-  proto.abci_vendor.ConsensusParams.toObject = function(includeInstance, msg) {
-    var f,
-      obj = {
-        block: (f = msg.getBlock()) && proto.abci_vendor.BlockParams.toObject(includeInstance, f),
-        evidence:
-          (f = msg.getEvidence()) && proto.abci_vendor.EvidenceParams.toObject(includeInstance, f),
-        validator:
-          (f = msg.getValidator()) &&
-          proto.abci_vendor.ValidatorParams.toObject(includeInstance, f),
-      };
-
-    if (includeInstance) {
-      obj.$jspbMessageInstance = msg;
-    }
-    return obj;
-  };
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
 }
+
 
 /**
  * Deserializes binary data (in protobuf wire format).
@@ -731,9 +792,10 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  */
 proto.abci_vendor.ConsensusParams.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.abci_vendor.ConsensusParams();
+  var msg = new proto.abci_vendor.ConsensusParams;
   return proto.abci_vendor.ConsensusParams.deserializeBinaryFromReader(msg, reader);
 };
+
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -749,28 +811,29 @@ proto.abci_vendor.ConsensusParams.deserializeBinaryFromReader = function(msg, re
     }
     var field = reader.getFieldNumber();
     switch (field) {
-      case 1:
-        var value = new proto.abci_vendor.BlockParams();
-        reader.readMessage(value, proto.abci_vendor.BlockParams.deserializeBinaryFromReader);
-        msg.setBlock(value);
-        break;
-      case 2:
-        var value = new proto.abci_vendor.EvidenceParams();
-        reader.readMessage(value, proto.abci_vendor.EvidenceParams.deserializeBinaryFromReader);
-        msg.setEvidence(value);
-        break;
-      case 3:
-        var value = new proto.abci_vendor.ValidatorParams();
-        reader.readMessage(value, proto.abci_vendor.ValidatorParams.deserializeBinaryFromReader);
-        msg.setValidator(value);
-        break;
-      default:
-        reader.skipField();
-        break;
+    case 1:
+      var value = new proto.abci_vendor.BlockParams;
+      reader.readMessage(value,proto.abci_vendor.BlockParams.deserializeBinaryFromReader);
+      msg.setBlock(value);
+      break;
+    case 2:
+      var value = new proto.abci_vendor.EvidenceParams;
+      reader.readMessage(value,proto.abci_vendor.EvidenceParams.deserializeBinaryFromReader);
+      msg.setEvidence(value);
+      break;
+    case 3:
+      var value = new proto.abci_vendor.ValidatorParams;
+      reader.readMessage(value,proto.abci_vendor.ValidatorParams.deserializeBinaryFromReader);
+      msg.setValidator(value);
+      break;
+    default:
+      reader.skipField();
+      break;
     }
   }
   return msg;
 };
+
 
 /**
  * Serializes the message to binary data (in protobuf wire format).
@@ -781,6 +844,7 @@ proto.abci_vendor.ConsensusParams.prototype.serializeBinary = function() {
   proto.abci_vendor.ConsensusParams.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
+
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -793,38 +857,51 @@ proto.abci_vendor.ConsensusParams.serializeBinaryToWriter = function(message, wr
   var f = undefined;
   f = message.getBlock();
   if (f != null) {
-    writer.writeMessage(1, f, proto.abci_vendor.BlockParams.serializeBinaryToWriter);
+    writer.writeMessage(
+      1,
+      f,
+      proto.abci_vendor.BlockParams.serializeBinaryToWriter
+    );
   }
   f = message.getEvidence();
   if (f != null) {
-    writer.writeMessage(2, f, proto.abci_vendor.EvidenceParams.serializeBinaryToWriter);
+    writer.writeMessage(
+      2,
+      f,
+      proto.abci_vendor.EvidenceParams.serializeBinaryToWriter
+    );
   }
   f = message.getValidator();
   if (f != null) {
-    writer.writeMessage(3, f, proto.abci_vendor.ValidatorParams.serializeBinaryToWriter);
+    writer.writeMessage(
+      3,
+      f,
+      proto.abci_vendor.ValidatorParams.serializeBinaryToWriter
+    );
   }
 };
+
 
 /**
  * optional BlockParams block = 1;
  * @return {?proto.abci_vendor.BlockParams}
  */
 proto.abci_vendor.ConsensusParams.prototype.getBlock = function() {
-  return /** @type{?proto.abci_vendor.BlockParams} */ (jspb.Message.getWrapperField(
-    this,
-    proto.abci_vendor.BlockParams,
-    1
-  ));
+  return /** @type{?proto.abci_vendor.BlockParams} */ (
+    jspb.Message.getWrapperField(this, proto.abci_vendor.BlockParams, 1));
 };
+
 
 /** @param {?proto.abci_vendor.BlockParams|undefined} value */
 proto.abci_vendor.ConsensusParams.prototype.setBlock = function(value) {
   jspb.Message.setWrapperField(this, 1, value);
 };
 
+
 proto.abci_vendor.ConsensusParams.prototype.clearBlock = function() {
   this.setBlock(undefined);
 };
+
 
 /**
  * Returns whether this field is set.
@@ -834,26 +911,27 @@ proto.abci_vendor.ConsensusParams.prototype.hasBlock = function() {
   return jspb.Message.getField(this, 1) != null;
 };
 
+
 /**
  * optional EvidenceParams evidence = 2;
  * @return {?proto.abci_vendor.EvidenceParams}
  */
 proto.abci_vendor.ConsensusParams.prototype.getEvidence = function() {
-  return /** @type{?proto.abci_vendor.EvidenceParams} */ (jspb.Message.getWrapperField(
-    this,
-    proto.abci_vendor.EvidenceParams,
-    2
-  ));
+  return /** @type{?proto.abci_vendor.EvidenceParams} */ (
+    jspb.Message.getWrapperField(this, proto.abci_vendor.EvidenceParams, 2));
 };
+
 
 /** @param {?proto.abci_vendor.EvidenceParams|undefined} value */
 proto.abci_vendor.ConsensusParams.prototype.setEvidence = function(value) {
   jspb.Message.setWrapperField(this, 2, value);
 };
 
+
 proto.abci_vendor.ConsensusParams.prototype.clearEvidence = function() {
   this.setEvidence(undefined);
 };
+
 
 /**
  * Returns whether this field is set.
@@ -863,26 +941,27 @@ proto.abci_vendor.ConsensusParams.prototype.hasEvidence = function() {
   return jspb.Message.getField(this, 2) != null;
 };
 
+
 /**
  * optional ValidatorParams validator = 3;
  * @return {?proto.abci_vendor.ValidatorParams}
  */
 proto.abci_vendor.ConsensusParams.prototype.getValidator = function() {
-  return /** @type{?proto.abci_vendor.ValidatorParams} */ (jspb.Message.getWrapperField(
-    this,
-    proto.abci_vendor.ValidatorParams,
-    3
-  ));
+  return /** @type{?proto.abci_vendor.ValidatorParams} */ (
+    jspb.Message.getWrapperField(this, proto.abci_vendor.ValidatorParams, 3));
 };
+
 
 /** @param {?proto.abci_vendor.ValidatorParams|undefined} value */
 proto.abci_vendor.ConsensusParams.prototype.setValidator = function(value) {
   jspb.Message.setWrapperField(this, 3, value);
 };
 
+
 proto.abci_vendor.ConsensusParams.prototype.clearValidator = function() {
   this.setValidator(undefined);
 };
+
 
 /**
  * Returns whether this field is set.
@@ -891,6 +970,8 @@ proto.abci_vendor.ConsensusParams.prototype.clearValidator = function() {
 proto.abci_vendor.ConsensusParams.prototype.hasValidator = function() {
   return jspb.Message.getField(this, 3) != null;
 };
+
+
 
 /**
  * Generated by JsPbCodeGenerator.
@@ -903,14 +984,7 @@ proto.abci_vendor.ConsensusParams.prototype.hasValidator = function() {
  * @constructor
  */
 proto.abci_vendor.LastCommitInfo = function(opt_data) {
-  jspb.Message.initialize(
-    this,
-    opt_data,
-    0,
-    -1,
-    proto.abci_vendor.LastCommitInfo.repeatedFields_,
-    null
-  );
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.abci_vendor.LastCommitInfo.repeatedFields_, null);
 };
 goog.inherits(proto.abci_vendor.LastCommitInfo, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -923,47 +997,47 @@ if (goog.DEBUG && !COMPILED) {
  */
 proto.abci_vendor.LastCommitInfo.repeatedFields_ = [2];
 
+
+
 if (jspb.Message.GENERATE_TO_OBJECT) {
-  /**
-   * Creates an object representation of this proto suitable for use in Soy templates.
-   * Field names that are reserved in JavaScript and will be renamed to pb_name.
-   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
-   * For the list of reserved names please see:
-   *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
-   * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
-   *     for transitional soy proto support: http://goto/soy-param-migration
-   * @return {!Object}
-   */
-  proto.abci_vendor.LastCommitInfo.prototype.toObject = function(opt_includeInstance) {
-    return proto.abci_vendor.LastCommitInfo.toObject(opt_includeInstance, this);
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.abci_vendor.LastCommitInfo.prototype.toObject = function(opt_includeInstance) {
+  return proto.abci_vendor.LastCommitInfo.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.abci_vendor.LastCommitInfo} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.abci_vendor.LastCommitInfo.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    round: jspb.Message.getFieldWithDefault(msg, 1, 0),
+    votesList: jspb.Message.toObjectList(msg.getVotesList(),
+    proto.abci_vendor.VoteInfo.toObject, includeInstance)
   };
 
-  /**
-   * Static version of the {@see toObject} method.
-   * @param {boolean|undefined} includeInstance Whether to include the JSPB
-   *     instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @param {!proto.abci_vendor.LastCommitInfo} msg The msg instance to transform.
-   * @return {!Object}
-   * @suppress {unusedLocalVariables} f is only used for nested messages
-   */
-  proto.abci_vendor.LastCommitInfo.toObject = function(includeInstance, msg) {
-    var f,
-      obj = {
-        round: jspb.Message.getFieldWithDefault(msg, 1, 0),
-        votesList: jspb.Message.toObjectList(
-          msg.getVotesList(),
-          proto.abci_vendor.VoteInfo.toObject,
-          includeInstance
-        ),
-      };
-
-    if (includeInstance) {
-      obj.$jspbMessageInstance = msg;
-    }
-    return obj;
-  };
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
 }
+
 
 /**
  * Deserializes binary data (in protobuf wire format).
@@ -972,9 +1046,10 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  */
 proto.abci_vendor.LastCommitInfo.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.abci_vendor.LastCommitInfo();
+  var msg = new proto.abci_vendor.LastCommitInfo;
   return proto.abci_vendor.LastCommitInfo.deserializeBinaryFromReader(msg, reader);
 };
+
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -990,22 +1065,23 @@ proto.abci_vendor.LastCommitInfo.deserializeBinaryFromReader = function(msg, rea
     }
     var field = reader.getFieldNumber();
     switch (field) {
-      case 1:
-        var value = /** @type {number} */ (reader.readInt32());
-        msg.setRound(value);
-        break;
-      case 2:
-        var value = new proto.abci_vendor.VoteInfo();
-        reader.readMessage(value, proto.abci_vendor.VoteInfo.deserializeBinaryFromReader);
-        msg.addVotes(value);
-        break;
-      default:
-        reader.skipField();
-        break;
+    case 1:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setRound(value);
+      break;
+    case 2:
+      var value = new proto.abci_vendor.VoteInfo;
+      reader.readMessage(value,proto.abci_vendor.VoteInfo.deserializeBinaryFromReader);
+      msg.addVotes(value);
+      break;
+    default:
+      reader.skipField();
+      break;
     }
   }
   return msg;
 };
+
 
 /**
  * Serializes the message to binary data (in protobuf wire format).
@@ -1016,6 +1092,7 @@ proto.abci_vendor.LastCommitInfo.prototype.serializeBinary = function() {
   proto.abci_vendor.LastCommitInfo.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
+
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -1028,13 +1105,21 @@ proto.abci_vendor.LastCommitInfo.serializeBinaryToWriter = function(message, wri
   var f = undefined;
   f = message.getRound();
   if (f !== 0) {
-    writer.writeInt32(1, f);
+    writer.writeInt32(
+      1,
+      f
+    );
   }
   f = message.getVotesList();
   if (f.length > 0) {
-    writer.writeRepeatedMessage(2, f, proto.abci_vendor.VoteInfo.serializeBinaryToWriter);
+    writer.writeRepeatedMessage(
+      2,
+      f,
+      proto.abci_vendor.VoteInfo.serializeBinaryToWriter
+    );
   }
 };
+
 
 /**
  * optional int32 round = 1;
@@ -1044,27 +1129,28 @@ proto.abci_vendor.LastCommitInfo.prototype.getRound = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
 };
 
+
 /** @param {number} value */
 proto.abci_vendor.LastCommitInfo.prototype.setRound = function(value) {
   jspb.Message.setProto3IntField(this, 1, value);
 };
+
 
 /**
  * repeated VoteInfo votes = 2;
  * @return {!Array<!proto.abci_vendor.VoteInfo>}
  */
 proto.abci_vendor.LastCommitInfo.prototype.getVotesList = function() {
-  return /** @type{!Array<!proto.abci_vendor.VoteInfo>} */ (jspb.Message.getRepeatedWrapperField(
-    this,
-    proto.abci_vendor.VoteInfo,
-    2
-  ));
+  return /** @type{!Array<!proto.abci_vendor.VoteInfo>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.abci_vendor.VoteInfo, 2));
 };
+
 
 /** @param {!Array<!proto.abci_vendor.VoteInfo>} value */
 proto.abci_vendor.LastCommitInfo.prototype.setVotesList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 2, value);
 };
+
 
 /**
  * @param {!proto.abci_vendor.VoteInfo=} opt_value
@@ -1072,18 +1158,15 @@ proto.abci_vendor.LastCommitInfo.prototype.setVotesList = function(value) {
  * @return {!proto.abci_vendor.VoteInfo}
  */
 proto.abci_vendor.LastCommitInfo.prototype.addVotes = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(
-    this,
-    2,
-    opt_value,
-    proto.abci_vendor.VoteInfo,
-    opt_index
-  );
+  return jspb.Message.addToRepeatedWrapperField(this, 2, opt_value, proto.abci_vendor.VoteInfo, opt_index);
 };
+
 
 proto.abci_vendor.LastCommitInfo.prototype.clearVotesList = function() {
   this.setVotesList([]);
 };
+
+
 
 /**
  * Generated by JsPbCodeGenerator.
@@ -1103,43 +1186,45 @@ if (goog.DEBUG && !COMPILED) {
   proto.abci_vendor.Version.displayName = 'proto.abci_vendor.Version';
 }
 
+
 if (jspb.Message.GENERATE_TO_OBJECT) {
-  /**
-   * Creates an object representation of this proto suitable for use in Soy templates.
-   * Field names that are reserved in JavaScript and will be renamed to pb_name.
-   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
-   * For the list of reserved names please see:
-   *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
-   * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
-   *     for transitional soy proto support: http://goto/soy-param-migration
-   * @return {!Object}
-   */
-  proto.abci_vendor.Version.prototype.toObject = function(opt_includeInstance) {
-    return proto.abci_vendor.Version.toObject(opt_includeInstance, this);
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.abci_vendor.Version.prototype.toObject = function(opt_includeInstance) {
+  return proto.abci_vendor.Version.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.abci_vendor.Version} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.abci_vendor.Version.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    block: jspb.Message.getFieldWithDefault(msg, 1, 0),
+    app: jspb.Message.getFieldWithDefault(msg, 2, 0)
   };
 
-  /**
-   * Static version of the {@see toObject} method.
-   * @param {boolean|undefined} includeInstance Whether to include the JSPB
-   *     instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @param {!proto.abci_vendor.Version} msg The msg instance to transform.
-   * @return {!Object}
-   * @suppress {unusedLocalVariables} f is only used for nested messages
-   */
-  proto.abci_vendor.Version.toObject = function(includeInstance, msg) {
-    var f,
-      obj = {
-        block: jspb.Message.getFieldWithDefault(msg, 1, 0),
-        app: jspb.Message.getFieldWithDefault(msg, 2, 0),
-      };
-
-    if (includeInstance) {
-      obj.$jspbMessageInstance = msg;
-    }
-    return obj;
-  };
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
 }
+
 
 /**
  * Deserializes binary data (in protobuf wire format).
@@ -1148,9 +1233,10 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  */
 proto.abci_vendor.Version.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.abci_vendor.Version();
+  var msg = new proto.abci_vendor.Version;
   return proto.abci_vendor.Version.deserializeBinaryFromReader(msg, reader);
 };
+
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -1166,21 +1252,22 @@ proto.abci_vendor.Version.deserializeBinaryFromReader = function(msg, reader) {
     }
     var field = reader.getFieldNumber();
     switch (field) {
-      case 1:
-        var value = /** @type {number} */ (reader.readUint64());
-        msg.setBlock(value);
-        break;
-      case 2:
-        var value = /** @type {number} */ (reader.readUint64());
-        msg.setApp(value);
-        break;
-      default:
-        reader.skipField();
-        break;
+    case 1:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setBlock(value);
+      break;
+    case 2:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setApp(value);
+      break;
+    default:
+      reader.skipField();
+      break;
     }
   }
   return msg;
 };
+
 
 /**
  * Serializes the message to binary data (in protobuf wire format).
@@ -1191,6 +1278,7 @@ proto.abci_vendor.Version.prototype.serializeBinary = function() {
   proto.abci_vendor.Version.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
+
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -1203,13 +1291,20 @@ proto.abci_vendor.Version.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getBlock();
   if (f !== 0) {
-    writer.writeUint64(1, f);
+    writer.writeUint64(
+      1,
+      f
+    );
   }
   f = message.getApp();
   if (f !== 0) {
-    writer.writeUint64(2, f);
+    writer.writeUint64(
+      2,
+      f
+    );
   }
 };
+
 
 /**
  * optional uint64 Block = 1;
@@ -1219,10 +1314,12 @@ proto.abci_vendor.Version.prototype.getBlock = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
 };
 
+
 /** @param {number} value */
 proto.abci_vendor.Version.prototype.setBlock = function(value) {
   jspb.Message.setProto3IntField(this, 1, value);
 };
+
 
 /**
  * optional uint64 App = 2;
@@ -1232,10 +1329,13 @@ proto.abci_vendor.Version.prototype.getApp = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
 };
 
+
 /** @param {number} value */
 proto.abci_vendor.Version.prototype.setApp = function(value) {
   jspb.Message.setProto3IntField(this, 2, value);
 };
+
+
 
 /**
  * Generated by JsPbCodeGenerator.
@@ -1255,45 +1355,45 @@ if (goog.DEBUG && !COMPILED) {
   proto.abci_vendor.BlockID.displayName = 'proto.abci_vendor.BlockID';
 }
 
+
 if (jspb.Message.GENERATE_TO_OBJECT) {
-  /**
-   * Creates an object representation of this proto suitable for use in Soy templates.
-   * Field names that are reserved in JavaScript and will be renamed to pb_name.
-   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
-   * For the list of reserved names please see:
-   *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
-   * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
-   *     for transitional soy proto support: http://goto/soy-param-migration
-   * @return {!Object}
-   */
-  proto.abci_vendor.BlockID.prototype.toObject = function(opt_includeInstance) {
-    return proto.abci_vendor.BlockID.toObject(opt_includeInstance, this);
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.abci_vendor.BlockID.prototype.toObject = function(opt_includeInstance) {
+  return proto.abci_vendor.BlockID.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.abci_vendor.BlockID} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.abci_vendor.BlockID.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    hash: msg.getHash(),
+    partsHeader: (f = msg.getPartsHeader()) && proto.abci_vendor.PartSetHeader.toObject(includeInstance, f)
   };
 
-  /**
-   * Static version of the {@see toObject} method.
-   * @param {boolean|undefined} includeInstance Whether to include the JSPB
-   *     instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @param {!proto.abci_vendor.BlockID} msg The msg instance to transform.
-   * @return {!Object}
-   * @suppress {unusedLocalVariables} f is only used for nested messages
-   */
-  proto.abci_vendor.BlockID.toObject = function(includeInstance, msg) {
-    var f,
-      obj = {
-        hash: msg.getHash(),
-        partsHeader:
-          (f = msg.getPartsHeader()) &&
-          proto.abci_vendor.PartSetHeader.toObject(includeInstance, f),
-      };
-
-    if (includeInstance) {
-      obj.$jspbMessageInstance = msg;
-    }
-    return obj;
-  };
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
 }
+
 
 /**
  * Deserializes binary data (in protobuf wire format).
@@ -1302,9 +1402,10 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  */
 proto.abci_vendor.BlockID.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.abci_vendor.BlockID();
+  var msg = new proto.abci_vendor.BlockID;
   return proto.abci_vendor.BlockID.deserializeBinaryFromReader(msg, reader);
 };
+
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -1320,22 +1421,23 @@ proto.abci_vendor.BlockID.deserializeBinaryFromReader = function(msg, reader) {
     }
     var field = reader.getFieldNumber();
     switch (field) {
-      case 1:
-        var value = /** @type {!Uint8Array} */ (reader.readBytes());
-        msg.setHash(value);
-        break;
-      case 2:
-        var value = new proto.abci_vendor.PartSetHeader();
-        reader.readMessage(value, proto.abci_vendor.PartSetHeader.deserializeBinaryFromReader);
-        msg.setPartsHeader(value);
-        break;
-      default:
-        reader.skipField();
-        break;
+    case 1:
+      var value = /** @type {!Uint8Array} */ (reader.readBytes());
+      msg.setHash(value);
+      break;
+    case 2:
+      var value = new proto.abci_vendor.PartSetHeader;
+      reader.readMessage(value,proto.abci_vendor.PartSetHeader.deserializeBinaryFromReader);
+      msg.setPartsHeader(value);
+      break;
+    default:
+      reader.skipField();
+      break;
     }
   }
   return msg;
 };
+
 
 /**
  * Serializes the message to binary data (in protobuf wire format).
@@ -1346,6 +1448,7 @@ proto.abci_vendor.BlockID.prototype.serializeBinary = function() {
   proto.abci_vendor.BlockID.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
+
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -1358,21 +1461,30 @@ proto.abci_vendor.BlockID.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getHash_asU8();
   if (f.length > 0) {
-    writer.writeBytes(1, f);
+    writer.writeBytes(
+      1,
+      f
+    );
   }
   f = message.getPartsHeader();
   if (f != null) {
-    writer.writeMessage(2, f, proto.abci_vendor.PartSetHeader.serializeBinaryToWriter);
+    writer.writeMessage(
+      2,
+      f,
+      proto.abci_vendor.PartSetHeader.serializeBinaryToWriter
+    );
   }
 };
+
 
 /**
  * optional bytes hash = 1;
  * @return {!(string|Uint8Array)}
  */
 proto.abci_vendor.BlockID.prototype.getHash = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 1, ''));
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
+
 
 /**
  * optional bytes hash = 1;
@@ -1380,8 +1492,10 @@ proto.abci_vendor.BlockID.prototype.getHash = function() {
  * @return {string}
  */
 proto.abci_vendor.BlockID.prototype.getHash_asB64 = function() {
-  return /** @type {string} */ (jspb.Message.bytesAsB64(this.getHash()));
+  return /** @type {string} */ (jspb.Message.bytesAsB64(
+      this.getHash()));
 };
+
 
 /**
  * optional bytes hash = 1;
@@ -1391,34 +1505,37 @@ proto.abci_vendor.BlockID.prototype.getHash_asB64 = function() {
  * @return {!Uint8Array}
  */
 proto.abci_vendor.BlockID.prototype.getHash_asU8 = function() {
-  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(this.getHash()));
+  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
+      this.getHash()));
 };
+
 
 /** @param {!(string|Uint8Array)} value */
 proto.abci_vendor.BlockID.prototype.setHash = function(value) {
   jspb.Message.setProto3BytesField(this, 1, value);
 };
 
+
 /**
  * optional PartSetHeader parts_header = 2;
  * @return {?proto.abci_vendor.PartSetHeader}
  */
 proto.abci_vendor.BlockID.prototype.getPartsHeader = function() {
-  return /** @type{?proto.abci_vendor.PartSetHeader} */ (jspb.Message.getWrapperField(
-    this,
-    proto.abci_vendor.PartSetHeader,
-    2
-  ));
+  return /** @type{?proto.abci_vendor.PartSetHeader} */ (
+    jspb.Message.getWrapperField(this, proto.abci_vendor.PartSetHeader, 2));
 };
+
 
 /** @param {?proto.abci_vendor.PartSetHeader|undefined} value */
 proto.abci_vendor.BlockID.prototype.setPartsHeader = function(value) {
   jspb.Message.setWrapperField(this, 2, value);
 };
 
+
 proto.abci_vendor.BlockID.prototype.clearPartsHeader = function() {
   this.setPartsHeader(undefined);
 };
+
 
 /**
  * Returns whether this field is set.
@@ -1427,6 +1544,8 @@ proto.abci_vendor.BlockID.prototype.clearPartsHeader = function() {
 proto.abci_vendor.BlockID.prototype.hasPartsHeader = function() {
   return jspb.Message.getField(this, 2) != null;
 };
+
+
 
 /**
  * Generated by JsPbCodeGenerator.
@@ -1446,43 +1565,45 @@ if (goog.DEBUG && !COMPILED) {
   proto.abci_vendor.PartSetHeader.displayName = 'proto.abci_vendor.PartSetHeader';
 }
 
+
 if (jspb.Message.GENERATE_TO_OBJECT) {
-  /**
-   * Creates an object representation of this proto suitable for use in Soy templates.
-   * Field names that are reserved in JavaScript and will be renamed to pb_name.
-   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
-   * For the list of reserved names please see:
-   *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
-   * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
-   *     for transitional soy proto support: http://goto/soy-param-migration
-   * @return {!Object}
-   */
-  proto.abci_vendor.PartSetHeader.prototype.toObject = function(opt_includeInstance) {
-    return proto.abci_vendor.PartSetHeader.toObject(opt_includeInstance, this);
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.abci_vendor.PartSetHeader.prototype.toObject = function(opt_includeInstance) {
+  return proto.abci_vendor.PartSetHeader.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.abci_vendor.PartSetHeader} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.abci_vendor.PartSetHeader.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    total: jspb.Message.getFieldWithDefault(msg, 1, 0),
+    hash: msg.getHash()
   };
 
-  /**
-   * Static version of the {@see toObject} method.
-   * @param {boolean|undefined} includeInstance Whether to include the JSPB
-   *     instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @param {!proto.abci_vendor.PartSetHeader} msg The msg instance to transform.
-   * @return {!Object}
-   * @suppress {unusedLocalVariables} f is only used for nested messages
-   */
-  proto.abci_vendor.PartSetHeader.toObject = function(includeInstance, msg) {
-    var f,
-      obj = {
-        total: jspb.Message.getFieldWithDefault(msg, 1, 0),
-        hash: msg.getHash(),
-      };
-
-    if (includeInstance) {
-      obj.$jspbMessageInstance = msg;
-    }
-    return obj;
-  };
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
 }
+
 
 /**
  * Deserializes binary data (in protobuf wire format).
@@ -1491,9 +1612,10 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  */
 proto.abci_vendor.PartSetHeader.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.abci_vendor.PartSetHeader();
+  var msg = new proto.abci_vendor.PartSetHeader;
   return proto.abci_vendor.PartSetHeader.deserializeBinaryFromReader(msg, reader);
 };
+
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -1509,21 +1631,22 @@ proto.abci_vendor.PartSetHeader.deserializeBinaryFromReader = function(msg, read
     }
     var field = reader.getFieldNumber();
     switch (field) {
-      case 1:
-        var value = /** @type {number} */ (reader.readInt32());
-        msg.setTotal(value);
-        break;
-      case 2:
-        var value = /** @type {!Uint8Array} */ (reader.readBytes());
-        msg.setHash(value);
-        break;
-      default:
-        reader.skipField();
-        break;
+    case 1:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setTotal(value);
+      break;
+    case 2:
+      var value = /** @type {!Uint8Array} */ (reader.readBytes());
+      msg.setHash(value);
+      break;
+    default:
+      reader.skipField();
+      break;
     }
   }
   return msg;
 };
+
 
 /**
  * Serializes the message to binary data (in protobuf wire format).
@@ -1534,6 +1657,7 @@ proto.abci_vendor.PartSetHeader.prototype.serializeBinary = function() {
   proto.abci_vendor.PartSetHeader.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
+
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -1546,13 +1670,20 @@ proto.abci_vendor.PartSetHeader.serializeBinaryToWriter = function(message, writ
   var f = undefined;
   f = message.getTotal();
   if (f !== 0) {
-    writer.writeInt32(1, f);
+    writer.writeInt32(
+      1,
+      f
+    );
   }
   f = message.getHash_asU8();
   if (f.length > 0) {
-    writer.writeBytes(2, f);
+    writer.writeBytes(
+      2,
+      f
+    );
   }
 };
+
 
 /**
  * optional int32 total = 1;
@@ -1562,18 +1693,21 @@ proto.abci_vendor.PartSetHeader.prototype.getTotal = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
 };
 
+
 /** @param {number} value */
 proto.abci_vendor.PartSetHeader.prototype.setTotal = function(value) {
   jspb.Message.setProto3IntField(this, 1, value);
 };
+
 
 /**
  * optional bytes hash = 2;
  * @return {!(string|Uint8Array)}
  */
 proto.abci_vendor.PartSetHeader.prototype.getHash = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 2, ''));
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
+
 
 /**
  * optional bytes hash = 2;
@@ -1581,8 +1715,10 @@ proto.abci_vendor.PartSetHeader.prototype.getHash = function() {
  * @return {string}
  */
 proto.abci_vendor.PartSetHeader.prototype.getHash_asB64 = function() {
-  return /** @type {string} */ (jspb.Message.bytesAsB64(this.getHash()));
+  return /** @type {string} */ (jspb.Message.bytesAsB64(
+      this.getHash()));
 };
+
 
 /**
  * optional bytes hash = 2;
@@ -1592,13 +1728,17 @@ proto.abci_vendor.PartSetHeader.prototype.getHash_asB64 = function() {
  * @return {!Uint8Array}
  */
 proto.abci_vendor.PartSetHeader.prototype.getHash_asU8 = function() {
-  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(this.getHash()));
+  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
+      this.getHash()));
 };
+
 
 /** @param {!(string|Uint8Array)} value */
 proto.abci_vendor.PartSetHeader.prototype.setHash = function(value) {
   jspb.Message.setProto3BytesField(this, 2, value);
 };
+
+
 
 /**
  * Generated by JsPbCodeGenerator.
@@ -1618,43 +1758,45 @@ if (goog.DEBUG && !COMPILED) {
   proto.abci_vendor.Validator.displayName = 'proto.abci_vendor.Validator';
 }
 
+
 if (jspb.Message.GENERATE_TO_OBJECT) {
-  /**
-   * Creates an object representation of this proto suitable for use in Soy templates.
-   * Field names that are reserved in JavaScript and will be renamed to pb_name.
-   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
-   * For the list of reserved names please see:
-   *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
-   * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
-   *     for transitional soy proto support: http://goto/soy-param-migration
-   * @return {!Object}
-   */
-  proto.abci_vendor.Validator.prototype.toObject = function(opt_includeInstance) {
-    return proto.abci_vendor.Validator.toObject(opt_includeInstance, this);
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.abci_vendor.Validator.prototype.toObject = function(opt_includeInstance) {
+  return proto.abci_vendor.Validator.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.abci_vendor.Validator} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.abci_vendor.Validator.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    address: msg.getAddress(),
+    power: jspb.Message.getFieldWithDefault(msg, 3, 0)
   };
 
-  /**
-   * Static version of the {@see toObject} method.
-   * @param {boolean|undefined} includeInstance Whether to include the JSPB
-   *     instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @param {!proto.abci_vendor.Validator} msg The msg instance to transform.
-   * @return {!Object}
-   * @suppress {unusedLocalVariables} f is only used for nested messages
-   */
-  proto.abci_vendor.Validator.toObject = function(includeInstance, msg) {
-    var f,
-      obj = {
-        address: msg.getAddress(),
-        power: jspb.Message.getFieldWithDefault(msg, 3, 0),
-      };
-
-    if (includeInstance) {
-      obj.$jspbMessageInstance = msg;
-    }
-    return obj;
-  };
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
 }
+
 
 /**
  * Deserializes binary data (in protobuf wire format).
@@ -1663,9 +1805,10 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  */
 proto.abci_vendor.Validator.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.abci_vendor.Validator();
+  var msg = new proto.abci_vendor.Validator;
   return proto.abci_vendor.Validator.deserializeBinaryFromReader(msg, reader);
 };
+
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -1681,21 +1824,22 @@ proto.abci_vendor.Validator.deserializeBinaryFromReader = function(msg, reader) 
     }
     var field = reader.getFieldNumber();
     switch (field) {
-      case 1:
-        var value = /** @type {!Uint8Array} */ (reader.readBytes());
-        msg.setAddress(value);
-        break;
-      case 3:
-        var value = /** @type {number} */ (reader.readInt64());
-        msg.setPower(value);
-        break;
-      default:
-        reader.skipField();
-        break;
+    case 1:
+      var value = /** @type {!Uint8Array} */ (reader.readBytes());
+      msg.setAddress(value);
+      break;
+    case 3:
+      var value = /** @type {number} */ (reader.readInt64());
+      msg.setPower(value);
+      break;
+    default:
+      reader.skipField();
+      break;
     }
   }
   return msg;
 };
+
 
 /**
  * Serializes the message to binary data (in protobuf wire format).
@@ -1706,6 +1850,7 @@ proto.abci_vendor.Validator.prototype.serializeBinary = function() {
   proto.abci_vendor.Validator.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
+
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -1718,21 +1863,29 @@ proto.abci_vendor.Validator.serializeBinaryToWriter = function(message, writer) 
   var f = undefined;
   f = message.getAddress_asU8();
   if (f.length > 0) {
-    writer.writeBytes(1, f);
+    writer.writeBytes(
+      1,
+      f
+    );
   }
   f = message.getPower();
   if (f !== 0) {
-    writer.writeInt64(3, f);
+    writer.writeInt64(
+      3,
+      f
+    );
   }
 };
+
 
 /**
  * optional bytes address = 1;
  * @return {!(string|Uint8Array)}
  */
 proto.abci_vendor.Validator.prototype.getAddress = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 1, ''));
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
+
 
 /**
  * optional bytes address = 1;
@@ -1740,8 +1893,10 @@ proto.abci_vendor.Validator.prototype.getAddress = function() {
  * @return {string}
  */
 proto.abci_vendor.Validator.prototype.getAddress_asB64 = function() {
-  return /** @type {string} */ (jspb.Message.bytesAsB64(this.getAddress()));
+  return /** @type {string} */ (jspb.Message.bytesAsB64(
+      this.getAddress()));
 };
+
 
 /**
  * optional bytes address = 1;
@@ -1751,13 +1906,16 @@ proto.abci_vendor.Validator.prototype.getAddress_asB64 = function() {
  * @return {!Uint8Array}
  */
 proto.abci_vendor.Validator.prototype.getAddress_asU8 = function() {
-  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(this.getAddress()));
+  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
+      this.getAddress()));
 };
+
 
 /** @param {!(string|Uint8Array)} value */
 proto.abci_vendor.Validator.prototype.setAddress = function(value) {
   jspb.Message.setProto3BytesField(this, 1, value);
 };
+
 
 /**
  * optional int64 power = 3;
@@ -1767,10 +1925,13 @@ proto.abci_vendor.Validator.prototype.getPower = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
 };
 
+
 /** @param {number} value */
 proto.abci_vendor.Validator.prototype.setPower = function(value) {
   jspb.Message.setProto3IntField(this, 3, value);
 };
+
+
 
 /**
  * Generated by JsPbCodeGenerator.
@@ -1790,43 +1951,45 @@ if (goog.DEBUG && !COMPILED) {
   proto.abci_vendor.ValidatorUpdate.displayName = 'proto.abci_vendor.ValidatorUpdate';
 }
 
+
 if (jspb.Message.GENERATE_TO_OBJECT) {
-  /**
-   * Creates an object representation of this proto suitable for use in Soy templates.
-   * Field names that are reserved in JavaScript and will be renamed to pb_name.
-   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
-   * For the list of reserved names please see:
-   *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
-   * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
-   *     for transitional soy proto support: http://goto/soy-param-migration
-   * @return {!Object}
-   */
-  proto.abci_vendor.ValidatorUpdate.prototype.toObject = function(opt_includeInstance) {
-    return proto.abci_vendor.ValidatorUpdate.toObject(opt_includeInstance, this);
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.abci_vendor.ValidatorUpdate.prototype.toObject = function(opt_includeInstance) {
+  return proto.abci_vendor.ValidatorUpdate.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.abci_vendor.ValidatorUpdate} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.abci_vendor.ValidatorUpdate.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    pubKey: (f = msg.getPubKey()) && proto.abci_vendor.PubKey.toObject(includeInstance, f),
+    power: jspb.Message.getFieldWithDefault(msg, 2, 0)
   };
 
-  /**
-   * Static version of the {@see toObject} method.
-   * @param {boolean|undefined} includeInstance Whether to include the JSPB
-   *     instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @param {!proto.abci_vendor.ValidatorUpdate} msg The msg instance to transform.
-   * @return {!Object}
-   * @suppress {unusedLocalVariables} f is only used for nested messages
-   */
-  proto.abci_vendor.ValidatorUpdate.toObject = function(includeInstance, msg) {
-    var f,
-      obj = {
-        pubKey: (f = msg.getPubKey()) && proto.abci_vendor.PubKey.toObject(includeInstance, f),
-        power: jspb.Message.getFieldWithDefault(msg, 2, 0),
-      };
-
-    if (includeInstance) {
-      obj.$jspbMessageInstance = msg;
-    }
-    return obj;
-  };
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
 }
+
 
 /**
  * Deserializes binary data (in protobuf wire format).
@@ -1835,9 +1998,10 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  */
 proto.abci_vendor.ValidatorUpdate.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.abci_vendor.ValidatorUpdate();
+  var msg = new proto.abci_vendor.ValidatorUpdate;
   return proto.abci_vendor.ValidatorUpdate.deserializeBinaryFromReader(msg, reader);
 };
+
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -1853,22 +2017,23 @@ proto.abci_vendor.ValidatorUpdate.deserializeBinaryFromReader = function(msg, re
     }
     var field = reader.getFieldNumber();
     switch (field) {
-      case 1:
-        var value = new proto.abci_vendor.PubKey();
-        reader.readMessage(value, proto.abci_vendor.PubKey.deserializeBinaryFromReader);
-        msg.setPubKey(value);
-        break;
-      case 2:
-        var value = /** @type {number} */ (reader.readInt64());
-        msg.setPower(value);
-        break;
-      default:
-        reader.skipField();
-        break;
+    case 1:
+      var value = new proto.abci_vendor.PubKey;
+      reader.readMessage(value,proto.abci_vendor.PubKey.deserializeBinaryFromReader);
+      msg.setPubKey(value);
+      break;
+    case 2:
+      var value = /** @type {number} */ (reader.readInt64());
+      msg.setPower(value);
+      break;
+    default:
+      reader.skipField();
+      break;
     }
   }
   return msg;
 };
+
 
 /**
  * Serializes the message to binary data (in protobuf wire format).
@@ -1879,6 +2044,7 @@ proto.abci_vendor.ValidatorUpdate.prototype.serializeBinary = function() {
   proto.abci_vendor.ValidatorUpdate.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
+
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -1891,34 +2057,42 @@ proto.abci_vendor.ValidatorUpdate.serializeBinaryToWriter = function(message, wr
   var f = undefined;
   f = message.getPubKey();
   if (f != null) {
-    writer.writeMessage(1, f, proto.abci_vendor.PubKey.serializeBinaryToWriter);
+    writer.writeMessage(
+      1,
+      f,
+      proto.abci_vendor.PubKey.serializeBinaryToWriter
+    );
   }
   f = message.getPower();
   if (f !== 0) {
-    writer.writeInt64(2, f);
+    writer.writeInt64(
+      2,
+      f
+    );
   }
 };
+
 
 /**
  * optional PubKey pub_key = 1;
  * @return {?proto.abci_vendor.PubKey}
  */
 proto.abci_vendor.ValidatorUpdate.prototype.getPubKey = function() {
-  return /** @type{?proto.abci_vendor.PubKey} */ (jspb.Message.getWrapperField(
-    this,
-    proto.abci_vendor.PubKey,
-    1
-  ));
+  return /** @type{?proto.abci_vendor.PubKey} */ (
+    jspb.Message.getWrapperField(this, proto.abci_vendor.PubKey, 1));
 };
+
 
 /** @param {?proto.abci_vendor.PubKey|undefined} value */
 proto.abci_vendor.ValidatorUpdate.prototype.setPubKey = function(value) {
   jspb.Message.setWrapperField(this, 1, value);
 };
 
+
 proto.abci_vendor.ValidatorUpdate.prototype.clearPubKey = function() {
   this.setPubKey(undefined);
 };
+
 
 /**
  * Returns whether this field is set.
@@ -1928,6 +2102,7 @@ proto.abci_vendor.ValidatorUpdate.prototype.hasPubKey = function() {
   return jspb.Message.getField(this, 1) != null;
 };
 
+
 /**
  * optional int64 power = 2;
  * @return {number}
@@ -1936,10 +2111,13 @@ proto.abci_vendor.ValidatorUpdate.prototype.getPower = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
 };
 
+
 /** @param {number} value */
 proto.abci_vendor.ValidatorUpdate.prototype.setPower = function(value) {
   jspb.Message.setProto3IntField(this, 2, value);
 };
+
+
 
 /**
  * Generated by JsPbCodeGenerator.
@@ -1959,44 +2137,45 @@ if (goog.DEBUG && !COMPILED) {
   proto.abci_vendor.VoteInfo.displayName = 'proto.abci_vendor.VoteInfo';
 }
 
+
 if (jspb.Message.GENERATE_TO_OBJECT) {
-  /**
-   * Creates an object representation of this proto suitable for use in Soy templates.
-   * Field names that are reserved in JavaScript and will be renamed to pb_name.
-   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
-   * For the list of reserved names please see:
-   *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
-   * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
-   *     for transitional soy proto support: http://goto/soy-param-migration
-   * @return {!Object}
-   */
-  proto.abci_vendor.VoteInfo.prototype.toObject = function(opt_includeInstance) {
-    return proto.abci_vendor.VoteInfo.toObject(opt_includeInstance, this);
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.abci_vendor.VoteInfo.prototype.toObject = function(opt_includeInstance) {
+  return proto.abci_vendor.VoteInfo.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.abci_vendor.VoteInfo} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.abci_vendor.VoteInfo.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    validator: (f = msg.getValidator()) && proto.abci_vendor.Validator.toObject(includeInstance, f),
+    signedLastBlock: jspb.Message.getFieldWithDefault(msg, 2, false)
   };
 
-  /**
-   * Static version of the {@see toObject} method.
-   * @param {boolean|undefined} includeInstance Whether to include the JSPB
-   *     instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @param {!proto.abci_vendor.VoteInfo} msg The msg instance to transform.
-   * @return {!Object}
-   * @suppress {unusedLocalVariables} f is only used for nested messages
-   */
-  proto.abci_vendor.VoteInfo.toObject = function(includeInstance, msg) {
-    var f,
-      obj = {
-        validator:
-          (f = msg.getValidator()) && proto.abci_vendor.Validator.toObject(includeInstance, f),
-        signedLastBlock: jspb.Message.getFieldWithDefault(msg, 2, false),
-      };
-
-    if (includeInstance) {
-      obj.$jspbMessageInstance = msg;
-    }
-    return obj;
-  };
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
 }
+
 
 /**
  * Deserializes binary data (in protobuf wire format).
@@ -2005,9 +2184,10 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  */
 proto.abci_vendor.VoteInfo.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.abci_vendor.VoteInfo();
+  var msg = new proto.abci_vendor.VoteInfo;
   return proto.abci_vendor.VoteInfo.deserializeBinaryFromReader(msg, reader);
 };
+
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -2023,22 +2203,23 @@ proto.abci_vendor.VoteInfo.deserializeBinaryFromReader = function(msg, reader) {
     }
     var field = reader.getFieldNumber();
     switch (field) {
-      case 1:
-        var value = new proto.abci_vendor.Validator();
-        reader.readMessage(value, proto.abci_vendor.Validator.deserializeBinaryFromReader);
-        msg.setValidator(value);
-        break;
-      case 2:
-        var value = /** @type {boolean} */ (reader.readBool());
-        msg.setSignedLastBlock(value);
-        break;
-      default:
-        reader.skipField();
-        break;
+    case 1:
+      var value = new proto.abci_vendor.Validator;
+      reader.readMessage(value,proto.abci_vendor.Validator.deserializeBinaryFromReader);
+      msg.setValidator(value);
+      break;
+    case 2:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setSignedLastBlock(value);
+      break;
+    default:
+      reader.skipField();
+      break;
     }
   }
   return msg;
 };
+
 
 /**
  * Serializes the message to binary data (in protobuf wire format).
@@ -2049,6 +2230,7 @@ proto.abci_vendor.VoteInfo.prototype.serializeBinary = function() {
   proto.abci_vendor.VoteInfo.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
+
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -2061,34 +2243,42 @@ proto.abci_vendor.VoteInfo.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getValidator();
   if (f != null) {
-    writer.writeMessage(1, f, proto.abci_vendor.Validator.serializeBinaryToWriter);
+    writer.writeMessage(
+      1,
+      f,
+      proto.abci_vendor.Validator.serializeBinaryToWriter
+    );
   }
   f = message.getSignedLastBlock();
   if (f) {
-    writer.writeBool(2, f);
+    writer.writeBool(
+      2,
+      f
+    );
   }
 };
+
 
 /**
  * optional Validator validator = 1;
  * @return {?proto.abci_vendor.Validator}
  */
 proto.abci_vendor.VoteInfo.prototype.getValidator = function() {
-  return /** @type{?proto.abci_vendor.Validator} */ (jspb.Message.getWrapperField(
-    this,
-    proto.abci_vendor.Validator,
-    1
-  ));
+  return /** @type{?proto.abci_vendor.Validator} */ (
+    jspb.Message.getWrapperField(this, proto.abci_vendor.Validator, 1));
 };
+
 
 /** @param {?proto.abci_vendor.Validator|undefined} value */
 proto.abci_vendor.VoteInfo.prototype.setValidator = function(value) {
   jspb.Message.setWrapperField(this, 1, value);
 };
 
+
 proto.abci_vendor.VoteInfo.prototype.clearValidator = function() {
   this.setValidator(undefined);
 };
+
 
 /**
  * Returns whether this field is set.
@@ -2097,6 +2287,7 @@ proto.abci_vendor.VoteInfo.prototype.clearValidator = function() {
 proto.abci_vendor.VoteInfo.prototype.hasValidator = function() {
   return jspb.Message.getField(this, 1) != null;
 };
+
 
 /**
  * optional bool signed_last_block = 2;
@@ -2108,10 +2299,13 @@ proto.abci_vendor.VoteInfo.prototype.getSignedLastBlock = function() {
   return /** @type {boolean} */ (jspb.Message.getFieldWithDefault(this, 2, false));
 };
 
+
 /** @param {boolean} value */
 proto.abci_vendor.VoteInfo.prototype.setSignedLastBlock = function(value) {
   jspb.Message.setProto3BooleanField(this, 2, value);
 };
+
+
 
 /**
  * Generated by JsPbCodeGenerator.
@@ -2131,43 +2325,45 @@ if (goog.DEBUG && !COMPILED) {
   proto.abci_vendor.PubKey.displayName = 'proto.abci_vendor.PubKey';
 }
 
+
 if (jspb.Message.GENERATE_TO_OBJECT) {
-  /**
-   * Creates an object representation of this proto suitable for use in Soy templates.
-   * Field names that are reserved in JavaScript and will be renamed to pb_name.
-   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
-   * For the list of reserved names please see:
-   *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
-   * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
-   *     for transitional soy proto support: http://goto/soy-param-migration
-   * @return {!Object}
-   */
-  proto.abci_vendor.PubKey.prototype.toObject = function(opt_includeInstance) {
-    return proto.abci_vendor.PubKey.toObject(opt_includeInstance, this);
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.abci_vendor.PubKey.prototype.toObject = function(opt_includeInstance) {
+  return proto.abci_vendor.PubKey.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.abci_vendor.PubKey} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.abci_vendor.PubKey.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    type: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    data: msg.getData()
   };
 
-  /**
-   * Static version of the {@see toObject} method.
-   * @param {boolean|undefined} includeInstance Whether to include the JSPB
-   *     instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @param {!proto.abci_vendor.PubKey} msg The msg instance to transform.
-   * @return {!Object}
-   * @suppress {unusedLocalVariables} f is only used for nested messages
-   */
-  proto.abci_vendor.PubKey.toObject = function(includeInstance, msg) {
-    var f,
-      obj = {
-        type: jspb.Message.getFieldWithDefault(msg, 1, ''),
-        data: msg.getData(),
-      };
-
-    if (includeInstance) {
-      obj.$jspbMessageInstance = msg;
-    }
-    return obj;
-  };
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
 }
+
 
 /**
  * Deserializes binary data (in protobuf wire format).
@@ -2176,9 +2372,10 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  */
 proto.abci_vendor.PubKey.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.abci_vendor.PubKey();
+  var msg = new proto.abci_vendor.PubKey;
   return proto.abci_vendor.PubKey.deserializeBinaryFromReader(msg, reader);
 };
+
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -2194,21 +2391,22 @@ proto.abci_vendor.PubKey.deserializeBinaryFromReader = function(msg, reader) {
     }
     var field = reader.getFieldNumber();
     switch (field) {
-      case 1:
-        var value = /** @type {string} */ (reader.readString());
-        msg.setType(value);
-        break;
-      case 2:
-        var value = /** @type {!Uint8Array} */ (reader.readBytes());
-        msg.setData(value);
-        break;
-      default:
-        reader.skipField();
-        break;
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setType(value);
+      break;
+    case 2:
+      var value = /** @type {!Uint8Array} */ (reader.readBytes());
+      msg.setData(value);
+      break;
+    default:
+      reader.skipField();
+      break;
     }
   }
   return msg;
 };
+
 
 /**
  * Serializes the message to binary data (in protobuf wire format).
@@ -2219,6 +2417,7 @@ proto.abci_vendor.PubKey.prototype.serializeBinary = function() {
   proto.abci_vendor.PubKey.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
+
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -2231,34 +2430,44 @@ proto.abci_vendor.PubKey.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getType();
   if (f.length > 0) {
-    writer.writeString(1, f);
+    writer.writeString(
+      1,
+      f
+    );
   }
   f = message.getData_asU8();
   if (f.length > 0) {
-    writer.writeBytes(2, f);
+    writer.writeBytes(
+      2,
+      f
+    );
   }
 };
+
 
 /**
  * optional string type = 1;
  * @return {string}
  */
 proto.abci_vendor.PubKey.prototype.getType = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ''));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
+
 
 /** @param {string} value */
 proto.abci_vendor.PubKey.prototype.setType = function(value) {
   jspb.Message.setProto3StringField(this, 1, value);
 };
 
+
 /**
  * optional bytes data = 2;
  * @return {!(string|Uint8Array)}
  */
 proto.abci_vendor.PubKey.prototype.getData = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 2, ''));
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
+
 
 /**
  * optional bytes data = 2;
@@ -2266,8 +2475,10 @@ proto.abci_vendor.PubKey.prototype.getData = function() {
  * @return {string}
  */
 proto.abci_vendor.PubKey.prototype.getData_asB64 = function() {
-  return /** @type {string} */ (jspb.Message.bytesAsB64(this.getData()));
+  return /** @type {string} */ (jspb.Message.bytesAsB64(
+      this.getData()));
 };
+
 
 /**
  * optional bytes data = 2;
@@ -2277,13 +2488,17 @@ proto.abci_vendor.PubKey.prototype.getData_asB64 = function() {
  * @return {!Uint8Array}
  */
 proto.abci_vendor.PubKey.prototype.getData_asU8 = function() {
-  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(this.getData()));
+  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
+      this.getData()));
 };
+
 
 /** @param {!(string|Uint8Array)} value */
 proto.abci_vendor.PubKey.prototype.setData = function(value) {
   jspb.Message.setProto3BytesField(this, 2, value);
 };
+
+
 
 /**
  * Generated by JsPbCodeGenerator.
@@ -2303,49 +2518,48 @@ if (goog.DEBUG && !COMPILED) {
   proto.abci_vendor.Evidence.displayName = 'proto.abci_vendor.Evidence';
 }
 
+
 if (jspb.Message.GENERATE_TO_OBJECT) {
-  /**
-   * Creates an object representation of this proto suitable for use in Soy templates.
-   * Field names that are reserved in JavaScript and will be renamed to pb_name.
-   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
-   * For the list of reserved names please see:
-   *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
-   * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
-   *     for transitional soy proto support: http://goto/soy-param-migration
-   * @return {!Object}
-   */
-  proto.abci_vendor.Evidence.prototype.toObject = function(opt_includeInstance) {
-    return proto.abci_vendor.Evidence.toObject(opt_includeInstance, this);
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.abci_vendor.Evidence.prototype.toObject = function(opt_includeInstance) {
+  return proto.abci_vendor.Evidence.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.abci_vendor.Evidence} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.abci_vendor.Evidence.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    type: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    validator: (f = msg.getValidator()) && proto.abci_vendor.Validator.toObject(includeInstance, f),
+    height: jspb.Message.getFieldWithDefault(msg, 3, 0),
+    time: (f = msg.getTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+    totalVotingPower: jspb.Message.getFieldWithDefault(msg, 5, 0)
   };
 
-  /**
-   * Static version of the {@see toObject} method.
-   * @param {boolean|undefined} includeInstance Whether to include the JSPB
-   *     instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @param {!proto.abci_vendor.Evidence} msg The msg instance to transform.
-   * @return {!Object}
-   * @suppress {unusedLocalVariables} f is only used for nested messages
-   */
-  proto.abci_vendor.Evidence.toObject = function(includeInstance, msg) {
-    var f,
-      obj = {
-        type: jspb.Message.getFieldWithDefault(msg, 1, ''),
-        validator:
-          (f = msg.getValidator()) && proto.abci_vendor.Validator.toObject(includeInstance, f),
-        height: jspb.Message.getFieldWithDefault(msg, 3, 0),
-        time:
-          (f = msg.getTime()) &&
-          google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-        totalVotingPower: jspb.Message.getFieldWithDefault(msg, 5, 0),
-      };
-
-    if (includeInstance) {
-      obj.$jspbMessageInstance = msg;
-    }
-    return obj;
-  };
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
 }
+
 
 /**
  * Deserializes binary data (in protobuf wire format).
@@ -2354,9 +2568,10 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  */
 proto.abci_vendor.Evidence.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.abci_vendor.Evidence();
+  var msg = new proto.abci_vendor.Evidence;
   return proto.abci_vendor.Evidence.deserializeBinaryFromReader(msg, reader);
 };
+
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -2372,38 +2587,36 @@ proto.abci_vendor.Evidence.deserializeBinaryFromReader = function(msg, reader) {
     }
     var field = reader.getFieldNumber();
     switch (field) {
-      case 1:
-        var value = /** @type {string} */ (reader.readString());
-        msg.setType(value);
-        break;
-      case 2:
-        var value = new proto.abci_vendor.Validator();
-        reader.readMessage(value, proto.abci_vendor.Validator.deserializeBinaryFromReader);
-        msg.setValidator(value);
-        break;
-      case 3:
-        var value = /** @type {number} */ (reader.readInt64());
-        msg.setHeight(value);
-        break;
-      case 4:
-        var value = new google_protobuf_timestamp_pb.Timestamp();
-        reader.readMessage(
-          value,
-          google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader
-        );
-        msg.setTime(value);
-        break;
-      case 5:
-        var value = /** @type {number} */ (reader.readInt64());
-        msg.setTotalVotingPower(value);
-        break;
-      default:
-        reader.skipField();
-        break;
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setType(value);
+      break;
+    case 2:
+      var value = new proto.abci_vendor.Validator;
+      reader.readMessage(value,proto.abci_vendor.Validator.deserializeBinaryFromReader);
+      msg.setValidator(value);
+      break;
+    case 3:
+      var value = /** @type {number} */ (reader.readInt64());
+      msg.setHeight(value);
+      break;
+    case 4:
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setTime(value);
+      break;
+    case 5:
+      var value = /** @type {number} */ (reader.readInt64());
+      msg.setTotalVotingPower(value);
+      break;
+    default:
+      reader.skipField();
+      break;
     }
   }
   return msg;
 };
+
 
 /**
  * Serializes the message to binary data (in protobuf wire format).
@@ -2414,6 +2627,7 @@ proto.abci_vendor.Evidence.prototype.serializeBinary = function() {
   proto.abci_vendor.Evidence.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
+
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -2426,59 +2640,79 @@ proto.abci_vendor.Evidence.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getType();
   if (f.length > 0) {
-    writer.writeString(1, f);
+    writer.writeString(
+      1,
+      f
+    );
   }
   f = message.getValidator();
   if (f != null) {
-    writer.writeMessage(2, f, proto.abci_vendor.Validator.serializeBinaryToWriter);
+    writer.writeMessage(
+      2,
+      f,
+      proto.abci_vendor.Validator.serializeBinaryToWriter
+    );
   }
   f = message.getHeight();
   if (f !== 0) {
-    writer.writeInt64(3, f);
+    writer.writeInt64(
+      3,
+      f
+    );
   }
   f = message.getTime();
   if (f != null) {
-    writer.writeMessage(4, f, google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter);
+    writer.writeMessage(
+      4,
+      f,
+      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+    );
   }
   f = message.getTotalVotingPower();
   if (f !== 0) {
-    writer.writeInt64(5, f);
+    writer.writeInt64(
+      5,
+      f
+    );
   }
 };
+
 
 /**
  * optional string type = 1;
  * @return {string}
  */
 proto.abci_vendor.Evidence.prototype.getType = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ''));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
+
 
 /** @param {string} value */
 proto.abci_vendor.Evidence.prototype.setType = function(value) {
   jspb.Message.setProto3StringField(this, 1, value);
 };
 
+
 /**
  * optional Validator validator = 2;
  * @return {?proto.abci_vendor.Validator}
  */
 proto.abci_vendor.Evidence.prototype.getValidator = function() {
-  return /** @type{?proto.abci_vendor.Validator} */ (jspb.Message.getWrapperField(
-    this,
-    proto.abci_vendor.Validator,
-    2
-  ));
+  return /** @type{?proto.abci_vendor.Validator} */ (
+    jspb.Message.getWrapperField(this, proto.abci_vendor.Validator, 2));
 };
+
 
 /** @param {?proto.abci_vendor.Validator|undefined} value */
 proto.abci_vendor.Evidence.prototype.setValidator = function(value) {
   jspb.Message.setWrapperField(this, 2, value);
 };
 
+
 proto.abci_vendor.Evidence.prototype.clearValidator = function() {
   this.setValidator(undefined);
 };
+
 
 /**
  * Returns whether this field is set.
@@ -2488,6 +2722,7 @@ proto.abci_vendor.Evidence.prototype.hasValidator = function() {
   return jspb.Message.getField(this, 2) != null;
 };
 
+
 /**
  * optional int64 height = 3;
  * @return {number}
@@ -2496,31 +2731,33 @@ proto.abci_vendor.Evidence.prototype.getHeight = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
 };
 
+
 /** @param {number} value */
 proto.abci_vendor.Evidence.prototype.setHeight = function(value) {
   jspb.Message.setProto3IntField(this, 3, value);
 };
+
 
 /**
  * optional google.protobuf.Timestamp time = 4;
  * @return {?proto.google.protobuf.Timestamp}
  */
 proto.abci_vendor.Evidence.prototype.getTime = function() {
-  return /** @type{?proto.google.protobuf.Timestamp} */ (jspb.Message.getWrapperField(
-    this,
-    google_protobuf_timestamp_pb.Timestamp,
-    4
-  ));
+  return /** @type{?proto.google.protobuf.Timestamp} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 4));
 };
+
 
 /** @param {?proto.google.protobuf.Timestamp|undefined} value */
 proto.abci_vendor.Evidence.prototype.setTime = function(value) {
   jspb.Message.setWrapperField(this, 4, value);
 };
 
+
 proto.abci_vendor.Evidence.prototype.clearTime = function() {
   this.setTime(undefined);
 };
+
 
 /**
  * Returns whether this field is set.
@@ -2530,6 +2767,7 @@ proto.abci_vendor.Evidence.prototype.hasTime = function() {
   return jspb.Message.getField(this, 4) != null;
 };
 
+
 /**
  * optional int64 total_voting_power = 5;
  * @return {number}
@@ -2538,10 +2776,13 @@ proto.abci_vendor.Evidence.prototype.getTotalVotingPower = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 5, 0));
 };
 
+
 /** @param {number} value */
 proto.abci_vendor.Evidence.prototype.setTotalVotingPower = function(value) {
   jspb.Message.setProto3IntField(this, 5, value);
 };
+
+
 
 /**
  * Generated by JsPbCodeGenerator.
@@ -2561,60 +2802,59 @@ if (goog.DEBUG && !COMPILED) {
   proto.abci_vendor.Header.displayName = 'proto.abci_vendor.Header';
 }
 
+
 if (jspb.Message.GENERATE_TO_OBJECT) {
-  /**
-   * Creates an object representation of this proto suitable for use in Soy templates.
-   * Field names that are reserved in JavaScript and will be renamed to pb_name.
-   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
-   * For the list of reserved names please see:
-   *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
-   * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
-   *     for transitional soy proto support: http://goto/soy-param-migration
-   * @return {!Object}
-   */
-  proto.abci_vendor.Header.prototype.toObject = function(opt_includeInstance) {
-    return proto.abci_vendor.Header.toObject(opt_includeInstance, this);
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.abci_vendor.Header.prototype.toObject = function(opt_includeInstance) {
+  return proto.abci_vendor.Header.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.abci_vendor.Header} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.abci_vendor.Header.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    version: (f = msg.getVersion()) && proto.abci_vendor.Version.toObject(includeInstance, f),
+    chainId: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    height: jspb.Message.getFieldWithDefault(msg, 3, 0),
+    time: (f = msg.getTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+    numTxs: jspb.Message.getFieldWithDefault(msg, 5, 0),
+    totalTxs: jspb.Message.getFieldWithDefault(msg, 6, 0),
+    lastBlockId: (f = msg.getLastBlockId()) && proto.abci_vendor.BlockID.toObject(includeInstance, f),
+    lastCommitHash: msg.getLastCommitHash(),
+    dataHash: msg.getDataHash(),
+    validatorsHash: msg.getValidatorsHash(),
+    nextValidatorsHash: msg.getNextValidatorsHash(),
+    consensusHash: msg.getConsensusHash(),
+    appHash: msg.getAppHash(),
+    lastResultsHash: msg.getLastResultsHash(),
+    evidenceHash: msg.getEvidenceHash(),
+    proposerAddress: msg.getProposerAddress()
   };
 
-  /**
-   * Static version of the {@see toObject} method.
-   * @param {boolean|undefined} includeInstance Whether to include the JSPB
-   *     instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @param {!proto.abci_vendor.Header} msg The msg instance to transform.
-   * @return {!Object}
-   * @suppress {unusedLocalVariables} f is only used for nested messages
-   */
-  proto.abci_vendor.Header.toObject = function(includeInstance, msg) {
-    var f,
-      obj = {
-        version: (f = msg.getVersion()) && proto.abci_vendor.Version.toObject(includeInstance, f),
-        chainId: jspb.Message.getFieldWithDefault(msg, 2, ''),
-        height: jspb.Message.getFieldWithDefault(msg, 3, 0),
-        time:
-          (f = msg.getTime()) &&
-          google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-        numTxs: jspb.Message.getFieldWithDefault(msg, 5, 0),
-        totalTxs: jspb.Message.getFieldWithDefault(msg, 6, 0),
-        lastBlockId:
-          (f = msg.getLastBlockId()) && proto.abci_vendor.BlockID.toObject(includeInstance, f),
-        lastCommitHash: msg.getLastCommitHash(),
-        dataHash: msg.getDataHash(),
-        validatorsHash: msg.getValidatorsHash(),
-        nextValidatorsHash: msg.getNextValidatorsHash(),
-        consensusHash: msg.getConsensusHash(),
-        appHash: msg.getAppHash(),
-        lastResultsHash: msg.getLastResultsHash(),
-        evidenceHash: msg.getEvidenceHash(),
-        proposerAddress: msg.getProposerAddress(),
-      };
-
-    if (includeInstance) {
-      obj.$jspbMessageInstance = msg;
-    }
-    return obj;
-  };
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
 }
+
 
 /**
  * Deserializes binary data (in protobuf wire format).
@@ -2623,9 +2863,10 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  */
 proto.abci_vendor.Header.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.abci_vendor.Header();
+  var msg = new proto.abci_vendor.Header;
   return proto.abci_vendor.Header.deserializeBinaryFromReader(msg, reader);
 };
+
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -2641,83 +2882,81 @@ proto.abci_vendor.Header.deserializeBinaryFromReader = function(msg, reader) {
     }
     var field = reader.getFieldNumber();
     switch (field) {
-      case 1:
-        var value = new proto.abci_vendor.Version();
-        reader.readMessage(value, proto.abci_vendor.Version.deserializeBinaryFromReader);
-        msg.setVersion(value);
-        break;
-      case 2:
-        var value = /** @type {string} */ (reader.readString());
-        msg.setChainId(value);
-        break;
-      case 3:
-        var value = /** @type {number} */ (reader.readInt64());
-        msg.setHeight(value);
-        break;
-      case 4:
-        var value = new google_protobuf_timestamp_pb.Timestamp();
-        reader.readMessage(
-          value,
-          google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader
-        );
-        msg.setTime(value);
-        break;
-      case 5:
-        var value = /** @type {number} */ (reader.readInt64());
-        msg.setNumTxs(value);
-        break;
-      case 6:
-        var value = /** @type {number} */ (reader.readInt64());
-        msg.setTotalTxs(value);
-        break;
-      case 7:
-        var value = new proto.abci_vendor.BlockID();
-        reader.readMessage(value, proto.abci_vendor.BlockID.deserializeBinaryFromReader);
-        msg.setLastBlockId(value);
-        break;
-      case 8:
-        var value = /** @type {!Uint8Array} */ (reader.readBytes());
-        msg.setLastCommitHash(value);
-        break;
-      case 9:
-        var value = /** @type {!Uint8Array} */ (reader.readBytes());
-        msg.setDataHash(value);
-        break;
-      case 10:
-        var value = /** @type {!Uint8Array} */ (reader.readBytes());
-        msg.setValidatorsHash(value);
-        break;
-      case 11:
-        var value = /** @type {!Uint8Array} */ (reader.readBytes());
-        msg.setNextValidatorsHash(value);
-        break;
-      case 12:
-        var value = /** @type {!Uint8Array} */ (reader.readBytes());
-        msg.setConsensusHash(value);
-        break;
-      case 13:
-        var value = /** @type {!Uint8Array} */ (reader.readBytes());
-        msg.setAppHash(value);
-        break;
-      case 14:
-        var value = /** @type {!Uint8Array} */ (reader.readBytes());
-        msg.setLastResultsHash(value);
-        break;
-      case 15:
-        var value = /** @type {!Uint8Array} */ (reader.readBytes());
-        msg.setEvidenceHash(value);
-        break;
-      case 16:
-        var value = /** @type {!Uint8Array} */ (reader.readBytes());
-        msg.setProposerAddress(value);
-        break;
-      default:
-        reader.skipField();
-        break;
+    case 1:
+      var value = new proto.abci_vendor.Version;
+      reader.readMessage(value,proto.abci_vendor.Version.deserializeBinaryFromReader);
+      msg.setVersion(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setChainId(value);
+      break;
+    case 3:
+      var value = /** @type {number} */ (reader.readInt64());
+      msg.setHeight(value);
+      break;
+    case 4:
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setTime(value);
+      break;
+    case 5:
+      var value = /** @type {number} */ (reader.readInt64());
+      msg.setNumTxs(value);
+      break;
+    case 6:
+      var value = /** @type {number} */ (reader.readInt64());
+      msg.setTotalTxs(value);
+      break;
+    case 7:
+      var value = new proto.abci_vendor.BlockID;
+      reader.readMessage(value,proto.abci_vendor.BlockID.deserializeBinaryFromReader);
+      msg.setLastBlockId(value);
+      break;
+    case 8:
+      var value = /** @type {!Uint8Array} */ (reader.readBytes());
+      msg.setLastCommitHash(value);
+      break;
+    case 9:
+      var value = /** @type {!Uint8Array} */ (reader.readBytes());
+      msg.setDataHash(value);
+      break;
+    case 10:
+      var value = /** @type {!Uint8Array} */ (reader.readBytes());
+      msg.setValidatorsHash(value);
+      break;
+    case 11:
+      var value = /** @type {!Uint8Array} */ (reader.readBytes());
+      msg.setNextValidatorsHash(value);
+      break;
+    case 12:
+      var value = /** @type {!Uint8Array} */ (reader.readBytes());
+      msg.setConsensusHash(value);
+      break;
+    case 13:
+      var value = /** @type {!Uint8Array} */ (reader.readBytes());
+      msg.setAppHash(value);
+      break;
+    case 14:
+      var value = /** @type {!Uint8Array} */ (reader.readBytes());
+      msg.setLastResultsHash(value);
+      break;
+    case 15:
+      var value = /** @type {!Uint8Array} */ (reader.readBytes());
+      msg.setEvidenceHash(value);
+      break;
+    case 16:
+      var value = /** @type {!Uint8Array} */ (reader.readBytes());
+      msg.setProposerAddress(value);
+      break;
+    default:
+      reader.skipField();
+      break;
     }
   }
   return msg;
 };
+
 
 /**
  * Serializes the message to binary data (in protobuf wire format).
@@ -2728,6 +2967,7 @@ proto.abci_vendor.Header.prototype.serializeBinary = function() {
   proto.abci_vendor.Header.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
+
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -2740,90 +2980,142 @@ proto.abci_vendor.Header.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getVersion();
   if (f != null) {
-    writer.writeMessage(1, f, proto.abci_vendor.Version.serializeBinaryToWriter);
+    writer.writeMessage(
+      1,
+      f,
+      proto.abci_vendor.Version.serializeBinaryToWriter
+    );
   }
   f = message.getChainId();
   if (f.length > 0) {
-    writer.writeString(2, f);
+    writer.writeString(
+      2,
+      f
+    );
   }
   f = message.getHeight();
   if (f !== 0) {
-    writer.writeInt64(3, f);
+    writer.writeInt64(
+      3,
+      f
+    );
   }
   f = message.getTime();
   if (f != null) {
-    writer.writeMessage(4, f, google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter);
+    writer.writeMessage(
+      4,
+      f,
+      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+    );
   }
   f = message.getNumTxs();
   if (f !== 0) {
-    writer.writeInt64(5, f);
+    writer.writeInt64(
+      5,
+      f
+    );
   }
   f = message.getTotalTxs();
   if (f !== 0) {
-    writer.writeInt64(6, f);
+    writer.writeInt64(
+      6,
+      f
+    );
   }
   f = message.getLastBlockId();
   if (f != null) {
-    writer.writeMessage(7, f, proto.abci_vendor.BlockID.serializeBinaryToWriter);
+    writer.writeMessage(
+      7,
+      f,
+      proto.abci_vendor.BlockID.serializeBinaryToWriter
+    );
   }
   f = message.getLastCommitHash_asU8();
   if (f.length > 0) {
-    writer.writeBytes(8, f);
+    writer.writeBytes(
+      8,
+      f
+    );
   }
   f = message.getDataHash_asU8();
   if (f.length > 0) {
-    writer.writeBytes(9, f);
+    writer.writeBytes(
+      9,
+      f
+    );
   }
   f = message.getValidatorsHash_asU8();
   if (f.length > 0) {
-    writer.writeBytes(10, f);
+    writer.writeBytes(
+      10,
+      f
+    );
   }
   f = message.getNextValidatorsHash_asU8();
   if (f.length > 0) {
-    writer.writeBytes(11, f);
+    writer.writeBytes(
+      11,
+      f
+    );
   }
   f = message.getConsensusHash_asU8();
   if (f.length > 0) {
-    writer.writeBytes(12, f);
+    writer.writeBytes(
+      12,
+      f
+    );
   }
   f = message.getAppHash_asU8();
   if (f.length > 0) {
-    writer.writeBytes(13, f);
+    writer.writeBytes(
+      13,
+      f
+    );
   }
   f = message.getLastResultsHash_asU8();
   if (f.length > 0) {
-    writer.writeBytes(14, f);
+    writer.writeBytes(
+      14,
+      f
+    );
   }
   f = message.getEvidenceHash_asU8();
   if (f.length > 0) {
-    writer.writeBytes(15, f);
+    writer.writeBytes(
+      15,
+      f
+    );
   }
   f = message.getProposerAddress_asU8();
   if (f.length > 0) {
-    writer.writeBytes(16, f);
+    writer.writeBytes(
+      16,
+      f
+    );
   }
 };
+
 
 /**
  * optional Version version = 1;
  * @return {?proto.abci_vendor.Version}
  */
 proto.abci_vendor.Header.prototype.getVersion = function() {
-  return /** @type{?proto.abci_vendor.Version} */ (jspb.Message.getWrapperField(
-    this,
-    proto.abci_vendor.Version,
-    1
-  ));
+  return /** @type{?proto.abci_vendor.Version} */ (
+    jspb.Message.getWrapperField(this, proto.abci_vendor.Version, 1));
 };
+
 
 /** @param {?proto.abci_vendor.Version|undefined} value */
 proto.abci_vendor.Header.prototype.setVersion = function(value) {
   jspb.Message.setWrapperField(this, 1, value);
 };
 
+
 proto.abci_vendor.Header.prototype.clearVersion = function() {
   this.setVersion(undefined);
 };
+
 
 /**
  * Returns whether this field is set.
@@ -2833,18 +3125,21 @@ proto.abci_vendor.Header.prototype.hasVersion = function() {
   return jspb.Message.getField(this, 1) != null;
 };
 
+
 /**
  * optional string chain_id = 2;
  * @return {string}
  */
 proto.abci_vendor.Header.prototype.getChainId = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ''));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
+
 
 /** @param {string} value */
 proto.abci_vendor.Header.prototype.setChainId = function(value) {
   jspb.Message.setProto3StringField(this, 2, value);
 };
+
 
 /**
  * optional int64 height = 3;
@@ -2854,31 +3149,33 @@ proto.abci_vendor.Header.prototype.getHeight = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
 };
 
+
 /** @param {number} value */
 proto.abci_vendor.Header.prototype.setHeight = function(value) {
   jspb.Message.setProto3IntField(this, 3, value);
 };
+
 
 /**
  * optional google.protobuf.Timestamp time = 4;
  * @return {?proto.google.protobuf.Timestamp}
  */
 proto.abci_vendor.Header.prototype.getTime = function() {
-  return /** @type{?proto.google.protobuf.Timestamp} */ (jspb.Message.getWrapperField(
-    this,
-    google_protobuf_timestamp_pb.Timestamp,
-    4
-  ));
+  return /** @type{?proto.google.protobuf.Timestamp} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 4));
 };
+
 
 /** @param {?proto.google.protobuf.Timestamp|undefined} value */
 proto.abci_vendor.Header.prototype.setTime = function(value) {
   jspb.Message.setWrapperField(this, 4, value);
 };
 
+
 proto.abci_vendor.Header.prototype.clearTime = function() {
   this.setTime(undefined);
 };
+
 
 /**
  * Returns whether this field is set.
@@ -2888,6 +3185,7 @@ proto.abci_vendor.Header.prototype.hasTime = function() {
   return jspb.Message.getField(this, 4) != null;
 };
 
+
 /**
  * optional int64 num_txs = 5;
  * @return {number}
@@ -2896,10 +3194,12 @@ proto.abci_vendor.Header.prototype.getNumTxs = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 5, 0));
 };
 
+
 /** @param {number} value */
 proto.abci_vendor.Header.prototype.setNumTxs = function(value) {
   jspb.Message.setProto3IntField(this, 5, value);
 };
+
 
 /**
  * optional int64 total_txs = 6;
@@ -2909,31 +3209,33 @@ proto.abci_vendor.Header.prototype.getTotalTxs = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 6, 0));
 };
 
+
 /** @param {number} value */
 proto.abci_vendor.Header.prototype.setTotalTxs = function(value) {
   jspb.Message.setProto3IntField(this, 6, value);
 };
+
 
 /**
  * optional BlockID last_block_id = 7;
  * @return {?proto.abci_vendor.BlockID}
  */
 proto.abci_vendor.Header.prototype.getLastBlockId = function() {
-  return /** @type{?proto.abci_vendor.BlockID} */ (jspb.Message.getWrapperField(
-    this,
-    proto.abci_vendor.BlockID,
-    7
-  ));
+  return /** @type{?proto.abci_vendor.BlockID} */ (
+    jspb.Message.getWrapperField(this, proto.abci_vendor.BlockID, 7));
 };
+
 
 /** @param {?proto.abci_vendor.BlockID|undefined} value */
 proto.abci_vendor.Header.prototype.setLastBlockId = function(value) {
   jspb.Message.setWrapperField(this, 7, value);
 };
 
+
 proto.abci_vendor.Header.prototype.clearLastBlockId = function() {
   this.setLastBlockId(undefined);
 };
+
 
 /**
  * Returns whether this field is set.
@@ -2943,13 +3245,15 @@ proto.abci_vendor.Header.prototype.hasLastBlockId = function() {
   return jspb.Message.getField(this, 7) != null;
 };
 
+
 /**
  * optional bytes last_commit_hash = 8;
  * @return {!(string|Uint8Array)}
  */
 proto.abci_vendor.Header.prototype.getLastCommitHash = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 8, ''));
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 8, ""));
 };
+
 
 /**
  * optional bytes last_commit_hash = 8;
@@ -2957,8 +3261,10 @@ proto.abci_vendor.Header.prototype.getLastCommitHash = function() {
  * @return {string}
  */
 proto.abci_vendor.Header.prototype.getLastCommitHash_asB64 = function() {
-  return /** @type {string} */ (jspb.Message.bytesAsB64(this.getLastCommitHash()));
+  return /** @type {string} */ (jspb.Message.bytesAsB64(
+      this.getLastCommitHash()));
 };
+
 
 /**
  * optional bytes last_commit_hash = 8;
@@ -2968,21 +3274,25 @@ proto.abci_vendor.Header.prototype.getLastCommitHash_asB64 = function() {
  * @return {!Uint8Array}
  */
 proto.abci_vendor.Header.prototype.getLastCommitHash_asU8 = function() {
-  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(this.getLastCommitHash()));
+  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
+      this.getLastCommitHash()));
 };
+
 
 /** @param {!(string|Uint8Array)} value */
 proto.abci_vendor.Header.prototype.setLastCommitHash = function(value) {
   jspb.Message.setProto3BytesField(this, 8, value);
 };
 
+
 /**
  * optional bytes data_hash = 9;
  * @return {!(string|Uint8Array)}
  */
 proto.abci_vendor.Header.prototype.getDataHash = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 9, ''));
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 9, ""));
 };
+
 
 /**
  * optional bytes data_hash = 9;
@@ -2990,8 +3300,10 @@ proto.abci_vendor.Header.prototype.getDataHash = function() {
  * @return {string}
  */
 proto.abci_vendor.Header.prototype.getDataHash_asB64 = function() {
-  return /** @type {string} */ (jspb.Message.bytesAsB64(this.getDataHash()));
+  return /** @type {string} */ (jspb.Message.bytesAsB64(
+      this.getDataHash()));
 };
+
 
 /**
  * optional bytes data_hash = 9;
@@ -3001,21 +3313,25 @@ proto.abci_vendor.Header.prototype.getDataHash_asB64 = function() {
  * @return {!Uint8Array}
  */
 proto.abci_vendor.Header.prototype.getDataHash_asU8 = function() {
-  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(this.getDataHash()));
+  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
+      this.getDataHash()));
 };
+
 
 /** @param {!(string|Uint8Array)} value */
 proto.abci_vendor.Header.prototype.setDataHash = function(value) {
   jspb.Message.setProto3BytesField(this, 9, value);
 };
 
+
 /**
  * optional bytes validators_hash = 10;
  * @return {!(string|Uint8Array)}
  */
 proto.abci_vendor.Header.prototype.getValidatorsHash = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 10, ''));
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 10, ""));
 };
+
 
 /**
  * optional bytes validators_hash = 10;
@@ -3023,8 +3339,10 @@ proto.abci_vendor.Header.prototype.getValidatorsHash = function() {
  * @return {string}
  */
 proto.abci_vendor.Header.prototype.getValidatorsHash_asB64 = function() {
-  return /** @type {string} */ (jspb.Message.bytesAsB64(this.getValidatorsHash()));
+  return /** @type {string} */ (jspb.Message.bytesAsB64(
+      this.getValidatorsHash()));
 };
+
 
 /**
  * optional bytes validators_hash = 10;
@@ -3034,21 +3352,25 @@ proto.abci_vendor.Header.prototype.getValidatorsHash_asB64 = function() {
  * @return {!Uint8Array}
  */
 proto.abci_vendor.Header.prototype.getValidatorsHash_asU8 = function() {
-  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(this.getValidatorsHash()));
+  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
+      this.getValidatorsHash()));
 };
+
 
 /** @param {!(string|Uint8Array)} value */
 proto.abci_vendor.Header.prototype.setValidatorsHash = function(value) {
   jspb.Message.setProto3BytesField(this, 10, value);
 };
 
+
 /**
  * optional bytes next_validators_hash = 11;
  * @return {!(string|Uint8Array)}
  */
 proto.abci_vendor.Header.prototype.getNextValidatorsHash = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 11, ''));
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 11, ""));
 };
+
 
 /**
  * optional bytes next_validators_hash = 11;
@@ -3056,8 +3378,10 @@ proto.abci_vendor.Header.prototype.getNextValidatorsHash = function() {
  * @return {string}
  */
 proto.abci_vendor.Header.prototype.getNextValidatorsHash_asB64 = function() {
-  return /** @type {string} */ (jspb.Message.bytesAsB64(this.getNextValidatorsHash()));
+  return /** @type {string} */ (jspb.Message.bytesAsB64(
+      this.getNextValidatorsHash()));
 };
+
 
 /**
  * optional bytes next_validators_hash = 11;
@@ -3067,21 +3391,25 @@ proto.abci_vendor.Header.prototype.getNextValidatorsHash_asB64 = function() {
  * @return {!Uint8Array}
  */
 proto.abci_vendor.Header.prototype.getNextValidatorsHash_asU8 = function() {
-  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(this.getNextValidatorsHash()));
+  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
+      this.getNextValidatorsHash()));
 };
+
 
 /** @param {!(string|Uint8Array)} value */
 proto.abci_vendor.Header.prototype.setNextValidatorsHash = function(value) {
   jspb.Message.setProto3BytesField(this, 11, value);
 };
 
+
 /**
  * optional bytes consensus_hash = 12;
  * @return {!(string|Uint8Array)}
  */
 proto.abci_vendor.Header.prototype.getConsensusHash = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 12, ''));
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 12, ""));
 };
+
 
 /**
  * optional bytes consensus_hash = 12;
@@ -3089,8 +3417,10 @@ proto.abci_vendor.Header.prototype.getConsensusHash = function() {
  * @return {string}
  */
 proto.abci_vendor.Header.prototype.getConsensusHash_asB64 = function() {
-  return /** @type {string} */ (jspb.Message.bytesAsB64(this.getConsensusHash()));
+  return /** @type {string} */ (jspb.Message.bytesAsB64(
+      this.getConsensusHash()));
 };
+
 
 /**
  * optional bytes consensus_hash = 12;
@@ -3100,21 +3430,25 @@ proto.abci_vendor.Header.prototype.getConsensusHash_asB64 = function() {
  * @return {!Uint8Array}
  */
 proto.abci_vendor.Header.prototype.getConsensusHash_asU8 = function() {
-  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(this.getConsensusHash()));
+  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
+      this.getConsensusHash()));
 };
+
 
 /** @param {!(string|Uint8Array)} value */
 proto.abci_vendor.Header.prototype.setConsensusHash = function(value) {
   jspb.Message.setProto3BytesField(this, 12, value);
 };
 
+
 /**
  * optional bytes app_hash = 13;
  * @return {!(string|Uint8Array)}
  */
 proto.abci_vendor.Header.prototype.getAppHash = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 13, ''));
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 13, ""));
 };
+
 
 /**
  * optional bytes app_hash = 13;
@@ -3122,8 +3456,10 @@ proto.abci_vendor.Header.prototype.getAppHash = function() {
  * @return {string}
  */
 proto.abci_vendor.Header.prototype.getAppHash_asB64 = function() {
-  return /** @type {string} */ (jspb.Message.bytesAsB64(this.getAppHash()));
+  return /** @type {string} */ (jspb.Message.bytesAsB64(
+      this.getAppHash()));
 };
+
 
 /**
  * optional bytes app_hash = 13;
@@ -3133,21 +3469,25 @@ proto.abci_vendor.Header.prototype.getAppHash_asB64 = function() {
  * @return {!Uint8Array}
  */
 proto.abci_vendor.Header.prototype.getAppHash_asU8 = function() {
-  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(this.getAppHash()));
+  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
+      this.getAppHash()));
 };
+
 
 /** @param {!(string|Uint8Array)} value */
 proto.abci_vendor.Header.prototype.setAppHash = function(value) {
   jspb.Message.setProto3BytesField(this, 13, value);
 };
 
+
 /**
  * optional bytes last_results_hash = 14;
  * @return {!(string|Uint8Array)}
  */
 proto.abci_vendor.Header.prototype.getLastResultsHash = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 14, ''));
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 14, ""));
 };
+
 
 /**
  * optional bytes last_results_hash = 14;
@@ -3155,8 +3495,10 @@ proto.abci_vendor.Header.prototype.getLastResultsHash = function() {
  * @return {string}
  */
 proto.abci_vendor.Header.prototype.getLastResultsHash_asB64 = function() {
-  return /** @type {string} */ (jspb.Message.bytesAsB64(this.getLastResultsHash()));
+  return /** @type {string} */ (jspb.Message.bytesAsB64(
+      this.getLastResultsHash()));
 };
+
 
 /**
  * optional bytes last_results_hash = 14;
@@ -3166,21 +3508,25 @@ proto.abci_vendor.Header.prototype.getLastResultsHash_asB64 = function() {
  * @return {!Uint8Array}
  */
 proto.abci_vendor.Header.prototype.getLastResultsHash_asU8 = function() {
-  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(this.getLastResultsHash()));
+  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
+      this.getLastResultsHash()));
 };
+
 
 /** @param {!(string|Uint8Array)} value */
 proto.abci_vendor.Header.prototype.setLastResultsHash = function(value) {
   jspb.Message.setProto3BytesField(this, 14, value);
 };
 
+
 /**
  * optional bytes evidence_hash = 15;
  * @return {!(string|Uint8Array)}
  */
 proto.abci_vendor.Header.prototype.getEvidenceHash = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 15, ''));
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 15, ""));
 };
+
 
 /**
  * optional bytes evidence_hash = 15;
@@ -3188,8 +3534,10 @@ proto.abci_vendor.Header.prototype.getEvidenceHash = function() {
  * @return {string}
  */
 proto.abci_vendor.Header.prototype.getEvidenceHash_asB64 = function() {
-  return /** @type {string} */ (jspb.Message.bytesAsB64(this.getEvidenceHash()));
+  return /** @type {string} */ (jspb.Message.bytesAsB64(
+      this.getEvidenceHash()));
 };
+
 
 /**
  * optional bytes evidence_hash = 15;
@@ -3199,21 +3547,25 @@ proto.abci_vendor.Header.prototype.getEvidenceHash_asB64 = function() {
  * @return {!Uint8Array}
  */
 proto.abci_vendor.Header.prototype.getEvidenceHash_asU8 = function() {
-  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(this.getEvidenceHash()));
+  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
+      this.getEvidenceHash()));
 };
+
 
 /** @param {!(string|Uint8Array)} value */
 proto.abci_vendor.Header.prototype.setEvidenceHash = function(value) {
   jspb.Message.setProto3BytesField(this, 15, value);
 };
 
+
 /**
  * optional bytes proposer_address = 16;
  * @return {!(string|Uint8Array)}
  */
 proto.abci_vendor.Header.prototype.getProposerAddress = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 16, ''));
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 16, ""));
 };
+
 
 /**
  * optional bytes proposer_address = 16;
@@ -3221,8 +3573,10 @@ proto.abci_vendor.Header.prototype.getProposerAddress = function() {
  * @return {string}
  */
 proto.abci_vendor.Header.prototype.getProposerAddress_asB64 = function() {
-  return /** @type {string} */ (jspb.Message.bytesAsB64(this.getProposerAddress()));
+  return /** @type {string} */ (jspb.Message.bytesAsB64(
+      this.getProposerAddress()));
 };
+
 
 /**
  * optional bytes proposer_address = 16;
@@ -3232,13 +3586,17 @@ proto.abci_vendor.Header.prototype.getProposerAddress_asB64 = function() {
  * @return {!Uint8Array}
  */
 proto.abci_vendor.Header.prototype.getProposerAddress_asU8 = function() {
-  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(this.getProposerAddress()));
+  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
+      this.getProposerAddress()));
 };
+
 
 /** @param {!(string|Uint8Array)} value */
 proto.abci_vendor.Header.prototype.setProposerAddress = function(value) {
   jspb.Message.setProto3BytesField(this, 16, value);
 };
+
+
 
 /**
  * Generated by JsPbCodeGenerator.
@@ -3251,14 +3609,7 @@ proto.abci_vendor.Header.prototype.setProposerAddress = function(value) {
  * @constructor
  */
 proto.abci_vendor.RequestBeginBlock = function(opt_data) {
-  jspb.Message.initialize(
-    this,
-    opt_data,
-    0,
-    -1,
-    proto.abci_vendor.RequestBeginBlock.repeatedFields_,
-    null
-  );
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.abci_vendor.RequestBeginBlock.repeatedFields_, null);
 };
 goog.inherits(proto.abci_vendor.RequestBeginBlock, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -3271,51 +3622,49 @@ if (goog.DEBUG && !COMPILED) {
  */
 proto.abci_vendor.RequestBeginBlock.repeatedFields_ = [4];
 
+
+
 if (jspb.Message.GENERATE_TO_OBJECT) {
-  /**
-   * Creates an object representation of this proto suitable for use in Soy templates.
-   * Field names that are reserved in JavaScript and will be renamed to pb_name.
-   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
-   * For the list of reserved names please see:
-   *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
-   * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
-   *     for transitional soy proto support: http://goto/soy-param-migration
-   * @return {!Object}
-   */
-  proto.abci_vendor.RequestBeginBlock.prototype.toObject = function(opt_includeInstance) {
-    return proto.abci_vendor.RequestBeginBlock.toObject(opt_includeInstance, this);
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.abci_vendor.RequestBeginBlock.prototype.toObject = function(opt_includeInstance) {
+  return proto.abci_vendor.RequestBeginBlock.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.abci_vendor.RequestBeginBlock} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.abci_vendor.RequestBeginBlock.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    hash: msg.getHash(),
+    header: (f = msg.getHeader()) && proto.abci_vendor.Header.toObject(includeInstance, f),
+    lastCommitInfo: (f = msg.getLastCommitInfo()) && proto.abci_vendor.LastCommitInfo.toObject(includeInstance, f),
+    byzantineValidatorsList: jspb.Message.toObjectList(msg.getByzantineValidatorsList(),
+    proto.abci_vendor.Evidence.toObject, includeInstance)
   };
 
-  /**
-   * Static version of the {@see toObject} method.
-   * @param {boolean|undefined} includeInstance Whether to include the JSPB
-   *     instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @param {!proto.abci_vendor.RequestBeginBlock} msg The msg instance to transform.
-   * @return {!Object}
-   * @suppress {unusedLocalVariables} f is only used for nested messages
-   */
-  proto.abci_vendor.RequestBeginBlock.toObject = function(includeInstance, msg) {
-    var f,
-      obj = {
-        hash: msg.getHash(),
-        header: (f = msg.getHeader()) && proto.abci_vendor.Header.toObject(includeInstance, f),
-        lastCommitInfo:
-          (f = msg.getLastCommitInfo()) &&
-          proto.abci_vendor.LastCommitInfo.toObject(includeInstance, f),
-        byzantineValidatorsList: jspb.Message.toObjectList(
-          msg.getByzantineValidatorsList(),
-          proto.abci_vendor.Evidence.toObject,
-          includeInstance
-        ),
-      };
-
-    if (includeInstance) {
-      obj.$jspbMessageInstance = msg;
-    }
-    return obj;
-  };
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
 }
+
 
 /**
  * Deserializes binary data (in protobuf wire format).
@@ -3324,9 +3673,10 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  */
 proto.abci_vendor.RequestBeginBlock.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.abci_vendor.RequestBeginBlock();
+  var msg = new proto.abci_vendor.RequestBeginBlock;
   return proto.abci_vendor.RequestBeginBlock.deserializeBinaryFromReader(msg, reader);
 };
+
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -3342,32 +3692,33 @@ proto.abci_vendor.RequestBeginBlock.deserializeBinaryFromReader = function(msg, 
     }
     var field = reader.getFieldNumber();
     switch (field) {
-      case 1:
-        var value = /** @type {!Uint8Array} */ (reader.readBytes());
-        msg.setHash(value);
-        break;
-      case 2:
-        var value = new proto.abci_vendor.Header();
-        reader.readMessage(value, proto.abci_vendor.Header.deserializeBinaryFromReader);
-        msg.setHeader(value);
-        break;
-      case 3:
-        var value = new proto.abci_vendor.LastCommitInfo();
-        reader.readMessage(value, proto.abci_vendor.LastCommitInfo.deserializeBinaryFromReader);
-        msg.setLastCommitInfo(value);
-        break;
-      case 4:
-        var value = new proto.abci_vendor.Evidence();
-        reader.readMessage(value, proto.abci_vendor.Evidence.deserializeBinaryFromReader);
-        msg.addByzantineValidators(value);
-        break;
-      default:
-        reader.skipField();
-        break;
+    case 1:
+      var value = /** @type {!Uint8Array} */ (reader.readBytes());
+      msg.setHash(value);
+      break;
+    case 2:
+      var value = new proto.abci_vendor.Header;
+      reader.readMessage(value,proto.abci_vendor.Header.deserializeBinaryFromReader);
+      msg.setHeader(value);
+      break;
+    case 3:
+      var value = new proto.abci_vendor.LastCommitInfo;
+      reader.readMessage(value,proto.abci_vendor.LastCommitInfo.deserializeBinaryFromReader);
+      msg.setLastCommitInfo(value);
+      break;
+    case 4:
+      var value = new proto.abci_vendor.Evidence;
+      reader.readMessage(value,proto.abci_vendor.Evidence.deserializeBinaryFromReader);
+      msg.addByzantineValidators(value);
+      break;
+    default:
+      reader.skipField();
+      break;
     }
   }
   return msg;
 };
+
 
 /**
  * Serializes the message to binary data (in protobuf wire format).
@@ -3378,6 +3729,7 @@ proto.abci_vendor.RequestBeginBlock.prototype.serializeBinary = function() {
   proto.abci_vendor.RequestBeginBlock.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
+
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -3390,29 +3742,46 @@ proto.abci_vendor.RequestBeginBlock.serializeBinaryToWriter = function(message, 
   var f = undefined;
   f = message.getHash_asU8();
   if (f.length > 0) {
-    writer.writeBytes(1, f);
+    writer.writeBytes(
+      1,
+      f
+    );
   }
   f = message.getHeader();
   if (f != null) {
-    writer.writeMessage(2, f, proto.abci_vendor.Header.serializeBinaryToWriter);
+    writer.writeMessage(
+      2,
+      f,
+      proto.abci_vendor.Header.serializeBinaryToWriter
+    );
   }
   f = message.getLastCommitInfo();
   if (f != null) {
-    writer.writeMessage(3, f, proto.abci_vendor.LastCommitInfo.serializeBinaryToWriter);
+    writer.writeMessage(
+      3,
+      f,
+      proto.abci_vendor.LastCommitInfo.serializeBinaryToWriter
+    );
   }
   f = message.getByzantineValidatorsList();
   if (f.length > 0) {
-    writer.writeRepeatedMessage(4, f, proto.abci_vendor.Evidence.serializeBinaryToWriter);
+    writer.writeRepeatedMessage(
+      4,
+      f,
+      proto.abci_vendor.Evidence.serializeBinaryToWriter
+    );
   }
 };
+
 
 /**
  * optional bytes hash = 1;
  * @return {!(string|Uint8Array)}
  */
 proto.abci_vendor.RequestBeginBlock.prototype.getHash = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 1, ''));
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
+
 
 /**
  * optional bytes hash = 1;
@@ -3420,8 +3789,10 @@ proto.abci_vendor.RequestBeginBlock.prototype.getHash = function() {
  * @return {string}
  */
 proto.abci_vendor.RequestBeginBlock.prototype.getHash_asB64 = function() {
-  return /** @type {string} */ (jspb.Message.bytesAsB64(this.getHash()));
+  return /** @type {string} */ (jspb.Message.bytesAsB64(
+      this.getHash()));
 };
+
 
 /**
  * optional bytes hash = 1;
@@ -3431,34 +3802,37 @@ proto.abci_vendor.RequestBeginBlock.prototype.getHash_asB64 = function() {
  * @return {!Uint8Array}
  */
 proto.abci_vendor.RequestBeginBlock.prototype.getHash_asU8 = function() {
-  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(this.getHash()));
+  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
+      this.getHash()));
 };
+
 
 /** @param {!(string|Uint8Array)} value */
 proto.abci_vendor.RequestBeginBlock.prototype.setHash = function(value) {
   jspb.Message.setProto3BytesField(this, 1, value);
 };
 
+
 /**
  * optional Header header = 2;
  * @return {?proto.abci_vendor.Header}
  */
 proto.abci_vendor.RequestBeginBlock.prototype.getHeader = function() {
-  return /** @type{?proto.abci_vendor.Header} */ (jspb.Message.getWrapperField(
-    this,
-    proto.abci_vendor.Header,
-    2
-  ));
+  return /** @type{?proto.abci_vendor.Header} */ (
+    jspb.Message.getWrapperField(this, proto.abci_vendor.Header, 2));
 };
+
 
 /** @param {?proto.abci_vendor.Header|undefined} value */
 proto.abci_vendor.RequestBeginBlock.prototype.setHeader = function(value) {
   jspb.Message.setWrapperField(this, 2, value);
 };
 
+
 proto.abci_vendor.RequestBeginBlock.prototype.clearHeader = function() {
   this.setHeader(undefined);
 };
+
 
 /**
  * Returns whether this field is set.
@@ -3468,26 +3842,27 @@ proto.abci_vendor.RequestBeginBlock.prototype.hasHeader = function() {
   return jspb.Message.getField(this, 2) != null;
 };
 
+
 /**
  * optional LastCommitInfo last_commit_info = 3;
  * @return {?proto.abci_vendor.LastCommitInfo}
  */
 proto.abci_vendor.RequestBeginBlock.prototype.getLastCommitInfo = function() {
-  return /** @type{?proto.abci_vendor.LastCommitInfo} */ (jspb.Message.getWrapperField(
-    this,
-    proto.abci_vendor.LastCommitInfo,
-    3
-  ));
+  return /** @type{?proto.abci_vendor.LastCommitInfo} */ (
+    jspb.Message.getWrapperField(this, proto.abci_vendor.LastCommitInfo, 3));
 };
+
 
 /** @param {?proto.abci_vendor.LastCommitInfo|undefined} value */
 proto.abci_vendor.RequestBeginBlock.prototype.setLastCommitInfo = function(value) {
   jspb.Message.setWrapperField(this, 3, value);
 };
 
+
 proto.abci_vendor.RequestBeginBlock.prototype.clearLastCommitInfo = function() {
   this.setLastCommitInfo(undefined);
 };
+
 
 /**
  * Returns whether this field is set.
@@ -3497,44 +3872,38 @@ proto.abci_vendor.RequestBeginBlock.prototype.hasLastCommitInfo = function() {
   return jspb.Message.getField(this, 3) != null;
 };
 
+
 /**
  * repeated Evidence byzantine_validators = 4;
  * @return {!Array<!proto.abci_vendor.Evidence>}
  */
 proto.abci_vendor.RequestBeginBlock.prototype.getByzantineValidatorsList = function() {
-  return /** @type{!Array<!proto.abci_vendor.Evidence>} */ (jspb.Message.getRepeatedWrapperField(
-    this,
-    proto.abci_vendor.Evidence,
-    4
-  ));
+  return /** @type{!Array<!proto.abci_vendor.Evidence>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.abci_vendor.Evidence, 4));
 };
+
 
 /** @param {!Array<!proto.abci_vendor.Evidence>} value */
 proto.abci_vendor.RequestBeginBlock.prototype.setByzantineValidatorsList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 4, value);
 };
 
+
 /**
  * @param {!proto.abci_vendor.Evidence=} opt_value
  * @param {number=} opt_index
  * @return {!proto.abci_vendor.Evidence}
  */
-proto.abci_vendor.RequestBeginBlock.prototype.addByzantineValidators = function(
-  opt_value,
-  opt_index
-) {
-  return jspb.Message.addToRepeatedWrapperField(
-    this,
-    4,
-    opt_value,
-    proto.abci_vendor.Evidence,
-    opt_index
-  );
+proto.abci_vendor.RequestBeginBlock.prototype.addByzantineValidators = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 4, opt_value, proto.abci_vendor.Evidence, opt_index);
 };
+
 
 proto.abci_vendor.RequestBeginBlock.prototype.clearByzantineValidatorsList = function() {
   this.setByzantineValidatorsList([]);
 };
+
+
 
 /**
  * Generated by JsPbCodeGenerator.
@@ -3554,42 +3923,44 @@ if (goog.DEBUG && !COMPILED) {
   proto.abci_vendor.RequestEndBlock.displayName = 'proto.abci_vendor.RequestEndBlock';
 }
 
+
 if (jspb.Message.GENERATE_TO_OBJECT) {
-  /**
-   * Creates an object representation of this proto suitable for use in Soy templates.
-   * Field names that are reserved in JavaScript and will be renamed to pb_name.
-   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
-   * For the list of reserved names please see:
-   *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
-   * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
-   *     for transitional soy proto support: http://goto/soy-param-migration
-   * @return {!Object}
-   */
-  proto.abci_vendor.RequestEndBlock.prototype.toObject = function(opt_includeInstance) {
-    return proto.abci_vendor.RequestEndBlock.toObject(opt_includeInstance, this);
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.abci_vendor.RequestEndBlock.prototype.toObject = function(opt_includeInstance) {
+  return proto.abci_vendor.RequestEndBlock.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.abci_vendor.RequestEndBlock} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.abci_vendor.RequestEndBlock.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    height: jspb.Message.getFieldWithDefault(msg, 1, 0)
   };
 
-  /**
-   * Static version of the {@see toObject} method.
-   * @param {boolean|undefined} includeInstance Whether to include the JSPB
-   *     instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @param {!proto.abci_vendor.RequestEndBlock} msg The msg instance to transform.
-   * @return {!Object}
-   * @suppress {unusedLocalVariables} f is only used for nested messages
-   */
-  proto.abci_vendor.RequestEndBlock.toObject = function(includeInstance, msg) {
-    var f,
-      obj = {
-        height: jspb.Message.getFieldWithDefault(msg, 1, 0),
-      };
-
-    if (includeInstance) {
-      obj.$jspbMessageInstance = msg;
-    }
-    return obj;
-  };
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
 }
+
 
 /**
  * Deserializes binary data (in protobuf wire format).
@@ -3598,9 +3969,10 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  */
 proto.abci_vendor.RequestEndBlock.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.abci_vendor.RequestEndBlock();
+  var msg = new proto.abci_vendor.RequestEndBlock;
   return proto.abci_vendor.RequestEndBlock.deserializeBinaryFromReader(msg, reader);
 };
+
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -3616,17 +3988,18 @@ proto.abci_vendor.RequestEndBlock.deserializeBinaryFromReader = function(msg, re
     }
     var field = reader.getFieldNumber();
     switch (field) {
-      case 1:
-        var value = /** @type {number} */ (reader.readInt64());
-        msg.setHeight(value);
-        break;
-      default:
-        reader.skipField();
-        break;
+    case 1:
+      var value = /** @type {number} */ (reader.readInt64());
+      msg.setHeight(value);
+      break;
+    default:
+      reader.skipField();
+      break;
     }
   }
   return msg;
 };
+
 
 /**
  * Serializes the message to binary data (in protobuf wire format).
@@ -3637,6 +4010,7 @@ proto.abci_vendor.RequestEndBlock.prototype.serializeBinary = function() {
   proto.abci_vendor.RequestEndBlock.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
+
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -3649,9 +4023,13 @@ proto.abci_vendor.RequestEndBlock.serializeBinaryToWriter = function(message, wr
   var f = undefined;
   f = message.getHeight();
   if (f !== 0) {
-    writer.writeInt64(1, f);
+    writer.writeInt64(
+      1,
+      f
+    );
   }
 };
+
 
 /**
  * optional int64 height = 1;
@@ -3661,10 +4039,13 @@ proto.abci_vendor.RequestEndBlock.prototype.getHeight = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
 };
 
+
 /** @param {number} value */
 proto.abci_vendor.RequestEndBlock.prototype.setHeight = function(value) {
   jspb.Message.setProto3IntField(this, 1, value);
 };
+
+
 
 /**
  * Generated by JsPbCodeGenerator.
@@ -3677,14 +4058,7 @@ proto.abci_vendor.RequestEndBlock.prototype.setHeight = function(value) {
  * @constructor
  */
 proto.abci_vendor.ResponseBeginBlock = function(opt_data) {
-  jspb.Message.initialize(
-    this,
-    opt_data,
-    0,
-    -1,
-    proto.abci_vendor.ResponseBeginBlock.repeatedFields_,
-    null
-  );
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.abci_vendor.ResponseBeginBlock.repeatedFields_, null);
 };
 goog.inherits(proto.abci_vendor.ResponseBeginBlock, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -3697,46 +4071,46 @@ if (goog.DEBUG && !COMPILED) {
  */
 proto.abci_vendor.ResponseBeginBlock.repeatedFields_ = [1];
 
+
+
 if (jspb.Message.GENERATE_TO_OBJECT) {
-  /**
-   * Creates an object representation of this proto suitable for use in Soy templates.
-   * Field names that are reserved in JavaScript and will be renamed to pb_name.
-   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
-   * For the list of reserved names please see:
-   *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
-   * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
-   *     for transitional soy proto support: http://goto/soy-param-migration
-   * @return {!Object}
-   */
-  proto.abci_vendor.ResponseBeginBlock.prototype.toObject = function(opt_includeInstance) {
-    return proto.abci_vendor.ResponseBeginBlock.toObject(opt_includeInstance, this);
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.abci_vendor.ResponseBeginBlock.prototype.toObject = function(opt_includeInstance) {
+  return proto.abci_vendor.ResponseBeginBlock.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.abci_vendor.ResponseBeginBlock} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.abci_vendor.ResponseBeginBlock.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    tagsList: jspb.Message.toObjectList(msg.getTagsList(),
+    proto.abci_vendor.KVPair.toObject, includeInstance)
   };
 
-  /**
-   * Static version of the {@see toObject} method.
-   * @param {boolean|undefined} includeInstance Whether to include the JSPB
-   *     instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @param {!proto.abci_vendor.ResponseBeginBlock} msg The msg instance to transform.
-   * @return {!Object}
-   * @suppress {unusedLocalVariables} f is only used for nested messages
-   */
-  proto.abci_vendor.ResponseBeginBlock.toObject = function(includeInstance, msg) {
-    var f,
-      obj = {
-        tagsList: jspb.Message.toObjectList(
-          msg.getTagsList(),
-          proto.abci_vendor.KVPair.toObject,
-          includeInstance
-        ),
-      };
-
-    if (includeInstance) {
-      obj.$jspbMessageInstance = msg;
-    }
-    return obj;
-  };
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
 }
+
 
 /**
  * Deserializes binary data (in protobuf wire format).
@@ -3745,9 +4119,10 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  */
 proto.abci_vendor.ResponseBeginBlock.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.abci_vendor.ResponseBeginBlock();
+  var msg = new proto.abci_vendor.ResponseBeginBlock;
   return proto.abci_vendor.ResponseBeginBlock.deserializeBinaryFromReader(msg, reader);
 };
+
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -3763,18 +4138,19 @@ proto.abci_vendor.ResponseBeginBlock.deserializeBinaryFromReader = function(msg,
     }
     var field = reader.getFieldNumber();
     switch (field) {
-      case 1:
-        var value = new proto.abci_vendor.KVPair();
-        reader.readMessage(value, proto.abci_vendor.KVPair.deserializeBinaryFromReader);
-        msg.addTags(value);
-        break;
-      default:
-        reader.skipField();
-        break;
+    case 1:
+      var value = new proto.abci_vendor.KVPair;
+      reader.readMessage(value,proto.abci_vendor.KVPair.deserializeBinaryFromReader);
+      msg.addTags(value);
+      break;
+    default:
+      reader.skipField();
+      break;
     }
   }
   return msg;
 };
+
 
 /**
  * Serializes the message to binary data (in protobuf wire format).
@@ -3785,6 +4161,7 @@ proto.abci_vendor.ResponseBeginBlock.prototype.serializeBinary = function() {
   proto.abci_vendor.ResponseBeginBlock.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
+
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -3797,26 +4174,30 @@ proto.abci_vendor.ResponseBeginBlock.serializeBinaryToWriter = function(message,
   var f = undefined;
   f = message.getTagsList();
   if (f.length > 0) {
-    writer.writeRepeatedMessage(1, f, proto.abci_vendor.KVPair.serializeBinaryToWriter);
+    writer.writeRepeatedMessage(
+      1,
+      f,
+      proto.abci_vendor.KVPair.serializeBinaryToWriter
+    );
   }
 };
+
 
 /**
  * repeated KVPair tags = 1;
  * @return {!Array<!proto.abci_vendor.KVPair>}
  */
 proto.abci_vendor.ResponseBeginBlock.prototype.getTagsList = function() {
-  return /** @type{!Array<!proto.abci_vendor.KVPair>} */ (jspb.Message.getRepeatedWrapperField(
-    this,
-    proto.abci_vendor.KVPair,
-    1
-  ));
+  return /** @type{!Array<!proto.abci_vendor.KVPair>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.abci_vendor.KVPair, 1));
 };
+
 
 /** @param {!Array<!proto.abci_vendor.KVPair>} value */
 proto.abci_vendor.ResponseBeginBlock.prototype.setTagsList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 1, value);
 };
+
 
 /**
  * @param {!proto.abci_vendor.KVPair=} opt_value
@@ -3824,18 +4205,15 @@ proto.abci_vendor.ResponseBeginBlock.prototype.setTagsList = function(value) {
  * @return {!proto.abci_vendor.KVPair}
  */
 proto.abci_vendor.ResponseBeginBlock.prototype.addTags = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(
-    this,
-    1,
-    opt_value,
-    proto.abci_vendor.KVPair,
-    opt_index
-  );
+  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.abci_vendor.KVPair, opt_index);
 };
+
 
 proto.abci_vendor.ResponseBeginBlock.prototype.clearTagsList = function() {
   this.setTagsList([]);
 };
+
+
 
 /**
  * Generated by JsPbCodeGenerator.
@@ -3848,14 +4226,7 @@ proto.abci_vendor.ResponseBeginBlock.prototype.clearTagsList = function() {
  * @constructor
  */
 proto.abci_vendor.ResponseEndBlock = function(opt_data) {
-  jspb.Message.initialize(
-    this,
-    opt_data,
-    0,
-    -1,
-    proto.abci_vendor.ResponseEndBlock.repeatedFields_,
-    null
-  );
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.abci_vendor.ResponseEndBlock.repeatedFields_, null);
 };
 goog.inherits(proto.abci_vendor.ResponseEndBlock, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -3866,56 +4237,51 @@ if (goog.DEBUG && !COMPILED) {
  * @private {!Array<number>}
  * @const
  */
-proto.abci_vendor.ResponseEndBlock.repeatedFields_ = [1, 3];
+proto.abci_vendor.ResponseEndBlock.repeatedFields_ = [1,3];
+
+
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
-  /**
-   * Creates an object representation of this proto suitable for use in Soy templates.
-   * Field names that are reserved in JavaScript and will be renamed to pb_name.
-   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
-   * For the list of reserved names please see:
-   *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
-   * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
-   *     for transitional soy proto support: http://goto/soy-param-migration
-   * @return {!Object}
-   */
-  proto.abci_vendor.ResponseEndBlock.prototype.toObject = function(opt_includeInstance) {
-    return proto.abci_vendor.ResponseEndBlock.toObject(opt_includeInstance, this);
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.abci_vendor.ResponseEndBlock.prototype.toObject = function(opt_includeInstance) {
+  return proto.abci_vendor.ResponseEndBlock.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.abci_vendor.ResponseEndBlock} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.abci_vendor.ResponseEndBlock.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    validatorUpdatesList: jspb.Message.toObjectList(msg.getValidatorUpdatesList(),
+    proto.abci_vendor.ValidatorUpdate.toObject, includeInstance),
+    consensusParamUpdates: (f = msg.getConsensusParamUpdates()) && proto.abci_vendor.ConsensusParams.toObject(includeInstance, f),
+    tagsList: jspb.Message.toObjectList(msg.getTagsList(),
+    proto.abci_vendor.KVPair.toObject, includeInstance)
   };
 
-  /**
-   * Static version of the {@see toObject} method.
-   * @param {boolean|undefined} includeInstance Whether to include the JSPB
-   *     instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @param {!proto.abci_vendor.ResponseEndBlock} msg The msg instance to transform.
-   * @return {!Object}
-   * @suppress {unusedLocalVariables} f is only used for nested messages
-   */
-  proto.abci_vendor.ResponseEndBlock.toObject = function(includeInstance, msg) {
-    var f,
-      obj = {
-        validatorUpdatesList: jspb.Message.toObjectList(
-          msg.getValidatorUpdatesList(),
-          proto.abci_vendor.ValidatorUpdate.toObject,
-          includeInstance
-        ),
-        consensusParamUpdates:
-          (f = msg.getConsensusParamUpdates()) &&
-          proto.abci_vendor.ConsensusParams.toObject(includeInstance, f),
-        tagsList: jspb.Message.toObjectList(
-          msg.getTagsList(),
-          proto.abci_vendor.KVPair.toObject,
-          includeInstance
-        ),
-      };
-
-    if (includeInstance) {
-      obj.$jspbMessageInstance = msg;
-    }
-    return obj;
-  };
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
 }
+
 
 /**
  * Deserializes binary data (in protobuf wire format).
@@ -3924,9 +4290,10 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  */
 proto.abci_vendor.ResponseEndBlock.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.abci_vendor.ResponseEndBlock();
+  var msg = new proto.abci_vendor.ResponseEndBlock;
   return proto.abci_vendor.ResponseEndBlock.deserializeBinaryFromReader(msg, reader);
 };
+
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -3942,28 +4309,29 @@ proto.abci_vendor.ResponseEndBlock.deserializeBinaryFromReader = function(msg, r
     }
     var field = reader.getFieldNumber();
     switch (field) {
-      case 1:
-        var value = new proto.abci_vendor.ValidatorUpdate();
-        reader.readMessage(value, proto.abci_vendor.ValidatorUpdate.deserializeBinaryFromReader);
-        msg.addValidatorUpdates(value);
-        break;
-      case 2:
-        var value = new proto.abci_vendor.ConsensusParams();
-        reader.readMessage(value, proto.abci_vendor.ConsensusParams.deserializeBinaryFromReader);
-        msg.setConsensusParamUpdates(value);
-        break;
-      case 3:
-        var value = new proto.abci_vendor.KVPair();
-        reader.readMessage(value, proto.abci_vendor.KVPair.deserializeBinaryFromReader);
-        msg.addTags(value);
-        break;
-      default:
-        reader.skipField();
-        break;
+    case 1:
+      var value = new proto.abci_vendor.ValidatorUpdate;
+      reader.readMessage(value,proto.abci_vendor.ValidatorUpdate.deserializeBinaryFromReader);
+      msg.addValidatorUpdates(value);
+      break;
+    case 2:
+      var value = new proto.abci_vendor.ConsensusParams;
+      reader.readMessage(value,proto.abci_vendor.ConsensusParams.deserializeBinaryFromReader);
+      msg.setConsensusParamUpdates(value);
+      break;
+    case 3:
+      var value = new proto.abci_vendor.KVPair;
+      reader.readMessage(value,proto.abci_vendor.KVPair.deserializeBinaryFromReader);
+      msg.addTags(value);
+      break;
+    default:
+      reader.skipField();
+      break;
     }
   }
   return msg;
 };
+
 
 /**
  * Serializes the message to binary data (in protobuf wire format).
@@ -3974,6 +4342,7 @@ proto.abci_vendor.ResponseEndBlock.prototype.serializeBinary = function() {
   proto.abci_vendor.ResponseEndBlock.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
+
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -3986,34 +4355,46 @@ proto.abci_vendor.ResponseEndBlock.serializeBinaryToWriter = function(message, w
   var f = undefined;
   f = message.getValidatorUpdatesList();
   if (f.length > 0) {
-    writer.writeRepeatedMessage(1, f, proto.abci_vendor.ValidatorUpdate.serializeBinaryToWriter);
+    writer.writeRepeatedMessage(
+      1,
+      f,
+      proto.abci_vendor.ValidatorUpdate.serializeBinaryToWriter
+    );
   }
   f = message.getConsensusParamUpdates();
   if (f != null) {
-    writer.writeMessage(2, f, proto.abci_vendor.ConsensusParams.serializeBinaryToWriter);
+    writer.writeMessage(
+      2,
+      f,
+      proto.abci_vendor.ConsensusParams.serializeBinaryToWriter
+    );
   }
   f = message.getTagsList();
   if (f.length > 0) {
-    writer.writeRepeatedMessage(3, f, proto.abci_vendor.KVPair.serializeBinaryToWriter);
+    writer.writeRepeatedMessage(
+      3,
+      f,
+      proto.abci_vendor.KVPair.serializeBinaryToWriter
+    );
   }
 };
+
 
 /**
  * repeated ValidatorUpdate validator_updates = 1;
  * @return {!Array<!proto.abci_vendor.ValidatorUpdate>}
  */
 proto.abci_vendor.ResponseEndBlock.prototype.getValidatorUpdatesList = function() {
-  return /** @type{!Array<!proto.abci_vendor.ValidatorUpdate>} */ (jspb.Message.getRepeatedWrapperField(
-    this,
-    proto.abci_vendor.ValidatorUpdate,
-    1
-  ));
+  return /** @type{!Array<!proto.abci_vendor.ValidatorUpdate>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.abci_vendor.ValidatorUpdate, 1));
 };
+
 
 /** @param {!Array<!proto.abci_vendor.ValidatorUpdate>} value */
 proto.abci_vendor.ResponseEndBlock.prototype.setValidatorUpdatesList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 1, value);
 };
+
 
 /**
  * @param {!proto.abci_vendor.ValidatorUpdate=} opt_value
@@ -4021,39 +4402,35 @@ proto.abci_vendor.ResponseEndBlock.prototype.setValidatorUpdatesList = function(
  * @return {!proto.abci_vendor.ValidatorUpdate}
  */
 proto.abci_vendor.ResponseEndBlock.prototype.addValidatorUpdates = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(
-    this,
-    1,
-    opt_value,
-    proto.abci_vendor.ValidatorUpdate,
-    opt_index
-  );
+  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.abci_vendor.ValidatorUpdate, opt_index);
 };
+
 
 proto.abci_vendor.ResponseEndBlock.prototype.clearValidatorUpdatesList = function() {
   this.setValidatorUpdatesList([]);
 };
+
 
 /**
  * optional ConsensusParams consensus_param_updates = 2;
  * @return {?proto.abci_vendor.ConsensusParams}
  */
 proto.abci_vendor.ResponseEndBlock.prototype.getConsensusParamUpdates = function() {
-  return /** @type{?proto.abci_vendor.ConsensusParams} */ (jspb.Message.getWrapperField(
-    this,
-    proto.abci_vendor.ConsensusParams,
-    2
-  ));
+  return /** @type{?proto.abci_vendor.ConsensusParams} */ (
+    jspb.Message.getWrapperField(this, proto.abci_vendor.ConsensusParams, 2));
 };
+
 
 /** @param {?proto.abci_vendor.ConsensusParams|undefined} value */
 proto.abci_vendor.ResponseEndBlock.prototype.setConsensusParamUpdates = function(value) {
   jspb.Message.setWrapperField(this, 2, value);
 };
 
+
 proto.abci_vendor.ResponseEndBlock.prototype.clearConsensusParamUpdates = function() {
   this.setConsensusParamUpdates(undefined);
 };
+
 
 /**
  * Returns whether this field is set.
@@ -4063,22 +4440,22 @@ proto.abci_vendor.ResponseEndBlock.prototype.hasConsensusParamUpdates = function
   return jspb.Message.getField(this, 2) != null;
 };
 
+
 /**
  * repeated KVPair tags = 3;
  * @return {!Array<!proto.abci_vendor.KVPair>}
  */
 proto.abci_vendor.ResponseEndBlock.prototype.getTagsList = function() {
-  return /** @type{!Array<!proto.abci_vendor.KVPair>} */ (jspb.Message.getRepeatedWrapperField(
-    this,
-    proto.abci_vendor.KVPair,
-    3
-  ));
+  return /** @type{!Array<!proto.abci_vendor.KVPair>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.abci_vendor.KVPair, 3));
 };
+
 
 /** @param {!Array<!proto.abci_vendor.KVPair>} value */
 proto.abci_vendor.ResponseEndBlock.prototype.setTagsList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 3, value);
 };
+
 
 /**
  * @param {!proto.abci_vendor.KVPair=} opt_value
@@ -4086,18 +4463,15 @@ proto.abci_vendor.ResponseEndBlock.prototype.setTagsList = function(value) {
  * @return {!proto.abci_vendor.KVPair}
  */
 proto.abci_vendor.ResponseEndBlock.prototype.addTags = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(
-    this,
-    3,
-    opt_value,
-    proto.abci_vendor.KVPair,
-    opt_index
-  );
+  return jspb.Message.addToRepeatedWrapperField(this, 3, opt_value, proto.abci_vendor.KVPair, opt_index);
 };
+
 
 proto.abci_vendor.ResponseEndBlock.prototype.clearTagsList = function() {
   this.setTagsList([]);
 };
+
+
 
 /**
  * Generated by JsPbCodeGenerator.
@@ -4110,14 +4484,7 @@ proto.abci_vendor.ResponseEndBlock.prototype.clearTagsList = function() {
  * @constructor
  */
 proto.abci_vendor.ResponseCheckTx = function(opt_data) {
-  jspb.Message.initialize(
-    this,
-    opt_data,
-    0,
-    -1,
-    proto.abci_vendor.ResponseCheckTx.repeatedFields_,
-    null
-  );
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.abci_vendor.ResponseCheckTx.repeatedFields_, null);
 };
 goog.inherits(proto.abci_vendor.ResponseCheckTx, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -4130,53 +4497,53 @@ if (goog.DEBUG && !COMPILED) {
  */
 proto.abci_vendor.ResponseCheckTx.repeatedFields_ = [7];
 
+
+
 if (jspb.Message.GENERATE_TO_OBJECT) {
-  /**
-   * Creates an object representation of this proto suitable for use in Soy templates.
-   * Field names that are reserved in JavaScript and will be renamed to pb_name.
-   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
-   * For the list of reserved names please see:
-   *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
-   * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
-   *     for transitional soy proto support: http://goto/soy-param-migration
-   * @return {!Object}
-   */
-  proto.abci_vendor.ResponseCheckTx.prototype.toObject = function(opt_includeInstance) {
-    return proto.abci_vendor.ResponseCheckTx.toObject(opt_includeInstance, this);
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.abci_vendor.ResponseCheckTx.prototype.toObject = function(opt_includeInstance) {
+  return proto.abci_vendor.ResponseCheckTx.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.abci_vendor.ResponseCheckTx} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.abci_vendor.ResponseCheckTx.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    code: jspb.Message.getFieldWithDefault(msg, 1, 0),
+    data: msg.getData(),
+    log: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    info: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    gasWanted: jspb.Message.getFieldWithDefault(msg, 5, 0),
+    gasUsed: jspb.Message.getFieldWithDefault(msg, 6, 0),
+    tagsList: jspb.Message.toObjectList(msg.getTagsList(),
+    proto.abci_vendor.KVPair.toObject, includeInstance),
+    codespace: jspb.Message.getFieldWithDefault(msg, 8, "")
   };
 
-  /**
-   * Static version of the {@see toObject} method.
-   * @param {boolean|undefined} includeInstance Whether to include the JSPB
-   *     instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @param {!proto.abci_vendor.ResponseCheckTx} msg The msg instance to transform.
-   * @return {!Object}
-   * @suppress {unusedLocalVariables} f is only used for nested messages
-   */
-  proto.abci_vendor.ResponseCheckTx.toObject = function(includeInstance, msg) {
-    var f,
-      obj = {
-        code: jspb.Message.getFieldWithDefault(msg, 1, 0),
-        data: msg.getData(),
-        log: jspb.Message.getFieldWithDefault(msg, 3, ''),
-        info: jspb.Message.getFieldWithDefault(msg, 4, ''),
-        gasWanted: jspb.Message.getFieldWithDefault(msg, 5, 0),
-        gasUsed: jspb.Message.getFieldWithDefault(msg, 6, 0),
-        tagsList: jspb.Message.toObjectList(
-          msg.getTagsList(),
-          proto.abci_vendor.KVPair.toObject,
-          includeInstance
-        ),
-        codespace: jspb.Message.getFieldWithDefault(msg, 8, ''),
-      };
-
-    if (includeInstance) {
-      obj.$jspbMessageInstance = msg;
-    }
-    return obj;
-  };
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
 }
+
 
 /**
  * Deserializes binary data (in protobuf wire format).
@@ -4185,9 +4552,10 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  */
 proto.abci_vendor.ResponseCheckTx.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.abci_vendor.ResponseCheckTx();
+  var msg = new proto.abci_vendor.ResponseCheckTx;
   return proto.abci_vendor.ResponseCheckTx.deserializeBinaryFromReader(msg, reader);
 };
+
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -4203,46 +4571,47 @@ proto.abci_vendor.ResponseCheckTx.deserializeBinaryFromReader = function(msg, re
     }
     var field = reader.getFieldNumber();
     switch (field) {
-      case 1:
-        var value = /** @type {number} */ (reader.readUint32());
-        msg.setCode(value);
-        break;
-      case 2:
-        var value = /** @type {!Uint8Array} */ (reader.readBytes());
-        msg.setData(value);
-        break;
-      case 3:
-        var value = /** @type {string} */ (reader.readString());
-        msg.setLog(value);
-        break;
-      case 4:
-        var value = /** @type {string} */ (reader.readString());
-        msg.setInfo(value);
-        break;
-      case 5:
-        var value = /** @type {number} */ (reader.readInt64());
-        msg.setGasWanted(value);
-        break;
-      case 6:
-        var value = /** @type {number} */ (reader.readInt64());
-        msg.setGasUsed(value);
-        break;
-      case 7:
-        var value = new proto.abci_vendor.KVPair();
-        reader.readMessage(value, proto.abci_vendor.KVPair.deserializeBinaryFromReader);
-        msg.addTags(value);
-        break;
-      case 8:
-        var value = /** @type {string} */ (reader.readString());
-        msg.setCodespace(value);
-        break;
-      default:
-        reader.skipField();
-        break;
+    case 1:
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setCode(value);
+      break;
+    case 2:
+      var value = /** @type {!Uint8Array} */ (reader.readBytes());
+      msg.setData(value);
+      break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setLog(value);
+      break;
+    case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setInfo(value);
+      break;
+    case 5:
+      var value = /** @type {number} */ (reader.readInt64());
+      msg.setGasWanted(value);
+      break;
+    case 6:
+      var value = /** @type {number} */ (reader.readInt64());
+      msg.setGasUsed(value);
+      break;
+    case 7:
+      var value = new proto.abci_vendor.KVPair;
+      reader.readMessage(value,proto.abci_vendor.KVPair.deserializeBinaryFromReader);
+      msg.addTags(value);
+      break;
+    case 8:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setCodespace(value);
+      break;
+    default:
+      reader.skipField();
+      break;
     }
   }
   return msg;
 };
+
 
 /**
  * Serializes the message to binary data (in protobuf wire format).
@@ -4253,6 +4622,7 @@ proto.abci_vendor.ResponseCheckTx.prototype.serializeBinary = function() {
   proto.abci_vendor.ResponseCheckTx.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
+
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -4265,37 +4635,63 @@ proto.abci_vendor.ResponseCheckTx.serializeBinaryToWriter = function(message, wr
   var f = undefined;
   f = message.getCode();
   if (f !== 0) {
-    writer.writeUint32(1, f);
+    writer.writeUint32(
+      1,
+      f
+    );
   }
   f = message.getData_asU8();
   if (f.length > 0) {
-    writer.writeBytes(2, f);
+    writer.writeBytes(
+      2,
+      f
+    );
   }
   f = message.getLog();
   if (f.length > 0) {
-    writer.writeString(3, f);
+    writer.writeString(
+      3,
+      f
+    );
   }
   f = message.getInfo();
   if (f.length > 0) {
-    writer.writeString(4, f);
+    writer.writeString(
+      4,
+      f
+    );
   }
   f = message.getGasWanted();
   if (f !== 0) {
-    writer.writeInt64(5, f);
+    writer.writeInt64(
+      5,
+      f
+    );
   }
   f = message.getGasUsed();
   if (f !== 0) {
-    writer.writeInt64(6, f);
+    writer.writeInt64(
+      6,
+      f
+    );
   }
   f = message.getTagsList();
   if (f.length > 0) {
-    writer.writeRepeatedMessage(7, f, proto.abci_vendor.KVPair.serializeBinaryToWriter);
+    writer.writeRepeatedMessage(
+      7,
+      f,
+      proto.abci_vendor.KVPair.serializeBinaryToWriter
+    );
   }
   f = message.getCodespace();
   if (f.length > 0) {
-    writer.writeString(8, f);
+    writer.writeString(
+      8,
+      f
+    );
   }
 };
+
 
 /**
  * optional uint32 code = 1;
@@ -4305,18 +4701,21 @@ proto.abci_vendor.ResponseCheckTx.prototype.getCode = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
 };
 
+
 /** @param {number} value */
 proto.abci_vendor.ResponseCheckTx.prototype.setCode = function(value) {
   jspb.Message.setProto3IntField(this, 1, value);
 };
+
 
 /**
  * optional bytes data = 2;
  * @return {!(string|Uint8Array)}
  */
 proto.abci_vendor.ResponseCheckTx.prototype.getData = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 2, ''));
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
+
 
 /**
  * optional bytes data = 2;
@@ -4324,8 +4723,10 @@ proto.abci_vendor.ResponseCheckTx.prototype.getData = function() {
  * @return {string}
  */
 proto.abci_vendor.ResponseCheckTx.prototype.getData_asB64 = function() {
-  return /** @type {string} */ (jspb.Message.bytesAsB64(this.getData()));
+  return /** @type {string} */ (jspb.Message.bytesAsB64(
+      this.getData()));
 };
+
 
 /**
  * optional bytes data = 2;
@@ -4335,39 +4736,46 @@ proto.abci_vendor.ResponseCheckTx.prototype.getData_asB64 = function() {
  * @return {!Uint8Array}
  */
 proto.abci_vendor.ResponseCheckTx.prototype.getData_asU8 = function() {
-  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(this.getData()));
+  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
+      this.getData()));
 };
+
 
 /** @param {!(string|Uint8Array)} value */
 proto.abci_vendor.ResponseCheckTx.prototype.setData = function(value) {
   jspb.Message.setProto3BytesField(this, 2, value);
 };
 
+
 /**
  * optional string log = 3;
  * @return {string}
  */
 proto.abci_vendor.ResponseCheckTx.prototype.getLog = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ''));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
+
 
 /** @param {string} value */
 proto.abci_vendor.ResponseCheckTx.prototype.setLog = function(value) {
   jspb.Message.setProto3StringField(this, 3, value);
 };
 
+
 /**
  * optional string info = 4;
  * @return {string}
  */
 proto.abci_vendor.ResponseCheckTx.prototype.getInfo = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ''));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
 };
+
 
 /** @param {string} value */
 proto.abci_vendor.ResponseCheckTx.prototype.setInfo = function(value) {
   jspb.Message.setProto3StringField(this, 4, value);
 };
+
 
 /**
  * optional int64 gas_wanted = 5;
@@ -4377,10 +4785,12 @@ proto.abci_vendor.ResponseCheckTx.prototype.getGasWanted = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 5, 0));
 };
 
+
 /** @param {number} value */
 proto.abci_vendor.ResponseCheckTx.prototype.setGasWanted = function(value) {
   jspb.Message.setProto3IntField(this, 5, value);
 };
+
 
 /**
  * optional int64 gas_used = 6;
@@ -4390,27 +4800,28 @@ proto.abci_vendor.ResponseCheckTx.prototype.getGasUsed = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 6, 0));
 };
 
+
 /** @param {number} value */
 proto.abci_vendor.ResponseCheckTx.prototype.setGasUsed = function(value) {
   jspb.Message.setProto3IntField(this, 6, value);
 };
+
 
 /**
  * repeated KVPair tags = 7;
  * @return {!Array<!proto.abci_vendor.KVPair>}
  */
 proto.abci_vendor.ResponseCheckTx.prototype.getTagsList = function() {
-  return /** @type{!Array<!proto.abci_vendor.KVPair>} */ (jspb.Message.getRepeatedWrapperField(
-    this,
-    proto.abci_vendor.KVPair,
-    7
-  ));
+  return /** @type{!Array<!proto.abci_vendor.KVPair>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.abci_vendor.KVPair, 7));
 };
+
 
 /** @param {!Array<!proto.abci_vendor.KVPair>} value */
 proto.abci_vendor.ResponseCheckTx.prototype.setTagsList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 7, value);
 };
+
 
 /**
  * @param {!proto.abci_vendor.KVPair=} opt_value
@@ -4418,31 +4829,30 @@ proto.abci_vendor.ResponseCheckTx.prototype.setTagsList = function(value) {
  * @return {!proto.abci_vendor.KVPair}
  */
 proto.abci_vendor.ResponseCheckTx.prototype.addTags = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(
-    this,
-    7,
-    opt_value,
-    proto.abci_vendor.KVPair,
-    opt_index
-  );
+  return jspb.Message.addToRepeatedWrapperField(this, 7, opt_value, proto.abci_vendor.KVPair, opt_index);
 };
+
 
 proto.abci_vendor.ResponseCheckTx.prototype.clearTagsList = function() {
   this.setTagsList([]);
 };
+
 
 /**
  * optional string codespace = 8;
  * @return {string}
  */
 proto.abci_vendor.ResponseCheckTx.prototype.getCodespace = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 8, ''));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 8, ""));
 };
+
 
 /** @param {string} value */
 proto.abci_vendor.ResponseCheckTx.prototype.setCodespace = function(value) {
   jspb.Message.setProto3StringField(this, 8, value);
 };
+
+
 
 /**
  * Generated by JsPbCodeGenerator.
@@ -4455,14 +4865,7 @@ proto.abci_vendor.ResponseCheckTx.prototype.setCodespace = function(value) {
  * @constructor
  */
 proto.abci_vendor.ResponseDeliverTx = function(opt_data) {
-  jspb.Message.initialize(
-    this,
-    opt_data,
-    0,
-    -1,
-    proto.abci_vendor.ResponseDeliverTx.repeatedFields_,
-    null
-  );
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.abci_vendor.ResponseDeliverTx.repeatedFields_, null);
 };
 goog.inherits(proto.abci_vendor.ResponseDeliverTx, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -4475,53 +4878,53 @@ if (goog.DEBUG && !COMPILED) {
  */
 proto.abci_vendor.ResponseDeliverTx.repeatedFields_ = [7];
 
+
+
 if (jspb.Message.GENERATE_TO_OBJECT) {
-  /**
-   * Creates an object representation of this proto suitable for use in Soy templates.
-   * Field names that are reserved in JavaScript and will be renamed to pb_name.
-   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
-   * For the list of reserved names please see:
-   *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
-   * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
-   *     for transitional soy proto support: http://goto/soy-param-migration
-   * @return {!Object}
-   */
-  proto.abci_vendor.ResponseDeliverTx.prototype.toObject = function(opt_includeInstance) {
-    return proto.abci_vendor.ResponseDeliverTx.toObject(opt_includeInstance, this);
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.abci_vendor.ResponseDeliverTx.prototype.toObject = function(opt_includeInstance) {
+  return proto.abci_vendor.ResponseDeliverTx.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.abci_vendor.ResponseDeliverTx} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.abci_vendor.ResponseDeliverTx.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    code: jspb.Message.getFieldWithDefault(msg, 1, 0),
+    data: msg.getData(),
+    log: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    info: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    gasWanted: jspb.Message.getFieldWithDefault(msg, 5, 0),
+    gasUsed: jspb.Message.getFieldWithDefault(msg, 6, 0),
+    tagsList: jspb.Message.toObjectList(msg.getTagsList(),
+    proto.abci_vendor.KVPair.toObject, includeInstance),
+    codespace: jspb.Message.getFieldWithDefault(msg, 8, "")
   };
 
-  /**
-   * Static version of the {@see toObject} method.
-   * @param {boolean|undefined} includeInstance Whether to include the JSPB
-   *     instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @param {!proto.abci_vendor.ResponseDeliverTx} msg The msg instance to transform.
-   * @return {!Object}
-   * @suppress {unusedLocalVariables} f is only used for nested messages
-   */
-  proto.abci_vendor.ResponseDeliverTx.toObject = function(includeInstance, msg) {
-    var f,
-      obj = {
-        code: jspb.Message.getFieldWithDefault(msg, 1, 0),
-        data: msg.getData(),
-        log: jspb.Message.getFieldWithDefault(msg, 3, ''),
-        info: jspb.Message.getFieldWithDefault(msg, 4, ''),
-        gasWanted: jspb.Message.getFieldWithDefault(msg, 5, 0),
-        gasUsed: jspb.Message.getFieldWithDefault(msg, 6, 0),
-        tagsList: jspb.Message.toObjectList(
-          msg.getTagsList(),
-          proto.abci_vendor.KVPair.toObject,
-          includeInstance
-        ),
-        codespace: jspb.Message.getFieldWithDefault(msg, 8, ''),
-      };
-
-    if (includeInstance) {
-      obj.$jspbMessageInstance = msg;
-    }
-    return obj;
-  };
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
 }
+
 
 /**
  * Deserializes binary data (in protobuf wire format).
@@ -4530,9 +4933,10 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  */
 proto.abci_vendor.ResponseDeliverTx.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.abci_vendor.ResponseDeliverTx();
+  var msg = new proto.abci_vendor.ResponseDeliverTx;
   return proto.abci_vendor.ResponseDeliverTx.deserializeBinaryFromReader(msg, reader);
 };
+
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -4548,46 +4952,47 @@ proto.abci_vendor.ResponseDeliverTx.deserializeBinaryFromReader = function(msg, 
     }
     var field = reader.getFieldNumber();
     switch (field) {
-      case 1:
-        var value = /** @type {number} */ (reader.readUint32());
-        msg.setCode(value);
-        break;
-      case 2:
-        var value = /** @type {!Uint8Array} */ (reader.readBytes());
-        msg.setData(value);
-        break;
-      case 3:
-        var value = /** @type {string} */ (reader.readString());
-        msg.setLog(value);
-        break;
-      case 4:
-        var value = /** @type {string} */ (reader.readString());
-        msg.setInfo(value);
-        break;
-      case 5:
-        var value = /** @type {number} */ (reader.readInt64());
-        msg.setGasWanted(value);
-        break;
-      case 6:
-        var value = /** @type {number} */ (reader.readInt64());
-        msg.setGasUsed(value);
-        break;
-      case 7:
-        var value = new proto.abci_vendor.KVPair();
-        reader.readMessage(value, proto.abci_vendor.KVPair.deserializeBinaryFromReader);
-        msg.addTags(value);
-        break;
-      case 8:
-        var value = /** @type {string} */ (reader.readString());
-        msg.setCodespace(value);
-        break;
-      default:
-        reader.skipField();
-        break;
+    case 1:
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setCode(value);
+      break;
+    case 2:
+      var value = /** @type {!Uint8Array} */ (reader.readBytes());
+      msg.setData(value);
+      break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setLog(value);
+      break;
+    case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setInfo(value);
+      break;
+    case 5:
+      var value = /** @type {number} */ (reader.readInt64());
+      msg.setGasWanted(value);
+      break;
+    case 6:
+      var value = /** @type {number} */ (reader.readInt64());
+      msg.setGasUsed(value);
+      break;
+    case 7:
+      var value = new proto.abci_vendor.KVPair;
+      reader.readMessage(value,proto.abci_vendor.KVPair.deserializeBinaryFromReader);
+      msg.addTags(value);
+      break;
+    case 8:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setCodespace(value);
+      break;
+    default:
+      reader.skipField();
+      break;
     }
   }
   return msg;
 };
+
 
 /**
  * Serializes the message to binary data (in protobuf wire format).
@@ -4598,6 +5003,7 @@ proto.abci_vendor.ResponseDeliverTx.prototype.serializeBinary = function() {
   proto.abci_vendor.ResponseDeliverTx.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
+
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -4610,37 +5016,63 @@ proto.abci_vendor.ResponseDeliverTx.serializeBinaryToWriter = function(message, 
   var f = undefined;
   f = message.getCode();
   if (f !== 0) {
-    writer.writeUint32(1, f);
+    writer.writeUint32(
+      1,
+      f
+    );
   }
   f = message.getData_asU8();
   if (f.length > 0) {
-    writer.writeBytes(2, f);
+    writer.writeBytes(
+      2,
+      f
+    );
   }
   f = message.getLog();
   if (f.length > 0) {
-    writer.writeString(3, f);
+    writer.writeString(
+      3,
+      f
+    );
   }
   f = message.getInfo();
   if (f.length > 0) {
-    writer.writeString(4, f);
+    writer.writeString(
+      4,
+      f
+    );
   }
   f = message.getGasWanted();
   if (f !== 0) {
-    writer.writeInt64(5, f);
+    writer.writeInt64(
+      5,
+      f
+    );
   }
   f = message.getGasUsed();
   if (f !== 0) {
-    writer.writeInt64(6, f);
+    writer.writeInt64(
+      6,
+      f
+    );
   }
   f = message.getTagsList();
   if (f.length > 0) {
-    writer.writeRepeatedMessage(7, f, proto.abci_vendor.KVPair.serializeBinaryToWriter);
+    writer.writeRepeatedMessage(
+      7,
+      f,
+      proto.abci_vendor.KVPair.serializeBinaryToWriter
+    );
   }
   f = message.getCodespace();
   if (f.length > 0) {
-    writer.writeString(8, f);
+    writer.writeString(
+      8,
+      f
+    );
   }
 };
+
 
 /**
  * optional uint32 code = 1;
@@ -4650,18 +5082,21 @@ proto.abci_vendor.ResponseDeliverTx.prototype.getCode = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
 };
 
+
 /** @param {number} value */
 proto.abci_vendor.ResponseDeliverTx.prototype.setCode = function(value) {
   jspb.Message.setProto3IntField(this, 1, value);
 };
+
 
 /**
  * optional bytes data = 2;
  * @return {!(string|Uint8Array)}
  */
 proto.abci_vendor.ResponseDeliverTx.prototype.getData = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 2, ''));
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
+
 
 /**
  * optional bytes data = 2;
@@ -4669,8 +5104,10 @@ proto.abci_vendor.ResponseDeliverTx.prototype.getData = function() {
  * @return {string}
  */
 proto.abci_vendor.ResponseDeliverTx.prototype.getData_asB64 = function() {
-  return /** @type {string} */ (jspb.Message.bytesAsB64(this.getData()));
+  return /** @type {string} */ (jspb.Message.bytesAsB64(
+      this.getData()));
 };
+
 
 /**
  * optional bytes data = 2;
@@ -4680,39 +5117,46 @@ proto.abci_vendor.ResponseDeliverTx.prototype.getData_asB64 = function() {
  * @return {!Uint8Array}
  */
 proto.abci_vendor.ResponseDeliverTx.prototype.getData_asU8 = function() {
-  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(this.getData()));
+  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
+      this.getData()));
 };
+
 
 /** @param {!(string|Uint8Array)} value */
 proto.abci_vendor.ResponseDeliverTx.prototype.setData = function(value) {
   jspb.Message.setProto3BytesField(this, 2, value);
 };
 
+
 /**
  * optional string log = 3;
  * @return {string}
  */
 proto.abci_vendor.ResponseDeliverTx.prototype.getLog = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ''));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
+
 
 /** @param {string} value */
 proto.abci_vendor.ResponseDeliverTx.prototype.setLog = function(value) {
   jspb.Message.setProto3StringField(this, 3, value);
 };
 
+
 /**
  * optional string info = 4;
  * @return {string}
  */
 proto.abci_vendor.ResponseDeliverTx.prototype.getInfo = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ''));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
 };
+
 
 /** @param {string} value */
 proto.abci_vendor.ResponseDeliverTx.prototype.setInfo = function(value) {
   jspb.Message.setProto3StringField(this, 4, value);
 };
+
 
 /**
  * optional int64 gas_wanted = 5;
@@ -4722,10 +5166,12 @@ proto.abci_vendor.ResponseDeliverTx.prototype.getGasWanted = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 5, 0));
 };
 
+
 /** @param {number} value */
 proto.abci_vendor.ResponseDeliverTx.prototype.setGasWanted = function(value) {
   jspb.Message.setProto3IntField(this, 5, value);
 };
+
 
 /**
  * optional int64 gas_used = 6;
@@ -4735,27 +5181,28 @@ proto.abci_vendor.ResponseDeliverTx.prototype.getGasUsed = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 6, 0));
 };
 
+
 /** @param {number} value */
 proto.abci_vendor.ResponseDeliverTx.prototype.setGasUsed = function(value) {
   jspb.Message.setProto3IntField(this, 6, value);
 };
+
 
 /**
  * repeated KVPair tags = 7;
  * @return {!Array<!proto.abci_vendor.KVPair>}
  */
 proto.abci_vendor.ResponseDeliverTx.prototype.getTagsList = function() {
-  return /** @type{!Array<!proto.abci_vendor.KVPair>} */ (jspb.Message.getRepeatedWrapperField(
-    this,
-    proto.abci_vendor.KVPair,
-    7
-  ));
+  return /** @type{!Array<!proto.abci_vendor.KVPair>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.abci_vendor.KVPair, 7));
 };
+
 
 /** @param {!Array<!proto.abci_vendor.KVPair>} value */
 proto.abci_vendor.ResponseDeliverTx.prototype.setTagsList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 7, value);
 };
+
 
 /**
  * @param {!proto.abci_vendor.KVPair=} opt_value
@@ -4763,31 +5210,29 @@ proto.abci_vendor.ResponseDeliverTx.prototype.setTagsList = function(value) {
  * @return {!proto.abci_vendor.KVPair}
  */
 proto.abci_vendor.ResponseDeliverTx.prototype.addTags = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(
-    this,
-    7,
-    opt_value,
-    proto.abci_vendor.KVPair,
-    opt_index
-  );
+  return jspb.Message.addToRepeatedWrapperField(this, 7, opt_value, proto.abci_vendor.KVPair, opt_index);
 };
+
 
 proto.abci_vendor.ResponseDeliverTx.prototype.clearTagsList = function() {
   this.setTagsList([]);
 };
+
 
 /**
  * optional string codespace = 8;
  * @return {string}
  */
 proto.abci_vendor.ResponseDeliverTx.prototype.getCodespace = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 8, ''));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 8, ""));
 };
+
 
 /** @param {string} value */
 proto.abci_vendor.ResponseDeliverTx.prototype.setCodespace = function(value) {
   jspb.Message.setProto3StringField(this, 8, value);
 };
+
 
 goog.object.extend(exports, proto.abci_vendor);
 

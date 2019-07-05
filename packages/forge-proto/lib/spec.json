@@ -1012,7 +1012,10 @@
         "RequestGetForgeStats": {
           "oneofs": {
             "value": {
-              "oneof": ["dayInfo", "date"]
+              "oneof": [
+                "dayInfo",
+                "date"
+              ]
             }
           },
           "fields": {

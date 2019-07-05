@@ -1,4 +1,4 @@
-// Auto generated code (2019-07-05T07:33:04.809Z), DO NOT EDIT
+// Auto generated code (2019-07-05T07:53:01.727Z), DO NOT EDIT
 const enumPb = require('./lib/enum_pb.js');
 const typePb = require('./lib/type_pb.js');
 const accountMigrateTxPb = require('./lib/account_migrate_tx_pb.js');
@@ -24,31 +24,8 @@ const withdrawTetherTxPb = require('./lib/withdraw_tether_tx_pb.js');
 
 const vendorPb = require('./lib/vendor_pb.js');
 
-const forgeTypes = Object.assign(
-  {},
-  enumPb,
-  typePb,
-  accountMigrateTxPb,
-  acquireAssetTxPb,
-  approveTetherTxPb,
-  consumeAssetTxPb,
-  createAssetTxPb,
-  declareTxPb,
-  deployProtocolTxPb,
-  depositTetherTxPb,
-  exchangeTetherTxPb,
-  exchangeTxPb,
-  pokeTxPb,
-  retrieveSwapTxPb,
-  revokeSwapTxPb,
-  revokeTetherTxPb,
-  setupSwapTxPb,
-  stakeTxPb,
-  transferTxPb,
-  updateAssetTxPb,
-  upgradeNodeTxPb,
-  withdrawTetherTxPb
-);
+
+const forgeTypes = Object.assign({}, enumPb, typePb, accountMigrateTxPb, acquireAssetTxPb, approveTetherTxPb, consumeAssetTxPb, createAssetTxPb, declareTxPb, deployProtocolTxPb, depositTetherTxPb, exchangeTetherTxPb, exchangeTxPb, pokeTxPb, retrieveSwapTxPb, revokeSwapTxPb, revokeTetherTxPb, setupSwapTxPb, stakeTxPb, transferTxPb, updateAssetTxPb, upgradeNodeTxPb, withdrawTetherTxPb);
 const forgeServices = {};
 const vendorTypes = Object.assign({}, vendorPb);
 const vendorServices = {};
