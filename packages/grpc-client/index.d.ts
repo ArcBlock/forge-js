@@ -14,9 +14,6 @@ declare class GRpcClient {
    * @param {object|string} config - config object, if a string passed, will be used as the endpoint
    * @param {string} [config.endpoint="tcp://127.0.0.1:28210"] - grpc endpoint the client can connect to
    * @param {string} [config.chainId=""] - chainId used to construct transaction
-   * @see GRpcClient.getQueries
-   * @see GRpcClient.getMutations
-   * @see GRpcClient.getSubscriptions
    * @see GRpcClient.getRpcMethods
    * @see GRpcClient.getTxSendMethods
    */
@@ -166,29 +163,11 @@ declare class GRpcClient {
   encodeSysUpgradeTx(
     param: GRpcClient.TxParam<GRpcClient.SysUpgradeTx>
   ): Promise<GRpcClient.ResponseSendTx>;
-  encodeExchangeTetherTx(
-    param: GRpcClient.TxParam<GRpcClient.ExchangeTetherTx>
-  ): Promise<GRpcClient.ResponseSendTx>;
-  encodeWithdrawTetherTx(
-    param: GRpcClient.TxParam<GRpcClient.WithdrawTetherTx>
-  ): Promise<GRpcClient.ResponseSendTx>;
   encodeAccountMigrateTx(
     param: GRpcClient.TxParam<GRpcClient.AccountMigrateTx>
   ): Promise<GRpcClient.ResponseSendTx>;
-  encodeDeclareTx(
-    param: GRpcClient.TxParam<GRpcClient.DeclareTx>
-  ): Promise<GRpcClient.ResponseSendTx>;
   encodeAcquireAssetTx(
     param: GRpcClient.TxParam<GRpcClient.AcquireAssetTx>
-  ): Promise<GRpcClient.ResponseSendTx>;
-  encodeCreateAssetTx(
-    param: GRpcClient.TxParam<GRpcClient.CreateAssetTx>
-  ): Promise<GRpcClient.ResponseSendTx>;
-  encodeRevokeTetherTx(
-    param: GRpcClient.TxParam<GRpcClient.RevokeTetherTx>
-  ): Promise<GRpcClient.ResponseSendTx>;
-  encodeExchangeTx(
-    param: GRpcClient.TxParam<GRpcClient.ExchangeTx>
   ): Promise<GRpcClient.ResponseSendTx>;
   encodeApproveTetherTx(
     param: GRpcClient.TxParam<GRpcClient.ApproveTetherTx>
@@ -196,19 +175,46 @@ declare class GRpcClient {
   encodeConsumeAssetTx(
     param: GRpcClient.TxParam<GRpcClient.ConsumeAssetTx>
   ): Promise<GRpcClient.ResponseSendTx>;
-  encodeUpgradeNodeTx(
-    param: GRpcClient.TxParam<GRpcClient.UpgradeNodeTx>
+  encodeCreateAssetTx(
+    param: GRpcClient.TxParam<GRpcClient.CreateAssetTx>
   ): Promise<GRpcClient.ResponseSendTx>;
-  encodeUpdateAssetTx(
-    param: GRpcClient.TxParam<GRpcClient.UpdateAssetTx>
+  encodeDeclareTx(
+    param: GRpcClient.TxParam<GRpcClient.DeclareTx>
   ): Promise<GRpcClient.ResponseSendTx>;
   encodeDepositTetherTx(
     param: GRpcClient.TxParam<GRpcClient.DepositTetherTx>
   ): Promise<GRpcClient.ResponseSendTx>;
+  encodeExchangeTetherTx(
+    param: GRpcClient.TxParam<GRpcClient.ExchangeTetherTx>
+  ): Promise<GRpcClient.ResponseSendTx>;
+  encodeExchangeTx(
+    param: GRpcClient.TxParam<GRpcClient.ExchangeTx>
+  ): Promise<GRpcClient.ResponseSendTx>;
   encodePokeTx(param: GRpcClient.TxParam<GRpcClient.PokeTx>): Promise<GRpcClient.ResponseSendTx>;
+  encodeRetrieveSwapTx(
+    param: GRpcClient.TxParam<GRpcClient.RetrieveSwapTx>
+  ): Promise<GRpcClient.ResponseSendTx>;
+  encodeRevokeSwapTx(
+    param: GRpcClient.TxParam<GRpcClient.RevokeSwapTx>
+  ): Promise<GRpcClient.ResponseSendTx>;
+  encodeRevokeTetherTx(
+    param: GRpcClient.TxParam<GRpcClient.RevokeTetherTx>
+  ): Promise<GRpcClient.ResponseSendTx>;
+  encodeSetupSwapTx(
+    param: GRpcClient.TxParam<GRpcClient.SetupSwapTx>
+  ): Promise<GRpcClient.ResponseSendTx>;
   encodeStakeTx(param: GRpcClient.TxParam<GRpcClient.StakeTx>): Promise<GRpcClient.ResponseSendTx>;
   encodeTransferTx(
     param: GRpcClient.TxParam<GRpcClient.TransferTx>
+  ): Promise<GRpcClient.ResponseSendTx>;
+  encodeUpdateAssetTx(
+    param: GRpcClient.TxParam<GRpcClient.UpdateAssetTx>
+  ): Promise<GRpcClient.ResponseSendTx>;
+  encodeUpgradeNodeTx(
+    param: GRpcClient.TxParam<GRpcClient.UpgradeNodeTx>
+  ): Promise<GRpcClient.ResponseSendTx>;
+  encodeWithdrawTetherTx(
+    param: GRpcClient.TxParam<GRpcClient.WithdrawTetherTx>
   ): Promise<GRpcClient.ResponseSendTx>;
   sendConsensusUpgradeTx(
     param: GRpcClient.TxParam<GRpcClient.ConsensusUpgradeTx>
@@ -219,29 +225,11 @@ declare class GRpcClient {
   sendSysUpgradeTx(
     param: GRpcClient.TxParam<GRpcClient.SysUpgradeTx>
   ): Promise<GRpcClient.EncodeTxResult>;
-  sendExchangeTetherTx(
-    param: GRpcClient.TxParam<GRpcClient.ExchangeTetherTx>
-  ): Promise<GRpcClient.EncodeTxResult>;
-  sendWithdrawTetherTx(
-    param: GRpcClient.TxParam<GRpcClient.WithdrawTetherTx>
-  ): Promise<GRpcClient.EncodeTxResult>;
   sendAccountMigrateTx(
     param: GRpcClient.TxParam<GRpcClient.AccountMigrateTx>
   ): Promise<GRpcClient.EncodeTxResult>;
-  sendDeclareTx(
-    param: GRpcClient.TxParam<GRpcClient.DeclareTx>
-  ): Promise<GRpcClient.EncodeTxResult>;
   sendAcquireAssetTx(
     param: GRpcClient.TxParam<GRpcClient.AcquireAssetTx>
-  ): Promise<GRpcClient.EncodeTxResult>;
-  sendCreateAssetTx(
-    param: GRpcClient.TxParam<GRpcClient.CreateAssetTx>
-  ): Promise<GRpcClient.EncodeTxResult>;
-  sendRevokeTetherTx(
-    param: GRpcClient.TxParam<GRpcClient.RevokeTetherTx>
-  ): Promise<GRpcClient.EncodeTxResult>;
-  sendExchangeTx(
-    param: GRpcClient.TxParam<GRpcClient.ExchangeTx>
   ): Promise<GRpcClient.EncodeTxResult>;
   sendApproveTetherTx(
     param: GRpcClient.TxParam<GRpcClient.ApproveTetherTx>
@@ -249,19 +237,47 @@ declare class GRpcClient {
   sendConsumeAssetTx(
     param: GRpcClient.TxParam<GRpcClient.ConsumeAssetTx>
   ): Promise<GRpcClient.EncodeTxResult>;
-  sendUpgradeNodeTx(
-    param: GRpcClient.TxParam<GRpcClient.UpgradeNodeTx>
+  sendCreateAssetTx(
+    param: GRpcClient.TxParam<GRpcClient.CreateAssetTx>
   ): Promise<GRpcClient.EncodeTxResult>;
-  sendUpdateAssetTx(
-    param: GRpcClient.TxParam<GRpcClient.UpdateAssetTx>
+  sendDeclareTx(
+    param: GRpcClient.TxParam<GRpcClient.DeclareTx>
   ): Promise<GRpcClient.EncodeTxResult>;
   sendDepositTetherTx(
     param: GRpcClient.TxParam<GRpcClient.DepositTetherTx>
   ): Promise<GRpcClient.EncodeTxResult>;
+  sendExchangeTetherTx(
+    param: GRpcClient.TxParam<GRpcClient.ExchangeTetherTx>
+  ): Promise<GRpcClient.EncodeTxResult>;
+  sendExchangeTx(
+    param: GRpcClient.TxParam<GRpcClient.ExchangeTx>
+  ): Promise<GRpcClient.EncodeTxResult>;
   sendPokeTx(param: GRpcClient.TxParam<GRpcClient.PokeTx>): Promise<GRpcClient.EncodeTxResult>;
+  checkin(param: GRpcClient.TxParam<GRpcClient.PokeTx>): Promise<GRpcClient.EncodeTxResult>;
+  sendRetrieveSwapTx(
+    param: GRpcClient.TxParam<GRpcClient.RetrieveSwapTx>
+  ): Promise<GRpcClient.EncodeTxResult>;
+  sendRevokeSwapTx(
+    param: GRpcClient.TxParam<GRpcClient.RevokeSwapTx>
+  ): Promise<GRpcClient.EncodeTxResult>;
+  sendRevokeTetherTx(
+    param: GRpcClient.TxParam<GRpcClient.RevokeTetherTx>
+  ): Promise<GRpcClient.EncodeTxResult>;
+  sendSetupSwapTx(
+    param: GRpcClient.TxParam<GRpcClient.SetupSwapTx>
+  ): Promise<GRpcClient.EncodeTxResult>;
   sendStakeTx(param: GRpcClient.TxParam<GRpcClient.StakeTx>): Promise<GRpcClient.EncodeTxResult>;
   sendTransferTx(
     param: GRpcClient.TxParam<GRpcClient.TransferTx>
+  ): Promise<GRpcClient.EncodeTxResult>;
+  sendUpdateAssetTx(
+    param: GRpcClient.TxParam<GRpcClient.UpdateAssetTx>
+  ): Promise<GRpcClient.EncodeTxResult>;
+  sendUpgradeNodeTx(
+    param: GRpcClient.TxParam<GRpcClient.UpgradeNodeTx>
+  ): Promise<GRpcClient.EncodeTxResult>;
+  sendWithdrawTetherTx(
+    param: GRpcClient.TxParam<GRpcClient.WithdrawTetherTx>
   ): Promise<GRpcClient.EncodeTxResult>;
 
   /**
@@ -1628,9 +1644,42 @@ declare namespace forge_abi {
     data: google.protobuf.Any;
   }
 
+  export interface RetrieveSwapTx {
+    address: string;
+    hashkey: Uint8Array;
+    data: google.protobuf.Any;
+  }
+
+  export interface RevokeSwapTx {
+    address: string;
+    data: google.protobuf.Any;
+  }
+
   export interface RevokeTetherTx {
     tether: string;
     data: google.protobuf.Any;
+  }
+
+  export interface SetupSwapTx {
+    value: forge_abi.BigUint;
+    assets: Array<string>;
+    receiver: string;
+    hashlock: Uint8Array;
+    locktime: number;
+    data: google.protobuf.Any;
+  }
+
+  export interface SwapState {
+    hash: string;
+    address: string;
+    hashkey: Uint8Array;
+    sender: string;
+    receiver: string;
+    value: forge_abi.BigUint;
+    assets: Array<string>;
+    locktime: number;
+    hashlock: Uint8Array;
+    context: forge_abi.StateContext;
   }
 
   export interface stakeForAsset {}

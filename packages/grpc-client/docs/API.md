@@ -294,22 +294,25 @@
   'ConsensusUpgradeTx',
   'DeployProtocolTx',
   'SysUpgradeTx',
-  'ExchangeTetherTx',
-  'WithdrawTetherTx',
   'AccountMigrateTx',
-  'DeclareTx',
   'AcquireAssetTx',
-  'CreateAssetTx',
-  'RevokeTetherTx',
-  'ExchangeTx',
   'ApproveTetherTx',
   'ConsumeAssetTx',
-  'UpgradeNodeTx',
-  'UpdateAssetTx',
+  'CreateAssetTx',
+  'DeclareTx',
   'DepositTetherTx',
+  'ExchangeTetherTx',
+  'ExchangeTx',
   'PokeTx',
+  'RetrieveSwapTx',
+  'RevokeSwapTx',
+  'RevokeTetherTx',
+  'SetupSwapTx',
   'StakeTx',
-  'TransferTx'
+  'TransferTx',
+  'UpdateAssetTx',
+  'UpgradeNodeTx',
+  'WithdrawTetherTx'
 ]
 ```
 
@@ -487,8 +490,8 @@ const stream = client.getAccountState({
     context: {
       genesisTx: 'arcblock',
       renaissanceTx: 'arcblock',
-      genesisTime: '2019-06-07T07:42:13.531Z',
-      renaissanceTime: '2019-06-07T07:42:13.531Z'
+      genesisTime: '2019-07-05T07:53:27.151Z',
+      renaissanceTime: '2019-07-05T07:53:27.151Z'
     },
     issuer: 'arcblock',
     migratedTo: [
@@ -571,7 +574,7 @@ const stream = client.getAssetState({
     readonly: true,
     transferrable: true,
     ttl: 2,
-    consumedTime: '2019-06-07T07:42:13.531Z',
+    consumedTime: '2019-07-05T07:53:27.152Z',
     issuer: 'arcblock',
     parent: 'arcblock',
     stake: {
@@ -602,8 +605,8 @@ const stream = client.getAssetState({
     context: {
       genesisTx: 'arcblock',
       renaissanceTx: 'arcblock',
-      genesisTime: '2019-06-07T07:42:13.531Z',
-      renaissanceTime: '2019-06-07T07:42:13.531Z'
+      genesisTime: '2019-07-05T07:53:27.152Z',
+      renaissanceTime: '2019-07-05T07:53:27.152Z'
     },
     data: {
       type: 'string',
@@ -626,7 +629,7 @@ const stream = client.getBlock({
   block: {
     height: 5,
     numTxs: 2,
-    time: '2019-06-07T07:42:13.531Z',
+    time: '2019-07-05T07:53:27.152Z',
     appHash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
     proposer: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
     txs: [
@@ -666,11 +669,17 @@ const stream = client.getBlock({
         index: 2,
         hash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
         tags: [
-          undefined,
-          undefined
+          {
+            key: Uint8Array [],
+            value: Uint8Array []
+          },
+          {
+            key: Uint8Array [],
+            value: Uint8Array []
+          }
         ],
         code: 0,
-        time: '2019-06-07T07:42:13.532Z'
+        time: '2019-07-05T07:53:27.153Z'
       },
       {
         tx: {
@@ -708,11 +717,17 @@ const stream = client.getBlock({
         index: 2,
         hash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
         tags: [
-          undefined,
-          undefined
+          {
+            key: Uint8Array [],
+            value: Uint8Array []
+          },
+          {
+            key: Uint8Array [],
+            value: Uint8Array []
+          }
         ],
         code: 0,
-        time: '2019-06-07T07:42:13.532Z'
+        time: '2019-07-05T07:53:27.153Z'
       }
     ],
     totalTxs: 5,
@@ -753,11 +768,17 @@ const stream = client.getBlock({
         index: 2,
         hash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
         tags: [
-          undefined,
-          undefined
+          {
+            key: Uint8Array [],
+            value: Uint8Array []
+          },
+          {
+            key: Uint8Array [],
+            value: Uint8Array []
+          }
         ],
         code: 0,
-        time: '2019-06-07T07:42:13.532Z'
+        time: '2019-07-05T07:53:27.153Z'
       },
       {
         tx: {
@@ -795,11 +816,17 @@ const stream = client.getBlock({
         index: 2,
         hash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
         tags: [
-          undefined,
-          undefined
+          {
+            key: Uint8Array [],
+            value: Uint8Array []
+          },
+          {
+            key: Uint8Array [],
+            value: Uint8Array []
+          }
         ],
         code: 0,
-        time: '2019-06-07T07:42:13.532Z'
+        time: '2019-07-05T07:53:27.153Z'
       }
     ],
     txsHashes: [
@@ -817,8 +844,17 @@ const stream = client.getBlock({
     lastResultsHash: Uint8Array [],
     nextValidatorsHash: Uint8Array [],
     validatorsHash: Uint8Array [],
-    version: undefined,
-    lastBlockId: undefined
+    version: {
+      Block: 5,
+      App: 5
+    },
+    lastBlockId: {
+      hash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
+      partsHeader: {
+        total: undefined,
+        hash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55'
+      }
+    }
   }
 }
 ```
@@ -862,7 +898,7 @@ result.on('data', data => {
     {
       height: 5,
       numTxs: 2,
-      time: '2019-06-07T07:42:13.532Z',
+      time: '2019-07-05T07:53:27.154Z',
       appHash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
       proposer: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
       totalTxs: 5,
@@ -881,13 +917,22 @@ result.on('data', data => {
       lastResultsHash: Uint8Array [],
       nextValidatorsHash: Uint8Array [],
       validatorsHash: Uint8Array [],
-      version: undefined,
-      lastBlockId: undefined
+      version: {
+        Block: 5,
+        App: 5
+      },
+      lastBlockId: {
+        hash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
+        partsHeader: {
+          total: undefined,
+          hash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55'
+        }
+      }
     },
     {
       height: 5,
       numTxs: 2,
-      time: '2019-06-07T07:42:13.532Z',
+      time: '2019-07-05T07:53:27.154Z',
       appHash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
       proposer: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
       totalTxs: 5,
@@ -906,8 +951,17 @@ result.on('data', data => {
       lastResultsHash: Uint8Array [],
       nextValidatorsHash: Uint8Array [],
       validatorsHash: Uint8Array [],
-      version: undefined,
-      lastBlockId: undefined
+      version: {
+        Block: 5,
+        App: 5
+      },
+      lastBlockId: {
+        hash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
+        partsHeader: {
+          total: undefined,
+          hash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55'
+        }
+      }
     }
   ]
 }
@@ -933,7 +987,7 @@ result.on('data', data => {
     appHash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
     blockHash: Uint8Array [],
     blockHeight: 5,
-    blockTime: '2019-06-07T07:42:13.532Z',
+    blockTime: '2019-07-05T07:53:27.154Z',
     address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
     votingPower: 5,
     totalTxs: 5,
@@ -1036,8 +1090,8 @@ result.on('data', data => {
         context: {
           genesisTx: 'arcblock',
           renaissanceTx: 'arcblock',
-          genesisTime: '2019-06-07T07:42:13.533Z',
-          renaissanceTime: '2019-06-07T07:42:13.533Z'
+          genesisTime: '2019-07-05T07:53:27.155Z',
+          renaissanceTime: '2019-07-05T07:53:27.155Z'
         }
       }
     },
@@ -1301,7 +1355,7 @@ result.on('data', data => {
     appHash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
     blockHash: Uint8Array [],
     blockHeight: 5,
-    blockTime: '2019-06-07T07:42:13.533Z',
+    blockTime: '2019-07-05T07:53:27.156Z',
     address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
     votingPower: 5,
     totalTxs: 5,
@@ -1397,8 +1451,8 @@ const stream = client.getProtocolState({
     context: {
       genesisTx: 'arcblock',
       renaissanceTx: 'arcblock',
-      genesisTime: '2019-06-07T07:42:13.534Z',
-      renaissanceTime: '2019-06-07T07:42:13.534Z'
+      genesisTime: '2019-07-05T07:53:27.156Z',
+      renaissanceTime: '2019-07-05T07:53:27.156Z'
     },
     data: {
       type: 'string',
@@ -1432,8 +1486,8 @@ const stream = client.getStakeState({
     context: {
       genesisTx: 'arcblock',
       renaissanceTx: 'arcblock',
-      genesisTime: '2019-06-07T07:42:13.534Z',
-      renaissanceTime: '2019-06-07T07:42:13.534Z'
+      genesisTime: '2019-07-05T07:53:27.156Z',
+      renaissanceTime: '2019-07-05T07:53:27.156Z'
     },
     data: {
       type: 'string',
@@ -1468,7 +1522,7 @@ const stream = client.getTetherState({
     commission: [Function: BigUint],
     charge: [Function: BigUint],
     target: 'arcblock',
-    locktime: '2019-06-07T07:42:13.534Z',
+    locktime: '2019-07-05T07:53:27.156Z',
     address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55'
   }
 }
@@ -1520,11 +1574,17 @@ const stream = client.getTx({
     index: 2,
     hash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
     tags: [
-      undefined,
-      undefined
+      {
+        key: Uint8Array [],
+        value: Uint8Array []
+      },
+      {
+        key: Uint8Array [],
+        value: Uint8Array []
+      }
     ],
     code: 0,
-    time: '2019-06-07T07:42:13.534Z'
+    time: '2019-07-05T07:53:27.157Z'
   }
 }
 ```
@@ -1645,7 +1705,10 @@ result.on('data', data => {
     validators: [
       {
         address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-        pubKey: undefined,
+        pubKey: {
+          type: 'arcblock',
+          data: Uint8Array []
+        },
         votingPower: 5,
         proposerPriority: 'arcblock',
         name: 'arcblock',
@@ -1658,7 +1721,10 @@ result.on('data', data => {
       },
       {
         address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-        pubKey: undefined,
+        pubKey: {
+          type: 'arcblock',
+          data: Uint8Array []
+        },
         votingPower: 5,
         proposerPriority: 'arcblock',
         name: 'arcblock',
@@ -2053,7 +2119,7 @@ result.on('data', data => {
       commission: [Function: BigUint],
       charge: [Function: BigUint],
       target: 'arcblock',
-      locktime: '2019-06-07T07:42:13.535Z',
+      locktime: '2019-07-05T07:53:27.159Z',
       address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55'
     },
     {
@@ -2066,7 +2132,7 @@ result.on('data', data => {
       commission: [Function: BigUint],
       charge: [Function: BigUint],
       target: 'arcblock',
-      locktime: '2019-06-07T07:42:13.535Z',
+      locktime: '2019-07-05T07:53:27.159Z',
       address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55'
     }
   ]
@@ -2548,11 +2614,17 @@ result.on('data', data => {
       index: 2,
       hash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
       tags: [
-        undefined,
-        undefined
+        {
+          key: Uint8Array [],
+          value: Uint8Array []
+        },
+        {
+          key: Uint8Array [],
+          value: Uint8Array []
+        }
       ],
       code: 0,
-      time: '2019-06-07T07:42:13.536Z'
+      time: '2019-07-05T07:53:27.160Z'
     },
     {
       tx: {
@@ -2590,11 +2662,17 @@ result.on('data', data => {
       index: 2,
       hash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
       tags: [
-        undefined,
-        undefined
+        {
+          key: Uint8Array [],
+          value: Uint8Array []
+        },
+        {
+          key: Uint8Array [],
+          value: Uint8Array []
+        }
       ],
       code: 0,
-      time: '2019-06-07T07:42:13.536Z'
+      time: '2019-07-05T07:53:27.160Z'
     }
   ]
 }
