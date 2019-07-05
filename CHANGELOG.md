@@ -1,5 +1,9 @@
 ## 0.32.0 (July 05, 2019)
 
+- chore: upgrade forge-sdk with forge v0.32.2
+- chore: upgrade grpc-client with forge v0.32.2
+- chore: upgrade graphql-client with forge v0.32.2
+- chore: upgrade forge-proto with forge v0.32.2
 - chore: update readme with new badge
 - fix: respect FORGE_API_ENDPOINT when run examples
 - feat: support dump moderator b64 format pk
