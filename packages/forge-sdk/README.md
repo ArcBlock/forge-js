@@ -1,4 +1,4 @@
-# [**@arcblock/forge-sdk**](https://github.com/arcblock/forge-js)
+![forge-sdk](https://www.arcblock.io/.netlify/functions/badge/?text=forge-sdk)
 
 [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 
@@ -7,16 +7,15 @@
 
 ## Table of Contents
 
-- [**@arcblock/forge-sdk**](#arcblockforge-sdk)
-  - [Table of Contents](#table-of-contents)
-  - [Install](#install)
-  - [Usage](#usage)
-    - [ES5(commonjs)](#es5commonjs)
-    - [ES6](#es6)
-    - [Util](#util)
-    - [Wallet](#wallet)
-    - [Message](#message)
-  - [Packages Included](#packages-included)
+- [Table of Contents](#Table-of-Contents)
+- [Install](#Install)
+- [Usage](#Usage)
+  - [ES5(commonjs)](#ES5commonjs)
+  - [ES6](#ES6)
+  - [Util](#Util)
+  - [Wallet](#Wallet)
+  - [Message](#Message)
+- [Packages Included](#Packages-Included)
 
 
 ## Install

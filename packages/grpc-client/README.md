@@ -1,4 +1,4 @@
-# [**@arcblock/grpc-client**](https://github.com/arcblock/forge-js)
+![grpc-client](https://www.arcblock.io/.netlify/functions/badge/?text=grpc-client)
 
 [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 
@@ -13,11 +13,12 @@ A `GRpcClient` instance mainly supports 3 groups of methods that saves you time 
 
 ## Table of Contents
 
-* [Install](#install)
-* [Usage](#usage)
-* [Examples](#examples)
-* [Debugging](#debugging)
-* [Documentation](#documentation)
+- [Table of Contents](#Table-of-Contents)
+- [Install](#Install)
+- [Usage](#Usage)
+- [Examples](#Examples)
+- [Debugging](#Debugging)
+- [Documentation](#Documentation)
 
 
 ## Install

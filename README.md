@@ -1,13 +1,34 @@
-# [forge-javascript-sdk](https://github.com/ArcBlock/forge-js)
+![forge-javascript-sdk](https://www.arcblock.io/.netlify/functions/badge/?text=Forge%20Javascript%20SDK)
+
+## Table of Contents
+
+- [Table of Contents](#Table-of-Contents)
+- [Introduction](#Introduction)
+- [Packages](#Packages)
+- [Install](#Install)
+- [Usage](#Usage)
+  - [ES5(commonjs)](#ES5commonjs)
+  - [ES6](#ES6)
+  - [Util](#Util)
+  - [Wallet](#Wallet)
+  - [Message](#Message)
+- [Documentation](#Documentation)
+- [Contribution](#Contribution)
+- [Compatibility](#Compatibility)
+- [Report a Bug?](#Report-a-Bug)
+- [License](#License)
+
+## Introduction
 
 [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lernajs.io/)
 [![docs](https://img.shields.io/badge/powered%20by-arcblock-green.svg)](https://docs.arcblock.io)
 
-> Javascript SDK for [forge](https://docs.arcblock.io/forge/latest/), which is an awesome framework to write distributed blockchain applications.
+> Last updated at 7/5/2019, 14:49:00
 
-> Last updated at 2019-6-28 11:03:03
+Javascript SDK for [forge](https://docs.arcblock.io/forge/latest/), which is an awesome framework to write distributed blockchain applications.
 
-## Packages Included
+## Packages
+
 
 - [@arcblock/did <img src="https://img.shields.io/npm/v/@arcblock/did.svg" alt="Version">](https://www.npmjs.com/package/@arcblock/did)
 - [@arcblock/did-auth <img src="https://img.shields.io/npm/v/@arcblock/did-auth.svg" alt="Version">](https://www.npmjs.com/package/@arcblock/did-auth)
@@ -31,7 +52,6 @@ npm i @arcblock/forge-sdk
 // OR
 yarn add @arcblock/forge-sdk
 ```
-
 
 ## Usage
 

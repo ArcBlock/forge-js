@@ -1,7 +1,6 @@
-# `@arcblock/did`
+![DID](https://www.arcblock.io/.netlify/functions/badge/?text=DID)
 
 > Javascript library to manipulate ArcBlock DID: <https://github.com/ArcBlock/abt-did-spec>
-
 
 ## Usage
 

@@ -20,16 +20,36 @@ const packageList = packages.map(x => {
 });
 
 const readmeFile = path.join(__dirname, '../README.md');
-const readmeContent = `# [forge-javascript-sdk](https://github.com/ArcBlock/forge-js)
+const readmeContent = `![forge-javascript-sdk](https://www.arcblock.io/.netlify/functions/badge/?text=Forge%20Javascript%20SDK)
+
+## Table of Contents
+
+- [Table of Contents](#Table-of-Contents)
+- [Introduction](#Introduction)
+- [Packages](#Packages)
+- [Install](#Install)
+- [Usage](#Usage)
+  - [ES5(commonjs)](#ES5commonjs)
+  - [ES6](#ES6)
+  - [Util](#Util)
+  - [Wallet](#Wallet)
+  - [Message](#Message)
+- [Documentation](#Documentation)
+- [Contribution](#Contribution)
+- [Compatibility](#Compatibility)
+- [Report a Bug?](#Report-a-Bug)
+- [License](#License)
+
+## Introduction
 
 [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lernajs.io/)
 [![docs](https://img.shields.io/badge/powered%20by-arcblock-green.svg)](https://docs.arcblock.io)
 
-> Javascript SDK for [forge](https://docs.arcblock.io/forge/latest/), which is an awesome framework to write distributed blockchain applications.
-
 > Last updated at ${new Date().toLocaleString()}
 
-## Packages Included
+Javascript SDK for [forge](https://docs.arcblock.io/forge/latest/), which is an awesome framework to write distributed blockchain applications.
+
+## Packages
 
 ${packageList.join('\n')}
 
@@ -40,7 +60,6 @@ npm i @arcblock/forge-sdk
 // OR
 yarn add @arcblock/forge-sdk
 \`\`\`
-
 
 ## Usage
 

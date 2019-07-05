@@ -1,15 +1,16 @@
-# [**@arcblock/did-util**](https://github.com/arcblock/forge-js)
+![did-util](https://www.arcblock.io/.netlify/functions/badge/?text=did-util)
 
 [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 
 > Helper functions to calculate did
 
-
 ## Table of Contents
 
-* [Install](#install)
-* [Usage](#usage)
-* [Documentation](#documentation)
+- [Table of Contents](#Table-of-Contents)
+- [Install](#Install)
+- [Usage](#Usage)
+- [Documentation](#Documentation)
+- [Contributors](#Contributors)
 
 
 ## Install

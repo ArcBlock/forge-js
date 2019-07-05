@@ -1,4 +1,4 @@
-# `@arcblock/graphql-client`
+![graphql-client](https://www.arcblock.io/.netlify/functions/badge/?text=graphql-client)
 
 Client library to connect your app with forge powered blockchain node, all requests are sent over http/https, can be used in both Node.js and browser environment.
 
@@ -13,11 +13,12 @@ A `GraphQLClient` instance mainly supports 5 groups of methods that saves you ti
 
 ## Table of Contents
 
-* [Install](#install)
-* [Usage](#usage)
-* [Examples](#examples)
-* [Debugging](#debugging)
-* [Documentation](#documentation)
+- [Table of Contents](#Table-of-Contents)
+- [Install](#Install)
+- [Usage](#Usage)
+- [Examples](#Examples)
+- [Debugging](#Debugging)
+- [Documentation](#Documentation)
 
 
 ## Install

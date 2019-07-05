@@ -1,7 +1,6 @@
-# `@arcblock/forge-util`
+![forge-util](https://www.arcblock.io/.netlify/functions/badge/?text=forge-util)
 
 > Utility functions to ease crypto/encoding related tasks, most methods are migrated from [web3-utils](https://github.com/ethereum/web3.js/blob/1.0/packages/web3-utils/README.md)
-
 
 ## Usage
 
@@ -20,7 +19,6 @@ console.log(Util.isStrictHex('0x123abc')); // true
 ```
 
 Checkout [lib/index.d.ts](./lib/index.d.ts) for more API.
-
 
 ## Documentation
 

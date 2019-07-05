@@ -1,4 +1,4 @@
-# [**@arcblock/forge-proto**](https://github.com/arcblock/forge-js/packages/forge-proto)
+![forge-proto](https://www.arcblock.io/.netlify/functions/badge/?text=forge-proto)
 
 [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 
@@ -7,10 +7,11 @@
 
 ## Table of Contents
 
-* [Install](#install)
-* [Usage](#usage)
-* [Documentation](#documentation)
-* [Contributors](#contributors)
+- [Table of Contents](#Table-of-Contents)
+- [Install](#Install)
+- [Usage](#Usage)
+- [Documentation](#Documentation)
+- [Contributors](#Contributors)
 
 
 ## Install
