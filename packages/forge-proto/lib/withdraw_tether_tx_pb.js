@@ -34,14 +34,7 @@ goog.exportSymbol('proto.forge_abi.WithdrawTetherTx', null, global);
  * @constructor
  */
 proto.forge_abi.TetherExchangeInfo = function(opt_data) {
-  jspb.Message.initialize(
-    this,
-    opt_data,
-    0,
-    -1,
-    proto.forge_abi.TetherExchangeInfo.repeatedFields_,
-    null
-  );
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.forge_abi.TetherExchangeInfo.repeatedFields_, null);
 };
 goog.inherits(proto.forge_abi.TetherExchangeInfo, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -54,44 +47,47 @@ if (goog.DEBUG && !COMPILED) {
  */
 proto.forge_abi.TetherExchangeInfo.repeatedFields_ = [2];
 
+
+
 if (jspb.Message.GENERATE_TO_OBJECT) {
-  /**
-   * Creates an object representation of this proto suitable for use in Soy templates.
-   * Field names that are reserved in JavaScript and will be renamed to pb_name.
-   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
-   * For the list of reserved names please see:
-   *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
-   * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
-   *     for transitional soy proto support: http://goto/soy-param-migration
-   * @return {!Object}
-   */
-  proto.forge_abi.TetherExchangeInfo.prototype.toObject = function(opt_includeInstance) {
-    return proto.forge_abi.TetherExchangeInfo.toObject(opt_includeInstance, this);
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.forge_abi.TetherExchangeInfo.prototype.toObject = function(opt_includeInstance) {
+  return proto.forge_abi.TetherExchangeInfo.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.forge_abi.TetherExchangeInfo} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.forge_abi.TetherExchangeInfo.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    value: (f = msg.getValue()) && type_pb.BigUint.toObject(includeInstance, f),
+    assetsList: jspb.Message.getRepeatedField(msg, 2),
+    deposit: (f = msg.getDeposit()) && type_pb.Transaction.toObject(includeInstance, f)
   };
 
-  /**
-   * Static version of the {@see toObject} method.
-   * @param {boolean|undefined} includeInstance Whether to include the JSPB
-   *     instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @param {!proto.forge_abi.TetherExchangeInfo} msg The msg instance to transform.
-   * @return {!Object}
-   * @suppress {unusedLocalVariables} f is only used for nested messages
-   */
-  proto.forge_abi.TetherExchangeInfo.toObject = function(includeInstance, msg) {
-    var f,
-      obj = {
-        value: (f = msg.getValue()) && type_pb.BigUint.toObject(includeInstance, f),
-        assetsList: jspb.Message.getRepeatedField(msg, 2),
-        deposit: (f = msg.getDeposit()) && type_pb.Transaction.toObject(includeInstance, f),
-      };
-
-    if (includeInstance) {
-      obj.$jspbMessageInstance = msg;
-    }
-    return obj;
-  };
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
 }
+
 
 /**
  * Deserializes binary data (in protobuf wire format).
@@ -100,9 +96,10 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  */
 proto.forge_abi.TetherExchangeInfo.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.forge_abi.TetherExchangeInfo();
+  var msg = new proto.forge_abi.TetherExchangeInfo;
   return proto.forge_abi.TetherExchangeInfo.deserializeBinaryFromReader(msg, reader);
 };
+
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -118,27 +115,28 @@ proto.forge_abi.TetherExchangeInfo.deserializeBinaryFromReader = function(msg, r
     }
     var field = reader.getFieldNumber();
     switch (field) {
-      case 1:
-        var value = new type_pb.BigUint();
-        reader.readMessage(value, type_pb.BigUint.deserializeBinaryFromReader);
-        msg.setValue(value);
-        break;
-      case 2:
-        var value = /** @type {string} */ (reader.readString());
-        msg.addAssets(value);
-        break;
-      case 3:
-        var value = new type_pb.Transaction();
-        reader.readMessage(value, type_pb.Transaction.deserializeBinaryFromReader);
-        msg.setDeposit(value);
-        break;
-      default:
-        reader.skipField();
-        break;
+    case 1:
+      var value = new type_pb.BigUint;
+      reader.readMessage(value,type_pb.BigUint.deserializeBinaryFromReader);
+      msg.setValue(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.addAssets(value);
+      break;
+    case 3:
+      var value = new type_pb.Transaction;
+      reader.readMessage(value,type_pb.Transaction.deserializeBinaryFromReader);
+      msg.setDeposit(value);
+      break;
+    default:
+      reader.skipField();
+      break;
     }
   }
   return msg;
 };
+
 
 /**
  * Serializes the message to binary data (in protobuf wire format).
@@ -149,6 +147,7 @@ proto.forge_abi.TetherExchangeInfo.prototype.serializeBinary = function() {
   proto.forge_abi.TetherExchangeInfo.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
+
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -161,38 +160,50 @@ proto.forge_abi.TetherExchangeInfo.serializeBinaryToWriter = function(message, w
   var f = undefined;
   f = message.getValue();
   if (f != null) {
-    writer.writeMessage(1, f, type_pb.BigUint.serializeBinaryToWriter);
+    writer.writeMessage(
+      1,
+      f,
+      type_pb.BigUint.serializeBinaryToWriter
+    );
   }
   f = message.getAssetsList();
   if (f.length > 0) {
-    writer.writeRepeatedString(2, f);
+    writer.writeRepeatedString(
+      2,
+      f
+    );
   }
   f = message.getDeposit();
   if (f != null) {
-    writer.writeMessage(3, f, type_pb.Transaction.serializeBinaryToWriter);
+    writer.writeMessage(
+      3,
+      f,
+      type_pb.Transaction.serializeBinaryToWriter
+    );
   }
 };
+
 
 /**
  * optional BigUint value = 1;
  * @return {?proto.forge_abi.BigUint}
  */
 proto.forge_abi.TetherExchangeInfo.prototype.getValue = function() {
-  return /** @type{?proto.forge_abi.BigUint} */ (jspb.Message.getWrapperField(
-    this,
-    type_pb.BigUint,
-    1
-  ));
+  return /** @type{?proto.forge_abi.BigUint} */ (
+    jspb.Message.getWrapperField(this, type_pb.BigUint, 1));
 };
+
 
 /** @param {?proto.forge_abi.BigUint|undefined} value */
 proto.forge_abi.TetherExchangeInfo.prototype.setValue = function(value) {
   jspb.Message.setWrapperField(this, 1, value);
 };
 
+
 proto.forge_abi.TetherExchangeInfo.prototype.clearValue = function() {
   this.setValue(undefined);
 };
+
 
 /**
  * Returns whether this field is set.
@@ -202,6 +213,7 @@ proto.forge_abi.TetherExchangeInfo.prototype.hasValue = function() {
   return jspb.Message.getField(this, 1) != null;
 };
 
+
 /**
  * repeated string assets = 2;
  * @return {!Array<string>}
@@ -210,10 +222,12 @@ proto.forge_abi.TetherExchangeInfo.prototype.getAssetsList = function() {
   return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 2));
 };
 
+
 /** @param {!Array<string>} value */
 proto.forge_abi.TetherExchangeInfo.prototype.setAssetsList = function(value) {
   jspb.Message.setField(this, 2, value || []);
 };
+
 
 /**
  * @param {string} value
@@ -223,30 +237,32 @@ proto.forge_abi.TetherExchangeInfo.prototype.addAssets = function(value, opt_ind
   jspb.Message.addToRepeatedField(this, 2, value, opt_index);
 };
 
+
 proto.forge_abi.TetherExchangeInfo.prototype.clearAssetsList = function() {
   this.setAssetsList([]);
 };
+
 
 /**
  * optional Transaction deposit = 3;
  * @return {?proto.forge_abi.Transaction}
  */
 proto.forge_abi.TetherExchangeInfo.prototype.getDeposit = function() {
-  return /** @type{?proto.forge_abi.Transaction} */ (jspb.Message.getWrapperField(
-    this,
-    type_pb.Transaction,
-    3
-  ));
+  return /** @type{?proto.forge_abi.Transaction} */ (
+    jspb.Message.getWrapperField(this, type_pb.Transaction, 3));
 };
+
 
 /** @param {?proto.forge_abi.Transaction|undefined} value */
 proto.forge_abi.TetherExchangeInfo.prototype.setDeposit = function(value) {
   jspb.Message.setWrapperField(this, 3, value);
 };
 
+
 proto.forge_abi.TetherExchangeInfo.prototype.clearDeposit = function() {
   this.setDeposit(undefined);
 };
+
 
 /**
  * Returns whether this field is set.
@@ -255,6 +271,8 @@ proto.forge_abi.TetherExchangeInfo.prototype.clearDeposit = function() {
 proto.forge_abi.TetherExchangeInfo.prototype.hasDeposit = function() {
   return jspb.Message.getField(this, 3) != null;
 };
+
+
 
 /**
  * Generated by JsPbCodeGenerator.
@@ -274,49 +292,47 @@ if (goog.DEBUG && !COMPILED) {
   proto.forge_abi.ExchangeTetherTx.displayName = 'proto.forge_abi.ExchangeTetherTx';
 }
 
+
 if (jspb.Message.GENERATE_TO_OBJECT) {
-  /**
-   * Creates an object representation of this proto suitable for use in Soy templates.
-   * Field names that are reserved in JavaScript and will be renamed to pb_name.
-   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
-   * For the list of reserved names please see:
-   *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
-   * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
-   *     for transitional soy proto support: http://goto/soy-param-migration
-   * @return {!Object}
-   */
-  proto.forge_abi.ExchangeTetherTx.prototype.toObject = function(opt_includeInstance) {
-    return proto.forge_abi.ExchangeTetherTx.toObject(opt_includeInstance, this);
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.forge_abi.ExchangeTetherTx.prototype.toObject = function(opt_includeInstance) {
+  return proto.forge_abi.ExchangeTetherTx.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.forge_abi.ExchangeTetherTx} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.forge_abi.ExchangeTetherTx.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    sender: (f = msg.getSender()) && proto.forge_abi.ExchangeInfo.toObject(includeInstance, f),
+    receiver: (f = msg.getReceiver()) && proto.forge_abi.TetherExchangeInfo.toObject(includeInstance, f),
+    expiredAt: (f = msg.getExpiredAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+    data: (f = msg.getData()) && google_protobuf_any_pb.Any.toObject(includeInstance, f)
   };
 
-  /**
-   * Static version of the {@see toObject} method.
-   * @param {boolean|undefined} includeInstance Whether to include the JSPB
-   *     instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @param {!proto.forge_abi.ExchangeTetherTx} msg The msg instance to transform.
-   * @return {!Object}
-   * @suppress {unusedLocalVariables} f is only used for nested messages
-   */
-  proto.forge_abi.ExchangeTetherTx.toObject = function(includeInstance, msg) {
-    var f,
-      obj = {
-        sender: (f = msg.getSender()) && proto.forge_abi.ExchangeInfo.toObject(includeInstance, f),
-        receiver:
-          (f = msg.getReceiver()) &&
-          proto.forge_abi.TetherExchangeInfo.toObject(includeInstance, f),
-        expiredAt:
-          (f = msg.getExpiredAt()) &&
-          google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-        data: (f = msg.getData()) && google_protobuf_any_pb.Any.toObject(includeInstance, f),
-      };
-
-    if (includeInstance) {
-      obj.$jspbMessageInstance = msg;
-    }
-    return obj;
-  };
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
 }
+
 
 /**
  * Deserializes binary data (in protobuf wire format).
@@ -325,9 +341,10 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  */
 proto.forge_abi.ExchangeTetherTx.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.forge_abi.ExchangeTetherTx();
+  var msg = new proto.forge_abi.ExchangeTetherTx;
   return proto.forge_abi.ExchangeTetherTx.deserializeBinaryFromReader(msg, reader);
 };
+
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -343,36 +360,34 @@ proto.forge_abi.ExchangeTetherTx.deserializeBinaryFromReader = function(msg, rea
     }
     var field = reader.getFieldNumber();
     switch (field) {
-      case 1:
-        var value = new proto.forge_abi.ExchangeInfo();
-        reader.readMessage(value, proto.forge_abi.ExchangeInfo.deserializeBinaryFromReader);
-        msg.setSender(value);
-        break;
-      case 2:
-        var value = new proto.forge_abi.TetherExchangeInfo();
-        reader.readMessage(value, proto.forge_abi.TetherExchangeInfo.deserializeBinaryFromReader);
-        msg.setReceiver(value);
-        break;
-      case 3:
-        var value = new google_protobuf_timestamp_pb.Timestamp();
-        reader.readMessage(
-          value,
-          google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader
-        );
-        msg.setExpiredAt(value);
-        break;
-      case 15:
-        var value = new google_protobuf_any_pb.Any();
-        reader.readMessage(value, google_protobuf_any_pb.Any.deserializeBinaryFromReader);
-        msg.setData(value);
-        break;
-      default:
-        reader.skipField();
-        break;
+    case 1:
+      var value = new proto.forge_abi.ExchangeInfo;
+      reader.readMessage(value,proto.forge_abi.ExchangeInfo.deserializeBinaryFromReader);
+      msg.setSender(value);
+      break;
+    case 2:
+      var value = new proto.forge_abi.TetherExchangeInfo;
+      reader.readMessage(value,proto.forge_abi.TetherExchangeInfo.deserializeBinaryFromReader);
+      msg.setReceiver(value);
+      break;
+    case 3:
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setExpiredAt(value);
+      break;
+    case 15:
+      var value = new google_protobuf_any_pb.Any;
+      reader.readMessage(value,google_protobuf_any_pb.Any.deserializeBinaryFromReader);
+      msg.setData(value);
+      break;
+    default:
+      reader.skipField();
+      break;
     }
   }
   return msg;
 };
+
 
 /**
  * Serializes the message to binary data (in protobuf wire format).
@@ -383,6 +398,7 @@ proto.forge_abi.ExchangeTetherTx.prototype.serializeBinary = function() {
   proto.forge_abi.ExchangeTetherTx.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
+
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -395,42 +411,59 @@ proto.forge_abi.ExchangeTetherTx.serializeBinaryToWriter = function(message, wri
   var f = undefined;
   f = message.getSender();
   if (f != null) {
-    writer.writeMessage(1, f, proto.forge_abi.ExchangeInfo.serializeBinaryToWriter);
+    writer.writeMessage(
+      1,
+      f,
+      proto.forge_abi.ExchangeInfo.serializeBinaryToWriter
+    );
   }
   f = message.getReceiver();
   if (f != null) {
-    writer.writeMessage(2, f, proto.forge_abi.TetherExchangeInfo.serializeBinaryToWriter);
+    writer.writeMessage(
+      2,
+      f,
+      proto.forge_abi.TetherExchangeInfo.serializeBinaryToWriter
+    );
   }
   f = message.getExpiredAt();
   if (f != null) {
-    writer.writeMessage(3, f, google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter);
+    writer.writeMessage(
+      3,
+      f,
+      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+    );
   }
   f = message.getData();
   if (f != null) {
-    writer.writeMessage(15, f, google_protobuf_any_pb.Any.serializeBinaryToWriter);
+    writer.writeMessage(
+      15,
+      f,
+      google_protobuf_any_pb.Any.serializeBinaryToWriter
+    );
   }
 };
+
 
 /**
  * optional ExchangeInfo sender = 1;
  * @return {?proto.forge_abi.ExchangeInfo}
  */
 proto.forge_abi.ExchangeTetherTx.prototype.getSender = function() {
-  return /** @type{?proto.forge_abi.ExchangeInfo} */ (jspb.Message.getWrapperField(
-    this,
-    proto.forge_abi.ExchangeInfo,
-    1
-  ));
+  return /** @type{?proto.forge_abi.ExchangeInfo} */ (
+    jspb.Message.getWrapperField(this, proto.forge_abi.ExchangeInfo, 1));
 };
+
 
 /** @param {?proto.forge_abi.ExchangeInfo|undefined} value */
 proto.forge_abi.ExchangeTetherTx.prototype.setSender = function(value) {
   jspb.Message.setWrapperField(this, 1, value);
 };
 
+
 proto.forge_abi.ExchangeTetherTx.prototype.clearSender = function() {
   this.setSender(undefined);
 };
+
 
 /**
  * Returns whether this field is set.
@@ -440,26 +473,27 @@ proto.forge_abi.ExchangeTetherTx.prototype.hasSender = function() {
   return jspb.Message.getField(this, 1) != null;
 };
 
+
 /**
  * optional TetherExchangeInfo receiver = 2;
  * @return {?proto.forge_abi.TetherExchangeInfo}
  */
 proto.forge_abi.ExchangeTetherTx.prototype.getReceiver = function() {
-  return /** @type{?proto.forge_abi.TetherExchangeInfo} */ (jspb.Message.getWrapperField(
-    this,
-    proto.forge_abi.TetherExchangeInfo,
-    2
-  ));
+  return /** @type{?proto.forge_abi.TetherExchangeInfo} */ (
+    jspb.Message.getWrapperField(this, proto.forge_abi.TetherExchangeInfo, 2));
 };
+
 
 /** @param {?proto.forge_abi.TetherExchangeInfo|undefined} value */
 proto.forge_abi.ExchangeTetherTx.prototype.setReceiver = function(value) {
   jspb.Message.setWrapperField(this, 2, value);
 };
 
+
 proto.forge_abi.ExchangeTetherTx.prototype.clearReceiver = function() {
   this.setReceiver(undefined);
 };
+
 
 /**
  * Returns whether this field is set.
@@ -469,26 +503,27 @@ proto.forge_abi.ExchangeTetherTx.prototype.hasReceiver = function() {
   return jspb.Message.getField(this, 2) != null;
 };
 
+
 /**
  * optional google.protobuf.Timestamp expired_at = 3;
  * @return {?proto.google.protobuf.Timestamp}
  */
 proto.forge_abi.ExchangeTetherTx.prototype.getExpiredAt = function() {
-  return /** @type{?proto.google.protobuf.Timestamp} */ (jspb.Message.getWrapperField(
-    this,
-    google_protobuf_timestamp_pb.Timestamp,
-    3
-  ));
+  return /** @type{?proto.google.protobuf.Timestamp} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 3));
 };
+
 
 /** @param {?proto.google.protobuf.Timestamp|undefined} value */
 proto.forge_abi.ExchangeTetherTx.prototype.setExpiredAt = function(value) {
   jspb.Message.setWrapperField(this, 3, value);
 };
 
+
 proto.forge_abi.ExchangeTetherTx.prototype.clearExpiredAt = function() {
   this.setExpiredAt(undefined);
 };
+
 
 /**
  * Returns whether this field is set.
@@ -498,26 +533,27 @@ proto.forge_abi.ExchangeTetherTx.prototype.hasExpiredAt = function() {
   return jspb.Message.getField(this, 3) != null;
 };
 
+
 /**
  * optional google.protobuf.Any data = 15;
  * @return {?proto.google.protobuf.Any}
  */
 proto.forge_abi.ExchangeTetherTx.prototype.getData = function() {
-  return /** @type{?proto.google.protobuf.Any} */ (jspb.Message.getWrapperField(
-    this,
-    google_protobuf_any_pb.Any,
-    15
-  ));
+  return /** @type{?proto.google.protobuf.Any} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_any_pb.Any, 15));
 };
+
 
 /** @param {?proto.google.protobuf.Any|undefined} value */
 proto.forge_abi.ExchangeTetherTx.prototype.setData = function(value) {
   jspb.Message.setWrapperField(this, 15, value);
 };
 
+
 proto.forge_abi.ExchangeTetherTx.prototype.clearData = function() {
   this.setData(undefined);
 };
+
 
 /**
  * Returns whether this field is set.
@@ -526,6 +562,8 @@ proto.forge_abi.ExchangeTetherTx.prototype.clearData = function() {
 proto.forge_abi.ExchangeTetherTx.prototype.hasData = function() {
   return jspb.Message.getField(this, 15) != null;
 };
+
+
 
 /**
  * Generated by JsPbCodeGenerator.
@@ -538,14 +576,7 @@ proto.forge_abi.ExchangeTetherTx.prototype.hasData = function() {
  * @constructor
  */
 proto.forge_abi.ExchangeInfo = function(opt_data) {
-  jspb.Message.initialize(
-    this,
-    opt_data,
-    0,
-    -1,
-    proto.forge_abi.ExchangeInfo.repeatedFields_,
-    null
-  );
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.forge_abi.ExchangeInfo.repeatedFields_, null);
 };
 goog.inherits(proto.forge_abi.ExchangeInfo, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -558,43 +589,46 @@ if (goog.DEBUG && !COMPILED) {
  */
 proto.forge_abi.ExchangeInfo.repeatedFields_ = [2];
 
+
+
 if (jspb.Message.GENERATE_TO_OBJECT) {
-  /**
-   * Creates an object representation of this proto suitable for use in Soy templates.
-   * Field names that are reserved in JavaScript and will be renamed to pb_name.
-   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
-   * For the list of reserved names please see:
-   *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
-   * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
-   *     for transitional soy proto support: http://goto/soy-param-migration
-   * @return {!Object}
-   */
-  proto.forge_abi.ExchangeInfo.prototype.toObject = function(opt_includeInstance) {
-    return proto.forge_abi.ExchangeInfo.toObject(opt_includeInstance, this);
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.forge_abi.ExchangeInfo.prototype.toObject = function(opt_includeInstance) {
+  return proto.forge_abi.ExchangeInfo.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.forge_abi.ExchangeInfo} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.forge_abi.ExchangeInfo.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    value: (f = msg.getValue()) && type_pb.BigUint.toObject(includeInstance, f),
+    assetsList: jspb.Message.getRepeatedField(msg, 2)
   };
 
-  /**
-   * Static version of the {@see toObject} method.
-   * @param {boolean|undefined} includeInstance Whether to include the JSPB
-   *     instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @param {!proto.forge_abi.ExchangeInfo} msg The msg instance to transform.
-   * @return {!Object}
-   * @suppress {unusedLocalVariables} f is only used for nested messages
-   */
-  proto.forge_abi.ExchangeInfo.toObject = function(includeInstance, msg) {
-    var f,
-      obj = {
-        value: (f = msg.getValue()) && type_pb.BigUint.toObject(includeInstance, f),
-        assetsList: jspb.Message.getRepeatedField(msg, 2),
-      };
-
-    if (includeInstance) {
-      obj.$jspbMessageInstance = msg;
-    }
-    return obj;
-  };
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
 }
+
 
 /**
  * Deserializes binary data (in protobuf wire format).
@@ -603,9 +637,10 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  */
 proto.forge_abi.ExchangeInfo.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.forge_abi.ExchangeInfo();
+  var msg = new proto.forge_abi.ExchangeInfo;
   return proto.forge_abi.ExchangeInfo.deserializeBinaryFromReader(msg, reader);
 };
+
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -621,22 +656,23 @@ proto.forge_abi.ExchangeInfo.deserializeBinaryFromReader = function(msg, reader)
     }
     var field = reader.getFieldNumber();
     switch (field) {
-      case 1:
-        var value = new type_pb.BigUint();
-        reader.readMessage(value, type_pb.BigUint.deserializeBinaryFromReader);
-        msg.setValue(value);
-        break;
-      case 2:
-        var value = /** @type {string} */ (reader.readString());
-        msg.addAssets(value);
-        break;
-      default:
-        reader.skipField();
-        break;
+    case 1:
+      var value = new type_pb.BigUint;
+      reader.readMessage(value,type_pb.BigUint.deserializeBinaryFromReader);
+      msg.setValue(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.addAssets(value);
+      break;
+    default:
+      reader.skipField();
+      break;
     }
   }
   return msg;
 };
+
 
 /**
  * Serializes the message to binary data (in protobuf wire format).
@@ -647,6 +683,7 @@ proto.forge_abi.ExchangeInfo.prototype.serializeBinary = function() {
   proto.forge_abi.ExchangeInfo.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
+
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -659,34 +696,42 @@ proto.forge_abi.ExchangeInfo.serializeBinaryToWriter = function(message, writer)
   var f = undefined;
   f = message.getValue();
   if (f != null) {
-    writer.writeMessage(1, f, type_pb.BigUint.serializeBinaryToWriter);
+    writer.writeMessage(
+      1,
+      f,
+      type_pb.BigUint.serializeBinaryToWriter
+    );
   }
   f = message.getAssetsList();
   if (f.length > 0) {
-    writer.writeRepeatedString(2, f);
+    writer.writeRepeatedString(
+      2,
+      f
+    );
   }
 };
+
 
 /**
  * optional BigUint value = 1;
  * @return {?proto.forge_abi.BigUint}
  */
 proto.forge_abi.ExchangeInfo.prototype.getValue = function() {
-  return /** @type{?proto.forge_abi.BigUint} */ (jspb.Message.getWrapperField(
-    this,
-    type_pb.BigUint,
-    1
-  ));
+  return /** @type{?proto.forge_abi.BigUint} */ (
+    jspb.Message.getWrapperField(this, type_pb.BigUint, 1));
 };
+
 
 /** @param {?proto.forge_abi.BigUint|undefined} value */
 proto.forge_abi.ExchangeInfo.prototype.setValue = function(value) {
   jspb.Message.setWrapperField(this, 1, value);
 };
 
+
 proto.forge_abi.ExchangeInfo.prototype.clearValue = function() {
   this.setValue(undefined);
 };
+
 
 /**
  * Returns whether this field is set.
@@ -696,6 +741,7 @@ proto.forge_abi.ExchangeInfo.prototype.hasValue = function() {
   return jspb.Message.getField(this, 1) != null;
 };
 
+
 /**
  * repeated string assets = 2;
  * @return {!Array<string>}
@@ -704,10 +750,12 @@ proto.forge_abi.ExchangeInfo.prototype.getAssetsList = function() {
   return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 2));
 };
 
+
 /** @param {!Array<string>} value */
 proto.forge_abi.ExchangeInfo.prototype.setAssetsList = function(value) {
   jspb.Message.setField(this, 2, value || []);
 };
+
 
 /**
  * @param {string} value
@@ -717,9 +765,12 @@ proto.forge_abi.ExchangeInfo.prototype.addAssets = function(value, opt_index) {
   jspb.Message.addToRepeatedField(this, 2, value, opt_index);
 };
 
+
 proto.forge_abi.ExchangeInfo.prototype.clearAssetsList = function() {
   this.setAssetsList([]);
 };
+
+
 
 /**
  * Generated by JsPbCodeGenerator.
@@ -732,14 +783,7 @@ proto.forge_abi.ExchangeInfo.prototype.clearAssetsList = function() {
  * @constructor
  */
 proto.forge_abi.TetherTradeInfo = function(opt_data) {
-  jspb.Message.initialize(
-    this,
-    opt_data,
-    0,
-    -1,
-    proto.forge_abi.TetherTradeInfo.repeatedFields_,
-    null
-  );
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.forge_abi.TetherTradeInfo.repeatedFields_, null);
 };
 goog.inherits(proto.forge_abi.TetherTradeInfo, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -752,44 +796,47 @@ if (goog.DEBUG && !COMPILED) {
  */
 proto.forge_abi.TetherTradeInfo.repeatedFields_ = [2];
 
+
+
 if (jspb.Message.GENERATE_TO_OBJECT) {
-  /**
-   * Creates an object representation of this proto suitable for use in Soy templates.
-   * Field names that are reserved in JavaScript and will be renamed to pb_name.
-   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
-   * For the list of reserved names please see:
-   *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
-   * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
-   *     for transitional soy proto support: http://goto/soy-param-migration
-   * @return {!Object}
-   */
-  proto.forge_abi.TetherTradeInfo.prototype.toObject = function(opt_includeInstance) {
-    return proto.forge_abi.TetherTradeInfo.toObject(opt_includeInstance, this);
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.forge_abi.TetherTradeInfo.prototype.toObject = function(opt_includeInstance) {
+  return proto.forge_abi.TetherTradeInfo.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.forge_abi.TetherTradeInfo} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.forge_abi.TetherTradeInfo.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    value: (f = msg.getValue()) && type_pb.BigUint.toObject(includeInstance, f),
+    assetsList: jspb.Message.getRepeatedField(msg, 2),
+    tether: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
 
-  /**
-   * Static version of the {@see toObject} method.
-   * @param {boolean|undefined} includeInstance Whether to include the JSPB
-   *     instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @param {!proto.forge_abi.TetherTradeInfo} msg The msg instance to transform.
-   * @return {!Object}
-   * @suppress {unusedLocalVariables} f is only used for nested messages
-   */
-  proto.forge_abi.TetherTradeInfo.toObject = function(includeInstance, msg) {
-    var f,
-      obj = {
-        value: (f = msg.getValue()) && type_pb.BigUint.toObject(includeInstance, f),
-        assetsList: jspb.Message.getRepeatedField(msg, 2),
-        tether: jspb.Message.getFieldWithDefault(msg, 3, ''),
-      };
-
-    if (includeInstance) {
-      obj.$jspbMessageInstance = msg;
-    }
-    return obj;
-  };
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
 }
+
 
 /**
  * Deserializes binary data (in protobuf wire format).
@@ -798,9 +845,10 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  */
 proto.forge_abi.TetherTradeInfo.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.forge_abi.TetherTradeInfo();
+  var msg = new proto.forge_abi.TetherTradeInfo;
   return proto.forge_abi.TetherTradeInfo.deserializeBinaryFromReader(msg, reader);
 };
+
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -816,26 +864,27 @@ proto.forge_abi.TetherTradeInfo.deserializeBinaryFromReader = function(msg, read
     }
     var field = reader.getFieldNumber();
     switch (field) {
-      case 1:
-        var value = new type_pb.BigUint();
-        reader.readMessage(value, type_pb.BigUint.deserializeBinaryFromReader);
-        msg.setValue(value);
-        break;
-      case 2:
-        var value = /** @type {string} */ (reader.readString());
-        msg.addAssets(value);
-        break;
-      case 3:
-        var value = /** @type {string} */ (reader.readString());
-        msg.setTether(value);
-        break;
-      default:
-        reader.skipField();
-        break;
+    case 1:
+      var value = new type_pb.BigUint;
+      reader.readMessage(value,type_pb.BigUint.deserializeBinaryFromReader);
+      msg.setValue(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.addAssets(value);
+      break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setTether(value);
+      break;
+    default:
+      reader.skipField();
+      break;
     }
   }
   return msg;
 };
+
 
 /**
  * Serializes the message to binary data (in protobuf wire format).
@@ -846,6 +895,7 @@ proto.forge_abi.TetherTradeInfo.prototype.serializeBinary = function() {
   proto.forge_abi.TetherTradeInfo.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
+
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -858,38 +908,49 @@ proto.forge_abi.TetherTradeInfo.serializeBinaryToWriter = function(message, writ
   var f = undefined;
   f = message.getValue();
   if (f != null) {
-    writer.writeMessage(1, f, type_pb.BigUint.serializeBinaryToWriter);
+    writer.writeMessage(
+      1,
+      f,
+      type_pb.BigUint.serializeBinaryToWriter
+    );
   }
   f = message.getAssetsList();
   if (f.length > 0) {
-    writer.writeRepeatedString(2, f);
+    writer.writeRepeatedString(
+      2,
+      f
+    );
   }
   f = message.getTether();
   if (f.length > 0) {
-    writer.writeString(3, f);
+    writer.writeString(
+      3,
+      f
+    );
   }
 };
+
 
 /**
  * optional BigUint value = 1;
  * @return {?proto.forge_abi.BigUint}
  */
 proto.forge_abi.TetherTradeInfo.prototype.getValue = function() {
-  return /** @type{?proto.forge_abi.BigUint} */ (jspb.Message.getWrapperField(
-    this,
-    type_pb.BigUint,
-    1
-  ));
+  return /** @type{?proto.forge_abi.BigUint} */ (
+    jspb.Message.getWrapperField(this, type_pb.BigUint, 1));
 };
+
 
 /** @param {?proto.forge_abi.BigUint|undefined} value */
 proto.forge_abi.TetherTradeInfo.prototype.setValue = function(value) {
   jspb.Message.setWrapperField(this, 1, value);
 };
 
+
 proto.forge_abi.TetherTradeInfo.prototype.clearValue = function() {
   this.setValue(undefined);
 };
+
 
 /**
  * Returns whether this field is set.
@@ -899,6 +960,7 @@ proto.forge_abi.TetherTradeInfo.prototype.hasValue = function() {
   return jspb.Message.getField(this, 1) != null;
 };
 
+
 /**
  * repeated string assets = 2;
  * @return {!Array<string>}
@@ -907,10 +969,12 @@ proto.forge_abi.TetherTradeInfo.prototype.getAssetsList = function() {
   return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 2));
 };
 
+
 /** @param {!Array<string>} value */
 proto.forge_abi.TetherTradeInfo.prototype.setAssetsList = function(value) {
   jspb.Message.setField(this, 2, value || []);
 };
+
 
 /**
  * @param {string} value
@@ -920,22 +984,27 @@ proto.forge_abi.TetherTradeInfo.prototype.addAssets = function(value, opt_index)
   jspb.Message.addToRepeatedField(this, 2, value, opt_index);
 };
 
+
 proto.forge_abi.TetherTradeInfo.prototype.clearAssetsList = function() {
   this.setAssetsList([]);
 };
+
 
 /**
  * optional string tether = 3;
  * @return {string}
  */
 proto.forge_abi.TetherTradeInfo.prototype.getTether = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ''));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
+
 
 /** @param {string} value */
 proto.forge_abi.TetherTradeInfo.prototype.setTether = function(value) {
   jspb.Message.setProto3StringField(this, 3, value);
 };
+
+
 
 /**
  * Generated by JsPbCodeGenerator.
@@ -948,14 +1017,7 @@ proto.forge_abi.TetherTradeInfo.prototype.setTether = function(value) {
  * @constructor
  */
 proto.forge_abi.WithdrawTetherTx = function(opt_data) {
-  jspb.Message.initialize(
-    this,
-    opt_data,
-    0,
-    -1,
-    proto.forge_abi.WithdrawTetherTx.repeatedFields_,
-    null
-  );
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.forge_abi.WithdrawTetherTx.repeatedFields_, null);
 };
 goog.inherits(proto.forge_abi.WithdrawTetherTx, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -968,58 +1030,55 @@ if (goog.DEBUG && !COMPILED) {
  */
 proto.forge_abi.WithdrawTetherTx.repeatedFields_ = [6];
 
+
+
 if (jspb.Message.GENERATE_TO_OBJECT) {
-  /**
-   * Creates an object representation of this proto suitable for use in Soy templates.
-   * Field names that are reserved in JavaScript and will be renamed to pb_name.
-   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
-   * For the list of reserved names please see:
-   *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
-   * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
-   *     for transitional soy proto support: http://goto/soy-param-migration
-   * @return {!Object}
-   */
-  proto.forge_abi.WithdrawTetherTx.prototype.toObject = function(opt_includeInstance) {
-    return proto.forge_abi.WithdrawTetherTx.toObject(opt_includeInstance, this);
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.forge_abi.WithdrawTetherTx.prototype.toObject = function(opt_includeInstance) {
+  return proto.forge_abi.WithdrawTetherTx.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.forge_abi.WithdrawTetherTx} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.forge_abi.WithdrawTetherTx.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    from: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    nonce: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    chainId: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    pk: msg.getPk(),
+    signature: msg.getSignature(),
+    signaturesList: jspb.Message.toObjectList(msg.getSignaturesList(),
+    type_pb.Multisig.toObject, includeInstance),
+    sender: (f = msg.getSender()) && proto.forge_abi.ExchangeInfo.toObject(includeInstance, f),
+    receiver: (f = msg.getReceiver()) && proto.forge_abi.TetherTradeInfo.toObject(includeInstance, f),
+    expiredAt: (f = msg.getExpiredAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+    data: (f = msg.getData()) && google_protobuf_any_pb.Any.toObject(includeInstance, f)
   };
 
-  /**
-   * Static version of the {@see toObject} method.
-   * @param {boolean|undefined} includeInstance Whether to include the JSPB
-   *     instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @param {!proto.forge_abi.WithdrawTetherTx} msg The msg instance to transform.
-   * @return {!Object}
-   * @suppress {unusedLocalVariables} f is only used for nested messages
-   */
-  proto.forge_abi.WithdrawTetherTx.toObject = function(includeInstance, msg) {
-    var f,
-      obj = {
-        from: jspb.Message.getFieldWithDefault(msg, 1, ''),
-        nonce: jspb.Message.getFieldWithDefault(msg, 2, 0),
-        chainId: jspb.Message.getFieldWithDefault(msg, 3, ''),
-        pk: msg.getPk(),
-        signature: msg.getSignature(),
-        signaturesList: jspb.Message.toObjectList(
-          msg.getSignaturesList(),
-          type_pb.Multisig.toObject,
-          includeInstance
-        ),
-        sender: (f = msg.getSender()) && proto.forge_abi.ExchangeInfo.toObject(includeInstance, f),
-        receiver:
-          (f = msg.getReceiver()) && proto.forge_abi.TetherTradeInfo.toObject(includeInstance, f),
-        expiredAt:
-          (f = msg.getExpiredAt()) &&
-          google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-        data: (f = msg.getData()) && google_protobuf_any_pb.Any.toObject(includeInstance, f),
-      };
-
-    if (includeInstance) {
-      obj.$jspbMessageInstance = msg;
-    }
-    return obj;
-  };
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
 }
+
 
 /**
  * Deserializes binary data (in protobuf wire format).
@@ -1028,9 +1087,10 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  */
 proto.forge_abi.WithdrawTetherTx.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.forge_abi.WithdrawTetherTx();
+  var msg = new proto.forge_abi.WithdrawTetherTx;
   return proto.forge_abi.WithdrawTetherTx.deserializeBinaryFromReader(msg, reader);
 };
+
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -1046,61 +1106,59 @@ proto.forge_abi.WithdrawTetherTx.deserializeBinaryFromReader = function(msg, rea
     }
     var field = reader.getFieldNumber();
     switch (field) {
-      case 1:
-        var value = /** @type {string} */ (reader.readString());
-        msg.setFrom(value);
-        break;
-      case 2:
-        var value = /** @type {number} */ (reader.readUint64());
-        msg.setNonce(value);
-        break;
-      case 3:
-        var value = /** @type {string} */ (reader.readString());
-        msg.setChainId(value);
-        break;
-      case 4:
-        var value = /** @type {!Uint8Array} */ (reader.readBytes());
-        msg.setPk(value);
-        break;
-      case 5:
-        var value = /** @type {!Uint8Array} */ (reader.readBytes());
-        msg.setSignature(value);
-        break;
-      case 6:
-        var value = new type_pb.Multisig();
-        reader.readMessage(value, type_pb.Multisig.deserializeBinaryFromReader);
-        msg.addSignatures(value);
-        break;
-      case 7:
-        var value = new proto.forge_abi.ExchangeInfo();
-        reader.readMessage(value, proto.forge_abi.ExchangeInfo.deserializeBinaryFromReader);
-        msg.setSender(value);
-        break;
-      case 8:
-        var value = new proto.forge_abi.TetherTradeInfo();
-        reader.readMessage(value, proto.forge_abi.TetherTradeInfo.deserializeBinaryFromReader);
-        msg.setReceiver(value);
-        break;
-      case 9:
-        var value = new google_protobuf_timestamp_pb.Timestamp();
-        reader.readMessage(
-          value,
-          google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader
-        );
-        msg.setExpiredAt(value);
-        break;
-      case 10:
-        var value = new google_protobuf_any_pb.Any();
-        reader.readMessage(value, google_protobuf_any_pb.Any.deserializeBinaryFromReader);
-        msg.setData(value);
-        break;
-      default:
-        reader.skipField();
-        break;
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setFrom(value);
+      break;
+    case 2:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setNonce(value);
+      break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setChainId(value);
+      break;
+    case 4:
+      var value = /** @type {!Uint8Array} */ (reader.readBytes());
+      msg.setPk(value);
+      break;
+    case 5:
+      var value = /** @type {!Uint8Array} */ (reader.readBytes());
+      msg.setSignature(value);
+      break;
+    case 6:
+      var value = new type_pb.Multisig;
+      reader.readMessage(value,type_pb.Multisig.deserializeBinaryFromReader);
+      msg.addSignatures(value);
+      break;
+    case 7:
+      var value = new proto.forge_abi.ExchangeInfo;
+      reader.readMessage(value,proto.forge_abi.ExchangeInfo.deserializeBinaryFromReader);
+      msg.setSender(value);
+      break;
+    case 8:
+      var value = new proto.forge_abi.TetherTradeInfo;
+      reader.readMessage(value,proto.forge_abi.TetherTradeInfo.deserializeBinaryFromReader);
+      msg.setReceiver(value);
+      break;
+    case 9:
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setExpiredAt(value);
+      break;
+    case 10:
+      var value = new google_protobuf_any_pb.Any;
+      reader.readMessage(value,google_protobuf_any_pb.Any.deserializeBinaryFromReader);
+      msg.setData(value);
+      break;
+    default:
+      reader.skipField();
+      break;
     }
   }
   return msg;
 };
+
 
 /**
  * Serializes the message to binary data (in protobuf wire format).
@@ -1111,6 +1169,7 @@ proto.forge_abi.WithdrawTetherTx.prototype.serializeBinary = function() {
   proto.forge_abi.WithdrawTetherTx.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
+
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -1123,58 +1182,96 @@ proto.forge_abi.WithdrawTetherTx.serializeBinaryToWriter = function(message, wri
   var f = undefined;
   f = message.getFrom();
   if (f.length > 0) {
-    writer.writeString(1, f);
+    writer.writeString(
+      1,
+      f
+    );
   }
   f = message.getNonce();
   if (f !== 0) {
-    writer.writeUint64(2, f);
+    writer.writeUint64(
+      2,
+      f
+    );
   }
   f = message.getChainId();
   if (f.length > 0) {
-    writer.writeString(3, f);
+    writer.writeString(
+      3,
+      f
+    );
   }
   f = message.getPk_asU8();
   if (f.length > 0) {
-    writer.writeBytes(4, f);
+    writer.writeBytes(
+      4,
+      f
+    );
   }
   f = message.getSignature_asU8();
   if (f.length > 0) {
-    writer.writeBytes(5, f);
+    writer.writeBytes(
+      5,
+      f
+    );
   }
   f = message.getSignaturesList();
   if (f.length > 0) {
-    writer.writeRepeatedMessage(6, f, type_pb.Multisig.serializeBinaryToWriter);
+    writer.writeRepeatedMessage(
+      6,
+      f,
+      type_pb.Multisig.serializeBinaryToWriter
+    );
   }
   f = message.getSender();
   if (f != null) {
-    writer.writeMessage(7, f, proto.forge_abi.ExchangeInfo.serializeBinaryToWriter);
+    writer.writeMessage(
+      7,
+      f,
+      proto.forge_abi.ExchangeInfo.serializeBinaryToWriter
+    );
   }
   f = message.getReceiver();
   if (f != null) {
-    writer.writeMessage(8, f, proto.forge_abi.TetherTradeInfo.serializeBinaryToWriter);
+    writer.writeMessage(
+      8,
+      f,
+      proto.forge_abi.TetherTradeInfo.serializeBinaryToWriter
+    );
   }
   f = message.getExpiredAt();
   if (f != null) {
-    writer.writeMessage(9, f, google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter);
+    writer.writeMessage(
+      9,
+      f,
+      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+    );
   }
   f = message.getData();
   if (f != null) {
-    writer.writeMessage(10, f, google_protobuf_any_pb.Any.serializeBinaryToWriter);
+    writer.writeMessage(
+      10,
+      f,
+      google_protobuf_any_pb.Any.serializeBinaryToWriter
+    );
   }
 };
+
 
 /**
  * optional string from = 1;
  * @return {string}
  */
 proto.forge_abi.WithdrawTetherTx.prototype.getFrom = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ''));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
+
 
 /** @param {string} value */
 proto.forge_abi.WithdrawTetherTx.prototype.setFrom = function(value) {
   jspb.Message.setProto3StringField(this, 1, value);
 };
+
 
 /**
  * optional uint64 nonce = 2;
@@ -1184,31 +1281,36 @@ proto.forge_abi.WithdrawTetherTx.prototype.getNonce = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
 };
 
+
 /** @param {number} value */
 proto.forge_abi.WithdrawTetherTx.prototype.setNonce = function(value) {
   jspb.Message.setProto3IntField(this, 2, value);
 };
+
 
 /**
  * optional string chain_id = 3;
  * @return {string}
  */
 proto.forge_abi.WithdrawTetherTx.prototype.getChainId = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ''));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
+
 
 /** @param {string} value */
 proto.forge_abi.WithdrawTetherTx.prototype.setChainId = function(value) {
   jspb.Message.setProto3StringField(this, 3, value);
 };
 
+
 /**
  * optional bytes pk = 4;
  * @return {!(string|Uint8Array)}
  */
 proto.forge_abi.WithdrawTetherTx.prototype.getPk = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 4, ''));
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
 };
+
 
 /**
  * optional bytes pk = 4;
@@ -1216,8 +1318,10 @@ proto.forge_abi.WithdrawTetherTx.prototype.getPk = function() {
  * @return {string}
  */
 proto.forge_abi.WithdrawTetherTx.prototype.getPk_asB64 = function() {
-  return /** @type {string} */ (jspb.Message.bytesAsB64(this.getPk()));
+  return /** @type {string} */ (jspb.Message.bytesAsB64(
+      this.getPk()));
 };
+
 
 /**
  * optional bytes pk = 4;
@@ -1227,21 +1331,25 @@ proto.forge_abi.WithdrawTetherTx.prototype.getPk_asB64 = function() {
  * @return {!Uint8Array}
  */
 proto.forge_abi.WithdrawTetherTx.prototype.getPk_asU8 = function() {
-  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(this.getPk()));
+  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
+      this.getPk()));
 };
+
 
 /** @param {!(string|Uint8Array)} value */
 proto.forge_abi.WithdrawTetherTx.prototype.setPk = function(value) {
   jspb.Message.setProto3BytesField(this, 4, value);
 };
 
+
 /**
  * optional bytes signature = 5;
  * @return {!(string|Uint8Array)}
  */
 proto.forge_abi.WithdrawTetherTx.prototype.getSignature = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 5, ''));
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
 };
+
 
 /**
  * optional bytes signature = 5;
@@ -1249,8 +1357,10 @@ proto.forge_abi.WithdrawTetherTx.prototype.getSignature = function() {
  * @return {string}
  */
 proto.forge_abi.WithdrawTetherTx.prototype.getSignature_asB64 = function() {
-  return /** @type {string} */ (jspb.Message.bytesAsB64(this.getSignature()));
+  return /** @type {string} */ (jspb.Message.bytesAsB64(
+      this.getSignature()));
 };
+
 
 /**
  * optional bytes signature = 5;
@@ -1260,30 +1370,32 @@ proto.forge_abi.WithdrawTetherTx.prototype.getSignature_asB64 = function() {
  * @return {!Uint8Array}
  */
 proto.forge_abi.WithdrawTetherTx.prototype.getSignature_asU8 = function() {
-  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(this.getSignature()));
+  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
+      this.getSignature()));
 };
+
 
 /** @param {!(string|Uint8Array)} value */
 proto.forge_abi.WithdrawTetherTx.prototype.setSignature = function(value) {
   jspb.Message.setProto3BytesField(this, 5, value);
 };
 
+
 /**
  * repeated Multisig signatures = 6;
  * @return {!Array<!proto.forge_abi.Multisig>}
  */
 proto.forge_abi.WithdrawTetherTx.prototype.getSignaturesList = function() {
-  return /** @type{!Array<!proto.forge_abi.Multisig>} */ (jspb.Message.getRepeatedWrapperField(
-    this,
-    type_pb.Multisig,
-    6
-  ));
+  return /** @type{!Array<!proto.forge_abi.Multisig>} */ (
+    jspb.Message.getRepeatedWrapperField(this, type_pb.Multisig, 6));
 };
+
 
 /** @param {!Array<!proto.forge_abi.Multisig>} value */
 proto.forge_abi.WithdrawTetherTx.prototype.setSignaturesList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 6, value);
 };
+
 
 /**
  * @param {!proto.forge_abi.Multisig=} opt_value
@@ -1291,39 +1403,35 @@ proto.forge_abi.WithdrawTetherTx.prototype.setSignaturesList = function(value) {
  * @return {!proto.forge_abi.Multisig}
  */
 proto.forge_abi.WithdrawTetherTx.prototype.addSignatures = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(
-    this,
-    6,
-    opt_value,
-    proto.forge_abi.Multisig,
-    opt_index
-  );
+  return jspb.Message.addToRepeatedWrapperField(this, 6, opt_value, proto.forge_abi.Multisig, opt_index);
 };
+
 
 proto.forge_abi.WithdrawTetherTx.prototype.clearSignaturesList = function() {
   this.setSignaturesList([]);
 };
+
 
 /**
  * optional ExchangeInfo sender = 7;
  * @return {?proto.forge_abi.ExchangeInfo}
  */
 proto.forge_abi.WithdrawTetherTx.prototype.getSender = function() {
-  return /** @type{?proto.forge_abi.ExchangeInfo} */ (jspb.Message.getWrapperField(
-    this,
-    proto.forge_abi.ExchangeInfo,
-    7
-  ));
+  return /** @type{?proto.forge_abi.ExchangeInfo} */ (
+    jspb.Message.getWrapperField(this, proto.forge_abi.ExchangeInfo, 7));
 };
+
 
 /** @param {?proto.forge_abi.ExchangeInfo|undefined} value */
 proto.forge_abi.WithdrawTetherTx.prototype.setSender = function(value) {
   jspb.Message.setWrapperField(this, 7, value);
 };
 
+
 proto.forge_abi.WithdrawTetherTx.prototype.clearSender = function() {
   this.setSender(undefined);
 };
+
 
 /**
  * Returns whether this field is set.
@@ -1333,26 +1441,27 @@ proto.forge_abi.WithdrawTetherTx.prototype.hasSender = function() {
   return jspb.Message.getField(this, 7) != null;
 };
 
+
 /**
  * optional TetherTradeInfo receiver = 8;
  * @return {?proto.forge_abi.TetherTradeInfo}
  */
 proto.forge_abi.WithdrawTetherTx.prototype.getReceiver = function() {
-  return /** @type{?proto.forge_abi.TetherTradeInfo} */ (jspb.Message.getWrapperField(
-    this,
-    proto.forge_abi.TetherTradeInfo,
-    8
-  ));
+  return /** @type{?proto.forge_abi.TetherTradeInfo} */ (
+    jspb.Message.getWrapperField(this, proto.forge_abi.TetherTradeInfo, 8));
 };
+
 
 /** @param {?proto.forge_abi.TetherTradeInfo|undefined} value */
 proto.forge_abi.WithdrawTetherTx.prototype.setReceiver = function(value) {
   jspb.Message.setWrapperField(this, 8, value);
 };
 
+
 proto.forge_abi.WithdrawTetherTx.prototype.clearReceiver = function() {
   this.setReceiver(undefined);
 };
+
 
 /**
  * Returns whether this field is set.
@@ -1362,26 +1471,27 @@ proto.forge_abi.WithdrawTetherTx.prototype.hasReceiver = function() {
   return jspb.Message.getField(this, 8) != null;
 };
 
+
 /**
  * optional google.protobuf.Timestamp expired_at = 9;
  * @return {?proto.google.protobuf.Timestamp}
  */
 proto.forge_abi.WithdrawTetherTx.prototype.getExpiredAt = function() {
-  return /** @type{?proto.google.protobuf.Timestamp} */ (jspb.Message.getWrapperField(
-    this,
-    google_protobuf_timestamp_pb.Timestamp,
-    9
-  ));
+  return /** @type{?proto.google.protobuf.Timestamp} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 9));
 };
+
 
 /** @param {?proto.google.protobuf.Timestamp|undefined} value */
 proto.forge_abi.WithdrawTetherTx.prototype.setExpiredAt = function(value) {
   jspb.Message.setWrapperField(this, 9, value);
 };
 
+
 proto.forge_abi.WithdrawTetherTx.prototype.clearExpiredAt = function() {
   this.setExpiredAt(undefined);
 };
+
 
 /**
  * Returns whether this field is set.
@@ -1391,26 +1501,27 @@ proto.forge_abi.WithdrawTetherTx.prototype.hasExpiredAt = function() {
   return jspb.Message.getField(this, 9) != null;
 };
 
+
 /**
  * optional google.protobuf.Any data = 10;
  * @return {?proto.google.protobuf.Any}
  */
 proto.forge_abi.WithdrawTetherTx.prototype.getData = function() {
-  return /** @type{?proto.google.protobuf.Any} */ (jspb.Message.getWrapperField(
-    this,
-    google_protobuf_any_pb.Any,
-    10
-  ));
+  return /** @type{?proto.google.protobuf.Any} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_any_pb.Any, 10));
 };
+
 
 /** @param {?proto.google.protobuf.Any|undefined} value */
 proto.forge_abi.WithdrawTetherTx.prototype.setData = function(value) {
   jspb.Message.setWrapperField(this, 10, value);
 };
 
+
 proto.forge_abi.WithdrawTetherTx.prototype.clearData = function() {
   this.setData(undefined);
 };
+
 
 /**
  * Returns whether this field is set.
@@ -1419,6 +1530,7 @@ proto.forge_abi.WithdrawTetherTx.prototype.clearData = function() {
 proto.forge_abi.WithdrawTetherTx.prototype.hasData = function() {
   return jspb.Message.getField(this, 10) != null;
 };
+
 
 goog.object.extend(exports, proto.forge_abi);
 

@@ -8,7 +8,7 @@ const sortBy = require('lodash/sortBy');
 const camelcase = require('lodash/camelcase');
 const upperFirst = require('lodash/upperFirst');
 
-const Client = require('../src/client');
+const Client = require('../lib/client');
 
 const client = new Client('http://localhost:4000/api');
 const schema = client._getSchema();

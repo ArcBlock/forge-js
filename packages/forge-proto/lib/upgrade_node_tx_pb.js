@@ -31,44 +31,46 @@ if (goog.DEBUG && !COMPILED) {
   proto.forge_abi.UpgradeNodeTx.displayName = 'proto.forge_abi.UpgradeNodeTx';
 }
 
+
 if (jspb.Message.GENERATE_TO_OBJECT) {
-  /**
-   * Creates an object representation of this proto suitable for use in Soy templates.
-   * Field names that are reserved in JavaScript and will be renamed to pb_name.
-   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
-   * For the list of reserved names please see:
-   *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
-   * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
-   *     for transitional soy proto support: http://goto/soy-param-migration
-   * @return {!Object}
-   */
-  proto.forge_abi.UpgradeNodeTx.prototype.toObject = function(opt_includeInstance) {
-    return proto.forge_abi.UpgradeNodeTx.toObject(opt_includeInstance, this);
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.forge_abi.UpgradeNodeTx.prototype.toObject = function(opt_includeInstance) {
+  return proto.forge_abi.UpgradeNodeTx.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.forge_abi.UpgradeNodeTx} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.forge_abi.UpgradeNodeTx.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    height: jspb.Message.getFieldWithDefault(msg, 1, 0),
+    version: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    override: jspb.Message.getFieldWithDefault(msg, 3, false)
   };
 
-  /**
-   * Static version of the {@see toObject} method.
-   * @param {boolean|undefined} includeInstance Whether to include the JSPB
-   *     instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @param {!proto.forge_abi.UpgradeNodeTx} msg The msg instance to transform.
-   * @return {!Object}
-   * @suppress {unusedLocalVariables} f is only used for nested messages
-   */
-  proto.forge_abi.UpgradeNodeTx.toObject = function(includeInstance, msg) {
-    var f,
-      obj = {
-        height: jspb.Message.getFieldWithDefault(msg, 1, 0),
-        version: jspb.Message.getFieldWithDefault(msg, 2, ''),
-        override: jspb.Message.getFieldWithDefault(msg, 3, false),
-      };
-
-    if (includeInstance) {
-      obj.$jspbMessageInstance = msg;
-    }
-    return obj;
-  };
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
 }
+
 
 /**
  * Deserializes binary data (in protobuf wire format).
@@ -77,9 +79,10 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  */
 proto.forge_abi.UpgradeNodeTx.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.forge_abi.UpgradeNodeTx();
+  var msg = new proto.forge_abi.UpgradeNodeTx;
   return proto.forge_abi.UpgradeNodeTx.deserializeBinaryFromReader(msg, reader);
 };
+
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -95,25 +98,26 @@ proto.forge_abi.UpgradeNodeTx.deserializeBinaryFromReader = function(msg, reader
     }
     var field = reader.getFieldNumber();
     switch (field) {
-      case 1:
-        var value = /** @type {number} */ (reader.readUint64());
-        msg.setHeight(value);
-        break;
-      case 2:
-        var value = /** @type {string} */ (reader.readString());
-        msg.setVersion(value);
-        break;
-      case 3:
-        var value = /** @type {boolean} */ (reader.readBool());
-        msg.setOverride(value);
-        break;
-      default:
-        reader.skipField();
-        break;
+    case 1:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setHeight(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setVersion(value);
+      break;
+    case 3:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setOverride(value);
+      break;
+    default:
+      reader.skipField();
+      break;
     }
   }
   return msg;
 };
+
 
 /**
  * Serializes the message to binary data (in protobuf wire format).
@@ -124,6 +128,7 @@ proto.forge_abi.UpgradeNodeTx.prototype.serializeBinary = function() {
   proto.forge_abi.UpgradeNodeTx.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
+
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -136,17 +141,27 @@ proto.forge_abi.UpgradeNodeTx.serializeBinaryToWriter = function(message, writer
   var f = undefined;
   f = message.getHeight();
   if (f !== 0) {
-    writer.writeUint64(1, f);
+    writer.writeUint64(
+      1,
+      f
+    );
   }
   f = message.getVersion();
   if (f.length > 0) {
-    writer.writeString(2, f);
+    writer.writeString(
+      2,
+      f
+    );
   }
   f = message.getOverride();
   if (f) {
-    writer.writeBool(3, f);
+    writer.writeBool(
+      3,
+      f
+    );
   }
 };
+
 
 /**
  * optional uint64 height = 1;
@@ -156,23 +171,27 @@ proto.forge_abi.UpgradeNodeTx.prototype.getHeight = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
 };
 
+
 /** @param {number} value */
 proto.forge_abi.UpgradeNodeTx.prototype.setHeight = function(value) {
   jspb.Message.setProto3IntField(this, 1, value);
 };
+
 
 /**
  * optional string version = 2;
  * @return {string}
  */
 proto.forge_abi.UpgradeNodeTx.prototype.getVersion = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ''));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
+
 
 /** @param {string} value */
 proto.forge_abi.UpgradeNodeTx.prototype.setVersion = function(value) {
   jspb.Message.setProto3StringField(this, 2, value);
 };
+
 
 /**
  * optional bool override = 3;
@@ -184,10 +203,12 @@ proto.forge_abi.UpgradeNodeTx.prototype.getOverride = function() {
   return /** @type {boolean} */ (jspb.Message.getFieldWithDefault(this, 3, false));
 };
 
+
 /** @param {boolean} value */
 proto.forge_abi.UpgradeNodeTx.prototype.setOverride = function(value) {
   jspb.Message.setProto3BooleanField(this, 3, value);
 };
+
 
 goog.object.extend(exports, proto.forge_abi);
 

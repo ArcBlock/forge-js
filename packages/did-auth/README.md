@@ -1,4 +1,4 @@
-# [**@arcblock/did-auth**](https://github.com/arcblock/forge-js)
+![did-auth](https://www.arcblock.io/.netlify/functions/badge/?text=did-auth)
 
 [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 
@@ -9,15 +9,14 @@ This library aims to ease the process of handling `Did-Auth` process between dif
 
 ## Table of Contents
 
-- [**@arcblock/did-auth**](#arcblockdid-auth)
-  - [Table of Contents](#Table-of-Contents)
-  - [Install](#Install)
-  - [Usage](#Usage)
-    - [Between dApp and ABT Wallet](#Between-dApp-and-ABT-Wallet)
-    - [Between dApp and dApp](#Between-dApp-and-dApp)
-      - [Initialize authenticator and handlers](#Initialize-authenticator-and-handlers)
-      - [For the server](#For-the-server)
-      - [For the client](#For-the-client)
+- [Table of Contents](#Table-of-Contents)
+- [Install](#Install)
+- [Usage](#Usage)
+  - [Between dApp and ABT Wallet](#Between-dApp-and-ABT-Wallet)
+  - [Between dApp and dApp](#Between-dApp-and-dApp)
+    - [Initialize authenticator and handlers](#Initialize-authenticator-and-handlers)
+    - [For the server](#For-the-server)
+    - [For the client](#For-the-client)
 
 ## Install
 

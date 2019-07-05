@@ -1,4 +1,4 @@
-# [**@arcblock/tcp-server**](https://github.com/arcblock/forge-js)
+![tcp-server](https://www.arcblock.io/.netlify/functions/badge/?text=tcp-server)
 
 [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 
@@ -7,9 +7,10 @@
 
 ## Table of Contents
 
-* [Install](#install)
-* [Usage](#usage)
-* [Contributors](#contributors)
+- [Table of Contents](#Table-of-Contents)
+- [Install](#Install)
+- [Usage](#Usage)
+- [Contributors](#Contributors)
 
 
 ## Install

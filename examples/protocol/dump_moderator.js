@@ -2,7 +2,7 @@
 const base64 = require('base64-url');
 const { types } = require('@arcblock/mcrypto');
 const { fromSecretKey, WalletType } = require('@arcblock/forge-wallet');
-const { bytesToHex, isHexStrict } = require('@arcblock/forge-util');
+const { bytesToHex, hexToBytes, isHexStrict } = require('@arcblock/forge-util');
 
 const type = WalletType({
   role: types.RoleType.ROLE_ACCOUNT,
@@ -25,4 +25,7 @@ function ensureModeratorSecretKey() {
 
 const sk = ensureModeratorSecretKey();
 const moderator = fromSecretKey(sk, type);
-console.log(`moderator wallet ${JSON.stringify(moderator.toJSON())}`);
+const json = moderator.toJSON();
+
+console.log(`moderator wallet ${JSON.stringify(json)}`);
+console.log(`moderator pk base64: ${base64.escape(base64.encode(hexToBytes(json.pk)))}`);

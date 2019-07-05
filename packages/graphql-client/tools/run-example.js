@@ -10,7 +10,7 @@ examples.forEach(x => {
   console.log('-'.repeat(80));
   console.log('Running example', example);
   console.log('-'.repeat(80));
-  shell.exec(`DEBUG=@arcblock/* node ${example}`);
+  shell.exec(`DEBUG=@arcblock/* FORGE_API_HOST=${process.env.FORGE_API_HOST} node ${example}`);
   console.log('');
   console.log('');
 });

@@ -1,4 +1,4 @@
-# `@arcblock/graphql-client`
+![graphql-client](https://www.arcblock.io/.netlify/functions/badge/?text=graphql-client)
 
 Client library to connect your app with forge powered blockchain node, all requests are sent over http/https, can be used in both Node.js and browser environment.
 

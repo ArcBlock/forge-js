@@ -1,4 +1,4 @@
-# [**@arcblock/forge-message**](https://github.com/arcblock/forge-js)
+![forge-message](https://www.arcblock.io/.netlify/functions/badge/?text=forge-message)
 
 [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 

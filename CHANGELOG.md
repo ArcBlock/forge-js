@@ -1,28 +1,44 @@
+## 0.32.0 (July 05, 2019)
+
+- chore: upgrade forge-sdk with forge v0.32.2
+- chore: upgrade grpc-client with forge v0.32.2
+- chore: upgrade graphql-client with forge v0.32.2
+- chore: upgrade forge-proto with forge v0.32.2
+- chore: update readme with new badge
+- fix: respect FORGE_API_ENDPOINT when run examples
+- feat: support dump moderator b64 format pk
+
 ## 0.31.0 (June 28, 2019)
-  - chore: loose restriction on timestamp fields when verify jwt token
-  - update readme
+
+- chore: loose restriction on timestamp fields when verify jwt token
+- update readme
 
 ## 0.30.6 (June 21, 2019)
-  - feat: support custom chainInfo for each action #323
-  - chore: update documentation for did-auth lib #318
-  - update readme
+
+- feat: support custom chainInfo for each action #323
+- chore: update documentation for did-auth lib #318
+- update readme
 
 ## 0.30.5 (June 18, 2019)
-  - fix package 404
-  - Chore: lite version of graphql-client and forge-sdk (#320)
-  - update readme
+
+- fix package 404
+- Chore: lite version of graphql-client and forge-sdk (#320)
+- update readme
 
 ## 0.30.4 (June 17, 2019)
-  - feat: move chainInfo outof appInfo when do DidAuth
-  - update readme
+
+- feat: move chainInfo outof appInfo when do DidAuth
+- update readme
 
 ## 0.30.3 (June 17, 2019)
-  - fix: forge status` and `forge bock` throw error #314
-  - update readme
+
+- fix: forge status`and`forge bock` throw error #314
+- update readme
 
 ## 0.30.2 (June 14, 2019)
-  - fix: did-auth export error
-  - update readme
+
+- fix: did-auth export error
+- update readme
 
 ## 0.30.1 (June 13, 2019)
 

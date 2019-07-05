@@ -1,7 +1,6 @@
-# `@arcblock/forge-wallet`
+![forge-wallet](https://www.arcblock.io/.netlify/functions/badge/?text=forge-wallet)
 
 > Utility function to create and use a forge compatible wallet, the wallet is also DID compatible.
-
 
 ## Usage
 
@@ -31,13 +30,12 @@ const type = WalletType({
 const wallet = fromSecretKey(sk, type);
 const message = 'data to sign';
 const signature = wallet.sign(message);
-assert.equal(signature, sig, "signature should match");
-assert.ok(wallet.verify(message, signature), "signature should be verified");
+assert.equal(signature, sig, 'signature should match');
+assert.ok(wallet.verify(message, signature), 'signature should be verified');
 
 const wallet2 = fromJSON(wallet.toJSON());
 // Do something with wallet 2
 ```
-
 
 ## Documentation
 

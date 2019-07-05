@@ -75,42 +75,44 @@ if (goog.DEBUG && !COMPILED) {
   proto.forge_abi.BigUint.displayName = 'proto.forge_abi.BigUint';
 }
 
+
 if (jspb.Message.GENERATE_TO_OBJECT) {
-  /**
-   * Creates an object representation of this proto suitable for use in Soy templates.
-   * Field names that are reserved in JavaScript and will be renamed to pb_name.
-   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
-   * For the list of reserved names please see:
-   *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
-   * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
-   *     for transitional soy proto support: http://goto/soy-param-migration
-   * @return {!Object}
-   */
-  proto.forge_abi.BigUint.prototype.toObject = function(opt_includeInstance) {
-    return proto.forge_abi.BigUint.toObject(opt_includeInstance, this);
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.forge_abi.BigUint.prototype.toObject = function(opt_includeInstance) {
+  return proto.forge_abi.BigUint.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.forge_abi.BigUint} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.forge_abi.BigUint.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    value: msg.getValue()
   };
 
-  /**
-   * Static version of the {@see toObject} method.
-   * @param {boolean|undefined} includeInstance Whether to include the JSPB
-   *     instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @param {!proto.forge_abi.BigUint} msg The msg instance to transform.
-   * @return {!Object}
-   * @suppress {unusedLocalVariables} f is only used for nested messages
-   */
-  proto.forge_abi.BigUint.toObject = function(includeInstance, msg) {
-    var f,
-      obj = {
-        value: msg.getValue(),
-      };
-
-    if (includeInstance) {
-      obj.$jspbMessageInstance = msg;
-    }
-    return obj;
-  };
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
 }
+
 
 /**
  * Deserializes binary data (in protobuf wire format).
@@ -119,9 +121,10 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  */
 proto.forge_abi.BigUint.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.forge_abi.BigUint();
+  var msg = new proto.forge_abi.BigUint;
   return proto.forge_abi.BigUint.deserializeBinaryFromReader(msg, reader);
 };
+
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -137,17 +140,18 @@ proto.forge_abi.BigUint.deserializeBinaryFromReader = function(msg, reader) {
     }
     var field = reader.getFieldNumber();
     switch (field) {
-      case 1:
-        var value = /** @type {!Uint8Array} */ (reader.readBytes());
-        msg.setValue(value);
-        break;
-      default:
-        reader.skipField();
-        break;
+    case 1:
+      var value = /** @type {!Uint8Array} */ (reader.readBytes());
+      msg.setValue(value);
+      break;
+    default:
+      reader.skipField();
+      break;
     }
   }
   return msg;
 };
+
 
 /**
  * Serializes the message to binary data (in protobuf wire format).
@@ -158,6 +162,7 @@ proto.forge_abi.BigUint.prototype.serializeBinary = function() {
   proto.forge_abi.BigUint.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
+
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -170,17 +175,22 @@ proto.forge_abi.BigUint.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getValue_asU8();
   if (f.length > 0) {
-    writer.writeBytes(1, f);
+    writer.writeBytes(
+      1,
+      f
+    );
   }
 };
+
 
 /**
  * optional bytes value = 1;
  * @return {!(string|Uint8Array)}
  */
 proto.forge_abi.BigUint.prototype.getValue = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 1, ''));
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
+
 
 /**
  * optional bytes value = 1;
@@ -188,8 +198,10 @@ proto.forge_abi.BigUint.prototype.getValue = function() {
  * @return {string}
  */
 proto.forge_abi.BigUint.prototype.getValue_asB64 = function() {
-  return /** @type {string} */ (jspb.Message.bytesAsB64(this.getValue()));
+  return /** @type {string} */ (jspb.Message.bytesAsB64(
+      this.getValue()));
 };
+
 
 /**
  * optional bytes value = 1;
@@ -199,13 +211,17 @@ proto.forge_abi.BigUint.prototype.getValue_asB64 = function() {
  * @return {!Uint8Array}
  */
 proto.forge_abi.BigUint.prototype.getValue_asU8 = function() {
-  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(this.getValue()));
+  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
+      this.getValue()));
 };
+
 
 /** @param {!(string|Uint8Array)} value */
 proto.forge_abi.BigUint.prototype.setValue = function(value) {
   jspb.Message.setProto3BytesField(this, 1, value);
 };
+
+
 
 /**
  * Generated by JsPbCodeGenerator.
@@ -225,43 +241,45 @@ if (goog.DEBUG && !COMPILED) {
   proto.forge_abi.BigSint.displayName = 'proto.forge_abi.BigSint';
 }
 
+
 if (jspb.Message.GENERATE_TO_OBJECT) {
-  /**
-   * Creates an object representation of this proto suitable for use in Soy templates.
-   * Field names that are reserved in JavaScript and will be renamed to pb_name.
-   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
-   * For the list of reserved names please see:
-   *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
-   * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
-   *     for transitional soy proto support: http://goto/soy-param-migration
-   * @return {!Object}
-   */
-  proto.forge_abi.BigSint.prototype.toObject = function(opt_includeInstance) {
-    return proto.forge_abi.BigSint.toObject(opt_includeInstance, this);
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.forge_abi.BigSint.prototype.toObject = function(opt_includeInstance) {
+  return proto.forge_abi.BigSint.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.forge_abi.BigSint} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.forge_abi.BigSint.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    value: msg.getValue(),
+    minus: jspb.Message.getFieldWithDefault(msg, 2, false)
   };
 
-  /**
-   * Static version of the {@see toObject} method.
-   * @param {boolean|undefined} includeInstance Whether to include the JSPB
-   *     instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @param {!proto.forge_abi.BigSint} msg The msg instance to transform.
-   * @return {!Object}
-   * @suppress {unusedLocalVariables} f is only used for nested messages
-   */
-  proto.forge_abi.BigSint.toObject = function(includeInstance, msg) {
-    var f,
-      obj = {
-        value: msg.getValue(),
-        minus: jspb.Message.getFieldWithDefault(msg, 2, false),
-      };
-
-    if (includeInstance) {
-      obj.$jspbMessageInstance = msg;
-    }
-    return obj;
-  };
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
 }
+
 
 /**
  * Deserializes binary data (in protobuf wire format).
@@ -270,9 +288,10 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  */
 proto.forge_abi.BigSint.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.forge_abi.BigSint();
+  var msg = new proto.forge_abi.BigSint;
   return proto.forge_abi.BigSint.deserializeBinaryFromReader(msg, reader);
 };
+
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -288,21 +307,22 @@ proto.forge_abi.BigSint.deserializeBinaryFromReader = function(msg, reader) {
     }
     var field = reader.getFieldNumber();
     switch (field) {
-      case 1:
-        var value = /** @type {!Uint8Array} */ (reader.readBytes());
-        msg.setValue(value);
-        break;
-      case 2:
-        var value = /** @type {boolean} */ (reader.readBool());
-        msg.setMinus(value);
-        break;
-      default:
-        reader.skipField();
-        break;
+    case 1:
+      var value = /** @type {!Uint8Array} */ (reader.readBytes());
+      msg.setValue(value);
+      break;
+    case 2:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setMinus(value);
+      break;
+    default:
+      reader.skipField();
+      break;
     }
   }
   return msg;
 };
+
 
 /**
  * Serializes the message to binary data (in protobuf wire format).
@@ -313,6 +333,7 @@ proto.forge_abi.BigSint.prototype.serializeBinary = function() {
   proto.forge_abi.BigSint.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
+
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -325,21 +346,29 @@ proto.forge_abi.BigSint.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getValue_asU8();
   if (f.length > 0) {
-    writer.writeBytes(1, f);
+    writer.writeBytes(
+      1,
+      f
+    );
   }
   f = message.getMinus();
   if (f) {
-    writer.writeBool(2, f);
+    writer.writeBool(
+      2,
+      f
+    );
   }
 };
+
 
 /**
  * optional bytes value = 1;
  * @return {!(string|Uint8Array)}
  */
 proto.forge_abi.BigSint.prototype.getValue = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 1, ''));
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
+
 
 /**
  * optional bytes value = 1;
@@ -347,8 +376,10 @@ proto.forge_abi.BigSint.prototype.getValue = function() {
  * @return {string}
  */
 proto.forge_abi.BigSint.prototype.getValue_asB64 = function() {
-  return /** @type {string} */ (jspb.Message.bytesAsB64(this.getValue()));
+  return /** @type {string} */ (jspb.Message.bytesAsB64(
+      this.getValue()));
 };
+
 
 /**
  * optional bytes value = 1;
@@ -358,13 +389,16 @@ proto.forge_abi.BigSint.prototype.getValue_asB64 = function() {
  * @return {!Uint8Array}
  */
 proto.forge_abi.BigSint.prototype.getValue_asU8 = function() {
-  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(this.getValue()));
+  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
+      this.getValue()));
 };
+
 
 /** @param {!(string|Uint8Array)} value */
 proto.forge_abi.BigSint.prototype.setValue = function(value) {
   jspb.Message.setProto3BytesField(this, 1, value);
 };
+
 
 /**
  * optional bool minus = 2;
@@ -376,10 +410,13 @@ proto.forge_abi.BigSint.prototype.getMinus = function() {
   return /** @type {boolean} */ (jspb.Message.getFieldWithDefault(this, 2, false));
 };
 
+
 /** @param {boolean} value */
 proto.forge_abi.BigSint.prototype.setMinus = function(value) {
   jspb.Message.setProto3BooleanField(this, 2, value);
 };
+
+
 
 /**
  * Generated by JsPbCodeGenerator.
@@ -399,45 +436,47 @@ if (goog.DEBUG && !COMPILED) {
   proto.forge_abi.WalletType.displayName = 'proto.forge_abi.WalletType';
 }
 
+
 if (jspb.Message.GENERATE_TO_OBJECT) {
-  /**
-   * Creates an object representation of this proto suitable for use in Soy templates.
-   * Field names that are reserved in JavaScript and will be renamed to pb_name.
-   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
-   * For the list of reserved names please see:
-   *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
-   * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
-   *     for transitional soy proto support: http://goto/soy-param-migration
-   * @return {!Object}
-   */
-  proto.forge_abi.WalletType.prototype.toObject = function(opt_includeInstance) {
-    return proto.forge_abi.WalletType.toObject(opt_includeInstance, this);
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.forge_abi.WalletType.prototype.toObject = function(opt_includeInstance) {
+  return proto.forge_abi.WalletType.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.forge_abi.WalletType} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.forge_abi.WalletType.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    pk: jspb.Message.getFieldWithDefault(msg, 1, 0),
+    hash: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    address: jspb.Message.getFieldWithDefault(msg, 3, 0),
+    role: jspb.Message.getFieldWithDefault(msg, 4, 0)
   };
 
-  /**
-   * Static version of the {@see toObject} method.
-   * @param {boolean|undefined} includeInstance Whether to include the JSPB
-   *     instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @param {!proto.forge_abi.WalletType} msg The msg instance to transform.
-   * @return {!Object}
-   * @suppress {unusedLocalVariables} f is only used for nested messages
-   */
-  proto.forge_abi.WalletType.toObject = function(includeInstance, msg) {
-    var f,
-      obj = {
-        pk: jspb.Message.getFieldWithDefault(msg, 1, 0),
-        hash: jspb.Message.getFieldWithDefault(msg, 2, 0),
-        address: jspb.Message.getFieldWithDefault(msg, 3, 0),
-        role: jspb.Message.getFieldWithDefault(msg, 4, 0),
-      };
-
-    if (includeInstance) {
-      obj.$jspbMessageInstance = msg;
-    }
-    return obj;
-  };
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
 }
+
 
 /**
  * Deserializes binary data (in protobuf wire format).
@@ -446,9 +485,10 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  */
 proto.forge_abi.WalletType.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.forge_abi.WalletType();
+  var msg = new proto.forge_abi.WalletType;
   return proto.forge_abi.WalletType.deserializeBinaryFromReader(msg, reader);
 };
+
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -464,29 +504,30 @@ proto.forge_abi.WalletType.deserializeBinaryFromReader = function(msg, reader) {
     }
     var field = reader.getFieldNumber();
     switch (field) {
-      case 1:
-        var value = /** @type {!proto.forge_abi.KeyType} */ (reader.readEnum());
-        msg.setPk(value);
-        break;
-      case 2:
-        var value = /** @type {!proto.forge_abi.HashType} */ (reader.readEnum());
-        msg.setHash(value);
-        break;
-      case 3:
-        var value = /** @type {!proto.forge_abi.EncodingType} */ (reader.readEnum());
-        msg.setAddress(value);
-        break;
-      case 4:
-        var value = /** @type {!proto.forge_abi.RoleType} */ (reader.readEnum());
-        msg.setRole(value);
-        break;
-      default:
-        reader.skipField();
-        break;
+    case 1:
+      var value = /** @type {!proto.forge_abi.KeyType} */ (reader.readEnum());
+      msg.setPk(value);
+      break;
+    case 2:
+      var value = /** @type {!proto.forge_abi.HashType} */ (reader.readEnum());
+      msg.setHash(value);
+      break;
+    case 3:
+      var value = /** @type {!proto.forge_abi.EncodingType} */ (reader.readEnum());
+      msg.setAddress(value);
+      break;
+    case 4:
+      var value = /** @type {!proto.forge_abi.RoleType} */ (reader.readEnum());
+      msg.setRole(value);
+      break;
+    default:
+      reader.skipField();
+      break;
     }
   }
   return msg;
 };
+
 
 /**
  * Serializes the message to binary data (in protobuf wire format).
@@ -497,6 +538,7 @@ proto.forge_abi.WalletType.prototype.serializeBinary = function() {
   proto.forge_abi.WalletType.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
+
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -509,21 +551,34 @@ proto.forge_abi.WalletType.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getPk();
   if (f !== 0.0) {
-    writer.writeEnum(1, f);
+    writer.writeEnum(
+      1,
+      f
+    );
   }
   f = message.getHash();
   if (f !== 0.0) {
-    writer.writeEnum(2, f);
+    writer.writeEnum(
+      2,
+      f
+    );
   }
   f = message.getAddress();
   if (f !== 0.0) {
-    writer.writeEnum(3, f);
+    writer.writeEnum(
+      3,
+      f
+    );
   }
   f = message.getRole();
   if (f !== 0.0) {
-    writer.writeEnum(4, f);
+    writer.writeEnum(
+      4,
+      f
+    );
   }
 };
+
 
 /**
  * optional KeyType pk = 1;
@@ -533,10 +588,12 @@ proto.forge_abi.WalletType.prototype.getPk = function() {
   return /** @type {!proto.forge_abi.KeyType} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
 };
 
+
 /** @param {!proto.forge_abi.KeyType} value */
 proto.forge_abi.WalletType.prototype.setPk = function(value) {
   jspb.Message.setProto3EnumField(this, 1, value);
 };
+
 
 /**
  * optional HashType hash = 2;
@@ -546,27 +603,27 @@ proto.forge_abi.WalletType.prototype.getHash = function() {
   return /** @type {!proto.forge_abi.HashType} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
 };
 
+
 /** @param {!proto.forge_abi.HashType} value */
 proto.forge_abi.WalletType.prototype.setHash = function(value) {
   jspb.Message.setProto3EnumField(this, 2, value);
 };
+
 
 /**
  * optional EncodingType address = 3;
  * @return {!proto.forge_abi.EncodingType}
  */
 proto.forge_abi.WalletType.prototype.getAddress = function() {
-  return /** @type {!proto.forge_abi.EncodingType} */ (jspb.Message.getFieldWithDefault(
-    this,
-    3,
-    0
-  ));
+  return /** @type {!proto.forge_abi.EncodingType} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
 };
+
 
 /** @param {!proto.forge_abi.EncodingType} value */
 proto.forge_abi.WalletType.prototype.setAddress = function(value) {
   jspb.Message.setProto3EnumField(this, 3, value);
 };
+
 
 /**
  * optional RoleType role = 4;
@@ -576,10 +633,13 @@ proto.forge_abi.WalletType.prototype.getRole = function() {
   return /** @type {!proto.forge_abi.RoleType} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
 };
 
+
 /** @param {!proto.forge_abi.RoleType} value */
 proto.forge_abi.WalletType.prototype.setRole = function(value) {
   jspb.Message.setProto3EnumField(this, 4, value);
 };
+
+
 
 /**
  * Generated by JsPbCodeGenerator.
@@ -599,45 +659,47 @@ if (goog.DEBUG && !COMPILED) {
   proto.forge_abi.WalletInfo.displayName = 'proto.forge_abi.WalletInfo';
 }
 
+
 if (jspb.Message.GENERATE_TO_OBJECT) {
-  /**
-   * Creates an object representation of this proto suitable for use in Soy templates.
-   * Field names that are reserved in JavaScript and will be renamed to pb_name.
-   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
-   * For the list of reserved names please see:
-   *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
-   * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
-   *     for transitional soy proto support: http://goto/soy-param-migration
-   * @return {!Object}
-   */
-  proto.forge_abi.WalletInfo.prototype.toObject = function(opt_includeInstance) {
-    return proto.forge_abi.WalletInfo.toObject(opt_includeInstance, this);
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.forge_abi.WalletInfo.prototype.toObject = function(opt_includeInstance) {
+  return proto.forge_abi.WalletInfo.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.forge_abi.WalletInfo} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.forge_abi.WalletInfo.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    type: (f = msg.getType()) && proto.forge_abi.WalletType.toObject(includeInstance, f),
+    sk: msg.getSk(),
+    pk: msg.getPk(),
+    address: jspb.Message.getFieldWithDefault(msg, 4, "")
   };
 
-  /**
-   * Static version of the {@see toObject} method.
-   * @param {boolean|undefined} includeInstance Whether to include the JSPB
-   *     instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @param {!proto.forge_abi.WalletInfo} msg The msg instance to transform.
-   * @return {!Object}
-   * @suppress {unusedLocalVariables} f is only used for nested messages
-   */
-  proto.forge_abi.WalletInfo.toObject = function(includeInstance, msg) {
-    var f,
-      obj = {
-        type: (f = msg.getType()) && proto.forge_abi.WalletType.toObject(includeInstance, f),
-        sk: msg.getSk(),
-        pk: msg.getPk(),
-        address: jspb.Message.getFieldWithDefault(msg, 4, ''),
-      };
-
-    if (includeInstance) {
-      obj.$jspbMessageInstance = msg;
-    }
-    return obj;
-  };
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
 }
+
 
 /**
  * Deserializes binary data (in protobuf wire format).
@@ -646,9 +708,10 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  */
 proto.forge_abi.WalletInfo.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.forge_abi.WalletInfo();
+  var msg = new proto.forge_abi.WalletInfo;
   return proto.forge_abi.WalletInfo.deserializeBinaryFromReader(msg, reader);
 };
+
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -664,30 +727,31 @@ proto.forge_abi.WalletInfo.deserializeBinaryFromReader = function(msg, reader) {
     }
     var field = reader.getFieldNumber();
     switch (field) {
-      case 1:
-        var value = new proto.forge_abi.WalletType();
-        reader.readMessage(value, proto.forge_abi.WalletType.deserializeBinaryFromReader);
-        msg.setType(value);
-        break;
-      case 2:
-        var value = /** @type {!Uint8Array} */ (reader.readBytes());
-        msg.setSk(value);
-        break;
-      case 3:
-        var value = /** @type {!Uint8Array} */ (reader.readBytes());
-        msg.setPk(value);
-        break;
-      case 4:
-        var value = /** @type {string} */ (reader.readString());
-        msg.setAddress(value);
-        break;
-      default:
-        reader.skipField();
-        break;
+    case 1:
+      var value = new proto.forge_abi.WalletType;
+      reader.readMessage(value,proto.forge_abi.WalletType.deserializeBinaryFromReader);
+      msg.setType(value);
+      break;
+    case 2:
+      var value = /** @type {!Uint8Array} */ (reader.readBytes());
+      msg.setSk(value);
+      break;
+    case 3:
+      var value = /** @type {!Uint8Array} */ (reader.readBytes());
+      msg.setPk(value);
+      break;
+    case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setAddress(value);
+      break;
+    default:
+      reader.skipField();
+      break;
     }
   }
   return msg;
 };
+
 
 /**
  * Serializes the message to binary data (in protobuf wire format).
@@ -698,6 +762,7 @@ proto.forge_abi.WalletInfo.prototype.serializeBinary = function() {
   proto.forge_abi.WalletInfo.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
+
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -710,42 +775,56 @@ proto.forge_abi.WalletInfo.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getType();
   if (f != null) {
-    writer.writeMessage(1, f, proto.forge_abi.WalletType.serializeBinaryToWriter);
+    writer.writeMessage(
+      1,
+      f,
+      proto.forge_abi.WalletType.serializeBinaryToWriter
+    );
   }
   f = message.getSk_asU8();
   if (f.length > 0) {
-    writer.writeBytes(2, f);
+    writer.writeBytes(
+      2,
+      f
+    );
   }
   f = message.getPk_asU8();
   if (f.length > 0) {
-    writer.writeBytes(3, f);
+    writer.writeBytes(
+      3,
+      f
+    );
   }
   f = message.getAddress();
   if (f.length > 0) {
-    writer.writeString(4, f);
+    writer.writeString(
+      4,
+      f
+    );
   }
 };
+
 
 /**
  * optional WalletType type = 1;
  * @return {?proto.forge_abi.WalletType}
  */
 proto.forge_abi.WalletInfo.prototype.getType = function() {
-  return /** @type{?proto.forge_abi.WalletType} */ (jspb.Message.getWrapperField(
-    this,
-    proto.forge_abi.WalletType,
-    1
-  ));
+  return /** @type{?proto.forge_abi.WalletType} */ (
+    jspb.Message.getWrapperField(this, proto.forge_abi.WalletType, 1));
 };
+
 
 /** @param {?proto.forge_abi.WalletType|undefined} value */
 proto.forge_abi.WalletInfo.prototype.setType = function(value) {
   jspb.Message.setWrapperField(this, 1, value);
 };
 
+
 proto.forge_abi.WalletInfo.prototype.clearType = function() {
   this.setType(undefined);
 };
+
 
 /**
  * Returns whether this field is set.
@@ -755,13 +834,15 @@ proto.forge_abi.WalletInfo.prototype.hasType = function() {
   return jspb.Message.getField(this, 1) != null;
 };
 
+
 /**
  * optional bytes sk = 2;
  * @return {!(string|Uint8Array)}
  */
 proto.forge_abi.WalletInfo.prototype.getSk = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 2, ''));
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
+
 
 /**
  * optional bytes sk = 2;
@@ -769,8 +850,10 @@ proto.forge_abi.WalletInfo.prototype.getSk = function() {
  * @return {string}
  */
 proto.forge_abi.WalletInfo.prototype.getSk_asB64 = function() {
-  return /** @type {string} */ (jspb.Message.bytesAsB64(this.getSk()));
+  return /** @type {string} */ (jspb.Message.bytesAsB64(
+      this.getSk()));
 };
+
 
 /**
  * optional bytes sk = 2;
@@ -780,21 +863,25 @@ proto.forge_abi.WalletInfo.prototype.getSk_asB64 = function() {
  * @return {!Uint8Array}
  */
 proto.forge_abi.WalletInfo.prototype.getSk_asU8 = function() {
-  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(this.getSk()));
+  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
+      this.getSk()));
 };
+
 
 /** @param {!(string|Uint8Array)} value */
 proto.forge_abi.WalletInfo.prototype.setSk = function(value) {
   jspb.Message.setProto3BytesField(this, 2, value);
 };
 
+
 /**
  * optional bytes pk = 3;
  * @return {!(string|Uint8Array)}
  */
 proto.forge_abi.WalletInfo.prototype.getPk = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 3, ''));
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
+
 
 /**
  * optional bytes pk = 3;
@@ -802,8 +889,10 @@ proto.forge_abi.WalletInfo.prototype.getPk = function() {
  * @return {string}
  */
 proto.forge_abi.WalletInfo.prototype.getPk_asB64 = function() {
-  return /** @type {string} */ (jspb.Message.bytesAsB64(this.getPk()));
+  return /** @type {string} */ (jspb.Message.bytesAsB64(
+      this.getPk()));
 };
+
 
 /**
  * optional bytes pk = 3;
@@ -813,26 +902,32 @@ proto.forge_abi.WalletInfo.prototype.getPk_asB64 = function() {
  * @return {!Uint8Array}
  */
 proto.forge_abi.WalletInfo.prototype.getPk_asU8 = function() {
-  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(this.getPk()));
+  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
+      this.getPk()));
 };
+
 
 /** @param {!(string|Uint8Array)} value */
 proto.forge_abi.WalletInfo.prototype.setPk = function(value) {
   jspb.Message.setProto3BytesField(this, 3, value);
 };
 
+
 /**
  * optional string address = 4;
  * @return {string}
  */
 proto.forge_abi.WalletInfo.prototype.getAddress = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ''));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
 };
+
 
 /** @param {string} value */
 proto.forge_abi.WalletInfo.prototype.setAddress = function(value) {
   jspb.Message.setProto3StringField(this, 4, value);
 };
+
+
 
 /**
  * Generated by JsPbCodeGenerator.
@@ -858,60 +953,59 @@ if (goog.DEBUG && !COMPILED) {
  */
 proto.forge_abi.ChainInfo.repeatedFields_ = [16];
 
+
+
 if (jspb.Message.GENERATE_TO_OBJECT) {
-  /**
-   * Creates an object representation of this proto suitable for use in Soy templates.
-   * Field names that are reserved in JavaScript and will be renamed to pb_name.
-   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
-   * For the list of reserved names please see:
-   *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
-   * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
-   *     for transitional soy proto support: http://goto/soy-param-migration
-   * @return {!Object}
-   */
-  proto.forge_abi.ChainInfo.prototype.toObject = function(opt_includeInstance) {
-    return proto.forge_abi.ChainInfo.toObject(opt_includeInstance, this);
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.forge_abi.ChainInfo.prototype.toObject = function(opt_includeInstance) {
+  return proto.forge_abi.ChainInfo.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.forge_abi.ChainInfo} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.forge_abi.ChainInfo.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    id: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    network: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    moniker: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    consensusVersion: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    synced: jspb.Message.getFieldWithDefault(msg, 5, false),
+    appHash: msg.getAppHash(),
+    blockHash: msg.getBlockHash(),
+    blockHeight: jspb.Message.getFieldWithDefault(msg, 8, 0),
+    blockTime: (f = msg.getBlockTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+    address: jspb.Message.getFieldWithDefault(msg, 10, ""),
+    votingPower: jspb.Message.getFieldWithDefault(msg, 11, 0),
+    totalTxs: jspb.Message.getFieldWithDefault(msg, 12, 0),
+    version: jspb.Message.getFieldWithDefault(msg, 13, ""),
+    forgeAppsVersionMap: (f = msg.getForgeAppsVersionMap()) ? f.toObject(includeInstance, undefined) : [],
+    supportedTxsList: jspb.Message.getRepeatedField(msg, 16)
   };
 
-  /**
-   * Static version of the {@see toObject} method.
-   * @param {boolean|undefined} includeInstance Whether to include the JSPB
-   *     instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @param {!proto.forge_abi.ChainInfo} msg The msg instance to transform.
-   * @return {!Object}
-   * @suppress {unusedLocalVariables} f is only used for nested messages
-   */
-  proto.forge_abi.ChainInfo.toObject = function(includeInstance, msg) {
-    var f,
-      obj = {
-        id: jspb.Message.getFieldWithDefault(msg, 1, ''),
-        network: jspb.Message.getFieldWithDefault(msg, 2, ''),
-        moniker: jspb.Message.getFieldWithDefault(msg, 3, ''),
-        consensusVersion: jspb.Message.getFieldWithDefault(msg, 4, ''),
-        synced: jspb.Message.getFieldWithDefault(msg, 5, false),
-        appHash: msg.getAppHash(),
-        blockHash: msg.getBlockHash(),
-        blockHeight: jspb.Message.getFieldWithDefault(msg, 8, 0),
-        blockTime:
-          (f = msg.getBlockTime()) &&
-          google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-        address: jspb.Message.getFieldWithDefault(msg, 10, ''),
-        votingPower: jspb.Message.getFieldWithDefault(msg, 11, 0),
-        totalTxs: jspb.Message.getFieldWithDefault(msg, 12, 0),
-        version: jspb.Message.getFieldWithDefault(msg, 13, ''),
-        forgeAppsVersionMap: (f = msg.getForgeAppsVersionMap())
-          ? f.toObject(includeInstance, undefined)
-          : [],
-        supportedTxsList: jspb.Message.getRepeatedField(msg, 16),
-      };
-
-    if (includeInstance) {
-      obj.$jspbMessageInstance = msg;
-    }
-    return obj;
-  };
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
 }
+
 
 /**
  * Deserializes binary data (in protobuf wire format).
@@ -920,9 +1014,10 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  */
 proto.forge_abi.ChainInfo.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.forge_abi.ChainInfo();
+  var msg = new proto.forge_abi.ChainInfo;
   return proto.forge_abi.ChainInfo.deserializeBinaryFromReader(msg, reader);
 };
+
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -938,86 +1033,77 @@ proto.forge_abi.ChainInfo.deserializeBinaryFromReader = function(msg, reader) {
     }
     var field = reader.getFieldNumber();
     switch (field) {
-      case 1:
-        var value = /** @type {string} */ (reader.readString());
-        msg.setId(value);
-        break;
-      case 2:
-        var value = /** @type {string} */ (reader.readString());
-        msg.setNetwork(value);
-        break;
-      case 3:
-        var value = /** @type {string} */ (reader.readString());
-        msg.setMoniker(value);
-        break;
-      case 4:
-        var value = /** @type {string} */ (reader.readString());
-        msg.setConsensusVersion(value);
-        break;
-      case 5:
-        var value = /** @type {boolean} */ (reader.readBool());
-        msg.setSynced(value);
-        break;
-      case 6:
-        var value = /** @type {!Uint8Array} */ (reader.readBytes());
-        msg.setAppHash(value);
-        break;
-      case 7:
-        var value = /** @type {!Uint8Array} */ (reader.readBytes());
-        msg.setBlockHash(value);
-        break;
-      case 8:
-        var value = /** @type {number} */ (reader.readUint64());
-        msg.setBlockHeight(value);
-        break;
-      case 9:
-        var value = new google_protobuf_timestamp_pb.Timestamp();
-        reader.readMessage(
-          value,
-          google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader
-        );
-        msg.setBlockTime(value);
-        break;
-      case 10:
-        var value = /** @type {string} */ (reader.readString());
-        msg.setAddress(value);
-        break;
-      case 11:
-        var value = /** @type {number} */ (reader.readUint64());
-        msg.setVotingPower(value);
-        break;
-      case 12:
-        var value = /** @type {number} */ (reader.readUint64());
-        msg.setTotalTxs(value);
-        break;
-      case 13:
-        var value = /** @type {string} */ (reader.readString());
-        msg.setVersion(value);
-        break;
-      case 15:
-        var value = msg.getForgeAppsVersionMap();
-        reader.readMessage(value, function(message, reader) {
-          jspb.Map.deserializeBinary(
-            message,
-            reader,
-            jspb.BinaryReader.prototype.readString,
-            jspb.BinaryReader.prototype.readString,
-            null,
-            ''
-          );
-        });
-        break;
-      case 16:
-        var value = /** @type {string} */ (reader.readString());
-        msg.addSupportedTxs(value);
-        break;
-      default:
-        reader.skipField();
-        break;
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setId(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setNetwork(value);
+      break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setMoniker(value);
+      break;
+    case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setConsensusVersion(value);
+      break;
+    case 5:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setSynced(value);
+      break;
+    case 6:
+      var value = /** @type {!Uint8Array} */ (reader.readBytes());
+      msg.setAppHash(value);
+      break;
+    case 7:
+      var value = /** @type {!Uint8Array} */ (reader.readBytes());
+      msg.setBlockHash(value);
+      break;
+    case 8:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setBlockHeight(value);
+      break;
+    case 9:
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setBlockTime(value);
+      break;
+    case 10:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setAddress(value);
+      break;
+    case 11:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setVotingPower(value);
+      break;
+    case 12:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setTotalTxs(value);
+      break;
+    case 13:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setVersion(value);
+      break;
+    case 15:
+      var value = msg.getForgeAppsVersionMap();
+      reader.readMessage(value, function(message, reader) {
+        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readString, null, "");
+         });
+      break;
+    case 16:
+      var value = /** @type {string} */ (reader.readString());
+      msg.addSupportedTxs(value);
+      break;
+    default:
+      reader.skipField();
+      break;
     }
   }
   return msg;
 };
+
 
 /**
  * Serializes the message to binary data (in protobuf wire format).
@@ -1028,6 +1114,7 @@ proto.forge_abi.ChainInfo.prototype.serializeBinary = function() {
   proto.forge_abi.ChainInfo.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
+
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -1040,122 +1127,169 @@ proto.forge_abi.ChainInfo.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getId();
   if (f.length > 0) {
-    writer.writeString(1, f);
+    writer.writeString(
+      1,
+      f
+    );
   }
   f = message.getNetwork();
   if (f.length > 0) {
-    writer.writeString(2, f);
+    writer.writeString(
+      2,
+      f
+    );
   }
   f = message.getMoniker();
   if (f.length > 0) {
-    writer.writeString(3, f);
+    writer.writeString(
+      3,
+      f
+    );
   }
   f = message.getConsensusVersion();
   if (f.length > 0) {
-    writer.writeString(4, f);
+    writer.writeString(
+      4,
+      f
+    );
   }
   f = message.getSynced();
   if (f) {
-    writer.writeBool(5, f);
+    writer.writeBool(
+      5,
+      f
+    );
   }
   f = message.getAppHash_asU8();
   if (f.length > 0) {
-    writer.writeBytes(6, f);
+    writer.writeBytes(
+      6,
+      f
+    );
   }
   f = message.getBlockHash_asU8();
   if (f.length > 0) {
-    writer.writeBytes(7, f);
+    writer.writeBytes(
+      7,
+      f
+    );
   }
   f = message.getBlockHeight();
   if (f !== 0) {
-    writer.writeUint64(8, f);
+    writer.writeUint64(
+      8,
+      f
+    );
   }
   f = message.getBlockTime();
   if (f != null) {
-    writer.writeMessage(9, f, google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter);
+    writer.writeMessage(
+      9,
+      f,
+      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+    );
   }
   f = message.getAddress();
   if (f.length > 0) {
-    writer.writeString(10, f);
+    writer.writeString(
+      10,
+      f
+    );
   }
   f = message.getVotingPower();
   if (f !== 0) {
-    writer.writeUint64(11, f);
+    writer.writeUint64(
+      11,
+      f
+    );
   }
   f = message.getTotalTxs();
   if (f !== 0) {
-    writer.writeUint64(12, f);
+    writer.writeUint64(
+      12,
+      f
+    );
   }
   f = message.getVersion();
   if (f.length > 0) {
-    writer.writeString(13, f);
+    writer.writeString(
+      13,
+      f
+    );
   }
   f = message.getForgeAppsVersionMap(true);
   if (f && f.getLength() > 0) {
-    f.serializeBinary(
-      15,
-      writer,
-      jspb.BinaryWriter.prototype.writeString,
-      jspb.BinaryWriter.prototype.writeString
-    );
+    f.serializeBinary(15, writer, jspb.BinaryWriter.prototype.writeString, jspb.BinaryWriter.prototype.writeString);
   }
   f = message.getSupportedTxsList();
   if (f.length > 0) {
-    writer.writeRepeatedString(16, f);
+    writer.writeRepeatedString(
+      16,
+      f
+    );
   }
 };
+
 
 /**
  * optional string id = 1;
  * @return {string}
  */
 proto.forge_abi.ChainInfo.prototype.getId = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ''));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
+
 
 /** @param {string} value */
 proto.forge_abi.ChainInfo.prototype.setId = function(value) {
   jspb.Message.setProto3StringField(this, 1, value);
 };
 
+
 /**
  * optional string network = 2;
  * @return {string}
  */
 proto.forge_abi.ChainInfo.prototype.getNetwork = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ''));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
+
 
 /** @param {string} value */
 proto.forge_abi.ChainInfo.prototype.setNetwork = function(value) {
   jspb.Message.setProto3StringField(this, 2, value);
 };
 
+
 /**
  * optional string moniker = 3;
  * @return {string}
  */
 proto.forge_abi.ChainInfo.prototype.getMoniker = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ''));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
+
 
 /** @param {string} value */
 proto.forge_abi.ChainInfo.prototype.setMoniker = function(value) {
   jspb.Message.setProto3StringField(this, 3, value);
 };
 
+
 /**
  * optional string consensus_version = 4;
  * @return {string}
  */
 proto.forge_abi.ChainInfo.prototype.getConsensusVersion = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ''));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
 };
+
 
 /** @param {string} value */
 proto.forge_abi.ChainInfo.prototype.setConsensusVersion = function(value) {
   jspb.Message.setProto3StringField(this, 4, value);
 };
+
 
 /**
  * optional bool synced = 5;
@@ -1167,18 +1301,21 @@ proto.forge_abi.ChainInfo.prototype.getSynced = function() {
   return /** @type {boolean} */ (jspb.Message.getFieldWithDefault(this, 5, false));
 };
 
+
 /** @param {boolean} value */
 proto.forge_abi.ChainInfo.prototype.setSynced = function(value) {
   jspb.Message.setProto3BooleanField(this, 5, value);
 };
+
 
 /**
  * optional bytes app_hash = 6;
  * @return {!(string|Uint8Array)}
  */
 proto.forge_abi.ChainInfo.prototype.getAppHash = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 6, ''));
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
 };
+
 
 /**
  * optional bytes app_hash = 6;
@@ -1186,8 +1323,10 @@ proto.forge_abi.ChainInfo.prototype.getAppHash = function() {
  * @return {string}
  */
 proto.forge_abi.ChainInfo.prototype.getAppHash_asB64 = function() {
-  return /** @type {string} */ (jspb.Message.bytesAsB64(this.getAppHash()));
+  return /** @type {string} */ (jspb.Message.bytesAsB64(
+      this.getAppHash()));
 };
+
 
 /**
  * optional bytes app_hash = 6;
@@ -1197,21 +1336,25 @@ proto.forge_abi.ChainInfo.prototype.getAppHash_asB64 = function() {
  * @return {!Uint8Array}
  */
 proto.forge_abi.ChainInfo.prototype.getAppHash_asU8 = function() {
-  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(this.getAppHash()));
+  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
+      this.getAppHash()));
 };
+
 
 /** @param {!(string|Uint8Array)} value */
 proto.forge_abi.ChainInfo.prototype.setAppHash = function(value) {
   jspb.Message.setProto3BytesField(this, 6, value);
 };
 
+
 /**
  * optional bytes block_hash = 7;
  * @return {!(string|Uint8Array)}
  */
 proto.forge_abi.ChainInfo.prototype.getBlockHash = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 7, ''));
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
 };
+
 
 /**
  * optional bytes block_hash = 7;
@@ -1219,8 +1362,10 @@ proto.forge_abi.ChainInfo.prototype.getBlockHash = function() {
  * @return {string}
  */
 proto.forge_abi.ChainInfo.prototype.getBlockHash_asB64 = function() {
-  return /** @type {string} */ (jspb.Message.bytesAsB64(this.getBlockHash()));
+  return /** @type {string} */ (jspb.Message.bytesAsB64(
+      this.getBlockHash()));
 };
+
 
 /**
  * optional bytes block_hash = 7;
@@ -1230,13 +1375,16 @@ proto.forge_abi.ChainInfo.prototype.getBlockHash_asB64 = function() {
  * @return {!Uint8Array}
  */
 proto.forge_abi.ChainInfo.prototype.getBlockHash_asU8 = function() {
-  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(this.getBlockHash()));
+  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
+      this.getBlockHash()));
 };
+
 
 /** @param {!(string|Uint8Array)} value */
 proto.forge_abi.ChainInfo.prototype.setBlockHash = function(value) {
   jspb.Message.setProto3BytesField(this, 7, value);
 };
+
 
 /**
  * optional uint64 block_height = 8;
@@ -1246,31 +1394,33 @@ proto.forge_abi.ChainInfo.prototype.getBlockHeight = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 8, 0));
 };
 
+
 /** @param {number} value */
 proto.forge_abi.ChainInfo.prototype.setBlockHeight = function(value) {
   jspb.Message.setProto3IntField(this, 8, value);
 };
+
 
 /**
  * optional google.protobuf.Timestamp block_time = 9;
  * @return {?proto.google.protobuf.Timestamp}
  */
 proto.forge_abi.ChainInfo.prototype.getBlockTime = function() {
-  return /** @type{?proto.google.protobuf.Timestamp} */ (jspb.Message.getWrapperField(
-    this,
-    google_protobuf_timestamp_pb.Timestamp,
-    9
-  ));
+  return /** @type{?proto.google.protobuf.Timestamp} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 9));
 };
+
 
 /** @param {?proto.google.protobuf.Timestamp|undefined} value */
 proto.forge_abi.ChainInfo.prototype.setBlockTime = function(value) {
   jspb.Message.setWrapperField(this, 9, value);
 };
 
+
 proto.forge_abi.ChainInfo.prototype.clearBlockTime = function() {
   this.setBlockTime(undefined);
 };
+
 
 /**
  * Returns whether this field is set.
@@ -1280,18 +1430,21 @@ proto.forge_abi.ChainInfo.prototype.hasBlockTime = function() {
   return jspb.Message.getField(this, 9) != null;
 };
 
+
 /**
  * optional string address = 10;
  * @return {string}
  */
 proto.forge_abi.ChainInfo.prototype.getAddress = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 10, ''));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 10, ""));
 };
+
 
 /** @param {string} value */
 proto.forge_abi.ChainInfo.prototype.setAddress = function(value) {
   jspb.Message.setProto3StringField(this, 10, value);
 };
+
 
 /**
  * optional uint64 voting_power = 11;
@@ -1301,10 +1454,12 @@ proto.forge_abi.ChainInfo.prototype.getVotingPower = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 11, 0));
 };
 
+
 /** @param {number} value */
 proto.forge_abi.ChainInfo.prototype.setVotingPower = function(value) {
   jspb.Message.setProto3IntField(this, 11, value);
 };
+
 
 /**
  * optional uint64 total_txs = 12;
@@ -1314,23 +1469,27 @@ proto.forge_abi.ChainInfo.prototype.getTotalTxs = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 12, 0));
 };
 
+
 /** @param {number} value */
 proto.forge_abi.ChainInfo.prototype.setTotalTxs = function(value) {
   jspb.Message.setProto3IntField(this, 12, value);
 };
+
 
 /**
  * optional string version = 13;
  * @return {string}
  */
 proto.forge_abi.ChainInfo.prototype.getVersion = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 13, ''));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 13, ""));
 };
+
 
 /** @param {string} value */
 proto.forge_abi.ChainInfo.prototype.setVersion = function(value) {
   jspb.Message.setProto3StringField(this, 13, value);
 };
+
 
 /**
  * map<string, string> forge_apps_version = 15;
@@ -1339,17 +1498,16 @@ proto.forge_abi.ChainInfo.prototype.setVersion = function(value) {
  * @return {!jspb.Map<string,string>}
  */
 proto.forge_abi.ChainInfo.prototype.getForgeAppsVersionMap = function(opt_noLazyCreate) {
-  return /** @type {!jspb.Map<string,string>} */ (jspb.Message.getMapField(
-    this,
-    15,
-    opt_noLazyCreate,
-    null
-  ));
+  return /** @type {!jspb.Map<string,string>} */ (
+      jspb.Message.getMapField(this, 15, opt_noLazyCreate,
+      null));
 };
+
 
 proto.forge_abi.ChainInfo.prototype.clearForgeAppsVersionMap = function() {
   this.getForgeAppsVersionMap().clear();
 };
+
 
 /**
  * repeated string supported_txs = 16;
@@ -1359,10 +1517,12 @@ proto.forge_abi.ChainInfo.prototype.getSupportedTxsList = function() {
   return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 16));
 };
 
+
 /** @param {!Array<string>} value */
 proto.forge_abi.ChainInfo.prototype.setSupportedTxsList = function(value) {
   jspb.Message.setField(this, 16, value || []);
 };
+
 
 /**
  * @param {string} value
@@ -1372,9 +1532,12 @@ proto.forge_abi.ChainInfo.prototype.addSupportedTxs = function(value, opt_index)
   jspb.Message.addToRepeatedField(this, 16, value, opt_index);
 };
 
+
 proto.forge_abi.ChainInfo.prototype.clearSupportedTxsList = function() {
   this.setSupportedTxsList([]);
 };
+
+
 
 /**
  * Generated by JsPbCodeGenerator.
@@ -1400,63 +1563,62 @@ if (goog.DEBUG && !COMPILED) {
  */
 proto.forge_abi.NodeInfo.repeatedFields_ = [16];
 
+
+
 if (jspb.Message.GENERATE_TO_OBJECT) {
-  /**
-   * Creates an object representation of this proto suitable for use in Soy templates.
-   * Field names that are reserved in JavaScript and will be renamed to pb_name.
-   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
-   * For the list of reserved names please see:
-   *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
-   * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
-   *     for transitional soy proto support: http://goto/soy-param-migration
-   * @return {!Object}
-   */
-  proto.forge_abi.NodeInfo.prototype.toObject = function(opt_includeInstance) {
-    return proto.forge_abi.NodeInfo.toObject(opt_includeInstance, this);
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.forge_abi.NodeInfo.prototype.toObject = function(opt_includeInstance) {
+  return proto.forge_abi.NodeInfo.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.forge_abi.NodeInfo} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.forge_abi.NodeInfo.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    id: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    network: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    moniker: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    consensusVersion: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    synced: jspb.Message.getFieldWithDefault(msg, 5, false),
+    appHash: msg.getAppHash(),
+    blockHash: msg.getBlockHash(),
+    blockHeight: jspb.Message.getFieldWithDefault(msg, 8, 0),
+    blockTime: (f = msg.getBlockTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+    address: jspb.Message.getFieldWithDefault(msg, 10, ""),
+    votingPower: jspb.Message.getFieldWithDefault(msg, 11, 0),
+    totalTxs: jspb.Message.getFieldWithDefault(msg, 12, 0),
+    version: jspb.Message.getFieldWithDefault(msg, 13, ""),
+    forgeAppsVersionMap: (f = msg.getForgeAppsVersionMap()) ? f.toObject(includeInstance, undefined) : [],
+    supportedTxsList: jspb.Message.getRepeatedField(msg, 16),
+    ip: jspb.Message.getFieldWithDefault(msg, 17, ""),
+    geoInfo: (f = msg.getGeoInfo()) && proto.forge_abi.GeoInfo.toObject(includeInstance, f),
+    p2pAddress: jspb.Message.getFieldWithDefault(msg, 19, "")
   };
 
-  /**
-   * Static version of the {@see toObject} method.
-   * @param {boolean|undefined} includeInstance Whether to include the JSPB
-   *     instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @param {!proto.forge_abi.NodeInfo} msg The msg instance to transform.
-   * @return {!Object}
-   * @suppress {unusedLocalVariables} f is only used for nested messages
-   */
-  proto.forge_abi.NodeInfo.toObject = function(includeInstance, msg) {
-    var f,
-      obj = {
-        id: jspb.Message.getFieldWithDefault(msg, 1, ''),
-        network: jspb.Message.getFieldWithDefault(msg, 2, ''),
-        moniker: jspb.Message.getFieldWithDefault(msg, 3, ''),
-        consensusVersion: jspb.Message.getFieldWithDefault(msg, 4, ''),
-        synced: jspb.Message.getFieldWithDefault(msg, 5, false),
-        appHash: msg.getAppHash(),
-        blockHash: msg.getBlockHash(),
-        blockHeight: jspb.Message.getFieldWithDefault(msg, 8, 0),
-        blockTime:
-          (f = msg.getBlockTime()) &&
-          google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-        address: jspb.Message.getFieldWithDefault(msg, 10, ''),
-        votingPower: jspb.Message.getFieldWithDefault(msg, 11, 0),
-        totalTxs: jspb.Message.getFieldWithDefault(msg, 12, 0),
-        version: jspb.Message.getFieldWithDefault(msg, 13, ''),
-        forgeAppsVersionMap: (f = msg.getForgeAppsVersionMap())
-          ? f.toObject(includeInstance, undefined)
-          : [],
-        supportedTxsList: jspb.Message.getRepeatedField(msg, 16),
-        ip: jspb.Message.getFieldWithDefault(msg, 17, ''),
-        geoInfo: (f = msg.getGeoInfo()) && proto.forge_abi.GeoInfo.toObject(includeInstance, f),
-        p2pAddress: jspb.Message.getFieldWithDefault(msg, 19, ''),
-      };
-
-    if (includeInstance) {
-      obj.$jspbMessageInstance = msg;
-    }
-    return obj;
-  };
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
 }
+
 
 /**
  * Deserializes binary data (in protobuf wire format).
@@ -1465,9 +1627,10 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  */
 proto.forge_abi.NodeInfo.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.forge_abi.NodeInfo();
+  var msg = new proto.forge_abi.NodeInfo;
   return proto.forge_abi.NodeInfo.deserializeBinaryFromReader(msg, reader);
 };
+
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -1483,99 +1646,90 @@ proto.forge_abi.NodeInfo.deserializeBinaryFromReader = function(msg, reader) {
     }
     var field = reader.getFieldNumber();
     switch (field) {
-      case 1:
-        var value = /** @type {string} */ (reader.readString());
-        msg.setId(value);
-        break;
-      case 2:
-        var value = /** @type {string} */ (reader.readString());
-        msg.setNetwork(value);
-        break;
-      case 3:
-        var value = /** @type {string} */ (reader.readString());
-        msg.setMoniker(value);
-        break;
-      case 4:
-        var value = /** @type {string} */ (reader.readString());
-        msg.setConsensusVersion(value);
-        break;
-      case 5:
-        var value = /** @type {boolean} */ (reader.readBool());
-        msg.setSynced(value);
-        break;
-      case 6:
-        var value = /** @type {!Uint8Array} */ (reader.readBytes());
-        msg.setAppHash(value);
-        break;
-      case 7:
-        var value = /** @type {!Uint8Array} */ (reader.readBytes());
-        msg.setBlockHash(value);
-        break;
-      case 8:
-        var value = /** @type {number} */ (reader.readUint64());
-        msg.setBlockHeight(value);
-        break;
-      case 9:
-        var value = new google_protobuf_timestamp_pb.Timestamp();
-        reader.readMessage(
-          value,
-          google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader
-        );
-        msg.setBlockTime(value);
-        break;
-      case 10:
-        var value = /** @type {string} */ (reader.readString());
-        msg.setAddress(value);
-        break;
-      case 11:
-        var value = /** @type {number} */ (reader.readUint64());
-        msg.setVotingPower(value);
-        break;
-      case 12:
-        var value = /** @type {number} */ (reader.readUint64());
-        msg.setTotalTxs(value);
-        break;
-      case 13:
-        var value = /** @type {string} */ (reader.readString());
-        msg.setVersion(value);
-        break;
-      case 15:
-        var value = msg.getForgeAppsVersionMap();
-        reader.readMessage(value, function(message, reader) {
-          jspb.Map.deserializeBinary(
-            message,
-            reader,
-            jspb.BinaryReader.prototype.readString,
-            jspb.BinaryReader.prototype.readString,
-            null,
-            ''
-          );
-        });
-        break;
-      case 16:
-        var value = /** @type {string} */ (reader.readString());
-        msg.addSupportedTxs(value);
-        break;
-      case 17:
-        var value = /** @type {string} */ (reader.readString());
-        msg.setIp(value);
-        break;
-      case 18:
-        var value = new proto.forge_abi.GeoInfo();
-        reader.readMessage(value, proto.forge_abi.GeoInfo.deserializeBinaryFromReader);
-        msg.setGeoInfo(value);
-        break;
-      case 19:
-        var value = /** @type {string} */ (reader.readString());
-        msg.setP2pAddress(value);
-        break;
-      default:
-        reader.skipField();
-        break;
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setId(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setNetwork(value);
+      break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setMoniker(value);
+      break;
+    case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setConsensusVersion(value);
+      break;
+    case 5:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setSynced(value);
+      break;
+    case 6:
+      var value = /** @type {!Uint8Array} */ (reader.readBytes());
+      msg.setAppHash(value);
+      break;
+    case 7:
+      var value = /** @type {!Uint8Array} */ (reader.readBytes());
+      msg.setBlockHash(value);
+      break;
+    case 8:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setBlockHeight(value);
+      break;
+    case 9:
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setBlockTime(value);
+      break;
+    case 10:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setAddress(value);
+      break;
+    case 11:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setVotingPower(value);
+      break;
+    case 12:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setTotalTxs(value);
+      break;
+    case 13:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setVersion(value);
+      break;
+    case 15:
+      var value = msg.getForgeAppsVersionMap();
+      reader.readMessage(value, function(message, reader) {
+        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readString, null, "");
+         });
+      break;
+    case 16:
+      var value = /** @type {string} */ (reader.readString());
+      msg.addSupportedTxs(value);
+      break;
+    case 17:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setIp(value);
+      break;
+    case 18:
+      var value = new proto.forge_abi.GeoInfo;
+      reader.readMessage(value,proto.forge_abi.GeoInfo.deserializeBinaryFromReader);
+      msg.setGeoInfo(value);
+      break;
+    case 19:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setP2pAddress(value);
+      break;
+    default:
+      reader.skipField();
+      break;
     }
   }
   return msg;
 };
+
 
 /**
  * Serializes the message to binary data (in protobuf wire format).
@@ -1586,6 +1740,7 @@ proto.forge_abi.NodeInfo.prototype.serializeBinary = function() {
   proto.forge_abi.NodeInfo.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
+
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -1598,134 +1753,191 @@ proto.forge_abi.NodeInfo.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getId();
   if (f.length > 0) {
-    writer.writeString(1, f);
+    writer.writeString(
+      1,
+      f
+    );
   }
   f = message.getNetwork();
   if (f.length > 0) {
-    writer.writeString(2, f);
+    writer.writeString(
+      2,
+      f
+    );
   }
   f = message.getMoniker();
   if (f.length > 0) {
-    writer.writeString(3, f);
+    writer.writeString(
+      3,
+      f
+    );
   }
   f = message.getConsensusVersion();
   if (f.length > 0) {
-    writer.writeString(4, f);
+    writer.writeString(
+      4,
+      f
+    );
   }
   f = message.getSynced();
   if (f) {
-    writer.writeBool(5, f);
+    writer.writeBool(
+      5,
+      f
+    );
   }
   f = message.getAppHash_asU8();
   if (f.length > 0) {
-    writer.writeBytes(6, f);
+    writer.writeBytes(
+      6,
+      f
+    );
   }
   f = message.getBlockHash_asU8();
   if (f.length > 0) {
-    writer.writeBytes(7, f);
+    writer.writeBytes(
+      7,
+      f
+    );
   }
   f = message.getBlockHeight();
   if (f !== 0) {
-    writer.writeUint64(8, f);
+    writer.writeUint64(
+      8,
+      f
+    );
   }
   f = message.getBlockTime();
   if (f != null) {
-    writer.writeMessage(9, f, google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter);
+    writer.writeMessage(
+      9,
+      f,
+      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+    );
   }
   f = message.getAddress();
   if (f.length > 0) {
-    writer.writeString(10, f);
+    writer.writeString(
+      10,
+      f
+    );
   }
   f = message.getVotingPower();
   if (f !== 0) {
-    writer.writeUint64(11, f);
+    writer.writeUint64(
+      11,
+      f
+    );
   }
   f = message.getTotalTxs();
   if (f !== 0) {
-    writer.writeUint64(12, f);
+    writer.writeUint64(
+      12,
+      f
+    );
   }
   f = message.getVersion();
   if (f.length > 0) {
-    writer.writeString(13, f);
+    writer.writeString(
+      13,
+      f
+    );
   }
   f = message.getForgeAppsVersionMap(true);
   if (f && f.getLength() > 0) {
-    f.serializeBinary(
-      15,
-      writer,
-      jspb.BinaryWriter.prototype.writeString,
-      jspb.BinaryWriter.prototype.writeString
-    );
+    f.serializeBinary(15, writer, jspb.BinaryWriter.prototype.writeString, jspb.BinaryWriter.prototype.writeString);
   }
   f = message.getSupportedTxsList();
   if (f.length > 0) {
-    writer.writeRepeatedString(16, f);
+    writer.writeRepeatedString(
+      16,
+      f
+    );
   }
   f = message.getIp();
   if (f.length > 0) {
-    writer.writeString(17, f);
+    writer.writeString(
+      17,
+      f
+    );
   }
   f = message.getGeoInfo();
   if (f != null) {
-    writer.writeMessage(18, f, proto.forge_abi.GeoInfo.serializeBinaryToWriter);
+    writer.writeMessage(
+      18,
+      f,
+      proto.forge_abi.GeoInfo.serializeBinaryToWriter
+    );
   }
   f = message.getP2pAddress();
   if (f.length > 0) {
-    writer.writeString(19, f);
+    writer.writeString(
+      19,
+      f
+    );
   }
 };
+
 
 /**
  * optional string id = 1;
  * @return {string}
  */
 proto.forge_abi.NodeInfo.prototype.getId = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ''));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
+
 
 /** @param {string} value */
 proto.forge_abi.NodeInfo.prototype.setId = function(value) {
   jspb.Message.setProto3StringField(this, 1, value);
 };
 
+
 /**
  * optional string network = 2;
  * @return {string}
  */
 proto.forge_abi.NodeInfo.prototype.getNetwork = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ''));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
+
 
 /** @param {string} value */
 proto.forge_abi.NodeInfo.prototype.setNetwork = function(value) {
   jspb.Message.setProto3StringField(this, 2, value);
 };
 
+
 /**
  * optional string moniker = 3;
  * @return {string}
  */
 proto.forge_abi.NodeInfo.prototype.getMoniker = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ''));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
+
 
 /** @param {string} value */
 proto.forge_abi.NodeInfo.prototype.setMoniker = function(value) {
   jspb.Message.setProto3StringField(this, 3, value);
 };
 
+
 /**
  * optional string consensus_version = 4;
  * @return {string}
  */
 proto.forge_abi.NodeInfo.prototype.getConsensusVersion = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ''));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
 };
+
 
 /** @param {string} value */
 proto.forge_abi.NodeInfo.prototype.setConsensusVersion = function(value) {
   jspb.Message.setProto3StringField(this, 4, value);
 };
+
 
 /**
  * optional bool synced = 5;
@@ -1737,18 +1949,21 @@ proto.forge_abi.NodeInfo.prototype.getSynced = function() {
   return /** @type {boolean} */ (jspb.Message.getFieldWithDefault(this, 5, false));
 };
 
+
 /** @param {boolean} value */
 proto.forge_abi.NodeInfo.prototype.setSynced = function(value) {
   jspb.Message.setProto3BooleanField(this, 5, value);
 };
+
 
 /**
  * optional bytes app_hash = 6;
  * @return {!(string|Uint8Array)}
  */
 proto.forge_abi.NodeInfo.prototype.getAppHash = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 6, ''));
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
 };
+
 
 /**
  * optional bytes app_hash = 6;
@@ -1756,8 +1971,10 @@ proto.forge_abi.NodeInfo.prototype.getAppHash = function() {
  * @return {string}
  */
 proto.forge_abi.NodeInfo.prototype.getAppHash_asB64 = function() {
-  return /** @type {string} */ (jspb.Message.bytesAsB64(this.getAppHash()));
+  return /** @type {string} */ (jspb.Message.bytesAsB64(
+      this.getAppHash()));
 };
+
 
 /**
  * optional bytes app_hash = 6;
@@ -1767,21 +1984,25 @@ proto.forge_abi.NodeInfo.prototype.getAppHash_asB64 = function() {
  * @return {!Uint8Array}
  */
 proto.forge_abi.NodeInfo.prototype.getAppHash_asU8 = function() {
-  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(this.getAppHash()));
+  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
+      this.getAppHash()));
 };
+
 
 /** @param {!(string|Uint8Array)} value */
 proto.forge_abi.NodeInfo.prototype.setAppHash = function(value) {
   jspb.Message.setProto3BytesField(this, 6, value);
 };
 
+
 /**
  * optional bytes block_hash = 7;
  * @return {!(string|Uint8Array)}
  */
 proto.forge_abi.NodeInfo.prototype.getBlockHash = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 7, ''));
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
 };
+
 
 /**
  * optional bytes block_hash = 7;
@@ -1789,8 +2010,10 @@ proto.forge_abi.NodeInfo.prototype.getBlockHash = function() {
  * @return {string}
  */
 proto.forge_abi.NodeInfo.prototype.getBlockHash_asB64 = function() {
-  return /** @type {string} */ (jspb.Message.bytesAsB64(this.getBlockHash()));
+  return /** @type {string} */ (jspb.Message.bytesAsB64(
+      this.getBlockHash()));
 };
+
 
 /**
  * optional bytes block_hash = 7;
@@ -1800,13 +2023,16 @@ proto.forge_abi.NodeInfo.prototype.getBlockHash_asB64 = function() {
  * @return {!Uint8Array}
  */
 proto.forge_abi.NodeInfo.prototype.getBlockHash_asU8 = function() {
-  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(this.getBlockHash()));
+  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
+      this.getBlockHash()));
 };
+
 
 /** @param {!(string|Uint8Array)} value */
 proto.forge_abi.NodeInfo.prototype.setBlockHash = function(value) {
   jspb.Message.setProto3BytesField(this, 7, value);
 };
+
 
 /**
  * optional uint64 block_height = 8;
@@ -1816,31 +2042,33 @@ proto.forge_abi.NodeInfo.prototype.getBlockHeight = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 8, 0));
 };
 
+
 /** @param {number} value */
 proto.forge_abi.NodeInfo.prototype.setBlockHeight = function(value) {
   jspb.Message.setProto3IntField(this, 8, value);
 };
+
 
 /**
  * optional google.protobuf.Timestamp block_time = 9;
  * @return {?proto.google.protobuf.Timestamp}
  */
 proto.forge_abi.NodeInfo.prototype.getBlockTime = function() {
-  return /** @type{?proto.google.protobuf.Timestamp} */ (jspb.Message.getWrapperField(
-    this,
-    google_protobuf_timestamp_pb.Timestamp,
-    9
-  ));
+  return /** @type{?proto.google.protobuf.Timestamp} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 9));
 };
+
 
 /** @param {?proto.google.protobuf.Timestamp|undefined} value */
 proto.forge_abi.NodeInfo.prototype.setBlockTime = function(value) {
   jspb.Message.setWrapperField(this, 9, value);
 };
 
+
 proto.forge_abi.NodeInfo.prototype.clearBlockTime = function() {
   this.setBlockTime(undefined);
 };
+
 
 /**
  * Returns whether this field is set.
@@ -1850,18 +2078,21 @@ proto.forge_abi.NodeInfo.prototype.hasBlockTime = function() {
   return jspb.Message.getField(this, 9) != null;
 };
 
+
 /**
  * optional string address = 10;
  * @return {string}
  */
 proto.forge_abi.NodeInfo.prototype.getAddress = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 10, ''));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 10, ""));
 };
+
 
 /** @param {string} value */
 proto.forge_abi.NodeInfo.prototype.setAddress = function(value) {
   jspb.Message.setProto3StringField(this, 10, value);
 };
+
 
 /**
  * optional uint64 voting_power = 11;
@@ -1871,10 +2102,12 @@ proto.forge_abi.NodeInfo.prototype.getVotingPower = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 11, 0));
 };
 
+
 /** @param {number} value */
 proto.forge_abi.NodeInfo.prototype.setVotingPower = function(value) {
   jspb.Message.setProto3IntField(this, 11, value);
 };
+
 
 /**
  * optional uint64 total_txs = 12;
@@ -1884,23 +2117,27 @@ proto.forge_abi.NodeInfo.prototype.getTotalTxs = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 12, 0));
 };
 
+
 /** @param {number} value */
 proto.forge_abi.NodeInfo.prototype.setTotalTxs = function(value) {
   jspb.Message.setProto3IntField(this, 12, value);
 };
+
 
 /**
  * optional string version = 13;
  * @return {string}
  */
 proto.forge_abi.NodeInfo.prototype.getVersion = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 13, ''));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 13, ""));
 };
+
 
 /** @param {string} value */
 proto.forge_abi.NodeInfo.prototype.setVersion = function(value) {
   jspb.Message.setProto3StringField(this, 13, value);
 };
+
 
 /**
  * map<string, string> forge_apps_version = 15;
@@ -1909,17 +2146,16 @@ proto.forge_abi.NodeInfo.prototype.setVersion = function(value) {
  * @return {!jspb.Map<string,string>}
  */
 proto.forge_abi.NodeInfo.prototype.getForgeAppsVersionMap = function(opt_noLazyCreate) {
-  return /** @type {!jspb.Map<string,string>} */ (jspb.Message.getMapField(
-    this,
-    15,
-    opt_noLazyCreate,
-    null
-  ));
+  return /** @type {!jspb.Map<string,string>} */ (
+      jspb.Message.getMapField(this, 15, opt_noLazyCreate,
+      null));
 };
+
 
 proto.forge_abi.NodeInfo.prototype.clearForgeAppsVersionMap = function() {
   this.getForgeAppsVersionMap().clear();
 };
+
 
 /**
  * repeated string supported_txs = 16;
@@ -1929,10 +2165,12 @@ proto.forge_abi.NodeInfo.prototype.getSupportedTxsList = function() {
   return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 16));
 };
 
+
 /** @param {!Array<string>} value */
 proto.forge_abi.NodeInfo.prototype.setSupportedTxsList = function(value) {
   jspb.Message.setField(this, 16, value || []);
 };
+
 
 /**
  * @param {string} value
@@ -1942,43 +2180,47 @@ proto.forge_abi.NodeInfo.prototype.addSupportedTxs = function(value, opt_index) 
   jspb.Message.addToRepeatedField(this, 16, value, opt_index);
 };
 
+
 proto.forge_abi.NodeInfo.prototype.clearSupportedTxsList = function() {
   this.setSupportedTxsList([]);
 };
+
 
 /**
  * optional string ip = 17;
  * @return {string}
  */
 proto.forge_abi.NodeInfo.prototype.getIp = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 17, ''));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 17, ""));
 };
+
 
 /** @param {string} value */
 proto.forge_abi.NodeInfo.prototype.setIp = function(value) {
   jspb.Message.setProto3StringField(this, 17, value);
 };
 
+
 /**
  * optional GeoInfo geo_info = 18;
  * @return {?proto.forge_abi.GeoInfo}
  */
 proto.forge_abi.NodeInfo.prototype.getGeoInfo = function() {
-  return /** @type{?proto.forge_abi.GeoInfo} */ (jspb.Message.getWrapperField(
-    this,
-    proto.forge_abi.GeoInfo,
-    18
-  ));
+  return /** @type{?proto.forge_abi.GeoInfo} */ (
+    jspb.Message.getWrapperField(this, proto.forge_abi.GeoInfo, 18));
 };
+
 
 /** @param {?proto.forge_abi.GeoInfo|undefined} value */
 proto.forge_abi.NodeInfo.prototype.setGeoInfo = function(value) {
   jspb.Message.setWrapperField(this, 18, value);
 };
 
+
 proto.forge_abi.NodeInfo.prototype.clearGeoInfo = function() {
   this.setGeoInfo(undefined);
 };
+
 
 /**
  * Returns whether this field is set.
@@ -1988,18 +2230,22 @@ proto.forge_abi.NodeInfo.prototype.hasGeoInfo = function() {
   return jspb.Message.getField(this, 18) != null;
 };
 
+
 /**
  * optional string p2p_address = 19;
  * @return {string}
  */
 proto.forge_abi.NodeInfo.prototype.getP2pAddress = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 19, ''));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 19, ""));
 };
+
 
 /** @param {string} value */
 proto.forge_abi.NodeInfo.prototype.setP2pAddress = function(value) {
   jspb.Message.setProto3StringField(this, 19, value);
 };
+
+
 
 /**
  * Generated by JsPbCodeGenerator.
@@ -2019,43 +2265,45 @@ if (goog.DEBUG && !COMPILED) {
   proto.forge_abi.Validator.displayName = 'proto.forge_abi.Validator';
 }
 
+
 if (jspb.Message.GENERATE_TO_OBJECT) {
-  /**
-   * Creates an object representation of this proto suitable for use in Soy templates.
-   * Field names that are reserved in JavaScript and will be renamed to pb_name.
-   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
-   * For the list of reserved names please see:
-   *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
-   * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
-   *     for transitional soy proto support: http://goto/soy-param-migration
-   * @return {!Object}
-   */
-  proto.forge_abi.Validator.prototype.toObject = function(opt_includeInstance) {
-    return proto.forge_abi.Validator.toObject(opt_includeInstance, this);
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.forge_abi.Validator.prototype.toObject = function(opt_includeInstance) {
+  return proto.forge_abi.Validator.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.forge_abi.Validator} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.forge_abi.Validator.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    address: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    power: jspb.Message.getFieldWithDefault(msg, 2, 0)
   };
 
-  /**
-   * Static version of the {@see toObject} method.
-   * @param {boolean|undefined} includeInstance Whether to include the JSPB
-   *     instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @param {!proto.forge_abi.Validator} msg The msg instance to transform.
-   * @return {!Object}
-   * @suppress {unusedLocalVariables} f is only used for nested messages
-   */
-  proto.forge_abi.Validator.toObject = function(includeInstance, msg) {
-    var f,
-      obj = {
-        address: jspb.Message.getFieldWithDefault(msg, 1, ''),
-        power: jspb.Message.getFieldWithDefault(msg, 2, 0),
-      };
-
-    if (includeInstance) {
-      obj.$jspbMessageInstance = msg;
-    }
-    return obj;
-  };
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
 }
+
 
 /**
  * Deserializes binary data (in protobuf wire format).
@@ -2064,9 +2312,10 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  */
 proto.forge_abi.Validator.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.forge_abi.Validator();
+  var msg = new proto.forge_abi.Validator;
   return proto.forge_abi.Validator.deserializeBinaryFromReader(msg, reader);
 };
+
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -2082,21 +2331,22 @@ proto.forge_abi.Validator.deserializeBinaryFromReader = function(msg, reader) {
     }
     var field = reader.getFieldNumber();
     switch (field) {
-      case 1:
-        var value = /** @type {string} */ (reader.readString());
-        msg.setAddress(value);
-        break;
-      case 2:
-        var value = /** @type {number} */ (reader.readUint64());
-        msg.setPower(value);
-        break;
-      default:
-        reader.skipField();
-        break;
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setAddress(value);
+      break;
+    case 2:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setPower(value);
+      break;
+    default:
+      reader.skipField();
+      break;
     }
   }
   return msg;
 };
+
 
 /**
  * Serializes the message to binary data (in protobuf wire format).
@@ -2107,6 +2357,7 @@ proto.forge_abi.Validator.prototype.serializeBinary = function() {
   proto.forge_abi.Validator.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
+
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -2119,26 +2370,35 @@ proto.forge_abi.Validator.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getAddress();
   if (f.length > 0) {
-    writer.writeString(1, f);
+    writer.writeString(
+      1,
+      f
+    );
   }
   f = message.getPower();
   if (f !== 0) {
-    writer.writeUint64(2, f);
+    writer.writeUint64(
+      2,
+      f
+    );
   }
 };
+
 
 /**
  * optional string address = 1;
  * @return {string}
  */
 proto.forge_abi.Validator.prototype.getAddress = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ''));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
+
 
 /** @param {string} value */
 proto.forge_abi.Validator.prototype.setAddress = function(value) {
   jspb.Message.setProto3StringField(this, 1, value);
 };
+
 
 /**
  * optional uint64 power = 2;
@@ -2148,10 +2408,13 @@ proto.forge_abi.Validator.prototype.getPower = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
 };
 
+
 /** @param {number} value */
 proto.forge_abi.Validator.prototype.setPower = function(value) {
   jspb.Message.setProto3IntField(this, 2, value);
 };
+
+
 
 /**
  * Generated by JsPbCodeGenerator.
@@ -2164,14 +2427,7 @@ proto.forge_abi.Validator.prototype.setPower = function(value) {
  * @constructor
  */
 proto.forge_abi.ConsensusParams = function(opt_data) {
-  jspb.Message.initialize(
-    this,
-    opt_data,
-    0,
-    -1,
-    proto.forge_abi.ConsensusParams.repeatedFields_,
-    null
-  );
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.forge_abi.ConsensusParams.repeatedFields_, null);
 };
 goog.inherits(proto.forge_abi.ConsensusParams, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -2182,55 +2438,55 @@ if (goog.DEBUG && !COMPILED) {
  * @private {!Array<number>}
  * @const
  */
-proto.forge_abi.ConsensusParams.repeatedFields_ = [5, 6];
+proto.forge_abi.ConsensusParams.repeatedFields_ = [5,6];
+
+
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
-  /**
-   * Creates an object representation of this proto suitable for use in Soy templates.
-   * Field names that are reserved in JavaScript and will be renamed to pb_name.
-   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
-   * For the list of reserved names please see:
-   *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
-   * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
-   *     for transitional soy proto support: http://goto/soy-param-migration
-   * @return {!Object}
-   */
-  proto.forge_abi.ConsensusParams.prototype.toObject = function(opt_includeInstance) {
-    return proto.forge_abi.ConsensusParams.toObject(opt_includeInstance, this);
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.forge_abi.ConsensusParams.prototype.toObject = function(opt_includeInstance) {
+  return proto.forge_abi.ConsensusParams.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.forge_abi.ConsensusParams} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.forge_abi.ConsensusParams.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    maxBytes: jspb.Message.getFieldWithDefault(msg, 1, 0),
+    maxGas: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    maxValidators: jspb.Message.getFieldWithDefault(msg, 3, 0),
+    maxCandidates: jspb.Message.getFieldWithDefault(msg, 4, 0),
+    pubKeyTypesList: jspb.Message.getRepeatedField(msg, 5),
+    validatorsList: jspb.Message.toObjectList(msg.getValidatorsList(),
+    proto.forge_abi.Validator.toObject, includeInstance),
+    validatorChanged: jspb.Message.getFieldWithDefault(msg, 7, false),
+    paramChanged: jspb.Message.getFieldWithDefault(msg, 8, false)
   };
 
-  /**
-   * Static version of the {@see toObject} method.
-   * @param {boolean|undefined} includeInstance Whether to include the JSPB
-   *     instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @param {!proto.forge_abi.ConsensusParams} msg The msg instance to transform.
-   * @return {!Object}
-   * @suppress {unusedLocalVariables} f is only used for nested messages
-   */
-  proto.forge_abi.ConsensusParams.toObject = function(includeInstance, msg) {
-    var f,
-      obj = {
-        maxBytes: jspb.Message.getFieldWithDefault(msg, 1, 0),
-        maxGas: jspb.Message.getFieldWithDefault(msg, 2, 0),
-        maxValidators: jspb.Message.getFieldWithDefault(msg, 3, 0),
-        maxCandidates: jspb.Message.getFieldWithDefault(msg, 4, 0),
-        pubKeyTypesList: jspb.Message.getRepeatedField(msg, 5),
-        validatorsList: jspb.Message.toObjectList(
-          msg.getValidatorsList(),
-          proto.forge_abi.Validator.toObject,
-          includeInstance
-        ),
-        validatorChanged: jspb.Message.getFieldWithDefault(msg, 7, false),
-        paramChanged: jspb.Message.getFieldWithDefault(msg, 8, false),
-      };
-
-    if (includeInstance) {
-      obj.$jspbMessageInstance = msg;
-    }
-    return obj;
-  };
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
 }
+
 
 /**
  * Deserializes binary data (in protobuf wire format).
@@ -2239,9 +2495,10 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  */
 proto.forge_abi.ConsensusParams.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.forge_abi.ConsensusParams();
+  var msg = new proto.forge_abi.ConsensusParams;
   return proto.forge_abi.ConsensusParams.deserializeBinaryFromReader(msg, reader);
 };
+
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -2257,46 +2514,47 @@ proto.forge_abi.ConsensusParams.deserializeBinaryFromReader = function(msg, read
     }
     var field = reader.getFieldNumber();
     switch (field) {
-      case 1:
-        var value = /** @type {number} */ (reader.readUint64());
-        msg.setMaxBytes(value);
-        break;
-      case 2:
-        var value = /** @type {number} */ (reader.readSint64());
-        msg.setMaxGas(value);
-        break;
-      case 3:
-        var value = /** @type {number} */ (reader.readUint32());
-        msg.setMaxValidators(value);
-        break;
-      case 4:
-        var value = /** @type {number} */ (reader.readUint32());
-        msg.setMaxCandidates(value);
-        break;
-      case 5:
-        var value = /** @type {string} */ (reader.readString());
-        msg.addPubKeyTypes(value);
-        break;
-      case 6:
-        var value = new proto.forge_abi.Validator();
-        reader.readMessage(value, proto.forge_abi.Validator.deserializeBinaryFromReader);
-        msg.addValidators(value);
-        break;
-      case 7:
-        var value = /** @type {boolean} */ (reader.readBool());
-        msg.setValidatorChanged(value);
-        break;
-      case 8:
-        var value = /** @type {boolean} */ (reader.readBool());
-        msg.setParamChanged(value);
-        break;
-      default:
-        reader.skipField();
-        break;
+    case 1:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setMaxBytes(value);
+      break;
+    case 2:
+      var value = /** @type {number} */ (reader.readSint64());
+      msg.setMaxGas(value);
+      break;
+    case 3:
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setMaxValidators(value);
+      break;
+    case 4:
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setMaxCandidates(value);
+      break;
+    case 5:
+      var value = /** @type {string} */ (reader.readString());
+      msg.addPubKeyTypes(value);
+      break;
+    case 6:
+      var value = new proto.forge_abi.Validator;
+      reader.readMessage(value,proto.forge_abi.Validator.deserializeBinaryFromReader);
+      msg.addValidators(value);
+      break;
+    case 7:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setValidatorChanged(value);
+      break;
+    case 8:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setParamChanged(value);
+      break;
+    default:
+      reader.skipField();
+      break;
     }
   }
   return msg;
 };
+
 
 /**
  * Serializes the message to binary data (in protobuf wire format).
@@ -2307,6 +2565,7 @@ proto.forge_abi.ConsensusParams.prototype.serializeBinary = function() {
   proto.forge_abi.ConsensusParams.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
+
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -2319,37 +2578,63 @@ proto.forge_abi.ConsensusParams.serializeBinaryToWriter = function(message, writ
   var f = undefined;
   f = message.getMaxBytes();
   if (f !== 0) {
-    writer.writeUint64(1, f);
+    writer.writeUint64(
+      1,
+      f
+    );
   }
   f = message.getMaxGas();
   if (f !== 0) {
-    writer.writeSint64(2, f);
+    writer.writeSint64(
+      2,
+      f
+    );
   }
   f = message.getMaxValidators();
   if (f !== 0) {
-    writer.writeUint32(3, f);
+    writer.writeUint32(
+      3,
+      f
+    );
   }
   f = message.getMaxCandidates();
   if (f !== 0) {
-    writer.writeUint32(4, f);
+    writer.writeUint32(
+      4,
+      f
+    );
   }
   f = message.getPubKeyTypesList();
   if (f.length > 0) {
-    writer.writeRepeatedString(5, f);
+    writer.writeRepeatedString(
+      5,
+      f
+    );
   }
   f = message.getValidatorsList();
   if (f.length > 0) {
-    writer.writeRepeatedMessage(6, f, proto.forge_abi.Validator.serializeBinaryToWriter);
+    writer.writeRepeatedMessage(
+      6,
+      f,
+      proto.forge_abi.Validator.serializeBinaryToWriter
+    );
   }
   f = message.getValidatorChanged();
   if (f) {
-    writer.writeBool(7, f);
+    writer.writeBool(
+      7,
+      f
+    );
   }
   f = message.getParamChanged();
   if (f) {
-    writer.writeBool(8, f);
+    writer.writeBool(
+      8,
+      f
+    );
   }
 };
+
 
 /**
  * optional uint64 max_bytes = 1;
@@ -2359,10 +2644,12 @@ proto.forge_abi.ConsensusParams.prototype.getMaxBytes = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
 };
 
+
 /** @param {number} value */
 proto.forge_abi.ConsensusParams.prototype.setMaxBytes = function(value) {
   jspb.Message.setProto3IntField(this, 1, value);
 };
+
 
 /**
  * optional sint64 max_gas = 2;
@@ -2372,10 +2659,12 @@ proto.forge_abi.ConsensusParams.prototype.getMaxGas = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
 };
 
+
 /** @param {number} value */
 proto.forge_abi.ConsensusParams.prototype.setMaxGas = function(value) {
   jspb.Message.setProto3IntField(this, 2, value);
 };
+
 
 /**
  * optional uint32 max_validators = 3;
@@ -2385,10 +2674,12 @@ proto.forge_abi.ConsensusParams.prototype.getMaxValidators = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
 };
 
+
 /** @param {number} value */
 proto.forge_abi.ConsensusParams.prototype.setMaxValidators = function(value) {
   jspb.Message.setProto3IntField(this, 3, value);
 };
+
 
 /**
  * optional uint32 max_candidates = 4;
@@ -2398,10 +2689,12 @@ proto.forge_abi.ConsensusParams.prototype.getMaxCandidates = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
 };
 
+
 /** @param {number} value */
 proto.forge_abi.ConsensusParams.prototype.setMaxCandidates = function(value) {
   jspb.Message.setProto3IntField(this, 4, value);
 };
+
 
 /**
  * repeated string pub_key_types = 5;
@@ -2411,10 +2704,12 @@ proto.forge_abi.ConsensusParams.prototype.getPubKeyTypesList = function() {
   return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 5));
 };
 
+
 /** @param {!Array<string>} value */
 proto.forge_abi.ConsensusParams.prototype.setPubKeyTypesList = function(value) {
   jspb.Message.setField(this, 5, value || []);
 };
+
 
 /**
  * @param {string} value
@@ -2424,26 +2719,27 @@ proto.forge_abi.ConsensusParams.prototype.addPubKeyTypes = function(value, opt_i
   jspb.Message.addToRepeatedField(this, 5, value, opt_index);
 };
 
+
 proto.forge_abi.ConsensusParams.prototype.clearPubKeyTypesList = function() {
   this.setPubKeyTypesList([]);
 };
+
 
 /**
  * repeated Validator validators = 6;
  * @return {!Array<!proto.forge_abi.Validator>}
  */
 proto.forge_abi.ConsensusParams.prototype.getValidatorsList = function() {
-  return /** @type{!Array<!proto.forge_abi.Validator>} */ (jspb.Message.getRepeatedWrapperField(
-    this,
-    proto.forge_abi.Validator,
-    6
-  ));
+  return /** @type{!Array<!proto.forge_abi.Validator>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.forge_abi.Validator, 6));
 };
+
 
 /** @param {!Array<!proto.forge_abi.Validator>} value */
 proto.forge_abi.ConsensusParams.prototype.setValidatorsList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 6, value);
 };
+
 
 /**
  * @param {!proto.forge_abi.Validator=} opt_value
@@ -2451,18 +2747,14 @@ proto.forge_abi.ConsensusParams.prototype.setValidatorsList = function(value) {
  * @return {!proto.forge_abi.Validator}
  */
 proto.forge_abi.ConsensusParams.prototype.addValidators = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(
-    this,
-    6,
-    opt_value,
-    proto.forge_abi.Validator,
-    opt_index
-  );
+  return jspb.Message.addToRepeatedWrapperField(this, 6, opt_value, proto.forge_abi.Validator, opt_index);
 };
+
 
 proto.forge_abi.ConsensusParams.prototype.clearValidatorsList = function() {
   this.setValidatorsList([]);
 };
+
 
 /**
  * optional bool validator_changed = 7;
@@ -2474,10 +2766,12 @@ proto.forge_abi.ConsensusParams.prototype.getValidatorChanged = function() {
   return /** @type {boolean} */ (jspb.Message.getFieldWithDefault(this, 7, false));
 };
 
+
 /** @param {boolean} value */
 proto.forge_abi.ConsensusParams.prototype.setValidatorChanged = function(value) {
   jspb.Message.setProto3BooleanField(this, 7, value);
 };
+
 
 /**
  * optional bool param_changed = 8;
@@ -2489,10 +2783,13 @@ proto.forge_abi.ConsensusParams.prototype.getParamChanged = function() {
   return /** @type {boolean} */ (jspb.Message.getFieldWithDefault(this, 8, false));
 };
 
+
 /** @param {boolean} value */
 proto.forge_abi.ConsensusParams.prototype.setParamChanged = function(value) {
   jspb.Message.setProto3BooleanField(this, 8, value);
 };
+
+
 
 /**
  * Generated by JsPbCodeGenerator.
@@ -2518,44 +2815,47 @@ if (goog.DEBUG && !COMPILED) {
  */
 proto.forge_abi.UpgradeTask.repeatedFields_ = [4];
 
+
+
 if (jspb.Message.GENERATE_TO_OBJECT) {
-  /**
-   * Creates an object representation of this proto suitable for use in Soy templates.
-   * Field names that are reserved in JavaScript and will be renamed to pb_name.
-   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
-   * For the list of reserved names please see:
-   *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
-   * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
-   *     for transitional soy proto support: http://goto/soy-param-migration
-   * @return {!Object}
-   */
-  proto.forge_abi.UpgradeTask.prototype.toObject = function(opt_includeInstance) {
-    return proto.forge_abi.UpgradeTask.toObject(opt_includeInstance, this);
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.forge_abi.UpgradeTask.prototype.toObject = function(opt_includeInstance) {
+  return proto.forge_abi.UpgradeTask.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.forge_abi.UpgradeTask} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.forge_abi.UpgradeTask.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    type: jspb.Message.getFieldWithDefault(msg, 1, 0),
+    dataHash: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    actionsList: jspb.Message.getRepeatedField(msg, 4)
   };
 
-  /**
-   * Static version of the {@see toObject} method.
-   * @param {boolean|undefined} includeInstance Whether to include the JSPB
-   *     instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @param {!proto.forge_abi.UpgradeTask} msg The msg instance to transform.
-   * @return {!Object}
-   * @suppress {unusedLocalVariables} f is only used for nested messages
-   */
-  proto.forge_abi.UpgradeTask.toObject = function(includeInstance, msg) {
-    var f,
-      obj = {
-        type: jspb.Message.getFieldWithDefault(msg, 1, 0),
-        dataHash: jspb.Message.getFieldWithDefault(msg, 2, ''),
-        actionsList: jspb.Message.getRepeatedField(msg, 4),
-      };
-
-    if (includeInstance) {
-      obj.$jspbMessageInstance = msg;
-    }
-    return obj;
-  };
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
 }
+
 
 /**
  * Deserializes binary data (in protobuf wire format).
@@ -2564,9 +2864,10 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  */
 proto.forge_abi.UpgradeTask.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.forge_abi.UpgradeTask();
+  var msg = new proto.forge_abi.UpgradeTask;
   return proto.forge_abi.UpgradeTask.deserializeBinaryFromReader(msg, reader);
 };
+
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -2582,25 +2883,26 @@ proto.forge_abi.UpgradeTask.deserializeBinaryFromReader = function(msg, reader) 
     }
     var field = reader.getFieldNumber();
     switch (field) {
-      case 1:
-        var value = /** @type {!proto.forge_abi.UpgradeType} */ (reader.readEnum());
-        msg.setType(value);
-        break;
-      case 2:
-        var value = /** @type {string} */ (reader.readString());
-        msg.setDataHash(value);
-        break;
-      case 4:
-        var value = /** @type {!Array<!proto.forge_abi.UpgradeAction>} */ (reader.readPackedEnum());
-        msg.setActionsList(value);
-        break;
-      default:
-        reader.skipField();
-        break;
+    case 1:
+      var value = /** @type {!proto.forge_abi.UpgradeType} */ (reader.readEnum());
+      msg.setType(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setDataHash(value);
+      break;
+    case 4:
+      var value = /** @type {!Array<!proto.forge_abi.UpgradeAction>} */ (reader.readPackedEnum());
+      msg.setActionsList(value);
+      break;
+    default:
+      reader.skipField();
+      break;
     }
   }
   return msg;
 };
+
 
 /**
  * Serializes the message to binary data (in protobuf wire format).
@@ -2611,6 +2913,7 @@ proto.forge_abi.UpgradeTask.prototype.serializeBinary = function() {
   proto.forge_abi.UpgradeTask.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
+
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -2623,17 +2926,27 @@ proto.forge_abi.UpgradeTask.serializeBinaryToWriter = function(message, writer) 
   var f = undefined;
   f = message.getType();
   if (f !== 0.0) {
-    writer.writeEnum(1, f);
+    writer.writeEnum(
+      1,
+      f
+    );
   }
   f = message.getDataHash();
   if (f.length > 0) {
-    writer.writeString(2, f);
+    writer.writeString(
+      2,
+      f
+    );
   }
   f = message.getActionsList();
   if (f.length > 0) {
-    writer.writePackedEnum(4, f);
+    writer.writePackedEnum(
+      4,
+      f
+    );
   }
 };
+
 
 /**
  * optional UpgradeType type = 1;
@@ -2643,39 +2956,42 @@ proto.forge_abi.UpgradeTask.prototype.getType = function() {
   return /** @type {!proto.forge_abi.UpgradeType} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
 };
 
+
 /** @param {!proto.forge_abi.UpgradeType} value */
 proto.forge_abi.UpgradeTask.prototype.setType = function(value) {
   jspb.Message.setProto3EnumField(this, 1, value);
 };
+
 
 /**
  * optional string data_hash = 2;
  * @return {string}
  */
 proto.forge_abi.UpgradeTask.prototype.getDataHash = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ''));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
+
 
 /** @param {string} value */
 proto.forge_abi.UpgradeTask.prototype.setDataHash = function(value) {
   jspb.Message.setProto3StringField(this, 2, value);
 };
 
+
 /**
  * repeated UpgradeAction actions = 4;
  * @return {!Array<!proto.forge_abi.UpgradeAction>}
  */
 proto.forge_abi.UpgradeTask.prototype.getActionsList = function() {
-  return /** @type {!Array<!proto.forge_abi.UpgradeAction>} */ (jspb.Message.getRepeatedField(
-    this,
-    4
-  ));
+  return /** @type {!Array<!proto.forge_abi.UpgradeAction>} */ (jspb.Message.getRepeatedField(this, 4));
 };
+
 
 /** @param {!Array<!proto.forge_abi.UpgradeAction>} value */
 proto.forge_abi.UpgradeTask.prototype.setActionsList = function(value) {
   jspb.Message.setField(this, 4, value || []);
 };
+
 
 /**
  * @param {!proto.forge_abi.UpgradeAction} value
@@ -2685,9 +3001,12 @@ proto.forge_abi.UpgradeTask.prototype.addActions = function(value, opt_index) {
   jspb.Message.addToRepeatedField(this, 4, value, opt_index);
 };
 
+
 proto.forge_abi.UpgradeTask.prototype.clearActionsList = function() {
   this.setActionsList([]);
 };
+
+
 
 /**
  * Generated by JsPbCodeGenerator.
@@ -2700,14 +3019,7 @@ proto.forge_abi.UpgradeTask.prototype.clearActionsList = function() {
  * @constructor
  */
 proto.forge_abi.UpgradeTasks = function(opt_data) {
-  jspb.Message.initialize(
-    this,
-    opt_data,
-    0,
-    -1,
-    proto.forge_abi.UpgradeTasks.repeatedFields_,
-    null
-  );
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.forge_abi.UpgradeTasks.repeatedFields_, null);
 };
 goog.inherits(proto.forge_abi.UpgradeTasks, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -2720,46 +3032,46 @@ if (goog.DEBUG && !COMPILED) {
  */
 proto.forge_abi.UpgradeTasks.repeatedFields_ = [1];
 
+
+
 if (jspb.Message.GENERATE_TO_OBJECT) {
-  /**
-   * Creates an object representation of this proto suitable for use in Soy templates.
-   * Field names that are reserved in JavaScript and will be renamed to pb_name.
-   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
-   * For the list of reserved names please see:
-   *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
-   * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
-   *     for transitional soy proto support: http://goto/soy-param-migration
-   * @return {!Object}
-   */
-  proto.forge_abi.UpgradeTasks.prototype.toObject = function(opt_includeInstance) {
-    return proto.forge_abi.UpgradeTasks.toObject(opt_includeInstance, this);
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.forge_abi.UpgradeTasks.prototype.toObject = function(opt_includeInstance) {
+  return proto.forge_abi.UpgradeTasks.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.forge_abi.UpgradeTasks} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.forge_abi.UpgradeTasks.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    itemList: jspb.Message.toObjectList(msg.getItemList(),
+    proto.forge_abi.UpgradeTask.toObject, includeInstance)
   };
 
-  /**
-   * Static version of the {@see toObject} method.
-   * @param {boolean|undefined} includeInstance Whether to include the JSPB
-   *     instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @param {!proto.forge_abi.UpgradeTasks} msg The msg instance to transform.
-   * @return {!Object}
-   * @suppress {unusedLocalVariables} f is only used for nested messages
-   */
-  proto.forge_abi.UpgradeTasks.toObject = function(includeInstance, msg) {
-    var f,
-      obj = {
-        itemList: jspb.Message.toObjectList(
-          msg.getItemList(),
-          proto.forge_abi.UpgradeTask.toObject,
-          includeInstance
-        ),
-      };
-
-    if (includeInstance) {
-      obj.$jspbMessageInstance = msg;
-    }
-    return obj;
-  };
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
 }
+
 
 /**
  * Deserializes binary data (in protobuf wire format).
@@ -2768,9 +3080,10 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  */
 proto.forge_abi.UpgradeTasks.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.forge_abi.UpgradeTasks();
+  var msg = new proto.forge_abi.UpgradeTasks;
   return proto.forge_abi.UpgradeTasks.deserializeBinaryFromReader(msg, reader);
 };
+
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -2786,18 +3099,19 @@ proto.forge_abi.UpgradeTasks.deserializeBinaryFromReader = function(msg, reader)
     }
     var field = reader.getFieldNumber();
     switch (field) {
-      case 1:
-        var value = new proto.forge_abi.UpgradeTask();
-        reader.readMessage(value, proto.forge_abi.UpgradeTask.deserializeBinaryFromReader);
-        msg.addItem(value);
-        break;
-      default:
-        reader.skipField();
-        break;
+    case 1:
+      var value = new proto.forge_abi.UpgradeTask;
+      reader.readMessage(value,proto.forge_abi.UpgradeTask.deserializeBinaryFromReader);
+      msg.addItem(value);
+      break;
+    default:
+      reader.skipField();
+      break;
     }
   }
   return msg;
 };
+
 
 /**
  * Serializes the message to binary data (in protobuf wire format).
@@ -2808,6 +3122,7 @@ proto.forge_abi.UpgradeTasks.prototype.serializeBinary = function() {
   proto.forge_abi.UpgradeTasks.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
+
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -2820,26 +3135,30 @@ proto.forge_abi.UpgradeTasks.serializeBinaryToWriter = function(message, writer)
   var f = undefined;
   f = message.getItemList();
   if (f.length > 0) {
-    writer.writeRepeatedMessage(1, f, proto.forge_abi.UpgradeTask.serializeBinaryToWriter);
+    writer.writeRepeatedMessage(
+      1,
+      f,
+      proto.forge_abi.UpgradeTask.serializeBinaryToWriter
+    );
   }
 };
+
 
 /**
  * repeated UpgradeTask item = 1;
  * @return {!Array<!proto.forge_abi.UpgradeTask>}
  */
 proto.forge_abi.UpgradeTasks.prototype.getItemList = function() {
-  return /** @type{!Array<!proto.forge_abi.UpgradeTask>} */ (jspb.Message.getRepeatedWrapperField(
-    this,
-    proto.forge_abi.UpgradeTask,
-    1
-  ));
+  return /** @type{!Array<!proto.forge_abi.UpgradeTask>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.forge_abi.UpgradeTask, 1));
 };
+
 
 /** @param {!Array<!proto.forge_abi.UpgradeTask>} value */
 proto.forge_abi.UpgradeTasks.prototype.setItemList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 1, value);
 };
+
 
 /**
  * @param {!proto.forge_abi.UpgradeTask=} opt_value
@@ -2847,18 +3166,15 @@ proto.forge_abi.UpgradeTasks.prototype.setItemList = function(value) {
  * @return {!proto.forge_abi.UpgradeTask}
  */
 proto.forge_abi.UpgradeTasks.prototype.addItem = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(
-    this,
-    1,
-    opt_value,
-    proto.forge_abi.UpgradeTask,
-    opt_index
-  );
+  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.forge_abi.UpgradeTask, opt_index);
 };
+
 
 proto.forge_abi.UpgradeTasks.prototype.clearItemList = function() {
   this.setItemList([]);
 };
+
+
 
 /**
  * Generated by JsPbCodeGenerator.
@@ -2878,53 +3194,50 @@ if (goog.DEBUG && !COMPILED) {
   proto.forge_abi.AbciContext.displayName = 'proto.forge_abi.AbciContext';
 }
 
+
 if (jspb.Message.GENERATE_TO_OBJECT) {
-  /**
-   * Creates an object representation of this proto suitable for use in Soy templates.
-   * Field names that are reserved in JavaScript and will be renamed to pb_name.
-   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
-   * For the list of reserved names please see:
-   *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
-   * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
-   *     for transitional soy proto support: http://goto/soy-param-migration
-   * @return {!Object}
-   */
-  proto.forge_abi.AbciContext.prototype.toObject = function(opt_includeInstance) {
-    return proto.forge_abi.AbciContext.toObject(opt_includeInstance, this);
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.forge_abi.AbciContext.prototype.toObject = function(opt_includeInstance) {
+  return proto.forge_abi.AbciContext.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.forge_abi.AbciContext} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.forge_abi.AbciContext.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    txHash: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    blockHeight: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    blockTime: (f = msg.getBlockTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+    totalTxs: jspb.Message.getFieldWithDefault(msg, 4, 0),
+    txStatistics: (f = msg.getTxStatistics()) && proto.forge_abi.TxStatistics.toObject(includeInstance, f),
+    txIndex: jspb.Message.getFieldWithDefault(msg, 6, 0),
+    lastBlockTime: (f = msg.getLastBlockTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
 
-  /**
-   * Static version of the {@see toObject} method.
-   * @param {boolean|undefined} includeInstance Whether to include the JSPB
-   *     instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @param {!proto.forge_abi.AbciContext} msg The msg instance to transform.
-   * @return {!Object}
-   * @suppress {unusedLocalVariables} f is only used for nested messages
-   */
-  proto.forge_abi.AbciContext.toObject = function(includeInstance, msg) {
-    var f,
-      obj = {
-        txHash: jspb.Message.getFieldWithDefault(msg, 1, ''),
-        blockHeight: jspb.Message.getFieldWithDefault(msg, 2, 0),
-        blockTime:
-          (f = msg.getBlockTime()) &&
-          google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-        totalTxs: jspb.Message.getFieldWithDefault(msg, 4, 0),
-        txStatistics:
-          (f = msg.getTxStatistics()) && proto.forge_abi.TxStatistics.toObject(includeInstance, f),
-        txIndex: jspb.Message.getFieldWithDefault(msg, 6, 0),
-        lastBlockTime:
-          (f = msg.getLastBlockTime()) &&
-          google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-      };
-
-    if (includeInstance) {
-      obj.$jspbMessageInstance = msg;
-    }
-    return obj;
-  };
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
 }
+
 
 /**
  * Deserializes binary data (in protobuf wire format).
@@ -2933,9 +3246,10 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  */
 proto.forge_abi.AbciContext.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.forge_abi.AbciContext();
+  var msg = new proto.forge_abi.AbciContext;
   return proto.forge_abi.AbciContext.deserializeBinaryFromReader(msg, reader);
 };
+
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -2951,50 +3265,45 @@ proto.forge_abi.AbciContext.deserializeBinaryFromReader = function(msg, reader) 
     }
     var field = reader.getFieldNumber();
     switch (field) {
-      case 1:
-        var value = /** @type {string} */ (reader.readString());
-        msg.setTxHash(value);
-        break;
-      case 2:
-        var value = /** @type {number} */ (reader.readUint64());
-        msg.setBlockHeight(value);
-        break;
-      case 3:
-        var value = new google_protobuf_timestamp_pb.Timestamp();
-        reader.readMessage(
-          value,
-          google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader
-        );
-        msg.setBlockTime(value);
-        break;
-      case 4:
-        var value = /** @type {number} */ (reader.readUint64());
-        msg.setTotalTxs(value);
-        break;
-      case 5:
-        var value = new proto.forge_abi.TxStatistics();
-        reader.readMessage(value, proto.forge_abi.TxStatistics.deserializeBinaryFromReader);
-        msg.setTxStatistics(value);
-        break;
-      case 6:
-        var value = /** @type {number} */ (reader.readUint32());
-        msg.setTxIndex(value);
-        break;
-      case 7:
-        var value = new google_protobuf_timestamp_pb.Timestamp();
-        reader.readMessage(
-          value,
-          google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader
-        );
-        msg.setLastBlockTime(value);
-        break;
-      default:
-        reader.skipField();
-        break;
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setTxHash(value);
+      break;
+    case 2:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setBlockHeight(value);
+      break;
+    case 3:
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setBlockTime(value);
+      break;
+    case 4:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setTotalTxs(value);
+      break;
+    case 5:
+      var value = new proto.forge_abi.TxStatistics;
+      reader.readMessage(value,proto.forge_abi.TxStatistics.deserializeBinaryFromReader);
+      msg.setTxStatistics(value);
+      break;
+    case 6:
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setTxIndex(value);
+      break;
+    case 7:
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setLastBlockTime(value);
+      break;
+    default:
+      reader.skipField();
+      break;
     }
   }
   return msg;
 };
+
 
 /**
  * Serializes the message to binary data (in protobuf wire format).
@@ -3005,6 +3314,7 @@ proto.forge_abi.AbciContext.prototype.serializeBinary = function() {
   proto.forge_abi.AbciContext.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
+
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -3017,46 +3327,73 @@ proto.forge_abi.AbciContext.serializeBinaryToWriter = function(message, writer) 
   var f = undefined;
   f = message.getTxHash();
   if (f.length > 0) {
-    writer.writeString(1, f);
+    writer.writeString(
+      1,
+      f
+    );
   }
   f = message.getBlockHeight();
   if (f !== 0) {
-    writer.writeUint64(2, f);
+    writer.writeUint64(
+      2,
+      f
+    );
   }
   f = message.getBlockTime();
   if (f != null) {
-    writer.writeMessage(3, f, google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter);
+    writer.writeMessage(
+      3,
+      f,
+      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+    );
   }
   f = message.getTotalTxs();
   if (f !== 0) {
-    writer.writeUint64(4, f);
+    writer.writeUint64(
+      4,
+      f
+    );
   }
   f = message.getTxStatistics();
   if (f != null) {
-    writer.writeMessage(5, f, proto.forge_abi.TxStatistics.serializeBinaryToWriter);
+    writer.writeMessage(
+      5,
+      f,
+      proto.forge_abi.TxStatistics.serializeBinaryToWriter
+    );
   }
   f = message.getTxIndex();
   if (f !== 0) {
-    writer.writeUint32(6, f);
+    writer.writeUint32(
+      6,
+      f
+    );
   }
   f = message.getLastBlockTime();
   if (f != null) {
-    writer.writeMessage(7, f, google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter);
+    writer.writeMessage(
+      7,
+      f,
+      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+    );
   }
 };
+
 
 /**
  * optional string tx_hash = 1;
  * @return {string}
  */
 proto.forge_abi.AbciContext.prototype.getTxHash = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ''));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
+
 
 /** @param {string} value */
 proto.forge_abi.AbciContext.prototype.setTxHash = function(value) {
   jspb.Message.setProto3StringField(this, 1, value);
 };
+
 
 /**
  * optional uint64 block_height = 2;
@@ -3066,31 +3403,33 @@ proto.forge_abi.AbciContext.prototype.getBlockHeight = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
 };
 
+
 /** @param {number} value */
 proto.forge_abi.AbciContext.prototype.setBlockHeight = function(value) {
   jspb.Message.setProto3IntField(this, 2, value);
 };
+
 
 /**
  * optional google.protobuf.Timestamp block_time = 3;
  * @return {?proto.google.protobuf.Timestamp}
  */
 proto.forge_abi.AbciContext.prototype.getBlockTime = function() {
-  return /** @type{?proto.google.protobuf.Timestamp} */ (jspb.Message.getWrapperField(
-    this,
-    google_protobuf_timestamp_pb.Timestamp,
-    3
-  ));
+  return /** @type{?proto.google.protobuf.Timestamp} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 3));
 };
+
 
 /** @param {?proto.google.protobuf.Timestamp|undefined} value */
 proto.forge_abi.AbciContext.prototype.setBlockTime = function(value) {
   jspb.Message.setWrapperField(this, 3, value);
 };
 
+
 proto.forge_abi.AbciContext.prototype.clearBlockTime = function() {
   this.setBlockTime(undefined);
 };
+
 
 /**
  * Returns whether this field is set.
@@ -3100,6 +3439,7 @@ proto.forge_abi.AbciContext.prototype.hasBlockTime = function() {
   return jspb.Message.getField(this, 3) != null;
 };
 
+
 /**
  * optional uint64 total_txs = 4;
  * @return {number}
@@ -3108,31 +3448,33 @@ proto.forge_abi.AbciContext.prototype.getTotalTxs = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
 };
 
+
 /** @param {number} value */
 proto.forge_abi.AbciContext.prototype.setTotalTxs = function(value) {
   jspb.Message.setProto3IntField(this, 4, value);
 };
+
 
 /**
  * optional TxStatistics tx_statistics = 5;
  * @return {?proto.forge_abi.TxStatistics}
  */
 proto.forge_abi.AbciContext.prototype.getTxStatistics = function() {
-  return /** @type{?proto.forge_abi.TxStatistics} */ (jspb.Message.getWrapperField(
-    this,
-    proto.forge_abi.TxStatistics,
-    5
-  ));
+  return /** @type{?proto.forge_abi.TxStatistics} */ (
+    jspb.Message.getWrapperField(this, proto.forge_abi.TxStatistics, 5));
 };
+
 
 /** @param {?proto.forge_abi.TxStatistics|undefined} value */
 proto.forge_abi.AbciContext.prototype.setTxStatistics = function(value) {
   jspb.Message.setWrapperField(this, 5, value);
 };
 
+
 proto.forge_abi.AbciContext.prototype.clearTxStatistics = function() {
   this.setTxStatistics(undefined);
 };
+
 
 /**
  * Returns whether this field is set.
@@ -3142,6 +3484,7 @@ proto.forge_abi.AbciContext.prototype.hasTxStatistics = function() {
   return jspb.Message.getField(this, 5) != null;
 };
 
+
 /**
  * optional uint32 tx_index = 6;
  * @return {number}
@@ -3150,31 +3493,33 @@ proto.forge_abi.AbciContext.prototype.getTxIndex = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 6, 0));
 };
 
+
 /** @param {number} value */
 proto.forge_abi.AbciContext.prototype.setTxIndex = function(value) {
   jspb.Message.setProto3IntField(this, 6, value);
 };
+
 
 /**
  * optional google.protobuf.Timestamp last_block_time = 7;
  * @return {?proto.google.protobuf.Timestamp}
  */
 proto.forge_abi.AbciContext.prototype.getLastBlockTime = function() {
-  return /** @type{?proto.google.protobuf.Timestamp} */ (jspb.Message.getWrapperField(
-    this,
-    google_protobuf_timestamp_pb.Timestamp,
-    7
-  ));
+  return /** @type{?proto.google.protobuf.Timestamp} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 7));
 };
+
 
 /** @param {?proto.google.protobuf.Timestamp|undefined} value */
 proto.forge_abi.AbciContext.prototype.setLastBlockTime = function(value) {
   jspb.Message.setWrapperField(this, 7, value);
 };
 
+
 proto.forge_abi.AbciContext.prototype.clearLastBlockTime = function() {
   this.setLastBlockTime(undefined);
 };
+
 
 /**
  * Returns whether this field is set.
@@ -3183,6 +3528,8 @@ proto.forge_abi.AbciContext.prototype.clearLastBlockTime = function() {
 proto.forge_abi.AbciContext.prototype.hasLastBlockTime = function() {
   return jspb.Message.getField(this, 7) != null;
 };
+
+
 
 /**
  * Generated by JsPbCodeGenerator.
@@ -3202,45 +3549,47 @@ if (goog.DEBUG && !COMPILED) {
   proto.forge_abi.Multisig.displayName = 'proto.forge_abi.Multisig';
 }
 
+
 if (jspb.Message.GENERATE_TO_OBJECT) {
-  /**
-   * Creates an object representation of this proto suitable for use in Soy templates.
-   * Field names that are reserved in JavaScript and will be renamed to pb_name.
-   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
-   * For the list of reserved names please see:
-   *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
-   * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
-   *     for transitional soy proto support: http://goto/soy-param-migration
-   * @return {!Object}
-   */
-  proto.forge_abi.Multisig.prototype.toObject = function(opt_includeInstance) {
-    return proto.forge_abi.Multisig.toObject(opt_includeInstance, this);
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.forge_abi.Multisig.prototype.toObject = function(opt_includeInstance) {
+  return proto.forge_abi.Multisig.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.forge_abi.Multisig} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.forge_abi.Multisig.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    signer: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    pk: msg.getPk(),
+    signature: msg.getSignature(),
+    data: (f = msg.getData()) && google_protobuf_any_pb.Any.toObject(includeInstance, f)
   };
 
-  /**
-   * Static version of the {@see toObject} method.
-   * @param {boolean|undefined} includeInstance Whether to include the JSPB
-   *     instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @param {!proto.forge_abi.Multisig} msg The msg instance to transform.
-   * @return {!Object}
-   * @suppress {unusedLocalVariables} f is only used for nested messages
-   */
-  proto.forge_abi.Multisig.toObject = function(includeInstance, msg) {
-    var f,
-      obj = {
-        signer: jspb.Message.getFieldWithDefault(msg, 1, ''),
-        pk: msg.getPk(),
-        signature: msg.getSignature(),
-        data: (f = msg.getData()) && google_protobuf_any_pb.Any.toObject(includeInstance, f),
-      };
-
-    if (includeInstance) {
-      obj.$jspbMessageInstance = msg;
-    }
-    return obj;
-  };
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
 }
+
 
 /**
  * Deserializes binary data (in protobuf wire format).
@@ -3249,9 +3598,10 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  */
 proto.forge_abi.Multisig.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.forge_abi.Multisig();
+  var msg = new proto.forge_abi.Multisig;
   return proto.forge_abi.Multisig.deserializeBinaryFromReader(msg, reader);
 };
+
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -3267,30 +3617,31 @@ proto.forge_abi.Multisig.deserializeBinaryFromReader = function(msg, reader) {
     }
     var field = reader.getFieldNumber();
     switch (field) {
-      case 1:
-        var value = /** @type {string} */ (reader.readString());
-        msg.setSigner(value);
-        break;
-      case 2:
-        var value = /** @type {!Uint8Array} */ (reader.readBytes());
-        msg.setPk(value);
-        break;
-      case 3:
-        var value = /** @type {!Uint8Array} */ (reader.readBytes());
-        msg.setSignature(value);
-        break;
-      case 15:
-        var value = new google_protobuf_any_pb.Any();
-        reader.readMessage(value, google_protobuf_any_pb.Any.deserializeBinaryFromReader);
-        msg.setData(value);
-        break;
-      default:
-        reader.skipField();
-        break;
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setSigner(value);
+      break;
+    case 2:
+      var value = /** @type {!Uint8Array} */ (reader.readBytes());
+      msg.setPk(value);
+      break;
+    case 3:
+      var value = /** @type {!Uint8Array} */ (reader.readBytes());
+      msg.setSignature(value);
+      break;
+    case 15:
+      var value = new google_protobuf_any_pb.Any;
+      reader.readMessage(value,google_protobuf_any_pb.Any.deserializeBinaryFromReader);
+      msg.setData(value);
+      break;
+    default:
+      reader.skipField();
+      break;
     }
   }
   return msg;
 };
+
 
 /**
  * Serializes the message to binary data (in protobuf wire format).
@@ -3301,6 +3652,7 @@ proto.forge_abi.Multisig.prototype.serializeBinary = function() {
   proto.forge_abi.Multisig.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
+
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -3313,42 +3665,59 @@ proto.forge_abi.Multisig.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getSigner();
   if (f.length > 0) {
-    writer.writeString(1, f);
+    writer.writeString(
+      1,
+      f
+    );
   }
   f = message.getPk_asU8();
   if (f.length > 0) {
-    writer.writeBytes(2, f);
+    writer.writeBytes(
+      2,
+      f
+    );
   }
   f = message.getSignature_asU8();
   if (f.length > 0) {
-    writer.writeBytes(3, f);
+    writer.writeBytes(
+      3,
+      f
+    );
   }
   f = message.getData();
   if (f != null) {
-    writer.writeMessage(15, f, google_protobuf_any_pb.Any.serializeBinaryToWriter);
+    writer.writeMessage(
+      15,
+      f,
+      google_protobuf_any_pb.Any.serializeBinaryToWriter
+    );
   }
 };
+
 
 /**
  * optional string signer = 1;
  * @return {string}
  */
 proto.forge_abi.Multisig.prototype.getSigner = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ''));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
+
 
 /** @param {string} value */
 proto.forge_abi.Multisig.prototype.setSigner = function(value) {
   jspb.Message.setProto3StringField(this, 1, value);
 };
 
+
 /**
  * optional bytes pk = 2;
  * @return {!(string|Uint8Array)}
  */
 proto.forge_abi.Multisig.prototype.getPk = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 2, ''));
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
+
 
 /**
  * optional bytes pk = 2;
@@ -3356,8 +3725,10 @@ proto.forge_abi.Multisig.prototype.getPk = function() {
  * @return {string}
  */
 proto.forge_abi.Multisig.prototype.getPk_asB64 = function() {
-  return /** @type {string} */ (jspb.Message.bytesAsB64(this.getPk()));
+  return /** @type {string} */ (jspb.Message.bytesAsB64(
+      this.getPk()));
 };
+
 
 /**
  * optional bytes pk = 2;
@@ -3367,21 +3738,25 @@ proto.forge_abi.Multisig.prototype.getPk_asB64 = function() {
  * @return {!Uint8Array}
  */
 proto.forge_abi.Multisig.prototype.getPk_asU8 = function() {
-  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(this.getPk()));
+  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
+      this.getPk()));
 };
+
 
 /** @param {!(string|Uint8Array)} value */
 proto.forge_abi.Multisig.prototype.setPk = function(value) {
   jspb.Message.setProto3BytesField(this, 2, value);
 };
 
+
 /**
  * optional bytes signature = 3;
  * @return {!(string|Uint8Array)}
  */
 proto.forge_abi.Multisig.prototype.getSignature = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 3, ''));
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
+
 
 /**
  * optional bytes signature = 3;
@@ -3389,8 +3764,10 @@ proto.forge_abi.Multisig.prototype.getSignature = function() {
  * @return {string}
  */
 proto.forge_abi.Multisig.prototype.getSignature_asB64 = function() {
-  return /** @type {string} */ (jspb.Message.bytesAsB64(this.getSignature()));
+  return /** @type {string} */ (jspb.Message.bytesAsB64(
+      this.getSignature()));
 };
+
 
 /**
  * optional bytes signature = 3;
@@ -3400,34 +3777,37 @@ proto.forge_abi.Multisig.prototype.getSignature_asB64 = function() {
  * @return {!Uint8Array}
  */
 proto.forge_abi.Multisig.prototype.getSignature_asU8 = function() {
-  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(this.getSignature()));
+  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
+      this.getSignature()));
 };
+
 
 /** @param {!(string|Uint8Array)} value */
 proto.forge_abi.Multisig.prototype.setSignature = function(value) {
   jspb.Message.setProto3BytesField(this, 3, value);
 };
 
+
 /**
  * optional google.protobuf.Any data = 15;
  * @return {?proto.google.protobuf.Any}
  */
 proto.forge_abi.Multisig.prototype.getData = function() {
-  return /** @type{?proto.google.protobuf.Any} */ (jspb.Message.getWrapperField(
-    this,
-    google_protobuf_any_pb.Any,
-    15
-  ));
+  return /** @type{?proto.google.protobuf.Any} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_any_pb.Any, 15));
 };
+
 
 /** @param {?proto.google.protobuf.Any|undefined} value */
 proto.forge_abi.Multisig.prototype.setData = function(value) {
   jspb.Message.setWrapperField(this, 15, value);
 };
 
+
 proto.forge_abi.Multisig.prototype.clearData = function() {
   this.setData(undefined);
 };
+
 
 /**
  * Returns whether this field is set.
@@ -3436,6 +3816,8 @@ proto.forge_abi.Multisig.prototype.clearData = function() {
 proto.forge_abi.Multisig.prototype.hasData = function() {
   return jspb.Message.getField(this, 15) != null;
 };
+
+
 
 /**
  * Generated by JsPbCodeGenerator.
@@ -3461,52 +3843,52 @@ if (goog.DEBUG && !COMPILED) {
  */
 proto.forge_abi.Transaction.repeatedFields_ = [14];
 
+
+
 if (jspb.Message.GENERATE_TO_OBJECT) {
-  /**
-   * Creates an object representation of this proto suitable for use in Soy templates.
-   * Field names that are reserved in JavaScript and will be renamed to pb_name.
-   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
-   * For the list of reserved names please see:
-   *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
-   * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
-   *     for transitional soy proto support: http://goto/soy-param-migration
-   * @return {!Object}
-   */
-  proto.forge_abi.Transaction.prototype.toObject = function(opt_includeInstance) {
-    return proto.forge_abi.Transaction.toObject(opt_includeInstance, this);
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.forge_abi.Transaction.prototype.toObject = function(opt_includeInstance) {
+  return proto.forge_abi.Transaction.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.forge_abi.Transaction} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.forge_abi.Transaction.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    from: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    nonce: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    chainId: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    pk: msg.getPk(),
+    signature: msg.getSignature(),
+    signaturesList: jspb.Message.toObjectList(msg.getSignaturesList(),
+    proto.forge_abi.Multisig.toObject, includeInstance),
+    itx: (f = msg.getItx()) && google_protobuf_any_pb.Any.toObject(includeInstance, f)
   };
 
-  /**
-   * Static version of the {@see toObject} method.
-   * @param {boolean|undefined} includeInstance Whether to include the JSPB
-   *     instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @param {!proto.forge_abi.Transaction} msg The msg instance to transform.
-   * @return {!Object}
-   * @suppress {unusedLocalVariables} f is only used for nested messages
-   */
-  proto.forge_abi.Transaction.toObject = function(includeInstance, msg) {
-    var f,
-      obj = {
-        from: jspb.Message.getFieldWithDefault(msg, 1, ''),
-        nonce: jspb.Message.getFieldWithDefault(msg, 2, 0),
-        chainId: jspb.Message.getFieldWithDefault(msg, 3, ''),
-        pk: msg.getPk(),
-        signature: msg.getSignature(),
-        signaturesList: jspb.Message.toObjectList(
-          msg.getSignaturesList(),
-          proto.forge_abi.Multisig.toObject,
-          includeInstance
-        ),
-        itx: (f = msg.getItx()) && google_protobuf_any_pb.Any.toObject(includeInstance, f),
-      };
-
-    if (includeInstance) {
-      obj.$jspbMessageInstance = msg;
-    }
-    return obj;
-  };
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
 }
+
 
 /**
  * Deserializes binary data (in protobuf wire format).
@@ -3515,9 +3897,10 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  */
 proto.forge_abi.Transaction.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.forge_abi.Transaction();
+  var msg = new proto.forge_abi.Transaction;
   return proto.forge_abi.Transaction.deserializeBinaryFromReader(msg, reader);
 };
+
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -3533,43 +3916,44 @@ proto.forge_abi.Transaction.deserializeBinaryFromReader = function(msg, reader) 
     }
     var field = reader.getFieldNumber();
     switch (field) {
-      case 1:
-        var value = /** @type {string} */ (reader.readString());
-        msg.setFrom(value);
-        break;
-      case 2:
-        var value = /** @type {number} */ (reader.readUint64());
-        msg.setNonce(value);
-        break;
-      case 3:
-        var value = /** @type {string} */ (reader.readString());
-        msg.setChainId(value);
-        break;
-      case 4:
-        var value = /** @type {!Uint8Array} */ (reader.readBytes());
-        msg.setPk(value);
-        break;
-      case 13:
-        var value = /** @type {!Uint8Array} */ (reader.readBytes());
-        msg.setSignature(value);
-        break;
-      case 14:
-        var value = new proto.forge_abi.Multisig();
-        reader.readMessage(value, proto.forge_abi.Multisig.deserializeBinaryFromReader);
-        msg.addSignatures(value);
-        break;
-      case 15:
-        var value = new google_protobuf_any_pb.Any();
-        reader.readMessage(value, google_protobuf_any_pb.Any.deserializeBinaryFromReader);
-        msg.setItx(value);
-        break;
-      default:
-        reader.skipField();
-        break;
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setFrom(value);
+      break;
+    case 2:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setNonce(value);
+      break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setChainId(value);
+      break;
+    case 4:
+      var value = /** @type {!Uint8Array} */ (reader.readBytes());
+      msg.setPk(value);
+      break;
+    case 13:
+      var value = /** @type {!Uint8Array} */ (reader.readBytes());
+      msg.setSignature(value);
+      break;
+    case 14:
+      var value = new proto.forge_abi.Multisig;
+      reader.readMessage(value,proto.forge_abi.Multisig.deserializeBinaryFromReader);
+      msg.addSignatures(value);
+      break;
+    case 15:
+      var value = new google_protobuf_any_pb.Any;
+      reader.readMessage(value,google_protobuf_any_pb.Any.deserializeBinaryFromReader);
+      msg.setItx(value);
+      break;
+    default:
+      reader.skipField();
+      break;
     }
   }
   return msg;
 };
+
 
 /**
  * Serializes the message to binary data (in protobuf wire format).
@@ -3580,6 +3964,7 @@ proto.forge_abi.Transaction.prototype.serializeBinary = function() {
   proto.forge_abi.Transaction.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
+
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -3592,46 +3977,72 @@ proto.forge_abi.Transaction.serializeBinaryToWriter = function(message, writer) 
   var f = undefined;
   f = message.getFrom();
   if (f.length > 0) {
-    writer.writeString(1, f);
+    writer.writeString(
+      1,
+      f
+    );
   }
   f = message.getNonce();
   if (f !== 0) {
-    writer.writeUint64(2, f);
+    writer.writeUint64(
+      2,
+      f
+    );
   }
   f = message.getChainId();
   if (f.length > 0) {
-    writer.writeString(3, f);
+    writer.writeString(
+      3,
+      f
+    );
   }
   f = message.getPk_asU8();
   if (f.length > 0) {
-    writer.writeBytes(4, f);
+    writer.writeBytes(
+      4,
+      f
+    );
   }
   f = message.getSignature_asU8();
   if (f.length > 0) {
-    writer.writeBytes(13, f);
+    writer.writeBytes(
+      13,
+      f
+    );
   }
   f = message.getSignaturesList();
   if (f.length > 0) {
-    writer.writeRepeatedMessage(14, f, proto.forge_abi.Multisig.serializeBinaryToWriter);
+    writer.writeRepeatedMessage(
+      14,
+      f,
+      proto.forge_abi.Multisig.serializeBinaryToWriter
+    );
   }
   f = message.getItx();
   if (f != null) {
-    writer.writeMessage(15, f, google_protobuf_any_pb.Any.serializeBinaryToWriter);
+    writer.writeMessage(
+      15,
+      f,
+      google_protobuf_any_pb.Any.serializeBinaryToWriter
+    );
   }
 };
+
 
 /**
  * optional string from = 1;
  * @return {string}
  */
 proto.forge_abi.Transaction.prototype.getFrom = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ''));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
+
 
 /** @param {string} value */
 proto.forge_abi.Transaction.prototype.setFrom = function(value) {
   jspb.Message.setProto3StringField(this, 1, value);
 };
+
 
 /**
  * optional uint64 nonce = 2;
@@ -3641,31 +4052,36 @@ proto.forge_abi.Transaction.prototype.getNonce = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
 };
 
+
 /** @param {number} value */
 proto.forge_abi.Transaction.prototype.setNonce = function(value) {
   jspb.Message.setProto3IntField(this, 2, value);
 };
+
 
 /**
  * optional string chain_id = 3;
  * @return {string}
  */
 proto.forge_abi.Transaction.prototype.getChainId = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ''));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
+
 
 /** @param {string} value */
 proto.forge_abi.Transaction.prototype.setChainId = function(value) {
   jspb.Message.setProto3StringField(this, 3, value);
 };
 
+
 /**
  * optional bytes pk = 4;
  * @return {!(string|Uint8Array)}
  */
 proto.forge_abi.Transaction.prototype.getPk = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 4, ''));
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
 };
+
 
 /**
  * optional bytes pk = 4;
@@ -3673,8 +4089,10 @@ proto.forge_abi.Transaction.prototype.getPk = function() {
  * @return {string}
  */
 proto.forge_abi.Transaction.prototype.getPk_asB64 = function() {
-  return /** @type {string} */ (jspb.Message.bytesAsB64(this.getPk()));
+  return /** @type {string} */ (jspb.Message.bytesAsB64(
+      this.getPk()));
 };
+
 
 /**
  * optional bytes pk = 4;
@@ -3684,21 +4102,25 @@ proto.forge_abi.Transaction.prototype.getPk_asB64 = function() {
  * @return {!Uint8Array}
  */
 proto.forge_abi.Transaction.prototype.getPk_asU8 = function() {
-  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(this.getPk()));
+  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
+      this.getPk()));
 };
+
 
 /** @param {!(string|Uint8Array)} value */
 proto.forge_abi.Transaction.prototype.setPk = function(value) {
   jspb.Message.setProto3BytesField(this, 4, value);
 };
 
+
 /**
  * optional bytes signature = 13;
  * @return {!(string|Uint8Array)}
  */
 proto.forge_abi.Transaction.prototype.getSignature = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 13, ''));
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 13, ""));
 };
+
 
 /**
  * optional bytes signature = 13;
@@ -3706,8 +4128,10 @@ proto.forge_abi.Transaction.prototype.getSignature = function() {
  * @return {string}
  */
 proto.forge_abi.Transaction.prototype.getSignature_asB64 = function() {
-  return /** @type {string} */ (jspb.Message.bytesAsB64(this.getSignature()));
+  return /** @type {string} */ (jspb.Message.bytesAsB64(
+      this.getSignature()));
 };
+
 
 /**
  * optional bytes signature = 13;
@@ -3717,30 +4141,32 @@ proto.forge_abi.Transaction.prototype.getSignature_asB64 = function() {
  * @return {!Uint8Array}
  */
 proto.forge_abi.Transaction.prototype.getSignature_asU8 = function() {
-  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(this.getSignature()));
+  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
+      this.getSignature()));
 };
+
 
 /** @param {!(string|Uint8Array)} value */
 proto.forge_abi.Transaction.prototype.setSignature = function(value) {
   jspb.Message.setProto3BytesField(this, 13, value);
 };
 
+
 /**
  * repeated Multisig signatures = 14;
  * @return {!Array<!proto.forge_abi.Multisig>}
  */
 proto.forge_abi.Transaction.prototype.getSignaturesList = function() {
-  return /** @type{!Array<!proto.forge_abi.Multisig>} */ (jspb.Message.getRepeatedWrapperField(
-    this,
-    proto.forge_abi.Multisig,
-    14
-  ));
+  return /** @type{!Array<!proto.forge_abi.Multisig>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.forge_abi.Multisig, 14));
 };
+
 
 /** @param {!Array<!proto.forge_abi.Multisig>} value */
 proto.forge_abi.Transaction.prototype.setSignaturesList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 14, value);
 };
+
 
 /**
  * @param {!proto.forge_abi.Multisig=} opt_value
@@ -3748,39 +4174,35 @@ proto.forge_abi.Transaction.prototype.setSignaturesList = function(value) {
  * @return {!proto.forge_abi.Multisig}
  */
 proto.forge_abi.Transaction.prototype.addSignatures = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(
-    this,
-    14,
-    opt_value,
-    proto.forge_abi.Multisig,
-    opt_index
-  );
+  return jspb.Message.addToRepeatedWrapperField(this, 14, opt_value, proto.forge_abi.Multisig, opt_index);
 };
+
 
 proto.forge_abi.Transaction.prototype.clearSignaturesList = function() {
   this.setSignaturesList([]);
 };
+
 
 /**
  * optional google.protobuf.Any itx = 15;
  * @return {?proto.google.protobuf.Any}
  */
 proto.forge_abi.Transaction.prototype.getItx = function() {
-  return /** @type{?proto.google.protobuf.Any} */ (jspb.Message.getWrapperField(
-    this,
-    google_protobuf_any_pb.Any,
-    15
-  ));
+  return /** @type{?proto.google.protobuf.Any} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_any_pb.Any, 15));
 };
+
 
 /** @param {?proto.google.protobuf.Any|undefined} value */
 proto.forge_abi.Transaction.prototype.setItx = function(value) {
   jspb.Message.setWrapperField(this, 15, value);
 };
 
+
 proto.forge_abi.Transaction.prototype.clearItx = function() {
   this.setItx(undefined);
 };
+
 
 /**
  * Returns whether this field is set.
@@ -3789,6 +4211,8 @@ proto.forge_abi.Transaction.prototype.clearItx = function() {
 proto.forge_abi.Transaction.prototype.hasItx = function() {
   return jspb.Message.getField(this, 15) != null;
 };
+
+
 
 /**
  * Generated by JsPbCodeGenerator.
@@ -3801,14 +4225,7 @@ proto.forge_abi.Transaction.prototype.hasItx = function() {
  * @constructor
  */
 proto.forge_abi.TransactionInfo = function(opt_data) {
-  jspb.Message.initialize(
-    this,
-    opt_data,
-    0,
-    -1,
-    proto.forge_abi.TransactionInfo.repeatedFields_,
-    null
-  );
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.forge_abi.TransactionInfo.repeatedFields_, null);
 };
 goog.inherits(proto.forge_abi.TransactionInfo, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -3821,54 +4238,52 @@ if (goog.DEBUG && !COMPILED) {
  */
 proto.forge_abi.TransactionInfo.repeatedFields_ = [5];
 
+
+
 if (jspb.Message.GENERATE_TO_OBJECT) {
-  /**
-   * Creates an object representation of this proto suitable for use in Soy templates.
-   * Field names that are reserved in JavaScript and will be renamed to pb_name.
-   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
-   * For the list of reserved names please see:
-   *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
-   * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
-   *     for transitional soy proto support: http://goto/soy-param-migration
-   * @return {!Object}
-   */
-  proto.forge_abi.TransactionInfo.prototype.toObject = function(opt_includeInstance) {
-    return proto.forge_abi.TransactionInfo.toObject(opt_includeInstance, this);
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.forge_abi.TransactionInfo.prototype.toObject = function(opt_includeInstance) {
+  return proto.forge_abi.TransactionInfo.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.forge_abi.TransactionInfo} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.forge_abi.TransactionInfo.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    tx: (f = msg.getTx()) && proto.forge_abi.Transaction.toObject(includeInstance, f),
+    height: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    index: jspb.Message.getFieldWithDefault(msg, 3, 0),
+    hash: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    tagsList: jspb.Message.toObjectList(msg.getTagsList(),
+    vendor_pb.KVPair.toObject, includeInstance),
+    code: jspb.Message.getFieldWithDefault(msg, 6, 0),
+    time: (f = msg.getTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
 
-  /**
-   * Static version of the {@see toObject} method.
-   * @param {boolean|undefined} includeInstance Whether to include the JSPB
-   *     instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @param {!proto.forge_abi.TransactionInfo} msg The msg instance to transform.
-   * @return {!Object}
-   * @suppress {unusedLocalVariables} f is only used for nested messages
-   */
-  proto.forge_abi.TransactionInfo.toObject = function(includeInstance, msg) {
-    var f,
-      obj = {
-        tx: (f = msg.getTx()) && proto.forge_abi.Transaction.toObject(includeInstance, f),
-        height: jspb.Message.getFieldWithDefault(msg, 2, 0),
-        index: jspb.Message.getFieldWithDefault(msg, 3, 0),
-        hash: jspb.Message.getFieldWithDefault(msg, 4, ''),
-        tagsList: jspb.Message.toObjectList(
-          msg.getTagsList(),
-          vendor_pb.KVPair.toObject,
-          includeInstance
-        ),
-        code: jspb.Message.getFieldWithDefault(msg, 6, 0),
-        time:
-          (f = msg.getTime()) &&
-          google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-      };
-
-    if (includeInstance) {
-      obj.$jspbMessageInstance = msg;
-    }
-    return obj;
-  };
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
 }
+
 
 /**
  * Deserializes binary data (in protobuf wire format).
@@ -3877,9 +4292,10 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  */
 proto.forge_abi.TransactionInfo.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.forge_abi.TransactionInfo();
+  var msg = new proto.forge_abi.TransactionInfo;
   return proto.forge_abi.TransactionInfo.deserializeBinaryFromReader(msg, reader);
 };
+
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -3895,47 +4311,45 @@ proto.forge_abi.TransactionInfo.deserializeBinaryFromReader = function(msg, read
     }
     var field = reader.getFieldNumber();
     switch (field) {
-      case 1:
-        var value = new proto.forge_abi.Transaction();
-        reader.readMessage(value, proto.forge_abi.Transaction.deserializeBinaryFromReader);
-        msg.setTx(value);
-        break;
-      case 2:
-        var value = /** @type {number} */ (reader.readUint64());
-        msg.setHeight(value);
-        break;
-      case 3:
-        var value = /** @type {number} */ (reader.readUint32());
-        msg.setIndex(value);
-        break;
-      case 4:
-        var value = /** @type {string} */ (reader.readString());
-        msg.setHash(value);
-        break;
-      case 5:
-        var value = new vendor_pb.KVPair();
-        reader.readMessage(value, vendor_pb.KVPair.deserializeBinaryFromReader);
-        msg.addTags(value);
-        break;
-      case 6:
-        var value = /** @type {!proto.forge_abi.StatusCode} */ (reader.readEnum());
-        msg.setCode(value);
-        break;
-      case 7:
-        var value = new google_protobuf_timestamp_pb.Timestamp();
-        reader.readMessage(
-          value,
-          google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader
-        );
-        msg.setTime(value);
-        break;
-      default:
-        reader.skipField();
-        break;
+    case 1:
+      var value = new proto.forge_abi.Transaction;
+      reader.readMessage(value,proto.forge_abi.Transaction.deserializeBinaryFromReader);
+      msg.setTx(value);
+      break;
+    case 2:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setHeight(value);
+      break;
+    case 3:
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setIndex(value);
+      break;
+    case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setHash(value);
+      break;
+    case 5:
+      var value = new vendor_pb.KVPair;
+      reader.readMessage(value,vendor_pb.KVPair.deserializeBinaryFromReader);
+      msg.addTags(value);
+      break;
+    case 6:
+      var value = /** @type {!proto.forge_abi.StatusCode} */ (reader.readEnum());
+      msg.setCode(value);
+      break;
+    case 7:
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setTime(value);
+      break;
+    default:
+      reader.skipField();
+      break;
     }
   }
   return msg;
 };
+
 
 /**
  * Serializes the message to binary data (in protobuf wire format).
@@ -3946,6 +4360,7 @@ proto.forge_abi.TransactionInfo.prototype.serializeBinary = function() {
   proto.forge_abi.TransactionInfo.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
+
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -3958,54 +4373,79 @@ proto.forge_abi.TransactionInfo.serializeBinaryToWriter = function(message, writ
   var f = undefined;
   f = message.getTx();
   if (f != null) {
-    writer.writeMessage(1, f, proto.forge_abi.Transaction.serializeBinaryToWriter);
+    writer.writeMessage(
+      1,
+      f,
+      proto.forge_abi.Transaction.serializeBinaryToWriter
+    );
   }
   f = message.getHeight();
   if (f !== 0) {
-    writer.writeUint64(2, f);
+    writer.writeUint64(
+      2,
+      f
+    );
   }
   f = message.getIndex();
   if (f !== 0) {
-    writer.writeUint32(3, f);
+    writer.writeUint32(
+      3,
+      f
+    );
   }
   f = message.getHash();
   if (f.length > 0) {
-    writer.writeString(4, f);
+    writer.writeString(
+      4,
+      f
+    );
   }
   f = message.getTagsList();
   if (f.length > 0) {
-    writer.writeRepeatedMessage(5, f, vendor_pb.KVPair.serializeBinaryToWriter);
+    writer.writeRepeatedMessage(
+      5,
+      f,
+      vendor_pb.KVPair.serializeBinaryToWriter
+    );
   }
   f = message.getCode();
   if (f !== 0.0) {
-    writer.writeEnum(6, f);
+    writer.writeEnum(
+      6,
+      f
+    );
   }
   f = message.getTime();
   if (f != null) {
-    writer.writeMessage(7, f, google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter);
+    writer.writeMessage(
+      7,
+      f,
+      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+    );
   }
 };
+
 
 /**
  * optional Transaction tx = 1;
  * @return {?proto.forge_abi.Transaction}
  */
 proto.forge_abi.TransactionInfo.prototype.getTx = function() {
-  return /** @type{?proto.forge_abi.Transaction} */ (jspb.Message.getWrapperField(
-    this,
-    proto.forge_abi.Transaction,
-    1
-  ));
+  return /** @type{?proto.forge_abi.Transaction} */ (
+    jspb.Message.getWrapperField(this, proto.forge_abi.Transaction, 1));
 };
+
 
 /** @param {?proto.forge_abi.Transaction|undefined} value */
 proto.forge_abi.TransactionInfo.prototype.setTx = function(value) {
   jspb.Message.setWrapperField(this, 1, value);
 };
 
+
 proto.forge_abi.TransactionInfo.prototype.clearTx = function() {
   this.setTx(undefined);
 };
+
 
 /**
  * Returns whether this field is set.
@@ -4015,6 +4455,7 @@ proto.forge_abi.TransactionInfo.prototype.hasTx = function() {
   return jspb.Message.getField(this, 1) != null;
 };
 
+
 /**
  * optional uint64 height = 2;
  * @return {number}
@@ -4023,10 +4464,12 @@ proto.forge_abi.TransactionInfo.prototype.getHeight = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
 };
 
+
 /** @param {number} value */
 proto.forge_abi.TransactionInfo.prototype.setHeight = function(value) {
   jspb.Message.setProto3IntField(this, 2, value);
 };
+
 
 /**
  * optional uint32 index = 3;
@@ -4036,40 +4479,43 @@ proto.forge_abi.TransactionInfo.prototype.getIndex = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
 };
 
+
 /** @param {number} value */
 proto.forge_abi.TransactionInfo.prototype.setIndex = function(value) {
   jspb.Message.setProto3IntField(this, 3, value);
 };
+
 
 /**
  * optional string hash = 4;
  * @return {string}
  */
 proto.forge_abi.TransactionInfo.prototype.getHash = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ''));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
 };
+
 
 /** @param {string} value */
 proto.forge_abi.TransactionInfo.prototype.setHash = function(value) {
   jspb.Message.setProto3StringField(this, 4, value);
 };
 
+
 /**
  * repeated abci_vendor.KVPair tags = 5;
  * @return {!Array<!proto.abci_vendor.KVPair>}
  */
 proto.forge_abi.TransactionInfo.prototype.getTagsList = function() {
-  return /** @type{!Array<!proto.abci_vendor.KVPair>} */ (jspb.Message.getRepeatedWrapperField(
-    this,
-    vendor_pb.KVPair,
-    5
-  ));
+  return /** @type{!Array<!proto.abci_vendor.KVPair>} */ (
+    jspb.Message.getRepeatedWrapperField(this, vendor_pb.KVPair, 5));
 };
+
 
 /** @param {!Array<!proto.abci_vendor.KVPair>} value */
 proto.forge_abi.TransactionInfo.prototype.setTagsList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 5, value);
 };
+
 
 /**
  * @param {!proto.abci_vendor.KVPair=} opt_value
@@ -4077,18 +4523,14 @@ proto.forge_abi.TransactionInfo.prototype.setTagsList = function(value) {
  * @return {!proto.abci_vendor.KVPair}
  */
 proto.forge_abi.TransactionInfo.prototype.addTags = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(
-    this,
-    5,
-    opt_value,
-    proto.abci_vendor.KVPair,
-    opt_index
-  );
+  return jspb.Message.addToRepeatedWrapperField(this, 5, opt_value, proto.abci_vendor.KVPair, opt_index);
 };
+
 
 proto.forge_abi.TransactionInfo.prototype.clearTagsList = function() {
   this.setTagsList([]);
 };
+
 
 /**
  * optional StatusCode code = 6;
@@ -4098,31 +4540,33 @@ proto.forge_abi.TransactionInfo.prototype.getCode = function() {
   return /** @type {!proto.forge_abi.StatusCode} */ (jspb.Message.getFieldWithDefault(this, 6, 0));
 };
 
+
 /** @param {!proto.forge_abi.StatusCode} value */
 proto.forge_abi.TransactionInfo.prototype.setCode = function(value) {
   jspb.Message.setProto3EnumField(this, 6, value);
 };
+
 
 /**
  * optional google.protobuf.Timestamp time = 7;
  * @return {?proto.google.protobuf.Timestamp}
  */
 proto.forge_abi.TransactionInfo.prototype.getTime = function() {
-  return /** @type{?proto.google.protobuf.Timestamp} */ (jspb.Message.getWrapperField(
-    this,
-    google_protobuf_timestamp_pb.Timestamp,
-    7
-  ));
+  return /** @type{?proto.google.protobuf.Timestamp} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 7));
 };
+
 
 /** @param {?proto.google.protobuf.Timestamp|undefined} value */
 proto.forge_abi.TransactionInfo.prototype.setTime = function(value) {
   jspb.Message.setWrapperField(this, 7, value);
 };
 
+
 proto.forge_abi.TransactionInfo.prototype.clearTime = function() {
   this.setTime(undefined);
 };
+
 
 /**
  * Returns whether this field is set.
@@ -4131,6 +4575,8 @@ proto.forge_abi.TransactionInfo.prototype.clearTime = function() {
 proto.forge_abi.TransactionInfo.prototype.hasTime = function() {
   return jspb.Message.getField(this, 7) != null;
 };
+
+
 
 /**
  * Generated by JsPbCodeGenerator.
@@ -4150,43 +4596,45 @@ if (goog.DEBUG && !COMPILED) {
   proto.forge_abi.DeclareConfig.displayName = 'proto.forge_abi.DeclareConfig';
 }
 
+
 if (jspb.Message.GENERATE_TO_OBJECT) {
-  /**
-   * Creates an object representation of this proto suitable for use in Soy templates.
-   * Field names that are reserved in JavaScript and will be renamed to pb_name.
-   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
-   * For the list of reserved names please see:
-   *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
-   * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
-   *     for transitional soy proto support: http://goto/soy-param-migration
-   * @return {!Object}
-   */
-  proto.forge_abi.DeclareConfig.prototype.toObject = function(opt_includeInstance) {
-    return proto.forge_abi.DeclareConfig.toObject(opt_includeInstance, this);
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.forge_abi.DeclareConfig.prototype.toObject = function(opt_includeInstance) {
+  return proto.forge_abi.DeclareConfig.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.forge_abi.DeclareConfig} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.forge_abi.DeclareConfig.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    restricted: jspb.Message.getFieldWithDefault(msg, 1, false),
+    hierarchy: jspb.Message.getFieldWithDefault(msg, 2, 0)
   };
 
-  /**
-   * Static version of the {@see toObject} method.
-   * @param {boolean|undefined} includeInstance Whether to include the JSPB
-   *     instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @param {!proto.forge_abi.DeclareConfig} msg The msg instance to transform.
-   * @return {!Object}
-   * @suppress {unusedLocalVariables} f is only used for nested messages
-   */
-  proto.forge_abi.DeclareConfig.toObject = function(includeInstance, msg) {
-    var f,
-      obj = {
-        restricted: jspb.Message.getFieldWithDefault(msg, 1, false),
-        hierarchy: jspb.Message.getFieldWithDefault(msg, 2, 0),
-      };
-
-    if (includeInstance) {
-      obj.$jspbMessageInstance = msg;
-    }
-    return obj;
-  };
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
 }
+
 
 /**
  * Deserializes binary data (in protobuf wire format).
@@ -4195,9 +4643,10 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  */
 proto.forge_abi.DeclareConfig.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.forge_abi.DeclareConfig();
+  var msg = new proto.forge_abi.DeclareConfig;
   return proto.forge_abi.DeclareConfig.deserializeBinaryFromReader(msg, reader);
 };
+
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -4213,21 +4662,22 @@ proto.forge_abi.DeclareConfig.deserializeBinaryFromReader = function(msg, reader
     }
     var field = reader.getFieldNumber();
     switch (field) {
-      case 1:
-        var value = /** @type {boolean} */ (reader.readBool());
-        msg.setRestricted(value);
-        break;
-      case 2:
-        var value = /** @type {number} */ (reader.readUint32());
-        msg.setHierarchy(value);
-        break;
-      default:
-        reader.skipField();
-        break;
+    case 1:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setRestricted(value);
+      break;
+    case 2:
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setHierarchy(value);
+      break;
+    default:
+      reader.skipField();
+      break;
     }
   }
   return msg;
 };
+
 
 /**
  * Serializes the message to binary data (in protobuf wire format).
@@ -4238,6 +4688,7 @@ proto.forge_abi.DeclareConfig.prototype.serializeBinary = function() {
   proto.forge_abi.DeclareConfig.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
+
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -4250,13 +4701,20 @@ proto.forge_abi.DeclareConfig.serializeBinaryToWriter = function(message, writer
   var f = undefined;
   f = message.getRestricted();
   if (f) {
-    writer.writeBool(1, f);
+    writer.writeBool(
+      1,
+      f
+    );
   }
   f = message.getHierarchy();
   if (f !== 0) {
-    writer.writeUint32(2, f);
+    writer.writeUint32(
+      2,
+      f
+    );
   }
 };
+
 
 /**
  * optional bool restricted = 1;
@@ -4268,10 +4726,12 @@ proto.forge_abi.DeclareConfig.prototype.getRestricted = function() {
   return /** @type {boolean} */ (jspb.Message.getFieldWithDefault(this, 1, false));
 };
 
+
 /** @param {boolean} value */
 proto.forge_abi.DeclareConfig.prototype.setRestricted = function(value) {
   jspb.Message.setProto3BooleanField(this, 1, value);
 };
+
 
 /**
  * optional uint32 hierarchy = 2;
@@ -4281,10 +4741,13 @@ proto.forge_abi.DeclareConfig.prototype.getHierarchy = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
 };
 
+
 /** @param {number} value */
 proto.forge_abi.DeclareConfig.prototype.setHierarchy = function(value) {
   jspb.Message.setProto3IntField(this, 2, value);
 };
+
+
 
 /**
  * Generated by JsPbCodeGenerator.
@@ -4304,47 +4767,48 @@ if (goog.DEBUG && !COMPILED) {
   proto.forge_abi.TransactionConfig.displayName = 'proto.forge_abi.TransactionConfig';
 }
 
+
 if (jspb.Message.GENERATE_TO_OBJECT) {
-  /**
-   * Creates an object representation of this proto suitable for use in Soy templates.
-   * Field names that are reserved in JavaScript and will be renamed to pb_name.
-   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
-   * For the list of reserved names please see:
-   *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
-   * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
-   *     for transitional soy proto support: http://goto/soy-param-migration
-   * @return {!Object}
-   */
-  proto.forge_abi.TransactionConfig.prototype.toObject = function(opt_includeInstance) {
-    return proto.forge_abi.TransactionConfig.toObject(opt_includeInstance, this);
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.forge_abi.TransactionConfig.prototype.toObject = function(opt_includeInstance) {
+  return proto.forge_abi.TransactionConfig.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.forge_abi.TransactionConfig} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.forge_abi.TransactionConfig.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    maxAssetSize: jspb.Message.getFieldWithDefault(msg, 1, 0),
+    maxListSize: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    maxMultisig: jspb.Message.getFieldWithDefault(msg, 3, 0),
+    minimumStake: jspb.Message.getFieldWithDefault(msg, 4, 0),
+    declare: (f = msg.getDeclare()) && proto.forge_abi.DeclareConfig.toObject(includeInstance, f)
   };
 
-  /**
-   * Static version of the {@see toObject} method.
-   * @param {boolean|undefined} includeInstance Whether to include the JSPB
-   *     instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @param {!proto.forge_abi.TransactionConfig} msg The msg instance to transform.
-   * @return {!Object}
-   * @suppress {unusedLocalVariables} f is only used for nested messages
-   */
-  proto.forge_abi.TransactionConfig.toObject = function(includeInstance, msg) {
-    var f,
-      obj = {
-        maxAssetSize: jspb.Message.getFieldWithDefault(msg, 1, 0),
-        maxListSize: jspb.Message.getFieldWithDefault(msg, 2, 0),
-        maxMultisig: jspb.Message.getFieldWithDefault(msg, 3, 0),
-        minimumStake: jspb.Message.getFieldWithDefault(msg, 4, 0),
-        declare:
-          (f = msg.getDeclare()) && proto.forge_abi.DeclareConfig.toObject(includeInstance, f),
-      };
-
-    if (includeInstance) {
-      obj.$jspbMessageInstance = msg;
-    }
-    return obj;
-  };
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
 }
+
 
 /**
  * Deserializes binary data (in protobuf wire format).
@@ -4353,9 +4817,10 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  */
 proto.forge_abi.TransactionConfig.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.forge_abi.TransactionConfig();
+  var msg = new proto.forge_abi.TransactionConfig;
   return proto.forge_abi.TransactionConfig.deserializeBinaryFromReader(msg, reader);
 };
+
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -4371,34 +4836,35 @@ proto.forge_abi.TransactionConfig.deserializeBinaryFromReader = function(msg, re
     }
     var field = reader.getFieldNumber();
     switch (field) {
-      case 1:
-        var value = /** @type {number} */ (reader.readUint32());
-        msg.setMaxAssetSize(value);
-        break;
-      case 2:
-        var value = /** @type {number} */ (reader.readUint32());
-        msg.setMaxListSize(value);
-        break;
-      case 3:
-        var value = /** @type {number} */ (reader.readUint32());
-        msg.setMaxMultisig(value);
-        break;
-      case 4:
-        var value = /** @type {number} */ (reader.readUint64());
-        msg.setMinimumStake(value);
-        break;
-      case 5:
-        var value = new proto.forge_abi.DeclareConfig();
-        reader.readMessage(value, proto.forge_abi.DeclareConfig.deserializeBinaryFromReader);
-        msg.setDeclare(value);
-        break;
-      default:
-        reader.skipField();
-        break;
+    case 1:
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setMaxAssetSize(value);
+      break;
+    case 2:
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setMaxListSize(value);
+      break;
+    case 3:
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setMaxMultisig(value);
+      break;
+    case 4:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setMinimumStake(value);
+      break;
+    case 5:
+      var value = new proto.forge_abi.DeclareConfig;
+      reader.readMessage(value,proto.forge_abi.DeclareConfig.deserializeBinaryFromReader);
+      msg.setDeclare(value);
+      break;
+    default:
+      reader.skipField();
+      break;
     }
   }
   return msg;
 };
+
 
 /**
  * Serializes the message to binary data (in protobuf wire format).
@@ -4409,6 +4875,7 @@ proto.forge_abi.TransactionConfig.prototype.serializeBinary = function() {
   proto.forge_abi.TransactionConfig.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
+
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -4421,25 +4888,42 @@ proto.forge_abi.TransactionConfig.serializeBinaryToWriter = function(message, wr
   var f = undefined;
   f = message.getMaxAssetSize();
   if (f !== 0) {
-    writer.writeUint32(1, f);
+    writer.writeUint32(
+      1,
+      f
+    );
   }
   f = message.getMaxListSize();
   if (f !== 0) {
-    writer.writeUint32(2, f);
+    writer.writeUint32(
+      2,
+      f
+    );
   }
   f = message.getMaxMultisig();
   if (f !== 0) {
-    writer.writeUint32(3, f);
+    writer.writeUint32(
+      3,
+      f
+    );
   }
   f = message.getMinimumStake();
   if (f !== 0) {
-    writer.writeUint64(4, f);
+    writer.writeUint64(
+      4,
+      f
+    );
   }
   f = message.getDeclare();
   if (f != null) {
-    writer.writeMessage(5, f, proto.forge_abi.DeclareConfig.serializeBinaryToWriter);
+    writer.writeMessage(
+      5,
+      f,
+      proto.forge_abi.DeclareConfig.serializeBinaryToWriter
+    );
   }
 };
+
 
 /**
  * optional uint32 max_asset_size = 1;
@@ -4449,10 +4933,12 @@ proto.forge_abi.TransactionConfig.prototype.getMaxAssetSize = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
 };
 
+
 /** @param {number} value */
 proto.forge_abi.TransactionConfig.prototype.setMaxAssetSize = function(value) {
   jspb.Message.setProto3IntField(this, 1, value);
 };
+
 
 /**
  * optional uint32 max_list_size = 2;
@@ -4462,10 +4948,12 @@ proto.forge_abi.TransactionConfig.prototype.getMaxListSize = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
 };
 
+
 /** @param {number} value */
 proto.forge_abi.TransactionConfig.prototype.setMaxListSize = function(value) {
   jspb.Message.setProto3IntField(this, 2, value);
 };
+
 
 /**
  * optional uint32 max_multisig = 3;
@@ -4475,10 +4963,12 @@ proto.forge_abi.TransactionConfig.prototype.getMaxMultisig = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
 };
 
+
 /** @param {number} value */
 proto.forge_abi.TransactionConfig.prototype.setMaxMultisig = function(value) {
   jspb.Message.setProto3IntField(this, 3, value);
 };
+
 
 /**
  * optional uint64 minimum_stake = 4;
@@ -4488,31 +4978,33 @@ proto.forge_abi.TransactionConfig.prototype.getMinimumStake = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
 };
 
+
 /** @param {number} value */
 proto.forge_abi.TransactionConfig.prototype.setMinimumStake = function(value) {
   jspb.Message.setProto3IntField(this, 4, value);
 };
+
 
 /**
  * optional DeclareConfig declare = 5;
  * @return {?proto.forge_abi.DeclareConfig}
  */
 proto.forge_abi.TransactionConfig.prototype.getDeclare = function() {
-  return /** @type{?proto.forge_abi.DeclareConfig} */ (jspb.Message.getWrapperField(
-    this,
-    proto.forge_abi.DeclareConfig,
-    5
-  ));
+  return /** @type{?proto.forge_abi.DeclareConfig} */ (
+    jspb.Message.getWrapperField(this, proto.forge_abi.DeclareConfig, 5));
 };
+
 
 /** @param {?proto.forge_abi.DeclareConfig|undefined} value */
 proto.forge_abi.TransactionConfig.prototype.setDeclare = function(value) {
   jspb.Message.setWrapperField(this, 5, value);
 };
 
+
 proto.forge_abi.TransactionConfig.prototype.clearDeclare = function() {
   this.setDeclare(undefined);
 };
+
 
 /**
  * Returns whether this field is set.
@@ -4521,6 +5013,8 @@ proto.forge_abi.TransactionConfig.prototype.clearDeclare = function() {
 proto.forge_abi.TransactionConfig.prototype.hasDeclare = function() {
   return jspb.Message.getField(this, 5) != null;
 };
+
+
 
 /**
  * Generated by JsPbCodeGenerator.
@@ -4544,72 +5038,67 @@ if (goog.DEBUG && !COMPILED) {
  * @private {!Array<number>}
  * @const
  */
-proto.forge_abi.BlockInfo.repeatedFields_ = [6, 8, 9, 10];
+proto.forge_abi.BlockInfo.repeatedFields_ = [6,8,9,10];
+
+
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
-  /**
-   * Creates an object representation of this proto suitable for use in Soy templates.
-   * Field names that are reserved in JavaScript and will be renamed to pb_name.
-   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
-   * For the list of reserved names please see:
-   *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
-   * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
-   *     for transitional soy proto support: http://goto/soy-param-migration
-   * @return {!Object}
-   */
-  proto.forge_abi.BlockInfo.prototype.toObject = function(opt_includeInstance) {
-    return proto.forge_abi.BlockInfo.toObject(opt_includeInstance, this);
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.forge_abi.BlockInfo.prototype.toObject = function(opt_includeInstance) {
+  return proto.forge_abi.BlockInfo.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.forge_abi.BlockInfo} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.forge_abi.BlockInfo.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    height: jspb.Message.getFieldWithDefault(msg, 1, 0),
+    numTxs: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    time: (f = msg.getTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+    appHash: msg.getAppHash(),
+    proposer: msg.getProposer(),
+    txsList: jspb.Message.toObjectList(msg.getTxsList(),
+    proto.forge_abi.TransactionInfo.toObject, includeInstance),
+    totalTxs: jspb.Message.getFieldWithDefault(msg, 7, 0),
+    invalidTxsList: jspb.Message.toObjectList(msg.getInvalidTxsList(),
+    proto.forge_abi.TransactionInfo.toObject, includeInstance),
+    txsHashesList: jspb.Message.getRepeatedField(msg, 9),
+    invalidTxsHashesList: jspb.Message.getRepeatedField(msg, 10),
+    consensusHash: msg.getConsensusHash(),
+    dataHash: msg.getDataHash(),
+    evidenceHash: msg.getEvidenceHash(),
+    lastCommitHash: msg.getLastCommitHash(),
+    lastResultsHash: msg.getLastResultsHash(),
+    nextValidatorsHash: msg.getNextValidatorsHash(),
+    validatorsHash: msg.getValidatorsHash(),
+    version: (f = msg.getVersion()) && vendor_pb.Version.toObject(includeInstance, f),
+    lastBlockId: (f = msg.getLastBlockId()) && vendor_pb.BlockID.toObject(includeInstance, f)
   };
 
-  /**
-   * Static version of the {@see toObject} method.
-   * @param {boolean|undefined} includeInstance Whether to include the JSPB
-   *     instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @param {!proto.forge_abi.BlockInfo} msg The msg instance to transform.
-   * @return {!Object}
-   * @suppress {unusedLocalVariables} f is only used for nested messages
-   */
-  proto.forge_abi.BlockInfo.toObject = function(includeInstance, msg) {
-    var f,
-      obj = {
-        height: jspb.Message.getFieldWithDefault(msg, 1, 0),
-        numTxs: jspb.Message.getFieldWithDefault(msg, 2, 0),
-        time:
-          (f = msg.getTime()) &&
-          google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-        appHash: msg.getAppHash(),
-        proposer: msg.getProposer(),
-        txsList: jspb.Message.toObjectList(
-          msg.getTxsList(),
-          proto.forge_abi.TransactionInfo.toObject,
-          includeInstance
-        ),
-        totalTxs: jspb.Message.getFieldWithDefault(msg, 7, 0),
-        invalidTxsList: jspb.Message.toObjectList(
-          msg.getInvalidTxsList(),
-          proto.forge_abi.TransactionInfo.toObject,
-          includeInstance
-        ),
-        txsHashesList: jspb.Message.getRepeatedField(msg, 9),
-        invalidTxsHashesList: jspb.Message.getRepeatedField(msg, 10),
-        consensusHash: msg.getConsensusHash(),
-        dataHash: msg.getDataHash(),
-        evidenceHash: msg.getEvidenceHash(),
-        lastCommitHash: msg.getLastCommitHash(),
-        lastResultsHash: msg.getLastResultsHash(),
-        nextValidatorsHash: msg.getNextValidatorsHash(),
-        validatorsHash: msg.getValidatorsHash(),
-        version: (f = msg.getVersion()) && vendor_pb.Version.toObject(includeInstance, f),
-        lastBlockId: (f = msg.getLastBlockId()) && vendor_pb.BlockID.toObject(includeInstance, f),
-      };
-
-    if (includeInstance) {
-      obj.$jspbMessageInstance = msg;
-    }
-    return obj;
-  };
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
 }
+
 
 /**
  * Deserializes binary data (in protobuf wire format).
@@ -4618,9 +5107,10 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  */
 proto.forge_abi.BlockInfo.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.forge_abi.BlockInfo();
+  var msg = new proto.forge_abi.BlockInfo;
   return proto.forge_abi.BlockInfo.deserializeBinaryFromReader(msg, reader);
 };
+
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -4636,97 +5126,95 @@ proto.forge_abi.BlockInfo.deserializeBinaryFromReader = function(msg, reader) {
     }
     var field = reader.getFieldNumber();
     switch (field) {
-      case 1:
-        var value = /** @type {number} */ (reader.readUint64());
-        msg.setHeight(value);
-        break;
-      case 2:
-        var value = /** @type {number} */ (reader.readUint32());
-        msg.setNumTxs(value);
-        break;
-      case 3:
-        var value = new google_protobuf_timestamp_pb.Timestamp();
-        reader.readMessage(
-          value,
-          google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader
-        );
-        msg.setTime(value);
-        break;
-      case 4:
-        var value = /** @type {!Uint8Array} */ (reader.readBytes());
-        msg.setAppHash(value);
-        break;
-      case 5:
-        var value = /** @type {!Uint8Array} */ (reader.readBytes());
-        msg.setProposer(value);
-        break;
-      case 6:
-        var value = new proto.forge_abi.TransactionInfo();
-        reader.readMessage(value, proto.forge_abi.TransactionInfo.deserializeBinaryFromReader);
-        msg.addTxs(value);
-        break;
-      case 7:
-        var value = /** @type {number} */ (reader.readUint64());
-        msg.setTotalTxs(value);
-        break;
-      case 8:
-        var value = new proto.forge_abi.TransactionInfo();
-        reader.readMessage(value, proto.forge_abi.TransactionInfo.deserializeBinaryFromReader);
-        msg.addInvalidTxs(value);
-        break;
-      case 9:
-        var value = /** @type {string} */ (reader.readString());
-        msg.addTxsHashes(value);
-        break;
-      case 10:
-        var value = /** @type {string} */ (reader.readString());
-        msg.addInvalidTxsHashes(value);
-        break;
-      case 11:
-        var value = /** @type {!Uint8Array} */ (reader.readBytes());
-        msg.setConsensusHash(value);
-        break;
-      case 12:
-        var value = /** @type {!Uint8Array} */ (reader.readBytes());
-        msg.setDataHash(value);
-        break;
-      case 13:
-        var value = /** @type {!Uint8Array} */ (reader.readBytes());
-        msg.setEvidenceHash(value);
-        break;
-      case 14:
-        var value = /** @type {!Uint8Array} */ (reader.readBytes());
-        msg.setLastCommitHash(value);
-        break;
-      case 15:
-        var value = /** @type {!Uint8Array} */ (reader.readBytes());
-        msg.setLastResultsHash(value);
-        break;
-      case 16:
-        var value = /** @type {!Uint8Array} */ (reader.readBytes());
-        msg.setNextValidatorsHash(value);
-        break;
-      case 17:
-        var value = /** @type {!Uint8Array} */ (reader.readBytes());
-        msg.setValidatorsHash(value);
-        break;
-      case 18:
-        var value = new vendor_pb.Version();
-        reader.readMessage(value, vendor_pb.Version.deserializeBinaryFromReader);
-        msg.setVersion(value);
-        break;
-      case 19:
-        var value = new vendor_pb.BlockID();
-        reader.readMessage(value, vendor_pb.BlockID.deserializeBinaryFromReader);
-        msg.setLastBlockId(value);
-        break;
-      default:
-        reader.skipField();
-        break;
+    case 1:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setHeight(value);
+      break;
+    case 2:
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setNumTxs(value);
+      break;
+    case 3:
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setTime(value);
+      break;
+    case 4:
+      var value = /** @type {!Uint8Array} */ (reader.readBytes());
+      msg.setAppHash(value);
+      break;
+    case 5:
+      var value = /** @type {!Uint8Array} */ (reader.readBytes());
+      msg.setProposer(value);
+      break;
+    case 6:
+      var value = new proto.forge_abi.TransactionInfo;
+      reader.readMessage(value,proto.forge_abi.TransactionInfo.deserializeBinaryFromReader);
+      msg.addTxs(value);
+      break;
+    case 7:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setTotalTxs(value);
+      break;
+    case 8:
+      var value = new proto.forge_abi.TransactionInfo;
+      reader.readMessage(value,proto.forge_abi.TransactionInfo.deserializeBinaryFromReader);
+      msg.addInvalidTxs(value);
+      break;
+    case 9:
+      var value = /** @type {string} */ (reader.readString());
+      msg.addTxsHashes(value);
+      break;
+    case 10:
+      var value = /** @type {string} */ (reader.readString());
+      msg.addInvalidTxsHashes(value);
+      break;
+    case 11:
+      var value = /** @type {!Uint8Array} */ (reader.readBytes());
+      msg.setConsensusHash(value);
+      break;
+    case 12:
+      var value = /** @type {!Uint8Array} */ (reader.readBytes());
+      msg.setDataHash(value);
+      break;
+    case 13:
+      var value = /** @type {!Uint8Array} */ (reader.readBytes());
+      msg.setEvidenceHash(value);
+      break;
+    case 14:
+      var value = /** @type {!Uint8Array} */ (reader.readBytes());
+      msg.setLastCommitHash(value);
+      break;
+    case 15:
+      var value = /** @type {!Uint8Array} */ (reader.readBytes());
+      msg.setLastResultsHash(value);
+      break;
+    case 16:
+      var value = /** @type {!Uint8Array} */ (reader.readBytes());
+      msg.setNextValidatorsHash(value);
+      break;
+    case 17:
+      var value = /** @type {!Uint8Array} */ (reader.readBytes());
+      msg.setValidatorsHash(value);
+      break;
+    case 18:
+      var value = new vendor_pb.Version;
+      reader.readMessage(value,vendor_pb.Version.deserializeBinaryFromReader);
+      msg.setVersion(value);
+      break;
+    case 19:
+      var value = new vendor_pb.BlockID;
+      reader.readMessage(value,vendor_pb.BlockID.deserializeBinaryFromReader);
+      msg.setLastBlockId(value);
+      break;
+    default:
+      reader.skipField();
+      break;
     }
   }
   return msg;
 };
+
 
 /**
  * Serializes the message to binary data (in protobuf wire format).
@@ -4737,6 +5225,7 @@ proto.forge_abi.BlockInfo.prototype.serializeBinary = function() {
   proto.forge_abi.BlockInfo.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
+
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -4749,81 +5238,144 @@ proto.forge_abi.BlockInfo.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getHeight();
   if (f !== 0) {
-    writer.writeUint64(1, f);
+    writer.writeUint64(
+      1,
+      f
+    );
   }
   f = message.getNumTxs();
   if (f !== 0) {
-    writer.writeUint32(2, f);
+    writer.writeUint32(
+      2,
+      f
+    );
   }
   f = message.getTime();
   if (f != null) {
-    writer.writeMessage(3, f, google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter);
+    writer.writeMessage(
+      3,
+      f,
+      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+    );
   }
   f = message.getAppHash_asU8();
   if (f.length > 0) {
-    writer.writeBytes(4, f);
+    writer.writeBytes(
+      4,
+      f
+    );
   }
   f = message.getProposer_asU8();
   if (f.length > 0) {
-    writer.writeBytes(5, f);
+    writer.writeBytes(
+      5,
+      f
+    );
   }
   f = message.getTxsList();
   if (f.length > 0) {
-    writer.writeRepeatedMessage(6, f, proto.forge_abi.TransactionInfo.serializeBinaryToWriter);
+    writer.writeRepeatedMessage(
+      6,
+      f,
+      proto.forge_abi.TransactionInfo.serializeBinaryToWriter
+    );
   }
   f = message.getTotalTxs();
   if (f !== 0) {
-    writer.writeUint64(7, f);
+    writer.writeUint64(
+      7,
+      f
+    );
   }
   f = message.getInvalidTxsList();
   if (f.length > 0) {
-    writer.writeRepeatedMessage(8, f, proto.forge_abi.TransactionInfo.serializeBinaryToWriter);
+    writer.writeRepeatedMessage(
+      8,
+      f,
+      proto.forge_abi.TransactionInfo.serializeBinaryToWriter
+    );
   }
   f = message.getTxsHashesList();
   if (f.length > 0) {
-    writer.writeRepeatedString(9, f);
+    writer.writeRepeatedString(
+      9,
+      f
+    );
   }
   f = message.getInvalidTxsHashesList();
   if (f.length > 0) {
-    writer.writeRepeatedString(10, f);
+    writer.writeRepeatedString(
+      10,
+      f
+    );
   }
   f = message.getConsensusHash_asU8();
   if (f.length > 0) {
-    writer.writeBytes(11, f);
+    writer.writeBytes(
+      11,
+      f
+    );
   }
   f = message.getDataHash_asU8();
   if (f.length > 0) {
-    writer.writeBytes(12, f);
+    writer.writeBytes(
+      12,
+      f
+    );
   }
   f = message.getEvidenceHash_asU8();
   if (f.length > 0) {
-    writer.writeBytes(13, f);
+    writer.writeBytes(
+      13,
+      f
+    );
   }
   f = message.getLastCommitHash_asU8();
   if (f.length > 0) {
-    writer.writeBytes(14, f);
+    writer.writeBytes(
+      14,
+      f
+    );
   }
   f = message.getLastResultsHash_asU8();
   if (f.length > 0) {
-    writer.writeBytes(15, f);
+    writer.writeBytes(
+      15,
+      f
+    );
   }
   f = message.getNextValidatorsHash_asU8();
   if (f.length > 0) {
-    writer.writeBytes(16, f);
+    writer.writeBytes(
+      16,
+      f
+    );
   }
   f = message.getValidatorsHash_asU8();
   if (f.length > 0) {
-    writer.writeBytes(17, f);
+    writer.writeBytes(
+      17,
+      f
+    );
   }
   f = message.getVersion();
   if (f != null) {
-    writer.writeMessage(18, f, vendor_pb.Version.serializeBinaryToWriter);
+    writer.writeMessage(
+      18,
+      f,
+      vendor_pb.Version.serializeBinaryToWriter
+    );
   }
   f = message.getLastBlockId();
   if (f != null) {
-    writer.writeMessage(19, f, vendor_pb.BlockID.serializeBinaryToWriter);
+    writer.writeMessage(
+      19,
+      f,
+      vendor_pb.BlockID.serializeBinaryToWriter
+    );
   }
 };
+
 
 /**
  * optional uint64 height = 1;
@@ -4833,10 +5385,12 @@ proto.forge_abi.BlockInfo.prototype.getHeight = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
 };
 
+
 /** @param {number} value */
 proto.forge_abi.BlockInfo.prototype.setHeight = function(value) {
   jspb.Message.setProto3IntField(this, 1, value);
 };
+
 
 /**
  * optional uint32 num_txs = 2;
@@ -4846,31 +5400,33 @@ proto.forge_abi.BlockInfo.prototype.getNumTxs = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
 };
 
+
 /** @param {number} value */
 proto.forge_abi.BlockInfo.prototype.setNumTxs = function(value) {
   jspb.Message.setProto3IntField(this, 2, value);
 };
+
 
 /**
  * optional google.protobuf.Timestamp time = 3;
  * @return {?proto.google.protobuf.Timestamp}
  */
 proto.forge_abi.BlockInfo.prototype.getTime = function() {
-  return /** @type{?proto.google.protobuf.Timestamp} */ (jspb.Message.getWrapperField(
-    this,
-    google_protobuf_timestamp_pb.Timestamp,
-    3
-  ));
+  return /** @type{?proto.google.protobuf.Timestamp} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 3));
 };
+
 
 /** @param {?proto.google.protobuf.Timestamp|undefined} value */
 proto.forge_abi.BlockInfo.prototype.setTime = function(value) {
   jspb.Message.setWrapperField(this, 3, value);
 };
 
+
 proto.forge_abi.BlockInfo.prototype.clearTime = function() {
   this.setTime(undefined);
 };
+
 
 /**
  * Returns whether this field is set.
@@ -4880,13 +5436,15 @@ proto.forge_abi.BlockInfo.prototype.hasTime = function() {
   return jspb.Message.getField(this, 3) != null;
 };
 
+
 /**
  * optional bytes app_hash = 4;
  * @return {!(string|Uint8Array)}
  */
 proto.forge_abi.BlockInfo.prototype.getAppHash = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 4, ''));
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
 };
+
 
 /**
  * optional bytes app_hash = 4;
@@ -4894,8 +5452,10 @@ proto.forge_abi.BlockInfo.prototype.getAppHash = function() {
  * @return {string}
  */
 proto.forge_abi.BlockInfo.prototype.getAppHash_asB64 = function() {
-  return /** @type {string} */ (jspb.Message.bytesAsB64(this.getAppHash()));
+  return /** @type {string} */ (jspb.Message.bytesAsB64(
+      this.getAppHash()));
 };
+
 
 /**
  * optional bytes app_hash = 4;
@@ -4905,21 +5465,25 @@ proto.forge_abi.BlockInfo.prototype.getAppHash_asB64 = function() {
  * @return {!Uint8Array}
  */
 proto.forge_abi.BlockInfo.prototype.getAppHash_asU8 = function() {
-  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(this.getAppHash()));
+  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
+      this.getAppHash()));
 };
+
 
 /** @param {!(string|Uint8Array)} value */
 proto.forge_abi.BlockInfo.prototype.setAppHash = function(value) {
   jspb.Message.setProto3BytesField(this, 4, value);
 };
 
+
 /**
  * optional bytes proposer = 5;
  * @return {!(string|Uint8Array)}
  */
 proto.forge_abi.BlockInfo.prototype.getProposer = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 5, ''));
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
 };
+
 
 /**
  * optional bytes proposer = 5;
@@ -4927,8 +5491,10 @@ proto.forge_abi.BlockInfo.prototype.getProposer = function() {
  * @return {string}
  */
 proto.forge_abi.BlockInfo.prototype.getProposer_asB64 = function() {
-  return /** @type {string} */ (jspb.Message.bytesAsB64(this.getProposer()));
+  return /** @type {string} */ (jspb.Message.bytesAsB64(
+      this.getProposer()));
 };
+
 
 /**
  * optional bytes proposer = 5;
@@ -4938,30 +5504,32 @@ proto.forge_abi.BlockInfo.prototype.getProposer_asB64 = function() {
  * @return {!Uint8Array}
  */
 proto.forge_abi.BlockInfo.prototype.getProposer_asU8 = function() {
-  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(this.getProposer()));
+  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
+      this.getProposer()));
 };
+
 
 /** @param {!(string|Uint8Array)} value */
 proto.forge_abi.BlockInfo.prototype.setProposer = function(value) {
   jspb.Message.setProto3BytesField(this, 5, value);
 };
 
+
 /**
  * repeated TransactionInfo txs = 6;
  * @return {!Array<!proto.forge_abi.TransactionInfo>}
  */
 proto.forge_abi.BlockInfo.prototype.getTxsList = function() {
-  return /** @type{!Array<!proto.forge_abi.TransactionInfo>} */ (jspb.Message.getRepeatedWrapperField(
-    this,
-    proto.forge_abi.TransactionInfo,
-    6
-  ));
+  return /** @type{!Array<!proto.forge_abi.TransactionInfo>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.forge_abi.TransactionInfo, 6));
 };
+
 
 /** @param {!Array<!proto.forge_abi.TransactionInfo>} value */
 proto.forge_abi.BlockInfo.prototype.setTxsList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 6, value);
 };
+
 
 /**
  * @param {!proto.forge_abi.TransactionInfo=} opt_value
@@ -4969,18 +5537,14 @@ proto.forge_abi.BlockInfo.prototype.setTxsList = function(value) {
  * @return {!proto.forge_abi.TransactionInfo}
  */
 proto.forge_abi.BlockInfo.prototype.addTxs = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(
-    this,
-    6,
-    opt_value,
-    proto.forge_abi.TransactionInfo,
-    opt_index
-  );
+  return jspb.Message.addToRepeatedWrapperField(this, 6, opt_value, proto.forge_abi.TransactionInfo, opt_index);
 };
+
 
 proto.forge_abi.BlockInfo.prototype.clearTxsList = function() {
   this.setTxsList([]);
 };
+
 
 /**
  * optional uint64 total_txs = 7;
@@ -4990,27 +5554,28 @@ proto.forge_abi.BlockInfo.prototype.getTotalTxs = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 7, 0));
 };
 
+
 /** @param {number} value */
 proto.forge_abi.BlockInfo.prototype.setTotalTxs = function(value) {
   jspb.Message.setProto3IntField(this, 7, value);
 };
+
 
 /**
  * repeated TransactionInfo invalid_txs = 8;
  * @return {!Array<!proto.forge_abi.TransactionInfo>}
  */
 proto.forge_abi.BlockInfo.prototype.getInvalidTxsList = function() {
-  return /** @type{!Array<!proto.forge_abi.TransactionInfo>} */ (jspb.Message.getRepeatedWrapperField(
-    this,
-    proto.forge_abi.TransactionInfo,
-    8
-  ));
+  return /** @type{!Array<!proto.forge_abi.TransactionInfo>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.forge_abi.TransactionInfo, 8));
 };
+
 
 /** @param {!Array<!proto.forge_abi.TransactionInfo>} value */
 proto.forge_abi.BlockInfo.prototype.setInvalidTxsList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 8, value);
 };
+
 
 /**
  * @param {!proto.forge_abi.TransactionInfo=} opt_value
@@ -5018,18 +5583,14 @@ proto.forge_abi.BlockInfo.prototype.setInvalidTxsList = function(value) {
  * @return {!proto.forge_abi.TransactionInfo}
  */
 proto.forge_abi.BlockInfo.prototype.addInvalidTxs = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(
-    this,
-    8,
-    opt_value,
-    proto.forge_abi.TransactionInfo,
-    opt_index
-  );
+  return jspb.Message.addToRepeatedWrapperField(this, 8, opt_value, proto.forge_abi.TransactionInfo, opt_index);
 };
+
 
 proto.forge_abi.BlockInfo.prototype.clearInvalidTxsList = function() {
   this.setInvalidTxsList([]);
 };
+
 
 /**
  * repeated string txs_hashes = 9;
@@ -5039,10 +5600,12 @@ proto.forge_abi.BlockInfo.prototype.getTxsHashesList = function() {
   return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 9));
 };
 
+
 /** @param {!Array<string>} value */
 proto.forge_abi.BlockInfo.prototype.setTxsHashesList = function(value) {
   jspb.Message.setField(this, 9, value || []);
 };
+
 
 /**
  * @param {string} value
@@ -5052,9 +5615,11 @@ proto.forge_abi.BlockInfo.prototype.addTxsHashes = function(value, opt_index) {
   jspb.Message.addToRepeatedField(this, 9, value, opt_index);
 };
 
+
 proto.forge_abi.BlockInfo.prototype.clearTxsHashesList = function() {
   this.setTxsHashesList([]);
 };
+
 
 /**
  * repeated string invalid_txs_hashes = 10;
@@ -5064,10 +5629,12 @@ proto.forge_abi.BlockInfo.prototype.getInvalidTxsHashesList = function() {
   return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 10));
 };
 
+
 /** @param {!Array<string>} value */
 proto.forge_abi.BlockInfo.prototype.setInvalidTxsHashesList = function(value) {
   jspb.Message.setField(this, 10, value || []);
 };
+
 
 /**
  * @param {string} value
@@ -5077,17 +5644,20 @@ proto.forge_abi.BlockInfo.prototype.addInvalidTxsHashes = function(value, opt_in
   jspb.Message.addToRepeatedField(this, 10, value, opt_index);
 };
 
+
 proto.forge_abi.BlockInfo.prototype.clearInvalidTxsHashesList = function() {
   this.setInvalidTxsHashesList([]);
 };
+
 
 /**
  * optional bytes consensus_hash = 11;
  * @return {!(string|Uint8Array)}
  */
 proto.forge_abi.BlockInfo.prototype.getConsensusHash = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 11, ''));
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 11, ""));
 };
+
 
 /**
  * optional bytes consensus_hash = 11;
@@ -5095,8 +5665,10 @@ proto.forge_abi.BlockInfo.prototype.getConsensusHash = function() {
  * @return {string}
  */
 proto.forge_abi.BlockInfo.prototype.getConsensusHash_asB64 = function() {
-  return /** @type {string} */ (jspb.Message.bytesAsB64(this.getConsensusHash()));
+  return /** @type {string} */ (jspb.Message.bytesAsB64(
+      this.getConsensusHash()));
 };
+
 
 /**
  * optional bytes consensus_hash = 11;
@@ -5106,21 +5678,25 @@ proto.forge_abi.BlockInfo.prototype.getConsensusHash_asB64 = function() {
  * @return {!Uint8Array}
  */
 proto.forge_abi.BlockInfo.prototype.getConsensusHash_asU8 = function() {
-  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(this.getConsensusHash()));
+  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
+      this.getConsensusHash()));
 };
+
 
 /** @param {!(string|Uint8Array)} value */
 proto.forge_abi.BlockInfo.prototype.setConsensusHash = function(value) {
   jspb.Message.setProto3BytesField(this, 11, value);
 };
 
+
 /**
  * optional bytes data_hash = 12;
  * @return {!(string|Uint8Array)}
  */
 proto.forge_abi.BlockInfo.prototype.getDataHash = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 12, ''));
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 12, ""));
 };
+
 
 /**
  * optional bytes data_hash = 12;
@@ -5128,8 +5704,10 @@ proto.forge_abi.BlockInfo.prototype.getDataHash = function() {
  * @return {string}
  */
 proto.forge_abi.BlockInfo.prototype.getDataHash_asB64 = function() {
-  return /** @type {string} */ (jspb.Message.bytesAsB64(this.getDataHash()));
+  return /** @type {string} */ (jspb.Message.bytesAsB64(
+      this.getDataHash()));
 };
+
 
 /**
  * optional bytes data_hash = 12;
@@ -5139,21 +5717,25 @@ proto.forge_abi.BlockInfo.prototype.getDataHash_asB64 = function() {
  * @return {!Uint8Array}
  */
 proto.forge_abi.BlockInfo.prototype.getDataHash_asU8 = function() {
-  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(this.getDataHash()));
+  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
+      this.getDataHash()));
 };
+
 
 /** @param {!(string|Uint8Array)} value */
 proto.forge_abi.BlockInfo.prototype.setDataHash = function(value) {
   jspb.Message.setProto3BytesField(this, 12, value);
 };
 
+
 /**
  * optional bytes evidence_hash = 13;
  * @return {!(string|Uint8Array)}
  */
 proto.forge_abi.BlockInfo.prototype.getEvidenceHash = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 13, ''));
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 13, ""));
 };
+
 
 /**
  * optional bytes evidence_hash = 13;
@@ -5161,8 +5743,10 @@ proto.forge_abi.BlockInfo.prototype.getEvidenceHash = function() {
  * @return {string}
  */
 proto.forge_abi.BlockInfo.prototype.getEvidenceHash_asB64 = function() {
-  return /** @type {string} */ (jspb.Message.bytesAsB64(this.getEvidenceHash()));
+  return /** @type {string} */ (jspb.Message.bytesAsB64(
+      this.getEvidenceHash()));
 };
+
 
 /**
  * optional bytes evidence_hash = 13;
@@ -5172,21 +5756,25 @@ proto.forge_abi.BlockInfo.prototype.getEvidenceHash_asB64 = function() {
  * @return {!Uint8Array}
  */
 proto.forge_abi.BlockInfo.prototype.getEvidenceHash_asU8 = function() {
-  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(this.getEvidenceHash()));
+  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
+      this.getEvidenceHash()));
 };
+
 
 /** @param {!(string|Uint8Array)} value */
 proto.forge_abi.BlockInfo.prototype.setEvidenceHash = function(value) {
   jspb.Message.setProto3BytesField(this, 13, value);
 };
 
+
 /**
  * optional bytes last_commit_hash = 14;
  * @return {!(string|Uint8Array)}
  */
 proto.forge_abi.BlockInfo.prototype.getLastCommitHash = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 14, ''));
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 14, ""));
 };
+
 
 /**
  * optional bytes last_commit_hash = 14;
@@ -5194,8 +5782,10 @@ proto.forge_abi.BlockInfo.prototype.getLastCommitHash = function() {
  * @return {string}
  */
 proto.forge_abi.BlockInfo.prototype.getLastCommitHash_asB64 = function() {
-  return /** @type {string} */ (jspb.Message.bytesAsB64(this.getLastCommitHash()));
+  return /** @type {string} */ (jspb.Message.bytesAsB64(
+      this.getLastCommitHash()));
 };
+
 
 /**
  * optional bytes last_commit_hash = 14;
@@ -5205,21 +5795,25 @@ proto.forge_abi.BlockInfo.prototype.getLastCommitHash_asB64 = function() {
  * @return {!Uint8Array}
  */
 proto.forge_abi.BlockInfo.prototype.getLastCommitHash_asU8 = function() {
-  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(this.getLastCommitHash()));
+  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
+      this.getLastCommitHash()));
 };
+
 
 /** @param {!(string|Uint8Array)} value */
 proto.forge_abi.BlockInfo.prototype.setLastCommitHash = function(value) {
   jspb.Message.setProto3BytesField(this, 14, value);
 };
 
+
 /**
  * optional bytes last_results_hash = 15;
  * @return {!(string|Uint8Array)}
  */
 proto.forge_abi.BlockInfo.prototype.getLastResultsHash = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 15, ''));
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 15, ""));
 };
+
 
 /**
  * optional bytes last_results_hash = 15;
@@ -5227,8 +5821,10 @@ proto.forge_abi.BlockInfo.prototype.getLastResultsHash = function() {
  * @return {string}
  */
 proto.forge_abi.BlockInfo.prototype.getLastResultsHash_asB64 = function() {
-  return /** @type {string} */ (jspb.Message.bytesAsB64(this.getLastResultsHash()));
+  return /** @type {string} */ (jspb.Message.bytesAsB64(
+      this.getLastResultsHash()));
 };
+
 
 /**
  * optional bytes last_results_hash = 15;
@@ -5238,21 +5834,25 @@ proto.forge_abi.BlockInfo.prototype.getLastResultsHash_asB64 = function() {
  * @return {!Uint8Array}
  */
 proto.forge_abi.BlockInfo.prototype.getLastResultsHash_asU8 = function() {
-  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(this.getLastResultsHash()));
+  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
+      this.getLastResultsHash()));
 };
+
 
 /** @param {!(string|Uint8Array)} value */
 proto.forge_abi.BlockInfo.prototype.setLastResultsHash = function(value) {
   jspb.Message.setProto3BytesField(this, 15, value);
 };
 
+
 /**
  * optional bytes next_validators_hash = 16;
  * @return {!(string|Uint8Array)}
  */
 proto.forge_abi.BlockInfo.prototype.getNextValidatorsHash = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 16, ''));
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 16, ""));
 };
+
 
 /**
  * optional bytes next_validators_hash = 16;
@@ -5260,8 +5860,10 @@ proto.forge_abi.BlockInfo.prototype.getNextValidatorsHash = function() {
  * @return {string}
  */
 proto.forge_abi.BlockInfo.prototype.getNextValidatorsHash_asB64 = function() {
-  return /** @type {string} */ (jspb.Message.bytesAsB64(this.getNextValidatorsHash()));
+  return /** @type {string} */ (jspb.Message.bytesAsB64(
+      this.getNextValidatorsHash()));
 };
+
 
 /**
  * optional bytes next_validators_hash = 16;
@@ -5271,21 +5873,25 @@ proto.forge_abi.BlockInfo.prototype.getNextValidatorsHash_asB64 = function() {
  * @return {!Uint8Array}
  */
 proto.forge_abi.BlockInfo.prototype.getNextValidatorsHash_asU8 = function() {
-  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(this.getNextValidatorsHash()));
+  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
+      this.getNextValidatorsHash()));
 };
+
 
 /** @param {!(string|Uint8Array)} value */
 proto.forge_abi.BlockInfo.prototype.setNextValidatorsHash = function(value) {
   jspb.Message.setProto3BytesField(this, 16, value);
 };
 
+
 /**
  * optional bytes validators_hash = 17;
  * @return {!(string|Uint8Array)}
  */
 proto.forge_abi.BlockInfo.prototype.getValidatorsHash = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 17, ''));
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 17, ""));
 };
+
 
 /**
  * optional bytes validators_hash = 17;
@@ -5293,8 +5899,10 @@ proto.forge_abi.BlockInfo.prototype.getValidatorsHash = function() {
  * @return {string}
  */
 proto.forge_abi.BlockInfo.prototype.getValidatorsHash_asB64 = function() {
-  return /** @type {string} */ (jspb.Message.bytesAsB64(this.getValidatorsHash()));
+  return /** @type {string} */ (jspb.Message.bytesAsB64(
+      this.getValidatorsHash()));
 };
+
 
 /**
  * optional bytes validators_hash = 17;
@@ -5304,34 +5912,37 @@ proto.forge_abi.BlockInfo.prototype.getValidatorsHash_asB64 = function() {
  * @return {!Uint8Array}
  */
 proto.forge_abi.BlockInfo.prototype.getValidatorsHash_asU8 = function() {
-  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(this.getValidatorsHash()));
+  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
+      this.getValidatorsHash()));
 };
+
 
 /** @param {!(string|Uint8Array)} value */
 proto.forge_abi.BlockInfo.prototype.setValidatorsHash = function(value) {
   jspb.Message.setProto3BytesField(this, 17, value);
 };
 
+
 /**
  * optional abci_vendor.Version version = 18;
  * @return {?proto.abci_vendor.Version}
  */
 proto.forge_abi.BlockInfo.prototype.getVersion = function() {
-  return /** @type{?proto.abci_vendor.Version} */ (jspb.Message.getWrapperField(
-    this,
-    vendor_pb.Version,
-    18
-  ));
+  return /** @type{?proto.abci_vendor.Version} */ (
+    jspb.Message.getWrapperField(this, vendor_pb.Version, 18));
 };
+
 
 /** @param {?proto.abci_vendor.Version|undefined} value */
 proto.forge_abi.BlockInfo.prototype.setVersion = function(value) {
   jspb.Message.setWrapperField(this, 18, value);
 };
 
+
 proto.forge_abi.BlockInfo.prototype.clearVersion = function() {
   this.setVersion(undefined);
 };
+
 
 /**
  * Returns whether this field is set.
@@ -5341,26 +5952,27 @@ proto.forge_abi.BlockInfo.prototype.hasVersion = function() {
   return jspb.Message.getField(this, 18) != null;
 };
 
+
 /**
  * optional abci_vendor.BlockID last_block_id = 19;
  * @return {?proto.abci_vendor.BlockID}
  */
 proto.forge_abi.BlockInfo.prototype.getLastBlockId = function() {
-  return /** @type{?proto.abci_vendor.BlockID} */ (jspb.Message.getWrapperField(
-    this,
-    vendor_pb.BlockID,
-    19
-  ));
+  return /** @type{?proto.abci_vendor.BlockID} */ (
+    jspb.Message.getWrapperField(this, vendor_pb.BlockID, 19));
 };
+
 
 /** @param {?proto.abci_vendor.BlockID|undefined} value */
 proto.forge_abi.BlockInfo.prototype.setLastBlockId = function(value) {
   jspb.Message.setWrapperField(this, 19, value);
 };
 
+
 proto.forge_abi.BlockInfo.prototype.clearLastBlockId = function() {
   this.setLastBlockId(undefined);
 };
+
 
 /**
  * Returns whether this field is set.
@@ -5369,6 +5981,8 @@ proto.forge_abi.BlockInfo.prototype.clearLastBlockId = function() {
 proto.forge_abi.BlockInfo.prototype.hasLastBlockId = function() {
   return jspb.Message.getField(this, 19) != null;
 };
+
+
 
 /**
  * Generated by JsPbCodeGenerator.
@@ -5381,14 +5995,7 @@ proto.forge_abi.BlockInfo.prototype.hasLastBlockId = function() {
  * @constructor
  */
 proto.forge_abi.BlockInfoSimple = function(opt_data) {
-  jspb.Message.initialize(
-    this,
-    opt_data,
-    0,
-    -1,
-    proto.forge_abi.BlockInfoSimple.repeatedFields_,
-    null
-  );
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.forge_abi.BlockInfoSimple.repeatedFields_, null);
 };
 goog.inherits(proto.forge_abi.BlockInfoSimple, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -5399,62 +6006,63 @@ if (goog.DEBUG && !COMPILED) {
  * @private {!Array<number>}
  * @const
  */
-proto.forge_abi.BlockInfoSimple.repeatedFields_ = [7, 8];
+proto.forge_abi.BlockInfoSimple.repeatedFields_ = [7,8];
+
+
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
-  /**
-   * Creates an object representation of this proto suitable for use in Soy templates.
-   * Field names that are reserved in JavaScript and will be renamed to pb_name.
-   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
-   * For the list of reserved names please see:
-   *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
-   * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
-   *     for transitional soy proto support: http://goto/soy-param-migration
-   * @return {!Object}
-   */
-  proto.forge_abi.BlockInfoSimple.prototype.toObject = function(opt_includeInstance) {
-    return proto.forge_abi.BlockInfoSimple.toObject(opt_includeInstance, this);
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.forge_abi.BlockInfoSimple.prototype.toObject = function(opt_includeInstance) {
+  return proto.forge_abi.BlockInfoSimple.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.forge_abi.BlockInfoSimple} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.forge_abi.BlockInfoSimple.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    height: jspb.Message.getFieldWithDefault(msg, 1, 0),
+    numTxs: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    time: (f = msg.getTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+    appHash: msg.getAppHash(),
+    proposer: msg.getProposer(),
+    totalTxs: jspb.Message.getFieldWithDefault(msg, 6, 0),
+    txsHashesList: jspb.Message.getRepeatedField(msg, 7),
+    invalidTxsHashesList: jspb.Message.getRepeatedField(msg, 8),
+    consensusHash: msg.getConsensusHash(),
+    dataHash: msg.getDataHash(),
+    evidenceHash: msg.getEvidenceHash(),
+    lastCommitHash: msg.getLastCommitHash(),
+    lastResultsHash: msg.getLastResultsHash(),
+    nextValidatorsHash: msg.getNextValidatorsHash(),
+    validatorsHash: msg.getValidatorsHash(),
+    version: (f = msg.getVersion()) && vendor_pb.Version.toObject(includeInstance, f),
+    lastBlockId: (f = msg.getLastBlockId()) && vendor_pb.BlockID.toObject(includeInstance, f)
   };
 
-  /**
-   * Static version of the {@see toObject} method.
-   * @param {boolean|undefined} includeInstance Whether to include the JSPB
-   *     instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @param {!proto.forge_abi.BlockInfoSimple} msg The msg instance to transform.
-   * @return {!Object}
-   * @suppress {unusedLocalVariables} f is only used for nested messages
-   */
-  proto.forge_abi.BlockInfoSimple.toObject = function(includeInstance, msg) {
-    var f,
-      obj = {
-        height: jspb.Message.getFieldWithDefault(msg, 1, 0),
-        numTxs: jspb.Message.getFieldWithDefault(msg, 2, 0),
-        time:
-          (f = msg.getTime()) &&
-          google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-        appHash: msg.getAppHash(),
-        proposer: msg.getProposer(),
-        totalTxs: jspb.Message.getFieldWithDefault(msg, 6, 0),
-        txsHashesList: jspb.Message.getRepeatedField(msg, 7),
-        invalidTxsHashesList: jspb.Message.getRepeatedField(msg, 8),
-        consensusHash: msg.getConsensusHash(),
-        dataHash: msg.getDataHash(),
-        evidenceHash: msg.getEvidenceHash(),
-        lastCommitHash: msg.getLastCommitHash(),
-        lastResultsHash: msg.getLastResultsHash(),
-        nextValidatorsHash: msg.getNextValidatorsHash(),
-        validatorsHash: msg.getValidatorsHash(),
-        version: (f = msg.getVersion()) && vendor_pb.Version.toObject(includeInstance, f),
-        lastBlockId: (f = msg.getLastBlockId()) && vendor_pb.BlockID.toObject(includeInstance, f),
-      };
-
-    if (includeInstance) {
-      obj.$jspbMessageInstance = msg;
-    }
-    return obj;
-  };
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
 }
+
 
 /**
  * Deserializes binary data (in protobuf wire format).
@@ -5463,9 +6071,10 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  */
 proto.forge_abi.BlockInfoSimple.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.forge_abi.BlockInfoSimple();
+  var msg = new proto.forge_abi.BlockInfoSimple;
   return proto.forge_abi.BlockInfoSimple.deserializeBinaryFromReader(msg, reader);
 };
+
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -5481,87 +6090,85 @@ proto.forge_abi.BlockInfoSimple.deserializeBinaryFromReader = function(msg, read
     }
     var field = reader.getFieldNumber();
     switch (field) {
-      case 1:
-        var value = /** @type {number} */ (reader.readUint64());
-        msg.setHeight(value);
-        break;
-      case 2:
-        var value = /** @type {number} */ (reader.readUint32());
-        msg.setNumTxs(value);
-        break;
-      case 3:
-        var value = new google_protobuf_timestamp_pb.Timestamp();
-        reader.readMessage(
-          value,
-          google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader
-        );
-        msg.setTime(value);
-        break;
-      case 4:
-        var value = /** @type {!Uint8Array} */ (reader.readBytes());
-        msg.setAppHash(value);
-        break;
-      case 5:
-        var value = /** @type {!Uint8Array} */ (reader.readBytes());
-        msg.setProposer(value);
-        break;
-      case 6:
-        var value = /** @type {number} */ (reader.readUint64());
-        msg.setTotalTxs(value);
-        break;
-      case 7:
-        var value = /** @type {string} */ (reader.readString());
-        msg.addTxsHashes(value);
-        break;
-      case 8:
-        var value = /** @type {string} */ (reader.readString());
-        msg.addInvalidTxsHashes(value);
-        break;
-      case 9:
-        var value = /** @type {!Uint8Array} */ (reader.readBytes());
-        msg.setConsensusHash(value);
-        break;
-      case 10:
-        var value = /** @type {!Uint8Array} */ (reader.readBytes());
-        msg.setDataHash(value);
-        break;
-      case 11:
-        var value = /** @type {!Uint8Array} */ (reader.readBytes());
-        msg.setEvidenceHash(value);
-        break;
-      case 12:
-        var value = /** @type {!Uint8Array} */ (reader.readBytes());
-        msg.setLastCommitHash(value);
-        break;
-      case 13:
-        var value = /** @type {!Uint8Array} */ (reader.readBytes());
-        msg.setLastResultsHash(value);
-        break;
-      case 14:
-        var value = /** @type {!Uint8Array} */ (reader.readBytes());
-        msg.setNextValidatorsHash(value);
-        break;
-      case 15:
-        var value = /** @type {!Uint8Array} */ (reader.readBytes());
-        msg.setValidatorsHash(value);
-        break;
-      case 16:
-        var value = new vendor_pb.Version();
-        reader.readMessage(value, vendor_pb.Version.deserializeBinaryFromReader);
-        msg.setVersion(value);
-        break;
-      case 17:
-        var value = new vendor_pb.BlockID();
-        reader.readMessage(value, vendor_pb.BlockID.deserializeBinaryFromReader);
-        msg.setLastBlockId(value);
-        break;
-      default:
-        reader.skipField();
-        break;
+    case 1:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setHeight(value);
+      break;
+    case 2:
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setNumTxs(value);
+      break;
+    case 3:
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setTime(value);
+      break;
+    case 4:
+      var value = /** @type {!Uint8Array} */ (reader.readBytes());
+      msg.setAppHash(value);
+      break;
+    case 5:
+      var value = /** @type {!Uint8Array} */ (reader.readBytes());
+      msg.setProposer(value);
+      break;
+    case 6:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setTotalTxs(value);
+      break;
+    case 7:
+      var value = /** @type {string} */ (reader.readString());
+      msg.addTxsHashes(value);
+      break;
+    case 8:
+      var value = /** @type {string} */ (reader.readString());
+      msg.addInvalidTxsHashes(value);
+      break;
+    case 9:
+      var value = /** @type {!Uint8Array} */ (reader.readBytes());
+      msg.setConsensusHash(value);
+      break;
+    case 10:
+      var value = /** @type {!Uint8Array} */ (reader.readBytes());
+      msg.setDataHash(value);
+      break;
+    case 11:
+      var value = /** @type {!Uint8Array} */ (reader.readBytes());
+      msg.setEvidenceHash(value);
+      break;
+    case 12:
+      var value = /** @type {!Uint8Array} */ (reader.readBytes());
+      msg.setLastCommitHash(value);
+      break;
+    case 13:
+      var value = /** @type {!Uint8Array} */ (reader.readBytes());
+      msg.setLastResultsHash(value);
+      break;
+    case 14:
+      var value = /** @type {!Uint8Array} */ (reader.readBytes());
+      msg.setNextValidatorsHash(value);
+      break;
+    case 15:
+      var value = /** @type {!Uint8Array} */ (reader.readBytes());
+      msg.setValidatorsHash(value);
+      break;
+    case 16:
+      var value = new vendor_pb.Version;
+      reader.readMessage(value,vendor_pb.Version.deserializeBinaryFromReader);
+      msg.setVersion(value);
+      break;
+    case 17:
+      var value = new vendor_pb.BlockID;
+      reader.readMessage(value,vendor_pb.BlockID.deserializeBinaryFromReader);
+      msg.setLastBlockId(value);
+      break;
+    default:
+      reader.skipField();
+      break;
     }
   }
   return msg;
 };
+
 
 /**
  * Serializes the message to binary data (in protobuf wire format).
@@ -5572,6 +6179,7 @@ proto.forge_abi.BlockInfoSimple.prototype.serializeBinary = function() {
   proto.forge_abi.BlockInfoSimple.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
+
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -5584,73 +6192,128 @@ proto.forge_abi.BlockInfoSimple.serializeBinaryToWriter = function(message, writ
   var f = undefined;
   f = message.getHeight();
   if (f !== 0) {
-    writer.writeUint64(1, f);
+    writer.writeUint64(
+      1,
+      f
+    );
   }
   f = message.getNumTxs();
   if (f !== 0) {
-    writer.writeUint32(2, f);
+    writer.writeUint32(
+      2,
+      f
+    );
   }
   f = message.getTime();
   if (f != null) {
-    writer.writeMessage(3, f, google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter);
+    writer.writeMessage(
+      3,
+      f,
+      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+    );
   }
   f = message.getAppHash_asU8();
   if (f.length > 0) {
-    writer.writeBytes(4, f);
+    writer.writeBytes(
+      4,
+      f
+    );
   }
   f = message.getProposer_asU8();
   if (f.length > 0) {
-    writer.writeBytes(5, f);
+    writer.writeBytes(
+      5,
+      f
+    );
   }
   f = message.getTotalTxs();
   if (f !== 0) {
-    writer.writeUint64(6, f);
+    writer.writeUint64(
+      6,
+      f
+    );
   }
   f = message.getTxsHashesList();
   if (f.length > 0) {
-    writer.writeRepeatedString(7, f);
+    writer.writeRepeatedString(
+      7,
+      f
+    );
   }
   f = message.getInvalidTxsHashesList();
   if (f.length > 0) {
-    writer.writeRepeatedString(8, f);
+    writer.writeRepeatedString(
+      8,
+      f
+    );
   }
   f = message.getConsensusHash_asU8();
   if (f.length > 0) {
-    writer.writeBytes(9, f);
+    writer.writeBytes(
+      9,
+      f
+    );
   }
   f = message.getDataHash_asU8();
   if (f.length > 0) {
-    writer.writeBytes(10, f);
+    writer.writeBytes(
+      10,
+      f
+    );
   }
   f = message.getEvidenceHash_asU8();
   if (f.length > 0) {
-    writer.writeBytes(11, f);
+    writer.writeBytes(
+      11,
+      f
+    );
   }
   f = message.getLastCommitHash_asU8();
   if (f.length > 0) {
-    writer.writeBytes(12, f);
+    writer.writeBytes(
+      12,
+      f
+    );
   }
   f = message.getLastResultsHash_asU8();
   if (f.length > 0) {
-    writer.writeBytes(13, f);
+    writer.writeBytes(
+      13,
+      f
+    );
   }
   f = message.getNextValidatorsHash_asU8();
   if (f.length > 0) {
-    writer.writeBytes(14, f);
+    writer.writeBytes(
+      14,
+      f
+    );
   }
   f = message.getValidatorsHash_asU8();
   if (f.length > 0) {
-    writer.writeBytes(15, f);
+    writer.writeBytes(
+      15,
+      f
+    );
   }
   f = message.getVersion();
   if (f != null) {
-    writer.writeMessage(16, f, vendor_pb.Version.serializeBinaryToWriter);
+    writer.writeMessage(
+      16,
+      f,
+      vendor_pb.Version.serializeBinaryToWriter
+    );
   }
   f = message.getLastBlockId();
   if (f != null) {
-    writer.writeMessage(17, f, vendor_pb.BlockID.serializeBinaryToWriter);
+    writer.writeMessage(
+      17,
+      f,
+      vendor_pb.BlockID.serializeBinaryToWriter
+    );
   }
 };
+
 
 /**
  * optional uint64 height = 1;
@@ -5660,10 +6323,12 @@ proto.forge_abi.BlockInfoSimple.prototype.getHeight = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
 };
 
+
 /** @param {number} value */
 proto.forge_abi.BlockInfoSimple.prototype.setHeight = function(value) {
   jspb.Message.setProto3IntField(this, 1, value);
 };
+
 
 /**
  * optional uint32 num_txs = 2;
@@ -5673,31 +6338,33 @@ proto.forge_abi.BlockInfoSimple.prototype.getNumTxs = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
 };
 
+
 /** @param {number} value */
 proto.forge_abi.BlockInfoSimple.prototype.setNumTxs = function(value) {
   jspb.Message.setProto3IntField(this, 2, value);
 };
+
 
 /**
  * optional google.protobuf.Timestamp time = 3;
  * @return {?proto.google.protobuf.Timestamp}
  */
 proto.forge_abi.BlockInfoSimple.prototype.getTime = function() {
-  return /** @type{?proto.google.protobuf.Timestamp} */ (jspb.Message.getWrapperField(
-    this,
-    google_protobuf_timestamp_pb.Timestamp,
-    3
-  ));
+  return /** @type{?proto.google.protobuf.Timestamp} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 3));
 };
+
 
 /** @param {?proto.google.protobuf.Timestamp|undefined} value */
 proto.forge_abi.BlockInfoSimple.prototype.setTime = function(value) {
   jspb.Message.setWrapperField(this, 3, value);
 };
 
+
 proto.forge_abi.BlockInfoSimple.prototype.clearTime = function() {
   this.setTime(undefined);
 };
+
 
 /**
  * Returns whether this field is set.
@@ -5707,13 +6374,15 @@ proto.forge_abi.BlockInfoSimple.prototype.hasTime = function() {
   return jspb.Message.getField(this, 3) != null;
 };
 
+
 /**
  * optional bytes app_hash = 4;
  * @return {!(string|Uint8Array)}
  */
 proto.forge_abi.BlockInfoSimple.prototype.getAppHash = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 4, ''));
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
 };
+
 
 /**
  * optional bytes app_hash = 4;
@@ -5721,8 +6390,10 @@ proto.forge_abi.BlockInfoSimple.prototype.getAppHash = function() {
  * @return {string}
  */
 proto.forge_abi.BlockInfoSimple.prototype.getAppHash_asB64 = function() {
-  return /** @type {string} */ (jspb.Message.bytesAsB64(this.getAppHash()));
+  return /** @type {string} */ (jspb.Message.bytesAsB64(
+      this.getAppHash()));
 };
+
 
 /**
  * optional bytes app_hash = 4;
@@ -5732,21 +6403,25 @@ proto.forge_abi.BlockInfoSimple.prototype.getAppHash_asB64 = function() {
  * @return {!Uint8Array}
  */
 proto.forge_abi.BlockInfoSimple.prototype.getAppHash_asU8 = function() {
-  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(this.getAppHash()));
+  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
+      this.getAppHash()));
 };
+
 
 /** @param {!(string|Uint8Array)} value */
 proto.forge_abi.BlockInfoSimple.prototype.setAppHash = function(value) {
   jspb.Message.setProto3BytesField(this, 4, value);
 };
 
+
 /**
  * optional bytes proposer = 5;
  * @return {!(string|Uint8Array)}
  */
 proto.forge_abi.BlockInfoSimple.prototype.getProposer = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 5, ''));
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
 };
+
 
 /**
  * optional bytes proposer = 5;
@@ -5754,8 +6429,10 @@ proto.forge_abi.BlockInfoSimple.prototype.getProposer = function() {
  * @return {string}
  */
 proto.forge_abi.BlockInfoSimple.prototype.getProposer_asB64 = function() {
-  return /** @type {string} */ (jspb.Message.bytesAsB64(this.getProposer()));
+  return /** @type {string} */ (jspb.Message.bytesAsB64(
+      this.getProposer()));
 };
+
 
 /**
  * optional bytes proposer = 5;
@@ -5765,13 +6442,16 @@ proto.forge_abi.BlockInfoSimple.prototype.getProposer_asB64 = function() {
  * @return {!Uint8Array}
  */
 proto.forge_abi.BlockInfoSimple.prototype.getProposer_asU8 = function() {
-  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(this.getProposer()));
+  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
+      this.getProposer()));
 };
+
 
 /** @param {!(string|Uint8Array)} value */
 proto.forge_abi.BlockInfoSimple.prototype.setProposer = function(value) {
   jspb.Message.setProto3BytesField(this, 5, value);
 };
+
 
 /**
  * optional uint64 total_txs = 6;
@@ -5781,10 +6461,12 @@ proto.forge_abi.BlockInfoSimple.prototype.getTotalTxs = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 6, 0));
 };
 
+
 /** @param {number} value */
 proto.forge_abi.BlockInfoSimple.prototype.setTotalTxs = function(value) {
   jspb.Message.setProto3IntField(this, 6, value);
 };
+
 
 /**
  * repeated string txs_hashes = 7;
@@ -5794,10 +6476,12 @@ proto.forge_abi.BlockInfoSimple.prototype.getTxsHashesList = function() {
   return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 7));
 };
 
+
 /** @param {!Array<string>} value */
 proto.forge_abi.BlockInfoSimple.prototype.setTxsHashesList = function(value) {
   jspb.Message.setField(this, 7, value || []);
 };
+
 
 /**
  * @param {string} value
@@ -5807,9 +6491,11 @@ proto.forge_abi.BlockInfoSimple.prototype.addTxsHashes = function(value, opt_ind
   jspb.Message.addToRepeatedField(this, 7, value, opt_index);
 };
 
+
 proto.forge_abi.BlockInfoSimple.prototype.clearTxsHashesList = function() {
   this.setTxsHashesList([]);
 };
+
 
 /**
  * repeated string invalid_txs_hashes = 8;
@@ -5819,10 +6505,12 @@ proto.forge_abi.BlockInfoSimple.prototype.getInvalidTxsHashesList = function() {
   return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 8));
 };
 
+
 /** @param {!Array<string>} value */
 proto.forge_abi.BlockInfoSimple.prototype.setInvalidTxsHashesList = function(value) {
   jspb.Message.setField(this, 8, value || []);
 };
+
 
 /**
  * @param {string} value
@@ -5832,17 +6520,20 @@ proto.forge_abi.BlockInfoSimple.prototype.addInvalidTxsHashes = function(value, 
   jspb.Message.addToRepeatedField(this, 8, value, opt_index);
 };
 
+
 proto.forge_abi.BlockInfoSimple.prototype.clearInvalidTxsHashesList = function() {
   this.setInvalidTxsHashesList([]);
 };
+
 
 /**
  * optional bytes consensus_hash = 9;
  * @return {!(string|Uint8Array)}
  */
 proto.forge_abi.BlockInfoSimple.prototype.getConsensusHash = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 9, ''));
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 9, ""));
 };
+
 
 /**
  * optional bytes consensus_hash = 9;
@@ -5850,8 +6541,10 @@ proto.forge_abi.BlockInfoSimple.prototype.getConsensusHash = function() {
  * @return {string}
  */
 proto.forge_abi.BlockInfoSimple.prototype.getConsensusHash_asB64 = function() {
-  return /** @type {string} */ (jspb.Message.bytesAsB64(this.getConsensusHash()));
+  return /** @type {string} */ (jspb.Message.bytesAsB64(
+      this.getConsensusHash()));
 };
+
 
 /**
  * optional bytes consensus_hash = 9;
@@ -5861,21 +6554,25 @@ proto.forge_abi.BlockInfoSimple.prototype.getConsensusHash_asB64 = function() {
  * @return {!Uint8Array}
  */
 proto.forge_abi.BlockInfoSimple.prototype.getConsensusHash_asU8 = function() {
-  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(this.getConsensusHash()));
+  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
+      this.getConsensusHash()));
 };
+
 
 /** @param {!(string|Uint8Array)} value */
 proto.forge_abi.BlockInfoSimple.prototype.setConsensusHash = function(value) {
   jspb.Message.setProto3BytesField(this, 9, value);
 };
 
+
 /**
  * optional bytes data_hash = 10;
  * @return {!(string|Uint8Array)}
  */
 proto.forge_abi.BlockInfoSimple.prototype.getDataHash = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 10, ''));
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 10, ""));
 };
+
 
 /**
  * optional bytes data_hash = 10;
@@ -5883,8 +6580,10 @@ proto.forge_abi.BlockInfoSimple.prototype.getDataHash = function() {
  * @return {string}
  */
 proto.forge_abi.BlockInfoSimple.prototype.getDataHash_asB64 = function() {
-  return /** @type {string} */ (jspb.Message.bytesAsB64(this.getDataHash()));
+  return /** @type {string} */ (jspb.Message.bytesAsB64(
+      this.getDataHash()));
 };
+
 
 /**
  * optional bytes data_hash = 10;
@@ -5894,21 +6593,25 @@ proto.forge_abi.BlockInfoSimple.prototype.getDataHash_asB64 = function() {
  * @return {!Uint8Array}
  */
 proto.forge_abi.BlockInfoSimple.prototype.getDataHash_asU8 = function() {
-  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(this.getDataHash()));
+  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
+      this.getDataHash()));
 };
+
 
 /** @param {!(string|Uint8Array)} value */
 proto.forge_abi.BlockInfoSimple.prototype.setDataHash = function(value) {
   jspb.Message.setProto3BytesField(this, 10, value);
 };
 
+
 /**
  * optional bytes evidence_hash = 11;
  * @return {!(string|Uint8Array)}
  */
 proto.forge_abi.BlockInfoSimple.prototype.getEvidenceHash = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 11, ''));
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 11, ""));
 };
+
 
 /**
  * optional bytes evidence_hash = 11;
@@ -5916,8 +6619,10 @@ proto.forge_abi.BlockInfoSimple.prototype.getEvidenceHash = function() {
  * @return {string}
  */
 proto.forge_abi.BlockInfoSimple.prototype.getEvidenceHash_asB64 = function() {
-  return /** @type {string} */ (jspb.Message.bytesAsB64(this.getEvidenceHash()));
+  return /** @type {string} */ (jspb.Message.bytesAsB64(
+      this.getEvidenceHash()));
 };
+
 
 /**
  * optional bytes evidence_hash = 11;
@@ -5927,21 +6632,25 @@ proto.forge_abi.BlockInfoSimple.prototype.getEvidenceHash_asB64 = function() {
  * @return {!Uint8Array}
  */
 proto.forge_abi.BlockInfoSimple.prototype.getEvidenceHash_asU8 = function() {
-  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(this.getEvidenceHash()));
+  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
+      this.getEvidenceHash()));
 };
+
 
 /** @param {!(string|Uint8Array)} value */
 proto.forge_abi.BlockInfoSimple.prototype.setEvidenceHash = function(value) {
   jspb.Message.setProto3BytesField(this, 11, value);
 };
 
+
 /**
  * optional bytes last_commit_hash = 12;
  * @return {!(string|Uint8Array)}
  */
 proto.forge_abi.BlockInfoSimple.prototype.getLastCommitHash = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 12, ''));
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 12, ""));
 };
+
 
 /**
  * optional bytes last_commit_hash = 12;
@@ -5949,8 +6658,10 @@ proto.forge_abi.BlockInfoSimple.prototype.getLastCommitHash = function() {
  * @return {string}
  */
 proto.forge_abi.BlockInfoSimple.prototype.getLastCommitHash_asB64 = function() {
-  return /** @type {string} */ (jspb.Message.bytesAsB64(this.getLastCommitHash()));
+  return /** @type {string} */ (jspb.Message.bytesAsB64(
+      this.getLastCommitHash()));
 };
+
 
 /**
  * optional bytes last_commit_hash = 12;
@@ -5960,21 +6671,25 @@ proto.forge_abi.BlockInfoSimple.prototype.getLastCommitHash_asB64 = function() {
  * @return {!Uint8Array}
  */
 proto.forge_abi.BlockInfoSimple.prototype.getLastCommitHash_asU8 = function() {
-  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(this.getLastCommitHash()));
+  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
+      this.getLastCommitHash()));
 };
+
 
 /** @param {!(string|Uint8Array)} value */
 proto.forge_abi.BlockInfoSimple.prototype.setLastCommitHash = function(value) {
   jspb.Message.setProto3BytesField(this, 12, value);
 };
 
+
 /**
  * optional bytes last_results_hash = 13;
  * @return {!(string|Uint8Array)}
  */
 proto.forge_abi.BlockInfoSimple.prototype.getLastResultsHash = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 13, ''));
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 13, ""));
 };
+
 
 /**
  * optional bytes last_results_hash = 13;
@@ -5982,8 +6697,10 @@ proto.forge_abi.BlockInfoSimple.prototype.getLastResultsHash = function() {
  * @return {string}
  */
 proto.forge_abi.BlockInfoSimple.prototype.getLastResultsHash_asB64 = function() {
-  return /** @type {string} */ (jspb.Message.bytesAsB64(this.getLastResultsHash()));
+  return /** @type {string} */ (jspb.Message.bytesAsB64(
+      this.getLastResultsHash()));
 };
+
 
 /**
  * optional bytes last_results_hash = 13;
@@ -5993,21 +6710,25 @@ proto.forge_abi.BlockInfoSimple.prototype.getLastResultsHash_asB64 = function() 
  * @return {!Uint8Array}
  */
 proto.forge_abi.BlockInfoSimple.prototype.getLastResultsHash_asU8 = function() {
-  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(this.getLastResultsHash()));
+  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
+      this.getLastResultsHash()));
 };
+
 
 /** @param {!(string|Uint8Array)} value */
 proto.forge_abi.BlockInfoSimple.prototype.setLastResultsHash = function(value) {
   jspb.Message.setProto3BytesField(this, 13, value);
 };
 
+
 /**
  * optional bytes next_validators_hash = 14;
  * @return {!(string|Uint8Array)}
  */
 proto.forge_abi.BlockInfoSimple.prototype.getNextValidatorsHash = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 14, ''));
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 14, ""));
 };
+
 
 /**
  * optional bytes next_validators_hash = 14;
@@ -6015,8 +6736,10 @@ proto.forge_abi.BlockInfoSimple.prototype.getNextValidatorsHash = function() {
  * @return {string}
  */
 proto.forge_abi.BlockInfoSimple.prototype.getNextValidatorsHash_asB64 = function() {
-  return /** @type {string} */ (jspb.Message.bytesAsB64(this.getNextValidatorsHash()));
+  return /** @type {string} */ (jspb.Message.bytesAsB64(
+      this.getNextValidatorsHash()));
 };
+
 
 /**
  * optional bytes next_validators_hash = 14;
@@ -6026,21 +6749,25 @@ proto.forge_abi.BlockInfoSimple.prototype.getNextValidatorsHash_asB64 = function
  * @return {!Uint8Array}
  */
 proto.forge_abi.BlockInfoSimple.prototype.getNextValidatorsHash_asU8 = function() {
-  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(this.getNextValidatorsHash()));
+  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
+      this.getNextValidatorsHash()));
 };
+
 
 /** @param {!(string|Uint8Array)} value */
 proto.forge_abi.BlockInfoSimple.prototype.setNextValidatorsHash = function(value) {
   jspb.Message.setProto3BytesField(this, 14, value);
 };
 
+
 /**
  * optional bytes validators_hash = 15;
  * @return {!(string|Uint8Array)}
  */
 proto.forge_abi.BlockInfoSimple.prototype.getValidatorsHash = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 15, ''));
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 15, ""));
 };
+
 
 /**
  * optional bytes validators_hash = 15;
@@ -6048,8 +6775,10 @@ proto.forge_abi.BlockInfoSimple.prototype.getValidatorsHash = function() {
  * @return {string}
  */
 proto.forge_abi.BlockInfoSimple.prototype.getValidatorsHash_asB64 = function() {
-  return /** @type {string} */ (jspb.Message.bytesAsB64(this.getValidatorsHash()));
+  return /** @type {string} */ (jspb.Message.bytesAsB64(
+      this.getValidatorsHash()));
 };
+
 
 /**
  * optional bytes validators_hash = 15;
@@ -6059,34 +6788,37 @@ proto.forge_abi.BlockInfoSimple.prototype.getValidatorsHash_asB64 = function() {
  * @return {!Uint8Array}
  */
 proto.forge_abi.BlockInfoSimple.prototype.getValidatorsHash_asU8 = function() {
-  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(this.getValidatorsHash()));
+  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
+      this.getValidatorsHash()));
 };
+
 
 /** @param {!(string|Uint8Array)} value */
 proto.forge_abi.BlockInfoSimple.prototype.setValidatorsHash = function(value) {
   jspb.Message.setProto3BytesField(this, 15, value);
 };
 
+
 /**
  * optional abci_vendor.Version version = 16;
  * @return {?proto.abci_vendor.Version}
  */
 proto.forge_abi.BlockInfoSimple.prototype.getVersion = function() {
-  return /** @type{?proto.abci_vendor.Version} */ (jspb.Message.getWrapperField(
-    this,
-    vendor_pb.Version,
-    16
-  ));
+  return /** @type{?proto.abci_vendor.Version} */ (
+    jspb.Message.getWrapperField(this, vendor_pb.Version, 16));
 };
+
 
 /** @param {?proto.abci_vendor.Version|undefined} value */
 proto.forge_abi.BlockInfoSimple.prototype.setVersion = function(value) {
   jspb.Message.setWrapperField(this, 16, value);
 };
 
+
 proto.forge_abi.BlockInfoSimple.prototype.clearVersion = function() {
   this.setVersion(undefined);
 };
+
 
 /**
  * Returns whether this field is set.
@@ -6096,26 +6828,27 @@ proto.forge_abi.BlockInfoSimple.prototype.hasVersion = function() {
   return jspb.Message.getField(this, 16) != null;
 };
 
+
 /**
  * optional abci_vendor.BlockID last_block_id = 17;
  * @return {?proto.abci_vendor.BlockID}
  */
 proto.forge_abi.BlockInfoSimple.prototype.getLastBlockId = function() {
-  return /** @type{?proto.abci_vendor.BlockID} */ (jspb.Message.getWrapperField(
-    this,
-    vendor_pb.BlockID,
-    17
-  ));
+  return /** @type{?proto.abci_vendor.BlockID} */ (
+    jspb.Message.getWrapperField(this, vendor_pb.BlockID, 17));
 };
+
 
 /** @param {?proto.abci_vendor.BlockID|undefined} value */
 proto.forge_abi.BlockInfoSimple.prototype.setLastBlockId = function(value) {
   jspb.Message.setWrapperField(this, 17, value);
 };
 
+
 proto.forge_abi.BlockInfoSimple.prototype.clearLastBlockId = function() {
   this.setLastBlockId(undefined);
 };
+
 
 /**
  * Returns whether this field is set.
@@ -6124,6 +6857,8 @@ proto.forge_abi.BlockInfoSimple.prototype.clearLastBlockId = function() {
 proto.forge_abi.BlockInfoSimple.prototype.hasLastBlockId = function() {
   return jspb.Message.getField(this, 17) != null;
 };
+
+
 
 /**
  * Generated by JsPbCodeGenerator.
@@ -6143,43 +6878,45 @@ if (goog.DEBUG && !COMPILED) {
   proto.forge_abi.TxStatus.displayName = 'proto.forge_abi.TxStatus';
 }
 
+
 if (jspb.Message.GENERATE_TO_OBJECT) {
-  /**
-   * Creates an object representation of this proto suitable for use in Soy templates.
-   * Field names that are reserved in JavaScript and will be renamed to pb_name.
-   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
-   * For the list of reserved names please see:
-   *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
-   * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
-   *     for transitional soy proto support: http://goto/soy-param-migration
-   * @return {!Object}
-   */
-  proto.forge_abi.TxStatus.prototype.toObject = function(opt_includeInstance) {
-    return proto.forge_abi.TxStatus.toObject(opt_includeInstance, this);
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.forge_abi.TxStatus.prototype.toObject = function(opt_includeInstance) {
+  return proto.forge_abi.TxStatus.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.forge_abi.TxStatus} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.forge_abi.TxStatus.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    code: jspb.Message.getFieldWithDefault(msg, 1, 0),
+    hash: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
-  /**
-   * Static version of the {@see toObject} method.
-   * @param {boolean|undefined} includeInstance Whether to include the JSPB
-   *     instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @param {!proto.forge_abi.TxStatus} msg The msg instance to transform.
-   * @return {!Object}
-   * @suppress {unusedLocalVariables} f is only used for nested messages
-   */
-  proto.forge_abi.TxStatus.toObject = function(includeInstance, msg) {
-    var f,
-      obj = {
-        code: jspb.Message.getFieldWithDefault(msg, 1, 0),
-        hash: jspb.Message.getFieldWithDefault(msg, 2, ''),
-      };
-
-    if (includeInstance) {
-      obj.$jspbMessageInstance = msg;
-    }
-    return obj;
-  };
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
 }
+
 
 /**
  * Deserializes binary data (in protobuf wire format).
@@ -6188,9 +6925,10 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  */
 proto.forge_abi.TxStatus.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.forge_abi.TxStatus();
+  var msg = new proto.forge_abi.TxStatus;
   return proto.forge_abi.TxStatus.deserializeBinaryFromReader(msg, reader);
 };
+
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -6206,21 +6944,22 @@ proto.forge_abi.TxStatus.deserializeBinaryFromReader = function(msg, reader) {
     }
     var field = reader.getFieldNumber();
     switch (field) {
-      case 1:
-        var value = /** @type {!proto.forge_abi.StatusCode} */ (reader.readEnum());
-        msg.setCode(value);
-        break;
-      case 2:
-        var value = /** @type {string} */ (reader.readString());
-        msg.setHash(value);
-        break;
-      default:
-        reader.skipField();
-        break;
+    case 1:
+      var value = /** @type {!proto.forge_abi.StatusCode} */ (reader.readEnum());
+      msg.setCode(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setHash(value);
+      break;
+    default:
+      reader.skipField();
+      break;
     }
   }
   return msg;
 };
+
 
 /**
  * Serializes the message to binary data (in protobuf wire format).
@@ -6231,6 +6970,7 @@ proto.forge_abi.TxStatus.prototype.serializeBinary = function() {
   proto.forge_abi.TxStatus.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
+
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -6243,13 +6983,20 @@ proto.forge_abi.TxStatus.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getCode();
   if (f !== 0.0) {
-    writer.writeEnum(1, f);
+    writer.writeEnum(
+      1,
+      f
+    );
   }
   f = message.getHash();
   if (f.length > 0) {
-    writer.writeString(2, f);
+    writer.writeString(
+      2,
+      f
+    );
   }
 };
+
 
 /**
  * optional StatusCode code = 1;
@@ -6259,23 +7006,28 @@ proto.forge_abi.TxStatus.prototype.getCode = function() {
   return /** @type {!proto.forge_abi.StatusCode} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
 };
 
+
 /** @param {!proto.forge_abi.StatusCode} value */
 proto.forge_abi.TxStatus.prototype.setCode = function(value) {
   jspb.Message.setProto3EnumField(this, 1, value);
 };
+
 
 /**
  * optional string hash = 2;
  * @return {string}
  */
 proto.forge_abi.TxStatus.prototype.getHash = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ''));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
+
 
 /** @param {string} value */
 proto.forge_abi.TxStatus.prototype.setHash = function(value) {
   jspb.Message.setProto3StringField(this, 2, value);
 };
+
+
 
 /**
  * Generated by JsPbCodeGenerator.
@@ -6288,14 +7040,7 @@ proto.forge_abi.TxStatus.prototype.setHash = function(value) {
  * @constructor
  */
 proto.forge_abi.CircularQueue = function(opt_data) {
-  jspb.Message.initialize(
-    this,
-    opt_data,
-    0,
-    -1,
-    proto.forge_abi.CircularQueue.repeatedFields_,
-    null
-  );
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.forge_abi.CircularQueue.repeatedFields_, null);
 };
 goog.inherits(proto.forge_abi.CircularQueue, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -6308,46 +7053,49 @@ if (goog.DEBUG && !COMPILED) {
  */
 proto.forge_abi.CircularQueue.repeatedFields_ = [1];
 
+
+
 if (jspb.Message.GENERATE_TO_OBJECT) {
-  /**
-   * Creates an object representation of this proto suitable for use in Soy templates.
-   * Field names that are reserved in JavaScript and will be renamed to pb_name.
-   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
-   * For the list of reserved names please see:
-   *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
-   * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
-   *     for transitional soy proto support: http://goto/soy-param-migration
-   * @return {!Object}
-   */
-  proto.forge_abi.CircularQueue.prototype.toObject = function(opt_includeInstance) {
-    return proto.forge_abi.CircularQueue.toObject(opt_includeInstance, this);
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.forge_abi.CircularQueue.prototype.toObject = function(opt_includeInstance) {
+  return proto.forge_abi.CircularQueue.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.forge_abi.CircularQueue} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.forge_abi.CircularQueue.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    itemsList: msg.getItemsList(),
+    typeUrl: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    maxItems: jspb.Message.getFieldWithDefault(msg, 3, 0),
+    circular: jspb.Message.getFieldWithDefault(msg, 4, false),
+    fifo: jspb.Message.getFieldWithDefault(msg, 5, false)
   };
 
-  /**
-   * Static version of the {@see toObject} method.
-   * @param {boolean|undefined} includeInstance Whether to include the JSPB
-   *     instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @param {!proto.forge_abi.CircularQueue} msg The msg instance to transform.
-   * @return {!Object}
-   * @suppress {unusedLocalVariables} f is only used for nested messages
-   */
-  proto.forge_abi.CircularQueue.toObject = function(includeInstance, msg) {
-    var f,
-      obj = {
-        itemsList: msg.getItemsList(),
-        typeUrl: jspb.Message.getFieldWithDefault(msg, 2, ''),
-        maxItems: jspb.Message.getFieldWithDefault(msg, 3, 0),
-        circular: jspb.Message.getFieldWithDefault(msg, 4, false),
-        fifo: jspb.Message.getFieldWithDefault(msg, 5, false),
-      };
-
-    if (includeInstance) {
-      obj.$jspbMessageInstance = msg;
-    }
-    return obj;
-  };
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
 }
+
 
 /**
  * Deserializes binary data (in protobuf wire format).
@@ -6356,9 +7104,10 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  */
 proto.forge_abi.CircularQueue.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.forge_abi.CircularQueue();
+  var msg = new proto.forge_abi.CircularQueue;
   return proto.forge_abi.CircularQueue.deserializeBinaryFromReader(msg, reader);
 };
+
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -6374,33 +7123,34 @@ proto.forge_abi.CircularQueue.deserializeBinaryFromReader = function(msg, reader
     }
     var field = reader.getFieldNumber();
     switch (field) {
-      case 1:
-        var value = /** @type {!Uint8Array} */ (reader.readBytes());
-        msg.addItems(value);
-        break;
-      case 2:
-        var value = /** @type {string} */ (reader.readString());
-        msg.setTypeUrl(value);
-        break;
-      case 3:
-        var value = /** @type {number} */ (reader.readUint32());
-        msg.setMaxItems(value);
-        break;
-      case 4:
-        var value = /** @type {boolean} */ (reader.readBool());
-        msg.setCircular(value);
-        break;
-      case 5:
-        var value = /** @type {boolean} */ (reader.readBool());
-        msg.setFifo(value);
-        break;
-      default:
-        reader.skipField();
-        break;
+    case 1:
+      var value = /** @type {!Uint8Array} */ (reader.readBytes());
+      msg.addItems(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setTypeUrl(value);
+      break;
+    case 3:
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setMaxItems(value);
+      break;
+    case 4:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setCircular(value);
+      break;
+    case 5:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setFifo(value);
+      break;
+    default:
+      reader.skipField();
+      break;
     }
   }
   return msg;
 };
+
 
 /**
  * Serializes the message to binary data (in protobuf wire format).
@@ -6411,6 +7161,7 @@ proto.forge_abi.CircularQueue.prototype.serializeBinary = function() {
   proto.forge_abi.CircularQueue.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
+
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -6423,36 +7174,50 @@ proto.forge_abi.CircularQueue.serializeBinaryToWriter = function(message, writer
   var f = undefined;
   f = message.getItemsList_asU8();
   if (f.length > 0) {
-    writer.writeRepeatedBytes(1, f);
+    writer.writeRepeatedBytes(
+      1,
+      f
+    );
   }
   f = message.getTypeUrl();
   if (f.length > 0) {
-    writer.writeString(2, f);
+    writer.writeString(
+      2,
+      f
+    );
   }
   f = message.getMaxItems();
   if (f !== 0) {
-    writer.writeUint32(3, f);
+    writer.writeUint32(
+      3,
+      f
+    );
   }
   f = message.getCircular();
   if (f) {
-    writer.writeBool(4, f);
+    writer.writeBool(
+      4,
+      f
+    );
   }
   f = message.getFifo();
   if (f) {
-    writer.writeBool(5, f);
+    writer.writeBool(
+      5,
+      f
+    );
   }
 };
+
 
 /**
  * repeated bytes items = 1;
  * @return {!(Array<!Uint8Array>|Array<string>)}
  */
 proto.forge_abi.CircularQueue.prototype.getItemsList = function() {
-  return /** @type {!(Array<!Uint8Array>|Array<string>)} */ (jspb.Message.getRepeatedField(
-    this,
-    1
-  ));
+  return /** @type {!(Array<!Uint8Array>|Array<string>)} */ (jspb.Message.getRepeatedField(this, 1));
 };
+
 
 /**
  * repeated bytes items = 1;
@@ -6460,8 +7225,10 @@ proto.forge_abi.CircularQueue.prototype.getItemsList = function() {
  * @return {!Array<string>}
  */
 proto.forge_abi.CircularQueue.prototype.getItemsList_asB64 = function() {
-  return /** @type {!Array<string>} */ (jspb.Message.bytesListAsB64(this.getItemsList()));
+  return /** @type {!Array<string>} */ (jspb.Message.bytesListAsB64(
+      this.getItemsList()));
 };
+
 
 /**
  * repeated bytes items = 1;
@@ -6471,13 +7238,16 @@ proto.forge_abi.CircularQueue.prototype.getItemsList_asB64 = function() {
  * @return {!Array<!Uint8Array>}
  */
 proto.forge_abi.CircularQueue.prototype.getItemsList_asU8 = function() {
-  return /** @type {!Array<!Uint8Array>} */ (jspb.Message.bytesListAsU8(this.getItemsList()));
+  return /** @type {!Array<!Uint8Array>} */ (jspb.Message.bytesListAsU8(
+      this.getItemsList()));
 };
+
 
 /** @param {!(Array<!Uint8Array>|Array<string>)} value */
 proto.forge_abi.CircularQueue.prototype.setItemsList = function(value) {
   jspb.Message.setField(this, 1, value || []);
 };
+
 
 /**
  * @param {!(string|Uint8Array)} value
@@ -6487,22 +7257,26 @@ proto.forge_abi.CircularQueue.prototype.addItems = function(value, opt_index) {
   jspb.Message.addToRepeatedField(this, 1, value, opt_index);
 };
 
+
 proto.forge_abi.CircularQueue.prototype.clearItemsList = function() {
   this.setItemsList([]);
 };
+
 
 /**
  * optional string type_url = 2;
  * @return {string}
  */
 proto.forge_abi.CircularQueue.prototype.getTypeUrl = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ''));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
+
 
 /** @param {string} value */
 proto.forge_abi.CircularQueue.prototype.setTypeUrl = function(value) {
   jspb.Message.setProto3StringField(this, 2, value);
 };
+
 
 /**
  * optional uint32 max_items = 3;
@@ -6512,10 +7286,12 @@ proto.forge_abi.CircularQueue.prototype.getMaxItems = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
 };
 
+
 /** @param {number} value */
 proto.forge_abi.CircularQueue.prototype.setMaxItems = function(value) {
   jspb.Message.setProto3IntField(this, 3, value);
 };
+
 
 /**
  * optional bool circular = 4;
@@ -6527,10 +7303,12 @@ proto.forge_abi.CircularQueue.prototype.getCircular = function() {
   return /** @type {boolean} */ (jspb.Message.getFieldWithDefault(this, 4, false));
 };
 
+
 /** @param {boolean} value */
 proto.forge_abi.CircularQueue.prototype.setCircular = function(value) {
   jspb.Message.setProto3BooleanField(this, 4, value);
 };
+
 
 /**
  * optional bool fifo = 5;
@@ -6542,10 +7320,13 @@ proto.forge_abi.CircularQueue.prototype.getFifo = function() {
   return /** @type {boolean} */ (jspb.Message.getFieldWithDefault(this, 5, false));
 };
 
+
 /** @param {boolean} value */
 proto.forge_abi.CircularQueue.prototype.setFifo = function(value) {
   jspb.Message.setProto3BooleanField(this, 5, value);
 };
+
+
 
 /**
  * Generated by JsPbCodeGenerator.
@@ -6565,49 +7346,47 @@ if (goog.DEBUG && !COMPILED) {
   proto.forge_abi.StateContext.displayName = 'proto.forge_abi.StateContext';
 }
 
+
 if (jspb.Message.GENERATE_TO_OBJECT) {
-  /**
-   * Creates an object representation of this proto suitable for use in Soy templates.
-   * Field names that are reserved in JavaScript and will be renamed to pb_name.
-   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
-   * For the list of reserved names please see:
-   *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
-   * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
-   *     for transitional soy proto support: http://goto/soy-param-migration
-   * @return {!Object}
-   */
-  proto.forge_abi.StateContext.prototype.toObject = function(opt_includeInstance) {
-    return proto.forge_abi.StateContext.toObject(opt_includeInstance, this);
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.forge_abi.StateContext.prototype.toObject = function(opt_includeInstance) {
+  return proto.forge_abi.StateContext.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.forge_abi.StateContext} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.forge_abi.StateContext.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    genesisTx: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    renaissanceTx: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    genesisTime: (f = msg.getGenesisTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+    renaissanceTime: (f = msg.getRenaissanceTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
 
-  /**
-   * Static version of the {@see toObject} method.
-   * @param {boolean|undefined} includeInstance Whether to include the JSPB
-   *     instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @param {!proto.forge_abi.StateContext} msg The msg instance to transform.
-   * @return {!Object}
-   * @suppress {unusedLocalVariables} f is only used for nested messages
-   */
-  proto.forge_abi.StateContext.toObject = function(includeInstance, msg) {
-    var f,
-      obj = {
-        genesisTx: jspb.Message.getFieldWithDefault(msg, 1, ''),
-        renaissanceTx: jspb.Message.getFieldWithDefault(msg, 2, ''),
-        genesisTime:
-          (f = msg.getGenesisTime()) &&
-          google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-        renaissanceTime:
-          (f = msg.getRenaissanceTime()) &&
-          google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-      };
-
-    if (includeInstance) {
-      obj.$jspbMessageInstance = msg;
-    }
-    return obj;
-  };
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
 }
+
 
 /**
  * Deserializes binary data (in protobuf wire format).
@@ -6616,9 +7395,10 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  */
 proto.forge_abi.StateContext.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.forge_abi.StateContext();
+  var msg = new proto.forge_abi.StateContext;
   return proto.forge_abi.StateContext.deserializeBinaryFromReader(msg, reader);
 };
+
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -6634,37 +7414,32 @@ proto.forge_abi.StateContext.deserializeBinaryFromReader = function(msg, reader)
     }
     var field = reader.getFieldNumber();
     switch (field) {
-      case 1:
-        var value = /** @type {string} */ (reader.readString());
-        msg.setGenesisTx(value);
-        break;
-      case 2:
-        var value = /** @type {string} */ (reader.readString());
-        msg.setRenaissanceTx(value);
-        break;
-      case 3:
-        var value = new google_protobuf_timestamp_pb.Timestamp();
-        reader.readMessage(
-          value,
-          google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader
-        );
-        msg.setGenesisTime(value);
-        break;
-      case 4:
-        var value = new google_protobuf_timestamp_pb.Timestamp();
-        reader.readMessage(
-          value,
-          google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader
-        );
-        msg.setRenaissanceTime(value);
-        break;
-      default:
-        reader.skipField();
-        break;
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setGenesisTx(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setRenaissanceTx(value);
+      break;
+    case 3:
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setGenesisTime(value);
+      break;
+    case 4:
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setRenaissanceTime(value);
+      break;
+    default:
+      reader.skipField();
+      break;
     }
   }
   return msg;
 };
+
 
 /**
  * Serializes the message to binary data (in protobuf wire format).
@@ -6675,6 +7450,7 @@ proto.forge_abi.StateContext.prototype.serializeBinary = function() {
   proto.forge_abi.StateContext.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
+
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -6687,68 +7463,87 @@ proto.forge_abi.StateContext.serializeBinaryToWriter = function(message, writer)
   var f = undefined;
   f = message.getGenesisTx();
   if (f.length > 0) {
-    writer.writeString(1, f);
+    writer.writeString(
+      1,
+      f
+    );
   }
   f = message.getRenaissanceTx();
   if (f.length > 0) {
-    writer.writeString(2, f);
+    writer.writeString(
+      2,
+      f
+    );
   }
   f = message.getGenesisTime();
   if (f != null) {
-    writer.writeMessage(3, f, google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter);
+    writer.writeMessage(
+      3,
+      f,
+      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+    );
   }
   f = message.getRenaissanceTime();
   if (f != null) {
-    writer.writeMessage(4, f, google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter);
+    writer.writeMessage(
+      4,
+      f,
+      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+    );
   }
 };
+
 
 /**
  * optional string genesis_tx = 1;
  * @return {string}
  */
 proto.forge_abi.StateContext.prototype.getGenesisTx = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ''));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
+
 
 /** @param {string} value */
 proto.forge_abi.StateContext.prototype.setGenesisTx = function(value) {
   jspb.Message.setProto3StringField(this, 1, value);
 };
 
+
 /**
  * optional string renaissance_tx = 2;
  * @return {string}
  */
 proto.forge_abi.StateContext.prototype.getRenaissanceTx = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ''));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
+
 
 /** @param {string} value */
 proto.forge_abi.StateContext.prototype.setRenaissanceTx = function(value) {
   jspb.Message.setProto3StringField(this, 2, value);
 };
 
+
 /**
  * optional google.protobuf.Timestamp genesis_time = 3;
  * @return {?proto.google.protobuf.Timestamp}
  */
 proto.forge_abi.StateContext.prototype.getGenesisTime = function() {
-  return /** @type{?proto.google.protobuf.Timestamp} */ (jspb.Message.getWrapperField(
-    this,
-    google_protobuf_timestamp_pb.Timestamp,
-    3
-  ));
+  return /** @type{?proto.google.protobuf.Timestamp} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 3));
 };
+
 
 /** @param {?proto.google.protobuf.Timestamp|undefined} value */
 proto.forge_abi.StateContext.prototype.setGenesisTime = function(value) {
   jspb.Message.setWrapperField(this, 3, value);
 };
 
+
 proto.forge_abi.StateContext.prototype.clearGenesisTime = function() {
   this.setGenesisTime(undefined);
 };
+
 
 /**
  * Returns whether this field is set.
@@ -6758,26 +7553,27 @@ proto.forge_abi.StateContext.prototype.hasGenesisTime = function() {
   return jspb.Message.getField(this, 3) != null;
 };
 
+
 /**
  * optional google.protobuf.Timestamp renaissance_time = 4;
  * @return {?proto.google.protobuf.Timestamp}
  */
 proto.forge_abi.StateContext.prototype.getRenaissanceTime = function() {
-  return /** @type{?proto.google.protobuf.Timestamp} */ (jspb.Message.getWrapperField(
-    this,
-    google_protobuf_timestamp_pb.Timestamp,
-    4
-  ));
+  return /** @type{?proto.google.protobuf.Timestamp} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 4));
 };
+
 
 /** @param {?proto.google.protobuf.Timestamp|undefined} value */
 proto.forge_abi.StateContext.prototype.setRenaissanceTime = function(value) {
   jspb.Message.setWrapperField(this, 4, value);
 };
 
+
 proto.forge_abi.StateContext.prototype.clearRenaissanceTime = function() {
   this.setRenaissanceTime(undefined);
 };
+
 
 /**
  * Returns whether this field is set.
@@ -6786,6 +7582,8 @@ proto.forge_abi.StateContext.prototype.clearRenaissanceTime = function() {
 proto.forge_abi.StateContext.prototype.hasRenaissanceTime = function() {
   return jspb.Message.getField(this, 4) != null;
 };
+
+
 
 /**
  * Generated by JsPbCodeGenerator.
@@ -6805,53 +7603,48 @@ if (goog.DEBUG && !COMPILED) {
   proto.forge_abi.StakeContext.displayName = 'proto.forge_abi.StakeContext';
 }
 
+
 if (jspb.Message.GENERATE_TO_OBJECT) {
-  /**
-   * Creates an object representation of this proto suitable for use in Soy templates.
-   * Field names that are reserved in JavaScript and will be renamed to pb_name.
-   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
-   * For the list of reserved names please see:
-   *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
-   * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
-   *     for transitional soy proto support: http://goto/soy-param-migration
-   * @return {!Object}
-   */
-  proto.forge_abi.StakeContext.prototype.toObject = function(opt_includeInstance) {
-    return proto.forge_abi.StakeContext.toObject(opt_includeInstance, this);
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.forge_abi.StakeContext.prototype.toObject = function(opt_includeInstance) {
+  return proto.forge_abi.StakeContext.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.forge_abi.StakeContext} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.forge_abi.StakeContext.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    totalStakes: (f = msg.getTotalStakes()) && proto.forge_abi.BigUint.toObject(includeInstance, f),
+    totalUnstakes: (f = msg.getTotalUnstakes()) && proto.forge_abi.BigUint.toObject(includeInstance, f),
+    totalReceivedStakes: (f = msg.getTotalReceivedStakes()) && proto.forge_abi.BigUint.toObject(includeInstance, f),
+    recentStakes: (f = msg.getRecentStakes()) && proto.forge_abi.CircularQueue.toObject(includeInstance, f),
+    recentReceivedStakes: (f = msg.getRecentReceivedStakes()) && proto.forge_abi.CircularQueue.toObject(includeInstance, f)
   };
 
-  /**
-   * Static version of the {@see toObject} method.
-   * @param {boolean|undefined} includeInstance Whether to include the JSPB
-   *     instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @param {!proto.forge_abi.StakeContext} msg The msg instance to transform.
-   * @return {!Object}
-   * @suppress {unusedLocalVariables} f is only used for nested messages
-   */
-  proto.forge_abi.StakeContext.toObject = function(includeInstance, msg) {
-    var f,
-      obj = {
-        totalStakes:
-          (f = msg.getTotalStakes()) && proto.forge_abi.BigUint.toObject(includeInstance, f),
-        totalUnstakes:
-          (f = msg.getTotalUnstakes()) && proto.forge_abi.BigUint.toObject(includeInstance, f),
-        totalReceivedStakes:
-          (f = msg.getTotalReceivedStakes()) &&
-          proto.forge_abi.BigUint.toObject(includeInstance, f),
-        recentStakes:
-          (f = msg.getRecentStakes()) && proto.forge_abi.CircularQueue.toObject(includeInstance, f),
-        recentReceivedStakes:
-          (f = msg.getRecentReceivedStakes()) &&
-          proto.forge_abi.CircularQueue.toObject(includeInstance, f),
-      };
-
-    if (includeInstance) {
-      obj.$jspbMessageInstance = msg;
-    }
-    return obj;
-  };
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
 }
+
 
 /**
  * Deserializes binary data (in protobuf wire format).
@@ -6860,9 +7653,10 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  */
 proto.forge_abi.StakeContext.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.forge_abi.StakeContext();
+  var msg = new proto.forge_abi.StakeContext;
   return proto.forge_abi.StakeContext.deserializeBinaryFromReader(msg, reader);
 };
+
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -6878,38 +7672,39 @@ proto.forge_abi.StakeContext.deserializeBinaryFromReader = function(msg, reader)
     }
     var field = reader.getFieldNumber();
     switch (field) {
-      case 1:
-        var value = new proto.forge_abi.BigUint();
-        reader.readMessage(value, proto.forge_abi.BigUint.deserializeBinaryFromReader);
-        msg.setTotalStakes(value);
-        break;
-      case 2:
-        var value = new proto.forge_abi.BigUint();
-        reader.readMessage(value, proto.forge_abi.BigUint.deserializeBinaryFromReader);
-        msg.setTotalUnstakes(value);
-        break;
-      case 3:
-        var value = new proto.forge_abi.BigUint();
-        reader.readMessage(value, proto.forge_abi.BigUint.deserializeBinaryFromReader);
-        msg.setTotalReceivedStakes(value);
-        break;
-      case 4:
-        var value = new proto.forge_abi.CircularQueue();
-        reader.readMessage(value, proto.forge_abi.CircularQueue.deserializeBinaryFromReader);
-        msg.setRecentStakes(value);
-        break;
-      case 15:
-        var value = new proto.forge_abi.CircularQueue();
-        reader.readMessage(value, proto.forge_abi.CircularQueue.deserializeBinaryFromReader);
-        msg.setRecentReceivedStakes(value);
-        break;
-      default:
-        reader.skipField();
-        break;
+    case 1:
+      var value = new proto.forge_abi.BigUint;
+      reader.readMessage(value,proto.forge_abi.BigUint.deserializeBinaryFromReader);
+      msg.setTotalStakes(value);
+      break;
+    case 2:
+      var value = new proto.forge_abi.BigUint;
+      reader.readMessage(value,proto.forge_abi.BigUint.deserializeBinaryFromReader);
+      msg.setTotalUnstakes(value);
+      break;
+    case 3:
+      var value = new proto.forge_abi.BigUint;
+      reader.readMessage(value,proto.forge_abi.BigUint.deserializeBinaryFromReader);
+      msg.setTotalReceivedStakes(value);
+      break;
+    case 4:
+      var value = new proto.forge_abi.CircularQueue;
+      reader.readMessage(value,proto.forge_abi.CircularQueue.deserializeBinaryFromReader);
+      msg.setRecentStakes(value);
+      break;
+    case 15:
+      var value = new proto.forge_abi.CircularQueue;
+      reader.readMessage(value,proto.forge_abi.CircularQueue.deserializeBinaryFromReader);
+      msg.setRecentReceivedStakes(value);
+      break;
+    default:
+      reader.skipField();
+      break;
     }
   }
   return msg;
 };
+
 
 /**
  * Serializes the message to binary data (in protobuf wire format).
@@ -6920,6 +7715,7 @@ proto.forge_abi.StakeContext.prototype.serializeBinary = function() {
   proto.forge_abi.StakeContext.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
+
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -6932,46 +7728,67 @@ proto.forge_abi.StakeContext.serializeBinaryToWriter = function(message, writer)
   var f = undefined;
   f = message.getTotalStakes();
   if (f != null) {
-    writer.writeMessage(1, f, proto.forge_abi.BigUint.serializeBinaryToWriter);
+    writer.writeMessage(
+      1,
+      f,
+      proto.forge_abi.BigUint.serializeBinaryToWriter
+    );
   }
   f = message.getTotalUnstakes();
   if (f != null) {
-    writer.writeMessage(2, f, proto.forge_abi.BigUint.serializeBinaryToWriter);
+    writer.writeMessage(
+      2,
+      f,
+      proto.forge_abi.BigUint.serializeBinaryToWriter
+    );
   }
   f = message.getTotalReceivedStakes();
   if (f != null) {
-    writer.writeMessage(3, f, proto.forge_abi.BigUint.serializeBinaryToWriter);
+    writer.writeMessage(
+      3,
+      f,
+      proto.forge_abi.BigUint.serializeBinaryToWriter
+    );
   }
   f = message.getRecentStakes();
   if (f != null) {
-    writer.writeMessage(4, f, proto.forge_abi.CircularQueue.serializeBinaryToWriter);
+    writer.writeMessage(
+      4,
+      f,
+      proto.forge_abi.CircularQueue.serializeBinaryToWriter
+    );
   }
   f = message.getRecentReceivedStakes();
   if (f != null) {
-    writer.writeMessage(15, f, proto.forge_abi.CircularQueue.serializeBinaryToWriter);
+    writer.writeMessage(
+      15,
+      f,
+      proto.forge_abi.CircularQueue.serializeBinaryToWriter
+    );
   }
 };
+
 
 /**
  * optional BigUint total_stakes = 1;
  * @return {?proto.forge_abi.BigUint}
  */
 proto.forge_abi.StakeContext.prototype.getTotalStakes = function() {
-  return /** @type{?proto.forge_abi.BigUint} */ (jspb.Message.getWrapperField(
-    this,
-    proto.forge_abi.BigUint,
-    1
-  ));
+  return /** @type{?proto.forge_abi.BigUint} */ (
+    jspb.Message.getWrapperField(this, proto.forge_abi.BigUint, 1));
 };
+
 
 /** @param {?proto.forge_abi.BigUint|undefined} value */
 proto.forge_abi.StakeContext.prototype.setTotalStakes = function(value) {
   jspb.Message.setWrapperField(this, 1, value);
 };
 
+
 proto.forge_abi.StakeContext.prototype.clearTotalStakes = function() {
   this.setTotalStakes(undefined);
 };
+
 
 /**
  * Returns whether this field is set.
@@ -6981,26 +7798,27 @@ proto.forge_abi.StakeContext.prototype.hasTotalStakes = function() {
   return jspb.Message.getField(this, 1) != null;
 };
 
+
 /**
  * optional BigUint total_unstakes = 2;
  * @return {?proto.forge_abi.BigUint}
  */
 proto.forge_abi.StakeContext.prototype.getTotalUnstakes = function() {
-  return /** @type{?proto.forge_abi.BigUint} */ (jspb.Message.getWrapperField(
-    this,
-    proto.forge_abi.BigUint,
-    2
-  ));
+  return /** @type{?proto.forge_abi.BigUint} */ (
+    jspb.Message.getWrapperField(this, proto.forge_abi.BigUint, 2));
 };
+
 
 /** @param {?proto.forge_abi.BigUint|undefined} value */
 proto.forge_abi.StakeContext.prototype.setTotalUnstakes = function(value) {
   jspb.Message.setWrapperField(this, 2, value);
 };
 
+
 proto.forge_abi.StakeContext.prototype.clearTotalUnstakes = function() {
   this.setTotalUnstakes(undefined);
 };
+
 
 /**
  * Returns whether this field is set.
@@ -7010,26 +7828,27 @@ proto.forge_abi.StakeContext.prototype.hasTotalUnstakes = function() {
   return jspb.Message.getField(this, 2) != null;
 };
 
+
 /**
  * optional BigUint total_received_stakes = 3;
  * @return {?proto.forge_abi.BigUint}
  */
 proto.forge_abi.StakeContext.prototype.getTotalReceivedStakes = function() {
-  return /** @type{?proto.forge_abi.BigUint} */ (jspb.Message.getWrapperField(
-    this,
-    proto.forge_abi.BigUint,
-    3
-  ));
+  return /** @type{?proto.forge_abi.BigUint} */ (
+    jspb.Message.getWrapperField(this, proto.forge_abi.BigUint, 3));
 };
+
 
 /** @param {?proto.forge_abi.BigUint|undefined} value */
 proto.forge_abi.StakeContext.prototype.setTotalReceivedStakes = function(value) {
   jspb.Message.setWrapperField(this, 3, value);
 };
 
+
 proto.forge_abi.StakeContext.prototype.clearTotalReceivedStakes = function() {
   this.setTotalReceivedStakes(undefined);
 };
+
 
 /**
  * Returns whether this field is set.
@@ -7039,26 +7858,27 @@ proto.forge_abi.StakeContext.prototype.hasTotalReceivedStakes = function() {
   return jspb.Message.getField(this, 3) != null;
 };
 
+
 /**
  * optional CircularQueue recent_stakes = 4;
  * @return {?proto.forge_abi.CircularQueue}
  */
 proto.forge_abi.StakeContext.prototype.getRecentStakes = function() {
-  return /** @type{?proto.forge_abi.CircularQueue} */ (jspb.Message.getWrapperField(
-    this,
-    proto.forge_abi.CircularQueue,
-    4
-  ));
+  return /** @type{?proto.forge_abi.CircularQueue} */ (
+    jspb.Message.getWrapperField(this, proto.forge_abi.CircularQueue, 4));
 };
+
 
 /** @param {?proto.forge_abi.CircularQueue|undefined} value */
 proto.forge_abi.StakeContext.prototype.setRecentStakes = function(value) {
   jspb.Message.setWrapperField(this, 4, value);
 };
 
+
 proto.forge_abi.StakeContext.prototype.clearRecentStakes = function() {
   this.setRecentStakes(undefined);
 };
+
 
 /**
  * Returns whether this field is set.
@@ -7068,26 +7888,27 @@ proto.forge_abi.StakeContext.prototype.hasRecentStakes = function() {
   return jspb.Message.getField(this, 4) != null;
 };
 
+
 /**
  * optional CircularQueue recent_received_stakes = 15;
  * @return {?proto.forge_abi.CircularQueue}
  */
 proto.forge_abi.StakeContext.prototype.getRecentReceivedStakes = function() {
-  return /** @type{?proto.forge_abi.CircularQueue} */ (jspb.Message.getWrapperField(
-    this,
-    proto.forge_abi.CircularQueue,
-    15
-  ));
+  return /** @type{?proto.forge_abi.CircularQueue} */ (
+    jspb.Message.getWrapperField(this, proto.forge_abi.CircularQueue, 15));
 };
+
 
 /** @param {?proto.forge_abi.CircularQueue|undefined} value */
 proto.forge_abi.StakeContext.prototype.setRecentReceivedStakes = function(value) {
   jspb.Message.setWrapperField(this, 15, value);
 };
 
+
 proto.forge_abi.StakeContext.prototype.clearRecentReceivedStakes = function() {
   this.setRecentReceivedStakes(undefined);
 };
+
 
 /**
  * Returns whether this field is set.
@@ -7096,6 +7917,8 @@ proto.forge_abi.StakeContext.prototype.clearRecentReceivedStakes = function() {
 proto.forge_abi.StakeContext.prototype.hasRecentReceivedStakes = function() {
   return jspb.Message.getField(this, 15) != null;
 };
+
+
 
 /**
  * Generated by JsPbCodeGenerator.
@@ -7115,47 +7938,46 @@ if (goog.DEBUG && !COMPILED) {
   proto.forge_abi.StakeSummary.displayName = 'proto.forge_abi.StakeSummary';
 }
 
+
 if (jspb.Message.GENERATE_TO_OBJECT) {
-  /**
-   * Creates an object representation of this proto suitable for use in Soy templates.
-   * Field names that are reserved in JavaScript and will be renamed to pb_name.
-   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
-   * For the list of reserved names please see:
-   *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
-   * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
-   *     for transitional soy proto support: http://goto/soy-param-migration
-   * @return {!Object}
-   */
-  proto.forge_abi.StakeSummary.prototype.toObject = function(opt_includeInstance) {
-    return proto.forge_abi.StakeSummary.toObject(opt_includeInstance, this);
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.forge_abi.StakeSummary.prototype.toObject = function(opt_includeInstance) {
+  return proto.forge_abi.StakeSummary.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.forge_abi.StakeSummary} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.forge_abi.StakeSummary.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    totalStakes: (f = msg.getTotalStakes()) && proto.forge_abi.BigUint.toObject(includeInstance, f),
+    totalUnstakes: (f = msg.getTotalUnstakes()) && proto.forge_abi.BigUint.toObject(includeInstance, f),
+    context: (f = msg.getContext()) && proto.forge_abi.StateContext.toObject(includeInstance, f)
   };
 
-  /**
-   * Static version of the {@see toObject} method.
-   * @param {boolean|undefined} includeInstance Whether to include the JSPB
-   *     instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @param {!proto.forge_abi.StakeSummary} msg The msg instance to transform.
-   * @return {!Object}
-   * @suppress {unusedLocalVariables} f is only used for nested messages
-   */
-  proto.forge_abi.StakeSummary.toObject = function(includeInstance, msg) {
-    var f,
-      obj = {
-        totalStakes:
-          (f = msg.getTotalStakes()) && proto.forge_abi.BigUint.toObject(includeInstance, f),
-        totalUnstakes:
-          (f = msg.getTotalUnstakes()) && proto.forge_abi.BigUint.toObject(includeInstance, f),
-        context:
-          (f = msg.getContext()) && proto.forge_abi.StateContext.toObject(includeInstance, f),
-      };
-
-    if (includeInstance) {
-      obj.$jspbMessageInstance = msg;
-    }
-    return obj;
-  };
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
 }
+
 
 /**
  * Deserializes binary data (in protobuf wire format).
@@ -7164,9 +7986,10 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  */
 proto.forge_abi.StakeSummary.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.forge_abi.StakeSummary();
+  var msg = new proto.forge_abi.StakeSummary;
   return proto.forge_abi.StakeSummary.deserializeBinaryFromReader(msg, reader);
 };
+
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -7182,28 +8005,29 @@ proto.forge_abi.StakeSummary.deserializeBinaryFromReader = function(msg, reader)
     }
     var field = reader.getFieldNumber();
     switch (field) {
-      case 1:
-        var value = new proto.forge_abi.BigUint();
-        reader.readMessage(value, proto.forge_abi.BigUint.deserializeBinaryFromReader);
-        msg.setTotalStakes(value);
-        break;
-      case 2:
-        var value = new proto.forge_abi.BigUint();
-        reader.readMessage(value, proto.forge_abi.BigUint.deserializeBinaryFromReader);
-        msg.setTotalUnstakes(value);
-        break;
-      case 3:
-        var value = new proto.forge_abi.StateContext();
-        reader.readMessage(value, proto.forge_abi.StateContext.deserializeBinaryFromReader);
-        msg.setContext(value);
-        break;
-      default:
-        reader.skipField();
-        break;
+    case 1:
+      var value = new proto.forge_abi.BigUint;
+      reader.readMessage(value,proto.forge_abi.BigUint.deserializeBinaryFromReader);
+      msg.setTotalStakes(value);
+      break;
+    case 2:
+      var value = new proto.forge_abi.BigUint;
+      reader.readMessage(value,proto.forge_abi.BigUint.deserializeBinaryFromReader);
+      msg.setTotalUnstakes(value);
+      break;
+    case 3:
+      var value = new proto.forge_abi.StateContext;
+      reader.readMessage(value,proto.forge_abi.StateContext.deserializeBinaryFromReader);
+      msg.setContext(value);
+      break;
+    default:
+      reader.skipField();
+      break;
     }
   }
   return msg;
 };
+
 
 /**
  * Serializes the message to binary data (in protobuf wire format).
@@ -7214,6 +8038,7 @@ proto.forge_abi.StakeSummary.prototype.serializeBinary = function() {
   proto.forge_abi.StakeSummary.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
+
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -7226,38 +8051,51 @@ proto.forge_abi.StakeSummary.serializeBinaryToWriter = function(message, writer)
   var f = undefined;
   f = message.getTotalStakes();
   if (f != null) {
-    writer.writeMessage(1, f, proto.forge_abi.BigUint.serializeBinaryToWriter);
+    writer.writeMessage(
+      1,
+      f,
+      proto.forge_abi.BigUint.serializeBinaryToWriter
+    );
   }
   f = message.getTotalUnstakes();
   if (f != null) {
-    writer.writeMessage(2, f, proto.forge_abi.BigUint.serializeBinaryToWriter);
+    writer.writeMessage(
+      2,
+      f,
+      proto.forge_abi.BigUint.serializeBinaryToWriter
+    );
   }
   f = message.getContext();
   if (f != null) {
-    writer.writeMessage(3, f, proto.forge_abi.StateContext.serializeBinaryToWriter);
+    writer.writeMessage(
+      3,
+      f,
+      proto.forge_abi.StateContext.serializeBinaryToWriter
+    );
   }
 };
+
 
 /**
  * optional BigUint total_stakes = 1;
  * @return {?proto.forge_abi.BigUint}
  */
 proto.forge_abi.StakeSummary.prototype.getTotalStakes = function() {
-  return /** @type{?proto.forge_abi.BigUint} */ (jspb.Message.getWrapperField(
-    this,
-    proto.forge_abi.BigUint,
-    1
-  ));
+  return /** @type{?proto.forge_abi.BigUint} */ (
+    jspb.Message.getWrapperField(this, proto.forge_abi.BigUint, 1));
 };
+
 
 /** @param {?proto.forge_abi.BigUint|undefined} value */
 proto.forge_abi.StakeSummary.prototype.setTotalStakes = function(value) {
   jspb.Message.setWrapperField(this, 1, value);
 };
 
+
 proto.forge_abi.StakeSummary.prototype.clearTotalStakes = function() {
   this.setTotalStakes(undefined);
 };
+
 
 /**
  * Returns whether this field is set.
@@ -7267,26 +8105,27 @@ proto.forge_abi.StakeSummary.prototype.hasTotalStakes = function() {
   return jspb.Message.getField(this, 1) != null;
 };
 
+
 /**
  * optional BigUint total_unstakes = 2;
  * @return {?proto.forge_abi.BigUint}
  */
 proto.forge_abi.StakeSummary.prototype.getTotalUnstakes = function() {
-  return /** @type{?proto.forge_abi.BigUint} */ (jspb.Message.getWrapperField(
-    this,
-    proto.forge_abi.BigUint,
-    2
-  ));
+  return /** @type{?proto.forge_abi.BigUint} */ (
+    jspb.Message.getWrapperField(this, proto.forge_abi.BigUint, 2));
 };
+
 
 /** @param {?proto.forge_abi.BigUint|undefined} value */
 proto.forge_abi.StakeSummary.prototype.setTotalUnstakes = function(value) {
   jspb.Message.setWrapperField(this, 2, value);
 };
 
+
 proto.forge_abi.StakeSummary.prototype.clearTotalUnstakes = function() {
   this.setTotalUnstakes(undefined);
 };
+
 
 /**
  * Returns whether this field is set.
@@ -7296,26 +8135,27 @@ proto.forge_abi.StakeSummary.prototype.hasTotalUnstakes = function() {
   return jspb.Message.getField(this, 2) != null;
 };
 
+
 /**
  * optional StateContext context = 3;
  * @return {?proto.forge_abi.StateContext}
  */
 proto.forge_abi.StakeSummary.prototype.getContext = function() {
-  return /** @type{?proto.forge_abi.StateContext} */ (jspb.Message.getWrapperField(
-    this,
-    proto.forge_abi.StateContext,
-    3
-  ));
+  return /** @type{?proto.forge_abi.StateContext} */ (
+    jspb.Message.getWrapperField(this, proto.forge_abi.StateContext, 3));
 };
+
 
 /** @param {?proto.forge_abi.StateContext|undefined} value */
 proto.forge_abi.StakeSummary.prototype.setContext = function(value) {
   jspb.Message.setWrapperField(this, 3, value);
 };
 
+
 proto.forge_abi.StakeSummary.prototype.clearContext = function() {
   this.setContext(undefined);
 };
+
 
 /**
  * Returns whether this field is set.
@@ -7324,6 +8164,8 @@ proto.forge_abi.StakeSummary.prototype.clearContext = function() {
 proto.forge_abi.StakeSummary.prototype.hasContext = function() {
   return jspb.Message.getField(this, 3) != null;
 };
+
+
 
 /**
  * Generated by JsPbCodeGenerator.
@@ -7343,43 +8185,45 @@ if (goog.DEBUG && !COMPILED) {
   proto.forge_abi.StakeConfig.displayName = 'proto.forge_abi.StakeConfig';
 }
 
+
 if (jspb.Message.GENERATE_TO_OBJECT) {
-  /**
-   * Creates an object representation of this proto suitable for use in Soy templates.
-   * Field names that are reserved in JavaScript and will be renamed to pb_name.
-   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
-   * For the list of reserved names please see:
-   *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
-   * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
-   *     for transitional soy proto support: http://goto/soy-param-migration
-   * @return {!Object}
-   */
-  proto.forge_abi.StakeConfig.prototype.toObject = function(opt_includeInstance) {
-    return proto.forge_abi.StakeConfig.toObject(opt_includeInstance, this);
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.forge_abi.StakeConfig.prototype.toObject = function(opt_includeInstance) {
+  return proto.forge_abi.StakeConfig.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.forge_abi.StakeConfig} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.forge_abi.StakeConfig.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    timeoutGeneral: jspb.Message.getFieldWithDefault(msg, 1, 0),
+    timeoutStakeForNode: jspb.Message.getFieldWithDefault(msg, 2, 0)
   };
 
-  /**
-   * Static version of the {@see toObject} method.
-   * @param {boolean|undefined} includeInstance Whether to include the JSPB
-   *     instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @param {!proto.forge_abi.StakeConfig} msg The msg instance to transform.
-   * @return {!Object}
-   * @suppress {unusedLocalVariables} f is only used for nested messages
-   */
-  proto.forge_abi.StakeConfig.toObject = function(includeInstance, msg) {
-    var f,
-      obj = {
-        timeoutGeneral: jspb.Message.getFieldWithDefault(msg, 1, 0),
-        timeoutStakeForNode: jspb.Message.getFieldWithDefault(msg, 2, 0),
-      };
-
-    if (includeInstance) {
-      obj.$jspbMessageInstance = msg;
-    }
-    return obj;
-  };
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
 }
+
 
 /**
  * Deserializes binary data (in protobuf wire format).
@@ -7388,9 +8232,10 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  */
 proto.forge_abi.StakeConfig.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.forge_abi.StakeConfig();
+  var msg = new proto.forge_abi.StakeConfig;
   return proto.forge_abi.StakeConfig.deserializeBinaryFromReader(msg, reader);
 };
+
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -7406,21 +8251,22 @@ proto.forge_abi.StakeConfig.deserializeBinaryFromReader = function(msg, reader) 
     }
     var field = reader.getFieldNumber();
     switch (field) {
-      case 1:
-        var value = /** @type {number} */ (reader.readUint32());
-        msg.setTimeoutGeneral(value);
-        break;
-      case 2:
-        var value = /** @type {number} */ (reader.readUint32());
-        msg.setTimeoutStakeForNode(value);
-        break;
-      default:
-        reader.skipField();
-        break;
+    case 1:
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setTimeoutGeneral(value);
+      break;
+    case 2:
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setTimeoutStakeForNode(value);
+      break;
+    default:
+      reader.skipField();
+      break;
     }
   }
   return msg;
 };
+
 
 /**
  * Serializes the message to binary data (in protobuf wire format).
@@ -7431,6 +8277,7 @@ proto.forge_abi.StakeConfig.prototype.serializeBinary = function() {
   proto.forge_abi.StakeConfig.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
+
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -7443,13 +8290,20 @@ proto.forge_abi.StakeConfig.serializeBinaryToWriter = function(message, writer) 
   var f = undefined;
   f = message.getTimeoutGeneral();
   if (f !== 0) {
-    writer.writeUint32(1, f);
+    writer.writeUint32(
+      1,
+      f
+    );
   }
   f = message.getTimeoutStakeForNode();
   if (f !== 0) {
-    writer.writeUint32(2, f);
+    writer.writeUint32(
+      2,
+      f
+    );
   }
 };
+
 
 /**
  * optional uint32 timeout_general = 1;
@@ -7459,10 +8313,12 @@ proto.forge_abi.StakeConfig.prototype.getTimeoutGeneral = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
 };
 
+
 /** @param {number} value */
 proto.forge_abi.StakeConfig.prototype.setTimeoutGeneral = function(value) {
   jspb.Message.setProto3IntField(this, 1, value);
 };
+
 
 /**
  * optional uint32 timeout_stake_for_node = 2;
@@ -7472,10 +8328,13 @@ proto.forge_abi.StakeConfig.prototype.getTimeoutStakeForNode = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
 };
 
+
 /** @param {number} value */
 proto.forge_abi.StakeConfig.prototype.setTimeoutStakeForNode = function(value) {
   jspb.Message.setProto3IntField(this, 2, value);
 };
+
+
 
 /**
  * Generated by JsPbCodeGenerator.
@@ -7488,14 +8347,7 @@ proto.forge_abi.StakeConfig.prototype.setTimeoutStakeForNode = function(value) {
  * @constructor
  */
 proto.forge_abi.UnconfirmedTxs = function(opt_data) {
-  jspb.Message.initialize(
-    this,
-    opt_data,
-    0,
-    -1,
-    proto.forge_abi.UnconfirmedTxs.repeatedFields_,
-    null
-  );
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.forge_abi.UnconfirmedTxs.repeatedFields_, null);
 };
 goog.inherits(proto.forge_abi.UnconfirmedTxs, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -7508,47 +8360,47 @@ if (goog.DEBUG && !COMPILED) {
  */
 proto.forge_abi.UnconfirmedTxs.repeatedFields_ = [2];
 
+
+
 if (jspb.Message.GENERATE_TO_OBJECT) {
-  /**
-   * Creates an object representation of this proto suitable for use in Soy templates.
-   * Field names that are reserved in JavaScript and will be renamed to pb_name.
-   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
-   * For the list of reserved names please see:
-   *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
-   * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
-   *     for transitional soy proto support: http://goto/soy-param-migration
-   * @return {!Object}
-   */
-  proto.forge_abi.UnconfirmedTxs.prototype.toObject = function(opt_includeInstance) {
-    return proto.forge_abi.UnconfirmedTxs.toObject(opt_includeInstance, this);
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.forge_abi.UnconfirmedTxs.prototype.toObject = function(opt_includeInstance) {
+  return proto.forge_abi.UnconfirmedTxs.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.forge_abi.UnconfirmedTxs} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.forge_abi.UnconfirmedTxs.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    nTxs: jspb.Message.getFieldWithDefault(msg, 1, 0),
+    txsList: jspb.Message.toObjectList(msg.getTxsList(),
+    proto.forge_abi.Transaction.toObject, includeInstance)
   };
 
-  /**
-   * Static version of the {@see toObject} method.
-   * @param {boolean|undefined} includeInstance Whether to include the JSPB
-   *     instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @param {!proto.forge_abi.UnconfirmedTxs} msg The msg instance to transform.
-   * @return {!Object}
-   * @suppress {unusedLocalVariables} f is only used for nested messages
-   */
-  proto.forge_abi.UnconfirmedTxs.toObject = function(includeInstance, msg) {
-    var f,
-      obj = {
-        nTxs: jspb.Message.getFieldWithDefault(msg, 1, 0),
-        txsList: jspb.Message.toObjectList(
-          msg.getTxsList(),
-          proto.forge_abi.Transaction.toObject,
-          includeInstance
-        ),
-      };
-
-    if (includeInstance) {
-      obj.$jspbMessageInstance = msg;
-    }
-    return obj;
-  };
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
 }
+
 
 /**
  * Deserializes binary data (in protobuf wire format).
@@ -7557,9 +8409,10 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  */
 proto.forge_abi.UnconfirmedTxs.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.forge_abi.UnconfirmedTxs();
+  var msg = new proto.forge_abi.UnconfirmedTxs;
   return proto.forge_abi.UnconfirmedTxs.deserializeBinaryFromReader(msg, reader);
 };
+
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -7575,22 +8428,23 @@ proto.forge_abi.UnconfirmedTxs.deserializeBinaryFromReader = function(msg, reade
     }
     var field = reader.getFieldNumber();
     switch (field) {
-      case 1:
-        var value = /** @type {number} */ (reader.readUint32());
-        msg.setNTxs(value);
-        break;
-      case 2:
-        var value = new proto.forge_abi.Transaction();
-        reader.readMessage(value, proto.forge_abi.Transaction.deserializeBinaryFromReader);
-        msg.addTxs(value);
-        break;
-      default:
-        reader.skipField();
-        break;
+    case 1:
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setNTxs(value);
+      break;
+    case 2:
+      var value = new proto.forge_abi.Transaction;
+      reader.readMessage(value,proto.forge_abi.Transaction.deserializeBinaryFromReader);
+      msg.addTxs(value);
+      break;
+    default:
+      reader.skipField();
+      break;
     }
   }
   return msg;
 };
+
 
 /**
  * Serializes the message to binary data (in protobuf wire format).
@@ -7601,6 +8455,7 @@ proto.forge_abi.UnconfirmedTxs.prototype.serializeBinary = function() {
   proto.forge_abi.UnconfirmedTxs.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
+
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -7613,13 +8468,21 @@ proto.forge_abi.UnconfirmedTxs.serializeBinaryToWriter = function(message, write
   var f = undefined;
   f = message.getNTxs();
   if (f !== 0) {
-    writer.writeUint32(1, f);
+    writer.writeUint32(
+      1,
+      f
+    );
   }
   f = message.getTxsList();
   if (f.length > 0) {
-    writer.writeRepeatedMessage(2, f, proto.forge_abi.Transaction.serializeBinaryToWriter);
+    writer.writeRepeatedMessage(
+      2,
+      f,
+      proto.forge_abi.Transaction.serializeBinaryToWriter
+    );
   }
 };
+
 
 /**
  * optional uint32 n_txs = 1;
@@ -7629,27 +8492,28 @@ proto.forge_abi.UnconfirmedTxs.prototype.getNTxs = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
 };
 
+
 /** @param {number} value */
 proto.forge_abi.UnconfirmedTxs.prototype.setNTxs = function(value) {
   jspb.Message.setProto3IntField(this, 1, value);
 };
+
 
 /**
  * repeated Transaction txs = 2;
  * @return {!Array<!proto.forge_abi.Transaction>}
  */
 proto.forge_abi.UnconfirmedTxs.prototype.getTxsList = function() {
-  return /** @type{!Array<!proto.forge_abi.Transaction>} */ (jspb.Message.getRepeatedWrapperField(
-    this,
-    proto.forge_abi.Transaction,
-    2
-  ));
+  return /** @type{!Array<!proto.forge_abi.Transaction>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.forge_abi.Transaction, 2));
 };
+
 
 /** @param {!Array<!proto.forge_abi.Transaction>} value */
 proto.forge_abi.UnconfirmedTxs.prototype.setTxsList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 2, value);
 };
+
 
 /**
  * @param {!proto.forge_abi.Transaction=} opt_value
@@ -7657,18 +8521,15 @@ proto.forge_abi.UnconfirmedTxs.prototype.setTxsList = function(value) {
  * @return {!proto.forge_abi.Transaction}
  */
 proto.forge_abi.UnconfirmedTxs.prototype.addTxs = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(
-    this,
-    2,
-    opt_value,
-    proto.forge_abi.Transaction,
-    opt_index
-  );
+  return jspb.Message.addToRepeatedWrapperField(this, 2, opt_value, proto.forge_abi.Transaction, opt_index);
 };
+
 
 proto.forge_abi.UnconfirmedTxs.prototype.clearTxsList = function() {
   this.setTxsList([]);
 };
+
+
 
 /**
  * Generated by JsPbCodeGenerator.
@@ -7692,51 +8553,51 @@ if (goog.DEBUG && !COMPILED) {
  * @private {!Array<number>}
  * @const
  */
-proto.forge_abi.NetInfo.repeatedFields_ = [2, 4];
+proto.forge_abi.NetInfo.repeatedFields_ = [2,4];
+
+
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
-  /**
-   * Creates an object representation of this proto suitable for use in Soy templates.
-   * Field names that are reserved in JavaScript and will be renamed to pb_name.
-   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
-   * For the list of reserved names please see:
-   *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
-   * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
-   *     for transitional soy proto support: http://goto/soy-param-migration
-   * @return {!Object}
-   */
-  proto.forge_abi.NetInfo.prototype.toObject = function(opt_includeInstance) {
-    return proto.forge_abi.NetInfo.toObject(opt_includeInstance, this);
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.forge_abi.NetInfo.prototype.toObject = function(opt_includeInstance) {
+  return proto.forge_abi.NetInfo.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.forge_abi.NetInfo} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.forge_abi.NetInfo.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    listening: jspb.Message.getFieldWithDefault(msg, 1, false),
+    listenersList: jspb.Message.getRepeatedField(msg, 2),
+    nPeers: jspb.Message.getFieldWithDefault(msg, 3, 0),
+    peersList: jspb.Message.toObjectList(msg.getPeersList(),
+    proto.forge_abi.PeerInfo.toObject, includeInstance)
   };
 
-  /**
-   * Static version of the {@see toObject} method.
-   * @param {boolean|undefined} includeInstance Whether to include the JSPB
-   *     instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @param {!proto.forge_abi.NetInfo} msg The msg instance to transform.
-   * @return {!Object}
-   * @suppress {unusedLocalVariables} f is only used for nested messages
-   */
-  proto.forge_abi.NetInfo.toObject = function(includeInstance, msg) {
-    var f,
-      obj = {
-        listening: jspb.Message.getFieldWithDefault(msg, 1, false),
-        listenersList: jspb.Message.getRepeatedField(msg, 2),
-        nPeers: jspb.Message.getFieldWithDefault(msg, 3, 0),
-        peersList: jspb.Message.toObjectList(
-          msg.getPeersList(),
-          proto.forge_abi.PeerInfo.toObject,
-          includeInstance
-        ),
-      };
-
-    if (includeInstance) {
-      obj.$jspbMessageInstance = msg;
-    }
-    return obj;
-  };
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
 }
+
 
 /**
  * Deserializes binary data (in protobuf wire format).
@@ -7745,9 +8606,10 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  */
 proto.forge_abi.NetInfo.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.forge_abi.NetInfo();
+  var msg = new proto.forge_abi.NetInfo;
   return proto.forge_abi.NetInfo.deserializeBinaryFromReader(msg, reader);
 };
+
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -7763,30 +8625,31 @@ proto.forge_abi.NetInfo.deserializeBinaryFromReader = function(msg, reader) {
     }
     var field = reader.getFieldNumber();
     switch (field) {
-      case 1:
-        var value = /** @type {boolean} */ (reader.readBool());
-        msg.setListening(value);
-        break;
-      case 2:
-        var value = /** @type {string} */ (reader.readString());
-        msg.addListeners(value);
-        break;
-      case 3:
-        var value = /** @type {number} */ (reader.readUint32());
-        msg.setNPeers(value);
-        break;
-      case 4:
-        var value = new proto.forge_abi.PeerInfo();
-        reader.readMessage(value, proto.forge_abi.PeerInfo.deserializeBinaryFromReader);
-        msg.addPeers(value);
-        break;
-      default:
-        reader.skipField();
-        break;
+    case 1:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setListening(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.addListeners(value);
+      break;
+    case 3:
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setNPeers(value);
+      break;
+    case 4:
+      var value = new proto.forge_abi.PeerInfo;
+      reader.readMessage(value,proto.forge_abi.PeerInfo.deserializeBinaryFromReader);
+      msg.addPeers(value);
+      break;
+    default:
+      reader.skipField();
+      break;
     }
   }
   return msg;
 };
+
 
 /**
  * Serializes the message to binary data (in protobuf wire format).
@@ -7797,6 +8660,7 @@ proto.forge_abi.NetInfo.prototype.serializeBinary = function() {
   proto.forge_abi.NetInfo.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
+
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -7809,21 +8673,35 @@ proto.forge_abi.NetInfo.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getListening();
   if (f) {
-    writer.writeBool(1, f);
+    writer.writeBool(
+      1,
+      f
+    );
   }
   f = message.getListenersList();
   if (f.length > 0) {
-    writer.writeRepeatedString(2, f);
+    writer.writeRepeatedString(
+      2,
+      f
+    );
   }
   f = message.getNPeers();
   if (f !== 0) {
-    writer.writeUint32(3, f);
+    writer.writeUint32(
+      3,
+      f
+    );
   }
   f = message.getPeersList();
   if (f.length > 0) {
-    writer.writeRepeatedMessage(4, f, proto.forge_abi.PeerInfo.serializeBinaryToWriter);
+    writer.writeRepeatedMessage(
+      4,
+      f,
+      proto.forge_abi.PeerInfo.serializeBinaryToWriter
+    );
   }
 };
+
 
 /**
  * optional bool listening = 1;
@@ -7835,10 +8713,12 @@ proto.forge_abi.NetInfo.prototype.getListening = function() {
   return /** @type {boolean} */ (jspb.Message.getFieldWithDefault(this, 1, false));
 };
 
+
 /** @param {boolean} value */
 proto.forge_abi.NetInfo.prototype.setListening = function(value) {
   jspb.Message.setProto3BooleanField(this, 1, value);
 };
+
 
 /**
  * repeated string listeners = 2;
@@ -7848,10 +8728,12 @@ proto.forge_abi.NetInfo.prototype.getListenersList = function() {
   return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 2));
 };
 
+
 /** @param {!Array<string>} value */
 proto.forge_abi.NetInfo.prototype.setListenersList = function(value) {
   jspb.Message.setField(this, 2, value || []);
 };
+
 
 /**
  * @param {string} value
@@ -7861,9 +8743,11 @@ proto.forge_abi.NetInfo.prototype.addListeners = function(value, opt_index) {
   jspb.Message.addToRepeatedField(this, 2, value, opt_index);
 };
 
+
 proto.forge_abi.NetInfo.prototype.clearListenersList = function() {
   this.setListenersList([]);
 };
+
 
 /**
  * optional uint32 n_peers = 3;
@@ -7873,27 +8757,28 @@ proto.forge_abi.NetInfo.prototype.getNPeers = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
 };
 
+
 /** @param {number} value */
 proto.forge_abi.NetInfo.prototype.setNPeers = function(value) {
   jspb.Message.setProto3IntField(this, 3, value);
 };
+
 
 /**
  * repeated PeerInfo peers = 4;
  * @return {!Array<!proto.forge_abi.PeerInfo>}
  */
 proto.forge_abi.NetInfo.prototype.getPeersList = function() {
-  return /** @type{!Array<!proto.forge_abi.PeerInfo>} */ (jspb.Message.getRepeatedWrapperField(
-    this,
-    proto.forge_abi.PeerInfo,
-    4
-  ));
+  return /** @type{!Array<!proto.forge_abi.PeerInfo>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.forge_abi.PeerInfo, 4));
 };
+
 
 /** @param {!Array<!proto.forge_abi.PeerInfo>} value */
 proto.forge_abi.NetInfo.prototype.setPeersList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 4, value);
 };
+
 
 /**
  * @param {!proto.forge_abi.PeerInfo=} opt_value
@@ -7901,18 +8786,15 @@ proto.forge_abi.NetInfo.prototype.setPeersList = function(value) {
  * @return {!proto.forge_abi.PeerInfo}
  */
 proto.forge_abi.NetInfo.prototype.addPeers = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(
-    this,
-    4,
-    opt_value,
-    proto.forge_abi.PeerInfo,
-    opt_index
-  );
+  return jspb.Message.addToRepeatedWrapperField(this, 4, opt_value, proto.forge_abi.PeerInfo, opt_index);
 };
+
 
 proto.forge_abi.NetInfo.prototype.clearPeersList = function() {
   this.setPeersList([]);
 };
+
+
 
 /**
  * Generated by JsPbCodeGenerator.
@@ -7932,45 +8814,47 @@ if (goog.DEBUG && !COMPILED) {
   proto.forge_abi.GeoInfo.displayName = 'proto.forge_abi.GeoInfo';
 }
 
+
 if (jspb.Message.GENERATE_TO_OBJECT) {
-  /**
-   * Creates an object representation of this proto suitable for use in Soy templates.
-   * Field names that are reserved in JavaScript and will be renamed to pb_name.
-   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
-   * For the list of reserved names please see:
-   *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
-   * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
-   *     for transitional soy proto support: http://goto/soy-param-migration
-   * @return {!Object}
-   */
-  proto.forge_abi.GeoInfo.prototype.toObject = function(opt_includeInstance) {
-    return proto.forge_abi.GeoInfo.toObject(opt_includeInstance, this);
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.forge_abi.GeoInfo.prototype.toObject = function(opt_includeInstance) {
+  return proto.forge_abi.GeoInfo.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.forge_abi.GeoInfo} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.forge_abi.GeoInfo.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    city: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    country: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    latitude: +jspb.Message.getFieldWithDefault(msg, 3, 0.0),
+    longitude: +jspb.Message.getFieldWithDefault(msg, 4, 0.0)
   };
 
-  /**
-   * Static version of the {@see toObject} method.
-   * @param {boolean|undefined} includeInstance Whether to include the JSPB
-   *     instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @param {!proto.forge_abi.GeoInfo} msg The msg instance to transform.
-   * @return {!Object}
-   * @suppress {unusedLocalVariables} f is only used for nested messages
-   */
-  proto.forge_abi.GeoInfo.toObject = function(includeInstance, msg) {
-    var f,
-      obj = {
-        city: jspb.Message.getFieldWithDefault(msg, 1, ''),
-        country: jspb.Message.getFieldWithDefault(msg, 2, ''),
-        latitude: +jspb.Message.getFieldWithDefault(msg, 3, 0.0),
-        longitude: +jspb.Message.getFieldWithDefault(msg, 4, 0.0),
-      };
-
-    if (includeInstance) {
-      obj.$jspbMessageInstance = msg;
-    }
-    return obj;
-  };
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
 }
+
 
 /**
  * Deserializes binary data (in protobuf wire format).
@@ -7979,9 +8863,10 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  */
 proto.forge_abi.GeoInfo.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.forge_abi.GeoInfo();
+  var msg = new proto.forge_abi.GeoInfo;
   return proto.forge_abi.GeoInfo.deserializeBinaryFromReader(msg, reader);
 };
+
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -7997,29 +8882,30 @@ proto.forge_abi.GeoInfo.deserializeBinaryFromReader = function(msg, reader) {
     }
     var field = reader.getFieldNumber();
     switch (field) {
-      case 1:
-        var value = /** @type {string} */ (reader.readString());
-        msg.setCity(value);
-        break;
-      case 2:
-        var value = /** @type {string} */ (reader.readString());
-        msg.setCountry(value);
-        break;
-      case 3:
-        var value = /** @type {number} */ (reader.readFloat());
-        msg.setLatitude(value);
-        break;
-      case 4:
-        var value = /** @type {number} */ (reader.readFloat());
-        msg.setLongitude(value);
-        break;
-      default:
-        reader.skipField();
-        break;
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setCity(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setCountry(value);
+      break;
+    case 3:
+      var value = /** @type {number} */ (reader.readFloat());
+      msg.setLatitude(value);
+      break;
+    case 4:
+      var value = /** @type {number} */ (reader.readFloat());
+      msg.setLongitude(value);
+      break;
+    default:
+      reader.skipField();
+      break;
     }
   }
   return msg;
 };
+
 
 /**
  * Serializes the message to binary data (in protobuf wire format).
@@ -8030,6 +8916,7 @@ proto.forge_abi.GeoInfo.prototype.serializeBinary = function() {
   proto.forge_abi.GeoInfo.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
+
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -8042,47 +8929,64 @@ proto.forge_abi.GeoInfo.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getCity();
   if (f.length > 0) {
-    writer.writeString(1, f);
+    writer.writeString(
+      1,
+      f
+    );
   }
   f = message.getCountry();
   if (f.length > 0) {
-    writer.writeString(2, f);
+    writer.writeString(
+      2,
+      f
+    );
   }
   f = message.getLatitude();
   if (f !== 0.0) {
-    writer.writeFloat(3, f);
+    writer.writeFloat(
+      3,
+      f
+    );
   }
   f = message.getLongitude();
   if (f !== 0.0) {
-    writer.writeFloat(4, f);
+    writer.writeFloat(
+      4,
+      f
+    );
   }
 };
+
 
 /**
  * optional string city = 1;
  * @return {string}
  */
 proto.forge_abi.GeoInfo.prototype.getCity = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ''));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
+
 
 /** @param {string} value */
 proto.forge_abi.GeoInfo.prototype.setCity = function(value) {
   jspb.Message.setProto3StringField(this, 1, value);
 };
 
+
 /**
  * optional string country = 2;
  * @return {string}
  */
 proto.forge_abi.GeoInfo.prototype.getCountry = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ''));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
+
 
 /** @param {string} value */
 proto.forge_abi.GeoInfo.prototype.setCountry = function(value) {
   jspb.Message.setProto3StringField(this, 2, value);
 };
+
 
 /**
  * optional float latitude = 3;
@@ -8092,10 +8996,12 @@ proto.forge_abi.GeoInfo.prototype.getLatitude = function() {
   return /** @type {number} */ (+jspb.Message.getFieldWithDefault(this, 3, 0.0));
 };
 
+
 /** @param {number} value */
 proto.forge_abi.GeoInfo.prototype.setLatitude = function(value) {
   jspb.Message.setProto3FloatField(this, 3, value);
 };
+
 
 /**
  * optional float longitude = 4;
@@ -8105,10 +9011,13 @@ proto.forge_abi.GeoInfo.prototype.getLongitude = function() {
   return /** @type {number} */ (+jspb.Message.getFieldWithDefault(this, 4, 0.0));
 };
 
+
 /** @param {number} value */
 proto.forge_abi.GeoInfo.prototype.setLongitude = function(value) {
   jspb.Message.setProto3FloatField(this, 4, value);
 };
+
+
 
 /**
  * Generated by JsPbCodeGenerator.
@@ -8128,47 +9037,49 @@ if (goog.DEBUG && !COMPILED) {
   proto.forge_abi.PeerInfo.displayName = 'proto.forge_abi.PeerInfo';
 }
 
+
 if (jspb.Message.GENERATE_TO_OBJECT) {
-  /**
-   * Creates an object representation of this proto suitable for use in Soy templates.
-   * Field names that are reserved in JavaScript and will be renamed to pb_name.
-   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
-   * For the list of reserved names please see:
-   *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
-   * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
-   *     for transitional soy proto support: http://goto/soy-param-migration
-   * @return {!Object}
-   */
-  proto.forge_abi.PeerInfo.prototype.toObject = function(opt_includeInstance) {
-    return proto.forge_abi.PeerInfo.toObject(opt_includeInstance, this);
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.forge_abi.PeerInfo.prototype.toObject = function(opt_includeInstance) {
+  return proto.forge_abi.PeerInfo.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.forge_abi.PeerInfo} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.forge_abi.PeerInfo.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    id: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    network: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    consensusVersion: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    moniker: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    ip: jspb.Message.getFieldWithDefault(msg, 5, ""),
+    geoInfo: (f = msg.getGeoInfo()) && proto.forge_abi.GeoInfo.toObject(includeInstance, f)
   };
 
-  /**
-   * Static version of the {@see toObject} method.
-   * @param {boolean|undefined} includeInstance Whether to include the JSPB
-   *     instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @param {!proto.forge_abi.PeerInfo} msg The msg instance to transform.
-   * @return {!Object}
-   * @suppress {unusedLocalVariables} f is only used for nested messages
-   */
-  proto.forge_abi.PeerInfo.toObject = function(includeInstance, msg) {
-    var f,
-      obj = {
-        id: jspb.Message.getFieldWithDefault(msg, 1, ''),
-        network: jspb.Message.getFieldWithDefault(msg, 2, ''),
-        consensusVersion: jspb.Message.getFieldWithDefault(msg, 3, ''),
-        moniker: jspb.Message.getFieldWithDefault(msg, 4, ''),
-        ip: jspb.Message.getFieldWithDefault(msg, 5, ''),
-        geoInfo: (f = msg.getGeoInfo()) && proto.forge_abi.GeoInfo.toObject(includeInstance, f),
-      };
-
-    if (includeInstance) {
-      obj.$jspbMessageInstance = msg;
-    }
-    return obj;
-  };
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
 }
+
 
 /**
  * Deserializes binary data (in protobuf wire format).
@@ -8177,9 +9088,10 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  */
 proto.forge_abi.PeerInfo.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.forge_abi.PeerInfo();
+  var msg = new proto.forge_abi.PeerInfo;
   return proto.forge_abi.PeerInfo.deserializeBinaryFromReader(msg, reader);
 };
+
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -8195,38 +9107,39 @@ proto.forge_abi.PeerInfo.deserializeBinaryFromReader = function(msg, reader) {
     }
     var field = reader.getFieldNumber();
     switch (field) {
-      case 1:
-        var value = /** @type {string} */ (reader.readString());
-        msg.setId(value);
-        break;
-      case 2:
-        var value = /** @type {string} */ (reader.readString());
-        msg.setNetwork(value);
-        break;
-      case 3:
-        var value = /** @type {string} */ (reader.readString());
-        msg.setConsensusVersion(value);
-        break;
-      case 4:
-        var value = /** @type {string} */ (reader.readString());
-        msg.setMoniker(value);
-        break;
-      case 5:
-        var value = /** @type {string} */ (reader.readString());
-        msg.setIp(value);
-        break;
-      case 6:
-        var value = new proto.forge_abi.GeoInfo();
-        reader.readMessage(value, proto.forge_abi.GeoInfo.deserializeBinaryFromReader);
-        msg.setGeoInfo(value);
-        break;
-      default:
-        reader.skipField();
-        break;
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setId(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setNetwork(value);
+      break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setConsensusVersion(value);
+      break;
+    case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setMoniker(value);
+      break;
+    case 5:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setIp(value);
+      break;
+    case 6:
+      var value = new proto.forge_abi.GeoInfo;
+      reader.readMessage(value,proto.forge_abi.GeoInfo.deserializeBinaryFromReader);
+      msg.setGeoInfo(value);
+      break;
+    default:
+      reader.skipField();
+      break;
     }
   }
   return msg;
 };
+
 
 /**
  * Serializes the message to binary data (in protobuf wire format).
@@ -8237,6 +9150,7 @@ proto.forge_abi.PeerInfo.prototype.serializeBinary = function() {
   proto.forge_abi.PeerInfo.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
+
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -8249,115 +9163,145 @@ proto.forge_abi.PeerInfo.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getId();
   if (f.length > 0) {
-    writer.writeString(1, f);
+    writer.writeString(
+      1,
+      f
+    );
   }
   f = message.getNetwork();
   if (f.length > 0) {
-    writer.writeString(2, f);
+    writer.writeString(
+      2,
+      f
+    );
   }
   f = message.getConsensusVersion();
   if (f.length > 0) {
-    writer.writeString(3, f);
+    writer.writeString(
+      3,
+      f
+    );
   }
   f = message.getMoniker();
   if (f.length > 0) {
-    writer.writeString(4, f);
+    writer.writeString(
+      4,
+      f
+    );
   }
   f = message.getIp();
   if (f.length > 0) {
-    writer.writeString(5, f);
+    writer.writeString(
+      5,
+      f
+    );
   }
   f = message.getGeoInfo();
   if (f != null) {
-    writer.writeMessage(6, f, proto.forge_abi.GeoInfo.serializeBinaryToWriter);
+    writer.writeMessage(
+      6,
+      f,
+      proto.forge_abi.GeoInfo.serializeBinaryToWriter
+    );
   }
 };
+
 
 /**
  * optional string id = 1;
  * @return {string}
  */
 proto.forge_abi.PeerInfo.prototype.getId = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ''));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
+
 
 /** @param {string} value */
 proto.forge_abi.PeerInfo.prototype.setId = function(value) {
   jspb.Message.setProto3StringField(this, 1, value);
 };
 
+
 /**
  * optional string network = 2;
  * @return {string}
  */
 proto.forge_abi.PeerInfo.prototype.getNetwork = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ''));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
+
 
 /** @param {string} value */
 proto.forge_abi.PeerInfo.prototype.setNetwork = function(value) {
   jspb.Message.setProto3StringField(this, 2, value);
 };
 
+
 /**
  * optional string consensus_version = 3;
  * @return {string}
  */
 proto.forge_abi.PeerInfo.prototype.getConsensusVersion = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ''));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
+
 
 /** @param {string} value */
 proto.forge_abi.PeerInfo.prototype.setConsensusVersion = function(value) {
   jspb.Message.setProto3StringField(this, 3, value);
 };
 
+
 /**
  * optional string moniker = 4;
  * @return {string}
  */
 proto.forge_abi.PeerInfo.prototype.getMoniker = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ''));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
 };
+
 
 /** @param {string} value */
 proto.forge_abi.PeerInfo.prototype.setMoniker = function(value) {
   jspb.Message.setProto3StringField(this, 4, value);
 };
 
+
 /**
  * optional string ip = 5;
  * @return {string}
  */
 proto.forge_abi.PeerInfo.prototype.getIp = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ''));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
 };
+
 
 /** @param {string} value */
 proto.forge_abi.PeerInfo.prototype.setIp = function(value) {
   jspb.Message.setProto3StringField(this, 5, value);
 };
 
+
 /**
  * optional GeoInfo geo_info = 6;
  * @return {?proto.forge_abi.GeoInfo}
  */
 proto.forge_abi.PeerInfo.prototype.getGeoInfo = function() {
-  return /** @type{?proto.forge_abi.GeoInfo} */ (jspb.Message.getWrapperField(
-    this,
-    proto.forge_abi.GeoInfo,
-    6
-  ));
+  return /** @type{?proto.forge_abi.GeoInfo} */ (
+    jspb.Message.getWrapperField(this, proto.forge_abi.GeoInfo, 6));
 };
+
 
 /** @param {?proto.forge_abi.GeoInfo|undefined} value */
 proto.forge_abi.PeerInfo.prototype.setGeoInfo = function(value) {
   jspb.Message.setWrapperField(this, 6, value);
 };
 
+
 proto.forge_abi.PeerInfo.prototype.clearGeoInfo = function() {
   this.setGeoInfo(undefined);
 };
+
 
 /**
  * Returns whether this field is set.
@@ -8366,6 +9310,8 @@ proto.forge_abi.PeerInfo.prototype.clearGeoInfo = function() {
 proto.forge_abi.PeerInfo.prototype.hasGeoInfo = function() {
   return jspb.Message.getField(this, 6) != null;
 };
+
+
 
 /**
  * Generated by JsPbCodeGenerator.
@@ -8378,14 +9324,7 @@ proto.forge_abi.PeerInfo.prototype.hasGeoInfo = function() {
  * @constructor
  */
 proto.forge_abi.ValidatorsInfo = function(opt_data) {
-  jspb.Message.initialize(
-    this,
-    opt_data,
-    0,
-    -1,
-    proto.forge_abi.ValidatorsInfo.repeatedFields_,
-    null
-  );
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.forge_abi.ValidatorsInfo.repeatedFields_, null);
 };
 goog.inherits(proto.forge_abi.ValidatorsInfo, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -8398,47 +9337,47 @@ if (goog.DEBUG && !COMPILED) {
  */
 proto.forge_abi.ValidatorsInfo.repeatedFields_ = [2];
 
+
+
 if (jspb.Message.GENERATE_TO_OBJECT) {
-  /**
-   * Creates an object representation of this proto suitable for use in Soy templates.
-   * Field names that are reserved in JavaScript and will be renamed to pb_name.
-   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
-   * For the list of reserved names please see:
-   *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
-   * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
-   *     for transitional soy proto support: http://goto/soy-param-migration
-   * @return {!Object}
-   */
-  proto.forge_abi.ValidatorsInfo.prototype.toObject = function(opt_includeInstance) {
-    return proto.forge_abi.ValidatorsInfo.toObject(opt_includeInstance, this);
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.forge_abi.ValidatorsInfo.prototype.toObject = function(opt_includeInstance) {
+  return proto.forge_abi.ValidatorsInfo.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.forge_abi.ValidatorsInfo} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.forge_abi.ValidatorsInfo.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    blockHeight: jspb.Message.getFieldWithDefault(msg, 1, 0),
+    validatorsList: jspb.Message.toObjectList(msg.getValidatorsList(),
+    proto.forge_abi.ValidatorInfo.toObject, includeInstance)
   };
 
-  /**
-   * Static version of the {@see toObject} method.
-   * @param {boolean|undefined} includeInstance Whether to include the JSPB
-   *     instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @param {!proto.forge_abi.ValidatorsInfo} msg The msg instance to transform.
-   * @return {!Object}
-   * @suppress {unusedLocalVariables} f is only used for nested messages
-   */
-  proto.forge_abi.ValidatorsInfo.toObject = function(includeInstance, msg) {
-    var f,
-      obj = {
-        blockHeight: jspb.Message.getFieldWithDefault(msg, 1, 0),
-        validatorsList: jspb.Message.toObjectList(
-          msg.getValidatorsList(),
-          proto.forge_abi.ValidatorInfo.toObject,
-          includeInstance
-        ),
-      };
-
-    if (includeInstance) {
-      obj.$jspbMessageInstance = msg;
-    }
-    return obj;
-  };
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
 }
+
 
 /**
  * Deserializes binary data (in protobuf wire format).
@@ -8447,9 +9386,10 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  */
 proto.forge_abi.ValidatorsInfo.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.forge_abi.ValidatorsInfo();
+  var msg = new proto.forge_abi.ValidatorsInfo;
   return proto.forge_abi.ValidatorsInfo.deserializeBinaryFromReader(msg, reader);
 };
+
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -8465,22 +9405,23 @@ proto.forge_abi.ValidatorsInfo.deserializeBinaryFromReader = function(msg, reade
     }
     var field = reader.getFieldNumber();
     switch (field) {
-      case 1:
-        var value = /** @type {number} */ (reader.readUint64());
-        msg.setBlockHeight(value);
-        break;
-      case 2:
-        var value = new proto.forge_abi.ValidatorInfo();
-        reader.readMessage(value, proto.forge_abi.ValidatorInfo.deserializeBinaryFromReader);
-        msg.addValidators(value);
-        break;
-      default:
-        reader.skipField();
-        break;
+    case 1:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setBlockHeight(value);
+      break;
+    case 2:
+      var value = new proto.forge_abi.ValidatorInfo;
+      reader.readMessage(value,proto.forge_abi.ValidatorInfo.deserializeBinaryFromReader);
+      msg.addValidators(value);
+      break;
+    default:
+      reader.skipField();
+      break;
     }
   }
   return msg;
 };
+
 
 /**
  * Serializes the message to binary data (in protobuf wire format).
@@ -8491,6 +9432,7 @@ proto.forge_abi.ValidatorsInfo.prototype.serializeBinary = function() {
   proto.forge_abi.ValidatorsInfo.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
+
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -8503,13 +9445,21 @@ proto.forge_abi.ValidatorsInfo.serializeBinaryToWriter = function(message, write
   var f = undefined;
   f = message.getBlockHeight();
   if (f !== 0) {
-    writer.writeUint64(1, f);
+    writer.writeUint64(
+      1,
+      f
+    );
   }
   f = message.getValidatorsList();
   if (f.length > 0) {
-    writer.writeRepeatedMessage(2, f, proto.forge_abi.ValidatorInfo.serializeBinaryToWriter);
+    writer.writeRepeatedMessage(
+      2,
+      f,
+      proto.forge_abi.ValidatorInfo.serializeBinaryToWriter
+    );
   }
 };
+
 
 /**
  * optional uint64 block_height = 1;
@@ -8519,27 +9469,28 @@ proto.forge_abi.ValidatorsInfo.prototype.getBlockHeight = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
 };
 
+
 /** @param {number} value */
 proto.forge_abi.ValidatorsInfo.prototype.setBlockHeight = function(value) {
   jspb.Message.setProto3IntField(this, 1, value);
 };
+
 
 /**
  * repeated ValidatorInfo validators = 2;
  * @return {!Array<!proto.forge_abi.ValidatorInfo>}
  */
 proto.forge_abi.ValidatorsInfo.prototype.getValidatorsList = function() {
-  return /** @type{!Array<!proto.forge_abi.ValidatorInfo>} */ (jspb.Message.getRepeatedWrapperField(
-    this,
-    proto.forge_abi.ValidatorInfo,
-    2
-  ));
+  return /** @type{!Array<!proto.forge_abi.ValidatorInfo>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.forge_abi.ValidatorInfo, 2));
 };
+
 
 /** @param {!Array<!proto.forge_abi.ValidatorInfo>} value */
 proto.forge_abi.ValidatorsInfo.prototype.setValidatorsList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 2, value);
 };
+
 
 /**
  * @param {!proto.forge_abi.ValidatorInfo=} opt_value
@@ -8547,18 +9498,15 @@ proto.forge_abi.ValidatorsInfo.prototype.setValidatorsList = function(value) {
  * @return {!proto.forge_abi.ValidatorInfo}
  */
 proto.forge_abi.ValidatorsInfo.prototype.addValidators = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(
-    this,
-    2,
-    opt_value,
-    proto.forge_abi.ValidatorInfo,
-    opt_index
-  );
+  return jspb.Message.addToRepeatedWrapperField(this, 2, opt_value, proto.forge_abi.ValidatorInfo, opt_index);
 };
+
 
 proto.forge_abi.ValidatorsInfo.prototype.clearValidatorsList = function() {
   this.setValidatorsList([]);
 };
+
+
 
 /**
  * Generated by JsPbCodeGenerator.
@@ -8578,47 +9526,49 @@ if (goog.DEBUG && !COMPILED) {
   proto.forge_abi.ValidatorInfo.displayName = 'proto.forge_abi.ValidatorInfo';
 }
 
+
 if (jspb.Message.GENERATE_TO_OBJECT) {
-  /**
-   * Creates an object representation of this proto suitable for use in Soy templates.
-   * Field names that are reserved in JavaScript and will be renamed to pb_name.
-   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
-   * For the list of reserved names please see:
-   *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
-   * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
-   *     for transitional soy proto support: http://goto/soy-param-migration
-   * @return {!Object}
-   */
-  proto.forge_abi.ValidatorInfo.prototype.toObject = function(opt_includeInstance) {
-    return proto.forge_abi.ValidatorInfo.toObject(opt_includeInstance, this);
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.forge_abi.ValidatorInfo.prototype.toObject = function(opt_includeInstance) {
+  return proto.forge_abi.ValidatorInfo.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.forge_abi.ValidatorInfo} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.forge_abi.ValidatorInfo.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    address: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    pubKey: (f = msg.getPubKey()) && vendor_pb.PubKey.toObject(includeInstance, f),
+    votingPower: jspb.Message.getFieldWithDefault(msg, 3, 0),
+    proposerPriority: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    name: jspb.Message.getFieldWithDefault(msg, 5, ""),
+    geoInfo: (f = msg.getGeoInfo()) && proto.forge_abi.GeoInfo.toObject(includeInstance, f)
   };
 
-  /**
-   * Static version of the {@see toObject} method.
-   * @param {boolean|undefined} includeInstance Whether to include the JSPB
-   *     instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @param {!proto.forge_abi.ValidatorInfo} msg The msg instance to transform.
-   * @return {!Object}
-   * @suppress {unusedLocalVariables} f is only used for nested messages
-   */
-  proto.forge_abi.ValidatorInfo.toObject = function(includeInstance, msg) {
-    var f,
-      obj = {
-        address: jspb.Message.getFieldWithDefault(msg, 1, ''),
-        pubKey: (f = msg.getPubKey()) && vendor_pb.PubKey.toObject(includeInstance, f),
-        votingPower: jspb.Message.getFieldWithDefault(msg, 3, 0),
-        proposerPriority: jspb.Message.getFieldWithDefault(msg, 4, ''),
-        name: jspb.Message.getFieldWithDefault(msg, 5, ''),
-        geoInfo: (f = msg.getGeoInfo()) && proto.forge_abi.GeoInfo.toObject(includeInstance, f),
-      };
-
-    if (includeInstance) {
-      obj.$jspbMessageInstance = msg;
-    }
-    return obj;
-  };
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
 }
+
 
 /**
  * Deserializes binary data (in protobuf wire format).
@@ -8627,9 +9577,10 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  */
 proto.forge_abi.ValidatorInfo.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.forge_abi.ValidatorInfo();
+  var msg = new proto.forge_abi.ValidatorInfo;
   return proto.forge_abi.ValidatorInfo.deserializeBinaryFromReader(msg, reader);
 };
+
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -8645,39 +9596,40 @@ proto.forge_abi.ValidatorInfo.deserializeBinaryFromReader = function(msg, reader
     }
     var field = reader.getFieldNumber();
     switch (field) {
-      case 1:
-        var value = /** @type {string} */ (reader.readString());
-        msg.setAddress(value);
-        break;
-      case 2:
-        var value = new vendor_pb.PubKey();
-        reader.readMessage(value, vendor_pb.PubKey.deserializeBinaryFromReader);
-        msg.setPubKey(value);
-        break;
-      case 3:
-        var value = /** @type {number} */ (reader.readUint64());
-        msg.setVotingPower(value);
-        break;
-      case 4:
-        var value = /** @type {string} */ (reader.readString());
-        msg.setProposerPriority(value);
-        break;
-      case 5:
-        var value = /** @type {string} */ (reader.readString());
-        msg.setName(value);
-        break;
-      case 6:
-        var value = new proto.forge_abi.GeoInfo();
-        reader.readMessage(value, proto.forge_abi.GeoInfo.deserializeBinaryFromReader);
-        msg.setGeoInfo(value);
-        break;
-      default:
-        reader.skipField();
-        break;
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setAddress(value);
+      break;
+    case 2:
+      var value = new vendor_pb.PubKey;
+      reader.readMessage(value,vendor_pb.PubKey.deserializeBinaryFromReader);
+      msg.setPubKey(value);
+      break;
+    case 3:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setVotingPower(value);
+      break;
+    case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setProposerPriority(value);
+      break;
+    case 5:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setName(value);
+      break;
+    case 6:
+      var value = new proto.forge_abi.GeoInfo;
+      reader.readMessage(value,proto.forge_abi.GeoInfo.deserializeBinaryFromReader);
+      msg.setGeoInfo(value);
+      break;
+    default:
+      reader.skipField();
+      break;
     }
   }
   return msg;
 };
+
 
 /**
  * Serializes the message to binary data (in protobuf wire format).
@@ -8688,6 +9640,7 @@ proto.forge_abi.ValidatorInfo.prototype.serializeBinary = function() {
   proto.forge_abi.ValidatorInfo.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
+
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -8700,63 +9653,86 @@ proto.forge_abi.ValidatorInfo.serializeBinaryToWriter = function(message, writer
   var f = undefined;
   f = message.getAddress();
   if (f.length > 0) {
-    writer.writeString(1, f);
+    writer.writeString(
+      1,
+      f
+    );
   }
   f = message.getPubKey();
   if (f != null) {
-    writer.writeMessage(2, f, vendor_pb.PubKey.serializeBinaryToWriter);
+    writer.writeMessage(
+      2,
+      f,
+      vendor_pb.PubKey.serializeBinaryToWriter
+    );
   }
   f = message.getVotingPower();
   if (f !== 0) {
-    writer.writeUint64(3, f);
+    writer.writeUint64(
+      3,
+      f
+    );
   }
   f = message.getProposerPriority();
   if (f.length > 0) {
-    writer.writeString(4, f);
+    writer.writeString(
+      4,
+      f
+    );
   }
   f = message.getName();
   if (f.length > 0) {
-    writer.writeString(5, f);
+    writer.writeString(
+      5,
+      f
+    );
   }
   f = message.getGeoInfo();
   if (f != null) {
-    writer.writeMessage(6, f, proto.forge_abi.GeoInfo.serializeBinaryToWriter);
+    writer.writeMessage(
+      6,
+      f,
+      proto.forge_abi.GeoInfo.serializeBinaryToWriter
+    );
   }
 };
+
 
 /**
  * optional string address = 1;
  * @return {string}
  */
 proto.forge_abi.ValidatorInfo.prototype.getAddress = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ''));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
+
 
 /** @param {string} value */
 proto.forge_abi.ValidatorInfo.prototype.setAddress = function(value) {
   jspb.Message.setProto3StringField(this, 1, value);
 };
 
+
 /**
  * optional abci_vendor.PubKey pub_key = 2;
  * @return {?proto.abci_vendor.PubKey}
  */
 proto.forge_abi.ValidatorInfo.prototype.getPubKey = function() {
-  return /** @type{?proto.abci_vendor.PubKey} */ (jspb.Message.getWrapperField(
-    this,
-    vendor_pb.PubKey,
-    2
-  ));
+  return /** @type{?proto.abci_vendor.PubKey} */ (
+    jspb.Message.getWrapperField(this, vendor_pb.PubKey, 2));
 };
+
 
 /** @param {?proto.abci_vendor.PubKey|undefined} value */
 proto.forge_abi.ValidatorInfo.prototype.setPubKey = function(value) {
   jspb.Message.setWrapperField(this, 2, value);
 };
 
+
 proto.forge_abi.ValidatorInfo.prototype.clearPubKey = function() {
   this.setPubKey(undefined);
 };
+
 
 /**
  * Returns whether this field is set.
@@ -8766,6 +9742,7 @@ proto.forge_abi.ValidatorInfo.prototype.hasPubKey = function() {
   return jspb.Message.getField(this, 2) != null;
 };
 
+
 /**
  * optional uint64 voting_power = 3;
  * @return {number}
@@ -8774,57 +9751,63 @@ proto.forge_abi.ValidatorInfo.prototype.getVotingPower = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
 };
 
+
 /** @param {number} value */
 proto.forge_abi.ValidatorInfo.prototype.setVotingPower = function(value) {
   jspb.Message.setProto3IntField(this, 3, value);
 };
+
 
 /**
  * optional string proposer_priority = 4;
  * @return {string}
  */
 proto.forge_abi.ValidatorInfo.prototype.getProposerPriority = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ''));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
 };
+
 
 /** @param {string} value */
 proto.forge_abi.ValidatorInfo.prototype.setProposerPriority = function(value) {
   jspb.Message.setProto3StringField(this, 4, value);
 };
 
+
 /**
  * optional string name = 5;
  * @return {string}
  */
 proto.forge_abi.ValidatorInfo.prototype.getName = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ''));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
 };
+
 
 /** @param {string} value */
 proto.forge_abi.ValidatorInfo.prototype.setName = function(value) {
   jspb.Message.setProto3StringField(this, 5, value);
 };
 
+
 /**
  * optional GeoInfo geo_info = 6;
  * @return {?proto.forge_abi.GeoInfo}
  */
 proto.forge_abi.ValidatorInfo.prototype.getGeoInfo = function() {
-  return /** @type{?proto.forge_abi.GeoInfo} */ (jspb.Message.getWrapperField(
-    this,
-    proto.forge_abi.GeoInfo,
-    6
-  ));
+  return /** @type{?proto.forge_abi.GeoInfo} */ (
+    jspb.Message.getWrapperField(this, proto.forge_abi.GeoInfo, 6));
 };
+
 
 /** @param {?proto.forge_abi.GeoInfo|undefined} value */
 proto.forge_abi.ValidatorInfo.prototype.setGeoInfo = function(value) {
   jspb.Message.setWrapperField(this, 6, value);
 };
 
+
 proto.forge_abi.ValidatorInfo.prototype.clearGeoInfo = function() {
   this.setGeoInfo(undefined);
 };
+
 
 /**
  * Returns whether this field is set.
@@ -8833,6 +9816,8 @@ proto.forge_abi.ValidatorInfo.prototype.clearGeoInfo = function() {
 proto.forge_abi.ValidatorInfo.prototype.hasGeoInfo = function() {
   return jspb.Message.getField(this, 6) != null;
 };
+
+
 
 /**
  * Generated by JsPbCodeGenerator.
@@ -8858,51 +9843,50 @@ if (goog.DEBUG && !COMPILED) {
  */
 proto.forge_abi.GenesisInfo.repeatedFields_ = [4];
 
+
+
 if (jspb.Message.GENERATE_TO_OBJECT) {
-  /**
-   * Creates an object representation of this proto suitable for use in Soy templates.
-   * Field names that are reserved in JavaScript and will be renamed to pb_name.
-   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
-   * For the list of reserved names please see:
-   *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
-   * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
-   *     for transitional soy proto support: http://goto/soy-param-migration
-   * @return {!Object}
-   */
-  proto.forge_abi.GenesisInfo.prototype.toObject = function(opt_includeInstance) {
-    return proto.forge_abi.GenesisInfo.toObject(opt_includeInstance, this);
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.forge_abi.GenesisInfo.prototype.toObject = function(opt_includeInstance) {
+  return proto.forge_abi.GenesisInfo.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.forge_abi.GenesisInfo} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.forge_abi.GenesisInfo.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    genesisTime: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    chainId: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    consensusParams: (f = msg.getConsensusParams()) && vendor_pb.ConsensusParams.toObject(includeInstance, f),
+    validatorsList: jspb.Message.toObjectList(msg.getValidatorsList(),
+    proto.forge_abi.ValidatorInfo.toObject, includeInstance),
+    appHash: jspb.Message.getFieldWithDefault(msg, 5, "")
   };
 
-  /**
-   * Static version of the {@see toObject} method.
-   * @param {boolean|undefined} includeInstance Whether to include the JSPB
-   *     instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @param {!proto.forge_abi.GenesisInfo} msg The msg instance to transform.
-   * @return {!Object}
-   * @suppress {unusedLocalVariables} f is only used for nested messages
-   */
-  proto.forge_abi.GenesisInfo.toObject = function(includeInstance, msg) {
-    var f,
-      obj = {
-        genesisTime: jspb.Message.getFieldWithDefault(msg, 1, ''),
-        chainId: jspb.Message.getFieldWithDefault(msg, 2, ''),
-        consensusParams:
-          (f = msg.getConsensusParams()) && vendor_pb.ConsensusParams.toObject(includeInstance, f),
-        validatorsList: jspb.Message.toObjectList(
-          msg.getValidatorsList(),
-          proto.forge_abi.ValidatorInfo.toObject,
-          includeInstance
-        ),
-        appHash: jspb.Message.getFieldWithDefault(msg, 5, ''),
-      };
-
-    if (includeInstance) {
-      obj.$jspbMessageInstance = msg;
-    }
-    return obj;
-  };
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
 }
+
 
 /**
  * Deserializes binary data (in protobuf wire format).
@@ -8911,9 +9895,10 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  */
 proto.forge_abi.GenesisInfo.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.forge_abi.GenesisInfo();
+  var msg = new proto.forge_abi.GenesisInfo;
   return proto.forge_abi.GenesisInfo.deserializeBinaryFromReader(msg, reader);
 };
+
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -8929,35 +9914,36 @@ proto.forge_abi.GenesisInfo.deserializeBinaryFromReader = function(msg, reader) 
     }
     var field = reader.getFieldNumber();
     switch (field) {
-      case 1:
-        var value = /** @type {string} */ (reader.readString());
-        msg.setGenesisTime(value);
-        break;
-      case 2:
-        var value = /** @type {string} */ (reader.readString());
-        msg.setChainId(value);
-        break;
-      case 3:
-        var value = new vendor_pb.ConsensusParams();
-        reader.readMessage(value, vendor_pb.ConsensusParams.deserializeBinaryFromReader);
-        msg.setConsensusParams(value);
-        break;
-      case 4:
-        var value = new proto.forge_abi.ValidatorInfo();
-        reader.readMessage(value, proto.forge_abi.ValidatorInfo.deserializeBinaryFromReader);
-        msg.addValidators(value);
-        break;
-      case 5:
-        var value = /** @type {string} */ (reader.readString());
-        msg.setAppHash(value);
-        break;
-      default:
-        reader.skipField();
-        break;
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setGenesisTime(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setChainId(value);
+      break;
+    case 3:
+      var value = new vendor_pb.ConsensusParams;
+      reader.readMessage(value,vendor_pb.ConsensusParams.deserializeBinaryFromReader);
+      msg.setConsensusParams(value);
+      break;
+    case 4:
+      var value = new proto.forge_abi.ValidatorInfo;
+      reader.readMessage(value,proto.forge_abi.ValidatorInfo.deserializeBinaryFromReader);
+      msg.addValidators(value);
+      break;
+    case 5:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setAppHash(value);
+      break;
+    default:
+      reader.skipField();
+      break;
     }
   }
   return msg;
 };
+
 
 /**
  * Serializes the message to binary data (in protobuf wire format).
@@ -8968,6 +9954,7 @@ proto.forge_abi.GenesisInfo.prototype.serializeBinary = function() {
   proto.forge_abi.GenesisInfo.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
+
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -8980,72 +9967,94 @@ proto.forge_abi.GenesisInfo.serializeBinaryToWriter = function(message, writer) 
   var f = undefined;
   f = message.getGenesisTime();
   if (f.length > 0) {
-    writer.writeString(1, f);
+    writer.writeString(
+      1,
+      f
+    );
   }
   f = message.getChainId();
   if (f.length > 0) {
-    writer.writeString(2, f);
+    writer.writeString(
+      2,
+      f
+    );
   }
   f = message.getConsensusParams();
   if (f != null) {
-    writer.writeMessage(3, f, vendor_pb.ConsensusParams.serializeBinaryToWriter);
+    writer.writeMessage(
+      3,
+      f,
+      vendor_pb.ConsensusParams.serializeBinaryToWriter
+    );
   }
   f = message.getValidatorsList();
   if (f.length > 0) {
-    writer.writeRepeatedMessage(4, f, proto.forge_abi.ValidatorInfo.serializeBinaryToWriter);
+    writer.writeRepeatedMessage(
+      4,
+      f,
+      proto.forge_abi.ValidatorInfo.serializeBinaryToWriter
+    );
   }
   f = message.getAppHash();
   if (f.length > 0) {
-    writer.writeString(5, f);
+    writer.writeString(
+      5,
+      f
+    );
   }
 };
+
 
 /**
  * optional string genesis_time = 1;
  * @return {string}
  */
 proto.forge_abi.GenesisInfo.prototype.getGenesisTime = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ''));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
+
 
 /** @param {string} value */
 proto.forge_abi.GenesisInfo.prototype.setGenesisTime = function(value) {
   jspb.Message.setProto3StringField(this, 1, value);
 };
 
+
 /**
  * optional string chain_id = 2;
  * @return {string}
  */
 proto.forge_abi.GenesisInfo.prototype.getChainId = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ''));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
+
 
 /** @param {string} value */
 proto.forge_abi.GenesisInfo.prototype.setChainId = function(value) {
   jspb.Message.setProto3StringField(this, 2, value);
 };
 
+
 /**
  * optional abci_vendor.ConsensusParams consensus_params = 3;
  * @return {?proto.abci_vendor.ConsensusParams}
  */
 proto.forge_abi.GenesisInfo.prototype.getConsensusParams = function() {
-  return /** @type{?proto.abci_vendor.ConsensusParams} */ (jspb.Message.getWrapperField(
-    this,
-    vendor_pb.ConsensusParams,
-    3
-  ));
+  return /** @type{?proto.abci_vendor.ConsensusParams} */ (
+    jspb.Message.getWrapperField(this, vendor_pb.ConsensusParams, 3));
 };
+
 
 /** @param {?proto.abci_vendor.ConsensusParams|undefined} value */
 proto.forge_abi.GenesisInfo.prototype.setConsensusParams = function(value) {
   jspb.Message.setWrapperField(this, 3, value);
 };
 
+
 proto.forge_abi.GenesisInfo.prototype.clearConsensusParams = function() {
   this.setConsensusParams(undefined);
 };
+
 
 /**
  * Returns whether this field is set.
@@ -9055,22 +10064,22 @@ proto.forge_abi.GenesisInfo.prototype.hasConsensusParams = function() {
   return jspb.Message.getField(this, 3) != null;
 };
 
+
 /**
  * repeated ValidatorInfo validators = 4;
  * @return {!Array<!proto.forge_abi.ValidatorInfo>}
  */
 proto.forge_abi.GenesisInfo.prototype.getValidatorsList = function() {
-  return /** @type{!Array<!proto.forge_abi.ValidatorInfo>} */ (jspb.Message.getRepeatedWrapperField(
-    this,
-    proto.forge_abi.ValidatorInfo,
-    4
-  ));
+  return /** @type{!Array<!proto.forge_abi.ValidatorInfo>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.forge_abi.ValidatorInfo, 4));
 };
+
 
 /** @param {!Array<!proto.forge_abi.ValidatorInfo>} value */
 proto.forge_abi.GenesisInfo.prototype.setValidatorsList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 4, value);
 };
+
 
 /**
  * @param {!proto.forge_abi.ValidatorInfo=} opt_value
@@ -9078,31 +10087,30 @@ proto.forge_abi.GenesisInfo.prototype.setValidatorsList = function(value) {
  * @return {!proto.forge_abi.ValidatorInfo}
  */
 proto.forge_abi.GenesisInfo.prototype.addValidators = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(
-    this,
-    4,
-    opt_value,
-    proto.forge_abi.ValidatorInfo,
-    opt_index
-  );
+  return jspb.Message.addToRepeatedWrapperField(this, 4, opt_value, proto.forge_abi.ValidatorInfo, opt_index);
 };
+
 
 proto.forge_abi.GenesisInfo.prototype.clearValidatorsList = function() {
   this.setValidatorsList([]);
 };
+
 
 /**
  * optional string app_hash = 5;
  * @return {string}
  */
 proto.forge_abi.GenesisInfo.prototype.getAppHash = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ''));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
 };
+
 
 /** @param {string} value */
 proto.forge_abi.GenesisInfo.prototype.setAppHash = function(value) {
   jspb.Message.setProto3StringField(this, 5, value);
 };
+
+
 
 /**
  * Generated by JsPbCodeGenerator.
@@ -9126,85 +10134,67 @@ if (goog.DEBUG && !COMPILED) {
  * @private {!Array<number>}
  * @const
  */
-proto.forge_abi.ForgeStats.repeatedFields_ = [
-  1,
-  2,
-  3,
-  4,
-  5,
-  6,
-  7,
-  8,
-  9,
-  10,
-  11,
-  12,
-  13,
-  14,
-  15,
-  16,
-  17,
-];
+proto.forge_abi.ForgeStats.repeatedFields_ = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17];
+
+
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
-  /**
-   * Creates an object representation of this proto suitable for use in Soy templates.
-   * Field names that are reserved in JavaScript and will be renamed to pb_name.
-   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
-   * For the list of reserved names please see:
-   *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
-   * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
-   *     for transitional soy proto support: http://goto/soy-param-migration
-   * @return {!Object}
-   */
-  proto.forge_abi.ForgeStats.prototype.toObject = function(opt_includeInstance) {
-    return proto.forge_abi.ForgeStats.toObject(opt_includeInstance, this);
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.forge_abi.ForgeStats.prototype.toObject = function(opt_includeInstance) {
+  return proto.forge_abi.ForgeStats.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.forge_abi.ForgeStats} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.forge_abi.ForgeStats.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    numBlocksList: jspb.Message.getRepeatedField(msg, 1),
+    numTxsList: jspb.Message.getRepeatedField(msg, 2),
+    numStakesList: jspb.Message.toObjectList(msg.getNumStakesList(),
+    proto.forge_abi.BigUint.toObject, includeInstance),
+    numValidatorsList: jspb.Message.getRepeatedField(msg, 4),
+    numAccountMigrateTxsList: jspb.Message.getRepeatedField(msg, 5),
+    numCreateAssetTxsList: jspb.Message.getRepeatedField(msg, 6),
+    numConsensusUpgradeTxsList: jspb.Message.getRepeatedField(msg, 7),
+    numDeclareTxsList: jspb.Message.getRepeatedField(msg, 8),
+    numDeclareFileTxsList: jspb.Message.getRepeatedField(msg, 9),
+    numExchangeTxsList: jspb.Message.getRepeatedField(msg, 10),
+    numStakeTxsList: jspb.Message.getRepeatedField(msg, 11),
+    numSysUpgradeTxsList: jspb.Message.getRepeatedField(msg, 12),
+    numTransferTxsList: jspb.Message.getRepeatedField(msg, 13),
+    numUpdateAssetTxsList: jspb.Message.getRepeatedField(msg, 14),
+    numConsumeAssetTxsList: jspb.Message.getRepeatedField(msg, 15),
+    numPokeTxsList: jspb.Message.getRepeatedField(msg, 16),
+    tpsList: jspb.Message.getRepeatedField(msg, 17),
+    maxTps: jspb.Message.getFieldWithDefault(msg, 18, 0),
+    avgTps: jspb.Message.getFieldWithDefault(msg, 19, 0),
+    avgBlockTime: +jspb.Message.getFieldWithDefault(msg, 20, 0.0)
   };
 
-  /**
-   * Static version of the {@see toObject} method.
-   * @param {boolean|undefined} includeInstance Whether to include the JSPB
-   *     instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @param {!proto.forge_abi.ForgeStats} msg The msg instance to transform.
-   * @return {!Object}
-   * @suppress {unusedLocalVariables} f is only used for nested messages
-   */
-  proto.forge_abi.ForgeStats.toObject = function(includeInstance, msg) {
-    var f,
-      obj = {
-        numBlocksList: jspb.Message.getRepeatedField(msg, 1),
-        numTxsList: jspb.Message.getRepeatedField(msg, 2),
-        numStakesList: jspb.Message.toObjectList(
-          msg.getNumStakesList(),
-          proto.forge_abi.BigUint.toObject,
-          includeInstance
-        ),
-        numValidatorsList: jspb.Message.getRepeatedField(msg, 4),
-        numAccountMigrateTxsList: jspb.Message.getRepeatedField(msg, 5),
-        numCreateAssetTxsList: jspb.Message.getRepeatedField(msg, 6),
-        numConsensusUpgradeTxsList: jspb.Message.getRepeatedField(msg, 7),
-        numDeclareTxsList: jspb.Message.getRepeatedField(msg, 8),
-        numDeclareFileTxsList: jspb.Message.getRepeatedField(msg, 9),
-        numExchangeTxsList: jspb.Message.getRepeatedField(msg, 10),
-        numStakeTxsList: jspb.Message.getRepeatedField(msg, 11),
-        numSysUpgradeTxsList: jspb.Message.getRepeatedField(msg, 12),
-        numTransferTxsList: jspb.Message.getRepeatedField(msg, 13),
-        numUpdateAssetTxsList: jspb.Message.getRepeatedField(msg, 14),
-        numConsumeAssetTxsList: jspb.Message.getRepeatedField(msg, 15),
-        numPokeTxsList: jspb.Message.getRepeatedField(msg, 16),
-        tpsList: jspb.Message.getRepeatedField(msg, 17),
-        maxTps: jspb.Message.getFieldWithDefault(msg, 18, 0),
-        avgTps: jspb.Message.getFieldWithDefault(msg, 19, 0),
-        avgBlockTime: +jspb.Message.getFieldWithDefault(msg, 20, 0.0),
-      };
-
-    if (includeInstance) {
-      obj.$jspbMessageInstance = msg;
-    }
-    return obj;
-  };
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
 }
+
 
 /**
  * Deserializes binary data (in protobuf wire format).
@@ -9213,9 +10203,10 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  */
 proto.forge_abi.ForgeStats.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.forge_abi.ForgeStats();
+  var msg = new proto.forge_abi.ForgeStats;
   return proto.forge_abi.ForgeStats.deserializeBinaryFromReader(msg, reader);
 };
+
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -9231,94 +10222,95 @@ proto.forge_abi.ForgeStats.deserializeBinaryFromReader = function(msg, reader) {
     }
     var field = reader.getFieldNumber();
     switch (field) {
-      case 1:
-        var value = /** @type {!Array<number>} */ (reader.readPackedUint64());
-        msg.setNumBlocksList(value);
-        break;
-      case 2:
-        var value = /** @type {!Array<number>} */ (reader.readPackedUint64());
-        msg.setNumTxsList(value);
-        break;
-      case 3:
-        var value = new proto.forge_abi.BigUint();
-        reader.readMessage(value, proto.forge_abi.BigUint.deserializeBinaryFromReader);
-        msg.addNumStakes(value);
-        break;
-      case 4:
-        var value = /** @type {!Array<number>} */ (reader.readPackedUint32());
-        msg.setNumValidatorsList(value);
-        break;
-      case 5:
-        var value = /** @type {!Array<number>} */ (reader.readPackedUint64());
-        msg.setNumAccountMigrateTxsList(value);
-        break;
-      case 6:
-        var value = /** @type {!Array<number>} */ (reader.readPackedUint64());
-        msg.setNumCreateAssetTxsList(value);
-        break;
-      case 7:
-        var value = /** @type {!Array<number>} */ (reader.readPackedUint32());
-        msg.setNumConsensusUpgradeTxsList(value);
-        break;
-      case 8:
-        var value = /** @type {!Array<number>} */ (reader.readPackedUint64());
-        msg.setNumDeclareTxsList(value);
-        break;
-      case 9:
-        var value = /** @type {!Array<number>} */ (reader.readPackedUint64());
-        msg.setNumDeclareFileTxsList(value);
-        break;
-      case 10:
-        var value = /** @type {!Array<number>} */ (reader.readPackedUint64());
-        msg.setNumExchangeTxsList(value);
-        break;
-      case 11:
-        var value = /** @type {!Array<number>} */ (reader.readPackedUint64());
-        msg.setNumStakeTxsList(value);
-        break;
-      case 12:
-        var value = /** @type {!Array<number>} */ (reader.readPackedUint32());
-        msg.setNumSysUpgradeTxsList(value);
-        break;
-      case 13:
-        var value = /** @type {!Array<number>} */ (reader.readPackedUint64());
-        msg.setNumTransferTxsList(value);
-        break;
-      case 14:
-        var value = /** @type {!Array<number>} */ (reader.readPackedUint64());
-        msg.setNumUpdateAssetTxsList(value);
-        break;
-      case 15:
-        var value = /** @type {!Array<number>} */ (reader.readPackedUint64());
-        msg.setNumConsumeAssetTxsList(value);
-        break;
-      case 16:
-        var value = /** @type {!Array<number>} */ (reader.readPackedUint64());
-        msg.setNumPokeTxsList(value);
-        break;
-      case 17:
-        var value = /** @type {!Array<number>} */ (reader.readPackedUint32());
-        msg.setTpsList(value);
-        break;
-      case 18:
-        var value = /** @type {number} */ (reader.readUint32());
-        msg.setMaxTps(value);
-        break;
-      case 19:
-        var value = /** @type {number} */ (reader.readUint32());
-        msg.setAvgTps(value);
-        break;
-      case 20:
-        var value = /** @type {number} */ (reader.readFloat());
-        msg.setAvgBlockTime(value);
-        break;
-      default:
-        reader.skipField();
-        break;
+    case 1:
+      var value = /** @type {!Array<number>} */ (reader.readPackedUint64());
+      msg.setNumBlocksList(value);
+      break;
+    case 2:
+      var value = /** @type {!Array<number>} */ (reader.readPackedUint64());
+      msg.setNumTxsList(value);
+      break;
+    case 3:
+      var value = new proto.forge_abi.BigUint;
+      reader.readMessage(value,proto.forge_abi.BigUint.deserializeBinaryFromReader);
+      msg.addNumStakes(value);
+      break;
+    case 4:
+      var value = /** @type {!Array<number>} */ (reader.readPackedUint32());
+      msg.setNumValidatorsList(value);
+      break;
+    case 5:
+      var value = /** @type {!Array<number>} */ (reader.readPackedUint64());
+      msg.setNumAccountMigrateTxsList(value);
+      break;
+    case 6:
+      var value = /** @type {!Array<number>} */ (reader.readPackedUint64());
+      msg.setNumCreateAssetTxsList(value);
+      break;
+    case 7:
+      var value = /** @type {!Array<number>} */ (reader.readPackedUint32());
+      msg.setNumConsensusUpgradeTxsList(value);
+      break;
+    case 8:
+      var value = /** @type {!Array<number>} */ (reader.readPackedUint64());
+      msg.setNumDeclareTxsList(value);
+      break;
+    case 9:
+      var value = /** @type {!Array<number>} */ (reader.readPackedUint64());
+      msg.setNumDeclareFileTxsList(value);
+      break;
+    case 10:
+      var value = /** @type {!Array<number>} */ (reader.readPackedUint64());
+      msg.setNumExchangeTxsList(value);
+      break;
+    case 11:
+      var value = /** @type {!Array<number>} */ (reader.readPackedUint64());
+      msg.setNumStakeTxsList(value);
+      break;
+    case 12:
+      var value = /** @type {!Array<number>} */ (reader.readPackedUint32());
+      msg.setNumSysUpgradeTxsList(value);
+      break;
+    case 13:
+      var value = /** @type {!Array<number>} */ (reader.readPackedUint64());
+      msg.setNumTransferTxsList(value);
+      break;
+    case 14:
+      var value = /** @type {!Array<number>} */ (reader.readPackedUint64());
+      msg.setNumUpdateAssetTxsList(value);
+      break;
+    case 15:
+      var value = /** @type {!Array<number>} */ (reader.readPackedUint64());
+      msg.setNumConsumeAssetTxsList(value);
+      break;
+    case 16:
+      var value = /** @type {!Array<number>} */ (reader.readPackedUint64());
+      msg.setNumPokeTxsList(value);
+      break;
+    case 17:
+      var value = /** @type {!Array<number>} */ (reader.readPackedUint32());
+      msg.setTpsList(value);
+      break;
+    case 18:
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setMaxTps(value);
+      break;
+    case 19:
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setAvgTps(value);
+      break;
+    case 20:
+      var value = /** @type {number} */ (reader.readFloat());
+      msg.setAvgBlockTime(value);
+      break;
+    default:
+      reader.skipField();
+      break;
     }
   }
   return msg;
 };
+
 
 /**
  * Serializes the message to binary data (in protobuf wire format).
@@ -9329,6 +10321,7 @@ proto.forge_abi.ForgeStats.prototype.serializeBinary = function() {
   proto.forge_abi.ForgeStats.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
+
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -9341,85 +10334,147 @@ proto.forge_abi.ForgeStats.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getNumBlocksList();
   if (f.length > 0) {
-    writer.writePackedUint64(1, f);
+    writer.writePackedUint64(
+      1,
+      f
+    );
   }
   f = message.getNumTxsList();
   if (f.length > 0) {
-    writer.writePackedUint64(2, f);
+    writer.writePackedUint64(
+      2,
+      f
+    );
   }
   f = message.getNumStakesList();
   if (f.length > 0) {
-    writer.writeRepeatedMessage(3, f, proto.forge_abi.BigUint.serializeBinaryToWriter);
+    writer.writeRepeatedMessage(
+      3,
+      f,
+      proto.forge_abi.BigUint.serializeBinaryToWriter
+    );
   }
   f = message.getNumValidatorsList();
   if (f.length > 0) {
-    writer.writePackedUint32(4, f);
+    writer.writePackedUint32(
+      4,
+      f
+    );
   }
   f = message.getNumAccountMigrateTxsList();
   if (f.length > 0) {
-    writer.writePackedUint64(5, f);
+    writer.writePackedUint64(
+      5,
+      f
+    );
   }
   f = message.getNumCreateAssetTxsList();
   if (f.length > 0) {
-    writer.writePackedUint64(6, f);
+    writer.writePackedUint64(
+      6,
+      f
+    );
   }
   f = message.getNumConsensusUpgradeTxsList();
   if (f.length > 0) {
-    writer.writePackedUint32(7, f);
+    writer.writePackedUint32(
+      7,
+      f
+    );
   }
   f = message.getNumDeclareTxsList();
   if (f.length > 0) {
-    writer.writePackedUint64(8, f);
+    writer.writePackedUint64(
+      8,
+      f
+    );
   }
   f = message.getNumDeclareFileTxsList();
   if (f.length > 0) {
-    writer.writePackedUint64(9, f);
+    writer.writePackedUint64(
+      9,
+      f
+    );
   }
   f = message.getNumExchangeTxsList();
   if (f.length > 0) {
-    writer.writePackedUint64(10, f);
+    writer.writePackedUint64(
+      10,
+      f
+    );
   }
   f = message.getNumStakeTxsList();
   if (f.length > 0) {
-    writer.writePackedUint64(11, f);
+    writer.writePackedUint64(
+      11,
+      f
+    );
   }
   f = message.getNumSysUpgradeTxsList();
   if (f.length > 0) {
-    writer.writePackedUint32(12, f);
+    writer.writePackedUint32(
+      12,
+      f
+    );
   }
   f = message.getNumTransferTxsList();
   if (f.length > 0) {
-    writer.writePackedUint64(13, f);
+    writer.writePackedUint64(
+      13,
+      f
+    );
   }
   f = message.getNumUpdateAssetTxsList();
   if (f.length > 0) {
-    writer.writePackedUint64(14, f);
+    writer.writePackedUint64(
+      14,
+      f
+    );
   }
   f = message.getNumConsumeAssetTxsList();
   if (f.length > 0) {
-    writer.writePackedUint64(15, f);
+    writer.writePackedUint64(
+      15,
+      f
+    );
   }
   f = message.getNumPokeTxsList();
   if (f.length > 0) {
-    writer.writePackedUint64(16, f);
+    writer.writePackedUint64(
+      16,
+      f
+    );
   }
   f = message.getTpsList();
   if (f.length > 0) {
-    writer.writePackedUint32(17, f);
+    writer.writePackedUint32(
+      17,
+      f
+    );
   }
   f = message.getMaxTps();
   if (f !== 0) {
-    writer.writeUint32(18, f);
+    writer.writeUint32(
+      18,
+      f
+    );
   }
   f = message.getAvgTps();
   if (f !== 0) {
-    writer.writeUint32(19, f);
+    writer.writeUint32(
+      19,
+      f
+    );
   }
   f = message.getAvgBlockTime();
   if (f !== 0.0) {
-    writer.writeFloat(20, f);
+    writer.writeFloat(
+      20,
+      f
+    );
   }
 };
+
 
 /**
  * repeated uint64 num_blocks = 1;
@@ -9429,10 +10484,12 @@ proto.forge_abi.ForgeStats.prototype.getNumBlocksList = function() {
   return /** @type {!Array<number>} */ (jspb.Message.getRepeatedField(this, 1));
 };
 
+
 /** @param {!Array<number>} value */
 proto.forge_abi.ForgeStats.prototype.setNumBlocksList = function(value) {
   jspb.Message.setField(this, 1, value || []);
 };
+
 
 /**
  * @param {number} value
@@ -9442,9 +10499,11 @@ proto.forge_abi.ForgeStats.prototype.addNumBlocks = function(value, opt_index) {
   jspb.Message.addToRepeatedField(this, 1, value, opt_index);
 };
 
+
 proto.forge_abi.ForgeStats.prototype.clearNumBlocksList = function() {
   this.setNumBlocksList([]);
 };
+
 
 /**
  * repeated uint64 num_txs = 2;
@@ -9454,10 +10513,12 @@ proto.forge_abi.ForgeStats.prototype.getNumTxsList = function() {
   return /** @type {!Array<number>} */ (jspb.Message.getRepeatedField(this, 2));
 };
 
+
 /** @param {!Array<number>} value */
 proto.forge_abi.ForgeStats.prototype.setNumTxsList = function(value) {
   jspb.Message.setField(this, 2, value || []);
 };
+
 
 /**
  * @param {number} value
@@ -9467,26 +10528,27 @@ proto.forge_abi.ForgeStats.prototype.addNumTxs = function(value, opt_index) {
   jspb.Message.addToRepeatedField(this, 2, value, opt_index);
 };
 
+
 proto.forge_abi.ForgeStats.prototype.clearNumTxsList = function() {
   this.setNumTxsList([]);
 };
+
 
 /**
  * repeated BigUint num_stakes = 3;
  * @return {!Array<!proto.forge_abi.BigUint>}
  */
 proto.forge_abi.ForgeStats.prototype.getNumStakesList = function() {
-  return /** @type{!Array<!proto.forge_abi.BigUint>} */ (jspb.Message.getRepeatedWrapperField(
-    this,
-    proto.forge_abi.BigUint,
-    3
-  ));
+  return /** @type{!Array<!proto.forge_abi.BigUint>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.forge_abi.BigUint, 3));
 };
+
 
 /** @param {!Array<!proto.forge_abi.BigUint>} value */
 proto.forge_abi.ForgeStats.prototype.setNumStakesList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 3, value);
 };
+
 
 /**
  * @param {!proto.forge_abi.BigUint=} opt_value
@@ -9494,18 +10556,14 @@ proto.forge_abi.ForgeStats.prototype.setNumStakesList = function(value) {
  * @return {!proto.forge_abi.BigUint}
  */
 proto.forge_abi.ForgeStats.prototype.addNumStakes = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(
-    this,
-    3,
-    opt_value,
-    proto.forge_abi.BigUint,
-    opt_index
-  );
+  return jspb.Message.addToRepeatedWrapperField(this, 3, opt_value, proto.forge_abi.BigUint, opt_index);
 };
+
 
 proto.forge_abi.ForgeStats.prototype.clearNumStakesList = function() {
   this.setNumStakesList([]);
 };
+
 
 /**
  * repeated uint32 num_validators = 4;
@@ -9515,10 +10573,12 @@ proto.forge_abi.ForgeStats.prototype.getNumValidatorsList = function() {
   return /** @type {!Array<number>} */ (jspb.Message.getRepeatedField(this, 4));
 };
 
+
 /** @param {!Array<number>} value */
 proto.forge_abi.ForgeStats.prototype.setNumValidatorsList = function(value) {
   jspb.Message.setField(this, 4, value || []);
 };
+
 
 /**
  * @param {number} value
@@ -9528,9 +10588,11 @@ proto.forge_abi.ForgeStats.prototype.addNumValidators = function(value, opt_inde
   jspb.Message.addToRepeatedField(this, 4, value, opt_index);
 };
 
+
 proto.forge_abi.ForgeStats.prototype.clearNumValidatorsList = function() {
   this.setNumValidatorsList([]);
 };
+
 
 /**
  * repeated uint64 num_account_migrate_txs = 5;
@@ -9540,10 +10602,12 @@ proto.forge_abi.ForgeStats.prototype.getNumAccountMigrateTxsList = function() {
   return /** @type {!Array<number>} */ (jspb.Message.getRepeatedField(this, 5));
 };
 
+
 /** @param {!Array<number>} value */
 proto.forge_abi.ForgeStats.prototype.setNumAccountMigrateTxsList = function(value) {
   jspb.Message.setField(this, 5, value || []);
 };
+
 
 /**
  * @param {number} value
@@ -9553,9 +10617,11 @@ proto.forge_abi.ForgeStats.prototype.addNumAccountMigrateTxs = function(value, o
   jspb.Message.addToRepeatedField(this, 5, value, opt_index);
 };
 
+
 proto.forge_abi.ForgeStats.prototype.clearNumAccountMigrateTxsList = function() {
   this.setNumAccountMigrateTxsList([]);
 };
+
 
 /**
  * repeated uint64 num_create_asset_txs = 6;
@@ -9565,10 +10631,12 @@ proto.forge_abi.ForgeStats.prototype.getNumCreateAssetTxsList = function() {
   return /** @type {!Array<number>} */ (jspb.Message.getRepeatedField(this, 6));
 };
 
+
 /** @param {!Array<number>} value */
 proto.forge_abi.ForgeStats.prototype.setNumCreateAssetTxsList = function(value) {
   jspb.Message.setField(this, 6, value || []);
 };
+
 
 /**
  * @param {number} value
@@ -9578,9 +10646,11 @@ proto.forge_abi.ForgeStats.prototype.addNumCreateAssetTxs = function(value, opt_
   jspb.Message.addToRepeatedField(this, 6, value, opt_index);
 };
 
+
 proto.forge_abi.ForgeStats.prototype.clearNumCreateAssetTxsList = function() {
   this.setNumCreateAssetTxsList([]);
 };
+
 
 /**
  * repeated uint32 num_consensus_upgrade_txs = 7;
@@ -9590,10 +10660,12 @@ proto.forge_abi.ForgeStats.prototype.getNumConsensusUpgradeTxsList = function() 
   return /** @type {!Array<number>} */ (jspb.Message.getRepeatedField(this, 7));
 };
 
+
 /** @param {!Array<number>} value */
 proto.forge_abi.ForgeStats.prototype.setNumConsensusUpgradeTxsList = function(value) {
   jspb.Message.setField(this, 7, value || []);
 };
+
 
 /**
  * @param {number} value
@@ -9603,9 +10675,11 @@ proto.forge_abi.ForgeStats.prototype.addNumConsensusUpgradeTxs = function(value,
   jspb.Message.addToRepeatedField(this, 7, value, opt_index);
 };
 
+
 proto.forge_abi.ForgeStats.prototype.clearNumConsensusUpgradeTxsList = function() {
   this.setNumConsensusUpgradeTxsList([]);
 };
+
 
 /**
  * repeated uint64 num_declare_txs = 8;
@@ -9615,10 +10689,12 @@ proto.forge_abi.ForgeStats.prototype.getNumDeclareTxsList = function() {
   return /** @type {!Array<number>} */ (jspb.Message.getRepeatedField(this, 8));
 };
 
+
 /** @param {!Array<number>} value */
 proto.forge_abi.ForgeStats.prototype.setNumDeclareTxsList = function(value) {
   jspb.Message.setField(this, 8, value || []);
 };
+
 
 /**
  * @param {number} value
@@ -9628,9 +10704,11 @@ proto.forge_abi.ForgeStats.prototype.addNumDeclareTxs = function(value, opt_inde
   jspb.Message.addToRepeatedField(this, 8, value, opt_index);
 };
 
+
 proto.forge_abi.ForgeStats.prototype.clearNumDeclareTxsList = function() {
   this.setNumDeclareTxsList([]);
 };
+
 
 /**
  * repeated uint64 num_declare_file_txs = 9;
@@ -9640,10 +10718,12 @@ proto.forge_abi.ForgeStats.prototype.getNumDeclareFileTxsList = function() {
   return /** @type {!Array<number>} */ (jspb.Message.getRepeatedField(this, 9));
 };
 
+
 /** @param {!Array<number>} value */
 proto.forge_abi.ForgeStats.prototype.setNumDeclareFileTxsList = function(value) {
   jspb.Message.setField(this, 9, value || []);
 };
+
 
 /**
  * @param {number} value
@@ -9653,9 +10733,11 @@ proto.forge_abi.ForgeStats.prototype.addNumDeclareFileTxs = function(value, opt_
   jspb.Message.addToRepeatedField(this, 9, value, opt_index);
 };
 
+
 proto.forge_abi.ForgeStats.prototype.clearNumDeclareFileTxsList = function() {
   this.setNumDeclareFileTxsList([]);
 };
+
 
 /**
  * repeated uint64 num_exchange_txs = 10;
@@ -9665,10 +10747,12 @@ proto.forge_abi.ForgeStats.prototype.getNumExchangeTxsList = function() {
   return /** @type {!Array<number>} */ (jspb.Message.getRepeatedField(this, 10));
 };
 
+
 /** @param {!Array<number>} value */
 proto.forge_abi.ForgeStats.prototype.setNumExchangeTxsList = function(value) {
   jspb.Message.setField(this, 10, value || []);
 };
+
 
 /**
  * @param {number} value
@@ -9678,9 +10762,11 @@ proto.forge_abi.ForgeStats.prototype.addNumExchangeTxs = function(value, opt_ind
   jspb.Message.addToRepeatedField(this, 10, value, opt_index);
 };
 
+
 proto.forge_abi.ForgeStats.prototype.clearNumExchangeTxsList = function() {
   this.setNumExchangeTxsList([]);
 };
+
 
 /**
  * repeated uint64 num_stake_txs = 11;
@@ -9690,10 +10776,12 @@ proto.forge_abi.ForgeStats.prototype.getNumStakeTxsList = function() {
   return /** @type {!Array<number>} */ (jspb.Message.getRepeatedField(this, 11));
 };
 
+
 /** @param {!Array<number>} value */
 proto.forge_abi.ForgeStats.prototype.setNumStakeTxsList = function(value) {
   jspb.Message.setField(this, 11, value || []);
 };
+
 
 /**
  * @param {number} value
@@ -9703,9 +10791,11 @@ proto.forge_abi.ForgeStats.prototype.addNumStakeTxs = function(value, opt_index)
   jspb.Message.addToRepeatedField(this, 11, value, opt_index);
 };
 
+
 proto.forge_abi.ForgeStats.prototype.clearNumStakeTxsList = function() {
   this.setNumStakeTxsList([]);
 };
+
 
 /**
  * repeated uint32 num_sys_upgrade_txs = 12;
@@ -9715,10 +10805,12 @@ proto.forge_abi.ForgeStats.prototype.getNumSysUpgradeTxsList = function() {
   return /** @type {!Array<number>} */ (jspb.Message.getRepeatedField(this, 12));
 };
 
+
 /** @param {!Array<number>} value */
 proto.forge_abi.ForgeStats.prototype.setNumSysUpgradeTxsList = function(value) {
   jspb.Message.setField(this, 12, value || []);
 };
+
 
 /**
  * @param {number} value
@@ -9728,9 +10820,11 @@ proto.forge_abi.ForgeStats.prototype.addNumSysUpgradeTxs = function(value, opt_i
   jspb.Message.addToRepeatedField(this, 12, value, opt_index);
 };
 
+
 proto.forge_abi.ForgeStats.prototype.clearNumSysUpgradeTxsList = function() {
   this.setNumSysUpgradeTxsList([]);
 };
+
 
 /**
  * repeated uint64 num_transfer_txs = 13;
@@ -9740,10 +10834,12 @@ proto.forge_abi.ForgeStats.prototype.getNumTransferTxsList = function() {
   return /** @type {!Array<number>} */ (jspb.Message.getRepeatedField(this, 13));
 };
 
+
 /** @param {!Array<number>} value */
 proto.forge_abi.ForgeStats.prototype.setNumTransferTxsList = function(value) {
   jspb.Message.setField(this, 13, value || []);
 };
+
 
 /**
  * @param {number} value
@@ -9753,9 +10849,11 @@ proto.forge_abi.ForgeStats.prototype.addNumTransferTxs = function(value, opt_ind
   jspb.Message.addToRepeatedField(this, 13, value, opt_index);
 };
 
+
 proto.forge_abi.ForgeStats.prototype.clearNumTransferTxsList = function() {
   this.setNumTransferTxsList([]);
 };
+
 
 /**
  * repeated uint64 num_update_asset_txs = 14;
@@ -9765,10 +10863,12 @@ proto.forge_abi.ForgeStats.prototype.getNumUpdateAssetTxsList = function() {
   return /** @type {!Array<number>} */ (jspb.Message.getRepeatedField(this, 14));
 };
 
+
 /** @param {!Array<number>} value */
 proto.forge_abi.ForgeStats.prototype.setNumUpdateAssetTxsList = function(value) {
   jspb.Message.setField(this, 14, value || []);
 };
+
 
 /**
  * @param {number} value
@@ -9778,9 +10878,11 @@ proto.forge_abi.ForgeStats.prototype.addNumUpdateAssetTxs = function(value, opt_
   jspb.Message.addToRepeatedField(this, 14, value, opt_index);
 };
 
+
 proto.forge_abi.ForgeStats.prototype.clearNumUpdateAssetTxsList = function() {
   this.setNumUpdateAssetTxsList([]);
 };
+
 
 /**
  * repeated uint64 num_consume_asset_txs = 15;
@@ -9790,10 +10892,12 @@ proto.forge_abi.ForgeStats.prototype.getNumConsumeAssetTxsList = function() {
   return /** @type {!Array<number>} */ (jspb.Message.getRepeatedField(this, 15));
 };
 
+
 /** @param {!Array<number>} value */
 proto.forge_abi.ForgeStats.prototype.setNumConsumeAssetTxsList = function(value) {
   jspb.Message.setField(this, 15, value || []);
 };
+
 
 /**
  * @param {number} value
@@ -9803,9 +10907,11 @@ proto.forge_abi.ForgeStats.prototype.addNumConsumeAssetTxs = function(value, opt
   jspb.Message.addToRepeatedField(this, 15, value, opt_index);
 };
 
+
 proto.forge_abi.ForgeStats.prototype.clearNumConsumeAssetTxsList = function() {
   this.setNumConsumeAssetTxsList([]);
 };
+
 
 /**
  * repeated uint64 num_poke_txs = 16;
@@ -9815,10 +10921,12 @@ proto.forge_abi.ForgeStats.prototype.getNumPokeTxsList = function() {
   return /** @type {!Array<number>} */ (jspb.Message.getRepeatedField(this, 16));
 };
 
+
 /** @param {!Array<number>} value */
 proto.forge_abi.ForgeStats.prototype.setNumPokeTxsList = function(value) {
   jspb.Message.setField(this, 16, value || []);
 };
+
 
 /**
  * @param {number} value
@@ -9828,9 +10936,11 @@ proto.forge_abi.ForgeStats.prototype.addNumPokeTxs = function(value, opt_index) 
   jspb.Message.addToRepeatedField(this, 16, value, opt_index);
 };
 
+
 proto.forge_abi.ForgeStats.prototype.clearNumPokeTxsList = function() {
   this.setNumPokeTxsList([]);
 };
+
 
 /**
  * repeated uint32 tps = 17;
@@ -9840,10 +10950,12 @@ proto.forge_abi.ForgeStats.prototype.getTpsList = function() {
   return /** @type {!Array<number>} */ (jspb.Message.getRepeatedField(this, 17));
 };
 
+
 /** @param {!Array<number>} value */
 proto.forge_abi.ForgeStats.prototype.setTpsList = function(value) {
   jspb.Message.setField(this, 17, value || []);
 };
+
 
 /**
  * @param {number} value
@@ -9853,9 +10965,11 @@ proto.forge_abi.ForgeStats.prototype.addTps = function(value, opt_index) {
   jspb.Message.addToRepeatedField(this, 17, value, opt_index);
 };
 
+
 proto.forge_abi.ForgeStats.prototype.clearTpsList = function() {
   this.setTpsList([]);
 };
+
 
 /**
  * optional uint32 max_tps = 18;
@@ -9865,10 +10979,12 @@ proto.forge_abi.ForgeStats.prototype.getMaxTps = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 18, 0));
 };
 
+
 /** @param {number} value */
 proto.forge_abi.ForgeStats.prototype.setMaxTps = function(value) {
   jspb.Message.setProto3IntField(this, 18, value);
 };
+
 
 /**
  * optional uint32 avg_tps = 19;
@@ -9878,10 +10994,12 @@ proto.forge_abi.ForgeStats.prototype.getAvgTps = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 19, 0));
 };
 
+
 /** @param {number} value */
 proto.forge_abi.ForgeStats.prototype.setAvgTps = function(value) {
   jspb.Message.setProto3IntField(this, 19, value);
 };
+
 
 /**
  * optional float avg_block_time = 20;
@@ -9891,10 +11009,13 @@ proto.forge_abi.ForgeStats.prototype.getAvgBlockTime = function() {
   return /** @type {number} */ (+jspb.Message.getFieldWithDefault(this, 20, 0.0));
 };
 
+
 /** @param {number} value */
 proto.forge_abi.ForgeStats.prototype.setAvgBlockTime = function(value) {
   jspb.Message.setProto3FloatField(this, 20, value);
 };
+
+
 
 /**
  * Generated by JsPbCodeGenerator.
@@ -9914,53 +11035,55 @@ if (goog.DEBUG && !COMPILED) {
   proto.forge_abi.TxStatistics.displayName = 'proto.forge_abi.TxStatistics';
 }
 
+
 if (jspb.Message.GENERATE_TO_OBJECT) {
-  /**
-   * Creates an object representation of this proto suitable for use in Soy templates.
-   * Field names that are reserved in JavaScript and will be renamed to pb_name.
-   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
-   * For the list of reserved names please see:
-   *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
-   * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
-   *     for transitional soy proto support: http://goto/soy-param-migration
-   * @return {!Object}
-   */
-  proto.forge_abi.TxStatistics.prototype.toObject = function(opt_includeInstance) {
-    return proto.forge_abi.TxStatistics.toObject(opt_includeInstance, this);
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.forge_abi.TxStatistics.prototype.toObject = function(opt_includeInstance) {
+  return proto.forge_abi.TxStatistics.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.forge_abi.TxStatistics} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.forge_abi.TxStatistics.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    numAccountMigrateTxs: jspb.Message.getFieldWithDefault(msg, 1, 0),
+    numCreateAssetTxs: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    numConsensusUpgradeTxs: jspb.Message.getFieldWithDefault(msg, 3, 0),
+    numDeclareTxs: jspb.Message.getFieldWithDefault(msg, 4, 0),
+    numDeclareFileTxs: jspb.Message.getFieldWithDefault(msg, 5, 0),
+    numExchangeTxs: jspb.Message.getFieldWithDefault(msg, 6, 0),
+    numStakeTxs: jspb.Message.getFieldWithDefault(msg, 7, 0),
+    numSysUpgradeTxs: jspb.Message.getFieldWithDefault(msg, 8, 0),
+    numTransferTxs: jspb.Message.getFieldWithDefault(msg, 9, 0),
+    numUpdateAssetTxs: jspb.Message.getFieldWithDefault(msg, 10, 0),
+    numConsumeAssetTxs: jspb.Message.getFieldWithDefault(msg, 11, 0),
+    numPokeTxs: jspb.Message.getFieldWithDefault(msg, 12, 0)
   };
 
-  /**
-   * Static version of the {@see toObject} method.
-   * @param {boolean|undefined} includeInstance Whether to include the JSPB
-   *     instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @param {!proto.forge_abi.TxStatistics} msg The msg instance to transform.
-   * @return {!Object}
-   * @suppress {unusedLocalVariables} f is only used for nested messages
-   */
-  proto.forge_abi.TxStatistics.toObject = function(includeInstance, msg) {
-    var f,
-      obj = {
-        numAccountMigrateTxs: jspb.Message.getFieldWithDefault(msg, 1, 0),
-        numCreateAssetTxs: jspb.Message.getFieldWithDefault(msg, 2, 0),
-        numConsensusUpgradeTxs: jspb.Message.getFieldWithDefault(msg, 3, 0),
-        numDeclareTxs: jspb.Message.getFieldWithDefault(msg, 4, 0),
-        numDeclareFileTxs: jspb.Message.getFieldWithDefault(msg, 5, 0),
-        numExchangeTxs: jspb.Message.getFieldWithDefault(msg, 6, 0),
-        numStakeTxs: jspb.Message.getFieldWithDefault(msg, 7, 0),
-        numSysUpgradeTxs: jspb.Message.getFieldWithDefault(msg, 8, 0),
-        numTransferTxs: jspb.Message.getFieldWithDefault(msg, 9, 0),
-        numUpdateAssetTxs: jspb.Message.getFieldWithDefault(msg, 10, 0),
-        numConsumeAssetTxs: jspb.Message.getFieldWithDefault(msg, 11, 0),
-        numPokeTxs: jspb.Message.getFieldWithDefault(msg, 12, 0),
-      };
-
-    if (includeInstance) {
-      obj.$jspbMessageInstance = msg;
-    }
-    return obj;
-  };
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
 }
+
 
 /**
  * Deserializes binary data (in protobuf wire format).
@@ -9969,9 +11092,10 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  */
 proto.forge_abi.TxStatistics.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.forge_abi.TxStatistics();
+  var msg = new proto.forge_abi.TxStatistics;
   return proto.forge_abi.TxStatistics.deserializeBinaryFromReader(msg, reader);
 };
+
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -9987,61 +11111,62 @@ proto.forge_abi.TxStatistics.deserializeBinaryFromReader = function(msg, reader)
     }
     var field = reader.getFieldNumber();
     switch (field) {
-      case 1:
-        var value = /** @type {number} */ (reader.readUint64());
-        msg.setNumAccountMigrateTxs(value);
-        break;
-      case 2:
-        var value = /** @type {number} */ (reader.readUint64());
-        msg.setNumCreateAssetTxs(value);
-        break;
-      case 3:
-        var value = /** @type {number} */ (reader.readUint32());
-        msg.setNumConsensusUpgradeTxs(value);
-        break;
-      case 4:
-        var value = /** @type {number} */ (reader.readUint64());
-        msg.setNumDeclareTxs(value);
-        break;
-      case 5:
-        var value = /** @type {number} */ (reader.readUint64());
-        msg.setNumDeclareFileTxs(value);
-        break;
-      case 6:
-        var value = /** @type {number} */ (reader.readUint64());
-        msg.setNumExchangeTxs(value);
-        break;
-      case 7:
-        var value = /** @type {number} */ (reader.readUint64());
-        msg.setNumStakeTxs(value);
-        break;
-      case 8:
-        var value = /** @type {number} */ (reader.readUint32());
-        msg.setNumSysUpgradeTxs(value);
-        break;
-      case 9:
-        var value = /** @type {number} */ (reader.readUint64());
-        msg.setNumTransferTxs(value);
-        break;
-      case 10:
-        var value = /** @type {number} */ (reader.readUint64());
-        msg.setNumUpdateAssetTxs(value);
-        break;
-      case 11:
-        var value = /** @type {number} */ (reader.readUint64());
-        msg.setNumConsumeAssetTxs(value);
-        break;
-      case 12:
-        var value = /** @type {number} */ (reader.readUint64());
-        msg.setNumPokeTxs(value);
-        break;
-      default:
-        reader.skipField();
-        break;
+    case 1:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setNumAccountMigrateTxs(value);
+      break;
+    case 2:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setNumCreateAssetTxs(value);
+      break;
+    case 3:
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setNumConsensusUpgradeTxs(value);
+      break;
+    case 4:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setNumDeclareTxs(value);
+      break;
+    case 5:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setNumDeclareFileTxs(value);
+      break;
+    case 6:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setNumExchangeTxs(value);
+      break;
+    case 7:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setNumStakeTxs(value);
+      break;
+    case 8:
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setNumSysUpgradeTxs(value);
+      break;
+    case 9:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setNumTransferTxs(value);
+      break;
+    case 10:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setNumUpdateAssetTxs(value);
+      break;
+    case 11:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setNumConsumeAssetTxs(value);
+      break;
+    case 12:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setNumPokeTxs(value);
+      break;
+    default:
+      reader.skipField();
+      break;
     }
   }
   return msg;
 };
+
 
 /**
  * Serializes the message to binary data (in protobuf wire format).
@@ -10052,6 +11177,7 @@ proto.forge_abi.TxStatistics.prototype.serializeBinary = function() {
   proto.forge_abi.TxStatistics.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
+
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -10064,53 +11190,90 @@ proto.forge_abi.TxStatistics.serializeBinaryToWriter = function(message, writer)
   var f = undefined;
   f = message.getNumAccountMigrateTxs();
   if (f !== 0) {
-    writer.writeUint64(1, f);
+    writer.writeUint64(
+      1,
+      f
+    );
   }
   f = message.getNumCreateAssetTxs();
   if (f !== 0) {
-    writer.writeUint64(2, f);
+    writer.writeUint64(
+      2,
+      f
+    );
   }
   f = message.getNumConsensusUpgradeTxs();
   if (f !== 0) {
-    writer.writeUint32(3, f);
+    writer.writeUint32(
+      3,
+      f
+    );
   }
   f = message.getNumDeclareTxs();
   if (f !== 0) {
-    writer.writeUint64(4, f);
+    writer.writeUint64(
+      4,
+      f
+    );
   }
   f = message.getNumDeclareFileTxs();
   if (f !== 0) {
-    writer.writeUint64(5, f);
+    writer.writeUint64(
+      5,
+      f
+    );
   }
   f = message.getNumExchangeTxs();
   if (f !== 0) {
-    writer.writeUint64(6, f);
+    writer.writeUint64(
+      6,
+      f
+    );
   }
   f = message.getNumStakeTxs();
   if (f !== 0) {
-    writer.writeUint64(7, f);
+    writer.writeUint64(
+      7,
+      f
+    );
   }
   f = message.getNumSysUpgradeTxs();
   if (f !== 0) {
-    writer.writeUint32(8, f);
+    writer.writeUint32(
+      8,
+      f
+    );
   }
   f = message.getNumTransferTxs();
   if (f !== 0) {
-    writer.writeUint64(9, f);
+    writer.writeUint64(
+      9,
+      f
+    );
   }
   f = message.getNumUpdateAssetTxs();
   if (f !== 0) {
-    writer.writeUint64(10, f);
+    writer.writeUint64(
+      10,
+      f
+    );
   }
   f = message.getNumConsumeAssetTxs();
   if (f !== 0) {
-    writer.writeUint64(11, f);
+    writer.writeUint64(
+      11,
+      f
+    );
   }
   f = message.getNumPokeTxs();
   if (f !== 0) {
-    writer.writeUint64(12, f);
+    writer.writeUint64(
+      12,
+      f
+    );
   }
 };
+
 
 /**
  * optional uint64 num_account_migrate_txs = 1;
@@ -10120,10 +11283,12 @@ proto.forge_abi.TxStatistics.prototype.getNumAccountMigrateTxs = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
 };
 
+
 /** @param {number} value */
 proto.forge_abi.TxStatistics.prototype.setNumAccountMigrateTxs = function(value) {
   jspb.Message.setProto3IntField(this, 1, value);
 };
+
 
 /**
  * optional uint64 num_create_asset_txs = 2;
@@ -10133,10 +11298,12 @@ proto.forge_abi.TxStatistics.prototype.getNumCreateAssetTxs = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
 };
 
+
 /** @param {number} value */
 proto.forge_abi.TxStatistics.prototype.setNumCreateAssetTxs = function(value) {
   jspb.Message.setProto3IntField(this, 2, value);
 };
+
 
 /**
  * optional uint32 num_consensus_upgrade_txs = 3;
@@ -10146,10 +11313,12 @@ proto.forge_abi.TxStatistics.prototype.getNumConsensusUpgradeTxs = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
 };
 
+
 /** @param {number} value */
 proto.forge_abi.TxStatistics.prototype.setNumConsensusUpgradeTxs = function(value) {
   jspb.Message.setProto3IntField(this, 3, value);
 };
+
 
 /**
  * optional uint64 num_declare_txs = 4;
@@ -10159,10 +11328,12 @@ proto.forge_abi.TxStatistics.prototype.getNumDeclareTxs = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
 };
 
+
 /** @param {number} value */
 proto.forge_abi.TxStatistics.prototype.setNumDeclareTxs = function(value) {
   jspb.Message.setProto3IntField(this, 4, value);
 };
+
 
 /**
  * optional uint64 num_declare_file_txs = 5;
@@ -10172,10 +11343,12 @@ proto.forge_abi.TxStatistics.prototype.getNumDeclareFileTxs = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 5, 0));
 };
 
+
 /** @param {number} value */
 proto.forge_abi.TxStatistics.prototype.setNumDeclareFileTxs = function(value) {
   jspb.Message.setProto3IntField(this, 5, value);
 };
+
 
 /**
  * optional uint64 num_exchange_txs = 6;
@@ -10185,10 +11358,12 @@ proto.forge_abi.TxStatistics.prototype.getNumExchangeTxs = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 6, 0));
 };
 
+
 /** @param {number} value */
 proto.forge_abi.TxStatistics.prototype.setNumExchangeTxs = function(value) {
   jspb.Message.setProto3IntField(this, 6, value);
 };
+
 
 /**
  * optional uint64 num_stake_txs = 7;
@@ -10198,10 +11373,12 @@ proto.forge_abi.TxStatistics.prototype.getNumStakeTxs = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 7, 0));
 };
 
+
 /** @param {number} value */
 proto.forge_abi.TxStatistics.prototype.setNumStakeTxs = function(value) {
   jspb.Message.setProto3IntField(this, 7, value);
 };
+
 
 /**
  * optional uint32 num_sys_upgrade_txs = 8;
@@ -10211,10 +11388,12 @@ proto.forge_abi.TxStatistics.prototype.getNumSysUpgradeTxs = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 8, 0));
 };
 
+
 /** @param {number} value */
 proto.forge_abi.TxStatistics.prototype.setNumSysUpgradeTxs = function(value) {
   jspb.Message.setProto3IntField(this, 8, value);
 };
+
 
 /**
  * optional uint64 num_transfer_txs = 9;
@@ -10224,10 +11403,12 @@ proto.forge_abi.TxStatistics.prototype.getNumTransferTxs = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 9, 0));
 };
 
+
 /** @param {number} value */
 proto.forge_abi.TxStatistics.prototype.setNumTransferTxs = function(value) {
   jspb.Message.setProto3IntField(this, 9, value);
 };
+
 
 /**
  * optional uint64 num_update_asset_txs = 10;
@@ -10237,10 +11418,12 @@ proto.forge_abi.TxStatistics.prototype.getNumUpdateAssetTxs = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 10, 0));
 };
 
+
 /** @param {number} value */
 proto.forge_abi.TxStatistics.prototype.setNumUpdateAssetTxs = function(value) {
   jspb.Message.setProto3IntField(this, 10, value);
 };
+
 
 /**
  * optional uint64 num_consume_asset_txs = 11;
@@ -10250,10 +11433,12 @@ proto.forge_abi.TxStatistics.prototype.getNumConsumeAssetTxs = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 11, 0));
 };
 
+
 /** @param {number} value */
 proto.forge_abi.TxStatistics.prototype.setNumConsumeAssetTxs = function(value) {
   jspb.Message.setProto3IntField(this, 11, value);
 };
+
 
 /**
  * optional uint64 num_poke_txs = 12;
@@ -10263,10 +11448,13 @@ proto.forge_abi.TxStatistics.prototype.getNumPokeTxs = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 12, 0));
 };
 
+
 /** @param {number} value */
 proto.forge_abi.TxStatistics.prototype.setNumPokeTxs = function(value) {
   jspb.Message.setProto3IntField(this, 12, value);
 };
+
+
 
 /**
  * Generated by JsPbCodeGenerator.
@@ -10286,50 +11474,52 @@ if (goog.DEBUG && !COMPILED) {
   proto.forge_abi.ForgeToken.displayName = 'proto.forge_abi.ForgeToken';
 }
 
+
 if (jspb.Message.GENERATE_TO_OBJECT) {
-  /**
-   * Creates an object representation of this proto suitable for use in Soy templates.
-   * Field names that are reserved in JavaScript and will be renamed to pb_name.
-   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
-   * For the list of reserved names please see:
-   *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
-   * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
-   *     for transitional soy proto support: http://goto/soy-param-migration
-   * @return {!Object}
-   */
-  proto.forge_abi.ForgeToken.prototype.toObject = function(opt_includeInstance) {
-    return proto.forge_abi.ForgeToken.toObject(opt_includeInstance, this);
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.forge_abi.ForgeToken.prototype.toObject = function(opt_includeInstance) {
+  return proto.forge_abi.ForgeToken.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.forge_abi.ForgeToken} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.forge_abi.ForgeToken.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    symbol: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    unit: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    description: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    icon: msg.getIcon(),
+    decimal: jspb.Message.getFieldWithDefault(msg, 6, 0),
+    initialSupply: jspb.Message.getFieldWithDefault(msg, 7, 0),
+    totalSupply: jspb.Message.getFieldWithDefault(msg, 8, 0),
+    inflationRate: jspb.Message.getFieldWithDefault(msg, 9, 0)
   };
 
-  /**
-   * Static version of the {@see toObject} method.
-   * @param {boolean|undefined} includeInstance Whether to include the JSPB
-   *     instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @param {!proto.forge_abi.ForgeToken} msg The msg instance to transform.
-   * @return {!Object}
-   * @suppress {unusedLocalVariables} f is only used for nested messages
-   */
-  proto.forge_abi.ForgeToken.toObject = function(includeInstance, msg) {
-    var f,
-      obj = {
-        name: jspb.Message.getFieldWithDefault(msg, 1, ''),
-        symbol: jspb.Message.getFieldWithDefault(msg, 2, ''),
-        unit: jspb.Message.getFieldWithDefault(msg, 3, ''),
-        description: jspb.Message.getFieldWithDefault(msg, 4, ''),
-        icon: msg.getIcon(),
-        decimal: jspb.Message.getFieldWithDefault(msg, 6, 0),
-        initialSupply: jspb.Message.getFieldWithDefault(msg, 7, 0),
-        totalSupply: jspb.Message.getFieldWithDefault(msg, 8, 0),
-        inflationRate: jspb.Message.getFieldWithDefault(msg, 9, 0),
-      };
-
-    if (includeInstance) {
-      obj.$jspbMessageInstance = msg;
-    }
-    return obj;
-  };
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
 }
+
 
 /**
  * Deserializes binary data (in protobuf wire format).
@@ -10338,9 +11528,10 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  */
 proto.forge_abi.ForgeToken.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.forge_abi.ForgeToken();
+  var msg = new proto.forge_abi.ForgeToken;
   return proto.forge_abi.ForgeToken.deserializeBinaryFromReader(msg, reader);
 };
+
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -10356,49 +11547,50 @@ proto.forge_abi.ForgeToken.deserializeBinaryFromReader = function(msg, reader) {
     }
     var field = reader.getFieldNumber();
     switch (field) {
-      case 1:
-        var value = /** @type {string} */ (reader.readString());
-        msg.setName(value);
-        break;
-      case 2:
-        var value = /** @type {string} */ (reader.readString());
-        msg.setSymbol(value);
-        break;
-      case 3:
-        var value = /** @type {string} */ (reader.readString());
-        msg.setUnit(value);
-        break;
-      case 4:
-        var value = /** @type {string} */ (reader.readString());
-        msg.setDescription(value);
-        break;
-      case 5:
-        var value = /** @type {!Uint8Array} */ (reader.readBytes());
-        msg.setIcon(value);
-        break;
-      case 6:
-        var value = /** @type {number} */ (reader.readUint32());
-        msg.setDecimal(value);
-        break;
-      case 7:
-        var value = /** @type {number} */ (reader.readUint64());
-        msg.setInitialSupply(value);
-        break;
-      case 8:
-        var value = /** @type {number} */ (reader.readUint64());
-        msg.setTotalSupply(value);
-        break;
-      case 9:
-        var value = /** @type {number} */ (reader.readUint32());
-        msg.setInflationRate(value);
-        break;
-      default:
-        reader.skipField();
-        break;
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setName(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setSymbol(value);
+      break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setUnit(value);
+      break;
+    case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setDescription(value);
+      break;
+    case 5:
+      var value = /** @type {!Uint8Array} */ (reader.readBytes());
+      msg.setIcon(value);
+      break;
+    case 6:
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setDecimal(value);
+      break;
+    case 7:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setInitialSupply(value);
+      break;
+    case 8:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setTotalSupply(value);
+      break;
+    case 9:
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setInflationRate(value);
+      break;
+    default:
+      reader.skipField();
+      break;
     }
   }
   return msg;
 };
+
 
 /**
  * Serializes the message to binary data (in protobuf wire format).
@@ -10409,6 +11601,7 @@ proto.forge_abi.ForgeToken.prototype.serializeBinary = function() {
   proto.forge_abi.ForgeToken.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
+
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -10421,101 +11614,138 @@ proto.forge_abi.ForgeToken.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getName();
   if (f.length > 0) {
-    writer.writeString(1, f);
+    writer.writeString(
+      1,
+      f
+    );
   }
   f = message.getSymbol();
   if (f.length > 0) {
-    writer.writeString(2, f);
+    writer.writeString(
+      2,
+      f
+    );
   }
   f = message.getUnit();
   if (f.length > 0) {
-    writer.writeString(3, f);
+    writer.writeString(
+      3,
+      f
+    );
   }
   f = message.getDescription();
   if (f.length > 0) {
-    writer.writeString(4, f);
+    writer.writeString(
+      4,
+      f
+    );
   }
   f = message.getIcon_asU8();
   if (f.length > 0) {
-    writer.writeBytes(5, f);
+    writer.writeBytes(
+      5,
+      f
+    );
   }
   f = message.getDecimal();
   if (f !== 0) {
-    writer.writeUint32(6, f);
+    writer.writeUint32(
+      6,
+      f
+    );
   }
   f = message.getInitialSupply();
   if (f !== 0) {
-    writer.writeUint64(7, f);
+    writer.writeUint64(
+      7,
+      f
+    );
   }
   f = message.getTotalSupply();
   if (f !== 0) {
-    writer.writeUint64(8, f);
+    writer.writeUint64(
+      8,
+      f
+    );
   }
   f = message.getInflationRate();
   if (f !== 0) {
-    writer.writeUint32(9, f);
+    writer.writeUint32(
+      9,
+      f
+    );
   }
 };
+
 
 /**
  * optional string name = 1;
  * @return {string}
  */
 proto.forge_abi.ForgeToken.prototype.getName = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ''));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
+
 
 /** @param {string} value */
 proto.forge_abi.ForgeToken.prototype.setName = function(value) {
   jspb.Message.setProto3StringField(this, 1, value);
 };
 
+
 /**
  * optional string symbol = 2;
  * @return {string}
  */
 proto.forge_abi.ForgeToken.prototype.getSymbol = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ''));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
+
 
 /** @param {string} value */
 proto.forge_abi.ForgeToken.prototype.setSymbol = function(value) {
   jspb.Message.setProto3StringField(this, 2, value);
 };
 
+
 /**
  * optional string unit = 3;
  * @return {string}
  */
 proto.forge_abi.ForgeToken.prototype.getUnit = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ''));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
+
 
 /** @param {string} value */
 proto.forge_abi.ForgeToken.prototype.setUnit = function(value) {
   jspb.Message.setProto3StringField(this, 3, value);
 };
 
+
 /**
  * optional string description = 4;
  * @return {string}
  */
 proto.forge_abi.ForgeToken.prototype.getDescription = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ''));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
 };
+
 
 /** @param {string} value */
 proto.forge_abi.ForgeToken.prototype.setDescription = function(value) {
   jspb.Message.setProto3StringField(this, 4, value);
 };
 
+
 /**
  * optional bytes icon = 5;
  * @return {!(string|Uint8Array)}
  */
 proto.forge_abi.ForgeToken.prototype.getIcon = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 5, ''));
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
 };
+
 
 /**
  * optional bytes icon = 5;
@@ -10523,8 +11753,10 @@ proto.forge_abi.ForgeToken.prototype.getIcon = function() {
  * @return {string}
  */
 proto.forge_abi.ForgeToken.prototype.getIcon_asB64 = function() {
-  return /** @type {string} */ (jspb.Message.bytesAsB64(this.getIcon()));
+  return /** @type {string} */ (jspb.Message.bytesAsB64(
+      this.getIcon()));
 };
+
 
 /**
  * optional bytes icon = 5;
@@ -10534,13 +11766,16 @@ proto.forge_abi.ForgeToken.prototype.getIcon_asB64 = function() {
  * @return {!Uint8Array}
  */
 proto.forge_abi.ForgeToken.prototype.getIcon_asU8 = function() {
-  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(this.getIcon()));
+  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
+      this.getIcon()));
 };
+
 
 /** @param {!(string|Uint8Array)} value */
 proto.forge_abi.ForgeToken.prototype.setIcon = function(value) {
   jspb.Message.setProto3BytesField(this, 5, value);
 };
+
 
 /**
  * optional uint32 decimal = 6;
@@ -10550,10 +11785,12 @@ proto.forge_abi.ForgeToken.prototype.getDecimal = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 6, 0));
 };
 
+
 /** @param {number} value */
 proto.forge_abi.ForgeToken.prototype.setDecimal = function(value) {
   jspb.Message.setProto3IntField(this, 6, value);
 };
+
 
 /**
  * optional uint64 initial_supply = 7;
@@ -10563,10 +11800,12 @@ proto.forge_abi.ForgeToken.prototype.getInitialSupply = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 7, 0));
 };
 
+
 /** @param {number} value */
 proto.forge_abi.ForgeToken.prototype.setInitialSupply = function(value) {
   jspb.Message.setProto3IntField(this, 7, value);
 };
+
 
 /**
  * optional uint64 total_supply = 8;
@@ -10576,10 +11815,12 @@ proto.forge_abi.ForgeToken.prototype.getTotalSupply = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 8, 0));
 };
 
+
 /** @param {number} value */
 proto.forge_abi.ForgeToken.prototype.setTotalSupply = function(value) {
   jspb.Message.setProto3IntField(this, 8, value);
 };
+
 
 /**
  * optional uint32 inflation_rate = 9;
@@ -10589,10 +11830,13 @@ proto.forge_abi.ForgeToken.prototype.getInflationRate = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 9, 0));
 };
 
+
 /** @param {number} value */
 proto.forge_abi.ForgeToken.prototype.setInflationRate = function(value) {
   jspb.Message.setProto3IntField(this, 9, value);
 };
+
+
 
 /**
  * Generated by JsPbCodeGenerator.
@@ -10612,45 +11856,46 @@ if (goog.DEBUG && !COMPILED) {
   proto.forge_abi.PokeInfo.displayName = 'proto.forge_abi.PokeInfo';
 }
 
+
 if (jspb.Message.GENERATE_TO_OBJECT) {
-  /**
-   * Creates an object representation of this proto suitable for use in Soy templates.
-   * Field names that are reserved in JavaScript and will be renamed to pb_name.
-   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
-   * For the list of reserved names please see:
-   *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
-   * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
-   *     for transitional soy proto support: http://goto/soy-param-migration
-   * @return {!Object}
-   */
-  proto.forge_abi.PokeInfo.prototype.toObject = function(opt_includeInstance) {
-    return proto.forge_abi.PokeInfo.toObject(opt_includeInstance, this);
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.forge_abi.PokeInfo.prototype.toObject = function(opt_includeInstance) {
+  return proto.forge_abi.PokeInfo.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.forge_abi.PokeInfo} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.forge_abi.PokeInfo.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    dailyLimit: (f = msg.getDailyLimit()) && proto.forge_abi.BigUint.toObject(includeInstance, f),
+    leftover: (f = msg.getLeftover()) && proto.forge_abi.BigUint.toObject(includeInstance, f),
+    amount: (f = msg.getAmount()) && proto.forge_abi.BigUint.toObject(includeInstance, f)
   };
 
-  /**
-   * Static version of the {@see toObject} method.
-   * @param {boolean|undefined} includeInstance Whether to include the JSPB
-   *     instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @param {!proto.forge_abi.PokeInfo} msg The msg instance to transform.
-   * @return {!Object}
-   * @suppress {unusedLocalVariables} f is only used for nested messages
-   */
-  proto.forge_abi.PokeInfo.toObject = function(includeInstance, msg) {
-    var f,
-      obj = {
-        dailyLimit:
-          (f = msg.getDailyLimit()) && proto.forge_abi.BigUint.toObject(includeInstance, f),
-        leftover: (f = msg.getLeftover()) && proto.forge_abi.BigUint.toObject(includeInstance, f),
-        amount: (f = msg.getAmount()) && proto.forge_abi.BigUint.toObject(includeInstance, f),
-      };
-
-    if (includeInstance) {
-      obj.$jspbMessageInstance = msg;
-    }
-    return obj;
-  };
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
 }
+
 
 /**
  * Deserializes binary data (in protobuf wire format).
@@ -10659,9 +11904,10 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  */
 proto.forge_abi.PokeInfo.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.forge_abi.PokeInfo();
+  var msg = new proto.forge_abi.PokeInfo;
   return proto.forge_abi.PokeInfo.deserializeBinaryFromReader(msg, reader);
 };
+
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -10677,28 +11923,29 @@ proto.forge_abi.PokeInfo.deserializeBinaryFromReader = function(msg, reader) {
     }
     var field = reader.getFieldNumber();
     switch (field) {
-      case 1:
-        var value = new proto.forge_abi.BigUint();
-        reader.readMessage(value, proto.forge_abi.BigUint.deserializeBinaryFromReader);
-        msg.setDailyLimit(value);
-        break;
-      case 2:
-        var value = new proto.forge_abi.BigUint();
-        reader.readMessage(value, proto.forge_abi.BigUint.deserializeBinaryFromReader);
-        msg.setLeftover(value);
-        break;
-      case 3:
-        var value = new proto.forge_abi.BigUint();
-        reader.readMessage(value, proto.forge_abi.BigUint.deserializeBinaryFromReader);
-        msg.setAmount(value);
-        break;
-      default:
-        reader.skipField();
-        break;
+    case 1:
+      var value = new proto.forge_abi.BigUint;
+      reader.readMessage(value,proto.forge_abi.BigUint.deserializeBinaryFromReader);
+      msg.setDailyLimit(value);
+      break;
+    case 2:
+      var value = new proto.forge_abi.BigUint;
+      reader.readMessage(value,proto.forge_abi.BigUint.deserializeBinaryFromReader);
+      msg.setLeftover(value);
+      break;
+    case 3:
+      var value = new proto.forge_abi.BigUint;
+      reader.readMessage(value,proto.forge_abi.BigUint.deserializeBinaryFromReader);
+      msg.setAmount(value);
+      break;
+    default:
+      reader.skipField();
+      break;
     }
   }
   return msg;
 };
+
 
 /**
  * Serializes the message to binary data (in protobuf wire format).
@@ -10709,6 +11956,7 @@ proto.forge_abi.PokeInfo.prototype.serializeBinary = function() {
   proto.forge_abi.PokeInfo.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
+
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -10721,38 +11969,51 @@ proto.forge_abi.PokeInfo.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getDailyLimit();
   if (f != null) {
-    writer.writeMessage(1, f, proto.forge_abi.BigUint.serializeBinaryToWriter);
+    writer.writeMessage(
+      1,
+      f,
+      proto.forge_abi.BigUint.serializeBinaryToWriter
+    );
   }
   f = message.getLeftover();
   if (f != null) {
-    writer.writeMessage(2, f, proto.forge_abi.BigUint.serializeBinaryToWriter);
+    writer.writeMessage(
+      2,
+      f,
+      proto.forge_abi.BigUint.serializeBinaryToWriter
+    );
   }
   f = message.getAmount();
   if (f != null) {
-    writer.writeMessage(3, f, proto.forge_abi.BigUint.serializeBinaryToWriter);
+    writer.writeMessage(
+      3,
+      f,
+      proto.forge_abi.BigUint.serializeBinaryToWriter
+    );
   }
 };
+
 
 /**
  * optional BigUint daily_limit = 1;
  * @return {?proto.forge_abi.BigUint}
  */
 proto.forge_abi.PokeInfo.prototype.getDailyLimit = function() {
-  return /** @type{?proto.forge_abi.BigUint} */ (jspb.Message.getWrapperField(
-    this,
-    proto.forge_abi.BigUint,
-    1
-  ));
+  return /** @type{?proto.forge_abi.BigUint} */ (
+    jspb.Message.getWrapperField(this, proto.forge_abi.BigUint, 1));
 };
+
 
 /** @param {?proto.forge_abi.BigUint|undefined} value */
 proto.forge_abi.PokeInfo.prototype.setDailyLimit = function(value) {
   jspb.Message.setWrapperField(this, 1, value);
 };
 
+
 proto.forge_abi.PokeInfo.prototype.clearDailyLimit = function() {
   this.setDailyLimit(undefined);
 };
+
 
 /**
  * Returns whether this field is set.
@@ -10762,26 +12023,27 @@ proto.forge_abi.PokeInfo.prototype.hasDailyLimit = function() {
   return jspb.Message.getField(this, 1) != null;
 };
 
+
 /**
  * optional BigUint leftover = 2;
  * @return {?proto.forge_abi.BigUint}
  */
 proto.forge_abi.PokeInfo.prototype.getLeftover = function() {
-  return /** @type{?proto.forge_abi.BigUint} */ (jspb.Message.getWrapperField(
-    this,
-    proto.forge_abi.BigUint,
-    2
-  ));
+  return /** @type{?proto.forge_abi.BigUint} */ (
+    jspb.Message.getWrapperField(this, proto.forge_abi.BigUint, 2));
 };
+
 
 /** @param {?proto.forge_abi.BigUint|undefined} value */
 proto.forge_abi.PokeInfo.prototype.setLeftover = function(value) {
   jspb.Message.setWrapperField(this, 2, value);
 };
 
+
 proto.forge_abi.PokeInfo.prototype.clearLeftover = function() {
   this.setLeftover(undefined);
 };
+
 
 /**
  * Returns whether this field is set.
@@ -10791,26 +12053,27 @@ proto.forge_abi.PokeInfo.prototype.hasLeftover = function() {
   return jspb.Message.getField(this, 2) != null;
 };
 
+
 /**
  * optional BigUint amount = 3;
  * @return {?proto.forge_abi.BigUint}
  */
 proto.forge_abi.PokeInfo.prototype.getAmount = function() {
-  return /** @type{?proto.forge_abi.BigUint} */ (jspb.Message.getWrapperField(
-    this,
-    proto.forge_abi.BigUint,
-    3
-  ));
+  return /** @type{?proto.forge_abi.BigUint} */ (
+    jspb.Message.getWrapperField(this, proto.forge_abi.BigUint, 3));
 };
+
 
 /** @param {?proto.forge_abi.BigUint|undefined} value */
 proto.forge_abi.PokeInfo.prototype.setAmount = function(value) {
   jspb.Message.setWrapperField(this, 3, value);
 };
 
+
 proto.forge_abi.PokeInfo.prototype.clearAmount = function() {
   this.setAmount(undefined);
 };
+
 
 /**
  * Returns whether this field is set.
@@ -10819,6 +12082,8 @@ proto.forge_abi.PokeInfo.prototype.clearAmount = function() {
 proto.forge_abi.PokeInfo.prototype.hasAmount = function() {
   return jspb.Message.getField(this, 3) != null;
 };
+
+
 
 /**
  * Generated by JsPbCodeGenerator.
@@ -10838,45 +12103,47 @@ if (goog.DEBUG && !COMPILED) {
   proto.forge_abi.PokeConfig.displayName = 'proto.forge_abi.PokeConfig';
 }
 
+
 if (jspb.Message.GENERATE_TO_OBJECT) {
-  /**
-   * Creates an object representation of this proto suitable for use in Soy templates.
-   * Field names that are reserved in JavaScript and will be renamed to pb_name.
-   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
-   * For the list of reserved names please see:
-   *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
-   * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
-   *     for transitional soy proto support: http://goto/soy-param-migration
-   * @return {!Object}
-   */
-  proto.forge_abi.PokeConfig.prototype.toObject = function(opt_includeInstance) {
-    return proto.forge_abi.PokeConfig.toObject(opt_includeInstance, this);
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.forge_abi.PokeConfig.prototype.toObject = function(opt_includeInstance) {
+  return proto.forge_abi.PokeConfig.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.forge_abi.PokeConfig} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.forge_abi.PokeConfig.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    address: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    dailyLimit: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    balance: jspb.Message.getFieldWithDefault(msg, 3, 0),
+    amount: jspb.Message.getFieldWithDefault(msg, 4, 0)
   };
 
-  /**
-   * Static version of the {@see toObject} method.
-   * @param {boolean|undefined} includeInstance Whether to include the JSPB
-   *     instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @param {!proto.forge_abi.PokeConfig} msg The msg instance to transform.
-   * @return {!Object}
-   * @suppress {unusedLocalVariables} f is only used for nested messages
-   */
-  proto.forge_abi.PokeConfig.toObject = function(includeInstance, msg) {
-    var f,
-      obj = {
-        address: jspb.Message.getFieldWithDefault(msg, 1, ''),
-        dailyLimit: jspb.Message.getFieldWithDefault(msg, 2, 0),
-        balance: jspb.Message.getFieldWithDefault(msg, 3, 0),
-        amount: jspb.Message.getFieldWithDefault(msg, 4, 0),
-      };
-
-    if (includeInstance) {
-      obj.$jspbMessageInstance = msg;
-    }
-    return obj;
-  };
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
 }
+
 
 /**
  * Deserializes binary data (in protobuf wire format).
@@ -10885,9 +12152,10 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  */
 proto.forge_abi.PokeConfig.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.forge_abi.PokeConfig();
+  var msg = new proto.forge_abi.PokeConfig;
   return proto.forge_abi.PokeConfig.deserializeBinaryFromReader(msg, reader);
 };
+
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -10903,29 +12171,30 @@ proto.forge_abi.PokeConfig.deserializeBinaryFromReader = function(msg, reader) {
     }
     var field = reader.getFieldNumber();
     switch (field) {
-      case 1:
-        var value = /** @type {string} */ (reader.readString());
-        msg.setAddress(value);
-        break;
-      case 2:
-        var value = /** @type {number} */ (reader.readUint64());
-        msg.setDailyLimit(value);
-        break;
-      case 3:
-        var value = /** @type {number} */ (reader.readUint64());
-        msg.setBalance(value);
-        break;
-      case 4:
-        var value = /** @type {number} */ (reader.readUint64());
-        msg.setAmount(value);
-        break;
-      default:
-        reader.skipField();
-        break;
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setAddress(value);
+      break;
+    case 2:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setDailyLimit(value);
+      break;
+    case 3:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setBalance(value);
+      break;
+    case 4:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setAmount(value);
+      break;
+    default:
+      reader.skipField();
+      break;
     }
   }
   return msg;
 };
+
 
 /**
  * Serializes the message to binary data (in protobuf wire format).
@@ -10936,6 +12205,7 @@ proto.forge_abi.PokeConfig.prototype.serializeBinary = function() {
   proto.forge_abi.PokeConfig.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
+
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -10948,34 +12218,49 @@ proto.forge_abi.PokeConfig.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getAddress();
   if (f.length > 0) {
-    writer.writeString(1, f);
+    writer.writeString(
+      1,
+      f
+    );
   }
   f = message.getDailyLimit();
   if (f !== 0) {
-    writer.writeUint64(2, f);
+    writer.writeUint64(
+      2,
+      f
+    );
   }
   f = message.getBalance();
   if (f !== 0) {
-    writer.writeUint64(3, f);
+    writer.writeUint64(
+      3,
+      f
+    );
   }
   f = message.getAmount();
   if (f !== 0) {
-    writer.writeUint64(4, f);
+    writer.writeUint64(
+      4,
+      f
+    );
   }
 };
+
 
 /**
  * optional string address = 1;
  * @return {string}
  */
 proto.forge_abi.PokeConfig.prototype.getAddress = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ''));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
+
 
 /** @param {string} value */
 proto.forge_abi.PokeConfig.prototype.setAddress = function(value) {
   jspb.Message.setProto3StringField(this, 1, value);
 };
+
 
 /**
  * optional uint64 daily_limit = 2;
@@ -10985,10 +12270,12 @@ proto.forge_abi.PokeConfig.prototype.getDailyLimit = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
 };
 
+
 /** @param {number} value */
 proto.forge_abi.PokeConfig.prototype.setDailyLimit = function(value) {
   jspb.Message.setProto3IntField(this, 2, value);
 };
+
 
 /**
  * optional uint64 balance = 3;
@@ -10998,10 +12285,12 @@ proto.forge_abi.PokeConfig.prototype.getBalance = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
 };
 
+
 /** @param {number} value */
 proto.forge_abi.PokeConfig.prototype.setBalance = function(value) {
   jspb.Message.setProto3IntField(this, 3, value);
 };
+
 
 /**
  * optional uint64 amount = 4;
@@ -11011,10 +12300,13 @@ proto.forge_abi.PokeConfig.prototype.getAmount = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
 };
 
+
 /** @param {number} value */
 proto.forge_abi.PokeConfig.prototype.setAmount = function(value) {
   jspb.Message.setProto3IntField(this, 4, value);
 };
+
+
 
 /**
  * Generated by JsPbCodeGenerator.
@@ -11034,43 +12326,45 @@ if (goog.DEBUG && !COMPILED) {
   proto.forge_abi.UpgradeInfo.displayName = 'proto.forge_abi.UpgradeInfo';
 }
 
+
 if (jspb.Message.GENERATE_TO_OBJECT) {
-  /**
-   * Creates an object representation of this proto suitable for use in Soy templates.
-   * Field names that are reserved in JavaScript and will be renamed to pb_name.
-   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
-   * For the list of reserved names please see:
-   *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
-   * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
-   *     for transitional soy proto support: http://goto/soy-param-migration
-   * @return {!Object}
-   */
-  proto.forge_abi.UpgradeInfo.prototype.toObject = function(opt_includeInstance) {
-    return proto.forge_abi.UpgradeInfo.toObject(opt_includeInstance, this);
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.forge_abi.UpgradeInfo.prototype.toObject = function(opt_includeInstance) {
+  return proto.forge_abi.UpgradeInfo.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.forge_abi.UpgradeInfo} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.forge_abi.UpgradeInfo.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    height: jspb.Message.getFieldWithDefault(msg, 1, 0),
+    version: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
-  /**
-   * Static version of the {@see toObject} method.
-   * @param {boolean|undefined} includeInstance Whether to include the JSPB
-   *     instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @param {!proto.forge_abi.UpgradeInfo} msg The msg instance to transform.
-   * @return {!Object}
-   * @suppress {unusedLocalVariables} f is only used for nested messages
-   */
-  proto.forge_abi.UpgradeInfo.toObject = function(includeInstance, msg) {
-    var f,
-      obj = {
-        height: jspb.Message.getFieldWithDefault(msg, 1, 0),
-        version: jspb.Message.getFieldWithDefault(msg, 2, ''),
-      };
-
-    if (includeInstance) {
-      obj.$jspbMessageInstance = msg;
-    }
-    return obj;
-  };
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
 }
+
 
 /**
  * Deserializes binary data (in protobuf wire format).
@@ -11079,9 +12373,10 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  */
 proto.forge_abi.UpgradeInfo.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.forge_abi.UpgradeInfo();
+  var msg = new proto.forge_abi.UpgradeInfo;
   return proto.forge_abi.UpgradeInfo.deserializeBinaryFromReader(msg, reader);
 };
+
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -11097,21 +12392,22 @@ proto.forge_abi.UpgradeInfo.deserializeBinaryFromReader = function(msg, reader) 
     }
     var field = reader.getFieldNumber();
     switch (field) {
-      case 1:
-        var value = /** @type {number} */ (reader.readUint64());
-        msg.setHeight(value);
-        break;
-      case 2:
-        var value = /** @type {string} */ (reader.readString());
-        msg.setVersion(value);
-        break;
-      default:
-        reader.skipField();
-        break;
+    case 1:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setHeight(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setVersion(value);
+      break;
+    default:
+      reader.skipField();
+      break;
     }
   }
   return msg;
 };
+
 
 /**
  * Serializes the message to binary data (in protobuf wire format).
@@ -11122,6 +12418,7 @@ proto.forge_abi.UpgradeInfo.prototype.serializeBinary = function() {
   proto.forge_abi.UpgradeInfo.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
+
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -11134,13 +12431,20 @@ proto.forge_abi.UpgradeInfo.serializeBinaryToWriter = function(message, writer) 
   var f = undefined;
   f = message.getHeight();
   if (f !== 0) {
-    writer.writeUint64(1, f);
+    writer.writeUint64(
+      1,
+      f
+    );
   }
   f = message.getVersion();
   if (f.length > 0) {
-    writer.writeString(2, f);
+    writer.writeString(
+      2,
+      f
+    );
   }
 };
+
 
 /**
  * optional uint64 height = 1;
@@ -11150,23 +12454,27 @@ proto.forge_abi.UpgradeInfo.prototype.getHeight = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
 };
 
+
 /** @param {number} value */
 proto.forge_abi.UpgradeInfo.prototype.setHeight = function(value) {
   jspb.Message.setProto3IntField(this, 1, value);
 };
+
 
 /**
  * optional string version = 2;
  * @return {string}
  */
 proto.forge_abi.UpgradeInfo.prototype.getVersion = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ''));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
+
 
 /** @param {string} value */
 proto.forge_abi.UpgradeInfo.prototype.setVersion = function(value) {
   jspb.Message.setProto3StringField(this, 2, value);
 };
+
 
 goog.object.extend(exports, proto.forge_abi);
 
