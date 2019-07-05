@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 const { fakeField, fakeMessage } = require('@arcblock/sdk-util/lib/util');
 
-const Client = require('../src/client');
+const Client = require('../lib/client');
 
 const client = new Client();
 const map = {

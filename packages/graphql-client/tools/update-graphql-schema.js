@@ -19,7 +19,7 @@ const httpEndpoint = () => 'http://localhost:8210/api';
       const schemaFilePacked = path.join(__dirname, '../src/schema', `${dataSource}.txt`);
       const schemaJson = JSON.stringify(result.__schema, true, '  ');
       fs.writeFileSync(schemaFile, schemaJson);
-      fs.writeFileSync(schemaFilePacked, jsonpack(schemaJson));
+      fs.writeFileSync(schemaFilePacked, jsonpack.pack(schemaJson));
       console.log(`${dataSource} update success`, schemaFile);
     } else {
       console.log(`${dataSource} fetch failure`);

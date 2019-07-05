@@ -13,12 +13,11 @@ A `GraphQLClient` instance mainly supports 5 groups of methods that saves you ti
 
 ## Table of Contents
 
-- [Table of Contents](#Table-of-Contents)
-- [Install](#Install)
-- [Usage](#Usage)
-- [Examples](#Examples)
-- [Debugging](#Debugging)
-- [Documentation](#Documentation)
+* [Install](#install)
+* [Usage](#usage)
+* [Examples](#examples)
+* [Debugging](#debugging)
+* [Documentation](#documentation)
 
 
 ## Install
