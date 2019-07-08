@@ -180,6 +180,17 @@ function deserialize_forge_abi_RequestGetStakeState(buffer_arg) {
   return rpc_pb.RequestGetStakeState.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_forge_abi_RequestGetSwapState(arg) {
+  if (!(arg instanceof rpc_pb.RequestGetSwapState)) {
+    throw new Error('Expected argument of type forge_abi.RequestGetSwapState');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_forge_abi_RequestGetSwapState(buffer_arg) {
+  return rpc_pb.RequestGetSwapState.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_forge_abi_RequestGetTetherState(arg) {
   if (!(arg instanceof rpc_pb.RequestGetTetherState)) {
     throw new Error('Expected argument of type forge_abi.RequestGetTetherState');
@@ -277,6 +288,17 @@ function serialize_forge_abi_RequestListStakes(arg) {
 
 function deserialize_forge_abi_RequestListStakes(buffer_arg) {
   return rpc_pb.RequestListStakes.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_forge_abi_RequestListSwap(arg) {
+  if (!(arg instanceof rpc_pb.RequestListSwap)) {
+    throw new Error('Expected argument of type forge_abi.RequestListSwap');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_forge_abi_RequestListSwap(buffer_arg) {
+  return rpc_pb.RequestListSwap.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_forge_abi_RequestListTethers(arg) {
@@ -620,6 +642,17 @@ function deserialize_forge_abi_ResponseGetStakeState(buffer_arg) {
   return rpc_pb.ResponseGetStakeState.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_forge_abi_ResponseGetSwapState(arg) {
+  if (!(arg instanceof rpc_pb.ResponseGetSwapState)) {
+    throw new Error('Expected argument of type forge_abi.ResponseGetSwapState');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_forge_abi_ResponseGetSwapState(buffer_arg) {
+  return rpc_pb.ResponseGetSwapState.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_forge_abi_ResponseGetTetherState(arg) {
   if (!(arg instanceof rpc_pb.ResponseGetTetherState)) {
     throw new Error('Expected argument of type forge_abi.ResponseGetTetherState');
@@ -717,6 +750,17 @@ function serialize_forge_abi_ResponseListStakes(arg) {
 
 function deserialize_forge_abi_ResponseListStakes(buffer_arg) {
   return rpc_pb.ResponseListStakes.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_forge_abi_ResponseListSwap(arg) {
+  if (!(arg instanceof rpc_pb.ResponseListSwap)) {
+    throw new Error('Expected argument of type forge_abi.ResponseListSwap');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_forge_abi_ResponseListSwap(buffer_arg) {
+  return rpc_pb.ResponseListSwap.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_forge_abi_ResponseListTethers(arg) {
@@ -884,7 +928,6 @@ function deserialize_forge_abi_ResponseUnsubscribe(buffer_arg) {
   return rpc_pb.ResponseUnsubscribe.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-
 // forge RPC definition
 //
 // Notice: when you define a new RPC, please follow the naming convention. Your
@@ -892,7 +935,7 @@ function deserialize_forge_abi_ResponseUnsubscribe(buffer_arg) {
 // name, prefixed with Request / Response. e.g. rpc get_abc(RequestGetAbc)
 // returns (ResponseGetAbc). If you break this, RPC builder would complain.
 //
-var ChainRpcService = exports.ChainRpcService = {
+var ChainRpcService = (exports.ChainRpcService = {
   // tx related
   create_tx: {
     path: '/forge_abi.ChainRpc/create_tx',
@@ -1038,10 +1081,10 @@ var ChainRpcService = exports.ChainRpcService = {
     responseSerialize: serialize_forge_abi_ResponseGetConfig,
     responseDeserialize: deserialize_forge_abi_ResponseGetConfig,
   },
-};
+});
 
 exports.ChainRpcClient = grpc.makeGenericClientConstructor(ChainRpcService);
-var EventRpcService = exports.EventRpcService = {
+var EventRpcService = (exports.EventRpcService = {
   subscribe: {
     path: '/forge_abi.EventRpc/subscribe',
     requestStream: false,
@@ -1064,10 +1107,10 @@ var EventRpcService = exports.EventRpcService = {
     responseSerialize: serialize_forge_abi_ResponseUnsubscribe,
     responseDeserialize: deserialize_forge_abi_ResponseUnsubscribe,
   },
-};
+});
 
 exports.EventRpcClient = grpc.makeGenericClientConstructor(EventRpcService);
-var FileRpcService = exports.FileRpcService = {
+var FileRpcService = (exports.FileRpcService = {
   // filesystem related
   store_file: {
     path: '/forge_abi.FileRpc/store_file',
@@ -1102,10 +1145,10 @@ var FileRpcService = exports.FileRpcService = {
     responseSerialize: serialize_forge_abi_ResponsePinFile,
     responseDeserialize: deserialize_forge_abi_ResponsePinFile,
   },
-};
+});
 
 exports.FileRpcClient = grpc.makeGenericClientConstructor(FileRpcService);
-var StateRpcService = exports.StateRpcService = {
+var StateRpcService = (exports.StateRpcService = {
   // state related
   get_account_state: {
     path: '/forge_abi.StateRpc/get_account_state',
@@ -1173,10 +1216,21 @@ var StateRpcService = exports.StateRpcService = {
     responseSerialize: serialize_forge_abi_ResponseGetTetherState,
     responseDeserialize: deserialize_forge_abi_ResponseGetTetherState,
   },
-};
+  get_swap_state: {
+    path: '/forge_abi.StateRpc/get_swap_state',
+    requestStream: true,
+    responseStream: true,
+    requestType: rpc_pb.RequestGetSwapState,
+    responseType: rpc_pb.ResponseGetSwapState,
+    requestSerialize: serialize_forge_abi_RequestGetSwapState,
+    requestDeserialize: deserialize_forge_abi_RequestGetSwapState,
+    responseSerialize: serialize_forge_abi_ResponseGetSwapState,
+    responseDeserialize: deserialize_forge_abi_ResponseGetSwapState,
+  },
+});
 
 exports.StateRpcClient = grpc.makeGenericClientConstructor(StateRpcService);
-var WalletRpcService = exports.WalletRpcService = {
+var WalletRpcService = (exports.WalletRpcService = {
   // wallet related
   create_wallet: {
     path: '/forge_abi.WalletRpc/create_wallet',
@@ -1244,10 +1298,10 @@ var WalletRpcService = exports.WalletRpcService = {
     responseSerialize: serialize_forge_abi_ResponseDeclareNode,
     responseDeserialize: deserialize_forge_abi_ResponseDeclareNode,
   },
-};
+});
 
 exports.WalletRpcClient = grpc.makeGenericClientConstructor(WalletRpcService);
-var StatsRpcService = exports.StatsRpcService = {
+var StatsRpcService = (exports.StatsRpcService = {
   get_forge_stats: {
     path: '/forge_abi.StatsRpc/get_forge_stats',
     requestStream: false,
@@ -1358,6 +1412,17 @@ var StatsRpcService = exports.StatsRpcService = {
     responseSerialize: serialize_forge_abi_ResponseListTethers,
     responseDeserialize: deserialize_forge_abi_ResponseListTethers,
   },
-};
+  list_swap: {
+    path: '/forge_abi.StatsRpc/list_swap',
+    requestStream: false,
+    responseStream: false,
+    requestType: rpc_pb.RequestListSwap,
+    responseType: rpc_pb.ResponseListSwap,
+    requestSerialize: serialize_forge_abi_RequestListSwap,
+    requestDeserialize: deserialize_forge_abi_RequestListSwap,
+    responseSerialize: serialize_forge_abi_ResponseListSwap,
+    responseDeserialize: deserialize_forge_abi_ResponseListSwap,
+  },
+});
 
 exports.StatsRpcClient = grpc.makeGenericClientConstructor(StatsRpcService);

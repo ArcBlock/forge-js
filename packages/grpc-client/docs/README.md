@@ -46,6 +46,7 @@ Please note that, due to internal implementation of google-protobuf, all `repeat
     * [.getProtocolState(params)](#GRpcClient+getProtocolState) ⇒ <code>EventEmitter</code>
     * [.getStakeState(params)](#GRpcClient+getStakeState) ⇒ <code>EventEmitter</code>
     * [.getTetherState(params)](#GRpcClient+getTetherState) ⇒ <code>EventEmitter</code>
+    * [.getSwapState(params)](#GRpcClient+getSwapState) ⇒ <code>EventEmitter</code>
     * [.createWallet(params)](#GRpcClient+createWallet) ⇒ [<code>Promise.&lt;ResponseCreateWallet></code>](#GRpcClient.ResponseCreateWallet)
     * [.loadWallet(params)](#GRpcClient+loadWallet) ⇒ [<code>Promise.&lt;ResponseLoadWallet></code>](#GRpcClient.ResponseLoadWallet)
     * [.recoverWallet(params)](#GRpcClient+recoverWallet) ⇒ [<code>Promise.&lt;ResponseRecoverWallet></code>](#GRpcClient.ResponseRecoverWallet)
@@ -62,6 +63,7 @@ Please note that, due to internal implementation of google-protobuf, all `repeat
     * [.listBlocks(params)](#GRpcClient+listBlocks) ⇒ [<code>Promise.&lt;ResponseListBlocks></code>](#GRpcClient.ResponseListBlocks)
     * [.getHealthStatus(params)](#GRpcClient+getHealthStatus) ⇒ [<code>Promise.&lt;ResponseGetHealthStatus></code>](#GRpcClient.ResponseGetHealthStatus)
     * [.listTethers(params)](#GRpcClient+listTethers) ⇒ [<code>Promise.&lt;ResponseListTethers></code>](#GRpcClient.ResponseListTethers)
+    * [.listSwap(params)](#GRpcClient+listSwap) ⇒ [<code>Promise.&lt;ResponseListSwap></code>](#GRpcClient.ResponseListSwap)
     * [.sendConsensusUpgradeTx(params)](#GRpcClient+sendConsensusUpgradeTx) ⇒ <code>Promise.&lt;string></code>
     * [.sendDeployProtocolTx(params)](#GRpcClient+sendDeployProtocolTx) ⇒ <code>Promise.&lt;string></code>
     * [.sendSysUpgradeTx(params)](#GRpcClient+sendSysUpgradeTx) ⇒ <code>Promise.&lt;string></code>
@@ -145,6 +147,8 @@ Please note that, due to internal implementation of google-protobuf, all `repeat
     * [.ResponseGetForgeState](#GRpcClient.ResponseGetForgeState) : <code>object</code>
     * [.RequestGetTetherState](#GRpcClient.RequestGetTetherState) : <code>object</code>
     * [.ResponseGetTetherState](#GRpcClient.ResponseGetTetherState) : <code>object</code>
+    * [.RequestGetSwapState](#GRpcClient.RequestGetSwapState) : <code>object</code>
+    * [.ResponseGetSwapState](#GRpcClient.ResponseGetSwapState) : <code>object</code>
     * [.RequestStoreFile](#GRpcClient.RequestStoreFile) : <code>object</code>
     * [.ResponseStoreFile](#GRpcClient.ResponseStoreFile) : <code>object</code>
     * [.RequestLoadFile](#GRpcClient.RequestLoadFile) : <code>object</code>
@@ -189,6 +193,8 @@ Please note that, due to internal implementation of google-protobuf, all `repeat
     * [.ResponseListBlocks](#GRpcClient.ResponseListBlocks) : <code>object</code>
     * [.RequestListTethers](#GRpcClient.RequestListTethers) : <code>object</code>
     * [.ResponseListTethers](#GRpcClient.ResponseListTethers) : <code>object</code>
+    * [.RequestListSwap](#GRpcClient.RequestListSwap) : <code>object</code>
+    * [.ResponseListSwap](#GRpcClient.ResponseListSwap) : <code>object</code>
     * [.RequestGetHealthStatus](#GRpcClient.RequestGetHealthStatus) : <code>object</code>
     * [.ResponseGetHealthStatus](#GRpcClient.ResponseGetHealthStatus) : <code>object</code>
     * [.BigUint](#GRpcClient.BigUint) : <code>object</code>
@@ -239,6 +245,7 @@ Please note that, due to internal implementation of google-protobuf, all `repeat
     * [.ProtocolState](#GRpcClient.ProtocolState) : <code>object</code>
     * [.TetherState](#GRpcClient.TetherState) : <code>object</code>
     * [.TetherInfo](#GRpcClient.TetherInfo) : <code>object</code>
+    * [.SwapState](#GRpcClient.SwapState) : <code>object</code>
     * [.CodeInfo](#GRpcClient.CodeInfo) : <code>object</code>
     * [.TypeUrls](#GRpcClient.TypeUrls) : <code>object</code>
     * [.DeployProtocolTx](#GRpcClient.DeployProtocolTx) : <code>object</code>
@@ -284,7 +291,6 @@ Please note that, due to internal implementation of google-protobuf, all `repeat
     * [.RevokeSwapTx](#GRpcClient.RevokeSwapTx) : <code>object</code>
     * [.RevokeTetherTx](#GRpcClient.RevokeTetherTx) : <code>object</code>
     * [.SetupSwapTx](#GRpcClient.SetupSwapTx) : <code>object</code>
-    * [.SwapState](#GRpcClient.SwapState) : <code>object</code>
     * [.stakeForAsset](#GRpcClient.stakeForAsset) : <code>object</code>
     * [.stakeForChain](#GRpcClient.stakeForChain) : <code>object</code>
     * [.StakeForNode](#GRpcClient.StakeForNode) : <code>object</code>
@@ -698,6 +704,19 @@ Send gRPC call and return the result
 | ------ | ----------------------------------------------------------------------- |
 | params | [<code>RequestGetTetherState</code>](#GRpcClient.RequestGetTetherState) |
 
+<a name="GRpcClient+getSwapState"></a>
+
+### gRpcClient.getSwapState(params) ⇒ <code>EventEmitter</code>
+
+Send gRPC call and return the result
+
+**Kind**: instance method of [<code>GRpcClient</code>](#GRpcClient)  
+**Returns**: <code>EventEmitter</code> - EventEmitter that emits `data` event when new data received, checkout [ResponseGetSwapState](#GRpcClient.ResponseGetSwapState) for payload format.  
+
+| Param  | Type                                                                |
+| ------ | ------------------------------------------------------------------- |
+| params | [<code>RequestGetSwapState</code>](#GRpcClient.RequestGetSwapState) |
+
 <a name="GRpcClient+createWallet"></a>
 
 ### gRpcClient.createWallet(params) ⇒ [<code>Promise.&lt;ResponseCreateWallet></code>](#GRpcClient.ResponseCreateWallet)
@@ -890,6 +909,18 @@ Send gRPC call and return the result
 | Param  | Type                                                              |
 | ------ | ----------------------------------------------------------------- |
 | params | [<code>RequestListTethers</code>](#GRpcClient.RequestListTethers) |
+
+<a name="GRpcClient+listSwap"></a>
+
+### gRpcClient.listSwap(params) ⇒ [<code>Promise.&lt;ResponseListSwap></code>](#GRpcClient.ResponseListSwap)
+
+Send gRPC call and return the result
+
+**Kind**: instance method of [<code>GRpcClient</code>](#GRpcClient)  
+
+| Param  | Type                                                        |
+| ------ | ----------------------------------------------------------- |
+| params | [<code>RequestListSwap</code>](#GRpcClient.RequestListSwap) |
 
 <a name="GRpcClient+sendConsensusUpgradeTx"></a>
 
@@ -1544,6 +1575,7 @@ Structure of GRpcClient.ResponseCreateTx
     "nonce": 5,
     "chainId": "arcblock",
     "pk": {},
+    "gas": 2,
     "signature": {},
     "signatures": [
       {
@@ -1594,6 +1626,7 @@ Structure of GRpcClient.RequestMultisig
     "nonce": 5,
     "chainId": "arcblock",
     "pk": {},
+    "gas": 2,
     "signature": {},
     "signatures": [
       {
@@ -1663,6 +1696,7 @@ Structure of GRpcClient.ResponseMultisig
     "nonce": 5,
     "chainId": "arcblock",
     "pk": {},
+    "gas": 2,
     "signature": {},
     "signatures": [
       {
@@ -1713,6 +1747,7 @@ Structure of GRpcClient.RequestSendTx
     "nonce": 5,
     "chainId": "arcblock",
     "pk": {},
+    "gas": 2,
     "signature": {},
     "signatures": [
       {
@@ -1820,6 +1855,7 @@ Structure of GRpcClient.ResponseGetTx
       "nonce": 5,
       "chainId": "arcblock",
       "pk": {},
+      "gas": 2,
       "signature": {},
       "signatures": [
         {
@@ -1860,7 +1896,7 @@ Structure of GRpcClient.ResponseGetTx
       }
     ],
     "code": 0,
-    "time": "2019-07-05T07:53:26.655Z"
+    "time": "2019-07-08T09:59:22.219Z"
   }
 }
 ```
@@ -1904,7 +1940,7 @@ Structure of GRpcClient.ResponseGetBlock
   "block": {
     "height": 5,
     "numTxs": 2,
-    "time": "2019-07-05T07:53:26.650Z",
+    "time": "2019-07-08T09:59:22.215Z",
     "appHash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
     "proposer": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
     "txs": [
@@ -1914,6 +1950,7 @@ Structure of GRpcClient.ResponseGetBlock
           "nonce": 5,
           "chainId": "arcblock",
           "pk": {},
+          "gas": 2,
           "signature": {},
           "signatures": [
             {
@@ -1954,7 +1991,7 @@ Structure of GRpcClient.ResponseGetBlock
           }
         ],
         "code": 0,
-        "time": "2019-07-05T07:53:26.650Z"
+        "time": "2019-07-08T09:59:22.215Z"
       },
       {
         "tx": {
@@ -1962,6 +1999,7 @@ Structure of GRpcClient.ResponseGetBlock
           "nonce": 5,
           "chainId": "arcblock",
           "pk": {},
+          "gas": 2,
           "signature": {},
           "signatures": [
             {
@@ -2002,7 +2040,7 @@ Structure of GRpcClient.ResponseGetBlock
           }
         ],
         "code": 0,
-        "time": "2019-07-05T07:53:26.650Z"
+        "time": "2019-07-08T09:59:22.215Z"
       }
     ],
     "totalTxs": 5,
@@ -2013,6 +2051,7 @@ Structure of GRpcClient.ResponseGetBlock
           "nonce": 5,
           "chainId": "arcblock",
           "pk": {},
+          "gas": 2,
           "signature": {},
           "signatures": [
             {
@@ -2053,7 +2092,7 @@ Structure of GRpcClient.ResponseGetBlock
           }
         ],
         "code": 0,
-        "time": "2019-07-05T07:53:26.650Z"
+        "time": "2019-07-08T09:59:22.215Z"
       },
       {
         "tx": {
@@ -2061,6 +2100,7 @@ Structure of GRpcClient.ResponseGetBlock
           "nonce": 5,
           "chainId": "arcblock",
           "pk": {},
+          "gas": 2,
           "signature": {},
           "signatures": [
             {
@@ -2101,7 +2141,7 @@ Structure of GRpcClient.ResponseGetBlock
           }
         ],
         "code": 0,
-        "time": "2019-07-05T07:53:26.650Z"
+        "time": "2019-07-08T09:59:22.215Z"
       }
     ],
     "txsHashes": [
@@ -2198,7 +2238,7 @@ Structure of GRpcClient.ResponseGetBlocks
     {
       "height": 5,
       "numTxs": 2,
-      "time": "2019-07-05T07:53:26.651Z",
+      "time": "2019-07-08T09:59:22.216Z",
       "appHash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
       "proposer": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
       "totalTxs": 5,
@@ -2231,7 +2271,7 @@ Structure of GRpcClient.ResponseGetBlocks
     {
       "height": 5,
       "numTxs": 2,
-      "time": "2019-07-05T07:53:26.651Z",
+      "time": "2019-07-08T09:59:22.216Z",
       "appHash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
       "proposer": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
       "totalTxs": 5,
@@ -2622,8 +2662,8 @@ Structure of GRpcClient.ResponseGetAccountState
     "context": {
       "genesisTx": "arcblock",
       "renaissanceTx": "arcblock",
-      "genesisTime": "2019-07-05T07:53:26.652Z",
-      "renaissanceTime": "2019-07-05T07:53:26.652Z"
+      "genesisTime": "2019-07-08T09:59:22.216Z",
+      "renaissanceTime": "2019-07-08T09:59:22.216Z"
     },
     "issuer": "arcblock",
     "migratedTo": [
@@ -2726,7 +2766,7 @@ Structure of GRpcClient.ResponseGetAssetState
     "readonly": true,
     "transferrable": true,
     "ttl": 2,
-    "consumedTime": "2019-07-05T07:53:26.652Z",
+    "consumedTime": "2019-07-08T09:59:22.216Z",
     "issuer": "arcblock",
     "parent": "arcblock",
     "stake": {
@@ -2754,8 +2794,8 @@ Structure of GRpcClient.ResponseGetAssetState
     "context": {
       "genesisTx": "arcblock",
       "renaissanceTx": "arcblock",
-      "genesisTime": "2019-07-05T07:53:26.652Z",
-      "renaissanceTime": "2019-07-05T07:53:26.652Z"
+      "genesisTime": "2019-07-08T09:59:22.216Z",
+      "renaissanceTime": "2019-07-08T09:59:22.216Z"
     },
     "data": {
       "type": "string",
@@ -2864,8 +2904,8 @@ Structure of GRpcClient.ResponseGetProtocolState
     "context": {
       "genesisTx": "arcblock",
       "renaissanceTx": "arcblock",
-      "genesisTime": "2019-07-05T07:53:26.652Z",
-      "renaissanceTime": "2019-07-05T07:53:26.652Z"
+      "genesisTime": "2019-07-08T09:59:22.217Z",
+      "renaissanceTime": "2019-07-08T09:59:22.217Z"
     },
     "data": {
       "type": "string",
@@ -2926,8 +2966,8 @@ Structure of GRpcClient.ResponseGetStakeState
     "context": {
       "genesisTx": "arcblock",
       "renaissanceTx": "arcblock",
-      "genesisTime": "2019-07-05T07:53:26.652Z",
-      "renaissanceTime": "2019-07-05T07:53:26.652Z"
+      "genesisTime": "2019-07-08T09:59:22.217Z",
+      "renaissanceTime": "2019-07-08T09:59:22.217Z"
     },
     "data": {
       "type": "string",
@@ -3029,8 +3069,8 @@ Structure of GRpcClient.ResponseGetForgeState
         "context": {
           "genesisTx": "arcblock",
           "renaissanceTx": "arcblock",
-          "genesisTime": "2019-07-05T07:53:26.652Z",
-          "renaissanceTime": "2019-07-05T07:53:26.652Z"
+          "genesisTime": "2019-07-08T09:59:22.217Z",
+          "renaissanceTime": "2019-07-08T09:59:22.217Z"
         }
       }
     },
@@ -3077,6 +3117,9 @@ Structure of GRpcClient.ResponseGetForgeState
         "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55"
       }
     ],
+    "gas": {
+      "arcblock": 2
+    },
     "upgradeInfo": {
       "height": 5,
       "version": "arcblock"
@@ -3139,7 +3182,7 @@ Structure of GRpcClient.ResponseGetTetherState
     "depositor": "arcblock",
     "withdrawer": "arcblock",
     "target": "arcblock",
-    "locktime": "2019-07-05T07:53:26.652Z",
+    "locktime": "2019-07-08T09:59:22.217Z",
     "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55"
   }
 }
@@ -3152,6 +3195,71 @@ Structure of GRpcClient.ResponseGetTetherState
 | ----- | --------------------------------------------------- |
 | code  | <code>GRpcClient.StatusCode</code>                  |
 | state | [<code>TetherState</code>](#GRpcClient.TetherState) |
+
+<a name="GRpcClient.RequestGetSwapState"></a>
+
+### GRpcClient.RequestGetSwapState : <code>object</code>
+
+Structure of GRpcClient.RequestGetSwapState 
+
+```javascript
+{
+  "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+  "keys": [
+    "arcblock",
+    "arcblock"
+  ],
+  "height": 5
+}
+```
+
+**Kind**: static typedef of [<code>GRpcClient</code>](#GRpcClient)  
+**Properties**
+
+| Name    | Type                           |
+| ------- | ------------------------------ |
+| address | <code>string</code>            |
+| keys    | <code>Array.&lt;string></code> |
+| height  | <code>number</code>            |
+
+<a name="GRpcClient.ResponseGetSwapState"></a>
+
+### GRpcClient.ResponseGetSwapState : <code>object</code>
+
+Structure of GRpcClient.ResponseGetSwapState 
+
+```javascript
+{
+  "code": 0,
+  "state": {
+    "hash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+    "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+    "hashkey": {},
+    "sender": "arcblock",
+    "receiver": "arcblock",
+    "assets": [
+      "arcblock",
+      "arcblock"
+    ],
+    "locktime": 2,
+    "hashlock": {},
+    "context": {
+      "genesisTx": "arcblock",
+      "renaissanceTx": "arcblock",
+      "genesisTime": "2019-07-08T09:59:22.217Z",
+      "renaissanceTime": "2019-07-08T09:59:22.217Z"
+    }
+  }
+}
+```
+
+**Kind**: static typedef of [<code>GRpcClient</code>](#GRpcClient)  
+**Properties**
+
+| Name  | Type                                            |
+| ----- | ----------------------------------------------- |
+| code  | <code>GRpcClient.StatusCode</code>              |
+| state | [<code>SwapState</code>](#GRpcClient.SwapState) |
 
 <a name="GRpcClient.RequestStoreFile"></a>
 
@@ -3300,7 +3408,7 @@ Structure of GRpcClient.ResponseGetChainInfo
     "appHash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
     "blockHash": {},
     "blockHeight": 5,
-    "blockTime": "2019-07-05T07:53:26.651Z",
+    "blockTime": "2019-07-08T09:59:22.216Z",
     "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
     "votingPower": 5,
     "totalTxs": 5,
@@ -3353,7 +3461,7 @@ Structure of GRpcClient.ResponseGetNodeInfo
     "appHash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
     "blockHash": {},
     "blockHeight": 5,
-    "blockTime": "2019-07-05T07:53:26.651Z",
+    "blockTime": "2019-07-08T09:59:22.216Z",
     "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
     "votingPower": 5,
     "totalTxs": 5,
@@ -3422,6 +3530,7 @@ Structure of GRpcClient.ResponseSearch
         "nonce": 5,
         "chainId": "arcblock",
         "pk": {},
+        "gas": 2,
         "signature": {},
         "signatures": [
           {
@@ -3462,7 +3571,7 @@ Structure of GRpcClient.ResponseSearch
         }
       ],
       "code": 0,
-      "time": "2019-07-05T07:53:26.651Z"
+      "time": "2019-07-08T09:59:22.216Z"
     },
     {
       "tx": {
@@ -3470,6 +3579,7 @@ Structure of GRpcClient.ResponseSearch
         "nonce": 5,
         "chainId": "arcblock",
         "pk": {},
+        "gas": 2,
         "signature": {},
         "signatures": [
           {
@@ -3510,7 +3620,7 @@ Structure of GRpcClient.ResponseSearch
         }
       ],
       "code": 0,
-      "time": "2019-07-05T07:53:26.651Z"
+      "time": "2019-07-08T09:59:22.216Z"
     }
   ]
 }
@@ -3578,6 +3688,7 @@ Structure of GRpcClient.ResponseGetUnconfirmedTxs
         "nonce": 5,
         "chainId": "arcblock",
         "pk": {},
+        "gas": 2,
         "signature": {},
         "signatures": [
           {
@@ -3609,6 +3720,7 @@ Structure of GRpcClient.ResponseGetUnconfirmedTxs
         "nonce": 5,
         "chainId": "arcblock",
         "pk": {},
+        "gas": 2,
         "signature": {},
         "signatures": [
           {
@@ -4145,6 +4257,7 @@ Structure of GRpcClient.ResponseListTransactions
         "nonce": 5,
         "chainId": "arcblock",
         "pk": {},
+        "gas": 2,
         "signature": {},
         "signatures": [
           {
@@ -4185,6 +4298,7 @@ Structure of GRpcClient.ResponseListTransactions
         "nonce": 5,
         "chainId": "arcblock",
         "pk": {},
+        "gas": 2,
         "signature": {},
         "signatures": [
           {
@@ -4593,6 +4707,7 @@ Structure of GRpcClient.ResponseListAssetTransactions
         "nonce": 5,
         "chainId": "arcblock",
         "pk": {},
+        "gas": 2,
         "signature": {},
         "signatures": [
           {
@@ -4633,6 +4748,7 @@ Structure of GRpcClient.ResponseListAssetTransactions
         "nonce": 5,
         "chainId": "arcblock",
         "pk": {},
+        "gas": 2,
         "signature": {},
         "signatures": [
           {
@@ -4833,7 +4949,7 @@ Structure of GRpcClient.ResponseListTethers
       "depositor": "arcblock",
       "withdrawer": "arcblock",
       "target": "arcblock",
-      "locktime": "2019-07-05T07:53:26.654Z",
+      "locktime": "2019-07-08T09:59:22.218Z",
       "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55"
     },
     {
@@ -4843,7 +4959,7 @@ Structure of GRpcClient.ResponseListTethers
       "depositor": "arcblock",
       "withdrawer": "arcblock",
       "target": "arcblock",
-      "locktime": "2019-07-05T07:53:26.654Z",
+      "locktime": "2019-07-08T09:59:22.218Z",
       "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55"
     }
   ]
@@ -4858,6 +4974,110 @@ Structure of GRpcClient.ResponseListTethers
 | code    | <code>GRpcClient.StatusCode</code>                             |
 | page    | [<code>PageInfo</code>](#GRpcClient.PageInfo)                  |
 | tethers | [<code>Array.&lt;TetherState></code>](#GRpcClient.TetherState) |
+
+<a name="GRpcClient.RequestListSwap"></a>
+
+### GRpcClient.RequestListSwap : <code>object</code>
+
+Structure of GRpcClient.RequestListSwap 
+
+```javascript
+{
+  "paging": {
+    "cursor": "arcblock",
+    "size": 2,
+    "order": [
+      {
+        "field": "arcblock",
+        "type": "arcblock"
+      },
+      {
+        "field": "arcblock",
+        "type": "arcblock"
+      }
+    ]
+  },
+  "sender": "arcblock",
+  "receiver": "arcblock",
+  "available": true
+}
+```
+
+**Kind**: static typedef of [<code>GRpcClient</code>](#GRpcClient)  
+**Properties**
+
+| Name      | Type                                            |
+| --------- | ----------------------------------------------- |
+| paging    | [<code>PageInput</code>](#GRpcClient.PageInput) |
+| sender    | <code>string</code>                             |
+| receiver  | <code>string</code>                             |
+| available | <code>boolean</code>                            |
+
+<a name="GRpcClient.ResponseListSwap"></a>
+
+### GRpcClient.ResponseListSwap : <code>object</code>
+
+Structure of GRpcClient.ResponseListSwap 
+
+```javascript
+{
+  "code": 0,
+  "page": {
+    "cursor": "arcblock",
+    "next": true,
+    "total": 2
+  },
+  "swap": [
+    {
+      "hash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+      "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+      "hashkey": {},
+      "sender": "arcblock",
+      "receiver": "arcblock",
+      "assets": [
+        "arcblock",
+        "arcblock"
+      ],
+      "locktime": 2,
+      "hashlock": {},
+      "context": {
+        "genesisTx": "arcblock",
+        "renaissanceTx": "arcblock",
+        "genesisTime": "2019-07-08T09:59:22.218Z",
+        "renaissanceTime": "2019-07-08T09:59:22.218Z"
+      }
+    },
+    {
+      "hash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+      "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+      "hashkey": {},
+      "sender": "arcblock",
+      "receiver": "arcblock",
+      "assets": [
+        "arcblock",
+        "arcblock"
+      ],
+      "locktime": 2,
+      "hashlock": {},
+      "context": {
+        "genesisTx": "arcblock",
+        "renaissanceTx": "arcblock",
+        "genesisTime": "2019-07-08T09:59:22.218Z",
+        "renaissanceTime": "2019-07-08T09:59:22.218Z"
+      }
+    }
+  ]
+}
+```
+
+**Kind**: static typedef of [<code>GRpcClient</code>](#GRpcClient)  
+**Properties**
+
+| Name | Type                                                       |
+| ---- | ---------------------------------------------------------- |
+| code | <code>GRpcClient.StatusCode</code>                         |
+| page | [<code>PageInfo</code>](#GRpcClient.PageInfo)              |
+| swap | [<code>Array.&lt;SwapState></code>](#GRpcClient.SwapState) |
 
 <a name="GRpcClient.RequestGetHealthStatus"></a>
 
@@ -5147,6 +5367,7 @@ Structure of GRpcClient.Transaction
 | nonce      | <code>number</code>                                      |
 | chainId    | <code>string</code>                                      |
 | pk         | <code>Uint8Array</code>                                  |
+| gas        | <code>number</code>                                      |
 | signature  | <code>Uint8Array</code>                                  |
 | signatures | [<code>Array.&lt;Multisig></code>](#GRpcClient.Multisig) |
 | itx        | [<code>Any</code>](#GRpcClient.Any)                      |
@@ -5609,6 +5830,7 @@ Structure of GRpcClient.AccountState
 | moniker         | <code>string</code>                                     |
 | context         | [<code>StateContext</code>](#GRpcClient.StateContext)   |
 | issuer          | <code>string</code>                                     |
+| gasBalance      | [<code>BigUint</code>](#GRpcClient.BigUint)             |
 | migratedTo      | <code>Array.&lt;string></code>                          |
 | migratedFrom    | <code>Array.&lt;string></code>                          |
 | numAssets       | <code>number</code>                                     |
@@ -5678,6 +5900,7 @@ Structure of GRpcClient.ForgeState
 | stakeConfig  | [<code>StakeConfig</code>](#GRpcClient.StakeConfig)              |
 | pokeConfig   | [<code>PokeConfig</code>](#GRpcClient.PokeConfig)                |
 | protocols    | [<code>Array.&lt;CoreProtocol></code>](#GRpcClient.CoreProtocol) |
+| gas          | <code>number</code>                                              |
 | upgradeInfo  | [<code>UpgradeInfo</code>](#GRpcClient.UpgradeInfo)              |
 | data         | [<code>Any</code>](#GRpcClient.Any)                              |
 
@@ -5806,6 +6029,28 @@ Structure of GRpcClient.TetherInfo
 | --------- | -------------------- |
 | available | <code>boolean</code> |
 | hash      | <code>string</code>  |
+
+<a name="GRpcClient.SwapState"></a>
+
+### GRpcClient.SwapState : <code>object</code>
+
+Structure of GRpcClient.SwapState
+
+**Kind**: static typedef of [<code>GRpcClient</code>](#GRpcClient)  
+**Properties**
+
+| Name     | Type                                                  |
+| -------- | ----------------------------------------------------- |
+| hash     | <code>string</code>                                   |
+| address  | <code>string</code>                                   |
+| hashkey  | <code>Uint8Array</code>                               |
+| sender   | <code>string</code>                                   |
+| receiver | <code>string</code>                                   |
+| value    | [<code>BigUint</code>](#GRpcClient.BigUint)           |
+| assets   | <code>Array.&lt;string></code>                        |
+| locktime | <code>number</code>                                   |
+| hashlock | <code>Uint8Array</code>                               |
+| context  | [<code>StateContext</code>](#GRpcClient.StateContext) |
 
 <a name="GRpcClient.CodeInfo"></a>
 
@@ -6553,7 +6798,7 @@ Structure of GRpcClient.DepositTetherTx
 {
   "target": "arcblock",
   "withdrawer": "arcblock",
-  "locktime": "2019-07-05T07:53:26.656Z"
+  "locktime": "2019-07-08T09:59:22.220Z"
 }
 ```
 
@@ -6604,7 +6849,7 @@ Structure of GRpcClient.ExchangeTx
       "arcblock"
     ]
   },
-  "expiredAt": "2019-07-05T07:53:26.656Z",
+  "expiredAt": "2019-07-08T09:59:22.220Z",
   "data": {
     "type": "string",
     "value": "ABCD 1234"
@@ -6662,6 +6907,7 @@ Structure of GRpcClient.ExchangeTetherTx
       "nonce": 5,
       "chainId": "arcblock",
       "pk": {},
+      "gas": 2,
       "signature": {},
       "signatures": [
         {
@@ -6689,7 +6935,7 @@ Structure of GRpcClient.ExchangeTetherTx
       }
     }
   },
-  "expiredAt": "2019-07-05T07:53:26.656Z",
+  "expiredAt": "2019-07-08T09:59:22.220Z",
   "data": {
     "type": "string",
     "value": "ABCD 1234"
@@ -6840,28 +7086,6 @@ Structure of GRpcClient.SetupSwapTx
 | hashlock | <code>Uint8Array</code>                     |
 | locktime | <code>number</code>                         |
 | data     | [<code>Any</code>](#GRpcClient.Any)         |
-
-<a name="GRpcClient.SwapState"></a>
-
-### GRpcClient.SwapState : <code>object</code>
-
-Structure of GRpcClient.SwapState
-
-**Kind**: static typedef of [<code>GRpcClient</code>](#GRpcClient)  
-**Properties**
-
-| Name     | Type                                                  |
-| -------- | ----------------------------------------------------- |
-| hash     | <code>string</code>                                   |
-| address  | <code>string</code>                                   |
-| hashkey  | <code>Uint8Array</code>                               |
-| sender   | <code>string</code>                                   |
-| receiver | <code>string</code>                                   |
-| value    | [<code>BigUint</code>](#GRpcClient.BigUint)           |
-| assets   | <code>Array.&lt;string></code>                        |
-| locktime | <code>number</code>                                   |
-| hashlock | <code>Uint8Array</code>                               |
-| context  | [<code>StateContext</code>](#GRpcClient.StateContext) |
 
 <a name="GRpcClient.stakeForAsset"></a>
 
@@ -7060,7 +7284,7 @@ Structure of GRpcClient.WithdrawTetherTx
     ],
     "tether": "arcblock"
   },
-  "expiredAt": "2019-07-05T07:53:26.657Z",
+  "expiredAt": "2019-07-08T09:59:22.220Z",
   "data": {
     "type": "string",
     "value": "ABCD 1234"
