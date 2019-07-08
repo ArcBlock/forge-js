@@ -597,6 +597,7 @@ function fromBase58(v) {
 }
 
 module.exports = {
+  BN,
   isBN,
   isBigNumber,
   isHexPrefixed,
