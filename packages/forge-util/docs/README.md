@@ -31,6 +31,10 @@ yarn add @arcblock/forge-util
     * _inner_
         * [~UUID()](#module_@arcblock/forge-util..UUID) ⇒ <code>string</code>
         * [~isUUID(str)](#module_@arcblock/forge-util..isUUID) ⇒ <code>boolean</code>
+        * [~toUint8Array(v, [autoHex], [enforceStrictHex])](#module_@arcblock/forge-util..toUint8Array) ⇒ <code>Uint8Array</code>
+        * [~toBuffer(v, [autoHex], [enforceStrictHex])](#module_@arcblock/forge-util..toBuffer) ⇒ <code>buffer</code>
+        * [~toBase58(v, [autoHex], [enforceStrictHex])](#module_@arcblock/forge-util..toBase58) ⇒ <code>string</code>
+        * [~fromBase58(v)](#module_@arcblock/forge-util..fromBase58) ⇒ <code>buffer</code>
 
 <a name="module_@arcblock/forge-util.isHexPrefixed"></a>
 
@@ -287,4 +291,66 @@ Check if a string is valid UUID
 | Param | Type |
 | --- | --- |
 | str | <code>string</code> | 
+
+<a name="module_@arcblock/forge-util..toUint8Array"></a>
+
+### @arcblock/forge-util~toUint8Array(v, [autoHex], [enforceStrictHex]) ⇒ <code>Uint8Array</code>
+Convert input to Uint8Array on best effort
+
+**Kind**: inner method of [<code>@arcblock/forge-util</code>](#module_@arcblock/forge-util)  
+**Throws**:
+
+- <code>Error</code> 
+
+
+| Param | Type | Default |
+| --- | --- | --- |
+| v | <code>buffer</code> \| <code>base58</code> \| <code>hex</code> \| <code>Uint8Array</code> |  | 
+| [autoHex] | <code>boolean</code> | <code>false</code> | 
+| [enforceStrictHex] | <code>boolean</code> | <code>false</code> | 
+
+<a name="module_@arcblock/forge-util..toBuffer"></a>
+
+### @arcblock/forge-util~toBuffer(v, [autoHex], [enforceStrictHex]) ⇒ <code>buffer</code>
+Convert input to Buffer on best effort
+
+**Kind**: inner method of [<code>@arcblock/forge-util</code>](#module_@arcblock/forge-util)  
+**Throws**:
+
+- <code>Error</code> 
+
+
+| Param | Type | Default |
+| --- | --- | --- |
+| v | <code>buffer</code> \| <code>base58</code> \| <code>hex</code> \| <code>Uint8Array</code> |  | 
+| [autoHex] | <code>boolean</code> | <code>false</code> | 
+| [enforceStrictHex] | <code>boolean</code> | <code>false</code> | 
+
+<a name="module_@arcblock/forge-util..toBase58"></a>
+
+### @arcblock/forge-util~toBase58(v, [autoHex], [enforceStrictHex]) ⇒ <code>string</code>
+Convert input to base58btc format on best effort
+
+**Kind**: inner method of [<code>@arcblock/forge-util</code>](#module_@arcblock/forge-util)  
+**Throws**:
+
+- <code>Error</code> 
+
+
+| Param | Type | Default |
+| --- | --- | --- |
+| v | <code>buffer</code> \| <code>base58</code> \| <code>hex</code> \| <code>Uint8Array</code> |  | 
+| [autoHex] | <code>boolean</code> | <code>false</code> | 
+| [enforceStrictHex] | <code>boolean</code> | <code>false</code> | 
+
+<a name="module_@arcblock/forge-util..fromBase58"></a>
+
+### @arcblock/forge-util~fromBase58(v) ⇒ <code>buffer</code>
+Decode base58 string
+
+**Kind**: inner method of [<code>@arcblock/forge-util</code>](#module_@arcblock/forge-util)  
+
+| Param | Type |
+| --- | --- |
+| v | <code>string</code> | 
 

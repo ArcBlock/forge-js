@@ -49,6 +49,9 @@
             "invalid_expiry_date": 49,
             "invalid_deposit": 50,
             "invalid_custodian": 51,
+            "insufficient_gas": 52,
+            "invalid_swap": 53,
+            "invalid_hashkey": 54,
             "forbidden": 403,
             "internal": 500,
             "timeout": 504
@@ -662,6 +665,35 @@
             }
           }
         },
+        "RequestGetSwapState": {
+          "fields": {
+            "address": {
+              "type": "string",
+              "id": 1
+            },
+            "keys": {
+              "rule": "repeated",
+              "type": "string",
+              "id": 2
+            },
+            "height": {
+              "type": "uint64",
+              "id": 3
+            }
+          }
+        },
+        "ResponseGetSwapState": {
+          "fields": {
+            "code": {
+              "type": "StatusCode",
+              "id": 1
+            },
+            "state": {
+              "type": "SwapState",
+              "id": 2
+            }
+          }
+        },
         "RequestStoreFile": {
           "fields": {
             "chunk": {
@@ -1012,10 +1044,7 @@
         "RequestGetForgeStats": {
           "oneofs": {
             "value": {
-              "oneof": [
-                "dayInfo",
-                "date"
-              ]
+              "oneof": ["dayInfo", "date"]
             }
           },
           "fields": {
@@ -1296,6 +1325,43 @@
             "tethers": {
               "rule": "repeated",
               "type": "TetherState",
+              "id": 3
+            }
+          }
+        },
+        "RequestListSwap": {
+          "fields": {
+            "paging": {
+              "type": "PageInput",
+              "id": 1
+            },
+            "sender": {
+              "type": "string",
+              "id": 2
+            },
+            "receiver": {
+              "type": "string",
+              "id": 3
+            },
+            "available": {
+              "type": "bool",
+              "id": 4
+            }
+          }
+        },
+        "ResponseListSwap": {
+          "fields": {
+            "code": {
+              "type": "StatusCode",
+              "id": 1
+            },
+            "page": {
+              "type": "PageInfo",
+              "id": 2
+            },
+            "swap": {
+              "rule": "repeated",
+              "type": "SwapState",
               "id": 3
             }
           }
@@ -1667,6 +1733,10 @@
             "pk": {
               "type": "bytes",
               "id": 4
+            },
+            "gas": {
+              "type": "uint32",
+              "id": 5
             },
             "signature": {
               "type": "bytes",
@@ -2450,6 +2520,10 @@
               "type": "string",
               "id": 9
             },
+            "gasBalance": {
+              "type": "BigUint",
+              "id": 10
+            },
             "migratedTo": {
               "rule": "repeated",
               "type": "string",
@@ -2598,6 +2672,11 @@
               "rule": "repeated",
               "type": "CoreProtocol",
               "id": 12
+            },
+            "gas": {
+              "keyType": "string",
+              "type": "uint32",
+              "id": 13
             },
             "upgradeInfo": {
               "type": "UpgradeInfo",
@@ -2805,6 +2884,51 @@
             "hash": {
               "type": "string",
               "id": 2
+            }
+          }
+        },
+        "SwapState": {
+          "fields": {
+            "hash": {
+              "type": "string",
+              "id": 1
+            },
+            "address": {
+              "type": "string",
+              "id": 2
+            },
+            "hashkey": {
+              "type": "bytes",
+              "id": 3
+            },
+            "sender": {
+              "type": "string",
+              "id": 4
+            },
+            "receiver": {
+              "type": "string",
+              "id": 5
+            },
+            "value": {
+              "type": "BigUint",
+              "id": 6
+            },
+            "assets": {
+              "rule": "repeated",
+              "type": "string",
+              "id": 7
+            },
+            "locktime": {
+              "type": "uint32",
+              "id": 8
+            },
+            "hashlock": {
+              "type": "bytes",
+              "id": 9
+            },
+            "context": {
+              "type": "StateContext",
+              "id": 10
             }
           }
         },
@@ -3472,6 +3596,12 @@
               "requestStream": true,
               "responseType": "ResponseGetTetherState",
               "responseStream": true
+            },
+            "get_swap_state": {
+              "requestType": "RequestGetSwapState",
+              "requestStream": true,
+              "responseType": "ResponseGetSwapState",
+              "responseStream": true
             }
           }
         },
@@ -3545,6 +3675,10 @@
             "list_tethers": {
               "requestType": "RequestListTethers",
               "responseType": "ResponseListTethers"
+            },
+            "list_swap": {
+              "requestType": "RequestListSwap",
+              "responseType": "ResponseListSwap"
             }
           }
         },
@@ -3950,51 +4084,6 @@
             "data": {
               "type": "google.protobuf.Any",
               "id": 15
-            }
-          }
-        },
-        "SwapState": {
-          "fields": {
-            "hash": {
-              "type": "string",
-              "id": 1
-            },
-            "address": {
-              "type": "string",
-              "id": 2
-            },
-            "hashkey": {
-              "type": "bytes",
-              "id": 3
-            },
-            "sender": {
-              "type": "string",
-              "id": 4
-            },
-            "receiver": {
-              "type": "string",
-              "id": 5
-            },
-            "value": {
-              "type": "BigUint",
-              "id": 6
-            },
-            "assets": {
-              "rule": "repeated",
-              "type": "string",
-              "id": 7
-            },
-            "locktime": {
-              "type": "uint32",
-              "id": 8
-            },
-            "hashlock": {
-              "type": "bytes",
-              "id": 9
-            },
-            "context": {
-              "type": "StateContext",
-              "id": 10
             }
           }
         },

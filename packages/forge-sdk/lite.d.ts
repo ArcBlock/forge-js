@@ -1,4 +1,3 @@
-import { Buffer } from 'node/globals';
 /**
  * Validates if a value is an Uint8Array.
  *
@@ -8,10 +7,43 @@ import { Buffer } from 'node/globals';
  * @returns {Boolean} boolean indicating if a value is an Uint8Array
  */
 declare function isUint8Array(value: any): boolean;
-declare function toUint8Array(v: any, autoHex?: boolean): Uint8Array;
-declare function toBuffer(v: any, autoHex?: boolean): Buffer;
-declare function toBase58(v: any, autoHex?: boolean): any;
-declare function fromBase58(v: any): any;
+/**
+ * Convert input to Uint8Array on best effort
+ *
+ * @param {buffer|base58|hex|Uint8Array} v
+ * @param {boolean} [autoHex=false]
+ * @param {boolean} [enforceStrictHex=false]
+ * @returns {Uint8Array}
+ * @throws {Error}
+ */
+declare function toUint8Array(v: any, autoHex?: boolean, enforceStrictHex?: boolean): Uint8Array;
+/**
+ * Convert input to Buffer on best effort
+ *
+ * @param {buffer|base58|hex|Uint8Array} v
+ * @param {boolean} [autoHex=false]
+ * @param {boolean} [enforceStrictHex=false]
+ * @returns {buffer}
+ * @throws {Error}
+ */
+declare function toBuffer(v: any, autoHex?: boolean, enforceStrictHex?: boolean): any;
+/**
+ * Convert input to base58btc format on best effort
+ *
+ * @param {buffer|base58|hex|Uint8Array} v
+ * @param {boolean} [autoHex=false]
+ * @param {boolean} [enforceStrictHex=false]
+ * @returns {string}
+ * @throws {Error}
+ */
+declare function toBase58(v: any, autoHex?: boolean, enforceStrictHex?: boolean): string;
+/**
+ * Decode base58 string
+ *
+ * @param {string} v
+ * @returns {buffer}
+ */
+declare function fromBase58(v: string): any;
 /**
  * Generate a random UUID
  *
@@ -27,6 +59,7 @@ declare function UUID(): string;
 declare function isUUID(str: string): boolean;
 declare namespace ForgeSdkUtil {
   export interface T100 {
+    BN: any;
     isBN: (object: any) => boolean;
     isBigNumber: (object: any) => boolean;
     isHexPrefixed: (str: string) => boolean;
@@ -384,57 +417,57 @@ declare namespace GraphQLClient {
   }
 
   export enum StatusCode {
-    UNTRANSFERRABLE_ASSET,
-    INVALID_DEPOSIT_VALUE,
-    ACCOUNT_MIGRATED,
-    INVALID_HASHKEY,
-    INVALID_STAKE_STATE,
-    UNSUPPORTED_STAKE,
-    INVALID_TX,
-    INVALID_CUSTODIAN,
-    INVALID_WITHDRAWER,
-    INVALID_PASSPHRASE,
-    CONSUMED_ASSET,
-    EXCEED_DEPOSIT_CAP,
-    INVALID_OWNER,
-    INVALID_SIGNATURE,
-    INVALID_WALLET,
-    INVALID_EXPIRY_DATE,
-    FORBIDDEN,
-    TOO_MANY_TXS,
-    EXPIRED_WALLET_TOKEN,
-    NOENT,
-    CONSENSUS_RPC_ERROR,
-    EXPIRED_ASSET,
-    INSUFFICIENT_STAKE,
-    BANNED_UNSTAKE,
     UNSUPPORTED_TX,
-    INVALID_ASSET,
-    INTERNAL,
-    INVALID_SIGNER_STATE,
-    INVALID_REQUEST,
-    STORAGE_RPC_ERROR,
-    INSUFFICIENT_DATA,
-    INSUFFICIENT_FUND,
-    INVALID_MONIKER,
+    UNTRANSFERRABLE_ASSET,
     INVALID_DEPOSIT_TARGET,
-    READONLY_ASSET,
+    UNSUPPORTED_STAKE,
+    INVALID_WITHDRAWER,
+    CONSUMED_ASSET,
+    INVALID_SIGNER_STATE,
     INVALID_SWAP,
+    INSUFFICIENT_STAKE,
+    EXCEED_DEPOSIT_CAP,
+    INVALID_WALLET,
+    INVALID_NONCE,
+    INVALID_ASSET,
+    INVALID_OWNER,
+    INVALID_HASHKEY,
+    INVALID_PASSPHRASE,
+    INVALID_SIGNATURE,
     INVALID_MULTISIG,
-    INVALID_FORGE_STATE,
+    INVALID_SENDER_STATE,
+    ACCOUNT_MIGRATED,
+    STORAGE_RPC_ERROR,
+    CONSENSUS_RPC_ERROR,
+    EXPIRED_WALLET_TOKEN,
+    FORBIDDEN,
+    EXPIRED_ASSET,
+    INVALID_MONIKER,
+    INVALID_REQUEST,
+    NOENT,
+    INVALID_DEPOSIT,
+    READONLY_ASSET,
+    INTERNAL,
+    INVALID_CHAIN_ID,
+    INSUFFICIENT_FUND,
+    DUPLICATE_TETHER,
+    INVALID_CUSTODIAN,
+    INVALID_STAKE_STATE,
+    BANNED_UNSTAKE,
+    INVALID_DEPOSITOR,
+    INVALID_TX_SIZE,
+    INVALID_DEPOSIT_VALUE,
+    TOO_MANY_TXS,
+    INVALID_TX,
     TIMEOUT,
-    INVALID_LOCK_STATUS,
+    INVALID_RECEIVER_STATE,
     EXPIRED_TX,
     INSUFFICIENT_GAS,
-    INVALID_DEPOSIT,
-    INVALID_SENDER_STATE,
-    INVALID_TX_SIZE,
-    INVALID_CHAIN_ID,
-    INVALID_NONCE,
-    INVALID_RECEIVER_STATE,
+    INVALID_EXPIRY_DATE,
+    INSUFFICIENT_DATA,
+    INVALID_LOCK_STATUS,
     OK,
-    INVALID_DEPOSITOR,
-    DUPLICATE_TETHER,
+    INVALID_FORGE_STATE,
   }
 
   export enum UpgradeAction {

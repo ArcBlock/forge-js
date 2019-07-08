@@ -36,6 +36,7 @@
   * [getNodeInfo](#getnodeinfo)
   * [getProtocolState](#getprotocolstate)
   * [getStakeState](#getstakestate)
+  * [getSwapState](#getswapstate)
   * [getTetherState](#gettetherstate)
   * [getTx](#gettx)
   * [getUnconfirmedTxs](#getunconfirmedtxs)
@@ -45,6 +46,7 @@
   * [listAssets](#listassets)
   * [listBlocks](#listblocks)
   * [listStakes](#liststakes)
+  * [listSwap](#listswap)
   * [listTethers](#listtethers)
   * [listTopAccounts](#listtopaccounts)
   * [listTransactions](#listtransactions)
@@ -113,6 +115,9 @@
   INVALID_EXPIRY_DATE: 49,
   INVALID_DEPOSIT: 50,
   INVALID_CUSTODIAN: 51,
+  INSUFFICIENT_GAS: 52,
+  INVALID_SWAP: 53,
+  INVALID_HASHKEY: 54,
   FORBIDDEN: 403,
   INTERNAL: 500,
   TIMEOUT: 504
@@ -367,6 +372,7 @@ result.on('data', data => {
     nonce: 5,
     chainId: 'arcblock',
     pk: Uint8Array [],
+    gas: 2,
     signature: Uint8Array [],
     signatures: [
       {
@@ -490,10 +496,11 @@ const stream = client.getAccountState({
     context: {
       genesisTx: 'arcblock',
       renaissanceTx: 'arcblock',
-      genesisTime: '2019-07-05T07:53:27.151Z',
-      renaissanceTime: '2019-07-05T07:53:27.151Z'
+      genesisTime: '2019-07-08T09:59:22.683Z',
+      renaissanceTime: '2019-07-08T09:59:22.683Z'
     },
     issuer: 'arcblock',
+    gasBalance: [Function: BigUint],
     migratedTo: [
       'arcblock',
       'arcblock'
@@ -574,7 +581,7 @@ const stream = client.getAssetState({
     readonly: true,
     transferrable: true,
     ttl: 2,
-    consumedTime: '2019-07-05T07:53:27.152Z',
+    consumedTime: '2019-07-08T09:59:22.684Z',
     issuer: 'arcblock',
     parent: 'arcblock',
     stake: {
@@ -605,8 +612,8 @@ const stream = client.getAssetState({
     context: {
       genesisTx: 'arcblock',
       renaissanceTx: 'arcblock',
-      genesisTime: '2019-07-05T07:53:27.152Z',
-      renaissanceTime: '2019-07-05T07:53:27.152Z'
+      genesisTime: '2019-07-08T09:59:22.684Z',
+      renaissanceTime: '2019-07-08T09:59:22.684Z'
     },
     data: {
       type: 'string',
@@ -629,7 +636,7 @@ const stream = client.getBlock({
   block: {
     height: 5,
     numTxs: 2,
-    time: '2019-07-05T07:53:27.152Z',
+    time: '2019-07-08T09:59:22.684Z',
     appHash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
     proposer: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
     txs: [
@@ -639,6 +646,7 @@ const stream = client.getBlock({
           nonce: 5,
           chainId: 'arcblock',
           pk: Uint8Array [],
+          gas: 2,
           signature: Uint8Array [],
           signatures: [
             {
@@ -679,7 +687,7 @@ const stream = client.getBlock({
           }
         ],
         code: 0,
-        time: '2019-07-05T07:53:27.153Z'
+        time: '2019-07-08T09:59:22.685Z'
       },
       {
         tx: {
@@ -687,6 +695,7 @@ const stream = client.getBlock({
           nonce: 5,
           chainId: 'arcblock',
           pk: Uint8Array [],
+          gas: 2,
           signature: Uint8Array [],
           signatures: [
             {
@@ -727,7 +736,7 @@ const stream = client.getBlock({
           }
         ],
         code: 0,
-        time: '2019-07-05T07:53:27.153Z'
+        time: '2019-07-08T09:59:22.685Z'
       }
     ],
     totalTxs: 5,
@@ -738,6 +747,7 @@ const stream = client.getBlock({
           nonce: 5,
           chainId: 'arcblock',
           pk: Uint8Array [],
+          gas: 2,
           signature: Uint8Array [],
           signatures: [
             {
@@ -778,7 +788,7 @@ const stream = client.getBlock({
           }
         ],
         code: 0,
-        time: '2019-07-05T07:53:27.153Z'
+        time: '2019-07-08T09:59:22.685Z'
       },
       {
         tx: {
@@ -786,6 +796,7 @@ const stream = client.getBlock({
           nonce: 5,
           chainId: 'arcblock',
           pk: Uint8Array [],
+          gas: 2,
           signature: Uint8Array [],
           signatures: [
             {
@@ -826,7 +837,7 @@ const stream = client.getBlock({
           }
         ],
         code: 0,
-        time: '2019-07-05T07:53:27.153Z'
+        time: '2019-07-08T09:59:22.685Z'
       }
     ],
     txsHashes: [
@@ -898,7 +909,7 @@ result.on('data', data => {
     {
       height: 5,
       numTxs: 2,
-      time: '2019-07-05T07:53:27.154Z',
+      time: '2019-07-08T09:59:22.686Z',
       appHash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
       proposer: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
       totalTxs: 5,
@@ -932,7 +943,7 @@ result.on('data', data => {
     {
       height: 5,
       numTxs: 2,
-      time: '2019-07-05T07:53:27.154Z',
+      time: '2019-07-08T09:59:22.686Z',
       appHash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
       proposer: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
       totalTxs: 5,
@@ -987,7 +998,7 @@ result.on('data', data => {
     appHash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
     blockHash: Uint8Array [],
     blockHeight: 5,
-    blockTime: '2019-07-05T07:53:27.154Z',
+    blockTime: '2019-07-08T09:59:22.686Z',
     address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
     votingPower: 5,
     totalTxs: 5,
@@ -1090,8 +1101,8 @@ result.on('data', data => {
         context: {
           genesisTx: 'arcblock',
           renaissanceTx: 'arcblock',
-          genesisTime: '2019-07-05T07:53:27.155Z',
-          renaissanceTime: '2019-07-05T07:53:27.155Z'
+          genesisTime: '2019-07-08T09:59:22.686Z',
+          renaissanceTime: '2019-07-08T09:59:22.686Z'
         }
       }
     },
@@ -1138,6 +1149,9 @@ result.on('data', data => {
         address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55'
       }
     ],
+    gas: {
+      arcblock: 2
+    },
     upgradeInfo: {
       height: 5,
       version: 'arcblock'
@@ -1355,7 +1369,7 @@ result.on('data', data => {
     appHash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
     blockHash: Uint8Array [],
     blockHeight: 5,
-    blockTime: '2019-07-05T07:53:27.156Z',
+    blockTime: '2019-07-08T09:59:22.688Z',
     address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
     votingPower: 5,
     totalTxs: 5,
@@ -1451,8 +1465,8 @@ const stream = client.getProtocolState({
     context: {
       genesisTx: 'arcblock',
       renaissanceTx: 'arcblock',
-      genesisTime: '2019-07-05T07:53:27.156Z',
-      renaissanceTime: '2019-07-05T07:53:27.156Z'
+      genesisTime: '2019-07-08T09:59:22.688Z',
+      renaissanceTime: '2019-07-08T09:59:22.688Z'
     },
     data: {
       type: 'string',
@@ -1486,12 +1500,50 @@ const stream = client.getStakeState({
     context: {
       genesisTx: 'arcblock',
       renaissanceTx: 'arcblock',
-      genesisTime: '2019-07-05T07:53:27.156Z',
-      renaissanceTime: '2019-07-05T07:53:27.156Z'
+      genesisTime: '2019-07-08T09:59:22.688Z',
+      renaissanceTime: '2019-07-08T09:59:22.688Z'
     },
     data: {
       type: 'string',
       value: 'ABCD 1234'
+    }
+  }
+}
+```
+
+### getSwapState
+
+```js
+const stream = client.getSwapState({
+  address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
+  keys: [
+    'arcblock',
+    'arcblock'
+  ],
+  height: 5
+});
+
+// output
+{
+  code: 0,
+  state: {
+    hash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
+    address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
+    hashkey: Uint8Array [],
+    sender: 'arcblock',
+    receiver: 'arcblock',
+    value: [Function: BigUint],
+    assets: [
+      'arcblock',
+      'arcblock'
+    ],
+    locktime: 2,
+    hashlock: Uint8Array [],
+    context: {
+      genesisTx: 'arcblock',
+      renaissanceTx: 'arcblock',
+      genesisTime: '2019-07-08T09:59:22.688Z',
+      renaissanceTime: '2019-07-08T09:59:22.688Z'
     }
   }
 }
@@ -1522,7 +1574,7 @@ const stream = client.getTetherState({
     commission: [Function: BigUint],
     charge: [Function: BigUint],
     target: 'arcblock',
-    locktime: '2019-07-05T07:53:27.156Z',
+    locktime: '2019-07-08T09:59:22.688Z',
     address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55'
   }
 }
@@ -1544,6 +1596,7 @@ const stream = client.getTx({
       nonce: 5,
       chainId: 'arcblock',
       pk: Uint8Array [],
+      gas: 2,
       signature: Uint8Array [],
       signatures: [
         {
@@ -1584,7 +1637,7 @@ const stream = client.getTx({
       }
     ],
     code: 0,
-    time: '2019-07-05T07:53:27.157Z'
+    time: '2019-07-08T09:59:22.689Z'
   }
 }
 ```
@@ -1627,6 +1680,7 @@ result.on('data', data => {
         nonce: 5,
         chainId: 'arcblock',
         pk: Uint8Array [],
+        gas: 2,
         signature: Uint8Array [],
         signatures: [
           {
@@ -1658,6 +1712,7 @@ result.on('data', data => {
         nonce: 5,
         chainId: 'arcblock',
         pk: Uint8Array [],
+        gas: 2,
         signature: Uint8Array [],
         signatures: [
           {
@@ -1819,6 +1874,7 @@ result.on('data', data => {
         nonce: 5,
         chainId: 'arcblock',
         pk: Uint8Array [],
+        gas: 2,
         signature: Uint8Array [],
         signatures: [
           {
@@ -1859,6 +1915,7 @@ result.on('data', data => {
         nonce: 5,
         chainId: 'arcblock',
         pk: Uint8Array [],
+        gas: 2,
         signature: Uint8Array [],
         signatures: [
           {
@@ -2074,6 +2131,85 @@ result.on('data', data => {
 });
 ```
 
+### listSwap
+
+```js
+const result = await client.listSwap({
+  paging: {
+    cursor: 'arcblock',
+    size: 2,
+    order: [
+      {
+        field: 'arcblock',
+        type: 'arcblock'
+      },
+      {
+        field: 'arcblock',
+        type: 'arcblock'
+      }
+    ]
+  },
+  sender: 'arcblock',
+  receiver: 'arcblock',
+  available: true
+});
+
+// response is a stream
+result.on('data', data => {
+  // response data format
+  {
+  code: 0,
+  page: {
+    cursor: 'arcblock',
+    next: true,
+    total: 2
+  },
+  swap: [
+    {
+      hash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
+      address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
+      hashkey: Uint8Array [],
+      sender: 'arcblock',
+      receiver: 'arcblock',
+      value: [Function: BigUint],
+      assets: [
+        'arcblock',
+        'arcblock'
+      ],
+      locktime: 2,
+      hashlock: Uint8Array [],
+      context: {
+        genesisTx: 'arcblock',
+        renaissanceTx: 'arcblock',
+        genesisTime: '2019-07-08T09:59:22.691Z',
+        renaissanceTime: '2019-07-08T09:59:22.691Z'
+      }
+    },
+    {
+      hash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
+      address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
+      hashkey: Uint8Array [],
+      sender: 'arcblock',
+      receiver: 'arcblock',
+      value: [Function: BigUint],
+      assets: [
+        'arcblock',
+        'arcblock'
+      ],
+      locktime: 2,
+      hashlock: Uint8Array [],
+      context: {
+        genesisTx: 'arcblock',
+        renaissanceTx: 'arcblock',
+        genesisTime: '2019-07-08T09:59:22.691Z',
+        renaissanceTime: '2019-07-08T09:59:22.691Z'
+      }
+    }
+  ]
+}
+});
+```
+
 ### listTethers
 
 ```js
@@ -2119,7 +2255,7 @@ result.on('data', data => {
       commission: [Function: BigUint],
       charge: [Function: BigUint],
       target: 'arcblock',
-      locktime: '2019-07-05T07:53:27.159Z',
+      locktime: '2019-07-08T09:59:22.691Z',
       address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55'
     },
     {
@@ -2132,7 +2268,7 @@ result.on('data', data => {
       commission: [Function: BigUint],
       charge: [Function: BigUint],
       target: 'arcblock',
-      locktime: '2019-07-05T07:53:27.159Z',
+      locktime: '2019-07-08T09:59:22.691Z',
       address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55'
     }
   ]
@@ -2274,6 +2410,7 @@ result.on('data', data => {
         nonce: 5,
         chainId: 'arcblock',
         pk: Uint8Array [],
+        gas: 2,
         signature: Uint8Array [],
         signatures: [
           {
@@ -2314,6 +2451,7 @@ result.on('data', data => {
         nonce: 5,
         chainId: 'arcblock',
         pk: Uint8Array [],
+        gas: 2,
         signature: Uint8Array [],
         signatures: [
           {
@@ -2412,6 +2550,7 @@ const result = await client.multisig({
     nonce: 5,
     chainId: 'arcblock',
     pk: Uint8Array [],
+    gas: 2,
     signature: Uint8Array [],
     signatures: [
       {
@@ -2466,6 +2605,7 @@ result.on('data', data => {
     nonce: 5,
     chainId: 'arcblock',
     pk: Uint8Array [],
+    gas: 2,
     signature: Uint8Array [],
     signatures: [
       {
@@ -2584,6 +2724,7 @@ result.on('data', data => {
         nonce: 5,
         chainId: 'arcblock',
         pk: Uint8Array [],
+        gas: 2,
         signature: Uint8Array [],
         signatures: [
           {
@@ -2624,7 +2765,7 @@ result.on('data', data => {
         }
       ],
       code: 0,
-      time: '2019-07-05T07:53:27.160Z'
+      time: '2019-07-08T09:59:22.692Z'
     },
     {
       tx: {
@@ -2632,6 +2773,7 @@ result.on('data', data => {
         nonce: 5,
         chainId: 'arcblock',
         pk: Uint8Array [],
+        gas: 2,
         signature: Uint8Array [],
         signatures: [
           {
@@ -2672,7 +2814,7 @@ result.on('data', data => {
         }
       ],
       code: 0,
-      time: '2019-07-05T07:53:27.160Z'
+      time: '2019-07-08T09:59:22.693Z'
     }
   ]
 }
@@ -2688,6 +2830,7 @@ const result = await client.sendTx({
     nonce: 5,
     chainId: 'arcblock',
     pk: Uint8Array [],
+    gas: 2,
     signature: Uint8Array [],
     signatures: [
       {

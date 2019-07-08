@@ -106,6 +106,9 @@ declare class GRpcClient {
   getTetherState(
     request: forge_abi.RequestGetTetherState | Array<forge_abi.RequestGetTetherState>
   ): GRpcClient.StreamResult<forge_abi.ResponseGetTetherState>;
+  getSwapState(
+    request: forge_abi.RequestGetSwapState | Array<forge_abi.RequestGetSwapState>
+  ): GRpcClient.StreamResult<forge_abi.ResponseGetSwapState>;
   createWallet(
     request: forge_abi.RequestCreateWallet
   ): GRpcClient.UnaryResult<forge_abi.ResponseCreateWallet>;
@@ -154,6 +157,7 @@ declare class GRpcClient {
   listTethers(
     request: forge_abi.RequestListTethers
   ): GRpcClient.UnaryResult<forge_abi.ResponseListTethers>;
+  listSwap(request: forge_abi.RequestListSwap): GRpcClient.UnaryResult<forge_abi.ResponseListSwap>;
   encodeConsensusUpgradeTx(
     param: GRpcClient.TxParam<GRpcClient.ConsensusUpgradeTx>
   ): Promise<GRpcClient.ResponseSendTx>;
@@ -337,6 +341,9 @@ declare namespace forge_abi {
     INVALID_EXPIRY_DATE = 49,
     INVALID_DEPOSIT = 50,
     INVALID_CUSTODIAN = 51,
+    INSUFFICIENT_GAS = 52,
+    INVALID_SWAP = 53,
+    INVALID_HASHKEY = 54,
     FORBIDDEN = 403,
     INTERNAL = 500,
     TIMEOUT = 504,
@@ -642,6 +649,17 @@ declare namespace forge_abi {
     state: forge_abi.TetherState;
   }
 
+  export interface RequestGetSwapState {
+    address: string;
+    keys: Array<string>;
+    height: number;
+  }
+
+  export interface ResponseGetSwapState {
+    code: forge_abi.StatusCode;
+    state: forge_abi.SwapState;
+  }
+
   export interface RequestStoreFile {
     chunk: Uint8Array;
   }
@@ -876,6 +894,19 @@ declare namespace forge_abi {
     tethers: Array<forge_abi.TetherState>;
   }
 
+  export interface RequestListSwap {
+    paging: forge_abi.PageInput;
+    sender: string;
+    receiver: string;
+    available: boolean;
+  }
+
+  export interface ResponseListSwap {
+    code: forge_abi.StatusCode;
+    page: forge_abi.PageInfo;
+    swap: Array<forge_abi.SwapState>;
+  }
+
   export interface RequestGetHealthStatus {}
 
   export interface ResponseGetHealthStatus {
@@ -993,6 +1024,7 @@ declare namespace forge_abi {
     nonce: number;
     chainId: string;
     pk: Uint8Array;
+    gas: number;
     signature: Uint8Array;
     signatures: Array<forge_abi.Multisig>;
     itx: google.protobuf.Any;
@@ -1230,6 +1262,7 @@ declare namespace forge_abi {
     moniker: string;
     context: forge_abi.StateContext;
     issuer: string;
+    gasBalance: forge_abi.BigUint;
     migratedTo: Array<string>;
     migratedFrom: Array<string>;
     numAssets: number;
@@ -1272,6 +1305,7 @@ declare namespace forge_abi {
     stakeConfig: forge_abi.StakeConfig;
     pokeConfig: forge_abi.PokeConfig;
     protocols: Array<forge_abi.CoreProtocol>;
+    gas: number;
     upgradeInfo: forge_abi.UpgradeInfo;
     data: google.protobuf.Any;
   }
@@ -1337,6 +1371,19 @@ declare namespace forge_abi {
   export interface TetherInfo {
     available: boolean;
     hash: string;
+  }
+
+  export interface SwapState {
+    hash: string;
+    address: string;
+    hashkey: Uint8Array;
+    sender: string;
+    receiver: string;
+    value: forge_abi.BigUint;
+    assets: Array<string>;
+    locktime: number;
+    hashlock: Uint8Array;
+    context: forge_abi.StateContext;
   }
 
   export interface CodeInfo {
@@ -1667,19 +1714,6 @@ declare namespace forge_abi {
     hashlock: Uint8Array;
     locktime: number;
     data: google.protobuf.Any;
-  }
-
-  export interface SwapState {
-    hash: string;
-    address: string;
-    hashkey: Uint8Array;
-    sender: string;
-    receiver: string;
-    value: forge_abi.BigUint;
-    assets: Array<string>;
-    locktime: number;
-    hashlock: Uint8Array;
-    context: forge_abi.StateContext;
   }
 
   export interface stakeForAsset {}

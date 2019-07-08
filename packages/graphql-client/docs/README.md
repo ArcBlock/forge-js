@@ -3039,7 +3039,7 @@ Checkout the following snippet for the format of ResponseGetAccountState:
 
 ```json
 {
-  "code": "UNTRANSFERRABLE_ASSET",
+  "code": "OK",
   "state": {
     "address": "abc",
     "balance": "abc",
@@ -3049,7 +3049,7 @@ Checkout the following snippet for the format of ResponseGetAccountState:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "UNTRANSFERRABLE_ASSET",
+        "code": "OK",
         "createAsset": {
           "asset": "abc"
         },
@@ -3087,7 +3087,7 @@ Checkout the following snippet for the format of ResponseGetAccountState:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "UNTRANSFERRABLE_ASSET",
+        "code": "OK",
         "createAsset": {
           "asset": "abc"
         },
@@ -3193,7 +3193,7 @@ Checkout the following snippet for the format of ResponseGetAssetState:
 
 ```json
 {
-  "code": "UNTRANSFERRABLE_ASSET",
+  "code": "OK",
   "state": {
     "address": "abc",
     "consumedTime": "2019-04-29T00:00:00.000Z",
@@ -3203,7 +3203,7 @@ Checkout the following snippet for the format of ResponseGetAssetState:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "UNTRANSFERRABLE_ASSET",
+        "code": "OK",
         "createAsset": {
           "asset": "abc"
         },
@@ -3241,7 +3241,7 @@ Checkout the following snippet for the format of ResponseGetAssetState:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "UNTRANSFERRABLE_ASSET",
+        "code": "OK",
         "createAsset": {
           "asset": "abc"
         },
@@ -3342,7 +3342,7 @@ Checkout the following snippet for the format of ResponseGetBlock:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "UNTRANSFERRABLE_ASSET",
+        "code": "OK",
         "createAsset": {
           "asset": "abc"
         },
@@ -3398,7 +3398,7 @@ Checkout the following snippet for the format of ResponseGetBlock:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "UNTRANSFERRABLE_ASSET",
+        "code": "OK",
         "createAsset": {
           "asset": "abc"
         },
@@ -3441,7 +3441,7 @@ Checkout the following snippet for the format of ResponseGetBlock:
       "block": "abc"
     }
   },
-  "code": "UNTRANSFERRABLE_ASSET"
+  "code": "OK"
 }
 ```
 
@@ -3497,7 +3497,7 @@ Checkout the following snippet for the format of ResponseGetBlocks:
       }
     }
   ],
-  "code": "UNTRANSFERRABLE_ASSET",
+  "code": "OK",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -3525,7 +3525,7 @@ Checkout the following snippet for the format of ResponseGetChainInfo:
 
 ```json
 {
-  "code": "UNTRANSFERRABLE_ASSET",
+  "code": "OK",
   "info": {
     "address": "abc",
     "appHash": "abc",
@@ -3571,7 +3571,7 @@ Checkout the following snippet for the format of ResponseGetConfig:
 
 ```json
 {
-  "code": "UNTRANSFERRABLE_ASSET",
+  "code": "OK",
   "config": "abc"
 }
 ```
@@ -3594,7 +3594,7 @@ Checkout the following snippet for the format of ResponseGetForgeState:
 
 ```json
 {
-  "code": "UNTRANSFERRABLE_ASSET",
+  "code": "OK",
   "state": {
     "address": "abc",
     "consensus": {
@@ -3651,7 +3651,7 @@ Checkout the following snippet for the format of ResponseGetForgeState:
               "accountMigrate": {
                 "address": "abc"
               },
-              "code": "UNTRANSFERRABLE_ASSET",
+              "code": "OK",
               "createAsset": {
                 "asset": "abc"
               },
@@ -3689,7 +3689,7 @@ Checkout the following snippet for the format of ResponseGetForgeState:
               "accountMigrate": {
                 "address": "abc"
               },
-              "code": "UNTRANSFERRABLE_ASSET",
+              "code": "OK",
               "createAsset": {
                 "asset": "abc"
               },
@@ -3790,7 +3790,7 @@ Checkout the following snippet for the format of ResponseGetForgeStats:
 
 ```json
 {
-  "code": "UNTRANSFERRABLE_ASSET",
+  "code": "OK",
   "forgeStats": {
     "avgBlockTime": 123,
     "avgTps": 123,
@@ -3868,7 +3868,7 @@ Checkout the following snippet for the format of ResponseGetHealthStatus:
 
 ```json
 {
-  "code": "UNTRANSFERRABLE_ASSET",
+  "code": "OK",
   "healthStatus": {
     "consensus": {
       "blockHeight": "abc",
@@ -3919,7 +3919,7 @@ Checkout the following snippet for the format of ResponseGetNetInfo:
 
 ```json
 {
-  "code": "UNTRANSFERRABLE_ASSET",
+  "code": "OK",
   "netInfo": {
     "listeners": [
       "abc"
@@ -3963,7 +3963,7 @@ Checkout the following snippet for the format of ResponseGetNodeInfo:
 
 ```json
 {
-  "code": "UNTRANSFERRABLE_ASSET",
+  "code": "OK",
   "info": {
     "address": "abc",
     "appHash": "abc",
@@ -4017,7 +4017,7 @@ Checkout the following snippet for the format of ResponseGetProtocolState:
 
 ```json
 {
-  "code": "UNTRANSFERRABLE_ASSET",
+  "code": "OK",
   "state": {
     "address": "abc",
     "context": {
@@ -4026,7 +4026,7 @@ Checkout the following snippet for the format of ResponseGetProtocolState:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "UNTRANSFERRABLE_ASSET",
+        "code": "OK",
         "createAsset": {
           "asset": "abc"
         },
@@ -4064,7 +4064,7 @@ Checkout the following snippet for the format of ResponseGetProtocolState:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "UNTRANSFERRABLE_ASSET",
+        "code": "OK",
         "createAsset": {
           "asset": "abc"
         },
@@ -4164,7 +4164,7 @@ Checkout the following snippet for the format of ResponseGetProtocols:
 
 ```json
 {
-  "code": "UNTRANSFERRABLE_ASSET",
+  "code": "OK",
   "protocols": [
     {
       "address": "abc",
@@ -4218,7 +4218,7 @@ Checkout the following snippet for the format of ResponseGetSimulatorStatus:
 
 ```json
 {
-  "code": "UNTRANSFERRABLE_ASSET",
+  "code": "OK",
   "result": "abc"
 }
 ```
@@ -4241,7 +4241,7 @@ Checkout the following snippet for the format of ResponseGetStakeState:
 
 ```json
 {
-  "code": "UNTRANSFERRABLE_ASSET",
+  "code": "OK",
   "state": {
     "address": "abc",
     "balance": "abc",
@@ -4251,7 +4251,7 @@ Checkout the following snippet for the format of ResponseGetStakeState:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "UNTRANSFERRABLE_ASSET",
+        "code": "OK",
         "createAsset": {
           "asset": "abc"
         },
@@ -4289,7 +4289,7 @@ Checkout the following snippet for the format of ResponseGetStakeState:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "UNTRANSFERRABLE_ASSET",
+        "code": "OK",
         "createAsset": {
           "asset": "abc"
         },
@@ -4352,7 +4352,7 @@ Checkout the following snippet for the format of ResponseGetSwapState:
 
 ```json
 {
-  "code": "UNTRANSFERRABLE_ASSET",
+  "code": "OK",
   "state": {
     "address": "abc",
     "assets": [
@@ -4364,7 +4364,7 @@ Checkout the following snippet for the format of ResponseGetSwapState:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "UNTRANSFERRABLE_ASSET",
+        "code": "OK",
         "createAsset": {
           "asset": "abc"
         },
@@ -4402,7 +4402,7 @@ Checkout the following snippet for the format of ResponseGetSwapState:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "UNTRANSFERRABLE_ASSET",
+        "code": "OK",
         "createAsset": {
           "asset": "abc"
         },
@@ -4465,7 +4465,7 @@ Checkout the following snippet for the format of ResponseGetTetherState:
 
 ```json
 {
-  "code": "UNTRANSFERRABLE_ASSET",
+  "code": "OK",
   "state": {
     "address": "abc",
     "available": true,
@@ -4500,12 +4500,12 @@ Checkout the following snippet for the format of ResponseGetTx:
 
 ```json
 {
-  "code": "UNTRANSFERRABLE_ASSET",
+  "code": "OK",
   "info": {
     "accountMigrate": {
       "address": "abc"
     },
-    "code": "UNTRANSFERRABLE_ASSET",
+    "code": "OK",
     "createAsset": {
       "asset": "abc"
     },
@@ -4559,7 +4559,7 @@ Checkout the following snippet for the format of ResponseGetUnconfirmedTxs:
 
 ```json
 {
-  "code": "UNTRANSFERRABLE_ASSET",
+  "code": "OK",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -4610,7 +4610,7 @@ Checkout the following snippet for the format of ResponseGetValidatorsInfo:
 
 ```json
 {
-  "code": "UNTRANSFERRABLE_ASSET",
+  "code": "OK",
   "validatorsInfo": {
     "blockHeight": "abc",
     "validators": [
@@ -4653,7 +4653,7 @@ Checkout the following snippet for the format of ResponseListAssetTransactions:
 
 ```json
 {
-  "code": "UNTRANSFERRABLE_ASSET",
+  "code": "OK",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -4661,7 +4661,7 @@ Checkout the following snippet for the format of ResponseListAssetTransactions:
   },
   "transactions": [
     {
-      "code": "UNTRANSFERRABLE_ASSET",
+      "code": "OK",
       "hash": "abc",
       "receiver": "abc",
       "sender": "abc",
@@ -4738,7 +4738,7 @@ Checkout the following snippet for the format of ResponseListAssets:
       "renaissanceTime": "abc"
     }
   ],
-  "code": "UNTRANSFERRABLE_ASSET",
+  "code": "OK",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -4776,7 +4776,7 @@ Checkout the following snippet for the format of ResponseListBlocks:
       "time": "abc"
     }
   ],
-  "code": "UNTRANSFERRABLE_ASSET",
+  "code": "OK",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -4804,7 +4804,7 @@ Checkout the following snippet for the format of ResponseListStakes:
 
 ```json
 {
-  "code": "UNTRANSFERRABLE_ASSET",
+  "code": "OK",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -4844,7 +4844,7 @@ Checkout the following snippet for the format of ResponseListSwap:
 
 ```json
 {
-  "code": "UNTRANSFERRABLE_ASSET",
+  "code": "OK",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -4862,7 +4862,7 @@ Checkout the following snippet for the format of ResponseListSwap:
           "accountMigrate": {
             "address": "abc"
           },
-          "code": "UNTRANSFERRABLE_ASSET",
+          "code": "OK",
           "createAsset": {
             "asset": "abc"
           },
@@ -4900,7 +4900,7 @@ Checkout the following snippet for the format of ResponseListSwap:
           "accountMigrate": {
             "address": "abc"
           },
-          "code": "UNTRANSFERRABLE_ASSET",
+          "code": "OK",
           "createAsset": {
             "asset": "abc"
           },
@@ -4965,7 +4965,7 @@ Checkout the following snippet for the format of ResponseListTethers:
 
 ```json
 {
-  "code": "UNTRANSFERRABLE_ASSET",
+  "code": "OK",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -5028,7 +5028,7 @@ Checkout the following snippet for the format of ResponseListTopAccounts:
       "totalUnstakes": "abc"
     }
   ],
-  "code": "UNTRANSFERRABLE_ASSET",
+  "code": "OK",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -5056,7 +5056,7 @@ Checkout the following snippet for the format of ResponseListTransactions:
 
 ```json
 {
-  "code": "UNTRANSFERRABLE_ASSET",
+  "code": "OK",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -5064,7 +5064,7 @@ Checkout the following snippet for the format of ResponseListTransactions:
   },
   "transactions": [
     {
-      "code": "UNTRANSFERRABLE_ASSET",
+      "code": "OK",
       "hash": "abc",
       "receiver": "abc",
       "sender": "abc",
@@ -5113,7 +5113,7 @@ Checkout the following snippet for the format of ResponseSendTx:
 
 ```json
 {
-  "code": "UNTRANSFERRABLE_ASSET",
+  "code": "OK",
   "hash": "abc"
 }
 ```
@@ -5136,7 +5136,7 @@ Checkout the following snippet for the format of ResponseStartSimulator:
 
 ```json
 {
-  "code": "UNTRANSFERRABLE_ASSET"
+  "code": "OK"
 }
 ```
 
@@ -5157,7 +5157,7 @@ Checkout the following snippet for the format of ResponseStopSimulator:
 
 ```json
 {
-  "code": "UNTRANSFERRABLE_ASSET"
+  "code": "OK"
 }
 ```
 
@@ -5205,7 +5205,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "UNTRANSFERRABLE_ASSET",
+        "code": "OK",
         "createAsset": {
           "asset": "abc"
         },
@@ -5243,7 +5243,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "UNTRANSFERRABLE_ASSET",
+        "code": "OK",
         "createAsset": {
           "asset": "abc"
         },
@@ -5337,7 +5337,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "UNTRANSFERRABLE_ASSET",
+        "code": "OK",
         "createAsset": {
           "asset": "abc"
         },
@@ -5375,7 +5375,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "UNTRANSFERRABLE_ASSET",
+        "code": "OK",
         "createAsset": {
           "asset": "abc"
         },
@@ -5498,7 +5498,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
       ]
     }
   },
-  "code": "UNTRANSFERRABLE_ASSET",
+  "code": "OK",
   "confirm": {
     "chainId": "abc",
     "from": "abc",
@@ -5666,7 +5666,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
               "accountMigrate": {
                 "address": "abc"
               },
-              "code": "UNTRANSFERRABLE_ASSET",
+              "code": "OK",
               "createAsset": {
                 "asset": "abc"
               },
@@ -5704,7 +5704,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
               "accountMigrate": {
                 "address": "abc"
               },
-              "code": "UNTRANSFERRABLE_ASSET",
+              "code": "OK",
               "createAsset": {
                 "asset": "abc"
               },
@@ -5792,7 +5792,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "UNTRANSFERRABLE_ASSET",
+        "code": "OK",
         "createAsset": {
           "asset": "abc"
         },
@@ -5830,7 +5830,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "UNTRANSFERRABLE_ASSET",
+        "code": "OK",
         "createAsset": {
           "asset": "abc"
         },
@@ -5954,7 +5954,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "UNTRANSFERRABLE_ASSET",
+        "code": "OK",
         "createAsset": {
           "asset": "abc"
         },
@@ -5992,7 +5992,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "UNTRANSFERRABLE_ASSET",
+        "code": "OK",
         "createAsset": {
           "asset": "abc"
         },
@@ -6129,7 +6129,7 @@ Checkout the following snippet for the format of ResponseUnsubscribe:
 
 ```json
 {
-  "code": "UNTRANSFERRABLE_ASSET"
+  "code": "OK"
 }
 ```
 

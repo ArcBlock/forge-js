@@ -1,3 +1,9 @@
+## 0.32.1 (July 08, 2019)
+
+- fix: DID.toTypeInfo not interprate big number correctly
+- chore: export BN from forge-util
+- update readme
+
 ## 0.32.0 (July 05, 2019)
 
 - chore: upgrade forge-sdk with forge v0.32.2

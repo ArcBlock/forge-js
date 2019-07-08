@@ -78,6 +78,13 @@ describe('@arcblock/did', () => {
     expect(typeInfo.hash).toEqual('SHA3');
   });
 
+  test('should get type info as expected: bot', () => {
+    const typeInfo = toTypeInfo('zcXdrcDeYJgZ5Nkc3eBgXQKTrXc2B7hwzoiy', true);
+    expect(typeInfo.role).toEqual('ROLE_BOT');
+    expect(typeInfo.pk).toEqual('ED25519');
+    expect(typeInfo.hash).toEqual('SHA3');
+  });
+
   test('should get type hex as expected', () => {
     const typeHex = fromTypeInfo(appType);
     expect(typeHex).toEqual('0c01');
