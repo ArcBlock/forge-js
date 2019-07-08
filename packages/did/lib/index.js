@@ -7,7 +7,8 @@
  */
 const upperFirst = require('lodash/upperFirst');
 const Mcrypto = require('@arcblock/mcrypto');
-const { numberToHex, stripHexPrefix, toBase58, BN } = require('@arcblock/forge-util');
+const BN = require('bn.js');
+const { numberToHex, stripHexPrefix, toBase58 } = require('@arcblock/forge-util');
 const { DID_PREFIX, toBits, toBytes, toStrictHex } = require('./util');
 
 // eslint-disable-next-line
