@@ -7,7 +7,7 @@
  */
 const upperFirst = require('lodash/upperFirst');
 const Mcrypto = require('@arcblock/mcrypto');
-const { numberToHex, stripHexPrefix, toBase58 } = require('@arcblock/forge-util');
+const { numberToHex, stripHexPrefix, toBase58, BN } = require('@arcblock/forge-util');
 const { DID_PREFIX, toBits, toBytes, toStrictHex } = require('./util');
 
 // eslint-disable-next-line
@@ -135,7 +135,10 @@ const fromTypeInfo = type => {
     hash = types.HashType.SHA3,
   } = type || {};
 
-  const infoBits = `${toBits(role, 6)}${toBits(pk, 5)}${toBits(hash, 5)}`;
+  const roleBits = toBits(role, 6);
+  const keyBits = toBits(pk, 5);
+  const hashBits = toBits(hash, 5);
+  const infoBits = `${roleBits}${keyBits}${hashBits}`;
   const infoHex = stripHexPrefix(numberToHex(parseInt(infoBits, 2)));
   return toStrictHex(infoHex, 4);
 };
@@ -154,7 +157,7 @@ const toTypeInfo = (did, returnString = false) => {
     const bytes = toBytes(did);
     const typeBytes = bytes.slice(0, 2);
     const typeHex = toStrictHex(Buffer.from(typeBytes).toString('hex'));
-    const typeBits = toBits(typeHex, 16);
+    const typeBits = toBits(new BN(typeHex, 16), 16);
     const roleBits = typeBits.slice(0, 6);
     const keyBits = typeBits.slice(6, 11);
     const hashBits = typeBits.slice(11, 16);
