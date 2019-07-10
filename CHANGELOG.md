@@ -1,3 +1,8 @@
+## 0.32.2 (July 11, 2019)
+
+- chore: add gitter badge for forge-js sdk readme
+- update readme
+
 ## 0.32.1 (July 08, 2019)
 
 - fix: DID.toTypeInfo not interprate big number correctly
