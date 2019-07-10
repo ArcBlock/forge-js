@@ -1,6 +1,8 @@
 ![did-auth](https://www.arcblock.io/.netlify/functions/badge/?text=did-auth)
 
 [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
+[![docs](https://img.shields.io/badge/powered%20by-arcblock-green.svg)](https://docs.arcblock.io)
+[![Gitter](https://badges.gitter.im/ArcBlock/community.svg)](https://gitter.im/ArcBlock/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 This library aims to ease the process of handling `Did-Auth` process between different parts, its implemented according to [ABT-DID-Protocol](https://github.com/ArcBlock/abt-did-spec), and can eliminate the threat of middle-man attach if properly used, there are typically 2 use case for the library:
 
