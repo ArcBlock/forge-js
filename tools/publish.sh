@@ -21,6 +21,9 @@ if [ "$changed" != "" ]; then
   lerna run build
   lerna publish $VERSION --yes
 
+  # trigger cnpm sync
+  node tools/post-publish.js
+
   # update readme
   node tools/update-readme.js
   git commit -am 'update readme'

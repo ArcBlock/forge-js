@@ -60,7 +60,9 @@
     "test": "CI=1 lerna run test",
     "coverage": "CI=1 lerna run coverage"
   },
-  "dependencies": {},
+  "dependencies": {
+    "axios": "^0.19.0"
+  },
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged && lerna run precommit",

@@ -198,7 +198,12 @@ module.exports = class WalletHandlers {
         }
 
         onExpire({ token, status: 'expired' });
-        await this.storage.delete(token);
+        const store = await this.storage.read(token);
+
+        // We do not delete tokens that are scanned by wallet since it will cause confusing
+        if (store && store.status !== STATUS_SCANNED) {
+          await this.storage.delete(token);
+        }
         res.status(200).json({ token });
       } catch (err) {
         res.json({ error: err.message });
