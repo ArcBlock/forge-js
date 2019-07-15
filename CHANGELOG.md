@@ -1,3 +1,7 @@
+## 0.33.0 (July 15, 2019)
+
+- chore: trigger cnpm sync on publish
+
 ## 0.32.2 (July 11, 2019)
 
 - chore: add gitter badge for forge-js sdk readme
