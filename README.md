@@ -22,12 +22,14 @@
 
 [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lernajs.io/)
 [![docs](https://img.shields.io/badge/powered%20by-arcblock-green.svg)](https://docs.arcblock.io)
+[![Gitter](https://badges.gitter.im/ArcBlock/community.svg)](https://gitter.im/ArcBlock/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
-> Last updated at 7/8/2019, 10:47:16 AM
+> Last updated at 7/11/2019, 06:48:41
 
 Javascript SDK for [forge](https://docs.arcblock.io/forge/latest/), which is an awesome framework to write distributed blockchain applications.
 
 ## Packages
+
 
 - [@arcblock/did <img src="https://img.shields.io/npm/v/@arcblock/did.svg" alt="Version">](https://www.npmjs.com/package/@arcblock/did)
 - [@arcblock/did-auth <img src="https://img.shields.io/npm/v/@arcblock/did-auth.svg" alt="Version">](https://www.npmjs.com/package/@arcblock/did-auth)
