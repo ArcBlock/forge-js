@@ -21,7 +21,7 @@ const errors = {
   },
   token404: {
     en: 'Token not found',
-    zh: '令牌不合法',
+    zh: '令牌已过期或不存在',
   },
   didMissing: {
     en: 'userDid is required to start auth',
