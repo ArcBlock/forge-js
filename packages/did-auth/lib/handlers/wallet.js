@@ -20,8 +20,8 @@ const errors = {
     zh: '登录用户和扫码用户不匹配，为保障安全，请重新登录应用',
   },
   token404: {
-    en: 'Token not found',
-    zh: '令牌已过期或不存在',
+    en: 'Token not found or expired',
+    zh: '令牌不存在或已过期',
   },
   didMissing: {
     en: 'userDid is required to start auth',
