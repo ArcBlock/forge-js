@@ -45,7 +45,6 @@ class GraphQLClient extends GraphQLClientBase {
   constructor(config = 'http://localhost:8210/api') {
     super(config);
     this._initTxMethods();
-    Object.freeze(this);
   }
 
   /**
