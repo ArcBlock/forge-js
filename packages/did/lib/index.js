@@ -8,7 +8,7 @@
 const upperFirst = require('lodash/upperFirst');
 const Mcrypto = require('@arcblock/mcrypto');
 const BN = require('bn.js');
-const { numberToHex, stripHexPrefix, toBase58 } = require('@arcblock/forge-util');
+const { numberToHex, stripHexPrefix, toBase58, toAddress, toDid } = require('@arcblock/forge-util');
 const { DID_PREFIX, toBits, toBytes, toStrictHex } = require('./util');
 
 // eslint-disable-next-line
@@ -214,30 +214,6 @@ const isValid = did => {
 
   return didChecksum === checksum;
 };
-
-/**
- * Convert did to address: remove `did:abt:` prefix if exists
- *
- * @public
- * @static
- * @param {string} did - address string
- * @returns {string}
- */
-function toAddress(did) {
-  return did.replace(DID_PREFIX, '');
-}
-
-/**
- * Convert address to did: prepend `did:abt:` prefix
- *
- * @public
- * @static
- * @param {string} did - address string
- * @returns {string}
- */
-function toDid(address) {
-  return `${DID_PREFIX}${toAddress(address)}`;
-}
 
 module.exports = {
   types,

@@ -6,6 +6,7 @@
 
 > Javascript library to manipulate ArcBlock DID: <https://github.com/ArcBlock/abt-did-spec>
 
+
 ## Usage
 
 ```terminal
