@@ -17,6 +17,7 @@ const multibase = require('multibase');
 const utf8 = require('utf8');
 const BN = require('bn.js');
 
+const DID_PREFIX = 'did:abt:';
 const zero = new BN(0);
 const negative1 = new BN(-1);
 
@@ -596,6 +597,30 @@ function fromBase58(v) {
   return multibase.decode(v);
 }
 
+/**
+ * Convert did to address: remove `did:abt:` prefix if exists
+ *
+ * @public
+ * @static
+ * @param {string} did - address string
+ * @returns {string}
+ */
+function toAddress(did) {
+  return did.replace(DID_PREFIX, '');
+}
+
+/**
+ * Convert address to did: prepend `did:abt:` prefix
+ *
+ * @public
+ * @static
+ * @param {string} did - address string
+ * @returns {string}
+ */
+function toDid(address) {
+  return `${DID_PREFIX}${toAddress(address)}`;
+}
+
 module.exports = {
   BN,
   isBN,
@@ -624,4 +649,6 @@ module.exports = {
   fromBase58,
   UUID,
   isUUID,
+  toDid,
+  toAddress,
 };
