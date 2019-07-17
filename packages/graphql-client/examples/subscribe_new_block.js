@@ -13,16 +13,18 @@ const client = new GraphqlClient(`${endpoint}/api`);
 
 (async () => {
   try {
-    const subscription = await client.doRawSubscription(`
-      subscription {
-        subscribe(topic: "end_block") {
-          topic
-          endBlock {
-            height
-          }
-        }
-      }
-    `);
+    const subscription = await client.subscribe({ topic: 'end_block' });
+    // Same as
+    // const subscription = await client.doRawSubscription(`
+    //   subscription {
+    //     subscribe(topic: "end_block") {
+    //       topic
+    //       endBlock {
+    //         height
+    //       }
+    //     }
+    //   }
+    // `);
 
     subscription.on('data', d => console.log('onNewBlock', d));
     subscription.on('error', console.error);
