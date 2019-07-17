@@ -27,6 +27,7 @@ class GraphQLClientBase extends BaseClient {
     super({
       dataSource: 'forge',
       httpEndpoint,
+      socketEndpoint: () => this._getSocketEndpoint(httpEndpoint),
       enableQuery: true,
       enableSubscription: true,
       enableMutation: true,
@@ -35,6 +36,15 @@ class GraphQLClientBase extends BaseClient {
 
     this._endpoint = httpEndpoint;
     this._chainId = chainId;
+  }
+
+  _getSocketEndpoint(endpoint) {
+    let socketEndpoint = endpoint.replace(/https?:\/\//, 'ws://');
+    if (endpoint.indexOf('https://') === 0) {
+      socketEndpoint = socketEndpoint.replace('ws://', 'wss://');
+    }
+
+    return `${socketEndpoint}/socket`;
   }
 
   _getSchema() {

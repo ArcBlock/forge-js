@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "bn.js": "4.11.6",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.14",
     "multibase": "^0.6.0",
     "number-to-bn": "^1.7.0",
     "utf8": "^3.0.0"
@@ -41,6 +41,7 @@
   "scripts": {
     "lint": "eslint lib tests",
     "lint:fix": "eslint --fix lib tests",
+    "upgrade": "yarn generate-dts && yarn generate-docs && yarn format-docs",
     "generate-docs": "jsdoc2md lib/index.js > docs/README.md",
     "generate-dts": "j2d lib/index.js",
     "format-docs": "remark . -o",

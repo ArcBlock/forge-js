@@ -6,12 +6,13 @@
   version "1.2.0"
   resolved "https://registry.npmjs.org/@arcblock/docblock/-/docblock-1.2.0.tgz#507a428a9276c3cd5c9b74cdda98d1479ce6ca9a"
 
-"@arcblock/sdk-util@^0.21.0":
-  version "0.21.0"
-  resolved "https://registry.npmjs.org/@arcblock/sdk-util/-/sdk-util-0.21.0.tgz#fe0965122aa3dd511d500f80690892a84bfc5025"
+"@arcblock/sdk-util@^0.22.0":
+  version "0.22.0"
+  resolved "https://registry.npmjs.org/@arcblock/sdk-util/-/sdk-util-0.22.0.tgz#9d708677517ded3ecd9c67fd50e5133cb0db1714"
+  integrity sha512-0E35+TegSYTHsH+rs/j3UWa1D0yiAOjapzMI4MBb+DL9W9LWI5qgba4nkyZJV3DFHTDzvHsMbAagF0bdpwSrlg==
   dependencies:
     axios "^0.19.0"
-    debug "^3.1.0"
+    debug "^4.1.1"
     graphql "^14.1.1"
 
 "@babel/code-frame@^7.0.0", "@babel/code-frame@^7.0.0-beta.35":
@@ -6509,6 +6510,11 @@ lodash@^4.17.10, lodash@^4.17.11, lodash@^4.17.4, lodash@^4.17.5, lodash@^4.2.1,
   version "4.17.11"
   resolved "https://registry.npmjs.org/lodash/-/lodash-4.17.11.tgz#b39ea6229ef607ecd89e2c8df12536891cac9b8d"
 
+lodash@^4.17.14:
+  version "4.17.14"
+  resolved "https://registry.npmjs.org/lodash/-/lodash-4.17.14.tgz#9ce487ae66c96254fe20b599f21b6816028078ba"
+  integrity sha512-mmKYbW3GLuJeX+iGP+Y7Gp1AiGHGbXHCOh/jZmrawMmsE7MS4znI3RL2FsjbqOyMayHInjOeykW7PEajUk1/xw==
+
 log-symbols@^1.0.2:
   version "1.0.2"
   resolved "https://registry.npmjs.org/log-symbols/-/log-symbols-1.0.2.tgz#376ff7b58ea3086a0f09facc74617eca501e1a18"
@@ -7853,10 +7859,6 @@ phoenix-channels@^1.0.0:
   resolved "https://registry.npmjs.org/phoenix-channels/-/phoenix-channels-1.0.0.tgz#4de3a7a3427483deffc4908d8fecac725db06d6a"
   dependencies:
     websocket "^1.0.24"
-
-phoenix@^1.3.4:
-  version "1.4.2"
-  resolved "https://registry.npmjs.org/phoenix/-/phoenix-1.4.2.tgz#b71491dbf18613c17b3704c0fb2102d23c7b3c07"
 
 pify@^2.0.0, pify@^2.3.0:
   version "2.3.0"

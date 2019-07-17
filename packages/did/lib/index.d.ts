@@ -25,7 +25,7 @@ declare namespace _Lib {
     toStrictHex: (hex: string, length: number) => string;
     fromSecretKey: (sk: string, type: any) => string;
     fromPublicKey: (pk: string, type: any) => string;
-    fromPublicKeyHash: (buffer: any, type: any) => any;
+    fromPublicKeyHash: (buffer: any, type: any) => string;
     fromHash: (hash: string, role: any) => string;
     toTypeInfo: (did: string, returnString?: boolean) => any;
     toAddress: typeof toAddress;

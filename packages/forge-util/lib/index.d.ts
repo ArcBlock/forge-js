@@ -59,6 +59,24 @@ declare function UUID(): string;
  * @returns {boolean}
  */
 declare function isUUID(str: string): boolean;
+/**
+ * Convert address to did: prepend `did:abt:` prefix
+ *
+ * @public
+ * @static
+ * @param {string} did - address string
+ * @returns {string}
+ */
+declare function toDid(address: any): string;
+/**
+ * Convert did to address: remove `did:abt:` prefix if exists
+ *
+ * @public
+ * @static
+ * @param {string} did - address string
+ * @returns {string}
+ */
+declare function toAddress(did: string): string;
 declare const _Lib: _Lib.T100;
 declare namespace _Lib {
   export interface T100 {
@@ -89,6 +107,8 @@ declare namespace _Lib {
     fromBase58: typeof fromBase58;
     UUID: typeof UUID;
     isUUID: typeof isUUID;
+    toDid: typeof toDid;
+    toAddress: typeof toAddress;
   }
 }
 export = _Lib;
