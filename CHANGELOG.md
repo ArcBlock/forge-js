@@ -1,3 +1,15 @@
+## 0.33.1 (July 17, 2019)
+
+- chore: add subscribe example for grpc-client
+- chore: upgrade lodash to fix github security warning
+- chore: add transfer subscribe example for graphql-client
+- chore: add subscription example for graphql-client
+- fix: subscription in graphql-client is broken #330
+- chore: use toAddress and toDid from forge-util
+- chore: add toAddress and toDid to forge-util
+- chore: improve token not found/expired error message
+- fix: Improve error message of qr code expired arc-wallet-android#236
+
 ## 0.33.0 (July 15, 2019)
 
 - chore: trigger cnpm sync on publish
