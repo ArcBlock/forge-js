@@ -202,11 +202,7 @@ class GraphQLClient extends GraphQLClientBase {
             if (Array.isArray(err.errors)) {
               const code = err.errors[0].message;
               if (errorCodes[code]) {
-                const type = snakeCase(x);
-                const message = (errorCodes[code][type] || errorCodes[code].default || code).trim();
-                const error = new Error(`${code}: ${message}`);
-                error.code = code;
-                error.type = type;
+                const error = this._createResponseError(code, x);
                 error.errors = err.errors;
                 reject(error);
                 return;
@@ -226,6 +222,15 @@ class GraphQLClient extends GraphQLClientBase {
         this[aliases[x]] = txSendFn;
       }
     });
+  }
+
+  _createResponseError(code, method) {
+    const type = snakeCase(method);
+    const message = (errorCodes[code][type] || errorCodes[code].default || code).trim();
+    const error = new Error(`${code}: ${message}`);
+    error.code = code;
+    error.type = type;
+    return error;
   }
 }
 

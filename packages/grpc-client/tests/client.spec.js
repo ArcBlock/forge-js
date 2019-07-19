@@ -1,5 +1,4 @@
-const { fromRandom, WalletType } = require('@arcblock/forge-wallet');
-const Mcrypto = require('@arcblock/mcrypto');
+const { fromRandom } = require('@arcblock/forge-wallet');
 const GRpcClient = require('..');
 
 const client = new GRpcClient('tcp://127.0.0.1:28210');
@@ -65,24 +64,34 @@ describe('#magicMethods', () => {
     });
 
     test('should support declare account', async () => {
-      const type = WalletType({
-        role: Mcrypto.types.RoleType.ROLE_ACCOUNT,
-        pk: Mcrypto.types.KeyType.ED25519,
-        hash: Mcrypto.types.HashType.SHA3,
-      });
-
-      const wallet = fromRandom(type);
+      const wallet = fromRandom();
       const hash = await client.sendDeclareTx({
         tx: {
           itx: {
             moniker: `graphql_client_test_${Math.round(Math.random() * 10000)}`,
-            type,
           },
         },
         wallet,
       });
 
       expect(hash).toBeTruthy();
+    });
+
+    test('should support detailed error message', async () => {
+      const wallet = fromRandom();
+      try {
+        await client.sendDeclareTx({
+          tx: {
+            itx: {
+              moniker: 'abc',
+            },
+          },
+          wallet,
+        });
+      } catch (err) {
+        expect(err.message.includes('This moniker is invalid')).toBeTruthy();
+        expect(err.message.includes('invalid_moniker')).toBeTruthy();
+      }
     });
   }
 });

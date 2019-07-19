@@ -1,6 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 const grpc = require('grpc');
-const camelcase = require('camelcase');
+const camelCase = require('lodash/camelCase');
+const snakeCase = require('lodash/snakeCase');
 const { EventEmitter } = require('events');
 const { messages, enums, rpcs } = require('@arcblock/forge-proto');
 const {
@@ -10,6 +11,7 @@ const {
   attachExampleFn,
   getMessageType,
 } = require('@arcblock/forge-message');
+const errorCodes = require('@arcblock/forge-proto/lib/status_code.json');
 const { hexToBytes, bytesToHex, stripHexPrefix } = require('@arcblock/forge-util');
 // eslint-disable-next-line global-require
 const debug = require('debug')(`${require('../package.json').name}`);
@@ -169,7 +171,7 @@ class GRpcClient {
     attachExampleFn(requestType, fn, '$requestExample');
     attachExampleFn(responseType, fn, '$responseExample');
 
-    this[camelcase(method)] = fn;
+    this[camelCase(method)] = fn;
   }
 
   /**
@@ -272,7 +274,7 @@ class GRpcClient {
         return { object: txObj.toObject(), buffer: Uint8Array.from(txToSignBytes) };
       };
 
-      const encodeMethod = camelcase(`encode_${x}`);
+      const encodeMethod = camelCase(`encode_${x}`);
       txEncodeFn.__type__ = 'encode';
       txEncodeFn.__tx__ = encodeMethod;
       txEncodeFn.__itx__ = x;
@@ -363,7 +365,7 @@ class GRpcClient {
         });
       };
 
-      const sendMethod = camelcase(`send_${x}`);
+      const sendMethod = camelCase(`send_${x}`);
       txSendFn.__type__ = 'send';
       txSendFn.__tx__ = sendMethod;
       txSendFn.__itx__ = x;
@@ -477,10 +479,20 @@ class GRpcClient {
     return emitter;
   }
 
-  _createResponseError(code, method) {
-    const error = new Error(`gRPC response error: ${messages.StatusCode[code]}, method: ${method}`);
-    error.errcode = messages.StatusCode[code];
-    error.errno = code;
+  _createResponseError(status, method) {
+    const code = messages.StatusCode[status].toLowerCase();
+    if (errorCodes[code]) {
+      const type = snakeCase(method);
+      const message = (errorCodes[code][type] || errorCodes[code].default || code).trim();
+      const error = new Error(`${method} failed with status ${code}, possible reason: ${message}`);
+      error.code = code;
+      error.type = type;
+      return error;
+    }
+
+    const error = new Error(`gRPC response error: ${code}, method: ${method}`);
+    error.errcode = code;
+    error.errno = status;
     return error;
   }
 }

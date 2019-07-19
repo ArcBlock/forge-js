@@ -19,6 +19,7 @@ const client = new GRpcClient({ endpoint: 'tcp://127.0.0.1:28210' });
     const wallet = fromRandom();
     const res = await client.sendDeclareTx({
       tx: {
+        nonce: 0,
         itx: {
           moniker: `grpc_user_${Math.round(Math.random() * 10000)}`,
         },
