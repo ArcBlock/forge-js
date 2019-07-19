@@ -8,7 +8,7 @@
  * const { enums, fromTypeUrl, toTypeUrl } = require('@arcblock/forge-proto/lite'); // lite version, smaller bundle
  */
 
-const get = require('lodash.get');
+const get = require('lodash/get');
 const debug = require('debug')(require('./package.json').name);
 
 /**

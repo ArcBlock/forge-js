@@ -49,7 +49,7 @@
   "scripts": {
     "lint": "eslint tests *.js",
     "lint:fix": "eslint --fix tests *.js",
-    "upgrade": "bash tools/copy.sh && yarn gen && yarn generate-dts && yarn generate-docs && yarn format-docs",
+    "upgrade": "bash tools/copy.sh && yarn gen && yarn generate-dts && yarn generate-docs && yarn generate-status && yarn format-docs",
     "copy": "bash tools/copy.sh",
     "gen": "node tools/gen-proto-entry.js full && node tools/gen-proto-entry.js lite",
     "format-docs": "remark . -o",
@@ -62,9 +62,8 @@
     "coverage": "yarn lint && yarn test -- --coverage --collectCoverageFrom=index.js --collectCoverageFrom=!lib/*.js"
   },
   "dependencies": {
-    "camelcase": "^5.3.1",
     "debug": "^4.1.1",
-    "lodash.get": "^4.4.2"
+    "lodash": "^4.17.15"
   },
   "gitHead": "87990c8b5e215107fc587c1ced0d6b3e2cd2483e"
 }

@@ -21,9 +21,9 @@
   "dependencies": {
     "@arcblock/forge-proto": "^0.33.0",
     "@arcblock/forge-util": "^0.33.0",
-    "camelcase": "^5.0.0",
     "debug": "^4.1.1",
-    "google-protobuf": "3.7.0-rc.2"
+    "google-protobuf": "3.7.0-rc.2",
+    "lodash": "^4.17.15"
   },
   "devDependencies": {
     "jest": "^23.5.0",

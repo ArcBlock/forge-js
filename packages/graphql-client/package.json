@@ -40,7 +40,6 @@
     "@babel/polyfill": "^7.4.4",
     "base64-url": "^2.2.0",
     "blueimp-md5": "^2.10.0",
-    "camelcase": "^5.2.0",
     "debug": "^4.1.1",
     "jsonpack": "^1.1.5",
     "lodash": "^4.17.14",

@@ -11,7 +11,7 @@
  */
 
 /* eslint no-console:"off" */
-const camelcase = require('camelcase');
+const camelcase = require('lodash/camelcase');
 const jspb = require('google-protobuf');
 const { Any } = require('google-protobuf/google/protobuf/any_pb');
 const { Timestamp } = require('google-protobuf/google/protobuf/timestamp_pb');

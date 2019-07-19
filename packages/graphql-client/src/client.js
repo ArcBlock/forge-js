@@ -1,6 +1,6 @@
 /* eslint-disable no-underscore-dangle */
-const camelcase = require('camelcase');
 const base64 = require('base64-url');
+const camelCase = require('lodash/camelCase');
 const snakeCase = require('lodash/snakeCase');
 const errorCodes = require('@arcblock/forge-proto/lib/status_code.json');
 const { transactions } = require('@arcblock/forge-proto/lite');
@@ -57,7 +57,7 @@ class GraphQLClient extends GraphQLClientBase {
    * @returns {Array<string>} method name list
    */
   getTxSendMethods() {
-    return transactions.map(x => camelcase(`send_${x}`));
+    return transactions.map(x => camelCase(`send_${x}`));
   }
 
   /**
@@ -67,7 +67,7 @@ class GraphQLClient extends GraphQLClientBase {
    * @returns {Array<string>} method name list
    */
   getTxEncodeMethods() {
-    return transactions.map(x => camelcase(`encode_${x}`));
+    return transactions.map(x => camelCase(`encode_${x}`));
   }
 
   /**
@@ -154,7 +154,7 @@ class GraphQLClient extends GraphQLClientBase {
         return { object: txObj.toObject(), buffer: Buffer.from(txToSignBytes) };
       };
 
-      const encodeMethod = camelcase(`encode_${x}`);
+      const encodeMethod = camelCase(`encode_${x}`);
       txEncodeFn.__tx__ = encodeMethod;
       this[encodeMethod] = txEncodeFn;
 
@@ -214,7 +214,7 @@ class GraphQLClient extends GraphQLClientBase {
         });
       };
 
-      const sendMethod = camelcase(`send_${x}`);
+      const sendMethod = camelCase(`send_${x}`);
       txSendFn.__tx__ = sendMethod;
       this[sendMethod] = txSendFn;
 
