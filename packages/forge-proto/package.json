@@ -19,6 +19,7 @@
     "access": "public"
   },
   "devDependencies": {
+    "any-json": "^3.1.0",
     "jest": "^23.5.0"
   },
   "homepage": "https://github.com/ArcBlock/forge-js/tree/master/packages/forge-proto",
@@ -54,6 +55,7 @@
     "format-docs": "remark . -o",
     "generate-docs": "jsdoc2md provider.js > docs/README.md",
     "generate-dts": "j2d index.js && j2d lite.js && node tools/generate-dts.js && bash tools/patch-dts.sh",
+    "generate-status": "./tools/generate-status.sh",
     "precommit": "CI=1 yarn test",
     "prepush": "CI=1 yarn test",
     "test": "yarn lint && node tools/jest.js",
