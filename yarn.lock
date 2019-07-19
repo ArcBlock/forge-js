@@ -4577,9 +4577,10 @@ globby@^8.0.1:
     pify "^3.0.0"
     slash "^1.0.0"
 
-google-protobuf@3.7.0-rc.2:
-  version "3.7.0-rc.2"
-  resolved "https://registry.npmjs.org/google-protobuf/-/google-protobuf-3.7.0-rc.2.tgz#a65e9216825065099c4ff243eee9e16e764cc2c9"
+google-protobuf@^3.9.0:
+  version "3.9.0"
+  resolved "https://registry.npmjs.org/google-protobuf/-/google-protobuf-3.9.0.tgz#1f33e51e7993ea51e758a82650ad4347273b9bc6"
+  integrity sha512-/t/7NvL9jAmfXLdqJG7Nv2c5Z2GTdZSKi/T6kI3hpIS4yA6rXqBAMF4Yx39xbICWDgRv+R+Z79n7ZxuvoUQU4w==
 
 got@^6.7.1:
   version "6.7.1"
@@ -4625,9 +4626,10 @@ growly@^1.3.0:
   version "1.3.0"
   resolved "https://registry.npmjs.org/growly/-/growly-1.3.0.tgz#f10748cbe76af964b7c96c93c6bcc28af120c081"
 
-grpc@^1.20.2:
-  version "1.20.3"
-  resolved "https://registry.npmjs.org/grpc/-/grpc-1.20.3.tgz#a74d36718f1e89c4a64f2fb9441199c3c8f78978"
+grpc@^1.22.2:
+  version "1.22.2"
+  resolved "https://registry.npmjs.org/grpc/-/grpc-1.22.2.tgz#1a60c728c692a93a85e855e35c2e0216654f0198"
+  integrity sha512-gaK59oAA5/mlOIn+hQO5JROPoAzsaGRpEMcrAayW5WGETS8QScpBoQ+XBxEWAAF0kbeGIELuGRCVEObKS1SLmw==
   dependencies:
     lodash.camelcase "^4.3.0"
     lodash.clone "^4.5.0"
