@@ -1,3 +1,12 @@
+## 0.34.0 (July 19, 2019)
+
+- chore: use lodash.camelcase to replace camelcase
+- feat: support detailed error code and messages in grpc-client
+- chore: cleanup some example files
+- feat: support detailed error code and messages in graphql-client
+- fix: example running script
+- chore: include transaction send status code json in forge-proto
+
 ## 0.33.1 (July 17, 2019)
 
 - chore: add subscribe example for grpc-client
