@@ -5,7 +5,7 @@ const snakeCase = require('lodash/snakeCase');
 const errorCodes = require('@arcblock/forge-proto/lib/status_code.json');
 const { transactions } = require('@arcblock/forge-proto/lite');
 const { createMessage, getMessageType } = require('@arcblock/forge-message/lite');
-const { bytesToHex, stripHexPrefix } = require('@arcblock/forge-util');
+const { bytesToHex, toBase58, toHex } = require('@arcblock/forge-util');
 
 const debug = require('debug')(require('../package.json').name);
 
@@ -71,6 +71,26 @@ class GraphQLClient extends GraphQLClientBase {
   }
 
   /**
+   * List all transaction sign methods, each method can be used to sign transaction to an object
+   *
+   * @method
+   * @returns {Array<string>} method name list
+   */
+  getTxSignMethods() {
+    return transactions.map(x => camelCase(`sign_${x}`));
+  }
+
+  /**
+   * List all transaction multi sign methods, each method can be used to do multi sign a transaction
+   *
+   * @method
+   * @returns {Array<string>} method name list
+   */
+  getTxMultiSignMethods() {
+    return transactions.map(x => camelCase(`multi_sign_${x}`));
+  }
+
+  /**
    * Get protobuf message class by name, only supports forge-built-in types
    *
    * @method
@@ -94,11 +114,9 @@ class GraphQLClient extends GraphQLClientBase {
   }
 
   _initTxMethods() {
-    const toHex = bytes => stripHexPrefix(bytesToHex(bytes)).toUpperCase();
-
     transactions.forEach(x => {
       /**
-       * Generate an transaction encoding function
+       * Encode a transaction
        *
        * @param {object} input
        * @param {object} input.tx - data of the transaction
@@ -149,7 +167,6 @@ class GraphQLClient extends GraphQLClientBase {
         const txToSignBytes = txObj.serializeBinary();
 
         debug(`encodeTx.${x}.txObj`, txObj.toObject());
-        debug(`encodeTx.${x}.txHex`, toHex(txToSignBytes));
 
         return { object: txObj.toObject(), buffer: Buffer.from(txToSignBytes) };
       };
@@ -159,8 +176,7 @@ class GraphQLClient extends GraphQLClientBase {
       this[encodeMethod] = txEncodeFn;
 
       /**
-       * Generate an transaction sender function
-       *
+       * Send a transaction
        *
        * @param {object} input
        * @param {object} input.tx - data of the transaction
@@ -191,8 +207,6 @@ class GraphQLClient extends GraphQLClientBase {
         const txBytes = txObj.serializeBinary();
         const txStr = base64.escape(Buffer.from(txBytes).toString('base64'));
         debug(`sendTx.${x}.txObj`, txObj.toObject());
-        debug(`sendTx.${x}.txHex`, toHex(txBytes));
-        debug(`sendTx.${x}.txB64`, txStr);
 
         return new Promise(async (resolve, reject) => {
           try {
@@ -218,6 +232,59 @@ class GraphQLClient extends GraphQLClientBase {
       txSendFn.__tx__ = sendMethod;
       this[sendMethod] = txSendFn;
 
+      const _formatEncodedTx = (tx, encoding) => {
+        if (encoding) {
+          const txObj = createMessage('Transaction', tx);
+          const txBytes = txObj.serializeBinary();
+          if (encoding === 'base64') {
+            return base64.escape(Buffer.from(txBytes).toString('base64'));
+          }
+          if (encoding === 'base58') {
+            return toBase58(txBytes);
+          }
+          if (encoding === 'base16' || encoding === 'hex') {
+            return toHex(txBytes);
+          }
+          return Buffer.from(txBytes);
+        }
+
+        return tx;
+      };
+
+      // Generate transaction signing function
+      const txSignFn = async ({ tx, wallet, encoding = '' }) => {
+        if (tx.signature) {
+          delete tx.signature;
+        }
+
+        const { object, buffer } = await txEncodeFn({ tx, wallet });
+        object.signature = wallet.sign(bytesToHex(buffer));
+
+        return _formatEncodedTx(object, encoding);
+      };
+      const signMethod = camelCase(`sign_${x}`);
+      txSignFn.__tx__ = signMethod;
+      this[signMethod] = txSignFn;
+
+      // TODO: only a subset of transactions requires multi sign
+      // TODO: verify existing signatures before adding new signatures
+      // Generate transaction multi sign function
+      const txMultiSignFn = async ({ tx, wallet, encoding = '' }) => {
+        tx.signatures = tx.signatures || tx.signaturesList || [];
+        tx.signatures.unshift({
+          pk: wallet.publicKey,
+          signer: wallet.toAddress(),
+        });
+
+        const { object, buffer } = await txEncodeFn({ tx, wallet });
+        object.signaturesList[0].signature = wallet.sign(bytesToHex(buffer));
+        return _formatEncodedTx(object, encoding);
+      };
+      const multiSignMethod = camelCase(`multi_sign_${x}`);
+      txMultiSignFn.__tx__ = multiSignMethod;
+      this[multiSignMethod] = txMultiSignFn;
+
+      // Add alias
       if (aliases[x]) {
         this[aliases[x]] = txSendFn;
       }

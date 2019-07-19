@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 const { fromRandom } = require('@arcblock/forge-wallet');
+const { bytesToHex } = require('@arcblock/forge-util');
 const GraphqlClient = require('../');
 
 describe('GraphqlClient', () => {
@@ -79,5 +80,19 @@ describe('GraphqlClient', () => {
       expect(err.message.includes('invalid_sender_state')).toBeTruthy();
       expect(err.message.includes('`tx.from` already exist')).toBeTruthy();
     }
+  });
+
+  test.skip('should sign tx correctly', async () => {
+    const tx = {
+      nonce: 1,
+      itx: {
+        moniker: 'test',
+      },
+    };
+    const object = await client.signDeclareTx({ tx, wallet });
+    const buffer = await client.signDeclareTx({ tx, wallet, encoding: 'buffer' });
+    const signature = wallet.sign(buffer);
+    console.log({ object, buffer: bytesToHex(buffer), signature });
+    expect(wallet.verify(bytesToHex(buffer), object.signature)).toBeTruthy();
   });
 });

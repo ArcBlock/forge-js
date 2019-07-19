@@ -160,6 +160,26 @@ declare class GraphQLClient {
         )}>): Promise<GraphQLClient.EncodeTxResult>;`
     )
     .join('\n')}
+  ${client
+    .getTxSignMethods()
+    .map(
+      x =>
+        `${x}(param: GraphQLClient.TxParam<GraphQLClient.${x.replace(
+          /^sign/,
+          ''
+        )}>): Promise<GraphQLClient.Transaction>;`
+    )
+    .join('\n')}
+  ${client
+    .getTxMultiSignMethods()
+    .map(
+      x =>
+        `${x}(param: GraphQLClient.TxParam<GraphQLClient.${x.replace(
+          /^multiSign/,
+          ''
+        )}>): Promise<GraphQLClient.Transaction>;`
+    )
+    .join('\n')}
   ${generateMethods(queries, namespace, 'QueryResult')}
   ${generateMethods(mutations, namespace, 'QueryResult')}
   ${generateMethods(subscriptions, namespace, 'SubscriptionResult')}
