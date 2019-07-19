@@ -1,6 +1,8 @@
 /* eslint-disable no-underscore-dangle */
 const camelcase = require('camelcase');
 const base64 = require('base64-url');
+const snakeCase = require('lodash/snakeCase');
+const errorCodes = require('@arcblock/forge-proto/lib/status_code.json');
 const { transactions } = require('@arcblock/forge-proto/lite');
 const { createMessage, getMessageType } = require('@arcblock/forge-message/lite');
 const { bytesToHex, stripHexPrefix } = require('@arcblock/forge-util');
@@ -197,6 +199,20 @@ class GraphQLClient extends GraphQLClientBase {
             const { hash } = await this.sendTx({ tx: txStr });
             resolve(hash);
           } catch (err) {
+            if (Array.isArray(err.errors)) {
+              const code = err.errors[0].message;
+              if (errorCodes[code]) {
+                const type = snakeCase(x);
+                const message = (errorCodes[code][type] || errorCodes[code].default || code).trim();
+                const error = new Error(`${code}: ${message}`);
+                error.code = code;
+                error.type = type;
+                error.errors = err.errors;
+                reject(error);
+                return;
+              }
+            }
+
             reject(err);
           }
         });

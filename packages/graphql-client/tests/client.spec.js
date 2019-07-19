@@ -1,6 +1,5 @@
 /* eslint-disable no-console */
-const { fromRandom, WalletType } = require('@arcblock/forge-wallet');
-const Mcrypto = require('@arcblock/mcrypto');
+const { fromRandom } = require('@arcblock/forge-wallet');
 const GraphqlClient = require('../');
 
 describe('GraphqlClient', () => {
@@ -52,24 +51,33 @@ describe('GraphqlClient', () => {
     }
   });
 
+  const wallet = fromRandom();
   test('should support declare account', async () => {
-    const type = WalletType({
-      role: Mcrypto.types.RoleType.ROLE_ACCOUNT,
-      pk: Mcrypto.types.KeyType.ED25519,
-      hash: Mcrypto.types.HashType.SHA3,
-    });
-
-    const wallet = fromRandom(type);
     const hash = await client.sendDeclareTx({
       tx: {
         itx: {
           moniker: `graphql_client_test_${Math.round(Math.random() * 10000)}`,
-          type,
         },
       },
       wallet,
     });
 
     expect(hash).toBeTruthy();
+  });
+
+  test('should support detailed error message', async () => {
+    try {
+      await client.sendDeclareTx({
+        tx: {
+          itx: {
+            moniker: `graphql_client_test_${Math.round(Math.random() * 10000)}`,
+          },
+        },
+        wallet,
+      });
+    } catch (err) {
+      expect(err.message.includes('invalid_sender_state')).toBeTruthy();
+      expect(err.message.includes('`tx.from` already exist')).toBeTruthy();
+    }
   });
 });
