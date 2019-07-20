@@ -8,35 +8,42 @@
  *
  * Run script with: `DEBUG=@arcblock/graphql-client node examples/declare_account.js`
  */
-const Mcrypto = require('@arcblock/mcrypto');
 const GraphqlClient = require('@arcblock/graphql-client');
-const { fromRandom, WalletType } = require('@arcblock/forge-wallet');
+const { fromRandom } = require('@arcblock/forge-wallet');
 
 const endpoint = process.env.FORGE_API_HOST || 'http://127.0.0.1:8210'; // testnet
 
 const client = new GraphqlClient(`${endpoint}/api`);
-const type = WalletType({
-  // Different entities maybe choose different wallet role type
-  role: Mcrypto.types.RoleType.ROLE_ACCOUNT,
-  pk: Mcrypto.types.KeyType.ED25519,
-  hash: Mcrypto.types.HashType.SHA3,
-});
 
 (async () => {
   try {
-    const wallet = fromRandom(type);
-    const res = await client.sendDeclareTx({
+    // Send without sign
+    const user1 = fromRandom();
+    const hash1 = await client.sendDeclareTx({
       tx: {
         itx: {
           moniker: `poke_user_${Math.round(Math.random() * 10000)}`,
         },
       },
-      wallet,
+      wallet: user1,
     });
 
-    console.log('declare.result', res);
-    console.log('view account', `${endpoint}/node/explorer/accounts/${wallet.toAddress()}`);
-    console.log('view account tx', `${endpoint}/node/explorer/txs/${res}`);
+    console.log('view user1 account', `${endpoint}/node/explorer/accounts/${user1.toAddress()}`);
+    console.log('view user1 tx', `${endpoint}/node/explorer/txs/${hash1}`);
+
+    // Sign and then send
+    const user2 = fromRandom();
+    const signed = await client.signDeclareTx({
+      tx: {
+        itx: {
+          moniker: 'sign_and_send',
+        },
+      },
+      wallet: user2,
+    });
+    const hash2 = await client.sendDeclareTx({ tx: signed, wallet: user2 });
+    console.log('view user2 account', `${endpoint}/node/explorer/accounts/${user2.toAddress()}`);
+    console.log('view user2 tx', `${endpoint}/node/explorer/txs/${hash2}`);
   } catch (err) {
     console.error(err);
     console.log(JSON.stringify(err.errors));

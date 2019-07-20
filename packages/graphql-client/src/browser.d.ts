@@ -209,65 +209,17 @@ declare class GraphQLClient {
   signWithdrawTetherTx(
     param: GraphQLClient.TxParam<GraphQLClient.WithdrawTetherTx>
   ): Promise<GraphQLClient.Transaction>;
-  multiSignAccountMigrateTx(
-    param: GraphQLClient.TxParam<GraphQLClient.AccountMigrateTx>
-  ): Promise<GraphQLClient.Transaction>;
-  multiSignAcquireAssetTx(
-    param: GraphQLClient.TxParam<GraphQLClient.AcquireAssetTx>
-  ): Promise<GraphQLClient.Transaction>;
-  multiSignApproveTetherTx(
-    param: GraphQLClient.TxParam<GraphQLClient.ApproveTetherTx>
-  ): Promise<GraphQLClient.Transaction>;
-  multiSignConsumeAssetTx(
-    param: GraphQLClient.TxParam<GraphQLClient.ConsumeAssetTx>
-  ): Promise<GraphQLClient.Transaction>;
-  multiSignCreateAssetTx(
-    param: GraphQLClient.TxParam<GraphQLClient.CreateAssetTx>
-  ): Promise<GraphQLClient.Transaction>;
-  multiSignDeclareTx(
-    param: GraphQLClient.TxParam<GraphQLClient.DeclareTx>
-  ): Promise<GraphQLClient.Transaction>;
-  multiSignDeployProtocolTx(
-    param: GraphQLClient.TxParam<GraphQLClient.DeployProtocolTx>
-  ): Promise<GraphQLClient.Transaction>;
-  multiSignDepositTetherTx(
-    param: GraphQLClient.TxParam<GraphQLClient.DepositTetherTx>
+  multiSignExchangeTx(
+    param: GraphQLClient.TxParam<GraphQLClient.ExchangeTx>
   ): Promise<GraphQLClient.Transaction>;
   multiSignExchangeTetherTx(
     param: GraphQLClient.TxParam<GraphQLClient.ExchangeTetherTx>
   ): Promise<GraphQLClient.Transaction>;
-  multiSignExchangeTx(
-    param: GraphQLClient.TxParam<GraphQLClient.ExchangeTx>
+  multiSignDepositTetherTx(
+    param: GraphQLClient.TxParam<GraphQLClient.DepositTetherTx>
   ): Promise<GraphQLClient.Transaction>;
-  multiSignPokeTx(
-    param: GraphQLClient.TxParam<GraphQLClient.PokeTx>
-  ): Promise<GraphQLClient.Transaction>;
-  multiSignRetrieveSwapTx(
-    param: GraphQLClient.TxParam<GraphQLClient.RetrieveSwapTx>
-  ): Promise<GraphQLClient.Transaction>;
-  multiSignRevokeSwapTx(
-    param: GraphQLClient.TxParam<GraphQLClient.RevokeSwapTx>
-  ): Promise<GraphQLClient.Transaction>;
-  multiSignRevokeTetherTx(
-    param: GraphQLClient.TxParam<GraphQLClient.RevokeTetherTx>
-  ): Promise<GraphQLClient.Transaction>;
-  multiSignSetupSwapTx(
-    param: GraphQLClient.TxParam<GraphQLClient.SetupSwapTx>
-  ): Promise<GraphQLClient.Transaction>;
-  multiSignStakeTx(
-    param: GraphQLClient.TxParam<GraphQLClient.StakeTx>
-  ): Promise<GraphQLClient.Transaction>;
-  multiSignTransferTx(
-    param: GraphQLClient.TxParam<GraphQLClient.TransferTx>
-  ): Promise<GraphQLClient.Transaction>;
-  multiSignUpdateAssetTx(
-    param: GraphQLClient.TxParam<GraphQLClient.UpdateAssetTx>
-  ): Promise<GraphQLClient.Transaction>;
-  multiSignUpgradeNodeTx(
-    param: GraphQLClient.TxParam<GraphQLClient.UpgradeNodeTx>
-  ): Promise<GraphQLClient.Transaction>;
-  multiSignWithdrawTetherTx(
-    param: GraphQLClient.TxParam<GraphQLClient.WithdrawTetherTx>
+  multiSignConsumeAssetTx(
+    param: GraphQLClient.TxParam<GraphQLClient.ConsumeAssetTx>
   ): Promise<GraphQLClient.Transaction>;
   getAccountState(
     params: GraphQLClient.GetAccountStateParams

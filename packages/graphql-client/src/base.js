@@ -47,6 +47,10 @@ class GraphQLClientBase extends BaseClient {
     return `${socketEndpoint}/socket`;
   }
 
+  _getMultiSignTxs() {
+    return ['ExchangeTx', 'ExchangeTetherTx', 'DepositTetherTx', 'ConsumeAssetTx'];
+  }
+
   _getSchema() {
     return jsonpack.unpack(packedSchema);
   }
