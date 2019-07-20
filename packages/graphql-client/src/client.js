@@ -87,7 +87,7 @@ class GraphQLClient extends GraphQLClientBase {
    * @returns {Array<string>} method name list
    */
   getTxMultiSignMethods() {
-    return transactions.map(x => camelCase(`multi_sign_${x}`));
+    return this._getMultiSignTxs().map(x => camelCase(`multi_sign_${x}`));
   }
 
   /**
@@ -152,6 +152,15 @@ class GraphQLClient extends GraphQLClientBase {
           signatures = tx.signaturesList;
         }
 
+        // Determine itx
+        let itx = null;
+        if (tx.itx.typeUrl && tx.itx.value) {
+          // eslint-disable-next-line prefer-destructuring
+          itx = tx.itx;
+        } else {
+          itx = { type: x, value: tx.itx };
+        }
+
         const txObj = createMessage('Transaction', {
           from: address,
           nonce,
@@ -159,10 +168,7 @@ class GraphQLClient extends GraphQLClientBase {
           chainId,
           signature: tx.signature || Buffer.from([]),
           signatures,
-          itx: {
-            type: x,
-            value: tx.itx,
-          },
+          itx,
         });
         const txToSignBytes = txObj.serializeBinary();
 
@@ -195,7 +201,9 @@ class GraphQLClient extends GraphQLClientBase {
         if (signature) {
           encoded = tx;
           encoded.signature = signature;
-          debug(`sendTx.${x}.hasSignature`, encoded);
+        } else if (tx.signature) {
+          const res = await txEncodeFn({ tx, wallet });
+          encoded = res.object;
         } else {
           const res = await txEncodeFn({ tx, wallet });
           // eslint-disable-next-line prefer-destructuring
@@ -266,23 +274,24 @@ class GraphQLClient extends GraphQLClientBase {
       txSignFn.__tx__ = signMethod;
       this[signMethod] = txSignFn;
 
-      // TODO: only a subset of transactions requires multi sign
       // TODO: verify existing signatures before adding new signatures
       // Generate transaction multi sign function
-      const txMultiSignFn = async ({ tx, wallet, encoding = '' }) => {
-        tx.signatures = tx.signatures || tx.signaturesList || [];
-        tx.signatures.unshift({
-          pk: wallet.publicKey,
-          signer: wallet.toAddress(),
-        });
+      if (this._getMultiSignTxs().includes(x)) {
+        const txMultiSignFn = async ({ tx, wallet, encoding = '' }) => {
+          tx.signatures = tx.signatures || tx.signaturesList || [];
+          tx.signatures.unshift({
+            pk: wallet.publicKey,
+            signer: wallet.toAddress(),
+          });
 
-        const { object, buffer } = await txEncodeFn({ tx, wallet });
-        object.signaturesList[0].signature = wallet.sign(bytesToHex(buffer));
-        return _formatEncodedTx(object, encoding);
-      };
-      const multiSignMethod = camelCase(`multi_sign_${x}`);
-      txMultiSignFn.__tx__ = multiSignMethod;
-      this[multiSignMethod] = txMultiSignFn;
+          const { object, buffer } = await txEncodeFn({ tx, wallet });
+          object.signaturesList[0].signature = wallet.sign(bytesToHex(buffer));
+          return _formatEncodedTx(object, encoding);
+        };
+        const multiSignMethod = camelCase(`multi_sign_${x}`);
+        txMultiSignFn.__tx__ = multiSignMethod;
+        this[multiSignMethod] = txMultiSignFn;
+      }
 
       // Add alias
       if (aliases[x]) {
