@@ -87,7 +87,7 @@ class GraphQLClient extends GraphQLClientBase {
    * @returns {Array<string>} method name list
    */
   getTxMultiSignMethods() {
-    return this._getMultiSignTxs().map(x => camelCase(`multi_sign_${x}`));
+    return multiSignTxs.map(x => camelCase(`multi_sign_${x}`));
   }
 
   /**
