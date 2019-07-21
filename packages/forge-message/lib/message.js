@@ -11,7 +11,7 @@
  */
 
 /* eslint no-console:"off" */
-const camelcase = require('lodash/camelcase');
+const camelCase = require('lodash/camelCase');
 const jspb = require('google-protobuf');
 const { Any } = require('google-protobuf/google/protobuf/any_pb');
 const { Timestamp } = require('google-protobuf/google/protobuf/timestamp_pb');
@@ -193,12 +193,12 @@ function formatMessage(type, data) {
 
     // list
     if (rule === 'repeated') {
-      value = data[camelcase(`${key}_list`)] || data[key];
+      value = data[camelCase(`${key}_list`)] || data[key];
     }
 
     // map
     if (keyType) {
-      value = data[camelcase(`${key}_map`)] || data[key];
+      value = data[camelCase(`${key}_map`)] || data[key];
     }
     if (value === undefined) {
       return;
@@ -308,7 +308,7 @@ function createMessage(type, params) {
   Object.keys(fields).forEach(key => {
     const { type: subType, keyType, rule, id } = fields[key];
     // Hack: protobuf tools renamed list fields
-    const value = params[key] || params[camelcase(`${key}_list`)];
+    const value = params[key] || params[camelCase(`${key}_list`)];
     if (value === undefined) {
       return;
     }
@@ -317,7 +317,7 @@ function createMessage(type, params) {
     if (keyType) {
       const keys = Object.keys(value);
       if (keys.length) {
-        const fn = camelcase(`get_${key}_map`);
+        const fn = camelCase(`get_${key}_map`);
         const map = message[fn]();
         debug('createMessage.map', { type, subType, keyType, id, fn, keys });
         keys.forEach(k => {
@@ -329,7 +329,7 @@ function createMessage(type, params) {
       return;
     }
 
-    const fn = camelcase(rule === 'repeated' ? `add_${key}` : `set_${key}`);
+    const fn = camelCase(rule === 'repeated' ? `add_${key}` : `set_${key}`);
     if (typeof message[fn] !== 'function') {
       throw new Error(`Unexpected field names ${JSON.stringify({ type, key, subType, fn, rule })}`);
     }
