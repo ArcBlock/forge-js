@@ -24,7 +24,7 @@ const { fromTokenToUnit } = require('@arcblock/forge-util');
 
 const endpoint = process.env.FORGE_API_HOST || 'http://127.0.0.1:8210'; // testnet
 
-const client = new GraphQLClient({ endpoint: `${endpoint}/api`, chainId: 'test-chain' });
+const client = new GraphQLClient({ endpoint: `${endpoint}/api` });
 const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
 
 (async () => {

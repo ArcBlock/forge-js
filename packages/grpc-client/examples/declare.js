@@ -8,8 +8,9 @@
  *
  * Run script with: `DEBUG=@arcblock/grpc-client node examples/declare_account.js`
  */
+const Mcrypto = require('@arcblock/mcrypto');
 const GRpcClient = require('@arcblock/grpc-client');
-const { fromRandom } = require('@arcblock/forge-wallet');
+const { fromRandom, WalletType } = require('@arcblock/forge-wallet');
 
 const endpoint = process.env.FORGE_API_HOST || 'http://127.0.0.1:8210'; // testnet
 const client = new GRpcClient({ endpoint: 'tcp://127.0.0.1:28210' });
@@ -43,6 +44,27 @@ const client = new GRpcClient({ endpoint: 'tcp://127.0.0.1:28210' });
     const hash2 = await client.sendDeclareTx({ tx: signed, wallet: user2 });
     console.log('view user2 account', `${endpoint}/node/explorer/accounts/${user2.toAddress()}`);
     console.log('view user2 tx', `${endpoint}/node/explorer/txs/${hash2}`);
+
+    // Declare an application
+    const type = WalletType({
+      role: Mcrypto.types.RoleType.ROLE_APPLICATION,
+      pk: Mcrypto.types.KeyType.ED25519,
+      hash: Mcrypto.types.HashType.SHA3,
+    });
+    const application = fromRandom(type);
+    const hash = await client.sendDeclareTx({
+      tx: {
+        itx: {
+          moniker: `application_${Math.round(Math.random() * 10000)}`,
+        },
+      },
+      wallet,
+    });
+    console.log(
+      'view application',
+      `${endpoint}/node/explorer/accounts/${application.toAddress()}`
+    );
+    console.log('view application tx', `${endpoint}/node/explorer/txs/${hash}`);
   } catch (err) {
     console.error(err);
     console.log(JSON.stringify(err.errors));

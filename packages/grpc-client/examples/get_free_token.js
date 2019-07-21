@@ -7,21 +7,15 @@
  * Run script with: `DEBUG=@arcblock/grpc-client node examples/get_free_token.js`
  */
 const moment = require('moment');
-const Mcrypto = require('@arcblock/mcrypto');
 const GRpcClient = require('@arcblock/grpc-client');
-const { fromRandom, WalletType } = require('@arcblock/forge-wallet');
+const { fromRandom } = require('@arcblock/forge-wallet');
 
 const endpoint = process.env.FORGE_API_HOST || 'http://127.0.0.1:8210'; // testnet
 const client = new GRpcClient({ endpoint: 'tcp://127.0.0.1:28210' });
-const type = WalletType({
-  role: Mcrypto.types.RoleType.ROLE_ACCOUNT,
-  pk: Mcrypto.types.KeyType.ED25519,
-  hash: Mcrypto.types.HashType.SHA3,
-});
 
 (async () => {
   try {
-    const wallet = fromRandom(type);
+    const wallet = fromRandom();
     let res = await client.sendDeclareTx({
       tx: {
         itx: {

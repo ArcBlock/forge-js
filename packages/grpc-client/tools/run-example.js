@@ -10,7 +10,7 @@ examples.forEach(x => {
   console.log('-'.repeat(80));
   console.log('Running example', example);
   console.log('-'.repeat(80));
-  shell.exec(`DEBUG=@arcblock/* node ${example}`);
+  shell.exec(`node ${example}`);
   console.log('');
   console.log('');
 });
