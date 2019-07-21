@@ -239,6 +239,10 @@ class GraphQLClient extends GraphQLClientBase {
       const sendMethod = camelCase(`send_${x}`);
       txSendFn.__tx__ = sendMethod;
       this[sendMethod] = txSendFn;
+      // Add alias
+      if (aliases[x]) {
+        this[aliases[x]] = txSendFn;
+      }
 
       const _formatEncodedTx = async (tx, encoding) => {
         if (encoding) {
@@ -290,11 +294,6 @@ class GraphQLClient extends GraphQLClientBase {
         const multiSignMethod = camelCase(`multi_sign_${x}`);
         txMultiSignFn.__tx__ = multiSignMethod;
         this[multiSignMethod] = txMultiSignFn;
-      }
-
-      // Add alias
-      if (aliases[x]) {
-        this[aliases[x]] = txSendFn;
       }
     });
   }

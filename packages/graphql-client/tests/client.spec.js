@@ -1,13 +1,18 @@
 /* eslint-disable no-console */
 const { fromRandom } = require('@arcblock/forge-wallet');
-const GraphqlClient = require('../');
+const { fromTokenToUnit } = require('@arcblock/forge-util');
+const { toAssetAddress } = require('@arcblock/did-util');
 
-describe('GraphqlClient', () => {
+const GraphQLClient = require('../');
+
+const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
+
+describe('GraphQLClient', () => {
   test('should be a function', () => {
-    expect(typeof GraphqlClient).toEqual('function');
+    expect(typeof GraphQLClient).toEqual('function');
   });
 
-  let client = new GraphqlClient('http://127.0.0.1:8210/api');
+  let client = new GraphQLClient('http://127.0.0.1:8210/api');
   test('should have alias methods', () => {
     expect(typeof client.checkin).toEqual('function');
   });
@@ -49,8 +54,8 @@ describe('GraphqlClient', () => {
     expect(typeof type.deserializeBinary).toEqual('function');
   });
 
-  client = new GraphqlClient('https://zinc.abtnetwork.io/api');
-  // client = new GraphqlClient('http://182.92.167.126:8210/api');
+  client = new GraphQLClient('https://zinc.abtnetwork.io/api');
+  // client = new GraphQLClient('http://182.92.167.126:8210/api');
   test('should support getBlock', async () => {
     try {
       const res = await client.getBlock({ height: 1 });
@@ -121,4 +126,83 @@ describe('GraphqlClient', () => {
       expect(err).toBeFalsy();
     }
   });
+
+  test('should multi sign tx correctly: object', async () => {
+    try {
+      const sender = fromRandom();
+      const receiver = fromRandom();
+
+      // 1. declare sender
+      await client.sendDeclareTx({
+        tx: {
+          itx: {
+            moniker: 'sender',
+          },
+        },
+        wallet: sender,
+      });
+
+      // 2. declare receiver
+      await client.sendDeclareTx({
+        tx: {
+          itx: {
+            moniker: 'receiver',
+          },
+        },
+        wallet: receiver,
+      });
+
+      // 3. create asset for sender
+      const asset = {
+        moniker: 'asset',
+        readonly: true,
+        transferrable: true,
+        data: {
+          typeUrl: 'json',
+          value: {
+            key: 'value2',
+            sn: Math.random(),
+          },
+        },
+      };
+      const assetAddress = toAssetAddress(asset);
+      asset.address = assetAddress;
+      await client.sendCreateAssetTx({
+        tx: { itx: asset },
+        wallet: sender,
+      });
+
+      // assemble exchange tx: multisig
+      const exchange = {
+        itx: {
+          to: receiver.toAddress(),
+          sender: {
+            assets: [assetAddress],
+          },
+          receiver: {
+            value: fromTokenToUnit(0),
+          },
+        },
+      };
+
+      // 4.1 Sender: encode and sign the transaction
+      const encoded1 = await client.signExchangeTx({ tx: exchange, wallet: sender });
+
+      // 4.2 Receiver: do the multi sig
+      const encoded2 = await client.multiSignExchangeTx({
+        tx: Object.assign(encoded1, exchange),
+        wallet: receiver,
+      });
+
+      // 4.3 Send the exchange tx
+      await sleep(3000);
+      await client.sendExchangeTx({
+        tx: encoded2,
+        wallet: sender,
+        signature: encoded1.signature,
+      });
+    } catch (err) {
+      expect(err).toBeFalsy();
+    }
+  }, 10000);
 });
