@@ -3,7 +3,7 @@ const base64 = require('base64-url');
 const camelCase = require('lodash/camelCase');
 const snakeCase = require('lodash/snakeCase');
 const errorCodes = require('@arcblock/forge-proto/lib/status_code.json');
-const { transactions } = require('@arcblock/forge-proto/lite');
+const { transactions, multiSignTxs } = require('@arcblock/forge-proto/lite');
 const { createMessage, getMessageType } = require('@arcblock/forge-message/lite');
 const { bytesToHex, toBase58, toHex } = require('@arcblock/forge-util');
 
@@ -275,7 +275,7 @@ class GraphQLClient extends GraphQLClientBase {
 
       // TODO: verify existing signatures before adding new signatures
       // Generate transaction multi sign function
-      if (this._getMultiSignTxs().includes(x)) {
+      if (multiSignTxs.includes(x)) {
         const txMultiSignFn = async ({ tx, wallet, encoding = '' }) => {
           tx.signatures = tx.signatures || tx.signaturesList || [];
           tx.signatures.unshift({

@@ -204,6 +204,10 @@ module.exports = function createProvider(proto, json, urls = {}) {
     messages,
 
     transactions: enums.SupportedTxs,
+    multiSignTxs: ['ExchangeTx', 'ExchangeTetherTx', 'DepositTetherTx', 'ConsumeAssetTx'].filter(
+      x => enums.SupportedTxs.includes(x)
+    ),
+
     stakes: enums.SupportedStakes,
     rpcs: Object.keys(clients).reduce((acc, x) => {
       acc[x] = clients[x];

@@ -34,6 +34,16 @@ describe('GraphqlClient', () => {
     expect(typeof client.encodeTransferTx).toEqual('function');
   });
 
+  test('should have tx sign methods', () => {
+    expect(client.getTxSignMethods().length).toBeGreaterThan(0);
+    expect(typeof client.signTransferTx).toEqual('function');
+  });
+
+  test('should have tx multi sign methods', () => {
+    expect(client.getTxMultiSignMethods().length).toBeGreaterThan(0);
+    expect(typeof client.multiSignExchangeTx).toEqual('function');
+  });
+
   test('should support getType', async () => {
     const type = client.getType('Transaction');
     expect(typeof type.deserializeBinary).toEqual('function');
