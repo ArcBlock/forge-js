@@ -31,7 +31,7 @@ const client = new GraphqlClient(`${endpoint}/api`);
     console.log('view user1 account', `${endpoint}/node/explorer/accounts/${user1.toAddress()}`);
     console.log('view user1 tx', `${endpoint}/node/explorer/txs/${hash1}`);
 
-    // Sign and then send
+    // Sign and then send: sendDeclareTx
     const user2 = fromRandom();
     const signed = await client.signDeclareTx({
       tx: {
@@ -44,6 +44,21 @@ const client = new GraphqlClient(`${endpoint}/api`);
     const hash2 = await client.sendDeclareTx({ tx: signed, wallet: user2 });
     console.log('view user2 account', `${endpoint}/node/explorer/accounts/${user2.toAddress()}`);
     console.log('view user2 tx', `${endpoint}/node/explorer/txs/${hash2}`);
+
+    // Sign and then send: sendTx
+    const user3 = fromRandom();
+    const signed3 = await client.signDeclareTx({
+      tx: {
+        itx: {
+          moniker: 'sign_and_send',
+        },
+      },
+      wallet: user3,
+      encoding: 'base64',
+    });
+    const hash3 = await client.sendTx({ tx: signed3 });
+    console.log('view user3 account', `${endpoint}/node/explorer/accounts/${user3.toAddress()}`);
+    console.log('view user3 tx', `${endpoint}/node/explorer/txs/${hash3.hash}`);
   } catch (err) {
     console.error(err);
     console.log(JSON.stringify(err.errors));

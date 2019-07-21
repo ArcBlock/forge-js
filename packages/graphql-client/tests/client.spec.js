@@ -1,6 +1,5 @@
 /* eslint-disable no-console */
 const { fromRandom } = require('@arcblock/forge-wallet');
-const { bytesToHex } = require('@arcblock/forge-util');
 const GraphqlClient = require('../');
 
 describe('GraphqlClient', () => {
@@ -41,6 +40,7 @@ describe('GraphqlClient', () => {
   });
 
   client = new GraphqlClient('https://zinc.abtnetwork.io/api');
+  // client = new GraphqlClient('http://182.92.167.126:8210/api');
   test('should support getBlock', async () => {
     try {
       const res = await client.getBlock({ height: 1 });
@@ -82,17 +82,33 @@ describe('GraphqlClient', () => {
     }
   });
 
-  test.skip('should sign tx correctly', async () => {
-    const tx = {
-      nonce: 1,
-      itx: {
-        moniker: 'test',
-      },
-    };
-    const object = await client.signDeclareTx({ tx, wallet });
-    const buffer = await client.signDeclareTx({ tx, wallet, encoding: 'buffer' });
-    const signature = wallet.sign(buffer);
-    console.log({ object, buffer: bytesToHex(buffer), signature });
-    expect(wallet.verify(bytesToHex(buffer), object.signature)).toBeTruthy();
+  test('should sign tx correctly: object', async () => {
+    try {
+      const tx = {
+        itx: {
+          moniker: 'test',
+        },
+      };
+
+      const signed = await client.signDeclareTx({ tx, wallet });
+      await client.sendDeclareTx({ tx: signed, wallet });
+    } catch (err) {
+      expect(err).toBeFalsy();
+    }
+  });
+
+  test('should sign tx correctly: base64', async () => {
+    try {
+      const tx = {
+        itx: {
+          moniker: 'test',
+        },
+      };
+
+      const base64 = await client.signDeclareTx({ tx, wallet, encoding: 'base64' });
+      await client.sendTx({ tx: base64 });
+    } catch (err) {
+      expect(err).toBeFalsy();
+    }
   });
 });

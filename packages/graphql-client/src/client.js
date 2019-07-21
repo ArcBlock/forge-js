@@ -240,12 +240,11 @@ class GraphQLClient extends GraphQLClientBase {
       txSendFn.__tx__ = sendMethod;
       this[sendMethod] = txSendFn;
 
-      const _formatEncodedTx = (tx, encoding) => {
+      const _formatEncodedTx = async (tx, encoding) => {
         if (encoding) {
-          const txObj = createMessage('Transaction', tx);
-          const txBytes = txObj.serializeBinary();
+          const { buffer: txBytes } = await txEncodeFn({ tx });
           if (encoding === 'base64') {
-            return base64.escape(Buffer.from(txBytes).toString('base64'));
+            return base64.escape(txBytes.toString('base64'));
           }
           if (encoding === 'base58') {
             return toBase58(txBytes);
@@ -253,7 +252,7 @@ class GraphQLClient extends GraphQLClientBase {
           if (encoding === 'base16' || encoding === 'hex') {
             return toHex(txBytes);
           }
-          return Buffer.from(txBytes);
+          return txBytes;
         }
 
         return tx;
@@ -266,7 +265,7 @@ class GraphQLClient extends GraphQLClientBase {
         }
 
         const { object, buffer } = await txEncodeFn({ tx, wallet });
-        object.signature = wallet.sign(bytesToHex(buffer));
+        object.signature = wallet.sign(buffer);
 
         return _formatEncodedTx(object, encoding);
       };
