@@ -1,7 +1,10 @@
 const { fromRandom } = require('@arcblock/forge-wallet');
+const { fromTokenToUnit } = require('@arcblock/forge-util');
+const { toAssetAddress } = require('@arcblock/did-util');
 const GRpcClient = require('..');
 
 const client = new GRpcClient('tcp://127.0.0.1:28210');
+const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
 
 describe('#getRpcMethods', () => {
   test('should be function', () => {
@@ -30,6 +33,18 @@ describe('#getTxSendMethods', () => {
     const methods = client.getTxEncodeMethods();
     expect(typeof client.encodeTransferTx).toEqual('function');
     expect(methods.encodeTransferTx).toEqual('TransferTx');
+  });
+
+  test('should have tx sign methods', () => {
+    const methods = client.getTxSignMethods();
+    expect(typeof client.signTransferTx).toEqual('function');
+    expect(methods.signTransferTx).toEqual('TransferTx');
+  });
+
+  test('should have tx multi sign methods', () => {
+    const methods = client.getTxMultiSignMethods();
+    expect(typeof client.multiSignExchangeTx).toEqual('function');
+    expect(methods.multiSignExchangeTx).toEqual('ExchangeTx');
   });
 });
 
@@ -93,5 +108,100 @@ describe('#magicMethods', () => {
         expect(err.message.includes('invalid_moniker')).toBeTruthy();
       }
     });
+
+    const wallet = fromRandom();
+    test('should sign tx correctly: object', async () => {
+      try {
+        const tx = {
+          itx: {
+            moniker: 'test',
+          },
+        };
+
+        const signed = await client.signDeclareTx({ tx, wallet });
+        await client.sendDeclareTx({ tx: signed, wallet });
+      } catch (err) {
+        expect(err).toBeFalsy();
+      }
+    });
+
+    test('should multi sign tx correctly: object', async () => {
+      try {
+        const sender = fromRandom();
+        const receiver = fromRandom();
+
+        // 1. declare sender
+        await client.sendDeclareTx({
+          tx: {
+            itx: {
+              moniker: 'sender',
+            },
+          },
+          wallet: sender,
+        });
+
+        // 2. declare receiver
+        await client.sendDeclareTx({
+          tx: {
+            itx: {
+              moniker: 'receiver',
+            },
+          },
+          wallet: receiver,
+        });
+
+        // 3. create asset for sender
+        const asset = {
+          moniker: 'asset',
+          readonly: true,
+          transferrable: true,
+          data: {
+            typeUrl: 'json',
+            value: {
+              key: 'value2',
+              sn: Math.random(),
+            },
+          },
+        };
+        const assetAddress = toAssetAddress(asset);
+        asset.address = assetAddress;
+        await client.sendCreateAssetTx({
+          tx: { itx: asset },
+          wallet: sender,
+        });
+
+        // assemble exchange tx: multisig
+        const exchange = {
+          itx: {
+            to: receiver.toAddress(),
+            sender: {
+              assets: [assetAddress],
+            },
+            receiver: {
+              value: fromTokenToUnit(0),
+            },
+          },
+        };
+
+        // 4.1 Sender: encode and sign the transaction
+        const encoded1 = await client.signExchangeTx({ tx: exchange, wallet: sender });
+
+        // 4.2 Receiver: do the multi sig
+        const encoded2 = await client.multiSignExchangeTx({
+          tx: Object.assign(encoded1, exchange),
+          wallet: receiver,
+        });
+
+        // 4.3 Send the exchange tx
+        await sleep(3000);
+        await client.sendExchangeTx({
+          tx: encoded2,
+          wallet: sender,
+          signature: encoded1.signature,
+        });
+      } catch (err) {
+        expect(err).toBeFalsy();
+      }
+    }, 10000);
   }
 });
