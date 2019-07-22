@@ -1,14 +1,18 @@
 /* eslint-disable no-console */
-const { fromRandom, WalletType } = require('@arcblock/forge-wallet');
-const Mcrypto = require('@arcblock/mcrypto');
-const GraphqlClient = require('../');
+const { fromRandom } = require('@arcblock/forge-wallet');
+const { fromTokenToUnit } = require('@arcblock/forge-util');
+const { toAssetAddress } = require('@arcblock/did-util');
 
-describe('GraphqlClient', () => {
+const GraphQLClient = require('../');
+
+const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
+
+describe('GraphQLClient', () => {
   test('should be a function', () => {
-    expect(typeof GraphqlClient).toEqual('function');
+    expect(typeof GraphQLClient).toEqual('function');
   });
 
-  let client = new GraphqlClient('http://127.0.0.1:8210/api');
+  let client = new GraphQLClient('http://127.0.0.1:8210/api');
   test('should have alias methods', () => {
     expect(typeof client.checkin).toEqual('function');
   });
@@ -35,12 +39,23 @@ describe('GraphqlClient', () => {
     expect(typeof client.encodeTransferTx).toEqual('function');
   });
 
+  test('should have tx sign methods', () => {
+    expect(client.getTxSignMethods().length).toBeGreaterThan(0);
+    expect(typeof client.signTransferTx).toEqual('function');
+  });
+
+  test('should have tx multi sign methods', () => {
+    expect(client.getTxMultiSignMethods().length).toBeGreaterThan(0);
+    expect(typeof client.multiSignExchangeTx).toEqual('function');
+  });
+
   test('should support getType', async () => {
     const type = client.getType('Transaction');
     expect(typeof type.deserializeBinary).toEqual('function');
   });
 
-  client = new GraphqlClient('https://zinc.abtnetwork.io/api');
+  client = new GraphQLClient('https://zinc.abtnetwork.io/api');
+  // client = new GraphQLClient('http://182.92.167.126:8210/api');
   test('should support getBlock', async () => {
     try {
       const res = await client.getBlock({ height: 1 });
@@ -52,19 +67,12 @@ describe('GraphqlClient', () => {
     }
   });
 
+  const wallet = fromRandom();
   test('should support declare account', async () => {
-    const type = WalletType({
-      role: Mcrypto.types.RoleType.ROLE_ACCOUNT,
-      pk: Mcrypto.types.KeyType.ED25519,
-      hash: Mcrypto.types.HashType.SHA3,
-    });
-
-    const wallet = fromRandom(type);
     const hash = await client.sendDeclareTx({
       tx: {
         itx: {
           moniker: `graphql_client_test_${Math.round(Math.random() * 10000)}`,
-          type,
         },
       },
       wallet,
@@ -72,4 +80,129 @@ describe('GraphqlClient', () => {
 
     expect(hash).toBeTruthy();
   });
+
+  test('should support detailed error message', async () => {
+    try {
+      await client.sendDeclareTx({
+        tx: {
+          itx: {
+            moniker: `graphql_client_test_${Math.round(Math.random() * 10000)}`,
+          },
+        },
+        wallet,
+      });
+    } catch (err) {
+      expect(err.message.includes('invalid_sender_state')).toBeTruthy();
+      expect(err.message.includes('`tx.from` already exist')).toBeTruthy();
+    }
+  });
+
+  test('should sign tx correctly: object', async () => {
+    try {
+      const tx = {
+        itx: {
+          moniker: 'test',
+        },
+      };
+
+      const signed = await client.signDeclareTx({ tx, wallet });
+      await client.sendDeclareTx({ tx: signed, wallet });
+    } catch (err) {
+      expect(err).toBeFalsy();
+    }
+  });
+
+  test('should sign tx correctly: base64', async () => {
+    try {
+      const tx = {
+        itx: {
+          moniker: 'test',
+        },
+      };
+
+      const base64 = await client.signDeclareTx({ tx, wallet, encoding: 'base64' });
+      await client.sendTx({ tx: base64 });
+    } catch (err) {
+      expect(err).toBeFalsy();
+    }
+  });
+
+  test('should multi sign tx correctly: object', async () => {
+    try {
+      const sender = fromRandom();
+      const receiver = fromRandom();
+
+      // 1. declare sender
+      await client.sendDeclareTx({
+        tx: {
+          itx: {
+            moniker: 'sender',
+          },
+        },
+        wallet: sender,
+      });
+
+      // 2. declare receiver
+      await client.sendDeclareTx({
+        tx: {
+          itx: {
+            moniker: 'receiver',
+          },
+        },
+        wallet: receiver,
+      });
+
+      // 3. create asset for sender
+      const asset = {
+        moniker: 'asset',
+        readonly: true,
+        transferrable: true,
+        data: {
+          typeUrl: 'json',
+          value: {
+            key: 'value2',
+            sn: Math.random(),
+          },
+        },
+      };
+      const assetAddress = toAssetAddress(asset);
+      asset.address = assetAddress;
+      await client.sendCreateAssetTx({
+        tx: { itx: asset },
+        wallet: sender,
+      });
+
+      // assemble exchange tx: multisig
+      const exchange = {
+        itx: {
+          to: receiver.toAddress(),
+          sender: {
+            assets: [assetAddress],
+          },
+          receiver: {
+            value: fromTokenToUnit(0),
+          },
+        },
+      };
+
+      // 4.1 Sender: encode and sign the transaction
+      const encoded1 = await client.signExchangeTx({ tx: exchange, wallet: sender });
+
+      // 4.2 Receiver: do the multi sig
+      const encoded2 = await client.multiSignExchangeTx({
+        tx: Object.assign(encoded1, exchange),
+        wallet: receiver,
+      });
+
+      // 4.3 Send the exchange tx
+      await sleep(3000);
+      await client.sendExchangeTx({
+        tx: encoded2,
+        wallet: sender,
+        signature: encoded1.signature,
+      });
+    } catch (err) {
+      expect(err).toBeFalsy();
+    }
+  }, 10000);
 });

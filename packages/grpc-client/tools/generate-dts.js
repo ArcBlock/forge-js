@@ -168,12 +168,24 @@ const sendMethodDocs = Object.keys(sendMethods).map(
   x => `${x}(param: ${ns}.TxParam<${ns}.${sendMethods[x]}>): Promise<${ns}.EncodeTxResult>;`
 );
 
+const signMethods = client.getTxSignMethods();
+const signMethodDocs = Object.keys(signMethods).map(
+  x => `${x}(param: ${ns}.TxParam<${ns}.${signMethods[x]}>): Promise<${ns}.Transaction>;`
+);
+
+const multiSignMethods = client.getTxMultiSignMethods();
+const multiSignMethodDocs = Object.keys(multiSignMethods).map(
+  x => `${x}(param: ${ns}.TxParam<${ns}.${multiSignMethods[x]}>): Promise<${ns}.Transaction>;`
+);
+
 // 4. mix everything together
 const filePath = path.join(__dirname, '../index.d.ts');
 let fileContent = fs.readFileSync(filePath).toString();
 fileContent = fileContent.replace(
   /__GRpcClientMethods__/,
-  `\n${methods.concat(encodeMethodDocs, sendMethodDocs).join('\n')}\n`
+  `\n${methods
+    .concat(encodeMethodDocs, sendMethodDocs, signMethodDocs, multiSignMethodDocs)
+    .join('\n')}\n`
 );
 fileContent = fileContent + namespaces.join('\n');
 fs.writeFileSync(filePath, fileContent);

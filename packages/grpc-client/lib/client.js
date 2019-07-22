@@ -1,8 +1,9 @@
 /* eslint-disable no-underscore-dangle */
 const grpc = require('grpc');
-const camelcase = require('camelcase');
+const camelCase = require('lodash/camelCase');
+const snakeCase = require('lodash/snakeCase');
 const { EventEmitter } = require('events');
-const { messages, enums, rpcs } = require('@arcblock/forge-proto');
+const { messages, enums, rpcs, multiSignTxs } = require('@arcblock/forge-proto');
 const {
   formatMessage,
   createMessage,
@@ -10,7 +11,8 @@ const {
   attachExampleFn,
   getMessageType,
 } = require('@arcblock/forge-message');
-const { hexToBytes, bytesToHex, stripHexPrefix } = require('@arcblock/forge-util');
+const errorCodes = require('@arcblock/forge-proto/lib/status_code.json');
+const { hexToBytes, bytesToHex } = require('@arcblock/forge-util');
 // eslint-disable-next-line global-require
 const debug = require('debug')(`${require('../package.json').name}`);
 
@@ -169,7 +171,7 @@ class GRpcClient {
     attachExampleFn(requestType, fn, '$requestExample');
     attachExampleFn(responseType, fn, '$responseExample');
 
-    this[camelcase(method)] = fn;
+    this[camelCase(method)] = fn;
   }
 
   /**
@@ -193,8 +195,6 @@ class GRpcClient {
    * @private
    */
   _initTxMethods() {
-    const toHex = bytes => stripHexPrefix(bytesToHex(bytes)).toUpperCase();
-
     // Unify a client wallet | forge managed wallet
     const getWallet = wallet => {
       if (typeof wallet.toAddress === 'function') {
@@ -250,6 +250,15 @@ class GRpcClient {
           signatures = tx.signaturesList;
         }
 
+        // Determine itx
+        let itx = null;
+        if (tx.itx.typeUrl && tx.itx.value) {
+          // eslint-disable-next-line prefer-destructuring
+          itx = tx.itx;
+        } else {
+          itx = { type: x, value: tx.itx };
+        }
+
         const txObj = createMessage('Transaction', {
           from: address,
           nonce,
@@ -257,22 +266,15 @@ class GRpcClient {
           chainId,
           signature: tx.signature || '',
           signatures,
-          itx: {
-            type: x,
-            value: tx.itx,
-          },
+          itx,
         });
         const txToSignBytes = txObj.serializeBinary();
 
-        debug(`encodeTx.${x}.input`, tx);
         debug(`encodeTx.${x}.txObj`, txObj.toObject());
-        debug(`encodeTx.${x}.txBytes`, txToSignBytes.toString());
-        debug(`encodeTx.${x}.txHex`, toHex(txToSignBytes));
-
         return { object: txObj.toObject(), buffer: Uint8Array.from(txToSignBytes) };
       };
 
-      const encodeMethod = camelcase(`encode_${x}`);
+      const encodeMethod = camelCase(`encode_${x}`);
       txEncodeFn.__type__ = 'encode';
       txEncodeFn.__tx__ = encodeMethod;
       txEncodeFn.__itx__ = x;
@@ -305,6 +307,8 @@ class GRpcClient {
         if (wallet && typeof wallet.sign === 'function') {
           if (signature) {
             tx.signature = signature;
+            txResult = tx;
+          } else if (tx.signature) {
             txResult = tx;
           } else {
             const { object, buffer: txToSignBytes } = await txEncodeFn({ tx, wallet });
@@ -363,7 +367,7 @@ class GRpcClient {
         });
       };
 
-      const sendMethod = camelcase(`send_${x}`);
+      const sendMethod = camelCase(`send_${x}`);
       txSendFn.__type__ = 'send';
       txSendFn.__tx__ = sendMethod;
       txSendFn.__itx__ = x;
@@ -371,6 +375,44 @@ class GRpcClient {
 
       if (aliases[x]) {
         this[aliases[x]] = txSendFn;
+      }
+
+      // Generate transaction signing function
+      const txSignFn = async ({ tx, wallet }) => {
+        if (tx.signature) {
+          delete tx.signature;
+        }
+
+        const { object, buffer } = await txEncodeFn({ tx, wallet });
+        object.signature = wallet.sign(buffer);
+
+        return object;
+      };
+      const signMethod = camelCase(`sign_${x}`);
+      txSignFn.__type__ = 'sign';
+      txSignFn.__tx__ = signMethod;
+      txSignFn.__itx__ = x;
+      this[signMethod] = txSignFn;
+
+      // TODO: verify existing signatures before adding new signatures
+      // Generate transaction multi sign function
+      if (multiSignTxs.includes(x)) {
+        const txMultiSignFn = async ({ tx, wallet }) => {
+          tx.signatures = tx.signatures || tx.signaturesList || [];
+          tx.signatures.unshift({
+            pk: wallet.publicKey,
+            signer: wallet.toAddress(),
+          });
+
+          const { object, buffer } = await txEncodeFn({ tx, wallet });
+          object.signaturesList[0].signature = wallet.sign(bytesToHex(buffer));
+          return object;
+        };
+        const multiSignMethod = camelCase(`multi_sign_${x}`);
+        txMultiSignFn.__type__ = 'multiSign';
+        txMultiSignFn.__tx__ = multiSignMethod;
+        txMultiSignFn.__itx__ = x;
+        this[multiSignMethod] = txMultiSignFn;
       }
     });
   }
@@ -381,12 +423,7 @@ class GRpcClient {
    * @returns {object}
    */
   getTxSendMethods() {
-    return Object.keys(this)
-      .filter(x => typeof this[x] === 'function' && this[x].__type__ === 'send')
-      .reduce((acc, x) => {
-        acc[x] = this[x].__itx__;
-        return acc;
-      }, {});
+    return this._filterTxMethods('send');
   }
 
   /**
@@ -395,8 +432,30 @@ class GRpcClient {
    * @returns {object}
    */
   getTxEncodeMethods() {
+    return this._filterTxMethods('encode');
+  }
+
+  /**
+   * List generated transaction sign methods
+   *
+   * @returns {object}
+   */
+  getTxSignMethods() {
+    return this._filterTxMethods('sign');
+  }
+
+  /**
+   * List generated transaction multi sign methods
+   *
+   * @returns {object}
+   */
+  getTxMultiSignMethods() {
+    return this._filterTxMethods('multiSign');
+  }
+
+  _filterTxMethods(type) {
     return Object.keys(this)
-      .filter(x => typeof this[x] === 'function' && this[x].__type__ === 'encode')
+      .filter(x => typeof this[x] === 'function' && this[x].__type__ === type)
       .reduce((acc, x) => {
         acc[x] = this[x].__itx__;
         return acc;
@@ -477,10 +536,20 @@ class GRpcClient {
     return emitter;
   }
 
-  _createResponseError(code, method) {
-    const error = new Error(`gRPC response error: ${messages.StatusCode[code]}, method: ${method}`);
-    error.errcode = messages.StatusCode[code];
-    error.errno = code;
+  _createResponseError(status, method) {
+    const code = messages.StatusCode[status].toLowerCase();
+    if (errorCodes[code]) {
+      const type = snakeCase(method);
+      const message = (errorCodes[code][type] || errorCodes[code].default || code).trim();
+      const error = new Error(`${method} failed with status ${code}, possible reason: ${message}`);
+      error.code = code;
+      error.type = type;
+      return error;
+    }
+
+    const error = new Error(`gRPC response error: ${code}, method: ${method}`);
+    error.errcode = code;
+    error.errno = status;
     return error;
   }
 }

@@ -17,26 +17,19 @@
  * Run script with: `DEBUG=@arcblock/grpc-client node examples/exchange.js`
  */
 
-const Mcrypto = require('@arcblock/mcrypto');
 const GRpcClient = require('@arcblock/grpc-client');
 const { toAssetAddress } = require('@arcblock/did-util');
-const { fromRandom, WalletType } = require('@arcblock/forge-wallet');
-const { hexToBytes, fromTokenToUnit } = require('@arcblock/forge-util');
+const { fromRandom } = require('@arcblock/forge-wallet');
+const { fromTokenToUnit } = require('@arcblock/forge-util');
 
 const endpoint = process.env.FORGE_API_HOST || 'http://127.0.0.1:8210'; // testnet
 const client = new GRpcClient({ endpoint: 'tcp://127.0.0.1:28210' });
 const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
 
-const type = WalletType({
-  role: Mcrypto.types.RoleType.ROLE_ACCOUNT,
-  pk: Mcrypto.types.KeyType.ED25519,
-  hash: Mcrypto.types.HashType.SHA3,
-});
-
 (async () => {
   try {
-    const sender = fromRandom(type);
-    const receiver = fromRandom(type);
+    const sender = fromRandom();
+    const receiver = fromRandom();
     console.log({
       sender: sender.toJSON(),
       receiver: receiver.toJSON(),
@@ -78,6 +71,7 @@ const type = WalletType({
         typeUrl: 'json',
         value: {
           key: 'value2',
+          sn: Math.random(),
         },
       },
     };
@@ -92,86 +86,36 @@ const type = WalletType({
 
     // assemble exchange tx: multisig
     const exchange = {
-      pk: Buffer.from(hexToBytes(sender.publicKey)),
       itx: {
         to: receiver.toAddress(),
         sender: {
-          // What we offer
           assets: [assetAddress],
         },
         receiver: {
-          // What user offer
-          value: {
-            value: Buffer.from(fromTokenToUnit(0).toBuffer()),
-            minus: false,
-          },
+          value: fromTokenToUnit(0),
         },
       },
     };
 
-    console.log('exchange.input', exchange);
-
-    console.log('');
-    console.log('---------ENCODE.1-----------------------------------------');
-    console.log('');
+    console.log('exchange', exchange);
 
     // 4.1 Sender: encode and sign the transaction
-    const { buffer: senderBuffer, object: encoded1 } = await client.encodeExchangeTx({
-      tx: exchange,
-      wallet: sender,
-    });
-    const senderSignature = sender.sign(senderBuffer);
-    console.log('exchange.sender.encoded', encoded1);
-    console.log(
-      'exchange.sender.encoded.itx',
-      Uint8Array.from(Buffer.from(encoded1.itx.value, 'base64')).toString()
-    );
-    console.log('exchange.sender.signature', senderSignature);
-    console.log(
-      'exchange.sender.signatureBin',
-      Uint8Array.from(hexToBytes(senderSignature)).toString()
-    );
-
-    console.log('');
-    console.log('---------ENCODE.2-----------------------------------------');
-    console.log('');
+    const encoded1 = await client.signExchangeTx({ tx: exchange, wallet: sender });
 
     // 4.2 Receiver: do the multi sig
-    exchange.signature = Buffer.from(hexToBytes(senderSignature));
-    exchange.nonce = encoded1.nonce;
-    exchange.from = encoded1.from;
-    exchange.signatures = [
-      {
-        pk: Buffer.from(hexToBytes(receiver.publicKey)),
-        signer: receiver.toAddress(),
-      },
-    ];
-
-    const { buffer: receiverBuffer, object: encoded2 } = await client.encodeExchangeTx({
-      tx: exchange,
+    const encoded2 = await client.multiSignExchangeTx({
+      tx: Object.assign(encoded1, exchange),
       wallet: receiver,
     });
-    const receiverSignature = receiver.sign(receiverBuffer);
-    const receiverSig = encoded2.signaturesList.find(x => x.signer === receiver.toAddress());
-    receiverSig.signature = Buffer.from(hexToBytes(receiverSignature));
-
-    console.log('exchange.receiver.encoded', encoded2);
-    console.log('exchange.receiver.signature', receiverSignature);
-    // console.log('exchange.receiver.signatures', encoded2.signatures);
-
-    console.log('');
-    console.log('---------ENCODE.3-----------------------------------------');
-    console.log('');
-
-    delete encoded2.signature;
 
     // 4.3 Send the exchange tx
     await sleep(5000);
     res = await client.sendExchangeTx({
       tx: encoded2,
       wallet: sender,
-      signature: senderSignature,
+      signature: encoded1.signature,
     });
+
     console.log('exchange.result', res);
     console.log('view exchange tx', `${endpoint}/node/explorer/txs/${res}`);
   } catch (err) {

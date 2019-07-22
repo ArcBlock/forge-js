@@ -57,6 +57,24 @@ declare function UUID(): string;
  * @returns {boolean}
  */
 declare function isUUID(str: string): boolean;
+/**
+ * Convert address to did: prepend `did:abt:` prefix
+ *
+ * @public
+ * @static
+ * @param {string} did - address string
+ * @returns {string}
+ */
+declare function toDid(address: any): string;
+/**
+ * Convert did to address: remove `did:abt:` prefix if exists
+ *
+ * @public
+ * @static
+ * @param {string} did - address string
+ * @returns {string}
+ */
+declare function toAddress(did: string): string;
 declare namespace ForgeSdkUtil {
   export interface T100 {
     BN: any;
@@ -86,6 +104,8 @@ declare namespace ForgeSdkUtil {
     fromBase58: typeof fromBase58;
     UUID: typeof UUID;
     isUUID: typeof isUUID;
+    toDid: typeof toDid;
+    toAddress: typeof toAddress;
   }
 }
 
@@ -233,6 +253,78 @@ declare interface ForgeSDK {
   encodeWithdrawTetherTx(
     param: GraphQLClient.TxParam<GraphQLClient.WithdrawTetherTx>
   ): Promise<GraphQLClient.EncodeTxResult>;
+  signAccountMigrateTx(
+    param: GraphQLClient.TxParam<GraphQLClient.AccountMigrateTx>
+  ): Promise<GraphQLClient.Transaction>;
+  signAcquireAssetTx(
+    param: GraphQLClient.TxParam<GraphQLClient.AcquireAssetTx>
+  ): Promise<GraphQLClient.Transaction>;
+  signApproveTetherTx(
+    param: GraphQLClient.TxParam<GraphQLClient.ApproveTetherTx>
+  ): Promise<GraphQLClient.Transaction>;
+  signConsumeAssetTx(
+    param: GraphQLClient.TxParam<GraphQLClient.ConsumeAssetTx>
+  ): Promise<GraphQLClient.Transaction>;
+  signCreateAssetTx(
+    param: GraphQLClient.TxParam<GraphQLClient.CreateAssetTx>
+  ): Promise<GraphQLClient.Transaction>;
+  signDeclareTx(
+    param: GraphQLClient.TxParam<GraphQLClient.DeclareTx>
+  ): Promise<GraphQLClient.Transaction>;
+  signDeployProtocolTx(
+    param: GraphQLClient.TxParam<GraphQLClient.DeployProtocolTx>
+  ): Promise<GraphQLClient.Transaction>;
+  signDepositTetherTx(
+    param: GraphQLClient.TxParam<GraphQLClient.DepositTetherTx>
+  ): Promise<GraphQLClient.Transaction>;
+  signExchangeTetherTx(
+    param: GraphQLClient.TxParam<GraphQLClient.ExchangeTetherTx>
+  ): Promise<GraphQLClient.Transaction>;
+  signExchangeTx(
+    param: GraphQLClient.TxParam<GraphQLClient.ExchangeTx>
+  ): Promise<GraphQLClient.Transaction>;
+  signPokeTx(
+    param: GraphQLClient.TxParam<GraphQLClient.PokeTx>
+  ): Promise<GraphQLClient.Transaction>;
+  signRetrieveSwapTx(
+    param: GraphQLClient.TxParam<GraphQLClient.RetrieveSwapTx>
+  ): Promise<GraphQLClient.Transaction>;
+  signRevokeSwapTx(
+    param: GraphQLClient.TxParam<GraphQLClient.RevokeSwapTx>
+  ): Promise<GraphQLClient.Transaction>;
+  signRevokeTetherTx(
+    param: GraphQLClient.TxParam<GraphQLClient.RevokeTetherTx>
+  ): Promise<GraphQLClient.Transaction>;
+  signSetupSwapTx(
+    param: GraphQLClient.TxParam<GraphQLClient.SetupSwapTx>
+  ): Promise<GraphQLClient.Transaction>;
+  signStakeTx(
+    param: GraphQLClient.TxParam<GraphQLClient.StakeTx>
+  ): Promise<GraphQLClient.Transaction>;
+  signTransferTx(
+    param: GraphQLClient.TxParam<GraphQLClient.TransferTx>
+  ): Promise<GraphQLClient.Transaction>;
+  signUpdateAssetTx(
+    param: GraphQLClient.TxParam<GraphQLClient.UpdateAssetTx>
+  ): Promise<GraphQLClient.Transaction>;
+  signUpgradeNodeTx(
+    param: GraphQLClient.TxParam<GraphQLClient.UpgradeNodeTx>
+  ): Promise<GraphQLClient.Transaction>;
+  signWithdrawTetherTx(
+    param: GraphQLClient.TxParam<GraphQLClient.WithdrawTetherTx>
+  ): Promise<GraphQLClient.Transaction>;
+  multiSignExchangeTx(
+    param: GraphQLClient.TxParam<GraphQLClient.ExchangeTx>
+  ): Promise<GraphQLClient.Transaction>;
+  multiSignExchangeTetherTx(
+    param: GraphQLClient.TxParam<GraphQLClient.ExchangeTetherTx>
+  ): Promise<GraphQLClient.Transaction>;
+  multiSignDepositTetherTx(
+    param: GraphQLClient.TxParam<GraphQLClient.DepositTetherTx>
+  ): Promise<GraphQLClient.Transaction>;
+  multiSignConsumeAssetTx(
+    param: GraphQLClient.TxParam<GraphQLClient.ConsumeAssetTx>
+  ): Promise<GraphQLClient.Transaction>;
   getAccountState(
     params: GraphQLClient.GetAccountStateParams
   ): GraphQLClient.QueryResult<GraphQLClient.ResponseGetAccountState>;

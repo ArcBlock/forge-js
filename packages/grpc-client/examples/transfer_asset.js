@@ -7,25 +7,18 @@
  * Run script with: `DEBUG=@arcblock/grpc-client node examples/transfer_asset.js`
  */
 
-const Mcrypto = require('@arcblock/mcrypto');
 const GRpcClient = require('@arcblock/grpc-client');
 const { toAssetAddress } = require('@arcblock/did-util');
-const { fromRandom, WalletType } = require('@arcblock/forge-wallet');
+const { fromRandom } = require('@arcblock/forge-wallet');
 
 const endpoint = process.env.FORGE_API_HOST || 'http://127.0.0.1:8210'; // testnet
 const client = new GRpcClient({ endpoint: 'tcp://127.0.0.1:28210' });
 const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
 
-const type = WalletType({
-  role: Mcrypto.types.RoleType.ROLE_ACCOUNT,
-  pk: Mcrypto.types.KeyType.ED25519,
-  hash: Mcrypto.types.HashType.SHA3,
-});
-
 (async () => {
   try {
-    const sender = fromRandom(type);
-    const receiver = fromRandom(type);
+    const sender = fromRandom();
+    const receiver = fromRandom();
     console.log({
       sender: sender.toJSON(),
       receiver: receiver.toJSON(),

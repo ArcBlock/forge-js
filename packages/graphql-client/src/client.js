@@ -1,9 +1,11 @@
 /* eslint-disable no-underscore-dangle */
-const camelcase = require('camelcase');
 const base64 = require('base64-url');
-const { transactions } = require('@arcblock/forge-proto/lite');
+const camelCase = require('lodash/camelCase');
+const snakeCase = require('lodash/snakeCase');
+const errorCodes = require('@arcblock/forge-proto/lib/status_code.json');
+const { transactions, multiSignTxs } = require('@arcblock/forge-proto/lite');
 const { createMessage, getMessageType } = require('@arcblock/forge-message/lite');
-const { bytesToHex, stripHexPrefix } = require('@arcblock/forge-util');
+const { bytesToHex, toBase58, toHex } = require('@arcblock/forge-util');
 
 const debug = require('debug')(require('../package.json').name);
 
@@ -55,7 +57,7 @@ class GraphQLClient extends GraphQLClientBase {
    * @returns {Array<string>} method name list
    */
   getTxSendMethods() {
-    return transactions.map(x => camelcase(`send_${x}`));
+    return transactions.map(x => camelCase(`send_${x}`));
   }
 
   /**
@@ -65,7 +67,27 @@ class GraphQLClient extends GraphQLClientBase {
    * @returns {Array<string>} method name list
    */
   getTxEncodeMethods() {
-    return transactions.map(x => camelcase(`encode_${x}`));
+    return transactions.map(x => camelCase(`encode_${x}`));
+  }
+
+  /**
+   * List all transaction sign methods, each method can be used to sign transaction to an object
+   *
+   * @method
+   * @returns {Array<string>} method name list
+   */
+  getTxSignMethods() {
+    return transactions.map(x => camelCase(`sign_${x}`));
+  }
+
+  /**
+   * List all transaction multi sign methods, each method can be used to do multi sign a transaction
+   *
+   * @method
+   * @returns {Array<string>} method name list
+   */
+  getTxMultiSignMethods() {
+    return multiSignTxs.map(x => camelCase(`multi_sign_${x}`));
   }
 
   /**
@@ -92,11 +114,9 @@ class GraphQLClient extends GraphQLClientBase {
   }
 
   _initTxMethods() {
-    const toHex = bytes => stripHexPrefix(bytesToHex(bytes)).toUpperCase();
-
     transactions.forEach(x => {
       /**
-       * Generate an transaction encoding function
+       * Encode a transaction
        *
        * @param {object} input
        * @param {object} input.tx - data of the transaction
@@ -132,6 +152,15 @@ class GraphQLClient extends GraphQLClientBase {
           signatures = tx.signaturesList;
         }
 
+        // Determine itx
+        let itx = null;
+        if (tx.itx.typeUrl && tx.itx.value) {
+          // eslint-disable-next-line prefer-destructuring
+          itx = tx.itx;
+        } else {
+          itx = { type: x, value: tx.itx };
+        }
+
         const txObj = createMessage('Transaction', {
           from: address,
           nonce,
@@ -139,26 +168,21 @@ class GraphQLClient extends GraphQLClientBase {
           chainId,
           signature: tx.signature || Buffer.from([]),
           signatures,
-          itx: {
-            type: x,
-            value: tx.itx,
-          },
+          itx,
         });
         const txToSignBytes = txObj.serializeBinary();
 
         debug(`encodeTx.${x}.txObj`, txObj.toObject());
-        debug(`encodeTx.${x}.txHex`, toHex(txToSignBytes));
 
         return { object: txObj.toObject(), buffer: Buffer.from(txToSignBytes) };
       };
 
-      const encodeMethod = camelcase(`encode_${x}`);
+      const encodeMethod = camelCase(`encode_${x}`);
       txEncodeFn.__tx__ = encodeMethod;
       this[encodeMethod] = txEncodeFn;
 
       /**
-       * Generate an transaction sender function
-       *
+       * Send a transaction
        *
        * @param {object} input
        * @param {object} input.tx - data of the transaction
@@ -177,7 +201,9 @@ class GraphQLClient extends GraphQLClientBase {
         if (signature) {
           encoded = tx;
           encoded.signature = signature;
-          debug(`sendTx.${x}.hasSignature`, encoded);
+        } else if (tx.signature) {
+          const res = await txEncodeFn({ tx, wallet });
+          encoded = res.object;
         } else {
           const res = await txEncodeFn({ tx, wallet });
           // eslint-disable-next-line prefer-destructuring
@@ -189,27 +215,96 @@ class GraphQLClient extends GraphQLClientBase {
         const txBytes = txObj.serializeBinary();
         const txStr = base64.escape(Buffer.from(txBytes).toString('base64'));
         debug(`sendTx.${x}.txObj`, txObj.toObject());
-        debug(`sendTx.${x}.txHex`, toHex(txBytes));
-        debug(`sendTx.${x}.txB64`, txStr);
 
         return new Promise(async (resolve, reject) => {
           try {
             const { hash } = await this.sendTx({ tx: txStr });
             resolve(hash);
           } catch (err) {
+            if (Array.isArray(err.errors)) {
+              const code = err.errors[0].message;
+              if (errorCodes[code]) {
+                const error = this._createResponseError(code, x);
+                error.errors = err.errors;
+                reject(error);
+                return;
+              }
+            }
+
             reject(err);
           }
         });
       };
 
-      const sendMethod = camelcase(`send_${x}`);
+      const sendMethod = camelCase(`send_${x}`);
       txSendFn.__tx__ = sendMethod;
       this[sendMethod] = txSendFn;
-
+      // Add alias
       if (aliases[x]) {
         this[aliases[x]] = txSendFn;
       }
+
+      const _formatEncodedTx = async (tx, encoding) => {
+        if (encoding) {
+          const { buffer: txBytes } = await txEncodeFn({ tx });
+          if (encoding === 'base64') {
+            return base64.escape(txBytes.toString('base64'));
+          }
+          if (encoding === 'base58') {
+            return toBase58(txBytes);
+          }
+          if (encoding === 'base16' || encoding === 'hex') {
+            return toHex(txBytes);
+          }
+          return txBytes;
+        }
+
+        return tx;
+      };
+
+      // Generate transaction signing function
+      const txSignFn = async ({ tx, wallet, encoding = '' }) => {
+        if (tx.signature) {
+          delete tx.signature;
+        }
+
+        const { object, buffer } = await txEncodeFn({ tx, wallet });
+        object.signature = wallet.sign(buffer);
+
+        return _formatEncodedTx(object, encoding);
+      };
+      const signMethod = camelCase(`sign_${x}`);
+      txSignFn.__tx__ = signMethod;
+      this[signMethod] = txSignFn;
+
+      // TODO: verify existing signatures before adding new signatures
+      // Generate transaction multi sign function
+      if (multiSignTxs.includes(x)) {
+        const txMultiSignFn = async ({ tx, wallet, encoding = '' }) => {
+          tx.signatures = tx.signatures || tx.signaturesList || [];
+          tx.signatures.unshift({
+            pk: wallet.publicKey,
+            signer: wallet.toAddress(),
+          });
+
+          const { object, buffer } = await txEncodeFn({ tx, wallet });
+          object.signaturesList[0].signature = wallet.sign(bytesToHex(buffer));
+          return _formatEncodedTx(object, encoding);
+        };
+        const multiSignMethod = camelCase(`multi_sign_${x}`);
+        txMultiSignFn.__tx__ = multiSignMethod;
+        this[multiSignMethod] = txMultiSignFn;
+      }
     });
+  }
+
+  _createResponseError(code, method) {
+    const type = snakeCase(method);
+    const message = (errorCodes[code][type] || errorCodes[code].default || code).trim();
+    const error = new Error(`${code}: ${message}`);
+    error.code = code;
+    error.type = type;
+    return error;
   }
 }
 

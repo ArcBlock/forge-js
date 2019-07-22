@@ -13,28 +13,58 @@ const GRpcClient = require('@arcblock/grpc-client');
 const { fromRandom, WalletType } = require('@arcblock/forge-wallet');
 
 const endpoint = process.env.FORGE_API_HOST || 'http://127.0.0.1:8210'; // testnet
-const client = new GRpcClient({ endpoint: 'tcp://127.0.0.1:28210', chainId: 'forge' });
-const type = WalletType({
-  // Different entities maybe choose different wallet role type
-  role: Mcrypto.types.RoleType.ROLE_ACCOUNT,
-  pk: Mcrypto.types.KeyType.ED25519,
-  hash: Mcrypto.types.HashType.SHA3,
-});
+const client = new GRpcClient({ endpoint: 'tcp://127.0.0.1:28210' });
 
 (async () => {
   try {
-    const wallet = fromRandom(type);
+    // Send directly: GrpcClient will sign
+    const wallet = fromRandom();
     const res = await client.sendDeclareTx({
       tx: {
+        nonce: 0,
         itx: {
           moniker: `grpc_user_${Math.round(Math.random() * 10000)}`,
         },
       },
       wallet,
     });
-
     console.log('view account', `${endpoint}/node/explorer/accounts/${wallet.toAddress()}`);
     console.log('view account tx', `${endpoint}/node/explorer/txs/${res}`);
+
+    // Sign and then send: sendDeclareTx
+    const user2 = fromRandom();
+    const signed = await client.signDeclareTx({
+      tx: {
+        itx: {
+          moniker: 'sign_and_send',
+        },
+      },
+      wallet: user2,
+    });
+    const hash2 = await client.sendDeclareTx({ tx: signed, wallet: user2 });
+    console.log('view user2 account', `${endpoint}/node/explorer/accounts/${user2.toAddress()}`);
+    console.log('view user2 tx', `${endpoint}/node/explorer/txs/${hash2}`);
+
+    // Declare an application
+    const type = WalletType({
+      role: Mcrypto.types.RoleType.ROLE_APPLICATION,
+      pk: Mcrypto.types.KeyType.ED25519,
+      hash: Mcrypto.types.HashType.SHA3,
+    });
+    const application = fromRandom(type);
+    const hash = await client.sendDeclareTx({
+      tx: {
+        itx: {
+          moniker: `application_${Math.round(Math.random() * 10000)}`,
+        },
+      },
+      wallet,
+    });
+    console.log(
+      'view application',
+      `${endpoint}/node/explorer/accounts/${application.toAddress()}`
+    );
+    console.log('view application tx', `${endpoint}/node/explorer/txs/${hash}`);
   } catch (err) {
     console.error(err);
     console.log(JSON.stringify(err.errors));

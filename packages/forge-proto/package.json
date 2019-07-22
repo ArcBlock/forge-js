@@ -19,6 +19,7 @@
     "access": "public"
   },
   "devDependencies": {
+    "any-json": "^3.1.0",
     "jest": "^23.5.0"
   },
   "homepage": "https://github.com/ArcBlock/forge-js/tree/master/packages/forge-proto",
@@ -48,21 +49,21 @@
   "scripts": {
     "lint": "eslint tests *.js",
     "lint:fix": "eslint --fix tests *.js",
-    "upgrade": "bash tools/copy.sh && yarn gen && yarn generate-dts && yarn generate-docs && yarn format-docs",
+    "upgrade": "bash tools/copy.sh && yarn gen && yarn generate-dts && yarn generate-docs && yarn generate-status && yarn format-docs",
     "copy": "bash tools/copy.sh",
     "gen": "node tools/gen-proto-entry.js full && node tools/gen-proto-entry.js lite",
     "format-docs": "remark . -o",
     "generate-docs": "jsdoc2md provider.js > docs/README.md",
     "generate-dts": "j2d index.js && j2d lite.js && node tools/generate-dts.js && bash tools/patch-dts.sh",
+    "generate-status": "./tools/generate-status.sh",
     "precommit": "CI=1 yarn test",
     "prepush": "CI=1 yarn test",
     "test": "yarn lint && node tools/jest.js",
     "coverage": "yarn lint && yarn test -- --coverage --collectCoverageFrom=index.js --collectCoverageFrom=!lib/*.js"
   },
   "dependencies": {
-    "camelcase": "^5.3.1",
     "debug": "^4.1.1",
-    "lodash.get": "^4.4.2"
+    "lodash": "^4.17.15"
   },
   "gitHead": "87990c8b5e215107fc587c1ced0d6b3e2cd2483e"
 }

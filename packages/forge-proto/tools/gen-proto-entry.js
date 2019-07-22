@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 const fs = require('fs');
 const path = require('path');
-const camelcase = require('camelcase');
+const camelcase = require('lodash/camelcase');
 
 const mode = ['full', 'lite'].includes(process.argv[2]) ? process.argv[2] : 'full';
 
