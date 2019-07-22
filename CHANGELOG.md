@@ -1,3 +1,8 @@
+## 0.34.1 (July 22, 2019)
+
+- chore: bump @arcblock/sdk-util to support ignore union types
+- update readme
+
 ## 0.34.0 (July 19, 2019)
 
 - chore: use lodash.camelcase to replace camelcase
