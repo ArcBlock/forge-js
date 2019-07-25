@@ -63,7 +63,7 @@
   },
   "dependencies": {
     "debug": "^4.1.1",
-    "lodash": "^4.17.15"
+    "lodash": "^4.17.13"
   },
   "gitHead": "87990c8b5e215107fc587c1ced0d6b3e2cd2483e"
 }
