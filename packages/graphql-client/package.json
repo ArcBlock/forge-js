@@ -37,13 +37,13 @@
     "@arcblock/forge-wallet": "^0.34.0",
     "@arcblock/mcrypto": "^0.34.0",
     "@arcblock/sdk-util": "^0.22.0",
-    "@babel/polyfill": "^7.4.4",
     "base64-url": "^2.2.0",
     "blueimp-md5": "^2.10.0",
     "debug": "^4.1.1",
     "jsonpack": "^1.1.5",
     "lodash": "^4.17.14",
     "phoenix-channels": "^1.0.0",
+    "react-app-polyfill": "^1.0.1",
     "wolfy87-eventemitter": "^5.2.5"
   },
   "devDependencies": {

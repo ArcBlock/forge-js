@@ -21,7 +21,8 @@
     "@arcblock/forge-wallet": "^0.34.0",
     "@arcblock/graphql-client": "^0.34.0",
     "@arcblock/grpc-client": "^0.34.0",
-    "debug": "^4.1.1"
+    "debug": "^4.1.1",
+    "react-app-polyfill": "^1.0.1"
   },
   "devDependencies": {
     "inspectpack": "^4.2.1",

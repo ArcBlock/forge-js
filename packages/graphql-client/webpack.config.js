@@ -3,7 +3,7 @@ const { DuplicatesPlugin } = require('inspectpack/plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 module.exports = {
-  entry: ['@babel/polyfill', './dist/lite.js'],
+  entry: ['react-app-polyfill/ie9', 'react-app-polyfill/stable', './dist/lite.js'],
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
