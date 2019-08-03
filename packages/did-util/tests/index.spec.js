@@ -1,4 +1,10 @@
-const { toAssetAddress, toItxAddress, toStakeAddress, toTetherAddress } = require('../lib');
+const {
+  toAssetAddress,
+  toItxAddress,
+  toStakeAddress,
+  toDelegateAddress,
+  toTetherAddress,
+} = require('../lib');
 
 describe('#toAssetAddress', () => {
   test('should be a function', () => {
@@ -66,5 +72,20 @@ describe('#toTetherAddress', () => {
     expect(
       toTetherAddress('0xF7CA36EDB52048EA9CE61842C522A2176B7613883B42B70798DD19D6BAF9E3BC')
     ).toEqual('z2MCCh4wH3kJTvZQZNiVwDt3PNCqzqvZWvnz1');
+  });
+});
+
+describe('#toDelegateAddress', () => {
+  test('should be a function', () => {
+    expect(typeof toDelegateAddress).toEqual('function');
+  });
+
+  test('should return correct delegate address', () => {
+    const addr1 = 'z1UwtRm2jn9ykCapQsma71SwshtNbysLQri';
+    const addr2 = 'z1WX2dUxVgvcuC2BUpagTjiRrcKDMbNudth';
+    const result1 = 'z2bMvBsMwKLh6mv9K6bobcu69AJFYEgbb7wuE';
+    const result2 = 'z2bNB1duqf4mvby6Sezgw7vCPw1G68BtuQ9L8';
+    expect(toDelegateAddress(addr1, addr2)).toEqual(result1);
+    expect(toDelegateAddress(addr2, addr1)).toEqual(result2);
   });
 });

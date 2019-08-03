@@ -49,6 +49,16 @@ declare function toItxDid(itx: any, type: any): string;
  */
 declare function toStakeAddress(sender: string, receiver: string): string;
 /**
+ * Generate an delegate address, eg: the did of the delegation
+ *
+ * @public
+ * @static
+ * @param {string} addr1 - delegator address
+ * @param {string} addr2 - delegatee address
+ * @returns {string} delegation address that can be used to retrieve delegation state
+ */
+declare function toDelegateAddress(addr1: string, addr2: string): string;
+/**
  * Generate an stake address, eg: the did of the stake
  *
  * @public
@@ -75,6 +85,7 @@ declare namespace _Lib {
     toItxAddress: typeof toItxAddress;
     toItxDid: typeof toItxDid;
     toStakeAddress: typeof toStakeAddress;
+    toDelegateAddress: typeof toDelegateAddress;
     toStakeDid: typeof toStakeDid;
     toTetherAddress: typeof toTetherAddress;
   }

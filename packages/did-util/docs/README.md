@@ -13,6 +13,7 @@ Utility functions to calculate various kinds of did, such as asset address
   * [.toItxAddress(itx, type, \[role\])](#module_@arcblock/did-util.toItxAddress) ⇒ <code>string</code>
   * [.toItxDid(itx)](#module_@arcblock/did-util.toItxDid) ⇒ <code>string</code>
   * [.toStakeAddress(sender, receiver)](#module_@arcblock/did-util.toStakeAddress) ⇒ <code>string</code>
+  * [.toDelegateAddress(addr1, addr2)](#module_@arcblock/did-util.toDelegateAddress) ⇒ <code>string</code>
   * [.toTetherAddress(hash)](#module_@arcblock/did-util.toTetherAddress) ⇒ <code>string</code>
   * [.toStakeDid(sender, receiver)](#module_@arcblock/did-util.toStakeDid) ⇒ <code>string</code>
 
@@ -88,6 +89,21 @@ Generate an stake address, eg: the did of the stake
 | -------- | ------------------- | ---------------- |
 | sender   | <code>string</code> | sender address   |
 | receiver | <code>string</code> | receiver address |
+
+<a name="module_@arcblock/did-util.toDelegateAddress"></a>
+
+### [**@arcblock/did-util**](https://github.com/arcblock/did-util).toDelegateAddress(addr1, addr2) ⇒ <code>string</code>
+
+Generate an delegate address, eg: the did of the delegation
+
+**Kind**: static method of [<code>@arcblock/did-util</code>](#module_@arcblock/did-util)  
+**Returns**: <code>string</code> - delegation address that can be used to retrieve delegation state  
+**Access**: public  
+
+| Param | Type                | Description       |
+| ----- | ------------------- | ----------------- |
+| addr1 | <code>string</code> | delegator address |
+| addr2 | <code>string</code> | delegatee address |
 
 <a name="module_@arcblock/did-util.toTetherAddress"></a>
 
