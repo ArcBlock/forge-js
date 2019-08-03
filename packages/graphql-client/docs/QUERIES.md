@@ -1,6 +1,6 @@
 # Forge GraphQL API List
 
-> Updated on 2019-07-08T09:59:02.747Z
+> Updated on 2019-08-03T22:48:11.444Z
 
 
 ## Table of Contents
@@ -12,6 +12,7 @@
   * [getBlocks](#getblocks)
   * [getChainInfo](#getchaininfo)
   * [getConfig](#getconfig)
+  * [getDelegateState](#getdelegatestate)
   * [getForgeState](#getforgestate)
   * [getForgeStats](#getforgestats)
   * [getForgeStatsByDay](#getforgestatsbyday)
@@ -98,6 +99,7 @@
             pk
             signature
             signatures {
+              delegator
               pk
               signature
               signer
@@ -108,6 +110,32 @@
             }
             itx {
               __typename
+              ... on RevokeSwapTx {
+                address
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on RetrieveSwapTx {
+                address
+                hashkey
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on SetupSwapTx {
+                assets
+                hashlock
+                locktime
+                receiver
+                value
+                data {
+                  typeUrl
+                  value
+                }
+              }
               ... on WithdrawTetherTx {
                 chainId
                 expiredAt
@@ -129,6 +157,7 @@
                   value
                 }
                 signatures {
+                  delegator
                   pk
                   signature
                   signer
@@ -350,6 +379,7 @@
             pk
             signature
             signatures {
+              delegator
               pk
               signature
               signer
@@ -360,6 +390,32 @@
             }
             itx {
               __typename
+              ... on RevokeSwapTx {
+                address
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on RetrieveSwapTx {
+                address
+                hashkey
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on SetupSwapTx {
+                assets
+                hashlock
+                locktime
+                receiver
+                value
+                data {
+                  typeUrl
+                  value
+                }
+              }
               ... on WithdrawTetherTx {
                 chainId
                 expiredAt
@@ -381,6 +437,7 @@
                   value
                 }
                 signatures {
+                  delegator
                   pk
                   signature
                   signer
@@ -663,6 +720,7 @@
             pk
             signature
             signatures {
+              delegator
               pk
               signature
               signer
@@ -673,6 +731,32 @@
             }
             itx {
               __typename
+              ... on RevokeSwapTx {
+                address
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on RetrieveSwapTx {
+                address
+                hashkey
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on SetupSwapTx {
+                assets
+                hashlock
+                locktime
+                receiver
+                value
+                data {
+                  typeUrl
+                  value
+                }
+              }
               ... on WithdrawTetherTx {
                 chainId
                 expiredAt
@@ -694,6 +778,7 @@
                   value
                 }
                 signatures {
+                  delegator
                   pk
                   signature
                   signer
@@ -915,6 +1000,7 @@
             pk
             signature
             signatures {
+              delegator
               pk
               signature
               signer
@@ -925,6 +1011,32 @@
             }
             itx {
               __typename
+              ... on RevokeSwapTx {
+                address
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on RetrieveSwapTx {
+                address
+                hashkey
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on SetupSwapTx {
+                assets
+                hashlock
+                locktime
+                receiver
+                value
+                data {
+                  typeUrl
+                  value
+                }
+              }
               ... on WithdrawTetherTx {
                 chainId
                 expiredAt
@@ -946,6 +1058,7 @@
                   value
                 }
                 signatures {
+                  delegator
                   pk
                   signature
                   signer
@@ -1224,6 +1337,7 @@
           pk
           signature
           signatures {
+            delegator
             pk
             signature
             signer
@@ -1234,6 +1348,32 @@
           }
           itx {
             __typename
+            ... on RevokeSwapTx {
+              address
+              data {
+                typeUrl
+                value
+              }
+            }
+            ... on RetrieveSwapTx {
+              address
+              hashkey
+              data {
+                typeUrl
+                value
+              }
+            }
+            ... on SetupSwapTx {
+              assets
+              hashlock
+              locktime
+              receiver
+              value
+              data {
+                typeUrl
+                value
+              }
+            }
             ... on WithdrawTetherTx {
               chainId
               expiredAt
@@ -1255,6 +1395,7 @@
                 value
               }
               signatures {
+                delegator
                 pk
                 signature
                 signer
@@ -1494,6 +1635,7 @@
           pk
           signature
           signatures {
+            delegator
             pk
             signature
             signer
@@ -1504,6 +1646,32 @@
           }
           itx {
             __typename
+            ... on RevokeSwapTx {
+              address
+              data {
+                typeUrl
+                value
+              }
+            }
+            ... on RetrieveSwapTx {
+              address
+              hashkey
+              data {
+                typeUrl
+                value
+              }
+            }
+            ... on SetupSwapTx {
+              assets
+              hashlock
+              locktime
+              receiver
+              value
+              data {
+                typeUrl
+                value
+              }
+            }
             ... on WithdrawTetherTx {
               chainId
               expiredAt
@@ -1525,6 +1693,7 @@
                 value
               }
               signatures {
+                delegator
                 pk
                 signature
                 signer
@@ -1847,6 +2016,605 @@ No arguments
 }
 ```
 
+### getDelegateState
+
+#### Arguments
+
+* **address**, optional, 
+* **height**, optional, 
+* **keys**, optional, 
+
+#### Result Format
+
+```graphql
+{
+  getDelegateState(address: "abc", height: "abc", keys: ["abc"]) {
+    code
+    state {
+      address
+      context {
+        genesisTime
+        renaissanceTime
+        genesisTx {
+          code
+          hash
+          height
+          index
+          time
+          accountMigrate {
+            address
+          }
+          createAsset {
+            asset
+          }
+          tags {
+            key
+            value
+          }
+          tx {
+            chainId
+            from
+            nonce
+            pk
+            signature
+            signatures {
+              delegator
+              pk
+              signature
+              signer
+              data {
+                typeUrl
+                value
+              }
+            }
+            itx {
+              __typename
+              ... on RevokeSwapTx {
+                address
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on RetrieveSwapTx {
+                address
+                hashkey
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on SetupSwapTx {
+                assets
+                hashlock
+                locktime
+                receiver
+                value
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on WithdrawTetherTx {
+                chainId
+                expiredAt
+                from
+                nonce
+                pk
+                signature
+                data {
+                  typeUrl
+                  value
+                }
+                receiver {
+                  assets
+                  tether
+                  value
+                }
+                sender {
+                  assets
+                  value
+                }
+                signatures {
+                  delegator
+                  pk
+                  signature
+                  signer
+                }
+              }
+              ... on UpgradeNodeTx {
+                height
+                override
+                version
+              }
+              ... on UpdateAssetTx {
+                address
+                moniker
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on TransferTx {
+                assets
+                to
+                value
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on SysUpgradeTx {
+                gracePeriod
+                data {
+                  typeUrl
+                  value
+                }
+                task {
+                  actions
+                  dataHash
+                  type
+                }
+              }
+              ... on StakeTx {
+                message
+                to
+                value
+                data {
+                  type
+                }
+              }
+              ... on RevokeTetherTx {
+                tether
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on PokeTx {
+                address
+                date
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ExchangeTetherTx {
+                expiredAt
+                data {
+                  typeUrl
+                  value
+                }
+                receiver {
+                  assets
+                  value
+                }
+                sender {
+                  assets
+                  value
+                }
+              }
+              ... on ExchangeTx {
+                expiredAt
+                to
+                data {
+                  typeUrl
+                  value
+                }
+                receiver {
+                  assets
+                  value
+                }
+                sender {
+                  assets
+                  value
+                }
+              }
+              ... on DepositTetherTx {
+                charge
+                commission
+                locktime
+                target
+                value
+                withdrawer
+              }
+              ... on DeployProtocolTx {
+                address
+                description
+                name
+                namespace
+                pipeline
+                proto
+                sources
+                tags
+                version
+                code {
+                  binary
+                  checksum
+                }
+                data {
+                  typeUrl
+                  value
+                }
+                typeUrls {
+                  module
+                  url
+                }
+              }
+              ... on DeclareTx {
+                issuer
+                moniker
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on DeclareFileTx {
+                hash
+              }
+              ... on CreateAssetTx {
+                address
+                moniker
+                parent
+                readonly
+                transferrable
+                ttl
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ConsumeAssetTx {
+                address
+                issuer
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ConsensusUpgradeTx {
+                maxBytes
+                maxCandidates
+                maxGas
+                maxValidators
+                data {
+                  typeUrl
+                  value
+                }
+                validators {
+                  address
+                  power
+                }
+              }
+              ... on ApproveTetherTx {
+                withdraw
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on AcquireAssetTx {
+                to
+                data {
+                  typeUrl
+                  value
+                }
+                specs {
+                  address
+                  data
+                }
+              }
+              ... on AccountMigrateTx {
+                address
+                pk
+                data {
+                  typeUrl
+                  value
+                }
+              }
+            }
+          }
+        }
+        renaissanceTx {
+          code
+          hash
+          height
+          index
+          time
+          accountMigrate {
+            address
+          }
+          createAsset {
+            asset
+          }
+          tags {
+            key
+            value
+          }
+          tx {
+            chainId
+            from
+            nonce
+            pk
+            signature
+            signatures {
+              delegator
+              pk
+              signature
+              signer
+              data {
+                typeUrl
+                value
+              }
+            }
+            itx {
+              __typename
+              ... on RevokeSwapTx {
+                address
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on RetrieveSwapTx {
+                address
+                hashkey
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on SetupSwapTx {
+                assets
+                hashlock
+                locktime
+                receiver
+                value
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on WithdrawTetherTx {
+                chainId
+                expiredAt
+                from
+                nonce
+                pk
+                signature
+                data {
+                  typeUrl
+                  value
+                }
+                receiver {
+                  assets
+                  tether
+                  value
+                }
+                sender {
+                  assets
+                  value
+                }
+                signatures {
+                  delegator
+                  pk
+                  signature
+                  signer
+                }
+              }
+              ... on UpgradeNodeTx {
+                height
+                override
+                version
+              }
+              ... on UpdateAssetTx {
+                address
+                moniker
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on TransferTx {
+                assets
+                to
+                value
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on SysUpgradeTx {
+                gracePeriod
+                data {
+                  typeUrl
+                  value
+                }
+                task {
+                  actions
+                  dataHash
+                  type
+                }
+              }
+              ... on StakeTx {
+                message
+                to
+                value
+                data {
+                  type
+                }
+              }
+              ... on RevokeTetherTx {
+                tether
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on PokeTx {
+                address
+                date
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ExchangeTetherTx {
+                expiredAt
+                data {
+                  typeUrl
+                  value
+                }
+                receiver {
+                  assets
+                  value
+                }
+                sender {
+                  assets
+                  value
+                }
+              }
+              ... on ExchangeTx {
+                expiredAt
+                to
+                data {
+                  typeUrl
+                  value
+                }
+                receiver {
+                  assets
+                  value
+                }
+                sender {
+                  assets
+                  value
+                }
+              }
+              ... on DepositTetherTx {
+                charge
+                commission
+                locktime
+                target
+                value
+                withdrawer
+              }
+              ... on DeployProtocolTx {
+                address
+                description
+                name
+                namespace
+                pipeline
+                proto
+                sources
+                tags
+                version
+                code {
+                  binary
+                  checksum
+                }
+                data {
+                  typeUrl
+                  value
+                }
+                typeUrls {
+                  module
+                  url
+                }
+              }
+              ... on DeclareTx {
+                issuer
+                moniker
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on DeclareFileTx {
+                hash
+              }
+              ... on CreateAssetTx {
+                address
+                moniker
+                parent
+                readonly
+                transferrable
+                ttl
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ConsumeAssetTx {
+                address
+                issuer
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ConsensusUpgradeTx {
+                maxBytes
+                maxCandidates
+                maxGas
+                maxValidators
+                data {
+                  typeUrl
+                  value
+                }
+                validators {
+                  address
+                  power
+                }
+              }
+              ... on ApproveTetherTx {
+                withdraw
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on AcquireAssetTx {
+                to
+                data {
+                  typeUrl
+                  value
+                }
+                specs {
+                  address
+                  data
+                }
+              }
+              ... on AccountMigrateTx {
+                address
+                pk
+                data {
+                  typeUrl
+                  value
+                }
+              }
+            }
+          }
+        }
+      }
+      data {
+        typeUrl
+        value
+      }
+      ops {
+        key
+        value {
+          balance
+          balanceDelta
+          numTxs
+          numTxsDelta
+          rule
+        }
+      }
+    }
+  }
+}
+```
+
 ### getForgeState
 
 #### Arguments
@@ -1987,6 +2755,10 @@ No arguments
         declare {
           hierarchy
           restricted
+        }
+        delegate {
+          deltaInterval
+          typeUrls
         }
       }
       upgradeInfo {
@@ -2283,6 +3055,7 @@ No arguments
             pk
             signature
             signatures {
+              delegator
               pk
               signature
               signer
@@ -2293,6 +3066,32 @@ No arguments
             }
             itx {
               __typename
+              ... on RevokeSwapTx {
+                address
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on RetrieveSwapTx {
+                address
+                hashkey
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on SetupSwapTx {
+                assets
+                hashlock
+                locktime
+                receiver
+                value
+                data {
+                  typeUrl
+                  value
+                }
+              }
               ... on WithdrawTetherTx {
                 chainId
                 expiredAt
@@ -2314,6 +3113,7 @@ No arguments
                   value
                 }
                 signatures {
+                  delegator
                   pk
                   signature
                   signer
@@ -2535,6 +3335,7 @@ No arguments
             pk
             signature
             signatures {
+              delegator
               pk
               signature
               signer
@@ -2545,6 +3346,32 @@ No arguments
             }
             itx {
               __typename
+              ... on RevokeSwapTx {
+                address
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on RetrieveSwapTx {
+                address
+                hashkey
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on SetupSwapTx {
+                assets
+                hashlock
+                locktime
+                receiver
+                value
+                data {
+                  typeUrl
+                  value
+                }
+              }
               ... on WithdrawTetherTx {
                 chainId
                 expiredAt
@@ -2566,6 +3393,7 @@ No arguments
                   value
                 }
                 signatures {
+                  delegator
                   pk
                   signature
                   signer
@@ -2900,6 +3728,7 @@ No arguments
             pk
             signature
             signatures {
+              delegator
               pk
               signature
               signer
@@ -2910,6 +3739,32 @@ No arguments
             }
             itx {
               __typename
+              ... on RevokeSwapTx {
+                address
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on RetrieveSwapTx {
+                address
+                hashkey
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on SetupSwapTx {
+                assets
+                hashlock
+                locktime
+                receiver
+                value
+                data {
+                  typeUrl
+                  value
+                }
+              }
               ... on WithdrawTetherTx {
                 chainId
                 expiredAt
@@ -2931,6 +3786,7 @@ No arguments
                   value
                 }
                 signatures {
+                  delegator
                   pk
                   signature
                   signer
@@ -3152,6 +4008,7 @@ No arguments
             pk
             signature
             signatures {
+              delegator
               pk
               signature
               signer
@@ -3162,6 +4019,32 @@ No arguments
             }
             itx {
               __typename
+              ... on RevokeSwapTx {
+                address
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on RetrieveSwapTx {
+                address
+                hashkey
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on SetupSwapTx {
+                assets
+                hashlock
+                locktime
+                receiver
+                value
+                data {
+                  typeUrl
+                  value
+                }
+              }
               ... on WithdrawTetherTx {
                 chainId
                 expiredAt
@@ -3183,6 +4066,7 @@ No arguments
                   value
                 }
                 signatures {
+                  delegator
                   pk
                   signature
                   signer
@@ -3441,6 +4325,7 @@ No arguments
             pk
             signature
             signatures {
+              delegator
               pk
               signature
               signer
@@ -3451,6 +4336,32 @@ No arguments
             }
             itx {
               __typename
+              ... on RevokeSwapTx {
+                address
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on RetrieveSwapTx {
+                address
+                hashkey
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on SetupSwapTx {
+                assets
+                hashlock
+                locktime
+                receiver
+                value
+                data {
+                  typeUrl
+                  value
+                }
+              }
               ... on WithdrawTetherTx {
                 chainId
                 expiredAt
@@ -3472,6 +4383,7 @@ No arguments
                   value
                 }
                 signatures {
+                  delegator
                   pk
                   signature
                   signer
@@ -3693,6 +4605,7 @@ No arguments
             pk
             signature
             signatures {
+              delegator
               pk
               signature
               signer
@@ -3703,6 +4616,32 @@ No arguments
             }
             itx {
               __typename
+              ... on RevokeSwapTx {
+                address
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on RetrieveSwapTx {
+                address
+                hashkey
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on SetupSwapTx {
+                assets
+                hashlock
+                locktime
+                receiver
+                value
+                data {
+                  typeUrl
+                  value
+                }
+              }
               ... on WithdrawTetherTx {
                 chainId
                 expiredAt
@@ -3724,6 +4663,7 @@ No arguments
                   value
                 }
                 signatures {
+                  delegator
                   pk
                   signature
                   signer
@@ -3994,6 +4934,7 @@ No arguments
         pk
         signature
         signatures {
+          delegator
           pk
           signature
           signer
@@ -4004,6 +4945,32 @@ No arguments
         }
         itx {
           __typename
+          ... on RevokeSwapTx {
+            address
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on RetrieveSwapTx {
+            address
+            hashkey
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on SetupSwapTx {
+            assets
+            hashlock
+            locktime
+            receiver
+            value
+            data {
+              typeUrl
+              value
+            }
+          }
           ... on WithdrawTetherTx {
             chainId
             expiredAt
@@ -4025,6 +4992,7 @@ No arguments
               value
             }
             signatures {
+              delegator
               pk
               signature
               signer
@@ -4107,12 +5075,27 @@ No arguments
                 pk
                 signature
                 signatures {
+                  delegator
                   pk
                   signature
                   signer
                 }
                 itx {
                   __typename
+                  ... on RevokeSwapTx {
+                    address
+                  }
+                  ... on RetrieveSwapTx {
+                    address
+                    hashkey
+                  }
+                  ... on SetupSwapTx {
+                    assets
+                    hashlock
+                    locktime
+                    receiver
+                    value
+                  }
                   ... on WithdrawTetherTx {
                     chainId
                     expiredAt
@@ -4370,6 +5353,7 @@ No arguments
         pk
         signature
         signatures {
+          delegator
           pk
           signature
           signer
@@ -4380,6 +5364,32 @@ No arguments
         }
         itx {
           __typename
+          ... on RevokeSwapTx {
+            address
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on RetrieveSwapTx {
+            address
+            hashkey
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on SetupSwapTx {
+            assets
+            hashlock
+            locktime
+            receiver
+            value
+            data {
+              typeUrl
+              value
+            }
+          }
           ... on WithdrawTetherTx {
             chainId
             expiredAt
@@ -4401,6 +5411,7 @@ No arguments
               value
             }
             signatures {
+              delegator
               pk
               signature
               signer
@@ -4483,12 +5494,27 @@ No arguments
                 pk
                 signature
                 signatures {
+                  delegator
                   pk
                   signature
                   signer
                 }
                 itx {
                   __typename
+                  ... on RevokeSwapTx {
+                    address
+                  }
+                  ... on RetrieveSwapTx {
+                    address
+                    hashkey
+                  }
+                  ... on SetupSwapTx {
+                    assets
+                    hashlock
+                    locktime
+                    receiver
+                    value
+                  }
                   ... on WithdrawTetherTx {
                     chainId
                     expiredAt
@@ -4788,6 +5814,7 @@ No arguments
         pk
         signature
         signatures {
+          delegator
           pk
           signature
           signer
@@ -4798,6 +5825,32 @@ No arguments
         }
         itx {
           __typename
+          ... on RevokeSwapTx {
+            address
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on RetrieveSwapTx {
+            address
+            hashkey
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on SetupSwapTx {
+            assets
+            hashlock
+            locktime
+            receiver
+            value
+            data {
+              typeUrl
+              value
+            }
+          }
           ... on WithdrawTetherTx {
             chainId
             expiredAt
@@ -4819,6 +5872,7 @@ No arguments
               value
             }
             signatures {
+              delegator
               pk
               signature
               signer
@@ -4901,12 +5955,27 @@ No arguments
                 pk
                 signature
                 signatures {
+                  delegator
                   pk
                   signature
                   signer
                 }
                 itx {
                   __typename
+                  ... on RevokeSwapTx {
+                    address
+                  }
+                  ... on RetrieveSwapTx {
+                    address
+                    hashkey
+                  }
+                  ... on SetupSwapTx {
+                    assets
+                    hashlock
+                    locktime
+                    receiver
+                    value
+                  }
                   ... on WithdrawTetherTx {
                     chainId
                     expiredAt
@@ -5305,6 +6374,7 @@ No arguments
             pk
             signature
             signatures {
+              delegator
               pk
               signature
               signer
@@ -5315,6 +6385,32 @@ No arguments
             }
             itx {
               __typename
+              ... on RevokeSwapTx {
+                address
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on RetrieveSwapTx {
+                address
+                hashkey
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on SetupSwapTx {
+                assets
+                hashlock
+                locktime
+                receiver
+                value
+                data {
+                  typeUrl
+                  value
+                }
+              }
               ... on WithdrawTetherTx {
                 chainId
                 expiredAt
@@ -5336,6 +6432,7 @@ No arguments
                   value
                 }
                 signatures {
+                  delegator
                   pk
                   signature
                   signer
@@ -5557,6 +6654,7 @@ No arguments
             pk
             signature
             signatures {
+              delegator
               pk
               signature
               signer
@@ -5567,6 +6665,32 @@ No arguments
             }
             itx {
               __typename
+              ... on RevokeSwapTx {
+                address
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on RetrieveSwapTx {
+                address
+                hashkey
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on SetupSwapTx {
+                assets
+                hashlock
+                locktime
+                receiver
+                value
+                data {
+                  typeUrl
+                  value
+                }
+              }
               ... on WithdrawTetherTx {
                 chainId
                 expiredAt
@@ -5588,6 +6712,7 @@ No arguments
                   value
                 }
                 signatures {
+                  delegator
                   pk
                   signature
                   signer
@@ -5903,6 +7028,7 @@ No arguments
         pk
         signature
         signatures {
+          delegator
           pk
           signature
           signer
@@ -5913,6 +7039,32 @@ No arguments
         }
         itx {
           __typename
+          ... on RevokeSwapTx {
+            address
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on RetrieveSwapTx {
+            address
+            hashkey
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on SetupSwapTx {
+            assets
+            hashlock
+            locktime
+            receiver
+            value
+            data {
+              typeUrl
+              value
+            }
+          }
           ... on WithdrawTetherTx {
             chainId
             expiredAt
@@ -5934,6 +7086,7 @@ No arguments
               value
             }
             signatures {
+              delegator
               pk
               signature
               signer
@@ -6016,12 +7169,27 @@ No arguments
                 pk
                 signature
                 signatures {
+                  delegator
                   pk
                   signature
                   signer
                 }
                 itx {
                   __typename
+                  ... on RevokeSwapTx {
+                    address
+                  }
+                  ... on RetrieveSwapTx {
+                    address
+                    hashkey
+                  }
+                  ... on SetupSwapTx {
+                    assets
+                    hashlock
+                    locktime
+                    receiver
+                    value
+                  }
                   ... on WithdrawTetherTx {
                     chainId
                     expiredAt
@@ -6277,6 +7445,7 @@ subscription {
       pk
       signature
       signatures {
+        delegator
         pk
         signature
         signer
@@ -6287,6 +7456,32 @@ subscription {
       }
       itx {
         __typename
+        ... on RevokeSwapTx {
+          address
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on RetrieveSwapTx {
+          address
+          hashkey
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on SetupSwapTx {
+          assets
+          hashlock
+          locktime
+          receiver
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
         ... on WithdrawTetherTx {
           chainId
           expiredAt
@@ -6308,6 +7503,7 @@ subscription {
             value
           }
           signatures {
+            delegator
             pk
             signature
             signer
@@ -6390,6 +7586,7 @@ subscription {
               pk
               signature
               signatures {
+                delegator
                 pk
                 signature
                 signer
@@ -6400,6 +7597,32 @@ subscription {
               }
               itx {
                 __typename
+                ... on RevokeSwapTx {
+                  address
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on RetrieveSwapTx {
+                  address
+                  hashkey
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on SetupSwapTx {
+                  assets
+                  hashlock
+                  locktime
+                  receiver
+                  value
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
                 ... on WithdrawTetherTx {
                   chainId
                   expiredAt
@@ -6421,6 +7644,7 @@ subscription {
                     value
                   }
                   signatures {
+                    delegator
                     pk
                     signature
                     signer
@@ -6781,6 +8005,7 @@ subscription {
             pk
             signature
             signatures {
+              delegator
               pk
               signature
               signer
@@ -6791,6 +8016,32 @@ subscription {
             }
             itx {
               __typename
+              ... on RevokeSwapTx {
+                address
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on RetrieveSwapTx {
+                address
+                hashkey
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on SetupSwapTx {
+                assets
+                hashlock
+                locktime
+                receiver
+                value
+                data {
+                  typeUrl
+                  value
+                }
+              }
               ... on WithdrawTetherTx {
                 chainId
                 expiredAt
@@ -6812,6 +8063,7 @@ subscription {
                   value
                 }
                 signatures {
+                  delegator
                   pk
                   signature
                   signer
@@ -7033,6 +8285,7 @@ subscription {
             pk
             signature
             signatures {
+              delegator
               pk
               signature
               signer
@@ -7043,6 +8296,32 @@ subscription {
             }
             itx {
               __typename
+              ... on RevokeSwapTx {
+                address
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on RetrieveSwapTx {
+                address
+                hashkey
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on SetupSwapTx {
+                assets
+                hashlock
+                locktime
+                receiver
+                value
+                data {
+                  typeUrl
+                  value
+                }
+              }
               ... on WithdrawTetherTx {
                 chainId
                 expiredAt
@@ -7064,6 +8343,7 @@ subscription {
                   value
                 }
                 signatures {
+                  delegator
                   pk
                   signature
                   signer
@@ -7328,6 +8608,7 @@ subscription {
             pk
             signature
             signatures {
+              delegator
               pk
               signature
               signer
@@ -7338,6 +8619,32 @@ subscription {
             }
             itx {
               __typename
+              ... on RevokeSwapTx {
+                address
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on RetrieveSwapTx {
+                address
+                hashkey
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on SetupSwapTx {
+                assets
+                hashlock
+                locktime
+                receiver
+                value
+                data {
+                  typeUrl
+                  value
+                }
+              }
               ... on WithdrawTetherTx {
                 chainId
                 expiredAt
@@ -7359,6 +8666,7 @@ subscription {
                   value
                 }
                 signatures {
+                  delegator
                   pk
                   signature
                   signer
@@ -7580,6 +8888,7 @@ subscription {
             pk
             signature
             signatures {
+              delegator
               pk
               signature
               signer
@@ -7590,6 +8899,32 @@ subscription {
             }
             itx {
               __typename
+              ... on RevokeSwapTx {
+                address
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on RetrieveSwapTx {
+                address
+                hashkey
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on SetupSwapTx {
+                assets
+                hashlock
+                locktime
+                receiver
+                value
+                data {
+                  typeUrl
+                  value
+                }
+              }
               ... on WithdrawTetherTx {
                 chainId
                 expiredAt
@@ -7611,6 +8946,7 @@ subscription {
                   value
                 }
                 signatures {
+                  delegator
                   pk
                   signature
                   signer
@@ -7891,6 +9227,7 @@ subscription {
       pk
       signature
       signatures {
+        delegator
         pk
         signature
         signer
@@ -7901,6 +9238,32 @@ subscription {
       }
       itx {
         __typename
+        ... on RevokeSwapTx {
+          address
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on RetrieveSwapTx {
+          address
+          hashkey
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on SetupSwapTx {
+          assets
+          hashlock
+          locktime
+          receiver
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
         ... on WithdrawTetherTx {
           chainId
           expiredAt
@@ -7922,6 +9285,7 @@ subscription {
             value
           }
           signatures {
+            delegator
             pk
             signature
             signer
@@ -8004,6 +9368,7 @@ subscription {
               pk
               signature
               signatures {
+                delegator
                 pk
                 signature
                 signer
@@ -8014,6 +9379,32 @@ subscription {
               }
               itx {
                 __typename
+                ... on RevokeSwapTx {
+                  address
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on RetrieveSwapTx {
+                  address
+                  hashkey
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on SetupSwapTx {
+                  assets
+                  hashlock
+                  locktime
+                  receiver
+                  value
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
                 ... on WithdrawTetherTx {
                   chainId
                   expiredAt
@@ -8035,6 +9426,7 @@ subscription {
                     value
                   }
                   signatures {
+                    delegator
                     pk
                     signature
                     signer
@@ -8365,6 +9757,7 @@ subscription {
       pk
       signature
       signatures {
+        delegator
         pk
         signature
         signer
@@ -8375,6 +9768,32 @@ subscription {
       }
       itx {
         __typename
+        ... on RevokeSwapTx {
+          address
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on RetrieveSwapTx {
+          address
+          hashkey
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on SetupSwapTx {
+          assets
+          hashlock
+          locktime
+          receiver
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
         ... on WithdrawTetherTx {
           chainId
           expiredAt
@@ -8396,6 +9815,7 @@ subscription {
             value
           }
           signatures {
+            delegator
             pk
             signature
             signer
@@ -8478,6 +9898,7 @@ subscription {
               pk
               signature
               signatures {
+                delegator
                 pk
                 signature
                 signer
@@ -8488,6 +9909,32 @@ subscription {
               }
               itx {
                 __typename
+                ... on RevokeSwapTx {
+                  address
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on RetrieveSwapTx {
+                  address
+                  hashkey
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on SetupSwapTx {
+                  assets
+                  hashlock
+                  locktime
+                  receiver
+                  value
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
                 ... on WithdrawTetherTx {
                   chainId
                   expiredAt
@@ -8509,6 +9956,7 @@ subscription {
                     value
                   }
                   signatures {
+                    delegator
                     pk
                     signature
                     signer
@@ -8839,6 +10287,7 @@ subscription {
       pk
       signature
       signatures {
+        delegator
         pk
         signature
         signer
@@ -8849,6 +10298,32 @@ subscription {
       }
       itx {
         __typename
+        ... on RevokeSwapTx {
+          address
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on RetrieveSwapTx {
+          address
+          hashkey
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on SetupSwapTx {
+          assets
+          hashlock
+          locktime
+          receiver
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
         ... on WithdrawTetherTx {
           chainId
           expiredAt
@@ -8870,6 +10345,7 @@ subscription {
             value
           }
           signatures {
+            delegator
             pk
             signature
             signer
@@ -8952,6 +10428,7 @@ subscription {
               pk
               signature
               signatures {
+                delegator
                 pk
                 signature
                 signer
@@ -8962,6 +10439,32 @@ subscription {
               }
               itx {
                 __typename
+                ... on RevokeSwapTx {
+                  address
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on RetrieveSwapTx {
+                  address
+                  hashkey
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on SetupSwapTx {
+                  assets
+                  hashlock
+                  locktime
+                  receiver
+                  value
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
                 ... on WithdrawTetherTx {
                   chainId
                   expiredAt
@@ -8983,6 +10486,7 @@ subscription {
                     value
                   }
                   signatures {
+                    delegator
                     pk
                     signature
                     signer
@@ -9313,6 +10817,7 @@ subscription {
       pk
       signature
       signatures {
+        delegator
         pk
         signature
         signer
@@ -9323,6 +10828,32 @@ subscription {
       }
       itx {
         __typename
+        ... on RevokeSwapTx {
+          address
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on RetrieveSwapTx {
+          address
+          hashkey
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on SetupSwapTx {
+          assets
+          hashlock
+          locktime
+          receiver
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
         ... on WithdrawTetherTx {
           chainId
           expiredAt
@@ -9344,6 +10875,7 @@ subscription {
             value
           }
           signatures {
+            delegator
             pk
             signature
             signer
@@ -9426,6 +10958,7 @@ subscription {
               pk
               signature
               signatures {
+                delegator
                 pk
                 signature
                 signer
@@ -9436,6 +10969,32 @@ subscription {
               }
               itx {
                 __typename
+                ... on RevokeSwapTx {
+                  address
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on RetrieveSwapTx {
+                  address
+                  hashkey
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on SetupSwapTx {
+                  assets
+                  hashlock
+                  locktime
+                  receiver
+                  value
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
                 ... on WithdrawTetherTx {
                   chainId
                   expiredAt
@@ -9457,6 +11016,7 @@ subscription {
                     value
                   }
                   signatures {
+                    delegator
                     pk
                     signature
                     signer
@@ -9787,6 +11347,7 @@ subscription {
       pk
       signature
       signatures {
+        delegator
         pk
         signature
         signer
@@ -9797,6 +11358,32 @@ subscription {
       }
       itx {
         __typename
+        ... on RevokeSwapTx {
+          address
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on RetrieveSwapTx {
+          address
+          hashkey
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on SetupSwapTx {
+          assets
+          hashlock
+          locktime
+          receiver
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
         ... on WithdrawTetherTx {
           chainId
           expiredAt
@@ -9818,6 +11405,7 @@ subscription {
             value
           }
           signatures {
+            delegator
             pk
             signature
             signer
@@ -9900,6 +11488,7 @@ subscription {
               pk
               signature
               signatures {
+                delegator
                 pk
                 signature
                 signer
@@ -9910,6 +11499,32 @@ subscription {
               }
               itx {
                 __typename
+                ... on RevokeSwapTx {
+                  address
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on RetrieveSwapTx {
+                  address
+                  hashkey
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on SetupSwapTx {
+                  assets
+                  hashlock
+                  locktime
+                  receiver
+                  value
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
                 ... on WithdrawTetherTx {
                   chainId
                   expiredAt
@@ -9931,6 +11546,7 @@ subscription {
                     value
                   }
                   signatures {
+                    delegator
                     pk
                     signature
                     signer
@@ -10254,16 +11870,14 @@ subscription {
         }
       }
     }
-    endBlock {
-      height
-    }
-    exchange {
+    delegate {
       chainId
       from
       nonce
       pk
       signature
       signatures {
+        delegator
         pk
         signature
         signer
@@ -10274,6 +11888,32 @@ subscription {
       }
       itx {
         __typename
+        ... on RevokeSwapTx {
+          address
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on RetrieveSwapTx {
+          address
+          hashkey
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on SetupSwapTx {
+          assets
+          hashlock
+          locktime
+          receiver
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
         ... on WithdrawTetherTx {
           chainId
           expiredAt
@@ -10295,6 +11935,7 @@ subscription {
             value
           }
           signatures {
+            delegator
             pk
             signature
             signer
@@ -10377,6 +12018,7 @@ subscription {
               pk
               signature
               signatures {
+                delegator
                 pk
                 signature
                 signer
@@ -10387,6 +12029,32 @@ subscription {
               }
               itx {
                 __typename
+                ... on RevokeSwapTx {
+                  address
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on RetrieveSwapTx {
+                  address
+                  hashkey
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on SetupSwapTx {
+                  assets
+                  hashlock
+                  locktime
+                  receiver
+                  value
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
                 ... on WithdrawTetherTx {
                   chainId
                   expiredAt
@@ -10408,6 +12076,1121 @@ subscription {
                     value
                   }
                   signatures {
+                    delegator
+                    pk
+                    signature
+                    signer
+                  }
+                }
+                ... on UpgradeNodeTx {
+                  height
+                  override
+                  version
+                }
+                ... on UpdateAssetTx {
+                  address
+                  moniker
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on TransferTx {
+                  assets
+                  to
+                  value
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on SysUpgradeTx {
+                  gracePeriod
+                  data {
+                    typeUrl
+                    value
+                  }
+                  task {
+                    actions
+                    dataHash
+                    type
+                  }
+                }
+                ... on StakeTx {
+                  message
+                  to
+                  value
+                  data {
+                    type
+                  }
+                }
+                ... on RevokeTetherTx {
+                  tether
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on PokeTx {
+                  address
+                  date
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on ExchangeTetherTx {
+                  expiredAt
+                  data {
+                    typeUrl
+                    value
+                  }
+                  receiver {
+                    assets
+                    value
+                  }
+                  sender {
+                    assets
+                    value
+                  }
+                }
+                ... on ExchangeTx {
+                  expiredAt
+                  to
+                  data {
+                    typeUrl
+                    value
+                  }
+                  receiver {
+                    assets
+                    value
+                  }
+                  sender {
+                    assets
+                    value
+                  }
+                }
+                ... on DepositTetherTx {
+                  charge
+                  commission
+                  locktime
+                  target
+                  value
+                  withdrawer
+                }
+                ... on DeployProtocolTx {
+                  address
+                  description
+                  name
+                  namespace
+                  pipeline
+                  proto
+                  sources
+                  tags
+                  version
+                  code {
+                    binary
+                    checksum
+                  }
+                  data {
+                    typeUrl
+                    value
+                  }
+                  typeUrls {
+                    module
+                    url
+                  }
+                }
+                ... on DeclareTx {
+                  issuer
+                  moniker
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on DeclareFileTx {
+                  hash
+                }
+                ... on CreateAssetTx {
+                  address
+                  moniker
+                  parent
+                  readonly
+                  transferrable
+                  ttl
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on ConsumeAssetTx {
+                  address
+                  issuer
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on ConsensusUpgradeTx {
+                  maxBytes
+                  maxCandidates
+                  maxGas
+                  maxValidators
+                  data {
+                    typeUrl
+                    value
+                  }
+                  validators {
+                    address
+                    power
+                  }
+                }
+                ... on ApproveTetherTx {
+                  withdraw
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on AcquireAssetTx {
+                  to
+                  data {
+                    typeUrl
+                    value
+                  }
+                  specs {
+                    address
+                    data
+                  }
+                }
+                ... on AccountMigrateTx {
+                  address
+                  pk
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+              }
+            }
+          }
+          sender {
+            assets
+            value
+          }
+        }
+        ... on ExchangeTx {
+          expiredAt
+          to
+          data {
+            typeUrl
+            value
+          }
+          receiver {
+            assets
+            value
+          }
+          sender {
+            assets
+            value
+          }
+        }
+        ... on DepositTetherTx {
+          charge
+          commission
+          locktime
+          target
+          value
+          withdrawer
+        }
+        ... on DeployProtocolTx {
+          address
+          description
+          name
+          namespace
+          pipeline
+          proto
+          sources
+          tags
+          version
+          code {
+            binary
+            checksum
+          }
+          data {
+            typeUrl
+            value
+          }
+          typeUrls {
+            module
+            url
+          }
+        }
+        ... on DeclareTx {
+          issuer
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on DeclareFileTx {
+          hash
+        }
+        ... on CreateAssetTx {
+          address
+          moniker
+          parent
+          readonly
+          transferrable
+          ttl
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsumeAssetTx {
+          address
+          issuer
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsensusUpgradeTx {
+          maxBytes
+          maxCandidates
+          maxGas
+          maxValidators
+          data {
+            typeUrl
+            value
+          }
+          validators {
+            address
+            power
+          }
+        }
+        ... on ApproveTetherTx {
+          withdraw
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on AcquireAssetTx {
+          to
+          data {
+            typeUrl
+            value
+          }
+          specs {
+            address
+            data
+          }
+        }
+        ... on AccountMigrateTx {
+          address
+          pk
+          data {
+            typeUrl
+            value
+          }
+        }
+      }
+    }
+    delegateState {
+      address
+      context {
+        genesisTime
+        renaissanceTime
+        genesisTx {
+          code
+          hash
+          height
+          index
+          time
+          accountMigrate {
+            address
+          }
+          createAsset {
+            asset
+          }
+          tags {
+            key
+            value
+          }
+          tx {
+            chainId
+            from
+            nonce
+            pk
+            signature
+            signatures {
+              delegator
+              pk
+              signature
+              signer
+              data {
+                typeUrl
+                value
+              }
+            }
+            itx {
+              __typename
+              ... on RevokeSwapTx {
+                address
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on RetrieveSwapTx {
+                address
+                hashkey
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on SetupSwapTx {
+                assets
+                hashlock
+                locktime
+                receiver
+                value
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on WithdrawTetherTx {
+                chainId
+                expiredAt
+                from
+                nonce
+                pk
+                signature
+                data {
+                  typeUrl
+                  value
+                }
+                receiver {
+                  assets
+                  tether
+                  value
+                }
+                sender {
+                  assets
+                  value
+                }
+                signatures {
+                  delegator
+                  pk
+                  signature
+                  signer
+                }
+              }
+              ... on UpgradeNodeTx {
+                height
+                override
+                version
+              }
+              ... on UpdateAssetTx {
+                address
+                moniker
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on TransferTx {
+                assets
+                to
+                value
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on SysUpgradeTx {
+                gracePeriod
+                data {
+                  typeUrl
+                  value
+                }
+                task {
+                  actions
+                  dataHash
+                  type
+                }
+              }
+              ... on StakeTx {
+                message
+                to
+                value
+                data {
+                  type
+                }
+              }
+              ... on RevokeTetherTx {
+                tether
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on PokeTx {
+                address
+                date
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ExchangeTetherTx {
+                expiredAt
+                data {
+                  typeUrl
+                  value
+                }
+                receiver {
+                  assets
+                  value
+                }
+                sender {
+                  assets
+                  value
+                }
+              }
+              ... on ExchangeTx {
+                expiredAt
+                to
+                data {
+                  typeUrl
+                  value
+                }
+                receiver {
+                  assets
+                  value
+                }
+                sender {
+                  assets
+                  value
+                }
+              }
+              ... on DepositTetherTx {
+                charge
+                commission
+                locktime
+                target
+                value
+                withdrawer
+              }
+              ... on DeployProtocolTx {
+                address
+                description
+                name
+                namespace
+                pipeline
+                proto
+                sources
+                tags
+                version
+                code {
+                  binary
+                  checksum
+                }
+                data {
+                  typeUrl
+                  value
+                }
+                typeUrls {
+                  module
+                  url
+                }
+              }
+              ... on DeclareTx {
+                issuer
+                moniker
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on DeclareFileTx {
+                hash
+              }
+              ... on CreateAssetTx {
+                address
+                moniker
+                parent
+                readonly
+                transferrable
+                ttl
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ConsumeAssetTx {
+                address
+                issuer
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ConsensusUpgradeTx {
+                maxBytes
+                maxCandidates
+                maxGas
+                maxValidators
+                data {
+                  typeUrl
+                  value
+                }
+                validators {
+                  address
+                  power
+                }
+              }
+              ... on ApproveTetherTx {
+                withdraw
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on AcquireAssetTx {
+                to
+                data {
+                  typeUrl
+                  value
+                }
+                specs {
+                  address
+                  data
+                }
+              }
+              ... on AccountMigrateTx {
+                address
+                pk
+                data {
+                  typeUrl
+                  value
+                }
+              }
+            }
+          }
+        }
+        renaissanceTx {
+          code
+          hash
+          height
+          index
+          time
+          accountMigrate {
+            address
+          }
+          createAsset {
+            asset
+          }
+          tags {
+            key
+            value
+          }
+          tx {
+            chainId
+            from
+            nonce
+            pk
+            signature
+            signatures {
+              delegator
+              pk
+              signature
+              signer
+              data {
+                typeUrl
+                value
+              }
+            }
+            itx {
+              __typename
+              ... on RevokeSwapTx {
+                address
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on RetrieveSwapTx {
+                address
+                hashkey
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on SetupSwapTx {
+                assets
+                hashlock
+                locktime
+                receiver
+                value
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on WithdrawTetherTx {
+                chainId
+                expiredAt
+                from
+                nonce
+                pk
+                signature
+                data {
+                  typeUrl
+                  value
+                }
+                receiver {
+                  assets
+                  tether
+                  value
+                }
+                sender {
+                  assets
+                  value
+                }
+                signatures {
+                  delegator
+                  pk
+                  signature
+                  signer
+                }
+              }
+              ... on UpgradeNodeTx {
+                height
+                override
+                version
+              }
+              ... on UpdateAssetTx {
+                address
+                moniker
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on TransferTx {
+                assets
+                to
+                value
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on SysUpgradeTx {
+                gracePeriod
+                data {
+                  typeUrl
+                  value
+                }
+                task {
+                  actions
+                  dataHash
+                  type
+                }
+              }
+              ... on StakeTx {
+                message
+                to
+                value
+                data {
+                  type
+                }
+              }
+              ... on RevokeTetherTx {
+                tether
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on PokeTx {
+                address
+                date
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ExchangeTetherTx {
+                expiredAt
+                data {
+                  typeUrl
+                  value
+                }
+                receiver {
+                  assets
+                  value
+                }
+                sender {
+                  assets
+                  value
+                }
+              }
+              ... on ExchangeTx {
+                expiredAt
+                to
+                data {
+                  typeUrl
+                  value
+                }
+                receiver {
+                  assets
+                  value
+                }
+                sender {
+                  assets
+                  value
+                }
+              }
+              ... on DepositTetherTx {
+                charge
+                commission
+                locktime
+                target
+                value
+                withdrawer
+              }
+              ... on DeployProtocolTx {
+                address
+                description
+                name
+                namespace
+                pipeline
+                proto
+                sources
+                tags
+                version
+                code {
+                  binary
+                  checksum
+                }
+                data {
+                  typeUrl
+                  value
+                }
+                typeUrls {
+                  module
+                  url
+                }
+              }
+              ... on DeclareTx {
+                issuer
+                moniker
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on DeclareFileTx {
+                hash
+              }
+              ... on CreateAssetTx {
+                address
+                moniker
+                parent
+                readonly
+                transferrable
+                ttl
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ConsumeAssetTx {
+                address
+                issuer
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ConsensusUpgradeTx {
+                maxBytes
+                maxCandidates
+                maxGas
+                maxValidators
+                data {
+                  typeUrl
+                  value
+                }
+                validators {
+                  address
+                  power
+                }
+              }
+              ... on ApproveTetherTx {
+                withdraw
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on AcquireAssetTx {
+                to
+                data {
+                  typeUrl
+                  value
+                }
+                specs {
+                  address
+                  data
+                }
+              }
+              ... on AccountMigrateTx {
+                address
+                pk
+                data {
+                  typeUrl
+                  value
+                }
+              }
+            }
+          }
+        }
+      }
+      data {
+        typeUrl
+        value
+      }
+      ops {
+        key
+        value {
+          balance
+          balanceDelta
+          numTxs
+          numTxsDelta
+          rule
+        }
+      }
+    }
+    endBlock {
+      height
+    }
+    exchange {
+      chainId
+      from
+      nonce
+      pk
+      signature
+      signatures {
+        delegator
+        pk
+        signature
+        signer
+        data {
+          typeUrl
+          value
+        }
+      }
+      itx {
+        __typename
+        ... on RevokeSwapTx {
+          address
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on RetrieveSwapTx {
+          address
+          hashkey
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on SetupSwapTx {
+          assets
+          hashlock
+          locktime
+          receiver
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on WithdrawTetherTx {
+          chainId
+          expiredAt
+          from
+          nonce
+          pk
+          signature
+          data {
+            typeUrl
+            value
+          }
+          receiver {
+            assets
+            tether
+            value
+          }
+          sender {
+            assets
+            value
+          }
+          signatures {
+            delegator
+            pk
+            signature
+            signer
+            data {
+              typeUrl
+              value
+            }
+          }
+        }
+        ... on UpgradeNodeTx {
+          height
+          override
+          version
+        }
+        ... on UpdateAssetTx {
+          address
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on TransferTx {
+          assets
+          to
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on SysUpgradeTx {
+          gracePeriod
+          data {
+            typeUrl
+            value
+          }
+          task {
+            actions
+            dataHash
+            type
+          }
+        }
+        ... on StakeTx {
+          message
+          to
+          value
+          data {
+            type
+          }
+        }
+        ... on RevokeTetherTx {
+          tether
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on PokeTx {
+          address
+          date
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ExchangeTetherTx {
+          expiredAt
+          data {
+            typeUrl
+            value
+          }
+          receiver {
+            assets
+            value
+            deposit {
+              chainId
+              from
+              nonce
+              pk
+              signature
+              signatures {
+                delegator
+                pk
+                signature
+                signer
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              itx {
+                __typename
+                ... on RevokeSwapTx {
+                  address
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on RetrieveSwapTx {
+                  address
+                  hashkey
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on SetupSwapTx {
+                  assets
+                  hashlock
+                  locktime
+                  receiver
+                  value
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on WithdrawTetherTx {
+                  chainId
+                  expiredAt
+                  from
+                  nonce
+                  pk
+                  signature
+                  data {
+                    typeUrl
+                    value
+                  }
+                  receiver {
+                    assets
+                    tether
+                    value
+                  }
+                  sender {
+                    assets
+                    value
+                  }
+                  signatures {
+                    delegator
                     pk
                     signature
                     signer
@@ -10859,6 +13642,10 @@ subscription {
           hierarchy
           restricted
         }
+        delegate {
+          deltaInterval
+          typeUrls
+        }
       }
       upgradeInfo {
         height
@@ -10898,6 +13685,7 @@ subscription {
             pk
             signature
             signatures {
+              delegator
               pk
               signature
               signer
@@ -10908,6 +13696,32 @@ subscription {
             }
             itx {
               __typename
+              ... on RevokeSwapTx {
+                address
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on RetrieveSwapTx {
+                address
+                hashkey
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on SetupSwapTx {
+                assets
+                hashlock
+                locktime
+                receiver
+                value
+                data {
+                  typeUrl
+                  value
+                }
+              }
               ... on WithdrawTetherTx {
                 chainId
                 expiredAt
@@ -10929,6 +13743,7 @@ subscription {
                   value
                 }
                 signatures {
+                  delegator
                   pk
                   signature
                   signer
@@ -11150,6 +13965,7 @@ subscription {
             pk
             signature
             signatures {
+              delegator
               pk
               signature
               signer
@@ -11160,6 +13976,32 @@ subscription {
             }
             itx {
               __typename
+              ... on RevokeSwapTx {
+                address
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on RetrieveSwapTx {
+                address
+                hashkey
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on SetupSwapTx {
+                assets
+                hashlock
+                locktime
+                receiver
+                value
+                data {
+                  typeUrl
+                  value
+                }
+              }
               ... on WithdrawTetherTx {
                 chainId
                 expiredAt
@@ -11181,6 +14023,7 @@ subscription {
                   value
                 }
                 signatures {
+                  delegator
                   pk
                   signature
                   signer
@@ -11415,6 +14258,7 @@ subscription {
       pk
       signature
       signatures {
+        delegator
         pk
         signature
         signer
@@ -11425,6 +14269,32 @@ subscription {
       }
       itx {
         __typename
+        ... on RevokeSwapTx {
+          address
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on RetrieveSwapTx {
+          address
+          hashkey
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on SetupSwapTx {
+          assets
+          hashlock
+          locktime
+          receiver
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
         ... on WithdrawTetherTx {
           chainId
           expiredAt
@@ -11446,6 +14316,7 @@ subscription {
             value
           }
           signatures {
+            delegator
             pk
             signature
             signer
@@ -11528,6 +14399,7 @@ subscription {
               pk
               signature
               signatures {
+                delegator
                 pk
                 signature
                 signer
@@ -11538,6 +14410,32 @@ subscription {
               }
               itx {
                 __typename
+                ... on RevokeSwapTx {
+                  address
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on RetrieveSwapTx {
+                  address
+                  hashkey
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on SetupSwapTx {
+                  assets
+                  hashlock
+                  locktime
+                  receiver
+                  value
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
                 ... on WithdrawTetherTx {
                   chainId
                   expiredAt
@@ -11559,6 +14457,7 @@ subscription {
                     value
                   }
                   signatures {
+                    delegator
                     pk
                     signature
                     signer
@@ -11889,6 +14788,7 @@ subscription {
       pk
       signature
       signatures {
+        delegator
         pk
         signature
         signer
@@ -11899,6 +14799,32 @@ subscription {
       }
       itx {
         __typename
+        ... on RevokeSwapTx {
+          address
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on RetrieveSwapTx {
+          address
+          hashkey
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on SetupSwapTx {
+          assets
+          hashlock
+          locktime
+          receiver
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
         ... on WithdrawTetherTx {
           chainId
           expiredAt
@@ -11920,6 +14846,7 @@ subscription {
             value
           }
           signatures {
+            delegator
             pk
             signature
             signer
@@ -12002,6 +14929,7 @@ subscription {
               pk
               signature
               signatures {
+                delegator
                 pk
                 signature
                 signer
@@ -12012,6 +14940,32 @@ subscription {
               }
               itx {
                 __typename
+                ... on RevokeSwapTx {
+                  address
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on RetrieveSwapTx {
+                  address
+                  hashkey
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on SetupSwapTx {
+                  assets
+                  hashlock
+                  locktime
+                  receiver
+                  value
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
                 ... on WithdrawTetherTx {
                   chainId
                   expiredAt
@@ -12033,6 +14987,7 @@ subscription {
                     value
                   }
                   signatures {
+                    delegator
                     pk
                     signature
                     signer
@@ -12388,6 +15343,7 @@ subscription {
             pk
             signature
             signatures {
+              delegator
               pk
               signature
               signer
@@ -12398,6 +15354,32 @@ subscription {
             }
             itx {
               __typename
+              ... on RevokeSwapTx {
+                address
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on RetrieveSwapTx {
+                address
+                hashkey
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on SetupSwapTx {
+                assets
+                hashlock
+                locktime
+                receiver
+                value
+                data {
+                  typeUrl
+                  value
+                }
+              }
               ... on WithdrawTetherTx {
                 chainId
                 expiredAt
@@ -12419,6 +15401,7 @@ subscription {
                   value
                 }
                 signatures {
+                  delegator
                   pk
                   signature
                   signer
@@ -12640,6 +15623,7 @@ subscription {
             pk
             signature
             signatures {
+              delegator
               pk
               signature
               signer
@@ -12650,6 +15634,32 @@ subscription {
             }
             itx {
               __typename
+              ... on RevokeSwapTx {
+                address
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on RetrieveSwapTx {
+                address
+                hashkey
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on SetupSwapTx {
+                assets
+                hashlock
+                locktime
+                receiver
+                value
+                data {
+                  typeUrl
+                  value
+                }
+              }
               ... on WithdrawTetherTx {
                 chainId
                 expiredAt
@@ -12671,6 +15681,7 @@ subscription {
                   value
                 }
                 signatures {
+                  delegator
                   pk
                   signature
                   signer
@@ -12882,6 +15893,7 @@ subscription {
       pk
       signature
       signatures {
+        delegator
         pk
         signature
         signer
@@ -12892,6 +15904,32 @@ subscription {
       }
       itx {
         __typename
+        ... on RevokeSwapTx {
+          address
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on RetrieveSwapTx {
+          address
+          hashkey
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on SetupSwapTx {
+          assets
+          hashlock
+          locktime
+          receiver
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
         ... on WithdrawTetherTx {
           chainId
           expiredAt
@@ -12913,6 +15951,7 @@ subscription {
             value
           }
           signatures {
+            delegator
             pk
             signature
             signer
@@ -12995,6 +16034,7 @@ subscription {
               pk
               signature
               signatures {
+                delegator
                 pk
                 signature
                 signer
@@ -13005,6 +16045,32 @@ subscription {
               }
               itx {
                 __typename
+                ... on RevokeSwapTx {
+                  address
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on RetrieveSwapTx {
+                  address
+                  hashkey
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on SetupSwapTx {
+                  assets
+                  hashlock
+                  locktime
+                  receiver
+                  value
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
                 ... on WithdrawTetherTx {
                   chainId
                   expiredAt
@@ -13026,6 +16092,7 @@ subscription {
                     value
                   }
                   signatures {
+                    delegator
                     pk
                     signature
                     signer
@@ -13356,6 +16423,7 @@ subscription {
       pk
       signature
       signatures {
+        delegator
         pk
         signature
         signer
@@ -13366,6 +16434,32 @@ subscription {
       }
       itx {
         __typename
+        ... on RevokeSwapTx {
+          address
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on RetrieveSwapTx {
+          address
+          hashkey
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on SetupSwapTx {
+          assets
+          hashlock
+          locktime
+          receiver
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
         ... on WithdrawTetherTx {
           chainId
           expiredAt
@@ -13387,6 +16481,7 @@ subscription {
             value
           }
           signatures {
+            delegator
             pk
             signature
             signer
@@ -13469,6 +16564,7 @@ subscription {
               pk
               signature
               signatures {
+                delegator
                 pk
                 signature
                 signer
@@ -13479,6 +16575,32 @@ subscription {
               }
               itx {
                 __typename
+                ... on RevokeSwapTx {
+                  address
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on RetrieveSwapTx {
+                  address
+                  hashkey
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on SetupSwapTx {
+                  assets
+                  hashlock
+                  locktime
+                  receiver
+                  value
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
                 ... on WithdrawTetherTx {
                   chainId
                   expiredAt
@@ -13500,6 +16622,7 @@ subscription {
                     value
                   }
                   signatures {
+                    delegator
                     pk
                     signature
                     signer
@@ -13830,6 +16953,7 @@ subscription {
       pk
       signature
       signatures {
+        delegator
         pk
         signature
         signer
@@ -13840,6 +16964,32 @@ subscription {
       }
       itx {
         __typename
+        ... on RevokeSwapTx {
+          address
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on RetrieveSwapTx {
+          address
+          hashkey
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on SetupSwapTx {
+          assets
+          hashlock
+          locktime
+          receiver
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
         ... on WithdrawTetherTx {
           chainId
           expiredAt
@@ -13861,6 +17011,7 @@ subscription {
             value
           }
           signatures {
+            delegator
             pk
             signature
             signer
@@ -13943,6 +17094,7 @@ subscription {
               pk
               signature
               signatures {
+                delegator
                 pk
                 signature
                 signer
@@ -13953,6 +17105,32 @@ subscription {
               }
               itx {
                 __typename
+                ... on RevokeSwapTx {
+                  address
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on RetrieveSwapTx {
+                  address
+                  hashkey
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on SetupSwapTx {
+                  assets
+                  hashlock
+                  locktime
+                  receiver
+                  value
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
                 ... on WithdrawTetherTx {
                   chainId
                   expiredAt
@@ -13974,6 +17152,7 @@ subscription {
                     value
                   }
                   signatures {
+                    delegator
                     pk
                     signature
                     signer

@@ -22,6 +22,8 @@ Please note that, due to internal implementation of google-protobuf, all `repeat
   * _instance_
     * [.getTxSendMethods()](#GraphQLClient+getTxSendMethods) ⇒ <code>Array.&lt;string></code>
     * [.getTxEncodeMethods()](#GraphQLClient+getTxEncodeMethods) ⇒ <code>Array.&lt;string></code>
+    * [.getTxSignMethods()](#GraphQLClient+getTxSignMethods) ⇒ <code>Array.&lt;string></code>
+    * [.getTxMultiSignMethods()](#GraphQLClient+getTxMultiSignMethods) ⇒ <code>Array.&lt;string></code>
     * [.getType(x)](#GraphQLClient+getType) ⇒ <code>class</code> \| <code>null</code>
     * [.decodeTx(buffer)](#GraphQLClient+decodeTx) ⇒ <code>object</code>
     * [.getQueries()](#GraphQLClient+getQueries) ⇒ <code>Array.&lt;string></code>
@@ -31,10 +33,13 @@ Please note that, due to internal implementation of google-protobuf, all `repeat
     * [.doRawSubscription(query)](#GraphQLClient+doRawSubscription) ⇒ <code>Promise</code>
     * [.sendAccountMigrateTx(params)](#GraphQLClient+sendAccountMigrateTx) ⇒ <code>Promise.&lt;string></code>
     * [.sendAcquireAssetTx(params)](#GraphQLClient+sendAcquireAssetTx) ⇒ <code>Promise.&lt;string></code>
+    * [.sendActivateProtocolTx(params)](#GraphQLClient+sendActivateProtocolTx) ⇒ <code>Promise.&lt;string></code>
     * [.sendApproveTetherTx(params)](#GraphQLClient+sendApproveTetherTx) ⇒ <code>Promise.&lt;string></code>
     * [.sendConsumeAssetTx(params)](#GraphQLClient+sendConsumeAssetTx) ⇒ <code>Promise.&lt;string></code>
     * [.sendCreateAssetTx(params)](#GraphQLClient+sendCreateAssetTx) ⇒ <code>Promise.&lt;string></code>
+    * [.sendDeactivateProtocolTx(params)](#GraphQLClient+sendDeactivateProtocolTx) ⇒ <code>Promise.&lt;string></code>
     * [.sendDeclareTx(params)](#GraphQLClient+sendDeclareTx) ⇒ <code>Promise.&lt;string></code>
+    * [.sendDelegateTx(params)](#GraphQLClient+sendDelegateTx) ⇒ <code>Promise.&lt;string></code>
     * [.sendDeployProtocolTx(params)](#GraphQLClient+sendDeployProtocolTx) ⇒ <code>Promise.&lt;string></code>
     * [.sendDepositTetherTx(params)](#GraphQLClient+sendDepositTetherTx) ⇒ <code>Promise.&lt;string></code>
     * [.sendExchangeTetherTx(params)](#GraphQLClient+sendExchangeTetherTx) ⇒ <code>Promise.&lt;string></code>
@@ -51,10 +56,13 @@ Please note that, due to internal implementation of google-protobuf, all `repeat
     * [.sendWithdrawTetherTx(params)](#GraphQLClient+sendWithdrawTetherTx) ⇒ <code>Promise.&lt;string></code>
     * [.encodeAccountMigrateTx(params)](#GraphQLClient+encodeAccountMigrateTx) ⇒ [<code>Promise.&lt;TxEncodeOutput></code>](#GraphQLClient.TxEncodeOutput)
     * [.encodeAcquireAssetTx(params)](#GraphQLClient+encodeAcquireAssetTx) ⇒ [<code>Promise.&lt;TxEncodeOutput></code>](#GraphQLClient.TxEncodeOutput)
+    * [.encodeActivateProtocolTx(params)](#GraphQLClient+encodeActivateProtocolTx) ⇒ [<code>Promise.&lt;TxEncodeOutput></code>](#GraphQLClient.TxEncodeOutput)
     * [.encodeApproveTetherTx(params)](#GraphQLClient+encodeApproveTetherTx) ⇒ [<code>Promise.&lt;TxEncodeOutput></code>](#GraphQLClient.TxEncodeOutput)
     * [.encodeConsumeAssetTx(params)](#GraphQLClient+encodeConsumeAssetTx) ⇒ [<code>Promise.&lt;TxEncodeOutput></code>](#GraphQLClient.TxEncodeOutput)
     * [.encodeCreateAssetTx(params)](#GraphQLClient+encodeCreateAssetTx) ⇒ [<code>Promise.&lt;TxEncodeOutput></code>](#GraphQLClient.TxEncodeOutput)
+    * [.encodeDeactivateProtocolTx(params)](#GraphQLClient+encodeDeactivateProtocolTx) ⇒ [<code>Promise.&lt;TxEncodeOutput></code>](#GraphQLClient.TxEncodeOutput)
     * [.encodeDeclareTx(params)](#GraphQLClient+encodeDeclareTx) ⇒ [<code>Promise.&lt;TxEncodeOutput></code>](#GraphQLClient.TxEncodeOutput)
+    * [.encodeDelegateTx(params)](#GraphQLClient+encodeDelegateTx) ⇒ [<code>Promise.&lt;TxEncodeOutput></code>](#GraphQLClient.TxEncodeOutput)
     * [.encodeDeployProtocolTx(params)](#GraphQLClient+encodeDeployProtocolTx) ⇒ [<code>Promise.&lt;TxEncodeOutput></code>](#GraphQLClient.TxEncodeOutput)
     * [.encodeDepositTetherTx(params)](#GraphQLClient+encodeDepositTetherTx) ⇒ [<code>Promise.&lt;TxEncodeOutput></code>](#GraphQLClient.TxEncodeOutput)
     * [.encodeExchangeTetherTx(params)](#GraphQLClient+encodeExchangeTetherTx) ⇒ [<code>Promise.&lt;TxEncodeOutput></code>](#GraphQLClient.TxEncodeOutput)
@@ -75,6 +83,7 @@ Please note that, due to internal implementation of google-protobuf, all `repeat
     * [.getBlocks(params)](#GraphQLClient+getBlocks) ⇒ [<code>Promise.&lt;ResponseGetBlocks></code>](#GraphQLClient.ResponseGetBlocks)
     * [.getChainInfo()](#GraphQLClient+getChainInfo) ⇒ [<code>Promise.&lt;ResponseGetChainInfo></code>](#GraphQLClient.ResponseGetChainInfo)
     * [.getConfig(params)](#GraphQLClient+getConfig) ⇒ [<code>Promise.&lt;ResponseGetConfig></code>](#GraphQLClient.ResponseGetConfig)
+    * [.getDelegateState(params)](#GraphQLClient+getDelegateState) ⇒ [<code>Promise.&lt;ResponseGetDelegateState></code>](#GraphQLClient.ResponseGetDelegateState)
     * [.getForgeState(params)](#GraphQLClient+getForgeState) ⇒ [<code>Promise.&lt;ResponseGetForgeState></code>](#GraphQLClient.ResponseGetForgeState)
     * [.getForgeStats()](#GraphQLClient+getForgeStats) ⇒ [<code>Promise.&lt;ResponseGetForgeStats></code>](#GraphQLClient.ResponseGetForgeStats)
     * [.getForgeStatsByDay(params)](#GraphQLClient+getForgeStatsByDay) ⇒ [<code>Promise.&lt;ResponseGetForgeStats></code>](#GraphQLClient.ResponseGetForgeStats)
@@ -138,6 +147,9 @@ Please note that, due to internal implementation of google-protobuf, all `repeat
     * [.DeclareConfig](#GraphQLClient.DeclareConfig) : <code>object</code>
     * [.DeclareFileTx](#GraphQLClient.DeclareFileTx) : <code>object</code>
     * [.DeclareTx](#GraphQLClient.DeclareTx) : <code>object</code>
+    * [.DelegateConfig](#GraphQLClient.DelegateConfig) : <code>object</code>
+    * [.DelegateOpState](#GraphQLClient.DelegateOpState) : <code>object</code>
+    * [.DelegateState](#GraphQLClient.DelegateState) : <code>object</code>
     * [.DeployProtocolTx](#GraphQLClient.DeployProtocolTx) : <code>object</code>
     * [.DepositTetherTx](#GraphQLClient.DepositTetherTx) : <code>object</code>
     * [.DiskSpaceStatus](#GraphQLClient.DiskSpaceStatus) : <code>object</code>
@@ -167,6 +179,7 @@ Please note that, due to internal implementation of google-protobuf, all `repeat
     * [.NetInfo](#GraphQLClient.NetInfo) : <code>object</code>
     * [.NetworkStatus](#GraphQLClient.NetworkStatus) : <code>object</code>
     * [.NodeInfo](#GraphQLClient.NodeInfo) : <code>object</code>
+    * [.OpsEntry](#GraphQLClient.OpsEntry) : <code>object</code>
     * [.PageInfo](#GraphQLClient.PageInfo) : <code>object</code>
     * [.PartSetHeader](#GraphQLClient.PartSetHeader) : <code>object</code>
     * [.PeerInfo](#GraphQLClient.PeerInfo) : <code>object</code>
@@ -184,6 +197,7 @@ Please note that, due to internal implementation of google-protobuf, all `repeat
     * [.ResponseGetBlocks](#GraphQLClient.ResponseGetBlocks) : <code>object</code>
     * [.ResponseGetChainInfo](#GraphQLClient.ResponseGetChainInfo) : <code>object</code>
     * [.ResponseGetConfig](#GraphQLClient.ResponseGetConfig) : <code>object</code>
+    * [.ResponseGetDelegateState](#GraphQLClient.ResponseGetDelegateState) : <code>object</code>
     * [.ResponseGetForgeState](#GraphQLClient.ResponseGetForgeState) : <code>object</code>
     * [.ResponseGetForgeStats](#GraphQLClient.ResponseGetForgeStats) : <code>object</code>
     * [.ResponseGetHealthStatus](#GraphQLClient.ResponseGetHealthStatus) : <code>object</code>
@@ -211,7 +225,10 @@ Please note that, due to internal implementation of google-protobuf, all `repeat
     * [.ResponseStopSimulator](#GraphQLClient.ResponseStopSimulator) : <code>object</code>
     * [.ResponseSubscribe](#GraphQLClient.ResponseSubscribe) : <code>object</code>
     * [.ResponseUnsubscribe](#GraphQLClient.ResponseUnsubscribe) : <code>object</code>
+    * [.RetrieveSwapTx](#GraphQLClient.RetrieveSwapTx) : <code>object</code>
+    * [.RevokeSwapTx](#GraphQLClient.RevokeSwapTx) : <code>object</code>
     * [.RevokeTetherTx](#GraphQLClient.RevokeTetherTx) : <code>object</code>
+    * [.SetupSwapTx](#GraphQLClient.SetupSwapTx) : <code>object</code>
     * [.StakeConfig](#GraphQLClient.StakeConfig) : <code>object</code>
     * [.StakeContext](#GraphQLClient.StakeContext) : <code>object</code>
     * [.StakeDataType](#GraphQLClient.StakeDataType) : <code>object</code>
@@ -250,6 +267,7 @@ Please note that, due to internal implementation of google-protobuf, all `repeat
     * [.GetBlockParams](#GraphQLClient.GetBlockParams) : <code>object</code>
     * [.GetBlocksParams](#GraphQLClient.GetBlocksParams) : <code>object</code>
     * [.GetConfigParams](#GraphQLClient.GetConfigParams) : <code>object</code>
+    * [.GetDelegateStateParams](#GraphQLClient.GetDelegateStateParams) : <code>object</code>
     * [.GetForgeStateParams](#GraphQLClient.GetForgeStateParams) : <code>object</code>
     * [.GetForgeStatsByDayParams](#GraphQLClient.GetForgeStatsByDayParams) : <code>object</code>
     * [.GetForgeStatsByHourParams](#GraphQLClient.GetForgeStatsByHourParams) : <code>object</code>
@@ -273,10 +291,13 @@ Please note that, due to internal implementation of google-protobuf, all `repeat
     * [.SubscribeParams](#GraphQLClient.SubscribeParams) : <code>object</code>
     * [.AccountMigrateTxInput](#GraphQLClient.AccountMigrateTxInput) : <code>Object</code>
     * [.AcquireAssetTxInput](#GraphQLClient.AcquireAssetTxInput) : <code>Object</code>
+    * [.ActivateProtocolTxInput](#GraphQLClient.ActivateProtocolTxInput) : <code>Object</code>
     * [.ApproveTetherTxInput](#GraphQLClient.ApproveTetherTxInput) : <code>Object</code>
     * [.ConsumeAssetTxInput](#GraphQLClient.ConsumeAssetTxInput) : <code>Object</code>
     * [.CreateAssetTxInput](#GraphQLClient.CreateAssetTxInput) : <code>Object</code>
+    * [.DeactivateProtocolTxInput](#GraphQLClient.DeactivateProtocolTxInput) : <code>Object</code>
     * [.DeclareTxInput](#GraphQLClient.DeclareTxInput) : <code>Object</code>
+    * [.DelegateTxInput](#GraphQLClient.DelegateTxInput) : <code>Object</code>
     * [.DeployProtocolTxInput](#GraphQLClient.DeployProtocolTxInput) : <code>Object</code>
     * [.DepositTetherTxInput](#GraphQLClient.DepositTetherTxInput) : <code>Object</code>
     * [.ExchangeTetherTxInput](#GraphQLClient.ExchangeTetherTxInput) : <code>Object</code>
@@ -332,6 +353,22 @@ List all transaction encode methods, each method can be used to encode transacti
 
 **Kind**: instance method of [<code>GraphQLClient</code>](#GraphQLClient)  
 **Returns**: <code>Array.&lt;string></code> - method name list  
+<a name="GraphQLClient+getTxSignMethods"></a>
+
+### graphQLClient.getTxSignMethods() ⇒ <code>Array.&lt;string></code>
+
+List all transaction sign methods, each method can be used to sign transaction to an object
+
+**Kind**: instance method of [<code>GraphQLClient</code>](#GraphQLClient)  
+**Returns**: <code>Array.&lt;string></code> - method name list  
+<a name="GraphQLClient+getTxMultiSignMethods"></a>
+
+### graphQLClient.getTxMultiSignMethods() ⇒ <code>Array.&lt;string></code>
+
+List all transaction multi sign methods, each method can be used to do multi sign a transaction
+
+**Kind**: instance method of [<code>GraphQLClient</code>](#GraphQLClient)  
+**Returns**: <code>Array.&lt;string></code> - method name list  
 <a name="GraphQLClient+getType"></a>
 
 ### graphQLClient.getType(x) ⇒ <code>class</code> \| <code>null</code>
@@ -378,6 +415,7 @@ const methods = client.getQueries();
 //   getBlocks,
 //   getChainInfo,
 //   getConfig,
+//   getDelegateState,
 //   getForgeState,
 //   getForgeStats,
 //   getForgeStatsByDay,
@@ -514,6 +552,19 @@ Send AcquireAssetTx transaction and get the hash, use [getTx](#GraphQLClient+get
 | ------ | ---------------------------------------------------------------------- |
 | params | [<code>AcquireAssetTxInput</code>](#GraphQLClient.AcquireAssetTxInput) |
 
+<a name="GraphQLClient+sendActivateProtocolTx"></a>
+
+### graphQLClient.sendActivateProtocolTx(params) ⇒ <code>Promise.&lt;string></code>
+
+Send ActivateProtocolTx transaction and get the hash, use [getTx](#GraphQLClient+getTx) to get transaction detail
+
+**Kind**: instance method of [<code>GraphQLClient</code>](#GraphQLClient)  
+**Returns**: <code>Promise.&lt;string></code> - returns transaction hash if success, otherwise error was thrown  
+
+| Param  | Type                                                                           |
+| ------ | ------------------------------------------------------------------------------ |
+| params | [<code>ActivateProtocolTxInput</code>](#GraphQLClient.ActivateProtocolTxInput) |
+
 <a name="GraphQLClient+sendApproveTetherTx"></a>
 
 ### graphQLClient.sendApproveTetherTx(params) ⇒ <code>Promise.&lt;string></code>
@@ -553,6 +604,19 @@ Send CreateAssetTx transaction and get the hash, use [getTx](#GraphQLClient+getT
 | ------ | -------------------------------------------------------------------- |
 | params | [<code>CreateAssetTxInput</code>](#GraphQLClient.CreateAssetTxInput) |
 
+<a name="GraphQLClient+sendDeactivateProtocolTx"></a>
+
+### graphQLClient.sendDeactivateProtocolTx(params) ⇒ <code>Promise.&lt;string></code>
+
+Send DeactivateProtocolTx transaction and get the hash, use [getTx](#GraphQLClient+getTx) to get transaction detail
+
+**Kind**: instance method of [<code>GraphQLClient</code>](#GraphQLClient)  
+**Returns**: <code>Promise.&lt;string></code> - returns transaction hash if success, otherwise error was thrown  
+
+| Param  | Type                                                                               |
+| ------ | ---------------------------------------------------------------------------------- |
+| params | [<code>DeactivateProtocolTxInput</code>](#GraphQLClient.DeactivateProtocolTxInput) |
+
 <a name="GraphQLClient+sendDeclareTx"></a>
 
 ### graphQLClient.sendDeclareTx(params) ⇒ <code>Promise.&lt;string></code>
@@ -565,6 +629,19 @@ Send DeclareTx transaction and get the hash, use [getTx](#GraphQLClient+getTx) t
 | Param  | Type                                                         |
 | ------ | ------------------------------------------------------------ |
 | params | [<code>DeclareTxInput</code>](#GraphQLClient.DeclareTxInput) |
+
+<a name="GraphQLClient+sendDelegateTx"></a>
+
+### graphQLClient.sendDelegateTx(params) ⇒ <code>Promise.&lt;string></code>
+
+Send DelegateTx transaction and get the hash, use [getTx](#GraphQLClient+getTx) to get transaction detail
+
+**Kind**: instance method of [<code>GraphQLClient</code>](#GraphQLClient)  
+**Returns**: <code>Promise.&lt;string></code> - returns transaction hash if success, otherwise error was thrown  
+
+| Param  | Type                                                           |
+| ------ | -------------------------------------------------------------- |
+| params | [<code>DelegateTxInput</code>](#GraphQLClient.DelegateTxInput) |
 
 <a name="GraphQLClient+sendDeployProtocolTx"></a>
 
@@ -774,6 +851,19 @@ Encode a AcquireAssetTx transaction for later use
 | ------ | ---------------------------------------------------------------------- |
 | params | [<code>AcquireAssetTxInput</code>](#GraphQLClient.AcquireAssetTxInput) |
 
+<a name="GraphQLClient+encodeActivateProtocolTx"></a>
+
+### graphQLClient.encodeActivateProtocolTx(params) ⇒ [<code>Promise.&lt;TxEncodeOutput></code>](#GraphQLClient.TxEncodeOutput)
+
+Encode a ActivateProtocolTx transaction for later use
+
+**Kind**: instance method of [<code>GraphQLClient</code>](#GraphQLClient)  
+**Returns**: [<code>Promise.&lt;TxEncodeOutput></code>](#GraphQLClient.TxEncodeOutput) - result - we provide two formats of the encoding result, binary presentation and human readable object  
+
+| Param  | Type                                                                           |
+| ------ | ------------------------------------------------------------------------------ |
+| params | [<code>ActivateProtocolTxInput</code>](#GraphQLClient.ActivateProtocolTxInput) |
+
 <a name="GraphQLClient+encodeApproveTetherTx"></a>
 
 ### graphQLClient.encodeApproveTetherTx(params) ⇒ [<code>Promise.&lt;TxEncodeOutput></code>](#GraphQLClient.TxEncodeOutput)
@@ -813,6 +903,19 @@ Encode a CreateAssetTx transaction for later use
 | ------ | -------------------------------------------------------------------- |
 | params | [<code>CreateAssetTxInput</code>](#GraphQLClient.CreateAssetTxInput) |
 
+<a name="GraphQLClient+encodeDeactivateProtocolTx"></a>
+
+### graphQLClient.encodeDeactivateProtocolTx(params) ⇒ [<code>Promise.&lt;TxEncodeOutput></code>](#GraphQLClient.TxEncodeOutput)
+
+Encode a DeactivateProtocolTx transaction for later use
+
+**Kind**: instance method of [<code>GraphQLClient</code>](#GraphQLClient)  
+**Returns**: [<code>Promise.&lt;TxEncodeOutput></code>](#GraphQLClient.TxEncodeOutput) - result - we provide two formats of the encoding result, binary presentation and human readable object  
+
+| Param  | Type                                                                               |
+| ------ | ---------------------------------------------------------------------------------- |
+| params | [<code>DeactivateProtocolTxInput</code>](#GraphQLClient.DeactivateProtocolTxInput) |
+
 <a name="GraphQLClient+encodeDeclareTx"></a>
 
 ### graphQLClient.encodeDeclareTx(params) ⇒ [<code>Promise.&lt;TxEncodeOutput></code>](#GraphQLClient.TxEncodeOutput)
@@ -825,6 +928,19 @@ Encode a DeclareTx transaction for later use
 | Param  | Type                                                         |
 | ------ | ------------------------------------------------------------ |
 | params | [<code>DeclareTxInput</code>](#GraphQLClient.DeclareTxInput) |
+
+<a name="GraphQLClient+encodeDelegateTx"></a>
+
+### graphQLClient.encodeDelegateTx(params) ⇒ [<code>Promise.&lt;TxEncodeOutput></code>](#GraphQLClient.TxEncodeOutput)
+
+Encode a DelegateTx transaction for later use
+
+**Kind**: instance method of [<code>GraphQLClient</code>](#GraphQLClient)  
+**Returns**: [<code>Promise.&lt;TxEncodeOutput></code>](#GraphQLClient.TxEncodeOutput) - result - we provide two formats of the encoding result, binary presentation and human readable object  
+
+| Param  | Type                                                           |
+| ------ | -------------------------------------------------------------- |
+| params | [<code>DelegateTxInput</code>](#GraphQLClient.DelegateTxInput) |
 
 <a name="GraphQLClient+encodeDeployProtocolTx"></a>
 
@@ -1080,6 +1196,19 @@ getConfig
 | Param  | Type                                                           |
 | ------ | -------------------------------------------------------------- |
 | params | [<code>GetConfigParams</code>](#GraphQLClient.GetConfigParams) |
+
+<a name="GraphQLClient+getDelegateState"></a>
+
+### graphQLClient.getDelegateState(params) ⇒ [<code>Promise.&lt;ResponseGetDelegateState></code>](#GraphQLClient.ResponseGetDelegateState)
+
+getDelegateState
+
+**Kind**: instance method of [<code>GraphQLClient</code>](#GraphQLClient)  
+**Returns**: [<code>Promise.&lt;ResponseGetDelegateState></code>](#GraphQLClient.ResponseGetDelegateState) - Checkout [ResponseGetDelegateState](#GraphQLClient.ResponseGetDelegateState) for resolved data format  
+
+| Param  | Type                                                                         |
+| ------ | ---------------------------------------------------------------------------- |
+| params | [<code>GetDelegateStateParams</code>](#GraphQLClient.GetDelegateStateParams) |
 
 <a name="GraphQLClient+getForgeState"></a>
 
@@ -2117,6 +2246,53 @@ Checkout the following snippet for the format of DeclareTx:
 | issuer  | <code>string</code>                    |
 | moniker | <code>string</code>                    |
 
+<a name="GraphQLClient.DelegateConfig"></a>
+
+### GraphQLClient.DelegateConfig : <code>object</code>
+
+Structure of GraphQLClient.DelegateConfig
+
+**Kind**: static typedef of [<code>GraphQLClient</code>](#GraphQLClient)  
+**Properties**
+
+| Name          | Type                                            |
+| ------------- | ----------------------------------------------- |
+| deltaInterval | <code>number</code>                             |
+| typeUrls      | <code>Array.&lt;...GraphQLClient.string></code> |
+
+<a name="GraphQLClient.DelegateOpState"></a>
+
+### GraphQLClient.DelegateOpState : <code>object</code>
+
+Structure of GraphQLClient.DelegateOpState
+
+**Kind**: static typedef of [<code>GraphQLClient</code>](#GraphQLClient)  
+**Properties**
+
+| Name         | Type                |
+| ------------ | ------------------- |
+| balance      | <code>string</code> |
+| balanceDelta | <code>string</code> |
+| numTxs       | <code>string</code> |
+| numTxsDelta  | <code>string</code> |
+| rule         | <code>string</code> |
+
+<a name="GraphQLClient.DelegateState"></a>
+
+### GraphQLClient.DelegateState : <code>object</code>
+
+Structure of GraphQLClient.DelegateState
+
+**Kind**: static typedef of [<code>GraphQLClient</code>](#GraphQLClient)  
+**Properties**
+
+| Name       | Type                                                     |
+| ---------- | -------------------------------------------------------- |
+| address    | <code>string</code>                                      |
+| ...context | [<code>StateContext</code>](#GraphQLClient.StateContext) |
+| ...data    | [<code>Any</code>](#GraphQLClient.Any)                   |
+| ops        | <code>Array.&lt;...GraphQLClient.OpsEntry></code>        |
+
 <a name="GraphQLClient.DeployProtocolTx"></a>
 
 ### GraphQLClient.DeployProtocolTx : <code>object</code>
@@ -2284,6 +2460,7 @@ Checkout the following snippet for the format of ExchangeTetherTx:
             "typeUrl": "abc",
             "value": "abc"
           },
+          "delegator": "abc",
           "pk": "abc",
           "signature": "abc",
           "signer": "abc"
@@ -2703,6 +2880,7 @@ Structure of GraphQLClient.Multisig
 | Name      | Type                                   |
 | --------- | -------------------------------------- |
 | ...data   | [<code>Any</code>](#GraphQLClient.Any) |
+| delegator | <code>string</code>                    |
 | pk        | <code>string</code>                    |
 | signature | <code>string</code>                    |
 | signer    | <code>string</code>                    |
@@ -2766,6 +2944,20 @@ Structure of GraphQLClient.NodeInfo
 | totalTxs         | <code>string</code>                                            |
 | version          | <code>string</code>                                            |
 | votingPower      | <code>string</code>                                            |
+
+<a name="GraphQLClient.OpsEntry"></a>
+
+### GraphQLClient.OpsEntry : <code>object</code>
+
+Structure of GraphQLClient.OpsEntry
+
+**Kind**: static typedef of [<code>GraphQLClient</code>](#GraphQLClient)  
+**Properties**
+
+| Name     | Type                                                           |
+| -------- | -------------------------------------------------------------- |
+| key      | <code>string</code>                                            |
+| ...value | [<code>DelegateOpState</code>](#GraphQLClient.DelegateOpState) |
 
 <a name="GraphQLClient.PageInfo"></a>
 
@@ -3039,7 +3231,7 @@ Checkout the following snippet for the format of ResponseGetAccountState:
 
 ```json
 {
-  "code": "OK",
+  "code": "INSUFFICIENT_FUND",
   "state": {
     "address": "abc",
     "balance": "abc",
@@ -3049,7 +3241,7 @@ Checkout the following snippet for the format of ResponseGetAccountState:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "OK",
+        "code": "INSUFFICIENT_FUND",
         "createAsset": {
           "asset": "abc"
         },
@@ -3075,6 +3267,7 @@ Checkout the following snippet for the format of ResponseGetAccountState:
                 "typeUrl": "abc",
                 "value": "abc"
               },
+              "delegator": "abc",
               "pk": "abc",
               "signature": "abc",
               "signer": "abc"
@@ -3087,7 +3280,7 @@ Checkout the following snippet for the format of ResponseGetAccountState:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "OK",
+        "code": "INSUFFICIENT_FUND",
         "createAsset": {
           "asset": "abc"
         },
@@ -3113,6 +3306,7 @@ Checkout the following snippet for the format of ResponseGetAccountState:
                 "typeUrl": "abc",
                 "value": "abc"
               },
+              "delegator": "abc",
               "pk": "abc",
               "signature": "abc",
               "signer": "abc"
@@ -3193,7 +3387,7 @@ Checkout the following snippet for the format of ResponseGetAssetState:
 
 ```json
 {
-  "code": "OK",
+  "code": "INSUFFICIENT_FUND",
   "state": {
     "address": "abc",
     "consumedTime": "2019-04-29T00:00:00.000Z",
@@ -3203,7 +3397,7 @@ Checkout the following snippet for the format of ResponseGetAssetState:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "OK",
+        "code": "INSUFFICIENT_FUND",
         "createAsset": {
           "asset": "abc"
         },
@@ -3229,6 +3423,7 @@ Checkout the following snippet for the format of ResponseGetAssetState:
                 "typeUrl": "abc",
                 "value": "abc"
               },
+              "delegator": "abc",
               "pk": "abc",
               "signature": "abc",
               "signer": "abc"
@@ -3241,7 +3436,7 @@ Checkout the following snippet for the format of ResponseGetAssetState:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "OK",
+        "code": "INSUFFICIENT_FUND",
         "createAsset": {
           "asset": "abc"
         },
@@ -3267,6 +3462,7 @@ Checkout the following snippet for the format of ResponseGetAssetState:
                 "typeUrl": "abc",
                 "value": "abc"
               },
+              "delegator": "abc",
               "pk": "abc",
               "signature": "abc",
               "signer": "abc"
@@ -3342,7 +3538,7 @@ Checkout the following snippet for the format of ResponseGetBlock:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "OK",
+        "code": "INSUFFICIENT_FUND",
         "createAsset": {
           "asset": "abc"
         },
@@ -3368,6 +3564,7 @@ Checkout the following snippet for the format of ResponseGetBlock:
                 "typeUrl": "abc",
                 "value": "abc"
               },
+              "delegator": "abc",
               "pk": "abc",
               "signature": "abc",
               "signer": "abc"
@@ -3398,7 +3595,7 @@ Checkout the following snippet for the format of ResponseGetBlock:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "OK",
+        "code": "INSUFFICIENT_FUND",
         "createAsset": {
           "asset": "abc"
         },
@@ -3424,6 +3621,7 @@ Checkout the following snippet for the format of ResponseGetBlock:
                 "typeUrl": "abc",
                 "value": "abc"
               },
+              "delegator": "abc",
               "pk": "abc",
               "signature": "abc",
               "signer": "abc"
@@ -3441,7 +3639,7 @@ Checkout the following snippet for the format of ResponseGetBlock:
       "block": "abc"
     }
   },
-  "code": "OK"
+  "code": "INSUFFICIENT_FUND"
 }
 ```
 
@@ -3497,7 +3695,7 @@ Checkout the following snippet for the format of ResponseGetBlocks:
       }
     }
   ],
-  "code": "OK",
+  "code": "INSUFFICIENT_FUND",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -3525,7 +3723,7 @@ Checkout the following snippet for the format of ResponseGetChainInfo:
 
 ```json
 {
-  "code": "OK",
+  "code": "INSUFFICIENT_FUND",
   "info": {
     "address": "abc",
     "appHash": "abc",
@@ -3571,7 +3769,7 @@ Checkout the following snippet for the format of ResponseGetConfig:
 
 ```json
 {
-  "code": "OK",
+  "code": "INSUFFICIENT_FUND",
   "config": "abc"
 }
 ```
@@ -3584,6 +3782,127 @@ Checkout the following snippet for the format of ResponseGetConfig:
 | ...code | <code>GraphQLClient.StatusCode</code> |
 | config  | <code>string</code>                   |
 
+<a name="GraphQLClient.ResponseGetDelegateState"></a>
+
+### GraphQLClient.ResponseGetDelegateState : <code>object</code>
+
+Structure of GraphQLClient.ResponseGetDelegateState 
+
+Checkout the following snippet for the format of ResponseGetDelegateState:
+
+```json
+{
+  "code": "INSUFFICIENT_FUND",
+  "state": {
+    "address": "abc",
+    "context": {
+      "genesisTime": "2019-04-29T00:00:00.000Z",
+      "genesisTx": {
+        "accountMigrate": {
+          "address": "abc"
+        },
+        "code": "INSUFFICIENT_FUND",
+        "createAsset": {
+          "asset": "abc"
+        },
+        "hash": "abc",
+        "height": "abc",
+        "index": 123,
+        "tags": [
+          {
+            "key": "abc",
+            "value": "abc"
+          }
+        ],
+        "time": "2019-04-29T00:00:00.000Z",
+        "tx": {
+          "chainId": "abc",
+          "from": "abc",
+          "nonce": "abc",
+          "pk": "abc",
+          "signature": "abc",
+          "signatures": [
+            {
+              "data": {
+                "typeUrl": "abc",
+                "value": "abc"
+              },
+              "delegator": "abc",
+              "pk": "abc",
+              "signature": "abc",
+              "signer": "abc"
+            }
+          ]
+        }
+      },
+      "renaissanceTime": "2019-04-29T00:00:00.000Z",
+      "renaissanceTx": {
+        "accountMigrate": {
+          "address": "abc"
+        },
+        "code": "INSUFFICIENT_FUND",
+        "createAsset": {
+          "asset": "abc"
+        },
+        "hash": "abc",
+        "height": "abc",
+        "index": 123,
+        "tags": [
+          {
+            "key": "abc",
+            "value": "abc"
+          }
+        ],
+        "time": "2019-04-29T00:00:00.000Z",
+        "tx": {
+          "chainId": "abc",
+          "from": "abc",
+          "nonce": "abc",
+          "pk": "abc",
+          "signature": "abc",
+          "signatures": [
+            {
+              "data": {
+                "typeUrl": "abc",
+                "value": "abc"
+              },
+              "delegator": "abc",
+              "pk": "abc",
+              "signature": "abc",
+              "signer": "abc"
+            }
+          ]
+        }
+      }
+    },
+    "data": {
+      "typeUrl": "abc",
+      "value": "abc"
+    },
+    "ops": [
+      {
+        "key": "abc",
+        "value": {
+          "balance": "abc",
+          "balanceDelta": "abc",
+          "numTxs": "abc",
+          "numTxsDelta": "abc",
+          "rule": "abc"
+        }
+      }
+    ]
+  }
+}
+```
+
+**Kind**: static typedef of [<code>GraphQLClient</code>](#GraphQLClient)  
+**Properties**
+
+| Name     | Type                                                       |
+| -------- | ---------------------------------------------------------- |
+| ...code  | <code>GraphQLClient.StatusCode</code>                      |
+| ...state | [<code>DelegateState</code>](#GraphQLClient.DelegateState) |
+
 <a name="GraphQLClient.ResponseGetForgeState"></a>
 
 ### GraphQLClient.ResponseGetForgeState : <code>object</code>
@@ -3594,7 +3913,7 @@ Checkout the following snippet for the format of ResponseGetForgeState:
 
 ```json
 {
-  "code": "OK",
+  "code": "INSUFFICIENT_FUND",
   "state": {
     "address": "abc",
     "consensus": {
@@ -3651,7 +3970,7 @@ Checkout the following snippet for the format of ResponseGetForgeState:
               "accountMigrate": {
                 "address": "abc"
               },
-              "code": "OK",
+              "code": "INSUFFICIENT_FUND",
               "createAsset": {
                 "asset": "abc"
               },
@@ -3677,6 +3996,7 @@ Checkout the following snippet for the format of ResponseGetForgeState:
                       "typeUrl": "abc",
                       "value": "abc"
                     },
+                    "delegator": "abc",
                     "pk": "abc",
                     "signature": "abc",
                     "signer": "abc"
@@ -3689,7 +4009,7 @@ Checkout the following snippet for the format of ResponseGetForgeState:
               "accountMigrate": {
                 "address": "abc"
               },
-              "code": "OK",
+              "code": "INSUFFICIENT_FUND",
               "createAsset": {
                 "asset": "abc"
               },
@@ -3715,6 +4035,7 @@ Checkout the following snippet for the format of ResponseGetForgeState:
                       "typeUrl": "abc",
                       "value": "abc"
                     },
+                    "delegator": "abc",
                     "pk": "abc",
                     "signature": "abc",
                     "signer": "abc"
@@ -3758,6 +4079,12 @@ Checkout the following snippet for the format of ResponseGetForgeState:
         "hierarchy": 123,
         "restricted": true
       },
+      "delegate": {
+        "deltaInterval": 123,
+        "typeUrls": [
+          "abc"
+        ]
+      },
       "maxAssetSize": 123,
       "maxListSize": 123,
       "maxMultisig": 123,
@@ -3790,7 +4117,7 @@ Checkout the following snippet for the format of ResponseGetForgeStats:
 
 ```json
 {
-  "code": "OK",
+  "code": "INSUFFICIENT_FUND",
   "forgeStats": {
     "avgBlockTime": 123,
     "avgTps": 123,
@@ -3868,7 +4195,7 @@ Checkout the following snippet for the format of ResponseGetHealthStatus:
 
 ```json
 {
-  "code": "OK",
+  "code": "INSUFFICIENT_FUND",
   "healthStatus": {
     "consensus": {
       "blockHeight": "abc",
@@ -3919,7 +4246,7 @@ Checkout the following snippet for the format of ResponseGetNetInfo:
 
 ```json
 {
-  "code": "OK",
+  "code": "INSUFFICIENT_FUND",
   "netInfo": {
     "listeners": [
       "abc"
@@ -3963,7 +4290,7 @@ Checkout the following snippet for the format of ResponseGetNodeInfo:
 
 ```json
 {
-  "code": "OK",
+  "code": "INSUFFICIENT_FUND",
   "info": {
     "address": "abc",
     "appHash": "abc",
@@ -4017,7 +4344,7 @@ Checkout the following snippet for the format of ResponseGetProtocolState:
 
 ```json
 {
-  "code": "OK",
+  "code": "INSUFFICIENT_FUND",
   "state": {
     "address": "abc",
     "context": {
@@ -4026,7 +4353,7 @@ Checkout the following snippet for the format of ResponseGetProtocolState:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "OK",
+        "code": "INSUFFICIENT_FUND",
         "createAsset": {
           "asset": "abc"
         },
@@ -4052,6 +4379,7 @@ Checkout the following snippet for the format of ResponseGetProtocolState:
                 "typeUrl": "abc",
                 "value": "abc"
               },
+              "delegator": "abc",
               "pk": "abc",
               "signature": "abc",
               "signer": "abc"
@@ -4064,7 +4392,7 @@ Checkout the following snippet for the format of ResponseGetProtocolState:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "OK",
+        "code": "INSUFFICIENT_FUND",
         "createAsset": {
           "asset": "abc"
         },
@@ -4090,6 +4418,7 @@ Checkout the following snippet for the format of ResponseGetProtocolState:
                 "typeUrl": "abc",
                 "value": "abc"
               },
+              "delegator": "abc",
               "pk": "abc",
               "signature": "abc",
               "signer": "abc"
@@ -4164,7 +4493,7 @@ Checkout the following snippet for the format of ResponseGetProtocols:
 
 ```json
 {
-  "code": "OK",
+  "code": "INSUFFICIENT_FUND",
   "protocols": [
     {
       "address": "abc",
@@ -4218,7 +4547,7 @@ Checkout the following snippet for the format of ResponseGetSimulatorStatus:
 
 ```json
 {
-  "code": "OK",
+  "code": "INSUFFICIENT_FUND",
   "result": "abc"
 }
 ```
@@ -4241,7 +4570,7 @@ Checkout the following snippet for the format of ResponseGetStakeState:
 
 ```json
 {
-  "code": "OK",
+  "code": "INSUFFICIENT_FUND",
   "state": {
     "address": "abc",
     "balance": "abc",
@@ -4251,7 +4580,7 @@ Checkout the following snippet for the format of ResponseGetStakeState:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "OK",
+        "code": "INSUFFICIENT_FUND",
         "createAsset": {
           "asset": "abc"
         },
@@ -4277,6 +4606,7 @@ Checkout the following snippet for the format of ResponseGetStakeState:
                 "typeUrl": "abc",
                 "value": "abc"
               },
+              "delegator": "abc",
               "pk": "abc",
               "signature": "abc",
               "signer": "abc"
@@ -4289,7 +4619,7 @@ Checkout the following snippet for the format of ResponseGetStakeState:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "OK",
+        "code": "INSUFFICIENT_FUND",
         "createAsset": {
           "asset": "abc"
         },
@@ -4315,6 +4645,7 @@ Checkout the following snippet for the format of ResponseGetStakeState:
                 "typeUrl": "abc",
                 "value": "abc"
               },
+              "delegator": "abc",
               "pk": "abc",
               "signature": "abc",
               "signer": "abc"
@@ -4352,7 +4683,7 @@ Checkout the following snippet for the format of ResponseGetSwapState:
 
 ```json
 {
-  "code": "OK",
+  "code": "INSUFFICIENT_FUND",
   "state": {
     "address": "abc",
     "assets": [
@@ -4364,7 +4695,7 @@ Checkout the following snippet for the format of ResponseGetSwapState:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "OK",
+        "code": "INSUFFICIENT_FUND",
         "createAsset": {
           "asset": "abc"
         },
@@ -4390,6 +4721,7 @@ Checkout the following snippet for the format of ResponseGetSwapState:
                 "typeUrl": "abc",
                 "value": "abc"
               },
+              "delegator": "abc",
               "pk": "abc",
               "signature": "abc",
               "signer": "abc"
@@ -4402,7 +4734,7 @@ Checkout the following snippet for the format of ResponseGetSwapState:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "OK",
+        "code": "INSUFFICIENT_FUND",
         "createAsset": {
           "asset": "abc"
         },
@@ -4428,6 +4760,7 @@ Checkout the following snippet for the format of ResponseGetSwapState:
                 "typeUrl": "abc",
                 "value": "abc"
               },
+              "delegator": "abc",
               "pk": "abc",
               "signature": "abc",
               "signer": "abc"
@@ -4465,7 +4798,7 @@ Checkout the following snippet for the format of ResponseGetTetherState:
 
 ```json
 {
-  "code": "OK",
+  "code": "INSUFFICIENT_FUND",
   "state": {
     "address": "abc",
     "available": true,
@@ -4500,12 +4833,12 @@ Checkout the following snippet for the format of ResponseGetTx:
 
 ```json
 {
-  "code": "OK",
+  "code": "INSUFFICIENT_FUND",
   "info": {
     "accountMigrate": {
       "address": "abc"
     },
-    "code": "OK",
+    "code": "INSUFFICIENT_FUND",
     "createAsset": {
       "asset": "abc"
     },
@@ -4531,6 +4864,7 @@ Checkout the following snippet for the format of ResponseGetTx:
             "typeUrl": "abc",
             "value": "abc"
           },
+          "delegator": "abc",
           "pk": "abc",
           "signature": "abc",
           "signer": "abc"
@@ -4559,7 +4893,7 @@ Checkout the following snippet for the format of ResponseGetUnconfirmedTxs:
 
 ```json
 {
-  "code": "OK",
+  "code": "INSUFFICIENT_FUND",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -4580,6 +4914,7 @@ Checkout the following snippet for the format of ResponseGetUnconfirmedTxs:
               "typeUrl": "abc",
               "value": "abc"
             },
+            "delegator": "abc",
             "pk": "abc",
             "signature": "abc",
             "signer": "abc"
@@ -4610,7 +4945,7 @@ Checkout the following snippet for the format of ResponseGetValidatorsInfo:
 
 ```json
 {
-  "code": "OK",
+  "code": "INSUFFICIENT_FUND",
   "validatorsInfo": {
     "blockHeight": "abc",
     "validators": [
@@ -4653,7 +4988,7 @@ Checkout the following snippet for the format of ResponseListAssetTransactions:
 
 ```json
 {
-  "code": "OK",
+  "code": "INSUFFICIENT_FUND",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -4661,7 +4996,7 @@ Checkout the following snippet for the format of ResponseListAssetTransactions:
   },
   "transactions": [
     {
-      "code": "OK",
+      "code": "INSUFFICIENT_FUND",
       "hash": "abc",
       "receiver": "abc",
       "sender": "abc",
@@ -4678,6 +5013,7 @@ Checkout the following snippet for the format of ResponseListAssetTransactions:
               "typeUrl": "abc",
               "value": "abc"
             },
+            "delegator": "abc",
             "pk": "abc",
             "signature": "abc",
             "signer": "abc"
@@ -4738,7 +5074,7 @@ Checkout the following snippet for the format of ResponseListAssets:
       "renaissanceTime": "abc"
     }
   ],
-  "code": "OK",
+  "code": "INSUFFICIENT_FUND",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -4776,7 +5112,7 @@ Checkout the following snippet for the format of ResponseListBlocks:
       "time": "abc"
     }
   ],
-  "code": "OK",
+  "code": "INSUFFICIENT_FUND",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -4804,7 +5140,7 @@ Checkout the following snippet for the format of ResponseListStakes:
 
 ```json
 {
-  "code": "OK",
+  "code": "INSUFFICIENT_FUND",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -4844,7 +5180,7 @@ Checkout the following snippet for the format of ResponseListSwap:
 
 ```json
 {
-  "code": "OK",
+  "code": "INSUFFICIENT_FUND",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -4862,7 +5198,7 @@ Checkout the following snippet for the format of ResponseListSwap:
           "accountMigrate": {
             "address": "abc"
           },
-          "code": "OK",
+          "code": "INSUFFICIENT_FUND",
           "createAsset": {
             "asset": "abc"
           },
@@ -4888,6 +5224,7 @@ Checkout the following snippet for the format of ResponseListSwap:
                   "typeUrl": "abc",
                   "value": "abc"
                 },
+                "delegator": "abc",
                 "pk": "abc",
                 "signature": "abc",
                 "signer": "abc"
@@ -4900,7 +5237,7 @@ Checkout the following snippet for the format of ResponseListSwap:
           "accountMigrate": {
             "address": "abc"
           },
-          "code": "OK",
+          "code": "INSUFFICIENT_FUND",
           "createAsset": {
             "asset": "abc"
           },
@@ -4926,6 +5263,7 @@ Checkout the following snippet for the format of ResponseListSwap:
                   "typeUrl": "abc",
                   "value": "abc"
                 },
+                "delegator": "abc",
                 "pk": "abc",
                 "signature": "abc",
                 "signer": "abc"
@@ -4965,7 +5303,7 @@ Checkout the following snippet for the format of ResponseListTethers:
 
 ```json
 {
-  "code": "OK",
+  "code": "INSUFFICIENT_FUND",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -5028,7 +5366,7 @@ Checkout the following snippet for the format of ResponseListTopAccounts:
       "totalUnstakes": "abc"
     }
   ],
-  "code": "OK",
+  "code": "INSUFFICIENT_FUND",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -5056,7 +5394,7 @@ Checkout the following snippet for the format of ResponseListTransactions:
 
 ```json
 {
-  "code": "OK",
+  "code": "INSUFFICIENT_FUND",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -5064,7 +5402,7 @@ Checkout the following snippet for the format of ResponseListTransactions:
   },
   "transactions": [
     {
-      "code": "OK",
+      "code": "INSUFFICIENT_FUND",
       "hash": "abc",
       "receiver": "abc",
       "sender": "abc",
@@ -5081,6 +5419,7 @@ Checkout the following snippet for the format of ResponseListTransactions:
               "typeUrl": "abc",
               "value": "abc"
             },
+            "delegator": "abc",
             "pk": "abc",
             "signature": "abc",
             "signer": "abc"
@@ -5113,7 +5452,7 @@ Checkout the following snippet for the format of ResponseSendTx:
 
 ```json
 {
-  "code": "OK",
+  "code": "INSUFFICIENT_FUND",
   "hash": "abc"
 }
 ```
@@ -5136,7 +5475,7 @@ Checkout the following snippet for the format of ResponseStartSimulator:
 
 ```json
 {
-  "code": "OK"
+  "code": "INSUFFICIENT_FUND"
 }
 ```
 
@@ -5157,7 +5496,7 @@ Checkout the following snippet for the format of ResponseStopSimulator:
 
 ```json
 {
-  "code": "OK"
+  "code": "INSUFFICIENT_FUND"
 }
 ```
 
@@ -5190,6 +5529,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
           "typeUrl": "abc",
           "value": "abc"
         },
+        "delegator": "abc",
         "pk": "abc",
         "signature": "abc",
         "signer": "abc"
@@ -5205,7 +5545,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "OK",
+        "code": "INSUFFICIENT_FUND",
         "createAsset": {
           "asset": "abc"
         },
@@ -5231,6 +5571,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
                 "typeUrl": "abc",
                 "value": "abc"
               },
+              "delegator": "abc",
               "pk": "abc",
               "signature": "abc",
               "signer": "abc"
@@ -5243,7 +5584,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "OK",
+        "code": "INSUFFICIENT_FUND",
         "createAsset": {
           "asset": "abc"
         },
@@ -5269,6 +5610,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
                 "typeUrl": "abc",
                 "value": "abc"
               },
+              "delegator": "abc",
               "pk": "abc",
               "signature": "abc",
               "signer": "abc"
@@ -5337,7 +5679,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "OK",
+        "code": "INSUFFICIENT_FUND",
         "createAsset": {
           "asset": "abc"
         },
@@ -5363,6 +5705,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
                 "typeUrl": "abc",
                 "value": "abc"
               },
+              "delegator": "abc",
               "pk": "abc",
               "signature": "abc",
               "signer": "abc"
@@ -5375,7 +5718,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "OK",
+        "code": "INSUFFICIENT_FUND",
         "createAsset": {
           "asset": "abc"
         },
@@ -5401,6 +5744,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
                 "typeUrl": "abc",
                 "value": "abc"
               },
+              "delegator": "abc",
               "pk": "abc",
               "signature": "abc",
               "signer": "abc"
@@ -5498,7 +5842,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
       ]
     }
   },
-  "code": "OK",
+  "code": "INSUFFICIENT_FUND",
   "confirm": {
     "chainId": "abc",
     "from": "abc",
@@ -5511,6 +5855,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
           "typeUrl": "abc",
           "value": "abc"
         },
+        "delegator": "abc",
         "pk": "abc",
         "signature": "abc",
         "signer": "abc"
@@ -5529,6 +5874,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
           "typeUrl": "abc",
           "value": "abc"
         },
+        "delegator": "abc",
         "pk": "abc",
         "signature": "abc",
         "signer": "abc"
@@ -5547,6 +5893,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
           "typeUrl": "abc",
           "value": "abc"
         },
+        "delegator": "abc",
         "pk": "abc",
         "signature": "abc",
         "signer": "abc"
@@ -5565,6 +5912,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
           "typeUrl": "abc",
           "value": "abc"
         },
+        "delegator": "abc",
         "pk": "abc",
         "signature": "abc",
         "signer": "abc"
@@ -5583,9 +5931,128 @@ Checkout the following snippet for the format of ResponseSubscribe:
           "typeUrl": "abc",
           "value": "abc"
         },
+        "delegator": "abc",
         "pk": "abc",
         "signature": "abc",
         "signer": "abc"
+      }
+    ]
+  },
+  "delegate": {
+    "chainId": "abc",
+    "from": "abc",
+    "nonce": "abc",
+    "pk": "abc",
+    "signature": "abc",
+    "signatures": [
+      {
+        "data": {
+          "typeUrl": "abc",
+          "value": "abc"
+        },
+        "delegator": "abc",
+        "pk": "abc",
+        "signature": "abc",
+        "signer": "abc"
+      }
+    ]
+  },
+  "delegateState": {
+    "address": "abc",
+    "context": {
+      "genesisTime": "2019-04-29T00:00:00.000Z",
+      "genesisTx": {
+        "accountMigrate": {
+          "address": "abc"
+        },
+        "code": "INSUFFICIENT_FUND",
+        "createAsset": {
+          "asset": "abc"
+        },
+        "hash": "abc",
+        "height": "abc",
+        "index": 123,
+        "tags": [
+          {
+            "key": "abc",
+            "value": "abc"
+          }
+        ],
+        "time": "2019-04-29T00:00:00.000Z",
+        "tx": {
+          "chainId": "abc",
+          "from": "abc",
+          "nonce": "abc",
+          "pk": "abc",
+          "signature": "abc",
+          "signatures": [
+            {
+              "data": {
+                "typeUrl": "abc",
+                "value": "abc"
+              },
+              "delegator": "abc",
+              "pk": "abc",
+              "signature": "abc",
+              "signer": "abc"
+            }
+          ]
+        }
+      },
+      "renaissanceTime": "2019-04-29T00:00:00.000Z",
+      "renaissanceTx": {
+        "accountMigrate": {
+          "address": "abc"
+        },
+        "code": "INSUFFICIENT_FUND",
+        "createAsset": {
+          "asset": "abc"
+        },
+        "hash": "abc",
+        "height": "abc",
+        "index": 123,
+        "tags": [
+          {
+            "key": "abc",
+            "value": "abc"
+          }
+        ],
+        "time": "2019-04-29T00:00:00.000Z",
+        "tx": {
+          "chainId": "abc",
+          "from": "abc",
+          "nonce": "abc",
+          "pk": "abc",
+          "signature": "abc",
+          "signatures": [
+            {
+              "data": {
+                "typeUrl": "abc",
+                "value": "abc"
+              },
+              "delegator": "abc",
+              "pk": "abc",
+              "signature": "abc",
+              "signer": "abc"
+            }
+          ]
+        }
+      }
+    },
+    "data": {
+      "typeUrl": "abc",
+      "value": "abc"
+    },
+    "ops": [
+      {
+        "key": "abc",
+        "value": {
+          "balance": "abc",
+          "balanceDelta": "abc",
+          "numTxs": "abc",
+          "numTxsDelta": "abc",
+          "rule": "abc"
+        }
       }
     ]
   },
@@ -5604,6 +6071,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
           "typeUrl": "abc",
           "value": "abc"
         },
+        "delegator": "abc",
         "pk": "abc",
         "signature": "abc",
         "signer": "abc"
@@ -5666,7 +6134,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
               "accountMigrate": {
                 "address": "abc"
               },
-              "code": "OK",
+              "code": "INSUFFICIENT_FUND",
               "createAsset": {
                 "asset": "abc"
               },
@@ -5692,6 +6160,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
                       "typeUrl": "abc",
                       "value": "abc"
                     },
+                    "delegator": "abc",
                     "pk": "abc",
                     "signature": "abc",
                     "signer": "abc"
@@ -5704,7 +6173,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
               "accountMigrate": {
                 "address": "abc"
               },
-              "code": "OK",
+              "code": "INSUFFICIENT_FUND",
               "createAsset": {
                 "asset": "abc"
               },
@@ -5730,6 +6199,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
                       "typeUrl": "abc",
                       "value": "abc"
                     },
+                    "delegator": "abc",
                     "pk": "abc",
                     "signature": "abc",
                     "signer": "abc"
@@ -5773,6 +6243,12 @@ Checkout the following snippet for the format of ResponseSubscribe:
         "hierarchy": 123,
         "restricted": true
       },
+      "delegate": {
+        "deltaInterval": 123,
+        "typeUrls": [
+          "abc"
+        ]
+      },
       "maxAssetSize": 123,
       "maxListSize": 123,
       "maxMultisig": 123,
@@ -5792,7 +6268,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "OK",
+        "code": "INSUFFICIENT_FUND",
         "createAsset": {
           "asset": "abc"
         },
@@ -5818,6 +6294,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
                 "typeUrl": "abc",
                 "value": "abc"
               },
+              "delegator": "abc",
               "pk": "abc",
               "signature": "abc",
               "signer": "abc"
@@ -5830,7 +6307,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "OK",
+        "code": "INSUFFICIENT_FUND",
         "createAsset": {
           "asset": "abc"
         },
@@ -5856,6 +6333,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
                 "typeUrl": "abc",
                 "value": "abc"
               },
+              "delegator": "abc",
               "pk": "abc",
               "signature": "abc",
               "signer": "abc"
@@ -5921,6 +6399,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
           "typeUrl": "abc",
           "value": "abc"
         },
+        "delegator": "abc",
         "pk": "abc",
         "signature": "abc",
         "signer": "abc"
@@ -5939,6 +6418,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
           "typeUrl": "abc",
           "value": "abc"
         },
+        "delegator": "abc",
         "pk": "abc",
         "signature": "abc",
         "signer": "abc"
@@ -5954,7 +6434,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "OK",
+        "code": "INSUFFICIENT_FUND",
         "createAsset": {
           "asset": "abc"
         },
@@ -5980,6 +6460,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
                 "typeUrl": "abc",
                 "value": "abc"
               },
+              "delegator": "abc",
               "pk": "abc",
               "signature": "abc",
               "signer": "abc"
@@ -5992,7 +6473,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "OK",
+        "code": "INSUFFICIENT_FUND",
         "createAsset": {
           "asset": "abc"
         },
@@ -6018,6 +6499,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
                 "typeUrl": "abc",
                 "value": "abc"
               },
+              "delegator": "abc",
               "pk": "abc",
               "signature": "abc",
               "signer": "abc"
@@ -6046,6 +6528,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
           "typeUrl": "abc",
           "value": "abc"
         },
+        "delegator": "abc",
         "pk": "abc",
         "signature": "abc",
         "signer": "abc"
@@ -6065,6 +6548,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
           "typeUrl": "abc",
           "value": "abc"
         },
+        "delegator": "abc",
         "pk": "abc",
         "signature": "abc",
         "signer": "abc"
@@ -6083,6 +6567,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
           "typeUrl": "abc",
           "value": "abc"
         },
+        "delegator": "abc",
         "pk": "abc",
         "signature": "abc",
         "signer": "abc"
@@ -6107,6 +6592,8 @@ Checkout the following snippet for the format of ResponseSubscribe:
 | ...createAsset      | [<code>Transaction</code>](#GraphQLClient.Transaction)             |
 | ...declare          | [<code>Transaction</code>](#GraphQLClient.Transaction)             |
 | ...declareFile      | [<code>Transaction</code>](#GraphQLClient.Transaction)             |
+| ...delegate         | [<code>Transaction</code>](#GraphQLClient.Transaction)             |
+| ...delegateState    | [<code>DelegateState</code>](#GraphQLClient.DelegateState)         |
 | ...endBlock         | [<code>RequestEndBlock</code>](#GraphQLClient.RequestEndBlock)     |
 | ...exchange         | [<code>Transaction</code>](#GraphQLClient.Transaction)             |
 | ...forgeState       | [<code>ForgeState</code>](#GraphQLClient.ForgeState)               |
@@ -6129,7 +6616,7 @@ Checkout the following snippet for the format of ResponseUnsubscribe:
 
 ```json
 {
-  "code": "OK"
+  "code": "INSUFFICIENT_FUND"
 }
 ```
 
@@ -6139,6 +6626,60 @@ Checkout the following snippet for the format of ResponseUnsubscribe:
 | Name    | Type                                  |
 | ------- | ------------------------------------- |
 | ...code | <code>GraphQLClient.StatusCode</code> |
+
+<a name="GraphQLClient.RetrieveSwapTx"></a>
+
+### GraphQLClient.RetrieveSwapTx : <code>object</code>
+
+Structure of GraphQLClient.RetrieveSwapTx 
+
+Checkout the following snippet for the format of RetrieveSwapTx:
+
+```json
+{
+  "address": "abc",
+  "data": {
+    "typeUrl": "abc",
+    "value": "abc"
+  },
+  "hashkey": "abc"
+}
+```
+
+**Kind**: static typedef of [<code>GraphQLClient</code>](#GraphQLClient)  
+**Properties**
+
+| Name    | Type                                   |
+| ------- | -------------------------------------- |
+| address | <code>string</code>                    |
+| ...data | [<code>Any</code>](#GraphQLClient.Any) |
+| hashkey | <code>string</code>                    |
+
+<a name="GraphQLClient.RevokeSwapTx"></a>
+
+### GraphQLClient.RevokeSwapTx : <code>object</code>
+
+Structure of GraphQLClient.RevokeSwapTx 
+
+Checkout the following snippet for the format of RevokeSwapTx:
+
+```json
+{
+  "address": "abc",
+  "data": {
+    "typeUrl": "abc",
+    "value": "abc"
+  }
+}
+```
+
+**Kind**: static typedef of [<code>GraphQLClient</code>](#GraphQLClient)  
+**Properties**
+
+| Name    | Type                                   |
+| ------- | -------------------------------------- |
+| address | <code>string</code>                    |
+| ...data | [<code>Any</code>](#GraphQLClient.Any) |
 
 <a name="GraphQLClient.RevokeTetherTx"></a>
 
@@ -6165,6 +6706,42 @@ Checkout the following snippet for the format of RevokeTetherTx:
 | ------- | -------------------------------------- |
 | ...data | [<code>Any</code>](#GraphQLClient.Any) |
 | tether  | <code>string</code>                    |
+
+<a name="GraphQLClient.SetupSwapTx"></a>
+
+### GraphQLClient.SetupSwapTx : <code>object</code>
+
+Structure of GraphQLClient.SetupSwapTx 
+
+Checkout the following snippet for the format of SetupSwapTx:
+
+```json
+{
+  "assets": [
+    "abc"
+  ],
+  "data": {
+    "typeUrl": "abc",
+    "value": "abc"
+  },
+  "hashlock": "abc",
+  "locktime": 123,
+  "receiver": "abc",
+  "value": "abc"
+}
+```
+
+**Kind**: static typedef of [<code>GraphQLClient</code>](#GraphQLClient)  
+**Properties**
+
+| Name     | Type                                            |
+| -------- | ----------------------------------------------- |
+| assets   | <code>Array.&lt;...GraphQLClient.string></code> |
+| ...data  | [<code>Any</code>](#GraphQLClient.Any)          |
+| hashlock | <code>string</code>                             |
+| locktime | <code>number</code>                             |
+| receiver | <code>string</code>                             |
+| value    | <code>string</code>                             |
 
 <a name="GraphQLClient.StakeConfig"></a>
 
@@ -6470,13 +7047,14 @@ Structure of GraphQLClient.TransactionConfig
 **Kind**: static typedef of [<code>GraphQLClient</code>](#GraphQLClient)  
 **Properties**
 
-| Name         | Type                                                       |
-| ------------ | ---------------------------------------------------------- |
-| ...declare   | [<code>DeclareConfig</code>](#GraphQLClient.DeclareConfig) |
-| maxAssetSize | <code>number</code>                                        |
-| maxListSize  | <code>number</code>                                        |
-| maxMultisig  | <code>number</code>                                        |
-| minimumStake | <code>string</code>                                        |
+| Name         | Type                                                         |
+| ------------ | ------------------------------------------------------------ |
+| ...declare   | [<code>DeclareConfig</code>](#GraphQLClient.DeclareConfig)   |
+| ...delegate  | [<code>DelegateConfig</code>](#GraphQLClient.DelegateConfig) |
+| maxAssetSize | <code>number</code>                                          |
+| maxListSize  | <code>number</code>                                          |
+| maxMultisig  | <code>number</code>                                          |
+| minimumStake | <code>string</code>                                          |
 
 <a name="GraphQLClient.TransactionInfo"></a>
 
@@ -6783,6 +7361,7 @@ Checkout the following snippet for the format of WithdrawTetherTx:
         "typeUrl": "abc",
         "value": "abc"
       },
+      "delegator": "abc",
       "pk": "abc",
       "signature": "abc",
       "signer": "abc"
@@ -6925,6 +7504,33 @@ Checkout the following snippet for the format of GetConfigParams:
 | Name   | Type                 |
 | ------ | -------------------- |
 | parsed | <code>boolean</code> |
+
+<a name="GraphQLClient.GetDelegateStateParams"></a>
+
+### GraphQLClient.GetDelegateStateParams : <code>object</code>
+
+Structure of GraphQLClient.GetDelegateStateParams 
+
+Checkout the following snippet for the format of GetDelegateStateParams:
+
+```json
+{
+  "address": "abc",
+  "height": "abc",
+  "keys": [
+    "abc"
+  ]
+}
+```
+
+**Kind**: static typedef of [<code>GraphQLClient</code>](#GraphQLClient)  
+**Properties**
+
+| Name    | Type                                            |
+| ------- | ----------------------------------------------- |
+| address | <code>string</code>                             |
+| height  | <code>string</code>                             |
+| keys    | <code>Array.&lt;...GraphQLClient.string></code> |
 
 <a name="GraphQLClient.GetForgeStateParams"></a>
 
@@ -7465,6 +8071,27 @@ Checkout the following snippet for the format of SubscribeParams:
 | input.wallet          | <code>object</code>                                          | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
 | [input.signature]     | <code>string</code>                                          | the signature of the tx, if this parameter exist, we will not sign the transaction            |
 
+<a name="GraphQLClient.ActivateProtocolTxInput"></a>
+
+### GraphQLClient.ActivateProtocolTxInput : <code>Object</code>
+
+**Kind**: static typedef of [<code>GraphQLClient</code>](#GraphQLClient)  
+**Properties**
+
+| Name                  | Type                                          | Description                                                                                   |
+| --------------------- | --------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| input                 | <code>object</code>                           |                                                                                               |
+| input.tx              | <code>object</code>                           | data of the transaction                                                                       |
+| input.tx.itx          | <code>GraphQLClient.ActivateProtocolTx</code> | the actual transaction object                                                                 |
+| [input.tx.pk]         | <code>string</code>                           | the sender pk                                                                                 |
+| [input.tx.from]       | <code>string</code>                           | the sender address, can be derived from wallet                                                |
+| [input.tx.nonce]      | <code>number</code>                           | the tx nonce, defaults to Date.now if not set                                                 |
+| [input.tx.chainId]    | <code>string</code>                           | the chainId                                                                                   |
+| [input.tx.signature]  | <code>string</code>                           | transaction signature                                                                         |
+| [input.tx.signatures] | <code>array</code>                            | transaction signatures, should be set when it's a multisig transaction                        |
+| input.wallet          | <code>object</code>                           | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
+| [input.signature]     | <code>string</code>                           | the signature of the tx, if this parameter exist, we will not sign the transaction            |
+
 <a name="GraphQLClient.ApproveTetherTxInput"></a>
 
 ### GraphQLClient.ApproveTetherTxInput : <code>Object</code>
@@ -7528,6 +8155,27 @@ Checkout the following snippet for the format of SubscribeParams:
 | input.wallet          | <code>object</code>                                        | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
 | [input.signature]     | <code>string</code>                                        | the signature of the tx, if this parameter exist, we will not sign the transaction            |
 
+<a name="GraphQLClient.DeactivateProtocolTxInput"></a>
+
+### GraphQLClient.DeactivateProtocolTxInput : <code>Object</code>
+
+**Kind**: static typedef of [<code>GraphQLClient</code>](#GraphQLClient)  
+**Properties**
+
+| Name                  | Type                                            | Description                                                                                   |
+| --------------------- | ----------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| input                 | <code>object</code>                             |                                                                                               |
+| input.tx              | <code>object</code>                             | data of the transaction                                                                       |
+| input.tx.itx          | <code>GraphQLClient.DeactivateProtocolTx</code> | the actual transaction object                                                                 |
+| [input.tx.pk]         | <code>string</code>                             | the sender pk                                                                                 |
+| [input.tx.from]       | <code>string</code>                             | the sender address, can be derived from wallet                                                |
+| [input.tx.nonce]      | <code>number</code>                             | the tx nonce, defaults to Date.now if not set                                                 |
+| [input.tx.chainId]    | <code>string</code>                             | the chainId                                                                                   |
+| [input.tx.signature]  | <code>string</code>                             | transaction signature                                                                         |
+| [input.tx.signatures] | <code>array</code>                              | transaction signatures, should be set when it's a multisig transaction                        |
+| input.wallet          | <code>object</code>                             | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
+| [input.signature]     | <code>string</code>                             | the signature of the tx, if this parameter exist, we will not sign the transaction            |
+
 <a name="GraphQLClient.DeclareTxInput"></a>
 
 ### GraphQLClient.DeclareTxInput : <code>Object</code>
@@ -7548,6 +8196,27 @@ Checkout the following snippet for the format of SubscribeParams:
 | [input.tx.signatures] | <code>array</code>                                 | transaction signatures, should be set when it's a multisig transaction                        |
 | input.wallet          | <code>object</code>                                | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
 | [input.signature]     | <code>string</code>                                | the signature of the tx, if this parameter exist, we will not sign the transaction            |
+
+<a name="GraphQLClient.DelegateTxInput"></a>
+
+### GraphQLClient.DelegateTxInput : <code>Object</code>
+
+**Kind**: static typedef of [<code>GraphQLClient</code>](#GraphQLClient)  
+**Properties**
+
+| Name                  | Type                                  | Description                                                                                   |
+| --------------------- | ------------------------------------- | --------------------------------------------------------------------------------------------- |
+| input                 | <code>object</code>                   |                                                                                               |
+| input.tx              | <code>object</code>                   | data of the transaction                                                                       |
+| input.tx.itx          | <code>GraphQLClient.DelegateTx</code> | the actual transaction object                                                                 |
+| [input.tx.pk]         | <code>string</code>                   | the sender pk                                                                                 |
+| [input.tx.from]       | <code>string</code>                   | the sender address, can be derived from wallet                                                |
+| [input.tx.nonce]      | <code>number</code>                   | the tx nonce, defaults to Date.now if not set                                                 |
+| [input.tx.chainId]    | <code>string</code>                   | the chainId                                                                                   |
+| [input.tx.signature]  | <code>string</code>                   | transaction signature                                                                         |
+| [input.tx.signatures] | <code>array</code>                    | transaction signatures, should be set when it's a multisig transaction                        |
+| input.wallet          | <code>object</code>                   | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
+| [input.signature]     | <code>string</code>                   | the signature of the tx, if this parameter exist, we will not sign the transaction            |
 
 <a name="GraphQLClient.DeployProtocolTxInput"></a>
 
@@ -7661,19 +8330,19 @@ Checkout the following snippet for the format of SubscribeParams:
 **Kind**: static typedef of [<code>GraphQLClient</code>](#GraphQLClient)  
 **Properties**
 
-| Name                  | Type                                      | Description                                                                                   |
-| --------------------- | ----------------------------------------- | --------------------------------------------------------------------------------------------- |
-| input                 | <code>object</code>                       |                                                                                               |
-| input.tx              | <code>object</code>                       | data of the transaction                                                                       |
-| input.tx.itx          | <code>GraphQLClient.RetrieveSwapTx</code> | the actual transaction object                                                                 |
-| [input.tx.pk]         | <code>string</code>                       | the sender pk                                                                                 |
-| [input.tx.from]       | <code>string</code>                       | the sender address, can be derived from wallet                                                |
-| [input.tx.nonce]      | <code>number</code>                       | the tx nonce, defaults to Date.now if not set                                                 |
-| [input.tx.chainId]    | <code>string</code>                       | the chainId                                                                                   |
-| [input.tx.signature]  | <code>string</code>                       | transaction signature                                                                         |
-| [input.tx.signatures] | <code>array</code>                        | transaction signatures, should be set when it's a multisig transaction                        |
-| input.wallet          | <code>object</code>                       | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
-| [input.signature]     | <code>string</code>                       | the signature of the tx, if this parameter exist, we will not sign the transaction            |
+| Name                  | Type                                                         | Description                                                                                   |
+| --------------------- | ------------------------------------------------------------ | --------------------------------------------------------------------------------------------- |
+| input                 | <code>object</code>                                          |                                                                                               |
+| input.tx              | <code>object</code>                                          | data of the transaction                                                                       |
+| input.tx.itx          | [<code>RetrieveSwapTx</code>](#GraphQLClient.RetrieveSwapTx) | the actual transaction object                                                                 |
+| [input.tx.pk]         | <code>string</code>                                          | the sender pk                                                                                 |
+| [input.tx.from]       | <code>string</code>                                          | the sender address, can be derived from wallet                                                |
+| [input.tx.nonce]      | <code>number</code>                                          | the tx nonce, defaults to Date.now if not set                                                 |
+| [input.tx.chainId]    | <code>string</code>                                          | the chainId                                                                                   |
+| [input.tx.signature]  | <code>string</code>                                          | transaction signature                                                                         |
+| [input.tx.signatures] | <code>array</code>                                           | transaction signatures, should be set when it's a multisig transaction                        |
+| input.wallet          | <code>object</code>                                          | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
+| [input.signature]     | <code>string</code>                                          | the signature of the tx, if this parameter exist, we will not sign the transaction            |
 
 <a name="GraphQLClient.RevokeSwapTxInput"></a>
 
@@ -7682,19 +8351,19 @@ Checkout the following snippet for the format of SubscribeParams:
 **Kind**: static typedef of [<code>GraphQLClient</code>](#GraphQLClient)  
 **Properties**
 
-| Name                  | Type                                    | Description                                                                                   |
-| --------------------- | --------------------------------------- | --------------------------------------------------------------------------------------------- |
-| input                 | <code>object</code>                     |                                                                                               |
-| input.tx              | <code>object</code>                     | data of the transaction                                                                       |
-| input.tx.itx          | <code>GraphQLClient.RevokeSwapTx</code> | the actual transaction object                                                                 |
-| [input.tx.pk]         | <code>string</code>                     | the sender pk                                                                                 |
-| [input.tx.from]       | <code>string</code>                     | the sender address, can be derived from wallet                                                |
-| [input.tx.nonce]      | <code>number</code>                     | the tx nonce, defaults to Date.now if not set                                                 |
-| [input.tx.chainId]    | <code>string</code>                     | the chainId                                                                                   |
-| [input.tx.signature]  | <code>string</code>                     | transaction signature                                                                         |
-| [input.tx.signatures] | <code>array</code>                      | transaction signatures, should be set when it's a multisig transaction                        |
-| input.wallet          | <code>object</code>                     | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
-| [input.signature]     | <code>string</code>                     | the signature of the tx, if this parameter exist, we will not sign the transaction            |
+| Name                  | Type                                                     | Description                                                                                   |
+| --------------------- | -------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| input                 | <code>object</code>                                      |                                                                                               |
+| input.tx              | <code>object</code>                                      | data of the transaction                                                                       |
+| input.tx.itx          | [<code>RevokeSwapTx</code>](#GraphQLClient.RevokeSwapTx) | the actual transaction object                                                                 |
+| [input.tx.pk]         | <code>string</code>                                      | the sender pk                                                                                 |
+| [input.tx.from]       | <code>string</code>                                      | the sender address, can be derived from wallet                                                |
+| [input.tx.nonce]      | <code>number</code>                                      | the tx nonce, defaults to Date.now if not set                                                 |
+| [input.tx.chainId]    | <code>string</code>                                      | the chainId                                                                                   |
+| [input.tx.signature]  | <code>string</code>                                      | transaction signature                                                                         |
+| [input.tx.signatures] | <code>array</code>                                       | transaction signatures, should be set when it's a multisig transaction                        |
+| input.wallet          | <code>object</code>                                      | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
+| [input.signature]     | <code>string</code>                                      | the signature of the tx, if this parameter exist, we will not sign the transaction            |
 
 <a name="GraphQLClient.RevokeTetherTxInput"></a>
 
@@ -7724,19 +8393,19 @@ Checkout the following snippet for the format of SubscribeParams:
 **Kind**: static typedef of [<code>GraphQLClient</code>](#GraphQLClient)  
 **Properties**
 
-| Name                  | Type                                   | Description                                                                                   |
-| --------------------- | -------------------------------------- | --------------------------------------------------------------------------------------------- |
-| input                 | <code>object</code>                    |                                                                                               |
-| input.tx              | <code>object</code>                    | data of the transaction                                                                       |
-| input.tx.itx          | <code>GraphQLClient.SetupSwapTx</code> | the actual transaction object                                                                 |
-| [input.tx.pk]         | <code>string</code>                    | the sender pk                                                                                 |
-| [input.tx.from]       | <code>string</code>                    | the sender address, can be derived from wallet                                                |
-| [input.tx.nonce]      | <code>number</code>                    | the tx nonce, defaults to Date.now if not set                                                 |
-| [input.tx.chainId]    | <code>string</code>                    | the chainId                                                                                   |
-| [input.tx.signature]  | <code>string</code>                    | transaction signature                                                                         |
-| [input.tx.signatures] | <code>array</code>                     | transaction signatures, should be set when it's a multisig transaction                        |
-| input.wallet          | <code>object</code>                    | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
-| [input.signature]     | <code>string</code>                    | the signature of the tx, if this parameter exist, we will not sign the transaction            |
+| Name                  | Type                                                   | Description                                                                                   |
+| --------------------- | ------------------------------------------------------ | --------------------------------------------------------------------------------------------- |
+| input                 | <code>object</code>                                    |                                                                                               |
+| input.tx              | <code>object</code>                                    | data of the transaction                                                                       |
+| input.tx.itx          | [<code>SetupSwapTx</code>](#GraphQLClient.SetupSwapTx) | the actual transaction object                                                                 |
+| [input.tx.pk]         | <code>string</code>                                    | the sender pk                                                                                 |
+| [input.tx.from]       | <code>string</code>                                    | the sender address, can be derived from wallet                                                |
+| [input.tx.nonce]      | <code>number</code>                                    | the tx nonce, defaults to Date.now if not set                                                 |
+| [input.tx.chainId]    | <code>string</code>                                    | the chainId                                                                                   |
+| [input.tx.signature]  | <code>string</code>                                    | transaction signature                                                                         |
+| [input.tx.signatures] | <code>array</code>                                     | transaction signatures, should be set when it's a multisig transaction                        |
+| input.wallet          | <code>object</code>                                    | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
+| [input.signature]     | <code>string</code>                                    | the signature of the tx, if this parameter exist, we will not sign the transaction            |
 
 <a name="GraphQLClient.StakeTxInput"></a>
 
