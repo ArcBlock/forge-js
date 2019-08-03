@@ -63,7 +63,8 @@
         "data": {
           "type": "string",
           "value": "ABCD 1234"
-        }
+        },
+        "delegator": "arcblock"
       },
       {
         "signer": "arcblock",
@@ -72,13 +73,15 @@
         "data": {
           "type": "string",
           "value": "ABCD 1234"
-        }
+        },
+        "delegator": "arcblock"
       }
     ],
     "itx": {
       "type": "string",
       "value": "ABCD 1234"
-    }
+    },
+    "delegator": "arcblock"
   }
 }
 ```
@@ -109,7 +112,8 @@
         "data": {
           "type": "string",
           "value": "ABCD 1234"
-        }
+        },
+        "delegator": "arcblock"
       },
       {
         "signer": "arcblock",
@@ -118,13 +122,15 @@
         "data": {
           "type": "string",
           "value": "ABCD 1234"
-        }
+        },
+        "delegator": "arcblock"
       }
     ],
     "itx": {
       "type": "string",
       "value": "ABCD 1234"
-    }
+    },
+    "delegator": "arcblock"
   },
   "data": {
     "type": "string",
@@ -174,7 +180,8 @@
         "data": {
           "type": "string",
           "value": "ABCD 1234"
-        }
+        },
+        "delegator": "arcblock"
       },
       {
         "signer": "arcblock",
@@ -183,13 +190,15 @@
         "data": {
           "type": "string",
           "value": "ABCD 1234"
-        }
+        },
+        "delegator": "arcblock"
       }
     ],
     "itx": {
       "type": "string",
       "value": "ABCD 1234"
-    }
+    },
+    "delegator": "arcblock"
   }
 }
 ```
@@ -220,7 +229,8 @@
         "data": {
           "type": "string",
           "value": "ABCD 1234"
-        }
+        },
+        "delegator": "arcblock"
       },
       {
         "signer": "arcblock",
@@ -229,13 +239,15 @@
         "data": {
           "type": "string",
           "value": "ABCD 1234"
-        }
+        },
+        "delegator": "arcblock"
       }
     ],
     "itx": {
       "type": "string",
       "value": "ABCD 1234"
-    }
+    },
+    "delegator": "arcblock"
   },
   "wallet": {
     "type": {
@@ -313,7 +325,8 @@
           "data": {
             "type": "string",
             "value": "ABCD 1234"
-          }
+          },
+          "delegator": "arcblock"
         },
         {
           "signer": "arcblock",
@@ -322,13 +335,15 @@
           "data": {
             "type": "string",
             "value": "ABCD 1234"
-          }
+          },
+          "delegator": "arcblock"
         }
       ],
       "itx": {
         "type": "string",
         "value": "ABCD 1234"
-      }
+      },
+      "delegator": "arcblock"
     },
     "height": 5,
     "index": 2,
@@ -344,7 +359,7 @@
       }
     ],
     "code": 0,
-    "time": "2019-07-08T09:59:22.219Z"
+    "time": "2019-08-03T22:45:26.300Z"
   }
 }
 ```
@@ -378,7 +393,7 @@
   "block": {
     "height": 5,
     "numTxs": 2,
-    "time": "2019-07-08T09:59:22.215Z",
+    "time": "2019-08-03T22:45:26.296Z",
     "appHash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
     "proposer": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
     "txs": [
@@ -398,7 +413,8 @@
               "data": {
                 "type": "string",
                 "value": "ABCD 1234"
-              }
+              },
+              "delegator": "arcblock"
             },
             {
               "signer": "arcblock",
@@ -407,13 +423,15 @@
               "data": {
                 "type": "string",
                 "value": "ABCD 1234"
-              }
+              },
+              "delegator": "arcblock"
             }
           ],
           "itx": {
             "type": "string",
             "value": "ABCD 1234"
-          }
+          },
+          "delegator": "arcblock"
         },
         "height": 5,
         "index": 2,
@@ -429,7 +447,7 @@
           }
         ],
         "code": 0,
-        "time": "2019-07-08T09:59:22.215Z"
+        "time": "2019-08-03T22:45:26.296Z"
       },
       {
         "tx": {
@@ -447,7 +465,8 @@
               "data": {
                 "type": "string",
                 "value": "ABCD 1234"
-              }
+              },
+              "delegator": "arcblock"
             },
             {
               "signer": "arcblock",
@@ -456,13 +475,15 @@
               "data": {
                 "type": "string",
                 "value": "ABCD 1234"
-              }
+              },
+              "delegator": "arcblock"
             }
           ],
           "itx": {
             "type": "string",
             "value": "ABCD 1234"
-          }
+          },
+          "delegator": "arcblock"
         },
         "height": 5,
         "index": 2,
@@ -478,7 +499,7 @@
           }
         ],
         "code": 0,
-        "time": "2019-07-08T09:59:22.215Z"
+        "time": "2019-08-03T22:45:26.296Z"
       }
     ],
     "totalTxs": 5,
@@ -499,7 +520,8 @@
               "data": {
                 "type": "string",
                 "value": "ABCD 1234"
-              }
+              },
+              "delegator": "arcblock"
             },
             {
               "signer": "arcblock",
@@ -508,13 +530,15 @@
               "data": {
                 "type": "string",
                 "value": "ABCD 1234"
-              }
+              },
+              "delegator": "arcblock"
             }
           ],
           "itx": {
             "type": "string",
             "value": "ABCD 1234"
-          }
+          },
+          "delegator": "arcblock"
         },
         "height": 5,
         "index": 2,
@@ -530,7 +554,7 @@
           }
         ],
         "code": 0,
-        "time": "2019-07-08T09:59:22.215Z"
+        "time": "2019-08-03T22:45:26.296Z"
       },
       {
         "tx": {
@@ -548,7 +572,8 @@
               "data": {
                 "type": "string",
                 "value": "ABCD 1234"
-              }
+              },
+              "delegator": "arcblock"
             },
             {
               "signer": "arcblock",
@@ -557,13 +582,15 @@
               "data": {
                 "type": "string",
                 "value": "ABCD 1234"
-              }
+              },
+              "delegator": "arcblock"
             }
           ],
           "itx": {
             "type": "string",
             "value": "ABCD 1234"
-          }
+          },
+          "delegator": "arcblock"
         },
         "height": 5,
         "index": 2,
@@ -579,7 +606,7 @@
           }
         ],
         "code": 0,
-        "time": "2019-07-08T09:59:22.215Z"
+        "time": "2019-08-03T22:45:26.296Z"
       }
     ],
     "txsHashes": [
@@ -666,7 +693,7 @@
     {
       "height": 5,
       "numTxs": 2,
-      "time": "2019-07-08T09:59:22.216Z",
+      "time": "2019-08-03T22:45:26.296Z",
       "appHash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
       "proposer": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
       "totalTxs": 5,
@@ -699,7 +726,7 @@
     {
       "height": 5,
       "numTxs": 2,
-      "time": "2019-07-08T09:59:22.216Z",
+      "time": "2019-08-03T22:45:26.296Z",
       "appHash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
       "proposer": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
       "totalTxs": 5,
@@ -1026,8 +1053,8 @@
     "context": {
       "genesisTx": "arcblock",
       "renaissanceTx": "arcblock",
-      "genesisTime": "2019-07-08T09:59:22.216Z",
-      "renaissanceTime": "2019-07-08T09:59:22.216Z"
+      "genesisTime": "2019-08-03T22:45:26.297Z",
+      "renaissanceTime": "2019-08-03T22:45:26.297Z"
     },
     "issuer": "arcblock",
     "migratedTo": [
@@ -1120,7 +1147,7 @@
     "readonly": true,
     "transferrable": true,
     "ttl": 2,
-    "consumedTime": "2019-07-08T09:59:22.216Z",
+    "consumedTime": "2019-08-03T22:45:26.297Z",
     "issuer": "arcblock",
     "parent": "arcblock",
     "stake": {
@@ -1148,8 +1175,8 @@
     "context": {
       "genesisTx": "arcblock",
       "renaissanceTx": "arcblock",
-      "genesisTime": "2019-07-08T09:59:22.216Z",
-      "renaissanceTime": "2019-07-08T09:59:22.216Z"
+      "genesisTime": "2019-08-03T22:45:26.297Z",
+      "renaissanceTime": "2019-08-03T22:45:26.297Z"
     },
     "data": {
       "type": "string",
@@ -1248,8 +1275,8 @@
     "context": {
       "genesisTx": "arcblock",
       "renaissanceTx": "arcblock",
-      "genesisTime": "2019-07-08T09:59:22.217Z",
-      "renaissanceTime": "2019-07-08T09:59:22.217Z"
+      "genesisTime": "2019-08-03T22:45:26.298Z",
+      "renaissanceTime": "2019-08-03T22:45:26.298Z"
     },
     "data": {
       "type": "string",
@@ -1300,8 +1327,8 @@
     "context": {
       "genesisTx": "arcblock",
       "renaissanceTx": "arcblock",
-      "genesisTime": "2019-07-08T09:59:22.217Z",
-      "renaissanceTime": "2019-07-08T09:59:22.217Z"
+      "genesisTime": "2019-08-03T22:45:26.298Z",
+      "renaissanceTime": "2019-08-03T22:45:26.298Z"
     },
     "data": {
       "type": "string",
@@ -1393,8 +1420,8 @@
         "context": {
           "genesisTx": "arcblock",
           "renaissanceTx": "arcblock",
-          "genesisTime": "2019-07-08T09:59:22.217Z",
-          "renaissanceTime": "2019-07-08T09:59:22.217Z"
+          "genesisTime": "2019-08-03T22:45:26.298Z",
+          "renaissanceTime": "2019-08-03T22:45:26.298Z"
         }
       }
     },
@@ -1419,6 +1446,13 @@
       "declare": {
         "restricted": true,
         "hierarchy": 2
+      },
+      "delegate": {
+        "deltaInterval": 2,
+        "typeUrls": [
+          "arcblock",
+          "arcblock"
+        ]
       }
     },
     "stakeConfig": {
@@ -1496,7 +1530,7 @@
     "depositor": "arcblock",
     "withdrawer": "arcblock",
     "target": "arcblock",
-    "locktime": "2019-07-08T09:59:22.217Z",
+    "locktime": "2019-08-03T22:45:26.298Z",
     "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55"
   }
 }
@@ -1550,8 +1584,8 @@
     "context": {
       "genesisTx": "arcblock",
       "renaissanceTx": "arcblock",
-      "genesisTime": "2019-07-08T09:59:22.217Z",
-      "renaissanceTime": "2019-07-08T09:59:22.217Z"
+      "genesisTime": "2019-08-03T22:45:26.298Z",
+      "renaissanceTime": "2019-08-03T22:45:26.298Z"
     }
   }
 }
@@ -1678,7 +1712,7 @@
     "appHash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
     "blockHash": {},
     "blockHeight": 5,
-    "blockTime": "2019-07-08T09:59:22.216Z",
+    "blockTime": "2019-08-03T22:45:26.297Z",
     "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
     "votingPower": 5,
     "totalTxs": 5,
@@ -1727,7 +1761,7 @@
     "appHash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
     "blockHash": {},
     "blockHeight": 5,
-    "blockTime": "2019-07-08T09:59:22.216Z",
+    "blockTime": "2019-08-03T22:45:26.297Z",
     "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
     "votingPower": 5,
     "totalTxs": 5,
@@ -1796,7 +1830,8 @@
             "data": {
               "type": "string",
               "value": "ABCD 1234"
-            }
+            },
+            "delegator": "arcblock"
           },
           {
             "signer": "arcblock",
@@ -1805,13 +1840,15 @@
             "data": {
               "type": "string",
               "value": "ABCD 1234"
-            }
+            },
+            "delegator": "arcblock"
           }
         ],
         "itx": {
           "type": "string",
           "value": "ABCD 1234"
-        }
+        },
+        "delegator": "arcblock"
       },
       "height": 5,
       "index": 2,
@@ -1827,7 +1864,7 @@
         }
       ],
       "code": 0,
-      "time": "2019-07-08T09:59:22.216Z"
+      "time": "2019-08-03T22:45:26.297Z"
     },
     {
       "tx": {
@@ -1845,7 +1882,8 @@
             "data": {
               "type": "string",
               "value": "ABCD 1234"
-            }
+            },
+            "delegator": "arcblock"
           },
           {
             "signer": "arcblock",
@@ -1854,13 +1892,15 @@
             "data": {
               "type": "string",
               "value": "ABCD 1234"
-            }
+            },
+            "delegator": "arcblock"
           }
         ],
         "itx": {
           "type": "string",
           "value": "ABCD 1234"
-        }
+        },
+        "delegator": "arcblock"
       },
       "height": 5,
       "index": 2,
@@ -1876,7 +1916,7 @@
         }
       ],
       "code": 0,
-      "time": "2019-07-08T09:59:22.216Z"
+      "time": "2019-08-03T22:45:26.297Z"
     }
   ]
 }
@@ -1944,7 +1984,8 @@
             "data": {
               "type": "string",
               "value": "ABCD 1234"
-            }
+            },
+            "delegator": "arcblock"
           },
           {
             "signer": "arcblock",
@@ -1953,13 +1994,15 @@
             "data": {
               "type": "string",
               "value": "ABCD 1234"
-            }
+            },
+            "delegator": "arcblock"
           }
         ],
         "itx": {
           "type": "string",
           "value": "ABCD 1234"
-        }
+        },
+        "delegator": "arcblock"
       },
       {
         "from": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
@@ -1976,7 +2019,8 @@
             "data": {
               "type": "string",
               "value": "ABCD 1234"
-            }
+            },
+            "delegator": "arcblock"
           },
           {
             "signer": "arcblock",
@@ -1985,13 +2029,15 @@
             "data": {
               "type": "string",
               "value": "ABCD 1234"
-            }
+            },
+            "delegator": "arcblock"
           }
         ],
         "itx": {
           "type": "string",
           "value": "ABCD 1234"
-        }
+        },
+        "delegator": "arcblock"
       }
     ]
   }
@@ -2445,7 +2491,8 @@
             "data": {
               "type": "string",
               "value": "ABCD 1234"
-            }
+            },
+            "delegator": "arcblock"
           },
           {
             "signer": "arcblock",
@@ -2454,13 +2501,15 @@
             "data": {
               "type": "string",
               "value": "ABCD 1234"
-            }
+            },
+            "delegator": "arcblock"
           }
         ],
         "itx": {
           "type": "string",
           "value": "ABCD 1234"
-        }
+        },
+        "delegator": "arcblock"
       },
       "valid": true,
       "code": 0
@@ -2486,7 +2535,8 @@
             "data": {
               "type": "string",
               "value": "ABCD 1234"
-            }
+            },
+            "delegator": "arcblock"
           },
           {
             "signer": "arcblock",
@@ -2495,13 +2545,15 @@
             "data": {
               "type": "string",
               "value": "ABCD 1234"
-            }
+            },
+            "delegator": "arcblock"
           }
         ],
         "itx": {
           "type": "string",
           "value": "ABCD 1234"
-        }
+        },
+        "delegator": "arcblock"
       },
       "valid": true,
       "code": 0
@@ -2845,7 +2897,8 @@
             "data": {
               "type": "string",
               "value": "ABCD 1234"
-            }
+            },
+            "delegator": "arcblock"
           },
           {
             "signer": "arcblock",
@@ -2854,13 +2907,15 @@
             "data": {
               "type": "string",
               "value": "ABCD 1234"
-            }
+            },
+            "delegator": "arcblock"
           }
         ],
         "itx": {
           "type": "string",
           "value": "ABCD 1234"
-        }
+        },
+        "delegator": "arcblock"
       },
       "valid": true,
       "code": 0
@@ -2886,7 +2941,8 @@
             "data": {
               "type": "string",
               "value": "ABCD 1234"
-            }
+            },
+            "delegator": "arcblock"
           },
           {
             "signer": "arcblock",
@@ -2895,13 +2951,15 @@
             "data": {
               "type": "string",
               "value": "ABCD 1234"
-            }
+            },
+            "delegator": "arcblock"
           }
         ],
         "itx": {
           "type": "string",
           "value": "ABCD 1234"
-        }
+        },
+        "delegator": "arcblock"
       },
       "valid": true,
       "code": 0
@@ -3057,7 +3115,7 @@
       "depositor": "arcblock",
       "withdrawer": "arcblock",
       "target": "arcblock",
-      "locktime": "2019-07-08T09:59:22.218Z",
+      "locktime": "2019-08-03T22:45:26.299Z",
       "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55"
     },
     {
@@ -3067,7 +3125,7 @@
       "depositor": "arcblock",
       "withdrawer": "arcblock",
       "target": "arcblock",
-      "locktime": "2019-07-08T09:59:22.218Z",
+      "locktime": "2019-08-03T22:45:26.299Z",
       "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55"
     }
   ]
@@ -3141,8 +3199,8 @@
       "context": {
         "genesisTx": "arcblock",
         "renaissanceTx": "arcblock",
-        "genesisTime": "2019-07-08T09:59:22.218Z",
-        "renaissanceTime": "2019-07-08T09:59:22.218Z"
+        "genesisTime": "2019-08-03T22:45:26.299Z",
+        "renaissanceTime": "2019-08-03T22:45:26.299Z"
       }
     },
     {
@@ -3160,8 +3218,8 @@
       "context": {
         "genesisTx": "arcblock",
         "renaissanceTx": "arcblock",
-        "genesisTime": "2019-07-08T09:59:22.218Z",
-        "renaissanceTime": "2019-07-08T09:59:22.218Z"
+        "genesisTime": "2019-08-03T22:45:26.299Z",
+        "renaissanceTime": "2019-08-03T22:45:26.299Z"
       }
     }
   ]
@@ -3382,6 +3440,7 @@
  * @prop {Uint8Array} pk
  * @prop {Uint8Array} signature
  * @prop {GRpcClient.Any} data
+ * @prop {string} delegator
  */
 
 /**
@@ -3397,6 +3456,7 @@
  * @prop {Uint8Array} signature
  * @prop {Array<GRpcClient.Multisig>} signatures
  * @prop {GRpcClient.Any} itx
+ * @prop {string} delegator
  */
 
 /**
@@ -3432,6 +3492,7 @@
  * @prop {number} maxMultisig
  * @prop {number} minimumStake
  * @prop {GRpcClient.DeclareConfig} declare
+ * @prop {GRpcClient.DelegateConfig} delegate
  */
 
 /**
@@ -4292,6 +4353,15 @@
  */
 
 /**
+ * Structure of GRpcClient.DelegateConfig
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.DelegateConfig
+ * @prop {number} deltaInterval
+ * @prop {Array<string>} typeUrls
+ */
+
+/**
  * Structure of GRpcClient.AssetSpec
  *
  * @memberof GRpcClient
@@ -4327,6 +4397,25 @@
  * @typedef {object} GRpcClient.AcquireAssetTx
  * @prop {string} to
  * @prop {Array<GRpcClient.AssetSpec>} specs
+ * @prop {GRpcClient.Any} data
+ */
+
+/**
+ * Structure of GRpcClient.ActivateProtocolTx
+ *
+```javascript
+{
+  "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+  "data": {
+    "type": "string",
+    "value": "ABCD 1234"
+  }
+}
+```
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.ActivateProtocolTx
+ * @prop {string} address
  * @prop {GRpcClient.Any} data
  */
 
@@ -4440,6 +4529,25 @@
  */
 
 /**
+ * Structure of GRpcClient.DeactivateProtocolTx
+ *
+```javascript
+{
+  "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+  "data": {
+    "type": "string",
+    "value": "ABCD 1234"
+  }
+}
+```
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.DeactivateProtocolTx
+ * @prop {string} address
+ * @prop {GRpcClient.Any} data
+ */
+
+/**
  * Structure of GRpcClient.DeclareTx
  *
 ```javascript
@@ -4461,13 +4569,60 @@
  */
 
 /**
+ * Structure of GRpcClient.DelegateTx
+ *
+```javascript
+{
+  "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+  "to": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+  "ops": [
+    {
+      "typeUrl": "arcblock",
+      "rules": [
+        "arcblock",
+        "arcblock"
+      ]
+    },
+    {
+      "typeUrl": "arcblock",
+      "rules": [
+        "arcblock",
+        "arcblock"
+      ]
+    }
+  ],
+  "data": {
+    "type": "string",
+    "value": "ABCD 1234"
+  }
+}
+```
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.DelegateTx
+ * @prop {string} address
+ * @prop {string} to
+ * @prop {Array<GRpcClient.DelegateOp>} ops
+ * @prop {GRpcClient.Any} data
+ */
+
+/**
+ * Structure of GRpcClient.DelegateOp
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.DelegateOp
+ * @prop {string} typeUrl
+ * @prop {Array<string>} rules
+ */
+
+/**
  * Structure of GRpcClient.DepositTetherTx
  *
 ```javascript
 {
   "target": "arcblock",
   "withdrawer": "arcblock",
-  "locktime": "2019-07-08T09:59:22.220Z"
+  "locktime": "2019-08-03T22:45:26.303Z"
 }
 ```
  *
@@ -4508,7 +4663,7 @@
       "arcblock"
     ]
   },
-  "expiredAt": "2019-07-08T09:59:22.220Z",
+  "expiredAt": "2019-08-03T22:45:26.303Z",
   "data": {
     "type": "string",
     "value": "ABCD 1234"
@@ -4566,7 +4721,8 @@
           "data": {
             "type": "string",
             "value": "ABCD 1234"
-          }
+          },
+          "delegator": "arcblock"
         },
         {
           "signer": "arcblock",
@@ -4575,16 +4731,18 @@
           "data": {
             "type": "string",
             "value": "ABCD 1234"
-          }
+          },
+          "delegator": "arcblock"
         }
       ],
       "itx": {
         "type": "string",
         "value": "ABCD 1234"
-      }
+      },
+      "delegator": "arcblock"
     }
   },
-  "expiredAt": "2019-07-08T09:59:22.220Z",
+  "expiredAt": "2019-08-03T22:45:26.303Z",
   "data": {
     "type": "string",
     "value": "ABCD 1234"
@@ -4857,7 +5015,8 @@
       "data": {
         "type": "string",
         "value": "ABCD 1234"
-      }
+      },
+      "delegator": "arcblock"
     },
     {
       "signer": "arcblock",
@@ -4866,7 +5025,8 @@
       "data": {
         "type": "string",
         "value": "ABCD 1234"
-      }
+      },
+      "delegator": "arcblock"
     }
   ],
   "sender": {
@@ -4882,7 +5042,7 @@
     ],
     "tether": "arcblock"
   },
-  "expiredAt": "2019-07-08T09:59:22.220Z",
+  "expiredAt": "2019-08-03T22:45:26.303Z",
   "data": {
     "type": "string",
     "value": "ABCD 1234"
@@ -5732,6 +5892,32 @@
 
 /**
  * @memberof GRpcClient
+ * @typedef {Object} GRpcClient.ActivateProtocolTxInput
+ * @prop {object} input
+ * @prop {object} input.tx - data of the transaction
+ * @prop {GRpcClient.ActivateProtocolTx} input.tx.itx - the actual transaction object
+ * @prop {string} [input.tx.pk] - the sender pk
+ * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
+ * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
+ * @prop {string} [input.tx.chainId] - the chainId
+ * @prop {string} [input.tx.signature] - transaction signature
+ * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transaction
+ * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
+ * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
+ */
+
+/**
+ * Send ActivateProtocolTx transaction and get the hash, use {@link GRpcClient#getTx} to get transaction detail
+ *
+ * @memberof GRpcClient
+ * @function
+ * @name GRpcClient#sendActivateProtocolTx
+ * @param {GRpcClient.ActivateProtocolTxInput} params
+ * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
+ */
+
+/**
+ * @memberof GRpcClient
  * @typedef {Object} GRpcClient.ApproveTetherTxInput
  * @prop {object} input
  * @prop {object} input.tx - data of the transaction
@@ -5810,6 +5996,32 @@
 
 /**
  * @memberof GRpcClient
+ * @typedef {Object} GRpcClient.DeactivateProtocolTxInput
+ * @prop {object} input
+ * @prop {object} input.tx - data of the transaction
+ * @prop {GRpcClient.DeactivateProtocolTx} input.tx.itx - the actual transaction object
+ * @prop {string} [input.tx.pk] - the sender pk
+ * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
+ * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
+ * @prop {string} [input.tx.chainId] - the chainId
+ * @prop {string} [input.tx.signature] - transaction signature
+ * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transaction
+ * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
+ * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
+ */
+
+/**
+ * Send DeactivateProtocolTx transaction and get the hash, use {@link GRpcClient#getTx} to get transaction detail
+ *
+ * @memberof GRpcClient
+ * @function
+ * @name GRpcClient#sendDeactivateProtocolTx
+ * @param {GRpcClient.DeactivateProtocolTxInput} params
+ * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
+ */
+
+/**
+ * @memberof GRpcClient
  * @typedef {Object} GRpcClient.DeclareTxInput
  * @prop {object} input
  * @prop {object} input.tx - data of the transaction
@@ -5831,6 +6043,32 @@
  * @function
  * @name GRpcClient#sendDeclareTx
  * @param {GRpcClient.DeclareTxInput} params
+ * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
+ */
+
+/**
+ * @memberof GRpcClient
+ * @typedef {Object} GRpcClient.DelegateTxInput
+ * @prop {object} input
+ * @prop {object} input.tx - data of the transaction
+ * @prop {GRpcClient.DelegateTx} input.tx.itx - the actual transaction object
+ * @prop {string} [input.tx.pk] - the sender pk
+ * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
+ * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
+ * @prop {string} [input.tx.chainId] - the chainId
+ * @prop {string} [input.tx.signature] - transaction signature
+ * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transaction
+ * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
+ * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
+ */
+
+/**
+ * Send DelegateTx transaction and get the hash, use {@link GRpcClient#getTx} to get transaction detail
+ *
+ * @memberof GRpcClient
+ * @function
+ * @name GRpcClient#sendDelegateTx
+ * @param {GRpcClient.DelegateTxInput} params
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
 
@@ -6249,6 +6487,16 @@
  */
 
 /**
+ * Encode a ActivateProtocolTx transaction for later use
+ *
+ * @name GRpcClient#encodeActivateProtocolTx
+ * @function
+ * @memberof GRpcClient
+ * @param {GRpcClient.ActivateProtocolTxInput} params
+ * @returns {Promise<GRpcClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
+ */
+
+/**
  * Encode a ApproveTetherTx transaction for later use
  *
  * @name GRpcClient#encodeApproveTetherTx
@@ -6279,12 +6527,32 @@
  */
 
 /**
+ * Encode a DeactivateProtocolTx transaction for later use
+ *
+ * @name GRpcClient#encodeDeactivateProtocolTx
+ * @function
+ * @memberof GRpcClient
+ * @param {GRpcClient.DeactivateProtocolTxInput} params
+ * @returns {Promise<GRpcClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
+ */
+
+/**
  * Encode a DeclareTx transaction for later use
  *
  * @name GRpcClient#encodeDeclareTx
  * @function
  * @memberof GRpcClient
  * @param {GRpcClient.DeclareTxInput} params
+ * @returns {Promise<GRpcClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
+ */
+
+/**
+ * Encode a DelegateTx transaction for later use
+ *
+ * @name GRpcClient#encodeDelegateTx
+ * @function
+ * @memberof GRpcClient
+ * @param {GRpcClient.DelegateTxInput} params
  * @returns {Promise<GRpcClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
 
