@@ -139,6 +139,8 @@ const Mcrypto = (module.exports = {
       ROLE_GROUP: 9,
       ROLE_TX: 10,
       ROLE_TETHER: 11,
+      ROLE_SWAP: 12,
+      ROLE_DELEGATE: 13,
       ROLE_ANY: 63,
     },
     /**
