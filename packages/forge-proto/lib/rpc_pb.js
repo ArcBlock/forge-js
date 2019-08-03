@@ -34,6 +34,7 @@ goog.exportSymbol('proto.forge_abi.RequestGetBlock', null, global);
 goog.exportSymbol('proto.forge_abi.RequestGetBlocks', null, global);
 goog.exportSymbol('proto.forge_abi.RequestGetChainInfo', null, global);
 goog.exportSymbol('proto.forge_abi.RequestGetConfig', null, global);
+goog.exportSymbol('proto.forge_abi.RequestGetDelegateState', null, global);
 goog.exportSymbol('proto.forge_abi.RequestGetForgeState', null, global);
 goog.exportSymbol('proto.forge_abi.RequestGetForgeStats', null, global);
 goog.exportSymbol('proto.forge_abi.RequestGetHealthStatus', null, global);
@@ -76,6 +77,7 @@ goog.exportSymbol('proto.forge_abi.ResponseGetBlock', null, global);
 goog.exportSymbol('proto.forge_abi.ResponseGetBlocks', null, global);
 goog.exportSymbol('proto.forge_abi.ResponseGetChainInfo', null, global);
 goog.exportSymbol('proto.forge_abi.ResponseGetConfig', null, global);
+goog.exportSymbol('proto.forge_abi.ResponseGetDelegateState', null, global);
 goog.exportSymbol('proto.forge_abi.ResponseGetForgeState', null, global);
 goog.exportSymbol('proto.forge_abi.ResponseGetForgeStats', null, global);
 goog.exportSymbol('proto.forge_abi.ResponseGetHealthStatus', null, global);
@@ -580,6 +582,7 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
         data: (f = msg.getData()) && google_protobuf_any_pb.Any.toObject(includeInstance, f),
         wallet: (f = msg.getWallet()) && type_pb.WalletInfo.toObject(includeInstance, f),
         token: jspb.Message.getFieldWithDefault(msg, 4, ''),
+        delegatee: jspb.Message.getFieldWithDefault(msg, 5, ''),
       };
 
     if (includeInstance) {
@@ -633,6 +636,10 @@ proto.forge_abi.RequestMultisig.deserializeBinaryFromReader = function(msg, read
         var value = /** @type {string} */ (reader.readString());
         msg.setToken(value);
         break;
+      case 5:
+        var value = /** @type {string} */ (reader.readString());
+        msg.setDelegatee(value);
+        break;
       default:
         reader.skipField();
         break;
@@ -675,6 +682,10 @@ proto.forge_abi.RequestMultisig.serializeBinaryToWriter = function(message, writ
   f = message.getToken();
   if (f.length > 0) {
     writer.writeString(4, f);
+  }
+  f = message.getDelegatee();
+  if (f.length > 0) {
+    writer.writeString(5, f);
   }
 };
 
@@ -776,6 +787,19 @@ proto.forge_abi.RequestMultisig.prototype.getToken = function() {
 /** @param {string} value */
 proto.forge_abi.RequestMultisig.prototype.setToken = function(value) {
   jspb.Message.setProto3StringField(this, 4, value);
+};
+
+/**
+ * optional string delegatee = 5;
+ * @return {string}
+ */
+proto.forge_abi.RequestMultisig.prototype.getDelegatee = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ''));
+};
+
+/** @param {string} value */
+proto.forge_abi.RequestMultisig.prototype.setDelegatee = function(value) {
+  jspb.Message.setProto3StringField(this, 5, value);
 };
 
 /**
@@ -6905,6 +6929,374 @@ proto.forge_abi.ResponseGetSwapState.prototype.hasState = function() {
  * @extends {jspb.Message}
  * @constructor
  */
+proto.forge_abi.RequestGetDelegateState = function(opt_data) {
+  jspb.Message.initialize(
+    this,
+    opt_data,
+    0,
+    -1,
+    proto.forge_abi.RequestGetDelegateState.repeatedFields_,
+    null
+  );
+};
+goog.inherits(proto.forge_abi.RequestGetDelegateState, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.forge_abi.RequestGetDelegateState.displayName = 'proto.forge_abi.RequestGetDelegateState';
+}
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.forge_abi.RequestGetDelegateState.repeatedFields_ = [2];
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+  /**
+   * Creates an object representation of this proto suitable for use in Soy templates.
+   * Field names that are reserved in JavaScript and will be renamed to pb_name.
+   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+   * For the list of reserved names please see:
+   *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+   * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+   *     for transitional soy proto support: http://goto/soy-param-migration
+   * @return {!Object}
+   */
+  proto.forge_abi.RequestGetDelegateState.prototype.toObject = function(opt_includeInstance) {
+    return proto.forge_abi.RequestGetDelegateState.toObject(opt_includeInstance, this);
+  };
+
+  /**
+   * Static version of the {@see toObject} method.
+   * @param {boolean|undefined} includeInstance Whether to include the JSPB
+   *     instance for transitional soy proto support:
+   *     http://goto/soy-param-migration
+   * @param {!proto.forge_abi.RequestGetDelegateState} msg The msg instance to transform.
+   * @return {!Object}
+   * @suppress {unusedLocalVariables} f is only used for nested messages
+   */
+  proto.forge_abi.RequestGetDelegateState.toObject = function(includeInstance, msg) {
+    var f,
+      obj = {
+        address: jspb.Message.getFieldWithDefault(msg, 1, ''),
+        keysList: jspb.Message.getRepeatedField(msg, 2),
+        height: jspb.Message.getFieldWithDefault(msg, 3, 0),
+      };
+
+    if (includeInstance) {
+      obj.$jspbMessageInstance = msg;
+    }
+    return obj;
+  };
+}
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.forge_abi.RequestGetDelegateState}
+ */
+proto.forge_abi.RequestGetDelegateState.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.forge_abi.RequestGetDelegateState();
+  return proto.forge_abi.RequestGetDelegateState.deserializeBinaryFromReader(msg, reader);
+};
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.forge_abi.RequestGetDelegateState} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.forge_abi.RequestGetDelegateState}
+ */
+proto.forge_abi.RequestGetDelegateState.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+      case 1:
+        var value = /** @type {string} */ (reader.readString());
+        msg.setAddress(value);
+        break;
+      case 2:
+        var value = /** @type {string} */ (reader.readString());
+        msg.addKeys(value);
+        break;
+      case 3:
+        var value = /** @type {number} */ (reader.readUint64());
+        msg.setHeight(value);
+        break;
+      default:
+        reader.skipField();
+        break;
+    }
+  }
+  return msg;
+};
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.forge_abi.RequestGetDelegateState.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.forge_abi.RequestGetDelegateState.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.forge_abi.RequestGetDelegateState} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.forge_abi.RequestGetDelegateState.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getAddress();
+  if (f.length > 0) {
+    writer.writeString(1, f);
+  }
+  f = message.getKeysList();
+  if (f.length > 0) {
+    writer.writeRepeatedString(2, f);
+  }
+  f = message.getHeight();
+  if (f !== 0) {
+    writer.writeUint64(3, f);
+  }
+};
+
+/**
+ * optional string address = 1;
+ * @return {string}
+ */
+proto.forge_abi.RequestGetDelegateState.prototype.getAddress = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ''));
+};
+
+/** @param {string} value */
+proto.forge_abi.RequestGetDelegateState.prototype.setAddress = function(value) {
+  jspb.Message.setProto3StringField(this, 1, value);
+};
+
+/**
+ * repeated string keys = 2;
+ * @return {!Array<string>}
+ */
+proto.forge_abi.RequestGetDelegateState.prototype.getKeysList = function() {
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 2));
+};
+
+/** @param {!Array<string>} value */
+proto.forge_abi.RequestGetDelegateState.prototype.setKeysList = function(value) {
+  jspb.Message.setField(this, 2, value || []);
+};
+
+/**
+ * @param {string} value
+ * @param {number=} opt_index
+ */
+proto.forge_abi.RequestGetDelegateState.prototype.addKeys = function(value, opt_index) {
+  jspb.Message.addToRepeatedField(this, 2, value, opt_index);
+};
+
+proto.forge_abi.RequestGetDelegateState.prototype.clearKeysList = function() {
+  this.setKeysList([]);
+};
+
+/**
+ * optional uint64 height = 3;
+ * @return {number}
+ */
+proto.forge_abi.RequestGetDelegateState.prototype.getHeight = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
+};
+
+/** @param {number} value */
+proto.forge_abi.RequestGetDelegateState.prototype.setHeight = function(value) {
+  jspb.Message.setProto3IntField(this, 3, value);
+};
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.forge_abi.ResponseGetDelegateState = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.forge_abi.ResponseGetDelegateState, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.forge_abi.ResponseGetDelegateState.displayName = 'proto.forge_abi.ResponseGetDelegateState';
+}
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+  /**
+   * Creates an object representation of this proto suitable for use in Soy templates.
+   * Field names that are reserved in JavaScript and will be renamed to pb_name.
+   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+   * For the list of reserved names please see:
+   *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+   * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+   *     for transitional soy proto support: http://goto/soy-param-migration
+   * @return {!Object}
+   */
+  proto.forge_abi.ResponseGetDelegateState.prototype.toObject = function(opt_includeInstance) {
+    return proto.forge_abi.ResponseGetDelegateState.toObject(opt_includeInstance, this);
+  };
+
+  /**
+   * Static version of the {@see toObject} method.
+   * @param {boolean|undefined} includeInstance Whether to include the JSPB
+   *     instance for transitional soy proto support:
+   *     http://goto/soy-param-migration
+   * @param {!proto.forge_abi.ResponseGetDelegateState} msg The msg instance to transform.
+   * @return {!Object}
+   * @suppress {unusedLocalVariables} f is only used for nested messages
+   */
+  proto.forge_abi.ResponseGetDelegateState.toObject = function(includeInstance, msg) {
+    var f,
+      obj = {
+        code: jspb.Message.getFieldWithDefault(msg, 1, 0),
+        state: (f = msg.getState()) && state_pb.DelegateState.toObject(includeInstance, f),
+      };
+
+    if (includeInstance) {
+      obj.$jspbMessageInstance = msg;
+    }
+    return obj;
+  };
+}
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.forge_abi.ResponseGetDelegateState}
+ */
+proto.forge_abi.ResponseGetDelegateState.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.forge_abi.ResponseGetDelegateState();
+  return proto.forge_abi.ResponseGetDelegateState.deserializeBinaryFromReader(msg, reader);
+};
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.forge_abi.ResponseGetDelegateState} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.forge_abi.ResponseGetDelegateState}
+ */
+proto.forge_abi.ResponseGetDelegateState.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+      case 1:
+        var value = /** @type {!proto.forge_abi.StatusCode} */ (reader.readEnum());
+        msg.setCode(value);
+        break;
+      case 2:
+        var value = new state_pb.DelegateState();
+        reader.readMessage(value, state_pb.DelegateState.deserializeBinaryFromReader);
+        msg.setState(value);
+        break;
+      default:
+        reader.skipField();
+        break;
+    }
+  }
+  return msg;
+};
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.forge_abi.ResponseGetDelegateState.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.forge_abi.ResponseGetDelegateState.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.forge_abi.ResponseGetDelegateState} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.forge_abi.ResponseGetDelegateState.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getCode();
+  if (f !== 0.0) {
+    writer.writeEnum(1, f);
+  }
+  f = message.getState();
+  if (f != null) {
+    writer.writeMessage(2, f, state_pb.DelegateState.serializeBinaryToWriter);
+  }
+};
+
+/**
+ * optional StatusCode code = 1;
+ * @return {!proto.forge_abi.StatusCode}
+ */
+proto.forge_abi.ResponseGetDelegateState.prototype.getCode = function() {
+  return /** @type {!proto.forge_abi.StatusCode} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
+};
+
+/** @param {!proto.forge_abi.StatusCode} value */
+proto.forge_abi.ResponseGetDelegateState.prototype.setCode = function(value) {
+  jspb.Message.setProto3EnumField(this, 1, value);
+};
+
+/**
+ * optional DelegateState state = 2;
+ * @return {?proto.forge_abi.DelegateState}
+ */
+proto.forge_abi.ResponseGetDelegateState.prototype.getState = function() {
+  return /** @type{?proto.forge_abi.DelegateState} */ (jspb.Message.getWrapperField(
+    this,
+    state_pb.DelegateState,
+    2
+  ));
+};
+
+/** @param {?proto.forge_abi.DelegateState|undefined} value */
+proto.forge_abi.ResponseGetDelegateState.prototype.setState = function(value) {
+  jspb.Message.setWrapperField(this, 2, value);
+};
+
+proto.forge_abi.ResponseGetDelegateState.prototype.clearState = function() {
+  this.setState(undefined);
+};
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.forge_abi.ResponseGetDelegateState.prototype.hasState = function() {
+  return jspb.Message.getField(this, 2) != null;
+};
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
 proto.forge_abi.RequestStoreFile = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
@@ -9752,7 +10144,7 @@ if (goog.DEBUG && !COMPILED) {
  * @const
  */
 proto.forge_abi.ResponseSubscribe.oneofGroups_ = [
-  [2, 3, 4, 5, 6, 7, 8, 16, 17, 19, 20, 21, 22, 23, 24, 129, 130, 131, 132, 133],
+  [2, 3, 4, 5, 6, 7, 8, 16, 17, 19, 20, 21, 22, 23, 24, 25, 26, 27, 129, 130, 131, 132, 133, 134],
 ];
 
 /**
@@ -9775,11 +10167,15 @@ proto.forge_abi.ResponseSubscribe.ValueCase = {
   DECLARE_FILE: 22,
   SYS_UPGRADE: 23,
   STAKE: 24,
+  DELEGATE: 25,
+  ACTIVATE_PROTOCOL: 26,
+  DEACTIVATE_PROTOCOL: 27,
   ACCOUNT_STATE: 129,
   ASSET_STATE: 130,
   FORGE_STATE: 131,
   STAKE_STATE: 132,
   PROTOCOL_STATE: 133,
+  DELEGATE_STATE: 134,
 };
 
 /**
@@ -9838,6 +10234,11 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
         declareFile: (f = msg.getDeclareFile()) && type_pb.Transaction.toObject(includeInstance, f),
         sysUpgrade: (f = msg.getSysUpgrade()) && type_pb.Transaction.toObject(includeInstance, f),
         stake: (f = msg.getStake()) && type_pb.Transaction.toObject(includeInstance, f),
+        delegate: (f = msg.getDelegate()) && type_pb.Transaction.toObject(includeInstance, f),
+        activateProtocol:
+          (f = msg.getActivateProtocol()) && type_pb.Transaction.toObject(includeInstance, f),
+        deactivateProtocol:
+          (f = msg.getDeactivateProtocol()) && type_pb.Transaction.toObject(includeInstance, f),
         accountState:
           (f = msg.getAccountState()) && state_pb.AccountState.toObject(includeInstance, f),
         assetState: (f = msg.getAssetState()) && state_pb.AssetState.toObject(includeInstance, f),
@@ -9845,6 +10246,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
         stakeState: (f = msg.getStakeState()) && state_pb.StakeState.toObject(includeInstance, f),
         protocolState:
           (f = msg.getProtocolState()) && state_pb.ProtocolState.toObject(includeInstance, f),
+        delegateState:
+          (f = msg.getDelegateState()) && state_pb.DelegateState.toObject(includeInstance, f),
       };
 
     if (includeInstance) {
@@ -9957,6 +10360,21 @@ proto.forge_abi.ResponseSubscribe.deserializeBinaryFromReader = function(msg, re
         reader.readMessage(value, type_pb.Transaction.deserializeBinaryFromReader);
         msg.setStake(value);
         break;
+      case 25:
+        var value = new type_pb.Transaction();
+        reader.readMessage(value, type_pb.Transaction.deserializeBinaryFromReader);
+        msg.setDelegate(value);
+        break;
+      case 26:
+        var value = new type_pb.Transaction();
+        reader.readMessage(value, type_pb.Transaction.deserializeBinaryFromReader);
+        msg.setActivateProtocol(value);
+        break;
+      case 27:
+        var value = new type_pb.Transaction();
+        reader.readMessage(value, type_pb.Transaction.deserializeBinaryFromReader);
+        msg.setDeactivateProtocol(value);
+        break;
       case 129:
         var value = new state_pb.AccountState();
         reader.readMessage(value, state_pb.AccountState.deserializeBinaryFromReader);
@@ -9981,6 +10399,11 @@ proto.forge_abi.ResponseSubscribe.deserializeBinaryFromReader = function(msg, re
         var value = new state_pb.ProtocolState();
         reader.readMessage(value, state_pb.ProtocolState.deserializeBinaryFromReader);
         msg.setProtocolState(value);
+        break;
+      case 134:
+        var value = new state_pb.DelegateState();
+        reader.readMessage(value, state_pb.DelegateState.deserializeBinaryFromReader);
+        msg.setDelegateState(value);
         break;
       default:
         reader.skipField();
@@ -10073,6 +10496,18 @@ proto.forge_abi.ResponseSubscribe.serializeBinaryToWriter = function(message, wr
   if (f != null) {
     writer.writeMessage(24, f, type_pb.Transaction.serializeBinaryToWriter);
   }
+  f = message.getDelegate();
+  if (f != null) {
+    writer.writeMessage(25, f, type_pb.Transaction.serializeBinaryToWriter);
+  }
+  f = message.getActivateProtocol();
+  if (f != null) {
+    writer.writeMessage(26, f, type_pb.Transaction.serializeBinaryToWriter);
+  }
+  f = message.getDeactivateProtocol();
+  if (f != null) {
+    writer.writeMessage(27, f, type_pb.Transaction.serializeBinaryToWriter);
+  }
   f = message.getAccountState();
   if (f != null) {
     writer.writeMessage(129, f, state_pb.AccountState.serializeBinaryToWriter);
@@ -10092,6 +10527,10 @@ proto.forge_abi.ResponseSubscribe.serializeBinaryToWriter = function(message, wr
   f = message.getProtocolState();
   if (f != null) {
     writer.writeMessage(133, f, state_pb.ProtocolState.serializeBinaryToWriter);
+  }
+  f = message.getDelegateState();
+  if (f != null) {
+    writer.writeMessage(134, f, state_pb.DelegateState.serializeBinaryToWriter);
   }
 };
 
@@ -10610,6 +11049,108 @@ proto.forge_abi.ResponseSubscribe.prototype.hasStake = function() {
 };
 
 /**
+ * optional Transaction delegate = 25;
+ * @return {?proto.forge_abi.Transaction}
+ */
+proto.forge_abi.ResponseSubscribe.prototype.getDelegate = function() {
+  return /** @type{?proto.forge_abi.Transaction} */ (jspb.Message.getWrapperField(
+    this,
+    type_pb.Transaction,
+    25
+  ));
+};
+
+/** @param {?proto.forge_abi.Transaction|undefined} value */
+proto.forge_abi.ResponseSubscribe.prototype.setDelegate = function(value) {
+  jspb.Message.setOneofWrapperField(
+    this,
+    25,
+    proto.forge_abi.ResponseSubscribe.oneofGroups_[0],
+    value
+  );
+};
+
+proto.forge_abi.ResponseSubscribe.prototype.clearDelegate = function() {
+  this.setDelegate(undefined);
+};
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.forge_abi.ResponseSubscribe.prototype.hasDelegate = function() {
+  return jspb.Message.getField(this, 25) != null;
+};
+
+/**
+ * optional Transaction activate_protocol = 26;
+ * @return {?proto.forge_abi.Transaction}
+ */
+proto.forge_abi.ResponseSubscribe.prototype.getActivateProtocol = function() {
+  return /** @type{?proto.forge_abi.Transaction} */ (jspb.Message.getWrapperField(
+    this,
+    type_pb.Transaction,
+    26
+  ));
+};
+
+/** @param {?proto.forge_abi.Transaction|undefined} value */
+proto.forge_abi.ResponseSubscribe.prototype.setActivateProtocol = function(value) {
+  jspb.Message.setOneofWrapperField(
+    this,
+    26,
+    proto.forge_abi.ResponseSubscribe.oneofGroups_[0],
+    value
+  );
+};
+
+proto.forge_abi.ResponseSubscribe.prototype.clearActivateProtocol = function() {
+  this.setActivateProtocol(undefined);
+};
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.forge_abi.ResponseSubscribe.prototype.hasActivateProtocol = function() {
+  return jspb.Message.getField(this, 26) != null;
+};
+
+/**
+ * optional Transaction deactivate_protocol = 27;
+ * @return {?proto.forge_abi.Transaction}
+ */
+proto.forge_abi.ResponseSubscribe.prototype.getDeactivateProtocol = function() {
+  return /** @type{?proto.forge_abi.Transaction} */ (jspb.Message.getWrapperField(
+    this,
+    type_pb.Transaction,
+    27
+  ));
+};
+
+/** @param {?proto.forge_abi.Transaction|undefined} value */
+proto.forge_abi.ResponseSubscribe.prototype.setDeactivateProtocol = function(value) {
+  jspb.Message.setOneofWrapperField(
+    this,
+    27,
+    proto.forge_abi.ResponseSubscribe.oneofGroups_[0],
+    value
+  );
+};
+
+proto.forge_abi.ResponseSubscribe.prototype.clearDeactivateProtocol = function() {
+  this.setDeactivateProtocol(undefined);
+};
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.forge_abi.ResponseSubscribe.prototype.hasDeactivateProtocol = function() {
+  return jspb.Message.getField(this, 27) != null;
+};
+
+/**
  * optional AccountState account_state = 129;
  * @return {?proto.forge_abi.AccountState}
  */
@@ -10777,6 +11318,40 @@ proto.forge_abi.ResponseSubscribe.prototype.clearProtocolState = function() {
  */
 proto.forge_abi.ResponseSubscribe.prototype.hasProtocolState = function() {
   return jspb.Message.getField(this, 133) != null;
+};
+
+/**
+ * optional DelegateState delegate_state = 134;
+ * @return {?proto.forge_abi.DelegateState}
+ */
+proto.forge_abi.ResponseSubscribe.prototype.getDelegateState = function() {
+  return /** @type{?proto.forge_abi.DelegateState} */ (jspb.Message.getWrapperField(
+    this,
+    state_pb.DelegateState,
+    134
+  ));
+};
+
+/** @param {?proto.forge_abi.DelegateState|undefined} value */
+proto.forge_abi.ResponseSubscribe.prototype.setDelegateState = function(value) {
+  jspb.Message.setOneofWrapperField(
+    this,
+    134,
+    proto.forge_abi.ResponseSubscribe.oneofGroups_[0],
+    value
+  );
+};
+
+proto.forge_abi.ResponseSubscribe.prototype.clearDelegateState = function() {
+  this.setDelegateState(undefined);
+};
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.forge_abi.ResponseSubscribe.prototype.hasDelegateState = function() {
+  return jspb.Message.getField(this, 134) != null;
 };
 
 /**

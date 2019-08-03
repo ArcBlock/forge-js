@@ -103,6 +103,17 @@ function deserialize_forge_abi_RequestGetConfig(buffer_arg) {
   return rpc_pb.RequestGetConfig.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_forge_abi_RequestGetDelegateState(arg) {
+  if (!(arg instanceof rpc_pb.RequestGetDelegateState)) {
+    throw new Error('Expected argument of type forge_abi.RequestGetDelegateState');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_forge_abi_RequestGetDelegateState(buffer_arg) {
+  return rpc_pb.RequestGetDelegateState.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_forge_abi_RequestGetForgeState(arg) {
   if (!(arg instanceof rpc_pb.RequestGetForgeState)) {
     throw new Error('Expected argument of type forge_abi.RequestGetForgeState');
@@ -563,6 +574,17 @@ function serialize_forge_abi_ResponseGetConfig(arg) {
 
 function deserialize_forge_abi_ResponseGetConfig(buffer_arg) {
   return rpc_pb.ResponseGetConfig.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_forge_abi_ResponseGetDelegateState(arg) {
+  if (!(arg instanceof rpc_pb.ResponseGetDelegateState)) {
+    throw new Error('Expected argument of type forge_abi.ResponseGetDelegateState');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_forge_abi_ResponseGetDelegateState(buffer_arg) {
+  return rpc_pb.ResponseGetDelegateState.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_forge_abi_ResponseGetForgeState(arg) {
@@ -1226,6 +1248,17 @@ var StateRpcService = (exports.StateRpcService = {
     requestDeserialize: deserialize_forge_abi_RequestGetSwapState,
     responseSerialize: serialize_forge_abi_ResponseGetSwapState,
     responseDeserialize: deserialize_forge_abi_ResponseGetSwapState,
+  },
+  get_delegate_state: {
+    path: '/forge_abi.StateRpc/get_delegate_state',
+    requestStream: true,
+    responseStream: true,
+    requestType: rpc_pb.RequestGetDelegateState,
+    responseType: rpc_pb.ResponseGetDelegateState,
+    requestSerialize: serialize_forge_abi_RequestGetDelegateState,
+    requestDeserialize: deserialize_forge_abi_RequestGetDelegateState,
+    responseSerialize: serialize_forge_abi_ResponseGetDelegateState,
+    responseDeserialize: deserialize_forge_abi_ResponseGetDelegateState,
   },
 });
 

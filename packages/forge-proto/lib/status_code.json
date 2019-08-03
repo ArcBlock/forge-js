@@ -104,6 +104,7 @@
   "invalid_expiry_date": "The expiry date is invalid.",
   "invalid_deposit": "The depoisit is invalid.",
   "invalid_custodian": "The custodian does not exist on the chain.",
+  "invalid_delegation": "The delegation parameters are invalid.",
   "forbidden": "Operation is not permitted with current authorization.",
   "internal": "Internal error occurred - mainly a server implementation issue.",
   "timeout": "Operation is timeout."

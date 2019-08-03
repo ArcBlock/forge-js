@@ -54,7 +54,16 @@
             "invalid_hashkey": 54,
             "forbidden": 403,
             "internal": 500,
-            "timeout": 504
+            "timeout": 504,
+            "invalid_delegation": 55,
+            "insufficient_delegation": 56,
+            "invalid_delegation_rule": 57,
+            "invalid_delegation_type_url": 58,
+            "sender_not_authorized": 59,
+            "protocol_not_running": 60,
+            "protocol_not_paused": 61,
+            "protocol_not_activated": 62,
+            "invalid_deactivation": 63
           }
         },
         "TopicType": {
@@ -1713,6 +1722,10 @@
             "data": {
               "type": "google.protobuf.Any",
               "id": 15
+            },
+            "delegator": {
+              "type": "string",
+              "id": 4
             }
           }
         },
@@ -1750,6 +1763,10 @@
             "itx": {
               "type": "google.protobuf.Any",
               "id": 15
+            },
+            "delegator": {
+              "type": "string",
+              "id": 6
             }
           }
         },
@@ -1819,6 +1836,10 @@
             "declare": {
               "type": "DeclareConfig",
               "id": 5
+            },
+            "delegate": {
+              "type": "DelegateConfig",
+              "id": 6
             }
           }
         },
@@ -3705,6 +3726,19 @@
             }
           }
         },
+        "DelegateConfig": {
+          "fields": {
+            "deltaInterval": {
+              "type": "uint32",
+              "id": 1
+            },
+            "typeUrls": {
+              "rule": "repeated",
+              "type": "string",
+              "id": 2
+            }
+          }
+        },
         "AssetSpec": {
           "fields": {
             "address": {
@@ -3727,6 +3761,18 @@
               "rule": "repeated",
               "type": "AssetSpec",
               "id": 2
+            },
+            "data": {
+              "type": "google.protobuf.Any",
+              "id": 15
+            }
+          }
+        },
+        "ActivateProtocolTx": {
+          "fields": {
+            "address": {
+              "type": "string",
+              "id": 1
             },
             "data": {
               "type": "google.protobuf.Any",
@@ -3884,6 +3930,18 @@
             }
           }
         },
+        "DeactivateProtocolTx": {
+          "fields": {
+            "address": {
+              "type": "string",
+              "id": 1
+            },
+            "data": {
+              "type": "google.protobuf.Any",
+              "id": 15
+            }
+          }
+        },
         "DeclareTx": {
           "fields": {
             "moniker": {
@@ -3897,6 +3955,40 @@
             "data": {
               "type": "google.protobuf.Any",
               "id": 15
+            }
+          }
+        },
+        "DelegateTx": {
+          "fields": {
+            "address": {
+              "type": "string",
+              "id": 1
+            },
+            "to": {
+              "type": "string",
+              "id": 2
+            },
+            "ops": {
+              "rule": "repeated",
+              "type": "DelegateOp",
+              "id": 3
+            },
+            "data": {
+              "type": "google.protobuf.Any",
+              "id": 15
+            }
+          }
+        },
+        "DelegateOp": {
+          "fields": {
+            "typeUrl": {
+              "type": "string",
+              "id": 1
+            },
+            "rules": {
+              "rule": "repeated",
+              "type": "string",
+              "id": 2
             }
           }
         },
