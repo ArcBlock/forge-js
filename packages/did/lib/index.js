@@ -91,6 +91,7 @@ const fromHash = (hash, role) => {
     types.RoleType.ROLE_NODE,
     types.RoleType.ROLE_VALIDATOR,
     types.RoleType.ROLE_TETHER,
+    types.RoleType.ROLE_SWAP,
   ];
   if (sha2Roles.includes(role)) {
     type.hash = types.HashType.SHA2;

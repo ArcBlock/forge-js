@@ -4,6 +4,7 @@ const {
   toStakeAddress,
   toDelegateAddress,
   toTetherAddress,
+  toSwapAddress,
 } = require('../lib');
 
 describe('#toAssetAddress', () => {
@@ -87,5 +88,17 @@ describe('#toDelegateAddress', () => {
     const result2 = 'z2bNB1duqf4mvby6Sezgw7vCPw1G68BtuQ9L8';
     expect(toDelegateAddress(addr1, addr2)).toEqual(result1);
     expect(toDelegateAddress(addr2, addr1)).toEqual(result2);
+  });
+});
+
+describe('#toSwapAddress', () => {
+  test('should be a function', () => {
+    expect(typeof toSwapAddress).toEqual('function');
+  });
+
+  test('should return correct swap address', () => {
+    const hash = '0x13AF33F19115F30DBDD6B637B97B43EB2D0E9E6E3A5EA6B76CDC58BDDDAF6510';
+    const result = 'z2UHszcmvvyYsnbyoMxBK4Je9tahYZ1TV3KDi';
+    expect(toSwapAddress(hash)).toEqual(result);
   });
 });

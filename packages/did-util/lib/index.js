@@ -119,6 +119,18 @@ function toTetherAddress(hash) {
 }
 
 /**
+ * Generate a swap address from the setup swap tx hash
+ *
+ * @public
+ * @static
+ * @param {string} hash - SetupSwapTx hash
+ * @returns {string} swap address without `did:abt:` prefix
+ */
+function toSwapAddress(hash) {
+  return fromHash(hash, types.RoleType.ROLE_SWAP);
+}
+
+/**
  * Generate an stake address, eg: the did of the stake
  *
  * @public
@@ -140,4 +152,5 @@ module.exports = {
   toDelegateAddress,
   toStakeDid,
   toTetherAddress,
+  toSwapAddress,
 };
