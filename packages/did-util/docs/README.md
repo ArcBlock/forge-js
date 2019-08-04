@@ -15,6 +15,7 @@ Utility functions to calculate various kinds of did, such as asset address
   * [.toStakeAddress(sender, receiver)](#module_@arcblock/did-util.toStakeAddress) ⇒ <code>string</code>
   * [.toDelegateAddress(addr1, addr2)](#module_@arcblock/did-util.toDelegateAddress) ⇒ <code>string</code>
   * [.toTetherAddress(hash)](#module_@arcblock/did-util.toTetherAddress) ⇒ <code>string</code>
+  * [.toSwapAddress(hash)](#module_@arcblock/did-util.toSwapAddress) ⇒ <code>string</code>
   * [.toStakeDid(sender, receiver)](#module_@arcblock/did-util.toStakeDid) ⇒ <code>string</code>
 
 <a name="module_@arcblock/did-util.toAssetAddress"></a>
@@ -118,6 +119,20 @@ Generate a tether address from the deposit tether tx hash
 | Param | Type                | Description          |
 | ----- | ------------------- | -------------------- |
 | hash  | <code>string</code> | DepositTetherTx hash |
+
+<a name="module_@arcblock/did-util.toSwapAddress"></a>
+
+### [**@arcblock/did-util**](https://github.com/arcblock/did-util).toSwapAddress(hash) ⇒ <code>string</code>
+
+Generate a swap address from the setup swap tx hash
+
+**Kind**: static method of [<code>@arcblock/did-util</code>](#module_@arcblock/did-util)  
+**Returns**: <code>string</code> - swap address without `did:abt:` prefix  
+**Access**: public  
+
+| Param | Type                | Description      |
+| ----- | ------------------- | ---------------- |
+| hash  | <code>string</code> | SetupSwapTx hash |
 
 <a name="module_@arcblock/did-util.toStakeDid"></a>
 

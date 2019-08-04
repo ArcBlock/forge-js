@@ -77,6 +77,15 @@ declare function toStakeDid(sender: string, receiver: string): string;
  * @returns {string} stake address without `did:abt:` prefix
  */
 declare function toTetherAddress(hash: string): string;
+/**
+ * Generate a swap address from the setup swap tx hash
+ *
+ * @public
+ * @static
+ * @param {string} hash - SetupSwapTx hash
+ * @returns {string} swap address without `did:abt:` prefix
+ */
+declare function toSwapAddress(hash: string): string;
 declare const _Lib: _Lib.T100;
 declare namespace _Lib {
   export interface T100 {
@@ -88,6 +97,7 @@ declare namespace _Lib {
     toDelegateAddress: typeof toDelegateAddress;
     toStakeDid: typeof toStakeDid;
     toTetherAddress: typeof toTetherAddress;
+    toSwapAddress: typeof toSwapAddress;
   }
 }
 export = _Lib;
