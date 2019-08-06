@@ -127,9 +127,10 @@ class GraphQLClient extends GraphQLClientBase {
        * @param {object} [input.tx.signature] - the chainId
        * @param {object} [input.tx.signatures] - the chainId
        * @param {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
+       * @param {object} input.delegatee - the wallet address that delegated permissions to the `input.wallet` address
        * @returns Promise
        */
-      const txEncodeFn = async ({ tx, wallet }) => {
+      const txEncodeFn = async ({ tx, wallet, delegatee }) => {
         // Determine sender address
         const address = tx.from || wallet.toAddress();
         const pk = tx.pk || wallet.publicKey;
@@ -162,12 +163,13 @@ class GraphQLClient extends GraphQLClientBase {
         }
 
         const txObj = createMessage('Transaction', {
-          from: address,
+          from: delegatee || address,
           nonce,
           pk,
           chainId,
           signature: tx.signature || Buffer.from([]),
           signatures,
+          delegator: delegatee ? address : '',
           itx,
         });
         const txToSignBytes = txObj.serializeBinary();
@@ -194,18 +196,19 @@ class GraphQLClient extends GraphQLClientBase {
        * @param {object} [input.tx.signatures] - the chainId
        * @param {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
        * @param {object} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
+       * @param {object} input.delegatee - the wallet address that delegated permissions to the `input.wallet` address
        * @returns Promise
        */
-      const txSendFn = async ({ tx, wallet, signature }) => {
+      const txSendFn = async ({ tx, wallet, signature, delegatee }) => {
         let encoded;
         if (signature) {
           encoded = tx;
           encoded.signature = signature;
         } else if (tx.signature) {
-          const res = await txEncodeFn({ tx, wallet });
+          const res = await txEncodeFn({ tx, wallet, delegatee });
           encoded = res.object;
         } else {
-          const res = await txEncodeFn({ tx, wallet });
+          const res = await txEncodeFn({ tx, wallet, delegatee });
           // eslint-disable-next-line prefer-destructuring
           encoded = res.object;
           encoded.signature = wallet.sign(bytesToHex(res.buffer));
@@ -263,12 +266,12 @@ class GraphQLClient extends GraphQLClientBase {
       };
 
       // Generate transaction signing function
-      const txSignFn = async ({ tx, wallet, encoding = '' }) => {
+      const txSignFn = async ({ tx, wallet, delegatee, encoding = '' }) => {
         if (tx.signature) {
           delete tx.signature;
         }
 
-        const { object, buffer } = await txEncodeFn({ tx, wallet });
+        const { object, buffer } = await txEncodeFn({ tx, wallet, delegatee });
         object.signature = wallet.sign(buffer);
 
         return _formatEncodedTx(object, encoding);
@@ -280,14 +283,14 @@ class GraphQLClient extends GraphQLClientBase {
       // TODO: verify existing signatures before adding new signatures
       // Generate transaction multi sign function
       if (multiSignTxs.includes(x)) {
-        const txMultiSignFn = async ({ tx, wallet, encoding = '' }) => {
+        const txMultiSignFn = async ({ tx, wallet, delegatee, encoding = '' }) => {
           tx.signatures = tx.signatures || tx.signaturesList || [];
           tx.signatures.unshift({
             pk: wallet.publicKey,
             signer: wallet.toAddress(),
           });
 
-          const { object, buffer } = await txEncodeFn({ tx, wallet });
+          const { object, buffer } = await txEncodeFn({ tx, wallet, delegatee });
           object.signaturesList[0].signature = wallet.sign(bytesToHex(buffer));
           return _formatEncodedTx(object, encoding);
         };
