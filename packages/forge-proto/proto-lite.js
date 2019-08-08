@@ -1,12 +1,15 @@
-// Auto generated code (2019-07-08T09:57:41.055Z), DO NOT EDIT
+// Auto generated code (2019-08-03T22:42:17.104Z), DO NOT EDIT
 const enumPb = require('./lib/enum_pb.js');
 const typePb = require('./lib/type_pb.js');
 const accountMigrateTxPb = require('./lib/account_migrate_tx_pb.js');
 const acquireAssetTxPb = require('./lib/acquire_asset_tx_pb.js');
+const activateProtocolTxPb = require('./lib/activate_protocol_tx_pb.js');
 const approveTetherTxPb = require('./lib/approve_tether_tx_pb.js');
 const consumeAssetTxPb = require('./lib/consume_asset_tx_pb.js');
 const createAssetTxPb = require('./lib/create_asset_tx_pb.js');
+const deactivateProtocolTxPb = require('./lib/deactivate_protocol_tx_pb.js');
 const declareTxPb = require('./lib/declare_tx_pb.js');
+const delegateTxPb = require('./lib/delegate_tx_pb.js');
 const deployProtocolTxPb = require('./lib/deploy_protocol_tx_pb.js');
 const depositTetherTxPb = require('./lib/deposit_tether_tx_pb.js');
 const exchangeTetherTxPb = require('./lib/exchange_tether_tx_pb.js');
@@ -30,10 +33,13 @@ const forgeTypes = Object.assign(
   typePb,
   accountMigrateTxPb,
   acquireAssetTxPb,
+  activateProtocolTxPb,
   approveTetherTxPb,
   consumeAssetTxPb,
   createAssetTxPb,
+  deactivateProtocolTxPb,
   declareTxPb,
+  delegateTxPb,
   deployProtocolTxPb,
   depositTetherTxPb,
   exchangeTetherTxPb,

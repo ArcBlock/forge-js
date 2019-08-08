@@ -173,6 +173,9 @@ declare class GRpcClient {
   encodeAcquireAssetTx(
     param: GRpcClient.TxParam<GRpcClient.AcquireAssetTx>
   ): Promise<GRpcClient.ResponseSendTx>;
+  encodeActivateProtocolTx(
+    param: GRpcClient.TxParam<GRpcClient.ActivateProtocolTx>
+  ): Promise<GRpcClient.ResponseSendTx>;
   encodeApproveTetherTx(
     param: GRpcClient.TxParam<GRpcClient.ApproveTetherTx>
   ): Promise<GRpcClient.ResponseSendTx>;
@@ -182,8 +185,14 @@ declare class GRpcClient {
   encodeCreateAssetTx(
     param: GRpcClient.TxParam<GRpcClient.CreateAssetTx>
   ): Promise<GRpcClient.ResponseSendTx>;
+  encodeDeactivateProtocolTx(
+    param: GRpcClient.TxParam<GRpcClient.DeactivateProtocolTx>
+  ): Promise<GRpcClient.ResponseSendTx>;
   encodeDeclareTx(
     param: GRpcClient.TxParam<GRpcClient.DeclareTx>
+  ): Promise<GRpcClient.ResponseSendTx>;
+  encodeDelegateTx(
+    param: GRpcClient.TxParam<GRpcClient.DelegateTx>
   ): Promise<GRpcClient.ResponseSendTx>;
   encodeDepositTetherTx(
     param: GRpcClient.TxParam<GRpcClient.DepositTetherTx>
@@ -235,6 +244,9 @@ declare class GRpcClient {
   sendAcquireAssetTx(
     param: GRpcClient.TxParam<GRpcClient.AcquireAssetTx>
   ): Promise<GRpcClient.EncodeTxResult>;
+  sendActivateProtocolTx(
+    param: GRpcClient.TxParam<GRpcClient.ActivateProtocolTx>
+  ): Promise<GRpcClient.EncodeTxResult>;
   sendApproveTetherTx(
     param: GRpcClient.TxParam<GRpcClient.ApproveTetherTx>
   ): Promise<GRpcClient.EncodeTxResult>;
@@ -244,8 +256,14 @@ declare class GRpcClient {
   sendCreateAssetTx(
     param: GRpcClient.TxParam<GRpcClient.CreateAssetTx>
   ): Promise<GRpcClient.EncodeTxResult>;
+  sendDeactivateProtocolTx(
+    param: GRpcClient.TxParam<GRpcClient.DeactivateProtocolTx>
+  ): Promise<GRpcClient.EncodeTxResult>;
   sendDeclareTx(
     param: GRpcClient.TxParam<GRpcClient.DeclareTx>
+  ): Promise<GRpcClient.EncodeTxResult>;
+  sendDelegateTx(
+    param: GRpcClient.TxParam<GRpcClient.DelegateTx>
   ): Promise<GRpcClient.EncodeTxResult>;
   sendDepositTetherTx(
     param: GRpcClient.TxParam<GRpcClient.DepositTetherTx>
@@ -298,6 +316,9 @@ declare class GRpcClient {
   signAcquireAssetTx(
     param: GRpcClient.TxParam<GRpcClient.AcquireAssetTx>
   ): Promise<GRpcClient.Transaction>;
+  signActivateProtocolTx(
+    param: GRpcClient.TxParam<GRpcClient.ActivateProtocolTx>
+  ): Promise<GRpcClient.Transaction>;
   signApproveTetherTx(
     param: GRpcClient.TxParam<GRpcClient.ApproveTetherTx>
   ): Promise<GRpcClient.Transaction>;
@@ -307,7 +328,11 @@ declare class GRpcClient {
   signCreateAssetTx(
     param: GRpcClient.TxParam<GRpcClient.CreateAssetTx>
   ): Promise<GRpcClient.Transaction>;
+  signDeactivateProtocolTx(
+    param: GRpcClient.TxParam<GRpcClient.DeactivateProtocolTx>
+  ): Promise<GRpcClient.Transaction>;
   signDeclareTx(param: GRpcClient.TxParam<GRpcClient.DeclareTx>): Promise<GRpcClient.Transaction>;
+  signDelegateTx(param: GRpcClient.TxParam<GRpcClient.DelegateTx>): Promise<GRpcClient.Transaction>;
   signDepositTetherTx(
     param: GRpcClient.TxParam<GRpcClient.DepositTetherTx>
   ): Promise<GRpcClient.Transaction>;
@@ -427,6 +452,15 @@ declare namespace forge_abi {
     FORBIDDEN = 403,
     INTERNAL = 500,
     TIMEOUT = 504,
+    INVALID_DELEGATION = 55,
+    INSUFFICIENT_DELEGATION = 56,
+    INVALID_DELEGATION_RULE = 57,
+    INVALID_DELEGATION_TYPE_URL = 58,
+    SENDER_NOT_AUTHORIZED = 59,
+    PROTOCOL_NOT_RUNNING = 60,
+    PROTOCOL_NOT_PAUSED = 61,
+    PROTOCOL_NOT_ACTIVATED = 62,
+    INVALID_DEACTIVATION = 63,
   }
 
   export enum TopicType {
@@ -1097,6 +1131,7 @@ declare namespace forge_abi {
     pk: Uint8Array;
     signature: Uint8Array;
     data: google.protobuf.Any;
+    delegator: string;
   }
 
   export interface Transaction {
@@ -1108,6 +1143,7 @@ declare namespace forge_abi {
     signature: Uint8Array;
     signatures: Array<forge_abi.Multisig>;
     itx: google.protobuf.Any;
+    delegator: string;
   }
 
   export interface TransactionInfo {
@@ -1131,6 +1167,7 @@ declare namespace forge_abi {
     maxMultisig: number;
     minimumStake: number;
     declare: forge_abi.DeclareConfig;
+    delegate: forge_abi.DelegateConfig;
   }
 
   export interface BlockInfo {
@@ -1664,6 +1701,11 @@ declare namespace forge_abi {
     data: google.protobuf.Any;
   }
 
+  export interface DelegateConfig {
+    deltaInterval: number;
+    typeUrls: Array<string>;
+  }
+
   export interface AssetSpec {
     address: string;
     data: string;
@@ -1672,6 +1714,11 @@ declare namespace forge_abi {
   export interface AcquireAssetTx {
     to: string;
     specs: Array<forge_abi.AssetSpec>;
+    data: google.protobuf.Any;
+  }
+
+  export interface ActivateProtocolTx {
+    address: string;
     data: google.protobuf.Any;
   }
 
@@ -1724,10 +1771,27 @@ declare namespace forge_abi {
     data: google.protobuf.Any;
   }
 
+  export interface DeactivateProtocolTx {
+    address: string;
+    data: google.protobuf.Any;
+  }
+
   export interface DeclareTx {
     moniker: string;
     issuer: string;
     data: google.protobuf.Any;
+  }
+
+  export interface DelegateTx {
+    address: string;
+    to: string;
+    ops: Array<forge_abi.DelegateOp>;
+    data: google.protobuf.Any;
+  }
+
+  export interface DelegateOp {
+    typeUrl: string;
+    rules: Array<string>;
   }
 
   export interface DepositTetherTx {
@@ -2013,6 +2077,7 @@ declare namespace GRpcClient {
   export interface TxParam<T> {
     tx: ItxParam<T>;
     wallet: GRpcClient.WalletObject;
+    delegatee: string;
     signature: string;
   }
 
@@ -2022,6 +2087,7 @@ declare namespace GRpcClient {
     pk: string;
     chainId: string;
     signature: string;
+    delegator: string;
     signatures: array;
     itx: T;
   }

@@ -84,6 +84,8 @@ declare namespace _Lib {
     ROLE_GROUP: number;
     ROLE_TX: number;
     ROLE_TETHER: number;
+    ROLE_SWAP: number;
+    ROLE_DELEGATE: number;
     ROLE_ANY: number;
   }
   export interface T107 {

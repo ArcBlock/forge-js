@@ -49,6 +49,16 @@ declare function toItxDid(itx: any, type: any): string;
  */
 declare function toStakeAddress(sender: string, receiver: string): string;
 /**
+ * Generate an delegate address, eg: the did of the delegation
+ *
+ * @public
+ * @static
+ * @param {string} addr1 - delegator address
+ * @param {string} addr2 - delegatee address
+ * @returns {string} delegation address that can be used to retrieve delegation state
+ */
+declare function toDelegateAddress(addr1: string, addr2: string): string;
+/**
  * Generate an stake address, eg: the did of the stake
  *
  * @public
@@ -67,6 +77,15 @@ declare function toStakeDid(sender: string, receiver: string): string;
  * @returns {string} stake address without `did:abt:` prefix
  */
 declare function toTetherAddress(hash: string): string;
+/**
+ * Generate a swap address from the setup swap tx hash
+ *
+ * @public
+ * @static
+ * @param {string} hash - SetupSwapTx hash
+ * @returns {string} swap address without `did:abt:` prefix
+ */
+declare function toSwapAddress(hash: string): string;
 declare const _Lib: _Lib.T100;
 declare namespace _Lib {
   export interface T100 {
@@ -75,8 +94,10 @@ declare namespace _Lib {
     toItxAddress: typeof toItxAddress;
     toItxDid: typeof toItxDid;
     toStakeAddress: typeof toStakeAddress;
+    toDelegateAddress: typeof toDelegateAddress;
     toStakeDid: typeof toStakeDid;
     toTetherAddress: typeof toTetherAddress;
+    toSwapAddress: typeof toSwapAddress;
   }
 }
 export = _Lib;

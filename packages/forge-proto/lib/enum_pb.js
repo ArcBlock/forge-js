@@ -19,7 +19,6 @@ goog.exportSymbol('proto.forge_abi.RoleType', null, global);
 goog.exportSymbol('proto.forge_abi.StakeType', null, global);
 goog.exportSymbol('proto.forge_abi.StateType', null, global);
 goog.exportSymbol('proto.forge_abi.StatusCode', null, global);
-goog.exportSymbol('proto.forge_abi.TopicType', null, global);
 goog.exportSymbol('proto.forge_abi.UpgradeAction', null, global);
 goog.exportSymbol('proto.forge_abi.UpgradeType', null, global);
 /**
@@ -74,35 +73,18 @@ proto.forge_abi.StatusCode = {
   INSUFFICIENT_GAS: 52,
   INVALID_SWAP: 53,
   INVALID_HASHKEY: 54,
+  INVALID_DELEGATION: 55,
+  INSUFFICIENT_DELEGATION: 56,
+  INVALID_DELEGATION_RULE: 57,
+  INVALID_DELEGATION_TYPE_URL: 58,
+  SENDER_NOT_AUTHORIZED: 59,
+  PROTOCOL_NOT_RUNNING: 60,
+  PROTOCOL_NOT_PAUSED: 61,
+  PROTOCOL_NOT_ACTIVATED: 62,
+  INVALID_DEACTIVATION: 63,
   FORBIDDEN: 403,
   INTERNAL: 500,
   TIMEOUT: 504,
-};
-
-/**
- * @enum {number}
- */
-proto.forge_abi.TopicType = {
-  TRANSFER: 0,
-  EXCHANGE: 1,
-  DECLARE: 2,
-  CREATE_ASSET: 3,
-  UPDATE_ASSET: 4,
-  STAKE: 5,
-  ACCOUNT_MIGRATE: 6,
-  BEGIN_BLOCK: 16,
-  END_BLOCK: 17,
-  CONSENSUS_UPGRADE: 21,
-  DECLARE_FILE: 22,
-  SYS_UPGRADE: 23,
-  APPLICATION: 24,
-  CONSUME_ASSET: 25,
-  POKE: 26,
-  ACCOUNT_STATE: 129,
-  ASSET_STATE: 130,
-  FORGE_STATE: 131,
-  STAKE_STATE: 132,
-  PROTOCOL_STATE: 133,
 };
 
 /**

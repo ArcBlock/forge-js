@@ -204,6 +204,7 @@ declare namespace ${namespace} {
   export interface TxParam<T> {
     tx: ItxParam<T>;
     wallet: GraphQLClient.WalletObject,
+    delegatee: string;
     signature: string;
   }
 
@@ -212,6 +213,7 @@ declare namespace ${namespace} {
     from: string;
     pk: string;
     chainId: string;
+    delegator: string;
     signature: string;
     signatures: array;
     itx: T;

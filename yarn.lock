@@ -2074,13 +2074,10 @@ base64-js@^1.0.2:
   version "1.3.0"
   resolved "https://registry.npmjs.org/base64-js/-/base64-js-1.3.0.tgz#cab1e6118f051095e58b5281aea8c1cd22bfc0e3"
 
-base64-url@^2.2.0:
-  version "2.2.0"
-  resolved "https://registry.npmjs.org/base64-url/-/base64-url-2.2.0.tgz#4bbd6a825df1be522d39e566a721ede51144041a"
-
-base64-url@^2.2.1:
-  version "2.2.1"
-  resolved "https://registry.npmjs.org/base64-url/-/base64-url-2.2.1.tgz#55dc1519cf28e70b7613bb6201c890b7612ad1e6"
+base64-url@^2.3.2:
+  version "2.3.2"
+  resolved "https://registry.npmjs.org/base64-url/-/base64-url-2.3.2.tgz#d7ea32e80ce3c3ad49f823e77c4dd247c6b81759"
+  integrity sha512-2QpXjtjndKqPn9JKBpMTCbDGpgicfLUu+N5Y1vEfbuyqb1MN1D68C9YKCth4SjTHRvJleF3tPuxhLbH79MM0iQ==
 
 base@^0.11.1:
   version "0.11.2"

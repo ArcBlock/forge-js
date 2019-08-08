@@ -20,7 +20,7 @@
     "@arcblock/forge-util": "^0.34.0",
     "@arcblock/forge-wallet": "^0.34.0",
     "@arcblock/mcrypto": "^0.34.0",
-    "base64-url": "^2.2.1",
+    "base64-url": "^2.3.2",
     "debug": "^4.1.1",
     "json-stable-stringify": "^1.0.1",
     "lodash.get": "^4.4.2"

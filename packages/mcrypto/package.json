@@ -34,7 +34,7 @@
   "scripts": {
     "lint": "eslint tests lib",
     "lint:fix": "eslint --fix tests lib",
-    "precommit": "CI=1 yarn test",
+    "generate-dts": "j2d lib/index.js",
     "prepush": "CI=1 yarn test",
     "test": "yarn lint && node tools/jest.js",
     "format-docs": "remark . -o",

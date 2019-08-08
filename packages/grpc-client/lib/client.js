@@ -1,5 +1,6 @@
 /* eslint-disable no-underscore-dangle */
 const grpc = require('grpc');
+const base64 = require('base64-url');
 const camelCase = require('lodash/camelCase');
 const snakeCase = require('lodash/snakeCase');
 const { EventEmitter } = require('events');
@@ -12,7 +13,7 @@ const {
   getMessageType,
 } = require('@arcblock/forge-message');
 const errorCodes = require('@arcblock/forge-proto/lib/status_code.json');
-const { hexToBytes, bytesToHex } = require('@arcblock/forge-util');
+const { hexToBytes, bytesToHex, toBase58, toHex } = require('@arcblock/forge-util');
 // eslint-disable-next-line global-require
 const debug = require('debug')(`${require('../package.json').name}`);
 
@@ -223,9 +224,10 @@ class GRpcClient {
        * @param {object} [input.tx.signature] - the signature
        * @param {object} [input.tx.signatures] - the signature list, should be set when it's a multisig transaction
        * @param {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
+       * @param {object} input.delegatee - the wallet address that delegated permissions to the `input.wallet` address
        * @returns Promise
        */
-      const txEncodeFn = async ({ tx, wallet }) => {
+      const txEncodeFn = async ({ tx, wallet, delegatee }) => {
         const w = getWallet(wallet);
 
         // Determine sender address
@@ -260,10 +262,11 @@ class GRpcClient {
         }
 
         const txObj = createMessage('Transaction', {
-          from: address,
+          from: delegatee || address,
           nonce,
           pk,
           chainId,
+          delegator: delegatee ? address : '',
           signature: tx.signature || '',
           signatures,
           itx,
@@ -295,10 +298,11 @@ class GRpcClient {
        * @param {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
        * @param {object} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
        * @param {object} [input.token] - token used to unlock a wallet
+       * @param {object} input.delegatee - the wallet address that delegated permissions to the `input.wallet` address
        * @returns Promise
        */
       const txSendFn = async input => {
-        const { tx, wallet, signature } = input;
+        const { tx, wallet, delegatee, signature } = input;
 
         let txResult;
         let walletResult = wallet;
@@ -311,7 +315,7 @@ class GRpcClient {
           } else if (tx.signature) {
             txResult = tx;
           } else {
-            const { object, buffer: txToSignBytes } = await txEncodeFn({ tx, wallet });
+            const { object, buffer: txToSignBytes } = await txEncodeFn({ tx, wallet, delegatee });
             txResult = object;
             txResult.signature = wallet.sign(bytesToHex(txToSignBytes));
             debug(`send.${x}.sign`, txResult.signature);
@@ -377,16 +381,34 @@ class GRpcClient {
         this[aliases[x]] = txSendFn;
       }
 
+      const _formatEncodedTx = async (tx, encoding) => {
+        if (encoding) {
+          const { buffer: txBytes } = await txEncodeFn({ tx });
+          if (encoding === 'base64') {
+            return base64.escape(txBytes.toString('base64'));
+          }
+          if (encoding === 'base58') {
+            return toBase58(txBytes);
+          }
+          if (encoding === 'base16' || encoding === 'hex') {
+            return toHex(txBytes);
+          }
+          return txBytes;
+        }
+
+        return tx;
+      };
+
       // Generate transaction signing function
-      const txSignFn = async ({ tx, wallet }) => {
+      const txSignFn = async ({ tx, wallet, delegatee, encoding = '' }) => {
         if (tx.signature) {
           delete tx.signature;
         }
 
-        const { object, buffer } = await txEncodeFn({ tx, wallet });
+        const { object, buffer } = await txEncodeFn({ tx, wallet, delegatee });
         object.signature = wallet.sign(buffer);
 
-        return object;
+        return _formatEncodedTx(object, encoding);
       };
       const signMethod = camelCase(`sign_${x}`);
       txSignFn.__type__ = 'sign';
@@ -397,16 +419,16 @@ class GRpcClient {
       // TODO: verify existing signatures before adding new signatures
       // Generate transaction multi sign function
       if (multiSignTxs.includes(x)) {
-        const txMultiSignFn = async ({ tx, wallet }) => {
+        const txMultiSignFn = async ({ tx, wallet, delegatee, encoding = '' }) => {
           tx.signatures = tx.signatures || tx.signaturesList || [];
           tx.signatures.unshift({
             pk: wallet.publicKey,
             signer: wallet.toAddress(),
           });
 
-          const { object, buffer } = await txEncodeFn({ tx, wallet });
+          const { object, buffer } = await txEncodeFn({ tx, wallet, delegatee });
           object.signaturesList[0].signature = wallet.sign(bytesToHex(buffer));
-          return object;
+          return _formatEncodedTx(object, encoding);
         };
         const multiSignMethod = camelCase(`multi_sign_${x}`);
         txMultiSignFn.__type__ = 'multiSign';

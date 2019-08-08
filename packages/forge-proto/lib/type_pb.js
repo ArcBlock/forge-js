@@ -28,6 +28,7 @@ goog.exportSymbol('proto.forge_abi.ChainInfo', null, global);
 goog.exportSymbol('proto.forge_abi.CircularQueue', null, global);
 goog.exportSymbol('proto.forge_abi.ConsensusParams', null, global);
 goog.exportSymbol('proto.forge_abi.DeclareConfig', null, global);
+goog.exportSymbol('proto.forge_abi.DelegateConfig', null, global);
 goog.exportSymbol('proto.forge_abi.ForgeStats', null, global);
 goog.exportSymbol('proto.forge_abi.ForgeToken', null, global);
 goog.exportSymbol('proto.forge_abi.GenesisInfo', null, global);
@@ -3232,6 +3233,7 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
         signer: jspb.Message.getFieldWithDefault(msg, 1, ''),
         pk: msg.getPk(),
         signature: msg.getSignature(),
+        delegator: jspb.Message.getFieldWithDefault(msg, 4, ''),
         data: (f = msg.getData()) && google_protobuf_any_pb.Any.toObject(includeInstance, f),
       };
 
@@ -3279,6 +3281,10 @@ proto.forge_abi.Multisig.deserializeBinaryFromReader = function(msg, reader) {
         var value = /** @type {!Uint8Array} */ (reader.readBytes());
         msg.setSignature(value);
         break;
+      case 4:
+        var value = /** @type {string} */ (reader.readString());
+        msg.setDelegator(value);
+        break;
       case 15:
         var value = new google_protobuf_any_pb.Any();
         reader.readMessage(value, google_protobuf_any_pb.Any.deserializeBinaryFromReader);
@@ -3322,6 +3328,10 @@ proto.forge_abi.Multisig.serializeBinaryToWriter = function(message, writer) {
   f = message.getSignature_asU8();
   if (f.length > 0) {
     writer.writeBytes(3, f);
+  }
+  f = message.getDelegator();
+  if (f.length > 0) {
+    writer.writeString(4, f);
   }
   f = message.getData();
   if (f != null) {
@@ -3409,6 +3419,19 @@ proto.forge_abi.Multisig.prototype.setSignature = function(value) {
 };
 
 /**
+ * optional string delegator = 4;
+ * @return {string}
+ */
+proto.forge_abi.Multisig.prototype.getDelegator = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ''));
+};
+
+/** @param {string} value */
+proto.forge_abi.Multisig.prototype.setDelegator = function(value) {
+  jspb.Message.setProto3StringField(this, 4, value);
+};
+
+/**
  * optional google.protobuf.Any data = 15;
  * @return {?proto.google.protobuf.Any}
  */
@@ -3493,6 +3516,7 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
         chainId: jspb.Message.getFieldWithDefault(msg, 3, ''),
         pk: msg.getPk(),
         gas: jspb.Message.getFieldWithDefault(msg, 5, 0),
+        delegator: jspb.Message.getFieldWithDefault(msg, 6, ''),
         signature: msg.getSignature(),
         signaturesList: jspb.Message.toObjectList(
           msg.getSignaturesList(),
@@ -3554,6 +3578,10 @@ proto.forge_abi.Transaction.deserializeBinaryFromReader = function(msg, reader) 
         var value = /** @type {number} */ (reader.readUint32());
         msg.setGas(value);
         break;
+      case 6:
+        var value = /** @type {string} */ (reader.readString());
+        msg.setDelegator(value);
+        break;
       case 13:
         var value = /** @type {!Uint8Array} */ (reader.readBytes());
         msg.setSignature(value);
@@ -3614,6 +3642,10 @@ proto.forge_abi.Transaction.serializeBinaryToWriter = function(message, writer) 
   f = message.getGas();
   if (f !== 0) {
     writer.writeUint32(5, f);
+  }
+  f = message.getDelegator();
+  if (f.length > 0) {
+    writer.writeString(6, f);
   }
   f = message.getSignature_asU8();
   if (f.length > 0) {
@@ -3712,6 +3744,19 @@ proto.forge_abi.Transaction.prototype.getGas = function() {
 /** @param {number} value */
 proto.forge_abi.Transaction.prototype.setGas = function(value) {
   jspb.Message.setProto3IntField(this, 5, value);
+};
+
+/**
+ * optional string delegator = 6;
+ * @return {string}
+ */
+proto.forge_abi.Transaction.prototype.getDelegator = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ''));
+};
+
+/** @param {string} value */
+proto.forge_abi.Transaction.prototype.setDelegator = function(value) {
+  jspb.Message.setProto3StringField(this, 6, value);
 };
 
 /**
@@ -4318,6 +4363,183 @@ proto.forge_abi.DeclareConfig.prototype.setHierarchy = function(value) {
  * @extends {jspb.Message}
  * @constructor
  */
+proto.forge_abi.DelegateConfig = function(opt_data) {
+  jspb.Message.initialize(
+    this,
+    opt_data,
+    0,
+    -1,
+    proto.forge_abi.DelegateConfig.repeatedFields_,
+    null
+  );
+};
+goog.inherits(proto.forge_abi.DelegateConfig, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.forge_abi.DelegateConfig.displayName = 'proto.forge_abi.DelegateConfig';
+}
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.forge_abi.DelegateConfig.repeatedFields_ = [2];
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+  /**
+   * Creates an object representation of this proto suitable for use in Soy templates.
+   * Field names that are reserved in JavaScript and will be renamed to pb_name.
+   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+   * For the list of reserved names please see:
+   *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+   * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+   *     for transitional soy proto support: http://goto/soy-param-migration
+   * @return {!Object}
+   */
+  proto.forge_abi.DelegateConfig.prototype.toObject = function(opt_includeInstance) {
+    return proto.forge_abi.DelegateConfig.toObject(opt_includeInstance, this);
+  };
+
+  /**
+   * Static version of the {@see toObject} method.
+   * @param {boolean|undefined} includeInstance Whether to include the JSPB
+   *     instance for transitional soy proto support:
+   *     http://goto/soy-param-migration
+   * @param {!proto.forge_abi.DelegateConfig} msg The msg instance to transform.
+   * @return {!Object}
+   * @suppress {unusedLocalVariables} f is only used for nested messages
+   */
+  proto.forge_abi.DelegateConfig.toObject = function(includeInstance, msg) {
+    var f,
+      obj = {
+        deltaInterval: jspb.Message.getFieldWithDefault(msg, 1, 0),
+        typeUrlsList: jspb.Message.getRepeatedField(msg, 2),
+      };
+
+    if (includeInstance) {
+      obj.$jspbMessageInstance = msg;
+    }
+    return obj;
+  };
+}
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.forge_abi.DelegateConfig}
+ */
+proto.forge_abi.DelegateConfig.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.forge_abi.DelegateConfig();
+  return proto.forge_abi.DelegateConfig.deserializeBinaryFromReader(msg, reader);
+};
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.forge_abi.DelegateConfig} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.forge_abi.DelegateConfig}
+ */
+proto.forge_abi.DelegateConfig.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+      case 1:
+        var value = /** @type {number} */ (reader.readUint32());
+        msg.setDeltaInterval(value);
+        break;
+      case 2:
+        var value = /** @type {string} */ (reader.readString());
+        msg.addTypeUrls(value);
+        break;
+      default:
+        reader.skipField();
+        break;
+    }
+  }
+  return msg;
+};
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.forge_abi.DelegateConfig.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.forge_abi.DelegateConfig.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.forge_abi.DelegateConfig} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.forge_abi.DelegateConfig.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getDeltaInterval();
+  if (f !== 0) {
+    writer.writeUint32(1, f);
+  }
+  f = message.getTypeUrlsList();
+  if (f.length > 0) {
+    writer.writeRepeatedString(2, f);
+  }
+};
+
+/**
+ * optional uint32 delta_interval = 1;
+ * @return {number}
+ */
+proto.forge_abi.DelegateConfig.prototype.getDeltaInterval = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
+};
+
+/** @param {number} value */
+proto.forge_abi.DelegateConfig.prototype.setDeltaInterval = function(value) {
+  jspb.Message.setProto3IntField(this, 1, value);
+};
+
+/**
+ * repeated string type_urls = 2;
+ * @return {!Array<string>}
+ */
+proto.forge_abi.DelegateConfig.prototype.getTypeUrlsList = function() {
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 2));
+};
+
+/** @param {!Array<string>} value */
+proto.forge_abi.DelegateConfig.prototype.setTypeUrlsList = function(value) {
+  jspb.Message.setField(this, 2, value || []);
+};
+
+/**
+ * @param {string} value
+ * @param {number=} opt_index
+ */
+proto.forge_abi.DelegateConfig.prototype.addTypeUrls = function(value, opt_index) {
+  jspb.Message.addToRepeatedField(this, 2, value, opt_index);
+};
+
+proto.forge_abi.DelegateConfig.prototype.clearTypeUrlsList = function() {
+  this.setTypeUrlsList([]);
+};
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
 proto.forge_abi.TransactionConfig = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
@@ -4359,6 +4581,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
         minimumStake: jspb.Message.getFieldWithDefault(msg, 4, 0),
         declare:
           (f = msg.getDeclare()) && proto.forge_abi.DeclareConfig.toObject(includeInstance, f),
+        delegate:
+          (f = msg.getDelegate()) && proto.forge_abi.DelegateConfig.toObject(includeInstance, f),
       };
 
     if (includeInstance) {
@@ -4414,6 +4638,11 @@ proto.forge_abi.TransactionConfig.deserializeBinaryFromReader = function(msg, re
         reader.readMessage(value, proto.forge_abi.DeclareConfig.deserializeBinaryFromReader);
         msg.setDeclare(value);
         break;
+      case 6:
+        var value = new proto.forge_abi.DelegateConfig();
+        reader.readMessage(value, proto.forge_abi.DelegateConfig.deserializeBinaryFromReader);
+        msg.setDelegate(value);
+        break;
       default:
         reader.skipField();
         break;
@@ -4460,6 +4689,10 @@ proto.forge_abi.TransactionConfig.serializeBinaryToWriter = function(message, wr
   f = message.getDeclare();
   if (f != null) {
     writer.writeMessage(5, f, proto.forge_abi.DeclareConfig.serializeBinaryToWriter);
+  }
+  f = message.getDelegate();
+  if (f != null) {
+    writer.writeMessage(6, f, proto.forge_abi.DelegateConfig.serializeBinaryToWriter);
   }
 };
 
@@ -4542,6 +4775,35 @@ proto.forge_abi.TransactionConfig.prototype.clearDeclare = function() {
  */
 proto.forge_abi.TransactionConfig.prototype.hasDeclare = function() {
   return jspb.Message.getField(this, 5) != null;
+};
+
+/**
+ * optional DelegateConfig delegate = 6;
+ * @return {?proto.forge_abi.DelegateConfig}
+ */
+proto.forge_abi.TransactionConfig.prototype.getDelegate = function() {
+  return /** @type{?proto.forge_abi.DelegateConfig} */ (jspb.Message.getWrapperField(
+    this,
+    proto.forge_abi.DelegateConfig,
+    6
+  ));
+};
+
+/** @param {?proto.forge_abi.DelegateConfig|undefined} value */
+proto.forge_abi.TransactionConfig.prototype.setDelegate = function(value) {
+  jspb.Message.setWrapperField(this, 6, value);
+};
+
+proto.forge_abi.TransactionConfig.prototype.clearDelegate = function() {
+  this.setDelegate(undefined);
+};
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.forge_abi.TransactionConfig.prototype.hasDelegate = function() {
+  return jspb.Message.getField(this, 6) != null;
 };
 
 /**

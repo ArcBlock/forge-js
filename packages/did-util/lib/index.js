@@ -90,6 +90,23 @@ function toStakeAddress(sender, receiver) {
 }
 
 /**
+ * Generate an delegate address, eg: the did of the delegation
+ *
+ * @public
+ * @static
+ * @param {string} addr1 - delegator address
+ * @param {string} addr2 - delegatee address
+ * @returns {string} delegation address that can be used to retrieve delegation state
+ */
+function toDelegateAddress(addr1, addr2) {
+  const addr1Buffer = Buffer.from(addr1);
+  const addr2Buffer = Buffer.from(addr2);
+  const buffer = Buffer.concat([addr1Buffer, addr2Buffer]);
+  const hash = Hasher.SHA3.hash256(buffer);
+  return fromHash(hash, types.RoleType.ROLE_DELEGATE);
+}
+
+/**
  * Generate a tether address from the deposit tether tx hash
  *
  * @public
@@ -99,6 +116,18 @@ function toStakeAddress(sender, receiver) {
  */
 function toTetherAddress(hash) {
   return fromHash(hash, types.RoleType.ROLE_TETHER);
+}
+
+/**
+ * Generate a swap address from the setup swap tx hash
+ *
+ * @public
+ * @static
+ * @param {string} hash - SetupSwapTx hash
+ * @returns {string} swap address without `did:abt:` prefix
+ */
+function toSwapAddress(hash) {
+  return fromHash(hash, types.RoleType.ROLE_SWAP);
 }
 
 /**
@@ -120,6 +149,8 @@ module.exports = {
   toItxAddress,
   toItxDid,
   toStakeAddress,
+  toDelegateAddress,
   toStakeDid,
   toTetherAddress,
+  toSwapAddress,
 };
