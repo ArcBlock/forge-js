@@ -27,7 +27,7 @@
   },
   "devDependencies": {
     "@arcblock/forge-config": "^0.34.0",
-    "jest": "^23.5.0",
+    "jest": "^24.8.0",
     "remark-cli": "^5.0.0",
     "remark-preset-github": "^0.0.9"
   },
