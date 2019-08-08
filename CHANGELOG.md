@@ -1,3 +1,16 @@
+## 0.35.0 (August 08, 2019)
+
+- chore: support delegate in grpc-client
+- feat: support delegate in graphql-client
+- chore: udpate dts file for did-util
+- chore: support swap address calculating
+- chore: support toDelegateAddress in did-util
+- chore: add swap and delegate role type in mcrypto
+- chore: upgrade graphql-client with forge v0.35
+- chore: upgrade grpc-client with forge v0.35
+- chore: upgrade forge-proto with latest forge-abi
+- update readme
+
 ## 0.34.1 (July 25, 2019)
 
 - fix: warning of @babel/polyfill dependency
