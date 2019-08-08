@@ -13,7 +13,7 @@
     "@arcblock/graphql-client": "^0.34.1",
     "@arcblock/grpc-client": "^0.34.0",
     "@arcblock/mcrypto": "^0.34.0",
-    "base64-url": "^2.2.1",
+    "base64-url": "^2.3.2",
     "death": "^1.1.0",
     "moment": "^2.24.0"
   },

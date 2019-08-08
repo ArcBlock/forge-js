@@ -114,6 +114,7 @@ declare namespace GRpcClient {
   export interface TxParam<T> {
     tx: ItxParam<T>;
     wallet: GRpcClient.WalletObject,
+    delegatee: string;
     signature: string;
   }
 
@@ -123,6 +124,7 @@ declare namespace GRpcClient {
     pk: string;
     chainId: string;
     signature: string;
+    delegator: string;
     signatures: array;
     itx: T;
   }
