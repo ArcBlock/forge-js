@@ -1,3 +1,4 @@
+
 /**
  * Validates if a value is an Uint8Array.
  *
@@ -497,6 +498,16 @@ declare function toItxDid(itx: any, type: any): string;
  */
 declare function toStakeAddress(sender: string, receiver: string): string;
 /**
+ * Generate an delegate address, eg: the did of the delegation
+ *
+ * @public
+ * @static
+ * @param {string} addr1 - delegator address
+ * @param {string} addr2 - delegatee address
+ * @returns {string} delegation address that can be used to retrieve delegation state
+ */
+declare function toDelegateAddress(addr1: string, addr2: string): string;
+/**
  * Generate an stake address, eg: the did of the stake
  *
  * @public
@@ -515,6 +526,15 @@ declare function toStakeDid(sender: string, receiver: string): string;
  * @returns {string} stake address without `did:abt:` prefix
  */
 declare function toTetherAddress(hash: string): string;
+/**
+ * Generate a swap address from the setup swap tx hash
+ *
+ * @public
+ * @static
+ * @param {string} hash - SetupSwapTx hash
+ * @returns {string} swap address without `did:abt:` prefix
+ */
+declare function toSwapAddress(hash: string): string;
 declare namespace ForgeSdkUtil {
   export interface T100 {
     toAssetAddress: typeof toAssetAddress;
@@ -522,8 +542,10 @@ declare namespace ForgeSdkUtil {
     toItxAddress: typeof toItxAddress;
     toItxDid: typeof toItxDid;
     toStakeAddress: typeof toStakeAddress;
+    toDelegateAddress: typeof toDelegateAddress;
     toStakeDid: typeof toStakeDid;
     toTetherAddress: typeof toTetherAddress;
+    toSwapAddress: typeof toSwapAddress;
   }
 }
 
@@ -698,6 +720,9 @@ declare interface ForgeSDK {
   encodeAcquireAssetTx(
     param: GRpcClient.TxParam<GRpcClient.AcquireAssetTx>
   ): Promise<GRpcClient.ResponseSendTx>;
+  encodeActivateProtocolTx(
+    param: GRpcClient.TxParam<GRpcClient.ActivateProtocolTx>
+  ): Promise<GRpcClient.ResponseSendTx>;
   encodeApproveTetherTx(
     param: GRpcClient.TxParam<GRpcClient.ApproveTetherTx>
   ): Promise<GRpcClient.ResponseSendTx>;
@@ -707,8 +732,14 @@ declare interface ForgeSDK {
   encodeCreateAssetTx(
     param: GRpcClient.TxParam<GRpcClient.CreateAssetTx>
   ): Promise<GRpcClient.ResponseSendTx>;
+  encodeDeactivateProtocolTx(
+    param: GRpcClient.TxParam<GRpcClient.DeactivateProtocolTx>
+  ): Promise<GRpcClient.ResponseSendTx>;
   encodeDeclareTx(
     param: GRpcClient.TxParam<GRpcClient.DeclareTx>
+  ): Promise<GRpcClient.ResponseSendTx>;
+  encodeDelegateTx(
+    param: GRpcClient.TxParam<GRpcClient.DelegateTx>
   ): Promise<GRpcClient.ResponseSendTx>;
   encodeDepositTetherTx(
     param: GRpcClient.TxParam<GRpcClient.DepositTetherTx>
@@ -760,6 +791,9 @@ declare interface ForgeSDK {
   sendAcquireAssetTx(
     param: GRpcClient.TxParam<GRpcClient.AcquireAssetTx>
   ): Promise<GRpcClient.EncodeTxResult>;
+  sendActivateProtocolTx(
+    param: GRpcClient.TxParam<GRpcClient.ActivateProtocolTx>
+  ): Promise<GRpcClient.EncodeTxResult>;
   sendApproveTetherTx(
     param: GRpcClient.TxParam<GRpcClient.ApproveTetherTx>
   ): Promise<GRpcClient.EncodeTxResult>;
@@ -769,8 +803,14 @@ declare interface ForgeSDK {
   sendCreateAssetTx(
     param: GRpcClient.TxParam<GRpcClient.CreateAssetTx>
   ): Promise<GRpcClient.EncodeTxResult>;
+  sendDeactivateProtocolTx(
+    param: GRpcClient.TxParam<GRpcClient.DeactivateProtocolTx>
+  ): Promise<GRpcClient.EncodeTxResult>;
   sendDeclareTx(
     param: GRpcClient.TxParam<GRpcClient.DeclareTx>
+  ): Promise<GRpcClient.EncodeTxResult>;
+  sendDelegateTx(
+    param: GRpcClient.TxParam<GRpcClient.DelegateTx>
   ): Promise<GRpcClient.EncodeTxResult>;
   sendDepositTetherTx(
     param: GRpcClient.TxParam<GRpcClient.DepositTetherTx>
@@ -823,6 +863,9 @@ declare interface ForgeSDK {
   signAcquireAssetTx(
     param: GRpcClient.TxParam<GRpcClient.AcquireAssetTx>
   ): Promise<GRpcClient.Transaction>;
+  signActivateProtocolTx(
+    param: GRpcClient.TxParam<GRpcClient.ActivateProtocolTx>
+  ): Promise<GRpcClient.Transaction>;
   signApproveTetherTx(
     param: GRpcClient.TxParam<GRpcClient.ApproveTetherTx>
   ): Promise<GRpcClient.Transaction>;
@@ -832,7 +875,11 @@ declare interface ForgeSDK {
   signCreateAssetTx(
     param: GRpcClient.TxParam<GRpcClient.CreateAssetTx>
   ): Promise<GRpcClient.Transaction>;
+  signDeactivateProtocolTx(
+    param: GRpcClient.TxParam<GRpcClient.DeactivateProtocolTx>
+  ): Promise<GRpcClient.Transaction>;
   signDeclareTx(param: GRpcClient.TxParam<GRpcClient.DeclareTx>): Promise<GRpcClient.Transaction>;
+  signDelegateTx(param: GRpcClient.TxParam<GRpcClient.DelegateTx>): Promise<GRpcClient.Transaction>;
   signDepositTetherTx(
     param: GRpcClient.TxParam<GRpcClient.DepositTetherTx>
   ): Promise<GRpcClient.Transaction>;
@@ -950,6 +997,15 @@ declare namespace forge_abi {
     FORBIDDEN = 403,
     INTERNAL = 500,
     TIMEOUT = 504,
+    INVALID_DELEGATION = 55,
+    INSUFFICIENT_DELEGATION = 56,
+    INVALID_DELEGATION_RULE = 57,
+    INVALID_DELEGATION_TYPE_URL = 58,
+    SENDER_NOT_AUTHORIZED = 59,
+    PROTOCOL_NOT_RUNNING = 60,
+    PROTOCOL_NOT_PAUSED = 61,
+    PROTOCOL_NOT_ACTIVATED = 62,
+    INVALID_DEACTIVATION = 63,
   }
 
   export enum TopicType {
@@ -1620,6 +1676,7 @@ declare namespace forge_abi {
     pk: Uint8Array;
     signature: Uint8Array;
     data: google.protobuf.Any;
+    delegator: string;
   }
 
   export interface Transaction {
@@ -1631,6 +1688,7 @@ declare namespace forge_abi {
     signature: Uint8Array;
     signatures: Array<forge_abi.Multisig>;
     itx: google.protobuf.Any;
+    delegator: string;
   }
 
   export interface TransactionInfo {
@@ -1654,6 +1712,7 @@ declare namespace forge_abi {
     maxMultisig: number;
     minimumStake: number;
     declare: forge_abi.DeclareConfig;
+    delegate: forge_abi.DelegateConfig;
   }
 
   export interface BlockInfo {
@@ -2187,6 +2246,11 @@ declare namespace forge_abi {
     data: google.protobuf.Any;
   }
 
+  export interface DelegateConfig {
+    deltaInterval: number;
+    typeUrls: Array<string>;
+  }
+
   export interface AssetSpec {
     address: string;
     data: string;
@@ -2195,6 +2259,11 @@ declare namespace forge_abi {
   export interface AcquireAssetTx {
     to: string;
     specs: Array<forge_abi.AssetSpec>;
+    data: google.protobuf.Any;
+  }
+
+  export interface ActivateProtocolTx {
+    address: string;
     data: google.protobuf.Any;
   }
 
@@ -2247,10 +2316,27 @@ declare namespace forge_abi {
     data: google.protobuf.Any;
   }
 
+  export interface DeactivateProtocolTx {
+    address: string;
+    data: google.protobuf.Any;
+  }
+
   export interface DeclareTx {
     moniker: string;
     issuer: string;
     data: google.protobuf.Any;
+  }
+
+  export interface DelegateTx {
+    address: string;
+    to: string;
+    ops: Array<forge_abi.DelegateOp>;
+    data: google.protobuf.Any;
+  }
+
+  export interface DelegateOp {
+    typeUrl: string;
+    rules: Array<string>;
   }
 
   export interface DepositTetherTx {
@@ -2536,6 +2622,7 @@ declare namespace GRpcClient {
   export interface TxParam<T> {
     tx: ItxParam<T>;
     wallet: GRpcClient.WalletObject;
+    delegatee: string;
     signature: string;
   }
 
@@ -2545,6 +2632,7 @@ declare namespace GRpcClient {
     pk: string;
     chainId: string;
     signature: string;
+    delegator: string;
     signatures: array;
     itx: T;
   }
@@ -2578,6 +2666,7 @@ declare namespace GRpcClient {
 
 /*~ Write your module's methods and properties in this class */
 declare interface ForgeSDK {
+
   getQueries(): string[];
   getSubscriptions(): string[];
   getMutations(): string[];
@@ -2602,6 +2691,9 @@ declare interface ForgeSDK {
   sendAcquireAssetTx(
     param: GraphQLClient.TxParam<GraphQLClient.AcquireAssetTx>
   ): Promise<GraphQLClient.ResponseSendTx>;
+  sendActivateProtocolTx(
+    param: GraphQLClient.TxParam<GraphQLClient.ActivateProtocolTx>
+  ): Promise<GraphQLClient.ResponseSendTx>;
   sendApproveTetherTx(
     param: GraphQLClient.TxParam<GraphQLClient.ApproveTetherTx>
   ): Promise<GraphQLClient.ResponseSendTx>;
@@ -2611,8 +2703,14 @@ declare interface ForgeSDK {
   sendCreateAssetTx(
     param: GraphQLClient.TxParam<GraphQLClient.CreateAssetTx>
   ): Promise<GraphQLClient.ResponseSendTx>;
+  sendDeactivateProtocolTx(
+    param: GraphQLClient.TxParam<GraphQLClient.DeactivateProtocolTx>
+  ): Promise<GraphQLClient.ResponseSendTx>;
   sendDeclareTx(
     param: GraphQLClient.TxParam<GraphQLClient.DeclareTx>
+  ): Promise<GraphQLClient.ResponseSendTx>;
+  sendDelegateTx(
+    param: GraphQLClient.TxParam<GraphQLClient.DelegateTx>
   ): Promise<GraphQLClient.ResponseSendTx>;
   sendDeployProtocolTx(
     param: GraphQLClient.TxParam<GraphQLClient.DeployProtocolTx>
@@ -2662,6 +2760,9 @@ declare interface ForgeSDK {
   encodeAcquireAssetTx(
     param: GraphQLClient.TxParam<GraphQLClient.AcquireAssetTx>
   ): Promise<GraphQLClient.EncodeTxResult>;
+  encodeActivateProtocolTx(
+    param: GraphQLClient.TxParam<GraphQLClient.ActivateProtocolTx>
+  ): Promise<GraphQLClient.EncodeTxResult>;
   encodeApproveTetherTx(
     param: GraphQLClient.TxParam<GraphQLClient.ApproveTetherTx>
   ): Promise<GraphQLClient.EncodeTxResult>;
@@ -2671,8 +2772,14 @@ declare interface ForgeSDK {
   encodeCreateAssetTx(
     param: GraphQLClient.TxParam<GraphQLClient.CreateAssetTx>
   ): Promise<GraphQLClient.EncodeTxResult>;
+  encodeDeactivateProtocolTx(
+    param: GraphQLClient.TxParam<GraphQLClient.DeactivateProtocolTx>
+  ): Promise<GraphQLClient.EncodeTxResult>;
   encodeDeclareTx(
     param: GraphQLClient.TxParam<GraphQLClient.DeclareTx>
+  ): Promise<GraphQLClient.EncodeTxResult>;
+  encodeDelegateTx(
+    param: GraphQLClient.TxParam<GraphQLClient.DelegateTx>
   ): Promise<GraphQLClient.EncodeTxResult>;
   encodeDeployProtocolTx(
     param: GraphQLClient.TxParam<GraphQLClient.DeployProtocolTx>
@@ -2722,6 +2829,9 @@ declare interface ForgeSDK {
   signAcquireAssetTx(
     param: GraphQLClient.TxParam<GraphQLClient.AcquireAssetTx>
   ): Promise<GraphQLClient.Transaction>;
+  signActivateProtocolTx(
+    param: GraphQLClient.TxParam<GraphQLClient.ActivateProtocolTx>
+  ): Promise<GraphQLClient.Transaction>;
   signApproveTetherTx(
     param: GraphQLClient.TxParam<GraphQLClient.ApproveTetherTx>
   ): Promise<GraphQLClient.Transaction>;
@@ -2731,8 +2841,14 @@ declare interface ForgeSDK {
   signCreateAssetTx(
     param: GraphQLClient.TxParam<GraphQLClient.CreateAssetTx>
   ): Promise<GraphQLClient.Transaction>;
+  signDeactivateProtocolTx(
+    param: GraphQLClient.TxParam<GraphQLClient.DeactivateProtocolTx>
+  ): Promise<GraphQLClient.Transaction>;
   signDeclareTx(
     param: GraphQLClient.TxParam<GraphQLClient.DeclareTx>
+  ): Promise<GraphQLClient.Transaction>;
+  signDelegateTx(
+    param: GraphQLClient.TxParam<GraphQLClient.DelegateTx>
   ): Promise<GraphQLClient.Transaction>;
   signDeployProtocolTx(
     param: GraphQLClient.TxParam<GraphQLClient.DeployProtocolTx>
@@ -2804,6 +2920,9 @@ declare interface ForgeSDK {
   getConfig(
     params: GraphQLClient.GetConfigParams
   ): GraphQLClient.QueryResult<GraphQLClient.ResponseGetConfig>;
+  getDelegateState(
+    params: GraphQLClient.GetDelegateStateParams
+  ): GraphQLClient.QueryResult<GraphQLClient.ResponseGetDelegateState>;
   getForgeState(
     params: GraphQLClient.GetForgeStateParams
   ): GraphQLClient.QueryResult<GraphQLClient.ResponseGetForgeState>;
@@ -2972,57 +3091,61 @@ declare namespace GraphQLClient {
   }
 
   export enum StatusCode {
-    UNSUPPORTED_TX,
-    UNTRANSFERRABLE_ASSET,
-    INVALID_DEPOSIT_TARGET,
-    UNSUPPORTED_STAKE,
-    INVALID_WITHDRAWER,
-    CONSUMED_ASSET,
-    INVALID_SIGNER_STATE,
-    INVALID_SWAP,
-    INSUFFICIENT_STAKE,
-    EXCEED_DEPOSIT_CAP,
-    INVALID_WALLET,
-    INVALID_NONCE,
-    INVALID_ASSET,
-    INVALID_OWNER,
-    INVALID_HASHKEY,
-    INVALID_PASSPHRASE,
-    INVALID_SIGNATURE,
-    INVALID_MULTISIG,
-    INVALID_SENDER_STATE,
-    ACCOUNT_MIGRATED,
-    STORAGE_RPC_ERROR,
-    CONSENSUS_RPC_ERROR,
-    EXPIRED_WALLET_TOKEN,
-    FORBIDDEN,
-    EXPIRED_ASSET,
-    INVALID_MONIKER,
-    INVALID_REQUEST,
-    NOENT,
-    INVALID_DEPOSIT,
-    READONLY_ASSET,
-    INTERNAL,
-    INVALID_CHAIN_ID,
     INSUFFICIENT_FUND,
-    DUPLICATE_TETHER,
-    INVALID_CUSTODIAN,
-    INVALID_STAKE_STATE,
-    BANNED_UNSTAKE,
-    INVALID_DEPOSITOR,
+    INVALID_DEPOSIT_TARGET,
+    INVALID_DELEGATION,
     INVALID_TX_SIZE,
-    INVALID_DEPOSIT_VALUE,
     TOO_MANY_TXS,
-    INVALID_TX,
-    TIMEOUT,
-    INVALID_RECEIVER_STATE,
-    EXPIRED_TX,
+    INVALID_CUSTODIAN,
+    INVALID_REQUEST,
+    INVALID_DEPOSITOR,
+    ACCOUNT_MIGRATED,
+    INVALID_SENDER_STATE,
+    EXPIRED_ASSET,
     INSUFFICIENT_GAS,
-    INVALID_EXPIRY_DATE,
+    INVALID_DEPOSIT_VALUE,
+    INVALID_SIGNATURE,
+    INVALID_RECEIVER_STATE,
+    FORBIDDEN,
+    INVALID_MULTISIG,
+    INVALID_PASSPHRASE,
+    INVALID_SIGNER_STATE,
+    READONLY_ASSET,
+    UNSUPPORTED_TX,
+    INVALID_DELEGATION_RULE,
+    INVALID_WALLET,
+    STORAGE_RPC_ERROR,
+    NOENT,
+    EXCEED_DEPOSIT_CAP,
     INSUFFICIENT_DATA,
+    INVALID_EXPIRY_DATE,
+    INSUFFICIENT_STAKE,
+    INTERNAL,
+    INSUFFICIENT_DELEGATION,
     INVALID_LOCK_STATUS,
-    OK,
+    INVALID_ASSET,
+    DUPLICATE_TETHER,
+    UNTRANSFERRABLE_ASSET,
+    INVALID_WITHDRAWER,
+    INVALID_OWNER,
+    INVALID_DEPOSIT,
     INVALID_FORGE_STATE,
+    INVALID_CHAIN_ID,
+    INVALID_STAKE_STATE,
+    INVALID_TX,
+    CONSUMED_ASSET,
+    CONSENSUS_RPC_ERROR,
+    UNSUPPORTED_STAKE,
+    INVALID_SWAP,
+    TIMEOUT,
+    EXPIRED_TX,
+    BANNED_UNSTAKE,
+    INVALID_NONCE,
+    INVALID_DELEGATION_TYPE_URL,
+    INVALID_HASHKEY,
+    INVALID_MONIKER,
+    OK,
+    EXPIRED_WALLET_TOKEN,
   }
 
   export enum UpgradeAction {
@@ -3279,6 +3402,26 @@ declare namespace GraphQLClient {
     moniker: string;
   }
 
+  export interface DelegateConfig {
+    deltaInterval: number;
+    typeUrls: Array<string>;
+  }
+
+  export interface DelegateOpState {
+    balance: string;
+    balanceDelta: string;
+    numTxs: string;
+    numTxsDelta: string;
+    rule: string;
+  }
+
+  export interface DelegateState {
+    address: string;
+    context: GraphQLClient.StateContext;
+    data: GraphQLClient.Any;
+    ops: Array<OpsEntry>;
+  }
+
   export interface DeployProtocolTx {
     address: string;
     code: Array<CodeInfo>;
@@ -3514,6 +3657,7 @@ declare namespace GraphQLClient {
 
   export interface Multisig {
     data: GraphQLClient.Any;
+    delegator: string;
     pk: string;
     signature: string;
     signer: string;
@@ -3550,6 +3694,11 @@ declare namespace GraphQLClient {
     totalTxs: string;
     version: string;
     votingPower: string;
+  }
+
+  export interface OpsEntry {
+    key: string;
+    value: GraphQLClient.DelegateOpState;
   }
 
   export interface PageInfo {
@@ -3663,6 +3812,11 @@ declare namespace GraphQLClient {
 
   export interface ResponseGetConfig {
     code: GraphQLClient.StatusCode;
+  }
+
+  export interface ResponseGetDelegateState {
+    code: GraphQLClient.StatusCode;
+    state: GraphQLClient.DelegateState;
   }
 
   export interface ResponseGetForgeState {
@@ -3809,6 +3963,8 @@ declare namespace GraphQLClient {
     createAsset: GraphQLClient.Transaction;
     declare: GraphQLClient.Transaction;
     declareFile: GraphQLClient.Transaction;
+    delegate: GraphQLClient.Transaction;
+    delegateState: GraphQLClient.DelegateState;
     endBlock: GraphQLClient.RequestEndBlock;
     exchange: GraphQLClient.Transaction;
     forgeState: GraphQLClient.ForgeState;
@@ -3826,9 +3982,29 @@ declare namespace GraphQLClient {
     code: GraphQLClient.StatusCode;
   }
 
+  export interface RetrieveSwapTx {
+    address: string;
+    data: GraphQLClient.Any;
+    hashkey: string;
+  }
+
+  export interface RevokeSwapTx {
+    address: string;
+    data: GraphQLClient.Any;
+  }
+
   export interface RevokeTetherTx {
     data: GraphQLClient.Any;
     tether: string;
+  }
+
+  export interface SetupSwapTx {
+    assets: Array<string>;
+    data: GraphQLClient.Any;
+    hashlock: string;
+    locktime: number;
+    receiver: string;
+    value: string;
   }
 
   export interface StakeConfig {
@@ -3952,6 +4128,7 @@ declare namespace GraphQLClient {
 
   export interface TransactionConfig {
     declare: GraphQLClient.DeclareConfig;
+    delegate: GraphQLClient.DelegateConfig;
     maxAssetSize: number;
     maxListSize: number;
     maxMultisig: number;
@@ -4064,6 +4241,9 @@ declare namespace GraphQLClient {
   }
 
   export type Itx =
+    | GraphQLClient.RevokeSwapTx
+    | GraphQLClient.RetrieveSwapTx
+    | GraphQLClient.SetupSwapTx
     | GraphQLClient.WithdrawTetherTx
     | GraphQLClient.UpgradeNodeTx
     | GraphQLClient.UpdateAssetTx
@@ -4109,6 +4289,12 @@ declare namespace GraphQLClient {
 
   export interface GetConfigParams {
     parsed: boolean;
+  }
+
+  export interface GetDelegateStateParams {
+    address: string;
+    height: string;
+    keys: Array<string>;
   }
 
   export interface GetForgeStateParams {
@@ -4230,18 +4416,18 @@ declare namespace GraphQLClient {
 }
 
 /**
- * Connect to a forge grpc/graphql endpoint
- * Then switch the current connection of ForgeSDK to that connection
- *
- * @public
- * @function
- * @param {string} endpoint - endpoint url string
- * @param {object} options - connection config
- * @param {string} options.name - connection name
- * @param {string} options.default - set this connection as default?
- * @see GraphQLClient for methods available when connected to graphql endpoint
- * @see GRpcClient for methods available when connected to grpc endpoint
- */
+  * Connect to a forge grpc/graphql endpoint
+  * Then switch the current connection of ForgeSDK to that connection
+  *
+  * @public
+  * @function
+  * @param {string} endpoint - endpoint url string
+  * @param {object} options - connection config
+  * @param {string} options.name - connection name
+  * @param {string} options.default - set this connection as default?
+  * @see GraphQLClient for methods available when connected to graphql endpoint
+  * @see GRpcClient for methods available when connected to grpc endpoint
+  */
 declare function connect(endpoint: string, options: ConnectOptions): void;
 
 declare interface ConnectOptions {
@@ -4249,12 +4435,13 @@ declare interface ConnectOptions {
   default: bool;
 }
 
-declare interface ForgeSDK {
-  Util: ForgeSdkUtil.T100;
-  Wallet: ForgeSdkWallet.T103;
-  Message: ForgeSDKMessage.T101;
-  connect: typeof connect;
-}
 
-declare const _Lib: ForgeSDK;
-export = _Lib;
+  declare interface ForgeSDK {
+    Util: ForgeSdkUtil.T100;
+    Wallet: ForgeSdkWallet.T103;
+    Message: ForgeSDKMessage.T101;
+    connect: typeof connect;
+  }
+
+  declare const _Lib: ForgeSDK;
+  export = _Lib;
