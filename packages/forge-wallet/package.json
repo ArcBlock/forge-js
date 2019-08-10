@@ -23,7 +23,7 @@
     "lib"
   ],
   "devDependencies": {
-    "jest": "^23.5.0",
+    "jest": "^24.8.0",
     "jsdoc-to-markdown": "^5.0.0"
   },
   "repository": {

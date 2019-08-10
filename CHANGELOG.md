@@ -1,3 +1,7 @@
+## 0.35.1 (August 09, 2019)
+
+- chore: upgrade jest to resolve some security issues
+
 ## 0.35.0 (August 08, 2019)
 
 - chore: support delegate in grpc-client
