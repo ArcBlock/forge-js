@@ -166,11 +166,7 @@ const verify = (token, pk, tolerance = 5, verifyTimestamp = true) => {
     return false;
   } catch (err) {
     debug('verify.error.exception');
-
-    if (process.env.NODE_ENV !== 'test') {
-      // eslint-disable-next-line
-      console.error('verify.error', err);
-    }
+    debug(err);
     return false;
   }
 };
