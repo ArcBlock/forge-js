@@ -1,6 +1,6 @@
 {
   "name": "@arcblock/did",
-  "version": "0.35.1",
+  "version": "0.35.2",
   "description": "Javascript lib to work with ArcBlock DID",
   "keywords": [
     "forge",
