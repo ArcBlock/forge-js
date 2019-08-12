@@ -1,3 +1,8 @@
+## 0.35.2 (August 12, 2019)
+
+- chore: modify console.* to debug
+- update readme
+
 ## 0.35.1 (August 09, 2019)
 
 - chore: upgrade jest to resolve some security issues

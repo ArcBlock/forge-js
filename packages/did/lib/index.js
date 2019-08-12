@@ -185,10 +185,8 @@ const toTypeInfo = (did, returnString = false) => {
 
     return returnString ? typeStr : type;
   } catch (err) {
-    if (process.env.NODE_ENV !== 'test') {
-      // eslint-disable-next-line
-      console.warn('AbtDid.toTypeInfo.decodeError', err);
-    }
+    debug('AbtDid.toTypeInfo.decodeError');
+    debug(err);
     return {};
   }
 };
