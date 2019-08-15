@@ -15,6 +15,7 @@ deploy:
   script: bash ./tools/publish.sh
   on:
     branch: master
+    node_js: 12
 env:
   global:
     - secure: u1wXTK16Y3wgiKmoXBhxeoCeXKY/5Cj9UtuZay+mAjSRRXqzJXqn4eGwTwAZ38rFJxq5tPd7HhjNfVnprOVZUzZ2tSUeGXszkDlwUthPHvhniV7tSe4I4Dmcesru3/ru7ktuLf6hskEwe14RV19Ax4Ey9CkqlM0wCYothqLgPow3BsIJG1Hw4xTL4zFSjIHwkmz/8xkD+5wtgT4Tq2DemqnOQBwTam+i2xkG4zb7WwtmcXUXNtXjST1zOKbZ1oIlAkpiSEOWQiawj3vtApzAhG80zBRjrJB6c+gWF1qjPVW7+cMv0drzlIb1fYipr5lqYfKCyZIONOcdOMBe22O/qrl+An83weQ09Vr/JMRnf/2kdO5GCX377lI8VpRK+3yPAXX3VNQfPXSKAUawF7qXI7KesEdr4qIgeaFlhhegYKntzhZ71j4RguP711jfVPk2bCLGy7jmBx4eip4Bwt93EZCHpS91608RWzfgeW4sGg3DxWnTvobwSuIfiR9cAZ308N/uRHyZ3ig0mQ97x5zAGTpX0+ctekQsABC9VGXDE1UsOs76j4ibyb+sHfY1HGRUVKfQm+9/4OzLlR7tZuxS+Ltedrufu9GMxTnkH45ORQfb92K5nccyJDpzw/EwKQWD80HKstSAtro++zgMhCeTVMD3ShmfzvwCD7iotJpGjNg=
