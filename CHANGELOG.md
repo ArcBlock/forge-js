@@ -1,3 +1,8 @@
+## 0.36.1 (August 15, 2019)
+
+- chore: only publish on node.js v10
+- update readme
+
 ## 0.36.0 (August 15, 2019)
 
 - chore: change default decimal from 16 => 18
