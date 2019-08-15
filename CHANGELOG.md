@@ -1,6 +1,11 @@
+## 0.36.0 (August 15, 2019)
+
+- chore: change default decimal from 16 => 18
+- update readme
+
 ## 0.35.2 (August 12, 2019)
 
-- chore: modify console.* to debug
+- chore: modify console.\* to debug
 - update readme
 
 ## 0.35.1 (August 09, 2019)
