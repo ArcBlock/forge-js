@@ -382,11 +382,11 @@ const numberToString = arg => {
  * @static
  * @method fromUintToToken
  * @param {string|number} input
- * @param {number} [decimal=16]
+ * @param {number} [decimal=18]
  * @param {*} optionsInput
  * @returns {string}
  */
-const fromUnitToToken = (input, decimal = 16, optionsInput) => {
+const fromUnitToToken = (input, decimal = 18, optionsInput) => {
   let arc = numberToBN(input);
   const negative = arc.lt(zero);
   const base = toBN(`1${'0'.repeat(decimal)}`, 10);
@@ -426,10 +426,10 @@ const fromUnitToToken = (input, decimal = 16, optionsInput) => {
  * @public
  * @static
  * @param {string} input
- * @param {number} [decimal=16]
+ * @param {number} [decimal=18]
  * @returns BN
  */
-const fromTokenToUnit = (input, decimal = 16) => {
+const fromTokenToUnit = (input, decimal = 18) => {
   let ether = numberToString(input);
   const base = toBN(`1${'0'.repeat(decimal)}`, 10);
   const baseLength = base.toString(10).length - 1 || 1;
