@@ -265,7 +265,7 @@ Format a big number to human readable number, such as 1_0000_0000_0000_000 => 1 
 | Param        | Type                                       | Default         |
 | ------------ | ------------------------------------------ | --------------- |
 | input        | <code>string</code> \| <code>number</code> |                 |
-| [decimal]    | <code>number</code>                        | <code>16</code> |
+| [decimal]    | <code>number</code>                        | <code>18</code> |
 | optionsInput | <code>\*</code>                            |                 |
 
 <a name="module_@arcblock/forge-util.fromTokenToUnit"></a>
@@ -281,7 +281,7 @@ Convert human readable token number to big number instance
 | Param     | Type                | Default         |
 | --------- | ------------------- | --------------- |
 | input     | <code>string</code> |                 |
-| [decimal] | <code>number</code> | <code>16</code> |
+| [decimal] | <code>number</code> | <code>18</code> |
 
 <a name="module_@arcblock/forge-util.isUint8Array"></a>
 
