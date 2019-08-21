@@ -38,21 +38,9 @@ const type = WalletType({
 
     console.log('from account', `${endpoint}/node/explorer/accounts/${migrateFrom.toAddress()}`);
     console.log('from account tx', `${endpoint}/node/explorer/txs/${res}`);
+    await sleep(3000);
 
-    // 2. declare migrate_to account
-    res = await client.sendDeclareTx({
-      tx: {
-        itx: {
-          moniker: `migrate_to_${Math.round(Math.random() * 10000)}`,
-        },
-      },
-      wallet: migrateTo,
-    });
-    console.log('to account', `${endpoint}/node/explorer/accounts/${migrateTo.toAddress()}`);
-    console.log('to account tx', `${endpoint}/node/explorer/txs/${res}`);
-    await sleep(5000);
-
-    // 3. FIXME: migrate: with from's pk/sk
+    // 2. migrate: with from's pk/sk
     res = await client.sendAccountMigrateTx({
       tx: {
         itx: {
@@ -65,6 +53,7 @@ const type = WalletType({
     });
 
     console.log('migrate tx', `${endpoint}/node/explorer/txs/${res}`);
+    console.log('to account', `${endpoint}/node/explorer/accounts/${migrateTo.toAddress()}`);
   } catch (err) {
     console.error(err);
     console.log(JSON.stringify(err.errors));
