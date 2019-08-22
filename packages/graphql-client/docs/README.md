@@ -42,6 +42,7 @@ Please note that, due to internal implementation of google-protobuf, all `repeat
     * [.sendDelegateTx(params)](#GraphQLClient+sendDelegateTx) ⇒ <code>Promise.&lt;string></code>
     * [.sendDeployProtocolTx(params)](#GraphQLClient+sendDeployProtocolTx) ⇒ <code>Promise.&lt;string></code>
     * [.sendDepositTetherTx(params)](#GraphQLClient+sendDepositTetherTx) ⇒ <code>Promise.&lt;string></code>
+    * [.sendDepositTokenTx(params)](#GraphQLClient+sendDepositTokenTx) ⇒ <code>Promise.&lt;string></code>
     * [.sendExchangeTetherTx(params)](#GraphQLClient+sendExchangeTetherTx) ⇒ <code>Promise.&lt;string></code>
     * [.sendExchangeTx(params)](#GraphQLClient+sendExchangeTx) ⇒ <code>Promise.&lt;string></code>
     * [.sendPokeTx(params)](#GraphQLClient+sendPokeTx) ⇒ <code>Promise.&lt;string></code>
@@ -65,6 +66,7 @@ Please note that, due to internal implementation of google-protobuf, all `repeat
     * [.encodeDelegateTx(params)](#GraphQLClient+encodeDelegateTx) ⇒ [<code>Promise.&lt;TxEncodeOutput></code>](#GraphQLClient.TxEncodeOutput)
     * [.encodeDeployProtocolTx(params)](#GraphQLClient+encodeDeployProtocolTx) ⇒ [<code>Promise.&lt;TxEncodeOutput></code>](#GraphQLClient.TxEncodeOutput)
     * [.encodeDepositTetherTx(params)](#GraphQLClient+encodeDepositTetherTx) ⇒ [<code>Promise.&lt;TxEncodeOutput></code>](#GraphQLClient.TxEncodeOutput)
+    * [.encodeDepositTokenTx(params)](#GraphQLClient+encodeDepositTokenTx) ⇒ [<code>Promise.&lt;TxEncodeOutput></code>](#GraphQLClient.TxEncodeOutput)
     * [.encodeExchangeTetherTx(params)](#GraphQLClient+encodeExchangeTetherTx) ⇒ [<code>Promise.&lt;TxEncodeOutput></code>](#GraphQLClient.TxEncodeOutput)
     * [.encodeExchangeTx(params)](#GraphQLClient+encodeExchangeTx) ⇒ [<code>Promise.&lt;TxEncodeOutput></code>](#GraphQLClient.TxEncodeOutput)
     * [.encodePokeTx(params)](#GraphQLClient+encodePokeTx) ⇒ [<code>Promise.&lt;TxEncodeOutput></code>](#GraphQLClient.TxEncodeOutput)
@@ -300,6 +302,7 @@ Please note that, due to internal implementation of google-protobuf, all `repeat
     * [.DelegateTxInput](#GraphQLClient.DelegateTxInput) : <code>Object</code>
     * [.DeployProtocolTxInput](#GraphQLClient.DeployProtocolTxInput) : <code>Object</code>
     * [.DepositTetherTxInput](#GraphQLClient.DepositTetherTxInput) : <code>Object</code>
+    * [.DepositTokenTxInput](#GraphQLClient.DepositTokenTxInput) : <code>Object</code>
     * [.ExchangeTetherTxInput](#GraphQLClient.ExchangeTetherTxInput) : <code>Object</code>
     * [.ExchangeTxInput](#GraphQLClient.ExchangeTxInput) : <code>Object</code>
     * [.PokeTxInput](#GraphQLClient.PokeTxInput) : <code>Object</code>
@@ -669,6 +672,19 @@ Send DepositTetherTx transaction and get the hash, use [getTx](#GraphQLClient+ge
 | ------ | ------------------------------------------------------------------------ |
 | params | [<code>DepositTetherTxInput</code>](#GraphQLClient.DepositTetherTxInput) |
 
+<a name="GraphQLClient+sendDepositTokenTx"></a>
+
+### graphQLClient.sendDepositTokenTx(params) ⇒ <code>Promise.&lt;string></code>
+
+Send DepositTokenTx transaction and get the hash, use [getTx](#GraphQLClient+getTx) to get transaction detail
+
+**Kind**: instance method of [<code>GraphQLClient</code>](#GraphQLClient)  
+**Returns**: <code>Promise.&lt;string></code> - returns transaction hash if success, otherwise error was thrown  
+
+| Param  | Type                                                                   |
+| ------ | ---------------------------------------------------------------------- |
+| params | [<code>DepositTokenTxInput</code>](#GraphQLClient.DepositTokenTxInput) |
+
 <a name="GraphQLClient+sendExchangeTetherTx"></a>
 
 ### graphQLClient.sendExchangeTetherTx(params) ⇒ <code>Promise.&lt;string></code>
@@ -967,6 +983,19 @@ Encode a DepositTetherTx transaction for later use
 | Param  | Type                                                                     |
 | ------ | ------------------------------------------------------------------------ |
 | params | [<code>DepositTetherTxInput</code>](#GraphQLClient.DepositTetherTxInput) |
+
+<a name="GraphQLClient+encodeDepositTokenTx"></a>
+
+### graphQLClient.encodeDepositTokenTx(params) ⇒ [<code>Promise.&lt;TxEncodeOutput></code>](#GraphQLClient.TxEncodeOutput)
+
+Encode a DepositTokenTx transaction for later use
+
+**Kind**: instance method of [<code>GraphQLClient</code>](#GraphQLClient)  
+**Returns**: [<code>Promise.&lt;TxEncodeOutput></code>](#GraphQLClient.TxEncodeOutput) - result - we provide two formats of the encoding result, binary presentation and human readable object  
+
+| Param  | Type                                                                   |
+| ------ | ---------------------------------------------------------------------- |
+| params | [<code>DepositTokenTxInput</code>](#GraphQLClient.DepositTokenTxInput) |
 
 <a name="GraphQLClient+encodeExchangeTetherTx"></a>
 
@@ -3231,7 +3260,7 @@ Checkout the following snippet for the format of ResponseGetAccountState:
 
 ```json
 {
-  "code": "INSUFFICIENT_FUND",
+  "code": "INVALID_TX_SIZE",
   "state": {
     "address": "abc",
     "balance": "abc",
@@ -3241,7 +3270,7 @@ Checkout the following snippet for the format of ResponseGetAccountState:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INSUFFICIENT_FUND",
+        "code": "INVALID_TX_SIZE",
         "createAsset": {
           "asset": "abc"
         },
@@ -3280,7 +3309,7 @@ Checkout the following snippet for the format of ResponseGetAccountState:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INSUFFICIENT_FUND",
+        "code": "INVALID_TX_SIZE",
         "createAsset": {
           "asset": "abc"
         },
@@ -3387,7 +3416,7 @@ Checkout the following snippet for the format of ResponseGetAssetState:
 
 ```json
 {
-  "code": "INSUFFICIENT_FUND",
+  "code": "INVALID_TX_SIZE",
   "state": {
     "address": "abc",
     "consumedTime": "2019-04-29T00:00:00.000Z",
@@ -3397,7 +3426,7 @@ Checkout the following snippet for the format of ResponseGetAssetState:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INSUFFICIENT_FUND",
+        "code": "INVALID_TX_SIZE",
         "createAsset": {
           "asset": "abc"
         },
@@ -3436,7 +3465,7 @@ Checkout the following snippet for the format of ResponseGetAssetState:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INSUFFICIENT_FUND",
+        "code": "INVALID_TX_SIZE",
         "createAsset": {
           "asset": "abc"
         },
@@ -3538,7 +3567,7 @@ Checkout the following snippet for the format of ResponseGetBlock:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INSUFFICIENT_FUND",
+        "code": "INVALID_TX_SIZE",
         "createAsset": {
           "asset": "abc"
         },
@@ -3595,7 +3624,7 @@ Checkout the following snippet for the format of ResponseGetBlock:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INSUFFICIENT_FUND",
+        "code": "INVALID_TX_SIZE",
         "createAsset": {
           "asset": "abc"
         },
@@ -3639,7 +3668,7 @@ Checkout the following snippet for the format of ResponseGetBlock:
       "block": "abc"
     }
   },
-  "code": "INSUFFICIENT_FUND"
+  "code": "INVALID_TX_SIZE"
 }
 ```
 
@@ -3695,7 +3724,7 @@ Checkout the following snippet for the format of ResponseGetBlocks:
       }
     }
   ],
-  "code": "INSUFFICIENT_FUND",
+  "code": "INVALID_TX_SIZE",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -3723,7 +3752,7 @@ Checkout the following snippet for the format of ResponseGetChainInfo:
 
 ```json
 {
-  "code": "INSUFFICIENT_FUND",
+  "code": "INVALID_TX_SIZE",
   "info": {
     "address": "abc",
     "appHash": "abc",
@@ -3769,7 +3798,7 @@ Checkout the following snippet for the format of ResponseGetConfig:
 
 ```json
 {
-  "code": "INSUFFICIENT_FUND",
+  "code": "INVALID_TX_SIZE",
   "config": "abc"
 }
 ```
@@ -3792,7 +3821,7 @@ Checkout the following snippet for the format of ResponseGetDelegateState:
 
 ```json
 {
-  "code": "INSUFFICIENT_FUND",
+  "code": "INVALID_TX_SIZE",
   "state": {
     "address": "abc",
     "context": {
@@ -3801,7 +3830,7 @@ Checkout the following snippet for the format of ResponseGetDelegateState:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INSUFFICIENT_FUND",
+        "code": "INVALID_TX_SIZE",
         "createAsset": {
           "asset": "abc"
         },
@@ -3840,7 +3869,7 @@ Checkout the following snippet for the format of ResponseGetDelegateState:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INSUFFICIENT_FUND",
+        "code": "INVALID_TX_SIZE",
         "createAsset": {
           "asset": "abc"
         },
@@ -3913,7 +3942,7 @@ Checkout the following snippet for the format of ResponseGetForgeState:
 
 ```json
 {
-  "code": "INSUFFICIENT_FUND",
+  "code": "INVALID_TX_SIZE",
   "state": {
     "address": "abc",
     "consensus": {
@@ -3970,7 +3999,7 @@ Checkout the following snippet for the format of ResponseGetForgeState:
               "accountMigrate": {
                 "address": "abc"
               },
-              "code": "INSUFFICIENT_FUND",
+              "code": "INVALID_TX_SIZE",
               "createAsset": {
                 "asset": "abc"
               },
@@ -4009,7 +4038,7 @@ Checkout the following snippet for the format of ResponseGetForgeState:
               "accountMigrate": {
                 "address": "abc"
               },
-              "code": "INSUFFICIENT_FUND",
+              "code": "INVALID_TX_SIZE",
               "createAsset": {
                 "asset": "abc"
               },
@@ -4117,7 +4146,7 @@ Checkout the following snippet for the format of ResponseGetForgeStats:
 
 ```json
 {
-  "code": "INSUFFICIENT_FUND",
+  "code": "INVALID_TX_SIZE",
   "forgeStats": {
     "avgBlockTime": 123,
     "avgTps": 123,
@@ -4195,7 +4224,7 @@ Checkout the following snippet for the format of ResponseGetHealthStatus:
 
 ```json
 {
-  "code": "INSUFFICIENT_FUND",
+  "code": "INVALID_TX_SIZE",
   "healthStatus": {
     "consensus": {
       "blockHeight": "abc",
@@ -4246,7 +4275,7 @@ Checkout the following snippet for the format of ResponseGetNetInfo:
 
 ```json
 {
-  "code": "INSUFFICIENT_FUND",
+  "code": "INVALID_TX_SIZE",
   "netInfo": {
     "listeners": [
       "abc"
@@ -4290,7 +4319,7 @@ Checkout the following snippet for the format of ResponseGetNodeInfo:
 
 ```json
 {
-  "code": "INSUFFICIENT_FUND",
+  "code": "INVALID_TX_SIZE",
   "info": {
     "address": "abc",
     "appHash": "abc",
@@ -4344,7 +4373,7 @@ Checkout the following snippet for the format of ResponseGetProtocolState:
 
 ```json
 {
-  "code": "INSUFFICIENT_FUND",
+  "code": "INVALID_TX_SIZE",
   "state": {
     "address": "abc",
     "context": {
@@ -4353,7 +4382,7 @@ Checkout the following snippet for the format of ResponseGetProtocolState:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INSUFFICIENT_FUND",
+        "code": "INVALID_TX_SIZE",
         "createAsset": {
           "asset": "abc"
         },
@@ -4392,7 +4421,7 @@ Checkout the following snippet for the format of ResponseGetProtocolState:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INSUFFICIENT_FUND",
+        "code": "INVALID_TX_SIZE",
         "createAsset": {
           "asset": "abc"
         },
@@ -4493,7 +4522,7 @@ Checkout the following snippet for the format of ResponseGetProtocols:
 
 ```json
 {
-  "code": "INSUFFICIENT_FUND",
+  "code": "INVALID_TX_SIZE",
   "protocols": [
     {
       "address": "abc",
@@ -4547,7 +4576,7 @@ Checkout the following snippet for the format of ResponseGetSimulatorStatus:
 
 ```json
 {
-  "code": "INSUFFICIENT_FUND",
+  "code": "INVALID_TX_SIZE",
   "result": "abc"
 }
 ```
@@ -4570,7 +4599,7 @@ Checkout the following snippet for the format of ResponseGetStakeState:
 
 ```json
 {
-  "code": "INSUFFICIENT_FUND",
+  "code": "INVALID_TX_SIZE",
   "state": {
     "address": "abc",
     "balance": "abc",
@@ -4580,7 +4609,7 @@ Checkout the following snippet for the format of ResponseGetStakeState:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INSUFFICIENT_FUND",
+        "code": "INVALID_TX_SIZE",
         "createAsset": {
           "asset": "abc"
         },
@@ -4619,7 +4648,7 @@ Checkout the following snippet for the format of ResponseGetStakeState:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INSUFFICIENT_FUND",
+        "code": "INVALID_TX_SIZE",
         "createAsset": {
           "asset": "abc"
         },
@@ -4683,7 +4712,7 @@ Checkout the following snippet for the format of ResponseGetSwapState:
 
 ```json
 {
-  "code": "INSUFFICIENT_FUND",
+  "code": "INVALID_TX_SIZE",
   "state": {
     "address": "abc",
     "assets": [
@@ -4695,7 +4724,7 @@ Checkout the following snippet for the format of ResponseGetSwapState:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INSUFFICIENT_FUND",
+        "code": "INVALID_TX_SIZE",
         "createAsset": {
           "asset": "abc"
         },
@@ -4734,7 +4763,7 @@ Checkout the following snippet for the format of ResponseGetSwapState:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INSUFFICIENT_FUND",
+        "code": "INVALID_TX_SIZE",
         "createAsset": {
           "asset": "abc"
         },
@@ -4798,7 +4827,7 @@ Checkout the following snippet for the format of ResponseGetTetherState:
 
 ```json
 {
-  "code": "INSUFFICIENT_FUND",
+  "code": "INVALID_TX_SIZE",
   "state": {
     "address": "abc",
     "available": true,
@@ -4833,12 +4862,12 @@ Checkout the following snippet for the format of ResponseGetTx:
 
 ```json
 {
-  "code": "INSUFFICIENT_FUND",
+  "code": "INVALID_TX_SIZE",
   "info": {
     "accountMigrate": {
       "address": "abc"
     },
-    "code": "INSUFFICIENT_FUND",
+    "code": "INVALID_TX_SIZE",
     "createAsset": {
       "asset": "abc"
     },
@@ -4893,7 +4922,7 @@ Checkout the following snippet for the format of ResponseGetUnconfirmedTxs:
 
 ```json
 {
-  "code": "INSUFFICIENT_FUND",
+  "code": "INVALID_TX_SIZE",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -4945,7 +4974,7 @@ Checkout the following snippet for the format of ResponseGetValidatorsInfo:
 
 ```json
 {
-  "code": "INSUFFICIENT_FUND",
+  "code": "INVALID_TX_SIZE",
   "validatorsInfo": {
     "blockHeight": "abc",
     "validators": [
@@ -4988,7 +5017,7 @@ Checkout the following snippet for the format of ResponseListAssetTransactions:
 
 ```json
 {
-  "code": "INSUFFICIENT_FUND",
+  "code": "INVALID_TX_SIZE",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -4996,7 +5025,7 @@ Checkout the following snippet for the format of ResponseListAssetTransactions:
   },
   "transactions": [
     {
-      "code": "INSUFFICIENT_FUND",
+      "code": "INVALID_TX_SIZE",
       "hash": "abc",
       "receiver": "abc",
       "sender": "abc",
@@ -5074,7 +5103,7 @@ Checkout the following snippet for the format of ResponseListAssets:
       "renaissanceTime": "abc"
     }
   ],
-  "code": "INSUFFICIENT_FUND",
+  "code": "INVALID_TX_SIZE",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -5112,7 +5141,7 @@ Checkout the following snippet for the format of ResponseListBlocks:
       "time": "abc"
     }
   ],
-  "code": "INSUFFICIENT_FUND",
+  "code": "INVALID_TX_SIZE",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -5140,7 +5169,7 @@ Checkout the following snippet for the format of ResponseListStakes:
 
 ```json
 {
-  "code": "INSUFFICIENT_FUND",
+  "code": "INVALID_TX_SIZE",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -5180,7 +5209,7 @@ Checkout the following snippet for the format of ResponseListSwap:
 
 ```json
 {
-  "code": "INSUFFICIENT_FUND",
+  "code": "INVALID_TX_SIZE",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -5198,7 +5227,7 @@ Checkout the following snippet for the format of ResponseListSwap:
           "accountMigrate": {
             "address": "abc"
           },
-          "code": "INSUFFICIENT_FUND",
+          "code": "INVALID_TX_SIZE",
           "createAsset": {
             "asset": "abc"
           },
@@ -5237,7 +5266,7 @@ Checkout the following snippet for the format of ResponseListSwap:
           "accountMigrate": {
             "address": "abc"
           },
-          "code": "INSUFFICIENT_FUND",
+          "code": "INVALID_TX_SIZE",
           "createAsset": {
             "asset": "abc"
           },
@@ -5303,7 +5332,7 @@ Checkout the following snippet for the format of ResponseListTethers:
 
 ```json
 {
-  "code": "INSUFFICIENT_FUND",
+  "code": "INVALID_TX_SIZE",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -5366,7 +5395,7 @@ Checkout the following snippet for the format of ResponseListTopAccounts:
       "totalUnstakes": "abc"
     }
   ],
-  "code": "INSUFFICIENT_FUND",
+  "code": "INVALID_TX_SIZE",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -5394,7 +5423,7 @@ Checkout the following snippet for the format of ResponseListTransactions:
 
 ```json
 {
-  "code": "INSUFFICIENT_FUND",
+  "code": "INVALID_TX_SIZE",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -5402,7 +5431,7 @@ Checkout the following snippet for the format of ResponseListTransactions:
   },
   "transactions": [
     {
-      "code": "INSUFFICIENT_FUND",
+      "code": "INVALID_TX_SIZE",
       "hash": "abc",
       "receiver": "abc",
       "sender": "abc",
@@ -5452,7 +5481,7 @@ Checkout the following snippet for the format of ResponseSendTx:
 
 ```json
 {
-  "code": "INSUFFICIENT_FUND",
+  "code": "INVALID_TX_SIZE",
   "hash": "abc"
 }
 ```
@@ -5475,7 +5504,7 @@ Checkout the following snippet for the format of ResponseStartSimulator:
 
 ```json
 {
-  "code": "INSUFFICIENT_FUND"
+  "code": "INVALID_TX_SIZE"
 }
 ```
 
@@ -5496,7 +5525,7 @@ Checkout the following snippet for the format of ResponseStopSimulator:
 
 ```json
 {
-  "code": "INSUFFICIENT_FUND"
+  "code": "INVALID_TX_SIZE"
 }
 ```
 
@@ -5545,7 +5574,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INSUFFICIENT_FUND",
+        "code": "INVALID_TX_SIZE",
         "createAsset": {
           "asset": "abc"
         },
@@ -5584,7 +5613,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INSUFFICIENT_FUND",
+        "code": "INVALID_TX_SIZE",
         "createAsset": {
           "asset": "abc"
         },
@@ -5679,7 +5708,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INSUFFICIENT_FUND",
+        "code": "INVALID_TX_SIZE",
         "createAsset": {
           "asset": "abc"
         },
@@ -5718,7 +5747,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INSUFFICIENT_FUND",
+        "code": "INVALID_TX_SIZE",
         "createAsset": {
           "asset": "abc"
         },
@@ -5842,7 +5871,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
       ]
     }
   },
-  "code": "INSUFFICIENT_FUND",
+  "code": "INVALID_TX_SIZE",
   "confirm": {
     "chainId": "abc",
     "from": "abc",
@@ -5965,7 +5994,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INSUFFICIENT_FUND",
+        "code": "INVALID_TX_SIZE",
         "createAsset": {
           "asset": "abc"
         },
@@ -6004,7 +6033,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INSUFFICIENT_FUND",
+        "code": "INVALID_TX_SIZE",
         "createAsset": {
           "asset": "abc"
         },
@@ -6134,7 +6163,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
               "accountMigrate": {
                 "address": "abc"
               },
-              "code": "INSUFFICIENT_FUND",
+              "code": "INVALID_TX_SIZE",
               "createAsset": {
                 "asset": "abc"
               },
@@ -6173,7 +6202,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
               "accountMigrate": {
                 "address": "abc"
               },
-              "code": "INSUFFICIENT_FUND",
+              "code": "INVALID_TX_SIZE",
               "createAsset": {
                 "asset": "abc"
               },
@@ -6268,7 +6297,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INSUFFICIENT_FUND",
+        "code": "INVALID_TX_SIZE",
         "createAsset": {
           "asset": "abc"
         },
@@ -6307,7 +6336,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INSUFFICIENT_FUND",
+        "code": "INVALID_TX_SIZE",
         "createAsset": {
           "asset": "abc"
         },
@@ -6434,7 +6463,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INSUFFICIENT_FUND",
+        "code": "INVALID_TX_SIZE",
         "createAsset": {
           "asset": "abc"
         },
@@ -6473,7 +6502,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INSUFFICIENT_FUND",
+        "code": "INVALID_TX_SIZE",
         "createAsset": {
           "asset": "abc"
         },
@@ -6616,7 +6645,7 @@ Checkout the following snippet for the format of ResponseUnsubscribe:
 
 ```json
 {
-  "code": "INSUFFICIENT_FUND"
+  "code": "INVALID_TX_SIZE"
 }
 ```
 
@@ -8259,6 +8288,27 @@ Checkout the following snippet for the format of SubscribeParams:
 | [input.tx.signatures] | <code>array</code>                                             | transaction signatures, should be set when it's a multisig transaction                        |
 | input.wallet          | <code>object</code>                                            | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
 | [input.signature]     | <code>string</code>                                            | the signature of the tx, if this parameter exist, we will not sign the transaction            |
+
+<a name="GraphQLClient.DepositTokenTxInput"></a>
+
+### GraphQLClient.DepositTokenTxInput : <code>Object</code>
+
+**Kind**: static typedef of [<code>GraphQLClient</code>](#GraphQLClient)  
+**Properties**
+
+| Name                  | Type                                      | Description                                                                                   |
+| --------------------- | ----------------------------------------- | --------------------------------------------------------------------------------------------- |
+| input                 | <code>object</code>                       |                                                                                               |
+| input.tx              | <code>object</code>                       | data of the transaction                                                                       |
+| input.tx.itx          | <code>GraphQLClient.DepositTokenTx</code> | the actual transaction object                                                                 |
+| [input.tx.pk]         | <code>string</code>                       | the sender pk                                                                                 |
+| [input.tx.from]       | <code>string</code>                       | the sender address, can be derived from wallet                                                |
+| [input.tx.nonce]      | <code>number</code>                       | the tx nonce, defaults to Date.now if not set                                                 |
+| [input.tx.chainId]    | <code>string</code>                       | the chainId                                                                                   |
+| [input.tx.signature]  | <code>string</code>                       | transaction signature                                                                         |
+| [input.tx.signatures] | <code>array</code>                        | transaction signatures, should be set when it's a multisig transaction                        |
+| input.wallet          | <code>object</code>                       | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
+| [input.signature]     | <code>string</code>                       | the signature of the tx, if this parameter exist, we will not sign the transaction            |
 
 <a name="GraphQLClient.ExchangeTetherTxInput"></a>
 
