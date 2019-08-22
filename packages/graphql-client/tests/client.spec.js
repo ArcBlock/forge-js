@@ -54,10 +54,14 @@ describe('GraphQLClient', () => {
     expect(typeof type.deserializeBinary).toEqual('function');
   });
 
-  client = new GraphQLClient('http://182.92.167.126:8210/api');
+  // client = new GraphQLClient('http://182.92.167.126:8210/api');
+  client = new GraphQLClient('https://zinc.abtnetwork.io/api');
   test('should support getBlock', async () => {
     try {
-      const res = await client.getBlock({ height: 1 });
+      const res = await client.getBlock(
+        { height: 1 },
+        { ignoreFields: ['block.invalidTxs', 'block.txs'] }
+      );
       expect(res.code).toEqual('OK');
       expect(res.block.height).toEqual('1');
     } catch (err) {
