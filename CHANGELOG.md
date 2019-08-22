@@ -1,3 +1,12 @@
+## 0.37.0 (August 22, 2019)
+
+- chore: upgrade sdk package with forge v0.37
+- chore: upgrade grpc-client with forge v0.37
+- chore: upgrade graphql-client with forge v0.37
+- chore: upgrade forge-proto with forge v0.37
+- chore: update status_code.json
+- fix: account migrate script
+
 ## 0.36.1 (August 15, 2019)
 
 - chore: only publish on node.js v12
