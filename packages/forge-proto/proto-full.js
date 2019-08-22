@@ -1,4 +1,4 @@
-// Auto generated code (2019-08-03T22:42:16.938Z), DO NOT EDIT
+// Auto generated code (2019-08-22T01:09:32.087Z), DO NOT EDIT
 const enumPb = require('./lib/enum_pb.js');
 const rpcPb = require('./lib/rpc_pb.js');
 const servicePb = require('./lib/service_pb.js');
@@ -17,6 +17,7 @@ const declareTxPb = require('./lib/declare_tx_pb.js');
 const delegateTxPb = require('./lib/delegate_tx_pb.js');
 const deployProtocolTxPb = require('./lib/deploy_protocol_tx_pb.js');
 const depositTetherTxPb = require('./lib/deposit_tether_tx_pb.js');
+const depositTokenTxPb = require('./lib/deposit_token_tx_pb.js');
 const exchangeTetherTxPb = require('./lib/exchange_tether_tx_pb.js');
 const exchangeTxPb = require('./lib/exchange_tx_pb.js');
 const pokeTxPb = require('./lib/poke_tx_pb.js');
@@ -52,6 +53,7 @@ const forgeTypes = Object.assign(
   delegateTxPb,
   deployProtocolTxPb,
   depositTetherTxPb,
+  depositTokenTxPb,
   exchangeTetherTxPb,
   exchangeTxPb,
   pokeTxPb,
