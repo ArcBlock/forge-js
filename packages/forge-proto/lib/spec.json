@@ -1053,7 +1053,10 @@
         "RequestGetForgeStats": {
           "oneofs": {
             "value": {
-              "oneof": ["dayInfo", "date"]
+              "oneof": [
+                "dayInfo",
+                "date"
+              ]
             }
           },
           "fields": {
@@ -4017,6 +4020,46 @@
             "locktime": {
               "type": "google.protobuf.Timestamp",
               "id": 6
+            }
+          }
+        },
+        "DepositTokenTx": {
+          "fields": {
+            "value": {
+              "type": "BigUint",
+              "id": 1
+            },
+            "address": {
+              "type": "string",
+              "id": 2
+            },
+            "evidence": {
+              "type": "Evidence",
+              "id": 3
+            }
+          }
+        },
+        "Evidence": {
+          "fields": {
+            "hash": {
+              "type": "string",
+              "id": 1
+            },
+            "chainType": {
+              "type": "string",
+              "id": 2
+            },
+            "chainId": {
+              "type": "string",
+              "id": 3
+            },
+            "originalTx": {
+              "type": "bytes",
+              "id": 4
+            },
+            "receiverAddress": {
+              "type": "string",
+              "id": 5
             }
           }
         },
