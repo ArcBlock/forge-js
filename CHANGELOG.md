@@ -1,3 +1,8 @@
+## 0.37.1 (August 26, 2019)
+
+- chore: upgrade graphql-client with latest forge-web
+- update readme
+
 ## 0.37.0 (August 22, 2019)
 
 - chore: upgrade sdk package with forge v0.37
