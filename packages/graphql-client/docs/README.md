@@ -127,8 +127,12 @@ Please note that, due to internal implementation of google-protobuf, all `repeat
     * [.TypeFilter](#GraphQLClient.TypeFilter) : <code>object</code>
     * [.ValidityFilter](#GraphQLClient.ValidityFilter) : <code>object</code>
     * [.AbciServerStatus](#GraphQLClient.AbciServerStatus) : <code>object</code>
+    * [.AccountMigrateTx](#GraphQLClient.AccountMigrateTx) : <code>object</code>
     * [.AccountState](#GraphQLClient.AccountState) : <code>object</code>
+    * [.AcquireAssetTx](#GraphQLClient.AcquireAssetTx) : <code>object</code>
     * [.Any](#GraphQLClient.Any) : <code>object</code>
+    * [.ApproveTetherTx](#GraphQLClient.ApproveTetherTx) : <code>object</code>
+    * [.AssetSpec](#GraphQLClient.AssetSpec) : <code>object</code>
     * [.AssetState](#GraphQLClient.AssetState) : <code>object</code>
     * [.BlockId](#GraphQLClient.BlockId) : <code>object</code>
     * [.BlockInfo](#GraphQLClient.BlockInfo) : <code>object</code>
@@ -138,14 +142,23 @@ Please note that, due to internal implementation of google-protobuf, all `repeat
     * [.CodeInfo](#GraphQLClient.CodeInfo) : <code>object</code>
     * [.ConsensusParams](#GraphQLClient.ConsensusParams) : <code>object</code>
     * [.ConsensusStatus](#GraphQLClient.ConsensusStatus) : <code>object</code>
+    * [.ConsensusUpgradeTx](#GraphQLClient.ConsensusUpgradeTx) : <code>object</code>
+    * [.ConsumeAssetTx](#GraphQLClient.ConsumeAssetTx) : <code>object</code>
     * [.CoreProtocol](#GraphQLClient.CoreProtocol) : <code>object</code>
+    * [.CreateAssetTx](#GraphQLClient.CreateAssetTx) : <code>object</code>
     * [.DeclareConfig](#GraphQLClient.DeclareConfig) : <code>object</code>
+    * [.DeclareFileTx](#GraphQLClient.DeclareFileTx) : <code>object</code>
+    * [.DeclareTx](#GraphQLClient.DeclareTx) : <code>object</code>
     * [.DelegateConfig](#GraphQLClient.DelegateConfig) : <code>object</code>
     * [.DelegateOpState](#GraphQLClient.DelegateOpState) : <code>object</code>
     * [.DelegateState](#GraphQLClient.DelegateState) : <code>object</code>
     * [.DeployProtocolTx](#GraphQLClient.DeployProtocolTx) : <code>object</code>
+    * [.DepositTetherTx](#GraphQLClient.DepositTetherTx) : <code>object</code>
     * [.DiskSpaceStatus](#GraphQLClient.DiskSpaceStatus) : <code>object</code>
     * [.Evidence](#GraphQLClient.Evidence) : <code>object</code>
+    * [.ExchangeInfo](#GraphQLClient.ExchangeInfo) : <code>object</code>
+    * [.ExchangeTetherTx](#GraphQLClient.ExchangeTetherTx) : <code>object</code>
+    * [.ExchangeTx](#GraphQLClient.ExchangeTx) : <code>object</code>
     * [.ExtraAccountMigrate](#GraphQLClient.ExtraAccountMigrate) : <code>object</code>
     * [.ExtraCreateAsset](#GraphQLClient.ExtraCreateAsset) : <code>object</code>
     * [.ForgeAppsVersionEntry](#GraphQLClient.ForgeAppsVersionEntry) : <code>object</code>
@@ -174,6 +187,7 @@ Please note that, due to internal implementation of google-protobuf, all `repeat
     * [.PeerInfo](#GraphQLClient.PeerInfo) : <code>object</code>
     * [.PokeConfig](#GraphQLClient.PokeConfig) : <code>object</code>
     * [.PokeInfo](#GraphQLClient.PokeInfo) : <code>object</code>
+    * [.PokeTx](#GraphQLClient.PokeTx) : <code>object</code>
     * [.Protocol](#GraphQLClient.Protocol) : <code>object</code>
     * [.ProtocolState](#GraphQLClient.ProtocolState) : <code>object</code>
     * [.PubKey](#GraphQLClient.PubKey) : <code>object</code>
@@ -213,22 +227,34 @@ Please note that, due to internal implementation of google-protobuf, all `repeat
     * [.ResponseStopSimulator](#GraphQLClient.ResponseStopSimulator) : <code>object</code>
     * [.ResponseSubscribe](#GraphQLClient.ResponseSubscribe) : <code>object</code>
     * [.ResponseUnsubscribe](#GraphQLClient.ResponseUnsubscribe) : <code>object</code>
+    * [.RetrieveSwapTx](#GraphQLClient.RetrieveSwapTx) : <code>object</code>
+    * [.RevokeSwapTx](#GraphQLClient.RevokeSwapTx) : <code>object</code>
+    * [.RevokeTetherTx](#GraphQLClient.RevokeTetherTx) : <code>object</code>
+    * [.SetupSwapTx](#GraphQLClient.SetupSwapTx) : <code>object</code>
     * [.StakeConfig](#GraphQLClient.StakeConfig) : <code>object</code>
     * [.StakeContext](#GraphQLClient.StakeContext) : <code>object</code>
+    * [.StakeDataType](#GraphQLClient.StakeDataType) : <code>object</code>
     * [.StakeState](#GraphQLClient.StakeState) : <code>object</code>
     * [.StakeSummary](#GraphQLClient.StakeSummary) : <code>object</code>
     * [.StakeSummaryEntry](#GraphQLClient.StakeSummaryEntry) : <code>object</code>
+    * [.StakeTx](#GraphQLClient.StakeTx) : <code>object</code>
     * [.StateContext](#GraphQLClient.StateContext) : <code>object</code>
     * [.StorageStatus](#GraphQLClient.StorageStatus) : <code>object</code>
     * [.SwapState](#GraphQLClient.SwapState) : <code>object</code>
+    * [.SysUpgradeTx](#GraphQLClient.SysUpgradeTx) : <code>object</code>
     * [.TasksEntry](#GraphQLClient.TasksEntry) : <code>object</code>
+    * [.TetherExchangeInfo](#GraphQLClient.TetherExchangeInfo) : <code>object</code>
     * [.TetherState](#GraphQLClient.TetherState) : <code>object</code>
+    * [.TetherTradeInfo](#GraphQLClient.TetherTradeInfo) : <code>object</code>
     * [.Transaction](#GraphQLClient.Transaction) : <code>object</code>
     * [.TransactionConfig](#GraphQLClient.TransactionConfig) : <code>object</code>
     * [.TransactionInfo](#GraphQLClient.TransactionInfo) : <code>object</code>
+    * [.TransferTx](#GraphQLClient.TransferTx) : <code>object</code>
     * [.TypeUrls](#GraphQLClient.TypeUrls) : <code>object</code>
     * [.UnconfirmedTxs](#GraphQLClient.UnconfirmedTxs) : <code>object</code>
+    * [.UpdateAssetTx](#GraphQLClient.UpdateAssetTx) : <code>object</code>
     * [.UpgradeInfo](#GraphQLClient.UpgradeInfo) : <code>object</code>
+    * [.UpgradeNodeTx](#GraphQLClient.UpgradeNodeTx) : <code>object</code>
     * [.UpgradeTask](#GraphQLClient.UpgradeTask) : <code>object</code>
     * [.UpgradeTasks](#GraphQLClient.UpgradeTasks) : <code>object</code>
     * [.Validator](#GraphQLClient.Validator) : <code>object</code>
@@ -237,6 +263,7 @@ Please note that, due to internal implementation of google-protobuf, all `repeat
     * [.Version](#GraphQLClient.Version) : <code>object</code>
     * [.VoteInfo](#GraphQLClient.VoteInfo) : <code>object</code>
     * [.WalletType](#GraphQLClient.WalletType) : <code>object</code>
+    * [.WithdrawTetherTx](#GraphQLClient.WithdrawTetherTx) : <code>object</code>
     * [.GetAccountStateParams](#GraphQLClient.GetAccountStateParams) : <code>object</code>
     * [.GetAssetStateParams](#GraphQLClient.GetAssetStateParams) : <code>object</code>
     * [.GetBlockParams](#GraphQLClient.GetBlockParams) : <code>object</code>
@@ -1706,6 +1733,41 @@ Structure of GraphQLClient.AbciServerStatus
 | abciConsensus | <code>string</code> |
 | abciInfo      | <code>string</code> |
 
+<a name="GraphQLClient.AccountMigrateTx"></a>
+
+### GraphQLClient.AccountMigrateTx : <code>object</code>
+
+Structure of GraphQLClient.AccountMigrateTx 
+
+Checkout the following snippet for the format of AccountMigrateTx:
+
+```json
+{
+  "address": "abc",
+  "data": {
+    "typeUrl": "abc",
+    "value": "abc"
+  },
+  "pk": "abc",
+  "type": {
+    "address": "BASE16",
+    "hash": "KECCAK",
+    "pk": "ED25519",
+    "role": "ROLE_ACCOUNT"
+  }
+}
+```
+
+**Kind**: static typedef of [<code>GraphQLClient</code>](#GraphQLClient)  
+**Properties**
+
+| Name    | Type                                                 |
+| ------- | ---------------------------------------------------- |
+| address | <code>string</code>                                  |
+| ...data | [<code>Any</code>](#GraphQLClient.Any)               |
+| pk      | <code>string</code>                                  |
+| ...type | [<code>WalletType</code>](#GraphQLClient.WalletType) |
+
 <a name="GraphQLClient.AccountState"></a>
 
 ### GraphQLClient.AccountState : <code>object</code>
@@ -1733,6 +1795,39 @@ Structure of GraphQLClient.AccountState
 | ...stake     | [<code>StakeContext</code>](#GraphQLClient.StakeContext) |
 | ...type      | [<code>WalletType</code>](#GraphQLClient.WalletType)     |
 
+<a name="GraphQLClient.AcquireAssetTx"></a>
+
+### GraphQLClient.AcquireAssetTx : <code>object</code>
+
+Structure of GraphQLClient.AcquireAssetTx 
+
+Checkout the following snippet for the format of AcquireAssetTx:
+
+```json
+{
+  "data": {
+    "typeUrl": "abc",
+    "value": "abc"
+  },
+  "specs": [
+    {
+      "address": "abc",
+      "data": "abc"
+    }
+  ],
+  "to": "abc"
+}
+```
+
+**Kind**: static typedef of [<code>GraphQLClient</code>](#GraphQLClient)  
+**Properties**
+
+| Name    | Type                                               |
+| ------- | -------------------------------------------------- |
+| ...data | [<code>Any</code>](#GraphQLClient.Any)             |
+| specs   | <code>Array.&lt;...GraphQLClient.AssetSpec></code> |
+| to      | <code>string</code>                                |
+
 <a name="GraphQLClient.Any"></a>
 
 ### GraphQLClient.Any : <code>object</code>
@@ -1746,6 +1841,46 @@ Structure of GraphQLClient.Any
 | ------- | ------------------- |
 | typeUrl | <code>string</code> |
 | value   | <code>string</code> |
+
+<a name="GraphQLClient.ApproveTetherTx"></a>
+
+### GraphQLClient.ApproveTetherTx : <code>object</code>
+
+Structure of GraphQLClient.ApproveTetherTx 
+
+Checkout the following snippet for the format of ApproveTetherTx:
+
+```json
+{
+  "data": {
+    "typeUrl": "abc",
+    "value": "abc"
+  },
+  "withdraw": "abc"
+}
+```
+
+**Kind**: static typedef of [<code>GraphQLClient</code>](#GraphQLClient)  
+**Properties**
+
+| Name     | Type                                   |
+| -------- | -------------------------------------- |
+| ...data  | [<code>Any</code>](#GraphQLClient.Any) |
+| withdraw | <code>string</code>                    |
+
+<a name="GraphQLClient.AssetSpec"></a>
+
+### GraphQLClient.AssetSpec : <code>object</code>
+
+Structure of GraphQLClient.AssetSpec
+
+**Kind**: static typedef of [<code>GraphQLClient</code>](#GraphQLClient)  
+**Properties**
+
+| Name    | Type                |
+| ------- | ------------------- |
+| address | <code>string</code> |
+| data    | <code>string</code> |
 
 <a name="GraphQLClient.AssetState"></a>
 
@@ -1960,6 +2095,73 @@ Structure of GraphQLClient.ConsensusStatus
 | health      | <code>boolean</code> |
 | synced      | <code>boolean</code> |
 
+<a name="GraphQLClient.ConsensusUpgradeTx"></a>
+
+### GraphQLClient.ConsensusUpgradeTx : <code>object</code>
+
+Structure of GraphQLClient.ConsensusUpgradeTx 
+
+Checkout the following snippet for the format of ConsensusUpgradeTx:
+
+```json
+{
+  "data": {
+    "typeUrl": "abc",
+    "value": "abc"
+  },
+  "maxBytes": "abc",
+  "maxCandidates": 123,
+  "maxGas": "abc",
+  "maxValidators": 123,
+  "validators": [
+    {
+      "address": "abc",
+      "power": "abc"
+    }
+  ]
+}
+```
+
+**Kind**: static typedef of [<code>GraphQLClient</code>](#GraphQLClient)  
+**Properties**
+
+| Name          | Type                                               |
+| ------------- | -------------------------------------------------- |
+| ...data       | [<code>Any</code>](#GraphQLClient.Any)             |
+| maxBytes      | <code>string</code>                                |
+| maxCandidates | <code>number</code>                                |
+| maxGas        | <code>string</code>                                |
+| maxValidators | <code>number</code>                                |
+| validators    | <code>Array.&lt;...GraphQLClient.Validator></code> |
+
+<a name="GraphQLClient.ConsumeAssetTx"></a>
+
+### GraphQLClient.ConsumeAssetTx : <code>object</code>
+
+Structure of GraphQLClient.ConsumeAssetTx 
+
+Checkout the following snippet for the format of ConsumeAssetTx:
+
+```json
+{
+  "address": "abc",
+  "data": {
+    "typeUrl": "abc",
+    "value": "abc"
+  },
+  "issuer": "abc"
+}
+```
+
+**Kind**: static typedef of [<code>GraphQLClient</code>](#GraphQLClient)  
+**Properties**
+
+| Name    | Type                                   |
+| ------- | -------------------------------------- |
+| address | <code>string</code>                    |
+| ...data | [<code>Any</code>](#GraphQLClient.Any) |
+| issuer  | <code>string</code>                    |
+
 <a name="GraphQLClient.CoreProtocol"></a>
 
 ### GraphQLClient.CoreProtocol : <code>object</code>
@@ -1974,6 +2176,42 @@ Structure of GraphQLClient.CoreProtocol
 | address | <code>string</code> |
 | name    | <code>string</code> |
 
+<a name="GraphQLClient.CreateAssetTx"></a>
+
+### GraphQLClient.CreateAssetTx : <code>object</code>
+
+Structure of GraphQLClient.CreateAssetTx 
+
+Checkout the following snippet for the format of CreateAssetTx:
+
+```json
+{
+  "address": "abc",
+  "data": {
+    "typeUrl": "abc",
+    "value": "abc"
+  },
+  "moniker": "abc",
+  "parent": "abc",
+  "readonly": true,
+  "transferrable": true,
+  "ttl": 123
+}
+```
+
+**Kind**: static typedef of [<code>GraphQLClient</code>](#GraphQLClient)  
+**Properties**
+
+| Name          | Type                                   |
+| ------------- | -------------------------------------- |
+| address       | <code>string</code>                    |
+| ...data       | [<code>Any</code>](#GraphQLClient.Any) |
+| moniker       | <code>string</code>                    |
+| parent        | <code>string</code>                    |
+| readonly      | <code>boolean</code>                   |
+| transferrable | <code>boolean</code>                   |
+| ttl           | <code>number</code>                    |
+
 <a name="GraphQLClient.DeclareConfig"></a>
 
 ### GraphQLClient.DeclareConfig : <code>object</code>
@@ -1987,6 +2225,55 @@ Structure of GraphQLClient.DeclareConfig
 | ---------- | -------------------- |
 | hierarchy  | <code>number</code>  |
 | restricted | <code>boolean</code> |
+
+<a name="GraphQLClient.DeclareFileTx"></a>
+
+### GraphQLClient.DeclareFileTx : <code>object</code>
+
+Structure of GraphQLClient.DeclareFileTx 
+
+Checkout the following snippet for the format of DeclareFileTx:
+
+```json
+{
+  "hash": "abc"
+}
+```
+
+**Kind**: static typedef of [<code>GraphQLClient</code>](#GraphQLClient)  
+**Properties**
+
+| Name | Type                |
+| ---- | ------------------- |
+| hash | <code>string</code> |
+
+<a name="GraphQLClient.DeclareTx"></a>
+
+### GraphQLClient.DeclareTx : <code>object</code>
+
+Structure of GraphQLClient.DeclareTx 
+
+Checkout the following snippet for the format of DeclareTx:
+
+```json
+{
+  "data": {
+    "typeUrl": "abc",
+    "value": "abc"
+  },
+  "issuer": "abc",
+  "moniker": "abc"
+}
+```
+
+**Kind**: static typedef of [<code>GraphQLClient</code>](#GraphQLClient)  
+**Properties**
+
+| Name    | Type                                   |
+| ------- | -------------------------------------- |
+| ...data | [<code>Any</code>](#GraphQLClient.Any) |
+| issuer  | <code>string</code>                    |
+| moniker | <code>string</code>                    |
 
 <a name="GraphQLClient.DelegateConfig"></a>
 
@@ -2095,6 +2382,37 @@ Checkout the following snippet for the format of DeployProtocolTx:
 | typeUrls    | <code>Array.&lt;...GraphQLClient.TypeUrls></code> |
 | version     | <code>number</code>                               |
 
+<a name="GraphQLClient.DepositTetherTx"></a>
+
+### GraphQLClient.DepositTetherTx : <code>object</code>
+
+Structure of GraphQLClient.DepositTetherTx 
+
+Checkout the following snippet for the format of DepositTetherTx:
+
+```json
+{
+  "charge": "abc",
+  "commission": "abc",
+  "locktime": "2019-04-29T00:00:00.000Z",
+  "target": "abc",
+  "value": "abc",
+  "withdrawer": "abc"
+}
+```
+
+**Kind**: static typedef of [<code>GraphQLClient</code>](#GraphQLClient)  
+**Properties**
+
+| Name       | Type                |
+| ---------- | ------------------- |
+| charge     | <code>string</code> |
+| commission | <code>string</code> |
+| locktime   | <code>string</code> |
+| target     | <code>string</code> |
+| value      | <code>string</code> |
+| withdrawer | <code>string</code> |
+
 <a name="GraphQLClient.DiskSpaceStatus"></a>
 
 ### GraphQLClient.DiskSpaceStatus : <code>object</code>
@@ -2125,6 +2443,121 @@ Structure of GraphQLClient.Evidence
 | totalVotingPower | <code>string</code>                                |
 | type             | <code>string</code>                                |
 | ...validator     | [<code>Validator</code>](#GraphQLClient.Validator) |
+
+<a name="GraphQLClient.ExchangeInfo"></a>
+
+### GraphQLClient.ExchangeInfo : <code>object</code>
+
+Structure of GraphQLClient.ExchangeInfo
+
+**Kind**: static typedef of [<code>GraphQLClient</code>](#GraphQLClient)  
+**Properties**
+
+| Name   | Type                                            |
+| ------ | ----------------------------------------------- |
+| assets | <code>Array.&lt;...GraphQLClient.string></code> |
+| value  | <code>string</code>                             |
+
+<a name="GraphQLClient.ExchangeTetherTx"></a>
+
+### GraphQLClient.ExchangeTetherTx : <code>object</code>
+
+Structure of GraphQLClient.ExchangeTetherTx 
+
+Checkout the following snippet for the format of ExchangeTetherTx:
+
+```json
+{
+  "data": {
+    "typeUrl": "abc",
+    "value": "abc"
+  },
+  "expiredAt": "2019-04-29T00:00:00.000Z",
+  "receiver": {
+    "assets": [
+      "abc"
+    ],
+    "deposit": {
+      "chainId": "abc",
+      "from": "abc",
+      "nonce": "abc",
+      "pk": "abc",
+      "signature": "abc",
+      "signatures": [
+        {
+          "data": {
+            "typeUrl": "abc",
+            "value": "abc"
+          },
+          "delegator": "abc",
+          "pk": "abc",
+          "signature": "abc",
+          "signer": "abc"
+        }
+      ]
+    },
+    "value": "abc"
+  },
+  "sender": {
+    "assets": [
+      "abc"
+    ],
+    "value": "abc"
+  }
+}
+```
+
+**Kind**: static typedef of [<code>GraphQLClient</code>](#GraphQLClient)  
+**Properties**
+
+| Name        | Type                                                                 |
+| ----------- | -------------------------------------------------------------------- |
+| ...data     | [<code>Any</code>](#GraphQLClient.Any)                               |
+| expiredAt   | <code>string</code>                                                  |
+| ...receiver | [<code>TetherExchangeInfo</code>](#GraphQLClient.TetherExchangeInfo) |
+| ...sender   | [<code>ExchangeInfo</code>](#GraphQLClient.ExchangeInfo)             |
+
+<a name="GraphQLClient.ExchangeTx"></a>
+
+### GraphQLClient.ExchangeTx : <code>object</code>
+
+Structure of GraphQLClient.ExchangeTx 
+
+Checkout the following snippet for the format of ExchangeTx:
+
+```json
+{
+  "data": {
+    "typeUrl": "abc",
+    "value": "abc"
+  },
+  "expiredAt": "2019-04-29T00:00:00.000Z",
+  "receiver": {
+    "assets": [
+      "abc"
+    ],
+    "value": "abc"
+  },
+  "sender": {
+    "assets": [
+      "abc"
+    ],
+    "value": "abc"
+  },
+  "to": "abc"
+}
+```
+
+**Kind**: static typedef of [<code>GraphQLClient</code>](#GraphQLClient)  
+**Properties**
+
+| Name        | Type                                                     |
+| ----------- | -------------------------------------------------------- |
+| ...data     | [<code>Any</code>](#GraphQLClient.Any)                   |
+| expiredAt   | <code>string</code>                                      |
+| ...receiver | [<code>ExchangeInfo</code>](#GraphQLClient.ExchangeInfo) |
+| ...sender   | [<code>ExchangeInfo</code>](#GraphQLClient.ExchangeInfo) |
+| to          | <code>string</code>                                      |
 
 <a name="GraphQLClient.ExtraAccountMigrate"></a>
 
@@ -2633,6 +3066,34 @@ Structure of GraphQLClient.PokeInfo
 | dailyLimit | <code>string</code> |
 | leftover   | <code>string</code> |
 
+<a name="GraphQLClient.PokeTx"></a>
+
+### GraphQLClient.PokeTx : <code>object</code>
+
+Structure of GraphQLClient.PokeTx 
+
+Checkout the following snippet for the format of PokeTx:
+
+```json
+{
+  "address": "abc",
+  "data": {
+    "typeUrl": "abc",
+    "value": "abc"
+  },
+  "date": "abc"
+}
+```
+
+**Kind**: static typedef of [<code>GraphQLClient</code>](#GraphQLClient)  
+**Properties**
+
+| Name    | Type                                   |
+| ------- | -------------------------------------- |
+| address | <code>string</code>                    |
+| ...data | [<code>Any</code>](#GraphQLClient.Any) |
+| date    | <code>string</code>                    |
+
 <a name="GraphQLClient.Protocol"></a>
 
 ### GraphQLClient.Protocol : <code>object</code>
@@ -2799,7 +3260,7 @@ Checkout the following snippet for the format of ResponseGetAccountState:
 
 ```json
 {
-  "code": "CONSENSUS_RPC_ERROR",
+  "code": "INSUFFICIENT_FUND",
   "state": {
     "address": "abc",
     "balance": "abc",
@@ -2809,7 +3270,7 @@ Checkout the following snippet for the format of ResponseGetAccountState:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "CONSENSUS_RPC_ERROR",
+        "code": "INSUFFICIENT_FUND",
         "createAsset": {
           "asset": "abc"
         },
@@ -2848,7 +3309,7 @@ Checkout the following snippet for the format of ResponseGetAccountState:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "CONSENSUS_RPC_ERROR",
+        "code": "INSUFFICIENT_FUND",
         "createAsset": {
           "asset": "abc"
         },
@@ -2955,7 +3416,7 @@ Checkout the following snippet for the format of ResponseGetAssetState:
 
 ```json
 {
-  "code": "CONSENSUS_RPC_ERROR",
+  "code": "INSUFFICIENT_FUND",
   "state": {
     "address": "abc",
     "consumedTime": "2019-04-29T00:00:00.000Z",
@@ -2965,7 +3426,7 @@ Checkout the following snippet for the format of ResponseGetAssetState:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "CONSENSUS_RPC_ERROR",
+        "code": "INSUFFICIENT_FUND",
         "createAsset": {
           "asset": "abc"
         },
@@ -3004,7 +3465,7 @@ Checkout the following snippet for the format of ResponseGetAssetState:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "CONSENSUS_RPC_ERROR",
+        "code": "INSUFFICIENT_FUND",
         "createAsset": {
           "asset": "abc"
         },
@@ -3106,7 +3567,7 @@ Checkout the following snippet for the format of ResponseGetBlock:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "CONSENSUS_RPC_ERROR",
+        "code": "INSUFFICIENT_FUND",
         "createAsset": {
           "asset": "abc"
         },
@@ -3163,7 +3624,7 @@ Checkout the following snippet for the format of ResponseGetBlock:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "CONSENSUS_RPC_ERROR",
+        "code": "INSUFFICIENT_FUND",
         "createAsset": {
           "asset": "abc"
         },
@@ -3207,7 +3668,7 @@ Checkout the following snippet for the format of ResponseGetBlock:
       "block": "abc"
     }
   },
-  "code": "CONSENSUS_RPC_ERROR"
+  "code": "INSUFFICIENT_FUND"
 }
 ```
 
@@ -3263,7 +3724,7 @@ Checkout the following snippet for the format of ResponseGetBlocks:
       }
     }
   ],
-  "code": "CONSENSUS_RPC_ERROR",
+  "code": "INSUFFICIENT_FUND",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -3291,7 +3752,7 @@ Checkout the following snippet for the format of ResponseGetChainInfo:
 
 ```json
 {
-  "code": "CONSENSUS_RPC_ERROR",
+  "code": "INSUFFICIENT_FUND",
   "info": {
     "address": "abc",
     "appHash": "abc",
@@ -3337,7 +3798,7 @@ Checkout the following snippet for the format of ResponseGetConfig:
 
 ```json
 {
-  "code": "CONSENSUS_RPC_ERROR",
+  "code": "INSUFFICIENT_FUND",
   "config": "abc"
 }
 ```
@@ -3360,7 +3821,7 @@ Checkout the following snippet for the format of ResponseGetDelegateState:
 
 ```json
 {
-  "code": "CONSENSUS_RPC_ERROR",
+  "code": "INSUFFICIENT_FUND",
   "state": {
     "address": "abc",
     "context": {
@@ -3369,7 +3830,7 @@ Checkout the following snippet for the format of ResponseGetDelegateState:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "CONSENSUS_RPC_ERROR",
+        "code": "INSUFFICIENT_FUND",
         "createAsset": {
           "asset": "abc"
         },
@@ -3408,7 +3869,7 @@ Checkout the following snippet for the format of ResponseGetDelegateState:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "CONSENSUS_RPC_ERROR",
+        "code": "INSUFFICIENT_FUND",
         "createAsset": {
           "asset": "abc"
         },
@@ -3481,7 +3942,7 @@ Checkout the following snippet for the format of ResponseGetForgeState:
 
 ```json
 {
-  "code": "CONSENSUS_RPC_ERROR",
+  "code": "INSUFFICIENT_FUND",
   "state": {
     "address": "abc",
     "consensus": {
@@ -3538,7 +3999,7 @@ Checkout the following snippet for the format of ResponseGetForgeState:
               "accountMigrate": {
                 "address": "abc"
               },
-              "code": "CONSENSUS_RPC_ERROR",
+              "code": "INSUFFICIENT_FUND",
               "createAsset": {
                 "asset": "abc"
               },
@@ -3577,7 +4038,7 @@ Checkout the following snippet for the format of ResponseGetForgeState:
               "accountMigrate": {
                 "address": "abc"
               },
-              "code": "CONSENSUS_RPC_ERROR",
+              "code": "INSUFFICIENT_FUND",
               "createAsset": {
                 "asset": "abc"
               },
@@ -3685,7 +4146,7 @@ Checkout the following snippet for the format of ResponseGetForgeStats:
 
 ```json
 {
-  "code": "CONSENSUS_RPC_ERROR",
+  "code": "INSUFFICIENT_FUND",
   "forgeStats": {
     "avgBlockTime": 123,
     "avgTps": 123,
@@ -3763,7 +4224,7 @@ Checkout the following snippet for the format of ResponseGetHealthStatus:
 
 ```json
 {
-  "code": "CONSENSUS_RPC_ERROR",
+  "code": "INSUFFICIENT_FUND",
   "healthStatus": {
     "consensus": {
       "blockHeight": "abc",
@@ -3814,7 +4275,7 @@ Checkout the following snippet for the format of ResponseGetNetInfo:
 
 ```json
 {
-  "code": "CONSENSUS_RPC_ERROR",
+  "code": "INSUFFICIENT_FUND",
   "netInfo": {
     "listeners": [
       "abc"
@@ -3858,7 +4319,7 @@ Checkout the following snippet for the format of ResponseGetNodeInfo:
 
 ```json
 {
-  "code": "CONSENSUS_RPC_ERROR",
+  "code": "INSUFFICIENT_FUND",
   "info": {
     "address": "abc",
     "appHash": "abc",
@@ -3912,7 +4373,7 @@ Checkout the following snippet for the format of ResponseGetProtocolState:
 
 ```json
 {
-  "code": "CONSENSUS_RPC_ERROR",
+  "code": "INSUFFICIENT_FUND",
   "state": {
     "address": "abc",
     "context": {
@@ -3921,7 +4382,7 @@ Checkout the following snippet for the format of ResponseGetProtocolState:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "CONSENSUS_RPC_ERROR",
+        "code": "INSUFFICIENT_FUND",
         "createAsset": {
           "asset": "abc"
         },
@@ -3960,7 +4421,7 @@ Checkout the following snippet for the format of ResponseGetProtocolState:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "CONSENSUS_RPC_ERROR",
+        "code": "INSUFFICIENT_FUND",
         "createAsset": {
           "asset": "abc"
         },
@@ -4061,7 +4522,7 @@ Checkout the following snippet for the format of ResponseGetProtocols:
 
 ```json
 {
-  "code": "CONSENSUS_RPC_ERROR",
+  "code": "INSUFFICIENT_FUND",
   "protocols": [
     {
       "address": "abc",
@@ -4115,7 +4576,7 @@ Checkout the following snippet for the format of ResponseGetSimulatorStatus:
 
 ```json
 {
-  "code": "CONSENSUS_RPC_ERROR",
+  "code": "INSUFFICIENT_FUND",
   "result": "abc"
 }
 ```
@@ -4138,7 +4599,7 @@ Checkout the following snippet for the format of ResponseGetStakeState:
 
 ```json
 {
-  "code": "CONSENSUS_RPC_ERROR",
+  "code": "INSUFFICIENT_FUND",
   "state": {
     "address": "abc",
     "balance": "abc",
@@ -4148,7 +4609,7 @@ Checkout the following snippet for the format of ResponseGetStakeState:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "CONSENSUS_RPC_ERROR",
+        "code": "INSUFFICIENT_FUND",
         "createAsset": {
           "asset": "abc"
         },
@@ -4187,7 +4648,7 @@ Checkout the following snippet for the format of ResponseGetStakeState:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "CONSENSUS_RPC_ERROR",
+        "code": "INSUFFICIENT_FUND",
         "createAsset": {
           "asset": "abc"
         },
@@ -4251,7 +4712,7 @@ Checkout the following snippet for the format of ResponseGetSwapState:
 
 ```json
 {
-  "code": "CONSENSUS_RPC_ERROR",
+  "code": "INSUFFICIENT_FUND",
   "state": {
     "address": "abc",
     "assets": [
@@ -4263,7 +4724,7 @@ Checkout the following snippet for the format of ResponseGetSwapState:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "CONSENSUS_RPC_ERROR",
+        "code": "INSUFFICIENT_FUND",
         "createAsset": {
           "asset": "abc"
         },
@@ -4302,7 +4763,7 @@ Checkout the following snippet for the format of ResponseGetSwapState:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "CONSENSUS_RPC_ERROR",
+        "code": "INSUFFICIENT_FUND",
         "createAsset": {
           "asset": "abc"
         },
@@ -4366,7 +4827,7 @@ Checkout the following snippet for the format of ResponseGetTetherState:
 
 ```json
 {
-  "code": "CONSENSUS_RPC_ERROR",
+  "code": "INSUFFICIENT_FUND",
   "state": {
     "address": "abc",
     "available": true,
@@ -4401,12 +4862,12 @@ Checkout the following snippet for the format of ResponseGetTx:
 
 ```json
 {
-  "code": "CONSENSUS_RPC_ERROR",
+  "code": "INSUFFICIENT_FUND",
   "info": {
     "accountMigrate": {
       "address": "abc"
     },
-    "code": "CONSENSUS_RPC_ERROR",
+    "code": "INSUFFICIENT_FUND",
     "createAsset": {
       "asset": "abc"
     },
@@ -4461,7 +4922,7 @@ Checkout the following snippet for the format of ResponseGetUnconfirmedTxs:
 
 ```json
 {
-  "code": "CONSENSUS_RPC_ERROR",
+  "code": "INSUFFICIENT_FUND",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -4513,7 +4974,7 @@ Checkout the following snippet for the format of ResponseGetValidatorsInfo:
 
 ```json
 {
-  "code": "CONSENSUS_RPC_ERROR",
+  "code": "INSUFFICIENT_FUND",
   "validatorsInfo": {
     "blockHeight": "abc",
     "validators": [
@@ -4556,7 +5017,7 @@ Checkout the following snippet for the format of ResponseListAssetTransactions:
 
 ```json
 {
-  "code": "CONSENSUS_RPC_ERROR",
+  "code": "INSUFFICIENT_FUND",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -4564,7 +5025,7 @@ Checkout the following snippet for the format of ResponseListAssetTransactions:
   },
   "transactions": [
     {
-      "code": "CONSENSUS_RPC_ERROR",
+      "code": "INSUFFICIENT_FUND",
       "hash": "abc",
       "receiver": "abc",
       "sender": "abc",
@@ -4642,7 +5103,7 @@ Checkout the following snippet for the format of ResponseListAssets:
       "renaissanceTime": "abc"
     }
   ],
-  "code": "CONSENSUS_RPC_ERROR",
+  "code": "INSUFFICIENT_FUND",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -4680,7 +5141,7 @@ Checkout the following snippet for the format of ResponseListBlocks:
       "time": "abc"
     }
   ],
-  "code": "CONSENSUS_RPC_ERROR",
+  "code": "INSUFFICIENT_FUND",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -4708,7 +5169,7 @@ Checkout the following snippet for the format of ResponseListStakes:
 
 ```json
 {
-  "code": "CONSENSUS_RPC_ERROR",
+  "code": "INSUFFICIENT_FUND",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -4748,7 +5209,7 @@ Checkout the following snippet for the format of ResponseListSwap:
 
 ```json
 {
-  "code": "CONSENSUS_RPC_ERROR",
+  "code": "INSUFFICIENT_FUND",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -4766,7 +5227,7 @@ Checkout the following snippet for the format of ResponseListSwap:
           "accountMigrate": {
             "address": "abc"
           },
-          "code": "CONSENSUS_RPC_ERROR",
+          "code": "INSUFFICIENT_FUND",
           "createAsset": {
             "asset": "abc"
           },
@@ -4805,7 +5266,7 @@ Checkout the following snippet for the format of ResponseListSwap:
           "accountMigrate": {
             "address": "abc"
           },
-          "code": "CONSENSUS_RPC_ERROR",
+          "code": "INSUFFICIENT_FUND",
           "createAsset": {
             "asset": "abc"
           },
@@ -4871,7 +5332,7 @@ Checkout the following snippet for the format of ResponseListTethers:
 
 ```json
 {
-  "code": "CONSENSUS_RPC_ERROR",
+  "code": "INSUFFICIENT_FUND",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -4934,7 +5395,7 @@ Checkout the following snippet for the format of ResponseListTopAccounts:
       "totalUnstakes": "abc"
     }
   ],
-  "code": "CONSENSUS_RPC_ERROR",
+  "code": "INSUFFICIENT_FUND",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -4962,7 +5423,7 @@ Checkout the following snippet for the format of ResponseListTransactions:
 
 ```json
 {
-  "code": "CONSENSUS_RPC_ERROR",
+  "code": "INSUFFICIENT_FUND",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -4970,7 +5431,7 @@ Checkout the following snippet for the format of ResponseListTransactions:
   },
   "transactions": [
     {
-      "code": "CONSENSUS_RPC_ERROR",
+      "code": "INSUFFICIENT_FUND",
       "hash": "abc",
       "receiver": "abc",
       "sender": "abc",
@@ -5020,7 +5481,7 @@ Checkout the following snippet for the format of ResponseSendTx:
 
 ```json
 {
-  "code": "CONSENSUS_RPC_ERROR",
+  "code": "INSUFFICIENT_FUND",
   "hash": "abc"
 }
 ```
@@ -5043,7 +5504,7 @@ Checkout the following snippet for the format of ResponseStartSimulator:
 
 ```json
 {
-  "code": "CONSENSUS_RPC_ERROR"
+  "code": "INSUFFICIENT_FUND"
 }
 ```
 
@@ -5064,7 +5525,7 @@ Checkout the following snippet for the format of ResponseStopSimulator:
 
 ```json
 {
-  "code": "CONSENSUS_RPC_ERROR"
+  "code": "INSUFFICIENT_FUND"
 }
 ```
 
@@ -5113,7 +5574,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "CONSENSUS_RPC_ERROR",
+        "code": "INSUFFICIENT_FUND",
         "createAsset": {
           "asset": "abc"
         },
@@ -5152,7 +5613,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "CONSENSUS_RPC_ERROR",
+        "code": "INSUFFICIENT_FUND",
         "createAsset": {
           "asset": "abc"
         },
@@ -5266,7 +5727,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "CONSENSUS_RPC_ERROR",
+        "code": "INSUFFICIENT_FUND",
         "createAsset": {
           "asset": "abc"
         },
@@ -5305,7 +5766,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "CONSENSUS_RPC_ERROR",
+        "code": "INSUFFICIENT_FUND",
         "createAsset": {
           "asset": "abc"
         },
@@ -5429,7 +5890,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
       ]
     }
   },
-  "code": "CONSENSUS_RPC_ERROR",
+  "code": "INSUFFICIENT_FUND",
   "confirm": {
     "chainId": "abc",
     "from": "abc",
@@ -5571,7 +6032,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "CONSENSUS_RPC_ERROR",
+        "code": "INSUFFICIENT_FUND",
         "createAsset": {
           "asset": "abc"
         },
@@ -5610,7 +6071,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "CONSENSUS_RPC_ERROR",
+        "code": "INSUFFICIENT_FUND",
         "createAsset": {
           "asset": "abc"
         },
@@ -5740,7 +6201,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
               "accountMigrate": {
                 "address": "abc"
               },
-              "code": "CONSENSUS_RPC_ERROR",
+              "code": "INSUFFICIENT_FUND",
               "createAsset": {
                 "asset": "abc"
               },
@@ -5779,7 +6240,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
               "accountMigrate": {
                 "address": "abc"
               },
-              "code": "CONSENSUS_RPC_ERROR",
+              "code": "INSUFFICIENT_FUND",
               "createAsset": {
                 "asset": "abc"
               },
@@ -5874,7 +6335,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "CONSENSUS_RPC_ERROR",
+        "code": "INSUFFICIENT_FUND",
         "createAsset": {
           "asset": "abc"
         },
@@ -5913,7 +6374,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "CONSENSUS_RPC_ERROR",
+        "code": "INSUFFICIENT_FUND",
         "createAsset": {
           "asset": "abc"
         },
@@ -6040,7 +6501,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "CONSENSUS_RPC_ERROR",
+        "code": "INSUFFICIENT_FUND",
         "createAsset": {
           "asset": "abc"
         },
@@ -6079,7 +6540,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "CONSENSUS_RPC_ERROR",
+        "code": "INSUFFICIENT_FUND",
         "createAsset": {
           "asset": "abc"
         },
@@ -6224,7 +6685,7 @@ Checkout the following snippet for the format of ResponseUnsubscribe:
 
 ```json
 {
-  "code": "CONSENSUS_RPC_ERROR"
+  "code": "INSUFFICIENT_FUND"
 }
 ```
 
@@ -6234,6 +6695,122 @@ Checkout the following snippet for the format of ResponseUnsubscribe:
 | Name    | Type                                  |
 | ------- | ------------------------------------- |
 | ...code | <code>GraphQLClient.StatusCode</code> |
+
+<a name="GraphQLClient.RetrieveSwapTx"></a>
+
+### GraphQLClient.RetrieveSwapTx : <code>object</code>
+
+Structure of GraphQLClient.RetrieveSwapTx 
+
+Checkout the following snippet for the format of RetrieveSwapTx:
+
+```json
+{
+  "address": "abc",
+  "data": {
+    "typeUrl": "abc",
+    "value": "abc"
+  },
+  "hashkey": "abc"
+}
+```
+
+**Kind**: static typedef of [<code>GraphQLClient</code>](#GraphQLClient)  
+**Properties**
+
+| Name    | Type                                   |
+| ------- | -------------------------------------- |
+| address | <code>string</code>                    |
+| ...data | [<code>Any</code>](#GraphQLClient.Any) |
+| hashkey | <code>string</code>                    |
+
+<a name="GraphQLClient.RevokeSwapTx"></a>
+
+### GraphQLClient.RevokeSwapTx : <code>object</code>
+
+Structure of GraphQLClient.RevokeSwapTx 
+
+Checkout the following snippet for the format of RevokeSwapTx:
+
+```json
+{
+  "address": "abc",
+  "data": {
+    "typeUrl": "abc",
+    "value": "abc"
+  }
+}
+```
+
+**Kind**: static typedef of [<code>GraphQLClient</code>](#GraphQLClient)  
+**Properties**
+
+| Name    | Type                                   |
+| ------- | -------------------------------------- |
+| address | <code>string</code>                    |
+| ...data | [<code>Any</code>](#GraphQLClient.Any) |
+
+<a name="GraphQLClient.RevokeTetherTx"></a>
+
+### GraphQLClient.RevokeTetherTx : <code>object</code>
+
+Structure of GraphQLClient.RevokeTetherTx 
+
+Checkout the following snippet for the format of RevokeTetherTx:
+
+```json
+{
+  "data": {
+    "typeUrl": "abc",
+    "value": "abc"
+  },
+  "tether": "abc"
+}
+```
+
+**Kind**: static typedef of [<code>GraphQLClient</code>](#GraphQLClient)  
+**Properties**
+
+| Name    | Type                                   |
+| ------- | -------------------------------------- |
+| ...data | [<code>Any</code>](#GraphQLClient.Any) |
+| tether  | <code>string</code>                    |
+
+<a name="GraphQLClient.SetupSwapTx"></a>
+
+### GraphQLClient.SetupSwapTx : <code>object</code>
+
+Structure of GraphQLClient.SetupSwapTx 
+
+Checkout the following snippet for the format of SetupSwapTx:
+
+```json
+{
+  "assets": [
+    "abc"
+  ],
+  "data": {
+    "typeUrl": "abc",
+    "value": "abc"
+  },
+  "hashlock": "abc",
+  "locktime": 123,
+  "receiver": "abc",
+  "value": "abc"
+}
+```
+
+**Kind**: static typedef of [<code>GraphQLClient</code>](#GraphQLClient)  
+**Properties**
+
+| Name     | Type                                            |
+| -------- | ----------------------------------------------- |
+| assets   | <code>Array.&lt;...GraphQLClient.string></code> |
+| ...data  | [<code>Any</code>](#GraphQLClient.Any)          |
+| hashlock | <code>string</code>                             |
+| locktime | <code>number</code>                             |
+| receiver | <code>string</code>                             |
+| value    | <code>string</code>                             |
 
 <a name="GraphQLClient.StakeConfig"></a>
 
@@ -6265,6 +6842,19 @@ Structure of GraphQLClient.StakeContext
 | totalReceivedStakes     | <code>string</code>                                        |
 | totalStakes             | <code>string</code>                                        |
 | totalUnstakes           | <code>string</code>                                        |
+
+<a name="GraphQLClient.StakeDataType"></a>
+
+### GraphQLClient.StakeDataType : <code>object</code>
+
+Structure of GraphQLClient.StakeDataType
+
+**Kind**: static typedef of [<code>GraphQLClient</code>](#GraphQLClient)  
+**Properties**
+
+| Name | Type                |
+| ---- | ------------------- |
+| type | <code>string</code> |
 
 <a name="GraphQLClient.StakeState"></a>
 
@@ -6313,6 +6903,35 @@ Structure of GraphQLClient.StakeSummaryEntry
 | -------- | -------------------------------------------------------- |
 | key      | <code>number</code>                                      |
 | ...value | [<code>StakeSummary</code>](#GraphQLClient.StakeSummary) |
+
+<a name="GraphQLClient.StakeTx"></a>
+
+### GraphQLClient.StakeTx : <code>object</code>
+
+Structure of GraphQLClient.StakeTx 
+
+Checkout the following snippet for the format of StakeTx:
+
+```json
+{
+  "data": {
+    "type": "abc"
+  },
+  "message": "abc",
+  "to": "abc",
+  "value": "abc"
+}
+```
+
+**Kind**: static typedef of [<code>GraphQLClient</code>](#GraphQLClient)  
+**Properties**
+
+| Name    | Type                                                       |
+| ------- | ---------------------------------------------------------- |
+| ...data | [<code>StakeDataType</code>](#GraphQLClient.StakeDataType) |
+| message | <code>string</code>                                        |
+| to      | <code>string</code>                                        |
+| value   | <code>string</code>                                        |
 
 <a name="GraphQLClient.StateContext"></a>
 
@@ -6368,6 +6987,40 @@ Structure of GraphQLClient.SwapState
 | sender     | <code>string</code>                                      |
 | value      | <code>string</code>                                      |
 
+<a name="GraphQLClient.SysUpgradeTx"></a>
+
+### GraphQLClient.SysUpgradeTx : <code>object</code>
+
+Structure of GraphQLClient.SysUpgradeTx 
+
+Checkout the following snippet for the format of SysUpgradeTx:
+
+```json
+{
+  "data": {
+    "typeUrl": "abc",
+    "value": "abc"
+  },
+  "gracePeriod": "abc",
+  "task": {
+    "actions": [
+      "BACKUP"
+    ],
+    "dataHash": "abc",
+    "type": "CONFIG_APP"
+  }
+}
+```
+
+**Kind**: static typedef of [<code>GraphQLClient</code>](#GraphQLClient)  
+**Properties**
+
+| Name        | Type                                                   |
+| ----------- | ------------------------------------------------------ |
+| ...data     | [<code>Any</code>](#GraphQLClient.Any)                 |
+| gracePeriod | <code>string</code>                                    |
+| ...task     | [<code>UpgradeTask</code>](#GraphQLClient.UpgradeTask) |
+
 <a name="GraphQLClient.TasksEntry"></a>
 
 ### GraphQLClient.TasksEntry : <code>object</code>
@@ -6381,6 +7034,21 @@ Structure of GraphQLClient.TasksEntry
 | -------- | -------------------------------------------------------- |
 | key      | <code>string</code>                                      |
 | ...value | [<code>UpgradeTasks</code>](#GraphQLClient.UpgradeTasks) |
+
+<a name="GraphQLClient.TetherExchangeInfo"></a>
+
+### GraphQLClient.TetherExchangeInfo : <code>object</code>
+
+Structure of GraphQLClient.TetherExchangeInfo
+
+**Kind**: static typedef of [<code>GraphQLClient</code>](#GraphQLClient)  
+**Properties**
+
+| Name       | Type                                                   |
+| ---------- | ------------------------------------------------------ |
+| assets     | <code>Array.&lt;...GraphQLClient.string></code>        |
+| ...deposit | [<code>Transaction</code>](#GraphQLClient.Transaction) |
+| value      | <code>string</code>                                    |
 
 <a name="GraphQLClient.TetherState"></a>
 
@@ -6405,6 +7073,21 @@ Structure of GraphQLClient.TetherState
 | value      | <code>string</code>  |
 | withdrawer | <code>string</code>  |
 
+<a name="GraphQLClient.TetherTradeInfo"></a>
+
+### GraphQLClient.TetherTradeInfo : <code>object</code>
+
+Structure of GraphQLClient.TetherTradeInfo
+
+**Kind**: static typedef of [<code>GraphQLClient</code>](#GraphQLClient)  
+**Properties**
+
+| Name   | Type                                            |
+| ------ | ----------------------------------------------- |
+| assets | <code>Array.&lt;...GraphQLClient.string></code> |
+| tether | <code>string</code>                             |
+| value  | <code>string</code>                             |
+
 <a name="GraphQLClient.Transaction"></a>
 
 ### GraphQLClient.Transaction : <code>object</code>
@@ -6418,7 +7101,8 @@ Structure of GraphQLClient.Transaction
 | ---------- | ------------------------------------------------- |
 | chainId    | <code>string</code>                               |
 | from       | <code>string</code>                               |
-| itx        | <code>undefined</code>                            |
+| ...itx     | <code>Itx</code>                                  |
+| itxJson    | <code>undefined</code>                            |
 | nonce      | <code>string</code>                               |
 | pk         | <code>string</code>                               |
 | signature  | <code>string</code>                               |
@@ -6463,6 +7147,38 @@ Structure of GraphQLClient.TransactionInfo
 | time              | <code>string</code>                                                    |
 | ...tx             | [<code>Transaction</code>](#GraphQLClient.Transaction)                 |
 
+<a name="GraphQLClient.TransferTx"></a>
+
+### GraphQLClient.TransferTx : <code>object</code>
+
+Structure of GraphQLClient.TransferTx 
+
+Checkout the following snippet for the format of TransferTx:
+
+```json
+{
+  "assets": [
+    "abc"
+  ],
+  "data": {
+    "typeUrl": "abc",
+    "value": "abc"
+  },
+  "to": "abc",
+  "value": "abc"
+}
+```
+
+**Kind**: static typedef of [<code>GraphQLClient</code>](#GraphQLClient)  
+**Properties**
+
+| Name    | Type                                            |
+| ------- | ----------------------------------------------- |
+| assets  | <code>Array.&lt;...GraphQLClient.string></code> |
+| ...data | [<code>Any</code>](#GraphQLClient.Any)          |
+| to      | <code>string</code>                             |
+| value   | <code>string</code>                             |
+
 <a name="GraphQLClient.TypeUrls"></a>
 
 ### GraphQLClient.TypeUrls : <code>object</code>
@@ -6491,6 +7207,34 @@ Structure of GraphQLClient.UnconfirmedTxs
 | nTxs | <code>number</code>                                  |
 | txs  | <code>Array.&lt;...GraphQLClient.Transaction></code> |
 
+<a name="GraphQLClient.UpdateAssetTx"></a>
+
+### GraphQLClient.UpdateAssetTx : <code>object</code>
+
+Structure of GraphQLClient.UpdateAssetTx 
+
+Checkout the following snippet for the format of UpdateAssetTx:
+
+```json
+{
+  "address": "abc",
+  "data": {
+    "typeUrl": "abc",
+    "value": "abc"
+  },
+  "moniker": "abc"
+}
+```
+
+**Kind**: static typedef of [<code>GraphQLClient</code>](#GraphQLClient)  
+**Properties**
+
+| Name    | Type                                   |
+| ------- | -------------------------------------- |
+| address | <code>string</code>                    |
+| ...data | [<code>Any</code>](#GraphQLClient.Any) |
+| moniker | <code>string</code>                    |
+
 <a name="GraphQLClient.UpgradeInfo"></a>
 
 ### GraphQLClient.UpgradeInfo : <code>object</code>
@@ -6504,6 +7248,31 @@ Structure of GraphQLClient.UpgradeInfo
 | ------- | ------------------- |
 | height  | <code>string</code> |
 | version | <code>string</code> |
+
+<a name="GraphQLClient.UpgradeNodeTx"></a>
+
+### GraphQLClient.UpgradeNodeTx : <code>object</code>
+
+Structure of GraphQLClient.UpgradeNodeTx 
+
+Checkout the following snippet for the format of UpgradeNodeTx:
+
+```json
+{
+  "height": "abc",
+  "override": true,
+  "version": "abc"
+}
+```
+
+**Kind**: static typedef of [<code>GraphQLClient</code>](#GraphQLClient)  
+**Properties**
+
+| Name     | Type                 |
+| -------- | -------------------- |
+| height   | <code>string</code>  |
+| override | <code>boolean</code> |
+| version  | <code>string</code>  |
 
 <a name="GraphQLClient.UpgradeTask"></a>
 
@@ -6622,6 +7391,70 @@ Structure of GraphQLClient.WalletType
 | ...hash    | <code>GraphQLClient.HashType</code>     |
 | ...pk      | <code>GraphQLClient.KeyType</code>      |
 | ...role    | <code>GraphQLClient.RoleType</code>     |
+
+<a name="GraphQLClient.WithdrawTetherTx"></a>
+
+### GraphQLClient.WithdrawTetherTx : <code>object</code>
+
+Structure of GraphQLClient.WithdrawTetherTx 
+
+Checkout the following snippet for the format of WithdrawTetherTx:
+
+```json
+{
+  "chainId": "abc",
+  "data": {
+    "typeUrl": "abc",
+    "value": "abc"
+  },
+  "expiredAt": "2019-04-29T00:00:00.000Z",
+  "from": "abc",
+  "nonce": "abc",
+  "pk": "abc",
+  "receiver": {
+    "assets": [
+      "abc"
+    ],
+    "tether": "abc",
+    "value": "abc"
+  },
+  "sender": {
+    "assets": [
+      "abc"
+    ],
+    "value": "abc"
+  },
+  "signature": "abc",
+  "signatures": [
+    {
+      "data": {
+        "typeUrl": "abc",
+        "value": "abc"
+      },
+      "delegator": "abc",
+      "pk": "abc",
+      "signature": "abc",
+      "signer": "abc"
+    }
+  ]
+}
+```
+
+**Kind**: static typedef of [<code>GraphQLClient</code>](#GraphQLClient)  
+**Properties**
+
+| Name        | Type                                                           |
+| ----------- | -------------------------------------------------------------- |
+| chainId     | <code>string</code>                                            |
+| ...data     | [<code>Any</code>](#GraphQLClient.Any)                         |
+| expiredAt   | <code>string</code>                                            |
+| from        | <code>string</code>                                            |
+| nonce       | <code>string</code>                                            |
+| pk          | <code>string</code>                                            |
+| ...receiver | [<code>TetherTradeInfo</code>](#GraphQLClient.TetherTradeInfo) |
+| ...sender   | [<code>ExchangeInfo</code>](#GraphQLClient.ExchangeInfo)       |
+| signature   | <code>string</code>                                            |
+| signatures  | <code>Array.&lt;...GraphQLClient.Multisig></code>              |
 
 <a name="GraphQLClient.GetAccountStateParams"></a>
 
@@ -7273,19 +8106,19 @@ Checkout the following snippet for the format of SubscribeParams:
 **Kind**: static typedef of [<code>GraphQLClient</code>](#GraphQLClient)  
 **Properties**
 
-| Name                  | Type                                        | Description                                                                                   |
-| --------------------- | ------------------------------------------- | --------------------------------------------------------------------------------------------- |
-| input                 | <code>object</code>                         |                                                                                               |
-| input.tx              | <code>object</code>                         | data of the transaction                                                                       |
-| input.tx.itx          | <code>GraphQLClient.AccountMigrateTx</code> | the actual transaction object                                                                 |
-| [input.tx.pk]         | <code>string</code>                         | the sender pk                                                                                 |
-| [input.tx.from]       | <code>string</code>                         | the sender address, can be derived from wallet                                                |
-| [input.tx.nonce]      | <code>number</code>                         | the tx nonce, defaults to Date.now if not set                                                 |
-| [input.tx.chainId]    | <code>string</code>                         | the chainId                                                                                   |
-| [input.tx.signature]  | <code>string</code>                         | transaction signature                                                                         |
-| [input.tx.signatures] | <code>array</code>                          | transaction signatures, should be set when it's a multisig transaction                        |
-| input.wallet          | <code>object</code>                         | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
-| [input.signature]     | <code>string</code>                         | the signature of the tx, if this parameter exist, we will not sign the transaction            |
+| Name                  | Type                                                             | Description                                                                                   |
+| --------------------- | ---------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| input                 | <code>object</code>                                              |                                                                                               |
+| input.tx              | <code>object</code>                                              | data of the transaction                                                                       |
+| input.tx.itx          | [<code>AccountMigrateTx</code>](#GraphQLClient.AccountMigrateTx) | the actual transaction object                                                                 |
+| [input.tx.pk]         | <code>string</code>                                              | the sender pk                                                                                 |
+| [input.tx.from]       | <code>string</code>                                              | the sender address, can be derived from wallet                                                |
+| [input.tx.nonce]      | <code>number</code>                                              | the tx nonce, defaults to Date.now if not set                                                 |
+| [input.tx.chainId]    | <code>string</code>                                              | the chainId                                                                                   |
+| [input.tx.signature]  | <code>string</code>                                              | transaction signature                                                                         |
+| [input.tx.signatures] | <code>array</code>                                               | transaction signatures, should be set when it's a multisig transaction                        |
+| input.wallet          | <code>object</code>                                              | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
+| [input.signature]     | <code>string</code>                                              | the signature of the tx, if this parameter exist, we will not sign the transaction            |
 
 <a name="GraphQLClient.AcquireAssetTxInput"></a>
 
@@ -7294,19 +8127,19 @@ Checkout the following snippet for the format of SubscribeParams:
 **Kind**: static typedef of [<code>GraphQLClient</code>](#GraphQLClient)  
 **Properties**
 
-| Name                  | Type                                      | Description                                                                                   |
-| --------------------- | ----------------------------------------- | --------------------------------------------------------------------------------------------- |
-| input                 | <code>object</code>                       |                                                                                               |
-| input.tx              | <code>object</code>                       | data of the transaction                                                                       |
-| input.tx.itx          | <code>GraphQLClient.AcquireAssetTx</code> | the actual transaction object                                                                 |
-| [input.tx.pk]         | <code>string</code>                       | the sender pk                                                                                 |
-| [input.tx.from]       | <code>string</code>                       | the sender address, can be derived from wallet                                                |
-| [input.tx.nonce]      | <code>number</code>                       | the tx nonce, defaults to Date.now if not set                                                 |
-| [input.tx.chainId]    | <code>string</code>                       | the chainId                                                                                   |
-| [input.tx.signature]  | <code>string</code>                       | transaction signature                                                                         |
-| [input.tx.signatures] | <code>array</code>                        | transaction signatures, should be set when it's a multisig transaction                        |
-| input.wallet          | <code>object</code>                       | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
-| [input.signature]     | <code>string</code>                       | the signature of the tx, if this parameter exist, we will not sign the transaction            |
+| Name                  | Type                                                         | Description                                                                                   |
+| --------------------- | ------------------------------------------------------------ | --------------------------------------------------------------------------------------------- |
+| input                 | <code>object</code>                                          |                                                                                               |
+| input.tx              | <code>object</code>                                          | data of the transaction                                                                       |
+| input.tx.itx          | [<code>AcquireAssetTx</code>](#GraphQLClient.AcquireAssetTx) | the actual transaction object                                                                 |
+| [input.tx.pk]         | <code>string</code>                                          | the sender pk                                                                                 |
+| [input.tx.from]       | <code>string</code>                                          | the sender address, can be derived from wallet                                                |
+| [input.tx.nonce]      | <code>number</code>                                          | the tx nonce, defaults to Date.now if not set                                                 |
+| [input.tx.chainId]    | <code>string</code>                                          | the chainId                                                                                   |
+| [input.tx.signature]  | <code>string</code>                                          | transaction signature                                                                         |
+| [input.tx.signatures] | <code>array</code>                                           | transaction signatures, should be set when it's a multisig transaction                        |
+| input.wallet          | <code>object</code>                                          | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
+| [input.signature]     | <code>string</code>                                          | the signature of the tx, if this parameter exist, we will not sign the transaction            |
 
 <a name="GraphQLClient.ActivateProtocolTxInput"></a>
 
@@ -7336,19 +8169,19 @@ Checkout the following snippet for the format of SubscribeParams:
 **Kind**: static typedef of [<code>GraphQLClient</code>](#GraphQLClient)  
 **Properties**
 
-| Name                  | Type                                       | Description                                                                                   |
-| --------------------- | ------------------------------------------ | --------------------------------------------------------------------------------------------- |
-| input                 | <code>object</code>                        |                                                                                               |
-| input.tx              | <code>object</code>                        | data of the transaction                                                                       |
-| input.tx.itx          | <code>GraphQLClient.ApproveTetherTx</code> | the actual transaction object                                                                 |
-| [input.tx.pk]         | <code>string</code>                        | the sender pk                                                                                 |
-| [input.tx.from]       | <code>string</code>                        | the sender address, can be derived from wallet                                                |
-| [input.tx.nonce]      | <code>number</code>                        | the tx nonce, defaults to Date.now if not set                                                 |
-| [input.tx.chainId]    | <code>string</code>                        | the chainId                                                                                   |
-| [input.tx.signature]  | <code>string</code>                        | transaction signature                                                                         |
-| [input.tx.signatures] | <code>array</code>                         | transaction signatures, should be set when it's a multisig transaction                        |
-| input.wallet          | <code>object</code>                        | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
-| [input.signature]     | <code>string</code>                        | the signature of the tx, if this parameter exist, we will not sign the transaction            |
+| Name                  | Type                                                           | Description                                                                                   |
+| --------------------- | -------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| input                 | <code>object</code>                                            |                                                                                               |
+| input.tx              | <code>object</code>                                            | data of the transaction                                                                       |
+| input.tx.itx          | [<code>ApproveTetherTx</code>](#GraphQLClient.ApproveTetherTx) | the actual transaction object                                                                 |
+| [input.tx.pk]         | <code>string</code>                                            | the sender pk                                                                                 |
+| [input.tx.from]       | <code>string</code>                                            | the sender address, can be derived from wallet                                                |
+| [input.tx.nonce]      | <code>number</code>                                            | the tx nonce, defaults to Date.now if not set                                                 |
+| [input.tx.chainId]    | <code>string</code>                                            | the chainId                                                                                   |
+| [input.tx.signature]  | <code>string</code>                                            | transaction signature                                                                         |
+| [input.tx.signatures] | <code>array</code>                                             | transaction signatures, should be set when it's a multisig transaction                        |
+| input.wallet          | <code>object</code>                                            | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
+| [input.signature]     | <code>string</code>                                            | the signature of the tx, if this parameter exist, we will not sign the transaction            |
 
 <a name="GraphQLClient.ConsumeAssetTxInput"></a>
 
@@ -7357,19 +8190,19 @@ Checkout the following snippet for the format of SubscribeParams:
 **Kind**: static typedef of [<code>GraphQLClient</code>](#GraphQLClient)  
 **Properties**
 
-| Name                  | Type                                      | Description                                                                                   |
-| --------------------- | ----------------------------------------- | --------------------------------------------------------------------------------------------- |
-| input                 | <code>object</code>                       |                                                                                               |
-| input.tx              | <code>object</code>                       | data of the transaction                                                                       |
-| input.tx.itx          | <code>GraphQLClient.ConsumeAssetTx</code> | the actual transaction object                                                                 |
-| [input.tx.pk]         | <code>string</code>                       | the sender pk                                                                                 |
-| [input.tx.from]       | <code>string</code>                       | the sender address, can be derived from wallet                                                |
-| [input.tx.nonce]      | <code>number</code>                       | the tx nonce, defaults to Date.now if not set                                                 |
-| [input.tx.chainId]    | <code>string</code>                       | the chainId                                                                                   |
-| [input.tx.signature]  | <code>string</code>                       | transaction signature                                                                         |
-| [input.tx.signatures] | <code>array</code>                        | transaction signatures, should be set when it's a multisig transaction                        |
-| input.wallet          | <code>object</code>                       | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
-| [input.signature]     | <code>string</code>                       | the signature of the tx, if this parameter exist, we will not sign the transaction            |
+| Name                  | Type                                                         | Description                                                                                   |
+| --------------------- | ------------------------------------------------------------ | --------------------------------------------------------------------------------------------- |
+| input                 | <code>object</code>                                          |                                                                                               |
+| input.tx              | <code>object</code>                                          | data of the transaction                                                                       |
+| input.tx.itx          | [<code>ConsumeAssetTx</code>](#GraphQLClient.ConsumeAssetTx) | the actual transaction object                                                                 |
+| [input.tx.pk]         | <code>string</code>                                          | the sender pk                                                                                 |
+| [input.tx.from]       | <code>string</code>                                          | the sender address, can be derived from wallet                                                |
+| [input.tx.nonce]      | <code>number</code>                                          | the tx nonce, defaults to Date.now if not set                                                 |
+| [input.tx.chainId]    | <code>string</code>                                          | the chainId                                                                                   |
+| [input.tx.signature]  | <code>string</code>                                          | transaction signature                                                                         |
+| [input.tx.signatures] | <code>array</code>                                           | transaction signatures, should be set when it's a multisig transaction                        |
+| input.wallet          | <code>object</code>                                          | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
+| [input.signature]     | <code>string</code>                                          | the signature of the tx, if this parameter exist, we will not sign the transaction            |
 
 <a name="GraphQLClient.CreateAssetTxInput"></a>
 
@@ -7378,19 +8211,19 @@ Checkout the following snippet for the format of SubscribeParams:
 **Kind**: static typedef of [<code>GraphQLClient</code>](#GraphQLClient)  
 **Properties**
 
-| Name                  | Type                                     | Description                                                                                   |
-| --------------------- | ---------------------------------------- | --------------------------------------------------------------------------------------------- |
-| input                 | <code>object</code>                      |                                                                                               |
-| input.tx              | <code>object</code>                      | data of the transaction                                                                       |
-| input.tx.itx          | <code>GraphQLClient.CreateAssetTx</code> | the actual transaction object                                                                 |
-| [input.tx.pk]         | <code>string</code>                      | the sender pk                                                                                 |
-| [input.tx.from]       | <code>string</code>                      | the sender address, can be derived from wallet                                                |
-| [input.tx.nonce]      | <code>number</code>                      | the tx nonce, defaults to Date.now if not set                                                 |
-| [input.tx.chainId]    | <code>string</code>                      | the chainId                                                                                   |
-| [input.tx.signature]  | <code>string</code>                      | transaction signature                                                                         |
-| [input.tx.signatures] | <code>array</code>                       | transaction signatures, should be set when it's a multisig transaction                        |
-| input.wallet          | <code>object</code>                      | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
-| [input.signature]     | <code>string</code>                      | the signature of the tx, if this parameter exist, we will not sign the transaction            |
+| Name                  | Type                                                       | Description                                                                                   |
+| --------------------- | ---------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| input                 | <code>object</code>                                        |                                                                                               |
+| input.tx              | <code>object</code>                                        | data of the transaction                                                                       |
+| input.tx.itx          | [<code>CreateAssetTx</code>](#GraphQLClient.CreateAssetTx) | the actual transaction object                                                                 |
+| [input.tx.pk]         | <code>string</code>                                        | the sender pk                                                                                 |
+| [input.tx.from]       | <code>string</code>                                        | the sender address, can be derived from wallet                                                |
+| [input.tx.nonce]      | <code>number</code>                                        | the tx nonce, defaults to Date.now if not set                                                 |
+| [input.tx.chainId]    | <code>string</code>                                        | the chainId                                                                                   |
+| [input.tx.signature]  | <code>string</code>                                        | transaction signature                                                                         |
+| [input.tx.signatures] | <code>array</code>                                         | transaction signatures, should be set when it's a multisig transaction                        |
+| input.wallet          | <code>object</code>                                        | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
+| [input.signature]     | <code>string</code>                                        | the signature of the tx, if this parameter exist, we will not sign the transaction            |
 
 <a name="GraphQLClient.DeactivateProtocolTxInput"></a>
 
@@ -7420,19 +8253,19 @@ Checkout the following snippet for the format of SubscribeParams:
 **Kind**: static typedef of [<code>GraphQLClient</code>](#GraphQLClient)  
 **Properties**
 
-| Name                  | Type                                 | Description                                                                                   |
-| --------------------- | ------------------------------------ | --------------------------------------------------------------------------------------------- |
-| input                 | <code>object</code>                  |                                                                                               |
-| input.tx              | <code>object</code>                  | data of the transaction                                                                       |
-| input.tx.itx          | <code>GraphQLClient.DeclareTx</code> | the actual transaction object                                                                 |
-| [input.tx.pk]         | <code>string</code>                  | the sender pk                                                                                 |
-| [input.tx.from]       | <code>string</code>                  | the sender address, can be derived from wallet                                                |
-| [input.tx.nonce]      | <code>number</code>                  | the tx nonce, defaults to Date.now if not set                                                 |
-| [input.tx.chainId]    | <code>string</code>                  | the chainId                                                                                   |
-| [input.tx.signature]  | <code>string</code>                  | transaction signature                                                                         |
-| [input.tx.signatures] | <code>array</code>                   | transaction signatures, should be set when it's a multisig transaction                        |
-| input.wallet          | <code>object</code>                  | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
-| [input.signature]     | <code>string</code>                  | the signature of the tx, if this parameter exist, we will not sign the transaction            |
+| Name                  | Type                                               | Description                                                                                   |
+| --------------------- | -------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| input                 | <code>object</code>                                |                                                                                               |
+| input.tx              | <code>object</code>                                | data of the transaction                                                                       |
+| input.tx.itx          | [<code>DeclareTx</code>](#GraphQLClient.DeclareTx) | the actual transaction object                                                                 |
+| [input.tx.pk]         | <code>string</code>                                | the sender pk                                                                                 |
+| [input.tx.from]       | <code>string</code>                                | the sender address, can be derived from wallet                                                |
+| [input.tx.nonce]      | <code>number</code>                                | the tx nonce, defaults to Date.now if not set                                                 |
+| [input.tx.chainId]    | <code>string</code>                                | the chainId                                                                                   |
+| [input.tx.signature]  | <code>string</code>                                | transaction signature                                                                         |
+| [input.tx.signatures] | <code>array</code>                                 | transaction signatures, should be set when it's a multisig transaction                        |
+| input.wallet          | <code>object</code>                                | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
+| [input.signature]     | <code>string</code>                                | the signature of the tx, if this parameter exist, we will not sign the transaction            |
 
 <a name="GraphQLClient.DelegateTxInput"></a>
 
@@ -7483,19 +8316,19 @@ Checkout the following snippet for the format of SubscribeParams:
 **Kind**: static typedef of [<code>GraphQLClient</code>](#GraphQLClient)  
 **Properties**
 
-| Name                  | Type                                       | Description                                                                                   |
-| --------------------- | ------------------------------------------ | --------------------------------------------------------------------------------------------- |
-| input                 | <code>object</code>                        |                                                                                               |
-| input.tx              | <code>object</code>                        | data of the transaction                                                                       |
-| input.tx.itx          | <code>GraphQLClient.DepositTetherTx</code> | the actual transaction object                                                                 |
-| [input.tx.pk]         | <code>string</code>                        | the sender pk                                                                                 |
-| [input.tx.from]       | <code>string</code>                        | the sender address, can be derived from wallet                                                |
-| [input.tx.nonce]      | <code>number</code>                        | the tx nonce, defaults to Date.now if not set                                                 |
-| [input.tx.chainId]    | <code>string</code>                        | the chainId                                                                                   |
-| [input.tx.signature]  | <code>string</code>                        | transaction signature                                                                         |
-| [input.tx.signatures] | <code>array</code>                         | transaction signatures, should be set when it's a multisig transaction                        |
-| input.wallet          | <code>object</code>                        | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
-| [input.signature]     | <code>string</code>                        | the signature of the tx, if this parameter exist, we will not sign the transaction            |
+| Name                  | Type                                                           | Description                                                                                   |
+| --------------------- | -------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| input                 | <code>object</code>                                            |                                                                                               |
+| input.tx              | <code>object</code>                                            | data of the transaction                                                                       |
+| input.tx.itx          | [<code>DepositTetherTx</code>](#GraphQLClient.DepositTetherTx) | the actual transaction object                                                                 |
+| [input.tx.pk]         | <code>string</code>                                            | the sender pk                                                                                 |
+| [input.tx.from]       | <code>string</code>                                            | the sender address, can be derived from wallet                                                |
+| [input.tx.nonce]      | <code>number</code>                                            | the tx nonce, defaults to Date.now if not set                                                 |
+| [input.tx.chainId]    | <code>string</code>                                            | the chainId                                                                                   |
+| [input.tx.signature]  | <code>string</code>                                            | transaction signature                                                                         |
+| [input.tx.signatures] | <code>array</code>                                             | transaction signatures, should be set when it's a multisig transaction                        |
+| input.wallet          | <code>object</code>                                            | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
+| [input.signature]     | <code>string</code>                                            | the signature of the tx, if this parameter exist, we will not sign the transaction            |
 
 <a name="GraphQLClient.DepositTokenTxInput"></a>
 
@@ -7525,19 +8358,19 @@ Checkout the following snippet for the format of SubscribeParams:
 **Kind**: static typedef of [<code>GraphQLClient</code>](#GraphQLClient)  
 **Properties**
 
-| Name                  | Type                                        | Description                                                                                   |
-| --------------------- | ------------------------------------------- | --------------------------------------------------------------------------------------------- |
-| input                 | <code>object</code>                         |                                                                                               |
-| input.tx              | <code>object</code>                         | data of the transaction                                                                       |
-| input.tx.itx          | <code>GraphQLClient.ExchangeTetherTx</code> | the actual transaction object                                                                 |
-| [input.tx.pk]         | <code>string</code>                         | the sender pk                                                                                 |
-| [input.tx.from]       | <code>string</code>                         | the sender address, can be derived from wallet                                                |
-| [input.tx.nonce]      | <code>number</code>                         | the tx nonce, defaults to Date.now if not set                                                 |
-| [input.tx.chainId]    | <code>string</code>                         | the chainId                                                                                   |
-| [input.tx.signature]  | <code>string</code>                         | transaction signature                                                                         |
-| [input.tx.signatures] | <code>array</code>                          | transaction signatures, should be set when it's a multisig transaction                        |
-| input.wallet          | <code>object</code>                         | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
-| [input.signature]     | <code>string</code>                         | the signature of the tx, if this parameter exist, we will not sign the transaction            |
+| Name                  | Type                                                             | Description                                                                                   |
+| --------------------- | ---------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| input                 | <code>object</code>                                              |                                                                                               |
+| input.tx              | <code>object</code>                                              | data of the transaction                                                                       |
+| input.tx.itx          | [<code>ExchangeTetherTx</code>](#GraphQLClient.ExchangeTetherTx) | the actual transaction object                                                                 |
+| [input.tx.pk]         | <code>string</code>                                              | the sender pk                                                                                 |
+| [input.tx.from]       | <code>string</code>                                              | the sender address, can be derived from wallet                                                |
+| [input.tx.nonce]      | <code>number</code>                                              | the tx nonce, defaults to Date.now if not set                                                 |
+| [input.tx.chainId]    | <code>string</code>                                              | the chainId                                                                                   |
+| [input.tx.signature]  | <code>string</code>                                              | transaction signature                                                                         |
+| [input.tx.signatures] | <code>array</code>                                               | transaction signatures, should be set when it's a multisig transaction                        |
+| input.wallet          | <code>object</code>                                              | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
+| [input.signature]     | <code>string</code>                                              | the signature of the tx, if this parameter exist, we will not sign the transaction            |
 
 <a name="GraphQLClient.ExchangeTxInput"></a>
 
@@ -7546,19 +8379,19 @@ Checkout the following snippet for the format of SubscribeParams:
 **Kind**: static typedef of [<code>GraphQLClient</code>](#GraphQLClient)  
 **Properties**
 
-| Name                  | Type                                  | Description                                                                                   |
-| --------------------- | ------------------------------------- | --------------------------------------------------------------------------------------------- |
-| input                 | <code>object</code>                   |                                                                                               |
-| input.tx              | <code>object</code>                   | data of the transaction                                                                       |
-| input.tx.itx          | <code>GraphQLClient.ExchangeTx</code> | the actual transaction object                                                                 |
-| [input.tx.pk]         | <code>string</code>                   | the sender pk                                                                                 |
-| [input.tx.from]       | <code>string</code>                   | the sender address, can be derived from wallet                                                |
-| [input.tx.nonce]      | <code>number</code>                   | the tx nonce, defaults to Date.now if not set                                                 |
-| [input.tx.chainId]    | <code>string</code>                   | the chainId                                                                                   |
-| [input.tx.signature]  | <code>string</code>                   | transaction signature                                                                         |
-| [input.tx.signatures] | <code>array</code>                    | transaction signatures, should be set when it's a multisig transaction                        |
-| input.wallet          | <code>object</code>                   | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
-| [input.signature]     | <code>string</code>                   | the signature of the tx, if this parameter exist, we will not sign the transaction            |
+| Name                  | Type                                                 | Description                                                                                   |
+| --------------------- | ---------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| input                 | <code>object</code>                                  |                                                                                               |
+| input.tx              | <code>object</code>                                  | data of the transaction                                                                       |
+| input.tx.itx          | [<code>ExchangeTx</code>](#GraphQLClient.ExchangeTx) | the actual transaction object                                                                 |
+| [input.tx.pk]         | <code>string</code>                                  | the sender pk                                                                                 |
+| [input.tx.from]       | <code>string</code>                                  | the sender address, can be derived from wallet                                                |
+| [input.tx.nonce]      | <code>number</code>                                  | the tx nonce, defaults to Date.now if not set                                                 |
+| [input.tx.chainId]    | <code>string</code>                                  | the chainId                                                                                   |
+| [input.tx.signature]  | <code>string</code>                                  | transaction signature                                                                         |
+| [input.tx.signatures] | <code>array</code>                                   | transaction signatures, should be set when it's a multisig transaction                        |
+| input.wallet          | <code>object</code>                                  | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
+| [input.signature]     | <code>string</code>                                  | the signature of the tx, if this parameter exist, we will not sign the transaction            |
 
 <a name="GraphQLClient.PokeTxInput"></a>
 
@@ -7567,19 +8400,19 @@ Checkout the following snippet for the format of SubscribeParams:
 **Kind**: static typedef of [<code>GraphQLClient</code>](#GraphQLClient)  
 **Properties**
 
-| Name                  | Type                              | Description                                                                                   |
-| --------------------- | --------------------------------- | --------------------------------------------------------------------------------------------- |
-| input                 | <code>object</code>               |                                                                                               |
-| input.tx              | <code>object</code>               | data of the transaction                                                                       |
-| input.tx.itx          | <code>GraphQLClient.PokeTx</code> | the actual transaction object                                                                 |
-| [input.tx.pk]         | <code>string</code>               | the sender pk                                                                                 |
-| [input.tx.from]       | <code>string</code>               | the sender address, can be derived from wallet                                                |
-| [input.tx.nonce]      | <code>number</code>               | the tx nonce, defaults to Date.now if not set                                                 |
-| [input.tx.chainId]    | <code>string</code>               | the chainId                                                                                   |
-| [input.tx.signature]  | <code>string</code>               | transaction signature                                                                         |
-| [input.tx.signatures] | <code>array</code>                | transaction signatures, should be set when it's a multisig transaction                        |
-| input.wallet          | <code>object</code>               | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
-| [input.signature]     | <code>string</code>               | the signature of the tx, if this parameter exist, we will not sign the transaction            |
+| Name                  | Type                                         | Description                                                                                   |
+| --------------------- | -------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| input                 | <code>object</code>                          |                                                                                               |
+| input.tx              | <code>object</code>                          | data of the transaction                                                                       |
+| input.tx.itx          | [<code>PokeTx</code>](#GraphQLClient.PokeTx) | the actual transaction object                                                                 |
+| [input.tx.pk]         | <code>string</code>                          | the sender pk                                                                                 |
+| [input.tx.from]       | <code>string</code>                          | the sender address, can be derived from wallet                                                |
+| [input.tx.nonce]      | <code>number</code>                          | the tx nonce, defaults to Date.now if not set                                                 |
+| [input.tx.chainId]    | <code>string</code>                          | the chainId                                                                                   |
+| [input.tx.signature]  | <code>string</code>                          | transaction signature                                                                         |
+| [input.tx.signatures] | <code>array</code>                           | transaction signatures, should be set when it's a multisig transaction                        |
+| input.wallet          | <code>object</code>                          | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
+| [input.signature]     | <code>string</code>                          | the signature of the tx, if this parameter exist, we will not sign the transaction            |
 
 <a name="GraphQLClient.RetrieveSwapTxInput"></a>
 
@@ -7588,19 +8421,19 @@ Checkout the following snippet for the format of SubscribeParams:
 **Kind**: static typedef of [<code>GraphQLClient</code>](#GraphQLClient)  
 **Properties**
 
-| Name                  | Type                                      | Description                                                                                   |
-| --------------------- | ----------------------------------------- | --------------------------------------------------------------------------------------------- |
-| input                 | <code>object</code>                       |                                                                                               |
-| input.tx              | <code>object</code>                       | data of the transaction                                                                       |
-| input.tx.itx          | <code>GraphQLClient.RetrieveSwapTx</code> | the actual transaction object                                                                 |
-| [input.tx.pk]         | <code>string</code>                       | the sender pk                                                                                 |
-| [input.tx.from]       | <code>string</code>                       | the sender address, can be derived from wallet                                                |
-| [input.tx.nonce]      | <code>number</code>                       | the tx nonce, defaults to Date.now if not set                                                 |
-| [input.tx.chainId]    | <code>string</code>                       | the chainId                                                                                   |
-| [input.tx.signature]  | <code>string</code>                       | transaction signature                                                                         |
-| [input.tx.signatures] | <code>array</code>                        | transaction signatures, should be set when it's a multisig transaction                        |
-| input.wallet          | <code>object</code>                       | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
-| [input.signature]     | <code>string</code>                       | the signature of the tx, if this parameter exist, we will not sign the transaction            |
+| Name                  | Type                                                         | Description                                                                                   |
+| --------------------- | ------------------------------------------------------------ | --------------------------------------------------------------------------------------------- |
+| input                 | <code>object</code>                                          |                                                                                               |
+| input.tx              | <code>object</code>                                          | data of the transaction                                                                       |
+| input.tx.itx          | [<code>RetrieveSwapTx</code>](#GraphQLClient.RetrieveSwapTx) | the actual transaction object                                                                 |
+| [input.tx.pk]         | <code>string</code>                                          | the sender pk                                                                                 |
+| [input.tx.from]       | <code>string</code>                                          | the sender address, can be derived from wallet                                                |
+| [input.tx.nonce]      | <code>number</code>                                          | the tx nonce, defaults to Date.now if not set                                                 |
+| [input.tx.chainId]    | <code>string</code>                                          | the chainId                                                                                   |
+| [input.tx.signature]  | <code>string</code>                                          | transaction signature                                                                         |
+| [input.tx.signatures] | <code>array</code>                                           | transaction signatures, should be set when it's a multisig transaction                        |
+| input.wallet          | <code>object</code>                                          | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
+| [input.signature]     | <code>string</code>                                          | the signature of the tx, if this parameter exist, we will not sign the transaction            |
 
 <a name="GraphQLClient.RevokeSwapTxInput"></a>
 
@@ -7609,19 +8442,19 @@ Checkout the following snippet for the format of SubscribeParams:
 **Kind**: static typedef of [<code>GraphQLClient</code>](#GraphQLClient)  
 **Properties**
 
-| Name                  | Type                                    | Description                                                                                   |
-| --------------------- | --------------------------------------- | --------------------------------------------------------------------------------------------- |
-| input                 | <code>object</code>                     |                                                                                               |
-| input.tx              | <code>object</code>                     | data of the transaction                                                                       |
-| input.tx.itx          | <code>GraphQLClient.RevokeSwapTx</code> | the actual transaction object                                                                 |
-| [input.tx.pk]         | <code>string</code>                     | the sender pk                                                                                 |
-| [input.tx.from]       | <code>string</code>                     | the sender address, can be derived from wallet                                                |
-| [input.tx.nonce]      | <code>number</code>                     | the tx nonce, defaults to Date.now if not set                                                 |
-| [input.tx.chainId]    | <code>string</code>                     | the chainId                                                                                   |
-| [input.tx.signature]  | <code>string</code>                     | transaction signature                                                                         |
-| [input.tx.signatures] | <code>array</code>                      | transaction signatures, should be set when it's a multisig transaction                        |
-| input.wallet          | <code>object</code>                     | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
-| [input.signature]     | <code>string</code>                     | the signature of the tx, if this parameter exist, we will not sign the transaction            |
+| Name                  | Type                                                     | Description                                                                                   |
+| --------------------- | -------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| input                 | <code>object</code>                                      |                                                                                               |
+| input.tx              | <code>object</code>                                      | data of the transaction                                                                       |
+| input.tx.itx          | [<code>RevokeSwapTx</code>](#GraphQLClient.RevokeSwapTx) | the actual transaction object                                                                 |
+| [input.tx.pk]         | <code>string</code>                                      | the sender pk                                                                                 |
+| [input.tx.from]       | <code>string</code>                                      | the sender address, can be derived from wallet                                                |
+| [input.tx.nonce]      | <code>number</code>                                      | the tx nonce, defaults to Date.now if not set                                                 |
+| [input.tx.chainId]    | <code>string</code>                                      | the chainId                                                                                   |
+| [input.tx.signature]  | <code>string</code>                                      | transaction signature                                                                         |
+| [input.tx.signatures] | <code>array</code>                                       | transaction signatures, should be set when it's a multisig transaction                        |
+| input.wallet          | <code>object</code>                                      | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
+| [input.signature]     | <code>string</code>                                      | the signature of the tx, if this parameter exist, we will not sign the transaction            |
 
 <a name="GraphQLClient.RevokeTetherTxInput"></a>
 
@@ -7630,19 +8463,19 @@ Checkout the following snippet for the format of SubscribeParams:
 **Kind**: static typedef of [<code>GraphQLClient</code>](#GraphQLClient)  
 **Properties**
 
-| Name                  | Type                                      | Description                                                                                   |
-| --------------------- | ----------------------------------------- | --------------------------------------------------------------------------------------------- |
-| input                 | <code>object</code>                       |                                                                                               |
-| input.tx              | <code>object</code>                       | data of the transaction                                                                       |
-| input.tx.itx          | <code>GraphQLClient.RevokeTetherTx</code> | the actual transaction object                                                                 |
-| [input.tx.pk]         | <code>string</code>                       | the sender pk                                                                                 |
-| [input.tx.from]       | <code>string</code>                       | the sender address, can be derived from wallet                                                |
-| [input.tx.nonce]      | <code>number</code>                       | the tx nonce, defaults to Date.now if not set                                                 |
-| [input.tx.chainId]    | <code>string</code>                       | the chainId                                                                                   |
-| [input.tx.signature]  | <code>string</code>                       | transaction signature                                                                         |
-| [input.tx.signatures] | <code>array</code>                        | transaction signatures, should be set when it's a multisig transaction                        |
-| input.wallet          | <code>object</code>                       | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
-| [input.signature]     | <code>string</code>                       | the signature of the tx, if this parameter exist, we will not sign the transaction            |
+| Name                  | Type                                                         | Description                                                                                   |
+| --------------------- | ------------------------------------------------------------ | --------------------------------------------------------------------------------------------- |
+| input                 | <code>object</code>                                          |                                                                                               |
+| input.tx              | <code>object</code>                                          | data of the transaction                                                                       |
+| input.tx.itx          | [<code>RevokeTetherTx</code>](#GraphQLClient.RevokeTetherTx) | the actual transaction object                                                                 |
+| [input.tx.pk]         | <code>string</code>                                          | the sender pk                                                                                 |
+| [input.tx.from]       | <code>string</code>                                          | the sender address, can be derived from wallet                                                |
+| [input.tx.nonce]      | <code>number</code>                                          | the tx nonce, defaults to Date.now if not set                                                 |
+| [input.tx.chainId]    | <code>string</code>                                          | the chainId                                                                                   |
+| [input.tx.signature]  | <code>string</code>                                          | transaction signature                                                                         |
+| [input.tx.signatures] | <code>array</code>                                           | transaction signatures, should be set when it's a multisig transaction                        |
+| input.wallet          | <code>object</code>                                          | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
+| [input.signature]     | <code>string</code>                                          | the signature of the tx, if this parameter exist, we will not sign the transaction            |
 
 <a name="GraphQLClient.SetupSwapTxInput"></a>
 
@@ -7651,19 +8484,19 @@ Checkout the following snippet for the format of SubscribeParams:
 **Kind**: static typedef of [<code>GraphQLClient</code>](#GraphQLClient)  
 **Properties**
 
-| Name                  | Type                                   | Description                                                                                   |
-| --------------------- | -------------------------------------- | --------------------------------------------------------------------------------------------- |
-| input                 | <code>object</code>                    |                                                                                               |
-| input.tx              | <code>object</code>                    | data of the transaction                                                                       |
-| input.tx.itx          | <code>GraphQLClient.SetupSwapTx</code> | the actual transaction object                                                                 |
-| [input.tx.pk]         | <code>string</code>                    | the sender pk                                                                                 |
-| [input.tx.from]       | <code>string</code>                    | the sender address, can be derived from wallet                                                |
-| [input.tx.nonce]      | <code>number</code>                    | the tx nonce, defaults to Date.now if not set                                                 |
-| [input.tx.chainId]    | <code>string</code>                    | the chainId                                                                                   |
-| [input.tx.signature]  | <code>string</code>                    | transaction signature                                                                         |
-| [input.tx.signatures] | <code>array</code>                     | transaction signatures, should be set when it's a multisig transaction                        |
-| input.wallet          | <code>object</code>                    | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
-| [input.signature]     | <code>string</code>                    | the signature of the tx, if this parameter exist, we will not sign the transaction            |
+| Name                  | Type                                                   | Description                                                                                   |
+| --------------------- | ------------------------------------------------------ | --------------------------------------------------------------------------------------------- |
+| input                 | <code>object</code>                                    |                                                                                               |
+| input.tx              | <code>object</code>                                    | data of the transaction                                                                       |
+| input.tx.itx          | [<code>SetupSwapTx</code>](#GraphQLClient.SetupSwapTx) | the actual transaction object                                                                 |
+| [input.tx.pk]         | <code>string</code>                                    | the sender pk                                                                                 |
+| [input.tx.from]       | <code>string</code>                                    | the sender address, can be derived from wallet                                                |
+| [input.tx.nonce]      | <code>number</code>                                    | the tx nonce, defaults to Date.now if not set                                                 |
+| [input.tx.chainId]    | <code>string</code>                                    | the chainId                                                                                   |
+| [input.tx.signature]  | <code>string</code>                                    | transaction signature                                                                         |
+| [input.tx.signatures] | <code>array</code>                                     | transaction signatures, should be set when it's a multisig transaction                        |
+| input.wallet          | <code>object</code>                                    | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
+| [input.signature]     | <code>string</code>                                    | the signature of the tx, if this parameter exist, we will not sign the transaction            |
 
 <a name="GraphQLClient.StakeTxInput"></a>
 
@@ -7672,19 +8505,19 @@ Checkout the following snippet for the format of SubscribeParams:
 **Kind**: static typedef of [<code>GraphQLClient</code>](#GraphQLClient)  
 **Properties**
 
-| Name                  | Type                               | Description                                                                                   |
-| --------------------- | ---------------------------------- | --------------------------------------------------------------------------------------------- |
-| input                 | <code>object</code>                |                                                                                               |
-| input.tx              | <code>object</code>                | data of the transaction                                                                       |
-| input.tx.itx          | <code>GraphQLClient.StakeTx</code> | the actual transaction object                                                                 |
-| [input.tx.pk]         | <code>string</code>                | the sender pk                                                                                 |
-| [input.tx.from]       | <code>string</code>                | the sender address, can be derived from wallet                                                |
-| [input.tx.nonce]      | <code>number</code>                | the tx nonce, defaults to Date.now if not set                                                 |
-| [input.tx.chainId]    | <code>string</code>                | the chainId                                                                                   |
-| [input.tx.signature]  | <code>string</code>                | transaction signature                                                                         |
-| [input.tx.signatures] | <code>array</code>                 | transaction signatures, should be set when it's a multisig transaction                        |
-| input.wallet          | <code>object</code>                | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
-| [input.signature]     | <code>string</code>                | the signature of the tx, if this parameter exist, we will not sign the transaction            |
+| Name                  | Type                                           | Description                                                                                   |
+| --------------------- | ---------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| input                 | <code>object</code>                            |                                                                                               |
+| input.tx              | <code>object</code>                            | data of the transaction                                                                       |
+| input.tx.itx          | [<code>StakeTx</code>](#GraphQLClient.StakeTx) | the actual transaction object                                                                 |
+| [input.tx.pk]         | <code>string</code>                            | the sender pk                                                                                 |
+| [input.tx.from]       | <code>string</code>                            | the sender address, can be derived from wallet                                                |
+| [input.tx.nonce]      | <code>number</code>                            | the tx nonce, defaults to Date.now if not set                                                 |
+| [input.tx.chainId]    | <code>string</code>                            | the chainId                                                                                   |
+| [input.tx.signature]  | <code>string</code>                            | transaction signature                                                                         |
+| [input.tx.signatures] | <code>array</code>                             | transaction signatures, should be set when it's a multisig transaction                        |
+| input.wallet          | <code>object</code>                            | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
+| [input.signature]     | <code>string</code>                            | the signature of the tx, if this parameter exist, we will not sign the transaction            |
 
 <a name="GraphQLClient.TransferTxInput"></a>
 
@@ -7693,19 +8526,19 @@ Checkout the following snippet for the format of SubscribeParams:
 **Kind**: static typedef of [<code>GraphQLClient</code>](#GraphQLClient)  
 **Properties**
 
-| Name                  | Type                                  | Description                                                                                   |
-| --------------------- | ------------------------------------- | --------------------------------------------------------------------------------------------- |
-| input                 | <code>object</code>                   |                                                                                               |
-| input.tx              | <code>object</code>                   | data of the transaction                                                                       |
-| input.tx.itx          | <code>GraphQLClient.TransferTx</code> | the actual transaction object                                                                 |
-| [input.tx.pk]         | <code>string</code>                   | the sender pk                                                                                 |
-| [input.tx.from]       | <code>string</code>                   | the sender address, can be derived from wallet                                                |
-| [input.tx.nonce]      | <code>number</code>                   | the tx nonce, defaults to Date.now if not set                                                 |
-| [input.tx.chainId]    | <code>string</code>                   | the chainId                                                                                   |
-| [input.tx.signature]  | <code>string</code>                   | transaction signature                                                                         |
-| [input.tx.signatures] | <code>array</code>                    | transaction signatures, should be set when it's a multisig transaction                        |
-| input.wallet          | <code>object</code>                   | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
-| [input.signature]     | <code>string</code>                   | the signature of the tx, if this parameter exist, we will not sign the transaction            |
+| Name                  | Type                                                 | Description                                                                                   |
+| --------------------- | ---------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| input                 | <code>object</code>                                  |                                                                                               |
+| input.tx              | <code>object</code>                                  | data of the transaction                                                                       |
+| input.tx.itx          | [<code>TransferTx</code>](#GraphQLClient.TransferTx) | the actual transaction object                                                                 |
+| [input.tx.pk]         | <code>string</code>                                  | the sender pk                                                                                 |
+| [input.tx.from]       | <code>string</code>                                  | the sender address, can be derived from wallet                                                |
+| [input.tx.nonce]      | <code>number</code>                                  | the tx nonce, defaults to Date.now if not set                                                 |
+| [input.tx.chainId]    | <code>string</code>                                  | the chainId                                                                                   |
+| [input.tx.signature]  | <code>string</code>                                  | transaction signature                                                                         |
+| [input.tx.signatures] | <code>array</code>                                   | transaction signatures, should be set when it's a multisig transaction                        |
+| input.wallet          | <code>object</code>                                  | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
+| [input.signature]     | <code>string</code>                                  | the signature of the tx, if this parameter exist, we will not sign the transaction            |
 
 <a name="GraphQLClient.UpdateAssetTxInput"></a>
 
@@ -7714,19 +8547,19 @@ Checkout the following snippet for the format of SubscribeParams:
 **Kind**: static typedef of [<code>GraphQLClient</code>](#GraphQLClient)  
 **Properties**
 
-| Name                  | Type                                     | Description                                                                                   |
-| --------------------- | ---------------------------------------- | --------------------------------------------------------------------------------------------- |
-| input                 | <code>object</code>                      |                                                                                               |
-| input.tx              | <code>object</code>                      | data of the transaction                                                                       |
-| input.tx.itx          | <code>GraphQLClient.UpdateAssetTx</code> | the actual transaction object                                                                 |
-| [input.tx.pk]         | <code>string</code>                      | the sender pk                                                                                 |
-| [input.tx.from]       | <code>string</code>                      | the sender address, can be derived from wallet                                                |
-| [input.tx.nonce]      | <code>number</code>                      | the tx nonce, defaults to Date.now if not set                                                 |
-| [input.tx.chainId]    | <code>string</code>                      | the chainId                                                                                   |
-| [input.tx.signature]  | <code>string</code>                      | transaction signature                                                                         |
-| [input.tx.signatures] | <code>array</code>                       | transaction signatures, should be set when it's a multisig transaction                        |
-| input.wallet          | <code>object</code>                      | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
-| [input.signature]     | <code>string</code>                      | the signature of the tx, if this parameter exist, we will not sign the transaction            |
+| Name                  | Type                                                       | Description                                                                                   |
+| --------------------- | ---------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| input                 | <code>object</code>                                        |                                                                                               |
+| input.tx              | <code>object</code>                                        | data of the transaction                                                                       |
+| input.tx.itx          | [<code>UpdateAssetTx</code>](#GraphQLClient.UpdateAssetTx) | the actual transaction object                                                                 |
+| [input.tx.pk]         | <code>string</code>                                        | the sender pk                                                                                 |
+| [input.tx.from]       | <code>string</code>                                        | the sender address, can be derived from wallet                                                |
+| [input.tx.nonce]      | <code>number</code>                                        | the tx nonce, defaults to Date.now if not set                                                 |
+| [input.tx.chainId]    | <code>string</code>                                        | the chainId                                                                                   |
+| [input.tx.signature]  | <code>string</code>                                        | transaction signature                                                                         |
+| [input.tx.signatures] | <code>array</code>                                         | transaction signatures, should be set when it's a multisig transaction                        |
+| input.wallet          | <code>object</code>                                        | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
+| [input.signature]     | <code>string</code>                                        | the signature of the tx, if this parameter exist, we will not sign the transaction            |
 
 <a name="GraphQLClient.UpgradeNodeTxInput"></a>
 
@@ -7735,19 +8568,19 @@ Checkout the following snippet for the format of SubscribeParams:
 **Kind**: static typedef of [<code>GraphQLClient</code>](#GraphQLClient)  
 **Properties**
 
-| Name                  | Type                                     | Description                                                                                   |
-| --------------------- | ---------------------------------------- | --------------------------------------------------------------------------------------------- |
-| input                 | <code>object</code>                      |                                                                                               |
-| input.tx              | <code>object</code>                      | data of the transaction                                                                       |
-| input.tx.itx          | <code>GraphQLClient.UpgradeNodeTx</code> | the actual transaction object                                                                 |
-| [input.tx.pk]         | <code>string</code>                      | the sender pk                                                                                 |
-| [input.tx.from]       | <code>string</code>                      | the sender address, can be derived from wallet                                                |
-| [input.tx.nonce]      | <code>number</code>                      | the tx nonce, defaults to Date.now if not set                                                 |
-| [input.tx.chainId]    | <code>string</code>                      | the chainId                                                                                   |
-| [input.tx.signature]  | <code>string</code>                      | transaction signature                                                                         |
-| [input.tx.signatures] | <code>array</code>                       | transaction signatures, should be set when it's a multisig transaction                        |
-| input.wallet          | <code>object</code>                      | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
-| [input.signature]     | <code>string</code>                      | the signature of the tx, if this parameter exist, we will not sign the transaction            |
+| Name                  | Type                                                       | Description                                                                                   |
+| --------------------- | ---------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| input                 | <code>object</code>                                        |                                                                                               |
+| input.tx              | <code>object</code>                                        | data of the transaction                                                                       |
+| input.tx.itx          | [<code>UpgradeNodeTx</code>](#GraphQLClient.UpgradeNodeTx) | the actual transaction object                                                                 |
+| [input.tx.pk]         | <code>string</code>                                        | the sender pk                                                                                 |
+| [input.tx.from]       | <code>string</code>                                        | the sender address, can be derived from wallet                                                |
+| [input.tx.nonce]      | <code>number</code>                                        | the tx nonce, defaults to Date.now if not set                                                 |
+| [input.tx.chainId]    | <code>string</code>                                        | the chainId                                                                                   |
+| [input.tx.signature]  | <code>string</code>                                        | transaction signature                                                                         |
+| [input.tx.signatures] | <code>array</code>                                         | transaction signatures, should be set when it's a multisig transaction                        |
+| input.wallet          | <code>object</code>                                        | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
+| [input.signature]     | <code>string</code>                                        | the signature of the tx, if this parameter exist, we will not sign the transaction            |
 
 <a name="GraphQLClient.WithdrawTetherTxInput"></a>
 
@@ -7756,16 +8589,16 @@ Checkout the following snippet for the format of SubscribeParams:
 **Kind**: static typedef of [<code>GraphQLClient</code>](#GraphQLClient)  
 **Properties**
 
-| Name                  | Type                                        | Description                                                                                   |
-| --------------------- | ------------------------------------------- | --------------------------------------------------------------------------------------------- |
-| input                 | <code>object</code>                         |                                                                                               |
-| input.tx              | <code>object</code>                         | data of the transaction                                                                       |
-| input.tx.itx          | <code>GraphQLClient.WithdrawTetherTx</code> | the actual transaction object                                                                 |
-| [input.tx.pk]         | <code>string</code>                         | the sender pk                                                                                 |
-| [input.tx.from]       | <code>string</code>                         | the sender address, can be derived from wallet                                                |
-| [input.tx.nonce]      | <code>number</code>                         | the tx nonce, defaults to Date.now if not set                                                 |
-| [input.tx.chainId]    | <code>string</code>                         | the chainId                                                                                   |
-| [input.tx.signature]  | <code>string</code>                         | transaction signature                                                                         |
-| [input.tx.signatures] | <code>array</code>                          | transaction signatures, should be set when it's a multisig transaction                        |
-| input.wallet          | <code>object</code>                         | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
-| [input.signature]     | <code>string</code>                         | the signature of the tx, if this parameter exist, we will not sign the transaction            |
+| Name                  | Type                                                             | Description                                                                                   |
+| --------------------- | ---------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| input                 | <code>object</code>                                              |                                                                                               |
+| input.tx              | <code>object</code>                                              | data of the transaction                                                                       |
+| input.tx.itx          | [<code>WithdrawTetherTx</code>](#GraphQLClient.WithdrawTetherTx) | the actual transaction object                                                                 |
+| [input.tx.pk]         | <code>string</code>                                              | the sender pk                                                                                 |
+| [input.tx.from]       | <code>string</code>                                              | the sender address, can be derived from wallet                                                |
+| [input.tx.nonce]      | <code>number</code>                                              | the tx nonce, defaults to Date.now if not set                                                 |
+| [input.tx.chainId]    | <code>string</code>                                              | the chainId                                                                                   |
+| [input.tx.signature]  | <code>string</code>                                              | transaction signature                                                                         |
+| [input.tx.signatures] | <code>array</code>                                               | transaction signatures, should be set when it's a multisig transaction                        |
+| input.wallet          | <code>object</code>                                              | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
+| [input.signature]     | <code>string</code>                                              | the signature of the tx, if this parameter exist, we will not sign the transaction            |

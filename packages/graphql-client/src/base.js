@@ -52,7 +52,7 @@ class GraphQLClientBase extends BaseClient {
   }
 
   _getIgnoreFields() {
-    return [];
+    return [/\.itx$/];
   }
 
   _getQueryId(query) {

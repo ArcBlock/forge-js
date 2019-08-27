@@ -1,6 +1,6 @@
 # Forge GraphQL API List
 
-> Updated on 2019-08-25T22:32:18.880Z
+> Updated on 2019-08-27T03:19:13.001Z
 
 
 ## Table of Contents
@@ -95,7 +95,7 @@
           tx {
             chainId
             from
-            itx
+            itxJson
             nonce
             pk
             signature
@@ -130,7 +130,7 @@
           tx {
             chainId
             from
-            itx
+            itxJson
             nonce
             pk
             signature
@@ -226,7 +226,7 @@
           tx {
             chainId
             from
-            itx
+            itxJson
             nonce
             pk
             signature
@@ -261,7 +261,7 @@
           tx {
             chainId
             from
-            itx
+            itxJson
             nonce
             pk
             signature
@@ -353,7 +353,7 @@
         tx {
           chainId
           from
-          itx
+          itxJson
           nonce
           pk
           signature
@@ -395,7 +395,7 @@
         tx {
           chainId
           from
-          itx
+          itxJson
           nonce
           pk
           signature
@@ -562,7 +562,7 @@ No arguments
           tx {
             chainId
             from
-            itx
+            itxJson
             nonce
             pk
             signature
@@ -597,7 +597,7 @@ No arguments
           tx {
             chainId
             from
-            itx
+            itxJson
             nonce
             pk
             signature
@@ -712,7 +712,7 @@ No arguments
               tx {
                 chainId
                 from
-                itx
+                itxJson
                 nonce
                 pk
                 signature
@@ -737,7 +737,7 @@ No arguments
               tx {
                 chainId
                 from
-                itx
+                itxJson
                 nonce
                 pk
                 signature
@@ -1071,7 +1071,7 @@ No arguments
           tx {
             chainId
             from
-            itx
+            itxJson
             nonce
             pk
             signature
@@ -1106,7 +1106,7 @@ No arguments
           tx {
             chainId
             from
-            itx
+            itxJson
             nonce
             pk
             signature
@@ -1126,29 +1126,6 @@ No arguments
       data {
         typeUrl
         value
-      }
-      itx {
-        address
-        description
-        name
-        namespace
-        pipeline
-        proto
-        sources
-        tags
-        version
-        code {
-          binary
-          checksum
-        }
-        data {
-          typeUrl
-          value
-        }
-        typeUrls {
-          module
-          url
-        }
       }
     }
   }
@@ -1254,7 +1231,7 @@ No arguments
           tx {
             chainId
             from
-            itx
+            itxJson
             nonce
             pk
             signature
@@ -1289,7 +1266,7 @@ No arguments
           tx {
             chainId
             from
-            itx
+            itxJson
             nonce
             pk
             signature
@@ -1361,7 +1338,7 @@ No arguments
           tx {
             chainId
             from
-            itx
+            itxJson
             nonce
             pk
             signature
@@ -1396,7 +1373,7 @@ No arguments
           tx {
             chainId
             from
-            itx
+            itxJson
             nonce
             pk
             signature
@@ -1480,7 +1457,7 @@ No arguments
       tx {
         chainId
         from
-        itx
+        itxJson
         nonce
         pk
         signature
@@ -1522,7 +1499,7 @@ No arguments
       txs {
         chainId
         from
-        itx
+        itxJson
         nonce
         pk
         signature
@@ -1606,7 +1583,7 @@ No arguments
       tx {
         chainId
         from
-        itx
+        itxJson
         nonce
         pk
         signature
@@ -1789,7 +1766,7 @@ No arguments
           tx {
             chainId
             from
-            itx
+            itxJson
             nonce
             pk
             signature
@@ -1824,7 +1801,7 @@ No arguments
           tx {
             chainId
             from
-            itx
+            itxJson
             nonce
             pk
             signature
@@ -1953,7 +1930,7 @@ No arguments
       tx {
         chainId
         from
-        itx
+        itxJson
         nonce
         pk
         signature
@@ -1993,7 +1970,7 @@ subscription {
     accountMigrate {
       chainId
       from
-      itx
+      itxJson
       nonce
       pk
       signature
@@ -2041,7 +2018,7 @@ subscription {
           tx {
             chainId
             from
-            itx
+            itxJson
             nonce
             pk
             signature
@@ -2076,7 +2053,7 @@ subscription {
           tx {
             chainId
             from
-            itx
+            itxJson
             nonce
             pk
             signature
@@ -2125,7 +2102,7 @@ subscription {
     activateProtocol {
       chainId
       from
-      itx
+      itxJson
       nonce
       pk
       signature
@@ -2172,7 +2149,7 @@ subscription {
           tx {
             chainId
             from
-            itx
+            itxJson
             nonce
             pk
             signature
@@ -2207,7 +2184,7 @@ subscription {
           tx {
             chainId
             from
-            itx
+            itxJson
             nonce
             pk
             signature
@@ -2301,7 +2278,7 @@ subscription {
     confirm {
       chainId
       from
-      itx
+      itxJson
       nonce
       pk
       signature
@@ -2319,7 +2296,7 @@ subscription {
     consensusUpgrade {
       chainId
       from
-      itx
+      itxJson
       nonce
       pk
       signature
@@ -2337,7 +2314,7 @@ subscription {
     createAsset {
       chainId
       from
-      itx
+      itxJson
       nonce
       pk
       signature
@@ -2355,7 +2332,7 @@ subscription {
     deactivateProtocol {
       chainId
       from
-      itx
+      itxJson
       nonce
       pk
       signature
@@ -2373,7 +2350,7 @@ subscription {
     declare {
       chainId
       from
-      itx
+      itxJson
       nonce
       pk
       signature
@@ -2391,7 +2368,7 @@ subscription {
     declareFile {
       chainId
       from
-      itx
+      itxJson
       nonce
       pk
       signature
@@ -2409,7 +2386,7 @@ subscription {
     delegate {
       chainId
       from
-      itx
+      itxJson
       nonce
       pk
       signature
@@ -2448,7 +2425,7 @@ subscription {
           tx {
             chainId
             from
-            itx
+            itxJson
             nonce
             pk
             signature
@@ -2483,7 +2460,7 @@ subscription {
           tx {
             chainId
             from
-            itx
+            itxJson
             nonce
             pk
             signature
@@ -2521,7 +2498,7 @@ subscription {
     exchange {
       chainId
       from
-      itx
+      itxJson
       nonce
       pk
       signature
@@ -2602,7 +2579,7 @@ subscription {
               tx {
                 chainId
                 from
-                itx
+                itxJson
                 nonce
                 pk
                 signature
@@ -2627,7 +2604,7 @@ subscription {
               tx {
                 chainId
                 from
-                itx
+                itxJson
                 nonce
                 pk
                 signature
@@ -2705,7 +2682,7 @@ subscription {
           tx {
             chainId
             from
-            itx
+            itxJson
             nonce
             pk
             signature
@@ -2740,7 +2717,7 @@ subscription {
           tx {
             chainId
             from
-            itx
+            itxJson
             nonce
             pk
             signature
@@ -2761,34 +2738,11 @@ subscription {
         typeUrl
         value
       }
-      itx {
-        address
-        description
-        name
-        namespace
-        pipeline
-        proto
-        sources
-        tags
-        version
-        code {
-          binary
-          checksum
-        }
-        data {
-          typeUrl
-          value
-        }
-        typeUrls {
-          module
-          url
-        }
-      }
     }
     revoke {
       chainId
       from
-      itx
+      itxJson
       nonce
       pk
       signature
@@ -2806,7 +2760,7 @@ subscription {
     stake {
       chainId
       from
-      itx
+      itxJson
       nonce
       pk
       signature
@@ -2849,7 +2803,7 @@ subscription {
           tx {
             chainId
             from
-            itx
+            itxJson
             nonce
             pk
             signature
@@ -2884,7 +2838,7 @@ subscription {
           tx {
             chainId
             from
-            itx
+            itxJson
             nonce
             pk
             signature
@@ -2909,7 +2863,7 @@ subscription {
     sysUpgrade {
       chainId
       from
-      itx
+      itxJson
       nonce
       pk
       signature
@@ -2927,7 +2881,7 @@ subscription {
     transfer {
       chainId
       from
-      itx
+      itxJson
       nonce
       pk
       signature
@@ -2945,7 +2899,7 @@ subscription {
     updateAsset {
       chainId
       from
-      itx
+      itxJson
       nonce
       pk
       signature
