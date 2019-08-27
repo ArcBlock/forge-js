@@ -51,8 +51,13 @@ class GraphQLClientBase extends BaseClient {
     return jsonpack.unpack(packedSchema);
   }
 
-  _getIgnoreFields() {
-    return [];
+  _getIgnoreFields({ name }) {
+    const ignoreList = [/\.genesisTx$/, /\.renaissanceTx$/];
+    if (name !== 'getProtocolState') {
+      ignoreList.push(/\.itx$/);
+    }
+
+    return ignoreList;
   }
 
   _getQueryId(query) {

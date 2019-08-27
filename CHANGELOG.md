@@ -1,3 +1,9 @@
+## 0.37.2 (August 27, 2019)
+
+- chore: bump sdk-util version
+- chore: rename itx => itxJson
+- update readme
+
 ## 0.37.1 (August 26, 2019)
 
 - chore: upgrade graphql-client with latest forge-web

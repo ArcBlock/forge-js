@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable no-console */
 const { fakeField, fakeMessage } = require('@arcblock/sdk-util/lib/util');
 
@@ -11,13 +12,13 @@ const map = {
 };
 
 const { types } = client._getSchema();
-const typesMap = types.reduce((map, x) => {
-  map[x.name] = x;
-  return map;
+const typesMap = types.reduce((acc, x) => {
+  acc[x.name] = x;
+  return acc;
 }, {});
 
 const getResultFormat = m => {
-  const args = client[m].args;
+  const { args } = client[m];
   const argValues = Object.values(args)
     // .filter(x => x.type.kind === 'NON_NULL') // Uncomment this to random only required fields
     .reduce((obj, x) => {
@@ -31,10 +32,8 @@ const getResultFormat = m => {
         } else {
           console.log('ignoreX', x);
         }
-      } else {
-        if (x.type.kind === 'SCALAR') {
-          obj[x.name] = fakeField(x.type, typesMap);
-        }
+      } else if (x.type.kind === 'SCALAR') {
+        obj[x.name] = fakeField(x.type, typesMap);
       }
 
       return obj;
@@ -42,7 +41,7 @@ const getResultFormat = m => {
 
   console.log(m, argValues);
 
-  return client[m].builder(argValues);
+  return client[m].builder(argValues, client._getIgnoreFields({ name: m }));
 };
 
 const generateFormats = (grouped = true) => {
@@ -59,9 +58,7 @@ const generateFormats = (grouped = true) => {
   }
 
   return formats
-    .reduce((memo, x, i) => {
-      return memo.concat(formats[i]);
-    }, [])
+    .reduce((memo, x, i) => memo.concat(formats[i]), [])
     .reduce((memo, x) => {
       memo[x.name] = x;
       return memo;

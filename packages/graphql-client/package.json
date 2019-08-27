@@ -36,7 +36,7 @@
     "@arcblock/forge-util": "^0.37.0",
     "@arcblock/forge-wallet": "^0.37.0",
     "@arcblock/mcrypto": "^0.37.0",
-    "@arcblock/sdk-util": "^0.22.0",
+    "@arcblock/sdk-util": "^0.24.0",
     "base64-url": "^2.3.2",
     "blueimp-md5": "^2.10.0",
     "debug": "^4.1.1",
