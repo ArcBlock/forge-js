@@ -1,6 +1,6 @@
 # Forge GraphQL API List
 
-> Updated on 2019-08-27T03:47:07.352Z
+> Updated on 2019-08-27T04:27:37.554Z
 
 
 ## Table of Contents
@@ -76,76 +76,6 @@
       context {
         genesisTime
         renaissanceTime
-        genesisTx {
-          code
-          hash
-          height
-          index
-          time
-          accountMigrate {
-            address
-          }
-          createAsset {
-            asset
-          }
-          tags {
-            key
-            value
-          }
-          tx {
-            chainId
-            from
-            itxJson
-            nonce
-            pk
-            signature
-            signatures {
-              delegator
-              pk
-              signature
-              signer
-              data {
-                typeUrl
-                value
-              }
-            }
-          }
-        }
-        renaissanceTx {
-          code
-          hash
-          height
-          index
-          time
-          accountMigrate {
-            address
-          }
-          createAsset {
-            asset
-          }
-          tags {
-            key
-            value
-          }
-          tx {
-            chainId
-            from
-            itxJson
-            nonce
-            pk
-            signature
-            signatures {
-              delegator
-              pk
-              signature
-              signer
-              data {
-                typeUrl
-                value
-              }
-            }
-          }
-        }
       }
       data {
         typeUrl
@@ -207,76 +137,6 @@
       context {
         genesisTime
         renaissanceTime
-        genesisTx {
-          code
-          hash
-          height
-          index
-          time
-          accountMigrate {
-            address
-          }
-          createAsset {
-            asset
-          }
-          tags {
-            key
-            value
-          }
-          tx {
-            chainId
-            from
-            itxJson
-            nonce
-            pk
-            signature
-            signatures {
-              delegator
-              pk
-              signature
-              signer
-              data {
-                typeUrl
-                value
-              }
-            }
-          }
-        }
-        renaissanceTx {
-          code
-          hash
-          height
-          index
-          time
-          accountMigrate {
-            address
-          }
-          createAsset {
-            asset
-          }
-          tags {
-            key
-            value
-          }
-          tx {
-            chainId
-            from
-            itxJson
-            nonce
-            pk
-            signature
-            signatures {
-              delegator
-              pk
-              signature
-              signer
-              data {
-                typeUrl
-                value
-              }
-            }
-          }
-        }
       }
       data {
         typeUrl
@@ -543,76 +403,6 @@ No arguments
       context {
         genesisTime
         renaissanceTime
-        genesisTx {
-          code
-          hash
-          height
-          index
-          time
-          accountMigrate {
-            address
-          }
-          createAsset {
-            asset
-          }
-          tags {
-            key
-            value
-          }
-          tx {
-            chainId
-            from
-            itxJson
-            nonce
-            pk
-            signature
-            signatures {
-              delegator
-              pk
-              signature
-              signer
-              data {
-                typeUrl
-                value
-              }
-            }
-          }
-        }
-        renaissanceTx {
-          code
-          hash
-          height
-          index
-          time
-          accountMigrate {
-            address
-          }
-          createAsset {
-            asset
-          }
-          tags {
-            key
-            value
-          }
-          tx {
-            chainId
-            from
-            itxJson
-            nonce
-            pk
-            signature
-            signatures {
-              delegator
-              pk
-              signature
-              signer
-              data {
-                typeUrl
-                value
-              }
-            }
-          }
-        }
       }
       data {
         typeUrl
@@ -693,56 +483,6 @@ No arguments
           context {
             genesisTime
             renaissanceTime
-            genesisTx {
-              code
-              hash
-              height
-              index
-              time
-              accountMigrate {
-                address
-              }
-              createAsset {
-                asset
-              }
-              tags {
-                key
-                value
-              }
-              tx {
-                chainId
-                from
-                itxJson
-                nonce
-                pk
-                signature
-              }
-            }
-            renaissanceTx {
-              code
-              hash
-              height
-              index
-              time
-              accountMigrate {
-                address
-              }
-              createAsset {
-                asset
-              }
-              tags {
-                key
-                value
-              }
-              tx {
-                chainId
-                from
-                itxJson
-                nonce
-                pk
-                signature
-              }
-            }
           }
         }
       }
@@ -1052,80 +792,33 @@ No arguments
       context {
         genesisTime
         renaissanceTime
-        genesisTx {
-          code
-          hash
-          height
-          index
-          time
-          accountMigrate {
-            address
-          }
-          createAsset {
-            asset
-          }
-          tags {
-            key
-            value
-          }
-          tx {
-            chainId
-            from
-            itxJson
-            nonce
-            pk
-            signature
-            signatures {
-              delegator
-              pk
-              signature
-              signer
-              data {
-                typeUrl
-                value
-              }
-            }
-          }
-        }
-        renaissanceTx {
-          code
-          hash
-          height
-          index
-          time
-          accountMigrate {
-            address
-          }
-          createAsset {
-            asset
-          }
-          tags {
-            key
-            value
-          }
-          tx {
-            chainId
-            from
-            itxJson
-            nonce
-            pk
-            signature
-            signatures {
-              delegator
-              pk
-              signature
-              signer
-              data {
-                typeUrl
-                value
-              }
-            }
-          }
-        }
       }
       data {
         typeUrl
         value
+      }
+      itx {
+        address
+        description
+        name
+        namespace
+        pipeline
+        proto
+        sources
+        tags
+        version
+        code {
+          binary
+          checksum
+        }
+        data {
+          typeUrl
+          value
+        }
+        typeUrls {
+          module
+          url
+        }
       }
     }
   }
@@ -1212,76 +905,6 @@ No arguments
       context {
         genesisTime
         renaissanceTime
-        genesisTx {
-          code
-          hash
-          height
-          index
-          time
-          accountMigrate {
-            address
-          }
-          createAsset {
-            asset
-          }
-          tags {
-            key
-            value
-          }
-          tx {
-            chainId
-            from
-            itxJson
-            nonce
-            pk
-            signature
-            signatures {
-              delegator
-              pk
-              signature
-              signer
-              data {
-                typeUrl
-                value
-              }
-            }
-          }
-        }
-        renaissanceTx {
-          code
-          hash
-          height
-          index
-          time
-          accountMigrate {
-            address
-          }
-          createAsset {
-            asset
-          }
-          tags {
-            key
-            value
-          }
-          tx {
-            chainId
-            from
-            itxJson
-            nonce
-            pk
-            signature
-            signatures {
-              delegator
-              pk
-              signature
-              signer
-              data {
-                typeUrl
-                value
-              }
-            }
-          }
-        }
       }
       data {
         typeUrl
@@ -1319,76 +942,6 @@ No arguments
       context {
         genesisTime
         renaissanceTime
-        genesisTx {
-          code
-          hash
-          height
-          index
-          time
-          accountMigrate {
-            address
-          }
-          createAsset {
-            asset
-          }
-          tags {
-            key
-            value
-          }
-          tx {
-            chainId
-            from
-            itxJson
-            nonce
-            pk
-            signature
-            signatures {
-              delegator
-              pk
-              signature
-              signer
-              data {
-                typeUrl
-                value
-              }
-            }
-          }
-        }
-        renaissanceTx {
-          code
-          hash
-          height
-          index
-          time
-          accountMigrate {
-            address
-          }
-          createAsset {
-            asset
-          }
-          tags {
-            key
-            value
-          }
-          tx {
-            chainId
-            from
-            itxJson
-            nonce
-            pk
-            signature
-            signatures {
-              delegator
-              pk
-              signature
-              signer
-              data {
-                typeUrl
-                value
-              }
-            }
-          }
-        }
       }
     }
   }
@@ -1747,76 +1300,6 @@ No arguments
       context {
         genesisTime
         renaissanceTime
-        genesisTx {
-          code
-          hash
-          height
-          index
-          time
-          accountMigrate {
-            address
-          }
-          createAsset {
-            asset
-          }
-          tags {
-            key
-            value
-          }
-          tx {
-            chainId
-            from
-            itxJson
-            nonce
-            pk
-            signature
-            signatures {
-              delegator
-              pk
-              signature
-              signer
-              data {
-                typeUrl
-                value
-              }
-            }
-          }
-        }
-        renaissanceTx {
-          code
-          hash
-          height
-          index
-          time
-          accountMigrate {
-            address
-          }
-          createAsset {
-            asset
-          }
-          tags {
-            key
-            value
-          }
-          tx {
-            chainId
-            from
-            itxJson
-            nonce
-            pk
-            signature
-            signatures {
-              delegator
-              pk
-              signature
-              signer
-              data {
-                typeUrl
-                value
-              }
-            }
-          }
-        }
       }
     }
   }
@@ -1999,76 +1482,6 @@ subscription {
       context {
         genesisTime
         renaissanceTime
-        genesisTx {
-          code
-          hash
-          height
-          index
-          time
-          accountMigrate {
-            address
-          }
-          createAsset {
-            asset
-          }
-          tags {
-            key
-            value
-          }
-          tx {
-            chainId
-            from
-            itxJson
-            nonce
-            pk
-            signature
-            signatures {
-              delegator
-              pk
-              signature
-              signer
-              data {
-                typeUrl
-                value
-              }
-            }
-          }
-        }
-        renaissanceTx {
-          code
-          hash
-          height
-          index
-          time
-          accountMigrate {
-            address
-          }
-          createAsset {
-            asset
-          }
-          tags {
-            key
-            value
-          }
-          tx {
-            chainId
-            from
-            itxJson
-            nonce
-            pk
-            signature
-            signatures {
-              delegator
-              pk
-              signature
-              signer
-              data {
-                typeUrl
-                value
-              }
-            }
-          }
-        }
       }
       data {
         typeUrl
@@ -2130,76 +1543,6 @@ subscription {
       context {
         genesisTime
         renaissanceTime
-        genesisTx {
-          code
-          hash
-          height
-          index
-          time
-          accountMigrate {
-            address
-          }
-          createAsset {
-            asset
-          }
-          tags {
-            key
-            value
-          }
-          tx {
-            chainId
-            from
-            itxJson
-            nonce
-            pk
-            signature
-            signatures {
-              delegator
-              pk
-              signature
-              signer
-              data {
-                typeUrl
-                value
-              }
-            }
-          }
-        }
-        renaissanceTx {
-          code
-          hash
-          height
-          index
-          time
-          accountMigrate {
-            address
-          }
-          createAsset {
-            asset
-          }
-          tags {
-            key
-            value
-          }
-          tx {
-            chainId
-            from
-            itxJson
-            nonce
-            pk
-            signature
-            signatures {
-              delegator
-              pk
-              signature
-              signer
-              data {
-                typeUrl
-                value
-              }
-            }
-          }
-        }
       }
       data {
         typeUrl
@@ -2406,76 +1749,6 @@ subscription {
       context {
         genesisTime
         renaissanceTime
-        genesisTx {
-          code
-          hash
-          height
-          index
-          time
-          accountMigrate {
-            address
-          }
-          createAsset {
-            asset
-          }
-          tags {
-            key
-            value
-          }
-          tx {
-            chainId
-            from
-            itxJson
-            nonce
-            pk
-            signature
-            signatures {
-              delegator
-              pk
-              signature
-              signer
-              data {
-                typeUrl
-                value
-              }
-            }
-          }
-        }
-        renaissanceTx {
-          code
-          hash
-          height
-          index
-          time
-          accountMigrate {
-            address
-          }
-          createAsset {
-            asset
-          }
-          tags {
-            key
-            value
-          }
-          tx {
-            chainId
-            from
-            itxJson
-            nonce
-            pk
-            signature
-            signatures {
-              delegator
-              pk
-              signature
-              signer
-              data {
-                typeUrl
-                value
-              }
-            }
-          }
-        }
       }
       data {
         typeUrl
@@ -2560,56 +1833,6 @@ subscription {
           context {
             genesisTime
             renaissanceTime
-            genesisTx {
-              code
-              hash
-              height
-              index
-              time
-              accountMigrate {
-                address
-              }
-              createAsset {
-                asset
-              }
-              tags {
-                key
-                value
-              }
-              tx {
-                chainId
-                from
-                itxJson
-                nonce
-                pk
-                signature
-              }
-            }
-            renaissanceTx {
-              code
-              hash
-              height
-              index
-              time
-              accountMigrate {
-                address
-              }
-              createAsset {
-                asset
-              }
-              tags {
-                key
-                value
-              }
-              tx {
-                chainId
-                from
-                itxJson
-                nonce
-                pk
-                signature
-              }
-            }
           }
         }
       }
@@ -2663,76 +1886,6 @@ subscription {
       context {
         genesisTime
         renaissanceTime
-        genesisTx {
-          code
-          hash
-          height
-          index
-          time
-          accountMigrate {
-            address
-          }
-          createAsset {
-            asset
-          }
-          tags {
-            key
-            value
-          }
-          tx {
-            chainId
-            from
-            itxJson
-            nonce
-            pk
-            signature
-            signatures {
-              delegator
-              pk
-              signature
-              signer
-              data {
-                typeUrl
-                value
-              }
-            }
-          }
-        }
-        renaissanceTx {
-          code
-          hash
-          height
-          index
-          time
-          accountMigrate {
-            address
-          }
-          createAsset {
-            asset
-          }
-          tags {
-            key
-            value
-          }
-          tx {
-            chainId
-            from
-            itxJson
-            nonce
-            pk
-            signature
-            signatures {
-              delegator
-              pk
-              signature
-              signer
-              data {
-                typeUrl
-                value
-              }
-            }
-          }
-        }
       }
       data {
         typeUrl
@@ -2784,76 +1937,6 @@ subscription {
       context {
         genesisTime
         renaissanceTime
-        genesisTx {
-          code
-          hash
-          height
-          index
-          time
-          accountMigrate {
-            address
-          }
-          createAsset {
-            asset
-          }
-          tags {
-            key
-            value
-          }
-          tx {
-            chainId
-            from
-            itxJson
-            nonce
-            pk
-            signature
-            signatures {
-              delegator
-              pk
-              signature
-              signer
-              data {
-                typeUrl
-                value
-              }
-            }
-          }
-        }
-        renaissanceTx {
-          code
-          hash
-          height
-          index
-          time
-          accountMigrate {
-            address
-          }
-          createAsset {
-            asset
-          }
-          tags {
-            key
-            value
-          }
-          tx {
-            chainId
-            from
-            itxJson
-            nonce
-            pk
-            signature
-            signatures {
-              delegator
-              pk
-              signature
-              signer
-              data {
-                typeUrl
-                value
-              }
-            }
-          }
-        }
       }
       data {
         typeUrl
