@@ -41,7 +41,7 @@ const getResultFormat = m => {
 
   console.log(m, argValues);
 
-  return client[m].builder(argValues, [/\.itx$/]);
+  return client[m].builder(argValues, [/(?!(state))\.itx$/]);
 };
 
 const generateFormats = (grouped = true) => {
