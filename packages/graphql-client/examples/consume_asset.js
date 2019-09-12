@@ -67,62 +67,45 @@ const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
     });
     console.log('view asset state', `${endpoint}/node/explorer/assets/${assetAddress}`);
     console.log('view asset tx', `${endpoint}/node/explorer/txs/${res}`);
+    await sleep(3000);
 
-    // Start multisig for asset consume
-
-    const tx = {
-      from: issuer.toAddress(),
-      pk: issuer.publicKey, // pk of application
-      itx: {
-        issuer: issuer.toAddress(),
-      },
-    };
-
-    console.log('consume.start', tx);
-
-    // 4.1 issuer: encode and sign the transaction
-    const { buffer, object: encoded1 } = await client.encodeConsumeAssetTx({
-      tx,
+    // 4. transfer asset from issuer to consumer
+    res = await client.sendTransferTx({
+      tx: { itx: { assets: [assetAddress], to: consumer.toAddress() } },
       wallet: issuer,
     });
-    const issuerSignature = issuer.sign(buffer);
-    console.log('issuer.encoded', encoded1);
-    console.log('issuer.signature', issuerSignature);
+    console.log('view transfer tx', `${endpoint}/node/explorer/txs/${res}`);
 
-    // 4.2 consumer: populate signatures field
-    tx.signature = issuerSignature;
-    tx.nonce = encoded1.nonce;
-    tx.from = encoded1.from;
-    tx.signatures = [
-      {
-        pk: consumer.publicKey,
-        signer: consumer.toAddress(),
-        data: {
-          typeUrl: 'fg:x:address',
-          value: assetAddress,
+    // 5. Start multisig for asset consume
+    const tx = await client.signConsumeAssetTx({
+      tx: {
+        itx: {
+          issuer: issuer.toAddress(),
         },
       },
-    ];
+      wallet: issuer,
+    });
 
-    // 4.2 consumer: do multi signature, and attach signature to signatures list
-    const { buffer: consumerBuffer, object: encoded2 } = await client.encodeConsumeAssetTx({
+    // 5.1 issuer: encode and sign the transaction
+    console.log('issuer.signed', tx);
+
+    // 5.2 consumer: populate signatures field
+    const tx2 = await client.multiSignConsumeAssetTx({
       tx,
       wallet: consumer,
+      data: {
+        typeUrl: 'fg:x:address',
+        value: assetAddress,
+      },
     });
-    const receiverSignature = consumer.sign(consumerBuffer);
-    const receiverSig = encoded2.signaturesList.find(x => x.signer === consumer.toAddress());
-    receiverSig.signature = receiverSignature;
+    console.log('consumer.signed', tx2);
 
-    console.log('consumer.encoded', encoded2);
-    console.log('consumer.signature', receiverSignature);
-    delete encoded2.signature;
-
-    // 4.3 Send the consume tx
-    await sleep(5000);
+    // 5.3 Send the consume tx
+    await sleep(3000);
     res = await client.sendConsumeAssetTx({
-      tx: encoded2,
+      tx: tx2,
       wallet: issuer,
-      signature: issuerSignature,
+      signature: tx2.signature,
     });
     console.log('view consume tx', `${endpoint}/node/explorer/txs/${res}`);
   } catch (err) {

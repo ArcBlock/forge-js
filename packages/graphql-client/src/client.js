@@ -283,11 +283,15 @@ class GraphQLClient extends GraphQLClientBase {
       // TODO: verify existing signatures before adding new signatures
       // Generate transaction multi sign function
       if (multiSignTxs.includes(x)) {
-        const txMultiSignFn = async ({ tx, wallet, delegatee, encoding = '' }) => {
+        const txMultiSignFn = async ({ tx, wallet, delegatee, data, encoding = '' }) => {
+          // Determine sender address
+          const address = tx.from || wallet.toAddress();
           tx.signatures = tx.signatures || tx.signaturesList || [];
           tx.signatures.unshift({
             pk: wallet.publicKey,
             signer: wallet.toAddress(),
+            delegator: delegatee ? address : '',
+            data,
           });
 
           const { object, buffer } = await txEncodeFn({ tx, wallet, delegatee });
