@@ -52,9 +52,6 @@
             "insufficient_gas": 52,
             "invalid_swap": 53,
             "invalid_hashkey": 54,
-            "forbidden": 403,
-            "internal": 500,
-            "timeout": 504,
             "invalid_delegation": 55,
             "insufficient_delegation": 56,
             "invalid_delegation_rule": 57,
@@ -63,31 +60,13 @@
             "protocol_not_running": 60,
             "protocol_not_paused": 61,
             "protocol_not_activated": 62,
-            "invalid_deactivation": 63
-          }
-        },
-        "TopicType": {
-          "values": {
-            "transfer": 0,
-            "exchange": 1,
-            "declare": 2,
-            "create_asset": 3,
-            "update_asset": 4,
-            "stake": 5,
-            "account_migrate": 6,
-            "begin_block": 16,
-            "end_block": 17,
-            "consensus_upgrade": 21,
-            "declare_file": 22,
-            "sys_upgrade": 23,
-            "application": 24,
-            "consume_asset": 25,
-            "poke": 26,
-            "account_state": 129,
-            "asset_state": 130,
-            "forge_state": 131,
-            "stake_state": 132,
-            "protocol_state": 133
+            "invalid_deactivation": 63,
+            "sender_withdraw_items_full": 64,
+            "withdraw_item_missing": 65,
+            "invalid_withdraw_tx": 66,
+            "forbidden": 403,
+            "internal": 500,
+            "timeout": 504
           }
         },
         "KeyType": {
@@ -237,6 +216,10 @@
             "token": {
               "type": "string",
               "id": 4
+            },
+            "delegatee": {
+              "type": "string",
+              "id": 5
             }
           }
         },
@@ -703,6 +686,35 @@
             }
           }
         },
+        "RequestGetDelegateState": {
+          "fields": {
+            "address": {
+              "type": "string",
+              "id": 1
+            },
+            "keys": {
+              "rule": "repeated",
+              "type": "string",
+              "id": 2
+            },
+            "height": {
+              "type": "uint64",
+              "id": 3
+            }
+          }
+        },
+        "ResponseGetDelegateState": {
+          "fields": {
+            "code": {
+              "type": "StatusCode",
+              "id": 1
+            },
+            "state": {
+              "type": "DelegateState",
+              "id": 2
+            }
+          }
+        },
         "RequestStoreFile": {
           "fields": {
             "chunk": {
@@ -899,11 +911,15 @@
                 "declareFile",
                 "sysUpgrade",
                 "stake",
+                "delegate",
+                "activateProtocol",
+                "deactivateProtocol",
                 "accountState",
                 "assetState",
                 "forgeState",
                 "stakeState",
-                "protocolState"
+                "protocolState",
+                "delegateState"
               ]
             }
           },
@@ -972,6 +988,18 @@
               "type": "Transaction",
               "id": 24
             },
+            "delegate": {
+              "type": "Transaction",
+              "id": 25
+            },
+            "activateProtocol": {
+              "type": "Transaction",
+              "id": 26
+            },
+            "deactivateProtocol": {
+              "type": "Transaction",
+              "id": 27
+            },
             "accountState": {
               "type": "AccountState",
               "id": 129
@@ -991,6 +1019,10 @@
             "protocolState": {
               "type": "ProtocolState",
               "id": 133
+            },
+            "delegateState": {
+              "type": "DelegateState",
+              "id": 134
             }
           }
         },
@@ -1722,13 +1754,13 @@
               "type": "bytes",
               "id": 3
             },
-            "data": {
-              "type": "google.protobuf.Any",
-              "id": 15
-            },
             "delegator": {
               "type": "string",
               "id": 4
+            },
+            "data": {
+              "type": "google.protobuf.Any",
+              "id": 15
             }
           }
         },
@@ -1754,6 +1786,10 @@
               "type": "uint32",
               "id": 5
             },
+            "delegator": {
+              "type": "string",
+              "id": 6
+            },
             "signature": {
               "type": "bytes",
               "id": 13
@@ -1766,10 +1802,6 @@
             "itx": {
               "type": "google.protobuf.Any",
               "id": 15
-            },
-            "delegator": {
-              "type": "string",
-              "id": 6
             }
           }
         },
@@ -1818,6 +1850,19 @@
             }
           }
         },
+        "DelegateConfig": {
+          "fields": {
+            "deltaInterval": {
+              "type": "uint32",
+              "id": 1
+            },
+            "typeUrls": {
+              "rule": "repeated",
+              "type": "string",
+              "id": 2
+            }
+          }
+        },
         "TransactionConfig": {
           "fields": {
             "maxAssetSize": {
@@ -1843,6 +1888,14 @@
             "delegate": {
               "type": "DelegateConfig",
               "id": 6
+            },
+            "poke": {
+              "type": "PokeConfig",
+              "id": 7
+            },
+            "stake": {
+              "type": "StakeConfig",
+              "id": 8
             }
           }
         },
@@ -2473,21 +2526,17 @@
         },
         "PokeConfig": {
           "fields": {
-            "address": {
-              "type": "string",
-              "id": 1
-            },
             "dailyLimit": {
               "type": "uint64",
               "id": 2
             },
-            "balance": {
-              "type": "uint64",
-              "id": 3
-            },
             "amount": {
               "type": "uint64",
               "id": 4
+            },
+            "enabled": {
+              "type": "bool",
+              "id": 5
             }
           }
         },
@@ -2500,6 +2549,82 @@
             "version": {
               "type": "string",
               "id": 2
+            }
+          }
+        },
+        "WithdrawItem": {
+          "fields": {
+            "hash": {
+              "type": "string",
+              "id": 1
+            },
+            "value": {
+              "type": "BigUint",
+              "id": 2
+            }
+          }
+        },
+        "AccountConfig": {
+          "fields": {
+            "address": {
+              "type": "string",
+              "id": 1
+            },
+            "pk": {
+              "type": "bytes",
+              "id": 2
+            },
+            "balance": {
+              "type": "BigUint",
+              "id": 3
+            }
+          }
+        },
+        "TokenSwapConfig": {
+          "fields": {
+            "commissionHolderAddress": {
+              "type": "string",
+              "id": 1
+            },
+            "withdrawInterval": {
+              "type": "uint32",
+              "id": 2
+            },
+            "commission": {
+              "type": "BigUint",
+              "id": 3
+            },
+            "commissionRate": {
+              "type": "uint32",
+              "id": 4
+            },
+            "revokeCommission": {
+              "type": "uint32",
+              "id": 5
+            }
+          }
+        },
+        "Evidence": {
+          "fields": {
+            "hash": {
+              "type": "string",
+              "id": 1
+            },
+            "chainType": {
+              "type": "string",
+              "id": 2
+            },
+            "chainId": {
+              "type": "string",
+              "id": 3
+            },
+            "originalTx": {
+              "type": "bytes",
+              "id": 4
+            },
+            "receiverAddress": {
+              "type": "string",
+              "id": 5
             }
           }
         },
@@ -2577,6 +2702,10 @@
             "depositReceived": {
               "type": "BigUint",
               "id": 19
+            },
+            "withdrawItems": {
+              "type": "CircularQueue",
+              "id": 20
             },
             "data": {
               "type": "google.protobuf.Any",
@@ -2672,10 +2801,6 @@
               "type": "string",
               "id": 5
             },
-            "forgeAppHash": {
-              "type": "bytes",
-              "id": 7
-            },
             "token": {
               "type": "ForgeToken",
               "id": 8
@@ -2683,14 +2808,6 @@
             "txConfig": {
               "type": "TransactionConfig",
               "id": 9
-            },
-            "stakeConfig": {
-              "type": "StakeConfig",
-              "id": 10
-            },
-            "pokeConfig": {
-              "type": "PokeConfig",
-              "id": 11
             },
             "protocols": {
               "rule": "repeated",
@@ -2706,9 +2823,18 @@
               "type": "UpgradeInfo",
               "id": 14
             },
+            "accountConfig": {
+              "keyType": "string",
+              "type": "AccountConfig",
+              "id": 16
+            },
+            "tokenSwapConfig": {
+              "type": "TokenSwapConfig",
+              "id": 17
+            },
             "data": {
               "type": "google.protobuf.Any",
-              "id": 15
+              "id": 2047
             }
           }
         },
@@ -2953,6 +3079,51 @@
             "context": {
               "type": "StateContext",
               "id": 10
+            }
+          }
+        },
+        "DelegateOpState": {
+          "fields": {
+            "rule": {
+              "type": "string",
+              "id": 1
+            },
+            "numTxs": {
+              "type": "uint64",
+              "id": 2
+            },
+            "numTxsDelta": {
+              "type": "uint64",
+              "id": 3
+            },
+            "balance": {
+              "type": "BigUint",
+              "id": 4
+            },
+            "balanceDelta": {
+              "type": "BigUint",
+              "id": 5
+            }
+          }
+        },
+        "DelegateState": {
+          "fields": {
+            "address": {
+              "type": "string",
+              "id": 1
+            },
+            "ops": {
+              "keyType": "string",
+              "type": "DelegateOpState",
+              "id": 2
+            },
+            "context": {
+              "type": "StateContext",
+              "id": 14
+            },
+            "data": {
+              "type": "google.protobuf.Any",
+              "id": 15
             }
           }
         },
@@ -3292,6 +3463,30 @@
             "readonly": {
               "type": "bool",
               "id": 6
+            },
+            "consumedTime": {
+              "type": "string",
+              "id": 7
+            },
+            "issuer": {
+              "type": "string",
+              "id": 8
+            },
+            "parent": {
+              "type": "string",
+              "id": 9
+            },
+            "transferrable": {
+              "type": "bool",
+              "id": 10
+            },
+            "ttl": {
+              "type": "uint64",
+              "id": 11
+            },
+            "data": {
+              "type": "google.protobuf.Any",
+              "id": 50
             }
           }
         },
@@ -3626,6 +3821,12 @@
               "requestStream": true,
               "responseType": "ResponseGetSwapState",
               "responseStream": true
+            },
+            "get_delegate_state": {
+              "requestType": "RequestGetDelegateState",
+              "requestStream": true,
+              "responseType": "ResponseGetDelegateState",
+              "responseStream": true
             }
           }
         },
@@ -3729,19 +3930,6 @@
             }
           }
         },
-        "DelegateConfig": {
-          "fields": {
-            "deltaInterval": {
-              "type": "uint32",
-              "id": 1
-            },
-            "typeUrls": {
-              "rule": "repeated",
-              "type": "string",
-              "id": 2
-            }
-          }
-        },
         "AssetSpec": {
           "fields": {
             "address": {
@@ -3792,6 +3980,18 @@
             "data": {
               "type": "google.protobuf.Any",
               "id": 15
+            }
+          }
+        },
+        "ApproveWithdrawTx": {
+          "fields": {
+            "withdrawTxHash": {
+              "type": "string",
+              "id": 1
+            },
+            "evidence": {
+              "type": "Evidence",
+              "id": 2
             }
           }
         },
@@ -4039,30 +4239,6 @@
             }
           }
         },
-        "Evidence": {
-          "fields": {
-            "hash": {
-              "type": "string",
-              "id": 1
-            },
-            "chainType": {
-              "type": "string",
-              "id": 2
-            },
-            "chainId": {
-              "type": "string",
-              "id": 3
-            },
-            "originalTx": {
-              "type": "bytes",
-              "id": 4
-            },
-            "receiverAddress": {
-              "type": "string",
-              "id": 5
-            }
-          }
-        },
         "ExchangeInfo": {
           "fields": {
             "value": {
@@ -4190,6 +4366,14 @@
             "data": {
               "type": "google.protobuf.Any",
               "id": 15
+            }
+          }
+        },
+        "RevokeWithdrawTx": {
+          "fields": {
+            "withdrawTxHash": {
+              "type": "string",
+              "id": 1
             }
           }
         },
@@ -4370,6 +4554,30 @@
             "data": {
               "type": "google.protobuf.Any",
               "id": 10
+            }
+          }
+        },
+        "WithdrawTokenTx": {
+          "fields": {
+            "value": {
+              "type": "BigUint",
+              "id": 1
+            },
+            "to": {
+              "type": "string",
+              "id": 2
+            },
+            "chainType": {
+              "type": "string",
+              "id": 3
+            },
+            "chainId": {
+              "type": "string",
+              "id": 4
+            },
+            "ttl": {
+              "type": "google.protobuf.Timestamp",
+              "id": 5
             }
           }
         }

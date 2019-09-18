@@ -16,8 +16,9 @@ Object.keys(sdk).forEach(x => {
       expect(typeof SDK.connect).toEqual('function');
     });
 
+    const testChain = 'http://47.104.23.85:8211/api';
     test('should delegate to graphql-client after connect', async () => {
-      SDK.connect('https://test.abtnetwork.io/api', { name: 'test' });
+      SDK.connect(testChain, { name: 'test' });
       expect(typeof SDK.getChainInfo).toEqual('function');
       expect(typeof SDK.doRawQuery).toEqual('function');
       expect(typeof SDK.getQueries).toEqual('function');
@@ -31,11 +32,11 @@ Object.keys(sdk).forEach(x => {
     });
 
     test('should respect conn param when connected to multiple methods', async () => {
-      SDK.connect('https://test.abtnetwork.io/api', { name: 'test' });
+      SDK.connect(testChain, { name: 'test' });
       SDK.connect('https://zinc.abtnetwork.io/api', { name: 'zinc' });
       expect(typeof SDK.getChainInfo).toEqual('function');
       const res = await SDK.getChainInfo({ conn: 'test' });
-      expect(res.info.network).toContain('test');
+      expect(res.info.network).toContain('charging-chain');
       const res2 = await SDK.getChainInfo({ conn: 'zinc' });
       expect(res2.info.network).toContain('zinc');
     });

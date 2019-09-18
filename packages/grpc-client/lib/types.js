@@ -56,34 +56,34 @@
     "chainId": "arcblock",
     "pk": {},
     "gas": 2,
+    "delegator": "arcblock",
     "signature": {},
     "signatures": [
       {
         "signer": "arcblock",
         "pk": {},
         "signature": {},
+        "delegator": "arcblock",
         "data": {
           "type": "string",
           "value": "ABCD 1234"
-        },
-        "delegator": "arcblock"
+        }
       },
       {
         "signer": "arcblock",
         "pk": {},
         "signature": {},
+        "delegator": "arcblock",
         "data": {
           "type": "string",
           "value": "ABCD 1234"
-        },
-        "delegator": "arcblock"
+        }
       }
     ],
     "itx": {
       "type": "string",
       "value": "ABCD 1234"
-    },
-    "delegator": "arcblock"
+    }
   }
 }
 ```
@@ -105,34 +105,34 @@
     "chainId": "arcblock",
     "pk": {},
     "gas": 2,
+    "delegator": "arcblock",
     "signature": {},
     "signatures": [
       {
         "signer": "arcblock",
         "pk": {},
         "signature": {},
+        "delegator": "arcblock",
         "data": {
           "type": "string",
           "value": "ABCD 1234"
-        },
-        "delegator": "arcblock"
+        }
       },
       {
         "signer": "arcblock",
         "pk": {},
         "signature": {},
+        "delegator": "arcblock",
         "data": {
           "type": "string",
           "value": "ABCD 1234"
-        },
-        "delegator": "arcblock"
+        }
       }
     ],
     "itx": {
       "type": "string",
       "value": "ABCD 1234"
-    },
-    "delegator": "arcblock"
+    }
   },
   "data": {
     "type": "string",
@@ -149,7 +149,8 @@
     "pk": {},
     "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55"
   },
-  "token": "arcblock"
+  "token": "arcblock",
+  "delegatee": "arcblock"
 }
 ```
  *
@@ -159,6 +160,7 @@
  * @prop {GRpcClient.Any} data
  * @prop {GRpcClient.WalletInfo} wallet
  * @prop {string} token
+ * @prop {string} delegatee
  */
 
 /**
@@ -173,34 +175,34 @@
     "chainId": "arcblock",
     "pk": {},
     "gas": 2,
+    "delegator": "arcblock",
     "signature": {},
     "signatures": [
       {
         "signer": "arcblock",
         "pk": {},
         "signature": {},
+        "delegator": "arcblock",
         "data": {
           "type": "string",
           "value": "ABCD 1234"
-        },
-        "delegator": "arcblock"
+        }
       },
       {
         "signer": "arcblock",
         "pk": {},
         "signature": {},
+        "delegator": "arcblock",
         "data": {
           "type": "string",
           "value": "ABCD 1234"
-        },
-        "delegator": "arcblock"
+        }
       }
     ],
     "itx": {
       "type": "string",
       "value": "ABCD 1234"
-    },
-    "delegator": "arcblock"
+    }
   }
 }
 ```
@@ -222,34 +224,34 @@
     "chainId": "arcblock",
     "pk": {},
     "gas": 2,
+    "delegator": "arcblock",
     "signature": {},
     "signatures": [
       {
         "signer": "arcblock",
         "pk": {},
         "signature": {},
+        "delegator": "arcblock",
         "data": {
           "type": "string",
           "value": "ABCD 1234"
-        },
-        "delegator": "arcblock"
+        }
       },
       {
         "signer": "arcblock",
         "pk": {},
         "signature": {},
+        "delegator": "arcblock",
         "data": {
           "type": "string",
           "value": "ABCD 1234"
-        },
-        "delegator": "arcblock"
+        }
       }
     ],
     "itx": {
       "type": "string",
       "value": "ABCD 1234"
-    },
-    "delegator": "arcblock"
+    }
   },
   "wallet": {
     "type": {
@@ -318,34 +320,34 @@
       "chainId": "arcblock",
       "pk": {},
       "gas": 2,
+      "delegator": "arcblock",
       "signature": {},
       "signatures": [
         {
           "signer": "arcblock",
           "pk": {},
           "signature": {},
+          "delegator": "arcblock",
           "data": {
             "type": "string",
             "value": "ABCD 1234"
-          },
-          "delegator": "arcblock"
+          }
         },
         {
           "signer": "arcblock",
           "pk": {},
           "signature": {},
+          "delegator": "arcblock",
           "data": {
             "type": "string",
             "value": "ABCD 1234"
-          },
-          "delegator": "arcblock"
+          }
         }
       ],
       "itx": {
         "type": "string",
         "value": "ABCD 1234"
-      },
-      "delegator": "arcblock"
+      }
     },
     "height": 5,
     "index": 2,
@@ -361,7 +363,7 @@
       }
     ],
     "code": 0,
-    "time": "2019-08-22T01:12:59.394Z"
+    "time": "2019-09-18T10:22:11.613Z"
   }
 }
 ```
@@ -395,7 +397,7 @@
   "block": {
     "height": 5,
     "numTxs": 2,
-    "time": "2019-08-22T01:12:59.388Z",
+    "time": "2019-09-18T10:22:11.606Z",
     "appHash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
     "proposer": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
     "txs": [
@@ -406,34 +408,34 @@
           "chainId": "arcblock",
           "pk": {},
           "gas": 2,
+          "delegator": "arcblock",
           "signature": {},
           "signatures": [
             {
               "signer": "arcblock",
               "pk": {},
               "signature": {},
+              "delegator": "arcblock",
               "data": {
                 "type": "string",
                 "value": "ABCD 1234"
-              },
-              "delegator": "arcblock"
+              }
             },
             {
               "signer": "arcblock",
               "pk": {},
               "signature": {},
+              "delegator": "arcblock",
               "data": {
                 "type": "string",
                 "value": "ABCD 1234"
-              },
-              "delegator": "arcblock"
+              }
             }
           ],
           "itx": {
             "type": "string",
             "value": "ABCD 1234"
-          },
-          "delegator": "arcblock"
+          }
         },
         "height": 5,
         "index": 2,
@@ -449,7 +451,7 @@
           }
         ],
         "code": 0,
-        "time": "2019-08-22T01:12:59.388Z"
+        "time": "2019-09-18T10:22:11.606Z"
       },
       {
         "tx": {
@@ -458,34 +460,34 @@
           "chainId": "arcblock",
           "pk": {},
           "gas": 2,
+          "delegator": "arcblock",
           "signature": {},
           "signatures": [
             {
               "signer": "arcblock",
               "pk": {},
               "signature": {},
+              "delegator": "arcblock",
               "data": {
                 "type": "string",
                 "value": "ABCD 1234"
-              },
-              "delegator": "arcblock"
+              }
             },
             {
               "signer": "arcblock",
               "pk": {},
               "signature": {},
+              "delegator": "arcblock",
               "data": {
                 "type": "string",
                 "value": "ABCD 1234"
-              },
-              "delegator": "arcblock"
+              }
             }
           ],
           "itx": {
             "type": "string",
             "value": "ABCD 1234"
-          },
-          "delegator": "arcblock"
+          }
         },
         "height": 5,
         "index": 2,
@@ -501,7 +503,7 @@
           }
         ],
         "code": 0,
-        "time": "2019-08-22T01:12:59.388Z"
+        "time": "2019-09-18T10:22:11.606Z"
       }
     ],
     "totalTxs": 5,
@@ -513,34 +515,34 @@
           "chainId": "arcblock",
           "pk": {},
           "gas": 2,
+          "delegator": "arcblock",
           "signature": {},
           "signatures": [
             {
               "signer": "arcblock",
               "pk": {},
               "signature": {},
+              "delegator": "arcblock",
               "data": {
                 "type": "string",
                 "value": "ABCD 1234"
-              },
-              "delegator": "arcblock"
+              }
             },
             {
               "signer": "arcblock",
               "pk": {},
               "signature": {},
+              "delegator": "arcblock",
               "data": {
                 "type": "string",
                 "value": "ABCD 1234"
-              },
-              "delegator": "arcblock"
+              }
             }
           ],
           "itx": {
             "type": "string",
             "value": "ABCD 1234"
-          },
-          "delegator": "arcblock"
+          }
         },
         "height": 5,
         "index": 2,
@@ -556,7 +558,7 @@
           }
         ],
         "code": 0,
-        "time": "2019-08-22T01:12:59.388Z"
+        "time": "2019-09-18T10:22:11.606Z"
       },
       {
         "tx": {
@@ -565,34 +567,34 @@
           "chainId": "arcblock",
           "pk": {},
           "gas": 2,
+          "delegator": "arcblock",
           "signature": {},
           "signatures": [
             {
               "signer": "arcblock",
               "pk": {},
               "signature": {},
+              "delegator": "arcblock",
               "data": {
                 "type": "string",
                 "value": "ABCD 1234"
-              },
-              "delegator": "arcblock"
+              }
             },
             {
               "signer": "arcblock",
               "pk": {},
               "signature": {},
+              "delegator": "arcblock",
               "data": {
                 "type": "string",
                 "value": "ABCD 1234"
-              },
-              "delegator": "arcblock"
+              }
             }
           ],
           "itx": {
             "type": "string",
             "value": "ABCD 1234"
-          },
-          "delegator": "arcblock"
+          }
         },
         "height": 5,
         "index": 2,
@@ -608,7 +610,7 @@
           }
         ],
         "code": 0,
-        "time": "2019-08-22T01:12:59.388Z"
+        "time": "2019-09-18T10:22:11.606Z"
       }
     ],
     "txsHashes": [
@@ -695,7 +697,7 @@
     {
       "height": 5,
       "numTxs": 2,
-      "time": "2019-08-22T01:12:59.388Z",
+      "time": "2019-09-18T10:22:11.606Z",
       "appHash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
       "proposer": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
       "totalTxs": 5,
@@ -728,7 +730,7 @@
     {
       "height": 5,
       "numTxs": 2,
-      "time": "2019-08-22T01:12:59.388Z",
+      "time": "2019-09-18T10:22:11.606Z",
       "appHash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
       "proposer": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
       "totalTxs": 5,
@@ -1055,8 +1057,8 @@
     "context": {
       "genesisTx": "arcblock",
       "renaissanceTx": "arcblock",
-      "genesisTime": "2019-08-22T01:12:59.390Z",
-      "renaissanceTime": "2019-08-22T01:12:59.390Z"
+      "genesisTime": "2019-09-18T10:22:11.607Z",
+      "renaissanceTime": "2019-09-18T10:22:11.607Z"
     },
     "issuer": "arcblock",
     "migratedTo": [
@@ -1101,6 +1103,16 @@
       "fifo": true
     },
     "poke": {},
+    "withdrawItems": {
+      "items": [
+        {},
+        {}
+      ],
+      "typeUrl": "arcblock",
+      "maxItems": 2,
+      "circular": true,
+      "fifo": true
+    },
     "data": {
       "type": "string",
       "value": "ABCD 1234"
@@ -1149,7 +1161,7 @@
     "readonly": true,
     "transferrable": true,
     "ttl": 2,
-    "consumedTime": "2019-08-22T01:12:59.390Z",
+    "consumedTime": "2019-09-18T10:22:11.608Z",
     "issuer": "arcblock",
     "parent": "arcblock",
     "stake": {
@@ -1177,8 +1189,8 @@
     "context": {
       "genesisTx": "arcblock",
       "renaissanceTx": "arcblock",
-      "genesisTime": "2019-08-22T01:12:59.390Z",
-      "renaissanceTime": "2019-08-22T01:12:59.390Z"
+      "genesisTime": "2019-09-18T10:22:11.608Z",
+      "renaissanceTime": "2019-09-18T10:22:11.608Z"
     },
     "data": {
       "type": "string",
@@ -1277,8 +1289,8 @@
     "context": {
       "genesisTx": "arcblock",
       "renaissanceTx": "arcblock",
-      "genesisTime": "2019-08-22T01:12:59.390Z",
-      "renaissanceTime": "2019-08-22T01:12:59.390Z"
+      "genesisTime": "2019-09-18T10:22:11.608Z",
+      "renaissanceTime": "2019-09-18T10:22:11.608Z"
     },
     "data": {
       "type": "string",
@@ -1329,8 +1341,8 @@
     "context": {
       "genesisTx": "arcblock",
       "renaissanceTx": "arcblock",
-      "genesisTime": "2019-08-22T01:12:59.390Z",
-      "renaissanceTime": "2019-08-22T01:12:59.390Z"
+      "genesisTime": "2019-09-18T10:22:11.608Z",
+      "renaissanceTime": "2019-09-18T10:22:11.608Z"
     },
     "data": {
       "type": "string",
@@ -1422,13 +1434,12 @@
         "context": {
           "genesisTx": "arcblock",
           "renaissanceTx": "arcblock",
-          "genesisTime": "2019-08-22T01:12:59.390Z",
-          "renaissanceTime": "2019-08-22T01:12:59.390Z"
+          "genesisTime": "2019-09-18T10:22:11.608Z",
+          "renaissanceTime": "2019-09-18T10:22:11.608Z"
         }
       }
     },
     "version": "arcblock",
-    "forgeAppHash": {},
     "token": {
       "name": "arcblock",
       "symbol": "arcblock",
@@ -1455,17 +1466,16 @@
           "arcblock",
           "arcblock"
         ]
+      },
+      "poke": {
+        "dailyLimit": 5,
+        "amount": 5,
+        "enabled": true
+      },
+      "stake": {
+        "timeoutGeneral": 2,
+        "timeoutStakeForNode": 2
       }
-    },
-    "stakeConfig": {
-      "timeoutGeneral": 2,
-      "timeoutStakeForNode": 2
-    },
-    "pokeConfig": {
-      "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
-      "dailyLimit": 5,
-      "balance": 5,
-      "amount": 5
     },
     "protocols": [
       {
@@ -1483,6 +1493,18 @@
     "upgradeInfo": {
       "height": 5,
       "version": "arcblock"
+    },
+    "accountConfig": {
+      "arcblock": {
+        "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+        "pk": {}
+      }
+    },
+    "tokenSwapConfig": {
+      "commissionHolderAddress": "arcblock",
+      "withdrawInterval": 2,
+      "commissionRate": 2,
+      "revokeCommission": 2
     },
     "data": {
       "type": "string",
@@ -1532,7 +1554,7 @@
     "depositor": "arcblock",
     "withdrawer": "arcblock",
     "target": "arcblock",
-    "locktime": "2019-08-22T01:12:59.390Z",
+    "locktime": "2019-09-18T10:22:11.608Z",
     "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55"
   }
 }
@@ -1586,8 +1608,8 @@
     "context": {
       "genesisTx": "arcblock",
       "renaissanceTx": "arcblock",
-      "genesisTime": "2019-08-22T01:12:59.390Z",
-      "renaissanceTime": "2019-08-22T01:12:59.390Z"
+      "genesisTime": "2019-09-18T10:22:11.608Z",
+      "renaissanceTime": "2019-09-18T10:22:11.608Z"
     }
   }
 }
@@ -1597,6 +1619,62 @@
  * @typedef {object} GRpcClient.ResponseGetSwapState
  * @prop {GRpcClient.StatusCode} code
  * @prop {GRpcClient.SwapState} state
+ */
+
+/**
+ * Structure of GRpcClient.RequestGetDelegateState
+ *
+```javascript
+{
+  "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+  "keys": [
+    "arcblock",
+    "arcblock"
+  ],
+  "height": 5
+}
+```
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.RequestGetDelegateState
+ * @prop {string} address
+ * @prop {Array<string>} keys
+ * @prop {number} height
+ */
+
+/**
+ * Structure of GRpcClient.ResponseGetDelegateState
+ *
+```javascript
+{
+  "code": 0,
+  "state": {
+    "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+    "ops": {
+      "arcblock": {
+        "rule": "arcblock",
+        "numTxs": 5,
+        "numTxsDelta": 5
+      }
+    },
+    "context": {
+      "genesisTx": "arcblock",
+      "renaissanceTx": "arcblock",
+      "genesisTime": "2019-09-18T10:22:11.608Z",
+      "renaissanceTime": "2019-09-18T10:22:11.608Z"
+    },
+    "data": {
+      "type": "string",
+      "value": "ABCD 1234"
+    }
+  }
+}
+```
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.ResponseGetDelegateState
+ * @prop {GRpcClient.StatusCode} code
+ * @prop {GRpcClient.DelegateState} state
  */
 
 /**
@@ -1714,7 +1792,7 @@
     "appHash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
     "blockHash": {},
     "blockHeight": 5,
-    "blockTime": "2019-08-22T01:12:59.389Z",
+    "blockTime": "2019-09-18T10:22:11.607Z",
     "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
     "votingPower": 5,
     "totalTxs": 5,
@@ -1763,7 +1841,7 @@
     "appHash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
     "blockHash": {},
     "blockHeight": 5,
-    "blockTime": "2019-08-22T01:12:59.389Z",
+    "blockTime": "2019-09-18T10:22:11.607Z",
     "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
     "votingPower": 5,
     "totalTxs": 5,
@@ -1823,34 +1901,34 @@
         "chainId": "arcblock",
         "pk": {},
         "gas": 2,
+        "delegator": "arcblock",
         "signature": {},
         "signatures": [
           {
             "signer": "arcblock",
             "pk": {},
             "signature": {},
+            "delegator": "arcblock",
             "data": {
               "type": "string",
               "value": "ABCD 1234"
-            },
-            "delegator": "arcblock"
+            }
           },
           {
             "signer": "arcblock",
             "pk": {},
             "signature": {},
+            "delegator": "arcblock",
             "data": {
               "type": "string",
               "value": "ABCD 1234"
-            },
-            "delegator": "arcblock"
+            }
           }
         ],
         "itx": {
           "type": "string",
           "value": "ABCD 1234"
-        },
-        "delegator": "arcblock"
+        }
       },
       "height": 5,
       "index": 2,
@@ -1866,7 +1944,7 @@
         }
       ],
       "code": 0,
-      "time": "2019-08-22T01:12:59.389Z"
+      "time": "2019-09-18T10:22:11.607Z"
     },
     {
       "tx": {
@@ -1875,34 +1953,34 @@
         "chainId": "arcblock",
         "pk": {},
         "gas": 2,
+        "delegator": "arcblock",
         "signature": {},
         "signatures": [
           {
             "signer": "arcblock",
             "pk": {},
             "signature": {},
+            "delegator": "arcblock",
             "data": {
               "type": "string",
               "value": "ABCD 1234"
-            },
-            "delegator": "arcblock"
+            }
           },
           {
             "signer": "arcblock",
             "pk": {},
             "signature": {},
+            "delegator": "arcblock",
             "data": {
               "type": "string",
               "value": "ABCD 1234"
-            },
-            "delegator": "arcblock"
+            }
           }
         ],
         "itx": {
           "type": "string",
           "value": "ABCD 1234"
-        },
-        "delegator": "arcblock"
+        }
       },
       "height": 5,
       "index": 2,
@@ -1918,7 +1996,7 @@
         }
       ],
       "code": 0,
-      "time": "2019-08-22T01:12:59.389Z"
+      "time": "2019-09-18T10:22:11.607Z"
     }
   ]
 }
@@ -1977,34 +2055,34 @@
         "chainId": "arcblock",
         "pk": {},
         "gas": 2,
+        "delegator": "arcblock",
         "signature": {},
         "signatures": [
           {
             "signer": "arcblock",
             "pk": {},
             "signature": {},
+            "delegator": "arcblock",
             "data": {
               "type": "string",
               "value": "ABCD 1234"
-            },
-            "delegator": "arcblock"
+            }
           },
           {
             "signer": "arcblock",
             "pk": {},
             "signature": {},
+            "delegator": "arcblock",
             "data": {
               "type": "string",
               "value": "ABCD 1234"
-            },
-            "delegator": "arcblock"
+            }
           }
         ],
         "itx": {
           "type": "string",
           "value": "ABCD 1234"
-        },
-        "delegator": "arcblock"
+        }
       },
       {
         "from": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
@@ -2012,34 +2090,34 @@
         "chainId": "arcblock",
         "pk": {},
         "gas": 2,
+        "delegator": "arcblock",
         "signature": {},
         "signatures": [
           {
             "signer": "arcblock",
             "pk": {},
             "signature": {},
+            "delegator": "arcblock",
             "data": {
               "type": "string",
               "value": "ABCD 1234"
-            },
-            "delegator": "arcblock"
+            }
           },
           {
             "signer": "arcblock",
             "pk": {},
             "signature": {},
+            "delegator": "arcblock",
             "data": {
               "type": "string",
               "value": "ABCD 1234"
-            },
-            "delegator": "arcblock"
+            }
           }
         ],
         "itx": {
           "type": "string",
           "value": "ABCD 1234"
-        },
-        "delegator": "arcblock"
+        }
       }
     ]
   }
@@ -2223,11 +2301,15 @@
  * @prop {GRpcClient.Transaction} declareFile
  * @prop {GRpcClient.Transaction} sysUpgrade
  * @prop {GRpcClient.Transaction} stake
+ * @prop {GRpcClient.Transaction} delegate
+ * @prop {GRpcClient.Transaction} activateProtocol
+ * @prop {GRpcClient.Transaction} deactivateProtocol
  * @prop {GRpcClient.AccountState} accountState
  * @prop {GRpcClient.AssetState} assetState
  * @prop {GRpcClient.ForgeState} forgeState
  * @prop {GRpcClient.StakeState} stakeState
  * @prop {GRpcClient.ProtocolState} protocolState
+ * @prop {GRpcClient.DelegateState} delegateState
  */
 
 /**
@@ -2484,34 +2566,34 @@
         "chainId": "arcblock",
         "pk": {},
         "gas": 2,
+        "delegator": "arcblock",
         "signature": {},
         "signatures": [
           {
             "signer": "arcblock",
             "pk": {},
             "signature": {},
+            "delegator": "arcblock",
             "data": {
               "type": "string",
               "value": "ABCD 1234"
-            },
-            "delegator": "arcblock"
+            }
           },
           {
             "signer": "arcblock",
             "pk": {},
             "signature": {},
+            "delegator": "arcblock",
             "data": {
               "type": "string",
               "value": "ABCD 1234"
-            },
-            "delegator": "arcblock"
+            }
           }
         ],
         "itx": {
           "type": "string",
           "value": "ABCD 1234"
-        },
-        "delegator": "arcblock"
+        }
       },
       "valid": true,
       "code": 0
@@ -2528,34 +2610,34 @@
         "chainId": "arcblock",
         "pk": {},
         "gas": 2,
+        "delegator": "arcblock",
         "signature": {},
         "signatures": [
           {
             "signer": "arcblock",
             "pk": {},
             "signature": {},
+            "delegator": "arcblock",
             "data": {
               "type": "string",
               "value": "ABCD 1234"
-            },
-            "delegator": "arcblock"
+            }
           },
           {
             "signer": "arcblock",
             "pk": {},
             "signature": {},
+            "delegator": "arcblock",
             "data": {
               "type": "string",
               "value": "ABCD 1234"
-            },
-            "delegator": "arcblock"
+            }
           }
         ],
         "itx": {
           "type": "string",
           "value": "ABCD 1234"
-        },
-        "delegator": "arcblock"
+        }
       },
       "valid": true,
       "code": 0
@@ -2618,7 +2700,16 @@
       "genesisTime": "arcblock",
       "renaissanceTime": "arcblock",
       "moniker": "arcblock",
-      "readonly": true
+      "readonly": true,
+      "consumedTime": "arcblock",
+      "issuer": "arcblock",
+      "parent": "arcblock",
+      "transferrable": true,
+      "ttl": 5,
+      "data": {
+        "type": "string",
+        "value": "ABCD 1234"
+      }
     },
     {
       "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
@@ -2626,7 +2717,16 @@
       "genesisTime": "arcblock",
       "renaissanceTime": "arcblock",
       "moniker": "arcblock",
-      "readonly": true
+      "readonly": true,
+      "consumedTime": "arcblock",
+      "issuer": "arcblock",
+      "parent": "arcblock",
+      "transferrable": true,
+      "ttl": 5,
+      "data": {
+        "type": "string",
+        "value": "ABCD 1234"
+      }
     }
   ]
 }
@@ -2890,34 +2990,34 @@
         "chainId": "arcblock",
         "pk": {},
         "gas": 2,
+        "delegator": "arcblock",
         "signature": {},
         "signatures": [
           {
             "signer": "arcblock",
             "pk": {},
             "signature": {},
+            "delegator": "arcblock",
             "data": {
               "type": "string",
               "value": "ABCD 1234"
-            },
-            "delegator": "arcblock"
+            }
           },
           {
             "signer": "arcblock",
             "pk": {},
             "signature": {},
+            "delegator": "arcblock",
             "data": {
               "type": "string",
               "value": "ABCD 1234"
-            },
-            "delegator": "arcblock"
+            }
           }
         ],
         "itx": {
           "type": "string",
           "value": "ABCD 1234"
-        },
-        "delegator": "arcblock"
+        }
       },
       "valid": true,
       "code": 0
@@ -2934,34 +3034,34 @@
         "chainId": "arcblock",
         "pk": {},
         "gas": 2,
+        "delegator": "arcblock",
         "signature": {},
         "signatures": [
           {
             "signer": "arcblock",
             "pk": {},
             "signature": {},
+            "delegator": "arcblock",
             "data": {
               "type": "string",
               "value": "ABCD 1234"
-            },
-            "delegator": "arcblock"
+            }
           },
           {
             "signer": "arcblock",
             "pk": {},
             "signature": {},
+            "delegator": "arcblock",
             "data": {
               "type": "string",
               "value": "ABCD 1234"
-            },
-            "delegator": "arcblock"
+            }
           }
         ],
         "itx": {
           "type": "string",
           "value": "ABCD 1234"
-        },
-        "delegator": "arcblock"
+        }
       },
       "valid": true,
       "code": 0
@@ -3117,7 +3217,7 @@
       "depositor": "arcblock",
       "withdrawer": "arcblock",
       "target": "arcblock",
-      "locktime": "2019-08-22T01:12:59.392Z",
+      "locktime": "2019-09-18T10:22:11.612Z",
       "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55"
     },
     {
@@ -3127,7 +3227,7 @@
       "depositor": "arcblock",
       "withdrawer": "arcblock",
       "target": "arcblock",
-      "locktime": "2019-08-22T01:12:59.392Z",
+      "locktime": "2019-09-18T10:22:11.612Z",
       "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55"
     }
   ]
@@ -3201,8 +3301,8 @@
       "context": {
         "genesisTx": "arcblock",
         "renaissanceTx": "arcblock",
-        "genesisTime": "2019-08-22T01:12:59.392Z",
-        "renaissanceTime": "2019-08-22T01:12:59.392Z"
+        "genesisTime": "2019-09-18T10:22:11.612Z",
+        "renaissanceTime": "2019-09-18T10:22:11.612Z"
       }
     },
     {
@@ -3220,8 +3320,8 @@
       "context": {
         "genesisTx": "arcblock",
         "renaissanceTx": "arcblock",
-        "genesisTime": "2019-08-22T01:12:59.392Z",
-        "renaissanceTime": "2019-08-22T01:12:59.392Z"
+        "genesisTime": "2019-09-18T10:22:11.612Z",
+        "renaissanceTime": "2019-09-18T10:22:11.612Z"
       }
     }
   ]
@@ -3441,8 +3541,8 @@
  * @prop {string} signer
  * @prop {Uint8Array} pk
  * @prop {Uint8Array} signature
- * @prop {GRpcClient.Any} data
  * @prop {string} delegator
+ * @prop {GRpcClient.Any} data
  */
 
 /**
@@ -3455,10 +3555,10 @@
  * @prop {string} chainId
  * @prop {Uint8Array} pk
  * @prop {number} gas
+ * @prop {string} delegator
  * @prop {Uint8Array} signature
  * @prop {Array<GRpcClient.Multisig>} signatures
  * @prop {GRpcClient.Any} itx
- * @prop {string} delegator
  */
 
 /**
@@ -3485,6 +3585,15 @@
  */
 
 /**
+ * Structure of GRpcClient.DelegateConfig
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.DelegateConfig
+ * @prop {number} deltaInterval
+ * @prop {Array<string>} typeUrls
+ */
+
+/**
  * Structure of GRpcClient.TransactionConfig
  *
  * @memberof GRpcClient
@@ -3495,6 +3604,8 @@
  * @prop {number} minimumStake
  * @prop {GRpcClient.DeclareConfig} declare
  * @prop {GRpcClient.DelegateConfig} delegate
+ * @prop {GRpcClient.PokeConfig} poke
+ * @prop {GRpcClient.StakeConfig} stake
  */
 
 /**
@@ -3765,10 +3876,9 @@
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.PokeConfig
- * @prop {string} address
  * @prop {number} dailyLimit
- * @prop {number} balance
  * @prop {number} amount
+ * @prop {boolean} enabled
  */
 
 /**
@@ -3778,6 +3888,49 @@
  * @typedef {object} GRpcClient.UpgradeInfo
  * @prop {number} height
  * @prop {string} version
+ */
+
+/**
+ * Structure of GRpcClient.WithdrawItem
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.WithdrawItem
+ * @prop {string} hash
+ * @prop {GRpcClient.BigUint} value
+ */
+
+/**
+ * Structure of GRpcClient.AccountConfig
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.AccountConfig
+ * @prop {string} address
+ * @prop {Uint8Array} pk
+ * @prop {GRpcClient.BigUint} balance
+ */
+
+/**
+ * Structure of GRpcClient.TokenSwapConfig
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.TokenSwapConfig
+ * @prop {string} commissionHolderAddress
+ * @prop {number} withdrawInterval
+ * @prop {GRpcClient.BigUint} commission
+ * @prop {number} commissionRate
+ * @prop {number} revokeCommission
+ */
+
+/**
+ * Structure of GRpcClient.Evidence
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.Evidence
+ * @prop {string} hash
+ * @prop {string} chainType
+ * @prop {string} chainId
+ * @prop {Uint8Array} originalTx
+ * @prop {string} receiverAddress
  */
 
 /**
@@ -3802,6 +3955,7 @@
  * @prop {GRpcClient.CircularQueue} pinnedFiles
  * @prop {GRpcClient.PokeInfo} poke
  * @prop {GRpcClient.BigUint} depositReceived
+ * @prop {GRpcClient.CircularQueue} withdrawItems
  * @prop {GRpcClient.Any} data
  */
 
@@ -3843,14 +3997,13 @@
  * @prop {GRpcClient.UpgradeTasks} tasks
  * @prop {GRpcClient.StakeSummary} stakeSummary
  * @prop {string} version
- * @prop {Uint8Array} forgeAppHash
  * @prop {GRpcClient.ForgeToken} token
  * @prop {GRpcClient.TransactionConfig} txConfig
- * @prop {GRpcClient.StakeConfig} stakeConfig
- * @prop {GRpcClient.PokeConfig} pokeConfig
  * @prop {Array<GRpcClient.CoreProtocol>} protocols
  * @prop {number} gas
  * @prop {GRpcClient.UpgradeInfo} upgradeInfo
+ * @prop {GRpcClient.AccountConfig} accountConfig
+ * @prop {GRpcClient.TokenSwapConfig} tokenSwapConfig
  * @prop {GRpcClient.Any} data
  */
 
@@ -3960,6 +4113,29 @@
  * @prop {number} locktime
  * @prop {Uint8Array} hashlock
  * @prop {GRpcClient.StateContext} context
+ */
+
+/**
+ * Structure of GRpcClient.DelegateOpState
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.DelegateOpState
+ * @prop {string} rule
+ * @prop {number} numTxs
+ * @prop {number} numTxsDelta
+ * @prop {GRpcClient.BigUint} balance
+ * @prop {GRpcClient.BigUint} balanceDelta
+ */
+
+/**
+ * Structure of GRpcClient.DelegateState
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.DelegateState
+ * @prop {string} address
+ * @prop {GRpcClient.DelegateOpState} ops
+ * @prop {GRpcClient.StateContext} context
+ * @prop {GRpcClient.Any} data
  */
 
 /**
@@ -4211,6 +4387,12 @@
  * @prop {string} renaissanceTime
  * @prop {string} moniker
  * @prop {boolean} readonly
+ * @prop {string} consumedTime
+ * @prop {string} issuer
+ * @prop {string} parent
+ * @prop {boolean} transferrable
+ * @prop {number} ttl
+ * @prop {GRpcClient.Any} data
  */
 
 /**
@@ -4358,15 +4540,6 @@
  */
 
 /**
- * Structure of GRpcClient.DelegateConfig
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.DelegateConfig
- * @prop {number} deltaInterval
- * @prop {Array<string>} typeUrls
- */
-
-/**
  * Structure of GRpcClient.AssetSpec
  *
  * @memberof GRpcClient
@@ -4441,6 +4614,28 @@
  * @typedef {object} GRpcClient.ApproveTetherTx
  * @prop {string} withdraw
  * @prop {GRpcClient.Any} data
+ */
+
+/**
+ * Structure of GRpcClient.ApproveWithdrawTx
+ *
+```javascript
+{
+  "withdrawTxHash": "arcblock",
+  "evidence": {
+    "hash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+    "chainType": "arcblock",
+    "chainId": "arcblock",
+    "originalTx": {},
+    "receiverAddress": "arcblock"
+  }
+}
+```
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.ApproveWithdrawTx
+ * @prop {string} withdrawTxHash
+ * @prop {GRpcClient.Evidence} evidence
  */
 
 /**
@@ -4627,7 +4822,7 @@
 {
   "target": "arcblock",
   "withdrawer": "arcblock",
-  "locktime": "2019-08-22T01:12:59.396Z"
+  "locktime": "2019-09-18T10:22:11.614Z"
 }
 ```
  *
@@ -4665,18 +4860,6 @@
  */
 
 /**
- * Structure of GRpcClient.Evidence
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.Evidence
- * @prop {string} hash
- * @prop {string} chainType
- * @prop {string} chainId
- * @prop {Uint8Array} originalTx
- * @prop {string} receiverAddress
- */
-
-/**
  * Structure of GRpcClient.ExchangeInfo
  *
  * @memberof GRpcClient
@@ -4703,7 +4886,7 @@
       "arcblock"
     ]
   },
-  "expiredAt": "2019-08-22T01:12:59.396Z",
+  "expiredAt": "2019-09-18T10:22:11.615Z",
   "data": {
     "type": "string",
     "value": "ABCD 1234"
@@ -4752,37 +4935,37 @@
       "chainId": "arcblock",
       "pk": {},
       "gas": 2,
+      "delegator": "arcblock",
       "signature": {},
       "signatures": [
         {
           "signer": "arcblock",
           "pk": {},
           "signature": {},
+          "delegator": "arcblock",
           "data": {
             "type": "string",
             "value": "ABCD 1234"
-          },
-          "delegator": "arcblock"
+          }
         },
         {
           "signer": "arcblock",
           "pk": {},
           "signature": {},
+          "delegator": "arcblock",
           "data": {
             "type": "string",
             "value": "ABCD 1234"
-          },
-          "delegator": "arcblock"
+          }
         }
       ],
       "itx": {
         "type": "string",
         "value": "ABCD 1234"
-      },
-      "delegator": "arcblock"
+      }
     }
   },
-  "expiredAt": "2019-08-22T01:12:59.396Z",
+  "expiredAt": "2019-09-18T10:22:11.615Z",
   "data": {
     "type": "string",
     "value": "ABCD 1234"
@@ -4876,6 +5059,20 @@
  * @typedef {object} GRpcClient.RevokeTetherTx
  * @prop {string} tether
  * @prop {GRpcClient.Any} data
+ */
+
+/**
+ * Structure of GRpcClient.RevokeWithdrawTx
+ *
+```javascript
+{
+  "withdrawTxHash": "arcblock"
+}
+```
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.RevokeWithdrawTx
+ * @prop {string} withdrawTxHash
  */
 
 /**
@@ -5052,21 +5249,21 @@
       "signer": "arcblock",
       "pk": {},
       "signature": {},
+      "delegator": "arcblock",
       "data": {
         "type": "string",
         "value": "ABCD 1234"
-      },
-      "delegator": "arcblock"
+      }
     },
     {
       "signer": "arcblock",
       "pk": {},
       "signature": {},
+      "delegator": "arcblock",
       "data": {
         "type": "string",
         "value": "ABCD 1234"
-      },
-      "delegator": "arcblock"
+      }
     }
   ],
   "sender": {
@@ -5082,7 +5279,7 @@
     ],
     "tether": "arcblock"
   },
-  "expiredAt": "2019-08-22T01:12:59.396Z",
+  "expiredAt": "2019-09-18T10:22:11.615Z",
   "data": {
     "type": "string",
     "value": "ABCD 1234"
@@ -5102,6 +5299,27 @@
  * @prop {GRpcClient.TetherTradeInfo} receiver
  * @prop {GRpcClient.Timestamp} expiredAt
  * @prop {GRpcClient.Any} data
+ */
+
+/**
+ * Structure of GRpcClient.WithdrawTokenTx
+ *
+```javascript
+{
+  "to": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+  "chainType": "arcblock",
+  "chainId": "arcblock",
+  "ttl": "2019-09-18T10:22:11.615Z"
+}
+```
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.WithdrawTokenTx
+ * @prop {GRpcClient.BigUint} value
+ * @prop {string} to
+ * @prop {string} chainType
+ * @prop {string} chainId
+ * @prop {GRpcClient.Timestamp} ttl
  */
 
 /**
@@ -5635,6 +5853,16 @@
  *
  * @memberof GRpcClient
  * @function
+ * @name GRpcClient#getDelegateState
+ * @param {GRpcClient.RequestGetDelegateState} params
+ * @returns {EventEmitter} EventEmitter that emits `data` event when new data received, checkout {@link GRpcClient.ResponseGetDelegateState} for payload format.
+ */
+
+/**
+ * Send gRPC call and return the result
+ *
+ * @memberof GRpcClient
+ * @function
  * @name GRpcClient#createWallet
  * @param {GRpcClient.RequestCreateWallet} params
  * @returns {Promise.<GRpcClient.ResponseCreateWallet>}
@@ -5985,6 +6213,33 @@
  * @function
  * @name GRpcClient#sendApproveTetherTx
  * @param {GRpcClient.ApproveTetherTxInput} params
+ * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
+ */
+
+
+/**
+ * @memberof GRpcClient
+ * @typedef {Object} GRpcClient.ApproveWithdrawTxInput
+ * @prop {object} input
+ * @prop {object} input.tx - data of the transaction
+ * @prop {GRpcClient.ApproveWithdrawTx} input.tx.itx - the actual transaction object
+ * @prop {string} [input.tx.pk] - the sender pk
+ * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
+ * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
+ * @prop {string} [input.tx.chainId] - the chainId
+ * @prop {string} [input.tx.signature] - transaction signature
+ * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transaction
+ * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
+ * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
+ */
+
+/**
+ * Send ApproveWithdrawTx transaction and get the hash, use {@link GRpcClient#getTx} to get transaction detail
+ *
+ * @memberof GRpcClient
+ * @function
+ * @name GRpcClient#sendApproveWithdrawTx
+ * @param {GRpcClient.ApproveWithdrawTxInput} params
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
 
@@ -6369,6 +6624,33 @@
 
 /**
  * @memberof GRpcClient
+ * @typedef {Object} GRpcClient.RevokeWithdrawTxInput
+ * @prop {object} input
+ * @prop {object} input.tx - data of the transaction
+ * @prop {GRpcClient.RevokeWithdrawTx} input.tx.itx - the actual transaction object
+ * @prop {string} [input.tx.pk] - the sender pk
+ * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
+ * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
+ * @prop {string} [input.tx.chainId] - the chainId
+ * @prop {string} [input.tx.signature] - transaction signature
+ * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transaction
+ * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
+ * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
+ */
+
+/**
+ * Send RevokeWithdrawTx transaction and get the hash, use {@link GRpcClient#getTx} to get transaction detail
+ *
+ * @memberof GRpcClient
+ * @function
+ * @name GRpcClient#sendRevokeWithdrawTx
+ * @param {GRpcClient.RevokeWithdrawTxInput} params
+ * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
+ */
+
+
+/**
+ * @memberof GRpcClient
  * @typedef {Object} GRpcClient.SetupSwapTxInput
  * @prop {object} input
  * @prop {object} input.tx - data of the transaction
@@ -6530,6 +6812,33 @@
 
 
 /**
+ * @memberof GRpcClient
+ * @typedef {Object} GRpcClient.WithdrawTokenTxInput
+ * @prop {object} input
+ * @prop {object} input.tx - data of the transaction
+ * @prop {GRpcClient.WithdrawTokenTx} input.tx.itx - the actual transaction object
+ * @prop {string} [input.tx.pk] - the sender pk
+ * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
+ * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
+ * @prop {string} [input.tx.chainId] - the chainId
+ * @prop {string} [input.tx.signature] - transaction signature
+ * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transaction
+ * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
+ * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
+ */
+
+/**
+ * Send WithdrawTokenTx transaction and get the hash, use {@link GRpcClient#getTx} to get transaction detail
+ *
+ * @memberof GRpcClient
+ * @function
+ * @name GRpcClient#sendWithdrawTokenTx
+ * @param {GRpcClient.WithdrawTokenTxInput} params
+ * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
+ */
+
+
+/**
  * Encode a ConsensusUpgradeTx transaction for later use
  *
  * @name GRpcClient#encodeConsensusUpgradeTx
@@ -6602,6 +6911,17 @@
  * @function
  * @memberof GRpcClient
  * @param {GRpcClient.ApproveTetherTxInput} params
+ * @returns {Promise<GRpcClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
+ */
+
+
+/**
+ * Encode a ApproveWithdrawTx transaction for later use
+ *
+ * @name GRpcClient#encodeApproveWithdrawTx
+ * @function
+ * @memberof GRpcClient
+ * @param {GRpcClient.ApproveWithdrawTxInput} params
  * @returns {Promise<GRpcClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
 
@@ -6750,6 +7070,17 @@
 
 
 /**
+ * Encode a RevokeWithdrawTx transaction for later use
+ *
+ * @name GRpcClient#encodeRevokeWithdrawTx
+ * @function
+ * @memberof GRpcClient
+ * @param {GRpcClient.RevokeWithdrawTxInput} params
+ * @returns {Promise<GRpcClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
+ */
+
+
+/**
  * Encode a SetupSwapTx transaction for later use
  *
  * @name GRpcClient#encodeSetupSwapTx
@@ -6811,5 +7142,16 @@
  * @function
  * @memberof GRpcClient
  * @param {GRpcClient.WithdrawTetherTxInput} params
+ * @returns {Promise<GRpcClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
+ */
+
+
+/**
+ * Encode a WithdrawTokenTx transaction for later use
+ *
+ * @name GRpcClient#encodeWithdrawTokenTx
+ * @function
+ * @memberof GRpcClient
+ * @param {GRpcClient.WithdrawTokenTxInput} params
  * @returns {Promise<GRpcClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */

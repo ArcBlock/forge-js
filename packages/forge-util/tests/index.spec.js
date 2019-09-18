@@ -2,7 +2,6 @@ const BN = require('bn.js');
 const {
   fromUnitToToken,
   fromTokenToUnit,
-  hexToNumberString,
   isBN,
   numberToHex,
   toBN,
@@ -29,6 +28,15 @@ describe('#fromUnitToToken & fromTokenToUnit', () => {
     expect(fromTokenToUnit(-100)).toEqual(fromTokenToUnit('-100'));
     expect(fromTokenToUnit(10000000000)).toEqual(fromTokenToUnit('10000000000'));
     expect(fromTokenToUnit(9.87643)).toEqual(fromTokenToUnit('9.87643'));
+  });
+
+  test('should handle e notation as expected: fromUnitToToken', () => {
+    expect(fromUnitToToken(1e24)).toEqual('1000000');
+    expect(fromUnitToToken(1.2345678987654321e26)).toEqual('123456789.87654321');
+  });
+
+  test('should handle e notation as expected: fromTokenToUnit', () => {
+    expect(fromTokenToUnit(1e8).toString()).toEqual('100000000000000000000000000');
   });
 
   [100, -100, 10000000000000].forEach(x => {
@@ -163,6 +171,9 @@ describe('#web-util-test-case', () => {
       { value: -0, expected: '0' },
       { value: '-0', expected: '0' },
       { value: '-0x0', expected: '0' },
+      { value: 1e24, expected: '1000000000000000000000000' },
+      { value: 1.23456e24, expected: '1234560000000000000000000' },
+      { value: 1e24, expected: '1000000000000000000000000' },
       { value: new BN(0), expected: '0' },
     ];
 
@@ -246,17 +257,6 @@ describe('#web-util-test-case', () => {
     tests.forEach(test => {
       expect(toHex(test.value)).toEqual(test.expected);
     });
-  });
-
-  it('calls hexToNumberString and returns the expected results', () => {
-    expect(hexToNumberString('0x3e8')).toEqual('1000');
-
-    expect(hexToNumberString('0x1f0fe294a36')).toEqual('2134567897654');
-
-    // allow compatiblity
-    expect(hexToNumberString(100000)).toEqual('100000');
-
-    expect(hexToNumberString('100000')).toEqual('100000');
   });
 
   it('calls hexToUtf8 and returns the expected results', () => {

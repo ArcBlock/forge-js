@@ -117,8 +117,8 @@ const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
       signature: encoded1.signature,
     });
 
-    console.log('exchange.result', res);
-    console.log('view exchange tx', `${endpoint}/node/explorer/txs/${res}`);
+    console.log('exchange hash', res);
+    console.log('exchange tx', `${endpoint}/node/explorer/txs/${res}`);
   } catch (err) {
     console.error(err);
     console.log(JSON.stringify(err.errors));

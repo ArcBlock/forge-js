@@ -163,13 +163,13 @@ class GraphQLClient extends GraphQLClientBase {
         }
 
         const txObj = createMessage('Transaction', {
-          from: delegatee || address,
+          from: tx.delegator ? address : delegatee || address,
           nonce,
           pk,
           chainId,
           signature: tx.signature || Buffer.from([]),
           signatures,
-          delegator: delegatee ? address : '',
+          delegator: tx.delegator || (delegatee ? address : ''),
           itx,
         });
         const txToSignBytes = txObj.serializeBinary();
@@ -283,14 +283,19 @@ class GraphQLClient extends GraphQLClientBase {
       // TODO: verify existing signatures before adding new signatures
       // Generate transaction multi sign function
       if (multiSignTxs.includes(x)) {
-        const txMultiSignFn = async ({ tx, wallet, delegatee, encoding = '' }) => {
-          tx.signatures = tx.signatures || tx.signaturesList || [];
-          tx.signatures.unshift({
+        const txMultiSignFn = async ({ tx, wallet, delegatee, data, encoding = '' }) => {
+          if (typeof wallet.toAddress !== 'function') {
+            throw new Error('Multisig requires a valid wallet');
+          }
+          tx.signaturesList = tx.signatures || tx.signaturesList || [];
+          tx.signaturesList.unshift({
             pk: wallet.publicKey,
             signer: wallet.toAddress(),
+            delegator: delegatee || '',
+            data,
           });
 
-          const { object, buffer } = await txEncodeFn({ tx, wallet, delegatee });
+          const { object, buffer } = await txEncodeFn({ tx, wallet });
           object.signaturesList[0].signature = wallet.sign(bytesToHex(buffer));
           return _formatEncodedTx(object, encoding);
         };

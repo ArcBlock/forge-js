@@ -89,8 +89,6 @@ declare namespace _Lib {
     hexToUtf8: (hex: string) => string;
     numberToHex: (value: any) => string;
     hexToNumber: (value: any) => number;
-    hexToNumberString: (value: any) => string;
-    numberToBN: any;
     isHex: (hex: string) => boolean;
     isHexStrict: (hex: string) => boolean;
     isUint8Array: typeof isUint8Array;

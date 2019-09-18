@@ -71,6 +71,7 @@ getProtocolState(request: forge_abi.RequestGetProtocolState | Array<forge_abi.Re
 getStakeState(request: forge_abi.RequestGetStakeState | Array<forge_abi.RequestGetStakeState>): GRpcClient.StreamResult<forge_abi.ResponseGetStakeState>;
 getTetherState(request: forge_abi.RequestGetTetherState | Array<forge_abi.RequestGetTetherState>): GRpcClient.StreamResult<forge_abi.ResponseGetTetherState>;
 getSwapState(request: forge_abi.RequestGetSwapState | Array<forge_abi.RequestGetSwapState>): GRpcClient.StreamResult<forge_abi.ResponseGetSwapState>;
+getDelegateState(request: forge_abi.RequestGetDelegateState | Array<forge_abi.RequestGetDelegateState>): GRpcClient.StreamResult<forge_abi.ResponseGetDelegateState>;
 createWallet(request: forge_abi.RequestCreateWallet): GRpcClient.UnaryResult<forge_abi.ResponseCreateWallet>;
 loadWallet(request: forge_abi.RequestLoadWallet): GRpcClient.UnaryResult<forge_abi.ResponseLoadWallet>;
 recoverWallet(request: forge_abi.RequestRecoverWallet): GRpcClient.UnaryResult<forge_abi.ResponseRecoverWallet>;
@@ -95,6 +96,7 @@ encodeAccountMigrateTx(param: GRpcClient.TxParam<GRpcClient.AccountMigrateTx>): 
 encodeAcquireAssetTx(param: GRpcClient.TxParam<GRpcClient.AcquireAssetTx>): Promise<GRpcClient.ResponseSendTx>;
 encodeActivateProtocolTx(param: GRpcClient.TxParam<GRpcClient.ActivateProtocolTx>): Promise<GRpcClient.ResponseSendTx>;
 encodeApproveTetherTx(param: GRpcClient.TxParam<GRpcClient.ApproveTetherTx>): Promise<GRpcClient.ResponseSendTx>;
+encodeApproveWithdrawTx(param: GRpcClient.TxParam<GRpcClient.ApproveWithdrawTx>): Promise<GRpcClient.ResponseSendTx>;
 encodeConsumeAssetTx(param: GRpcClient.TxParam<GRpcClient.ConsumeAssetTx>): Promise<GRpcClient.ResponseSendTx>;
 encodeCreateAssetTx(param: GRpcClient.TxParam<GRpcClient.CreateAssetTx>): Promise<GRpcClient.ResponseSendTx>;
 encodeDeactivateProtocolTx(param: GRpcClient.TxParam<GRpcClient.DeactivateProtocolTx>): Promise<GRpcClient.ResponseSendTx>;
@@ -108,12 +110,14 @@ encodePokeTx(param: GRpcClient.TxParam<GRpcClient.PokeTx>): Promise<GRpcClient.R
 encodeRetrieveSwapTx(param: GRpcClient.TxParam<GRpcClient.RetrieveSwapTx>): Promise<GRpcClient.ResponseSendTx>;
 encodeRevokeSwapTx(param: GRpcClient.TxParam<GRpcClient.RevokeSwapTx>): Promise<GRpcClient.ResponseSendTx>;
 encodeRevokeTetherTx(param: GRpcClient.TxParam<GRpcClient.RevokeTetherTx>): Promise<GRpcClient.ResponseSendTx>;
+encodeRevokeWithdrawTx(param: GRpcClient.TxParam<GRpcClient.RevokeWithdrawTx>): Promise<GRpcClient.ResponseSendTx>;
 encodeSetupSwapTx(param: GRpcClient.TxParam<GRpcClient.SetupSwapTx>): Promise<GRpcClient.ResponseSendTx>;
 encodeStakeTx(param: GRpcClient.TxParam<GRpcClient.StakeTx>): Promise<GRpcClient.ResponseSendTx>;
 encodeTransferTx(param: GRpcClient.TxParam<GRpcClient.TransferTx>): Promise<GRpcClient.ResponseSendTx>;
 encodeUpdateAssetTx(param: GRpcClient.TxParam<GRpcClient.UpdateAssetTx>): Promise<GRpcClient.ResponseSendTx>;
 encodeUpgradeNodeTx(param: GRpcClient.TxParam<GRpcClient.UpgradeNodeTx>): Promise<GRpcClient.ResponseSendTx>;
 encodeWithdrawTetherTx(param: GRpcClient.TxParam<GRpcClient.WithdrawTetherTx>): Promise<GRpcClient.ResponseSendTx>;
+encodeWithdrawTokenTx(param: GRpcClient.TxParam<GRpcClient.WithdrawTokenTx>): Promise<GRpcClient.ResponseSendTx>;
 sendConsensusUpgradeTx(param: GRpcClient.TxParam<GRpcClient.ConsensusUpgradeTx>): Promise<GRpcClient.EncodeTxResult>;
 sendDeployProtocolTx(param: GRpcClient.TxParam<GRpcClient.DeployProtocolTx>): Promise<GRpcClient.EncodeTxResult>;
 sendSysUpgradeTx(param: GRpcClient.TxParam<GRpcClient.SysUpgradeTx>): Promise<GRpcClient.EncodeTxResult>;
@@ -121,6 +125,7 @@ sendAccountMigrateTx(param: GRpcClient.TxParam<GRpcClient.AccountMigrateTx>): Pr
 sendAcquireAssetTx(param: GRpcClient.TxParam<GRpcClient.AcquireAssetTx>): Promise<GRpcClient.EncodeTxResult>;
 sendActivateProtocolTx(param: GRpcClient.TxParam<GRpcClient.ActivateProtocolTx>): Promise<GRpcClient.EncodeTxResult>;
 sendApproveTetherTx(param: GRpcClient.TxParam<GRpcClient.ApproveTetherTx>): Promise<GRpcClient.EncodeTxResult>;
+sendApproveWithdrawTx(param: GRpcClient.TxParam<GRpcClient.ApproveWithdrawTx>): Promise<GRpcClient.EncodeTxResult>;
 sendConsumeAssetTx(param: GRpcClient.TxParam<GRpcClient.ConsumeAssetTx>): Promise<GRpcClient.EncodeTxResult>;
 sendCreateAssetTx(param: GRpcClient.TxParam<GRpcClient.CreateAssetTx>): Promise<GRpcClient.EncodeTxResult>;
 sendDeactivateProtocolTx(param: GRpcClient.TxParam<GRpcClient.DeactivateProtocolTx>): Promise<GRpcClient.EncodeTxResult>;
@@ -135,12 +140,14 @@ checkin(param: GRpcClient.TxParam<GRpcClient.PokeTx>): Promise<GRpcClient.Encode
 sendRetrieveSwapTx(param: GRpcClient.TxParam<GRpcClient.RetrieveSwapTx>): Promise<GRpcClient.EncodeTxResult>;
 sendRevokeSwapTx(param: GRpcClient.TxParam<GRpcClient.RevokeSwapTx>): Promise<GRpcClient.EncodeTxResult>;
 sendRevokeTetherTx(param: GRpcClient.TxParam<GRpcClient.RevokeTetherTx>): Promise<GRpcClient.EncodeTxResult>;
+sendRevokeWithdrawTx(param: GRpcClient.TxParam<GRpcClient.RevokeWithdrawTx>): Promise<GRpcClient.EncodeTxResult>;
 sendSetupSwapTx(param: GRpcClient.TxParam<GRpcClient.SetupSwapTx>): Promise<GRpcClient.EncodeTxResult>;
 sendStakeTx(param: GRpcClient.TxParam<GRpcClient.StakeTx>): Promise<GRpcClient.EncodeTxResult>;
 sendTransferTx(param: GRpcClient.TxParam<GRpcClient.TransferTx>): Promise<GRpcClient.EncodeTxResult>;
 sendUpdateAssetTx(param: GRpcClient.TxParam<GRpcClient.UpdateAssetTx>): Promise<GRpcClient.EncodeTxResult>;
 sendUpgradeNodeTx(param: GRpcClient.TxParam<GRpcClient.UpgradeNodeTx>): Promise<GRpcClient.EncodeTxResult>;
 sendWithdrawTetherTx(param: GRpcClient.TxParam<GRpcClient.WithdrawTetherTx>): Promise<GRpcClient.EncodeTxResult>;
+sendWithdrawTokenTx(param: GRpcClient.TxParam<GRpcClient.WithdrawTokenTx>): Promise<GRpcClient.EncodeTxResult>;
 signConsensusUpgradeTx(param: GRpcClient.TxParam<GRpcClient.ConsensusUpgradeTx>): Promise<GRpcClient.Transaction>;
 signDeployProtocolTx(param: GRpcClient.TxParam<GRpcClient.DeployProtocolTx>): Promise<GRpcClient.Transaction>;
 signSysUpgradeTx(param: GRpcClient.TxParam<GRpcClient.SysUpgradeTx>): Promise<GRpcClient.Transaction>;
@@ -148,6 +155,7 @@ signAccountMigrateTx(param: GRpcClient.TxParam<GRpcClient.AccountMigrateTx>): Pr
 signAcquireAssetTx(param: GRpcClient.TxParam<GRpcClient.AcquireAssetTx>): Promise<GRpcClient.Transaction>;
 signActivateProtocolTx(param: GRpcClient.TxParam<GRpcClient.ActivateProtocolTx>): Promise<GRpcClient.Transaction>;
 signApproveTetherTx(param: GRpcClient.TxParam<GRpcClient.ApproveTetherTx>): Promise<GRpcClient.Transaction>;
+signApproveWithdrawTx(param: GRpcClient.TxParam<GRpcClient.ApproveWithdrawTx>): Promise<GRpcClient.Transaction>;
 signConsumeAssetTx(param: GRpcClient.TxParam<GRpcClient.ConsumeAssetTx>): Promise<GRpcClient.Transaction>;
 signCreateAssetTx(param: GRpcClient.TxParam<GRpcClient.CreateAssetTx>): Promise<GRpcClient.Transaction>;
 signDeactivateProtocolTx(param: GRpcClient.TxParam<GRpcClient.DeactivateProtocolTx>): Promise<GRpcClient.Transaction>;
@@ -161,12 +169,14 @@ signPokeTx(param: GRpcClient.TxParam<GRpcClient.PokeTx>): Promise<GRpcClient.Tra
 signRetrieveSwapTx(param: GRpcClient.TxParam<GRpcClient.RetrieveSwapTx>): Promise<GRpcClient.Transaction>;
 signRevokeSwapTx(param: GRpcClient.TxParam<GRpcClient.RevokeSwapTx>): Promise<GRpcClient.Transaction>;
 signRevokeTetherTx(param: GRpcClient.TxParam<GRpcClient.RevokeTetherTx>): Promise<GRpcClient.Transaction>;
+signRevokeWithdrawTx(param: GRpcClient.TxParam<GRpcClient.RevokeWithdrawTx>): Promise<GRpcClient.Transaction>;
 signSetupSwapTx(param: GRpcClient.TxParam<GRpcClient.SetupSwapTx>): Promise<GRpcClient.Transaction>;
 signStakeTx(param: GRpcClient.TxParam<GRpcClient.StakeTx>): Promise<GRpcClient.Transaction>;
 signTransferTx(param: GRpcClient.TxParam<GRpcClient.TransferTx>): Promise<GRpcClient.Transaction>;
 signUpdateAssetTx(param: GRpcClient.TxParam<GRpcClient.UpdateAssetTx>): Promise<GRpcClient.Transaction>;
 signUpgradeNodeTx(param: GRpcClient.TxParam<GRpcClient.UpgradeNodeTx>): Promise<GRpcClient.Transaction>;
 signWithdrawTetherTx(param: GRpcClient.TxParam<GRpcClient.WithdrawTetherTx>): Promise<GRpcClient.Transaction>;
+signWithdrawTokenTx(param: GRpcClient.TxParam<GRpcClient.WithdrawTokenTx>): Promise<GRpcClient.Transaction>;
 multiSignConsumeAssetTx(param: GRpcClient.TxParam<GRpcClient.ConsumeAssetTx>): Promise<GRpcClient.Transaction>;
 multiSignDepositTetherTx(param: GRpcClient.TxParam<GRpcClient.DepositTetherTx>): Promise<GRpcClient.Transaction>;
 multiSignExchangeTetherTx(param: GRpcClient.TxParam<GRpcClient.ExchangeTetherTx>): Promise<GRpcClient.Transaction>;
@@ -245,9 +255,6 @@ export enum StatusCode {
   INSUFFICIENT_GAS = 52,
   INVALID_SWAP = 53,
   INVALID_HASHKEY = 54,
-  FORBIDDEN = 403,
-  INTERNAL = 500,
-  TIMEOUT = 504,
   INVALID_DELEGATION = 55,
   INSUFFICIENT_DELEGATION = 56,
   INVALID_DELEGATION_RULE = 57,
@@ -257,29 +264,12 @@ export enum StatusCode {
   PROTOCOL_NOT_PAUSED = 61,
   PROTOCOL_NOT_ACTIVATED = 62,
   INVALID_DEACTIVATION = 63,
-}
-
-export enum TopicType {
-  TRANSFER = 0,
-  EXCHANGE = 1,
-  DECLARE = 2,
-  CREATE_ASSET = 3,
-  UPDATE_ASSET = 4,
-  STAKE = 5,
-  ACCOUNT_MIGRATE = 6,
-  BEGIN_BLOCK = 16,
-  END_BLOCK = 17,
-  CONSENSUS_UPGRADE = 21,
-  DECLARE_FILE = 22,
-  SYS_UPGRADE = 23,
-  APPLICATION = 24,
-  CONSUME_ASSET = 25,
-  POKE = 26,
-  ACCOUNT_STATE = 129,
-  ASSET_STATE = 130,
-  FORGE_STATE = 131,
-  STAKE_STATE = 132,
-  PROTOCOL_STATE = 133,
+  SENDER_WITHDRAW_ITEMS_FULL = 64,
+  WITHDRAW_ITEM_MISSING = 65,
+  INVALID_WITHDRAW_TX = 66,
+  FORBIDDEN = 403,
+  INTERNAL = 500,
+  TIMEOUT = 504,
 }
 
 export enum KeyType {
@@ -385,6 +375,7 @@ export interface RequestMultisig {
   data: google.protobuf.Any;
   wallet: forge_abi.WalletInfo;
   token: string;
+  delegatee: string;
 }
 
 export interface ResponseMultisig {
@@ -572,6 +563,17 @@ export interface ResponseGetSwapState {
   state: forge_abi.SwapState;
 }
 
+export interface RequestGetDelegateState {
+  address: string;
+  keys: Array<string>;
+  height: number;
+}
+
+export interface ResponseGetDelegateState {
+  code: forge_abi.StatusCode;
+  state: forge_abi.DelegateState;
+}
+
 export interface RequestStoreFile {
   chunk: Uint8Array;
 }
@@ -676,11 +678,15 @@ export interface ResponseSubscribe {
   declareFile: forge_abi.Transaction;
   sysUpgrade: forge_abi.Transaction;
   stake: forge_abi.Transaction;
+  delegate: forge_abi.Transaction;
+  activateProtocol: forge_abi.Transaction;
+  deactivateProtocol: forge_abi.Transaction;
   accountState: forge_abi.AccountState;
   assetState: forge_abi.AssetState;
   forgeState: forge_abi.ForgeState;
   stakeState: forge_abi.StakeState;
   protocolState: forge_abi.ProtocolState;
+  delegateState: forge_abi.DelegateState;
 }
 
 export interface RequestUnsubscribe {
@@ -938,8 +944,8 @@ export interface Multisig {
   signer: string;
   pk: Uint8Array;
   signature: Uint8Array;
-  data: google.protobuf.Any;
   delegator: string;
+  data: google.protobuf.Any;
 }
 
 export interface Transaction {
@@ -948,10 +954,10 @@ export interface Transaction {
   chainId: string;
   pk: Uint8Array;
   gas: number;
+  delegator: string;
   signature: Uint8Array;
   signatures: Array<forge_abi.Multisig>;
   itx: google.protobuf.Any;
-  delegator: string;
 }
 
 export interface TransactionInfo {
@@ -969,6 +975,11 @@ export interface DeclareConfig {
   hierarchy: number;
 }
 
+export interface DelegateConfig {
+  deltaInterval: number;
+  typeUrls: Array<string>;
+}
+
 export interface TransactionConfig {
   maxAssetSize: number;
   maxListSize: number;
@@ -976,6 +987,8 @@ export interface TransactionConfig {
   minimumStake: number;
   declare: forge_abi.DeclareConfig;
   delegate: forge_abi.DelegateConfig;
+  poke: forge_abi.PokeConfig;
+  stake: forge_abi.StakeConfig;
 }
 
 export interface BlockInfo {
@@ -1166,15 +1179,41 @@ export interface PokeInfo {
 }
 
 export interface PokeConfig {
-  address: string;
   dailyLimit: number;
-  balance: number;
   amount: number;
+  enabled: boolean;
 }
 
 export interface UpgradeInfo {
   height: number;
   version: string;
+}
+
+export interface WithdrawItem {
+  hash: string;
+  value: forge_abi.BigUint;
+}
+
+export interface AccountConfig {
+  address: string;
+  pk: Uint8Array;
+  balance: forge_abi.BigUint;
+}
+
+export interface TokenSwapConfig {
+  commissionHolderAddress: string;
+  withdrawInterval: number;
+  commission: forge_abi.BigUint;
+  commissionRate: number;
+  revokeCommission: number;
+}
+
+export interface Evidence {
+  hash: string;
+  chainType: string;
+  chainId: string;
+  originalTx: Uint8Array;
+  receiverAddress: string;
 }
 
 export interface AccountState {
@@ -1195,6 +1234,7 @@ export interface AccountState {
   pinnedFiles: forge_abi.CircularQueue;
   poke: forge_abi.PokeInfo;
   depositReceived: forge_abi.BigUint;
+  withdrawItems: forge_abi.CircularQueue;
   data: google.protobuf.Any;
 }
 
@@ -1224,14 +1264,13 @@ export interface ForgeState {
   tasks: forge_abi.UpgradeTasks;
   stakeSummary: forge_abi.StakeSummary;
   version: string;
-  forgeAppHash: Uint8Array;
   token: forge_abi.ForgeToken;
   txConfig: forge_abi.TransactionConfig;
-  stakeConfig: forge_abi.StakeConfig;
-  pokeConfig: forge_abi.PokeConfig;
   protocols: Array<forge_abi.CoreProtocol>;
   gas: number;
   upgradeInfo: forge_abi.UpgradeInfo;
+  accountConfig: forge_abi.AccountConfig;
+  tokenSwapConfig: forge_abi.TokenSwapConfig;
   data: google.protobuf.Any;
 }
 
@@ -1309,6 +1348,21 @@ export interface SwapState {
   locktime: number;
   hashlock: Uint8Array;
   context: forge_abi.StateContext;
+}
+
+export interface DelegateOpState {
+  rule: string;
+  numTxs: number;
+  numTxsDelta: number;
+  balance: forge_abi.BigUint;
+  balanceDelta: forge_abi.BigUint;
+}
+
+export interface DelegateState {
+  address: string;
+  ops: forge_abi.DelegateOpState;
+  context: forge_abi.StateContext;
+  data: google.protobuf.Any;
 }
 
 export interface CodeInfo {
@@ -1424,6 +1478,12 @@ export interface IndexedAssetState {
   renaissanceTime: string;
   moniker: string;
   readonly: boolean;
+  consumedTime: string;
+  issuer: string;
+  parent: string;
+  transferrable: boolean;
+  ttl: number;
+  data: google.protobuf.Any;
 }
 
 export interface IndexedStakeState {
@@ -1515,11 +1575,6 @@ export interface AccountMigrateTx {
   data: google.protobuf.Any;
 }
 
-export interface DelegateConfig {
-  deltaInterval: number;
-  typeUrls: Array<string>;
-}
-
 export interface AssetSpec {
   address: string;
   data: string;
@@ -1539,6 +1594,11 @@ export interface ActivateProtocolTx {
 export interface ApproveTetherTx {
   withdraw: string;
   data: google.protobuf.Any;
+}
+
+export interface ApproveWithdrawTx {
+  withdrawTxHash: string;
+  evidence: forge_abi.Evidence;
 }
 
 export interface ConsumeAssetTx {
@@ -1623,14 +1683,6 @@ export interface DepositTokenTx {
   evidence: forge_abi.Evidence;
 }
 
-export interface Evidence {
-  hash: string;
-  chainType: string;
-  chainId: string;
-  originalTx: Uint8Array;
-  receiverAddress: string;
-}
-
 export interface ExchangeInfo {
   value: forge_abi.BigUint;
   assets: Array<string>;
@@ -1677,6 +1729,10 @@ export interface RevokeSwapTx {
 export interface RevokeTetherTx {
   tether: string;
   data: google.protobuf.Any;
+}
+
+export interface RevokeWithdrawTx {
+  withdrawTxHash: string;
 }
 
 export interface SetupSwapTx {
@@ -1748,6 +1804,14 @@ export interface WithdrawTetherTx {
   receiver: forge_abi.TetherTradeInfo;
   expiredAt: google.protobuf.Timestamp;
   data: google.protobuf.Any;
+}
+
+export interface WithdrawTokenTx {
+  value: forge_abi.BigUint;
+  to: string;
+  chainType: string;
+  chainId: string;
+  ttl: google.protobuf.Timestamp;
 }
 }
 
