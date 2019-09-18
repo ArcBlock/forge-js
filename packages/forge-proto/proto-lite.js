@@ -31,8 +31,38 @@ const withdrawTokenTxPb = require('./lib/withdraw_token_tx_pb.js');
 
 const vendorPb = require('./lib/vendor_pb.js');
 
-
-const forgeTypes = Object.assign({}, enumPb, typePb, accountMigrateTxPb, acquireAssetTxPb, activateProtocolTxPb, approveTetherTxPb, approveWithdrawTxPb, consumeAssetTxPb, createAssetTxPb, deactivateProtocolTxPb, declareTxPb, delegateTxPb, deployProtocolTxPb, depositTetherTxPb, depositTokenTxPb, exchangeTetherTxPb, exchangeTxPb, pokeTxPb, retrieveSwapTxPb, revokeSwapTxPb, revokeTetherTxPb, revokeWithdrawTxPb, setupSwapTxPb, stakeTxPb, transferTxPb, updateAssetTxPb, upgradeNodeTxPb, withdrawTetherTxPb, withdrawTokenTxPb);
+const forgeTypes = Object.assign(
+  {},
+  enumPb,
+  typePb,
+  accountMigrateTxPb,
+  acquireAssetTxPb,
+  activateProtocolTxPb,
+  approveTetherTxPb,
+  approveWithdrawTxPb,
+  consumeAssetTxPb,
+  createAssetTxPb,
+  deactivateProtocolTxPb,
+  declareTxPb,
+  delegateTxPb,
+  deployProtocolTxPb,
+  depositTetherTxPb,
+  depositTokenTxPb,
+  exchangeTetherTxPb,
+  exchangeTxPb,
+  pokeTxPb,
+  retrieveSwapTxPb,
+  revokeSwapTxPb,
+  revokeTetherTxPb,
+  revokeWithdrawTxPb,
+  setupSwapTxPb,
+  stakeTxPb,
+  transferTxPb,
+  updateAssetTxPb,
+  upgradeNodeTxPb,
+  withdrawTetherTxPb,
+  withdrawTokenTxPb
+);
 const forgeServices = {};
 const vendorTypes = Object.assign({}, vendorPb);
 const vendorServices = {};
