@@ -55,7 +55,8 @@ describe('GraphQLClient', () => {
   });
 
   // client = new GraphQLClient('http://182.92.167.126:8210/api');
-  client = new GraphQLClient('https://zinc.abtnetwork.io/api');
+  // client = new GraphQLClient('https://zinc.abtnetwork.io/api');
+  client = new GraphQLClient('http://47.104.23.85:8211/api');
   test('should support getBlock', async () => {
     try {
       const res = await client.getBlock(
