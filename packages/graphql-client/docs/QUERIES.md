@@ -1,6 +1,6 @@
 # Forge GraphQL API List
 
-> Updated on 2019-08-27T04:27:37.554Z
+> Updated on 2019-09-18T10:23:39.663Z
 
 
 ## Table of Contents
@@ -1187,11 +1187,20 @@ No arguments
     }
     assets {
       address
+      consumedTime
       genesisTime
+      issuer
       moniker
       owner
+      parent
       readonly
       renaissanceTime
+      transferrable
+      ttl
+      data {
+        typeUrl
+        value
+      }
     }
     page {
       cursor
