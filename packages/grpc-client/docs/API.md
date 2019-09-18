@@ -5,7 +5,6 @@
 
 * [Enums](#enums)
   * [StatusCode](#statuscode)
-  * [TopicType](#topictype)
   * [KeyType](#keytype)
   * [HashType](#hashtype)
   * [EncodingType](#encodingtype)
@@ -29,6 +28,7 @@
   * [getBlocks](#getblocks)
   * [getChainInfo](#getchaininfo)
   * [getConfig](#getconfig)
+  * [getDelegateState](#getdelegatestate)
   * [getForgeState](#getforgestate)
   * [getForgeStats](#getforgestats)
   * [getHealthStatus](#gethealthstatus)
@@ -118,9 +118,6 @@
   INSUFFICIENT_GAS: 52,
   INVALID_SWAP: 53,
   INVALID_HASHKEY: 54,
-  FORBIDDEN: 403,
-  INTERNAL: 500,
-  TIMEOUT: 504,
   INVALID_DELEGATION: 55,
   INSUFFICIENT_DELEGATION: 56,
   INVALID_DELEGATION_RULE: 57,
@@ -129,34 +126,13 @@
   PROTOCOL_NOT_RUNNING: 60,
   PROTOCOL_NOT_PAUSED: 61,
   PROTOCOL_NOT_ACTIVATED: 62,
-  INVALID_DEACTIVATION: 63
-}
-```
-
-### TopicType
-
-```js
-{
-  TRANSFER: 0,
-  EXCHANGE: 1,
-  DECLARE: 2,
-  CREATE_ASSET: 3,
-  UPDATE_ASSET: 4,
-  STAKE: 5,
-  ACCOUNT_MIGRATE: 6,
-  BEGIN_BLOCK: 16,
-  END_BLOCK: 17,
-  CONSENSUS_UPGRADE: 21,
-  DECLARE_FILE: 22,
-  SYS_UPGRADE: 23,
-  APPLICATION: 24,
-  CONSUME_ASSET: 25,
-  POKE: 26,
-  ACCOUNT_STATE: 129,
-  ASSET_STATE: 130,
-  FORGE_STATE: 131,
-  STAKE_STATE: 132,
-  PROTOCOL_STATE: 133
+  INVALID_DEACTIVATION: 63,
+  SENDER_WITHDRAW_ITEMS_FULL: 64,
+  WITHDRAW_ITEM_MISSING: 65,
+  INVALID_WITHDRAW_TX: 66,
+  FORBIDDEN: 403,
+  INTERNAL: 500,
+  TIMEOUT: 504
 }
 ```
 
@@ -312,6 +288,7 @@
   'AcquireAssetTx',
   'ActivateProtocolTx',
   'ApproveTetherTx',
+  'ApproveWithdrawTx',
   'ConsumeAssetTx',
   'CreateAssetTx',
   'DeactivateProtocolTx',
@@ -325,12 +302,14 @@
   'RetrieveSwapTx',
   'RevokeSwapTx',
   'RevokeTetherTx',
+  'RevokeWithdrawTx',
   'SetupSwapTx',
   'StakeTx',
   'TransferTx',
   'UpdateAssetTx',
   'UpgradeNodeTx',
-  'WithdrawTetherTx'
+  'WithdrawTetherTx',
+  'WithdrawTokenTx'
 ]
 ```
 
@@ -386,34 +365,34 @@ result.on('data', data => {
     chainId: 'arcblock',
     pk: Uint8Array [],
     gas: 2,
+    delegator: 'arcblock',
     signature: Uint8Array [],
     signatures: [
       {
         signer: 'arcblock',
         pk: Uint8Array [],
         signature: Uint8Array [],
+        delegator: 'arcblock',
         data: {
           type: 'string',
           value: 'ABCD 1234'
-        },
-        delegator: 'arcblock'
+        }
       },
       {
         signer: 'arcblock',
         pk: Uint8Array [],
         signature: Uint8Array [],
+        delegator: 'arcblock',
         data: {
           type: 'string',
           value: 'ABCD 1234'
-        },
-        delegator: 'arcblock'
+        }
       }
     ],
     itx: {
       type: 'string',
       value: 'ABCD 1234'
-    },
-    delegator: 'arcblock'
+    }
   }
 }
 });
@@ -512,8 +491,8 @@ const stream = client.getAccountState({
     context: {
       genesisTx: 'arcblock',
       renaissanceTx: 'arcblock',
-      genesisTime: '2019-08-22T01:12:59.896Z',
-      renaissanceTime: '2019-08-22T01:12:59.896Z'
+      genesisTime: '2019-09-18T10:22:12.101Z',
+      renaissanceTime: '2019-09-18T10:22:12.101Z'
     },
     issuer: 'arcblock',
     gasBalance: [Function: BigUint],
@@ -567,6 +546,16 @@ const stream = client.getAccountState({
       amount: [Function: BigUint]
     },
     depositReceived: [Function: BigUint],
+    withdrawItems: {
+      items: [
+        Uint8Array [],
+        Uint8Array []
+      ],
+      typeUrl: 'arcblock',
+      maxItems: 2,
+      circular: true,
+      fifo: true
+    },
     data: {
       type: 'string',
       value: 'ABCD 1234'
@@ -597,7 +586,7 @@ const stream = client.getAssetState({
     readonly: true,
     transferrable: true,
     ttl: 2,
-    consumedTime: '2019-08-22T01:12:59.896Z',
+    consumedTime: '2019-09-18T10:22:12.102Z',
     issuer: 'arcblock',
     parent: 'arcblock',
     stake: {
@@ -628,8 +617,8 @@ const stream = client.getAssetState({
     context: {
       genesisTx: 'arcblock',
       renaissanceTx: 'arcblock',
-      genesisTime: '2019-08-22T01:12:59.896Z',
-      renaissanceTime: '2019-08-22T01:12:59.896Z'
+      genesisTime: '2019-09-18T10:22:12.102Z',
+      renaissanceTime: '2019-09-18T10:22:12.102Z'
     },
     data: {
       type: 'string',
@@ -652,7 +641,7 @@ const stream = client.getBlock({
   block: {
     height: 5,
     numTxs: 2,
-    time: '2019-08-22T01:12:59.896Z',
+    time: '2019-09-18T10:22:12.102Z',
     appHash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
     proposer: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
     txs: [
@@ -663,34 +652,34 @@ const stream = client.getBlock({
           chainId: 'arcblock',
           pk: Uint8Array [],
           gas: 2,
+          delegator: 'arcblock',
           signature: Uint8Array [],
           signatures: [
             {
               signer: 'arcblock',
               pk: Uint8Array [],
               signature: Uint8Array [],
+              delegator: 'arcblock',
               data: {
                 type: 'string',
                 value: 'ABCD 1234'
-              },
-              delegator: 'arcblock'
+              }
             },
             {
               signer: 'arcblock',
               pk: Uint8Array [],
               signature: Uint8Array [],
+              delegator: 'arcblock',
               data: {
                 type: 'string',
                 value: 'ABCD 1234'
-              },
-              delegator: 'arcblock'
+              }
             }
           ],
           itx: {
             type: 'string',
             value: 'ABCD 1234'
-          },
-          delegator: 'arcblock'
+          }
         },
         height: 5,
         index: 2,
@@ -706,7 +695,7 @@ const stream = client.getBlock({
           }
         ],
         code: 0,
-        time: '2019-08-22T01:12:59.896Z'
+        time: '2019-09-18T10:22:12.103Z'
       },
       {
         tx: {
@@ -715,34 +704,34 @@ const stream = client.getBlock({
           chainId: 'arcblock',
           pk: Uint8Array [],
           gas: 2,
+          delegator: 'arcblock',
           signature: Uint8Array [],
           signatures: [
             {
               signer: 'arcblock',
               pk: Uint8Array [],
               signature: Uint8Array [],
+              delegator: 'arcblock',
               data: {
                 type: 'string',
                 value: 'ABCD 1234'
-              },
-              delegator: 'arcblock'
+              }
             },
             {
               signer: 'arcblock',
               pk: Uint8Array [],
               signature: Uint8Array [],
+              delegator: 'arcblock',
               data: {
                 type: 'string',
                 value: 'ABCD 1234'
-              },
-              delegator: 'arcblock'
+              }
             }
           ],
           itx: {
             type: 'string',
             value: 'ABCD 1234'
-          },
-          delegator: 'arcblock'
+          }
         },
         height: 5,
         index: 2,
@@ -758,7 +747,7 @@ const stream = client.getBlock({
           }
         ],
         code: 0,
-        time: '2019-08-22T01:12:59.897Z'
+        time: '2019-09-18T10:22:12.103Z'
       }
     ],
     totalTxs: 5,
@@ -770,34 +759,34 @@ const stream = client.getBlock({
           chainId: 'arcblock',
           pk: Uint8Array [],
           gas: 2,
+          delegator: 'arcblock',
           signature: Uint8Array [],
           signatures: [
             {
               signer: 'arcblock',
               pk: Uint8Array [],
               signature: Uint8Array [],
+              delegator: 'arcblock',
               data: {
                 type: 'string',
                 value: 'ABCD 1234'
-              },
-              delegator: 'arcblock'
+              }
             },
             {
               signer: 'arcblock',
               pk: Uint8Array [],
               signature: Uint8Array [],
+              delegator: 'arcblock',
               data: {
                 type: 'string',
                 value: 'ABCD 1234'
-              },
-              delegator: 'arcblock'
+              }
             }
           ],
           itx: {
             type: 'string',
             value: 'ABCD 1234'
-          },
-          delegator: 'arcblock'
+          }
         },
         height: 5,
         index: 2,
@@ -813,7 +802,7 @@ const stream = client.getBlock({
           }
         ],
         code: 0,
-        time: '2019-08-22T01:12:59.897Z'
+        time: '2019-09-18T10:22:12.103Z'
       },
       {
         tx: {
@@ -822,34 +811,34 @@ const stream = client.getBlock({
           chainId: 'arcblock',
           pk: Uint8Array [],
           gas: 2,
+          delegator: 'arcblock',
           signature: Uint8Array [],
           signatures: [
             {
               signer: 'arcblock',
               pk: Uint8Array [],
               signature: Uint8Array [],
+              delegator: 'arcblock',
               data: {
                 type: 'string',
                 value: 'ABCD 1234'
-              },
-              delegator: 'arcblock'
+              }
             },
             {
               signer: 'arcblock',
               pk: Uint8Array [],
               signature: Uint8Array [],
+              delegator: 'arcblock',
               data: {
                 type: 'string',
                 value: 'ABCD 1234'
-              },
-              delegator: 'arcblock'
+              }
             }
           ],
           itx: {
             type: 'string',
             value: 'ABCD 1234'
-          },
-          delegator: 'arcblock'
+          }
         },
         height: 5,
         index: 2,
@@ -865,7 +854,7 @@ const stream = client.getBlock({
           }
         ],
         code: 0,
-        time: '2019-08-22T01:12:59.897Z'
+        time: '2019-09-18T10:22:12.103Z'
       }
     ],
     txsHashes: [
@@ -937,7 +926,7 @@ result.on('data', data => {
     {
       height: 5,
       numTxs: 2,
-      time: '2019-08-22T01:12:59.897Z',
+      time: '2019-09-18T10:22:12.104Z',
       appHash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
       proposer: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
       totalTxs: 5,
@@ -971,7 +960,7 @@ result.on('data', data => {
     {
       height: 5,
       numTxs: 2,
-      time: '2019-08-22T01:12:59.897Z',
+      time: '2019-09-18T10:22:12.104Z',
       appHash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
       proposer: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
       totalTxs: 5,
@@ -1026,7 +1015,7 @@ result.on('data', data => {
     appHash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
     blockHash: Uint8Array [],
     blockHeight: 5,
-    blockTime: '2019-08-22T01:12:59.897Z',
+    blockTime: '2019-09-18T10:22:12.104Z',
     address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
     votingPower: 5,
     totalTxs: 5,
@@ -1058,6 +1047,46 @@ result.on('data', data => {
   config: 'arcblock'
 }
 });
+```
+
+### getDelegateState
+
+```js
+const stream = client.getDelegateState({
+  address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
+  keys: [
+    'arcblock',
+    'arcblock'
+  ],
+  height: 5
+});
+
+// output
+{
+  code: 0,
+  state: {
+    address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
+    ops: {
+      arcblock: {
+        rule: 'arcblock',
+        numTxs: 5,
+        numTxsDelta: 5,
+        balance: [Function: BigUint],
+        balanceDelta: [Function: BigUint]
+      }
+    },
+    context: {
+      genesisTx: 'arcblock',
+      renaissanceTx: 'arcblock',
+      genesisTime: '2019-09-18T10:22:12.105Z',
+      renaissanceTime: '2019-09-18T10:22:12.105Z'
+    },
+    data: {
+      type: 'string',
+      value: 'ABCD 1234'
+    }
+  }
+}
 ```
 
 ### getForgeState
@@ -1129,13 +1158,12 @@ result.on('data', data => {
         context: {
           genesisTx: 'arcblock',
           renaissanceTx: 'arcblock',
-          genesisTime: '2019-08-22T01:12:59.898Z',
-          renaissanceTime: '2019-08-22T01:12:59.898Z'
+          genesisTime: '2019-09-18T10:22:12.105Z',
+          renaissanceTime: '2019-09-18T10:22:12.105Z'
         }
       }
     },
     version: 'arcblock',
-    forgeAppHash: Uint8Array [],
     token: {
       name: 'arcblock',
       symbol: 'arcblock',
@@ -1162,17 +1190,16 @@ result.on('data', data => {
           'arcblock',
           'arcblock'
         ]
+      },
+      poke: {
+        dailyLimit: 5,
+        amount: 5,
+        enabled: true
+      },
+      stake: {
+        timeoutGeneral: 2,
+        timeoutStakeForNode: 2
       }
-    },
-    stakeConfig: {
-      timeoutGeneral: 2,
-      timeoutStakeForNode: 2
-    },
-    pokeConfig: {
-      address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
-      dailyLimit: 5,
-      balance: 5,
-      amount: 5
     },
     protocols: [
       {
@@ -1190,6 +1217,20 @@ result.on('data', data => {
     upgradeInfo: {
       height: 5,
       version: 'arcblock'
+    },
+    accountConfig: {
+      arcblock: {
+        address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
+        pk: Uint8Array [],
+        balance: [Function: BigUint]
+      }
+    },
+    tokenSwapConfig: {
+      commissionHolderAddress: 'arcblock',
+      withdrawInterval: 2,
+      commission: [Function: BigUint],
+      commissionRate: 2,
+      revokeCommission: 2
     },
     data: {
       type: 'string',
@@ -1404,7 +1445,7 @@ result.on('data', data => {
     appHash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
     blockHash: Uint8Array [],
     blockHeight: 5,
-    blockTime: '2019-08-22T01:12:59.898Z',
+    blockTime: '2019-09-18T10:22:12.106Z',
     address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
     votingPower: 5,
     totalTxs: 5,
@@ -1500,8 +1541,8 @@ const stream = client.getProtocolState({
     context: {
       genesisTx: 'arcblock',
       renaissanceTx: 'arcblock',
-      genesisTime: '2019-08-22T01:12:59.899Z',
-      renaissanceTime: '2019-08-22T01:12:59.899Z'
+      genesisTime: '2019-09-18T10:22:12.106Z',
+      renaissanceTime: '2019-09-18T10:22:12.106Z'
     },
     data: {
       type: 'string',
@@ -1535,8 +1576,8 @@ const stream = client.getStakeState({
     context: {
       genesisTx: 'arcblock',
       renaissanceTx: 'arcblock',
-      genesisTime: '2019-08-22T01:12:59.899Z',
-      renaissanceTime: '2019-08-22T01:12:59.899Z'
+      genesisTime: '2019-09-18T10:22:12.106Z',
+      renaissanceTime: '2019-09-18T10:22:12.106Z'
     },
     data: {
       type: 'string',
@@ -1577,8 +1618,8 @@ const stream = client.getSwapState({
     context: {
       genesisTx: 'arcblock',
       renaissanceTx: 'arcblock',
-      genesisTime: '2019-08-22T01:12:59.899Z',
-      renaissanceTime: '2019-08-22T01:12:59.899Z'
+      genesisTime: '2019-09-18T10:22:12.107Z',
+      renaissanceTime: '2019-09-18T10:22:12.107Z'
     }
   }
 }
@@ -1609,7 +1650,7 @@ const stream = client.getTetherState({
     commission: [Function: BigUint],
     charge: [Function: BigUint],
     target: 'arcblock',
-    locktime: '2019-08-22T01:12:59.899Z',
+    locktime: '2019-09-18T10:22:12.107Z',
     address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55'
   }
 }
@@ -1632,34 +1673,34 @@ const stream = client.getTx({
       chainId: 'arcblock',
       pk: Uint8Array [],
       gas: 2,
+      delegator: 'arcblock',
       signature: Uint8Array [],
       signatures: [
         {
           signer: 'arcblock',
           pk: Uint8Array [],
           signature: Uint8Array [],
+          delegator: 'arcblock',
           data: {
             type: 'string',
             value: 'ABCD 1234'
-          },
-          delegator: 'arcblock'
+          }
         },
         {
           signer: 'arcblock',
           pk: Uint8Array [],
           signature: Uint8Array [],
+          delegator: 'arcblock',
           data: {
             type: 'string',
             value: 'ABCD 1234'
-          },
-          delegator: 'arcblock'
+          }
         }
       ],
       itx: {
         type: 'string',
         value: 'ABCD 1234'
-      },
-      delegator: 'arcblock'
+      }
     },
     height: 5,
     index: 2,
@@ -1675,7 +1716,7 @@ const stream = client.getTx({
       }
     ],
     code: 0,
-    time: '2019-08-22T01:12:59.899Z'
+    time: '2019-09-18T10:22:12.107Z'
   }
 }
 ```
@@ -1719,34 +1760,34 @@ result.on('data', data => {
         chainId: 'arcblock',
         pk: Uint8Array [],
         gas: 2,
+        delegator: 'arcblock',
         signature: Uint8Array [],
         signatures: [
           {
             signer: 'arcblock',
             pk: Uint8Array [],
             signature: Uint8Array [],
+            delegator: 'arcblock',
             data: {
               type: 'string',
               value: 'ABCD 1234'
-            },
-            delegator: 'arcblock'
+            }
           },
           {
             signer: 'arcblock',
             pk: Uint8Array [],
             signature: Uint8Array [],
+            delegator: 'arcblock',
             data: {
               type: 'string',
               value: 'ABCD 1234'
-            },
-            delegator: 'arcblock'
+            }
           }
         ],
         itx: {
           type: 'string',
           value: 'ABCD 1234'
-        },
-        delegator: 'arcblock'
+        }
       },
       {
         from: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
@@ -1754,34 +1795,34 @@ result.on('data', data => {
         chainId: 'arcblock',
         pk: Uint8Array [],
         gas: 2,
+        delegator: 'arcblock',
         signature: Uint8Array [],
         signatures: [
           {
             signer: 'arcblock',
             pk: Uint8Array [],
             signature: Uint8Array [],
+            delegator: 'arcblock',
             data: {
               type: 'string',
               value: 'ABCD 1234'
-            },
-            delegator: 'arcblock'
+            }
           },
           {
             signer: 'arcblock',
             pk: Uint8Array [],
             signature: Uint8Array [],
+            delegator: 'arcblock',
             data: {
               type: 'string',
               value: 'ABCD 1234'
-            },
-            delegator: 'arcblock'
+            }
           }
         ],
         itx: {
           type: 'string',
           value: 'ABCD 1234'
-        },
-        delegator: 'arcblock'
+        }
       }
     ]
   }
@@ -1919,34 +1960,34 @@ result.on('data', data => {
         chainId: 'arcblock',
         pk: Uint8Array [],
         gas: 2,
+        delegator: 'arcblock',
         signature: Uint8Array [],
         signatures: [
           {
             signer: 'arcblock',
             pk: Uint8Array [],
             signature: Uint8Array [],
+            delegator: 'arcblock',
             data: {
               type: 'string',
               value: 'ABCD 1234'
-            },
-            delegator: 'arcblock'
+            }
           },
           {
             signer: 'arcblock',
             pk: Uint8Array [],
             signature: Uint8Array [],
+            delegator: 'arcblock',
             data: {
               type: 'string',
               value: 'ABCD 1234'
-            },
-            delegator: 'arcblock'
+            }
           }
         ],
         itx: {
           type: 'string',
           value: 'ABCD 1234'
-        },
-        delegator: 'arcblock'
+        }
       },
       valid: true,
       code: 0
@@ -1963,34 +2004,34 @@ result.on('data', data => {
         chainId: 'arcblock',
         pk: Uint8Array [],
         gas: 2,
+        delegator: 'arcblock',
         signature: Uint8Array [],
         signatures: [
           {
             signer: 'arcblock',
             pk: Uint8Array [],
             signature: Uint8Array [],
+            delegator: 'arcblock',
             data: {
               type: 'string',
               value: 'ABCD 1234'
-            },
-            delegator: 'arcblock'
+            }
           },
           {
             signer: 'arcblock',
             pk: Uint8Array [],
             signature: Uint8Array [],
+            delegator: 'arcblock',
             data: {
               type: 'string',
               value: 'ABCD 1234'
-            },
-            delegator: 'arcblock'
+            }
           }
         ],
         itx: {
           type: 'string',
           value: 'ABCD 1234'
-        },
-        delegator: 'arcblock'
+        }
       },
       valid: true,
       code: 0
@@ -2038,7 +2079,16 @@ result.on('data', data => {
       genesisTime: 'arcblock',
       renaissanceTime: 'arcblock',
       moniker: 'arcblock',
-      readonly: true
+      readonly: true,
+      consumedTime: 'arcblock',
+      issuer: 'arcblock',
+      parent: 'arcblock',
+      transferrable: true,
+      ttl: 5,
+      data: {
+        type: 'string',
+        value: 'ABCD 1234'
+      }
     },
     {
       address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
@@ -2046,7 +2096,16 @@ result.on('data', data => {
       genesisTime: 'arcblock',
       renaissanceTime: 'arcblock',
       moniker: 'arcblock',
-      readonly: true
+      readonly: true,
+      consumedTime: 'arcblock',
+      issuer: 'arcblock',
+      parent: 'arcblock',
+      transferrable: true,
+      ttl: 5,
+      data: {
+        type: 'string',
+        value: 'ABCD 1234'
+      }
     }
   ]
 }
@@ -2231,8 +2290,8 @@ result.on('data', data => {
       context: {
         genesisTx: 'arcblock',
         renaissanceTx: 'arcblock',
-        genesisTime: '2019-08-22T01:12:59.900Z',
-        renaissanceTime: '2019-08-22T01:12:59.900Z'
+        genesisTime: '2019-09-18T10:22:12.109Z',
+        renaissanceTime: '2019-09-18T10:22:12.109Z'
       }
     },
     {
@@ -2251,8 +2310,8 @@ result.on('data', data => {
       context: {
         genesisTx: 'arcblock',
         renaissanceTx: 'arcblock',
-        genesisTime: '2019-08-22T01:12:59.900Z',
-        renaissanceTime: '2019-08-22T01:12:59.900Z'
+        genesisTime: '2019-09-18T10:22:12.109Z',
+        renaissanceTime: '2019-09-18T10:22:12.109Z'
       }
     }
   ]
@@ -2305,7 +2364,7 @@ result.on('data', data => {
       commission: [Function: BigUint],
       charge: [Function: BigUint],
       target: 'arcblock',
-      locktime: '2019-08-22T01:12:59.901Z',
+      locktime: '2019-09-18T10:22:12.109Z',
       address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55'
     },
     {
@@ -2318,7 +2377,7 @@ result.on('data', data => {
       commission: [Function: BigUint],
       charge: [Function: BigUint],
       target: 'arcblock',
-      locktime: '2019-08-22T01:12:59.901Z',
+      locktime: '2019-09-18T10:22:12.109Z',
       address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55'
     }
   ]
@@ -2461,34 +2520,34 @@ result.on('data', data => {
         chainId: 'arcblock',
         pk: Uint8Array [],
         gas: 2,
+        delegator: 'arcblock',
         signature: Uint8Array [],
         signatures: [
           {
             signer: 'arcblock',
             pk: Uint8Array [],
             signature: Uint8Array [],
+            delegator: 'arcblock',
             data: {
               type: 'string',
               value: 'ABCD 1234'
-            },
-            delegator: 'arcblock'
+            }
           },
           {
             signer: 'arcblock',
             pk: Uint8Array [],
             signature: Uint8Array [],
+            delegator: 'arcblock',
             data: {
               type: 'string',
               value: 'ABCD 1234'
-            },
-            delegator: 'arcblock'
+            }
           }
         ],
         itx: {
           type: 'string',
           value: 'ABCD 1234'
-        },
-        delegator: 'arcblock'
+        }
       },
       valid: true,
       code: 0
@@ -2505,34 +2564,34 @@ result.on('data', data => {
         chainId: 'arcblock',
         pk: Uint8Array [],
         gas: 2,
+        delegator: 'arcblock',
         signature: Uint8Array [],
         signatures: [
           {
             signer: 'arcblock',
             pk: Uint8Array [],
             signature: Uint8Array [],
+            delegator: 'arcblock',
             data: {
               type: 'string',
               value: 'ABCD 1234'
-            },
-            delegator: 'arcblock'
+            }
           },
           {
             signer: 'arcblock',
             pk: Uint8Array [],
             signature: Uint8Array [],
+            delegator: 'arcblock',
             data: {
               type: 'string',
               value: 'ABCD 1234'
-            },
-            delegator: 'arcblock'
+            }
           }
         ],
         itx: {
           type: 'string',
           value: 'ABCD 1234'
-        },
-        delegator: 'arcblock'
+        }
       },
       valid: true,
       code: 0
@@ -2607,34 +2666,34 @@ const result = await client.multisig({
     chainId: 'arcblock',
     pk: Uint8Array [],
     gas: 2,
+    delegator: 'arcblock',
     signature: Uint8Array [],
     signatures: [
       {
         signer: 'arcblock',
         pk: Uint8Array [],
         signature: Uint8Array [],
+        delegator: 'arcblock',
         data: {
           type: 'string',
           value: 'ABCD 1234'
-        },
-        delegator: 'arcblock'
+        }
       },
       {
         signer: 'arcblock',
         pk: Uint8Array [],
         signature: Uint8Array [],
+        delegator: 'arcblock',
         data: {
           type: 'string',
           value: 'ABCD 1234'
-        },
-        delegator: 'arcblock'
+        }
       }
     ],
     itx: {
       type: 'string',
       value: 'ABCD 1234'
-    },
-    delegator: 'arcblock'
+    }
   },
   data: {
     type: 'string',
@@ -2651,7 +2710,8 @@ const result = await client.multisig({
     pk: Uint8Array [],
     address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55'
   },
-  token: 'arcblock'
+  token: 'arcblock',
+  delegatee: 'arcblock'
 });
 
 // response is a stream
@@ -2665,34 +2725,34 @@ result.on('data', data => {
     chainId: 'arcblock',
     pk: Uint8Array [],
     gas: 2,
+    delegator: 'arcblock',
     signature: Uint8Array [],
     signatures: [
       {
         signer: 'arcblock',
         pk: Uint8Array [],
         signature: Uint8Array [],
+        delegator: 'arcblock',
         data: {
           type: 'string',
           value: 'ABCD 1234'
-        },
-        delegator: 'arcblock'
+        }
       },
       {
         signer: 'arcblock',
         pk: Uint8Array [],
         signature: Uint8Array [],
+        delegator: 'arcblock',
         data: {
           type: 'string',
           value: 'ABCD 1234'
-        },
-        delegator: 'arcblock'
+        }
       }
     ],
     itx: {
       type: 'string',
       value: 'ABCD 1234'
-    },
-    delegator: 'arcblock'
+    }
   }
 }
 });
@@ -2787,34 +2847,34 @@ result.on('data', data => {
         chainId: 'arcblock',
         pk: Uint8Array [],
         gas: 2,
+        delegator: 'arcblock',
         signature: Uint8Array [],
         signatures: [
           {
             signer: 'arcblock',
             pk: Uint8Array [],
             signature: Uint8Array [],
+            delegator: 'arcblock',
             data: {
               type: 'string',
               value: 'ABCD 1234'
-            },
-            delegator: 'arcblock'
+            }
           },
           {
             signer: 'arcblock',
             pk: Uint8Array [],
             signature: Uint8Array [],
+            delegator: 'arcblock',
             data: {
               type: 'string',
               value: 'ABCD 1234'
-            },
-            delegator: 'arcblock'
+            }
           }
         ],
         itx: {
           type: 'string',
           value: 'ABCD 1234'
-        },
-        delegator: 'arcblock'
+        }
       },
       height: 5,
       index: 2,
@@ -2830,7 +2890,7 @@ result.on('data', data => {
         }
       ],
       code: 0,
-      time: '2019-08-22T01:12:59.902Z'
+      time: '2019-09-18T10:22:12.111Z'
     },
     {
       tx: {
@@ -2839,34 +2899,34 @@ result.on('data', data => {
         chainId: 'arcblock',
         pk: Uint8Array [],
         gas: 2,
+        delegator: 'arcblock',
         signature: Uint8Array [],
         signatures: [
           {
             signer: 'arcblock',
             pk: Uint8Array [],
             signature: Uint8Array [],
+            delegator: 'arcblock',
             data: {
               type: 'string',
               value: 'ABCD 1234'
-            },
-            delegator: 'arcblock'
+            }
           },
           {
             signer: 'arcblock',
             pk: Uint8Array [],
             signature: Uint8Array [],
+            delegator: 'arcblock',
             data: {
               type: 'string',
               value: 'ABCD 1234'
-            },
-            delegator: 'arcblock'
+            }
           }
         ],
         itx: {
           type: 'string',
           value: 'ABCD 1234'
-        },
-        delegator: 'arcblock'
+        }
       },
       height: 5,
       index: 2,
@@ -2882,7 +2942,7 @@ result.on('data', data => {
         }
       ],
       code: 0,
-      time: '2019-08-22T01:12:59.902Z'
+      time: '2019-09-18T10:22:12.111Z'
     }
   ]
 }
@@ -2899,34 +2959,34 @@ const result = await client.sendTx({
     chainId: 'arcblock',
     pk: Uint8Array [],
     gas: 2,
+    delegator: 'arcblock',
     signature: Uint8Array [],
     signatures: [
       {
         signer: 'arcblock',
         pk: Uint8Array [],
         signature: Uint8Array [],
+        delegator: 'arcblock',
         data: {
           type: 'string',
           value: 'ABCD 1234'
-        },
-        delegator: 'arcblock'
+        }
       },
       {
         signer: 'arcblock',
         pk: Uint8Array [],
         signature: Uint8Array [],
+        delegator: 'arcblock',
         data: {
           type: 'string',
           value: 'ABCD 1234'
-        },
-        delegator: 'arcblock'
+        }
       }
     ],
     itx: {
       type: 'string',
       value: 'ABCD 1234'
-    },
-    delegator: 'arcblock'
+    }
   },
   wallet: {
     type: {
