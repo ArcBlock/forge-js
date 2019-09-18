@@ -106,6 +106,7 @@ proto.forge_abi.AccountState.toObject = function(includeInstance, msg) {
     pinnedFiles: (f = msg.getPinnedFiles()) && type_pb.CircularQueue.toObject(includeInstance, f),
     poke: (f = msg.getPoke()) && type_pb.PokeInfo.toObject(includeInstance, f),
     depositReceived: (f = msg.getDepositReceived()) && type_pb.BigUint.toObject(includeInstance, f),
+    withdrawItems: (f = msg.getWithdrawItems()) && type_pb.CircularQueue.toObject(includeInstance, f),
     data: (f = msg.getData()) && google_protobuf_any_pb.Any.toObject(includeInstance, f)
   };
 
@@ -218,6 +219,11 @@ proto.forge_abi.AccountState.deserializeBinaryFromReader = function(msg, reader)
       var value = new type_pb.BigUint;
       reader.readMessage(value,type_pb.BigUint.deserializeBinaryFromReader);
       msg.setDepositReceived(value);
+      break;
+    case 20:
+      var value = new type_pb.CircularQueue;
+      reader.readMessage(value,type_pb.CircularQueue.deserializeBinaryFromReader);
+      msg.setWithdrawItems(value);
       break;
     case 50:
       var value = new google_protobuf_any_pb.Any;
@@ -378,6 +384,14 @@ proto.forge_abi.AccountState.serializeBinaryToWriter = function(message, writer)
       19,
       f,
       type_pb.BigUint.serializeBinaryToWriter
+    );
+  }
+  f = message.getWithdrawItems();
+  if (f != null) {
+    writer.writeMessage(
+      20,
+      f,
+      type_pb.CircularQueue.serializeBinaryToWriter
     );
   }
   f = message.getData();
@@ -815,6 +829,36 @@ proto.forge_abi.AccountState.prototype.clearDepositReceived = function() {
  */
 proto.forge_abi.AccountState.prototype.hasDepositReceived = function() {
   return jspb.Message.getField(this, 19) != null;
+};
+
+
+/**
+ * optional CircularQueue withdraw_items = 20;
+ * @return {?proto.forge_abi.CircularQueue}
+ */
+proto.forge_abi.AccountState.prototype.getWithdrawItems = function() {
+  return /** @type{?proto.forge_abi.CircularQueue} */ (
+    jspb.Message.getWrapperField(this, type_pb.CircularQueue, 20));
+};
+
+
+/** @param {?proto.forge_abi.CircularQueue|undefined} value */
+proto.forge_abi.AccountState.prototype.setWithdrawItems = function(value) {
+  jspb.Message.setWrapperField(this, 20, value);
+};
+
+
+proto.forge_abi.AccountState.prototype.clearWithdrawItems = function() {
+  this.setWithdrawItems(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.forge_abi.AccountState.prototype.hasWithdrawItems = function() {
+  return jspb.Message.getField(this, 20) != null;
 };
 
 
@@ -1540,7 +1584,7 @@ proto.forge_abi.CoreProtocol.prototype.setAddress = function(value) {
  * @constructor
  */
 proto.forge_abi.ForgeState = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, proto.forge_abi.ForgeState.repeatedFields_, null);
+  jspb.Message.initialize(this, opt_data, 0, 500, proto.forge_abi.ForgeState.repeatedFields_, null);
 };
 goog.inherits(proto.forge_abi.ForgeState, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -1587,15 +1631,14 @@ proto.forge_abi.ForgeState.toObject = function(includeInstance, msg) {
     tasksMap: (f = msg.getTasksMap()) ? f.toObject(includeInstance, proto.forge_abi.UpgradeTasks.toObject) : [],
     stakeSummaryMap: (f = msg.getStakeSummaryMap()) ? f.toObject(includeInstance, proto.forge_abi.StakeSummary.toObject) : [],
     version: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    forgeAppHash: msg.getForgeAppHash(),
     token: (f = msg.getToken()) && type_pb.ForgeToken.toObject(includeInstance, f),
     txConfig: (f = msg.getTxConfig()) && type_pb.TransactionConfig.toObject(includeInstance, f),
-    stakeConfig: (f = msg.getStakeConfig()) && type_pb.StakeConfig.toObject(includeInstance, f),
-    pokeConfig: (f = msg.getPokeConfig()) && type_pb.PokeConfig.toObject(includeInstance, f),
     protocolsList: jspb.Message.toObjectList(msg.getProtocolsList(),
     proto.forge_abi.CoreProtocol.toObject, includeInstance),
     gasMap: (f = msg.getGasMap()) ? f.toObject(includeInstance, undefined) : [],
     upgradeInfo: (f = msg.getUpgradeInfo()) && type_pb.UpgradeInfo.toObject(includeInstance, f),
+    accountConfigMap: (f = msg.getAccountConfigMap()) ? f.toObject(includeInstance, proto.forge_abi.AccountConfig.toObject) : [],
+    tokenSwapConfig: (f = msg.getTokenSwapConfig()) && type_pb.TokenSwapConfig.toObject(includeInstance, f),
     data: (f = msg.getData()) && google_protobuf_any_pb.Any.toObject(includeInstance, f)
   };
 
@@ -1658,10 +1701,6 @@ proto.forge_abi.ForgeState.deserializeBinaryFromReader = function(msg, reader) {
       var value = /** @type {string} */ (reader.readString());
       msg.setVersion(value);
       break;
-    case 7:
-      var value = /** @type {!Uint8Array} */ (reader.readBytes());
-      msg.setForgeAppHash(value);
-      break;
     case 8:
       var value = new type_pb.ForgeToken;
       reader.readMessage(value,type_pb.ForgeToken.deserializeBinaryFromReader);
@@ -1671,16 +1710,6 @@ proto.forge_abi.ForgeState.deserializeBinaryFromReader = function(msg, reader) {
       var value = new type_pb.TransactionConfig;
       reader.readMessage(value,type_pb.TransactionConfig.deserializeBinaryFromReader);
       msg.setTxConfig(value);
-      break;
-    case 10:
-      var value = new type_pb.StakeConfig;
-      reader.readMessage(value,type_pb.StakeConfig.deserializeBinaryFromReader);
-      msg.setStakeConfig(value);
-      break;
-    case 11:
-      var value = new type_pb.PokeConfig;
-      reader.readMessage(value,type_pb.PokeConfig.deserializeBinaryFromReader);
-      msg.setPokeConfig(value);
       break;
     case 12:
       var value = new proto.forge_abi.CoreProtocol;
@@ -1698,7 +1727,18 @@ proto.forge_abi.ForgeState.deserializeBinaryFromReader = function(msg, reader) {
       reader.readMessage(value,type_pb.UpgradeInfo.deserializeBinaryFromReader);
       msg.setUpgradeInfo(value);
       break;
-    case 15:
+    case 16:
+      var value = msg.getAccountConfigMap();
+      reader.readMessage(value, function(message, reader) {
+        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readMessage, proto.forge_abi.AccountConfig.deserializeBinaryFromReader, "");
+         });
+      break;
+    case 17:
+      var value = new type_pb.TokenSwapConfig;
+      reader.readMessage(value,type_pb.TokenSwapConfig.deserializeBinaryFromReader);
+      msg.setTokenSwapConfig(value);
+      break;
+    case 2047:
       var value = new google_protobuf_any_pb.Any;
       reader.readMessage(value,google_protobuf_any_pb.Any.deserializeBinaryFromReader);
       msg.setData(value);
@@ -1762,13 +1802,6 @@ proto.forge_abi.ForgeState.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getForgeAppHash_asU8();
-  if (f.length > 0) {
-    writer.writeBytes(
-      7,
-      f
-    );
-  }
   f = message.getToken();
   if (f != null) {
     writer.writeMessage(
@@ -1783,22 +1816,6 @@ proto.forge_abi.ForgeState.serializeBinaryToWriter = function(message, writer) {
       9,
       f,
       type_pb.TransactionConfig.serializeBinaryToWriter
-    );
-  }
-  f = message.getStakeConfig();
-  if (f != null) {
-    writer.writeMessage(
-      10,
-      f,
-      type_pb.StakeConfig.serializeBinaryToWriter
-    );
-  }
-  f = message.getPokeConfig();
-  if (f != null) {
-    writer.writeMessage(
-      11,
-      f,
-      type_pb.PokeConfig.serializeBinaryToWriter
     );
   }
   f = message.getProtocolsList();
@@ -1821,10 +1838,22 @@ proto.forge_abi.ForgeState.serializeBinaryToWriter = function(message, writer) {
       type_pb.UpgradeInfo.serializeBinaryToWriter
     );
   }
+  f = message.getAccountConfigMap(true);
+  if (f && f.getLength() > 0) {
+    f.serializeBinary(16, writer, jspb.BinaryWriter.prototype.writeString, jspb.BinaryWriter.prototype.writeMessage, proto.forge_abi.AccountConfig.serializeBinaryToWriter);
+  }
+  f = message.getTokenSwapConfig();
+  if (f != null) {
+    writer.writeMessage(
+      17,
+      f,
+      type_pb.TokenSwapConfig.serializeBinaryToWriter
+    );
+  }
   f = message.getData();
   if (f != null) {
     writer.writeMessage(
-      15,
+      2047,
       f,
       google_protobuf_any_pb.Any.serializeBinaryToWriter
     );
@@ -1929,45 +1958,6 @@ proto.forge_abi.ForgeState.prototype.setVersion = function(value) {
 
 
 /**
- * optional bytes forge_app_hash = 7;
- * @return {!(string|Uint8Array)}
- */
-proto.forge_abi.ForgeState.prototype.getForgeAppHash = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
-};
-
-
-/**
- * optional bytes forge_app_hash = 7;
- * This is a type-conversion wrapper around `getForgeAppHash()`
- * @return {string}
- */
-proto.forge_abi.ForgeState.prototype.getForgeAppHash_asB64 = function() {
-  return /** @type {string} */ (jspb.Message.bytesAsB64(
-      this.getForgeAppHash()));
-};
-
-
-/**
- * optional bytes forge_app_hash = 7;
- * Note that Uint8Array is not supported on all browsers.
- * @see http://caniuse.com/Uint8Array
- * This is a type-conversion wrapper around `getForgeAppHash()`
- * @return {!Uint8Array}
- */
-proto.forge_abi.ForgeState.prototype.getForgeAppHash_asU8 = function() {
-  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
-      this.getForgeAppHash()));
-};
-
-
-/** @param {!(string|Uint8Array)} value */
-proto.forge_abi.ForgeState.prototype.setForgeAppHash = function(value) {
-  jspb.Message.setProto3BytesField(this, 7, value);
-};
-
-
-/**
  * optional ForgeToken token = 8;
  * @return {?proto.forge_abi.ForgeToken}
  */
@@ -2024,66 +2014,6 @@ proto.forge_abi.ForgeState.prototype.clearTxConfig = function() {
  */
 proto.forge_abi.ForgeState.prototype.hasTxConfig = function() {
   return jspb.Message.getField(this, 9) != null;
-};
-
-
-/**
- * optional StakeConfig stake_config = 10;
- * @return {?proto.forge_abi.StakeConfig}
- */
-proto.forge_abi.ForgeState.prototype.getStakeConfig = function() {
-  return /** @type{?proto.forge_abi.StakeConfig} */ (
-    jspb.Message.getWrapperField(this, type_pb.StakeConfig, 10));
-};
-
-
-/** @param {?proto.forge_abi.StakeConfig|undefined} value */
-proto.forge_abi.ForgeState.prototype.setStakeConfig = function(value) {
-  jspb.Message.setWrapperField(this, 10, value);
-};
-
-
-proto.forge_abi.ForgeState.prototype.clearStakeConfig = function() {
-  this.setStakeConfig(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.forge_abi.ForgeState.prototype.hasStakeConfig = function() {
-  return jspb.Message.getField(this, 10) != null;
-};
-
-
-/**
- * optional PokeConfig poke_config = 11;
- * @return {?proto.forge_abi.PokeConfig}
- */
-proto.forge_abi.ForgeState.prototype.getPokeConfig = function() {
-  return /** @type{?proto.forge_abi.PokeConfig} */ (
-    jspb.Message.getWrapperField(this, type_pb.PokeConfig, 11));
-};
-
-
-/** @param {?proto.forge_abi.PokeConfig|undefined} value */
-proto.forge_abi.ForgeState.prototype.setPokeConfig = function(value) {
-  jspb.Message.setWrapperField(this, 11, value);
-};
-
-
-proto.forge_abi.ForgeState.prototype.clearPokeConfig = function() {
-  this.setPokeConfig(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.forge_abi.ForgeState.prototype.hasPokeConfig = function() {
-  return jspb.Message.getField(this, 11) != null;
 };
 
 
@@ -2167,18 +2097,66 @@ proto.forge_abi.ForgeState.prototype.hasUpgradeInfo = function() {
 
 
 /**
- * optional google.protobuf.Any data = 15;
+ * map<string, AccountConfig> account_config = 16;
+ * @param {boolean=} opt_noLazyCreate Do not create the map if
+ * empty, instead returning `undefined`
+ * @return {!jspb.Map<string,!proto.forge_abi.AccountConfig>}
+ */
+proto.forge_abi.ForgeState.prototype.getAccountConfigMap = function(opt_noLazyCreate) {
+  return /** @type {!jspb.Map<string,!proto.forge_abi.AccountConfig>} */ (
+      jspb.Message.getMapField(this, 16, opt_noLazyCreate,
+      proto.forge_abi.AccountConfig));
+};
+
+
+proto.forge_abi.ForgeState.prototype.clearAccountConfigMap = function() {
+  this.getAccountConfigMap().clear();
+};
+
+
+/**
+ * optional TokenSwapConfig token_swap_config = 17;
+ * @return {?proto.forge_abi.TokenSwapConfig}
+ */
+proto.forge_abi.ForgeState.prototype.getTokenSwapConfig = function() {
+  return /** @type{?proto.forge_abi.TokenSwapConfig} */ (
+    jspb.Message.getWrapperField(this, type_pb.TokenSwapConfig, 17));
+};
+
+
+/** @param {?proto.forge_abi.TokenSwapConfig|undefined} value */
+proto.forge_abi.ForgeState.prototype.setTokenSwapConfig = function(value) {
+  jspb.Message.setWrapperField(this, 17, value);
+};
+
+
+proto.forge_abi.ForgeState.prototype.clearTokenSwapConfig = function() {
+  this.setTokenSwapConfig(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.forge_abi.ForgeState.prototype.hasTokenSwapConfig = function() {
+  return jspb.Message.getField(this, 17) != null;
+};
+
+
+/**
+ * optional google.protobuf.Any data = 2047;
  * @return {?proto.google.protobuf.Any}
  */
 proto.forge_abi.ForgeState.prototype.getData = function() {
   return /** @type{?proto.google.protobuf.Any} */ (
-    jspb.Message.getWrapperField(this, google_protobuf_any_pb.Any, 15));
+    jspb.Message.getWrapperField(this, google_protobuf_any_pb.Any, 2047));
 };
 
 
 /** @param {?proto.google.protobuf.Any|undefined} value */
 proto.forge_abi.ForgeState.prototype.setData = function(value) {
-  jspb.Message.setWrapperField(this, 15, value);
+  jspb.Message.setWrapperField(this, 2047, value);
 };
 
 
@@ -2192,7 +2170,7 @@ proto.forge_abi.ForgeState.prototype.clearData = function() {
  * @return {boolean}
  */
 proto.forge_abi.ForgeState.prototype.hasData = function() {
-  return jspb.Message.getField(this, 15) != null;
+  return jspb.Message.getField(this, 2047) != null;
 };
 
 

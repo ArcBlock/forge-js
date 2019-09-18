@@ -11,6 +11,8 @@ var jspb = require('google-protobuf');
 var goog = jspb;
 var global = Function('return this')();
 
+var google_protobuf_any_pb = require('google-protobuf/google/protobuf/any_pb.js');
+goog.object.extend(proto, google_protobuf_any_pb);
 var type_pb = require('./type_pb.js');
 goog.object.extend(proto, type_pb);
 var enum_pb = require('./enum_pb.js');
@@ -2138,7 +2140,13 @@ proto.forge_abi.IndexedAssetState.toObject = function(includeInstance, msg) {
     genesisTime: jspb.Message.getFieldWithDefault(msg, 3, ""),
     renaissanceTime: jspb.Message.getFieldWithDefault(msg, 4, ""),
     moniker: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    readonly: jspb.Message.getFieldWithDefault(msg, 6, false)
+    readonly: jspb.Message.getFieldWithDefault(msg, 6, false),
+    consumedTime: jspb.Message.getFieldWithDefault(msg, 7, ""),
+    issuer: jspb.Message.getFieldWithDefault(msg, 8, ""),
+    parent: jspb.Message.getFieldWithDefault(msg, 9, ""),
+    transferrable: jspb.Message.getFieldWithDefault(msg, 10, false),
+    ttl: jspb.Message.getFieldWithDefault(msg, 11, 0),
+    data: (f = msg.getData()) && google_protobuf_any_pb.Any.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -2198,6 +2206,31 @@ proto.forge_abi.IndexedAssetState.deserializeBinaryFromReader = function(msg, re
     case 6:
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setReadonly(value);
+      break;
+    case 7:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setConsumedTime(value);
+      break;
+    case 8:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setIssuer(value);
+      break;
+    case 9:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setParent(value);
+      break;
+    case 10:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setTransferrable(value);
+      break;
+    case 11:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setTtl(value);
+      break;
+    case 50:
+      var value = new google_protobuf_any_pb.Any;
+      reader.readMessage(value,google_protobuf_any_pb.Any.deserializeBinaryFromReader);
+      msg.setData(value);
       break;
     default:
       reader.skipField();
@@ -2268,6 +2301,49 @@ proto.forge_abi.IndexedAssetState.serializeBinaryToWriter = function(message, wr
     writer.writeBool(
       6,
       f
+    );
+  }
+  f = message.getConsumedTime();
+  if (f.length > 0) {
+    writer.writeString(
+      7,
+      f
+    );
+  }
+  f = message.getIssuer();
+  if (f.length > 0) {
+    writer.writeString(
+      8,
+      f
+    );
+  }
+  f = message.getParent();
+  if (f.length > 0) {
+    writer.writeString(
+      9,
+      f
+    );
+  }
+  f = message.getTransferrable();
+  if (f) {
+    writer.writeBool(
+      10,
+      f
+    );
+  }
+  f = message.getTtl();
+  if (f !== 0) {
+    writer.writeUint64(
+      11,
+      f
+    );
+  }
+  f = message.getData();
+  if (f != null) {
+    writer.writeMessage(
+      50,
+      f,
+      google_protobuf_any_pb.Any.serializeBinaryToWriter
     );
   }
 };
@@ -2362,6 +2438,113 @@ proto.forge_abi.IndexedAssetState.prototype.getReadonly = function() {
 /** @param {boolean} value */
 proto.forge_abi.IndexedAssetState.prototype.setReadonly = function(value) {
   jspb.Message.setProto3BooleanField(this, 6, value);
+};
+
+
+/**
+ * optional string consumed_time = 7;
+ * @return {string}
+ */
+proto.forge_abi.IndexedAssetState.prototype.getConsumedTime = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
+};
+
+
+/** @param {string} value */
+proto.forge_abi.IndexedAssetState.prototype.setConsumedTime = function(value) {
+  jspb.Message.setProto3StringField(this, 7, value);
+};
+
+
+/**
+ * optional string issuer = 8;
+ * @return {string}
+ */
+proto.forge_abi.IndexedAssetState.prototype.getIssuer = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 8, ""));
+};
+
+
+/** @param {string} value */
+proto.forge_abi.IndexedAssetState.prototype.setIssuer = function(value) {
+  jspb.Message.setProto3StringField(this, 8, value);
+};
+
+
+/**
+ * optional string parent = 9;
+ * @return {string}
+ */
+proto.forge_abi.IndexedAssetState.prototype.getParent = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 9, ""));
+};
+
+
+/** @param {string} value */
+proto.forge_abi.IndexedAssetState.prototype.setParent = function(value) {
+  jspb.Message.setProto3StringField(this, 9, value);
+};
+
+
+/**
+ * optional bool transferrable = 10;
+ * Note that Boolean fields may be set to 0/1 when serialized from a Java server.
+ * You should avoid comparisons like {@code val === true/false} in those cases.
+ * @return {boolean}
+ */
+proto.forge_abi.IndexedAssetState.prototype.getTransferrable = function() {
+  return /** @type {boolean} */ (jspb.Message.getFieldWithDefault(this, 10, false));
+};
+
+
+/** @param {boolean} value */
+proto.forge_abi.IndexedAssetState.prototype.setTransferrable = function(value) {
+  jspb.Message.setProto3BooleanField(this, 10, value);
+};
+
+
+/**
+ * optional uint64 ttl = 11;
+ * @return {number}
+ */
+proto.forge_abi.IndexedAssetState.prototype.getTtl = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 11, 0));
+};
+
+
+/** @param {number} value */
+proto.forge_abi.IndexedAssetState.prototype.setTtl = function(value) {
+  jspb.Message.setProto3IntField(this, 11, value);
+};
+
+
+/**
+ * optional google.protobuf.Any data = 50;
+ * @return {?proto.google.protobuf.Any}
+ */
+proto.forge_abi.IndexedAssetState.prototype.getData = function() {
+  return /** @type{?proto.google.protobuf.Any} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_any_pb.Any, 50));
+};
+
+
+/** @param {?proto.google.protobuf.Any|undefined} value */
+proto.forge_abi.IndexedAssetState.prototype.setData = function(value) {
+  jspb.Message.setWrapperField(this, 50, value);
+};
+
+
+proto.forge_abi.IndexedAssetState.prototype.clearData = function() {
+  this.setData(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.forge_abi.IndexedAssetState.prototype.hasData = function() {
+  return jspb.Message.getField(this, 50) != null;
 };
 
 
