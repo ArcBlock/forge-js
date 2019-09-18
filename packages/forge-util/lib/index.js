@@ -111,6 +111,10 @@ const isHex = hex => (isString(hex) || isNumber(hex)) && /^(-0x|0x|0X|-0X)?[0-9a
  */
 const toBN = number => {
   try {
+    if (typeof number === 'number' && number > 0) {
+      const numStr = Number(number).toLocaleString('fullwide', { useGrouping: false });
+      return new BN(numStr, 10);
+    }
     return numberToBN(number);
   } catch (error) {
     throw new Error(`${error} Given value: "${number}"`);
@@ -210,21 +214,6 @@ const hexToNumber = value => {
   }
 
   return toBN(value).toNumber();
-};
-
-/**
- * Converts value to it's decimal representation in string
- *
- * @public
- * @static
- * @method hexToNumberString
- * @param {String|Number|BN} value
- * @returns {String}
- */
-const hexToNumberString = value => {
-  if (!value) return value;
-
-  return toBN(value).toString(10);
 };
 
 /**
@@ -360,6 +349,10 @@ const numberToString = arg => {
     return arg;
   }
   if (typeof arg === 'number') {
+    if (typeof number === 'number' && arg > 0) {
+      return Number(arg).toLocaleString('fullwide', { useGrouping: false });
+    }
+
     return String(arg);
   }
 
@@ -387,17 +380,17 @@ const numberToString = arg => {
  * @returns {string}
  */
 const fromUnitToToken = (input, decimal = 18, optionsInput) => {
-  let arc = numberToBN(input);
-  const negative = arc.lt(zero);
+  let unit = toBN(input);
+  const negative = unit.lt(zero);
   const base = toBN(`1${'0'.repeat(decimal)}`, 10);
   const baseLength = base.toString(10).length - 1 || 1;
   const options = optionsInput || {};
 
   if (negative) {
-    arc = arc.mul(negative1);
+    unit = unit.mul(negative1);
   }
 
-  let fraction = arc.mod(base).toString(10);
+  let fraction = unit.mod(base).toString(10);
   while (fraction.length < baseLength) {
     fraction = `0${fraction}`;
   }
@@ -407,7 +400,7 @@ const fromUnitToToken = (input, decimal = 18, optionsInput) => {
     fraction = fraction.match(/^([0-9]*[1-9]|0)(0*)/)[1];
   }
 
-  let whole = arc.div(base).toString(10);
+  let whole = unit.div(base).toString(10);
   if (options.commify) {
     whole = whole.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   }
@@ -430,24 +423,24 @@ const fromUnitToToken = (input, decimal = 18, optionsInput) => {
  * @returns BN
  */
 const fromTokenToUnit = (input, decimal = 18) => {
-  let ether = numberToString(input);
+  let token = numberToString(input);
   const base = toBN(`1${'0'.repeat(decimal)}`, 10);
   const baseLength = base.toString(10).length - 1 || 1;
 
   // Is it negative?
-  const negative = ether.substring(0, 1) === '-';
+  const negative = token.substring(0, 1) === '-';
   if (negative) {
-    ether = ether.substring(1);
+    token = token.substring(1);
   }
 
-  if (ether === '.') {
-    throw new Error(`error converting number ${input} to arc, invalid value`);
+  if (token === '.') {
+    throw new Error(`error converting token ${input} to unit, invalid value`);
   }
 
   // Split it into a whole and fractional part
-  const comps = ether.split('.');
+  const comps = token.split('.');
   if (comps.length > 2) {
-    throw new Error(`error converting number ${input} to arc, too many decimal points`);
+    throw new Error(`error converting token ${input} to unit, too many decimal points`);
   }
 
   let whole = comps[0];
@@ -460,7 +453,7 @@ const fromTokenToUnit = (input, decimal = 18) => {
     fraction = '0';
   }
   if (fraction.length > baseLength) {
-    throw new Error(`error converting number ${input} to arc, too many decimal places`);
+    throw new Error(`error converting token ${input} to unit, too many decimal places`);
   }
 
   while (fraction.length < baseLength) {
@@ -631,8 +624,6 @@ module.exports = {
   hexToUtf8,
   numberToHex,
   hexToNumber,
-  hexToNumberString,
-  numberToBN,
   isHex,
   isHexStrict,
   isUint8Array,

@@ -23,7 +23,6 @@ yarn add @arcblock/forge-util
     * [.utf8ToHex(str)](#module_@arcblock/forge-util.utf8ToHex) ⇒ <code>String</code>
     * [.hexToUtf8(hex)](#module_@arcblock/forge-util.hexToUtf8) ⇒ <code>String</code>
     * [.hexToNumber(value)](#module_@arcblock/forge-util.hexToNumber) ⇒ <code>Number</code>
-    * [.hexToNumberString(value)](#module_@arcblock/forge-util.hexToNumberString) ⇒ <code>String</code>
     * [.numberToHex(value)](#module_@arcblock/forge-util.numberToHex) ⇒ <code>String</code>
     * [.bytesToHex(bytes)](#module_@arcblock/forge-util.bytesToHex) ⇒ <code>String</code>
     * [.hexToBytes(hex)](#module_@arcblock/forge-util.hexToBytes) ⇒ <code>Array</code>
@@ -172,19 +171,6 @@ Should be called to get utf8 from it's hex representation
 ### [**@arcblock/forge-util**](https://github.com/arcblock/forge-util).hexToNumber(value) ⇒ <code>Number</code>
 
 Converts value to it's number representation
-
-**Kind**: static method of [<code>@arcblock/forge-util</code>](#module_@arcblock/forge-util)  
-**Access**: public  
-
-| Param | Type                                                          |
-| ----- | ------------------------------------------------------------- |
-| value | <code>String</code> \| <code>Number</code> \| <code>BN</code> |
-
-<a name="module_@arcblock/forge-util.hexToNumberString"></a>
-
-### [**@arcblock/forge-util**](https://github.com/arcblock/forge-util).hexToNumberString(value) ⇒ <code>String</code>
-
-Converts value to it's decimal representation in string
 
 **Kind**: static method of [<code>@arcblock/forge-util</code>](#module_@arcblock/forge-util)  
 **Access**: public  
