@@ -4,7 +4,7 @@
 /**
  * This script demonstrates how to do delegate tx with graphql-client
  *
- * Run script with: `DEBUG=@arcblock/graphql-client node examples/delegate.js`
+ * Run script with: `DEBUG=@arcblock/graphql-client node examples/delegate_exchange.js`
  */
 
 const GraphQLClient = require('@arcblock/graphql-client');
@@ -83,7 +83,7 @@ const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
           to: betty.toAddress(),
           ops: [
             {
-              typeUrl: 'fg:t:transfer',
+              typeUrl: 'fg:t:exchange',
               rules: [],
             },
           ],
@@ -93,18 +93,42 @@ const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
     });
     console.log('alice.delegate.hash', hash);
 
-    // transfer from alice to bob by betty
-    const hash2 = await client.sendTransferTx({
-      tx: {
-        itx: {
-          to: bob.toAddress(),
+    // assemble exchange tx: multisig
+    const exchange = {
+      itx: {
+        to: bob.toAddress(),
+        sender: {
+          value: fromTokenToUnit(5, 18),
+        },
+        receiver: {
           value: fromTokenToUnit(1, 18),
         },
       },
-      delegatee: alice.toAddress(),
+    };
+
+    // 4.1 Sender: encode and sign the transaction
+    const encoded1 = await client.signExchangeTx({
+      tx: exchange,
       wallet: betty,
+      delegatee: alice.toAddress(),
     });
-    console.log('betty.transfer.hash', hash2);
+
+    // 4.2 Receiver: do the multi sig
+    const encoded2 = await client.multiSignExchangeTx({
+      tx: encoded1,
+      wallet: bob,
+    });
+
+    // 4.3 Send the exchange tx
+    await sleep(3000);
+    const hashExchange = await client.sendExchangeTx({
+      tx: encoded2,
+      wallet: bob,
+      signature: encoded1.signature,
+    });
+
+    console.log('exchange hash', hashExchange);
+    console.log('view exchange', `${endpoint}/node/explorer/txs/${hashExchange}`);
   } catch (err) {
     console.error(err);
     console.log(JSON.stringify(err.errors));
