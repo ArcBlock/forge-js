@@ -1,3 +1,17 @@
+## 0.38.0 (September 18, 2019)
+
+- chore: upgrade graphql-client with forge v0.38
+- chore: upgrade grpc-client with forge v0.38
+- chore: upgrade forge-proto with forge v0.38
+- chore: support delegation in exchange tx
+- fix: big numer e notation formating issue
+- chore: try to fix delegation on multi sig
+- Bump lodash.template from 4.4.0 to 4.5.0 (#346)
+- Bump fstream from 1.0.11 to 1.0.12 (#345)
+- Bump js-yaml from 3.12.0 to 3.13.1 (#349)
+- Bump eslint-utils from 1.3.1 to 1.4.2 (#359)
+- update readme
+
 ## 0.37.2 (August 27, 2019)
 
 - chore: bump sdk-util version
