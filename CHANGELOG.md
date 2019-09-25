@@ -1,3 +1,9 @@
+## 0.38.1 (September 25, 2019)
+
+- chore: allow did-auth to request a any-message claim
+- fix: typo
+- update readme
+
 ## 0.38.0 (September 18, 2019)
 
 - chore: upgrade graphql-client with forge v0.38
