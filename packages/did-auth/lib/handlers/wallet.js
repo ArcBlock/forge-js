@@ -238,12 +238,12 @@ module.exports = class WalletHandlers {
         }
 
         if (store) {
-          await this.storage.update(token, { did: userDid, status: STATUS_SCANNED });
+          await this.storage.update(token, { did: toAddress(userDid), status: STATUS_SCANNED });
         }
 
         const authInfo = await this.authenticator.sign({
           token,
-          userDid,
+          userDid: toAddress(userDid),
           userPk,
           claims,
           pathname,
@@ -263,7 +263,7 @@ module.exports = class WalletHandlers {
       } catch (err) {
         if (store) {
           await this.storage.update(token, {
-            did: userDid,
+            did: toAddress(userDid),
             status: STATUS_ERROR,
             error: err.message,
           });
