@@ -171,8 +171,7 @@ module.exports = class WalletHandlers {
               req,
               action,
               token,
-              userDid: store.did,
-              userAddress: toAddress(store.did),
+              userDid: toAddress(store.did),
               extraParams: Object.assign({ locale }, req.query),
             });
           }
@@ -288,15 +287,15 @@ module.exports = class WalletHandlers {
 
       try {
         // eslint-disable-next-line no-shadow
-        const { userDid, claims } = await this.authenticator.verify(params, locale);
+        const { userDid, userPk, claims } = await this.authenticator.verify(params, locale);
         debug('verify', { userDid, token, claims });
 
         const cbParams = {
           req,
-          userDid,
+          userDid: toAddress(userDid),
+          userPk,
           token,
           claims,
-          userAddress: toAddress(userDid),
           storage: this.storage,
           extraParams: Object.assign({ locale, action }, req.query),
         };
