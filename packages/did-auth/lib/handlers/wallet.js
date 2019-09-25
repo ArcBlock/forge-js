@@ -7,7 +7,7 @@ const debug = require('debug')(`${require('../../package.json').name}:handlers:w
 
 const sha3 = Mcrypto.Hasher.SHA3.hash256;
 const getLocale = req => (req.acceptsLanguages('en-US', 'zh-CN') || 'en-US').split('-').shift();
-const getDidCheckSum = did => sha3(did).slice(2, 8);
+const getDidCheckSum = did => sha3(toAddress(did)).slice(2, 8);
 const noop = () => {};
 
 const errors = {
