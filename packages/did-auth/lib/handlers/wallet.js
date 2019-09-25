@@ -7,7 +7,7 @@ const debug = require('debug')(`${require('../../package.json').name}:handlers:w
 
 const sha3 = Mcrypto.Hasher.SHA3.hash256;
 const getLocale = req => (req.acceptsLanguages('en-US', 'zh-CN') || 'en-US').split('-').shift();
-const getDidCheckSum = did => sha3(did).slice(2, 8);
+const getDidCheckSum = did => sha3(toAddress(did)).slice(2, 8);
 const noop = () => {};
 
 const errors = {
@@ -171,8 +171,7 @@ module.exports = class WalletHandlers {
               req,
               action,
               token,
-              userDid: store.did,
-              userAddress: toAddress(store.did),
+              userDid: toAddress(store.did),
               extraParams: Object.assign({ locale }, req.query),
             });
           }
@@ -239,12 +238,12 @@ module.exports = class WalletHandlers {
         }
 
         if (store) {
-          await this.storage.update(token, { did: userDid, status: STATUS_SCANNED });
+          await this.storage.update(token, { did: toAddress(userDid), status: STATUS_SCANNED });
         }
 
         const authInfo = await this.authenticator.sign({
           token,
-          userDid,
+          userDid: toAddress(userDid),
           userPk,
           claims,
           pathname,
@@ -264,7 +263,7 @@ module.exports = class WalletHandlers {
       } catch (err) {
         if (store) {
           await this.storage.update(token, {
-            did: userDid,
+            did: toAddress(userDid),
             status: STATUS_ERROR,
             error: err.message,
           });
@@ -288,15 +287,15 @@ module.exports = class WalletHandlers {
 
       try {
         // eslint-disable-next-line no-shadow
-        const { userDid, claims } = await this.authenticator.verify(params, locale);
+        const { userDid, userPk, claims } = await this.authenticator.verify(params, locale);
         debug('verify', { userDid, token, claims });
 
         const cbParams = {
           req,
-          userDid,
+          userDid: toAddress(userDid),
+          userPk,
           token,
           claims,
-          userAddress: toAddress(userDid),
           storage: this.storage,
           extraParams: Object.assign({ locale, action }, req.query),
         };

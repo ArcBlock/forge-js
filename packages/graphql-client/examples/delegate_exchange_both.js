@@ -73,7 +73,7 @@ const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
             to: to.toAddress(),
             ops: [
               {
-                typeUrl: 'fg:t:transfer',
+                typeUrl: 'fg:t:exchange',
                 rules: [],
               },
             ],

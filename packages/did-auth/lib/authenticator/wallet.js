@@ -3,7 +3,7 @@
 const qs = require('querystring');
 const Mcrypto = require('@arcblock/mcrypto');
 const ForgeSDK = require('@arcblock/forge-sdk');
-const { toHex, toBase58 } = require('@arcblock/forge-util');
+const { toBase58 } = require('@arcblock/forge-util');
 const { fromAddress } = require('@arcblock/forge-wallet');
 const { toAddress, toDid } = require('@arcblock/did');
 const { decode, verify, sign } = require('../jwt');
@@ -181,16 +181,15 @@ module.exports = class WalletAuthenticator {
         return reject(new Error(errors.tokenMissing[locale]));
       }
 
-      const userPkHex = toHex(userPk);
-      if (!userPkHex) {
+      if (!userPk) {
         return reject(new Error(errors.pkFormat[locale]));
       }
 
-      const isValid = verify(userInfo, userPkHex);
+      const isValid = verify(userInfo, userPk);
       if (!isValid) {
         // NOTE: since the token can be invalid because of wallet-app clock not in sync
         // We should tell the user that if it's caused by clock
-        const error = verify(userInfo, userPkHex, 0, false)
+        const error = verify(userInfo, userPk, 0, false)
           ? errors.timeInvalid[locale]
           : errors.tokenInvalid[locale];
         return reject(new Error(error));
@@ -200,7 +199,7 @@ module.exports = class WalletAuthenticator {
       debug('decode', { iss, requestedClaims });
 
       // check timestamp
-      return resolve({ token, userDid: iss, claims: requestedClaims });
+      return resolve({ token, userDid: iss, userPk, claims: requestedClaims });
     });
   }
 
@@ -214,19 +213,15 @@ module.exports = class WalletAuthenticator {
   }
 
   async getClaimInfo({ claim, userDid, userPk, extraParams }) {
-    const userPkHex = toHex(userPk);
     const result =
       typeof claim === 'function'
         ? await claim({
-            userDid,
-            userAddress: toAddress(userDid),
+            userDid: toAddress(userDid),
             userPk,
-            userPkHex,
             extraParams,
           })
         : claim;
 
-    result.userPkHex = userPkHex;
     return result;
   }
 
@@ -274,36 +269,52 @@ module.exports = class WalletAuthenticator {
       wallet,
       sender,
       description,
-      userPkHex,
       chainInfo,
+      meta,
     } = await this.getClaimInfo({
       claim,
       userDid,
       userPk,
       extraParams,
     });
-    if (userPkHex && !txData.pk) {
-      txData.pk = userPkHex;
-    }
-
     debug('getClaim.signature', { txData, txType, sender, userDid, userPk });
-    const { buffer: txBuffer } = await ForgeSDK[`encode${txType}`](
-      {
-        tx: txData,
-        wallet: wallet || fromAddress(sender || userDid),
-      },
-      { conn: this.chainInfo.chainId }
-    );
+    if (typeof ForgeSDK[`encode${txType}`] === 'function') {
+      if (!txData.pk) {
+        txData.pk = userPk;
+      }
+
+      const { buffer: txBuffer } = await ForgeSDK[`encode${txType}`](
+        {
+          tx: txData,
+          wallet: wallet || fromAddress(sender || userDid),
+        },
+        { conn: this.chainInfo.chainId }
+      );
+
+      return {
+        type: 'signature',
+        data: toBase58(Mcrypto.Hasher.SHA3.hash256(txBuffer)),
+        meta: {
+          description: description || 'You have to sign this transaction to continue.',
+          typeUrl: 'fg:t:transaction',
+        },
+        method: 'sha3',
+        origin: toBase58(txBuffer),
+        sig: '',
+        chainInfo,
+      };
+    }
 
     return {
       type: 'signature',
-      data: toBase58(Mcrypto.Hasher.SHA3.hash256(txBuffer)),
-      meta: {
-        description: description || 'You have to sign this transaction to continue.',
-        typeUrl: 'fg:t:transaction',
-      },
+      data: toBase58(txData),
+      meta: Object.assign(meta || {}, {
+        description: description || 'Sign this message to continue.',
+        // TODO: https://github.com/ArcBlock/ABT-DID-Protocol/issues/46
+        typeUrl: 'walletkit::signature',
+      }),
       method: 'sha3',
-      origin: toBase58(txBuffer),
+      origin: toBase58(txData),
       sig: '',
       chainInfo,
     };

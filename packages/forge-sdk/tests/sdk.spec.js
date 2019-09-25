@@ -36,7 +36,7 @@ Object.keys(sdk).forEach(x => {
       SDK.connect('https://zinc.abtnetwork.io/api', { name: 'zinc' });
       expect(typeof SDK.getChainInfo).toEqual('function');
       const res = await SDK.getChainInfo({ conn: 'test' });
-      expect(res.info.network).toContain('charging-chain');
+      expect(res.info.network).toContain('arcblock-aliyun-test');
       const res2 = await SDK.getChainInfo({ conn: 'zinc' });
       expect(res2.info.network).toContain('zinc');
     });
