@@ -102,6 +102,21 @@ module.exports = class WalletHandlers {
       throw new Error('onComplete callback is required to attach did auth handlers');
     }
 
+    // if user want to do multiple-step did-auth
+    const steps = (() => {
+      const stack = Array.isArray(claims) ? claims : [claims];
+      let index = 0;
+      const currentIndex = () => index;
+      const current = () => stack[index];
+      const isDone = () => index === stack.length - 1;
+      const next = () => {
+        if (isDone() === false) {
+          index += 1;
+        }
+      };
+      return { current, currentIndex, next, isDone };
+    })();
+
     // pathname for abt wallet, which will be included for authenticator signing
     const pathname = `${prefix}/${action}/auth`;
     debug('attach routes', { action, prefix, pathname });
@@ -245,7 +260,7 @@ module.exports = class WalletHandlers {
           token,
           userDid: toAddress(userDid),
           userPk,
-          claims,
+          claims: steps.current(),
           pathname,
           extraParams: Object.assign(
             { locale },
@@ -286,16 +301,19 @@ module.exports = class WalletHandlers {
       const store = token ? await this.storage.read(token) : null;
 
       try {
-        // eslint-disable-next-line no-shadow
-        const { userDid, userPk, claims } = await this.authenticator.verify(params, locale);
-        debug('verify', { userDid, token, claims });
+        const { userDid, userPk, claims: claimResponse } = await this.authenticator.verify(
+          params,
+          locale
+        );
+        debug('verify', { userDid, token, claims: claimResponse });
 
         const cbParams = {
+          step: steps.currentIndex(),
           req,
           userDid: toAddress(userDid),
           userPk,
           token,
-          claims,
+          claims: claimResponse,
           storage: this.storage,
           extraParams: Object.assign({ locale, action }, req.query),
         };
@@ -310,15 +328,40 @@ module.exports = class WalletHandlers {
         // onAuth: send the tx/do the transfer, etc.
         const result = await onAuth(cbParams);
 
-        if (token) {
-          if (store) {
-            await this.storage.update(token, { status: STATUS_SUCCEED });
-          } else {
-            return res.json({ error: errors.token404[locale] });
+        // Only return if we are walked through all steps
+        if (steps.isDone()) {
+          if (token) {
+            if (store) {
+              await this.storage.update(token, { status: STATUS_SUCCEED });
+            } else {
+              return res.json({ error: errors.token404[locale] });
+            }
           }
-        }
 
-        res.json(Object.assign({}, result || {}, { status: 0 }));
+          res.json(Object.assign({}, result || {}, { status: 0 }));
+
+          // Move to next step
+        } else {
+          steps.next();
+          const authInfo = await this.authenticator.sign({
+            token,
+            userDid: toAddress(userDid),
+            userPk,
+            claims: steps.current(),
+            pathname,
+            extraParams: Object.assign(
+              { locale },
+              Object.keys(req.query)
+                .filter(x => !['userDid', 'userPk', 'token'].includes(x))
+                .reduce((obj, x) => {
+                  obj[x] = req.query[x];
+                  return obj;
+                }, {})
+            ),
+          });
+
+          res.json(authInfo);
+        }
       } catch (err) {
         if (store) {
           debug('verify.error', token);
