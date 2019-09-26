@@ -3353,7 +3353,7 @@ Checkout the following snippet for the format of ResponseGetAccountState:
 
 ```json
 {
-  "code": "BANNED_UNSTAKE",
+  "code": "FORBIDDEN",
   "state": {
     "address": "abc",
     "balance": "abc",
@@ -3363,7 +3363,7 @@ Checkout the following snippet for the format of ResponseGetAccountState:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "BANNED_UNSTAKE",
+        "code": "FORBIDDEN",
         "createAsset": {
           "asset": "abc"
         },
@@ -3402,7 +3402,7 @@ Checkout the following snippet for the format of ResponseGetAccountState:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "BANNED_UNSTAKE",
+        "code": "FORBIDDEN",
         "createAsset": {
           "asset": "abc"
         },
@@ -3509,7 +3509,7 @@ Checkout the following snippet for the format of ResponseGetAssetState:
 
 ```json
 {
-  "code": "BANNED_UNSTAKE",
+  "code": "FORBIDDEN",
   "state": {
     "address": "abc",
     "consumedTime": "2019-04-29T00:00:00.000Z",
@@ -3519,7 +3519,7 @@ Checkout the following snippet for the format of ResponseGetAssetState:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "BANNED_UNSTAKE",
+        "code": "FORBIDDEN",
         "createAsset": {
           "asset": "abc"
         },
@@ -3558,7 +3558,7 @@ Checkout the following snippet for the format of ResponseGetAssetState:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "BANNED_UNSTAKE",
+        "code": "FORBIDDEN",
         "createAsset": {
           "asset": "abc"
         },
@@ -3660,7 +3660,7 @@ Checkout the following snippet for the format of ResponseGetBlock:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "BANNED_UNSTAKE",
+        "code": "FORBIDDEN",
         "createAsset": {
           "asset": "abc"
         },
@@ -3717,7 +3717,7 @@ Checkout the following snippet for the format of ResponseGetBlock:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "BANNED_UNSTAKE",
+        "code": "FORBIDDEN",
         "createAsset": {
           "asset": "abc"
         },
@@ -3761,7 +3761,7 @@ Checkout the following snippet for the format of ResponseGetBlock:
       "block": "abc"
     }
   },
-  "code": "BANNED_UNSTAKE"
+  "code": "FORBIDDEN"
 }
 ```
 
@@ -3817,7 +3817,7 @@ Checkout the following snippet for the format of ResponseGetBlocks:
       }
     }
   ],
-  "code": "BANNED_UNSTAKE",
+  "code": "FORBIDDEN",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -3845,7 +3845,7 @@ Checkout the following snippet for the format of ResponseGetChainInfo:
 
 ```json
 {
-  "code": "BANNED_UNSTAKE",
+  "code": "FORBIDDEN",
   "info": {
     "address": "abc",
     "appHash": "abc",
@@ -3891,7 +3891,7 @@ Checkout the following snippet for the format of ResponseGetConfig:
 
 ```json
 {
-  "code": "BANNED_UNSTAKE",
+  "code": "FORBIDDEN",
   "config": "abc"
 }
 ```
@@ -3914,7 +3914,7 @@ Checkout the following snippet for the format of ResponseGetDelegateState:
 
 ```json
 {
-  "code": "BANNED_UNSTAKE",
+  "code": "FORBIDDEN",
   "state": {
     "address": "abc",
     "context": {
@@ -3923,7 +3923,7 @@ Checkout the following snippet for the format of ResponseGetDelegateState:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "BANNED_UNSTAKE",
+        "code": "FORBIDDEN",
         "createAsset": {
           "asset": "abc"
         },
@@ -3962,7 +3962,7 @@ Checkout the following snippet for the format of ResponseGetDelegateState:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "BANNED_UNSTAKE",
+        "code": "FORBIDDEN",
         "createAsset": {
           "asset": "abc"
         },
@@ -4035,7 +4035,7 @@ Checkout the following snippet for the format of ResponseGetForgeState:
 
 ```json
 {
-  "code": "BANNED_UNSTAKE",
+  "code": "FORBIDDEN",
   "state": {
     "address": "abc",
     "consensus": {
@@ -4092,7 +4092,7 @@ Checkout the following snippet for the format of ResponseGetForgeState:
               "accountMigrate": {
                 "address": "abc"
               },
-              "code": "BANNED_UNSTAKE",
+              "code": "FORBIDDEN",
               "createAsset": {
                 "asset": "abc"
               },
@@ -4131,7 +4131,7 @@ Checkout the following snippet for the format of ResponseGetForgeState:
               "accountMigrate": {
                 "address": "abc"
               },
-              "code": "BANNED_UNSTAKE",
+              "code": "FORBIDDEN",
               "createAsset": {
                 "asset": "abc"
               },
@@ -4239,7 +4239,7 @@ Checkout the following snippet for the format of ResponseGetForgeStats:
 
 ```json
 {
-  "code": "BANNED_UNSTAKE",
+  "code": "FORBIDDEN",
   "forgeStats": {
     "avgBlockTime": 123,
     "avgTps": 123,
@@ -4317,7 +4317,7 @@ Checkout the following snippet for the format of ResponseGetHealthStatus:
 
 ```json
 {
-  "code": "BANNED_UNSTAKE",
+  "code": "FORBIDDEN",
   "healthStatus": {
     "consensus": {
       "blockHeight": "abc",
@@ -4368,7 +4368,7 @@ Checkout the following snippet for the format of ResponseGetNetInfo:
 
 ```json
 {
-  "code": "BANNED_UNSTAKE",
+  "code": "FORBIDDEN",
   "netInfo": {
     "listeners": [
       "abc"
@@ -4412,7 +4412,7 @@ Checkout the following snippet for the format of ResponseGetNodeInfo:
 
 ```json
 {
-  "code": "BANNED_UNSTAKE",
+  "code": "FORBIDDEN",
   "info": {
     "address": "abc",
     "appHash": "abc",
@@ -4466,7 +4466,7 @@ Checkout the following snippet for the format of ResponseGetProtocolState:
 
 ```json
 {
-  "code": "BANNED_UNSTAKE",
+  "code": "FORBIDDEN",
   "state": {
     "address": "abc",
     "context": {
@@ -4475,7 +4475,7 @@ Checkout the following snippet for the format of ResponseGetProtocolState:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "BANNED_UNSTAKE",
+        "code": "FORBIDDEN",
         "createAsset": {
           "asset": "abc"
         },
@@ -4514,7 +4514,7 @@ Checkout the following snippet for the format of ResponseGetProtocolState:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "BANNED_UNSTAKE",
+        "code": "FORBIDDEN",
         "createAsset": {
           "asset": "abc"
         },
@@ -4615,7 +4615,7 @@ Checkout the following snippet for the format of ResponseGetProtocols:
 
 ```json
 {
-  "code": "BANNED_UNSTAKE",
+  "code": "FORBIDDEN",
   "protocols": [
     {
       "address": "abc",
@@ -4669,7 +4669,7 @@ Checkout the following snippet for the format of ResponseGetSimulatorStatus:
 
 ```json
 {
-  "code": "BANNED_UNSTAKE",
+  "code": "FORBIDDEN",
   "result": "abc"
 }
 ```
@@ -4692,7 +4692,7 @@ Checkout the following snippet for the format of ResponseGetStakeState:
 
 ```json
 {
-  "code": "BANNED_UNSTAKE",
+  "code": "FORBIDDEN",
   "state": {
     "address": "abc",
     "balance": "abc",
@@ -4702,7 +4702,7 @@ Checkout the following snippet for the format of ResponseGetStakeState:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "BANNED_UNSTAKE",
+        "code": "FORBIDDEN",
         "createAsset": {
           "asset": "abc"
         },
@@ -4741,7 +4741,7 @@ Checkout the following snippet for the format of ResponseGetStakeState:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "BANNED_UNSTAKE",
+        "code": "FORBIDDEN",
         "createAsset": {
           "asset": "abc"
         },
@@ -4805,7 +4805,7 @@ Checkout the following snippet for the format of ResponseGetSwapState:
 
 ```json
 {
-  "code": "BANNED_UNSTAKE",
+  "code": "FORBIDDEN",
   "state": {
     "address": "abc",
     "assets": [
@@ -4817,7 +4817,7 @@ Checkout the following snippet for the format of ResponseGetSwapState:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "BANNED_UNSTAKE",
+        "code": "FORBIDDEN",
         "createAsset": {
           "asset": "abc"
         },
@@ -4856,7 +4856,7 @@ Checkout the following snippet for the format of ResponseGetSwapState:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "BANNED_UNSTAKE",
+        "code": "FORBIDDEN",
         "createAsset": {
           "asset": "abc"
         },
@@ -4920,7 +4920,7 @@ Checkout the following snippet for the format of ResponseGetTetherState:
 
 ```json
 {
-  "code": "BANNED_UNSTAKE",
+  "code": "FORBIDDEN",
   "state": {
     "address": "abc",
     "available": true,
@@ -4955,12 +4955,12 @@ Checkout the following snippet for the format of ResponseGetTx:
 
 ```json
 {
-  "code": "BANNED_UNSTAKE",
+  "code": "FORBIDDEN",
   "info": {
     "accountMigrate": {
       "address": "abc"
     },
-    "code": "BANNED_UNSTAKE",
+    "code": "FORBIDDEN",
     "createAsset": {
       "asset": "abc"
     },
@@ -5015,7 +5015,7 @@ Checkout the following snippet for the format of ResponseGetUnconfirmedTxs:
 
 ```json
 {
-  "code": "BANNED_UNSTAKE",
+  "code": "FORBIDDEN",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -5067,7 +5067,7 @@ Checkout the following snippet for the format of ResponseGetValidatorsInfo:
 
 ```json
 {
-  "code": "BANNED_UNSTAKE",
+  "code": "FORBIDDEN",
   "validatorsInfo": {
     "blockHeight": "abc",
     "validators": [
@@ -5110,7 +5110,7 @@ Checkout the following snippet for the format of ResponseListAssetTransactions:
 
 ```json
 {
-  "code": "BANNED_UNSTAKE",
+  "code": "FORBIDDEN",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -5118,7 +5118,7 @@ Checkout the following snippet for the format of ResponseListAssetTransactions:
   },
   "transactions": [
     {
-      "code": "BANNED_UNSTAKE",
+      "code": "FORBIDDEN",
       "hash": "abc",
       "receiver": "abc",
       "sender": "abc",
@@ -5205,7 +5205,7 @@ Checkout the following snippet for the format of ResponseListAssets:
       "ttl": "abc"
     }
   ],
-  "code": "BANNED_UNSTAKE",
+  "code": "FORBIDDEN",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -5243,7 +5243,7 @@ Checkout the following snippet for the format of ResponseListBlocks:
       "time": "abc"
     }
   ],
-  "code": "BANNED_UNSTAKE",
+  "code": "FORBIDDEN",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -5271,7 +5271,7 @@ Checkout the following snippet for the format of ResponseListStakes:
 
 ```json
 {
-  "code": "BANNED_UNSTAKE",
+  "code": "FORBIDDEN",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -5311,7 +5311,7 @@ Checkout the following snippet for the format of ResponseListSwap:
 
 ```json
 {
-  "code": "BANNED_UNSTAKE",
+  "code": "FORBIDDEN",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -5329,7 +5329,7 @@ Checkout the following snippet for the format of ResponseListSwap:
           "accountMigrate": {
             "address": "abc"
           },
-          "code": "BANNED_UNSTAKE",
+          "code": "FORBIDDEN",
           "createAsset": {
             "asset": "abc"
           },
@@ -5368,7 +5368,7 @@ Checkout the following snippet for the format of ResponseListSwap:
           "accountMigrate": {
             "address": "abc"
           },
-          "code": "BANNED_UNSTAKE",
+          "code": "FORBIDDEN",
           "createAsset": {
             "asset": "abc"
           },
@@ -5434,7 +5434,7 @@ Checkout the following snippet for the format of ResponseListTethers:
 
 ```json
 {
-  "code": "BANNED_UNSTAKE",
+  "code": "FORBIDDEN",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -5497,7 +5497,7 @@ Checkout the following snippet for the format of ResponseListTopAccounts:
       "totalUnstakes": "abc"
     }
   ],
-  "code": "BANNED_UNSTAKE",
+  "code": "FORBIDDEN",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -5525,7 +5525,7 @@ Checkout the following snippet for the format of ResponseListTransactions:
 
 ```json
 {
-  "code": "BANNED_UNSTAKE",
+  "code": "FORBIDDEN",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -5533,7 +5533,7 @@ Checkout the following snippet for the format of ResponseListTransactions:
   },
   "transactions": [
     {
-      "code": "BANNED_UNSTAKE",
+      "code": "FORBIDDEN",
       "hash": "abc",
       "receiver": "abc",
       "sender": "abc",
@@ -5583,7 +5583,7 @@ Checkout the following snippet for the format of ResponseSendTx:
 
 ```json
 {
-  "code": "BANNED_UNSTAKE",
+  "code": "FORBIDDEN",
   "hash": "abc"
 }
 ```
@@ -5606,7 +5606,7 @@ Checkout the following snippet for the format of ResponseStartSimulator:
 
 ```json
 {
-  "code": "BANNED_UNSTAKE"
+  "code": "FORBIDDEN"
 }
 ```
 
@@ -5627,7 +5627,7 @@ Checkout the following snippet for the format of ResponseStopSimulator:
 
 ```json
 {
-  "code": "BANNED_UNSTAKE"
+  "code": "FORBIDDEN"
 }
 ```
 
@@ -5676,7 +5676,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "BANNED_UNSTAKE",
+        "code": "FORBIDDEN",
         "createAsset": {
           "asset": "abc"
         },
@@ -5715,7 +5715,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "BANNED_UNSTAKE",
+        "code": "FORBIDDEN",
         "createAsset": {
           "asset": "abc"
         },
@@ -5829,7 +5829,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "BANNED_UNSTAKE",
+        "code": "FORBIDDEN",
         "createAsset": {
           "asset": "abc"
         },
@@ -5868,7 +5868,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "BANNED_UNSTAKE",
+        "code": "FORBIDDEN",
         "createAsset": {
           "asset": "abc"
         },
@@ -5992,7 +5992,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
       ]
     }
   },
-  "code": "BANNED_UNSTAKE",
+  "code": "FORBIDDEN",
   "confirm": {
     "chainId": "abc",
     "from": "abc",
@@ -6134,7 +6134,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "BANNED_UNSTAKE",
+        "code": "FORBIDDEN",
         "createAsset": {
           "asset": "abc"
         },
@@ -6173,7 +6173,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "BANNED_UNSTAKE",
+        "code": "FORBIDDEN",
         "createAsset": {
           "asset": "abc"
         },
@@ -6303,7 +6303,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
               "accountMigrate": {
                 "address": "abc"
               },
-              "code": "BANNED_UNSTAKE",
+              "code": "FORBIDDEN",
               "createAsset": {
                 "asset": "abc"
               },
@@ -6342,7 +6342,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
               "accountMigrate": {
                 "address": "abc"
               },
-              "code": "BANNED_UNSTAKE",
+              "code": "FORBIDDEN",
               "createAsset": {
                 "asset": "abc"
               },
@@ -6437,7 +6437,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "BANNED_UNSTAKE",
+        "code": "FORBIDDEN",
         "createAsset": {
           "asset": "abc"
         },
@@ -6476,7 +6476,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "BANNED_UNSTAKE",
+        "code": "FORBIDDEN",
         "createAsset": {
           "asset": "abc"
         },
@@ -6603,7 +6603,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "BANNED_UNSTAKE",
+        "code": "FORBIDDEN",
         "createAsset": {
           "asset": "abc"
         },
@@ -6642,7 +6642,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "BANNED_UNSTAKE",
+        "code": "FORBIDDEN",
         "createAsset": {
           "asset": "abc"
         },
@@ -6787,7 +6787,7 @@ Checkout the following snippet for the format of ResponseUnsubscribe:
 
 ```json
 {
-  "code": "BANNED_UNSTAKE"
+  "code": "FORBIDDEN"
 }
 ```
 

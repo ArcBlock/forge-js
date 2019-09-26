@@ -85,9 +85,10 @@ proto.forge_abi.StatusCode = {
   SENDER_WITHDRAW_ITEMS_FULL: 64,
   WITHDRAW_ITEM_MISSING: 65,
   INVALID_WITHDRAW_TX: 66,
+  INVALID_CHAIN_TYPE: 67,
   FORBIDDEN: 403,
   INTERNAL: 500,
-  TIMEOUT: 504
+  TIMEOUT: 504,
 };
 
 /**
@@ -95,7 +96,7 @@ proto.forge_abi.StatusCode = {
  */
 proto.forge_abi.KeyType = {
   ED25519: 0,
-  SECP256K1: 1
+  SECP256K1: 1,
 };
 
 /**
@@ -108,7 +109,7 @@ proto.forge_abi.HashType = {
   KECCAK_384: 6,
   SHA3_384: 7,
   KECCAK_512: 13,
-  SHA3_512: 14
+  SHA3_512: 14,
 };
 
 /**
@@ -116,7 +117,7 @@ proto.forge_abi.HashType = {
  */
 proto.forge_abi.EncodingType = {
   BASE16: 0,
-  BASE58: 1
+  BASE58: 1,
 };
 
 /**
@@ -135,7 +136,7 @@ proto.forge_abi.RoleType = {
   ROLE_GROUP: 9,
   ROLE_TX: 10,
   ROLE_TETHER: 11,
-  ROLE_ANY: 63
+  ROLE_ANY: 63,
 };
 
 /**
@@ -151,7 +152,7 @@ proto.forge_abi.UpgradeType = {
   EXE_FORGE: 11,
   EXE_DFS: 12,
   EXE_CONSENSUS: 13,
-  EXE_P2P: 14
+  EXE_P2P: 14,
 };
 
 /**
@@ -169,7 +170,7 @@ proto.forge_abi.UpgradeAction = {
   ROLLBACK_IF_FAIL: 30,
   RESTART_ALL_IF_FAIL: 31,
   CRASH_IF_FAIL: 33,
-  DROP_ADDRESS_BOOK: 50
+  DROP_ADDRESS_BOOK: 50,
 };
 
 /**
@@ -180,7 +181,7 @@ proto.forge_abi.StateType = {
   STATE_ASSET: 1,
   STATE_CHANNEL: 2,
   STATE_FORGE: 3,
-  STATE_STAKE: 4
+  STATE_STAKE: 4,
 };
 
 /**
@@ -190,7 +191,7 @@ proto.forge_abi.StakeType = {
   STAKE_NODE: 0,
   STAKE_USER: 1,
   STAKE_ASSET: 2,
-  STAKE_CHAIN: 3
+  STAKE_CHAIN: 3,
 };
 
 /**
@@ -199,7 +200,7 @@ proto.forge_abi.StakeType = {
 proto.forge_abi.ProtocolStatus = {
   RUNNING: 0,
   PAUSED: 1,
-  TERMINATED: 2
+  TERMINATED: 2,
 };
 
 goog.object.extend(exports, proto.forge_abi);

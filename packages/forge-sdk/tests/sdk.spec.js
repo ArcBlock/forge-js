@@ -31,7 +31,8 @@ Object.keys(sdk).forEach(x => {
       expect(res.info).toBeTruthy();
     });
 
-    test('should respect conn param when connected to multiple methods', async () => {
+    // FIXME: run this test when zinc chain is back
+    test.skip('should respect conn param when connected to multiple methods', async () => {
       SDK.connect(testChain, { name: 'test' });
       SDK.connect('https://zinc.abtnetwork.io/api', { name: 'zinc' });
       expect(typeof SDK.getChainInfo).toEqual('function');

@@ -25,8 +25,6 @@ module.exports = class WalletAuthenticator {
    * @typedef ChainInfo
    * @prop {string} chainId - application chain id
    * @prop {string} chainHost - graphql endpoint of the application chain
-   * @prop {string} chainToken - token symbol
-   * @prop {string} decimals - token decimals
    */
 
   /**

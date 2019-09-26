@@ -1,4 +1,4 @@
-// Auto generated code (2019-09-18T10:14:52.868Z), DO NOT EDIT
+// Auto generated code (2019-09-26T02:05:25.226Z), DO NOT EDIT
 const enumPb = require('./lib/enum_pb.js');
 const rpcPb = require('./lib/rpc_pb.js');
 const servicePb = require('./lib/service_pb.js');
