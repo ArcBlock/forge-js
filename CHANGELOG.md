@@ -1,3 +1,11 @@
+## 0.38.2 (September 26, 2019)
+
+- chore: upgrade forge-sdk
+- chore: upgrade grpc-client
+- chore: upgrade graphql-client
+- chore: update forge-proto
+- update readme
+
 ## 0.38.1 (September 25, 2019)
 
 - chore: allow did-auth to request a any-message claim
