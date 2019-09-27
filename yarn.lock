@@ -2065,8 +2065,8 @@ base64-js@^1.0.2:
 
 base64-url@^2.3.2:
   version "2.3.2"
-  resolved "https://registry.npmjs.org/base64-url/-/base64-url-2.3.2.tgz#d7ea32e80ce3c3ad49f823e77c4dd247c6b81759"
-  integrity sha512-2QpXjtjndKqPn9JKBpMTCbDGpgicfLUu+N5Y1vEfbuyqb1MN1D68C9YKCth4SjTHRvJleF3tPuxhLbH79MM0iQ==
+  resolved "https://registry.npm.taobao.org/base64-url/download/base64-url-2.3.2.tgz#d7ea32e80ce3c3ad49f823e77c4dd247c6b81759"
+  integrity sha1-1+oy6Azjw61J+CPnfE3SR8a4F1k=
 
 base@^0.11.1:
   version "0.11.2"
