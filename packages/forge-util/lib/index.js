@@ -15,6 +15,7 @@ const isNull = require('lodash/isNull');
 const numberToBN = require('number-to-bn');
 const multibase = require('multibase');
 const utf8 = require('utf8');
+const base64 = require('base64-url');
 const BN = require('bn.js');
 
 const DID_PREFIX = 'did:abt:';
@@ -509,13 +510,12 @@ function isUUID(str) {
 /**
  * Convert input to Uint8Array on best effort
  *
- * @param {buffer|base58|hex|Uint8Array} v
- * @param {boolean} [autoHex=false]
+ * @param {buffer|base58|hex|Uint8Array|string} v
  * @param {boolean} [enforceStrictHex=false]
  * @returns {Uint8Array}
  * @throws {Error}
  */
-function toUint8Array(v, autoHex = false, enforceStrictHex = false) {
+function toUint8Array(v, enforceStrictHex = false) {
   let vb = null;
   if (Buffer.isBuffer(v)) {
     vb = Uint8Array.from(v);
@@ -535,15 +535,11 @@ function toUint8Array(v, autoHex = false, enforceStrictHex = false) {
     vb = Uint8Array.from(v);
   } else if (multibase.isEncoded(v) === 'base58btc') {
     vb = Uint8Array.from(multibase.decode(v));
-  } else if (autoHex) {
-    // eslint-disable-next-line no-console
-    console.warn(
-      'It seems you provided an non-supported input to toUint8Array, its converted to hex implicitly'
-    );
+  } else if (typeof v === 'string') {
     vb = Uint8Array.from(hexToBytes(toHex(v)));
   } else {
     throw new Error(
-      'Unsupported input type detected for toBuffer, only Uint8Array/Buffer/Hex/Base58 supported'
+      `Unsupported input type ${typeof v} detected for toBuffer, only Uint8Array/Buffer/Hex/Base58 supported`
     );
   }
 
@@ -554,26 +550,24 @@ function toUint8Array(v, autoHex = false, enforceStrictHex = false) {
  * Convert input to Buffer on best effort
  *
  * @param {buffer|base58|hex|Uint8Array} v
- * @param {boolean} [autoHex=false]
  * @param {boolean} [enforceStrictHex=false]
  * @returns {buffer}
  * @throws {Error}
  */
-function toBuffer(v, autoHex = false, enforceStrictHex = false) {
-  return Buffer.from(toUint8Array(v, autoHex, enforceStrictHex));
+function toBuffer(v, enforceStrictHex = false) {
+  return Buffer.from(toUint8Array(v, enforceStrictHex));
 }
 
 /**
  * Convert input to base58btc format on best effort
  *
  * @param {buffer|base58|hex|Uint8Array} v
- * @param {boolean} [autoHex=false]
  * @param {boolean} [enforceStrictHex=false]
  * @returns {string}
  * @throws {Error}
  */
-function toBase58(v, autoHex = false, enforceStrictHex = false) {
-  return multibase.encode('base58btc', toBuffer(v, autoHex, enforceStrictHex)).toString();
+function toBase58(v, enforceStrictHex = false) {
+  return multibase.encode('base58btc', toBuffer(v, enforceStrictHex)).toString();
 }
 
 /**
@@ -588,6 +582,33 @@ function fromBase58(v) {
   }
 
   return multibase.decode(v);
+}
+
+/**
+ * Convert input to base64 format
+ *
+ * @param {buffer|base58|hex|Uint8Array} v
+ * @param {escape} [escape=true]
+ * @param {boolean} [enforceStrictHex=false]
+ * @returns {string}
+ * @throws {Error}
+ */
+function toBase64(v, escape = true, enforceStrictHex = false) {
+  const encoded = base64.encode(toBuffer(v, enforceStrictHex));
+  return escape ? base64.escape(encoded) : encoded;
+}
+
+/**
+ * Decode base64 string to buffer
+ *
+ * @param {string} v
+ * @returns {buffer}
+ */
+function fromBase64(v) {
+  if (typeof v !== 'string') {
+    throw new Error('fromBase64 requires input to be a string');
+  }
+  return Buffer.from(base64.unescape(v), 'base64');
 }
 
 /**
@@ -638,6 +659,8 @@ module.exports = {
   toBuffer,
   toBase58,
   fromBase58,
+  toBase64,
+  fromBase64,
   UUID,
   isUUID,
   toDid,

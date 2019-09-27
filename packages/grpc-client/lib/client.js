@@ -1,6 +1,5 @@
 /* eslint-disable no-underscore-dangle */
 const grpc = require('grpc');
-const base64 = require('base64-url');
 const camelCase = require('lodash/camelCase');
 const snakeCase = require('lodash/snakeCase');
 const { EventEmitter } = require('events');
@@ -13,7 +12,7 @@ const {
   getMessageType,
 } = require('@arcblock/forge-message');
 const errorCodes = require('@arcblock/forge-proto/lib/status_code.json');
-const { hexToBytes, bytesToHex, toBase58, toHex } = require('@arcblock/forge-util');
+const { hexToBytes, bytesToHex, toBase58, toBase64, toHex } = require('@arcblock/forge-util');
 // eslint-disable-next-line global-require
 const debug = require('debug')(`${require('../package.json').name}`);
 
@@ -385,7 +384,7 @@ class GRpcClient {
         if (encoding) {
           const { buffer: txBytes } = await txEncodeFn({ tx });
           if (encoding === 'base64') {
-            return base64.escape(txBytes.toString('base64'));
+            return toBase64(txBytes);
           }
           if (encoding === 'base58') {
             return toBase58(txBytes);

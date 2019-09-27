@@ -10,33 +10,30 @@ declare function isUint8Array(value: any): boolean;
 /**
  * Convert input to Uint8Array on best effort
  *
- * @param {buffer|base58|hex|Uint8Array} v
- * @param {boolean} [autoHex=false]
+ * @param {buffer|base58|hex|Uint8Array|string} v
  * @param {boolean} [enforceStrictHex=false]
  * @returns {Uint8Array}
  * @throws {Error}
  */
-declare function toUint8Array(v: any, autoHex?: boolean, enforceStrictHex?: boolean): Uint8Array;
+declare function toUint8Array(v: any, enforceStrictHex?: boolean): Uint8Array;
 /**
  * Convert input to Buffer on best effort
  *
  * @param {buffer|base58|hex|Uint8Array} v
- * @param {boolean} [autoHex=false]
  * @param {boolean} [enforceStrictHex=false]
  * @returns {buffer}
  * @throws {Error}
  */
-declare function toBuffer(v: any, autoHex?: boolean, enforceStrictHex?: boolean): any;
+declare function toBuffer(v: any, enforceStrictHex?: boolean): any;
 /**
  * Convert input to base58btc format on best effort
  *
  * @param {buffer|base58|hex|Uint8Array} v
- * @param {boolean} [autoHex=false]
  * @param {boolean} [enforceStrictHex=false]
  * @returns {string}
  * @throws {Error}
  */
-declare function toBase58(v: any, autoHex?: boolean, enforceStrictHex?: boolean): string;
+declare function toBase58(v: any, enforceStrictHex?: boolean): string;
 /**
  * Decode base58 string
  *
@@ -44,6 +41,23 @@ declare function toBase58(v: any, autoHex?: boolean, enforceStrictHex?: boolean)
  * @returns {buffer}
  */
 declare function fromBase58(v: string): any;
+/**
+ * Convert input to base64 format
+ *
+ * @param {buffer|base58|hex|Uint8Array} v
+ * @param {escape} [escape=true]
+ * @param {boolean} [enforceStrictHex=false]
+ * @returns {string}
+ * @throws {Error}
+ */
+declare function toBase64(v: any, escape?: typeof escape, enforceStrictHex?: boolean): string;
+/**
+ * Decode base64 string to buffer
+ *
+ * @param {string} v
+ * @returns {buffer}
+ */
+declare function fromBase64(v: string): any;
 /**
  * Generate a random UUID
  *
@@ -100,6 +114,8 @@ declare namespace ForgeSdkUtil {
     toBuffer: typeof toBuffer;
     toBase58: typeof toBase58;
     fromBase58: typeof fromBase58;
+    toBase64: typeof toBase64;
+    fromBase64: typeof fromBase64;
     UUID: typeof UUID;
     isUUID: typeof isUUID;
     toDid: typeof toDid;

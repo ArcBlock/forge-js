@@ -1,5 +1,4 @@
-const base64 = require('base64-url');
-const { fromBase58 } = require('@arcblock/forge-util');
+const { fromBase58, fromBase64 } = require('@arcblock/forge-util');
 const { toDid } = require('@arcblock/did');
 const { sign, verify } = require('../lib').JWT;
 
@@ -30,7 +29,7 @@ describe('#jwt', () => {
   test('should sign and verify jwt token', () => {
     const token = sign(appId, sk, { key: 'value' });
     const [, bodyB64] = token.split('.');
-    const body = JSON.parse(base64.decode(base64.unescape(bodyB64)));
+    const body = JSON.parse(fromBase64(bodyB64));
     const result = verify(token, pk);
     expect(result).toEqual(true);
     expect(body.key).toEqual('value');

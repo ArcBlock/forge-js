@@ -1,7 +1,6 @@
 const stringify = require('json-stable-stringify');
 const Mcrypto = require('@arcblock/mcrypto');
-const base64 = require('base64-url');
-const { toHex, stripHexPrefix } = require('@arcblock/forge-util');
+const { toHex, toBase64, fromBase64 } = require('@arcblock/forge-util');
 const { toDid, toStrictHex, toTypeInfo, isValid, isFromPublicKey } = require('@arcblock/did');
 
 // eslint-disable-next-line
@@ -38,7 +37,7 @@ const sign = (did, sk, payload = {}) => {
 
   // make header
   const header = headers[type.pk];
-  const headerB64 = base64.escape(base64.encode(stringify(header)));
+  const headerB64 = toBase64(stringify(header));
 
   // make body
   const now = Math.floor(Date.now() / 1000);
@@ -65,13 +64,13 @@ const sign = (did, sk, payload = {}) => {
       return acc;
     }, {});
 
-  const bodyB64 = base64.escape(base64.encode(stringify(body)));
+  const bodyB64 = toBase64(stringify(body));
   debug('sign.body', body);
 
   // make signature
   const msgHex = toHex(`${headerB64}.${bodyB64}`);
   const sigHex = getSigner(type.pk).sign(msgHex, sk);
-  const sigB64 = base64.escape(Buffer.from(stripHexPrefix(sigHex), 'hex').toString('base64'));
+  const sigB64 = toBase64(sigHex);
 
   return [headerB64, bodyB64, sigB64].join('.');
 };
@@ -87,9 +86,9 @@ const sign = (did, sk, payload = {}) => {
  */
 const decode = (token, payloadOnly = true) => {
   const [headerB64, bodyB64, sigB64] = token.split('.');
-  const header = JSON.parse(base64.decode(base64.unescape(headerB64)));
-  const body = JSON.parse(base64.decode(base64.unescape(bodyB64)));
-  const sig = Buffer.from(base64.unescape(sigB64), 'base64').toString('hex');
+  const header = JSON.parse(fromBase64(headerB64));
+  const body = JSON.parse(fromBase64(bodyB64));
+  const sig = Buffer.from(fromBase64(sigB64)).toString('hex');
   if (payloadOnly) {
     return body;
   }

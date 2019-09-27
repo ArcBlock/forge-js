@@ -1,11 +1,10 @@
 /* eslint-disable no-underscore-dangle */
-const base64 = require('base64-url');
 const camelCase = require('lodash/camelCase');
 const snakeCase = require('lodash/snakeCase');
 const errorCodes = require('@arcblock/forge-proto/lib/status_code.json');
 const { transactions, multiSignTxs } = require('@arcblock/forge-proto/lite');
 const { createMessage, getMessageType } = require('@arcblock/forge-message/lite');
-const { bytesToHex, toBase58, toHex } = require('@arcblock/forge-util');
+const { bytesToHex, toBase58, toBase64, toHex } = require('@arcblock/forge-util');
 
 const debug = require('debug')(require('../package.json').name);
 
@@ -216,7 +215,7 @@ class GraphQLClient extends GraphQLClientBase {
 
         const txObj = createMessage('Transaction', encoded);
         const txBytes = txObj.serializeBinary();
-        const txStr = base64.escape(Buffer.from(txBytes).toString('base64'));
+        const txStr = toBase64(txBytes);
         debug(`sendTx.${x}.txObj`, txObj.toObject());
 
         return new Promise(async (resolve, reject) => {
@@ -251,7 +250,7 @@ class GraphQLClient extends GraphQLClientBase {
         if (encoding) {
           const { buffer: txBytes } = await txEncodeFn({ tx });
           if (encoding === 'base64') {
-            return base64.escape(txBytes.toString('base64'));
+            return toBase64(txBytes);
           }
           if (encoding === 'base58') {
             return toBase58(txBytes);

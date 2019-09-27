@@ -32,7 +32,7 @@ class Sha2Hasher {
       this[name] = (data, round = 2, encoding = 'hex') => {
         let input = data;
         try {
-          input = toUint8Array(data, false, true);
+          input = toUint8Array(data, true);
         } catch (err) {
           // Do nothing
         }
