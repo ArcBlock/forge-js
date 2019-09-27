@@ -1,3 +1,9 @@
+## 0.38.3 (September 27, 2019)
+
+- fix: persist multi-step auth progress with action token
+- chore: add notes in transaction
+- update readme
+
 ## 0.38.2 (September 26, 2019)
 
 - chore: upgrade forge-sdk
