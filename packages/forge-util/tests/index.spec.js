@@ -13,6 +13,8 @@ const {
   toBuffer,
   toBase58,
   fromBase58,
+  toBase64,
+  fromBase64,
   UUID,
   isUUID,
 } = require('../lib/index');
@@ -384,5 +386,19 @@ describe('#base58', () => {
         '0x15D0014A9CF581EC068B67500683A2784A15E1F68057E5E37AAF3A0F58F3C43F083D6A5630130399D4E5003EA191FDE30849'
       )
     );
+  });
+});
+
+describe('#base64', () => {
+  const output = '64K06rCAIOygnOydvCDsnpgg64KY6rCC';
+  const input = '0xeb82b4eab08020eca09cec9dbc20ec9e9820eb8298eab082';
+  test('should generate valid base64', () => {
+    expect(toBase64(input)).toEqual(output);
+    expect(toBase64(toBuffer(input))).toEqual(output);
+    expect(toBase64(toUint8Array(input))).toEqual(output);
+  });
+
+  test('should generate buffer from base64', () => {
+    expect(fromBase64(output)).toEqual(toBuffer(input));
   });
 });
