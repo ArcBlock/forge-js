@@ -103,19 +103,7 @@ module.exports = class WalletHandlers {
     }
 
     // if user want to do multiple-step did-auth
-    const steps = (() => {
-      const stack = Array.isArray(claims) ? claims : [claims];
-      let index = 0;
-      const currentIndex = () => index;
-      const current = () => stack[index];
-      const isDone = () => index === stack.length - 1;
-      const next = () => {
-        if (isDone() === false) {
-          index += 1;
-        }
-      };
-      return { current, currentIndex, next, isDone };
-    })();
+    const steps = Array.isArray(claims) ? claims : [claims];
 
     // pathname for abt wallet, which will be included for authenticator signing
     const pathname = `${prefix}/${action}/auth`;
@@ -135,6 +123,8 @@ module.exports = class WalletHandlers {
           .replace(/^0x/, '')
           .slice(0, 8);
         await this.storage.create(token, STATUS_CREATED);
+        // Always set currentStep to 0 when generate a new token
+        await this.storage.update(token, { currentStep: 0 });
         debug('generate token', { action, prefix, token });
 
         const sessionDid = get(req, sessionDidKey);
@@ -260,7 +250,7 @@ module.exports = class WalletHandlers {
           token,
           userDid: toAddress(userDid),
           userPk,
-          claims: steps.current(),
+          claims: store ? steps[store.currentStep] : steps[0],
           pathname,
           extraParams: Object.assign(
             { locale },
@@ -308,7 +298,7 @@ module.exports = class WalletHandlers {
         debug('verify', { userDid, token, claims: claimResponse });
 
         const cbParams = {
-          step: steps.currentIndex(),
+          step: store ? store.currentStep : 0,
           req,
           userDid: toAddress(userDid),
           userPk,
@@ -328,40 +318,42 @@ module.exports = class WalletHandlers {
         // onAuth: send the tx/do the transfer, etc.
         const result = await onAuth(cbParams);
 
-        // Only return if we are walked through all steps
-        if (steps.isDone()) {
-          if (token) {
-            if (store) {
+        if (token) {
+          if (store) {
+            // Only return if we are walked through all steps
+            if (store.currentStep === steps.length - 1) {
               await this.storage.update(token, { status: STATUS_SUCCEED });
-            } else {
-              return res.json({ error: errors.token404[locale] });
+              return res.json(Object.assign({}, result || {}, { status: 0 }));
             }
+
+            // Move to next step
+            await this.storage.update(token, { currentStep: store.currentStep + 1 });
+            const authInfo = await this.authenticator.sign({
+              token,
+              userDid: toAddress(userDid),
+              userPk,
+              claims: steps[store.currentStep + 1],
+              pathname,
+              extraParams: Object.assign(
+                { locale },
+                Object.keys(req.query)
+                  .filter(x => !['userDid', 'userPk', 'token'].includes(x))
+                  .reduce((obj, x) => {
+                    obj[x] = req.query[x];
+                    return obj;
+                  }, {})
+              ),
+            });
+
+            return res.json(authInfo);
           }
 
-          res.json(Object.assign({}, result || {}, { status: 0 }));
-
-          // Move to next step
-        } else {
-          steps.next();
-          const authInfo = await this.authenticator.sign({
-            token,
-            userDid: toAddress(userDid),
-            userPk,
-            claims: steps.current(),
-            pathname,
-            extraParams: Object.assign(
-              { locale },
-              Object.keys(req.query)
-                .filter(x => !['userDid', 'userPk', 'token'].includes(x))
-                .reduce((obj, x) => {
-                  obj[x] = req.query[x];
-                  return obj;
-                }, {})
-            ),
-          });
-
-          res.json(authInfo);
+          // If we have a invalid token
+          return res.json({ error: errors.token404[locale] });
         }
+
+        // If we have no token
+        res.json(Object.assign({}, result || {}, { status: 0 }));
       } catch (err) {
         if (store) {
           debug('verify.error', token);
