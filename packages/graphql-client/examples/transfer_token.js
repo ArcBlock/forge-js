@@ -90,6 +90,10 @@ const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
         itx: {
           to: receiver.toAddress(),
           value: fromTokenToUnit(10),
+          data: {
+            typeUrl: 'json',
+            value: 'this is the transfer note',
+          },
         },
       },
       wallet: sender,
