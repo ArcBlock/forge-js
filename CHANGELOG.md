@@ -1,3 +1,9 @@
+## 0.38.4 (September 27, 2019)
+
+- chore: use toBase64 and fromBase64 from util
+- chore: add toBase64 and fromBase64 util
+- update readme
+
 ## 0.38.3 (September 27, 2019)
 
 - fix: persist multi-step auth progress with action token
