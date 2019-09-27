@@ -374,7 +374,7 @@ describe('#base58', () => {
     );
   });
 
-  test('should generate save after a long way', () => {
+  test('should generate same after a long way', () => {
     expect(
       toUint8Array(
         toBase58(

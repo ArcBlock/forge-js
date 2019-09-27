@@ -80,7 +80,7 @@ class Secp256k1Signer extends Signer {
   sign(message, sk, encoding = 'hex') {
     let msg = message;
     try {
-      msg = toUint8Array(message, false, true);
+      msg = toUint8Array(message, true);
     } catch (err) {
       // Do nothing;
     }
@@ -103,7 +103,7 @@ class Secp256k1Signer extends Signer {
   verify(message, signature, pk) {
     let msg = message;
     try {
-      msg = toUint8Array(message, false, true);
+      msg = toUint8Array(message, true);
     } catch (err) {
       // Do nothing;
     }
