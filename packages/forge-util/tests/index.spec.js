@@ -59,7 +59,7 @@ describe('#fromUnitToToken & fromTokenToUnit', () => {
 });
 
 describe('#web-util-test-case', () => {
-  it('calls numberToHex and returns the expected results', () => {
+  test('calls numberToHex and returns the expected results', () => {
     const tests = [
       { value: 1, expected: '0x1' },
       {
@@ -110,7 +110,7 @@ describe('#web-util-test-case', () => {
     });
   });
 
-  it('calls isBN and returns the expected results', () => {
+  test('calls isBN and returns the expected results', () => {
     const tests = [
       {
         value: () => {},
@@ -132,7 +132,7 @@ describe('#web-util-test-case', () => {
     });
   });
 
-  it('calls toBN and returns the expected results', () => {
+  test('calls toBN and returns the expected results', () => {
     const tests = [
       { value: 1, expected: '1' },
       { value: '1', expected: '1' },
@@ -184,17 +184,17 @@ describe('#web-util-test-case', () => {
     });
   });
 
-  it('calls toHex and returns the expected results', () => {
+  describe('calls toHex and returns the expected results', () => {
     const tests = [
       { value: 1, expected: '0x1' },
-      { value: '1', expected: '0x1' },
+      { value: '1', expected: '0x31' },
       { value: '0x1', expected: '0x1' },
-      { value: '15', expected: '0xf' },
+      { value: 15, expected: '0xf' },
       { value: '0xf', expected: '0xf' },
       { value: -1, expected: '-0x1' },
-      { value: '-1', expected: '-0x1' },
+      { value: '-1', expected: '0x2d31' },
       { value: '-0x1', expected: '-0x1' },
-      { value: '-15', expected: '-0xf' },
+      { value: -15, expected: '-0xf' },
       { value: '-0xf', expected: '-0xf' },
       { value: '0x657468657265756d', expected: '0x657468657265756d' },
       {
@@ -210,10 +210,10 @@ describe('#web-util-test-case', () => {
         expected: '-0xfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffd',
       },
       { value: 0, expected: '0x0' },
-      { value: '0', expected: '0x0' },
+      { value: '0', expected: '0x30' },
       { value: '0x0', expected: '0x0' },
       { value: -0, expected: '0x0' },
-      { value: '-0', expected: '0x0' },
+      { value: '-0', expected: '0x2d30' },
       { value: '-0x0', expected: '0x0' },
       {
         value: [1, 2, 3, { test: 'data' }],
@@ -256,12 +256,14 @@ describe('#web-util-test-case', () => {
       },
     ];
 
-    tests.forEach(test => {
-      expect(toHex(test.value)).toEqual(test.expected);
+    tests.forEach(x => {
+      // test(`expect toHex(${x.value}: ${typeof x.value}) to equal "${x.expected}"`, () => {
+      expect(toHex(x.value)).toEqual(x.expected);
+      // });
     });
   });
 
-  it('calls hexToUtf8 and returns the expected results', () => {
+  test('calls hexToUtf8 and returns the expected results', () => {
     const tests = [
       {
         value: '0x486565c3a4c3b6c3b6c3a4f09f9185443334c99dc9a33234d084cdbd2d2e2cc3a4c3bc2b232f',
@@ -284,7 +286,7 @@ describe('#web-util-test-case', () => {
     });
   });
 
-  it('calls utf8ToHex and returns the expected results', () => {
+  test('calls utf8ToHex and returns the expected results', () => {
     const tests = [
       {
         value: 'Heeäööä👅D34ɝɣ24Єͽ-.,äü+#/',

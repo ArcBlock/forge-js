@@ -26,14 +26,22 @@ const testVectors = {
     384: '0X2A86C218F7B896485EA39F5758999C932A212CFF0309ACB8E8621CAD682CA1B35CC41154AFB4A1BF050D97E2A0EC7C14',
     512: '0X14BEA590E28F4EE0C16336887F7E3C3E6AA744F37E09F067655E6326B905ACBD7DBE48656FBC0C71BE0C7A4776B174E380E14EF336D35ED7027E5D9C6256F947',
   },
+  '0xe4852b7091317e3622068e62a5127d1fb0d4ae2fc50213295e10652d2f0abfc7': {
+    224: '0XD2A6CA1BEA8BC0E28D5DE3E079407B1BB16CDD7BFF65ABCAE9F186F9',
+    256: '0X228CD829C2C81ACDB704049C67C898329571C0A577913F0508CF5282841D6AF5',
+    384: '0XA5088E41EAED5FF6E3695B661D2403103A99C72A8735FB9BEA33C9D2A0E57F88EF642A9170929389854FFE3D9F50BF10',
+    512: '0X94C558C988D764655D5D7467D49AF8C271F3CBAB23BAC6069AA681044D921AAC1893B49A72A208553F769AF92DC829831837AB652245843FC836C02155E9182D',
+  },
 };
 
 describe('#sha2', () => {
-  Object.keys(testVectors.abcd).forEach(length => {
+  const keys = Object.keys(testVectors);
+  const lengthList = Object.keys(testVectors[keys[0]]);
+  lengthList.forEach(length => {
     Object.keys(testVectors).forEach(key => {
-      test(`should hash value: ${key} at length ${length}`, () => {
+      test(`should hash value: ${JSON.stringify(key)} at length ${length}`, () => {
         const fn = `hash${length}`;
-        expect(hasher[fn](key, 1).toUpperCase()).toEqual(testVectors[key][length]);
+        expect(hasher[fn](key.toString(), 1).toUpperCase()).toEqual(testVectors[key][length]);
       });
     });
   });
@@ -49,7 +57,7 @@ describe('#sha2', () => {
 
   test('should return same result on different input formats', () => {
     const input = '0xDD886B5FD8421FB3871D24E39E53967CE4FC80DD348BEDBEA0109C0E';
-    const output = '0x8b9fa64610041de6981c80cc8da018b09499c5ede7631fb5fc73ad76aec9a6c0';
+    const output = '0xd7da8d03f32bc3894ec4df4818e3a020b39160bd33e2d855208ef843877c0099';
     expect(hasher.hash256(input)).toEqual(output);
     expect(hasher.hash256(toBase58(input))).toEqual(output);
     expect(hasher.hash256(toUint8Array(input))).toEqual(output);

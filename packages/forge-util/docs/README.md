@@ -35,11 +35,11 @@ yarn add @arcblock/forge-util
   * _inner_
     * [~UUID()](#module_@arcblock/forge-util..UUID) ⇒ <code>string</code>
     * [~isUUID(str)](#module_@arcblock/forge-util..isUUID) ⇒ <code>boolean</code>
-    * [~toUint8Array(v, \[enforceStrictHex\])](#module_@arcblock/forge-util..toUint8Array) ⇒ <code>Uint8Array</code>
-    * [~toBuffer(v, \[enforceStrictHex\])](#module_@arcblock/forge-util..toBuffer) ⇒ <code>buffer</code>
-    * [~toBase58(v, \[enforceStrictHex\])](#module_@arcblock/forge-util..toBase58) ⇒ <code>string</code>
+    * [~toUint8Array(v)](#module_@arcblock/forge-util..toUint8Array) ⇒ <code>Uint8Array</code>
+    * [~toBuffer(v)](#module_@arcblock/forge-util..toBuffer) ⇒ <code>buffer</code>
+    * [~toBase58(v)](#module_@arcblock/forge-util..toBase58) ⇒ <code>string</code>
     * [~fromBase58(v)](#module_@arcblock/forge-util..fromBase58) ⇒ <code>buffer</code>
-    * [~toBase64(v, \[escape\], \[enforceStrictHex\])](#module_@arcblock/forge-util..toBase64) ⇒ <code>string</code>
+    * [~toBase64(v, \[escape\])](#module_@arcblock/forge-util..toBase64) ⇒ <code>string</code>
     * [~fromBase64(v)](#module_@arcblock/forge-util..fromBase64) ⇒ <code>buffer</code>
 
 <a name="module_@arcblock/forge-util.isHexPrefixed"></a>
@@ -333,7 +333,7 @@ Check if a string is valid UUID
 
 <a name="module_@arcblock/forge-util..toUint8Array"></a>
 
-### [**@arcblock/forge-util**](https://github.com/arcblock/forge-util)~toUint8Array(v, [enforceStrictHex]) ⇒ <code>Uint8Array</code>
+### [**@arcblock/forge-util**](https://github.com/arcblock/forge-util)~toUint8Array(v) ⇒ <code>Uint8Array</code>
 
 Convert input to Uint8Array on best effort
 
@@ -342,14 +342,13 @@ Convert input to Uint8Array on best effort
 
 * <code>Error</code> 
 
-| Param              | Type                                                                                                             | Default            |
-| ------------------ | ---------------------------------------------------------------------------------------------------------------- | ------------------ |
-| v                  | <code>buffer</code> \| <code>base58</code> \| <code>hex</code> \| <code>Uint8Array</code> \| <code>string</code> |                    |
-| [enforceStrictHex] | <code>boolean</code>                                                                                             | <code>false</code> |
+| Param | Type                                                                                                             |
+| ----- | ---------------------------------------------------------------------------------------------------------------- |
+| v     | <code>buffer</code> \| <code>base58</code> \| <code>hex</code> \| <code>Uint8Array</code> \| <code>string</code> |
 
 <a name="module_@arcblock/forge-util..toBuffer"></a>
 
-### [**@arcblock/forge-util**](https://github.com/arcblock/forge-util)~toBuffer(v, [enforceStrictHex]) ⇒ <code>buffer</code>
+### [**@arcblock/forge-util**](https://github.com/arcblock/forge-util)~toBuffer(v) ⇒ <code>buffer</code>
 
 Convert input to Buffer on best effort
 
@@ -358,14 +357,13 @@ Convert input to Buffer on best effort
 
 * <code>Error</code> 
 
-| Param              | Type                                                                                      | Default            |
-| ------------------ | ----------------------------------------------------------------------------------------- | ------------------ |
-| v                  | <code>buffer</code> \| <code>base58</code> \| <code>hex</code> \| <code>Uint8Array</code> |                    |
-| [enforceStrictHex] | <code>boolean</code>                                                                      | <code>false</code> |
+| Param | Type                                                                                      |
+| ----- | ----------------------------------------------------------------------------------------- |
+| v     | <code>buffer</code> \| <code>base58</code> \| <code>hex</code> \| <code>Uint8Array</code> |
 
 <a name="module_@arcblock/forge-util..toBase58"></a>
 
-### [**@arcblock/forge-util**](https://github.com/arcblock/forge-util)~toBase58(v, [enforceStrictHex]) ⇒ <code>string</code>
+### [**@arcblock/forge-util**](https://github.com/arcblock/forge-util)~toBase58(v) ⇒ <code>string</code>
 
 Convert input to base58btc format on best effort
 
@@ -374,10 +372,9 @@ Convert input to base58btc format on best effort
 
 * <code>Error</code> 
 
-| Param              | Type                                                                                      | Default            |
-| ------------------ | ----------------------------------------------------------------------------------------- | ------------------ |
-| v                  | <code>buffer</code> \| <code>base58</code> \| <code>hex</code> \| <code>Uint8Array</code> |                    |
-| [enforceStrictHex] | <code>boolean</code>                                                                      | <code>false</code> |
+| Param | Type                                                                                      |
+| ----- | ----------------------------------------------------------------------------------------- |
+| v     | <code>buffer</code> \| <code>base58</code> \| <code>hex</code> \| <code>Uint8Array</code> |
 
 <a name="module_@arcblock/forge-util..fromBase58"></a>
 
@@ -393,7 +390,7 @@ Decode base58 string
 
 <a name="module_@arcblock/forge-util..toBase64"></a>
 
-### [**@arcblock/forge-util**](https://github.com/arcblock/forge-util)~toBase64(v, [escape], [enforceStrictHex]) ⇒ <code>string</code>
+### [**@arcblock/forge-util**](https://github.com/arcblock/forge-util)~toBase64(v, [escape]) ⇒ <code>string</code>
 
 Convert input to base64 format
 
@@ -402,11 +399,10 @@ Convert input to base64 format
 
 * <code>Error</code> 
 
-| Param              | Type                                                                                      | Default            |
-| ------------------ | ----------------------------------------------------------------------------------------- | ------------------ |
-| v                  | <code>buffer</code> \| <code>base58</code> \| <code>hex</code> \| <code>Uint8Array</code> |                    |
-| [escape]           | <code>escape</code>                                                                       | <code>true</code>  |
-| [enforceStrictHex] | <code>boolean</code>                                                                      | <code>false</code> |
+| Param    | Type                                                                                      | Default           |
+| -------- | ----------------------------------------------------------------------------------------- | ----------------- |
+| v        | <code>buffer</code> \| <code>base58</code> \| <code>hex</code> \| <code>Uint8Array</code> |                   |
+| [escape] | <code>escape</code>                                                                       | <code>true</code> |
 
 <a name="module_@arcblock/forge-util..fromBase64"></a>
 

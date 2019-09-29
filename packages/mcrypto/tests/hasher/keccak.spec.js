@@ -29,11 +29,13 @@ const testVectors = {
 };
 
 describe('#keccak', () => {
-  Object.keys(testVectors.abcd).forEach(length => {
+  const keys = Object.keys(testVectors);
+  const lengthList = Object.keys(testVectors[keys[0]]);
+  lengthList.forEach(length => {
     Object.keys(testVectors).forEach(key => {
-      test(`should hash value: ${key} at length ${length}`, () => {
+      test(`should hash value: ${JSON.stringify(key)} at length ${length}`, () => {
         const fn = `hash${length}`;
-        expect(hasher[fn](key, 1).toUpperCase()).toEqual(testVectors[key][length]);
+        expect(hasher[fn](key.toString(), 1).toUpperCase()).toEqual(testVectors[key][length]);
       });
     });
   });

@@ -1,3 +1,10 @@
+## 0.38.5 (September 29, 2019)
+
+- chore: remove useless console.log
+- chore: fix test case for sha2
+- fix: sha2 not handling multi round correctly
+- update readme
+
 ## 0.38.4 (September 27, 2019)
 
 - chore: use toBase64 and fromBase64 from util

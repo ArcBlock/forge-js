@@ -330,10 +330,9 @@ const toHex = (value, returnType) => {
     if (value.indexOf('0x') === 0 || value.indexOf('0X') === 0) {
       return returnType ? 'bytes' : value;
     }
-    // eslint-disable-next-line no-restricted-globals
-    if (!isFinite(value)) {
-      return returnType ? 'string' : utf8ToHex(value);
-    }
+
+    // TODO: some edge case may be not properly handled here
+    return returnType ? 'string' : utf8ToHex(value);
   }
 
   // eslint-disable-next-line no-nested-ternary
@@ -511,25 +510,16 @@ function isUUID(str) {
  * Convert input to Uint8Array on best effort
  *
  * @param {buffer|base58|hex|Uint8Array|string} v
- * @param {boolean} [enforceStrictHex=false]
  * @returns {Uint8Array}
  * @throws {Error}
  */
-function toUint8Array(v, enforceStrictHex = false) {
+function toUint8Array(v) {
   let vb = null;
-  if (Buffer.isBuffer(v)) {
+  if ([null, undefined, ''].includes(v)) {
+    vb = Uint8Array.from([]);
+  } else if (Buffer.isBuffer(v)) {
     vb = Uint8Array.from(v);
-  } else if (isHex(v)) {
-    if (!isHexStrict(v)) {
-      if (enforceStrictHex) {
-        throw new Error('toUint8Array expect strict hex encoded string');
-      }
-
-      // eslint-disable-next-line no-console
-      console.warn(
-        'It seems you provided an hex encoded string without `0x` prefix for toUint8Array'
-      );
-    }
+  } else if (isHexStrict(v)) {
     vb = Uint8Array.from(hexToBytes(v));
   } else if (isUint8Array(v)) {
     vb = Uint8Array.from(v);
@@ -550,24 +540,22 @@ function toUint8Array(v, enforceStrictHex = false) {
  * Convert input to Buffer on best effort
  *
  * @param {buffer|base58|hex|Uint8Array} v
- * @param {boolean} [enforceStrictHex=false]
  * @returns {buffer}
  * @throws {Error}
  */
-function toBuffer(v, enforceStrictHex = false) {
-  return Buffer.from(toUint8Array(v, enforceStrictHex));
+function toBuffer(v) {
+  return Buffer.from(toUint8Array(v));
 }
 
 /**
  * Convert input to base58btc format on best effort
  *
  * @param {buffer|base58|hex|Uint8Array} v
- * @param {boolean} [enforceStrictHex=false]
  * @returns {string}
  * @throws {Error}
  */
-function toBase58(v, enforceStrictHex = false) {
-  return multibase.encode('base58btc', toBuffer(v, enforceStrictHex)).toString();
+function toBase58(v) {
+  return multibase.encode('base58btc', toBuffer(v)).toString();
 }
 
 /**
@@ -589,12 +577,11 @@ function fromBase58(v) {
  *
  * @param {buffer|base58|hex|Uint8Array} v
  * @param {escape} [escape=true]
- * @param {boolean} [enforceStrictHex=false]
  * @returns {string}
  * @throws {Error}
  */
-function toBase64(v, escape = true, enforceStrictHex = false) {
-  const encoded = base64.encode(toBuffer(v, enforceStrictHex));
+function toBase64(v, escape = true) {
+  const encoded = base64.encode(toBuffer(v));
   return escape ? base64.escape(encoded) : encoded;
 }
 

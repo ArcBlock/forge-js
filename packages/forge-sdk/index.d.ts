@@ -1,3 +1,4 @@
+
 /**
  * Validates if a value is an Uint8Array.
  *
@@ -11,29 +12,26 @@ declare function isUint8Array(value: any): boolean;
  * Convert input to Uint8Array on best effort
  *
  * @param {buffer|base58|hex|Uint8Array|string} v
- * @param {boolean} [enforceStrictHex=false]
  * @returns {Uint8Array}
  * @throws {Error}
  */
-declare function toUint8Array(v: any, enforceStrictHex?: boolean): Uint8Array;
+declare function toUint8Array(v: any): Uint8Array;
 /**
  * Convert input to Buffer on best effort
  *
  * @param {buffer|base58|hex|Uint8Array} v
- * @param {boolean} [enforceStrictHex=false]
  * @returns {buffer}
  * @throws {Error}
  */
-declare function toBuffer(v: any, enforceStrictHex?: boolean): any;
+declare function toBuffer(v: any): any;
 /**
  * Convert input to base58btc format on best effort
  *
  * @param {buffer|base58|hex|Uint8Array} v
- * @param {boolean} [enforceStrictHex=false]
  * @returns {string}
  * @throws {Error}
  */
-declare function toBase58(v: any, enforceStrictHex?: boolean): string;
+declare function toBase58(v: any): string;
 /**
  * Decode base58 string
  *
@@ -46,11 +44,10 @@ declare function fromBase58(v: string): any;
  *
  * @param {buffer|base58|hex|Uint8Array} v
  * @param {escape} [escape=true]
- * @param {boolean} [enforceStrictHex=false]
  * @returns {string}
  * @throws {Error}
  */
-declare function toBase64(v: any, escape?: typeof escape, enforceStrictHex?: boolean): string;
+declare function toBase64(v: any, escape?: typeof escape): string;
 /**
  * Decode base64 string to buffer
  *
@@ -2787,6 +2784,7 @@ declare namespace GRpcClient {
 
 /*~ Write your module's methods and properties in this class */
 declare interface ForgeSDK {
+
   getQueries(): string[];
   getSubscriptions(): string[];
   getMutations(): string[];
@@ -4588,18 +4586,18 @@ declare namespace GraphQLClient {
 }
 
 /**
- * Connect to a forge grpc/graphql endpoint
- * Then switch the current connection of ForgeSDK to that connection
- *
- * @public
- * @function
- * @param {string} endpoint - endpoint url string
- * @param {object} options - connection config
- * @param {string} options.name - connection name
- * @param {string} options.default - set this connection as default?
- * @see GraphQLClient for methods available when connected to graphql endpoint
- * @see GRpcClient for methods available when connected to grpc endpoint
- */
+  * Connect to a forge grpc/graphql endpoint
+  * Then switch the current connection of ForgeSDK to that connection
+  *
+  * @public
+  * @function
+  * @param {string} endpoint - endpoint url string
+  * @param {object} options - connection config
+  * @param {string} options.name - connection name
+  * @param {string} options.default - set this connection as default?
+  * @see GraphQLClient for methods available when connected to graphql endpoint
+  * @see GRpcClient for methods available when connected to grpc endpoint
+  */
 declare function connect(endpoint: string, options: ConnectOptions): void;
 
 declare interface ConnectOptions {
@@ -4607,12 +4605,13 @@ declare interface ConnectOptions {
   default: bool;
 }
 
-declare interface ForgeSDK {
-  Util: ForgeSdkUtil.T100;
-  Wallet: ForgeSdkWallet.T103;
-  Message: ForgeSDKMessage.T101;
-  connect: typeof connect;
-}
 
-declare const _Lib: ForgeSDK;
-export = _Lib;
+  declare interface ForgeSDK {
+    Util: ForgeSdkUtil.T100;
+    Wallet: ForgeSdkWallet.T103;
+    Message: ForgeSDKMessage.T101;
+    connect: typeof connect;
+  }
+
+  declare const _Lib: ForgeSDK;
+  export = _Lib;
