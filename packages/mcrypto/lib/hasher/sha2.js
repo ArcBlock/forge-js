@@ -37,7 +37,6 @@ class Sha2Hasher {
 
       this[name] = (data, round = 2, encoding = 'hex') => {
         const res = hashFn(data, round);
-        // console.log('sha2.result', { res, encoded: encode(res, encoding) });
         return encode(res, encoding);
       };
     });
