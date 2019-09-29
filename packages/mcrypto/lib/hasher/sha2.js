@@ -20,23 +20,24 @@ class Sha2Hasher {
       const name = `hash${x}`;
       const hasher = hashFns[`sha${x}`];
       const hashFn = (input, round) => {
-        if (round === 1) {
-          return `0x${hasher()
-            .update(input)
-            .digest('hex')}`;
-        }
-
-        return hashFn(hashFn(input, 1), round - 1);
-      };
-
-      this[name] = (data, round = 2, encoding = 'hex') => {
-        let input = data;
+        let inputBytes = input;
         try {
-          input = toUint8Array(data, true);
+          inputBytes = toUint8Array(input);
         } catch (err) {
           // Do nothing
         }
-        const res = hashFn(input, round);
+        if (round === 1) {
+          return `0x${hasher()
+            .update(inputBytes)
+            .digest('hex')}`;
+        }
+
+        return hashFn(hashFn(inputBytes, 1), round - 1);
+      };
+
+      this[name] = (data, round = 2, encoding = 'hex') => {
+        const res = hashFn(data, round);
+        // console.log('sha2.result', { res, encoded: encode(res, encoding) });
         return encode(res, encoding);
       };
     });

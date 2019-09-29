@@ -13,29 +13,26 @@ declare function isUint8Array(value: any): boolean;
  * Convert input to Uint8Array on best effort
  *
  * @param {buffer|base58|hex|Uint8Array|string} v
- * @param {boolean} [enforceStrictHex=false]
  * @returns {Uint8Array}
  * @throws {Error}
  */
-declare function toUint8Array(v: any, enforceStrictHex?: boolean): Uint8Array;
+declare function toUint8Array(v: any): Uint8Array;
 /**
  * Convert input to Buffer on best effort
  *
  * @param {buffer|base58|hex|Uint8Array} v
- * @param {boolean} [enforceStrictHex=false]
  * @returns {buffer}
  * @throws {Error}
  */
-declare function toBuffer(v: any, enforceStrictHex?: boolean): any;
+declare function toBuffer(v: any): any;
 /**
  * Convert input to base58btc format on best effort
  *
  * @param {buffer|base58|hex|Uint8Array} v
- * @param {boolean} [enforceStrictHex=false]
  * @returns {string}
  * @throws {Error}
  */
-declare function toBase58(v: any, enforceStrictHex?: boolean): string;
+declare function toBase58(v: any): string;
 /**
  * Decode base58 string
  *
@@ -48,11 +45,10 @@ declare function fromBase58(v: string): any;
  *
  * @param {buffer|base58|hex|Uint8Array} v
  * @param {escape} [escape=true]
- * @param {boolean} [enforceStrictHex=false]
  * @returns {string}
  * @throws {Error}
  */
-declare function toBase64(v: any, escape?: typeof escape, enforceStrictHex?: boolean): string;
+declare function toBase64(v: any, escape?: typeof escape): string;
 /**
  * Decode base64 string to buffer
  *

@@ -23,7 +23,7 @@ class KeccakHasher {
       this[name] = (data, round = 1, encoding = 'hex') => {
         let input = data;
         try {
-          input = toUint8Array(data, true);
+          input = toUint8Array(data);
         } catch (err) {
           // Do nothing
         }

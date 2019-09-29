@@ -62,8 +62,8 @@ class Ed25519Signer extends Signer {
    * @returns {string} hex encoded signature
    */
   sign(message, sk, encoding = 'hex') {
-    const skBytes = toUint8Array(sk, true);
-    const messageBytes = toUint8Array(message, true);
+    const skBytes = toUint8Array(sk);
+    const messageBytes = toUint8Array(message);
     const signature = ed25519.detached(messageBytes, skBytes);
     return encode(signature, encoding);
   }
@@ -77,9 +77,9 @@ class Ed25519Signer extends Signer {
    * @returns {bool}
    */
   verify(message, signature, pk) {
-    const pkBytes = toUint8Array(pk, true);
-    const messageBytes = toUint8Array(message, true);
-    const signatureBytes = toUint8Array(signature, true);
+    const pkBytes = toUint8Array(pk);
+    const messageBytes = toUint8Array(message);
+    const signatureBytes = toUint8Array(signature);
     return ed25519.detached.verify(messageBytes, signatureBytes, pkBytes);
   }
 }
