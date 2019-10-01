@@ -1,4 +1,3 @@
-
 /**
  * Validates if a value is an Uint8Array.
  *
@@ -2784,7 +2783,6 @@ declare namespace GRpcClient {
 
 /*~ Write your module's methods and properties in this class */
 declare interface ForgeSDK {
-
   getQueries(): string[];
   getSubscriptions(): string[];
   getMutations(): string[];
@@ -3247,65 +3245,69 @@ declare namespace GraphQLClient {
   }
 
   export enum StatusCode {
-    FORBIDDEN,
-    INVALID_WALLET,
-    INVALID_DEPOSITOR,
-    INSUFFICIENT_FUND,
-    INVALID_DEACTIVATION,
-    CONSENSUS_RPC_ERROR,
+    INVALID_NONCE,
+    INVALID_SENDER_STATE,
+    WITHDRAW_ITEM_MISSING,
+    INVALID_OWNER,
+    INVALID_DELEGATION,
+    INVALID_HASHKEY,
     INVALID_PASSPHRASE,
+    STORAGE_RPC_ERROR,
     UNSUPPORTED_STAKE,
-    EXPIRED_ASSET,
+    PROTOCOL_NOT_ACTIVATED,
+    INVALID_MONIKER,
+    INVALID_DEPOSIT_VALUE,
+    EXPIRED_WALLET_TOKEN,
+    INVALID_SIGNATURE,
+    INVALID_CUSTODIAN,
+    EXPIRED_TX,
     CONSUMED_ASSET,
-    INVALID_MULTISIG,
     UNTRANSFERRABLE_ASSET,
-    INVALID_REQUEST,
+    INVALID_DELEGATION_RULE,
     INVALID_EXPIRY_DATE,
+    SENDER_WITHDRAW_ITEMS_FULL,
     INVALID_TX,
     INVALID_FORGE_STATE,
-    BANNED_UNSTAKE,
-    PROTOCOL_NOT_RUNNING,
-    INVALID_STAKE_STATE,
-    INVALID_DEPOSIT,
-    SENDER_NOT_AUTHORIZED,
-    ACCOUNT_MIGRATED,
-    INVALID_DEPOSIT_TARGET,
-    READONLY_ASSET,
-    DUPLICATE_TETHER,
-    INVALID_CHAIN_ID,
-    INVALID_TX_SIZE,
-    INVALID_WITHDRAWER,
-    INVALID_DELEGATION_RULE,
-    INSUFFICIENT_GAS,
-    INVALID_CUSTODIAN,
-    EXCEED_DEPOSIT_CAP,
-    INVALID_ASSET,
-    INVALID_HASHKEY,
-    INTERNAL,
-    UNSUPPORTED_TX,
-    INVALID_DEPOSIT_VALUE,
-    INVALID_SWAP,
-    INVALID_SIGNATURE,
-    INVALID_DELEGATION_TYPE_URL,
-    INVALID_SIGNER_STATE,
-    INSUFFICIENT_STAKE,
-    INVALID_LOCK_STATUS,
-    INVALID_SENDER_STATE,
-    INVALID_RECEIVER_STATE,
-    NOENT,
-    INVALID_MONIKER,
-    EXPIRED_WALLET_TOKEN,
     INSUFFICIENT_DELEGATION,
+    INVALID_SWAP,
+    SENDER_NOT_AUTHORIZED,
+    INVALID_TX_SIZE,
+    EXCEED_DEPOSIT_CAP,
+    INVALID_SIGNER_STATE,
+    INSUFFICIENT_GAS,
+    UNSUPPORTED_TX,
+    ACCOUNT_MIGRATED,
+    INVALID_ASSET,
+    INSUFFICIENT_FUND,
+    PROTOCOL_NOT_RUNNING,
+    NOENT,
     PROTOCOL_NOT_PAUSED,
-    INVALID_DELEGATION,
+    INVALID_DELEGATION_TYPE_URL,
+    INTERNAL,
     INSUFFICIENT_DATA,
-    EXPIRED_TX,
-    TIMEOUT,
-    STORAGE_RPC_ERROR,
-    PROTOCOL_NOT_ACTIVATED,
-    INVALID_OWNER,
-    INVALID_NONCE,
+    EXPIRED_ASSET,
+    INVALID_DEACTIVATION,
+    INVALID_DEPOSIT,
+    BANNED_UNSTAKE,
+    DUPLICATE_TETHER,
+    INVALID_DEPOSITOR,
+    READONLY_ASSET,
+    INVALID_STAKE_STATE,
     TOO_MANY_TXS,
+    INVALID_LOCK_STATUS,
+    TIMEOUT,
+    CONSENSUS_RPC_ERROR,
+    INVALID_CHAIN_ID,
+    INVALID_DEPOSIT_TARGET,
+    INVALID_WITHDRAW_TX,
+    INSUFFICIENT_STAKE,
+    INVALID_WITHDRAWER,
+    INVALID_WALLET,
+    INVALID_RECEIVER_STATE,
+    INVALID_REQUEST,
+    FORBIDDEN,
+    INVALID_CHAIN_TYPE,
+    INVALID_MULTISIG,
     OK,
   }
 
@@ -3360,6 +3362,17 @@ declare namespace GraphQLClient {
   export interface AbciServerStatus {
     abciConsensus: string;
     abciInfo: string;
+  }
+
+  export interface AccountConfig {
+    address: string;
+    balance: string;
+    pk: string;
+  }
+
+  export interface AccountConfigEntry {
+    key: string;
+    value: GraphQLClient.AccountConfig;
   }
 
   export interface AccountMigrateTx {
@@ -3613,11 +3626,11 @@ declare namespace GraphQLClient {
   }
 
   export interface Evidence {
-    height: string;
-    time: string;
-    totalVotingPower: string;
-    type: string;
-    validator: GraphQLClient.Validator;
+    chainId: string;
+    chainType: string;
+    hash: string;
+    originalTx: string;
+    receiverAddress: string;
   }
 
   export interface ExchangeInfo {
@@ -3654,17 +3667,16 @@ declare namespace GraphQLClient {
   }
 
   export interface ForgeState {
+    accountConfig: Array<AccountConfigEntry>;
     address: string;
     consensus: GraphQLClient.ConsensusParams;
     data: GraphQLClient.Any;
-    forgeAppHash: string;
     gas: Array<GasEntry>;
-    pokeConfig: GraphQLClient.PokeConfig;
     protocols: Array<CoreProtocol>;
-    stakeConfig: GraphQLClient.StakeConfig;
     stakeSummary: Array<StakeSummaryEntry>;
     tasks: Array<TasksEntry>;
     token: GraphQLClient.ForgeToken;
+    tokenSwapConfig: GraphQLClient.TokenSwapConfig;
     txConfig: GraphQLClient.TransactionConfig;
     upgradeInfo: GraphQLClient.UpgradeInfo;
     version: string;
@@ -3889,10 +3901,9 @@ declare namespace GraphQLClient {
   }
 
   export interface PokeConfig {
-    address: string;
     amount: string;
-    balance: string;
     dailyLimit: string;
+    enabled: boolean;
   }
 
   export interface PokeInfo {
@@ -4285,6 +4296,14 @@ declare namespace GraphQLClient {
     value: string;
   }
 
+  export interface TokenSwapConfig {
+    commission: string;
+    commissionHolderAddress: string;
+    commissionRate: number;
+    revokeCommission: number;
+    withdrawInterval: number;
+  }
+
   export interface Transaction {
     chainId: string;
     from: string;
@@ -4303,6 +4322,8 @@ declare namespace GraphQLClient {
     maxListSize: number;
     maxMultisig: number;
     minimumStake: string;
+    poke: GraphQLClient.PokeConfig;
+    stake: GraphQLClient.StakeConfig;
   }
 
   export interface TransactionInfo {
@@ -4586,18 +4607,18 @@ declare namespace GraphQLClient {
 }
 
 /**
-  * Connect to a forge grpc/graphql endpoint
-  * Then switch the current connection of ForgeSDK to that connection
-  *
-  * @public
-  * @function
-  * @param {string} endpoint - endpoint url string
-  * @param {object} options - connection config
-  * @param {string} options.name - connection name
-  * @param {string} options.default - set this connection as default?
-  * @see GraphQLClient for methods available when connected to graphql endpoint
-  * @see GRpcClient for methods available when connected to grpc endpoint
-  */
+ * Connect to a forge grpc/graphql endpoint
+ * Then switch the current connection of ForgeSDK to that connection
+ *
+ * @public
+ * @function
+ * @param {string} endpoint - endpoint url string
+ * @param {object} options - connection config
+ * @param {string} options.name - connection name
+ * @param {string} options.default - set this connection as default?
+ * @see GraphQLClient for methods available when connected to graphql endpoint
+ * @see GRpcClient for methods available when connected to grpc endpoint
+ */
 declare function connect(endpoint: string, options: ConnectOptions): void;
 
 declare interface ConnectOptions {
@@ -4605,13 +4626,12 @@ declare interface ConnectOptions {
   default: bool;
 }
 
+declare interface ForgeSDK {
+  Util: ForgeSdkUtil.T100;
+  Wallet: ForgeSdkWallet.T103;
+  Message: ForgeSDKMessage.T101;
+  connect: typeof connect;
+}
 
-  declare interface ForgeSDK {
-    Util: ForgeSdkUtil.T100;
-    Wallet: ForgeSdkWallet.T103;
-    Message: ForgeSDKMessage.T101;
-    connect: typeof connect;
-  }
-
-  declare const _Lib: ForgeSDK;
-  export = _Lib;
+declare const _Lib: ForgeSDK;
+export = _Lib;

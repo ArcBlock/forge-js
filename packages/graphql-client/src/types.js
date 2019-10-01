@@ -213,6 +213,25 @@
  */
 
 /**
+ * Structure of GraphQLClient.AccountConfig
+ *
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.AccountConfig
+ * @property {string} address
+ * @property {string} balance
+ * @property {string} pk
+ */
+
+/**
+ * Structure of GraphQLClient.AccountConfigEntry
+ *
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.AccountConfigEntry
+ * @property {string} key
+ * @property {...GraphQLClient.AccountConfig} value
+ */
+
+/**
  * Structure of GraphQLClient.AccountMigrateTx
  *
  * Checkout the following snippet for the format of AccountMigrateTx:
@@ -760,11 +779,11 @@
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.Evidence
- * @property {string} height
- * @property {string} time
- * @property {string} totalVotingPower
- * @property {string} type
- * @property {...GraphQLClient.Validator} validator
+ * @property {string} chainId
+ * @property {string} chainType
+ * @property {string} hash
+ * @property {string} originalTx
+ * @property {string} receiverAddress
  */
 
 /**
@@ -895,17 +914,16 @@
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.ForgeState
+ * @property {Array<...GraphQLClient.AccountConfigEntry>} accountConfig
  * @property {string} address
  * @property {...GraphQLClient.ConsensusParams} consensus
  * @property {...GraphQLClient.Any} data
- * @property {string} forgeAppHash
  * @property {Array<...GraphQLClient.GasEntry>} gas
- * @property {...GraphQLClient.PokeConfig} pokeConfig
  * @property {Array<...GraphQLClient.CoreProtocol>} protocols
- * @property {...GraphQLClient.StakeConfig} stakeConfig
  * @property {Array<...GraphQLClient.StakeSummaryEntry>} stakeSummary
  * @property {Array<...GraphQLClient.TasksEntry>} tasks
  * @property {...GraphQLClient.ForgeToken} token
+ * @property {...GraphQLClient.TokenSwapConfig} tokenSwapConfig
  * @property {...GraphQLClient.TransactionConfig} txConfig
  * @property {...GraphQLClient.UpgradeInfo} upgradeInfo
  * @property {string} version
@@ -1222,10 +1240,9 @@
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.PokeConfig
- * @property {string} address
  * @property {string} amount
- * @property {string} balance
  * @property {string} dailyLimit
+ * @property {boolean} enabled
  */
 
 /**
@@ -1313,14 +1330,11 @@
 {
   "byzantineValidators": [
     {
-      "height": "abc",
-      "time": "2019-04-29T00:00:00.000Z",
-      "totalVotingPower": "abc",
-      "type": "abc",
-      "validator": {
-        "address": "abc",
-        "power": "abc"
-      }
+      "chainId": "abc",
+      "chainType": "abc",
+      "hash": "abc",
+      "originalTx": "abc",
+      "receiverAddress": "abc"
     }
   ],
   "hash": "abc",
@@ -1395,7 +1409,7 @@
  * Checkout the following snippet for the format of ResponseGetAccountState:
  * ```json
 {
-  "code": "FORBIDDEN",
+  "code": "INVALID_NONCE",
   "state": {
     "address": "abc",
     "balance": "abc",
@@ -1405,7 +1419,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "FORBIDDEN",
+        "code": "INVALID_NONCE",
         "createAsset": {
           "asset": "abc"
         },
@@ -1444,7 +1458,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "FORBIDDEN",
+        "code": "INVALID_NONCE",
         "createAsset": {
           "asset": "abc"
         },
@@ -1545,7 +1559,7 @@
  * Checkout the following snippet for the format of ResponseGetAssetState:
  * ```json
 {
-  "code": "FORBIDDEN",
+  "code": "INVALID_NONCE",
   "state": {
     "address": "abc",
     "consumedTime": "2019-04-29T00:00:00.000Z",
@@ -1555,7 +1569,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "FORBIDDEN",
+        "code": "INVALID_NONCE",
         "createAsset": {
           "asset": "abc"
         },
@@ -1594,7 +1608,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "FORBIDDEN",
+        "code": "INVALID_NONCE",
         "createAsset": {
           "asset": "abc"
         },
@@ -1690,7 +1704,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "FORBIDDEN",
+        "code": "INVALID_NONCE",
         "createAsset": {
           "asset": "abc"
         },
@@ -1747,7 +1761,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "FORBIDDEN",
+        "code": "INVALID_NONCE",
         "createAsset": {
           "asset": "abc"
         },
@@ -1791,7 +1805,7 @@
       "block": "abc"
     }
   },
-  "code": "FORBIDDEN"
+  "code": "INVALID_NONCE"
 }
  * ```
  *
@@ -1841,7 +1855,7 @@
       }
     }
   ],
-  "code": "FORBIDDEN",
+  "code": "INVALID_NONCE",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -1863,7 +1877,7 @@
  * Checkout the following snippet for the format of ResponseGetChainInfo:
  * ```json
 {
-  "code": "FORBIDDEN",
+  "code": "INVALID_NONCE",
   "info": {
     "address": "abc",
     "appHash": "abc",
@@ -1903,7 +1917,7 @@
  * Checkout the following snippet for the format of ResponseGetConfig:
  * ```json
 {
-  "code": "FORBIDDEN",
+  "code": "INVALID_NONCE",
   "config": "abc"
 }
  * ```
@@ -1920,7 +1934,7 @@
  * Checkout the following snippet for the format of ResponseGetDelegateState:
  * ```json
 {
-  "code": "FORBIDDEN",
+  "code": "INVALID_NONCE",
   "state": {
     "address": "abc",
     "context": {
@@ -1929,7 +1943,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "FORBIDDEN",
+        "code": "INVALID_NONCE",
         "createAsset": {
           "asset": "abc"
         },
@@ -1968,7 +1982,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "FORBIDDEN",
+        "code": "INVALID_NONCE",
         "createAsset": {
           "asset": "abc"
         },
@@ -2035,8 +2049,18 @@
  * Checkout the following snippet for the format of ResponseGetForgeState:
  * ```json
 {
-  "code": "FORBIDDEN",
+  "code": "INVALID_NONCE",
   "state": {
+    "accountConfig": [
+      {
+        "key": "abc",
+        "value": {
+          "address": "abc",
+          "balance": "abc",
+          "pk": "abc"
+        }
+      }
+    ],
     "address": "abc",
     "consensus": {
       "maxBytes": "abc",
@@ -2059,29 +2083,18 @@
       "typeUrl": "abc",
       "value": "abc"
     },
-    "forgeAppHash": "abc",
     "gas": [
       {
         "key": "abc",
         "value": 123
       }
     ],
-    "pokeConfig": {
-      "address": "abc",
-      "amount": "abc",
-      "balance": "abc",
-      "dailyLimit": "abc"
-    },
     "protocols": [
       {
         "address": "abc",
         "name": "abc"
       }
     ],
-    "stakeConfig": {
-      "timeoutGeneral": 123,
-      "timeoutStakeForNode": 123
-    },
     "stakeSummary": [
       {
         "key": 123,
@@ -2092,7 +2105,7 @@
               "accountMigrate": {
                 "address": "abc"
               },
-              "code": "FORBIDDEN",
+              "code": "INVALID_NONCE",
               "createAsset": {
                 "asset": "abc"
               },
@@ -2131,7 +2144,7 @@
               "accountMigrate": {
                 "address": "abc"
               },
-              "code": "FORBIDDEN",
+              "code": "INVALID_NONCE",
               "createAsset": {
                 "asset": "abc"
               },
@@ -2196,6 +2209,13 @@
       "totalSupply": "abc",
       "unit": "abc"
     },
+    "tokenSwapConfig": {
+      "commission": "abc",
+      "commissionHolderAddress": "abc",
+      "commissionRate": 123,
+      "revokeCommission": 123,
+      "withdrawInterval": 123
+    },
     "txConfig": {
       "declare": {
         "hierarchy": 123,
@@ -2210,7 +2230,16 @@
       "maxAssetSize": 123,
       "maxListSize": 123,
       "maxMultisig": 123,
-      "minimumStake": "abc"
+      "minimumStake": "abc",
+      "poke": {
+        "amount": "abc",
+        "dailyLimit": "abc",
+        "enabled": true
+      },
+      "stake": {
+        "timeoutGeneral": 123,
+        "timeoutStakeForNode": 123
+      }
     },
     "upgradeInfo": {
       "height": "abc",
@@ -2233,7 +2262,7 @@
  * Checkout the following snippet for the format of ResponseGetForgeStats:
  * ```json
 {
-  "code": "FORBIDDEN",
+  "code": "INVALID_NONCE",
   "forgeStats": {
     "avgBlockTime": 123,
     "avgTps": 123,
@@ -2305,7 +2334,7 @@
  * Checkout the following snippet for the format of ResponseGetHealthStatus:
  * ```json
 {
-  "code": "FORBIDDEN",
+  "code": "INVALID_NONCE",
   "healthStatus": {
     "consensus": {
       "blockHeight": "abc",
@@ -2350,7 +2379,7 @@
  * Checkout the following snippet for the format of ResponseGetNetInfo:
  * ```json
 {
-  "code": "FORBIDDEN",
+  "code": "INVALID_NONCE",
   "netInfo": {
     "listeners": [
       "abc"
@@ -2388,7 +2417,7 @@
  * Checkout the following snippet for the format of ResponseGetNodeInfo:
  * ```json
 {
-  "code": "FORBIDDEN",
+  "code": "INVALID_NONCE",
   "info": {
     "address": "abc",
     "appHash": "abc",
@@ -2436,7 +2465,7 @@
  * Checkout the following snippet for the format of ResponseGetProtocolState:
  * ```json
 {
-  "code": "FORBIDDEN",
+  "code": "INVALID_NONCE",
   "state": {
     "address": "abc",
     "context": {
@@ -2445,7 +2474,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "FORBIDDEN",
+        "code": "INVALID_NONCE",
         "createAsset": {
           "asset": "abc"
         },
@@ -2484,7 +2513,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "FORBIDDEN",
+        "code": "INVALID_NONCE",
         "createAsset": {
           "asset": "abc"
         },
@@ -2579,7 +2608,7 @@
  * Checkout the following snippet for the format of ResponseGetProtocols:
  * ```json
 {
-  "code": "FORBIDDEN",
+  "code": "INVALID_NONCE",
   "protocols": [
     {
       "address": "abc",
@@ -2627,7 +2656,7 @@
  * Checkout the following snippet for the format of ResponseGetSimulatorStatus:
  * ```json
 {
-  "code": "FORBIDDEN",
+  "code": "INVALID_NONCE",
   "result": "abc"
 }
  * ```
@@ -2644,7 +2673,7 @@
  * Checkout the following snippet for the format of ResponseGetStakeState:
  * ```json
 {
-  "code": "FORBIDDEN",
+  "code": "INVALID_NONCE",
   "state": {
     "address": "abc",
     "balance": "abc",
@@ -2654,7 +2683,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "FORBIDDEN",
+        "code": "INVALID_NONCE",
         "createAsset": {
           "asset": "abc"
         },
@@ -2693,7 +2722,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "FORBIDDEN",
+        "code": "INVALID_NONCE",
         "createAsset": {
           "asset": "abc"
         },
@@ -2751,7 +2780,7 @@
  * Checkout the following snippet for the format of ResponseGetSwapState:
  * ```json
 {
-  "code": "FORBIDDEN",
+  "code": "INVALID_NONCE",
   "state": {
     "address": "abc",
     "assets": [
@@ -2763,7 +2792,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "FORBIDDEN",
+        "code": "INVALID_NONCE",
         "createAsset": {
           "asset": "abc"
         },
@@ -2802,7 +2831,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "FORBIDDEN",
+        "code": "INVALID_NONCE",
         "createAsset": {
           "asset": "abc"
         },
@@ -2860,7 +2889,7 @@
  * Checkout the following snippet for the format of ResponseGetTetherState:
  * ```json
 {
-  "code": "FORBIDDEN",
+  "code": "INVALID_NONCE",
   "state": {
     "address": "abc",
     "available": true,
@@ -2889,12 +2918,12 @@
  * Checkout the following snippet for the format of ResponseGetTx:
  * ```json
 {
-  "code": "FORBIDDEN",
+  "code": "INVALID_NONCE",
   "info": {
     "accountMigrate": {
       "address": "abc"
     },
-    "code": "FORBIDDEN",
+    "code": "INVALID_NONCE",
     "createAsset": {
       "asset": "abc"
     },
@@ -2943,7 +2972,7 @@
  * Checkout the following snippet for the format of ResponseGetUnconfirmedTxs:
  * ```json
 {
-  "code": "FORBIDDEN",
+  "code": "INVALID_NONCE",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -2989,7 +3018,7 @@
  * Checkout the following snippet for the format of ResponseGetValidatorsInfo:
  * ```json
 {
-  "code": "FORBIDDEN",
+  "code": "INVALID_NONCE",
   "validatorsInfo": {
     "blockHeight": "abc",
     "validators": [
@@ -3026,7 +3055,7 @@
  * Checkout the following snippet for the format of ResponseListAssetTransactions:
  * ```json
 {
-  "code": "FORBIDDEN",
+  "code": "INVALID_NONCE",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -3034,7 +3063,7 @@
   },
   "transactions": [
     {
-      "code": "FORBIDDEN",
+      "code": "INVALID_NONCE",
       "hash": "abc",
       "receiver": "abc",
       "sender": "abc",
@@ -3115,7 +3144,7 @@
       "ttl": "abc"
     }
   ],
-  "code": "FORBIDDEN",
+  "code": "INVALID_NONCE",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -3147,7 +3176,7 @@
       "time": "abc"
     }
   ],
-  "code": "FORBIDDEN",
+  "code": "INVALID_NONCE",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -3169,7 +3198,7 @@
  * Checkout the following snippet for the format of ResponseListStakes:
  * ```json
 {
-  "code": "FORBIDDEN",
+  "code": "INVALID_NONCE",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -3203,7 +3232,7 @@
  * Checkout the following snippet for the format of ResponseListSwap:
  * ```json
 {
-  "code": "FORBIDDEN",
+  "code": "INVALID_NONCE",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -3221,7 +3250,7 @@
           "accountMigrate": {
             "address": "abc"
           },
-          "code": "FORBIDDEN",
+          "code": "INVALID_NONCE",
           "createAsset": {
             "asset": "abc"
           },
@@ -3260,7 +3289,7 @@
           "accountMigrate": {
             "address": "abc"
           },
-          "code": "FORBIDDEN",
+          "code": "INVALID_NONCE",
           "createAsset": {
             "asset": "abc"
           },
@@ -3320,7 +3349,7 @@
  * Checkout the following snippet for the format of ResponseListTethers:
  * ```json
 {
-  "code": "FORBIDDEN",
+  "code": "INVALID_NONCE",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -3377,7 +3406,7 @@
       "totalUnstakes": "abc"
     }
   ],
-  "code": "FORBIDDEN",
+  "code": "INVALID_NONCE",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -3399,7 +3428,7 @@
  * Checkout the following snippet for the format of ResponseListTransactions:
  * ```json
 {
-  "code": "FORBIDDEN",
+  "code": "INVALID_NONCE",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -3407,7 +3436,7 @@
   },
   "transactions": [
     {
-      "code": "FORBIDDEN",
+      "code": "INVALID_NONCE",
       "hash": "abc",
       "receiver": "abc",
       "sender": "abc",
@@ -3451,7 +3480,7 @@
  * Checkout the following snippet for the format of ResponseSendTx:
  * ```json
 {
-  "code": "FORBIDDEN",
+  "code": "INVALID_NONCE",
   "hash": "abc"
 }
  * ```
@@ -3468,7 +3497,7 @@
  * Checkout the following snippet for the format of ResponseStartSimulator:
  * ```json
 {
-  "code": "FORBIDDEN"
+  "code": "INVALID_NONCE"
 }
  * ```
  *
@@ -3483,7 +3512,7 @@
  * Checkout the following snippet for the format of ResponseStopSimulator:
  * ```json
 {
-  "code": "FORBIDDEN"
+  "code": "INVALID_NONCE"
 }
  * ```
  *
@@ -3526,7 +3555,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "FORBIDDEN",
+        "code": "INVALID_NONCE",
         "createAsset": {
           "asset": "abc"
         },
@@ -3565,7 +3594,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "FORBIDDEN",
+        "code": "INVALID_NONCE",
         "createAsset": {
           "asset": "abc"
         },
@@ -3679,7 +3708,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "FORBIDDEN",
+        "code": "INVALID_NONCE",
         "createAsset": {
           "asset": "abc"
         },
@@ -3718,7 +3747,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "FORBIDDEN",
+        "code": "INVALID_NONCE",
         "createAsset": {
           "asset": "abc"
         },
@@ -3791,14 +3820,11 @@
   "beginBlock": {
     "byzantineValidators": [
       {
-        "height": "abc",
-        "time": "2019-04-29T00:00:00.000Z",
-        "totalVotingPower": "abc",
-        "type": "abc",
-        "validator": {
-          "address": "abc",
-          "power": "abc"
-        }
+        "chainId": "abc",
+        "chainType": "abc",
+        "hash": "abc",
+        "originalTx": "abc",
+        "receiverAddress": "abc"
       }
     ],
     "hash": "abc",
@@ -3842,7 +3868,7 @@
       ]
     }
   },
-  "code": "FORBIDDEN",
+  "code": "INVALID_NONCE",
   "confirm": {
     "chainId": "abc",
     "from": "abc",
@@ -3984,7 +4010,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "FORBIDDEN",
+        "code": "INVALID_NONCE",
         "createAsset": {
           "asset": "abc"
         },
@@ -4023,7 +4049,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "FORBIDDEN",
+        "code": "INVALID_NONCE",
         "createAsset": {
           "asset": "abc"
         },
@@ -4098,6 +4124,16 @@
     ]
   },
   "forgeState": {
+    "accountConfig": [
+      {
+        "key": "abc",
+        "value": {
+          "address": "abc",
+          "balance": "abc",
+          "pk": "abc"
+        }
+      }
+    ],
     "address": "abc",
     "consensus": {
       "maxBytes": "abc",
@@ -4120,29 +4156,18 @@
       "typeUrl": "abc",
       "value": "abc"
     },
-    "forgeAppHash": "abc",
     "gas": [
       {
         "key": "abc",
         "value": 123
       }
     ],
-    "pokeConfig": {
-      "address": "abc",
-      "amount": "abc",
-      "balance": "abc",
-      "dailyLimit": "abc"
-    },
     "protocols": [
       {
         "address": "abc",
         "name": "abc"
       }
     ],
-    "stakeConfig": {
-      "timeoutGeneral": 123,
-      "timeoutStakeForNode": 123
-    },
     "stakeSummary": [
       {
         "key": 123,
@@ -4153,7 +4178,7 @@
               "accountMigrate": {
                 "address": "abc"
               },
-              "code": "FORBIDDEN",
+              "code": "INVALID_NONCE",
               "createAsset": {
                 "asset": "abc"
               },
@@ -4192,7 +4217,7 @@
               "accountMigrate": {
                 "address": "abc"
               },
-              "code": "FORBIDDEN",
+              "code": "INVALID_NONCE",
               "createAsset": {
                 "asset": "abc"
               },
@@ -4257,6 +4282,13 @@
       "totalSupply": "abc",
       "unit": "abc"
     },
+    "tokenSwapConfig": {
+      "commission": "abc",
+      "commissionHolderAddress": "abc",
+      "commissionRate": 123,
+      "revokeCommission": 123,
+      "withdrawInterval": 123
+    },
     "txConfig": {
       "declare": {
         "hierarchy": 123,
@@ -4271,7 +4303,16 @@
       "maxAssetSize": 123,
       "maxListSize": 123,
       "maxMultisig": 123,
-      "minimumStake": "abc"
+      "minimumStake": "abc",
+      "poke": {
+        "amount": "abc",
+        "dailyLimit": "abc",
+        "enabled": true
+      },
+      "stake": {
+        "timeoutGeneral": 123,
+        "timeoutStakeForNode": 123
+      }
     },
     "upgradeInfo": {
       "height": "abc",
@@ -4287,7 +4328,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "FORBIDDEN",
+        "code": "INVALID_NONCE",
         "createAsset": {
           "asset": "abc"
         },
@@ -4326,7 +4367,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "FORBIDDEN",
+        "code": "INVALID_NONCE",
         "createAsset": {
           "asset": "abc"
         },
@@ -4453,7 +4494,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "FORBIDDEN",
+        "code": "INVALID_NONCE",
         "createAsset": {
           "asset": "abc"
         },
@@ -4492,7 +4533,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "FORBIDDEN",
+        "code": "INVALID_NONCE",
         "createAsset": {
           "asset": "abc"
         },
@@ -4631,7 +4672,7 @@
  * Checkout the following snippet for the format of ResponseUnsubscribe:
  * ```json
 {
-  "code": "FORBIDDEN"
+  "code": "INVALID_NONCE"
 }
  * ```
  *
@@ -4932,6 +4973,18 @@
  */
 
 /**
+ * Structure of GraphQLClient.TokenSwapConfig
+ *
+ * @memberof GraphQLClient
+ * @typedef {object} GraphQLClient.TokenSwapConfig
+ * @property {string} commission
+ * @property {string} commissionHolderAddress
+ * @property {number} commissionRate
+ * @property {number} revokeCommission
+ * @property {number} withdrawInterval
+ */
+
+/**
  * Structure of GraphQLClient.Transaction
  *
  * @memberof GraphQLClient
@@ -4957,6 +5010,8 @@
  * @property {number} maxListSize
  * @property {number} maxMultisig
  * @property {string} minimumStake
+ * @property {...GraphQLClient.PokeConfig} poke
+ * @property {...GraphQLClient.StakeConfig} stake
  */
 
 /**
