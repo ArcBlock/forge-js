@@ -1,3 +1,9 @@
+## 0.38.6 (October 02, 2019)
+
+- chore: upgrade forge-sdk dts
+- chore: upgrade forge-web graphql-schema
+- update readme
+
 ## 0.38.5 (September 29, 2019)
 
 - chore: remove useless console.log
