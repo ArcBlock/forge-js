@@ -1,6 +1,6 @@
 # Forge GraphQL API List
 
-> Updated on 2019-09-26T02:11:33.844Z
+> Updated on 2019-10-01T23:22:23.150Z
 
 
 ## Table of Contents
@@ -438,8 +438,15 @@ No arguments
     code
     state {
       address
-      forgeAppHash
       version
+      accountConfig {
+        key
+        value {
+          address
+          balance
+          pk
+        }
+      }
       consensus {
         maxBytes
         maxCandidates
@@ -461,19 +468,9 @@ No arguments
         key
         value
       }
-      pokeConfig {
-        address
-        amount
-        balance
-        dailyLimit
-      }
       protocols {
         address
         name
-      }
-      stakeConfig {
-        timeoutGeneral
-        timeoutStakeForNode
       }
       stakeSummary {
         key
@@ -507,6 +504,13 @@ No arguments
         totalSupply
         unit
       }
+      tokenSwapConfig {
+        commission
+        commissionHolderAddress
+        commissionRate
+        revokeCommission
+        withdrawInterval
+      }
       txConfig {
         maxAssetSize
         maxListSize
@@ -519,6 +523,15 @@ No arguments
         delegate {
           deltaInterval
           typeUrls
+        }
+        poke {
+          amount
+          dailyLimit
+          enabled
+        }
+        stake {
+          timeoutGeneral
+          timeoutStakeForNode
         }
       }
       upgradeInfo {
@@ -1580,14 +1593,11 @@ subscription {
     beginBlock {
       hash
       byzantineValidators {
-        height
-        time
-        totalVotingPower
-        type
-        validator {
-          address
-          power
-        }
+        chainId
+        chainType
+        hash
+        originalTx
+        receiverAddress
       }
       header {
         appHash
@@ -1797,8 +1807,15 @@ subscription {
     }
     forgeState {
       address
-      forgeAppHash
       version
+      accountConfig {
+        key
+        value {
+          address
+          balance
+          pk
+        }
+      }
       consensus {
         maxBytes
         maxCandidates
@@ -1820,19 +1837,9 @@ subscription {
         key
         value
       }
-      pokeConfig {
-        address
-        amount
-        balance
-        dailyLimit
-      }
       protocols {
         address
         name
-      }
-      stakeConfig {
-        timeoutGeneral
-        timeoutStakeForNode
       }
       stakeSummary {
         key
@@ -1866,6 +1873,13 @@ subscription {
         totalSupply
         unit
       }
+      tokenSwapConfig {
+        commission
+        commissionHolderAddress
+        commissionRate
+        revokeCommission
+        withdrawInterval
+      }
       txConfig {
         maxAssetSize
         maxListSize
@@ -1878,6 +1892,15 @@ subscription {
         delegate {
           deltaInterval
           typeUrls
+        }
+        poke {
+          amount
+          dailyLimit
+          enabled
+        }
+        stake {
+          timeoutGeneral
+          timeoutStakeForNode
         }
       }
       upgradeInfo {
