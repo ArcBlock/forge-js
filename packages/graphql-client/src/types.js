@@ -213,25 +213,6 @@
  */
 
 /**
- * Structure of GraphQLClient.AccountConfig
- *
- * @memberof GraphQLClient
- * @typedef {object} GraphQLClient.AccountConfig
- * @property {string} address
- * @property {string} balance
- * @property {string} pk
- */
-
-/**
- * Structure of GraphQLClient.AccountConfigEntry
- *
- * @memberof GraphQLClient
- * @typedef {object} GraphQLClient.AccountConfigEntry
- * @property {string} key
- * @property {...GraphQLClient.AccountConfig} value
- */
-
-/**
  * Structure of GraphQLClient.AccountMigrateTx
  *
  * Checkout the following snippet for the format of AccountMigrateTx:
@@ -779,11 +760,11 @@
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.Evidence
- * @property {string} chainId
- * @property {string} chainType
- * @property {string} hash
- * @property {string} originalTx
- * @property {string} receiverAddress
+ * @property {string} height
+ * @property {string} time
+ * @property {string} totalVotingPower
+ * @property {string} type
+ * @property {...GraphQLClient.Validator} validator
  */
 
 /**
@@ -914,16 +895,17 @@
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.ForgeState
- * @property {Array<...GraphQLClient.AccountConfigEntry>} accountConfig
  * @property {string} address
  * @property {...GraphQLClient.ConsensusParams} consensus
  * @property {...GraphQLClient.Any} data
+ * @property {string} forgeAppHash
  * @property {Array<...GraphQLClient.GasEntry>} gas
+ * @property {...GraphQLClient.PokeConfig} pokeConfig
  * @property {Array<...GraphQLClient.CoreProtocol>} protocols
+ * @property {...GraphQLClient.StakeConfig} stakeConfig
  * @property {Array<...GraphQLClient.StakeSummaryEntry>} stakeSummary
  * @property {Array<...GraphQLClient.TasksEntry>} tasks
  * @property {...GraphQLClient.ForgeToken} token
- * @property {...GraphQLClient.TokenSwapConfig} tokenSwapConfig
  * @property {...GraphQLClient.TransactionConfig} txConfig
  * @property {...GraphQLClient.UpgradeInfo} upgradeInfo
  * @property {string} version
@@ -1240,9 +1222,10 @@
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.PokeConfig
+ * @property {string} address
  * @property {string} amount
+ * @property {string} balance
  * @property {string} dailyLimit
- * @property {boolean} enabled
  */
 
 /**
@@ -1330,11 +1313,14 @@
 {
   "byzantineValidators": [
     {
-      "chainId": "abc",
-      "chainType": "abc",
-      "hash": "abc",
-      "originalTx": "abc",
-      "receiverAddress": "abc"
+      "height": "abc",
+      "time": "2019-04-29T00:00:00.000Z",
+      "totalVotingPower": "abc",
+      "type": "abc",
+      "validator": {
+        "address": "abc",
+        "power": "abc"
+      }
     }
   ],
   "hash": "abc",
@@ -1409,7 +1395,7 @@
  * Checkout the following snippet for the format of ResponseGetAccountState:
  * ```json
 {
-  "code": "INVALID_NONCE",
+  "code": "EXPIRED_WALLET_TOKEN",
   "state": {
     "address": "abc",
     "balance": "abc",
@@ -1419,7 +1405,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INVALID_NONCE",
+        "code": "EXPIRED_WALLET_TOKEN",
         "createAsset": {
           "asset": "abc"
         },
@@ -1458,7 +1444,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INVALID_NONCE",
+        "code": "EXPIRED_WALLET_TOKEN",
         "createAsset": {
           "asset": "abc"
         },
@@ -1559,7 +1545,7 @@
  * Checkout the following snippet for the format of ResponseGetAssetState:
  * ```json
 {
-  "code": "INVALID_NONCE",
+  "code": "EXPIRED_WALLET_TOKEN",
   "state": {
     "address": "abc",
     "consumedTime": "2019-04-29T00:00:00.000Z",
@@ -1569,7 +1555,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INVALID_NONCE",
+        "code": "EXPIRED_WALLET_TOKEN",
         "createAsset": {
           "asset": "abc"
         },
@@ -1608,7 +1594,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INVALID_NONCE",
+        "code": "EXPIRED_WALLET_TOKEN",
         "createAsset": {
           "asset": "abc"
         },
@@ -1704,7 +1690,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INVALID_NONCE",
+        "code": "EXPIRED_WALLET_TOKEN",
         "createAsset": {
           "asset": "abc"
         },
@@ -1761,7 +1747,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INVALID_NONCE",
+        "code": "EXPIRED_WALLET_TOKEN",
         "createAsset": {
           "asset": "abc"
         },
@@ -1805,7 +1791,7 @@
       "block": "abc"
     }
   },
-  "code": "INVALID_NONCE"
+  "code": "EXPIRED_WALLET_TOKEN"
 }
  * ```
  *
@@ -1855,7 +1841,7 @@
       }
     }
   ],
-  "code": "INVALID_NONCE",
+  "code": "EXPIRED_WALLET_TOKEN",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -1877,7 +1863,7 @@
  * Checkout the following snippet for the format of ResponseGetChainInfo:
  * ```json
 {
-  "code": "INVALID_NONCE",
+  "code": "EXPIRED_WALLET_TOKEN",
   "info": {
     "address": "abc",
     "appHash": "abc",
@@ -1917,7 +1903,7 @@
  * Checkout the following snippet for the format of ResponseGetConfig:
  * ```json
 {
-  "code": "INVALID_NONCE",
+  "code": "EXPIRED_WALLET_TOKEN",
   "config": "abc"
 }
  * ```
@@ -1934,7 +1920,7 @@
  * Checkout the following snippet for the format of ResponseGetDelegateState:
  * ```json
 {
-  "code": "INVALID_NONCE",
+  "code": "EXPIRED_WALLET_TOKEN",
   "state": {
     "address": "abc",
     "context": {
@@ -1943,7 +1929,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INVALID_NONCE",
+        "code": "EXPIRED_WALLET_TOKEN",
         "createAsset": {
           "asset": "abc"
         },
@@ -1982,7 +1968,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INVALID_NONCE",
+        "code": "EXPIRED_WALLET_TOKEN",
         "createAsset": {
           "asset": "abc"
         },
@@ -2049,18 +2035,8 @@
  * Checkout the following snippet for the format of ResponseGetForgeState:
  * ```json
 {
-  "code": "INVALID_NONCE",
+  "code": "EXPIRED_WALLET_TOKEN",
   "state": {
-    "accountConfig": [
-      {
-        "key": "abc",
-        "value": {
-          "address": "abc",
-          "balance": "abc",
-          "pk": "abc"
-        }
-      }
-    ],
     "address": "abc",
     "consensus": {
       "maxBytes": "abc",
@@ -2083,18 +2059,29 @@
       "typeUrl": "abc",
       "value": "abc"
     },
+    "forgeAppHash": "abc",
     "gas": [
       {
         "key": "abc",
         "value": 123
       }
     ],
+    "pokeConfig": {
+      "address": "abc",
+      "amount": "abc",
+      "balance": "abc",
+      "dailyLimit": "abc"
+    },
     "protocols": [
       {
         "address": "abc",
         "name": "abc"
       }
     ],
+    "stakeConfig": {
+      "timeoutGeneral": 123,
+      "timeoutStakeForNode": 123
+    },
     "stakeSummary": [
       {
         "key": 123,
@@ -2105,7 +2092,7 @@
               "accountMigrate": {
                 "address": "abc"
               },
-              "code": "INVALID_NONCE",
+              "code": "EXPIRED_WALLET_TOKEN",
               "createAsset": {
                 "asset": "abc"
               },
@@ -2144,7 +2131,7 @@
               "accountMigrate": {
                 "address": "abc"
               },
-              "code": "INVALID_NONCE",
+              "code": "EXPIRED_WALLET_TOKEN",
               "createAsset": {
                 "asset": "abc"
               },
@@ -2209,13 +2196,6 @@
       "totalSupply": "abc",
       "unit": "abc"
     },
-    "tokenSwapConfig": {
-      "commission": "abc",
-      "commissionHolderAddress": "abc",
-      "commissionRate": 123,
-      "revokeCommission": 123,
-      "withdrawInterval": 123
-    },
     "txConfig": {
       "declare": {
         "hierarchy": 123,
@@ -2230,16 +2210,7 @@
       "maxAssetSize": 123,
       "maxListSize": 123,
       "maxMultisig": 123,
-      "minimumStake": "abc",
-      "poke": {
-        "amount": "abc",
-        "dailyLimit": "abc",
-        "enabled": true
-      },
-      "stake": {
-        "timeoutGeneral": 123,
-        "timeoutStakeForNode": 123
-      }
+      "minimumStake": "abc"
     },
     "upgradeInfo": {
       "height": "abc",
@@ -2262,7 +2233,7 @@
  * Checkout the following snippet for the format of ResponseGetForgeStats:
  * ```json
 {
-  "code": "INVALID_NONCE",
+  "code": "EXPIRED_WALLET_TOKEN",
   "forgeStats": {
     "avgBlockTime": 123,
     "avgTps": 123,
@@ -2334,7 +2305,7 @@
  * Checkout the following snippet for the format of ResponseGetHealthStatus:
  * ```json
 {
-  "code": "INVALID_NONCE",
+  "code": "EXPIRED_WALLET_TOKEN",
   "healthStatus": {
     "consensus": {
       "blockHeight": "abc",
@@ -2379,7 +2350,7 @@
  * Checkout the following snippet for the format of ResponseGetNetInfo:
  * ```json
 {
-  "code": "INVALID_NONCE",
+  "code": "EXPIRED_WALLET_TOKEN",
   "netInfo": {
     "listeners": [
       "abc"
@@ -2417,7 +2388,7 @@
  * Checkout the following snippet for the format of ResponseGetNodeInfo:
  * ```json
 {
-  "code": "INVALID_NONCE",
+  "code": "EXPIRED_WALLET_TOKEN",
   "info": {
     "address": "abc",
     "appHash": "abc",
@@ -2465,7 +2436,7 @@
  * Checkout the following snippet for the format of ResponseGetProtocolState:
  * ```json
 {
-  "code": "INVALID_NONCE",
+  "code": "EXPIRED_WALLET_TOKEN",
   "state": {
     "address": "abc",
     "context": {
@@ -2474,7 +2445,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INVALID_NONCE",
+        "code": "EXPIRED_WALLET_TOKEN",
         "createAsset": {
           "asset": "abc"
         },
@@ -2513,7 +2484,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INVALID_NONCE",
+        "code": "EXPIRED_WALLET_TOKEN",
         "createAsset": {
           "asset": "abc"
         },
@@ -2608,7 +2579,7 @@
  * Checkout the following snippet for the format of ResponseGetProtocols:
  * ```json
 {
-  "code": "INVALID_NONCE",
+  "code": "EXPIRED_WALLET_TOKEN",
   "protocols": [
     {
       "address": "abc",
@@ -2656,7 +2627,7 @@
  * Checkout the following snippet for the format of ResponseGetSimulatorStatus:
  * ```json
 {
-  "code": "INVALID_NONCE",
+  "code": "EXPIRED_WALLET_TOKEN",
   "result": "abc"
 }
  * ```
@@ -2673,7 +2644,7 @@
  * Checkout the following snippet for the format of ResponseGetStakeState:
  * ```json
 {
-  "code": "INVALID_NONCE",
+  "code": "EXPIRED_WALLET_TOKEN",
   "state": {
     "address": "abc",
     "balance": "abc",
@@ -2683,7 +2654,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INVALID_NONCE",
+        "code": "EXPIRED_WALLET_TOKEN",
         "createAsset": {
           "asset": "abc"
         },
@@ -2722,7 +2693,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INVALID_NONCE",
+        "code": "EXPIRED_WALLET_TOKEN",
         "createAsset": {
           "asset": "abc"
         },
@@ -2780,7 +2751,7 @@
  * Checkout the following snippet for the format of ResponseGetSwapState:
  * ```json
 {
-  "code": "INVALID_NONCE",
+  "code": "EXPIRED_WALLET_TOKEN",
   "state": {
     "address": "abc",
     "assets": [
@@ -2792,7 +2763,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INVALID_NONCE",
+        "code": "EXPIRED_WALLET_TOKEN",
         "createAsset": {
           "asset": "abc"
         },
@@ -2831,7 +2802,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INVALID_NONCE",
+        "code": "EXPIRED_WALLET_TOKEN",
         "createAsset": {
           "asset": "abc"
         },
@@ -2889,7 +2860,7 @@
  * Checkout the following snippet for the format of ResponseGetTetherState:
  * ```json
 {
-  "code": "INVALID_NONCE",
+  "code": "EXPIRED_WALLET_TOKEN",
   "state": {
     "address": "abc",
     "available": true,
@@ -2918,12 +2889,12 @@
  * Checkout the following snippet for the format of ResponseGetTx:
  * ```json
 {
-  "code": "INVALID_NONCE",
+  "code": "EXPIRED_WALLET_TOKEN",
   "info": {
     "accountMigrate": {
       "address": "abc"
     },
-    "code": "INVALID_NONCE",
+    "code": "EXPIRED_WALLET_TOKEN",
     "createAsset": {
       "asset": "abc"
     },
@@ -2972,7 +2943,7 @@
  * Checkout the following snippet for the format of ResponseGetUnconfirmedTxs:
  * ```json
 {
-  "code": "INVALID_NONCE",
+  "code": "EXPIRED_WALLET_TOKEN",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -3018,7 +2989,7 @@
  * Checkout the following snippet for the format of ResponseGetValidatorsInfo:
  * ```json
 {
-  "code": "INVALID_NONCE",
+  "code": "EXPIRED_WALLET_TOKEN",
   "validatorsInfo": {
     "blockHeight": "abc",
     "validators": [
@@ -3055,7 +3026,7 @@
  * Checkout the following snippet for the format of ResponseListAssetTransactions:
  * ```json
 {
-  "code": "INVALID_NONCE",
+  "code": "EXPIRED_WALLET_TOKEN",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -3063,7 +3034,7 @@
   },
   "transactions": [
     {
-      "code": "INVALID_NONCE",
+      "code": "EXPIRED_WALLET_TOKEN",
       "hash": "abc",
       "receiver": "abc",
       "sender": "abc",
@@ -3144,7 +3115,7 @@
       "ttl": "abc"
     }
   ],
-  "code": "INVALID_NONCE",
+  "code": "EXPIRED_WALLET_TOKEN",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -3176,7 +3147,7 @@
       "time": "abc"
     }
   ],
-  "code": "INVALID_NONCE",
+  "code": "EXPIRED_WALLET_TOKEN",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -3198,7 +3169,7 @@
  * Checkout the following snippet for the format of ResponseListStakes:
  * ```json
 {
-  "code": "INVALID_NONCE",
+  "code": "EXPIRED_WALLET_TOKEN",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -3232,7 +3203,7 @@
  * Checkout the following snippet for the format of ResponseListSwap:
  * ```json
 {
-  "code": "INVALID_NONCE",
+  "code": "EXPIRED_WALLET_TOKEN",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -3250,7 +3221,7 @@
           "accountMigrate": {
             "address": "abc"
           },
-          "code": "INVALID_NONCE",
+          "code": "EXPIRED_WALLET_TOKEN",
           "createAsset": {
             "asset": "abc"
           },
@@ -3289,7 +3260,7 @@
           "accountMigrate": {
             "address": "abc"
           },
-          "code": "INVALID_NONCE",
+          "code": "EXPIRED_WALLET_TOKEN",
           "createAsset": {
             "asset": "abc"
           },
@@ -3349,7 +3320,7 @@
  * Checkout the following snippet for the format of ResponseListTethers:
  * ```json
 {
-  "code": "INVALID_NONCE",
+  "code": "EXPIRED_WALLET_TOKEN",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -3406,7 +3377,7 @@
       "totalUnstakes": "abc"
     }
   ],
-  "code": "INVALID_NONCE",
+  "code": "EXPIRED_WALLET_TOKEN",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -3428,7 +3399,7 @@
  * Checkout the following snippet for the format of ResponseListTransactions:
  * ```json
 {
-  "code": "INVALID_NONCE",
+  "code": "EXPIRED_WALLET_TOKEN",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -3436,7 +3407,7 @@
   },
   "transactions": [
     {
-      "code": "INVALID_NONCE",
+      "code": "EXPIRED_WALLET_TOKEN",
       "hash": "abc",
       "receiver": "abc",
       "sender": "abc",
@@ -3480,7 +3451,7 @@
  * Checkout the following snippet for the format of ResponseSendTx:
  * ```json
 {
-  "code": "INVALID_NONCE",
+  "code": "EXPIRED_WALLET_TOKEN",
   "hash": "abc"
 }
  * ```
@@ -3497,7 +3468,7 @@
  * Checkout the following snippet for the format of ResponseStartSimulator:
  * ```json
 {
-  "code": "INVALID_NONCE"
+  "code": "EXPIRED_WALLET_TOKEN"
 }
  * ```
  *
@@ -3512,7 +3483,7 @@
  * Checkout the following snippet for the format of ResponseStopSimulator:
  * ```json
 {
-  "code": "INVALID_NONCE"
+  "code": "EXPIRED_WALLET_TOKEN"
 }
  * ```
  *
@@ -3555,7 +3526,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INVALID_NONCE",
+        "code": "EXPIRED_WALLET_TOKEN",
         "createAsset": {
           "asset": "abc"
         },
@@ -3594,7 +3565,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INVALID_NONCE",
+        "code": "EXPIRED_WALLET_TOKEN",
         "createAsset": {
           "asset": "abc"
         },
@@ -3708,7 +3679,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INVALID_NONCE",
+        "code": "EXPIRED_WALLET_TOKEN",
         "createAsset": {
           "asset": "abc"
         },
@@ -3747,7 +3718,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INVALID_NONCE",
+        "code": "EXPIRED_WALLET_TOKEN",
         "createAsset": {
           "asset": "abc"
         },
@@ -3820,11 +3791,14 @@
   "beginBlock": {
     "byzantineValidators": [
       {
-        "chainId": "abc",
-        "chainType": "abc",
-        "hash": "abc",
-        "originalTx": "abc",
-        "receiverAddress": "abc"
+        "height": "abc",
+        "time": "2019-04-29T00:00:00.000Z",
+        "totalVotingPower": "abc",
+        "type": "abc",
+        "validator": {
+          "address": "abc",
+          "power": "abc"
+        }
       }
     ],
     "hash": "abc",
@@ -3868,7 +3842,7 @@
       ]
     }
   },
-  "code": "INVALID_NONCE",
+  "code": "EXPIRED_WALLET_TOKEN",
   "confirm": {
     "chainId": "abc",
     "from": "abc",
@@ -4010,7 +3984,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INVALID_NONCE",
+        "code": "EXPIRED_WALLET_TOKEN",
         "createAsset": {
           "asset": "abc"
         },
@@ -4049,7 +4023,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INVALID_NONCE",
+        "code": "EXPIRED_WALLET_TOKEN",
         "createAsset": {
           "asset": "abc"
         },
@@ -4124,16 +4098,6 @@
     ]
   },
   "forgeState": {
-    "accountConfig": [
-      {
-        "key": "abc",
-        "value": {
-          "address": "abc",
-          "balance": "abc",
-          "pk": "abc"
-        }
-      }
-    ],
     "address": "abc",
     "consensus": {
       "maxBytes": "abc",
@@ -4156,18 +4120,29 @@
       "typeUrl": "abc",
       "value": "abc"
     },
+    "forgeAppHash": "abc",
     "gas": [
       {
         "key": "abc",
         "value": 123
       }
     ],
+    "pokeConfig": {
+      "address": "abc",
+      "amount": "abc",
+      "balance": "abc",
+      "dailyLimit": "abc"
+    },
     "protocols": [
       {
         "address": "abc",
         "name": "abc"
       }
     ],
+    "stakeConfig": {
+      "timeoutGeneral": 123,
+      "timeoutStakeForNode": 123
+    },
     "stakeSummary": [
       {
         "key": 123,
@@ -4178,7 +4153,7 @@
               "accountMigrate": {
                 "address": "abc"
               },
-              "code": "INVALID_NONCE",
+              "code": "EXPIRED_WALLET_TOKEN",
               "createAsset": {
                 "asset": "abc"
               },
@@ -4217,7 +4192,7 @@
               "accountMigrate": {
                 "address": "abc"
               },
-              "code": "INVALID_NONCE",
+              "code": "EXPIRED_WALLET_TOKEN",
               "createAsset": {
                 "asset": "abc"
               },
@@ -4282,13 +4257,6 @@
       "totalSupply": "abc",
       "unit": "abc"
     },
-    "tokenSwapConfig": {
-      "commission": "abc",
-      "commissionHolderAddress": "abc",
-      "commissionRate": 123,
-      "revokeCommission": 123,
-      "withdrawInterval": 123
-    },
     "txConfig": {
       "declare": {
         "hierarchy": 123,
@@ -4303,16 +4271,7 @@
       "maxAssetSize": 123,
       "maxListSize": 123,
       "maxMultisig": 123,
-      "minimumStake": "abc",
-      "poke": {
-        "amount": "abc",
-        "dailyLimit": "abc",
-        "enabled": true
-      },
-      "stake": {
-        "timeoutGeneral": 123,
-        "timeoutStakeForNode": 123
-      }
+      "minimumStake": "abc"
     },
     "upgradeInfo": {
       "height": "abc",
@@ -4328,7 +4287,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INVALID_NONCE",
+        "code": "EXPIRED_WALLET_TOKEN",
         "createAsset": {
           "asset": "abc"
         },
@@ -4367,7 +4326,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INVALID_NONCE",
+        "code": "EXPIRED_WALLET_TOKEN",
         "createAsset": {
           "asset": "abc"
         },
@@ -4494,7 +4453,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INVALID_NONCE",
+        "code": "EXPIRED_WALLET_TOKEN",
         "createAsset": {
           "asset": "abc"
         },
@@ -4533,7 +4492,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "INVALID_NONCE",
+        "code": "EXPIRED_WALLET_TOKEN",
         "createAsset": {
           "asset": "abc"
         },
@@ -4672,7 +4631,7 @@
  * Checkout the following snippet for the format of ResponseUnsubscribe:
  * ```json
 {
-  "code": "INVALID_NONCE"
+  "code": "EXPIRED_WALLET_TOKEN"
 }
  * ```
  *
@@ -4973,18 +4932,6 @@
  */
 
 /**
- * Structure of GraphQLClient.TokenSwapConfig
- *
- * @memberof GraphQLClient
- * @typedef {object} GraphQLClient.TokenSwapConfig
- * @property {string} commission
- * @property {string} commissionHolderAddress
- * @property {number} commissionRate
- * @property {number} revokeCommission
- * @property {number} withdrawInterval
- */
-
-/**
  * Structure of GraphQLClient.Transaction
  *
  * @memberof GraphQLClient
@@ -5010,8 +4957,6 @@
  * @property {number} maxListSize
  * @property {number} maxMultisig
  * @property {string} minimumStake
- * @property {...GraphQLClient.PokeConfig} poke
- * @property {...GraphQLClient.StakeConfig} stake
  */
 
 /**
@@ -5743,10 +5688,10 @@
 
 /**
  * @memberof GraphQLClient
- * @typedef {Object} GraphQLClient.AccountMigrateTxInput
+ * @typedef {Object} GraphQLClient.RevokeSwapTxInput
  * @prop {object} input
  * @prop {object} input.tx - data of the transaction
- * @prop {GraphQLClient.AccountMigrateTx} input.tx.itx - the actual transaction object
+ * @prop {GraphQLClient.RevokeSwapTx} input.tx.itx - the actual transaction object
  * @prop {string} [input.tx.pk] - the sender pk
  * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
  * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
@@ -5758,21 +5703,21 @@
  */
 
 /**
- * Send AccountMigrateTx transaction and get the hash, use {@link GraphQLClient#getTx} to get transaction detail
+ * Send RevokeSwapTx transaction and get the hash, use {@link GraphQLClient#getTx} to get transaction detail
  *
  * @memberof GraphQLClient
  * @function
- * @name GraphQLClient#sendAccountMigrateTx
- * @param {GraphQLClient.AccountMigrateTxInput} params
+ * @name GraphQLClient#sendRevokeSwapTx
+ * @param {GraphQLClient.RevokeSwapTxInput} params
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
 
 /**
  * @memberof GraphQLClient
- * @typedef {Object} GraphQLClient.AcquireAssetTxInput
+ * @typedef {Object} GraphQLClient.WithdrawTokenTxInput
  * @prop {object} input
  * @prop {object} input.tx - data of the transaction
- * @prop {GraphQLClient.AcquireAssetTx} input.tx.itx - the actual transaction object
+ * @prop {GraphQLClient.WithdrawTokenTx} input.tx.itx - the actual transaction object
  * @prop {string} [input.tx.pk] - the sender pk
  * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
  * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
@@ -5784,142 +5729,12 @@
  */
 
 /**
- * Send AcquireAssetTx transaction and get the hash, use {@link GraphQLClient#getTx} to get transaction detail
+ * Send WithdrawTokenTx transaction and get the hash, use {@link GraphQLClient#getTx} to get transaction detail
  *
  * @memberof GraphQLClient
  * @function
- * @name GraphQLClient#sendAcquireAssetTx
- * @param {GraphQLClient.AcquireAssetTxInput} params
- * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
- */
-
-/**
- * @memberof GraphQLClient
- * @typedef {Object} GraphQLClient.ActivateProtocolTxInput
- * @prop {object} input
- * @prop {object} input.tx - data of the transaction
- * @prop {GraphQLClient.ActivateProtocolTx} input.tx.itx - the actual transaction object
- * @prop {string} [input.tx.pk] - the sender pk
- * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
- * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
- * @prop {string} [input.tx.chainId] - the chainId
- * @prop {string} [input.tx.signature] - transaction signature
- * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transaction
- * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
- * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
- */
-
-/**
- * Send ActivateProtocolTx transaction and get the hash, use {@link GraphQLClient#getTx} to get transaction detail
- *
- * @memberof GraphQLClient
- * @function
- * @name GraphQLClient#sendActivateProtocolTx
- * @param {GraphQLClient.ActivateProtocolTxInput} params
- * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
- */
-
-/**
- * @memberof GraphQLClient
- * @typedef {Object} GraphQLClient.ApproveTetherTxInput
- * @prop {object} input
- * @prop {object} input.tx - data of the transaction
- * @prop {GraphQLClient.ApproveTetherTx} input.tx.itx - the actual transaction object
- * @prop {string} [input.tx.pk] - the sender pk
- * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
- * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
- * @prop {string} [input.tx.chainId] - the chainId
- * @prop {string} [input.tx.signature] - transaction signature
- * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transaction
- * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
- * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
- */
-
-/**
- * Send ApproveTetherTx transaction and get the hash, use {@link GraphQLClient#getTx} to get transaction detail
- *
- * @memberof GraphQLClient
- * @function
- * @name GraphQLClient#sendApproveTetherTx
- * @param {GraphQLClient.ApproveTetherTxInput} params
- * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
- */
-
-/**
- * @memberof GraphQLClient
- * @typedef {Object} GraphQLClient.ApproveWithdrawTxInput
- * @prop {object} input
- * @prop {object} input.tx - data of the transaction
- * @prop {GraphQLClient.ApproveWithdrawTx} input.tx.itx - the actual transaction object
- * @prop {string} [input.tx.pk] - the sender pk
- * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
- * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
- * @prop {string} [input.tx.chainId] - the chainId
- * @prop {string} [input.tx.signature] - transaction signature
- * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transaction
- * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
- * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
- */
-
-/**
- * Send ApproveWithdrawTx transaction and get the hash, use {@link GraphQLClient#getTx} to get transaction detail
- *
- * @memberof GraphQLClient
- * @function
- * @name GraphQLClient#sendApproveWithdrawTx
- * @param {GraphQLClient.ApproveWithdrawTxInput} params
- * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
- */
-
-/**
- * @memberof GraphQLClient
- * @typedef {Object} GraphQLClient.ConsumeAssetTxInput
- * @prop {object} input
- * @prop {object} input.tx - data of the transaction
- * @prop {GraphQLClient.ConsumeAssetTx} input.tx.itx - the actual transaction object
- * @prop {string} [input.tx.pk] - the sender pk
- * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
- * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
- * @prop {string} [input.tx.chainId] - the chainId
- * @prop {string} [input.tx.signature] - transaction signature
- * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transaction
- * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
- * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
- */
-
-/**
- * Send ConsumeAssetTx transaction and get the hash, use {@link GraphQLClient#getTx} to get transaction detail
- *
- * @memberof GraphQLClient
- * @function
- * @name GraphQLClient#sendConsumeAssetTx
- * @param {GraphQLClient.ConsumeAssetTxInput} params
- * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
- */
-
-/**
- * @memberof GraphQLClient
- * @typedef {Object} GraphQLClient.CreateAssetTxInput
- * @prop {object} input
- * @prop {object} input.tx - data of the transaction
- * @prop {GraphQLClient.CreateAssetTx} input.tx.itx - the actual transaction object
- * @prop {string} [input.tx.pk] - the sender pk
- * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
- * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
- * @prop {string} [input.tx.chainId] - the chainId
- * @prop {string} [input.tx.signature] - transaction signature
- * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transaction
- * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
- * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
- */
-
-/**
- * Send CreateAssetTx transaction and get the hash, use {@link GraphQLClient#getTx} to get transaction detail
- *
- * @memberof GraphQLClient
- * @function
- * @name GraphQLClient#sendCreateAssetTx
- * @param {GraphQLClient.CreateAssetTxInput} params
+ * @name GraphQLClient#sendWithdrawTokenTx
+ * @param {GraphQLClient.WithdrawTokenTxInput} params
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
 
@@ -5951,10 +5766,10 @@
 
 /**
  * @memberof GraphQLClient
- * @typedef {Object} GraphQLClient.DeclareTxInput
+ * @typedef {Object} GraphQLClient.AccountMigrateTxInput
  * @prop {object} input
  * @prop {object} input.tx - data of the transaction
- * @prop {GraphQLClient.DeclareTx} input.tx.itx - the actual transaction object
+ * @prop {GraphQLClient.AccountMigrateTx} input.tx.itx - the actual transaction object
  * @prop {string} [input.tx.pk] - the sender pk
  * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
  * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
@@ -5966,298 +5781,12 @@
  */
 
 /**
- * Send DeclareTx transaction and get the hash, use {@link GraphQLClient#getTx} to get transaction detail
+ * Send AccountMigrateTx transaction and get the hash, use {@link GraphQLClient#getTx} to get transaction detail
  *
  * @memberof GraphQLClient
  * @function
- * @name GraphQLClient#sendDeclareTx
- * @param {GraphQLClient.DeclareTxInput} params
- * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
- */
-
-/**
- * @memberof GraphQLClient
- * @typedef {Object} GraphQLClient.DelegateTxInput
- * @prop {object} input
- * @prop {object} input.tx - data of the transaction
- * @prop {GraphQLClient.DelegateTx} input.tx.itx - the actual transaction object
- * @prop {string} [input.tx.pk] - the sender pk
- * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
- * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
- * @prop {string} [input.tx.chainId] - the chainId
- * @prop {string} [input.tx.signature] - transaction signature
- * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transaction
- * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
- * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
- */
-
-/**
- * Send DelegateTx transaction and get the hash, use {@link GraphQLClient#getTx} to get transaction detail
- *
- * @memberof GraphQLClient
- * @function
- * @name GraphQLClient#sendDelegateTx
- * @param {GraphQLClient.DelegateTxInput} params
- * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
- */
-
-/**
- * @memberof GraphQLClient
- * @typedef {Object} GraphQLClient.DeployProtocolTxInput
- * @prop {object} input
- * @prop {object} input.tx - data of the transaction
- * @prop {GraphQLClient.DeployProtocolTx} input.tx.itx - the actual transaction object
- * @prop {string} [input.tx.pk] - the sender pk
- * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
- * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
- * @prop {string} [input.tx.chainId] - the chainId
- * @prop {string} [input.tx.signature] - transaction signature
- * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transaction
- * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
- * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
- */
-
-/**
- * Send DeployProtocolTx transaction and get the hash, use {@link GraphQLClient#getTx} to get transaction detail
- *
- * @memberof GraphQLClient
- * @function
- * @name GraphQLClient#sendDeployProtocolTx
- * @param {GraphQLClient.DeployProtocolTxInput} params
- * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
- */
-
-/**
- * @memberof GraphQLClient
- * @typedef {Object} GraphQLClient.DepositTetherTxInput
- * @prop {object} input
- * @prop {object} input.tx - data of the transaction
- * @prop {GraphQLClient.DepositTetherTx} input.tx.itx - the actual transaction object
- * @prop {string} [input.tx.pk] - the sender pk
- * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
- * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
- * @prop {string} [input.tx.chainId] - the chainId
- * @prop {string} [input.tx.signature] - transaction signature
- * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transaction
- * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
- * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
- */
-
-/**
- * Send DepositTetherTx transaction and get the hash, use {@link GraphQLClient#getTx} to get transaction detail
- *
- * @memberof GraphQLClient
- * @function
- * @name GraphQLClient#sendDepositTetherTx
- * @param {GraphQLClient.DepositTetherTxInput} params
- * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
- */
-
-/**
- * @memberof GraphQLClient
- * @typedef {Object} GraphQLClient.DepositTokenTxInput
- * @prop {object} input
- * @prop {object} input.tx - data of the transaction
- * @prop {GraphQLClient.DepositTokenTx} input.tx.itx - the actual transaction object
- * @prop {string} [input.tx.pk] - the sender pk
- * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
- * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
- * @prop {string} [input.tx.chainId] - the chainId
- * @prop {string} [input.tx.signature] - transaction signature
- * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transaction
- * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
- * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
- */
-
-/**
- * Send DepositTokenTx transaction and get the hash, use {@link GraphQLClient#getTx} to get transaction detail
- *
- * @memberof GraphQLClient
- * @function
- * @name GraphQLClient#sendDepositTokenTx
- * @param {GraphQLClient.DepositTokenTxInput} params
- * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
- */
-
-/**
- * @memberof GraphQLClient
- * @typedef {Object} GraphQLClient.ExchangeTetherTxInput
- * @prop {object} input
- * @prop {object} input.tx - data of the transaction
- * @prop {GraphQLClient.ExchangeTetherTx} input.tx.itx - the actual transaction object
- * @prop {string} [input.tx.pk] - the sender pk
- * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
- * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
- * @prop {string} [input.tx.chainId] - the chainId
- * @prop {string} [input.tx.signature] - transaction signature
- * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transaction
- * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
- * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
- */
-
-/**
- * Send ExchangeTetherTx transaction and get the hash, use {@link GraphQLClient#getTx} to get transaction detail
- *
- * @memberof GraphQLClient
- * @function
- * @name GraphQLClient#sendExchangeTetherTx
- * @param {GraphQLClient.ExchangeTetherTxInput} params
- * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
- */
-
-/**
- * @memberof GraphQLClient
- * @typedef {Object} GraphQLClient.ExchangeTxInput
- * @prop {object} input
- * @prop {object} input.tx - data of the transaction
- * @prop {GraphQLClient.ExchangeTx} input.tx.itx - the actual transaction object
- * @prop {string} [input.tx.pk] - the sender pk
- * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
- * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
- * @prop {string} [input.tx.chainId] - the chainId
- * @prop {string} [input.tx.signature] - transaction signature
- * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transaction
- * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
- * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
- */
-
-/**
- * Send ExchangeTx transaction and get the hash, use {@link GraphQLClient#getTx} to get transaction detail
- *
- * @memberof GraphQLClient
- * @function
- * @name GraphQLClient#sendExchangeTx
- * @param {GraphQLClient.ExchangeTxInput} params
- * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
- */
-
-/**
- * @memberof GraphQLClient
- * @typedef {Object} GraphQLClient.PokeTxInput
- * @prop {object} input
- * @prop {object} input.tx - data of the transaction
- * @prop {GraphQLClient.PokeTx} input.tx.itx - the actual transaction object
- * @prop {string} [input.tx.pk] - the sender pk
- * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
- * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
- * @prop {string} [input.tx.chainId] - the chainId
- * @prop {string} [input.tx.signature] - transaction signature
- * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transaction
- * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
- * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
- */
-
-/**
- * Send PokeTx transaction and get the hash, use {@link GraphQLClient#getTx} to get transaction detail
- *
- * @memberof GraphQLClient
- * @function
- * @name GraphQLClient#sendPokeTx
- * @param {GraphQLClient.PokeTxInput} params
- * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
- */
-
-/**
- * @memberof GraphQLClient
- * @typedef {Object} GraphQLClient.RetrieveSwapTxInput
- * @prop {object} input
- * @prop {object} input.tx - data of the transaction
- * @prop {GraphQLClient.RetrieveSwapTx} input.tx.itx - the actual transaction object
- * @prop {string} [input.tx.pk] - the sender pk
- * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
- * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
- * @prop {string} [input.tx.chainId] - the chainId
- * @prop {string} [input.tx.signature] - transaction signature
- * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transaction
- * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
- * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
- */
-
-/**
- * Send RetrieveSwapTx transaction and get the hash, use {@link GraphQLClient#getTx} to get transaction detail
- *
- * @memberof GraphQLClient
- * @function
- * @name GraphQLClient#sendRetrieveSwapTx
- * @param {GraphQLClient.RetrieveSwapTxInput} params
- * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
- */
-
-/**
- * @memberof GraphQLClient
- * @typedef {Object} GraphQLClient.RevokeSwapTxInput
- * @prop {object} input
- * @prop {object} input.tx - data of the transaction
- * @prop {GraphQLClient.RevokeSwapTx} input.tx.itx - the actual transaction object
- * @prop {string} [input.tx.pk] - the sender pk
- * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
- * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
- * @prop {string} [input.tx.chainId] - the chainId
- * @prop {string} [input.tx.signature] - transaction signature
- * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transaction
- * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
- * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
- */
-
-/**
- * Send RevokeSwapTx transaction and get the hash, use {@link GraphQLClient#getTx} to get transaction detail
- *
- * @memberof GraphQLClient
- * @function
- * @name GraphQLClient#sendRevokeSwapTx
- * @param {GraphQLClient.RevokeSwapTxInput} params
- * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
- */
-
-/**
- * @memberof GraphQLClient
- * @typedef {Object} GraphQLClient.RevokeTetherTxInput
- * @prop {object} input
- * @prop {object} input.tx - data of the transaction
- * @prop {GraphQLClient.RevokeTetherTx} input.tx.itx - the actual transaction object
- * @prop {string} [input.tx.pk] - the sender pk
- * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
- * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
- * @prop {string} [input.tx.chainId] - the chainId
- * @prop {string} [input.tx.signature] - transaction signature
- * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transaction
- * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
- * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
- */
-
-/**
- * Send RevokeTetherTx transaction and get the hash, use {@link GraphQLClient#getTx} to get transaction detail
- *
- * @memberof GraphQLClient
- * @function
- * @name GraphQLClient#sendRevokeTetherTx
- * @param {GraphQLClient.RevokeTetherTxInput} params
- * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
- */
-
-/**
- * @memberof GraphQLClient
- * @typedef {Object} GraphQLClient.RevokeWithdrawTxInput
- * @prop {object} input
- * @prop {object} input.tx - data of the transaction
- * @prop {GraphQLClient.RevokeWithdrawTx} input.tx.itx - the actual transaction object
- * @prop {string} [input.tx.pk] - the sender pk
- * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
- * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
- * @prop {string} [input.tx.chainId] - the chainId
- * @prop {string} [input.tx.signature] - transaction signature
- * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transaction
- * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
- * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
- */
-
-/**
- * Send RevokeWithdrawTx transaction and get the hash, use {@link GraphQLClient#getTx} to get transaction detail
- *
- * @memberof GraphQLClient
- * @function
- * @name GraphQLClient#sendRevokeWithdrawTx
- * @param {GraphQLClient.RevokeWithdrawTxInput} params
+ * @name GraphQLClient#sendAccountMigrateTx
+ * @param {GraphQLClient.AccountMigrateTxInput} params
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
 
@@ -6289,6 +5818,32 @@
 
 /**
  * @memberof GraphQLClient
+ * @typedef {Object} GraphQLClient.DepositTetherTxInput
+ * @prop {object} input
+ * @prop {object} input.tx - data of the transaction
+ * @prop {GraphQLClient.DepositTetherTx} input.tx.itx - the actual transaction object
+ * @prop {string} [input.tx.pk] - the sender pk
+ * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
+ * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
+ * @prop {string} [input.tx.chainId] - the chainId
+ * @prop {string} [input.tx.signature] - transaction signature
+ * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transaction
+ * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
+ * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
+ */
+
+/**
+ * Send DepositTetherTx transaction and get the hash, use {@link GraphQLClient#getTx} to get transaction detail
+ *
+ * @memberof GraphQLClient
+ * @function
+ * @name GraphQLClient#sendDepositTetherTx
+ * @param {GraphQLClient.DepositTetherTxInput} params
+ * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
+ */
+
+/**
+ * @memberof GraphQLClient
  * @typedef {Object} GraphQLClient.StakeTxInput
  * @prop {object} input
  * @prop {object} input.tx - data of the transaction
@@ -6310,6 +5865,136 @@
  * @function
  * @name GraphQLClient#sendStakeTx
  * @param {GraphQLClient.StakeTxInput} params
+ * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
+ */
+
+/**
+ * @memberof GraphQLClient
+ * @typedef {Object} GraphQLClient.DeployProtocolTxInput
+ * @prop {object} input
+ * @prop {object} input.tx - data of the transaction
+ * @prop {GraphQLClient.DeployProtocolTx} input.tx.itx - the actual transaction object
+ * @prop {string} [input.tx.pk] - the sender pk
+ * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
+ * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
+ * @prop {string} [input.tx.chainId] - the chainId
+ * @prop {string} [input.tx.signature] - transaction signature
+ * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transaction
+ * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
+ * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
+ */
+
+/**
+ * Send DeployProtocolTx transaction and get the hash, use {@link GraphQLClient#getTx} to get transaction detail
+ *
+ * @memberof GraphQLClient
+ * @function
+ * @name GraphQLClient#sendDeployProtocolTx
+ * @param {GraphQLClient.DeployProtocolTxInput} params
+ * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
+ */
+
+/**
+ * @memberof GraphQLClient
+ * @typedef {Object} GraphQLClient.CreateAssetTxInput
+ * @prop {object} input
+ * @prop {object} input.tx - data of the transaction
+ * @prop {GraphQLClient.CreateAssetTx} input.tx.itx - the actual transaction object
+ * @prop {string} [input.tx.pk] - the sender pk
+ * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
+ * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
+ * @prop {string} [input.tx.chainId] - the chainId
+ * @prop {string} [input.tx.signature] - transaction signature
+ * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transaction
+ * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
+ * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
+ */
+
+/**
+ * Send CreateAssetTx transaction and get the hash, use {@link GraphQLClient#getTx} to get transaction detail
+ *
+ * @memberof GraphQLClient
+ * @function
+ * @name GraphQLClient#sendCreateAssetTx
+ * @param {GraphQLClient.CreateAssetTxInput} params
+ * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
+ */
+
+/**
+ * @memberof GraphQLClient
+ * @typedef {Object} GraphQLClient.ExchangeTxInput
+ * @prop {object} input
+ * @prop {object} input.tx - data of the transaction
+ * @prop {GraphQLClient.ExchangeTx} input.tx.itx - the actual transaction object
+ * @prop {string} [input.tx.pk] - the sender pk
+ * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
+ * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
+ * @prop {string} [input.tx.chainId] - the chainId
+ * @prop {string} [input.tx.signature] - transaction signature
+ * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transaction
+ * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
+ * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
+ */
+
+/**
+ * Send ExchangeTx transaction and get the hash, use {@link GraphQLClient#getTx} to get transaction detail
+ *
+ * @memberof GraphQLClient
+ * @function
+ * @name GraphQLClient#sendExchangeTx
+ * @param {GraphQLClient.ExchangeTxInput} params
+ * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
+ */
+
+/**
+ * @memberof GraphQLClient
+ * @typedef {Object} GraphQLClient.ConsumeAssetTxInput
+ * @prop {object} input
+ * @prop {object} input.tx - data of the transaction
+ * @prop {GraphQLClient.ConsumeAssetTx} input.tx.itx - the actual transaction object
+ * @prop {string} [input.tx.pk] - the sender pk
+ * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
+ * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
+ * @prop {string} [input.tx.chainId] - the chainId
+ * @prop {string} [input.tx.signature] - transaction signature
+ * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transaction
+ * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
+ * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
+ */
+
+/**
+ * Send ConsumeAssetTx transaction and get the hash, use {@link GraphQLClient#getTx} to get transaction detail
+ *
+ * @memberof GraphQLClient
+ * @function
+ * @name GraphQLClient#sendConsumeAssetTx
+ * @param {GraphQLClient.ConsumeAssetTxInput} params
+ * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
+ */
+
+/**
+ * @memberof GraphQLClient
+ * @typedef {Object} GraphQLClient.RetrieveSwapTxInput
+ * @prop {object} input
+ * @prop {object} input.tx - data of the transaction
+ * @prop {GraphQLClient.RetrieveSwapTx} input.tx.itx - the actual transaction object
+ * @prop {string} [input.tx.pk] - the sender pk
+ * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
+ * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
+ * @prop {string} [input.tx.chainId] - the chainId
+ * @prop {string} [input.tx.signature] - transaction signature
+ * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transaction
+ * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
+ * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
+ */
+
+/**
+ * Send RetrieveSwapTx transaction and get the hash, use {@link GraphQLClient#getTx} to get transaction detail
+ *
+ * @memberof GraphQLClient
+ * @function
+ * @name GraphQLClient#sendRetrieveSwapTx
+ * @param {GraphQLClient.RetrieveSwapTxInput} params
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
 
@@ -6341,10 +6026,10 @@
 
 /**
  * @memberof GraphQLClient
- * @typedef {Object} GraphQLClient.UpdateAssetTxInput
+ * @typedef {Object} GraphQLClient.RevokeTetherTxInput
  * @prop {object} input
  * @prop {object} input.tx - data of the transaction
- * @prop {GraphQLClient.UpdateAssetTx} input.tx.itx - the actual transaction object
+ * @prop {GraphQLClient.RevokeTetherTx} input.tx.itx - the actual transaction object
  * @prop {string} [input.tx.pk] - the sender pk
  * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
  * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
@@ -6356,21 +6041,21 @@
  */
 
 /**
- * Send UpdateAssetTx transaction and get the hash, use {@link GraphQLClient#getTx} to get transaction detail
+ * Send RevokeTetherTx transaction and get the hash, use {@link GraphQLClient#getTx} to get transaction detail
  *
  * @memberof GraphQLClient
  * @function
- * @name GraphQLClient#sendUpdateAssetTx
- * @param {GraphQLClient.UpdateAssetTxInput} params
+ * @name GraphQLClient#sendRevokeTetherTx
+ * @param {GraphQLClient.RevokeTetherTxInput} params
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
 
 /**
  * @memberof GraphQLClient
- * @typedef {Object} GraphQLClient.UpgradeNodeTxInput
+ * @typedef {Object} GraphQLClient.ApproveWithdrawTxInput
  * @prop {object} input
  * @prop {object} input.tx - data of the transaction
- * @prop {GraphQLClient.UpgradeNodeTx} input.tx.itx - the actual transaction object
+ * @prop {GraphQLClient.ApproveWithdrawTx} input.tx.itx - the actual transaction object
  * @prop {string} [input.tx.pk] - the sender pk
  * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
  * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
@@ -6382,12 +6067,142 @@
  */
 
 /**
- * Send UpgradeNodeTx transaction and get the hash, use {@link GraphQLClient#getTx} to get transaction detail
+ * Send ApproveWithdrawTx transaction and get the hash, use {@link GraphQLClient#getTx} to get transaction detail
  *
  * @memberof GraphQLClient
  * @function
- * @name GraphQLClient#sendUpgradeNodeTx
- * @param {GraphQLClient.UpgradeNodeTxInput} params
+ * @name GraphQLClient#sendApproveWithdrawTx
+ * @param {GraphQLClient.ApproveWithdrawTxInput} params
+ * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
+ */
+
+/**
+ * @memberof GraphQLClient
+ * @typedef {Object} GraphQLClient.DelegateTxInput
+ * @prop {object} input
+ * @prop {object} input.tx - data of the transaction
+ * @prop {GraphQLClient.DelegateTx} input.tx.itx - the actual transaction object
+ * @prop {string} [input.tx.pk] - the sender pk
+ * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
+ * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
+ * @prop {string} [input.tx.chainId] - the chainId
+ * @prop {string} [input.tx.signature] - transaction signature
+ * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transaction
+ * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
+ * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
+ */
+
+/**
+ * Send DelegateTx transaction and get the hash, use {@link GraphQLClient#getTx} to get transaction detail
+ *
+ * @memberof GraphQLClient
+ * @function
+ * @name GraphQLClient#sendDelegateTx
+ * @param {GraphQLClient.DelegateTxInput} params
+ * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
+ */
+
+/**
+ * @memberof GraphQLClient
+ * @typedef {Object} GraphQLClient.ApproveTetherTxInput
+ * @prop {object} input
+ * @prop {object} input.tx - data of the transaction
+ * @prop {GraphQLClient.ApproveTetherTx} input.tx.itx - the actual transaction object
+ * @prop {string} [input.tx.pk] - the sender pk
+ * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
+ * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
+ * @prop {string} [input.tx.chainId] - the chainId
+ * @prop {string} [input.tx.signature] - transaction signature
+ * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transaction
+ * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
+ * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
+ */
+
+/**
+ * Send ApproveTetherTx transaction and get the hash, use {@link GraphQLClient#getTx} to get transaction detail
+ *
+ * @memberof GraphQLClient
+ * @function
+ * @name GraphQLClient#sendApproveTetherTx
+ * @param {GraphQLClient.ApproveTetherTxInput} params
+ * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
+ */
+
+/**
+ * @memberof GraphQLClient
+ * @typedef {Object} GraphQLClient.DepositTokenTxInput
+ * @prop {object} input
+ * @prop {object} input.tx - data of the transaction
+ * @prop {GraphQLClient.DepositTokenTx} input.tx.itx - the actual transaction object
+ * @prop {string} [input.tx.pk] - the sender pk
+ * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
+ * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
+ * @prop {string} [input.tx.chainId] - the chainId
+ * @prop {string} [input.tx.signature] - transaction signature
+ * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transaction
+ * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
+ * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
+ */
+
+/**
+ * Send DepositTokenTx transaction and get the hash, use {@link GraphQLClient#getTx} to get transaction detail
+ *
+ * @memberof GraphQLClient
+ * @function
+ * @name GraphQLClient#sendDepositTokenTx
+ * @param {GraphQLClient.DepositTokenTxInput} params
+ * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
+ */
+
+/**
+ * @memberof GraphQLClient
+ * @typedef {Object} GraphQLClient.PokeTxInput
+ * @prop {object} input
+ * @prop {object} input.tx - data of the transaction
+ * @prop {GraphQLClient.PokeTx} input.tx.itx - the actual transaction object
+ * @prop {string} [input.tx.pk] - the sender pk
+ * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
+ * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
+ * @prop {string} [input.tx.chainId] - the chainId
+ * @prop {string} [input.tx.signature] - transaction signature
+ * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transaction
+ * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
+ * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
+ */
+
+/**
+ * Send PokeTx transaction and get the hash, use {@link GraphQLClient#getTx} to get transaction detail
+ *
+ * @memberof GraphQLClient
+ * @function
+ * @name GraphQLClient#sendPokeTx
+ * @param {GraphQLClient.PokeTxInput} params
+ * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
+ */
+
+/**
+ * @memberof GraphQLClient
+ * @typedef {Object} GraphQLClient.ExchangeTetherTxInput
+ * @prop {object} input
+ * @prop {object} input.tx - data of the transaction
+ * @prop {GraphQLClient.ExchangeTetherTx} input.tx.itx - the actual transaction object
+ * @prop {string} [input.tx.pk] - the sender pk
+ * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
+ * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
+ * @prop {string} [input.tx.chainId] - the chainId
+ * @prop {string} [input.tx.signature] - transaction signature
+ * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transaction
+ * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
+ * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
+ */
+
+/**
+ * Send ExchangeTetherTx transaction and get the hash, use {@link GraphQLClient#getTx} to get transaction detail
+ *
+ * @memberof GraphQLClient
+ * @function
+ * @name GraphQLClient#sendExchangeTetherTx
+ * @param {GraphQLClient.ExchangeTetherTxInput} params
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
 
@@ -6419,10 +6234,10 @@
 
 /**
  * @memberof GraphQLClient
- * @typedef {Object} GraphQLClient.WithdrawTokenTxInput
+ * @typedef {Object} GraphQLClient.ActivateProtocolTxInput
  * @prop {object} input
  * @prop {object} input.tx - data of the transaction
- * @prop {GraphQLClient.WithdrawTokenTx} input.tx.itx - the actual transaction object
+ * @prop {GraphQLClient.ActivateProtocolTx} input.tx.itx - the actual transaction object
  * @prop {string} [input.tx.pk] - the sender pk
  * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
  * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
@@ -6434,82 +6249,162 @@
  */
 
 /**
- * Send WithdrawTokenTx transaction and get the hash, use {@link GraphQLClient#getTx} to get transaction detail
+ * Send ActivateProtocolTx transaction and get the hash, use {@link GraphQLClient#getTx} to get transaction detail
  *
  * @memberof GraphQLClient
  * @function
- * @name GraphQLClient#sendWithdrawTokenTx
- * @param {GraphQLClient.WithdrawTokenTxInput} params
+ * @name GraphQLClient#sendActivateProtocolTx
+ * @param {GraphQLClient.ActivateProtocolTxInput} params
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
 
 /**
- * Encode a AccountMigrateTx transaction for later use
- *
- * @name GraphQLClient#encodeAccountMigrateTx
- * @function
  * @memberof GraphQLClient
- * @param {GraphQLClient.AccountMigrateTxInput} params
- * @returns {Promise<GraphQLClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
+ * @typedef {Object} GraphQLClient.UpgradeNodeTxInput
+ * @prop {object} input
+ * @prop {object} input.tx - data of the transaction
+ * @prop {GraphQLClient.UpgradeNodeTx} input.tx.itx - the actual transaction object
+ * @prop {string} [input.tx.pk] - the sender pk
+ * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
+ * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
+ * @prop {string} [input.tx.chainId] - the chainId
+ * @prop {string} [input.tx.signature] - transaction signature
+ * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transaction
+ * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
+ * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
  */
 
 /**
- * Encode a AcquireAssetTx transaction for later use
+ * Send UpgradeNodeTx transaction and get the hash, use {@link GraphQLClient#getTx} to get transaction detail
  *
- * @name GraphQLClient#encodeAcquireAssetTx
- * @function
  * @memberof GraphQLClient
+ * @function
+ * @name GraphQLClient#sendUpgradeNodeTx
+ * @param {GraphQLClient.UpgradeNodeTxInput} params
+ * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
+ */
+
+/**
+ * @memberof GraphQLClient
+ * @typedef {Object} GraphQLClient.UpdateAssetTxInput
+ * @prop {object} input
+ * @prop {object} input.tx - data of the transaction
+ * @prop {GraphQLClient.UpdateAssetTx} input.tx.itx - the actual transaction object
+ * @prop {string} [input.tx.pk] - the sender pk
+ * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
+ * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
+ * @prop {string} [input.tx.chainId] - the chainId
+ * @prop {string} [input.tx.signature] - transaction signature
+ * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transaction
+ * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
+ * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
+ */
+
+/**
+ * Send UpdateAssetTx transaction and get the hash, use {@link GraphQLClient#getTx} to get transaction detail
+ *
+ * @memberof GraphQLClient
+ * @function
+ * @name GraphQLClient#sendUpdateAssetTx
+ * @param {GraphQLClient.UpdateAssetTxInput} params
+ * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
+ */
+
+/**
+ * @memberof GraphQLClient
+ * @typedef {Object} GraphQLClient.AcquireAssetTxInput
+ * @prop {object} input
+ * @prop {object} input.tx - data of the transaction
+ * @prop {GraphQLClient.AcquireAssetTx} input.tx.itx - the actual transaction object
+ * @prop {string} [input.tx.pk] - the sender pk
+ * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
+ * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
+ * @prop {string} [input.tx.chainId] - the chainId
+ * @prop {string} [input.tx.signature] - transaction signature
+ * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transaction
+ * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
+ * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
+ */
+
+/**
+ * Send AcquireAssetTx transaction and get the hash, use {@link GraphQLClient#getTx} to get transaction detail
+ *
+ * @memberof GraphQLClient
+ * @function
+ * @name GraphQLClient#sendAcquireAssetTx
  * @param {GraphQLClient.AcquireAssetTxInput} params
+ * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
+ */
+
+/**
+ * @memberof GraphQLClient
+ * @typedef {Object} GraphQLClient.DeclareTxInput
+ * @prop {object} input
+ * @prop {object} input.tx - data of the transaction
+ * @prop {GraphQLClient.DeclareTx} input.tx.itx - the actual transaction object
+ * @prop {string} [input.tx.pk] - the sender pk
+ * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
+ * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
+ * @prop {string} [input.tx.chainId] - the chainId
+ * @prop {string} [input.tx.signature] - transaction signature
+ * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transaction
+ * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
+ * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
+ */
+
+/**
+ * Send DeclareTx transaction and get the hash, use {@link GraphQLClient#getTx} to get transaction detail
+ *
+ * @memberof GraphQLClient
+ * @function
+ * @name GraphQLClient#sendDeclareTx
+ * @param {GraphQLClient.DeclareTxInput} params
+ * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
+ */
+
+/**
+ * @memberof GraphQLClient
+ * @typedef {Object} GraphQLClient.RevokeWithdrawTxInput
+ * @prop {object} input
+ * @prop {object} input.tx - data of the transaction
+ * @prop {GraphQLClient.RevokeWithdrawTx} input.tx.itx - the actual transaction object
+ * @prop {string} [input.tx.pk] - the sender pk
+ * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
+ * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
+ * @prop {string} [input.tx.chainId] - the chainId
+ * @prop {string} [input.tx.signature] - transaction signature
+ * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transaction
+ * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
+ * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
+ */
+
+/**
+ * Send RevokeWithdrawTx transaction and get the hash, use {@link GraphQLClient#getTx} to get transaction detail
+ *
+ * @memberof GraphQLClient
+ * @function
+ * @name GraphQLClient#sendRevokeWithdrawTx
+ * @param {GraphQLClient.RevokeWithdrawTxInput} params
+ * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
+ */
+
+/**
+ * Encode a RevokeSwapTx transaction for later use
+ *
+ * @name GraphQLClient#encodeRevokeSwapTx
+ * @function
+ * @memberof GraphQLClient
+ * @param {GraphQLClient.RevokeSwapTxInput} params
  * @returns {Promise<GraphQLClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
 
 /**
- * Encode a ActivateProtocolTx transaction for later use
+ * Encode a WithdrawTokenTx transaction for later use
  *
- * @name GraphQLClient#encodeActivateProtocolTx
+ * @name GraphQLClient#encodeWithdrawTokenTx
  * @function
  * @memberof GraphQLClient
- * @param {GraphQLClient.ActivateProtocolTxInput} params
- * @returns {Promise<GraphQLClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
- */
-
-/**
- * Encode a ApproveTetherTx transaction for later use
- *
- * @name GraphQLClient#encodeApproveTetherTx
- * @function
- * @memberof GraphQLClient
- * @param {GraphQLClient.ApproveTetherTxInput} params
- * @returns {Promise<GraphQLClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
- */
-
-/**
- * Encode a ApproveWithdrawTx transaction for later use
- *
- * @name GraphQLClient#encodeApproveWithdrawTx
- * @function
- * @memberof GraphQLClient
- * @param {GraphQLClient.ApproveWithdrawTxInput} params
- * @returns {Promise<GraphQLClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
- */
-
-/**
- * Encode a ConsumeAssetTx transaction for later use
- *
- * @name GraphQLClient#encodeConsumeAssetTx
- * @function
- * @memberof GraphQLClient
- * @param {GraphQLClient.ConsumeAssetTxInput} params
- * @returns {Promise<GraphQLClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
- */
-
-/**
- * Encode a CreateAssetTx transaction for later use
- *
- * @name GraphQLClient#encodeCreateAssetTx
- * @function
- * @memberof GraphQLClient
- * @param {GraphQLClient.CreateAssetTxInput} params
+ * @param {GraphQLClient.WithdrawTokenTxInput} params
  * @returns {Promise<GraphQLClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
 
@@ -6524,122 +6419,12 @@
  */
 
 /**
- * Encode a DeclareTx transaction for later use
+ * Encode a AccountMigrateTx transaction for later use
  *
- * @name GraphQLClient#encodeDeclareTx
+ * @name GraphQLClient#encodeAccountMigrateTx
  * @function
  * @memberof GraphQLClient
- * @param {GraphQLClient.DeclareTxInput} params
- * @returns {Promise<GraphQLClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
- */
-
-/**
- * Encode a DelegateTx transaction for later use
- *
- * @name GraphQLClient#encodeDelegateTx
- * @function
- * @memberof GraphQLClient
- * @param {GraphQLClient.DelegateTxInput} params
- * @returns {Promise<GraphQLClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
- */
-
-/**
- * Encode a DeployProtocolTx transaction for later use
- *
- * @name GraphQLClient#encodeDeployProtocolTx
- * @function
- * @memberof GraphQLClient
- * @param {GraphQLClient.DeployProtocolTxInput} params
- * @returns {Promise<GraphQLClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
- */
-
-/**
- * Encode a DepositTetherTx transaction for later use
- *
- * @name GraphQLClient#encodeDepositTetherTx
- * @function
- * @memberof GraphQLClient
- * @param {GraphQLClient.DepositTetherTxInput} params
- * @returns {Promise<GraphQLClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
- */
-
-/**
- * Encode a DepositTokenTx transaction for later use
- *
- * @name GraphQLClient#encodeDepositTokenTx
- * @function
- * @memberof GraphQLClient
- * @param {GraphQLClient.DepositTokenTxInput} params
- * @returns {Promise<GraphQLClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
- */
-
-/**
- * Encode a ExchangeTetherTx transaction for later use
- *
- * @name GraphQLClient#encodeExchangeTetherTx
- * @function
- * @memberof GraphQLClient
- * @param {GraphQLClient.ExchangeTetherTxInput} params
- * @returns {Promise<GraphQLClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
- */
-
-/**
- * Encode a ExchangeTx transaction for later use
- *
- * @name GraphQLClient#encodeExchangeTx
- * @function
- * @memberof GraphQLClient
- * @param {GraphQLClient.ExchangeTxInput} params
- * @returns {Promise<GraphQLClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
- */
-
-/**
- * Encode a PokeTx transaction for later use
- *
- * @name GraphQLClient#encodePokeTx
- * @function
- * @memberof GraphQLClient
- * @param {GraphQLClient.PokeTxInput} params
- * @returns {Promise<GraphQLClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
- */
-
-/**
- * Encode a RetrieveSwapTx transaction for later use
- *
- * @name GraphQLClient#encodeRetrieveSwapTx
- * @function
- * @memberof GraphQLClient
- * @param {GraphQLClient.RetrieveSwapTxInput} params
- * @returns {Promise<GraphQLClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
- */
-
-/**
- * Encode a RevokeSwapTx transaction for later use
- *
- * @name GraphQLClient#encodeRevokeSwapTx
- * @function
- * @memberof GraphQLClient
- * @param {GraphQLClient.RevokeSwapTxInput} params
- * @returns {Promise<GraphQLClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
- */
-
-/**
- * Encode a RevokeTetherTx transaction for later use
- *
- * @name GraphQLClient#encodeRevokeTetherTx
- * @function
- * @memberof GraphQLClient
- * @param {GraphQLClient.RevokeTetherTxInput} params
- * @returns {Promise<GraphQLClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
- */
-
-/**
- * Encode a RevokeWithdrawTx transaction for later use
- *
- * @name GraphQLClient#encodeRevokeWithdrawTx
- * @function
- * @memberof GraphQLClient
- * @param {GraphQLClient.RevokeWithdrawTxInput} params
+ * @param {GraphQLClient.AccountMigrateTxInput} params
  * @returns {Promise<GraphQLClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
 
@@ -6654,12 +6439,72 @@
  */
 
 /**
+ * Encode a DepositTetherTx transaction for later use
+ *
+ * @name GraphQLClient#encodeDepositTetherTx
+ * @function
+ * @memberof GraphQLClient
+ * @param {GraphQLClient.DepositTetherTxInput} params
+ * @returns {Promise<GraphQLClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
+ */
+
+/**
  * Encode a StakeTx transaction for later use
  *
  * @name GraphQLClient#encodeStakeTx
  * @function
  * @memberof GraphQLClient
  * @param {GraphQLClient.StakeTxInput} params
+ * @returns {Promise<GraphQLClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
+ */
+
+/**
+ * Encode a DeployProtocolTx transaction for later use
+ *
+ * @name GraphQLClient#encodeDeployProtocolTx
+ * @function
+ * @memberof GraphQLClient
+ * @param {GraphQLClient.DeployProtocolTxInput} params
+ * @returns {Promise<GraphQLClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
+ */
+
+/**
+ * Encode a CreateAssetTx transaction for later use
+ *
+ * @name GraphQLClient#encodeCreateAssetTx
+ * @function
+ * @memberof GraphQLClient
+ * @param {GraphQLClient.CreateAssetTxInput} params
+ * @returns {Promise<GraphQLClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
+ */
+
+/**
+ * Encode a ExchangeTx transaction for later use
+ *
+ * @name GraphQLClient#encodeExchangeTx
+ * @function
+ * @memberof GraphQLClient
+ * @param {GraphQLClient.ExchangeTxInput} params
+ * @returns {Promise<GraphQLClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
+ */
+
+/**
+ * Encode a ConsumeAssetTx transaction for later use
+ *
+ * @name GraphQLClient#encodeConsumeAssetTx
+ * @function
+ * @memberof GraphQLClient
+ * @param {GraphQLClient.ConsumeAssetTxInput} params
+ * @returns {Promise<GraphQLClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
+ */
+
+/**
+ * Encode a RetrieveSwapTx transaction for later use
+ *
+ * @name GraphQLClient#encodeRetrieveSwapTx
+ * @function
+ * @memberof GraphQLClient
+ * @param {GraphQLClient.RetrieveSwapTxInput} params
  * @returns {Promise<GraphQLClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
 
@@ -6674,22 +6519,72 @@
  */
 
 /**
- * Encode a UpdateAssetTx transaction for later use
+ * Encode a RevokeTetherTx transaction for later use
  *
- * @name GraphQLClient#encodeUpdateAssetTx
+ * @name GraphQLClient#encodeRevokeTetherTx
  * @function
  * @memberof GraphQLClient
- * @param {GraphQLClient.UpdateAssetTxInput} params
+ * @param {GraphQLClient.RevokeTetherTxInput} params
  * @returns {Promise<GraphQLClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
 
 /**
- * Encode a UpgradeNodeTx transaction for later use
+ * Encode a ApproveWithdrawTx transaction for later use
  *
- * @name GraphQLClient#encodeUpgradeNodeTx
+ * @name GraphQLClient#encodeApproveWithdrawTx
  * @function
  * @memberof GraphQLClient
- * @param {GraphQLClient.UpgradeNodeTxInput} params
+ * @param {GraphQLClient.ApproveWithdrawTxInput} params
+ * @returns {Promise<GraphQLClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
+ */
+
+/**
+ * Encode a DelegateTx transaction for later use
+ *
+ * @name GraphQLClient#encodeDelegateTx
+ * @function
+ * @memberof GraphQLClient
+ * @param {GraphQLClient.DelegateTxInput} params
+ * @returns {Promise<GraphQLClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
+ */
+
+/**
+ * Encode a ApproveTetherTx transaction for later use
+ *
+ * @name GraphQLClient#encodeApproveTetherTx
+ * @function
+ * @memberof GraphQLClient
+ * @param {GraphQLClient.ApproveTetherTxInput} params
+ * @returns {Promise<GraphQLClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
+ */
+
+/**
+ * Encode a DepositTokenTx transaction for later use
+ *
+ * @name GraphQLClient#encodeDepositTokenTx
+ * @function
+ * @memberof GraphQLClient
+ * @param {GraphQLClient.DepositTokenTxInput} params
+ * @returns {Promise<GraphQLClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
+ */
+
+/**
+ * Encode a PokeTx transaction for later use
+ *
+ * @name GraphQLClient#encodePokeTx
+ * @function
+ * @memberof GraphQLClient
+ * @param {GraphQLClient.PokeTxInput} params
+ * @returns {Promise<GraphQLClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
+ */
+
+/**
+ * Encode a ExchangeTetherTx transaction for later use
+ *
+ * @name GraphQLClient#encodeExchangeTetherTx
+ * @function
+ * @memberof GraphQLClient
+ * @param {GraphQLClient.ExchangeTetherTxInput} params
  * @returns {Promise<GraphQLClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
 
@@ -6704,12 +6599,62 @@
  */
 
 /**
- * Encode a WithdrawTokenTx transaction for later use
+ * Encode a ActivateProtocolTx transaction for later use
  *
- * @name GraphQLClient#encodeWithdrawTokenTx
+ * @name GraphQLClient#encodeActivateProtocolTx
  * @function
  * @memberof GraphQLClient
- * @param {GraphQLClient.WithdrawTokenTxInput} params
+ * @param {GraphQLClient.ActivateProtocolTxInput} params
+ * @returns {Promise<GraphQLClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
+ */
+
+/**
+ * Encode a UpgradeNodeTx transaction for later use
+ *
+ * @name GraphQLClient#encodeUpgradeNodeTx
+ * @function
+ * @memberof GraphQLClient
+ * @param {GraphQLClient.UpgradeNodeTxInput} params
+ * @returns {Promise<GraphQLClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
+ */
+
+/**
+ * Encode a UpdateAssetTx transaction for later use
+ *
+ * @name GraphQLClient#encodeUpdateAssetTx
+ * @function
+ * @memberof GraphQLClient
+ * @param {GraphQLClient.UpdateAssetTxInput} params
+ * @returns {Promise<GraphQLClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
+ */
+
+/**
+ * Encode a AcquireAssetTx transaction for later use
+ *
+ * @name GraphQLClient#encodeAcquireAssetTx
+ * @function
+ * @memberof GraphQLClient
+ * @param {GraphQLClient.AcquireAssetTxInput} params
+ * @returns {Promise<GraphQLClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
+ */
+
+/**
+ * Encode a DeclareTx transaction for later use
+ *
+ * @name GraphQLClient#encodeDeclareTx
+ * @function
+ * @memberof GraphQLClient
+ * @param {GraphQLClient.DeclareTxInput} params
+ * @returns {Promise<GraphQLClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
+ */
+
+/**
+ * Encode a RevokeWithdrawTx transaction for later use
+ *
+ * @name GraphQLClient#encodeRevokeWithdrawTx
+ * @function
+ * @memberof GraphQLClient
+ * @param {GraphQLClient.RevokeWithdrawTxInput} params
  * @returns {Promise<GraphQLClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
 
