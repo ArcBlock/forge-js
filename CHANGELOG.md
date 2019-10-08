@@ -1,3 +1,11 @@
+## 0.38.7 (October 08, 2019)
+
+- chore: upgrade forge-sdk to latest
+- chore: upgrade grpc-client with latest forge-web
+- chore: upgrade graphql-client with latest forge-web
+- chore: upgrade forge-proto with latest forge-abi
+- update readme
+
 ## 0.38.6 (October 02, 2019)
 
 - chore: upgrade forge-sdk dts
