@@ -1,11 +1,9 @@
-<a name="module_@arcblock/did"></a>
-
 
 ## [**@arcblock/did**](https://github.com/arcblock/did)
 
 Utility functions to create/inspect did, and do did-based auth, an implementation of abt-did-protocol
 
-**Requires**: [@arcblock/mcrypto](./mcrypto/), [@arcblock/forge-util](./forge-util/)  
+**Requires**: [@arcblock/mcrypto](/packages/mcrypto/), [@arcblock/forge-util](/packages/forge-util/)  
 
 * [fromSecretKey(sk, type)](#fromSecretKey) ⇒ `string`
 * [fromPublicKey(pk, type)](#fromPublicKey) ⇒ `string`
@@ -14,8 +12,6 @@ Utility functions to create/inspect did, and do did-based auth, an implementatio
 * [fromTypeInfo(type)](#fromTypeInfo) ⇒
 * [toTypeInfo(did, \[returnString\])](#toTypeInfo) ⇒ `object`
 * [isValid(did)](#isValid) ⇒ `boolean`
-
-<a name="fromSecretKey"></a>
 
 ### fromSecretKey(sk, type) ⇒ `string`
 
@@ -32,8 +28,6 @@ Spec: <https://github.com/ArcBlock/ABT-DID-Protocol#create-did>
 | sk    | `string` | hex encoded secret key string                                                                                                       |
 | type  | `object` | wallet type, {[**@see**](https://github.com/see) [**@arcblock/forge-wallet**](https://github.com/arcblock/forge-wallet)#WalletType} |
 
-<a name="fromPublicKey"></a>
-
 ### fromPublicKey(pk, type) ⇒ `string`
 
 Gen DID from public key and type config
@@ -46,8 +40,6 @@ Gen DID from public key and type config
 | ----- | -------- | ----------------------------------------------------------------------------------------------------------------------------------- |
 | pk    | `string` | hex encoded public key                                                                                                              |
 | type  | `object` | wallet type, {[**@see**](https://github.com/see) [**@arcblock/forge-wallet**](https://github.com/arcblock/forge-wallet)#WalletType} |
-
-<a name="fromHash"></a>
 
 ### fromHash(hash, role) ⇒ `string`
 
@@ -62,8 +54,6 @@ Gen DID from an hex encoded hash and role type
 | hash  | `string` | hex encoded hash                                                                                                   |
 | role  | `enum`   | role type, {[**@see**](https://github.com/see) [**@arcblock/mcrypto**](https://github.com/arcblock/mcrypto)#types} |
 
-<a name="isFromPublicKey"></a>
-
 ### isFromPublicKey(did, pk) ⇒ `boolean`
 
 Check if an DID is generated from a publicKey
@@ -75,8 +65,6 @@ Check if an DID is generated from a publicKey
 | ----- | -------- | ------------------------------------------- |
 | did   | `string` | string of the did, usually base58btc format |
 | pk    | `string` | hex encoded publicKey string                |
-
-<a name="fromTypeInfo"></a>
 
 ### fromTypeInfo(type) ⇒
 
@@ -90,8 +78,6 @@ Convert type info object to hex string
 | ----- | -------- | ----------------------------------------------------------------------------------------------------------------------------------- |
 | type  | `object` | wallet type, {[**@see**](https://github.com/see) [**@arcblock/forge-wallet**](https://github.com/arcblock/forge-wallet)#WalletType} |
 
-<a name="toTypeInfo"></a>
-
 ### toTypeInfo(did, [returnString]) ⇒ `object`
 
 Get type info from did (base58 format)
@@ -104,8 +90,6 @@ Get type info from did (base58 format)
 | -------------- | --------- | ------- | -------------- |
 | did            | `string`  |         | address string |
 | [returnString] | `boolean` | `true`  |                |
-
-<a name="isValid"></a>
 
 ### isValid(did) ⇒ `boolean`
 

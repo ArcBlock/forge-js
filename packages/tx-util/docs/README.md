@@ -1,5 +1,3 @@
-<a name="createVerifier"></a>
-
 
 ## createVerifier(params) ⇒ `EventEmitter`
 

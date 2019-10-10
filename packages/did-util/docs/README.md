@@ -1,11 +1,9 @@
-<a name="module_@arcblock/did-util"></a>
-
 
 ## [**@arcblock/did-util**](https://github.com/arcblock/did-util)
 
 Utility functions to calculate various kinds of did, such as asset address
 
-**Requires**: [@arcblock/mcrypto](./mcrypto/), [@arcblock/did](./did/), [@arcblock/forge-util](./forge-util/), [@arcblock/forge-wallet](./forge-wallet/), [@arcblock/forge-message](./forge-message/)  
+**Requires**: [@arcblock/mcrypto](/packages/mcrypto/), [@arcblock/did](/packages/did/), [@arcblock/forge-util](/packages/forge-util/), [@arcblock/forge-wallet](/packages/forge-wallet/), [@arcblock/forge-message](/packages/forge-message/)  
 
 * [toAssetAddress(itx)](#toAssetAddress) ⇒ `string`
 * [toAssetDid(itx)](#toAssetDid) ⇒ `string`
@@ -16,8 +14,6 @@ Utility functions to calculate various kinds of did, such as asset address
 * [toTetherAddress(hash)](#toTetherAddress) ⇒ `string`
 * [toSwapAddress(hash)](#toSwapAddress) ⇒ `string`
 * [toStakeDid(sender, receiver)](#toStakeDid) ⇒ `string`
-
-<a name="toAssetAddress"></a>
 
 ### toAssetAddress(itx) ⇒ `string`
 
@@ -31,8 +27,6 @@ Create an asset address
 | ----- | -------- | ---------------------------- |
 | itx   | `object` | an object of `CreateAssetTx` |
 
-<a name="toAssetDid"></a>
-
 ### toAssetDid(itx) ⇒ `string`
 
 Create an asset did
@@ -44,8 +38,6 @@ Create an asset did
 | Param | Type     | Description                  |
 | ----- | -------- | ---------------------------- |
 | itx   | `object` | an object of `CreateAssetTx` |
-
-<a name="toItxAddress"></a>
 
 ### toItxAddress(itx, type, [role]) ⇒ `string`
 
@@ -61,8 +53,6 @@ Create an itx address
 | type   | `string` |                          | itx type string                  |
 | [role] | `enum`   | `types.RoleType.ROLE_TX` | role type                        |
 
-<a name="toItxDid"></a>
-
 ### toItxDid(itx) ⇒ `string`
 
 Create an itx did
@@ -74,8 +64,6 @@ Create an itx did
 | Param | Type     | Description                      |
 | ----- | -------- | -------------------------------- |
 | itx   | `object` | an object of forge supported itx |
-
-<a name="toStakeAddress"></a>
 
 ### toStakeAddress(sender, receiver) ⇒ `string`
 
@@ -90,8 +78,6 @@ Generate an stake address, eg: the did of the stake
 | sender   | `string` | sender address   |
 | receiver | `string` | receiver address |
 
-<a name="toDelegateAddress"></a>
-
 ### toDelegateAddress(addr1, addr2) ⇒ `string`
 
 Generate an delegate address, eg: the did of the delegation
@@ -105,8 +91,6 @@ Generate an delegate address, eg: the did of the delegation
 | addr1 | `string` | delegator address |
 | addr2 | `string` | delegatee address |
 
-<a name="toTetherAddress"></a>
-
 ### toTetherAddress(hash) ⇒ `string`
 
 Generate a tether address from the deposit tether tx hash
@@ -119,8 +103,6 @@ Generate a tether address from the deposit tether tx hash
 | ----- | -------- | -------------------- |
 | hash  | `string` | DepositTetherTx hash |
 
-<a name="toSwapAddress"></a>
-
 ### toSwapAddress(hash) ⇒ `string`
 
 Generate a swap address from the setup swap tx hash
@@ -132,8 +114,6 @@ Generate a swap address from the setup swap tx hash
 | Param | Type     | Description      |
 | ----- | -------- | ---------------- |
 | hash  | `string` | SetupSwapTx hash |
-
-<a name="toStakeDid"></a>
 
 ### toStakeDid(sender, receiver) ⇒ `string`
 

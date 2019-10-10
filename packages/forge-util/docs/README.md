@@ -1,5 +1,3 @@
-<a name="module_@arcblock/forge-util"></a>
-
 
 ## [**@arcblock/forge-util**](https://github.com/arcblock/forge-util)
 
@@ -39,8 +37,6 @@ yarn add @arcblock/forge-util
 * [toAddress(did)](#toAddress) ⇒ `string`
 * [toDid(did)](#toDid) ⇒ `string`
 
-<a name="isHexPrefixed"></a>
-
 ### isHexPrefixed(str) ⇒ `Boolean`
 
 Returns a `Boolean` on whether or not the a `String` starts with '0x'
@@ -57,8 +53,6 @@ Returns a `Boolean` on whether or not the a `String` starts with '0x'
 | ----- | -------- | ---------------------- |
 | str   | `String` | the string input value |
 
-<a name="stripHexPrefix"></a>
-
 ### stripHexPrefix(str) ⇒ `String` \| `Optional`
 
 Removes '0x' from a given `String` if present
@@ -71,8 +65,6 @@ Removes '0x' from a given `String` if present
 | ----- | -------- | ---------------- |
 | str   | `String` | the string value |
 
-<a name="isBN"></a>
-
 ### isBN(object) ⇒ `Boolean`
 
 Returns true if object is BN, otherwise false
@@ -83,8 +75,6 @@ Returns true if object is BN, otherwise false
 | Param  | Type     |
 | ------ | -------- |
 | object | `Object` |
-
-<a name="isBigNumber"></a>
 
 ### isBigNumber(object) ⇒ `Boolean`
 
@@ -97,8 +87,6 @@ Returns true if object is BigNumber, otherwise false
 | ------ | -------- |
 | object | `Object` |
 
-<a name="isHexStrict"></a>
-
 ### isHexStrict(hex) ⇒ `Boolean`
 
 Check if string is HEX, requires a 0x in front
@@ -110,8 +98,6 @@ Check if string is HEX, requires a 0x in front
 | ----- | -------- | ------------- |
 | hex   | `String` | to be checked |
 
-<a name="isHex"></a>
-
 ### isHex(hex) ⇒ `Boolean`
 
 Check if string is HEX
@@ -122,8 +108,6 @@ Check if string is HEX
 | Param | Type     | Description   |
 | ----- | -------- | ------------- |
 | hex   | `String` | to be checked |
-
-<a name="toBN"></a>
 
 ### toBN(number,) ⇒ `BN`
 
@@ -137,8 +121,6 @@ Takes an input and transforms it into an BN
 | ------- | ---------------------------- | ------------------------ |
 | number, | `Number` \| `String` \| `BN` | string, HEX string or BN |
 
-<a name="utf8ToHex"></a>
-
 ### utf8ToHex(str) ⇒ `String`
 
 Should be called to get hex representation (prefixed by 0x) of utf8 string
@@ -150,8 +132,6 @@ Should be called to get hex representation (prefixed by 0x) of utf8 string
 | Param | Type     |
 | ----- | -------- |
 | str   | `String` |
-
-<a name="hexToUtf8"></a>
 
 ### hexToUtf8(hex) ⇒ `String`
 
@@ -165,8 +145,6 @@ Should be called to get utf8 from it's hex representation
 | ----- | -------- |
 | hex   | `String` |
 
-<a name="hexToNumber"></a>
-
 ### hexToNumber(value) ⇒ `Number`
 
 Converts value to it's number representation
@@ -178,8 +156,6 @@ Converts value to it's number representation
 | ----- | ---------------------------- |
 | value | `String` \| `Number` \| `BN` |
 
-<a name="numberToHex"></a>
-
 ### numberToHex(value) ⇒ `String`
 
 Converts value to it's hex representation
@@ -190,8 +166,6 @@ Converts value to it's hex representation
 | Param | Type                         |
 | ----- | ---------------------------- |
 | value | `String` \| `Number` \| `BN` |
-
-<a name="bytesToHex"></a>
 
 ### bytesToHex(bytes) ⇒ `String`
 
@@ -207,8 +181,6 @@ Note: Implementation from crypto-js
 | ----- | ------- |
 | bytes | `Array` |
 
-<a name="hexToBytes"></a>
-
 ### hexToBytes(hex) ⇒ `Array`
 
 Convert a hex string to a byte array
@@ -223,8 +195,6 @@ Note: Implementation from crypto-js
 | ----- | -------- |
 | hex   | `String` |
 
-<a name="toHex"></a>
-
 ### toHex(value, returnType) ⇒ `String`
 
 Auto converts any given value into it's hex representation.
@@ -237,8 +207,6 @@ And even stringifys objects before.
 | ---------- | -------------------------------------------------------------------- |
 | value      | `String` \| `Number` \| `BN` \| `Object` \| `TypedArray` \| `Buffer` |
 | returnType | `Boolean`                                                            |
-
-<a name="fromUnitToToken"></a>
 
 ### fromUnitToToken(input, [decimal], optionsInput) ⇒ `string`
 
@@ -253,8 +221,6 @@ Format a big number to human readable number, such as 1_0000_0000_0000_000 => 1 
 | [decimal]    | `number`             | `18`    |
 | optionsInput | `\*`                 |         |
 
-<a name="fromTokenToUnit"></a>
-
 ### fromTokenToUnit(input, [decimal]) ⇒
 
 Convert human readable token number to big number instance
@@ -268,8 +234,6 @@ Convert human readable token number to big number instance
 | input     | `string` |         |
 | [decimal] | `number` | `18`    |
 
-<a name="isUint8Array"></a>
-
 ### isUint8Array(value) ⇒ `Boolean`
 
 Validates if a value is an Uint8Array.
@@ -282,8 +246,6 @@ Validates if a value is an Uint8Array.
 | ----- | ---- | ----------------- |
 | value | `\*` | value to validate |
 
-<a name="UUID"></a>
-
 ### UUID() ⇒ `string`
 
 Generate a random UUID
@@ -291,7 +253,6 @@ Generate a random UUID
 **Kind**: static method  
 **Returns**: `string` - generated uuid  
 **Access**: public  
-<a name="isUUID"></a>
 
 ### isUUID(str) ⇒ `boolean`
 
@@ -303,8 +264,6 @@ Check if a string is valid UUID
 | Param | Type     |
 | ----- | -------- |
 | str   | `string` |
-
-<a name="toUint8Array"></a>
 
 ### toUint8Array(v) ⇒ `Uint8Array`
 
@@ -321,8 +280,6 @@ Convert input to Uint8Array on best effort
 | ----- | --------------------------------------------------------- |
 | v     | `buffer` \| `base58` \| `hex` \| `Uint8Array` \| `string` |
 
-<a name="toBuffer"></a>
-
 ### toBuffer(v) ⇒ `buffer`
 
 Convert input to Buffer on best effort
@@ -337,8 +294,6 @@ Convert input to Buffer on best effort
 | Param | Type                                          |
 | ----- | --------------------------------------------- |
 | v     | `buffer` \| `base58` \| `hex` \| `Uint8Array` |
-
-<a name="toBase58"></a>
 
 ### toBase58(v) ⇒ `string`
 
@@ -355,8 +310,6 @@ Convert input to base58btc format on best effort
 | ----- | --------------------------------------------- |
 | v     | `buffer` \| `base58` \| `hex` \| `Uint8Array` |
 
-<a name="fromBase58"></a>
-
 ### fromBase58(v) ⇒ `buffer`
 
 Decode base58 string
@@ -367,8 +320,6 @@ Decode base58 string
 | Param | Type     |
 | ----- | -------- |
 | v     | `string` |
-
-<a name="toBase64"></a>
 
 ### toBase64(v, [escape]) ⇒ `string`
 
@@ -386,8 +337,6 @@ Convert input to base64 format
 | v        | `buffer` \| `base58` \| `hex` \| `Uint8Array` |         |
 | [escape] | `escape`                                      | `true`  |
 
-<a name="fromBase64"></a>
-
 ### fromBase64(v) ⇒ `buffer`
 
 Decode base64 string to buffer
@@ -399,8 +348,6 @@ Decode base64 string to buffer
 | ----- | -------- |
 | v     | `string` |
 
-<a name="toAddress"></a>
-
 ### toAddress(did) ⇒ `string`
 
 Convert did to address: remove `did:abt:` prefix if exists
@@ -411,8 +358,6 @@ Convert did to address: remove `did:abt:` prefix if exists
 | Param | Type     | Description    |
 | ----- | -------- | -------------- |
 | did   | `string` | address string |
-
-<a name="toDid"></a>
 
 ### toDid(did) ⇒ `string`
 

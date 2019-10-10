@@ -1,5 +1,3 @@
-<a name="GraphQLClient"></a>
-
 
 ## GraphQLClient
 
@@ -328,8 +326,6 @@ Please note that, due to internal implementation of google-protobuf, all `repeat
       * [DeclareTxInput](#GraphQLClient.DeclareTxInput) : `Object`
       * [RevokeWithdrawTxInput](#GraphQLClient.RevokeWithdrawTxInput) : `Object`
 
-<a name="new_GraphQLClient_new"></a>
-
 ### new GraphQLClient(config)
 
 Create an instance of GraphQLClient
@@ -351,8 +347,6 @@ const client = new GraphQLClient('https://argon.abtnetwork.io/api');
 const res = await client.getChainInfo();
 ```
 
-<a name="GraphQLClient+getTxSendMethods"></a>
-
 ### graphQLClient.getTxSendMethods() ⇒ `Array.&lt;string&gt;`
 
 List all transaction send methods
@@ -360,7 +354,6 @@ Each method can send one kind of transactions supported by forge core, such as `
 
 **Kind**: instance method of [`GraphQLClient`](#GraphQLClient)  
 **Returns**: `Array.&lt;string&gt;` - method name list  
-<a name="GraphQLClient+getTxEncodeMethods"></a>
 
 ### graphQLClient.getTxEncodeMethods() ⇒ `Array.&lt;string&gt;`
 
@@ -368,7 +361,6 @@ List all transaction encode methods, each method can be used to encode transacti
 
 **Kind**: instance method of [`GraphQLClient`](#GraphQLClient)  
 **Returns**: `Array.&lt;string&gt;` - method name list  
-<a name="GraphQLClient+getTxSignMethods"></a>
 
 ### graphQLClient.getTxSignMethods() ⇒ `Array.&lt;string&gt;`
 
@@ -376,7 +368,6 @@ List all transaction sign methods, each method can be used to sign transaction t
 
 **Kind**: instance method of [`GraphQLClient`](#GraphQLClient)  
 **Returns**: `Array.&lt;string&gt;` - method name list  
-<a name="GraphQLClient+getTxMultiSignMethods"></a>
 
 ### graphQLClient.getTxMultiSignMethods() ⇒ `Array.&lt;string&gt;`
 
@@ -384,7 +375,6 @@ List all transaction multi sign methods, each method can be used to do multi sig
 
 **Kind**: instance method of [`GraphQLClient`](#GraphQLClient)  
 **Returns**: `Array.&lt;string&gt;` - method name list  
-<a name="GraphQLClient+getType"></a>
 
 ### graphQLClient.getType(x) ⇒ `class` \| `null`
 
@@ -397,8 +387,6 @@ Get protobuf message class by name, only supports forge-built-in types
 | ----- | -------- |
 | x     | `string` |
 
-<a name="GraphQLClient+decodeTx"></a>
-
 ### graphQLClient.decodeTx(buffer) ⇒ `object`
 
 Decode transaction buffer to an object
@@ -409,8 +397,6 @@ Decode transaction buffer to an object
 | Param  | Type     |
 | ------ | -------- |
 | buffer | `buffer` |
-
-<a name="GraphQLClient+getQueries"></a>
 
 ### graphQLClient.getQueries() ⇒ `Array.&lt;string&gt;`
 
@@ -458,8 +444,6 @@ const methods = client.getQueries();
 // ]
 ```
 
-<a name="GraphQLClient+getMutations"></a>
-
 ### graphQLClient.getMutations() ⇒ `Array.&lt;string&gt;`
 
 List all mutation method names
@@ -479,8 +463,6 @@ const methods = client.getMutations();
 // ]
 ```
 
-<a name="GraphQLClient+getSubscription"></a>
-
 ### graphQLClient.getSubscription() ⇒ `Array.&lt;string&gt;`
 
 List all subscription method names
@@ -496,8 +478,6 @@ const methods = client.getSubscriptions();
 //   subscribe,
 // ]
 ```
-
-<a name="GraphQLClient+doRawQuery"></a>
 
 ### graphQLClient.doRawQuery(query) ⇒ `Promise`
 
@@ -528,8 +508,6 @@ const res = await client.doRawQuery('
 // res.getChainInfo.info
 ```
 
-<a name="GraphQLClient+doRawSubscription"></a>
-
 ### graphQLClient.doRawSubscription(query) ⇒ `Promise`
 
 Send raw graphql subscription to forge graphql endpoint
@@ -540,8 +518,6 @@ Send raw graphql subscription to forge graphql endpoint
 | Param | Type     | Description          |
 | ----- | -------- | -------------------- |
 | query | `string` | graphql query string |
-
-<a name="GraphQLClient+sendRevokeSwapTx"></a>
 
 ### graphQLClient.sendRevokeSwapTx(params) ⇒ `Promise.&lt;string&gt;`
 
@@ -554,8 +530,6 @@ Send RevokeSwapTx transaction and get the hash, use [getTx](#GraphQLClient+getTx
 | ------ | ------------------------------------------------------- |
 | params | [`RevokeSwapTxInput`](#GraphQLClient.RevokeSwapTxInput) |
 
-<a name="GraphQLClient+sendWithdrawTokenTx"></a>
-
 ### graphQLClient.sendWithdrawTokenTx(params) ⇒ `Promise.&lt;string&gt;`
 
 Send WithdrawTokenTx transaction and get the hash, use [getTx](#GraphQLClient+getTx) to get transaction detail
@@ -566,8 +540,6 @@ Send WithdrawTokenTx transaction and get the hash, use [getTx](#GraphQLClient+ge
 | Param  | Type                                                          |
 | ------ | ------------------------------------------------------------- |
 | params | [`WithdrawTokenTxInput`](#GraphQLClient.WithdrawTokenTxInput) |
-
-<a name="GraphQLClient+sendDeactivateProtocolTx"></a>
 
 ### graphQLClient.sendDeactivateProtocolTx(params) ⇒ `Promise.&lt;string&gt;`
 
@@ -580,8 +552,6 @@ Send DeactivateProtocolTx transaction and get the hash, use [getTx](#GraphQLClie
 | ------ | ----------------------------------------------------------------------- |
 | params | [`DeactivateProtocolTxInput`](#GraphQLClient.DeactivateProtocolTxInput) |
 
-<a name="GraphQLClient+sendAccountMigrateTx"></a>
-
 ### graphQLClient.sendAccountMigrateTx(params) ⇒ `Promise.&lt;string&gt;`
 
 Send AccountMigrateTx transaction and get the hash, use [getTx](#GraphQLClient+getTx) to get transaction detail
@@ -592,8 +562,6 @@ Send AccountMigrateTx transaction and get the hash, use [getTx](#GraphQLClient+g
 | Param  | Type                                                            |
 | ------ | --------------------------------------------------------------- |
 | params | [`AccountMigrateTxInput`](#GraphQLClient.AccountMigrateTxInput) |
-
-<a name="GraphQLClient+sendSetupSwapTx"></a>
 
 ### graphQLClient.sendSetupSwapTx(params) ⇒ `Promise.&lt;string&gt;`
 
@@ -606,8 +574,6 @@ Send SetupSwapTx transaction and get the hash, use [getTx](#GraphQLClient+getTx)
 | ------ | ----------------------------------------------------- |
 | params | [`SetupSwapTxInput`](#GraphQLClient.SetupSwapTxInput) |
 
-<a name="GraphQLClient+sendDepositTetherTx"></a>
-
 ### graphQLClient.sendDepositTetherTx(params) ⇒ `Promise.&lt;string&gt;`
 
 Send DepositTetherTx transaction and get the hash, use [getTx](#GraphQLClient+getTx) to get transaction detail
@@ -618,8 +584,6 @@ Send DepositTetherTx transaction and get the hash, use [getTx](#GraphQLClient+ge
 | Param  | Type                                                          |
 | ------ | ------------------------------------------------------------- |
 | params | [`DepositTetherTxInput`](#GraphQLClient.DepositTetherTxInput) |
-
-<a name="GraphQLClient+sendStakeTx"></a>
 
 ### graphQLClient.sendStakeTx(params) ⇒ `Promise.&lt;string&gt;`
 
@@ -632,8 +596,6 @@ Send StakeTx transaction and get the hash, use [getTx](#GraphQLClient+getTx) to 
 | ------ | --------------------------------------------- |
 | params | [`StakeTxInput`](#GraphQLClient.StakeTxInput) |
 
-<a name="GraphQLClient+sendDeployProtocolTx"></a>
-
 ### graphQLClient.sendDeployProtocolTx(params) ⇒ `Promise.&lt;string&gt;`
 
 Send DeployProtocolTx transaction and get the hash, use [getTx](#GraphQLClient+getTx) to get transaction detail
@@ -644,8 +606,6 @@ Send DeployProtocolTx transaction and get the hash, use [getTx](#GraphQLClient+g
 | Param  | Type                                                            |
 | ------ | --------------------------------------------------------------- |
 | params | [`DeployProtocolTxInput`](#GraphQLClient.DeployProtocolTxInput) |
-
-<a name="GraphQLClient+sendCreateAssetTx"></a>
 
 ### graphQLClient.sendCreateAssetTx(params) ⇒ `Promise.&lt;string&gt;`
 
@@ -658,8 +618,6 @@ Send CreateAssetTx transaction and get the hash, use [getTx](#GraphQLClient+getT
 | ------ | --------------------------------------------------------- |
 | params | [`CreateAssetTxInput`](#GraphQLClient.CreateAssetTxInput) |
 
-<a name="GraphQLClient+sendExchangeTx"></a>
-
 ### graphQLClient.sendExchangeTx(params) ⇒ `Promise.&lt;string&gt;`
 
 Send ExchangeTx transaction and get the hash, use [getTx](#GraphQLClient+getTx) to get transaction detail
@@ -670,8 +628,6 @@ Send ExchangeTx transaction and get the hash, use [getTx](#GraphQLClient+getTx) 
 | Param  | Type                                                |
 | ------ | --------------------------------------------------- |
 | params | [`ExchangeTxInput`](#GraphQLClient.ExchangeTxInput) |
-
-<a name="GraphQLClient+sendConsumeAssetTx"></a>
 
 ### graphQLClient.sendConsumeAssetTx(params) ⇒ `Promise.&lt;string&gt;`
 
@@ -684,8 +640,6 @@ Send ConsumeAssetTx transaction and get the hash, use [getTx](#GraphQLClient+get
 | ------ | ----------------------------------------------------------- |
 | params | [`ConsumeAssetTxInput`](#GraphQLClient.ConsumeAssetTxInput) |
 
-<a name="GraphQLClient+sendRetrieveSwapTx"></a>
-
 ### graphQLClient.sendRetrieveSwapTx(params) ⇒ `Promise.&lt;string&gt;`
 
 Send RetrieveSwapTx transaction and get the hash, use [getTx](#GraphQLClient+getTx) to get transaction detail
@@ -696,8 +650,6 @@ Send RetrieveSwapTx transaction and get the hash, use [getTx](#GraphQLClient+get
 | Param  | Type                                                        |
 | ------ | ----------------------------------------------------------- |
 | params | [`RetrieveSwapTxInput`](#GraphQLClient.RetrieveSwapTxInput) |
-
-<a name="GraphQLClient+sendTransferTx"></a>
 
 ### graphQLClient.sendTransferTx(params) ⇒ `Promise.&lt;string&gt;`
 
@@ -710,8 +662,6 @@ Send TransferTx transaction and get the hash, use [getTx](#GraphQLClient+getTx) 
 | ------ | --------------------------------------------------- |
 | params | [`TransferTxInput`](#GraphQLClient.TransferTxInput) |
 
-<a name="GraphQLClient+sendRevokeTetherTx"></a>
-
 ### graphQLClient.sendRevokeTetherTx(params) ⇒ `Promise.&lt;string&gt;`
 
 Send RevokeTetherTx transaction and get the hash, use [getTx](#GraphQLClient+getTx) to get transaction detail
@@ -722,8 +672,6 @@ Send RevokeTetherTx transaction and get the hash, use [getTx](#GraphQLClient+get
 | Param  | Type                                                        |
 | ------ | ----------------------------------------------------------- |
 | params | [`RevokeTetherTxInput`](#GraphQLClient.RevokeTetherTxInput) |
-
-<a name="GraphQLClient+sendApproveWithdrawTx"></a>
 
 ### graphQLClient.sendApproveWithdrawTx(params) ⇒ `Promise.&lt;string&gt;`
 
@@ -736,8 +684,6 @@ Send ApproveWithdrawTx transaction and get the hash, use [getTx](#GraphQLClient+
 | ------ | ----------------------------------------------------------------- |
 | params | [`ApproveWithdrawTxInput`](#GraphQLClient.ApproveWithdrawTxInput) |
 
-<a name="GraphQLClient+sendDelegateTx"></a>
-
 ### graphQLClient.sendDelegateTx(params) ⇒ `Promise.&lt;string&gt;`
 
 Send DelegateTx transaction and get the hash, use [getTx](#GraphQLClient+getTx) to get transaction detail
@@ -748,8 +694,6 @@ Send DelegateTx transaction and get the hash, use [getTx](#GraphQLClient+getTx) 
 | Param  | Type                                                |
 | ------ | --------------------------------------------------- |
 | params | [`DelegateTxInput`](#GraphQLClient.DelegateTxInput) |
-
-<a name="GraphQLClient+sendApproveTetherTx"></a>
 
 ### graphQLClient.sendApproveTetherTx(params) ⇒ `Promise.&lt;string&gt;`
 
@@ -762,8 +706,6 @@ Send ApproveTetherTx transaction and get the hash, use [getTx](#GraphQLClient+ge
 | ------ | ------------------------------------------------------------- |
 | params | [`ApproveTetherTxInput`](#GraphQLClient.ApproveTetherTxInput) |
 
-<a name="GraphQLClient+sendDepositTokenTx"></a>
-
 ### graphQLClient.sendDepositTokenTx(params) ⇒ `Promise.&lt;string&gt;`
 
 Send DepositTokenTx transaction and get the hash, use [getTx](#GraphQLClient+getTx) to get transaction detail
@@ -774,8 +716,6 @@ Send DepositTokenTx transaction and get the hash, use [getTx](#GraphQLClient+get
 | Param  | Type                                                        |
 | ------ | ----------------------------------------------------------- |
 | params | [`DepositTokenTxInput`](#GraphQLClient.DepositTokenTxInput) |
-
-<a name="GraphQLClient+sendPokeTx"></a>
 
 ### graphQLClient.sendPokeTx(params) ⇒ `Promise.&lt;string&gt;`
 
@@ -788,8 +728,6 @@ Send PokeTx transaction and get the hash, use [getTx](#GraphQLClient+getTx) to g
 | ------ | ------------------------------------------- |
 | params | [`PokeTxInput`](#GraphQLClient.PokeTxInput) |
 
-<a name="GraphQLClient+sendExchangeTetherTx"></a>
-
 ### graphQLClient.sendExchangeTetherTx(params) ⇒ `Promise.&lt;string&gt;`
 
 Send ExchangeTetherTx transaction and get the hash, use [getTx](#GraphQLClient+getTx) to get transaction detail
@@ -800,8 +738,6 @@ Send ExchangeTetherTx transaction and get the hash, use [getTx](#GraphQLClient+g
 | Param  | Type                                                            |
 | ------ | --------------------------------------------------------------- |
 | params | [`ExchangeTetherTxInput`](#GraphQLClient.ExchangeTetherTxInput) |
-
-<a name="GraphQLClient+sendWithdrawTetherTx"></a>
 
 ### graphQLClient.sendWithdrawTetherTx(params) ⇒ `Promise.&lt;string&gt;`
 
@@ -814,8 +750,6 @@ Send WithdrawTetherTx transaction and get the hash, use [getTx](#GraphQLClient+g
 | ------ | --------------------------------------------------------------- |
 | params | [`WithdrawTetherTxInput`](#GraphQLClient.WithdrawTetherTxInput) |
 
-<a name="GraphQLClient+sendActivateProtocolTx"></a>
-
 ### graphQLClient.sendActivateProtocolTx(params) ⇒ `Promise.&lt;string&gt;`
 
 Send ActivateProtocolTx transaction and get the hash, use [getTx](#GraphQLClient+getTx) to get transaction detail
@@ -826,8 +760,6 @@ Send ActivateProtocolTx transaction and get the hash, use [getTx](#GraphQLClient
 | Param  | Type                                                                |
 | ------ | ------------------------------------------------------------------- |
 | params | [`ActivateProtocolTxInput`](#GraphQLClient.ActivateProtocolTxInput) |
-
-<a name="GraphQLClient+sendUpgradeNodeTx"></a>
 
 ### graphQLClient.sendUpgradeNodeTx(params) ⇒ `Promise.&lt;string&gt;`
 
@@ -840,8 +772,6 @@ Send UpgradeNodeTx transaction and get the hash, use [getTx](#GraphQLClient+getT
 | ------ | --------------------------------------------------------- |
 | params | [`UpgradeNodeTxInput`](#GraphQLClient.UpgradeNodeTxInput) |
 
-<a name="GraphQLClient+sendUpdateAssetTx"></a>
-
 ### graphQLClient.sendUpdateAssetTx(params) ⇒ `Promise.&lt;string&gt;`
 
 Send UpdateAssetTx transaction and get the hash, use [getTx](#GraphQLClient+getTx) to get transaction detail
@@ -852,8 +782,6 @@ Send UpdateAssetTx transaction and get the hash, use [getTx](#GraphQLClient+getT
 | Param  | Type                                                      |
 | ------ | --------------------------------------------------------- |
 | params | [`UpdateAssetTxInput`](#GraphQLClient.UpdateAssetTxInput) |
-
-<a name="GraphQLClient+sendAcquireAssetTx"></a>
 
 ### graphQLClient.sendAcquireAssetTx(params) ⇒ `Promise.&lt;string&gt;`
 
@@ -866,8 +794,6 @@ Send AcquireAssetTx transaction and get the hash, use [getTx](#GraphQLClient+get
 | ------ | ----------------------------------------------------------- |
 | params | [`AcquireAssetTxInput`](#GraphQLClient.AcquireAssetTxInput) |
 
-<a name="GraphQLClient+sendDeclareTx"></a>
-
 ### graphQLClient.sendDeclareTx(params) ⇒ `Promise.&lt;string&gt;`
 
 Send DeclareTx transaction and get the hash, use [getTx](#GraphQLClient+getTx) to get transaction detail
@@ -878,8 +804,6 @@ Send DeclareTx transaction and get the hash, use [getTx](#GraphQLClient+getTx) t
 | Param  | Type                                              |
 | ------ | ------------------------------------------------- |
 | params | [`DeclareTxInput`](#GraphQLClient.DeclareTxInput) |
-
-<a name="GraphQLClient+sendRevokeWithdrawTx"></a>
 
 ### graphQLClient.sendRevokeWithdrawTx(params) ⇒ `Promise.&lt;string&gt;`
 
@@ -892,8 +816,6 @@ Send RevokeWithdrawTx transaction and get the hash, use [getTx](#GraphQLClient+g
 | ------ | --------------------------------------------------------------- |
 | params | [`RevokeWithdrawTxInput`](#GraphQLClient.RevokeWithdrawTxInput) |
 
-<a name="GraphQLClient+encodeRevokeSwapTx"></a>
-
 ### graphQLClient.encodeRevokeSwapTx(params) ⇒ [`Promise.&lt;TxEncodeOutput&gt;`](#GraphQLClient.TxEncodeOutput)
 
 Encode a RevokeSwapTx transaction for later use
@@ -904,8 +826,6 @@ Encode a RevokeSwapTx transaction for later use
 | Param  | Type                                                    |
 | ------ | ------------------------------------------------------- |
 | params | [`RevokeSwapTxInput`](#GraphQLClient.RevokeSwapTxInput) |
-
-<a name="GraphQLClient+encodeWithdrawTokenTx"></a>
 
 ### graphQLClient.encodeWithdrawTokenTx(params) ⇒ [`Promise.&lt;TxEncodeOutput&gt;`](#GraphQLClient.TxEncodeOutput)
 
@@ -918,8 +838,6 @@ Encode a WithdrawTokenTx transaction for later use
 | ------ | ------------------------------------------------------------- |
 | params | [`WithdrawTokenTxInput`](#GraphQLClient.WithdrawTokenTxInput) |
 
-<a name="GraphQLClient+encodeDeactivateProtocolTx"></a>
-
 ### graphQLClient.encodeDeactivateProtocolTx(params) ⇒ [`Promise.&lt;TxEncodeOutput&gt;`](#GraphQLClient.TxEncodeOutput)
 
 Encode a DeactivateProtocolTx transaction for later use
@@ -930,8 +848,6 @@ Encode a DeactivateProtocolTx transaction for later use
 | Param  | Type                                                                    |
 | ------ | ----------------------------------------------------------------------- |
 | params | [`DeactivateProtocolTxInput`](#GraphQLClient.DeactivateProtocolTxInput) |
-
-<a name="GraphQLClient+encodeAccountMigrateTx"></a>
 
 ### graphQLClient.encodeAccountMigrateTx(params) ⇒ [`Promise.&lt;TxEncodeOutput&gt;`](#GraphQLClient.TxEncodeOutput)
 
@@ -944,8 +860,6 @@ Encode a AccountMigrateTx transaction for later use
 | ------ | --------------------------------------------------------------- |
 | params | [`AccountMigrateTxInput`](#GraphQLClient.AccountMigrateTxInput) |
 
-<a name="GraphQLClient+encodeSetupSwapTx"></a>
-
 ### graphQLClient.encodeSetupSwapTx(params) ⇒ [`Promise.&lt;TxEncodeOutput&gt;`](#GraphQLClient.TxEncodeOutput)
 
 Encode a SetupSwapTx transaction for later use
@@ -956,8 +870,6 @@ Encode a SetupSwapTx transaction for later use
 | Param  | Type                                                  |
 | ------ | ----------------------------------------------------- |
 | params | [`SetupSwapTxInput`](#GraphQLClient.SetupSwapTxInput) |
-
-<a name="GraphQLClient+encodeDepositTetherTx"></a>
 
 ### graphQLClient.encodeDepositTetherTx(params) ⇒ [`Promise.&lt;TxEncodeOutput&gt;`](#GraphQLClient.TxEncodeOutput)
 
@@ -970,8 +882,6 @@ Encode a DepositTetherTx transaction for later use
 | ------ | ------------------------------------------------------------- |
 | params | [`DepositTetherTxInput`](#GraphQLClient.DepositTetherTxInput) |
 
-<a name="GraphQLClient+encodeStakeTx"></a>
-
 ### graphQLClient.encodeStakeTx(params) ⇒ [`Promise.&lt;TxEncodeOutput&gt;`](#GraphQLClient.TxEncodeOutput)
 
 Encode a StakeTx transaction for later use
@@ -982,8 +892,6 @@ Encode a StakeTx transaction for later use
 | Param  | Type                                          |
 | ------ | --------------------------------------------- |
 | params | [`StakeTxInput`](#GraphQLClient.StakeTxInput) |
-
-<a name="GraphQLClient+encodeDeployProtocolTx"></a>
 
 ### graphQLClient.encodeDeployProtocolTx(params) ⇒ [`Promise.&lt;TxEncodeOutput&gt;`](#GraphQLClient.TxEncodeOutput)
 
@@ -996,8 +904,6 @@ Encode a DeployProtocolTx transaction for later use
 | ------ | --------------------------------------------------------------- |
 | params | [`DeployProtocolTxInput`](#GraphQLClient.DeployProtocolTxInput) |
 
-<a name="GraphQLClient+encodeCreateAssetTx"></a>
-
 ### graphQLClient.encodeCreateAssetTx(params) ⇒ [`Promise.&lt;TxEncodeOutput&gt;`](#GraphQLClient.TxEncodeOutput)
 
 Encode a CreateAssetTx transaction for later use
@@ -1008,8 +914,6 @@ Encode a CreateAssetTx transaction for later use
 | Param  | Type                                                      |
 | ------ | --------------------------------------------------------- |
 | params | [`CreateAssetTxInput`](#GraphQLClient.CreateAssetTxInput) |
-
-<a name="GraphQLClient+encodeExchangeTx"></a>
 
 ### graphQLClient.encodeExchangeTx(params) ⇒ [`Promise.&lt;TxEncodeOutput&gt;`](#GraphQLClient.TxEncodeOutput)
 
@@ -1022,8 +926,6 @@ Encode a ExchangeTx transaction for later use
 | ------ | --------------------------------------------------- |
 | params | [`ExchangeTxInput`](#GraphQLClient.ExchangeTxInput) |
 
-<a name="GraphQLClient+encodeConsumeAssetTx"></a>
-
 ### graphQLClient.encodeConsumeAssetTx(params) ⇒ [`Promise.&lt;TxEncodeOutput&gt;`](#GraphQLClient.TxEncodeOutput)
 
 Encode a ConsumeAssetTx transaction for later use
@@ -1034,8 +936,6 @@ Encode a ConsumeAssetTx transaction for later use
 | Param  | Type                                                        |
 | ------ | ----------------------------------------------------------- |
 | params | [`ConsumeAssetTxInput`](#GraphQLClient.ConsumeAssetTxInput) |
-
-<a name="GraphQLClient+encodeRetrieveSwapTx"></a>
 
 ### graphQLClient.encodeRetrieveSwapTx(params) ⇒ [`Promise.&lt;TxEncodeOutput&gt;`](#GraphQLClient.TxEncodeOutput)
 
@@ -1048,8 +948,6 @@ Encode a RetrieveSwapTx transaction for later use
 | ------ | ----------------------------------------------------------- |
 | params | [`RetrieveSwapTxInput`](#GraphQLClient.RetrieveSwapTxInput) |
 
-<a name="GraphQLClient+encodeTransferTx"></a>
-
 ### graphQLClient.encodeTransferTx(params) ⇒ [`Promise.&lt;TxEncodeOutput&gt;`](#GraphQLClient.TxEncodeOutput)
 
 Encode a TransferTx transaction for later use
@@ -1060,8 +958,6 @@ Encode a TransferTx transaction for later use
 | Param  | Type                                                |
 | ------ | --------------------------------------------------- |
 | params | [`TransferTxInput`](#GraphQLClient.TransferTxInput) |
-
-<a name="GraphQLClient+encodeRevokeTetherTx"></a>
 
 ### graphQLClient.encodeRevokeTetherTx(params) ⇒ [`Promise.&lt;TxEncodeOutput&gt;`](#GraphQLClient.TxEncodeOutput)
 
@@ -1074,8 +970,6 @@ Encode a RevokeTetherTx transaction for later use
 | ------ | ----------------------------------------------------------- |
 | params | [`RevokeTetherTxInput`](#GraphQLClient.RevokeTetherTxInput) |
 
-<a name="GraphQLClient+encodeApproveWithdrawTx"></a>
-
 ### graphQLClient.encodeApproveWithdrawTx(params) ⇒ [`Promise.&lt;TxEncodeOutput&gt;`](#GraphQLClient.TxEncodeOutput)
 
 Encode a ApproveWithdrawTx transaction for later use
@@ -1086,8 +980,6 @@ Encode a ApproveWithdrawTx transaction for later use
 | Param  | Type                                                              |
 | ------ | ----------------------------------------------------------------- |
 | params | [`ApproveWithdrawTxInput`](#GraphQLClient.ApproveWithdrawTxInput) |
-
-<a name="GraphQLClient+encodeDelegateTx"></a>
 
 ### graphQLClient.encodeDelegateTx(params) ⇒ [`Promise.&lt;TxEncodeOutput&gt;`](#GraphQLClient.TxEncodeOutput)
 
@@ -1100,8 +992,6 @@ Encode a DelegateTx transaction for later use
 | ------ | --------------------------------------------------- |
 | params | [`DelegateTxInput`](#GraphQLClient.DelegateTxInput) |
 
-<a name="GraphQLClient+encodeApproveTetherTx"></a>
-
 ### graphQLClient.encodeApproveTetherTx(params) ⇒ [`Promise.&lt;TxEncodeOutput&gt;`](#GraphQLClient.TxEncodeOutput)
 
 Encode a ApproveTetherTx transaction for later use
@@ -1112,8 +1002,6 @@ Encode a ApproveTetherTx transaction for later use
 | Param  | Type                                                          |
 | ------ | ------------------------------------------------------------- |
 | params | [`ApproveTetherTxInput`](#GraphQLClient.ApproveTetherTxInput) |
-
-<a name="GraphQLClient+encodeDepositTokenTx"></a>
 
 ### graphQLClient.encodeDepositTokenTx(params) ⇒ [`Promise.&lt;TxEncodeOutput&gt;`](#GraphQLClient.TxEncodeOutput)
 
@@ -1126,8 +1014,6 @@ Encode a DepositTokenTx transaction for later use
 | ------ | ----------------------------------------------------------- |
 | params | [`DepositTokenTxInput`](#GraphQLClient.DepositTokenTxInput) |
 
-<a name="GraphQLClient+encodePokeTx"></a>
-
 ### graphQLClient.encodePokeTx(params) ⇒ [`Promise.&lt;TxEncodeOutput&gt;`](#GraphQLClient.TxEncodeOutput)
 
 Encode a PokeTx transaction for later use
@@ -1138,8 +1024,6 @@ Encode a PokeTx transaction for later use
 | Param  | Type                                        |
 | ------ | ------------------------------------------- |
 | params | [`PokeTxInput`](#GraphQLClient.PokeTxInput) |
-
-<a name="GraphQLClient+encodeExchangeTetherTx"></a>
 
 ### graphQLClient.encodeExchangeTetherTx(params) ⇒ [`Promise.&lt;TxEncodeOutput&gt;`](#GraphQLClient.TxEncodeOutput)
 
@@ -1152,8 +1036,6 @@ Encode a ExchangeTetherTx transaction for later use
 | ------ | --------------------------------------------------------------- |
 | params | [`ExchangeTetherTxInput`](#GraphQLClient.ExchangeTetherTxInput) |
 
-<a name="GraphQLClient+encodeWithdrawTetherTx"></a>
-
 ### graphQLClient.encodeWithdrawTetherTx(params) ⇒ [`Promise.&lt;TxEncodeOutput&gt;`](#GraphQLClient.TxEncodeOutput)
 
 Encode a WithdrawTetherTx transaction for later use
@@ -1164,8 +1046,6 @@ Encode a WithdrawTetherTx transaction for later use
 | Param  | Type                                                            |
 | ------ | --------------------------------------------------------------- |
 | params | [`WithdrawTetherTxInput`](#GraphQLClient.WithdrawTetherTxInput) |
-
-<a name="GraphQLClient+encodeActivateProtocolTx"></a>
 
 ### graphQLClient.encodeActivateProtocolTx(params) ⇒ [`Promise.&lt;TxEncodeOutput&gt;`](#GraphQLClient.TxEncodeOutput)
 
@@ -1178,8 +1058,6 @@ Encode a ActivateProtocolTx transaction for later use
 | ------ | ------------------------------------------------------------------- |
 | params | [`ActivateProtocolTxInput`](#GraphQLClient.ActivateProtocolTxInput) |
 
-<a name="GraphQLClient+encodeUpgradeNodeTx"></a>
-
 ### graphQLClient.encodeUpgradeNodeTx(params) ⇒ [`Promise.&lt;TxEncodeOutput&gt;`](#GraphQLClient.TxEncodeOutput)
 
 Encode a UpgradeNodeTx transaction for later use
@@ -1190,8 +1068,6 @@ Encode a UpgradeNodeTx transaction for later use
 | Param  | Type                                                      |
 | ------ | --------------------------------------------------------- |
 | params | [`UpgradeNodeTxInput`](#GraphQLClient.UpgradeNodeTxInput) |
-
-<a name="GraphQLClient+encodeUpdateAssetTx"></a>
 
 ### graphQLClient.encodeUpdateAssetTx(params) ⇒ [`Promise.&lt;TxEncodeOutput&gt;`](#GraphQLClient.TxEncodeOutput)
 
@@ -1204,8 +1080,6 @@ Encode a UpdateAssetTx transaction for later use
 | ------ | --------------------------------------------------------- |
 | params | [`UpdateAssetTxInput`](#GraphQLClient.UpdateAssetTxInput) |
 
-<a name="GraphQLClient+encodeAcquireAssetTx"></a>
-
 ### graphQLClient.encodeAcquireAssetTx(params) ⇒ [`Promise.&lt;TxEncodeOutput&gt;`](#GraphQLClient.TxEncodeOutput)
 
 Encode a AcquireAssetTx transaction for later use
@@ -1216,8 +1090,6 @@ Encode a AcquireAssetTx transaction for later use
 | Param  | Type                                                        |
 | ------ | ----------------------------------------------------------- |
 | params | [`AcquireAssetTxInput`](#GraphQLClient.AcquireAssetTxInput) |
-
-<a name="GraphQLClient+encodeDeclareTx"></a>
 
 ### graphQLClient.encodeDeclareTx(params) ⇒ [`Promise.&lt;TxEncodeOutput&gt;`](#GraphQLClient.TxEncodeOutput)
 
@@ -1230,8 +1102,6 @@ Encode a DeclareTx transaction for later use
 | ------ | ------------------------------------------------- |
 | params | [`DeclareTxInput`](#GraphQLClient.DeclareTxInput) |
 
-<a name="GraphQLClient+encodeRevokeWithdrawTx"></a>
-
 ### graphQLClient.encodeRevokeWithdrawTx(params) ⇒ [`Promise.&lt;TxEncodeOutput&gt;`](#GraphQLClient.TxEncodeOutput)
 
 Encode a RevokeWithdrawTx transaction for later use
@@ -1242,8 +1112,6 @@ Encode a RevokeWithdrawTx transaction for later use
 | Param  | Type                                                            |
 | ------ | --------------------------------------------------------------- |
 | params | [`RevokeWithdrawTxInput`](#GraphQLClient.RevokeWithdrawTxInput) |
-
-<a name="GraphQLClient+getAccountState"></a>
 
 ### graphQLClient.getAccountState(params) ⇒ [`Promise.&lt;ResponseGetAccountState&gt;`](#GraphQLClient.ResponseGetAccountState)
 
@@ -1256,8 +1124,6 @@ getAccountState
 | ------ | --------------------------------------------------------------- |
 | params | [`GetAccountStateParams`](#GraphQLClient.GetAccountStateParams) |
 
-<a name="GraphQLClient+getAssetState"></a>
-
 ### graphQLClient.getAssetState(params) ⇒ [`Promise.&lt;ResponseGetAssetState&gt;`](#GraphQLClient.ResponseGetAssetState)
 
 getAssetState
@@ -1268,8 +1134,6 @@ getAssetState
 | Param  | Type                                                        |
 | ------ | ----------------------------------------------------------- |
 | params | [`GetAssetStateParams`](#GraphQLClient.GetAssetStateParams) |
-
-<a name="GraphQLClient+getBlock"></a>
 
 ### graphQLClient.getBlock(params) ⇒ [`Promise.&lt;ResponseGetBlock&gt;`](#GraphQLClient.ResponseGetBlock)
 
@@ -1282,8 +1146,6 @@ getBlock
 | ------ | ------------------------------------------------- |
 | params | [`GetBlockParams`](#GraphQLClient.GetBlockParams) |
 
-<a name="GraphQLClient+getBlocks"></a>
-
 ### graphQLClient.getBlocks(params) ⇒ [`Promise.&lt;ResponseGetBlocks&gt;`](#GraphQLClient.ResponseGetBlocks)
 
 getBlocks
@@ -1295,15 +1157,12 @@ getBlocks
 | ------ | --------------------------------------------------- |
 | params | [`GetBlocksParams`](#GraphQLClient.GetBlocksParams) |
 
-<a name="GraphQLClient+getChainInfo"></a>
-
 ### graphQLClient.getChainInfo() ⇒ [`Promise.&lt;ResponseGetChainInfo&gt;`](#GraphQLClient.ResponseGetChainInfo)
 
 getChainInfo
 
 **Kind**: instance method of [`GraphQLClient`](#GraphQLClient)  
 **Returns**: [`Promise.&lt;ResponseGetChainInfo&gt;`](#GraphQLClient.ResponseGetChainInfo) - Checkout [ResponseGetChainInfo](#GraphQLClient.ResponseGetChainInfo) for resolved data format  
-<a name="GraphQLClient+getConfig"></a>
 
 ### graphQLClient.getConfig(params) ⇒ [`Promise.&lt;ResponseGetConfig&gt;`](#GraphQLClient.ResponseGetConfig)
 
@@ -1316,8 +1175,6 @@ getConfig
 | ------ | --------------------------------------------------- |
 | params | [`GetConfigParams`](#GraphQLClient.GetConfigParams) |
 
-<a name="GraphQLClient+getDelegateState"></a>
-
 ### graphQLClient.getDelegateState(params) ⇒ [`Promise.&lt;ResponseGetDelegateState&gt;`](#GraphQLClient.ResponseGetDelegateState)
 
 getDelegateState
@@ -1328,8 +1185,6 @@ getDelegateState
 | Param  | Type                                                              |
 | ------ | ----------------------------------------------------------------- |
 | params | [`GetDelegateStateParams`](#GraphQLClient.GetDelegateStateParams) |
-
-<a name="GraphQLClient+getForgeState"></a>
 
 ### graphQLClient.getForgeState(params) ⇒ [`Promise.&lt;ResponseGetForgeState&gt;`](#GraphQLClient.ResponseGetForgeState)
 
@@ -1342,15 +1197,12 @@ getForgeState
 | ------ | ----------------------------------------------------------- |
 | params | [`GetForgeStateParams`](#GraphQLClient.GetForgeStateParams) |
 
-<a name="GraphQLClient+getForgeStats"></a>
-
 ### graphQLClient.getForgeStats() ⇒ [`Promise.&lt;ResponseGetForgeStats&gt;`](#GraphQLClient.ResponseGetForgeStats)
 
 getForgeStats
 
 **Kind**: instance method of [`GraphQLClient`](#GraphQLClient)  
 **Returns**: [`Promise.&lt;ResponseGetForgeStats&gt;`](#GraphQLClient.ResponseGetForgeStats) - Checkout [ResponseGetForgeStats](#GraphQLClient.ResponseGetForgeStats) for resolved data format  
-<a name="GraphQLClient+getForgeStatsByDay"></a>
 
 ### graphQLClient.getForgeStatsByDay(params) ⇒ [`Promise.&lt;ResponseGetForgeStats&gt;`](#GraphQLClient.ResponseGetForgeStats)
 
@@ -1363,8 +1215,6 @@ getForgeStatsByDay
 | ------ | --------------------------------------------------------------------- |
 | params | [`GetForgeStatsByDayParams`](#GraphQLClient.GetForgeStatsByDayParams) |
 
-<a name="GraphQLClient+getForgeStatsByHour"></a>
-
 ### graphQLClient.getForgeStatsByHour(params) ⇒ [`Promise.&lt;ResponseGetForgeStats&gt;`](#GraphQLClient.ResponseGetForgeStats)
 
 getForgeStatsByHour
@@ -1376,15 +1226,12 @@ getForgeStatsByHour
 | ------ | ----------------------------------------------------------------------- |
 | params | [`GetForgeStatsByHourParams`](#GraphQLClient.GetForgeStatsByHourParams) |
 
-<a name="GraphQLClient+getHealthStatus"></a>
-
 ### graphQLClient.getHealthStatus() ⇒ [`Promise.&lt;ResponseGetHealthStatus&gt;`](#GraphQLClient.ResponseGetHealthStatus)
 
 getHealthStatus
 
 **Kind**: instance method of [`GraphQLClient`](#GraphQLClient)  
 **Returns**: [`Promise.&lt;ResponseGetHealthStatus&gt;`](#GraphQLClient.ResponseGetHealthStatus) - Checkout [ResponseGetHealthStatus](#GraphQLClient.ResponseGetHealthStatus) for resolved data format  
-<a name="GraphQLClient+getNetInfo"></a>
 
 ### graphQLClient.getNetInfo() ⇒ [`Promise.&lt;ResponseGetNetInfo&gt;`](#GraphQLClient.ResponseGetNetInfo)
 
@@ -1392,7 +1239,6 @@ getNetInfo
 
 **Kind**: instance method of [`GraphQLClient`](#GraphQLClient)  
 **Returns**: [`Promise.&lt;ResponseGetNetInfo&gt;`](#GraphQLClient.ResponseGetNetInfo) - Checkout [ResponseGetNetInfo](#GraphQLClient.ResponseGetNetInfo) for resolved data format  
-<a name="GraphQLClient+getNodeInfo"></a>
 
 ### graphQLClient.getNodeInfo() ⇒ [`Promise.&lt;ResponseGetNodeInfo&gt;`](#GraphQLClient.ResponseGetNodeInfo)
 
@@ -1400,7 +1246,6 @@ getNodeInfo
 
 **Kind**: instance method of [`GraphQLClient`](#GraphQLClient)  
 **Returns**: [`Promise.&lt;ResponseGetNodeInfo&gt;`](#GraphQLClient.ResponseGetNodeInfo) - Checkout [ResponseGetNodeInfo](#GraphQLClient.ResponseGetNodeInfo) for resolved data format  
-<a name="GraphQLClient+getProtocolState"></a>
 
 ### graphQLClient.getProtocolState(params) ⇒ [`Promise.&lt;ResponseGetProtocolState&gt;`](#GraphQLClient.ResponseGetProtocolState)
 
@@ -1413,8 +1258,6 @@ getProtocolState
 | ------ | ----------------------------------------------------------------- |
 | params | [`GetProtocolStateParams`](#GraphQLClient.GetProtocolStateParams) |
 
-<a name="GraphQLClient+getProtocols"></a>
-
 ### graphQLClient.getProtocols(params) ⇒ [`Promise.&lt;ResponseGetProtocols&gt;`](#GraphQLClient.ResponseGetProtocols)
 
 getProtocols
@@ -1426,15 +1269,12 @@ getProtocols
 | ------ | --------------------------------------------------------- |
 | params | [`GetProtocolsParams`](#GraphQLClient.GetProtocolsParams) |
 
-<a name="GraphQLClient+getSimulatorStatus"></a>
-
 ### graphQLClient.getSimulatorStatus() ⇒ [`Promise.&lt;ResponseGetSimulatorStatus&gt;`](#GraphQLClient.ResponseGetSimulatorStatus)
 
 getSimulatorStatus
 
 **Kind**: instance method of [`GraphQLClient`](#GraphQLClient)  
 **Returns**: [`Promise.&lt;ResponseGetSimulatorStatus&gt;`](#GraphQLClient.ResponseGetSimulatorStatus) - Checkout [ResponseGetSimulatorStatus](#GraphQLClient.ResponseGetSimulatorStatus) for resolved data format  
-<a name="GraphQLClient+getStakeState"></a>
 
 ### graphQLClient.getStakeState(params) ⇒ [`Promise.&lt;ResponseGetStakeState&gt;`](#GraphQLClient.ResponseGetStakeState)
 
@@ -1447,8 +1287,6 @@ getStakeState
 | ------ | ----------------------------------------------------------- |
 | params | [`GetStakeStateParams`](#GraphQLClient.GetStakeStateParams) |
 
-<a name="GraphQLClient+getSwapState"></a>
-
 ### graphQLClient.getSwapState(params) ⇒ [`Promise.&lt;ResponseGetSwapState&gt;`](#GraphQLClient.ResponseGetSwapState)
 
 getSwapState
@@ -1459,8 +1297,6 @@ getSwapState
 | Param  | Type                                                      |
 | ------ | --------------------------------------------------------- |
 | params | [`GetSwapStateParams`](#GraphQLClient.GetSwapStateParams) |
-
-<a name="GraphQLClient+getTetherState"></a>
 
 ### graphQLClient.getTetherState(params) ⇒ [`Promise.&lt;ResponseGetTetherState&gt;`](#GraphQLClient.ResponseGetTetherState)
 
@@ -1473,8 +1309,6 @@ getTetherState
 | ------ | ------------------------------------------------------------- |
 | params | [`GetTetherStateParams`](#GraphQLClient.GetTetherStateParams) |
 
-<a name="GraphQLClient+getTx"></a>
-
 ### graphQLClient.getTx(params) ⇒ [`Promise.&lt;ResponseGetTx&gt;`](#GraphQLClient.ResponseGetTx)
 
 getTx
@@ -1485,8 +1319,6 @@ getTx
 | Param  | Type                                        |
 | ------ | ------------------------------------------- |
 | params | [`GetTxParams`](#GraphQLClient.GetTxParams) |
-
-<a name="GraphQLClient+getUnconfirmedTxs"></a>
 
 ### graphQLClient.getUnconfirmedTxs(params) ⇒ [`Promise.&lt;ResponseGetUnconfirmedTxs&gt;`](#GraphQLClient.ResponseGetUnconfirmedTxs)
 
@@ -1499,15 +1331,12 @@ getUnconfirmedTxs
 | ------ | ------------------------------------------------------------------- |
 | params | [`GetUnconfirmedTxsParams`](#GraphQLClient.GetUnconfirmedTxsParams) |
 
-<a name="GraphQLClient+getValidatorsInfo"></a>
-
 ### graphQLClient.getValidatorsInfo() ⇒ [`Promise.&lt;ResponseGetValidatorsInfo&gt;`](#GraphQLClient.ResponseGetValidatorsInfo)
 
 getValidatorsInfo
 
 **Kind**: instance method of [`GraphQLClient`](#GraphQLClient)  
 **Returns**: [`Promise.&lt;ResponseGetValidatorsInfo&gt;`](#GraphQLClient.ResponseGetValidatorsInfo) - Checkout [ResponseGetValidatorsInfo](#GraphQLClient.ResponseGetValidatorsInfo) for resolved data format  
-<a name="GraphQLClient+listAssetTransactions"></a>
 
 ### graphQLClient.listAssetTransactions(params) ⇒ [`Promise.&lt;ResponseListAssetTransactions&gt;`](#GraphQLClient.ResponseListAssetTransactions)
 
@@ -1520,8 +1349,6 @@ listAssetTransactions
 | ------ | --------------------------------------------------------------------------- |
 | params | [`ListAssetTransactionsParams`](#GraphQLClient.ListAssetTransactionsParams) |
 
-<a name="GraphQLClient+listAssets"></a>
-
 ### graphQLClient.listAssets(params) ⇒ [`Promise.&lt;ResponseListAssets&gt;`](#GraphQLClient.ResponseListAssets)
 
 listAssets
@@ -1532,8 +1359,6 @@ listAssets
 | Param  | Type                                                  |
 | ------ | ----------------------------------------------------- |
 | params | [`ListAssetsParams`](#GraphQLClient.ListAssetsParams) |
-
-<a name="GraphQLClient+listBlocks"></a>
 
 ### graphQLClient.listBlocks(params) ⇒ [`Promise.&lt;ResponseListBlocks&gt;`](#GraphQLClient.ResponseListBlocks)
 
@@ -1546,8 +1371,6 @@ listBlocks
 | ------ | ----------------------------------------------------- |
 | params | [`ListBlocksParams`](#GraphQLClient.ListBlocksParams) |
 
-<a name="GraphQLClient+listStakes"></a>
-
 ### graphQLClient.listStakes(params) ⇒ [`Promise.&lt;ResponseListStakes&gt;`](#GraphQLClient.ResponseListStakes)
 
 listStakes
@@ -1558,8 +1381,6 @@ listStakes
 | Param  | Type                                                  |
 | ------ | ----------------------------------------------------- |
 | params | [`ListStakesParams`](#GraphQLClient.ListStakesParams) |
-
-<a name="GraphQLClient+listSwap"></a>
 
 ### graphQLClient.listSwap(params) ⇒ [`Promise.&lt;ResponseListSwap&gt;`](#GraphQLClient.ResponseListSwap)
 
@@ -1572,8 +1393,6 @@ listSwap
 | ------ | ------------------------------------------------- |
 | params | [`ListSwapParams`](#GraphQLClient.ListSwapParams) |
 
-<a name="GraphQLClient+listTethers"></a>
-
 ### graphQLClient.listTethers(params) ⇒ [`Promise.&lt;ResponseListTethers&gt;`](#GraphQLClient.ResponseListTethers)
 
 listTethers
@@ -1584,8 +1403,6 @@ listTethers
 | Param  | Type                                                    |
 | ------ | ------------------------------------------------------- |
 | params | [`ListTethersParams`](#GraphQLClient.ListTethersParams) |
-
-<a name="GraphQLClient+listTopAccounts"></a>
 
 ### graphQLClient.listTopAccounts(params) ⇒ [`Promise.&lt;ResponseListTopAccounts&gt;`](#GraphQLClient.ResponseListTopAccounts)
 
@@ -1598,8 +1415,6 @@ listTopAccounts
 | ------ | --------------------------------------------------------------- |
 | params | [`ListTopAccountsParams`](#GraphQLClient.ListTopAccountsParams) |
 
-<a name="GraphQLClient+listTransactions"></a>
-
 ### graphQLClient.listTransactions(params) ⇒ [`Promise.&lt;ResponseListTransactions&gt;`](#GraphQLClient.ResponseListTransactions)
 
 listTransactions
@@ -1610,8 +1425,6 @@ listTransactions
 | Param  | Type                                                              |
 | ------ | ----------------------------------------------------------------- |
 | params | [`ListTransactionsParams`](#GraphQLClient.ListTransactionsParams) |
-
-<a name="GraphQLClient+sendTx"></a>
 
 ### graphQLClient.sendTx(params) ⇒ [`Promise.&lt;ResponseSendTx&gt;`](#GraphQLClient.ResponseSendTx)
 
@@ -1624,15 +1437,12 @@ sendTx
 | ------ | --------------------------------------------- |
 | params | [`SendTxParams`](#GraphQLClient.SendTxParams) |
 
-<a name="GraphQLClient+startSimulator"></a>
-
 ### graphQLClient.startSimulator() ⇒ [`Promise.&lt;ResponseStartSimulator&gt;`](#GraphQLClient.ResponseStartSimulator)
 
 startSimulator
 
 **Kind**: instance method of [`GraphQLClient`](#GraphQLClient)  
 **Returns**: [`Promise.&lt;ResponseStartSimulator&gt;`](#GraphQLClient.ResponseStartSimulator) - Checkout [ResponseStartSimulator](#GraphQLClient.ResponseStartSimulator) for resolved data format  
-<a name="GraphQLClient+stopSimulator"></a>
 
 ### graphQLClient.stopSimulator() ⇒ [`Promise.&lt;ResponseStopSimulator&gt;`](#GraphQLClient.ResponseStopSimulator)
 
@@ -1640,7 +1450,6 @@ stopSimulator
 
 **Kind**: instance method of [`GraphQLClient`](#GraphQLClient)  
 **Returns**: [`Promise.&lt;ResponseStopSimulator&gt;`](#GraphQLClient.ResponseStopSimulator) - Checkout [ResponseStopSimulator](#GraphQLClient.ResponseStopSimulator) for resolved data format  
-<a name="GraphQLClient+unsubscribe"></a>
 
 ### graphQLClient.unsubscribe(params) ⇒ [`Promise.&lt;ResponseUnsubscribe&gt;`](#GraphQLClient.ResponseUnsubscribe)
 
@@ -1653,8 +1462,6 @@ unsubscribe
 | ------ | ------------------------------------------------------- |
 | params | [`UnsubscribeParams`](#GraphQLClient.UnsubscribeParams) |
 
-<a name="GraphQLClient+subscribe"></a>
-
 ### graphQLClient.subscribe(params) ⇒ [`Promise.&lt;ResponseSubscribe&gt;`](#GraphQLClient.ResponseSubscribe)
 
 subscribe
@@ -1665,8 +1472,6 @@ subscribe
 | Param  | Type                                                |
 | ------ | --------------------------------------------------- |
 | params | [`SubscribeParams`](#GraphQLClient.SubscribeParams) |
-
-<a name="GraphQLClient.WalletObject"></a>
 
 ### GraphQLClient.WalletObject : `Object`
 
@@ -1680,8 +1485,6 @@ Structure of GraphQLClient.WalletObject
 | publicKey | `string`                         |
 | secretKey | `string`                         |
 | type      | `GraphQLClient~WalletTypeObject` |
-
-<a name="GraphQLClient.WalletTypeObject"></a>
 
 ### GraphQLClient.WalletTypeObject : `Object`
 
@@ -1697,8 +1500,6 @@ Structure of GraphQLClient.WalletTypeObject
 | hash    | `number` |                       |
 | address | `number` | defaults to base58btc |
 
-<a name="GraphQLClient.TxEncodeOutput"></a>
-
 ### GraphQLClient.TxEncodeOutput : `object`
 
 Structure of GraphQLClient.TxEncodeOutput
@@ -1710,8 +1511,6 @@ Structure of GraphQLClient.TxEncodeOutput
 | ------ | -------- | -------------------------------------------------------------------------------------- |
 | object | `object` | the transaction object, human readable                                                 |
 | buffer | `buffer` | the transaction binary presentation, can be used to signing, encoding to other formats |
-
-<a name="GraphQLClient.AddressFilter"></a>
 
 ### GraphQLClient.AddressFilter : `object`
 
@@ -1726,8 +1525,6 @@ Structure of GraphQLClient.AddressFilter
 | receiver     | `string`                  |
 | sender       | `string`                  |
 
-<a name="GraphQLClient.PageInput"></a>
-
 ### GraphQLClient.PageInput : `object`
 
 Structure of GraphQLClient.PageInput
@@ -1741,8 +1538,6 @@ Structure of GraphQLClient.PageInput
 | order  | `Array.&lt;...GraphQLClient.PageOrder&gt;` |
 | size   | `number`                                   |
 
-<a name="GraphQLClient.PageOrder"></a>
-
 ### GraphQLClient.PageOrder : `object`
 
 Structure of GraphQLClient.PageOrder
@@ -1754,8 +1549,6 @@ Structure of GraphQLClient.PageOrder
 | ----- | -------- |
 | field | `string` |
 | type  | `string` |
-
-<a name="GraphQLClient.RangeFilter"></a>
 
 ### GraphQLClient.RangeFilter : `object`
 
@@ -1769,8 +1562,6 @@ Structure of GraphQLClient.RangeFilter
 | from | `string` |
 | to   | `string` |
 
-<a name="GraphQLClient.TimeFilter"></a>
-
 ### GraphQLClient.TimeFilter : `object`
 
 Structure of GraphQLClient.TimeFilter
@@ -1783,8 +1574,6 @@ Structure of GraphQLClient.TimeFilter
 | endDateTime   | `string` |
 | startDateTime | `string` |
 
-<a name="GraphQLClient.TypeFilter"></a>
-
 ### GraphQLClient.TypeFilter : `object`
 
 Structure of GraphQLClient.TypeFilter
@@ -1795,8 +1584,6 @@ Structure of GraphQLClient.TypeFilter
 | Name  | Type                                    |
 | ----- | --------------------------------------- |
 | types | `Array.&lt;...GraphQLClient.string&gt;` |
-
-<a name="GraphQLClient.ValidityFilter"></a>
 
 ### GraphQLClient.ValidityFilter : `object`
 
@@ -1809,8 +1596,6 @@ Structure of GraphQLClient.ValidityFilter
 | ----------- | ------------------------ |
 | ...validity | `GraphQLClient.Validity` |
 
-<a name="GraphQLClient.AbciServerStatus"></a>
-
 ### GraphQLClient.AbciServerStatus : `object`
 
 Structure of GraphQLClient.AbciServerStatus
@@ -1822,8 +1607,6 @@ Structure of GraphQLClient.AbciServerStatus
 | ------------- | -------- |
 | abciConsensus | `string` |
 | abciInfo      | `string` |
-
-<a name="GraphQLClient.AccountConfig"></a>
 
 ### GraphQLClient.AccountConfig : `object`
 
@@ -1838,8 +1621,6 @@ Structure of GraphQLClient.AccountConfig
 | balance | `string` |
 | pk      | `string` |
 
-<a name="GraphQLClient.AccountConfigEntry"></a>
-
 ### GraphQLClient.AccountConfigEntry : `object`
 
 Structure of GraphQLClient.AccountConfigEntry
@@ -1851,8 +1632,6 @@ Structure of GraphQLClient.AccountConfigEntry
 | -------- | ----------------------------------------------- |
 | key      | `string`                                        |
 | ...value | [`AccountConfig`](#GraphQLClient.AccountConfig) |
-
-<a name="GraphQLClient.AccountMigrateTx"></a>
 
 ### GraphQLClient.AccountMigrateTx : `object`
 
@@ -1887,8 +1666,6 @@ Checkout the following snippet for the format of AccountMigrateTx:
 | pk      | `string`                                  |
 | ...type | [`WalletType`](#GraphQLClient.WalletType) |
 
-<a name="GraphQLClient.AccountState"></a>
-
 ### GraphQLClient.AccountState : `object`
 
 Structure of GraphQLClient.AccountState
@@ -1913,8 +1690,6 @@ Structure of GraphQLClient.AccountState
 | ...poke      | [`PokeInfo`](#GraphQLClient.PokeInfo)         |
 | ...stake     | [`StakeContext`](#GraphQLClient.StakeContext) |
 | ...type      | [`WalletType`](#GraphQLClient.WalletType)     |
-
-<a name="GraphQLClient.AcquireAssetTx"></a>
 
 ### GraphQLClient.AcquireAssetTx : `object`
 
@@ -1947,8 +1722,6 @@ Checkout the following snippet for the format of AcquireAssetTx:
 | specs   | `Array.&lt;...GraphQLClient.AssetSpec&gt;` |
 | to      | `string`                                   |
 
-<a name="GraphQLClient.Any"></a>
-
 ### GraphQLClient.Any : `object`
 
 Structure of GraphQLClient.Any
@@ -1960,8 +1733,6 @@ Structure of GraphQLClient.Any
 | ------- | -------- |
 | typeUrl | `string` |
 | value   | `string` |
-
-<a name="GraphQLClient.ApproveTetherTx"></a>
 
 ### GraphQLClient.ApproveTetherTx : `object`
 
@@ -1987,8 +1758,6 @@ Checkout the following snippet for the format of ApproveTetherTx:
 | ...data  | [`Any`](#GraphQLClient.Any) |
 | withdraw | `string`                    |
 
-<a name="GraphQLClient.AssetSpec"></a>
-
 ### GraphQLClient.AssetSpec : `object`
 
 Structure of GraphQLClient.AssetSpec
@@ -2000,8 +1769,6 @@ Structure of GraphQLClient.AssetSpec
 | ------- | -------- |
 | address | `string` |
 | data    | `string` |
-
-<a name="GraphQLClient.AssetState"></a>
 
 ### GraphQLClient.AssetState : `object`
 
@@ -2025,8 +1792,6 @@ Structure of GraphQLClient.AssetState
 | transferrable | `boolean`                                     |
 | ttl           | `number`                                      |
 
-<a name="GraphQLClient.BlockId"></a>
-
 ### GraphQLClient.BlockId : `object`
 
 Structure of GraphQLClient.BlockId
@@ -2038,8 +1803,6 @@ Structure of GraphQLClient.BlockId
 | -------------- | ----------------------------------------------- |
 | hash           | `string`                                        |
 | ...partsHeader | [`PartSetHeader`](#GraphQLClient.PartSetHeader) |
-
-<a name="GraphQLClient.BlockInfo"></a>
 
 ### GraphQLClient.BlockInfo : `object`
 
@@ -2070,8 +1833,6 @@ Structure of GraphQLClient.BlockInfo
 | validatorsHash     | `string`                                         |
 | ...version         | [`Version`](#GraphQLClient.Version)              |
 
-<a name="GraphQLClient.BlockInfoSimple"></a>
-
 ### GraphQLClient.BlockInfoSimple : `object`
 
 Structure of GraphQLClient.BlockInfoSimple
@@ -2099,8 +1860,6 @@ Structure of GraphQLClient.BlockInfoSimple
 | validatorsHash     | `string`                                |
 | ...version         | [`Version`](#GraphQLClient.Version)     |
 
-<a name="GraphQLClient.ChainInfo"></a>
-
 ### GraphQLClient.ChainInfo : `object`
 
 Structure of GraphQLClient.ChainInfo
@@ -2126,8 +1885,6 @@ Structure of GraphQLClient.ChainInfo
 | version          | `string`                                               |
 | votingPower      | `string`                                               |
 
-<a name="GraphQLClient.CircularQueue"></a>
-
 ### GraphQLClient.CircularQueue : `object`
 
 Structure of GraphQLClient.CircularQueue
@@ -2143,8 +1900,6 @@ Structure of GraphQLClient.CircularQueue
 | maxItems | `number`                                |
 | typeUrl  | `string`                                |
 
-<a name="GraphQLClient.CodeInfo"></a>
-
 ### GraphQLClient.CodeInfo : `object`
 
 Structure of GraphQLClient.CodeInfo
@@ -2156,8 +1911,6 @@ Structure of GraphQLClient.CodeInfo
 | -------- | -------- |
 | binary   | `string` |
 | checksum | `string` |
-
-<a name="GraphQLClient.ConsensusParams"></a>
 
 ### GraphQLClient.ConsensusParams : `object`
 
@@ -2199,8 +1952,6 @@ Checkout the following snippet for the format of ConsensusParams:
 | validatorChanged | `boolean`                                  |
 | validators       | `Array.&lt;...GraphQLClient.Validator&gt;` |
 
-<a name="GraphQLClient.ConsensusStatus"></a>
-
 ### GraphQLClient.ConsensusStatus : `object`
 
 Structure of GraphQLClient.ConsensusStatus
@@ -2213,8 +1964,6 @@ Structure of GraphQLClient.ConsensusStatus
 | blockHeight | `string`  |
 | health      | `boolean` |
 | synced      | `boolean` |
-
-<a name="GraphQLClient.ConsensusUpgradeTx"></a>
 
 ### GraphQLClient.ConsensusUpgradeTx : `object`
 
@@ -2253,8 +2002,6 @@ Checkout the following snippet for the format of ConsensusUpgradeTx:
 | maxValidators | `number`                                   |
 | validators    | `Array.&lt;...GraphQLClient.Validator&gt;` |
 
-<a name="GraphQLClient.ConsumeAssetTx"></a>
-
 ### GraphQLClient.ConsumeAssetTx : `object`
 
 Structure of GraphQLClient.ConsumeAssetTx
@@ -2281,8 +2028,6 @@ Checkout the following snippet for the format of ConsumeAssetTx:
 | ...data | [`Any`](#GraphQLClient.Any) |
 | issuer  | `string`                    |
 
-<a name="GraphQLClient.CoreProtocol"></a>
-
 ### GraphQLClient.CoreProtocol : `object`
 
 Structure of GraphQLClient.CoreProtocol
@@ -2294,8 +2039,6 @@ Structure of GraphQLClient.CoreProtocol
 | ------- | -------- |
 | address | `string` |
 | name    | `string` |
-
-<a name="GraphQLClient.CreateAssetTx"></a>
 
 ### GraphQLClient.CreateAssetTx : `object`
 
@@ -2331,8 +2074,6 @@ Checkout the following snippet for the format of CreateAssetTx:
 | transferrable | `boolean`                   |
 | ttl           | `number`                    |
 
-<a name="GraphQLClient.DeclareConfig"></a>
-
 ### GraphQLClient.DeclareConfig : `object`
 
 Structure of GraphQLClient.DeclareConfig
@@ -2344,8 +2085,6 @@ Structure of GraphQLClient.DeclareConfig
 | ---------- | --------- |
 | hierarchy  | `number`  |
 | restricted | `boolean` |
-
-<a name="GraphQLClient.DeclareFileTx"></a>
 
 ### GraphQLClient.DeclareFileTx : `object`
 
@@ -2365,8 +2104,6 @@ Checkout the following snippet for the format of DeclareFileTx:
 | Name | Type     |
 | ---- | -------- |
 | hash | `string` |
-
-<a name="GraphQLClient.DeclareTx"></a>
 
 ### GraphQLClient.DeclareTx : `object`
 
@@ -2394,8 +2131,6 @@ Checkout the following snippet for the format of DeclareTx:
 | issuer  | `string`                    |
 | moniker | `string`                    |
 
-<a name="GraphQLClient.DelegateConfig"></a>
-
 ### GraphQLClient.DelegateConfig : `object`
 
 Structure of GraphQLClient.DelegateConfig
@@ -2407,8 +2142,6 @@ Structure of GraphQLClient.DelegateConfig
 | ------------- | --------------------------------------- |
 | deltaInterval | `number`                                |
 | typeUrls      | `Array.&lt;...GraphQLClient.string&gt;` |
-
-<a name="GraphQLClient.DelegateOpState"></a>
 
 ### GraphQLClient.DelegateOpState : `object`
 
@@ -2425,8 +2158,6 @@ Structure of GraphQLClient.DelegateOpState
 | numTxsDelta  | `string` |
 | rule         | `string` |
 
-<a name="GraphQLClient.DelegateState"></a>
-
 ### GraphQLClient.DelegateState : `object`
 
 Structure of GraphQLClient.DelegateState
@@ -2440,8 +2171,6 @@ Structure of GraphQLClient.DelegateState
 | ...context | [`StateContext`](#GraphQLClient.StateContext) |
 | ...data    | [`Any`](#GraphQLClient.Any)                   |
 | ops        | `Array.&lt;...GraphQLClient.OpsEntry&gt;`     |
-
-<a name="GraphQLClient.DeployProtocolTx"></a>
 
 ### GraphQLClient.DeployProtocolTx : `object`
 
@@ -2501,8 +2230,6 @@ Checkout the following snippet for the format of DeployProtocolTx:
 | typeUrls    | `Array.&lt;...GraphQLClient.TypeUrls&gt;` |
 | version     | `number`                                  |
 
-<a name="GraphQLClient.DepositTetherTx"></a>
-
 ### GraphQLClient.DepositTetherTx : `object`
 
 Structure of GraphQLClient.DepositTetherTx
@@ -2532,8 +2259,6 @@ Checkout the following snippet for the format of DepositTetherTx:
 | value      | `string` |
 | withdrawer | `string` |
 
-<a name="GraphQLClient.DiskSpaceStatus"></a>
-
 ### GraphQLClient.DiskSpaceStatus : `object`
 
 Structure of GraphQLClient.DiskSpaceStatus
@@ -2545,8 +2270,6 @@ Structure of GraphQLClient.DiskSpaceStatus
 | ---------- | -------- |
 | forgeUsage | `string` |
 | total      | `string` |
-
-<a name="GraphQLClient.Evidence"></a>
 
 ### GraphQLClient.Evidence : `object`
 
@@ -2563,8 +2286,6 @@ Structure of GraphQLClient.Evidence
 | originalTx      | `string` |
 | receiverAddress | `string` |
 
-<a name="GraphQLClient.ExchangeInfo"></a>
-
 ### GraphQLClient.ExchangeInfo : `object`
 
 Structure of GraphQLClient.ExchangeInfo
@@ -2576,8 +2297,6 @@ Structure of GraphQLClient.ExchangeInfo
 | ------ | --------------------------------------- |
 | assets | `Array.&lt;...GraphQLClient.string&gt;` |
 | value  | `string`                                |
-
-<a name="GraphQLClient.ExchangeTetherTx"></a>
 
 ### GraphQLClient.ExchangeTetherTx : `object`
 
@@ -2636,8 +2355,6 @@ Checkout the following snippet for the format of ExchangeTetherTx:
 | ...receiver | [`TetherExchangeInfo`](#GraphQLClient.TetherExchangeInfo) |
 | ...sender   | [`ExchangeInfo`](#GraphQLClient.ExchangeInfo)             |
 
-<a name="GraphQLClient.ExchangeTx"></a>
-
 ### GraphQLClient.ExchangeTx : `object`
 
 Structure of GraphQLClient.ExchangeTx
@@ -2678,8 +2395,6 @@ Checkout the following snippet for the format of ExchangeTx:
 | ...sender   | [`ExchangeInfo`](#GraphQLClient.ExchangeInfo) |
 | to          | `string`                                      |
 
-<a name="GraphQLClient.ExtraAccountMigrate"></a>
-
 ### GraphQLClient.ExtraAccountMigrate : `object`
 
 Structure of GraphQLClient.ExtraAccountMigrate
@@ -2690,8 +2405,6 @@ Structure of GraphQLClient.ExtraAccountMigrate
 | Name    | Type     |
 | ------- | -------- |
 | address | `string` |
-
-<a name="GraphQLClient.ExtraCreateAsset"></a>
 
 ### GraphQLClient.ExtraCreateAsset : `object`
 
@@ -2704,8 +2417,6 @@ Structure of GraphQLClient.ExtraCreateAsset
 | ----- | -------- |
 | asset | `string` |
 
-<a name="GraphQLClient.ForgeAppsVersionEntry"></a>
-
 ### GraphQLClient.ForgeAppsVersionEntry : `object`
 
 Structure of GraphQLClient.ForgeAppsVersionEntry
@@ -2717,8 +2428,6 @@ Structure of GraphQLClient.ForgeAppsVersionEntry
 | ----- | -------- |
 | key   | `string` |
 | value | `string` |
-
-<a name="GraphQLClient.ForgeState"></a>
 
 ### GraphQLClient.ForgeState : `object`
 
@@ -2742,8 +2451,6 @@ Structure of GraphQLClient.ForgeState
 | ...txConfig        | [`TransactionConfig`](#GraphQLClient.TransactionConfig) |
 | ...upgradeInfo     | [`UpgradeInfo`](#GraphQLClient.UpgradeInfo)             |
 | version            | `string`                                                |
-
-<a name="GraphQLClient.ForgeStats"></a>
 
 ### GraphQLClient.ForgeStats : `object`
 
@@ -2775,8 +2482,6 @@ Structure of GraphQLClient.ForgeStats
 | numValidators          | `Array.&lt;...GraphQLClient.number&gt;` |
 | tps                    | `Array.&lt;...GraphQLClient.number&gt;` |
 
-<a name="GraphQLClient.ForgeStatus"></a>
-
 ### GraphQLClient.ForgeStatus : `object`
 
 Structure of GraphQLClient.ForgeStatus
@@ -2790,8 +2495,6 @@ Structure of GraphQLClient.ForgeStatus
 | abiServer     | `string`                                              |
 | forgeWeb      | `string`                                              |
 | health        | `boolean`                                             |
-
-<a name="GraphQLClient.ForgeToken"></a>
 
 ### GraphQLClient.ForgeToken : `object`
 
@@ -2812,8 +2515,6 @@ Structure of GraphQLClient.ForgeToken
 | totalSupply   | `string` |
 | unit          | `string` |
 
-<a name="GraphQLClient.GasEntry"></a>
-
 ### GraphQLClient.GasEntry : `object`
 
 Structure of GraphQLClient.GasEntry
@@ -2825,8 +2526,6 @@ Structure of GraphQLClient.GasEntry
 | ----- | -------- |
 | key   | `string` |
 | value | `number` |
-
-<a name="GraphQLClient.GeoInfo"></a>
 
 ### GraphQLClient.GeoInfo : `object`
 
@@ -2841,8 +2540,6 @@ Structure of GraphQLClient.GeoInfo
 | country   | `string` |
 | latitude  | `number` |
 | longitude | `number` |
-
-<a name="GraphQLClient.Header"></a>
 
 ### GraphQLClient.Header : `object`
 
@@ -2870,8 +2567,6 @@ Structure of GraphQLClient.Header
 | validatorsHash     | `string`                            |
 | ...version         | [`Version`](#GraphQLClient.Version) |
 
-<a name="GraphQLClient.HealthStatus"></a>
-
 ### GraphQLClient.HealthStatus : `object`
 
 Structure of GraphQLClient.HealthStatus
@@ -2885,8 +2580,6 @@ Structure of GraphQLClient.HealthStatus
 | ...forge     | [`ForgeStatus`](#GraphQLClient.ForgeStatus)         |
 | ...network   | [`NetworkStatus`](#GraphQLClient.NetworkStatus)     |
 | ...storage   | [`StorageStatus`](#GraphQLClient.StorageStatus)     |
-
-<a name="GraphQLClient.IndexedAccountState"></a>
 
 ### GraphQLClient.IndexedAccountState : `object`
 
@@ -2912,8 +2605,6 @@ Structure of GraphQLClient.IndexedAccountState
 | totalStakes         | `string`                                |
 | totalUnstakes       | `string`                                |
 
-<a name="GraphQLClient.IndexedAssetState"></a>
-
 ### GraphQLClient.IndexedAssetState : `object`
 
 Structure of GraphQLClient.IndexedAssetState
@@ -2936,8 +2627,6 @@ Structure of GraphQLClient.IndexedAssetState
 | transferrable   | `boolean`                   |
 | ttl             | `string`                    |
 
-<a name="GraphQLClient.IndexedBlock"></a>
-
 ### GraphQLClient.IndexedBlock : `object`
 
 Structure of GraphQLClient.IndexedBlock
@@ -2952,8 +2641,6 @@ Structure of GraphQLClient.IndexedBlock
 | numTxs        | `string` |
 | proposer      | `string` |
 | time          | `string` |
-
-<a name="GraphQLClient.IndexedStakeState"></a>
 
 ### GraphQLClient.IndexedStakeState : `object`
 
@@ -2973,8 +2660,6 @@ Structure of GraphQLClient.IndexedStakeState
 | sender          | `string` |
 | type            | `number` |
 
-<a name="GraphQLClient.IndexedTransaction"></a>
-
 ### GraphQLClient.IndexedTransaction : `object`
 
 Structure of GraphQLClient.IndexedTransaction
@@ -2993,8 +2678,6 @@ Structure of GraphQLClient.IndexedTransaction
 | type     | `string`                                    |
 | valid    | `boolean`                                   |
 
-<a name="GraphQLClient.KvPair"></a>
-
 ### GraphQLClient.KvPair : `object`
 
 Structure of GraphQLClient.KvPair
@@ -3007,8 +2690,6 @@ Structure of GraphQLClient.KvPair
 | key   | `string` |
 | value | `string` |
 
-<a name="GraphQLClient.LastCommitInfo"></a>
-
 ### GraphQLClient.LastCommitInfo : `object`
 
 Structure of GraphQLClient.LastCommitInfo
@@ -3020,8 +2701,6 @@ Structure of GraphQLClient.LastCommitInfo
 | ----- | ----------------------------------------- |
 | round | `number`                                  |
 | votes | `Array.&lt;...GraphQLClient.VoteInfo&gt;` |
-
-<a name="GraphQLClient.Multisig"></a>
 
 ### GraphQLClient.Multisig : `object`
 
@@ -3038,8 +2717,6 @@ Structure of GraphQLClient.Multisig
 | signature | `string`                    |
 | signer    | `string`                    |
 
-<a name="GraphQLClient.NetInfo"></a>
-
 ### GraphQLClient.NetInfo : `object`
 
 Structure of GraphQLClient.NetInfo
@@ -3054,8 +2731,6 @@ Structure of GraphQLClient.NetInfo
 | nPeers    | `number`                                  |
 | peers     | `Array.&lt;...GraphQLClient.PeerInfo&gt;` |
 
-<a name="GraphQLClient.NetworkStatus"></a>
-
 ### GraphQLClient.NetworkStatus : `object`
 
 Structure of GraphQLClient.NetworkStatus
@@ -3067,8 +2742,6 @@ Structure of GraphQLClient.NetworkStatus
 | -------- | --------- |
 | health   | `boolean` |
 | numPeers | `number`  |
-
-<a name="GraphQLClient.NodeInfo"></a>
 
 ### GraphQLClient.NodeInfo : `object`
 
@@ -3098,8 +2771,6 @@ Structure of GraphQLClient.NodeInfo
 | version          | `string`                                               |
 | votingPower      | `string`                                               |
 
-<a name="GraphQLClient.OpsEntry"></a>
-
 ### GraphQLClient.OpsEntry : `object`
 
 Structure of GraphQLClient.OpsEntry
@@ -3111,8 +2782,6 @@ Structure of GraphQLClient.OpsEntry
 | -------- | --------------------------------------------------- |
 | key      | `string`                                            |
 | ...value | [`DelegateOpState`](#GraphQLClient.DelegateOpState) |
-
-<a name="GraphQLClient.PageInfo"></a>
 
 ### GraphQLClient.PageInfo : `object`
 
@@ -3127,8 +2796,6 @@ Structure of GraphQLClient.PageInfo
 | next   | `boolean` |
 | total  | `number`  |
 
-<a name="GraphQLClient.PartSetHeader"></a>
-
 ### GraphQLClient.PartSetHeader : `object`
 
 Structure of GraphQLClient.PartSetHeader
@@ -3140,8 +2807,6 @@ Structure of GraphQLClient.PartSetHeader
 | ----- | -------- |
 | hash  | `string` |
 | total | `number` |
-
-<a name="GraphQLClient.PeerInfo"></a>
 
 ### GraphQLClient.PeerInfo : `object`
 
@@ -3159,8 +2824,6 @@ Structure of GraphQLClient.PeerInfo
 | moniker          | `string`                            |
 | network          | `string`                            |
 
-<a name="GraphQLClient.PokeConfig"></a>
-
 ### GraphQLClient.PokeConfig : `object`
 
 Structure of GraphQLClient.PokeConfig
@@ -3174,8 +2837,6 @@ Structure of GraphQLClient.PokeConfig
 | dailyLimit | `string`  |
 | enabled    | `boolean` |
 
-<a name="GraphQLClient.PokeInfo"></a>
-
 ### GraphQLClient.PokeInfo : `object`
 
 Structure of GraphQLClient.PokeInfo
@@ -3188,8 +2849,6 @@ Structure of GraphQLClient.PokeInfo
 | amount     | `string` |
 | dailyLimit | `string` |
 | leftover   | `string` |
-
-<a name="GraphQLClient.PokeTx"></a>
 
 ### GraphQLClient.PokeTx : `object`
 
@@ -3217,8 +2876,6 @@ Checkout the following snippet for the format of PokeTx:
 | ...data | [`Any`](#GraphQLClient.Any) |
 | date    | `string`                    |
 
-<a name="GraphQLClient.Protocol"></a>
-
 ### GraphQLClient.Protocol : `object`
 
 Structure of GraphQLClient.Protocol
@@ -3242,8 +2899,6 @@ Structure of GraphQLClient.Protocol
 | typeUrls    | `Array.&lt;...GraphQLClient.TypeUrls&gt;` |
 | version     | `number`                                  |
 
-<a name="GraphQLClient.ProtocolState"></a>
-
 ### GraphQLClient.ProtocolState : `object`
 
 Structure of GraphQLClient.ProtocolState
@@ -3263,8 +2918,6 @@ Structure of GraphQLClient.ProtocolState
 | rootHash     | `string`                                              |
 | status       | `string`                                              |
 
-<a name="GraphQLClient.PubKey"></a>
-
 ### GraphQLClient.PubKey : `object`
 
 Structure of GraphQLClient.PubKey
@@ -3276,8 +2929,6 @@ Structure of GraphQLClient.PubKey
 | ---- | -------- |
 | data | `string` |
 | type | `string` |
-
-<a name="GraphQLClient.RequestBeginBlock"></a>
 
 ### GraphQLClient.RequestBeginBlock : `object`
 
@@ -3349,8 +3000,6 @@ Checkout the following snippet for the format of RequestBeginBlock:
 | ...header           | [`Header`](#GraphQLClient.Header)                 |
 | ...lastCommitInfo   | [`LastCommitInfo`](#GraphQLClient.LastCommitInfo) |
 
-<a name="GraphQLClient.RequestEndBlock"></a>
-
 ### GraphQLClient.RequestEndBlock : `object`
 
 Structure of GraphQLClient.RequestEndBlock
@@ -3369,8 +3018,6 @@ Checkout the following snippet for the format of RequestEndBlock:
 | Name   | Type     |
 | ------ | -------- |
 | height | `string` |
-
-<a name="GraphQLClient.ResponseGetAccountState"></a>
 
 ### GraphQLClient.ResponseGetAccountState : `object`
 
@@ -3526,8 +3173,6 @@ Checkout the following snippet for the format of ResponseGetAccountState:
 | ...code  | `GraphQLClient.StatusCode`                    |
 | ...state | [`AccountState`](#GraphQLClient.AccountState) |
 
-<a name="GraphQLClient.ResponseGetAssetState"></a>
-
 ### GraphQLClient.ResponseGetAssetState : `object`
 
 Structure of GraphQLClient.ResponseGetAssetState
@@ -3666,8 +3311,6 @@ Checkout the following snippet for the format of ResponseGetAssetState:
 | ...code  | `GraphQLClient.StatusCode`                |
 | ...state | [`AssetState`](#GraphQLClient.AssetState) |
 
-<a name="GraphQLClient.ResponseGetBlock"></a>
-
 ### GraphQLClient.ResponseGetBlock : `object`
 
 Structure of GraphQLClient.ResponseGetBlock
@@ -3800,8 +3443,6 @@ Checkout the following snippet for the format of ResponseGetBlock:
 | ...block | [`BlockInfo`](#GraphQLClient.BlockInfo) |
 | ...code  | `GraphQLClient.StatusCode`              |
 
-<a name="GraphQLClient.ResponseGetBlocks"></a>
-
 ### GraphQLClient.ResponseGetBlocks : `object`
 
 Structure of GraphQLClient.ResponseGetBlocks
@@ -3862,8 +3503,6 @@ Checkout the following snippet for the format of ResponseGetBlocks:
 | ...code | `GraphQLClient.StatusCode`                       |
 | ...page | [`PageInfo`](#GraphQLClient.PageInfo)            |
 
-<a name="GraphQLClient.ResponseGetChainInfo"></a>
-
 ### GraphQLClient.ResponseGetChainInfo : `object`
 
 Structure of GraphQLClient.ResponseGetChainInfo
@@ -3908,8 +3547,6 @@ Checkout the following snippet for the format of ResponseGetChainInfo:
 | ...code | `GraphQLClient.StatusCode`              |
 | ...info | [`ChainInfo`](#GraphQLClient.ChainInfo) |
 
-<a name="GraphQLClient.ResponseGetConfig"></a>
-
 ### GraphQLClient.ResponseGetConfig : `object`
 
 Structure of GraphQLClient.ResponseGetConfig
@@ -3930,8 +3567,6 @@ Checkout the following snippet for the format of ResponseGetConfig:
 | ------- | -------------------------- |
 | ...code | `GraphQLClient.StatusCode` |
 | config  | `string`                   |
-
-<a name="GraphQLClient.ResponseGetDelegateState"></a>
 
 ### GraphQLClient.ResponseGetDelegateState : `object`
 
@@ -4051,8 +3686,6 @@ Checkout the following snippet for the format of ResponseGetDelegateState:
 | -------- | ----------------------------------------------- |
 | ...code  | `GraphQLClient.StatusCode`                      |
 | ...state | [`DelegateState`](#GraphQLClient.DelegateState) |
-
-<a name="GraphQLClient.ResponseGetForgeState"></a>
 
 ### GraphQLClient.ResponseGetForgeState : `object`
 
@@ -4271,8 +3904,6 @@ Checkout the following snippet for the format of ResponseGetForgeState:
 | ...code  | `GraphQLClient.StatusCode`                |
 | ...state | [`ForgeState`](#GraphQLClient.ForgeState) |
 
-<a name="GraphQLClient.ResponseGetForgeStats"></a>
-
 ### GraphQLClient.ResponseGetForgeStats : `object`
 
 Structure of GraphQLClient.ResponseGetForgeStats
@@ -4349,8 +3980,6 @@ Checkout the following snippet for the format of ResponseGetForgeStats:
 | ...code       | `GraphQLClient.StatusCode`                |
 | ...forgeStats | [`ForgeStats`](#GraphQLClient.ForgeStats) |
 
-<a name="GraphQLClient.ResponseGetHealthStatus"></a>
-
 ### GraphQLClient.ResponseGetHealthStatus : `object`
 
 Structure of GraphQLClient.ResponseGetHealthStatus
@@ -4400,8 +4029,6 @@ Checkout the following snippet for the format of ResponseGetHealthStatus:
 | ...code         | `GraphQLClient.StatusCode`                    |
 | ...healthStatus | [`HealthStatus`](#GraphQLClient.HealthStatus) |
 
-<a name="GraphQLClient.ResponseGetNetInfo"></a>
-
 ### GraphQLClient.ResponseGetNetInfo : `object`
 
 Structure of GraphQLClient.ResponseGetNetInfo
@@ -4443,8 +4070,6 @@ Checkout the following snippet for the format of ResponseGetNetInfo:
 | ---------- | ----------------------------------- |
 | ...code    | `GraphQLClient.StatusCode`          |
 | ...netInfo | [`NetInfo`](#GraphQLClient.NetInfo) |
-
-<a name="GraphQLClient.ResponseGetNodeInfo"></a>
 
 ### GraphQLClient.ResponseGetNodeInfo : `object`
 
@@ -4497,8 +4122,6 @@ Checkout the following snippet for the format of ResponseGetNodeInfo:
 | ------- | ------------------------------------- |
 | ...code | `GraphQLClient.StatusCode`            |
 | ...info | [`NodeInfo`](#GraphQLClient.NodeInfo) |
-
-<a name="GraphQLClient.ResponseGetProtocolState"></a>
 
 ### GraphQLClient.ResponseGetProtocolState : `object`
 
@@ -4647,8 +4270,6 @@ Checkout the following snippet for the format of ResponseGetProtocolState:
 | ...code  | `GraphQLClient.StatusCode`                      |
 | ...state | [`ProtocolState`](#GraphQLClient.ProtocolState) |
 
-<a name="GraphQLClient.ResponseGetProtocols"></a>
-
 ### GraphQLClient.ResponseGetProtocols : `object`
 
 Structure of GraphQLClient.ResponseGetProtocols
@@ -4701,8 +4322,6 @@ Checkout the following snippet for the format of ResponseGetProtocols:
 | ...code   | `GraphQLClient.StatusCode`                |
 | protocols | `Array.&lt;...GraphQLClient.Protocol&gt;` |
 
-<a name="GraphQLClient.ResponseGetSimulatorStatus"></a>
-
 ### GraphQLClient.ResponseGetSimulatorStatus : `object`
 
 Structure of GraphQLClient.ResponseGetSimulatorStatus
@@ -4723,8 +4342,6 @@ Checkout the following snippet for the format of ResponseGetSimulatorStatus:
 | ------- | -------------------------- |
 | ...code | `GraphQLClient.StatusCode` |
 | result  | `string`                   |
-
-<a name="GraphQLClient.ResponseGetStakeState"></a>
 
 ### GraphQLClient.ResponseGetStakeState : `object`
 
@@ -4836,8 +4453,6 @@ Checkout the following snippet for the format of ResponseGetStakeState:
 | -------- | ----------------------------------------- |
 | ...code  | `GraphQLClient.StatusCode`                |
 | ...state | [`StakeState`](#GraphQLClient.StakeState) |
-
-<a name="GraphQLClient.ResponseGetSwapState"></a>
 
 ### GraphQLClient.ResponseGetSwapState : `object`
 
@@ -4952,8 +4567,6 @@ Checkout the following snippet for the format of ResponseGetSwapState:
 | ...code  | `GraphQLClient.StatusCode`              |
 | ...state | [`SwapState`](#GraphQLClient.SwapState) |
 
-<a name="GraphQLClient.ResponseGetTetherState"></a>
-
 ### GraphQLClient.ResponseGetTetherState : `object`
 
 Structure of GraphQLClient.ResponseGetTetherState
@@ -4986,8 +4599,6 @@ Checkout the following snippet for the format of ResponseGetTetherState:
 | -------- | ------------------------------------------- |
 | ...code  | `GraphQLClient.StatusCode`                  |
 | ...state | [`TetherState`](#GraphQLClient.TetherState) |
-
-<a name="GraphQLClient.ResponseGetTx"></a>
 
 ### GraphQLClient.ResponseGetTx : `object`
 
@@ -5047,8 +4658,6 @@ Checkout the following snippet for the format of ResponseGetTx:
 | ...code | `GraphQLClient.StatusCode`                          |
 | ...info | [`TransactionInfo`](#GraphQLClient.TransactionInfo) |
 
-<a name="GraphQLClient.ResponseGetUnconfirmedTxs"></a>
-
 ### GraphQLClient.ResponseGetUnconfirmedTxs : `object`
 
 Structure of GraphQLClient.ResponseGetUnconfirmedTxs
@@ -5099,8 +4708,6 @@ Checkout the following snippet for the format of ResponseGetUnconfirmedTxs:
 | ...page           | [`PageInfo`](#GraphQLClient.PageInfo)             |
 | ...unconfirmedTxs | [`UnconfirmedTxs`](#GraphQLClient.UnconfirmedTxs) |
 
-<a name="GraphQLClient.ResponseGetValidatorsInfo"></a>
-
 ### GraphQLClient.ResponseGetValidatorsInfo : `object`
 
 Structure of GraphQLClient.ResponseGetValidatorsInfo
@@ -5141,8 +4748,6 @@ Checkout the following snippet for the format of ResponseGetValidatorsInfo:
 | ----------------- | ------------------------------------------------- |
 | ...code           | `GraphQLClient.StatusCode`                        |
 | ...validatorsInfo | [`ValidatorsInfo`](#GraphQLClient.ValidatorsInfo) |
-
-<a name="GraphQLClient.ResponseListAssetTransactions"></a>
 
 ### GraphQLClient.ResponseListAssetTransactions : `object`
 
@@ -5199,8 +4804,6 @@ Checkout the following snippet for the format of ResponseListAssetTransactions:
 | ...code      | `GraphQLClient.StatusCode`                          |
 | ...page      | [`PageInfo`](#GraphQLClient.PageInfo)               |
 | transactions | `Array.&lt;...GraphQLClient.IndexedTransaction&gt;` |
-
-<a name="GraphQLClient.ResponseListAssets"></a>
 
 ### GraphQLClient.ResponseListAssets : `object`
 
@@ -5266,8 +4869,6 @@ Checkout the following snippet for the format of ResponseListAssets:
 | ...code    | `GraphQLClient.StatusCode`                                  |
 | ...page    | [`PageInfo`](#GraphQLClient.PageInfo)                       |
 
-<a name="GraphQLClient.ResponseListBlocks"></a>
-
 ### GraphQLClient.ResponseListBlocks : `object`
 
 Structure of GraphQLClient.ResponseListBlocks
@@ -5302,8 +4903,6 @@ Checkout the following snippet for the format of ResponseListBlocks:
 | blocks  | `Array.&lt;...GraphQLClient.IndexedBlock&gt;` |
 | ...code | `GraphQLClient.StatusCode`                    |
 | ...page | [`PageInfo`](#GraphQLClient.PageInfo)         |
-
-<a name="GraphQLClient.ResponseListStakes"></a>
 
 ### GraphQLClient.ResponseListStakes : `object`
 
@@ -5342,8 +4941,6 @@ Checkout the following snippet for the format of ResponseListStakes:
 | ...code | `GraphQLClient.StatusCode`                         |
 | ...page | [`PageInfo`](#GraphQLClient.PageInfo)              |
 | stakes  | `Array.&lt;...GraphQLClient.IndexedStakeState&gt;` |
-
-<a name="GraphQLClient.ResponseListSwap"></a>
 
 ### GraphQLClient.ResponseListSwap : `object`
 
@@ -5466,8 +5063,6 @@ Checkout the following snippet for the format of ResponseListSwap:
 | ...page | [`PageInfo`](#GraphQLClient.PageInfo)      |
 | swap    | `Array.&lt;...GraphQLClient.SwapState&gt;` |
 
-<a name="GraphQLClient.ResponseListTethers"></a>
-
 ### GraphQLClient.ResponseListTethers : `object`
 
 Structure of GraphQLClient.ResponseListTethers
@@ -5508,8 +5103,6 @@ Checkout the following snippet for the format of ResponseListTethers:
 | ...code | `GraphQLClient.StatusCode`                   |
 | ...page | [`PageInfo`](#GraphQLClient.PageInfo)        |
 | tethers | `Array.&lt;...GraphQLClient.TetherState&gt;` |
-
-<a name="GraphQLClient.ResponseListTopAccounts"></a>
 
 ### GraphQLClient.ResponseListTopAccounts : `object`
 
@@ -5556,8 +5149,6 @@ Checkout the following snippet for the format of ResponseListTopAccounts:
 | accounts | `Array.&lt;...GraphQLClient.IndexedAccountState&gt;` |
 | ...code  | `GraphQLClient.StatusCode`                           |
 | ...page  | [`PageInfo`](#GraphQLClient.PageInfo)                |
-
-<a name="GraphQLClient.ResponseListTransactions"></a>
 
 ### GraphQLClient.ResponseListTransactions : `object`
 
@@ -5615,8 +5206,6 @@ Checkout the following snippet for the format of ResponseListTransactions:
 | ...page      | [`PageInfo`](#GraphQLClient.PageInfo)               |
 | transactions | `Array.&lt;...GraphQLClient.IndexedTransaction&gt;` |
 
-<a name="GraphQLClient.ResponseSendTx"></a>
-
 ### GraphQLClient.ResponseSendTx : `object`
 
 Structure of GraphQLClient.ResponseSendTx
@@ -5638,8 +5227,6 @@ Checkout the following snippet for the format of ResponseSendTx:
 | ...code | `GraphQLClient.StatusCode` |
 | hash    | `string`                   |
 
-<a name="GraphQLClient.ResponseStartSimulator"></a>
-
 ### GraphQLClient.ResponseStartSimulator : `object`
 
 Structure of GraphQLClient.ResponseStartSimulator
@@ -5659,8 +5246,6 @@ Checkout the following snippet for the format of ResponseStartSimulator:
 | ------- | -------------------------- |
 | ...code | `GraphQLClient.StatusCode` |
 
-<a name="GraphQLClient.ResponseStopSimulator"></a>
-
 ### GraphQLClient.ResponseStopSimulator : `object`
 
 Structure of GraphQLClient.ResponseStopSimulator
@@ -5679,8 +5264,6 @@ Checkout the following snippet for the format of ResponseStopSimulator:
 | Name    | Type                       |
 | ------- | -------------------------- |
 | ...code | `GraphQLClient.StatusCode` |
-
-<a name="GraphQLClient.ResponseSubscribe"></a>
 
 ### GraphQLClient.ResponseSubscribe : `object`
 
@@ -6931,8 +6514,6 @@ Checkout the following snippet for the format of ResponseSubscribe:
 | ...updateAsset        | [`Transaction`](#GraphQLClient.Transaction)             |
 | ...withdrawToken      | [`Transaction`](#GraphQLClient.Transaction)             |
 
-<a name="GraphQLClient.ResponseUnsubscribe"></a>
-
 ### GraphQLClient.ResponseUnsubscribe : `object`
 
 Structure of GraphQLClient.ResponseUnsubscribe
@@ -6951,8 +6532,6 @@ Checkout the following snippet for the format of ResponseUnsubscribe:
 | Name    | Type                       |
 | ------- | -------------------------- |
 | ...code | `GraphQLClient.StatusCode` |
-
-<a name="GraphQLClient.RetrieveSwapTx"></a>
 
 ### GraphQLClient.RetrieveSwapTx : `object`
 
@@ -6980,8 +6559,6 @@ Checkout the following snippet for the format of RetrieveSwapTx:
 | ...data | [`Any`](#GraphQLClient.Any) |
 | hashkey | `string`                    |
 
-<a name="GraphQLClient.RevokeSwapTx"></a>
-
 ### GraphQLClient.RevokeSwapTx : `object`
 
 Structure of GraphQLClient.RevokeSwapTx
@@ -7006,8 +6583,6 @@ Checkout the following snippet for the format of RevokeSwapTx:
 | address | `string`                    |
 | ...data | [`Any`](#GraphQLClient.Any) |
 
-<a name="GraphQLClient.RevokeTetherTx"></a>
-
 ### GraphQLClient.RevokeTetherTx : `object`
 
 Structure of GraphQLClient.RevokeTetherTx
@@ -7031,8 +6606,6 @@ Checkout the following snippet for the format of RevokeTetherTx:
 | ------- | --------------------------- |
 | ...data | [`Any`](#GraphQLClient.Any) |
 | tether  | `string`                    |
-
-<a name="GraphQLClient.SetupSwapTx"></a>
 
 ### GraphQLClient.SetupSwapTx : `object`
 
@@ -7068,8 +6641,6 @@ Checkout the following snippet for the format of SetupSwapTx:
 | receiver | `string`                                |
 | value    | `string`                                |
 
-<a name="GraphQLClient.StakeConfig"></a>
-
 ### GraphQLClient.StakeConfig : `object`
 
 Structure of GraphQLClient.StakeConfig
@@ -7081,8 +6652,6 @@ Structure of GraphQLClient.StakeConfig
 | ------------------- | -------- |
 | timeoutGeneral      | `number` |
 | timeoutStakeForNode | `number` |
-
-<a name="GraphQLClient.StakeContext"></a>
 
 ### GraphQLClient.StakeContext : `object`
 
@@ -7099,8 +6668,6 @@ Structure of GraphQLClient.StakeContext
 | totalStakes             | `string`                                        |
 | totalUnstakes           | `string`                                        |
 
-<a name="GraphQLClient.StakeDataType"></a>
-
 ### GraphQLClient.StakeDataType : `object`
 
 Structure of GraphQLClient.StakeDataType
@@ -7111,8 +6678,6 @@ Structure of GraphQLClient.StakeDataType
 | Name | Type     |
 | ---- | -------- |
 | type | `string` |
-
-<a name="GraphQLClient.StakeState"></a>
 
 ### GraphQLClient.StakeState : `object`
 
@@ -7131,8 +6696,6 @@ Structure of GraphQLClient.StakeState
 | message    | `string`                                      |
 | to         | `string`                                      |
 
-<a name="GraphQLClient.StakeSummary"></a>
-
 ### GraphQLClient.StakeSummary : `object`
 
 Structure of GraphQLClient.StakeSummary
@@ -7146,8 +6709,6 @@ Structure of GraphQLClient.StakeSummary
 | totalStakes   | `string`                                      |
 | totalUnstakes | `string`                                      |
 
-<a name="GraphQLClient.StakeSummaryEntry"></a>
-
 ### GraphQLClient.StakeSummaryEntry : `object`
 
 Structure of GraphQLClient.StakeSummaryEntry
@@ -7159,8 +6720,6 @@ Structure of GraphQLClient.StakeSummaryEntry
 | -------- | --------------------------------------------- |
 | key      | `number`                                      |
 | ...value | [`StakeSummary`](#GraphQLClient.StakeSummary) |
-
-<a name="GraphQLClient.StakeTx"></a>
 
 ### GraphQLClient.StakeTx : `object`
 
@@ -7189,8 +6748,6 @@ Checkout the following snippet for the format of StakeTx:
 | to      | `string`                                        |
 | value   | `string`                                        |
 
-<a name="GraphQLClient.StateContext"></a>
-
 ### GraphQLClient.StateContext : `object`
 
 Structure of GraphQLClient.StateContext
@@ -7205,8 +6762,6 @@ Structure of GraphQLClient.StateContext
 | renaissanceTime  | `string`                                            |
 | ...renaissanceTx | [`TransactionInfo`](#GraphQLClient.TransactionInfo) |
 
-<a name="GraphQLClient.StorageStatus"></a>
-
 ### GraphQLClient.StorageStatus : `object`
 
 Structure of GraphQLClient.StorageStatus
@@ -7220,8 +6775,6 @@ Structure of GraphQLClient.StorageStatus
 | health        | `boolean`                                           |
 | indexerServer | `string`                                            |
 | stateDb       | `string`                                            |
-
-<a name="GraphQLClient.SwapState"></a>
 
 ### GraphQLClient.SwapState : `object`
 
@@ -7242,8 +6795,6 @@ Structure of GraphQLClient.SwapState
 | receiver   | `string`                                      |
 | sender     | `string`                                      |
 | value      | `string`                                      |
-
-<a name="GraphQLClient.SysUpgradeTx"></a>
 
 ### GraphQLClient.SysUpgradeTx : `object`
 
@@ -7277,8 +6828,6 @@ Checkout the following snippet for the format of SysUpgradeTx:
 | gracePeriod | `string`                                    |
 | ...task     | [`UpgradeTask`](#GraphQLClient.UpgradeTask) |
 
-<a name="GraphQLClient.TasksEntry"></a>
-
 ### GraphQLClient.TasksEntry : `object`
 
 Structure of GraphQLClient.TasksEntry
@@ -7290,8 +6839,6 @@ Structure of GraphQLClient.TasksEntry
 | -------- | --------------------------------------------- |
 | key      | `string`                                      |
 | ...value | [`UpgradeTasks`](#GraphQLClient.UpgradeTasks) |
-
-<a name="GraphQLClient.TetherExchangeInfo"></a>
 
 ### GraphQLClient.TetherExchangeInfo : `object`
 
@@ -7305,8 +6852,6 @@ Structure of GraphQLClient.TetherExchangeInfo
 | assets     | `Array.&lt;...GraphQLClient.string&gt;`     |
 | ...deposit | [`Transaction`](#GraphQLClient.Transaction) |
 | value      | `string`                                    |
-
-<a name="GraphQLClient.TetherState"></a>
 
 ### GraphQLClient.TetherState : `object`
 
@@ -7329,8 +6874,6 @@ Structure of GraphQLClient.TetherState
 | value      | `string`  |
 | withdrawer | `string`  |
 
-<a name="GraphQLClient.TetherTradeInfo"></a>
-
 ### GraphQLClient.TetherTradeInfo : `object`
 
 Structure of GraphQLClient.TetherTradeInfo
@@ -7343,8 +6886,6 @@ Structure of GraphQLClient.TetherTradeInfo
 | assets | `Array.&lt;...GraphQLClient.string&gt;` |
 | tether | `string`                                |
 | value  | `string`                                |
-
-<a name="GraphQLClient.TokenSwapConfig"></a>
 
 ### GraphQLClient.TokenSwapConfig : `object`
 
@@ -7360,8 +6901,6 @@ Structure of GraphQLClient.TokenSwapConfig
 | commissionRate          | `number` |
 | revokeCommission        | `number` |
 | withdrawInterval        | `number` |
-
-<a name="GraphQLClient.Transaction"></a>
 
 ### GraphQLClient.Transaction : `object`
 
@@ -7381,8 +6920,6 @@ Structure of GraphQLClient.Transaction
 | signature  | `string`                                  |
 | signatures | `Array.&lt;...GraphQLClient.Multisig&gt;` |
 
-<a name="GraphQLClient.TransactionConfig"></a>
-
 ### GraphQLClient.TransactionConfig : `object`
 
 Structure of GraphQLClient.TransactionConfig
@@ -7400,8 +6937,6 @@ Structure of GraphQLClient.TransactionConfig
 | minimumStake | `string`                                          |
 | ...poke      | [`PokeConfig`](#GraphQLClient.PokeConfig)         |
 | ...stake     | [`StakeConfig`](#GraphQLClient.StakeConfig)       |
-
-<a name="GraphQLClient.TransactionInfo"></a>
 
 ### GraphQLClient.TransactionInfo : `object`
 
@@ -7421,8 +6956,6 @@ Structure of GraphQLClient.TransactionInfo
 | tags              | `Array.&lt;...GraphQLClient.KvPair&gt;`                     |
 | time              | `string`                                                    |
 | ...tx             | [`Transaction`](#GraphQLClient.Transaction)                 |
-
-<a name="GraphQLClient.TransferTx"></a>
 
 ### GraphQLClient.TransferTx : `object`
 
@@ -7454,8 +6987,6 @@ Checkout the following snippet for the format of TransferTx:
 | to      | `string`                                |
 | value   | `string`                                |
 
-<a name="GraphQLClient.TypeUrls"></a>
-
 ### GraphQLClient.TypeUrls : `object`
 
 Structure of GraphQLClient.TypeUrls
@@ -7468,8 +6999,6 @@ Structure of GraphQLClient.TypeUrls
 | module | `string` |
 | url    | `string` |
 
-<a name="GraphQLClient.UnconfirmedTxs"></a>
-
 ### GraphQLClient.UnconfirmedTxs : `object`
 
 Structure of GraphQLClient.UnconfirmedTxs
@@ -7481,8 +7010,6 @@ Structure of GraphQLClient.UnconfirmedTxs
 | ---- | -------------------------------------------- |
 | nTxs | `number`                                     |
 | txs  | `Array.&lt;...GraphQLClient.Transaction&gt;` |
-
-<a name="GraphQLClient.UpdateAssetTx"></a>
 
 ### GraphQLClient.UpdateAssetTx : `object`
 
@@ -7510,8 +7037,6 @@ Checkout the following snippet for the format of UpdateAssetTx:
 | ...data | [`Any`](#GraphQLClient.Any) |
 | moniker | `string`                    |
 
-<a name="GraphQLClient.UpgradeInfo"></a>
-
 ### GraphQLClient.UpgradeInfo : `object`
 
 Structure of GraphQLClient.UpgradeInfo
@@ -7523,8 +7048,6 @@ Structure of GraphQLClient.UpgradeInfo
 | ------- | -------- |
 | height  | `string` |
 | version | `string` |
-
-<a name="GraphQLClient.UpgradeNodeTx"></a>
 
 ### GraphQLClient.UpgradeNodeTx : `object`
 
@@ -7549,8 +7072,6 @@ Checkout the following snippet for the format of UpgradeNodeTx:
 | override | `boolean` |
 | version  | `string`  |
 
-<a name="GraphQLClient.UpgradeTask"></a>
-
 ### GraphQLClient.UpgradeTask : `object`
 
 Structure of GraphQLClient.UpgradeTask
@@ -7564,8 +7085,6 @@ Structure of GraphQLClient.UpgradeTask
 | dataHash | `string`                                       |
 | ...type  | `GraphQLClient.UpgradeType`                    |
 
-<a name="GraphQLClient.UpgradeTasks"></a>
-
 ### GraphQLClient.UpgradeTasks : `object`
 
 Structure of GraphQLClient.UpgradeTasks
@@ -7576,8 +7095,6 @@ Structure of GraphQLClient.UpgradeTasks
 | Name | Type                                         |
 | ---- | -------------------------------------------- |
 | item | `Array.&lt;...GraphQLClient.UpgradeTask&gt;` |
-
-<a name="GraphQLClient.Validator"></a>
 
 ### GraphQLClient.Validator : `object`
 
@@ -7590,8 +7107,6 @@ Structure of GraphQLClient.Validator
 | ------- | -------- |
 | address | `string` |
 | power   | `string` |
-
-<a name="GraphQLClient.ValidatorInfo"></a>
 
 ### GraphQLClient.ValidatorInfo : `object`
 
@@ -7609,8 +7124,6 @@ Structure of GraphQLClient.ValidatorInfo
 | ...pubKey        | [`PubKey`](#GraphQLClient.PubKey)   |
 | votingPower      | `string`                            |
 
-<a name="GraphQLClient.ValidatorsInfo"></a>
-
 ### GraphQLClient.ValidatorsInfo : `object`
 
 Structure of GraphQLClient.ValidatorsInfo
@@ -7622,8 +7135,6 @@ Structure of GraphQLClient.ValidatorsInfo
 | ----------- | ---------------------------------------------- |
 | blockHeight | `string`                                       |
 | validators  | `Array.&lt;...GraphQLClient.ValidatorInfo&gt;` |
-
-<a name="GraphQLClient.Version"></a>
 
 ### GraphQLClient.Version : `object`
 
@@ -7637,8 +7148,6 @@ Structure of GraphQLClient.Version
 | app   | `string` |
 | block | `string` |
 
-<a name="GraphQLClient.VoteInfo"></a>
-
 ### GraphQLClient.VoteInfo : `object`
 
 Structure of GraphQLClient.VoteInfo
@@ -7650,8 +7159,6 @@ Structure of GraphQLClient.VoteInfo
 | --------------- | --------------------------------------- |
 | signedLastBlock | `boolean`                               |
 | ...validator    | [`Validator`](#GraphQLClient.Validator) |
-
-<a name="GraphQLClient.WalletType"></a>
 
 ### GraphQLClient.WalletType : `object`
 
@@ -7666,8 +7173,6 @@ Structure of GraphQLClient.WalletType
 | ...hash    | `GraphQLClient.HashType`     |
 | ...pk      | `GraphQLClient.KeyType`      |
 | ...role    | `GraphQLClient.RoleType`     |
-
-<a name="GraphQLClient.WithdrawTetherTx"></a>
 
 ### GraphQLClient.WithdrawTetherTx : `object`
 
@@ -7731,8 +7236,6 @@ Checkout the following snippet for the format of WithdrawTetherTx:
 | signature   | `string`                                            |
 | signatures  | `Array.&lt;...GraphQLClient.Multisig&gt;`           |
 
-<a name="GraphQLClient.GetAccountStateParams"></a>
-
 ### GraphQLClient.GetAccountStateParams : `object`
 
 Structure of GraphQLClient.GetAccountStateParams
@@ -7757,8 +7260,6 @@ Checkout the following snippet for the format of GetAccountStateParams:
 | address | `string`                                |
 | height  | `string`                                |
 | keys    | `Array.&lt;...GraphQLClient.string&gt;` |
-
-<a name="GraphQLClient.GetAssetStateParams"></a>
 
 ### GraphQLClient.GetAssetStateParams : `object`
 
@@ -7785,8 +7286,6 @@ Checkout the following snippet for the format of GetAssetStateParams:
 | height  | `string`                                |
 | keys    | `Array.&lt;...GraphQLClient.string&gt;` |
 
-<a name="GraphQLClient.GetBlockParams"></a>
-
 ### GraphQLClient.GetBlockParams : `object`
 
 Structure of GraphQLClient.GetBlockParams
@@ -7805,8 +7304,6 @@ Checkout the following snippet for the format of GetBlockParams:
 | Name   | Type     |
 | ------ | -------- |
 | height | `string` |
-
-<a name="GraphQLClient.GetBlocksParams"></a>
 
 ### GraphQLClient.GetBlocksParams : `object`
 
@@ -7829,8 +7326,6 @@ Checkout the following snippet for the format of GetBlocksParams:
 | ...heightFilter | [`RangeFilter`](#GraphQLClient.RangeFilter) |
 | ...paging       | [`PageInput`](#GraphQLClient.PageInput)     |
 
-<a name="GraphQLClient.GetConfigParams"></a>
-
 ### GraphQLClient.GetConfigParams : `object`
 
 Structure of GraphQLClient.GetConfigParams
@@ -7849,8 +7344,6 @@ Checkout the following snippet for the format of GetConfigParams:
 | Name   | Type      |
 | ------ | --------- |
 | parsed | `boolean` |
-
-<a name="GraphQLClient.GetDelegateStateParams"></a>
 
 ### GraphQLClient.GetDelegateStateParams : `object`
 
@@ -7877,8 +7370,6 @@ Checkout the following snippet for the format of GetDelegateStateParams:
 | height  | `string`                                |
 | keys    | `Array.&lt;...GraphQLClient.string&gt;` |
 
-<a name="GraphQLClient.GetForgeStateParams"></a>
-
 ### GraphQLClient.GetForgeStateParams : `object`
 
 Structure of GraphQLClient.GetForgeStateParams
@@ -7902,8 +7393,6 @@ Checkout the following snippet for the format of GetForgeStateParams:
 | height | `string`                                |
 | keys   | `Array.&lt;...GraphQLClient.string&gt;` |
 
-<a name="GraphQLClient.GetForgeStatsByDayParams"></a>
-
 ### GraphQLClient.GetForgeStatsByDayParams : `object`
 
 Structure of GraphQLClient.GetForgeStatsByDayParams
@@ -7925,8 +7414,6 @@ Checkout the following snippet for the format of GetForgeStatsByDayParams:
 | endDate   | `string` |
 | startDate | `string` |
 
-<a name="GraphQLClient.GetForgeStatsByHourParams"></a>
-
 ### GraphQLClient.GetForgeStatsByHourParams : `object`
 
 Structure of GraphQLClient.GetForgeStatsByHourParams
@@ -7945,8 +7432,6 @@ Checkout the following snippet for the format of GetForgeStatsByHourParams:
 | Name | Type     |
 | ---- | -------- |
 | date | `string` |
-
-<a name="GraphQLClient.GetProtocolStateParams"></a>
 
 ### GraphQLClient.GetProtocolStateParams : `object`
 
@@ -7973,8 +7458,6 @@ Checkout the following snippet for the format of GetProtocolStateParams:
 | height  | `string`                                |
 | keys    | `Array.&lt;...GraphQLClient.string&gt;` |
 
-<a name="GraphQLClient.GetProtocolsParams"></a>
-
 ### GraphQLClient.GetProtocolsParams : `object`
 
 Structure of GraphQLClient.GetProtocolsParams
@@ -7993,8 +7476,6 @@ Checkout the following snippet for the format of GetProtocolsParams:
 | Name    | Type     |
 | ------- | -------- |
 | address | `string` |
-
-<a name="GraphQLClient.GetStakeStateParams"></a>
 
 ### GraphQLClient.GetStakeStateParams : `object`
 
@@ -8021,8 +7502,6 @@ Checkout the following snippet for the format of GetStakeStateParams:
 | height  | `string`                                |
 | keys    | `Array.&lt;...GraphQLClient.string&gt;` |
 
-<a name="GraphQLClient.GetSwapStateParams"></a>
-
 ### GraphQLClient.GetSwapStateParams : `object`
 
 Structure of GraphQLClient.GetSwapStateParams
@@ -8047,8 +7526,6 @@ Checkout the following snippet for the format of GetSwapStateParams:
 | address | `string`                                |
 | height  | `string`                                |
 | keys    | `Array.&lt;...GraphQLClient.string&gt;` |
-
-<a name="GraphQLClient.GetTetherStateParams"></a>
 
 ### GraphQLClient.GetTetherStateParams : `object`
 
@@ -8075,8 +7552,6 @@ Checkout the following snippet for the format of GetTetherStateParams:
 | height  | `string`                                |
 | keys    | `Array.&lt;...GraphQLClient.string&gt;` |
 
-<a name="GraphQLClient.GetTxParams"></a>
-
 ### GraphQLClient.GetTxParams : `object`
 
 Structure of GraphQLClient.GetTxParams
@@ -8096,8 +7571,6 @@ Checkout the following snippet for the format of GetTxParams:
 | ---- | -------- |
 | hash | `string` |
 
-<a name="GraphQLClient.GetUnconfirmedTxsParams"></a>
-
 ### GraphQLClient.GetUnconfirmedTxsParams : `object`
 
 Structure of GraphQLClient.GetUnconfirmedTxsParams
@@ -8114,8 +7587,6 @@ Checkout the following snippet for the format of GetUnconfirmedTxsParams:
 | Name      | Type                                    |
 | --------- | --------------------------------------- |
 | ...paging | [`PageInput`](#GraphQLClient.PageInput) |
-
-<a name="GraphQLClient.ListAssetTransactionsParams"></a>
 
 ### GraphQLClient.ListAssetTransactionsParams : `object`
 
@@ -8137,8 +7608,6 @@ Checkout the following snippet for the format of ListAssetTransactionsParams:
 | address   | `string`                                |
 | ...paging | [`PageInput`](#GraphQLClient.PageInput) |
 
-<a name="GraphQLClient.ListAssetsParams"></a>
-
 ### GraphQLClient.ListAssetsParams : `object`
 
 Structure of GraphQLClient.ListAssetsParams
@@ -8158,8 +7627,6 @@ Checkout the following snippet for the format of ListAssetsParams:
 | ------------ | --------------------------------------- |
 | ownerAddress | `string`                                |
 | ...paging    | [`PageInput`](#GraphQLClient.PageInput) |
-
-<a name="GraphQLClient.ListBlocksParams"></a>
 
 ### GraphQLClient.ListBlocksParams : `object`
 
@@ -8185,8 +7652,6 @@ Checkout the following snippet for the format of ListBlocksParams:
 | proposer               | `string`                                    |
 | ...timeFilter          | [`TimeFilter`](#GraphQLClient.TimeFilter)   |
 
-<a name="GraphQLClient.ListStakesParams"></a>
-
 ### GraphQLClient.ListStakesParams : `object`
 
 Structure of GraphQLClient.ListStakesParams
@@ -8204,8 +7669,6 @@ Checkout the following snippet for the format of ListStakesParams:
 | ---------------- | ----------------------------------------------- |
 | ...addressFilter | [`AddressFilter`](#GraphQLClient.AddressFilter) |
 | ...paging        | [`PageInput`](#GraphQLClient.PageInput)         |
-
-<a name="GraphQLClient.ListSwapParams"></a>
 
 ### GraphQLClient.ListSwapParams : `object`
 
@@ -8231,8 +7694,6 @@ Checkout the following snippet for the format of ListSwapParams:
 | paging    | `string`  |
 | receiver  | `string`  |
 | sender    | `string`  |
-
-<a name="GraphQLClient.ListTethersParams"></a>
 
 ### GraphQLClient.ListTethersParams : `object`
 
@@ -8261,8 +7722,6 @@ Checkout the following snippet for the format of ListTethersParams:
 | paging     | `string`  |
 | withdrawer | `string`  |
 
-<a name="GraphQLClient.ListTopAccountsParams"></a>
-
 ### GraphQLClient.ListTopAccountsParams : `object`
 
 Structure of GraphQLClient.ListTopAccountsParams
@@ -8279,8 +7738,6 @@ Checkout the following snippet for the format of ListTopAccountsParams:
 | Name      | Type                                    |
 | --------- | --------------------------------------- |
 | ...paging | [`PageInput`](#GraphQLClient.PageInput) |
-
-<a name="GraphQLClient.ListTransactionsParams"></a>
 
 ### GraphQLClient.ListTransactionsParams : `object`
 
@@ -8302,8 +7759,6 @@ Checkout the following snippet for the format of ListTransactionsParams:
 | ...timeFilter     | [`TimeFilter`](#GraphQLClient.TimeFilter)         |
 | ...typeFilter     | [`TypeFilter`](#GraphQLClient.TypeFilter)         |
 | ...validityFilter | [`ValidityFilter`](#GraphQLClient.ValidityFilter) |
-
-<a name="GraphQLClient.SendTxParams"></a>
 
 ### GraphQLClient.SendTxParams : `object`
 
@@ -8330,8 +7785,6 @@ Checkout the following snippet for the format of SendTxParams:
 | tx     | `string`  |
 | wallet | `string`  |
 
-<a name="GraphQLClient.UnsubscribeParams"></a>
-
 ### GraphQLClient.UnsubscribeParams : `object`
 
 Structure of GraphQLClient.UnsubscribeParams
@@ -8350,8 +7803,6 @@ Checkout the following snippet for the format of UnsubscribeParams:
 | Name  | Type     |
 | ----- | -------- |
 | topic | `string` |
-
-<a name="GraphQLClient.SubscribeParams"></a>
 
 ### GraphQLClient.SubscribeParams : `object`
 
@@ -8374,8 +7825,6 @@ Checkout the following snippet for the format of SubscribeParams:
 | filter | `string` |
 | topic  | `string` |
 
-<a name="GraphQLClient.RevokeSwapTxInput"></a>
-
 ### GraphQLClient.RevokeSwapTxInput : `Object`
 
 **Kind**: static typedef of [`GraphQLClient`](#GraphQLClient)  
@@ -8394,8 +7843,6 @@ Checkout the following snippet for the format of SubscribeParams:
 | [input.tx.signatures] | `array`                                       | transaction signatures, should be set when it's a multisig transaction                        |
 | input.wallet          | `object`                                      | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
 | [input.signature]     | `string`                                      | the signature of the tx, if this parameter exist, we will not sign the transaction            |
-
-<a name="GraphQLClient.WithdrawTokenTxInput"></a>
 
 ### GraphQLClient.WithdrawTokenTxInput : `Object`
 
@@ -8416,8 +7863,6 @@ Checkout the following snippet for the format of SubscribeParams:
 | input.wallet          | `object`                        | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
 | [input.signature]     | `string`                        | the signature of the tx, if this parameter exist, we will not sign the transaction            |
 
-<a name="GraphQLClient.DeactivateProtocolTxInput"></a>
-
 ### GraphQLClient.DeactivateProtocolTxInput : `Object`
 
 **Kind**: static typedef of [`GraphQLClient`](#GraphQLClient)  
@@ -8436,8 +7881,6 @@ Checkout the following snippet for the format of SubscribeParams:
 | [input.tx.signatures] | `array`                              | transaction signatures, should be set when it's a multisig transaction                        |
 | input.wallet          | `object`                             | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
 | [input.signature]     | `string`                             | the signature of the tx, if this parameter exist, we will not sign the transaction            |
-
-<a name="GraphQLClient.AccountMigrateTxInput"></a>
 
 ### GraphQLClient.AccountMigrateTxInput : `Object`
 
@@ -8458,8 +7901,6 @@ Checkout the following snippet for the format of SubscribeParams:
 | input.wallet          | `object`                                              | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
 | [input.signature]     | `string`                                              | the signature of the tx, if this parameter exist, we will not sign the transaction            |
 
-<a name="GraphQLClient.SetupSwapTxInput"></a>
-
 ### GraphQLClient.SetupSwapTxInput : `Object`
 
 **Kind**: static typedef of [`GraphQLClient`](#GraphQLClient)  
@@ -8478,8 +7919,6 @@ Checkout the following snippet for the format of SubscribeParams:
 | [input.tx.signatures] | `array`                                     | transaction signatures, should be set when it's a multisig transaction                        |
 | input.wallet          | `object`                                    | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
 | [input.signature]     | `string`                                    | the signature of the tx, if this parameter exist, we will not sign the transaction            |
-
-<a name="GraphQLClient.DepositTetherTxInput"></a>
 
 ### GraphQLClient.DepositTetherTxInput : `Object`
 
@@ -8500,8 +7939,6 @@ Checkout the following snippet for the format of SubscribeParams:
 | input.wallet          | `object`                                            | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
 | [input.signature]     | `string`                                            | the signature of the tx, if this parameter exist, we will not sign the transaction            |
 
-<a name="GraphQLClient.StakeTxInput"></a>
-
 ### GraphQLClient.StakeTxInput : `Object`
 
 **Kind**: static typedef of [`GraphQLClient`](#GraphQLClient)  
@@ -8520,8 +7957,6 @@ Checkout the following snippet for the format of SubscribeParams:
 | [input.tx.signatures] | `array`                             | transaction signatures, should be set when it's a multisig transaction                        |
 | input.wallet          | `object`                            | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
 | [input.signature]     | `string`                            | the signature of the tx, if this parameter exist, we will not sign the transaction            |
-
-<a name="GraphQLClient.DeployProtocolTxInput"></a>
 
 ### GraphQLClient.DeployProtocolTxInput : `Object`
 
@@ -8542,8 +7977,6 @@ Checkout the following snippet for the format of SubscribeParams:
 | input.wallet          | `object`                                              | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
 | [input.signature]     | `string`                                              | the signature of the tx, if this parameter exist, we will not sign the transaction            |
 
-<a name="GraphQLClient.CreateAssetTxInput"></a>
-
 ### GraphQLClient.CreateAssetTxInput : `Object`
 
 **Kind**: static typedef of [`GraphQLClient`](#GraphQLClient)  
@@ -8562,8 +7995,6 @@ Checkout the following snippet for the format of SubscribeParams:
 | [input.tx.signatures] | `array`                                         | transaction signatures, should be set when it's a multisig transaction                        |
 | input.wallet          | `object`                                        | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
 | [input.signature]     | `string`                                        | the signature of the tx, if this parameter exist, we will not sign the transaction            |
-
-<a name="GraphQLClient.ExchangeTxInput"></a>
 
 ### GraphQLClient.ExchangeTxInput : `Object`
 
@@ -8584,8 +8015,6 @@ Checkout the following snippet for the format of SubscribeParams:
 | input.wallet          | `object`                                  | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
 | [input.signature]     | `string`                                  | the signature of the tx, if this parameter exist, we will not sign the transaction            |
 
-<a name="GraphQLClient.ConsumeAssetTxInput"></a>
-
 ### GraphQLClient.ConsumeAssetTxInput : `Object`
 
 **Kind**: static typedef of [`GraphQLClient`](#GraphQLClient)  
@@ -8604,8 +8033,6 @@ Checkout the following snippet for the format of SubscribeParams:
 | [input.tx.signatures] | `array`                                           | transaction signatures, should be set when it's a multisig transaction                        |
 | input.wallet          | `object`                                          | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
 | [input.signature]     | `string`                                          | the signature of the tx, if this parameter exist, we will not sign the transaction            |
-
-<a name="GraphQLClient.RetrieveSwapTxInput"></a>
 
 ### GraphQLClient.RetrieveSwapTxInput : `Object`
 
@@ -8626,8 +8053,6 @@ Checkout the following snippet for the format of SubscribeParams:
 | input.wallet          | `object`                                          | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
 | [input.signature]     | `string`                                          | the signature of the tx, if this parameter exist, we will not sign the transaction            |
 
-<a name="GraphQLClient.TransferTxInput"></a>
-
 ### GraphQLClient.TransferTxInput : `Object`
 
 **Kind**: static typedef of [`GraphQLClient`](#GraphQLClient)  
@@ -8646,8 +8071,6 @@ Checkout the following snippet for the format of SubscribeParams:
 | [input.tx.signatures] | `array`                                   | transaction signatures, should be set when it's a multisig transaction                        |
 | input.wallet          | `object`                                  | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
 | [input.signature]     | `string`                                  | the signature of the tx, if this parameter exist, we will not sign the transaction            |
-
-<a name="GraphQLClient.RevokeTetherTxInput"></a>
 
 ### GraphQLClient.RevokeTetherTxInput : `Object`
 
@@ -8668,8 +8091,6 @@ Checkout the following snippet for the format of SubscribeParams:
 | input.wallet          | `object`                                          | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
 | [input.signature]     | `string`                                          | the signature of the tx, if this parameter exist, we will not sign the transaction            |
 
-<a name="GraphQLClient.ApproveWithdrawTxInput"></a>
-
 ### GraphQLClient.ApproveWithdrawTxInput : `Object`
 
 **Kind**: static typedef of [`GraphQLClient`](#GraphQLClient)  
@@ -8688,8 +8109,6 @@ Checkout the following snippet for the format of SubscribeParams:
 | [input.tx.signatures] | `array`                           | transaction signatures, should be set when it's a multisig transaction                        |
 | input.wallet          | `object`                          | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
 | [input.signature]     | `string`                          | the signature of the tx, if this parameter exist, we will not sign the transaction            |
-
-<a name="GraphQLClient.DelegateTxInput"></a>
 
 ### GraphQLClient.DelegateTxInput : `Object`
 
@@ -8710,8 +8129,6 @@ Checkout the following snippet for the format of SubscribeParams:
 | input.wallet          | `object`                   | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
 | [input.signature]     | `string`                   | the signature of the tx, if this parameter exist, we will not sign the transaction            |
 
-<a name="GraphQLClient.ApproveTetherTxInput"></a>
-
 ### GraphQLClient.ApproveTetherTxInput : `Object`
 
 **Kind**: static typedef of [`GraphQLClient`](#GraphQLClient)  
@@ -8730,8 +8147,6 @@ Checkout the following snippet for the format of SubscribeParams:
 | [input.tx.signatures] | `array`                                             | transaction signatures, should be set when it's a multisig transaction                        |
 | input.wallet          | `object`                                            | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
 | [input.signature]     | `string`                                            | the signature of the tx, if this parameter exist, we will not sign the transaction            |
-
-<a name="GraphQLClient.DepositTokenTxInput"></a>
 
 ### GraphQLClient.DepositTokenTxInput : `Object`
 
@@ -8752,8 +8167,6 @@ Checkout the following snippet for the format of SubscribeParams:
 | input.wallet          | `object`                       | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
 | [input.signature]     | `string`                       | the signature of the tx, if this parameter exist, we will not sign the transaction            |
 
-<a name="GraphQLClient.PokeTxInput"></a>
-
 ### GraphQLClient.PokeTxInput : `Object`
 
 **Kind**: static typedef of [`GraphQLClient`](#GraphQLClient)  
@@ -8772,8 +8185,6 @@ Checkout the following snippet for the format of SubscribeParams:
 | [input.tx.signatures] | `array`                           | transaction signatures, should be set when it's a multisig transaction                        |
 | input.wallet          | `object`                          | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
 | [input.signature]     | `string`                          | the signature of the tx, if this parameter exist, we will not sign the transaction            |
-
-<a name="GraphQLClient.ExchangeTetherTxInput"></a>
 
 ### GraphQLClient.ExchangeTetherTxInput : `Object`
 
@@ -8794,8 +8205,6 @@ Checkout the following snippet for the format of SubscribeParams:
 | input.wallet          | `object`                                              | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
 | [input.signature]     | `string`                                              | the signature of the tx, if this parameter exist, we will not sign the transaction            |
 
-<a name="GraphQLClient.WithdrawTetherTxInput"></a>
-
 ### GraphQLClient.WithdrawTetherTxInput : `Object`
 
 **Kind**: static typedef of [`GraphQLClient`](#GraphQLClient)  
@@ -8814,8 +8223,6 @@ Checkout the following snippet for the format of SubscribeParams:
 | [input.tx.signatures] | `array`                                               | transaction signatures, should be set when it's a multisig transaction                        |
 | input.wallet          | `object`                                              | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
 | [input.signature]     | `string`                                              | the signature of the tx, if this parameter exist, we will not sign the transaction            |
-
-<a name="GraphQLClient.ActivateProtocolTxInput"></a>
 
 ### GraphQLClient.ActivateProtocolTxInput : `Object`
 
@@ -8836,8 +8243,6 @@ Checkout the following snippet for the format of SubscribeParams:
 | input.wallet          | `object`                           | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
 | [input.signature]     | `string`                           | the signature of the tx, if this parameter exist, we will not sign the transaction            |
 
-<a name="GraphQLClient.UpgradeNodeTxInput"></a>
-
 ### GraphQLClient.UpgradeNodeTxInput : `Object`
 
 **Kind**: static typedef of [`GraphQLClient`](#GraphQLClient)  
@@ -8856,8 +8261,6 @@ Checkout the following snippet for the format of SubscribeParams:
 | [input.tx.signatures] | `array`                                         | transaction signatures, should be set when it's a multisig transaction                        |
 | input.wallet          | `object`                                        | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
 | [input.signature]     | `string`                                        | the signature of the tx, if this parameter exist, we will not sign the transaction            |
-
-<a name="GraphQLClient.UpdateAssetTxInput"></a>
 
 ### GraphQLClient.UpdateAssetTxInput : `Object`
 
@@ -8878,8 +8281,6 @@ Checkout the following snippet for the format of SubscribeParams:
 | input.wallet          | `object`                                        | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
 | [input.signature]     | `string`                                        | the signature of the tx, if this parameter exist, we will not sign the transaction            |
 
-<a name="GraphQLClient.AcquireAssetTxInput"></a>
-
 ### GraphQLClient.AcquireAssetTxInput : `Object`
 
 **Kind**: static typedef of [`GraphQLClient`](#GraphQLClient)  
@@ -8899,8 +8300,6 @@ Checkout the following snippet for the format of SubscribeParams:
 | input.wallet          | `object`                                          | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
 | [input.signature]     | `string`                                          | the signature of the tx, if this parameter exist, we will not sign the transaction            |
 
-<a name="GraphQLClient.DeclareTxInput"></a>
-
 ### GraphQLClient.DeclareTxInput : `Object`
 
 **Kind**: static typedef of [`GraphQLClient`](#GraphQLClient)  
@@ -8919,8 +8318,6 @@ Checkout the following snippet for the format of SubscribeParams:
 | [input.tx.signatures] | `array`                                 | transaction signatures, should be set when it's a multisig transaction                        |
 | input.wallet          | `object`                                | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
 | [input.signature]     | `string`                                | the signature of the tx, if this parameter exist, we will not sign the transaction            |
-
-<a name="GraphQLClient.RevokeWithdrawTxInput"></a>
 
 ### GraphQLClient.RevokeWithdrawTxInput : `Object`
 

@@ -1,11 +1,9 @@
-<a name="module_@arcblock/forge-sdk"></a>
-
 
 ## [**@arcblock/forge-sdk**](https://github.com/arcblock/forge-sdk)
 
 Contains basic helper methods to encode/format/mock a protobuf message
 
-**Requires**: [@arcblock/forge-util](./forge-util/), [@arcblock/forge-message](./forge-message/), [@arcblock/forge-wallet](./forge-wallet/), [@arcblock/grpc-client](./grpc-client/), [@arcblock/graphql-client](./graphql-client/), [@arcblock/did-util](./did-util/)  
+**Requires**: [@arcblock/forge-util](/packages/forge-util/), [@arcblock/forge-message](/packages/forge-message/), [@arcblock/forge-wallet](/packages/forge-wallet/), [@arcblock/grpc-client](/packages/grpc-client/), [@arcblock/graphql-client](/packages/graphql-client/), [@arcblock/did-util](/packages/did-util/)  
 **Example**  
 
 ```js
@@ -15,8 +13,6 @@ const ForgeSDK = require('@arcblock/forge-sdk');
 ForgeSDK.connect('tcp://127.0.0.1:28211', { default: true });
 ForgeSDK.getChainInfo().then(console.log);
 ```
-
-<a name=".wrapMethods"></a>
 
 ### [**@arcblock/forge-sdk**](https://github.com/arcblock/forge-sdk)~wrapMethods(source, target)
 
