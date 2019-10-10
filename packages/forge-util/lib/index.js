@@ -486,6 +486,8 @@ function isUint8Array(value) {
 /**
  * Generate a random UUID
  *
+ * @public
+ * @static
  * @returns {string} generated uuid
  */
 function UUID() {
@@ -499,6 +501,8 @@ function UUID() {
 /**
  * Check if a string is valid UUID
  *
+ * @public
+ * @static
  * @param {string} str
  * @returns {boolean}
  */
@@ -509,6 +513,8 @@ function isUUID(str) {
 /**
  * Convert input to Uint8Array on best effort
  *
+ * @public
+ * @static
  * @param {buffer|base58|hex|Uint8Array|string} v
  * @returns {Uint8Array}
  * @throws {Error}
@@ -539,6 +545,8 @@ function toUint8Array(v) {
 /**
  * Convert input to Buffer on best effort
  *
+ * @public
+ * @static
  * @param {buffer|base58|hex|Uint8Array} v
  * @returns {buffer}
  * @throws {Error}
@@ -550,6 +558,8 @@ function toBuffer(v) {
 /**
  * Convert input to base58btc format on best effort
  *
+ * @public
+ * @static
  * @param {buffer|base58|hex|Uint8Array} v
  * @returns {string}
  * @throws {Error}
@@ -561,6 +571,8 @@ function toBase58(v) {
 /**
  * Decode base58 string
  *
+ * @public
+ * @static
  * @param {string} v
  * @returns {buffer}
  */
@@ -575,6 +587,8 @@ function fromBase58(v) {
 /**
  * Convert input to base64 format
  *
+ * @public
+ * @static
  * @param {buffer|base58|hex|Uint8Array} v
  * @param {escape} [escape=true]
  * @returns {string}
@@ -588,6 +602,8 @@ function toBase64(v, escape = true) {
 /**
  * Decode base64 string to buffer
  *
+ * @public
+ * @static
  * @param {string} v
  * @returns {buffer}
  */
