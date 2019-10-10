@@ -1,7 +1,7 @@
 require('dotenv').config();
 
 const path = require('path');
-const { version } = require('./package.json');
+const { version } = require('../package.json');
 
 module.exports = {
   plugins: [
