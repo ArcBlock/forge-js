@@ -9,8 +9,6 @@ tags:
   - 'forge'
 ---
 
-<a name="module_@arcblock/forge-proto"></a>
-
 
 ## [**@arcblock/forge-proto**](https://github.com/arcblock/forge-proto)
 
@@ -34,8 +32,6 @@ const { enums, fromTypeUrl, toTypeUrl } = require('@arcblock/forge-proto/lite');
         _ [~toTypeUrl(type)](#module_@arcblock/forge-proto--module.exports..toTypeUrl) ⇒ `string`
         \* [~fromTypeUrl(url)](#module_@arcblock/forge-proto--module.exports..fromTypeUrl) ⇒ `string`
 
-<a name="exp_module_@arcblock/forge-proto--module.exports"></a>
-
 ### module.exports(proto, json, urls) ⇒ `object` ⏏
 
 Generate type provider from types map and json spec
@@ -48,8 +44,6 @@ Generate type provider from types map and json spec
 | json  | `object` | collection of fields/types used in the types map |
 | urls  | `object` | collection of typeUrls registered to forge-core  |
 
-<a name="module_@arcblock/forge-proto--module.exports.enums"></a>
-
 #### module.exports.enums
 
 All enum types and its values (number format), can be accessed from width: enums.KEY_TYPE.[`ED25519`](https://github.com/ArcBlock/forge-js/commit/ED25519)
@@ -57,7 +51,6 @@ All enum types and its values (number format), can be accessed from width: enums
 **Kind**: static property of [`module.exports`](#exp_module_@arcblock/forge-proto--module.exports)  
 **Access**: public  
 **Read only**: true  
-<a name="module_@arcblock/forge-proto--module.exports.messages"></a>
 
 #### module.exports.messages
 
@@ -66,7 +59,6 @@ All enum types and its values (human readable string format), can be accessed fr
 **Kind**: static property of [`module.exports`](#exp_module_@arcblock/forge-proto--module.exports)  
 **Access**: public  
 **Read only**: true  
-<a name="module_@arcblock/forge-proto--module.exports..getMessageType"></a>
 
 #### module.exports~getMessageType(type) ⇒ `object`
 
@@ -78,8 +70,6 @@ Search for a type and its fields descriptor, then the result can be used to crea
 | Param | Type     | Description                            |
 | ----- | -------- | -------------------------------------- |
 | type  | `string` | such as `Transaction`, or `TransferTx` |
-
-<a name="module_@arcblock/forge-proto--module.exports..toTypeUrl"></a>
 
 #### module.exports~toTypeUrl(type) ⇒ `string`
 
@@ -95,8 +85,6 @@ toTypeUrl('StakeTx') // 'fg:t:stake'
 | Param | Type     |
 | ----- | -------- |
 | type  | `string` |
-
-<a name="module_@arcblock/forge-proto--module.exports..fromTypeUrl"></a>
 
 #### module.exports~fromTypeUrl(url) ⇒ `string`
 

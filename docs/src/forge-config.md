@@ -9,14 +9,10 @@ tags:
   - 'forge'
 ---
 
-<a name="module_@arcblock/forge-config"></a>
-
 
 ## [**@arcblock/forge-config**](https://github.com/arcblock/forge-config)
 
 Contains helper methods to parse forge config file
-
-<a name="parse"></a>
 
 ### parse(configPath) ⇒
 

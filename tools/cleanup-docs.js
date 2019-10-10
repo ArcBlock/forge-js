@@ -50,13 +50,13 @@ const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
     ['  * [', '* ['],
   ].concat(externalReplacements);
 
-  console.log(replacements);
-
   const fileSource = fs.readFileSync(filePath).toString();
-  const newSource = replacements.reduce((content, x) => {
-    const [find, replace] = x;
-    return content.split(find).join(replace);
-  }, fileSource);
+  const newSource = replacements
+    .reduce((content, x) => {
+      const [find, replace] = x;
+      return content.split(find).join(replace);
+    }, fileSource)
+    .replace(/<a[\s]+([^>]+)><\/a>/g, '');
 
   fs.writeFileSync(filePath, newSource);
   console.log('Cleanup doc file', filePath);

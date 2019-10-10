@@ -9,8 +9,6 @@ tags:
   - 'forge'
 ---
 
-<a name="GRpcClient"></a>
-
 
 ## GRpcClient
 
@@ -400,8 +398,6 @@ Please note that, due to internal implementation of google-protobuf, all `repeat
       * [AcquireAssetTxInput](#GRpcClient.AcquireAssetTxInput) : `Object`
       * [StakeTxInput](#GRpcClient.StakeTxInput) : `Object`
 
-<a name="new_GRpcClient_new"></a>
-
 ### new GRpcClient(config)
 
 Creates an instance of GRpcClient, and generate transaction sending and receiving methods
@@ -411,8 +407,6 @@ Creates an instance of GRpcClient, and generate transaction sending and receivin
 | config            | `object` \| `string` | `tcp://127.0.0.1:28210`                           | config object, if a string passed, will be used as the endpoint |
 | [config.endpoint] | `string`             | `&quot;\&quot;tcp://127.0.0.1:28210\&quot;&quot;` | grpc endpoint the client can connect to                         |
 | [config.chainId]  | `string`             | `&quot;\&quot;\&quot;&quot;`                      | chainId used to construct transaction                           |
-
-<a name="GRpcClient+getType"></a>
 
 ### gRpcClient.getType(x) ⇒ `class` \| `null`
 
@@ -425,8 +419,6 @@ Get protobuf message class by name, only supports forge-built-in types
 | ----- | -------- |
 | x     | `string` |
 
-<a name="GRpcClient+decodeTx"></a>
-
 ### gRpcClient.decodeTx(buffer) ⇒ `object`
 
 Decode transaction buffer to an object
@@ -438,42 +430,35 @@ Decode transaction buffer to an object
 | ------ | -------- |
 | buffer | `buffer` |
 
-<a name="GRpcClient+getRpcMethods"></a>
-
 ### gRpcClient.getRpcMethods() ⇒ `object`
 
 List standard rpc methods
 
 **Kind**: instance method of [`GRpcClient`](#GRpcClient)  
-<a name="GRpcClient+getTxSendMethods"></a>
 
 ### gRpcClient.getTxSendMethods() ⇒ `object`
 
 List generated transaction send methods
 
 **Kind**: instance method of [`GRpcClient`](#GRpcClient)  
-<a name="GRpcClient+getTxEncodeMethods"></a>
 
 ### gRpcClient.getTxEncodeMethods() ⇒ `object`
 
 List generated transaction send methods
 
 **Kind**: instance method of [`GRpcClient`](#GRpcClient)  
-<a name="GRpcClient+getTxSignMethods"></a>
 
 ### gRpcClient.getTxSignMethods() ⇒ `object`
 
 List generated transaction sign methods
 
 **Kind**: instance method of [`GRpcClient`](#GRpcClient)  
-<a name="GRpcClient+getTxMultiSignMethods"></a>
 
 ### gRpcClient.getTxMultiSignMethods() ⇒ `object`
 
 List generated transaction multi sign methods
 
 **Kind**: instance method of [`GRpcClient`](#GRpcClient)  
-<a name="GRpcClient+createTx"></a>
 
 ### gRpcClient.createTx(params) ⇒ [`Promise.&lt;ResponseCreateTx&gt;`](#GRpcClient.ResponseCreateTx)
 
@@ -485,8 +470,6 @@ Send gRPC call and return the result
 | ------ | ------------------------------------------------ |
 | params | [`RequestCreateTx`](#GRpcClient.RequestCreateTx) |
 
-<a name="GRpcClient+multisig"></a>
-
 ### gRpcClient.multisig(params) ⇒ [`Promise.&lt;ResponseMultisig&gt;`](#GRpcClient.ResponseMultisig)
 
 Send gRPC call and return the result
@@ -497,8 +480,6 @@ Send gRPC call and return the result
 | ------ | ------------------------------------------------ |
 | params | [`RequestMultisig`](#GRpcClient.RequestMultisig) |
 
-<a name="GRpcClient+sendTx"></a>
-
 ### gRpcClient.sendTx(params) ⇒ [`Promise.&lt;ResponseSendTx&gt;`](#GRpcClient.ResponseSendTx)
 
 Send gRPC call and return the result
@@ -508,8 +489,6 @@ Send gRPC call and return the result
 | Param  | Type                                         |
 | ------ | -------------------------------------------- |
 | params | [`RequestSendTx`](#GRpcClient.RequestSendTx) |
-
-<a name="GRpcClient+getTx"></a>
 
 ### gRpcClient.getTx(params) ⇒ `EventEmitter`
 
@@ -522,8 +501,6 @@ Send gRPC call and return the result
 | ------ | ------------------------------------------ |
 | params | [`RequestGetTx`](#GRpcClient.RequestGetTx) |
 
-<a name="GRpcClient+getBlock"></a>
-
 ### gRpcClient.getBlock(params) ⇒ `EventEmitter`
 
 Send gRPC call and return the result
@@ -535,8 +512,6 @@ Send gRPC call and return the result
 | ------ | ------------------------------------------------ |
 | params | [`RequestGetBlock`](#GRpcClient.RequestGetBlock) |
 
-<a name="GRpcClient+getBlocks"></a>
-
 ### gRpcClient.getBlocks(params) ⇒ [`Promise.&lt;ResponseGetBlocks&gt;`](#GRpcClient.ResponseGetBlocks)
 
 Send gRPC call and return the result
@@ -546,8 +521,6 @@ Send gRPC call and return the result
 | Param  | Type                                               |
 | ------ | -------------------------------------------------- |
 | params | [`RequestGetBlocks`](#GRpcClient.RequestGetBlocks) |
-
-<a name="GRpcClient+getUnconfirmedTxs"></a>
 
 ### gRpcClient.getUnconfirmedTxs(params) ⇒ [`Promise.&lt;ResponseGetUnconfirmedTxs&gt;`](#GRpcClient.ResponseGetUnconfirmedTxs)
 
@@ -559,8 +532,6 @@ Send gRPC call and return the result
 | ------ | ------------------------------------------------------------------ |
 | params | [`RequestGetUnconfirmedTxs`](#GRpcClient.RequestGetUnconfirmedTxs) |
 
-<a name="GRpcClient+getChainInfo"></a>
-
 ### gRpcClient.getChainInfo(params) ⇒ [`Promise.&lt;ResponseGetChainInfo&gt;`](#GRpcClient.ResponseGetChainInfo)
 
 Send gRPC call and return the result
@@ -570,8 +541,6 @@ Send gRPC call and return the result
 | Param  | Type                                                     |
 | ------ | -------------------------------------------------------- |
 | params | [`RequestGetChainInfo`](#GRpcClient.RequestGetChainInfo) |
-
-<a name="GRpcClient+getNodeInfo"></a>
 
 ### gRpcClient.getNodeInfo(params) ⇒ [`Promise.&lt;ResponseGetNodeInfo&gt;`](#GRpcClient.ResponseGetNodeInfo)
 
@@ -583,8 +552,6 @@ Send gRPC call and return the result
 | ------ | ------------------------------------------------------ |
 | params | [`RequestGetNodeInfo`](#GRpcClient.RequestGetNodeInfo) |
 
-<a name="GRpcClient+search"></a>
-
 ### gRpcClient.search(params) ⇒ [`Promise.&lt;ResponseSearch&gt;`](#GRpcClient.ResponseSearch)
 
 Send gRPC call and return the result
@@ -594,8 +561,6 @@ Send gRPC call and return the result
 | Param  | Type                                         |
 | ------ | -------------------------------------------- |
 | params | [`RequestSearch`](#GRpcClient.RequestSearch) |
-
-<a name="GRpcClient+getNetInfo"></a>
 
 ### gRpcClient.getNetInfo(params) ⇒ [`Promise.&lt;ResponseGetNetInfo&gt;`](#GRpcClient.ResponseGetNetInfo)
 
@@ -607,8 +572,6 @@ Send gRPC call and return the result
 | ------ | ---------------------------------------------------- |
 | params | [`RequestGetNetInfo`](#GRpcClient.RequestGetNetInfo) |
 
-<a name="GRpcClient+getValidatorsInfo"></a>
-
 ### gRpcClient.getValidatorsInfo(params) ⇒ [`Promise.&lt;ResponseGetValidatorsInfo&gt;`](#GRpcClient.ResponseGetValidatorsInfo)
 
 Send gRPC call and return the result
@@ -619,8 +582,6 @@ Send gRPC call and return the result
 | ------ | ------------------------------------------------------------------ |
 | params | [`RequestGetValidatorsInfo`](#GRpcClient.RequestGetValidatorsInfo) |
 
-<a name="GRpcClient+getConfig"></a>
-
 ### gRpcClient.getConfig(params) ⇒ [`Promise.&lt;ResponseGetConfig&gt;`](#GRpcClient.ResponseGetConfig)
 
 Send gRPC call and return the result
@@ -630,8 +591,6 @@ Send gRPC call and return the result
 | Param  | Type                                               |
 | ------ | -------------------------------------------------- |
 | params | [`RequestGetConfig`](#GRpcClient.RequestGetConfig) |
-
-<a name="GRpcClient+subscribe"></a>
 
 ### gRpcClient.subscribe(params) ⇒ `EventEmitter`
 
@@ -644,8 +603,6 @@ Send gRPC call and return the result
 | ------ | -------------------------------------------------- |
 | params | [`RequestSubscribe`](#GRpcClient.RequestSubscribe) |
 
-<a name="GRpcClient+unsubscribe"></a>
-
 ### gRpcClient.unsubscribe(params) ⇒ [`Promise.&lt;ResponseUnsubscribe&gt;`](#GRpcClient.ResponseUnsubscribe)
 
 Send gRPC call and return the result
@@ -656,8 +613,6 @@ Send gRPC call and return the result
 | ------ | ------------------------------------------------------ |
 | params | [`RequestUnsubscribe`](#GRpcClient.RequestUnsubscribe) |
 
-<a name="GRpcClient+storeFile"></a>
-
 ### gRpcClient.storeFile(params) ⇒ [`Promise.&lt;ResponseStoreFile&gt;`](#GRpcClient.ResponseStoreFile)
 
 Send gRPC call and return the result
@@ -667,8 +622,6 @@ Send gRPC call and return the result
 | Param  | Type                                               |
 | ------ | -------------------------------------------------- |
 | params | [`RequestStoreFile`](#GRpcClient.RequestStoreFile) |
-
-<a name="GRpcClient+loadFile"></a>
 
 ### gRpcClient.loadFile(params) ⇒ `EventEmitter`
 
@@ -681,8 +634,6 @@ Send gRPC call and return the result
 | ------ | ------------------------------------------------ |
 | params | [`RequestLoadFile`](#GRpcClient.RequestLoadFile) |
 
-<a name="GRpcClient+pinFile"></a>
-
 ### gRpcClient.pinFile(params) ⇒ [`Promise.&lt;ResponsePinFile&gt;`](#GRpcClient.ResponsePinFile)
 
 Send gRPC call and return the result
@@ -692,8 +643,6 @@ Send gRPC call and return the result
 | Param  | Type                                           |
 | ------ | ---------------------------------------------- |
 | params | [`RequestPinFile`](#GRpcClient.RequestPinFile) |
-
-<a name="GRpcClient+getAccountState"></a>
 
 ### gRpcClient.getAccountState(params) ⇒ `EventEmitter`
 
@@ -706,8 +655,6 @@ Send gRPC call and return the result
 | ------ | -------------------------------------------------------------- |
 | params | [`RequestGetAccountState`](#GRpcClient.RequestGetAccountState) |
 
-<a name="GRpcClient+getAssetState"></a>
-
 ### gRpcClient.getAssetState(params) ⇒ `EventEmitter`
 
 Send gRPC call and return the result
@@ -719,8 +666,6 @@ Send gRPC call and return the result
 | ------ | ---------------------------------------------------------- |
 | params | [`RequestGetAssetState`](#GRpcClient.RequestGetAssetState) |
 
-<a name="GRpcClient+getForgeState"></a>
-
 ### gRpcClient.getForgeState(params) ⇒ [`Promise.&lt;ResponseGetForgeState&gt;`](#GRpcClient.ResponseGetForgeState)
 
 Send gRPC call and return the result
@@ -730,8 +675,6 @@ Send gRPC call and return the result
 | Param  | Type                                                       |
 | ------ | ---------------------------------------------------------- |
 | params | [`RequestGetForgeState`](#GRpcClient.RequestGetForgeState) |
-
-<a name="GRpcClient+getProtocolState"></a>
 
 ### gRpcClient.getProtocolState(params) ⇒ `EventEmitter`
 
@@ -744,8 +687,6 @@ Send gRPC call and return the result
 | ------ | ---------------------------------------------------------------- |
 | params | [`RequestGetProtocolState`](#GRpcClient.RequestGetProtocolState) |
 
-<a name="GRpcClient+getStakeState"></a>
-
 ### gRpcClient.getStakeState(params) ⇒ `EventEmitter`
 
 Send gRPC call and return the result
@@ -756,8 +697,6 @@ Send gRPC call and return the result
 | Param  | Type                                                       |
 | ------ | ---------------------------------------------------------- |
 | params | [`RequestGetStakeState`](#GRpcClient.RequestGetStakeState) |
-
-<a name="GRpcClient+getTetherState"></a>
 
 ### gRpcClient.getTetherState(params) ⇒ `EventEmitter`
 
@@ -770,8 +709,6 @@ Send gRPC call and return the result
 | ------ | ------------------------------------------------------------ |
 | params | [`RequestGetTetherState`](#GRpcClient.RequestGetTetherState) |
 
-<a name="GRpcClient+getSwapState"></a>
-
 ### gRpcClient.getSwapState(params) ⇒ `EventEmitter`
 
 Send gRPC call and return the result
@@ -782,8 +719,6 @@ Send gRPC call and return the result
 | Param  | Type                                                     |
 | ------ | -------------------------------------------------------- |
 | params | [`RequestGetSwapState`](#GRpcClient.RequestGetSwapState) |
-
-<a name="GRpcClient+getDelegateState"></a>
 
 ### gRpcClient.getDelegateState(params) ⇒ `EventEmitter`
 
@@ -796,8 +731,6 @@ Send gRPC call and return the result
 | ------ | ---------------------------------------------------------------- |
 | params | [`RequestGetDelegateState`](#GRpcClient.RequestGetDelegateState) |
 
-<a name="GRpcClient+createWallet"></a>
-
 ### gRpcClient.createWallet(params) ⇒ [`Promise.&lt;ResponseCreateWallet&gt;`](#GRpcClient.ResponseCreateWallet)
 
 Send gRPC call and return the result
@@ -807,8 +740,6 @@ Send gRPC call and return the result
 | Param  | Type                                                     |
 | ------ | -------------------------------------------------------- |
 | params | [`RequestCreateWallet`](#GRpcClient.RequestCreateWallet) |
-
-<a name="GRpcClient+loadWallet"></a>
 
 ### gRpcClient.loadWallet(params) ⇒ [`Promise.&lt;ResponseLoadWallet&gt;`](#GRpcClient.ResponseLoadWallet)
 
@@ -820,8 +751,6 @@ Send gRPC call and return the result
 | ------ | ---------------------------------------------------- |
 | params | [`RequestLoadWallet`](#GRpcClient.RequestLoadWallet) |
 
-<a name="GRpcClient+recoverWallet"></a>
-
 ### gRpcClient.recoverWallet(params) ⇒ [`Promise.&lt;ResponseRecoverWallet&gt;`](#GRpcClient.ResponseRecoverWallet)
 
 Send gRPC call and return the result
@@ -831,8 +760,6 @@ Send gRPC call and return the result
 | Param  | Type                                                       |
 | ------ | ---------------------------------------------------------- |
 | params | [`RequestRecoverWallet`](#GRpcClient.RequestRecoverWallet) |
-
-<a name="GRpcClient+listWallet"></a>
 
 ### gRpcClient.listWallet(params) ⇒ `EventEmitter`
 
@@ -845,8 +772,6 @@ Send gRPC call and return the result
 | ------ | ---------------------------------------------------- |
 | params | [`RequestListWallet`](#GRpcClient.RequestListWallet) |
 
-<a name="GRpcClient+removeWallet"></a>
-
 ### gRpcClient.removeWallet(params) ⇒ [`Promise.&lt;ResponseRemoveWallet&gt;`](#GRpcClient.ResponseRemoveWallet)
 
 Send gRPC call and return the result
@@ -856,8 +781,6 @@ Send gRPC call and return the result
 | Param  | Type                                                     |
 | ------ | -------------------------------------------------------- |
 | params | [`RequestRemoveWallet`](#GRpcClient.RequestRemoveWallet) |
-
-<a name="GRpcClient+declareNode"></a>
 
 ### gRpcClient.declareNode(params) ⇒ [`Promise.&lt;ResponseDeclareNode&gt;`](#GRpcClient.ResponseDeclareNode)
 
@@ -869,8 +792,6 @@ Send gRPC call and return the result
 | ------ | ------------------------------------------------------ |
 | params | [`RequestDeclareNode`](#GRpcClient.RequestDeclareNode) |
 
-<a name="GRpcClient+getForgeStats"></a>
-
 ### gRpcClient.getForgeStats(params) ⇒ [`Promise.&lt;ResponseGetForgeStats&gt;`](#GRpcClient.ResponseGetForgeStats)
 
 Send gRPC call and return the result
@@ -880,8 +801,6 @@ Send gRPC call and return the result
 | Param  | Type                                                       |
 | ------ | ---------------------------------------------------------- |
 | params | [`RequestGetForgeStats`](#GRpcClient.RequestGetForgeStats) |
-
-<a name="GRpcClient+listTransactions"></a>
 
 ### gRpcClient.listTransactions(params) ⇒ [`Promise.&lt;ResponseListTransactions&gt;`](#GRpcClient.ResponseListTransactions)
 
@@ -893,8 +812,6 @@ Send gRPC call and return the result
 | ------ | ---------------------------------------------------------------- |
 | params | [`RequestListTransactions`](#GRpcClient.RequestListTransactions) |
 
-<a name="GRpcClient+listAssets"></a>
-
 ### gRpcClient.listAssets(params) ⇒ [`Promise.&lt;ResponseListAssets&gt;`](#GRpcClient.ResponseListAssets)
 
 Send gRPC call and return the result
@@ -904,8 +821,6 @@ Send gRPC call and return the result
 | Param  | Type                                                 |
 | ------ | ---------------------------------------------------- |
 | params | [`RequestListAssets`](#GRpcClient.RequestListAssets) |
-
-<a name="GRpcClient+listStakes"></a>
 
 ### gRpcClient.listStakes(params) ⇒ [`Promise.&lt;ResponseListStakes&gt;`](#GRpcClient.ResponseListStakes)
 
@@ -917,8 +832,6 @@ Send gRPC call and return the result
 | ------ | ---------------------------------------------------- |
 | params | [`RequestListStakes`](#GRpcClient.RequestListStakes) |
 
-<a name="GRpcClient+listAccount"></a>
-
 ### gRpcClient.listAccount(params) ⇒ [`Promise.&lt;ResponseListAccount&gt;`](#GRpcClient.ResponseListAccount)
 
 Send gRPC call and return the result
@@ -928,8 +841,6 @@ Send gRPC call and return the result
 | Param  | Type                                                   |
 | ------ | ------------------------------------------------------ |
 | params | [`RequestListAccount`](#GRpcClient.RequestListAccount) |
-
-<a name="GRpcClient+listTopAccounts"></a>
 
 ### gRpcClient.listTopAccounts(params) ⇒ [`Promise.&lt;ResponseListTopAccounts&gt;`](#GRpcClient.ResponseListTopAccounts)
 
@@ -941,8 +852,6 @@ Send gRPC call and return the result
 | ------ | -------------------------------------------------------------- |
 | params | [`RequestListTopAccounts`](#GRpcClient.RequestListTopAccounts) |
 
-<a name="GRpcClient+listAssetTransactions"></a>
-
 ### gRpcClient.listAssetTransactions(params) ⇒ [`Promise.&lt;ResponseListAssetTransactions&gt;`](#GRpcClient.ResponseListAssetTransactions)
 
 Send gRPC call and return the result
@@ -952,8 +861,6 @@ Send gRPC call and return the result
 | Param  | Type                                                                       |
 | ------ | -------------------------------------------------------------------------- |
 | params | [`RequestListAssetTransactions`](#GRpcClient.RequestListAssetTransactions) |
-
-<a name="GRpcClient+listBlocks"></a>
 
 ### gRpcClient.listBlocks(params) ⇒ [`Promise.&lt;ResponseListBlocks&gt;`](#GRpcClient.ResponseListBlocks)
 
@@ -965,8 +872,6 @@ Send gRPC call and return the result
 | ------ | ---------------------------------------------------- |
 | params | [`RequestListBlocks`](#GRpcClient.RequestListBlocks) |
 
-<a name="GRpcClient+getHealthStatus"></a>
-
 ### gRpcClient.getHealthStatus(params) ⇒ [`Promise.&lt;ResponseGetHealthStatus&gt;`](#GRpcClient.ResponseGetHealthStatus)
 
 Send gRPC call and return the result
@@ -976,8 +881,6 @@ Send gRPC call and return the result
 | Param  | Type                                                           |
 | ------ | -------------------------------------------------------------- |
 | params | [`RequestGetHealthStatus`](#GRpcClient.RequestGetHealthStatus) |
-
-<a name="GRpcClient+listTethers"></a>
 
 ### gRpcClient.listTethers(params) ⇒ [`Promise.&lt;ResponseListTethers&gt;`](#GRpcClient.ResponseListTethers)
 
@@ -989,8 +892,6 @@ Send gRPC call and return the result
 | ------ | ------------------------------------------------------ |
 | params | [`RequestListTethers`](#GRpcClient.RequestListTethers) |
 
-<a name="GRpcClient+listSwap"></a>
-
 ### gRpcClient.listSwap(params) ⇒ [`Promise.&lt;ResponseListSwap&gt;`](#GRpcClient.ResponseListSwap)
 
 Send gRPC call and return the result
@@ -1000,8 +901,6 @@ Send gRPC call and return the result
 | Param  | Type                                             |
 | ------ | ------------------------------------------------ |
 | params | [`RequestListSwap`](#GRpcClient.RequestListSwap) |
-
-<a name="GRpcClient+sendConsensusUpgradeTx"></a>
 
 ### gRpcClient.sendConsensusUpgradeTx(params) ⇒ `Promise.&lt;string&gt;`
 
@@ -1014,8 +913,6 @@ Send ConsensusUpgradeTx transaction and get the hash, use [getTx](#GRpcClient+ge
 | ------ | ---------------------------------------------------------------- |
 | params | [`ConsensusUpgradeTxInput`](#GRpcClient.ConsensusUpgradeTxInput) |
 
-<a name="GRpcClient+sendDeployProtocolTx"></a>
-
 ### gRpcClient.sendDeployProtocolTx(params) ⇒ `Promise.&lt;string&gt;`
 
 Send DeployProtocolTx transaction and get the hash, use [getTx](#GRpcClient+getTx) to get transaction detail
@@ -1026,8 +923,6 @@ Send DeployProtocolTx transaction and get the hash, use [getTx](#GRpcClient+getT
 | Param  | Type                                                         |
 | ------ | ------------------------------------------------------------ |
 | params | [`DeployProtocolTxInput`](#GRpcClient.DeployProtocolTxInput) |
-
-<a name="GRpcClient+sendSysUpgradeTx"></a>
 
 ### gRpcClient.sendSysUpgradeTx(params) ⇒ `Promise.&lt;string&gt;`
 
@@ -1040,8 +935,6 @@ Send SysUpgradeTx transaction and get the hash, use [getTx](#GRpcClient+getTx) t
 | ------ | ---------------------------------------------------- |
 | params | [`SysUpgradeTxInput`](#GRpcClient.SysUpgradeTxInput) |
 
-<a name="GRpcClient+sendRevokeWithdrawTx"></a>
-
 ### gRpcClient.sendRevokeWithdrawTx(params) ⇒ `Promise.&lt;string&gt;`
 
 Send RevokeWithdrawTx transaction and get the hash, use [getTx](#GRpcClient+getTx) to get transaction detail
@@ -1052,8 +945,6 @@ Send RevokeWithdrawTx transaction and get the hash, use [getTx](#GRpcClient+getT
 | Param  | Type                                                         |
 | ------ | ------------------------------------------------------------ |
 | params | [`RevokeWithdrawTxInput`](#GRpcClient.RevokeWithdrawTxInput) |
-
-<a name="GRpcClient+sendWithdrawTokenTx"></a>
 
 ### gRpcClient.sendWithdrawTokenTx(params) ⇒ `Promise.&lt;string&gt;`
 
@@ -1066,8 +957,6 @@ Send WithdrawTokenTx transaction and get the hash, use [getTx](#GRpcClient+getTx
 | ------ | ---------------------------------------------------------- |
 | params | [`WithdrawTokenTxInput`](#GRpcClient.WithdrawTokenTxInput) |
 
-<a name="GRpcClient+sendDelegateTx"></a>
-
 ### gRpcClient.sendDelegateTx(params) ⇒ `Promise.&lt;string&gt;`
 
 Send DelegateTx transaction and get the hash, use [getTx](#GRpcClient+getTx) to get transaction detail
@@ -1078,8 +967,6 @@ Send DelegateTx transaction and get the hash, use [getTx](#GRpcClient+getTx) to 
 | Param  | Type                                             |
 | ------ | ------------------------------------------------ |
 | params | [`DelegateTxInput`](#GRpcClient.DelegateTxInput) |
-
-<a name="GRpcClient+sendAccountMigrateTx"></a>
 
 ### gRpcClient.sendAccountMigrateTx(params) ⇒ `Promise.&lt;string&gt;`
 
@@ -1092,8 +979,6 @@ Send AccountMigrateTx transaction and get the hash, use [getTx](#GRpcClient+getT
 | ------ | ------------------------------------------------------------ |
 | params | [`AccountMigrateTxInput`](#GRpcClient.AccountMigrateTxInput) |
 
-<a name="GRpcClient+sendDeclareTx"></a>
-
 ### gRpcClient.sendDeclareTx(params) ⇒ `Promise.&lt;string&gt;`
 
 Send DeclareTx transaction and get the hash, use [getTx](#GRpcClient+getTx) to get transaction detail
@@ -1104,8 +989,6 @@ Send DeclareTx transaction and get the hash, use [getTx](#GRpcClient+getTx) to g
 | Param  | Type                                           |
 | ------ | ---------------------------------------------- |
 | params | [`DeclareTxInput`](#GRpcClient.DeclareTxInput) |
-
-<a name="GRpcClient+sendRetrieveSwapTx"></a>
 
 ### gRpcClient.sendRetrieveSwapTx(params) ⇒ `Promise.&lt;string&gt;`
 
@@ -1118,8 +1001,6 @@ Send RetrieveSwapTx transaction and get the hash, use [getTx](#GRpcClient+getTx)
 | ------ | -------------------------------------------------------- |
 | params | [`RetrieveSwapTxInput`](#GRpcClient.RetrieveSwapTxInput) |
 
-<a name="GRpcClient+sendTransferTx"></a>
-
 ### gRpcClient.sendTransferTx(params) ⇒ `Promise.&lt;string&gt;`
 
 Send TransferTx transaction and get the hash, use [getTx](#GRpcClient+getTx) to get transaction detail
@@ -1130,8 +1011,6 @@ Send TransferTx transaction and get the hash, use [getTx](#GRpcClient+getTx) to 
 | Param  | Type                                             |
 | ------ | ------------------------------------------------ |
 | params | [`TransferTxInput`](#GRpcClient.TransferTxInput) |
-
-<a name="GRpcClient+sendRevokeTetherTx"></a>
 
 ### gRpcClient.sendRevokeTetherTx(params) ⇒ `Promise.&lt;string&gt;`
 
@@ -1144,8 +1023,6 @@ Send RevokeTetherTx transaction and get the hash, use [getTx](#GRpcClient+getTx)
 | ------ | -------------------------------------------------------- |
 | params | [`RevokeTetherTxInput`](#GRpcClient.RevokeTetherTxInput) |
 
-<a name="GRpcClient+sendDeactivateProtocolTx"></a>
-
 ### gRpcClient.sendDeactivateProtocolTx(params) ⇒ `Promise.&lt;string&gt;`
 
 Send DeactivateProtocolTx transaction and get the hash, use [getTx](#GRpcClient+getTx) to get transaction detail
@@ -1156,8 +1033,6 @@ Send DeactivateProtocolTx transaction and get the hash, use [getTx](#GRpcClient+
 | Param  | Type                                                                 |
 | ------ | -------------------------------------------------------------------- |
 | params | [`DeactivateProtocolTxInput`](#GRpcClient.DeactivateProtocolTxInput) |
-
-<a name="GRpcClient+sendPokeTx"></a>
 
 ### gRpcClient.sendPokeTx(params) ⇒ `Promise.&lt;string&gt;`
 
@@ -1170,8 +1045,6 @@ Send PokeTx transaction and get the hash, use [getTx](#GRpcClient+getTx) to get 
 | ------ | ---------------------------------------- |
 | params | [`PokeTxInput`](#GRpcClient.PokeTxInput) |
 
-<a name="GRpcClient+checkin"></a>
-
 ### gRpcClient.checkin(params) ⇒ `Promise.&lt;string&gt;`
 
 Send PokeTx transaction and get the hash, use [getTx](#GRpcClient+getTx) to get transaction detail
@@ -1182,8 +1055,6 @@ Send PokeTx transaction and get the hash, use [getTx](#GRpcClient+getTx) to get 
 | Param  | Type                                     |
 | ------ | ---------------------------------------- |
 | params | [`PokeTxInput`](#GRpcClient.PokeTxInput) |
-
-<a name="GRpcClient+sendCreateAssetTx"></a>
 
 ### gRpcClient.sendCreateAssetTx(params) ⇒ `Promise.&lt;string&gt;`
 
@@ -1196,8 +1067,6 @@ Send CreateAssetTx transaction and get the hash, use [getTx](#GRpcClient+getTx) 
 | ------ | ------------------------------------------------------ |
 | params | [`CreateAssetTxInput`](#GRpcClient.CreateAssetTxInput) |
 
-<a name="GRpcClient+sendDepositTetherTx"></a>
-
 ### gRpcClient.sendDepositTetherTx(params) ⇒ `Promise.&lt;string&gt;`
 
 Send DepositTetherTx transaction and get the hash, use [getTx](#GRpcClient+getTx) to get transaction detail
@@ -1208,8 +1077,6 @@ Send DepositTetherTx transaction and get the hash, use [getTx](#GRpcClient+getTx
 | Param  | Type                                                       |
 | ------ | ---------------------------------------------------------- |
 | params | [`DepositTetherTxInput`](#GRpcClient.DepositTetherTxInput) |
-
-<a name="GRpcClient+sendExchangeTetherTx"></a>
 
 ### gRpcClient.sendExchangeTetherTx(params) ⇒ `Promise.&lt;string&gt;`
 
@@ -1222,8 +1089,6 @@ Send ExchangeTetherTx transaction and get the hash, use [getTx](#GRpcClient+getT
 | ------ | ------------------------------------------------------------ |
 | params | [`ExchangeTetherTxInput`](#GRpcClient.ExchangeTetherTxInput) |
 
-<a name="GRpcClient+sendConsumeAssetTx"></a>
-
 ### gRpcClient.sendConsumeAssetTx(params) ⇒ `Promise.&lt;string&gt;`
 
 Send ConsumeAssetTx transaction and get the hash, use [getTx](#GRpcClient+getTx) to get transaction detail
@@ -1234,8 +1099,6 @@ Send ConsumeAssetTx transaction and get the hash, use [getTx](#GRpcClient+getTx)
 | Param  | Type                                                     |
 | ------ | -------------------------------------------------------- |
 | params | [`ConsumeAssetTxInput`](#GRpcClient.ConsumeAssetTxInput) |
-
-<a name="GRpcClient+sendSetupSwapTx"></a>
 
 ### gRpcClient.sendSetupSwapTx(params) ⇒ `Promise.&lt;string&gt;`
 
@@ -1248,8 +1111,6 @@ Send SetupSwapTx transaction and get the hash, use [getTx](#GRpcClient+getTx) to
 | ------ | -------------------------------------------------- |
 | params | [`SetupSwapTxInput`](#GRpcClient.SetupSwapTxInput) |
 
-<a name="GRpcClient+sendApproveWithdrawTx"></a>
-
 ### gRpcClient.sendApproveWithdrawTx(params) ⇒ `Promise.&lt;string&gt;`
 
 Send ApproveWithdrawTx transaction and get the hash, use [getTx](#GRpcClient+getTx) to get transaction detail
@@ -1260,8 +1121,6 @@ Send ApproveWithdrawTx transaction and get the hash, use [getTx](#GRpcClient+get
 | Param  | Type                                                           |
 | ------ | -------------------------------------------------------------- |
 | params | [`ApproveWithdrawTxInput`](#GRpcClient.ApproveWithdrawTxInput) |
-
-<a name="GRpcClient+sendUpdateAssetTx"></a>
 
 ### gRpcClient.sendUpdateAssetTx(params) ⇒ `Promise.&lt;string&gt;`
 
@@ -1274,8 +1133,6 @@ Send UpdateAssetTx transaction and get the hash, use [getTx](#GRpcClient+getTx) 
 | ------ | ------------------------------------------------------ |
 | params | [`UpdateAssetTxInput`](#GRpcClient.UpdateAssetTxInput) |
 
-<a name="GRpcClient+sendRevokeSwapTx"></a>
-
 ### gRpcClient.sendRevokeSwapTx(params) ⇒ `Promise.&lt;string&gt;`
 
 Send RevokeSwapTx transaction and get the hash, use [getTx](#GRpcClient+getTx) to get transaction detail
@@ -1286,8 +1143,6 @@ Send RevokeSwapTx transaction and get the hash, use [getTx](#GRpcClient+getTx) t
 | Param  | Type                                                 |
 | ------ | ---------------------------------------------------- |
 | params | [`RevokeSwapTxInput`](#GRpcClient.RevokeSwapTxInput) |
-
-<a name="GRpcClient+sendExchangeTx"></a>
 
 ### gRpcClient.sendExchangeTx(params) ⇒ `Promise.&lt;string&gt;`
 
@@ -1300,8 +1155,6 @@ Send ExchangeTx transaction and get the hash, use [getTx](#GRpcClient+getTx) to 
 | ------ | ------------------------------------------------ |
 | params | [`ExchangeTxInput`](#GRpcClient.ExchangeTxInput) |
 
-<a name="GRpcClient+sendWithdrawTetherTx"></a>
-
 ### gRpcClient.sendWithdrawTetherTx(params) ⇒ `Promise.&lt;string&gt;`
 
 Send WithdrawTetherTx transaction and get the hash, use [getTx](#GRpcClient+getTx) to get transaction detail
@@ -1312,8 +1165,6 @@ Send WithdrawTetherTx transaction and get the hash, use [getTx](#GRpcClient+getT
 | Param  | Type                                                         |
 | ------ | ------------------------------------------------------------ |
 | params | [`WithdrawTetherTxInput`](#GRpcClient.WithdrawTetherTxInput) |
-
-<a name="GRpcClient+sendActivateProtocolTx"></a>
 
 ### gRpcClient.sendActivateProtocolTx(params) ⇒ `Promise.&lt;string&gt;`
 
@@ -1326,8 +1177,6 @@ Send ActivateProtocolTx transaction and get the hash, use [getTx](#GRpcClient+ge
 | ------ | ---------------------------------------------------------------- |
 | params | [`ActivateProtocolTxInput`](#GRpcClient.ActivateProtocolTxInput) |
 
-<a name="GRpcClient+sendApproveTetherTx"></a>
-
 ### gRpcClient.sendApproveTetherTx(params) ⇒ `Promise.&lt;string&gt;`
 
 Send ApproveTetherTx transaction and get the hash, use [getTx](#GRpcClient+getTx) to get transaction detail
@@ -1338,8 +1187,6 @@ Send ApproveTetherTx transaction and get the hash, use [getTx](#GRpcClient+getTx
 | Param  | Type                                                       |
 | ------ | ---------------------------------------------------------- |
 | params | [`ApproveTetherTxInput`](#GRpcClient.ApproveTetherTxInput) |
-
-<a name="GRpcClient+sendUpgradeNodeTx"></a>
 
 ### gRpcClient.sendUpgradeNodeTx(params) ⇒ `Promise.&lt;string&gt;`
 
@@ -1352,8 +1199,6 @@ Send UpgradeNodeTx transaction and get the hash, use [getTx](#GRpcClient+getTx) 
 | ------ | ------------------------------------------------------ |
 | params | [`UpgradeNodeTxInput`](#GRpcClient.UpgradeNodeTxInput) |
 
-<a name="GRpcClient+sendDepositTokenTx"></a>
-
 ### gRpcClient.sendDepositTokenTx(params) ⇒ `Promise.&lt;string&gt;`
 
 Send DepositTokenTx transaction and get the hash, use [getTx](#GRpcClient+getTx) to get transaction detail
@@ -1364,8 +1209,6 @@ Send DepositTokenTx transaction and get the hash, use [getTx](#GRpcClient+getTx)
 | Param  | Type                                                     |
 | ------ | -------------------------------------------------------- |
 | params | [`DepositTokenTxInput`](#GRpcClient.DepositTokenTxInput) |
-
-<a name="GRpcClient+sendAcquireAssetTx"></a>
 
 ### gRpcClient.sendAcquireAssetTx(params) ⇒ `Promise.&lt;string&gt;`
 
@@ -1378,8 +1221,6 @@ Send AcquireAssetTx transaction and get the hash, use [getTx](#GRpcClient+getTx)
 | ------ | -------------------------------------------------------- |
 | params | [`AcquireAssetTxInput`](#GRpcClient.AcquireAssetTxInput) |
 
-<a name="GRpcClient+sendStakeTx"></a>
-
 ### gRpcClient.sendStakeTx(params) ⇒ `Promise.&lt;string&gt;`
 
 Send StakeTx transaction and get the hash, use [getTx](#GRpcClient+getTx) to get transaction detail
@@ -1390,8 +1231,6 @@ Send StakeTx transaction and get the hash, use [getTx](#GRpcClient+getTx) to get
 | Param  | Type                                       |
 | ------ | ------------------------------------------ |
 | params | [`StakeTxInput`](#GRpcClient.StakeTxInput) |
-
-<a name="GRpcClient+encodeConsensusUpgradeTx"></a>
 
 ### gRpcClient.encodeConsensusUpgradeTx(params) ⇒ [`Promise.&lt;TxEncodeOutput&gt;`](#GRpcClient.TxEncodeOutput)
 
@@ -1404,8 +1243,6 @@ Encode a ConsensusUpgradeTx transaction for later use
 | ------ | ---------------------------------------------------------------- |
 | params | [`ConsensusUpgradeTxInput`](#GRpcClient.ConsensusUpgradeTxInput) |
 
-<a name="GRpcClient+encodeDeployProtocolTx"></a>
-
 ### gRpcClient.encodeDeployProtocolTx(params) ⇒ [`Promise.&lt;TxEncodeOutput&gt;`](#GRpcClient.TxEncodeOutput)
 
 Encode a DeployProtocolTx transaction for later use
@@ -1416,8 +1253,6 @@ Encode a DeployProtocolTx transaction for later use
 | Param  | Type                                                         |
 | ------ | ------------------------------------------------------------ |
 | params | [`DeployProtocolTxInput`](#GRpcClient.DeployProtocolTxInput) |
-
-<a name="GRpcClient+encodeSysUpgradeTx"></a>
 
 ### gRpcClient.encodeSysUpgradeTx(params) ⇒ [`Promise.&lt;TxEncodeOutput&gt;`](#GRpcClient.TxEncodeOutput)
 
@@ -1430,8 +1265,6 @@ Encode a SysUpgradeTx transaction for later use
 | ------ | ---------------------------------------------------- |
 | params | [`SysUpgradeTxInput`](#GRpcClient.SysUpgradeTxInput) |
 
-<a name="GRpcClient+encodeRevokeWithdrawTx"></a>
-
 ### gRpcClient.encodeRevokeWithdrawTx(params) ⇒ [`Promise.&lt;TxEncodeOutput&gt;`](#GRpcClient.TxEncodeOutput)
 
 Encode a RevokeWithdrawTx transaction for later use
@@ -1442,8 +1275,6 @@ Encode a RevokeWithdrawTx transaction for later use
 | Param  | Type                                                         |
 | ------ | ------------------------------------------------------------ |
 | params | [`RevokeWithdrawTxInput`](#GRpcClient.RevokeWithdrawTxInput) |
-
-<a name="GRpcClient+encodeWithdrawTokenTx"></a>
 
 ### gRpcClient.encodeWithdrawTokenTx(params) ⇒ [`Promise.&lt;TxEncodeOutput&gt;`](#GRpcClient.TxEncodeOutput)
 
@@ -1456,8 +1287,6 @@ Encode a WithdrawTokenTx transaction for later use
 | ------ | ---------------------------------------------------------- |
 | params | [`WithdrawTokenTxInput`](#GRpcClient.WithdrawTokenTxInput) |
 
-<a name="GRpcClient+encodeDelegateTx"></a>
-
 ### gRpcClient.encodeDelegateTx(params) ⇒ [`Promise.&lt;TxEncodeOutput&gt;`](#GRpcClient.TxEncodeOutput)
 
 Encode a DelegateTx transaction for later use
@@ -1468,8 +1297,6 @@ Encode a DelegateTx transaction for later use
 | Param  | Type                                             |
 | ------ | ------------------------------------------------ |
 | params | [`DelegateTxInput`](#GRpcClient.DelegateTxInput) |
-
-<a name="GRpcClient+encodeAccountMigrateTx"></a>
 
 ### gRpcClient.encodeAccountMigrateTx(params) ⇒ [`Promise.&lt;TxEncodeOutput&gt;`](#GRpcClient.TxEncodeOutput)
 
@@ -1482,8 +1309,6 @@ Encode a AccountMigrateTx transaction for later use
 | ------ | ------------------------------------------------------------ |
 | params | [`AccountMigrateTxInput`](#GRpcClient.AccountMigrateTxInput) |
 
-<a name="GRpcClient+encodeDeclareTx"></a>
-
 ### gRpcClient.encodeDeclareTx(params) ⇒ [`Promise.&lt;TxEncodeOutput&gt;`](#GRpcClient.TxEncodeOutput)
 
 Encode a DeclareTx transaction for later use
@@ -1494,8 +1319,6 @@ Encode a DeclareTx transaction for later use
 | Param  | Type                                           |
 | ------ | ---------------------------------------------- |
 | params | [`DeclareTxInput`](#GRpcClient.DeclareTxInput) |
-
-<a name="GRpcClient+encodeRetrieveSwapTx"></a>
 
 ### gRpcClient.encodeRetrieveSwapTx(params) ⇒ [`Promise.&lt;TxEncodeOutput&gt;`](#GRpcClient.TxEncodeOutput)
 
@@ -1508,8 +1331,6 @@ Encode a RetrieveSwapTx transaction for later use
 | ------ | -------------------------------------------------------- |
 | params | [`RetrieveSwapTxInput`](#GRpcClient.RetrieveSwapTxInput) |
 
-<a name="GRpcClient+encodeTransferTx"></a>
-
 ### gRpcClient.encodeTransferTx(params) ⇒ [`Promise.&lt;TxEncodeOutput&gt;`](#GRpcClient.TxEncodeOutput)
 
 Encode a TransferTx transaction for later use
@@ -1520,8 +1341,6 @@ Encode a TransferTx transaction for later use
 | Param  | Type                                             |
 | ------ | ------------------------------------------------ |
 | params | [`TransferTxInput`](#GRpcClient.TransferTxInput) |
-
-<a name="GRpcClient+encodeRevokeTetherTx"></a>
 
 ### gRpcClient.encodeRevokeTetherTx(params) ⇒ [`Promise.&lt;TxEncodeOutput&gt;`](#GRpcClient.TxEncodeOutput)
 
@@ -1534,8 +1353,6 @@ Encode a RevokeTetherTx transaction for later use
 | ------ | -------------------------------------------------------- |
 | params | [`RevokeTetherTxInput`](#GRpcClient.RevokeTetherTxInput) |
 
-<a name="GRpcClient+encodeDeactivateProtocolTx"></a>
-
 ### gRpcClient.encodeDeactivateProtocolTx(params) ⇒ [`Promise.&lt;TxEncodeOutput&gt;`](#GRpcClient.TxEncodeOutput)
 
 Encode a DeactivateProtocolTx transaction for later use
@@ -1546,8 +1363,6 @@ Encode a DeactivateProtocolTx transaction for later use
 | Param  | Type                                                                 |
 | ------ | -------------------------------------------------------------------- |
 | params | [`DeactivateProtocolTxInput`](#GRpcClient.DeactivateProtocolTxInput) |
-
-<a name="GRpcClient+encodePokeTx"></a>
 
 ### gRpcClient.encodePokeTx(params) ⇒ [`Promise.&lt;TxEncodeOutput&gt;`](#GRpcClient.TxEncodeOutput)
 
@@ -1560,8 +1375,6 @@ Encode a PokeTx transaction for later use
 | ------ | ---------------------------------------- |
 | params | [`PokeTxInput`](#GRpcClient.PokeTxInput) |
 
-<a name="GRpcClient+encodeCreateAssetTx"></a>
-
 ### gRpcClient.encodeCreateAssetTx(params) ⇒ [`Promise.&lt;TxEncodeOutput&gt;`](#GRpcClient.TxEncodeOutput)
 
 Encode a CreateAssetTx transaction for later use
@@ -1572,8 +1385,6 @@ Encode a CreateAssetTx transaction for later use
 | Param  | Type                                                   |
 | ------ | ------------------------------------------------------ |
 | params | [`CreateAssetTxInput`](#GRpcClient.CreateAssetTxInput) |
-
-<a name="GRpcClient+encodeDepositTetherTx"></a>
 
 ### gRpcClient.encodeDepositTetherTx(params) ⇒ [`Promise.&lt;TxEncodeOutput&gt;`](#GRpcClient.TxEncodeOutput)
 
@@ -1586,8 +1397,6 @@ Encode a DepositTetherTx transaction for later use
 | ------ | ---------------------------------------------------------- |
 | params | [`DepositTetherTxInput`](#GRpcClient.DepositTetherTxInput) |
 
-<a name="GRpcClient+encodeExchangeTetherTx"></a>
-
 ### gRpcClient.encodeExchangeTetherTx(params) ⇒ [`Promise.&lt;TxEncodeOutput&gt;`](#GRpcClient.TxEncodeOutput)
 
 Encode a ExchangeTetherTx transaction for later use
@@ -1598,8 +1407,6 @@ Encode a ExchangeTetherTx transaction for later use
 | Param  | Type                                                         |
 | ------ | ------------------------------------------------------------ |
 | params | [`ExchangeTetherTxInput`](#GRpcClient.ExchangeTetherTxInput) |
-
-<a name="GRpcClient+encodeConsumeAssetTx"></a>
 
 ### gRpcClient.encodeConsumeAssetTx(params) ⇒ [`Promise.&lt;TxEncodeOutput&gt;`](#GRpcClient.TxEncodeOutput)
 
@@ -1612,8 +1419,6 @@ Encode a ConsumeAssetTx transaction for later use
 | ------ | -------------------------------------------------------- |
 | params | [`ConsumeAssetTxInput`](#GRpcClient.ConsumeAssetTxInput) |
 
-<a name="GRpcClient+encodeSetupSwapTx"></a>
-
 ### gRpcClient.encodeSetupSwapTx(params) ⇒ [`Promise.&lt;TxEncodeOutput&gt;`](#GRpcClient.TxEncodeOutput)
 
 Encode a SetupSwapTx transaction for later use
@@ -1624,8 +1429,6 @@ Encode a SetupSwapTx transaction for later use
 | Param  | Type                                               |
 | ------ | -------------------------------------------------- |
 | params | [`SetupSwapTxInput`](#GRpcClient.SetupSwapTxInput) |
-
-<a name="GRpcClient+encodeApproveWithdrawTx"></a>
 
 ### gRpcClient.encodeApproveWithdrawTx(params) ⇒ [`Promise.&lt;TxEncodeOutput&gt;`](#GRpcClient.TxEncodeOutput)
 
@@ -1638,8 +1441,6 @@ Encode a ApproveWithdrawTx transaction for later use
 | ------ | -------------------------------------------------------------- |
 | params | [`ApproveWithdrawTxInput`](#GRpcClient.ApproveWithdrawTxInput) |
 
-<a name="GRpcClient+encodeUpdateAssetTx"></a>
-
 ### gRpcClient.encodeUpdateAssetTx(params) ⇒ [`Promise.&lt;TxEncodeOutput&gt;`](#GRpcClient.TxEncodeOutput)
 
 Encode a UpdateAssetTx transaction for later use
@@ -1650,8 +1451,6 @@ Encode a UpdateAssetTx transaction for later use
 | Param  | Type                                                   |
 | ------ | ------------------------------------------------------ |
 | params | [`UpdateAssetTxInput`](#GRpcClient.UpdateAssetTxInput) |
-
-<a name="GRpcClient+encodeRevokeSwapTx"></a>
 
 ### gRpcClient.encodeRevokeSwapTx(params) ⇒ [`Promise.&lt;TxEncodeOutput&gt;`](#GRpcClient.TxEncodeOutput)
 
@@ -1664,8 +1463,6 @@ Encode a RevokeSwapTx transaction for later use
 | ------ | ---------------------------------------------------- |
 | params | [`RevokeSwapTxInput`](#GRpcClient.RevokeSwapTxInput) |
 
-<a name="GRpcClient+encodeExchangeTx"></a>
-
 ### gRpcClient.encodeExchangeTx(params) ⇒ [`Promise.&lt;TxEncodeOutput&gt;`](#GRpcClient.TxEncodeOutput)
 
 Encode a ExchangeTx transaction for later use
@@ -1676,8 +1473,6 @@ Encode a ExchangeTx transaction for later use
 | Param  | Type                                             |
 | ------ | ------------------------------------------------ |
 | params | [`ExchangeTxInput`](#GRpcClient.ExchangeTxInput) |
-
-<a name="GRpcClient+encodeWithdrawTetherTx"></a>
 
 ### gRpcClient.encodeWithdrawTetherTx(params) ⇒ [`Promise.&lt;TxEncodeOutput&gt;`](#GRpcClient.TxEncodeOutput)
 
@@ -1690,8 +1485,6 @@ Encode a WithdrawTetherTx transaction for later use
 | ------ | ------------------------------------------------------------ |
 | params | [`WithdrawTetherTxInput`](#GRpcClient.WithdrawTetherTxInput) |
 
-<a name="GRpcClient+encodeActivateProtocolTx"></a>
-
 ### gRpcClient.encodeActivateProtocolTx(params) ⇒ [`Promise.&lt;TxEncodeOutput&gt;`](#GRpcClient.TxEncodeOutput)
 
 Encode a ActivateProtocolTx transaction for later use
@@ -1702,8 +1495,6 @@ Encode a ActivateProtocolTx transaction for later use
 | Param  | Type                                                             |
 | ------ | ---------------------------------------------------------------- |
 | params | [`ActivateProtocolTxInput`](#GRpcClient.ActivateProtocolTxInput) |
-
-<a name="GRpcClient+encodeApproveTetherTx"></a>
 
 ### gRpcClient.encodeApproveTetherTx(params) ⇒ [`Promise.&lt;TxEncodeOutput&gt;`](#GRpcClient.TxEncodeOutput)
 
@@ -1716,8 +1507,6 @@ Encode a ApproveTetherTx transaction for later use
 | ------ | ---------------------------------------------------------- |
 | params | [`ApproveTetherTxInput`](#GRpcClient.ApproveTetherTxInput) |
 
-<a name="GRpcClient+encodeUpgradeNodeTx"></a>
-
 ### gRpcClient.encodeUpgradeNodeTx(params) ⇒ [`Promise.&lt;TxEncodeOutput&gt;`](#GRpcClient.TxEncodeOutput)
 
 Encode a UpgradeNodeTx transaction for later use
@@ -1728,8 +1517,6 @@ Encode a UpgradeNodeTx transaction for later use
 | Param  | Type                                                   |
 | ------ | ------------------------------------------------------ |
 | params | [`UpgradeNodeTxInput`](#GRpcClient.UpgradeNodeTxInput) |
-
-<a name="GRpcClient+encodeDepositTokenTx"></a>
 
 ### gRpcClient.encodeDepositTokenTx(params) ⇒ [`Promise.&lt;TxEncodeOutput&gt;`](#GRpcClient.TxEncodeOutput)
 
@@ -1742,8 +1529,6 @@ Encode a DepositTokenTx transaction for later use
 | ------ | -------------------------------------------------------- |
 | params | [`DepositTokenTxInput`](#GRpcClient.DepositTokenTxInput) |
 
-<a name="GRpcClient+encodeAcquireAssetTx"></a>
-
 ### gRpcClient.encodeAcquireAssetTx(params) ⇒ [`Promise.&lt;TxEncodeOutput&gt;`](#GRpcClient.TxEncodeOutput)
 
 Encode a AcquireAssetTx transaction for later use
@@ -1754,8 +1539,6 @@ Encode a AcquireAssetTx transaction for later use
 | Param  | Type                                                     |
 | ------ | -------------------------------------------------------- |
 | params | [`AcquireAssetTxInput`](#GRpcClient.AcquireAssetTxInput) |
-
-<a name="GRpcClient+encodeStakeTx"></a>
 
 ### gRpcClient.encodeStakeTx(params) ⇒ [`Promise.&lt;TxEncodeOutput&gt;`](#GRpcClient.TxEncodeOutput)
 
@@ -1768,8 +1551,6 @@ Encode a StakeTx transaction for later use
 | ------ | ------------------------------------------ |
 | params | [`StakeTxInput`](#GRpcClient.StakeTxInput) |
 
-<a name="GRpcClient.TxEncodeOutput"></a>
-
 ### GRpcClient.TxEncodeOutput : `object`
 
 Structure of GRpcClient.TxEncodeOutput
@@ -1781,8 +1562,6 @@ Structure of GRpcClient.TxEncodeOutput
 | ------ | -------- | -------------------------------------------------------------------------------------- |
 | object | `object` | the transaction object, human readable                                                 |
 | buffer | `buffer` | the transaction binary presentation, can be used to signing, encoding to other formats |
-
-<a name="GRpcClient.RequestCreateTx"></a>
 
 ### GRpcClient.RequestCreateTx : `object`
 
@@ -1821,8 +1600,6 @@ Structure of GRpcClient.RequestCreateTx
 | nonce  | `number`                               |
 | wallet | [`WalletInfo`](#GRpcClient.WalletInfo) |
 | token  | `string`                               |
-
-<a name="GRpcClient.ResponseCreateTx"></a>
 
 ### GRpcClient.ResponseCreateTx : `object`
 
@@ -1876,8 +1653,6 @@ Structure of GRpcClient.ResponseCreateTx
 | ---- | ---------------------------------------- |
 | code | `GRpcClient.StatusCode`                  |
 | tx   | [`Transaction`](#GRpcClient.Transaction) |
-
-<a name="GRpcClient.RequestMultisig"></a>
 
 ### GRpcClient.RequestMultisig : `object`
 
@@ -1951,8 +1726,6 @@ Structure of GRpcClient.RequestMultisig
 | token     | `string`                                 |
 | delegatee | `string`                                 |
 
-<a name="GRpcClient.ResponseMultisig"></a>
-
 ### GRpcClient.ResponseMultisig : `object`
 
 Structure of GRpcClient.ResponseMultisig
@@ -2005,8 +1778,6 @@ Structure of GRpcClient.ResponseMultisig
 | ---- | ---------------------------------------- |
 | code | `GRpcClient.StatusCode`                  |
 | tx   | [`Transaction`](#GRpcClient.Transaction) |
-
-<a name="GRpcClient.RequestSendTx"></a>
 
 ### GRpcClient.RequestSendTx : `object`
 
@@ -2075,8 +1846,6 @@ Structure of GRpcClient.RequestSendTx
 | token  | `string`                                 |
 | commit | `boolean`                                |
 
-<a name="GRpcClient.ResponseSendTx"></a>
-
 ### GRpcClient.ResponseSendTx : `object`
 
 Structure of GRpcClient.ResponseSendTx
@@ -2096,8 +1865,6 @@ Structure of GRpcClient.ResponseSendTx
 | code | `GRpcClient.StatusCode` |
 | hash | `string`                |
 
-<a name="GRpcClient.RequestGetTx"></a>
-
 ### GRpcClient.RequestGetTx : `object`
 
 Structure of GRpcClient.RequestGetTx
@@ -2114,8 +1881,6 @@ Structure of GRpcClient.RequestGetTx
 | Name | Type     |
 | ---- | -------- |
 | hash | `string` |
-
-<a name="GRpcClient.ResponseGetTx"></a>
 
 ### GRpcClient.ResponseGetTx : `object`
 
@@ -2187,8 +1952,6 @@ Structure of GRpcClient.ResponseGetTx
 | code | `GRpcClient.StatusCode`                          |
 | info | [`TransactionInfo`](#GRpcClient.TransactionInfo) |
 
-<a name="GRpcClient.RequestGetBlock"></a>
-
 ### GRpcClient.RequestGetBlock : `object`
 
 Structure of GRpcClient.RequestGetBlock
@@ -2205,8 +1968,6 @@ Structure of GRpcClient.RequestGetBlock
 | Name   | Type     |
 | ------ | -------- |
 | height | `number` |
-
-<a name="GRpcClient.ResponseGetBlock"></a>
 
 ### GRpcClient.ResponseGetBlock : `object`
 
@@ -2471,8 +2232,6 @@ Structure of GRpcClient.ResponseGetBlock
 | code  | `GRpcClient.StatusCode`              |
 | block | [`BlockInfo`](#GRpcClient.BlockInfo) |
 
-<a name="GRpcClient.RequestGetBlocks"></a>
-
 ### GRpcClient.RequestGetBlocks : `object`
 
 Structure of GRpcClient.RequestGetBlocks
@@ -2509,8 +2268,6 @@ Structure of GRpcClient.RequestGetBlocks
 | paging        | [`PageInput`](#GRpcClient.PageInput)     |
 | heightFilter  | [`RangeFilter`](#GRpcClient.RangeFilter) |
 | emptyExcluded | `boolean`                                |
-
-<a name="GRpcClient.ResponseGetBlocks"></a>
 
 ### GRpcClient.ResponseGetBlocks : `object`
 
@@ -2604,8 +2361,6 @@ Structure of GRpcClient.ResponseGetBlocks
 | page   | [`PageInfo`](#GRpcClient.PageInfo)                             |
 | blocks | [`Array.&lt;BlockInfoSimple&gt;`](#GRpcClient.BlockInfoSimple) |
 
-<a name="GRpcClient.RequestCreateWallet"></a>
-
 ### GRpcClient.RequestCreateWallet : `object`
 
 Structure of GRpcClient.RequestCreateWallet
@@ -2631,8 +2386,6 @@ Structure of GRpcClient.RequestCreateWallet
 | passphrase | `string`                               |
 | type       | [`WalletType`](#GRpcClient.WalletType) |
 | moniker    | `string`                               |
-
-<a name="GRpcClient.ResponseCreateWallet"></a>
 
 ### GRpcClient.ResponseCreateWallet : `object`
 
@@ -2665,8 +2418,6 @@ Structure of GRpcClient.ResponseCreateWallet
 | token  | `string`                               |
 | wallet | [`WalletInfo`](#GRpcClient.WalletInfo) |
 
-<a name="GRpcClient.RequestLoadWallet"></a>
-
 ### GRpcClient.RequestLoadWallet : `object`
 
 Structure of GRpcClient.RequestLoadWallet
@@ -2685,8 +2436,6 @@ Structure of GRpcClient.RequestLoadWallet
 | ---------- | -------- |
 | address    | `string` |
 | passphrase | `string` |
-
-<a name="GRpcClient.ResponseLoadWallet"></a>
 
 ### GRpcClient.ResponseLoadWallet : `object`
 
@@ -2719,8 +2468,6 @@ Structure of GRpcClient.ResponseLoadWallet
 | token  | `string`                               |
 | wallet | [`WalletInfo`](#GRpcClient.WalletInfo) |
 
-<a name="GRpcClient.RequestRecoverWallet"></a>
-
 ### GRpcClient.RequestRecoverWallet : `object`
 
 Structure of GRpcClient.RequestRecoverWallet
@@ -2748,8 +2495,6 @@ Structure of GRpcClient.RequestRecoverWallet
 | type       | [`WalletType`](#GRpcClient.WalletType) |
 | passphrase | `string`                               |
 | moniker    | `string`                               |
-
-<a name="GRpcClient.ResponseRecoverWallet"></a>
 
 ### GRpcClient.ResponseRecoverWallet : `object`
 
@@ -2782,8 +2527,6 @@ Structure of GRpcClient.ResponseRecoverWallet
 | token  | `string`                               |
 | wallet | [`WalletInfo`](#GRpcClient.WalletInfo) |
 
-<a name="GRpcClient.RequestListWallet"></a>
-
 ### GRpcClient.RequestListWallet : `object`
 
 Structure of GRpcClient.RequestListWallet
@@ -2793,7 +2536,6 @@ Structure of GRpcClient.RequestListWallet
 ```
 
 **Kind**: static typedef of [`GRpcClient`](#GRpcClient)  
-<a name="GRpcClient.ResponseListWallet"></a>
 
 ### GRpcClient.ResponseListWallet : `object`
 
@@ -2814,8 +2556,6 @@ Structure of GRpcClient.ResponseListWallet
 | code    | `GRpcClient.StatusCode` |
 | address | `string`                |
 
-<a name="GRpcClient.RequestRemoveWallet"></a>
-
 ### GRpcClient.RequestRemoveWallet : `object`
 
 Structure of GRpcClient.RequestRemoveWallet
@@ -2832,8 +2572,6 @@ Structure of GRpcClient.RequestRemoveWallet
 | Name    | Type     |
 | ------- | -------- |
 | address | `string` |
-
-<a name="GRpcClient.ResponseRemoveWallet"></a>
 
 ### GRpcClient.ResponseRemoveWallet : `object`
 
@@ -2852,8 +2590,6 @@ Structure of GRpcClient.ResponseRemoveWallet
 | ---- | ----------------------- |
 | code | `GRpcClient.StatusCode` |
 
-<a name="GRpcClient.RequestDeclareNode"></a>
-
 ### GRpcClient.RequestDeclareNode : `object`
 
 Structure of GRpcClient.RequestDeclareNode
@@ -2870,8 +2606,6 @@ Structure of GRpcClient.RequestDeclareNode
 | Name      | Type      |
 | --------- | --------- |
 | validator | `boolean` |
-
-<a name="GRpcClient.ResponseDeclareNode"></a>
 
 ### GRpcClient.ResponseDeclareNode : `object`
 
@@ -2902,8 +2636,6 @@ Structure of GRpcClient.ResponseDeclareNode
 | code   | `GRpcClient.StatusCode`                |
 | wallet | [`WalletInfo`](#GRpcClient.WalletInfo) |
 
-<a name="GRpcClient.RequestGetAccountState"></a>
-
 ### GRpcClient.RequestGetAccountState : `object`
 
 Structure of GRpcClient.RequestGetAccountState
@@ -2927,8 +2659,6 @@ Structure of GRpcClient.RequestGetAccountState
 | address | `string`               |
 | keys    | `Array.&lt;string&gt;` |
 | height  | `number`               |
-
-<a name="GRpcClient.ResponseGetAccountState"></a>
 
 ### GRpcClient.ResponseGetAccountState : `object`
 
@@ -3024,8 +2754,6 @@ Structure of GRpcClient.ResponseGetAccountState
 | code  | `GRpcClient.StatusCode`                    |
 | state | [`AccountState`](#GRpcClient.AccountState) |
 
-<a name="GRpcClient.RequestGetAssetState"></a>
-
 ### GRpcClient.RequestGetAssetState : `object`
 
 Structure of GRpcClient.RequestGetAssetState
@@ -3049,8 +2777,6 @@ Structure of GRpcClient.RequestGetAssetState
 | address | `string`               |
 | keys    | `Array.&lt;string&gt;` |
 | height  | `number`               |
-
-<a name="GRpcClient.ResponseGetAssetState"></a>
 
 ### GRpcClient.ResponseGetAssetState : `object`
 
@@ -3113,8 +2839,6 @@ Structure of GRpcClient.ResponseGetAssetState
 | code  | `GRpcClient.StatusCode`                |
 | state | [`AssetState`](#GRpcClient.AssetState) |
 
-<a name="GRpcClient.RequestGetProtocolState"></a>
-
 ### GRpcClient.RequestGetProtocolState : `object`
 
 Structure of GRpcClient.RequestGetProtocolState
@@ -3138,8 +2862,6 @@ Structure of GRpcClient.RequestGetProtocolState
 | address | `string`               |
 | keys    | `Array.&lt;string&gt;` |
 | height  | `number`               |
-
-<a name="GRpcClient.ResponseGetProtocolState"></a>
 
 ### GRpcClient.ResponseGetProtocolState : `object`
 
@@ -3223,8 +2945,6 @@ Structure of GRpcClient.ResponseGetProtocolState
 | code  | `GRpcClient.StatusCode`                      |
 | state | [`ProtocolState`](#GRpcClient.ProtocolState) |
 
-<a name="GRpcClient.RequestGetStakeState"></a>
-
 ### GRpcClient.RequestGetStakeState : `object`
 
 Structure of GRpcClient.RequestGetStakeState
@@ -3248,8 +2968,6 @@ Structure of GRpcClient.RequestGetStakeState
 | address | `string`               |
 | keys    | `Array.&lt;string&gt;` |
 | height  | `number`               |
-
-<a name="GRpcClient.ResponseGetStakeState"></a>
 
 ### GRpcClient.ResponseGetStakeState : `object`
 
@@ -3285,8 +3003,6 @@ Structure of GRpcClient.ResponseGetStakeState
 | code  | `GRpcClient.StatusCode`                |
 | state | [`StakeState`](#GRpcClient.StakeState) |
 
-<a name="GRpcClient.RequestGetForgeState"></a>
-
 ### GRpcClient.RequestGetForgeState : `object`
 
 Structure of GRpcClient.RequestGetForgeState
@@ -3308,8 +3024,6 @@ Structure of GRpcClient.RequestGetForgeState
 | ------ | ---------------------- |
 | keys   | `Array.&lt;string&gt;` |
 | height | `number`               |
-
-<a name="GRpcClient.ResponseGetForgeState"></a>
 
 ### GRpcClient.ResponseGetForgeState : `object`
 
@@ -3457,8 +3171,6 @@ Structure of GRpcClient.ResponseGetForgeState
 | code  | `GRpcClient.StatusCode`                |
 | state | [`ForgeState`](#GRpcClient.ForgeState) |
 
-<a name="GRpcClient.RequestGetTetherState"></a>
-
 ### GRpcClient.RequestGetTetherState : `object`
 
 Structure of GRpcClient.RequestGetTetherState
@@ -3482,8 +3194,6 @@ Structure of GRpcClient.RequestGetTetherState
 | address | `string`               |
 | keys    | `Array.&lt;string&gt;` |
 | height  | `number`               |
-
-<a name="GRpcClient.ResponseGetTetherState"></a>
 
 ### GRpcClient.ResponseGetTetherState : `object`
 
@@ -3513,8 +3223,6 @@ Structure of GRpcClient.ResponseGetTetherState
 | code  | `GRpcClient.StatusCode`                  |
 | state | [`TetherState`](#GRpcClient.TetherState) |
 
-<a name="GRpcClient.RequestGetSwapState"></a>
-
 ### GRpcClient.RequestGetSwapState : `object`
 
 Structure of GRpcClient.RequestGetSwapState
@@ -3538,8 +3246,6 @@ Structure of GRpcClient.RequestGetSwapState
 | address | `string`               |
 | keys    | `Array.&lt;string&gt;` |
 | height  | `number`               |
-
-<a name="GRpcClient.ResponseGetSwapState"></a>
 
 ### GRpcClient.ResponseGetSwapState : `object`
 
@@ -3578,8 +3284,6 @@ Structure of GRpcClient.ResponseGetSwapState
 | code  | `GRpcClient.StatusCode`              |
 | state | [`SwapState`](#GRpcClient.SwapState) |
 
-<a name="GRpcClient.RequestGetDelegateState"></a>
-
 ### GRpcClient.RequestGetDelegateState : `object`
 
 Structure of GRpcClient.RequestGetDelegateState
@@ -3603,8 +3307,6 @@ Structure of GRpcClient.RequestGetDelegateState
 | address | `string`               |
 | keys    | `Array.&lt;string&gt;` |
 | height  | `number`               |
-
-<a name="GRpcClient.ResponseGetDelegateState"></a>
 
 ### GRpcClient.ResponseGetDelegateState : `object`
 
@@ -3644,8 +3346,6 @@ Structure of GRpcClient.ResponseGetDelegateState
 | code  | `GRpcClient.StatusCode`                      |
 | state | [`DelegateState`](#GRpcClient.DelegateState) |
 
-<a name="GRpcClient.RequestStoreFile"></a>
-
 ### GRpcClient.RequestStoreFile : `object`
 
 Structure of GRpcClient.RequestStoreFile
@@ -3662,8 +3362,6 @@ Structure of GRpcClient.RequestStoreFile
 | Name  | Type         |
 | ----- | ------------ |
 | chunk | `Uint8Array` |
-
-<a name="GRpcClient.ResponseStoreFile"></a>
 
 ### GRpcClient.ResponseStoreFile : `object`
 
@@ -3684,8 +3382,6 @@ Structure of GRpcClient.ResponseStoreFile
 | code | `GRpcClient.StatusCode` |
 | hash | `string`                |
 
-<a name="GRpcClient.RequestLoadFile"></a>
-
 ### GRpcClient.RequestLoadFile : `object`
 
 Structure of GRpcClient.RequestLoadFile
@@ -3702,8 +3398,6 @@ Structure of GRpcClient.RequestLoadFile
 | Name | Type     |
 | ---- | -------- |
 | hash | `string` |
-
-<a name="GRpcClient.ResponseLoadFile"></a>
 
 ### GRpcClient.ResponseLoadFile : `object`
 
@@ -3724,8 +3418,6 @@ Structure of GRpcClient.ResponseLoadFile
 | code  | `GRpcClient.StatusCode` |
 | chunk | `Uint8Array`            |
 
-<a name="GRpcClient.RequestPinFile"></a>
-
 ### GRpcClient.RequestPinFile : `object`
 
 Structure of GRpcClient.RequestPinFile
@@ -3742,8 +3434,6 @@ Structure of GRpcClient.RequestPinFile
 | Name | Type     |
 | ---- | -------- |
 | hash | `string` |
-
-<a name="GRpcClient.ResponsePinFile"></a>
 
 ### GRpcClient.ResponsePinFile : `object`
 
@@ -3762,8 +3452,6 @@ Structure of GRpcClient.ResponsePinFile
 | ---- | ----------------------- |
 | code | `GRpcClient.StatusCode` |
 
-<a name="GRpcClient.RequestGetChainInfo"></a>
-
 ### GRpcClient.RequestGetChainInfo : `object`
 
 Structure of GRpcClient.RequestGetChainInfo
@@ -3773,7 +3461,6 @@ Structure of GRpcClient.RequestGetChainInfo
 ```
 
 **Kind**: static typedef of [`GRpcClient`](#GRpcClient)  
-<a name="GRpcClient.ResponseGetChainInfo"></a>
 
 ### GRpcClient.ResponseGetChainInfo : `object`
 
@@ -3815,8 +3502,6 @@ Structure of GRpcClient.ResponseGetChainInfo
 | code | `GRpcClient.StatusCode`              |
 | info | [`ChainInfo`](#GRpcClient.ChainInfo) |
 
-<a name="GRpcClient.RequestGetNodeInfo"></a>
-
 ### GRpcClient.RequestGetNodeInfo : `object`
 
 Structure of GRpcClient.RequestGetNodeInfo
@@ -3826,7 +3511,6 @@ Structure of GRpcClient.RequestGetNodeInfo
 ```
 
 **Kind**: static typedef of [`GRpcClient`](#GRpcClient)  
-<a name="GRpcClient.ResponseGetNodeInfo"></a>
 
 ### GRpcClient.ResponseGetNodeInfo : `object`
 
@@ -3876,8 +3560,6 @@ Structure of GRpcClient.ResponseGetNodeInfo
 | code | `GRpcClient.StatusCode`            |
 | info | [`NodeInfo`](#GRpcClient.NodeInfo) |
 
-<a name="GRpcClient.RequestSearch"></a>
-
 ### GRpcClient.RequestSearch : `object`
 
 Structure of GRpcClient.RequestSearch
@@ -3896,8 +3578,6 @@ Structure of GRpcClient.RequestSearch
 | ----- | -------- |
 | key   | `string` |
 | value | `string` |
-
-<a name="GRpcClient.ResponseSearch"></a>
 
 ### GRpcClient.ResponseSearch : `object`
 
@@ -4023,8 +3703,6 @@ Structure of GRpcClient.ResponseSearch
 | code | `GRpcClient.StatusCode`                                        |
 | txs  | [`Array.&lt;TransactionInfo&gt;`](#GRpcClient.TransactionInfo) |
 
-<a name="GRpcClient.RequestGetUnconfirmedTxs"></a>
-
 ### GRpcClient.RequestGetUnconfirmedTxs : `object`
 
 Structure of GRpcClient.RequestGetUnconfirmedTxs
@@ -4054,8 +3732,6 @@ Structure of GRpcClient.RequestGetUnconfirmedTxs
 | Name   | Type                                 |
 | ------ | ------------------------------------ |
 | paging | [`PageInput`](#GRpcClient.PageInput) |
-
-<a name="GRpcClient.ResponseGetUnconfirmedTxs"></a>
 
 ### GRpcClient.ResponseGetUnconfirmedTxs : `object`
 
@@ -4156,8 +3832,6 @@ Structure of GRpcClient.ResponseGetUnconfirmedTxs
 | page           | [`PageInfo`](#GRpcClient.PageInfo)             |
 | unconfirmedTxs | [`UnconfirmedTxs`](#GRpcClient.UnconfirmedTxs) |
 
-<a name="GRpcClient.RequestGetNetInfo"></a>
-
 ### GRpcClient.RequestGetNetInfo : `object`
 
 Structure of GRpcClient.RequestGetNetInfo
@@ -4167,7 +3841,6 @@ Structure of GRpcClient.RequestGetNetInfo
 ```
 
 **Kind**: static typedef of [`GRpcClient`](#GRpcClient)  
-<a name="GRpcClient.ResponseGetNetInfo"></a>
 
 ### GRpcClient.ResponseGetNetInfo : `object`
 
@@ -4223,8 +3896,6 @@ Structure of GRpcClient.ResponseGetNetInfo
 | code    | `GRpcClient.StatusCode`          |
 | netInfo | [`NetInfo`](#GRpcClient.NetInfo) |
 
-<a name="GRpcClient.RequestGetValidatorsInfo"></a>
-
 ### GRpcClient.RequestGetValidatorsInfo : `object`
 
 Structure of GRpcClient.RequestGetValidatorsInfo
@@ -4234,7 +3905,6 @@ Structure of GRpcClient.RequestGetValidatorsInfo
 ```
 
 **Kind**: static typedef of [`GRpcClient`](#GRpcClient)  
-<a name="GRpcClient.ResponseGetValidatorsInfo"></a>
 
 ### GRpcClient.ResponseGetValidatorsInfo : `object`
 
@@ -4291,8 +3961,6 @@ Structure of GRpcClient.ResponseGetValidatorsInfo
 | code           | `GRpcClient.StatusCode`                        |
 | validatorsInfo | [`ValidatorsInfo`](#GRpcClient.ValidatorsInfo) |
 
-<a name="GRpcClient.RequestSubscribe"></a>
-
 ### GRpcClient.RequestSubscribe : `object`
 
 Structure of GRpcClient.RequestSubscribe
@@ -4311,8 +3979,6 @@ Structure of GRpcClient.RequestSubscribe
 | ------ | -------- |
 | topic  | `string` |
 | filter | `string` |
-
-<a name="GRpcClient.ResponseSubscribe"></a>
 
 ### GRpcClient.ResponseSubscribe : `object`
 
@@ -4360,8 +4026,6 @@ Structure of GRpcClient.ResponseSubscribe
 | protocolState      | [`ProtocolState`](#GRpcClient.ProtocolState)         |
 | delegateState      | [`DelegateState`](#GRpcClient.DelegateState)         |
 
-<a name="GRpcClient.RequestUnsubscribe"></a>
-
 ### GRpcClient.RequestUnsubscribe : `object`
 
 Structure of GRpcClient.RequestUnsubscribe
@@ -4378,8 +4042,6 @@ Structure of GRpcClient.RequestUnsubscribe
 | Name  | Type     |
 | ----- | -------- |
 | topic | `string` |
-
-<a name="GRpcClient.ResponseUnsubscribe"></a>
 
 ### GRpcClient.ResponseUnsubscribe : `object`
 
@@ -4398,8 +4060,6 @@ Structure of GRpcClient.ResponseUnsubscribe
 | ---- | ----------------------- |
 | code | `GRpcClient.StatusCode` |
 
-<a name="GRpcClient.RequestGetConfig"></a>
-
 ### GRpcClient.RequestGetConfig : `object`
 
 Structure of GRpcClient.RequestGetConfig
@@ -4416,8 +4076,6 @@ Structure of GRpcClient.RequestGetConfig
 | Name   | Type      |
 | ------ | --------- |
 | parsed | `boolean` |
-
-<a name="GRpcClient.ResponseGetConfig"></a>
 
 ### GRpcClient.ResponseGetConfig : `object`
 
@@ -4438,8 +4096,6 @@ Structure of GRpcClient.ResponseGetConfig
 | code   | `GRpcClient.StatusCode` |
 | config | `string`                |
 
-<a name="GRpcClient.ByDay"></a>
-
 ### GRpcClient.ByDay : `object`
 
 Structure of GRpcClient.ByDay
@@ -4452,8 +4108,6 @@ Structure of GRpcClient.ByDay
 | startDate | `string` |
 | endDate   | `string` |
 
-<a name="GRpcClient.ByHour"></a>
-
 ### GRpcClient.ByHour : `object`
 
 Structure of GRpcClient.ByHour
@@ -4464,8 +4118,6 @@ Structure of GRpcClient.ByHour
 | Name | Type     |
 | ---- | -------- |
 | date | `string` |
-
-<a name="GRpcClient.RequestGetForgeStats"></a>
 
 ### GRpcClient.RequestGetForgeStats : `object`
 
@@ -4487,8 +4139,6 @@ Structure of GRpcClient.RequestGetForgeStats
 | ------- | ------------------------------ |
 | dayInfo | [`ByDay`](#GRpcClient.ByDay)   |
 | date    | [`ByHour`](#GRpcClient.ByHour) |
-
-<a name="GRpcClient.ResponseGetForgeStats"></a>
 
 ### GRpcClient.ResponseGetForgeStats : `object`
 
@@ -4581,8 +4231,6 @@ Structure of GRpcClient.ResponseGetForgeStats
 | code       | `GRpcClient.StatusCode`                |
 | forgeStats | [`ForgeStats`](#GRpcClient.ForgeStats) |
 
-<a name="GRpcClient.RequestListTransactions"></a>
-
 ### GRpcClient.RequestListTransactions : `object`
 
 Structure of GRpcClient.RequestListTransactions
@@ -4634,8 +4282,6 @@ Structure of GRpcClient.RequestListTransactions
 | addressFilter  | [`AddressFilter`](#GRpcClient.AddressFilter)   |
 | typeFilter     | [`TypeFilter`](#GRpcClient.TypeFilter)         |
 | validityFilter | [`ValidityFilter`](#GRpcClient.ValidityFilter) |
-
-<a name="GRpcClient.ResponseListTransactions"></a>
 
 ### GRpcClient.ResponseListTransactions : `object`
 
@@ -4751,8 +4397,6 @@ Structure of GRpcClient.ResponseListTransactions
 | page         | [`PageInfo`](#GRpcClient.PageInfo)                                   |
 | transactions | [`Array.&lt;IndexedTransaction&gt;`](#GRpcClient.IndexedTransaction) |
 
-<a name="GRpcClient.RequestListAssets"></a>
-
 ### GRpcClient.RequestListAssets : `object`
 
 Structure of GRpcClient.RequestListAssets
@@ -4784,8 +4428,6 @@ Structure of GRpcClient.RequestListAssets
 | ------------ | ------------------------------------ |
 | paging       | [`PageInput`](#GRpcClient.PageInput) |
 | ownerAddress | `string`                             |
-
-<a name="GRpcClient.ResponseListAssets"></a>
 
 ### GRpcClient.ResponseListAssets : `object`
 
@@ -4847,8 +4489,6 @@ Structure of GRpcClient.ResponseListAssets
 | page   | [`PageInfo`](#GRpcClient.PageInfo)                                 |
 | assets | [`Array.&lt;IndexedAssetState&gt;`](#GRpcClient.IndexedAssetState) |
 
-<a name="GRpcClient.RequestListStakes"></a>
-
 ### GRpcClient.RequestListStakes : `object`
 
 Structure of GRpcClient.RequestListStakes
@@ -4884,8 +4524,6 @@ Structure of GRpcClient.RequestListStakes
 | ------------- | -------------------------------------------- |
 | paging        | [`PageInput`](#GRpcClient.PageInput)         |
 | addressFilter | [`AddressFilter`](#GRpcClient.AddressFilter) |
-
-<a name="GRpcClient.ResponseListStakes"></a>
 
 ### GRpcClient.ResponseListStakes : `object`
 
@@ -4931,8 +4569,6 @@ Structure of GRpcClient.ResponseListStakes
 | page   | [`PageInfo`](#GRpcClient.PageInfo)                                 |
 | stakes | [`Array.&lt;IndexedStakeState&gt;`](#GRpcClient.IndexedStakeState) |
 
-<a name="GRpcClient.RequestListAccount"></a>
-
 ### GRpcClient.RequestListAccount : `object`
 
 Structure of GRpcClient.RequestListAccount
@@ -4949,8 +4585,6 @@ Structure of GRpcClient.RequestListAccount
 | Name         | Type     |
 | ------------ | -------- |
 | ownerAddress | `string` |
-
-<a name="GRpcClient.ResponseListAccount"></a>
 
 ### GRpcClient.ResponseListAccount : `object`
 
@@ -4985,8 +4619,6 @@ Structure of GRpcClient.ResponseListAccount
 | code    | `GRpcClient.StatusCode`                                  |
 | account | [`IndexedAccountState`](#GRpcClient.IndexedAccountState) |
 
-<a name="GRpcClient.RequestListTopAccounts"></a>
-
 ### GRpcClient.RequestListTopAccounts : `object`
 
 Structure of GRpcClient.RequestListTopAccounts
@@ -5016,8 +4648,6 @@ Structure of GRpcClient.RequestListTopAccounts
 | Name   | Type                                 |
 | ------ | ------------------------------------ |
 | paging | [`PageInput`](#GRpcClient.PageInput) |
-
-<a name="GRpcClient.ResponseListTopAccounts"></a>
 
 ### GRpcClient.ResponseListTopAccounts : `object`
 
@@ -5075,8 +4705,6 @@ Structure of GRpcClient.ResponseListTopAccounts
 | page     | [`PageInfo`](#GRpcClient.PageInfo)                                     |
 | accounts | [`Array.&lt;IndexedAccountState&gt;`](#GRpcClient.IndexedAccountState) |
 
-<a name="GRpcClient.RequestListAssetTransactions"></a>
-
 ### GRpcClient.RequestListAssetTransactions : `object`
 
 Structure of GRpcClient.RequestListAssetTransactions
@@ -5108,8 +4736,6 @@ Structure of GRpcClient.RequestListAssetTransactions
 | ------- | ------------------------------------ |
 | paging  | [`PageInput`](#GRpcClient.PageInput) |
 | address | `string`                             |
-
-<a name="GRpcClient.ResponseListAssetTransactions"></a>
 
 ### GRpcClient.ResponseListAssetTransactions : `object`
 
@@ -5225,8 +4851,6 @@ Structure of GRpcClient.ResponseListAssetTransactions
 | page         | [`PageInfo`](#GRpcClient.PageInfo)                                   |
 | transactions | [`Array.&lt;IndexedTransaction&gt;`](#GRpcClient.IndexedTransaction) |
 
-<a name="GRpcClient.RequestListBlocks"></a>
-
 ### GRpcClient.RequestListBlocks : `object`
 
 Structure of GRpcClient.RequestListBlocks
@@ -5279,8 +4903,6 @@ Structure of GRpcClient.RequestListBlocks
 | numTxsFilter        | [`RangeFilter`](#GRpcClient.RangeFilter) |
 | numInvalidTxsFilter | [`RangeFilter`](#GRpcClient.RangeFilter) |
 
-<a name="GRpcClient.ResponseListBlocks"></a>
-
 ### GRpcClient.ResponseListBlocks : `object`
 
 Structure of GRpcClient.ResponseListBlocks
@@ -5321,8 +4943,6 @@ Structure of GRpcClient.ResponseListBlocks
 | page   | [`PageInfo`](#GRpcClient.PageInfo)                       |
 | blocks | [`Array.&lt;IndexedBlock&gt;`](#GRpcClient.IndexedBlock) |
 
-<a name="GRpcClient.RequestListTethers"></a>
-
 ### GRpcClient.RequestListTethers : `object`
 
 Structure of GRpcClient.RequestListTethers
@@ -5360,8 +4980,6 @@ Structure of GRpcClient.RequestListTethers
 | withdrawer | `string`                             |
 | custodian  | `string`                             |
 | available  | `boolean`                            |
-
-<a name="GRpcClient.ResponseListTethers"></a>
 
 ### GRpcClient.ResponseListTethers : `object`
 
@@ -5409,8 +5027,6 @@ Structure of GRpcClient.ResponseListTethers
 | page    | [`PageInfo`](#GRpcClient.PageInfo)                     |
 | tethers | [`Array.&lt;TetherState&gt;`](#GRpcClient.TetherState) |
 
-<a name="GRpcClient.RequestListSwap"></a>
-
 ### GRpcClient.RequestListSwap : `object`
 
 Structure of GRpcClient.RequestListSwap
@@ -5446,8 +5062,6 @@ Structure of GRpcClient.RequestListSwap
 | sender    | `string`                             |
 | receiver  | `string`                             |
 | available | `boolean`                            |
-
-<a name="GRpcClient.ResponseListSwap"></a>
 
 ### GRpcClient.ResponseListSwap : `object`
 
@@ -5513,8 +5127,6 @@ Structure of GRpcClient.ResponseListSwap
 | page | [`PageInfo`](#GRpcClient.PageInfo)                 |
 | swap | [`Array.&lt;SwapState&gt;`](#GRpcClient.SwapState) |
 
-<a name="GRpcClient.RequestGetHealthStatus"></a>
-
 ### GRpcClient.RequestGetHealthStatus : `object`
 
 Structure of GRpcClient.RequestGetHealthStatus
@@ -5524,7 +5136,6 @@ Structure of GRpcClient.RequestGetHealthStatus
 ```
 
 **Kind**: static typedef of [`GRpcClient`](#GRpcClient)  
-<a name="GRpcClient.ResponseGetHealthStatus"></a>
 
 ### GRpcClient.ResponseGetHealthStatus : `object`
 
@@ -5573,8 +5184,6 @@ Structure of GRpcClient.ResponseGetHealthStatus
 | code         | `GRpcClient.StatusCode`                    |
 | healthStatus | [`HealthStatus`](#GRpcClient.HealthStatus) |
 
-<a name="GRpcClient.BigUint"></a>
-
 ### GRpcClient.BigUint : `object`
 
 Structure of GRpcClient.BigUint
@@ -5585,8 +5194,6 @@ Structure of GRpcClient.BigUint
 | Name  | Type         |
 | ----- | ------------ |
 | value | `Uint8Array` |
-
-<a name="GRpcClient.BigSint"></a>
 
 ### GRpcClient.BigSint : `object`
 
@@ -5599,8 +5206,6 @@ Structure of GRpcClient.BigSint
 | ----- | ------------ |
 | value | `Uint8Array` |
 | minus | `boolean`    |
-
-<a name="GRpcClient.WalletType"></a>
 
 ### GRpcClient.WalletType : `object`
 
@@ -5616,8 +5221,6 @@ Structure of GRpcClient.WalletType
 | address | `GRpcClient.EncodingType` |
 | role    | `GRpcClient.RoleType`     |
 
-<a name="GRpcClient.WalletInfo"></a>
-
 ### GRpcClient.WalletInfo : `object`
 
 Structure of GRpcClient.WalletInfo
@@ -5631,8 +5234,6 @@ Structure of GRpcClient.WalletInfo
 | sk      | `Uint8Array`                           |
 | pk      | `Uint8Array`                           |
 | address | `string`                               |
-
-<a name="GRpcClient.ChainInfo"></a>
 
 ### GRpcClient.ChainInfo : `object`
 
@@ -5658,8 +5259,6 @@ Structure of GRpcClient.ChainInfo
 | version          | `string`                             |
 | forgeAppsVersion | `string`                             |
 | supportedTxs     | `Array.&lt;string&gt;`               |
-
-<a name="GRpcClient.NodeInfo"></a>
 
 ### GRpcClient.NodeInfo : `object`
 
@@ -5689,8 +5288,6 @@ Structure of GRpcClient.NodeInfo
 | geoInfo          | [`GeoInfo`](#GRpcClient.GeoInfo)     |
 | p2pAddress       | `string`                             |
 
-<a name="GRpcClient.Validator"></a>
-
 ### GRpcClient.Validator : `object`
 
 Structure of GRpcClient.Validator
@@ -5702,8 +5299,6 @@ Structure of GRpcClient.Validator
 | ------- | -------- |
 | address | `string` |
 | power   | `number` |
-
-<a name="GRpcClient.ConsensusParams"></a>
 
 ### GRpcClient.ConsensusParams : `object`
 
@@ -5723,8 +5318,6 @@ Structure of GRpcClient.ConsensusParams
 | validatorChanged | `boolean`                                          |
 | paramChanged     | `boolean`                                          |
 
-<a name="GRpcClient.UpgradeTask"></a>
-
 ### GRpcClient.UpgradeTask : `object`
 
 Structure of GRpcClient.UpgradeTask
@@ -5738,8 +5331,6 @@ Structure of GRpcClient.UpgradeTask
 | dataHash | `string`                                 |
 | actions  | `Array.&lt;GRpcClient.UpgradeAction&gt;` |
 
-<a name="GRpcClient.UpgradeTasks"></a>
-
 ### GRpcClient.UpgradeTasks : `object`
 
 Structure of GRpcClient.UpgradeTasks
@@ -5750,8 +5341,6 @@ Structure of GRpcClient.UpgradeTasks
 | Name | Type                                                   |
 | ---- | ------------------------------------------------------ |
 | item | [`Array.&lt;UpgradeTask&gt;`](#GRpcClient.UpgradeTask) |
-
-<a name="GRpcClient.AbciContext"></a>
 
 ### GRpcClient.AbciContext : `object`
 
@@ -5770,8 +5359,6 @@ Structure of GRpcClient.AbciContext
 | txIndex       | `number`                                   |
 | lastBlockTime | [`Timestamp`](#GRpcClient.Timestamp)       |
 
-<a name="GRpcClient.Multisig"></a>
-
 ### GRpcClient.Multisig : `object`
 
 Structure of GRpcClient.Multisig
@@ -5786,8 +5373,6 @@ Structure of GRpcClient.Multisig
 | signature | `Uint8Array`             |
 | delegator | `string`                 |
 | data      | [`Any`](#GRpcClient.Any) |
-
-<a name="GRpcClient.Transaction"></a>
 
 ### GRpcClient.Transaction : `object`
 
@@ -5808,8 +5393,6 @@ Structure of GRpcClient.Transaction
 | signatures | [`Array.&lt;Multisig&gt;`](#GRpcClient.Multisig) |
 | itx        | [`Any`](#GRpcClient.Any)                         |
 
-<a name="GRpcClient.TransactionInfo"></a>
-
 ### GRpcClient.TransactionInfo : `object`
 
 Structure of GRpcClient.TransactionInfo
@@ -5827,8 +5410,6 @@ Structure of GRpcClient.TransactionInfo
 | code   | `GRpcClient.StatusCode`                      |
 | time   | [`Timestamp`](#GRpcClient.Timestamp)         |
 
-<a name="GRpcClient.DeclareConfig"></a>
-
 ### GRpcClient.DeclareConfig : `object`
 
 Structure of GRpcClient.DeclareConfig
@@ -5841,8 +5422,6 @@ Structure of GRpcClient.DeclareConfig
 | restricted | `boolean` |
 | hierarchy  | `number`  |
 
-<a name="GRpcClient.DelegateConfig"></a>
-
 ### GRpcClient.DelegateConfig : `object`
 
 Structure of GRpcClient.DelegateConfig
@@ -5854,8 +5433,6 @@ Structure of GRpcClient.DelegateConfig
 | ------------- | ---------------------- |
 | deltaInterval | `number`               |
 | typeUrls      | `Array.&lt;string&gt;` |
-
-<a name="GRpcClient.TransactionConfig"></a>
 
 ### GRpcClient.TransactionConfig : `object`
 
@@ -5874,8 +5451,6 @@ Structure of GRpcClient.TransactionConfig
 | delegate     | [`DelegateConfig`](#GRpcClient.DelegateConfig) |
 | poke         | [`PokeConfig`](#GRpcClient.PokeConfig)         |
 | stake        | [`StakeConfig`](#GRpcClient.StakeConfig)       |
-
-<a name="GRpcClient.BlockInfo"></a>
 
 ### GRpcClient.BlockInfo : `object`
 
@@ -5906,8 +5481,6 @@ Structure of GRpcClient.BlockInfo
 | version            | [`Version`](#GRpcClient.Version)                               |
 | lastBlockId        | [`BlockID`](#GRpcClient.BlockID)                               |
 
-<a name="GRpcClient.BlockInfoSimple"></a>
-
 ### GRpcClient.BlockInfoSimple : `object`
 
 Structure of GRpcClient.BlockInfoSimple
@@ -5935,8 +5508,6 @@ Structure of GRpcClient.BlockInfoSimple
 | version            | [`Version`](#GRpcClient.Version)     |
 | lastBlockId        | [`BlockID`](#GRpcClient.BlockID)     |
 
-<a name="GRpcClient.TxStatus"></a>
-
 ### GRpcClient.TxStatus : `object`
 
 Structure of GRpcClient.TxStatus
@@ -5948,8 +5519,6 @@ Structure of GRpcClient.TxStatus
 | ---- | ----------------------- |
 | code | `GRpcClient.StatusCode` |
 | hash | `string`                |
-
-<a name="GRpcClient.CircularQueue"></a>
 
 ### GRpcClient.CircularQueue : `object`
 
@@ -5966,8 +5535,6 @@ Structure of GRpcClient.CircularQueue
 | circular | `boolean`                  |
 | fifo     | `boolean`                  |
 
-<a name="GRpcClient.StateContext"></a>
-
 ### GRpcClient.StateContext : `object`
 
 Structure of GRpcClient.StateContext
@@ -5981,8 +5548,6 @@ Structure of GRpcClient.StateContext
 | renaissanceTx   | `string`                             |
 | genesisTime     | [`Timestamp`](#GRpcClient.Timestamp) |
 | renaissanceTime | [`Timestamp`](#GRpcClient.Timestamp) |
-
-<a name="GRpcClient.StakeContext"></a>
 
 ### GRpcClient.StakeContext : `object`
 
@@ -5999,8 +5564,6 @@ Structure of GRpcClient.StakeContext
 | recentStakes         | [`CircularQueue`](#GRpcClient.CircularQueue) |
 | recentReceivedStakes | [`CircularQueue`](#GRpcClient.CircularQueue) |
 
-<a name="GRpcClient.StakeSummary"></a>
-
 ### GRpcClient.StakeSummary : `object`
 
 Structure of GRpcClient.StakeSummary
@@ -6014,8 +5577,6 @@ Structure of GRpcClient.StakeSummary
 | totalUnstakes | [`BigUint`](#GRpcClient.BigUint)           |
 | context       | [`StateContext`](#GRpcClient.StateContext) |
 
-<a name="GRpcClient.StakeConfig"></a>
-
 ### GRpcClient.StakeConfig : `object`
 
 Structure of GRpcClient.StakeConfig
@@ -6028,8 +5589,6 @@ Structure of GRpcClient.StakeConfig
 | timeoutGeneral      | `number` |
 | timeoutStakeForNode | `number` |
 
-<a name="GRpcClient.UnconfirmedTxs"></a>
-
 ### GRpcClient.UnconfirmedTxs : `object`
 
 Structure of GRpcClient.UnconfirmedTxs
@@ -6041,8 +5600,6 @@ Structure of GRpcClient.UnconfirmedTxs
 | ---- | ------------------------------------------------------ |
 | nTxs | `number`                                               |
 | txs  | [`Array.&lt;Transaction&gt;`](#GRpcClient.Transaction) |
-
-<a name="GRpcClient.NetInfo"></a>
 
 ### GRpcClient.NetInfo : `object`
 
@@ -6058,8 +5615,6 @@ Structure of GRpcClient.NetInfo
 | nPeers    | `number`                                         |
 | peers     | [`Array.&lt;PeerInfo&gt;`](#GRpcClient.PeerInfo) |
 
-<a name="GRpcClient.GeoInfo"></a>
-
 ### GRpcClient.GeoInfo : `object`
 
 Structure of GRpcClient.GeoInfo
@@ -6073,8 +5628,6 @@ Structure of GRpcClient.GeoInfo
 | country   | `string` |
 | latitude  | `number` |
 | longitude | `number` |
-
-<a name="GRpcClient.PeerInfo"></a>
 
 ### GRpcClient.PeerInfo : `object`
 
@@ -6092,8 +5645,6 @@ Structure of GRpcClient.PeerInfo
 | ip               | `string`                         |
 | geoInfo          | [`GeoInfo`](#GRpcClient.GeoInfo) |
 
-<a name="GRpcClient.ValidatorsInfo"></a>
-
 ### GRpcClient.ValidatorsInfo : `object`
 
 Structure of GRpcClient.ValidatorsInfo
@@ -6105,8 +5656,6 @@ Structure of GRpcClient.ValidatorsInfo
 | ----------- | ---------------------------------------------------------- |
 | blockHeight | `number`                                                   |
 | validators  | [`Array.&lt;ValidatorInfo&gt;`](#GRpcClient.ValidatorInfo) |
-
-<a name="GRpcClient.ValidatorInfo"></a>
 
 ### GRpcClient.ValidatorInfo : `object`
 
@@ -6124,8 +5673,6 @@ Structure of GRpcClient.ValidatorInfo
 | name             | `string`                         |
 | geoInfo          | [`GeoInfo`](#GRpcClient.GeoInfo) |
 
-<a name="GRpcClient.GenesisInfo"></a>
-
 ### GRpcClient.GenesisInfo : `object`
 
 Structure of GRpcClient.GenesisInfo
@@ -6140,8 +5687,6 @@ Structure of GRpcClient.GenesisInfo
 | consensusParams | [`ConsensusParams`](#GRpcClient.ConsensusParams)           |
 | validators      | [`Array.&lt;ValidatorInfo&gt;`](#GRpcClient.ValidatorInfo) |
 | appHash         | `string`                                                   |
-
-<a name="GRpcClient.ForgeStats"></a>
 
 ### GRpcClient.ForgeStats : `object`
 
@@ -6173,8 +5718,6 @@ Structure of GRpcClient.ForgeStats
 | avgTps                 | `number`                                       |
 | avgBlockTime           | `number`                                       |
 
-<a name="GRpcClient.TxStatistics"></a>
-
 ### GRpcClient.TxStatistics : `object`
 
 Structure of GRpcClient.TxStatistics
@@ -6197,8 +5740,6 @@ Structure of GRpcClient.TxStatistics
 | numConsumeAssetTxs     | `number` |
 | numPokeTxs             | `number` |
 
-<a name="GRpcClient.ForgeToken"></a>
-
 ### GRpcClient.ForgeToken : `object`
 
 Structure of GRpcClient.ForgeToken
@@ -6218,8 +5759,6 @@ Structure of GRpcClient.ForgeToken
 | totalSupply   | `number`     |
 | inflationRate | `number`     |
 
-<a name="GRpcClient.PokeInfo"></a>
-
 ### GRpcClient.PokeInfo : `object`
 
 Structure of GRpcClient.PokeInfo
@@ -6232,8 +5771,6 @@ Structure of GRpcClient.PokeInfo
 | dailyLimit | [`BigUint`](#GRpcClient.BigUint) |
 | leftover   | [`BigUint`](#GRpcClient.BigUint) |
 | amount     | [`BigUint`](#GRpcClient.BigUint) |
-
-<a name="GRpcClient.PokeConfig"></a>
 
 ### GRpcClient.PokeConfig : `object`
 
@@ -6248,8 +5785,6 @@ Structure of GRpcClient.PokeConfig
 | amount     | `number`  |
 | enabled    | `boolean` |
 
-<a name="GRpcClient.UpgradeInfo"></a>
-
 ### GRpcClient.UpgradeInfo : `object`
 
 Structure of GRpcClient.UpgradeInfo
@@ -6261,8 +5796,6 @@ Structure of GRpcClient.UpgradeInfo
 | ------- | -------- |
 | height  | `number` |
 | version | `string` |
-
-<a name="GRpcClient.WithdrawItem"></a>
 
 ### GRpcClient.WithdrawItem : `object`
 
@@ -6276,8 +5809,6 @@ Structure of GRpcClient.WithdrawItem
 | hash  | `string`                         |
 | value | [`BigUint`](#GRpcClient.BigUint) |
 
-<a name="GRpcClient.AccountConfig"></a>
-
 ### GRpcClient.AccountConfig : `object`
 
 Structure of GRpcClient.AccountConfig
@@ -6290,8 +5821,6 @@ Structure of GRpcClient.AccountConfig
 | address | `string`                         |
 | pk      | `Uint8Array`                     |
 | balance | [`BigUint`](#GRpcClient.BigUint) |
-
-<a name="GRpcClient.TokenSwapConfig"></a>
 
 ### GRpcClient.TokenSwapConfig : `object`
 
@@ -6308,8 +5837,6 @@ Structure of GRpcClient.TokenSwapConfig
 | commissionRate          | `number`                         |
 | revokeCommission        | `number`                         |
 
-<a name="GRpcClient.Evidence"></a>
-
 ### GRpcClient.Evidence : `object`
 
 Structure of GRpcClient.Evidence
@@ -6324,8 +5851,6 @@ Structure of GRpcClient.Evidence
 | chainId         | `string`     |
 | originalTx      | `Uint8Array` |
 | receiverAddress | `string`     |
-
-<a name="GRpcClient.AccountState"></a>
 
 ### GRpcClient.AccountState : `object`
 
@@ -6356,8 +5881,6 @@ Structure of GRpcClient.AccountState
 | withdrawItems   | [`CircularQueue`](#GRpcClient.CircularQueue) |
 | data            | [`Any`](#GRpcClient.Any)                     |
 
-<a name="GRpcClient.AssetState"></a>
-
 ### GRpcClient.AssetState : `object`
 
 Structure of GRpcClient.AssetState
@@ -6380,8 +5903,6 @@ Structure of GRpcClient.AssetState
 | context       | [`StateContext`](#GRpcClient.StateContext) |
 | data          | [`Any`](#GRpcClient.Any)                   |
 
-<a name="GRpcClient.CoreProtocol"></a>
-
 ### GRpcClient.CoreProtocol : `object`
 
 Structure of GRpcClient.CoreProtocol
@@ -6393,8 +5914,6 @@ Structure of GRpcClient.CoreProtocol
 | ------- | -------- |
 | name    | `string` |
 | address | `string` |
-
-<a name="GRpcClient.ForgeState"></a>
 
 ### GRpcClient.ForgeState : `object`
 
@@ -6419,8 +5938,6 @@ Structure of GRpcClient.ForgeState
 | tokenSwapConfig | [`TokenSwapConfig`](#GRpcClient.TokenSwapConfig)         |
 | data            | [`Any`](#GRpcClient.Any)                                 |
 
-<a name="GRpcClient.RootState"></a>
-
 ### GRpcClient.RootState : `object`
 
 Structure of GRpcClient.RootState
@@ -6437,8 +5954,6 @@ Structure of GRpcClient.RootState
 | protocol   | `Uint8Array` |
 | governance | `Uint8Array` |
 | custom     | `Uint8Array` |
-
-<a name="GRpcClient.StakeState"></a>
 
 ### GRpcClient.StakeState : `object`
 
@@ -6457,8 +5972,6 @@ Structure of GRpcClient.StakeState
 | context | [`StateContext`](#GRpcClient.StateContext) |
 | data    | [`Any`](#GRpcClient.Any)                   |
 
-<a name="GRpcClient.StatisticsState"></a>
-
 ### GRpcClient.StatisticsState : `object`
 
 Structure of GRpcClient.StatisticsState
@@ -6475,8 +5988,6 @@ Structure of GRpcClient.StatisticsState
 | numValidators | `number`                                   |
 | txStatistics  | [`TxStatistics`](#GRpcClient.TxStatistics) |
 
-<a name="GRpcClient.BlacklistState"></a>
-
 ### GRpcClient.BlacklistState : `object`
 
 Structure of GRpcClient.BlacklistState
@@ -6487,8 +5998,6 @@ Structure of GRpcClient.BlacklistState
 | Name    | Type                   |
 | ------- | ---------------------- |
 | address | `Array.&lt;string&gt;` |
-
-<a name="GRpcClient.ProtocolState"></a>
 
 ### GRpcClient.ProtocolState : `object`
 
@@ -6507,8 +6016,6 @@ Structure of GRpcClient.ProtocolState
 | migratedFrom | `Array.&lt;string&gt;`                             |
 | context      | [`StateContext`](#GRpcClient.StateContext)         |
 | data         | [`Any`](#GRpcClient.Any)                           |
-
-<a name="GRpcClient.TetherState"></a>
 
 ### GRpcClient.TetherState : `object`
 
@@ -6531,8 +6038,6 @@ Structure of GRpcClient.TetherState
 | locktime   | [`Timestamp`](#GRpcClient.Timestamp) |
 | address    | `string`                             |
 
-<a name="GRpcClient.TetherInfo"></a>
-
 ### GRpcClient.TetherInfo : `object`
 
 Structure of GRpcClient.TetherInfo
@@ -6544,8 +6049,6 @@ Structure of GRpcClient.TetherInfo
 | --------- | --------- |
 | available | `boolean` |
 | hash      | `string`  |
-
-<a name="GRpcClient.SwapState"></a>
 
 ### GRpcClient.SwapState : `object`
 
@@ -6567,8 +6070,6 @@ Structure of GRpcClient.SwapState
 | hashlock | `Uint8Array`                               |
 | context  | [`StateContext`](#GRpcClient.StateContext) |
 
-<a name="GRpcClient.DelegateOpState"></a>
-
 ### GRpcClient.DelegateOpState : `object`
 
 Structure of GRpcClient.DelegateOpState
@@ -6584,8 +6085,6 @@ Structure of GRpcClient.DelegateOpState
 | balance      | [`BigUint`](#GRpcClient.BigUint) |
 | balanceDelta | [`BigUint`](#GRpcClient.BigUint) |
 
-<a name="GRpcClient.DelegateState"></a>
-
 ### GRpcClient.DelegateState : `object`
 
 Structure of GRpcClient.DelegateState
@@ -6600,8 +6099,6 @@ Structure of GRpcClient.DelegateState
 | context | [`StateContext`](#GRpcClient.StateContext)       |
 | data    | [`Any`](#GRpcClient.Any)                         |
 
-<a name="GRpcClient.CodeInfo"></a>
-
 ### GRpcClient.CodeInfo : `object`
 
 Structure of GRpcClient.CodeInfo
@@ -6614,8 +6111,6 @@ Structure of GRpcClient.CodeInfo
 | checksum | `Uint8Array` |
 | binary   | `Uint8Array` |
 
-<a name="GRpcClient.TypeUrls"></a>
-
 ### GRpcClient.TypeUrls : `object`
 
 Structure of GRpcClient.TypeUrls
@@ -6627,8 +6122,6 @@ Structure of GRpcClient.TypeUrls
 | ------ | -------- |
 | url    | `string` |
 | module | `string` |
-
-<a name="GRpcClient.DeployProtocolTx"></a>
 
 ### GRpcClient.DeployProtocolTx : `object`
 
@@ -6696,8 +6189,6 @@ Structure of GRpcClient.DeployProtocolTx
 | tags        | `Array.&lt;string&gt;`                           |
 | data        | [`Any`](#GRpcClient.Any)                         |
 
-<a name="GRpcClient.ConsensusUpgradeTx"></a>
-
 ### GRpcClient.ConsensusUpgradeTx : `object`
 
 Structure of GRpcClient.ConsensusUpgradeTx
@@ -6737,8 +6228,6 @@ Structure of GRpcClient.ConsensusUpgradeTx
 | maxCandidates | `number`                                           |
 | data          | [`Any`](#GRpcClient.Any)                           |
 
-<a name="GRpcClient.SysUpgradeTx"></a>
-
 ### GRpcClient.SysUpgradeTx : `object`
 
 Structure of GRpcClient.SysUpgradeTx
@@ -6770,8 +6259,6 @@ Structure of GRpcClient.SysUpgradeTx
 | gracePeriod | `number`                                 |
 | data        | [`Any`](#GRpcClient.Any)                 |
 
-<a name="GRpcClient.PageOrder"></a>
-
 ### GRpcClient.PageOrder : `object`
 
 Structure of GRpcClient.PageOrder
@@ -6783,8 +6270,6 @@ Structure of GRpcClient.PageOrder
 | ----- | -------- |
 | field | `string` |
 | type  | `string` |
-
-<a name="GRpcClient.PageInput"></a>
 
 ### GRpcClient.PageInput : `object`
 
@@ -6799,8 +6284,6 @@ Structure of GRpcClient.PageInput
 | size   | `number`                                           |
 | order  | [`Array.&lt;PageOrder&gt;`](#GRpcClient.PageOrder) |
 
-<a name="GRpcClient.TypeFilter"></a>
-
 ### GRpcClient.TypeFilter : `object`
 
 Structure of GRpcClient.TypeFilter
@@ -6811,8 +6294,6 @@ Structure of GRpcClient.TypeFilter
 | Name  | Type                   |
 | ----- | ---------------------- |
 | types | `Array.&lt;string&gt;` |
-
-<a name="GRpcClient.TimeFilter"></a>
 
 ### GRpcClient.TimeFilter : `object`
 
@@ -6825,8 +6306,6 @@ Structure of GRpcClient.TimeFilter
 | ------------- | -------- |
 | startDateTime | `string` |
 | endDateTime   | `string` |
-
-<a name="GRpcClient.AddressFilter"></a>
 
 ### GRpcClient.AddressFilter : `object`
 
@@ -6841,8 +6320,6 @@ Structure of GRpcClient.AddressFilter
 | receiver  | `string`               |
 | direction | `GRpcClient.Direction` |
 
-<a name="GRpcClient.PageInfo"></a>
-
 ### GRpcClient.PageInfo : `object`
 
 Structure of GRpcClient.PageInfo
@@ -6855,8 +6332,6 @@ Structure of GRpcClient.PageInfo
 | cursor | `string`  |
 | next   | `boolean` |
 | total  | `number`  |
-
-<a name="GRpcClient.IndexedTransaction"></a>
 
 ### GRpcClient.IndexedTransaction : `object`
 
@@ -6875,8 +6350,6 @@ Structure of GRpcClient.IndexedTransaction
 | tx       | [`Transaction`](#GRpcClient.Transaction) |
 | valid    | `boolean`                                |
 | code     | `GRpcClient.StatusCode`                  |
-
-<a name="GRpcClient.IndexedAccountState"></a>
 
 ### GRpcClient.IndexedAccountState : `object`
 
@@ -6902,8 +6375,6 @@ Structure of GRpcClient.IndexedAccountState
 | totalUnstakes       | [`BigUint`](#GRpcClient.BigUint) |
 | recentNumTxs        | `Array.&lt;number&gt;`           |
 
-<a name="GRpcClient.IndexedAssetState"></a>
-
 ### GRpcClient.IndexedAssetState : `object`
 
 Structure of GRpcClient.IndexedAssetState
@@ -6926,8 +6397,6 @@ Structure of GRpcClient.IndexedAssetState
 | ttl             | `number`                 |
 | data            | [`Any`](#GRpcClient.Any) |
 
-<a name="GRpcClient.IndexedStakeState"></a>
-
 ### GRpcClient.IndexedStakeState : `object`
 
 Structure of GRpcClient.IndexedStakeState
@@ -6946,8 +6415,6 @@ Structure of GRpcClient.IndexedStakeState
 | message         | `string`                         |
 | type            | `number`                         |
 
-<a name="GRpcClient.IndexedBlock"></a>
-
 ### GRpcClient.IndexedBlock : `object`
 
 Structure of GRpcClient.IndexedBlock
@@ -6963,8 +6430,6 @@ Structure of GRpcClient.IndexedBlock
 | numTxs        | `number` |
 | numInvalidTxs | `number` |
 
-<a name="GRpcClient.HealthStatus"></a>
-
 ### GRpcClient.HealthStatus : `object`
 
 Structure of GRpcClient.HealthStatus
@@ -6979,8 +6444,6 @@ Structure of GRpcClient.HealthStatus
 | storage   | [`StorageStatus`](#GRpcClient.StorageStatus)     |
 | forge     | [`ForgeStatus`](#GRpcClient.ForgeStatus)         |
 
-<a name="GRpcClient.ConsensusStatus"></a>
-
 ### GRpcClient.ConsensusStatus : `object`
 
 Structure of GRpcClient.ConsensusStatus
@@ -6994,8 +6457,6 @@ Structure of GRpcClient.ConsensusStatus
 | synced      | `boolean` |
 | blockHeight | `number`  |
 
-<a name="GRpcClient.NetworkStatus"></a>
-
 ### GRpcClient.NetworkStatus : `object`
 
 Structure of GRpcClient.NetworkStatus
@@ -7007,8 +6468,6 @@ Structure of GRpcClient.NetworkStatus
 | -------- | --------- |
 | health   | `boolean` |
 | numPeers | `number`  |
-
-<a name="GRpcClient.StorageStatus"></a>
 
 ### GRpcClient.StorageStatus : `object`
 
@@ -7024,8 +6483,6 @@ Structure of GRpcClient.StorageStatus
 | stateDb       | `string`                                         |
 | diskSpace     | [`DiskSpaceStatus`](#GRpcClient.DiskSpaceStatus) |
 
-<a name="GRpcClient.DiskSpaceStatus"></a>
-
 ### GRpcClient.DiskSpaceStatus : `object`
 
 Structure of GRpcClient.DiskSpaceStatus
@@ -7037,8 +6494,6 @@ Structure of GRpcClient.DiskSpaceStatus
 | ---------- | -------- |
 | forgeUsage | `string` |
 | total      | `string` |
-
-<a name="GRpcClient.ForgeStatus"></a>
 
 ### GRpcClient.ForgeStatus : `object`
 
@@ -7054,8 +6509,6 @@ Structure of GRpcClient.ForgeStatus
 | forgeWeb   | `string`                                           |
 | abciServer | [`AbciServerStatus`](#GRpcClient.AbciServerStatus) |
 
-<a name="GRpcClient.AbciServerStatus"></a>
-
 ### GRpcClient.AbciServerStatus : `object`
 
 Structure of GRpcClient.AbciServerStatus
@@ -7068,8 +6521,6 @@ Structure of GRpcClient.AbciServerStatus
 | abciConsensus | `string` |
 | abciInfo      | `string` |
 
-<a name="GRpcClient.ValidityFilter"></a>
-
 ### GRpcClient.ValidityFilter : `object`
 
 Structure of GRpcClient.ValidityFilter
@@ -7080,8 +6531,6 @@ Structure of GRpcClient.ValidityFilter
 | Name     | Type                  |
 | -------- | --------------------- |
 | validity | `GRpcClient.Validity` |
-
-<a name="GRpcClient.RangeFilter"></a>
 
 ### GRpcClient.RangeFilter : `object`
 
@@ -7094,8 +6543,6 @@ Structure of GRpcClient.RangeFilter
 | ---- | -------- |
 | from | `number` |
 | to   | `number` |
-
-<a name="GRpcClient.AccountMigrateTx"></a>
 
 ### GRpcClient.AccountMigrateTx : `object`
 
@@ -7128,8 +6575,6 @@ Structure of GRpcClient.AccountMigrateTx
 | address | `string`                               |
 | data    | [`Any`](#GRpcClient.Any)               |
 
-<a name="GRpcClient.AssetSpec"></a>
-
 ### GRpcClient.AssetSpec : `object`
 
 Structure of GRpcClient.AssetSpec
@@ -7141,8 +6586,6 @@ Structure of GRpcClient.AssetSpec
 | ------- | -------- |
 | address | `string` |
 | data    | `string` |
-
-<a name="GRpcClient.AcquireAssetTx"></a>
 
 ### GRpcClient.AcquireAssetTx : `object`
 
@@ -7177,8 +6620,6 @@ Structure of GRpcClient.AcquireAssetTx
 | specs | [`Array.&lt;AssetSpec&gt;`](#GRpcClient.AssetSpec) |
 | data  | [`Any`](#GRpcClient.Any)                           |
 
-<a name="GRpcClient.ActivateProtocolTx"></a>
-
 ### GRpcClient.ActivateProtocolTx : `object`
 
 Structure of GRpcClient.ActivateProtocolTx
@@ -7201,8 +6642,6 @@ Structure of GRpcClient.ActivateProtocolTx
 | address | `string`                 |
 | data    | [`Any`](#GRpcClient.Any) |
 
-<a name="GRpcClient.ApproveTetherTx"></a>
-
 ### GRpcClient.ApproveTetherTx : `object`
 
 Structure of GRpcClient.ApproveTetherTx
@@ -7224,8 +6663,6 @@ Structure of GRpcClient.ApproveTetherTx
 | -------- | ------------------------ |
 | withdraw | `string`                 |
 | data     | [`Any`](#GRpcClient.Any) |
-
-<a name="GRpcClient.ApproveWithdrawTx"></a>
 
 ### GRpcClient.ApproveWithdrawTx : `object`
 
@@ -7252,8 +6689,6 @@ Structure of GRpcClient.ApproveWithdrawTx
 | withdrawTxHash | `string`                           |
 | evidence       | [`Evidence`](#GRpcClient.Evidence) |
 
-<a name="GRpcClient.ConsumeAssetTx"></a>
-
 ### GRpcClient.ConsumeAssetTx : `object`
 
 Structure of GRpcClient.ConsumeAssetTx
@@ -7277,8 +6712,6 @@ Structure of GRpcClient.ConsumeAssetTx
 | issuer  | `string`                 |
 | address | `string`                 |
 | data    | [`Any`](#GRpcClient.Any) |
-
-<a name="GRpcClient.CreateAssetTx"></a>
 
 ### GRpcClient.CreateAssetTx : `object`
 
@@ -7312,8 +6745,6 @@ Structure of GRpcClient.CreateAssetTx
 | parent        | `string`                 |
 | address       | `string`                 |
 
-<a name="GRpcClient.AssetAttributes"></a>
-
 ### GRpcClient.AssetAttributes : `object`
 
 Structure of GRpcClient.AssetAttributes
@@ -7325,8 +6756,6 @@ Structure of GRpcClient.AssetAttributes
 | ------------- | --------- |
 | transferrable | `boolean` |
 | ttl           | `number`  |
-
-<a name="GRpcClient.AssetFactory"></a>
 
 ### GRpcClient.AssetFactory : `object`
 
@@ -7346,8 +6775,6 @@ Structure of GRpcClient.AssetFactory
 | attributes      | [`AssetAttributes`](#GRpcClient.AssetAttributes) |
 | data            | [`Any`](#GRpcClient.Any)                         |
 
-<a name="GRpcClient.AssetFactoryState"></a>
-
 ### GRpcClient.AssetFactoryState : `object`
 
 Structure of GRpcClient.AssetFactoryState
@@ -7366,8 +6793,6 @@ Structure of GRpcClient.AssetFactoryState
 | attributes      | [`AssetAttributes`](#GRpcClient.AssetAttributes) |
 | numCreated      | `number`                                         |
 | data            | [`Any`](#GRpcClient.Any)                         |
-
-<a name="GRpcClient.DeactivateProtocolTx"></a>
 
 ### GRpcClient.DeactivateProtocolTx : `object`
 
@@ -7390,8 +6815,6 @@ Structure of GRpcClient.DeactivateProtocolTx
 | ------- | ------------------------ |
 | address | `string`                 |
 | data    | [`Any`](#GRpcClient.Any) |
-
-<a name="GRpcClient.DeclareTx"></a>
 
 ### GRpcClient.DeclareTx : `object`
 
@@ -7416,8 +6839,6 @@ Structure of GRpcClient.DeclareTx
 | moniker | `string`                 |
 | issuer  | `string`                 |
 | data    | [`Any`](#GRpcClient.Any) |
-
-<a name="GRpcClient.DelegateTx"></a>
 
 ### GRpcClient.DelegateTx : `object`
 
@@ -7460,8 +6881,6 @@ Structure of GRpcClient.DelegateTx
 | ops     | [`Array.&lt;DelegateOp&gt;`](#GRpcClient.DelegateOp) |
 | data    | [`Any`](#GRpcClient.Any)                             |
 
-<a name="GRpcClient.DelegateOp"></a>
-
 ### GRpcClient.DelegateOp : `object`
 
 Structure of GRpcClient.DelegateOp
@@ -7473,8 +6892,6 @@ Structure of GRpcClient.DelegateOp
 | ------- | ---------------------- |
 | typeUrl | `string`               |
 | rules   | `Array.&lt;string&gt;` |
-
-<a name="GRpcClient.DepositTetherTx"></a>
 
 ### GRpcClient.DepositTetherTx : `object`
 
@@ -7499,8 +6916,6 @@ Structure of GRpcClient.DepositTetherTx
 | target     | `string`                             |
 | withdrawer | `string`                             |
 | locktime   | [`Timestamp`](#GRpcClient.Timestamp) |
-
-<a name="GRpcClient.DepositTokenTx"></a>
 
 ### GRpcClient.DepositTokenTx : `object`
 
@@ -7528,8 +6943,6 @@ Structure of GRpcClient.DepositTokenTx
 | address  | `string`                           |
 | evidence | [`Evidence`](#GRpcClient.Evidence) |
 
-<a name="GRpcClient.ExchangeInfo"></a>
-
 ### GRpcClient.ExchangeInfo : `object`
 
 Structure of GRpcClient.ExchangeInfo
@@ -7541,8 +6954,6 @@ Structure of GRpcClient.ExchangeInfo
 | ------ | -------------------------------- |
 | value  | [`BigUint`](#GRpcClient.BigUint) |
 | assets | `Array.&lt;string&gt;`           |
-
-<a name="GRpcClient.ExchangeTx"></a>
 
 ### GRpcClient.ExchangeTx : `object`
 
@@ -7582,8 +6993,6 @@ Structure of GRpcClient.ExchangeTx
 | expiredAt | [`Timestamp`](#GRpcClient.Timestamp)       |
 | data      | [`Any`](#GRpcClient.Any)                   |
 
-<a name="GRpcClient.TetherExchangeInfo"></a>
-
 ### GRpcClient.TetherExchangeInfo : `object`
 
 Structure of GRpcClient.TetherExchangeInfo
@@ -7596,8 +7005,6 @@ Structure of GRpcClient.TetherExchangeInfo
 | value   | [`BigUint`](#GRpcClient.BigUint)         |
 | assets  | `Array.&lt;string&gt;`                   |
 | deposit | [`Transaction`](#GRpcClient.Transaction) |
-
-<a name="GRpcClient.ExchangeTetherTx"></a>
 
 ### GRpcClient.ExchangeTetherTx : `object`
 
@@ -7670,8 +7077,6 @@ Structure of GRpcClient.ExchangeTetherTx
 | expiredAt | [`Timestamp`](#GRpcClient.Timestamp)                   |
 | data      | [`Any`](#GRpcClient.Any)                               |
 
-<a name="GRpcClient.PokeTx"></a>
-
 ### GRpcClient.PokeTx : `object`
 
 Structure of GRpcClient.PokeTx
@@ -7695,8 +7100,6 @@ Structure of GRpcClient.PokeTx
 | date    | `string`                 |
 | address | `string`                 |
 | data    | [`Any`](#GRpcClient.Any) |
-
-<a name="GRpcClient.RetrieveSwapTx"></a>
 
 ### GRpcClient.RetrieveSwapTx : `object`
 
@@ -7722,8 +7125,6 @@ Structure of GRpcClient.RetrieveSwapTx
 | hashkey | `Uint8Array`             |
 | data    | [`Any`](#GRpcClient.Any) |
 
-<a name="GRpcClient.RevokeSwapTx"></a>
-
 ### GRpcClient.RevokeSwapTx : `object`
 
 Structure of GRpcClient.RevokeSwapTx
@@ -7745,8 +7146,6 @@ Structure of GRpcClient.RevokeSwapTx
 | ------- | ------------------------ |
 | address | `string`                 |
 | data    | [`Any`](#GRpcClient.Any) |
-
-<a name="GRpcClient.RevokeTetherTx"></a>
 
 ### GRpcClient.RevokeTetherTx : `object`
 
@@ -7770,8 +7169,6 @@ Structure of GRpcClient.RevokeTetherTx
 | tether | `string`                 |
 | data   | [`Any`](#GRpcClient.Any) |
 
-<a name="GRpcClient.RevokeWithdrawTx"></a>
-
 ### GRpcClient.RevokeWithdrawTx : `object`
 
 Structure of GRpcClient.RevokeWithdrawTx
@@ -7788,8 +7185,6 @@ Structure of GRpcClient.RevokeWithdrawTx
 | Name           | Type     |
 | -------------- | -------- |
 | withdrawTxHash | `string` |
-
-<a name="GRpcClient.SetupSwapTx"></a>
 
 ### GRpcClient.SetupSwapTx : `object`
 
@@ -7823,35 +7218,29 @@ Structure of GRpcClient.SetupSwapTx
 | locktime | `number`                         |
 | data     | [`Any`](#GRpcClient.Any)         |
 
-<a name="GRpcClient.stakeForAsset"></a>
-
 ### GRpcClient.stakeForAsset : `object`
 
 Structure of GRpcClient.stakeForAsset
 
 **Kind**: static typedef of [`GRpcClient`](#GRpcClient)  
-<a name="GRpcClient.stakeForChain"></a>
 
 ### GRpcClient.stakeForChain : `object`
 
 Structure of GRpcClient.stakeForChain
 
 **Kind**: static typedef of [`GRpcClient`](#GRpcClient)  
-<a name="GRpcClient.StakeForNode"></a>
 
 ### GRpcClient.StakeForNode : `object`
 
 Structure of GRpcClient.StakeForNode
 
 **Kind**: static typedef of [`GRpcClient`](#GRpcClient)  
-<a name="GRpcClient.stakeForUser"></a>
 
 ### GRpcClient.stakeForUser : `object`
 
 Structure of GRpcClient.stakeForUser
 
 **Kind**: static typedef of [`GRpcClient`](#GRpcClient)  
-<a name="GRpcClient.StakeTx"></a>
 
 ### GRpcClient.StakeTx : `object`
 
@@ -7879,8 +7268,6 @@ Structure of GRpcClient.StakeTx
 | message | `string`                         |
 | address | `string`                         |
 | data    | [`Any`](#GRpcClient.Any)         |
-
-<a name="GRpcClient.TransferTx"></a>
 
 ### GRpcClient.TransferTx : `object`
 
@@ -7910,8 +7297,6 @@ Structure of GRpcClient.TransferTx
 | assets | `Array.&lt;string&gt;`           |
 | data   | [`Any`](#GRpcClient.Any)         |
 
-<a name="GRpcClient.UpdateAssetTx"></a>
-
 ### GRpcClient.UpdateAssetTx : `object`
 
 Structure of GRpcClient.UpdateAssetTx
@@ -7936,8 +7321,6 @@ Structure of GRpcClient.UpdateAssetTx
 | moniker | `string`                 |
 | data    | [`Any`](#GRpcClient.Any) |
 
-<a name="GRpcClient.UpgradeNodeTx"></a>
-
 ### GRpcClient.UpgradeNodeTx : `object`
 
 Structure of GRpcClient.UpgradeNodeTx
@@ -7959,8 +7342,6 @@ Structure of GRpcClient.UpgradeNodeTx
 | version  | `string`  |
 | override | `boolean` |
 
-<a name="GRpcClient.TetherTradeInfo"></a>
-
 ### GRpcClient.TetherTradeInfo : `object`
 
 Structure of GRpcClient.TetherTradeInfo
@@ -7973,8 +7354,6 @@ Structure of GRpcClient.TetherTradeInfo
 | value  | [`BigUint`](#GRpcClient.BigUint) |
 | assets | `Array.&lt;string&gt;`           |
 | tether | `string`                         |
-
-<a name="GRpcClient.WithdrawTetherTx"></a>
 
 ### GRpcClient.WithdrawTetherTx : `object`
 
@@ -8046,8 +7425,6 @@ Structure of GRpcClient.WithdrawTetherTx
 | expiredAt  | [`Timestamp`](#GRpcClient.Timestamp)             |
 | data       | [`Any`](#GRpcClient.Any)                         |
 
-<a name="GRpcClient.WithdrawTokenTx"></a>
-
 ### GRpcClient.WithdrawTokenTx : `object`
 
 Structure of GRpcClient.WithdrawTokenTx
@@ -8072,8 +7449,6 @@ Structure of GRpcClient.WithdrawTokenTx
 | chainId   | `string`                             |
 | ttl       | [`Timestamp`](#GRpcClient.Timestamp) |
 
-<a name="GRpcClient.Any"></a>
-
 ### GRpcClient.Any : `object`
 
 Structure of GRpcClient.Any
@@ -8085,8 +7460,6 @@ Structure of GRpcClient.Any
 | -------- | ------------ |
 | type_url | `string`     |
 | value    | `Uint8Array` |
-
-<a name="GRpcClient.Timestamp"></a>
 
 ### GRpcClient.Timestamp : `object`
 
@@ -8100,8 +7473,6 @@ Structure of GRpcClient.Timestamp
 | seconds | `number` |
 | nanos   | `number` |
 
-<a name="GRpcClient.KVPair"></a>
-
 ### GRpcClient.KVPair : `object`
 
 Structure of GRpcClient.KVPair
@@ -8113,8 +7484,6 @@ Structure of GRpcClient.KVPair
 | ----- | ------------ |
 | key   | `Uint8Array` |
 | value | `Uint8Array` |
-
-<a name="GRpcClient.BlockParams"></a>
 
 ### GRpcClient.BlockParams : `object`
 
@@ -8128,8 +7497,6 @@ Structure of GRpcClient.BlockParams
 | maxBytes | `number` |
 | maxGas   | `number` |
 
-<a name="GRpcClient.EvidenceParams"></a>
-
 ### GRpcClient.EvidenceParams : `object`
 
 Structure of GRpcClient.EvidenceParams
@@ -8141,8 +7508,6 @@ Structure of GRpcClient.EvidenceParams
 | ------ | -------- |
 | maxAge | `number` |
 
-<a name="GRpcClient.ValidatorParams"></a>
-
 ### GRpcClient.ValidatorParams : `object`
 
 Structure of GRpcClient.ValidatorParams
@@ -8153,8 +7518,6 @@ Structure of GRpcClient.ValidatorParams
 | Name        | Type                   |
 | ----------- | ---------------------- |
 | pubKeyTypes | `Array.&lt;string&gt;` |
-
-<a name="GRpcClient.ConsensusParams"></a>
 
 ### GRpcClient.ConsensusParams : `object`
 
@@ -8169,8 +7532,6 @@ Structure of GRpcClient.ConsensusParams
 | evidence  | [`EvidenceParams`](#GRpcClient.EvidenceParams)   |
 | validator | [`ValidatorParams`](#GRpcClient.ValidatorParams) |
 
-<a name="GRpcClient.LastCommitInfo"></a>
-
 ### GRpcClient.LastCommitInfo : `object`
 
 Structure of GRpcClient.LastCommitInfo
@@ -8182,8 +7543,6 @@ Structure of GRpcClient.LastCommitInfo
 | ----- | ------------------------------------------------ |
 | round | `number`                                         |
 | votes | [`Array.&lt;VoteInfo&gt;`](#GRpcClient.VoteInfo) |
-
-<a name="GRpcClient.Version"></a>
 
 ### GRpcClient.Version : `object`
 
@@ -8197,8 +7556,6 @@ Structure of GRpcClient.Version
 | Block | `number` |
 | App   | `number` |
 
-<a name="GRpcClient.BlockID"></a>
-
 ### GRpcClient.BlockID : `object`
 
 Structure of GRpcClient.BlockID
@@ -8210,8 +7567,6 @@ Structure of GRpcClient.BlockID
 | ----------- | -------------------------------------------- |
 | hash        | `Uint8Array`                                 |
 | partsHeader | [`PartSetHeader`](#GRpcClient.PartSetHeader) |
-
-<a name="GRpcClient.PartSetHeader"></a>
 
 ### GRpcClient.PartSetHeader : `object`
 
@@ -8225,8 +7580,6 @@ Structure of GRpcClient.PartSetHeader
 | total | `number`     |
 | hash  | `Uint8Array` |
 
-<a name="GRpcClient.Validator"></a>
-
 ### GRpcClient.Validator : `object`
 
 Structure of GRpcClient.Validator
@@ -8238,8 +7591,6 @@ Structure of GRpcClient.Validator
 | ------- | ------------ |
 | address | `Uint8Array` |
 | power   | `number`     |
-
-<a name="GRpcClient.ValidatorUpdate"></a>
 
 ### GRpcClient.ValidatorUpdate : `object`
 
@@ -8253,8 +7604,6 @@ Structure of GRpcClient.ValidatorUpdate
 | pubKey | [`PubKey`](#GRpcClient.PubKey) |
 | power  | `number`                       |
 
-<a name="GRpcClient.VoteInfo"></a>
-
 ### GRpcClient.VoteInfo : `object`
 
 Structure of GRpcClient.VoteInfo
@@ -8267,8 +7616,6 @@ Structure of GRpcClient.VoteInfo
 | validator       | [`Validator`](#GRpcClient.Validator) |
 | signedLastBlock | `boolean`                            |
 
-<a name="GRpcClient.PubKey"></a>
-
 ### GRpcClient.PubKey : `object`
 
 Structure of GRpcClient.PubKey
@@ -8280,8 +7627,6 @@ Structure of GRpcClient.PubKey
 | ---- | ------------ |
 | type | `string`     |
 | data | `Uint8Array` |
-
-<a name="GRpcClient.Evidence"></a>
 
 ### GRpcClient.Evidence : `object`
 
@@ -8297,8 +7642,6 @@ Structure of GRpcClient.Evidence
 | height           | `number`                             |
 | time             | [`Timestamp`](#GRpcClient.Timestamp) |
 | totalVotingPower | `number`                             |
-
-<a name="GRpcClient.Header"></a>
 
 ### GRpcClient.Header : `object`
 
@@ -8326,8 +7669,6 @@ Structure of GRpcClient.Header
 | evidenceHash       | `Uint8Array`                         |
 | proposerAddress    | `Uint8Array`                         |
 
-<a name="GRpcClient.RequestBeginBlock"></a>
-
 ### GRpcClient.RequestBeginBlock : `object`
 
 Structure of GRpcClient.RequestBeginBlock
@@ -8342,8 +7683,6 @@ Structure of GRpcClient.RequestBeginBlock
 | lastCommitInfo      | [`LastCommitInfo`](#GRpcClient.LastCommitInfo)   |
 | byzantineValidators | [`Array.&lt;Evidence&gt;`](#GRpcClient.Evidence) |
 
-<a name="GRpcClient.RequestEndBlock"></a>
-
 ### GRpcClient.RequestEndBlock : `object`
 
 Structure of GRpcClient.RequestEndBlock
@@ -8355,8 +7694,6 @@ Structure of GRpcClient.RequestEndBlock
 | ------ | -------- |
 | height | `number` |
 
-<a name="GRpcClient.ResponseBeginBlock"></a>
-
 ### GRpcClient.ResponseBeginBlock : `object`
 
 Structure of GRpcClient.ResponseBeginBlock
@@ -8367,8 +7704,6 @@ Structure of GRpcClient.ResponseBeginBlock
 | Name | Type                                         |
 | ---- | -------------------------------------------- |
 | tags | [`Array.&lt;KVPair&gt;`](#GRpcClient.KVPair) |
-
-<a name="GRpcClient.ResponseEndBlock"></a>
 
 ### GRpcClient.ResponseEndBlock : `object`
 
@@ -8382,8 +7717,6 @@ Structure of GRpcClient.ResponseEndBlock
 | validatorUpdates      | [`Array.&lt;ValidatorUpdate&gt;`](#GRpcClient.ValidatorUpdate) |
 | consensusParamUpdates | [`ConsensusParams`](#GRpcClient.ConsensusParams)               |
 | tags                  | [`Array.&lt;KVPair&gt;`](#GRpcClient.KVPair)                   |
-
-<a name="GRpcClient.ResponseCheckTx"></a>
 
 ### GRpcClient.ResponseCheckTx : `object`
 
@@ -8423,8 +7756,6 @@ Structure of GRpcClient.ResponseCheckTx
 | tags      | [`Array.&lt;KVPair&gt;`](#GRpcClient.KVPair) |
 | codespace | `string`                                     |
 
-<a name="GRpcClient.ResponseDeliverTx"></a>
-
 ### GRpcClient.ResponseDeliverTx : `object`
 
 Structure of GRpcClient.ResponseDeliverTx
@@ -8463,8 +7794,6 @@ Structure of GRpcClient.ResponseDeliverTx
 | tags      | [`Array.&lt;KVPair&gt;`](#GRpcClient.KVPair) |
 | codespace | `string`                                     |
 
-<a name="GRpcClient.ConsensusUpgradeTxInput"></a>
-
 ### GRpcClient.ConsensusUpgradeTxInput : `Object`
 
 **Kind**: static typedef of [`GRpcClient`](#GRpcClient)  
@@ -8483,8 +7812,6 @@ Structure of GRpcClient.ResponseDeliverTx
 | [input.tx.signatures] | `array`                                                | transaction signatures, should be set when it's a multisig transaction                        |
 | input.wallet          | `object`                                               | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
 | [input.signature]     | `string`                                               | the signature of the tx, if this parameter exist, we will not sign the transaction            |
-
-<a name="GRpcClient.DeployProtocolTxInput"></a>
 
 ### GRpcClient.DeployProtocolTxInput : `Object`
 
@@ -8505,8 +7832,6 @@ Structure of GRpcClient.ResponseDeliverTx
 | input.wallet          | `object`                                           | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
 | [input.signature]     | `string`                                           | the signature of the tx, if this parameter exist, we will not sign the transaction            |
 
-<a name="GRpcClient.SysUpgradeTxInput"></a>
-
 ### GRpcClient.SysUpgradeTxInput : `Object`
 
 **Kind**: static typedef of [`GRpcClient`](#GRpcClient)  
@@ -8525,8 +7850,6 @@ Structure of GRpcClient.ResponseDeliverTx
 | [input.tx.signatures] | `array`                                    | transaction signatures, should be set when it's a multisig transaction                        |
 | input.wallet          | `object`                                   | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
 | [input.signature]     | `string`                                   | the signature of the tx, if this parameter exist, we will not sign the transaction            |
-
-<a name="GRpcClient.RevokeWithdrawTxInput"></a>
 
 ### GRpcClient.RevokeWithdrawTxInput : `Object`
 
@@ -8547,8 +7870,6 @@ Structure of GRpcClient.ResponseDeliverTx
 | input.wallet          | `object`                                           | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
 | [input.signature]     | `string`                                           | the signature of the tx, if this parameter exist, we will not sign the transaction            |
 
-<a name="GRpcClient.WithdrawTokenTxInput"></a>
-
 ### GRpcClient.WithdrawTokenTxInput : `Object`
 
 **Kind**: static typedef of [`GRpcClient`](#GRpcClient)  
@@ -8567,8 +7888,6 @@ Structure of GRpcClient.ResponseDeliverTx
 | [input.tx.signatures] | `array`                                          | transaction signatures, should be set when it's a multisig transaction                        |
 | input.wallet          | `object`                                         | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
 | [input.signature]     | `string`                                         | the signature of the tx, if this parameter exist, we will not sign the transaction            |
-
-<a name="GRpcClient.DelegateTxInput"></a>
 
 ### GRpcClient.DelegateTxInput : `Object`
 
@@ -8589,8 +7908,6 @@ Structure of GRpcClient.ResponseDeliverTx
 | input.wallet          | `object`                               | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
 | [input.signature]     | `string`                               | the signature of the tx, if this parameter exist, we will not sign the transaction            |
 
-<a name="GRpcClient.AccountMigrateTxInput"></a>
-
 ### GRpcClient.AccountMigrateTxInput : `Object`
 
 **Kind**: static typedef of [`GRpcClient`](#GRpcClient)  
@@ -8609,8 +7926,6 @@ Structure of GRpcClient.ResponseDeliverTx
 | [input.tx.signatures] | `array`                                            | transaction signatures, should be set when it's a multisig transaction                        |
 | input.wallet          | `object`                                           | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
 | [input.signature]     | `string`                                           | the signature of the tx, if this parameter exist, we will not sign the transaction            |
-
-<a name="GRpcClient.DeclareTxInput"></a>
 
 ### GRpcClient.DeclareTxInput : `Object`
 
@@ -8631,8 +7946,6 @@ Structure of GRpcClient.ResponseDeliverTx
 | input.wallet          | `object`                             | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
 | [input.signature]     | `string`                             | the signature of the tx, if this parameter exist, we will not sign the transaction            |
 
-<a name="GRpcClient.RetrieveSwapTxInput"></a>
-
 ### GRpcClient.RetrieveSwapTxInput : `Object`
 
 **Kind**: static typedef of [`GRpcClient`](#GRpcClient)  
@@ -8651,8 +7964,6 @@ Structure of GRpcClient.ResponseDeliverTx
 | [input.tx.signatures] | `array`                                        | transaction signatures, should be set when it's a multisig transaction                        |
 | input.wallet          | `object`                                       | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
 | [input.signature]     | `string`                                       | the signature of the tx, if this parameter exist, we will not sign the transaction            |
-
-<a name="GRpcClient.TransferTxInput"></a>
 
 ### GRpcClient.TransferTxInput : `Object`
 
@@ -8673,8 +7984,6 @@ Structure of GRpcClient.ResponseDeliverTx
 | input.wallet          | `object`                               | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
 | [input.signature]     | `string`                               | the signature of the tx, if this parameter exist, we will not sign the transaction            |
 
-<a name="GRpcClient.RevokeTetherTxInput"></a>
-
 ### GRpcClient.RevokeTetherTxInput : `Object`
 
 **Kind**: static typedef of [`GRpcClient`](#GRpcClient)  
@@ -8693,8 +8002,6 @@ Structure of GRpcClient.ResponseDeliverTx
 | [input.tx.signatures] | `array`                                        | transaction signatures, should be set when it's a multisig transaction                        |
 | input.wallet          | `object`                                       | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
 | [input.signature]     | `string`                                       | the signature of the tx, if this parameter exist, we will not sign the transaction            |
-
-<a name="GRpcClient.DeactivateProtocolTxInput"></a>
 
 ### GRpcClient.DeactivateProtocolTxInput : `Object`
 
@@ -8715,8 +8022,6 @@ Structure of GRpcClient.ResponseDeliverTx
 | input.wallet          | `object`                                                   | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
 | [input.signature]     | `string`                                                   | the signature of the tx, if this parameter exist, we will not sign the transaction            |
 
-<a name="GRpcClient.PokeTxInput"></a>
-
 ### GRpcClient.PokeTxInput : `Object`
 
 **Kind**: static typedef of [`GRpcClient`](#GRpcClient)  
@@ -8736,8 +8041,6 @@ Structure of GRpcClient.ResponseDeliverTx
 | input.wallet          | `object`                       | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
 | [input.signature]     | `string`                       | the signature of the tx, if this parameter exist, we will not sign the transaction            |
 
-<a name="GRpcClient.PokeTxInput"></a>
-
 ### GRpcClient.PokeTxInput : `Object`
 
 **Kind**: static typedef of [`GRpcClient`](#GRpcClient)  
@@ -8756,8 +8059,6 @@ Structure of GRpcClient.ResponseDeliverTx
 | [input.tx.signatures] | `array`                        | transaction signatures, should be set when it's a multisig transaction                        |
 | input.wallet          | `object`                       | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
 | [input.signature]     | `string`                       | the signature of the tx, if this parameter exist, we will not sign the transaction            |
-
-<a name="GRpcClient.CreateAssetTxInput"></a>
 
 ### GRpcClient.CreateAssetTxInput : `Object`
 
@@ -8778,8 +8079,6 @@ Structure of GRpcClient.ResponseDeliverTx
 | input.wallet          | `object`                                     | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
 | [input.signature]     | `string`                                     | the signature of the tx, if this parameter exist, we will not sign the transaction            |
 
-<a name="GRpcClient.DepositTetherTxInput"></a>
-
 ### GRpcClient.DepositTetherTxInput : `Object`
 
 **Kind**: static typedef of [`GRpcClient`](#GRpcClient)  
@@ -8798,8 +8097,6 @@ Structure of GRpcClient.ResponseDeliverTx
 | [input.tx.signatures] | `array`                                          | transaction signatures, should be set when it's a multisig transaction                        |
 | input.wallet          | `object`                                         | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
 | [input.signature]     | `string`                                         | the signature of the tx, if this parameter exist, we will not sign the transaction            |
-
-<a name="GRpcClient.ExchangeTetherTxInput"></a>
 
 ### GRpcClient.ExchangeTetherTxInput : `Object`
 
@@ -8820,8 +8117,6 @@ Structure of GRpcClient.ResponseDeliverTx
 | input.wallet          | `object`                                           | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
 | [input.signature]     | `string`                                           | the signature of the tx, if this parameter exist, we will not sign the transaction            |
 
-<a name="GRpcClient.ConsumeAssetTxInput"></a>
-
 ### GRpcClient.ConsumeAssetTxInput : `Object`
 
 **Kind**: static typedef of [`GRpcClient`](#GRpcClient)  
@@ -8840,8 +8135,6 @@ Structure of GRpcClient.ResponseDeliverTx
 | [input.tx.signatures] | `array`                                        | transaction signatures, should be set when it's a multisig transaction                        |
 | input.wallet          | `object`                                       | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
 | [input.signature]     | `string`                                       | the signature of the tx, if this parameter exist, we will not sign the transaction            |
-
-<a name="GRpcClient.SetupSwapTxInput"></a>
 
 ### GRpcClient.SetupSwapTxInput : `Object`
 
@@ -8862,8 +8155,6 @@ Structure of GRpcClient.ResponseDeliverTx
 | input.wallet          | `object`                                 | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
 | [input.signature]     | `string`                                 | the signature of the tx, if this parameter exist, we will not sign the transaction            |
 
-<a name="GRpcClient.ApproveWithdrawTxInput"></a>
-
 ### GRpcClient.ApproveWithdrawTxInput : `Object`
 
 **Kind**: static typedef of [`GRpcClient`](#GRpcClient)  
@@ -8882,8 +8173,6 @@ Structure of GRpcClient.ResponseDeliverTx
 | [input.tx.signatures] | `array`                                              | transaction signatures, should be set when it's a multisig transaction                        |
 | input.wallet          | `object`                                             | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
 | [input.signature]     | `string`                                             | the signature of the tx, if this parameter exist, we will not sign the transaction            |
-
-<a name="GRpcClient.UpdateAssetTxInput"></a>
 
 ### GRpcClient.UpdateAssetTxInput : `Object`
 
@@ -8904,8 +8193,6 @@ Structure of GRpcClient.ResponseDeliverTx
 | input.wallet          | `object`                                     | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
 | [input.signature]     | `string`                                     | the signature of the tx, if this parameter exist, we will not sign the transaction            |
 
-<a name="GRpcClient.RevokeSwapTxInput"></a>
-
 ### GRpcClient.RevokeSwapTxInput : `Object`
 
 **Kind**: static typedef of [`GRpcClient`](#GRpcClient)  
@@ -8924,8 +8211,6 @@ Structure of GRpcClient.ResponseDeliverTx
 | [input.tx.signatures] | `array`                                    | transaction signatures, should be set when it's a multisig transaction                        |
 | input.wallet          | `object`                                   | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
 | [input.signature]     | `string`                                   | the signature of the tx, if this parameter exist, we will not sign the transaction            |
-
-<a name="GRpcClient.ExchangeTxInput"></a>
 
 ### GRpcClient.ExchangeTxInput : `Object`
 
@@ -8946,8 +8231,6 @@ Structure of GRpcClient.ResponseDeliverTx
 | input.wallet          | `object`                               | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
 | [input.signature]     | `string`                               | the signature of the tx, if this parameter exist, we will not sign the transaction            |
 
-<a name="GRpcClient.WithdrawTetherTxInput"></a>
-
 ### GRpcClient.WithdrawTetherTxInput : `Object`
 
 **Kind**: static typedef of [`GRpcClient`](#GRpcClient)  
@@ -8966,8 +8249,6 @@ Structure of GRpcClient.ResponseDeliverTx
 | [input.tx.signatures] | `array`                                            | transaction signatures, should be set when it's a multisig transaction                        |
 | input.wallet          | `object`                                           | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
 | [input.signature]     | `string`                                           | the signature of the tx, if this parameter exist, we will not sign the transaction            |
-
-<a name="GRpcClient.ActivateProtocolTxInput"></a>
 
 ### GRpcClient.ActivateProtocolTxInput : `Object`
 
@@ -8988,8 +8269,6 @@ Structure of GRpcClient.ResponseDeliverTx
 | input.wallet          | `object`                                               | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
 | [input.signature]     | `string`                                               | the signature of the tx, if this parameter exist, we will not sign the transaction            |
 
-<a name="GRpcClient.ApproveTetherTxInput"></a>
-
 ### GRpcClient.ApproveTetherTxInput : `Object`
 
 **Kind**: static typedef of [`GRpcClient`](#GRpcClient)  
@@ -9008,8 +8287,6 @@ Structure of GRpcClient.ResponseDeliverTx
 | [input.tx.signatures] | `array`                                          | transaction signatures, should be set when it's a multisig transaction                        |
 | input.wallet          | `object`                                         | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
 | [input.signature]     | `string`                                         | the signature of the tx, if this parameter exist, we will not sign the transaction            |
-
-<a name="GRpcClient.UpgradeNodeTxInput"></a>
 
 ### GRpcClient.UpgradeNodeTxInput : `Object`
 
@@ -9030,8 +8307,6 @@ Structure of GRpcClient.ResponseDeliverTx
 | input.wallet          | `object`                                     | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
 | [input.signature]     | `string`                                     | the signature of the tx, if this parameter exist, we will not sign the transaction            |
 
-<a name="GRpcClient.DepositTokenTxInput"></a>
-
 ### GRpcClient.DepositTokenTxInput : `Object`
 
 **Kind**: static typedef of [`GRpcClient`](#GRpcClient)  
@@ -9051,8 +8326,6 @@ Structure of GRpcClient.ResponseDeliverTx
 | input.wallet          | `object`                                       | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
 | [input.signature]     | `string`                                       | the signature of the tx, if this parameter exist, we will not sign the transaction            |
 
-<a name="GRpcClient.AcquireAssetTxInput"></a>
-
 ### GRpcClient.AcquireAssetTxInput : `Object`
 
 **Kind**: static typedef of [`GRpcClient`](#GRpcClient)  
@@ -9071,8 +8344,6 @@ Structure of GRpcClient.ResponseDeliverTx
 | [input.tx.signatures] | `array`                                        | transaction signatures, should be set when it's a multisig transaction                        |
 | input.wallet          | `object`                                       | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
 | [input.signature]     | `string`                                       | the signature of the tx, if this parameter exist, we will not sign the transaction            |
-
-<a name="GRpcClient.StakeTxInput"></a>
 
 ### GRpcClient.StakeTxInput : `Object`
 

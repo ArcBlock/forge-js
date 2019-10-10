@@ -9,8 +9,6 @@ tags:
   - 'forge'
 ---
 
-<a name="module_@arcblock/mcrypto"></a>
-
 
 ## [**@arcblock/mcrypto**](https://github.com/arcblock/mcrypto)
 
@@ -38,8 +36,6 @@ yarn add @arcblock/mcrypto
 * [getSigner(type)](#getSigner) ⇒ `object`
 * [getHasher(type)](#getHasher) ⇒ `object`
 
-<a name="Signer"></a>
-
 ### Signer : `object`
 
 Contains all supported signers, eg: `Ed25519` and `Secp256k1`
@@ -59,8 +55,6 @@ const result = Signer.Ed25519.verify(message, signature, keyPair.publicKey);
 assert.ok(result);
 ```
 
-<a name="Hasher"></a>
-
 ### Hasher : `object`
 
 Contains all supported hasher, eg: `SHA2`,`SHA3` and `Keccak`, each of them supports `hash224`, `hash256`, `hash384`, `hash512`
@@ -76,14 +70,11 @@ const message = 'message to hash';
 const hash = Hasher.SHA2.hash256(message);
 ```
 
-<a name="Crypter"></a>
-
 ### Crypter
 
 Contains all supported crypter, eg: `AES`, each of them supports `encrypt`, `decrypt`
 
-**Kind**: static property  
-<a name="types"></a>
+**Kind**: static property   
 
 ### types : `object`
 
@@ -102,8 +93,6 @@ const { types } = require('@arcblock/mcrypto');
 // types.HashType.SHA3
 // types.EncodingType.BASE58
 ```
-
-<a name="getSigner"></a>
 
 ### getSigner(type) ⇒ `object`
 
@@ -128,8 +117,6 @@ const signature1 = signer.sign(message, keyPair1.secretKey);
 const result1 = signer.verify(message, signature1, keyPair1.publicKey);
 assert.ok(result1);
 ```
-
-<a name="getHasher"></a>
 
 ### getHasher(type) ⇒ `object`
 

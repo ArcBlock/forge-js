@@ -9,14 +9,12 @@ tags:
   - 'forge'
 ---
 
-<a name="module_@arcblock/forge-message"></a>
-
 
 ## [**@arcblock/forge-message**](https://github.com/arcblock/forge-message)
 
 Contains basic helper methods to encode/format/mock a protobuf message
 
-**Requires**: [@arcblock/forge-util](./forge-util/), [@arcblock/forge-proto](./forge-proto/)  
+**Requires**: [@arcblock/forge-util](/packages/forge-util/), [@arcblock/forge-proto](/packages/forge-proto/)  
 **Example**  
 
 ```js
@@ -34,8 +32,6 @@ const { createMessage, fakeMessage, formatMessage } = require('@arcblock/forge-m
 * [decodeTimestamp(data)](#decodeTimestamp) ⇒ `strong`
 * [encodeBigInt(value, type)](#encodeBigInt) ⇒ `object`
 * [decodeBigInt(data)](#decodeBigInt) ⇒ `string`
-
-<a name="fakeMessage"></a>
 
 ### fakeMessage(type) ⇒ `object`
 
@@ -65,8 +61,6 @@ const message = fakeMessage('CreateAssetTx');
 }
 ```
 
-<a name="formatMessage"></a>
-
 ### formatMessage(type, data) ⇒ `object`
 
 Format an message from RPC to UI friendly
@@ -79,8 +73,6 @@ Format an message from RPC to UI friendly
 | ----- | -------- | ----------- |
 | type  | `string` | input type  |
 | data  | `object` | input data  |
-
-<a name="createMessage"></a>
 
 ### createMessage(type, params) ⇒ `object`
 
@@ -110,8 +102,6 @@ message.getReadonly(); // false
 message.setReadonly(true);
 ```
 
-<a name="decodeAny"></a>
-
 ### decodeAny(data) ⇒ `object`
 
 Decode an google.protobuf.Any%{ typeUrl, value } => { type, value }
@@ -123,8 +113,6 @@ Decode an google.protobuf.Any%{ typeUrl, value } => { type, value }
 | Param | Type     | Description         |
 | ----- | -------- | ------------------- |
 | data  | `object` | encoded data object |
-
-<a name="encodeAny"></a>
 
 ### encodeAny(data) ⇒ `object`
 
@@ -139,8 +127,6 @@ Does nothing on already encoded message
 | ----- | -------- |
 | data  | `object` |
 
-<a name="encodeTimestamp"></a>
-
 ### encodeTimestamp(value) ⇒ `object`
 
 Convert an { seconds, nanos } | date-string to google.protobuf.Timestamp object
@@ -152,8 +138,6 @@ Convert an { seconds, nanos } | date-string to google.protobuf.Timestamp object
 | Param | Type                 |
 | ----- | -------------------- |
 | value | `string` \| `object` |
-
-<a name="decodeTimestamp"></a>
 
 ### decodeTimestamp(data) ⇒ `strong`
 
@@ -169,8 +153,6 @@ FIXME: node strictly equal because we rounded the `nanos` field
 | ----- | -------- |
 | data  | `object` |
 
-<a name="encodeBigInt"></a>
-
 ### encodeBigInt(value, type) ⇒ `object`
 
 Encode BigUint and BigSint types defined in forge-sdk, double encoding is avoided
@@ -183,8 +165,6 @@ Encode BigUint and BigSint types defined in forge-sdk, double encoding is avoide
 | ----- | -------------------------------- | --------------------------------- |
 | value | `buffer` \| `string` \| `number` | value to encode                   |
 | type  | `string`                         | type names defined in forge-proto |
-
-<a name="decodeBigInt"></a>
 
 ### decodeBigInt(data) ⇒ `string`
 

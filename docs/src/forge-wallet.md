@@ -29,14 +29,12 @@ tags:
 <dd></dd>
 </dl>
 
-<a name="module_@arcblock/forge-wallet"></a>
-
 
 ## [**@arcblock/forge-wallet**](https://github.com/arcblock/forge-wallet)
 
 This module wraps common utility functions to help developers manipulate crypto wallets
 
-**Requires**: [@arcblock/mcrypto](./mcrypto/), [@arcblock/did](./did/)  
+**Requires**: [@arcblock/mcrypto](/packages/mcrypto/), [@arcblock/did](/packages/did/)  
 **Example**  
 
 ```js
@@ -50,8 +48,6 @@ yarn add @arcblock/forge-wallet
 * [fromAddress(address)](#fromAddress) ⇒ [`WalletObject`](#WalletObject)
 * [fromRandom(\[type\])](#fromRandom) ⇒ [`WalletObject`](#WalletObject)
 * [fromJSON(json)](#fromJSON) ⇒ [`WalletObject`](#WalletObject)
-
-<a name="WalletType"></a>
 
 ### WalletType([type]) ⇒ `object`
 
@@ -78,8 +74,6 @@ const type = WalletType({
 });
 ```
 
-<a name="Wallet"></a>
-
 ### Wallet(keyPair, [type]) ⇒ [`WalletObject`](#WalletObject)
 
 Generate an wallet instance that can be used to sign a message or verify a signature
@@ -94,8 +88,6 @@ Generate an wallet instance that can be used to sign a message or verify a signa
 | keyPair.sk | `string`                                |                     | the secretKey        |
 | keyPair.pk | `string`                                |                     | the wallet publicKey |
 | [type]     | [`WalletTypeObject`](#WalletTypeObject) | `defaultWalletType` | wallet type          |
-
-<a name="fromSecretKey"></a>
 
 ### fromSecretKey(sk, [type]) ⇒ [`WalletObject`](#WalletObject)
 
@@ -128,8 +120,6 @@ assert.equal(signature, sig, "signature should match");
 assert.ok(wallet.verify(message, signature), "signature should be verified");
 ```
 
-<a name="fromPublicKey"></a>
-
 ### fromPublicKey(pk, [type]) ⇒ [`WalletObject`](#WalletObject)
 
 Generate a wallet from publicKey
@@ -142,8 +132,6 @@ Generate a wallet from publicKey
 | ------ | --------------------------------------- | ------------------- | ------------------------------------ |
 | pk     | `string`                                |                     | the public key, `hex encoded string` |
 | [type] | [`WalletTypeObject`](#WalletTypeObject) | `defaultWalletType` | wallet type                          |
-
-<a name="fromAddress"></a>
 
 ### fromAddress(address) ⇒ [`WalletObject`](#WalletObject)
 
@@ -170,8 +158,6 @@ const wallet = fromAddress(address);
 console.log(wallet.toJSON());
 ```
 
-<a name="fromRandom"></a>
-
 ### fromRandom([type]) ⇒ [`WalletObject`](#WalletObject)
 
 Generate a wallet by generating a random secretKey
@@ -191,8 +177,6 @@ const { fromRandom } = require('@arcblock/forge-wallet');
 const wallet = fromRandom();
 // Do something with wallet
 ```
-
-<a name="fromJSON"></a>
 
 ### fromJSON(json) ⇒ [`WalletObject`](#WalletObject)
 
@@ -215,8 +199,6 @@ const wallet2 = fromJSON(wallet.toJSON());
 // wallet2 is identical to wallet
 ```
 
-<a name="WalletTypeObject"></a>
-
 
 ## WalletTypeObject : `Object`
 
@@ -231,8 +213,6 @@ The structure of a forge wallet type
 | role | `number` | Enum field to identify wallet role type                 |
 | pk   | `number` | Crypto algorithm to derive publicKey from the secretKey |
 | hash | `number` | Hash algorithm used to hash data before sign them       |
-
-<a name="WalletObject"></a>
 
 
 ## WalletObject
