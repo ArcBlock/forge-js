@@ -1,7 +1,12 @@
 require('dotenv').config();
 
+const fs = require('fs');
 const path = require('path');
-const { version } = require('../package.json');
+
+const version = fs
+  .readFileSync(path.resolve(__dirname, '../version'))
+  .toString()
+  .trim();
 
 module.exports = {
   plugins: [
