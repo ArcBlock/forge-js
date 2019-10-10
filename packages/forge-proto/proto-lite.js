@@ -1,4 +1,4 @@
-// Auto generated code (2019-10-08T04:28:57.596Z), DO NOT EDIT
+// Auto generated code (2019-10-10T00:31:35.542Z), DO NOT EDIT
 const typePb = require('./lib/type_pb.js');
 const enumPb = require('./lib/enum_pb.js');
 const revokeSwapTxPb = require('./lib/revoke_swap_tx_pb.js');
