@@ -1,6 +1,6 @@
 {
   "name": "@arcblock/did",
-  "version": "0.38.5",
+  "version": "0.38.8",
   "description": "Javascript lib to work with ArcBlock DID",
   "keywords": [
     "forge",
@@ -46,8 +46,8 @@
     "url": "https://github.com/ArcBlock/forge-js/issues"
   },
   "dependencies": {
-    "@arcblock/forge-util": "^0.38.5",
-    "@arcblock/mcrypto": "^0.38.5",
+    "@arcblock/forge-util": "^0.38.8",
+    "@arcblock/mcrypto": "^0.38.8",
     "bn.js": "^5.0.0",
     "debug": "^4.1.1",
     "lodash": "^4.17.14"
