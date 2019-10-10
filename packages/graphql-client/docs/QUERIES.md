@@ -1,6 +1,6 @@
 # Forge GraphQL API List
 
-> Updated on 2019-10-08T05:33:22.628Z
+> Updated on 2019-10-10T00:33:48.563Z
 
 
 ## Table of Contents
@@ -438,8 +438,15 @@ No arguments
     code
     state {
       address
-      forgeAppHash
       version
+      accountConfig {
+        key
+        value {
+          address
+          balance
+          pk
+        }
+      }
       consensus {
         maxBytes
         maxCandidates
@@ -461,19 +468,9 @@ No arguments
         key
         value
       }
-      pokeConfig {
-        address
-        amount
-        balance
-        dailyLimit
-      }
       protocols {
         address
         name
-      }
-      stakeConfig {
-        timeoutGeneral
-        timeoutStakeForNode
       }
       stakeSummary {
         key
@@ -507,6 +504,13 @@ No arguments
         totalSupply
         unit
       }
+      tokenSwapConfig {
+        commission
+        commissionHolderAddress
+        commissionRate
+        revokeCommission
+        withdrawInterval
+      }
       txConfig {
         maxAssetSize
         maxListSize
@@ -519,6 +523,15 @@ No arguments
         delegate {
           deltaInterval
           typeUrls
+        }
+        poke {
+          amount
+          dailyLimit
+          enabled
+        }
+        stake {
+          timeoutGeneral
+          timeoutStakeForNode
         }
       }
       upgradeInfo {
@@ -1539,6 +1552,24 @@ subscription {
         }
       }
     }
+    approveWithdraw {
+      chainId
+      from
+      itxJson
+      nonce
+      pk
+      signature
+      signatures {
+        delegator
+        pk
+        signature
+        signer
+        data {
+          typeUrl
+          value
+        }
+      }
+    }
     assetState {
       address
       consumedTime
@@ -1580,14 +1611,11 @@ subscription {
     beginBlock {
       hash
       byzantineValidators {
-        height
-        time
-        totalVotingPower
-        type
-        validator {
-          address
-          power
-        }
+        chainId
+        chainType
+        hash
+        originalTx
+        receiverAddress
       }
       header {
         appHash
@@ -1774,6 +1802,24 @@ subscription {
         }
       }
     }
+    depositToken {
+      chainId
+      from
+      itxJson
+      nonce
+      pk
+      signature
+      signatures {
+        delegator
+        pk
+        signature
+        signer
+        data {
+          typeUrl
+          value
+        }
+      }
+    }
     endBlock {
       height
     }
@@ -1797,8 +1843,15 @@ subscription {
     }
     forgeState {
       address
-      forgeAppHash
       version
+      accountConfig {
+        key
+        value {
+          address
+          balance
+          pk
+        }
+      }
       consensus {
         maxBytes
         maxCandidates
@@ -1820,19 +1873,9 @@ subscription {
         key
         value
       }
-      pokeConfig {
-        address
-        amount
-        balance
-        dailyLimit
-      }
       protocols {
         address
         name
-      }
-      stakeConfig {
-        timeoutGeneral
-        timeoutStakeForNode
       }
       stakeSummary {
         key
@@ -1866,6 +1909,13 @@ subscription {
         totalSupply
         unit
       }
+      tokenSwapConfig {
+        commission
+        commissionHolderAddress
+        commissionRate
+        revokeCommission
+        withdrawInterval
+      }
       txConfig {
         maxAssetSize
         maxListSize
@@ -1878,6 +1928,15 @@ subscription {
         delegate {
           deltaInterval
           typeUrls
+        }
+        poke {
+          amount
+          dailyLimit
+          enabled
+        }
+        stake {
+          timeoutGeneral
+          timeoutStakeForNode
         }
       }
       upgradeInfo {
@@ -1902,6 +1961,42 @@ subscription {
       }
     }
     revoke {
+      chainId
+      from
+      itxJson
+      nonce
+      pk
+      signature
+      signatures {
+        delegator
+        pk
+        signature
+        signer
+        data {
+          typeUrl
+          value
+        }
+      }
+    }
+    revokeDelegate {
+      chainId
+      from
+      itxJson
+      nonce
+      pk
+      signature
+      signatures {
+        delegator
+        pk
+        signature
+        signer
+        data {
+          typeUrl
+          value
+        }
+      }
+    }
+    revokeWithdraw {
       chainId
       from
       itxJson
@@ -1989,6 +2084,24 @@ subscription {
       }
     }
     updateAsset {
+      chainId
+      from
+      itxJson
+      nonce
+      pk
+      signature
+      signatures {
+        delegator
+        pk
+        signature
+        signer
+        data {
+          typeUrl
+          value
+        }
+      }
+    }
+    withdrawToken {
       chainId
       from
       itxJson
