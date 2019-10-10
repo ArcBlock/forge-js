@@ -138,7 +138,7 @@ const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
     await sleep(3000);
     const hashExchange = await client.sendExchangeTx({
       tx: encoded2,
-      wallet: lily,
+      wallet: betty,
       signature: encoded2.signature,
     });
 

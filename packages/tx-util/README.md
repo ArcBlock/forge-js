@@ -6,13 +6,14 @@
 
 > Utility to parse forge config
 
+
 ## Table of Contents
 
-- [Table of Contents](#Table-of-Contents)
-- [Install](#Install)
-- [Usage](#Usage)
-- [Documentation](#Documentation)
-- [Contributors](#Contributors)
+* [Install](#install)
+* [Usage](#usage)
+* [Documentation](#documentation)
+* [Contributors](#contributors)
+
 
 ## Install
 
@@ -22,15 +23,18 @@ npm install @arcblock/tx-util
 yarn add @arcblock/tx-util
 ```
 
+
 ## Usage
 
 ```js
 const { createVerifier } = require('@arcblock/tx-util');
 ```
 
+
 ## Documentation
 
 For full documentation, checkout [README.md](./docs/README.md).
+
 
 ## Contributors
 

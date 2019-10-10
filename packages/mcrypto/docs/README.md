@@ -20,21 +20,20 @@ Just a wrapper around existing javascript crypto libraries, implementation detai
 yarn add @arcblock/mcrypto
 ```
 
-* [@arcblock/mcrypto](#module_@arcblock/mcrypto)
-  * [.Signer](#module_@arcblock/mcrypto.Signer) : <code>object</code>
-  * [.Hasher](#module_@arcblock/mcrypto.Hasher) : <code>object</code>
-  * [.Crypter](#module_@arcblock/mcrypto.Crypter)
-  * [.types](#module_@arcblock/mcrypto.types) : <code>object</code>
-  * [.getSigner(type)](#module_@arcblock/mcrypto.getSigner) ⇒ <code>object</code>
-  * [.getHasher(type)](#module_@arcblock/mcrypto.getHasher) ⇒ <code>object</code>
+* [Signer](#Signer) : `object`
+* [Hasher](#Hasher) : `object`
+* [Crypter](#Crypter)
+* [types](#types) : `object`
+* [getSigner(type)](#getSigner) ⇒ `object`
+* [getHasher(type)](#getHasher) ⇒ `object`
 
-<a name="module_@arcblock/mcrypto.Signer"></a>
+<a name="Signer"></a>
 
-### [**@arcblock/mcrypto**](https://github.com/arcblock/mcrypto).Signer : <code>object</code>
+### Signer : `object`
 
 Contains all supported signers, eg: `Ed25519` and `Secp256k1`
 
-**Kind**: static property of [<code>@arcblock/mcrypto</code>](#module_@arcblock/mcrypto)  
+**Kind**: static property  
 **Read only**: true  
 **Example**  
 
@@ -49,13 +48,13 @@ const result = Signer.Ed25519.verify(message, signature, keyPair.publicKey);
 assert.ok(result);
 ```
 
-<a name="module_@arcblock/mcrypto.Hasher"></a>
+<a name="Hasher"></a>
 
-### [**@arcblock/mcrypto**](https://github.com/arcblock/mcrypto).Hasher : <code>object</code>
+### Hasher : `object`
 
 Contains all supported hasher, eg: `SHA2`,`SHA3` and `Keccak`, each of them supports `hash224`, `hash256`, `hash384`, `hash512`
 
-**Kind**: static property of [<code>@arcblock/mcrypto</code>](#module_@arcblock/mcrypto)  
+**Kind**: static property  
 **Read only**: true  
 **Example**  
 
@@ -66,21 +65,21 @@ const message = 'message to hash';
 const hash = Hasher.SHA2.hash256(message);
 ```
 
-<a name="module_@arcblock/mcrypto.Crypter"></a>
+<a name="Crypter"></a>
 
-### [**@arcblock/mcrypto**](https://github.com/arcblock/mcrypto).Crypter
+### Crypter
 
 Contains all supported crypter, eg: `AES`, each of them supports `encrypt`, `decrypt`
 
-**Kind**: static property of [<code>@arcblock/mcrypto</code>](#module_@arcblock/mcrypto)  
-<a name="module_@arcblock/mcrypto.types"></a>
+**Kind**: static property  
+<a name="types"></a>
 
-### [**@arcblock/mcrypto**](https://github.com/arcblock/mcrypto).types : <code>object</code>
+### types : `object`
 
 Contains type constants that represent can be used to compose different crypto method, each crypto method consist one of:
 FIXME: enum definition of forge-abi and abt-did-elixir are not exactly the same
 
-**Kind**: static property of [<code>@arcblock/mcrypto</code>](#module_@arcblock/mcrypto)  
+**Kind**: static property  
 **Read only**: true  
 **Example**  
 
@@ -93,18 +92,18 @@ const { types } = require('@arcblock/mcrypto');
 // types.EncodingType.BASE58
 ```
 
-<a name="module_@arcblock/mcrypto.getSigner"></a>
+<a name="getSigner"></a>
 
-### [**@arcblock/mcrypto**](https://github.com/arcblock/mcrypto).getSigner(type) ⇒ <code>object</code>
+### getSigner(type) ⇒ `object`
 
 Get signer instance
 
-**Kind**: static method of [<code>@arcblock/mcrypto</code>](#module_@arcblock/mcrypto)  
-**Returns**: <code>object</code> - signer instance  
+**Kind**: static method  
+**Returns**: `object` - signer instance  
 
-| Param | Type                | Description                                                                                                                                                       |
-| ----- | ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| type  | <code>number</code> | algorithm used to derive key pair, possible values are - types.KeyType.[`ED25519`](https://github.com/ArcBlock/forge-js/commit/ED25519) - types.KeyType.SECP256k1 |
+| Param | Type     | Description                                                                                                                                                       |
+| ----- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| type  | `number` | algorithm used to derive key pair, possible values are - types.KeyType.[`ED25519`](https://github.com/ArcBlock/forge-js/commit/ED25519) - types.KeyType.SECP256k1 |
 
 **Example**  
 
@@ -119,18 +118,18 @@ const result1 = signer.verify(message, signature1, keyPair1.publicKey);
 assert.ok(result1);
 ```
 
-<a name="module_@arcblock/mcrypto.getHasher"></a>
+<a name="getHasher"></a>
 
-### [**@arcblock/mcrypto**](https://github.com/arcblock/mcrypto).getHasher(type) ⇒ <code>object</code>
+### getHasher(type) ⇒ `object`
 
 Get hasher instance
 
-**Kind**: static method of [<code>@arcblock/mcrypto</code>](#module_@arcblock/mcrypto)  
-**Returns**: <code>object</code> - hasher instance  
+**Kind**: static method  
+**Returns**: `object` - hasher instance  
 
-| Param | Type                | Description                                                                                                                                                                                            |
-| ----- | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| type  | <code>number</code> | algorithm used to hash data, possible values - types.HashType.KECCAK - types.HashType.KECCAK_384 - types.HashType.KECCAK_512 - types.HashType.SHA3 - types.HashType.SHA3_384 - types.HashType.SHA3_512 |
+| Param | Type     | Description                                                                                                                                                                                            |
+| ----- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| type  | `number` | algorithm used to hash data, possible values - types.HashType.KECCAK - types.HashType.KECCAK_384 - types.HashType.KECCAK_512 - types.HashType.SHA3 - types.HashType.SHA3_384 - types.HashType.SHA3_512 |
 
 **Example**  
 

@@ -7,7 +7,7 @@ declare class WalletAuthenticator {
   crossChainInfo: any;
   baseUrl: any;
   tokenKey: any;
-  appPk: any;
+  appPk: string;
   /**
    * @typedef ApplicationInfo
    * @prop {string} name - application name
@@ -21,8 +21,6 @@ declare class WalletAuthenticator {
    * @typedef ChainInfo
    * @prop {string} chainId - application chain id
    * @prop {string} chainHost - graphql endpoint of the application chain
-   * @prop {string} chainToken - token symbol
-   * @prop {string} decimals - token decimals
    */
 
   /**
@@ -38,8 +36,28 @@ declare class WalletAuthenticator {
    * @param {string} [config.tokenKey='_t_'] - query param key for `token`
    */
   constructor(T100: _Lib.T101);
-  uri(T102: _Lib.T104): string;
-  sign(T105: _Lib.T106): Promise<_Lib.T107>;
+  /**
+   * Generate a deep link url that can be displayed as QRCode for ABT Wallet to consume
+   *
+   * @param {object} params
+   * @param {string} params.token - action token
+   * @param {string} params.pathname - wallet callback pathname
+   * @param {object} params.query - params that should be persisted in wallet callback url
+   * @returns
+   */
+  uri(T102: _Lib.T103): string;
+  /**
+   * Sign a auth response that returned to wallet: tell the wallet the appInfo/chainInfo/crossChainInfo
+   *
+   * @param {object} params
+   * @param {string} params.token - action token
+   * @param {string} params.userDid - decoded from req.query, base58
+   * @param {string} params.userPk - decoded from req.query, base58
+   * @param {object} params.claims - info required by application to complete the auth
+   * @param {object} params.extraParams - extra query params and locale
+   * @returns {object} { appPk, authInfo }
+   */
+  sign(T104: _Lib.T105): any;
   /**
    * Verify a DID auth response sent from ABT Wallet
    *
@@ -48,13 +66,13 @@ declare class WalletAuthenticator {
    * @returns Promise<>
    */
   verify(data: any, locale?: string): Promise<any>;
-  genRequestedClaims(T108: _Lib.T109): Promise<any[]>;
-  getClaimInfo(T110: _Lib.T111): Promise<any>;
-  agreement(T112: _Lib.T111): Promise<_Lib.T114>;
-  profile(T115: _Lib.T111): Promise<_Lib.T116>;
-  signature(T117: _Lib.T111): Promise<_Lib.T119>;
-  holdingOfAsset(T120: _Lib.T111): Promise<_Lib.T121>;
-  holdingOfToken(T122: _Lib.T111): Promise<_Lib.T123>;
+  genRequestedClaims(T106: _Lib.T107): Promise<any[]>;
+  getClaimInfo(T108: _Lib.T109): Promise<any>;
+  agreement(T110: _Lib.T109): Promise<_Lib.T112>;
+  profile(T113: _Lib.T109): Promise<_Lib.T114>;
+  signature(T115: _Lib.T109): Promise<_Lib.T116>;
+  holdingOfAsset(T117: _Lib.T109): Promise<_Lib.T118>;
+  holdingOfToken(T119: _Lib.T109): Promise<_Lib.T120>;
 }
 declare class AppAuthenticator {
   wallet: any;
@@ -96,7 +114,7 @@ declare class WalletHandlers {
    * @param {object} config.authenticator - Authenticator instance that can to jwt sign/verify
    * @param {function} [config.onPreAuth=noop] - function called before each auth request send back to app, used to check for permission, throw error to halt the auth process
    */
-  constructor(T124: _Lib.T125);
+  constructor(T121: _Lib.T122);
   /**
    * Attach routes and handlers for authenticator
    *
@@ -114,7 +132,7 @@ declare class WalletHandlers {
    * @param {string} [config.checksumKey='_cs_'] - query param key for `checksum`
    * @return void
    */
-  attach(T126: _Lib.T127): void;
+  attach(T123: _Lib.T124): void;
 }
 declare class AppHandlers {
   authenticator: any;
@@ -129,90 +147,79 @@ declare class AppHandlers {
   getSecureResponseHandler(): (req: any, res: any, next: any) => void;
   getRequestValidateHandler(): (req: any, res: any, next: any) => Promise<void>;
 }
-declare const _Lib: _Lib.T129;
+declare const _Lib: _Lib.T126;
 declare namespace _Lib {
   export interface T101 {
     wallet: any;
   }
   export interface T103 {
-    [key: string]: any;
+    token: string;
+    pathname: string;
+    query: any;
   }
-  export interface T104 {
-    token: any;
-    pathname: any;
-    query?: _Lib.T103;
-  }
-  export interface T106 {
-    token: any;
-    userDid: any;
-    userPk: any;
+  export interface T105 {
+    token: string;
+    userDid: string;
+    userPk: string;
     claims: any;
-    pathname: any;
     extraParams: any;
   }
   export interface T107 {
-    appPk: any;
-    authInfo: string;
-  }
-  export interface T109 {
     claims: any;
     userDid: any;
     userPk: any;
     extraParams: any;
   }
-  export interface T111 {
+  export interface T109 {
     claim: any;
     userDid: any;
     userPk: any;
     extraParams: any;
   }
-  export interface T113 {
+  export interface T111 {
     description: any;
   }
-  export interface T114 {
+  export interface T112 {
     type: string;
-    meta: _Lib.T113;
+    meta: _Lib.T111;
     uri: any;
     hash: any;
   }
-  export interface T116 {
+  export interface T114 {
     type: string;
     items: any;
-    meta: _Lib.T113;
+    meta: _Lib.T111;
+  }
+  export interface T116 {
+    type: string;
+    data: string;
+    meta: any;
+    method: string;
+    origin: string;
+    sig: string;
+    chainInfo: any;
   }
   export interface T118 {
-    description: any;
-    typeUrl: string;
-  }
-  export interface T119 {
-    type: string;
-    data: any;
-    meta: _Lib.T118;
-    method: string;
-    origin: any;
-    sig: string;
-  }
-  export interface T121 {
     type: string;
     did_type: string;
     target: any;
     did: string;
-    meta: _Lib.T113;
+    meta: _Lib.T111;
   }
-  export interface T123 {
+  export interface T120 {
     type: string;
     did_type: string;
     target: number;
     did: string;
-    meta: _Lib.T113;
+    meta: _Lib.T111;
   }
-  export interface T125 {
+  export interface T122 {
     tokenGenerator: (...args: any[]) => any;
     tokenStorage: any;
     authenticator: any;
     onPreAuth?: (...args: any[]) => any;
   }
-  export interface T127 {
+  export interface T124 {
     app: any;
     claims: any;
     action?: string;
@@ -224,19 +231,19 @@ declare namespace _Lib {
     tokenKey?: string;
     checksumKey?: string;
   }
-  export interface T128 {
+  export interface T125 {
     sign: (did: string, sk: string, payload?: any) => string;
     verify: (token: string, pk: string, tolerance?: number, verifyTimestamp?: boolean) => boolean;
     decode: (token: string, payloadOnly?: boolean) => any;
   }
-  export interface T129 {
+  export interface T126 {
     Authenticator: typeof WalletAuthenticator;
     WalletAuthenticator: typeof WalletAuthenticator;
     AppAuthenticator: typeof AppAuthenticator;
     Handlers: typeof WalletHandlers;
     WalletHandlers: typeof WalletHandlers;
     AppHandlers: typeof AppHandlers;
-    JWT: _Lib.T128;
+    JWT: _Lib.T125;
   }
 }
 export = _Lib;

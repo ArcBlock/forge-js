@@ -49,6 +49,8 @@
   "scripts": {
     "lint": "eslint tests *.js",
     "lint:fix": "eslint --fix tests *.js",
+    "docs": "yarn generate-dts && yarn generate-docs && yarn cleanup-docs && yarn format-docs",
+    "cleanup-docs": "node ../../tools/cleanup-docs.js docs/README.md $npm_package_name",
     "upgrade": "bash tools/copy.sh && yarn gen && yarn generate-dts && yarn generate-docs && yarn generate-status && yarn format-docs",
     "copy": "bash tools/copy.sh",
     "gen": "node tools/gen-proto-entry.js full && node tools/gen-proto-entry.js lite",

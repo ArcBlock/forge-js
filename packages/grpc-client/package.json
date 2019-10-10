@@ -74,6 +74,8 @@
     "generate-types": "node tools/generate-types.js",
     "format-docs": "remark . -o",
     "generate-dts": "j2d index.js && ./tools/patch-dts.sh && node tools/generate-dts.js",
+    "docs": "yarn generate-dts && yarn generate-docs && yarn cleanup-docs && yarn format-docs",
+    "cleanup-docs": "node ../../tools/cleanup-docs.js docs/README.md $npm_package_name",
     "examples": "node tools/run-example.js",
     "precommit": "CI=1 yarn test",
     "prepush": "CI=1 yarn test",

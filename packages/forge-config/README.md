@@ -9,11 +9,10 @@
 
 ## Table of Contents
 
-- [Table of Contents](#Table-of-Contents)
-- [Install](#Install)
-- [Usage](#Usage)
-- [Documentation](#Documentation)
-- [Contributors](#Contributors)
+* [Install](#install)
+* [Usage](#usage)
+* [Documentation](#documentation)
+* [Contributors](#contributors)
 
 
 ## Install

@@ -5,13 +5,13 @@
 
 Contains helper methods to parse forge config file
 
-<a name="module_@arcblock/forge-config.parse"></a>
+<a name="parse"></a>
 
-### [**@arcblock/forge-config**](https://github.com/arcblock/forge-config).parse(configPath) ⇒
+### parse(configPath) ⇒
 
 Parse config from a file
 
-**Kind**: static method of [<code>@arcblock/forge-config</code>](#module_@arcblock/forge-config)  
+**Kind**: static method  
 **Returns**: object  
 **Throws**:
 
@@ -19,9 +19,9 @@ Parse config from a file
 
 **Access**: public  
 
-| Param      | Type                |
-| ---------- | ------------------- |
-| configPath | <code>string</code> |
+| Param      | Type     |
+| ---------- | -------- |
+| configPath | `string` |
 
 **Example**  
 

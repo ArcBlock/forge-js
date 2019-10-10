@@ -11,7 +11,7 @@
 ## Typedefs
 
 <dl>
-<dt><a href="#WalletTypeObject">WalletTypeObject</a> : <code>Object</code></dt>
+<dt><a href="#WalletTypeObject">WalletTypeObject</a> : `Object`</dt>
 <dd><p>The structure of a forge wallet type</p>
 </dd>
 <dt><a href="#WalletObject">WalletObject</a></dt>
@@ -25,34 +25,33 @@
 
 This module wraps common utility functions to help developers manipulate crypto wallets
 
-**Requires**: <code>module:[**@arcblock/mcrypto**](https://github.com/arcblock/mcrypto)</code>, <code>module:[**@arcblock/did**](https://github.com/arcblock/did)</code>  
+**Requires**: [@arcblock/mcrypto](./mcrypto/), [@arcblock/did](./did/)  
 **Example**  
 
 ```js
 yarn add @arcblock/forge-wallet
 ```
 
-* [@arcblock/forge-wallet](#module_@arcblock/forge-wallet)
-  * [.WalletType(\[type\])](#module_@arcblock/forge-wallet.WalletType) ⇒ <code>object</code>
-  * [.Wallet(keyPair, \[type\])](#module_@arcblock/forge-wallet.Wallet) ⇒ [<code>WalletObject</code>](#WalletObject)
-  * [.fromSecretKey(sk, \[type\])](#module_@arcblock/forge-wallet.fromSecretKey) ⇒ [<code>WalletObject</code>](#WalletObject)
-  * [.fromPublicKey(pk, \[type\])](#module_@arcblock/forge-wallet.fromPublicKey) ⇒ [<code>WalletObject</code>](#WalletObject)
-  * [.fromAddress(address)](#module_@arcblock/forge-wallet.fromAddress) ⇒ [<code>WalletObject</code>](#WalletObject)
-  * [.fromRandom(\[type\])](#module_@arcblock/forge-wallet.fromRandom) ⇒ [<code>WalletObject</code>](#WalletObject)
-  * [.fromJSON(json)](#module_@arcblock/forge-wallet.fromJSON) ⇒ [<code>WalletObject</code>](#WalletObject)
+* [WalletType(\[type\])](#WalletType) ⇒ `object`
+* [Wallet(keyPair, \[type\])](#Wallet) ⇒ [`WalletObject`](#WalletObject)
+* [fromSecretKey(sk, \[type\])](#fromSecretKey) ⇒ [`WalletObject`](#WalletObject)
+* [fromPublicKey(pk, \[type\])](#fromPublicKey) ⇒ [`WalletObject`](#WalletObject)
+* [fromAddress(address)](#fromAddress) ⇒ [`WalletObject`](#WalletObject)
+* [fromRandom(\[type\])](#fromRandom) ⇒ [`WalletObject`](#WalletObject)
+* [fromJSON(json)](#fromJSON) ⇒ [`WalletObject`](#WalletObject)
 
-<a name="module_@arcblock/forge-wallet.WalletType"></a>
+<a name="WalletType"></a>
 
-### [**@arcblock/forge-wallet**](https://github.com/arcblock/forge-wallet).WalletType([type]) ⇒ <code>object</code>
+### WalletType([type]) ⇒ `object`
 
 Create an wallet type object that be used as param to create a new wallet
 
-**Kind**: static method of [<code>@arcblock/forge-wallet</code>](#module_@arcblock/forge-wallet)  
+**Kind**: static method  
 **Access**: public  
 
-| Param  | Type                                               | Default                        |
-| ------ | -------------------------------------------------- | ------------------------------ |
-| [type] | [<code>WalletTypeObject</code>](#WalletTypeObject) | <code>defaultWalletType</code> |
+| Param  | Type                                    | Default             |
+| ------ | --------------------------------------- | ------------------- |
+| [type] | [`WalletTypeObject`](#WalletTypeObject) | `defaultWalletType` |
 
 **Example**  
 
@@ -68,37 +67,37 @@ const type = WalletType({
 });
 ```
 
-<a name="module_@arcblock/forge-wallet.Wallet"></a>
+<a name="Wallet"></a>
 
-### [**@arcblock/forge-wallet**](https://github.com/arcblock/forge-wallet).Wallet(keyPair, [type]) ⇒ [<code>WalletObject</code>](#WalletObject)
+### Wallet(keyPair, [type]) ⇒ [`WalletObject`](#WalletObject)
 
 Generate an wallet instance that can be used to sign a message or verify a signature
 
-**Kind**: static method of [<code>@arcblock/forge-wallet</code>](#module_@arcblock/forge-wallet)  
-**Returns**: [<code>WalletObject</code>](#WalletObject) - wallet object that can be used to sign/verify/getAddress  
+**Kind**: static method  
+**Returns**: [`WalletObject`](#WalletObject) - wallet object that can be used to sign/verify/getAddress  
 **Access**: public  
 
-| Param      | Type                                               | Default                        | Description          |
-| ---------- | -------------------------------------------------- | ------------------------------ | -------------------- |
-| keyPair    | <code>object</code>                                |                                | the key pair         |
-| keyPair.sk | <code>string</code>                                |                                | the secretKey        |
-| keyPair.pk | <code>string</code>                                |                                | the wallet publicKey |
-| [type]     | [<code>WalletTypeObject</code>](#WalletTypeObject) | <code>defaultWalletType</code> | wallet type          |
+| Param      | Type                                    | Default             | Description          |
+| ---------- | --------------------------------------- | ------------------- | -------------------- |
+| keyPair    | `object`                                |                     | the key pair         |
+| keyPair.sk | `string`                                |                     | the secretKey        |
+| keyPair.pk | `string`                                |                     | the wallet publicKey |
+| [type]     | [`WalletTypeObject`](#WalletTypeObject) | `defaultWalletType` | wallet type          |
 
-<a name="module_@arcblock/forge-wallet.fromSecretKey"></a>
+<a name="fromSecretKey"></a>
 
-### [**@arcblock/forge-wallet**](https://github.com/arcblock/forge-wallet).fromSecretKey(sk, [type]) ⇒ [<code>WalletObject</code>](#WalletObject)
+### fromSecretKey(sk, [type]) ⇒ [`WalletObject`](#WalletObject)
 
 Generate a wallet from secretKey
 
-**Kind**: static method of [<code>@arcblock/forge-wallet</code>](#module_@arcblock/forge-wallet)  
-**Returns**: [<code>WalletObject</code>](#WalletObject) - wallet object that can be used to sign/verify/getAddress  
+**Kind**: static method  
+**Returns**: [`WalletObject`](#WalletObject) - wallet object that can be used to sign/verify/getAddress  
 **Access**: public  
 
-| Param  | Type                                               | Default                        | Description                          |
-| ------ | -------------------------------------------------- | ------------------------------ | ------------------------------------ |
-| sk     | <code>string</code>                                |                                | the secret key, `hex encoded string` |
-| [type] | [<code>WalletTypeObject</code>](#WalletTypeObject) | <code>defaultWalletType</code> | wallet type                          |
+| Param  | Type                                    | Default             | Description                          |
+| ------ | --------------------------------------- | ------------------- | ------------------------------------ |
+| sk     | `string`                                |                     | the secret key, `hex encoded string` |
+| [type] | [`WalletTypeObject`](#WalletTypeObject) | `defaultWalletType` | wallet type                          |
 
 **Example**  
 
@@ -118,36 +117,36 @@ assert.equal(signature, sig, "signature should match");
 assert.ok(wallet.verify(message, signature), "signature should be verified");
 ```
 
-<a name="module_@arcblock/forge-wallet.fromPublicKey"></a>
+<a name="fromPublicKey"></a>
 
-### [**@arcblock/forge-wallet**](https://github.com/arcblock/forge-wallet).fromPublicKey(pk, [type]) ⇒ [<code>WalletObject</code>](#WalletObject)
+### fromPublicKey(pk, [type]) ⇒ [`WalletObject`](#WalletObject)
 
 Generate a wallet from publicKey
 
-**Kind**: static method of [<code>@arcblock/forge-wallet</code>](#module_@arcblock/forge-wallet)  
-**Returns**: [<code>WalletObject</code>](#WalletObject) - wallet object that can be used to sign/verify/getAddress  
+**Kind**: static method  
+**Returns**: [`WalletObject`](#WalletObject) - wallet object that can be used to sign/verify/getAddress  
 **Access**: public  
 
-| Param  | Type                                               | Default                        | Description                          |
-| ------ | -------------------------------------------------- | ------------------------------ | ------------------------------------ |
-| pk     | <code>string</code>                                |                                | the public key, `hex encoded string` |
-| [type] | [<code>WalletTypeObject</code>](#WalletTypeObject) | <code>defaultWalletType</code> | wallet type                          |
+| Param  | Type                                    | Default             | Description                          |
+| ------ | --------------------------------------- | ------------------- | ------------------------------------ |
+| pk     | `string`                                |                     | the public key, `hex encoded string` |
+| [type] | [`WalletTypeObject`](#WalletTypeObject) | `defaultWalletType` | wallet type                          |
 
-<a name="module_@arcblock/forge-wallet.fromAddress"></a>
+<a name="fromAddress"></a>
 
-### [**@arcblock/forge-wallet**](https://github.com/arcblock/forge-wallet).fromAddress(address) ⇒ [<code>WalletObject</code>](#WalletObject)
+### fromAddress(address) ⇒ [`WalletObject`](#WalletObject)
 
 Generate a wallet from address (did)
 
 Since we do not know the publicKey and secretKey, this kind of wallet cannot be used for signing and verifying
 
-**Kind**: static method of [<code>@arcblock/forge-wallet</code>](#module_@arcblock/forge-wallet)  
-**Returns**: [<code>WalletObject</code>](#WalletObject) - wallet object that can be used to sign/verify/getAddress  
+**Kind**: static method  
+**Returns**: [`WalletObject`](#WalletObject) - wallet object that can be used to sign/verify/getAddress  
 **Access**: public  
 
-| Param   | Type                | Description        |
-| ------- | ------------------- | ------------------ |
-| address | <code>string</code> | the wallet address |
+| Param   | Type     | Description        |
+| ------- | -------- | ------------------ |
+| address | `string` | the wallet address |
 
 **Example**  
 
@@ -160,19 +159,19 @@ const wallet = fromAddress(address);
 console.log(wallet.toJSON());
 ```
 
-<a name="module_@arcblock/forge-wallet.fromRandom"></a>
+<a name="fromRandom"></a>
 
-### [**@arcblock/forge-wallet**](https://github.com/arcblock/forge-wallet).fromRandom([type]) ⇒ [<code>WalletObject</code>](#WalletObject)
+### fromRandom([type]) ⇒ [`WalletObject`](#WalletObject)
 
 Generate a wallet by generating a random secretKey
 
-**Kind**: static method of [<code>@arcblock/forge-wallet</code>](#module_@arcblock/forge-wallet)  
-**Returns**: [<code>WalletObject</code>](#WalletObject) - wallet object that can be used to sign/verify/getAddress  
+**Kind**: static method  
+**Returns**: [`WalletObject`](#WalletObject) - wallet object that can be used to sign/verify/getAddress  
 **Access**: public  
 
-| Param  | Type                                               | Default                        | Description |
-| ------ | -------------------------------------------------- | ------------------------------ | ----------- |
-| [type] | [<code>WalletTypeObject</code>](#WalletTypeObject) | <code>defaultWalletType</code> | wallet type |
+| Param  | Type                                    | Default             | Description |
+| ------ | --------------------------------------- | ------------------- | ----------- |
+| [type] | [`WalletTypeObject`](#WalletTypeObject) | `defaultWalletType` | wallet type |
 
 **Example**  
 
@@ -182,19 +181,19 @@ const wallet = fromRandom();
 // Do something with wallet
 ```
 
-<a name="module_@arcblock/forge-wallet.fromJSON"></a>
+<a name="fromJSON"></a>
 
-### [**@arcblock/forge-wallet**](https://github.com/arcblock/forge-wallet).fromJSON(json) ⇒ [<code>WalletObject</code>](#WalletObject)
+### fromJSON(json) ⇒ [`WalletObject`](#WalletObject)
 
 Generating a wallet from a serialized json presentation of another wallet
 
-**Kind**: static method of [<code>@arcblock/forge-wallet</code>](#module_@arcblock/forge-wallet)  
-**Returns**: [<code>WalletObject</code>](#WalletObject) - wallet object that can be used to sign/verify/getAddress  
+**Kind**: static method  
+**Returns**: [`WalletObject`](#WalletObject) - wallet object that can be used to sign/verify/getAddress  
 **Access**: public  
 
-| Param | Type                | Description                   |
-| ----- | ------------------- | ----------------------------- |
-| json  | <code>object</code> | json presentation of a wallet |
+| Param | Type     | Description                   |
+| ----- | -------- | ----------------------------- |
+| json  | `object` | json presentation of a wallet |
 
 **Example**  
 
@@ -208,7 +207,7 @@ const wallet2 = fromJSON(wallet.toJSON());
 <a name="WalletTypeObject"></a>
 
 
-## WalletTypeObject : <code>Object</code>
+## WalletTypeObject : `Object`
 
 The structure of a forge wallet type
 
@@ -216,11 +215,11 @@ The structure of a forge wallet type
 **Access**: public  
 **Properties**
 
-| Name | Type                | Description                                             |
-| ---- | ------------------- | ------------------------------------------------------- |
-| role | <code>number</code> | Enum field to identify wallet role type                 |
-| pk   | <code>number</code> | Crypto algorithm to derive publicKey from the secretKey |
-| hash | <code>number</code> | Hash algorithm used to hash data before sign them       |
+| Name | Type     | Description                                             |
+| ---- | -------- | ------------------------------------------------------- |
+| role | `number` | Enum field to identify wallet role type                 |
+| pk   | `number` | Crypto algorithm to derive publicKey from the secretKey |
+| hash | `number` | Hash algorithm used to hash data before sign them       |
 
 <a name="WalletObject"></a>
 
@@ -231,12 +230,12 @@ The structure of a forge wallet type
 **Access**: public  
 **Properties**
 
-| Name      | Type                                               | Description                                                                              |
-| --------- | -------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| type      | [<code>WalletTypeObject</code>](#WalletTypeObject) | Indicates the wallet type                                                                |
-| secretKey | <code>secretKey</code>                             | Wallet secretKey                                                                         |
-| publicKey | <code>publicKey</code>                             | Wallet publicKey                                                                         |
-| sign      | <code>function</code>                              | Sign `data`, data is hashed using the `HashType` defined in type before signing          |
-| verify    | <code>function</code>                              | Verify `signature`, data is hashed using the `HashType` defined in type before verifying |
-| toAddress | <code>function</code>                              | Get wallet address without `did:abt:` prefix                                             |
-| toJSON    | <code>function</code>                              | Serialize wallet to json object, checkout [fromJSON](fromJSON) for deserialisation       |
+| Name      | Type                                    | Description                                                                              |
+| --------- | --------------------------------------- | ---------------------------------------------------------------------------------------- |
+| type      | [`WalletTypeObject`](#WalletTypeObject) | Indicates the wallet type                                                                |
+| secretKey | `secretKey`                             | Wallet secretKey                                                                         |
+| publicKey | `publicKey`                             | Wallet publicKey                                                                         |
+| sign      | `function`                              | Sign `data`, data is hashed using the `HashType` defined in type before signing          |
+| verify    | `function`                              | Verify `signature`, data is hashed using the `HashType` defined in type before verifying |
+| toAddress | `function`                              | Get wallet address without `did:abt:` prefix                                             |
+| toJSON    | `function`                              | Serialize wallet to json object, checkout [fromJSON](fromJSON) for deserialisation       |
