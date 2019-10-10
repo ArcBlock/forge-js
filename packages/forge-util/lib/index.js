@@ -462,13 +462,13 @@ const fromTokenToUnit = (input, decimal = 18) => {
 
   whole = new BN(whole);
   fraction = new BN(fraction);
-  let arc = whole.mul(base).add(fraction);
+  let unit = whole.mul(base).add(fraction);
 
   if (negative) {
-    arc = arc.mul(negative1);
+    unit = unit.mul(negative1);
   }
 
-  return new BN(arc.toString(10), 10);
+  return new BN(unit.toString(10), 10);
 };
 
 /**
