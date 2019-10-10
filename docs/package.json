@@ -1,0 +1,21 @@
+{
+  "name": "@arcblock/forge-sdk-docs",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Forge Javascript SDK API Reference",
+  "main": "index.js",
+  "scripts": {
+    "start": "gatsby develop",
+    "build": "gatsby build",
+    "serve": "gatsby serve"
+  },
+  "keywords": [],
+  "author": "wangshijun <wangshijun2010@gmail.com> (http://github.com/wangshijun)",
+  "license": "MIT",
+  "dependencies": {
+    "@arcblock/gatsby-theme-docs": "^6.39.0",
+    "dotenv": "^8.1.0",
+    "gatsby": "^2.15.34",
+    "gatsby-plugin-netlify-cache": "^1.2.0"
+  }
+}

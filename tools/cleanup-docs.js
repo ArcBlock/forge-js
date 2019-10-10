@@ -24,8 +24,11 @@ const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
     .reduce((list, x) => {
       const name = x.replace(/^@/, '');
       const newItems = [
-        [`\`[**${x}**](https://github.com/${name})\``, `[${x}](./${name.split('/').pop()}/)`],
-        [`\`module:${x}\``, `[${x}](./${name.split('/').pop()}/)`],
+        [
+          `\`[**${x}**](https://github.com/${name})\``,
+          `[${x}](/packages/${name.split('/').pop()}/)`,
+        ],
+        [`\`module:${x}\``, `[${x}](/packages/${name.split('/').pop()}/)`],
       ];
       return list.concat(newItems);
     }, [])

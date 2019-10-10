@@ -1,0 +1,169 @@
+---
+title: '@arcblock/did-util'
+description: 'Helper function to calculate did'
+keywords: 'forge, sdk, javascript'
+author: 'wangshijun'
+category: 'packages'
+layout: 'documentation'
+tags:
+  - 'forge'
+---
+
+<a name="module_@arcblock/did-util"></a>
+
+
+## [**@arcblock/did-util**](https://github.com/arcblock/did-util)
+
+Utility functions to calculate various kinds of did, such as asset address
+
+**Requires**: [@arcblock/mcrypto](./mcrypto/), [@arcblock/did](./did/), [@arcblock/forge-util](./forge-util/), [@arcblock/forge-wallet](./forge-wallet/), [@arcblock/forge-message](./forge-message/)  
+
+* [toAssetAddress(itx)](#toAssetAddress) ⇒ `string`
+* [toAssetDid(itx)](#toAssetDid) ⇒ `string`
+* [toItxAddress(itx, type, \[role\])](#toItxAddress) ⇒ `string`
+* [toItxDid(itx)](#toItxDid) ⇒ `string`
+* [toStakeAddress(sender, receiver)](#toStakeAddress) ⇒ `string`
+* [toDelegateAddress(addr1, addr2)](#toDelegateAddress) ⇒ `string`
+* [toTetherAddress(hash)](#toTetherAddress) ⇒ `string`
+* [toSwapAddress(hash)](#toSwapAddress) ⇒ `string`
+* [toStakeDid(sender, receiver)](#toStakeDid) ⇒ `string`
+
+<a name="toAssetAddress"></a>
+
+### toAssetAddress(itx) ⇒ `string`
+
+Create an asset address
+
+**Kind**: static method  
+**Returns**: `string` - asset address without `did:abt:` prefix  
+**Access**: public  
+
+| Param | Type     | Description                  |
+| ----- | -------- | ---------------------------- |
+| itx   | `object` | an object of `CreateAssetTx` |
+
+<a name="toAssetDid"></a>
+
+### toAssetDid(itx) ⇒ `string`
+
+Create an asset did
+
+**Kind**: static method  
+**Returns**: `string` - asset address without `did:abt:` prefix  
+**Access**: public  
+
+| Param | Type     | Description                  |
+| ----- | -------- | ---------------------------- |
+| itx   | `object` | an object of `CreateAssetTx` |
+
+<a name="toItxAddress"></a>
+
+### toItxAddress(itx, type, [role]) ⇒ `string`
+
+Create an itx address
+
+**Kind**: static method  
+**Returns**: `string` - itx address without `did:abt:` prefix  
+**Access**: public  
+
+| Param  | Type     | Default                  | Description                      |
+| ------ | -------- | ------------------------ | -------------------------------- |
+| itx    | `object` |                          | an object of forge supported itx |
+| type   | `string` |                          | itx type string                  |
+| [role] | `enum`   | `types.RoleType.ROLE_TX` | role type                        |
+
+<a name="toItxDid"></a>
+
+### toItxDid(itx) ⇒ `string`
+
+Create an itx did
+
+**Kind**: static method  
+**Returns**: `string` - itx address without `did:abt:` prefix  
+**Access**: public  
+
+| Param | Type     | Description                      |
+| ----- | -------- | -------------------------------- |
+| itx   | `object` | an object of forge supported itx |
+
+<a name="toStakeAddress"></a>
+
+### toStakeAddress(sender, receiver) ⇒ `string`
+
+Generate an stake address, eg: the did of the stake
+
+**Kind**: static method  
+**Returns**: `string` - stake address without `did:abt:` prefix  
+**Access**: public  
+
+| Param    | Type     | Description      |
+| -------- | -------- | ---------------- |
+| sender   | `string` | sender address   |
+| receiver | `string` | receiver address |
+
+<a name="toDelegateAddress"></a>
+
+### toDelegateAddress(addr1, addr2) ⇒ `string`
+
+Generate an delegate address, eg: the did of the delegation
+
+**Kind**: static method  
+**Returns**: `string` - delegation address that can be used to retrieve delegation state  
+**Access**: public  
+
+| Param | Type     | Description       |
+| ----- | -------- | ----------------- |
+| addr1 | `string` | delegator address |
+| addr2 | `string` | delegatee address |
+
+<a name="toTetherAddress"></a>
+
+### toTetherAddress(hash) ⇒ `string`
+
+Generate a tether address from the deposit tether tx hash
+
+**Kind**: static method  
+**Returns**: `string` - stake address without `did:abt:` prefix  
+**Access**: public  
+
+| Param | Type     | Description          |
+| ----- | -------- | -------------------- |
+| hash  | `string` | DepositTetherTx hash |
+
+<a name="toSwapAddress"></a>
+
+### toSwapAddress(hash) ⇒ `string`
+
+Generate a swap address from the setup swap tx hash
+
+**Kind**: static method  
+**Returns**: `string` - swap address without `did:abt:` prefix  
+**Access**: public  
+
+| Param | Type     | Description      |
+| ----- | -------- | ---------------- |
+| hash  | `string` | SetupSwapTx hash |
+
+<a name="toStakeDid"></a>
+
+### toStakeDid(sender, receiver) ⇒ `string`
+
+Generate an stake address, eg: the did of the stake
+
+**Kind**: static method  
+**Returns**: `string` - stake address without `did:abt:` prefix  
+**Access**: public  
+
+| Param    | Type     | Description      |
+| -------- | -------- | ---------------- |
+| sender   | `string` | sender address   |
+| receiver | `string` | receiver address |
+
+
+## Contributors
+
+| Name           | Website                    |
+| -------------- | -------------------------- |
+| **wangshijun** | <https://ocap.arcblock.io> |
+
+  
