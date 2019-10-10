@@ -1,3 +1,15 @@
+## 0.38.9 (October 10, 2019)
+
+- chore: try to add netlify build command and settings
+- fix: doc version
+- chore: bump doc theme version
+- chore: update docs
+- chore: update docs
+- chore: add basic docs skeleton
+- chore: create cleanup markdown format docs
+- chore: create cleanup markdown format docs
+- update readme
+
 ## 0.38.8 (October 10, 2019)
 
 - chore: upgrade forge-sdk

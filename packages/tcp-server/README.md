@@ -9,10 +9,9 @@
 
 ## Table of Contents
 
-- [Table of Contents](#Table-of-Contents)
-- [Install](#Install)
-- [Usage](#Usage)
-- [Contributors](#Contributors)
+* [Install](#install)
+* [Usage](#usage)
+* [Contributors](#contributors)
 
 
 ## Install

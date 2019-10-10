@@ -42,7 +42,8 @@
   "scripts": {
     "lint": "eslint lib tests",
     "lint:fix": "eslint --fix lib tests",
-    "upgrade": "yarn generate-dts && yarn generate-docs && yarn format-docs",
+    "docs": "yarn generate-dts && yarn generate-docs && yarn cleanup-docs && yarn format-docs",
+    "cleanup-docs": "node ../../tools/cleanup-docs.js docs/README.md $npm_package_name",
     "generate-docs": "jsdoc2md lib/index.js > docs/README.md",
     "generate-dts": "j2d lib/index.js",
     "format-docs": "remark . -o",

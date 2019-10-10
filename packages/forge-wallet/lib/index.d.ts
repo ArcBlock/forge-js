@@ -140,9 +140,9 @@ declare function WalletType(type?: WalletTypeObject): any;
 declare const _Lib: _Lib.T103;
 declare namespace _Lib {
   export interface T100 {
-    pk: number;
-    role: number;
-    hash: number;
+    pk: any;
+    role: any;
+    hash: any;
   }
   export interface WalletTypeObject {
     role: number;

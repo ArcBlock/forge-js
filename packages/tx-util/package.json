@@ -58,6 +58,9 @@
   "scripts": {
     "lint": "eslint lib tests",
     "lint:fix": "eslint --fix lib tests",
+    "docs": "yarn generate-dts && yarn generate-docs && yarn cleanup-docs && yarn format-docs",
+    "cleanup-docs": "node ../../tools/cleanup-docs.js docs/README.md $npm_package_name",
+    "generate-dts": "j2d lib/index.js",
     "generate-docs": "jsdoc2md lib/index.js > docs/README.md",
     "format-docs": "remark . -o",
     "precommit": "CI=1 yarn test",

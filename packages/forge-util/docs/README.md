@@ -1,5 +1,3 @@
-<a name="module_@arcblock/forge-util"></a>
-
 
 ## [**@arcblock/forge-util**](https://github.com/arcblock/forge-util)
 
@@ -11,417 +9,363 @@ Contains many utility functions to help developers manipulate encoding/decoding/
 yarn add @arcblock/forge-util
 ```
 
-* [@arcblock/forge-util](#module_@arcblock/forge-util)
-  * [.isHexPrefixed(str)](#module_@arcblock/forge-util.isHexPrefixed) ⇒ <code>Boolean</code>
-  * [.stripHexPrefix(str)](#module_@arcblock/forge-util.stripHexPrefix) ⇒ <code>String</code> \| <code>Optional</code>
-  * [.isBN(object)](#module_@arcblock/forge-util.isBN) ⇒ <code>Boolean</code>
-  * [.isBigNumber(object)](#module_@arcblock/forge-util.isBigNumber) ⇒ <code>Boolean</code>
-  * [.isHexStrict(hex)](#module_@arcblock/forge-util.isHexStrict) ⇒ <code>Boolean</code>
-  * [.isHex(hex)](#module_@arcblock/forge-util.isHex) ⇒ <code>Boolean</code>
-  * [.toBN(number,)](#module_@arcblock/forge-util.toBN) ⇒ <code>BN</code>
-  * [.utf8ToHex(str)](#module_@arcblock/forge-util.utf8ToHex) ⇒ <code>String</code>
-  * [.hexToUtf8(hex)](#module_@arcblock/forge-util.hexToUtf8) ⇒ <code>String</code>
-  * [.hexToNumber(value)](#module_@arcblock/forge-util.hexToNumber) ⇒ <code>Number</code>
-  * [.numberToHex(value)](#module_@arcblock/forge-util.numberToHex) ⇒ <code>String</code>
-  * [.bytesToHex(bytes)](#module_@arcblock/forge-util.bytesToHex) ⇒ <code>String</code>
-  * [.hexToBytes(hex)](#module_@arcblock/forge-util.hexToBytes) ⇒ <code>Array</code>
-  * [.toHex(value, returnType)](#module_@arcblock/forge-util.toHex) ⇒ <code>String</code>
-  * [.fromUintToToken(input, \[decimal\], optionsInput)](#module_@arcblock/forge-util.fromUintToToken) ⇒ <code>string</code>
-  * [.fromTokenToUnit(input, \[decimal\])](#module_@arcblock/forge-util.fromTokenToUnit) ⇒
-  * [.isUint8Array(value)](#module_@arcblock/forge-util.isUint8Array) ⇒ <code>Boolean</code>
-  * [.UUID()](#module_@arcblock/forge-util.UUID) ⇒ <code>string</code>
-  * [.isUUID(str)](#module_@arcblock/forge-util.isUUID) ⇒ <code>boolean</code>
-  * [.toUint8Array(v)](#module_@arcblock/forge-util.toUint8Array) ⇒ <code>Uint8Array</code>
-  * [.toBuffer(v)](#module_@arcblock/forge-util.toBuffer) ⇒ <code>buffer</code>
-  * [.toBase58(v)](#module_@arcblock/forge-util.toBase58) ⇒ <code>string</code>
-  * [.fromBase58(v)](#module_@arcblock/forge-util.fromBase58) ⇒ <code>buffer</code>
-  * [.toBase64(v, \[escape\])](#module_@arcblock/forge-util.toBase64) ⇒ <code>string</code>
-  * [.fromBase64(v)](#module_@arcblock/forge-util.fromBase64) ⇒ <code>buffer</code>
-  * [.toAddress(did)](#module_@arcblock/forge-util.toAddress) ⇒ <code>string</code>
-  * [.toDid(did)](#module_@arcblock/forge-util.toDid) ⇒ <code>string</code>
+* [isHexPrefixed(str)](#isHexPrefixed) ⇒ `Boolean`
+* [stripHexPrefix(str)](#stripHexPrefix) ⇒ `String` \| `Optional`
+* [isBN(object)](#isBN) ⇒ `Boolean`
+* [isBigNumber(object)](#isBigNumber) ⇒ `Boolean`
+* [isHexStrict(hex)](#isHexStrict) ⇒ `Boolean`
+* [isHex(hex)](#isHex) ⇒ `Boolean`
+* [toBN(number,)](#toBN) ⇒ `BN`
+* [utf8ToHex(str)](#utf8ToHex) ⇒ `String`
+* [hexToUtf8(hex)](#hexToUtf8) ⇒ `String`
+* [hexToNumber(value)](#hexToNumber) ⇒ `Number`
+* [numberToHex(value)](#numberToHex) ⇒ `String`
+* [bytesToHex(bytes)](#bytesToHex) ⇒ `String`
+* [hexToBytes(hex)](#hexToBytes) ⇒ `Array`
+* [toHex(value, returnType)](#toHex) ⇒ `String`
+* [fromUnitToToken(input, \[decimal\], optionsInput)](#fromUnitToToken) ⇒ `string`
+* [fromTokenToUnit(input, \[decimal\])](#fromTokenToUnit) ⇒
+* [isUint8Array(value)](#isUint8Array) ⇒ `Boolean`
+* [UUID()](#UUID) ⇒ `string`
+* [isUUID(str)](#isUUID) ⇒ `boolean`
+* [toUint8Array(v)](#toUint8Array) ⇒ `Uint8Array`
+* [toBuffer(v)](#toBuffer) ⇒ `buffer`
+* [toBase58(v)](#toBase58) ⇒ `string`
+* [fromBase58(v)](#fromBase58) ⇒ `buffer`
+* [toBase64(v, \[escape\])](#toBase64) ⇒ `string`
+* [fromBase64(v)](#fromBase64) ⇒ `buffer`
+* [toAddress(did)](#toAddress) ⇒ `string`
+* [toDid(did)](#toDid) ⇒ `string`
 
-<a name="module_@arcblock/forge-util.isHexPrefixed"></a>
-
-### [**@arcblock/forge-util**](https://github.com/arcblock/forge-util).isHexPrefixed(str) ⇒ <code>Boolean</code>
+### isHexPrefixed(str) ⇒ `Boolean`
 
 Returns a `Boolean` on whether or not the a `String` starts with '0x'
 
-**Kind**: static method of [<code>@arcblock/forge-util</code>](#module_@arcblock/forge-util)  
-**Returns**: <code>Boolean</code> - a boolean if it is or is not hex prefixed  
+**Kind**: static method  
+**Returns**: `Boolean` - a boolean if it is or is not hex prefixed  
 **Throws**:
 
 * if the str input is not a string
 
 **Access**: public  
 
-| Param | Type                | Description            |
-| ----- | ------------------- | ---------------------- |
-| str   | <code>String</code> | the string input value |
+| Param | Type     | Description            |
+| ----- | -------- | ---------------------- |
+| str   | `String` | the string input value |
 
-<a name="module_@arcblock/forge-util.stripHexPrefix"></a>
-
-### [**@arcblock/forge-util**](https://github.com/arcblock/forge-util).stripHexPrefix(str) ⇒ <code>String</code> \| <code>Optional</code>
+### stripHexPrefix(str) ⇒ `String` \| `Optional`
 
 Removes '0x' from a given `String` if present
 
-**Kind**: static method of [<code>@arcblock/forge-util</code>](#module_@arcblock/forge-util)  
-**Returns**: <code>String</code> \| <code>Optional</code> - a string by pass if necessary  
+**Kind**: static method  
+**Returns**: `String` \| `Optional` - a string by pass if necessary  
 **Access**: public  
 
-| Param | Type                | Description      |
-| ----- | ------------------- | ---------------- |
-| str   | <code>String</code> | the string value |
+| Param | Type     | Description      |
+| ----- | -------- | ---------------- |
+| str   | `String` | the string value |
 
-<a name="module_@arcblock/forge-util.isBN"></a>
-
-### [**@arcblock/forge-util**](https://github.com/arcblock/forge-util).isBN(object) ⇒ <code>Boolean</code>
+### isBN(object) ⇒ `Boolean`
 
 Returns true if object is BN, otherwise false
 
-**Kind**: static method of [<code>@arcblock/forge-util</code>](#module_@arcblock/forge-util)  
+**Kind**: static method  
 **Access**: public  
 
-| Param  | Type                |
-| ------ | ------------------- |
-| object | <code>Object</code> |
+| Param  | Type     |
+| ------ | -------- |
+| object | `Object` |
 
-<a name="module_@arcblock/forge-util.isBigNumber"></a>
-
-### [**@arcblock/forge-util**](https://github.com/arcblock/forge-util).isBigNumber(object) ⇒ <code>Boolean</code>
+### isBigNumber(object) ⇒ `Boolean`
 
 Returns true if object is BigNumber, otherwise false
 
-**Kind**: static method of [<code>@arcblock/forge-util</code>](#module_@arcblock/forge-util)  
+**Kind**: static method  
 **Access**: public  
 
-| Param  | Type                |
-| ------ | ------------------- |
-| object | <code>Object</code> |
+| Param  | Type     |
+| ------ | -------- |
+| object | `Object` |
 
-<a name="module_@arcblock/forge-util.isHexStrict"></a>
-
-### [**@arcblock/forge-util**](https://github.com/arcblock/forge-util).isHexStrict(hex) ⇒ <code>Boolean</code>
+### isHexStrict(hex) ⇒ `Boolean`
 
 Check if string is HEX, requires a 0x in front
 
-**Kind**: static method of [<code>@arcblock/forge-util</code>](#module_@arcblock/forge-util)  
+**Kind**: static method  
 **Access**: public  
 
-| Param | Type                | Description   |
-| ----- | ------------------- | ------------- |
-| hex   | <code>String</code> | to be checked |
+| Param | Type     | Description   |
+| ----- | -------- | ------------- |
+| hex   | `String` | to be checked |
 
-<a name="module_@arcblock/forge-util.isHex"></a>
-
-### [**@arcblock/forge-util**](https://github.com/arcblock/forge-util).isHex(hex) ⇒ <code>Boolean</code>
+### isHex(hex) ⇒ `Boolean`
 
 Check if string is HEX
 
-**Kind**: static method of [<code>@arcblock/forge-util</code>](#module_@arcblock/forge-util)  
+**Kind**: static method  
 **Access**: public  
 
-| Param | Type                | Description   |
-| ----- | ------------------- | ------------- |
-| hex   | <code>String</code> | to be checked |
+| Param | Type     | Description   |
+| ----- | -------- | ------------- |
+| hex   | `String` | to be checked |
 
-<a name="module_@arcblock/forge-util.toBN"></a>
-
-### [**@arcblock/forge-util**](https://github.com/arcblock/forge-util).toBN(number,) ⇒ <code>BN</code>
+### toBN(number,) ⇒ `BN`
 
 Takes an input and transforms it into an BN
 
-**Kind**: static method of [<code>@arcblock/forge-util</code>](#module_@arcblock/forge-util)  
-**Returns**: <code>BN</code> - BN  
+**Kind**: static method  
+**Returns**: `BN` - BN  
 **Access**: public  
 
-| Param   | Type                                                          | Description              |
-| ------- | ------------------------------------------------------------- | ------------------------ |
-| number, | <code>Number</code> \| <code>String</code> \| <code>BN</code> | string, HEX string or BN |
+| Param   | Type                         | Description              |
+| ------- | ---------------------------- | ------------------------ |
+| number, | `Number` \| `String` \| `BN` | string, HEX string or BN |
 
-<a name="module_@arcblock/forge-util.utf8ToHex"></a>
-
-### [**@arcblock/forge-util**](https://github.com/arcblock/forge-util).utf8ToHex(str) ⇒ <code>String</code>
+### utf8ToHex(str) ⇒ `String`
 
 Should be called to get hex representation (prefixed by 0x) of utf8 string
 
-**Kind**: static method of [<code>@arcblock/forge-util</code>](#module_@arcblock/forge-util)  
-**Returns**: <code>String</code> - hex representation of input string  
+**Kind**: static method  
+**Returns**: `String` - hex representation of input string  
 **Access**: public  
 
-| Param | Type                |
-| ----- | ------------------- |
-| str   | <code>String</code> |
+| Param | Type     |
+| ----- | -------- |
+| str   | `String` |
 
-<a name="module_@arcblock/forge-util.hexToUtf8"></a>
-
-### [**@arcblock/forge-util**](https://github.com/arcblock/forge-util).hexToUtf8(hex) ⇒ <code>String</code>
+### hexToUtf8(hex) ⇒ `String`
 
 Should be called to get utf8 from it's hex representation
 
-**Kind**: static method of [<code>@arcblock/forge-util</code>](#module_@arcblock/forge-util)  
-**Returns**: <code>String</code> - ascii string representation of hex value  
+**Kind**: static method  
+**Returns**: `String` - ascii string representation of hex value  
 **Access**: public  
 
-| Param | Type                |
-| ----- | ------------------- |
-| hex   | <code>String</code> |
+| Param | Type     |
+| ----- | -------- |
+| hex   | `String` |
 
-<a name="module_@arcblock/forge-util.hexToNumber"></a>
-
-### [**@arcblock/forge-util**](https://github.com/arcblock/forge-util).hexToNumber(value) ⇒ <code>Number</code>
+### hexToNumber(value) ⇒ `Number`
 
 Converts value to it's number representation
 
-**Kind**: static method of [<code>@arcblock/forge-util</code>](#module_@arcblock/forge-util)  
+**Kind**: static method  
 **Access**: public  
 
-| Param | Type                                                          |
-| ----- | ------------------------------------------------------------- |
-| value | <code>String</code> \| <code>Number</code> \| <code>BN</code> |
+| Param | Type                         |
+| ----- | ---------------------------- |
+| value | `String` \| `Number` \| `BN` |
 
-<a name="module_@arcblock/forge-util.numberToHex"></a>
-
-### [**@arcblock/forge-util**](https://github.com/arcblock/forge-util).numberToHex(value) ⇒ <code>String</code>
+### numberToHex(value) ⇒ `String`
 
 Converts value to it's hex representation
 
-**Kind**: static method of [<code>@arcblock/forge-util</code>](#module_@arcblock/forge-util)  
+**Kind**: static method  
 **Access**: public  
 
-| Param | Type                                                          |
-| ----- | ------------------------------------------------------------- |
-| value | <code>String</code> \| <code>Number</code> \| <code>BN</code> |
+| Param | Type                         |
+| ----- | ---------------------------- |
+| value | `String` \| `Number` \| `BN` |
 
-<a name="module_@arcblock/forge-util.bytesToHex"></a>
-
-### [**@arcblock/forge-util**](https://github.com/arcblock/forge-util).bytesToHex(bytes) ⇒ <code>String</code>
+### bytesToHex(bytes) ⇒ `String`
 
 Convert a byte array to a hex string
 
 Note: Implementation from crypto-js
 
-**Kind**: static method of [<code>@arcblock/forge-util</code>](#module_@arcblock/forge-util)  
-**Returns**: <code>String</code> - the hex string  
+**Kind**: static method  
+**Returns**: `String` - the hex string  
 **Access**: public  
 
-| Param | Type               |
-| ----- | ------------------ |
-| bytes | <code>Array</code> |
+| Param | Type    |
+| ----- | ------- |
+| bytes | `Array` |
 
-<a name="module_@arcblock/forge-util.hexToBytes"></a>
-
-### [**@arcblock/forge-util**](https://github.com/arcblock/forge-util).hexToBytes(hex) ⇒ <code>Array</code>
+### hexToBytes(hex) ⇒ `Array`
 
 Convert a hex string to a byte array
 
 Note: Implementation from crypto-js
 
-**Kind**: static method of [<code>@arcblock/forge-util</code>](#module_@arcblock/forge-util)  
-**Returns**: <code>Array</code> - the byte array  
+**Kind**: static method  
+**Returns**: `Array` - the byte array  
 **Access**: public  
 
-| Param | Type                |
-| ----- | ------------------- |
-| hex   | <code>String</code> |
+| Param | Type     |
+| ----- | -------- |
+| hex   | `String` |
 
-<a name="module_@arcblock/forge-util.toHex"></a>
-
-### [**@arcblock/forge-util**](https://github.com/arcblock/forge-util).toHex(value, returnType) ⇒ <code>String</code>
+### toHex(value, returnType) ⇒ `String`
 
 Auto converts any given value into it's hex representation.
 And even stringifys objects before.
 
-**Kind**: static method of [<code>@arcblock/forge-util</code>](#module_@arcblock/forge-util)  
+**Kind**: static method  
 **Access**: public  
 
-| Param      | Type                                                                                                                                   |
-| ---------- | -------------------------------------------------------------------------------------------------------------------------------------- |
-| value      | <code>String</code> \| <code>Number</code> \| <code>BN</code> \| <code>Object</code> \| <code>TypedArray</code> \| <code>Buffer</code> |
-| returnType | <code>Boolean</code>                                                                                                                   |
+| Param      | Type                                                                 |
+| ---------- | -------------------------------------------------------------------- |
+| value      | `String` \| `Number` \| `BN` \| `Object` \| `TypedArray` \| `Buffer` |
+| returnType | `Boolean`                                                            |
 
-<a name="module_@arcblock/forge-util.fromUintToToken"></a>
-
-### [**@arcblock/forge-util**](https://github.com/arcblock/forge-util).fromUintToToken(input, [decimal], optionsInput) ⇒ <code>string</code>
+### fromUnitToToken(input, [decimal], optionsInput) ⇒ `string`
 
 Format a big number to human readable number, such as 1_0000_0000_0000_000 => 1 Token
 
-**Kind**: static method of [<code>@arcblock/forge-util</code>](#module_@arcblock/forge-util)  
+**Kind**: static method  
 **Access**: public  
 
-| Param        | Type                                       | Default         |
-| ------------ | ------------------------------------------ | --------------- |
-| input        | <code>string</code> \| <code>number</code> |                 |
-| [decimal]    | <code>number</code>                        | <code>18</code> |
-| optionsInput | <code>\*</code>                            |                 |
+| Param        | Type                 | Default |
+| ------------ | -------------------- | ------- |
+| input        | `string` \| `number` |         |
+| [decimal]    | `number`             | `18`    |
+| optionsInput | `\*`                 |         |
 
-<a name="module_@arcblock/forge-util.fromTokenToUnit"></a>
-
-### [**@arcblock/forge-util**](https://github.com/arcblock/forge-util).fromTokenToUnit(input, [decimal]) ⇒
+### fromTokenToUnit(input, [decimal]) ⇒
 
 Convert human readable token number to big number instance
 
-**Kind**: static method of [<code>@arcblock/forge-util</code>](#module_@arcblock/forge-util)  
+**Kind**: static method  
 **Returns**: BN  
 **Access**: public  
 
-| Param     | Type                | Default         |
-| --------- | ------------------- | --------------- |
-| input     | <code>string</code> |                 |
-| [decimal] | <code>number</code> | <code>18</code> |
+| Param     | Type     | Default |
+| --------- | -------- | ------- |
+| input     | `string` |         |
+| [decimal] | `number` | `18`    |
 
-<a name="module_@arcblock/forge-util.isUint8Array"></a>
-
-### [**@arcblock/forge-util**](https://github.com/arcblock/forge-util).isUint8Array(value) ⇒ <code>Boolean</code>
+### isUint8Array(value) ⇒ `Boolean`
 
 Validates if a value is an Uint8Array.
 
-**Kind**: static method of [<code>@arcblock/forge-util</code>](#module_@arcblock/forge-util)  
-**Returns**: <code>Boolean</code> - boolean indicating if a value is an Uint8Array  
+**Kind**: static method  
+**Returns**: `Boolean` - boolean indicating if a value is an Uint8Array  
 **Access**: public  
 
-| Param | Type            | Description       |
-| ----- | --------------- | ----------------- |
-| value | <code>\*</code> | value to validate |
+| Param | Type | Description       |
+| ----- | ---- | ----------------- |
+| value | `\*` | value to validate |
 
-<a name="module_@arcblock/forge-util.UUID"></a>
-
-### [**@arcblock/forge-util**](https://github.com/arcblock/forge-util).UUID() ⇒ <code>string</code>
+### UUID() ⇒ `string`
 
 Generate a random UUID
 
-**Kind**: static method of [<code>@arcblock/forge-util</code>](#module_@arcblock/forge-util)  
-**Returns**: <code>string</code> - generated uuid  
+**Kind**: static method  
+**Returns**: `string` - generated uuid  
 **Access**: public  
-<a name="module_@arcblock/forge-util.isUUID"></a>
 
-### [**@arcblock/forge-util**](https://github.com/arcblock/forge-util).isUUID(str) ⇒ <code>boolean</code>
+### isUUID(str) ⇒ `boolean`
 
 Check if a string is valid UUID
 
-**Kind**: static method of [<code>@arcblock/forge-util</code>](#module_@arcblock/forge-util)  
+**Kind**: static method  
 **Access**: public  
 
-| Param | Type                |
-| ----- | ------------------- |
-| str   | <code>string</code> |
+| Param | Type     |
+| ----- | -------- |
+| str   | `string` |
 
-<a name="module_@arcblock/forge-util.toUint8Array"></a>
-
-### [**@arcblock/forge-util**](https://github.com/arcblock/forge-util).toUint8Array(v) ⇒ <code>Uint8Array</code>
+### toUint8Array(v) ⇒ `Uint8Array`
 
 Convert input to Uint8Array on best effort
 
-**Kind**: static method of [<code>@arcblock/forge-util</code>](#module_@arcblock/forge-util)  
+**Kind**: static method  
 **Throws**:
 
-* <code>Error</code> 
+* `Error` 
 
 **Access**: public  
 
-| Param | Type                                                                                                             |
-| ----- | ---------------------------------------------------------------------------------------------------------------- |
-| v     | <code>buffer</code> \| <code>base58</code> \| <code>hex</code> \| <code>Uint8Array</code> \| <code>string</code> |
+| Param | Type                                                      |
+| ----- | --------------------------------------------------------- |
+| v     | `buffer` \| `base58` \| `hex` \| `Uint8Array` \| `string` |
 
-<a name="module_@arcblock/forge-util.toBuffer"></a>
-
-### [**@arcblock/forge-util**](https://github.com/arcblock/forge-util).toBuffer(v) ⇒ <code>buffer</code>
+### toBuffer(v) ⇒ `buffer`
 
 Convert input to Buffer on best effort
 
-**Kind**: static method of [<code>@arcblock/forge-util</code>](#module_@arcblock/forge-util)  
+**Kind**: static method  
 **Throws**:
 
-* <code>Error</code> 
+* `Error` 
 
 **Access**: public  
 
-| Param | Type                                                                                      |
-| ----- | ----------------------------------------------------------------------------------------- |
-| v     | <code>buffer</code> \| <code>base58</code> \| <code>hex</code> \| <code>Uint8Array</code> |
+| Param | Type                                          |
+| ----- | --------------------------------------------- |
+| v     | `buffer` \| `base58` \| `hex` \| `Uint8Array` |
 
-<a name="module_@arcblock/forge-util.toBase58"></a>
-
-### [**@arcblock/forge-util**](https://github.com/arcblock/forge-util).toBase58(v) ⇒ <code>string</code>
+### toBase58(v) ⇒ `string`
 
 Convert input to base58btc format on best effort
 
-**Kind**: static method of [<code>@arcblock/forge-util</code>](#module_@arcblock/forge-util)  
+**Kind**: static method  
 **Throws**:
 
-* <code>Error</code> 
+* `Error` 
 
 **Access**: public  
 
-| Param | Type                                                                                      |
-| ----- | ----------------------------------------------------------------------------------------- |
-| v     | <code>buffer</code> \| <code>base58</code> \| <code>hex</code> \| <code>Uint8Array</code> |
+| Param | Type                                          |
+| ----- | --------------------------------------------- |
+| v     | `buffer` \| `base58` \| `hex` \| `Uint8Array` |
 
-<a name="module_@arcblock/forge-util.fromBase58"></a>
-
-### [**@arcblock/forge-util**](https://github.com/arcblock/forge-util).fromBase58(v) ⇒ <code>buffer</code>
+### fromBase58(v) ⇒ `buffer`
 
 Decode base58 string
 
-**Kind**: static method of [<code>@arcblock/forge-util</code>](#module_@arcblock/forge-util)  
+**Kind**: static method  
 **Access**: public  
 
-| Param | Type                |
-| ----- | ------------------- |
-| v     | <code>string</code> |
+| Param | Type     |
+| ----- | -------- |
+| v     | `string` |
 
-<a name="module_@arcblock/forge-util.toBase64"></a>
-
-### [**@arcblock/forge-util**](https://github.com/arcblock/forge-util).toBase64(v, [escape]) ⇒ <code>string</code>
+### toBase64(v, [escape]) ⇒ `string`
 
 Convert input to base64 format
 
-**Kind**: static method of [<code>@arcblock/forge-util</code>](#module_@arcblock/forge-util)  
+**Kind**: static method  
 **Throws**:
 
-* <code>Error</code> 
+* `Error` 
 
 **Access**: public  
 
-| Param    | Type                                                                                      | Default           |
-| -------- | ----------------------------------------------------------------------------------------- | ----------------- |
-| v        | <code>buffer</code> \| <code>base58</code> \| <code>hex</code> \| <code>Uint8Array</code> |                   |
-| [escape] | <code>escape</code>                                                                       | <code>true</code> |
+| Param    | Type                                          | Default |
+| -------- | --------------------------------------------- | ------- |
+| v        | `buffer` \| `base58` \| `hex` \| `Uint8Array` |         |
+| [escape] | `escape`                                      | `true`  |
 
-<a name="module_@arcblock/forge-util.fromBase64"></a>
-
-### [**@arcblock/forge-util**](https://github.com/arcblock/forge-util).fromBase64(v) ⇒ <code>buffer</code>
+### fromBase64(v) ⇒ `buffer`
 
 Decode base64 string to buffer
 
-**Kind**: static method of [<code>@arcblock/forge-util</code>](#module_@arcblock/forge-util)  
+**Kind**: static method  
 **Access**: public  
 
-| Param | Type                |
-| ----- | ------------------- |
-| v     | <code>string</code> |
+| Param | Type     |
+| ----- | -------- |
+| v     | `string` |
 
-<a name="module_@arcblock/forge-util.toAddress"></a>
-
-### [**@arcblock/forge-util**](https://github.com/arcblock/forge-util).toAddress(did) ⇒ <code>string</code>
+### toAddress(did) ⇒ `string`
 
 Convert did to address: remove `did:abt:` prefix if exists
 
-**Kind**: static method of [<code>@arcblock/forge-util</code>](#module_@arcblock/forge-util)  
+**Kind**: static method  
 **Access**: public  
 
-| Param | Type                | Description    |
-| ----- | ------------------- | -------------- |
-| did   | <code>string</code> | address string |
+| Param | Type     | Description    |
+| ----- | -------- | -------------- |
+| did   | `string` | address string |
 
-<a name="module_@arcblock/forge-util.toDid"></a>
-
-### [**@arcblock/forge-util**](https://github.com/arcblock/forge-util).toDid(did) ⇒ <code>string</code>
+### toDid(did) ⇒ `string`
 
 Convert address to did: prepend `did:abt:` prefix
 
-**Kind**: static method of [<code>@arcblock/forge-util</code>](#module_@arcblock/forge-util)  
+**Kind**: static method  
 **Access**: public  
 
-| Param | Type                | Description    |
-| ----- | ------------------- | -------------- |
-| did   | <code>string</code> | address string |
+| Param | Type     | Description    |
+| ----- | -------- | -------------- |
+| did   | `string` | address string |

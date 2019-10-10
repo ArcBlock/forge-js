@@ -21,7 +21,7 @@ declare function toDid(address: any): string;
 declare const _Lib: _Lib.T100;
 declare namespace _Lib {
   export interface T100 {
-    types: T107;
+    types: any;
     toStrictHex: (hex: string, length: number) => string;
     fromSecretKey: (sk: string, type: any) => string;
     fromPublicKey: (pk: string, type: any) => string;

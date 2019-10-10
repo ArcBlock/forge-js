@@ -16,3 +16,5 @@ tmp
 ./docs/
 package-lock.json
 .compiled
+public
+.cache

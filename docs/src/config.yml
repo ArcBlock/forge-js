@@ -1,0 +1,28 @@
+gitRepo: ArcBlock/forge-js
+srcPath: docs/src
+categories:
+  packages:
+    basePath: /packages
+    title: Reference
+    link: /
+    priority: 999
+    sidebar:
+      "null":
+        - /
+      Packages:
+        links:
+          - /forge-sdk
+          - /graphql-client
+          - /grpc-client
+          - /forge-wallet
+          - /mcrypto
+          - /did
+          - /did-auth
+          - /did-util
+          - /forge-util
+          - /tx-util
+          - /forge-message
+          - /forge-config
+          - /forge-proto
+        locales:
+          zh: "模块"

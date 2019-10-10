@@ -6,19 +6,17 @@
 
 This library aims to ease the process of handling `Did-Auth` process between different parts, its implemented according to [ABT-DID-Protocol](https://github.com/ArcBlock/abt-did-spec), and can eliminate the threat of middle-man attach if properly used, there are typically 2 use case for the library:
 
-- `dApp <--> dApp`: for inter application communication, we provide `AppAuthenticator` and `AppHandlers`
-- `dApp <--> ABT Wallet`: for application and wallet communication, we provide `WalletAuthenticator` and `WalletHandlers`
+* `dApp <--> dApp`: for inter application communication, we provide `AppAuthenticator` and `AppHandlers`
+* `dApp <--> ABT Wallet`: for application and wallet communication, we provide `WalletAuthenticator` and `WalletHandlers`
+
 
 ## Table of Contents
 
-- [Table of Contents](#Table-of-Contents)
-- [Install](#Install)
-- [Usage](#Usage)
-  - [Between dApp and ABT Wallet](#Between-dApp-and-ABT-Wallet)
-  - [Between dApp and dApp](#Between-dApp-and-dApp)
-    - [Initialize authenticator and handlers](#Initialize-authenticator-and-handlers)
-    - [For the server](#For-the-server)
-    - [For the client](#For-the-client)
+* [Install](#install)
+* [Usage](#usage)
+  * [Between dApp and ABT Wallet](#between-dapp-and-abt-wallet)
+  * [Between dApp and dApp](#between-dapp-and-dapp)
+
 
 ## Install
 
@@ -27,6 +25,7 @@ npm install @arcblock/did-auth
 // or
 yarn add @arcblock/did-auth
 ```
+
 
 ## Usage
 

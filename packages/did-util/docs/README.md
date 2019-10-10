@@ -1,153 +1,132 @@
-<a name="module_@arcblock/did-util"></a>
-
 
 ## [**@arcblock/did-util**](https://github.com/arcblock/did-util)
 
 Utility functions to calculate various kinds of did, such as asset address
 
-**Requires**: <code>module:[**@arcblock/mcrypto**](https://github.com/arcblock/mcrypto)</code>, <code>module:[**@arcblock/did**](https://github.com/arcblock/did)</code>, <code>module:[**@arcblock/forge-util**](https://github.com/arcblock/forge-util)</code>, <code>module:[**@arcblock/forge-wallet**](https://github.com/arcblock/forge-wallet)</code>, <code>module:[**@arcblock/forge-message**](https://github.com/arcblock/forge-message)</code>  
+**Requires**: [@arcblock/mcrypto](/packages/mcrypto/), [@arcblock/did](/packages/did/), [@arcblock/forge-util](/packages/forge-util/), [@arcblock/forge-wallet](/packages/forge-wallet/), [@arcblock/forge-message](/packages/forge-message/)  
 
-* [@arcblock/did-util](#module_@arcblock/did-util)
-  * [.toAssetAddress(itx)](#module_@arcblock/did-util.toAssetAddress) ⇒ <code>string</code>
-  * [.toAssetDid(itx)](#module_@arcblock/did-util.toAssetDid) ⇒ <code>string</code>
-  * [.toItxAddress(itx, type, \[role\])](#module_@arcblock/did-util.toItxAddress) ⇒ <code>string</code>
-  * [.toItxDid(itx)](#module_@arcblock/did-util.toItxDid) ⇒ <code>string</code>
-  * [.toStakeAddress(sender, receiver)](#module_@arcblock/did-util.toStakeAddress) ⇒ <code>string</code>
-  * [.toDelegateAddress(addr1, addr2)](#module_@arcblock/did-util.toDelegateAddress) ⇒ <code>string</code>
-  * [.toTetherAddress(hash)](#module_@arcblock/did-util.toTetherAddress) ⇒ <code>string</code>
-  * [.toSwapAddress(hash)](#module_@arcblock/did-util.toSwapAddress) ⇒ <code>string</code>
-  * [.toStakeDid(sender, receiver)](#module_@arcblock/did-util.toStakeDid) ⇒ <code>string</code>
+* [toAssetAddress(itx)](#toAssetAddress) ⇒ `string`
+* [toAssetDid(itx)](#toAssetDid) ⇒ `string`
+* [toItxAddress(itx, type, \[role\])](#toItxAddress) ⇒ `string`
+* [toItxDid(itx)](#toItxDid) ⇒ `string`
+* [toStakeAddress(sender, receiver)](#toStakeAddress) ⇒ `string`
+* [toDelegateAddress(addr1, addr2)](#toDelegateAddress) ⇒ `string`
+* [toTetherAddress(hash)](#toTetherAddress) ⇒ `string`
+* [toSwapAddress(hash)](#toSwapAddress) ⇒ `string`
+* [toStakeDid(sender, receiver)](#toStakeDid) ⇒ `string`
 
-<a name="module_@arcblock/did-util.toAssetAddress"></a>
-
-### [**@arcblock/did-util**](https://github.com/arcblock/did-util).toAssetAddress(itx) ⇒ <code>string</code>
+### toAssetAddress(itx) ⇒ `string`
 
 Create an asset address
 
-**Kind**: static method of [<code>@arcblock/did-util</code>](#module_@arcblock/did-util)  
-**Returns**: <code>string</code> - asset address without `did:abt:` prefix  
+**Kind**: static method  
+**Returns**: `string` - asset address without `did:abt:` prefix  
 **Access**: public  
 
-| Param | Type                | Description                  |
-| ----- | ------------------- | ---------------------------- |
-| itx   | <code>object</code> | an object of `CreateAssetTx` |
+| Param | Type     | Description                  |
+| ----- | -------- | ---------------------------- |
+| itx   | `object` | an object of `CreateAssetTx` |
 
-<a name="module_@arcblock/did-util.toAssetDid"></a>
-
-### [**@arcblock/did-util**](https://github.com/arcblock/did-util).toAssetDid(itx) ⇒ <code>string</code>
+### toAssetDid(itx) ⇒ `string`
 
 Create an asset did
 
-**Kind**: static method of [<code>@arcblock/did-util</code>](#module_@arcblock/did-util)  
-**Returns**: <code>string</code> - asset address without `did:abt:` prefix  
+**Kind**: static method  
+**Returns**: `string` - asset address without `did:abt:` prefix  
 **Access**: public  
 
-| Param | Type                | Description                  |
-| ----- | ------------------- | ---------------------------- |
-| itx   | <code>object</code> | an object of `CreateAssetTx` |
+| Param | Type     | Description                  |
+| ----- | -------- | ---------------------------- |
+| itx   | `object` | an object of `CreateAssetTx` |
 
-<a name="module_@arcblock/did-util.toItxAddress"></a>
-
-### [**@arcblock/did-util**](https://github.com/arcblock/did-util).toItxAddress(itx, type, [role]) ⇒ <code>string</code>
+### toItxAddress(itx, type, [role]) ⇒ `string`
 
 Create an itx address
 
-**Kind**: static method of [<code>@arcblock/did-util</code>](#module_@arcblock/did-util)  
-**Returns**: <code>string</code> - itx address without `did:abt:` prefix  
+**Kind**: static method  
+**Returns**: `string` - itx address without `did:abt:` prefix  
 **Access**: public  
 
-| Param  | Type                | Default                             | Description                      |
-| ------ | ------------------- | ----------------------------------- | -------------------------------- |
-| itx    | <code>object</code> |                                     | an object of forge supported itx |
-| type   | <code>string</code> |                                     | itx type string                  |
-| [role] | <code>enum</code>   | <code>types.RoleType.ROLE_TX</code> | role type                        |
+| Param  | Type     | Default                  | Description                      |
+| ------ | -------- | ------------------------ | -------------------------------- |
+| itx    | `object` |                          | an object of forge supported itx |
+| type   | `string` |                          | itx type string                  |
+| [role] | `enum`   | `types.RoleType.ROLE_TX` | role type                        |
 
-<a name="module_@arcblock/did-util.toItxDid"></a>
-
-### [**@arcblock/did-util**](https://github.com/arcblock/did-util).toItxDid(itx) ⇒ <code>string</code>
+### toItxDid(itx) ⇒ `string`
 
 Create an itx did
 
-**Kind**: static method of [<code>@arcblock/did-util</code>](#module_@arcblock/did-util)  
-**Returns**: <code>string</code> - itx address without `did:abt:` prefix  
+**Kind**: static method  
+**Returns**: `string` - itx address without `did:abt:` prefix  
 **Access**: public  
 
-| Param | Type                | Description                      |
-| ----- | ------------------- | -------------------------------- |
-| itx   | <code>object</code> | an object of forge supported itx |
+| Param | Type     | Description                      |
+| ----- | -------- | -------------------------------- |
+| itx   | `object` | an object of forge supported itx |
 
-<a name="module_@arcblock/did-util.toStakeAddress"></a>
-
-### [**@arcblock/did-util**](https://github.com/arcblock/did-util).toStakeAddress(sender, receiver) ⇒ <code>string</code>
+### toStakeAddress(sender, receiver) ⇒ `string`
 
 Generate an stake address, eg: the did of the stake
 
-**Kind**: static method of [<code>@arcblock/did-util</code>](#module_@arcblock/did-util)  
-**Returns**: <code>string</code> - stake address without `did:abt:` prefix  
+**Kind**: static method  
+**Returns**: `string` - stake address without `did:abt:` prefix  
 **Access**: public  
 
-| Param    | Type                | Description      |
-| -------- | ------------------- | ---------------- |
-| sender   | <code>string</code> | sender address   |
-| receiver | <code>string</code> | receiver address |
+| Param    | Type     | Description      |
+| -------- | -------- | ---------------- |
+| sender   | `string` | sender address   |
+| receiver | `string` | receiver address |
 
-<a name="module_@arcblock/did-util.toDelegateAddress"></a>
-
-### [**@arcblock/did-util**](https://github.com/arcblock/did-util).toDelegateAddress(addr1, addr2) ⇒ <code>string</code>
+### toDelegateAddress(addr1, addr2) ⇒ `string`
 
 Generate an delegate address, eg: the did of the delegation
 
-**Kind**: static method of [<code>@arcblock/did-util</code>](#module_@arcblock/did-util)  
-**Returns**: <code>string</code> - delegation address that can be used to retrieve delegation state  
+**Kind**: static method  
+**Returns**: `string` - delegation address that can be used to retrieve delegation state  
 **Access**: public  
 
-| Param | Type                | Description       |
-| ----- | ------------------- | ----------------- |
-| addr1 | <code>string</code> | delegator address |
-| addr2 | <code>string</code> | delegatee address |
+| Param | Type     | Description       |
+| ----- | -------- | ----------------- |
+| addr1 | `string` | delegator address |
+| addr2 | `string` | delegatee address |
 
-<a name="module_@arcblock/did-util.toTetherAddress"></a>
-
-### [**@arcblock/did-util**](https://github.com/arcblock/did-util).toTetherAddress(hash) ⇒ <code>string</code>
+### toTetherAddress(hash) ⇒ `string`
 
 Generate a tether address from the deposit tether tx hash
 
-**Kind**: static method of [<code>@arcblock/did-util</code>](#module_@arcblock/did-util)  
-**Returns**: <code>string</code> - stake address without `did:abt:` prefix  
+**Kind**: static method  
+**Returns**: `string` - stake address without `did:abt:` prefix  
 **Access**: public  
 
-| Param | Type                | Description          |
-| ----- | ------------------- | -------------------- |
-| hash  | <code>string</code> | DepositTetherTx hash |
+| Param | Type     | Description          |
+| ----- | -------- | -------------------- |
+| hash  | `string` | DepositTetherTx hash |
 
-<a name="module_@arcblock/did-util.toSwapAddress"></a>
-
-### [**@arcblock/did-util**](https://github.com/arcblock/did-util).toSwapAddress(hash) ⇒ <code>string</code>
+### toSwapAddress(hash) ⇒ `string`
 
 Generate a swap address from the setup swap tx hash
 
-**Kind**: static method of [<code>@arcblock/did-util</code>](#module_@arcblock/did-util)  
-**Returns**: <code>string</code> - swap address without `did:abt:` prefix  
+**Kind**: static method  
+**Returns**: `string` - swap address without `did:abt:` prefix  
 **Access**: public  
 
-| Param | Type                | Description      |
-| ----- | ------------------- | ---------------- |
-| hash  | <code>string</code> | SetupSwapTx hash |
+| Param | Type     | Description      |
+| ----- | -------- | ---------------- |
+| hash  | `string` | SetupSwapTx hash |
 
-<a name="module_@arcblock/did-util.toStakeDid"></a>
-
-### [**@arcblock/did-util**](https://github.com/arcblock/did-util).toStakeDid(sender, receiver) ⇒ <code>string</code>
+### toStakeDid(sender, receiver) ⇒ `string`
 
 Generate an stake address, eg: the did of the stake
 
-**Kind**: static method of [<code>@arcblock/did-util</code>](#module_@arcblock/did-util)  
-**Returns**: <code>string</code> - stake address without `did:abt:` prefix  
+**Kind**: static method  
+**Returns**: `string` - stake address without `did:abt:` prefix  
 **Access**: public  
 
-| Param    | Type                | Description      |
-| -------- | ------------------- | ---------------- |
-| sender   | <code>string</code> | sender address   |
-| receiver | <code>string</code> | receiver address |
+| Param    | Type     | Description      |
+| -------- | -------- | ---------------- |
+| sender   | `string` | sender address   |
+| receiver | `string` | receiver address |
 
 
 ## Contributors

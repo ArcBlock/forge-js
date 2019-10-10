@@ -6,6 +6,7 @@
 
 > Utility function to create and use a forge compatible wallet, the wallet is also DID compatible.
 
+
 ## Usage
 
 ```shell
@@ -40,6 +41,7 @@ assert.ok(wallet.verify(message, signature), 'signature should be verified');
 const wallet2 = fromJSON(wallet.toJSON());
 // Do something with wallet 2
 ```
+
 
 ## Documentation
 
