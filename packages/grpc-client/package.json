@@ -1,7 +1,7 @@
 {
   "name": "@arcblock/grpc-client",
   "description": "gRPC client to read/write data on forge powered blockchain",
-  "version": "0.38.8",
+  "version": "0.38.9",
   "author": {
     "name": "wangshijun",
     "email": "shijun@arcblock.io",
@@ -19,13 +19,13 @@
     "access": "public"
   },
   "dependencies": {
-    "@arcblock/did-util": "^0.38.8",
-    "@arcblock/forge-config": "^0.38.0",
-    "@arcblock/forge-message": "^0.38.8",
-    "@arcblock/forge-proto": "^0.38.8",
-    "@arcblock/forge-util": "^0.38.8",
-    "@arcblock/forge-wallet": "^0.38.8",
-    "@arcblock/mcrypto": "^0.38.8",
+    "@arcblock/did-util": "^0.38.9",
+    "@arcblock/forge-config": "^0.38.9",
+    "@arcblock/forge-message": "^0.38.9",
+    "@arcblock/forge-proto": "^0.38.9",
+    "@arcblock/forge-util": "^0.38.9",
+    "@arcblock/forge-wallet": "^0.38.9",
+    "@arcblock/mcrypto": "^0.38.9",
     "debug": "^4.1.1",
     "grpc": "^1.22.2",
     "lodash": "^4.17.15"
