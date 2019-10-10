@@ -12,6 +12,8 @@ declare function isUint8Array(value: any): boolean;
 /**
  * Convert input to Uint8Array on best effort
  *
+ * @public
+ * @static
  * @param {buffer|base58|hex|Uint8Array|string} v
  * @returns {Uint8Array}
  * @throws {Error}
@@ -20,6 +22,8 @@ declare function toUint8Array(v: any): Uint8Array;
 /**
  * Convert input to Buffer on best effort
  *
+ * @public
+ * @static
  * @param {buffer|base58|hex|Uint8Array} v
  * @returns {buffer}
  * @throws {Error}
@@ -28,6 +32,8 @@ declare function toBuffer(v: any): any;
 /**
  * Convert input to base58btc format on best effort
  *
+ * @public
+ * @static
  * @param {buffer|base58|hex|Uint8Array} v
  * @returns {string}
  * @throws {Error}
@@ -36,6 +42,8 @@ declare function toBase58(v: any): string;
 /**
  * Decode base58 string
  *
+ * @public
+ * @static
  * @param {string} v
  * @returns {buffer}
  */
@@ -43,6 +51,8 @@ declare function fromBase58(v: string): any;
 /**
  * Convert input to base64 format
  *
+ * @public
+ * @static
  * @param {buffer|base58|hex|Uint8Array} v
  * @param {escape} [escape=true]
  * @returns {string}
@@ -52,6 +62,8 @@ declare function toBase64(v: any, escape?: typeof escape): string;
 /**
  * Decode base64 string to buffer
  *
+ * @public
+ * @static
  * @param {string} v
  * @returns {buffer}
  */
@@ -59,12 +71,16 @@ declare function fromBase64(v: string): any;
 /**
  * Generate a random UUID
  *
+ * @public
+ * @static
  * @returns {string} generated uuid
  */
 declare function UUID(): string;
 /**
  * Check if a string is valid UUID
  *
+ * @public
+ * @static
  * @param {string} str
  * @returns {boolean}
  */
