@@ -25,7 +25,7 @@ yarn add @arcblock/forge-util
 * [bytesToHex(bytes)](#bytesToHex) ⇒ `String`
 * [hexToBytes(hex)](#hexToBytes) ⇒ `Array`
 * [toHex(value, returnType)](#toHex) ⇒ `String`
-* [fromUintToToken(input, \[decimal\], optionsInput)](#fromUintToToken) ⇒ `string`
+* [fromUnitToToken(input, \[decimal\], optionsInput)](#fromUnitToToken) ⇒ `string`
 * [fromTokenToUnit(input, \[decimal\])](#fromTokenToUnit) ⇒
 * [isUint8Array(value)](#isUint8Array) ⇒ `Boolean`
 * [UUID()](#UUID) ⇒ `string`
@@ -238,9 +238,9 @@ And even stringifys objects before.
 | value      | `String` \| `Number` \| `BN` \| `Object` \| `TypedArray` \| `Buffer` |
 | returnType | `Boolean`                                                            |
 
-<a name="fromUintToToken"></a>
+<a name="fromUnitToToken"></a>
 
-### fromUintToToken(input, [decimal], optionsInput) ⇒ `string`
+### fromUnitToToken(input, [decimal], optionsInput) ⇒ `string`
 
 Format a big number to human readable number, such as 1_0000_0000_0000_000 => 1 Token
 

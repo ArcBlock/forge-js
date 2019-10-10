@@ -373,7 +373,7 @@ const numberToString = arg => {
  *
  * @public
  * @static
- * @method fromUintToToken
+ * @method fromUnitToToken
  * @param {string|number} input
  * @param {number} [decimal=18]
  * @param {*} optionsInput
