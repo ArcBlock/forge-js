@@ -44,6 +44,10 @@ lint:
 	@echo "Linting the software..."
 	@yarn lint
 
+build-docs:
+	@echo "Building and publishing the documenation..."
+	@cd docs && yarn && yarn build
+
 doc:
 	@echo "Building and publishing the documenation..."
 	@yarn jsdocs
