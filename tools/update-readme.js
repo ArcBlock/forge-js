@@ -7,16 +7,12 @@
 const fs = require('fs');
 const path = require('path');
 
-const packages = fs.readdirSync(path.join(__dirname, '../packages'));
-const packageList = packages.map(x => {
-  const packageFile = path.join(__dirname, '../packages', x, 'package.json');
-  if (fs.existsSync(packageFile)) {
-    const packageJson = require(packageFile);
-    const npmPackageName = `@arcblock/${x}`;
-    return `- [${
-      packageJson.name
-    } <img src="https://img.shields.io/npm/v/${npmPackageName}.svg" alt="Version">](https://www.npmjs.com/package/${npmPackageName})`;
-  }
+const { getPackages } = require('./util');
+
+const packageList = getPackages({ publicOnly: true }).map(x => {
+  return `- [${x.name.split('/').pop()} <img src="https://img.shields.io/npm/v/${
+    x.name
+  }.svg" alt="Version">](https://www.npmjs.com/package/${x.name})`;
 });
 
 const readmeFile = path.join(__dirname, '../README.md');
