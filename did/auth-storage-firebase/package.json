@@ -1,11 +1,8 @@
 {
   "name": "@arcblock/did-auth-storage-firebase",
   "description": "Storage engine that uses firebase for did-auth",
-  "version": "0.20.1",
+  "version": "0.21.1",
   "author": "wangshijun <shijun@arcblock.io> (https://ocap.arcblock.io)",
-  "engines": {
-    "node": ">=10.15.0"
-  },
   "bugs": {
     "url": "https://github.com/ArcBlock/abt-did-js/issues",
     "email": "shijun@arcblock.io"
@@ -59,6 +56,6 @@
   },
   "gitHead": "87990c8b5e215107fc587c1ced0d6b3e2cd2483e",
   "dependencies": {
-    "@arcblock/did-auth-storage": "^0.20.1"
+    "@arcblock/did-auth-storage": "^0.21.1"
   }
 }
