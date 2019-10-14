@@ -140,6 +140,7 @@ class GraphQLClient extends GraphQLClientBase {
         if (!chainId) {
           const { info } = await this.getChainInfo();
           chainId = info.network;
+          this._chainId = chainId;
         }
 
         // Determine signatures for multi sig
