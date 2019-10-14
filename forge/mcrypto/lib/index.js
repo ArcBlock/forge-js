@@ -17,6 +17,9 @@
 yarn add @arcblock/mcrypto
  */
 
+const randomBytes = require('randombytes');
+const encode = require('./encode');
+
 const Mcrypto = (module.exports = {
   /**
    * Contains all supported signers, eg: `Ed25519` and `Secp256k1`
@@ -208,6 +211,16 @@ const Mcrypto = (module.exports = {
     }
 
     return Hashers[type];
+  },
+
+  /**
+   * Get random bytes in specified encoding
+   *
+   * @param {number} [length=32]
+   * @returns {buffer|hex|uint8|base64}
+   */
+  getRandomBytes(length = 32, encoding = 'hex') {
+    return encode(randomBytes(length), encoding);
   },
 });
 

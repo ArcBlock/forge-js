@@ -13,8 +13,8 @@ demo.js
 .netlify
 .next
 tmp
-./docs/
 package-lock.json
 .compiled
 public
 .cache
+forge/graphql-client/lib

@@ -3,7 +3,9 @@
   "private": true,
   "license": "Apache-2.0",
   "workspaces": [
-    "packages/*",
+    "forge/*",
+    "did/*",
+    "swap/*",
     "apps/*",
     "examples/*"
   ],
@@ -13,7 +15,6 @@
     "url": "https://github.com/wangshijun"
   },
   "devDependencies": {
-    "@arcblock/docblock": "1.2.0",
     "eslint": "5.3.0",
     "eslint-config-airbnb-base": "13.1.0",
     "eslint-config-prettier": "latest",
@@ -55,8 +56,6 @@
     "lint:fix": "lerna run lint:fix",
     "build": "lerna run clean && lerna run build",
     "clean": "lerna clean",
-    "jsdocs": "jsdoc --configure jsdoc.js --verbose",
-    "docs": "lerna run generate-docs && yarn run format-docs",
     "test": "CI=1 lerna run test",
     "coverage": "CI=1 lerna run coverage"
   },

@@ -2,16 +2,14 @@
 const fs = require('fs');
 const path = require('path');
 
+const { getPackages, sleep } = require('./util');
+
 const [, , markdownFile, moduleName] = process.argv;
-const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
 
 (async () => {
   sleep(1000);
-  const packages = fs
-    .readdirSync(path.join(__dirname, '../packages'))
-    .filter(x => x.startsWith('.') === false)
-    .map(x => `@arcblock/${x}`);
-  if (packages.includes(moduleName) === false) {
+  const packages = getPackages({ publicOnly: true });
+  if (!packages.find(x => x.name === moduleName)) {
     throw new Error('Invalid moduleName provided when cleanup doc file');
   }
 
@@ -22,13 +20,13 @@ const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
   const externalReplacements = packages
     .filter(x => x !== moduleName)
     .reduce((list, x) => {
-      const name = x.replace(/^@/, '');
+      const name = x.name.replace(/^@/, '');
       const newItems = [
         [
           `\`[**${x}**](https://github.com/${name})\``,
-          `[${x}](/packages/${name.split('/').pop()}/)`,
+          `[${x}](/${x.group}/${name.split('/').pop()}/)`,
         ],
-        [`\`module:${x}\``, `[${x}](/packages/${name.split('/').pop()}/)`],
+        [`\`module:${x}\``, `[${x}](/${x.group}/${name.split('/').pop()}/)`],
       ];
       return list.concat(newItems);
     }, [])

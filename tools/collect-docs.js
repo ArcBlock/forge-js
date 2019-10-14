@@ -4,19 +4,18 @@
 const fs = require('fs');
 const path = require('path');
 
-const packages = fs
-  .readdirSync(path.join(__dirname, '../packages'))
-  .filter(x => x.startsWith('.') === false);
+const { getPackages } = require('./util');
+
+const packages = getPackages({ publicOnly: true });
 
 packages.forEach(x => {
-  const sourcePath = path.join(__dirname, '../packages', x, 'docs/README.md');
-  const targetPath = path.join(__dirname, '../docs/src/', `${x}.md`);
+  const sourcePath = path.join(x.path, 'docs/README.md');
+  const targetPath = path.join(__dirname, '../docs/src/', `${x.name.split('/').pop()}.md`);
   const sourceContent = fs.readFileSync(sourcePath).toString();
-  const jsonPath = path.join(__dirname, '../packages', x, 'package.json');
 
   const targetContent = `---
 title: '@arcblock/${x}'
-description: '${require(jsonPath).description}'
+description: '${x.description}'
 keywords: 'forge, sdk, javascript'
 author: 'wangshijun'
 category: 'packages'
