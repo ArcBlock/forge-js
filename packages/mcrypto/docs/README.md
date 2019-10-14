@@ -24,6 +24,7 @@ yarn add @arcblock/mcrypto
 * [types](#types) : `object`
 * [getSigner(type)](#getSigner) ⇒ `object`
 * [getHasher(type)](#getHasher) ⇒ `object`
+* [getRandomBytes(\[length\])](#getRandomBytes) ⇒ `buffer` \| `hex` \| `uint8` \| `base64`
 
 ### Signer : `object`
 
@@ -126,3 +127,13 @@ const { getHasher, types } = require('@arcblock/mcrypto');
 const hashFn = getHasher(types.HashType.SHA3);
 const hash2 = hashFn(message);
 ```
+
+### getRandomBytes([length]) ⇒ `buffer` \| `hex` \| `uint8` \| `base64`
+
+Get random bytes in specified encoding
+
+**Kind**: static method   
+
+| Param    | Type     | Default |
+| -------- | -------- | ------- |
+| [length] | `number` | `32`    |
