@@ -1,3 +1,10 @@
+## 0.38.10 (October 14, 2019)
+
+- chore: add working atomic_swap example
+- feat: cache chainId on transaction encoding
+- chore: add `getRandomBytes` to mcrypto
+- update readme
+
 ## 0.38.9 (October 10, 2019)
 
 - chore: try to add netlify build command and settings
