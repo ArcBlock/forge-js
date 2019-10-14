@@ -2,10 +2,6 @@
 const { EventEmitter } = require('events');
 
 module.exports = class AuthStorage extends EventEmitter {
-  constructor(config) {
-    super(config);
-  }
-
   create(token, status = 'created') {
     throw new Error('AuthStorage.create must be implemented in child class');
   }

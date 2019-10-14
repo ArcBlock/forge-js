@@ -94,7 +94,7 @@ module.exports = class FirebaseStorage extends StorageInterface {
             return resolve(true);
           }
 
-          resolve(false);
+          return resolve(false);
         })
         .catch(reject);
     });

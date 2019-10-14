@@ -1,3 +1,5 @@
+/* eslint-disable no-param-reassign */
+/* eslint-disable no-underscore-dangle */
 const MongoClient = require('mongodb');
 const StorageInterface = require('@arcblock/did-auth-storage');
 
@@ -37,8 +39,10 @@ module.exports = class MongoStorage extends StorageInterface {
       if (options.mongooseConnection.readyState === 1) {
         this.handleNewConnectionAsync(options.mongooseConnection);
       } else {
-        options.mongooseConnection.once('open', () =>
-          this.handleNewConnectionAsync(options.mongooseConnection)
+        options.mongooseConnection.once(
+          'open',
+          () => this.handleNewConnectionAsync(options.mongooseConnection)
+          // eslint-disable-next-line function-paren-newline
         );
       }
     } else if (options.client) {
@@ -90,7 +94,7 @@ module.exports = class MongoStorage extends StorageInterface {
         if (this.state === 'connecting') {
           return this.once('connected', () => resolve(this.collection));
         }
-        reject(new Error('Not connected'));
+        return reject(new Error('Not connected'));
       });
       this.collectionReadyPromise = promise;
     }
