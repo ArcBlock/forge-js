@@ -171,16 +171,6 @@ module.exports = class WalletHandlers {
       authenticator: this.authenticator,
     });
 
-    // Now express app have route handlers attached to the following url
-    // For browser
-    //  - `POST /api/swap/` create new swap
-    //  - `GET /api/swap/:id/token` create new token
-    //  - `GET /api/swap/:id/status` check for token status
-    //  - `GET /api/swap/:id/timeout` expire a token
-    // For wallet
-    //  - `GET /api/swap/:id/auth` create auth response
-    //  - `POST /api/swap/:id/auth` submit on client done setup_swap
-
     // Shared middleware that ensure a valid swap id exists in the url
     const ensureSwap = async (req, res, next) => {
       const traceId = req.query.traceId || req.query[swapKey];
@@ -208,7 +198,8 @@ module.exports = class WalletHandlers {
     // Wallet
     //  - `GET /api/did/{action}/auth` create auth response
     //  - `POST /api/did/{action}/auth` process payment request
-    //  - `GET /api/did/{action}/retrieve` create new token
+    //  - `GET /api/did/{action}/retrieve` check payment
+    //  - `POST /api/did/{action}/retrieve` submit
 
     // 0. create an empty swap data row
     app.post('/api/swap', async (req, res) => {
@@ -280,7 +271,7 @@ module.exports = class WalletHandlers {
 
         // TODO: validate the swap and userDid should match
         if (req.swap.offerSetupHash && req.swap.offerSwapAddress) {
-          return res.json({ status: 0, swapAddress: req.swap.offerSwapAddress });
+          return res.json({ status: 0, response: { swapAddress: req.swap.offerSwapAddress } });
         }
 
         const { state } = await ForgeSDK.getSwapState(
@@ -317,7 +308,7 @@ module.exports = class WalletHandlers {
         await this.swapStorage.update(traceId, updates);
 
         // TODO: trigger verifier on user retrieve swap
-        return res.json({ status: 0, swapAddress: req.swap.offerSwapAddress });
+        return res.json({ status: 0, response: { swapAddress: req.swap.offerSwapAddress } });
       } catch (err) {
         res.json({ error: err.message });
         onError({ stage: 'auth-request', err });
