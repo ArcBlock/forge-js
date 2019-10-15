@@ -247,6 +247,7 @@ module.exports = function createHandlers({
           // Only return if we are walked through all steps
           if (store.currentStep === steps.length - 1) {
             await tokenStorage.update(token, { status: STATUS_SUCCEED });
+            console.log('onComplete', result);
             return res.json(Object.assign({}, result || {}, { status: 0 }));
           }
 

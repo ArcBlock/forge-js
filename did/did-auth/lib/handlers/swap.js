@@ -183,19 +183,19 @@ module.exports = class WalletHandlers {
 
     // Shared middleware that ensure a valid swap id exists in the url
     const ensureSwap = async (req, res, next) => {
-      const { [swapKey]: traceId } = req.query;
+      const traceId = req.query.traceId || req.query[swapKey];
 
       if (!traceId) {
-        return res.send({ error: 'Swap ID is required to start' });
+        return res.json({ error: 'Swap ID is required to start' });
       }
 
       const swap = await this.swapStorage.read(traceId);
       if (!swap) {
-        return res.send({ error: 'Swap not found' });
+        return res.json({ error: 'Swap not found' });
       }
 
       req.traceId = req.traceId;
-      req.swap = req.swap;
+      req.swap = swap;
 
       return next();
     };
@@ -233,6 +233,43 @@ module.exports = class WalletHandlers {
 
     // 6. Wallet: get swap address that setup by seller, and trigger retrieve job
     // TODO: payment process should be indicated on token storage two
+    app.get(`${prefix}/${action}/retrieve`, ensureSwap, ensureContext, async (req, res) => {
+      const { locale, token, params } = req.context;
+      const { userDid, userPk } = params;
+
+      debug('sign.input', params, req.swap);
+
+      try {
+        const authInfo = await this.authenticator.sign({
+          token,
+          userDid,
+          userPk,
+          claims: {
+            authPrincipal: () => ({
+              target: req.swap.offerAddress,
+              description: 'Please provided the address to complete swap',
+            }),
+          },
+          pathname,
+          extraParams: Object.assign(
+            { locale },
+            Object.keys(req.query)
+              .filter(x => !['userDid', 'userPk', 'token'].includes(x))
+              .reduce((obj, x) => {
+                obj[x] = req.query[x];
+                return obj;
+              }, {})
+          ),
+        });
+
+        debug('retrieve.result', authInfo);
+        res.json(authInfo);
+      } catch (err) {
+        res.json({ error: err.message });
+        onError({ stage: 'auth-response', err });
+      }
+    });
+
     app.post(`${prefix}/${action}/retrieve`, ensureSwap, ensureContext, async (req, res) => {
       const { locale, token, params } = req.context;
       const { traceId } = params;

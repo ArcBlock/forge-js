@@ -218,8 +218,8 @@ module.exports = class WalletAuthenticator {
     const result =
       typeof claim === 'function'
         ? await claim({
-            userDid: toAddress(userDid),
-            userPk,
+            userDid: userDid ? toAddress(userDid) : '',
+            userPk: userPk || '',
             extraParams,
           })
         : claim;
@@ -357,6 +357,22 @@ module.exports = class WalletAuthenticator {
       meta: {
         description: description || `Please prove that you have ${target} token`,
       },
+    };
+  }
+
+  async authPrincipal({ claim, userDid, userPk, extraParams }) {
+    const { target, meta, description } = await this.getClaimInfo({
+      claim,
+      userDid,
+      userPk,
+      extraParams,
+    });
+
+    return {
+      type: 'authPrincipal',
+      description,
+      meta,
+      target,
     };
   }
 
