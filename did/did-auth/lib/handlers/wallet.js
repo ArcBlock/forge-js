@@ -80,6 +80,7 @@ module.exports = class WalletHandlers {
       checkActionToken,
       onAuthRequest,
       onAuthResponse,
+      ensureContext,
     } = createHandlers({
       action,
       pathname,
@@ -108,15 +109,15 @@ module.exports = class WalletHandlers {
     app.get(`${prefix}/${action}/token`, generateActionToken);
 
     // 2. WEB: check for token status
-    app.get(`${prefix}/${action}/status`, checkActionToken);
+    app.get(`${prefix}/${action}/status`, ensureContext, checkActionToken);
 
     // 3. WEB: to expire old token
-    app.get(`${prefix}/${action}/timeout`, expireActionToken);
+    app.get(`${prefix}/${action}/timeout`, ensureContext, expireActionToken);
 
     // 4. Wallet: fetch auth request
-    app.get(pathname, onAuthRequest);
+    app.get(pathname, ensureContext, onAuthRequest);
 
     // 5. Wallet: submit auth response
-    app.post(pathname, onAuthResponse);
+    app.post(pathname, ensureContext, onAuthResponse);
   }
 };

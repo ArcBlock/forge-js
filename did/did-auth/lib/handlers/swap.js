@@ -1,5 +1,6 @@
 /* eslint-disable object-curly-newline */
-const { UUID } = require('@arcblock/forge-util');
+const ForgeSDK = require('@arcblock/forge-sdk');
+const { getRandomBytes, Hasher } = require('@arcblock/mcrypto');
 // eslint-disable-next-line
 const debug = require('debug')(`${require('../../package.json').name}:handlers:swap`);
 const createHandlers = require('./util');
@@ -61,35 +62,43 @@ module.exports = class WalletHandlers {
   // TODO: add validation here
   start(payload) {
     const {
-      offerDid,
+      offerAddress,
       offerAssets = [],
       offerToken = 0,
       offerLocktime,
 
-      demandDid,
+      demandAddress,
       demandAssets = [],
       demandToken = 0,
       demandLocktime,
     } = payload;
 
-    const traceId = UUID();
+    const traceId = ForgeSDK.Util.UUID();
     const updates = {
       traceId,
       status: 'not_started',
-      offerDid,
+      offerAddress,
       offerAssets,
       offerToken,
       offerLocktime: offerLocktime || this.offerLocktime,
       offerChain: this.offerChain,
+      offerSetupHash: '', // 卖家 setup_swap 的 hash
+      offerSwapAddress: '', // 卖家 setup_swap 的地址
+      offerRetrieveHash: '', // 卖家 retrieve_swap 的 hash
+      offerRevokeHash: '', // 卖家 revoke_swap 的 hash
 
-      demandDid,
+      demandAddress, // TODO: this should be auto generated
       demandAssets,
       demandToken,
       demandLocktime: demandLocktime || this.demandLocktime,
       demandChain: this.demandChain,
+      demandSetupHash: '', // 卖家 setup_swap 的 hash
+      demandSwapAddress: '', // 卖家 setup_swap 的地址
+      demandRetrieveHash: '', // 卖家 retrieve_swap 的 hash
+      demandRevokeHash: '', // 卖家 revoke_swap 的 hash
 
-      created_at: new Date(),
-      updated_at: new Date(),
+      createdAt: new Date(),
+      updatedAt: new Date(),
     };
 
     return this.swapStorage.create(traceId, updates);
@@ -144,6 +153,7 @@ module.exports = class WalletHandlers {
       checkActionToken,
       onAuthRequest,
       onAuthResponse,
+      ensureContext,
     } = createHandlers({
       action,
       pathname,
@@ -173,48 +183,108 @@ module.exports = class WalletHandlers {
 
     // Shared middleware that ensure a valid swap id exists in the url
     const ensureSwap = async (req, res, next) => {
-      const { [swapKey]: swapId } = req.query;
+      const { [swapKey]: traceId } = req.query;
 
-      if (!swapId) {
+      if (!traceId) {
         return res.send({ error: 'Swap ID is required to start' });
       }
 
-      const swap = await this.swapStorage.read(swapId);
+      const swap = await this.swapStorage.read(traceId);
       if (!swap) {
         return res.send({ error: 'Swap not found' });
       }
 
-      req.swapId = req.swapId;
+      req.traceId = req.traceId;
       req.swap = req.swap;
 
       return next();
     };
 
+    // Now express app have route handlers attached to the following url
+    // Browser
+    //  - `GET /api/did/{action}/token` create new token
+    //  - `GET /api/did/{action}/status` check for token status
+    //  - `GET /api/did/{action}/timeout` expire a token
+    // Wallet
+    //  - `GET /api/did/{action}/auth` create auth response
+    //  - `POST /api/did/{action}/auth` process payment request
+    //  - `GET /api/did/{action}/retrieve` create new token
+
+    // 0. create an empty swap data row
     app.post('/api/swap', async (req, res) => {
       const swap = await this.start(req.body);
       return res.jsonp(swap);
     });
 
-    // Now express app have route handlers attached to the following url
-    // - `GET /api/did/{action}/token` create new token
-    // - `GET /api/did/{action}/status` check for token status
-    // - `GET /api/did/{action}/timeout` expire a token
-    // - `GET /api/did/{action}/auth` create auth response
-    // - `POST /api/did/{action}/auth` process payment request
-
     // 1. WEB: to generate new token
     app.get(`${prefix}/${action}/token`, ensureSwap, generateActionToken);
 
     // 2. WEB: check for token status
-    app.get(`${prefix}/${action}/status`, ensureSwap, checkActionToken);
+    app.get(`${prefix}/${action}/status`, ensureSwap, ensureContext, checkActionToken);
 
     // 3. WEB: to expire old token
-    app.get(`${prefix}/${action}/timeout`, ensureSwap, expireActionToken);
+    app.get(`${prefix}/${action}/timeout`, ensureSwap, ensureContext, expireActionToken);
 
     // 4. Wallet: fetch auth request
-    app.get(pathname, ensureSwap, onAuthRequest);
+    app.get(pathname, ensureSwap, ensureContext, onAuthRequest);
 
     // 5. Wallet: submit auth response
-    app.post(pathname, ensureSwap, onAuthResponse);
+    app.post(pathname, ensureSwap, ensureContext, onAuthResponse);
+
+    // 6. Wallet: get swap address that setup by seller, and trigger retrieve job
+    // TODO: payment process should be indicated on token storage two
+    app.post(`${prefix}/${action}/retrieve`, ensureSwap, ensureContext, async (req, res) => {
+      const { locale, token, params } = req.context;
+      const { traceId } = params;
+
+      try {
+        const { userDid, claims: claimResponse } = await this.authenticator.verify(params, locale);
+        debug('verify', { userDid, token, claims: claimResponse });
+
+        // TODO: validate the swap and userDid should match
+        if (req.swap.offerSetupHash && req.swap.offerSwapAddress) {
+          return res.json({ status: 0, swapAddress: req.swap.offerSwapAddress });
+        }
+
+        const { state } = await ForgeSDK.getSwapState(
+          { address: req.swap.demandSetupHash },
+          { conn: this.demandChain }
+        );
+
+        // 然后服务端在应用链上 setup_swap
+        const hashkey = getRandomBytes(32);
+        const hashlock = Hasher.SHA3.hash256(hashkey);
+        const hash = await ForgeSDK.sendSetupSwapTx({
+          tx: {
+            itx: {
+              value: ForgeSDK.fromTokenToUnit(0),
+              assets: req.swap.offerAssets,
+              receiver: req.swap.offerAddress,
+              hashlock,
+              locktime: state.locktime - 50, // TODO: make this dynamic calculated and different from above
+            },
+          },
+          wallet: ForgeSDK.Wallet.fromJSON(this.authenticator.wallet),
+        });
+        console.log('swap.onSellerSetup', { hashkey, hashlock, hash });
+        const address = ForgeSDK.Util.toSwapAddress(hash);
+
+        const updates = {
+          status: 'both_setup',
+          offerSetupHash: hash,
+          offerSwapAddress: address,
+          offerRetrieveHash: '',
+          offerRevokeHash: '',
+          updatedAt: new Date(),
+        };
+        await this.swapStorage.update(traceId, updates);
+
+        // TODO: trigger verifier on user retrieve swap
+        return res.json({ status: 0, swapAddress: req.swap.offerSwapAddress });
+      } catch (err) {
+        res.json({ error: err.message });
+        onError({ stage: 'auth-request', err });
+      }
+    });
   }
 };

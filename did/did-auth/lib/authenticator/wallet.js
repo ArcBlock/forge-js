@@ -93,6 +93,10 @@ module.exports = class WalletAuthenticator {
     return uri;
   }
 
+  getPublicUrl(pathname, params) {
+    return `${this.baseUrl}${pathname}?${qs.stringify(params)}`;
+  }
+
   /**
    * Sign a auth response that returned to wallet: tell the wallet the appInfo/chainInfo/crossChainInfo
    *
