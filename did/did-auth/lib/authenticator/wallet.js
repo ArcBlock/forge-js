@@ -355,4 +355,40 @@ module.exports = class WalletAuthenticator {
       },
     };
   }
+
+  // 要求 setup swap，做同构链的跨链
+  async swap({ claim, userDid, userPk, extraParams }) {
+    const {
+      swapId,
+      description,
+      meta,
+      offerAssets,
+      offerToken,
+      demandAssets,
+      demandToken,
+      demandLocktime,
+      receiver,
+      demandChain,
+    } = await this.getClaimInfo({
+      claim,
+      userDid,
+      userPk,
+      extraParams,
+    });
+
+    return {
+      type: 'swap',
+      meta: Object.assign(meta || {}, {
+        description: description || 'Please setup swap on the asset chain',
+      }),
+      swapId,
+      offerAssets,
+      offerToken,
+      demandAssets,
+      demandToken,
+      demandLocktime,
+      receiver,
+      demandChain,
+    };
+  }
 };
