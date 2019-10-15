@@ -86,14 +86,12 @@ module.exports = function createHandlers({
 
   const checkActionToken = async (req, res) => {
     try {
-      const locale = getLocale(req);
-      const { [tokenKey]: token } = req.query;
+      const { locale, token, store } = req.context;
       if (!token) {
         res.status(400).json({ error: errors.tokenMissing[locale] });
         return;
       }
 
-      const store = await tokenStorage.read(token);
       if (store) {
         if (store.status === STATUS_FORBIDDEN) {
           res.status(403).json({ error: errors.didMismatch[locale] });
@@ -133,15 +131,13 @@ module.exports = function createHandlers({
 
   const expireActionToken = async (req, res) => {
     try {
-      const locale = getLocale(req);
-      const { [tokenKey]: token } = req.query;
+      const { locale, token, store } = req.context;
       if (!token) {
         res.status(400).json({ error: errors.tokenMissing[locale] });
         return;
       }
 
       onExpire({ token, status: 'expired' });
-      const store = await tokenStorage.read(token);
 
       // We do not delete tokens that are scanned by wallet since it will cause confusing
       if (store && store.status !== STATUS_SCANNED) {
@@ -156,8 +152,9 @@ module.exports = function createHandlers({
 
   // eslint-disable-next-line consistent-return
   const onAuthRequest = async (req, res) => {
-    const locale = getLocale(req);
-    const { userDid, userPk, [tokenKey]: token, [checksumKey]: checksum } = req.query;
+    const { locale, token, store, params } = req.context;
+    const { userDid, userPk, [checksumKey]: checksum } = params;
+
     if (!userDid) {
       return res.json({ error: errors.didMissing[locale] });
     }
@@ -165,8 +162,7 @@ module.exports = function createHandlers({
       return res.json({ error: errors.pkMissing[locale] });
     }
 
-    debug('sign.input', req.query);
-    const store = await tokenStorage.read(token);
+    debug('sign.input', params);
 
     // check userDid mismatch
     const didChecksum = getDidCheckSum(userDid);
@@ -218,14 +214,8 @@ module.exports = function createHandlers({
 
   // eslint-disable-next-line consistent-return
   const onAuthResponse = async (req, res) => {
-    const params = Object.assign({}, req.body, req.query);
+    const { locale, token, store, params } = req.context;
     debug('verify.input', params);
-    const token = params[tokenKey];
-    if (!token) {
-      debug('verify.input.warn', 'action token not found in input param');
-    }
-    const locale = getLocale(req);
-    const store = token ? await tokenStorage.read(token) : null;
 
     try {
       const { userDid, userPk, claims: claimResponse } = await authenticator.verify(params, locale);
@@ -299,11 +289,22 @@ module.exports = function createHandlers({
     }
   };
 
+  const ensureContext = async (req, res, next) => {
+    const params = Object.assign({}, req.body, req.query);
+    const token = params[tokenKey];
+    const locale = getLocale(req);
+    const store = token ? await tokenStorage.read(token) : null;
+
+    req.context = { locale, token, params, store };
+    return next();
+  };
+
   return {
     generateActionToken,
     expireActionToken,
     checkActionToken,
     onAuthRequest,
     onAuthResponse,
+    ensureContext,
   };
 };
