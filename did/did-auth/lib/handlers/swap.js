@@ -1,5 +1,7 @@
 /* eslint-disable object-curly-newline */
 const ForgeSDK = require('@arcblock/forge-sdk');
+const { createRetriever } = require('@arcblock/swap-retriever');
+
 // eslint-disable-next-line
 const debug = require('debug')(`${require('../../package.json').name}:handlers:swap`);
 const createHandlers = require('./util');
@@ -58,43 +60,41 @@ module.exports = class WalletHandlers {
     }
   }
 
-  // TODO: add validation here
+  // Create an swap placeholder, which must be finalized before actually doing the swap
   start(payload) {
     const {
-      offerAddress,
+      offerAddress = '',
       offerAssets = [],
-      offerToken = 0,
-      offerLocktime,
+      offerToken = '0',
 
-      demandAddress,
+      demandAddress = '',
       demandAssets = [],
-      demandToken = 0,
-      demandLocktime,
+      demandToken = '0',
     } = payload;
 
     const traceId = ForgeSDK.Util.UUID();
     const updates = {
       traceId,
       status: 'not_started',
-      offerAddress,
+      offerAddress, // 卖家地址
       offerAssets,
       offerToken,
-      offerLocktime: offerLocktime || this.offerLocktime,
+      offerLocktime: this.offerLocktime,
       offerChain: this.offerChain,
       offerSetupHash: '', // 卖家 setup_swap 的 hash
       offerSwapAddress: '', // 卖家 setup_swap 的地址
       offerRetrieveHash: '', // 卖家 retrieve_swap 的 hash
       offerRevokeHash: '', // 卖家 revoke_swap 的 hash
 
-      demandAddress, // TODO: this should be auto generated
+      demandAddress, // 买家地址
       demandAssets,
       demandToken,
-      demandLocktime: demandLocktime || this.demandLocktime,
+      demandLocktime: this.demandLocktime,
       demandChain: this.demandChain,
-      demandSetupHash: '', // 卖家 setup_swap 的 hash
-      demandSwapAddress: '', // 卖家 setup_swap 的地址
-      demandRetrieveHash: '', // 卖家 retrieve_swap 的 hash
-      demandRevokeHash: '', // 卖家 revoke_swap 的 hash
+      demandSetupHash: '', // 买家 setup_swap 的 hash
+      demandSwapAddress: '', // 买家 setup_swap 的地址
+      demandRetrieveHash: '', // 买家 retrieve_swap 的 hash
+      demandRevokeHash: '', // 买家 revoke_swap 的 hash
 
       createdAt: new Date(),
     };
@@ -250,7 +250,7 @@ module.exports = class WalletHandlers {
     // 5. Wallet: submit auth response
     app.post(authPath, ensureSwap, ensureContext, onAuthResponse);
 
-    // 6. Wallet: get swap address that setup by seller, and trigger retrieve job
+    // 6. Wallet: simple auth principal stub that used for wallet to retrieve
     app.get(retrievePath, ensureSwap, ensureContext, async (req, res) => {
       const { locale, token, params } = req.context;
       const { userDid, userPk } = params;
@@ -265,21 +265,23 @@ module.exports = class WalletHandlers {
           claims: {
             authPrincipal: () => ({
               target: req.swap.offerAddress,
+              // TODO: add i18n for this message
               description: 'Please provided the address to complete swap',
             }),
           },
-          pathname: authPath,
-          extraParams: createExtraParams({ locale }, req.query),
+          pathname: retrievePath,
+          extraParams: createExtraParams(locale, req.query),
         });
 
         debug('retrieve.result', authInfo);
         res.json(authInfo);
       } catch (err) {
         res.json({ error: err.message });
-        onError({ stage: 'auth-response', err });
+        onError({ stage: 'retrieve-response', err });
       }
     });
 
+    // 7. Wallet: setup seller swap and start retriever
     app.post(retrievePath, ensureSwap, ensureContext, async (req, res) => {
       const { locale, token, params } = req.context;
       const { traceId } = params;
@@ -293,7 +295,8 @@ module.exports = class WalletHandlers {
         debug('retrieve.verify', { userDid, token, claims: claimResponse });
 
         if (req.swap.offerSetupHash && req.swap.offerSwapAddress) {
-          return res.json({ status: 0, response: { swapAddress: req.swap.offerSwapAddress } });
+          res.json({ status: 0, response: { swapAddress: req.swap.offerSwapAddress } });
+          return;
         }
 
         const { state } = await ForgeSDK.getSwapState(
@@ -322,12 +325,36 @@ module.exports = class WalletHandlers {
           offerSwapAddress: address,
         });
 
+        res.json({ status: 0, response: { swapAddress: address } });
+
         // TODO: trigger verifier on user retrieve swap
-        return res.json({ status: 0, response: { swapAddress: address } });
+        const retriever = createRetriever({
+          traceId,
+          checkAddress: address,
+          retrieveAddress: req.swap.demandSwapAddress,
+          checkChain: this.offerChain,
+          retrieveChain: this.demandChain,
+          retrieveWallet: this.authenticator.wallet,
+          checkInterval: 2000,
+          autoStart: true,
+          maxRetry: 60,
+        });
+
+        retriever.on('error', args => {
+          console.error('swap.retrieve.error', args);
+        });
+
+        retriever.on('done', ({ params, retrieveHash }) => {
+          this.swapStorage.update(traceId, {
+            status: 'both_retrieve',
+            offerSetupHash: hash,
+            offerSwapAddress: address,
+          });
+        });
       } catch (err) {
-        console.error('swap.retrieve.error', err);
+        console.error('swap.setup.error', err);
         res.json({ error: err.message });
-        onError({ stage: 'auth-request', err });
+        onError({ stage: 'retrieve-request', err });
       }
     });
   }

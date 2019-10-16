@@ -20,6 +20,7 @@
     "@arcblock/forge-util": "^0.38.10",
     "@arcblock/forge-wallet": "^0.38.10",
     "@arcblock/mcrypto": "^0.38.10",
+    "@arcblock/swap-retriever": "^0.38.10",
     "debug": "^4.1.1",
     "json-stable-stringify": "^1.0.1",
     "lodash.get": "^4.4.2"

@@ -57,9 +57,9 @@ module.exports = function createHandlers({
   // if user want to do multiple-step did-auth
   const steps = Array.isArray(claims) ? claims : [claims];
 
-  const createExtraParams = (params, query) =>
+  const createExtraParams = (locale, query) =>
     Object.assign(
-      { locale: params.locale, action },
+      { locale, action },
       Object.keys(query)
         .filter(x => !['userDid', 'userPk', 'token'].includes(x))
         .reduce((obj, x) => {
@@ -126,7 +126,7 @@ module.exports = function createHandlers({
             action,
             token,
             userDid: toAddress(store.did),
-            extraParams: createExtraParams({ locale }, req.query),
+            extraParams: createExtraParams(locale, req.query),
           });
         }
 
@@ -197,7 +197,7 @@ module.exports = function createHandlers({
         userPk,
         claims: store ? steps[store.currentStep] : steps[0],
         pathname,
-        extraParams: createExtraParams({ locale }, req.query),
+        extraParams: createExtraParams(locale, req.query),
       });
 
       debug('sign.result', authInfo);
@@ -232,7 +232,7 @@ module.exports = function createHandlers({
         token,
         claims: claimResponse,
         storage: tokenStorage,
-        extraParams: createExtraParams(params, req.query),
+        extraParams: createExtraParams(locale, req.query),
       };
 
       if (token && store && store.status === STATUS_FORBIDDEN) {
@@ -261,7 +261,7 @@ module.exports = function createHandlers({
             userPk,
             claims: steps[store.currentStep + 1],
             pathname,
-            extraParams: createExtraParams(params, req.query),
+            extraParams: createExtraParams(locale, req.query),
           });
 
           return res.json(authInfo);

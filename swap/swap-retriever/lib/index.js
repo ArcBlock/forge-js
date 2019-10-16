@@ -27,7 +27,7 @@ const createRetriever = params => {
     retrieveWallet,
     checkInterval = 2000,
     autoStart = true,
-    maxRetry = 30,
+    maxRetry = 60,
   } = params;
   debug('swap.retrieve.params', params);
 
@@ -82,8 +82,13 @@ const createRetriever = params => {
       }
 
       if (source.state && source.state.hashkey) {
-        debug('swap.retrieve.done', { params, retryCount });
+        debug('swap.retrieve.checkDone', { params, retryCount });
         const wallet = ForgeSDK.Wallet.fromJSON(retrieveWallet);
+        events.emit('user-retrieved', {
+          params,
+          state: source.state,
+          retryCount,
+        });
         try {
           const retrieveHash = await ForgeSDK.sendRetrieveSwapTx(
             {
@@ -93,12 +98,14 @@ const createRetriever = params => {
             },
             { conn: retrieveChain }
           );
+          debug('swap.retrieve.sent', { params, retrieveHash });
           const { state } = await ForgeSDK.getSwapState(
             { address: retrieveAddress },
             { conn: retrieveChain }
           );
           if (state.hashkey) {
-            events.emit('done', {
+            debug('swap.retrieve.confirmed', { params, retrieveHash });
+            events.emit('both-retrieved', {
               params,
               retrieveHash,
               retryCount,
