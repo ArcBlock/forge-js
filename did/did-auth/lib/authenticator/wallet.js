@@ -148,7 +148,7 @@ module.exports = class WalletAuthenticator {
    * @param {string} locale
    * @returns Promise<>
    */
-  verify(data, locale = 'en') {
+  verify(data, locale = 'en', enforceTimestamp = true) {
     return new Promise((resolve, reject) => {
       debug('verify', data, locale);
 
@@ -191,10 +191,11 @@ module.exports = class WalletAuthenticator {
       if (!isValid) {
         // NOTE: since the token can be invalid because of wallet-app clock not in sync
         // We should tell the user that if it's caused by clock
-        const error = verify(userInfo, userPk, 0, false)
-          ? errors.timeInvalid[locale]
-          : errors.tokenInvalid[locale];
-        return reject(new Error(error));
+        const isValidSig = verify(userInfo, userPk, 0, false);
+        if (enforceTimestamp) {
+          const error = isValidSig ? errors.timeInvalid[locale] : errors.tokenInvalid[locale];
+          return reject(new Error(error));
+        }
       }
 
       const { iss, requestedClaims } = decode(userInfo);

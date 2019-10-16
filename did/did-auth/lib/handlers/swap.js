@@ -266,7 +266,7 @@ module.exports = class WalletHandlers {
       const { traceId } = params;
 
       try {
-        const { userDid, claims: claimResponse } = await this.authenticator.verify(params, locale);
+        const { userDid, claims: claimResponse } = await this.authenticator.verify(params, locale, false);
         debug('verify', { userDid, token, claims: claimResponse });
 
         // TODO: validate the swap and userDid should match
@@ -275,7 +275,7 @@ module.exports = class WalletHandlers {
         }
 
         const { state } = await ForgeSDK.getSwapState(
-          { address: req.swap.demandSetupHash },
+          { address: req.swap.demandSwapAddress },
           { conn: this.demandChain }
         );
 
@@ -285,7 +285,7 @@ module.exports = class WalletHandlers {
         const hash = await ForgeSDK.sendSetupSwapTx({
           tx: {
             itx: {
-              value: ForgeSDK.fromTokenToUnit(0),
+              value: ForgeSDK.Util.fromTokenToUnit(req.swap.offerToken), // FIXME: decimal
               assets: req.swap.offerAssets,
               receiver: req.swap.offerAddress,
               hashlock,
@@ -310,6 +310,7 @@ module.exports = class WalletHandlers {
         // TODO: trigger verifier on user retrieve swap
         return res.json({ status: 0, response: { swapAddress: req.swap.offerSwapAddress } });
       } catch (err) {
+        console.error('swap.retrieve.error', err);
         res.json({ error: err.message });
         onError({ stage: 'auth-request', err });
       }
