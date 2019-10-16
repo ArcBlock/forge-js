@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "@arcblock/forge-sdk": "^0.38.10",
+    "@arcblock/tx-util": "^0.38.10",
     "debug": "^4.1.1"
   },
   "devDependencies": {

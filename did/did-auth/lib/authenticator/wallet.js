@@ -389,7 +389,7 @@ module.exports = class WalletAuthenticator {
       demandToken,
       demandLocktime,
       receiver,
-      demandChain,
+      demandChainId,
     } = await this.getClaimInfo({
       claim,
       userDid,
@@ -409,7 +409,7 @@ module.exports = class WalletAuthenticator {
       demandToken,
       demandLocktime,
       receiver,
-      demandChain,
+      demandChain: demandChainId,
     };
   }
 };

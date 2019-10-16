@@ -14,8 +14,10 @@ module.exports = class WalletHandlers {
    *
    * @param {object} config
    * @param {function} config.tokenGenerator - function to generate action token
-   * @param {string} config.offerChain - offer chain endpoint
-   * @param {string} config.demandChain - demand chain endpoint
+   * @param {string} config.offerChainHost - offer chain endpoint
+   * @param {string} config.demandChainHost - demand chain endpoint
+   * @param {string} config.offerChainId - offer chain endpoint
+   * @param {string} config.demandChainId - demand chain endpoint
    * @param {object} config.swapStorage - storage that contains swap information
    * @param {object} config.tokenStorage - storage that contains action token information
    * @param {object} config.authenticator - Authenticator instance that can to jwt sign/verify
@@ -26,26 +28,33 @@ module.exports = class WalletHandlers {
     swapStorage,
     tokenStorage,
     authenticator,
-    offerChain,
-    demandChain,
+    offerChainHost,
+    offerChainId,
+    demandChainHost,
+    demandChainId,
     offerLocktime = 28800,
     demandLocktime = 57600,
     onPreAuth = noop,
   }) {
-    if (!offerChain) {
+    if (!offerChainHost || !offerChainId) {
       throw new Error('Swap handlers require valid offerChain host');
     }
-    if (!demandChain) {
+    if (!demandChainHost || !demandChainId) {
       throw new Error('Swap handlers require valid demandChain host');
     }
 
     this.authenticator = authenticator;
     this.swapStorage = swapStorage;
     this.tokenStorage = tokenStorage;
-    this.offerChain = offerChain;
-    this.demandChain = demandChain;
+    this.offerChainHost = offerChainHost;
+    this.offerChainId = offerChainId;
+    this.demandChainHost = demandChainHost;
+    this.demandChainId = demandChainId;
     this.offerLocktime = offerLocktime;
     this.demandLocktime = demandLocktime;
+
+    ForgeSDK.connect(offerChainHost, { chainId: offerChainId, name: offerChainId });
+    ForgeSDK.connect(demandChainHost, { chainId: demandChainId, name: demandChainId });
 
     if (typeof tokenGenerator === 'function') {
       this.tokenGenerator = tokenGenerator;
@@ -80,7 +89,8 @@ module.exports = class WalletHandlers {
       offerAssets,
       offerToken,
       offerLocktime: this.offerLocktime,
-      offerChain: this.offerChain,
+      offerChainId: this.offerChainId,
+      offerChainHost: this.offerChainHost,
       offerSetupHash: '', // 卖家 setup_swap 的 hash
       offerSwapAddress: '', // 卖家 setup_swap 的地址
       offerRetrieveHash: '', // 卖家 retrieve_swap 的 hash
@@ -90,7 +100,8 @@ module.exports = class WalletHandlers {
       demandAssets,
       demandToken,
       demandLocktime: this.demandLocktime,
-      demandChain: this.demandChain,
+      demandChainHost: this.demandChainHost,
+      demandChainId: this.demandChainId,
       demandSetupHash: '', // 买家 setup_swap 的 hash
       demandSwapAddress: '', // 买家 setup_swap 的地址
       demandRetrieveHash: '', // 买家 retrieve_swap 的 hash
@@ -177,7 +188,7 @@ module.exports = class WalletHandlers {
 
         const { state } = await ForgeSDK.getSwapState(
           { address: swap.address },
-          { conn: this.demandChain }
+          { conn: this.demandChainId }
         );
 
         await this.swapStorage.update(traceId, {
@@ -301,7 +312,7 @@ module.exports = class WalletHandlers {
 
         const { state } = await ForgeSDK.getSwapState(
           { address: req.swap.demandSwapAddress },
-          { conn: this.demandChain }
+          { conn: this.demandChainId }
         );
         const hash = await ForgeSDK.sendSetupSwapTx({
           tx: {
@@ -327,13 +338,14 @@ module.exports = class WalletHandlers {
 
         res.json({ status: 0, response: { swapAddress: address } });
 
-        // TODO: trigger verifier on user retrieve swap
         const retriever = createRetriever({
           traceId,
-          checkAddress: address,
-          retrieveAddress: req.swap.demandSwapAddress,
-          checkChain: this.offerChain,
-          retrieveChain: this.demandChain,
+          offerAddress: address,
+          demandAddress: req.swap.demandSwapAddress,
+          offerChainHost: this.offerChainHost,
+          offerChainId: this.offerChainId,
+          demandChainHost: this.demandChainHost,
+          demandChainId: this.demandChainId,
           retrieveWallet: this.authenticator.wallet,
           checkInterval: 2000,
           autoStart: true,
@@ -344,11 +356,18 @@ module.exports = class WalletHandlers {
           console.error('swap.retrieve.error', args);
         });
 
-        retriever.on('done', ({ params, retrieveHash }) => {
+        retriever.on('retrieved.user', () => {
+          this.swapStorage.update(traceId, {
+            status: 'user_retrieve',
+            offerRetrieveHash: '', // TODO: can we make this work?
+          });
+        });
+
+        // eslint-disable-next-line no-shadow
+        retriever.on('retrieved.both', ({ hash }) => {
           this.swapStorage.update(traceId, {
             status: 'both_retrieve',
-            offerSetupHash: hash,
-            offerSwapAddress: address,
+            demandRetrieveHash: hash,
           });
         });
       } catch (err) {

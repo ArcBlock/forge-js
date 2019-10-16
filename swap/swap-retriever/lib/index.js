@@ -1,18 +1,35 @@
-/* eslint-disable object-curly-newline */
+/* eslint-disable no-console */
 const ForgeSDK = require('@arcblock/forge-sdk');
+const { createVerifier } = require('@arcblock/tx-util');
 const { EventEmitter } = require('events');
 
 const debug = require('debug')(require('../package.json').name);
+
+const printError = err => {
+  if (Array.isArray(err.errors)) {
+    console.error(JSON.stringify(err.errors));
+  } else {
+    console.error(err);
+  }
+};
 
 /**
  * Generate a atomic swap retriever
  * Please make sure ForgeSDK is connected to the chains
  *
+ * Will emit following events during retrieving
+ *  - error: any error occurs
+ *  - retrieved.user: user have retrieved
+ *  - retrieved.both: both have retrieved
+ *
  * @param {object} params - params to setup the retriever
- * @param {string} params.checkAddress - which swap address to check
- * @param {string} params.retrieveAddress - which swap address to retrieve
- * @param {string} params.checkChain - which chain to check the swap
- * @param {string} params.retrieveChain - which chain to retrieve the swap
+ * @param {string} params.traceId - which traceId address to check
+ * @param {string} params.offerAddress - which swap address to check
+ * @param {string} params.demandAddress - which swap address to retrieve
+ * @param {string} params.offerChainId - which chain to check the swap, make sure you have connected to this chain
+ * @param {string} params.offerChainHost - which chain to check the swap, make sure you have connected to this chain
+ * @param {string} params.demandChainId - which chain to retrieve the swap, make sure you have connected to this chain
+ * @param {string} params.demandChainHost - which chain to retrieve the swap, make sure you have connected to this chain
  * @param {number} params.checkInterval - query interval to check the swap
  * @param {boolean} params.autoStart - should the verifier start on create
  * @param {number} params.maxRetry - max number of checks before mark the tx as expired
@@ -20,24 +37,46 @@ const debug = require('debug')(require('../package.json').name);
  */
 const createRetriever = params => {
   const {
-    checkAddress,
-    retrieveAddress,
-    checkChain,
-    retrieveChain,
+    traceId,
+    offerAddress,
+    demandAddress,
+    offerChainId,
+    offerChainHost,
+    demandChainId,
+    demandChainHost,
     retrieveWallet,
     checkInterval = 2000,
     autoStart = true,
     maxRetry = 60,
   } = params;
-  debug('swap.retrieve.params', params);
 
-  ['checkAddress', 'retrieveAddress', 'checkChain', 'retrieveChain', 'retrieveWallet'].forEach(
-    x => {
-      if (!params[x]) {
-        throw new Error(`${x} must be provided to create retriever`);
-      }
+  [
+    'traceId',
+    'offerAddress',
+    'demandAddress',
+    'offerChainId',
+    'offerChainHost',
+    'demandChainId',
+    'demandChainHost',
+    'retrieveWallet',
+  ].forEach(x => {
+    if (!params[x]) {
+      throw new Error(`${x} must be provided to create swap retriever`);
     }
-  );
+  });
+
+  debug('swap.retrieve.params', {
+    offerAddress,
+    demandAddress,
+    offerChainId,
+    offerChainHost,
+    demandChainId,
+    demandChainHost,
+    retrieveWallet: retrieveWallet.address,
+  });
+
+  ForgeSDK.connect(offerChainHost, { chainId: offerChainId, name: offerChainId });
+  ForgeSDK.connect(demandChainHost, { chainId: demandChainId, name: demandChainId });
 
   const events = new EventEmitter();
   let retryCount = -1;
@@ -45,7 +84,7 @@ const createRetriever = params => {
   const doCheck = async () => {
     if (retryCount > maxRetry) {
       events.emit('error', {
-        params,
+        traceId,
         type: 'expired',
         retryCount,
         error: new Error('Swap retriever exceeded max retry count'),
@@ -57,90 +96,70 @@ const createRetriever = params => {
 
     try {
       const [source, target] = await Promise.all([
-        ForgeSDK.getSwapState({ address: checkAddress }, { conn: checkChain }),
-        ForgeSDK.getSwapState({ address: retrieveAddress }, { conn: retrieveChain }),
+        ForgeSDK.getSwapState({ address: offerAddress }, { conn: offerChainId }),
+        ForgeSDK.getSwapState({ address: demandAddress }, { conn: demandChainId }),
       ]);
 
       if (!source) {
-        events.emit('error', {
-          params,
-          type: 'exception',
-          error: new Error(`swap state of ${checkAddress} not found on chain ${checkChain}`),
-          retryCount,
-        });
+        const error = new Error(`Swap ${offerAddress} not found on chain ${offerChainId}`);
+        events.emit('error', { traceId, type: 'exception', error, retryCount });
         return;
       }
 
       if (!target) {
-        events.emit('error', {
-          params,
-          type: 'exception',
-          error: new Error(`swap state of ${retrieveAddress} not found on chain ${retrieveChain}`),
-          retryCount,
-        });
+        const error = new Error(`Swap ${demandAddress} not found on chain ${demandChainId}`);
+        events.emit('error', { traceId, type: 'exception', error, retryCount });
         return;
       }
 
       if (source.state && source.state.hashkey) {
-        debug('swap.retrieve.checkDone', { params, retryCount });
-        const wallet = ForgeSDK.Wallet.fromJSON(retrieveWallet);
-        events.emit('user-retrieved', {
-          params,
-          state: source.state,
-          retryCount,
-        });
+        debug('swap.retrieve.done.user', { traceId, retryCount });
+        events.emit('retrieved.user', { traceId, state: source.state, retryCount });
+
         try {
-          const retrieveHash = await ForgeSDK.sendRetrieveSwapTx(
+          // Sent retrieve swap
+          const hash = await ForgeSDK.sendRetrieveSwapTx(
             {
-              tx: { itx: { address: retrieveAddress, hashkey: source.state.hashkey } },
-              wallet,
+              tx: {
+                itx: {
+                  address: demandAddress,
+                  hashkey: ForgeSDK.Util.toUint8Array(`0x${source.state.hashkey}`),
+                },
+              },
+              wallet: ForgeSDK.Wallet.fromJSON(retrieveWallet),
               commit: true,
             },
-            { conn: retrieveChain }
+            { conn: demandChainId }
           );
-          debug('swap.retrieve.sent', { params, retrieveHash });
-          const { state } = await ForgeSDK.getSwapState(
-            { address: retrieveAddress },
-            { conn: retrieveChain }
-          );
-          if (state.hashkey) {
-            debug('swap.retrieve.confirmed', { params, retrieveHash });
-            events.emit('both-retrieved', {
-              params,
-              retrieveHash,
-              retryCount,
-            });
-          } else {
-            events.emit('error', {
-              params,
-              type: 'exception',
-              error: new Error(`RetrieveSwap tx failed: ${retrieveHash}`),
-              retryCount,
-            });
-          }
-        } catch (err) {
-          events.emit('error', {
-            params,
-            type: 'exception',
-            error: err,
-            retryCount,
+          debug('swap.retrieve.sent', { traceId, hash });
+
+          // Check tx status
+          const verifier = createVerifier({
+            hash,
+            chainHost: demandChainHost,
+            chainId: demandChainId,
           });
+
+          verifier.on('error', err => {
+            const error = new Error(`RetrieveSwap tx verify failed: ${hash}: ${err}`);
+            events.emit('error', { traceId, type: 'exception', error, retryCount });
+          });
+          verifier.on('done', () => {
+            debug('swap.retrieve.done.both', { traceId, hash, retryCount });
+            events.emit('retrieved.both', { traceId, hash, retryCount });
+          });
+        } catch (err) {
+          printError(err);
+          events.emit('error', { traceId, type: 'exception', error: err, retryCount });
         }
       } else {
-        debug('swap.retrieve.pending', { params, retryCount });
+        debug('swap.retrieve.pending', { traceId, retryCount });
         setTimeout(doCheck, checkInterval);
       }
     } catch (err) {
-      // eslint-disable-next-line no-console
-      console.error(err);
+      printError(err);
       setTimeout(doCheck, checkInterval);
-      debug('swap.retrieve.error', { params, err, retryCount });
-      events.emit('error', {
-        params,
-        type: 'exception',
-        error: err,
-        retryCount,
-      });
+      events.emit('error', { traceId, type: 'exception', error: err, retryCount });
     }
   };
 
