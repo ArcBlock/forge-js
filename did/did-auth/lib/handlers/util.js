@@ -57,6 +57,17 @@ module.exports = function createHandlers({
   // if user want to do multiple-step did-auth
   const steps = Array.isArray(claims) ? claims : [claims];
 
+  const createExtraParams = (params, query) =>
+    Object.assign(
+      { locale: params.locale, action },
+      Object.keys(query)
+        .filter(x => !['userDid', 'userPk', 'token'].includes(x))
+        .reduce((obj, x) => {
+          obj[x] = query[x];
+          return obj;
+        }, {})
+    );
+
   const generateActionToken = async (req, res) => {
     try {
       const token = sha3(tokenGenerator({ req, action, pathname }))
@@ -115,7 +126,7 @@ module.exports = function createHandlers({
             action,
             token,
             userDid: toAddress(store.did),
-            extraParams: Object.assign({ locale }, req.query),
+            extraParams: createExtraParams({ locale }, req.query),
           });
         }
 
@@ -186,15 +197,7 @@ module.exports = function createHandlers({
         userPk,
         claims: store ? steps[store.currentStep] : steps[0],
         pathname,
-        extraParams: Object.assign(
-          { locale },
-          Object.keys(req.query)
-            .filter(x => !['userDid', 'userPk', 'token'].includes(x))
-            .reduce((obj, x) => {
-              obj[x] = req.query[x];
-              return obj;
-            }, {})
-        ),
+        extraParams: createExtraParams({ locale }, req.query),
       });
 
       debug('sign.result', authInfo);
@@ -229,7 +232,7 @@ module.exports = function createHandlers({
         token,
         claims: claimResponse,
         storage: tokenStorage,
-        extraParams: Object.assign({ locale, action }, req.query),
+        extraParams: createExtraParams(params, req.query),
       };
 
       if (token && store && store.status === STATUS_FORBIDDEN) {
@@ -247,7 +250,6 @@ module.exports = function createHandlers({
           // Only return if we are walked through all steps
           if (store.currentStep === steps.length - 1) {
             await tokenStorage.update(token, { status: STATUS_SUCCEED });
-            console.log('onComplete', result);
             return res.json(Object.assign({}, result || {}, { status: 0 }));
           }
 
@@ -259,15 +261,7 @@ module.exports = function createHandlers({
             userPk,
             claims: steps[store.currentStep + 1],
             pathname,
-            extraParams: Object.assign(
-              { locale },
-              Object.keys(req.query)
-                .filter(x => !['userDid', 'userPk', 'token'].includes(x))
-                .reduce((obj, x) => {
-                  obj[x] = req.query[x];
-                  return obj;
-                }, {})
-            ),
+            extraParams: createExtraParams(params, req.query),
           });
 
           return res.json(authInfo);
@@ -307,5 +301,6 @@ module.exports = function createHandlers({
     onAuthRequest,
     onAuthResponse,
     ensureContext,
+    createExtraParams,
   };
 };

@@ -113,6 +113,12 @@ module.exports = class MongoStorage extends StorageInterface {
   }
 
   update(traceId, updates) {
+    this.payloadFields.forEach(x => {
+      delete updates[x];
+    });
+
+    updates.updatedAt = new Date();
+
     return this.collectionReady()
       .then(collection => collection.updateOne({ traceId }, { $set: updates }, { upsert: true }))
       .then(rawResponse => {
@@ -135,6 +141,20 @@ module.exports = class MongoStorage extends StorageInterface {
         }
 
         return payload;
+      });
+  }
+
+  finalizePayload(traceId, payload) {
+    return this.collectionReady()
+      .then(collection => collection.updateOne({ traceId }, { $set: payload }))
+      .then(rawResponse => {
+        if (rawResponse.result) {
+          rawResponse = rawResponse.result;
+        }
+
+        this.emit('finalize', Object.assign({ traceId }, payload));
+
+        return rawResponse;
       });
   }
 
