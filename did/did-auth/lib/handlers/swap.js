@@ -264,7 +264,7 @@ module.exports = class WalletHandlers {
           userPk,
           claims: {
             authPrincipal: () => ({
-              target: req.swap.offerAddress,
+              target: req.swap.demandAddress,
               // TODO: add i18n for this message
               description: 'Please provided the address to complete swap',
             }),
@@ -308,7 +308,7 @@ module.exports = class WalletHandlers {
             itx: {
               value: ForgeSDK.Util.fromTokenToUnit(req.swap.offerToken), // FIXME: decimal
               assets: req.swap.offerAssets,
-              receiver: req.swap.offerAddress,
+              receiver: req.swap.demandAddress,
               hashlock: ForgeSDK.Util.toUint8Array(`0x${state.hashlock}`),
               locktime: state.locktime - 50, // TODO: make this dynamic calculated and different from above
             },
