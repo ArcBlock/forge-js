@@ -1,3 +1,17 @@
+## 0.39.1 (October 17, 2019)
+
+- chore: make auto retrieve work
+- chore: polish atomic swap relatd code
+- feat: add swap-retriever
+- chore: user retrieve swap now works
+- chore: support commit in both graphql and grpc sendTx
+- fix: swap retrieve error
+- fix: swap response format
+- chore: add auth principal claim type
+- chore: try to implement whole workflow
+- chore: extract more middlewares from did handlers
+- chore: support atomic swap middlewares
+
 ## 0.39.0 (October 17, 2019)
 
 - chore: bump grpc-node to v1.24.0
