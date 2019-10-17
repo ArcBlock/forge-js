@@ -1,3 +1,8 @@
+## 0.39.2 (October 17, 2019)
+
+- fix: lerna config
+- update readme
+
 ## 0.39.1 (October 17, 2019)
 
 - chore: make auto retrieve work
