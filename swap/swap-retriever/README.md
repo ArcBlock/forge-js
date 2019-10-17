@@ -26,6 +26,32 @@ yarn add @arcblock/swap-retriever
 
 ```js
 const { createRetriever } = require('@arcblock/swap-retriever');
+
+const retriever = createRetriever({
+  traceId,
+  offerAddress: address,
+  demandAddress: '',
+  offerChainHost,
+  offerChainId,
+  demandChainHost,
+  demandChainId,
+  retrieveWallet,
+  checkInterval: 2000,
+  autoStart: true,
+  maxRetry: 60,
+});
+
+retriever.on('error', args => {
+  console.error('swap.retrieve.error', args);
+});
+
+retriever.on('retrieved.user', ({ traceId, hash }) => {
+  console.log('user retrieved', { traceId, hash });
+});
+
+retriever.on('retrieved.both', ({ traceId, hash }) => {
+  console.log('both retrieved', { traceId, hash });
+});
 ```
 
 ## Documentation

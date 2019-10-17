@@ -26,7 +26,6 @@ const MongoStorage = require('@arcblock/swap-storage-mongo');
 
 const storage = new MongoStorage({
   url: 'mongodb://localhost/forge-web-starter',
-  collection: 'did_auth_tokens',
 });
 
 (async () => {

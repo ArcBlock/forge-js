@@ -210,6 +210,18 @@ module.exports = ({ message, util, wallet, clients }) => {
         wrapMethods(client, sdk);
       }
     },
+
+    /**
+     * Converts a relative locktime to absolute locktime
+     *
+     * @param {number} number - number of blocks want to lock
+     * @param {object} [options={}] - options to underlying methods
+     * @returns {number}
+     */
+    async toLocktime(number, options = {}) {
+      const { info } = await this.getChainInfo(options);
+      return +info.blockHeight + number;
+    },
   };
 
   return sdk;

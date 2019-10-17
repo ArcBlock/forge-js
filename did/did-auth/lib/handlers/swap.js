@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable object-curly-newline */
 const ForgeSDK = require('@arcblock/forge-sdk');
 const { createRetriever } = require('@arcblock/swap-retriever');
@@ -8,26 +9,28 @@ const createHandlers = require('./util');
 
 const noop = () => {};
 
-module.exports = class WalletHandlers {
+module.exports = class AtomicSwapHandlers {
   /**
-   * Creates an instance of DID Auth Handlers.
+   * Creates an instance of atomic swap handlers.
    *
    * @param {object} config
+   * @param {object} config.authenticator - Authenticator instance that can to jwt sign/verify
    * @param {function} config.tokenGenerator - function to generate action token
+   * @param {object} config.swapStorage - storage that contains swap information
+   * @param {object} config.tokenStorage - storage that contains action token information
    * @param {string} config.offerChainHost - offer chain endpoint
    * @param {string} config.demandChainHost - demand chain endpoint
    * @param {string} config.offerChainId - offer chain endpoint
    * @param {string} config.demandChainId - demand chain endpoint
-   * @param {object} config.swapStorage - storage that contains swap information
-   * @param {object} config.tokenStorage - storage that contains action token information
-   * @param {object} config.authenticator - Authenticator instance that can to jwt sign/verify
+   * @param {number} config.offerLocktime - num of blocks that will be locked before app chain swap can be revoked
+   * @param {number} config.demandLocktime - num of blocks that will be locked before asset chain swap can be revoked
    * @param {function} [config.onPreAuth=noop] - function called before each auth request send back to app, used to check for permission, throw error to halt the auth process
    */
   constructor({
+    authenticator,
     tokenGenerator,
     swapStorage,
     tokenStorage,
-    authenticator,
     offerChainHost,
     offerChainId,
     demandChainHost,
@@ -88,7 +91,7 @@ module.exports = class WalletHandlers {
       offerAddress, // 卖家地址
       offerAssets,
       offerToken,
-      offerLocktime: this.offerLocktime,
+      offerLocktime: 0,
       offerChainId: this.offerChainId,
       offerChainHost: this.offerChainHost,
       offerSetupHash: '', // 卖家 setup_swap 的 hash
@@ -99,7 +102,7 @@ module.exports = class WalletHandlers {
       demandAddress, // 买家地址
       demandAssets,
       demandToken,
-      demandLocktime: this.demandLocktime,
+      demandLocktime: 0,
       demandChainHost: this.demandChainHost,
       demandChainId: this.demandChainId,
       demandSetupHash: '', // 买家 setup_swap 的 hash
@@ -314,24 +317,30 @@ module.exports = class WalletHandlers {
           { address: req.swap.demandSwapAddress },
           { conn: this.demandChainId }
         );
-        const hash = await ForgeSDK.sendSetupSwapTx({
-          tx: {
-            itx: {
-              value: ForgeSDK.Util.fromTokenToUnit(req.swap.offerToken), // FIXME: decimal
-              assets: req.swap.offerAssets,
-              receiver: req.swap.demandAddress,
-              hashlock: ForgeSDK.Util.toUint8Array(`0x${state.hashlock}`),
-              locktime: state.locktime - 50, // TODO: make this dynamic calculated and different from above
+
+        const locktime = await ForgeSDK.toLocktime(this.offerLocktime, { conn: this.offerChainId });
+        const hash = await ForgeSDK.sendSetupSwapTx(
+          {
+            tx: {
+              itx: {
+                value: ForgeSDK.Util.fromTokenToUnit(req.swap.offerToken), // FIXME: decimal
+                assets: req.swap.offerAssets,
+                receiver: req.swap.demandAddress,
+                hashlock: ForgeSDK.Util.toUint8Array(`0x${state.hashlock}`),
+                locktime,
+              },
             },
+            wallet: ForgeSDK.Wallet.fromJSON(this.authenticator.wallet),
+            commit: true,
           },
-          wallet: ForgeSDK.Wallet.fromJSON(this.authenticator.wallet),
-          commit: true,
-        });
+          { conn: this.offerChainId }
+        );
         debug('swap.onSellerSetup', { state, hash });
         const address = ForgeSDK.Util.toSwapAddress(hash);
 
         await this.swapStorage.update(traceId, {
           status: 'both_setup',
+          offerLocktime: locktime,
           offerSetupHash: hash,
           offerSwapAddress: address,
         });
@@ -354,6 +363,9 @@ module.exports = class WalletHandlers {
 
         retriever.on('error', args => {
           console.error('swap.retrieve.error', args);
+          this.swapStorage.update(traceId, {
+            status: 'error',
+          });
         });
 
         retriever.on('retrieved.user', () => {

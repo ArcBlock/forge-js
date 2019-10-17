@@ -112,6 +112,26 @@ module.exports = class MongoStorage extends StorageInterface {
     return this.update(traceId, attributes);
   }
 
+  finalize(traceId, payload) {
+    Object.keys(payload).forEach(x => {
+      if (!this.payloadFields.includes(x)) {
+        delete payload[x];
+      }
+    });
+
+    return this.collectionReady()
+      .then(collection => collection.updateOne({ traceId }, { $set: payload }))
+      .then(rawResponse => {
+        if (rawResponse.result) {
+          rawResponse = rawResponse.result;
+        }
+
+        this.emit('finalize', Object.assign({ traceId }, payload));
+
+        return this.read(traceId);
+      });
+  }
+
   update(traceId, updates) {
     this.payloadFields.forEach(x => {
       delete updates[x];
@@ -131,8 +151,6 @@ module.exports = class MongoStorage extends StorageInterface {
           this.emit('update', traceId);
         }
 
-        this.emit('set', traceId);
-
         const payload = Object.assign({ traceId }, updates);
 
         // Allow external code to hook into events
@@ -141,20 +159,6 @@ module.exports = class MongoStorage extends StorageInterface {
         }
 
         return payload;
-      });
-  }
-
-  finalizePayload(traceId, payload) {
-    return this.collectionReady()
-      .then(collection => collection.updateOne({ traceId }, { $set: payload }))
-      .then(rawResponse => {
-        if (rawResponse.result) {
-          rawResponse = rawResponse.result;
-        }
-
-        this.emit('finalize', Object.assign({ traceId }, payload));
-
-        return rawResponse;
       });
   }
 
@@ -168,9 +172,31 @@ module.exports = class MongoStorage extends StorageInterface {
     return this.collectionReady().then(collection => collection.findOne({ traceId, did }));
   }
 
-  clear() {
-    return this.collectionReady().then(collection => collection.drop());
+  listByStatus(status) {
+    return this.collectionReady().then(collection => collection.find({ status }));
   }
+
+  listByOfferAddress(address, status = '') {
+    const conditions = { offerAddress: address };
+    if (status) {
+      conditions.status = status;
+    }
+    return this.collectionReady().then(collection => collection.find(conditions));
+  }
+
+  listByDemandAddress(address, status = '') {
+    const conditions = { demandAddress: address };
+    if (status) {
+      conditions.status = status;
+    }
+    return this.collectionReady().then(collection => collection.find(conditions));
+  }
+
+  // purge(ttl = 24 * 60 * 60 * 1000) {
+  //   return this.collectionReady().then(collection =>
+  //     collection.deleteMany({ status: 'not_started', createdAt: {} })
+  //   );
+  // }
 
   close() {
     if (this.client) {
