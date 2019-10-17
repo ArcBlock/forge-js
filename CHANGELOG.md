@@ -1,3 +1,8 @@
+## 0.39.0 (October 17, 2019)
+
+- chore: bump grpc-node to v1.24.0
+- update readme
+
 ## 0.38.10 (October 14, 2019)
 
 - chore: add working atomic_swap example
