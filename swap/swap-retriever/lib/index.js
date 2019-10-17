@@ -24,8 +24,10 @@ const printError = err => {
  *
  * @param {object} params - params to setup the retriever
  * @param {string} params.traceId - which traceId address to check
- * @param {string} params.offerAddress - which swap address to check
- * @param {string} params.demandAddress - which swap address to retrieve
+ * @param {string} params.offerUserAddress - who setup the offer
+ * @param {string} params.offerSwapAddress - which swap address to check
+ * @param {string} params.demandUserAddress - which setup the token
+ * @param {string} params.demandSwapAddress - which swap address to retrieve
  * @param {string} params.offerChainId - which chain to check the swap, make sure you have connected to this chain
  * @param {string} params.offerChainHost - which chain to check the swap, make sure you have connected to this chain
  * @param {string} params.demandChainId - which chain to retrieve the swap, make sure you have connected to this chain
@@ -38,8 +40,10 @@ const printError = err => {
 const createRetriever = params => {
   const {
     traceId,
-    offerAddress,
-    demandAddress,
+    offerUserAddress,
+    offerSwapAddress,
+    demandUserAddress,
+    demandSwapAddress,
     offerChainId,
     offerChainHost,
     demandChainId,
@@ -52,8 +56,10 @@ const createRetriever = params => {
 
   [
     'traceId',
-    'offerAddress',
-    'demandAddress',
+    'offerUserAddress',
+    'offerSwapAddress',
+    'demandUserAddress',
+    'demandSwapAddress',
     'offerChainId',
     'offerChainHost',
     'demandChainId',
@@ -66,8 +72,10 @@ const createRetriever = params => {
   });
 
   debug('swap.retrieve.params', {
-    offerAddress,
-    demandAddress,
+    offerUserAddress,
+    offerSwapAddress,
+    demandUserAddress,
+    demandSwapAddress,
     offerChainId,
     offerChainHost,
     demandChainId,
@@ -96,25 +104,39 @@ const createRetriever = params => {
 
     try {
       const [source, target] = await Promise.all([
-        ForgeSDK.getSwapState({ address: offerAddress }, { conn: offerChainId }),
-        ForgeSDK.getSwapState({ address: demandAddress }, { conn: demandChainId }),
+        ForgeSDK.getSwapState({ address: offerSwapAddress }, { conn: offerChainId }),
+        ForgeSDK.getSwapState({ address: demandSwapAddress }, { conn: demandChainId }),
       ]);
 
       if (!source) {
-        const error = new Error(`Swap ${offerAddress} not found on chain ${offerChainId}`);
+        const error = new Error(`Swap ${offerSwapAddress} not found on chain ${offerChainId}`);
         events.emit('error', { traceId, type: 'exception', error, retryCount });
         return;
       }
 
       if (!target) {
-        const error = new Error(`Swap ${demandAddress} not found on chain ${demandChainId}`);
+        const error = new Error(`Swap ${demandSwapAddress} not found on chain ${demandChainId}`);
         events.emit('error', { traceId, type: 'exception', error, retryCount });
         return;
       }
 
       if (source.state && source.state.hashkey) {
         debug('swap.retrieve.done.user', { traceId, retryCount });
-        events.emit('retrieved.user', { traceId, state: source.state, retryCount });
+        try {
+          const { transactions } = await ForgeSDK.listTransactions(
+            {
+              addressFilter: { sender: demandUserAddress },
+              typeFilter: { types: ['fg:t:retrieve_swap'] },
+            },
+            { conn: offerChainId }
+          );
+
+          const tx = transactions.find(x => x.tx.itxJson === demandSwapAddress);
+          debug('swap.retrieve.done.tx', { traceId, tx: tx.tx });
+          events.emit('retrieved.user', { traceId, hash: tx ? tx.hash : '', retryCount });
+        } catch (err) {
+          events.emit('retrieved.user', { traceId, hash: '', retryCount });
+        }
 
         try {
           // Sent retrieve swap
@@ -122,7 +144,7 @@ const createRetriever = params => {
             {
               tx: {
                 itx: {
-                  address: demandAddress,
+                  address: demandSwapAddress,
                   hashkey: ForgeSDK.Util.toUint8Array(`0x${source.state.hashkey}`),
                 },
               },

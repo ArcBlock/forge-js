@@ -27,7 +27,7 @@ Possible fields to exist in a swap record
 
 - `traceId`: primary key
 - `status`: default to `not_started`, will change on events
-- `offerAddress`: '',
+- `offerUserAddress`: '',
 - `offerAssets`: [],
 - `offerToken`: 0,
 - `offerLocktime`: 28800,
@@ -36,7 +36,7 @@ Possible fields to exist in a swap record
 - `offerSwapAddress`: '', // 卖家 setup_swap 的地址
 - `offerRetrieveHash`: '', // 卖家 retrieve_swap 的 hash
 - `offerRevokeHash`: '', // 卖家 revoke_swap 的 hash
-- `demandAddress`: '', // TODO: this should be auto generated
+- `demandUserAddress`: '',
 - `demandAssets`: [],
 - `demandToken`: 0,
 - `demandLocktime`: 57600,

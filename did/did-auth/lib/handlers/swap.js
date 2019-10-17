@@ -75,11 +75,11 @@ module.exports = class AtomicSwapHandlers {
   // Create an swap placeholder, which must be finalized before actually doing the swap
   start(payload) {
     const {
-      offerAddress = '',
+      offerUserAddress = '',
       offerAssets = [],
       offerToken = '0',
 
-      demandAddress = '',
+      demandUserAddress = '',
       demandAssets = [],
       demandToken = '0',
     } = payload;
@@ -88,7 +88,7 @@ module.exports = class AtomicSwapHandlers {
     const updates = {
       traceId,
       status: 'not_started',
-      offerAddress, // 卖家地址
+      offerUserAddress, // 卖家地址
       offerAssets,
       offerToken,
       offerLocktime: 0,
@@ -99,7 +99,7 @@ module.exports = class AtomicSwapHandlers {
       offerRetrieveHash: '', // 卖家 retrieve_swap 的 hash
       offerRevokeHash: '', // 卖家 revoke_swap 的 hash
 
-      demandAddress, // 买家地址
+      demandUserAddress, // 买家地址
       demandAssets,
       demandToken,
       demandLocktime: 0,
@@ -278,7 +278,7 @@ module.exports = class AtomicSwapHandlers {
           userPk,
           claims: {
             authPrincipal: () => ({
-              target: req.swap.demandAddress,
+              target: req.swap.demandUserAddress,
               // TODO: add i18n for this message
               description: 'Please provided the address to complete swap',
             }),
@@ -300,32 +300,34 @@ module.exports = class AtomicSwapHandlers {
       const { locale, token, params } = req.context;
       const { traceId } = params;
 
+      const { userDid, claims: claimResponse } = await this.authenticator.verify(
+        params,
+        locale,
+        false
+      );
+      debug('retrieve.verify', { userDid, token, claims: claimResponse });
+
+      if (req.swap.offerSetupHash && req.swap.offerSwapAddress) {
+        res.json({ status: 0, response: { swapAddress: req.swap.offerSwapAddress } });
+        return;
+      }
+
       try {
-        const { userDid, claims: claimResponse } = await this.authenticator.verify(
-          params,
-          locale,
-          false
-        );
-        debug('retrieve.verify', { userDid, token, claims: claimResponse });
-
-        if (req.swap.offerSetupHash && req.swap.offerSwapAddress) {
-          res.json({ status: 0, response: { swapAddress: req.swap.offerSwapAddress } });
-          return;
-        }
-
         const { state } = await ForgeSDK.getSwapState(
           { address: req.swap.demandSwapAddress },
           { conn: this.demandChainId }
         );
 
-        const locktime = await ForgeSDK.toLocktime(this.offerLocktime, { conn: this.offerChainId });
+        const locktime = await ForgeSDK.toLocktime(this.offerLocktime, {
+          conn: this.offerChainId,
+        });
         const hash = await ForgeSDK.sendSetupSwapTx(
           {
             tx: {
               itx: {
                 value: ForgeSDK.Util.fromTokenToUnit(req.swap.offerToken), // FIXME: decimal
                 assets: req.swap.offerAssets,
-                receiver: req.swap.demandAddress,
+                receiver: req.swap.demandUserAddress,
                 hashlock: ForgeSDK.Util.toUint8Array(`0x${state.hashlock}`),
                 locktime,
               },
@@ -349,8 +351,10 @@ module.exports = class AtomicSwapHandlers {
 
         const retriever = createRetriever({
           traceId,
-          offerAddress: address,
-          demandAddress: req.swap.demandSwapAddress,
+          offerSwapAddress: address,
+          offerUserAddress: req.swap.offerUserAddress,
+          demandSwapAddress: req.swap.demandSwapAddress,
+          demandUserAddress: req.swap.demandUserAddress,
           offerChainHost: this.offerChainHost,
           offerChainId: this.offerChainId,
           demandChainHost: this.demandChainHost,
@@ -383,9 +387,15 @@ module.exports = class AtomicSwapHandlers {
           });
         });
       } catch (err) {
-        console.error('swap.setup.error', err);
-        res.json({ error: err.message });
-        onError({ stage: 'retrieve-request', err });
+        // TODO: improve error message here
+        if (Array.isArray(err.errors)) {
+          console.error('swap.setup.error', JSON.stringify(err.errors));
+          res.json({ error: err.errors.map(x => x.message).join(';') });
+        } else {
+          console.error('swap.setup.error', err);
+          res.json({ error: err.message });
+        }
+        onError({ stage: 'offer-setup-swap', err });
       }
     });
   }

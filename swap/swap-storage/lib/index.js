@@ -7,10 +7,10 @@ module.exports = class SwapStorage extends EventEmitter {
     this.payloadFields = [
       'offerAssets',
       'offerToken',
-      'offerAddress',
+      'offerUserAddress',
       'demandAssets',
       'demandToken',
-      'demandAddress',
+      'demandUserAddress',
       'demandLocktime',
     ];
   }
