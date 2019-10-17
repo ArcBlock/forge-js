@@ -24,7 +24,7 @@
 [![docs](https://img.shields.io/badge/powered%20by-arcblock-green.svg)](https://docs.arcblock.io)
 [![Gitter](https://badges.gitter.im/ArcBlock/community.svg)](https://gitter.im/ArcBlock/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
-> Last updated at 10/17/2019, 4:11:27 AM
+> Last updated at 10/17/2019, 11:03:19 AM
 
 Javascript SDK for [forge](https://docs.arcblock.io/forge/latest/), which is an awesome framework to write distributed blockchain applications.
 
@@ -48,6 +48,9 @@ Javascript SDK for [forge](https://docs.arcblock.io/forge/latest/), which is an 
 - [did <img src="https://img.shields.io/npm/v/@arcblock/did.svg" alt="Version">](https://www.npmjs.com/package/@arcblock/did)
 - [did-auth <img src="https://img.shields.io/npm/v/@arcblock/did-auth.svg" alt="Version">](https://www.npmjs.com/package/@arcblock/did-auth)
 - [did-util <img src="https://img.shields.io/npm/v/@arcblock/did-util.svg" alt="Version">](https://www.npmjs.com/package/@arcblock/did-util)
+- [swap-retriever <img src="https://img.shields.io/npm/v/@arcblock/swap-retriever.svg" alt="Version">](https://www.npmjs.com/package/@arcblock/swap-retriever)
+- [swap-storage <img src="https://img.shields.io/npm/v/@arcblock/swap-storage.svg" alt="Version">](https://www.npmjs.com/package/@arcblock/swap-storage)
+- [swap-storage-mongo <img src="https://img.shields.io/npm/v/@arcblock/swap-storage-mongo.svg" alt="Version">](https://www.npmjs.com/package/@arcblock/swap-storage-mongo)
 
 ## Install
 
