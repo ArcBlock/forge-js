@@ -93,6 +93,10 @@ module.exports = class WalletAuthenticator {
     return uri;
   }
 
+  getPublicUrl(pathname, params) {
+    return `${this.baseUrl}${pathname}?${qs.stringify(params)}`;
+  }
+
   /**
    * Sign a auth response that returned to wallet: tell the wallet the appInfo/chainInfo/crossChainInfo
    *
@@ -144,7 +148,7 @@ module.exports = class WalletAuthenticator {
    * @param {string} locale
    * @returns Promise<>
    */
-  verify(data, locale = 'en') {
+  verify(data, locale = 'en', enforceTimestamp = true) {
     return new Promise((resolve, reject) => {
       debug('verify', data, locale);
 
@@ -187,10 +191,11 @@ module.exports = class WalletAuthenticator {
       if (!isValid) {
         // NOTE: since the token can be invalid because of wallet-app clock not in sync
         // We should tell the user that if it's caused by clock
-        const error = verify(userInfo, userPk, 0, false)
-          ? errors.timeInvalid[locale]
-          : errors.tokenInvalid[locale];
-        return reject(new Error(error));
+        const isValidSig = verify(userInfo, userPk, 0, false);
+        if (enforceTimestamp) {
+          const error = isValidSig ? errors.timeInvalid[locale] : errors.tokenInvalid[locale];
+          return reject(new Error(error));
+        }
       }
 
       const { iss, requestedClaims } = decode(userInfo);
@@ -214,8 +219,8 @@ module.exports = class WalletAuthenticator {
     const result =
       typeof claim === 'function'
         ? await claim({
-            userDid: toAddress(userDid),
-            userPk,
+            userDid: userDid ? toAddress(userDid) : '',
+            userPk: userPk || '',
             extraParams,
           })
         : claim;
@@ -353,6 +358,58 @@ module.exports = class WalletAuthenticator {
       meta: {
         description: description || `Please prove that you have ${target} token`,
       },
+    };
+  }
+
+  async authPrincipal({ claim, userDid, userPk, extraParams }) {
+    const { target, meta, description } = await this.getClaimInfo({
+      claim,
+      userDid,
+      userPk,
+      extraParams,
+    });
+
+    return {
+      type: 'authPrincipal',
+      description,
+      meta,
+      target,
+    };
+  }
+
+  // 要求 setup swap，做同构链的跨链
+  async swap({ claim, userDid, userPk, extraParams }) {
+    const {
+      swapId,
+      description,
+      meta,
+      offerAssets,
+      offerToken,
+      demandAssets,
+      demandToken,
+      demandLocktime,
+      receiver,
+      demandChainId,
+    } = await this.getClaimInfo({
+      claim,
+      userDid,
+      userPk,
+      extraParams,
+    });
+
+    return {
+      type: 'swap',
+      meta: Object.assign(meta || {}, {
+        description: description || 'Please setup swap on the asset chain',
+      }),
+      swapId,
+      offerAssets,
+      offerToken,
+      demandAssets,
+      demandToken,
+      demandLocktime,
+      receiver,
+      demandChain: demandChainId,
     };
   }
 };

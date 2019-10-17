@@ -296,12 +296,13 @@ class GRpcClient {
        * @param {object} [input.tx.signatures] - the signature list, should be set when it's a multisig transaction
        * @param {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
        * @param {object} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
-       * @param {object} [input.token] - token used to unlock a wallet
+       * @param {object} [input.commit=false] - whether we should wait for transaction commit
+       * @param {object} [input.token=''] - token to unlock wallet
        * @param {object} input.delegatee - the wallet address that delegated permissions to the `input.wallet` address
        * @returns Promise
        */
       const txSendFn = async input => {
-        const { tx, wallet, delegatee, signature } = input;
+        const { tx, wallet, delegatee, signature = '', token = '', commit = false } = input;
 
         let txResult;
         let walletResult = wallet;
@@ -352,11 +353,7 @@ class GRpcClient {
         // Create tx using rpc, sign the transaction using forge
         return new Promise(async (resolve, reject) => {
           try {
-            const sendParams = {
-              tx: txResult,
-              token: input.token,
-              commit: input.commit,
-            };
+            const sendParams = { tx: txResult, token, commit };
             if (walletResult) {
               sendParams.wallet = walletResult;
             }

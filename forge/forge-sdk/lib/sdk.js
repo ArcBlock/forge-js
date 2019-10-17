@@ -177,7 +177,6 @@ module.exports = ({ message, util, wallet, clients }) => {
     connect(endpoint, options = {}) {
       const parsed = url.parse(endpoint);
       parsed.protocol = (parsed.protocol || '').replace(/s?:$/, '');
-      debug('parsed endpoint', parsed);
       if (!parsed.protocol || !['tcp', 'http', 'https'].includes(parsed.protocol)) {
         throw new Error(
           'ForgeSDK.connect expects endpoint to be valid url, only tcp and http protocol supported'
@@ -210,6 +209,18 @@ module.exports = ({ message, util, wallet, clients }) => {
         connections[name] = { client, options };
         wrapMethods(client, sdk);
       }
+    },
+
+    /**
+     * Converts a relative locktime to absolute locktime
+     *
+     * @param {number} number - number of blocks want to lock
+     * @param {object} [options={}] - options to underlying methods
+     * @returns {number}
+     */
+    async toLocktime(number, options = {}) {
+      const { info } = await this.getChainInfo(options);
+      return +info.blockHeight + number;
     },
   };
 

@@ -194,12 +194,13 @@ class GraphQLClient extends GraphQLClientBase {
        * @param {object} [input.tx.chainId] - the chainId
        * @param {object} [input.tx.signature] - the chainId
        * @param {object} [input.tx.signatures] - the chainId
+       * @param {object} [input.commit=false] - whether we should wait for transaction commit
        * @param {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
        * @param {object} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
        * @param {object} input.delegatee - the wallet address that delegated permissions to the `input.wallet` address
        * @returns Promise
        */
-      const txSendFn = async ({ tx, wallet, signature, delegatee }) => {
+      const txSendFn = async ({ tx, wallet, signature, delegatee, commit = false }) => {
         let encoded;
         if (signature) {
           encoded = tx;
@@ -221,7 +222,7 @@ class GraphQLClient extends GraphQLClientBase {
 
         return new Promise(async (resolve, reject) => {
           try {
-            const { hash } = await this.sendTx({ tx: txStr });
+            const { hash } = await this.sendTx({ tx: txStr, commit });
             resolve(hash);
           } catch (err) {
             if (Array.isArray(err.errors)) {
