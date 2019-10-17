@@ -488,7 +488,7 @@ function isUint8Array(value) {
  *
  * @public
  * @static
- * @returns {string} generated uuid
+ * @returns {string} Generated uuid
  */
 function UUID() {
   return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, c => {

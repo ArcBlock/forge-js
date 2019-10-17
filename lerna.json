@@ -2,9 +2,5 @@
   "version": "0.39.1",
   "useWorkspaces": true,
   "npmClient": "yarn",
-  "packages": [
-    "packages/*",
-    "examples/*",
-    "apps/*"
-  ]
+  "packages": ["forge/*", "did/*", "swap/*", "examples/*", "apps/*"]
 }
