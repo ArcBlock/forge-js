@@ -1,7 +1,7 @@
 {
   "name": "@arcblock/did-auth-storage",
   "description": "Storage interface for did-auth",
-  "version": "0.38.10",
+  "version": "0.39.0",
   "author": "wangshijun <shijun@arcblock.io> (https://ocap.arcblock.io)",
   "bugs": {
     "url": "https://github.com/ArcBlock/abt-did-js/issues",
