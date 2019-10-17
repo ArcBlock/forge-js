@@ -27,7 +27,7 @@
     "@arcblock/forge-wallet": "^0.38.10",
     "@arcblock/mcrypto": "^0.38.10",
     "debug": "^4.1.1",
-    "grpc": "^1.22.2",
+    "grpc": "^1.24.0",
     "lodash": "^4.17.15"
   },
   "devDependencies": {
