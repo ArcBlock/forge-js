@@ -122,6 +122,8 @@ const createRetriever = params => {
 
       if (source.state && source.state.hashkey) {
         debug('swap.retrieve.done.user', { traceId, retryCount });
+
+        // Figure out user retrieve hash
         try {
           const { transactions } = await ForgeSDK.listTransactions(
             {
@@ -135,11 +137,12 @@ const createRetriever = params => {
           debug('swap.retrieve.done.tx', { traceId, tx: tx.tx });
           events.emit('retrieved.user', { traceId, hash: tx ? tx.hash : '', retryCount });
         } catch (err) {
+          console.error('swap.retrieve.done.error', err);
           events.emit('retrieved.user', { traceId, hash: '', retryCount });
         }
 
+        // Sent retrieve swap
         try {
-          // Sent retrieve swap
           const hash = await ForgeSDK.sendRetrieveSwapTx(
             {
               tx: {
@@ -149,7 +152,6 @@ const createRetriever = params => {
                 },
               },
               wallet: ForgeSDK.Wallet.fromJSON(retrieveWallet),
-              commit: true,
             },
             { conn: demandChainId }
           );

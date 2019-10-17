@@ -15,12 +15,13 @@
     "access": "public"
   },
   "dependencies": {
-    "@arcblock/swap-retriever": "^0.38.10",
     "@arcblock/did": "^0.39.0",
     "@arcblock/forge-sdk": "^0.39.0",
     "@arcblock/forge-util": "^0.39.0",
     "@arcblock/forge-wallet": "^0.39.0",
     "@arcblock/mcrypto": "^0.39.0",
+    "@arcblock/swap-retriever": "^0.38.10",
+    "@arcblock/tx-util": "^0.39.0",
     "debug": "^4.1.1",
     "json-stable-stringify": "^1.0.1",
     "lodash.get": "^4.4.2"

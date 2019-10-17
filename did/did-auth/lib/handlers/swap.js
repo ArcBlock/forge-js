@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 /* eslint-disable object-curly-newline */
 const ForgeSDK = require('@arcblock/forge-sdk');
+const { createVerifier } = require('@arcblock/tx-util');
 const { createRetriever } = require('@arcblock/swap-retriever');
 
 // eslint-disable-next-line
@@ -305,7 +306,7 @@ module.exports = class AtomicSwapHandlers {
         locale,
         false
       );
-      debug('retrieve.verify', { userDid, token, claims: claimResponse });
+      debug('retrieve.verify', { userDid, token, claims: claimResponse, swap: req.swap });
 
       if (req.swap.offerSetupHash && req.swap.offerSwapAddress) {
         res.json({ status: 0, response: { swapAddress: req.swap.offerSwapAddress } });
@@ -313,33 +314,51 @@ module.exports = class AtomicSwapHandlers {
       }
 
       try {
-        const { state } = await ForgeSDK.getSwapState(
-          { address: req.swap.demandSwapAddress },
-          { conn: this.demandChainId }
-        );
+        const doSetup = async () =>
+          new Promise(async (resolve, reject) => {
+            const { state } = await ForgeSDK.getSwapState(
+              { address: req.swap.demandSwapAddress },
+              { conn: this.demandChainId }
+            );
 
-        const locktime = await ForgeSDK.toLocktime(this.offerLocktime, {
-          conn: this.offerChainId,
-        });
-        const hash = await ForgeSDK.sendSetupSwapTx(
-          {
-            tx: {
-              itx: {
-                value: ForgeSDK.Util.fromTokenToUnit(req.swap.offerToken), // FIXME: decimal
-                assets: req.swap.offerAssets,
-                receiver: req.swap.demandUserAddress,
-                hashlock: ForgeSDK.Util.toUint8Array(`0x${state.hashlock}`),
-                locktime,
+            const locktime = await ForgeSDK.toLocktime(this.offerLocktime, {
+              conn: this.offerChainId,
+            });
+            const hash = await ForgeSDK.sendSetupSwapTx(
+              {
+                tx: {
+                  itx: {
+                    value: ForgeSDK.Util.fromTokenToUnit(req.swap.offerToken), // FIXME: decimal
+                    assets: req.swap.offerAssets,
+                    receiver: req.swap.demandUserAddress,
+                    hashlock: ForgeSDK.Util.toUint8Array(`0x${state.hashlock}`),
+                    locktime,
+                  },
+                },
+                wallet: ForgeSDK.Wallet.fromJSON(this.authenticator.wallet),
               },
-            },
-            wallet: ForgeSDK.Wallet.fromJSON(this.authenticator.wallet),
-            commit: true,
-          },
-          { conn: this.offerChainId }
-        );
-        debug('swap.onSellerSetup', { state, hash });
-        const address = ForgeSDK.Util.toSwapAddress(hash);
+              { conn: this.offerChainId }
+            );
 
+            // Check tx status
+            const verifier = createVerifier({
+              hash,
+              chainHost: this.offerChainHost,
+              chainId: this.offerChainId,
+            });
+
+            verifier.on('error', err => {
+              const error = new Error(`SetupSwap tx verify failed: ${hash}: ${err}`);
+              reject(error);
+            });
+            verifier.on('done', () => {
+              debug('swap.setup.done.both', { traceId, hash });
+              const address = ForgeSDK.Util.toSwapAddress(hash);
+              resolve({ hash, locktime, address });
+            });
+          });
+
+        const { hash, locktime, address } = await doSetup();
         await this.swapStorage.update(traceId, {
           status: 'both_setup',
           offerLocktime: locktime,
@@ -365,26 +384,39 @@ module.exports = class AtomicSwapHandlers {
           maxRetry: 60,
         });
 
-        retriever.on('error', args => {
+        retriever.on('error', async args => {
           console.error('swap.retrieve.error', args);
-          this.swapStorage.update(traceId, {
-            status: 'error',
-          });
-        });
-
-        retriever.on('retrieved.user', () => {
-          this.swapStorage.update(traceId, {
-            status: 'user_retrieve',
-            offerRetrieveHash: '', // TODO: can we make this work?
-          });
+          try {
+            await this.swapStorage.update(traceId, {
+              status: 'error',
+            });
+          } catch (err) {
+            // Do something
+          }
         });
 
         // eslint-disable-next-line no-shadow
-        retriever.on('retrieved.both', ({ hash }) => {
-          this.swapStorage.update(traceId, {
-            status: 'both_retrieve',
-            demandRetrieveHash: hash,
-          });
+        retriever.on('retrieved.user', async ({ hash }) => {
+          try {
+            await this.swapStorage.update(traceId, {
+              status: 'user_retrieve',
+              offerRetrieveHash: hash,
+            });
+          } catch (err) {
+            // Do something
+          }
+        });
+
+        // eslint-disable-next-line no-shadow
+        retriever.on('retrieved.both', async ({ hash }) => {
+          try {
+            await this.swapStorage.update(traceId, {
+              status: 'both_retrieve',
+              demandRetrieveHash: hash,
+            });
+          } catch (err) {
+            // Do something
+          }
         });
       } catch (err) {
         // TODO: improve error message here
