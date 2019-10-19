@@ -14,6 +14,19 @@ ForgeSDK.connect('tcp://127.0.0.1:28211', { default: true });
 ForgeSDK.getChainInfo().then(console.log);
 ```
 
+* [~ensureContext(\[conn\])](#.ensureContext) ⇒ `object`
+* [~wrapMethods(source, target)](#.wrapMethods)
+
+### [**@arcblock/forge-sdk**](https://github.com/arcblock/forge-sdk)~ensureContext([conn]) ⇒ `object`
+
+Ensure a connection is bootstrapped with some meta info fetched from chain node
+
+**Kind**: inner method   
+
+| Param  | Type     |
+| ------ | -------- |
+| [conn] | `string` |
+
 ### [**@arcblock/forge-sdk**](https://github.com/arcblock/forge-sdk)~wrapMethods(source, target)
 
 Wrap all methods from `source` object and attach them to target object
