@@ -43,7 +43,6 @@ declare class MongoSwapStorage extends SwapStorage {
    * @method
    * @param {string} traceId - the uuid of the swap order
    * @returns {object} the atomic-swap-order
-   * @memberof MongoSwapStorage
    */
   read(traceId: string): any;
   /**
@@ -53,7 +52,6 @@ declare class MongoSwapStorage extends SwapStorage {
    * @param {string} traceId
    * @param {object} attributes
    * @returns {Promise<object>}
-   * @memberof MongoSwapStorage
    */
   create(traceId: string, attributes: any): Promise<any>;
   /**
@@ -63,7 +61,6 @@ declare class MongoSwapStorage extends SwapStorage {
    * @param {string} traceId
    * @param {object} payload
    * @returns {Promise<object>}
-   * @memberof MongoSwapStorage
    */
   finalize(traceId: string, payload: any): Promise<any>;
   /**
@@ -73,7 +70,6 @@ declare class MongoSwapStorage extends SwapStorage {
    * @param {string} traceId
    * @param {object} updates
    * @returns {Promise<object>}
-   * @memberof MongoSwapStorage
    */
   update(traceId: string, updates: any): Promise<any>;
   /**
@@ -82,7 +78,6 @@ declare class MongoSwapStorage extends SwapStorage {
    * @method
    * @param {string} traceId
    * @returns void
-   * @memberof MongoSwapStorage
    */
   delete(traceId: string): any;
   /**
@@ -91,7 +86,6 @@ declare class MongoSwapStorage extends SwapStorage {
    * @method
    * @param {string} traceId
    * @returns {Boolean}
-   * @memberof MongoSwapStorage
    */
   exist(traceId: string): boolean;
   /**
@@ -100,7 +94,6 @@ declare class MongoSwapStorage extends SwapStorage {
    * @method
    * @param {string} status - check out list of supported status here
    * @returns {Promise<Array>}
-   * @memberof MongoSwapStorage
    * TODO: add pagination for this
    */
   listByStatus(status: string): Promise<any[]>;
@@ -111,7 +104,6 @@ declare class MongoSwapStorage extends SwapStorage {
    * @param {string} address
    * @param {string} [status='']
    * @returns {Promise<Array>}
-   * @memberof MongoSwapStorage
    * TODO: add pagination for this
    */
   listByOfferAddress(address: string, status?: string): Promise<any[]>;
@@ -122,7 +114,6 @@ declare class MongoSwapStorage extends SwapStorage {
    * @param {string} address
    * @param {string} [status='']
    * @returns {Promise<Array>}
-   * @memberof MongoSwapStorage
    * TODO: add pagination for this
    */
   listByDemandAddress(address: string, status?: string): Promise<any[]>;

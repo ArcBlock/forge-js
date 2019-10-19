@@ -34,7 +34,7 @@ Please note that, due to internal implementation of google-protobuf, all `repeat
       * [getTxSignMethods()](#GraphQLClient+getTxSignMethods) ⇒ `Array.&lt;string&gt;`
       * [getTxMultiSignMethods()](#GraphQLClient+getTxMultiSignMethods) ⇒ `Array.&lt;string&gt;`
       * [getType(x)](#GraphQLClient+getType) ⇒ `class` \| `null`
-      * [decodeTx(buffer)](#GraphQLClient+decodeTx) ⇒ `object`
+      * [decodeTx(input)](#GraphQLClient+decodeTx) ⇒ `object`
       * [getQueries()](#GraphQLClient+getQueries) ⇒ `Array.&lt;string&gt;`
       * [getMutations()](#GraphQLClient+getMutations) ⇒ `Array.&lt;string&gt;`
       * [getSubscription()](#GraphQLClient+getSubscription) ⇒ `Array.&lt;string&gt;`
@@ -398,16 +398,16 @@ Get protobuf message class by name, only supports forge-built-in types
 | ----- | -------- |
 | x     | `string` |
 
-### graphQLClient.decodeTx(buffer) ⇒ `object`
+### graphQLClient.decodeTx(input) ⇒ `object`
 
-Decode transaction buffer to an object
+Decode transaction buffer/base64/base58 to an object
 
 **Kind**: instance method of [`GraphQLClient`](#GraphQLClient)  
 **Returns**: `object` - transaction object  
 
-| Param  | Type     |
-| ------ | -------- |
-| buffer | `buffer` |
+| Param | Type                                      |
+| ----- | ----------------------------------------- |
+| input | `buffer` \| `hex` \| `base48` \| `base64` |
 
 ### graphQLClient.getQueries() ⇒ `Array.&lt;string&gt;`
 
