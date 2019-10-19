@@ -4,7 +4,7 @@ const snakeCase = require('lodash/snakeCase');
 const errorCodes = require('@arcblock/forge-proto/lib/status_code.json');
 const { transactions, multiSignTxs } = require('@arcblock/forge-proto/lite');
 const { createMessage, getMessageType } = require('@arcblock/forge-message/lite');
-const { bytesToHex, toBase58, toBase64, toHex } = require('@arcblock/forge-util');
+const { bytesToHex, toBase58, toBase64, toHex, toBuffer } = require('@arcblock/forge-util');
 
 const debug = require('debug')(require('../package.json').name);
 
@@ -101,15 +101,15 @@ class GraphQLClient extends GraphQLClientBase {
   }
 
   /**
-   * Decode transaction buffer to an object
+   * Decode transaction buffer/base64/base58 to an object
    *
    * @method
-   * @param {buffer} buffer
+   * @param {buffer|hex|base48|base64} input
    * @returns {object} transaction object
    */
-  decodeTx(buffer) {
+  decodeTx(input) {
     const Transaction = this.getType('Transaction');
-    return Transaction.deserializeBinary(buffer).toObject();
+    return Transaction.deserializeBinary(toBuffer(input)).toObject();
   }
 
   _initTxMethods() {

@@ -7,11 +7,11 @@ const JWT = require('../jwt');
 // eslint-disable-next-line
 const debug = require('debug')(`${require('../../package.json').name}:authenticator:app`);
 
-module.exports = class AppAuthenticator {
+class AppAuthenticator {
   /**
    * Creates an instance of DID Authenticator.
    *
-   * @public
+   * @class
    * @param {Wallet} wallet - wallet instance {@see @arcblock/forge-wallet}
    */
   constructor(wallet) {
@@ -28,7 +28,7 @@ module.exports = class AppAuthenticator {
   /**
    * Generate and sign a jwt token, used to inter-application-communication
    *
-   * @public
+   * @method
    * @param {object} payload - data to be included before signing
    * @returns {object} { appPk, appInfo }
    */
@@ -43,9 +43,10 @@ module.exports = class AppAuthenticator {
   /**
    * Verify a jwt token signed by another application, used for inter-application communication
    *
+   * @method
    * @param {object} data
    * @param {string} locale
-   * @returns Promise<>
+   * @returns Promise<boolean>
    */
   verify(data, locale = 'en') {
     return new Promise((resolve, reject) => {
@@ -100,4 +101,6 @@ module.exports = class AppAuthenticator {
       return resolve(JWT.decode(appInfo));
     });
   }
-};
+}
+
+module.exports = AppAuthenticator;

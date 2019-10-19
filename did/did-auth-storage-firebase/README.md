@@ -4,12 +4,13 @@
 
 > Storage engine that uses firebase to store data, implements interfaces defined in `@arcblock/did-auth-storage`.
 
+
 ## Table of Contents
 
-- [**@arcblock/did-auth-storage-firebase**](#arcblockdid-auth-storage-firebase)
-  - [Table of Contents](#table-of-contents)
-  - [Install](#install)
-  - [Usage](#usage)
+* [Install](#install)
+* [Usage](#usage)
+* [Contributors](#contributors)
+
 
 ## Install
 
@@ -18,6 +19,7 @@ npm install @arcblock/did-auth-storage-firebase firebase-admin
 // or
 yarn add @arcblock/did-auth-storage-firebase firebase-admin
 ```
+
 
 ## Usage
 
@@ -41,3 +43,10 @@ const storage = new FirebaseStorage({
   const item = await storage.create(token);
 })();
 ```
+
+
+## Contributors
+
+| Name           | Website                    |
+| -------------- | -------------------------- |
+| **wangshijun** | <https://ocap.arcblock.io> |

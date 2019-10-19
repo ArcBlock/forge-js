@@ -3,7 +3,7 @@
 
 Contains basic helper methods to encode/format/mock a protobuf message
 
-**Requires**: [@arcblock/forge-util](/packages/forge-util/), [@arcblock/forge-message](/packages/forge-message/), [@arcblock/forge-wallet](/packages/forge-wallet/), [@arcblock/grpc-client](/packages/grpc-client/), [@arcblock/graphql-client](/packages/graphql-client/), [@arcblock/did-util](/packages/did-util/)  
+**Requires**: `module:@arcblock/forge-util`, `module:@arcblock/forge-message`, `module:@arcblock/forge-wallet`, `module:@arcblock/grpc-client`, `module:@arcblock/graphql-client`, `module:@arcblock/did-util`  
 **Example**  
 
 ```js
@@ -13,6 +13,19 @@ const ForgeSDK = require('@arcblock/forge-sdk');
 ForgeSDK.connect('tcp://127.0.0.1:28211', { default: true });
 ForgeSDK.getChainInfo().then(console.log);
 ```
+
+* [~ensureContext(\[conn\])](#.ensureContext) ⇒ `object`
+* [~wrapMethods(source, target)](#.wrapMethods)
+
+### [**@arcblock/forge-sdk**](https://github.com/arcblock/forge-sdk)~ensureContext([conn]) ⇒ `object`
+
+Ensure a connection is bootstrapped with some meta info fetched from chain node
+
+**Kind**: inner method   
+
+| Param  | Type     |
+| ------ | -------- |
+| [conn] | `string` |
 
 ### [**@arcblock/forge-sdk**](https://github.com/arcblock/forge-sdk)~wrapMethods(source, target)
 

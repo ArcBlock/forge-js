@@ -32,8 +32,7 @@ Object.keys(sdk).forEach(x => {
       expect(res.info).toBeTruthy();
     });
 
-    // FIXME: run this test when zinc chain is back
-    test.skip('should respect conn param when connected to multiple methods', async () => {
+    test('should respect conn param when connected to multiple methods', async () => {
       SDK.connect(testChain, { name: 'test' });
       SDK.connect('https://zinc.abtnetwork.io/api', { name: 'zinc' });
       expect(typeof SDK.getChainInfo).toEqual('function');
@@ -59,6 +58,20 @@ Object.keys(sdk).forEach(x => {
 
     test('should delegate to forge-util', async () => {
       expect(typeof SDK.Util.fromUnitToToken).toEqual('function');
+    });
+
+    test('should format tokens', async () => {
+      SDK.connect(testChain, { name: 'test' });
+      SDK.connect('https://zinc.abtnetwork.io/api', { name: 'zinc' });
+
+      expect(typeof SDK.fromUnitToToken).toEqual('function');
+      expect(typeof SDK.fromTokenToUnit).toEqual('function');
+
+      const amount = await SDK.fromUnitToToken('180000000000000000', { conn: 'zinc' });
+      expect(amount.toString()).toEqual('18');
+
+      const amount2 = await SDK.fromTokenToUnit(0.18, { conn: 'zinc' });
+      expect(amount2.toString()).toEqual('1800000000000000');
     });
   });
 });

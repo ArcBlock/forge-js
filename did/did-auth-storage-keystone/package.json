@@ -1,6 +1,6 @@
 {
-  "name": "@arcblock/did-auth-storage-mongo",
-  "description": "Storage engine that uses mongodb for did-auth",
+  "name": "@arcblock/did-auth-storage-keystone",
+  "description": "Storage engine that uses keystone.js for did-auth",
   "version": "0.39.1",
   "author": "wangshijun <shijun@arcblock.io> (https://ocap.arcblock.io)",
   "bugs": {
@@ -25,7 +25,7 @@
       [
         "validate-links",
         {
-          "repository": "ArcBlock/forge-js"
+          "repository": "ArcBlock/abt-did-js"
         }
       ]
     ]
@@ -49,6 +49,11 @@
   },
   "scripts": {
     "lint": "eslint lib tests",
+    "docs": "yarn generate-dts && yarn generate-docs && yarn cleanup-docs && yarn format-docs",
+    "cleanup-docs": "node ../../tools/cleanup-docs.js docs/README.md $npm_package_name",
+    "generate-docs": "jsdoc2md lib/index.js > docs/README.md",
+    "generate-dts": "j2d lib/index.js",
+    "format-docs": "remark . -o",
     "precommit": "CI=1 yarn test",
     "prepush": "CI=1 yarn test",
     "test": "npm run lint && node tools/jest.js",
@@ -56,7 +61,6 @@
   },
   "gitHead": "87990c8b5e215107fc587c1ced0d6b3e2cd2483e",
   "dependencies": {
-    "@arcblock/did-auth-storage": "^0.39.1",
-    "mongodb": "3.1.13"
+    "@arcblock/did-auth-storage": "^0.39.1"
   }
 }

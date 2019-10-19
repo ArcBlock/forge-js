@@ -14,7 +14,7 @@ packages.forEach(x => {
   const sourceContent = fs.readFileSync(sourcePath).toString();
 
   const targetContent = `---
-title: '@arcblock/${x}'
+title: '${x.name}'
 description: '${x.description}'
 keywords: 'forge, sdk, javascript'
 author: 'wangshijun'

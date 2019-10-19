@@ -6,13 +6,14 @@
 
 > Utility to parse forge config
 
+
 ## Table of Contents
 
-- [Table of Contents](#table-of-contents)
-- [Install](#install)
-- [Usage](#usage)
-- [Documentation](#documentation)
-- [Contributors](#contributors)
+* [Install](#install)
+* [Usage](#usage)
+* [Documentation](#documentation)
+* [Contributors](#contributors)
+
 
 ## Install
 
@@ -21,6 +22,7 @@ npm install @arcblock/swap-retriever
 // or
 yarn add @arcblock/swap-retriever
 ```
+
 
 ## Usage
 
@@ -54,9 +56,11 @@ retriever.on('retrieved.both', ({ traceId, hash }) => {
 });
 ```
 
+
 ## Documentation
 
 For full documentation, checkout [README.md](./docs/README.md).
+
 
 ## Contributors
 

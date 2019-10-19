@@ -32,7 +32,7 @@ then
   cat /tmp/forge-message.d.ts >> $filename
   echo "forge-message.d.ts was patched and merged";
 
-  cp ../did-util/lib/index.d.ts /tmp/did-util.d.ts
+  cp ../../did/did-util/lib/index.d.ts /tmp/did-util.d.ts
   sed -i -E "s/_Lib/ForgeSdkUtil/g" /tmp/did-util.d.ts
   sed -i -E "/export = ForgeSdkUtil/d" /tmp/did-util.d.ts
   sed -i -E "/declare const ForgeSdkUtil:/d" /tmp/did-util.d.ts

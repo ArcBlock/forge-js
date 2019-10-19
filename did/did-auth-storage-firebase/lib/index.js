@@ -1,6 +1,12 @@
 const StorageInterface = require('@arcblock/did-auth-storage');
 
 module.exports = class FirebaseStorage extends StorageInterface {
+  /**
+   * Creates an instance of AuthStorage.
+   *
+   * @class
+   * @param {object} options
+   */
   constructor(config) {
     super(config);
 

@@ -59,7 +59,7 @@ module.exports = ({ message, util, wallet, clients }) => {
    * @private
    * @param {string} [conn=undefined] - connection name
    */
-  const getClient = (conn = undefined) => {
+  const getConnection = (conn = undefined) => {
     const names = Object.keys(connections);
     if (names.length === 0) {
       throw new Error('ForgeSDK not connected to any endpoint');
@@ -68,7 +68,7 @@ module.exports = ({ message, util, wallet, clients }) => {
     if (conn) {
       if (connections[conn]) {
         debug('pick connection by name', conn);
-        return connections[conn].client;
+        return connections[conn];
       }
 
       throw new Error(`ForgeSDK not connected to ${conn}`);
@@ -77,12 +77,40 @@ module.exports = ({ message, util, wallet, clients }) => {
     for (let i = 0; i < names.length; i++) {
       if (connections[names[i]].options.default) {
         debug('pick default connection', names[i]);
-        return connections[names[i]].client;
+        return connections[names[i]];
       }
     }
 
     debug('pick first connection', names[0]);
-    return connections[names[0]].client;
+    return connections[names[0]];
+  };
+
+  const getClient = (conn = undefined) => getConnection(conn).client;
+
+  /**
+   * Ensure a connection is bootstrapped with some meta info fetched from chain node
+   *
+   * @param {string} [conn=undefined]
+   * @returns {object}
+   */
+  const ensureContext = async (conn = undefined) => {
+    const connection = getConnection(conn);
+    if (!connection.context) {
+      const [{ state }, { info }] = await Promise.all([
+        connection.client.getForgeState(),
+        connection.client.getChainInfo(),
+      ]);
+
+      connection.context = {
+        token: state.token,
+        poke: state.txConfig.poke,
+        chainId: info.network,
+      };
+
+      debug('ensure context for connection', connection.name, connection.context);
+    }
+
+    return connection.context;
   };
 
   /**
@@ -199,14 +227,14 @@ module.exports = ({ message, util, wallet, clients }) => {
       if (parsed.protocol === 'tcp') {
         const ForgeClient = clients.tcp;
         const client = new ForgeClient(Object.assign({ endpoint }, options));
-        connections[name] = { client, options };
+        connections[name] = { name, client, options };
         wrapMethods(client, sdk);
       }
 
       if (['http', 'https'].includes(parsed.protocol)) {
         const ForgeClient = clients.http;
         const client = new ForgeClient(Object.assign({ endpoint }, options));
-        connections[name] = { client, options };
+        connections[name] = { name, client, options };
         wrapMethods(client, sdk);
       }
     },
@@ -221,6 +249,30 @@ module.exports = ({ message, util, wallet, clients }) => {
     async toLocktime(number, options = {}) {
       const { info } = await this.getChainInfo(options);
       return +info.blockHeight + number;
+    },
+
+    /**
+     * Format big number presentation amount to token number
+     *
+     * @param {string} value
+     * @param {object} [options={}]
+     * @returns {string}
+     */
+    async fromUnitToToken(value, options = {}) {
+      const { token } = await ensureContext(options.conn);
+      return util.fromUnitToToken(value, token.decimal);
+    },
+
+    /**
+     * Encode amount to corresponding token big number presentation
+     *
+     * @param {number} amount
+     * @param {object} [options={}]
+     * @returns {BN}
+     */
+    async fromTokenToUnit(amount, options = {}) {
+      const { token } = await ensureContext(options.conn);
+      return util.fromTokenToUnit(amount, token.decimal);
     },
   };
 

@@ -11,7 +11,7 @@ const { decode, verify, sign } = require('../jwt');
 // eslint-disable-next-line
 const debug = require('debug')(`${require('../../package.json').name}:authenticator:wallet`);
 
-module.exports = class WalletAuthenticator {
+class WalletAuthenticator {
   /**
    * @typedef ApplicationInfo
    * @prop {string} name - application name
@@ -30,7 +30,7 @@ module.exports = class WalletAuthenticator {
   /**
    * Creates an instance of DID Authenticator.
    *
-   * @public
+   * @class
    * @param {object} config
    * @param {Wallet} config.wallet - wallet instance {@see @arcblock/forge-wallet}
    * @param {ApplicationInfo} config.appInfo - application basic info
@@ -73,11 +73,12 @@ module.exports = class WalletAuthenticator {
   /**
    * Generate a deep link url that can be displayed as QRCode for ABT Wallet to consume
    *
+   * @method
    * @param {object} params
    * @param {string} params.token - action token
    * @param {string} params.pathname - wallet callback pathname
    * @param {object} params.query - params that should be persisted in wallet callback url
-   * @returns
+   * @returns {string}
    */
   uri({ token, pathname, query = {} }) {
     const params = Object.assign({}, query, { [this.tokenKey]: token });
@@ -93,13 +94,22 @@ module.exports = class WalletAuthenticator {
     return uri;
   }
 
-  getPublicUrl(pathname, params) {
+  /**
+   * Compute public url to return to wallet
+   *
+   * @method
+   * @param {string} pathname
+   * @param {object} params
+   * @returns {string}
+   */
+  getPublicUrl(pathname, params = {}) {
     return `${this.baseUrl}${pathname}?${qs.stringify(params)}`;
   }
 
   /**
    * Sign a auth response that returned to wallet: tell the wallet the appInfo/chainInfo/crossChainInfo
    *
+   * @method
    * @param {object} params
    * @param {string} params.token - action token
    * @param {string} params.userDid - decoded from req.query, base58
@@ -144,9 +154,11 @@ module.exports = class WalletAuthenticator {
   /**
    * Verify a DID auth response sent from ABT Wallet
    *
+   * @method
    * @param {object} data
-   * @param {string} locale
-   * @returns Promise<>
+   * @param {string} [locale=en]
+   * @param {boolean} [enforceTimestamp=true]
+   * @returns Promise<boolean>
    */
   verify(data, locale = 'en', enforceTimestamp = true) {
     return new Promise((resolve, reject) => {
@@ -412,4 +424,6 @@ module.exports = class WalletAuthenticator {
       demandChain: demandChainId,
     };
   }
-};
+}
+
+module.exports = WalletAuthenticator;

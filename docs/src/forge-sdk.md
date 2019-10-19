@@ -14,7 +14,7 @@ tags:
 
 Contains basic helper methods to encode/format/mock a protobuf message
 
-**Requires**: [@arcblock/forge-util](/packages/forge-util/), [@arcblock/forge-message](/packages/forge-message/), [@arcblock/forge-wallet](/packages/forge-wallet/), [@arcblock/grpc-client](/packages/grpc-client/), [@arcblock/graphql-client](/packages/graphql-client/), [@arcblock/did-util](/packages/did-util/)  
+**Requires**: `module:@arcblock/forge-util`, `module:@arcblock/forge-message`, `module:@arcblock/forge-wallet`, `module:@arcblock/grpc-client`, `module:@arcblock/graphql-client`, `module:@arcblock/did-util`  
 **Example**  
 
 ```js

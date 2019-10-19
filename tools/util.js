@@ -28,7 +28,7 @@ const getPackages = ({ grouped = false, publicOnly = false } = {}) => {
         description: x.description,
         name: x.name,
         public: x.publishConfig ? x.publishConfig.access === 'public' : false,
-        path: path.join(dir, x.name),
+        path: path.join(dir, x.name.split('/').pop()),
       }))
     );
   });

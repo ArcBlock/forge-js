@@ -3,7 +3,7 @@
 
 Utility functions to calculate various kinds of did, such as asset address
 
-**Requires**: [@arcblock/mcrypto](/packages/mcrypto/), [@arcblock/did](/packages/did/), [@arcblock/forge-util](/packages/forge-util/), [@arcblock/forge-wallet](/packages/forge-wallet/), [@arcblock/forge-message](/packages/forge-message/)  
+**Requires**: `module:@arcblock/mcrypto`, `module:@arcblock/did`, `module:@arcblock/forge-util`, `module:@arcblock/forge-wallet`, `module:@arcblock/forge-message`  
 
 * [toAssetAddress(itx)](#toAssetAddress) ⇒ `string`
 * [toAssetDid(itx)](#toAssetDid) ⇒ `string`

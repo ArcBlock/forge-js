@@ -44,6 +44,8 @@ const [, , markdownFile, moduleName] = process.argv;
     [`${moduleName}.`, ''],
     ['<code>', '`'],
     ['</code>', '`'],
+    ['&lt;', '<'],
+    ['&gt;', '>'],
     ['[.', '['],
     ['  * [', '* ['],
   ].concat(externalReplacements);

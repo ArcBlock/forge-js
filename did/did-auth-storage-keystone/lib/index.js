@@ -2,6 +2,12 @@ const StorageInterface = require('@arcblock/did-auth-storage');
 const keystone = require('keystone');
 
 module.exports = class KeystoneStorage extends StorageInterface {
+  /**
+   * Creates an instance of AuthStorage.
+   *
+   * @class
+   * @param {object} options
+   */
   static init() {
     const types = keystone.Field.Types;
     const DidAuthToken = new keystone.List('DidAuthToken', {

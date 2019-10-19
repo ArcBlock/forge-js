@@ -6,10 +6,11 @@ const createHandlers = require('./util');
 
 const noop = () => {};
 
-module.exports = class WalletHandlers {
+class WalletHandlers {
   /**
    * Creates an instance of DID Auth Handlers.
    *
+   * @class
    * @param {object} config
    * @param {function} config.tokenGenerator - function to generate action token
    * @param {object} config.tokenStorage - function to generate action token
@@ -34,7 +35,14 @@ module.exports = class WalletHandlers {
 
   /**
    * Attach routes and handlers for authenticator
+   * Now express app have route handlers attached to the following url
+   * - `GET /api/did/{action}/token` create new token
+   * - `GET /api/did/{action}/status` check for token status
+   * - `GET /api/did/{action}/timeout` expire a token
+   * - `GET /api/did/{action}/auth` create auth response
+   * - `POST /api/did/{action}/auth` process payment request
    *
+   * @method
    * @param {object} config - attach config { app, action, claims, prefix = '/api' }
    * @param {object} config.app - express instance to attach routes to
    * @param {object} config.claims - claims for this request
@@ -98,13 +106,6 @@ module.exports = class WalletHandlers {
       authenticator: this.authenticator,
     });
 
-    // Now express app have route handlers attached to the following url
-    // - `GET /api/did/{action}/token` create new token
-    // - `GET /api/did/{action}/status` check for token status
-    // - `GET /api/did/{action}/timeout` expire a token
-    // - `GET /api/did/{action}/auth` create auth response
-    // - `POST /api/did/{action}/auth` process payment request
-
     // 1. WEB: to generate new token
     app.get(`${prefix}/${action}/token`, generateActionToken);
 
@@ -120,4 +121,6 @@ module.exports = class WalletHandlers {
     // 5. Wallet: submit auth response
     app.post(pathname, ensureContext, onAuthResponse);
   }
-};
+}
+
+module.exports = WalletHandlers;

@@ -45,6 +45,7 @@ lint:
 
 build-docs:
 	@echo "Building and publishing the documenation..."
+	@node tools/collect-docs.js
 	@cd docs && yarn && yarn build
 
 precommit: dep lint build test
