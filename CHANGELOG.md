@@ -1,3 +1,13 @@
+## 0.39.3 (October 20, 2019)
+
+- chore: improve docs for did-auth packages
+- chore: improve docs for all packages
+- chore: improve docs for all packages
+- chore: improve docs for all packages
+- chore: improve docs for all packages
+- chore: improve docs for all packages
+- update readme
+
 ## 0.39.2 (October 17, 2019)
 
 - fix: lerna config
