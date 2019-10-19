@@ -53,11 +53,10 @@ Possible fields to exist in a swap record
 
 Basic APIs that a traceId storage should support:
 
-* `create(payload)`: 创建记录
+* `create(traceId, payload)`: 创建记录
 * `update(traceId, updates)`: 更新记录
 * `read(traceId)`：按 traceId 查询
 * `delete(traceId)`：删除记录
-* `exists(traceId)`：是否存在某条记录
 * `finalize(traceId, payload)`：把订单交换物、交换双方固定下来
 * `listByStatus(status)`: 按状态查询订单
 * `listByOfferAddress(address, status)`: 按卖方查询订单
