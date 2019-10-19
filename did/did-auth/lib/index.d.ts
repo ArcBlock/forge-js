@@ -26,7 +26,7 @@ declare class WalletAuthenticator {
   /**
    * Creates an instance of DID Authenticator.
    *
-   * @public
+   * @class
    * @param {object} config
    * @param {Wallet} config.wallet - wallet instance {@see @arcblock/forge-wallet}
    * @param {ApplicationInfo} config.appInfo - application basic info
@@ -39,17 +39,27 @@ declare class WalletAuthenticator {
   /**
    * Generate a deep link url that can be displayed as QRCode for ABT Wallet to consume
    *
+   * @method
    * @param {object} params
    * @param {string} params.token - action token
    * @param {string} params.pathname - wallet callback pathname
    * @param {object} params.query - params that should be persisted in wallet callback url
-   * @returns
+   * @returns {string}
    */
   uri(T102: _Lib.T103): string;
-  getPublicUrl(pathname: any, params: any): string;
+  /**
+   * Compute public url to return to wallet
+   *
+   * @method
+   * @param {string} pathname
+   * @param {object} params
+   * @returns {string}
+   */
+  getPublicUrl(pathname: string, params?: any): string;
   /**
    * Sign a auth response that returned to wallet: tell the wallet the appInfo/chainInfo/crossChainInfo
    *
+   * @method
    * @param {object} params
    * @param {string} params.token - action token
    * @param {string} params.userDid - decoded from req.query, base58
@@ -62,9 +72,11 @@ declare class WalletAuthenticator {
   /**
    * Verify a DID auth response sent from ABT Wallet
    *
+   * @method
    * @param {object} data
-   * @param {string} locale
-   * @returns Promise<>
+   * @param {string} [locale=en]
+   * @param {boolean} [enforceTimestamp=true]
+   * @returns Promise<boolean>
    */
   verify(data: any, locale?: string, enforceTimestamp?: boolean): Promise<any>;
   genRequestedClaims(T106: _Lib.T107): Promise<any[]>;
@@ -82,14 +94,14 @@ declare class AppAuthenticator {
   /**
    * Creates an instance of DID Authenticator.
    *
-   * @public
+   * @class
    * @param {Wallet} wallet - wallet instance {@see @arcblock/forge-wallet}
    */
   constructor(wallet: any);
   /**
    * Generate and sign a jwt token, used to inter-application-communication
    *
-   * @public
+   * @method
    * @param {object} payload - data to be included before signing
    * @returns {object} { appPk, appInfo }
    */
@@ -97,9 +109,10 @@ declare class AppAuthenticator {
   /**
    * Verify a jwt token signed by another application, used for inter-application communication
    *
+   * @method
    * @param {object} data
    * @param {string} locale
-   * @returns Promise<>
+   * @returns Promise<boolean>
    */
   verify(data: any, locale?: string): Promise<any>;
 }
@@ -111,6 +124,7 @@ declare class WalletHandlers {
   /**
    * Creates an instance of DID Auth Handlers.
    *
+   * @class
    * @param {object} config
    * @param {function} config.tokenGenerator - function to generate action token
    * @param {object} config.tokenStorage - function to generate action token
@@ -120,7 +134,14 @@ declare class WalletHandlers {
   constructor(T125: _Lib.T126);
   /**
    * Attach routes and handlers for authenticator
+   * Now express app have route handlers attached to the following url
+   * - `GET /api/did/{action}/token` create new token
+   * - `GET /api/did/{action}/status` check for token status
+   * - `GET /api/did/{action}/timeout` expire a token
+   * - `GET /api/did/{action}/auth` create auth response
+   * - `POST /api/did/{action}/auth` process payment request
    *
+   * @method
    * @param {object} config - attach config { app, action, claims, prefix = '/api' }
    * @param {object} config.app - express instance to attach routes to
    * @param {object} config.claims - claims for this request
@@ -152,6 +173,7 @@ declare class AtomicSwapHandlers {
   /**
    * Creates an instance of atomic swap handlers.
    *
+   * @class
    * @param {object} config
    * @param {object} config.authenticator - Authenticator instance that can to jwt sign/verify
    * @param {function} config.tokenGenerator - function to generate action token
@@ -166,10 +188,28 @@ declare class AtomicSwapHandlers {
    * @param {function} [config.onPreAuth=noop] - function called before each auth request send back to app, used to check for permission, throw error to halt the auth process
    */
   constructor(T129: _Lib.T130);
-  start(payload: any): any;
+  /**
+   * Create an swap placeholder, which must be finalized before actually doing the swap
+   *
+   * @method
+   * @param {object} payload
+   * @returns {Promise<object>}
+   */
+  start(payload?: any): Promise<any>;
   /**
    * Attach routes and handlers for authenticator
+   * Now express app have route handlers attached to the following url
+   * Browser
+   *  - `GET /api/did/{action}/token` create new token
+   *  - `GET /api/did/{action}/status` check for token status
+   *  - `GET /api/did/{action}/timeout` expire a token
+   * Wallet
+   *  - `GET /api/did/{action}/auth` create auth response
+   *  - `POST /api/did/{action}/auth` process payment request
+   *  - `GET /api/did/{action}/retrieve` check payment
+   *  - `POST /api/did/{action}/retrieve` submit
    *
+   * @method
    * @param {object} config - attach config { app, action, claims, prefix = '/api' }
    * @param {object} config.app - express instance to attach routes to
    * @param {object} config.claims - claims for this request
@@ -182,7 +222,7 @@ declare class AtomicSwapHandlers {
    * @param {string} [config.sessionDidKey='user.did'] - key path to extract session user did from request object
    * @param {string} [config.tokenKey='_t_'] - query param key for `token`
    * @param {string} [config.checksumKey='_cs_'] - query param key for `checksum`
-   * @return void
+   * @returns void
    */
   attach(T131: _Lib.T128): void;
 }
@@ -191,7 +231,7 @@ declare class AppHandlers {
   /**
    * Creates an instance of Application DID Auth handler
    *
-   * @public
+   * @class
    * @param {AppAuthenticator} authenticator - wallet instance {@see @arcblock/forge-wallet}
    */
   constructor(authenticator: any);

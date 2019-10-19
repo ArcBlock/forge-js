@@ -2,11 +2,11 @@
 // eslint-disable-next-line
 const debug = require('debug')(`${require('../../package.json').name}:handlers:app`);
 
-module.exports = class AppHandlers {
+class AppHandlers {
   /**
    * Creates an instance of Application DID Auth handler
    *
-   * @public
+   * @class
    * @param {AppAuthenticator} authenticator - wallet instance {@see @arcblock/forge-wallet}
    */
   constructor(authenticator) {
@@ -59,4 +59,6 @@ module.exports = class AppHandlers {
       }
     };
   }
-};
+}
+
+module.exports = AppHandlers;

@@ -10,10 +10,11 @@ const createHandlers = require('./util');
 
 const noop = () => {};
 
-module.exports = class AtomicSwapHandlers {
+class AtomicSwapHandlers {
   /**
    * Creates an instance of atomic swap handlers.
    *
+   * @class
    * @param {object} config
    * @param {object} config.authenticator - Authenticator instance that can to jwt sign/verify
    * @param {function} config.tokenGenerator - function to generate action token
@@ -73,8 +74,14 @@ module.exports = class AtomicSwapHandlers {
     }
   }
 
-  // Create an swap placeholder, which must be finalized before actually doing the swap
-  start(payload) {
+  /**
+   * Create an swap placeholder, which must be finalized before actually doing the swap
+   *
+   * @method
+   * @param {object} payload
+   * @returns {Promise<object>}
+   */
+  start(payload = {}) {
     const {
       offerUserAddress = '',
       offerAssets = [],
@@ -119,7 +126,18 @@ module.exports = class AtomicSwapHandlers {
 
   /**
    * Attach routes and handlers for authenticator
+   * Now express app have route handlers attached to the following url
+   * Browser
+   *  - `GET /api/did/{action}/token` create new token
+   *  - `GET /api/did/{action}/status` check for token status
+   *  - `GET /api/did/{action}/timeout` expire a token
+   * Wallet
+   *  - `GET /api/did/{action}/auth` create auth response
+   *  - `POST /api/did/{action}/auth` process payment request
+   *  - `GET /api/did/{action}/retrieve` check payment
+   *  - `POST /api/did/{action}/retrieve` submit
    *
+   * @method
    * @param {object} config - attach config { app, action, claims, prefix = '/api' }
    * @param {object} config.app - express instance to attach routes to
    * @param {object} config.claims - claims for this request
@@ -132,7 +150,7 @@ module.exports = class AtomicSwapHandlers {
    * @param {string} [config.sessionDidKey='user.did'] - key path to extract session user did from request object
    * @param {string} [config.tokenKey='_t_'] - query param key for `token`
    * @param {string} [config.checksumKey='_cs_'] - query param key for `checksum`
-   * @return void
+   * @returns void
    */
   attach({
     app,
@@ -232,17 +250,6 @@ module.exports = class AtomicSwapHandlers {
       tokenStorage: this.tokenStorage,
       authenticator: this.authenticator,
     });
-
-    // Now express app have route handlers attached to the following url
-    // Browser
-    //  - `GET /api/did/{action}/token` create new token
-    //  - `GET /api/did/{action}/status` check for token status
-    //  - `GET /api/did/{action}/timeout` expire a token
-    // Wallet
-    //  - `GET /api/did/{action}/auth` create auth response
-    //  - `POST /api/did/{action}/auth` process payment request
-    //  - `GET /api/did/{action}/retrieve` check payment
-    //  - `POST /api/did/{action}/retrieve` submit
 
     // 0. create an empty swap data row
     app.post('/api/swap', async (req, res) => {
@@ -431,4 +438,6 @@ module.exports = class AtomicSwapHandlers {
       }
     });
   }
-};
+}
+
+module.exports = AtomicSwapHandlers;
