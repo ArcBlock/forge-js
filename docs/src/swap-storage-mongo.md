@@ -1,6 +1,6 @@
 ---
 title: '@arcblock/swap-storage-mongo'
-description: 'Storage engine that uses mongodb for wap'
+description: 'Storage engine that uses mongodb for atomic swap'
 keywords: 'forge, sdk, javascript'
 author: 'wangshijun'
 category: 'packages'
@@ -22,6 +22,9 @@ tags:
   * [update(traceId, updates)](#MongoSwapStorage+update) ⇒ `Promise.&lt;object&gt;`
   * [delete(traceId)](#MongoSwapStorage+delete) ⇒
   * [exist(traceId)](#MongoSwapStorage+exist) ⇒ `Boolean`
+  * [listByStatus(status)](#MongoSwapStorage+listByStatus) ⇒ `Promise.&lt;Array&gt;`
+  * [listByOfferAddress(address, \[status\])](#MongoSwapStorage+listByOfferAddress) ⇒ `Promise.&lt;Array&gt;`
+  * [listByDemandAddress(address, \[status\])](#MongoSwapStorage+listByDemandAddress) ⇒ `Promise.&lt;Array&gt;`
 
 ### new MongoSwapStorage(options)
 
@@ -97,6 +100,41 @@ Check if atomic swap record exists
 | Param   | Type     |
 | ------- | -------- |
 | traceId | `string` |
+
+### mongoSwapStorage.listByStatus(status) ⇒ `Promise.&lt;Array&gt;`
+
+Find atomic swap records by status
+
+**Kind**: instance method of [`MongoSwapStorage`](#MongoSwapStorage)  
+**Returns**: `Promise.&lt;Array&gt;` - TODO: add pagination for this  
+
+| Param  | Type     | Description                             |
+| ------ | -------- | --------------------------------------- |
+| status | `string` | check out list of supported status here |
+
+### mongoSwapStorage.listByOfferAddress(address, [status]) ⇒ `Promise.&lt;Array&gt;`
+
+Find atomic swap records by offer address and status
+
+**Kind**: instance method of [`MongoSwapStorage`](#MongoSwapStorage)  
+**Returns**: `Promise.&lt;Array&gt;` - TODO: add pagination for this  
+
+| Param    | Type     | Default                    |
+| -------- | -------- | -------------------------- |
+| address  | `string` |                            |
+| [status] | `string` | `&quot;&#x27;&#x27;&quot;` |
+
+### mongoSwapStorage.listByDemandAddress(address, [status]) ⇒ `Promise.&lt;Array&gt;`
+
+Find atomic swap records by demand address and status
+
+**Kind**: instance method of [`MongoSwapStorage`](#MongoSwapStorage)  
+**Returns**: `Promise.&lt;Array&gt;` - TODO: add pagination for this  
+
+| Param    | Type     | Default                    |
+| -------- | -------- | -------------------------- |
+| address  | `string` |                            |
+| [status] | `string` | `&quot;&#x27;&#x27;&quot;` |
 
 
 ## Contributors
