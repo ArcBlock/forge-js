@@ -16,7 +16,7 @@ Please note that, due to internal implementation of google-protobuf, all `repeat
   * [new GRpcClient(config)](#new_GRpcClient_new)
     * _instance_
       * [getType(x)](#GRpcClient+getType) ⇒ `class` \| `null`
-      * [decodeTx(buffer)](#GRpcClient+decodeTx) ⇒ `object`
+      * [decodeTx(input)](#GRpcClient+decodeTx) ⇒ `object`
       * [getRpcMethods()](#GRpcClient+getRpcMethods) ⇒ `object`
       * [getTxSendMethods()](#GRpcClient+getTxSendMethods) ⇒ `object`
       * [getTxEncodeMethods()](#GRpcClient+getTxEncodeMethods) ⇒ `object`
@@ -408,16 +408,16 @@ Get protobuf message class by name, only supports forge-built-in types
 | ----- | -------- |
 | x     | `string` |
 
-### gRpcClient.decodeTx(buffer) ⇒ `object`
+### gRpcClient.decodeTx(input) ⇒ `object`
 
-Decode transaction buffer to an object
+Decode transaction buffer/base64/base58 to an object
 
 **Kind**: instance method of [`GRpcClient`](#GRpcClient)  
 **Returns**: `object` - transaction object  
 
-| Param  | Type     |
-| ------ | -------- |
-| buffer | `buffer` |
+| Param | Type                                      |
+| ----- | ----------------------------------------- |
+| input | `buffer` \| `hex` \| `base48` \| `base64` |
 
 ### gRpcClient.getRpcMethods() ⇒ `object`
 

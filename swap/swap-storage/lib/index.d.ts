@@ -3,6 +3,12 @@
 import { EventEmitter } from 'events';
 declare class SwapStorage extends EventEmitter {
   payloadFields: string[];
+  /**
+   * Creates an instance of SwapStorage.
+   *
+   * @class
+   * @param {object} options
+   */
   constructor(options: any);
   create(params: any): void;
   read(traceId: any): void;

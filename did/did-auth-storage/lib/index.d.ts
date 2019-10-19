@@ -2,6 +2,13 @@
 
 import { EventEmitter } from 'events';
 declare class AuthStorage extends EventEmitter {
+  /**
+   * Creates an instance of AuthStorage.
+   *
+   * @class
+   * @param {object} options
+   */
+  constructor(options: any);
   create(token: any, status?: string): void;
   read(token: any): void;
   update(token: any, updates: any): void;

@@ -499,13 +499,13 @@ declare interface ForgeSDK {
    */
   getType(x: string): any;
   /**
-   * Decode transaction buffer to an object
+   * Decode transaction buffer/base64/base58 to an object
    *
    * @method
-   * @param {buffer} buffer
+   * @param {buffer|hex|base48|base64} input
    * @returns {object} transaction object
    */
-  decodeTx(buffer: any): any;
+  decodeTx(input: any): any;
   /**
    * List standard rpc methods
    *

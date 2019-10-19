@@ -13,6 +13,7 @@
   * [Events](#events)
 * [Install](#install)
 * [Usage](#usage)
+* [Contributors](#contributors)
 
 
 ## Motivation & Spec

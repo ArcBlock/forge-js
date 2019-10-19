@@ -3,6 +3,12 @@
 declare class FirebaseStorage {
   database: any;
   tokens: string;
+  /**
+   * Creates an instance of AuthStorage.
+   *
+   * @class
+   * @param {object} options
+   */
   constructor(config: any);
   /**
    * Replace disallowed characters in a Firebase reference key.

@@ -1,14 +1,17 @@
 // Generate by [js2dts@0.3.3](https://github.com/whxaxes/js2dts#readme)
 
-declare class MongoStorage {
-  collectionName: any;
-  options: any;
+declare class MongoAuthStorage {
+  collectionName: string;
+  options: _Lib.T100;
   /**
-   * Creates an instance of MongoStorage.
+   * Creates an instance of MongoAuthStorage.
    *
-   * @param {*} options { collection, url }
+   * @class
+   * @param {Object} options { collection, url }
+   * @param {string} options.url - mongodb connection string
+   * @param {string} [options.collection='did_auth_tokens'] - which collection to store did auth tokens
    */
-  constructor(options: any);
+  constructor(options: _Lib.T100);
   connectionFailed(err: any): void;
   handleNewConnectionAsync(client: any): void;
   changeState(newState: any): void;
@@ -22,5 +25,11 @@ declare class MongoStorage {
   clear(): any;
   close(): void;
 }
-declare const _Lib: typeof MongoStorage;
+declare const _Lib: typeof MongoAuthStorage;
+declare namespace _Lib {
+  export interface T100 {
+    url: string;
+    collection?: string;
+  }
+}
 export = _Lib;

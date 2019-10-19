@@ -3,11 +3,14 @@
 const MongoClient = require('mongodb');
 const StorageInterface = require('@arcblock/did-auth-storage');
 
-module.exports = class MongoStorage extends StorageInterface {
+module.exports = class MongoAuthStorage extends StorageInterface {
   /**
-   * Creates an instance of MongoStorage.
+   * Creates an instance of MongoAuthStorage.
    *
-   * @param {*} options { collection, url }
+   * @class
+   * @param {Object} options { collection, url }
+   * @param {string} options.url - mongodb connection string
+   * @param {string} [options.collection='did_auth_tokens'] - which collection to store did auth tokens
    */
   constructor(options) {
     options = options || {};

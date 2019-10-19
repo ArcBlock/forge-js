@@ -1,7 +1,18 @@
+/* eslint-disable no-useless-constructor */
 /* eslint-disable no-unused-vars */
 const { EventEmitter } = require('events');
 
 module.exports = class AuthStorage extends EventEmitter {
+  /**
+   * Creates an instance of AuthStorage.
+   *
+   * @class
+   * @param {object} options
+   */
+  constructor(options) {
+    super(options);
+  }
+
   create(token, status = 'created') {
     throw new Error('AuthStorage.create must be implemented in child class');
   }

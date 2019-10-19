@@ -9,6 +9,7 @@
 
 * [Install](#install)
 * [Usage](#usage)
+* [Contributors](#contributors)
 
 
 ## Install

@@ -1,6 +1,12 @@
 // Generate by [js2dts@0.3.3](https://github.com/whxaxes/js2dts#readme)
 
 declare class KeystoneStorage {
+  /**
+   * Creates an instance of AuthStorage.
+   *
+   * @class
+   * @param {object} options
+   */
   static init(): void;
   model: any;
   constructor();

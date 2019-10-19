@@ -12,7 +12,14 @@ const {
   getMessageType,
 } = require('@arcblock/forge-message');
 const errorCodes = require('@arcblock/forge-proto/lib/status_code.json');
-const { hexToBytes, bytesToHex, toBase58, toBase64, toHex } = require('@arcblock/forge-util');
+const {
+  hexToBytes,
+  bytesToHex,
+  toBase58,
+  toBase64,
+  toBuffer,
+  toHex,
+} = require('@arcblock/forge-util');
 // eslint-disable-next-line global-require
 const debug = require('debug')(`${require('../package.json').name}`);
 
@@ -76,15 +83,15 @@ class GRpcClient {
   }
 
   /**
-   * Decode transaction buffer to an object
+   * Decode transaction buffer/base64/base58 to an object
    *
    * @method
-   * @param {buffer} buffer
+   * @param {buffer|hex|base48|base64} input
    * @returns {object} transaction object
    */
-  decodeTx(buffer) {
+  decodeTx(input) {
     const Transaction = this.getType('Transaction');
-    return Transaction.deserializeBinary(buffer).toObject();
+    return Transaction.deserializeBinary(toBuffer(input)).toObject();
   }
 
   /**

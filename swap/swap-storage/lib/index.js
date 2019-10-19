@@ -1,7 +1,13 @@
 /* eslint-disable no-unused-vars */
 const { EventEmitter } = require('events');
 
-module.exports = class SwapStorage extends EventEmitter {
+class SwapStorage extends EventEmitter {
+  /**
+   * Creates an instance of SwapStorage.
+   *
+   * @class
+   * @param {object} options
+   */
   constructor(options) {
     super(options);
     this.payloadFields = [
@@ -50,4 +56,6 @@ module.exports = class SwapStorage extends EventEmitter {
   exist(traceId) {
     throw new Error('SwapStorage.exist must be implemented in child class');
   }
-};
+}
+
+module.exports = SwapStorage;
