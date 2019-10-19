@@ -73,7 +73,7 @@ declare function fromBase64(v: string): any;
  *
  * @public
  * @static
- * @returns {string} generated uuid
+ * @returns {string} Generated uuid
  */
 declare function UUID(): string;
 /**

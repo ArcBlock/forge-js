@@ -251,7 +251,7 @@ Validates if a value is an Uint8Array.
 Generate a random UUID
 
 **Kind**: static method  
-**Returns**: `string` - generated uuid  
+**Returns**: `string` - Generated uuid  
 **Access**: public  
 
 ### isUUID(str) ⇒ `boolean`

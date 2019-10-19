@@ -4,12 +4,12 @@
 
 > Storage engine that uses mongo to store data, implements interfaces defined in `@arcblock/swap-storage`.
 
+
 ## Table of Contents
 
-- [**@arcblock/swap-storage-mongo**](#arcblockswap-storage-mongo)
-  - [Table of Contents](#table-of-contents)
-  - [Install](#install)
-  - [Usage](#usage)
+* [Install](#install)
+* [Usage](#usage)
+
 
 ## Install
 
@@ -18,6 +18,7 @@ npm install @arcblock/swap-storage-mongo
 // or
 yarn add @arcblock/swap-storage-mongo
 ```
+
 
 ## Usage
 
@@ -32,3 +33,10 @@ const storage = new MongoStorage({
   const item = await storage.create({});
 })();
 ```
+
+
+## Contributors
+
+| Name           | Website                    |
+| -------------- | -------------------------- |
+| **wangshijun** | <https://ocap.arcblock.io> |

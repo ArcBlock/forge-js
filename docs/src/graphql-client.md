@@ -3038,7 +3038,7 @@ Checkout the following snippet for the format of ResponseGetAccountState:
 
 ```json
 {
-  "code": "PROTOCOL_NOT_RUNNING",
+  "code": "INSUFFICIENT_GAS",
   "state": {
     "address": "abc",
     "balance": "abc",
@@ -3048,7 +3048,7 @@ Checkout the following snippet for the format of ResponseGetAccountState:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "PROTOCOL_NOT_RUNNING",
+        "code": "INSUFFICIENT_GAS",
         "createAsset": {
           "asset": "abc"
         },
@@ -3087,7 +3087,7 @@ Checkout the following snippet for the format of ResponseGetAccountState:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "PROTOCOL_NOT_RUNNING",
+        "code": "INSUFFICIENT_GAS",
         "createAsset": {
           "asset": "abc"
         },
@@ -3192,7 +3192,7 @@ Checkout the following snippet for the format of ResponseGetAssetState:
 
 ```json
 {
-  "code": "PROTOCOL_NOT_RUNNING",
+  "code": "INSUFFICIENT_GAS",
   "state": {
     "address": "abc",
     "consumedTime": "2019-04-29T00:00:00.000Z",
@@ -3202,7 +3202,7 @@ Checkout the following snippet for the format of ResponseGetAssetState:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "PROTOCOL_NOT_RUNNING",
+        "code": "INSUFFICIENT_GAS",
         "createAsset": {
           "asset": "abc"
         },
@@ -3241,7 +3241,7 @@ Checkout the following snippet for the format of ResponseGetAssetState:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "PROTOCOL_NOT_RUNNING",
+        "code": "INSUFFICIENT_GAS",
         "createAsset": {
           "asset": "abc"
         },
@@ -3341,7 +3341,7 @@ Checkout the following snippet for the format of ResponseGetBlock:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "PROTOCOL_NOT_RUNNING",
+        "code": "INSUFFICIENT_GAS",
         "createAsset": {
           "asset": "abc"
         },
@@ -3398,7 +3398,7 @@ Checkout the following snippet for the format of ResponseGetBlock:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "PROTOCOL_NOT_RUNNING",
+        "code": "INSUFFICIENT_GAS",
         "createAsset": {
           "asset": "abc"
         },
@@ -3442,7 +3442,7 @@ Checkout the following snippet for the format of ResponseGetBlock:
       "block": "abc"
     }
   },
-  "code": "PROTOCOL_NOT_RUNNING"
+  "code": "INSUFFICIENT_GAS"
 }
 ```
 
@@ -3496,7 +3496,7 @@ Checkout the following snippet for the format of ResponseGetBlocks:
       }
     }
   ],
-  "code": "PROTOCOL_NOT_RUNNING",
+  "code": "INSUFFICIENT_GAS",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -3522,7 +3522,7 @@ Checkout the following snippet for the format of ResponseGetChainInfo:
 
 ```json
 {
-  "code": "PROTOCOL_NOT_RUNNING",
+  "code": "INSUFFICIENT_GAS",
   "info": {
     "address": "abc",
     "appHash": "abc",
@@ -3566,7 +3566,7 @@ Checkout the following snippet for the format of ResponseGetConfig:
 
 ```json
 {
-  "code": "PROTOCOL_NOT_RUNNING",
+  "code": "INSUFFICIENT_GAS",
   "config": "abc"
 }
 ```
@@ -3587,7 +3587,7 @@ Checkout the following snippet for the format of ResponseGetDelegateState:
 
 ```json
 {
-  "code": "PROTOCOL_NOT_RUNNING",
+  "code": "INSUFFICIENT_GAS",
   "state": {
     "address": "abc",
     "context": {
@@ -3596,7 +3596,7 @@ Checkout the following snippet for the format of ResponseGetDelegateState:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "PROTOCOL_NOT_RUNNING",
+        "code": "INSUFFICIENT_GAS",
         "createAsset": {
           "asset": "abc"
         },
@@ -3635,7 +3635,7 @@ Checkout the following snippet for the format of ResponseGetDelegateState:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "PROTOCOL_NOT_RUNNING",
+        "code": "INSUFFICIENT_GAS",
         "createAsset": {
           "asset": "abc"
         },
@@ -3706,7 +3706,7 @@ Checkout the following snippet for the format of ResponseGetForgeState:
 
 ```json
 {
-  "code": "PROTOCOL_NOT_RUNNING",
+  "code": "INSUFFICIENT_GAS",
   "state": {
     "accountConfig": [
       {
@@ -3762,7 +3762,7 @@ Checkout the following snippet for the format of ResponseGetForgeState:
               "accountMigrate": {
                 "address": "abc"
               },
-              "code": "PROTOCOL_NOT_RUNNING",
+              "code": "INSUFFICIENT_GAS",
               "createAsset": {
                 "asset": "abc"
               },
@@ -3801,7 +3801,7 @@ Checkout the following snippet for the format of ResponseGetForgeState:
               "accountMigrate": {
                 "address": "abc"
               },
-              "code": "PROTOCOL_NOT_RUNNING",
+              "code": "INSUFFICIENT_GAS",
               "createAsset": {
                 "asset": "abc"
               },
@@ -3923,7 +3923,7 @@ Checkout the following snippet for the format of ResponseGetForgeStats:
 
 ```json
 {
-  "code": "PROTOCOL_NOT_RUNNING",
+  "code": "INSUFFICIENT_GAS",
   "forgeStats": {
     "avgBlockTime": 123,
     "avgTps": 123,
@@ -3999,7 +3999,7 @@ Checkout the following snippet for the format of ResponseGetHealthStatus:
 
 ```json
 {
-  "code": "PROTOCOL_NOT_RUNNING",
+  "code": "INSUFFICIENT_GAS",
   "healthStatus": {
     "consensus": {
       "blockHeight": "abc",
@@ -4048,7 +4048,7 @@ Checkout the following snippet for the format of ResponseGetNetInfo:
 
 ```json
 {
-  "code": "PROTOCOL_NOT_RUNNING",
+  "code": "INSUFFICIENT_GAS",
   "netInfo": {
     "listeners": [
       "abc"
@@ -4090,7 +4090,7 @@ Checkout the following snippet for the format of ResponseGetNodeInfo:
 
 ```json
 {
-  "code": "PROTOCOL_NOT_RUNNING",
+  "code": "INSUFFICIENT_GAS",
   "info": {
     "address": "abc",
     "appHash": "abc",
@@ -4142,7 +4142,7 @@ Checkout the following snippet for the format of ResponseGetProtocolState:
 
 ```json
 {
-  "code": "PROTOCOL_NOT_RUNNING",
+  "code": "INSUFFICIENT_GAS",
   "state": {
     "address": "abc",
     "context": {
@@ -4151,7 +4151,7 @@ Checkout the following snippet for the format of ResponseGetProtocolState:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "PROTOCOL_NOT_RUNNING",
+        "code": "INSUFFICIENT_GAS",
         "createAsset": {
           "asset": "abc"
         },
@@ -4190,7 +4190,7 @@ Checkout the following snippet for the format of ResponseGetProtocolState:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "PROTOCOL_NOT_RUNNING",
+        "code": "INSUFFICIENT_GAS",
         "createAsset": {
           "asset": "abc"
         },
@@ -4289,7 +4289,7 @@ Checkout the following snippet for the format of ResponseGetProtocols:
 
 ```json
 {
-  "code": "PROTOCOL_NOT_RUNNING",
+  "code": "INSUFFICIENT_GAS",
   "protocols": [
     {
       "address": "abc",
@@ -4341,7 +4341,7 @@ Checkout the following snippet for the format of ResponseGetSimulatorStatus:
 
 ```json
 {
-  "code": "PROTOCOL_NOT_RUNNING",
+  "code": "INSUFFICIENT_GAS",
   "result": "abc"
 }
 ```
@@ -4362,7 +4362,7 @@ Checkout the following snippet for the format of ResponseGetStakeState:
 
 ```json
 {
-  "code": "PROTOCOL_NOT_RUNNING",
+  "code": "INSUFFICIENT_GAS",
   "state": {
     "address": "abc",
     "balance": "abc",
@@ -4372,7 +4372,7 @@ Checkout the following snippet for the format of ResponseGetStakeState:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "PROTOCOL_NOT_RUNNING",
+        "code": "INSUFFICIENT_GAS",
         "createAsset": {
           "asset": "abc"
         },
@@ -4411,7 +4411,7 @@ Checkout the following snippet for the format of ResponseGetStakeState:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "PROTOCOL_NOT_RUNNING",
+        "code": "INSUFFICIENT_GAS",
         "createAsset": {
           "asset": "abc"
         },
@@ -4473,7 +4473,7 @@ Checkout the following snippet for the format of ResponseGetSwapState:
 
 ```json
 {
-  "code": "PROTOCOL_NOT_RUNNING",
+  "code": "INSUFFICIENT_GAS",
   "state": {
     "address": "abc",
     "assets": [
@@ -4485,7 +4485,7 @@ Checkout the following snippet for the format of ResponseGetSwapState:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "PROTOCOL_NOT_RUNNING",
+        "code": "INSUFFICIENT_GAS",
         "createAsset": {
           "asset": "abc"
         },
@@ -4524,7 +4524,7 @@ Checkout the following snippet for the format of ResponseGetSwapState:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "PROTOCOL_NOT_RUNNING",
+        "code": "INSUFFICIENT_GAS",
         "createAsset": {
           "asset": "abc"
         },
@@ -4586,7 +4586,7 @@ Checkout the following snippet for the format of ResponseGetTetherState:
 
 ```json
 {
-  "code": "PROTOCOL_NOT_RUNNING",
+  "code": "INSUFFICIENT_GAS",
   "state": {
     "address": "abc",
     "available": true,
@@ -4619,12 +4619,12 @@ Checkout the following snippet for the format of ResponseGetTx:
 
 ```json
 {
-  "code": "PROTOCOL_NOT_RUNNING",
+  "code": "INSUFFICIENT_GAS",
   "info": {
     "accountMigrate": {
       "address": "abc"
     },
-    "code": "PROTOCOL_NOT_RUNNING",
+    "code": "INSUFFICIENT_GAS",
     "createAsset": {
       "asset": "abc"
     },
@@ -4677,7 +4677,7 @@ Checkout the following snippet for the format of ResponseGetUnconfirmedTxs:
 
 ```json
 {
-  "code": "PROTOCOL_NOT_RUNNING",
+  "code": "INSUFFICIENT_GAS",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -4727,7 +4727,7 @@ Checkout the following snippet for the format of ResponseGetValidatorsInfo:
 
 ```json
 {
-  "code": "PROTOCOL_NOT_RUNNING",
+  "code": "INSUFFICIENT_GAS",
   "validatorsInfo": {
     "blockHeight": "abc",
     "validators": [
@@ -4768,7 +4768,7 @@ Checkout the following snippet for the format of ResponseListAssetTransactions:
 
 ```json
 {
-  "code": "PROTOCOL_NOT_RUNNING",
+  "code": "INSUFFICIENT_GAS",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -4776,7 +4776,7 @@ Checkout the following snippet for the format of ResponseListAssetTransactions:
   },
   "transactions": [
     {
-      "code": "PROTOCOL_NOT_RUNNING",
+      "code": "INSUFFICIENT_GAS",
       "hash": "abc",
       "receiver": "abc",
       "sender": "abc",
@@ -4861,7 +4861,7 @@ Checkout the following snippet for the format of ResponseListAssets:
       "ttl": "abc"
     }
   ],
-  "code": "PROTOCOL_NOT_RUNNING",
+  "code": "INSUFFICIENT_GAS",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -4897,7 +4897,7 @@ Checkout the following snippet for the format of ResponseListBlocks:
       "time": "abc"
     }
   ],
-  "code": "PROTOCOL_NOT_RUNNING",
+  "code": "INSUFFICIENT_GAS",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -4923,7 +4923,7 @@ Checkout the following snippet for the format of ResponseListStakes:
 
 ```json
 {
-  "code": "PROTOCOL_NOT_RUNNING",
+  "code": "INSUFFICIENT_GAS",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -4961,7 +4961,7 @@ Checkout the following snippet for the format of ResponseListSwap:
 
 ```json
 {
-  "code": "PROTOCOL_NOT_RUNNING",
+  "code": "INSUFFICIENT_GAS",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -4979,7 +4979,7 @@ Checkout the following snippet for the format of ResponseListSwap:
           "accountMigrate": {
             "address": "abc"
           },
-          "code": "PROTOCOL_NOT_RUNNING",
+          "code": "INSUFFICIENT_GAS",
           "createAsset": {
             "asset": "abc"
           },
@@ -5018,7 +5018,7 @@ Checkout the following snippet for the format of ResponseListSwap:
           "accountMigrate": {
             "address": "abc"
           },
-          "code": "PROTOCOL_NOT_RUNNING",
+          "code": "INSUFFICIENT_GAS",
           "createAsset": {
             "asset": "abc"
           },
@@ -5082,7 +5082,7 @@ Checkout the following snippet for the format of ResponseListTethers:
 
 ```json
 {
-  "code": "PROTOCOL_NOT_RUNNING",
+  "code": "INSUFFICIENT_GAS",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -5143,7 +5143,7 @@ Checkout the following snippet for the format of ResponseListTopAccounts:
       "totalUnstakes": "abc"
     }
   ],
-  "code": "PROTOCOL_NOT_RUNNING",
+  "code": "INSUFFICIENT_GAS",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -5169,7 +5169,7 @@ Checkout the following snippet for the format of ResponseListTransactions:
 
 ```json
 {
-  "code": "PROTOCOL_NOT_RUNNING",
+  "code": "INSUFFICIENT_GAS",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -5177,7 +5177,7 @@ Checkout the following snippet for the format of ResponseListTransactions:
   },
   "transactions": [
     {
-      "code": "PROTOCOL_NOT_RUNNING",
+      "code": "INSUFFICIENT_GAS",
       "hash": "abc",
       "receiver": "abc",
       "sender": "abc",
@@ -5225,7 +5225,7 @@ Checkout the following snippet for the format of ResponseSendTx:
 
 ```json
 {
-  "code": "PROTOCOL_NOT_RUNNING",
+  "code": "INSUFFICIENT_GAS",
   "hash": "abc"
 }
 ```
@@ -5246,7 +5246,7 @@ Checkout the following snippet for the format of ResponseStartSimulator:
 
 ```json
 {
-  "code": "PROTOCOL_NOT_RUNNING"
+  "code": "INSUFFICIENT_GAS"
 }
 ```
 
@@ -5265,7 +5265,7 @@ Checkout the following snippet for the format of ResponseStopSimulator:
 
 ```json
 {
-  "code": "PROTOCOL_NOT_RUNNING"
+  "code": "INSUFFICIENT_GAS"
 }
 ```
 
@@ -5312,7 +5312,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "PROTOCOL_NOT_RUNNING",
+        "code": "INSUFFICIENT_GAS",
         "createAsset": {
           "asset": "abc"
         },
@@ -5351,7 +5351,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "PROTOCOL_NOT_RUNNING",
+        "code": "INSUFFICIENT_GAS",
         "createAsset": {
           "asset": "abc"
         },
@@ -5484,7 +5484,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "PROTOCOL_NOT_RUNNING",
+        "code": "INSUFFICIENT_GAS",
         "createAsset": {
           "asset": "abc"
         },
@@ -5523,7 +5523,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "PROTOCOL_NOT_RUNNING",
+        "code": "INSUFFICIENT_GAS",
         "createAsset": {
           "asset": "abc"
         },
@@ -5644,7 +5644,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
       ]
     }
   },
-  "code": "PROTOCOL_NOT_RUNNING",
+  "code": "INSUFFICIENT_GAS",
   "confirm": {
     "chainId": "abc",
     "from": "abc",
@@ -5786,7 +5786,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "PROTOCOL_NOT_RUNNING",
+        "code": "INSUFFICIENT_GAS",
         "createAsset": {
           "asset": "abc"
         },
@@ -5825,7 +5825,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "PROTOCOL_NOT_RUNNING",
+        "code": "INSUFFICIENT_GAS",
         "createAsset": {
           "asset": "abc"
         },
@@ -5973,7 +5973,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
               "accountMigrate": {
                 "address": "abc"
               },
-              "code": "PROTOCOL_NOT_RUNNING",
+              "code": "INSUFFICIENT_GAS",
               "createAsset": {
                 "asset": "abc"
               },
@@ -6012,7 +6012,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
               "accountMigrate": {
                 "address": "abc"
               },
-              "code": "PROTOCOL_NOT_RUNNING",
+              "code": "INSUFFICIENT_GAS",
               "createAsset": {
                 "asset": "abc"
               },
@@ -6123,7 +6123,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "PROTOCOL_NOT_RUNNING",
+        "code": "INSUFFICIENT_GAS",
         "createAsset": {
           "asset": "abc"
         },
@@ -6162,7 +6162,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "PROTOCOL_NOT_RUNNING",
+        "code": "INSUFFICIENT_GAS",
         "createAsset": {
           "asset": "abc"
         },
@@ -6327,7 +6327,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "PROTOCOL_NOT_RUNNING",
+        "code": "INSUFFICIENT_GAS",
         "createAsset": {
           "asset": "abc"
         },
@@ -6366,7 +6366,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "PROTOCOL_NOT_RUNNING",
+        "code": "INSUFFICIENT_GAS",
         "createAsset": {
           "asset": "abc"
         },
@@ -6533,7 +6533,7 @@ Checkout the following snippet for the format of ResponseUnsubscribe:
 
 ```json
 {
-  "code": "PROTOCOL_NOT_RUNNING"
+  "code": "INSUFFICIENT_GAS"
 }
 ```
 

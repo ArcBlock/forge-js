@@ -4,12 +4,15 @@
 
 > Storage engine that uses keystone.js to store data, implements interfaces defined in `@arcblock/did-auth-storage`.
 
+
 ## Table of Contents
 
-- [Table of Contents](#table-of-contents)
-- [Motivation & Spec](#motivation--spec)
-- [Install](#install)
-- [Usage](#usage)
+* [Install](#install)
+* [Usage](#usage)
+  * [1. Create model when bootstrap keystone](#1-create-model-when-bootstrap-keystone)
+  * [2. Create storage instance when setup routes](#2-create-storage-instance-when-setup-routes)
+* [Contributors](#contributors)
+
 
 ## Install
 
@@ -18,6 +21,7 @@ npm install @arcblock/did-auth-storage-keystone keystone
 // or
 yarn add @arcblock/did-auth-storage-keystone keystone
 ```
+
 
 ## Usage
 
@@ -103,3 +107,10 @@ keystone.set('routes', app => {
   // - `POST /api/did/payment/auth` process payment request
 });
 ```
+
+
+## Contributors
+
+| Name           | Website                    |
+| -------------- | -------------------------- |
+| **wangshijun** | <https://ocap.arcblock.io> |

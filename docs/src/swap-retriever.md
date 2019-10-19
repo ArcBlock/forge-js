@@ -1,3 +1,14 @@
+---
+title: '@arcblock/swap-retriever'
+description: 'Utility to retrieve a swap when we can'
+keywords: 'forge, sdk, javascript'
+author: 'wangshijun'
+category: 'packages'
+layout: 'documentation'
+tags:
+  - 'forge'
+---
+
 
 ## createRetriever(params) ⇒ `EventEmitter`
 
@@ -28,3 +39,5 @@ Will emit following events during retrieving
 | params.checkInterval     | `number`  | query interval to check the swap                                             |
 | params.autoStart         | `boolean` | should the verifier start on create                                          |
 | params.maxRetry          | `number`  | max number of checks before mark the tx as expired                           |
+
+  

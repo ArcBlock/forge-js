@@ -46,6 +46,7 @@ declare class WalletAuthenticator {
    * @returns
    */
   uri(T102: _Lib.T103): string;
+  getPublicUrl(pathname: any, params: any): string;
   /**
    * Sign a auth response that returned to wallet: tell the wallet the appInfo/chainInfo/crossChainInfo
    *
@@ -65,7 +66,7 @@ declare class WalletAuthenticator {
    * @param {string} locale
    * @returns Promise<>
    */
-  verify(data: any, locale?: string): Promise<any>;
+  verify(data: any, locale?: string, enforceTimestamp?: boolean): Promise<any>;
   genRequestedClaims(T106: _Lib.T107): Promise<any[]>;
   getClaimInfo(T108: _Lib.T109): Promise<any>;
   agreement(T110: _Lib.T109): Promise<_Lib.T112>;
@@ -73,6 +74,8 @@ declare class WalletAuthenticator {
   signature(T115: _Lib.T109): Promise<_Lib.T116>;
   holdingOfAsset(T117: _Lib.T109): Promise<_Lib.T118>;
   holdingOfToken(T119: _Lib.T109): Promise<_Lib.T120>;
+  authPrincipal(T121: _Lib.T109): Promise<_Lib.T122>;
+  swap(T123: _Lib.T109): Promise<_Lib.T124>;
 }
 declare class AppAuthenticator {
   wallet: any;
@@ -102,8 +105,8 @@ declare class AppAuthenticator {
 }
 declare class WalletHandlers {
   authenticator: any;
-  generator(...args: any[]): any;
-  storage: any;
+  tokenGenerator(...args: any[]): any;
+  tokenStorage: any;
   onPreAuth(...args: any[]): any;
   /**
    * Creates an instance of DID Auth Handlers.
@@ -114,7 +117,7 @@ declare class WalletHandlers {
    * @param {object} config.authenticator - Authenticator instance that can to jwt sign/verify
    * @param {function} [config.onPreAuth=noop] - function called before each auth request send back to app, used to check for permission, throw error to halt the auth process
    */
-  constructor(T121: _Lib.T122);
+  constructor(T125: _Lib.T126);
   /**
    * Attach routes and handlers for authenticator
    *
@@ -126,13 +129,62 @@ declare class WalletHandlers {
    * @param {function} [config.onComplete=noop] - callback when the whole auth process is done, action token is removed
    * @param {function} [config.onExpire=noop] - callback when the action token expired
    * @param {function} [config.onError=console.error] - callback when there are some errors
-   * @param {string} [config.action='/api/did'] - url prefix for this group endpoints
+   * @param {string} [config.prefix='/api/did'] - url prefix for this group endpoints
    * @param {string} [config.sessionDidKey='user.did'] - key path to extract session user did from request object
    * @param {string} [config.tokenKey='_t_'] - query param key for `token`
    * @param {string} [config.checksumKey='_cs_'] - query param key for `checksum`
    * @return void
    */
-  attach(T123: _Lib.T124): void;
+  attach(T127: _Lib.T128): void;
+}
+declare class AtomicSwapHandlers {
+  authenticator: any;
+  swapStorage: any;
+  tokenStorage: any;
+  offerChainHost: string;
+  offerChainId: string;
+  demandChainHost: string;
+  demandChainId: string;
+  offerLocktime: number;
+  demandLocktime: number;
+  tokenGenerator(...args: any[]): any;
+  onPreAuth(...args: any[]): any;
+  /**
+   * Creates an instance of atomic swap handlers.
+   *
+   * @param {object} config
+   * @param {object} config.authenticator - Authenticator instance that can to jwt sign/verify
+   * @param {function} config.tokenGenerator - function to generate action token
+   * @param {object} config.swapStorage - storage that contains swap information
+   * @param {object} config.tokenStorage - storage that contains action token information
+   * @param {string} config.offerChainHost - offer chain endpoint
+   * @param {string} config.demandChainHost - demand chain endpoint
+   * @param {string} config.offerChainId - offer chain endpoint
+   * @param {string} config.demandChainId - demand chain endpoint
+   * @param {number} config.offerLocktime - num of blocks that will be locked before app chain swap can be revoked
+   * @param {number} config.demandLocktime - num of blocks that will be locked before asset chain swap can be revoked
+   * @param {function} [config.onPreAuth=noop] - function called before each auth request send back to app, used to check for permission, throw error to halt the auth process
+   */
+  constructor(T129: _Lib.T130);
+  start(payload: any): any;
+  /**
+   * Attach routes and handlers for authenticator
+   *
+   * @param {object} config - attach config { app, action, claims, prefix = '/api' }
+   * @param {object} config.app - express instance to attach routes to
+   * @param {object} config.claims - claims for this request
+   * @param {string} config.action - action of this group of routes
+   * @param {function} config.onAuth - callback when user completed auth in abt wallet, and data posted back
+   * @param {function} [config.onComplete=noop] - callback when the whole auth process is done, action token is removed
+   * @param {function} [config.onExpire=noop] - callback when the action token expired
+   * @param {function} [config.onError=console.error] - callback when there are some errors
+   * @param {string} [config.prefix='/api/swap'] - url prefix for this group endpoints
+   * @param {string} [config.sessionDidKey='user.did'] - key path to extract session user did from request object
+   * @param {string} [config.tokenKey='_t_'] - query param key for `token`
+   * @param {string} [config.checksumKey='_cs_'] - query param key for `checksum`
+   * @return void
+   */
+  attach(T131: _Lib.T128): void;
 }
 declare class AppHandlers {
   authenticator: any;
@@ -147,7 +199,7 @@ declare class AppHandlers {
   getSecureResponseHandler(): (req: any, res: any, next: any) => void;
   getRequestValidateHandler(): (req: any, res: any, next: any) => Promise<void>;
 }
-declare const _Lib: _Lib.T126;
+declare const _Lib: _Lib.T133;
 declare namespace _Lib {
   export interface T101 {
     wallet: any;
@@ -214,36 +266,69 @@ declare namespace _Lib {
     meta: _Lib.T111;
   }
   export interface T122 {
+    type: string;
+    description: any;
+    meta: any;
+    target: any;
+  }
+  export interface T124 {
+    type: string;
+    meta: any;
+    swapId: any;
+    offerAssets: any;
+    offerToken: any;
+    demandAssets: any;
+    demandToken: any;
+    demandLocktime: any;
+    receiver: any;
+    demandChain: any;
+  }
+  export interface T126 {
     tokenGenerator: (...args: any[]) => any;
     tokenStorage: any;
     authenticator: any;
     onPreAuth?: (...args: any[]) => any;
   }
-  export interface T124 {
+  export interface T128 {
     app: any;
     claims: any;
-    action?: string;
+    action: string;
     onAuth: (...args: any[]) => any;
     onComplete?: (...args: any[]) => any;
     onExpire?: (...args: any[]) => any;
     onError?: (...args: any[]) => any;
+    prefix?: string;
     sessionDidKey?: string;
     tokenKey?: string;
     checksumKey?: string;
   }
-  export interface T125 {
+  export interface T130 {
+    authenticator: any;
+    tokenGenerator: (...args: any[]) => any;
+    swapStorage: any;
+    tokenStorage: any;
+    offerChainHost: string;
+    demandChainHost: string;
+    offerChainId: string;
+    demandChainId: string;
+    offerLocktime: number;
+    demandLocktime: number;
+    onPreAuth?: (...args: any[]) => any;
+  }
+  export interface T132 {
     sign: (did: string, sk: string, payload?: any) => string;
     verify: (token: string, pk: string, tolerance?: number, verifyTimestamp?: boolean) => boolean;
     decode: (token: string, payloadOnly?: boolean) => any;
   }
-  export interface T126 {
+  export interface T133 {
     Authenticator: typeof WalletAuthenticator;
     WalletAuthenticator: typeof WalletAuthenticator;
     AppAuthenticator: typeof AppAuthenticator;
     Handlers: typeof WalletHandlers;
     WalletHandlers: typeof WalletHandlers;
+    SwapHandlers: typeof AtomicSwapHandlers;
     AppHandlers: typeof AppHandlers;
-    JWT: _Lib.T125;
+    JWT: _Lib.T132;
   }
 }
 export = _Lib;

@@ -7,22 +7,34 @@ categories:
     link: /
     priority: 999
     sidebar:
-      "null":
+      'null':
         - /
-      Packages:
+      'Forge Core':
         links:
           - /forge-sdk
           - /graphql-client
           - /grpc-client
           - /forge-wallet
           - /mcrypto
+          - /forge-util
+          - /forge-message
+          - /forge-proto
+      'DID Auth':
+        links:
           - /did
           - /did-auth
           - /did-util
-          - /forge-util
-          - /tx-util
-          - /forge-message
+          - /did-auth-storage
+          - /did-auth-storage-mongo
+          - /did-auth-storage-keystone
+          - /did-auth-storage-firebase
+      'Atomic Swap':
+        links:
+          - /swap-storage
+          - /swap-storage-mongo
+          - /swap-retriever
+          - /did-auth
+      'Misc':
+        links:
           - /forge-config
-          - /forge-proto
-        locales:
-          zh: "模块"
+          - /tx-util

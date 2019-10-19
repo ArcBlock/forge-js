@@ -14,7 +14,7 @@ tags:
 
 Utility functions to create/inspect did, and do did-based auth, an implementation of abt-did-protocol
 
-**Requires**: [@arcblock/mcrypto](/packages/mcrypto/), [@arcblock/forge-util](/packages/forge-util/)  
+**Requires**: `module:@arcblock/mcrypto`, `module:@arcblock/forge-util`  
 
 * [fromSecretKey(sk, type)](#fromSecretKey) ⇒ `string`
 * [fromPublicKey(pk, type)](#fromPublicKey) ⇒ `string`

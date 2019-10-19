@@ -4,12 +4,13 @@
 
 > Storage engine that uses mongo to store data, implements interfaces defined in `@arcblock/did-auth-storage`.
 
+
 ## Table of Contents
 
-- [**@arcblock/did-auth-storage-mongo**](#arcblockdid-auth-storage-mongo)
-  - [Table of Contents](#table-of-contents)
-  - [Install](#install)
-  - [Usage](#usage)
+* [Install](#install)
+* [Usage](#usage)
+* [Contributors](#contributors)
+
 
 ## Install
 
@@ -18,6 +19,7 @@ npm install @arcblock/did-auth-storage-mongo
 // or
 yarn add @arcblock/did-auth-storage-mongo
 ```
+
 
 ## Usage
 
@@ -34,3 +36,10 @@ const storage = new MongoStorage({
   const item = await storage.create(token);
 })();
 ```
+
+
+## Contributors
+
+| Name           | Website                    |
+| -------------- | -------------------------- |
+| **wangshijun** | <https://ocap.arcblock.io> |

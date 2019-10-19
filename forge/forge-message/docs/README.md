@@ -3,7 +3,7 @@
 
 Contains basic helper methods to encode/format/mock a protobuf message
 
-**Requires**: [@arcblock/forge-util](/packages/forge-util/), [@arcblock/forge-proto](/packages/forge-proto/)  
+**Requires**: `module:@arcblock/forge-util`, `module:@arcblock/forge-proto`  
 **Example**  
 
 ```js

@@ -34,7 +34,7 @@ tags:
 
 This module wraps common utility functions to help developers manipulate crypto wallets
 
-**Requires**: [@arcblock/mcrypto](/packages/mcrypto/), [@arcblock/did](/packages/did/)  
+**Requires**: `module:@arcblock/mcrypto`, `module:@arcblock/did`  
 **Example**  
 
 ```js
