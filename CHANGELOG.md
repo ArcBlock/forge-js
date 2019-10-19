@@ -1,11 +1,8 @@
 ## 0.39.3 (October 20, 2019)
 
+- chore: add more user friendly `fromTokenToUnit` and `fromUnitToToken` util
+- chore: improve docs for swap packages
 - chore: improve docs for did-auth packages
-- chore: improve docs for all packages
-- chore: improve docs for all packages
-- chore: improve docs for all packages
-- chore: improve docs for all packages
-- chore: improve docs for all packages
 - update readme
 
 ## 0.39.2 (October 17, 2019)
