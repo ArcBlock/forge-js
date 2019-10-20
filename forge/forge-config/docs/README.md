@@ -3,12 +3,11 @@
 
 Contains helper methods to parse forge config file
 
-### parse(configPath) ⇒
+### parse(configPath) ⇒ `object`
 
 Parse config from a file
 
 **Kind**: static method  
-**Returns**: object  
 **Throws**:
 
 * Error when file not found
