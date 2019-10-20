@@ -18,15 +18,6 @@ Please note that, due to internal implementation of google-protobuf, all `repeat
 * [GraphQLClient](#GraphQLClient)
   * [new GraphQLClient(config)](#new_GraphQLClient_new)
     * _instance_
-      * [fromUnitToToken(value)](#GraphQLClient+fromUnitToToken) ⇒ `string`
-      * [fromTokenToUnit(amount)](#GraphQLClient+fromTokenToUnit) ⇒ `BN`
-      * [toLocktime(number, \[options\])](#GraphQLClient+toLocktime) ⇒ `number`
-      * [getTxSendMethods()](#GraphQLClient+getTxSendMethods) ⇒ `Array.<string>`
-      * [getTxEncodeMethods()](#GraphQLClient+getTxEncodeMethods) ⇒ `Array.<string>`
-      * [getTxSignMethods()](#GraphQLClient+getTxSignMethods) ⇒ `Array.<string>`
-      * [getTxMultiSignMethods()](#GraphQLClient+getTxMultiSignMethods) ⇒ `Array.<string>`
-      * [getType(x)](#GraphQLClient+getType) ⇒ `class` \| `null`
-      * [decodeTx(input)](#GraphQLClient+decodeTx) ⇒ `object`
       * [getQueries()](#GraphQLClient+getQueries) ⇒ `Array.<string>`
       * [getMutations()](#GraphQLClient+getMutations) ⇒ `Array.<string>`
       * [getSubscription()](#GraphQLClient+getSubscription) ⇒ `Array.<string>`
@@ -349,88 +340,6 @@ const client = new GraphQLClient('https://argon.abtnetwork.io/api');
 
 const res = await client.getChainInfo();
 ```
-
-### graphQLClient.fromUnitToToken(value) ⇒ `string`
-
-Format big number presentation amount to token number
-
-**Kind**: instance method of [`GraphQLClient`](#GraphQLClient)  
-
-| Param | Type     |
-| ----- | -------- |
-| value | `string` |
-
-### graphQLClient.fromTokenToUnit(amount) ⇒ `BN`
-
-Encode amount to corresponding token big number presentation
-
-**Kind**: instance method of [`GraphQLClient`](#GraphQLClient)  
-
-| Param  | Type     |
-| ------ | -------- |
-| amount | `number` |
-
-### graphQLClient.toLocktime(number, [options]) ⇒ `number`
-
-Converts a relative locktime to absolute locktime
-
-**Kind**: instance method of [`GraphQLClient`](#GraphQLClient)  
-
-| Param     | Type     | Default | Description                   |
-| --------- | -------- | ------- | ----------------------------- |
-| number    | `number` |         | number of blocks want to lock |
-| [options] | `object` | `{}`    | options to underlying methods |
-
-### graphQLClient.getTxSendMethods() ⇒ `Array.<string>`
-
-List all transaction send methods
-Each method can send one kind of transactions supported by forge core, such as `DeclareTx`, `PokeTx`
-
-**Kind**: instance method of [`GraphQLClient`](#GraphQLClient)  
-**Returns**: `Array.<string>` - method name list  
-
-### graphQLClient.getTxEncodeMethods() ⇒ `Array.<string>`
-
-List all transaction encode methods, each method can be used to encode transaction to buffer and object
-
-**Kind**: instance method of [`GraphQLClient`](#GraphQLClient)  
-**Returns**: `Array.<string>` - method name list  
-
-### graphQLClient.getTxSignMethods() ⇒ `Array.<string>`
-
-List all transaction sign methods, each method can be used to sign transaction to an object
-
-**Kind**: instance method of [`GraphQLClient`](#GraphQLClient)  
-**Returns**: `Array.<string>` - method name list  
-
-### graphQLClient.getTxMultiSignMethods() ⇒ `Array.<string>`
-
-List all transaction multi sign methods, each method can be used to do multi sign a transaction
-
-**Kind**: instance method of [`GraphQLClient`](#GraphQLClient)  
-**Returns**: `Array.<string>` - method name list  
-
-### graphQLClient.getType(x) ⇒ `class` \| `null`
-
-Get protobuf message class by name, only supports forge-built-in types
-
-**Kind**: instance method of [`GraphQLClient`](#GraphQLClient)  
-**Returns**: `class` \| `null` - message type  
-
-| Param | Type     |
-| ----- | -------- |
-| x     | `string` |
-
-### graphQLClient.decodeTx(input) ⇒ `object`
-
-Decode transaction buffer/base64/base58 to an object
-
-**Kind**: instance method of [`GraphQLClient`](#GraphQLClient)  
-**Returns**: `object` - transaction object  
-
-| Param | Type                                      |
-| ----- | ----------------------------------------- |
-| input | `buffer` \| `hex` \| `base48` \| `base64` |
 
 ### graphQLClient.getQueries() ⇒ `Array.<string>`
 

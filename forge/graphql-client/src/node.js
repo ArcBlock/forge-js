@@ -1,9 +1,9 @@
 const EventEmitter = require('events');
 const { Socket } = require('phoenix-channels');
 
-const GraphqlClient = require('./client');
+const GraphQLClient = require('./client');
 
-class NativeGraphqlClient extends GraphqlClient {
+class NativeGraphqlClient extends GraphQLClient {
   _getSocketImplementation() {
     return Socket;
   }

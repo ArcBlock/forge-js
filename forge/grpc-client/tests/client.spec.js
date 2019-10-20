@@ -24,31 +24,26 @@ describe('#getTxSendMethods', () => {
   });
 
   test('should have at least sendTransferTx method', () => {
-    const methods = client.getTxSendMethods();
     expect(typeof client.sendTransferTx).toEqual('function');
-    expect(methods.sendTransferTx).toEqual('TransferTx');
   });
 
   test('should have at least encodeTransferTx method', () => {
-    const methods = client.getTxEncodeMethods();
     expect(typeof client.encodeTransferTx).toEqual('function');
-    expect(methods.encodeTransferTx).toEqual('TransferTx');
   });
 
   test('should have tx sign methods', () => {
-    const methods = client.getTxSignMethods();
     expect(typeof client.signTransferTx).toEqual('function');
-    expect(methods.signTransferTx).toEqual('TransferTx');
   });
 
   test('should have tx multi sign methods', () => {
-    const methods = client.getTxMultiSignMethods();
     expect(typeof client.multiSignExchangeTx).toEqual('function');
-    expect(methods.multiSignExchangeTx).toEqual('ExchangeTx');
   });
 
   if (!process.env.CI) {
     test('should format tokens', async () => {
+      expect(typeof client.getTx).toEqual('function');
+      expect(typeof client.decodeTx).toEqual('function');
+      expect(typeof client.toLocktime).toEqual('function');
       expect(typeof client.fromUnitToToken).toEqual('function');
       expect(typeof client.fromTokenToUnit).toEqual('function');
 

@@ -72,6 +72,9 @@ describe('GraphQLClient', () => {
   });
 
   test('should format tokens', async () => {
+    expect(typeof client.getTx).toEqual('function');
+    expect(typeof client.decodeTx).toEqual('function');
+    expect(typeof client.toLocktime).toEqual('function');
     expect(typeof client.fromUnitToToken).toEqual('function');
     expect(typeof client.fromTokenToUnit).toEqual('function');
 

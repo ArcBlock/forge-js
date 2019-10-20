@@ -591,421 +591,11 @@ declare interface ForgeSDK {
    * @see GRpcClient.getTxSendMethods
    */
   /**
-   * Get protobuf message class by name, only supports forge-built-in types
-   *
-   * @method
-   * @param {string} x
-   * @returns {class|null} message type
-   */
-  getType(x: string): any;
-  /**
-   * Decode transaction buffer/base64/base58 to an object
-   *
-   * @method
-   * @param {buffer|hex|base48|base64} input
-   * @returns {object} transaction object
-   */
-  decodeTx(input: any): any;
-  /**
    * List standard rpc methods
    *
    * @returns {object}
    */
   getRpcMethods(): any;
-  /**
-   * List generated transaction send methods
-   *
-   * @returns {object}
-   */
-  getTxSendMethods(): any;
-  createTx(request: forge_abi.RequestCreateTx): GRpcClient.UnaryResult<forge_abi.ResponseCreateTx>;
-  multisig(request: forge_abi.RequestMultisig): GRpcClient.UnaryResult<forge_abi.ResponseMultisig>;
-  sendTx(request: forge_abi.RequestSendTx): GRpcClient.UnaryResult<forge_abi.ResponseSendTx>;
-  getTx(
-    request: forge_abi.RequestGetTx | Array<forge_abi.RequestGetTx>
-  ): GRpcClient.StreamResult<forge_abi.ResponseGetTx>;
-  getBlock(
-    request: forge_abi.RequestGetBlock | Array<forge_abi.RequestGetBlock>
-  ): GRpcClient.StreamResult<forge_abi.ResponseGetBlock>;
-  getBlocks(
-    request: forge_abi.RequestGetBlocks
-  ): GRpcClient.UnaryResult<forge_abi.ResponseGetBlocks>;
-  getUnconfirmedTxs(
-    request: forge_abi.RequestGetUnconfirmedTxs
-  ): GRpcClient.UnaryResult<forge_abi.ResponseGetUnconfirmedTxs>;
-  getChainInfo(
-    request: forge_abi.RequestGetChainInfo
-  ): GRpcClient.UnaryResult<forge_abi.ResponseGetChainInfo>;
-  getNodeInfo(
-    request: forge_abi.RequestGetNodeInfo
-  ): GRpcClient.UnaryResult<forge_abi.ResponseGetNodeInfo>;
-  search(request: forge_abi.RequestSearch): GRpcClient.UnaryResult<forge_abi.ResponseSearch>;
-  getNetInfo(
-    request: forge_abi.RequestGetNetInfo
-  ): GRpcClient.UnaryResult<forge_abi.ResponseGetNetInfo>;
-  getValidatorsInfo(
-    request: forge_abi.RequestGetValidatorsInfo
-  ): GRpcClient.UnaryResult<forge_abi.ResponseGetValidatorsInfo>;
-  getConfig(
-    request: forge_abi.RequestGetConfig
-  ): GRpcClient.UnaryResult<forge_abi.ResponseGetConfig>;
-  subscribe(
-    request: forge_abi.RequestSubscribe
-  ): GRpcClient.StreamResult<forge_abi.ResponseSubscribe>;
-  unsubscribe(
-    request: forge_abi.RequestUnsubscribe
-  ): GRpcClient.UnaryResult<forge_abi.ResponseUnsubscribe>;
-  storeFile(
-    request: forge_abi.RequestStoreFile | Array<forge_abi.RequestStoreFile>
-  ): GRpcClient.UnaryResult<forge_abi.ResponseStoreFile>;
-  loadFile(request: forge_abi.RequestLoadFile): GRpcClient.StreamResult<forge_abi.ResponseLoadFile>;
-  pinFile(request: forge_abi.RequestPinFile): GRpcClient.UnaryResult<forge_abi.ResponsePinFile>;
-  getAccountState(
-    request: forge_abi.RequestGetAccountState | Array<forge_abi.RequestGetAccountState>
-  ): GRpcClient.StreamResult<forge_abi.ResponseGetAccountState>;
-  getAssetState(
-    request: forge_abi.RequestGetAssetState | Array<forge_abi.RequestGetAssetState>
-  ): GRpcClient.StreamResult<forge_abi.ResponseGetAssetState>;
-  getForgeState(
-    request: forge_abi.RequestGetForgeState
-  ): GRpcClient.UnaryResult<forge_abi.ResponseGetForgeState>;
-  getProtocolState(
-    request: forge_abi.RequestGetProtocolState | Array<forge_abi.RequestGetProtocolState>
-  ): GRpcClient.StreamResult<forge_abi.ResponseGetProtocolState>;
-  getStakeState(
-    request: forge_abi.RequestGetStakeState | Array<forge_abi.RequestGetStakeState>
-  ): GRpcClient.StreamResult<forge_abi.ResponseGetStakeState>;
-  getTetherState(
-    request: forge_abi.RequestGetTetherState | Array<forge_abi.RequestGetTetherState>
-  ): GRpcClient.StreamResult<forge_abi.ResponseGetTetherState>;
-  getSwapState(
-    request: forge_abi.RequestGetSwapState | Array<forge_abi.RequestGetSwapState>
-  ): GRpcClient.StreamResult<forge_abi.ResponseGetSwapState>;
-  getDelegateState(
-    request: forge_abi.RequestGetDelegateState | Array<forge_abi.RequestGetDelegateState>
-  ): GRpcClient.StreamResult<forge_abi.ResponseGetDelegateState>;
-  createWallet(
-    request: forge_abi.RequestCreateWallet
-  ): GRpcClient.UnaryResult<forge_abi.ResponseCreateWallet>;
-  loadWallet(
-    request: forge_abi.RequestLoadWallet
-  ): GRpcClient.UnaryResult<forge_abi.ResponseLoadWallet>;
-  recoverWallet(
-    request: forge_abi.RequestRecoverWallet
-  ): GRpcClient.UnaryResult<forge_abi.ResponseRecoverWallet>;
-  listWallet(
-    request: forge_abi.RequestListWallet
-  ): GRpcClient.StreamResult<forge_abi.ResponseListWallet>;
-  removeWallet(
-    request: forge_abi.RequestRemoveWallet
-  ): GRpcClient.UnaryResult<forge_abi.ResponseRemoveWallet>;
-  declareNode(
-    request: forge_abi.RequestDeclareNode
-  ): GRpcClient.UnaryResult<forge_abi.ResponseDeclareNode>;
-  getForgeStats(
-    request: forge_abi.RequestGetForgeStats
-  ): GRpcClient.UnaryResult<forge_abi.ResponseGetForgeStats>;
-  listTransactions(
-    request: forge_abi.RequestListTransactions
-  ): GRpcClient.UnaryResult<forge_abi.ResponseListTransactions>;
-  listAssets(
-    request: forge_abi.RequestListAssets
-  ): GRpcClient.UnaryResult<forge_abi.ResponseListAssets>;
-  listStakes(
-    request: forge_abi.RequestListStakes
-  ): GRpcClient.UnaryResult<forge_abi.ResponseListStakes>;
-  listAccount(
-    request: forge_abi.RequestListAccount
-  ): GRpcClient.UnaryResult<forge_abi.ResponseListAccount>;
-  listTopAccounts(
-    request: forge_abi.RequestListTopAccounts
-  ): GRpcClient.UnaryResult<forge_abi.ResponseListTopAccounts>;
-  listAssetTransactions(
-    request: forge_abi.RequestListAssetTransactions
-  ): GRpcClient.UnaryResult<forge_abi.ResponseListAssetTransactions>;
-  listBlocks(
-    request: forge_abi.RequestListBlocks
-  ): GRpcClient.UnaryResult<forge_abi.ResponseListBlocks>;
-  getHealthStatus(
-    request: forge_abi.RequestGetHealthStatus
-  ): GRpcClient.UnaryResult<forge_abi.ResponseGetHealthStatus>;
-  listTethers(
-    request: forge_abi.RequestListTethers
-  ): GRpcClient.UnaryResult<forge_abi.ResponseListTethers>;
-  listSwap(request: forge_abi.RequestListSwap): GRpcClient.UnaryResult<forge_abi.ResponseListSwap>;
-  encodeConsensusUpgradeTx(
-    param: GRpcClient.TxParam<GRpcClient.ConsensusUpgradeTx>
-  ): Promise<GRpcClient.ResponseSendTx>;
-  encodeDeployProtocolTx(
-    param: GRpcClient.TxParam<GRpcClient.DeployProtocolTx>
-  ): Promise<GRpcClient.ResponseSendTx>;
-  encodeSysUpgradeTx(
-    param: GRpcClient.TxParam<GRpcClient.SysUpgradeTx>
-  ): Promise<GRpcClient.ResponseSendTx>;
-  encodeRevokeWithdrawTx(
-    param: GRpcClient.TxParam<GRpcClient.RevokeWithdrawTx>
-  ): Promise<GRpcClient.ResponseSendTx>;
-  encodeWithdrawTokenTx(
-    param: GRpcClient.TxParam<GRpcClient.WithdrawTokenTx>
-  ): Promise<GRpcClient.ResponseSendTx>;
-  encodeDelegateTx(
-    param: GRpcClient.TxParam<GRpcClient.DelegateTx>
-  ): Promise<GRpcClient.ResponseSendTx>;
-  encodeAccountMigrateTx(
-    param: GRpcClient.TxParam<GRpcClient.AccountMigrateTx>
-  ): Promise<GRpcClient.ResponseSendTx>;
-  encodeDeclareTx(
-    param: GRpcClient.TxParam<GRpcClient.DeclareTx>
-  ): Promise<GRpcClient.ResponseSendTx>;
-  encodeRetrieveSwapTx(
-    param: GRpcClient.TxParam<GRpcClient.RetrieveSwapTx>
-  ): Promise<GRpcClient.ResponseSendTx>;
-  encodeTransferTx(
-    param: GRpcClient.TxParam<GRpcClient.TransferTx>
-  ): Promise<GRpcClient.ResponseSendTx>;
-  encodeRevokeTetherTx(
-    param: GRpcClient.TxParam<GRpcClient.RevokeTetherTx>
-  ): Promise<GRpcClient.ResponseSendTx>;
-  encodeDeactivateProtocolTx(
-    param: GRpcClient.TxParam<GRpcClient.DeactivateProtocolTx>
-  ): Promise<GRpcClient.ResponseSendTx>;
-  encodePokeTx(param: GRpcClient.TxParam<GRpcClient.PokeTx>): Promise<GRpcClient.ResponseSendTx>;
-  encodeCreateAssetTx(
-    param: GRpcClient.TxParam<GRpcClient.CreateAssetTx>
-  ): Promise<GRpcClient.ResponseSendTx>;
-  encodeDepositTetherTx(
-    param: GRpcClient.TxParam<GRpcClient.DepositTetherTx>
-  ): Promise<GRpcClient.ResponseSendTx>;
-  encodeExchangeTetherTx(
-    param: GRpcClient.TxParam<GRpcClient.ExchangeTetherTx>
-  ): Promise<GRpcClient.ResponseSendTx>;
-  encodeConsumeAssetTx(
-    param: GRpcClient.TxParam<GRpcClient.ConsumeAssetTx>
-  ): Promise<GRpcClient.ResponseSendTx>;
-  encodeSetupSwapTx(
-    param: GRpcClient.TxParam<GRpcClient.SetupSwapTx>
-  ): Promise<GRpcClient.ResponseSendTx>;
-  encodeApproveWithdrawTx(
-    param: GRpcClient.TxParam<GRpcClient.ApproveWithdrawTx>
-  ): Promise<GRpcClient.ResponseSendTx>;
-  encodeUpdateAssetTx(
-    param: GRpcClient.TxParam<GRpcClient.UpdateAssetTx>
-  ): Promise<GRpcClient.ResponseSendTx>;
-  encodeRevokeSwapTx(
-    param: GRpcClient.TxParam<GRpcClient.RevokeSwapTx>
-  ): Promise<GRpcClient.ResponseSendTx>;
-  encodeExchangeTx(
-    param: GRpcClient.TxParam<GRpcClient.ExchangeTx>
-  ): Promise<GRpcClient.ResponseSendTx>;
-  encodeWithdrawTetherTx(
-    param: GRpcClient.TxParam<GRpcClient.WithdrawTetherTx>
-  ): Promise<GRpcClient.ResponseSendTx>;
-  encodeActivateProtocolTx(
-    param: GRpcClient.TxParam<GRpcClient.ActivateProtocolTx>
-  ): Promise<GRpcClient.ResponseSendTx>;
-  encodeApproveTetherTx(
-    param: GRpcClient.TxParam<GRpcClient.ApproveTetherTx>
-  ): Promise<GRpcClient.ResponseSendTx>;
-  encodeUpgradeNodeTx(
-    param: GRpcClient.TxParam<GRpcClient.UpgradeNodeTx>
-  ): Promise<GRpcClient.ResponseSendTx>;
-  encodeDepositTokenTx(
-    param: GRpcClient.TxParam<GRpcClient.DepositTokenTx>
-  ): Promise<GRpcClient.ResponseSendTx>;
-  encodeAcquireAssetTx(
-    param: GRpcClient.TxParam<GRpcClient.AcquireAssetTx>
-  ): Promise<GRpcClient.ResponseSendTx>;
-  encodeStakeTx(param: GRpcClient.TxParam<GRpcClient.StakeTx>): Promise<GRpcClient.ResponseSendTx>;
-  sendConsensusUpgradeTx(
-    param: GRpcClient.TxParam<GRpcClient.ConsensusUpgradeTx>
-  ): Promise<GRpcClient.EncodeTxResult>;
-  sendDeployProtocolTx(
-    param: GRpcClient.TxParam<GRpcClient.DeployProtocolTx>
-  ): Promise<GRpcClient.EncodeTxResult>;
-  sendSysUpgradeTx(
-    param: GRpcClient.TxParam<GRpcClient.SysUpgradeTx>
-  ): Promise<GRpcClient.EncodeTxResult>;
-  sendRevokeWithdrawTx(
-    param: GRpcClient.TxParam<GRpcClient.RevokeWithdrawTx>
-  ): Promise<GRpcClient.EncodeTxResult>;
-  sendWithdrawTokenTx(
-    param: GRpcClient.TxParam<GRpcClient.WithdrawTokenTx>
-  ): Promise<GRpcClient.EncodeTxResult>;
-  sendDelegateTx(
-    param: GRpcClient.TxParam<GRpcClient.DelegateTx>
-  ): Promise<GRpcClient.EncodeTxResult>;
-  sendAccountMigrateTx(
-    param: GRpcClient.TxParam<GRpcClient.AccountMigrateTx>
-  ): Promise<GRpcClient.EncodeTxResult>;
-  sendDeclareTx(
-    param: GRpcClient.TxParam<GRpcClient.DeclareTx>
-  ): Promise<GRpcClient.EncodeTxResult>;
-  sendRetrieveSwapTx(
-    param: GRpcClient.TxParam<GRpcClient.RetrieveSwapTx>
-  ): Promise<GRpcClient.EncodeTxResult>;
-  sendTransferTx(
-    param: GRpcClient.TxParam<GRpcClient.TransferTx>
-  ): Promise<GRpcClient.EncodeTxResult>;
-  sendRevokeTetherTx(
-    param: GRpcClient.TxParam<GRpcClient.RevokeTetherTx>
-  ): Promise<GRpcClient.EncodeTxResult>;
-  sendDeactivateProtocolTx(
-    param: GRpcClient.TxParam<GRpcClient.DeactivateProtocolTx>
-  ): Promise<GRpcClient.EncodeTxResult>;
-  sendPokeTx(param: GRpcClient.TxParam<GRpcClient.PokeTx>): Promise<GRpcClient.EncodeTxResult>;
-  checkin(param: GRpcClient.TxParam<GRpcClient.PokeTx>): Promise<GRpcClient.EncodeTxResult>;
-  sendCreateAssetTx(
-    param: GRpcClient.TxParam<GRpcClient.CreateAssetTx>
-  ): Promise<GRpcClient.EncodeTxResult>;
-  sendDepositTetherTx(
-    param: GRpcClient.TxParam<GRpcClient.DepositTetherTx>
-  ): Promise<GRpcClient.EncodeTxResult>;
-  sendExchangeTetherTx(
-    param: GRpcClient.TxParam<GRpcClient.ExchangeTetherTx>
-  ): Promise<GRpcClient.EncodeTxResult>;
-  sendConsumeAssetTx(
-    param: GRpcClient.TxParam<GRpcClient.ConsumeAssetTx>
-  ): Promise<GRpcClient.EncodeTxResult>;
-  sendSetupSwapTx(
-    param: GRpcClient.TxParam<GRpcClient.SetupSwapTx>
-  ): Promise<GRpcClient.EncodeTxResult>;
-  sendApproveWithdrawTx(
-    param: GRpcClient.TxParam<GRpcClient.ApproveWithdrawTx>
-  ): Promise<GRpcClient.EncodeTxResult>;
-  sendUpdateAssetTx(
-    param: GRpcClient.TxParam<GRpcClient.UpdateAssetTx>
-  ): Promise<GRpcClient.EncodeTxResult>;
-  sendRevokeSwapTx(
-    param: GRpcClient.TxParam<GRpcClient.RevokeSwapTx>
-  ): Promise<GRpcClient.EncodeTxResult>;
-  sendExchangeTx(
-    param: GRpcClient.TxParam<GRpcClient.ExchangeTx>
-  ): Promise<GRpcClient.EncodeTxResult>;
-  sendWithdrawTetherTx(
-    param: GRpcClient.TxParam<GRpcClient.WithdrawTetherTx>
-  ): Promise<GRpcClient.EncodeTxResult>;
-  sendActivateProtocolTx(
-    param: GRpcClient.TxParam<GRpcClient.ActivateProtocolTx>
-  ): Promise<GRpcClient.EncodeTxResult>;
-  sendApproveTetherTx(
-    param: GRpcClient.TxParam<GRpcClient.ApproveTetherTx>
-  ): Promise<GRpcClient.EncodeTxResult>;
-  sendUpgradeNodeTx(
-    param: GRpcClient.TxParam<GRpcClient.UpgradeNodeTx>
-  ): Promise<GRpcClient.EncodeTxResult>;
-  sendDepositTokenTx(
-    param: GRpcClient.TxParam<GRpcClient.DepositTokenTx>
-  ): Promise<GRpcClient.EncodeTxResult>;
-  sendAcquireAssetTx(
-    param: GRpcClient.TxParam<GRpcClient.AcquireAssetTx>
-  ): Promise<GRpcClient.EncodeTxResult>;
-  sendStakeTx(param: GRpcClient.TxParam<GRpcClient.StakeTx>): Promise<GRpcClient.EncodeTxResult>;
-  signConsensusUpgradeTx(
-    param: GRpcClient.TxParam<GRpcClient.ConsensusUpgradeTx>
-  ): Promise<GRpcClient.Transaction>;
-  signDeployProtocolTx(
-    param: GRpcClient.TxParam<GRpcClient.DeployProtocolTx>
-  ): Promise<GRpcClient.Transaction>;
-  signSysUpgradeTx(
-    param: GRpcClient.TxParam<GRpcClient.SysUpgradeTx>
-  ): Promise<GRpcClient.Transaction>;
-  signRevokeWithdrawTx(
-    param: GRpcClient.TxParam<GRpcClient.RevokeWithdrawTx>
-  ): Promise<GRpcClient.Transaction>;
-  signWithdrawTokenTx(
-    param: GRpcClient.TxParam<GRpcClient.WithdrawTokenTx>
-  ): Promise<GRpcClient.Transaction>;
-  signDelegateTx(param: GRpcClient.TxParam<GRpcClient.DelegateTx>): Promise<GRpcClient.Transaction>;
-  signAccountMigrateTx(
-    param: GRpcClient.TxParam<GRpcClient.AccountMigrateTx>
-  ): Promise<GRpcClient.Transaction>;
-  signDeclareTx(param: GRpcClient.TxParam<GRpcClient.DeclareTx>): Promise<GRpcClient.Transaction>;
-  signRetrieveSwapTx(
-    param: GRpcClient.TxParam<GRpcClient.RetrieveSwapTx>
-  ): Promise<GRpcClient.Transaction>;
-  signTransferTx(param: GRpcClient.TxParam<GRpcClient.TransferTx>): Promise<GRpcClient.Transaction>;
-  signRevokeTetherTx(
-    param: GRpcClient.TxParam<GRpcClient.RevokeTetherTx>
-  ): Promise<GRpcClient.Transaction>;
-  signDeactivateProtocolTx(
-    param: GRpcClient.TxParam<GRpcClient.DeactivateProtocolTx>
-  ): Promise<GRpcClient.Transaction>;
-  signPokeTx(param: GRpcClient.TxParam<GRpcClient.PokeTx>): Promise<GRpcClient.Transaction>;
-  signCreateAssetTx(
-    param: GRpcClient.TxParam<GRpcClient.CreateAssetTx>
-  ): Promise<GRpcClient.Transaction>;
-  signDepositTetherTx(
-    param: GRpcClient.TxParam<GRpcClient.DepositTetherTx>
-  ): Promise<GRpcClient.Transaction>;
-  signExchangeTetherTx(
-    param: GRpcClient.TxParam<GRpcClient.ExchangeTetherTx>
-  ): Promise<GRpcClient.Transaction>;
-  signConsumeAssetTx(
-    param: GRpcClient.TxParam<GRpcClient.ConsumeAssetTx>
-  ): Promise<GRpcClient.Transaction>;
-  signSetupSwapTx(
-    param: GRpcClient.TxParam<GRpcClient.SetupSwapTx>
-  ): Promise<GRpcClient.Transaction>;
-  signApproveWithdrawTx(
-    param: GRpcClient.TxParam<GRpcClient.ApproveWithdrawTx>
-  ): Promise<GRpcClient.Transaction>;
-  signUpdateAssetTx(
-    param: GRpcClient.TxParam<GRpcClient.UpdateAssetTx>
-  ): Promise<GRpcClient.Transaction>;
-  signRevokeSwapTx(
-    param: GRpcClient.TxParam<GRpcClient.RevokeSwapTx>
-  ): Promise<GRpcClient.Transaction>;
-  signExchangeTx(param: GRpcClient.TxParam<GRpcClient.ExchangeTx>): Promise<GRpcClient.Transaction>;
-  signWithdrawTetherTx(
-    param: GRpcClient.TxParam<GRpcClient.WithdrawTetherTx>
-  ): Promise<GRpcClient.Transaction>;
-  signActivateProtocolTx(
-    param: GRpcClient.TxParam<GRpcClient.ActivateProtocolTx>
-  ): Promise<GRpcClient.Transaction>;
-  signApproveTetherTx(
-    param: GRpcClient.TxParam<GRpcClient.ApproveTetherTx>
-  ): Promise<GRpcClient.Transaction>;
-  signUpgradeNodeTx(
-    param: GRpcClient.TxParam<GRpcClient.UpgradeNodeTx>
-  ): Promise<GRpcClient.Transaction>;
-  signDepositTokenTx(
-    param: GRpcClient.TxParam<GRpcClient.DepositTokenTx>
-  ): Promise<GRpcClient.Transaction>;
-  signAcquireAssetTx(
-    param: GRpcClient.TxParam<GRpcClient.AcquireAssetTx>
-  ): Promise<GRpcClient.Transaction>;
-  signStakeTx(param: GRpcClient.TxParam<GRpcClient.StakeTx>): Promise<GRpcClient.Transaction>;
-  multiSignDepositTetherTx(
-    param: GRpcClient.TxParam<GRpcClient.DepositTetherTx>
-  ): Promise<GRpcClient.Transaction>;
-  multiSignExchangeTetherTx(
-    param: GRpcClient.TxParam<GRpcClient.ExchangeTetherTx>
-  ): Promise<GRpcClient.Transaction>;
-  multiSignConsumeAssetTx(
-    param: GRpcClient.TxParam<GRpcClient.ConsumeAssetTx>
-  ): Promise<GRpcClient.Transaction>;
-  multiSignExchangeTx(
-    param: GRpcClient.TxParam<GRpcClient.ExchangeTx>
-  ): Promise<GRpcClient.Transaction>;
-
-  /**
-   * List generated transaction send methods
-   *
-   * @returns {object}
-   */
-  getTxEncodeMethods(): any;
-  /**
-   * List generated transaction sign methods
-   *
-   * @returns {object}
-   */
-  getTxSignMethods(): any;
-  /**
-   * List generated transaction multi sign methods
-   *
-   * @returns {object}
-   */
-  getTxMultiSignMethods(): any;
 }
 
 declare namespace forge_abi {
@@ -3266,70 +2856,70 @@ declare namespace GraphQLClient {
   }
 
   export enum StatusCode {
-    PROTOCOL_NOT_RUNNING,
-    INVALID_MONIKER,
-    INVALID_DEPOSIT_TARGET,
-    INSUFFICIENT_DELEGATION,
-    INVALID_STAKE_STATE,
+    INSUFFICIENT_GAS,
+    INVALID_DEPOSIT,
+    ACCOUNT_MIGRATED,
+    INVALID_DEACTIVATION,
     UNTRANSFERRABLE_ASSET,
-    INVALID_ASSET,
-    INSUFFICIENT_FUND,
-    INVALID_REQUEST,
-    INVALID_TX,
-    INVALID_MULTISIG,
-    PROTOCOL_NOT_ACTIVATED,
-    INVALID_NONCE,
-    INSUFFICIENT_DATA,
-    INVALID_SIGNATURE,
-    TOO_MANY_TXS,
     INVALID_WITHDRAW_TX,
-    INVALID_FORGE_STATE,
-    EXCEED_DEPOSIT_CAP,
-    EXPIRED_WALLET_TOKEN,
+    READONLY_ASSET,
+    INVALID_CUSTODIAN,
+    INVALID_RECEIVER_STATE,
+    INVALID_DEPOSIT_VALUE,
+    INVALID_STAKE_STATE,
+    BANNED_UNSTAKE,
+    INVALID_REQUEST,
+    EXPIRED_TX,
+    INSUFFICIENT_STAKE,
+    INVALID_DEPOSIT_TARGET,
+    FORBIDDEN,
+    WITHDRAW_ITEM_MISSING,
+    INVALID_PASSPHRASE,
+    TOO_MANY_TXS,
+    INVALID_MONIKER,
+    INVALID_OWNER,
+    UNSUPPORTED_STAKE,
+    INVALID_SENDER_STATE,
+    PROTOCOL_NOT_PAUSED,
+    SENDER_WITHDRAW_ITEMS_FULL,
+    INVALID_DELEGATION,
+    INVALID_WITHDRAWER,
+    PROTOCOL_NOT_RUNNING,
+    INVALID_SIGNER_STATE,
+    PROTOCOL_NOT_ACTIVATED,
+    EXPIRED_ASSET,
+    INSUFFICIENT_DELEGATION,
+    INVALID_DEPOSITOR,
+    INVALID_ASSET,
+    INTERNAL,
+    INSUFFICIENT_FUND,
     INVALID_HASHKEY,
     UNSUPPORTED_TX,
-    INSUFFICIENT_GAS,
-    INVALID_DELEGATION_TYPE_URL,
-    PROTOCOL_NOT_PAUSED,
-    READONLY_ASSET,
-    INVALID_DEPOSITOR,
-    INVALID_DEACTIVATION,
-    INVALID_DEPOSIT,
-    INSUFFICIENT_STAKE,
-    INVALID_DELEGATION_RULE,
-    INVALID_OWNER,
-    ACCOUNT_MIGRATED,
-    INTERNAL,
-    CONSUMED_ASSET,
-    INVALID_LOCK_STATUS,
-    INVALID_WITHDRAWER,
-    UNSUPPORTED_STAKE,
-    INVALID_EXPIRY_DATE,
-    INVALID_WALLET,
-    INVALID_DELEGATION,
-    INVALID_PASSPHRASE,
-    INVALID_TX_SIZE,
-    INVALID_SWAP,
-    SENDER_NOT_AUTHORIZED,
-    WITHDRAW_ITEM_MISSING,
-    EXPIRED_TX,
-    INVALID_RECEIVER_STATE,
-    BANNED_UNSTAKE,
-    INVALID_CHAIN_TYPE,
+    INVALID_CHAIN_ID,
+    EXCEED_DEPOSIT_CAP,
     STORAGE_RPC_ERROR,
     NOENT,
-    INVALID_DEPOSIT_VALUE,
-    INVALID_CUSTODIAN,
-    INVALID_CHAIN_ID,
-    TIMEOUT,
-    SENDER_WITHDRAW_ITEMS_FULL,
-    INVALID_SIGNER_STATE,
-    EXPIRED_ASSET,
-    INVALID_SENDER_STATE,
-    CONSENSUS_RPC_ERROR,
-    FORBIDDEN,
+    INVALID_NONCE,
+    INVALID_SIGNATURE,
+    INVALID_DELEGATION_TYPE_URL,
+    INVALID_EXPIRY_DATE,
+    INVALID_CHAIN_TYPE,
+    INVALID_TX,
+    INVALID_WALLET,
     DUPLICATE_TETHER,
+    CONSUMED_ASSET,
+    SENDER_NOT_AUTHORIZED,
+    INVALID_TX_SIZE,
+    INVALID_SWAP,
+    TIMEOUT,
+    EXPIRED_WALLET_TOKEN,
+    CONSENSUS_RPC_ERROR,
+    INVALID_MULTISIG,
+    INVALID_DELEGATION_RULE,
+    INVALID_FORGE_STATE,
+    INVALID_LOCK_STATUS,
     OK,
+    INSUFFICIENT_DATA,
   }
 
   export enum UpgradeAction {
