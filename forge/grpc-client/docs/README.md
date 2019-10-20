@@ -15,6 +15,9 @@ Please note that, due to internal implementation of google-protobuf, all `repeat
 * [GRpcClient](#GRpcClient)
   * [new GRpcClient(config)](#new_GRpcClient_new)
     * _instance_
+      * [fromUnitToToken(value)](#GRpcClient+fromUnitToToken) ⇒ `string`
+      * [fromTokenToUnit(amount)](#GRpcClient+fromTokenToUnit) ⇒ `BN`
+      * [toLocktime(number)](#GRpcClient+toLocktime) ⇒ `number`
       * [getType(x)](#GRpcClient+getType) ⇒ `class` \| `null`
       * [decodeTx(input)](#GRpcClient+decodeTx) ⇒ `object`
       * [getRpcMethods()](#GRpcClient+getRpcMethods) ⇒ `object`
@@ -396,6 +399,36 @@ Creates an instance of GRpcClient, and generate transaction sending and receivin
 | config            | `object` \| `string` | `tcp://127.0.0.1:28210`                           | config object, if a string passed, will be used as the endpoint |
 | [config.endpoint] | `string`             | `&quot;\&quot;tcp://127.0.0.1:28210\&quot;&quot;` | grpc endpoint the client can connect to                         |
 | [config.chainId]  | `string`             | `&quot;\&quot;\&quot;&quot;`                      | chainId used to construct transaction                           |
+
+### gRpcClient.fromUnitToToken(value) ⇒ `string`
+
+Format big number presentation amount to token number
+
+**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
+
+| Param | Type     |
+| ----- | -------- |
+| value | `string` |
+
+### gRpcClient.fromTokenToUnit(amount) ⇒ `BN`
+
+Encode amount to corresponding token big number presentation
+
+**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
+
+| Param  | Type     |
+| ------ | -------- |
+| amount | `number` |
+
+### gRpcClient.toLocktime(number) ⇒ `number`
+
+Converts a relative locktime to absolute locktime
+
+**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
+
+| Param  | Type     | Description                   |
+| ------ | -------- | ----------------------------- |
+| number | `number` | number of blocks want to lock |
 
 ### gRpcClient.getType(x) ⇒ `class` \| `null`
 

@@ -18,6 +18,9 @@ Please note that, due to internal implementation of google-protobuf, all `repeat
 * [GraphQLClient](#GraphQLClient)
   * [new GraphQLClient(config)](#new_GraphQLClient_new)
     * _instance_
+      * [fromUnitToToken(value)](#GraphQLClient+fromUnitToToken) ⇒ `string`
+      * [fromTokenToUnit(amount)](#GraphQLClient+fromTokenToUnit) ⇒ `BN`
+      * [toLocktime(number, \[options\])](#GraphQLClient+toLocktime) ⇒ `number`
       * [getTxSendMethods()](#GraphQLClient+getTxSendMethods) ⇒ `Array.<string>`
       * [getTxEncodeMethods()](#GraphQLClient+getTxEncodeMethods) ⇒ `Array.<string>`
       * [getTxSignMethods()](#GraphQLClient+getTxSignMethods) ⇒ `Array.<string>`
@@ -346,6 +349,37 @@ const client = new GraphQLClient('https://argon.abtnetwork.io/api');
 
 const res = await client.getChainInfo();
 ```
+
+### graphQLClient.fromUnitToToken(value) ⇒ `string`
+
+Format big number presentation amount to token number
+
+**Kind**: instance method of [`GraphQLClient`](#GraphQLClient)  
+
+| Param | Type     |
+| ----- | -------- |
+| value | `string` |
+
+### graphQLClient.fromTokenToUnit(amount) ⇒ `BN`
+
+Encode amount to corresponding token big number presentation
+
+**Kind**: instance method of [`GraphQLClient`](#GraphQLClient)  
+
+| Param  | Type     |
+| ------ | -------- |
+| amount | `number` |
+
+### graphQLClient.toLocktime(number, [options]) ⇒ `number`
+
+Converts a relative locktime to absolute locktime
+
+**Kind**: instance method of [`GraphQLClient`](#GraphQLClient)  
+
+| Param     | Type     | Default | Description                   |
+| --------- | -------- | ------- | ----------------------------- |
+| number    | `number` |         | number of blocks want to lock |
+| [options] | `object` | `{}`    | options to underlying methods |
 
 ### graphQLClient.getTxSendMethods() ⇒ `Array.<string>`
 

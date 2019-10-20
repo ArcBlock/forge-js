@@ -60,15 +60,26 @@ describe('GraphQLClient', () => {
   test('should support getBlock', async () => {
     try {
       const res = await client.getBlock(
-        { height: 1 },
+        { height: 1000 },
         { ignoreFields: ['block.invalidTxs', 'block.txs'] }
       );
       expect(res.code).toEqual('OK');
-      expect(res.block.height).toEqual('1');
+      expect(res.block.height).toEqual('1000');
     } catch (err) {
-      console.error(err.errors);
+      console.error(err.errors || err);
       expect(err).toBeFalsy();
     }
+  });
+
+  test('should format tokens', async () => {
+    expect(typeof client.fromUnitToToken).toEqual('function');
+    expect(typeof client.fromTokenToUnit).toEqual('function');
+
+    const amount = await client.fromUnitToToken('180000000000000000');
+    expect(amount.toString()).toEqual('18');
+
+    const amount2 = await client.fromTokenToUnit(0.18);
+    expect(amount2.toString()).toEqual('1800000000000000');
   });
 
   const wallet = fromRandom();

@@ -4,7 +4,15 @@ const snakeCase = require('lodash/snakeCase');
 const errorCodes = require('@arcblock/forge-proto/lib/status_code.json');
 const { transactions, multiSignTxs } = require('@arcblock/forge-proto/lite');
 const { createMessage, getMessageType } = require('@arcblock/forge-message/lite');
-const { bytesToHex, toBase58, toBase64, toHex, toBuffer } = require('@arcblock/forge-util');
+const {
+  bytesToHex,
+  toBase58,
+  toBase64,
+  toHex,
+  toBuffer,
+  fromTokenToUnit,
+  fromUnitToToken,
+} = require('@arcblock/forge-util');
 
 const debug = require('debug')(require('../package.json').name);
 
@@ -46,6 +54,40 @@ class GraphQLClient extends GraphQLClientBase {
   constructor(config = 'http://localhost:8210/api') {
     super(config);
     this._initTxMethods();
+  }
+
+  /**
+   * Format big number presentation amount to token number
+   *
+   * @param {string} value
+   * @returns {string}
+   */
+  async fromUnitToToken(value) {
+    const { token } = await this._ensureContext();
+    return fromUnitToToken(value, token.decimal);
+  }
+
+  /**
+   * Encode amount to corresponding token big number presentation
+   *
+   * @param {number} amount
+   * @returns {BN}
+   */
+  async fromTokenToUnit(amount) {
+    const { token } = await this._ensureContext();
+    return fromTokenToUnit(amount, token.decimal);
+  }
+
+  /**
+   * Converts a relative locktime to absolute locktime
+   *
+   * @param {number} number - number of blocks want to lock
+   * @param {object} [options={}] - options to underlying methods
+   * @returns {number}
+   */
+  async toLocktime(number) {
+    const { info } = await this.getChainInfo();
+    return +info.blockHeight + number;
   }
 
   /**
@@ -314,6 +356,27 @@ class GraphQLClient extends GraphQLClientBase {
     error.code = code;
     error.type = type;
     return error;
+  }
+
+  /**
+   * Ensure a connection is bootstrapped with some meta info fetched from chain node
+   *
+   * @private
+   * @param {string} [conn=undefined]
+   * @returns {object}
+   */
+  async _ensureContext() {
+    if (!this.context) {
+      const [{ state }, { info }] = await Promise.all([this.getForgeState(), this.getChainInfo()]);
+
+      this.context = {
+        token: state.token,
+        poke: state.txConfig.poke,
+        chainId: info.network,
+      };
+    }
+
+    return this.context;
   }
 }
 

@@ -46,6 +46,19 @@ describe('#getTxSendMethods', () => {
     expect(typeof client.multiSignExchangeTx).toEqual('function');
     expect(methods.multiSignExchangeTx).toEqual('ExchangeTx');
   });
+
+  if (!process.env.CI) {
+    test('should format tokens', async () => {
+      expect(typeof client.fromUnitToToken).toEqual('function');
+      expect(typeof client.fromTokenToUnit).toEqual('function');
+
+      const amount = await client.fromUnitToToken('18000000000000000000');
+      expect(amount.toString()).toEqual('18');
+
+      const amount2 = await client.fromTokenToUnit(0.18);
+      expect(amount2.toString()).toEqual('180000000000000000');
+    });
+  }
 });
 
 describe('#magicMethods', () => {

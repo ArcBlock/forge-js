@@ -19,6 +19,27 @@ declare class GRpcClient {
    */
   constructor(config?: any);
   /**
+   * Format big number presentation amount to token number
+   *
+   * @param {string} value
+   * @returns {string}
+   */
+  fromUnitToToken(value: string): string;
+  /**
+   * Encode amount to corresponding token big number presentation
+   *
+   * @param {number} amount
+   * @returns {BN}
+   */
+  fromTokenToUnit(amount: number): any;
+  /**
+   * Converts a relative locktime to absolute locktime
+   *
+   * @param {number} number - number of blocks want to lock
+   * @returns {number}
+   */
+  toLocktime(number: number): number;
+  /**
    * Get protobuf message class by name, only supports forge-built-in types
    *
    * @method

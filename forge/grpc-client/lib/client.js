@@ -19,6 +19,8 @@ const {
   toBase64,
   toBuffer,
   toHex,
+  fromTokenToUnit,
+  fromUnitToToken,
 } = require('@arcblock/forge-util');
 // eslint-disable-next-line global-require
 const debug = require('debug')(`${require('../package.json').name}`);
@@ -67,8 +69,39 @@ class GRpcClient {
     this._initRpcClients();
     this._initRpcMethods();
     this._initTxMethods();
+  }
 
-    Object.freeze(this);
+  /**
+   * Format big number presentation amount to token number
+   *
+   * @param {string} value
+   * @returns {string}
+   */
+  async fromUnitToToken(value) {
+    const { token } = await this._ensureContext();
+    return fromUnitToToken(value, token.decimal);
+  }
+
+  /**
+   * Encode amount to corresponding token big number presentation
+   *
+   * @param {number} amount
+   * @returns {BN}
+   */
+  async fromTokenToUnit(amount) {
+    const { token } = await this._ensureContext();
+    return fromTokenToUnit(amount, token.decimal);
+  }
+
+  /**
+   * Converts a relative locktime to absolute locktime
+   *
+   * @param {number} number - number of blocks want to lock
+   * @returns {number}
+   */
+  async toLocktime(number) {
+    const { info } = await this.getChainInfo();
+    return +info.blockHeight + number;
   }
 
   /**
@@ -576,6 +609,27 @@ class GRpcClient {
     error.errcode = code;
     error.errno = status;
     return error;
+  }
+
+  /**
+   * Ensure a connection is bootstrapped with some meta info fetched from chain node
+   *
+   * @private
+   * @param {string} [conn=undefined]
+   * @returns {object}
+   */
+  async _ensureContext() {
+    if (!this.context) {
+      const [{ state }, { info }] = await Promise.all([this.getForgeState(), this.getChainInfo()]);
+
+      this.context = {
+        token: state.token,
+        poke: state.txConfig.poke,
+        chainId: info.network,
+      };
+    }
+
+    return this.context;
   }
 }
 
