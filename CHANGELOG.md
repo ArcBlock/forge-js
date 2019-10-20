@@ -1,3 +1,10 @@
+## 0.39.4 (October 20, 2019)
+
+- chore: extract client extensions to a separate package
+- chore: update docs for forge-config and tx-util
+- chore: move token util and locktime util to clients
+- update readme
+
 ## 0.39.3 (October 20, 2019)
 
 - chore: add more user friendly `fromTokenToUnit` and `fromUnitToToken` util
