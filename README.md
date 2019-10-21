@@ -24,12 +24,13 @@
 [![docs](https://img.shields.io/badge/powered%20by-arcblock-green.svg)](https://docs.arcblock.io)
 [![Gitter](https://badges.gitter.im/ArcBlock/community.svg)](https://gitter.im/ArcBlock/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
-> Last updated at 10/19/2019, 11:10:52 PM
+> Last updated at 10/21/2019, 11:41:59 AM
 
 Javascript SDK for [forge](https://docs.arcblock.io/forge/latest/), which is an awesome framework to write distributed blockchain applications.
 
 ## Packages
 
+- [client-extension <img src="https://img.shields.io/npm/v/@arcblock/client-extension.svg" alt="Version">](https://www.npmjs.com/package/@arcblock/client-extension)
 - [forge-config <img src="https://img.shields.io/npm/v/@arcblock/forge-config.svg" alt="Version">](https://www.npmjs.com/package/@arcblock/forge-config)
 - [forge-message <img src="https://img.shields.io/npm/v/@arcblock/forge-message.svg" alt="Version">](https://www.npmjs.com/package/@arcblock/forge-message)
 - [forge-proto <img src="https://img.shields.io/npm/v/@arcblock/forge-proto.svg" alt="Version">](https://www.npmjs.com/package/@arcblock/forge-proto)
