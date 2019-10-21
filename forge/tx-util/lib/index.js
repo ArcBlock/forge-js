@@ -8,6 +8,9 @@ const debug = require('debug')(require('../package.json').name);
  * Generate a transaction verifier by tx hash
  * Emit events on transaction included in a block
  *
+ *  - `error`: when there is something wrong when verify the transaction
+ *  - `done`: when the transaction is successfully verified
+ *
  * @param {object} params
  * @param {string} params.hash - tx hash to check
  * @param {string} params.chainHost - on which chain to check the tx

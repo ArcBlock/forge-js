@@ -1,9 +1,9 @@
 const EventEmitter = require('wolfy87-eventemitter');
-const GraphqlClient = require('./base');
+const GraphQLClient = require('./base');
 
 function DummySocket() {}
 
-class GraphqlClientLite extends GraphqlClient {
+class GraphqlClientLite extends GraphQLClient {
   _getSocketImplementation() {
     return DummySocket;
   }

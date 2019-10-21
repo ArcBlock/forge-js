@@ -15,13 +15,7 @@ Please note that, due to internal implementation of google-protobuf, all `repeat
 * [GRpcClient](#GRpcClient)
   * [new GRpcClient(config)](#new_GRpcClient_new)
     * _instance_
-      * [getType(x)](#GRpcClient+getType) ⇒ `class` \| `null`
-      * [decodeTx(input)](#GRpcClient+decodeTx) ⇒ `object`
       * [getRpcMethods()](#GRpcClient+getRpcMethods) ⇒ `object`
-      * [getTxSendMethods()](#GRpcClient+getTxSendMethods) ⇒ `object`
-      * [getTxEncodeMethods()](#GRpcClient+getTxEncodeMethods) ⇒ `object`
-      * [getTxSignMethods()](#GRpcClient+getTxSignMethods) ⇒ `object`
-      * [getTxMultiSignMethods()](#GRpcClient+getTxMultiSignMethods) ⇒ `object`
       * [createTx(params)](#GRpcClient+createTx) ⇒ [`Promise.<ResponseCreateTx>`](#GRpcClient.ResponseCreateTx)
       * [multisig(params)](#GRpcClient+multisig) ⇒ [`Promise.<ResponseMultisig>`](#GRpcClient.ResponseMultisig)
       * [sendTx(params)](#GRpcClient+sendTx) ⇒ [`Promise.<ResponseSendTx>`](#GRpcClient.ResponseSendTx)
@@ -397,55 +391,9 @@ Creates an instance of GRpcClient, and generate transaction sending and receivin
 | [config.endpoint] | `string`             | `&quot;\&quot;tcp://127.0.0.1:28210\&quot;&quot;` | grpc endpoint the client can connect to                         |
 | [config.chainId]  | `string`             | `&quot;\&quot;\&quot;&quot;`                      | chainId used to construct transaction                           |
 
-### gRpcClient.getType(x) ⇒ `class` \| `null`
-
-Get protobuf message class by name, only supports forge-built-in types
-
-**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
-**Returns**: `class` \| `null` - message type  
-
-| Param | Type     |
-| ----- | -------- |
-| x     | `string` |
-
-### gRpcClient.decodeTx(input) ⇒ `object`
-
-Decode transaction buffer/base64/base58 to an object
-
-**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
-**Returns**: `object` - transaction object  
-
-| Param | Type                                      |
-| ----- | ----------------------------------------- |
-| input | `buffer` \| `hex` \| `base48` \| `base64` |
-
 ### gRpcClient.getRpcMethods() ⇒ `object`
 
 List standard rpc methods
-
-**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
-
-### gRpcClient.getTxSendMethods() ⇒ `object`
-
-List generated transaction send methods
-
-**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
-
-### gRpcClient.getTxEncodeMethods() ⇒ `object`
-
-List generated transaction send methods
-
-**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
-
-### gRpcClient.getTxSignMethods() ⇒ `object`
-
-List generated transaction sign methods
-
-**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
-
-### gRpcClient.getTxMultiSignMethods() ⇒ `object`
-
-List generated transaction multi sign methods
 
 **Kind**: instance method of [`GRpcClient`](#GRpcClient)  
 

@@ -6,7 +6,7 @@
  * @public
  * @static
  * @param {string} configPath
- * @returns object
+ * @returns {object}
  * @throws Error when file not found
  * @example
  const { parseConfig } = require('@arcblock/forge-config');

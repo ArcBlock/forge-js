@@ -1,6 +1,6 @@
 {
-  "name": "@arcblock/grpc-client",
-  "description": "gRPC client to read/write data on forge powered blockchain",
+  "name": "@arcblock/client-extension",
+  "description": "Utility to generate methods on GraphQLClient or GRpcClient",
   "version": "0.39.3",
   "author": {
     "name": "wangshijun",
@@ -9,7 +9,7 @@
   },
   "engines": {
     "node": ">=0.10.0",
-    "forge": ">=0.25.3"
+    "forge": ">=0.11.1"
   },
   "bugs": {
     "url": "https://github.com/ArcBlock/forge-js/issues",
@@ -19,17 +19,15 @@
     "access": "public"
   },
   "dependencies": {
-    "@arcblock/client-extension": "^0.39.3",
-    "@arcblock/forge-proto": "^0.39.1",
     "@arcblock/forge-message": "^0.39.3",
-    "debug": "^4.1.1",
-    "grpc": "^1.24.0",
-    "lodash": "^4.17.15"
-  },
-  "devDependencies": {
-    "@arcblock/did-util": "^0.39.3",
+    "@arcblock/forge-proto": "^0.39.1",
     "@arcblock/forge-util": "^0.39.3",
     "@arcblock/forge-wallet": "^0.39.3",
+    "@arcblock/mcrypto": "^0.39.3",
+    "lodash": "^4.17.14",
+    "debug": "^4.1.1"
+  },
+  "devDependencies": {
     "jest": "^24.8.0",
     "remark-cli": "^5.0.0",
     "remark-preset-github": "^0.0.9"
@@ -45,7 +43,7 @@
       ]
     ]
   },
-  "homepage": "https://github.com/ArcBlock/forge-js/tree/master/packages/grpc-client",
+  "homepage": "https://github.com/ArcBlock/forge-js/tree/master/packages/client-extension",
   "keywords": [
     "forge",
     "blockchain",
@@ -54,31 +52,24 @@
     "nodejs"
   ],
   "license": "Apache-2.0",
-  "main": "./index.js",
+  "main": "./lib/index.js",
   "files": [
-    "index.d.ts",
-    "index.js",
     "lib"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/ArcBlock/forge-js/tree/master/packages/grpc-client"
+    "url": "https://github.com/ArcBlock/forge-js/tree/master/packages/client-extension"
   },
   "scripts": {
-    "lint": "eslint lib index.js tests examples",
-    "lint:fix": "eslint --fix lib index.js tests examples",
-    "upgrade": "yarn generate-types && yarn generate-apis && yarn generate-docs && yarn format-docs && yarn generate-dts && yarn lint:fix",
-    "generate-apis": "node tools/generate-apis.js",
-    "generate-docs": "jsdoc2md lib/client.js lib/types.js > docs/README.md",
-    "generate-types": "node tools/generate-types.js",
-    "format-docs": "remark . -o",
-    "generate-dts": "j2d index.js && ./tools/patch-dts.sh && node tools/generate-dts.js",
+    "lint": "eslint lib tests",
+    "lint:fix": "eslint --fix lib tests",
     "docs": "yarn generate-dts && yarn generate-docs && yarn cleanup-docs && yarn format-docs",
     "cleanup-docs": "node ../../tools/cleanup-docs.js docs/README.md $npm_package_name",
-    "examples": "node tools/run-example.js",
+    "generate-dts": "j2d lib/index.js",
+    "generate-docs": "jsdoc2md lib/index.js > docs/README.md",
+    "format-docs": "remark . -o",
     "precommit": "CI=1 yarn test",
     "prepush": "CI=1 yarn test",
-    "repl": "node -r ./tools/repl.js",
     "test": "yarn lint && node tools/jest.js",
     "coverage": "yarn lint && yarn test -- --coverage"
   },

@@ -88,32 +88,6 @@ module.exports = ({ message, util, wallet, clients }) => {
   const getClient = (conn = undefined) => getConnection(conn).client;
 
   /**
-   * Ensure a connection is bootstrapped with some meta info fetched from chain node
-   *
-   * @param {string} [conn=undefined]
-   * @returns {object}
-   */
-  const ensureContext = async (conn = undefined) => {
-    const connection = getConnection(conn);
-    if (!connection.context) {
-      const [{ state }, { info }] = await Promise.all([
-        connection.client.getForgeState(),
-        connection.client.getChainInfo(),
-      ]);
-
-      connection.context = {
-        token: state.token,
-        poke: state.txConfig.poke,
-        chainId: info.network,
-      };
-
-      debug('ensure context for connection', connection.name, connection.context);
-    }
-
-    return connection.context;
-  };
-
-  /**
    * Wrap all methods from `source` object and attach them to target object
    * We can have a much cleaner implementation with ES6 proxy here
    * But because it's not well supported by js runtime environments yet
@@ -237,42 +211,6 @@ module.exports = ({ message, util, wallet, clients }) => {
         connections[name] = { name, client, options };
         wrapMethods(client, sdk);
       }
-    },
-
-    /**
-     * Converts a relative locktime to absolute locktime
-     *
-     * @param {number} number - number of blocks want to lock
-     * @param {object} [options={}] - options to underlying methods
-     * @returns {number}
-     */
-    async toLocktime(number, options = {}) {
-      const { info } = await this.getChainInfo(options);
-      return +info.blockHeight + number;
-    },
-
-    /**
-     * Format big number presentation amount to token number
-     *
-     * @param {string} value
-     * @param {object} [options={}]
-     * @returns {string}
-     */
-    async fromUnitToToken(value, options = {}) {
-      const { token } = await ensureContext(options.conn);
-      return util.fromUnitToToken(value, token.decimal);
-    },
-
-    /**
-     * Encode amount to corresponding token big number presentation
-     *
-     * @param {number} amount
-     * @param {object} [options={}]
-     * @returns {BN}
-     */
-    async fromTokenToUnit(amount, options = {}) {
-      const { token } = await ensureContext(options.conn);
-      return util.fromTokenToUnit(amount, token.decimal);
     },
   };
 
