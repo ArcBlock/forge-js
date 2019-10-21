@@ -1,7 +1,7 @@
 {
   "name": "@arcblock/did-auth",
   "description": "Helper function to setup DID authentication support on a node.js web server",
-  "version": "0.39.3",
+  "version": "0.39.4",
   "author": {
     "name": "wangshijun",
     "email": "shijun@arcblock.io",
@@ -16,12 +16,12 @@
   },
   "dependencies": {
     "@arcblock/did": "^0.39.3",
-    "@arcblock/forge-sdk": "^0.39.3",
+    "@arcblock/forge-sdk": "^0.39.4",
     "@arcblock/forge-util": "^0.39.3",
     "@arcblock/forge-wallet": "^0.39.3",
     "@arcblock/mcrypto": "^0.39.3",
     "@arcblock/swap-retriever": "^0.39.3",
-    "@arcblock/tx-util": "^0.39.3",
+    "@arcblock/tx-util": "^0.39.4",
     "debug": "^4.1.1",
     "json-stable-stringify": "^1.0.1",
     "lodash.get": "^4.4.2"

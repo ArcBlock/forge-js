@@ -1,7 +1,7 @@
 {
   "name": "@arcblock/tcp-server",
   "description": "Node.js SDK for Forge Framework by ArcBlock",
-  "version": "0.39.3",
+  "version": "0.39.4",
   "author": {
     "name": "wangshijun",
     "email": "shijun@arcblock.io",
@@ -26,7 +26,7 @@
     "lodash": "^4.17.14"
   },
   "devDependencies": {
-    "@arcblock/forge-config": "^0.39.1",
+    "@arcblock/forge-config": "^0.39.4",
     "jest": "^24.8.0",
     "remark-cli": "^5.0.0",
     "remark-preset-github": "^0.0.9"
