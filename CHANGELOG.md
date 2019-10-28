@@ -1,3 +1,10 @@
+## 0.39.5 (October 28, 2019)
+
+- chore: upgrade graphql-client to forge v0.39.3
+- chore: upgrade grpc-client to forge v0.39.3
+- chore: upgrade forge-proto to forge v0.39.3
+- update readme
+
 ## 0.39.4 (October 20, 2019)
 
 - chore: extract client extensions to a separate package

@@ -32,8 +32,39 @@ const revokeDelegateTxPb = require('./lib/revoke_delegate_tx_pb.js');
 const serviceGrpcPb = require('./lib/service_grpc_pb.js');
 const vendorPb = require('./lib/vendor_pb.js');
 
-
-const forgeTypes = Object.assign({}, typePb, txPb, traceTypePb, statePb, enumPb, servicePb, rpcPb, withdrawTokenTxPb, delegateTxPb, accountMigrateTxPb, transferTxPb, revokeSwapTxPb, declareTxPb, acquireAssetTxPb, deactivateProtocolTxPb, retrieveSwapTxPb, createAssetTxPb, setupSwapTxPb, consumeAssetTxPb, exchangeTxPb, deployProtocolTxPb, activateProtocolTxPb, approveWithdrawTxPb, upgradeNodeTxPb, updateAssetTxPb, revokeWithdrawTxPb, depositTokenTxPb, stakeTxPb, pokeTxPb, revokeDelegateTxPb);
+const forgeTypes = Object.assign(
+  {},
+  typePb,
+  txPb,
+  traceTypePb,
+  statePb,
+  enumPb,
+  servicePb,
+  rpcPb,
+  withdrawTokenTxPb,
+  delegateTxPb,
+  accountMigrateTxPb,
+  transferTxPb,
+  revokeSwapTxPb,
+  declareTxPb,
+  acquireAssetTxPb,
+  deactivateProtocolTxPb,
+  retrieveSwapTxPb,
+  createAssetTxPb,
+  setupSwapTxPb,
+  consumeAssetTxPb,
+  exchangeTxPb,
+  deployProtocolTxPb,
+  activateProtocolTxPb,
+  approveWithdrawTxPb,
+  upgradeNodeTxPb,
+  updateAssetTxPb,
+  revokeWithdrawTxPb,
+  depositTokenTxPb,
+  stakeTxPb,
+  pokeTxPb,
+  revokeDelegateTxPb
+);
 const forgeServices = Object.assign({}, serviceGrpcPb);
 const vendorTypes = Object.assign({}, vendorPb);
 const vendorServices = {};
