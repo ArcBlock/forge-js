@@ -16,11 +16,6 @@ const {
 } = require('@arcblock/forge-util');
 const debug = require('debug')(require('../package.json').name);
 
-// Alias methods
-const aliases = {
-  PokeTx: 'checkin',
-};
-
 /**
  * Generate extension methods on the fly
  *
@@ -258,14 +253,13 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
      * @param {object} [input.tx.chainId] - the chainId
      * @param {object} [input.tx.signature] - the signature
      * @param {object} [input.tx.signatures] - the signatures
-     * @param {object} [input.token=undefined] - which token to unlock the wallet
      * @param {object} [input.commit=false] - whether we should wait for transaction commit
      * @param {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
      * @param {object} [input.signature] - the signature of the tx, if exist, we will not sign the transaction
      * @param {object} input.delegatee - the wallet address that delegated permissions to the `input.wallet` address
      * @returns {Promise<string>}
      */
-    const txSendFn = async ({ tx, wallet, signature, delegatee, token, commit = false }) => {
+    const txSendFn = async ({ tx, wallet, signature, delegatee, commit = false }) => {
       let encoded;
       if (signature) {
         encoded = tx;
@@ -273,10 +267,6 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
       } else if (tx.signature) {
         const res = await txEncodeFn({ tx, wallet, delegatee });
         encoded = res.object;
-      } else if (token) {
-        const res1 = await txEncodeFn({ tx, wallet, delegatee });
-        const res2 = await client.createTx(Object.assign({ wallet, token }, res1.object));
-        encoded = res2.tx;
       } else {
         const res = await txEncodeFn({ tx, wallet, delegatee });
         encoded = res.object;
@@ -295,7 +285,7 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
           } else {
             const txObj = createMessage('Transaction', encoded).toObject();
             debug(`sendTx.${x}.txObj`, txObj);
-            const { hash } = await client.sendTx({ tx: txObj, token, commit });
+            const { hash } = await client.sendTx({ tx: txObj, commit });
             resolve(hash);
           }
         } catch (err) {
@@ -317,10 +307,6 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
     const sendMethod = camelCase(`send_${x}`);
     txSendFn.__tx__ = sendMethod;
     client[sendMethod] = txSendFn;
-    // Add alias
-    if (aliases[x]) {
-      client[aliases[x]] = txSendFn;
-    }
 
     const _formatEncodedTx = async (tx, encoding) => {
       if (encoding) {
@@ -379,6 +365,8 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
       client[multiSignMethod] = txMultiSignFn;
     }
   });
+
+  // Shortcut methods to send transactions
 };
 
 module.exports = { createExtensionMethods };

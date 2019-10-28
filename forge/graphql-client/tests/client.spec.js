@@ -13,7 +13,7 @@ describe('GraphQLClient', () => {
   });
 
   let client = new GraphQLClient('http://127.0.0.1:8210/api');
-  test('should have alias methods', () => {
+  test.skip('should have alias methods', () => {
     expect(typeof client.checkin).toEqual('function');
   });
 
