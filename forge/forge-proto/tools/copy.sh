@@ -9,6 +9,7 @@ cp $FORGE_SDK_PROTO_GEN_DIR/*.js lib/
 cp $FORGE_SDK_PROTO_GEN_DIR/*.json lib/
 cp $FORGE_TX_PROTO_GEN_DIR/*js lib/
 cp $FORGE_TX_PROTO_GEN_DIR/*json lib/
+rm lib/*_tether_tx_pb.js
 sh ./tools/patch.sh
 
 # merge spec
