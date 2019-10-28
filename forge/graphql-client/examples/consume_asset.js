@@ -11,7 +11,7 @@ const GraphqlClient = require('@arcblock/graphql-client');
 const { toAssetAddress } = require('@arcblock/did-util');
 const { fromRandom } = require('@arcblock/forge-wallet');
 
-const endpoint = process.env.FORGE_API_HOST || 'http://127.0.0.1:8210'; // testnet
+const endpoint = process.env.FORGE_API_HOST || 'http://127.0.0.1:8212'; // testnet
 
 const client = new GraphqlClient(`${endpoint}/api`);
 const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
@@ -23,7 +23,7 @@ const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
     console.log({ issuer: issuer.toJSON(), consumer: consumer.toJSON() });
 
     // 1. declare issuer
-    let res = await client.sendDeclareTx({
+    let hash = await client.sendDeclareTx({
       tx: {
         itx: {
           moniker: 'issuer',
@@ -32,10 +32,10 @@ const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
       wallet: issuer,
     });
     console.log('issuer account', `${endpoint}/node/explorer/accounts/${issuer.toAddress()}`);
-    console.log('issuer tx', `${endpoint}/node/explorer/txs/${res}`);
+    console.log('issuer tx', `${endpoint}/node/explorer/txs/${hash}`);
 
     // 2. declare consumer
-    res = await client.sendDeclareTx({
+    hash = await client.sendDeclareTx({
       tx: {
         itx: {
           moniker: 'consumer',
@@ -44,13 +44,14 @@ const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
       wallet: consumer,
     });
     console.log('consumer account', `${endpoint}/node/explorer/accounts/${consumer.toAddress()}`);
-    console.log('consumer tx', `${endpoint}/node/explorer/txs/${res}`);
+    console.log('consumer tx', `${endpoint}/node/explorer/txs/${hash}`);
 
     // 3. create asset for issuer
     const asset = {
       moniker: 'asset_to_be_consumed',
       readonly: true,
       transferrable: true,
+      issuer: issuer.toAddress(),
       data: {
         typeUrl: 'json',
         value: {
@@ -61,20 +62,21 @@ const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
     };
     const assetAddress = toAssetAddress(asset);
     asset.address = assetAddress;
-    res = await client.sendCreateAssetTx({
+    hash = await client.sendCreateAssetTx({
       tx: { itx: asset },
       wallet: issuer,
     });
     console.log('view asset state', `${endpoint}/node/explorer/assets/${assetAddress}`);
-    console.log('view asset tx', `${endpoint}/node/explorer/txs/${res}`);
+    console.log('view asset tx', `${endpoint}/node/explorer/txs/${hash}`);
     await sleep(3000);
 
     // 4. transfer asset from issuer to consumer
-    res = await client.sendTransferTx({
+    hash = await client.sendTransferTx({
       tx: { itx: { assets: [assetAddress], to: consumer.toAddress() } },
       wallet: issuer,
     });
-    console.log('view transfer tx', `${endpoint}/node/explorer/txs/${res}`);
+    console.log('view transfer tx', `${endpoint}/node/explorer/txs/${hash}`);
+    await sleep(3000);
 
     // 5. Start multisig for asset consume
     const tx = await client.signConsumeAssetTx({
@@ -101,13 +103,13 @@ const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
     console.log('consumer.signed', tx2);
 
     // 5.3 Send the consume tx
-    await sleep(3000);
-    res = await client.sendConsumeAssetTx({
+    await sleep(5000);
+    hash = await client.sendConsumeAssetTx({
       tx: tx2,
-      wallet: issuer,
+      wallet: consumer,
       signature: tx2.signature,
     });
-    console.log('view consume tx', `${endpoint}/node/explorer/txs/${res}`);
+    console.log('view consume tx', `${endpoint}/node/explorer/txs/${hash}`);
   } catch (err) {
     console.error(err);
     console.log(JSON.stringify(err.errors));

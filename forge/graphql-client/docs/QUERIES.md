@@ -1,6 +1,6 @@
 # Forge GraphQL API List
 
-> Updated on 2019-10-17T03:32:49.180Z
+> Updated on 2019-10-28T02:27:43.887Z
 
 
 ## Table of Contents
@@ -212,6 +212,7 @@
         }
         tx {
           chainId
+          delegator
           from
           itxJson
           nonce
@@ -254,6 +255,7 @@
         }
         tx {
           chainId
+          delegator
           from
           itxJson
           nonce
@@ -1022,6 +1024,7 @@ No arguments
       }
       tx {
         chainId
+        delegator
         from
         itxJson
         nonce
@@ -1064,6 +1067,7 @@ No arguments
       nTxs
       txs {
         chainId
+        delegator
         from
         itxJson
         nonce
@@ -1148,6 +1152,7 @@ No arguments
       valid
       tx {
         chainId
+        delegator
         from
         itxJson
         nonce
@@ -1434,6 +1439,7 @@ No arguments
       valid
       tx {
         chainId
+        delegator
         from
         itxJson
         nonce
@@ -1474,6 +1480,7 @@ subscription {
     topic
     accountMigrate {
       chainId
+      delegator
       from
       itxJson
       nonce
@@ -1536,6 +1543,7 @@ subscription {
     }
     activateProtocol {
       chainId
+      delegator
       from
       itxJson
       nonce
@@ -1554,6 +1562,7 @@ subscription {
     }
     approveWithdraw {
       chainId
+      delegator
       from
       itxJson
       nonce
@@ -1657,6 +1666,7 @@ subscription {
     }
     confirm {
       chainId
+      delegator
       from
       itxJson
       nonce
@@ -1675,6 +1685,7 @@ subscription {
     }
     consensusUpgrade {
       chainId
+      delegator
       from
       itxJson
       nonce
@@ -1693,6 +1704,7 @@ subscription {
     }
     createAsset {
       chainId
+      delegator
       from
       itxJson
       nonce
@@ -1711,6 +1723,7 @@ subscription {
     }
     deactivateProtocol {
       chainId
+      delegator
       from
       itxJson
       nonce
@@ -1729,6 +1742,7 @@ subscription {
     }
     declare {
       chainId
+      delegator
       from
       itxJson
       nonce
@@ -1747,6 +1761,7 @@ subscription {
     }
     declareFile {
       chainId
+      delegator
       from
       itxJson
       nonce
@@ -1765,6 +1780,7 @@ subscription {
     }
     delegate {
       chainId
+      delegator
       from
       itxJson
       nonce
@@ -1804,6 +1820,7 @@ subscription {
     }
     depositToken {
       chainId
+      delegator
       from
       itxJson
       nonce
@@ -1825,6 +1842,7 @@ subscription {
     }
     exchange {
       chainId
+      delegator
       from
       itxJson
       nonce
@@ -1962,6 +1980,7 @@ subscription {
     }
     revoke {
       chainId
+      delegator
       from
       itxJson
       nonce
@@ -1980,6 +1999,7 @@ subscription {
     }
     revokeDelegate {
       chainId
+      delegator
       from
       itxJson
       nonce
@@ -1998,6 +2018,7 @@ subscription {
     }
     revokeWithdraw {
       chainId
+      delegator
       from
       itxJson
       nonce
@@ -2016,6 +2037,7 @@ subscription {
     }
     stake {
       chainId
+      delegator
       from
       itxJson
       nonce
@@ -2049,6 +2071,7 @@ subscription {
     }
     sysUpgrade {
       chainId
+      delegator
       from
       itxJson
       nonce
@@ -2067,6 +2090,7 @@ subscription {
     }
     transfer {
       chainId
+      delegator
       from
       itxJson
       nonce
@@ -2085,6 +2109,7 @@ subscription {
     }
     updateAsset {
       chainId
+      delegator
       from
       itxJson
       nonce
@@ -2103,6 +2128,7 @@ subscription {
     }
     withdrawToken {
       chainId
+      delegator
       from
       itxJson
       nonce
