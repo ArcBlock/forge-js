@@ -19,12 +19,8 @@ const client = new GraphqlClient(`${endpoint}/api`);
   try {
     // Send without sign
     const user1 = fromRandom();
-    const hash1 = await client.sendDeclareTx({
-      tx: {
-        itx: {
-          moniker: `poke_user_${Math.round(Math.random() * 10000)}`,
-        },
-      },
+    const hash1 = await client.declare({
+      moniker: `poke_user_${Math.round(Math.random() * 10000)}`,
       wallet: user1,
     });
 

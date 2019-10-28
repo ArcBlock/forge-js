@@ -8,12 +8,9 @@
  * Run script with: `DEBUG=@arcblock/graphql-client node examples/atomic_swap.js`
  */
 
-const moment = require('moment');
 const GraphQLClient = require('@arcblock/graphql-client');
 const { getRandomBytes, Hasher } = require('@arcblock/mcrypto');
-const { toAssetAddress, toSwapAddress } = require('@arcblock/did-util');
 const { fromRandom } = require('@arcblock/forge-wallet');
-const { fromTokenToUnit } = require('@arcblock/forge-util');
 
 const appChain = new GraphQLClient({ endpoint: 'http://localhost:8211/api' });
 const assetChain = new GraphQLClient({ endpoint: 'http://localhost:8212/api' });
@@ -30,25 +27,11 @@ const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
     });
 
     const declare = async (wallet, moniker) => {
-      let res = await appChain.sendDeclareTx({
-        tx: {
-          itx: {
-            moniker,
-          },
-        },
-        wallet,
-      });
-      console.log(`declare.appChain.${moniker}`, res);
+      let hash = await appChain.declare({ moniker, wallet });
+      console.log(`declare.appChain.${moniker}`, hash);
 
-      res = await assetChain.sendDeclareTx({
-        tx: {
-          itx: {
-            moniker,
-          },
-        },
-        wallet,
-      });
-      console.log(`declare.assetChain.${moniker}`, res);
+      hash = await assetChain.declare({ moniker, wallet });
+      console.log(`declare.assetChain.${moniker}`, hash);
     };
 
     // declare
@@ -57,10 +40,8 @@ const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
 
     // 3. ensure asset for seller on app chain
     const ensureSellerAsset = async () => {
-      const asset = {
+      const [hash, address] = await appChain.createAsset({
         moniker: 'asset',
-        readonly: true,
-        transferrable: true,
         data: {
           typeUrl: 'json',
           value: {
@@ -68,96 +49,62 @@ const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
             sn: Math.random(),
           },
         },
-      };
-      const assetAddress = toAssetAddress(asset);
-      asset.address = assetAddress;
-      const res = await appChain.sendCreateAssetTx({
-        tx: { itx: asset },
         wallet: seller,
       });
-      console.log('ensureSellerAsset', res, assetAddress);
-      return asset;
+      console.log('ensureSellerAsset', hash, address);
+      return address;
     };
 
     // ensure token for buyer on asset chain
     const ensureBuyerToken = async () => {
-      const res = await assetChain.sendPokeTx({
-        tx: {
-          nonce: 0,
-          itx: {
-            date: moment(new Date().toISOString())
-              .utc()
-              .format('YYYY-MM-DD'),
-            address: 'zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz',
-          },
-        },
-        wallet: buyer,
-      });
-      console.log('ensureSellerAsset', res);
+      const hash = await assetChain.checkin({ wallet: buyer });
+      console.log('ensureSellerAsset', hash);
     };
 
     // setup swap on asset chain
     const doBuyerSetup = async (asset, hashlock) => {
-      const res = await assetChain.sendSetupSwapTx({
-        tx: {
-          itx: {
-            value: fromTokenToUnit(10),
-            assets: [],
-            receiver: seller.toAddress(),
-            hashlock,
-            locktime: 999999, // TODO: make this dynamic calculated
-          },
-        },
+      const hash = await assetChain.setupSwap({
+        token: 10,
+        assets: [],
+        receiver: seller.toAddress(),
+        hashlock,
         wallet: buyer,
       });
-      console.log('doBuyerSetup', res);
-      return res;
+      console.log('doBuyerSetup', hash);
+      return hash;
     };
 
     // setup swap on app chain
     const doSellerSetup = async (asset, hashlock) => {
-      const res = await appChain.sendSetupSwapTx({
-        tx: {
-          itx: {
-            value: fromTokenToUnit(0),
-            assets: [asset.address],
-            receiver: buyer.toAddress(),
-            hashlock,
-            locktime: 99999, // TODO: make this dynamic calculated and different from above
-          },
-        },
+      const hash = await appChain.setupSwap({
+        token: 0,
+        assets: [asset],
+        receiver: buyer.toAddress(),
+        hashlock,
         wallet: seller,
       });
-      console.log('doSellerSetup', res);
-      return res;
+      console.log('doSellerSetup', hash);
+      return hash;
     };
 
     // retrieve swap on app chain
     const doBuyerRetrieve = async (address, hashkey) => {
-      const res = await appChain.sendRetrieveSwapTx({
-        tx: {
-          itx: {
-            address,
-            hashkey,
-          },
-        },
+      const hash = await appChain.retrieveSwap({
+        address,
+        hashkey,
         wallet: buyer,
       });
-      console.log('doBuyerRetrieve', res);
+      console.log('doBuyerRetrieve', hash);
     };
 
     // retrieve swap on asset chain
     const doSellerRetrieve = async (address, hashkey) => {
-      const res = await assetChain.sendRetrieveSwapTx({
-        tx: {
-          itx: {
-            address,
-            hashkey,
-          },
-        },
+      const hash = await assetChain.retrieveSwap({
+        address,
+        hashkey,
         wallet: seller,
       });
-      console.log('doSellerRetrieve', res);
+      console.log('doSellerRetrieve', hash);
     };
 
     // token and asset
@@ -169,17 +116,16 @@ const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
     // Setup swap by buyer
     const hashkey = getRandomBytes(32);
     const hashlock = Hasher.SHA3.hash256(hashkey);
-    console.log('hashkey', hashkey);
-    console.log('hashlock', hashlock);
-    const buyerSetupHash = await doBuyerSetup(asset, hashlock);
-    const sellerSetupHash = await doSellerSetup(asset, hashlock);
-    await sleep(3000);
-
-    // Retrieve swap
-    const buyerSwapAddress = toSwapAddress(`0x${buyerSetupHash}`);
-    const sellerSwapAddress = toSwapAddress(`0x${sellerSetupHash}`);
-    console.log('buyerSwapAddress', buyerSwapAddress);
-    console.log('sellerSwapAddress', sellerSwapAddress);
+    const [buyerSetupHash, buyerSwapAddress] = await doBuyerSetup(asset, hashlock);
+    const [sellerSetupHash, sellerSwapAddress] = await doSellerSetup(asset, hashlock);
+    console.log('setup', {
+      hashkey,
+      hashlock,
+      buyerSetupHash,
+      buyerSwapAddress,
+      sellerSetupHash,
+      sellerSwapAddress,
+    });
     await sleep(3000);
 
     // Inspect swap

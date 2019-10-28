@@ -6,7 +6,6 @@
  *
  * Run script with: `DEBUG=@arcblock/graphql-client node examples/get_free_token.js`
  */
-const moment = require('moment');
 const GraphqlClient = require('@arcblock/graphql-client');
 const { fromRandom } = require('@arcblock/forge-wallet');
 
@@ -16,30 +15,15 @@ const client = new GraphqlClient(`${endpoint}/api`);
 (async () => {
   try {
     const wallet = fromRandom();
-    let res = await client.sendDeclareTx({
-      tx: {
-        itx: {
-          moniker: `poke_user_${Math.round(Math.random() * 10000)}`,
-        },
-      },
+    let res = await client.declare({
+      moniker: `poke_user_${Math.round(Math.random() * 10000)}`,
       wallet,
     });
 
     console.log('declare.result', res);
     console.log('view account', `${endpoint}/node/explorer/accounts/${wallet.toAddress()}`);
 
-    res = await client.sendPokeTx({
-      tx: {
-        nonce: 0,
-        itx: {
-          date: moment(new Date().toISOString())
-            .utc()
-            .format('YYYY-MM-DD'),
-          address: 'zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz',
-        },
-      },
-      wallet,
-    });
+    res = await client.checkin({ wallet });
     console.log('poke.result', res);
     console.log('view tx', `${endpoint}/node/explorer/txs/${res}`);
   } catch (err) {

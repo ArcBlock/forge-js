@@ -2,7 +2,9 @@
 /* eslint-disable object-curly-newline */
 const camelCase = require('lodash/camelCase');
 const snakeCase = require('lodash/snakeCase');
+const padStart = require('lodash/padStart');
 const errorCodes = require('@arcblock/forge-proto/lib/status_code.json');
+const { toDelegateAddress, toSwapAddress, toAssetAddress } = require('@arcblock/did-util');
 const { transactions, multiSignTxs } = require('@arcblock/forge-proto/lite');
 const { createMessage, getMessageType } = require('@arcblock/forge-message/lite');
 const {
@@ -366,7 +368,191 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
     }
   });
 
-  // Shortcut methods to send transactions
+  // Account related
+  client.declare = ({ moniker, wallet }) =>
+    client.sendDeclareTx({
+      tx: {
+        itx: { moniker },
+      },
+      wallet,
+    });
+
+  client.migrate = ({ from, to }) =>
+    client.sendDeclareTx({
+      tx: {
+        itx: {
+          address: to.toAddress(),
+          pk: to.publicKey,
+          type: to.type,
+        },
+      },
+      wallet: from,
+    });
+
+  client.delegate = ({ from, to, privileges }) => {
+    let ops = Array.isArray(privileges) ? privileges : [privileges];
+    ops = ops.map(x => {
+      if (x.typeUrl && Array.isArray(x.rules)) {
+        return x;
+      }
+
+      return { typeUrl: x.typeUrl, rules: [] };
+    });
+
+    return client.sendDelegateTx({
+      tx: {
+        itx: {
+          address: toDelegateAddress(from.toAddress(), to.toAddress()),
+          to: to.toAddress(),
+          ops,
+        },
+      },
+      wallet: from,
+    });
+  };
+
+  client.revokeDelegate = ({ from, to, privileges }) =>
+    client.sendRevokeDelegateTx({
+      tx: {
+        itx: {
+          address: toDelegateAddress(from.toAddress(), to.toAddress()),
+          to: to.toAddress(),
+          typeUrls: privileges.filter(Boolean).map(x => x.toString()),
+        },
+      },
+      wallet: from,
+    });
+
+  // Asset related
+  client.createAsset = async ({
+    moniker,
+    data,
+    readonly = false,
+    transferrable = true,
+    wallet,
+  }) => {
+    const payload = { moniker, readonly, transferrable, data };
+    const address = toAssetAddress(payload);
+    payload.address = address;
+    const hash = await client.sendCreateAssetTx({
+      tx: { itx: payload },
+      wallet,
+    });
+    return [hash, address];
+  };
+  client.updateAsset = ({ address, moniker, data, wallet }) =>
+    client.sendUpdateAssetTx({
+      tx: {
+        itx: {
+          moniker,
+          address,
+          data,
+        },
+      },
+      wallet,
+    });
+
+  // Governance related
+  client.upgradeNode = ({ height, version, wallet }) =>
+    client.sendUpgradeNodeTx({
+      tx: { itx: { height, version, override: true } },
+      wallet,
+    });
+  client.deployProtocol = ({ payload, wallet }) =>
+    client.sendDeployProtocolTx({
+      tx: { itx: payload },
+      wallet,
+    });
+  client.activateProtocol = ({ address, wallet }) =>
+    client.sendActivateProtocolTx({
+      tx: { itx: { address } },
+      wallet,
+    });
+  client.deactivateProtocol = ({ address, wallet }) =>
+    client.sendDeactivateProtocolTx({
+      tx: { itx: { address } },
+      wallet,
+    });
+
+  // Swap related
+  client.setupSwap = async ({
+    token = 0,
+    assets = [],
+    receiver = '',
+    hashlock = '',
+    locktime = 1000,
+    wallet,
+  }) => {
+    const hash = await client.sendSetupSwapTx({
+      tx: {
+        itx: {
+          value: await client.fromTokenToUnit(token),
+          assets,
+          receiver,
+          hashlock: toBuffer(hashlock),
+          locktime: await client.toLocktime(locktime),
+        },
+      },
+      wallet,
+    });
+
+    const address = toSwapAddress(`0x${hash}`);
+    return [hash, address];
+  };
+  client.retrieveSwap = ({ address, hashkey, wallet }) =>
+    client.sendRetrieveSwapTx({
+      tx: { itx: { address, hashkey: toBuffer(hashkey) } },
+      wallet,
+    });
+  client.revokeSwap = ({ address, wallet }) =>
+    client.sendRevokeSwapTx({
+      tx: { itx: { address } },
+      wallet,
+    });
+
+  // Trade related
+  client.transfer = async ({
+    token = 0,
+    assets = [],
+    to = '',
+    memo = '',
+    delegatee = '',
+    wallet,
+  }) =>
+    client.sendTransferTx({
+      tx: {
+        itx: {
+          to,
+          value: await client.fromTokenToUnit(token),
+          assets,
+          data: {
+            typeUrl: 'json',
+            value: memo || 'empty',
+          },
+        },
+      },
+      delegatee,
+      wallet,
+    });
+
+  // Misc
+  client.checkin = ({ wallet }) => {
+    const date = new Date();
+    const year = date.getUTCFullYear();
+    const month = date.getUTCMonth() + 1;
+    const day = date.getUTCDate();
+
+    return client.sendPokeTx({
+      tx: {
+        nonce: 0,
+        itx: {
+          date: `${year}-${padStart(month, 2, '0')}-${padStart(day, 2, '0')}`,
+          address: 'zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz',
+        },
+      },
+      wallet,
+    });
+  };
 };
 
 module.exports = { createExtensionMethods };

@@ -6,33 +6,22 @@
  *
  * Run script with: `DEBUG=@arcblock/graphql-client node examples/migrate_account.js`
  */
-const Mcrypto = require('@arcblock/mcrypto');
 const GraphqlClient = require('@arcblock/graphql-client');
-const { fromRandom, WalletType } = require('@arcblock/forge-wallet');
+const { fromRandom } = require('@arcblock/forge-wallet');
 
 const endpoint = process.env.FORGE_API_HOST || 'http://127.0.0.1:8210'; // testnet
 
 const client = new GraphqlClient(`${endpoint}/api`);
 const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
 
-const type = WalletType({
-  role: Mcrypto.types.RoleType.ROLE_ACCOUNT,
-  pk: Mcrypto.types.KeyType.ED25519,
-  hash: Mcrypto.types.HashType.SHA3,
-});
-
 (async () => {
   try {
-    const migrateFrom = fromRandom(type);
-    const migrateTo = fromRandom(type);
+    const migrateFrom = fromRandom();
+    const migrateTo = fromRandom();
 
     // 1. declare migrate_from account
-    let res = await client.sendDeclareTx({
-      tx: {
-        itx: {
-          moniker: `migrate_from_${Math.round(Math.random() * 10000)}`,
-        },
-      },
+    let res = await client.declare({
+      moniker: `migrate_from_${Math.round(Math.random() * 10000)}`,
       wallet: migrateFrom,
     });
 
@@ -41,15 +30,9 @@ const type = WalletType({
     await sleep(3000);
 
     // 2. migrate: with from's pk/sk
-    res = await client.sendAccountMigrateTx({
-      tx: {
-        itx: {
-          address: migrateTo.toAddress(),
-          pk: migrateTo.publicKey,
-          type,
-        },
-      },
-      wallet: migrateFrom,
+    res = await client.migrate({
+      from: migrateFrom,
+      to: migrateTo,
     });
 
     console.log('migrate tx', `${endpoint}/node/explorer/txs/${res}`);
