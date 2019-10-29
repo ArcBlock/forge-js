@@ -8,10 +8,9 @@
  */
 
 const GraphqlClient = require('@arcblock/graphql-client');
-const { toAssetAddress } = require('@arcblock/did-util');
 const { fromRandom } = require('@arcblock/forge-wallet');
 
-const endpoint = process.env.FORGE_API_HOST || 'http://127.0.0.1:8210'; // testnet
+const endpoint = process.env.FORGE_API_HOST || 'http://127.0.0.1:8212'; // testnet
 
 const client = new GraphqlClient(`${endpoint}/api`);
 const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
@@ -23,34 +22,26 @@ const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
     console.log({ issuer: issuer.toJSON(), consumer: consumer.toJSON() });
 
     // 1. declare issuer
-    let res = await client.sendDeclareTx({
-      tx: {
-        itx: {
-          moniker: 'issuer',
-        },
-      },
+    let hash = await client.declare({
+      moniker: 'issuer',
       wallet: issuer,
     });
     console.log('issuer account', `${endpoint}/node/explorer/accounts/${issuer.toAddress()}`);
-    console.log('issuer tx', `${endpoint}/node/explorer/txs/${res}`);
+    console.log('issuer tx', `${endpoint}/node/explorer/txs/${hash}`);
 
     // 2. declare consumer
-    res = await client.sendDeclareTx({
-      tx: {
-        itx: {
-          moniker: 'consumer',
-        },
-      },
+    hash = await client.declare({
+      moniker: 'consumer',
       wallet: consumer,
     });
     console.log('consumer account', `${endpoint}/node/explorer/accounts/${consumer.toAddress()}`);
-    console.log('consumer tx', `${endpoint}/node/explorer/txs/${res}`);
+    console.log('consumer tx', `${endpoint}/node/explorer/txs/${hash}`);
 
     // 3. create asset for issuer
-    const asset = {
+    let assetAddress;
+    // eslint-disable-next-line prefer-const
+    [hash, assetAddress] = await client.createAsset({
       moniker: 'asset_to_be_consumed',
-      readonly: true,
-      transferrable: true,
       data: {
         typeUrl: 'json',
         value: {
@@ -58,31 +49,24 @@ const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
           key: 'value2',
         },
       },
-    };
-    const assetAddress = toAssetAddress(asset);
-    asset.address = assetAddress;
-    res = await client.sendCreateAssetTx({
-      tx: { itx: asset },
       wallet: issuer,
     });
     console.log('view asset state', `${endpoint}/node/explorer/assets/${assetAddress}`);
-    console.log('view asset tx', `${endpoint}/node/explorer/txs/${res}`);
+    console.log('view asset tx', `${endpoint}/node/explorer/txs/${hash}`);
     await sleep(3000);
 
     // 4. transfer asset from issuer to consumer
-    res = await client.sendTransferTx({
-      tx: { itx: { assets: [assetAddress], to: consumer.toAddress() } },
+    hash = await client.transfer({
+      to: consumer.toAddress(),
+      assets: [assetAddress],
       wallet: issuer,
     });
-    console.log('view transfer tx', `${endpoint}/node/explorer/txs/${res}`);
+    console.log('view transfer tx', `${endpoint}/node/explorer/txs/${hash}`);
+    await sleep(3000);
 
     // 5. Start multisig for asset consume
-    const tx = await client.signConsumeAssetTx({
-      tx: {
-        itx: {
-          issuer: issuer.toAddress(),
-        },
-      },
+    const tx = await client.prepareConsumeAsset({
+      issuer: issuer.toAddress(),
       wallet: issuer,
     });
 
@@ -90,24 +74,20 @@ const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
     console.log('issuer.signed', tx);
 
     // 5.2 consumer: populate signatures field
-    const tx2 = await client.multiSignConsumeAssetTx({
+    const tx2 = await client.finalizeConsumeAsset({
       tx,
       wallet: consumer,
-      data: {
-        typeUrl: 'fg:x:address',
-        value: assetAddress,
-      },
+      address: assetAddress,
     });
     console.log('consumer.signed', tx2);
 
     // 5.3 Send the consume tx
-    await sleep(3000);
-    res = await client.sendConsumeAssetTx({
+    await sleep(5000);
+    hash = await client.consumeAsset({
       tx: tx2,
-      wallet: issuer,
-      signature: tx2.signature,
+      wallet: consumer,
     });
-    console.log('view consume tx', `${endpoint}/node/explorer/txs/${res}`);
+    console.log('view consume tx', `${endpoint}/node/explorer/txs/${hash}`);
   } catch (err) {
     console.error(err);
     console.log(JSON.stringify(err.errors));

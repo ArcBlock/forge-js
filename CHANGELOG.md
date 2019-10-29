@@ -1,3 +1,20 @@
+## 0.39.6 (October 29, 2019)
+
+- fix: account migrate method and example
+- chore: update exchange related demos
+- chore: support exchange shortcut methods
+- chore: support consume asset shortcut methods
+- chore: update more example files
+- chore: support shortcut methods for simple tx
+- chore: drop token-based remote wallet support when send transactions
+
+## 0.39.5 (October 28, 2019)
+
+- chore: upgrade graphql-client to forge v0.39.3
+- chore: upgrade grpc-client to forge v0.39.3
+- chore: upgrade forge-proto to forge v0.39.3
+- update readme
+
 ## 0.39.4 (October 20, 2019)
 
 - chore: extract client extensions to a separate package

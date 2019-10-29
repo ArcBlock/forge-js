@@ -15,6 +15,10 @@ describe('GraphQLClient', () => {
   let client = new GraphQLClient('http://127.0.0.1:8210/api');
   test('should have alias methods', () => {
     expect(typeof client.checkin).toEqual('function');
+    expect(typeof client.transfer).toEqual('function');
+    expect(typeof client.toLocktime).toEqual('function');
+    expect(typeof client.fromUnitToToken).toEqual('function');
+    expect(typeof client.fromTokenToUnit).toEqual('function');
   });
 
   test('should have many query methods', () => {

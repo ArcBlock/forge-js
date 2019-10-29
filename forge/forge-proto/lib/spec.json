@@ -65,6 +65,7 @@
             "withdraw_item_missing": 65,
             "invalid_withdraw_tx": 66,
             "invalid_chain_type": 67,
+            "invalid_time": 68,
             "forbidden": 403,
             "internal": 500,
             "timeout": 504
@@ -4364,6 +4365,27 @@
             "hashkey": {
               "type": "bytes",
               "id": 2
+            },
+            "data": {
+              "type": "google.protobuf.Any",
+              "id": 15
+            }
+          }
+        },
+        "RevokeDelegateTx": {
+          "fields": {
+            "address": {
+              "type": "string",
+              "id": 1
+            },
+            "to": {
+              "type": "string",
+              "id": 2
+            },
+            "typeUrls": {
+              "rule": "repeated",
+              "type": "string",
+              "id": 3
             },
             "data": {
               "type": "google.protobuf.Any",

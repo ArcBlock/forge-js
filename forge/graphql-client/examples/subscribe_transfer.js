@@ -6,10 +6,7 @@
  *
  * Run script with: `DEBUG=@arcblock/graphql-client node examples/subscribe_transfer.js`
  */
-
-const moment = require('moment');
 const { fromRandom } = require('@arcblock/forge-wallet');
-const { fromTokenToUnit } = require('@arcblock/forge-util');
 const GraphqlClient = require('../lib/node');
 
 const endpoint = process.env.FORGE_API_HOST || 'http://127.0.0.1:8210'; // testnet
@@ -24,29 +21,8 @@ const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
     console.log({ sender: sender.toJSON() });
     console.log({ receiver: receiver.toJSON() });
 
-    const declare = async (wallet, name) =>
-      client.sendDeclareTx({
-        tx: {
-          itx: {
-            moniker: name,
-          },
-        },
-        wallet,
-      });
-
-    const checkin = async wallet =>
-      client.sendPokeTx({
-        tx: {
-          nonce: 0,
-          itx: {
-            date: moment(new Date().toISOString())
-              .utc()
-              .format('YYYY-MM-DD'),
-            address: 'zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz',
-          },
-        },
-        wallet,
-      });
+    const declare = async (wallet, name) => client.declare({ moniker: name, wallet });
+    const checkin = async wallet => client.checkin({ wallet });
 
     // subscribe(topic: "transfer", filter: "value.itx.to=\\"${receiver.toAddress()}\\"");
     const subscription = await client.subscribe({ topic: 'transfer' });
@@ -65,13 +41,9 @@ const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
     await sleep(3000);
 
     // 5. Transfer token
-    const hash = await client.sendTransferTx({
-      tx: {
-        itx: {
-          to: receiver.toAddress(),
-          value: fromTokenToUnit(10),
-        },
-      },
+    const hash = await client.transfer({
+      to: receiver.toAddress(),
+      token: 10,
       wallet: sender,
     });
     console.log('transfer.hash', hash);

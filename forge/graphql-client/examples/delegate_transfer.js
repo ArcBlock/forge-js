@@ -8,10 +8,7 @@
  */
 
 const GraphQLClient = require('@arcblock/graphql-client');
-const moment = require('moment');
-const { toDelegateAddress } = require('@arcblock/did-util');
 const { fromRandom } = require('@arcblock/forge-wallet');
-const { fromTokenToUnit } = require('@arcblock/forge-util');
 
 const endpoint = process.env.FORGE_API_HOST || 'http://127.0.0.1:8210'; // testnet
 
@@ -30,14 +27,7 @@ const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
     });
 
     const declare = async (wallet, moniker) => {
-      const hash = await client.sendDeclareTx({
-        tx: {
-          itx: {
-            moniker: `user_${moniker}`,
-          },
-        },
-        wallet,
-      });
+      const hash = await client.declare({ moniker: `user_${moniker}`, wallet });
       console.log(`${moniker}.declare.result`, hash);
       console.log(
         `${moniker}.account.detail`,
@@ -46,18 +36,7 @@ const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
     };
 
     const checkin = async (wallet, moniker) => {
-      const hash = await client.sendPokeTx({
-        tx: {
-          nonce: 0,
-          itx: {
-            date: moment(new Date().toISOString())
-              .utc()
-              .format('YYYY-MM-DD'),
-            address: 'zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz',
-          },
-        },
-        wallet,
-      });
+      const hash = await client.checkin({ wallet });
       console.log(`${moniker}.checkin.result`, hash);
     };
 
@@ -75,33 +54,23 @@ const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
     // await checkin(betty, 'betty');
 
     // delegate from alice to betty
-    const address = toDelegateAddress(alice.toAddress(), betty.toAddress());
-    const hash = await client.sendDelegateTx({
-      tx: {
-        itx: {
-          address,
-          to: betty.toAddress(),
-          ops: [
-            {
-              typeUrl: 'fg:t:transfer',
-              rules: [],
-            },
-          ],
+    const [hash] = await client.delegate({
+      from: alice,
+      to: betty,
+      privileges: [
+        {
+          typeUrl: 'fg:t:transfer',
+          rules: [],
         },
-      },
-      wallet: alice,
+      ],
     });
     console.log('alice.delegate.hash', hash);
 
     // transfer from alice to bob by betty
-    const hash2 = await client.sendTransferTx({
-      tx: {
-        itx: {
-          to: bob.toAddress(),
-          value: fromTokenToUnit(1, 18),
-        },
-      },
-      delegatee: alice.toAddress(),
+    const hash2 = await client.transfer({
+      to: bob.toAddress(),
+      token: 1,
+      delegator: alice.toAddress(),
       wallet: betty,
     });
     console.log('betty.transfer.hash', hash2);

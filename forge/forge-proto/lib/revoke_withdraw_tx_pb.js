@@ -11,8 +11,6 @@ var jspb = require('google-protobuf');
 var goog = jspb;
 var global = Function('return this')();
 
-var type_pb = require('./type_pb.js');
-goog.object.extend(proto, type_pb);
 goog.exportSymbol('proto.forge_abi.RevokeWithdrawTx', null, global);
 
 /**
