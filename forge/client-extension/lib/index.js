@@ -451,6 +451,27 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
       },
       wallet,
     });
+  client.prepareConsumeAsset = ({ issuer = '', address = '', data, wallet }) =>
+    client.signConsumeAssetTx({
+      tx: {
+        itx: {
+          issuer,
+          address,
+          data,
+        },
+      },
+      wallet,
+    });
+  client.finalizeConsumeAsset = ({ tx, address, wallet }) =>
+    client.multiSignConsumeAssetTx({
+      tx,
+      wallet,
+      data: {
+        typeUrl: 'fg:x:address',
+        value: address,
+      },
+    });
+  client.consumeAsset = ({ tx, wallet }) => client.sendConsumeAssetTx({ tx, wallet });
 
   // Governance related
   client.upgradeNode = ({ height, version, wallet }) =>
