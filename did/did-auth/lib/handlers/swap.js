@@ -328,20 +328,13 @@ class AtomicSwapHandlers {
               { conn: this.demandChainId }
             );
 
-            const locktime = await ForgeSDK.toLocktime(this.offerLocktime, {
-              conn: this.offerChainId,
-            });
-            const hash = await ForgeSDK.sendSetupSwapTx(
+            const [hash, address] = await ForgeSDK.setupSwap(
               {
-                tx: {
-                  itx: {
-                    value: ForgeSDK.Util.fromTokenToUnit(req.swap.offerToken), // FIXME: decimal
-                    assets: req.swap.offerAssets,
-                    receiver: req.swap.demandUserAddress,
-                    hashlock: ForgeSDK.Util.toUint8Array(`0x${state.hashlock}`),
-                    locktime,
-                  },
-                },
+                token: req.swap.offerToken,
+                assets: req.swap.offerAssets,
+                receiver: req.swap.demandUserAddress,
+                hashlock: state.hashlock,
+                locktime: this.offerLocktime,
                 wallet: ForgeSDK.Wallet.fromJSON(this.authenticator.wallet),
               },
               { conn: this.offerChainId }
@@ -360,7 +353,6 @@ class AtomicSwapHandlers {
             });
             verifier.on('done', () => {
               debug('swap.setup.done.both', { traceId, hash });
-              const address = ForgeSDK.Util.toSwapAddress(hash);
               resolve({ hash, locktime, address });
             });
           });
