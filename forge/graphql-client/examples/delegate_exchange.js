@@ -72,7 +72,7 @@ const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
       offerToken: 5,
       demandToken: 1,
       wallet: betty,
-      delegatee: alice.toAddress(),
+      delegator: alice.toAddress(),
     });
 
     // 4.2 Receiver: do the multi sig

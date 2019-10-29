@@ -83,7 +83,7 @@ const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
       offerToken: 5,
       demandToken: 1,
       wallet: betty,
-      delegatee: alice.toAddress(),
+      delegator: alice.toAddress(),
     });
     console.log('tx1', tx1);
 
@@ -91,7 +91,7 @@ const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
     const tx2 = await client.finalizeExchange({
       tx: tx1,
       wallet: lily,
-      delegatee: bob.toAddress(),
+      delegator: bob.toAddress(),
     });
 
     console.log('tx2', tx2);

@@ -27,6 +27,13 @@ Object.keys(sdk).forEach(x => {
       if (x === 'ForgeSDK') {
         expect(typeof SDK.getType).toEqual('function');
         expect(typeof SDK.decodeTx).toEqual('function');
+        expect(typeof SDK.toLocktime).toEqual('function');
+        expect(typeof SDK.fromUnitToToken).toEqual('function');
+        expect(typeof SDK.fromTokenToUnit).toEqual('function');
+        expect(typeof SDK.setupSwap).toEqual('function');
+        expect(typeof SDK.transfer).toEqual('function');
+        expect(typeof SDK.checkin).toEqual('function');
+        expect(typeof SDK.declare).toEqual('function');
       }
       const res = await SDK.getChainInfo();
       expect(res.info).toBeTruthy();

@@ -70,7 +70,7 @@ const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
     const hash2 = await client.transfer({
       to: bob.toAddress(),
       token: 1,
-      delegatee: alice.toAddress(),
+      delegator: alice.toAddress(),
       wallet: betty,
     });
     console.log('betty.transfer.hash', hash2);
