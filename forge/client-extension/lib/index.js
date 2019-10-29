@@ -555,6 +555,44 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
       delegatee,
       wallet,
     });
+  client.prepareExchange = async ({
+    offerToken = 0,
+    offerAssets = [],
+    demandToken = 0,
+    demandAssets = [],
+    receiver = '',
+    memo = '',
+    delegatee = '',
+    wallet,
+  }) =>
+    client.signExchangeTx({
+      tx: {
+        itx: {
+          to: receiver,
+          sender: {
+            value: await client.fromTokenToUnit(offerToken),
+            assets: Array.isArray(offerAssets) ? offerAssets : [],
+          },
+          receiver: {
+            value: await client.fromTokenToUnit(demandToken),
+            assets: Array.isArray(demandAssets) ? demandAssets : [],
+          },
+          data: {
+            typeUrl: 'json',
+            value: memo || 'empty',
+          },
+        },
+      },
+      delegatee,
+      wallet,
+    });
+  client.finalizeExchange = ({ tx, delegatee = '', wallet }) =>
+    client.multiSignExchangeTx({
+      tx,
+      delegatee,
+      wallet,
+    });
+  client.exchange = ({ tx, wallet }) => client.sendExchangeTx({ tx, wallet });
 
   // Misc
   client.checkin = ({ wallet }) => {

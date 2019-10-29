@@ -19,7 +19,6 @@
 
 const GraphQLClient = require('@arcblock/graphql-client');
 const { fromRandom } = require('@arcblock/forge-wallet');
-const { fromTokenToUnit } = require('@arcblock/forge-util');
 
 const endpoint = process.env.FORGE_API_HOST || 'http://127.0.0.1:8210'; // testnet
 
@@ -64,37 +63,28 @@ const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
     });
     console.log('create_asset.result', hash, assetAddress);
     console.log('view asset', `${endpoint}/node/explorer/assets/${assetAddress}`);
-
-    // assemble exchange tx: multisig
-    const exchange = {
-      itx: {
-        to: receiver.toAddress(),
-        sender: {
-          assets: [assetAddress],
-        },
-        receiver: {
-          value: fromTokenToUnit(0),
-        },
-      },
-    };
-
-    console.log('exchange', exchange);
+    await sleep(2000);
 
     // 4.1 Sender: encode and sign the transaction
-    const encoded1 = await client.signExchangeTx({ tx: exchange, wallet: sender });
+    const tx1 = await client.prepareExchange({
+      receiver: receiver.toAddress(),
+      offerAssets: [assetAddress],
+      demandToken: 0,
+      wallet: sender,
+    });
 
     // 4.2 Receiver: do the multi sig
-    const encoded2 = await client.multiSignExchangeTx({
-      tx: Object.assign(encoded1, exchange),
+    const tx2 = await client.finalizeExchange({
+      tx: tx1,
       wallet: receiver,
     });
 
+    console.log({ tx1, tx2 });
+
     // 4.3 Send the exchange tx
-    await sleep(5000);
-    hash = await client.sendExchangeTx({
-      tx: encoded2,
+    hash = await client.exchange({
+      tx: tx2,
       wallet: sender,
-      signature: encoded1.signature,
     });
 
     console.log('exchange hash', hash);
