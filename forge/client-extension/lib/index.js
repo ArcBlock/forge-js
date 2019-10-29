@@ -351,12 +351,21 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
           throw new Error('Multisig requires a valid wallet');
         }
         tx.signaturesList = tx.signatures || tx.signaturesList || [];
-        tx.signaturesList.unshift({
-          pk: wallet.publicKey,
-          signer: wallet.toAddress(),
-          delegator: delegatee || '',
-          data,
-        });
+        if (delegatee) {
+          tx.signaturesList.unshift({
+            pk: wallet.publicKey,
+            signer: delegatee,
+            delegator: wallet.toAddress(),
+            data,
+          });
+        } else {
+          tx.signaturesList.unshift({
+            pk: wallet.publicKey,
+            signer: wallet.toAddress(),
+            delegator: delegatee || '',
+            data,
+          });
+        }
 
         const { object, buffer } = await txEncodeFn({ tx, wallet });
         object.signaturesList[0].signature = wallet.sign(bytesToHex(buffer));
@@ -389,7 +398,7 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
       wallet: from,
     });
 
-  client.delegate = ({ from, to, privileges }) => {
+  client.delegate = async ({ from, to, privileges }) => {
     let ops = Array.isArray(privileges) ? privileges : [privileges];
     ops = ops.map(x => {
       if (x.typeUrl && Array.isArray(x.rules)) {
@@ -399,16 +408,19 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
       return { typeUrl: x.typeUrl, rules: [] };
     });
 
-    return client.sendDelegateTx({
+    const address = toDelegateAddress(from.toAddress(), to.toAddress());
+    const hash = await client.sendDelegateTx({
       tx: {
         itx: {
-          address: toDelegateAddress(from.toAddress(), to.toAddress()),
+          address,
           to: to.toAddress(),
           ops,
         },
       },
       wallet: from,
     });
+
+    return [hash, address];
   };
 
   client.revokeDelegate = ({ from, to, privileges }) =>

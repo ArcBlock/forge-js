@@ -54,7 +54,7 @@ const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
     // await checkin(betty, 'betty');
 
     // delegate from alice to betty
-    const hash = await client.delegate({
+    const [hash] = await client.delegate({
       from: alice,
       to: betty,
       privileges: [

@@ -7,11 +7,8 @@
  * Run script with: `DEBUG=@arcblock/graphql-client node examples/delegate_transfer.js`
  */
 
-const moment = require('moment');
 const GraphQLClient = require('@arcblock/graphql-client');
-const { toDelegateAddress } = require('@arcblock/did-util');
 const { fromRandom } = require('@arcblock/forge-wallet');
-const { fromTokenToUnit } = require('@arcblock/forge-util');
 
 const endpoint = process.env.FORGE_API_HOST || 'http://127.0.0.1:8210'; // testnet
 
@@ -32,14 +29,7 @@ const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
     });
 
     const declare = async (wallet, moniker) => {
-      const hash = await client.sendDeclareTx({
-        tx: {
-          itx: {
-            moniker: `user_${moniker}`,
-          },
-        },
-        wallet,
-      });
+      const hash = await client.declare({ moniker: `user_${moniker}`, wallet });
       console.log(`${moniker}.declare.result`, hash);
       console.log(
         `${moniker}.account.detail`,
@@ -48,38 +38,21 @@ const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
     };
 
     const checkin = async (wallet, moniker) => {
-      const hash = await client.sendPokeTx({
-        tx: {
-          nonce: 0,
-          itx: {
-            date: moment(new Date().toISOString())
-              .utc()
-              .format('YYYY-MM-DD'),
-            address: 'zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz',
-          },
-        },
-        wallet,
-      });
+      const hash = await client.checkin({ wallet });
       console.log(`${moniker}.checkin.result`, hash);
     };
 
     // delegate from alice to betty
     const delegate = async (from, to, label) => {
-      const address = toDelegateAddress(from.toAddress(), to.toAddress());
-      const hash = await client.sendDelegateTx({
-        tx: {
-          itx: {
-            address,
-            to: to.toAddress(),
-            ops: [
-              {
-                typeUrl: 'fg:t:exchange',
-                rules: [],
-              },
-            ],
+      const [hash] = await client.delegate({
+        from,
+        to,
+        privileges: [
+          {
+            typeUrl: 'fg:t:exchange',
+            rules: [],
           },
-        },
-        wallet: from,
+        ],
       });
       console.log(`${label}.delegate.hash`, hash);
     };
@@ -104,42 +77,30 @@ const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
     await delegate(bob, lily, 'bob');
     await sleep(3000);
 
-    // assemble exchange tx: multisig
-    const exchange = {
-      itx: {
-        to: bob.toAddress(),
-        sender: {
-          value: fromTokenToUnit(5, 18),
-        },
-        receiver: {
-          value: fromTokenToUnit(1, 18),
-        },
-      },
-    };
-
     // 4.1 Sender: encode and sign the transaction
-    const encoded1 = await client.signExchangeTx({
-      tx: exchange,
+    const tx1 = await client.prepareExchange({
+      receiver: bob.toAddress(),
+      offerToken: 5,
+      demandToken: 1,
       wallet: betty,
       delegatee: alice.toAddress(),
     });
-    console.log('encoded1', encoded1);
+    console.log('tx1', tx1);
 
     // 4.2 Receiver: do the multi sig
-    const encoded2 = await client.multiSignExchangeTx({
-      tx: encoded1,
+    const tx2 = await client.finalizeExchange({
+      tx: tx1,
       wallet: lily,
       delegatee: bob.toAddress(),
     });
 
-    console.log('encoded2', encoded2);
+    console.log('tx2', tx2);
 
     // 4.3 Send the exchange tx
     await sleep(3000);
-    const hashExchange = await client.sendExchangeTx({
-      tx: encoded2,
+    const hashExchange = await client.exchange({
+      tx: tx2,
       wallet: betty,
-      signature: encoded2.signature,
     });
 
     console.log('exchange hash', hashExchange);
