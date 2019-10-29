@@ -45,7 +45,7 @@
       ]
     ]
   },
-  "homepage": "https://github.com/ArcBlock/forge-js/tree/master/packages/grpc-client",
+  "homepage": "https://github.com/ArcBlock/forge-js/tree/master/forge/grpc-client",
   "keywords": [
     "forge",
     "blockchain",
@@ -62,7 +62,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/ArcBlock/forge-js/tree/master/packages/grpc-client"
+    "url": "https://github.com/ArcBlock/forge-js/tree/master/forge/grpc-client"
   },
   "scripts": {
     "lint": "eslint lib index.js tests examples",

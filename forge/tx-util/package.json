@@ -38,7 +38,7 @@
       ]
     ]
   },
-  "homepage": "https://github.com/ArcBlock/forge-js/tree/master/packages/tx-util",
+  "homepage": "https://github.com/ArcBlock/forge-js/tree/master/forge/tx-util",
   "keywords": [
     "forge",
     "blockchain",
@@ -53,7 +53,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/ArcBlock/forge-js/tree/master/packages/forge-config"
+    "url": "https://github.com/ArcBlock/forge-js/tree/master/forge/tx-util"
   },
   "scripts": {
     "lint": "eslint lib tests",

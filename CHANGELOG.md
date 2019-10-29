@@ -1,3 +1,8 @@
+## 0.39.7 (October 29, 2019)
+
+- chore: update readme
+- fix: package home link on npm registry
+
 ## 0.39.6 (October 29, 2019)
 
 - fix: account migrate method and example

@@ -38,7 +38,7 @@
       ]
     ]
   },
-  "homepage": "https://github.com/ArcBlock/forge-js/tree/master/packages/forge-config",
+  "homepage": "https://github.com/ArcBlock/forge-js/tree/master/forge/forge-config",
   "keywords": [
     "forge",
     "blockchain",
@@ -53,7 +53,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/ArcBlock/forge-js/tree/master/packages/forge-config"
+    "url": "https://github.com/ArcBlock/forge-js/tree/master/forge/forge-config"
   },
   "scripts": {
     "lint": "eslint lib tests",

@@ -20,7 +20,7 @@
     "email": "shijun@arcblock.io",
     "url": "https://github.com/wangshijun"
   },
-  "homepage": "https://github.com/arcblock/forge-js/packages/graphql-client",
+  "homepage": "https://github.com/arcblock/forge-js/forge/graphql-client",
   "license": "Apache-2.0",
   "main": "./lib/node.js",
   "browser": "./dist/browser.js",

@@ -29,7 +29,7 @@
     "email": "shijun@arcblock.io",
     "url": "https://github.com/wangshijun"
   },
-  "homepage": "https://github.com/ArcBlock/forge-js#readme",
+  "homepage": "https://github.com/ArcBlock/forge-js/tree/master/forge/forge-util",
   "license": "Apache-2.0",
   "main": "lib/index.js",
   "files": [

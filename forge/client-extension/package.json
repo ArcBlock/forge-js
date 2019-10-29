@@ -44,7 +44,7 @@
       ]
     ]
   },
-  "homepage": "https://github.com/ArcBlock/forge-js/tree/master/packages/client-extension",
+  "homepage": "https://github.com/ArcBlock/forge-js/tree/master/forge/client-extension",
   "keywords": [
     "forge",
     "blockchain",
@@ -59,7 +59,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/ArcBlock/forge-js/tree/master/packages/client-extension"
+    "url": "https://github.com/ArcBlock/forge-js/tree/master/forge/client-extension"
   },
   "scripts": {
     "lint": "eslint lib tests",

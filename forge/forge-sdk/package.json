@@ -45,7 +45,7 @@
       ]
     ]
   },
-  "homepage": "https://github.com/ArcBlock/forge-js/tree/master/packages/forge-sdk",
+  "homepage": "https://github.com/ArcBlock/forge-js/tree/master/forge/forge-sdk",
   "keywords": [
     "forge",
     "blockchain",
@@ -65,7 +65,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/ArcBlock/forge-js/tree/master/packages/forge-sdk"
+    "url": "https://github.com/ArcBlock/forge-js/tree/master/forge/forge-sdk"
   },
   "scripts": {
     "lint": "eslint lib *.js tests",

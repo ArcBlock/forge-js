@@ -41,7 +41,7 @@
       ]
     ]
   },
-  "homepage": "https://github.com/ArcBlock/forge-js/tree/master/packages/did-util",
+  "homepage": "https://github.com/ArcBlock/forge-js/tree/master/did/did-util",
   "keywords": [
     "forge",
     "blockchain",
@@ -56,7 +56,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/ArcBlock/forge-js/tree/master/packages/did-util"
+    "url": "https://github.com/ArcBlock/forge-js/tree/master/did/did-util"
   },
   "scripts": {
     "lint": "eslint lib tests",
