@@ -386,8 +386,8 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
       wallet,
     });
 
-  client.migrate = ({ from, to }) =>
-    client.sendDeclareTx({
+  client.accountMigrate = ({ from, to }) =>
+    client.sendAccountMigrateTx({
       tx: {
         itx: {
           address: to.toAddress(),

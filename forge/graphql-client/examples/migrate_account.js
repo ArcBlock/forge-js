@@ -20,22 +20,22 @@ const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
     const migrateTo = fromRandom();
 
     // 1. declare migrate_from account
-    let res = await client.declare({
+    let hash = await client.declare({
       moniker: `migrate_from_${Math.round(Math.random() * 10000)}`,
       wallet: migrateFrom,
     });
 
     console.log('from account', `${endpoint}/node/explorer/accounts/${migrateFrom.toAddress()}`);
-    console.log('from account tx', `${endpoint}/node/explorer/txs/${res}`);
+    console.log('from account tx', `${endpoint}/node/explorer/txs/${hash}`);
     await sleep(3000);
 
     // 2. migrate: with from's pk/sk
-    res = await client.migrate({
+    hash = await client.accountMigrate({
       from: migrateFrom,
       to: migrateTo,
     });
 
-    console.log('migrate tx', `${endpoint}/node/explorer/txs/${res}`);
+    console.log('migrate tx', `${endpoint}/node/explorer/txs/${hash}`);
     console.log('to account', `${endpoint}/node/explorer/accounts/${migrateTo.toAddress()}`);
   } catch (err) {
     console.error(err);
