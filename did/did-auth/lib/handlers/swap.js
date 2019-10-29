@@ -328,33 +328,45 @@ class AtomicSwapHandlers {
               { conn: this.demandChainId }
             );
 
-            const [hash, address] = await ForgeSDK.setupSwap(
-              {
-                token: req.swap.offerToken,
-                assets: req.swap.offerAssets,
-                receiver: req.swap.demandUserAddress,
-                hashlock: state.hashlock,
-                locktime: this.offerLocktime,
-                wallet: ForgeSDK.Wallet.fromJSON(this.authenticator.wallet),
-              },
-              { conn: this.offerChainId }
-            );
+            try {
+              const [hash, address] = await ForgeSDK.setupSwap(
+                {
+                  token: req.swap.offerToken,
+                  assets: req.swap.offerAssets,
+                  receiver: req.swap.demandUserAddress,
+                  hashlock: `0x${state.hashlock}`,
+                  locktime: this.offerLocktime,
+                  wallet: ForgeSDK.Wallet.fromJSON(this.authenticator.wallet),
+                },
+                { conn: this.offerChainId }
+              );
 
-            // Check tx status
-            const verifier = createVerifier({
-              hash,
-              chainHost: this.offerChainHost,
-              chainId: this.offerChainId,
-            });
+              // Check tx status
+              const verifier = createVerifier({
+                hash,
+                chainHost: this.offerChainHost,
+                chainId: this.offerChainId,
+              });
 
-            verifier.on('error', err => {
-              const error = new Error(`SetupSwap tx verify failed: ${hash}: ${err}`);
-              reject(error);
-            });
-            verifier.on('done', () => {
-              debug('swap.setup.done.both', { traceId, hash });
-              resolve({ hash, locktime, address });
-            });
+              verifier.on('error', err => {
+                const error = new Error(
+                  `SetupSwap tx verify failed: ${hash}: ${JSON.stringify(err)}`
+                );
+                reject(error);
+              });
+              verifier.on('done', async () => {
+                debug('swap.setup.done.both', { traceId, hash });
+                // eslint-disable-next-line no-shadow
+                const { state } = await ForgeSDK.getSwapState(
+                  { address },
+                  { conn: this.offerChainId }
+                );
+                resolve({ hash, locktime: state.locktime, address });
+              });
+            } catch (err) {
+              debug('swap.setup.error', { traceId, errors: err.errors });
+              reject(err);
+            }
           });
 
         const { hash, locktime, address } = await doSetup();
