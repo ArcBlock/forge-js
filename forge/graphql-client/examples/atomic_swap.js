@@ -12,8 +12,8 @@ const GraphQLClient = require('@arcblock/graphql-client');
 const { getRandomBytes, Hasher } = require('@arcblock/mcrypto');
 const { fromRandom } = require('@arcblock/forge-wallet');
 
-const appChain = new GraphQLClient({ endpoint: 'http://localhost:8211/api' });
-const assetChain = new GraphQLClient({ endpoint: 'http://localhost:8212/api' });
+const appChain = new GraphQLClient({ endpoint: 'http://localhost:8210/api' });
+const assetChain = new GraphQLClient({ endpoint: 'http://localhost:8211/api' });
 
 const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
 

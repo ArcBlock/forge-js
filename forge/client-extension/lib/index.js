@@ -482,6 +482,7 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
    * @param {object} params.data - asset data payload
    * @param {boolean} params.readonly - whether the asset can be updated after creation
    * @param {boolean} params.transferrable - whether the asset can be transferred to another account
+   * @param {string} params.delegator - who authorized this transaction
    * @param {WalletObject} params.wallet - the initial owner of the asset
    * @returns {Promise} the `[transactionHash, assetAddress]` once resolved
    */
@@ -490,6 +491,7 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
     data,
     readonly = false,
     transferrable = true,
+    delegator = '',
     wallet,
   }) => {
     const payload = { moniker, readonly, transferrable, data };
@@ -497,6 +499,7 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
     payload.address = address;
     const hash = await client.sendCreateAssetTx({
       tx: { itx: payload },
+      delegator,
       wallet,
     });
     return [hash, address];
@@ -510,10 +513,11 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
    * @param {string} params.address - asset address
    * @param {string} params.moniker - asset name
    * @param {object} params.data - asset data payload
+   * @param {string} params.delegator - who authorized this transaction
    * @param {WalletObject} params.wallet - the wallet to sign the transaction
    * @returns {Promise} the `transactionHash` once resolved
    */
-  client.updateAsset = ({ address, moniker, data, wallet }) =>
+  client.updateAsset = ({ address, moniker, data, delegator, wallet }) =>
     client.sendUpdateAssetTx({
       tx: {
         itx: {
@@ -522,6 +526,7 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
           data,
         },
       },
+      delegator,
       wallet,
     });
 
@@ -533,10 +538,11 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
    * @param {string} params.issuer - issuer address
    * @param {string} params.address - parent address
    * @param {object} params.data - extra data payload
+   * @param {string} params.delegator - who authorized this transaction
    * @param {WalletObject} params.wallet - the wallet to sign the transaction
    * @returns {Promise} the `transactionHash` once resolved
    */
-  client.prepareConsumeAsset = ({ issuer = '', address = '', data, wallet }) =>
+  client.prepareConsumeAsset = ({ issuer = '', address = '', delegator = '', data, wallet }) =>
     client.signConsumeAssetTx({
       tx: {
         itx: {
@@ -545,6 +551,7 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
           data,
         },
       },
+      delegator,
       wallet,
     });
 
@@ -555,13 +562,15 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
    * @param {object} params
    * @param {object} params.tx - transaction to finalize, should be result from `prepareConsumeAsset`
    * @param {string} params.address - asset address to be consumed
+   * @param {string} params.delegator - who authorized this transaction
    * @param {WalletObject} params.wallet - the wallet to sign the transaction
    * @returns {Promise} the `transactionHash` once resolved
    */
-  client.finalizeConsumeAsset = ({ tx, address, wallet }) =>
+  client.finalizeConsumeAsset = ({ tx, address, delegator, wallet }) =>
     client.multiSignConsumeAssetTx({
       tx,
       wallet,
+      delegator,
       data: {
         typeUrl: 'fg:x:address',
         value: address,
@@ -586,12 +595,14 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
    * @param {object} params
    * @param {number} params.height - at which height should the chain stop to perform the upgrade
    * @param {string} params.version - to which version should upgrade to
+   * @param {string} params.delegator - who authorized this transaction
    * @param {WalletObject} params.wallet - the wallet to sign the transaction
    * @returns {Promise} the `transactionHash` once resolved
    */
-  client.upgradeNode = ({ height, version, wallet }) =>
+  client.upgradeNode = ({ height, version, delegator, wallet }) =>
     client.sendUpgradeNodeTx({
       tx: { itx: { height, version, override: true } },
+      delegator,
       wallet,
     });
 
@@ -601,12 +612,14 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
    * @public
    * @param {object} params
    * @param {object} params.payload - the contract payload, usually from `forge contract:compile`
+   * @param {string} params.delegator - who authorized this transaction
    * @param {WalletObject} params.wallet - the wallet to sign the transaction
    * @returns {Promise} the `transactionHash` once resolved
    */
-  client.deployContract = ({ payload, wallet }) =>
+  client.deployContract = ({ payload, delegator, wallet }) =>
     client.sendDeployProtocolTx({
       tx: { itx: payload },
+      delegator,
       wallet,
     });
 
@@ -616,12 +629,14 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
    * @public
    * @param {object} params
    * @param {string} params.address - the contract address to activate
+   * @param {string} params.delegator - who authorized this transaction
    * @param {WalletObject} params.wallet - the wallet to sign the transaction
    * @returns {Promise} the `transactionHash` once resolved
    */
-  client.activateContract = ({ address, wallet }) =>
+  client.activateContract = ({ address, delegator, wallet }) =>
     client.sendActivateProtocolTx({
       tx: { itx: { address } },
+      delegator,
       wallet,
     });
 
@@ -631,12 +646,14 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
    * @public
    * @param {object} params
    * @param {string} params.address - the contract address to deactivate
+   * @param {string} params.delegator - who authorized this transaction
    * @param {WalletObject} params.wallet - the wallet to sign the transaction
    * @returns {Promise} the `transactionHash` once resolved
    */
-  client.deactivateContract = ({ address, wallet }) =>
+  client.deactivateContract = ({ address, delegator, wallet }) =>
     client.sendDeactivateProtocolTx({
       tx: { itx: { address } },
+      delegator,
       wallet,
     });
 
@@ -649,6 +666,7 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
    * @param {Array} params.assets - how much assets to offer
    * @param {string} params.receiver - who can retrieve this swap
    * @param {string} params.hashlock - sha3 from hashkey
+   * @param {string} params.delegator - who authorized this transaction
    * @param {number} [params.locktime=1000] - how much block height to lock the swap before it can be revoked
    * @param {WalletObject} params.wallet - the wallet to sign the transaction
    * @returns {Promise} the `[transactionHash, swapAddress]` once resolved
@@ -659,6 +677,7 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
     receiver = '',
     hashlock = '',
     locktime = 1000,
+    delegator = '',
     wallet,
   }) => {
     const hash = await client.sendSetupSwapTx({
@@ -671,6 +690,7 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
           locktime: await client.toLocktime(locktime),
         },
       },
+      delegator,
       wallet,
     });
 
@@ -685,12 +705,14 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
    * @param {object} params
    * @param {string} params.address - the swap address to retrieve
    * @param {string} params.hashkey - the hashkey to unlock the swap
+   * @param {string} params.delegator - who authorized this transaction
    * @param {WalletObject} params.wallet - the wallet to sign the transaction
    * @returns {Promise} the `transactionHash` once resolved
    */
-  client.retrieveSwap = ({ address, hashkey, wallet }) =>
+  client.retrieveSwap = ({ address, hashkey, delegator, wallet }) =>
     client.sendRetrieveSwapTx({
       tx: { itx: { address, hashkey: toBuffer(hashkey) } },
+      delegator,
       wallet,
     });
 
@@ -700,12 +722,14 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
    * @public
    * @param {object} params
    * @param {string} params.address - the swap address to revoke
+   * @param {string} params.delegator - who authorized this transaction
    * @param {WalletObject} params.wallet - the wallet to sign the transaction
    * @returns {Promise} the `transactionHash` once resolved
    */
-  client.revokeSwap = ({ address, wallet }) =>
+  client.revokeSwap = ({ address, delegator, wallet }) =>
     client.sendRevokeSwapTx({
       tx: { itx: { address } },
+      delegator,
       wallet,
     });
 
@@ -718,7 +742,7 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
    * @param {Array} params.assets - which assets should be transferred
    * @param {string} params.to - who receive the transfer
    * @param {string} params.memo - transaction note
-   * @param {string} params.delegator - which assets should be transferred
+   * @param {string} params.delegator - who authorized this transaction
    * @param {WalletObject} params.wallet - the wallet to sign the transaction
    * @returns {Promise} the `transactionHash` once resolved
    */
@@ -799,7 +823,7 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
    * @public
    * @param {object} params
    * @param {object} params.tx - the transaction object from `prepareExchange`
-   * @param {string} params.delegator - which assets should be transferred
+   * @param {string} params.delegator - who authorized this transaction
    * @param {WalletObject} params.wallet - the wallet who is the demander
    * @returns {Promise} the `transaction` object once resolved
    */
