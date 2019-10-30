@@ -31,7 +31,6 @@ describe('#createMessage', () => {
     };
 
     const message = createMessage('RequestCreateWallet', params);
-    expect(message.getPassphrase()).toEqual('123456');
     expect(message.getMoniker()).toEqual('wangshijun');
 
     const type = message.getType();
