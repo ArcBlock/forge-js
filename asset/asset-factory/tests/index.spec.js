@@ -4,10 +4,12 @@ const AssetIssuer = require('../lib/issuer');
 const AssetRecipient = require('../lib/recipient');
 const AssetFactory = require('../lib/factory');
 
+const chainId = 'zinc-2019-05-17';
+const chainHost = 'https://zinc.abtnetwork.io/api';
 const wallet = ForgeSDK.Wallet.fromRandom();
 const factory = new AssetFactory({
-  chainId: 'zinc-2019-05-17',
-  chainHost: 'https://zinc.abtnetwork.io/api',
+  chainId,
+  chainHost,
   wallet,
   issuer: {
     name: 'test case',
@@ -17,6 +19,7 @@ const factory = new AssetFactory({
 });
 
 beforeAll(async () => {
+  ForgeSDK.connect(chainHost, { chainId, name: chainId });
   await ForgeSDK.declare({ moniker: 'asset_factory_issuer', wallet });
 });
 
