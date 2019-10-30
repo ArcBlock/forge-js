@@ -1,7 +1,7 @@
 {
   "name": "@arcblock/client-extension",
   "description": "Utility to generate methods on GraphQLClient or GRpcClient",
-  "version": "0.39.7",
+  "version": "0.39.8",
   "author": {
     "name": "wangshijun",
     "email": "shijun@arcblock.io",

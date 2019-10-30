@@ -1,7 +1,7 @@
 {
   "name": "tx-protocol-example",
   "private": true,
-  "version": "0.39.7",
+  "version": "0.39.8",
   "description": "Simple demo on how to deploy customized tx protocol to forge",
   "scripts": {},
   "dependencies": {
@@ -10,8 +10,8 @@
     "@arcblock/forge-proto": "^0.39.7",
     "@arcblock/forge-util": "^0.39.7",
     "@arcblock/forge-wallet": "^0.39.7",
-    "@arcblock/graphql-client": "^0.39.7",
-    "@arcblock/grpc-client": "^0.39.7",
+    "@arcblock/graphql-client": "^0.39.8",
+    "@arcblock/grpc-client": "^0.39.8",
     "@arcblock/mcrypto": "^0.39.7",
     "base64-url": "^2.3.2",
     "death": "^1.1.0",
