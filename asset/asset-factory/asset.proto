@@ -1,0 +1,134 @@
+syntax = "proto3";
+package forge_abi;
+
+import "google/protobuf/any.proto";
+import "google/protobuf/timestamp.proto";
+
+enum AssetType {
+  ticket = 0;
+  coupon = 1;
+  certificate = 2;
+  badge = 3;
+  license = 4;
+  giftcard = 5;
+  passport = 6;
+  idcard = 7;
+  receipt = 8;
+  other = 127;
+}
+
+enum AssetStatus {
+  normal = 0;
+  consumed = 1;
+  invalid = 2;
+  expired = 3;
+}
+
+message AssetIssuer {
+  string did = 1;
+  string pk = 2;
+  string name = 3;
+  string url = 4;
+  string logo = 5;     // logo url or base64
+}
+
+message AssetRecipient {
+  string did = 1;
+  string name = 2;
+  string location = 3;
+}
+
+// All these assets are signed assets
+// Eg. the issuer must sign the asset content before publish it on the chain
+message Asset {
+  string did = 1;
+  bytes signature = 2;
+  string background_url = 2;
+  AssetType type = 3;
+  AssetStatus status = 4;
+  AssetIssuer issuer = 5;
+  google.protobuf.Any data = 6;
+}
+
+message TicketAsset {
+  string name = 1;          // 活动名称
+  string description = 2;   // 活动描述
+  string location = 3;      // 活动地点
+  AssetIssuer host = 4;     // 举办方
+  google.protobuf.Timestamp start_time = 5;
+  google.protobuf.Timestamp end_time = 6;
+  google.protobuf.Any data = 7;
+}
+
+message CouponAsset {
+  string name = 1;
+  string description = 2;
+  float discount_ratio = 3;       // 打折比例
+  float discount_amount = 4;      // 折扣绝对值
+  float min_order_amount = 5;     // 满多少可用
+  google.protobuf.Timestamp start_time = 6;
+  google.protobuf.Timestamp expire_time = 7;
+  google.protobuf.Any data = 8;
+}
+
+message CertificateAsset {
+  string name = 1;
+  string description = 2;
+  string reason = 3;                // 颁发理由
+  string logo_url = 4;              // 图标
+  AssetRecipient recipient = 5;     // 收受人
+  google.protobuf.Timestamp issue_time = 6;
+  google.protobuf.Timestamp expire_time = 7;
+  google.protobuf.Any data = 8;
+}
+
+message BadgeAsset {
+  string name = 1;
+  string description = 2;
+  string reason = 3;                // 颁发理由
+  string logo_url = 4;
+  AssetRecipient recipient = 5;
+  google.protobuf.Timestamp issue_time = 6;
+  google.protobuf.Timestamp expire_time = 7;
+  google.protobuf.Any data = 8;
+}
+
+message LicenseAsset {
+  string license_no = 1;
+  string name = 2;
+  string description = 3;
+  string image_url = 4;
+  AssetRecipient recipient = 5;
+  google.protobuf.Timestamp issue_time = 6;
+  google.protobuf.Timestamp expire_time = 7;
+  google.protobuf.Any data = 8;
+}
+
+// TODO: improve this
+// message IDCardAsset {
+//   string name = 1;
+//   string description = 2;
+//   AssetRecipient recipient = 4;
+//   google.protobuf.Any profile = 5;
+//   google.protobuf.Timestamp issue_time = 6;
+//   google.protobuf.Timestamp expire_time = 7;
+//   google.protobuf.Any data = 6;
+// }
+
+// TODO: improve this
+// message GiftCardAsset {
+//   string description = 2;
+//   string logo_url = 4;
+//   google.protobuf.Timestamp start_time = 5;
+//   google.protobuf.Timestamp expire_time = 6;
+//   google.protobuf.Any data = 6;
+// }
+
+// TODO: improve this
+// message PassportAsset {
+//   string description = 2;
+//   string logo_url = 4;
+//   google.protobuf.Timestamp start_time = 5;
+//   google.protobuf.Timestamp expire_time = 6;
+//   google.protobuf.Any data = 6;
+// }
