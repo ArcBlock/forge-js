@@ -1,3 +1,11 @@
+## 0.40.0 (October 31, 2019)
+
+- fix: test case in message
+- chore: upgrade graphql-client with forge v0.40
+- chore: upgrade grpc-client with forge v0.40
+- chore: upgrade forge-proto with forge v0.40
+- update readme
+
 ## 0.39.9 (October 30, 2019)
 
 - feat: basic standard asset factory support
