@@ -1,6 +1,6 @@
 # Forge GraphQL API List
 
-> Updated on 2019-10-28T02:27:43.887Z
+> Updated on 2019-10-30T23:28:22.185Z
 
 
 ## Table of Contents
@@ -76,6 +76,570 @@
       context {
         genesisTime
         renaissanceTime
+        genesisTx {
+          code
+          hash
+          height
+          index
+          time
+          accountMigrate {
+            address
+          }
+          createAsset {
+            asset
+          }
+          tags {
+            key
+            value
+          }
+          tx {
+            chainId
+            delegator
+            from
+            itxJson
+            nonce
+            pk
+            signature
+            signatures {
+              delegator
+              pk
+              signature
+              signer
+              data {
+                typeUrl
+                value
+              }
+            }
+            itx {
+              __typename
+              ... on RevokeSwapTx {
+                address
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on RetrieveSwapTx {
+                address
+                hashkey
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on SetupSwapTx {
+                assets
+                hashlock
+                locktime
+                receiver
+                value
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on WithdrawTetherTx {
+                chainId
+                expiredAt
+                from
+                nonce
+                pk
+                signature
+                data {
+                  typeUrl
+                  value
+                }
+                receiver {
+                  assets
+                  tether
+                  value
+                }
+                sender {
+                  assets
+                  value
+                }
+                signatures {
+                  delegator
+                  pk
+                  signature
+                  signer
+                }
+              }
+              ... on UpgradeNodeTx {
+                height
+                override
+                version
+              }
+              ... on UpdateAssetTx {
+                address
+                moniker
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on TransferTx {
+                assets
+                to
+                value
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on SysUpgradeTx {
+                gracePeriod
+                data {
+                  typeUrl
+                  value
+                }
+                task {
+                  actions
+                  dataHash
+                  type
+                }
+              }
+              ... on StakeTx {
+                message
+                to
+                value
+                data {
+                  type
+                }
+              }
+              ... on RevokeTetherTx {
+                tether
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on PokeTx {
+                address
+                date
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ExchangeTetherTx {
+                expiredAt
+                data {
+                  typeUrl
+                  value
+                }
+                receiver {
+                  assets
+                  value
+                }
+                sender {
+                  assets
+                  value
+                }
+              }
+              ... on ExchangeTx {
+                expiredAt
+                to
+                data {
+                  typeUrl
+                  value
+                }
+                receiver {
+                  assets
+                  value
+                }
+                sender {
+                  assets
+                  value
+                }
+              }
+              ... on DepositTetherTx {
+                charge
+                commission
+                locktime
+                target
+                value
+                withdrawer
+              }
+              ... on DeployProtocolTx {
+                address
+                description
+                name
+                namespace
+                pipeline
+                proto
+                sources
+                tags
+                version
+                code {
+                  binary
+                  checksum
+                }
+                data {
+                  typeUrl
+                  value
+                }
+                typeUrls {
+                  module
+                  url
+                }
+              }
+              ... on DeclareTx {
+                issuer
+                moniker
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on DeclareFileTx {
+                hash
+              }
+              ... on CreateAssetTx {
+                address
+                moniker
+                parent
+                readonly
+                transferrable
+                ttl
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ConsumeAssetTx {
+                address
+                issuer
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ConsensusUpgradeTx {
+                maxBytes
+                maxCandidates
+                maxGas
+                maxValidators
+                data {
+                  typeUrl
+                  value
+                }
+                validators {
+                  address
+                  power
+                }
+              }
+              ... on ApproveTetherTx {
+                withdraw
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on AcquireAssetTx {
+                to
+                data {
+                  typeUrl
+                  value
+                }
+                specs {
+                  address
+                  data
+                }
+              }
+              ... on AccountMigrateTx {
+                address
+                pk
+                data {
+                  typeUrl
+                  value
+                }
+              }
+            }
+          }
+        }
+        renaissanceTx {
+          code
+          hash
+          height
+          index
+          time
+          accountMigrate {
+            address
+          }
+          createAsset {
+            asset
+          }
+          tags {
+            key
+            value
+          }
+          tx {
+            chainId
+            delegator
+            from
+            itxJson
+            nonce
+            pk
+            signature
+            signatures {
+              delegator
+              pk
+              signature
+              signer
+              data {
+                typeUrl
+                value
+              }
+            }
+            itx {
+              __typename
+              ... on RevokeSwapTx {
+                address
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on RetrieveSwapTx {
+                address
+                hashkey
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on SetupSwapTx {
+                assets
+                hashlock
+                locktime
+                receiver
+                value
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on WithdrawTetherTx {
+                chainId
+                expiredAt
+                from
+                nonce
+                pk
+                signature
+                data {
+                  typeUrl
+                  value
+                }
+                receiver {
+                  assets
+                  tether
+                  value
+                }
+                sender {
+                  assets
+                  value
+                }
+                signatures {
+                  delegator
+                  pk
+                  signature
+                  signer
+                }
+              }
+              ... on UpgradeNodeTx {
+                height
+                override
+                version
+              }
+              ... on UpdateAssetTx {
+                address
+                moniker
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on TransferTx {
+                assets
+                to
+                value
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on SysUpgradeTx {
+                gracePeriod
+                data {
+                  typeUrl
+                  value
+                }
+                task {
+                  actions
+                  dataHash
+                  type
+                }
+              }
+              ... on StakeTx {
+                message
+                to
+                value
+                data {
+                  type
+                }
+              }
+              ... on RevokeTetherTx {
+                tether
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on PokeTx {
+                address
+                date
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ExchangeTetherTx {
+                expiredAt
+                data {
+                  typeUrl
+                  value
+                }
+                receiver {
+                  assets
+                  value
+                }
+                sender {
+                  assets
+                  value
+                }
+              }
+              ... on ExchangeTx {
+                expiredAt
+                to
+                data {
+                  typeUrl
+                  value
+                }
+                receiver {
+                  assets
+                  value
+                }
+                sender {
+                  assets
+                  value
+                }
+              }
+              ... on DepositTetherTx {
+                charge
+                commission
+                locktime
+                target
+                value
+                withdrawer
+              }
+              ... on DeployProtocolTx {
+                address
+                description
+                name
+                namespace
+                pipeline
+                proto
+                sources
+                tags
+                version
+                code {
+                  binary
+                  checksum
+                }
+                data {
+                  typeUrl
+                  value
+                }
+                typeUrls {
+                  module
+                  url
+                }
+              }
+              ... on DeclareTx {
+                issuer
+                moniker
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on DeclareFileTx {
+                hash
+              }
+              ... on CreateAssetTx {
+                address
+                moniker
+                parent
+                readonly
+                transferrable
+                ttl
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ConsumeAssetTx {
+                address
+                issuer
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ConsensusUpgradeTx {
+                maxBytes
+                maxCandidates
+                maxGas
+                maxValidators
+                data {
+                  typeUrl
+                  value
+                }
+                validators {
+                  address
+                  power
+                }
+              }
+              ... on ApproveTetherTx {
+                withdraw
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on AcquireAssetTx {
+                to
+                data {
+                  typeUrl
+                  value
+                }
+                specs {
+                  address
+                  data
+                }
+              }
+              ... on AccountMigrateTx {
+                address
+                pk
+                data {
+                  typeUrl
+                  value
+                }
+              }
+            }
+          }
+        }
       }
       data {
         typeUrl
@@ -137,6 +701,570 @@
       context {
         genesisTime
         renaissanceTime
+        genesisTx {
+          code
+          hash
+          height
+          index
+          time
+          accountMigrate {
+            address
+          }
+          createAsset {
+            asset
+          }
+          tags {
+            key
+            value
+          }
+          tx {
+            chainId
+            delegator
+            from
+            itxJson
+            nonce
+            pk
+            signature
+            signatures {
+              delegator
+              pk
+              signature
+              signer
+              data {
+                typeUrl
+                value
+              }
+            }
+            itx {
+              __typename
+              ... on RevokeSwapTx {
+                address
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on RetrieveSwapTx {
+                address
+                hashkey
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on SetupSwapTx {
+                assets
+                hashlock
+                locktime
+                receiver
+                value
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on WithdrawTetherTx {
+                chainId
+                expiredAt
+                from
+                nonce
+                pk
+                signature
+                data {
+                  typeUrl
+                  value
+                }
+                receiver {
+                  assets
+                  tether
+                  value
+                }
+                sender {
+                  assets
+                  value
+                }
+                signatures {
+                  delegator
+                  pk
+                  signature
+                  signer
+                }
+              }
+              ... on UpgradeNodeTx {
+                height
+                override
+                version
+              }
+              ... on UpdateAssetTx {
+                address
+                moniker
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on TransferTx {
+                assets
+                to
+                value
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on SysUpgradeTx {
+                gracePeriod
+                data {
+                  typeUrl
+                  value
+                }
+                task {
+                  actions
+                  dataHash
+                  type
+                }
+              }
+              ... on StakeTx {
+                message
+                to
+                value
+                data {
+                  type
+                }
+              }
+              ... on RevokeTetherTx {
+                tether
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on PokeTx {
+                address
+                date
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ExchangeTetherTx {
+                expiredAt
+                data {
+                  typeUrl
+                  value
+                }
+                receiver {
+                  assets
+                  value
+                }
+                sender {
+                  assets
+                  value
+                }
+              }
+              ... on ExchangeTx {
+                expiredAt
+                to
+                data {
+                  typeUrl
+                  value
+                }
+                receiver {
+                  assets
+                  value
+                }
+                sender {
+                  assets
+                  value
+                }
+              }
+              ... on DepositTetherTx {
+                charge
+                commission
+                locktime
+                target
+                value
+                withdrawer
+              }
+              ... on DeployProtocolTx {
+                address
+                description
+                name
+                namespace
+                pipeline
+                proto
+                sources
+                tags
+                version
+                code {
+                  binary
+                  checksum
+                }
+                data {
+                  typeUrl
+                  value
+                }
+                typeUrls {
+                  module
+                  url
+                }
+              }
+              ... on DeclareTx {
+                issuer
+                moniker
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on DeclareFileTx {
+                hash
+              }
+              ... on CreateAssetTx {
+                address
+                moniker
+                parent
+                readonly
+                transferrable
+                ttl
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ConsumeAssetTx {
+                address
+                issuer
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ConsensusUpgradeTx {
+                maxBytes
+                maxCandidates
+                maxGas
+                maxValidators
+                data {
+                  typeUrl
+                  value
+                }
+                validators {
+                  address
+                  power
+                }
+              }
+              ... on ApproveTetherTx {
+                withdraw
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on AcquireAssetTx {
+                to
+                data {
+                  typeUrl
+                  value
+                }
+                specs {
+                  address
+                  data
+                }
+              }
+              ... on AccountMigrateTx {
+                address
+                pk
+                data {
+                  typeUrl
+                  value
+                }
+              }
+            }
+          }
+        }
+        renaissanceTx {
+          code
+          hash
+          height
+          index
+          time
+          accountMigrate {
+            address
+          }
+          createAsset {
+            asset
+          }
+          tags {
+            key
+            value
+          }
+          tx {
+            chainId
+            delegator
+            from
+            itxJson
+            nonce
+            pk
+            signature
+            signatures {
+              delegator
+              pk
+              signature
+              signer
+              data {
+                typeUrl
+                value
+              }
+            }
+            itx {
+              __typename
+              ... on RevokeSwapTx {
+                address
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on RetrieveSwapTx {
+                address
+                hashkey
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on SetupSwapTx {
+                assets
+                hashlock
+                locktime
+                receiver
+                value
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on WithdrawTetherTx {
+                chainId
+                expiredAt
+                from
+                nonce
+                pk
+                signature
+                data {
+                  typeUrl
+                  value
+                }
+                receiver {
+                  assets
+                  tether
+                  value
+                }
+                sender {
+                  assets
+                  value
+                }
+                signatures {
+                  delegator
+                  pk
+                  signature
+                  signer
+                }
+              }
+              ... on UpgradeNodeTx {
+                height
+                override
+                version
+              }
+              ... on UpdateAssetTx {
+                address
+                moniker
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on TransferTx {
+                assets
+                to
+                value
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on SysUpgradeTx {
+                gracePeriod
+                data {
+                  typeUrl
+                  value
+                }
+                task {
+                  actions
+                  dataHash
+                  type
+                }
+              }
+              ... on StakeTx {
+                message
+                to
+                value
+                data {
+                  type
+                }
+              }
+              ... on RevokeTetherTx {
+                tether
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on PokeTx {
+                address
+                date
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ExchangeTetherTx {
+                expiredAt
+                data {
+                  typeUrl
+                  value
+                }
+                receiver {
+                  assets
+                  value
+                }
+                sender {
+                  assets
+                  value
+                }
+              }
+              ... on ExchangeTx {
+                expiredAt
+                to
+                data {
+                  typeUrl
+                  value
+                }
+                receiver {
+                  assets
+                  value
+                }
+                sender {
+                  assets
+                  value
+                }
+              }
+              ... on DepositTetherTx {
+                charge
+                commission
+                locktime
+                target
+                value
+                withdrawer
+              }
+              ... on DeployProtocolTx {
+                address
+                description
+                name
+                namespace
+                pipeline
+                proto
+                sources
+                tags
+                version
+                code {
+                  binary
+                  checksum
+                }
+                data {
+                  typeUrl
+                  value
+                }
+                typeUrls {
+                  module
+                  url
+                }
+              }
+              ... on DeclareTx {
+                issuer
+                moniker
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on DeclareFileTx {
+                hash
+              }
+              ... on CreateAssetTx {
+                address
+                moniker
+                parent
+                readonly
+                transferrable
+                ttl
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ConsumeAssetTx {
+                address
+                issuer
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ConsensusUpgradeTx {
+                maxBytes
+                maxCandidates
+                maxGas
+                maxValidators
+                data {
+                  typeUrl
+                  value
+                }
+                validators {
+                  address
+                  power
+                }
+              }
+              ... on ApproveTetherTx {
+                withdraw
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on AcquireAssetTx {
+                to
+                data {
+                  typeUrl
+                  value
+                }
+                specs {
+                  address
+                  data
+                }
+              }
+              ... on AccountMigrateTx {
+                address
+                pk
+                data {
+                  typeUrl
+                  value
+                }
+              }
+            }
+          }
+        }
       }
       data {
         typeUrl
@@ -228,6 +1356,265 @@
               value
             }
           }
+          itx {
+            __typename
+            ... on RevokeSwapTx {
+              address
+              data {
+                typeUrl
+                value
+              }
+            }
+            ... on RetrieveSwapTx {
+              address
+              hashkey
+              data {
+                typeUrl
+                value
+              }
+            }
+            ... on SetupSwapTx {
+              assets
+              hashlock
+              locktime
+              receiver
+              value
+              data {
+                typeUrl
+                value
+              }
+            }
+            ... on WithdrawTetherTx {
+              chainId
+              expiredAt
+              from
+              nonce
+              pk
+              signature
+              data {
+                typeUrl
+                value
+              }
+              receiver {
+                assets
+                tether
+                value
+              }
+              sender {
+                assets
+                value
+              }
+              signatures {
+                delegator
+                pk
+                signature
+                signer
+                data {
+                  typeUrl
+                  value
+                }
+              }
+            }
+            ... on UpgradeNodeTx {
+              height
+              override
+              version
+            }
+            ... on UpdateAssetTx {
+              address
+              moniker
+              data {
+                typeUrl
+                value
+              }
+            }
+            ... on TransferTx {
+              assets
+              to
+              value
+              data {
+                typeUrl
+                value
+              }
+            }
+            ... on SysUpgradeTx {
+              gracePeriod
+              data {
+                typeUrl
+                value
+              }
+              task {
+                actions
+                dataHash
+                type
+              }
+            }
+            ... on StakeTx {
+              message
+              to
+              value
+              data {
+                type
+              }
+            }
+            ... on RevokeTetherTx {
+              tether
+              data {
+                typeUrl
+                value
+              }
+            }
+            ... on PokeTx {
+              address
+              date
+              data {
+                typeUrl
+                value
+              }
+            }
+            ... on ExchangeTetherTx {
+              expiredAt
+              data {
+                typeUrl
+                value
+              }
+              receiver {
+                assets
+                value
+                deposit {
+                  chainId
+                  delegator
+                  from
+                  itxJson
+                  nonce
+                  pk
+                  signature
+                }
+              }
+              sender {
+                assets
+                value
+              }
+            }
+            ... on ExchangeTx {
+              expiredAt
+              to
+              data {
+                typeUrl
+                value
+              }
+              receiver {
+                assets
+                value
+              }
+              sender {
+                assets
+                value
+              }
+            }
+            ... on DepositTetherTx {
+              charge
+              commission
+              locktime
+              target
+              value
+              withdrawer
+            }
+            ... on DeployProtocolTx {
+              address
+              description
+              name
+              namespace
+              pipeline
+              proto
+              sources
+              tags
+              version
+              code {
+                binary
+                checksum
+              }
+              data {
+                typeUrl
+                value
+              }
+              typeUrls {
+                module
+                url
+              }
+            }
+            ... on DeclareTx {
+              issuer
+              moniker
+              data {
+                typeUrl
+                value
+              }
+            }
+            ... on DeclareFileTx {
+              hash
+            }
+            ... on CreateAssetTx {
+              address
+              moniker
+              parent
+              readonly
+              transferrable
+              ttl
+              data {
+                typeUrl
+                value
+              }
+            }
+            ... on ConsumeAssetTx {
+              address
+              issuer
+              data {
+                typeUrl
+                value
+              }
+            }
+            ... on ConsensusUpgradeTx {
+              maxBytes
+              maxCandidates
+              maxGas
+              maxValidators
+              data {
+                typeUrl
+                value
+              }
+              validators {
+                address
+                power
+              }
+            }
+            ... on ApproveTetherTx {
+              withdraw
+              data {
+                typeUrl
+                value
+              }
+            }
+            ... on AcquireAssetTx {
+              to
+              data {
+                typeUrl
+                value
+              }
+              specs {
+                address
+                data
+              }
+            }
+            ... on AccountMigrateTx {
+              address
+              pk
+              data {
+                typeUrl
+                value
+              }
+            }
+          }
         }
       }
       lastBlockId {
@@ -269,6 +1656,265 @@
             data {
               typeUrl
               value
+            }
+          }
+          itx {
+            __typename
+            ... on RevokeSwapTx {
+              address
+              data {
+                typeUrl
+                value
+              }
+            }
+            ... on RetrieveSwapTx {
+              address
+              hashkey
+              data {
+                typeUrl
+                value
+              }
+            }
+            ... on SetupSwapTx {
+              assets
+              hashlock
+              locktime
+              receiver
+              value
+              data {
+                typeUrl
+                value
+              }
+            }
+            ... on WithdrawTetherTx {
+              chainId
+              expiredAt
+              from
+              nonce
+              pk
+              signature
+              data {
+                typeUrl
+                value
+              }
+              receiver {
+                assets
+                tether
+                value
+              }
+              sender {
+                assets
+                value
+              }
+              signatures {
+                delegator
+                pk
+                signature
+                signer
+                data {
+                  typeUrl
+                  value
+                }
+              }
+            }
+            ... on UpgradeNodeTx {
+              height
+              override
+              version
+            }
+            ... on UpdateAssetTx {
+              address
+              moniker
+              data {
+                typeUrl
+                value
+              }
+            }
+            ... on TransferTx {
+              assets
+              to
+              value
+              data {
+                typeUrl
+                value
+              }
+            }
+            ... on SysUpgradeTx {
+              gracePeriod
+              data {
+                typeUrl
+                value
+              }
+              task {
+                actions
+                dataHash
+                type
+              }
+            }
+            ... on StakeTx {
+              message
+              to
+              value
+              data {
+                type
+              }
+            }
+            ... on RevokeTetherTx {
+              tether
+              data {
+                typeUrl
+                value
+              }
+            }
+            ... on PokeTx {
+              address
+              date
+              data {
+                typeUrl
+                value
+              }
+            }
+            ... on ExchangeTetherTx {
+              expiredAt
+              data {
+                typeUrl
+                value
+              }
+              receiver {
+                assets
+                value
+                deposit {
+                  chainId
+                  delegator
+                  from
+                  itxJson
+                  nonce
+                  pk
+                  signature
+                }
+              }
+              sender {
+                assets
+                value
+              }
+            }
+            ... on ExchangeTx {
+              expiredAt
+              to
+              data {
+                typeUrl
+                value
+              }
+              receiver {
+                assets
+                value
+              }
+              sender {
+                assets
+                value
+              }
+            }
+            ... on DepositTetherTx {
+              charge
+              commission
+              locktime
+              target
+              value
+              withdrawer
+            }
+            ... on DeployProtocolTx {
+              address
+              description
+              name
+              namespace
+              pipeline
+              proto
+              sources
+              tags
+              version
+              code {
+                binary
+                checksum
+              }
+              data {
+                typeUrl
+                value
+              }
+              typeUrls {
+                module
+                url
+              }
+            }
+            ... on DeclareTx {
+              issuer
+              moniker
+              data {
+                typeUrl
+                value
+              }
+            }
+            ... on DeclareFileTx {
+              hash
+            }
+            ... on CreateAssetTx {
+              address
+              moniker
+              parent
+              readonly
+              transferrable
+              ttl
+              data {
+                typeUrl
+                value
+              }
+            }
+            ... on ConsumeAssetTx {
+              address
+              issuer
+              data {
+                typeUrl
+                value
+              }
+            }
+            ... on ConsensusUpgradeTx {
+              maxBytes
+              maxCandidates
+              maxGas
+              maxValidators
+              data {
+                typeUrl
+                value
+              }
+              validators {
+                address
+                power
+              }
+            }
+            ... on ApproveTetherTx {
+              withdraw
+              data {
+                typeUrl
+                value
+              }
+            }
+            ... on AcquireAssetTx {
+              to
+              data {
+                typeUrl
+                value
+              }
+              specs {
+                address
+                data
+              }
+            }
+            ... on AccountMigrateTx {
+              address
+              pk
+              data {
+                typeUrl
+                value
+              }
             }
           }
         }
@@ -405,6 +2051,570 @@ No arguments
       context {
         genesisTime
         renaissanceTime
+        genesisTx {
+          code
+          hash
+          height
+          index
+          time
+          accountMigrate {
+            address
+          }
+          createAsset {
+            asset
+          }
+          tags {
+            key
+            value
+          }
+          tx {
+            chainId
+            delegator
+            from
+            itxJson
+            nonce
+            pk
+            signature
+            signatures {
+              delegator
+              pk
+              signature
+              signer
+              data {
+                typeUrl
+                value
+              }
+            }
+            itx {
+              __typename
+              ... on RevokeSwapTx {
+                address
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on RetrieveSwapTx {
+                address
+                hashkey
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on SetupSwapTx {
+                assets
+                hashlock
+                locktime
+                receiver
+                value
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on WithdrawTetherTx {
+                chainId
+                expiredAt
+                from
+                nonce
+                pk
+                signature
+                data {
+                  typeUrl
+                  value
+                }
+                receiver {
+                  assets
+                  tether
+                  value
+                }
+                sender {
+                  assets
+                  value
+                }
+                signatures {
+                  delegator
+                  pk
+                  signature
+                  signer
+                }
+              }
+              ... on UpgradeNodeTx {
+                height
+                override
+                version
+              }
+              ... on UpdateAssetTx {
+                address
+                moniker
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on TransferTx {
+                assets
+                to
+                value
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on SysUpgradeTx {
+                gracePeriod
+                data {
+                  typeUrl
+                  value
+                }
+                task {
+                  actions
+                  dataHash
+                  type
+                }
+              }
+              ... on StakeTx {
+                message
+                to
+                value
+                data {
+                  type
+                }
+              }
+              ... on RevokeTetherTx {
+                tether
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on PokeTx {
+                address
+                date
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ExchangeTetherTx {
+                expiredAt
+                data {
+                  typeUrl
+                  value
+                }
+                receiver {
+                  assets
+                  value
+                }
+                sender {
+                  assets
+                  value
+                }
+              }
+              ... on ExchangeTx {
+                expiredAt
+                to
+                data {
+                  typeUrl
+                  value
+                }
+                receiver {
+                  assets
+                  value
+                }
+                sender {
+                  assets
+                  value
+                }
+              }
+              ... on DepositTetherTx {
+                charge
+                commission
+                locktime
+                target
+                value
+                withdrawer
+              }
+              ... on DeployProtocolTx {
+                address
+                description
+                name
+                namespace
+                pipeline
+                proto
+                sources
+                tags
+                version
+                code {
+                  binary
+                  checksum
+                }
+                data {
+                  typeUrl
+                  value
+                }
+                typeUrls {
+                  module
+                  url
+                }
+              }
+              ... on DeclareTx {
+                issuer
+                moniker
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on DeclareFileTx {
+                hash
+              }
+              ... on CreateAssetTx {
+                address
+                moniker
+                parent
+                readonly
+                transferrable
+                ttl
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ConsumeAssetTx {
+                address
+                issuer
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ConsensusUpgradeTx {
+                maxBytes
+                maxCandidates
+                maxGas
+                maxValidators
+                data {
+                  typeUrl
+                  value
+                }
+                validators {
+                  address
+                  power
+                }
+              }
+              ... on ApproveTetherTx {
+                withdraw
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on AcquireAssetTx {
+                to
+                data {
+                  typeUrl
+                  value
+                }
+                specs {
+                  address
+                  data
+                }
+              }
+              ... on AccountMigrateTx {
+                address
+                pk
+                data {
+                  typeUrl
+                  value
+                }
+              }
+            }
+          }
+        }
+        renaissanceTx {
+          code
+          hash
+          height
+          index
+          time
+          accountMigrate {
+            address
+          }
+          createAsset {
+            asset
+          }
+          tags {
+            key
+            value
+          }
+          tx {
+            chainId
+            delegator
+            from
+            itxJson
+            nonce
+            pk
+            signature
+            signatures {
+              delegator
+              pk
+              signature
+              signer
+              data {
+                typeUrl
+                value
+              }
+            }
+            itx {
+              __typename
+              ... on RevokeSwapTx {
+                address
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on RetrieveSwapTx {
+                address
+                hashkey
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on SetupSwapTx {
+                assets
+                hashlock
+                locktime
+                receiver
+                value
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on WithdrawTetherTx {
+                chainId
+                expiredAt
+                from
+                nonce
+                pk
+                signature
+                data {
+                  typeUrl
+                  value
+                }
+                receiver {
+                  assets
+                  tether
+                  value
+                }
+                sender {
+                  assets
+                  value
+                }
+                signatures {
+                  delegator
+                  pk
+                  signature
+                  signer
+                }
+              }
+              ... on UpgradeNodeTx {
+                height
+                override
+                version
+              }
+              ... on UpdateAssetTx {
+                address
+                moniker
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on TransferTx {
+                assets
+                to
+                value
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on SysUpgradeTx {
+                gracePeriod
+                data {
+                  typeUrl
+                  value
+                }
+                task {
+                  actions
+                  dataHash
+                  type
+                }
+              }
+              ... on StakeTx {
+                message
+                to
+                value
+                data {
+                  type
+                }
+              }
+              ... on RevokeTetherTx {
+                tether
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on PokeTx {
+                address
+                date
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ExchangeTetherTx {
+                expiredAt
+                data {
+                  typeUrl
+                  value
+                }
+                receiver {
+                  assets
+                  value
+                }
+                sender {
+                  assets
+                  value
+                }
+              }
+              ... on ExchangeTx {
+                expiredAt
+                to
+                data {
+                  typeUrl
+                  value
+                }
+                receiver {
+                  assets
+                  value
+                }
+                sender {
+                  assets
+                  value
+                }
+              }
+              ... on DepositTetherTx {
+                charge
+                commission
+                locktime
+                target
+                value
+                withdrawer
+              }
+              ... on DeployProtocolTx {
+                address
+                description
+                name
+                namespace
+                pipeline
+                proto
+                sources
+                tags
+                version
+                code {
+                  binary
+                  checksum
+                }
+                data {
+                  typeUrl
+                  value
+                }
+                typeUrls {
+                  module
+                  url
+                }
+              }
+              ... on DeclareTx {
+                issuer
+                moniker
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on DeclareFileTx {
+                hash
+              }
+              ... on CreateAssetTx {
+                address
+                moniker
+                parent
+                readonly
+                transferrable
+                ttl
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ConsumeAssetTx {
+                address
+                issuer
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ConsensusUpgradeTx {
+                maxBytes
+                maxCandidates
+                maxGas
+                maxValidators
+                data {
+                  typeUrl
+                  value
+                }
+                validators {
+                  address
+                  power
+                }
+              }
+              ... on ApproveTetherTx {
+                withdraw
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on AcquireAssetTx {
+                to
+                data {
+                  typeUrl
+                  value
+                }
+                specs {
+                  address
+                  data
+                }
+              }
+              ... on AccountMigrateTx {
+                address
+                pk
+                data {
+                  typeUrl
+                  value
+                }
+              }
+            }
+          }
+        }
       }
       data {
         typeUrl
@@ -482,6 +2692,58 @@ No arguments
           context {
             genesisTime
             renaissanceTime
+            genesisTx {
+              code
+              hash
+              height
+              index
+              time
+              accountMigrate {
+                address
+              }
+              createAsset {
+                asset
+              }
+              tags {
+                key
+                value
+              }
+              tx {
+                chainId
+                delegator
+                from
+                itxJson
+                nonce
+                pk
+                signature
+              }
+            }
+            renaissanceTx {
+              code
+              hash
+              height
+              index
+              time
+              accountMigrate {
+                address
+              }
+              createAsset {
+                asset
+              }
+              tags {
+                key
+                value
+              }
+              tx {
+                chainId
+                delegator
+                from
+                itxJson
+                nonce
+                pk
+                signature
+              }
+            }
           }
         }
       }
@@ -807,6 +3069,570 @@ No arguments
       context {
         genesisTime
         renaissanceTime
+        genesisTx {
+          code
+          hash
+          height
+          index
+          time
+          accountMigrate {
+            address
+          }
+          createAsset {
+            asset
+          }
+          tags {
+            key
+            value
+          }
+          tx {
+            chainId
+            delegator
+            from
+            itxJson
+            nonce
+            pk
+            signature
+            signatures {
+              delegator
+              pk
+              signature
+              signer
+              data {
+                typeUrl
+                value
+              }
+            }
+            itx {
+              __typename
+              ... on RevokeSwapTx {
+                address
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on RetrieveSwapTx {
+                address
+                hashkey
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on SetupSwapTx {
+                assets
+                hashlock
+                locktime
+                receiver
+                value
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on WithdrawTetherTx {
+                chainId
+                expiredAt
+                from
+                nonce
+                pk
+                signature
+                data {
+                  typeUrl
+                  value
+                }
+                receiver {
+                  assets
+                  tether
+                  value
+                }
+                sender {
+                  assets
+                  value
+                }
+                signatures {
+                  delegator
+                  pk
+                  signature
+                  signer
+                }
+              }
+              ... on UpgradeNodeTx {
+                height
+                override
+                version
+              }
+              ... on UpdateAssetTx {
+                address
+                moniker
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on TransferTx {
+                assets
+                to
+                value
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on SysUpgradeTx {
+                gracePeriod
+                data {
+                  typeUrl
+                  value
+                }
+                task {
+                  actions
+                  dataHash
+                  type
+                }
+              }
+              ... on StakeTx {
+                message
+                to
+                value
+                data {
+                  type
+                }
+              }
+              ... on RevokeTetherTx {
+                tether
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on PokeTx {
+                address
+                date
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ExchangeTetherTx {
+                expiredAt
+                data {
+                  typeUrl
+                  value
+                }
+                receiver {
+                  assets
+                  value
+                }
+                sender {
+                  assets
+                  value
+                }
+              }
+              ... on ExchangeTx {
+                expiredAt
+                to
+                data {
+                  typeUrl
+                  value
+                }
+                receiver {
+                  assets
+                  value
+                }
+                sender {
+                  assets
+                  value
+                }
+              }
+              ... on DepositTetherTx {
+                charge
+                commission
+                locktime
+                target
+                value
+                withdrawer
+              }
+              ... on DeployProtocolTx {
+                address
+                description
+                name
+                namespace
+                pipeline
+                proto
+                sources
+                tags
+                version
+                code {
+                  binary
+                  checksum
+                }
+                data {
+                  typeUrl
+                  value
+                }
+                typeUrls {
+                  module
+                  url
+                }
+              }
+              ... on DeclareTx {
+                issuer
+                moniker
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on DeclareFileTx {
+                hash
+              }
+              ... on CreateAssetTx {
+                address
+                moniker
+                parent
+                readonly
+                transferrable
+                ttl
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ConsumeAssetTx {
+                address
+                issuer
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ConsensusUpgradeTx {
+                maxBytes
+                maxCandidates
+                maxGas
+                maxValidators
+                data {
+                  typeUrl
+                  value
+                }
+                validators {
+                  address
+                  power
+                }
+              }
+              ... on ApproveTetherTx {
+                withdraw
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on AcquireAssetTx {
+                to
+                data {
+                  typeUrl
+                  value
+                }
+                specs {
+                  address
+                  data
+                }
+              }
+              ... on AccountMigrateTx {
+                address
+                pk
+                data {
+                  typeUrl
+                  value
+                }
+              }
+            }
+          }
+        }
+        renaissanceTx {
+          code
+          hash
+          height
+          index
+          time
+          accountMigrate {
+            address
+          }
+          createAsset {
+            asset
+          }
+          tags {
+            key
+            value
+          }
+          tx {
+            chainId
+            delegator
+            from
+            itxJson
+            nonce
+            pk
+            signature
+            signatures {
+              delegator
+              pk
+              signature
+              signer
+              data {
+                typeUrl
+                value
+              }
+            }
+            itx {
+              __typename
+              ... on RevokeSwapTx {
+                address
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on RetrieveSwapTx {
+                address
+                hashkey
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on SetupSwapTx {
+                assets
+                hashlock
+                locktime
+                receiver
+                value
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on WithdrawTetherTx {
+                chainId
+                expiredAt
+                from
+                nonce
+                pk
+                signature
+                data {
+                  typeUrl
+                  value
+                }
+                receiver {
+                  assets
+                  tether
+                  value
+                }
+                sender {
+                  assets
+                  value
+                }
+                signatures {
+                  delegator
+                  pk
+                  signature
+                  signer
+                }
+              }
+              ... on UpgradeNodeTx {
+                height
+                override
+                version
+              }
+              ... on UpdateAssetTx {
+                address
+                moniker
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on TransferTx {
+                assets
+                to
+                value
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on SysUpgradeTx {
+                gracePeriod
+                data {
+                  typeUrl
+                  value
+                }
+                task {
+                  actions
+                  dataHash
+                  type
+                }
+              }
+              ... on StakeTx {
+                message
+                to
+                value
+                data {
+                  type
+                }
+              }
+              ... on RevokeTetherTx {
+                tether
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on PokeTx {
+                address
+                date
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ExchangeTetherTx {
+                expiredAt
+                data {
+                  typeUrl
+                  value
+                }
+                receiver {
+                  assets
+                  value
+                }
+                sender {
+                  assets
+                  value
+                }
+              }
+              ... on ExchangeTx {
+                expiredAt
+                to
+                data {
+                  typeUrl
+                  value
+                }
+                receiver {
+                  assets
+                  value
+                }
+                sender {
+                  assets
+                  value
+                }
+              }
+              ... on DepositTetherTx {
+                charge
+                commission
+                locktime
+                target
+                value
+                withdrawer
+              }
+              ... on DeployProtocolTx {
+                address
+                description
+                name
+                namespace
+                pipeline
+                proto
+                sources
+                tags
+                version
+                code {
+                  binary
+                  checksum
+                }
+                data {
+                  typeUrl
+                  value
+                }
+                typeUrls {
+                  module
+                  url
+                }
+              }
+              ... on DeclareTx {
+                issuer
+                moniker
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on DeclareFileTx {
+                hash
+              }
+              ... on CreateAssetTx {
+                address
+                moniker
+                parent
+                readonly
+                transferrable
+                ttl
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ConsumeAssetTx {
+                address
+                issuer
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ConsensusUpgradeTx {
+                maxBytes
+                maxCandidates
+                maxGas
+                maxValidators
+                data {
+                  typeUrl
+                  value
+                }
+                validators {
+                  address
+                  power
+                }
+              }
+              ... on ApproveTetherTx {
+                withdraw
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on AcquireAssetTx {
+                to
+                data {
+                  typeUrl
+                  value
+                }
+                specs {
+                  address
+                  data
+                }
+              }
+              ... on AccountMigrateTx {
+                address
+                pk
+                data {
+                  typeUrl
+                  value
+                }
+              }
+            }
+          }
+        }
       }
       data {
         typeUrl
@@ -920,6 +3746,570 @@ No arguments
       context {
         genesisTime
         renaissanceTime
+        genesisTx {
+          code
+          hash
+          height
+          index
+          time
+          accountMigrate {
+            address
+          }
+          createAsset {
+            asset
+          }
+          tags {
+            key
+            value
+          }
+          tx {
+            chainId
+            delegator
+            from
+            itxJson
+            nonce
+            pk
+            signature
+            signatures {
+              delegator
+              pk
+              signature
+              signer
+              data {
+                typeUrl
+                value
+              }
+            }
+            itx {
+              __typename
+              ... on RevokeSwapTx {
+                address
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on RetrieveSwapTx {
+                address
+                hashkey
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on SetupSwapTx {
+                assets
+                hashlock
+                locktime
+                receiver
+                value
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on WithdrawTetherTx {
+                chainId
+                expiredAt
+                from
+                nonce
+                pk
+                signature
+                data {
+                  typeUrl
+                  value
+                }
+                receiver {
+                  assets
+                  tether
+                  value
+                }
+                sender {
+                  assets
+                  value
+                }
+                signatures {
+                  delegator
+                  pk
+                  signature
+                  signer
+                }
+              }
+              ... on UpgradeNodeTx {
+                height
+                override
+                version
+              }
+              ... on UpdateAssetTx {
+                address
+                moniker
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on TransferTx {
+                assets
+                to
+                value
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on SysUpgradeTx {
+                gracePeriod
+                data {
+                  typeUrl
+                  value
+                }
+                task {
+                  actions
+                  dataHash
+                  type
+                }
+              }
+              ... on StakeTx {
+                message
+                to
+                value
+                data {
+                  type
+                }
+              }
+              ... on RevokeTetherTx {
+                tether
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on PokeTx {
+                address
+                date
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ExchangeTetherTx {
+                expiredAt
+                data {
+                  typeUrl
+                  value
+                }
+                receiver {
+                  assets
+                  value
+                }
+                sender {
+                  assets
+                  value
+                }
+              }
+              ... on ExchangeTx {
+                expiredAt
+                to
+                data {
+                  typeUrl
+                  value
+                }
+                receiver {
+                  assets
+                  value
+                }
+                sender {
+                  assets
+                  value
+                }
+              }
+              ... on DepositTetherTx {
+                charge
+                commission
+                locktime
+                target
+                value
+                withdrawer
+              }
+              ... on DeployProtocolTx {
+                address
+                description
+                name
+                namespace
+                pipeline
+                proto
+                sources
+                tags
+                version
+                code {
+                  binary
+                  checksum
+                }
+                data {
+                  typeUrl
+                  value
+                }
+                typeUrls {
+                  module
+                  url
+                }
+              }
+              ... on DeclareTx {
+                issuer
+                moniker
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on DeclareFileTx {
+                hash
+              }
+              ... on CreateAssetTx {
+                address
+                moniker
+                parent
+                readonly
+                transferrable
+                ttl
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ConsumeAssetTx {
+                address
+                issuer
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ConsensusUpgradeTx {
+                maxBytes
+                maxCandidates
+                maxGas
+                maxValidators
+                data {
+                  typeUrl
+                  value
+                }
+                validators {
+                  address
+                  power
+                }
+              }
+              ... on ApproveTetherTx {
+                withdraw
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on AcquireAssetTx {
+                to
+                data {
+                  typeUrl
+                  value
+                }
+                specs {
+                  address
+                  data
+                }
+              }
+              ... on AccountMigrateTx {
+                address
+                pk
+                data {
+                  typeUrl
+                  value
+                }
+              }
+            }
+          }
+        }
+        renaissanceTx {
+          code
+          hash
+          height
+          index
+          time
+          accountMigrate {
+            address
+          }
+          createAsset {
+            asset
+          }
+          tags {
+            key
+            value
+          }
+          tx {
+            chainId
+            delegator
+            from
+            itxJson
+            nonce
+            pk
+            signature
+            signatures {
+              delegator
+              pk
+              signature
+              signer
+              data {
+                typeUrl
+                value
+              }
+            }
+            itx {
+              __typename
+              ... on RevokeSwapTx {
+                address
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on RetrieveSwapTx {
+                address
+                hashkey
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on SetupSwapTx {
+                assets
+                hashlock
+                locktime
+                receiver
+                value
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on WithdrawTetherTx {
+                chainId
+                expiredAt
+                from
+                nonce
+                pk
+                signature
+                data {
+                  typeUrl
+                  value
+                }
+                receiver {
+                  assets
+                  tether
+                  value
+                }
+                sender {
+                  assets
+                  value
+                }
+                signatures {
+                  delegator
+                  pk
+                  signature
+                  signer
+                }
+              }
+              ... on UpgradeNodeTx {
+                height
+                override
+                version
+              }
+              ... on UpdateAssetTx {
+                address
+                moniker
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on TransferTx {
+                assets
+                to
+                value
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on SysUpgradeTx {
+                gracePeriod
+                data {
+                  typeUrl
+                  value
+                }
+                task {
+                  actions
+                  dataHash
+                  type
+                }
+              }
+              ... on StakeTx {
+                message
+                to
+                value
+                data {
+                  type
+                }
+              }
+              ... on RevokeTetherTx {
+                tether
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on PokeTx {
+                address
+                date
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ExchangeTetherTx {
+                expiredAt
+                data {
+                  typeUrl
+                  value
+                }
+                receiver {
+                  assets
+                  value
+                }
+                sender {
+                  assets
+                  value
+                }
+              }
+              ... on ExchangeTx {
+                expiredAt
+                to
+                data {
+                  typeUrl
+                  value
+                }
+                receiver {
+                  assets
+                  value
+                }
+                sender {
+                  assets
+                  value
+                }
+              }
+              ... on DepositTetherTx {
+                charge
+                commission
+                locktime
+                target
+                value
+                withdrawer
+              }
+              ... on DeployProtocolTx {
+                address
+                description
+                name
+                namespace
+                pipeline
+                proto
+                sources
+                tags
+                version
+                code {
+                  binary
+                  checksum
+                }
+                data {
+                  typeUrl
+                  value
+                }
+                typeUrls {
+                  module
+                  url
+                }
+              }
+              ... on DeclareTx {
+                issuer
+                moniker
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on DeclareFileTx {
+                hash
+              }
+              ... on CreateAssetTx {
+                address
+                moniker
+                parent
+                readonly
+                transferrable
+                ttl
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ConsumeAssetTx {
+                address
+                issuer
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ConsensusUpgradeTx {
+                maxBytes
+                maxCandidates
+                maxGas
+                maxValidators
+                data {
+                  typeUrl
+                  value
+                }
+                validators {
+                  address
+                  power
+                }
+              }
+              ... on ApproveTetherTx {
+                withdraw
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on AcquireAssetTx {
+                to
+                data {
+                  typeUrl
+                  value
+                }
+                specs {
+                  address
+                  data
+                }
+              }
+              ... on AccountMigrateTx {
+                address
+                pk
+                data {
+                  typeUrl
+                  value
+                }
+              }
+            }
+          }
+        }
       }
       data {
         typeUrl
@@ -957,6 +4347,570 @@ No arguments
       context {
         genesisTime
         renaissanceTime
+        genesisTx {
+          code
+          hash
+          height
+          index
+          time
+          accountMigrate {
+            address
+          }
+          createAsset {
+            asset
+          }
+          tags {
+            key
+            value
+          }
+          tx {
+            chainId
+            delegator
+            from
+            itxJson
+            nonce
+            pk
+            signature
+            signatures {
+              delegator
+              pk
+              signature
+              signer
+              data {
+                typeUrl
+                value
+              }
+            }
+            itx {
+              __typename
+              ... on RevokeSwapTx {
+                address
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on RetrieveSwapTx {
+                address
+                hashkey
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on SetupSwapTx {
+                assets
+                hashlock
+                locktime
+                receiver
+                value
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on WithdrawTetherTx {
+                chainId
+                expiredAt
+                from
+                nonce
+                pk
+                signature
+                data {
+                  typeUrl
+                  value
+                }
+                receiver {
+                  assets
+                  tether
+                  value
+                }
+                sender {
+                  assets
+                  value
+                }
+                signatures {
+                  delegator
+                  pk
+                  signature
+                  signer
+                }
+              }
+              ... on UpgradeNodeTx {
+                height
+                override
+                version
+              }
+              ... on UpdateAssetTx {
+                address
+                moniker
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on TransferTx {
+                assets
+                to
+                value
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on SysUpgradeTx {
+                gracePeriod
+                data {
+                  typeUrl
+                  value
+                }
+                task {
+                  actions
+                  dataHash
+                  type
+                }
+              }
+              ... on StakeTx {
+                message
+                to
+                value
+                data {
+                  type
+                }
+              }
+              ... on RevokeTetherTx {
+                tether
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on PokeTx {
+                address
+                date
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ExchangeTetherTx {
+                expiredAt
+                data {
+                  typeUrl
+                  value
+                }
+                receiver {
+                  assets
+                  value
+                }
+                sender {
+                  assets
+                  value
+                }
+              }
+              ... on ExchangeTx {
+                expiredAt
+                to
+                data {
+                  typeUrl
+                  value
+                }
+                receiver {
+                  assets
+                  value
+                }
+                sender {
+                  assets
+                  value
+                }
+              }
+              ... on DepositTetherTx {
+                charge
+                commission
+                locktime
+                target
+                value
+                withdrawer
+              }
+              ... on DeployProtocolTx {
+                address
+                description
+                name
+                namespace
+                pipeline
+                proto
+                sources
+                tags
+                version
+                code {
+                  binary
+                  checksum
+                }
+                data {
+                  typeUrl
+                  value
+                }
+                typeUrls {
+                  module
+                  url
+                }
+              }
+              ... on DeclareTx {
+                issuer
+                moniker
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on DeclareFileTx {
+                hash
+              }
+              ... on CreateAssetTx {
+                address
+                moniker
+                parent
+                readonly
+                transferrable
+                ttl
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ConsumeAssetTx {
+                address
+                issuer
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ConsensusUpgradeTx {
+                maxBytes
+                maxCandidates
+                maxGas
+                maxValidators
+                data {
+                  typeUrl
+                  value
+                }
+                validators {
+                  address
+                  power
+                }
+              }
+              ... on ApproveTetherTx {
+                withdraw
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on AcquireAssetTx {
+                to
+                data {
+                  typeUrl
+                  value
+                }
+                specs {
+                  address
+                  data
+                }
+              }
+              ... on AccountMigrateTx {
+                address
+                pk
+                data {
+                  typeUrl
+                  value
+                }
+              }
+            }
+          }
+        }
+        renaissanceTx {
+          code
+          hash
+          height
+          index
+          time
+          accountMigrate {
+            address
+          }
+          createAsset {
+            asset
+          }
+          tags {
+            key
+            value
+          }
+          tx {
+            chainId
+            delegator
+            from
+            itxJson
+            nonce
+            pk
+            signature
+            signatures {
+              delegator
+              pk
+              signature
+              signer
+              data {
+                typeUrl
+                value
+              }
+            }
+            itx {
+              __typename
+              ... on RevokeSwapTx {
+                address
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on RetrieveSwapTx {
+                address
+                hashkey
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on SetupSwapTx {
+                assets
+                hashlock
+                locktime
+                receiver
+                value
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on WithdrawTetherTx {
+                chainId
+                expiredAt
+                from
+                nonce
+                pk
+                signature
+                data {
+                  typeUrl
+                  value
+                }
+                receiver {
+                  assets
+                  tether
+                  value
+                }
+                sender {
+                  assets
+                  value
+                }
+                signatures {
+                  delegator
+                  pk
+                  signature
+                  signer
+                }
+              }
+              ... on UpgradeNodeTx {
+                height
+                override
+                version
+              }
+              ... on UpdateAssetTx {
+                address
+                moniker
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on TransferTx {
+                assets
+                to
+                value
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on SysUpgradeTx {
+                gracePeriod
+                data {
+                  typeUrl
+                  value
+                }
+                task {
+                  actions
+                  dataHash
+                  type
+                }
+              }
+              ... on StakeTx {
+                message
+                to
+                value
+                data {
+                  type
+                }
+              }
+              ... on RevokeTetherTx {
+                tether
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on PokeTx {
+                address
+                date
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ExchangeTetherTx {
+                expiredAt
+                data {
+                  typeUrl
+                  value
+                }
+                receiver {
+                  assets
+                  value
+                }
+                sender {
+                  assets
+                  value
+                }
+              }
+              ... on ExchangeTx {
+                expiredAt
+                to
+                data {
+                  typeUrl
+                  value
+                }
+                receiver {
+                  assets
+                  value
+                }
+                sender {
+                  assets
+                  value
+                }
+              }
+              ... on DepositTetherTx {
+                charge
+                commission
+                locktime
+                target
+                value
+                withdrawer
+              }
+              ... on DeployProtocolTx {
+                address
+                description
+                name
+                namespace
+                pipeline
+                proto
+                sources
+                tags
+                version
+                code {
+                  binary
+                  checksum
+                }
+                data {
+                  typeUrl
+                  value
+                }
+                typeUrls {
+                  module
+                  url
+                }
+              }
+              ... on DeclareTx {
+                issuer
+                moniker
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on DeclareFileTx {
+                hash
+              }
+              ... on CreateAssetTx {
+                address
+                moniker
+                parent
+                readonly
+                transferrable
+                ttl
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ConsumeAssetTx {
+                address
+                issuer
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ConsensusUpgradeTx {
+                maxBytes
+                maxCandidates
+                maxGas
+                maxValidators
+                data {
+                  typeUrl
+                  value
+                }
+                validators {
+                  address
+                  power
+                }
+              }
+              ... on ApproveTetherTx {
+                withdraw
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on AcquireAssetTx {
+                to
+                data {
+                  typeUrl
+                  value
+                }
+                specs {
+                  address
+                  data
+                }
+              }
+              ... on AccountMigrateTx {
+                address
+                pk
+                data {
+                  typeUrl
+                  value
+                }
+              }
+            }
+          }
+        }
       }
     }
   }
@@ -1040,6 +4994,386 @@ No arguments
             value
           }
         }
+        itx {
+          __typename
+          ... on RevokeSwapTx {
+            address
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on RetrieveSwapTx {
+            address
+            hashkey
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on SetupSwapTx {
+            assets
+            hashlock
+            locktime
+            receiver
+            value
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on WithdrawTetherTx {
+            chainId
+            expiredAt
+            from
+            nonce
+            pk
+            signature
+            data {
+              typeUrl
+              value
+            }
+            receiver {
+              assets
+              tether
+              value
+            }
+            sender {
+              assets
+              value
+            }
+            signatures {
+              delegator
+              pk
+              signature
+              signer
+              data {
+                typeUrl
+                value
+              }
+            }
+          }
+          ... on UpgradeNodeTx {
+            height
+            override
+            version
+          }
+          ... on UpdateAssetTx {
+            address
+            moniker
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on TransferTx {
+            assets
+            to
+            value
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on SysUpgradeTx {
+            gracePeriod
+            data {
+              typeUrl
+              value
+            }
+            task {
+              actions
+              dataHash
+              type
+            }
+          }
+          ... on StakeTx {
+            message
+            to
+            value
+            data {
+              type
+            }
+          }
+          ... on RevokeTetherTx {
+            tether
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on PokeTx {
+            address
+            date
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on ExchangeTetherTx {
+            expiredAt
+            data {
+              typeUrl
+              value
+            }
+            receiver {
+              assets
+              value
+              deposit {
+                chainId
+                delegator
+                from
+                itxJson
+                nonce
+                pk
+                signature
+                signatures {
+                  delegator
+                  pk
+                  signature
+                  signer
+                }
+                itx {
+                  __typename
+                  ... on RevokeSwapTx {
+                    address
+                  }
+                  ... on RetrieveSwapTx {
+                    address
+                    hashkey
+                  }
+                  ... on SetupSwapTx {
+                    assets
+                    hashlock
+                    locktime
+                    receiver
+                    value
+                  }
+                  ... on WithdrawTetherTx {
+                    chainId
+                    expiredAt
+                    from
+                    nonce
+                    pk
+                    signature
+                  }
+                  ... on UpgradeNodeTx {
+                    height
+                    override
+                    version
+                  }
+                  ... on UpdateAssetTx {
+                    address
+                    moniker
+                  }
+                  ... on TransferTx {
+                    assets
+                    to
+                    value
+                  }
+                  ... on SysUpgradeTx {
+                    gracePeriod
+                  }
+                  ... on StakeTx {
+                    message
+                    to
+                    value
+                  }
+                  ... on RevokeTetherTx {
+                    tether
+                  }
+                  ... on PokeTx {
+                    address
+                    date
+                  }
+                  ... on ExchangeTetherTx {
+                    expiredAt
+                  }
+                  ... on ExchangeTx {
+                    expiredAt
+                    to
+                  }
+                  ... on DepositTetherTx {
+                    charge
+                    commission
+                    locktime
+                    target
+                    value
+                    withdrawer
+                  }
+                  ... on DeployProtocolTx {
+                    address
+                    description
+                    name
+                    namespace
+                    pipeline
+                    proto
+                    sources
+                    tags
+                    version
+                  }
+                  ... on DeclareTx {
+                    issuer
+                    moniker
+                  }
+                  ... on DeclareFileTx {
+                    hash
+                  }
+                  ... on CreateAssetTx {
+                    address
+                    moniker
+                    parent
+                    readonly
+                    transferrable
+                    ttl
+                  }
+                  ... on ConsumeAssetTx {
+                    address
+                    issuer
+                  }
+                  ... on ConsensusUpgradeTx {
+                    maxBytes
+                    maxCandidates
+                    maxGas
+                    maxValidators
+                  }
+                  ... on ApproveTetherTx {
+                    withdraw
+                  }
+                  ... on AcquireAssetTx {
+                    to
+                  }
+                  ... on AccountMigrateTx {
+                    address
+                    pk
+                  }
+                }
+              }
+            }
+            sender {
+              assets
+              value
+            }
+          }
+          ... on ExchangeTx {
+            expiredAt
+            to
+            data {
+              typeUrl
+              value
+            }
+            receiver {
+              assets
+              value
+            }
+            sender {
+              assets
+              value
+            }
+          }
+          ... on DepositTetherTx {
+            charge
+            commission
+            locktime
+            target
+            value
+            withdrawer
+          }
+          ... on DeployProtocolTx {
+            address
+            description
+            name
+            namespace
+            pipeline
+            proto
+            sources
+            tags
+            version
+            code {
+              binary
+              checksum
+            }
+            data {
+              typeUrl
+              value
+            }
+            typeUrls {
+              module
+              url
+            }
+          }
+          ... on DeclareTx {
+            issuer
+            moniker
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on DeclareFileTx {
+            hash
+          }
+          ... on CreateAssetTx {
+            address
+            moniker
+            parent
+            readonly
+            transferrable
+            ttl
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on ConsumeAssetTx {
+            address
+            issuer
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on ConsensusUpgradeTx {
+            maxBytes
+            maxCandidates
+            maxGas
+            maxValidators
+            data {
+              typeUrl
+              value
+            }
+            validators {
+              address
+              power
+            }
+          }
+          ... on ApproveTetherTx {
+            withdraw
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on AcquireAssetTx {
+            to
+            data {
+              typeUrl
+              value
+            }
+            specs {
+              address
+              data
+            }
+          }
+          ... on AccountMigrateTx {
+            address
+            pk
+            data {
+              typeUrl
+              value
+            }
+          }
+        }
       }
     }
   }
@@ -1081,6 +5415,386 @@ No arguments
           data {
             typeUrl
             value
+          }
+        }
+        itx {
+          __typename
+          ... on RevokeSwapTx {
+            address
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on RetrieveSwapTx {
+            address
+            hashkey
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on SetupSwapTx {
+            assets
+            hashlock
+            locktime
+            receiver
+            value
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on WithdrawTetherTx {
+            chainId
+            expiredAt
+            from
+            nonce
+            pk
+            signature
+            data {
+              typeUrl
+              value
+            }
+            receiver {
+              assets
+              tether
+              value
+            }
+            sender {
+              assets
+              value
+            }
+            signatures {
+              delegator
+              pk
+              signature
+              signer
+              data {
+                typeUrl
+                value
+              }
+            }
+          }
+          ... on UpgradeNodeTx {
+            height
+            override
+            version
+          }
+          ... on UpdateAssetTx {
+            address
+            moniker
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on TransferTx {
+            assets
+            to
+            value
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on SysUpgradeTx {
+            gracePeriod
+            data {
+              typeUrl
+              value
+            }
+            task {
+              actions
+              dataHash
+              type
+            }
+          }
+          ... on StakeTx {
+            message
+            to
+            value
+            data {
+              type
+            }
+          }
+          ... on RevokeTetherTx {
+            tether
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on PokeTx {
+            address
+            date
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on ExchangeTetherTx {
+            expiredAt
+            data {
+              typeUrl
+              value
+            }
+            receiver {
+              assets
+              value
+              deposit {
+                chainId
+                delegator
+                from
+                itxJson
+                nonce
+                pk
+                signature
+                signatures {
+                  delegator
+                  pk
+                  signature
+                  signer
+                }
+                itx {
+                  __typename
+                  ... on RevokeSwapTx {
+                    address
+                  }
+                  ... on RetrieveSwapTx {
+                    address
+                    hashkey
+                  }
+                  ... on SetupSwapTx {
+                    assets
+                    hashlock
+                    locktime
+                    receiver
+                    value
+                  }
+                  ... on WithdrawTetherTx {
+                    chainId
+                    expiredAt
+                    from
+                    nonce
+                    pk
+                    signature
+                  }
+                  ... on UpgradeNodeTx {
+                    height
+                    override
+                    version
+                  }
+                  ... on UpdateAssetTx {
+                    address
+                    moniker
+                  }
+                  ... on TransferTx {
+                    assets
+                    to
+                    value
+                  }
+                  ... on SysUpgradeTx {
+                    gracePeriod
+                  }
+                  ... on StakeTx {
+                    message
+                    to
+                    value
+                  }
+                  ... on RevokeTetherTx {
+                    tether
+                  }
+                  ... on PokeTx {
+                    address
+                    date
+                  }
+                  ... on ExchangeTetherTx {
+                    expiredAt
+                  }
+                  ... on ExchangeTx {
+                    expiredAt
+                    to
+                  }
+                  ... on DepositTetherTx {
+                    charge
+                    commission
+                    locktime
+                    target
+                    value
+                    withdrawer
+                  }
+                  ... on DeployProtocolTx {
+                    address
+                    description
+                    name
+                    namespace
+                    pipeline
+                    proto
+                    sources
+                    tags
+                    version
+                  }
+                  ... on DeclareTx {
+                    issuer
+                    moniker
+                  }
+                  ... on DeclareFileTx {
+                    hash
+                  }
+                  ... on CreateAssetTx {
+                    address
+                    moniker
+                    parent
+                    readonly
+                    transferrable
+                    ttl
+                  }
+                  ... on ConsumeAssetTx {
+                    address
+                    issuer
+                  }
+                  ... on ConsensusUpgradeTx {
+                    maxBytes
+                    maxCandidates
+                    maxGas
+                    maxValidators
+                  }
+                  ... on ApproveTetherTx {
+                    withdraw
+                  }
+                  ... on AcquireAssetTx {
+                    to
+                  }
+                  ... on AccountMigrateTx {
+                    address
+                    pk
+                  }
+                }
+              }
+            }
+            sender {
+              assets
+              value
+            }
+          }
+          ... on ExchangeTx {
+            expiredAt
+            to
+            data {
+              typeUrl
+              value
+            }
+            receiver {
+              assets
+              value
+            }
+            sender {
+              assets
+              value
+            }
+          }
+          ... on DepositTetherTx {
+            charge
+            commission
+            locktime
+            target
+            value
+            withdrawer
+          }
+          ... on DeployProtocolTx {
+            address
+            description
+            name
+            namespace
+            pipeline
+            proto
+            sources
+            tags
+            version
+            code {
+              binary
+              checksum
+            }
+            data {
+              typeUrl
+              value
+            }
+            typeUrls {
+              module
+              url
+            }
+          }
+          ... on DeclareTx {
+            issuer
+            moniker
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on DeclareFileTx {
+            hash
+          }
+          ... on CreateAssetTx {
+            address
+            moniker
+            parent
+            readonly
+            transferrable
+            ttl
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on ConsumeAssetTx {
+            address
+            issuer
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on ConsensusUpgradeTx {
+            maxBytes
+            maxCandidates
+            maxGas
+            maxValidators
+            data {
+              typeUrl
+              value
+            }
+            validators {
+              address
+              power
+            }
+          }
+          ... on ApproveTetherTx {
+            withdraw
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on AcquireAssetTx {
+            to
+            data {
+              typeUrl
+              value
+            }
+            specs {
+              address
+              data
+            }
+          }
+          ... on AccountMigrateTx {
+            address
+            pk
+            data {
+              typeUrl
+              value
+            }
           }
         }
       }
@@ -1166,6 +5880,386 @@ No arguments
           data {
             typeUrl
             value
+          }
+        }
+        itx {
+          __typename
+          ... on RevokeSwapTx {
+            address
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on RetrieveSwapTx {
+            address
+            hashkey
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on SetupSwapTx {
+            assets
+            hashlock
+            locktime
+            receiver
+            value
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on WithdrawTetherTx {
+            chainId
+            expiredAt
+            from
+            nonce
+            pk
+            signature
+            data {
+              typeUrl
+              value
+            }
+            receiver {
+              assets
+              tether
+              value
+            }
+            sender {
+              assets
+              value
+            }
+            signatures {
+              delegator
+              pk
+              signature
+              signer
+              data {
+                typeUrl
+                value
+              }
+            }
+          }
+          ... on UpgradeNodeTx {
+            height
+            override
+            version
+          }
+          ... on UpdateAssetTx {
+            address
+            moniker
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on TransferTx {
+            assets
+            to
+            value
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on SysUpgradeTx {
+            gracePeriod
+            data {
+              typeUrl
+              value
+            }
+            task {
+              actions
+              dataHash
+              type
+            }
+          }
+          ... on StakeTx {
+            message
+            to
+            value
+            data {
+              type
+            }
+          }
+          ... on RevokeTetherTx {
+            tether
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on PokeTx {
+            address
+            date
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on ExchangeTetherTx {
+            expiredAt
+            data {
+              typeUrl
+              value
+            }
+            receiver {
+              assets
+              value
+              deposit {
+                chainId
+                delegator
+                from
+                itxJson
+                nonce
+                pk
+                signature
+                signatures {
+                  delegator
+                  pk
+                  signature
+                  signer
+                }
+                itx {
+                  __typename
+                  ... on RevokeSwapTx {
+                    address
+                  }
+                  ... on RetrieveSwapTx {
+                    address
+                    hashkey
+                  }
+                  ... on SetupSwapTx {
+                    assets
+                    hashlock
+                    locktime
+                    receiver
+                    value
+                  }
+                  ... on WithdrawTetherTx {
+                    chainId
+                    expiredAt
+                    from
+                    nonce
+                    pk
+                    signature
+                  }
+                  ... on UpgradeNodeTx {
+                    height
+                    override
+                    version
+                  }
+                  ... on UpdateAssetTx {
+                    address
+                    moniker
+                  }
+                  ... on TransferTx {
+                    assets
+                    to
+                    value
+                  }
+                  ... on SysUpgradeTx {
+                    gracePeriod
+                  }
+                  ... on StakeTx {
+                    message
+                    to
+                    value
+                  }
+                  ... on RevokeTetherTx {
+                    tether
+                  }
+                  ... on PokeTx {
+                    address
+                    date
+                  }
+                  ... on ExchangeTetherTx {
+                    expiredAt
+                  }
+                  ... on ExchangeTx {
+                    expiredAt
+                    to
+                  }
+                  ... on DepositTetherTx {
+                    charge
+                    commission
+                    locktime
+                    target
+                    value
+                    withdrawer
+                  }
+                  ... on DeployProtocolTx {
+                    address
+                    description
+                    name
+                    namespace
+                    pipeline
+                    proto
+                    sources
+                    tags
+                    version
+                  }
+                  ... on DeclareTx {
+                    issuer
+                    moniker
+                  }
+                  ... on DeclareFileTx {
+                    hash
+                  }
+                  ... on CreateAssetTx {
+                    address
+                    moniker
+                    parent
+                    readonly
+                    transferrable
+                    ttl
+                  }
+                  ... on ConsumeAssetTx {
+                    address
+                    issuer
+                  }
+                  ... on ConsensusUpgradeTx {
+                    maxBytes
+                    maxCandidates
+                    maxGas
+                    maxValidators
+                  }
+                  ... on ApproveTetherTx {
+                    withdraw
+                  }
+                  ... on AcquireAssetTx {
+                    to
+                  }
+                  ... on AccountMigrateTx {
+                    address
+                    pk
+                  }
+                }
+              }
+            }
+            sender {
+              assets
+              value
+            }
+          }
+          ... on ExchangeTx {
+            expiredAt
+            to
+            data {
+              typeUrl
+              value
+            }
+            receiver {
+              assets
+              value
+            }
+            sender {
+              assets
+              value
+            }
+          }
+          ... on DepositTetherTx {
+            charge
+            commission
+            locktime
+            target
+            value
+            withdrawer
+          }
+          ... on DeployProtocolTx {
+            address
+            description
+            name
+            namespace
+            pipeline
+            proto
+            sources
+            tags
+            version
+            code {
+              binary
+              checksum
+            }
+            data {
+              typeUrl
+              value
+            }
+            typeUrls {
+              module
+              url
+            }
+          }
+          ... on DeclareTx {
+            issuer
+            moniker
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on DeclareFileTx {
+            hash
+          }
+          ... on CreateAssetTx {
+            address
+            moniker
+            parent
+            readonly
+            transferrable
+            ttl
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on ConsumeAssetTx {
+            address
+            issuer
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on ConsensusUpgradeTx {
+            maxBytes
+            maxCandidates
+            maxGas
+            maxValidators
+            data {
+              typeUrl
+              value
+            }
+            validators {
+              address
+              power
+            }
+          }
+          ... on ApproveTetherTx {
+            withdraw
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on AcquireAssetTx {
+            to
+            data {
+              typeUrl
+              value
+            }
+            specs {
+              address
+              data
+            }
+          }
+          ... on AccountMigrateTx {
+            address
+            pk
+            data {
+              typeUrl
+              value
+            }
           }
         }
       }
@@ -1327,6 +6421,570 @@ No arguments
       context {
         genesisTime
         renaissanceTime
+        genesisTx {
+          code
+          hash
+          height
+          index
+          time
+          accountMigrate {
+            address
+          }
+          createAsset {
+            asset
+          }
+          tags {
+            key
+            value
+          }
+          tx {
+            chainId
+            delegator
+            from
+            itxJson
+            nonce
+            pk
+            signature
+            signatures {
+              delegator
+              pk
+              signature
+              signer
+              data {
+                typeUrl
+                value
+              }
+            }
+            itx {
+              __typename
+              ... on RevokeSwapTx {
+                address
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on RetrieveSwapTx {
+                address
+                hashkey
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on SetupSwapTx {
+                assets
+                hashlock
+                locktime
+                receiver
+                value
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on WithdrawTetherTx {
+                chainId
+                expiredAt
+                from
+                nonce
+                pk
+                signature
+                data {
+                  typeUrl
+                  value
+                }
+                receiver {
+                  assets
+                  tether
+                  value
+                }
+                sender {
+                  assets
+                  value
+                }
+                signatures {
+                  delegator
+                  pk
+                  signature
+                  signer
+                }
+              }
+              ... on UpgradeNodeTx {
+                height
+                override
+                version
+              }
+              ... on UpdateAssetTx {
+                address
+                moniker
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on TransferTx {
+                assets
+                to
+                value
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on SysUpgradeTx {
+                gracePeriod
+                data {
+                  typeUrl
+                  value
+                }
+                task {
+                  actions
+                  dataHash
+                  type
+                }
+              }
+              ... on StakeTx {
+                message
+                to
+                value
+                data {
+                  type
+                }
+              }
+              ... on RevokeTetherTx {
+                tether
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on PokeTx {
+                address
+                date
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ExchangeTetherTx {
+                expiredAt
+                data {
+                  typeUrl
+                  value
+                }
+                receiver {
+                  assets
+                  value
+                }
+                sender {
+                  assets
+                  value
+                }
+              }
+              ... on ExchangeTx {
+                expiredAt
+                to
+                data {
+                  typeUrl
+                  value
+                }
+                receiver {
+                  assets
+                  value
+                }
+                sender {
+                  assets
+                  value
+                }
+              }
+              ... on DepositTetherTx {
+                charge
+                commission
+                locktime
+                target
+                value
+                withdrawer
+              }
+              ... on DeployProtocolTx {
+                address
+                description
+                name
+                namespace
+                pipeline
+                proto
+                sources
+                tags
+                version
+                code {
+                  binary
+                  checksum
+                }
+                data {
+                  typeUrl
+                  value
+                }
+                typeUrls {
+                  module
+                  url
+                }
+              }
+              ... on DeclareTx {
+                issuer
+                moniker
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on DeclareFileTx {
+                hash
+              }
+              ... on CreateAssetTx {
+                address
+                moniker
+                parent
+                readonly
+                transferrable
+                ttl
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ConsumeAssetTx {
+                address
+                issuer
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ConsensusUpgradeTx {
+                maxBytes
+                maxCandidates
+                maxGas
+                maxValidators
+                data {
+                  typeUrl
+                  value
+                }
+                validators {
+                  address
+                  power
+                }
+              }
+              ... on ApproveTetherTx {
+                withdraw
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on AcquireAssetTx {
+                to
+                data {
+                  typeUrl
+                  value
+                }
+                specs {
+                  address
+                  data
+                }
+              }
+              ... on AccountMigrateTx {
+                address
+                pk
+                data {
+                  typeUrl
+                  value
+                }
+              }
+            }
+          }
+        }
+        renaissanceTx {
+          code
+          hash
+          height
+          index
+          time
+          accountMigrate {
+            address
+          }
+          createAsset {
+            asset
+          }
+          tags {
+            key
+            value
+          }
+          tx {
+            chainId
+            delegator
+            from
+            itxJson
+            nonce
+            pk
+            signature
+            signatures {
+              delegator
+              pk
+              signature
+              signer
+              data {
+                typeUrl
+                value
+              }
+            }
+            itx {
+              __typename
+              ... on RevokeSwapTx {
+                address
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on RetrieveSwapTx {
+                address
+                hashkey
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on SetupSwapTx {
+                assets
+                hashlock
+                locktime
+                receiver
+                value
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on WithdrawTetherTx {
+                chainId
+                expiredAt
+                from
+                nonce
+                pk
+                signature
+                data {
+                  typeUrl
+                  value
+                }
+                receiver {
+                  assets
+                  tether
+                  value
+                }
+                sender {
+                  assets
+                  value
+                }
+                signatures {
+                  delegator
+                  pk
+                  signature
+                  signer
+                }
+              }
+              ... on UpgradeNodeTx {
+                height
+                override
+                version
+              }
+              ... on UpdateAssetTx {
+                address
+                moniker
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on TransferTx {
+                assets
+                to
+                value
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on SysUpgradeTx {
+                gracePeriod
+                data {
+                  typeUrl
+                  value
+                }
+                task {
+                  actions
+                  dataHash
+                  type
+                }
+              }
+              ... on StakeTx {
+                message
+                to
+                value
+                data {
+                  type
+                }
+              }
+              ... on RevokeTetherTx {
+                tether
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on PokeTx {
+                address
+                date
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ExchangeTetherTx {
+                expiredAt
+                data {
+                  typeUrl
+                  value
+                }
+                receiver {
+                  assets
+                  value
+                }
+                sender {
+                  assets
+                  value
+                }
+              }
+              ... on ExchangeTx {
+                expiredAt
+                to
+                data {
+                  typeUrl
+                  value
+                }
+                receiver {
+                  assets
+                  value
+                }
+                sender {
+                  assets
+                  value
+                }
+              }
+              ... on DepositTetherTx {
+                charge
+                commission
+                locktime
+                target
+                value
+                withdrawer
+              }
+              ... on DeployProtocolTx {
+                address
+                description
+                name
+                namespace
+                pipeline
+                proto
+                sources
+                tags
+                version
+                code {
+                  binary
+                  checksum
+                }
+                data {
+                  typeUrl
+                  value
+                }
+                typeUrls {
+                  module
+                  url
+                }
+              }
+              ... on DeclareTx {
+                issuer
+                moniker
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on DeclareFileTx {
+                hash
+              }
+              ... on CreateAssetTx {
+                address
+                moniker
+                parent
+                readonly
+                transferrable
+                ttl
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ConsumeAssetTx {
+                address
+                issuer
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ConsensusUpgradeTx {
+                maxBytes
+                maxCandidates
+                maxGas
+                maxValidators
+                data {
+                  typeUrl
+                  value
+                }
+                validators {
+                  address
+                  power
+                }
+              }
+              ... on ApproveTetherTx {
+                withdraw
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on AcquireAssetTx {
+                to
+                data {
+                  typeUrl
+                  value
+                }
+                specs {
+                  address
+                  data
+                }
+              }
+              ... on AccountMigrateTx {
+                address
+                pk
+                data {
+                  typeUrl
+                  value
+                }
+              }
+            }
+          }
+        }
       }
     }
   }
@@ -1455,6 +7113,386 @@ No arguments
             value
           }
         }
+        itx {
+          __typename
+          ... on RevokeSwapTx {
+            address
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on RetrieveSwapTx {
+            address
+            hashkey
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on SetupSwapTx {
+            assets
+            hashlock
+            locktime
+            receiver
+            value
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on WithdrawTetherTx {
+            chainId
+            expiredAt
+            from
+            nonce
+            pk
+            signature
+            data {
+              typeUrl
+              value
+            }
+            receiver {
+              assets
+              tether
+              value
+            }
+            sender {
+              assets
+              value
+            }
+            signatures {
+              delegator
+              pk
+              signature
+              signer
+              data {
+                typeUrl
+                value
+              }
+            }
+          }
+          ... on UpgradeNodeTx {
+            height
+            override
+            version
+          }
+          ... on UpdateAssetTx {
+            address
+            moniker
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on TransferTx {
+            assets
+            to
+            value
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on SysUpgradeTx {
+            gracePeriod
+            data {
+              typeUrl
+              value
+            }
+            task {
+              actions
+              dataHash
+              type
+            }
+          }
+          ... on StakeTx {
+            message
+            to
+            value
+            data {
+              type
+            }
+          }
+          ... on RevokeTetherTx {
+            tether
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on PokeTx {
+            address
+            date
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on ExchangeTetherTx {
+            expiredAt
+            data {
+              typeUrl
+              value
+            }
+            receiver {
+              assets
+              value
+              deposit {
+                chainId
+                delegator
+                from
+                itxJson
+                nonce
+                pk
+                signature
+                signatures {
+                  delegator
+                  pk
+                  signature
+                  signer
+                }
+                itx {
+                  __typename
+                  ... on RevokeSwapTx {
+                    address
+                  }
+                  ... on RetrieveSwapTx {
+                    address
+                    hashkey
+                  }
+                  ... on SetupSwapTx {
+                    assets
+                    hashlock
+                    locktime
+                    receiver
+                    value
+                  }
+                  ... on WithdrawTetherTx {
+                    chainId
+                    expiredAt
+                    from
+                    nonce
+                    pk
+                    signature
+                  }
+                  ... on UpgradeNodeTx {
+                    height
+                    override
+                    version
+                  }
+                  ... on UpdateAssetTx {
+                    address
+                    moniker
+                  }
+                  ... on TransferTx {
+                    assets
+                    to
+                    value
+                  }
+                  ... on SysUpgradeTx {
+                    gracePeriod
+                  }
+                  ... on StakeTx {
+                    message
+                    to
+                    value
+                  }
+                  ... on RevokeTetherTx {
+                    tether
+                  }
+                  ... on PokeTx {
+                    address
+                    date
+                  }
+                  ... on ExchangeTetherTx {
+                    expiredAt
+                  }
+                  ... on ExchangeTx {
+                    expiredAt
+                    to
+                  }
+                  ... on DepositTetherTx {
+                    charge
+                    commission
+                    locktime
+                    target
+                    value
+                    withdrawer
+                  }
+                  ... on DeployProtocolTx {
+                    address
+                    description
+                    name
+                    namespace
+                    pipeline
+                    proto
+                    sources
+                    tags
+                    version
+                  }
+                  ... on DeclareTx {
+                    issuer
+                    moniker
+                  }
+                  ... on DeclareFileTx {
+                    hash
+                  }
+                  ... on CreateAssetTx {
+                    address
+                    moniker
+                    parent
+                    readonly
+                    transferrable
+                    ttl
+                  }
+                  ... on ConsumeAssetTx {
+                    address
+                    issuer
+                  }
+                  ... on ConsensusUpgradeTx {
+                    maxBytes
+                    maxCandidates
+                    maxGas
+                    maxValidators
+                  }
+                  ... on ApproveTetherTx {
+                    withdraw
+                  }
+                  ... on AcquireAssetTx {
+                    to
+                  }
+                  ... on AccountMigrateTx {
+                    address
+                    pk
+                  }
+                }
+              }
+            }
+            sender {
+              assets
+              value
+            }
+          }
+          ... on ExchangeTx {
+            expiredAt
+            to
+            data {
+              typeUrl
+              value
+            }
+            receiver {
+              assets
+              value
+            }
+            sender {
+              assets
+              value
+            }
+          }
+          ... on DepositTetherTx {
+            charge
+            commission
+            locktime
+            target
+            value
+            withdrawer
+          }
+          ... on DeployProtocolTx {
+            address
+            description
+            name
+            namespace
+            pipeline
+            proto
+            sources
+            tags
+            version
+            code {
+              binary
+              checksum
+            }
+            data {
+              typeUrl
+              value
+            }
+            typeUrls {
+              module
+              url
+            }
+          }
+          ... on DeclareTx {
+            issuer
+            moniker
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on DeclareFileTx {
+            hash
+          }
+          ... on CreateAssetTx {
+            address
+            moniker
+            parent
+            readonly
+            transferrable
+            ttl
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on ConsumeAssetTx {
+            address
+            issuer
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on ConsensusUpgradeTx {
+            maxBytes
+            maxCandidates
+            maxGas
+            maxValidators
+            data {
+              typeUrl
+              value
+            }
+            validators {
+              address
+              power
+            }
+          }
+          ... on ApproveTetherTx {
+            withdraw
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on AcquireAssetTx {
+            to
+            data {
+              typeUrl
+              value
+            }
+            specs {
+              address
+              data
+            }
+          }
+          ... on AccountMigrateTx {
+            address
+            pk
+            data {
+              typeUrl
+              value
+            }
+          }
+        }
       }
     }
   }
@@ -1496,6 +7534,521 @@ subscription {
           value
         }
       }
+      itx {
+        __typename
+        ... on RevokeSwapTx {
+          address
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on RetrieveSwapTx {
+          address
+          hashkey
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on SetupSwapTx {
+          assets
+          hashlock
+          locktime
+          receiver
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on WithdrawTetherTx {
+          chainId
+          expiredAt
+          from
+          nonce
+          pk
+          signature
+          data {
+            typeUrl
+            value
+          }
+          receiver {
+            assets
+            tether
+            value
+          }
+          sender {
+            assets
+            value
+          }
+          signatures {
+            delegator
+            pk
+            signature
+            signer
+            data {
+              typeUrl
+              value
+            }
+          }
+        }
+        ... on UpgradeNodeTx {
+          height
+          override
+          version
+        }
+        ... on UpdateAssetTx {
+          address
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on TransferTx {
+          assets
+          to
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on SysUpgradeTx {
+          gracePeriod
+          data {
+            typeUrl
+            value
+          }
+          task {
+            actions
+            dataHash
+            type
+          }
+        }
+        ... on StakeTx {
+          message
+          to
+          value
+          data {
+            type
+          }
+        }
+        ... on RevokeTetherTx {
+          tether
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on PokeTx {
+          address
+          date
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ExchangeTetherTx {
+          expiredAt
+          data {
+            typeUrl
+            value
+          }
+          receiver {
+            assets
+            value
+            deposit {
+              chainId
+              delegator
+              from
+              itxJson
+              nonce
+              pk
+              signature
+              signatures {
+                delegator
+                pk
+                signature
+                signer
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              itx {
+                __typename
+                ... on RevokeSwapTx {
+                  address
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on RetrieveSwapTx {
+                  address
+                  hashkey
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on SetupSwapTx {
+                  assets
+                  hashlock
+                  locktime
+                  receiver
+                  value
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on WithdrawTetherTx {
+                  chainId
+                  expiredAt
+                  from
+                  nonce
+                  pk
+                  signature
+                  data {
+                    typeUrl
+                    value
+                  }
+                  receiver {
+                    assets
+                    tether
+                    value
+                  }
+                  sender {
+                    assets
+                    value
+                  }
+                  signatures {
+                    delegator
+                    pk
+                    signature
+                    signer
+                  }
+                }
+                ... on UpgradeNodeTx {
+                  height
+                  override
+                  version
+                }
+                ... on UpdateAssetTx {
+                  address
+                  moniker
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on TransferTx {
+                  assets
+                  to
+                  value
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on SysUpgradeTx {
+                  gracePeriod
+                  data {
+                    typeUrl
+                    value
+                  }
+                  task {
+                    actions
+                    dataHash
+                    type
+                  }
+                }
+                ... on StakeTx {
+                  message
+                  to
+                  value
+                  data {
+                    type
+                  }
+                }
+                ... on RevokeTetherTx {
+                  tether
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on PokeTx {
+                  address
+                  date
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on ExchangeTetherTx {
+                  expiredAt
+                  data {
+                    typeUrl
+                    value
+                  }
+                  receiver {
+                    assets
+                    value
+                  }
+                  sender {
+                    assets
+                    value
+                  }
+                }
+                ... on ExchangeTx {
+                  expiredAt
+                  to
+                  data {
+                    typeUrl
+                    value
+                  }
+                  receiver {
+                    assets
+                    value
+                  }
+                  sender {
+                    assets
+                    value
+                  }
+                }
+                ... on DepositTetherTx {
+                  charge
+                  commission
+                  locktime
+                  target
+                  value
+                  withdrawer
+                }
+                ... on DeployProtocolTx {
+                  address
+                  description
+                  name
+                  namespace
+                  pipeline
+                  proto
+                  sources
+                  tags
+                  version
+                  code {
+                    binary
+                    checksum
+                  }
+                  data {
+                    typeUrl
+                    value
+                  }
+                  typeUrls {
+                    module
+                    url
+                  }
+                }
+                ... on DeclareTx {
+                  issuer
+                  moniker
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on DeclareFileTx {
+                  hash
+                }
+                ... on CreateAssetTx {
+                  address
+                  moniker
+                  parent
+                  readonly
+                  transferrable
+                  ttl
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on ConsumeAssetTx {
+                  address
+                  issuer
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on ConsensusUpgradeTx {
+                  maxBytes
+                  maxCandidates
+                  maxGas
+                  maxValidators
+                  data {
+                    typeUrl
+                    value
+                  }
+                  validators {
+                    address
+                    power
+                  }
+                }
+                ... on ApproveTetherTx {
+                  withdraw
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on AcquireAssetTx {
+                  to
+                  data {
+                    typeUrl
+                    value
+                  }
+                  specs {
+                    address
+                    data
+                  }
+                }
+                ... on AccountMigrateTx {
+                  address
+                  pk
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+              }
+            }
+          }
+          sender {
+            assets
+            value
+          }
+        }
+        ... on ExchangeTx {
+          expiredAt
+          to
+          data {
+            typeUrl
+            value
+          }
+          receiver {
+            assets
+            value
+          }
+          sender {
+            assets
+            value
+          }
+        }
+        ... on DepositTetherTx {
+          charge
+          commission
+          locktime
+          target
+          value
+          withdrawer
+        }
+        ... on DeployProtocolTx {
+          address
+          description
+          name
+          namespace
+          pipeline
+          proto
+          sources
+          tags
+          version
+          code {
+            binary
+            checksum
+          }
+          data {
+            typeUrl
+            value
+          }
+          typeUrls {
+            module
+            url
+          }
+        }
+        ... on DeclareTx {
+          issuer
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on DeclareFileTx {
+          hash
+        }
+        ... on CreateAssetTx {
+          address
+          moniker
+          parent
+          readonly
+          transferrable
+          ttl
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsumeAssetTx {
+          address
+          issuer
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsensusUpgradeTx {
+          maxBytes
+          maxCandidates
+          maxGas
+          maxValidators
+          data {
+            typeUrl
+            value
+          }
+          validators {
+            address
+            power
+          }
+        }
+        ... on ApproveTetherTx {
+          withdraw
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on AcquireAssetTx {
+          to
+          data {
+            typeUrl
+            value
+          }
+          specs {
+            address
+            data
+          }
+        }
+        ... on AccountMigrateTx {
+          address
+          pk
+          data {
+            typeUrl
+            value
+          }
+        }
+      }
     }
     accountState {
       address
@@ -1511,6 +8064,570 @@ subscription {
       context {
         genesisTime
         renaissanceTime
+        genesisTx {
+          code
+          hash
+          height
+          index
+          time
+          accountMigrate {
+            address
+          }
+          createAsset {
+            asset
+          }
+          tags {
+            key
+            value
+          }
+          tx {
+            chainId
+            delegator
+            from
+            itxJson
+            nonce
+            pk
+            signature
+            signatures {
+              delegator
+              pk
+              signature
+              signer
+              data {
+                typeUrl
+                value
+              }
+            }
+            itx {
+              __typename
+              ... on RevokeSwapTx {
+                address
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on RetrieveSwapTx {
+                address
+                hashkey
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on SetupSwapTx {
+                assets
+                hashlock
+                locktime
+                receiver
+                value
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on WithdrawTetherTx {
+                chainId
+                expiredAt
+                from
+                nonce
+                pk
+                signature
+                data {
+                  typeUrl
+                  value
+                }
+                receiver {
+                  assets
+                  tether
+                  value
+                }
+                sender {
+                  assets
+                  value
+                }
+                signatures {
+                  delegator
+                  pk
+                  signature
+                  signer
+                }
+              }
+              ... on UpgradeNodeTx {
+                height
+                override
+                version
+              }
+              ... on UpdateAssetTx {
+                address
+                moniker
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on TransferTx {
+                assets
+                to
+                value
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on SysUpgradeTx {
+                gracePeriod
+                data {
+                  typeUrl
+                  value
+                }
+                task {
+                  actions
+                  dataHash
+                  type
+                }
+              }
+              ... on StakeTx {
+                message
+                to
+                value
+                data {
+                  type
+                }
+              }
+              ... on RevokeTetherTx {
+                tether
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on PokeTx {
+                address
+                date
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ExchangeTetherTx {
+                expiredAt
+                data {
+                  typeUrl
+                  value
+                }
+                receiver {
+                  assets
+                  value
+                }
+                sender {
+                  assets
+                  value
+                }
+              }
+              ... on ExchangeTx {
+                expiredAt
+                to
+                data {
+                  typeUrl
+                  value
+                }
+                receiver {
+                  assets
+                  value
+                }
+                sender {
+                  assets
+                  value
+                }
+              }
+              ... on DepositTetherTx {
+                charge
+                commission
+                locktime
+                target
+                value
+                withdrawer
+              }
+              ... on DeployProtocolTx {
+                address
+                description
+                name
+                namespace
+                pipeline
+                proto
+                sources
+                tags
+                version
+                code {
+                  binary
+                  checksum
+                }
+                data {
+                  typeUrl
+                  value
+                }
+                typeUrls {
+                  module
+                  url
+                }
+              }
+              ... on DeclareTx {
+                issuer
+                moniker
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on DeclareFileTx {
+                hash
+              }
+              ... on CreateAssetTx {
+                address
+                moniker
+                parent
+                readonly
+                transferrable
+                ttl
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ConsumeAssetTx {
+                address
+                issuer
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ConsensusUpgradeTx {
+                maxBytes
+                maxCandidates
+                maxGas
+                maxValidators
+                data {
+                  typeUrl
+                  value
+                }
+                validators {
+                  address
+                  power
+                }
+              }
+              ... on ApproveTetherTx {
+                withdraw
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on AcquireAssetTx {
+                to
+                data {
+                  typeUrl
+                  value
+                }
+                specs {
+                  address
+                  data
+                }
+              }
+              ... on AccountMigrateTx {
+                address
+                pk
+                data {
+                  typeUrl
+                  value
+                }
+              }
+            }
+          }
+        }
+        renaissanceTx {
+          code
+          hash
+          height
+          index
+          time
+          accountMigrate {
+            address
+          }
+          createAsset {
+            asset
+          }
+          tags {
+            key
+            value
+          }
+          tx {
+            chainId
+            delegator
+            from
+            itxJson
+            nonce
+            pk
+            signature
+            signatures {
+              delegator
+              pk
+              signature
+              signer
+              data {
+                typeUrl
+                value
+              }
+            }
+            itx {
+              __typename
+              ... on RevokeSwapTx {
+                address
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on RetrieveSwapTx {
+                address
+                hashkey
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on SetupSwapTx {
+                assets
+                hashlock
+                locktime
+                receiver
+                value
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on WithdrawTetherTx {
+                chainId
+                expiredAt
+                from
+                nonce
+                pk
+                signature
+                data {
+                  typeUrl
+                  value
+                }
+                receiver {
+                  assets
+                  tether
+                  value
+                }
+                sender {
+                  assets
+                  value
+                }
+                signatures {
+                  delegator
+                  pk
+                  signature
+                  signer
+                }
+              }
+              ... on UpgradeNodeTx {
+                height
+                override
+                version
+              }
+              ... on UpdateAssetTx {
+                address
+                moniker
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on TransferTx {
+                assets
+                to
+                value
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on SysUpgradeTx {
+                gracePeriod
+                data {
+                  typeUrl
+                  value
+                }
+                task {
+                  actions
+                  dataHash
+                  type
+                }
+              }
+              ... on StakeTx {
+                message
+                to
+                value
+                data {
+                  type
+                }
+              }
+              ... on RevokeTetherTx {
+                tether
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on PokeTx {
+                address
+                date
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ExchangeTetherTx {
+                expiredAt
+                data {
+                  typeUrl
+                  value
+                }
+                receiver {
+                  assets
+                  value
+                }
+                sender {
+                  assets
+                  value
+                }
+              }
+              ... on ExchangeTx {
+                expiredAt
+                to
+                data {
+                  typeUrl
+                  value
+                }
+                receiver {
+                  assets
+                  value
+                }
+                sender {
+                  assets
+                  value
+                }
+              }
+              ... on DepositTetherTx {
+                charge
+                commission
+                locktime
+                target
+                value
+                withdrawer
+              }
+              ... on DeployProtocolTx {
+                address
+                description
+                name
+                namespace
+                pipeline
+                proto
+                sources
+                tags
+                version
+                code {
+                  binary
+                  checksum
+                }
+                data {
+                  typeUrl
+                  value
+                }
+                typeUrls {
+                  module
+                  url
+                }
+              }
+              ... on DeclareTx {
+                issuer
+                moniker
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on DeclareFileTx {
+                hash
+              }
+              ... on CreateAssetTx {
+                address
+                moniker
+                parent
+                readonly
+                transferrable
+                ttl
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ConsumeAssetTx {
+                address
+                issuer
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ConsensusUpgradeTx {
+                maxBytes
+                maxCandidates
+                maxGas
+                maxValidators
+                data {
+                  typeUrl
+                  value
+                }
+                validators {
+                  address
+                  power
+                }
+              }
+              ... on ApproveTetherTx {
+                withdraw
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on AcquireAssetTx {
+                to
+                data {
+                  typeUrl
+                  value
+                }
+                specs {
+                  address
+                  data
+                }
+              }
+              ... on AccountMigrateTx {
+                address
+                pk
+                data {
+                  typeUrl
+                  value
+                }
+              }
+            }
+          }
+        }
       }
       data {
         typeUrl
@@ -1559,6 +8676,521 @@ subscription {
           value
         }
       }
+      itx {
+        __typename
+        ... on RevokeSwapTx {
+          address
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on RetrieveSwapTx {
+          address
+          hashkey
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on SetupSwapTx {
+          assets
+          hashlock
+          locktime
+          receiver
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on WithdrawTetherTx {
+          chainId
+          expiredAt
+          from
+          nonce
+          pk
+          signature
+          data {
+            typeUrl
+            value
+          }
+          receiver {
+            assets
+            tether
+            value
+          }
+          sender {
+            assets
+            value
+          }
+          signatures {
+            delegator
+            pk
+            signature
+            signer
+            data {
+              typeUrl
+              value
+            }
+          }
+        }
+        ... on UpgradeNodeTx {
+          height
+          override
+          version
+        }
+        ... on UpdateAssetTx {
+          address
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on TransferTx {
+          assets
+          to
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on SysUpgradeTx {
+          gracePeriod
+          data {
+            typeUrl
+            value
+          }
+          task {
+            actions
+            dataHash
+            type
+          }
+        }
+        ... on StakeTx {
+          message
+          to
+          value
+          data {
+            type
+          }
+        }
+        ... on RevokeTetherTx {
+          tether
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on PokeTx {
+          address
+          date
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ExchangeTetherTx {
+          expiredAt
+          data {
+            typeUrl
+            value
+          }
+          receiver {
+            assets
+            value
+            deposit {
+              chainId
+              delegator
+              from
+              itxJson
+              nonce
+              pk
+              signature
+              signatures {
+                delegator
+                pk
+                signature
+                signer
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              itx {
+                __typename
+                ... on RevokeSwapTx {
+                  address
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on RetrieveSwapTx {
+                  address
+                  hashkey
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on SetupSwapTx {
+                  assets
+                  hashlock
+                  locktime
+                  receiver
+                  value
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on WithdrawTetherTx {
+                  chainId
+                  expiredAt
+                  from
+                  nonce
+                  pk
+                  signature
+                  data {
+                    typeUrl
+                    value
+                  }
+                  receiver {
+                    assets
+                    tether
+                    value
+                  }
+                  sender {
+                    assets
+                    value
+                  }
+                  signatures {
+                    delegator
+                    pk
+                    signature
+                    signer
+                  }
+                }
+                ... on UpgradeNodeTx {
+                  height
+                  override
+                  version
+                }
+                ... on UpdateAssetTx {
+                  address
+                  moniker
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on TransferTx {
+                  assets
+                  to
+                  value
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on SysUpgradeTx {
+                  gracePeriod
+                  data {
+                    typeUrl
+                    value
+                  }
+                  task {
+                    actions
+                    dataHash
+                    type
+                  }
+                }
+                ... on StakeTx {
+                  message
+                  to
+                  value
+                  data {
+                    type
+                  }
+                }
+                ... on RevokeTetherTx {
+                  tether
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on PokeTx {
+                  address
+                  date
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on ExchangeTetherTx {
+                  expiredAt
+                  data {
+                    typeUrl
+                    value
+                  }
+                  receiver {
+                    assets
+                    value
+                  }
+                  sender {
+                    assets
+                    value
+                  }
+                }
+                ... on ExchangeTx {
+                  expiredAt
+                  to
+                  data {
+                    typeUrl
+                    value
+                  }
+                  receiver {
+                    assets
+                    value
+                  }
+                  sender {
+                    assets
+                    value
+                  }
+                }
+                ... on DepositTetherTx {
+                  charge
+                  commission
+                  locktime
+                  target
+                  value
+                  withdrawer
+                }
+                ... on DeployProtocolTx {
+                  address
+                  description
+                  name
+                  namespace
+                  pipeline
+                  proto
+                  sources
+                  tags
+                  version
+                  code {
+                    binary
+                    checksum
+                  }
+                  data {
+                    typeUrl
+                    value
+                  }
+                  typeUrls {
+                    module
+                    url
+                  }
+                }
+                ... on DeclareTx {
+                  issuer
+                  moniker
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on DeclareFileTx {
+                  hash
+                }
+                ... on CreateAssetTx {
+                  address
+                  moniker
+                  parent
+                  readonly
+                  transferrable
+                  ttl
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on ConsumeAssetTx {
+                  address
+                  issuer
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on ConsensusUpgradeTx {
+                  maxBytes
+                  maxCandidates
+                  maxGas
+                  maxValidators
+                  data {
+                    typeUrl
+                    value
+                  }
+                  validators {
+                    address
+                    power
+                  }
+                }
+                ... on ApproveTetherTx {
+                  withdraw
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on AcquireAssetTx {
+                  to
+                  data {
+                    typeUrl
+                    value
+                  }
+                  specs {
+                    address
+                    data
+                  }
+                }
+                ... on AccountMigrateTx {
+                  address
+                  pk
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+              }
+            }
+          }
+          sender {
+            assets
+            value
+          }
+        }
+        ... on ExchangeTx {
+          expiredAt
+          to
+          data {
+            typeUrl
+            value
+          }
+          receiver {
+            assets
+            value
+          }
+          sender {
+            assets
+            value
+          }
+        }
+        ... on DepositTetherTx {
+          charge
+          commission
+          locktime
+          target
+          value
+          withdrawer
+        }
+        ... on DeployProtocolTx {
+          address
+          description
+          name
+          namespace
+          pipeline
+          proto
+          sources
+          tags
+          version
+          code {
+            binary
+            checksum
+          }
+          data {
+            typeUrl
+            value
+          }
+          typeUrls {
+            module
+            url
+          }
+        }
+        ... on DeclareTx {
+          issuer
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on DeclareFileTx {
+          hash
+        }
+        ... on CreateAssetTx {
+          address
+          moniker
+          parent
+          readonly
+          transferrable
+          ttl
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsumeAssetTx {
+          address
+          issuer
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsensusUpgradeTx {
+          maxBytes
+          maxCandidates
+          maxGas
+          maxValidators
+          data {
+            typeUrl
+            value
+          }
+          validators {
+            address
+            power
+          }
+        }
+        ... on ApproveTetherTx {
+          withdraw
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on AcquireAssetTx {
+          to
+          data {
+            typeUrl
+            value
+          }
+          specs {
+            address
+            data
+          }
+        }
+        ... on AccountMigrateTx {
+          address
+          pk
+          data {
+            typeUrl
+            value
+          }
+        }
+      }
     }
     approveWithdraw {
       chainId
@@ -1578,6 +9210,521 @@ subscription {
           value
         }
       }
+      itx {
+        __typename
+        ... on RevokeSwapTx {
+          address
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on RetrieveSwapTx {
+          address
+          hashkey
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on SetupSwapTx {
+          assets
+          hashlock
+          locktime
+          receiver
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on WithdrawTetherTx {
+          chainId
+          expiredAt
+          from
+          nonce
+          pk
+          signature
+          data {
+            typeUrl
+            value
+          }
+          receiver {
+            assets
+            tether
+            value
+          }
+          sender {
+            assets
+            value
+          }
+          signatures {
+            delegator
+            pk
+            signature
+            signer
+            data {
+              typeUrl
+              value
+            }
+          }
+        }
+        ... on UpgradeNodeTx {
+          height
+          override
+          version
+        }
+        ... on UpdateAssetTx {
+          address
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on TransferTx {
+          assets
+          to
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on SysUpgradeTx {
+          gracePeriod
+          data {
+            typeUrl
+            value
+          }
+          task {
+            actions
+            dataHash
+            type
+          }
+        }
+        ... on StakeTx {
+          message
+          to
+          value
+          data {
+            type
+          }
+        }
+        ... on RevokeTetherTx {
+          tether
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on PokeTx {
+          address
+          date
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ExchangeTetherTx {
+          expiredAt
+          data {
+            typeUrl
+            value
+          }
+          receiver {
+            assets
+            value
+            deposit {
+              chainId
+              delegator
+              from
+              itxJson
+              nonce
+              pk
+              signature
+              signatures {
+                delegator
+                pk
+                signature
+                signer
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              itx {
+                __typename
+                ... on RevokeSwapTx {
+                  address
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on RetrieveSwapTx {
+                  address
+                  hashkey
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on SetupSwapTx {
+                  assets
+                  hashlock
+                  locktime
+                  receiver
+                  value
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on WithdrawTetherTx {
+                  chainId
+                  expiredAt
+                  from
+                  nonce
+                  pk
+                  signature
+                  data {
+                    typeUrl
+                    value
+                  }
+                  receiver {
+                    assets
+                    tether
+                    value
+                  }
+                  sender {
+                    assets
+                    value
+                  }
+                  signatures {
+                    delegator
+                    pk
+                    signature
+                    signer
+                  }
+                }
+                ... on UpgradeNodeTx {
+                  height
+                  override
+                  version
+                }
+                ... on UpdateAssetTx {
+                  address
+                  moniker
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on TransferTx {
+                  assets
+                  to
+                  value
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on SysUpgradeTx {
+                  gracePeriod
+                  data {
+                    typeUrl
+                    value
+                  }
+                  task {
+                    actions
+                    dataHash
+                    type
+                  }
+                }
+                ... on StakeTx {
+                  message
+                  to
+                  value
+                  data {
+                    type
+                  }
+                }
+                ... on RevokeTetherTx {
+                  tether
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on PokeTx {
+                  address
+                  date
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on ExchangeTetherTx {
+                  expiredAt
+                  data {
+                    typeUrl
+                    value
+                  }
+                  receiver {
+                    assets
+                    value
+                  }
+                  sender {
+                    assets
+                    value
+                  }
+                }
+                ... on ExchangeTx {
+                  expiredAt
+                  to
+                  data {
+                    typeUrl
+                    value
+                  }
+                  receiver {
+                    assets
+                    value
+                  }
+                  sender {
+                    assets
+                    value
+                  }
+                }
+                ... on DepositTetherTx {
+                  charge
+                  commission
+                  locktime
+                  target
+                  value
+                  withdrawer
+                }
+                ... on DeployProtocolTx {
+                  address
+                  description
+                  name
+                  namespace
+                  pipeline
+                  proto
+                  sources
+                  tags
+                  version
+                  code {
+                    binary
+                    checksum
+                  }
+                  data {
+                    typeUrl
+                    value
+                  }
+                  typeUrls {
+                    module
+                    url
+                  }
+                }
+                ... on DeclareTx {
+                  issuer
+                  moniker
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on DeclareFileTx {
+                  hash
+                }
+                ... on CreateAssetTx {
+                  address
+                  moniker
+                  parent
+                  readonly
+                  transferrable
+                  ttl
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on ConsumeAssetTx {
+                  address
+                  issuer
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on ConsensusUpgradeTx {
+                  maxBytes
+                  maxCandidates
+                  maxGas
+                  maxValidators
+                  data {
+                    typeUrl
+                    value
+                  }
+                  validators {
+                    address
+                    power
+                  }
+                }
+                ... on ApproveTetherTx {
+                  withdraw
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on AcquireAssetTx {
+                  to
+                  data {
+                    typeUrl
+                    value
+                  }
+                  specs {
+                    address
+                    data
+                  }
+                }
+                ... on AccountMigrateTx {
+                  address
+                  pk
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+              }
+            }
+          }
+          sender {
+            assets
+            value
+          }
+        }
+        ... on ExchangeTx {
+          expiredAt
+          to
+          data {
+            typeUrl
+            value
+          }
+          receiver {
+            assets
+            value
+          }
+          sender {
+            assets
+            value
+          }
+        }
+        ... on DepositTetherTx {
+          charge
+          commission
+          locktime
+          target
+          value
+          withdrawer
+        }
+        ... on DeployProtocolTx {
+          address
+          description
+          name
+          namespace
+          pipeline
+          proto
+          sources
+          tags
+          version
+          code {
+            binary
+            checksum
+          }
+          data {
+            typeUrl
+            value
+          }
+          typeUrls {
+            module
+            url
+          }
+        }
+        ... on DeclareTx {
+          issuer
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on DeclareFileTx {
+          hash
+        }
+        ... on CreateAssetTx {
+          address
+          moniker
+          parent
+          readonly
+          transferrable
+          ttl
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsumeAssetTx {
+          address
+          issuer
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsensusUpgradeTx {
+          maxBytes
+          maxCandidates
+          maxGas
+          maxValidators
+          data {
+            typeUrl
+            value
+          }
+          validators {
+            address
+            power
+          }
+        }
+        ... on ApproveTetherTx {
+          withdraw
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on AcquireAssetTx {
+          to
+          data {
+            typeUrl
+            value
+          }
+          specs {
+            address
+            data
+          }
+        }
+        ... on AccountMigrateTx {
+          address
+          pk
+          data {
+            typeUrl
+            value
+          }
+        }
+      }
     }
     assetState {
       address
@@ -1592,6 +9739,570 @@ subscription {
       context {
         genesisTime
         renaissanceTime
+        genesisTx {
+          code
+          hash
+          height
+          index
+          time
+          accountMigrate {
+            address
+          }
+          createAsset {
+            asset
+          }
+          tags {
+            key
+            value
+          }
+          tx {
+            chainId
+            delegator
+            from
+            itxJson
+            nonce
+            pk
+            signature
+            signatures {
+              delegator
+              pk
+              signature
+              signer
+              data {
+                typeUrl
+                value
+              }
+            }
+            itx {
+              __typename
+              ... on RevokeSwapTx {
+                address
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on RetrieveSwapTx {
+                address
+                hashkey
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on SetupSwapTx {
+                assets
+                hashlock
+                locktime
+                receiver
+                value
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on WithdrawTetherTx {
+                chainId
+                expiredAt
+                from
+                nonce
+                pk
+                signature
+                data {
+                  typeUrl
+                  value
+                }
+                receiver {
+                  assets
+                  tether
+                  value
+                }
+                sender {
+                  assets
+                  value
+                }
+                signatures {
+                  delegator
+                  pk
+                  signature
+                  signer
+                }
+              }
+              ... on UpgradeNodeTx {
+                height
+                override
+                version
+              }
+              ... on UpdateAssetTx {
+                address
+                moniker
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on TransferTx {
+                assets
+                to
+                value
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on SysUpgradeTx {
+                gracePeriod
+                data {
+                  typeUrl
+                  value
+                }
+                task {
+                  actions
+                  dataHash
+                  type
+                }
+              }
+              ... on StakeTx {
+                message
+                to
+                value
+                data {
+                  type
+                }
+              }
+              ... on RevokeTetherTx {
+                tether
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on PokeTx {
+                address
+                date
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ExchangeTetherTx {
+                expiredAt
+                data {
+                  typeUrl
+                  value
+                }
+                receiver {
+                  assets
+                  value
+                }
+                sender {
+                  assets
+                  value
+                }
+              }
+              ... on ExchangeTx {
+                expiredAt
+                to
+                data {
+                  typeUrl
+                  value
+                }
+                receiver {
+                  assets
+                  value
+                }
+                sender {
+                  assets
+                  value
+                }
+              }
+              ... on DepositTetherTx {
+                charge
+                commission
+                locktime
+                target
+                value
+                withdrawer
+              }
+              ... on DeployProtocolTx {
+                address
+                description
+                name
+                namespace
+                pipeline
+                proto
+                sources
+                tags
+                version
+                code {
+                  binary
+                  checksum
+                }
+                data {
+                  typeUrl
+                  value
+                }
+                typeUrls {
+                  module
+                  url
+                }
+              }
+              ... on DeclareTx {
+                issuer
+                moniker
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on DeclareFileTx {
+                hash
+              }
+              ... on CreateAssetTx {
+                address
+                moniker
+                parent
+                readonly
+                transferrable
+                ttl
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ConsumeAssetTx {
+                address
+                issuer
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ConsensusUpgradeTx {
+                maxBytes
+                maxCandidates
+                maxGas
+                maxValidators
+                data {
+                  typeUrl
+                  value
+                }
+                validators {
+                  address
+                  power
+                }
+              }
+              ... on ApproveTetherTx {
+                withdraw
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on AcquireAssetTx {
+                to
+                data {
+                  typeUrl
+                  value
+                }
+                specs {
+                  address
+                  data
+                }
+              }
+              ... on AccountMigrateTx {
+                address
+                pk
+                data {
+                  typeUrl
+                  value
+                }
+              }
+            }
+          }
+        }
+        renaissanceTx {
+          code
+          hash
+          height
+          index
+          time
+          accountMigrate {
+            address
+          }
+          createAsset {
+            asset
+          }
+          tags {
+            key
+            value
+          }
+          tx {
+            chainId
+            delegator
+            from
+            itxJson
+            nonce
+            pk
+            signature
+            signatures {
+              delegator
+              pk
+              signature
+              signer
+              data {
+                typeUrl
+                value
+              }
+            }
+            itx {
+              __typename
+              ... on RevokeSwapTx {
+                address
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on RetrieveSwapTx {
+                address
+                hashkey
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on SetupSwapTx {
+                assets
+                hashlock
+                locktime
+                receiver
+                value
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on WithdrawTetherTx {
+                chainId
+                expiredAt
+                from
+                nonce
+                pk
+                signature
+                data {
+                  typeUrl
+                  value
+                }
+                receiver {
+                  assets
+                  tether
+                  value
+                }
+                sender {
+                  assets
+                  value
+                }
+                signatures {
+                  delegator
+                  pk
+                  signature
+                  signer
+                }
+              }
+              ... on UpgradeNodeTx {
+                height
+                override
+                version
+              }
+              ... on UpdateAssetTx {
+                address
+                moniker
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on TransferTx {
+                assets
+                to
+                value
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on SysUpgradeTx {
+                gracePeriod
+                data {
+                  typeUrl
+                  value
+                }
+                task {
+                  actions
+                  dataHash
+                  type
+                }
+              }
+              ... on StakeTx {
+                message
+                to
+                value
+                data {
+                  type
+                }
+              }
+              ... on RevokeTetherTx {
+                tether
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on PokeTx {
+                address
+                date
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ExchangeTetherTx {
+                expiredAt
+                data {
+                  typeUrl
+                  value
+                }
+                receiver {
+                  assets
+                  value
+                }
+                sender {
+                  assets
+                  value
+                }
+              }
+              ... on ExchangeTx {
+                expiredAt
+                to
+                data {
+                  typeUrl
+                  value
+                }
+                receiver {
+                  assets
+                  value
+                }
+                sender {
+                  assets
+                  value
+                }
+              }
+              ... on DepositTetherTx {
+                charge
+                commission
+                locktime
+                target
+                value
+                withdrawer
+              }
+              ... on DeployProtocolTx {
+                address
+                description
+                name
+                namespace
+                pipeline
+                proto
+                sources
+                tags
+                version
+                code {
+                  binary
+                  checksum
+                }
+                data {
+                  typeUrl
+                  value
+                }
+                typeUrls {
+                  module
+                  url
+                }
+              }
+              ... on DeclareTx {
+                issuer
+                moniker
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on DeclareFileTx {
+                hash
+              }
+              ... on CreateAssetTx {
+                address
+                moniker
+                parent
+                readonly
+                transferrable
+                ttl
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ConsumeAssetTx {
+                address
+                issuer
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ConsensusUpgradeTx {
+                maxBytes
+                maxCandidates
+                maxGas
+                maxValidators
+                data {
+                  typeUrl
+                  value
+                }
+                validators {
+                  address
+                  power
+                }
+              }
+              ... on ApproveTetherTx {
+                withdraw
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on AcquireAssetTx {
+                to
+                data {
+                  typeUrl
+                  value
+                }
+                specs {
+                  address
+                  data
+                }
+              }
+              ... on AccountMigrateTx {
+                address
+                pk
+                data {
+                  typeUrl
+                  value
+                }
+              }
+            }
+          }
+        }
       }
       data {
         typeUrl
@@ -1682,6 +10393,521 @@ subscription {
           value
         }
       }
+      itx {
+        __typename
+        ... on RevokeSwapTx {
+          address
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on RetrieveSwapTx {
+          address
+          hashkey
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on SetupSwapTx {
+          assets
+          hashlock
+          locktime
+          receiver
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on WithdrawTetherTx {
+          chainId
+          expiredAt
+          from
+          nonce
+          pk
+          signature
+          data {
+            typeUrl
+            value
+          }
+          receiver {
+            assets
+            tether
+            value
+          }
+          sender {
+            assets
+            value
+          }
+          signatures {
+            delegator
+            pk
+            signature
+            signer
+            data {
+              typeUrl
+              value
+            }
+          }
+        }
+        ... on UpgradeNodeTx {
+          height
+          override
+          version
+        }
+        ... on UpdateAssetTx {
+          address
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on TransferTx {
+          assets
+          to
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on SysUpgradeTx {
+          gracePeriod
+          data {
+            typeUrl
+            value
+          }
+          task {
+            actions
+            dataHash
+            type
+          }
+        }
+        ... on StakeTx {
+          message
+          to
+          value
+          data {
+            type
+          }
+        }
+        ... on RevokeTetherTx {
+          tether
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on PokeTx {
+          address
+          date
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ExchangeTetherTx {
+          expiredAt
+          data {
+            typeUrl
+            value
+          }
+          receiver {
+            assets
+            value
+            deposit {
+              chainId
+              delegator
+              from
+              itxJson
+              nonce
+              pk
+              signature
+              signatures {
+                delegator
+                pk
+                signature
+                signer
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              itx {
+                __typename
+                ... on RevokeSwapTx {
+                  address
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on RetrieveSwapTx {
+                  address
+                  hashkey
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on SetupSwapTx {
+                  assets
+                  hashlock
+                  locktime
+                  receiver
+                  value
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on WithdrawTetherTx {
+                  chainId
+                  expiredAt
+                  from
+                  nonce
+                  pk
+                  signature
+                  data {
+                    typeUrl
+                    value
+                  }
+                  receiver {
+                    assets
+                    tether
+                    value
+                  }
+                  sender {
+                    assets
+                    value
+                  }
+                  signatures {
+                    delegator
+                    pk
+                    signature
+                    signer
+                  }
+                }
+                ... on UpgradeNodeTx {
+                  height
+                  override
+                  version
+                }
+                ... on UpdateAssetTx {
+                  address
+                  moniker
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on TransferTx {
+                  assets
+                  to
+                  value
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on SysUpgradeTx {
+                  gracePeriod
+                  data {
+                    typeUrl
+                    value
+                  }
+                  task {
+                    actions
+                    dataHash
+                    type
+                  }
+                }
+                ... on StakeTx {
+                  message
+                  to
+                  value
+                  data {
+                    type
+                  }
+                }
+                ... on RevokeTetherTx {
+                  tether
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on PokeTx {
+                  address
+                  date
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on ExchangeTetherTx {
+                  expiredAt
+                  data {
+                    typeUrl
+                    value
+                  }
+                  receiver {
+                    assets
+                    value
+                  }
+                  sender {
+                    assets
+                    value
+                  }
+                }
+                ... on ExchangeTx {
+                  expiredAt
+                  to
+                  data {
+                    typeUrl
+                    value
+                  }
+                  receiver {
+                    assets
+                    value
+                  }
+                  sender {
+                    assets
+                    value
+                  }
+                }
+                ... on DepositTetherTx {
+                  charge
+                  commission
+                  locktime
+                  target
+                  value
+                  withdrawer
+                }
+                ... on DeployProtocolTx {
+                  address
+                  description
+                  name
+                  namespace
+                  pipeline
+                  proto
+                  sources
+                  tags
+                  version
+                  code {
+                    binary
+                    checksum
+                  }
+                  data {
+                    typeUrl
+                    value
+                  }
+                  typeUrls {
+                    module
+                    url
+                  }
+                }
+                ... on DeclareTx {
+                  issuer
+                  moniker
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on DeclareFileTx {
+                  hash
+                }
+                ... on CreateAssetTx {
+                  address
+                  moniker
+                  parent
+                  readonly
+                  transferrable
+                  ttl
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on ConsumeAssetTx {
+                  address
+                  issuer
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on ConsensusUpgradeTx {
+                  maxBytes
+                  maxCandidates
+                  maxGas
+                  maxValidators
+                  data {
+                    typeUrl
+                    value
+                  }
+                  validators {
+                    address
+                    power
+                  }
+                }
+                ... on ApproveTetherTx {
+                  withdraw
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on AcquireAssetTx {
+                  to
+                  data {
+                    typeUrl
+                    value
+                  }
+                  specs {
+                    address
+                    data
+                  }
+                }
+                ... on AccountMigrateTx {
+                  address
+                  pk
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+              }
+            }
+          }
+          sender {
+            assets
+            value
+          }
+        }
+        ... on ExchangeTx {
+          expiredAt
+          to
+          data {
+            typeUrl
+            value
+          }
+          receiver {
+            assets
+            value
+          }
+          sender {
+            assets
+            value
+          }
+        }
+        ... on DepositTetherTx {
+          charge
+          commission
+          locktime
+          target
+          value
+          withdrawer
+        }
+        ... on DeployProtocolTx {
+          address
+          description
+          name
+          namespace
+          pipeline
+          proto
+          sources
+          tags
+          version
+          code {
+            binary
+            checksum
+          }
+          data {
+            typeUrl
+            value
+          }
+          typeUrls {
+            module
+            url
+          }
+        }
+        ... on DeclareTx {
+          issuer
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on DeclareFileTx {
+          hash
+        }
+        ... on CreateAssetTx {
+          address
+          moniker
+          parent
+          readonly
+          transferrable
+          ttl
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsumeAssetTx {
+          address
+          issuer
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsensusUpgradeTx {
+          maxBytes
+          maxCandidates
+          maxGas
+          maxValidators
+          data {
+            typeUrl
+            value
+          }
+          validators {
+            address
+            power
+          }
+        }
+        ... on ApproveTetherTx {
+          withdraw
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on AcquireAssetTx {
+          to
+          data {
+            typeUrl
+            value
+          }
+          specs {
+            address
+            data
+          }
+        }
+        ... on AccountMigrateTx {
+          address
+          pk
+          data {
+            typeUrl
+            value
+          }
+        }
+      }
     }
     consensusUpgrade {
       chainId
@@ -1699,6 +10925,521 @@ subscription {
         data {
           typeUrl
           value
+        }
+      }
+      itx {
+        __typename
+        ... on RevokeSwapTx {
+          address
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on RetrieveSwapTx {
+          address
+          hashkey
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on SetupSwapTx {
+          assets
+          hashlock
+          locktime
+          receiver
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on WithdrawTetherTx {
+          chainId
+          expiredAt
+          from
+          nonce
+          pk
+          signature
+          data {
+            typeUrl
+            value
+          }
+          receiver {
+            assets
+            tether
+            value
+          }
+          sender {
+            assets
+            value
+          }
+          signatures {
+            delegator
+            pk
+            signature
+            signer
+            data {
+              typeUrl
+              value
+            }
+          }
+        }
+        ... on UpgradeNodeTx {
+          height
+          override
+          version
+        }
+        ... on UpdateAssetTx {
+          address
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on TransferTx {
+          assets
+          to
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on SysUpgradeTx {
+          gracePeriod
+          data {
+            typeUrl
+            value
+          }
+          task {
+            actions
+            dataHash
+            type
+          }
+        }
+        ... on StakeTx {
+          message
+          to
+          value
+          data {
+            type
+          }
+        }
+        ... on RevokeTetherTx {
+          tether
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on PokeTx {
+          address
+          date
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ExchangeTetherTx {
+          expiredAt
+          data {
+            typeUrl
+            value
+          }
+          receiver {
+            assets
+            value
+            deposit {
+              chainId
+              delegator
+              from
+              itxJson
+              nonce
+              pk
+              signature
+              signatures {
+                delegator
+                pk
+                signature
+                signer
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              itx {
+                __typename
+                ... on RevokeSwapTx {
+                  address
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on RetrieveSwapTx {
+                  address
+                  hashkey
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on SetupSwapTx {
+                  assets
+                  hashlock
+                  locktime
+                  receiver
+                  value
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on WithdrawTetherTx {
+                  chainId
+                  expiredAt
+                  from
+                  nonce
+                  pk
+                  signature
+                  data {
+                    typeUrl
+                    value
+                  }
+                  receiver {
+                    assets
+                    tether
+                    value
+                  }
+                  sender {
+                    assets
+                    value
+                  }
+                  signatures {
+                    delegator
+                    pk
+                    signature
+                    signer
+                  }
+                }
+                ... on UpgradeNodeTx {
+                  height
+                  override
+                  version
+                }
+                ... on UpdateAssetTx {
+                  address
+                  moniker
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on TransferTx {
+                  assets
+                  to
+                  value
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on SysUpgradeTx {
+                  gracePeriod
+                  data {
+                    typeUrl
+                    value
+                  }
+                  task {
+                    actions
+                    dataHash
+                    type
+                  }
+                }
+                ... on StakeTx {
+                  message
+                  to
+                  value
+                  data {
+                    type
+                  }
+                }
+                ... on RevokeTetherTx {
+                  tether
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on PokeTx {
+                  address
+                  date
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on ExchangeTetherTx {
+                  expiredAt
+                  data {
+                    typeUrl
+                    value
+                  }
+                  receiver {
+                    assets
+                    value
+                  }
+                  sender {
+                    assets
+                    value
+                  }
+                }
+                ... on ExchangeTx {
+                  expiredAt
+                  to
+                  data {
+                    typeUrl
+                    value
+                  }
+                  receiver {
+                    assets
+                    value
+                  }
+                  sender {
+                    assets
+                    value
+                  }
+                }
+                ... on DepositTetherTx {
+                  charge
+                  commission
+                  locktime
+                  target
+                  value
+                  withdrawer
+                }
+                ... on DeployProtocolTx {
+                  address
+                  description
+                  name
+                  namespace
+                  pipeline
+                  proto
+                  sources
+                  tags
+                  version
+                  code {
+                    binary
+                    checksum
+                  }
+                  data {
+                    typeUrl
+                    value
+                  }
+                  typeUrls {
+                    module
+                    url
+                  }
+                }
+                ... on DeclareTx {
+                  issuer
+                  moniker
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on DeclareFileTx {
+                  hash
+                }
+                ... on CreateAssetTx {
+                  address
+                  moniker
+                  parent
+                  readonly
+                  transferrable
+                  ttl
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on ConsumeAssetTx {
+                  address
+                  issuer
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on ConsensusUpgradeTx {
+                  maxBytes
+                  maxCandidates
+                  maxGas
+                  maxValidators
+                  data {
+                    typeUrl
+                    value
+                  }
+                  validators {
+                    address
+                    power
+                  }
+                }
+                ... on ApproveTetherTx {
+                  withdraw
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on AcquireAssetTx {
+                  to
+                  data {
+                    typeUrl
+                    value
+                  }
+                  specs {
+                    address
+                    data
+                  }
+                }
+                ... on AccountMigrateTx {
+                  address
+                  pk
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+              }
+            }
+          }
+          sender {
+            assets
+            value
+          }
+        }
+        ... on ExchangeTx {
+          expiredAt
+          to
+          data {
+            typeUrl
+            value
+          }
+          receiver {
+            assets
+            value
+          }
+          sender {
+            assets
+            value
+          }
+        }
+        ... on DepositTetherTx {
+          charge
+          commission
+          locktime
+          target
+          value
+          withdrawer
+        }
+        ... on DeployProtocolTx {
+          address
+          description
+          name
+          namespace
+          pipeline
+          proto
+          sources
+          tags
+          version
+          code {
+            binary
+            checksum
+          }
+          data {
+            typeUrl
+            value
+          }
+          typeUrls {
+            module
+            url
+          }
+        }
+        ... on DeclareTx {
+          issuer
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on DeclareFileTx {
+          hash
+        }
+        ... on CreateAssetTx {
+          address
+          moniker
+          parent
+          readonly
+          transferrable
+          ttl
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsumeAssetTx {
+          address
+          issuer
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsensusUpgradeTx {
+          maxBytes
+          maxCandidates
+          maxGas
+          maxValidators
+          data {
+            typeUrl
+            value
+          }
+          validators {
+            address
+            power
+          }
+        }
+        ... on ApproveTetherTx {
+          withdraw
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on AcquireAssetTx {
+          to
+          data {
+            typeUrl
+            value
+          }
+          specs {
+            address
+            data
+          }
+        }
+        ... on AccountMigrateTx {
+          address
+          pk
+          data {
+            typeUrl
+            value
+          }
         }
       }
     }
@@ -1720,6 +11461,521 @@ subscription {
           value
         }
       }
+      itx {
+        __typename
+        ... on RevokeSwapTx {
+          address
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on RetrieveSwapTx {
+          address
+          hashkey
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on SetupSwapTx {
+          assets
+          hashlock
+          locktime
+          receiver
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on WithdrawTetherTx {
+          chainId
+          expiredAt
+          from
+          nonce
+          pk
+          signature
+          data {
+            typeUrl
+            value
+          }
+          receiver {
+            assets
+            tether
+            value
+          }
+          sender {
+            assets
+            value
+          }
+          signatures {
+            delegator
+            pk
+            signature
+            signer
+            data {
+              typeUrl
+              value
+            }
+          }
+        }
+        ... on UpgradeNodeTx {
+          height
+          override
+          version
+        }
+        ... on UpdateAssetTx {
+          address
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on TransferTx {
+          assets
+          to
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on SysUpgradeTx {
+          gracePeriod
+          data {
+            typeUrl
+            value
+          }
+          task {
+            actions
+            dataHash
+            type
+          }
+        }
+        ... on StakeTx {
+          message
+          to
+          value
+          data {
+            type
+          }
+        }
+        ... on RevokeTetherTx {
+          tether
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on PokeTx {
+          address
+          date
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ExchangeTetherTx {
+          expiredAt
+          data {
+            typeUrl
+            value
+          }
+          receiver {
+            assets
+            value
+            deposit {
+              chainId
+              delegator
+              from
+              itxJson
+              nonce
+              pk
+              signature
+              signatures {
+                delegator
+                pk
+                signature
+                signer
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              itx {
+                __typename
+                ... on RevokeSwapTx {
+                  address
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on RetrieveSwapTx {
+                  address
+                  hashkey
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on SetupSwapTx {
+                  assets
+                  hashlock
+                  locktime
+                  receiver
+                  value
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on WithdrawTetherTx {
+                  chainId
+                  expiredAt
+                  from
+                  nonce
+                  pk
+                  signature
+                  data {
+                    typeUrl
+                    value
+                  }
+                  receiver {
+                    assets
+                    tether
+                    value
+                  }
+                  sender {
+                    assets
+                    value
+                  }
+                  signatures {
+                    delegator
+                    pk
+                    signature
+                    signer
+                  }
+                }
+                ... on UpgradeNodeTx {
+                  height
+                  override
+                  version
+                }
+                ... on UpdateAssetTx {
+                  address
+                  moniker
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on TransferTx {
+                  assets
+                  to
+                  value
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on SysUpgradeTx {
+                  gracePeriod
+                  data {
+                    typeUrl
+                    value
+                  }
+                  task {
+                    actions
+                    dataHash
+                    type
+                  }
+                }
+                ... on StakeTx {
+                  message
+                  to
+                  value
+                  data {
+                    type
+                  }
+                }
+                ... on RevokeTetherTx {
+                  tether
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on PokeTx {
+                  address
+                  date
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on ExchangeTetherTx {
+                  expiredAt
+                  data {
+                    typeUrl
+                    value
+                  }
+                  receiver {
+                    assets
+                    value
+                  }
+                  sender {
+                    assets
+                    value
+                  }
+                }
+                ... on ExchangeTx {
+                  expiredAt
+                  to
+                  data {
+                    typeUrl
+                    value
+                  }
+                  receiver {
+                    assets
+                    value
+                  }
+                  sender {
+                    assets
+                    value
+                  }
+                }
+                ... on DepositTetherTx {
+                  charge
+                  commission
+                  locktime
+                  target
+                  value
+                  withdrawer
+                }
+                ... on DeployProtocolTx {
+                  address
+                  description
+                  name
+                  namespace
+                  pipeline
+                  proto
+                  sources
+                  tags
+                  version
+                  code {
+                    binary
+                    checksum
+                  }
+                  data {
+                    typeUrl
+                    value
+                  }
+                  typeUrls {
+                    module
+                    url
+                  }
+                }
+                ... on DeclareTx {
+                  issuer
+                  moniker
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on DeclareFileTx {
+                  hash
+                }
+                ... on CreateAssetTx {
+                  address
+                  moniker
+                  parent
+                  readonly
+                  transferrable
+                  ttl
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on ConsumeAssetTx {
+                  address
+                  issuer
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on ConsensusUpgradeTx {
+                  maxBytes
+                  maxCandidates
+                  maxGas
+                  maxValidators
+                  data {
+                    typeUrl
+                    value
+                  }
+                  validators {
+                    address
+                    power
+                  }
+                }
+                ... on ApproveTetherTx {
+                  withdraw
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on AcquireAssetTx {
+                  to
+                  data {
+                    typeUrl
+                    value
+                  }
+                  specs {
+                    address
+                    data
+                  }
+                }
+                ... on AccountMigrateTx {
+                  address
+                  pk
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+              }
+            }
+          }
+          sender {
+            assets
+            value
+          }
+        }
+        ... on ExchangeTx {
+          expiredAt
+          to
+          data {
+            typeUrl
+            value
+          }
+          receiver {
+            assets
+            value
+          }
+          sender {
+            assets
+            value
+          }
+        }
+        ... on DepositTetherTx {
+          charge
+          commission
+          locktime
+          target
+          value
+          withdrawer
+        }
+        ... on DeployProtocolTx {
+          address
+          description
+          name
+          namespace
+          pipeline
+          proto
+          sources
+          tags
+          version
+          code {
+            binary
+            checksum
+          }
+          data {
+            typeUrl
+            value
+          }
+          typeUrls {
+            module
+            url
+          }
+        }
+        ... on DeclareTx {
+          issuer
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on DeclareFileTx {
+          hash
+        }
+        ... on CreateAssetTx {
+          address
+          moniker
+          parent
+          readonly
+          transferrable
+          ttl
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsumeAssetTx {
+          address
+          issuer
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsensusUpgradeTx {
+          maxBytes
+          maxCandidates
+          maxGas
+          maxValidators
+          data {
+            typeUrl
+            value
+          }
+          validators {
+            address
+            power
+          }
+        }
+        ... on ApproveTetherTx {
+          withdraw
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on AcquireAssetTx {
+          to
+          data {
+            typeUrl
+            value
+          }
+          specs {
+            address
+            data
+          }
+        }
+        ... on AccountMigrateTx {
+          address
+          pk
+          data {
+            typeUrl
+            value
+          }
+        }
+      }
     }
     deactivateProtocol {
       chainId
@@ -1737,6 +11993,521 @@ subscription {
         data {
           typeUrl
           value
+        }
+      }
+      itx {
+        __typename
+        ... on RevokeSwapTx {
+          address
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on RetrieveSwapTx {
+          address
+          hashkey
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on SetupSwapTx {
+          assets
+          hashlock
+          locktime
+          receiver
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on WithdrawTetherTx {
+          chainId
+          expiredAt
+          from
+          nonce
+          pk
+          signature
+          data {
+            typeUrl
+            value
+          }
+          receiver {
+            assets
+            tether
+            value
+          }
+          sender {
+            assets
+            value
+          }
+          signatures {
+            delegator
+            pk
+            signature
+            signer
+            data {
+              typeUrl
+              value
+            }
+          }
+        }
+        ... on UpgradeNodeTx {
+          height
+          override
+          version
+        }
+        ... on UpdateAssetTx {
+          address
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on TransferTx {
+          assets
+          to
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on SysUpgradeTx {
+          gracePeriod
+          data {
+            typeUrl
+            value
+          }
+          task {
+            actions
+            dataHash
+            type
+          }
+        }
+        ... on StakeTx {
+          message
+          to
+          value
+          data {
+            type
+          }
+        }
+        ... on RevokeTetherTx {
+          tether
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on PokeTx {
+          address
+          date
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ExchangeTetherTx {
+          expiredAt
+          data {
+            typeUrl
+            value
+          }
+          receiver {
+            assets
+            value
+            deposit {
+              chainId
+              delegator
+              from
+              itxJson
+              nonce
+              pk
+              signature
+              signatures {
+                delegator
+                pk
+                signature
+                signer
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              itx {
+                __typename
+                ... on RevokeSwapTx {
+                  address
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on RetrieveSwapTx {
+                  address
+                  hashkey
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on SetupSwapTx {
+                  assets
+                  hashlock
+                  locktime
+                  receiver
+                  value
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on WithdrawTetherTx {
+                  chainId
+                  expiredAt
+                  from
+                  nonce
+                  pk
+                  signature
+                  data {
+                    typeUrl
+                    value
+                  }
+                  receiver {
+                    assets
+                    tether
+                    value
+                  }
+                  sender {
+                    assets
+                    value
+                  }
+                  signatures {
+                    delegator
+                    pk
+                    signature
+                    signer
+                  }
+                }
+                ... on UpgradeNodeTx {
+                  height
+                  override
+                  version
+                }
+                ... on UpdateAssetTx {
+                  address
+                  moniker
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on TransferTx {
+                  assets
+                  to
+                  value
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on SysUpgradeTx {
+                  gracePeriod
+                  data {
+                    typeUrl
+                    value
+                  }
+                  task {
+                    actions
+                    dataHash
+                    type
+                  }
+                }
+                ... on StakeTx {
+                  message
+                  to
+                  value
+                  data {
+                    type
+                  }
+                }
+                ... on RevokeTetherTx {
+                  tether
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on PokeTx {
+                  address
+                  date
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on ExchangeTetherTx {
+                  expiredAt
+                  data {
+                    typeUrl
+                    value
+                  }
+                  receiver {
+                    assets
+                    value
+                  }
+                  sender {
+                    assets
+                    value
+                  }
+                }
+                ... on ExchangeTx {
+                  expiredAt
+                  to
+                  data {
+                    typeUrl
+                    value
+                  }
+                  receiver {
+                    assets
+                    value
+                  }
+                  sender {
+                    assets
+                    value
+                  }
+                }
+                ... on DepositTetherTx {
+                  charge
+                  commission
+                  locktime
+                  target
+                  value
+                  withdrawer
+                }
+                ... on DeployProtocolTx {
+                  address
+                  description
+                  name
+                  namespace
+                  pipeline
+                  proto
+                  sources
+                  tags
+                  version
+                  code {
+                    binary
+                    checksum
+                  }
+                  data {
+                    typeUrl
+                    value
+                  }
+                  typeUrls {
+                    module
+                    url
+                  }
+                }
+                ... on DeclareTx {
+                  issuer
+                  moniker
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on DeclareFileTx {
+                  hash
+                }
+                ... on CreateAssetTx {
+                  address
+                  moniker
+                  parent
+                  readonly
+                  transferrable
+                  ttl
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on ConsumeAssetTx {
+                  address
+                  issuer
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on ConsensusUpgradeTx {
+                  maxBytes
+                  maxCandidates
+                  maxGas
+                  maxValidators
+                  data {
+                    typeUrl
+                    value
+                  }
+                  validators {
+                    address
+                    power
+                  }
+                }
+                ... on ApproveTetherTx {
+                  withdraw
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on AcquireAssetTx {
+                  to
+                  data {
+                    typeUrl
+                    value
+                  }
+                  specs {
+                    address
+                    data
+                  }
+                }
+                ... on AccountMigrateTx {
+                  address
+                  pk
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+              }
+            }
+          }
+          sender {
+            assets
+            value
+          }
+        }
+        ... on ExchangeTx {
+          expiredAt
+          to
+          data {
+            typeUrl
+            value
+          }
+          receiver {
+            assets
+            value
+          }
+          sender {
+            assets
+            value
+          }
+        }
+        ... on DepositTetherTx {
+          charge
+          commission
+          locktime
+          target
+          value
+          withdrawer
+        }
+        ... on DeployProtocolTx {
+          address
+          description
+          name
+          namespace
+          pipeline
+          proto
+          sources
+          tags
+          version
+          code {
+            binary
+            checksum
+          }
+          data {
+            typeUrl
+            value
+          }
+          typeUrls {
+            module
+            url
+          }
+        }
+        ... on DeclareTx {
+          issuer
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on DeclareFileTx {
+          hash
+        }
+        ... on CreateAssetTx {
+          address
+          moniker
+          parent
+          readonly
+          transferrable
+          ttl
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsumeAssetTx {
+          address
+          issuer
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsensusUpgradeTx {
+          maxBytes
+          maxCandidates
+          maxGas
+          maxValidators
+          data {
+            typeUrl
+            value
+          }
+          validators {
+            address
+            power
+          }
+        }
+        ... on ApproveTetherTx {
+          withdraw
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on AcquireAssetTx {
+          to
+          data {
+            typeUrl
+            value
+          }
+          specs {
+            address
+            data
+          }
+        }
+        ... on AccountMigrateTx {
+          address
+          pk
+          data {
+            typeUrl
+            value
+          }
         }
       }
     }
@@ -1758,6 +12529,521 @@ subscription {
           value
         }
       }
+      itx {
+        __typename
+        ... on RevokeSwapTx {
+          address
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on RetrieveSwapTx {
+          address
+          hashkey
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on SetupSwapTx {
+          assets
+          hashlock
+          locktime
+          receiver
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on WithdrawTetherTx {
+          chainId
+          expiredAt
+          from
+          nonce
+          pk
+          signature
+          data {
+            typeUrl
+            value
+          }
+          receiver {
+            assets
+            tether
+            value
+          }
+          sender {
+            assets
+            value
+          }
+          signatures {
+            delegator
+            pk
+            signature
+            signer
+            data {
+              typeUrl
+              value
+            }
+          }
+        }
+        ... on UpgradeNodeTx {
+          height
+          override
+          version
+        }
+        ... on UpdateAssetTx {
+          address
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on TransferTx {
+          assets
+          to
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on SysUpgradeTx {
+          gracePeriod
+          data {
+            typeUrl
+            value
+          }
+          task {
+            actions
+            dataHash
+            type
+          }
+        }
+        ... on StakeTx {
+          message
+          to
+          value
+          data {
+            type
+          }
+        }
+        ... on RevokeTetherTx {
+          tether
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on PokeTx {
+          address
+          date
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ExchangeTetherTx {
+          expiredAt
+          data {
+            typeUrl
+            value
+          }
+          receiver {
+            assets
+            value
+            deposit {
+              chainId
+              delegator
+              from
+              itxJson
+              nonce
+              pk
+              signature
+              signatures {
+                delegator
+                pk
+                signature
+                signer
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              itx {
+                __typename
+                ... on RevokeSwapTx {
+                  address
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on RetrieveSwapTx {
+                  address
+                  hashkey
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on SetupSwapTx {
+                  assets
+                  hashlock
+                  locktime
+                  receiver
+                  value
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on WithdrawTetherTx {
+                  chainId
+                  expiredAt
+                  from
+                  nonce
+                  pk
+                  signature
+                  data {
+                    typeUrl
+                    value
+                  }
+                  receiver {
+                    assets
+                    tether
+                    value
+                  }
+                  sender {
+                    assets
+                    value
+                  }
+                  signatures {
+                    delegator
+                    pk
+                    signature
+                    signer
+                  }
+                }
+                ... on UpgradeNodeTx {
+                  height
+                  override
+                  version
+                }
+                ... on UpdateAssetTx {
+                  address
+                  moniker
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on TransferTx {
+                  assets
+                  to
+                  value
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on SysUpgradeTx {
+                  gracePeriod
+                  data {
+                    typeUrl
+                    value
+                  }
+                  task {
+                    actions
+                    dataHash
+                    type
+                  }
+                }
+                ... on StakeTx {
+                  message
+                  to
+                  value
+                  data {
+                    type
+                  }
+                }
+                ... on RevokeTetherTx {
+                  tether
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on PokeTx {
+                  address
+                  date
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on ExchangeTetherTx {
+                  expiredAt
+                  data {
+                    typeUrl
+                    value
+                  }
+                  receiver {
+                    assets
+                    value
+                  }
+                  sender {
+                    assets
+                    value
+                  }
+                }
+                ... on ExchangeTx {
+                  expiredAt
+                  to
+                  data {
+                    typeUrl
+                    value
+                  }
+                  receiver {
+                    assets
+                    value
+                  }
+                  sender {
+                    assets
+                    value
+                  }
+                }
+                ... on DepositTetherTx {
+                  charge
+                  commission
+                  locktime
+                  target
+                  value
+                  withdrawer
+                }
+                ... on DeployProtocolTx {
+                  address
+                  description
+                  name
+                  namespace
+                  pipeline
+                  proto
+                  sources
+                  tags
+                  version
+                  code {
+                    binary
+                    checksum
+                  }
+                  data {
+                    typeUrl
+                    value
+                  }
+                  typeUrls {
+                    module
+                    url
+                  }
+                }
+                ... on DeclareTx {
+                  issuer
+                  moniker
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on DeclareFileTx {
+                  hash
+                }
+                ... on CreateAssetTx {
+                  address
+                  moniker
+                  parent
+                  readonly
+                  transferrable
+                  ttl
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on ConsumeAssetTx {
+                  address
+                  issuer
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on ConsensusUpgradeTx {
+                  maxBytes
+                  maxCandidates
+                  maxGas
+                  maxValidators
+                  data {
+                    typeUrl
+                    value
+                  }
+                  validators {
+                    address
+                    power
+                  }
+                }
+                ... on ApproveTetherTx {
+                  withdraw
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on AcquireAssetTx {
+                  to
+                  data {
+                    typeUrl
+                    value
+                  }
+                  specs {
+                    address
+                    data
+                  }
+                }
+                ... on AccountMigrateTx {
+                  address
+                  pk
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+              }
+            }
+          }
+          sender {
+            assets
+            value
+          }
+        }
+        ... on ExchangeTx {
+          expiredAt
+          to
+          data {
+            typeUrl
+            value
+          }
+          receiver {
+            assets
+            value
+          }
+          sender {
+            assets
+            value
+          }
+        }
+        ... on DepositTetherTx {
+          charge
+          commission
+          locktime
+          target
+          value
+          withdrawer
+        }
+        ... on DeployProtocolTx {
+          address
+          description
+          name
+          namespace
+          pipeline
+          proto
+          sources
+          tags
+          version
+          code {
+            binary
+            checksum
+          }
+          data {
+            typeUrl
+            value
+          }
+          typeUrls {
+            module
+            url
+          }
+        }
+        ... on DeclareTx {
+          issuer
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on DeclareFileTx {
+          hash
+        }
+        ... on CreateAssetTx {
+          address
+          moniker
+          parent
+          readonly
+          transferrable
+          ttl
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsumeAssetTx {
+          address
+          issuer
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsensusUpgradeTx {
+          maxBytes
+          maxCandidates
+          maxGas
+          maxValidators
+          data {
+            typeUrl
+            value
+          }
+          validators {
+            address
+            power
+          }
+        }
+        ... on ApproveTetherTx {
+          withdraw
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on AcquireAssetTx {
+          to
+          data {
+            typeUrl
+            value
+          }
+          specs {
+            address
+            data
+          }
+        }
+        ... on AccountMigrateTx {
+          address
+          pk
+          data {
+            typeUrl
+            value
+          }
+        }
+      }
     }
     declareFile {
       chainId
@@ -1775,6 +13061,521 @@ subscription {
         data {
           typeUrl
           value
+        }
+      }
+      itx {
+        __typename
+        ... on RevokeSwapTx {
+          address
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on RetrieveSwapTx {
+          address
+          hashkey
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on SetupSwapTx {
+          assets
+          hashlock
+          locktime
+          receiver
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on WithdrawTetherTx {
+          chainId
+          expiredAt
+          from
+          nonce
+          pk
+          signature
+          data {
+            typeUrl
+            value
+          }
+          receiver {
+            assets
+            tether
+            value
+          }
+          sender {
+            assets
+            value
+          }
+          signatures {
+            delegator
+            pk
+            signature
+            signer
+            data {
+              typeUrl
+              value
+            }
+          }
+        }
+        ... on UpgradeNodeTx {
+          height
+          override
+          version
+        }
+        ... on UpdateAssetTx {
+          address
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on TransferTx {
+          assets
+          to
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on SysUpgradeTx {
+          gracePeriod
+          data {
+            typeUrl
+            value
+          }
+          task {
+            actions
+            dataHash
+            type
+          }
+        }
+        ... on StakeTx {
+          message
+          to
+          value
+          data {
+            type
+          }
+        }
+        ... on RevokeTetherTx {
+          tether
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on PokeTx {
+          address
+          date
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ExchangeTetherTx {
+          expiredAt
+          data {
+            typeUrl
+            value
+          }
+          receiver {
+            assets
+            value
+            deposit {
+              chainId
+              delegator
+              from
+              itxJson
+              nonce
+              pk
+              signature
+              signatures {
+                delegator
+                pk
+                signature
+                signer
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              itx {
+                __typename
+                ... on RevokeSwapTx {
+                  address
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on RetrieveSwapTx {
+                  address
+                  hashkey
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on SetupSwapTx {
+                  assets
+                  hashlock
+                  locktime
+                  receiver
+                  value
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on WithdrawTetherTx {
+                  chainId
+                  expiredAt
+                  from
+                  nonce
+                  pk
+                  signature
+                  data {
+                    typeUrl
+                    value
+                  }
+                  receiver {
+                    assets
+                    tether
+                    value
+                  }
+                  sender {
+                    assets
+                    value
+                  }
+                  signatures {
+                    delegator
+                    pk
+                    signature
+                    signer
+                  }
+                }
+                ... on UpgradeNodeTx {
+                  height
+                  override
+                  version
+                }
+                ... on UpdateAssetTx {
+                  address
+                  moniker
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on TransferTx {
+                  assets
+                  to
+                  value
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on SysUpgradeTx {
+                  gracePeriod
+                  data {
+                    typeUrl
+                    value
+                  }
+                  task {
+                    actions
+                    dataHash
+                    type
+                  }
+                }
+                ... on StakeTx {
+                  message
+                  to
+                  value
+                  data {
+                    type
+                  }
+                }
+                ... on RevokeTetherTx {
+                  tether
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on PokeTx {
+                  address
+                  date
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on ExchangeTetherTx {
+                  expiredAt
+                  data {
+                    typeUrl
+                    value
+                  }
+                  receiver {
+                    assets
+                    value
+                  }
+                  sender {
+                    assets
+                    value
+                  }
+                }
+                ... on ExchangeTx {
+                  expiredAt
+                  to
+                  data {
+                    typeUrl
+                    value
+                  }
+                  receiver {
+                    assets
+                    value
+                  }
+                  sender {
+                    assets
+                    value
+                  }
+                }
+                ... on DepositTetherTx {
+                  charge
+                  commission
+                  locktime
+                  target
+                  value
+                  withdrawer
+                }
+                ... on DeployProtocolTx {
+                  address
+                  description
+                  name
+                  namespace
+                  pipeline
+                  proto
+                  sources
+                  tags
+                  version
+                  code {
+                    binary
+                    checksum
+                  }
+                  data {
+                    typeUrl
+                    value
+                  }
+                  typeUrls {
+                    module
+                    url
+                  }
+                }
+                ... on DeclareTx {
+                  issuer
+                  moniker
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on DeclareFileTx {
+                  hash
+                }
+                ... on CreateAssetTx {
+                  address
+                  moniker
+                  parent
+                  readonly
+                  transferrable
+                  ttl
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on ConsumeAssetTx {
+                  address
+                  issuer
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on ConsensusUpgradeTx {
+                  maxBytes
+                  maxCandidates
+                  maxGas
+                  maxValidators
+                  data {
+                    typeUrl
+                    value
+                  }
+                  validators {
+                    address
+                    power
+                  }
+                }
+                ... on ApproveTetherTx {
+                  withdraw
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on AcquireAssetTx {
+                  to
+                  data {
+                    typeUrl
+                    value
+                  }
+                  specs {
+                    address
+                    data
+                  }
+                }
+                ... on AccountMigrateTx {
+                  address
+                  pk
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+              }
+            }
+          }
+          sender {
+            assets
+            value
+          }
+        }
+        ... on ExchangeTx {
+          expiredAt
+          to
+          data {
+            typeUrl
+            value
+          }
+          receiver {
+            assets
+            value
+          }
+          sender {
+            assets
+            value
+          }
+        }
+        ... on DepositTetherTx {
+          charge
+          commission
+          locktime
+          target
+          value
+          withdrawer
+        }
+        ... on DeployProtocolTx {
+          address
+          description
+          name
+          namespace
+          pipeline
+          proto
+          sources
+          tags
+          version
+          code {
+            binary
+            checksum
+          }
+          data {
+            typeUrl
+            value
+          }
+          typeUrls {
+            module
+            url
+          }
+        }
+        ... on DeclareTx {
+          issuer
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on DeclareFileTx {
+          hash
+        }
+        ... on CreateAssetTx {
+          address
+          moniker
+          parent
+          readonly
+          transferrable
+          ttl
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsumeAssetTx {
+          address
+          issuer
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsensusUpgradeTx {
+          maxBytes
+          maxCandidates
+          maxGas
+          maxValidators
+          data {
+            typeUrl
+            value
+          }
+          validators {
+            address
+            power
+          }
+        }
+        ... on ApproveTetherTx {
+          withdraw
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on AcquireAssetTx {
+          to
+          data {
+            typeUrl
+            value
+          }
+          specs {
+            address
+            data
+          }
+        }
+        ... on AccountMigrateTx {
+          address
+          pk
+          data {
+            typeUrl
+            value
+          }
         }
       }
     }
@@ -1796,12 +13597,1091 @@ subscription {
           value
         }
       }
+      itx {
+        __typename
+        ... on RevokeSwapTx {
+          address
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on RetrieveSwapTx {
+          address
+          hashkey
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on SetupSwapTx {
+          assets
+          hashlock
+          locktime
+          receiver
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on WithdrawTetherTx {
+          chainId
+          expiredAt
+          from
+          nonce
+          pk
+          signature
+          data {
+            typeUrl
+            value
+          }
+          receiver {
+            assets
+            tether
+            value
+          }
+          sender {
+            assets
+            value
+          }
+          signatures {
+            delegator
+            pk
+            signature
+            signer
+            data {
+              typeUrl
+              value
+            }
+          }
+        }
+        ... on UpgradeNodeTx {
+          height
+          override
+          version
+        }
+        ... on UpdateAssetTx {
+          address
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on TransferTx {
+          assets
+          to
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on SysUpgradeTx {
+          gracePeriod
+          data {
+            typeUrl
+            value
+          }
+          task {
+            actions
+            dataHash
+            type
+          }
+        }
+        ... on StakeTx {
+          message
+          to
+          value
+          data {
+            type
+          }
+        }
+        ... on RevokeTetherTx {
+          tether
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on PokeTx {
+          address
+          date
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ExchangeTetherTx {
+          expiredAt
+          data {
+            typeUrl
+            value
+          }
+          receiver {
+            assets
+            value
+            deposit {
+              chainId
+              delegator
+              from
+              itxJson
+              nonce
+              pk
+              signature
+              signatures {
+                delegator
+                pk
+                signature
+                signer
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              itx {
+                __typename
+                ... on RevokeSwapTx {
+                  address
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on RetrieveSwapTx {
+                  address
+                  hashkey
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on SetupSwapTx {
+                  assets
+                  hashlock
+                  locktime
+                  receiver
+                  value
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on WithdrawTetherTx {
+                  chainId
+                  expiredAt
+                  from
+                  nonce
+                  pk
+                  signature
+                  data {
+                    typeUrl
+                    value
+                  }
+                  receiver {
+                    assets
+                    tether
+                    value
+                  }
+                  sender {
+                    assets
+                    value
+                  }
+                  signatures {
+                    delegator
+                    pk
+                    signature
+                    signer
+                  }
+                }
+                ... on UpgradeNodeTx {
+                  height
+                  override
+                  version
+                }
+                ... on UpdateAssetTx {
+                  address
+                  moniker
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on TransferTx {
+                  assets
+                  to
+                  value
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on SysUpgradeTx {
+                  gracePeriod
+                  data {
+                    typeUrl
+                    value
+                  }
+                  task {
+                    actions
+                    dataHash
+                    type
+                  }
+                }
+                ... on StakeTx {
+                  message
+                  to
+                  value
+                  data {
+                    type
+                  }
+                }
+                ... on RevokeTetherTx {
+                  tether
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on PokeTx {
+                  address
+                  date
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on ExchangeTetherTx {
+                  expiredAt
+                  data {
+                    typeUrl
+                    value
+                  }
+                  receiver {
+                    assets
+                    value
+                  }
+                  sender {
+                    assets
+                    value
+                  }
+                }
+                ... on ExchangeTx {
+                  expiredAt
+                  to
+                  data {
+                    typeUrl
+                    value
+                  }
+                  receiver {
+                    assets
+                    value
+                  }
+                  sender {
+                    assets
+                    value
+                  }
+                }
+                ... on DepositTetherTx {
+                  charge
+                  commission
+                  locktime
+                  target
+                  value
+                  withdrawer
+                }
+                ... on DeployProtocolTx {
+                  address
+                  description
+                  name
+                  namespace
+                  pipeline
+                  proto
+                  sources
+                  tags
+                  version
+                  code {
+                    binary
+                    checksum
+                  }
+                  data {
+                    typeUrl
+                    value
+                  }
+                  typeUrls {
+                    module
+                    url
+                  }
+                }
+                ... on DeclareTx {
+                  issuer
+                  moniker
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on DeclareFileTx {
+                  hash
+                }
+                ... on CreateAssetTx {
+                  address
+                  moniker
+                  parent
+                  readonly
+                  transferrable
+                  ttl
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on ConsumeAssetTx {
+                  address
+                  issuer
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on ConsensusUpgradeTx {
+                  maxBytes
+                  maxCandidates
+                  maxGas
+                  maxValidators
+                  data {
+                    typeUrl
+                    value
+                  }
+                  validators {
+                    address
+                    power
+                  }
+                }
+                ... on ApproveTetherTx {
+                  withdraw
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on AcquireAssetTx {
+                  to
+                  data {
+                    typeUrl
+                    value
+                  }
+                  specs {
+                    address
+                    data
+                  }
+                }
+                ... on AccountMigrateTx {
+                  address
+                  pk
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+              }
+            }
+          }
+          sender {
+            assets
+            value
+          }
+        }
+        ... on ExchangeTx {
+          expiredAt
+          to
+          data {
+            typeUrl
+            value
+          }
+          receiver {
+            assets
+            value
+          }
+          sender {
+            assets
+            value
+          }
+        }
+        ... on DepositTetherTx {
+          charge
+          commission
+          locktime
+          target
+          value
+          withdrawer
+        }
+        ... on DeployProtocolTx {
+          address
+          description
+          name
+          namespace
+          pipeline
+          proto
+          sources
+          tags
+          version
+          code {
+            binary
+            checksum
+          }
+          data {
+            typeUrl
+            value
+          }
+          typeUrls {
+            module
+            url
+          }
+        }
+        ... on DeclareTx {
+          issuer
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on DeclareFileTx {
+          hash
+        }
+        ... on CreateAssetTx {
+          address
+          moniker
+          parent
+          readonly
+          transferrable
+          ttl
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsumeAssetTx {
+          address
+          issuer
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsensusUpgradeTx {
+          maxBytes
+          maxCandidates
+          maxGas
+          maxValidators
+          data {
+            typeUrl
+            value
+          }
+          validators {
+            address
+            power
+          }
+        }
+        ... on ApproveTetherTx {
+          withdraw
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on AcquireAssetTx {
+          to
+          data {
+            typeUrl
+            value
+          }
+          specs {
+            address
+            data
+          }
+        }
+        ... on AccountMigrateTx {
+          address
+          pk
+          data {
+            typeUrl
+            value
+          }
+        }
+      }
     }
     delegateState {
       address
       context {
         genesisTime
         renaissanceTime
+        genesisTx {
+          code
+          hash
+          height
+          index
+          time
+          accountMigrate {
+            address
+          }
+          createAsset {
+            asset
+          }
+          tags {
+            key
+            value
+          }
+          tx {
+            chainId
+            delegator
+            from
+            itxJson
+            nonce
+            pk
+            signature
+            signatures {
+              delegator
+              pk
+              signature
+              signer
+              data {
+                typeUrl
+                value
+              }
+            }
+            itx {
+              __typename
+              ... on RevokeSwapTx {
+                address
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on RetrieveSwapTx {
+                address
+                hashkey
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on SetupSwapTx {
+                assets
+                hashlock
+                locktime
+                receiver
+                value
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on WithdrawTetherTx {
+                chainId
+                expiredAt
+                from
+                nonce
+                pk
+                signature
+                data {
+                  typeUrl
+                  value
+                }
+                receiver {
+                  assets
+                  tether
+                  value
+                }
+                sender {
+                  assets
+                  value
+                }
+                signatures {
+                  delegator
+                  pk
+                  signature
+                  signer
+                }
+              }
+              ... on UpgradeNodeTx {
+                height
+                override
+                version
+              }
+              ... on UpdateAssetTx {
+                address
+                moniker
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on TransferTx {
+                assets
+                to
+                value
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on SysUpgradeTx {
+                gracePeriod
+                data {
+                  typeUrl
+                  value
+                }
+                task {
+                  actions
+                  dataHash
+                  type
+                }
+              }
+              ... on StakeTx {
+                message
+                to
+                value
+                data {
+                  type
+                }
+              }
+              ... on RevokeTetherTx {
+                tether
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on PokeTx {
+                address
+                date
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ExchangeTetherTx {
+                expiredAt
+                data {
+                  typeUrl
+                  value
+                }
+                receiver {
+                  assets
+                  value
+                }
+                sender {
+                  assets
+                  value
+                }
+              }
+              ... on ExchangeTx {
+                expiredAt
+                to
+                data {
+                  typeUrl
+                  value
+                }
+                receiver {
+                  assets
+                  value
+                }
+                sender {
+                  assets
+                  value
+                }
+              }
+              ... on DepositTetherTx {
+                charge
+                commission
+                locktime
+                target
+                value
+                withdrawer
+              }
+              ... on DeployProtocolTx {
+                address
+                description
+                name
+                namespace
+                pipeline
+                proto
+                sources
+                tags
+                version
+                code {
+                  binary
+                  checksum
+                }
+                data {
+                  typeUrl
+                  value
+                }
+                typeUrls {
+                  module
+                  url
+                }
+              }
+              ... on DeclareTx {
+                issuer
+                moniker
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on DeclareFileTx {
+                hash
+              }
+              ... on CreateAssetTx {
+                address
+                moniker
+                parent
+                readonly
+                transferrable
+                ttl
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ConsumeAssetTx {
+                address
+                issuer
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ConsensusUpgradeTx {
+                maxBytes
+                maxCandidates
+                maxGas
+                maxValidators
+                data {
+                  typeUrl
+                  value
+                }
+                validators {
+                  address
+                  power
+                }
+              }
+              ... on ApproveTetherTx {
+                withdraw
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on AcquireAssetTx {
+                to
+                data {
+                  typeUrl
+                  value
+                }
+                specs {
+                  address
+                  data
+                }
+              }
+              ... on AccountMigrateTx {
+                address
+                pk
+                data {
+                  typeUrl
+                  value
+                }
+              }
+            }
+          }
+        }
+        renaissanceTx {
+          code
+          hash
+          height
+          index
+          time
+          accountMigrate {
+            address
+          }
+          createAsset {
+            asset
+          }
+          tags {
+            key
+            value
+          }
+          tx {
+            chainId
+            delegator
+            from
+            itxJson
+            nonce
+            pk
+            signature
+            signatures {
+              delegator
+              pk
+              signature
+              signer
+              data {
+                typeUrl
+                value
+              }
+            }
+            itx {
+              __typename
+              ... on RevokeSwapTx {
+                address
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on RetrieveSwapTx {
+                address
+                hashkey
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on SetupSwapTx {
+                assets
+                hashlock
+                locktime
+                receiver
+                value
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on WithdrawTetherTx {
+                chainId
+                expiredAt
+                from
+                nonce
+                pk
+                signature
+                data {
+                  typeUrl
+                  value
+                }
+                receiver {
+                  assets
+                  tether
+                  value
+                }
+                sender {
+                  assets
+                  value
+                }
+                signatures {
+                  delegator
+                  pk
+                  signature
+                  signer
+                }
+              }
+              ... on UpgradeNodeTx {
+                height
+                override
+                version
+              }
+              ... on UpdateAssetTx {
+                address
+                moniker
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on TransferTx {
+                assets
+                to
+                value
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on SysUpgradeTx {
+                gracePeriod
+                data {
+                  typeUrl
+                  value
+                }
+                task {
+                  actions
+                  dataHash
+                  type
+                }
+              }
+              ... on StakeTx {
+                message
+                to
+                value
+                data {
+                  type
+                }
+              }
+              ... on RevokeTetherTx {
+                tether
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on PokeTx {
+                address
+                date
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ExchangeTetherTx {
+                expiredAt
+                data {
+                  typeUrl
+                  value
+                }
+                receiver {
+                  assets
+                  value
+                }
+                sender {
+                  assets
+                  value
+                }
+              }
+              ... on ExchangeTx {
+                expiredAt
+                to
+                data {
+                  typeUrl
+                  value
+                }
+                receiver {
+                  assets
+                  value
+                }
+                sender {
+                  assets
+                  value
+                }
+              }
+              ... on DepositTetherTx {
+                charge
+                commission
+                locktime
+                target
+                value
+                withdrawer
+              }
+              ... on DeployProtocolTx {
+                address
+                description
+                name
+                namespace
+                pipeline
+                proto
+                sources
+                tags
+                version
+                code {
+                  binary
+                  checksum
+                }
+                data {
+                  typeUrl
+                  value
+                }
+                typeUrls {
+                  module
+                  url
+                }
+              }
+              ... on DeclareTx {
+                issuer
+                moniker
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on DeclareFileTx {
+                hash
+              }
+              ... on CreateAssetTx {
+                address
+                moniker
+                parent
+                readonly
+                transferrable
+                ttl
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ConsumeAssetTx {
+                address
+                issuer
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ConsensusUpgradeTx {
+                maxBytes
+                maxCandidates
+                maxGas
+                maxValidators
+                data {
+                  typeUrl
+                  value
+                }
+                validators {
+                  address
+                  power
+                }
+              }
+              ... on ApproveTetherTx {
+                withdraw
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on AcquireAssetTx {
+                to
+                data {
+                  typeUrl
+                  value
+                }
+                specs {
+                  address
+                  data
+                }
+              }
+              ... on AccountMigrateTx {
+                address
+                pk
+                data {
+                  typeUrl
+                  value
+                }
+              }
+            }
+          }
+        }
       }
       data {
         typeUrl
@@ -1836,6 +14716,521 @@ subscription {
           value
         }
       }
+      itx {
+        __typename
+        ... on RevokeSwapTx {
+          address
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on RetrieveSwapTx {
+          address
+          hashkey
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on SetupSwapTx {
+          assets
+          hashlock
+          locktime
+          receiver
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on WithdrawTetherTx {
+          chainId
+          expiredAt
+          from
+          nonce
+          pk
+          signature
+          data {
+            typeUrl
+            value
+          }
+          receiver {
+            assets
+            tether
+            value
+          }
+          sender {
+            assets
+            value
+          }
+          signatures {
+            delegator
+            pk
+            signature
+            signer
+            data {
+              typeUrl
+              value
+            }
+          }
+        }
+        ... on UpgradeNodeTx {
+          height
+          override
+          version
+        }
+        ... on UpdateAssetTx {
+          address
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on TransferTx {
+          assets
+          to
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on SysUpgradeTx {
+          gracePeriod
+          data {
+            typeUrl
+            value
+          }
+          task {
+            actions
+            dataHash
+            type
+          }
+        }
+        ... on StakeTx {
+          message
+          to
+          value
+          data {
+            type
+          }
+        }
+        ... on RevokeTetherTx {
+          tether
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on PokeTx {
+          address
+          date
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ExchangeTetherTx {
+          expiredAt
+          data {
+            typeUrl
+            value
+          }
+          receiver {
+            assets
+            value
+            deposit {
+              chainId
+              delegator
+              from
+              itxJson
+              nonce
+              pk
+              signature
+              signatures {
+                delegator
+                pk
+                signature
+                signer
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              itx {
+                __typename
+                ... on RevokeSwapTx {
+                  address
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on RetrieveSwapTx {
+                  address
+                  hashkey
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on SetupSwapTx {
+                  assets
+                  hashlock
+                  locktime
+                  receiver
+                  value
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on WithdrawTetherTx {
+                  chainId
+                  expiredAt
+                  from
+                  nonce
+                  pk
+                  signature
+                  data {
+                    typeUrl
+                    value
+                  }
+                  receiver {
+                    assets
+                    tether
+                    value
+                  }
+                  sender {
+                    assets
+                    value
+                  }
+                  signatures {
+                    delegator
+                    pk
+                    signature
+                    signer
+                  }
+                }
+                ... on UpgradeNodeTx {
+                  height
+                  override
+                  version
+                }
+                ... on UpdateAssetTx {
+                  address
+                  moniker
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on TransferTx {
+                  assets
+                  to
+                  value
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on SysUpgradeTx {
+                  gracePeriod
+                  data {
+                    typeUrl
+                    value
+                  }
+                  task {
+                    actions
+                    dataHash
+                    type
+                  }
+                }
+                ... on StakeTx {
+                  message
+                  to
+                  value
+                  data {
+                    type
+                  }
+                }
+                ... on RevokeTetherTx {
+                  tether
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on PokeTx {
+                  address
+                  date
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on ExchangeTetherTx {
+                  expiredAt
+                  data {
+                    typeUrl
+                    value
+                  }
+                  receiver {
+                    assets
+                    value
+                  }
+                  sender {
+                    assets
+                    value
+                  }
+                }
+                ... on ExchangeTx {
+                  expiredAt
+                  to
+                  data {
+                    typeUrl
+                    value
+                  }
+                  receiver {
+                    assets
+                    value
+                  }
+                  sender {
+                    assets
+                    value
+                  }
+                }
+                ... on DepositTetherTx {
+                  charge
+                  commission
+                  locktime
+                  target
+                  value
+                  withdrawer
+                }
+                ... on DeployProtocolTx {
+                  address
+                  description
+                  name
+                  namespace
+                  pipeline
+                  proto
+                  sources
+                  tags
+                  version
+                  code {
+                    binary
+                    checksum
+                  }
+                  data {
+                    typeUrl
+                    value
+                  }
+                  typeUrls {
+                    module
+                    url
+                  }
+                }
+                ... on DeclareTx {
+                  issuer
+                  moniker
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on DeclareFileTx {
+                  hash
+                }
+                ... on CreateAssetTx {
+                  address
+                  moniker
+                  parent
+                  readonly
+                  transferrable
+                  ttl
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on ConsumeAssetTx {
+                  address
+                  issuer
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on ConsensusUpgradeTx {
+                  maxBytes
+                  maxCandidates
+                  maxGas
+                  maxValidators
+                  data {
+                    typeUrl
+                    value
+                  }
+                  validators {
+                    address
+                    power
+                  }
+                }
+                ... on ApproveTetherTx {
+                  withdraw
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on AcquireAssetTx {
+                  to
+                  data {
+                    typeUrl
+                    value
+                  }
+                  specs {
+                    address
+                    data
+                  }
+                }
+                ... on AccountMigrateTx {
+                  address
+                  pk
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+              }
+            }
+          }
+          sender {
+            assets
+            value
+          }
+        }
+        ... on ExchangeTx {
+          expiredAt
+          to
+          data {
+            typeUrl
+            value
+          }
+          receiver {
+            assets
+            value
+          }
+          sender {
+            assets
+            value
+          }
+        }
+        ... on DepositTetherTx {
+          charge
+          commission
+          locktime
+          target
+          value
+          withdrawer
+        }
+        ... on DeployProtocolTx {
+          address
+          description
+          name
+          namespace
+          pipeline
+          proto
+          sources
+          tags
+          version
+          code {
+            binary
+            checksum
+          }
+          data {
+            typeUrl
+            value
+          }
+          typeUrls {
+            module
+            url
+          }
+        }
+        ... on DeclareTx {
+          issuer
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on DeclareFileTx {
+          hash
+        }
+        ... on CreateAssetTx {
+          address
+          moniker
+          parent
+          readonly
+          transferrable
+          ttl
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsumeAssetTx {
+          address
+          issuer
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsensusUpgradeTx {
+          maxBytes
+          maxCandidates
+          maxGas
+          maxValidators
+          data {
+            typeUrl
+            value
+          }
+          validators {
+            address
+            power
+          }
+        }
+        ... on ApproveTetherTx {
+          withdraw
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on AcquireAssetTx {
+          to
+          data {
+            typeUrl
+            value
+          }
+          specs {
+            address
+            data
+          }
+        }
+        ... on AccountMigrateTx {
+          address
+          pk
+          data {
+            typeUrl
+            value
+          }
+        }
+      }
     }
     endBlock {
       height
@@ -1856,6 +15251,521 @@ subscription {
         data {
           typeUrl
           value
+        }
+      }
+      itx {
+        __typename
+        ... on RevokeSwapTx {
+          address
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on RetrieveSwapTx {
+          address
+          hashkey
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on SetupSwapTx {
+          assets
+          hashlock
+          locktime
+          receiver
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on WithdrawTetherTx {
+          chainId
+          expiredAt
+          from
+          nonce
+          pk
+          signature
+          data {
+            typeUrl
+            value
+          }
+          receiver {
+            assets
+            tether
+            value
+          }
+          sender {
+            assets
+            value
+          }
+          signatures {
+            delegator
+            pk
+            signature
+            signer
+            data {
+              typeUrl
+              value
+            }
+          }
+        }
+        ... on UpgradeNodeTx {
+          height
+          override
+          version
+        }
+        ... on UpdateAssetTx {
+          address
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on TransferTx {
+          assets
+          to
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on SysUpgradeTx {
+          gracePeriod
+          data {
+            typeUrl
+            value
+          }
+          task {
+            actions
+            dataHash
+            type
+          }
+        }
+        ... on StakeTx {
+          message
+          to
+          value
+          data {
+            type
+          }
+        }
+        ... on RevokeTetherTx {
+          tether
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on PokeTx {
+          address
+          date
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ExchangeTetherTx {
+          expiredAt
+          data {
+            typeUrl
+            value
+          }
+          receiver {
+            assets
+            value
+            deposit {
+              chainId
+              delegator
+              from
+              itxJson
+              nonce
+              pk
+              signature
+              signatures {
+                delegator
+                pk
+                signature
+                signer
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              itx {
+                __typename
+                ... on RevokeSwapTx {
+                  address
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on RetrieveSwapTx {
+                  address
+                  hashkey
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on SetupSwapTx {
+                  assets
+                  hashlock
+                  locktime
+                  receiver
+                  value
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on WithdrawTetherTx {
+                  chainId
+                  expiredAt
+                  from
+                  nonce
+                  pk
+                  signature
+                  data {
+                    typeUrl
+                    value
+                  }
+                  receiver {
+                    assets
+                    tether
+                    value
+                  }
+                  sender {
+                    assets
+                    value
+                  }
+                  signatures {
+                    delegator
+                    pk
+                    signature
+                    signer
+                  }
+                }
+                ... on UpgradeNodeTx {
+                  height
+                  override
+                  version
+                }
+                ... on UpdateAssetTx {
+                  address
+                  moniker
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on TransferTx {
+                  assets
+                  to
+                  value
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on SysUpgradeTx {
+                  gracePeriod
+                  data {
+                    typeUrl
+                    value
+                  }
+                  task {
+                    actions
+                    dataHash
+                    type
+                  }
+                }
+                ... on StakeTx {
+                  message
+                  to
+                  value
+                  data {
+                    type
+                  }
+                }
+                ... on RevokeTetherTx {
+                  tether
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on PokeTx {
+                  address
+                  date
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on ExchangeTetherTx {
+                  expiredAt
+                  data {
+                    typeUrl
+                    value
+                  }
+                  receiver {
+                    assets
+                    value
+                  }
+                  sender {
+                    assets
+                    value
+                  }
+                }
+                ... on ExchangeTx {
+                  expiredAt
+                  to
+                  data {
+                    typeUrl
+                    value
+                  }
+                  receiver {
+                    assets
+                    value
+                  }
+                  sender {
+                    assets
+                    value
+                  }
+                }
+                ... on DepositTetherTx {
+                  charge
+                  commission
+                  locktime
+                  target
+                  value
+                  withdrawer
+                }
+                ... on DeployProtocolTx {
+                  address
+                  description
+                  name
+                  namespace
+                  pipeline
+                  proto
+                  sources
+                  tags
+                  version
+                  code {
+                    binary
+                    checksum
+                  }
+                  data {
+                    typeUrl
+                    value
+                  }
+                  typeUrls {
+                    module
+                    url
+                  }
+                }
+                ... on DeclareTx {
+                  issuer
+                  moniker
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on DeclareFileTx {
+                  hash
+                }
+                ... on CreateAssetTx {
+                  address
+                  moniker
+                  parent
+                  readonly
+                  transferrable
+                  ttl
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on ConsumeAssetTx {
+                  address
+                  issuer
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on ConsensusUpgradeTx {
+                  maxBytes
+                  maxCandidates
+                  maxGas
+                  maxValidators
+                  data {
+                    typeUrl
+                    value
+                  }
+                  validators {
+                    address
+                    power
+                  }
+                }
+                ... on ApproveTetherTx {
+                  withdraw
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on AcquireAssetTx {
+                  to
+                  data {
+                    typeUrl
+                    value
+                  }
+                  specs {
+                    address
+                    data
+                  }
+                }
+                ... on AccountMigrateTx {
+                  address
+                  pk
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+              }
+            }
+          }
+          sender {
+            assets
+            value
+          }
+        }
+        ... on ExchangeTx {
+          expiredAt
+          to
+          data {
+            typeUrl
+            value
+          }
+          receiver {
+            assets
+            value
+          }
+          sender {
+            assets
+            value
+          }
+        }
+        ... on DepositTetherTx {
+          charge
+          commission
+          locktime
+          target
+          value
+          withdrawer
+        }
+        ... on DeployProtocolTx {
+          address
+          description
+          name
+          namespace
+          pipeline
+          proto
+          sources
+          tags
+          version
+          code {
+            binary
+            checksum
+          }
+          data {
+            typeUrl
+            value
+          }
+          typeUrls {
+            module
+            url
+          }
+        }
+        ... on DeclareTx {
+          issuer
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on DeclareFileTx {
+          hash
+        }
+        ... on CreateAssetTx {
+          address
+          moniker
+          parent
+          readonly
+          transferrable
+          ttl
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsumeAssetTx {
+          address
+          issuer
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsensusUpgradeTx {
+          maxBytes
+          maxCandidates
+          maxGas
+          maxValidators
+          data {
+            typeUrl
+            value
+          }
+          validators {
+            address
+            power
+          }
+        }
+        ... on ApproveTetherTx {
+          withdraw
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on AcquireAssetTx {
+          to
+          data {
+            typeUrl
+            value
+          }
+          specs {
+            address
+            data
+          }
+        }
+        ... on AccountMigrateTx {
+          address
+          pk
+          data {
+            typeUrl
+            value
+          }
         }
       }
     }
@@ -1903,6 +15813,58 @@ subscription {
           context {
             genesisTime
             renaissanceTime
+            genesisTx {
+              code
+              hash
+              height
+              index
+              time
+              accountMigrate {
+                address
+              }
+              createAsset {
+                asset
+              }
+              tags {
+                key
+                value
+              }
+              tx {
+                chainId
+                delegator
+                from
+                itxJson
+                nonce
+                pk
+                signature
+              }
+            }
+            renaissanceTx {
+              code
+              hash
+              height
+              index
+              time
+              accountMigrate {
+                address
+              }
+              createAsset {
+                asset
+              }
+              tags {
+                key
+                value
+              }
+              tx {
+                chainId
+                delegator
+                from
+                itxJson
+                nonce
+                pk
+                signature
+              }
+            }
           }
         }
       }
@@ -1972,10 +15934,597 @@ subscription {
       context {
         genesisTime
         renaissanceTime
+        genesisTx {
+          code
+          hash
+          height
+          index
+          time
+          accountMigrate {
+            address
+          }
+          createAsset {
+            asset
+          }
+          tags {
+            key
+            value
+          }
+          tx {
+            chainId
+            delegator
+            from
+            itxJson
+            nonce
+            pk
+            signature
+            signatures {
+              delegator
+              pk
+              signature
+              signer
+              data {
+                typeUrl
+                value
+              }
+            }
+            itx {
+              __typename
+              ... on RevokeSwapTx {
+                address
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on RetrieveSwapTx {
+                address
+                hashkey
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on SetupSwapTx {
+                assets
+                hashlock
+                locktime
+                receiver
+                value
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on WithdrawTetherTx {
+                chainId
+                expiredAt
+                from
+                nonce
+                pk
+                signature
+                data {
+                  typeUrl
+                  value
+                }
+                receiver {
+                  assets
+                  tether
+                  value
+                }
+                sender {
+                  assets
+                  value
+                }
+                signatures {
+                  delegator
+                  pk
+                  signature
+                  signer
+                }
+              }
+              ... on UpgradeNodeTx {
+                height
+                override
+                version
+              }
+              ... on UpdateAssetTx {
+                address
+                moniker
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on TransferTx {
+                assets
+                to
+                value
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on SysUpgradeTx {
+                gracePeriod
+                data {
+                  typeUrl
+                  value
+                }
+                task {
+                  actions
+                  dataHash
+                  type
+                }
+              }
+              ... on StakeTx {
+                message
+                to
+                value
+                data {
+                  type
+                }
+              }
+              ... on RevokeTetherTx {
+                tether
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on PokeTx {
+                address
+                date
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ExchangeTetherTx {
+                expiredAt
+                data {
+                  typeUrl
+                  value
+                }
+                receiver {
+                  assets
+                  value
+                }
+                sender {
+                  assets
+                  value
+                }
+              }
+              ... on ExchangeTx {
+                expiredAt
+                to
+                data {
+                  typeUrl
+                  value
+                }
+                receiver {
+                  assets
+                  value
+                }
+                sender {
+                  assets
+                  value
+                }
+              }
+              ... on DepositTetherTx {
+                charge
+                commission
+                locktime
+                target
+                value
+                withdrawer
+              }
+              ... on DeployProtocolTx {
+                address
+                description
+                name
+                namespace
+                pipeline
+                proto
+                sources
+                tags
+                version
+                code {
+                  binary
+                  checksum
+                }
+                data {
+                  typeUrl
+                  value
+                }
+                typeUrls {
+                  module
+                  url
+                }
+              }
+              ... on DeclareTx {
+                issuer
+                moniker
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on DeclareFileTx {
+                hash
+              }
+              ... on CreateAssetTx {
+                address
+                moniker
+                parent
+                readonly
+                transferrable
+                ttl
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ConsumeAssetTx {
+                address
+                issuer
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ConsensusUpgradeTx {
+                maxBytes
+                maxCandidates
+                maxGas
+                maxValidators
+                data {
+                  typeUrl
+                  value
+                }
+                validators {
+                  address
+                  power
+                }
+              }
+              ... on ApproveTetherTx {
+                withdraw
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on AcquireAssetTx {
+                to
+                data {
+                  typeUrl
+                  value
+                }
+                specs {
+                  address
+                  data
+                }
+              }
+              ... on AccountMigrateTx {
+                address
+                pk
+                data {
+                  typeUrl
+                  value
+                }
+              }
+            }
+          }
+        }
+        renaissanceTx {
+          code
+          hash
+          height
+          index
+          time
+          accountMigrate {
+            address
+          }
+          createAsset {
+            asset
+          }
+          tags {
+            key
+            value
+          }
+          tx {
+            chainId
+            delegator
+            from
+            itxJson
+            nonce
+            pk
+            signature
+            signatures {
+              delegator
+              pk
+              signature
+              signer
+              data {
+                typeUrl
+                value
+              }
+            }
+            itx {
+              __typename
+              ... on RevokeSwapTx {
+                address
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on RetrieveSwapTx {
+                address
+                hashkey
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on SetupSwapTx {
+                assets
+                hashlock
+                locktime
+                receiver
+                value
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on WithdrawTetherTx {
+                chainId
+                expiredAt
+                from
+                nonce
+                pk
+                signature
+                data {
+                  typeUrl
+                  value
+                }
+                receiver {
+                  assets
+                  tether
+                  value
+                }
+                sender {
+                  assets
+                  value
+                }
+                signatures {
+                  delegator
+                  pk
+                  signature
+                  signer
+                }
+              }
+              ... on UpgradeNodeTx {
+                height
+                override
+                version
+              }
+              ... on UpdateAssetTx {
+                address
+                moniker
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on TransferTx {
+                assets
+                to
+                value
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on SysUpgradeTx {
+                gracePeriod
+                data {
+                  typeUrl
+                  value
+                }
+                task {
+                  actions
+                  dataHash
+                  type
+                }
+              }
+              ... on StakeTx {
+                message
+                to
+                value
+                data {
+                  type
+                }
+              }
+              ... on RevokeTetherTx {
+                tether
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on PokeTx {
+                address
+                date
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ExchangeTetherTx {
+                expiredAt
+                data {
+                  typeUrl
+                  value
+                }
+                receiver {
+                  assets
+                  value
+                }
+                sender {
+                  assets
+                  value
+                }
+              }
+              ... on ExchangeTx {
+                expiredAt
+                to
+                data {
+                  typeUrl
+                  value
+                }
+                receiver {
+                  assets
+                  value
+                }
+                sender {
+                  assets
+                  value
+                }
+              }
+              ... on DepositTetherTx {
+                charge
+                commission
+                locktime
+                target
+                value
+                withdrawer
+              }
+              ... on DeployProtocolTx {
+                address
+                description
+                name
+                namespace
+                pipeline
+                proto
+                sources
+                tags
+                version
+                code {
+                  binary
+                  checksum
+                }
+                data {
+                  typeUrl
+                  value
+                }
+                typeUrls {
+                  module
+                  url
+                }
+              }
+              ... on DeclareTx {
+                issuer
+                moniker
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on DeclareFileTx {
+                hash
+              }
+              ... on CreateAssetTx {
+                address
+                moniker
+                parent
+                readonly
+                transferrable
+                ttl
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ConsumeAssetTx {
+                address
+                issuer
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ConsensusUpgradeTx {
+                maxBytes
+                maxCandidates
+                maxGas
+                maxValidators
+                data {
+                  typeUrl
+                  value
+                }
+                validators {
+                  address
+                  power
+                }
+              }
+              ... on ApproveTetherTx {
+                withdraw
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on AcquireAssetTx {
+                to
+                data {
+                  typeUrl
+                  value
+                }
+                specs {
+                  address
+                  data
+                }
+              }
+              ... on AccountMigrateTx {
+                address
+                pk
+                data {
+                  typeUrl
+                  value
+                }
+              }
+            }
+          }
+        }
       }
       data {
         typeUrl
         value
+      }
+      itx {
+        address
+        description
+        name
+        namespace
+        pipeline
+        proto
+        sources
+        tags
+        version
+        code {
+          binary
+          checksum
+        }
+        data {
+          typeUrl
+          value
+        }
+        typeUrls {
+          module
+          url
+        }
       }
     }
     revoke {
@@ -1994,6 +16543,521 @@ subscription {
         data {
           typeUrl
           value
+        }
+      }
+      itx {
+        __typename
+        ... on RevokeSwapTx {
+          address
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on RetrieveSwapTx {
+          address
+          hashkey
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on SetupSwapTx {
+          assets
+          hashlock
+          locktime
+          receiver
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on WithdrawTetherTx {
+          chainId
+          expiredAt
+          from
+          nonce
+          pk
+          signature
+          data {
+            typeUrl
+            value
+          }
+          receiver {
+            assets
+            tether
+            value
+          }
+          sender {
+            assets
+            value
+          }
+          signatures {
+            delegator
+            pk
+            signature
+            signer
+            data {
+              typeUrl
+              value
+            }
+          }
+        }
+        ... on UpgradeNodeTx {
+          height
+          override
+          version
+        }
+        ... on UpdateAssetTx {
+          address
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on TransferTx {
+          assets
+          to
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on SysUpgradeTx {
+          gracePeriod
+          data {
+            typeUrl
+            value
+          }
+          task {
+            actions
+            dataHash
+            type
+          }
+        }
+        ... on StakeTx {
+          message
+          to
+          value
+          data {
+            type
+          }
+        }
+        ... on RevokeTetherTx {
+          tether
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on PokeTx {
+          address
+          date
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ExchangeTetherTx {
+          expiredAt
+          data {
+            typeUrl
+            value
+          }
+          receiver {
+            assets
+            value
+            deposit {
+              chainId
+              delegator
+              from
+              itxJson
+              nonce
+              pk
+              signature
+              signatures {
+                delegator
+                pk
+                signature
+                signer
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              itx {
+                __typename
+                ... on RevokeSwapTx {
+                  address
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on RetrieveSwapTx {
+                  address
+                  hashkey
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on SetupSwapTx {
+                  assets
+                  hashlock
+                  locktime
+                  receiver
+                  value
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on WithdrawTetherTx {
+                  chainId
+                  expiredAt
+                  from
+                  nonce
+                  pk
+                  signature
+                  data {
+                    typeUrl
+                    value
+                  }
+                  receiver {
+                    assets
+                    tether
+                    value
+                  }
+                  sender {
+                    assets
+                    value
+                  }
+                  signatures {
+                    delegator
+                    pk
+                    signature
+                    signer
+                  }
+                }
+                ... on UpgradeNodeTx {
+                  height
+                  override
+                  version
+                }
+                ... on UpdateAssetTx {
+                  address
+                  moniker
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on TransferTx {
+                  assets
+                  to
+                  value
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on SysUpgradeTx {
+                  gracePeriod
+                  data {
+                    typeUrl
+                    value
+                  }
+                  task {
+                    actions
+                    dataHash
+                    type
+                  }
+                }
+                ... on StakeTx {
+                  message
+                  to
+                  value
+                  data {
+                    type
+                  }
+                }
+                ... on RevokeTetherTx {
+                  tether
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on PokeTx {
+                  address
+                  date
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on ExchangeTetherTx {
+                  expiredAt
+                  data {
+                    typeUrl
+                    value
+                  }
+                  receiver {
+                    assets
+                    value
+                  }
+                  sender {
+                    assets
+                    value
+                  }
+                }
+                ... on ExchangeTx {
+                  expiredAt
+                  to
+                  data {
+                    typeUrl
+                    value
+                  }
+                  receiver {
+                    assets
+                    value
+                  }
+                  sender {
+                    assets
+                    value
+                  }
+                }
+                ... on DepositTetherTx {
+                  charge
+                  commission
+                  locktime
+                  target
+                  value
+                  withdrawer
+                }
+                ... on DeployProtocolTx {
+                  address
+                  description
+                  name
+                  namespace
+                  pipeline
+                  proto
+                  sources
+                  tags
+                  version
+                  code {
+                    binary
+                    checksum
+                  }
+                  data {
+                    typeUrl
+                    value
+                  }
+                  typeUrls {
+                    module
+                    url
+                  }
+                }
+                ... on DeclareTx {
+                  issuer
+                  moniker
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on DeclareFileTx {
+                  hash
+                }
+                ... on CreateAssetTx {
+                  address
+                  moniker
+                  parent
+                  readonly
+                  transferrable
+                  ttl
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on ConsumeAssetTx {
+                  address
+                  issuer
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on ConsensusUpgradeTx {
+                  maxBytes
+                  maxCandidates
+                  maxGas
+                  maxValidators
+                  data {
+                    typeUrl
+                    value
+                  }
+                  validators {
+                    address
+                    power
+                  }
+                }
+                ... on ApproveTetherTx {
+                  withdraw
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on AcquireAssetTx {
+                  to
+                  data {
+                    typeUrl
+                    value
+                  }
+                  specs {
+                    address
+                    data
+                  }
+                }
+                ... on AccountMigrateTx {
+                  address
+                  pk
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+              }
+            }
+          }
+          sender {
+            assets
+            value
+          }
+        }
+        ... on ExchangeTx {
+          expiredAt
+          to
+          data {
+            typeUrl
+            value
+          }
+          receiver {
+            assets
+            value
+          }
+          sender {
+            assets
+            value
+          }
+        }
+        ... on DepositTetherTx {
+          charge
+          commission
+          locktime
+          target
+          value
+          withdrawer
+        }
+        ... on DeployProtocolTx {
+          address
+          description
+          name
+          namespace
+          pipeline
+          proto
+          sources
+          tags
+          version
+          code {
+            binary
+            checksum
+          }
+          data {
+            typeUrl
+            value
+          }
+          typeUrls {
+            module
+            url
+          }
+        }
+        ... on DeclareTx {
+          issuer
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on DeclareFileTx {
+          hash
+        }
+        ... on CreateAssetTx {
+          address
+          moniker
+          parent
+          readonly
+          transferrable
+          ttl
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsumeAssetTx {
+          address
+          issuer
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsensusUpgradeTx {
+          maxBytes
+          maxCandidates
+          maxGas
+          maxValidators
+          data {
+            typeUrl
+            value
+          }
+          validators {
+            address
+            power
+          }
+        }
+        ... on ApproveTetherTx {
+          withdraw
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on AcquireAssetTx {
+          to
+          data {
+            typeUrl
+            value
+          }
+          specs {
+            address
+            data
+          }
+        }
+        ... on AccountMigrateTx {
+          address
+          pk
+          data {
+            typeUrl
+            value
+          }
         }
       }
     }
@@ -2015,6 +17079,521 @@ subscription {
           value
         }
       }
+      itx {
+        __typename
+        ... on RevokeSwapTx {
+          address
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on RetrieveSwapTx {
+          address
+          hashkey
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on SetupSwapTx {
+          assets
+          hashlock
+          locktime
+          receiver
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on WithdrawTetherTx {
+          chainId
+          expiredAt
+          from
+          nonce
+          pk
+          signature
+          data {
+            typeUrl
+            value
+          }
+          receiver {
+            assets
+            tether
+            value
+          }
+          sender {
+            assets
+            value
+          }
+          signatures {
+            delegator
+            pk
+            signature
+            signer
+            data {
+              typeUrl
+              value
+            }
+          }
+        }
+        ... on UpgradeNodeTx {
+          height
+          override
+          version
+        }
+        ... on UpdateAssetTx {
+          address
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on TransferTx {
+          assets
+          to
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on SysUpgradeTx {
+          gracePeriod
+          data {
+            typeUrl
+            value
+          }
+          task {
+            actions
+            dataHash
+            type
+          }
+        }
+        ... on StakeTx {
+          message
+          to
+          value
+          data {
+            type
+          }
+        }
+        ... on RevokeTetherTx {
+          tether
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on PokeTx {
+          address
+          date
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ExchangeTetherTx {
+          expiredAt
+          data {
+            typeUrl
+            value
+          }
+          receiver {
+            assets
+            value
+            deposit {
+              chainId
+              delegator
+              from
+              itxJson
+              nonce
+              pk
+              signature
+              signatures {
+                delegator
+                pk
+                signature
+                signer
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              itx {
+                __typename
+                ... on RevokeSwapTx {
+                  address
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on RetrieveSwapTx {
+                  address
+                  hashkey
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on SetupSwapTx {
+                  assets
+                  hashlock
+                  locktime
+                  receiver
+                  value
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on WithdrawTetherTx {
+                  chainId
+                  expiredAt
+                  from
+                  nonce
+                  pk
+                  signature
+                  data {
+                    typeUrl
+                    value
+                  }
+                  receiver {
+                    assets
+                    tether
+                    value
+                  }
+                  sender {
+                    assets
+                    value
+                  }
+                  signatures {
+                    delegator
+                    pk
+                    signature
+                    signer
+                  }
+                }
+                ... on UpgradeNodeTx {
+                  height
+                  override
+                  version
+                }
+                ... on UpdateAssetTx {
+                  address
+                  moniker
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on TransferTx {
+                  assets
+                  to
+                  value
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on SysUpgradeTx {
+                  gracePeriod
+                  data {
+                    typeUrl
+                    value
+                  }
+                  task {
+                    actions
+                    dataHash
+                    type
+                  }
+                }
+                ... on StakeTx {
+                  message
+                  to
+                  value
+                  data {
+                    type
+                  }
+                }
+                ... on RevokeTetherTx {
+                  tether
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on PokeTx {
+                  address
+                  date
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on ExchangeTetherTx {
+                  expiredAt
+                  data {
+                    typeUrl
+                    value
+                  }
+                  receiver {
+                    assets
+                    value
+                  }
+                  sender {
+                    assets
+                    value
+                  }
+                }
+                ... on ExchangeTx {
+                  expiredAt
+                  to
+                  data {
+                    typeUrl
+                    value
+                  }
+                  receiver {
+                    assets
+                    value
+                  }
+                  sender {
+                    assets
+                    value
+                  }
+                }
+                ... on DepositTetherTx {
+                  charge
+                  commission
+                  locktime
+                  target
+                  value
+                  withdrawer
+                }
+                ... on DeployProtocolTx {
+                  address
+                  description
+                  name
+                  namespace
+                  pipeline
+                  proto
+                  sources
+                  tags
+                  version
+                  code {
+                    binary
+                    checksum
+                  }
+                  data {
+                    typeUrl
+                    value
+                  }
+                  typeUrls {
+                    module
+                    url
+                  }
+                }
+                ... on DeclareTx {
+                  issuer
+                  moniker
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on DeclareFileTx {
+                  hash
+                }
+                ... on CreateAssetTx {
+                  address
+                  moniker
+                  parent
+                  readonly
+                  transferrable
+                  ttl
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on ConsumeAssetTx {
+                  address
+                  issuer
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on ConsensusUpgradeTx {
+                  maxBytes
+                  maxCandidates
+                  maxGas
+                  maxValidators
+                  data {
+                    typeUrl
+                    value
+                  }
+                  validators {
+                    address
+                    power
+                  }
+                }
+                ... on ApproveTetherTx {
+                  withdraw
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on AcquireAssetTx {
+                  to
+                  data {
+                    typeUrl
+                    value
+                  }
+                  specs {
+                    address
+                    data
+                  }
+                }
+                ... on AccountMigrateTx {
+                  address
+                  pk
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+              }
+            }
+          }
+          sender {
+            assets
+            value
+          }
+        }
+        ... on ExchangeTx {
+          expiredAt
+          to
+          data {
+            typeUrl
+            value
+          }
+          receiver {
+            assets
+            value
+          }
+          sender {
+            assets
+            value
+          }
+        }
+        ... on DepositTetherTx {
+          charge
+          commission
+          locktime
+          target
+          value
+          withdrawer
+        }
+        ... on DeployProtocolTx {
+          address
+          description
+          name
+          namespace
+          pipeline
+          proto
+          sources
+          tags
+          version
+          code {
+            binary
+            checksum
+          }
+          data {
+            typeUrl
+            value
+          }
+          typeUrls {
+            module
+            url
+          }
+        }
+        ... on DeclareTx {
+          issuer
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on DeclareFileTx {
+          hash
+        }
+        ... on CreateAssetTx {
+          address
+          moniker
+          parent
+          readonly
+          transferrable
+          ttl
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsumeAssetTx {
+          address
+          issuer
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsensusUpgradeTx {
+          maxBytes
+          maxCandidates
+          maxGas
+          maxValidators
+          data {
+            typeUrl
+            value
+          }
+          validators {
+            address
+            power
+          }
+        }
+        ... on ApproveTetherTx {
+          withdraw
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on AcquireAssetTx {
+          to
+          data {
+            typeUrl
+            value
+          }
+          specs {
+            address
+            data
+          }
+        }
+        ... on AccountMigrateTx {
+          address
+          pk
+          data {
+            typeUrl
+            value
+          }
+        }
+      }
     }
     revokeWithdraw {
       chainId
@@ -2032,6 +17611,521 @@ subscription {
         data {
           typeUrl
           value
+        }
+      }
+      itx {
+        __typename
+        ... on RevokeSwapTx {
+          address
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on RetrieveSwapTx {
+          address
+          hashkey
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on SetupSwapTx {
+          assets
+          hashlock
+          locktime
+          receiver
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on WithdrawTetherTx {
+          chainId
+          expiredAt
+          from
+          nonce
+          pk
+          signature
+          data {
+            typeUrl
+            value
+          }
+          receiver {
+            assets
+            tether
+            value
+          }
+          sender {
+            assets
+            value
+          }
+          signatures {
+            delegator
+            pk
+            signature
+            signer
+            data {
+              typeUrl
+              value
+            }
+          }
+        }
+        ... on UpgradeNodeTx {
+          height
+          override
+          version
+        }
+        ... on UpdateAssetTx {
+          address
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on TransferTx {
+          assets
+          to
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on SysUpgradeTx {
+          gracePeriod
+          data {
+            typeUrl
+            value
+          }
+          task {
+            actions
+            dataHash
+            type
+          }
+        }
+        ... on StakeTx {
+          message
+          to
+          value
+          data {
+            type
+          }
+        }
+        ... on RevokeTetherTx {
+          tether
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on PokeTx {
+          address
+          date
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ExchangeTetherTx {
+          expiredAt
+          data {
+            typeUrl
+            value
+          }
+          receiver {
+            assets
+            value
+            deposit {
+              chainId
+              delegator
+              from
+              itxJson
+              nonce
+              pk
+              signature
+              signatures {
+                delegator
+                pk
+                signature
+                signer
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              itx {
+                __typename
+                ... on RevokeSwapTx {
+                  address
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on RetrieveSwapTx {
+                  address
+                  hashkey
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on SetupSwapTx {
+                  assets
+                  hashlock
+                  locktime
+                  receiver
+                  value
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on WithdrawTetherTx {
+                  chainId
+                  expiredAt
+                  from
+                  nonce
+                  pk
+                  signature
+                  data {
+                    typeUrl
+                    value
+                  }
+                  receiver {
+                    assets
+                    tether
+                    value
+                  }
+                  sender {
+                    assets
+                    value
+                  }
+                  signatures {
+                    delegator
+                    pk
+                    signature
+                    signer
+                  }
+                }
+                ... on UpgradeNodeTx {
+                  height
+                  override
+                  version
+                }
+                ... on UpdateAssetTx {
+                  address
+                  moniker
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on TransferTx {
+                  assets
+                  to
+                  value
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on SysUpgradeTx {
+                  gracePeriod
+                  data {
+                    typeUrl
+                    value
+                  }
+                  task {
+                    actions
+                    dataHash
+                    type
+                  }
+                }
+                ... on StakeTx {
+                  message
+                  to
+                  value
+                  data {
+                    type
+                  }
+                }
+                ... on RevokeTetherTx {
+                  tether
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on PokeTx {
+                  address
+                  date
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on ExchangeTetherTx {
+                  expiredAt
+                  data {
+                    typeUrl
+                    value
+                  }
+                  receiver {
+                    assets
+                    value
+                  }
+                  sender {
+                    assets
+                    value
+                  }
+                }
+                ... on ExchangeTx {
+                  expiredAt
+                  to
+                  data {
+                    typeUrl
+                    value
+                  }
+                  receiver {
+                    assets
+                    value
+                  }
+                  sender {
+                    assets
+                    value
+                  }
+                }
+                ... on DepositTetherTx {
+                  charge
+                  commission
+                  locktime
+                  target
+                  value
+                  withdrawer
+                }
+                ... on DeployProtocolTx {
+                  address
+                  description
+                  name
+                  namespace
+                  pipeline
+                  proto
+                  sources
+                  tags
+                  version
+                  code {
+                    binary
+                    checksum
+                  }
+                  data {
+                    typeUrl
+                    value
+                  }
+                  typeUrls {
+                    module
+                    url
+                  }
+                }
+                ... on DeclareTx {
+                  issuer
+                  moniker
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on DeclareFileTx {
+                  hash
+                }
+                ... on CreateAssetTx {
+                  address
+                  moniker
+                  parent
+                  readonly
+                  transferrable
+                  ttl
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on ConsumeAssetTx {
+                  address
+                  issuer
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on ConsensusUpgradeTx {
+                  maxBytes
+                  maxCandidates
+                  maxGas
+                  maxValidators
+                  data {
+                    typeUrl
+                    value
+                  }
+                  validators {
+                    address
+                    power
+                  }
+                }
+                ... on ApproveTetherTx {
+                  withdraw
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on AcquireAssetTx {
+                  to
+                  data {
+                    typeUrl
+                    value
+                  }
+                  specs {
+                    address
+                    data
+                  }
+                }
+                ... on AccountMigrateTx {
+                  address
+                  pk
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+              }
+            }
+          }
+          sender {
+            assets
+            value
+          }
+        }
+        ... on ExchangeTx {
+          expiredAt
+          to
+          data {
+            typeUrl
+            value
+          }
+          receiver {
+            assets
+            value
+          }
+          sender {
+            assets
+            value
+          }
+        }
+        ... on DepositTetherTx {
+          charge
+          commission
+          locktime
+          target
+          value
+          withdrawer
+        }
+        ... on DeployProtocolTx {
+          address
+          description
+          name
+          namespace
+          pipeline
+          proto
+          sources
+          tags
+          version
+          code {
+            binary
+            checksum
+          }
+          data {
+            typeUrl
+            value
+          }
+          typeUrls {
+            module
+            url
+          }
+        }
+        ... on DeclareTx {
+          issuer
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on DeclareFileTx {
+          hash
+        }
+        ... on CreateAssetTx {
+          address
+          moniker
+          parent
+          readonly
+          transferrable
+          ttl
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsumeAssetTx {
+          address
+          issuer
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsensusUpgradeTx {
+          maxBytes
+          maxCandidates
+          maxGas
+          maxValidators
+          data {
+            typeUrl
+            value
+          }
+          validators {
+            address
+            power
+          }
+        }
+        ... on ApproveTetherTx {
+          withdraw
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on AcquireAssetTx {
+          to
+          data {
+            typeUrl
+            value
+          }
+          specs {
+            address
+            data
+          }
+        }
+        ... on AccountMigrateTx {
+          address
+          pk
+          data {
+            typeUrl
+            value
+          }
         }
       }
     }
@@ -2053,6 +18147,521 @@ subscription {
           value
         }
       }
+      itx {
+        __typename
+        ... on RevokeSwapTx {
+          address
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on RetrieveSwapTx {
+          address
+          hashkey
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on SetupSwapTx {
+          assets
+          hashlock
+          locktime
+          receiver
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on WithdrawTetherTx {
+          chainId
+          expiredAt
+          from
+          nonce
+          pk
+          signature
+          data {
+            typeUrl
+            value
+          }
+          receiver {
+            assets
+            tether
+            value
+          }
+          sender {
+            assets
+            value
+          }
+          signatures {
+            delegator
+            pk
+            signature
+            signer
+            data {
+              typeUrl
+              value
+            }
+          }
+        }
+        ... on UpgradeNodeTx {
+          height
+          override
+          version
+        }
+        ... on UpdateAssetTx {
+          address
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on TransferTx {
+          assets
+          to
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on SysUpgradeTx {
+          gracePeriod
+          data {
+            typeUrl
+            value
+          }
+          task {
+            actions
+            dataHash
+            type
+          }
+        }
+        ... on StakeTx {
+          message
+          to
+          value
+          data {
+            type
+          }
+        }
+        ... on RevokeTetherTx {
+          tether
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on PokeTx {
+          address
+          date
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ExchangeTetherTx {
+          expiredAt
+          data {
+            typeUrl
+            value
+          }
+          receiver {
+            assets
+            value
+            deposit {
+              chainId
+              delegator
+              from
+              itxJson
+              nonce
+              pk
+              signature
+              signatures {
+                delegator
+                pk
+                signature
+                signer
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              itx {
+                __typename
+                ... on RevokeSwapTx {
+                  address
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on RetrieveSwapTx {
+                  address
+                  hashkey
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on SetupSwapTx {
+                  assets
+                  hashlock
+                  locktime
+                  receiver
+                  value
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on WithdrawTetherTx {
+                  chainId
+                  expiredAt
+                  from
+                  nonce
+                  pk
+                  signature
+                  data {
+                    typeUrl
+                    value
+                  }
+                  receiver {
+                    assets
+                    tether
+                    value
+                  }
+                  sender {
+                    assets
+                    value
+                  }
+                  signatures {
+                    delegator
+                    pk
+                    signature
+                    signer
+                  }
+                }
+                ... on UpgradeNodeTx {
+                  height
+                  override
+                  version
+                }
+                ... on UpdateAssetTx {
+                  address
+                  moniker
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on TransferTx {
+                  assets
+                  to
+                  value
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on SysUpgradeTx {
+                  gracePeriod
+                  data {
+                    typeUrl
+                    value
+                  }
+                  task {
+                    actions
+                    dataHash
+                    type
+                  }
+                }
+                ... on StakeTx {
+                  message
+                  to
+                  value
+                  data {
+                    type
+                  }
+                }
+                ... on RevokeTetherTx {
+                  tether
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on PokeTx {
+                  address
+                  date
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on ExchangeTetherTx {
+                  expiredAt
+                  data {
+                    typeUrl
+                    value
+                  }
+                  receiver {
+                    assets
+                    value
+                  }
+                  sender {
+                    assets
+                    value
+                  }
+                }
+                ... on ExchangeTx {
+                  expiredAt
+                  to
+                  data {
+                    typeUrl
+                    value
+                  }
+                  receiver {
+                    assets
+                    value
+                  }
+                  sender {
+                    assets
+                    value
+                  }
+                }
+                ... on DepositTetherTx {
+                  charge
+                  commission
+                  locktime
+                  target
+                  value
+                  withdrawer
+                }
+                ... on DeployProtocolTx {
+                  address
+                  description
+                  name
+                  namespace
+                  pipeline
+                  proto
+                  sources
+                  tags
+                  version
+                  code {
+                    binary
+                    checksum
+                  }
+                  data {
+                    typeUrl
+                    value
+                  }
+                  typeUrls {
+                    module
+                    url
+                  }
+                }
+                ... on DeclareTx {
+                  issuer
+                  moniker
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on DeclareFileTx {
+                  hash
+                }
+                ... on CreateAssetTx {
+                  address
+                  moniker
+                  parent
+                  readonly
+                  transferrable
+                  ttl
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on ConsumeAssetTx {
+                  address
+                  issuer
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on ConsensusUpgradeTx {
+                  maxBytes
+                  maxCandidates
+                  maxGas
+                  maxValidators
+                  data {
+                    typeUrl
+                    value
+                  }
+                  validators {
+                    address
+                    power
+                  }
+                }
+                ... on ApproveTetherTx {
+                  withdraw
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on AcquireAssetTx {
+                  to
+                  data {
+                    typeUrl
+                    value
+                  }
+                  specs {
+                    address
+                    data
+                  }
+                }
+                ... on AccountMigrateTx {
+                  address
+                  pk
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+              }
+            }
+          }
+          sender {
+            assets
+            value
+          }
+        }
+        ... on ExchangeTx {
+          expiredAt
+          to
+          data {
+            typeUrl
+            value
+          }
+          receiver {
+            assets
+            value
+          }
+          sender {
+            assets
+            value
+          }
+        }
+        ... on DepositTetherTx {
+          charge
+          commission
+          locktime
+          target
+          value
+          withdrawer
+        }
+        ... on DeployProtocolTx {
+          address
+          description
+          name
+          namespace
+          pipeline
+          proto
+          sources
+          tags
+          version
+          code {
+            binary
+            checksum
+          }
+          data {
+            typeUrl
+            value
+          }
+          typeUrls {
+            module
+            url
+          }
+        }
+        ... on DeclareTx {
+          issuer
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on DeclareFileTx {
+          hash
+        }
+        ... on CreateAssetTx {
+          address
+          moniker
+          parent
+          readonly
+          transferrable
+          ttl
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsumeAssetTx {
+          address
+          issuer
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsensusUpgradeTx {
+          maxBytes
+          maxCandidates
+          maxGas
+          maxValidators
+          data {
+            typeUrl
+            value
+          }
+          validators {
+            address
+            power
+          }
+        }
+        ... on ApproveTetherTx {
+          withdraw
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on AcquireAssetTx {
+          to
+          data {
+            typeUrl
+            value
+          }
+          specs {
+            address
+            data
+          }
+        }
+        ... on AccountMigrateTx {
+          address
+          pk
+          data {
+            typeUrl
+            value
+          }
+        }
+      }
     }
     stakeState {
       address
@@ -2063,6 +18672,570 @@ subscription {
       context {
         genesisTime
         renaissanceTime
+        genesisTx {
+          code
+          hash
+          height
+          index
+          time
+          accountMigrate {
+            address
+          }
+          createAsset {
+            asset
+          }
+          tags {
+            key
+            value
+          }
+          tx {
+            chainId
+            delegator
+            from
+            itxJson
+            nonce
+            pk
+            signature
+            signatures {
+              delegator
+              pk
+              signature
+              signer
+              data {
+                typeUrl
+                value
+              }
+            }
+            itx {
+              __typename
+              ... on RevokeSwapTx {
+                address
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on RetrieveSwapTx {
+                address
+                hashkey
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on SetupSwapTx {
+                assets
+                hashlock
+                locktime
+                receiver
+                value
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on WithdrawTetherTx {
+                chainId
+                expiredAt
+                from
+                nonce
+                pk
+                signature
+                data {
+                  typeUrl
+                  value
+                }
+                receiver {
+                  assets
+                  tether
+                  value
+                }
+                sender {
+                  assets
+                  value
+                }
+                signatures {
+                  delegator
+                  pk
+                  signature
+                  signer
+                }
+              }
+              ... on UpgradeNodeTx {
+                height
+                override
+                version
+              }
+              ... on UpdateAssetTx {
+                address
+                moniker
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on TransferTx {
+                assets
+                to
+                value
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on SysUpgradeTx {
+                gracePeriod
+                data {
+                  typeUrl
+                  value
+                }
+                task {
+                  actions
+                  dataHash
+                  type
+                }
+              }
+              ... on StakeTx {
+                message
+                to
+                value
+                data {
+                  type
+                }
+              }
+              ... on RevokeTetherTx {
+                tether
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on PokeTx {
+                address
+                date
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ExchangeTetherTx {
+                expiredAt
+                data {
+                  typeUrl
+                  value
+                }
+                receiver {
+                  assets
+                  value
+                }
+                sender {
+                  assets
+                  value
+                }
+              }
+              ... on ExchangeTx {
+                expiredAt
+                to
+                data {
+                  typeUrl
+                  value
+                }
+                receiver {
+                  assets
+                  value
+                }
+                sender {
+                  assets
+                  value
+                }
+              }
+              ... on DepositTetherTx {
+                charge
+                commission
+                locktime
+                target
+                value
+                withdrawer
+              }
+              ... on DeployProtocolTx {
+                address
+                description
+                name
+                namespace
+                pipeline
+                proto
+                sources
+                tags
+                version
+                code {
+                  binary
+                  checksum
+                }
+                data {
+                  typeUrl
+                  value
+                }
+                typeUrls {
+                  module
+                  url
+                }
+              }
+              ... on DeclareTx {
+                issuer
+                moniker
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on DeclareFileTx {
+                hash
+              }
+              ... on CreateAssetTx {
+                address
+                moniker
+                parent
+                readonly
+                transferrable
+                ttl
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ConsumeAssetTx {
+                address
+                issuer
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ConsensusUpgradeTx {
+                maxBytes
+                maxCandidates
+                maxGas
+                maxValidators
+                data {
+                  typeUrl
+                  value
+                }
+                validators {
+                  address
+                  power
+                }
+              }
+              ... on ApproveTetherTx {
+                withdraw
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on AcquireAssetTx {
+                to
+                data {
+                  typeUrl
+                  value
+                }
+                specs {
+                  address
+                  data
+                }
+              }
+              ... on AccountMigrateTx {
+                address
+                pk
+                data {
+                  typeUrl
+                  value
+                }
+              }
+            }
+          }
+        }
+        renaissanceTx {
+          code
+          hash
+          height
+          index
+          time
+          accountMigrate {
+            address
+          }
+          createAsset {
+            asset
+          }
+          tags {
+            key
+            value
+          }
+          tx {
+            chainId
+            delegator
+            from
+            itxJson
+            nonce
+            pk
+            signature
+            signatures {
+              delegator
+              pk
+              signature
+              signer
+              data {
+                typeUrl
+                value
+              }
+            }
+            itx {
+              __typename
+              ... on RevokeSwapTx {
+                address
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on RetrieveSwapTx {
+                address
+                hashkey
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on SetupSwapTx {
+                assets
+                hashlock
+                locktime
+                receiver
+                value
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on WithdrawTetherTx {
+                chainId
+                expiredAt
+                from
+                nonce
+                pk
+                signature
+                data {
+                  typeUrl
+                  value
+                }
+                receiver {
+                  assets
+                  tether
+                  value
+                }
+                sender {
+                  assets
+                  value
+                }
+                signatures {
+                  delegator
+                  pk
+                  signature
+                  signer
+                }
+              }
+              ... on UpgradeNodeTx {
+                height
+                override
+                version
+              }
+              ... on UpdateAssetTx {
+                address
+                moniker
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on TransferTx {
+                assets
+                to
+                value
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on SysUpgradeTx {
+                gracePeriod
+                data {
+                  typeUrl
+                  value
+                }
+                task {
+                  actions
+                  dataHash
+                  type
+                }
+              }
+              ... on StakeTx {
+                message
+                to
+                value
+                data {
+                  type
+                }
+              }
+              ... on RevokeTetherTx {
+                tether
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on PokeTx {
+                address
+                date
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ExchangeTetherTx {
+                expiredAt
+                data {
+                  typeUrl
+                  value
+                }
+                receiver {
+                  assets
+                  value
+                }
+                sender {
+                  assets
+                  value
+                }
+              }
+              ... on ExchangeTx {
+                expiredAt
+                to
+                data {
+                  typeUrl
+                  value
+                }
+                receiver {
+                  assets
+                  value
+                }
+                sender {
+                  assets
+                  value
+                }
+              }
+              ... on DepositTetherTx {
+                charge
+                commission
+                locktime
+                target
+                value
+                withdrawer
+              }
+              ... on DeployProtocolTx {
+                address
+                description
+                name
+                namespace
+                pipeline
+                proto
+                sources
+                tags
+                version
+                code {
+                  binary
+                  checksum
+                }
+                data {
+                  typeUrl
+                  value
+                }
+                typeUrls {
+                  module
+                  url
+                }
+              }
+              ... on DeclareTx {
+                issuer
+                moniker
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on DeclareFileTx {
+                hash
+              }
+              ... on CreateAssetTx {
+                address
+                moniker
+                parent
+                readonly
+                transferrable
+                ttl
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ConsumeAssetTx {
+                address
+                issuer
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on ConsensusUpgradeTx {
+                maxBytes
+                maxCandidates
+                maxGas
+                maxValidators
+                data {
+                  typeUrl
+                  value
+                }
+                validators {
+                  address
+                  power
+                }
+              }
+              ... on ApproveTetherTx {
+                withdraw
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              ... on AcquireAssetTx {
+                to
+                data {
+                  typeUrl
+                  value
+                }
+                specs {
+                  address
+                  data
+                }
+              }
+              ... on AccountMigrateTx {
+                address
+                pk
+                data {
+                  typeUrl
+                  value
+                }
+              }
+            }
+          }
+        }
       }
       data {
         typeUrl
@@ -2087,6 +19260,521 @@ subscription {
           value
         }
       }
+      itx {
+        __typename
+        ... on RevokeSwapTx {
+          address
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on RetrieveSwapTx {
+          address
+          hashkey
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on SetupSwapTx {
+          assets
+          hashlock
+          locktime
+          receiver
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on WithdrawTetherTx {
+          chainId
+          expiredAt
+          from
+          nonce
+          pk
+          signature
+          data {
+            typeUrl
+            value
+          }
+          receiver {
+            assets
+            tether
+            value
+          }
+          sender {
+            assets
+            value
+          }
+          signatures {
+            delegator
+            pk
+            signature
+            signer
+            data {
+              typeUrl
+              value
+            }
+          }
+        }
+        ... on UpgradeNodeTx {
+          height
+          override
+          version
+        }
+        ... on UpdateAssetTx {
+          address
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on TransferTx {
+          assets
+          to
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on SysUpgradeTx {
+          gracePeriod
+          data {
+            typeUrl
+            value
+          }
+          task {
+            actions
+            dataHash
+            type
+          }
+        }
+        ... on StakeTx {
+          message
+          to
+          value
+          data {
+            type
+          }
+        }
+        ... on RevokeTetherTx {
+          tether
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on PokeTx {
+          address
+          date
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ExchangeTetherTx {
+          expiredAt
+          data {
+            typeUrl
+            value
+          }
+          receiver {
+            assets
+            value
+            deposit {
+              chainId
+              delegator
+              from
+              itxJson
+              nonce
+              pk
+              signature
+              signatures {
+                delegator
+                pk
+                signature
+                signer
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              itx {
+                __typename
+                ... on RevokeSwapTx {
+                  address
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on RetrieveSwapTx {
+                  address
+                  hashkey
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on SetupSwapTx {
+                  assets
+                  hashlock
+                  locktime
+                  receiver
+                  value
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on WithdrawTetherTx {
+                  chainId
+                  expiredAt
+                  from
+                  nonce
+                  pk
+                  signature
+                  data {
+                    typeUrl
+                    value
+                  }
+                  receiver {
+                    assets
+                    tether
+                    value
+                  }
+                  sender {
+                    assets
+                    value
+                  }
+                  signatures {
+                    delegator
+                    pk
+                    signature
+                    signer
+                  }
+                }
+                ... on UpgradeNodeTx {
+                  height
+                  override
+                  version
+                }
+                ... on UpdateAssetTx {
+                  address
+                  moniker
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on TransferTx {
+                  assets
+                  to
+                  value
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on SysUpgradeTx {
+                  gracePeriod
+                  data {
+                    typeUrl
+                    value
+                  }
+                  task {
+                    actions
+                    dataHash
+                    type
+                  }
+                }
+                ... on StakeTx {
+                  message
+                  to
+                  value
+                  data {
+                    type
+                  }
+                }
+                ... on RevokeTetherTx {
+                  tether
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on PokeTx {
+                  address
+                  date
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on ExchangeTetherTx {
+                  expiredAt
+                  data {
+                    typeUrl
+                    value
+                  }
+                  receiver {
+                    assets
+                    value
+                  }
+                  sender {
+                    assets
+                    value
+                  }
+                }
+                ... on ExchangeTx {
+                  expiredAt
+                  to
+                  data {
+                    typeUrl
+                    value
+                  }
+                  receiver {
+                    assets
+                    value
+                  }
+                  sender {
+                    assets
+                    value
+                  }
+                }
+                ... on DepositTetherTx {
+                  charge
+                  commission
+                  locktime
+                  target
+                  value
+                  withdrawer
+                }
+                ... on DeployProtocolTx {
+                  address
+                  description
+                  name
+                  namespace
+                  pipeline
+                  proto
+                  sources
+                  tags
+                  version
+                  code {
+                    binary
+                    checksum
+                  }
+                  data {
+                    typeUrl
+                    value
+                  }
+                  typeUrls {
+                    module
+                    url
+                  }
+                }
+                ... on DeclareTx {
+                  issuer
+                  moniker
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on DeclareFileTx {
+                  hash
+                }
+                ... on CreateAssetTx {
+                  address
+                  moniker
+                  parent
+                  readonly
+                  transferrable
+                  ttl
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on ConsumeAssetTx {
+                  address
+                  issuer
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on ConsensusUpgradeTx {
+                  maxBytes
+                  maxCandidates
+                  maxGas
+                  maxValidators
+                  data {
+                    typeUrl
+                    value
+                  }
+                  validators {
+                    address
+                    power
+                  }
+                }
+                ... on ApproveTetherTx {
+                  withdraw
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on AcquireAssetTx {
+                  to
+                  data {
+                    typeUrl
+                    value
+                  }
+                  specs {
+                    address
+                    data
+                  }
+                }
+                ... on AccountMigrateTx {
+                  address
+                  pk
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+              }
+            }
+          }
+          sender {
+            assets
+            value
+          }
+        }
+        ... on ExchangeTx {
+          expiredAt
+          to
+          data {
+            typeUrl
+            value
+          }
+          receiver {
+            assets
+            value
+          }
+          sender {
+            assets
+            value
+          }
+        }
+        ... on DepositTetherTx {
+          charge
+          commission
+          locktime
+          target
+          value
+          withdrawer
+        }
+        ... on DeployProtocolTx {
+          address
+          description
+          name
+          namespace
+          pipeline
+          proto
+          sources
+          tags
+          version
+          code {
+            binary
+            checksum
+          }
+          data {
+            typeUrl
+            value
+          }
+          typeUrls {
+            module
+            url
+          }
+        }
+        ... on DeclareTx {
+          issuer
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on DeclareFileTx {
+          hash
+        }
+        ... on CreateAssetTx {
+          address
+          moniker
+          parent
+          readonly
+          transferrable
+          ttl
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsumeAssetTx {
+          address
+          issuer
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsensusUpgradeTx {
+          maxBytes
+          maxCandidates
+          maxGas
+          maxValidators
+          data {
+            typeUrl
+            value
+          }
+          validators {
+            address
+            power
+          }
+        }
+        ... on ApproveTetherTx {
+          withdraw
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on AcquireAssetTx {
+          to
+          data {
+            typeUrl
+            value
+          }
+          specs {
+            address
+            data
+          }
+        }
+        ... on AccountMigrateTx {
+          address
+          pk
+          data {
+            typeUrl
+            value
+          }
+        }
+      }
     }
     transfer {
       chainId
@@ -2104,6 +19792,521 @@ subscription {
         data {
           typeUrl
           value
+        }
+      }
+      itx {
+        __typename
+        ... on RevokeSwapTx {
+          address
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on RetrieveSwapTx {
+          address
+          hashkey
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on SetupSwapTx {
+          assets
+          hashlock
+          locktime
+          receiver
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on WithdrawTetherTx {
+          chainId
+          expiredAt
+          from
+          nonce
+          pk
+          signature
+          data {
+            typeUrl
+            value
+          }
+          receiver {
+            assets
+            tether
+            value
+          }
+          sender {
+            assets
+            value
+          }
+          signatures {
+            delegator
+            pk
+            signature
+            signer
+            data {
+              typeUrl
+              value
+            }
+          }
+        }
+        ... on UpgradeNodeTx {
+          height
+          override
+          version
+        }
+        ... on UpdateAssetTx {
+          address
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on TransferTx {
+          assets
+          to
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on SysUpgradeTx {
+          gracePeriod
+          data {
+            typeUrl
+            value
+          }
+          task {
+            actions
+            dataHash
+            type
+          }
+        }
+        ... on StakeTx {
+          message
+          to
+          value
+          data {
+            type
+          }
+        }
+        ... on RevokeTetherTx {
+          tether
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on PokeTx {
+          address
+          date
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ExchangeTetherTx {
+          expiredAt
+          data {
+            typeUrl
+            value
+          }
+          receiver {
+            assets
+            value
+            deposit {
+              chainId
+              delegator
+              from
+              itxJson
+              nonce
+              pk
+              signature
+              signatures {
+                delegator
+                pk
+                signature
+                signer
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              itx {
+                __typename
+                ... on RevokeSwapTx {
+                  address
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on RetrieveSwapTx {
+                  address
+                  hashkey
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on SetupSwapTx {
+                  assets
+                  hashlock
+                  locktime
+                  receiver
+                  value
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on WithdrawTetherTx {
+                  chainId
+                  expiredAt
+                  from
+                  nonce
+                  pk
+                  signature
+                  data {
+                    typeUrl
+                    value
+                  }
+                  receiver {
+                    assets
+                    tether
+                    value
+                  }
+                  sender {
+                    assets
+                    value
+                  }
+                  signatures {
+                    delegator
+                    pk
+                    signature
+                    signer
+                  }
+                }
+                ... on UpgradeNodeTx {
+                  height
+                  override
+                  version
+                }
+                ... on UpdateAssetTx {
+                  address
+                  moniker
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on TransferTx {
+                  assets
+                  to
+                  value
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on SysUpgradeTx {
+                  gracePeriod
+                  data {
+                    typeUrl
+                    value
+                  }
+                  task {
+                    actions
+                    dataHash
+                    type
+                  }
+                }
+                ... on StakeTx {
+                  message
+                  to
+                  value
+                  data {
+                    type
+                  }
+                }
+                ... on RevokeTetherTx {
+                  tether
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on PokeTx {
+                  address
+                  date
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on ExchangeTetherTx {
+                  expiredAt
+                  data {
+                    typeUrl
+                    value
+                  }
+                  receiver {
+                    assets
+                    value
+                  }
+                  sender {
+                    assets
+                    value
+                  }
+                }
+                ... on ExchangeTx {
+                  expiredAt
+                  to
+                  data {
+                    typeUrl
+                    value
+                  }
+                  receiver {
+                    assets
+                    value
+                  }
+                  sender {
+                    assets
+                    value
+                  }
+                }
+                ... on DepositTetherTx {
+                  charge
+                  commission
+                  locktime
+                  target
+                  value
+                  withdrawer
+                }
+                ... on DeployProtocolTx {
+                  address
+                  description
+                  name
+                  namespace
+                  pipeline
+                  proto
+                  sources
+                  tags
+                  version
+                  code {
+                    binary
+                    checksum
+                  }
+                  data {
+                    typeUrl
+                    value
+                  }
+                  typeUrls {
+                    module
+                    url
+                  }
+                }
+                ... on DeclareTx {
+                  issuer
+                  moniker
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on DeclareFileTx {
+                  hash
+                }
+                ... on CreateAssetTx {
+                  address
+                  moniker
+                  parent
+                  readonly
+                  transferrable
+                  ttl
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on ConsumeAssetTx {
+                  address
+                  issuer
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on ConsensusUpgradeTx {
+                  maxBytes
+                  maxCandidates
+                  maxGas
+                  maxValidators
+                  data {
+                    typeUrl
+                    value
+                  }
+                  validators {
+                    address
+                    power
+                  }
+                }
+                ... on ApproveTetherTx {
+                  withdraw
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on AcquireAssetTx {
+                  to
+                  data {
+                    typeUrl
+                    value
+                  }
+                  specs {
+                    address
+                    data
+                  }
+                }
+                ... on AccountMigrateTx {
+                  address
+                  pk
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+              }
+            }
+          }
+          sender {
+            assets
+            value
+          }
+        }
+        ... on ExchangeTx {
+          expiredAt
+          to
+          data {
+            typeUrl
+            value
+          }
+          receiver {
+            assets
+            value
+          }
+          sender {
+            assets
+            value
+          }
+        }
+        ... on DepositTetherTx {
+          charge
+          commission
+          locktime
+          target
+          value
+          withdrawer
+        }
+        ... on DeployProtocolTx {
+          address
+          description
+          name
+          namespace
+          pipeline
+          proto
+          sources
+          tags
+          version
+          code {
+            binary
+            checksum
+          }
+          data {
+            typeUrl
+            value
+          }
+          typeUrls {
+            module
+            url
+          }
+        }
+        ... on DeclareTx {
+          issuer
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on DeclareFileTx {
+          hash
+        }
+        ... on CreateAssetTx {
+          address
+          moniker
+          parent
+          readonly
+          transferrable
+          ttl
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsumeAssetTx {
+          address
+          issuer
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsensusUpgradeTx {
+          maxBytes
+          maxCandidates
+          maxGas
+          maxValidators
+          data {
+            typeUrl
+            value
+          }
+          validators {
+            address
+            power
+          }
+        }
+        ... on ApproveTetherTx {
+          withdraw
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on AcquireAssetTx {
+          to
+          data {
+            typeUrl
+            value
+          }
+          specs {
+            address
+            data
+          }
+        }
+        ... on AccountMigrateTx {
+          address
+          pk
+          data {
+            typeUrl
+            value
+          }
         }
       }
     }
@@ -2125,6 +20328,521 @@ subscription {
           value
         }
       }
+      itx {
+        __typename
+        ... on RevokeSwapTx {
+          address
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on RetrieveSwapTx {
+          address
+          hashkey
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on SetupSwapTx {
+          assets
+          hashlock
+          locktime
+          receiver
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on WithdrawTetherTx {
+          chainId
+          expiredAt
+          from
+          nonce
+          pk
+          signature
+          data {
+            typeUrl
+            value
+          }
+          receiver {
+            assets
+            tether
+            value
+          }
+          sender {
+            assets
+            value
+          }
+          signatures {
+            delegator
+            pk
+            signature
+            signer
+            data {
+              typeUrl
+              value
+            }
+          }
+        }
+        ... on UpgradeNodeTx {
+          height
+          override
+          version
+        }
+        ... on UpdateAssetTx {
+          address
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on TransferTx {
+          assets
+          to
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on SysUpgradeTx {
+          gracePeriod
+          data {
+            typeUrl
+            value
+          }
+          task {
+            actions
+            dataHash
+            type
+          }
+        }
+        ... on StakeTx {
+          message
+          to
+          value
+          data {
+            type
+          }
+        }
+        ... on RevokeTetherTx {
+          tether
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on PokeTx {
+          address
+          date
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ExchangeTetherTx {
+          expiredAt
+          data {
+            typeUrl
+            value
+          }
+          receiver {
+            assets
+            value
+            deposit {
+              chainId
+              delegator
+              from
+              itxJson
+              nonce
+              pk
+              signature
+              signatures {
+                delegator
+                pk
+                signature
+                signer
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              itx {
+                __typename
+                ... on RevokeSwapTx {
+                  address
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on RetrieveSwapTx {
+                  address
+                  hashkey
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on SetupSwapTx {
+                  assets
+                  hashlock
+                  locktime
+                  receiver
+                  value
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on WithdrawTetherTx {
+                  chainId
+                  expiredAt
+                  from
+                  nonce
+                  pk
+                  signature
+                  data {
+                    typeUrl
+                    value
+                  }
+                  receiver {
+                    assets
+                    tether
+                    value
+                  }
+                  sender {
+                    assets
+                    value
+                  }
+                  signatures {
+                    delegator
+                    pk
+                    signature
+                    signer
+                  }
+                }
+                ... on UpgradeNodeTx {
+                  height
+                  override
+                  version
+                }
+                ... on UpdateAssetTx {
+                  address
+                  moniker
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on TransferTx {
+                  assets
+                  to
+                  value
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on SysUpgradeTx {
+                  gracePeriod
+                  data {
+                    typeUrl
+                    value
+                  }
+                  task {
+                    actions
+                    dataHash
+                    type
+                  }
+                }
+                ... on StakeTx {
+                  message
+                  to
+                  value
+                  data {
+                    type
+                  }
+                }
+                ... on RevokeTetherTx {
+                  tether
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on PokeTx {
+                  address
+                  date
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on ExchangeTetherTx {
+                  expiredAt
+                  data {
+                    typeUrl
+                    value
+                  }
+                  receiver {
+                    assets
+                    value
+                  }
+                  sender {
+                    assets
+                    value
+                  }
+                }
+                ... on ExchangeTx {
+                  expiredAt
+                  to
+                  data {
+                    typeUrl
+                    value
+                  }
+                  receiver {
+                    assets
+                    value
+                  }
+                  sender {
+                    assets
+                    value
+                  }
+                }
+                ... on DepositTetherTx {
+                  charge
+                  commission
+                  locktime
+                  target
+                  value
+                  withdrawer
+                }
+                ... on DeployProtocolTx {
+                  address
+                  description
+                  name
+                  namespace
+                  pipeline
+                  proto
+                  sources
+                  tags
+                  version
+                  code {
+                    binary
+                    checksum
+                  }
+                  data {
+                    typeUrl
+                    value
+                  }
+                  typeUrls {
+                    module
+                    url
+                  }
+                }
+                ... on DeclareTx {
+                  issuer
+                  moniker
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on DeclareFileTx {
+                  hash
+                }
+                ... on CreateAssetTx {
+                  address
+                  moniker
+                  parent
+                  readonly
+                  transferrable
+                  ttl
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on ConsumeAssetTx {
+                  address
+                  issuer
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on ConsensusUpgradeTx {
+                  maxBytes
+                  maxCandidates
+                  maxGas
+                  maxValidators
+                  data {
+                    typeUrl
+                    value
+                  }
+                  validators {
+                    address
+                    power
+                  }
+                }
+                ... on ApproveTetherTx {
+                  withdraw
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on AcquireAssetTx {
+                  to
+                  data {
+                    typeUrl
+                    value
+                  }
+                  specs {
+                    address
+                    data
+                  }
+                }
+                ... on AccountMigrateTx {
+                  address
+                  pk
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+              }
+            }
+          }
+          sender {
+            assets
+            value
+          }
+        }
+        ... on ExchangeTx {
+          expiredAt
+          to
+          data {
+            typeUrl
+            value
+          }
+          receiver {
+            assets
+            value
+          }
+          sender {
+            assets
+            value
+          }
+        }
+        ... on DepositTetherTx {
+          charge
+          commission
+          locktime
+          target
+          value
+          withdrawer
+        }
+        ... on DeployProtocolTx {
+          address
+          description
+          name
+          namespace
+          pipeline
+          proto
+          sources
+          tags
+          version
+          code {
+            binary
+            checksum
+          }
+          data {
+            typeUrl
+            value
+          }
+          typeUrls {
+            module
+            url
+          }
+        }
+        ... on DeclareTx {
+          issuer
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on DeclareFileTx {
+          hash
+        }
+        ... on CreateAssetTx {
+          address
+          moniker
+          parent
+          readonly
+          transferrable
+          ttl
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsumeAssetTx {
+          address
+          issuer
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsensusUpgradeTx {
+          maxBytes
+          maxCandidates
+          maxGas
+          maxValidators
+          data {
+            typeUrl
+            value
+          }
+          validators {
+            address
+            power
+          }
+        }
+        ... on ApproveTetherTx {
+          withdraw
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on AcquireAssetTx {
+          to
+          data {
+            typeUrl
+            value
+          }
+          specs {
+            address
+            data
+          }
+        }
+        ... on AccountMigrateTx {
+          address
+          pk
+          data {
+            typeUrl
+            value
+          }
+        }
+      }
     }
     withdrawToken {
       chainId
@@ -2142,6 +20860,521 @@ subscription {
         data {
           typeUrl
           value
+        }
+      }
+      itx {
+        __typename
+        ... on RevokeSwapTx {
+          address
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on RetrieveSwapTx {
+          address
+          hashkey
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on SetupSwapTx {
+          assets
+          hashlock
+          locktime
+          receiver
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on WithdrawTetherTx {
+          chainId
+          expiredAt
+          from
+          nonce
+          pk
+          signature
+          data {
+            typeUrl
+            value
+          }
+          receiver {
+            assets
+            tether
+            value
+          }
+          sender {
+            assets
+            value
+          }
+          signatures {
+            delegator
+            pk
+            signature
+            signer
+            data {
+              typeUrl
+              value
+            }
+          }
+        }
+        ... on UpgradeNodeTx {
+          height
+          override
+          version
+        }
+        ... on UpdateAssetTx {
+          address
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on TransferTx {
+          assets
+          to
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on SysUpgradeTx {
+          gracePeriod
+          data {
+            typeUrl
+            value
+          }
+          task {
+            actions
+            dataHash
+            type
+          }
+        }
+        ... on StakeTx {
+          message
+          to
+          value
+          data {
+            type
+          }
+        }
+        ... on RevokeTetherTx {
+          tether
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on PokeTx {
+          address
+          date
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ExchangeTetherTx {
+          expiredAt
+          data {
+            typeUrl
+            value
+          }
+          receiver {
+            assets
+            value
+            deposit {
+              chainId
+              delegator
+              from
+              itxJson
+              nonce
+              pk
+              signature
+              signatures {
+                delegator
+                pk
+                signature
+                signer
+                data {
+                  typeUrl
+                  value
+                }
+              }
+              itx {
+                __typename
+                ... on RevokeSwapTx {
+                  address
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on RetrieveSwapTx {
+                  address
+                  hashkey
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on SetupSwapTx {
+                  assets
+                  hashlock
+                  locktime
+                  receiver
+                  value
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on WithdrawTetherTx {
+                  chainId
+                  expiredAt
+                  from
+                  nonce
+                  pk
+                  signature
+                  data {
+                    typeUrl
+                    value
+                  }
+                  receiver {
+                    assets
+                    tether
+                    value
+                  }
+                  sender {
+                    assets
+                    value
+                  }
+                  signatures {
+                    delegator
+                    pk
+                    signature
+                    signer
+                  }
+                }
+                ... on UpgradeNodeTx {
+                  height
+                  override
+                  version
+                }
+                ... on UpdateAssetTx {
+                  address
+                  moniker
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on TransferTx {
+                  assets
+                  to
+                  value
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on SysUpgradeTx {
+                  gracePeriod
+                  data {
+                    typeUrl
+                    value
+                  }
+                  task {
+                    actions
+                    dataHash
+                    type
+                  }
+                }
+                ... on StakeTx {
+                  message
+                  to
+                  value
+                  data {
+                    type
+                  }
+                }
+                ... on RevokeTetherTx {
+                  tether
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on PokeTx {
+                  address
+                  date
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on ExchangeTetherTx {
+                  expiredAt
+                  data {
+                    typeUrl
+                    value
+                  }
+                  receiver {
+                    assets
+                    value
+                  }
+                  sender {
+                    assets
+                    value
+                  }
+                }
+                ... on ExchangeTx {
+                  expiredAt
+                  to
+                  data {
+                    typeUrl
+                    value
+                  }
+                  receiver {
+                    assets
+                    value
+                  }
+                  sender {
+                    assets
+                    value
+                  }
+                }
+                ... on DepositTetherTx {
+                  charge
+                  commission
+                  locktime
+                  target
+                  value
+                  withdrawer
+                }
+                ... on DeployProtocolTx {
+                  address
+                  description
+                  name
+                  namespace
+                  pipeline
+                  proto
+                  sources
+                  tags
+                  version
+                  code {
+                    binary
+                    checksum
+                  }
+                  data {
+                    typeUrl
+                    value
+                  }
+                  typeUrls {
+                    module
+                    url
+                  }
+                }
+                ... on DeclareTx {
+                  issuer
+                  moniker
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on DeclareFileTx {
+                  hash
+                }
+                ... on CreateAssetTx {
+                  address
+                  moniker
+                  parent
+                  readonly
+                  transferrable
+                  ttl
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on ConsumeAssetTx {
+                  address
+                  issuer
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on ConsensusUpgradeTx {
+                  maxBytes
+                  maxCandidates
+                  maxGas
+                  maxValidators
+                  data {
+                    typeUrl
+                    value
+                  }
+                  validators {
+                    address
+                    power
+                  }
+                }
+                ... on ApproveTetherTx {
+                  withdraw
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+                ... on AcquireAssetTx {
+                  to
+                  data {
+                    typeUrl
+                    value
+                  }
+                  specs {
+                    address
+                    data
+                  }
+                }
+                ... on AccountMigrateTx {
+                  address
+                  pk
+                  data {
+                    typeUrl
+                    value
+                  }
+                }
+              }
+            }
+          }
+          sender {
+            assets
+            value
+          }
+        }
+        ... on ExchangeTx {
+          expiredAt
+          to
+          data {
+            typeUrl
+            value
+          }
+          receiver {
+            assets
+            value
+          }
+          sender {
+            assets
+            value
+          }
+        }
+        ... on DepositTetherTx {
+          charge
+          commission
+          locktime
+          target
+          value
+          withdrawer
+        }
+        ... on DeployProtocolTx {
+          address
+          description
+          name
+          namespace
+          pipeline
+          proto
+          sources
+          tags
+          version
+          code {
+            binary
+            checksum
+          }
+          data {
+            typeUrl
+            value
+          }
+          typeUrls {
+            module
+            url
+          }
+        }
+        ... on DeclareTx {
+          issuer
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on DeclareFileTx {
+          hash
+        }
+        ... on CreateAssetTx {
+          address
+          moniker
+          parent
+          readonly
+          transferrable
+          ttl
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsumeAssetTx {
+          address
+          issuer
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsensusUpgradeTx {
+          maxBytes
+          maxCandidates
+          maxGas
+          maxValidators
+          data {
+            typeUrl
+            value
+          }
+          validators {
+            address
+            power
+          }
+        }
+        ... on ApproveTetherTx {
+          withdraw
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on AcquireAssetTx {
+          to
+          data {
+            typeUrl
+            value
+          }
+          specs {
+            address
+            data
+          }
+        }
+        ... on AccountMigrateTx {
+          address
+          pk
+          data {
+            typeUrl
+            value
+          }
         }
       }
     }
