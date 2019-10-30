@@ -1,6 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable no-console */
 const ForgeSDK = require('@arcblock/forge-sdk');
+const { isValid } = require('@arcblock/forge-wallet');
 const isDate = require('lodash/isDate');
 const isNumber = require('lodash/isNumber');
 const stringify = require('json-stable-stringify');
@@ -33,7 +34,10 @@ class AssetFactory {
     if (!chainHost) {
       throw new Error('AssetFactory requires valid chainId');
     }
-    if (ForgeSDK.Wallet.isValid(wallet) === false) {
+
+    ForgeSDK.connect(chainHost, { chainId, name: chainId });
+
+    if (isValid(wallet) === false) {
       throw new Error('AssetFactory requires valid wallet issuer');
     }
 
@@ -41,8 +45,6 @@ class AssetFactory {
     this.chainHost = chainHost;
     this.wallet = wallet;
     this.issuer = new AssetIssuer(Object.assign({ wallet }, issuer));
-
-    ForgeSDK.connect(chainHost, { chainId, name: chainId });
   }
 
   /**
