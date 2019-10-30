@@ -37,6 +37,7 @@ yarn add @arcblock/forge-wallet
 * [fromAddress(address)](#fromAddress) ⇒ [`WalletObject`](#WalletObject)
 * [fromRandom(\[type\])](#fromRandom) ⇒ [`WalletObject`](#WalletObject)
 * [fromJSON(json)](#fromJSON) ⇒ [`WalletObject`](#WalletObject)
+* [isValid(wallet, canSign)](#isValid)
 
 ### WalletType([type]) ⇒ `object`
 
@@ -187,6 +188,18 @@ const wallet = fromRandom();
 const wallet2 = fromJSON(wallet.toJSON());
 // wallet2 is identical to wallet
 ```
+
+### isValid(wallet, canSign)
+
+Check if an object is valid wallet object
+
+**Kind**: static method  
+**Access**: public  
+
+| Param   | Type      | Default | Description                    |
+| ------- | --------- | ------- | ------------------------------ |
+| wallet  | `object`  |         |                                |
+| canSign | `boolean` | `true`  | should the wallet support sign |
 
 
 ## WalletTypeObject : `Object`

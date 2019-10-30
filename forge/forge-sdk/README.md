@@ -6,17 +6,18 @@
 
 > Forge Javascript SDK packages all in one
 
+
 ## Table of Contents
 
-- [Table of Contents](#table-of-contents)
-- [Install](#install)
-- [Usage](#usage)
-  - [ES5(commonjs)](#es5commonjs)
-  - [ES6](#es6)
-  - [Util](#util)
-  - [Wallet](#wallet)
-  - [Message](#message)
-- [Packages Included](#packages-included)
+* [Install](#install)
+* [Usage](#usage)
+  * [ES5(commonjs)](#es5commonjs)
+  * [ES6](#es6)
+  * [Util](#util)
+  * [Wallet](#wallet)
+  * [Message](#message)
+* [Packages Included](#packages-included)
+
 
 ## Install
 
@@ -25,6 +26,7 @@ npm i @arcblock/forge-sdk
 // OR
 yarn add @arcblock/forge-sdk
 ```
+
 
 ## Usage
 
@@ -101,11 +103,12 @@ const message = ForgeSDK.Message.createMessage('Transaction', {
 console.log(message);
 ```
 
+
 ## Packages Included
 
-- [graphql-client](https://www.npmjs.com/package/@arcblock/graphql-client), available after `ForgeSDK.connect`
-- [grpc-client](https://www.npmjs.com/package/@arcblock/grpc-client), available after `ForgeSDK.connect`
-- [forge-util](https://www.npmjs.com/package/@arcblock/forge-util), available on `ForgeSDK.Util`
-- [did-util](https://www.npmjs.com/package/@arcblock/did-util), available on `ForgeSDK.Util`
-- [forge-wallet](https://www.npmjs.com/package/@arcblock/forge-wallet), available on `ForgeSDK.Wallet`
-- [forge-message](https://www.npmjs.com/package/@arcblock/forge-message), available on `ForgeSDK.Message`
+* [graphql-client](https://www.npmjs.com/package/@arcblock/graphql-client), available after `ForgeSDK.connect`
+* [grpc-client](https://www.npmjs.com/package/@arcblock/grpc-client), available after `ForgeSDK.connect`
+* [forge-util](https://www.npmjs.com/package/@arcblock/forge-util), available on `ForgeSDK.Util`
+* [did-util](https://www.npmjs.com/package/@arcblock/did-util), available on `ForgeSDK.Util`
+* [forge-wallet](https://www.npmjs.com/package/@arcblock/forge-wallet), available on `ForgeSDK.Wallet`
+* [forge-message](https://www.npmjs.com/package/@arcblock/forge-message), available on `ForgeSDK.Message`

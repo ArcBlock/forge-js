@@ -249,6 +249,8 @@ function fromJSON(json) {
 /**
  * Check if an object is valid wallet object
  *
+ * @public
+ * @static
  * @param {object} wallet
  * @param {boolean} canSign - should the wallet support sign
  */

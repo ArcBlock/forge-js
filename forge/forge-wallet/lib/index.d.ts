@@ -80,6 +80,15 @@ declare function fromAddress(address: string): WalletObject;
  */
 declare function fromJSON(json: any): WalletObject;
 /**
+ * Check if an object is valid wallet object
+ *
+ * @public
+ * @static
+ * @param {object} wallet
+ * @param {boolean} canSign - should the wallet support sign
+ */
+declare function isValid(wallet: any, canSign?: boolean): boolean;
+/**
  * @public
  * @static
  * @global
@@ -172,6 +181,7 @@ declare namespace _Lib {
     fromAddress: typeof fromAddress;
     fromDID: typeof fromAddress;
     fromJSON: typeof fromJSON;
+    isValid: typeof isValid;
     Wallet: typeof Wallet;
     WalletType: typeof WalletType;
   }
