@@ -24,6 +24,7 @@ dep:
 	@npx install-peerdeps -g --yarn eslint-config-airbnb
 	@cd forge/graphql-client && lerna link && yarn build
 	@cd forge/forge-sdk && lerna link && yarn build
+	@cd asset/asset-factory && lerna link
 
 pre-build: install dep
 	@echo "Running scripts before the build..."
