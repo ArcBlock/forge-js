@@ -246,6 +246,47 @@ function fromJSON(json) {
   return Wallet(json, type);
 }
 
+/**
+ * Check if an object is valid wallet object
+ *
+ * @public
+ * @static
+ * @param {object} wallet
+ * @param {boolean} canSign - should the wallet support sign
+ */
+function isValid(wallet, canSign = true) {
+  if (!wallet || typeof wallet !== 'object') {
+    return false;
+  }
+
+  if (typeof wallet.verify !== 'function') {
+    return false;
+  }
+
+  if (typeof wallet.toAddress !== 'function') {
+    return false;
+  }
+
+  if (typeof wallet.toJSON !== 'function') {
+    return false;
+  }
+
+  if (!wallet.type || !wallet.publicKey) {
+    return false;
+  }
+
+  if (canSign) {
+    if (!wallet.secretKey) {
+      return false;
+    }
+    if (typeof wallet.sign !== 'function') {
+      return false;
+    }
+  }
+
+  return true;
+}
+
 module.exports = {
   fromSecretKey,
   fromPublicKey,
@@ -253,6 +294,7 @@ module.exports = {
   fromAddress,
   fromDID: fromAddress,
   fromJSON,
+  isValid,
   Wallet,
   WalletType,
 };

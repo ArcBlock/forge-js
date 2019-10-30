@@ -6,7 +6,7 @@
     "forge/*",
     "did/*",
     "swap/*",
-    "apps/*",
+    "asset/*",
     "examples/*"
   ],
   "author": {

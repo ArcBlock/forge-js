@@ -134,8 +134,10 @@ const createRetriever = params => {
           );
 
           const tx = transactions.find(x => x.tx.itxJson === demandSwapAddress);
-          debug('swap.retrieve.done.tx', { traceId, tx: tx.tx });
-          events.emit('retrieved.user', { traceId, hash: tx ? tx.hash : '', retryCount });
+          if (tx) {
+            debug('swap.retrieve.done.tx', { traceId, tx: tx.tx });
+            events.emit('retrieved.user', { traceId, hash: tx ? tx.hash : '', retryCount });
+          }
         } catch (err) {
           console.error('swap.retrieve.done.error', err);
           events.emit('retrieved.user', { traceId, hash: '', retryCount });

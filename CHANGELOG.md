@@ -1,3 +1,10 @@
+## 0.39.9 (October 30, 2019)
+
+- feat: basic standard asset factory support
+- chore: add isValid wallet helper method
+- fix: swap-retriever error tolerance
+- update readme
+
 ## 0.39.8 (October 30, 2019)
 
 - chore: add example on delegated atomic swap
