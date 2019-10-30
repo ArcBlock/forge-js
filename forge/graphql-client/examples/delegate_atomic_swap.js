@@ -19,11 +19,15 @@ const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
 
 (async () => {
   try {
-    const buyer = fromRandom();
-    const seller = fromRandom();
+    const alice = fromRandom(); // buyer
+    const bob = fromRandom(); // seller
+    const betty = fromRandom();
+    const lily = fromRandom();
     console.log({
-      buyer: buyer.toJSON(),
-      seller: seller.toJSON(),
+      alice: alice.toAddress(),
+      bob: bob.toAddress(),
+      betty: betty.toAddress(),
+      lily: lily.toAddress(),
     });
 
     const declare = async (wallet, moniker) => {
@@ -34,9 +38,35 @@ const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
       console.log(`declare.assetChain.${moniker}`, hash);
     };
 
+    const delegate = async (from, to) => {
+      const params = {
+        from,
+        to,
+        privileges: [
+          { typeUrl: 'fg:t:setup_swap', rules: [] },
+          { typeUrl: 'fg:t:revoke_swap', rules: [] },
+          { typeUrl: 'fg:t:retrieve_swap', rules: [] },
+        ],
+      };
+
+      let [hash] = await appChain.delegate(params);
+      console.log('delegate.appChain.hash', hash);
+
+      [hash] = await assetChain.delegate(params);
+      console.log('delegate.assetChain.hash', hash);
+    };
+
     // declare
-    await declare(buyer, 'buyer');
-    await declare(seller, 'seller');
+    await declare(alice, 'user_alice');
+    await declare(bob, 'user_bob');
+    await declare(betty, 'user_betty');
+    await declare(lily, 'user_lily');
+    await sleep(3000);
+
+    // delegate
+    await delegate(alice, betty);
+    await delegate(bob, lily);
+    await sleep(3000);
 
     // 3. ensure asset for seller on app chain
     const ensureSellerAsset = async () => {
@@ -49,7 +79,7 @@ const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
             sn: Math.random(),
           },
         },
-        wallet: seller,
+        wallet: bob,
       });
       console.log('ensureSellerAsset', hash, address);
       return address;
@@ -57,7 +87,7 @@ const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
 
     // ensure token for buyer on asset chain
     const ensureBuyerToken = async () => {
-      const hash = await assetChain.checkin({ wallet: buyer });
+      const hash = await assetChain.checkin({ wallet: alice });
       console.log('ensureSellerAsset', hash);
     };
 
@@ -66,9 +96,10 @@ const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
       const hash = await assetChain.setupSwap({
         token: 10,
         assets: [],
-        receiver: seller.toAddress(),
+        receiver: bob.toAddress(),
+        delegator: alice.toAddress(),
         hashlock,
-        wallet: buyer,
+        wallet: betty,
       });
       console.log('doBuyerSetup', hash);
       return hash;
@@ -79,9 +110,10 @@ const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
       const hash = await appChain.setupSwap({
         token: 0,
         assets: [asset],
-        receiver: buyer.toAddress(),
+        receiver: alice.toAddress(),
+        delegator: bob.toAddress(),
         hashlock,
-        wallet: seller,
+        wallet: lily,
       });
       console.log('doSellerSetup', hash);
       return hash;
@@ -92,7 +124,8 @@ const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
       const hash = await appChain.retrieveSwap({
         address,
         hashkey,
-        wallet: buyer,
+        delegator: alice.toAddress(),
+        wallet: betty,
       });
       console.log('doBuyerRetrieve', hash);
     };
@@ -102,7 +135,8 @@ const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
       const hash = await assetChain.retrieveSwap({
         address,
         hashkey,
-        wallet: seller,
+        delegator: bob.toAddress(),
+        wallet: lily,
       });
       console.log('doSellerRetrieve', hash);
     };
@@ -126,7 +160,7 @@ const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
       sellerSetupHash,
       sellerSwapAddress,
     });
-    await sleep(3000);
+    await sleep(5000);
 
     // Inspect swap
     const buyerSwapState = await assetChain.getSwapState({ address: buyerSwapAddress });
@@ -136,8 +170,6 @@ const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
 
     await doBuyerRetrieve(sellerSwapAddress, hashkey);
     await doSellerRetrieve(buyerSwapAddress, hashkey);
-
-    // TODO: validate swap
   } catch (err) {
     console.error(err);
     console.log(JSON.stringify(err.errors));
