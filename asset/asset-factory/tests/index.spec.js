@@ -18,10 +18,12 @@ const factory = new AssetFactory({
   },
 });
 
-beforeAll(async () => {
-  ForgeSDK.connect(chainHost, { chainId, name: chainId });
-  await ForgeSDK.declare({ moniker: 'asset_factory_issuer', wallet });
-});
+if (!process.env.CI) {
+  beforeAll(async () => {
+    ForgeSDK.connect(chainHost, { chainId, name: chainId });
+    await ForgeSDK.declare({ moniker: 'asset_factory_issuer', wallet });
+  });
+}
 
 describe('AssetFactory.createTicket', () => {
   test('should be a function', () => {
