@@ -93,6 +93,7 @@
   STORAGE_RPC_ERROR: 25,
   NOENT: 26,
   ACCOUNT_MIGRATED: 27,
+  RPC_CONNECTION_ERROR: 28,
   UNSUPPORTED_STAKE: 30,
   INSUFFICIENT_STAKE: 31,
   INVALID_STAKE_STATE: 32,
@@ -286,28 +287,28 @@
   'ConsensusUpgradeTx',
   'DeployProtocolTx',
   'SysUpgradeTx',
-  'WithdrawTokenTx',
-  'DelegateTx',
   'AccountMigrateTx',
-  'TransferTx',
-  'RevokeSwapTx',
-  'DeclareTx',
   'AcquireAssetTx',
-  'DeactivateProtocolTx',
-  'RetrieveSwapTx',
-  'CreateAssetTx',
-  'SetupSwapTx',
-  'ConsumeAssetTx',
-  'ExchangeTx',
   'ActivateProtocolTx',
   'ApproveWithdrawTx',
-  'UpgradeNodeTx',
-  'UpdateAssetTx',
-  'RevokeWithdrawTx',
+  'ConsumeAssetTx',
+  'CreateAssetTx',
+  'DeactivateProtocolTx',
+  'DeclareTx',
+  'DelegateTx',
   'DepositTokenTx',
-  'StakeTx',
+  'ExchangeTx',
   'PokeTx',
-  'RevokeDelegateTx'
+  'RetrieveSwapTx',
+  'RevokeDelegateTx',
+  'RevokeSwapTx',
+  'RevokeWithdrawTx',
+  'SetupSwapTx',
+  'StakeTx',
+  'TransferTx',
+  'UpdateAssetTx',
+  'UpgradeNodeTx',
+  'WithdrawTokenTx'
 ]
 ```
 
@@ -400,7 +401,6 @@ result.on('data', data => {
 
 ```js
 const result = await client.createWallet({
-  passphrase: 'arcblock',
   type: {
     pk: 0,
     hash: 0,
@@ -489,8 +489,8 @@ const stream = client.getAccountState({
     context: {
       genesisTx: 'arcblock',
       renaissanceTx: 'arcblock',
-      genesisTime: '2019-10-28T02:04:23.876Z',
-      renaissanceTime: '2019-10-28T02:04:23.876Z'
+      genesisTime: '2019-10-30T23:35:45.809Z',
+      renaissanceTime: '2019-10-30T23:35:45.809Z'
     },
     issuer: 'arcblock',
     gasBalance: [Function: BigUint],
@@ -584,7 +584,7 @@ const stream = client.getAssetState({
     readonly: true,
     transferrable: true,
     ttl: 2,
-    consumedTime: '2019-10-28T02:04:23.877Z',
+    consumedTime: '2019-10-30T23:35:45.810Z',
     issuer: 'arcblock',
     parent: 'arcblock',
     stake: {
@@ -615,8 +615,8 @@ const stream = client.getAssetState({
     context: {
       genesisTx: 'arcblock',
       renaissanceTx: 'arcblock',
-      genesisTime: '2019-10-28T02:04:23.877Z',
-      renaissanceTime: '2019-10-28T02:04:23.877Z'
+      genesisTime: '2019-10-30T23:35:45.810Z',
+      renaissanceTime: '2019-10-30T23:35:45.810Z'
     },
     data: {
       type: 'string',
@@ -639,7 +639,7 @@ const stream = client.getBlock({
   block: {
     height: 5,
     numTxs: 2,
-    time: '2019-10-28T02:04:23.877Z',
+    time: '2019-10-30T23:35:45.810Z',
     appHash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
     proposer: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
     txs: [
@@ -693,7 +693,7 @@ const stream = client.getBlock({
           }
         ],
         code: 0,
-        time: '2019-10-28T02:04:23.877Z'
+        time: '2019-10-30T23:35:45.811Z'
       },
       {
         tx: {
@@ -745,7 +745,7 @@ const stream = client.getBlock({
           }
         ],
         code: 0,
-        time: '2019-10-28T02:04:23.877Z'
+        time: '2019-10-30T23:35:45.811Z'
       }
     ],
     totalTxs: 5,
@@ -800,7 +800,7 @@ const stream = client.getBlock({
           }
         ],
         code: 0,
-        time: '2019-10-28T02:04:23.878Z'
+        time: '2019-10-30T23:35:45.811Z'
       },
       {
         tx: {
@@ -852,7 +852,7 @@ const stream = client.getBlock({
           }
         ],
         code: 0,
-        time: '2019-10-28T02:04:23.878Z'
+        time: '2019-10-30T23:35:45.811Z'
       }
     ],
     txsHashes: [
@@ -924,7 +924,7 @@ result.on('data', data => {
     {
       height: 5,
       numTxs: 2,
-      time: '2019-10-28T02:04:23.878Z',
+      time: '2019-10-30T23:35:45.812Z',
       appHash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
       proposer: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
       totalTxs: 5,
@@ -958,7 +958,7 @@ result.on('data', data => {
     {
       height: 5,
       numTxs: 2,
-      time: '2019-10-28T02:04:23.878Z',
+      time: '2019-10-30T23:35:45.812Z',
       appHash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
       proposer: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
       totalTxs: 5,
@@ -1013,7 +1013,7 @@ result.on('data', data => {
     appHash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
     blockHash: Uint8Array [],
     blockHeight: 5,
-    blockTime: '2019-10-28T02:04:23.879Z',
+    blockTime: '2019-10-30T23:35:45.812Z',
     address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
     votingPower: 5,
     totalTxs: 5,
@@ -1076,8 +1076,8 @@ const stream = client.getDelegateState({
     context: {
       genesisTx: 'arcblock',
       renaissanceTx: 'arcblock',
-      genesisTime: '2019-10-28T02:04:23.879Z',
-      renaissanceTime: '2019-10-28T02:04:23.879Z'
+      genesisTime: '2019-10-30T23:35:45.812Z',
+      renaissanceTime: '2019-10-30T23:35:45.812Z'
     },
     data: {
       type: 'string',
@@ -1156,8 +1156,8 @@ result.on('data', data => {
         context: {
           genesisTx: 'arcblock',
           renaissanceTx: 'arcblock',
-          genesisTime: '2019-10-28T02:04:23.879Z',
-          renaissanceTime: '2019-10-28T02:04:23.879Z'
+          genesisTime: '2019-10-30T23:35:45.813Z',
+          renaissanceTime: '2019-10-30T23:35:45.813Z'
         }
       }
     },
@@ -1443,7 +1443,7 @@ result.on('data', data => {
     appHash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
     blockHash: Uint8Array [],
     blockHeight: 5,
-    blockTime: '2019-10-28T02:04:23.880Z',
+    blockTime: '2019-10-30T23:35:45.814Z',
     address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
     votingPower: 5,
     totalTxs: 5,
@@ -1539,8 +1539,8 @@ const stream = client.getProtocolState({
     context: {
       genesisTx: 'arcblock',
       renaissanceTx: 'arcblock',
-      genesisTime: '2019-10-28T02:04:23.880Z',
-      renaissanceTime: '2019-10-28T02:04:23.880Z'
+      genesisTime: '2019-10-30T23:35:45.814Z',
+      renaissanceTime: '2019-10-30T23:35:45.814Z'
     },
     data: {
       type: 'string',
@@ -1574,8 +1574,8 @@ const stream = client.getStakeState({
     context: {
       genesisTx: 'arcblock',
       renaissanceTx: 'arcblock',
-      genesisTime: '2019-10-28T02:04:23.880Z',
-      renaissanceTime: '2019-10-28T02:04:23.880Z'
+      genesisTime: '2019-10-30T23:35:45.814Z',
+      renaissanceTime: '2019-10-30T23:35:45.814Z'
     },
     data: {
       type: 'string',
@@ -1616,8 +1616,8 @@ const stream = client.getSwapState({
     context: {
       genesisTx: 'arcblock',
       renaissanceTx: 'arcblock',
-      genesisTime: '2019-10-28T02:04:23.881Z',
-      renaissanceTime: '2019-10-28T02:04:23.881Z'
+      genesisTime: '2019-10-30T23:35:45.814Z',
+      renaissanceTime: '2019-10-30T23:35:45.814Z'
     }
   }
 }
@@ -1648,7 +1648,7 @@ const stream = client.getTetherState({
     commission: [Function: BigUint],
     charge: [Function: BigUint],
     target: 'arcblock',
-    locktime: '2019-10-28T02:04:23.881Z',
+    locktime: '2019-10-30T23:35:45.814Z',
     address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55'
   }
 }
@@ -1714,7 +1714,7 @@ const stream = client.getTx({
       }
     ],
     code: 0,
-    time: '2019-10-28T02:04:23.881Z'
+    time: '2019-10-30T23:35:45.814Z'
   }
 }
 ```
@@ -2288,8 +2288,8 @@ result.on('data', data => {
       context: {
         genesisTx: 'arcblock',
         renaissanceTx: 'arcblock',
-        genesisTime: '2019-10-28T02:04:23.882Z',
-        renaissanceTime: '2019-10-28T02:04:23.882Z'
+        genesisTime: '2019-10-30T23:35:45.816Z',
+        renaissanceTime: '2019-10-30T23:35:45.816Z'
       }
     },
     {
@@ -2308,8 +2308,8 @@ result.on('data', data => {
       context: {
         genesisTx: 'arcblock',
         renaissanceTx: 'arcblock',
-        genesisTime: '2019-10-28T02:04:23.882Z',
-        renaissanceTime: '2019-10-28T02:04:23.882Z'
+        genesisTime: '2019-10-30T23:35:45.816Z',
+        renaissanceTime: '2019-10-30T23:35:45.816Z'
       }
     }
   ]
@@ -2362,7 +2362,7 @@ result.on('data', data => {
       commission: [Function: BigUint],
       charge: [Function: BigUint],
       target: 'arcblock',
-      locktime: '2019-10-28T02:04:23.883Z',
+      locktime: '2019-10-30T23:35:45.816Z',
       address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55'
     },
     {
@@ -2375,7 +2375,7 @@ result.on('data', data => {
       commission: [Function: BigUint],
       charge: [Function: BigUint],
       target: 'arcblock',
-      locktime: '2019-10-28T02:04:23.883Z',
+      locktime: '2019-10-30T23:35:45.817Z',
       address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55'
     }
   ]
@@ -2888,7 +2888,7 @@ result.on('data', data => {
         }
       ],
       code: 0,
-      time: '2019-10-28T02:04:23.884Z'
+      time: '2019-10-30T23:35:45.818Z'
     },
     {
       tx: {
@@ -2940,7 +2940,7 @@ result.on('data', data => {
         }
       ],
       code: 0,
-      time: '2019-10-28T02:04:23.884Z'
+      time: '2019-10-30T23:35:45.818Z'
     }
   ]
 }

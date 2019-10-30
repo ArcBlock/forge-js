@@ -54,6 +54,7 @@ export enum StatusCode {
   STORAGE_RPC_ERROR = 25,
   NOENT = 26,
   ACCOUNT_MIGRATED = 27,
+  RPC_CONNECTION_ERROR = 28,
   UNSUPPORTED_STAKE = 30,
   INSUFFICIENT_STAKE = 31,
   INVALID_STAKE_STATE = 32,
@@ -252,7 +253,6 @@ export interface ResponseGetBlocks {
 }
 
 export interface RequestCreateWallet {
-  passphrase: string;
   type: forge_abi.WalletType;
   moniker: string;
 }
@@ -1422,11 +1422,6 @@ export interface ActivateProtocolTx {
   data: google.protobuf.Any;
 }
 
-export interface ApproveTetherTx {
-  withdraw: string;
-  data: google.protobuf.Any;
-}
-
 export interface ApproveWithdrawTx {
   withdrawTxHash: string;
   evidence: forge_abi.Evidence;
@@ -1499,15 +1494,6 @@ export interface DelegateOp {
   rules: Array<string>;
 }
 
-export interface DepositTetherTx {
-  value: forge_abi.BigUint;
-  commission: forge_abi.BigUint;
-  charge: forge_abi.BigUint;
-  target: string;
-  withdrawer: string;
-  locktime: google.protobuf.Timestamp;
-}
-
 export interface DepositTokenTx {
   value: forge_abi.BigUint;
   address: string;
@@ -1523,19 +1509,6 @@ export interface ExchangeTx {
   to: string;
   sender: forge_abi.ExchangeInfo;
   receiver: forge_abi.ExchangeInfo;
-  expiredAt: google.protobuf.Timestamp;
-  data: google.protobuf.Any;
-}
-
-export interface TetherExchangeInfo {
-  value: forge_abi.BigUint;
-  assets: Array<string>;
-  deposit: forge_abi.Transaction;
-}
-
-export interface ExchangeTetherTx {
-  sender: forge_abi.ExchangeInfo;
-  receiver: forge_abi.TetherExchangeInfo;
   expiredAt: google.protobuf.Timestamp;
   data: google.protobuf.Any;
 }
@@ -1561,11 +1534,6 @@ export interface RevokeDelegateTx {
 
 export interface RevokeSwapTx {
   address: string;
-  data: google.protobuf.Any;
-}
-
-export interface RevokeTetherTx {
-  tether: string;
   data: google.protobuf.Any;
 }
 
@@ -1623,25 +1591,6 @@ export interface UpgradeNodeTx {
   height: number;
   version: string;
   override: boolean;
-}
-
-export interface TetherTradeInfo {
-  value: forge_abi.BigUint;
-  assets: Array<string>;
-  tether: string;
-}
-
-export interface WithdrawTetherTx {
-  from: string;
-  nonce: number;
-  chainId: string;
-  pk: Uint8Array;
-  signature: Uint8Array;
-  signatures: Array<forge_abi.Multisig>;
-  sender: forge_abi.ExchangeInfo;
-  receiver: forge_abi.TetherTradeInfo;
-  expiredAt: google.protobuf.Timestamp;
-  data: google.protobuf.Any;
 }
 
 export interface WithdrawTokenTx {
