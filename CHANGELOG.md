@@ -1,3 +1,9 @@
+## 0.39.8 (October 30, 2019)
+
+- chore: add example on delegated atomic swap
+- chore: support delegator in more shortcut methods
+- update readme
+
 ## 0.39.7 (October 29, 2019)
 
 - chore: update readme
