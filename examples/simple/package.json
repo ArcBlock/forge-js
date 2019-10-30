@@ -1,7 +1,7 @@
 {
   "name": "forge-app-simple",
   "private": true,
-  "version": "0.39.8",
+  "version": "0.39.9",
   "description": "> This is an simple app powered by forge and forge-sdk, it just uses forge-core and send standard transactions supported by forge core.",
   "main": "rpc.js",
   "scripts": {},
@@ -11,7 +11,7 @@
   "dependencies": {
     "@arcblock/forge-config": "^0.39.7",
     "@arcblock/forge-proto": "^0.39.7",
-    "@arcblock/grpc-client": "^0.39.8",
+    "@arcblock/grpc-client": "^0.39.9",
     "death": "^1.1.0"
   },
   "keywords": [],
