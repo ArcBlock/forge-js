@@ -276,7 +276,7 @@ class WalletAuthenticator {
     };
   }
 
-  // 要求签名
+  // 要求签名，可以是前 transaction 或者任意类型的消息
   async signature({ claim, userDid, userPk, extraParams }) {
     const {
       txData,
@@ -303,7 +303,7 @@ class WalletAuthenticator {
           tx: txData,
           wallet: wallet || fromAddress(sender || userDid),
         },
-        { conn: this.chainInfo.chainId }
+        { conn: chainInfo.chainId || this.chainInfo.chainId }
       );
 
       return {
