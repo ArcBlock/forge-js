@@ -77,11 +77,28 @@ const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
     await delegate(bob, lily, 'bob');
     await sleep(3000);
 
+    // 3. create asset for sender
+    // eslint-disable-next-line prefer-const
+    let [hash, assetAddress] = await client.createAsset({
+      moniker: 'asset',
+      data: {
+        typeUrl: 'json',
+        value: {
+          key: 'value2',
+          sn: Math.random(),
+        },
+      },
+      wallet: bob,
+    });
+    console.log('create_asset.result', hash, assetAddress);
+    console.log('view asset', `${endpoint}/node/explorer/assets/${assetAddress}`);
+    await sleep(3000);
+
     // 4.1 Sender: encode and sign the transaction
     const tx1 = await client.prepareExchange({
       receiver: bob.toAddress(),
       offerToken: 5,
-      demandToken: 1,
+      demandAssets: [assetAddress],
       wallet: betty,
       delegator: alice.toAddress(),
     });
