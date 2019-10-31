@@ -24,7 +24,7 @@
 [![docs](https://img.shields.io/badge/powered%20by-arcblock-green.svg)](https://docs.arcblock.io)
 [![Gitter](https://badges.gitter.im/ArcBlock/community.svg)](https://gitter.im/ArcBlock/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
-> Last updated at 10/30/2019, 11:02:05 AM
+> Last updated at 10/31/2019, 3:25:06 AM
 
 Javascript SDK for [forge](https://docs.arcblock.io/forge/latest/), which is an awesome framework to write distributed blockchain applications.
 
@@ -40,7 +40,6 @@ Javascript SDK for [forge](https://docs.arcblock.io/forge/latest/), which is an 
 - [graphql-client <img src="https://img.shields.io/npm/v/@arcblock/graphql-client.svg" alt="Version">](https://www.npmjs.com/package/@arcblock/graphql-client)
 - [grpc-client <img src="https://img.shields.io/npm/v/@arcblock/grpc-client.svg" alt="Version">](https://www.npmjs.com/package/@arcblock/grpc-client)
 - [mcrypto <img src="https://img.shields.io/npm/v/@arcblock/mcrypto.svg" alt="Version">](https://www.npmjs.com/package/@arcblock/mcrypto)
-- [tcp-server <img src="https://img.shields.io/npm/v/@arcblock/tcp-server.svg" alt="Version">](https://www.npmjs.com/package/@arcblock/tcp-server)
 - [tx-util <img src="https://img.shields.io/npm/v/@arcblock/tx-util.svg" alt="Version">](https://www.npmjs.com/package/@arcblock/tx-util)
 - [did <img src="https://img.shields.io/npm/v/@arcblock/did.svg" alt="Version">](https://www.npmjs.com/package/@arcblock/did)
 - [did-auth <img src="https://img.shields.io/npm/v/@arcblock/did-auth.svg" alt="Version">](https://www.npmjs.com/package/@arcblock/did-auth)
