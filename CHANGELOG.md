@@ -1,3 +1,8 @@
+## 0.40.1 (October 31, 2019)
+
+- chore: update exchange example to exchange token with asset
+- update readme
+
 ## 0.40.0 (October 31, 2019)
 
 - fix: test case in message
