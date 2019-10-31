@@ -1412,7 +1412,7 @@
  * Checkout the following snippet for the format of ResponseGetAccountState:
  * ```json
 {
-  "code": "SENDER_WITHDRAW_ITEMS_FULL",
+  "code": "INVALID_PASSPHRASE",
   "state": {
     "address": "abc",
     "balance": "abc",
@@ -1422,7 +1422,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "SENDER_WITHDRAW_ITEMS_FULL",
+        "code": "INVALID_PASSPHRASE",
         "createAsset": {
           "asset": "abc"
         },
@@ -1462,7 +1462,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "SENDER_WITHDRAW_ITEMS_FULL",
+        "code": "INVALID_PASSPHRASE",
         "createAsset": {
           "asset": "abc"
         },
@@ -1564,7 +1564,7 @@
  * Checkout the following snippet for the format of ResponseGetAssetState:
  * ```json
 {
-  "code": "SENDER_WITHDRAW_ITEMS_FULL",
+  "code": "INVALID_PASSPHRASE",
   "state": {
     "address": "abc",
     "consumedTime": "2019-04-29T00:00:00.000Z",
@@ -1574,7 +1574,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "SENDER_WITHDRAW_ITEMS_FULL",
+        "code": "INVALID_PASSPHRASE",
         "createAsset": {
           "asset": "abc"
         },
@@ -1614,7 +1614,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "SENDER_WITHDRAW_ITEMS_FULL",
+        "code": "INVALID_PASSPHRASE",
         "createAsset": {
           "asset": "abc"
         },
@@ -1711,7 +1711,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "SENDER_WITHDRAW_ITEMS_FULL",
+        "code": "INVALID_PASSPHRASE",
         "createAsset": {
           "asset": "abc"
         },
@@ -1769,7 +1769,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "SENDER_WITHDRAW_ITEMS_FULL",
+        "code": "INVALID_PASSPHRASE",
         "createAsset": {
           "asset": "abc"
         },
@@ -1814,7 +1814,7 @@
       "block": "abc"
     }
   },
-  "code": "SENDER_WITHDRAW_ITEMS_FULL"
+  "code": "INVALID_PASSPHRASE"
 }
  * ```
  *
@@ -1864,7 +1864,7 @@
       }
     }
   ],
-  "code": "SENDER_WITHDRAW_ITEMS_FULL",
+  "code": "INVALID_PASSPHRASE",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -1886,7 +1886,7 @@
  * Checkout the following snippet for the format of ResponseGetChainInfo:
  * ```json
 {
-  "code": "SENDER_WITHDRAW_ITEMS_FULL",
+  "code": "INVALID_PASSPHRASE",
   "info": {
     "address": "abc",
     "appHash": "abc",
@@ -1926,7 +1926,7 @@
  * Checkout the following snippet for the format of ResponseGetConfig:
  * ```json
 {
-  "code": "SENDER_WITHDRAW_ITEMS_FULL",
+  "code": "INVALID_PASSPHRASE",
   "config": "abc"
 }
  * ```
@@ -1943,7 +1943,7 @@
  * Checkout the following snippet for the format of ResponseGetDelegateState:
  * ```json
 {
-  "code": "SENDER_WITHDRAW_ITEMS_FULL",
+  "code": "INVALID_PASSPHRASE",
   "state": {
     "address": "abc",
     "context": {
@@ -1952,7 +1952,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "SENDER_WITHDRAW_ITEMS_FULL",
+        "code": "INVALID_PASSPHRASE",
         "createAsset": {
           "asset": "abc"
         },
@@ -1992,7 +1992,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "SENDER_WITHDRAW_ITEMS_FULL",
+        "code": "INVALID_PASSPHRASE",
         "createAsset": {
           "asset": "abc"
         },
@@ -2060,7 +2060,7 @@
  * Checkout the following snippet for the format of ResponseGetForgeState:
  * ```json
 {
-  "code": "SENDER_WITHDRAW_ITEMS_FULL",
+  "code": "INVALID_PASSPHRASE",
   "state": {
     "accountConfig": [
       {
@@ -2116,7 +2116,7 @@
               "accountMigrate": {
                 "address": "abc"
               },
-              "code": "SENDER_WITHDRAW_ITEMS_FULL",
+              "code": "INVALID_PASSPHRASE",
               "createAsset": {
                 "asset": "abc"
               },
@@ -2156,7 +2156,7 @@
               "accountMigrate": {
                 "address": "abc"
               },
-              "code": "SENDER_WITHDRAW_ITEMS_FULL",
+              "code": "INVALID_PASSPHRASE",
               "createAsset": {
                 "asset": "abc"
               },
@@ -2275,7 +2275,7 @@
  * Checkout the following snippet for the format of ResponseGetForgeStats:
  * ```json
 {
-  "code": "SENDER_WITHDRAW_ITEMS_FULL",
+  "code": "INVALID_PASSPHRASE",
   "forgeStats": {
     "avgBlockTime": 123,
     "avgTps": 123,
@@ -2347,7 +2347,7 @@
  * Checkout the following snippet for the format of ResponseGetHealthStatus:
  * ```json
 {
-  "code": "SENDER_WITHDRAW_ITEMS_FULL",
+  "code": "INVALID_PASSPHRASE",
   "healthStatus": {
     "consensus": {
       "blockHeight": "abc",
@@ -2392,7 +2392,7 @@
  * Checkout the following snippet for the format of ResponseGetNetInfo:
  * ```json
 {
-  "code": "SENDER_WITHDRAW_ITEMS_FULL",
+  "code": "INVALID_PASSPHRASE",
   "netInfo": {
     "listeners": [
       "abc"
@@ -2430,7 +2430,7 @@
  * Checkout the following snippet for the format of ResponseGetNodeInfo:
  * ```json
 {
-  "code": "SENDER_WITHDRAW_ITEMS_FULL",
+  "code": "INVALID_PASSPHRASE",
   "info": {
     "address": "abc",
     "appHash": "abc",
@@ -2478,7 +2478,7 @@
  * Checkout the following snippet for the format of ResponseGetProtocolState:
  * ```json
 {
-  "code": "SENDER_WITHDRAW_ITEMS_FULL",
+  "code": "INVALID_PASSPHRASE",
   "state": {
     "address": "abc",
     "context": {
@@ -2487,7 +2487,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "SENDER_WITHDRAW_ITEMS_FULL",
+        "code": "INVALID_PASSPHRASE",
         "createAsset": {
           "asset": "abc"
         },
@@ -2527,7 +2527,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "SENDER_WITHDRAW_ITEMS_FULL",
+        "code": "INVALID_PASSPHRASE",
         "createAsset": {
           "asset": "abc"
         },
@@ -2623,7 +2623,7 @@
  * Checkout the following snippet for the format of ResponseGetProtocols:
  * ```json
 {
-  "code": "SENDER_WITHDRAW_ITEMS_FULL",
+  "code": "INVALID_PASSPHRASE",
   "protocols": [
     {
       "address": "abc",
@@ -2671,7 +2671,7 @@
  * Checkout the following snippet for the format of ResponseGetSimulatorStatus:
  * ```json
 {
-  "code": "SENDER_WITHDRAW_ITEMS_FULL",
+  "code": "INVALID_PASSPHRASE",
   "result": "abc"
 }
  * ```
@@ -2688,7 +2688,7 @@
  * Checkout the following snippet for the format of ResponseGetStakeState:
  * ```json
 {
-  "code": "SENDER_WITHDRAW_ITEMS_FULL",
+  "code": "INVALID_PASSPHRASE",
   "state": {
     "address": "abc",
     "balance": "abc",
@@ -2698,7 +2698,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "SENDER_WITHDRAW_ITEMS_FULL",
+        "code": "INVALID_PASSPHRASE",
         "createAsset": {
           "asset": "abc"
         },
@@ -2738,7 +2738,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "SENDER_WITHDRAW_ITEMS_FULL",
+        "code": "INVALID_PASSPHRASE",
         "createAsset": {
           "asset": "abc"
         },
@@ -2797,7 +2797,7 @@
  * Checkout the following snippet for the format of ResponseGetSwapState:
  * ```json
 {
-  "code": "SENDER_WITHDRAW_ITEMS_FULL",
+  "code": "INVALID_PASSPHRASE",
   "state": {
     "address": "abc",
     "assets": [
@@ -2809,7 +2809,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "SENDER_WITHDRAW_ITEMS_FULL",
+        "code": "INVALID_PASSPHRASE",
         "createAsset": {
           "asset": "abc"
         },
@@ -2849,7 +2849,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "SENDER_WITHDRAW_ITEMS_FULL",
+        "code": "INVALID_PASSPHRASE",
         "createAsset": {
           "asset": "abc"
         },
@@ -2908,7 +2908,7 @@
  * Checkout the following snippet for the format of ResponseGetTetherState:
  * ```json
 {
-  "code": "SENDER_WITHDRAW_ITEMS_FULL",
+  "code": "INVALID_PASSPHRASE",
   "state": {
     "address": "abc",
     "available": true,
@@ -2937,12 +2937,12 @@
  * Checkout the following snippet for the format of ResponseGetTx:
  * ```json
 {
-  "code": "SENDER_WITHDRAW_ITEMS_FULL",
+  "code": "INVALID_PASSPHRASE",
   "info": {
     "accountMigrate": {
       "address": "abc"
     },
-    "code": "SENDER_WITHDRAW_ITEMS_FULL",
+    "code": "INVALID_PASSPHRASE",
     "createAsset": {
       "asset": "abc"
     },
@@ -2992,7 +2992,7 @@
  * Checkout the following snippet for the format of ResponseGetUnconfirmedTxs:
  * ```json
 {
-  "code": "SENDER_WITHDRAW_ITEMS_FULL",
+  "code": "INVALID_PASSPHRASE",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -3039,7 +3039,7 @@
  * Checkout the following snippet for the format of ResponseGetValidatorsInfo:
  * ```json
 {
-  "code": "SENDER_WITHDRAW_ITEMS_FULL",
+  "code": "INVALID_PASSPHRASE",
   "validatorsInfo": {
     "blockHeight": "abc",
     "validators": [
@@ -3076,7 +3076,7 @@
  * Checkout the following snippet for the format of ResponseListAssetTransactions:
  * ```json
 {
-  "code": "SENDER_WITHDRAW_ITEMS_FULL",
+  "code": "INVALID_PASSPHRASE",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -3084,7 +3084,7 @@
   },
   "transactions": [
     {
-      "code": "SENDER_WITHDRAW_ITEMS_FULL",
+      "code": "INVALID_PASSPHRASE",
       "hash": "abc",
       "receiver": "abc",
       "sender": "abc",
@@ -3166,7 +3166,7 @@
       "ttl": "abc"
     }
   ],
-  "code": "SENDER_WITHDRAW_ITEMS_FULL",
+  "code": "INVALID_PASSPHRASE",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -3198,7 +3198,7 @@
       "time": "abc"
     }
   ],
-  "code": "SENDER_WITHDRAW_ITEMS_FULL",
+  "code": "INVALID_PASSPHRASE",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -3220,7 +3220,7 @@
  * Checkout the following snippet for the format of ResponseListStakes:
  * ```json
 {
-  "code": "SENDER_WITHDRAW_ITEMS_FULL",
+  "code": "INVALID_PASSPHRASE",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -3254,7 +3254,7 @@
  * Checkout the following snippet for the format of ResponseListSwap:
  * ```json
 {
-  "code": "SENDER_WITHDRAW_ITEMS_FULL",
+  "code": "INVALID_PASSPHRASE",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -3272,7 +3272,7 @@
           "accountMigrate": {
             "address": "abc"
           },
-          "code": "SENDER_WITHDRAW_ITEMS_FULL",
+          "code": "INVALID_PASSPHRASE",
           "createAsset": {
             "asset": "abc"
           },
@@ -3312,7 +3312,7 @@
           "accountMigrate": {
             "address": "abc"
           },
-          "code": "SENDER_WITHDRAW_ITEMS_FULL",
+          "code": "INVALID_PASSPHRASE",
           "createAsset": {
             "asset": "abc"
           },
@@ -3373,7 +3373,7 @@
  * Checkout the following snippet for the format of ResponseListTethers:
  * ```json
 {
-  "code": "SENDER_WITHDRAW_ITEMS_FULL",
+  "code": "INVALID_PASSPHRASE",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -3430,7 +3430,7 @@
       "totalUnstakes": "abc"
     }
   ],
-  "code": "SENDER_WITHDRAW_ITEMS_FULL",
+  "code": "INVALID_PASSPHRASE",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -3452,7 +3452,7 @@
  * Checkout the following snippet for the format of ResponseListTransactions:
  * ```json
 {
-  "code": "SENDER_WITHDRAW_ITEMS_FULL",
+  "code": "INVALID_PASSPHRASE",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -3460,7 +3460,7 @@
   },
   "transactions": [
     {
-      "code": "SENDER_WITHDRAW_ITEMS_FULL",
+      "code": "INVALID_PASSPHRASE",
       "hash": "abc",
       "receiver": "abc",
       "sender": "abc",
@@ -3505,7 +3505,7 @@
  * Checkout the following snippet for the format of ResponseSendTx:
  * ```json
 {
-  "code": "SENDER_WITHDRAW_ITEMS_FULL",
+  "code": "INVALID_PASSPHRASE",
   "hash": "abc"
 }
  * ```
@@ -3522,7 +3522,7 @@
  * Checkout the following snippet for the format of ResponseStartSimulator:
  * ```json
 {
-  "code": "SENDER_WITHDRAW_ITEMS_FULL"
+  "code": "INVALID_PASSPHRASE"
 }
  * ```
  *
@@ -3537,7 +3537,7 @@
  * Checkout the following snippet for the format of ResponseStopSimulator:
  * ```json
 {
-  "code": "SENDER_WITHDRAW_ITEMS_FULL"
+  "code": "INVALID_PASSPHRASE"
 }
  * ```
  *
@@ -3581,7 +3581,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "SENDER_WITHDRAW_ITEMS_FULL",
+        "code": "INVALID_PASSPHRASE",
         "createAsset": {
           "asset": "abc"
         },
@@ -3621,7 +3621,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "SENDER_WITHDRAW_ITEMS_FULL",
+        "code": "INVALID_PASSPHRASE",
         "createAsset": {
           "asset": "abc"
         },
@@ -3757,7 +3757,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "SENDER_WITHDRAW_ITEMS_FULL",
+        "code": "INVALID_PASSPHRASE",
         "createAsset": {
           "asset": "abc"
         },
@@ -3797,7 +3797,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "SENDER_WITHDRAW_ITEMS_FULL",
+        "code": "INVALID_PASSPHRASE",
         "createAsset": {
           "asset": "abc"
         },
@@ -3919,7 +3919,7 @@
       ]
     }
   },
-  "code": "SENDER_WITHDRAW_ITEMS_FULL",
+  "code": "INVALID_PASSPHRASE",
   "confirm": {
     "chainId": "abc",
     "delegator": "abc",
@@ -4068,7 +4068,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "SENDER_WITHDRAW_ITEMS_FULL",
+        "code": "INVALID_PASSPHRASE",
         "createAsset": {
           "asset": "abc"
         },
@@ -4108,7 +4108,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "SENDER_WITHDRAW_ITEMS_FULL",
+        "code": "INVALID_PASSPHRASE",
         "createAsset": {
           "asset": "abc"
         },
@@ -4259,7 +4259,7 @@
               "accountMigrate": {
                 "address": "abc"
               },
-              "code": "SENDER_WITHDRAW_ITEMS_FULL",
+              "code": "INVALID_PASSPHRASE",
               "createAsset": {
                 "asset": "abc"
               },
@@ -4299,7 +4299,7 @@
               "accountMigrate": {
                 "address": "abc"
               },
-              "code": "SENDER_WITHDRAW_ITEMS_FULL",
+              "code": "INVALID_PASSPHRASE",
               "createAsset": {
                 "asset": "abc"
               },
@@ -4411,7 +4411,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "SENDER_WITHDRAW_ITEMS_FULL",
+        "code": "INVALID_PASSPHRASE",
         "createAsset": {
           "asset": "abc"
         },
@@ -4451,7 +4451,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "SENDER_WITHDRAW_ITEMS_FULL",
+        "code": "INVALID_PASSPHRASE",
         "createAsset": {
           "asset": "abc"
         },
@@ -4621,7 +4621,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "SENDER_WITHDRAW_ITEMS_FULL",
+        "code": "INVALID_PASSPHRASE",
         "createAsset": {
           "asset": "abc"
         },
@@ -4661,7 +4661,7 @@
         "accountMigrate": {
           "address": "abc"
         },
-        "code": "SENDER_WITHDRAW_ITEMS_FULL",
+        "code": "INVALID_PASSPHRASE",
         "createAsset": {
           "asset": "abc"
         },
@@ -4829,7 +4829,7 @@
  * Checkout the following snippet for the format of ResponseUnsubscribe:
  * ```json
 {
-  "code": "SENDER_WITHDRAW_ITEMS_FULL"
+  "code": "INVALID_PASSPHRASE"
 }
  * ```
  *

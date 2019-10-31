@@ -4,28 +4,6 @@
 var grpc = require('grpc');
 var rpc_pb = require('./rpc_pb.js');
 
-function serialize_forge_abi_RequestCreateTx(arg) {
-  if (!(arg instanceof rpc_pb.RequestCreateTx)) {
-    throw new Error('Expected argument of type forge_abi.RequestCreateTx');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_forge_abi_RequestCreateTx(buffer_arg) {
-  return rpc_pb.RequestCreateTx.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
-function serialize_forge_abi_RequestCreateWallet(arg) {
-  if (!(arg instanceof rpc_pb.RequestCreateWallet)) {
-    throw new Error('Expected argument of type forge_abi.RequestCreateWallet');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_forge_abi_RequestCreateWallet(buffer_arg) {
-  return rpc_pb.RequestCreateWallet.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
 function serialize_forge_abi_RequestDeclareNode(arg) {
   if (!(arg instanceof rpc_pb.RequestDeclareNode)) {
     throw new Error('Expected argument of type forge_abi.RequestDeclareNode');
@@ -202,17 +180,6 @@ function deserialize_forge_abi_RequestGetSwapState(buffer_arg) {
   return rpc_pb.RequestGetSwapState.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_forge_abi_RequestGetTetherState(arg) {
-  if (!(arg instanceof rpc_pb.RequestGetTetherState)) {
-    throw new Error('Expected argument of type forge_abi.RequestGetTetherState');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_forge_abi_RequestGetTetherState(buffer_arg) {
-  return rpc_pb.RequestGetTetherState.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
 function serialize_forge_abi_RequestGetTx(arg) {
   if (!(arg instanceof rpc_pb.RequestGetTx)) {
     throw new Error('Expected argument of type forge_abi.RequestGetTx');
@@ -312,17 +279,6 @@ function deserialize_forge_abi_RequestListSwap(buffer_arg) {
   return rpc_pb.RequestListSwap.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_forge_abi_RequestListTethers(arg) {
-  if (!(arg instanceof rpc_pb.RequestListTethers)) {
-    throw new Error('Expected argument of type forge_abi.RequestListTethers');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_forge_abi_RequestListTethers(buffer_arg) {
-  return rpc_pb.RequestListTethers.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
 function serialize_forge_abi_RequestListTopAccounts(arg) {
   if (!(arg instanceof rpc_pb.RequestListTopAccounts)) {
     throw new Error('Expected argument of type forge_abi.RequestListTopAccounts');
@@ -345,17 +301,6 @@ function deserialize_forge_abi_RequestListTransactions(buffer_arg) {
   return rpc_pb.RequestListTransactions.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_forge_abi_RequestListWallet(arg) {
-  if (!(arg instanceof rpc_pb.RequestListWallet)) {
-    throw new Error('Expected argument of type forge_abi.RequestListWallet');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_forge_abi_RequestListWallet(buffer_arg) {
-  return rpc_pb.RequestListWallet.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
 function serialize_forge_abi_RequestLoadFile(arg) {
   if (!(arg instanceof rpc_pb.RequestLoadFile)) {
     throw new Error('Expected argument of type forge_abi.RequestLoadFile');
@@ -367,28 +312,6 @@ function deserialize_forge_abi_RequestLoadFile(buffer_arg) {
   return rpc_pb.RequestLoadFile.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_forge_abi_RequestLoadWallet(arg) {
-  if (!(arg instanceof rpc_pb.RequestLoadWallet)) {
-    throw new Error('Expected argument of type forge_abi.RequestLoadWallet');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_forge_abi_RequestLoadWallet(buffer_arg) {
-  return rpc_pb.RequestLoadWallet.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
-function serialize_forge_abi_RequestMultisig(arg) {
-  if (!(arg instanceof rpc_pb.RequestMultisig)) {
-    throw new Error('Expected argument of type forge_abi.RequestMultisig');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_forge_abi_RequestMultisig(buffer_arg) {
-  return rpc_pb.RequestMultisig.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
 function serialize_forge_abi_RequestPinFile(arg) {
   if (!(arg instanceof rpc_pb.RequestPinFile)) {
     throw new Error('Expected argument of type forge_abi.RequestPinFile');
@@ -398,28 +321,6 @@ function serialize_forge_abi_RequestPinFile(arg) {
 
 function deserialize_forge_abi_RequestPinFile(buffer_arg) {
   return rpc_pb.RequestPinFile.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
-function serialize_forge_abi_RequestRecoverWallet(arg) {
-  if (!(arg instanceof rpc_pb.RequestRecoverWallet)) {
-    throw new Error('Expected argument of type forge_abi.RequestRecoverWallet');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_forge_abi_RequestRecoverWallet(buffer_arg) {
-  return rpc_pb.RequestRecoverWallet.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
-function serialize_forge_abi_RequestRemoveWallet(arg) {
-  if (!(arg instanceof rpc_pb.RequestRemoveWallet)) {
-    throw new Error('Expected argument of type forge_abi.RequestRemoveWallet');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_forge_abi_RequestRemoveWallet(buffer_arg) {
-  return rpc_pb.RequestRemoveWallet.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_forge_abi_RequestSearch(arg) {
@@ -475,28 +376,6 @@ function serialize_forge_abi_RequestUnsubscribe(arg) {
 
 function deserialize_forge_abi_RequestUnsubscribe(buffer_arg) {
   return rpc_pb.RequestUnsubscribe.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
-function serialize_forge_abi_ResponseCreateTx(arg) {
-  if (!(arg instanceof rpc_pb.ResponseCreateTx)) {
-    throw new Error('Expected argument of type forge_abi.ResponseCreateTx');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_forge_abi_ResponseCreateTx(buffer_arg) {
-  return rpc_pb.ResponseCreateTx.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
-function serialize_forge_abi_ResponseCreateWallet(arg) {
-  if (!(arg instanceof rpc_pb.ResponseCreateWallet)) {
-    throw new Error('Expected argument of type forge_abi.ResponseCreateWallet');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_forge_abi_ResponseCreateWallet(buffer_arg) {
-  return rpc_pb.ResponseCreateWallet.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_forge_abi_ResponseDeclareNode(arg) {
@@ -675,17 +554,6 @@ function deserialize_forge_abi_ResponseGetSwapState(buffer_arg) {
   return rpc_pb.ResponseGetSwapState.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_forge_abi_ResponseGetTetherState(arg) {
-  if (!(arg instanceof rpc_pb.ResponseGetTetherState)) {
-    throw new Error('Expected argument of type forge_abi.ResponseGetTetherState');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_forge_abi_ResponseGetTetherState(buffer_arg) {
-  return rpc_pb.ResponseGetTetherState.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
 function serialize_forge_abi_ResponseGetTx(arg) {
   if (!(arg instanceof rpc_pb.ResponseGetTx)) {
     throw new Error('Expected argument of type forge_abi.ResponseGetTx');
@@ -785,17 +653,6 @@ function deserialize_forge_abi_ResponseListSwap(buffer_arg) {
   return rpc_pb.ResponseListSwap.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_forge_abi_ResponseListTethers(arg) {
-  if (!(arg instanceof rpc_pb.ResponseListTethers)) {
-    throw new Error('Expected argument of type forge_abi.ResponseListTethers');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_forge_abi_ResponseListTethers(buffer_arg) {
-  return rpc_pb.ResponseListTethers.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
 function serialize_forge_abi_ResponseListTopAccounts(arg) {
   if (!(arg instanceof rpc_pb.ResponseListTopAccounts)) {
     throw new Error('Expected argument of type forge_abi.ResponseListTopAccounts');
@@ -818,17 +675,6 @@ function deserialize_forge_abi_ResponseListTransactions(buffer_arg) {
   return rpc_pb.ResponseListTransactions.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_forge_abi_ResponseListWallet(arg) {
-  if (!(arg instanceof rpc_pb.ResponseListWallet)) {
-    throw new Error('Expected argument of type forge_abi.ResponseListWallet');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_forge_abi_ResponseListWallet(buffer_arg) {
-  return rpc_pb.ResponseListWallet.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
 function serialize_forge_abi_ResponseLoadFile(arg) {
   if (!(arg instanceof rpc_pb.ResponseLoadFile)) {
     throw new Error('Expected argument of type forge_abi.ResponseLoadFile');
@@ -840,28 +686,6 @@ function deserialize_forge_abi_ResponseLoadFile(buffer_arg) {
   return rpc_pb.ResponseLoadFile.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_forge_abi_ResponseLoadWallet(arg) {
-  if (!(arg instanceof rpc_pb.ResponseLoadWallet)) {
-    throw new Error('Expected argument of type forge_abi.ResponseLoadWallet');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_forge_abi_ResponseLoadWallet(buffer_arg) {
-  return rpc_pb.ResponseLoadWallet.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
-function serialize_forge_abi_ResponseMultisig(arg) {
-  if (!(arg instanceof rpc_pb.ResponseMultisig)) {
-    throw new Error('Expected argument of type forge_abi.ResponseMultisig');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_forge_abi_ResponseMultisig(buffer_arg) {
-  return rpc_pb.ResponseMultisig.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
 function serialize_forge_abi_ResponsePinFile(arg) {
   if (!(arg instanceof rpc_pb.ResponsePinFile)) {
     throw new Error('Expected argument of type forge_abi.ResponsePinFile');
@@ -871,28 +695,6 @@ function serialize_forge_abi_ResponsePinFile(arg) {
 
 function deserialize_forge_abi_ResponsePinFile(buffer_arg) {
   return rpc_pb.ResponsePinFile.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
-function serialize_forge_abi_ResponseRecoverWallet(arg) {
-  if (!(arg instanceof rpc_pb.ResponseRecoverWallet)) {
-    throw new Error('Expected argument of type forge_abi.ResponseRecoverWallet');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_forge_abi_ResponseRecoverWallet(buffer_arg) {
-  return rpc_pb.ResponseRecoverWallet.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
-function serialize_forge_abi_ResponseRemoveWallet(arg) {
-  if (!(arg instanceof rpc_pb.ResponseRemoveWallet)) {
-    throw new Error('Expected argument of type forge_abi.ResponseRemoveWallet');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_forge_abi_ResponseRemoveWallet(buffer_arg) {
-  return rpc_pb.ResponseRemoveWallet.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_forge_abi_ResponseSearch(arg) {
@@ -960,28 +762,6 @@ function deserialize_forge_abi_ResponseUnsubscribe(buffer_arg) {
 //
 var ChainRpcService = exports.ChainRpcService = {
   // tx related
-  create_tx: {
-    path: '/forge_abi.ChainRpc/create_tx',
-    requestStream: false,
-    responseStream: false,
-    requestType: rpc_pb.RequestCreateTx,
-    responseType: rpc_pb.ResponseCreateTx,
-    requestSerialize: serialize_forge_abi_RequestCreateTx,
-    requestDeserialize: deserialize_forge_abi_RequestCreateTx,
-    responseSerialize: serialize_forge_abi_ResponseCreateTx,
-    responseDeserialize: deserialize_forge_abi_ResponseCreateTx,
-  },
-  multisig: {
-    path: '/forge_abi.ChainRpc/multisig',
-    requestStream: false,
-    responseStream: false,
-    requestType: rpc_pb.RequestMultisig,
-    responseType: rpc_pb.ResponseMultisig,
-    requestSerialize: serialize_forge_abi_RequestMultisig,
-    requestDeserialize: deserialize_forge_abi_RequestMultisig,
-    responseSerialize: serialize_forge_abi_ResponseMultisig,
-    responseDeserialize: deserialize_forge_abi_ResponseMultisig,
-  },
   send_tx: {
     path: '/forge_abi.ChainRpc/send_tx',
     requestStream: false,
@@ -1228,17 +1008,6 @@ var StateRpcService = exports.StateRpcService = {
     responseSerialize: serialize_forge_abi_ResponseGetStakeState,
     responseDeserialize: deserialize_forge_abi_ResponseGetStakeState,
   },
-  get_tether_state: {
-    path: '/forge_abi.StateRpc/get_tether_state',
-    requestStream: true,
-    responseStream: true,
-    requestType: rpc_pb.RequestGetTetherState,
-    responseType: rpc_pb.ResponseGetTetherState,
-    requestSerialize: serialize_forge_abi_RequestGetTetherState,
-    requestDeserialize: deserialize_forge_abi_RequestGetTetherState,
-    responseSerialize: serialize_forge_abi_ResponseGetTetherState,
-    responseDeserialize: deserialize_forge_abi_ResponseGetTetherState,
-  },
   get_swap_state: {
     path: '/forge_abi.StateRpc/get_swap_state',
     requestStream: true,
@@ -1266,61 +1035,6 @@ var StateRpcService = exports.StateRpcService = {
 exports.StateRpcClient = grpc.makeGenericClientConstructor(StateRpcService);
 var WalletRpcService = exports.WalletRpcService = {
   // wallet related
-  create_wallet: {
-    path: '/forge_abi.WalletRpc/create_wallet',
-    requestStream: false,
-    responseStream: false,
-    requestType: rpc_pb.RequestCreateWallet,
-    responseType: rpc_pb.ResponseCreateWallet,
-    requestSerialize: serialize_forge_abi_RequestCreateWallet,
-    requestDeserialize: deserialize_forge_abi_RequestCreateWallet,
-    responseSerialize: serialize_forge_abi_ResponseCreateWallet,
-    responseDeserialize: deserialize_forge_abi_ResponseCreateWallet,
-  },
-  load_wallet: {
-    path: '/forge_abi.WalletRpc/load_wallet',
-    requestStream: false,
-    responseStream: false,
-    requestType: rpc_pb.RequestLoadWallet,
-    responseType: rpc_pb.ResponseLoadWallet,
-    requestSerialize: serialize_forge_abi_RequestLoadWallet,
-    requestDeserialize: deserialize_forge_abi_RequestLoadWallet,
-    responseSerialize: serialize_forge_abi_ResponseLoadWallet,
-    responseDeserialize: deserialize_forge_abi_ResponseLoadWallet,
-  },
-  recover_wallet: {
-    path: '/forge_abi.WalletRpc/recover_wallet',
-    requestStream: false,
-    responseStream: false,
-    requestType: rpc_pb.RequestRecoverWallet,
-    responseType: rpc_pb.ResponseRecoverWallet,
-    requestSerialize: serialize_forge_abi_RequestRecoverWallet,
-    requestDeserialize: deserialize_forge_abi_RequestRecoverWallet,
-    responseSerialize: serialize_forge_abi_ResponseRecoverWallet,
-    responseDeserialize: deserialize_forge_abi_ResponseRecoverWallet,
-  },
-  list_wallet: {
-    path: '/forge_abi.WalletRpc/list_wallet',
-    requestStream: false,
-    responseStream: true,
-    requestType: rpc_pb.RequestListWallet,
-    responseType: rpc_pb.ResponseListWallet,
-    requestSerialize: serialize_forge_abi_RequestListWallet,
-    requestDeserialize: deserialize_forge_abi_RequestListWallet,
-    responseSerialize: serialize_forge_abi_ResponseListWallet,
-    responseDeserialize: deserialize_forge_abi_ResponseListWallet,
-  },
-  remove_wallet: {
-    path: '/forge_abi.WalletRpc/remove_wallet',
-    requestStream: false,
-    responseStream: false,
-    requestType: rpc_pb.RequestRemoveWallet,
-    responseType: rpc_pb.ResponseRemoveWallet,
-    requestSerialize: serialize_forge_abi_RequestRemoveWallet,
-    requestDeserialize: deserialize_forge_abi_RequestRemoveWallet,
-    responseSerialize: serialize_forge_abi_ResponseRemoveWallet,
-    responseDeserialize: deserialize_forge_abi_ResponseRemoveWallet,
-  },
   declare_node: {
     path: '/forge_abi.WalletRpc/declare_node',
     requestStream: false,
@@ -1434,17 +1148,6 @@ var StatsRpcService = exports.StatsRpcService = {
     requestDeserialize: deserialize_forge_abi_RequestGetHealthStatus,
     responseSerialize: serialize_forge_abi_ResponseGetHealthStatus,
     responseDeserialize: deserialize_forge_abi_ResponseGetHealthStatus,
-  },
-  list_tethers: {
-    path: '/forge_abi.StatsRpc/list_tethers',
-    requestStream: false,
-    responseStream: false,
-    requestType: rpc_pb.RequestListTethers,
-    responseType: rpc_pb.ResponseListTethers,
-    requestSerialize: serialize_forge_abi_RequestListTethers,
-    requestDeserialize: deserialize_forge_abi_RequestListTethers,
-    responseSerialize: serialize_forge_abi_ResponseListTethers,
-    responseDeserialize: deserialize_forge_abi_ResponseListTethers,
   },
   list_swap: {
     path: '/forge_abi.StatsRpc/list_swap',

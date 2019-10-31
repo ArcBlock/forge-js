@@ -7,7 +7,7 @@ const jsonpack = require('jsonpack');
 const { request } = require('graphql-request');
 const { introspectionQuery } = require('graphql');
 
-const httpEndpoint = () => 'http://localhost:8212/api';
+const httpEndpoint = () => 'http://localhost:8210/api';
 // const httpEndpoint = () => 'https://zinc.abtnetwork.io/api';
 
 (async () => {

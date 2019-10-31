@@ -18,8 +18,6 @@ Please note that, due to internal implementation of google-protobuf, all `repeat
   * [new GRpcClient(config)](#new_GRpcClient_new)
   * _instance_
     * [.getRpcMethods()](#GRpcClient+getRpcMethods) ⇒ <code>object</code>
-    * [.createTx(params)](#GRpcClient+createTx) ⇒ [<code>Promise.&lt;ResponseCreateTx></code>](#GRpcClient.ResponseCreateTx)
-    * [.multisig(params)](#GRpcClient+multisig) ⇒ [<code>Promise.&lt;ResponseMultisig></code>](#GRpcClient.ResponseMultisig)
     * [.sendTx(params)](#GRpcClient+sendTx) ⇒ [<code>Promise.&lt;ResponseSendTx></code>](#GRpcClient.ResponseSendTx)
     * [.getTx(params)](#GRpcClient+getTx) ⇒ <code>EventEmitter</code>
     * [.getBlock(params)](#GRpcClient+getBlock) ⇒ <code>EventEmitter</code>
@@ -41,14 +39,8 @@ Please note that, due to internal implementation of google-protobuf, all `repeat
     * [.getForgeState(params)](#GRpcClient+getForgeState) ⇒ [<code>Promise.&lt;ResponseGetForgeState></code>](#GRpcClient.ResponseGetForgeState)
     * [.getProtocolState(params)](#GRpcClient+getProtocolState) ⇒ <code>EventEmitter</code>
     * [.getStakeState(params)](#GRpcClient+getStakeState) ⇒ <code>EventEmitter</code>
-    * [.getTetherState(params)](#GRpcClient+getTetherState) ⇒ <code>EventEmitter</code>
     * [.getSwapState(params)](#GRpcClient+getSwapState) ⇒ <code>EventEmitter</code>
     * [.getDelegateState(params)](#GRpcClient+getDelegateState) ⇒ <code>EventEmitter</code>
-    * [.createWallet(params)](#GRpcClient+createWallet) ⇒ [<code>Promise.&lt;ResponseCreateWallet></code>](#GRpcClient.ResponseCreateWallet)
-    * [.loadWallet(params)](#GRpcClient+loadWallet) ⇒ [<code>Promise.&lt;ResponseLoadWallet></code>](#GRpcClient.ResponseLoadWallet)
-    * [.recoverWallet(params)](#GRpcClient+recoverWallet) ⇒ [<code>Promise.&lt;ResponseRecoverWallet></code>](#GRpcClient.ResponseRecoverWallet)
-    * [.listWallet(params)](#GRpcClient+listWallet) ⇒ <code>EventEmitter</code>
-    * [.removeWallet(params)](#GRpcClient+removeWallet) ⇒ [<code>Promise.&lt;ResponseRemoveWallet></code>](#GRpcClient.ResponseRemoveWallet)
     * [.declareNode(params)](#GRpcClient+declareNode) ⇒ [<code>Promise.&lt;ResponseDeclareNode></code>](#GRpcClient.ResponseDeclareNode)
     * [.getForgeStats(params)](#GRpcClient+getForgeStats) ⇒ [<code>Promise.&lt;ResponseGetForgeStats></code>](#GRpcClient.ResponseGetForgeStats)
     * [.listTransactions(params)](#GRpcClient+listTransactions) ⇒ [<code>Promise.&lt;ResponseListTransactions></code>](#GRpcClient.ResponseListTransactions)
@@ -59,7 +51,6 @@ Please note that, due to internal implementation of google-protobuf, all `repeat
     * [.listAssetTransactions(params)](#GRpcClient+listAssetTransactions) ⇒ [<code>Promise.&lt;ResponseListAssetTransactions></code>](#GRpcClient.ResponseListAssetTransactions)
     * [.listBlocks(params)](#GRpcClient+listBlocks) ⇒ [<code>Promise.&lt;ResponseListBlocks></code>](#GRpcClient.ResponseListBlocks)
     * [.getHealthStatus(params)](#GRpcClient+getHealthStatus) ⇒ [<code>Promise.&lt;ResponseGetHealthStatus></code>](#GRpcClient.ResponseGetHealthStatus)
-    * [.listTethers(params)](#GRpcClient+listTethers) ⇒ [<code>Promise.&lt;ResponseListTethers></code>](#GRpcClient.ResponseListTethers)
     * [.listSwap(params)](#GRpcClient+listSwap) ⇒ [<code>Promise.&lt;ResponseListSwap></code>](#GRpcClient.ResponseListSwap)
     * [.0(params)](#GRpcClient+0) ⇒ <code>Promise.&lt;string></code>
     * [.1(params)](#GRpcClient+1) ⇒ <code>Promise.&lt;string></code>
@@ -113,10 +104,6 @@ Please note that, due to internal implementation of google-protobuf, all `repeat
     * [.24(params)](#GRpcClient+24) ⇒ [<code>Promise.&lt;TxEncodeOutput></code>](#GRpcClient.TxEncodeOutput)
   * _static_
     * [.TxEncodeOutput](#GRpcClient.TxEncodeOutput) : <code>object</code>
-    * [.RequestCreateTx](#GRpcClient.RequestCreateTx) : <code>object</code>
-    * [.ResponseCreateTx](#GRpcClient.ResponseCreateTx) : <code>object</code>
-    * [.RequestMultisig](#GRpcClient.RequestMultisig) : <code>object</code>
-    * [.ResponseMultisig](#GRpcClient.ResponseMultisig) : <code>object</code>
     * [.RequestSendTx](#GRpcClient.RequestSendTx) : <code>object</code>
     * [.ResponseSendTx](#GRpcClient.ResponseSendTx) : <code>object</code>
     * [.RequestGetTx](#GRpcClient.RequestGetTx) : <code>object</code>
@@ -125,16 +112,6 @@ Please note that, due to internal implementation of google-protobuf, all `repeat
     * [.ResponseGetBlock](#GRpcClient.ResponseGetBlock) : <code>object</code>
     * [.RequestGetBlocks](#GRpcClient.RequestGetBlocks) : <code>object</code>
     * [.ResponseGetBlocks](#GRpcClient.ResponseGetBlocks) : <code>object</code>
-    * [.RequestCreateWallet](#GRpcClient.RequestCreateWallet) : <code>object</code>
-    * [.ResponseCreateWallet](#GRpcClient.ResponseCreateWallet) : <code>object</code>
-    * [.RequestLoadWallet](#GRpcClient.RequestLoadWallet) : <code>object</code>
-    * [.ResponseLoadWallet](#GRpcClient.ResponseLoadWallet) : <code>object</code>
-    * [.RequestRecoverWallet](#GRpcClient.RequestRecoverWallet) : <code>object</code>
-    * [.ResponseRecoverWallet](#GRpcClient.ResponseRecoverWallet) : <code>object</code>
-    * [.RequestListWallet](#GRpcClient.RequestListWallet) : <code>object</code>
-    * [.ResponseListWallet](#GRpcClient.ResponseListWallet) : <code>object</code>
-    * [.RequestRemoveWallet](#GRpcClient.RequestRemoveWallet) : <code>object</code>
-    * [.ResponseRemoveWallet](#GRpcClient.ResponseRemoveWallet) : <code>object</code>
     * [.RequestDeclareNode](#GRpcClient.RequestDeclareNode) : <code>object</code>
     * [.ResponseDeclareNode](#GRpcClient.ResponseDeclareNode) : <code>object</code>
     * [.RequestGetAccountState](#GRpcClient.RequestGetAccountState) : <code>object</code>
@@ -147,8 +124,6 @@ Please note that, due to internal implementation of google-protobuf, all `repeat
     * [.ResponseGetStakeState](#GRpcClient.ResponseGetStakeState) : <code>object</code>
     * [.RequestGetForgeState](#GRpcClient.RequestGetForgeState) : <code>object</code>
     * [.ResponseGetForgeState](#GRpcClient.ResponseGetForgeState) : <code>object</code>
-    * [.RequestGetTetherState](#GRpcClient.RequestGetTetherState) : <code>object</code>
-    * [.ResponseGetTetherState](#GRpcClient.ResponseGetTetherState) : <code>object</code>
     * [.RequestGetSwapState](#GRpcClient.RequestGetSwapState) : <code>object</code>
     * [.ResponseGetSwapState](#GRpcClient.ResponseGetSwapState) : <code>object</code>
     * [.RequestGetDelegateState](#GRpcClient.RequestGetDelegateState) : <code>object</code>
@@ -195,8 +170,6 @@ Please note that, due to internal implementation of google-protobuf, all `repeat
     * [.ResponseListAssetTransactions](#GRpcClient.ResponseListAssetTransactions) : <code>object</code>
     * [.RequestListBlocks](#GRpcClient.RequestListBlocks) : <code>object</code>
     * [.ResponseListBlocks](#GRpcClient.ResponseListBlocks) : <code>object</code>
-    * [.RequestListTethers](#GRpcClient.RequestListTethers) : <code>object</code>
-    * [.ResponseListTethers](#GRpcClient.ResponseListTethers) : <code>object</code>
     * [.RequestListSwap](#GRpcClient.RequestListSwap) : <code>object</code>
     * [.ResponseListSwap](#GRpcClient.ResponseListSwap) : <code>object</code>
     * [.RequestGetHealthStatus](#GRpcClient.RequestGetHealthStatus) : <code>object</code>
@@ -252,8 +225,6 @@ Please note that, due to internal implementation of google-protobuf, all `repeat
     * [.StatisticsState](#GRpcClient.StatisticsState) : <code>object</code>
     * [.BlacklistState](#GRpcClient.BlacklistState) : <code>object</code>
     * [.ProtocolState](#GRpcClient.ProtocolState) : <code>object</code>
-    * [.TetherState](#GRpcClient.TetherState) : <code>object</code>
-    * [.TetherInfo](#GRpcClient.TetherInfo) : <code>object</code>
     * [.SwapState](#GRpcClient.SwapState) : <code>object</code>
     * [.DelegateOpState](#GRpcClient.DelegateOpState) : <code>object</code>
     * [.DelegateState](#GRpcClient.DelegateState) : <code>object</code>
@@ -389,30 +360,6 @@ Creates an instance of GRpcClient, and generate transaction sending and receivin
 List standard rpc methods
 
 **Kind**: instance method of [<code>GRpcClient</code>](#GRpcClient)  
-<a name="GRpcClient+createTx"></a>
-
-### gRpcClient.createTx(params) ⇒ [<code>Promise.&lt;ResponseCreateTx></code>](#GRpcClient.ResponseCreateTx)
-
-Send gRPC call and return the result
-
-**Kind**: instance method of [<code>GRpcClient</code>](#GRpcClient)  
-
-| Param  | Type                                                        |
-| ------ | ----------------------------------------------------------- |
-| params | [<code>RequestCreateTx</code>](#GRpcClient.RequestCreateTx) |
-
-<a name="GRpcClient+multisig"></a>
-
-### gRpcClient.multisig(params) ⇒ [<code>Promise.&lt;ResponseMultisig></code>](#GRpcClient.ResponseMultisig)
-
-Send gRPC call and return the result
-
-**Kind**: instance method of [<code>GRpcClient</code>](#GRpcClient)  
-
-| Param  | Type                                                        |
-| ------ | ----------------------------------------------------------- |
-| params | [<code>RequestMultisig</code>](#GRpcClient.RequestMultisig) |
-
 <a name="GRpcClient+sendTx"></a>
 
 ### gRpcClient.sendTx(params) ⇒ [<code>Promise.&lt;ResponseSendTx></code>](#GRpcClient.ResponseSendTx)
@@ -673,19 +620,6 @@ Send gRPC call and return the result
 | ------ | --------------------------------------------------------------------- |
 | params | [<code>RequestGetStakeState</code>](#GRpcClient.RequestGetStakeState) |
 
-<a name="GRpcClient+getTetherState"></a>
-
-### gRpcClient.getTetherState(params) ⇒ <code>EventEmitter</code>
-
-Send gRPC call and return the result
-
-**Kind**: instance method of [<code>GRpcClient</code>](#GRpcClient)  
-**Returns**: <code>EventEmitter</code> - EventEmitter that emits `data` event when new data received, checkout [ResponseGetTetherState](#GRpcClient.ResponseGetTetherState) for payload format.  
-
-| Param  | Type                                                                    |
-| ------ | ----------------------------------------------------------------------- |
-| params | [<code>RequestGetTetherState</code>](#GRpcClient.RequestGetTetherState) |
-
 <a name="GRpcClient+getSwapState"></a>
 
 ### gRpcClient.getSwapState(params) ⇒ <code>EventEmitter</code>
@@ -711,67 +645,6 @@ Send gRPC call and return the result
 | Param  | Type                                                                        |
 | ------ | --------------------------------------------------------------------------- |
 | params | [<code>RequestGetDelegateState</code>](#GRpcClient.RequestGetDelegateState) |
-
-<a name="GRpcClient+createWallet"></a>
-
-### gRpcClient.createWallet(params) ⇒ [<code>Promise.&lt;ResponseCreateWallet></code>](#GRpcClient.ResponseCreateWallet)
-
-Send gRPC call and return the result
-
-**Kind**: instance method of [<code>GRpcClient</code>](#GRpcClient)  
-
-| Param  | Type                                                                |
-| ------ | ------------------------------------------------------------------- |
-| params | [<code>RequestCreateWallet</code>](#GRpcClient.RequestCreateWallet) |
-
-<a name="GRpcClient+loadWallet"></a>
-
-### gRpcClient.loadWallet(params) ⇒ [<code>Promise.&lt;ResponseLoadWallet></code>](#GRpcClient.ResponseLoadWallet)
-
-Send gRPC call and return the result
-
-**Kind**: instance method of [<code>GRpcClient</code>](#GRpcClient)  
-
-| Param  | Type                                                            |
-| ------ | --------------------------------------------------------------- |
-| params | [<code>RequestLoadWallet</code>](#GRpcClient.RequestLoadWallet) |
-
-<a name="GRpcClient+recoverWallet"></a>
-
-### gRpcClient.recoverWallet(params) ⇒ [<code>Promise.&lt;ResponseRecoverWallet></code>](#GRpcClient.ResponseRecoverWallet)
-
-Send gRPC call and return the result
-
-**Kind**: instance method of [<code>GRpcClient</code>](#GRpcClient)  
-
-| Param  | Type                                                                  |
-| ------ | --------------------------------------------------------------------- |
-| params | [<code>RequestRecoverWallet</code>](#GRpcClient.RequestRecoverWallet) |
-
-<a name="GRpcClient+listWallet"></a>
-
-### gRpcClient.listWallet(params) ⇒ <code>EventEmitter</code>
-
-Send gRPC call and return the result
-
-**Kind**: instance method of [<code>GRpcClient</code>](#GRpcClient)  
-**Returns**: <code>EventEmitter</code> - EventEmitter that emits `data` event when new data received, checkout [ResponseListWallet](#GRpcClient.ResponseListWallet) for payload format.  
-
-| Param  | Type                                                            |
-| ------ | --------------------------------------------------------------- |
-| params | [<code>RequestListWallet</code>](#GRpcClient.RequestListWallet) |
-
-<a name="GRpcClient+removeWallet"></a>
-
-### gRpcClient.removeWallet(params) ⇒ [<code>Promise.&lt;ResponseRemoveWallet></code>](#GRpcClient.ResponseRemoveWallet)
-
-Send gRPC call and return the result
-
-**Kind**: instance method of [<code>GRpcClient</code>](#GRpcClient)  
-
-| Param  | Type                                                                |
-| ------ | ------------------------------------------------------------------- |
-| params | [<code>RequestRemoveWallet</code>](#GRpcClient.RequestRemoveWallet) |
 
 <a name="GRpcClient+declareNode"></a>
 
@@ -892,18 +765,6 @@ Send gRPC call and return the result
 | Param  | Type                                                                      |
 | ------ | ------------------------------------------------------------------------- |
 | params | [<code>RequestGetHealthStatus</code>](#GRpcClient.RequestGetHealthStatus) |
-
-<a name="GRpcClient+listTethers"></a>
-
-### gRpcClient.listTethers(params) ⇒ [<code>Promise.&lt;ResponseListTethers></code>](#GRpcClient.ResponseListTethers)
-
-Send gRPC call and return the result
-
-**Kind**: instance method of [<code>GRpcClient</code>](#GRpcClient)  
-
-| Param  | Type                                                              |
-| ------ | ----------------------------------------------------------------- |
-| params | [<code>RequestListTethers</code>](#GRpcClient.RequestListTethers) |
 
 <a name="GRpcClient+listSwap"></a>
 
@@ -1581,230 +1442,6 @@ Structure of GRpcClient.TxEncodeOutput
 | object | <code>object</code> | the transaction object, human readable                                                 |
 | buffer | <code>buffer</code> | the transaction binary presentation, can be used to signing, encoding to other formats |
 
-<a name="GRpcClient.RequestCreateTx"></a>
-
-### GRpcClient.RequestCreateTx : <code>object</code>
-
-Structure of GRpcClient.RequestCreateTx 
-
-```javascript
-{
-  "itx": {
-    "type": "string",
-    "value": "ABCD 1234"
-  },
-  "from": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
-  "nonce": 5,
-  "wallet": {
-    "type": {
-      "pk": 0,
-      "hash": 0,
-      "address": 0,
-      "role": 0
-    },
-    "sk": {},
-    "pk": {},
-    "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55"
-  },
-  "token": "arcblock"
-}
-```
-
-**Kind**: static typedef of [<code>GRpcClient</code>](#GRpcClient)  
-**Properties**
-
-| Name   | Type                                              |
-| ------ | ------------------------------------------------- |
-| itx    | [<code>Any</code>](#GRpcClient.Any)               |
-| from   | <code>string</code>                               |
-| nonce  | <code>number</code>                               |
-| wallet | [<code>WalletInfo</code>](#GRpcClient.WalletInfo) |
-| token  | <code>string</code>                               |
-
-<a name="GRpcClient.ResponseCreateTx"></a>
-
-### GRpcClient.ResponseCreateTx : <code>object</code>
-
-Structure of GRpcClient.ResponseCreateTx 
-
-```javascript
-{
-  "code": 0,
-  "tx": {
-    "from": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
-    "nonce": 5,
-    "chainId": "arcblock",
-    "pk": {},
-    "gas": 2,
-    "delegator": "arcblock",
-    "signature": {},
-    "signatures": [
-      {
-        "signer": "arcblock",
-        "pk": {},
-        "signature": {},
-        "delegator": "arcblock",
-        "data": {
-          "type": "string",
-          "value": "ABCD 1234"
-        }
-      },
-      {
-        "signer": "arcblock",
-        "pk": {},
-        "signature": {},
-        "delegator": "arcblock",
-        "data": {
-          "type": "string",
-          "value": "ABCD 1234"
-        }
-      }
-    ],
-    "itx": {
-      "type": "string",
-      "value": "ABCD 1234"
-    }
-  }
-}
-```
-
-**Kind**: static typedef of [<code>GRpcClient</code>](#GRpcClient)  
-**Properties**
-
-| Name | Type                                                |
-| ---- | --------------------------------------------------- |
-| code | <code>GRpcClient.StatusCode</code>                  |
-| tx   | [<code>Transaction</code>](#GRpcClient.Transaction) |
-
-<a name="GRpcClient.RequestMultisig"></a>
-
-### GRpcClient.RequestMultisig : <code>object</code>
-
-Structure of GRpcClient.RequestMultisig 
-
-```javascript
-{
-  "tx": {
-    "from": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
-    "nonce": 5,
-    "chainId": "arcblock",
-    "pk": {},
-    "gas": 2,
-    "delegator": "arcblock",
-    "signature": {},
-    "signatures": [
-      {
-        "signer": "arcblock",
-        "pk": {},
-        "signature": {},
-        "delegator": "arcblock",
-        "data": {
-          "type": "string",
-          "value": "ABCD 1234"
-        }
-      },
-      {
-        "signer": "arcblock",
-        "pk": {},
-        "signature": {},
-        "delegator": "arcblock",
-        "data": {
-          "type": "string",
-          "value": "ABCD 1234"
-        }
-      }
-    ],
-    "itx": {
-      "type": "string",
-      "value": "ABCD 1234"
-    }
-  },
-  "data": {
-    "type": "string",
-    "value": "ABCD 1234"
-  },
-  "wallet": {
-    "type": {
-      "pk": 0,
-      "hash": 0,
-      "address": 0,
-      "role": 0
-    },
-    "sk": {},
-    "pk": {},
-    "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55"
-  },
-  "token": "arcblock",
-  "delegatee": "arcblock"
-}
-```
-
-**Kind**: static typedef of [<code>GRpcClient</code>](#GRpcClient)  
-**Properties**
-
-| Name      | Type                                                |
-| --------- | --------------------------------------------------- |
-| tx        | [<code>Transaction</code>](#GRpcClient.Transaction) |
-| data      | [<code>Any</code>](#GRpcClient.Any)                 |
-| wallet    | [<code>WalletInfo</code>](#GRpcClient.WalletInfo)   |
-| token     | <code>string</code>                                 |
-| delegatee | <code>string</code>                                 |
-
-<a name="GRpcClient.ResponseMultisig"></a>
-
-### GRpcClient.ResponseMultisig : <code>object</code>
-
-Structure of GRpcClient.ResponseMultisig 
-
-```javascript
-{
-  "code": 0,
-  "tx": {
-    "from": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
-    "nonce": 5,
-    "chainId": "arcblock",
-    "pk": {},
-    "gas": 2,
-    "delegator": "arcblock",
-    "signature": {},
-    "signatures": [
-      {
-        "signer": "arcblock",
-        "pk": {},
-        "signature": {},
-        "delegator": "arcblock",
-        "data": {
-          "type": "string",
-          "value": "ABCD 1234"
-        }
-      },
-      {
-        "signer": "arcblock",
-        "pk": {},
-        "signature": {},
-        "delegator": "arcblock",
-        "data": {
-          "type": "string",
-          "value": "ABCD 1234"
-        }
-      }
-    ],
-    "itx": {
-      "type": "string",
-      "value": "ABCD 1234"
-    }
-  }
-}
-```
-
-**Kind**: static typedef of [<code>GRpcClient</code>](#GRpcClient)  
-**Properties**
-
-| Name | Type                                                |
-| ---- | --------------------------------------------------- |
-| code | <code>GRpcClient.StatusCode</code>                  |
-| tx   | [<code>Transaction</code>](#GRpcClient.Transaction) |
-
 <a name="GRpcClient.RequestSendTx"></a>
 
 ### GRpcClient.RequestSendTx : <code>object</code>
@@ -1973,7 +1610,7 @@ Structure of GRpcClient.ResponseGetTx
       }
     ],
     "code": 0,
-    "time": "2019-10-28T02:04:23.309Z"
+    "time": "2019-10-31T02:40:17.478Z"
   }
 }
 ```
@@ -2017,7 +1654,7 @@ Structure of GRpcClient.ResponseGetBlock
   "block": {
     "height": 5,
     "numTxs": 2,
-    "time": "2019-10-28T02:04:23.302Z",
+    "time": "2019-10-31T02:40:17.472Z",
     "appHash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
     "proposer": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
     "txs": [
@@ -2071,7 +1708,7 @@ Structure of GRpcClient.ResponseGetBlock
           }
         ],
         "code": 0,
-        "time": "2019-10-28T02:04:23.302Z"
+        "time": "2019-10-31T02:40:17.472Z"
       },
       {
         "tx": {
@@ -2123,7 +1760,7 @@ Structure of GRpcClient.ResponseGetBlock
           }
         ],
         "code": 0,
-        "time": "2019-10-28T02:04:23.302Z"
+        "time": "2019-10-31T02:40:17.472Z"
       }
     ],
     "totalTxs": 5,
@@ -2178,7 +1815,7 @@ Structure of GRpcClient.ResponseGetBlock
           }
         ],
         "code": 0,
-        "time": "2019-10-28T02:04:23.302Z"
+        "time": "2019-10-31T02:40:17.472Z"
       },
       {
         "tx": {
@@ -2230,7 +1867,7 @@ Structure of GRpcClient.ResponseGetBlock
           }
         ],
         "code": 0,
-        "time": "2019-10-28T02:04:23.303Z"
+        "time": "2019-10-31T02:40:17.472Z"
       }
     ],
     "txsHashes": [
@@ -2327,7 +1964,7 @@ Structure of GRpcClient.ResponseGetBlocks
     {
       "height": 5,
       "numTxs": 2,
-      "time": "2019-10-28T02:04:23.303Z",
+      "time": "2019-10-31T02:40:17.473Z",
       "appHash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
       "proposer": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
       "totalTxs": 5,
@@ -2360,7 +1997,7 @@ Structure of GRpcClient.ResponseGetBlocks
     {
       "height": 5,
       "numTxs": 2,
-      "time": "2019-10-28T02:04:23.303Z",
+      "time": "2019-10-31T02:40:17.473Z",
       "appHash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
       "proposer": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
       "totalTxs": 5,
@@ -2402,254 +2039,6 @@ Structure of GRpcClient.ResponseGetBlocks
 | code   | <code>GRpcClient.StatusCode</code>                                     |
 | page   | [<code>PageInfo</code>](#GRpcClient.PageInfo)                          |
 | blocks | [<code>Array.&lt;BlockInfoSimple></code>](#GRpcClient.BlockInfoSimple) |
-
-<a name="GRpcClient.RequestCreateWallet"></a>
-
-### GRpcClient.RequestCreateWallet : <code>object</code>
-
-Structure of GRpcClient.RequestCreateWallet 
-
-```javascript
-{
-  "passphrase": "arcblock",
-  "type": {
-    "pk": 0,
-    "hash": 0,
-    "address": 0,
-    "role": 0
-  },
-  "moniker": "arcblock"
-}
-```
-
-**Kind**: static typedef of [<code>GRpcClient</code>](#GRpcClient)  
-**Properties**
-
-| Name       | Type                                              |
-| ---------- | ------------------------------------------------- |
-| passphrase | <code>string</code>                               |
-| type       | [<code>WalletType</code>](#GRpcClient.WalletType) |
-| moniker    | <code>string</code>                               |
-
-<a name="GRpcClient.ResponseCreateWallet"></a>
-
-### GRpcClient.ResponseCreateWallet : <code>object</code>
-
-Structure of GRpcClient.ResponseCreateWallet 
-
-```javascript
-{
-  "code": 0,
-  "token": "arcblock",
-  "wallet": {
-    "type": {
-      "pk": 0,
-      "hash": 0,
-      "address": 0,
-      "role": 0
-    },
-    "sk": {},
-    "pk": {},
-    "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55"
-  }
-}
-```
-
-**Kind**: static typedef of [<code>GRpcClient</code>](#GRpcClient)  
-**Properties**
-
-| Name   | Type                                              |
-| ------ | ------------------------------------------------- |
-| code   | <code>GRpcClient.StatusCode</code>                |
-| token  | <code>string</code>                               |
-| wallet | [<code>WalletInfo</code>](#GRpcClient.WalletInfo) |
-
-<a name="GRpcClient.RequestLoadWallet"></a>
-
-### GRpcClient.RequestLoadWallet : <code>object</code>
-
-Structure of GRpcClient.RequestLoadWallet 
-
-```javascript
-{
-  "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
-  "passphrase": "arcblock"
-}
-```
-
-**Kind**: static typedef of [<code>GRpcClient</code>](#GRpcClient)  
-**Properties**
-
-| Name       | Type                |
-| ---------- | ------------------- |
-| address    | <code>string</code> |
-| passphrase | <code>string</code> |
-
-<a name="GRpcClient.ResponseLoadWallet"></a>
-
-### GRpcClient.ResponseLoadWallet : <code>object</code>
-
-Structure of GRpcClient.ResponseLoadWallet 
-
-```javascript
-{
-  "code": 0,
-  "token": "arcblock",
-  "wallet": {
-    "type": {
-      "pk": 0,
-      "hash": 0,
-      "address": 0,
-      "role": 0
-    },
-    "sk": {},
-    "pk": {},
-    "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55"
-  }
-}
-```
-
-**Kind**: static typedef of [<code>GRpcClient</code>](#GRpcClient)  
-**Properties**
-
-| Name   | Type                                              |
-| ------ | ------------------------------------------------- |
-| code   | <code>GRpcClient.StatusCode</code>                |
-| token  | <code>string</code>                               |
-| wallet | [<code>WalletInfo</code>](#GRpcClient.WalletInfo) |
-
-<a name="GRpcClient.RequestRecoverWallet"></a>
-
-### GRpcClient.RequestRecoverWallet : <code>object</code>
-
-Structure of GRpcClient.RequestRecoverWallet 
-
-```javascript
-{
-  "data": {},
-  "type": {
-    "pk": 0,
-    "hash": 0,
-    "address": 0,
-    "role": 0
-  },
-  "passphrase": "arcblock",
-  "moniker": "arcblock"
-}
-```
-
-**Kind**: static typedef of [<code>GRpcClient</code>](#GRpcClient)  
-**Properties**
-
-| Name       | Type                                              |
-| ---------- | ------------------------------------------------- |
-| data       | <code>Uint8Array</code>                           |
-| type       | [<code>WalletType</code>](#GRpcClient.WalletType) |
-| passphrase | <code>string</code>                               |
-| moniker    | <code>string</code>                               |
-
-<a name="GRpcClient.ResponseRecoverWallet"></a>
-
-### GRpcClient.ResponseRecoverWallet : <code>object</code>
-
-Structure of GRpcClient.ResponseRecoverWallet 
-
-```javascript
-{
-  "code": 0,
-  "token": "arcblock",
-  "wallet": {
-    "type": {
-      "pk": 0,
-      "hash": 0,
-      "address": 0,
-      "role": 0
-    },
-    "sk": {},
-    "pk": {},
-    "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55"
-  }
-}
-```
-
-**Kind**: static typedef of [<code>GRpcClient</code>](#GRpcClient)  
-**Properties**
-
-| Name   | Type                                              |
-| ------ | ------------------------------------------------- |
-| code   | <code>GRpcClient.StatusCode</code>                |
-| token  | <code>string</code>                               |
-| wallet | [<code>WalletInfo</code>](#GRpcClient.WalletInfo) |
-
-<a name="GRpcClient.RequestListWallet"></a>
-
-### GRpcClient.RequestListWallet : <code>object</code>
-
-Structure of GRpcClient.RequestListWallet 
-
-```javascript
-{}
-```
-
-**Kind**: static typedef of [<code>GRpcClient</code>](#GRpcClient)  
-<a name="GRpcClient.ResponseListWallet"></a>
-
-### GRpcClient.ResponseListWallet : <code>object</code>
-
-Structure of GRpcClient.ResponseListWallet 
-
-```javascript
-{
-  "code": 0,
-  "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55"
-}
-```
-
-**Kind**: static typedef of [<code>GRpcClient</code>](#GRpcClient)  
-**Properties**
-
-| Name    | Type                               |
-| ------- | ---------------------------------- |
-| code    | <code>GRpcClient.StatusCode</code> |
-| address | <code>string</code>                |
-
-<a name="GRpcClient.RequestRemoveWallet"></a>
-
-### GRpcClient.RequestRemoveWallet : <code>object</code>
-
-Structure of GRpcClient.RequestRemoveWallet 
-
-```javascript
-{
-  "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55"
-}
-```
-
-**Kind**: static typedef of [<code>GRpcClient</code>](#GRpcClient)  
-**Properties**
-
-| Name    | Type                |
-| ------- | ------------------- |
-| address | <code>string</code> |
-
-<a name="GRpcClient.ResponseRemoveWallet"></a>
-
-### GRpcClient.ResponseRemoveWallet : <code>object</code>
-
-Structure of GRpcClient.ResponseRemoveWallet 
-
-```javascript
-{
-  "code": 0
-}
-```
-
-**Kind**: static typedef of [<code>GRpcClient</code>](#GRpcClient)  
-**Properties**
-
-| Name | Type                               |
-| ---- | ---------------------------------- |
-| code | <code>GRpcClient.StatusCode</code> |
 
 <a name="GRpcClient.RequestDeclareNode"></a>
 
@@ -2751,8 +2140,8 @@ Structure of GRpcClient.ResponseGetAccountState
     "context": {
       "genesisTx": "arcblock",
       "renaissanceTx": "arcblock",
-      "genesisTime": "2019-10-28T02:04:23.304Z",
-      "renaissanceTime": "2019-10-28T02:04:23.304Z"
+      "genesisTime": "2019-10-31T02:40:17.474Z",
+      "renaissanceTime": "2019-10-31T02:40:17.474Z"
     },
     "issuer": "arcblock",
     "migratedTo": [
@@ -2865,7 +2254,7 @@ Structure of GRpcClient.ResponseGetAssetState
     "readonly": true,
     "transferrable": true,
     "ttl": 2,
-    "consumedTime": "2019-10-28T02:04:23.304Z",
+    "consumedTime": "2019-10-31T02:40:17.474Z",
     "issuer": "arcblock",
     "parent": "arcblock",
     "stake": {
@@ -2893,8 +2282,8 @@ Structure of GRpcClient.ResponseGetAssetState
     "context": {
       "genesisTx": "arcblock",
       "renaissanceTx": "arcblock",
-      "genesisTime": "2019-10-28T02:04:23.304Z",
-      "renaissanceTime": "2019-10-28T02:04:23.304Z"
+      "genesisTime": "2019-10-31T02:40:17.474Z",
+      "renaissanceTime": "2019-10-31T02:40:17.474Z"
     },
     "data": {
       "type": "string",
@@ -3003,8 +2392,8 @@ Structure of GRpcClient.ResponseGetProtocolState
     "context": {
       "genesisTx": "arcblock",
       "renaissanceTx": "arcblock",
-      "genesisTime": "2019-10-28T02:04:23.305Z",
-      "renaissanceTime": "2019-10-28T02:04:23.305Z"
+      "genesisTime": "2019-10-31T02:40:17.475Z",
+      "renaissanceTime": "2019-10-31T02:40:17.475Z"
     },
     "data": {
       "type": "string",
@@ -3065,8 +2454,8 @@ Structure of GRpcClient.ResponseGetStakeState
     "context": {
       "genesisTx": "arcblock",
       "renaissanceTx": "arcblock",
-      "genesisTime": "2019-10-28T02:04:23.305Z",
-      "renaissanceTime": "2019-10-28T02:04:23.305Z"
+      "genesisTime": "2019-10-31T02:40:17.475Z",
+      "renaissanceTime": "2019-10-31T02:40:17.475Z"
     },
     "data": {
       "type": "string",
@@ -3168,8 +2557,8 @@ Structure of GRpcClient.ResponseGetForgeState
         "context": {
           "genesisTx": "arcblock",
           "renaissanceTx": "arcblock",
-          "genesisTime": "2019-10-28T02:04:23.305Z",
-          "renaissanceTime": "2019-10-28T02:04:23.305Z"
+          "genesisTime": "2019-10-31T02:40:17.475Z",
+          "renaissanceTime": "2019-10-31T02:40:17.475Z"
         }
       }
     },
@@ -3256,62 +2645,6 @@ Structure of GRpcClient.ResponseGetForgeState
 | code  | <code>GRpcClient.StatusCode</code>                |
 | state | [<code>ForgeState</code>](#GRpcClient.ForgeState) |
 
-<a name="GRpcClient.RequestGetTetherState"></a>
-
-### GRpcClient.RequestGetTetherState : <code>object</code>
-
-Structure of GRpcClient.RequestGetTetherState 
-
-```javascript
-{
-  "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
-  "keys": [
-    "arcblock",
-    "arcblock"
-  ],
-  "height": 5
-}
-```
-
-**Kind**: static typedef of [<code>GRpcClient</code>](#GRpcClient)  
-**Properties**
-
-| Name    | Type                           |
-| ------- | ------------------------------ |
-| address | <code>string</code>            |
-| keys    | <code>Array.&lt;string></code> |
-| height  | <code>number</code>            |
-
-<a name="GRpcClient.ResponseGetTetherState"></a>
-
-### GRpcClient.ResponseGetTetherState : <code>object</code>
-
-Structure of GRpcClient.ResponseGetTetherState 
-
-```javascript
-{
-  "code": 0,
-  "state": {
-    "hash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
-    "available": true,
-    "custodian": "arcblock",
-    "depositor": "arcblock",
-    "withdrawer": "arcblock",
-    "target": "arcblock",
-    "locktime": "2019-10-28T02:04:23.305Z",
-    "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55"
-  }
-}
-```
-
-**Kind**: static typedef of [<code>GRpcClient</code>](#GRpcClient)  
-**Properties**
-
-| Name  | Type                                                |
-| ----- | --------------------------------------------------- |
-| code  | <code>GRpcClient.StatusCode</code>                  |
-| state | [<code>TetherState</code>](#GRpcClient.TetherState) |
-
 <a name="GRpcClient.RequestGetSwapState"></a>
 
 ### GRpcClient.RequestGetSwapState : <code>object</code>
@@ -3362,8 +2695,8 @@ Structure of GRpcClient.ResponseGetSwapState
     "context": {
       "genesisTx": "arcblock",
       "renaissanceTx": "arcblock",
-      "genesisTime": "2019-10-28T02:04:23.305Z",
-      "renaissanceTime": "2019-10-28T02:04:23.305Z"
+      "genesisTime": "2019-10-31T02:40:17.475Z",
+      "renaissanceTime": "2019-10-31T02:40:17.475Z"
     }
   }
 }
@@ -3424,8 +2757,8 @@ Structure of GRpcClient.ResponseGetDelegateState
     "context": {
       "genesisTx": "arcblock",
       "renaissanceTx": "arcblock",
-      "genesisTime": "2019-10-28T02:04:23.305Z",
-      "renaissanceTime": "2019-10-28T02:04:23.305Z"
+      "genesisTime": "2019-10-31T02:40:17.475Z",
+      "renaissanceTime": "2019-10-31T02:40:17.475Z"
     },
     "data": {
       "type": "string",
@@ -3590,7 +2923,7 @@ Structure of GRpcClient.ResponseGetChainInfo
     "appHash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
     "blockHash": {},
     "blockHeight": 5,
-    "blockTime": "2019-10-28T02:04:23.303Z",
+    "blockTime": "2019-10-31T02:40:17.473Z",
     "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
     "votingPower": 5,
     "totalTxs": 5,
@@ -3643,7 +2976,7 @@ Structure of GRpcClient.ResponseGetNodeInfo
     "appHash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
     "blockHash": {},
     "blockHeight": 5,
-    "blockTime": "2019-10-28T02:04:23.303Z",
+    "blockTime": "2019-10-31T02:40:17.473Z",
     "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
     "votingPower": 5,
     "totalTxs": 5,
@@ -3756,7 +3089,7 @@ Structure of GRpcClient.ResponseSearch
         }
       ],
       "code": 0,
-      "time": "2019-10-28T02:04:23.304Z"
+      "time": "2019-10-31T02:40:17.473Z"
     },
     {
       "tx": {
@@ -3808,7 +3141,7 @@ Structure of GRpcClient.ResponseSearch
         }
       ],
       "code": 0,
-      "time": "2019-10-28T02:04:23.304Z"
+      "time": "2019-10-31T02:40:17.474Z"
     }
   ]
 }
@@ -5120,94 +4453,6 @@ Structure of GRpcClient.ResponseListBlocks
 | page   | [<code>PageInfo</code>](#GRpcClient.PageInfo)                    |
 | blocks | [<code>Array.&lt;IndexedBlock></code>](#GRpcClient.IndexedBlock) |
 
-<a name="GRpcClient.RequestListTethers"></a>
-
-### GRpcClient.RequestListTethers : <code>object</code>
-
-Structure of GRpcClient.RequestListTethers 
-
-```javascript
-{
-  "paging": {
-    "cursor": "arcblock",
-    "size": 2,
-    "order": [
-      {
-        "field": "arcblock",
-        "type": "arcblock"
-      },
-      {
-        "field": "arcblock",
-        "type": "arcblock"
-      }
-    ]
-  },
-  "depositor": "arcblock",
-  "withdrawer": "arcblock",
-  "custodian": "arcblock",
-  "available": true
-}
-```
-
-**Kind**: static typedef of [<code>GRpcClient</code>](#GRpcClient)  
-**Properties**
-
-| Name       | Type                                            |
-| ---------- | ----------------------------------------------- |
-| paging     | [<code>PageInput</code>](#GRpcClient.PageInput) |
-| depositor  | <code>string</code>                             |
-| withdrawer | <code>string</code>                             |
-| custodian  | <code>string</code>                             |
-| available  | <code>boolean</code>                            |
-
-<a name="GRpcClient.ResponseListTethers"></a>
-
-### GRpcClient.ResponseListTethers : <code>object</code>
-
-Structure of GRpcClient.ResponseListTethers 
-
-```javascript
-{
-  "code": 0,
-  "page": {
-    "cursor": "arcblock",
-    "next": true,
-    "total": 2
-  },
-  "tethers": [
-    {
-      "hash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
-      "available": true,
-      "custodian": "arcblock",
-      "depositor": "arcblock",
-      "withdrawer": "arcblock",
-      "target": "arcblock",
-      "locktime": "2019-10-28T02:04:23.307Z",
-      "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55"
-    },
-    {
-      "hash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
-      "available": true,
-      "custodian": "arcblock",
-      "depositor": "arcblock",
-      "withdrawer": "arcblock",
-      "target": "arcblock",
-      "locktime": "2019-10-28T02:04:23.307Z",
-      "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55"
-    }
-  ]
-}
-```
-
-**Kind**: static typedef of [<code>GRpcClient</code>](#GRpcClient)  
-**Properties**
-
-| Name    | Type                                                           |
-| ------- | -------------------------------------------------------------- |
-| code    | <code>GRpcClient.StatusCode</code>                             |
-| page    | [<code>PageInfo</code>](#GRpcClient.PageInfo)                  |
-| tethers | [<code>Array.&lt;TetherState></code>](#GRpcClient.TetherState) |
-
 <a name="GRpcClient.RequestListSwap"></a>
 
 ### GRpcClient.RequestListSwap : <code>object</code>
@@ -5276,8 +4521,8 @@ Structure of GRpcClient.ResponseListSwap
       "context": {
         "genesisTx": "arcblock",
         "renaissanceTx": "arcblock",
-        "genesisTime": "2019-10-28T02:04:23.308Z",
-        "renaissanceTime": "2019-10-28T02:04:23.308Z"
+        "genesisTime": "2019-10-31T02:40:17.477Z",
+        "renaissanceTime": "2019-10-31T02:40:17.477Z"
       }
     },
     {
@@ -5295,8 +4540,8 @@ Structure of GRpcClient.ResponseListSwap
       "context": {
         "genesisTx": "arcblock",
         "renaissanceTx": "arcblock",
-        "genesisTime": "2019-10-28T02:04:23.308Z",
-        "renaissanceTime": "2019-10-28T02:04:23.308Z"
+        "genesisTime": "2019-10-31T02:40:17.477Z",
+        "renaissanceTime": "2019-10-31T02:40:17.477Z"
       }
     }
   ]
@@ -6307,43 +5552,6 @@ Structure of GRpcClient.ProtocolState
 | context      | [<code>StateContext</code>](#GRpcClient.StateContext)         |
 | data         | [<code>Any</code>](#GRpcClient.Any)                           |
 
-<a name="GRpcClient.TetherState"></a>
-
-### GRpcClient.TetherState : <code>object</code>
-
-Structure of GRpcClient.TetherState
-
-**Kind**: static typedef of [<code>GRpcClient</code>](#GRpcClient)  
-**Properties**
-
-| Name       | Type                                            |
-| ---------- | ----------------------------------------------- |
-| hash       | <code>string</code>                             |
-| available  | <code>boolean</code>                            |
-| custodian  | <code>string</code>                             |
-| depositor  | <code>string</code>                             |
-| withdrawer | <code>string</code>                             |
-| value      | [<code>BigUint</code>](#GRpcClient.BigUint)     |
-| commission | [<code>BigUint</code>](#GRpcClient.BigUint)     |
-| charge     | [<code>BigUint</code>](#GRpcClient.BigUint)     |
-| target     | <code>string</code>                             |
-| locktime   | [<code>Timestamp</code>](#GRpcClient.Timestamp) |
-| address    | <code>string</code>                             |
-
-<a name="GRpcClient.TetherInfo"></a>
-
-### GRpcClient.TetherInfo : <code>object</code>
-
-Structure of GRpcClient.TetherInfo
-
-**Kind**: static typedef of [<code>GRpcClient</code>](#GRpcClient)  
-**Properties**
-
-| Name      | Type                 |
-| --------- | -------------------- |
-| available | <code>boolean</code> |
-| hash      | <code>string</code>  |
-
 <a name="GRpcClient.SwapState"></a>
 
 ### GRpcClient.SwapState : <code>object</code>
@@ -7344,7 +6552,7 @@ Structure of GRpcClient.ExchangeTx
       "arcblock"
     ]
   },
-  "expiredAt": "2019-10-28T02:04:23.312Z",
+  "expiredAt": "2019-10-31T02:40:17.480Z",
   "data": {
     "type": "string",
     "value": "ABCD 1234"
@@ -7752,7 +6960,7 @@ Structure of GRpcClient.WithdrawTokenTx
   "to": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
   "chainType": "arcblock",
   "chainId": "arcblock",
-  "ttl": "2019-10-28T02:04:23.313Z"
+  "ttl": "2019-10-31T02:40:17.481Z"
 }
 ```
 

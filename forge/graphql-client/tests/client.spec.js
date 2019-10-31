@@ -12,7 +12,7 @@ describe('GraphQLClient', () => {
     expect(typeof GraphQLClient).toEqual('function');
   });
 
-  let client = new GraphQLClient('http://127.0.0.1:8210/api');
+  let client = new GraphQLClient('http://127.0.0.1:8214/api');
   test('should have alias methods', () => {
     expect(typeof client.checkin).toEqual('function');
     expect(typeof client.transfer).toEqual('function');
@@ -130,6 +130,7 @@ describe('GraphQLClient', () => {
       const signed = await client.signDeclareTx({ tx, wallet });
       await client.sendDeclareTx({ tx: signed, wallet });
     } catch (err) {
+      console.error(err.errors);
       expect(err).toBeFalsy();
     }
   });
@@ -145,6 +146,7 @@ describe('GraphQLClient', () => {
       const base64 = await client.signDeclareTx({ tx, wallet, encoding: 'base64' });
       await client.sendTx({ tx: base64 });
     } catch (err) {
+      console.error(err.errors);
       expect(err).toBeFalsy();
     }
   });
@@ -224,6 +226,7 @@ describe('GraphQLClient', () => {
         signature: encoded1.signature,
       });
     } catch (err) {
+      console.error(err.errors);
       expect(err).toBeFalsy();
     }
   }, 10000);

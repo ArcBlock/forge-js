@@ -10,7 +10,7 @@
 const GraphqlClient = require('@arcblock/graphql-client');
 const { fromRandom } = require('@arcblock/forge-wallet');
 
-const endpoint = process.env.FORGE_API_HOST || 'http://127.0.0.1:8212'; // testnet
+const endpoint = process.env.FORGE_API_HOST || 'http://127.0.0.1:8210'; // testnet
 
 const client = new GraphqlClient(`${endpoint}/api`);
 const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));

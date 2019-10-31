@@ -824,13 +824,15 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
    * @param {object} params
    * @param {object} params.tx - the transaction object from `prepareExchange`
    * @param {string} params.delegator - who authorized this transaction
+   * @param {object} params.data - extra data in the multi sig
    * @param {WalletObject} params.wallet - the wallet who is the demander
    * @returns {Promise} the `transaction` object once resolved
    */
-  client.finalizeExchange = ({ tx, delegator = '', wallet }) =>
+  client.finalizeExchange = ({ tx, delegator = '', data, wallet }) =>
     client.multiSignExchangeTx({
       tx,
       delegator,
+      data,
       wallet,
     });
 

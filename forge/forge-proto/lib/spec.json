@@ -27,6 +27,7 @@
             "storage_rpc_error": 25,
             "noent": 26,
             "account_migrated": 27,
+            "rpc_connection_error": 28,
             "unsupported_stake": 30,
             "insufficient_stake": 31,
             "invalid_stake_state": 32,
@@ -45,7 +46,6 @@
             "invalid_deposit_target": 45,
             "invalid_depositor": 46,
             "invalid_withdrawer": 47,
-            "duplicate_tether": 48,
             "invalid_expiry_date": 49,
             "invalid_deposit": 50,
             "invalid_custodian": 51,
@@ -68,7 +68,8 @@
             "invalid_time": 68,
             "forbidden": 403,
             "internal": 500,
-            "timeout": 504
+            "timeout": 504,
+            "duplicate_tether": 48
           }
         },
         "KeyType": {
@@ -107,8 +108,8 @@
             "role_validator": 8,
             "role_group": 9,
             "role_tx": 10,
-            "role_tether": 11,
-            "role_any": 63
+            "role_any": 63,
+            "role_tether": 11
           }
         },
         "UpgradeType": {
@@ -163,78 +164,6 @@
             "running": 0,
             "paused": 1,
             "terminated": 2
-          }
-        },
-        "RequestCreateTx": {
-          "fields": {
-            "itx": {
-              "type": "google.protobuf.Any",
-              "id": 1
-            },
-            "from": {
-              "type": "string",
-              "id": 2
-            },
-            "nonce": {
-              "type": "uint64",
-              "id": 3
-            },
-            "wallet": {
-              "type": "WalletInfo",
-              "id": 4
-            },
-            "token": {
-              "type": "string",
-              "id": 5
-            }
-          }
-        },
-        "ResponseCreateTx": {
-          "fields": {
-            "code": {
-              "type": "StatusCode",
-              "id": 1
-            },
-            "tx": {
-              "type": "Transaction",
-              "id": 2
-            }
-          }
-        },
-        "RequestMultisig": {
-          "fields": {
-            "tx": {
-              "type": "Transaction",
-              "id": 1
-            },
-            "data": {
-              "type": "google.protobuf.Any",
-              "id": 2
-            },
-            "wallet": {
-              "type": "WalletInfo",
-              "id": 3
-            },
-            "token": {
-              "type": "string",
-              "id": 4
-            },
-            "delegatee": {
-              "type": "string",
-              "id": 5
-            }
-          }
-        },
-        "ResponseMultisig": {
-          "fields": {
-            "code": {
-              "type": "StatusCode",
-              "id": 1
-            },
-            "tx": {
-              "type": "Transaction",
-              "id": 2
-            }
           }
         },
         "RequestSendTx": {
@@ -339,133 +268,6 @@
               "rule": "repeated",
               "type": "BlockInfoSimple",
               "id": 3
-            }
-          }
-        },
-        "RequestCreateWallet": {
-          "fields": {
-            "passphrase": {
-              "type": "string",
-              "id": 1
-            },
-            "type": {
-              "type": "WalletType",
-              "id": 2
-            },
-            "moniker": {
-              "type": "string",
-              "id": 3
-            }
-          }
-        },
-        "ResponseCreateWallet": {
-          "fields": {
-            "code": {
-              "type": "StatusCode",
-              "id": 1
-            },
-            "token": {
-              "type": "string",
-              "id": 2
-            },
-            "wallet": {
-              "type": "WalletInfo",
-              "id": 3
-            }
-          }
-        },
-        "RequestLoadWallet": {
-          "fields": {
-            "address": {
-              "type": "string",
-              "id": 1
-            },
-            "passphrase": {
-              "type": "string",
-              "id": 2
-            }
-          }
-        },
-        "ResponseLoadWallet": {
-          "fields": {
-            "code": {
-              "type": "StatusCode",
-              "id": 1
-            },
-            "token": {
-              "type": "string",
-              "id": 2
-            },
-            "wallet": {
-              "type": "WalletInfo",
-              "id": 3
-            }
-          }
-        },
-        "RequestRecoverWallet": {
-          "fields": {
-            "data": {
-              "type": "bytes",
-              "id": 1
-            },
-            "type": {
-              "type": "WalletType",
-              "id": 2
-            },
-            "passphrase": {
-              "type": "string",
-              "id": 3
-            },
-            "moniker": {
-              "type": "string",
-              "id": 4
-            }
-          }
-        },
-        "ResponseRecoverWallet": {
-          "fields": {
-            "code": {
-              "type": "StatusCode",
-              "id": 1
-            },
-            "token": {
-              "type": "string",
-              "id": 2
-            },
-            "wallet": {
-              "type": "WalletInfo",
-              "id": 3
-            }
-          }
-        },
-        "RequestListWallet": {
-          "fields": {}
-        },
-        "ResponseListWallet": {
-          "fields": {
-            "code": {
-              "type": "StatusCode",
-              "id": 1
-            },
-            "address": {
-              "type": "string",
-              "id": 2
-            }
-          }
-        },
-        "RequestRemoveWallet": {
-          "fields": {
-            "address": {
-              "type": "string",
-              "id": 1
-            }
-          }
-        },
-        "ResponseRemoveWallet": {
-          "fields": {
-            "code": {
-              "type": "StatusCode",
-              "id": 1
             }
           }
         },
@@ -626,35 +428,6 @@
             },
             "state": {
               "type": "ForgeState",
-              "id": 2
-            }
-          }
-        },
-        "RequestGetTetherState": {
-          "fields": {
-            "address": {
-              "type": "string",
-              "id": 1
-            },
-            "keys": {
-              "rule": "repeated",
-              "type": "string",
-              "id": 2
-            },
-            "height": {
-              "type": "uint64",
-              "id": 3
-            }
-          }
-        },
-        "ResponseGetTetherState": {
-          "fields": {
-            "code": {
-              "type": "StatusCode",
-              "id": 1
-            },
-            "state": {
-              "type": "TetherState",
               "id": 2
             }
           }
@@ -1355,47 +1128,6 @@
             "blocks": {
               "rule": "repeated",
               "type": "IndexedBlock",
-              "id": 3
-            }
-          }
-        },
-        "RequestListTethers": {
-          "fields": {
-            "paging": {
-              "type": "PageInput",
-              "id": 1
-            },
-            "depositor": {
-              "type": "string",
-              "id": 2
-            },
-            "withdrawer": {
-              "type": "string",
-              "id": 3
-            },
-            "custodian": {
-              "type": "string",
-              "id": 4
-            },
-            "available": {
-              "type": "bool",
-              "id": 5
-            }
-          }
-        },
-        "ResponseListTethers": {
-          "fields": {
-            "code": {
-              "type": "StatusCode",
-              "id": 1
-            },
-            "page": {
-              "type": "PageInfo",
-              "id": 2
-            },
-            "tethers": {
-              "rule": "repeated",
-              "type": "TetherState",
               "id": 3
             }
           }
@@ -3004,66 +2736,6 @@
             }
           }
         },
-        "TetherState": {
-          "fields": {
-            "hash": {
-              "type": "string",
-              "id": 1
-            },
-            "available": {
-              "type": "bool",
-              "id": 2
-            },
-            "custodian": {
-              "type": "string",
-              "id": 3
-            },
-            "depositor": {
-              "type": "string",
-              "id": 4
-            },
-            "withdrawer": {
-              "type": "string",
-              "id": 5
-            },
-            "value": {
-              "type": "BigUint",
-              "id": 6
-            },
-            "commission": {
-              "type": "BigUint",
-              "id": 7
-            },
-            "charge": {
-              "type": "BigUint",
-              "id": 8
-            },
-            "target": {
-              "type": "string",
-              "id": 9
-            },
-            "locktime": {
-              "type": "google.protobuf.Timestamp",
-              "id": 10
-            },
-            "address": {
-              "type": "string",
-              "id": 11
-            }
-          }
-        },
-        "TetherInfo": {
-          "fields": {
-            "available": {
-              "type": "bool",
-              "id": 1
-            },
-            "hash": {
-              "type": "string",
-              "id": 2
-            }
-          }
-        },
         "SwapState": {
           "fields": {
             "hash": {
@@ -3718,14 +3390,6 @@
         },
         "ChainRpc": {
           "methods": {
-            "create_tx": {
-              "requestType": "RequestCreateTx",
-              "responseType": "ResponseCreateTx"
-            },
-            "multisig": {
-              "requestType": "RequestMultisig",
-              "responseType": "ResponseMultisig"
-            },
             "send_tx": {
               "requestType": "RequestSendTx",
               "responseType": "ResponseSendTx"
@@ -3837,12 +3501,6 @@
               "responseType": "ResponseGetStakeState",
               "responseStream": true
             },
-            "get_tether_state": {
-              "requestType": "RequestGetTetherState",
-              "requestStream": true,
-              "responseType": "ResponseGetTetherState",
-              "responseStream": true
-            },
             "get_swap_state": {
               "requestType": "RequestGetSwapState",
               "requestStream": true,
@@ -3859,27 +3517,6 @@
         },
         "WalletRpc": {
           "methods": {
-            "create_wallet": {
-              "requestType": "RequestCreateWallet",
-              "responseType": "ResponseCreateWallet"
-            },
-            "load_wallet": {
-              "requestType": "RequestLoadWallet",
-              "responseType": "ResponseLoadWallet"
-            },
-            "recover_wallet": {
-              "requestType": "RequestRecoverWallet",
-              "responseType": "ResponseRecoverWallet"
-            },
-            "list_wallet": {
-              "requestType": "RequestListWallet",
-              "responseType": "ResponseListWallet",
-              "responseStream": true
-            },
-            "remove_wallet": {
-              "requestType": "RequestRemoveWallet",
-              "responseType": "ResponseRemoveWallet"
-            },
             "declare_node": {
               "requestType": "RequestDeclareNode",
               "responseType": "ResponseDeclareNode"
@@ -3923,10 +3560,6 @@
             "get_health_status": {
               "requestType": "RequestGetHealthStatus",
               "responseType": "ResponseGetHealthStatus"
-            },
-            "list_tethers": {
-              "requestType": "RequestListTethers",
-              "responseType": "ResponseListTethers"
             },
             "list_swap": {
               "requestType": "RequestListSwap",
