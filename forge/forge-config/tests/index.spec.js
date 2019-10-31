@@ -1,4 +1,3 @@
-const path = require('path');
 const { parse } = require('../lib');
 
 describe('#parse', () => {
@@ -12,12 +11,5 @@ describe('#parse', () => {
     } catch (err) {
       expect(err).toBeTruthy();
     }
-  });
-
-  test('should parse config as expected', () => {
-    const config = parse(path.resolve(__dirname, '../../../examples/kvstore/config/forge.toml'));
-    expect(config.app).toBeTruthy();
-    expect(config.forge.decimal).toBeTruthy();
-    expect(config.forge.web).toBeTruthy();
   });
 });
