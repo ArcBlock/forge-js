@@ -15,6 +15,9 @@ tags:
 Generate a transaction verifier by tx hash
 Emit events on transaction included in a block
 
+* `error`: when there is something wrong when verify the transaction
+* `done`: when the transaction is successfully verified
+
 **Kind**: global function  
 **Returns**: `EventEmitter` - verifier object  
 

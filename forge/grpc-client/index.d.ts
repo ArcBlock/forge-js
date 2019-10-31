@@ -73,7 +73,6 @@ export enum StatusCode {
   INVALID_DEPOSIT_TARGET = 45,
   INVALID_DEPOSITOR = 46,
   INVALID_WITHDRAWER = 47,
-  DUPLICATE_TETHER = 48,
   INVALID_EXPIRY_DATE = 49,
   INVALID_DEPOSIT = 50,
   INVALID_CUSTODIAN = 51,
@@ -97,6 +96,7 @@ export enum StatusCode {
   FORBIDDEN = 403,
   INTERNAL = 500,
   TIMEOUT = 504,
+  DUPLICATE_TETHER = 48,
 }
 
 export enum KeyType {
@@ -131,8 +131,8 @@ export enum RoleType {
   ROLE_VALIDATOR = 8,
   ROLE_GROUP = 9,
   ROLE_TX = 10,
-  ROLE_TETHER = 11,
   ROLE_ANY = 63,
+  ROLE_TETHER = 11,
 }
 
 export enum UpgradeType {
@@ -184,32 +184,6 @@ export enum ProtocolStatus {
   TERMINATED = 2,
 }
 
-export interface RequestCreateTx {
-  itx: google.protobuf.Any;
-  from: string;
-  nonce: number;
-  wallet: forge_abi.WalletInfo;
-  token: string;
-}
-
-export interface ResponseCreateTx {
-  code: forge_abi.StatusCode;
-  tx: forge_abi.Transaction;
-}
-
-export interface RequestMultisig {
-  tx: forge_abi.Transaction;
-  data: google.protobuf.Any;
-  wallet: forge_abi.WalletInfo;
-  token: string;
-  delegatee: string;
-}
-
-export interface ResponseMultisig {
-  code: forge_abi.StatusCode;
-  tx: forge_abi.Transaction;
-}
-
 export interface RequestSendTx {
   tx: forge_abi.Transaction;
   wallet: forge_abi.WalletInfo;
@@ -250,58 +224,6 @@ export interface ResponseGetBlocks {
   code: forge_abi.StatusCode;
   page: forge_abi.PageInfo;
   blocks: Array<forge_abi.BlockInfoSimple>;
-}
-
-export interface RequestCreateWallet {
-  type: forge_abi.WalletType;
-  moniker: string;
-}
-
-export interface ResponseCreateWallet {
-  code: forge_abi.StatusCode;
-  token: string;
-  wallet: forge_abi.WalletInfo;
-}
-
-export interface RequestLoadWallet {
-  address: string;
-  passphrase: string;
-}
-
-export interface ResponseLoadWallet {
-  code: forge_abi.StatusCode;
-  token: string;
-  wallet: forge_abi.WalletInfo;
-}
-
-export interface RequestRecoverWallet {
-  data: Uint8Array;
-  type: forge_abi.WalletType;
-  passphrase: string;
-  moniker: string;
-}
-
-export interface ResponseRecoverWallet {
-  code: forge_abi.StatusCode;
-  token: string;
-  wallet: forge_abi.WalletInfo;
-}
-
-export interface RequestListWallet {
-
-}
-
-export interface ResponseListWallet {
-  code: forge_abi.StatusCode;
-  address: string;
-}
-
-export interface RequestRemoveWallet {
-  address: string;
-}
-
-export interface ResponseRemoveWallet {
-  code: forge_abi.StatusCode;
 }
 
 export interface RequestDeclareNode {
@@ -365,17 +287,6 @@ export interface RequestGetForgeState {
 export interface ResponseGetForgeState {
   code: forge_abi.StatusCode;
   state: forge_abi.ForgeState;
-}
-
-export interface RequestGetTetherState {
-  address: string;
-  keys: Array<string>;
-  height: number;
-}
-
-export interface ResponseGetTetherState {
-  code: forge_abi.StatusCode;
-  state: forge_abi.TetherState;
 }
 
 export interface RequestGetSwapState {
@@ -635,20 +546,6 @@ export interface ResponseListBlocks {
   code: forge_abi.StatusCode;
   page: forge_abi.PageInfo;
   blocks: Array<forge_abi.IndexedBlock>;
-}
-
-export interface RequestListTethers {
-  paging: forge_abi.PageInput;
-  depositor: string;
-  withdrawer: string;
-  custodian: string;
-  available: boolean;
-}
-
-export interface ResponseListTethers {
-  code: forge_abi.StatusCode;
-  page: forge_abi.PageInfo;
-  tethers: Array<forge_abi.TetherState>;
 }
 
 export interface RequestListSwap {
@@ -1149,25 +1046,6 @@ export interface ProtocolState {
   data: google.protobuf.Any;
 }
 
-export interface TetherState {
-  hash: string;
-  available: boolean;
-  custodian: string;
-  depositor: string;
-  withdrawer: string;
-  value: forge_abi.BigUint;
-  commission: forge_abi.BigUint;
-  charge: forge_abi.BigUint;
-  target: string;
-  locktime: google.protobuf.Timestamp;
-  address: string;
-}
-
-export interface TetherInfo {
-  available: boolean;
-  hash: string;
-}
-
 export interface SwapState {
   hash: string;
   address: string;
@@ -1422,6 +1300,11 @@ export interface ActivateProtocolTx {
   data: google.protobuf.Any;
 }
 
+export interface ApproveTetherTx {
+  withdraw: string;
+  data: google.protobuf.Any;
+}
+
 export interface ApproveWithdrawTx {
   withdrawTxHash: string;
   evidence: forge_abi.Evidence;
@@ -1494,6 +1377,15 @@ export interface DelegateOp {
   rules: Array<string>;
 }
 
+export interface DepositTetherTx {
+  value: forge_abi.BigUint;
+  commission: forge_abi.BigUint;
+  charge: forge_abi.BigUint;
+  target: string;
+  withdrawer: string;
+  locktime: google.protobuf.Timestamp;
+}
+
 export interface DepositTokenTx {
   value: forge_abi.BigUint;
   address: string;
@@ -1509,6 +1401,19 @@ export interface ExchangeTx {
   to: string;
   sender: forge_abi.ExchangeInfo;
   receiver: forge_abi.ExchangeInfo;
+  expiredAt: google.protobuf.Timestamp;
+  data: google.protobuf.Any;
+}
+
+export interface TetherExchangeInfo {
+  value: forge_abi.BigUint;
+  assets: Array<string>;
+  deposit: forge_abi.Transaction;
+}
+
+export interface ExchangeTetherTx {
+  sender: forge_abi.ExchangeInfo;
+  receiver: forge_abi.TetherExchangeInfo;
   expiredAt: google.protobuf.Timestamp;
   data: google.protobuf.Any;
 }
@@ -1534,6 +1439,11 @@ export interface RevokeDelegateTx {
 
 export interface RevokeSwapTx {
   address: string;
+  data: google.protobuf.Any;
+}
+
+export interface RevokeTetherTx {
+  tether: string;
   data: google.protobuf.Any;
 }
 
@@ -1591,6 +1501,25 @@ export interface UpgradeNodeTx {
   height: number;
   version: string;
   override: boolean;
+}
+
+export interface TetherTradeInfo {
+  value: forge_abi.BigUint;
+  assets: Array<string>;
+  tether: string;
+}
+
+export interface WithdrawTetherTx {
+  from: string;
+  nonce: number;
+  chainId: string;
+  pk: Uint8Array;
+  signature: Uint8Array;
+  signatures: Array<forge_abi.Multisig>;
+  sender: forge_abi.ExchangeInfo;
+  receiver: forge_abi.TetherTradeInfo;
+  expiredAt: google.protobuf.Timestamp;
+  data: google.protobuf.Any;
 }
 
 export interface WithdrawTokenTx {
