@@ -195,7 +195,7 @@ class AssetFactory {
 
     const asset = Object.assign(
       {
-        moniker: payload.name,
+        moniker: payload.data.name,
         readonly: false,
         transferrable: true,
         data: {
