@@ -3631,18 +3631,6 @@
             }
           }
         },
-        "ApproveTetherTx": {
-          "fields": {
-            "withdraw": {
-              "type": "string",
-              "id": 1
-            },
-            "data": {
-              "type": "google.protobuf.Any",
-              "id": 15
-            }
-          }
-        },
         "ApproveWithdrawTx": {
           "fields": {
             "withdrawTxHash": {
@@ -3855,34 +3843,6 @@
             }
           }
         },
-        "DepositTetherTx": {
-          "fields": {
-            "value": {
-              "type": "BigUint",
-              "id": 1
-            },
-            "commission": {
-              "type": "BigUint",
-              "id": 2
-            },
-            "charge": {
-              "type": "BigUint",
-              "id": 3
-            },
-            "target": {
-              "type": "string",
-              "id": 4
-            },
-            "withdrawer": {
-              "type": "string",
-              "id": 5
-            },
-            "locktime": {
-              "type": "google.protobuf.Timestamp",
-              "id": 6
-            }
-          }
-        },
         "DepositTokenTx": {
           "fields": {
             "value": {
@@ -3929,43 +3889,6 @@
             "expiredAt": {
               "type": "google.protobuf.Timestamp",
               "id": 4
-            },
-            "data": {
-              "type": "google.protobuf.Any",
-              "id": 15
-            }
-          }
-        },
-        "TetherExchangeInfo": {
-          "fields": {
-            "value": {
-              "type": "BigUint",
-              "id": 1
-            },
-            "assets": {
-              "rule": "repeated",
-              "type": "string",
-              "id": 2
-            },
-            "deposit": {
-              "type": "Transaction",
-              "id": 3
-            }
-          }
-        },
-        "ExchangeTetherTx": {
-          "fields": {
-            "sender": {
-              "type": "ExchangeInfo",
-              "id": 1
-            },
-            "receiver": {
-              "type": "TetherExchangeInfo",
-              "id": 2
-            },
-            "expiredAt": {
-              "type": "google.protobuf.Timestamp",
-              "id": 3
             },
             "data": {
               "type": "google.protobuf.Any",
@@ -4029,18 +3952,6 @@
         "RevokeSwapTx": {
           "fields": {
             "address": {
-              "type": "string",
-              "id": 1
-            },
-            "data": {
-              "type": "google.protobuf.Any",
-              "id": 15
-            }
-          }
-        },
-        "RevokeTetherTx": {
-          "fields": {
-            "tether": {
               "type": "string",
               "id": 1
             },
@@ -4173,68 +4084,6 @@
             "override": {
               "type": "bool",
               "id": 3
-            }
-          }
-        },
-        "TetherTradeInfo": {
-          "fields": {
-            "value": {
-              "type": "BigUint",
-              "id": 1
-            },
-            "assets": {
-              "rule": "repeated",
-              "type": "string",
-              "id": 2
-            },
-            "tether": {
-              "type": "string",
-              "id": 3
-            }
-          }
-        },
-        "WithdrawTetherTx": {
-          "fields": {
-            "from": {
-              "type": "string",
-              "id": 1
-            },
-            "nonce": {
-              "type": "uint64",
-              "id": 2
-            },
-            "chainId": {
-              "type": "string",
-              "id": 3
-            },
-            "pk": {
-              "type": "bytes",
-              "id": 4
-            },
-            "signature": {
-              "type": "bytes",
-              "id": 5
-            },
-            "signatures": {
-              "rule": "repeated",
-              "type": "Multisig",
-              "id": 6
-            },
-            "sender": {
-              "type": "ExchangeInfo",
-              "id": 7
-            },
-            "receiver": {
-              "type": "TetherTradeInfo",
-              "id": 8
-            },
-            "expiredAt": {
-              "type": "google.protobuf.Timestamp",
-              "id": 9
-            },
-            "data": {
-              "type": "google.protobuf.Any",
-              "id": 10
             }
           }
         },
@@ -4648,18 +4497,6 @@
       "nested": {
         "protobuf": {
           "nested": {
-            "Any": {
-              "fields": {
-                "type_url": {
-                  "type": "string",
-                  "id": 1
-                },
-                "value": {
-                  "type": "bytes",
-                  "id": 2
-                }
-              }
-            },
             "Timestamp": {
               "fields": {
                 "seconds": {
@@ -4668,6 +4505,18 @@
                 },
                 "nanos": {
                   "type": "int32",
+                  "id": 2
+                }
+              }
+            },
+            "Any": {
+              "fields": {
+                "type_url": {
+                  "type": "string",
+                  "id": 1
+                },
+                "value": {
+                  "type": "bytes",
                   "id": 2
                 }
               }

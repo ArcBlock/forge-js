@@ -1,4 +1,4 @@
-// Auto generated code (2019-10-31T02:39:04.670Z), DO NOT EDIT
+// Auto generated code (2019-11-01T03:24:37.412Z), DO NOT EDIT
 const typePb = require('./lib/type_pb.js');
 const txPb = require('./lib/tx_pb.js');
 const traceTypePb = require('./lib/trace_type_pb.js');
@@ -32,39 +32,8 @@ const revokeDelegateTxPb = require('./lib/revoke_delegate_tx_pb.js');
 const serviceGrpcPb = require('./lib/service_grpc_pb.js');
 const vendorPb = require('./lib/vendor_pb.js');
 
-const forgeTypes = Object.assign(
-  {},
-  typePb,
-  txPb,
-  traceTypePb,
-  statePb,
-  enumPb,
-  servicePb,
-  rpcPb,
-  withdrawTokenTxPb,
-  delegateTxPb,
-  accountMigrateTxPb,
-  transferTxPb,
-  revokeSwapTxPb,
-  declareTxPb,
-  acquireAssetTxPb,
-  deactivateProtocolTxPb,
-  retrieveSwapTxPb,
-  createAssetTxPb,
-  setupSwapTxPb,
-  consumeAssetTxPb,
-  exchangeTxPb,
-  deployProtocolTxPb,
-  activateProtocolTxPb,
-  approveWithdrawTxPb,
-  upgradeNodeTxPb,
-  updateAssetTxPb,
-  revokeWithdrawTxPb,
-  depositTokenTxPb,
-  stakeTxPb,
-  pokeTxPb,
-  revokeDelegateTxPb
-);
+
+const forgeTypes = Object.assign({}, typePb, txPb, traceTypePb, statePb, enumPb, servicePb, rpcPb, withdrawTokenTxPb, delegateTxPb, accountMigrateTxPb, transferTxPb, revokeSwapTxPb, declareTxPb, acquireAssetTxPb, deactivateProtocolTxPb, retrieveSwapTxPb, createAssetTxPb, setupSwapTxPb, consumeAssetTxPb, exchangeTxPb, deployProtocolTxPb, activateProtocolTxPb, approveWithdrawTxPb, upgradeNodeTxPb, updateAssetTxPb, revokeWithdrawTxPb, depositTokenTxPb, stakeTxPb, pokeTxPb, revokeDelegateTxPb);
 const forgeServices = Object.assign({}, serviceGrpcPb);
 const vendorTypes = Object.assign({}, vendorPb);
 const vendorServices = {};

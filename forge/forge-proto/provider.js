@@ -204,7 +204,7 @@ module.exports = function createProvider(proto, json, urls = {}) {
     messages,
 
     transactions: enums.SupportedTxs,
-    multiSignTxs: ['ExchangeTx', 'ExchangeTetherTx', 'DepositTetherTx', 'ConsumeAssetTx'].filter(
+    multiSignTxs: ['ExchangeTx', 'ConsumeAssetTx'].filter(
       x => enums.SupportedTxs.includes(x)
     ),
 

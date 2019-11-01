@@ -11,8 +11,6 @@ var jspb = require('google-protobuf');
 var goog = jspb;
 var global = Function('return this')();
 
-var google_protobuf_any_pb = require('google-protobuf/google/protobuf/any_pb.js');
-goog.object.extend(proto, google_protobuf_any_pb);
 var vendor_pb = require('./vendor_pb.js');
 goog.object.extend(proto, vendor_pb);
 var enum_pb = require('./enum_pb.js');
