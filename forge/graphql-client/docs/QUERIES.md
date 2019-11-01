@@ -1,6 +1,6 @@
 # Forge GraphQL API List
 
-> Updated on 2019-10-31T03:08:07.006Z
+> Updated on 2019-11-01T02:36:12.947Z
 
 
 ## Table of Contents
@@ -25,7 +25,6 @@
   * [getSimulatorStatus](#getsimulatorstatus)
   * [getStakeState](#getstakestate)
   * [getSwapState](#getswapstate)
-  * [getTetherState](#gettetherstate)
   * [getTx](#gettx)
   * [getUnconfirmedTxs](#getunconfirmedtxs)
   * [getValidatorsInfo](#getvalidatorsinfo)
@@ -34,7 +33,6 @@
   * [listBlocks](#listblocks)
   * [listStakes](#liststakes)
   * [listSwap](#listswap)
-  * [listTethers](#listtethers)
   * [listTopAccounts](#listtopaccounts)
   * [listTransactions](#listtransactions)
 * [Subscriptions](#subscriptions)
@@ -200,12 +198,6 @@
         height
         index
         time
-        accountMigrate {
-          address
-        }
-        createAsset {
-          asset
-        }
         tags {
           key
           value
@@ -243,12 +235,6 @@
         height
         index
         time
-        accountMigrate {
-          address
-        }
-        createAsset {
-          asset
-        }
         tags {
           key
           value
@@ -963,37 +949,6 @@ No arguments
 }
 ```
 
-### getTetherState
-
-#### Arguments
-
-* **address**, optional, 
-* **height**, optional, 
-* **keys**, optional, 
-
-#### Result Format
-
-```graphql
-{
-  getTetherState(address: "abc", height: "abc", keys: ["abc"]) {
-    code
-    state {
-      address
-      available
-      charge
-      commission
-      custodian
-      depositor
-      hash
-      locktime
-      target
-      value
-      withdrawer
-    }
-  }
-}
-```
-
 ### getTx
 
 #### Arguments
@@ -1012,12 +967,6 @@ No arguments
       height
       index
       time
-      accountMigrate {
-        address
-      }
-      createAsset {
-        asset
-      }
       tags {
         key
         value
@@ -1328,44 +1277,6 @@ No arguments
         genesisTime
         renaissanceTime
       }
-    }
-  }
-}
-```
-
-### listTethers
-
-#### Arguments
-
-* **available**, optional, 
-* **custodian**, optional, 
-* **depositor**, optional, 
-* **paging**, optional, 
-* **withdrawer**, optional, 
-
-#### Result Format
-
-```graphql
-{
-  listTethers(available: true, custodian: "abc", depositor: "abc", paging: "abc", withdrawer: "abc") {
-    code
-    page {
-      cursor
-      next
-      total
-    }
-    tethers {
-      address
-      available
-      charge
-      commission
-      custodian
-      depositor
-      hash
-      locktime
-      target
-      value
-      withdrawer
     }
   }
 }

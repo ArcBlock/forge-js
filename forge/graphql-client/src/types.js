@@ -1,4 +1,3 @@
-
 /**
  * List all query method names
  *
@@ -29,7 +28,6 @@
  * //   getSimulatorStatus,
  * //   getStakeState,
  * //   getSwapState,
- * //   getTetherState,
  * //   getTx,
  * //   getUnconfirmedTxs,
  * //   getValidatorsInfo,
@@ -38,7 +36,6 @@
  * //   listBlocks,
  * //   listStakes,
  * //   listSwap,
- * //   listTethers,
  * //   listTopAccounts,
  * //   listTransactions,
  * // ]
@@ -141,7 +138,6 @@
  * @property {buffer} buffer - the transaction binary presentation, can be used to signing, encoding to other formats
  */
 
-
 /**
  * Structure of GraphQLClient.AddressFilter
  *
@@ -234,35 +230,6 @@
  */
 
 /**
- * Structure of GraphQLClient.AccountMigrateTx
- *
- * Checkout the following snippet for the format of AccountMigrateTx:
- * ```json
-{
-  "address": "abc",
-  "data": {
-    "typeUrl": "abc",
-    "value": "abc"
-  },
-  "pk": "abc",
-  "type": {
-    "address": "BASE16",
-    "hash": "KECCAK",
-    "pk": "ED25519",
-    "role": "ROLE_ACCOUNT"
-  }
-}
- * ```
- *
- * @memberof GraphQLClient
- * @typedef {object} GraphQLClient.AccountMigrateTx
- * @property {string} address
- * @property {...GraphQLClient.Any} data
- * @property {string} pk
- * @property {...GraphQLClient.WalletType} type
- */
-
-/**
  * Structure of GraphQLClient.AccountState
  *
  * @memberof GraphQLClient
@@ -285,68 +252,12 @@
  */
 
 /**
- * Structure of GraphQLClient.AcquireAssetTx
- *
- * Checkout the following snippet for the format of AcquireAssetTx:
- * ```json
-{
-  "data": {
-    "typeUrl": "abc",
-    "value": "abc"
-  },
-  "specs": [
-    {
-      "address": "abc",
-      "data": "abc"
-    }
-  ],
-  "to": "abc"
-}
- * ```
- *
- * @memberof GraphQLClient
- * @typedef {object} GraphQLClient.AcquireAssetTx
- * @property {...GraphQLClient.Any} data
- * @property {Array<...GraphQLClient.AssetSpec>} specs
- * @property {string} to
- */
-
-/**
  * Structure of GraphQLClient.Any
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.Any
  * @property {string} typeUrl
  * @property {string} value
- */
-
-/**
- * Structure of GraphQLClient.ApproveTetherTx
- *
- * Checkout the following snippet for the format of ApproveTetherTx:
- * ```json
-{
-  "data": {
-    "typeUrl": "abc",
-    "value": "abc"
-  },
-  "withdraw": "abc"
-}
- * ```
- *
- * @memberof GraphQLClient
- * @typedef {object} GraphQLClient.ApproveTetherTx
- * @property {...GraphQLClient.Any} data
- * @property {string} withdraw
- */
-
-/**
- * Structure of GraphQLClient.AssetSpec
- *
- * @memberof GraphQLClient
- * @typedef {object} GraphQLClient.AssetSpec
- * @property {string} address
- * @property {string} data
  */
 
 /**
@@ -517,61 +428,6 @@
  */
 
 /**
- * Structure of GraphQLClient.ConsensusUpgradeTx
- *
- * Checkout the following snippet for the format of ConsensusUpgradeTx:
- * ```json
-{
-  "data": {
-    "typeUrl": "abc",
-    "value": "abc"
-  },
-  "maxBytes": "abc",
-  "maxCandidates": 123,
-  "maxGas": "abc",
-  "maxValidators": 123,
-  "validators": [
-    {
-      "address": "abc",
-      "power": "abc"
-    }
-  ]
-}
- * ```
- *
- * @memberof GraphQLClient
- * @typedef {object} GraphQLClient.ConsensusUpgradeTx
- * @property {...GraphQLClient.Any} data
- * @property {string} maxBytes
- * @property {number} maxCandidates
- * @property {string} maxGas
- * @property {number} maxValidators
- * @property {Array<...GraphQLClient.Validator>} validators
- */
-
-/**
- * Structure of GraphQLClient.ConsumeAssetTx
- *
- * Checkout the following snippet for the format of ConsumeAssetTx:
- * ```json
-{
-  "address": "abc",
-  "data": {
-    "typeUrl": "abc",
-    "value": "abc"
-  },
-  "issuer": "abc"
-}
- * ```
- *
- * @memberof GraphQLClient
- * @typedef {object} GraphQLClient.ConsumeAssetTx
- * @property {string} address
- * @property {...GraphQLClient.Any} data
- * @property {string} issuer
- */
-
-/**
  * Structure of GraphQLClient.CoreProtocol
  *
  * @memberof GraphQLClient
@@ -581,79 +437,12 @@
  */
 
 /**
- * Structure of GraphQLClient.CreateAssetTx
- *
- * Checkout the following snippet for the format of CreateAssetTx:
- * ```json
-{
-  "address": "abc",
-  "data": {
-    "typeUrl": "abc",
-    "value": "abc"
-  },
-  "moniker": "abc",
-  "parent": "abc",
-  "readonly": true,
-  "transferrable": true,
-  "ttl": 123
-}
- * ```
- *
- * @memberof GraphQLClient
- * @typedef {object} GraphQLClient.CreateAssetTx
- * @property {string} address
- * @property {...GraphQLClient.Any} data
- * @property {string} moniker
- * @property {string} parent
- * @property {boolean} readonly
- * @property {boolean} transferrable
- * @property {number} ttl
- */
-
-/**
  * Structure of GraphQLClient.DeclareConfig
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.DeclareConfig
  * @property {number} hierarchy
  * @property {boolean} restricted
- */
-
-/**
- * Structure of GraphQLClient.DeclareFileTx
- *
- * Checkout the following snippet for the format of DeclareFileTx:
- * ```json
-{
-  "hash": "abc"
-}
- * ```
- *
- * @memberof GraphQLClient
- * @typedef {object} GraphQLClient.DeclareFileTx
- * @property {string} hash
- */
-
-/**
- * Structure of GraphQLClient.DeclareTx
- *
- * Checkout the following snippet for the format of DeclareTx:
- * ```json
-{
-  "data": {
-    "typeUrl": "abc",
-    "value": "abc"
-  },
-  "issuer": "abc",
-  "moniker": "abc"
-}
- * ```
- *
- * @memberof GraphQLClient
- * @typedef {object} GraphQLClient.DeclareTx
- * @property {...GraphQLClient.Any} data
- * @property {string} issuer
- * @property {string} moniker
  */
 
 /**
@@ -743,31 +532,6 @@
  */
 
 /**
- * Structure of GraphQLClient.DepositTetherTx
- *
- * Checkout the following snippet for the format of DepositTetherTx:
- * ```json
-{
-  "charge": "abc",
-  "commission": "abc",
-  "locktime": "2019-04-29T00:00:00.000Z",
-  "target": "abc",
-  "value": "abc",
-  "withdrawer": "abc"
-}
- * ```
- *
- * @memberof GraphQLClient
- * @typedef {object} GraphQLClient.DepositTetherTx
- * @property {string} charge
- * @property {string} commission
- * @property {string} locktime
- * @property {string} target
- * @property {string} value
- * @property {string} withdrawer
- */
-
-/**
  * Structure of GraphQLClient.DiskSpaceStatus
  *
  * @memberof GraphQLClient
@@ -786,121 +550,6 @@
  * @property {string} hash
  * @property {string} originalTx
  * @property {string} receiverAddress
- */
-
-/**
- * Structure of GraphQLClient.ExchangeInfo
- *
- * @memberof GraphQLClient
- * @typedef {object} GraphQLClient.ExchangeInfo
- * @property {Array<...GraphQLClient.string>} assets
- * @property {string} value
- */
-
-/**
- * Structure of GraphQLClient.ExchangeTetherTx
- *
- * Checkout the following snippet for the format of ExchangeTetherTx:
- * ```json
-{
-  "data": {
-    "typeUrl": "abc",
-    "value": "abc"
-  },
-  "expiredAt": "2019-04-29T00:00:00.000Z",
-  "receiver": {
-    "assets": [
-      "abc"
-    ],
-    "deposit": {
-      "chainId": "abc",
-      "delegator": "abc",
-      "from": "abc",
-      "nonce": "abc",
-      "pk": "abc",
-      "signature": "abc",
-      "signatures": [
-        {
-          "data": {
-            "typeUrl": "abc",
-            "value": "abc"
-          },
-          "delegator": "abc",
-          "pk": "abc",
-          "signature": "abc",
-          "signer": "abc"
-        }
-      ]
-    },
-    "value": "abc"
-  },
-  "sender": {
-    "assets": [
-      "abc"
-    ],
-    "value": "abc"
-  }
-}
- * ```
- *
- * @memberof GraphQLClient
- * @typedef {object} GraphQLClient.ExchangeTetherTx
- * @property {...GraphQLClient.Any} data
- * @property {string} expiredAt
- * @property {...GraphQLClient.TetherExchangeInfo} receiver
- * @property {...GraphQLClient.ExchangeInfo} sender
- */
-
-/**
- * Structure of GraphQLClient.ExchangeTx
- *
- * Checkout the following snippet for the format of ExchangeTx:
- * ```json
-{
-  "data": {
-    "typeUrl": "abc",
-    "value": "abc"
-  },
-  "expiredAt": "2019-04-29T00:00:00.000Z",
-  "receiver": {
-    "assets": [
-      "abc"
-    ],
-    "value": "abc"
-  },
-  "sender": {
-    "assets": [
-      "abc"
-    ],
-    "value": "abc"
-  },
-  "to": "abc"
-}
- * ```
- *
- * @memberof GraphQLClient
- * @typedef {object} GraphQLClient.ExchangeTx
- * @property {...GraphQLClient.Any} data
- * @property {string} expiredAt
- * @property {...GraphQLClient.ExchangeInfo} receiver
- * @property {...GraphQLClient.ExchangeInfo} sender
- * @property {string} to
- */
-
-/**
- * Structure of GraphQLClient.ExtraAccountMigrate
- *
- * @memberof GraphQLClient
- * @typedef {object} GraphQLClient.ExtraAccountMigrate
- * @property {string} address
- */
-
-/**
- * Structure of GraphQLClient.ExtraCreateAsset
- *
- * @memberof GraphQLClient
- * @typedef {object} GraphQLClient.ExtraCreateAsset
- * @property {string} asset
  */
 
 /**
@@ -1259,28 +908,6 @@
  */
 
 /**
- * Structure of GraphQLClient.PokeTx
- *
- * Checkout the following snippet for the format of PokeTx:
- * ```json
-{
-  "address": "abc",
-  "data": {
-    "typeUrl": "abc",
-    "value": "abc"
-  },
-  "date": "abc"
-}
- * ```
- *
- * @memberof GraphQLClient
- * @typedef {object} GraphQLClient.PokeTx
- * @property {string} address
- * @property {...GraphQLClient.Any} data
- * @property {string} date
- */
-
-/**
  * Structure of GraphQLClient.Protocol
  *
  * @memberof GraphQLClient
@@ -1412,20 +1039,14 @@
  * Checkout the following snippet for the format of ResponseGetAccountState:
  * ```json
 {
-  "code": "INVALID_PASSPHRASE",
+  "code": "INVALID_FORGE_STATE",
   "state": {
     "address": "abc",
     "balance": "abc",
     "context": {
       "genesisTime": "2019-04-29T00:00:00.000Z",
       "genesisTx": {
-        "accountMigrate": {
-          "address": "abc"
-        },
-        "code": "INVALID_PASSPHRASE",
-        "createAsset": {
-          "asset": "abc"
-        },
+        "code": "INVALID_FORGE_STATE",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -1459,13 +1080,7 @@
       },
       "renaissanceTime": "2019-04-29T00:00:00.000Z",
       "renaissanceTx": {
-        "accountMigrate": {
-          "address": "abc"
-        },
-        "code": "INVALID_PASSPHRASE",
-        "createAsset": {
-          "asset": "abc"
-        },
+        "code": "INVALID_FORGE_STATE",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -1564,20 +1179,14 @@
  * Checkout the following snippet for the format of ResponseGetAssetState:
  * ```json
 {
-  "code": "INVALID_PASSPHRASE",
+  "code": "INVALID_FORGE_STATE",
   "state": {
     "address": "abc",
     "consumedTime": "2019-04-29T00:00:00.000Z",
     "context": {
       "genesisTime": "2019-04-29T00:00:00.000Z",
       "genesisTx": {
-        "accountMigrate": {
-          "address": "abc"
-        },
-        "code": "INVALID_PASSPHRASE",
-        "createAsset": {
-          "asset": "abc"
-        },
+        "code": "INVALID_FORGE_STATE",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -1611,13 +1220,7 @@
       },
       "renaissanceTime": "2019-04-29T00:00:00.000Z",
       "renaissanceTx": {
-        "accountMigrate": {
-          "address": "abc"
-        },
-        "code": "INVALID_PASSPHRASE",
-        "createAsset": {
-          "asset": "abc"
-        },
+        "code": "INVALID_FORGE_STATE",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -1708,13 +1311,7 @@
     "height": "abc",
     "invalidTxs": [
       {
-        "accountMigrate": {
-          "address": "abc"
-        },
-        "code": "INVALID_PASSPHRASE",
-        "createAsset": {
-          "asset": "abc"
-        },
+        "code": "INVALID_FORGE_STATE",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -1766,13 +1363,7 @@
     "totalTxs": "abc",
     "txs": [
       {
-        "accountMigrate": {
-          "address": "abc"
-        },
-        "code": "INVALID_PASSPHRASE",
-        "createAsset": {
-          "asset": "abc"
-        },
+        "code": "INVALID_FORGE_STATE",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -1814,7 +1405,7 @@
       "block": "abc"
     }
   },
-  "code": "INVALID_PASSPHRASE"
+  "code": "INVALID_FORGE_STATE"
 }
  * ```
  *
@@ -1864,7 +1455,7 @@
       }
     }
   ],
-  "code": "INVALID_PASSPHRASE",
+  "code": "INVALID_FORGE_STATE",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -1886,7 +1477,7 @@
  * Checkout the following snippet for the format of ResponseGetChainInfo:
  * ```json
 {
-  "code": "INVALID_PASSPHRASE",
+  "code": "INVALID_FORGE_STATE",
   "info": {
     "address": "abc",
     "appHash": "abc",
@@ -1926,7 +1517,7 @@
  * Checkout the following snippet for the format of ResponseGetConfig:
  * ```json
 {
-  "code": "INVALID_PASSPHRASE",
+  "code": "INVALID_FORGE_STATE",
   "config": "abc"
 }
  * ```
@@ -1943,19 +1534,13 @@
  * Checkout the following snippet for the format of ResponseGetDelegateState:
  * ```json
 {
-  "code": "INVALID_PASSPHRASE",
+  "code": "INVALID_FORGE_STATE",
   "state": {
     "address": "abc",
     "context": {
       "genesisTime": "2019-04-29T00:00:00.000Z",
       "genesisTx": {
-        "accountMigrate": {
-          "address": "abc"
-        },
-        "code": "INVALID_PASSPHRASE",
-        "createAsset": {
-          "asset": "abc"
-        },
+        "code": "INVALID_FORGE_STATE",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -1989,13 +1574,7 @@
       },
       "renaissanceTime": "2019-04-29T00:00:00.000Z",
       "renaissanceTx": {
-        "accountMigrate": {
-          "address": "abc"
-        },
-        "code": "INVALID_PASSPHRASE",
-        "createAsset": {
-          "asset": "abc"
-        },
+        "code": "INVALID_FORGE_STATE",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -2060,7 +1639,7 @@
  * Checkout the following snippet for the format of ResponseGetForgeState:
  * ```json
 {
-  "code": "INVALID_PASSPHRASE",
+  "code": "INVALID_FORGE_STATE",
   "state": {
     "accountConfig": [
       {
@@ -2113,13 +1692,7 @@
           "context": {
             "genesisTime": "2019-04-29T00:00:00.000Z",
             "genesisTx": {
-              "accountMigrate": {
-                "address": "abc"
-              },
-              "code": "INVALID_PASSPHRASE",
-              "createAsset": {
-                "asset": "abc"
-              },
+              "code": "INVALID_FORGE_STATE",
               "hash": "abc",
               "height": "abc",
               "index": 123,
@@ -2153,13 +1726,7 @@
             },
             "renaissanceTime": "2019-04-29T00:00:00.000Z",
             "renaissanceTx": {
-              "accountMigrate": {
-                "address": "abc"
-              },
-              "code": "INVALID_PASSPHRASE",
-              "createAsset": {
-                "asset": "abc"
-              },
+              "code": "INVALID_FORGE_STATE",
               "hash": "abc",
               "height": "abc",
               "index": 123,
@@ -2275,7 +1842,7 @@
  * Checkout the following snippet for the format of ResponseGetForgeStats:
  * ```json
 {
-  "code": "INVALID_PASSPHRASE",
+  "code": "INVALID_FORGE_STATE",
   "forgeStats": {
     "avgBlockTime": 123,
     "avgTps": 123,
@@ -2347,7 +1914,7 @@
  * Checkout the following snippet for the format of ResponseGetHealthStatus:
  * ```json
 {
-  "code": "INVALID_PASSPHRASE",
+  "code": "INVALID_FORGE_STATE",
   "healthStatus": {
     "consensus": {
       "blockHeight": "abc",
@@ -2392,7 +1959,7 @@
  * Checkout the following snippet for the format of ResponseGetNetInfo:
  * ```json
 {
-  "code": "INVALID_PASSPHRASE",
+  "code": "INVALID_FORGE_STATE",
   "netInfo": {
     "listeners": [
       "abc"
@@ -2430,7 +1997,7 @@
  * Checkout the following snippet for the format of ResponseGetNodeInfo:
  * ```json
 {
-  "code": "INVALID_PASSPHRASE",
+  "code": "INVALID_FORGE_STATE",
   "info": {
     "address": "abc",
     "appHash": "abc",
@@ -2478,19 +2045,13 @@
  * Checkout the following snippet for the format of ResponseGetProtocolState:
  * ```json
 {
-  "code": "INVALID_PASSPHRASE",
+  "code": "INVALID_FORGE_STATE",
   "state": {
     "address": "abc",
     "context": {
       "genesisTime": "2019-04-29T00:00:00.000Z",
       "genesisTx": {
-        "accountMigrate": {
-          "address": "abc"
-        },
-        "code": "INVALID_PASSPHRASE",
-        "createAsset": {
-          "asset": "abc"
-        },
+        "code": "INVALID_FORGE_STATE",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -2524,13 +2085,7 @@
       },
       "renaissanceTime": "2019-04-29T00:00:00.000Z",
       "renaissanceTx": {
-        "accountMigrate": {
-          "address": "abc"
-        },
-        "code": "INVALID_PASSPHRASE",
-        "createAsset": {
-          "asset": "abc"
-        },
+        "code": "INVALID_FORGE_STATE",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -2623,7 +2178,7 @@
  * Checkout the following snippet for the format of ResponseGetProtocols:
  * ```json
 {
-  "code": "INVALID_PASSPHRASE",
+  "code": "INVALID_FORGE_STATE",
   "protocols": [
     {
       "address": "abc",
@@ -2671,7 +2226,7 @@
  * Checkout the following snippet for the format of ResponseGetSimulatorStatus:
  * ```json
 {
-  "code": "INVALID_PASSPHRASE",
+  "code": "INVALID_FORGE_STATE",
   "result": "abc"
 }
  * ```
@@ -2688,20 +2243,14 @@
  * Checkout the following snippet for the format of ResponseGetStakeState:
  * ```json
 {
-  "code": "INVALID_PASSPHRASE",
+  "code": "INVALID_FORGE_STATE",
   "state": {
     "address": "abc",
     "balance": "abc",
     "context": {
       "genesisTime": "2019-04-29T00:00:00.000Z",
       "genesisTx": {
-        "accountMigrate": {
-          "address": "abc"
-        },
-        "code": "INVALID_PASSPHRASE",
-        "createAsset": {
-          "asset": "abc"
-        },
+        "code": "INVALID_FORGE_STATE",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -2735,13 +2284,7 @@
       },
       "renaissanceTime": "2019-04-29T00:00:00.000Z",
       "renaissanceTx": {
-        "accountMigrate": {
-          "address": "abc"
-        },
-        "code": "INVALID_PASSPHRASE",
-        "createAsset": {
-          "asset": "abc"
-        },
+        "code": "INVALID_FORGE_STATE",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -2797,7 +2340,7 @@
  * Checkout the following snippet for the format of ResponseGetSwapState:
  * ```json
 {
-  "code": "INVALID_PASSPHRASE",
+  "code": "INVALID_FORGE_STATE",
   "state": {
     "address": "abc",
     "assets": [
@@ -2806,13 +2349,7 @@
     "context": {
       "genesisTime": "2019-04-29T00:00:00.000Z",
       "genesisTx": {
-        "accountMigrate": {
-          "address": "abc"
-        },
-        "code": "INVALID_PASSPHRASE",
-        "createAsset": {
-          "asset": "abc"
-        },
+        "code": "INVALID_FORGE_STATE",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -2846,13 +2383,7 @@
       },
       "renaissanceTime": "2019-04-29T00:00:00.000Z",
       "renaissanceTx": {
-        "accountMigrate": {
-          "address": "abc"
-        },
-        "code": "INVALID_PASSPHRASE",
-        "createAsset": {
-          "asset": "abc"
-        },
+        "code": "INVALID_FORGE_STATE",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -2903,49 +2434,14 @@
  */
 
 /**
- * Structure of GraphQLClient.ResponseGetTetherState
- *
- * Checkout the following snippet for the format of ResponseGetTetherState:
- * ```json
-{
-  "code": "INVALID_PASSPHRASE",
-  "state": {
-    "address": "abc",
-    "available": true,
-    "charge": "abc",
-    "commission": "abc",
-    "custodian": "abc",
-    "depositor": "abc",
-    "hash": "abc",
-    "locktime": "2019-04-29T00:00:00.000Z",
-    "target": "abc",
-    "value": "abc",
-    "withdrawer": "abc"
-  }
-}
- * ```
- *
- * @memberof GraphQLClient
- * @typedef {object} GraphQLClient.ResponseGetTetherState
- * @property {...GraphQLClient.StatusCode} code
- * @property {...GraphQLClient.TetherState} state
- */
-
-/**
  * Structure of GraphQLClient.ResponseGetTx
  *
  * Checkout the following snippet for the format of ResponseGetTx:
  * ```json
 {
-  "code": "INVALID_PASSPHRASE",
+  "code": "INVALID_FORGE_STATE",
   "info": {
-    "accountMigrate": {
-      "address": "abc"
-    },
-    "code": "INVALID_PASSPHRASE",
-    "createAsset": {
-      "asset": "abc"
-    },
+    "code": "INVALID_FORGE_STATE",
     "hash": "abc",
     "height": "abc",
     "index": 123,
@@ -2992,7 +2488,7 @@
  * Checkout the following snippet for the format of ResponseGetUnconfirmedTxs:
  * ```json
 {
-  "code": "INVALID_PASSPHRASE",
+  "code": "INVALID_FORGE_STATE",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -3039,7 +2535,7 @@
  * Checkout the following snippet for the format of ResponseGetValidatorsInfo:
  * ```json
 {
-  "code": "INVALID_PASSPHRASE",
+  "code": "INVALID_FORGE_STATE",
   "validatorsInfo": {
     "blockHeight": "abc",
     "validators": [
@@ -3076,7 +2572,7 @@
  * Checkout the following snippet for the format of ResponseListAssetTransactions:
  * ```json
 {
-  "code": "INVALID_PASSPHRASE",
+  "code": "INVALID_FORGE_STATE",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -3084,7 +2580,7 @@
   },
   "transactions": [
     {
-      "code": "INVALID_PASSPHRASE",
+      "code": "INVALID_FORGE_STATE",
       "hash": "abc",
       "receiver": "abc",
       "sender": "abc",
@@ -3166,7 +2662,7 @@
       "ttl": "abc"
     }
   ],
-  "code": "INVALID_PASSPHRASE",
+  "code": "INVALID_FORGE_STATE",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -3198,7 +2694,7 @@
       "time": "abc"
     }
   ],
-  "code": "INVALID_PASSPHRASE",
+  "code": "INVALID_FORGE_STATE",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -3220,7 +2716,7 @@
  * Checkout the following snippet for the format of ResponseListStakes:
  * ```json
 {
-  "code": "INVALID_PASSPHRASE",
+  "code": "INVALID_FORGE_STATE",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -3254,7 +2750,7 @@
  * Checkout the following snippet for the format of ResponseListSwap:
  * ```json
 {
-  "code": "INVALID_PASSPHRASE",
+  "code": "INVALID_FORGE_STATE",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -3269,13 +2765,7 @@
       "context": {
         "genesisTime": "2019-04-29T00:00:00.000Z",
         "genesisTx": {
-          "accountMigrate": {
-            "address": "abc"
-          },
-          "code": "INVALID_PASSPHRASE",
-          "createAsset": {
-            "asset": "abc"
-          },
+          "code": "INVALID_FORGE_STATE",
           "hash": "abc",
           "height": "abc",
           "index": 123,
@@ -3309,13 +2799,7 @@
         },
         "renaissanceTime": "2019-04-29T00:00:00.000Z",
         "renaissanceTx": {
-          "accountMigrate": {
-            "address": "abc"
-          },
-          "code": "INVALID_PASSPHRASE",
-          "createAsset": {
-            "asset": "abc"
-          },
+          "code": "INVALID_FORGE_STATE",
           "hash": "abc",
           "height": "abc",
           "index": 123,
@@ -3368,43 +2852,6 @@
  */
 
 /**
- * Structure of GraphQLClient.ResponseListTethers
- *
- * Checkout the following snippet for the format of ResponseListTethers:
- * ```json
-{
-  "code": "INVALID_PASSPHRASE",
-  "page": {
-    "cursor": "abc",
-    "next": true,
-    "total": 123
-  },
-  "tethers": [
-    {
-      "address": "abc",
-      "available": true,
-      "charge": "abc",
-      "commission": "abc",
-      "custodian": "abc",
-      "depositor": "abc",
-      "hash": "abc",
-      "locktime": "2019-04-29T00:00:00.000Z",
-      "target": "abc",
-      "value": "abc",
-      "withdrawer": "abc"
-    }
-  ]
-}
- * ```
- *
- * @memberof GraphQLClient
- * @typedef {object} GraphQLClient.ResponseListTethers
- * @property {...GraphQLClient.StatusCode} code
- * @property {...GraphQLClient.PageInfo} page
- * @property {Array<...GraphQLClient.TetherState>} tethers
- */
-
-/**
  * Structure of GraphQLClient.ResponseListTopAccounts
  *
  * Checkout the following snippet for the format of ResponseListTopAccounts:
@@ -3430,7 +2877,7 @@
       "totalUnstakes": "abc"
     }
   ],
-  "code": "INVALID_PASSPHRASE",
+  "code": "INVALID_FORGE_STATE",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -3452,7 +2899,7 @@
  * Checkout the following snippet for the format of ResponseListTransactions:
  * ```json
 {
-  "code": "INVALID_PASSPHRASE",
+  "code": "INVALID_FORGE_STATE",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -3460,7 +2907,7 @@
   },
   "transactions": [
     {
-      "code": "INVALID_PASSPHRASE",
+      "code": "INVALID_FORGE_STATE",
       "hash": "abc",
       "receiver": "abc",
       "sender": "abc",
@@ -3505,7 +2952,7 @@
  * Checkout the following snippet for the format of ResponseSendTx:
  * ```json
 {
-  "code": "INVALID_PASSPHRASE",
+  "code": "INVALID_FORGE_STATE",
   "hash": "abc"
 }
  * ```
@@ -3522,7 +2969,7 @@
  * Checkout the following snippet for the format of ResponseStartSimulator:
  * ```json
 {
-  "code": "INVALID_PASSPHRASE"
+  "code": "INVALID_FORGE_STATE"
 }
  * ```
  *
@@ -3537,7 +2984,7 @@
  * Checkout the following snippet for the format of ResponseStopSimulator:
  * ```json
 {
-  "code": "INVALID_PASSPHRASE"
+  "code": "INVALID_FORGE_STATE"
 }
  * ```
  *
@@ -3578,13 +3025,7 @@
     "context": {
       "genesisTime": "2019-04-29T00:00:00.000Z",
       "genesisTx": {
-        "accountMigrate": {
-          "address": "abc"
-        },
-        "code": "INVALID_PASSPHRASE",
-        "createAsset": {
-          "asset": "abc"
-        },
+        "code": "INVALID_FORGE_STATE",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -3618,13 +3059,7 @@
       },
       "renaissanceTime": "2019-04-29T00:00:00.000Z",
       "renaissanceTx": {
-        "accountMigrate": {
-          "address": "abc"
-        },
-        "code": "INVALID_PASSPHRASE",
-        "createAsset": {
-          "asset": "abc"
-        },
+        "code": "INVALID_FORGE_STATE",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -3754,13 +3189,7 @@
     "context": {
       "genesisTime": "2019-04-29T00:00:00.000Z",
       "genesisTx": {
-        "accountMigrate": {
-          "address": "abc"
-        },
-        "code": "INVALID_PASSPHRASE",
-        "createAsset": {
-          "asset": "abc"
-        },
+        "code": "INVALID_FORGE_STATE",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -3794,13 +3223,7 @@
       },
       "renaissanceTime": "2019-04-29T00:00:00.000Z",
       "renaissanceTx": {
-        "accountMigrate": {
-          "address": "abc"
-        },
-        "code": "INVALID_PASSPHRASE",
-        "createAsset": {
-          "asset": "abc"
-        },
+        "code": "INVALID_FORGE_STATE",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -3919,7 +3342,7 @@
       ]
     }
   },
-  "code": "INVALID_PASSPHRASE",
+  "code": "INVALID_FORGE_STATE",
   "confirm": {
     "chainId": "abc",
     "delegator": "abc",
@@ -4065,13 +3488,7 @@
     "context": {
       "genesisTime": "2019-04-29T00:00:00.000Z",
       "genesisTx": {
-        "accountMigrate": {
-          "address": "abc"
-        },
-        "code": "INVALID_PASSPHRASE",
-        "createAsset": {
-          "asset": "abc"
-        },
+        "code": "INVALID_FORGE_STATE",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -4105,13 +3522,7 @@
       },
       "renaissanceTime": "2019-04-29T00:00:00.000Z",
       "renaissanceTx": {
-        "accountMigrate": {
-          "address": "abc"
-        },
-        "code": "INVALID_PASSPHRASE",
-        "createAsset": {
-          "asset": "abc"
-        },
+        "code": "INVALID_FORGE_STATE",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -4256,13 +3667,7 @@
           "context": {
             "genesisTime": "2019-04-29T00:00:00.000Z",
             "genesisTx": {
-              "accountMigrate": {
-                "address": "abc"
-              },
-              "code": "INVALID_PASSPHRASE",
-              "createAsset": {
-                "asset": "abc"
-              },
+              "code": "INVALID_FORGE_STATE",
               "hash": "abc",
               "height": "abc",
               "index": 123,
@@ -4296,13 +3701,7 @@
             },
             "renaissanceTime": "2019-04-29T00:00:00.000Z",
             "renaissanceTx": {
-              "accountMigrate": {
-                "address": "abc"
-              },
-              "code": "INVALID_PASSPHRASE",
-              "createAsset": {
-                "asset": "abc"
-              },
+              "code": "INVALID_FORGE_STATE",
               "hash": "abc",
               "height": "abc",
               "index": 123,
@@ -4408,13 +3807,7 @@
     "context": {
       "genesisTime": "2019-04-29T00:00:00.000Z",
       "genesisTx": {
-        "accountMigrate": {
-          "address": "abc"
-        },
-        "code": "INVALID_PASSPHRASE",
-        "createAsset": {
-          "asset": "abc"
-        },
+        "code": "INVALID_FORGE_STATE",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -4448,13 +3841,7 @@
       },
       "renaissanceTime": "2019-04-29T00:00:00.000Z",
       "renaissanceTx": {
-        "accountMigrate": {
-          "address": "abc"
-        },
-        "code": "INVALID_PASSPHRASE",
-        "createAsset": {
-          "asset": "abc"
-        },
+        "code": "INVALID_FORGE_STATE",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -4618,13 +4005,7 @@
     "context": {
       "genesisTime": "2019-04-29T00:00:00.000Z",
       "genesisTx": {
-        "accountMigrate": {
-          "address": "abc"
-        },
-        "code": "INVALID_PASSPHRASE",
-        "createAsset": {
-          "asset": "abc"
-        },
+        "code": "INVALID_FORGE_STATE",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -4658,13 +4039,7 @@
       },
       "renaissanceTime": "2019-04-29T00:00:00.000Z",
       "renaissanceTx": {
-        "accountMigrate": {
-          "address": "abc"
-        },
-        "code": "INVALID_PASSPHRASE",
-        "createAsset": {
-          "asset": "abc"
-        },
+        "code": "INVALID_FORGE_STATE",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -4829,105 +4204,13 @@
  * Checkout the following snippet for the format of ResponseUnsubscribe:
  * ```json
 {
-  "code": "INVALID_PASSPHRASE"
+  "code": "INVALID_FORGE_STATE"
 }
  * ```
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.ResponseUnsubscribe
  * @property {...GraphQLClient.StatusCode} code
- */
-
-/**
- * Structure of GraphQLClient.RetrieveSwapTx
- *
- * Checkout the following snippet for the format of RetrieveSwapTx:
- * ```json
-{
-  "address": "abc",
-  "data": {
-    "typeUrl": "abc",
-    "value": "abc"
-  },
-  "hashkey": "abc"
-}
- * ```
- *
- * @memberof GraphQLClient
- * @typedef {object} GraphQLClient.RetrieveSwapTx
- * @property {string} address
- * @property {...GraphQLClient.Any} data
- * @property {string} hashkey
- */
-
-/**
- * Structure of GraphQLClient.RevokeSwapTx
- *
- * Checkout the following snippet for the format of RevokeSwapTx:
- * ```json
-{
-  "address": "abc",
-  "data": {
-    "typeUrl": "abc",
-    "value": "abc"
-  }
-}
- * ```
- *
- * @memberof GraphQLClient
- * @typedef {object} GraphQLClient.RevokeSwapTx
- * @property {string} address
- * @property {...GraphQLClient.Any} data
- */
-
-/**
- * Structure of GraphQLClient.RevokeTetherTx
- *
- * Checkout the following snippet for the format of RevokeTetherTx:
- * ```json
-{
-  "data": {
-    "typeUrl": "abc",
-    "value": "abc"
-  },
-  "tether": "abc"
-}
- * ```
- *
- * @memberof GraphQLClient
- * @typedef {object} GraphQLClient.RevokeTetherTx
- * @property {...GraphQLClient.Any} data
- * @property {string} tether
- */
-
-/**
- * Structure of GraphQLClient.SetupSwapTx
- *
- * Checkout the following snippet for the format of SetupSwapTx:
- * ```json
-{
-  "assets": [
-    "abc"
-  ],
-  "data": {
-    "typeUrl": "abc",
-    "value": "abc"
-  },
-  "hashlock": "abc",
-  "locktime": 123,
-  "receiver": "abc",
-  "value": "abc"
-}
- * ```
- *
- * @memberof GraphQLClient
- * @typedef {object} GraphQLClient.SetupSwapTx
- * @property {Array<...GraphQLClient.string>} assets
- * @property {...GraphQLClient.Any} data
- * @property {string} hashlock
- * @property {number} locktime
- * @property {string} receiver
- * @property {string} value
  */
 
 /**
@@ -4949,14 +4232,6 @@
  * @property {string} totalReceivedStakes
  * @property {string} totalStakes
  * @property {string} totalUnstakes
- */
-
-/**
- * Structure of GraphQLClient.StakeDataType
- *
- * @memberof GraphQLClient
- * @typedef {object} GraphQLClient.StakeDataType
- * @property {string} type
  */
 
 /**
@@ -4990,29 +4265,6 @@
  * @typedef {object} GraphQLClient.StakeSummaryEntry
  * @property {number} key
  * @property {...GraphQLClient.StakeSummary} value
- */
-
-/**
- * Structure of GraphQLClient.StakeTx
- *
- * Checkout the following snippet for the format of StakeTx:
- * ```json
-{
-  "data": {
-    "type": "abc"
-  },
-  "message": "abc",
-  "to": "abc",
-  "value": "abc"
-}
- * ```
- *
- * @memberof GraphQLClient
- * @typedef {object} GraphQLClient.StakeTx
- * @property {...GraphQLClient.StakeDataType} data
- * @property {string} message
- * @property {string} to
- * @property {string} value
  */
 
 /**
@@ -5055,78 +4307,12 @@
  */
 
 /**
- * Structure of GraphQLClient.SysUpgradeTx
- *
- * Checkout the following snippet for the format of SysUpgradeTx:
- * ```json
-{
-  "data": {
-    "typeUrl": "abc",
-    "value": "abc"
-  },
-  "gracePeriod": "abc",
-  "task": {
-    "actions": [
-      "BACKUP"
-    ],
-    "dataHash": "abc",
-    "type": "CONFIG_APP"
-  }
-}
- * ```
- *
- * @memberof GraphQLClient
- * @typedef {object} GraphQLClient.SysUpgradeTx
- * @property {...GraphQLClient.Any} data
- * @property {string} gracePeriod
- * @property {...GraphQLClient.UpgradeTask} task
- */
-
-/**
  * Structure of GraphQLClient.TasksEntry
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.TasksEntry
  * @property {string} key
  * @property {...GraphQLClient.UpgradeTasks} value
- */
-
-/**
- * Structure of GraphQLClient.TetherExchangeInfo
- *
- * @memberof GraphQLClient
- * @typedef {object} GraphQLClient.TetherExchangeInfo
- * @property {Array<...GraphQLClient.string>} assets
- * @property {...GraphQLClient.Transaction} deposit
- * @property {string} value
- */
-
-/**
- * Structure of GraphQLClient.TetherState
- *
- * @memberof GraphQLClient
- * @typedef {object} GraphQLClient.TetherState
- * @property {string} address
- * @property {boolean} available
- * @property {string} charge
- * @property {string} commission
- * @property {string} custodian
- * @property {string} depositor
- * @property {string} hash
- * @property {string} locktime
- * @property {string} target
- * @property {string} value
- * @property {string} withdrawer
- */
-
-/**
- * Structure of GraphQLClient.TetherTradeInfo
- *
- * @memberof GraphQLClient
- * @typedef {object} GraphQLClient.TetherTradeInfo
- * @property {Array<...GraphQLClient.string>} assets
- * @property {string} tether
- * @property {string} value
  */
 
 /**
@@ -5149,7 +4335,6 @@
  * @property {string} chainId
  * @property {string} delegator
  * @property {string} from
- * @property {...Itx} itx
  * @property {undefined} itxJson
  * @property {string} nonce
  * @property {string} pk
@@ -5177,41 +4362,13 @@
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.TransactionInfo
- * @property {...GraphQLClient.ExtraAccountMigrate} accountMigrate
  * @property {...GraphQLClient.StatusCode} code
- * @property {...GraphQLClient.ExtraCreateAsset} createAsset
  * @property {string} hash
  * @property {string} height
  * @property {number} index
  * @property {Array<...GraphQLClient.KvPair>} tags
  * @property {string} time
  * @property {...GraphQLClient.Transaction} tx
- */
-
-/**
- * Structure of GraphQLClient.TransferTx
- *
- * Checkout the following snippet for the format of TransferTx:
- * ```json
-{
-  "assets": [
-    "abc"
-  ],
-  "data": {
-    "typeUrl": "abc",
-    "value": "abc"
-  },
-  "to": "abc",
-  "value": "abc"
-}
- * ```
- *
- * @memberof GraphQLClient
- * @typedef {object} GraphQLClient.TransferTx
- * @property {Array<...GraphQLClient.string>} assets
- * @property {...GraphQLClient.Any} data
- * @property {string} to
- * @property {string} value
  */
 
 /**
@@ -5233,52 +4390,11 @@
  */
 
 /**
- * Structure of GraphQLClient.UpdateAssetTx
- *
- * Checkout the following snippet for the format of UpdateAssetTx:
- * ```json
-{
-  "address": "abc",
-  "data": {
-    "typeUrl": "abc",
-    "value": "abc"
-  },
-  "moniker": "abc"
-}
- * ```
- *
- * @memberof GraphQLClient
- * @typedef {object} GraphQLClient.UpdateAssetTx
- * @property {string} address
- * @property {...GraphQLClient.Any} data
- * @property {string} moniker
- */
-
-/**
  * Structure of GraphQLClient.UpgradeInfo
  *
  * @memberof GraphQLClient
  * @typedef {object} GraphQLClient.UpgradeInfo
  * @property {string} height
- * @property {string} version
- */
-
-/**
- * Structure of GraphQLClient.UpgradeNodeTx
- *
- * Checkout the following snippet for the format of UpgradeNodeTx:
- * ```json
-{
-  "height": "abc",
-  "override": true,
-  "version": "abc"
-}
- * ```
- *
- * @memberof GraphQLClient
- * @typedef {object} GraphQLClient.UpgradeNodeTx
- * @property {string} height
- * @property {boolean} override
  * @property {string} version
  */
 
@@ -5359,65 +4475,6 @@
  * @property {...GraphQLClient.KeyType} pk
  * @property {...GraphQLClient.RoleType} role
  */
-
-/**
- * Structure of GraphQLClient.WithdrawTetherTx
- *
- * Checkout the following snippet for the format of WithdrawTetherTx:
- * ```json
-{
-  "chainId": "abc",
-  "data": {
-    "typeUrl": "abc",
-    "value": "abc"
-  },
-  "expiredAt": "2019-04-29T00:00:00.000Z",
-  "from": "abc",
-  "nonce": "abc",
-  "pk": "abc",
-  "receiver": {
-    "assets": [
-      "abc"
-    ],
-    "tether": "abc",
-    "value": "abc"
-  },
-  "sender": {
-    "assets": [
-      "abc"
-    ],
-    "value": "abc"
-  },
-  "signature": "abc",
-  "signatures": [
-    {
-      "data": {
-        "typeUrl": "abc",
-        "value": "abc"
-      },
-      "delegator": "abc",
-      "pk": "abc",
-      "signature": "abc",
-      "signer": "abc"
-    }
-  ]
-}
- * ```
- *
- * @memberof GraphQLClient
- * @typedef {object} GraphQLClient.WithdrawTetherTx
- * @property {string} chainId
- * @property {...GraphQLClient.Any} data
- * @property {string} expiredAt
- * @property {string} from
- * @property {string} nonce
- * @property {string} pk
- * @property {...GraphQLClient.TetherTradeInfo} receiver
- * @property {...GraphQLClient.ExchangeInfo} sender
- * @property {string} signature
- * @property {Array<...GraphQLClient.Multisig>} signatures
- */
-
 
 /**
  * Structure of GraphQLClient.GetAccountStateParams
@@ -5659,27 +4716,6 @@
  */
 
 /**
- * Structure of GraphQLClient.GetTetherStateParams
- *
- * Checkout the following snippet for the format of GetTetherStateParams:
- * ```json
-{
-  "address": "abc",
-  "height": "abc",
-  "keys": [
-    "abc"
-  ]
-}
- * ```
- *
- * @memberof GraphQLClient
- * @typedef {object} GraphQLClient.GetTetherStateParams
- * @property {string} address
- * @property {string} height
- * @property {Array<...GraphQLClient.string>} keys
- */
-
-/**
  * Structure of GraphQLClient.GetTxParams
  *
  * Checkout the following snippet for the format of GetTxParams:
@@ -5795,29 +4831,6 @@
  */
 
 /**
- * Structure of GraphQLClient.ListTethersParams
- *
- * Checkout the following snippet for the format of ListTethersParams:
- * ```json
-{
-  "available": true,
-  "custodian": "abc",
-  "depositor": "abc",
-  "paging": "abc",
-  "withdrawer": "abc"
-}
- * ```
- *
- * @memberof GraphQLClient
- * @typedef {object} GraphQLClient.ListTethersParams
- * @property {boolean} available
- * @property {string} custodian
- * @property {string} depositor
- * @property {string} paging
- * @property {string} withdrawer
- */
-
-/**
  * Structure of GraphQLClient.ListTopAccountsParams
  *
  * Checkout the following snippet for the format of ListTopAccountsParams:
@@ -5900,7 +4913,6 @@
  * @property {string} topic
  */
 
-
 /**
  * @memberof GraphQLClient
  * @typedef {Object} GraphQLClient.RevokeSwapTxInput
@@ -5926,7 +4938,6 @@
  * @param {GraphQLClient.RevokeSwapTxInput} params
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
-
 
 /**
  * @memberof GraphQLClient
@@ -5954,7 +4965,6 @@
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
 
-
 /**
  * @memberof GraphQLClient
  * @typedef {Object} GraphQLClient.SetupSwapTxInput
@@ -5980,7 +4990,6 @@
  * @param {GraphQLClient.SetupSwapTxInput} params
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
-
 
 /**
  * @memberof GraphQLClient
@@ -6008,7 +5017,6 @@
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
 
-
 /**
  * @memberof GraphQLClient
  * @typedef {Object} GraphQLClient.StakeTxInput
@@ -6034,7 +5042,6 @@
  * @param {GraphQLClient.StakeTxInput} params
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
-
 
 /**
  * @memberof GraphQLClient
@@ -6062,7 +5069,6 @@
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
 
-
 /**
  * @memberof GraphQLClient
  * @typedef {Object} GraphQLClient.DeactivateProtocolTxInput
@@ -6088,7 +5094,6 @@
  * @param {GraphQLClient.DeactivateProtocolTxInput} params
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
-
 
 /**
  * @memberof GraphQLClient
@@ -6116,7 +5121,6 @@
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
 
-
 /**
  * @memberof GraphQLClient
  * @typedef {Object} GraphQLClient.CreateAssetTxInput
@@ -6142,7 +5146,6 @@
  * @param {GraphQLClient.CreateAssetTxInput} params
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
-
 
 /**
  * @memberof GraphQLClient
@@ -6170,7 +5173,6 @@
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
 
-
 /**
  * @memberof GraphQLClient
  * @typedef {Object} GraphQLClient.TransferTxInput
@@ -6196,7 +5198,6 @@
  * @param {GraphQLClient.TransferTxInput} params
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
-
 
 /**
  * @memberof GraphQLClient
@@ -6224,7 +5225,6 @@
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
 
-
 /**
  * @memberof GraphQLClient
  * @typedef {Object} GraphQLClient.ConsumeAssetTxInput
@@ -6250,7 +5250,6 @@
  * @param {GraphQLClient.ConsumeAssetTxInput} params
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
-
 
 /**
  * @memberof GraphQLClient
@@ -6278,7 +5277,6 @@
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
 
-
 /**
  * @memberof GraphQLClient
  * @typedef {Object} GraphQLClient.ExchangeTxInput
@@ -6304,7 +5302,6 @@
  * @param {GraphQLClient.ExchangeTxInput} params
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
-
 
 /**
  * @memberof GraphQLClient
@@ -6332,7 +5329,6 @@
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
 
-
 /**
  * @memberof GraphQLClient
  * @typedef {Object} GraphQLClient.UpgradeNodeTxInput
@@ -6358,7 +5354,6 @@
  * @param {GraphQLClient.UpgradeNodeTxInput} params
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
-
 
 /**
  * @memberof GraphQLClient
@@ -6386,7 +5381,6 @@
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
 
-
 /**
  * @memberof GraphQLClient
  * @typedef {Object} GraphQLClient.ApproveWithdrawTxInput
@@ -6412,7 +5406,6 @@
  * @param {GraphQLClient.ApproveWithdrawTxInput} params
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
-
 
 /**
  * @memberof GraphQLClient
@@ -6440,7 +5433,6 @@
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
 
-
 /**
  * @memberof GraphQLClient
  * @typedef {Object} GraphQLClient.DeclareTxInput
@@ -6466,7 +5458,6 @@
  * @param {GraphQLClient.DeclareTxInput} params
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
-
 
 /**
  * @memberof GraphQLClient
@@ -6494,7 +5485,6 @@
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
 
-
 /**
  * @memberof GraphQLClient
  * @typedef {Object} GraphQLClient.AcquireAssetTxInput
@@ -6521,7 +5511,6 @@
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
 
-
 /**
  * Encode a RevokeSwapTx transaction for later use
  *
@@ -6531,7 +5520,6 @@
  * @param {GraphQLClient.RevokeSwapTxInput} params
  * @returns {Promise<GraphQLClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
-
 
 /**
  * Encode a WithdrawTokenTx transaction for later use
@@ -6543,7 +5531,6 @@
  * @returns {Promise<GraphQLClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
 
-
 /**
  * Encode a SetupSwapTx transaction for later use
  *
@@ -6553,7 +5540,6 @@
  * @param {GraphQLClient.SetupSwapTxInput} params
  * @returns {Promise<GraphQLClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
-
 
 /**
  * Encode a AccountMigrateTx transaction for later use
@@ -6565,7 +5551,6 @@
  * @returns {Promise<GraphQLClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
 
-
 /**
  * Encode a StakeTx transaction for later use
  *
@@ -6575,7 +5560,6 @@
  * @param {GraphQLClient.StakeTxInput} params
  * @returns {Promise<GraphQLClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
-
 
 /**
  * Encode a DepositTokenTx transaction for later use
@@ -6587,7 +5571,6 @@
  * @returns {Promise<GraphQLClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
 
-
 /**
  * Encode a DeactivateProtocolTx transaction for later use
  *
@@ -6597,7 +5580,6 @@
  * @param {GraphQLClient.DeactivateProtocolTxInput} params
  * @returns {Promise<GraphQLClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
-
 
 /**
  * Encode a PokeTx transaction for later use
@@ -6609,7 +5591,6 @@
  * @returns {Promise<GraphQLClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
 
-
 /**
  * Encode a CreateAssetTx transaction for later use
  *
@@ -6619,7 +5600,6 @@
  * @param {GraphQLClient.CreateAssetTxInput} params
  * @returns {Promise<GraphQLClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
-
 
 /**
  * Encode a RevokeDelegateTx transaction for later use
@@ -6631,7 +5611,6 @@
  * @returns {Promise<GraphQLClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
 
-
 /**
  * Encode a TransferTx transaction for later use
  *
@@ -6641,7 +5620,6 @@
  * @param {GraphQLClient.TransferTxInput} params
  * @returns {Promise<GraphQLClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
-
 
 /**
  * Encode a RevokeWithdrawTx transaction for later use
@@ -6653,7 +5631,6 @@
  * @returns {Promise<GraphQLClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
 
-
 /**
  * Encode a ConsumeAssetTx transaction for later use
  *
@@ -6663,7 +5640,6 @@
  * @param {GraphQLClient.ConsumeAssetTxInput} params
  * @returns {Promise<GraphQLClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
-
 
 /**
  * Encode a DelegateTx transaction for later use
@@ -6675,7 +5651,6 @@
  * @returns {Promise<GraphQLClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
 
-
 /**
  * Encode a ExchangeTx transaction for later use
  *
@@ -6685,7 +5660,6 @@
  * @param {GraphQLClient.ExchangeTxInput} params
  * @returns {Promise<GraphQLClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
-
 
 /**
  * Encode a ActivateProtocolTx transaction for later use
@@ -6697,7 +5671,6 @@
  * @returns {Promise<GraphQLClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
 
-
 /**
  * Encode a UpgradeNodeTx transaction for later use
  *
@@ -6707,7 +5680,6 @@
  * @param {GraphQLClient.UpgradeNodeTxInput} params
  * @returns {Promise<GraphQLClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
-
 
 /**
  * Encode a UpdateAssetTx transaction for later use
@@ -6719,7 +5691,6 @@
  * @returns {Promise<GraphQLClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
 
-
 /**
  * Encode a ApproveWithdrawTx transaction for later use
  *
@@ -6729,7 +5700,6 @@
  * @param {GraphQLClient.ApproveWithdrawTxInput} params
  * @returns {Promise<GraphQLClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
-
 
 /**
  * Encode a RetrieveSwapTx transaction for later use
@@ -6741,7 +5711,6 @@
  * @returns {Promise<GraphQLClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
 
-
 /**
  * Encode a DeclareTx transaction for later use
  *
@@ -6751,7 +5720,6 @@
  * @param {GraphQLClient.DeclareTxInput} params
  * @returns {Promise<GraphQLClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
-
 
 /**
  * Encode a DeployProtocolTx transaction for later use
@@ -6763,7 +5731,6 @@
  * @returns {Promise<GraphQLClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
 
-
 /**
  * Encode a AcquireAssetTx transaction for later use
  *
@@ -6773,7 +5740,6 @@
  * @param {GraphQLClient.AcquireAssetTxInput} params
  * @returns {Promise<GraphQLClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
-
 
 /**
  * getAccountState
@@ -6785,7 +5751,6 @@
  * @returns {Promise<GraphQLClient.ResponseGetAccountState>} Checkout {@link GraphQLClient.ResponseGetAccountState} for resolved data format
  */
 
-
 /**
  * getAssetState
  *
@@ -6795,7 +5760,6 @@
  * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseGetAssetState>} Checkout {@link GraphQLClient.ResponseGetAssetState} for resolved data format
  */
-
 
 /**
  * getBlock
@@ -6807,7 +5771,6 @@
  * @returns {Promise<GraphQLClient.ResponseGetBlock>} Checkout {@link GraphQLClient.ResponseGetBlock} for resolved data format
  */
 
-
 /**
  * getBlocks
  *
@@ -6818,7 +5781,6 @@
  * @returns {Promise<GraphQLClient.ResponseGetBlocks>} Checkout {@link GraphQLClient.ResponseGetBlocks} for resolved data format
  */
 
-
 /**
  * getChainInfo
  *
@@ -6827,7 +5789,6 @@
  * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseGetChainInfo>} Checkout {@link GraphQLClient.ResponseGetChainInfo} for resolved data format
  */
-
 
 /**
  * getConfig
@@ -6839,7 +5800,6 @@
  * @returns {Promise<GraphQLClient.ResponseGetConfig>} Checkout {@link GraphQLClient.ResponseGetConfig} for resolved data format
  */
 
-
 /**
  * getDelegateState
  *
@@ -6849,7 +5809,6 @@
  * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseGetDelegateState>} Checkout {@link GraphQLClient.ResponseGetDelegateState} for resolved data format
  */
-
 
 /**
  * getForgeState
@@ -6861,7 +5820,6 @@
  * @returns {Promise<GraphQLClient.ResponseGetForgeState>} Checkout {@link GraphQLClient.ResponseGetForgeState} for resolved data format
  */
 
-
 /**
  * getForgeStats
  *
@@ -6870,7 +5828,6 @@
  * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseGetForgeStats>} Checkout {@link GraphQLClient.ResponseGetForgeStats} for resolved data format
  */
-
 
 /**
  * getForgeStatsByDay
@@ -6882,7 +5839,6 @@
  * @returns {Promise<GraphQLClient.ResponseGetForgeStats>} Checkout {@link GraphQLClient.ResponseGetForgeStats} for resolved data format
  */
 
-
 /**
  * getForgeStatsByHour
  *
@@ -6893,7 +5849,6 @@
  * @returns {Promise<GraphQLClient.ResponseGetForgeStats>} Checkout {@link GraphQLClient.ResponseGetForgeStats} for resolved data format
  */
 
-
 /**
  * getHealthStatus
  *
@@ -6902,7 +5857,6 @@
  * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseGetHealthStatus>} Checkout {@link GraphQLClient.ResponseGetHealthStatus} for resolved data format
  */
-
 
 /**
  * getNetInfo
@@ -6913,7 +5867,6 @@
  * @returns {Promise<GraphQLClient.ResponseGetNetInfo>} Checkout {@link GraphQLClient.ResponseGetNetInfo} for resolved data format
  */
 
-
 /**
  * getNodeInfo
  *
@@ -6922,7 +5875,6 @@
  * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseGetNodeInfo>} Checkout {@link GraphQLClient.ResponseGetNodeInfo} for resolved data format
  */
-
 
 /**
  * getProtocolState
@@ -6934,7 +5886,6 @@
  * @returns {Promise<GraphQLClient.ResponseGetProtocolState>} Checkout {@link GraphQLClient.ResponseGetProtocolState} for resolved data format
  */
 
-
 /**
  * getProtocols
  *
@@ -6945,7 +5896,6 @@
  * @returns {Promise<GraphQLClient.ResponseGetProtocols>} Checkout {@link GraphQLClient.ResponseGetProtocols} for resolved data format
  */
 
-
 /**
  * getSimulatorStatus
  *
@@ -6954,7 +5904,6 @@
  * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseGetSimulatorStatus>} Checkout {@link GraphQLClient.ResponseGetSimulatorStatus} for resolved data format
  */
-
 
 /**
  * getStakeState
@@ -6966,7 +5915,6 @@
  * @returns {Promise<GraphQLClient.ResponseGetStakeState>} Checkout {@link GraphQLClient.ResponseGetStakeState} for resolved data format
  */
 
-
 /**
  * getSwapState
  *
@@ -6976,18 +5924,6 @@
  * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseGetSwapState>} Checkout {@link GraphQLClient.ResponseGetSwapState} for resolved data format
  */
-
-
-/**
- * getTetherState
- *
- * @name GraphQLClient#getTetherState
- * @param {GraphQLClient.GetTetherStateParams} params
- * @function
- * @memberof GraphQLClient
- * @returns {Promise<GraphQLClient.ResponseGetTetherState>} Checkout {@link GraphQLClient.ResponseGetTetherState} for resolved data format
- */
-
 
 /**
  * getTx
@@ -6999,7 +5935,6 @@
  * @returns {Promise<GraphQLClient.ResponseGetTx>} Checkout {@link GraphQLClient.ResponseGetTx} for resolved data format
  */
 
-
 /**
  * getUnconfirmedTxs
  *
@@ -7010,7 +5945,6 @@
  * @returns {Promise<GraphQLClient.ResponseGetUnconfirmedTxs>} Checkout {@link GraphQLClient.ResponseGetUnconfirmedTxs} for resolved data format
  */
 
-
 /**
  * getValidatorsInfo
  *
@@ -7019,7 +5953,6 @@
  * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseGetValidatorsInfo>} Checkout {@link GraphQLClient.ResponseGetValidatorsInfo} for resolved data format
  */
-
 
 /**
  * listAssetTransactions
@@ -7031,7 +5964,6 @@
  * @returns {Promise<GraphQLClient.ResponseListAssetTransactions>} Checkout {@link GraphQLClient.ResponseListAssetTransactions} for resolved data format
  */
 
-
 /**
  * listAssets
  *
@@ -7041,7 +5973,6 @@
  * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseListAssets>} Checkout {@link GraphQLClient.ResponseListAssets} for resolved data format
  */
-
 
 /**
  * listBlocks
@@ -7053,7 +5984,6 @@
  * @returns {Promise<GraphQLClient.ResponseListBlocks>} Checkout {@link GraphQLClient.ResponseListBlocks} for resolved data format
  */
 
-
 /**
  * listStakes
  *
@@ -7063,7 +5993,6 @@
  * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseListStakes>} Checkout {@link GraphQLClient.ResponseListStakes} for resolved data format
  */
-
 
 /**
  * listSwap
@@ -7075,18 +6004,6 @@
  * @returns {Promise<GraphQLClient.ResponseListSwap>} Checkout {@link GraphQLClient.ResponseListSwap} for resolved data format
  */
 
-
-/**
- * listTethers
- *
- * @name GraphQLClient#listTethers
- * @param {GraphQLClient.ListTethersParams} params
- * @function
- * @memberof GraphQLClient
- * @returns {Promise<GraphQLClient.ResponseListTethers>} Checkout {@link GraphQLClient.ResponseListTethers} for resolved data format
- */
-
-
 /**
  * listTopAccounts
  *
@@ -7096,7 +6013,6 @@
  * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseListTopAccounts>} Checkout {@link GraphQLClient.ResponseListTopAccounts} for resolved data format
  */
-
 
 /**
  * listTransactions
@@ -7108,7 +6024,6 @@
  * @returns {Promise<GraphQLClient.ResponseListTransactions>} Checkout {@link GraphQLClient.ResponseListTransactions} for resolved data format
  */
 
-
 /**
  * sendTx
  *
@@ -7119,7 +6034,6 @@
  * @returns {Promise<GraphQLClient.ResponseSendTx>} Checkout {@link GraphQLClient.ResponseSendTx} for resolved data format
  */
 
-
 /**
  * startSimulator
  *
@@ -7128,7 +6042,6 @@
  * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseStartSimulator>} Checkout {@link GraphQLClient.ResponseStartSimulator} for resolved data format
  */
-
 
 /**
  * stopSimulator
@@ -7139,7 +6052,6 @@
  * @returns {Promise<GraphQLClient.ResponseStopSimulator>} Checkout {@link GraphQLClient.ResponseStopSimulator} for resolved data format
  */
 
-
 /**
  * unsubscribe
  *
@@ -7149,7 +6061,6 @@
  * @memberof GraphQLClient
  * @returns {Promise<GraphQLClient.ResponseUnsubscribe>} Checkout {@link GraphQLClient.ResponseUnsubscribe} for resolved data format
  */
-
 
 /**
  * subscribe

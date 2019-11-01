@@ -1,3 +1,10 @@
+## 0.40.2 (November 01, 2019)
+
+- chore: update graphql-client schema for deprecated types
+- fix: asset-factory moniker
+- fix: allow request signature on another chain
+- update readme
+
 ## 0.40.1 (October 31, 2019)
 
 - chore: update exchange example to exchange token with asset
