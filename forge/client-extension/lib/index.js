@@ -383,13 +383,15 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
    * @public
    * @param {object} params
    * @param {string} params.moniker - user nickname
+   * @param {string} [params.issuer=""] - who issued the account
+   * @param {object} [params.data=undefined] - who issued the account
    * @param {WalletObject} params.wallet - wallet to sign the tx
    * @returns {Promise} the transaction hash once resolved
    */
-  client.declare = ({ moniker, wallet }) =>
+  client.declare = ({ moniker, issuer = '', data, wallet }) =>
     client.sendDeclareTx({
       tx: {
-        itx: { moniker },
+        itx: { moniker, issuer, data },
       },
       wallet,
     });
@@ -427,6 +429,7 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
    * @returns {Promise} the `[transactionHash, delegateAddress]` once resolved
    */
   client.delegate = async ({ from, to, privileges }) => {
+    // TODO: add whitelist for delegation privileges
     let ops = Array.isArray(privileges) ? privileges : [privileges];
     ops = ops.map(x => {
       if (x.typeUrl && Array.isArray(x.rules)) {
