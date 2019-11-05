@@ -5,7 +5,7 @@ const Mcrypto = require('@arcblock/mcrypto');
 const ForgeSDK = require('@arcblock/forge-sdk');
 const { toBase58 } = require('@arcblock/forge-util');
 const { fromAddress } = require('@arcblock/forge-wallet');
-const { toAddress, toDid } = require('@arcblock/did');
+const { toAddress } = require('@arcblock/did');
 const { decode, verify, sign } = require('../jwt');
 
 // eslint-disable-next-line
@@ -23,8 +23,8 @@ class WalletAuthenticator {
 
   /**
    * @typedef ChainInfo
-   * @prop {string} chainId - application chain id
-   * @prop {string} chainHost - graphql endpoint of the application chain
+   * @prop {string} id - application chain id
+   * @prop {string} host - graphql endpoint of the application chain
    */
 
   /**
@@ -52,11 +52,11 @@ class WalletAuthenticator {
     if (!chainInfo) {
       throw new Error('WalletAuthenticator cannot work without chainInfo');
     }
-    if (typeof chainInfo.chainHost === 'undefined') {
-      throw new Error('WalletAuthenticator cannot work without chainInfo.chainHost');
+    if (typeof chainInfo.host === 'undefined') {
+      throw new Error('WalletAuthenticator cannot work without chainInfo.host');
     }
-    if (typeof chainInfo.chainId === 'undefined') {
-      throw new Error('WalletAuthenticator cannot work without chainInfo.chainId');
+    if (typeof chainInfo.id === 'undefined') {
+      throw new Error('WalletAuthenticator cannot work without chainInfo.id');
     }
 
     this.wallet = wallet;
@@ -67,7 +67,7 @@ class WalletAuthenticator {
     this.tokenKey = tokenKey;
     this.appPk = toBase58(wallet.pk);
 
-    ForgeSDK.connect(chainInfo.chainHost, { chainId: chainInfo.chainId, name: chainInfo.chainId });
+    ForgeSDK.connect(chainInfo.host, { chainId: chainInfo.id, name: chainInfo.id });
   }
 
   /**
@@ -83,8 +83,6 @@ class WalletAuthenticator {
   uri({ token, pathname, query = {} }) {
     const params = Object.assign({}, query, { [this.tokenKey]: token });
     const payload = {
-      appPk: this.appPk,
-      appDid: toDid(this.wallet.address),
       action: 'requestAuth',
       url: encodeURIComponent(`${this.baseUrl}${pathname}?${qs.stringify(params)}`),
     };
@@ -107,6 +105,30 @@ class WalletAuthenticator {
   }
 
   /**
+   * Sign a plain response, usually on auth success or error
+   *
+   * @method
+   * @param {object} params
+   * @param {object} params.response - response
+   * @param {string} params.error - error message
+   * @returns {object} { appPk, authInfo }
+   */
+  async signResponse({ response = {}, error = '' }) {
+    const payload = {
+      appInfo: this.appInfo,
+      status: error ? 'error' : 'ok',
+      errorMessage: error || '',
+      response,
+    };
+
+    debug('signResponse', { response, error });
+    return {
+      appPk: this.appPk,
+      authInfo: sign(this.wallet.address, this.wallet.sk, payload),
+    };
+  }
+
+  /**
    * Sign a auth response that returned to wallet: tell the wallet the appInfo/chainInfo/crossChainInfo
    *
    * @method
@@ -119,7 +141,7 @@ class WalletAuthenticator {
    * @returns {object} { appPk, authInfo }
    */
   async sign({ token, userDid, userPk, claims, pathname, extraParams }) {
-    const isValidChainInfo = x => x && x.chainId && x.chainHost;
+    const isValidChainInfo = x => x && x.id && x.host;
 
     const claimsInfo = await this.genRequestedClaims({ claims, userDid, userPk, extraParams });
     const tmp = claimsInfo.find(x => isValidChainInfo(x.chainInfo));
@@ -139,7 +161,7 @@ class WalletAuthenticator {
 
     if (
       isValidChainInfo(this.crossChainInfo) &&
-      this.crossChainInfo.chainHost !== payload.chainInfo.chainHost
+      this.crossChainInfo.host !== payload.chainInfo.host
     ) {
       payload.crossChainInfo = this.crossChainInfo;
     }
@@ -147,7 +169,7 @@ class WalletAuthenticator {
     debug('responseAuth.sign', { token, userDid, payload, extraParams });
     return {
       appPk: this.appPk,
-      authInfo: sign(toDid(this.wallet.address), this.wallet.sk, payload),
+      authInfo: sign(this.wallet.address, this.wallet.sk, payload),
     };
   }
 
@@ -214,7 +236,7 @@ class WalletAuthenticator {
       debug('decode', { iss, requestedClaims });
 
       // check timestamp
-      return resolve({ token, userDid: iss, userPk, claims: requestedClaims });
+      return resolve({ token, userDid: toAddress(iss), userPk, claims: requestedClaims });
     });
   }
 
@@ -242,7 +264,7 @@ class WalletAuthenticator {
 
   // 要求同意协议
   async agreement({ claim, userDid, userPk, extraParams }) {
-    const { uri, hash, description } = await this.getClaimInfo({
+    const { uri, hash, description, meta = {} } = await this.getClaimInfo({
       claim,
       userDid,
       userPk,
@@ -251,11 +273,10 @@ class WalletAuthenticator {
 
     return {
       type: 'agreement',
-      meta: {
-        description: description || 'Confirm your agreement to the document',
-      },
+      description: description || 'Confirm your agreement to the document',
       uri,
       hash,
+      meta,
     };
   }
 
@@ -285,14 +306,17 @@ class WalletAuthenticator {
       sender,
       description,
       chainInfo,
-      meta,
+      meta = {},
     } = await this.getClaimInfo({
       claim,
       userDid,
       userPk,
       extraParams,
     });
+
     debug('getClaim.signature', { txData, txType, sender, userDid, userPk });
+
+    // If we are signing a transaction
     if (typeof ForgeSDK[`encode${txType}`] === 'function') {
       if (!txData.pk) {
         txData.pk = userPk;
@@ -303,78 +327,61 @@ class WalletAuthenticator {
           tx: txData,
           wallet: wallet || fromAddress(sender || userDid),
         },
-        { conn: chainInfo.chainId || this.chainInfo.chainId }
+        { conn: chainInfo ? chainInfo.id : this.chainInfo.id }
       );
 
       return {
         type: 'signature',
         data: toBase58(Mcrypto.Hasher.SHA3.hash256(txBuffer)),
-        meta: {
-          description: description || 'You have to sign this transaction to continue.',
-          typeUrl: 'fg:t:transaction',
-        },
+        description: description || 'You have to sign this transaction to continue.',
+        typeUrl: 'fg:t:transaction',
         method: 'sha3',
         origin: toBase58(txBuffer),
         sig: '',
         chainInfo,
+        meta: Object.assign(meta, {
+          // FIXME: these fields should not exist here
+          description: description || 'You have to sign this transaction to continue.',
+          typeUrl: 'fg:t:transaction',
+        }),
       };
     }
 
+    // If we are ask user to sign anything
     return {
       type: 'signature',
       data: toBase58(txData),
-      meta: Object.assign(meta || {}, {
-        description: description || 'Sign this message to continue.',
-        // TODO: https://github.com/ArcBlock/ABT-DID-Protocol/issues/46
-        typeUrl: 'walletkit::signature',
-      }),
+      description: description || 'Sign this message to continue.',
+      // TODO: https://github.com/ArcBlock/ABT-DID-Protocol/issues/46
+      typeUrl: 'walletkit::signature',
       method: 'sha3',
       origin: toBase58(txData),
       sig: '',
       chainInfo,
+      meta,
     };
   }
 
   // 资产持有证明
   async holdingOfAsset({ claim, userDid, userPk, extraParams }) {
-    const { target, description } = await this.getClaimInfo({
+    const { assetDid, description } = await this.getClaimInfo({
       claim,
       userDid,
       userPk,
       extraParams,
     });
     return {
-      type: 'did',
-      did_type: 'asset',
-      target,
-      did: '',
+      type: 'asset',
+      description: description || 'Please prove that you hold the asset',
       meta: {
-        description: description || 'Please prove that you hold the asset',
+        id: assetDid,
       },
     };
   }
 
-  // 通证持有证明
-  async holdingOfToken({ claim, userDid, userPk, extraParams }) {
-    const { target, description } = await this.getClaimInfo({
-      claim,
-      userDid,
-      userPk,
-      extraParams,
-    });
-    return {
-      type: 'did',
-      did_type: 'account',
-      target: Number(target),
-      did: '',
-      meta: {
-        description: description || `Please prove that you have ${target} token`,
-      },
-    };
-  }
-
+  // 选择 DID
   async authPrincipal({ claim, userDid, userPk, extraParams }) {
-    const { target, meta, description } = await this.getClaimInfo({
+    const { target, description, meta = {} } = await this.getClaimInfo({
       claim,
       userDid,
       userPk,
@@ -383,7 +390,7 @@ class WalletAuthenticator {
 
     return {
       type: 'authPrincipal',
-      description,
+      description: description || 'Please set the authentication principal',
       meta,
       target,
     };
@@ -394,7 +401,6 @@ class WalletAuthenticator {
     const {
       swapId,
       description,
-      meta,
       offerAssets,
       offerToken,
       demandAssets,
@@ -402,6 +408,7 @@ class WalletAuthenticator {
       demandLocktime,
       receiver,
       demandChainId,
+      meta = {},
     } = await this.getClaimInfo({
       claim,
       userDid,
@@ -411,9 +418,7 @@ class WalletAuthenticator {
 
     return {
       type: 'swap',
-      meta: Object.assign(meta || {}, {
-        description: description || 'Please setup swap on the asset chain',
-      }),
+      description: description || 'Please setup swap on the asset chain',
       swapId,
       offerAssets,
       offerToken,
@@ -422,6 +427,7 @@ class WalletAuthenticator {
       demandLocktime,
       receiver,
       demandChain: demandChainId,
+      meta,
     };
   }
 }

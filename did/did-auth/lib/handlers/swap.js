@@ -150,6 +150,7 @@ class AtomicSwapHandlers {
    * @param {string} [config.sessionDidKey='user.did'] - key path to extract session user did from request object
    * @param {string} [config.tokenKey='_t_'] - query param key for `token`
    * @param {string} [config.checksumKey='_cs_'] - query param key for `checksum`
+   * @param {boolean|string|did} [config.authPrincipal=true] - whether should we do auth principal claim first
    * @returns void
    */
   attach({
@@ -166,6 +167,7 @@ class AtomicSwapHandlers {
     swapKey = 'traceId',
     tokenKey = '_t_',
     checksumKey = '_cs_',
+    authPrincipal = true,
   }) {
     if (typeof onAuth !== 'function') {
       throw new Error('onAuth callback is required to attach did auth handlers');
@@ -184,11 +186,21 @@ class AtomicSwapHandlers {
       const traceId = req.query.traceId || req.query[swapKey];
 
       if (!traceId) {
+        if (req.requester === 'wallet') {
+          return res.json(
+            this.authenticator.signResponse({ error: 'Swap ID is required to start' })
+          );
+        }
+
         return res.json({ error: 'Swap ID is required to start' });
       }
 
       const swap = await this.swapStorage.read(traceId);
       if (!swap) {
+        if (req.requester === 'wallet') {
+          return res.json(this.authenticator.signResponse({ error: 'Swap not found' }));
+        }
+
         return res.json({ error: 'Swap not found' });
       }
 
@@ -233,6 +245,7 @@ class AtomicSwapHandlers {
       onAuthRequest,
       onAuthResponse,
       ensureContext,
+      ensureRequester,
       createExtraParams,
     } = createHandlers({
       action,
@@ -249,7 +262,11 @@ class AtomicSwapHandlers {
       tokenGenerator: this.tokenGenerator,
       tokenStorage: this.tokenStorage,
       authenticator: this.authenticator,
+      authPrincipal,
     });
+
+    const ensureWeb = ensureRequester('web');
+    const ensureWallet = ensureRequester('wallet');
 
     // 0. create an empty swap data row
     app.post('/api/swap', async (req, res) => {
@@ -258,22 +275,22 @@ class AtomicSwapHandlers {
     });
 
     // 1. WEB: to generate new token
-    app.get(`${prefix}/${action}/token`, ensureSwap, generateActionToken);
+    app.get(`${prefix}/${action}/token`, ensureWeb, ensureSwap, generateActionToken);
 
     // 2. WEB: check for token status
-    app.get(`${prefix}/${action}/status`, ensureSwap, ensureContext, checkActionToken);
+    app.get(`${prefix}/${action}/status`, ensureWeb, ensureSwap, ensureContext, checkActionToken);
 
     // 3. WEB: to expire old token
-    app.get(`${prefix}/${action}/timeout`, ensureSwap, ensureContext, expireActionToken);
+    app.get(`${prefix}/${action}/timeout`, ensureWeb, ensureSwap, ensureContext, expireActionToken);
 
     // 4. Wallet: fetch auth request
-    app.get(authPath, ensureSwap, ensureContext, onAuthRequest);
+    app.get(authPath, ensureWallet, ensureSwap, ensureContext, onAuthRequest);
 
     // 5. Wallet: submit auth response
-    app.post(authPath, ensureSwap, ensureContext, onAuthResponse);
+    app.post(authPath, ensureWallet, ensureSwap, ensureContext, onAuthResponse);
 
     // 6. Wallet: simple auth principal stub that used for wallet to retrieve
-    app.get(retrievePath, ensureSwap, ensureContext, async (req, res) => {
+    app.get(retrievePath, ensureWallet, ensureSwap, ensureContext, async (req, res) => {
       const { locale, token, params } = req.context;
       const { userDid, userPk } = params;
 
@@ -298,13 +315,13 @@ class AtomicSwapHandlers {
         debug('retrieve.result', authInfo);
         res.json(authInfo);
       } catch (err) {
-        res.json({ error: err.message });
+        res.json(this.authenticator.signResponse({ error: err.message }));
         onError({ stage: 'retrieve-response', err });
       }
     });
 
     // 7. Wallet: setup seller swap and start retriever
-    app.post(retrievePath, ensureSwap, ensureContext, async (req, res) => {
+    app.get(retrievePath, ensureWallet, ensureSwap, ensureContext, async (req, res) => {
       const { locale, token, params } = req.context;
       const { traceId } = params;
 
@@ -316,7 +333,7 @@ class AtomicSwapHandlers {
       debug('retrieve.verify', { userDid, token, claims: claimResponse, swap: req.swap });
 
       if (req.swap.offerSetupHash && req.swap.offerSwapAddress) {
-        res.json({ status: 0, response: { swapAddress: req.swap.offerSwapAddress } });
+        res.json(this.authenticator.signResponse({ swapAddress: req.swap.offerSwapAddress }));
         return;
       }
 
@@ -377,7 +394,7 @@ class AtomicSwapHandlers {
           offerSwapAddress: address,
         });
 
-        res.json({ status: 0, response: { swapAddress: address } });
+        res.json(this.authenticator.signResponse({ swapAddress: address }));
 
         const retriever = createRetriever({
           traceId,
@@ -433,10 +450,12 @@ class AtomicSwapHandlers {
         // TODO: improve error message here
         if (Array.isArray(err.errors)) {
           console.error('swap.setup.error', JSON.stringify(err.errors));
-          res.json({ error: err.errors.map(x => x.message).join(';') });
+          res.json(
+            this.authenticator.signResponse({ error: err.errors.map(x => x.message).join(';') })
+          );
         } else {
           console.error('swap.setup.error', err);
-          res.json({ error: err.message });
+          res.json(this.authenticator.signResponse({ error: err.message }));
         }
         onError({ stage: 'offer-setup-swap', err });
       }
