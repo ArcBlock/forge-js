@@ -139,7 +139,7 @@ const createRetriever = params => {
             events.emit('retrieved.user', { traceId, hash: tx ? tx.hash : '', retryCount });
           }
         } catch (err) {
-          console.error('swap.retrieve.done.error', err);
+          // console.error('swap.retrieve.done.error', err);
           events.emit('retrieved.user', { traceId, hash: '', retryCount });
         }
 

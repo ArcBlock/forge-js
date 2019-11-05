@@ -186,35 +186,33 @@ module.exports = function createHandlers({
     const { locale, token, store, params, isAuthPrincipalStep } = req.context;
     const { userDid, userPk, [checksumKey]: checksum } = params;
 
-    debug('sign.input', params);
-
     // Only check userDid and userPk if we have done auth principal
     if (isAuthPrincipalStep === false) {
       if (!userDid) {
-        return res.json(authenticator.signResponse({ error: errors.didMissing[locale] }));
+        return res.json({ error: errors.didMissing[locale] });
       }
       if (!userPk) {
-        return res.json(authenticator.signResponse({ error: errors.pkMissing[locale] }));
+        return res.json({ error: errors.pkMissing[locale] });
       }
 
       // check userDid mismatch
       const didChecksum = getDidCheckSum(userDid);
       if (didChecksum && checksum && didChecksum !== checksum) {
         await tokenStorage.update(token, { status: STATUS_FORBIDDEN });
-        return res.json(authenticator.signResponse({ error: errors.didMismatch[locale] }));
+        return res.json({ error: errors.didMismatch[locale] });
       }
     }
 
     try {
       if (store && store.status === STATUS_FORBIDDEN) {
-        return res.json(authenticator.signResponse({ error: errors.didMismatch[locale] }));
+        return res.json({ error: errors.didMismatch[locale] });
       }
 
       if (store) {
         await tokenStorage.update(token, { did: userDid, status: STATUS_SCANNED });
       }
 
-      res.json(
+      res.jsonp(
         await authenticator.sign({
           token,
           userDid,
@@ -232,7 +230,7 @@ module.exports = function createHandlers({
           error: err.message,
         });
       }
-      res.json(authenticator.signResponse({ error: err.message }));
+      res.json({ error: err.message });
       onError({ stage: 'auth-response', err });
     }
   };
@@ -240,7 +238,6 @@ module.exports = function createHandlers({
   // eslint-disable-next-line consistent-return
   const onAuthResponse = async (req, res) => {
     const { locale, token, store, params } = req.context;
-    debug('verify.input', params);
 
     try {
       const { userDid, userPk, claims: claimResponse } = await authenticator.verify(params, locale);
@@ -258,7 +255,7 @@ module.exports = function createHandlers({
       };
 
       if (token && store && store.status === STATUS_FORBIDDEN) {
-        return res.json(authenticator.signResponse({ error: errors.didMismatch[locale] }));
+        return res.json({ error: errors.didMismatch[locale] });
       }
 
       // onPreAuth: error thrown from this callback will halt the auth process
@@ -271,12 +268,18 @@ module.exports = function createHandlers({
             // onAuth: send the tx/do the transfer, etc.
             const result = await onAuth(cbParams);
             await tokenStorage.update(token, { status: STATUS_SUCCEED });
-            return res.json(authenticator.signResponse(Object.assign({}, result || {})));
+
+            // TODO: atomic-swap in wallet does not support signed response
+            if (req.swap) {
+              return res.json(Object.assign({}, result || {}));
+            }
+
+            return res.json(Object.assign({}, result || {}));
           }
 
           // Move to next step
           await tokenStorage.update(token, { currentStep: store.currentStep + 1 });
-          return res.json(
+          return res.jsonp(
             await authenticator.sign({
               token,
               userDid,
@@ -289,19 +292,19 @@ module.exports = function createHandlers({
         }
 
         // If we have a invalid token
-        return res.json(authenticator.signResponse({ error: errors.token404[locale] }));
+        return res.json({ error: errors.token404[locale] });
       }
 
       // If we have no token
       const result = await onAuth(cbParams);
-      res.json(authenticator.signResponse(Object.assign({}, result || {})));
+      res.json(Object.assign({}, result || {}));
     } catch (err) {
       if (store) {
         debug('verify.error', token);
         await tokenStorage.update(token, { status: STATUS_ERROR, error: err.message });
       }
 
-      res.json(authenticator.signResponse({ error: err.message }));
+      res.json({ error: err.message });
       onError({ stage: 'auth-request', err });
     }
   };
@@ -322,6 +325,16 @@ module.exports = function createHandlers({
     return next();
   };
 
+  const ensureSignedJson = (isSwap = false) => (req, res, next) => {
+    if (isSwap === false && req.ensureSignedJson !== undefined) {
+      req.ensureSignedJson = true;
+      const originJson = res.json;
+      res.json = data => originJson(authenticator.signResponse(data));
+    }
+
+    next();
+  };
+
   const ensureRequester = requester => (req, res, next) => {
     req.requester = requester;
     next();
@@ -335,6 +348,7 @@ module.exports = function createHandlers({
     onAuthResponse,
     ensureContext,
     ensureRequester,
+    ensureSignedJson,
     createExtraParams,
   };
 };
