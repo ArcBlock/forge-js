@@ -85,6 +85,7 @@ Verify a jwt token signed by another application, used for inter-application com
   * [new WalletAuthenticator(config)](#new_WalletAuthenticator_new)
   * [uri(params)](#WalletAuthenticator+uri) ⇒ `string`
   * [getPublicUrl(pathname, params)](#WalletAuthenticator+getPublicUrl) ⇒ `string`
+  * [signResponse(params)](#WalletAuthenticator+signResponse) ⇒ `object`
   * [sign(params)](#WalletAuthenticator+sign) ⇒ `object`
   * [verify(data, \[locale\], \[enforceTimestamp\])](#WalletAuthenticator+verify) ⇒
 
@@ -125,6 +126,19 @@ Compute public url to return to wallet
 | -------- | -------- |
 | pathname | `string` |
 | params   | `object` |
+
+### walletAuthenticator.signResponse(params) ⇒ `object`
+
+Sign a plain response, usually on auth success or error
+
+**Kind**: instance method of [`WalletAuthenticator`](#WalletAuthenticator)  
+**Returns**: `object` - { appPk, authInfo }  
+
+| Param           | Type     | Description   |
+| --------------- | -------- | ------------- |
+| params          | `object` |               |
+| params.response | `object` | response      |
+| params.error    | `string` | error message |
 
 ### walletAuthenticator.sign(params) ⇒ `object`
 
@@ -225,20 +239,21 @@ Browser
 **Kind**: instance method of [`AtomicSwapHandlers`](#AtomicSwapHandlers)  
 **Returns**: void  
 
-| Param                  | Type       | Default                             | Description                                                           |
-| ---------------------- | ---------- | ----------------------------------- | --------------------------------------------------------------------- |
-| config                 | `object`   |                                     | attach config { app, action, claims, prefix = '/api' }                |
-| config.app             | `object`   |                                     | express instance to attach routes to                                  |
-| config.claims          | `object`   |                                     | claims for this request                                               |
-| config.action          | `string`   |                                     | action of this group of routes                                        |
-| config.onAuth          | `function` |                                     | callback when user completed auth in abt wallet, and data posted back |
-| [config.onComplete]    | `function` | `noop`                              | callback when the whole auth process is done, action token is removed |
-| [config.onExpire]      | `function` | `noop`                              | callback when the action token expired                                |
-| [config.onError]       | `function` | `console.error`                     | callback when there are some errors                                   |
-| [config.prefix]        | `string`   | `&quot;&#x27;/api/swap&#x27;&quot;` | url prefix for this group endpoints                                   |
-| [config.sessionDidKey] | `string`   | `&quot;&#x27;user.did&#x27;&quot;`  | key path to extract session user did from request object              |
-| [config.tokenKey]      | `string`   | `&quot;&#x27;_t_&#x27;&quot;`       | query param key for `token`                                           |
-| [config.checksumKey]   | `string`   | `&quot;&#x27;_cs_&#x27;&quot;`      | query param key for `checksum`                                        |
+| Param                  | Type                           | Default                             | Description                                                           |
+| ---------------------- | ------------------------------ | ----------------------------------- | --------------------------------------------------------------------- |
+| config                 | `object`                       |                                     | attach config { app, action, claims, prefix = '/api' }                |
+| config.app             | `object`                       |                                     | express instance to attach routes to                                  |
+| config.claims          | `object`                       |                                     | claims for this request                                               |
+| config.action          | `string`                       |                                     | action of this group of routes                                        |
+| config.onAuth          | `function`                     |                                     | callback when user completed auth in abt wallet, and data posted back |
+| [config.onComplete]    | `function`                     | `noop`                              | callback when the whole auth process is done, action token is removed |
+| [config.onExpire]      | `function`                     | `noop`                              | callback when the action token expired                                |
+| [config.onError]       | `function`                     | `console.error`                     | callback when there are some errors                                   |
+| [config.prefix]        | `string`                       | `&quot;&#x27;/api/swap&#x27;&quot;` | url prefix for this group endpoints                                   |
+| [config.sessionDidKey] | `string`                       | `&quot;&#x27;user.did&#x27;&quot;`  | key path to extract session user did from request object              |
+| [config.tokenKey]      | `string`                       | `&quot;&#x27;_t_&#x27;&quot;`       | query param key for `token`                                           |
+| [config.checksumKey]   | `string`                       | `&quot;&#x27;_cs_&#x27;&quot;`      | query param key for `checksum`                                        |
+| [config.authPrincipal] | `boolean` \| `string` \| `did` | `true`                              | whether should we do auth principal claim first                       |
 
 
 ## WalletHandlers
@@ -275,20 +290,21 @@ Now express app have route handlers attached to the following url
 **Kind**: instance method of [`WalletHandlers`](#WalletHandlers)  
 **Returns**: void  
 
-| Param                  | Type       | Default                            | Description                                                           |
-| ---------------------- | ---------- | ---------------------------------- | --------------------------------------------------------------------- |
-| config                 | `object`   |                                    | attach config { app, action, claims, prefix = '/api' }                |
-| config.app             | `object`   |                                    | express instance to attach routes to                                  |
-| config.claims          | `object`   |                                    | claims for this request                                               |
-| config.action          | `string`   |                                    | action of this group of routes                                        |
-| config.onAuth          | `function` |                                    | callback when user completed auth in abt wallet, and data posted back |
-| [config.onComplete]    | `function` | `noop`                             | callback when the whole auth process is done, action token is removed |
-| [config.onExpire]      | `function` | `noop`                             | callback when the action token expired                                |
-| [config.onError]       | `function` | `console.error`                    | callback when there are some errors                                   |
-| [config.prefix]        | `string`   | `&quot;&#x27;/api/did&#x27;&quot;` | url prefix for this group endpoints                                   |
-| [config.sessionDidKey] | `string`   | `&quot;&#x27;user.did&#x27;&quot;` | key path to extract session user did from request object              |
-| [config.tokenKey]      | `string`   | `&quot;&#x27;_t_&#x27;&quot;`      | query param key for `token`                                           |
-| [config.checksumKey]   | `string`   | `&quot;&#x27;_cs_&#x27;&quot;`     | query param key for `checksum`                                        |
+| Param                  | Type                           | Default                            | Description                                                           |
+| ---------------------- | ------------------------------ | ---------------------------------- | --------------------------------------------------------------------- |
+| config                 | `object`                       |                                    | attach config { app, action, claims, prefix = '/api' }                |
+| config.app             | `object`                       |                                    | express instance to attach routes to                                  |
+| config.claims          | `object`                       |                                    | claims for this request                                               |
+| config.action          | `string`                       |                                    | action of this group of routes                                        |
+| config.onAuth          | `function`                     |                                    | callback when user completed auth in abt wallet, and data posted back |
+| [config.onComplete]    | `function`                     | `noop`                             | callback when the whole auth process is done, action token is removed |
+| [config.onExpire]      | `function`                     | `noop`                             | callback when the action token expired                                |
+| [config.onError]       | `function`                     | `console.error`                    | callback when there are some errors                                   |
+| [config.prefix]        | `string`                       | `&quot;&#x27;/api/did&#x27;&quot;` | url prefix for this group endpoints                                   |
+| [config.sessionDidKey] | `string`                       | `&quot;&#x27;user.did&#x27;&quot;` | key path to extract session user did from request object              |
+| [config.tokenKey]      | `string`                       | `&quot;&#x27;_t_&#x27;&quot;`      | query param key for `token`                                           |
+| [config.checksumKey]   | `string`                       | `&quot;&#x27;_cs_&#x27;&quot;`     | query param key for `checksum`                                        |
+| [config.authPrincipal] | `boolean` \| `string` \| `did` | `true`                             | whether should we do auth principal claim first                       |
 
 
 ## ApplicationInfo
@@ -310,9 +326,9 @@ Now express app have route handlers attached to the following url
 **Kind**: global typedef  
 **Properties**
 
-| Name      | Type     | Description                               |
-| --------- | -------- | ----------------------------------------- |
-| chainId   | `string` | application chain id                      |
-| chainHost | `string` | graphql endpoint of the application chain |
+| Name | Type     | Description                               |
+| ---- | -------- | ----------------------------------------- |
+| id   | `string` | application chain id                      |
+| host | `string` | graphql endpoint of the application chain |
 
   
