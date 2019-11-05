@@ -29,10 +29,8 @@ describe('#Authenticator', () => {
         publisher: `did:abt:${wallet.address}`,
       },
       chainInfo: {
-        chainHost,
-        chainId,
-        chainToken: 'TBA',
-        decimals: 16,
+        host: chainHost,
+        id: chainId,
       },
     });
 
