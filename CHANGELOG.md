@@ -1,3 +1,9 @@
+## 0.40.3 (November 05, 2019)
+
+- fix: atomic swap is not using new did-auth-protocol
+- feat: adopt new did-auth-protocol
+- update readme
+
 ## 0.40.2 (November 01, 2019)
 
 - chore: update graphql-client schema for deprecated types
