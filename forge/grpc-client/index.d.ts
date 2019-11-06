@@ -1428,30 +1428,6 @@ export interface SetupSwapTx {
   data: google.protobuf.Any;
 }
 
-export interface stakeForAsset {
-
-}
-
-export interface stakeForChain {
-
-}
-
-export interface StakeForNode {
-
-}
-
-export interface stakeForUser {
-
-}
-
-export interface StakeTx {
-  to: string;
-  value: forge_abi.BigSint;
-  message: string;
-  address: string;
-  data: google.protobuf.Any;
-}
-
 export interface TransferTx {
   to: string;
   value: forge_abi.BigUint;
