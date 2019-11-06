@@ -145,10 +145,14 @@ const createRetriever = params => {
 
         // Sent retrieve swap
         try {
-          const hash = await ForgeSDK.retrieveSwap(
+          const hash = await ForgeSDK.sendRetrieveSwapTx(
             {
-              address: demandSwapAddress,
-              hashkey: `0x${source.state.hashkey}`,
+              tx: {
+                itx: {
+                  address: demandSwapAddress,
+                  hashkey: `0x${source.state.hashkey}`,
+                },
+              },
               wallet: ForgeSDK.Wallet.fromJSON(retrieveWallet),
             },
             { conn: demandChainId }
