@@ -600,7 +600,7 @@ function toBase64(v, escape = true) {
 }
 
 /**
- * Decode base64 string to buffer
+ * Decode base64(base64_url) string to buffer
  *
  * @public
  * @static

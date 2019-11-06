@@ -4,6 +4,7 @@ const { EventEmitter } = require('events');
 
 /**
  * Defines the interface of DID-Auth Token Storage
+ * Which is used during the DID-Auth process in an typical application
  *
  * @class AuthStorage
  * @extends {EventEmitter}

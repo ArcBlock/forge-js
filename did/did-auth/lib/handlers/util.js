@@ -326,10 +326,11 @@ module.exports = function createHandlers({
   };
 
   const ensureSignedJson = (isSwap = false) => (req, res, next) => {
-    if (isSwap === false && req.ensureSignedJson !== undefined) {
+    if (isSwap === false && req.ensureSignedJson === undefined) {
+      debug('ensureSignedJson.attach');
       req.ensureSignedJson = true;
       const originJson = res.json;
-      res.json = data => originJson(authenticator.signResponse(data));
+      res.json = data => originJson.call(res, authenticator.signResponse(data));
     }
 
     next();

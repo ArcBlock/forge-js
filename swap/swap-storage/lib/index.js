@@ -3,6 +3,7 @@ const { EventEmitter } = require('events');
 
 /**
  * Defines the interface of atomic-swap storage
+ * Which should be implemented to use in dapps that uses atomic-swap capability
  *
  * @class SwapStorage
  * @extends {EventEmitter}
