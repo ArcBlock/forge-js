@@ -330,7 +330,18 @@ module.exports = function createHandlers({
       debug('ensureSignedJson.attach');
       req.ensureSignedJson = true;
       const originJson = res.json;
-      res.json = data => originJson.call(res, authenticator.signResponse(data));
+      res.json = payload => {
+        let data;
+        if (payload.error) {
+          data = { error: payload.error };
+        } else if (payload.response) {
+          data = { response: payload.response };
+        } else {
+          data = { response: payload };
+        }
+
+        originJson.call(res, authenticator.signResponse(data));
+      };
     }
 
     next();
