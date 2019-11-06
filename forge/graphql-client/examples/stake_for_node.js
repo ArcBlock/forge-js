@@ -1,3 +1,4 @@
+/* eslint-disable no-unreachable */
 /* eslint-disable import/no-extraneous-dependencies */
 /* eslint no-console:"off" */
 
@@ -24,6 +25,7 @@ const type = WalletType({
 
 (async () => {
   try {
+    return;
     const user = fromRandom(type);
 
     // 1. declare user
