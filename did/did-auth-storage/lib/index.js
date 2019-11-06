@@ -2,7 +2,13 @@
 /* eslint-disable no-unused-vars */
 const { EventEmitter } = require('events');
 
-module.exports = class AuthStorage extends EventEmitter {
+/**
+ * Defines the interface of DID-Auth Token Storage
+ *
+ * @class AuthStorage
+ * @extends {EventEmitter}
+ */
+class AuthStorage extends EventEmitter {
   /**
    * Creates an instance of AuthStorage.
    *
@@ -32,4 +38,6 @@ module.exports = class AuthStorage extends EventEmitter {
   exist(token, did) {
     throw new Error('AuthStorage.exist must be implemented in child class');
   }
-};
+}
+
+module.exports = AuthStorage;

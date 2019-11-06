@@ -19,7 +19,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@arcblock/forge-sdk": "^0.38.10",
+    "@arcblock/forge-sdk": "^0.40.3",
     "@arcblock/forge-wallet": "^0.40.3",
     "debug": "^4.1.1",
     "json-stable-stringify": "^1.0.1",
