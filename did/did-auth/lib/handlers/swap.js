@@ -331,6 +331,7 @@ class AtomicSwapHandlers {
         const { locale, token, params } = req.context;
         const { traceId } = params;
 
+        // FIXME: enforceTimestamp is turned off for now
         const { userDid, claims: claimResponse } = await this.authenticator.verify(
           params,
           locale,
