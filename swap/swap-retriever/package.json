@@ -1,7 +1,7 @@
 {
   "name": "@arcblock/swap-retriever",
   "description": "Utility to retrieve a swap when we can",
-  "version": "0.40.3",
+  "version": "0.40.4",
   "author": {
     "name": "wangshijun",
     "email": "shijun@arcblock.io",
