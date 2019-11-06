@@ -1,7 +1,7 @@
 /* eslint-disable object-curly-newline */
 const get = require('lodash.get');
 const Mcrypto = require('@arcblock/mcrypto');
-const { toAddress } = require('@arcblock/did');
+const { toAddress, isValid } = require('@arcblock/did');
 // eslint-disable-next-line
 const debug = require('debug')(`${require('../../package.json').name}:handlers:did`);
 
@@ -53,9 +53,26 @@ module.exports = function createHandlers({
   tokenGenerator,
   tokenStorage,
   authenticator,
+  authPrincipal,
 }) {
   // if user want to do multiple-step did-auth
   const steps = Array.isArray(claims) ? claims : [claims];
+
+  // Prepend auth principal claim by default
+  if (authPrincipal) {
+    // If auth principal is provided as a did
+    const target = isValid(authPrincipal.toString()) ? authPrincipal.toString() : '';
+    // If auth principal is provided as a string
+    const description = !isValid(authPrincipal.toString())
+      ? authPrincipal.toString()
+      : 'Please select authentication principal';
+    steps.unshift({
+      authPrincipal: () => ({
+        description,
+        target,
+      }),
+    });
+  }
 
   const createExtraParams = (locale, query) =>
     Object.assign(
@@ -68,6 +85,7 @@ module.exports = function createHandlers({
         }, {})
     );
 
+  // For web app
   const generateActionToken = async (req, res) => {
     try {
       const token = sha3(tokenGenerator({ req, action, pathname }))
@@ -95,6 +113,7 @@ module.exports = function createHandlers({
     }
   };
 
+  // For web app
   const checkActionToken = async (req, res) => {
     try {
       const { locale, token, store } = req.context;
@@ -125,7 +144,7 @@ module.exports = function createHandlers({
             req,
             action,
             token,
-            userDid: toAddress(store.did),
+            userDid: store.did,
             extraParams: createExtraParams(locale, req.query),
           });
         }
@@ -140,6 +159,7 @@ module.exports = function createHandlers({
     }
   };
 
+  // For web app
   const expireActionToken = async (req, res) => {
     try {
       const { locale, token, store } = req.context;
@@ -163,49 +183,49 @@ module.exports = function createHandlers({
 
   // eslint-disable-next-line consistent-return
   const onAuthRequest = async (req, res) => {
-    const { locale, token, store, params } = req.context;
+    const { locale, token, store, params, isAuthPrincipalStep } = req.context;
     const { userDid, userPk, [checksumKey]: checksum } = params;
 
-    if (!userDid) {
-      return res.json({ error: errors.didMissing[locale] });
-    }
-    if (!userPk) {
-      return res.json({ error: errors.pkMissing[locale] });
-    }
+    // Only check userDid and userPk if we have done auth principal
+    if (isAuthPrincipalStep === false) {
+      if (!userDid) {
+        return res.json({ error: errors.didMissing[locale] });
+      }
+      if (!userPk) {
+        return res.json({ error: errors.pkMissing[locale] });
+      }
 
-    debug('sign.input', params);
-
-    // check userDid mismatch
-    const didChecksum = getDidCheckSum(userDid);
-    if (didChecksum && checksum && didChecksum !== checksum) {
-      await tokenStorage.update(token, { status: STATUS_FORBIDDEN });
-      return res.json({ error: errors.didMismatch[locale] });
+      // check userDid mismatch
+      const didChecksum = getDidCheckSum(userDid);
+      if (didChecksum && checksum && didChecksum !== checksum) {
+        await tokenStorage.update(token, { status: STATUS_FORBIDDEN });
+        return res.json({ error: errors.didMismatch[locale] });
+      }
     }
 
     try {
-      if (token && store && store.status === STATUS_FORBIDDEN) {
+      if (store && store.status === STATUS_FORBIDDEN) {
         return res.json({ error: errors.didMismatch[locale] });
       }
 
       if (store) {
-        await tokenStorage.update(token, { did: toAddress(userDid), status: STATUS_SCANNED });
+        await tokenStorage.update(token, { did: userDid, status: STATUS_SCANNED });
       }
 
-      const authInfo = await authenticator.sign({
-        token,
-        userDid: toAddress(userDid),
-        userPk,
-        claims: store ? steps[store.currentStep] : steps[0],
-        pathname,
-        extraParams: createExtraParams(locale, req.query),
-      });
-
-      debug('sign.result', authInfo);
-      res.json(authInfo);
+      res.jsonp(
+        await authenticator.sign({
+          token,
+          userDid,
+          userPk,
+          claims: store ? steps[store.currentStep] : steps[0],
+          pathname,
+          extraParams: createExtraParams(locale, req.query),
+        })
+      );
     } catch (err) {
       if (store) {
         await tokenStorage.update(token, {
-          did: toAddress(userDid),
+          did: userDid,
           status: STATUS_ERROR,
           error: err.message,
         });
@@ -218,7 +238,6 @@ module.exports = function createHandlers({
   // eslint-disable-next-line consistent-return
   const onAuthResponse = async (req, res) => {
     const { locale, token, store, params } = req.context;
-    debug('verify.input', params);
 
     try {
       const { userDid, userPk, claims: claimResponse } = await authenticator.verify(params, locale);
@@ -227,7 +246,7 @@ module.exports = function createHandlers({
       const cbParams = {
         step: store ? store.currentStep : 0,
         req,
-        userDid: toAddress(userDid),
+        userDid,
         userPk,
         token,
         claims: claimResponse,
@@ -242,29 +261,34 @@ module.exports = function createHandlers({
       // onPreAuth: error thrown from this callback will halt the auth process
       await onPreAuth(cbParams);
 
-      // onAuth: send the tx/do the transfer, etc.
-      const result = await onAuth(cbParams);
-
       if (token) {
         if (store) {
           // Only return if we are walked through all steps
           if (store.currentStep === steps.length - 1) {
+            // onAuth: send the tx/do the transfer, etc.
+            const result = await onAuth(cbParams);
             await tokenStorage.update(token, { status: STATUS_SUCCEED });
-            return res.json(Object.assign({}, result || {}, { status: 0 }));
+
+            // TODO: atomic-swap in wallet does not support signed response
+            if (req.swap) {
+              return res.json(Object.assign({}, result || {}));
+            }
+
+            return res.json(Object.assign({}, result || {}));
           }
 
           // Move to next step
           await tokenStorage.update(token, { currentStep: store.currentStep + 1 });
-          const authInfo = await authenticator.sign({
-            token,
-            userDid: toAddress(userDid),
-            userPk,
-            claims: steps[store.currentStep + 1],
-            pathname,
-            extraParams: createExtraParams(locale, req.query),
-          });
-
-          return res.json(authInfo);
+          return res.jsonp(
+            await authenticator.sign({
+              token,
+              userDid,
+              userPk,
+              claims: steps[store.currentStep + 1],
+              pathname,
+              extraParams: createExtraParams(locale, req.query),
+            })
+          );
         }
 
         // If we have a invalid token
@@ -272,7 +296,8 @@ module.exports = function createHandlers({
       }
 
       // If we have no token
-      res.json(Object.assign({}, result || {}, { status: 0 }));
+      const result = await onAuth(cbParams);
+      res.json(Object.assign({}, result || {}));
     } catch (err) {
       if (store) {
         debug('verify.error', token);
@@ -290,8 +315,29 @@ module.exports = function createHandlers({
     const locale = getLocale(req);
     const store = token ? await tokenStorage.read(token) : null;
 
-    req.context = { locale, token, params, store };
+    // If we are doing our first step
+    let isAuthPrincipalStep = false;
+    if (store && authPrincipal) {
+      isAuthPrincipalStep = store.currentStep === 0;
+    }
+
+    req.context = { locale, token, params, store, isAuthPrincipalStep };
     return next();
+  };
+
+  const ensureSignedJson = (isSwap = false) => (req, res, next) => {
+    if (isSwap === false && req.ensureSignedJson !== undefined) {
+      req.ensureSignedJson = true;
+      const originJson = res.json;
+      res.json = data => originJson(authenticator.signResponse(data));
+    }
+
+    next();
+  };
+
+  const ensureRequester = requester => (req, res, next) => {
+    req.requester = requester;
+    next();
   };
 
   return {
@@ -301,6 +347,8 @@ module.exports = function createHandlers({
     onAuthRequest,
     onAuthResponse,
     ensureContext,
+    ensureRequester,
+    ensureSignedJson,
     createExtraParams,
   };
 };

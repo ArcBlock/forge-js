@@ -1039,14 +1039,14 @@
  * Checkout the following snippet for the format of ResponseGetAccountState:
  * ```json
 {
-  "code": "INVALID_FORGE_STATE",
+  "code": "INVALID_DEACTIVATION",
   "state": {
     "address": "abc",
     "balance": "abc",
     "context": {
       "genesisTime": "2019-04-29T00:00:00.000Z",
       "genesisTx": {
-        "code": "INVALID_FORGE_STATE",
+        "code": "INVALID_DEACTIVATION",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -1080,7 +1080,7 @@
       },
       "renaissanceTime": "2019-04-29T00:00:00.000Z",
       "renaissanceTx": {
-        "code": "INVALID_FORGE_STATE",
+        "code": "INVALID_DEACTIVATION",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -1179,14 +1179,14 @@
  * Checkout the following snippet for the format of ResponseGetAssetState:
  * ```json
 {
-  "code": "INVALID_FORGE_STATE",
+  "code": "INVALID_DEACTIVATION",
   "state": {
     "address": "abc",
     "consumedTime": "2019-04-29T00:00:00.000Z",
     "context": {
       "genesisTime": "2019-04-29T00:00:00.000Z",
       "genesisTx": {
-        "code": "INVALID_FORGE_STATE",
+        "code": "INVALID_DEACTIVATION",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -1220,7 +1220,7 @@
       },
       "renaissanceTime": "2019-04-29T00:00:00.000Z",
       "renaissanceTx": {
-        "code": "INVALID_FORGE_STATE",
+        "code": "INVALID_DEACTIVATION",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -1311,7 +1311,7 @@
     "height": "abc",
     "invalidTxs": [
       {
-        "code": "INVALID_FORGE_STATE",
+        "code": "INVALID_DEACTIVATION",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -1363,7 +1363,7 @@
     "totalTxs": "abc",
     "txs": [
       {
-        "code": "INVALID_FORGE_STATE",
+        "code": "INVALID_DEACTIVATION",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -1405,7 +1405,7 @@
       "block": "abc"
     }
   },
-  "code": "INVALID_FORGE_STATE"
+  "code": "INVALID_DEACTIVATION"
 }
  * ```
  *
@@ -1455,7 +1455,7 @@
       }
     }
   ],
-  "code": "INVALID_FORGE_STATE",
+  "code": "INVALID_DEACTIVATION",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -1477,7 +1477,7 @@
  * Checkout the following snippet for the format of ResponseGetChainInfo:
  * ```json
 {
-  "code": "INVALID_FORGE_STATE",
+  "code": "INVALID_DEACTIVATION",
   "info": {
     "address": "abc",
     "appHash": "abc",
@@ -1517,7 +1517,7 @@
  * Checkout the following snippet for the format of ResponseGetConfig:
  * ```json
 {
-  "code": "INVALID_FORGE_STATE",
+  "code": "INVALID_DEACTIVATION",
   "config": "abc"
 }
  * ```
@@ -1534,13 +1534,13 @@
  * Checkout the following snippet for the format of ResponseGetDelegateState:
  * ```json
 {
-  "code": "INVALID_FORGE_STATE",
+  "code": "INVALID_DEACTIVATION",
   "state": {
     "address": "abc",
     "context": {
       "genesisTime": "2019-04-29T00:00:00.000Z",
       "genesisTx": {
-        "code": "INVALID_FORGE_STATE",
+        "code": "INVALID_DEACTIVATION",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -1574,7 +1574,7 @@
       },
       "renaissanceTime": "2019-04-29T00:00:00.000Z",
       "renaissanceTx": {
-        "code": "INVALID_FORGE_STATE",
+        "code": "INVALID_DEACTIVATION",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -1639,7 +1639,7 @@
  * Checkout the following snippet for the format of ResponseGetForgeState:
  * ```json
 {
-  "code": "INVALID_FORGE_STATE",
+  "code": "INVALID_DEACTIVATION",
   "state": {
     "accountConfig": [
       {
@@ -1692,7 +1692,7 @@
           "context": {
             "genesisTime": "2019-04-29T00:00:00.000Z",
             "genesisTx": {
-              "code": "INVALID_FORGE_STATE",
+              "code": "INVALID_DEACTIVATION",
               "hash": "abc",
               "height": "abc",
               "index": 123,
@@ -1726,7 +1726,7 @@
             },
             "renaissanceTime": "2019-04-29T00:00:00.000Z",
             "renaissanceTx": {
-              "code": "INVALID_FORGE_STATE",
+              "code": "INVALID_DEACTIVATION",
               "hash": "abc",
               "height": "abc",
               "index": 123,
@@ -1842,7 +1842,7 @@
  * Checkout the following snippet for the format of ResponseGetForgeStats:
  * ```json
 {
-  "code": "INVALID_FORGE_STATE",
+  "code": "INVALID_DEACTIVATION",
   "forgeStats": {
     "avgBlockTime": 123,
     "avgTps": 123,
@@ -1914,7 +1914,7 @@
  * Checkout the following snippet for the format of ResponseGetHealthStatus:
  * ```json
 {
-  "code": "INVALID_FORGE_STATE",
+  "code": "INVALID_DEACTIVATION",
   "healthStatus": {
     "consensus": {
       "blockHeight": "abc",
@@ -1959,7 +1959,7 @@
  * Checkout the following snippet for the format of ResponseGetNetInfo:
  * ```json
 {
-  "code": "INVALID_FORGE_STATE",
+  "code": "INVALID_DEACTIVATION",
   "netInfo": {
     "listeners": [
       "abc"
@@ -1997,7 +1997,7 @@
  * Checkout the following snippet for the format of ResponseGetNodeInfo:
  * ```json
 {
-  "code": "INVALID_FORGE_STATE",
+  "code": "INVALID_DEACTIVATION",
   "info": {
     "address": "abc",
     "appHash": "abc",
@@ -2045,13 +2045,13 @@
  * Checkout the following snippet for the format of ResponseGetProtocolState:
  * ```json
 {
-  "code": "INVALID_FORGE_STATE",
+  "code": "INVALID_DEACTIVATION",
   "state": {
     "address": "abc",
     "context": {
       "genesisTime": "2019-04-29T00:00:00.000Z",
       "genesisTx": {
-        "code": "INVALID_FORGE_STATE",
+        "code": "INVALID_DEACTIVATION",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -2085,7 +2085,7 @@
       },
       "renaissanceTime": "2019-04-29T00:00:00.000Z",
       "renaissanceTx": {
-        "code": "INVALID_FORGE_STATE",
+        "code": "INVALID_DEACTIVATION",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -2178,7 +2178,7 @@
  * Checkout the following snippet for the format of ResponseGetProtocols:
  * ```json
 {
-  "code": "INVALID_FORGE_STATE",
+  "code": "INVALID_DEACTIVATION",
   "protocols": [
     {
       "address": "abc",
@@ -2226,7 +2226,7 @@
  * Checkout the following snippet for the format of ResponseGetSimulatorStatus:
  * ```json
 {
-  "code": "INVALID_FORGE_STATE",
+  "code": "INVALID_DEACTIVATION",
   "result": "abc"
 }
  * ```
@@ -2243,14 +2243,14 @@
  * Checkout the following snippet for the format of ResponseGetStakeState:
  * ```json
 {
-  "code": "INVALID_FORGE_STATE",
+  "code": "INVALID_DEACTIVATION",
   "state": {
     "address": "abc",
     "balance": "abc",
     "context": {
       "genesisTime": "2019-04-29T00:00:00.000Z",
       "genesisTx": {
-        "code": "INVALID_FORGE_STATE",
+        "code": "INVALID_DEACTIVATION",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -2284,7 +2284,7 @@
       },
       "renaissanceTime": "2019-04-29T00:00:00.000Z",
       "renaissanceTx": {
-        "code": "INVALID_FORGE_STATE",
+        "code": "INVALID_DEACTIVATION",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -2340,7 +2340,7 @@
  * Checkout the following snippet for the format of ResponseGetSwapState:
  * ```json
 {
-  "code": "INVALID_FORGE_STATE",
+  "code": "INVALID_DEACTIVATION",
   "state": {
     "address": "abc",
     "assets": [
@@ -2349,7 +2349,7 @@
     "context": {
       "genesisTime": "2019-04-29T00:00:00.000Z",
       "genesisTx": {
-        "code": "INVALID_FORGE_STATE",
+        "code": "INVALID_DEACTIVATION",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -2383,7 +2383,7 @@
       },
       "renaissanceTime": "2019-04-29T00:00:00.000Z",
       "renaissanceTx": {
-        "code": "INVALID_FORGE_STATE",
+        "code": "INVALID_DEACTIVATION",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -2439,9 +2439,9 @@
  * Checkout the following snippet for the format of ResponseGetTx:
  * ```json
 {
-  "code": "INVALID_FORGE_STATE",
+  "code": "INVALID_DEACTIVATION",
   "info": {
-    "code": "INVALID_FORGE_STATE",
+    "code": "INVALID_DEACTIVATION",
     "hash": "abc",
     "height": "abc",
     "index": 123,
@@ -2488,7 +2488,7 @@
  * Checkout the following snippet for the format of ResponseGetUnconfirmedTxs:
  * ```json
 {
-  "code": "INVALID_FORGE_STATE",
+  "code": "INVALID_DEACTIVATION",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -2535,7 +2535,7 @@
  * Checkout the following snippet for the format of ResponseGetValidatorsInfo:
  * ```json
 {
-  "code": "INVALID_FORGE_STATE",
+  "code": "INVALID_DEACTIVATION",
   "validatorsInfo": {
     "blockHeight": "abc",
     "validators": [
@@ -2572,7 +2572,7 @@
  * Checkout the following snippet for the format of ResponseListAssetTransactions:
  * ```json
 {
-  "code": "INVALID_FORGE_STATE",
+  "code": "INVALID_DEACTIVATION",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -2580,7 +2580,7 @@
   },
   "transactions": [
     {
-      "code": "INVALID_FORGE_STATE",
+      "code": "INVALID_DEACTIVATION",
       "hash": "abc",
       "receiver": "abc",
       "sender": "abc",
@@ -2662,7 +2662,7 @@
       "ttl": "abc"
     }
   ],
-  "code": "INVALID_FORGE_STATE",
+  "code": "INVALID_DEACTIVATION",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -2694,7 +2694,7 @@
       "time": "abc"
     }
   ],
-  "code": "INVALID_FORGE_STATE",
+  "code": "INVALID_DEACTIVATION",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -2716,7 +2716,7 @@
  * Checkout the following snippet for the format of ResponseListStakes:
  * ```json
 {
-  "code": "INVALID_FORGE_STATE",
+  "code": "INVALID_DEACTIVATION",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -2750,7 +2750,7 @@
  * Checkout the following snippet for the format of ResponseListSwap:
  * ```json
 {
-  "code": "INVALID_FORGE_STATE",
+  "code": "INVALID_DEACTIVATION",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -2765,7 +2765,7 @@
       "context": {
         "genesisTime": "2019-04-29T00:00:00.000Z",
         "genesisTx": {
-          "code": "INVALID_FORGE_STATE",
+          "code": "INVALID_DEACTIVATION",
           "hash": "abc",
           "height": "abc",
           "index": 123,
@@ -2799,7 +2799,7 @@
         },
         "renaissanceTime": "2019-04-29T00:00:00.000Z",
         "renaissanceTx": {
-          "code": "INVALID_FORGE_STATE",
+          "code": "INVALID_DEACTIVATION",
           "hash": "abc",
           "height": "abc",
           "index": 123,
@@ -2877,7 +2877,7 @@
       "totalUnstakes": "abc"
     }
   ],
-  "code": "INVALID_FORGE_STATE",
+  "code": "INVALID_DEACTIVATION",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -2899,7 +2899,7 @@
  * Checkout the following snippet for the format of ResponseListTransactions:
  * ```json
 {
-  "code": "INVALID_FORGE_STATE",
+  "code": "INVALID_DEACTIVATION",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -2907,7 +2907,7 @@
   },
   "transactions": [
     {
-      "code": "INVALID_FORGE_STATE",
+      "code": "INVALID_DEACTIVATION",
       "hash": "abc",
       "receiver": "abc",
       "sender": "abc",
@@ -2952,7 +2952,7 @@
  * Checkout the following snippet for the format of ResponseSendTx:
  * ```json
 {
-  "code": "INVALID_FORGE_STATE",
+  "code": "INVALID_DEACTIVATION",
   "hash": "abc"
 }
  * ```
@@ -2969,7 +2969,7 @@
  * Checkout the following snippet for the format of ResponseStartSimulator:
  * ```json
 {
-  "code": "INVALID_FORGE_STATE"
+  "code": "INVALID_DEACTIVATION"
 }
  * ```
  *
@@ -2984,7 +2984,7 @@
  * Checkout the following snippet for the format of ResponseStopSimulator:
  * ```json
 {
-  "code": "INVALID_FORGE_STATE"
+  "code": "INVALID_DEACTIVATION"
 }
  * ```
  *
@@ -3025,7 +3025,7 @@
     "context": {
       "genesisTime": "2019-04-29T00:00:00.000Z",
       "genesisTx": {
-        "code": "INVALID_FORGE_STATE",
+        "code": "INVALID_DEACTIVATION",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -3059,7 +3059,7 @@
       },
       "renaissanceTime": "2019-04-29T00:00:00.000Z",
       "renaissanceTx": {
-        "code": "INVALID_FORGE_STATE",
+        "code": "INVALID_DEACTIVATION",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -3189,7 +3189,7 @@
     "context": {
       "genesisTime": "2019-04-29T00:00:00.000Z",
       "genesisTx": {
-        "code": "INVALID_FORGE_STATE",
+        "code": "INVALID_DEACTIVATION",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -3223,7 +3223,7 @@
       },
       "renaissanceTime": "2019-04-29T00:00:00.000Z",
       "renaissanceTx": {
-        "code": "INVALID_FORGE_STATE",
+        "code": "INVALID_DEACTIVATION",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -3342,7 +3342,7 @@
       ]
     }
   },
-  "code": "INVALID_FORGE_STATE",
+  "code": "INVALID_DEACTIVATION",
   "confirm": {
     "chainId": "abc",
     "delegator": "abc",
@@ -3488,7 +3488,7 @@
     "context": {
       "genesisTime": "2019-04-29T00:00:00.000Z",
       "genesisTx": {
-        "code": "INVALID_FORGE_STATE",
+        "code": "INVALID_DEACTIVATION",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -3522,7 +3522,7 @@
       },
       "renaissanceTime": "2019-04-29T00:00:00.000Z",
       "renaissanceTx": {
-        "code": "INVALID_FORGE_STATE",
+        "code": "INVALID_DEACTIVATION",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -3667,7 +3667,7 @@
           "context": {
             "genesisTime": "2019-04-29T00:00:00.000Z",
             "genesisTx": {
-              "code": "INVALID_FORGE_STATE",
+              "code": "INVALID_DEACTIVATION",
               "hash": "abc",
               "height": "abc",
               "index": 123,
@@ -3701,7 +3701,7 @@
             },
             "renaissanceTime": "2019-04-29T00:00:00.000Z",
             "renaissanceTx": {
-              "code": "INVALID_FORGE_STATE",
+              "code": "INVALID_DEACTIVATION",
               "hash": "abc",
               "height": "abc",
               "index": 123,
@@ -3807,7 +3807,7 @@
     "context": {
       "genesisTime": "2019-04-29T00:00:00.000Z",
       "genesisTx": {
-        "code": "INVALID_FORGE_STATE",
+        "code": "INVALID_DEACTIVATION",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -3841,7 +3841,7 @@
       },
       "renaissanceTime": "2019-04-29T00:00:00.000Z",
       "renaissanceTx": {
-        "code": "INVALID_FORGE_STATE",
+        "code": "INVALID_DEACTIVATION",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -4005,7 +4005,7 @@
     "context": {
       "genesisTime": "2019-04-29T00:00:00.000Z",
       "genesisTx": {
-        "code": "INVALID_FORGE_STATE",
+        "code": "INVALID_DEACTIVATION",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -4039,7 +4039,7 @@
       },
       "renaissanceTime": "2019-04-29T00:00:00.000Z",
       "renaissanceTx": {
-        "code": "INVALID_FORGE_STATE",
+        "code": "INVALID_DEACTIVATION",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -4204,7 +4204,7 @@
  * Checkout the following snippet for the format of ResponseUnsubscribe:
  * ```json
 {
-  "code": "INVALID_FORGE_STATE"
+  "code": "INVALID_DEACTIVATION"
 }
  * ```
  *
@@ -4915,10 +4915,10 @@
 
 /**
  * @memberof GraphQLClient
- * @typedef {Object} GraphQLClient.RevokeSwapTxInput
+ * @typedef {Object} GraphQLClient.RevokeDelegateTxInput
  * @prop {object} input
  * @prop {object} input.tx - data of the transaction
- * @prop {GraphQLClient.RevokeSwapTx} input.tx.itx - the actual transaction object
+ * @prop {GraphQLClient.RevokeDelegateTx} input.tx.itx - the actual transaction object
  * @prop {string} [input.tx.pk] - the sender pk
  * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
  * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
@@ -4930,12 +4930,12 @@
  */
 
 /**
- * Send RevokeSwapTx transaction and get the hash, use {@link GraphQLClient#getTx} to get transaction detail
+ * Send RevokeDelegateTx transaction and get the hash, use {@link GraphQLClient#getTx} to get transaction detail
  *
  * @memberof GraphQLClient
  * @function
- * @name GraphQLClient#sendRevokeSwapTx
- * @param {GraphQLClient.RevokeSwapTxInput} params
+ * @name GraphQLClient#sendRevokeDelegateTx
+ * @param {GraphQLClient.RevokeDelegateTxInput} params
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
 
@@ -5019,10 +5019,10 @@
 
 /**
  * @memberof GraphQLClient
- * @typedef {Object} GraphQLClient.StakeTxInput
+ * @typedef {Object} GraphQLClient.DeactivateProtocolTxInput
  * @prop {object} input
  * @prop {object} input.tx - data of the transaction
- * @prop {GraphQLClient.StakeTx} input.tx.itx - the actual transaction object
+ * @prop {GraphQLClient.DeactivateProtocolTx} input.tx.itx - the actual transaction object
  * @prop {string} [input.tx.pk] - the sender pk
  * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
  * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
@@ -5034,12 +5034,12 @@
  */
 
 /**
- * Send StakeTx transaction and get the hash, use {@link GraphQLClient#getTx} to get transaction detail
+ * Send DeactivateProtocolTx transaction and get the hash, use {@link GraphQLClient#getTx} to get transaction detail
  *
  * @memberof GraphQLClient
  * @function
- * @name GraphQLClient#sendStakeTx
- * @param {GraphQLClient.StakeTxInput} params
+ * @name GraphQLClient#sendDeactivateProtocolTx
+ * @param {GraphQLClient.DeactivateProtocolTxInput} params
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
 
@@ -5071,10 +5071,10 @@
 
 /**
  * @memberof GraphQLClient
- * @typedef {Object} GraphQLClient.DeactivateProtocolTxInput
+ * @typedef {Object} GraphQLClient.CreateAssetTxInput
  * @prop {object} input
  * @prop {object} input.tx - data of the transaction
- * @prop {GraphQLClient.DeactivateProtocolTx} input.tx.itx - the actual transaction object
+ * @prop {GraphQLClient.CreateAssetTx} input.tx.itx - the actual transaction object
  * @prop {string} [input.tx.pk] - the sender pk
  * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
  * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
@@ -5086,12 +5086,12 @@
  */
 
 /**
- * Send DeactivateProtocolTx transaction and get the hash, use {@link GraphQLClient#getTx} to get transaction detail
+ * Send CreateAssetTx transaction and get the hash, use {@link GraphQLClient#getTx} to get transaction detail
  *
  * @memberof GraphQLClient
  * @function
- * @name GraphQLClient#sendDeactivateProtocolTx
- * @param {GraphQLClient.DeactivateProtocolTxInput} params
+ * @name GraphQLClient#sendCreateAssetTx
+ * @param {GraphQLClient.CreateAssetTxInput} params
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
 
@@ -5123,58 +5123,6 @@
 
 /**
  * @memberof GraphQLClient
- * @typedef {Object} GraphQLClient.CreateAssetTxInput
- * @prop {object} input
- * @prop {object} input.tx - data of the transaction
- * @prop {GraphQLClient.CreateAssetTx} input.tx.itx - the actual transaction object
- * @prop {string} [input.tx.pk] - the sender pk
- * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
- * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
- * @prop {string} [input.tx.chainId] - the chainId
- * @prop {string} [input.tx.signature] - transaction signature
- * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transaction
- * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
- * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
- */
-
-/**
- * Send CreateAssetTx transaction and get the hash, use {@link GraphQLClient#getTx} to get transaction detail
- *
- * @memberof GraphQLClient
- * @function
- * @name GraphQLClient#sendCreateAssetTx
- * @param {GraphQLClient.CreateAssetTxInput} params
- * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
- */
-
-/**
- * @memberof GraphQLClient
- * @typedef {Object} GraphQLClient.RevokeDelegateTxInput
- * @prop {object} input
- * @prop {object} input.tx - data of the transaction
- * @prop {GraphQLClient.RevokeDelegateTx} input.tx.itx - the actual transaction object
- * @prop {string} [input.tx.pk] - the sender pk
- * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
- * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
- * @prop {string} [input.tx.chainId] - the chainId
- * @prop {string} [input.tx.signature] - transaction signature
- * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transaction
- * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
- * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
- */
-
-/**
- * Send RevokeDelegateTx transaction and get the hash, use {@link GraphQLClient#getTx} to get transaction detail
- *
- * @memberof GraphQLClient
- * @function
- * @name GraphQLClient#sendRevokeDelegateTx
- * @param {GraphQLClient.RevokeDelegateTxInput} params
- * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
- */
-
-/**
- * @memberof GraphQLClient
  * @typedef {Object} GraphQLClient.TransferTxInput
  * @prop {object} input
  * @prop {object} input.tx - data of the transaction
@@ -5201,10 +5149,10 @@
 
 /**
  * @memberof GraphQLClient
- * @typedef {Object} GraphQLClient.RevokeWithdrawTxInput
+ * @typedef {Object} GraphQLClient.AcquireAssetTxInput
  * @prop {object} input
  * @prop {object} input.tx - data of the transaction
- * @prop {GraphQLClient.RevokeWithdrawTx} input.tx.itx - the actual transaction object
+ * @prop {GraphQLClient.AcquireAssetTx} input.tx.itx - the actual transaction object
  * @prop {string} [input.tx.pk] - the sender pk
  * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
  * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
@@ -5216,12 +5164,12 @@
  */
 
 /**
- * Send RevokeWithdrawTx transaction and get the hash, use {@link GraphQLClient#getTx} to get transaction detail
+ * Send AcquireAssetTx transaction and get the hash, use {@link GraphQLClient#getTx} to get transaction detail
  *
  * @memberof GraphQLClient
  * @function
- * @name GraphQLClient#sendRevokeWithdrawTx
- * @param {GraphQLClient.RevokeWithdrawTxInput} params
+ * @name GraphQLClient#sendAcquireAssetTx
+ * @param {GraphQLClient.AcquireAssetTxInput} params
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
 
@@ -5253,6 +5201,32 @@
 
 /**
  * @memberof GraphQLClient
+ * @typedef {Object} GraphQLClient.RevokeWithdrawTxInput
+ * @prop {object} input
+ * @prop {object} input.tx - data of the transaction
+ * @prop {GraphQLClient.RevokeWithdrawTx} input.tx.itx - the actual transaction object
+ * @prop {string} [input.tx.pk] - the sender pk
+ * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
+ * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
+ * @prop {string} [input.tx.chainId] - the chainId
+ * @prop {string} [input.tx.signature] - transaction signature
+ * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transaction
+ * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
+ * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
+ */
+
+/**
+ * Send RevokeWithdrawTx transaction and get the hash, use {@link GraphQLClient#getTx} to get transaction detail
+ *
+ * @memberof GraphQLClient
+ * @function
+ * @name GraphQLClient#sendRevokeWithdrawTx
+ * @param {GraphQLClient.RevokeWithdrawTxInput} params
+ * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
+ */
+
+/**
+ * @memberof GraphQLClient
  * @typedef {Object} GraphQLClient.DelegateTxInput
  * @prop {object} input
  * @prop {object} input.tx - data of the transaction
@@ -5274,32 +5248,6 @@
  * @function
  * @name GraphQLClient#sendDelegateTx
  * @param {GraphQLClient.DelegateTxInput} params
- * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
- */
-
-/**
- * @memberof GraphQLClient
- * @typedef {Object} GraphQLClient.ExchangeTxInput
- * @prop {object} input
- * @prop {object} input.tx - data of the transaction
- * @prop {GraphQLClient.ExchangeTx} input.tx.itx - the actual transaction object
- * @prop {string} [input.tx.pk] - the sender pk
- * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
- * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
- * @prop {string} [input.tx.chainId] - the chainId
- * @prop {string} [input.tx.signature] - transaction signature
- * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transaction
- * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
- * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
- */
-
-/**
- * Send ExchangeTx transaction and get the hash, use {@link GraphQLClient#getTx} to get transaction detail
- *
- * @memberof GraphQLClient
- * @function
- * @name GraphQLClient#sendExchangeTx
- * @param {GraphQLClient.ExchangeTxInput} params
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
 
@@ -5409,32 +5357,6 @@
 
 /**
  * @memberof GraphQLClient
- * @typedef {Object} GraphQLClient.RetrieveSwapTxInput
- * @prop {object} input
- * @prop {object} input.tx - data of the transaction
- * @prop {GraphQLClient.RetrieveSwapTx} input.tx.itx - the actual transaction object
- * @prop {string} [input.tx.pk] - the sender pk
- * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
- * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
- * @prop {string} [input.tx.chainId] - the chainId
- * @prop {string} [input.tx.signature] - transaction signature
- * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transaction
- * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
- * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
- */
-
-/**
- * Send RetrieveSwapTx transaction and get the hash, use {@link GraphQLClient#getTx} to get transaction detail
- *
- * @memberof GraphQLClient
- * @function
- * @name GraphQLClient#sendRetrieveSwapTx
- * @param {GraphQLClient.RetrieveSwapTxInput} params
- * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
- */
-
-/**
- * @memberof GraphQLClient
  * @typedef {Object} GraphQLClient.DeclareTxInput
  * @prop {object} input
  * @prop {object} input.tx - data of the transaction
@@ -5487,10 +5409,10 @@
 
 /**
  * @memberof GraphQLClient
- * @typedef {Object} GraphQLClient.AcquireAssetTxInput
+ * @typedef {Object} GraphQLClient.RevokeSwapTxInput
  * @prop {object} input
  * @prop {object} input.tx - data of the transaction
- * @prop {GraphQLClient.AcquireAssetTx} input.tx.itx - the actual transaction object
+ * @prop {GraphQLClient.RevokeSwapTx} input.tx.itx - the actual transaction object
  * @prop {string} [input.tx.pk] - the sender pk
  * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
  * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
@@ -5502,22 +5424,74 @@
  */
 
 /**
- * Send AcquireAssetTx transaction and get the hash, use {@link GraphQLClient#getTx} to get transaction detail
+ * Send RevokeSwapTx transaction and get the hash, use {@link GraphQLClient#getTx} to get transaction detail
  *
  * @memberof GraphQLClient
  * @function
- * @name GraphQLClient#sendAcquireAssetTx
- * @param {GraphQLClient.AcquireAssetTxInput} params
+ * @name GraphQLClient#sendRevokeSwapTx
+ * @param {GraphQLClient.RevokeSwapTxInput} params
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
 
 /**
- * Encode a RevokeSwapTx transaction for later use
+ * @memberof GraphQLClient
+ * @typedef {Object} GraphQLClient.RetrieveSwapTxInput
+ * @prop {object} input
+ * @prop {object} input.tx - data of the transaction
+ * @prop {GraphQLClient.RetrieveSwapTx} input.tx.itx - the actual transaction object
+ * @prop {string} [input.tx.pk] - the sender pk
+ * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
+ * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
+ * @prop {string} [input.tx.chainId] - the chainId
+ * @prop {string} [input.tx.signature] - transaction signature
+ * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transaction
+ * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
+ * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
+ */
+
+/**
+ * Send RetrieveSwapTx transaction and get the hash, use {@link GraphQLClient#getTx} to get transaction detail
  *
- * @name GraphQLClient#encodeRevokeSwapTx
+ * @memberof GraphQLClient
+ * @function
+ * @name GraphQLClient#sendRetrieveSwapTx
+ * @param {GraphQLClient.RetrieveSwapTxInput} params
+ * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
+ */
+
+/**
+ * @memberof GraphQLClient
+ * @typedef {Object} GraphQLClient.ExchangeTxInput
+ * @prop {object} input
+ * @prop {object} input.tx - data of the transaction
+ * @prop {GraphQLClient.ExchangeTx} input.tx.itx - the actual transaction object
+ * @prop {string} [input.tx.pk] - the sender pk
+ * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
+ * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
+ * @prop {string} [input.tx.chainId] - the chainId
+ * @prop {string} [input.tx.signature] - transaction signature
+ * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transaction
+ * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
+ * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
+ */
+
+/**
+ * Send ExchangeTx transaction and get the hash, use {@link GraphQLClient#getTx} to get transaction detail
+ *
+ * @memberof GraphQLClient
+ * @function
+ * @name GraphQLClient#sendExchangeTx
+ * @param {GraphQLClient.ExchangeTxInput} params
+ * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
+ */
+
+/**
+ * Encode a RevokeDelegateTx transaction for later use
+ *
+ * @name GraphQLClient#encodeRevokeDelegateTx
  * @function
  * @memberof GraphQLClient
- * @param {GraphQLClient.RevokeSwapTxInput} params
+ * @param {GraphQLClient.RevokeDelegateTxInput} params
  * @returns {Promise<GraphQLClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
 
@@ -5552,12 +5526,12 @@
  */
 
 /**
- * Encode a StakeTx transaction for later use
+ * Encode a DeactivateProtocolTx transaction for later use
  *
- * @name GraphQLClient#encodeStakeTx
+ * @name GraphQLClient#encodeDeactivateProtocolTx
  * @function
  * @memberof GraphQLClient
- * @param {GraphQLClient.StakeTxInput} params
+ * @param {GraphQLClient.DeactivateProtocolTxInput} params
  * @returns {Promise<GraphQLClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
 
@@ -5572,12 +5546,12 @@
  */
 
 /**
- * Encode a DeactivateProtocolTx transaction for later use
+ * Encode a CreateAssetTx transaction for later use
  *
- * @name GraphQLClient#encodeDeactivateProtocolTx
+ * @name GraphQLClient#encodeCreateAssetTx
  * @function
  * @memberof GraphQLClient
- * @param {GraphQLClient.DeactivateProtocolTxInput} params
+ * @param {GraphQLClient.CreateAssetTxInput} params
  * @returns {Promise<GraphQLClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
 
@@ -5592,26 +5566,6 @@
  */
 
 /**
- * Encode a CreateAssetTx transaction for later use
- *
- * @name GraphQLClient#encodeCreateAssetTx
- * @function
- * @memberof GraphQLClient
- * @param {GraphQLClient.CreateAssetTxInput} params
- * @returns {Promise<GraphQLClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
- */
-
-/**
- * Encode a RevokeDelegateTx transaction for later use
- *
- * @name GraphQLClient#encodeRevokeDelegateTx
- * @function
- * @memberof GraphQLClient
- * @param {GraphQLClient.RevokeDelegateTxInput} params
- * @returns {Promise<GraphQLClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
- */
-
-/**
  * Encode a TransferTx transaction for later use
  *
  * @name GraphQLClient#encodeTransferTx
@@ -5622,12 +5576,12 @@
  */
 
 /**
- * Encode a RevokeWithdrawTx transaction for later use
+ * Encode a AcquireAssetTx transaction for later use
  *
- * @name GraphQLClient#encodeRevokeWithdrawTx
+ * @name GraphQLClient#encodeAcquireAssetTx
  * @function
  * @memberof GraphQLClient
- * @param {GraphQLClient.RevokeWithdrawTxInput} params
+ * @param {GraphQLClient.AcquireAssetTxInput} params
  * @returns {Promise<GraphQLClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
 
@@ -5642,22 +5596,22 @@
  */
 
 /**
+ * Encode a RevokeWithdrawTx transaction for later use
+ *
+ * @name GraphQLClient#encodeRevokeWithdrawTx
+ * @function
+ * @memberof GraphQLClient
+ * @param {GraphQLClient.RevokeWithdrawTxInput} params
+ * @returns {Promise<GraphQLClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
+ */
+
+/**
  * Encode a DelegateTx transaction for later use
  *
  * @name GraphQLClient#encodeDelegateTx
  * @function
  * @memberof GraphQLClient
  * @param {GraphQLClient.DelegateTxInput} params
- * @returns {Promise<GraphQLClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
- */
-
-/**
- * Encode a ExchangeTx transaction for later use
- *
- * @name GraphQLClient#encodeExchangeTx
- * @function
- * @memberof GraphQLClient
- * @param {GraphQLClient.ExchangeTxInput} params
  * @returns {Promise<GraphQLClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
 
@@ -5702,16 +5656,6 @@
  */
 
 /**
- * Encode a RetrieveSwapTx transaction for later use
- *
- * @name GraphQLClient#encodeRetrieveSwapTx
- * @function
- * @memberof GraphQLClient
- * @param {GraphQLClient.RetrieveSwapTxInput} params
- * @returns {Promise<GraphQLClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
- */
-
-/**
  * Encode a DeclareTx transaction for later use
  *
  * @name GraphQLClient#encodeDeclareTx
@@ -5732,12 +5676,32 @@
  */
 
 /**
- * Encode a AcquireAssetTx transaction for later use
+ * Encode a RevokeSwapTx transaction for later use
  *
- * @name GraphQLClient#encodeAcquireAssetTx
+ * @name GraphQLClient#encodeRevokeSwapTx
  * @function
  * @memberof GraphQLClient
- * @param {GraphQLClient.AcquireAssetTxInput} params
+ * @param {GraphQLClient.RevokeSwapTxInput} params
+ * @returns {Promise<GraphQLClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
+ */
+
+/**
+ * Encode a RetrieveSwapTx transaction for later use
+ *
+ * @name GraphQLClient#encodeRetrieveSwapTx
+ * @function
+ * @memberof GraphQLClient
+ * @param {GraphQLClient.RetrieveSwapTxInput} params
+ * @returns {Promise<GraphQLClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
+ */
+
+/**
+ * Encode a ExchangeTx transaction for later use
+ *
+ * @name GraphQLClient#encodeExchangeTx
+ * @function
+ * @memberof GraphQLClient
+ * @param {GraphQLClient.ExchangeTxInput} params
  * @returns {Promise<GraphQLClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
 

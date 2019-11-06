@@ -18,7 +18,7 @@ const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
 (async () => {
   try {
     const owner = fromRandom();
-    console.log({ owner: owner.toJSON() });
+    console.log({ owner: owner.toAddress() });
 
     // 1. declare owner
     let hash = await client.declare({ moniker: 'owner', wallet: owner });

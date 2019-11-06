@@ -7,37 +7,48 @@
  * Run script with: `DEBUG=@arcblock/graphql-client node examples/consume_asset.js`
  */
 
-const GraphqlClient = require('@arcblock/graphql-client');
+const GraphQLClient = require('@arcblock/graphql-client');
 const { fromRandom } = require('@arcblock/forge-wallet');
 
-const endpoint = process.env.FORGE_API_HOST || 'http://127.0.0.1:8210'; // testnet
+const endpoint = process.env.FORGE_API_HOST || 'http://127.0.0.1:8211'; // testnet
 
-const client = new GraphqlClient(`${endpoint}/api`);
+const client = new GraphQLClient(`${endpoint}/api`);
 const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
 
 (async () => {
   try {
     const issuer = fromRandom(); // the one create asset and responsible for consuming asset
     const consumer = fromRandom(); // the one bought the asset and want to use it
-    console.log({ issuer: issuer.toJSON(), consumer: consumer.toJSON() });
+    const gateKeeper = fromRandom(); // the gateKeeper that is responsible to consume the asset
+    console.log({
+      issuer: issuer.toAddress(),
+      consumer: consumer.toAddress(),
+      gateKeeper: gateKeeper.toAddress(),
+    });
 
     // 1. declare issuer
-    let hash = await client.declare({
-      moniker: 'issuer',
-      wallet: issuer,
-    });
+    let hash = await client.declare({ moniker: 'issuer', wallet: issuer });
     console.log('issuer account', `${endpoint}/node/explorer/accounts/${issuer.toAddress()}`);
     console.log('issuer tx', `${endpoint}/node/explorer/txs/${hash}`);
 
     // 2. declare consumer
-    hash = await client.declare({
-      moniker: 'consumer',
-      wallet: consumer,
-    });
+    hash = await client.declare({ moniker: 'consumer', wallet: consumer });
     console.log('consumer account', `${endpoint}/node/explorer/accounts/${consumer.toAddress()}`);
     console.log('consumer tx', `${endpoint}/node/explorer/txs/${hash}`);
 
-    // 3. create asset for issuer
+    // 3. declare gate keeper
+    hash = await client.declare({
+      moniker: 'gateKeeper',
+      issuer: issuer.toAddress(),
+      wallet: gateKeeper,
+    });
+    console.log(
+      'gate keeper account',
+      `${endpoint}/node/explorer/accounts/${gateKeeper.toAddress()}`
+    );
+    console.log('gate keeper tx', `${endpoint}/node/explorer/txs/${hash}`);
+
+    // 4. create asset for issuer
     let assetAddress;
     // eslint-disable-next-line prefer-const
     [hash, assetAddress] = await client.createAsset({
@@ -64,14 +75,12 @@ const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
     console.log('view transfer tx', `${endpoint}/node/explorer/txs/${hash}`);
     await sleep(3000);
 
-    // 5. Start multisig for asset consume
+    // 5.1 issuer: encode and sign the transaction
     const tx = await client.prepareConsumeAsset({
       issuer: issuer.toAddress(),
-      wallet: issuer,
+      wallet: gateKeeper,
     });
-
-    // 5.1 issuer: encode and sign the transaction
-    console.log('issuer.signed', tx);
+    console.log('gateKeeper.signed', tx);
 
     // 5.2 consumer: populate signatures field
     const tx2 = await client.finalizeConsumeAsset({

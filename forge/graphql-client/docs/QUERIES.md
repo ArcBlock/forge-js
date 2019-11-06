@@ -1,6 +1,6 @@
 # Forge GraphQL API List
 
-> Updated on 2019-11-01T02:36:12.947Z
+> Updated on 2019-11-06T03:15:10.315Z
 
 
 ## Table of Contents

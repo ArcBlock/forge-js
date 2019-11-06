@@ -36,52 +36,50 @@ Please note that, due to internal implementation of google-protobuf, all `repeat
     * [.getSubscription()](#GraphQLClient+getSubscription) ⇒ <code>Array.&lt;string></code>
     * [.doRawQuery(query)](#GraphQLClient+doRawQuery) ⇒ <code>Promise</code>
     * [.doRawSubscription(query)](#GraphQLClient+doRawSubscription) ⇒ <code>Promise</code>
-    * [.sendRevokeSwapTx(params)](#GraphQLClient+sendRevokeSwapTx) ⇒ <code>Promise.&lt;string></code>
+    * [.sendRevokeDelegateTx(params)](#GraphQLClient+sendRevokeDelegateTx) ⇒ <code>Promise.&lt;string></code>
     * [.sendWithdrawTokenTx(params)](#GraphQLClient+sendWithdrawTokenTx) ⇒ <code>Promise.&lt;string></code>
     * [.sendSetupSwapTx(params)](#GraphQLClient+sendSetupSwapTx) ⇒ <code>Promise.&lt;string></code>
     * [.sendAccountMigrateTx(params)](#GraphQLClient+sendAccountMigrateTx) ⇒ <code>Promise.&lt;string></code>
-    * [.sendStakeTx(params)](#GraphQLClient+sendStakeTx) ⇒ <code>Promise.&lt;string></code>
-    * [.sendDepositTokenTx(params)](#GraphQLClient+sendDepositTokenTx) ⇒ <code>Promise.&lt;string></code>
     * [.sendDeactivateProtocolTx(params)](#GraphQLClient+sendDeactivateProtocolTx) ⇒ <code>Promise.&lt;string></code>
-    * [.sendPokeTx(params)](#GraphQLClient+sendPokeTx) ⇒ <code>Promise.&lt;string></code>
+    * [.sendDepositTokenTx(params)](#GraphQLClient+sendDepositTokenTx) ⇒ <code>Promise.&lt;string></code>
     * [.sendCreateAssetTx(params)](#GraphQLClient+sendCreateAssetTx) ⇒ <code>Promise.&lt;string></code>
-    * [.sendRevokeDelegateTx(params)](#GraphQLClient+sendRevokeDelegateTx) ⇒ <code>Promise.&lt;string></code>
+    * [.sendPokeTx(params)](#GraphQLClient+sendPokeTx) ⇒ <code>Promise.&lt;string></code>
     * [.sendTransferTx(params)](#GraphQLClient+sendTransferTx) ⇒ <code>Promise.&lt;string></code>
-    * [.sendRevokeWithdrawTx(params)](#GraphQLClient+sendRevokeWithdrawTx) ⇒ <code>Promise.&lt;string></code>
+    * [.sendAcquireAssetTx(params)](#GraphQLClient+sendAcquireAssetTx) ⇒ <code>Promise.&lt;string></code>
     * [.sendConsumeAssetTx(params)](#GraphQLClient+sendConsumeAssetTx) ⇒ <code>Promise.&lt;string></code>
+    * [.sendRevokeWithdrawTx(params)](#GraphQLClient+sendRevokeWithdrawTx) ⇒ <code>Promise.&lt;string></code>
     * [.sendDelegateTx(params)](#GraphQLClient+sendDelegateTx) ⇒ <code>Promise.&lt;string></code>
-    * [.sendExchangeTx(params)](#GraphQLClient+sendExchangeTx) ⇒ <code>Promise.&lt;string></code>
     * [.sendActivateProtocolTx(params)](#GraphQLClient+sendActivateProtocolTx) ⇒ <code>Promise.&lt;string></code>
     * [.sendUpgradeNodeTx(params)](#GraphQLClient+sendUpgradeNodeTx) ⇒ <code>Promise.&lt;string></code>
     * [.sendUpdateAssetTx(params)](#GraphQLClient+sendUpdateAssetTx) ⇒ <code>Promise.&lt;string></code>
     * [.sendApproveWithdrawTx(params)](#GraphQLClient+sendApproveWithdrawTx) ⇒ <code>Promise.&lt;string></code>
-    * [.sendRetrieveSwapTx(params)](#GraphQLClient+sendRetrieveSwapTx) ⇒ <code>Promise.&lt;string></code>
     * [.sendDeclareTx(params)](#GraphQLClient+sendDeclareTx) ⇒ <code>Promise.&lt;string></code>
     * [.sendDeployProtocolTx(params)](#GraphQLClient+sendDeployProtocolTx) ⇒ <code>Promise.&lt;string></code>
-    * [.sendAcquireAssetTx(params)](#GraphQLClient+sendAcquireAssetTx) ⇒ <code>Promise.&lt;string></code>
-    * [.encodeRevokeSwapTx(params)](#GraphQLClient+encodeRevokeSwapTx) ⇒ [<code>Promise.&lt;TxEncodeOutput></code>](#GraphQLClient.TxEncodeOutput)
+    * [.sendRevokeSwapTx(params)](#GraphQLClient+sendRevokeSwapTx) ⇒ <code>Promise.&lt;string></code>
+    * [.sendRetrieveSwapTx(params)](#GraphQLClient+sendRetrieveSwapTx) ⇒ <code>Promise.&lt;string></code>
+    * [.sendExchangeTx(params)](#GraphQLClient+sendExchangeTx) ⇒ <code>Promise.&lt;string></code>
+    * [.encodeRevokeDelegateTx(params)](#GraphQLClient+encodeRevokeDelegateTx) ⇒ [<code>Promise.&lt;TxEncodeOutput></code>](#GraphQLClient.TxEncodeOutput)
     * [.encodeWithdrawTokenTx(params)](#GraphQLClient+encodeWithdrawTokenTx) ⇒ [<code>Promise.&lt;TxEncodeOutput></code>](#GraphQLClient.TxEncodeOutput)
     * [.encodeSetupSwapTx(params)](#GraphQLClient+encodeSetupSwapTx) ⇒ [<code>Promise.&lt;TxEncodeOutput></code>](#GraphQLClient.TxEncodeOutput)
     * [.encodeAccountMigrateTx(params)](#GraphQLClient+encodeAccountMigrateTx) ⇒ [<code>Promise.&lt;TxEncodeOutput></code>](#GraphQLClient.TxEncodeOutput)
-    * [.encodeStakeTx(params)](#GraphQLClient+encodeStakeTx) ⇒ [<code>Promise.&lt;TxEncodeOutput></code>](#GraphQLClient.TxEncodeOutput)
-    * [.encodeDepositTokenTx(params)](#GraphQLClient+encodeDepositTokenTx) ⇒ [<code>Promise.&lt;TxEncodeOutput></code>](#GraphQLClient.TxEncodeOutput)
     * [.encodeDeactivateProtocolTx(params)](#GraphQLClient+encodeDeactivateProtocolTx) ⇒ [<code>Promise.&lt;TxEncodeOutput></code>](#GraphQLClient.TxEncodeOutput)
-    * [.encodePokeTx(params)](#GraphQLClient+encodePokeTx) ⇒ [<code>Promise.&lt;TxEncodeOutput></code>](#GraphQLClient.TxEncodeOutput)
+    * [.encodeDepositTokenTx(params)](#GraphQLClient+encodeDepositTokenTx) ⇒ [<code>Promise.&lt;TxEncodeOutput></code>](#GraphQLClient.TxEncodeOutput)
     * [.encodeCreateAssetTx(params)](#GraphQLClient+encodeCreateAssetTx) ⇒ [<code>Promise.&lt;TxEncodeOutput></code>](#GraphQLClient.TxEncodeOutput)
-    * [.encodeRevokeDelegateTx(params)](#GraphQLClient+encodeRevokeDelegateTx) ⇒ [<code>Promise.&lt;TxEncodeOutput></code>](#GraphQLClient.TxEncodeOutput)
+    * [.encodePokeTx(params)](#GraphQLClient+encodePokeTx) ⇒ [<code>Promise.&lt;TxEncodeOutput></code>](#GraphQLClient.TxEncodeOutput)
     * [.encodeTransferTx(params)](#GraphQLClient+encodeTransferTx) ⇒ [<code>Promise.&lt;TxEncodeOutput></code>](#GraphQLClient.TxEncodeOutput)
-    * [.encodeRevokeWithdrawTx(params)](#GraphQLClient+encodeRevokeWithdrawTx) ⇒ [<code>Promise.&lt;TxEncodeOutput></code>](#GraphQLClient.TxEncodeOutput)
+    * [.encodeAcquireAssetTx(params)](#GraphQLClient+encodeAcquireAssetTx) ⇒ [<code>Promise.&lt;TxEncodeOutput></code>](#GraphQLClient.TxEncodeOutput)
     * [.encodeConsumeAssetTx(params)](#GraphQLClient+encodeConsumeAssetTx) ⇒ [<code>Promise.&lt;TxEncodeOutput></code>](#GraphQLClient.TxEncodeOutput)
+    * [.encodeRevokeWithdrawTx(params)](#GraphQLClient+encodeRevokeWithdrawTx) ⇒ [<code>Promise.&lt;TxEncodeOutput></code>](#GraphQLClient.TxEncodeOutput)
     * [.encodeDelegateTx(params)](#GraphQLClient+encodeDelegateTx) ⇒ [<code>Promise.&lt;TxEncodeOutput></code>](#GraphQLClient.TxEncodeOutput)
-    * [.encodeExchangeTx(params)](#GraphQLClient+encodeExchangeTx) ⇒ [<code>Promise.&lt;TxEncodeOutput></code>](#GraphQLClient.TxEncodeOutput)
     * [.encodeActivateProtocolTx(params)](#GraphQLClient+encodeActivateProtocolTx) ⇒ [<code>Promise.&lt;TxEncodeOutput></code>](#GraphQLClient.TxEncodeOutput)
     * [.encodeUpgradeNodeTx(params)](#GraphQLClient+encodeUpgradeNodeTx) ⇒ [<code>Promise.&lt;TxEncodeOutput></code>](#GraphQLClient.TxEncodeOutput)
     * [.encodeUpdateAssetTx(params)](#GraphQLClient+encodeUpdateAssetTx) ⇒ [<code>Promise.&lt;TxEncodeOutput></code>](#GraphQLClient.TxEncodeOutput)
     * [.encodeApproveWithdrawTx(params)](#GraphQLClient+encodeApproveWithdrawTx) ⇒ [<code>Promise.&lt;TxEncodeOutput></code>](#GraphQLClient.TxEncodeOutput)
-    * [.encodeRetrieveSwapTx(params)](#GraphQLClient+encodeRetrieveSwapTx) ⇒ [<code>Promise.&lt;TxEncodeOutput></code>](#GraphQLClient.TxEncodeOutput)
     * [.encodeDeclareTx(params)](#GraphQLClient+encodeDeclareTx) ⇒ [<code>Promise.&lt;TxEncodeOutput></code>](#GraphQLClient.TxEncodeOutput)
     * [.encodeDeployProtocolTx(params)](#GraphQLClient+encodeDeployProtocolTx) ⇒ [<code>Promise.&lt;TxEncodeOutput></code>](#GraphQLClient.TxEncodeOutput)
-    * [.encodeAcquireAssetTx(params)](#GraphQLClient+encodeAcquireAssetTx) ⇒ [<code>Promise.&lt;TxEncodeOutput></code>](#GraphQLClient.TxEncodeOutput)
+    * [.encodeRevokeSwapTx(params)](#GraphQLClient+encodeRevokeSwapTx) ⇒ [<code>Promise.&lt;TxEncodeOutput></code>](#GraphQLClient.TxEncodeOutput)
+    * [.encodeRetrieveSwapTx(params)](#GraphQLClient+encodeRetrieveSwapTx) ⇒ [<code>Promise.&lt;TxEncodeOutput></code>](#GraphQLClient.TxEncodeOutput)
+    * [.encodeExchangeTx(params)](#GraphQLClient+encodeExchangeTx) ⇒ [<code>Promise.&lt;TxEncodeOutput></code>](#GraphQLClient.TxEncodeOutput)
     * [.getAccountState(params)](#GraphQLClient+getAccountState) ⇒ [<code>Promise.&lt;ResponseGetAccountState></code>](#GraphQLClient.ResponseGetAccountState)
     * [.getAssetState(params)](#GraphQLClient+getAssetState) ⇒ [<code>Promise.&lt;ResponseGetAssetState></code>](#GraphQLClient.ResponseGetAssetState)
     * [.getBlock(params)](#GraphQLClient+getBlock) ⇒ [<code>Promise.&lt;ResponseGetBlock></code>](#GraphQLClient.ResponseGetBlock)
@@ -261,29 +259,28 @@ Please note that, due to internal implementation of google-protobuf, all `repeat
     * [.SendTxParams](#GraphQLClient.SendTxParams) : <code>object</code>
     * [.UnsubscribeParams](#GraphQLClient.UnsubscribeParams) : <code>object</code>
     * [.SubscribeParams](#GraphQLClient.SubscribeParams) : <code>object</code>
-    * [.RevokeSwapTxInput](#GraphQLClient.RevokeSwapTxInput) : <code>Object</code>
+    * [.RevokeDelegateTxInput](#GraphQLClient.RevokeDelegateTxInput) : <code>Object</code>
     * [.WithdrawTokenTxInput](#GraphQLClient.WithdrawTokenTxInput) : <code>Object</code>
     * [.SetupSwapTxInput](#GraphQLClient.SetupSwapTxInput) : <code>Object</code>
     * [.AccountMigrateTxInput](#GraphQLClient.AccountMigrateTxInput) : <code>Object</code>
-    * [.StakeTxInput](#GraphQLClient.StakeTxInput) : <code>Object</code>
-    * [.DepositTokenTxInput](#GraphQLClient.DepositTokenTxInput) : <code>Object</code>
     * [.DeactivateProtocolTxInput](#GraphQLClient.DeactivateProtocolTxInput) : <code>Object</code>
-    * [.PokeTxInput](#GraphQLClient.PokeTxInput) : <code>Object</code>
+    * [.DepositTokenTxInput](#GraphQLClient.DepositTokenTxInput) : <code>Object</code>
     * [.CreateAssetTxInput](#GraphQLClient.CreateAssetTxInput) : <code>Object</code>
-    * [.RevokeDelegateTxInput](#GraphQLClient.RevokeDelegateTxInput) : <code>Object</code>
+    * [.PokeTxInput](#GraphQLClient.PokeTxInput) : <code>Object</code>
     * [.TransferTxInput](#GraphQLClient.TransferTxInput) : <code>Object</code>
-    * [.RevokeWithdrawTxInput](#GraphQLClient.RevokeWithdrawTxInput) : <code>Object</code>
+    * [.AcquireAssetTxInput](#GraphQLClient.AcquireAssetTxInput) : <code>Object</code>
     * [.ConsumeAssetTxInput](#GraphQLClient.ConsumeAssetTxInput) : <code>Object</code>
+    * [.RevokeWithdrawTxInput](#GraphQLClient.RevokeWithdrawTxInput) : <code>Object</code>
     * [.DelegateTxInput](#GraphQLClient.DelegateTxInput) : <code>Object</code>
-    * [.ExchangeTxInput](#GraphQLClient.ExchangeTxInput) : <code>Object</code>
     * [.ActivateProtocolTxInput](#GraphQLClient.ActivateProtocolTxInput) : <code>Object</code>
     * [.UpgradeNodeTxInput](#GraphQLClient.UpgradeNodeTxInput) : <code>Object</code>
     * [.UpdateAssetTxInput](#GraphQLClient.UpdateAssetTxInput) : <code>Object</code>
     * [.ApproveWithdrawTxInput](#GraphQLClient.ApproveWithdrawTxInput) : <code>Object</code>
-    * [.RetrieveSwapTxInput](#GraphQLClient.RetrieveSwapTxInput) : <code>Object</code>
     * [.DeclareTxInput](#GraphQLClient.DeclareTxInput) : <code>Object</code>
     * [.DeployProtocolTxInput](#GraphQLClient.DeployProtocolTxInput) : <code>Object</code>
-    * [.AcquireAssetTxInput](#GraphQLClient.AcquireAssetTxInput) : <code>Object</code>
+    * [.RevokeSwapTxInput](#GraphQLClient.RevokeSwapTxInput) : <code>Object</code>
+    * [.RetrieveSwapTxInput](#GraphQLClient.RetrieveSwapTxInput) : <code>Object</code>
+    * [.ExchangeTxInput](#GraphQLClient.ExchangeTxInput) : <code>Object</code>
 
 <a name="new_GraphQLClient_new"></a>
 
@@ -437,18 +434,18 @@ Send raw graphql subscription to forge graphql endpoint
 | ----- | ------------------- | -------------------- |
 | query | <code>string</code> | graphql query string |
 
-<a name="GraphQLClient+sendRevokeSwapTx"></a>
+<a name="GraphQLClient+sendRevokeDelegateTx"></a>
 
-### graphQLClient.sendRevokeSwapTx(params) ⇒ <code>Promise.&lt;string></code>
+### graphQLClient.sendRevokeDelegateTx(params) ⇒ <code>Promise.&lt;string></code>
 
-Send RevokeSwapTx transaction and get the hash, use [getTx](#GraphQLClient+getTx) to get transaction detail
+Send RevokeDelegateTx transaction and get the hash, use [getTx](#GraphQLClient+getTx) to get transaction detail
 
 **Kind**: instance method of [<code>GraphQLClient</code>](#GraphQLClient)  
 **Returns**: <code>Promise.&lt;string></code> - returns transaction hash if success, otherwise error was thrown  
 
-| Param  | Type                                                               |
-| ------ | ------------------------------------------------------------------ |
-| params | [<code>RevokeSwapTxInput</code>](#GraphQLClient.RevokeSwapTxInput) |
+| Param  | Type                                                                       |
+| ------ | -------------------------------------------------------------------------- |
+| params | [<code>RevokeDelegateTxInput</code>](#GraphQLClient.RevokeDelegateTxInput) |
 
 <a name="GraphQLClient+sendWithdrawTokenTx"></a>
 
@@ -489,18 +486,18 @@ Send AccountMigrateTx transaction and get the hash, use [getTx](#GraphQLClient+g
 | ------ | -------------------------------------------------------------------------- |
 | params | [<code>AccountMigrateTxInput</code>](#GraphQLClient.AccountMigrateTxInput) |
 
-<a name="GraphQLClient+sendStakeTx"></a>
+<a name="GraphQLClient+sendDeactivateProtocolTx"></a>
 
-### graphQLClient.sendStakeTx(params) ⇒ <code>Promise.&lt;string></code>
+### graphQLClient.sendDeactivateProtocolTx(params) ⇒ <code>Promise.&lt;string></code>
 
-Send StakeTx transaction and get the hash, use [getTx](#GraphQLClient+getTx) to get transaction detail
+Send DeactivateProtocolTx transaction and get the hash, use [getTx](#GraphQLClient+getTx) to get transaction detail
 
 **Kind**: instance method of [<code>GraphQLClient</code>](#GraphQLClient)  
 **Returns**: <code>Promise.&lt;string></code> - returns transaction hash if success, otherwise error was thrown  
 
-| Param  | Type                                                     |
-| ------ | -------------------------------------------------------- |
-| params | [<code>StakeTxInput</code>](#GraphQLClient.StakeTxInput) |
+| Param  | Type                                                                               |
+| ------ | ---------------------------------------------------------------------------------- |
+| params | [<code>DeactivateProtocolTxInput</code>](#GraphQLClient.DeactivateProtocolTxInput) |
 
 <a name="GraphQLClient+sendDepositTokenTx"></a>
 
@@ -515,18 +512,18 @@ Send DepositTokenTx transaction and get the hash, use [getTx](#GraphQLClient+get
 | ------ | ---------------------------------------------------------------------- |
 | params | [<code>DepositTokenTxInput</code>](#GraphQLClient.DepositTokenTxInput) |
 
-<a name="GraphQLClient+sendDeactivateProtocolTx"></a>
+<a name="GraphQLClient+sendCreateAssetTx"></a>
 
-### graphQLClient.sendDeactivateProtocolTx(params) ⇒ <code>Promise.&lt;string></code>
+### graphQLClient.sendCreateAssetTx(params) ⇒ <code>Promise.&lt;string></code>
 
-Send DeactivateProtocolTx transaction and get the hash, use [getTx](#GraphQLClient+getTx) to get transaction detail
+Send CreateAssetTx transaction and get the hash, use [getTx](#GraphQLClient+getTx) to get transaction detail
 
 **Kind**: instance method of [<code>GraphQLClient</code>](#GraphQLClient)  
 **Returns**: <code>Promise.&lt;string></code> - returns transaction hash if success, otherwise error was thrown  
 
-| Param  | Type                                                                               |
-| ------ | ---------------------------------------------------------------------------------- |
-| params | [<code>DeactivateProtocolTxInput</code>](#GraphQLClient.DeactivateProtocolTxInput) |
+| Param  | Type                                                                 |
+| ------ | -------------------------------------------------------------------- |
+| params | [<code>CreateAssetTxInput</code>](#GraphQLClient.CreateAssetTxInput) |
 
 <a name="GraphQLClient+sendPokeTx"></a>
 
@@ -541,32 +538,6 @@ Send PokeTx transaction and get the hash, use [getTx](#GraphQLClient+getTx) to g
 | ------ | ------------------------------------------------------ |
 | params | [<code>PokeTxInput</code>](#GraphQLClient.PokeTxInput) |
 
-<a name="GraphQLClient+sendCreateAssetTx"></a>
-
-### graphQLClient.sendCreateAssetTx(params) ⇒ <code>Promise.&lt;string></code>
-
-Send CreateAssetTx transaction and get the hash, use [getTx](#GraphQLClient+getTx) to get transaction detail
-
-**Kind**: instance method of [<code>GraphQLClient</code>](#GraphQLClient)  
-**Returns**: <code>Promise.&lt;string></code> - returns transaction hash if success, otherwise error was thrown  
-
-| Param  | Type                                                                 |
-| ------ | -------------------------------------------------------------------- |
-| params | [<code>CreateAssetTxInput</code>](#GraphQLClient.CreateAssetTxInput) |
-
-<a name="GraphQLClient+sendRevokeDelegateTx"></a>
-
-### graphQLClient.sendRevokeDelegateTx(params) ⇒ <code>Promise.&lt;string></code>
-
-Send RevokeDelegateTx transaction and get the hash, use [getTx](#GraphQLClient+getTx) to get transaction detail
-
-**Kind**: instance method of [<code>GraphQLClient</code>](#GraphQLClient)  
-**Returns**: <code>Promise.&lt;string></code> - returns transaction hash if success, otherwise error was thrown  
-
-| Param  | Type                                                                       |
-| ------ | -------------------------------------------------------------------------- |
-| params | [<code>RevokeDelegateTxInput</code>](#GraphQLClient.RevokeDelegateTxInput) |
-
 <a name="GraphQLClient+sendTransferTx"></a>
 
 ### graphQLClient.sendTransferTx(params) ⇒ <code>Promise.&lt;string></code>
@@ -580,18 +551,18 @@ Send TransferTx transaction and get the hash, use [getTx](#GraphQLClient+getTx) 
 | ------ | -------------------------------------------------------------- |
 | params | [<code>TransferTxInput</code>](#GraphQLClient.TransferTxInput) |
 
-<a name="GraphQLClient+sendRevokeWithdrawTx"></a>
+<a name="GraphQLClient+sendAcquireAssetTx"></a>
 
-### graphQLClient.sendRevokeWithdrawTx(params) ⇒ <code>Promise.&lt;string></code>
+### graphQLClient.sendAcquireAssetTx(params) ⇒ <code>Promise.&lt;string></code>
 
-Send RevokeWithdrawTx transaction and get the hash, use [getTx](#GraphQLClient+getTx) to get transaction detail
+Send AcquireAssetTx transaction and get the hash, use [getTx](#GraphQLClient+getTx) to get transaction detail
 
 **Kind**: instance method of [<code>GraphQLClient</code>](#GraphQLClient)  
 **Returns**: <code>Promise.&lt;string></code> - returns transaction hash if success, otherwise error was thrown  
 
-| Param  | Type                                                                       |
-| ------ | -------------------------------------------------------------------------- |
-| params | [<code>RevokeWithdrawTxInput</code>](#GraphQLClient.RevokeWithdrawTxInput) |
+| Param  | Type                                                                   |
+| ------ | ---------------------------------------------------------------------- |
+| params | [<code>AcquireAssetTxInput</code>](#GraphQLClient.AcquireAssetTxInput) |
 
 <a name="GraphQLClient+sendConsumeAssetTx"></a>
 
@@ -606,6 +577,19 @@ Send ConsumeAssetTx transaction and get the hash, use [getTx](#GraphQLClient+get
 | ------ | ---------------------------------------------------------------------- |
 | params | [<code>ConsumeAssetTxInput</code>](#GraphQLClient.ConsumeAssetTxInput) |
 
+<a name="GraphQLClient+sendRevokeWithdrawTx"></a>
+
+### graphQLClient.sendRevokeWithdrawTx(params) ⇒ <code>Promise.&lt;string></code>
+
+Send RevokeWithdrawTx transaction and get the hash, use [getTx](#GraphQLClient+getTx) to get transaction detail
+
+**Kind**: instance method of [<code>GraphQLClient</code>](#GraphQLClient)  
+**Returns**: <code>Promise.&lt;string></code> - returns transaction hash if success, otherwise error was thrown  
+
+| Param  | Type                                                                       |
+| ------ | -------------------------------------------------------------------------- |
+| params | [<code>RevokeWithdrawTxInput</code>](#GraphQLClient.RevokeWithdrawTxInput) |
+
 <a name="GraphQLClient+sendDelegateTx"></a>
 
 ### graphQLClient.sendDelegateTx(params) ⇒ <code>Promise.&lt;string></code>
@@ -618,19 +602,6 @@ Send DelegateTx transaction and get the hash, use [getTx](#GraphQLClient+getTx) 
 | Param  | Type                                                           |
 | ------ | -------------------------------------------------------------- |
 | params | [<code>DelegateTxInput</code>](#GraphQLClient.DelegateTxInput) |
-
-<a name="GraphQLClient+sendExchangeTx"></a>
-
-### graphQLClient.sendExchangeTx(params) ⇒ <code>Promise.&lt;string></code>
-
-Send ExchangeTx transaction and get the hash, use [getTx](#GraphQLClient+getTx) to get transaction detail
-
-**Kind**: instance method of [<code>GraphQLClient</code>](#GraphQLClient)  
-**Returns**: <code>Promise.&lt;string></code> - returns transaction hash if success, otherwise error was thrown  
-
-| Param  | Type                                                           |
-| ------ | -------------------------------------------------------------- |
-| params | [<code>ExchangeTxInput</code>](#GraphQLClient.ExchangeTxInput) |
 
 <a name="GraphQLClient+sendActivateProtocolTx"></a>
 
@@ -684,19 +655,6 @@ Send ApproveWithdrawTx transaction and get the hash, use [getTx](#GraphQLClient+
 | ------ | ---------------------------------------------------------------------------- |
 | params | [<code>ApproveWithdrawTxInput</code>](#GraphQLClient.ApproveWithdrawTxInput) |
 
-<a name="GraphQLClient+sendRetrieveSwapTx"></a>
-
-### graphQLClient.sendRetrieveSwapTx(params) ⇒ <code>Promise.&lt;string></code>
-
-Send RetrieveSwapTx transaction and get the hash, use [getTx](#GraphQLClient+getTx) to get transaction detail
-
-**Kind**: instance method of [<code>GraphQLClient</code>](#GraphQLClient)  
-**Returns**: <code>Promise.&lt;string></code> - returns transaction hash if success, otherwise error was thrown  
-
-| Param  | Type                                                                   |
-| ------ | ---------------------------------------------------------------------- |
-| params | [<code>RetrieveSwapTxInput</code>](#GraphQLClient.RetrieveSwapTxInput) |
-
 <a name="GraphQLClient+sendDeclareTx"></a>
 
 ### graphQLClient.sendDeclareTx(params) ⇒ <code>Promise.&lt;string></code>
@@ -723,31 +681,57 @@ Send DeployProtocolTx transaction and get the hash, use [getTx](#GraphQLClient+g
 | ------ | -------------------------------------------------------------------------- |
 | params | [<code>DeployProtocolTxInput</code>](#GraphQLClient.DeployProtocolTxInput) |
 
-<a name="GraphQLClient+sendAcquireAssetTx"></a>
+<a name="GraphQLClient+sendRevokeSwapTx"></a>
 
-### graphQLClient.sendAcquireAssetTx(params) ⇒ <code>Promise.&lt;string></code>
+### graphQLClient.sendRevokeSwapTx(params) ⇒ <code>Promise.&lt;string></code>
 
-Send AcquireAssetTx transaction and get the hash, use [getTx](#GraphQLClient+getTx) to get transaction detail
+Send RevokeSwapTx transaction and get the hash, use [getTx](#GraphQLClient+getTx) to get transaction detail
+
+**Kind**: instance method of [<code>GraphQLClient</code>](#GraphQLClient)  
+**Returns**: <code>Promise.&lt;string></code> - returns transaction hash if success, otherwise error was thrown  
+
+| Param  | Type                                                               |
+| ------ | ------------------------------------------------------------------ |
+| params | [<code>RevokeSwapTxInput</code>](#GraphQLClient.RevokeSwapTxInput) |
+
+<a name="GraphQLClient+sendRetrieveSwapTx"></a>
+
+### graphQLClient.sendRetrieveSwapTx(params) ⇒ <code>Promise.&lt;string></code>
+
+Send RetrieveSwapTx transaction and get the hash, use [getTx](#GraphQLClient+getTx) to get transaction detail
 
 **Kind**: instance method of [<code>GraphQLClient</code>](#GraphQLClient)  
 **Returns**: <code>Promise.&lt;string></code> - returns transaction hash if success, otherwise error was thrown  
 
 | Param  | Type                                                                   |
 | ------ | ---------------------------------------------------------------------- |
-| params | [<code>AcquireAssetTxInput</code>](#GraphQLClient.AcquireAssetTxInput) |
+| params | [<code>RetrieveSwapTxInput</code>](#GraphQLClient.RetrieveSwapTxInput) |
 
-<a name="GraphQLClient+encodeRevokeSwapTx"></a>
+<a name="GraphQLClient+sendExchangeTx"></a>
 
-### graphQLClient.encodeRevokeSwapTx(params) ⇒ [<code>Promise.&lt;TxEncodeOutput></code>](#GraphQLClient.TxEncodeOutput)
+### graphQLClient.sendExchangeTx(params) ⇒ <code>Promise.&lt;string></code>
 
-Encode a RevokeSwapTx transaction for later use
+Send ExchangeTx transaction and get the hash, use [getTx](#GraphQLClient+getTx) to get transaction detail
+
+**Kind**: instance method of [<code>GraphQLClient</code>](#GraphQLClient)  
+**Returns**: <code>Promise.&lt;string></code> - returns transaction hash if success, otherwise error was thrown  
+
+| Param  | Type                                                           |
+| ------ | -------------------------------------------------------------- |
+| params | [<code>ExchangeTxInput</code>](#GraphQLClient.ExchangeTxInput) |
+
+<a name="GraphQLClient+encodeRevokeDelegateTx"></a>
+
+### graphQLClient.encodeRevokeDelegateTx(params) ⇒ [<code>Promise.&lt;TxEncodeOutput></code>](#GraphQLClient.TxEncodeOutput)
+
+Encode a RevokeDelegateTx transaction for later use
 
 **Kind**: instance method of [<code>GraphQLClient</code>](#GraphQLClient)  
 **Returns**: [<code>Promise.&lt;TxEncodeOutput></code>](#GraphQLClient.TxEncodeOutput) - result - we provide two formats of the encoding result, binary presentation and human readable object  
 
-| Param  | Type                                                               |
-| ------ | ------------------------------------------------------------------ |
-| params | [<code>RevokeSwapTxInput</code>](#GraphQLClient.RevokeSwapTxInput) |
+| Param  | Type                                                                       |
+| ------ | -------------------------------------------------------------------------- |
+| params | [<code>RevokeDelegateTxInput</code>](#GraphQLClient.RevokeDelegateTxInput) |
 
 <a name="GraphQLClient+encodeWithdrawTokenTx"></a>
 
@@ -788,18 +772,18 @@ Encode a AccountMigrateTx transaction for later use
 | ------ | -------------------------------------------------------------------------- |
 | params | [<code>AccountMigrateTxInput</code>](#GraphQLClient.AccountMigrateTxInput) |
 
-<a name="GraphQLClient+encodeStakeTx"></a>
+<a name="GraphQLClient+encodeDeactivateProtocolTx"></a>
 
-### graphQLClient.encodeStakeTx(params) ⇒ [<code>Promise.&lt;TxEncodeOutput></code>](#GraphQLClient.TxEncodeOutput)
+### graphQLClient.encodeDeactivateProtocolTx(params) ⇒ [<code>Promise.&lt;TxEncodeOutput></code>](#GraphQLClient.TxEncodeOutput)
 
-Encode a StakeTx transaction for later use
+Encode a DeactivateProtocolTx transaction for later use
 
 **Kind**: instance method of [<code>GraphQLClient</code>](#GraphQLClient)  
 **Returns**: [<code>Promise.&lt;TxEncodeOutput></code>](#GraphQLClient.TxEncodeOutput) - result - we provide two formats of the encoding result, binary presentation and human readable object  
 
-| Param  | Type                                                     |
-| ------ | -------------------------------------------------------- |
-| params | [<code>StakeTxInput</code>](#GraphQLClient.StakeTxInput) |
+| Param  | Type                                                                               |
+| ------ | ---------------------------------------------------------------------------------- |
+| params | [<code>DeactivateProtocolTxInput</code>](#GraphQLClient.DeactivateProtocolTxInput) |
 
 <a name="GraphQLClient+encodeDepositTokenTx"></a>
 
@@ -814,18 +798,18 @@ Encode a DepositTokenTx transaction for later use
 | ------ | ---------------------------------------------------------------------- |
 | params | [<code>DepositTokenTxInput</code>](#GraphQLClient.DepositTokenTxInput) |
 
-<a name="GraphQLClient+encodeDeactivateProtocolTx"></a>
+<a name="GraphQLClient+encodeCreateAssetTx"></a>
 
-### graphQLClient.encodeDeactivateProtocolTx(params) ⇒ [<code>Promise.&lt;TxEncodeOutput></code>](#GraphQLClient.TxEncodeOutput)
+### graphQLClient.encodeCreateAssetTx(params) ⇒ [<code>Promise.&lt;TxEncodeOutput></code>](#GraphQLClient.TxEncodeOutput)
 
-Encode a DeactivateProtocolTx transaction for later use
+Encode a CreateAssetTx transaction for later use
 
 **Kind**: instance method of [<code>GraphQLClient</code>](#GraphQLClient)  
 **Returns**: [<code>Promise.&lt;TxEncodeOutput></code>](#GraphQLClient.TxEncodeOutput) - result - we provide two formats of the encoding result, binary presentation and human readable object  
 
-| Param  | Type                                                                               |
-| ------ | ---------------------------------------------------------------------------------- |
-| params | [<code>DeactivateProtocolTxInput</code>](#GraphQLClient.DeactivateProtocolTxInput) |
+| Param  | Type                                                                 |
+| ------ | -------------------------------------------------------------------- |
+| params | [<code>CreateAssetTxInput</code>](#GraphQLClient.CreateAssetTxInput) |
 
 <a name="GraphQLClient+encodePokeTx"></a>
 
@@ -840,32 +824,6 @@ Encode a PokeTx transaction for later use
 | ------ | ------------------------------------------------------ |
 | params | [<code>PokeTxInput</code>](#GraphQLClient.PokeTxInput) |
 
-<a name="GraphQLClient+encodeCreateAssetTx"></a>
-
-### graphQLClient.encodeCreateAssetTx(params) ⇒ [<code>Promise.&lt;TxEncodeOutput></code>](#GraphQLClient.TxEncodeOutput)
-
-Encode a CreateAssetTx transaction for later use
-
-**Kind**: instance method of [<code>GraphQLClient</code>](#GraphQLClient)  
-**Returns**: [<code>Promise.&lt;TxEncodeOutput></code>](#GraphQLClient.TxEncodeOutput) - result - we provide two formats of the encoding result, binary presentation and human readable object  
-
-| Param  | Type                                                                 |
-| ------ | -------------------------------------------------------------------- |
-| params | [<code>CreateAssetTxInput</code>](#GraphQLClient.CreateAssetTxInput) |
-
-<a name="GraphQLClient+encodeRevokeDelegateTx"></a>
-
-### graphQLClient.encodeRevokeDelegateTx(params) ⇒ [<code>Promise.&lt;TxEncodeOutput></code>](#GraphQLClient.TxEncodeOutput)
-
-Encode a RevokeDelegateTx transaction for later use
-
-**Kind**: instance method of [<code>GraphQLClient</code>](#GraphQLClient)  
-**Returns**: [<code>Promise.&lt;TxEncodeOutput></code>](#GraphQLClient.TxEncodeOutput) - result - we provide two formats of the encoding result, binary presentation and human readable object  
-
-| Param  | Type                                                                       |
-| ------ | -------------------------------------------------------------------------- |
-| params | [<code>RevokeDelegateTxInput</code>](#GraphQLClient.RevokeDelegateTxInput) |
-
 <a name="GraphQLClient+encodeTransferTx"></a>
 
 ### graphQLClient.encodeTransferTx(params) ⇒ [<code>Promise.&lt;TxEncodeOutput></code>](#GraphQLClient.TxEncodeOutput)
@@ -879,18 +837,18 @@ Encode a TransferTx transaction for later use
 | ------ | -------------------------------------------------------------- |
 | params | [<code>TransferTxInput</code>](#GraphQLClient.TransferTxInput) |
 
-<a name="GraphQLClient+encodeRevokeWithdrawTx"></a>
+<a name="GraphQLClient+encodeAcquireAssetTx"></a>
 
-### graphQLClient.encodeRevokeWithdrawTx(params) ⇒ [<code>Promise.&lt;TxEncodeOutput></code>](#GraphQLClient.TxEncodeOutput)
+### graphQLClient.encodeAcquireAssetTx(params) ⇒ [<code>Promise.&lt;TxEncodeOutput></code>](#GraphQLClient.TxEncodeOutput)
 
-Encode a RevokeWithdrawTx transaction for later use
+Encode a AcquireAssetTx transaction for later use
 
 **Kind**: instance method of [<code>GraphQLClient</code>](#GraphQLClient)  
 **Returns**: [<code>Promise.&lt;TxEncodeOutput></code>](#GraphQLClient.TxEncodeOutput) - result - we provide two formats of the encoding result, binary presentation and human readable object  
 
-| Param  | Type                                                                       |
-| ------ | -------------------------------------------------------------------------- |
-| params | [<code>RevokeWithdrawTxInput</code>](#GraphQLClient.RevokeWithdrawTxInput) |
+| Param  | Type                                                                   |
+| ------ | ---------------------------------------------------------------------- |
+| params | [<code>AcquireAssetTxInput</code>](#GraphQLClient.AcquireAssetTxInput) |
 
 <a name="GraphQLClient+encodeConsumeAssetTx"></a>
 
@@ -905,6 +863,19 @@ Encode a ConsumeAssetTx transaction for later use
 | ------ | ---------------------------------------------------------------------- |
 | params | [<code>ConsumeAssetTxInput</code>](#GraphQLClient.ConsumeAssetTxInput) |
 
+<a name="GraphQLClient+encodeRevokeWithdrawTx"></a>
+
+### graphQLClient.encodeRevokeWithdrawTx(params) ⇒ [<code>Promise.&lt;TxEncodeOutput></code>](#GraphQLClient.TxEncodeOutput)
+
+Encode a RevokeWithdrawTx transaction for later use
+
+**Kind**: instance method of [<code>GraphQLClient</code>](#GraphQLClient)  
+**Returns**: [<code>Promise.&lt;TxEncodeOutput></code>](#GraphQLClient.TxEncodeOutput) - result - we provide two formats of the encoding result, binary presentation and human readable object  
+
+| Param  | Type                                                                       |
+| ------ | -------------------------------------------------------------------------- |
+| params | [<code>RevokeWithdrawTxInput</code>](#GraphQLClient.RevokeWithdrawTxInput) |
+
 <a name="GraphQLClient+encodeDelegateTx"></a>
 
 ### graphQLClient.encodeDelegateTx(params) ⇒ [<code>Promise.&lt;TxEncodeOutput></code>](#GraphQLClient.TxEncodeOutput)
@@ -917,19 +888,6 @@ Encode a DelegateTx transaction for later use
 | Param  | Type                                                           |
 | ------ | -------------------------------------------------------------- |
 | params | [<code>DelegateTxInput</code>](#GraphQLClient.DelegateTxInput) |
-
-<a name="GraphQLClient+encodeExchangeTx"></a>
-
-### graphQLClient.encodeExchangeTx(params) ⇒ [<code>Promise.&lt;TxEncodeOutput></code>](#GraphQLClient.TxEncodeOutput)
-
-Encode a ExchangeTx transaction for later use
-
-**Kind**: instance method of [<code>GraphQLClient</code>](#GraphQLClient)  
-**Returns**: [<code>Promise.&lt;TxEncodeOutput></code>](#GraphQLClient.TxEncodeOutput) - result - we provide two formats of the encoding result, binary presentation and human readable object  
-
-| Param  | Type                                                           |
-| ------ | -------------------------------------------------------------- |
-| params | [<code>ExchangeTxInput</code>](#GraphQLClient.ExchangeTxInput) |
 
 <a name="GraphQLClient+encodeActivateProtocolTx"></a>
 
@@ -983,19 +941,6 @@ Encode a ApproveWithdrawTx transaction for later use
 | ------ | ---------------------------------------------------------------------------- |
 | params | [<code>ApproveWithdrawTxInput</code>](#GraphQLClient.ApproveWithdrawTxInput) |
 
-<a name="GraphQLClient+encodeRetrieveSwapTx"></a>
-
-### graphQLClient.encodeRetrieveSwapTx(params) ⇒ [<code>Promise.&lt;TxEncodeOutput></code>](#GraphQLClient.TxEncodeOutput)
-
-Encode a RetrieveSwapTx transaction for later use
-
-**Kind**: instance method of [<code>GraphQLClient</code>](#GraphQLClient)  
-**Returns**: [<code>Promise.&lt;TxEncodeOutput></code>](#GraphQLClient.TxEncodeOutput) - result - we provide two formats of the encoding result, binary presentation and human readable object  
-
-| Param  | Type                                                                   |
-| ------ | ---------------------------------------------------------------------- |
-| params | [<code>RetrieveSwapTxInput</code>](#GraphQLClient.RetrieveSwapTxInput) |
-
 <a name="GraphQLClient+encodeDeclareTx"></a>
 
 ### graphQLClient.encodeDeclareTx(params) ⇒ [<code>Promise.&lt;TxEncodeOutput></code>](#GraphQLClient.TxEncodeOutput)
@@ -1022,18 +967,44 @@ Encode a DeployProtocolTx transaction for later use
 | ------ | -------------------------------------------------------------------------- |
 | params | [<code>DeployProtocolTxInput</code>](#GraphQLClient.DeployProtocolTxInput) |
 
-<a name="GraphQLClient+encodeAcquireAssetTx"></a>
+<a name="GraphQLClient+encodeRevokeSwapTx"></a>
 
-### graphQLClient.encodeAcquireAssetTx(params) ⇒ [<code>Promise.&lt;TxEncodeOutput></code>](#GraphQLClient.TxEncodeOutput)
+### graphQLClient.encodeRevokeSwapTx(params) ⇒ [<code>Promise.&lt;TxEncodeOutput></code>](#GraphQLClient.TxEncodeOutput)
 
-Encode a AcquireAssetTx transaction for later use
+Encode a RevokeSwapTx transaction for later use
+
+**Kind**: instance method of [<code>GraphQLClient</code>](#GraphQLClient)  
+**Returns**: [<code>Promise.&lt;TxEncodeOutput></code>](#GraphQLClient.TxEncodeOutput) - result - we provide two formats of the encoding result, binary presentation and human readable object  
+
+| Param  | Type                                                               |
+| ------ | ------------------------------------------------------------------ |
+| params | [<code>RevokeSwapTxInput</code>](#GraphQLClient.RevokeSwapTxInput) |
+
+<a name="GraphQLClient+encodeRetrieveSwapTx"></a>
+
+### graphQLClient.encodeRetrieveSwapTx(params) ⇒ [<code>Promise.&lt;TxEncodeOutput></code>](#GraphQLClient.TxEncodeOutput)
+
+Encode a RetrieveSwapTx transaction for later use
 
 **Kind**: instance method of [<code>GraphQLClient</code>](#GraphQLClient)  
 **Returns**: [<code>Promise.&lt;TxEncodeOutput></code>](#GraphQLClient.TxEncodeOutput) - result - we provide two formats of the encoding result, binary presentation and human readable object  
 
 | Param  | Type                                                                   |
 | ------ | ---------------------------------------------------------------------- |
-| params | [<code>AcquireAssetTxInput</code>](#GraphQLClient.AcquireAssetTxInput) |
+| params | [<code>RetrieveSwapTxInput</code>](#GraphQLClient.RetrieveSwapTxInput) |
+
+<a name="GraphQLClient+encodeExchangeTx"></a>
+
+### graphQLClient.encodeExchangeTx(params) ⇒ [<code>Promise.&lt;TxEncodeOutput></code>](#GraphQLClient.TxEncodeOutput)
+
+Encode a ExchangeTx transaction for later use
+
+**Kind**: instance method of [<code>GraphQLClient</code>](#GraphQLClient)  
+**Returns**: [<code>Promise.&lt;TxEncodeOutput></code>](#GraphQLClient.TxEncodeOutput) - result - we provide two formats of the encoding result, binary presentation and human readable object  
+
+| Param  | Type                                                           |
+| ------ | -------------------------------------------------------------- |
+| params | [<code>ExchangeTxInput</code>](#GraphQLClient.ExchangeTxInput) |
 
 <a name="GraphQLClient+getAccountState"></a>
 
@@ -2686,14 +2657,14 @@ Checkout the following snippet for the format of ResponseGetAccountState:
 
 ```json
 {
-  "code": "INVALID_FORGE_STATE",
+  "code": "INVALID_DEACTIVATION",
   "state": {
     "address": "abc",
     "balance": "abc",
     "context": {
       "genesisTime": "2019-04-29T00:00:00.000Z",
       "genesisTx": {
-        "code": "INVALID_FORGE_STATE",
+        "code": "INVALID_DEACTIVATION",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -2727,7 +2698,7 @@ Checkout the following snippet for the format of ResponseGetAccountState:
       },
       "renaissanceTime": "2019-04-29T00:00:00.000Z",
       "renaissanceTx": {
-        "code": "INVALID_FORGE_STATE",
+        "code": "INVALID_DEACTIVATION",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -2832,14 +2803,14 @@ Checkout the following snippet for the format of ResponseGetAssetState:
 
 ```json
 {
-  "code": "INVALID_FORGE_STATE",
+  "code": "INVALID_DEACTIVATION",
   "state": {
     "address": "abc",
     "consumedTime": "2019-04-29T00:00:00.000Z",
     "context": {
       "genesisTime": "2019-04-29T00:00:00.000Z",
       "genesisTx": {
-        "code": "INVALID_FORGE_STATE",
+        "code": "INVALID_DEACTIVATION",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -2873,7 +2844,7 @@ Checkout the following snippet for the format of ResponseGetAssetState:
       },
       "renaissanceTime": "2019-04-29T00:00:00.000Z",
       "renaissanceTx": {
-        "code": "INVALID_FORGE_STATE",
+        "code": "INVALID_DEACTIVATION",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -2970,7 +2941,7 @@ Checkout the following snippet for the format of ResponseGetBlock:
     "height": "abc",
     "invalidTxs": [
       {
-        "code": "INVALID_FORGE_STATE",
+        "code": "INVALID_DEACTIVATION",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -3022,7 +2993,7 @@ Checkout the following snippet for the format of ResponseGetBlock:
     "totalTxs": "abc",
     "txs": [
       {
-        "code": "INVALID_FORGE_STATE",
+        "code": "INVALID_DEACTIVATION",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -3064,7 +3035,7 @@ Checkout the following snippet for the format of ResponseGetBlock:
       "block": "abc"
     }
   },
-  "code": "INVALID_FORGE_STATE"
+  "code": "INVALID_DEACTIVATION"
 }
 ```
 
@@ -3120,7 +3091,7 @@ Checkout the following snippet for the format of ResponseGetBlocks:
       }
     }
   ],
-  "code": "INVALID_FORGE_STATE",
+  "code": "INVALID_DEACTIVATION",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -3148,7 +3119,7 @@ Checkout the following snippet for the format of ResponseGetChainInfo:
 
 ```json
 {
-  "code": "INVALID_FORGE_STATE",
+  "code": "INVALID_DEACTIVATION",
   "info": {
     "address": "abc",
     "appHash": "abc",
@@ -3194,7 +3165,7 @@ Checkout the following snippet for the format of ResponseGetConfig:
 
 ```json
 {
-  "code": "INVALID_FORGE_STATE",
+  "code": "INVALID_DEACTIVATION",
   "config": "abc"
 }
 ```
@@ -3217,13 +3188,13 @@ Checkout the following snippet for the format of ResponseGetDelegateState:
 
 ```json
 {
-  "code": "INVALID_FORGE_STATE",
+  "code": "INVALID_DEACTIVATION",
   "state": {
     "address": "abc",
     "context": {
       "genesisTime": "2019-04-29T00:00:00.000Z",
       "genesisTx": {
-        "code": "INVALID_FORGE_STATE",
+        "code": "INVALID_DEACTIVATION",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -3257,7 +3228,7 @@ Checkout the following snippet for the format of ResponseGetDelegateState:
       },
       "renaissanceTime": "2019-04-29T00:00:00.000Z",
       "renaissanceTx": {
-        "code": "INVALID_FORGE_STATE",
+        "code": "INVALID_DEACTIVATION",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -3328,7 +3299,7 @@ Checkout the following snippet for the format of ResponseGetForgeState:
 
 ```json
 {
-  "code": "INVALID_FORGE_STATE",
+  "code": "INVALID_DEACTIVATION",
   "state": {
     "accountConfig": [
       {
@@ -3381,7 +3352,7 @@ Checkout the following snippet for the format of ResponseGetForgeState:
           "context": {
             "genesisTime": "2019-04-29T00:00:00.000Z",
             "genesisTx": {
-              "code": "INVALID_FORGE_STATE",
+              "code": "INVALID_DEACTIVATION",
               "hash": "abc",
               "height": "abc",
               "index": 123,
@@ -3415,7 +3386,7 @@ Checkout the following snippet for the format of ResponseGetForgeState:
             },
             "renaissanceTime": "2019-04-29T00:00:00.000Z",
             "renaissanceTx": {
-              "code": "INVALID_FORGE_STATE",
+              "code": "INVALID_DEACTIVATION",
               "hash": "abc",
               "height": "abc",
               "index": 123,
@@ -3537,7 +3508,7 @@ Checkout the following snippet for the format of ResponseGetForgeStats:
 
 ```json
 {
-  "code": "INVALID_FORGE_STATE",
+  "code": "INVALID_DEACTIVATION",
   "forgeStats": {
     "avgBlockTime": 123,
     "avgTps": 123,
@@ -3615,7 +3586,7 @@ Checkout the following snippet for the format of ResponseGetHealthStatus:
 
 ```json
 {
-  "code": "INVALID_FORGE_STATE",
+  "code": "INVALID_DEACTIVATION",
   "healthStatus": {
     "consensus": {
       "blockHeight": "abc",
@@ -3666,7 +3637,7 @@ Checkout the following snippet for the format of ResponseGetNetInfo:
 
 ```json
 {
-  "code": "INVALID_FORGE_STATE",
+  "code": "INVALID_DEACTIVATION",
   "netInfo": {
     "listeners": [
       "abc"
@@ -3710,7 +3681,7 @@ Checkout the following snippet for the format of ResponseGetNodeInfo:
 
 ```json
 {
-  "code": "INVALID_FORGE_STATE",
+  "code": "INVALID_DEACTIVATION",
   "info": {
     "address": "abc",
     "appHash": "abc",
@@ -3764,13 +3735,13 @@ Checkout the following snippet for the format of ResponseGetProtocolState:
 
 ```json
 {
-  "code": "INVALID_FORGE_STATE",
+  "code": "INVALID_DEACTIVATION",
   "state": {
     "address": "abc",
     "context": {
       "genesisTime": "2019-04-29T00:00:00.000Z",
       "genesisTx": {
-        "code": "INVALID_FORGE_STATE",
+        "code": "INVALID_DEACTIVATION",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -3804,7 +3775,7 @@ Checkout the following snippet for the format of ResponseGetProtocolState:
       },
       "renaissanceTime": "2019-04-29T00:00:00.000Z",
       "renaissanceTx": {
-        "code": "INVALID_FORGE_STATE",
+        "code": "INVALID_DEACTIVATION",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -3903,7 +3874,7 @@ Checkout the following snippet for the format of ResponseGetProtocols:
 
 ```json
 {
-  "code": "INVALID_FORGE_STATE",
+  "code": "INVALID_DEACTIVATION",
   "protocols": [
     {
       "address": "abc",
@@ -3957,7 +3928,7 @@ Checkout the following snippet for the format of ResponseGetSimulatorStatus:
 
 ```json
 {
-  "code": "INVALID_FORGE_STATE",
+  "code": "INVALID_DEACTIVATION",
   "result": "abc"
 }
 ```
@@ -3980,14 +3951,14 @@ Checkout the following snippet for the format of ResponseGetStakeState:
 
 ```json
 {
-  "code": "INVALID_FORGE_STATE",
+  "code": "INVALID_DEACTIVATION",
   "state": {
     "address": "abc",
     "balance": "abc",
     "context": {
       "genesisTime": "2019-04-29T00:00:00.000Z",
       "genesisTx": {
-        "code": "INVALID_FORGE_STATE",
+        "code": "INVALID_DEACTIVATION",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -4021,7 +3992,7 @@ Checkout the following snippet for the format of ResponseGetStakeState:
       },
       "renaissanceTime": "2019-04-29T00:00:00.000Z",
       "renaissanceTx": {
-        "code": "INVALID_FORGE_STATE",
+        "code": "INVALID_DEACTIVATION",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -4083,7 +4054,7 @@ Checkout the following snippet for the format of ResponseGetSwapState:
 
 ```json
 {
-  "code": "INVALID_FORGE_STATE",
+  "code": "INVALID_DEACTIVATION",
   "state": {
     "address": "abc",
     "assets": [
@@ -4092,7 +4063,7 @@ Checkout the following snippet for the format of ResponseGetSwapState:
     "context": {
       "genesisTime": "2019-04-29T00:00:00.000Z",
       "genesisTx": {
-        "code": "INVALID_FORGE_STATE",
+        "code": "INVALID_DEACTIVATION",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -4126,7 +4097,7 @@ Checkout the following snippet for the format of ResponseGetSwapState:
       },
       "renaissanceTime": "2019-04-29T00:00:00.000Z",
       "renaissanceTx": {
-        "code": "INVALID_FORGE_STATE",
+        "code": "INVALID_DEACTIVATION",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -4188,9 +4159,9 @@ Checkout the following snippet for the format of ResponseGetTx:
 
 ```json
 {
-  "code": "INVALID_FORGE_STATE",
+  "code": "INVALID_DEACTIVATION",
   "info": {
-    "code": "INVALID_FORGE_STATE",
+    "code": "INVALID_DEACTIVATION",
     "hash": "abc",
     "height": "abc",
     "index": 123,
@@ -4243,7 +4214,7 @@ Checkout the following snippet for the format of ResponseGetUnconfirmedTxs:
 
 ```json
 {
-  "code": "INVALID_FORGE_STATE",
+  "code": "INVALID_DEACTIVATION",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -4296,7 +4267,7 @@ Checkout the following snippet for the format of ResponseGetValidatorsInfo:
 
 ```json
 {
-  "code": "INVALID_FORGE_STATE",
+  "code": "INVALID_DEACTIVATION",
   "validatorsInfo": {
     "blockHeight": "abc",
     "validators": [
@@ -4339,7 +4310,7 @@ Checkout the following snippet for the format of ResponseListAssetTransactions:
 
 ```json
 {
-  "code": "INVALID_FORGE_STATE",
+  "code": "INVALID_DEACTIVATION",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -4347,7 +4318,7 @@ Checkout the following snippet for the format of ResponseListAssetTransactions:
   },
   "transactions": [
     {
-      "code": "INVALID_FORGE_STATE",
+      "code": "INVALID_DEACTIVATION",
       "hash": "abc",
       "receiver": "abc",
       "sender": "abc",
@@ -4435,7 +4406,7 @@ Checkout the following snippet for the format of ResponseListAssets:
       "ttl": "abc"
     }
   ],
-  "code": "INVALID_FORGE_STATE",
+  "code": "INVALID_DEACTIVATION",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -4473,7 +4444,7 @@ Checkout the following snippet for the format of ResponseListBlocks:
       "time": "abc"
     }
   ],
-  "code": "INVALID_FORGE_STATE",
+  "code": "INVALID_DEACTIVATION",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -4501,7 +4472,7 @@ Checkout the following snippet for the format of ResponseListStakes:
 
 ```json
 {
-  "code": "INVALID_FORGE_STATE",
+  "code": "INVALID_DEACTIVATION",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -4541,7 +4512,7 @@ Checkout the following snippet for the format of ResponseListSwap:
 
 ```json
 {
-  "code": "INVALID_FORGE_STATE",
+  "code": "INVALID_DEACTIVATION",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -4556,7 +4527,7 @@ Checkout the following snippet for the format of ResponseListSwap:
       "context": {
         "genesisTime": "2019-04-29T00:00:00.000Z",
         "genesisTx": {
-          "code": "INVALID_FORGE_STATE",
+          "code": "INVALID_DEACTIVATION",
           "hash": "abc",
           "height": "abc",
           "index": 123,
@@ -4590,7 +4561,7 @@ Checkout the following snippet for the format of ResponseListSwap:
         },
         "renaissanceTime": "2019-04-29T00:00:00.000Z",
         "renaissanceTx": {
-          "code": "INVALID_FORGE_STATE",
+          "code": "INVALID_DEACTIVATION",
           "hash": "abc",
           "height": "abc",
           "index": 123,
@@ -4674,7 +4645,7 @@ Checkout the following snippet for the format of ResponseListTopAccounts:
       "totalUnstakes": "abc"
     }
   ],
-  "code": "INVALID_FORGE_STATE",
+  "code": "INVALID_DEACTIVATION",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -4702,7 +4673,7 @@ Checkout the following snippet for the format of ResponseListTransactions:
 
 ```json
 {
-  "code": "INVALID_FORGE_STATE",
+  "code": "INVALID_DEACTIVATION",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -4710,7 +4681,7 @@ Checkout the following snippet for the format of ResponseListTransactions:
   },
   "transactions": [
     {
-      "code": "INVALID_FORGE_STATE",
+      "code": "INVALID_DEACTIVATION",
       "hash": "abc",
       "receiver": "abc",
       "sender": "abc",
@@ -4761,7 +4732,7 @@ Checkout the following snippet for the format of ResponseSendTx:
 
 ```json
 {
-  "code": "INVALID_FORGE_STATE",
+  "code": "INVALID_DEACTIVATION",
   "hash": "abc"
 }
 ```
@@ -4784,7 +4755,7 @@ Checkout the following snippet for the format of ResponseStartSimulator:
 
 ```json
 {
-  "code": "INVALID_FORGE_STATE"
+  "code": "INVALID_DEACTIVATION"
 }
 ```
 
@@ -4805,7 +4776,7 @@ Checkout the following snippet for the format of ResponseStopSimulator:
 
 ```json
 {
-  "code": "INVALID_FORGE_STATE"
+  "code": "INVALID_DEACTIVATION"
 }
 ```
 
@@ -4852,7 +4823,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
     "context": {
       "genesisTime": "2019-04-29T00:00:00.000Z",
       "genesisTx": {
-        "code": "INVALID_FORGE_STATE",
+        "code": "INVALID_DEACTIVATION",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -4886,7 +4857,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
       },
       "renaissanceTime": "2019-04-29T00:00:00.000Z",
       "renaissanceTx": {
-        "code": "INVALID_FORGE_STATE",
+        "code": "INVALID_DEACTIVATION",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -5016,7 +4987,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
     "context": {
       "genesisTime": "2019-04-29T00:00:00.000Z",
       "genesisTx": {
-        "code": "INVALID_FORGE_STATE",
+        "code": "INVALID_DEACTIVATION",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -5050,7 +5021,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
       },
       "renaissanceTime": "2019-04-29T00:00:00.000Z",
       "renaissanceTx": {
-        "code": "INVALID_FORGE_STATE",
+        "code": "INVALID_DEACTIVATION",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -5169,7 +5140,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
       ]
     }
   },
-  "code": "INVALID_FORGE_STATE",
+  "code": "INVALID_DEACTIVATION",
   "confirm": {
     "chainId": "abc",
     "delegator": "abc",
@@ -5315,7 +5286,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
     "context": {
       "genesisTime": "2019-04-29T00:00:00.000Z",
       "genesisTx": {
-        "code": "INVALID_FORGE_STATE",
+        "code": "INVALID_DEACTIVATION",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -5349,7 +5320,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
       },
       "renaissanceTime": "2019-04-29T00:00:00.000Z",
       "renaissanceTx": {
-        "code": "INVALID_FORGE_STATE",
+        "code": "INVALID_DEACTIVATION",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -5494,7 +5465,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
           "context": {
             "genesisTime": "2019-04-29T00:00:00.000Z",
             "genesisTx": {
-              "code": "INVALID_FORGE_STATE",
+              "code": "INVALID_DEACTIVATION",
               "hash": "abc",
               "height": "abc",
               "index": 123,
@@ -5528,7 +5499,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
             },
             "renaissanceTime": "2019-04-29T00:00:00.000Z",
             "renaissanceTx": {
-              "code": "INVALID_FORGE_STATE",
+              "code": "INVALID_DEACTIVATION",
               "hash": "abc",
               "height": "abc",
               "index": 123,
@@ -5634,7 +5605,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
     "context": {
       "genesisTime": "2019-04-29T00:00:00.000Z",
       "genesisTx": {
-        "code": "INVALID_FORGE_STATE",
+        "code": "INVALID_DEACTIVATION",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -5668,7 +5639,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
       },
       "renaissanceTime": "2019-04-29T00:00:00.000Z",
       "renaissanceTx": {
-        "code": "INVALID_FORGE_STATE",
+        "code": "INVALID_DEACTIVATION",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -5832,7 +5803,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
     "context": {
       "genesisTime": "2019-04-29T00:00:00.000Z",
       "genesisTx": {
-        "code": "INVALID_FORGE_STATE",
+        "code": "INVALID_DEACTIVATION",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -5866,7 +5837,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
       },
       "renaissanceTime": "2019-04-29T00:00:00.000Z",
       "renaissanceTx": {
-        "code": "INVALID_FORGE_STATE",
+        "code": "INVALID_DEACTIVATION",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -6037,7 +6008,7 @@ Checkout the following snippet for the format of ResponseUnsubscribe:
 
 ```json
 {
-  "code": "INVALID_FORGE_STATE"
+  "code": "INVALID_DEACTIVATION"
 }
 ```
 
@@ -7018,26 +6989,26 @@ Checkout the following snippet for the format of SubscribeParams:
 | filter | <code>string</code> |
 | topic  | <code>string</code> |
 
-<a name="GraphQLClient.RevokeSwapTxInput"></a>
+<a name="GraphQLClient.RevokeDelegateTxInput"></a>
 
-### GraphQLClient.RevokeSwapTxInput : <code>Object</code>
+### GraphQLClient.RevokeDelegateTxInput : <code>Object</code>
 
 **Kind**: static typedef of [<code>GraphQLClient</code>](#GraphQLClient)  
 **Properties**
 
-| Name                  | Type                                    | Description                                                                                   |
-| --------------------- | --------------------------------------- | --------------------------------------------------------------------------------------------- |
-| input                 | <code>object</code>                     |                                                                                               |
-| input.tx              | <code>object</code>                     | data of the transaction                                                                       |
-| input.tx.itx          | <code>GraphQLClient.RevokeSwapTx</code> | the actual transaction object                                                                 |
-| [input.tx.pk]         | <code>string</code>                     | the sender pk                                                                                 |
-| [input.tx.from]       | <code>string</code>                     | the sender address, can be derived from wallet                                                |
-| [input.tx.nonce]      | <code>number</code>                     | the tx nonce, defaults to Date.now if not set                                                 |
-| [input.tx.chainId]    | <code>string</code>                     | the chainId                                                                                   |
-| [input.tx.signature]  | <code>string</code>                     | transaction signature                                                                         |
-| [input.tx.signatures] | <code>array</code>                      | transaction signatures, should be set when it's a multisig transaction                        |
-| input.wallet          | <code>object</code>                     | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
-| [input.signature]     | <code>string</code>                     | the signature of the tx, if this parameter exist, we will not sign the transaction            |
+| Name                  | Type                                        | Description                                                                                   |
+| --------------------- | ------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| input                 | <code>object</code>                         |                                                                                               |
+| input.tx              | <code>object</code>                         | data of the transaction                                                                       |
+| input.tx.itx          | <code>GraphQLClient.RevokeDelegateTx</code> | the actual transaction object                                                                 |
+| [input.tx.pk]         | <code>string</code>                         | the sender pk                                                                                 |
+| [input.tx.from]       | <code>string</code>                         | the sender address, can be derived from wallet                                                |
+| [input.tx.nonce]      | <code>number</code>                         | the tx nonce, defaults to Date.now if not set                                                 |
+| [input.tx.chainId]    | <code>string</code>                         | the chainId                                                                                   |
+| [input.tx.signature]  | <code>string</code>                         | transaction signature                                                                         |
+| [input.tx.signatures] | <code>array</code>                          | transaction signatures, should be set when it's a multisig transaction                        |
+| input.wallet          | <code>object</code>                         | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
+| [input.signature]     | <code>string</code>                         | the signature of the tx, if this parameter exist, we will not sign the transaction            |
 
 <a name="GraphQLClient.WithdrawTokenTxInput"></a>
 
@@ -7102,26 +7073,26 @@ Checkout the following snippet for the format of SubscribeParams:
 | input.wallet          | <code>object</code>                         | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
 | [input.signature]     | <code>string</code>                         | the signature of the tx, if this parameter exist, we will not sign the transaction            |
 
-<a name="GraphQLClient.StakeTxInput"></a>
+<a name="GraphQLClient.DeactivateProtocolTxInput"></a>
 
-### GraphQLClient.StakeTxInput : <code>Object</code>
+### GraphQLClient.DeactivateProtocolTxInput : <code>Object</code>
 
 **Kind**: static typedef of [<code>GraphQLClient</code>](#GraphQLClient)  
 **Properties**
 
-| Name                  | Type                               | Description                                                                                   |
-| --------------------- | ---------------------------------- | --------------------------------------------------------------------------------------------- |
-| input                 | <code>object</code>                |                                                                                               |
-| input.tx              | <code>object</code>                | data of the transaction                                                                       |
-| input.tx.itx          | <code>GraphQLClient.StakeTx</code> | the actual transaction object                                                                 |
-| [input.tx.pk]         | <code>string</code>                | the sender pk                                                                                 |
-| [input.tx.from]       | <code>string</code>                | the sender address, can be derived from wallet                                                |
-| [input.tx.nonce]      | <code>number</code>                | the tx nonce, defaults to Date.now if not set                                                 |
-| [input.tx.chainId]    | <code>string</code>                | the chainId                                                                                   |
-| [input.tx.signature]  | <code>string</code>                | transaction signature                                                                         |
-| [input.tx.signatures] | <code>array</code>                 | transaction signatures, should be set when it's a multisig transaction                        |
-| input.wallet          | <code>object</code>                | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
-| [input.signature]     | <code>string</code>                | the signature of the tx, if this parameter exist, we will not sign the transaction            |
+| Name                  | Type                                            | Description                                                                                   |
+| --------------------- | ----------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| input                 | <code>object</code>                             |                                                                                               |
+| input.tx              | <code>object</code>                             | data of the transaction                                                                       |
+| input.tx.itx          | <code>GraphQLClient.DeactivateProtocolTx</code> | the actual transaction object                                                                 |
+| [input.tx.pk]         | <code>string</code>                             | the sender pk                                                                                 |
+| [input.tx.from]       | <code>string</code>                             | the sender address, can be derived from wallet                                                |
+| [input.tx.nonce]      | <code>number</code>                             | the tx nonce, defaults to Date.now if not set                                                 |
+| [input.tx.chainId]    | <code>string</code>                             | the chainId                                                                                   |
+| [input.tx.signature]  | <code>string</code>                             | transaction signature                                                                         |
+| [input.tx.signatures] | <code>array</code>                              | transaction signatures, should be set when it's a multisig transaction                        |
+| input.wallet          | <code>object</code>                             | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
+| [input.signature]     | <code>string</code>                             | the signature of the tx, if this parameter exist, we will not sign the transaction            |
 
 <a name="GraphQLClient.DepositTokenTxInput"></a>
 
@@ -7144,26 +7115,26 @@ Checkout the following snippet for the format of SubscribeParams:
 | input.wallet          | <code>object</code>                       | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
 | [input.signature]     | <code>string</code>                       | the signature of the tx, if this parameter exist, we will not sign the transaction            |
 
-<a name="GraphQLClient.DeactivateProtocolTxInput"></a>
+<a name="GraphQLClient.CreateAssetTxInput"></a>
 
-### GraphQLClient.DeactivateProtocolTxInput : <code>Object</code>
+### GraphQLClient.CreateAssetTxInput : <code>Object</code>
 
 **Kind**: static typedef of [<code>GraphQLClient</code>](#GraphQLClient)  
 **Properties**
 
-| Name                  | Type                                            | Description                                                                                   |
-| --------------------- | ----------------------------------------------- | --------------------------------------------------------------------------------------------- |
-| input                 | <code>object</code>                             |                                                                                               |
-| input.tx              | <code>object</code>                             | data of the transaction                                                                       |
-| input.tx.itx          | <code>GraphQLClient.DeactivateProtocolTx</code> | the actual transaction object                                                                 |
-| [input.tx.pk]         | <code>string</code>                             | the sender pk                                                                                 |
-| [input.tx.from]       | <code>string</code>                             | the sender address, can be derived from wallet                                                |
-| [input.tx.nonce]      | <code>number</code>                             | the tx nonce, defaults to Date.now if not set                                                 |
-| [input.tx.chainId]    | <code>string</code>                             | the chainId                                                                                   |
-| [input.tx.signature]  | <code>string</code>                             | transaction signature                                                                         |
-| [input.tx.signatures] | <code>array</code>                              | transaction signatures, should be set when it's a multisig transaction                        |
-| input.wallet          | <code>object</code>                             | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
-| [input.signature]     | <code>string</code>                             | the signature of the tx, if this parameter exist, we will not sign the transaction            |
+| Name                  | Type                                     | Description                                                                                   |
+| --------------------- | ---------------------------------------- | --------------------------------------------------------------------------------------------- |
+| input                 | <code>object</code>                      |                                                                                               |
+| input.tx              | <code>object</code>                      | data of the transaction                                                                       |
+| input.tx.itx          | <code>GraphQLClient.CreateAssetTx</code> | the actual transaction object                                                                 |
+| [input.tx.pk]         | <code>string</code>                      | the sender pk                                                                                 |
+| [input.tx.from]       | <code>string</code>                      | the sender address, can be derived from wallet                                                |
+| [input.tx.nonce]      | <code>number</code>                      | the tx nonce, defaults to Date.now if not set                                                 |
+| [input.tx.chainId]    | <code>string</code>                      | the chainId                                                                                   |
+| [input.tx.signature]  | <code>string</code>                      | transaction signature                                                                         |
+| [input.tx.signatures] | <code>array</code>                       | transaction signatures, should be set when it's a multisig transaction                        |
+| input.wallet          | <code>object</code>                      | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
+| [input.signature]     | <code>string</code>                      | the signature of the tx, if this parameter exist, we will not sign the transaction            |
 
 <a name="GraphQLClient.PokeTxInput"></a>
 
@@ -7186,48 +7157,6 @@ Checkout the following snippet for the format of SubscribeParams:
 | input.wallet          | <code>object</code>               | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
 | [input.signature]     | <code>string</code>               | the signature of the tx, if this parameter exist, we will not sign the transaction            |
 
-<a name="GraphQLClient.CreateAssetTxInput"></a>
-
-### GraphQLClient.CreateAssetTxInput : <code>Object</code>
-
-**Kind**: static typedef of [<code>GraphQLClient</code>](#GraphQLClient)  
-**Properties**
-
-| Name                  | Type                                     | Description                                                                                   |
-| --------------------- | ---------------------------------------- | --------------------------------------------------------------------------------------------- |
-| input                 | <code>object</code>                      |                                                                                               |
-| input.tx              | <code>object</code>                      | data of the transaction                                                                       |
-| input.tx.itx          | <code>GraphQLClient.CreateAssetTx</code> | the actual transaction object                                                                 |
-| [input.tx.pk]         | <code>string</code>                      | the sender pk                                                                                 |
-| [input.tx.from]       | <code>string</code>                      | the sender address, can be derived from wallet                                                |
-| [input.tx.nonce]      | <code>number</code>                      | the tx nonce, defaults to Date.now if not set                                                 |
-| [input.tx.chainId]    | <code>string</code>                      | the chainId                                                                                   |
-| [input.tx.signature]  | <code>string</code>                      | transaction signature                                                                         |
-| [input.tx.signatures] | <code>array</code>                       | transaction signatures, should be set when it's a multisig transaction                        |
-| input.wallet          | <code>object</code>                      | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
-| [input.signature]     | <code>string</code>                      | the signature of the tx, if this parameter exist, we will not sign the transaction            |
-
-<a name="GraphQLClient.RevokeDelegateTxInput"></a>
-
-### GraphQLClient.RevokeDelegateTxInput : <code>Object</code>
-
-**Kind**: static typedef of [<code>GraphQLClient</code>](#GraphQLClient)  
-**Properties**
-
-| Name                  | Type                                        | Description                                                                                   |
-| --------------------- | ------------------------------------------- | --------------------------------------------------------------------------------------------- |
-| input                 | <code>object</code>                         |                                                                                               |
-| input.tx              | <code>object</code>                         | data of the transaction                                                                       |
-| input.tx.itx          | <code>GraphQLClient.RevokeDelegateTx</code> | the actual transaction object                                                                 |
-| [input.tx.pk]         | <code>string</code>                         | the sender pk                                                                                 |
-| [input.tx.from]       | <code>string</code>                         | the sender address, can be derived from wallet                                                |
-| [input.tx.nonce]      | <code>number</code>                         | the tx nonce, defaults to Date.now if not set                                                 |
-| [input.tx.chainId]    | <code>string</code>                         | the chainId                                                                                   |
-| [input.tx.signature]  | <code>string</code>                         | transaction signature                                                                         |
-| [input.tx.signatures] | <code>array</code>                          | transaction signatures, should be set when it's a multisig transaction                        |
-| input.wallet          | <code>object</code>                         | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
-| [input.signature]     | <code>string</code>                         | the signature of the tx, if this parameter exist, we will not sign the transaction            |
-
 <a name="GraphQLClient.TransferTxInput"></a>
 
 ### GraphQLClient.TransferTxInput : <code>Object</code>
@@ -7249,26 +7178,26 @@ Checkout the following snippet for the format of SubscribeParams:
 | input.wallet          | <code>object</code>                   | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
 | [input.signature]     | <code>string</code>                   | the signature of the tx, if this parameter exist, we will not sign the transaction            |
 
-<a name="GraphQLClient.RevokeWithdrawTxInput"></a>
+<a name="GraphQLClient.AcquireAssetTxInput"></a>
 
-### GraphQLClient.RevokeWithdrawTxInput : <code>Object</code>
+### GraphQLClient.AcquireAssetTxInput : <code>Object</code>
 
 **Kind**: static typedef of [<code>GraphQLClient</code>](#GraphQLClient)  
 **Properties**
 
-| Name                  | Type                                        | Description                                                                                   |
-| --------------------- | ------------------------------------------- | --------------------------------------------------------------------------------------------- |
-| input                 | <code>object</code>                         |                                                                                               |
-| input.tx              | <code>object</code>                         | data of the transaction                                                                       |
-| input.tx.itx          | <code>GraphQLClient.RevokeWithdrawTx</code> | the actual transaction object                                                                 |
-| [input.tx.pk]         | <code>string</code>                         | the sender pk                                                                                 |
-| [input.tx.from]       | <code>string</code>                         | the sender address, can be derived from wallet                                                |
-| [input.tx.nonce]      | <code>number</code>                         | the tx nonce, defaults to Date.now if not set                                                 |
-| [input.tx.chainId]    | <code>string</code>                         | the chainId                                                                                   |
-| [input.tx.signature]  | <code>string</code>                         | transaction signature                                                                         |
-| [input.tx.signatures] | <code>array</code>                          | transaction signatures, should be set when it's a multisig transaction                        |
-| input.wallet          | <code>object</code>                         | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
-| [input.signature]     | <code>string</code>                         | the signature of the tx, if this parameter exist, we will not sign the transaction            |
+| Name                  | Type                                      | Description                                                                                   |
+| --------------------- | ----------------------------------------- | --------------------------------------------------------------------------------------------- |
+| input                 | <code>object</code>                       |                                                                                               |
+| input.tx              | <code>object</code>                       | data of the transaction                                                                       |
+| input.tx.itx          | <code>GraphQLClient.AcquireAssetTx</code> | the actual transaction object                                                                 |
+| [input.tx.pk]         | <code>string</code>                       | the sender pk                                                                                 |
+| [input.tx.from]       | <code>string</code>                       | the sender address, can be derived from wallet                                                |
+| [input.tx.nonce]      | <code>number</code>                       | the tx nonce, defaults to Date.now if not set                                                 |
+| [input.tx.chainId]    | <code>string</code>                       | the chainId                                                                                   |
+| [input.tx.signature]  | <code>string</code>                       | transaction signature                                                                         |
+| [input.tx.signatures] | <code>array</code>                        | transaction signatures, should be set when it's a multisig transaction                        |
+| input.wallet          | <code>object</code>                       | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
+| [input.signature]     | <code>string</code>                       | the signature of the tx, if this parameter exist, we will not sign the transaction            |
 
 <a name="GraphQLClient.ConsumeAssetTxInput"></a>
 
@@ -7291,6 +7220,27 @@ Checkout the following snippet for the format of SubscribeParams:
 | input.wallet          | <code>object</code>                       | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
 | [input.signature]     | <code>string</code>                       | the signature of the tx, if this parameter exist, we will not sign the transaction            |
 
+<a name="GraphQLClient.RevokeWithdrawTxInput"></a>
+
+### GraphQLClient.RevokeWithdrawTxInput : <code>Object</code>
+
+**Kind**: static typedef of [<code>GraphQLClient</code>](#GraphQLClient)  
+**Properties**
+
+| Name                  | Type                                        | Description                                                                                   |
+| --------------------- | ------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| input                 | <code>object</code>                         |                                                                                               |
+| input.tx              | <code>object</code>                         | data of the transaction                                                                       |
+| input.tx.itx          | <code>GraphQLClient.RevokeWithdrawTx</code> | the actual transaction object                                                                 |
+| [input.tx.pk]         | <code>string</code>                         | the sender pk                                                                                 |
+| [input.tx.from]       | <code>string</code>                         | the sender address, can be derived from wallet                                                |
+| [input.tx.nonce]      | <code>number</code>                         | the tx nonce, defaults to Date.now if not set                                                 |
+| [input.tx.chainId]    | <code>string</code>                         | the chainId                                                                                   |
+| [input.tx.signature]  | <code>string</code>                         | transaction signature                                                                         |
+| [input.tx.signatures] | <code>array</code>                          | transaction signatures, should be set when it's a multisig transaction                        |
+| input.wallet          | <code>object</code>                         | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
+| [input.signature]     | <code>string</code>                         | the signature of the tx, if this parameter exist, we will not sign the transaction            |
+
 <a name="GraphQLClient.DelegateTxInput"></a>
 
 ### GraphQLClient.DelegateTxInput : <code>Object</code>
@@ -7303,27 +7253,6 @@ Checkout the following snippet for the format of SubscribeParams:
 | input                 | <code>object</code>                   |                                                                                               |
 | input.tx              | <code>object</code>                   | data of the transaction                                                                       |
 | input.tx.itx          | <code>GraphQLClient.DelegateTx</code> | the actual transaction object                                                                 |
-| [input.tx.pk]         | <code>string</code>                   | the sender pk                                                                                 |
-| [input.tx.from]       | <code>string</code>                   | the sender address, can be derived from wallet                                                |
-| [input.tx.nonce]      | <code>number</code>                   | the tx nonce, defaults to Date.now if not set                                                 |
-| [input.tx.chainId]    | <code>string</code>                   | the chainId                                                                                   |
-| [input.tx.signature]  | <code>string</code>                   | transaction signature                                                                         |
-| [input.tx.signatures] | <code>array</code>                    | transaction signatures, should be set when it's a multisig transaction                        |
-| input.wallet          | <code>object</code>                   | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
-| [input.signature]     | <code>string</code>                   | the signature of the tx, if this parameter exist, we will not sign the transaction            |
-
-<a name="GraphQLClient.ExchangeTxInput"></a>
-
-### GraphQLClient.ExchangeTxInput : <code>Object</code>
-
-**Kind**: static typedef of [<code>GraphQLClient</code>](#GraphQLClient)  
-**Properties**
-
-| Name                  | Type                                  | Description                                                                                   |
-| --------------------- | ------------------------------------- | --------------------------------------------------------------------------------------------- |
-| input                 | <code>object</code>                   |                                                                                               |
-| input.tx              | <code>object</code>                   | data of the transaction                                                                       |
-| input.tx.itx          | <code>GraphQLClient.ExchangeTx</code> | the actual transaction object                                                                 |
 | [input.tx.pk]         | <code>string</code>                   | the sender pk                                                                                 |
 | [input.tx.from]       | <code>string</code>                   | the sender address, can be derived from wallet                                                |
 | [input.tx.nonce]      | <code>number</code>                   | the tx nonce, defaults to Date.now if not set                                                 |
@@ -7417,27 +7346,6 @@ Checkout the following snippet for the format of SubscribeParams:
 | input.wallet          | <code>object</code>                          | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
 | [input.signature]     | <code>string</code>                          | the signature of the tx, if this parameter exist, we will not sign the transaction            |
 
-<a name="GraphQLClient.RetrieveSwapTxInput"></a>
-
-### GraphQLClient.RetrieveSwapTxInput : <code>Object</code>
-
-**Kind**: static typedef of [<code>GraphQLClient</code>](#GraphQLClient)  
-**Properties**
-
-| Name                  | Type                                      | Description                                                                                   |
-| --------------------- | ----------------------------------------- | --------------------------------------------------------------------------------------------- |
-| input                 | <code>object</code>                       |                                                                                               |
-| input.tx              | <code>object</code>                       | data of the transaction                                                                       |
-| input.tx.itx          | <code>GraphQLClient.RetrieveSwapTx</code> | the actual transaction object                                                                 |
-| [input.tx.pk]         | <code>string</code>                       | the sender pk                                                                                 |
-| [input.tx.from]       | <code>string</code>                       | the sender address, can be derived from wallet                                                |
-| [input.tx.nonce]      | <code>number</code>                       | the tx nonce, defaults to Date.now if not set                                                 |
-| [input.tx.chainId]    | <code>string</code>                       | the chainId                                                                                   |
-| [input.tx.signature]  | <code>string</code>                       | transaction signature                                                                         |
-| [input.tx.signatures] | <code>array</code>                        | transaction signatures, should be set when it's a multisig transaction                        |
-| input.wallet          | <code>object</code>                       | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
-| [input.signature]     | <code>string</code>                       | the signature of the tx, if this parameter exist, we will not sign the transaction            |
-
 <a name="GraphQLClient.DeclareTxInput"></a>
 
 ### GraphQLClient.DeclareTxInput : <code>Object</code>
@@ -7480,9 +7388,30 @@ Checkout the following snippet for the format of SubscribeParams:
 | input.wallet          | <code>object</code>                                              | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
 | [input.signature]     | <code>string</code>                                              | the signature of the tx, if this parameter exist, we will not sign the transaction            |
 
-<a name="GraphQLClient.AcquireAssetTxInput"></a>
+<a name="GraphQLClient.RevokeSwapTxInput"></a>
 
-### GraphQLClient.AcquireAssetTxInput : <code>Object</code>
+### GraphQLClient.RevokeSwapTxInput : <code>Object</code>
+
+**Kind**: static typedef of [<code>GraphQLClient</code>](#GraphQLClient)  
+**Properties**
+
+| Name                  | Type                                    | Description                                                                                   |
+| --------------------- | --------------------------------------- | --------------------------------------------------------------------------------------------- |
+| input                 | <code>object</code>                     |                                                                                               |
+| input.tx              | <code>object</code>                     | data of the transaction                                                                       |
+| input.tx.itx          | <code>GraphQLClient.RevokeSwapTx</code> | the actual transaction object                                                                 |
+| [input.tx.pk]         | <code>string</code>                     | the sender pk                                                                                 |
+| [input.tx.from]       | <code>string</code>                     | the sender address, can be derived from wallet                                                |
+| [input.tx.nonce]      | <code>number</code>                     | the tx nonce, defaults to Date.now if not set                                                 |
+| [input.tx.chainId]    | <code>string</code>                     | the chainId                                                                                   |
+| [input.tx.signature]  | <code>string</code>                     | transaction signature                                                                         |
+| [input.tx.signatures] | <code>array</code>                      | transaction signatures, should be set when it's a multisig transaction                        |
+| input.wallet          | <code>object</code>                     | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
+| [input.signature]     | <code>string</code>                     | the signature of the tx, if this parameter exist, we will not sign the transaction            |
+
+<a name="GraphQLClient.RetrieveSwapTxInput"></a>
+
+### GraphQLClient.RetrieveSwapTxInput : <code>Object</code>
 
 **Kind**: static typedef of [<code>GraphQLClient</code>](#GraphQLClient)  
 **Properties**
@@ -7491,7 +7420,7 @@ Checkout the following snippet for the format of SubscribeParams:
 | --------------------- | ----------------------------------------- | --------------------------------------------------------------------------------------------- |
 | input                 | <code>object</code>                       |                                                                                               |
 | input.tx              | <code>object</code>                       | data of the transaction                                                                       |
-| input.tx.itx          | <code>GraphQLClient.AcquireAssetTx</code> | the actual transaction object                                                                 |
+| input.tx.itx          | <code>GraphQLClient.RetrieveSwapTx</code> | the actual transaction object                                                                 |
 | [input.tx.pk]         | <code>string</code>                       | the sender pk                                                                                 |
 | [input.tx.from]       | <code>string</code>                       | the sender address, can be derived from wallet                                                |
 | [input.tx.nonce]      | <code>number</code>                       | the tx nonce, defaults to Date.now if not set                                                 |
@@ -7500,5 +7429,26 @@ Checkout the following snippet for the format of SubscribeParams:
 | [input.tx.signatures] | <code>array</code>                        | transaction signatures, should be set when it's a multisig transaction                        |
 | input.wallet          | <code>object</code>                       | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
 | [input.signature]     | <code>string</code>                       | the signature of the tx, if this parameter exist, we will not sign the transaction            |
+
+<a name="GraphQLClient.ExchangeTxInput"></a>
+
+### GraphQLClient.ExchangeTxInput : <code>Object</code>
+
+**Kind**: static typedef of [<code>GraphQLClient</code>](#GraphQLClient)  
+**Properties**
+
+| Name                  | Type                                  | Description                                                                                   |
+| --------------------- | ------------------------------------- | --------------------------------------------------------------------------------------------- |
+| input                 | <code>object</code>                   |                                                                                               |
+| input.tx              | <code>object</code>                   | data of the transaction                                                                       |
+| input.tx.itx          | <code>GraphQLClient.ExchangeTx</code> | the actual transaction object                                                                 |
+| [input.tx.pk]         | <code>string</code>                   | the sender pk                                                                                 |
+| [input.tx.from]       | <code>string</code>                   | the sender address, can be derived from wallet                                                |
+| [input.tx.nonce]      | <code>number</code>                   | the tx nonce, defaults to Date.now if not set                                                 |
+| [input.tx.chainId]    | <code>string</code>                   | the chainId                                                                                   |
+| [input.tx.signature]  | <code>string</code>                   | transaction signature                                                                         |
+| [input.tx.signatures] | <code>array</code>                    | transaction signatures, should be set when it's a multisig transaction                        |
+| input.wallet          | <code>object</code>                   | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
+| [input.signature]     | <code>string</code>                   | the signature of the tx, if this parameter exist, we will not sign the transaction            |
 
   

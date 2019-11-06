@@ -1,5 +1,5 @@
 /**
- * @fileOverview Contains helper methods to parse forge config file
+ * @fileOverview Contains helper methods to parse forge config
  * @module @arcblock/forge-config
  */
 

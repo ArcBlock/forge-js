@@ -55,6 +55,7 @@ class WalletHandlers {
    * @param {string} [config.sessionDidKey='user.did'] - key path to extract session user did from request object
    * @param {string} [config.tokenKey='_t_'] - query param key for `token`
    * @param {string} [config.checksumKey='_cs_'] - query param key for `checksum`
+   * @param {boolean|string|did} [config.authPrincipal=true] - whether should we do auth principal claim first
    * @return void
    */
   attach({
@@ -70,6 +71,7 @@ class WalletHandlers {
     sessionDidKey = 'user.did',
     tokenKey = '_t_',
     checksumKey = '_cs_',
+    authPrincipal = true,
   }) {
     if (typeof onAuth !== 'function') {
       throw new Error('onAuth callback is required to attach did auth handlers');
@@ -89,6 +91,8 @@ class WalletHandlers {
       onAuthRequest,
       onAuthResponse,
       ensureContext,
+      ensureRequester,
+      ensureSignedJson,
     } = createHandlers({
       action,
       pathname,
@@ -104,22 +108,27 @@ class WalletHandlers {
       tokenGenerator: this.tokenGenerator,
       tokenStorage: this.tokenStorage,
       authenticator: this.authenticator,
+      authPrincipal,
     });
 
+    const ensureWeb = ensureRequester('web');
+    const ensureWallet = ensureRequester('wallet');
+    const ensureSignedRes = ensureSignedJson(false);
+
     // 1. WEB: to generate new token
-    app.get(`${prefix}/${action}/token`, generateActionToken);
+    app.get(`${prefix}/${action}/token`, ensureWeb, generateActionToken);
 
     // 2. WEB: check for token status
-    app.get(`${prefix}/${action}/status`, ensureContext, checkActionToken);
+    app.get(`${prefix}/${action}/status`, ensureWeb, ensureContext, checkActionToken);
 
     // 3. WEB: to expire old token
-    app.get(`${prefix}/${action}/timeout`, ensureContext, expireActionToken);
+    app.get(`${prefix}/${action}/timeout`, ensureWeb, ensureContext, expireActionToken);
 
     // 4. Wallet: fetch auth request
-    app.get(pathname, ensureContext, onAuthRequest);
+    app.get(pathname, ensureWallet, ensureContext, ensureSignedRes, onAuthRequest);
 
     // 5. Wallet: submit auth response
-    app.post(pathname, ensureContext, onAuthResponse);
+    app.post(pathname, ensureWallet, ensureContext, ensureSignedRes, onAuthResponse);
   }
 }
 

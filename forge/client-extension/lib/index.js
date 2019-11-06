@@ -383,13 +383,15 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
    * @public
    * @param {object} params
    * @param {string} params.moniker - user nickname
+   * @param {string} [params.issuer=""] - who issued the account
+   * @param {object} [params.data=undefined] - who issued the account
    * @param {WalletObject} params.wallet - wallet to sign the tx
    * @returns {Promise} the transaction hash once resolved
    */
-  client.declare = ({ moniker, wallet }) =>
+  client.declare = ({ moniker, issuer = '', data, wallet }) =>
     client.sendDeclareTx({
       tx: {
-        itx: { moniker },
+        itx: { moniker, issuer, data },
       },
       wallet,
     });
@@ -427,6 +429,7 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
    * @returns {Promise} the `[transactionHash, delegateAddress]` once resolved
    */
   client.delegate = async ({ from, to, privileges }) => {
+    // TODO: add whitelist for delegation privileges
     let ops = Array.isArray(privileges) ? privileges : [privileges];
     ops = ops.map(x => {
       if (x.typeUrl && Array.isArray(x.rules)) {
@@ -479,7 +482,9 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
    * @public
    * @param {object} params
    * @param {string} params.moniker - asset name
+   * @param {string} params.parent - asset parent
    * @param {object} params.data - asset data payload
+   * @param {number} params.ttl - ttl after first consumption
    * @param {boolean} params.readonly - whether the asset can be updated after creation
    * @param {boolean} params.transferrable - whether the asset can be transferred to another account
    * @param {string} params.delegator - who authorized this transaction
@@ -488,13 +493,15 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
    */
   client.createAsset = async ({
     moniker,
+    parent = '',
+    ttl = 0,
     data,
     readonly = false,
     transferrable = true,
     delegator = '',
     wallet,
   }) => {
-    const payload = { moniker, readonly, transferrable, data };
+    const payload = { moniker, parent, ttl, readonly, transferrable, data };
     const address = toAssetAddress(payload);
     payload.address = address;
     const hash = await client.sendCreateAssetTx({
@@ -587,6 +594,129 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
    * @returns {Promise} the `transactionHash` once resolved
    */
   client.consumeAsset = ({ tx, wallet }) => client.sendConsumeAssetTx({ tx, wallet });
+
+  /**
+   * Create an asset factory that can be used to produce multiple assets in a transaction
+   *
+   * @public
+   * @param {object} params
+   * @param {string} params.moniker - asset name
+   * @param {object} params.factory - asset factory attributes
+   * @param {string} params.factory.description - asset factory name
+   * @param {number} params.factory.limit - how many assets can be generated from this factory
+   * @param {price} params.factory.price - how much should charge user when acquire asset
+   * @param {string} params.factory.template - mustache compatible
+   * @param {Array} params.factory.templateVariables - list of allowed template variables
+   * @param {string} params.factory.assetName - protobuf type known to forge that can be used to create this asset
+   * @param {string} params.factory.attributes - attributes for assets that are generated from this factory
+   * @param {boolean} params.readonly - whether the asset can be updated after creation
+   * @param {boolean} params.transferrable - whether the asset can be transferred to another account
+   * @param {string} params.delegator - who authorized this transaction
+   * @param {WalletObject} params.wallet - the initial owner of the asset
+   * @returns {Promise} the `[transactionHash, factoryAddress]` once resolved
+   */
+  client.createAssetFactory = async ({
+    moniker,
+    factory,
+    readonly = false,
+    transferrable = true,
+    delegator = '',
+    wallet,
+  }) => {
+    const payload = {
+      moniker,
+      readonly,
+      transferrable,
+      data: {
+        type: 'AssetFactory',
+        value: {
+          description: factory.description,
+          limit: factory.limit,
+          price: await client.fromTokenToUnit(factory.price),
+          template: factory.template,
+          allowedSpecArgs: factory.templateVariables,
+          assetName: factory.assetName,
+          attributes: factory.attributes,
+        },
+      },
+    };
+    const factoryAddress = toAssetAddress(payload);
+    payload.address = factoryAddress;
+
+    const hash = await client.sendCreateAssetTx({
+      tx: {
+        itx: payload,
+      },
+      delegator,
+      wallet,
+    });
+    return [hash, factoryAddress];
+  };
+
+  /**
+   * Acquire an asset from factory
+   *
+   * @public
+   * @param {object} params
+   * @param {string} params.assetFactory - Asset factory address
+   * @param {string} params.assetName - Asset type
+   * @param {Array} params.assetVariables - list of asset variables that can be populated into asset factory template
+   * @param {boolean} params.readonly - whether the asset can be updated after creation, should match factory settings
+   * @param {boolean} params.transferrable - whether the asset can be transferred to another account, should match factory settings
+   * @param {number} params.ttl - asset expire
+   * @param {string} params.delegator - who authorized this transaction
+   * @param {WalletObject} params.wallet - the initial owner of the asset
+   * @returns {Promise} the `[transactionHash, [assetAddress]]` once resolved
+   */
+  client.acquireAsset = async ({
+    assetFactory,
+    assetName,
+    assetVariables,
+    readonly,
+    transferrable,
+    delegator = '',
+    wallet,
+  }) => {
+    if (!assetFactory) {
+      throw new Error('Must specify asset factory address');
+    }
+    if (!assetName) {
+      throw new Error('Must specify asset name');
+    }
+    if (!Array.isArray(assetVariables)) {
+      throw new Error('Must specify at least on asset template variable');
+    }
+
+    const assets = assetVariables.map(x => {
+      const payload = {
+        ttl: 0,
+        readonly,
+        transferrable,
+        parent: assetFactory,
+        data: {
+          type: assetName,
+          value: x,
+        },
+      };
+
+      const address = toAssetAddress(payload);
+
+      return { address, data: JSON.stringify(x) };
+    });
+
+    const hash = await client.sendAcquireAssetTx({
+      tx: {
+        itx: {
+          to: assetFactory,
+          specs: assets,
+        },
+      },
+      delegator,
+      wallet,
+    });
+
+    return [hash, assets.map(x => x.address)];
+  };
 
   /**
    * Do an on-chain upgrade, should be used with forge-cli

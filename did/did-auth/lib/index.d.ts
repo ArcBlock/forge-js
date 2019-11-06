@@ -19,8 +19,8 @@ declare class WalletAuthenticator {
 
   /**
    * @typedef ChainInfo
-   * @prop {string} chainId - application chain id
-   * @prop {string} chainHost - graphql endpoint of the application chain
+   * @prop {string} id - application chain id
+   * @prop {string} host - graphql endpoint of the application chain
    */
 
   /**
@@ -57,6 +57,16 @@ declare class WalletAuthenticator {
    */
   getPublicUrl(pathname: string, params?: any): string;
   /**
+   * Sign a plain response, usually on auth success or error
+   *
+   * @method
+   * @param {object} params
+   * @param {object} params.response - response
+   * @param {string} params.error - error message
+   * @returns {object} { appPk, authInfo }
+   */
+  signResponse(T104: _Lib.T105): any;
+  /**
    * Sign a auth response that returned to wallet: tell the wallet the appInfo/chainInfo/crossChainInfo
    *
    * @method
@@ -68,7 +78,7 @@ declare class WalletAuthenticator {
    * @param {object} params.extraParams - extra query params and locale
    * @returns {object} { appPk, authInfo }
    */
-  sign(T104: _Lib.T105): any;
+  sign(T106: _Lib.T107): any;
   /**
    * Verify a DID auth response sent from ABT Wallet
    *
@@ -79,15 +89,14 @@ declare class WalletAuthenticator {
    * @returns Promise<boolean>
    */
   verify(data: any, locale?: string, enforceTimestamp?: boolean): Promise<any>;
-  genRequestedClaims(T106: _Lib.T107): Promise<any[]>;
-  getClaimInfo(T108: _Lib.T109): Promise<any>;
-  agreement(T110: _Lib.T109): Promise<_Lib.T112>;
-  profile(T113: _Lib.T109): Promise<_Lib.T114>;
-  signature(T115: _Lib.T109): Promise<_Lib.T116>;
-  holdingOfAsset(T117: _Lib.T109): Promise<_Lib.T118>;
-  holdingOfToken(T119: _Lib.T109): Promise<_Lib.T120>;
-  authPrincipal(T121: _Lib.T109): Promise<_Lib.T122>;
-  swap(T123: _Lib.T109): Promise<_Lib.T124>;
+  genRequestedClaims(T108: _Lib.T109): Promise<any[]>;
+  getClaimInfo(T110: _Lib.T111): Promise<any>;
+  agreement(T112: _Lib.T111): Promise<_Lib.T113>;
+  profile(T114: _Lib.T111): Promise<_Lib.T116>;
+  signature(T117: _Lib.T111): Promise<_Lib.T118>;
+  holdingOfAsset(T119: _Lib.T111): Promise<_Lib.T121>;
+  authPrincipal(T122: _Lib.T111): Promise<_Lib.T123>;
+  swap(T124: _Lib.T111): Promise<_Lib.T125>;
 }
 declare class AppAuthenticator {
   wallet: any;
@@ -131,7 +140,7 @@ declare class WalletHandlers {
    * @param {object} config.authenticator - Authenticator instance that can to jwt sign/verify
    * @param {function} [config.onPreAuth=noop] - function called before each auth request send back to app, used to check for permission, throw error to halt the auth process
    */
-  constructor(T125: _Lib.T126);
+  constructor(T126: _Lib.T127);
   /**
    * Attach routes and handlers for authenticator
    * Now express app have route handlers attached to the following url
@@ -154,9 +163,10 @@ declare class WalletHandlers {
    * @param {string} [config.sessionDidKey='user.did'] - key path to extract session user did from request object
    * @param {string} [config.tokenKey='_t_'] - query param key for `token`
    * @param {string} [config.checksumKey='_cs_'] - query param key for `checksum`
+   * @param {boolean|string|did} [config.authPrincipal=true] - whether should we do auth principal claim first
    * @return void
    */
-  attach(T127: _Lib.T128): void;
+  attach(T128: _Lib.T129): void;
 }
 declare class AtomicSwapHandlers {
   authenticator: any;
@@ -187,7 +197,7 @@ declare class AtomicSwapHandlers {
    * @param {number} config.demandLocktime - num of blocks that will be locked before asset chain swap can be revoked
    * @param {function} [config.onPreAuth=noop] - function called before each auth request send back to app, used to check for permission, throw error to halt the auth process
    */
-  constructor(T129: _Lib.T130);
+  constructor(T130: _Lib.T131);
   /**
    * Create an swap placeholder, which must be finalized before actually doing the swap
    *
@@ -222,9 +232,10 @@ declare class AtomicSwapHandlers {
    * @param {string} [config.sessionDidKey='user.did'] - key path to extract session user did from request object
    * @param {string} [config.tokenKey='_t_'] - query param key for `token`
    * @param {string} [config.checksumKey='_cs_'] - query param key for `checksum`
+   * @param {boolean|string|did} [config.authPrincipal=true] - whether should we do auth principal claim first
    * @returns void
    */
-  attach(T131: _Lib.T128): void;
+  attach(T132: _Lib.T129): void;
 }
 declare class AppHandlers {
   authenticator: any;
@@ -239,7 +250,7 @@ declare class AppHandlers {
   getSecureResponseHandler(): (req: any, res: any, next: any) => void;
   getRequestValidateHandler(): (req: any, res: any, next: any) => Promise<void>;
 }
-declare const _Lib: _Lib.T133;
+declare const _Lib: _Lib.T134;
 declare namespace _Lib {
   export interface T101 {
     wallet: any;
@@ -250,70 +261,71 @@ declare namespace _Lib {
     query: any;
   }
   export interface T105 {
+    response: any;
+    error: string;
+  }
+  export interface T107 {
     token: string;
     userDid: string;
     userPk: string;
     claims: any;
     extraParams: any;
   }
-  export interface T107 {
+  export interface T109 {
     claims: any;
     userDid: any;
     userPk: any;
     extraParams: any;
   }
-  export interface T109 {
+  export interface T111 {
     claim: any;
     userDid: any;
     userPk: any;
     extraParams: any;
   }
-  export interface T111 {
-    description: any;
-  }
-  export interface T112 {
+  export interface T113 {
     type: string;
-    meta: _Lib.T111;
+    description: any;
     uri: any;
     hash: any;
+    meta: any;
   }
-  export interface T114 {
-    type: string;
-    items: any;
-    meta: _Lib.T111;
+  export interface T115 {
+    description: any;
   }
   export interface T116 {
     type: string;
+    items: any;
+    meta: _Lib.T115;
+  }
+  export interface T118 {
+    type: string;
     data: string;
-    meta: any;
+    description: any;
+    typeUrl: string;
     method: string;
     origin: string;
     sig: string;
     chainInfo: any;
-  }
-  export interface T118 {
-    type: string;
-    did_type: string;
-    target: any;
-    did: string;
-    meta: _Lib.T111;
+    meta: any;
   }
   export interface T120 {
-    type: string;
-    did_type: string;
-    target: number;
-    did: string;
-    meta: _Lib.T111;
+    id: any;
   }
-  export interface T122 {
+  export interface T121 {
+    type: string;
+    description: any;
+    meta: _Lib.T120;
+  }
+  export interface T123 {
     type: string;
     description: any;
     meta: any;
     target: any;
   }
-  export interface T124 {
+  export interface T125 {
     type: string;
-    meta: any;
+    description: any;
     swapId: any;
     offerAssets: any;
     offerToken: any;
@@ -322,14 +334,15 @@ declare namespace _Lib {
     demandLocktime: any;
     receiver: any;
     demandChain: any;
+    meta: any;
   }
-  export interface T126 {
+  export interface T127 {
     tokenGenerator: (...args: any[]) => any;
     tokenStorage: any;
     authenticator: any;
     onPreAuth?: (...args: any[]) => any;
   }
-  export interface T128 {
+  export interface T129 {
     app: any;
     claims: any;
     action: string;
@@ -341,8 +354,9 @@ declare namespace _Lib {
     sessionDidKey?: string;
     tokenKey?: string;
     checksumKey?: string;
+    authPrincipal?: any;
   }
-  export interface T130 {
+  export interface T131 {
     authenticator: any;
     tokenGenerator: (...args: any[]) => any;
     swapStorage: any;
@@ -355,12 +369,12 @@ declare namespace _Lib {
     demandLocktime: number;
     onPreAuth?: (...args: any[]) => any;
   }
-  export interface T132 {
+  export interface T133 {
     sign: (did: string, sk: string, payload?: any) => string;
     verify: (token: string, pk: string, tolerance?: number, verifyTimestamp?: boolean) => boolean;
     decode: (token: string, payloadOnly?: boolean) => any;
   }
-  export interface T133 {
+  export interface T134 {
     Authenticator: typeof WalletAuthenticator;
     WalletAuthenticator: typeof WalletAuthenticator;
     AppAuthenticator: typeof AppAuthenticator;
@@ -368,7 +382,7 @@ declare namespace _Lib {
     WalletHandlers: typeof WalletHandlers;
     SwapHandlers: typeof AtomicSwapHandlers;
     AppHandlers: typeof AppHandlers;
-    JWT: _Lib.T132;
+    JWT: _Lib.T133;
   }
 }
 export = _Lib;

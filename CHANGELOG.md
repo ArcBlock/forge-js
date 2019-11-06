@@ -1,3 +1,15 @@
+## 0.40.3 (November 05, 2019)
+
+- fix: swap handler should verify user swap-state before setup
+- chore: upgrade graphql-client
+- chore: upgrade grpc-client
+- chore: upgrade forge-proto
+- feat: support createAssetFactory and acquireAsset shortcut methods
+- fix: offset swap setup issue
+- fix: atomic swap is not using new did-auth-protocol
+- feat: adopt new did-auth-protocol
+- update readme
+
 ## 0.40.2 (November 01, 2019)
 
 - chore: update graphql-client schema for deprecated types
