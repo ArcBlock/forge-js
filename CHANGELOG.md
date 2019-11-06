@@ -1,3 +1,9 @@
+## 0.40.4 (November 06, 2019)
+
+- chore: add todo
+- chore: support configurable signed response for swap handlers
+- fix: swap-retriever do not use shortcut methods
+
 ## 0.40.3 (November 05, 2019)
 
 - fix: swap handler should verify user swap-state before setup
