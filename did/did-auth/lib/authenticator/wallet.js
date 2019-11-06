@@ -113,7 +113,7 @@ class WalletAuthenticator {
    * @param {string} params.error - error message
    * @returns {object} { appPk, authInfo }
    */
-  async signResponse({ response = {}, error = '' }) {
+  signResponse({ response = {}, error = '' }) {
     const payload = {
       appInfo: this.appInfo,
       status: error ? 'error' : 'ok',

@@ -327,7 +327,6 @@ module.exports = function createHandlers({
 
   const ensureSignedJson = (isSwap = false) => (req, res, next) => {
     if (isSwap === false && req.ensureSignedJson === undefined) {
-      debug('ensureSignedJson.attach');
       req.ensureSignedJson = true;
       const originJson = res.json;
       res.json = payload => {
@@ -340,7 +339,9 @@ module.exports = function createHandlers({
           data = { response: payload };
         }
 
-        originJson.call(res, authenticator.signResponse(data));
+        const signed = authenticator.signResponse(data);
+        // debug('ensureSignedJson.do', signed);
+        originJson.call(res, signed);
       };
     }
 
