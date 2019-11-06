@@ -352,7 +352,9 @@ class AtomicSwapHandlers {
               try {
                 const [hash, address] = await ForgeSDK.setupSwap(
                   {
-                    token: req.swap.offerToken,
+                    token: await ForgeSDK.fromUnitToToken(req.swap.offerToken, {
+                      conn: this.offerChainId,
+                    }),
                     assets: req.swap.offerAssets,
                     receiver: req.swap.demandUserAddress,
                     hashlock: `0x${state.hashlock}`,
