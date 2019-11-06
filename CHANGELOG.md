@@ -1,3 +1,8 @@
+## 0.40.6 (November 06, 2019)
+
+- fix: signed json response not working in did-auth lib
+- update readme
+
 ## 0.40.5 (November 06, 2019)
 
 - chore: fix dependency version error
