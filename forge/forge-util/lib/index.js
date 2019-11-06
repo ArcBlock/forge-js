@@ -2,7 +2,7 @@
 /* eslint-disable implicit-arrow-linebreak */
 /* eslint-disable no-param-reassign */
 /**
- * @fileOverview Contains many utility functions to help developers manipulate encoding/decoding/formatting/bignumber
+ * @fileOverview Contains utility functions to help developers manipulate encoding/decoding/formatting/bignumber
  * @module @arcblock/forge-util
  * @example
  * yarn add @arcblock/forge-util

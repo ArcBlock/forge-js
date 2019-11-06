@@ -343,12 +343,27 @@ class AtomicSwapHandlers {
 
         try {
           const doSetup = async () =>
+            // eslint-disable-next-line consistent-return
             new Promise(async (resolve, reject) => {
               const { state } = await ForgeSDK.getSwapState(
                 { address: req.swap.demandSwapAddress },
                 { conn: this.demandChainId }
               );
 
+              // Verify the swap state for token amount
+              if (state.value !== req.swap.demandToken) {
+                return reject(new Error('User did not setup enough token in the swap'));
+              }
+              // Verify the swap state for asset list
+              if (Array.isArray(req.swap.demandAssets) && req.swap.demandAssets.length > 0) {
+                for (let i = 0; i < req.swap.demandAssets.length; i++) {
+                  if (state.assets.includes(req.swap.demandAssets[i]) === false) {
+                    return reject(new Error('User did not setup enough token in the swap'));
+                  }
+                }
+              }
+
+              // Then setup swap for user
               try {
                 const [hash, address] = await ForgeSDK.setupSwap(
                   {
@@ -453,7 +468,6 @@ class AtomicSwapHandlers {
             }
           });
         } catch (err) {
-          // TODO: improve error message here
           if (Array.isArray(err.errors)) {
             console.error('swap.setup.error', JSON.stringify(err.errors));
             res.json({ error: err.errors.map(x => x.message).join(';') });
