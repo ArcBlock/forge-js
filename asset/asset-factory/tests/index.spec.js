@@ -18,21 +18,15 @@ const factory = new AssetFactory({
   },
 });
 
-if (!process.env.CI) {
-  beforeAll(async () => {
-    ForgeSDK.connect(chainHost, { chainId, name: chainId });
-    await ForgeSDK.declare({ moniker: 'asset_factory_issuer', wallet });
-  });
-}
+beforeAll(async () => {
+  ForgeSDK.connect(chainHost, { chainId, name: chainId });
+  await ForgeSDK.declare({ moniker: 'asset_factory_issuer', wallet });
+});
 
 describe('AssetFactory.createTicket', () => {
   test('should be a function', () => {
     expect(typeof factory.createTicket).toEqual('function');
   });
-
-  if (process.env.CI) {
-    return;
-  }
 
   test('should return asset and names', async () => {
     const [asset, hash] = await factory.createTicket({
@@ -64,10 +58,6 @@ describe('AssetFactory.createCoupon', () => {
     expect(typeof factory.createCoupon).toEqual('function');
   });
 
-  if (process.env.CI) {
-    return;
-  }
-
   test('should return asset and names', async () => {
     const [asset, hash] = await factory.createCoupon({
       backgroundUrl: 'https://www.arcblock.io',
@@ -93,10 +83,6 @@ describe('AssetFactory.createCertificate', () => {
   test('should be a function', () => {
     expect(typeof factory.createCertificate).toEqual('function');
   });
-
-  if (process.env.CI) {
-    return;
-  }
 
   test('should return asset and names', async () => {
     const [asset, hash] = await factory.createCertificate({
@@ -127,10 +113,6 @@ describe('AssetFactory.createBadge', () => {
   test('should be a function', () => {
     expect(typeof factory.createBadge).toEqual('function');
   });
-
-  if (process.env.CI) {
-    return;
-  }
 
   test('should return asset and names', async () => {
     const [asset, hash] = await factory.createBadge({

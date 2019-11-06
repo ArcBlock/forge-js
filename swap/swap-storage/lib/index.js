@@ -1,6 +1,12 @@
 /* eslint-disable no-unused-vars */
 const { EventEmitter } = require('events');
 
+/**
+ * Defines the interface of atomic-swap storage
+ *
+ * @class SwapStorage
+ * @extends {EventEmitter}
+ */
 class SwapStorage extends EventEmitter {
   /**
    * Creates an instance of SwapStorage.

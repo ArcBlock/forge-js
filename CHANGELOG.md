@@ -1,3 +1,8 @@
+## 0.40.5 (November 06, 2019)
+
+- chore: fix dependency version error
+- update readme
+
 ## 0.40.4 (November 06, 2019)
 
 - chore: add todo
