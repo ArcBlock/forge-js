@@ -187,23 +187,19 @@ export enum SupportedTxs {
   12 = CreateAssetTx,
   13 = SetupSwapTx,
   14 = ConsumeAssetTx,
-  15 = ExchangeTx,
-  16 = ActivateProtocolTx,
-  17 = ApproveWithdrawTx,
-  18 = UpgradeNodeTx,
-  19 = UpdateAssetTx,
-  20 = RevokeWithdrawTx,
-  21 = DepositTokenTx,
-  22 = StakeTx,
+  15 = DepositTokenTx,
+  16 = RevokeWithdrawTx,
+  17 = ActivateProtocolTx,
+  18 = ApproveWithdrawTx,
+  19 = UpgradeNodeTx,
+  20 = UpdateAssetTx,
+  21 = RevokeDelegateTx,
+  22 = ExchangeTx,
   23 = PokeTx,
-  24 = RevokeDelegateTx,
 }
 
 export enum SupportedStakes {
-    0 = StakeForNode,
-  1 = stakeForAsset,
-  2 = stakeForChain,
-  3 = stakeForUser,
+  
 }
 
 export interface main {

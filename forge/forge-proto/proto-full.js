@@ -1,4 +1,4 @@
-// Auto generated code (2019-11-01T03:24:37.412Z), DO NOT EDIT
+// Auto generated code (2019-11-06T02:51:52.943Z), DO NOT EDIT
 const typePb = require('./lib/type_pb.js');
 const txPb = require('./lib/tx_pb.js');
 const traceTypePb = require('./lib/trace_type_pb.js');
@@ -18,17 +18,16 @@ const retrieveSwapTxPb = require('./lib/retrieve_swap_tx_pb.js');
 const createAssetTxPb = require('./lib/create_asset_tx_pb.js');
 const setupSwapTxPb = require('./lib/setup_swap_tx_pb.js');
 const consumeAssetTxPb = require('./lib/consume_asset_tx_pb.js');
-const exchangeTxPb = require('./lib/exchange_tx_pb.js');
-const deployProtocolTxPb = require('./lib/deploy_protocol_tx_pb.js');
+const depositTokenTxPb = require('./lib/deposit_token_tx_pb.js');
+const revokeWithdrawTxPb = require('./lib/revoke_withdraw_tx_pb.js');
 const activateProtocolTxPb = require('./lib/activate_protocol_tx_pb.js');
 const approveWithdrawTxPb = require('./lib/approve_withdraw_tx_pb.js');
 const upgradeNodeTxPb = require('./lib/upgrade_node_tx_pb.js');
 const updateAssetTxPb = require('./lib/update_asset_tx_pb.js');
-const revokeWithdrawTxPb = require('./lib/revoke_withdraw_tx_pb.js');
-const depositTokenTxPb = require('./lib/deposit_token_tx_pb.js');
-const stakeTxPb = require('./lib/stake_tx_pb.js');
-const pokeTxPb = require('./lib/poke_tx_pb.js');
 const revokeDelegateTxPb = require('./lib/revoke_delegate_tx_pb.js');
+const deployProtocolTxPb = require('./lib/deploy_protocol_tx_pb.js');
+const exchangeTxPb = require('./lib/exchange_tx_pb.js');
+const pokeTxPb = require('./lib/poke_tx_pb.js');
 const serviceGrpcPb = require('./lib/service_grpc_pb.js');
 const vendorPb = require('./lib/vendor_pb.js');
 
@@ -53,17 +52,16 @@ const forgeTypes = Object.assign(
   createAssetTxPb,
   setupSwapTxPb,
   consumeAssetTxPb,
-  exchangeTxPb,
-  deployProtocolTxPb,
+  depositTokenTxPb,
+  revokeWithdrawTxPb,
   activateProtocolTxPb,
   approveWithdrawTxPb,
   upgradeNodeTxPb,
   updateAssetTxPb,
-  revokeWithdrawTxPb,
-  depositTokenTxPb,
-  stakeTxPb,
-  pokeTxPb,
-  revokeDelegateTxPb
+  revokeDelegateTxPb,
+  deployProtocolTxPb,
+  exchangeTxPb,
+  pokeTxPb
 );
 const forgeServices = Object.assign({}, serviceGrpcPb);
 const vendorTypes = Object.assign({}, vendorPb);

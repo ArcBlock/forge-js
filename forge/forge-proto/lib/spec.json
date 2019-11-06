@@ -3998,42 +3998,6 @@
             }
           }
         },
-        "stakeForAsset": {
-          "fields": {}
-        },
-        "stakeForChain": {
-          "fields": {}
-        },
-        "StakeForNode": {
-          "fields": {}
-        },
-        "stakeForUser": {
-          "fields": {}
-        },
-        "StakeTx": {
-          "fields": {
-            "to": {
-              "type": "string",
-              "id": 1
-            },
-            "value": {
-              "type": "BigSint",
-              "id": 2
-            },
-            "message": {
-              "type": "string",
-              "id": 3
-            },
-            "address": {
-              "type": "string",
-              "id": 4
-            },
-            "data": {
-              "type": "google.protobuf.Any",
-              "id": 15
-            }
-          }
-        },
         "TransferTx": {
           "fields": {
             "to": {
