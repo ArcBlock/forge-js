@@ -1,0 +1,112 @@
+{
+  "invalid_nonce": {
+    "default": "This transaction has been seen in the chain and is treated as a replay tx.\n",
+    "poke": "`PokeTx.nonce` must be `0`.\n",
+    "deploy_protocol": "`DeployProtocolTx.nonce` must be `0`.\n"
+  },
+  "invalid_signature": {
+    "default": "This transaction's signature or multi-signature does not match the corresponding pk.\n"
+  },
+  "invalid_sender_state": {
+    "default": "The sender of this transaction does not exist on this chain.\n",
+    "declare": "`tx.from` already exist on this chain.\n"
+  },
+  "invalid_receiver_state": {
+    "default": "The receiver of this transaction does not exist on this chain.\n",
+    "account_migrate": "Possible causes:\n1. `AccountMigrateTx.address` is not correctly calculated with `AccountMigrateTx.pk` and `AccountMigrateTx.type`\n2. `AccountMigrateTx.address` already exist on this chain.\n",
+    "consume_asset": "The `signer` included in first `tx.signatures` does not exist on this chain.\n",
+    "poke": "`PokeTx.address` is not correct or does not exist on this chain.\n",
+    "stake": "`tx.to` does not exist on this chain or `tx.to` is not a a valid DID address\n",
+    "exchange": "Either `ExchangeTx.to` or the `signer` included in first `tx.signatures` does not exist on this chain.\n",
+    "transfer": "`TransferTx.to` does not exist on this chain.\n"
+  },
+  "insufficient_data": {
+    "default": "There is some required data missing to construct this transaction properly.\n",
+    "account_migrate": "`AccountMigrateTx.pk`, `AccountMigrateTx.type`, and `AccountMigrateTx.address` can not be empty.\n",
+    "declare": "`DeclareTx.moniker` can not be empty.\n",
+    "acquire_asset": "`AcquireAssetTx.specs` can not be empty.\n",
+    "consume_asset": "`ConsumeAssetTx.issuer` and `Tx.signatures` can not be empty.\n",
+    "create_asset": "`CreateAssetTx.data` and `CreateAssetTx.address` can not be empty.\n",
+    "update_asset": "`UpdateAssetTx.data` and `UpdateAssetTx.address` can not be empty.\n",
+    "poke": "`PokeTx.date` and `PokeTx.address` can not be empty.\n",
+    "stake": "`StakeTx.to`, `StakeTx.value`, `StakeTx.data`, `StakeTx.address` can not be empty.\n",
+    "exchange": "`ExchangeTx.sender`, `ExchangeTx.receiver`, and `Tx.signatures` can not be empty.\n",
+    "transfer": "`TransferTx.to`, `TransferTx.value`/`TransferTx.asset` can not be empty.\n"
+  },
+  "insufficient_fund": {
+    "default": "There is not enough balance in participants account.\n",
+    "poke": "Poke account does not have enough balance.\n"
+  },
+  "invalid_owner": {
+    "default": "One or more of the assets included this tx do not belong to the provided owners.\n"
+  },
+  "invalid_tx": {
+    "default": "The transaction cannot pass sanity check. Possible Causes:\n  1. Anti Land Attack: Sender and receiver address should not be equal\n  2. Anti Replay Attack: This transaction has been seen in the chain and is treated as a replay tx.\n  3. decode tx: This transaction includes `type-url` that can not be decoded properly.\n  4. verify date: the transaction is expired.\n  5. verify itx size: The size of itx in this transaction exceeds max size.\n  6. verify signer: the multisig signer is invalid\n  7. verify tx size: The size of this transaction exceeds max size.\n  8. pre_pipeline extract signers: the multisig signer is invalid\n",
+    "declare": "Possible Causes:\n1. The signer in `tx.signatures` should be the same as `DeclareTx.issuer`.\n2. This chain requires a valid issuer to declare a new account.\n",
+    "acquire_asset": "Possible Causes:\n1. Asset Factory does not have enough assets left.\n2. This transaction's sender does not have enough balance.\n3. The asset addresses included in `AcquireAssetTx.specs` are not correct.\n",
+    "consume_asset": "The issuer of the asset to be consumed, should be the same as or issued by `ConsumeAsset.issuer`.\n",
+    "create_asset": "If `tx.data` contains `AssetFactory`, possible causes:\n1. `AssetFactory.description`, `AssetFactory.attributes`, `AssetFactory.price`, `AssetFactory.template`, `AssetFactory.allowed_spec_args`, `AssetFactory.asset_name` can not be empty.\n2. `AssetFactory.template` and `AssetFactory.sllowed_spec_args` should match.\n3. `AssetFactory.asset_name` should contain a deployed protobuf type.\n",
+    "update_asset": "If `tx.data` contains `AssetFactory`, 'AssetFactory.price', `AssetFactory.template`. `AssetFactory.allowed_spec_args` and `AssetFactory.asset_name` can not be empty.\n",
+    "deploy_protocol": "Possible causes:\n1. Sender should be moderator\n2. `DeployProtocolTx.address`, `DeployProtocolTx.name`, `DeployProtocolTx.namespace`, `DeployProtocolTx.code` should not be empty. The size of `DeployProtocolTx.description` should not exceed max size.\n3. `DeployProtocolTx.address` should be correctly calculated using `DeployProtocolTx`.\n4. `type_url` and the module doesn't match.\n5. the binary of the protocol is modified on purpose.\n6. Version of new protocol should be bigger than the old ones.\n",
+    "upgrade_node": "Possible causes:\n1. `tx.from` should be the same as moderator address\n2. `UpgradeNodeTx.version` should be bigger than forge version\n3. `UpgradeNodeTx.height` should be bigger than current block height.\n4. an existing upgrade_node operation is going to be carried out while the new upgrade_node tx has no `override` flag.\n",
+    "stake": "1. `StakeTx.address` should be calculated from `tx.from` and `StakeTx.to`.\n2. `StakeTx.message` should not exceed the max size.\n"
+  },
+  "unsupported_tx": "This transaction contains type_urls that are not registered on the chain.",
+  "expired_tx": "This transaction has expired.",
+  "too_many_txs": "There are too many transactions.",
+  "invalid_lock_status": "The lock status is invalid.",
+  "invalid_request": "This request is invalid.",
+  "invalid_moniker": {
+    "default": "This moniker is invalid.\n",
+    "declare": "`DeclareTx.moniker` should have at least 4 characters.\n"
+  },
+  "invalid_passphrase": {
+    "default": "This passphrase is invalid.\n"
+  },
+  "invalid_multisig": "This multisig is invalid.",
+  "invalid_wallet": "This wallet is invalid.",
+  "invalid_chain_id": "This chain_id is invalid.",
+  "consensus_rpc_error": "This transaction has already occurred on the chain before.",
+  "storage_rpc_error": "This is a storage rpc error.",
+  "noent": "Noent",
+  "account_migrated": "This account has migrated to a new one.",
+  "unsupported_stake": "This stake is not supported.",
+  "insufficient_stake": "The require stake amount should be more than minimum stake.",
+  "invalid_stake_state": "The required stake state is invalid.",
+  "expired_wallet_token": "The token included in this transaction has expired.",
+  "banned_unstake": "This unstake action is banned.",
+  "invalid_asset": {
+    "default": "The asset included in this transaction is invalid.\n",
+    "consume_asset": "The asset included in `tx.signatures.data` is not valid.\n",
+    "create_asset": "Possible causes:\n1. `CreateAssetTx.address` is not calculated correctly.\n2. `CreateAssetTx.moniker` should have at least 5 characters.\n3. Asset parent does not have a valid state.\n4. Asset already exists on the chain. This is a duplicate asset.\n",
+    "update_asset": "`UpdateAssetTx.address` is not a valid asset.\n",
+    "exchange": "`ExchangeTx.sender.assets` or `ExchangeTx.receiver.assets` contain invalid assets.\n",
+    "transfer": "'TransferTx.assets' contain invalid assets.\n"
+  },
+  "invalid_tx_size": "The size of `tx.itx` should be smaller than max size.\n",
+  "invalid_signer_state": "All signers participating in this tx should have a valid state on this chain.\n",
+  "invalid_forge_state": {
+    "default": "The forge state is invalid.\n",
+    "deploy_protocol": "The forge state is invalid.\n",
+    "upgrade_node": "The forge state is invalid.\n",
+    "stake": "The forge state is invalid.\n"
+  },
+  "expired_asset": "This asset has expired.",
+  "untransferrable_asset": "This asset can not be transferred.",
+  "readonly_asset": "This asset is readonly and therefore can not be modified.",
+  "consumed_asset": "This asset has already been consumed before.",
+  "invalid_deposit_value": "The deposit value is not valid.",
+  "exceed_deposit_cap": "The amount exceeds the deposit cap.",
+  "invalid_deposit_target": "The target of this deposit is invalid.",
+  "invalid_depositor": "The depositor does not exist on the chain.",
+  "invalid_withdrawer": "The withdrawer does not exist on the chain.",
+  "duplicate_tether": "The tether is duplicated.",
+  "invalid_expiry_date": "The expiry date is invalid.",
+  "invalid_deposit": "The deposit is invalid.",
+  "invalid_custodian": "The custodian does not exist on the chain.",
+  "invalid_delegation": "The delegation parameters are invalid.",
+  "forbidden": "Operation is not permitted with current authorization.",
+  "internal": "Internal error occurred - mainly a server implementation issue.",
+  "timeout": "Operation is timeout.",
+  "invalid_delegation_type_url": "The type_url you want to delegate is not allowed in your forge config"
+}
