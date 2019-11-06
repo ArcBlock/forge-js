@@ -151,6 +151,7 @@ class AtomicSwapHandlers {
    * @param {string} [config.tokenKey='_t_'] - query param key for `token`
    * @param {string} [config.checksumKey='_cs_'] - query param key for `checksum`
    * @param {boolean|string|did} [config.authPrincipal=true] - whether should we do auth principal claim first
+   * @param {boolean} [config.signedResponse=false] - whether should we return signed response
    * @returns void
    */
   attach({
@@ -168,6 +169,7 @@ class AtomicSwapHandlers {
     tokenKey = '_t_',
     checksumKey = '_cs_',
     authPrincipal = true,
+    signedResponse = false,
   }) {
     if (typeof onAuth !== 'function') {
       throw new Error('onAuth callback is required to attach did auth handlers');
@@ -258,7 +260,7 @@ class AtomicSwapHandlers {
 
     const ensureWeb = ensureRequester('web');
     const ensureWallet = ensureRequester('wallet');
-    const ensureSignedRes = ensureSignedJson(true);
+    const ensureSignedRes = ensureSignedJson(!signedResponse);
 
     // 0. create an empty swap data row
     app.post('/api/swap', async (req, res) => {
