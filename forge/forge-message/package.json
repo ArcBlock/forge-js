@@ -1,7 +1,7 @@
 {
   "name": "@arcblock/forge-message",
   "description": "Utility functions to encode and decode message that can send to forge",
-  "version": "0.40.6",
+  "version": "0.40.8",
   "author": {
     "name": "wangshijun",
     "email": "shijun@arcblock.io",
@@ -19,7 +19,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@arcblock/forge-proto": "^0.40.3",
+    "@arcblock/forge-proto": "^0.40.8",
     "@arcblock/forge-util": "^0.40.6",
     "debug": "^4.1.1",
     "google-protobuf": "^3.9.0",
