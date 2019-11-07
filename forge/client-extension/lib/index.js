@@ -4,6 +4,7 @@ const camelCase = require('lodash/camelCase');
 const snakeCase = require('lodash/snakeCase');
 const padStart = require('lodash/padStart');
 const errorCodes = require('@arcblock/forge-proto/lib/status_code.json');
+const { isValid: isValidDID } = require('@arcblock/did');
 const { toDelegateAddress, toSwapAddress, toAssetAddress } = require('@arcblock/did-util');
 const { transactions, multiSignTxs } = require('@arcblock/forge-proto/lite');
 const { createMessage, getMessageType } = require('@arcblock/forge-message/lite');
@@ -573,16 +574,21 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
    * @param {WalletObject} params.wallet - the wallet to sign the transaction
    * @returns {Promise} the `transactionHash` once resolved
    */
-  client.finalizeConsumeAsset = ({ tx, address, delegator, wallet }) =>
-    client.multiSignConsumeAssetTx({
+  client.finalizeConsumeAsset = ({ tx, address, delegator, wallet }) => {
+    if (isValidDID(address) === false) {
+      throw new Error('Please provide valid asset address to consume');
+    }
+
+    return client.multiSignConsumeAssetTx({
       tx,
       wallet,
       delegator,
       data: {
         typeUrl: 'fg:x:address',
-        value: address,
+        value: Uint8Array.from(Buffer.from(address)),
       },
     });
+  };
 
   /**
    * Send a transaction that consumes an asset (non-fungible-token)
