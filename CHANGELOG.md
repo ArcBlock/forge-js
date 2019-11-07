@@ -1,3 +1,9 @@
+## 0.40.8 (November 07, 2019)
+
+- fix: acquire assets now works as expected
+- fix: consume asset now works
+- update readme
+
 ## 0.40.7 (November 06, 2019)
 
 - fix: signed json response not working in did-auth lib
