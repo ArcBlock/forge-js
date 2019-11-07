@@ -115,6 +115,9 @@ module.exports = function createProvider(proto, json, urls = {}) {
         if (['TransactionInfo', 'TxStatus'].includes(type)) {
           typeUrl = `fg:x:${lowerUnder(type)}`;
         }
+        if (type === 'AssetFactoryState') {
+          typeUrl = 'fg:s:asset_factory_state';
+        }
         if (type === 'AssetFactory') {
           typeUrl = 'fg:x:asset_factory';
         }
@@ -204,9 +207,7 @@ module.exports = function createProvider(proto, json, urls = {}) {
     messages,
 
     transactions: enums.SupportedTxs,
-    multiSignTxs: ['ExchangeTx', 'ConsumeAssetTx'].filter(
-      x => enums.SupportedTxs.includes(x)
-    ),
+    multiSignTxs: ['ExchangeTx', 'ConsumeAssetTx'].filter(x => enums.SupportedTxs.includes(x)),
 
     stakes: enums.SupportedStakes,
     rpcs: Object.keys(clients).reduce((acc, x) => {

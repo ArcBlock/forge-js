@@ -7,7 +7,7 @@ const errorCodes = require('@arcblock/forge-proto/lib/status_code.json');
 const { isValid: isValidDID } = require('@arcblock/did');
 const { toDelegateAddress, toSwapAddress, toAssetAddress } = require('@arcblock/did-util');
 const { transactions, multiSignTxs } = require('@arcblock/forge-proto/lite');
-const { createMessage, getMessageType } = require('@arcblock/forge-message/lite');
+const { createMessage, getMessageType, decodeAny } = require('@arcblock/forge-message/lite');
 const {
   bytesToHex,
   toBase58,
@@ -642,7 +642,7 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
           template: factory.template,
           allowedSpecArgs: factory.templateVariables,
           assetName: factory.assetName,
-          attributes: factory.attributes,
+          attributes: Object.assign({ ttl: 0, transferrable: true }, factory.attributes || {}),
         },
       },
     };
@@ -665,7 +665,6 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
    * @public
    * @param {object} params
    * @param {string} params.assetFactory - Asset factory address
-   * @param {string} params.assetName - Asset type
    * @param {Array} params.assetVariables - list of asset variables that can be populated into asset factory template
    * @param {boolean} params.readonly - whether the asset can be updated after creation, should match factory settings
    * @param {boolean} params.transferrable - whether the asset can be transferred to another account, should match factory settings
@@ -674,33 +673,35 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
    * @param {WalletObject} params.wallet - the initial owner of the asset
    * @returns {Promise} the `[transactionHash, [assetAddress]]` once resolved
    */
-  client.acquireAsset = async ({
-    assetFactory,
-    assetName,
-    assetVariables,
-    readonly,
-    transferrable,
-    delegator = '',
-    wallet,
-  }) => {
+  client.acquireAsset = async ({ assetFactory, assetVariables, delegator = '', wallet }) => {
     if (!assetFactory) {
       throw new Error('Must specify asset factory address');
-    }
-    if (!assetName) {
-      throw new Error('Must specify asset name');
     }
     if (!Array.isArray(assetVariables)) {
       throw new Error('Must specify at least on asset template variable');
     }
 
+    const { state } = await client.getAssetState({ address: assetFactory });
+    if (!state) {
+      throw new Error('Asset factory address does not exist on chain');
+    }
+
+    const decoded = decodeAny(state.data);
+    if (!decoded) {
+      throw new Error('Asset factory state cannot be decoded');
+    }
+
+    const factory = decoded.value;
+    debug('acquireAsset.factory', factory);
+
     const assets = assetVariables.map(x => {
       const payload = {
-        ttl: 0,
-        readonly,
-        transferrable,
+        readonly: true,
+        transferrable: factory.attributes.transferrable,
+        ttl: factory.attributes.ttl,
         parent: assetFactory,
         data: {
-          type: assetName,
+          type: factory.assetName,
           value: x,
         },
       };
