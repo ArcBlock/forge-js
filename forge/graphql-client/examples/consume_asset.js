@@ -10,7 +10,7 @@
 const GraphQLClient = require('@arcblock/graphql-client');
 const { fromRandom } = require('@arcblock/forge-wallet');
 
-const endpoint = process.env.FORGE_API_HOST || 'http://127.0.0.1:8211'; // testnet
+const endpoint = process.env.FORGE_API_HOST || 'http://127.0.0.1:8210'; // testnet
 
 const client = new GraphQLClient(`${endpoint}/api`);
 const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
@@ -74,13 +74,17 @@ const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
     });
     console.log('view transfer tx', `${endpoint}/node/explorer/txs/${hash}`);
     await sleep(3000);
+    const { state } = await client.getAssetState({ address: assetAddress });
+    console.log('asset state', state);
 
     // 5.1 issuer: encode and sign the transaction
     const tx = await client.prepareConsumeAsset({
       issuer: issuer.toAddress(),
       wallet: gateKeeper,
+      // wallet: issuer,
     });
-    console.log('gateKeeper.signed', tx);
+    // console.log('gateKeeper.signed', inspect(tx));
+    // console.log('issuer.signed', inspect(tx));
 
     // 5.2 consumer: populate signatures field
     const tx2 = await client.finalizeConsumeAsset({
@@ -88,10 +92,10 @@ const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
       wallet: consumer,
       address: assetAddress,
     });
-    console.log('consumer.signed', tx2);
+    // console.log('consumer.signed', inspect(tx2));
 
     // 5.3 Send the consume tx
-    await sleep(5000);
+    await sleep(3000);
     hash = await client.consumeAsset({
       tx: tx2,
       wallet: consumer,

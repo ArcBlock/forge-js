@@ -35,7 +35,8 @@ const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
         templateVariables: ['name', 'brand'],
         assetName: 'Product',
         attributes: {
-          transferrable: false,
+          transferrable: true,
+          ttl: 3600 * 2,
         },
       },
       wallet: merchant,
@@ -65,7 +66,6 @@ const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
     let assetAddress;
     [hash, [assetAddress]] = await client.acquireAsset({
       assetFactory: factoryAddress,
-      assetName: 'Product',
       assetVariables: [{ name: 'Coca', brand: 'Pepsi' }],
       wallet: customer,
     });
