@@ -1,3 +1,15 @@
+## 0.40.9 (November 08, 2019)
+
+- feat: support delegator in atomic-swap and better hash connecting
+- chore: add did-auth-protocol version in response
+- chore: cleanup debug lines in forge-sdk
+- chore: upgrade graphql-client to align with forge v0.40.3
+- chore: improve shortcut methods to support {conn} args
+- fix: support disable global ignores in graphql-client
+- fix: exchange example not working because stricter
+- chore: add jsdoc annotation for client shortcut methods
+- update readme
+
 ## 0.40.8 (November 07, 2019)
 
 - fix: acquire assets now works as expected
