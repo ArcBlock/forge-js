@@ -30,8 +30,8 @@ const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
     const sender = fromRandom();
     const receiver = fromRandom();
     console.log({
-      sender: sender.toJSON(),
-      receiver: receiver.toJSON(),
+      sender: sender.toAddress(),
+      receiver: receiver.toAddress(),
     });
 
     // 1. declare sender
@@ -46,6 +46,9 @@ const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
       'view receiver account',
       `${endpoint}/node/explorer/accounts/${receiver.toAddress()}`
     );
+
+    // 2.1 receiver checkin
+    await client.checkin({ wallet: receiver });
 
     // 3. create asset for sender
     let assetAddress;
@@ -69,7 +72,7 @@ const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
     const tx1 = await client.prepareExchange({
       receiver: receiver.toAddress(),
       offerAssets: [assetAddress],
-      demandToken: 0,
+      demandToken: 5,
       wallet: sender,
     });
 

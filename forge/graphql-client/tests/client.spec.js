@@ -1,7 +1,6 @@
 /* eslint-disable no-console */
 const { fromRandom } = require('@arcblock/forge-wallet');
 const { fromTokenToUnit } = require('@arcblock/forge-util');
-const { toAssetAddress } = require('@arcblock/did-util');
 
 const GraphQLClient = require('../');
 
@@ -91,12 +90,8 @@ describe('GraphQLClient', () => {
 
   const wallet = fromRandom();
   test('should support declare account', async () => {
-    const hash = await client.sendDeclareTx({
-      tx: {
-        itx: {
-          moniker: `graphql_client_test_${Math.round(Math.random() * 10000)}`,
-        },
-      },
+    const hash = await client.declare({
+      moniker: `graphql_client_test_${Math.round(Math.random() * 10000)}`,
       wallet,
     });
 
@@ -105,12 +100,8 @@ describe('GraphQLClient', () => {
 
   test('should support detailed error message', async () => {
     try {
-      await client.sendDeclareTx({
-        tx: {
-          itx: {
-            moniker: `graphql_client_test_${Math.round(Math.random() * 10000)}`,
-          },
-        },
+      await client.declare({
+        moniker: `graphql_client_test_${Math.round(Math.random() * 10000)}`,
         wallet,
       });
     } catch (err) {
@@ -157,27 +148,14 @@ describe('GraphQLClient', () => {
       const receiver = fromRandom();
 
       // 1. declare sender
-      await client.sendDeclareTx({
-        tx: {
-          itx: {
-            moniker: 'sender',
-          },
-        },
-        wallet: sender,
-      });
+      await client.declare({ moniker: 'sender', wallet: sender });
 
       // 2. declare receiver
-      await client.sendDeclareTx({
-        tx: {
-          itx: {
-            moniker: 'receiver',
-          },
-        },
-        wallet: receiver,
-      });
+      await client.declare({ moniker: 'receiver', wallet: receiver });
+      await client.checkin({ wallet: receiver });
 
       // 3. create asset for sender
-      const asset = {
+      const [, assetAddress] = await client.createAsset({
         moniker: 'asset',
         readonly: true,
         transferrable: true,
@@ -188,13 +166,9 @@ describe('GraphQLClient', () => {
             sn: Math.random(),
           },
         },
-      };
-      const assetAddress = toAssetAddress(asset);
-      asset.address = assetAddress;
-      await client.sendCreateAssetTx({
-        tx: { itx: asset },
         wallet: sender,
       });
+      await sleep(3000);
 
       // assemble exchange tx: multisig
       const exchange = {
@@ -204,7 +178,7 @@ describe('GraphQLClient', () => {
             assets: [assetAddress],
           },
           receiver: {
-            value: fromTokenToUnit(0),
+            value: fromTokenToUnit(5),
           },
         },
       };
@@ -214,16 +188,14 @@ describe('GraphQLClient', () => {
 
       // 4.2 Receiver: do the multi sig
       const encoded2 = await client.multiSignExchangeTx({
-        tx: Object.assign(encoded1, exchange),
+        tx: encoded1,
         wallet: receiver,
       });
 
       // 4.3 Send the exchange tx
-      await sleep(3000);
       await client.sendExchangeTx({
         tx: encoded2,
         wallet: sender,
-        signature: encoded1.signature,
       });
     } catch (err) {
       console.error(err.errors);
