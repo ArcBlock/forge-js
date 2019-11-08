@@ -19,10 +19,7 @@ const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
   try {
     const sender = fromRandom();
     const receiver = fromRandom();
-    console.log({
-      sender: sender.toJSON(),
-      receiver: receiver.toJSON(),
-    });
+    console.log({ sender: sender.toAddress(), receiver: receiver.toAddress() });
 
     // 1. Declare sender
     let hash = await client.declare({ moniker: 'sender', wallet: sender });

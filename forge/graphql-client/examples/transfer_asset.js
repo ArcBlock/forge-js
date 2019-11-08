@@ -20,23 +20,17 @@ const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
     const sender = fromRandom();
     const receiver = fromRandom();
     console.log({
-      sender: sender.toJSON(),
-      receiver: receiver.toJSON(),
+      sender: sender.toAddress(),
+      receiver: receiver.toAddress(),
     });
 
     // 1. declare sender
-    let hash = await client.declare({
-      moniker: 'sender',
-      wallet: sender,
-    });
+    let hash = await client.declare({ moniker: 'sender', wallet: sender });
     console.log('view sender account', `${endpoint}/node/explorer/accounts/${sender.toAddress()}`);
     console.log('view sender tx', `${endpoint}/node/explorer/txs/${hash}`);
 
     // 2. declare receiver
-    hash = await client.declare({
-      moniker: 'receiver',
-      wallet: receiver,
-    });
+    hash = await client.declare({ moniker: 'receiver', wallet: receiver });
     console.log(
       'view receiver account',
       `${endpoint}/node/explorer/accounts/${receiver.toAddress()}`
