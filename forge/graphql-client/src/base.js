@@ -36,6 +36,15 @@ class GraphQLClientBase extends BaseClient {
 
     this._endpoint = httpEndpoint;
     this._chainId = chainId;
+    this._globalIgnoreEnabled = true;
+  }
+
+  enableGlobalIgnore() {
+    this._globalIgnoreEnabled = true;
+  }
+
+  disableGlobalIgnore() {
+    this._globalIgnoreEnabled = false;
   }
 
   _getSocketEndpoint(endpoint) {
@@ -52,12 +61,16 @@ class GraphQLClientBase extends BaseClient {
   }
 
   _getIgnoreFields({ name }) {
-    const ignoreList = [/\.genesisTx$/, /\.renaissanceTx$/];
-    if (name !== 'getProtocolState') {
-      ignoreList.push(/\.itx$/);
+    if (this._globalIgnoreEnabled) {
+      const ignoreList = [/\.genesisTx$/, /\.renaissanceTx$/];
+      if (name !== 'getProtocolState') {
+        ignoreList.push(/\.itx$/);
+      }
+
+      return ignoreList;
     }
 
-    return ignoreList;
+    return [];
   }
 
   _getQueryId(query) {
