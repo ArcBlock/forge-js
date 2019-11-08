@@ -52,7 +52,7 @@ class GraphQLClientBase extends BaseClient {
   }
 
   _getIgnoreFields({ name }) {
-    const ignoreList = [/\.genesisTx$/, /\.renaissanceTx$/];
+    const ignoreList = [/\.genesisTx\.tx\.itx$/, /\.renaissanceTx\.tx\.itx$/];
     if (name !== 'getProtocolState') {
       ignoreList.push(/\.itx$/);
     }

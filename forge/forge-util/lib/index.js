@@ -511,7 +511,7 @@ function isUUID(str) {
 }
 
 /**
- * Convert input to Uint8Array on best effort
+ * Convert input to Uint8Array on best effort, base64 node supported
  *
  * @public
  * @static
@@ -543,7 +543,7 @@ function toUint8Array(v) {
 }
 
 /**
- * Convert input to Buffer on best effort
+ * Convert input to Buffer on best effort, base64 not supported
  *
  * @public
  * @static

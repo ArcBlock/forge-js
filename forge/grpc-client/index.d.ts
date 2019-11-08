@@ -93,6 +93,7 @@ export enum StatusCode {
   INVALID_WITHDRAW_TX = 66,
   INVALID_CHAIN_TYPE = 67,
   INVALID_TIME = 68,
+  INVALID_SUBSCRIBE = 69,
   FORBIDDEN = 403,
   INTERNAL = 500,
   TIMEOUT = 504,
@@ -423,12 +424,21 @@ export interface ResponseSubscribe {
   withdrawToken: forge_abi.Transaction;
   approveWithdraw: forge_abi.Transaction;
   revokeWithdraw: forge_abi.Transaction;
+  setupSwap: forge_abi.Transaction;
+  revokeSwap: forge_abi.Transaction;
+  retrieveSwap: forge_abi.Transaction;
+  poke: forge_abi.Transaction;
+  deployProtocol: forge_abi.Transaction;
+  consumeAsset: forge_abi.Transaction;
+  acquireAsset: forge_abi.Transaction;
+  upgradeNode: forge_abi.Transaction;
   accountState: forge_abi.AccountState;
   assetState: forge_abi.AssetState;
   forgeState: forge_abi.ForgeState;
   stakeState: forge_abi.StakeState;
   protocolState: forge_abi.ProtocolState;
   delegateState: forge_abi.DelegateState;
+  swapState: forge_abi.SwapState;
 }
 
 export interface RequestUnsubscribe {

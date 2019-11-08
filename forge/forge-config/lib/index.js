@@ -8,7 +8,7 @@ const toml = require('@iarna/toml');
 const camelize = require('camelize');
 
 /**
- * Parse config from a file
+ * Parse config from a standard forge release configuration file
  *
  * @public
  * @static

@@ -23,7 +23,7 @@
   "insufficient_data": {
     "default": "There is some required data missing to construct this transaction properly.\n",
     "account_migrate": "`AccountMigrateTx.pk`, `AccountMigrateTx.type`, and `AccountMigrateTx.address` can not be empty.\n",
-    "declare": "`DeclareTx.moniker` can not be empty.\n",
+    "declare": "`DelcareTx.moniker` can not be empty.\n",
     "acquire_asset": "`AcquireAssetTx.specs` can not be empty.\n",
     "consume_asset": "`ConsumeAssetTx.issuer` and `Tx.signatures` can not be empty.\n",
     "create_asset": "`CreateAssetTx.data` and `CreateAssetTx.address` can not be empty.\n",
@@ -105,6 +105,7 @@
   "invalid_deposit": "The deposit is invalid.",
   "invalid_custodian": "The custodian does not exist on the chain.",
   "invalid_delegation": "The delegation parameters are invalid.",
+  "invalid_subscribe": "the subscription is invalid, most likely the topic or the filter is invalid.",
   "forbidden": "Operation is not permitted with current authorization.",
   "internal": "Internal error occurred - mainly a server implementation issue.",
   "timeout": "Operation is timeout.",

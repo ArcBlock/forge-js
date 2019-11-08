@@ -6,6 +6,7 @@ const { EventEmitter } = require('events');
  * Which should be implemented to use in dapps that uses atomic-swap capability
  *
  * @class SwapStorage
+ * @see @arcblock/swap-storage-mongo
  * @extends {EventEmitter}
  */
 class SwapStorage extends EventEmitter {

@@ -7,6 +7,9 @@ const { EventEmitter } = require('events');
  * Which is used during the DID-Auth process in an typical application
  *
  * @class AuthStorage
+ * @see @arcblock/did-auth-storage-firebase
+ * @see @arcblock/did-auth-storage-mongo
+ * @see @arcblock/did-auth-storage-keystone
  * @extends {EventEmitter}
  */
 class AuthStorage extends EventEmitter {

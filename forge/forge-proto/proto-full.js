@@ -1,4 +1,4 @@
-// Auto generated code (2019-11-06T02:51:52.943Z), DO NOT EDIT
+// Auto generated code (2019-11-08T08:04:08.233Z), DO NOT EDIT
 const typePb = require('./lib/type_pb.js');
 const txPb = require('./lib/tx_pb.js');
 const traceTypePb = require('./lib/trace_type_pb.js');

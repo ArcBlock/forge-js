@@ -30,6 +30,8 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
   /**
    * Format big number presentation amount to token number
    *
+   * @public
+   * @static
    * @param {string} value
    * @returns {string}
    */
@@ -41,6 +43,8 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
   /**
    * Encode amount to corresponding token big number presentation
    *
+   * @public
+   * @static
    * @param {number} amount
    * @returns {BN}
    */
@@ -52,6 +56,8 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
   /**
    * Converts a relative locktime to absolute locktime
    *
+   * @public
+   * @static
    * @param {number} number - number of blocks want to lock
    * @param {object} [options={}] - options to underlying methods
    * @returns {number}
@@ -65,7 +71,8 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
    * List all transaction send methods
    * Each method can send one kind of transactions supported by forge core, such as `DeclareTx`, `PokeTx`
    *
-   * @method
+   * @public
+   * @static
    * @returns {Array<string>} method name list
    */
   client.getTxSendMethods = () => transactions.map(x => camelCase(`send_${x}`));
@@ -73,7 +80,8 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
   /**
    * List all transaction encode methods, each method can be used to encode transaction to buffer and object
    *
-   * @method
+   * @public
+   * @static
    * @returns {Array<string>} method name list
    */
   client.getTxEncodeMethods = () => transactions.map(x => camelCase(`encode_${x}`));
@@ -81,7 +89,8 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
   /**
    * List all transaction sign methods, each method can be used to sign transaction to an object
    *
-   * @method
+   * @public
+   * @static
    * @returns {Array<string>} method name list
    */
   client.getTxSignMethods = () => transactions.map(x => camelCase(`sign_${x}`));
@@ -89,7 +98,8 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
   /**
    * List all transaction multi sign methods, each method can be used to do multi sign a transaction
    *
-   * @method
+   * @public
+   * @static
    * @returns {Array<string>} method name list
    */
   client.getTxMultiSignMethods = () => multiSignTxs.map(x => camelCase(`multi_sign_${x}`));
@@ -97,7 +107,8 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
   /**
    * Get protobuf message class by name, only supports forge-built-in types
    *
-   * @method
+   * @public
+   * @static
    * @param {string} x
    * @returns {class|null} message type
    */
@@ -106,7 +117,8 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
   /**
    * Decode transaction buffer/base64/base58 to an object
    *
-   * @method
+   * @public
+   * @static
    * @param {buffer|hex|base48|base64} input
    * @returns {object} transaction object
    */
@@ -382,54 +394,66 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
    * Declare an DID and it's public key on chain
    *
    * @public
+   * @static
    * @param {object} params
    * @param {string} params.moniker - user nickname
    * @param {string} [params.issuer=""] - who issued the account
    * @param {object} [params.data=undefined] - who issued the account
    * @param {WalletObject} params.wallet - wallet to sign the tx
+   * @param {object} extra - other param to underlying client implementation
    * @returns {Promise} the transaction hash once resolved
    */
-  client.declare = ({ moniker, issuer = '', data, wallet }) =>
-    client.sendDeclareTx({
-      tx: {
-        itx: { moniker, issuer, data },
+  client.declare = ({ moniker, issuer = '', data, wallet }, extra) =>
+    client.sendDeclareTx(
+      {
+        tx: {
+          itx: { moniker, issuer, data },
+        },
+        wallet,
       },
-      wallet,
-    });
+      extra
+    );
 
   /**
    * Migrate current account to a new account
    *
    * @public
+   * @static
    * @param {object} params
    * @param {WalletObject} params.from - which account to migrate from
    * @param {WalletObject} params.to - which account to migrate to
+   * @param {object} extra - other param to underlying client implementation
    * @returns {Promise} the transaction hash once resolved
    */
-  client.accountMigrate = ({ from, to }) =>
-    client.sendAccountMigrateTx({
-      tx: {
-        itx: {
-          address: to.toAddress(),
-          pk: to.publicKey,
-          type: to.type,
+  client.accountMigrate = ({ from, to }, extra) =>
+    client.sendAccountMigrateTx(
+      {
+        tx: {
+          itx: {
+            address: to.toAddress(),
+            pk: to.publicKey,
+            type: to.type,
+          },
         },
+        wallet: from,
       },
-      wallet: from,
-    });
+      extra
+    );
 
   /**
    * Delegate some privileges to another account
    * So that that account can send transactions on behalf of the delegator
    *
    * @public
+   * @static
    * @param {object} params
    * @param {WalletObject} params.from - the delegator, who grants the privilege to others
    * @param {WalletObject} params.to - the delegatee, who is authorized to send transactions
    * @param {Array} params.privileges - the privilege settings
+   * @param {object} extra - other param to underlying client implementation
    * @returns {Promise} the `[transactionHash, delegateAddress]` once resolved
    */
-  client.delegate = async ({ from, to, privileges }) => {
+  client.delegate = async ({ from, to, privileges }, extra) => {
     // TODO: add whitelist for delegation privileges
     let ops = Array.isArray(privileges) ? privileges : [privileges];
     ops = ops.map(x => {
@@ -441,16 +465,19 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
     });
 
     const address = toDelegateAddress(from.toAddress(), to.toAddress());
-    const hash = await client.sendDelegateTx({
-      tx: {
-        itx: {
-          address,
-          to: to.toAddress(),
-          ops,
+    const hash = await client.sendDelegateTx(
+      {
+        tx: {
+          itx: {
+            address,
+            to: to.toAddress(),
+            ops,
+          },
         },
+        wallet: from,
       },
-      wallet: from,
-    });
+      extra
+    );
 
     return [hash, address];
   };
@@ -459,28 +486,34 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
    * Revoke a previous delegation
    *
    * @public
+   * @static
    * @param {object} params
    * @param {WalletObject} params.from - the delegator, who grants the privilege to others
    * @param {WalletObject} params.to - the delegatee, who is authorized to send transactions
    * @param {Array} params.privileges - the privilege settings
+   * @param {object} extra - other param to underlying client implementation
    * @returns {Promise} the transaction hash once resolved
    */
-  client.revokeDelegate = ({ from, to, privileges }) =>
-    client.sendRevokeDelegateTx({
-      tx: {
-        itx: {
-          address: toDelegateAddress(from.toAddress(), to.toAddress()),
-          to: to.toAddress(),
-          typeUrls: privileges.filter(Boolean).map(x => x.toString()),
+  client.revokeDelegate = ({ from, to, privileges }, extra) =>
+    client.sendRevokeDelegateTx(
+      {
+        tx: {
+          itx: {
+            address: toDelegateAddress(from.toAddress(), to.toAddress()),
+            to: to.toAddress(),
+            typeUrls: privileges.filter(Boolean).map(x => x.toString()),
+          },
         },
+        wallet: from,
       },
-      wallet: from,
-    });
+      extra
+    );
 
   /**
    * Create an new asset (non-fungible-token)
    *
    * @public
+   * @static
    * @param {object} params
    * @param {string} params.moniker - asset name
    * @param {string} params.parent - asset parent
@@ -490,26 +523,33 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
    * @param {boolean} params.transferrable - whether the asset can be transferred to another account
    * @param {string} params.delegator - who authorized this transaction
    * @param {WalletObject} params.wallet - the initial owner of the asset
+   * @param {object} extra - other param to underlying client implementation
    * @returns {Promise} the `[transactionHash, assetAddress]` once resolved
    */
-  client.createAsset = async ({
-    moniker,
-    parent = '',
-    ttl = 0,
-    data,
-    readonly = false,
-    transferrable = true,
-    delegator = '',
-    wallet,
-  }) => {
+  client.createAsset = async (
+    {
+      moniker,
+      parent = '',
+      ttl = 0,
+      data,
+      readonly = false,
+      transferrable = true,
+      delegator = '',
+      wallet,
+    },
+    extra
+  ) => {
     const payload = { moniker, parent, ttl, readonly, transferrable, data };
     const address = toAssetAddress(payload);
     payload.address = address;
-    const hash = await client.sendCreateAssetTx({
-      tx: { itx: payload },
-      delegator,
-      wallet,
-    });
+    const hash = await client.sendCreateAssetTx(
+      {
+        tx: { itx: payload },
+        delegator,
+        wallet,
+      },
+      extra
+    );
     return [hash, address];
   };
 
@@ -517,94 +557,115 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
    * Update an existing asset (non-fungible-token)
    *
    * @public
+   * @static
    * @param {object} params
    * @param {string} params.address - asset address
    * @param {string} params.moniker - asset name
    * @param {object} params.data - asset data payload
    * @param {string} params.delegator - who authorized this transaction
    * @param {WalletObject} params.wallet - the wallet to sign the transaction
+   * @param {object} extra - other param to underlying client implementation
    * @returns {Promise} the `transactionHash` once resolved
    */
-  client.updateAsset = ({ address, moniker, data, delegator, wallet }) =>
-    client.sendUpdateAssetTx({
-      tx: {
-        itx: {
-          moniker,
-          address,
-          data,
+  client.updateAsset = ({ address, moniker, data, delegator, wallet }, extra) =>
+    client.sendUpdateAssetTx(
+      {
+        tx: {
+          itx: {
+            moniker,
+            address,
+            data,
+          },
         },
+        delegator,
+        wallet,
       },
-      delegator,
-      wallet,
-    });
+      extra
+    );
 
   /**
    * Prepare a transaction that consumes an asset (non-fungible-token)
    *
    * @public
+   * @static
    * @param {object} params
    * @param {string} params.issuer - issuer address
    * @param {string} params.address - parent address
    * @param {object} params.data - extra data payload
    * @param {string} params.delegator - who authorized this transaction
    * @param {WalletObject} params.wallet - the wallet to sign the transaction
+   * @param {object} extra - other param to underlying client implementation
    * @returns {Promise} the `transactionHash` once resolved
    */
-  client.prepareConsumeAsset = ({ issuer = '', address = '', delegator = '', data, wallet }) =>
-    client.signConsumeAssetTx({
-      tx: {
-        itx: {
-          issuer,
-          address,
-          data,
+  client.prepareConsumeAsset = (
+    { issuer = '', address = '', delegator = '', data, wallet },
+    extra
+  ) =>
+    client.signConsumeAssetTx(
+      {
+        tx: {
+          itx: {
+            issuer,
+            address,
+            data,
+          },
         },
+        delegator,
+        wallet,
       },
-      delegator,
-      wallet,
-    });
+      extra
+    );
 
   /**
    * Prepare a transaction that consumes an asset (non-fungible-token)
    *
    * @public
+   * @static
    * @param {object} params
    * @param {object} params.tx - transaction to finalize, should be result from `prepareConsumeAsset`
    * @param {string} params.address - asset address to be consumed
    * @param {string} params.delegator - who authorized this transaction
    * @param {WalletObject} params.wallet - the wallet to sign the transaction
+   * @param {object} extra - other param to underlying client implementation
    * @returns {Promise} the `transactionHash` once resolved
    */
-  client.finalizeConsumeAsset = ({ tx, address, delegator, wallet }) => {
+  client.finalizeConsumeAsset = ({ tx, address, delegator, wallet }, extra) => {
     if (isValidDID(address) === false) {
       throw new Error('Please provide valid asset address to consume');
     }
 
-    return client.multiSignConsumeAssetTx({
-      tx,
-      wallet,
-      delegator,
-      data: {
-        typeUrl: 'fg:x:address',
-        value: Uint8Array.from(Buffer.from(address)),
+    return client.multiSignConsumeAssetTx(
+      {
+        tx,
+        wallet,
+        delegator,
+        data: {
+          typeUrl: 'fg:x:address',
+          value: Uint8Array.from(Buffer.from(address)),
+        },
       },
-    });
+      extra
+    );
   };
 
   /**
    * Send a transaction that consumes an asset (non-fungible-token)
    *
    * @public
+   * @static
    * @param {object} params
    * @param {object} params.tx - transaction to send, should be result from `finalizeConsumeAsset`
    * @param {WalletObject} params.wallet - the wallet to sign the transaction
+   * @param {object} extra - other param to underlying client implementation
    * @returns {Promise} the `transactionHash` once resolved
    */
-  client.consumeAsset = ({ tx, wallet }) => client.sendConsumeAssetTx({ tx, wallet });
+  client.consumeAsset = ({ tx, wallet }, extra) => client.sendConsumeAssetTx({ tx, wallet }, extra);
 
   /**
    * Create an asset factory that can be used to produce multiple assets in a transaction
    *
    * @public
+   * @static
    * @param {object} params
    * @param {string} params.moniker - asset name
    * @param {object} params.factory - asset factory attributes
@@ -619,16 +680,13 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
    * @param {boolean} params.transferrable - whether the asset can be transferred to another account
    * @param {string} params.delegator - who authorized this transaction
    * @param {WalletObject} params.wallet - the initial owner of the asset
+   * @param {object} extra - other param to underlying client implementation
    * @returns {Promise} the `[transactionHash, factoryAddress]` once resolved
    */
-  client.createAssetFactory = async ({
-    moniker,
-    factory,
-    readonly = false,
-    transferrable = true,
-    delegator = '',
-    wallet,
-  }) => {
+  client.createAssetFactory = async (
+    { moniker, factory, readonly = false, transferrable = true, delegator = '', wallet },
+    extra
+  ) => {
     const payload = {
       moniker,
       readonly,
@@ -649,13 +707,16 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
     const factoryAddress = toAssetAddress(payload);
     payload.address = factoryAddress;
 
-    const hash = await client.sendCreateAssetTx({
-      tx: {
-        itx: payload,
+    const hash = await client.sendCreateAssetTx(
+      {
+        tx: {
+          itx: payload,
+        },
+        delegator,
+        wallet,
       },
-      delegator,
-      wallet,
-    });
+      extra
+    );
     return [hash, factoryAddress];
   };
 
@@ -663,6 +724,7 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
    * Acquire an asset from factory
    *
    * @public
+   * @static
    * @param {object} params
    * @param {string} params.assetFactory - Asset factory address
    * @param {Array} params.assetVariables - list of asset variables that can be populated into asset factory template
@@ -671,9 +733,10 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
    * @param {number} params.ttl - asset expire
    * @param {string} params.delegator - who authorized this transaction
    * @param {WalletObject} params.wallet - the initial owner of the asset
+   * @param {object} extra - other param to underlying client implementation
    * @returns {Promise} the `[transactionHash, [assetAddress]]` once resolved
    */
-  client.acquireAsset = async ({ assetFactory, assetVariables, delegator = '', wallet }) => {
+  client.acquireAsset = async ({ assetFactory, assetVariables, delegator = '', wallet }, extra) => {
     if (!assetFactory) {
       throw new Error('Must specify asset factory address');
     }
@@ -681,7 +744,7 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
       throw new Error('Must specify at least on asset template variable');
     }
 
-    const { state } = await client.getAssetState({ address: assetFactory });
+    const { state } = await client.getAssetState({ address: assetFactory }, extra);
     if (!state) {
       throw new Error('Asset factory address does not exist on chain');
     }
@@ -711,16 +774,19 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
       return { address, data: JSON.stringify(x) };
     });
 
-    const hash = await client.sendAcquireAssetTx({
-      tx: {
-        itx: {
-          to: assetFactory,
-          specs: assets,
+    const hash = await client.sendAcquireAssetTx(
+      {
+        tx: {
+          itx: {
+            to: assetFactory,
+            specs: assets,
+          },
         },
+        delegator,
+        wallet,
       },
-      delegator,
-      wallet,
-    });
+      extra
+    );
 
     return [hash, assets.map(x => x.address)];
   };
@@ -729,75 +795,96 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
    * Do an on-chain upgrade, should be used with forge-cli
    *
    * @public
+   * @static
    * @param {object} params
    * @param {number} params.height - at which height should the chain stop to perform the upgrade
    * @param {string} params.version - to which version should upgrade to
    * @param {string} params.delegator - who authorized this transaction
    * @param {WalletObject} params.wallet - the wallet to sign the transaction
+   * @param {object} extra - other param to underlying client implementation
    * @returns {Promise} the `transactionHash` once resolved
    */
-  client.upgradeNode = ({ height, version, delegator, wallet }) =>
-    client.sendUpgradeNodeTx({
-      tx: { itx: { height, version, override: true } },
-      delegator,
-      wallet,
-    });
+  client.upgradeNode = ({ height, version, delegator, wallet }, extra) =>
+    client.sendUpgradeNodeTx(
+      {
+        tx: { itx: { height, version, override: true } },
+        delegator,
+        wallet,
+      },
+      extra
+    );
 
   /**
    * Deploy a contract to a running chain node, requires moderator privilege
    *
    * @public
+   * @static
    * @param {object} params
    * @param {object} params.payload - the contract payload, usually from `forge contract:compile`
    * @param {string} params.delegator - who authorized this transaction
    * @param {WalletObject} params.wallet - the wallet to sign the transaction
+   * @param {object} extra - other param to underlying client implementation
    * @returns {Promise} the `transactionHash` once resolved
    */
-  client.deployContract = ({ payload, delegator, wallet }) =>
-    client.sendDeployProtocolTx({
-      tx: { itx: payload },
-      delegator,
-      wallet,
-    });
+  client.deployContract = ({ payload, delegator, wallet }, extra) =>
+    client.sendDeployProtocolTx(
+      {
+        tx: { itx: payload },
+        delegator,
+        wallet,
+      },
+      extra
+    );
 
   /**
    * Activate an previously paused/disabled contract
    *
    * @public
+   * @static
    * @param {object} params
    * @param {string} params.address - the contract address to activate
    * @param {string} params.delegator - who authorized this transaction
    * @param {WalletObject} params.wallet - the wallet to sign the transaction
+   * @param {object} extra - other param to underlying client implementation
    * @returns {Promise} the `transactionHash` once resolved
    */
-  client.activateContract = ({ address, delegator, wallet }) =>
-    client.sendActivateProtocolTx({
-      tx: { itx: { address } },
-      delegator,
-      wallet,
-    });
+  client.activateContract = ({ address, delegator, wallet }, extra) =>
+    client.sendActivateProtocolTx(
+      {
+        tx: { itx: { address } },
+        delegator,
+        wallet,
+      },
+      extra
+    );
 
   /**
    * Deactivate an previously running/enabled contract
    *
    * @public
+   * @static
    * @param {object} params
    * @param {string} params.address - the contract address to deactivate
    * @param {string} params.delegator - who authorized this transaction
    * @param {WalletObject} params.wallet - the wallet to sign the transaction
+   * @param {object} extra - other param to underlying client implementation
    * @returns {Promise} the `transactionHash` once resolved
    */
-  client.deactivateContract = ({ address, delegator, wallet }) =>
-    client.sendDeactivateProtocolTx({
-      tx: { itx: { address } },
-      delegator,
-      wallet,
-    });
+  client.deactivateContract = ({ address, delegator, wallet }, extra) =>
+    client.sendDeactivateProtocolTx(
+      {
+        tx: { itx: { address } },
+        delegator,
+        wallet,
+      },
+      extra
+    );
 
   /**
    * Setup a swap that's used to accomplish cross-chain operations
    *
    * @public
+   * @static
    * @param {object} params
    * @param {number} params.token - how much token to offer
    * @param {Array} params.assets - how much assets to offer
@@ -806,30 +893,37 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
    * @param {string} params.delegator - who authorized this transaction
    * @param {number} [params.locktime=1000] - how much block height to lock the swap before it can be revoked
    * @param {WalletObject} params.wallet - the wallet to sign the transaction
+   * @param {object} extra - other param to underlying client implementation
    * @returns {Promise} the `[transactionHash, swapAddress]` once resolved
    */
-  client.setupSwap = async ({
-    token = 0,
-    assets = [],
-    receiver = '',
-    hashlock = '',
-    locktime = 1000,
-    delegator = '',
-    wallet,
-  }) => {
-    const hash = await client.sendSetupSwapTx({
-      tx: {
-        itx: {
-          value: await client.fromTokenToUnit(token),
-          assets,
-          receiver,
-          hashlock: toBuffer(hashlock),
-          locktime: await client.toLocktime(locktime),
-        },
-      },
-      delegator,
+  client.setupSwap = async (
+    {
+      token = 0,
+      assets = [],
+      receiver = '',
+      hashlock = '',
+      locktime = 1000,
+      delegator = '',
       wallet,
-    });
+    },
+    extra
+  ) => {
+    const hash = await client.sendSetupSwapTx(
+      {
+        tx: {
+          itx: {
+            value: await client.fromTokenToUnit(token),
+            assets,
+            receiver,
+            hashlock: toBuffer(hashlock),
+            locktime: await client.toLocktime(locktime),
+          },
+        },
+        delegator,
+        wallet,
+      },
+      extra
+    );
 
     const address = toSwapAddress(`0x${hash}`);
     return [hash, address];
@@ -839,41 +933,52 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
    * Retrieve a swap during an atomic-swap process
    *
    * @public
+   * @static
    * @param {object} params
    * @param {string} params.address - the swap address to retrieve
    * @param {string} params.hashkey - the hashkey to unlock the swap
    * @param {string} params.delegator - who authorized this transaction
    * @param {WalletObject} params.wallet - the wallet to sign the transaction
+   * @param {object} extra - other param to underlying client implementation
    * @returns {Promise} the `transactionHash` once resolved
    */
-  client.retrieveSwap = ({ address, hashkey, delegator, wallet }) =>
-    client.sendRetrieveSwapTx({
-      tx: { itx: { address, hashkey: toBuffer(hashkey) } },
-      delegator,
-      wallet,
-    });
+  client.retrieveSwap = ({ address, hashkey, delegator, wallet }, extra) =>
+    client.sendRetrieveSwapTx(
+      {
+        tx: { itx: { address, hashkey: toBuffer(hashkey) } },
+        delegator,
+        wallet,
+      },
+      extra
+    );
 
   /**
    * Revoke a swap during an atomic-swap process
    *
    * @public
+   * @static
    * @param {object} params
    * @param {string} params.address - the swap address to revoke
    * @param {string} params.delegator - who authorized this transaction
    * @param {WalletObject} params.wallet - the wallet to sign the transaction
+   * @param {object} extra - other param to underlying client implementation
    * @returns {Promise} the `transactionHash` once resolved
    */
-  client.revokeSwap = ({ address, delegator, wallet }) =>
-    client.sendRevokeSwapTx({
-      tx: { itx: { address } },
-      delegator,
-      wallet,
-    });
+  client.revokeSwap = ({ address, delegator, wallet }, extra) =>
+    client.sendRevokeSwapTx(
+      {
+        tx: { itx: { address } },
+        delegator,
+        wallet,
+      },
+      extra
+    );
 
   /**
    * Transfer token or assets to another account
    *
    * @public
+   * @static
    * @param {object} params
    * @param {number} params.token - how much token can be transferred
    * @param {Array} params.assets - which assets should be transferred
@@ -881,36 +986,37 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
    * @param {string} params.memo - transaction note
    * @param {string} params.delegator - who authorized this transaction
    * @param {WalletObject} params.wallet - the wallet to sign the transaction
+   * @param {object} extra - other param to underlying client implementation
    * @returns {Promise} the `transactionHash` once resolved
    */
-  client.transfer = async ({
-    token = 0,
-    assets = [],
-    to = '',
-    memo = '',
-    delegator = '',
-    wallet,
-  }) =>
-    client.sendTransferTx({
-      tx: {
-        itx: {
-          to,
-          value: await client.fromTokenToUnit(token),
-          assets,
-          data: {
-            typeUrl: 'json',
-            value: memo || 'empty',
+  client.transfer = async (
+    { token = 0, assets = [], to = '', memo = '', delegator = '', wallet },
+    extra
+  ) =>
+    client.sendTransferTx(
+      {
+        tx: {
+          itx: {
+            to,
+            value: await client.fromTokenToUnit(token),
+            assets,
+            data: {
+              typeUrl: 'json',
+              value: memo || 'empty',
+            },
           },
         },
+        delegator,
+        wallet,
       },
-      delegator,
-      wallet,
-    });
+      extra
+    );
 
   /**
    * Prepare an exchange transaction between multiple accounts
    *
    * @public
+   * @static
    * @param {object} params
    * @param {number} params.offerToken - how much token can be sent
    * @param {Array} params.offerAssets - which assets should be sent
@@ -920,94 +1026,113 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
    * @param {string} params.memo - transaction note
    * @param {string} params.delegator - which assets should be transferred
    * @param {WalletObject} params.wallet - the wallet who is the offerer
+   * @param {object} extra - other param to underlying client implementation
    * @returns {Promise} the `transaction` object once resolved
    */
-  client.prepareExchange = async ({
-    offerToken = 0,
-    offerAssets = [],
-    demandToken = 0,
-    demandAssets = [],
-    receiver = '',
-    memo = '',
-    delegator = '',
-    wallet,
-  }) =>
-    client.signExchangeTx({
-      tx: {
-        itx: {
-          to: receiver,
-          sender: {
-            value: await client.fromTokenToUnit(offerToken),
-            assets: Array.isArray(offerAssets) ? offerAssets : [],
-          },
-          receiver: {
-            value: await client.fromTokenToUnit(demandToken),
-            assets: Array.isArray(demandAssets) ? demandAssets : [],
-          },
-          data: {
-            typeUrl: 'json',
-            value: memo || 'empty',
+  client.prepareExchange = async (
+    {
+      offerToken = 0,
+      offerAssets = [],
+      demandToken = 0,
+      demandAssets = [],
+      receiver = '',
+      memo = '',
+      delegator = '',
+      wallet,
+    },
+    extra
+  ) =>
+    client.signExchangeTx(
+      {
+        tx: {
+          itx: {
+            to: receiver,
+            sender: {
+              value: await client.fromTokenToUnit(offerToken),
+              assets: Array.isArray(offerAssets) ? offerAssets : [],
+            },
+            receiver: {
+              value: await client.fromTokenToUnit(demandToken),
+              assets: Array.isArray(demandAssets) ? demandAssets : [],
+            },
+            data: {
+              typeUrl: 'json',
+              value: memo || 'empty',
+            },
           },
         },
+        delegator,
+        wallet,
       },
-      delegator,
-      wallet,
-    });
+      extra
+    );
 
   /**
    * Finalize an exchange transaction between multiple accounts
    *
    * @public
+   * @static
    * @param {object} params
    * @param {object} params.tx - the transaction object from `prepareExchange`
    * @param {string} params.delegator - who authorized this transaction
    * @param {object} params.data - extra data in the multi sig
    * @param {WalletObject} params.wallet - the wallet who is the demander
+   * @param {object} extra - other param to underlying client implementation
    * @returns {Promise} the `transaction` object once resolved
    */
-  client.finalizeExchange = ({ tx, delegator = '', data, wallet }) =>
-    client.multiSignExchangeTx({
-      tx,
-      delegator,
-      data,
-      wallet,
-    });
+  client.finalizeExchange = ({ tx, delegator = '', data, wallet }, extra) =>
+    client.multiSignExchangeTx(
+      {
+        tx,
+        delegator,
+        data,
+        wallet,
+      },
+      extra
+    );
 
   /**
    * Send an exchange transaction
    *
    * @public
+   * @static
    * @param {object} params
    * @param {object} params.tx - the transaction object from `finalizeExchange`
    * @param {WalletObject} params.wallet - the wallet to sign the transaction
+   * @param {object} extra - other param to underlying client implementation
    * @returns {Promise} the `transactionHash` once resolved
    */
-  client.exchange = ({ tx, wallet }) => client.sendExchangeTx({ tx, wallet });
+  client.exchange = ({ tx, wallet }, extra) => client.sendExchangeTx({ tx, wallet }, extra);
 
   /**
    * Send an poke transaction to get some token for free
    *
    * @public
+   * @static
    * @param {object} params
    * @param {WalletObject} params.wallet - the wallet to sign the transaction, also who will get the token
+   * @param {object} extra - other param to underlying client implementation
    * @returns {Promise} the `transactionHash` once resolved
    */
-  client.checkin = ({ wallet }) => {
+  client.checkin = ({ wallet }, extra) => {
     const date = new Date();
     const year = date.getUTCFullYear();
     const month = date.getUTCMonth() + 1;
     const day = date.getUTCDate();
 
-    return client.sendPokeTx({
-      tx: {
-        nonce: 0,
-        itx: {
-          date: `${year}-${padStart(month, 2, '0')}-${padStart(day, 2, '0')}`,
-          address: 'zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz',
+    return client.sendPokeTx(
+      {
+        tx: {
+          nonce: 0,
+          itx: {
+            date: `${year}-${padStart(month, 2, '0')}-${padStart(day, 2, '0')}`,
+            address: 'zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz',
+          },
         },
+        wallet,
       },
-      wallet,
-    });
+      extra
+    );
   };
 };
 

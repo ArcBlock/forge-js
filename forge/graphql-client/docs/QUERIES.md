@@ -1,6 +1,6 @@
 # Forge GraphQL API List
 
-> Updated on 2019-11-06T03:15:10.315Z
+> Updated on 2019-11-08T07:32:08.075Z
 
 
 ## Table of Contents
@@ -74,6 +74,66 @@
       context {
         genesisTime
         renaissanceTime
+        genesisTx {
+          code
+          hash
+          height
+          index
+          time
+          tags {
+            key
+            value
+          }
+          tx {
+            chainId
+            delegator
+            from
+            itxJson
+            nonce
+            pk
+            signature
+            signatures {
+              delegator
+              pk
+              signature
+              signer
+              data {
+                typeUrl
+                value
+              }
+            }
+          }
+        }
+        renaissanceTx {
+          code
+          hash
+          height
+          index
+          time
+          tags {
+            key
+            value
+          }
+          tx {
+            chainId
+            delegator
+            from
+            itxJson
+            nonce
+            pk
+            signature
+            signatures {
+              delegator
+              pk
+              signature
+              signer
+              data {
+                typeUrl
+                value
+              }
+            }
+          }
+        }
       }
       data {
         typeUrl
@@ -135,6 +195,66 @@
       context {
         genesisTime
         renaissanceTime
+        genesisTx {
+          code
+          hash
+          height
+          index
+          time
+          tags {
+            key
+            value
+          }
+          tx {
+            chainId
+            delegator
+            from
+            itxJson
+            nonce
+            pk
+            signature
+            signatures {
+              delegator
+              pk
+              signature
+              signer
+              data {
+                typeUrl
+                value
+              }
+            }
+          }
+        }
+        renaissanceTx {
+          code
+          hash
+          height
+          index
+          time
+          tags {
+            key
+            value
+          }
+          tx {
+            chainId
+            delegator
+            from
+            itxJson
+            nonce
+            pk
+            signature
+            signatures {
+              delegator
+              pk
+              signature
+              signer
+              data {
+                typeUrl
+                value
+              }
+            }
+          }
+        }
       }
       data {
         typeUrl
@@ -391,6 +511,66 @@ No arguments
       context {
         genesisTime
         renaissanceTime
+        genesisTx {
+          code
+          hash
+          height
+          index
+          time
+          tags {
+            key
+            value
+          }
+          tx {
+            chainId
+            delegator
+            from
+            itxJson
+            nonce
+            pk
+            signature
+            signatures {
+              delegator
+              pk
+              signature
+              signer
+              data {
+                typeUrl
+                value
+              }
+            }
+          }
+        }
+        renaissanceTx {
+          code
+          hash
+          height
+          index
+          time
+          tags {
+            key
+            value
+          }
+          tx {
+            chainId
+            delegator
+            from
+            itxJson
+            nonce
+            pk
+            signature
+            signatures {
+              delegator
+              pk
+              signature
+              signer
+              data {
+                typeUrl
+                value
+              }
+            }
+          }
+        }
       }
       data {
         typeUrl
@@ -468,6 +648,46 @@ No arguments
           context {
             genesisTime
             renaissanceTime
+            genesisTx {
+              code
+              hash
+              height
+              index
+              time
+              tags {
+                key
+                value
+              }
+              tx {
+                chainId
+                delegator
+                from
+                itxJson
+                nonce
+                pk
+                signature
+              }
+            }
+            renaissanceTx {
+              code
+              hash
+              height
+              index
+              time
+              tags {
+                key
+                value
+              }
+              tx {
+                chainId
+                delegator
+                from
+                itxJson
+                nonce
+                pk
+                signature
+              }
+            }
           }
         }
       }
@@ -793,6 +1013,66 @@ No arguments
       context {
         genesisTime
         renaissanceTime
+        genesisTx {
+          code
+          hash
+          height
+          index
+          time
+          tags {
+            key
+            value
+          }
+          tx {
+            chainId
+            delegator
+            from
+            itxJson
+            nonce
+            pk
+            signature
+            signatures {
+              delegator
+              pk
+              signature
+              signer
+              data {
+                typeUrl
+                value
+              }
+            }
+          }
+        }
+        renaissanceTx {
+          code
+          hash
+          height
+          index
+          time
+          tags {
+            key
+            value
+          }
+          tx {
+            chainId
+            delegator
+            from
+            itxJson
+            nonce
+            pk
+            signature
+            signatures {
+              delegator
+              pk
+              signature
+              signer
+              data {
+                typeUrl
+                value
+              }
+            }
+          }
+        }
       }
       data {
         typeUrl
@@ -906,6 +1186,66 @@ No arguments
       context {
         genesisTime
         renaissanceTime
+        genesisTx {
+          code
+          hash
+          height
+          index
+          time
+          tags {
+            key
+            value
+          }
+          tx {
+            chainId
+            delegator
+            from
+            itxJson
+            nonce
+            pk
+            signature
+            signatures {
+              delegator
+              pk
+              signature
+              signer
+              data {
+                typeUrl
+                value
+              }
+            }
+          }
+        }
+        renaissanceTx {
+          code
+          hash
+          height
+          index
+          time
+          tags {
+            key
+            value
+          }
+          tx {
+            chainId
+            delegator
+            from
+            itxJson
+            nonce
+            pk
+            signature
+            signatures {
+              delegator
+              pk
+              signature
+              signer
+              data {
+                typeUrl
+                value
+              }
+            }
+          }
+        }
       }
       data {
         typeUrl
@@ -943,6 +1283,66 @@ No arguments
       context {
         genesisTime
         renaissanceTime
+        genesisTx {
+          code
+          hash
+          height
+          index
+          time
+          tags {
+            key
+            value
+          }
+          tx {
+            chainId
+            delegator
+            from
+            itxJson
+            nonce
+            pk
+            signature
+            signatures {
+              delegator
+              pk
+              signature
+              signer
+              data {
+                typeUrl
+                value
+              }
+            }
+          }
+        }
+        renaissanceTx {
+          code
+          hash
+          height
+          index
+          time
+          tags {
+            key
+            value
+          }
+          tx {
+            chainId
+            delegator
+            from
+            itxJson
+            nonce
+            pk
+            signature
+            signatures {
+              delegator
+              pk
+              signature
+              signer
+              data {
+                typeUrl
+                value
+              }
+            }
+          }
+        }
       }
     }
   }
@@ -1276,6 +1676,66 @@ No arguments
       context {
         genesisTime
         renaissanceTime
+        genesisTx {
+          code
+          hash
+          height
+          index
+          time
+          tags {
+            key
+            value
+          }
+          tx {
+            chainId
+            delegator
+            from
+            itxJson
+            nonce
+            pk
+            signature
+            signatures {
+              delegator
+              pk
+              signature
+              signer
+              data {
+                typeUrl
+                value
+              }
+            }
+          }
+        }
+        renaissanceTx {
+          code
+          hash
+          height
+          index
+          time
+          tags {
+            key
+            value
+          }
+          tx {
+            chainId
+            delegator
+            from
+            itxJson
+            nonce
+            pk
+            signature
+            signatures {
+              delegator
+              pk
+              signature
+              signer
+              data {
+                typeUrl
+                value
+              }
+            }
+          }
+        }
       }
     }
   }
@@ -1422,6 +1882,66 @@ subscription {
       context {
         genesisTime
         renaissanceTime
+        genesisTx {
+          code
+          hash
+          height
+          index
+          time
+          tags {
+            key
+            value
+          }
+          tx {
+            chainId
+            delegator
+            from
+            itxJson
+            nonce
+            pk
+            signature
+            signatures {
+              delegator
+              pk
+              signature
+              signer
+              data {
+                typeUrl
+                value
+              }
+            }
+          }
+        }
+        renaissanceTx {
+          code
+          hash
+          height
+          index
+          time
+          tags {
+            key
+            value
+          }
+          tx {
+            chainId
+            delegator
+            from
+            itxJson
+            nonce
+            pk
+            signature
+            signatures {
+              delegator
+              pk
+              signature
+              signer
+              data {
+                typeUrl
+                value
+              }
+            }
+          }
+        }
       }
       data {
         typeUrl
@@ -1449,6 +1969,25 @@ subscription {
           items
           maxItems
           typeUrl
+        }
+      }
+    }
+    acquireAsset {
+      chainId
+      delegator
+      from
+      itxJson
+      nonce
+      pk
+      signature
+      signatures {
+        delegator
+        pk
+        signature
+        signer
+        data {
+          typeUrl
+          value
         }
       }
     }
@@ -1503,6 +2042,66 @@ subscription {
       context {
         genesisTime
         renaissanceTime
+        genesisTx {
+          code
+          hash
+          height
+          index
+          time
+          tags {
+            key
+            value
+          }
+          tx {
+            chainId
+            delegator
+            from
+            itxJson
+            nonce
+            pk
+            signature
+            signatures {
+              delegator
+              pk
+              signature
+              signer
+              data {
+                typeUrl
+                value
+              }
+            }
+          }
+        }
+        renaissanceTx {
+          code
+          hash
+          height
+          index
+          time
+          tags {
+            key
+            value
+          }
+          tx {
+            chainId
+            delegator
+            from
+            itxJson
+            nonce
+            pk
+            signature
+            signatures {
+              delegator
+              pk
+              signature
+              signer
+              data {
+                typeUrl
+                value
+              }
+            }
+          }
+        }
       }
       data {
         typeUrl
@@ -1613,6 +2212,25 @@ subscription {
         }
       }
     }
+    consumeAsset {
+      chainId
+      delegator
+      from
+      itxJson
+      nonce
+      pk
+      signature
+      signatures {
+        delegator
+        pk
+        signature
+        signer
+        data {
+          typeUrl
+          value
+        }
+      }
+    }
     createAsset {
       chainId
       delegator
@@ -1670,25 +2288,6 @@ subscription {
         }
       }
     }
-    declareFile {
-      chainId
-      delegator
-      from
-      itxJson
-      nonce
-      pk
-      signature
-      signatures {
-        delegator
-        pk
-        signature
-        signer
-        data {
-          typeUrl
-          value
-        }
-      }
-    }
     delegate {
       chainId
       delegator
@@ -1713,6 +2312,66 @@ subscription {
       context {
         genesisTime
         renaissanceTime
+        genesisTx {
+          code
+          hash
+          height
+          index
+          time
+          tags {
+            key
+            value
+          }
+          tx {
+            chainId
+            delegator
+            from
+            itxJson
+            nonce
+            pk
+            signature
+            signatures {
+              delegator
+              pk
+              signature
+              signer
+              data {
+                typeUrl
+                value
+              }
+            }
+          }
+        }
+        renaissanceTx {
+          code
+          hash
+          height
+          index
+          time
+          tags {
+            key
+            value
+          }
+          tx {
+            chainId
+            delegator
+            from
+            itxJson
+            nonce
+            pk
+            signature
+            signatures {
+              delegator
+              pk
+              signature
+              signer
+              data {
+                typeUrl
+                value
+              }
+            }
+          }
+        }
       }
       data {
         typeUrl
@@ -1726,6 +2385,25 @@ subscription {
           numTxs
           numTxsDelta
           rule
+        }
+      }
+    }
+    deployProtocol {
+      chainId
+      delegator
+      from
+      itxJson
+      nonce
+      pk
+      signature
+      signatures {
+        delegator
+        pk
+        signature
+        signer
+        data {
+          typeUrl
+          value
         }
       }
     }
@@ -1814,6 +2492,46 @@ subscription {
           context {
             genesisTime
             renaissanceTime
+            genesisTx {
+              code
+              hash
+              height
+              index
+              time
+              tags {
+                key
+                value
+              }
+              tx {
+                chainId
+                delegator
+                from
+                itxJson
+                nonce
+                pk
+                signature
+              }
+            }
+            renaissanceTx {
+              code
+              hash
+              height
+              index
+              time
+              tags {
+                key
+                value
+              }
+              tx {
+                chainId
+                delegator
+                from
+                itxJson
+                nonce
+                pk
+                signature
+              }
+            }
           }
         }
       }
@@ -1873,6 +2591,25 @@ subscription {
         version
       }
     }
+    poke {
+      chainId
+      delegator
+      from
+      itxJson
+      nonce
+      pk
+      signature
+      signatures {
+        delegator
+        pk
+        signature
+        signer
+        data {
+          typeUrl
+          value
+        }
+      }
+    }
     protocolState {
       address
       group
@@ -1883,13 +2620,73 @@ subscription {
       context {
         genesisTime
         renaissanceTime
+        genesisTx {
+          code
+          hash
+          height
+          index
+          time
+          tags {
+            key
+            value
+          }
+          tx {
+            chainId
+            delegator
+            from
+            itxJson
+            nonce
+            pk
+            signature
+            signatures {
+              delegator
+              pk
+              signature
+              signer
+              data {
+                typeUrl
+                value
+              }
+            }
+          }
+        }
+        renaissanceTx {
+          code
+          hash
+          height
+          index
+          time
+          tags {
+            key
+            value
+          }
+          tx {
+            chainId
+            delegator
+            from
+            itxJson
+            nonce
+            pk
+            signature
+            signatures {
+              delegator
+              pk
+              signature
+              signer
+              data {
+                typeUrl
+                value
+              }
+            }
+          }
+        }
       }
       data {
         typeUrl
         value
       }
     }
-    revoke {
+    retrieveSwap {
       chainId
       delegator
       from
@@ -1927,7 +2724,45 @@ subscription {
         }
       }
     }
+    revokeSwap {
+      chainId
+      delegator
+      from
+      itxJson
+      nonce
+      pk
+      signature
+      signatures {
+        delegator
+        pk
+        signature
+        signer
+        data {
+          typeUrl
+          value
+        }
+      }
+    }
     revokeWithdraw {
+      chainId
+      delegator
+      from
+      itxJson
+      nonce
+      pk
+      signature
+      signatures {
+        delegator
+        pk
+        signature
+        signer
+        data {
+          typeUrl
+          value
+        }
+      }
+    }
+    setupSwap {
       chainId
       delegator
       from
@@ -1974,10 +2809,145 @@ subscription {
       context {
         genesisTime
         renaissanceTime
+        genesisTx {
+          code
+          hash
+          height
+          index
+          time
+          tags {
+            key
+            value
+          }
+          tx {
+            chainId
+            delegator
+            from
+            itxJson
+            nonce
+            pk
+            signature
+            signatures {
+              delegator
+              pk
+              signature
+              signer
+              data {
+                typeUrl
+                value
+              }
+            }
+          }
+        }
+        renaissanceTx {
+          code
+          hash
+          height
+          index
+          time
+          tags {
+            key
+            value
+          }
+          tx {
+            chainId
+            delegator
+            from
+            itxJson
+            nonce
+            pk
+            signature
+            signatures {
+              delegator
+              pk
+              signature
+              signer
+              data {
+                typeUrl
+                value
+              }
+            }
+          }
+        }
       }
       data {
         typeUrl
         value
+      }
+    }
+    swapState {
+      address
+      assets
+      hash
+      hashkey
+      hashlock
+      locktime
+      receiver
+      sender
+      value
+      context {
+        genesisTime
+        renaissanceTime
+        genesisTx {
+          code
+          hash
+          height
+          index
+          time
+          tags {
+            key
+            value
+          }
+          tx {
+            chainId
+            delegator
+            from
+            itxJson
+            nonce
+            pk
+            signature
+            signatures {
+              delegator
+              pk
+              signature
+              signer
+              data {
+                typeUrl
+                value
+              }
+            }
+          }
+        }
+        renaissanceTx {
+          code
+          hash
+          height
+          index
+          time
+          tags {
+            key
+            value
+          }
+          tx {
+            chainId
+            delegator
+            from
+            itxJson
+            nonce
+            pk
+            signature
+            signatures {
+              delegator
+              pk
+              signature
+              signer
+              data {
+                typeUrl
+                value
+              }
+            }
+          }
+        }
       }
     }
     sysUpgrade {
@@ -2019,6 +2989,25 @@ subscription {
       }
     }
     updateAsset {
+      chainId
+      delegator
+      from
+      itxJson
+      nonce
+      pk
+      signature
+      signatures {
+        delegator
+        pk
+        signature
+        signer
+        data {
+          typeUrl
+          value
+        }
+      }
+    }
+    upgradeNode {
       chainId
       delegator
       from

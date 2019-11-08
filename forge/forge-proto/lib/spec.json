@@ -66,6 +66,7 @@
             "invalid_withdraw_tx": 66,
             "invalid_chain_type": 67,
             "invalid_time": 68,
+            "invalid_subscribe": 69,
             "forbidden": 403,
             "internal": 500,
             "timeout": 504,
@@ -694,12 +695,21 @@
                 "withdrawToken",
                 "approveWithdraw",
                 "revokeWithdraw",
+                "setupSwap",
+                "revokeSwap",
+                "retrieveSwap",
+                "poke",
+                "deployProtocol",
+                "consumeAsset",
+                "acquireAsset",
+                "upgradeNode",
                 "accountState",
                 "assetState",
                 "forgeState",
                 "stakeState",
                 "protocolState",
-                "delegateState"
+                "delegateState",
+                "swapState"
               ]
             }
           },
@@ -734,7 +744,10 @@
             },
             "revoke": {
               "type": "Transaction",
-              "id": 8
+              "id": 8,
+              "options": {
+                "deprecated": true
+              }
             },
             "beginBlock": {
               "type": "abci_vendor.RequestBeginBlock",
@@ -758,7 +771,10 @@
             },
             "declareFile": {
               "type": "Transaction",
-              "id": 22
+              "id": 22,
+              "options": {
+                "deprecated": true
+              }
             },
             "sysUpgrade": {
               "type": "Transaction",
@@ -800,6 +816,38 @@
               "type": "Transaction",
               "id": 32
             },
+            "setupSwap": {
+              "type": "Transaction",
+              "id": 33
+            },
+            "revokeSwap": {
+              "type": "Transaction",
+              "id": 34
+            },
+            "retrieveSwap": {
+              "type": "Transaction",
+              "id": 35
+            },
+            "poke": {
+              "type": "Transaction",
+              "id": 36
+            },
+            "deployProtocol": {
+              "type": "Transaction",
+              "id": 37
+            },
+            "consumeAsset": {
+              "type": "Transaction",
+              "id": 38
+            },
+            "acquireAsset": {
+              "type": "Transaction",
+              "id": 39
+            },
+            "upgradeNode": {
+              "type": "Transaction",
+              "id": 40
+            },
             "accountState": {
               "type": "AccountState",
               "id": 129
@@ -823,6 +871,10 @@
             "delegateState": {
               "type": "DelegateState",
               "id": 134
+            },
+            "swapState": {
+              "type": "SwapState",
+              "id": 135
             }
           }
         },

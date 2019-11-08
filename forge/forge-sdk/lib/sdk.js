@@ -67,7 +67,7 @@ module.exports = ({ message, util, wallet, clients }) => {
 
     if (conn) {
       if (connections[conn]) {
-        debug('pick connection by name', conn);
+        // debug('pick connection by name', conn);
         return connections[conn];
       }
 
@@ -76,12 +76,12 @@ module.exports = ({ message, util, wallet, clients }) => {
 
     for (let i = 0; i < names.length; i++) {
       if (connections[names[i]].options.default) {
-        debug('pick default connection', names[i]);
+        // debug('pick default connection', names[i]);
         return connections[names[i]];
       }
     }
 
-    debug('pick first connection', names[0]);
+    // debug('pick first connection', names[0]);
     return connections[names[0]];
   };
 
@@ -122,7 +122,7 @@ module.exports = ({ message, util, wallet, clients }) => {
     });
 
     keys.forEach(key => {
-      debug('proxy method', key);
+      // debug('proxy method', key);
       target[key] = function proxyMethod(...args) {
         const options = Array.from(args).pop() || {};
         const client = getClient(options.conn);

@@ -21,7 +21,8 @@
   "dependencies": {
     "@arcblock/forge-sdk": "^0.40.8",
     "@arcblock/tx-util": "^0.40.8",
-    "debug": "^4.1.1"
+    "debug": "^4.1.1",
+    "lodash": "^4.17.15"
   },
   "devDependencies": {
     "jest": "^24.8.0",
