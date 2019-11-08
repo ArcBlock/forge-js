@@ -7880,7 +7880,7 @@ if (goog.DEBUG && !COMPILED) {
  * @private {!Array<!Array<number>>}
  * @const
  */
-proto.forge_abi.ResponseSubscribe.oneofGroups_ = [[2,3,4,5,6,7,8,16,17,19,20,21,22,23,24,25,26,27,28,29,30,31,32,129,130,131,132,133,134]];
+proto.forge_abi.ResponseSubscribe.oneofGroups_ = [[2,3,4,5,6,7,8,16,17,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,129,130,131,132,133,134,135]];
 
 /**
  * @enum {number}
@@ -7910,12 +7910,21 @@ proto.forge_abi.ResponseSubscribe.ValueCase = {
   WITHDRAW_TOKEN: 30,
   APPROVE_WITHDRAW: 31,
   REVOKE_WITHDRAW: 32,
+  SETUP_SWAP: 33,
+  REVOKE_SWAP: 34,
+  RETRIEVE_SWAP: 35,
+  POKE: 36,
+  DEPLOY_PROTOCOL: 37,
+  CONSUME_ASSET: 38,
+  ACQUIRE_ASSET: 39,
+  UPGRADE_NODE: 40,
   ACCOUNT_STATE: 129,
   ASSET_STATE: 130,
   FORGE_STATE: 131,
   STAKE_STATE: 132,
   PROTOCOL_STATE: 133,
-  DELEGATE_STATE: 134
+  DELEGATE_STATE: 134,
+  SWAP_STATE: 135
 };
 
 /**
@@ -7978,12 +7987,21 @@ proto.forge_abi.ResponseSubscribe.toObject = function(includeInstance, msg) {
     withdrawToken: (f = msg.getWithdrawToken()) && type_pb.Transaction.toObject(includeInstance, f),
     approveWithdraw: (f = msg.getApproveWithdraw()) && type_pb.Transaction.toObject(includeInstance, f),
     revokeWithdraw: (f = msg.getRevokeWithdraw()) && type_pb.Transaction.toObject(includeInstance, f),
+    setupSwap: (f = msg.getSetupSwap()) && type_pb.Transaction.toObject(includeInstance, f),
+    revokeSwap: (f = msg.getRevokeSwap()) && type_pb.Transaction.toObject(includeInstance, f),
+    retrieveSwap: (f = msg.getRetrieveSwap()) && type_pb.Transaction.toObject(includeInstance, f),
+    poke: (f = msg.getPoke()) && type_pb.Transaction.toObject(includeInstance, f),
+    deployProtocol: (f = msg.getDeployProtocol()) && type_pb.Transaction.toObject(includeInstance, f),
+    consumeAsset: (f = msg.getConsumeAsset()) && type_pb.Transaction.toObject(includeInstance, f),
+    acquireAsset: (f = msg.getAcquireAsset()) && type_pb.Transaction.toObject(includeInstance, f),
+    upgradeNode: (f = msg.getUpgradeNode()) && type_pb.Transaction.toObject(includeInstance, f),
     accountState: (f = msg.getAccountState()) && state_pb.AccountState.toObject(includeInstance, f),
     assetState: (f = msg.getAssetState()) && state_pb.AssetState.toObject(includeInstance, f),
     forgeState: (f = msg.getForgeState()) && state_pb.ForgeState.toObject(includeInstance, f),
     stakeState: (f = msg.getStakeState()) && state_pb.StakeState.toObject(includeInstance, f),
     protocolState: (f = msg.getProtocolState()) && state_pb.ProtocolState.toObject(includeInstance, f),
-    delegateState: (f = msg.getDelegateState()) && state_pb.DelegateState.toObject(includeInstance, f)
+    delegateState: (f = msg.getDelegateState()) && state_pb.DelegateState.toObject(includeInstance, f),
+    swapState: (f = msg.getSwapState()) && state_pb.SwapState.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -8138,6 +8156,46 @@ proto.forge_abi.ResponseSubscribe.deserializeBinaryFromReader = function(msg, re
       reader.readMessage(value,type_pb.Transaction.deserializeBinaryFromReader);
       msg.setRevokeWithdraw(value);
       break;
+    case 33:
+      var value = new type_pb.Transaction;
+      reader.readMessage(value,type_pb.Transaction.deserializeBinaryFromReader);
+      msg.setSetupSwap(value);
+      break;
+    case 34:
+      var value = new type_pb.Transaction;
+      reader.readMessage(value,type_pb.Transaction.deserializeBinaryFromReader);
+      msg.setRevokeSwap(value);
+      break;
+    case 35:
+      var value = new type_pb.Transaction;
+      reader.readMessage(value,type_pb.Transaction.deserializeBinaryFromReader);
+      msg.setRetrieveSwap(value);
+      break;
+    case 36:
+      var value = new type_pb.Transaction;
+      reader.readMessage(value,type_pb.Transaction.deserializeBinaryFromReader);
+      msg.setPoke(value);
+      break;
+    case 37:
+      var value = new type_pb.Transaction;
+      reader.readMessage(value,type_pb.Transaction.deserializeBinaryFromReader);
+      msg.setDeployProtocol(value);
+      break;
+    case 38:
+      var value = new type_pb.Transaction;
+      reader.readMessage(value,type_pb.Transaction.deserializeBinaryFromReader);
+      msg.setConsumeAsset(value);
+      break;
+    case 39:
+      var value = new type_pb.Transaction;
+      reader.readMessage(value,type_pb.Transaction.deserializeBinaryFromReader);
+      msg.setAcquireAsset(value);
+      break;
+    case 40:
+      var value = new type_pb.Transaction;
+      reader.readMessage(value,type_pb.Transaction.deserializeBinaryFromReader);
+      msg.setUpgradeNode(value);
+      break;
     case 129:
       var value = new state_pb.AccountState;
       reader.readMessage(value,state_pb.AccountState.deserializeBinaryFromReader);
@@ -8167,6 +8225,11 @@ proto.forge_abi.ResponseSubscribe.deserializeBinaryFromReader = function(msg, re
       var value = new state_pb.DelegateState;
       reader.readMessage(value,state_pb.DelegateState.deserializeBinaryFromReader);
       msg.setDelegateState(value);
+      break;
+    case 135:
+      var value = new state_pb.SwapState;
+      reader.readMessage(value,state_pb.SwapState.deserializeBinaryFromReader);
+      msg.setSwapState(value);
       break;
     default:
       reader.skipField();
@@ -8387,6 +8450,70 @@ proto.forge_abi.ResponseSubscribe.serializeBinaryToWriter = function(message, wr
       type_pb.Transaction.serializeBinaryToWriter
     );
   }
+  f = message.getSetupSwap();
+  if (f != null) {
+    writer.writeMessage(
+      33,
+      f,
+      type_pb.Transaction.serializeBinaryToWriter
+    );
+  }
+  f = message.getRevokeSwap();
+  if (f != null) {
+    writer.writeMessage(
+      34,
+      f,
+      type_pb.Transaction.serializeBinaryToWriter
+    );
+  }
+  f = message.getRetrieveSwap();
+  if (f != null) {
+    writer.writeMessage(
+      35,
+      f,
+      type_pb.Transaction.serializeBinaryToWriter
+    );
+  }
+  f = message.getPoke();
+  if (f != null) {
+    writer.writeMessage(
+      36,
+      f,
+      type_pb.Transaction.serializeBinaryToWriter
+    );
+  }
+  f = message.getDeployProtocol();
+  if (f != null) {
+    writer.writeMessage(
+      37,
+      f,
+      type_pb.Transaction.serializeBinaryToWriter
+    );
+  }
+  f = message.getConsumeAsset();
+  if (f != null) {
+    writer.writeMessage(
+      38,
+      f,
+      type_pb.Transaction.serializeBinaryToWriter
+    );
+  }
+  f = message.getAcquireAsset();
+  if (f != null) {
+    writer.writeMessage(
+      39,
+      f,
+      type_pb.Transaction.serializeBinaryToWriter
+    );
+  }
+  f = message.getUpgradeNode();
+  if (f != null) {
+    writer.writeMessage(
+      40,
+      f,
+      type_pb.Transaction.serializeBinaryToWriter
+    );
+  }
   f = message.getAccountState();
   if (f != null) {
     writer.writeMessage(
@@ -8433,6 +8560,14 @@ proto.forge_abi.ResponseSubscribe.serializeBinaryToWriter = function(message, wr
       134,
       f,
       state_pb.DelegateState.serializeBinaryToWriter
+    );
+  }
+  f = message.getSwapState();
+  if (f != null) {
+    writer.writeMessage(
+      135,
+      f,
+      state_pb.SwapState.serializeBinaryToWriter
     );
   }
 };
@@ -9143,6 +9278,246 @@ proto.forge_abi.ResponseSubscribe.prototype.hasRevokeWithdraw = function() {
 
 
 /**
+ * optional Transaction setup_swap = 33;
+ * @return {?proto.forge_abi.Transaction}
+ */
+proto.forge_abi.ResponseSubscribe.prototype.getSetupSwap = function() {
+  return /** @type{?proto.forge_abi.Transaction} */ (
+    jspb.Message.getWrapperField(this, type_pb.Transaction, 33));
+};
+
+
+/** @param {?proto.forge_abi.Transaction|undefined} value */
+proto.forge_abi.ResponseSubscribe.prototype.setSetupSwap = function(value) {
+  jspb.Message.setOneofWrapperField(this, 33, proto.forge_abi.ResponseSubscribe.oneofGroups_[0], value);
+};
+
+
+proto.forge_abi.ResponseSubscribe.prototype.clearSetupSwap = function() {
+  this.setSetupSwap(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.forge_abi.ResponseSubscribe.prototype.hasSetupSwap = function() {
+  return jspb.Message.getField(this, 33) != null;
+};
+
+
+/**
+ * optional Transaction revoke_swap = 34;
+ * @return {?proto.forge_abi.Transaction}
+ */
+proto.forge_abi.ResponseSubscribe.prototype.getRevokeSwap = function() {
+  return /** @type{?proto.forge_abi.Transaction} */ (
+    jspb.Message.getWrapperField(this, type_pb.Transaction, 34));
+};
+
+
+/** @param {?proto.forge_abi.Transaction|undefined} value */
+proto.forge_abi.ResponseSubscribe.prototype.setRevokeSwap = function(value) {
+  jspb.Message.setOneofWrapperField(this, 34, proto.forge_abi.ResponseSubscribe.oneofGroups_[0], value);
+};
+
+
+proto.forge_abi.ResponseSubscribe.prototype.clearRevokeSwap = function() {
+  this.setRevokeSwap(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.forge_abi.ResponseSubscribe.prototype.hasRevokeSwap = function() {
+  return jspb.Message.getField(this, 34) != null;
+};
+
+
+/**
+ * optional Transaction retrieve_swap = 35;
+ * @return {?proto.forge_abi.Transaction}
+ */
+proto.forge_abi.ResponseSubscribe.prototype.getRetrieveSwap = function() {
+  return /** @type{?proto.forge_abi.Transaction} */ (
+    jspb.Message.getWrapperField(this, type_pb.Transaction, 35));
+};
+
+
+/** @param {?proto.forge_abi.Transaction|undefined} value */
+proto.forge_abi.ResponseSubscribe.prototype.setRetrieveSwap = function(value) {
+  jspb.Message.setOneofWrapperField(this, 35, proto.forge_abi.ResponseSubscribe.oneofGroups_[0], value);
+};
+
+
+proto.forge_abi.ResponseSubscribe.prototype.clearRetrieveSwap = function() {
+  this.setRetrieveSwap(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.forge_abi.ResponseSubscribe.prototype.hasRetrieveSwap = function() {
+  return jspb.Message.getField(this, 35) != null;
+};
+
+
+/**
+ * optional Transaction poke = 36;
+ * @return {?proto.forge_abi.Transaction}
+ */
+proto.forge_abi.ResponseSubscribe.prototype.getPoke = function() {
+  return /** @type{?proto.forge_abi.Transaction} */ (
+    jspb.Message.getWrapperField(this, type_pb.Transaction, 36));
+};
+
+
+/** @param {?proto.forge_abi.Transaction|undefined} value */
+proto.forge_abi.ResponseSubscribe.prototype.setPoke = function(value) {
+  jspb.Message.setOneofWrapperField(this, 36, proto.forge_abi.ResponseSubscribe.oneofGroups_[0], value);
+};
+
+
+proto.forge_abi.ResponseSubscribe.prototype.clearPoke = function() {
+  this.setPoke(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.forge_abi.ResponseSubscribe.prototype.hasPoke = function() {
+  return jspb.Message.getField(this, 36) != null;
+};
+
+
+/**
+ * optional Transaction deploy_protocol = 37;
+ * @return {?proto.forge_abi.Transaction}
+ */
+proto.forge_abi.ResponseSubscribe.prototype.getDeployProtocol = function() {
+  return /** @type{?proto.forge_abi.Transaction} */ (
+    jspb.Message.getWrapperField(this, type_pb.Transaction, 37));
+};
+
+
+/** @param {?proto.forge_abi.Transaction|undefined} value */
+proto.forge_abi.ResponseSubscribe.prototype.setDeployProtocol = function(value) {
+  jspb.Message.setOneofWrapperField(this, 37, proto.forge_abi.ResponseSubscribe.oneofGroups_[0], value);
+};
+
+
+proto.forge_abi.ResponseSubscribe.prototype.clearDeployProtocol = function() {
+  this.setDeployProtocol(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.forge_abi.ResponseSubscribe.prototype.hasDeployProtocol = function() {
+  return jspb.Message.getField(this, 37) != null;
+};
+
+
+/**
+ * optional Transaction consume_asset = 38;
+ * @return {?proto.forge_abi.Transaction}
+ */
+proto.forge_abi.ResponseSubscribe.prototype.getConsumeAsset = function() {
+  return /** @type{?proto.forge_abi.Transaction} */ (
+    jspb.Message.getWrapperField(this, type_pb.Transaction, 38));
+};
+
+
+/** @param {?proto.forge_abi.Transaction|undefined} value */
+proto.forge_abi.ResponseSubscribe.prototype.setConsumeAsset = function(value) {
+  jspb.Message.setOneofWrapperField(this, 38, proto.forge_abi.ResponseSubscribe.oneofGroups_[0], value);
+};
+
+
+proto.forge_abi.ResponseSubscribe.prototype.clearConsumeAsset = function() {
+  this.setConsumeAsset(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.forge_abi.ResponseSubscribe.prototype.hasConsumeAsset = function() {
+  return jspb.Message.getField(this, 38) != null;
+};
+
+
+/**
+ * optional Transaction acquire_asset = 39;
+ * @return {?proto.forge_abi.Transaction}
+ */
+proto.forge_abi.ResponseSubscribe.prototype.getAcquireAsset = function() {
+  return /** @type{?proto.forge_abi.Transaction} */ (
+    jspb.Message.getWrapperField(this, type_pb.Transaction, 39));
+};
+
+
+/** @param {?proto.forge_abi.Transaction|undefined} value */
+proto.forge_abi.ResponseSubscribe.prototype.setAcquireAsset = function(value) {
+  jspb.Message.setOneofWrapperField(this, 39, proto.forge_abi.ResponseSubscribe.oneofGroups_[0], value);
+};
+
+
+proto.forge_abi.ResponseSubscribe.prototype.clearAcquireAsset = function() {
+  this.setAcquireAsset(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.forge_abi.ResponseSubscribe.prototype.hasAcquireAsset = function() {
+  return jspb.Message.getField(this, 39) != null;
+};
+
+
+/**
+ * optional Transaction upgrade_node = 40;
+ * @return {?proto.forge_abi.Transaction}
+ */
+proto.forge_abi.ResponseSubscribe.prototype.getUpgradeNode = function() {
+  return /** @type{?proto.forge_abi.Transaction} */ (
+    jspb.Message.getWrapperField(this, type_pb.Transaction, 40));
+};
+
+
+/** @param {?proto.forge_abi.Transaction|undefined} value */
+proto.forge_abi.ResponseSubscribe.prototype.setUpgradeNode = function(value) {
+  jspb.Message.setOneofWrapperField(this, 40, proto.forge_abi.ResponseSubscribe.oneofGroups_[0], value);
+};
+
+
+proto.forge_abi.ResponseSubscribe.prototype.clearUpgradeNode = function() {
+  this.setUpgradeNode(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.forge_abi.ResponseSubscribe.prototype.hasUpgradeNode = function() {
+  return jspb.Message.getField(this, 40) != null;
+};
+
+
+/**
  * optional AccountState account_state = 129;
  * @return {?proto.forge_abi.AccountState}
  */
@@ -9319,6 +9694,36 @@ proto.forge_abi.ResponseSubscribe.prototype.clearDelegateState = function() {
  */
 proto.forge_abi.ResponseSubscribe.prototype.hasDelegateState = function() {
   return jspb.Message.getField(this, 134) != null;
+};
+
+
+/**
+ * optional SwapState swap_state = 135;
+ * @return {?proto.forge_abi.SwapState}
+ */
+proto.forge_abi.ResponseSubscribe.prototype.getSwapState = function() {
+  return /** @type{?proto.forge_abi.SwapState} */ (
+    jspb.Message.getWrapperField(this, state_pb.SwapState, 135));
+};
+
+
+/** @param {?proto.forge_abi.SwapState|undefined} value */
+proto.forge_abi.ResponseSubscribe.prototype.setSwapState = function(value) {
+  jspb.Message.setOneofWrapperField(this, 135, proto.forge_abi.ResponseSubscribe.oneofGroups_[0], value);
+};
+
+
+proto.forge_abi.ResponseSubscribe.prototype.clearSwapState = function() {
+  this.setSwapState(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.forge_abi.ResponseSubscribe.prototype.hasSwapState = function() {
+  return jspb.Message.getField(this, 135) != null;
 };
 
 
