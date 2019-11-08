@@ -6,6 +6,8 @@ const { toDid, toStrictHex, toTypeInfo, isValid, isFromPublicKey } = require('@a
 // eslint-disable-next-line
 const debug = require('debug')(require('../package.json').name);
 
+const DID_AUTH_PROTOCOL_VERSION = '1.0';
+
 const { types, getSigner } = Mcrypto;
 
 /**
@@ -47,6 +49,7 @@ const sign = (did, sk, payload = {}) => {
       iat: now,
       nbf: now,
       exp: now + 5 * 60,
+      version: DID_AUTH_PROTOCOL_VERSION,
     },
     payload || {}
   );
