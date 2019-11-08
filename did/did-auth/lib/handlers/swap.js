@@ -2,7 +2,7 @@
 /* eslint-disable object-curly-newline */
 const ForgeSDK = require('@arcblock/forge-sdk');
 const { createVerifier } = require('@arcblock/tx-util');
-const { createRetriever } = require('@arcblock/swap-retriever');
+const { createRetriever, verifyUserSwap } = require('@arcblock/swap-retriever');
 
 // eslint-disable-next-line
 const debug = require('debug')(`${require('../../package.json').name}:handlers:swap`);
@@ -353,17 +353,10 @@ class AtomicSwapHandlers {
                 { conn: this.demandChainId }
               );
 
-              // Verify the swap state for token amount
-              if (state.value !== req.swap.demandToken) {
-                return reject(new Error('User did not setup enough token in the swap'));
-              }
-              // Verify the swap state for asset list
-              if (Array.isArray(req.swap.demandAssets) && req.swap.demandAssets.length > 0) {
-                for (let i = 0; i < req.swap.demandAssets.length; i++) {
-                  if (state.assets.includes(req.swap.demandAssets[i]) === false) {
-                    return reject(new Error('User did not setup enough token in the swap'));
-                  }
-                }
+              try {
+                verifyUserSwap(state, req.swap);
+              } catch (err) {
+                return reject(err);
               }
 
               // Then setup swap for user

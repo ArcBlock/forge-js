@@ -11,6 +11,7 @@ const { decode, verify, sign } = require('../jwt');
 // eslint-disable-next-line
 const debug = require('debug')(`${require('../../package.json').name}:authenticator:wallet`);
 
+// FIXME: description fields should not exist here
 class WalletAuthenticator {
   /**
    * @typedef ApplicationInfo
@@ -300,11 +301,11 @@ class WalletAuthenticator {
   // 要求签名，可以是前 transaction 或者任意类型的消息
   async signature({ claim, userDid, userPk, extraParams }) {
     const {
-      txData,
-      txType,
+      data,
+      type = 'walletkit::signature',
       wallet,
       sender,
-      description,
+      description: desc,
       chainInfo,
       meta = {},
     } = await this.getClaimInfo({
@@ -314,17 +315,23 @@ class WalletAuthenticator {
       extraParams,
     });
 
-    debug('getClaim.signature', { txData, txType, sender, userDid, userPk });
+    debug('getClaim.signature', { data, type, sender, userDid, userPk });
 
-    // If we are signing a transaction
-    if (typeof ForgeSDK[`encode${txType}`] === 'function') {
-      if (!txData.pk) {
-        txData.pk = userPk;
+    const description = desc || 'Sign this transaction to continue.';
+
+    // We have to encode the transaction
+    if (type.endsWith('Tx')) {
+      if (typeof ForgeSDK[`encode${type}`] !== 'function') {
+        throw new Error(`Unsupported transaction type ${type}`);
       }
 
-      const { buffer: txBuffer } = await ForgeSDK[`encode${txType}`](
+      if (!data.pk) {
+        data.pk = userPk;
+      }
+
+      const { buffer: txBuffer } = await ForgeSDK[`encode${type}`](
         {
-          tx: txData,
+          tx: data,
           wallet: wallet || fromAddress(sender || userDid),
         },
         { conn: chainInfo ? chainInfo.id : this.chainInfo.id }
@@ -333,32 +340,52 @@ class WalletAuthenticator {
       return {
         type: 'signature',
         data: toBase58(Mcrypto.Hasher.SHA3.hash256(txBuffer)),
-        description: description || 'You have to sign this transaction to continue.',
+        description,
         typeUrl: 'fg:t:transaction',
         method: 'sha3',
         origin: toBase58(txBuffer),
         sig: '',
         chainInfo,
         meta: Object.assign(meta, {
-          // FIXME: these fields should not exist here
-          description: description || 'You have to sign this transaction to continue.',
+          description,
+          typeUrl: 'fg:t:transaction',
+        }),
+      };
+    }
+
+    // We have en encoded transaction
+    if (type === 'fg:t:transaction') {
+      return {
+        type: 'signature',
+        data: toBase58(Mcrypto.Hasher.SHA3.hash256(data)),
+        description,
+        typeUrl: 'fg:t:transaction',
+        method: 'sha3',
+        origin: toBase58(data),
+        sig: '',
+        chainInfo,
+        meta: Object.assign(meta, {
+          description,
           typeUrl: 'fg:t:transaction',
         }),
       };
     }
 
     // If we are ask user to sign anything
+    // TODO: https://github.com/ArcBlock/ABT-DID-Protocol/issues/46
     return {
       type: 'signature',
-      data: toBase58(txData),
-      description: description || 'Sign this message to continue.',
-      // TODO: https://github.com/ArcBlock/ABT-DID-Protocol/issues/46
-      typeUrl: 'walletkit::signature',
+      data: toBase58(data),
+      description: desc || 'Sign this message to continue.',
+      typeUrl: type,
       method: 'sha3',
-      origin: toBase58(txData),
+      origin: toBase58(data),
       sig: '',
       chainInfo,
-      meta,
+      meta: Object.assign(meta, {
+        description: desc || 'Sign this message to continue.',
+        typeUrl: type,
+      }),
     };
   }
 

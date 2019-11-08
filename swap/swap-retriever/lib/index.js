@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 const ForgeSDK = require('@arcblock/forge-sdk');
+const get = require('lodash/get');
 const { createVerifier } = require('@arcblock/tx-util');
 const { EventEmitter } = require('events');
 
@@ -109,39 +110,22 @@ const createRetriever = params => {
       ]);
 
       if (!source) {
-        const error = new Error(`Swap ${offerSwapAddress} not found on chain ${offerChainId}`);
+        const error = new Error(`Offer swap ${offerSwapAddress} not found on chain ${offerChainId}`); // prettier-ignore
         events.emit('error', { traceId, type: 'exception', error, retryCount });
         return;
       }
 
       if (!target) {
-        const error = new Error(`Swap ${demandSwapAddress} not found on chain ${demandChainId}`);
+        const error = new Error(`Demand swap ${demandSwapAddress} not found on chain ${demandChainId}`); // prettier-ignore
         events.emit('error', { traceId, type: 'exception', error, retryCount });
         return;
       }
 
       if (source.state && source.state.hashkey) {
-        debug('swap.retrieve.done.user', { traceId, retryCount });
-
         // Figure out user retrieve hash
-        try {
-          const { transactions } = await ForgeSDK.listTransactions(
-            {
-              addressFilter: { sender: demandUserAddress },
-              typeFilter: { types: ['fg:t:retrieve_swap'] },
-            },
-            { conn: offerChainId }
-          );
-
-          const tx = transactions.find(x => x.tx.itxJson === demandSwapAddress);
-          if (tx) {
-            debug('swap.retrieve.done.tx', { traceId, tx: tx.tx });
-            events.emit('retrieved.user', { traceId, hash: tx ? tx.hash : '', retryCount });
-          }
-        } catch (err) {
-          // console.error('swap.retrieve.done.error', err);
-          events.emit('retrieved.user', { traceId, hash: '', retryCount });
-        }
+        const demandRetrieveHash = get(source.state, 'context.renaissanceTx.hash', '');
+        debug('swap.retrieve.done.user', { traceId, demandRetrieveHash, retryCount });
+        events.emit('retrieved.user', { traceId, hash: demandRetrieveHash, retryCount });
 
         // Sent retrieve swap
         try {
@@ -198,6 +182,66 @@ const createRetriever = params => {
   return events;
 };
 
+/**
+ * Verify if a user swap is properly setup
+ *
+ * @param {object} swapState - swap state from on chain
+ * @param {object} swapStore - swap storage record
+ * @returns {boolean} - true on success
+ * @throws {Error}
+ */
+const verifyUserSwap = (swapState, swapStore) => {
+  const address = swapStore.demandSwapAddress;
+  const offerUser = swapStore.offerUserAddress;
+  const demandUser = swapStore.demandUserAddress;
+
+  if (!swapState) {
+    throw new Error(`User swap ${address} not found on demand chain`);
+  }
+
+  if (swapState.sender !== demandUser) {
+    const delegator = get(swapState, 'context.genesisTx.tx.delegator', '');
+    if (delegator && delegator !== demandUser) {
+      throw new Error(`User swap ${address} not delegated by ${demandUser}`);
+    }
+
+    throw new Error(`User swap ${address} not setup by ${demandUser}`);
+  }
+
+  if (swapState.receiver !== offerUser) {
+    throw new Error(`User swap ${address} not setup for ${offerUser}`);
+  }
+
+  if (swapState.locktime < swapStore.demandLocktime) {
+    throw new Error(`User swap ${address} does not have expected locktime`);
+  }
+
+  if (swapState.value !== swapStore.demandToken) {
+    throw new Error(`User swap ${address} not have enough token ${swapStore.demandToken}`);
+  }
+
+  if (Array.isArray(swapStore.demandAssets) && swapStore.demandAssets.length > 0) {
+    const storeAssets = [].concat(swapStore.demandAssets);
+    const stateAssets = [].concat(swapState.assets);
+
+    if (storeAssets.length !== stateAssets.length) {
+      throw new Error(`User swap ${address} not have enough assets`);
+    }
+
+    storeAssets.sort();
+    stateAssets.sort();
+
+    for (let i = 0; i < storeAssets.length; i++) {
+      if (storeAssets[i] !== stateAssets[i]) {
+        throw new Error(`User swap ${address} does not include exactly same assets`);
+      }
+    }
+  }
+
+  return true;
+};
+
 module.exports = {
   createRetriever,
+  verifyUserSwap,
 };
