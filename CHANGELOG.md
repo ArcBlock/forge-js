@@ -1,3 +1,14 @@
+## 0.40.10 (November 09, 2019)
+
+- fix: grpc-client test case
+- chore: update docs for grpc-client
+- chore: add test case for did-auth and atomic-swap handlers
+- chore: add memory storage for atomic-swap to easy test
+- chore: add memory storage for did-auth-storage to easy test
+- chore: test coverage for did-auth-authenticators
+- chore: test coverage for did-auth-storage
+- update readme
+
 ## 0.40.9 (November 08, 2019)
 
 - feat: support delegator in atomic-swap and better hash connecting
