@@ -185,7 +185,8 @@ class AtomicSwapHandlers {
 
     // Shared middleware that ensure a valid swap id exists in the url
     const ensureSwap = async (req, res, next) => {
-      const traceId = req.query.traceId || req.query[swapKey];
+      const traceId =
+        req.query.traceId || req.query[swapKey] || req.params.traceId || req.params[swapKey];
 
       if (!traceId) {
         return res.json({ error: 'Swap ID is required to start' });
@@ -196,7 +197,7 @@ class AtomicSwapHandlers {
         return res.json({ error: 'Swap not found' });
       }
 
-      req.traceId = req.traceId;
+      req.traceId = traceId;
       req.swap = swap;
 
       return next();
@@ -262,7 +263,8 @@ class AtomicSwapHandlers {
     const ensureWallet = ensureRequester('wallet');
     const ensureSignedRes = ensureSignedJson(!signedResponse);
 
-    // 0. create an empty swap data row
+    // 0. create swap or retrieve swap
+    app.get('/api/swap/:traceId', ensureSwap, async (req, res) => res.jsonp(req.swap));
     app.post('/api/swap', async (req, res) => {
       const swap = await this.start(req.body);
       return res.jsonp(swap);
@@ -283,7 +285,7 @@ class AtomicSwapHandlers {
     // 5. Wallet: submit auth response
     app.post(authPath, ensureWallet, ensureSignedRes, ensureSwap, ensureContext, onAuthResponse);
 
-    // 6. Wallet: simple auth principal stub that used for wallet to retrieve
+    // 6. Wallet: simple auth principal stub that used for wallet to pickup retrieve
     app.get(
       retrievePath,
       ensureWallet,

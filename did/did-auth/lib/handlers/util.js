@@ -268,23 +268,18 @@ module.exports = function createHandlers({
             // onAuth: send the tx/do the transfer, etc.
             const result = await onAuth(cbParams);
             await tokenStorage.update(token, { status: STATUS_SUCCEED });
-
-            // TODO: atomic-swap in wallet does not support signed response
-            if (req.swap) {
-              return res.json(Object.assign({}, result || {}));
-            }
-
             return res.json(Object.assign({}, result || {}));
           }
 
-          // Move to next step
-          await tokenStorage.update(token, { currentStep: store.currentStep + 1 });
+          // Move to next step: nextStep is persisted here to avoid an memory storage error
+          const nextStep = store.currentStep + 1;
+          await tokenStorage.update(token, { currentStep: nextStep });
           return res.jsonp(
             await authenticator.sign({
               token,
               userDid,
               userPk,
-              claims: steps[store.currentStep + 1],
+              claims: steps[nextStep],
               pathname,
               extraParams: createExtraParams(locale, req.query),
             })
@@ -299,6 +294,7 @@ module.exports = function createHandlers({
       const result = await onAuth(cbParams);
       res.json(Object.assign({}, result || {}));
     } catch (err) {
+      console.error(err);
       if (store) {
         debug('verify.error', token);
         await tokenStorage.update(token, { status: STATUS_ERROR, error: err.message });
@@ -310,7 +306,7 @@ module.exports = function createHandlers({
   };
 
   const ensureContext = async (req, res, next) => {
-    const params = Object.assign({}, req.body, req.query);
+    const params = Object.assign({}, req.body, req.query, req.params);
     const token = params[tokenKey];
     const locale = getLocale(req);
     const store = token ? await tokenStorage.read(token) : null;

@@ -148,17 +148,14 @@ class WalletAuthenticator extends BaseAuthenticator {
    * @param {object} params.extraParams - extra query params and locale
    * @returns {object} { appPk, authInfo }
    */
-  async sign({ token = '', userDid, userPk, claims, pathname, extraParams = {} }) {
-    if (!claims || Object.keys(claims).length === 0) {
-      throw new Error('Authenticator cannot sign without requested claims');
-    }
-
+  async sign({ token = '', userDid, userPk, claims, pathname = '', extraParams = {} }) {
     const isValidChainInfo = x => x && x.id && x.host;
 
     const claimsInfo = await this.genRequestedClaims({ claims, userDid, userPk, extraParams });
     const tmp = claimsInfo.find(x => isValidChainInfo(x.chainInfo));
 
     const payload = {
+      status: 'ok',
       action: 'responseAuth',
       appInfo: this.appInfo,
       chainInfo: tmp ? tmp.chainInfo : this.chainInfo,

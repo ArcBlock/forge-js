@@ -903,11 +903,16 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
       receiver = '',
       hashlock = '',
       locktime = 1000,
+      isLocktimeAbsolute = false,
       delegator = '',
       wallet,
     },
     extra
   ) => {
+    let finalLocktime = await client.toLocktime(locktime);
+    if (isLocktimeAbsolute) {
+      finalLocktime = locktime;
+    }
     const hash = await client.sendSetupSwapTx(
       {
         tx: {
@@ -916,7 +921,7 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
             assets,
             receiver,
             hashlock: toBuffer(hashlock),
-            locktime: await client.toLocktime(locktime),
+            locktime: finalLocktime,
           },
         },
         delegator,

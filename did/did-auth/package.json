@@ -16,19 +16,21 @@
   },
   "dependencies": {
     "@arcblock/did": "^0.40.9",
-    "@arcblock/did-auth-storage-memory": "^0.40.9",
     "@arcblock/forge-sdk": "^0.40.9",
     "@arcblock/forge-util": "^0.40.9",
     "@arcblock/forge-wallet": "^0.40.9",
     "@arcblock/mcrypto": "^0.40.9",
     "@arcblock/swap-retriever": "^0.40.9",
-    "@arcblock/swap-storage-memory": "^0.40.9",
     "@arcblock/tx-util": "^0.40.9",
+    "axios": "^0.19.0",
     "debug": "^4.1.1",
     "json-stable-stringify": "^1.0.1",
     "lodash.get": "^4.4.2"
   },
   "devDependencies": {
+    "@arcblock/did-auth-storage-memory": "^0.40.9",
+    "@arcblock/swap-storage-memory": "^0.40.9",
+    "create-test-server": "^3.0.1",
     "jest": "^24.8.0",
     "remark-cli": "^5.0.0",
     "remark-preset-github": "^0.0.9"

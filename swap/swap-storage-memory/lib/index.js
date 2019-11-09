@@ -46,7 +46,7 @@ class MemorySwapStorage extends StorageInterface {
       }
     });
 
-    storage[traceId] = Object.assign({ traceId }, payload);
+    storage[traceId] = Object.assign(storage[traceId], payload);
     this.emit('finalize', storage[traceId]);
     return storage[traceId];
   }
@@ -66,7 +66,7 @@ class MemorySwapStorage extends StorageInterface {
 
     updates.updatedAt = new Date();
 
-    storage[traceId] = Object.assign({ traceId }, updates);
+    storage[traceId] = Object.assign(storage[traceId], updates);
     this.emit('update', storage[traceId]);
     return storage[traceId];
   }

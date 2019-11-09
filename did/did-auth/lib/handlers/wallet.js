@@ -79,6 +79,9 @@ class WalletHandlers {
     if (typeof onComplete !== 'function') {
       throw new Error('onComplete callback is required to attach did auth handlers');
     }
+    if (!claims || Object.keys(claims).length === 0) {
+      throw new Error('claims are required to attach did auth handlers');
+    }
 
     // pathname for abt wallet, which will be included for authenticator signing
     const pathname = `${prefix}/${action}/auth`;
