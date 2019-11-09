@@ -161,22 +161,22 @@ console.log('rpc services generated', methods.length);
 
 // 3. generate shortcut transaction send/encode methods
 const encodeMethods = client.getTxEncodeMethods();
-const encodeMethodDocs = Object.keys(encodeMethods).map(
+const encodeMethodDocs = encodeMethods.map(
   x => `${x}(param: ${ns}.TxParam<${ns}.${encodeMethods[x]}>): Promise<${ns}.ResponseSendTx>;`
 );
 
 const sendMethods = client.getTxSendMethods();
-const sendMethodDocs = Object.keys(sendMethods).map(
+const sendMethodDocs = sendMethods.map(
   x => `${x}(param: ${ns}.TxParam<${ns}.${sendMethods[x]}>): Promise<${ns}.EncodeTxResult>;`
 );
 
 const signMethods = client.getTxSignMethods();
-const signMethodDocs = Object.keys(signMethods).map(
+const signMethodDocs = signMethods.map(
   x => `${x}(param: ${ns}.TxParam<${ns}.${signMethods[x]}>): Promise<${ns}.Transaction>;`
 );
 
 const multiSignMethods = client.getTxMultiSignMethods();
-const multiSignMethodDocs = Object.keys(multiSignMethods).map(
+const multiSignMethodDocs = multiSignMethods.map(
   x => `${x}(param: ${ns}.TxParam<${ns}.${multiSignMethods[x]}>): Promise<${ns}.Transaction>;`
 );
 
