@@ -7,7 +7,8 @@ const ForgeSDK = require('@arcblock/forge-sdk');
 const { toBase58 } = require('@arcblock/forge-util');
 const { fromAddress } = require('@arcblock/forge-wallet');
 const { toAddress } = require('@arcblock/did');
-const { sign } = require('../jwt');
+
+const Jwt = require('../jwt');
 const BaseAuthenticator = require('./base');
 
 // eslint-disable-next-line
@@ -132,7 +133,7 @@ class WalletAuthenticator extends BaseAuthenticator {
     debug('signResponse', { response, error });
     return {
       appPk: this.appPk,
-      authInfo: sign(this.wallet.address, this.wallet.sk, payload),
+      authInfo: Jwt.sign(this.wallet.address, this.wallet.sk, payload),
     };
   }
 
@@ -170,7 +171,7 @@ class WalletAuthenticator extends BaseAuthenticator {
     debug('responseAuth.sign', { token, userDid, payload, extraParams });
     return {
       appPk: this.appPk,
-      authInfo: sign(this.wallet.address, this.wallet.sk, payload),
+      authInfo: Jwt.sign(this.wallet.address, this.wallet.sk, payload),
     };
   }
 

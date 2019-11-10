@@ -1,4 +1,4 @@
-const { decode, verify } = require('../jwt');
+const Jwt = require('../jwt');
 
 // eslint-disable-next-line
 const debug = require('debug')(`${require('../../package.json').name}:authenticator:base`);
@@ -70,18 +70,18 @@ class BaseAuthenticator {
         return reject(new Error(errors.pkFormat[locale]));
       }
 
-      const isValid = verify(info, pk);
+      const isValid = Jwt.verify(info, pk);
       if (!isValid) {
         // NOTE: since the token can be invalid because of wallet-app clock not in sync
         // We should tell the user that if it's caused by clock
-        const isValidSig = verify(info, pk, 0, false);
+        const isValidSig = Jwt.verify(info, pk, { tolerance: 0, enforceTimestamp: false });
         if (enforceTimestamp) {
           const error = isValidSig ? errors.timeInvalid[locale] : errors.tokenInvalid[locale];
           return reject(new Error(error));
         }
       }
 
-      return resolve(decode(info));
+      return resolve(Jwt.decode(info));
     });
   }
 }

@@ -4,7 +4,8 @@
 const qs = require('querystring');
 const { toBase58 } = require('@arcblock/forge-util');
 const { toDid } = require('@arcblock/did');
-const { sign } = require('../jwt');
+
+const Jwt = require('../jwt');
 const WalletAuthenticator = require('./wallet');
 
 // eslint-disable-next-line
@@ -66,7 +67,7 @@ class AgentAuthenticator extends WalletAuthenticator {
     debug('responseAuth.sign', { token, userDid, payload, extraParams });
     return {
       appPk: toBase58(authorizer.pk),
-      authInfo: sign(this.wallet.address, this.wallet.sk, payload),
+      authInfo: Jwt.sign(this.wallet.address, this.wallet.sk, payload),
     };
   }
 

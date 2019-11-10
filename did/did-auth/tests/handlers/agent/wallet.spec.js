@@ -92,7 +92,8 @@ describe('#WalletHandlers', () => {
 
     // Test api endpoint
     const { data: info } = await axios.get(`${server.url}/api/agent/${authorizeId}/login/token`);
-    const getTokenState = () => axios.get(`${server.url}/api/agent/${authorizeId}/login/status?_t_=${info.token}`);
+    const getTokenState = () =>
+      axios.get(`${server.url}/api/agent/${authorizeId}/login/status?_t_=${info.token}`);
     expect(info.token).toBeTruthy();
 
     // Parse auth url from wallet
@@ -110,8 +111,7 @@ describe('#WalletHandlers', () => {
     // Simulate wallet scan
     const { data: info3 } = await axios.get(authUrl);
     expect(info3.appPk).toEqual(toBase58(authorizer.publicKey));
-    // FIXME: make this assertion pass
-    // expect(Jwt.verify(info3.authInfo, agent.publicKey)).toEqual(true);
+    expect(Jwt.verify(info3.authInfo, agent.publicKey, { signerKey: 'agentDid' })).toEqual(true);
 
     // Check token status
     const { data: info4 } = await getTokenState();
@@ -122,8 +122,7 @@ describe('#WalletHandlers', () => {
     const authInfo1 = Jwt.decode(info3.authInfo);
     expect(authInfo1.status).toEqual('ok');
     expect(authInfo1.iss).toEqual(`did:abt:${authorizer.toAddress()}`);
-    console.log('authInfo1', authInfo1);
-    return;
+    // console.log('authInfo1', authInfo1);
 
     // Submit auth principal
     const { data: info5 } = await axios.post(authInfo1.url, {
@@ -132,7 +131,7 @@ describe('#WalletHandlers', () => {
     });
     const authInfo2 = Jwt.decode(info5.authInfo);
     expect(authInfo2.status).toEqual('ok');
-    console.log('authInfo2', authInfo2);
+    // console.log('authInfo2', authInfo2);
 
     // Check store status: scanned
     const { data: info6 } = await getTokenState();

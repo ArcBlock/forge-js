@@ -223,7 +223,7 @@ module.exports = function createHandlers({
             userDid,
             userPk,
             claims: store ? steps[store.currentStep] : steps[0],
-            pathname,
+            pathname: getPathName(pathname, req),
             extraParams: createExtraParams(locale, req.query),
           })
         )
@@ -288,7 +288,7 @@ module.exports = function createHandlers({
                 userDid,
                 userPk,
                 claims: steps[nextStep],
-                pathname,
+                pathname: getPathName(pathname, req),
                 extraParams: createExtraParams(locale, req.query),
               })
             )

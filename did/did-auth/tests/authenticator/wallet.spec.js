@@ -4,8 +4,8 @@ const qs = require('querystring');
 const Mcrypto = require('@arcblock/mcrypto');
 const { fromRandom, WalletType } = require('@arcblock/forge-wallet');
 const { toBase58 } = require('@arcblock/forge-util');
-const { verify } = require('../../lib/jwt');
 const { WalletAuthenticator } = require('../../lib');
+const Jwt = require('../../lib/jwt');
 
 const type = WalletType({
   role: Mcrypto.types.RoleType.ROLE_APPLICATION,
@@ -119,7 +119,7 @@ describe('#WalletAuthenticator', () => {
 
     const signed = await auth.sign({ token: '123', userPk, userDid, claims });
     expect(signed.appPk).toEqual(toBase58(wallet.pk));
-    expect(verify(signed.authInfo, wallet.pk)).toBeTruthy();
+    expect(Jwt.verify(signed.authInfo, wallet.pk)).toBeTruthy();
   });
 
   test('should be able to verify client signed', async () => {
