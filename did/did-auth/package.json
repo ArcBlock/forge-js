@@ -15,6 +15,7 @@
     "access": "public"
   },
   "dependencies": {
+    "@arcblock/app-agent-storage-memory": "^0.40.9",
     "@arcblock/did": "^0.40.9",
     "@arcblock/forge-sdk": "^0.40.9",
     "@arcblock/forge-util": "^0.40.9",

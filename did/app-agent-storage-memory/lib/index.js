@@ -7,8 +7,8 @@ module.exports = class MemoryAgentStorage extends StorageInterface {
     return storage[authorizeId];
   }
 
-  create(authorizeId) {
-    storage[authorizeId] = { authorizeId };
+  create(authorizeId, payload = {}) {
+    storage[authorizeId] = Object.assign({ authorizeId }, payload);
     return this.read(authorizeId);
   }
 

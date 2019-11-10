@@ -24,7 +24,7 @@ Possible fields to exist in a did-agent storage record
 - `appPk`: Application public key
 - `appName`: Application name
 - `appDescription`: Application description
-- `appLogo`: Application logo
+- `appIcon`: Application logo/icon
 - `certificateContent`: Application authorize content
 - `certificateSignature`: Application authorize signature
 - `certificateContentSigned`: Application authorize signed

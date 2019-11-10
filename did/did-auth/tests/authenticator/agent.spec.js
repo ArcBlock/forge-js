@@ -35,7 +35,7 @@ describe('#AgentAuthenticator', () => {
     },
   });
 
-  test.only('should sign correct claims and verify those claims', async () => {
+  test('should sign correct claims and verify those claims', async () => {
     const user = fromRandom();
     const userPk = toBase58(user.publicKey);
     const userDid = user.toAddress();

@@ -8,6 +8,8 @@ const debug = require('debug')(`${require('../../package.json').name}:handlers:d
 const sha3 = Mcrypto.Hasher.SHA3.hash256;
 const getLocale = req => (req.acceptsLanguages('en-US', 'zh-CN') || 'en-US').split('-').shift();
 const getDidCheckSum = did => sha3(toAddress(did)).slice(2, 8);
+const noop = () => ({});
+const noTouch = x => x;
 
 const errors = {
   tokenMissing: {
@@ -50,6 +52,8 @@ module.exports = function createHandlers({
   tokenGenerator,
   tokenStorage,
   authenticator,
+  getSignParams = noop,
+  getPathName = noTouch,
   options,
 }) {
   const { sessionDidKey, tokenKey, checksumKey, authPrincipal } = options;
@@ -102,7 +106,7 @@ module.exports = function createHandlers({
         token,
         url: authenticator.uri({
           token,
-          pathname,
+          pathname: getPathName(pathname, req),
           query: Object.assign({ [checksumKey]: checksum }, req.query),
         }),
       });
@@ -211,15 +215,18 @@ module.exports = function createHandlers({
         await tokenStorage.update(token, { did: userDid, status: STATUS_SCANNED });
       }
 
+      const signParams = await getSignParams(req);
       res.jsonp(
-        await authenticator.sign({
-          token,
-          userDid,
-          userPk,
-          claims: store ? steps[store.currentStep] : steps[0],
-          pathname,
-          extraParams: createExtraParams(locale, req.query),
-        })
+        await authenticator.sign(
+          Object.assign(signParams, {
+            token,
+            userDid,
+            userPk,
+            claims: store ? steps[store.currentStep] : steps[0],
+            pathname,
+            extraParams: createExtraParams(locale, req.query),
+          })
+        )
       );
     } catch (err) {
       if (store) {
@@ -273,15 +280,18 @@ module.exports = function createHandlers({
           // Move to next step: nextStep is persisted here to avoid an memory storage error
           const nextStep = store.currentStep + 1;
           await tokenStorage.update(token, { currentStep: nextStep });
+          const signParams = await getSignParams(req);
           return res.jsonp(
-            await authenticator.sign({
-              token,
-              userDid,
-              userPk,
-              claims: steps[nextStep],
-              pathname,
-              extraParams: createExtraParams(locale, req.query),
-            })
+            await authenticator.sign(
+              Object.assign(signParams, {
+                token,
+                userDid,
+                userPk,
+                claims: steps[nextStep],
+                pathname,
+                extraParams: createExtraParams(locale, req.query),
+              })
+            )
           );
         }
 
