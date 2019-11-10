@@ -16,8 +16,14 @@ class WalletHandlers {
    * @param {object} config.tokenStorage - function to generate action token
    * @param {object} config.authenticator - Authenticator instance that can to jwt sign/verify
    * @param {function} [config.onPreAuth=noop] - function called before each auth request send back to app, used to check for permission, throw error to halt the auth process
+   * @param {object} [config.options={}] - custom options to define all handlers attached
+   * @param {string} [config.options.prefix='/api/did'] - url prefix for this group endpoints
+   * @param {string} [config.options.sessionDidKey='user.did'] - key path to extract session user did from request object
+   * @param {string} [config.options.tokenKey='_t_'] - query param key for `token`
+   * @param {string} [config.options.checksumKey='_cs_'] - query param key for `checksum`
+   * @param {boolean|string|did} [config.options.authPrincipal=true] - whether should we do auth principal claim first
    */
-  constructor({ tokenGenerator, tokenStorage, authenticator, onPreAuth = noop }) {
+  constructor({ tokenGenerator, tokenStorage, authenticator, onPreAuth = noop, options = {} }) {
     this.authenticator = authenticator;
     if (typeof tokenGenerator === 'function') {
       this.tokenGenerator = tokenGenerator;
@@ -31,6 +37,17 @@ class WalletHandlers {
     } else {
       this.onPreAuth = noop;
     }
+
+    this.options = Object.assign(
+      {
+        prefix: '/api/did',
+        sessionDidKey: 'user.did',
+        tokenKey: '_t_',
+        checksumKey: '_cs_',
+        authPrincipal: true,
+      },
+      options
+    );
   }
 
   /**
@@ -51,11 +68,6 @@ class WalletHandlers {
    * @param {function} [config.onComplete=noop] - callback when the whole auth process is done, action token is removed
    * @param {function} [config.onExpire=noop] - callback when the action token expired
    * @param {function} [config.onError=console.error] - callback when there are some errors
-   * @param {string} [config.prefix='/api/did'] - url prefix for this group endpoints
-   * @param {string} [config.sessionDidKey='user.did'] - key path to extract session user did from request object
-   * @param {string} [config.tokenKey='_t_'] - query param key for `token`
-   * @param {string} [config.checksumKey='_cs_'] - query param key for `checksum`
-   * @param {boolean|string|did} [config.authPrincipal=true] - whether should we do auth principal claim first
    * @return void
    */
   attach({
@@ -67,11 +79,6 @@ class WalletHandlers {
     onExpire = noop,
     // eslint-disable-next-line no-console
     onError = console.error,
-    prefix = '/api/did',
-    sessionDidKey = 'user.did',
-    tokenKey = '_t_',
-    checksumKey = '_cs_',
-    authPrincipal = true,
   }) {
     if (typeof onAuth !== 'function') {
       throw new Error('onAuth callback is required to attach did auth handlers');
@@ -82,6 +89,8 @@ class WalletHandlers {
     if (!claims || Object.keys(claims).length === 0) {
       throw new Error('claims are required to attach did auth handlers');
     }
+
+    const { prefix } = this.options;
 
     // pathname for abt wallet, which will be included for authenticator signing
     const pathname = `${prefix}/${action}/auth`;
@@ -104,14 +113,11 @@ class WalletHandlers {
       onComplete,
       onExpire,
       onError,
-      sessionDidKey,
-      tokenKey,
-      checksumKey,
+      options: this.options,
       onPreAuth: this.onPreAuth,
       tokenGenerator: this.tokenGenerator,
       tokenStorage: this.tokenStorage,
       authenticator: this.authenticator,
-      authPrincipal,
     });
 
     const ensureWeb = ensureRequester('web');

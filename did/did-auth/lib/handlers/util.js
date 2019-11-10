@@ -47,14 +47,13 @@ module.exports = function createHandlers({
   onComplete,
   onExpire,
   onError,
-  sessionDidKey,
-  tokenKey,
-  checksumKey,
   tokenGenerator,
   tokenStorage,
   authenticator,
-  authPrincipal,
+  options,
 }) {
+  const { sessionDidKey, tokenKey, checksumKey, authPrincipal } = options;
+
   // if user want to do multiple-step did-auth
   const steps = Array.isArray(claims) ? claims : [claims];
 

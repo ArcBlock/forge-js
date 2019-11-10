@@ -38,7 +38,6 @@ class WalletAuthenticator extends BaseAuthenticator {
    * @param {Wallet} config.wallet - wallet instance {@see @arcblock/forge-wallet}
    * @param {ApplicationInfo} config.appInfo - application basic info
    * @param {ChainInfo} config.chainInfo - application chain info
-   * @param {ChainInfo} [config.crossChainInfo={}] - asset chain info
    * @param {object} config.baseUrl - url to assemble wallet request uri
    * @param {string} [config.tokenKey='_t_'] - query param key for `token`
    * @example
@@ -61,15 +60,16 @@ class WalletAuthenticator extends BaseAuthenticator {
    *   },
    * });
    */
-  constructor({ wallet, appInfo, chainInfo, crossChainInfo, baseUrl, tokenKey = '_t_' }) {
+  constructor({ wallet, appInfo, chainInfo, baseUrl, tokenKey = '_t_' }) {
     super();
+
+    if (!baseUrl) {
+      throw new Error('WalletAuthenticator cannot work without a public accessible baseUrl');
+    }
 
     this.wallet = this._validateWallet(wallet);
     this.appInfo = this._validateAppInfo(appInfo, wallet);
     this.chainInfo = this._validateChainInfo(chainInfo);
-    if (crossChainInfo) {
-      this.crossChainInfo = this._validateChainInfo(crossChainInfo);
-    }
 
     this.baseUrl = baseUrl;
     this.tokenKey = tokenKey;
@@ -137,7 +137,7 @@ class WalletAuthenticator extends BaseAuthenticator {
   }
 
   /**
-   * Sign a auth response that returned to wallet: tell the wallet the appInfo/chainInfo/crossChainInfo
+   * Sign a auth response that returned to wallet: tell the wallet the appInfo/chainInfo
    *
    * @method
    * @param {object} params
@@ -149,10 +149,8 @@ class WalletAuthenticator extends BaseAuthenticator {
    * @returns {object} { appPk, authInfo }
    */
   async sign({ token = '', userDid, userPk, claims, pathname = '', extraParams = {} }) {
-    const isValidChainInfo = x => x && x.id && x.host;
-
     const claimsInfo = await this.genRequestedClaims({ claims, userDid, userPk, extraParams });
-    const tmp = claimsInfo.find(x => isValidChainInfo(x.chainInfo));
+    const tmp = claimsInfo.find(x => this._isValidChainInfo(x.chainInfo));
 
     const payload = {
       status: 'ok',
@@ -167,13 +165,6 @@ class WalletAuthenticator extends BaseAuthenticator {
         Object.assign({ [this.tokenKey]: token }, extraParams)
       )}`,
     };
-
-    if (
-      isValidChainInfo(this.crossChainInfo) &&
-      this.crossChainInfo.host !== payload.chainInfo.host
-    ) {
-      payload.crossChainInfo = this.crossChainInfo;
-    }
 
     debug('responseAuth.sign', { token, userDid, payload, extraParams });
     return {
@@ -468,6 +459,10 @@ class WalletAuthenticator extends BaseAuthenticator {
     }
 
     return chainInfo;
+  }
+
+  _isValidChainInfo(x) {
+    return x && x.id && x.host;
   }
 }
 

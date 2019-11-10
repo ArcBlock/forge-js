@@ -5,7 +5,7 @@ const Mcrypto = require('@arcblock/mcrypto');
 const { fromRandom, WalletType } = require('@arcblock/forge-wallet');
 const { toBase58 } = require('@arcblock/forge-util');
 const { verify } = require('../../lib/jwt');
-const Authenticator = require('../../lib').WalletAuthenticator;
+const { WalletAuthenticator } = require('../../lib');
 
 const type = WalletType({
   role: Mcrypto.types.RoleType.ROLE_APPLICATION,
@@ -17,24 +17,25 @@ const wallet = fromRandom(type).toJSON();
 const chainHost = 'https://zinc.abtnetwork.io/api';
 const chainId = 'zinc-2019-05-17';
 
-describe('#Authenticator', () => {
+describe('#WalletAuthenticator', () => {
   test('should be a function', () => {
-    expect(typeof Authenticator).toEqual('function');
+    expect(typeof WalletAuthenticator).toEqual('function');
   });
 
   test('should throw error with invalid param', () => {
     try {
-      const auth = new Authenticator({});
+      const auth = new WalletAuthenticator({ baseUrl: chainHost });
     } catch (err) {
       expect(err.message.indexOf('wallet') > 0).toBeTruthy();
     }
     try {
-      const auth = new Authenticator({ wallet: { sk: '123', pk: '' } });
+      const auth = new WalletAuthenticator({ baseUrl: chainHost, wallet: { sk: '123', pk: '' } });
     } catch (err) {
       expect(err.message.indexOf('wallet.pk') > 0).toBeTruthy();
     }
     try {
-      const auth = new Authenticator({
+      const auth = new WalletAuthenticator({
+        baseUrl: chainHost,
         wallet: { sk: '123', pk: '456', address: '789' },
         appInfo: {},
       });
@@ -42,7 +43,8 @@ describe('#Authenticator', () => {
       expect(err.message.indexOf('appInfo') > 0).toBeTruthy();
     }
     try {
-      const auth = new Authenticator({
+      const auth = new WalletAuthenticator({
+        baseUrl: chainHost,
         wallet: { sk: '123', pk: '456', address: '789' },
         appInfo: { name: '123', description: '456', icon: '789' },
         chainInfo: {},
@@ -52,7 +54,7 @@ describe('#Authenticator', () => {
     }
   });
 
-  const auth = new Authenticator({
+  const auth = new WalletAuthenticator({
     wallet,
     baseUrl: 'http://zinc.abtnetwork.io/webapp',
     appInfo: {
