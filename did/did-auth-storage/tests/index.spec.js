@@ -11,53 +11,16 @@ describe('#Storage', () => {
     expect(typeof storage.emit).toEqual('function');
   });
 
-  test('should have create method', () => {
-    const storage = new Storage();
-    expect(typeof storage.create).toEqual('function');
-    try {
-      storage.create();
-    } catch (err) {
-      expect(err).toBeTruthy();
-    }
-  });
-
-  test('should have update method', () => {
-    const storage = new Storage();
-    expect(typeof storage.update).toEqual('function');
-    try {
-      storage.update();
-    } catch (err) {
-      expect(err).toBeTruthy();
-    }
-  });
-
-  test('should have delete method', () => {
-    const storage = new Storage();
-    expect(typeof storage.delete).toEqual('function');
-    try {
-      storage.delete();
-    } catch (err) {
-      expect(err).toBeTruthy();
-    }
-  });
-
-  test('should have read method', () => {
-    const storage = new Storage();
-    expect(typeof storage.read).toEqual('function');
-    try {
-      storage.read();
-    } catch (err) {
-      expect(err).toBeTruthy();
-    }
-  });
-
-  test('should have exist method', () => {
-    const storage = new Storage();
-    expect(typeof storage.exist).toEqual('function');
-    try {
-      storage.exist();
-    } catch (err) {
-      expect(err).toBeTruthy();
-    }
+  const methods = ['create', 'update', 'delete', 'read', 'exist'];
+  methods.forEach(x => {
+    test(`should have ${x} method`, () => {
+      const storage = new Storage();
+      expect(typeof storage[x]).toEqual('function');
+      try {
+        storage.create();
+      } catch (err) {
+        expect(err).toBeTruthy();
+      }
+    });
   });
 });
