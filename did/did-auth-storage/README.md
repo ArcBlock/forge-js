@@ -1,4 +1,4 @@
-# [**@arcblock/did-auth-storage**](https://github.com/arcblock/abt-did-js)
+# [**@arcblock/did-auth-storage**](https://github.com/arcblock/forge-js)
 
 [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 
