@@ -1,4 +1,4 @@
-const StorageInterface = require('@arcblock/app-agent-storage');
+const StorageInterface = require('@arcblock/did-agent-storage');
 
 let storage = {};
 
