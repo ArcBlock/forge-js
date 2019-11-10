@@ -1,19 +1,30 @@
 // Generate by [js2dts@0.3.3](https://github.com/whxaxes/js2dts#readme)
 
 import { EventEmitter } from 'events';
-declare class AuthStorage extends EventEmitter {
+/**
+ * Defines the interface of DID-Auth Token Storage
+ * Which is used during the DID-Auth process in an typical application
+ *
+ * @class DidAgentStorage
+ * @see @arcblock/did-auth-storage-firebase
+ * @see @arcblock/did-auth-storage-mongo
+ * @see @arcblock/did-auth-storage-keystone
+ * @extends {EventEmitter}
+ */
+declare class DidAgentStorage extends EventEmitter {
   /**
-   * Creates an instance of AuthStorage.
+   * Creates an instance of DidAgentStorage.
    *
    * @class
    * @param {object} options
    */
   constructor(options: any);
-  create(token: any, status?: string): void;
-  read(token: any): void;
-  update(token: any, updates: any): void;
-  delete(token: any): void;
-  exist(token: any, did: any): void;
+  create(authorizeId: any): void;
+  update(authorizeId: any, updates: any): void;
+  read(authorizeId: any): void;
+  delete(authorizeId: any): void;
+  listByOwner(ownerDid: any): void;
+  listByApp(appDid: any): void;
 }
-declare const _Lib: typeof AuthStorage;
+declare const _Lib: typeof DidAgentStorage;
 export = _Lib;

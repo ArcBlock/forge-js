@@ -4,12 +4,16 @@
 
 > Interface for define a storage class that can be used by [@arcblock/did-auth].
 
+
 ## Table of Contents
 
-- [Motivation & Spec](#motivation--spec)
-- [Install](#install)
-- [Usage](#usage)
-- [Contributors](#contributors)
+* [Motivation & Spec](#motivation--spec)
+  * [Fields](#fields)
+  * [APIs](#apis)
+* [Install](#install)
+* [Usage](#usage)
+* [Contributors](#contributors)
+
 
 ## Motivation & Spec
 
@@ -17,28 +21,29 @@
 
 Possible fields to exist in a did-agent storage record
 
-- `authorizeId`: Primary key
-- `ownerDid`: Owner DID
-- `agentDid`: Agent DID
-- `appDid`: Application DID
-- `appPk`: Application public key
-- `appName`: Application name
-- `appDescription`: Application description
-- `appIcon`: Application logo/icon
-- `certificateContent`: Application authorize content
-- `certificateSignature`: Application authorize signature
-- `certificateContentSigned`: Application authorize signed
+* `authorizeId`: Primary key
+* `ownerDid`: Owner DID
+* `agentDid`: Agent DID
+* `appDid`: Application DID
+* `appPk`: Application public key
+* `appName`: Application name
+* `appDescription`: Application description
+* `appIcon`: Application logo/icon
+* `certificateContent`: Application authorize content
+* `certificateSignature`: Application authorize signature
+* `certificateContentSigned`: Application authorize signed
 
 ### APIs
 
 Basic APIs that a did-agent storage should support:
 
-- `create(authorizeId, payload)`: 创建记录
-- `update(authorizeId, updates)`: 更新记录
-- `read(authorizeId)`：按 authorizeId 查询
-- `delete(authorizeId)`：删除记录
-- `listByApp(appDid)`: 按应用查询
-- `listByOwner(ownerDid)`: 按所有者查询
+* `create(authorizeId, payload)`: 创建记录
+* `update(authorizeId, updates)`: 更新记录
+* `read(authorizeId)`：按 authorizeId 查询
+* `delete(authorizeId)`：删除记录
+* `listByApp(appDid)`: 按应用查询
+* `listByOwner(ownerDid)`: 按所有者查询
+
 
 ## Install
 
@@ -48,39 +53,50 @@ npm install @arcblock/app-agent-storage
 yarn add @arcblock/app-agent-storage
 ```
 
+
 ## Usage
 
 ```js
 const StorageInterface = require('@arcblock/app-agent-storage');
-
-module.exports = class KeystoneStorage extends StorageInterface {
-  constructor() {
-    this.model = keystone.list('LoginToken').model;
+let storage = {};
+module.exports = class MemoryAgentStorage extends StorageInterface {
+  read(authorizeId) {
+    return storage[authorizeId];
   }
 
-  create(token, status = 'created') {
-    const LoginToken = this.model;
-    const item = new LoginToken({ token, status });
-    return item.save();
+  create(authorizeId, payload = {}) {
+    storage[authorizeId] = Object.assign({ authorizeId }, payload);
+    return this.read(authorizeId);
   }
 
-  read(token) {
-    return this.model.findOne({ token });
+  update(authorizeId, updates) {
+    delete updates.authorizeId;
+    storage[authorizeId] = Object.assign(storage[authorizeId], updates);
+    return storage[authorizeId];
   }
 
-  update(token, updates) {
-    return this.model.findOneAndUpdate({ token }, updates);
+  delete(authorizeId) {
+    delete storage[authorizeId];
   }
 
-  delete(token) {
-    return this.model.remove({ token });
+  listByOwner(ownerDid) {
+    Object.keys(storage)
+      .filter(x => storage[x].ownerDid === ownerDid)
+      .map(x => storage[x]);
   }
 
-  exist(token, did) {
-    return this.model.findOne({ token, did });
+  listByApp(appDid) {
+    Object.keys(storage)
+      .filter(x => storage[x].appDid === appDid)
+      .map(x => storage[x]);
+  }
+
+  clear() {
+    storage = {};
   }
 };
 ```
+
 
 ## Contributors
 

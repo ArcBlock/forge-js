@@ -1,11 +1,11 @@
 
 ## [**@arcblock/forge-config**](https://github.com/arcblock/forge-config)
 
-Contains helper methods to parse forge config file
+Contains helper methods to parse forge config
 
 ### parse(configPath) ⇒ `object`
 
-Parse config from a file
+Parse config from a standard forge release configuration file
 
 **Kind**: static method  
 **Throws**:

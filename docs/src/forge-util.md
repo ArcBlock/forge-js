@@ -12,7 +12,7 @@ tags:
 
 ## [**@arcblock/forge-util**](https://github.com/arcblock/forge-util)
 
-Contains many utility functions to help developers manipulate encoding/decoding/formatting/bignumber
+Contains utility functions to help developers manipulate encoding/decoding/formatting/bignumber
 
 **Example**  
 
@@ -50,7 +50,7 @@ yarn add @arcblock/forge-util
 
 ### isHexPrefixed(str) ⇒ `Boolean`
 
-Returns a `Boolean` on whether or not the a `String` starts with '0x'
+Returns a `boolean` on whether or not the a `string` starts with '0x'
 
 **Kind**: static method  
 **Returns**: `Boolean` - a boolean if it is or is not hex prefixed  
@@ -278,7 +278,7 @@ Check if a string is valid UUID
 
 ### toUint8Array(v) ⇒ `Uint8Array`
 
-Convert input to Uint8Array on best effort
+Convert input to Uint8Array on best effort, base64 node supported
 
 **Kind**: static method  
 **Throws**:
@@ -293,7 +293,7 @@ Convert input to Uint8Array on best effort
 
 ### toBuffer(v) ⇒ `buffer`
 
-Convert input to Buffer on best effort
+Convert input to Buffer on best effort, base64 not supported
 
 **Kind**: static method  
 **Throws**:
@@ -350,7 +350,7 @@ Convert input to base64 format
 
 ### fromBase64(v) ⇒ `buffer`
 
-Decode base64 string to buffer
+Decode base64(base64_url) string to buffer
 
 **Kind**: static method  
 **Access**: public  

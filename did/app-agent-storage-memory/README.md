@@ -4,11 +4,13 @@
 
 > Storage engine that uses mongo to store data, implements interfaces defined in `@arcblock/did-auth-storage`.
 
+
 ## Table of Contents
 
-- [Install](#install)
-- [Usage](#usage)
-- [Contributors](#contributors)
+* [Install](#install)
+* [Usage](#usage)
+* [Contributors](#contributors)
+
 
 ## Install
 
@@ -17,6 +19,7 @@ npm install @arcblock/app-agent-storage-memory
 // or
 yarn add @arcblock/app-agent-storage-memory
 ```
+
 
 ## Usage
 
@@ -30,6 +33,7 @@ const storage = new MemoryStorage();
   const item = await storage.create(token);
 })();
 ```
+
 
 ## Contributors
 

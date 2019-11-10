@@ -10,7 +10,7 @@
  */
 declare function isUint8Array(value: any): boolean;
 /**
- * Convert input to Uint8Array on best effort
+ * Convert input to Uint8Array on best effort, base64 node supported
  *
  * @public
  * @static
@@ -20,7 +20,7 @@ declare function isUint8Array(value: any): boolean;
  */
 declare function toUint8Array(v: any): Uint8Array;
 /**
- * Convert input to Buffer on best effort
+ * Convert input to Buffer on best effort, base64 not supported
  *
  * @public
  * @static
@@ -60,7 +60,7 @@ declare function fromBase58(v: string): any;
  */
 declare function toBase64(v: any, escape?: typeof escape): string;
 /**
- * Decode base64 string to buffer
+ * Decode base64(base64_url) string to buffer
  *
  * @public
  * @static

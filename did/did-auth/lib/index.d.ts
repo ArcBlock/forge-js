@@ -1,6 +1,7 @@
 // Generate by [js2dts@0.3.3](https://github.com/whxaxes/js2dts#readme)
 
-declare class BaseAuthenticator {}
+declare class BaseAuthenticator {
+}
 declare class WalletAuthenticator extends BaseAuthenticator {
   wallet: any;
   appInfo: any;
@@ -275,6 +276,13 @@ declare class AppHandlers {
   getSecureResponseHandler(): (req: any, res: any, next: any) => void;
   getRequestValidateHandler(): (req: any, res: any, next: any) => Promise<void>;
 }
+/**
+ * Authenticator that can be used to sign did-auth payment on-behalf of another application
+ * Can be used to build centralized platform services that aims to ease the life of developers
+ *
+ * @class AgentAuthenticator
+ * @extends {WalletAuthenticator}
+ */
 declare class AgentAuthenticator extends WalletAuthenticator {
   /**
    * Sign a auth response that returned to wallet: tell the wallet the appInfo/chainInfo

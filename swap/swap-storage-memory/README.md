@@ -4,11 +4,13 @@
 
 > Storage engine that uses memory to store data, implements interfaces defined in `@arcblock/swap-storage`.
 
+
 ## Table of Contents
 
-- [Install](#install)
-- [Usage](#usage)
-- [Contributors](#contributors)
+* [Install](#install)
+* [Usage](#usage)
+* [Contributors](#contributors)
+
 
 ## Install
 
@@ -17,6 +19,7 @@ npm install @arcblock/swap-storage-memory
 // or
 yarn add @arcblock/swap-storage-memory
 ```
+
 
 ## Usage
 
@@ -29,6 +32,7 @@ const storage = new MemoryStorage();
   const item = await storage.create({});
 })();
 ```
+
 
 ## Contributors
 

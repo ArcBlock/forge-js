@@ -1,7 +1,7 @@
 // Generate by [js2dts@0.3.3](https://github.com/whxaxes/js2dts#readme)
 
 /**
- * Parse config from a file
+ * Parse config from a standard forge release configuration file
  *
  * @public
  * @static

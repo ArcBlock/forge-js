@@ -1,6 +1,6 @@
 ---
-title: '@arcblock/did-auth-storage'
-description: 'Storage interface for did-auth'
+title: '@arcblock/app-agent-storage'
+description: 'Storage interface for delegated did-auth between application and wallet'
 keywords: 'forge, sdk, javascript'
 author: 'wangshijun'
 category: 'packages'
@@ -13,14 +13,14 @@ tags:
 ## Classes
 
 <dl>
-<dt><a href="#AuthStorage">AuthStorage</a> ⇐ `EventEmitter`</dt>
+<dt><a href="#DidAgentStorage">DidAgentStorage</a> ⇐ `EventEmitter`</dt>
 <dd></dd>
-<dt><a href="#AuthStorage">AuthStorage</a></dt>
+<dt><a href="#DidAgentStorage">DidAgentStorage</a></dt>
 <dd></dd>
 </dl>
 
 
-## AuthStorage ⇐ `EventEmitter`
+## DidAgentStorage ⇐ `EventEmitter`
 
 **Kind**: global class  
 **Extends**: `EventEmitter`  
@@ -31,40 +31,40 @@ tags:
 * [**@arcblock/did-auth-storage-keystone**](https://github.com/arcblock/did-auth-storage-keystone)
 
 
-* [AuthStorage](#AuthStorage) ⇐ `EventEmitter`
-  * [new AuthStorage()](#new_AuthStorage_new)
-  * [new AuthStorage(options)](#new_AuthStorage_new)
+* [DidAgentStorage](#DidAgentStorage) ⇐ `EventEmitter`
+  * [new DidAgentStorage()](#new_DidAgentStorage_new)
+  * [new DidAgentStorage(options)](#new_DidAgentStorage_new)
 
-### new AuthStorage()
+### new DidAgentStorage()
 
 Defines the interface of DID-Auth Token Storage
 Which is used during the DID-Auth process in an typical application
 
-### new AuthStorage(options)
+### new DidAgentStorage(options)
 
-Creates an instance of AuthStorage.
+Creates an instance of DidAgentStorage.
 
 | Param   | Type     |
 | ------- | -------- |
 | options | `object` |
 
 
-## AuthStorage
+## DidAgentStorage
 
 **Kind**: global class  
 
-* [AuthStorage](#AuthStorage)
-  * [new AuthStorage()](#new_AuthStorage_new)
-  * [new AuthStorage(options)](#new_AuthStorage_new)
+* [DidAgentStorage](#DidAgentStorage)
+  * [new DidAgentStorage()](#new_DidAgentStorage_new)
+  * [new DidAgentStorage(options)](#new_DidAgentStorage_new)
 
-### new AuthStorage()
+### new DidAgentStorage()
 
 Defines the interface of DID-Auth Token Storage
 Which is used during the DID-Auth process in an typical application
 
-### new AuthStorage(options)
+### new DidAgentStorage(options)
 
-Creates an instance of AuthStorage.
+Creates an instance of DidAgentStorage.
 
 | Param   | Type     |
 | ------- | -------- |

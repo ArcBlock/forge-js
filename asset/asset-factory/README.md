@@ -6,12 +6,13 @@
 
 > Utility to create standard assets that can be rendered in [ABT Wallet](https://www.abtwallet.io)
 
+
 ## Table of Contents
 
-- [Table of Contents](#table-of-contents)
-- [Install](#install)
-- [Usage](#usage)
-- [Documentation](#documentation)
+* [Install](#install)
+* [Usage](#usage)
+* [Documentation](#documentation)
+
 
 ## Install
 
@@ -20,6 +21,7 @@ npm install @arcblock/asset-factory
 // or
 yarn add @arcblock/asset-factory
 ```
+
 
 ## Usage
 
@@ -56,6 +58,7 @@ const [asset, hash] = await factory.createTicket({
   },
 });
 ```
+
 
 ## Documentation
 

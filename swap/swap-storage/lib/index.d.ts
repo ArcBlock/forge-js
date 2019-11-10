@@ -1,6 +1,14 @@
 // Generate by [js2dts@0.3.3](https://github.com/whxaxes/js2dts#readme)
 
 import { EventEmitter } from 'events';
+/**
+ * Defines the interface of atomic-swap storage
+ * Which should be implemented to use in dapps that uses atomic-swap capability
+ *
+ * @class SwapStorage
+ * @see @arcblock/swap-storage-mongo
+ * @extends {EventEmitter}
+ */
 declare class SwapStorage extends EventEmitter {
   payloadFields: string[];
   /**
