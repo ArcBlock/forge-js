@@ -15,7 +15,6 @@
     "access": "public"
   },
   "dependencies": {
-    "@arcblock/app-agent-storage-memory": "^0.40.9",
     "@arcblock/did": "^0.40.9",
     "@arcblock/forge-sdk": "^0.40.9",
     "@arcblock/forge-util": "^0.40.9",
@@ -29,6 +28,7 @@
     "lodash.get": "^4.4.2"
   },
   "devDependencies": {
+    "@arcblock/did-agent-storage-memory": "^0.40.9",
     "@arcblock/did-auth-storage-memory": "^0.40.9",
     "@arcblock/swap-storage-memory": "^0.40.9",
     "create-test-server": "^3.0.1",

@@ -1,5 +1,5 @@
 {
-  "name": "@arcblock/app-agent-storage",
+  "name": "@arcblock/did-agent-storage",
   "description": "Storage interface for delegated did-auth between application and wallet",
   "version": "0.40.9",
   "author": "wangshijun <shijun@arcblock.io> (https://ocap.arcblock.io)",
@@ -30,7 +30,7 @@
       ]
     ]
   },
-  "homepage": "https://github.com/ArcBlock/forge-js/tree/master/did/app-agent-storage",
+  "homepage": "https://github.com/ArcBlock/forge-js/tree/master/did/did-agent-storage",
   "keywords": [
     "forge",
     "blockchain",
@@ -45,7 +45,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/ArcBlock/forge-js/tree/master/did/app-agent-storage"
+    "url": "https://github.com/ArcBlock/forge-js/tree/master/did/did-agent-storage"
   },
   "scripts": {
     "lint": "eslint lib tests",

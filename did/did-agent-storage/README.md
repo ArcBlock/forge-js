@@ -1,4 +1,4 @@
-# [**@arcblock/app-agent-storage**](https://github.com/arcblock/forge-js)
+# [**@arcblock/did-agent-storage**](https://github.com/arcblock/forge-js)
 
 [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 
@@ -48,16 +48,16 @@ Basic APIs that a did-agent storage should support:
 ## Install
 
 ```sh
-npm install @arcblock/app-agent-storage
+npm install @arcblock/did-agent-storage
 // or
-yarn add @arcblock/app-agent-storage
+yarn add @arcblock/did-agent-storage
 ```
 
 
 ## Usage
 
 ```js
-const StorageInterface = require('@arcblock/app-agent-storage');
+const StorageInterface = require('@arcblock/did-agent-storage');
 let storage = {};
 module.exports = class MemoryAgentStorage extends StorageInterface {
   read(authorizeId) {

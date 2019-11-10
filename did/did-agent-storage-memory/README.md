@@ -1,4 +1,4 @@
-# [**@arcblock/app-agent-storage-memory**](https://github.com/arcblock/forge-js)
+# [**@arcblock/did-agent-storage-memory**](https://github.com/arcblock/forge-js)
 
 [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 
@@ -15,16 +15,16 @@
 ## Install
 
 ```sh
-npm install @arcblock/app-agent-storage-memory
+npm install @arcblock/did-agent-storage-memory
 // or
-yarn add @arcblock/app-agent-storage-memory
+yarn add @arcblock/did-agent-storage-memory
 ```
 
 
 ## Usage
 
 ```js
-const MemoryStorage = require('@arcblock/app-agent-storage-memory');
+const MemoryStorage = require('@arcblock/did-agent-storage-memory');
 
 const storage = new MemoryStorage();
 
