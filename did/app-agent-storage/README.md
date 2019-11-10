@@ -25,7 +25,9 @@ Possible fields to exist in a did-agent storage record
 - `appName`: Application name
 - `appDescription`: Application description
 - `appLogo`: Application logo
-- `certificate`: Application authorize certificate
+- `certificateContent`: Application authorize content
+- `certificateSignature`: Application authorize signature
+- `certificateContentSigned`: Application authorize signed
 
 ### APIs
 

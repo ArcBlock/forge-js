@@ -150,6 +150,7 @@ class WalletAuthenticator extends BaseAuthenticator {
    */
   async sign({ token = '', userDid, userPk, claims, pathname = '', extraParams = {} }) {
     const claimsInfo = await this.genRequestedClaims({ claims, userDid, userPk, extraParams });
+    // FIXME: this maybe buggy if user provided multiple claims
     const tmp = claimsInfo.find(x => this._isValidChainInfo(x.chainInfo));
 
     const payload = {
