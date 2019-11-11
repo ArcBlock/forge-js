@@ -9,7 +9,7 @@ const createTestServer = require('create-test-server');
 const { fromRandom, WalletType } = require('@arcblock/forge-wallet');
 const { toBase58 } = require('@arcblock/forge-util');
 
-const { SwapHandlers, WalletAuthenticator: Authenticator } = require('../../lib');
+const { SwapHandlers, WalletAuthenticator } = require('../../lib');
 const Jwt = require('../../lib/jwt');
 
 const type = WalletType({
@@ -36,7 +36,7 @@ describe('#WalletHandlers', () => {
   test('should handle atomic swap as expected', async () => {
     const tokenStorage = new MemoryAuthStorage();
     const swapStorage = new MemorySwapStorage();
-    const authenticator = new Authenticator({
+    const authenticator = new WalletAuthenticator({
       wallet: app.toJSON(),
       baseUrl: server.url,
       appInfo: {

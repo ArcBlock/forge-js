@@ -174,6 +174,7 @@ describe('#magicMethods', () => {
           wallet: sender,
         });
       } catch (err) {
+        // eslint-disable-next-line no-console
         console.error(err);
         expect(err).toBeFalsy();
       }

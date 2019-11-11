@@ -57,8 +57,8 @@ describe('GraphQLClient', () => {
     expect(typeof type.deserializeBinary).toEqual('function');
   });
 
-  // client = new GraphQLClient('http://182.92.167.126:8210/api');
-  client = new GraphQLClient('https://zinc.abtnetwork.io/api');
+  client = new GraphQLClient('http://182.92.167.126:8210/api');
+  // client = new GraphQLClient('https://zinc.abtnetwork.io/api');
   // client = new GraphQLClient('http://47.104.23.85:8211/api');
   test('should support getBlock', async () => {
     try {
@@ -81,11 +81,11 @@ describe('GraphQLClient', () => {
     expect(typeof client.fromUnitToToken).toEqual('function');
     expect(typeof client.fromTokenToUnit).toEqual('function');
 
-    const amount = await client.fromUnitToToken('180000000000000000');
+    const amount = await client.fromUnitToToken('18000000000000000000');
     expect(amount.toString()).toEqual('18');
 
     const amount2 = await client.fromTokenToUnit(0.18);
-    expect(amount2.toString()).toEqual('1800000000000000');
+    expect(amount2.toString()).toEqual('180000000000000000');
   });
 
   const wallet = fromRandom();
