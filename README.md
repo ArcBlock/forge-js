@@ -24,7 +24,7 @@
 [![docs](https://img.shields.io/badge/powered%20by-arcblock-green.svg)](https://docs.arcblock.io)
 [![Gitter](https://badges.gitter.im/ArcBlock/community.svg)](https://gitter.im/ArcBlock/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
-> Last updated at 11/8/2019, 12:37:21 PM
+> Last updated at 11/11/2019, 4:36:20 AM
 
 Javascript SDK for [forge](https://docs.arcblock.io/forge/latest/), which is an awesome framework to write distributed blockchain applications.
 
@@ -42,14 +42,19 @@ Javascript SDK for [forge](https://docs.arcblock.io/forge/latest/), which is an 
 - [mcrypto <img src="https://img.shields.io/npm/v/@arcblock/mcrypto.svg" alt="Version">](https://www.npmjs.com/package/@arcblock/mcrypto)
 - [tx-util <img src="https://img.shields.io/npm/v/@arcblock/tx-util.svg" alt="Version">](https://www.npmjs.com/package/@arcblock/tx-util)
 - [did <img src="https://img.shields.io/npm/v/@arcblock/did.svg" alt="Version">](https://www.npmjs.com/package/@arcblock/did)
+- [did-agent-storage <img src="https://img.shields.io/npm/v/@arcblock/did-agent-storage.svg" alt="Version">](https://www.npmjs.com/package/@arcblock/did-agent-storage)
+- [did-agent-storage-memory <img src="https://img.shields.io/npm/v/@arcblock/did-agent-storage-memory.svg" alt="Version">](https://www.npmjs.com/package/@arcblock/did-agent-storage-memory)
+- [did-agent-storage-mongo <img src="https://img.shields.io/npm/v/@arcblock/did-agent-storage-mongo.svg" alt="Version">](https://www.npmjs.com/package/@arcblock/did-agent-storage-mongo)
 - [did-auth <img src="https://img.shields.io/npm/v/@arcblock/did-auth.svg" alt="Version">](https://www.npmjs.com/package/@arcblock/did-auth)
 - [did-auth-storage <img src="https://img.shields.io/npm/v/@arcblock/did-auth-storage.svg" alt="Version">](https://www.npmjs.com/package/@arcblock/did-auth-storage)
 - [did-auth-storage-firebase <img src="https://img.shields.io/npm/v/@arcblock/did-auth-storage-firebase.svg" alt="Version">](https://www.npmjs.com/package/@arcblock/did-auth-storage-firebase)
 - [did-auth-storage-keystone <img src="https://img.shields.io/npm/v/@arcblock/did-auth-storage-keystone.svg" alt="Version">](https://www.npmjs.com/package/@arcblock/did-auth-storage-keystone)
+- [did-auth-storage-memory <img src="https://img.shields.io/npm/v/@arcblock/did-auth-storage-memory.svg" alt="Version">](https://www.npmjs.com/package/@arcblock/did-auth-storage-memory)
 - [did-auth-storage-mongo <img src="https://img.shields.io/npm/v/@arcblock/did-auth-storage-mongo.svg" alt="Version">](https://www.npmjs.com/package/@arcblock/did-auth-storage-mongo)
 - [did-util <img src="https://img.shields.io/npm/v/@arcblock/did-util.svg" alt="Version">](https://www.npmjs.com/package/@arcblock/did-util)
 - [swap-retriever <img src="https://img.shields.io/npm/v/@arcblock/swap-retriever.svg" alt="Version">](https://www.npmjs.com/package/@arcblock/swap-retriever)
 - [swap-storage <img src="https://img.shields.io/npm/v/@arcblock/swap-storage.svg" alt="Version">](https://www.npmjs.com/package/@arcblock/swap-storage)
+- [swap-storage-memory <img src="https://img.shields.io/npm/v/@arcblock/swap-storage-memory.svg" alt="Version">](https://www.npmjs.com/package/@arcblock/swap-storage-memory)
 - [swap-storage-mongo <img src="https://img.shields.io/npm/v/@arcblock/swap-storage-mongo.svg" alt="Version">](https://www.npmjs.com/package/@arcblock/swap-storage-mongo)
 - [asset-factory <img src="https://img.shields.io/npm/v/@arcblock/asset-factory.svg" alt="Version">](https://www.npmjs.com/package/@arcblock/asset-factory)
 
