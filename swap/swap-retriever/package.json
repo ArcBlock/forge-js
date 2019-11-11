@@ -1,7 +1,7 @@
 {
   "name": "@arcblock/swap-retriever",
   "description": "Utility to retrieve a swap when we can",
-  "version": "0.40.9",
+  "version": "0.40.10",
   "author": {
     "name": "wangshijun",
     "email": "shijun@arcblock.io",
@@ -19,8 +19,8 @@
     "access": "public"
   },
   "dependencies": {
-    "@arcblock/forge-sdk": "^0.40.9",
-    "@arcblock/tx-util": "^0.40.9",
+    "@arcblock/forge-sdk": "^0.40.10",
+    "@arcblock/tx-util": "^0.40.10",
     "debug": "^4.1.1",
     "lodash": "^4.17.15"
   },

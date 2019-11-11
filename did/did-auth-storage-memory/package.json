@@ -1,7 +1,7 @@
 {
   "name": "@arcblock/did-auth-storage-memory",
   "description": "Storage engine that uses memory for did-auth",
-  "version": "0.40.9",
+  "version": "0.40.10",
   "author": "wangshijun <shijun@arcblock.io> (https://ocap.arcblock.io)",
   "bugs": {
     "url": "https://github.com/ArcBlock/forge-js/issues",
@@ -61,6 +61,6 @@
   },
   "gitHead": "87990c8b5e215107fc587c1ced0d6b3e2cd2483e",
   "dependencies": {
-    "@arcblock/did-auth-storage": "^0.40.9"
+    "@arcblock/did-auth-storage": "^0.40.10"
   }
 }
