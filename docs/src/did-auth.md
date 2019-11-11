@@ -43,7 +43,7 @@ tags:
 * [AppAuthenticator](#AppAuthenticator)
   * [new AppAuthenticator(wallet)](#new_AppAuthenticator_new)
   * [sign(payload)](#AppAuthenticator+sign) ⇒ `object`
-  * [verify(data, locale)](#AppAuthenticator+verify) ⇒
+  * [verify(data, \[locale\], \[enforceTimestamp\])](#AppAuthenticator+verify) ⇒
 
 ### new AppAuthenticator(wallet)
 
@@ -64,17 +64,18 @@ Generate and sign a jwt token, used to inter-application-communication
 | ------- | -------- | ---------------------------------- |
 | payload | `object` | data to be included before signing |
 
-### appAuthenticator.verify(data, locale) ⇒
+### appAuthenticator.verify(data, [locale], [enforceTimestamp]) ⇒
 
 Verify a jwt token signed by another application, used for inter-application communication
 
 **Kind**: instance method of [`AppAuthenticator`](#AppAuthenticator)  
 **Returns**: Promise<boolean>  
 
-| Param  | Type     | Default          |
-| ------ | -------- | ---------------- |
-| data   | `object` |                  |
-| locale | `string` | `&quot;en&quot;` |
+| Param              | Type      | Default          |
+| ------------------ | --------- | ---------------- |
+| data               | `object`  |                  |
+| [locale]           | `string`  | `&quot;en&quot;` |
+| [enforceTimestamp] | `boolean` | `true`           |
 
 
 ## WalletAuthenticator
@@ -93,15 +94,37 @@ Verify a jwt token signed by another application, used for inter-application com
 
 Creates an instance of DID Authenticator.
 
-| Param                   | Type                                  | Default                       | Description                                                                                                                 |
-| ----------------------- | ------------------------------------- | ----------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
-| config                  | `object`                              |                               |                                                                                                                             |
-| config.wallet           | `Wallet`                              |                               | wallet instance {[**@see**](https://github.com/see) [**@arcblock/forge-wallet**](https://github.com/arcblock/forge-wallet)} |
-| config.appInfo          | [`ApplicationInfo`](#ApplicationInfo) |                               | application basic info                                                                                                      |
-| config.chainInfo        | [`ChainInfo`](#ChainInfo)             |                               | application chain info                                                                                                      |
-| [config.crossChainInfo] | [`ChainInfo`](#ChainInfo)             | `{}`                          | asset chain info                                                                                                            |
-| config.baseUrl          | `object`                              |                               | url to assemble wallet request uri                                                                                          |
-| [config.tokenKey]       | `string`                              | `&quot;&#x27;_t_&#x27;&quot;` | query param key for `token`                                                                                                 |
+| Param             | Type                                  | Default                       | Description                                                                                                                 |
+| ----------------- | ------------------------------------- | ----------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| config            | `object`                              |                               |                                                                                                                             |
+| config.wallet     | `Wallet`                              |                               | wallet instance {[**@see**](https://github.com/see) [**@arcblock/forge-wallet**](https://github.com/arcblock/forge-wallet)} |
+| config.appInfo    | [`ApplicationInfo`](#ApplicationInfo) |                               | application basic info                                                                                                      |
+| config.chainInfo  | [`ChainInfo`](#ChainInfo)             |                               | application chain info                                                                                                      |
+| config.baseUrl    | `object`                              |                               | url to assemble wallet request uri                                                                                          |
+| [config.tokenKey] | `string`                              | `&quot;&#x27;_t_&#x27;&quot;` | query param key for `token`                                                                                                 |
+
+**Example**  
+
+```js
+const ForgeSDK = require('@arcblock/forge-sdk');
+
+const wallet = ForgeSDK.Wallet.fromRandom().toJSON();
+const chainHost = 'https://zinc.abtnetwork.io/api';
+const chainId = 'zinc-2019-05-17';
+const auth = new Authenticator({
+  wallet,
+  baseUrl: 'http://zinc.abtnetwork.io/webapp',
+  appInfo: {
+    name: 'ABT Wallet Demo',
+    description: 'Demo application to show the potential of ABT Wallet',
+    icon: 'https://arcblock.oss-cn-beijing.aliyuncs.com/images/wallet-round.png',
+  },
+  chainInfo: {
+    host: chainHost,
+    id: chainId,
+  },
+});
+```
 
 ### walletAuthenticator.uri(params) ⇒ `string`
 
@@ -142,7 +165,7 @@ Sign a plain response, usually on auth success or error
 
 ### walletAuthenticator.sign(params) ⇒ `object`
 
-Sign a auth response that returned to wallet: tell the wallet the appInfo/chainInfo/crossChainInfo
+Sign a auth response that returned to wallet: tell the wallet the appInfo/chainInfo
 
 **Kind**: instance method of [`WalletAuthenticator`](#WalletAuthenticator)  
 **Returns**: `object` - { appPk, authInfo }  
@@ -196,20 +219,26 @@ Creates an instance of Application DID Auth handler
 
 Creates an instance of atomic swap handlers.
 
-| Param                  | Type       | Default | Description                                                                                                                   |
-| ---------------------- | ---------- | ------- | ----------------------------------------------------------------------------------------------------------------------------- |
-| config                 | `object`   |         |                                                                                                                               |
-| config.authenticator   | `object`   |         | Authenticator instance that can to jwt sign/verify                                                                            |
-| config.tokenGenerator  | `function` |         | function to generate action token                                                                                             |
-| config.swapStorage     | `object`   |         | storage that contains swap information                                                                                        |
-| config.tokenStorage    | `object`   |         | storage that contains action token information                                                                                |
-| config.offerChainHost  | `string`   |         | offer chain endpoint                                                                                                          |
-| config.demandChainHost | `string`   |         | demand chain endpoint                                                                                                         |
-| config.offerChainId    | `string`   |         | offer chain endpoint                                                                                                          |
-| config.demandChainId   | `string`   |         | demand chain endpoint                                                                                                         |
-| config.offerLocktime   | `number`   |         | num of blocks that will be locked before app chain swap can be revoked                                                        |
-| config.demandLocktime  | `number`   |         | num of blocks that will be locked before asset chain swap can be revoked                                                      |
-| [config.onPreAuth]     | `function` | `noop`  | function called before each auth request send back to app, used to check for permission, throw error to halt the auth process |
+| Param                           | Type                           | Default                             | Description                                                                                                                   |
+| ------------------------------- | ------------------------------ | ----------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| config                          | `object`                       |                                     |                                                                                                                               |
+| config.authenticator            | `object`                       |                                     | Authenticator instance that can to jwt sign/verify                                                                            |
+| config.tokenGenerator           | `function`                     |                                     | function to generate action token                                                                                             |
+| config.swapStorage              | `object`                       |                                     | storage that contains swap information                                                                                        |
+| config.tokenStorage             | `object`                       |                                     | storage that contains action token information                                                                                |
+| config.offerChainHost           | `string`                       |                                     | offer chain endpoint                                                                                                          |
+| config.demandChainHost          | `string`                       |                                     | demand chain endpoint                                                                                                         |
+| config.offerChainId             | `string`                       |                                     | offer chain endpoint                                                                                                          |
+| config.demandChainId            | `string`                       |                                     | demand chain endpoint                                                                                                         |
+| config.offerLocktime            | `number`                       |                                     | num of blocks that will be locked before app chain swap can be revoked                                                        |
+| config.demandLocktime           | `number`                       |                                     | num of blocks that will be locked before asset chain swap can be revoked                                                      |
+| [config.onPreAuth]              | `function`                     | `noop`                              | function called before each auth request send back to app, used to check for permission, throw error to halt the auth process |
+| [config.options.prefix]         | `string`                       | `&quot;&#x27;/api/swap&#x27;&quot;` | url prefix for this group endpoints                                                                                           |
+| [config.options.sessionDidKey]  | `string`                       | `&quot;&#x27;user.did&#x27;&quot;`  | key path to extract session user did from request object                                                                      |
+| [config.options.tokenKey]       | `string`                       | `&quot;&#x27;_t_&#x27;&quot;`       | query param key for `token`                                                                                                   |
+| [config.options.checksumKey]    | `string`                       | `&quot;&#x27;_cs_&#x27;&quot;`      | query param key for `checksum`                                                                                                |
+| [config.options.authPrincipal]  | `boolean` \| `string` \| `did` | `true`                              | whether should we do auth principal claim first                                                                               |
+| [config.options.signedResponse] | `boolean`                      | `false`                             | whether should we return signed response                                                                                      |
 
 ### atomicSwapHandlers.start(payload) ⇒ `Promise.<object>`
 
@@ -239,21 +268,16 @@ Browser
 **Kind**: instance method of [`AtomicSwapHandlers`](#AtomicSwapHandlers)  
 **Returns**: void  
 
-| Param                  | Type                           | Default                             | Description                                                           |
-| ---------------------- | ------------------------------ | ----------------------------------- | --------------------------------------------------------------------- |
-| config                 | `object`                       |                                     | attach config { app, action, claims, prefix = '/api' }                |
-| config.app             | `object`                       |                                     | express instance to attach routes to                                  |
-| config.claims          | `object`                       |                                     | claims for this request                                               |
-| config.action          | `string`                       |                                     | action of this group of routes                                        |
-| config.onAuth          | `function`                     |                                     | callback when user completed auth in abt wallet, and data posted back |
-| [config.onComplete]    | `function`                     | `noop`                              | callback when the whole auth process is done, action token is removed |
-| [config.onExpire]      | `function`                     | `noop`                              | callback when the action token expired                                |
-| [config.onError]       | `function`                     | `console.error`                     | callback when there are some errors                                   |
-| [config.prefix]        | `string`                       | `&quot;&#x27;/api/swap&#x27;&quot;` | url prefix for this group endpoints                                   |
-| [config.sessionDidKey] | `string`                       | `&quot;&#x27;user.did&#x27;&quot;`  | key path to extract session user did from request object              |
-| [config.tokenKey]      | `string`                       | `&quot;&#x27;_t_&#x27;&quot;`       | query param key for `token`                                           |
-| [config.checksumKey]   | `string`                       | `&quot;&#x27;_cs_&#x27;&quot;`      | query param key for `checksum`                                        |
-| [config.authPrincipal] | `boolean` \| `string` \| `did` | `true`                              | whether should we do auth principal claim first                       |
+| Param               | Type       | Default         | Description                                                           |
+| ------------------- | ---------- | --------------- | --------------------------------------------------------------------- |
+| config              | `object`   |                 | attach config { app, action, claims, prefix = '/api' }                |
+| config.app          | `object`   |                 | express instance to attach routes to                                  |
+| config.claims       | `object`   |                 | claims for this request                                               |
+| config.action       | `string`   |                 | action of this group of routes                                        |
+| config.onAuth       | `function` |                 | callback when user completed auth in abt wallet, and data posted back |
+| [config.onComplete] | `function` | `noop`          | callback when the whole auth process is done, action token is removed |
+| [config.onExpire]   | `function` | `noop`          | callback when the action token expired                                |
+| [config.onError]    | `function` | `console.error` | callback when there are some errors                                   |
 
 
 ## WalletHandlers
@@ -268,13 +292,19 @@ Browser
 
 Creates an instance of DID Auth Handlers.
 
-| Param                 | Type       | Default | Description                                                                                                                   |
-| --------------------- | ---------- | ------- | ----------------------------------------------------------------------------------------------------------------------------- |
-| config                | `object`   |         |                                                                                                                               |
-| config.tokenGenerator | `function` |         | function to generate action token                                                                                             |
-| config.tokenStorage   | `object`   |         | function to generate action token                                                                                             |
-| config.authenticator  | `object`   |         | Authenticator instance that can to jwt sign/verify                                                                            |
-| [config.onPreAuth]    | `function` | `noop`  | function called before each auth request send back to app, used to check for permission, throw error to halt the auth process |
+| Param                          | Type                           | Default                            | Description                                                                                                                   |
+| ------------------------------ | ------------------------------ | ---------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| config                         | `object`                       |                                    |                                                                                                                               |
+| config.tokenGenerator          | `function`                     |                                    | function to generate action token                                                                                             |
+| config.tokenStorage            | `object`                       |                                    | function to generate action token                                                                                             |
+| config.authenticator           | `object`                       |                                    | Authenticator instance that can to jwt sign/verify                                                                            |
+| [config.onPreAuth]             | `function`                     | `noop`                             | function called before each auth request send back to app, used to check for permission, throw error to halt the auth process |
+| [config.options]               | `object`                       | `{}`                               | custom options to define all handlers attached                                                                                |
+| [config.options.prefix]        | `string`                       | `&quot;&#x27;/api/did&#x27;&quot;` | url prefix for this group endpoints                                                                                           |
+| [config.options.sessionDidKey] | `string`                       | `&quot;&#x27;user.did&#x27;&quot;` | key path to extract session user did from request object                                                                      |
+| [config.options.tokenKey]      | `string`                       | `&quot;&#x27;_t_&#x27;&quot;`      | query param key for `token`                                                                                                   |
+| [config.options.checksumKey]   | `string`                       | `&quot;&#x27;_cs_&#x27;&quot;`     | query param key for `checksum`                                                                                                |
+| [config.options.authPrincipal] | `boolean` \| `string` \| `did` | `true`                             | whether should we do auth principal claim first                                                                               |
 
 ### walletHandlers.attach(config) ⇒
 
@@ -290,21 +320,16 @@ Now express app have route handlers attached to the following url
 **Kind**: instance method of [`WalletHandlers`](#WalletHandlers)  
 **Returns**: void  
 
-| Param                  | Type                           | Default                            | Description                                                           |
-| ---------------------- | ------------------------------ | ---------------------------------- | --------------------------------------------------------------------- |
-| config                 | `object`                       |                                    | attach config { app, action, claims, prefix = '/api' }                |
-| config.app             | `object`                       |                                    | express instance to attach routes to                                  |
-| config.claims          | `object`                       |                                    | claims for this request                                               |
-| config.action          | `string`                       |                                    | action of this group of routes                                        |
-| config.onAuth          | `function`                     |                                    | callback when user completed auth in abt wallet, and data posted back |
-| [config.onComplete]    | `function`                     | `noop`                             | callback when the whole auth process is done, action token is removed |
-| [config.onExpire]      | `function`                     | `noop`                             | callback when the action token expired                                |
-| [config.onError]       | `function`                     | `console.error`                    | callback when there are some errors                                   |
-| [config.prefix]        | `string`                       | `&quot;&#x27;/api/did&#x27;&quot;` | url prefix for this group endpoints                                   |
-| [config.sessionDidKey] | `string`                       | `&quot;&#x27;user.did&#x27;&quot;` | key path to extract session user did from request object              |
-| [config.tokenKey]      | `string`                       | `&quot;&#x27;_t_&#x27;&quot;`      | query param key for `token`                                           |
-| [config.checksumKey]   | `string`                       | `&quot;&#x27;_cs_&#x27;&quot;`     | query param key for `checksum`                                        |
-| [config.authPrincipal] | `boolean` \| `string` \| `did` | `true`                             | whether should we do auth principal claim first                       |
+| Param               | Type       | Default         | Description                                                           |
+| ------------------- | ---------- | --------------- | --------------------------------------------------------------------- |
+| config              | `object`   |                 |                                                                       |
+| config.app          | `object`   |                 | express instance to attach routes to                                  |
+| config.claims       | `object`   |                 | claims for this request                                               |
+| config.action       | `string`   |                 | action of this group of routes                                        |
+| config.onAuth       | `function` |                 | callback when user completed auth in abt wallet, and data posted back |
+| [config.onComplete] | `function` | `noop`          | callback when the whole auth process is done, action token is removed |
+| [config.onExpire]   | `function` | `noop`          | callback when the action token expired                                |
+| [config.onError]    | `function` | `console.error` | callback when there are some errors                                   |
 
 
 ## ApplicationInfo

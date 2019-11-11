@@ -19,6 +19,7 @@ declare namespace _Lib {
   }
   export interface T101 {
     createRetriever: (params: _Lib.T100) => EventEmitter;
+    verifyUserSwap: (swapState: any, swapStore: any) => boolean;
   }
 }
 export = _Lib;

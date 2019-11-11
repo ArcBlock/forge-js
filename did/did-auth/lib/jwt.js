@@ -15,17 +15,17 @@ const { types, getSigner } = Mcrypto;
  *
  * @public
  * @static
- * @param {string} did - address string
+ * @param {string} signer - address string
  * @param {string} sk - hex encoded secret key
  * @param {object} [payload={}] - data to be included before signing
  * @returns {string} hex encoded signature
  */
-const sign = (did, sk, payload = {}) => {
-  if (isValid(did) === false) {
-    throw new Error('Cannot do sign with invalid did');
+const sign = (signer, sk, payload = {}) => {
+  if (isValid(signer) === false) {
+    throw new Error('Cannot do sign with invalid signer');
   }
 
-  const type = toTypeInfo(did);
+  const type = toTypeInfo(signer);
   const headers = {
     [types.KeyType.SECP256K1]: {
       alg: 'ES256K',
@@ -45,7 +45,7 @@ const sign = (did, sk, payload = {}) => {
   const now = Math.floor(Date.now() / 1000);
   let body = Object.assign(
     {
-      iss: toDid(did),
+      iss: toDid(signer),
       iat: now,
       nbf: now,
       exp: now + 5 * 60,
@@ -99,17 +99,23 @@ const decode = (token, payloadOnly = true) => {
 };
 
 /**
- * Verify a jwt token signed with pk and certain issuer
+ * Verify a jwt token signed with signerPk and signerDid
  *
  * @public
  * @static
  * @param {string} token - the jwt token
- * @param {string} pk - hex encoded public key
- * @param {number} [tolerance=5] - number of seconds to tolerant expire
- * @param {boolean} [verifyTimestamp=true] - whether should be verify timestamps?
+ * @param {string} signerPk - signer public key
+ * @param {object} options - options to customize the verify
+ * @param {number} [options.tolerance=5] - number of seconds to tolerant expire
+ * @param {boolean} [options.enforceTimestamp=true] - whether should be verify timestamps?
+ * @param {string} [options.signerKey='iss'] - which field should be used to pick the signer
  * @returns {boolean}
  */
-const verify = (token, pk, tolerance = 5, verifyTimestamp = true) => {
+const verify = (
+  token,
+  signerPk,
+  { tolerance = 5, enforceTimestamp = true, signerKey = 'iss' } = {}
+) => {
   try {
     const [headerB64, bodyB64] = token.split('.');
     const { header, body, signature } = decode(token, false);
@@ -122,23 +128,23 @@ const verify = (token, pk, tolerance = 5, verifyTimestamp = true) => {
       return false;
     }
 
-    const did = body.iss;
-    if (!did) {
-      debug('verify.error.emptyDid');
+    const signerDid = body[signerKey];
+    if (!signerDid) {
+      debug('verify.error.emptySignerDid');
       return false;
     }
 
-    if (isFromPublicKey(did, pk) === false) {
-      debug('verify.error.did_pk_mismatch');
+    if (isFromPublicKey(signerDid, signerPk) === false) {
+      debug('verify.error.signerDidAndPkNotMatch');
       return false;
     }
 
-    if (verifyTimestamp) {
+    if (enforceTimestamp) {
       const now = Math.ceil(Date.now() / 1000);
       const exp = Number(body.exp) || 0;
       const iat = Number(body.iat) || 0;
       const nbf = Number(body.nbf) || 0;
-      debug('verify.verifyTimestamp', { now, exp, iat, nbf });
+      debug('verify.enforceTimestamp', { now, exp, iat, nbf });
       if (exp && exp + tolerance < now) {
         debug('verify.error.expired');
         return false;
@@ -161,7 +167,7 @@ const verify = (token, pk, tolerance = 5, verifyTimestamp = true) => {
     const alg = header.alg.toLowerCase();
     if (signers[alg]) {
       const msgHex = toHex(`${headerB64}.${bodyB64}`);
-      return signers[alg].verify(msgHex, signature, pk);
+      return signers[alg].verify(msgHex, signature, signerPk);
     }
 
     debug('verify.error.crypto');

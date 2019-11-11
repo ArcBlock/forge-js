@@ -8,6 +8,8 @@ const debug = require('debug')(`${require('../../package.json').name}:handlers:d
 const sha3 = Mcrypto.Hasher.SHA3.hash256;
 const getLocale = req => (req.acceptsLanguages('en-US', 'zh-CN') || 'en-US').split('-').shift();
 const getDidCheckSum = did => sha3(toAddress(did)).slice(2, 8);
+const noop = () => ({});
+const noTouch = x => x;
 
 const errors = {
   tokenMissing: {
@@ -47,14 +49,15 @@ module.exports = function createHandlers({
   onComplete,
   onExpire,
   onError,
-  sessionDidKey,
-  tokenKey,
-  checksumKey,
   tokenGenerator,
   tokenStorage,
   authenticator,
-  authPrincipal,
+  getSignParams = noop,
+  getPathName = noTouch,
+  options,
 }) {
+  const { sessionDidKey, tokenKey, checksumKey, authPrincipal } = options;
+
   // if user want to do multiple-step did-auth
   const steps = Array.isArray(claims) ? claims : [claims];
 
@@ -103,7 +106,7 @@ module.exports = function createHandlers({
         token,
         url: authenticator.uri({
           token,
-          pathname,
+          pathname: getPathName(pathname, req),
           query: Object.assign({ [checksumKey]: checksum }, req.query),
         }),
       });
@@ -212,15 +215,18 @@ module.exports = function createHandlers({
         await tokenStorage.update(token, { did: userDid, status: STATUS_SCANNED });
       }
 
+      const signParams = await getSignParams(req);
       res.jsonp(
-        await authenticator.sign({
-          token,
-          userDid,
-          userPk,
-          claims: store ? steps[store.currentStep] : steps[0],
-          pathname,
-          extraParams: createExtraParams(locale, req.query),
-        })
+        await authenticator.sign(
+          Object.assign(signParams, {
+            token,
+            userDid,
+            userPk,
+            claims: store ? steps[store.currentStep] : steps[0],
+            pathname: getPathName(pathname, req),
+            extraParams: createExtraParams(locale, req.query),
+          })
+        )
       );
     } catch (err) {
       if (store) {
@@ -268,26 +274,24 @@ module.exports = function createHandlers({
             // onAuth: send the tx/do the transfer, etc.
             const result = await onAuth(cbParams);
             await tokenStorage.update(token, { status: STATUS_SUCCEED });
-
-            // TODO: atomic-swap in wallet does not support signed response
-            if (req.swap) {
-              return res.json(Object.assign({}, result || {}));
-            }
-
             return res.json(Object.assign({}, result || {}));
           }
 
-          // Move to next step
-          await tokenStorage.update(token, { currentStep: store.currentStep + 1 });
+          // Move to next step: nextStep is persisted here to avoid an memory storage error
+          const nextStep = store.currentStep + 1;
+          await tokenStorage.update(token, { currentStep: nextStep });
+          const signParams = await getSignParams(req);
           return res.jsonp(
-            await authenticator.sign({
-              token,
-              userDid,
-              userPk,
-              claims: steps[store.currentStep + 1],
-              pathname,
-              extraParams: createExtraParams(locale, req.query),
-            })
+            await authenticator.sign(
+              Object.assign(signParams, {
+                token,
+                userDid,
+                userPk,
+                claims: steps[nextStep],
+                pathname: getPathName(pathname, req),
+                extraParams: createExtraParams(locale, req.query),
+              })
+            )
           );
         }
 
@@ -310,7 +314,7 @@ module.exports = function createHandlers({
   };
 
   const ensureContext = async (req, res, next) => {
-    const params = Object.assign({}, req.body, req.query);
+    const params = Object.assign({}, req.body, req.query, req.params);
     const token = params[tokenKey];
     const locale = getLocale(req);
     const store = token ? await tokenStorage.read(token) : null;

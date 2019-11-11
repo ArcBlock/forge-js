@@ -1,0 +1,66 @@
+{
+  "name": "@arcblock/did-agent-storage-memory",
+  "description": "Storage engine that uses memory for did-auth",
+  "version": "0.40.9",
+  "author": "wangshijun <shijun@arcblock.io> (https://ocap.arcblock.io)",
+  "bugs": {
+    "url": "https://github.com/ArcBlock/forge-js/issues",
+    "email": "shijun@arcblock.io"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "contributors": [
+    "wangshijun <shijun@arcblock.io> (https://ocap.arcblock.io)"
+  ],
+  "devDependencies": {
+    "j2d": "^1.0.3-dev",
+    "jest": "^23.5.0",
+    "remark-cli": "^5.0.0",
+    "remark-preset-github": "^0.0.9"
+  },
+  "remarkConfig": {
+    "plugins": [
+      "preset-github",
+      [
+        "validate-links",
+        {
+          "repository": "ArcBlock/forge-js"
+        }
+      ]
+    ]
+  },
+  "homepage": "https://github.com/ArcBlock/forge-js/tree/master/did/did-agent-storage-memory",
+  "keywords": [
+    "forge",
+    "blockchain",
+    "arcblock",
+    "sdk",
+    "nodejs"
+  ],
+  "license": "Apache-2.0",
+  "main": "./lib/index.js",
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ArcBlock/forge-js/tree/master/did/did-agent-storage-memory"
+  },
+  "scripts": {
+    "lint": "eslint lib tests",
+    "docs": "yarn generate-dts && yarn generate-docs && yarn cleanup-docs && yarn format-docs",
+    "cleanup-docs": "node ../../tools/cleanup-docs.js docs/README.md $npm_package_name",
+    "generate-docs": "jsdoc2md lib/index.js > docs/README.md",
+    "generate-dts": "j2d lib/index.js",
+    "format-docs": "remark . -o",
+    "precommit": "CI=1 yarn test",
+    "prepush": "CI=1 yarn test",
+    "test": "npm run lint && node tools/jest.js",
+    "coverage": "npm run lint && yarn test -- --coverage"
+  },
+  "gitHead": "87990c8b5e215107fc587c1ced0d6b3e2cd2483e",
+  "dependencies": {
+    "@arcblock/did-agent-storage": "^0.40.9"
+  }
+}

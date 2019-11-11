@@ -3,7 +3,7 @@
 process.env.BABEL_ENV = 'test';
 process.env.NODE_ENV = 'test';
 process.env.PUBLIC_URL = '';
-process.env.DEBUG = '@arcblock/*,-@arcblock/forge-proto';
+process.env.DEBUG = '@arcblock/*,-@arcblock/did,-@arcblock/client-extension,-@arcblock/forge-proto';
 
 // Makes the script crash on unhandled rejections instead of silently
 // ignoring them. In the future, promise rejections that are not handled will

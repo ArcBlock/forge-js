@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable indent */
 /* eslint-disable object-curly-newline */
 const qs = require('querystring');
@@ -6,13 +7,15 @@ const ForgeSDK = require('@arcblock/forge-sdk');
 const { toBase58 } = require('@arcblock/forge-util');
 const { fromAddress } = require('@arcblock/forge-wallet');
 const { toAddress } = require('@arcblock/did');
-const { decode, verify, sign } = require('../jwt');
+
+const Jwt = require('../jwt');
+const BaseAuthenticator = require('./base');
 
 // eslint-disable-next-line
 const debug = require('debug')(`${require('../../package.json').name}:authenticator:wallet`);
 
 // FIXME: description fields should not exist here
-class WalletAuthenticator {
+class WalletAuthenticator extends BaseAuthenticator {
   /**
    * @typedef ApplicationInfo
    * @prop {string} name - application name
@@ -36,34 +39,39 @@ class WalletAuthenticator {
    * @param {Wallet} config.wallet - wallet instance {@see @arcblock/forge-wallet}
    * @param {ApplicationInfo} config.appInfo - application basic info
    * @param {ChainInfo} config.chainInfo - application chain info
-   * @param {ChainInfo} [config.crossChainInfo={}] - asset chain info
    * @param {object} config.baseUrl - url to assemble wallet request uri
    * @param {string} [config.tokenKey='_t_'] - query param key for `token`
+   * @example
+   * const ForgeSDK = require('@arcblock/forge-sdk');
+   *
+   * const wallet = ForgeSDK.Wallet.fromRandom().toJSON();
+   * const chainHost = 'https://zinc.abtnetwork.io/api';
+   * const chainId = 'zinc-2019-05-17';
+   * const auth = new Authenticator({
+   *   wallet,
+   *   baseUrl: 'http://zinc.abtnetwork.io/webapp',
+   *   appInfo: {
+   *     name: 'ABT Wallet Demo',
+   *     description: 'Demo application to show the potential of ABT Wallet',
+   *     icon: 'https://arcblock.oss-cn-beijing.aliyuncs.com/images/wallet-round.png',
+   *   },
+   *   chainInfo: {
+   *     host: chainHost,
+   *     id: chainId,
+   *   },
+   * });
    */
-  constructor({ wallet, appInfo, chainInfo, crossChainInfo, baseUrl, tokenKey = '_t_' }) {
-    if (typeof wallet.sk === 'undefined') {
-      throw new Error('WalletAuthenticator cannot work without wallet.sk');
-    }
-    if (typeof wallet.pk === 'undefined') {
-      throw new Error('WalletAuthenticator cannot work without wallet.pk');
-    }
-    if (!appInfo) {
-      throw new Error('WalletAuthenticator cannot work without appInfo');
-    }
-    if (!chainInfo) {
-      throw new Error('WalletAuthenticator cannot work without chainInfo');
-    }
-    if (typeof chainInfo.host === 'undefined') {
-      throw new Error('WalletAuthenticator cannot work without chainInfo.host');
-    }
-    if (typeof chainInfo.id === 'undefined') {
-      throw new Error('WalletAuthenticator cannot work without chainInfo.id');
+  constructor({ wallet, appInfo, chainInfo, baseUrl, tokenKey = '_t_' }) {
+    super();
+
+    if (!baseUrl) {
+      throw new Error('WalletAuthenticator cannot work without a public accessible baseUrl');
     }
 
-    this.wallet = wallet;
-    this.appInfo = appInfo;
-    this.chainInfo = chainInfo;
-    this.crossChainInfo = crossChainInfo;
+    this.wallet = this._validateWallet(wallet);
+    this.appInfo = this._validateAppInfo(appInfo, wallet);
+    this.chainInfo = this._validateChainInfo(chainInfo);
+
     this.baseUrl = baseUrl;
     this.tokenKey = tokenKey;
     this.appPk = toBase58(wallet.pk);
@@ -81,7 +89,7 @@ class WalletAuthenticator {
    * @param {object} params.query - params that should be persisted in wallet callback url
    * @returns {string}
    */
-  uri({ token, pathname, query = {} }) {
+  uri({ pathname = '', token = '', query = {} } = {}) {
     const params = Object.assign({}, query, { [this.tokenKey]: token });
     const payload = {
       action: 'requestAuth',
@@ -125,12 +133,12 @@ class WalletAuthenticator {
     debug('signResponse', { response, error });
     return {
       appPk: this.appPk,
-      authInfo: sign(this.wallet.address, this.wallet.sk, payload),
+      authInfo: Jwt.sign(this.wallet.address, this.wallet.sk, payload),
     };
   }
 
   /**
-   * Sign a auth response that returned to wallet: tell the wallet the appInfo/chainInfo/crossChainInfo
+   * Sign a auth response that returned to wallet: tell the wallet the appInfo/chainInfo
    *
    * @method
    * @param {object} params
@@ -141,13 +149,13 @@ class WalletAuthenticator {
    * @param {object} params.extraParams - extra query params and locale
    * @returns {object} { appPk, authInfo }
    */
-  async sign({ token, userDid, userPk, claims, pathname, extraParams }) {
-    const isValidChainInfo = x => x && x.id && x.host;
-
+  async sign({ token = '', userDid, userPk, claims, pathname = '', extraParams = {} }) {
     const claimsInfo = await this.genRequestedClaims({ claims, userDid, userPk, extraParams });
-    const tmp = claimsInfo.find(x => isValidChainInfo(x.chainInfo));
+    // FIXME: this maybe buggy if user provided multiple claims
+    const tmp = claimsInfo.find(x => this._isValidChainInfo(x.chainInfo));
 
     const payload = {
+      status: 'ok',
       action: 'responseAuth',
       appInfo: this.appInfo,
       chainInfo: tmp ? tmp.chainInfo : this.chainInfo,
@@ -160,17 +168,10 @@ class WalletAuthenticator {
       )}`,
     };
 
-    if (
-      isValidChainInfo(this.crossChainInfo) &&
-      this.crossChainInfo.host !== payload.chainInfo.host
-    ) {
-      payload.crossChainInfo = this.crossChainInfo;
-    }
-
     debug('responseAuth.sign', { token, userDid, payload, extraParams });
     return {
       appPk: this.appPk,
-      authInfo: sign(this.wallet.address, this.wallet.sk, payload),
+      authInfo: Jwt.sign(this.wallet.address, this.wallet.sk, payload),
     };
   }
 
@@ -184,60 +185,25 @@ class WalletAuthenticator {
    * @returns Promise<boolean>
    */
   verify(data, locale = 'en', enforceTimestamp = true) {
-    return new Promise((resolve, reject) => {
-      debug('verify', data, locale);
+    return new Promise(async (resolve, reject) => {
+      try {
+        const { iss, requestedClaims } = await this._verify(
+          data,
+          'userPk',
+          'userInfo',
+          locale,
+          enforceTimestamp
+        );
 
-      const errors = {
-        pkMissing: {
-          en: 'userPk is required to complete auth',
-          zh: 'userPk 参数缺失',
-        },
-        tokenMissing: {
-          en: 'userInfo is required to complete auth',
-          zh: 'JWT Token 参数缺失',
-        },
-        pkFormat: {
-          en: 'userPk should be either base58 or base16 format',
-          zh: 'userPk 无法解析',
-        },
-        tokenInvalid: {
-          en: 'Invalid JWT token',
-          zh: '签名无效',
-        },
-        timeInvalid: {
-          en: 'JWT token expired, make sure your device time in sync with network',
-          zh: '签名中的时间戳无效，请确保设备和网络时间同步',
-        },
-      };
-
-      const { userPk, userInfo, token } = data;
-      if (!userPk) {
-        return reject(new Error(errors.pkMissing[locale]));
+        resolve({
+          token: data.token,
+          userDid: toAddress(iss),
+          userPk: data.userPk,
+          claims: requestedClaims,
+        });
+      } catch (err) {
+        reject(err);
       }
-      if (!userInfo) {
-        return reject(new Error(errors.tokenMissing[locale]));
-      }
-
-      if (!userPk) {
-        return reject(new Error(errors.pkFormat[locale]));
-      }
-
-      const isValid = verify(userInfo, userPk);
-      if (!isValid) {
-        // NOTE: since the token can be invalid because of wallet-app clock not in sync
-        // We should tell the user that if it's caused by clock
-        const isValidSig = verify(userInfo, userPk, 0, false);
-        if (enforceTimestamp) {
-          const error = isValidSig ? errors.timeInvalid[locale] : errors.tokenInvalid[locale];
-          return reject(new Error(error));
-        }
-      }
-
-      const { iss, requestedClaims } = decode(userInfo);
-      debug('decode', { iss, requestedClaims });
-
-      // check timestamp
-      return resolve({ token, userDid: toAddress(iss), userPk, claims: requestedClaims });
     });
   }
 
@@ -456,6 +422,49 @@ class WalletAuthenticator {
       demandChain: demandChainId,
       meta,
     };
+  }
+
+  _validateAppInfo(appInfo, wallet) {
+    if (!appInfo) {
+      throw new Error('WalletAuthenticator cannot work without appInfo');
+    }
+    if (!appInfo.name) {
+      throw new Error('WalletAuthenticator cannot work without appInfo.name');
+    }
+    if (!appInfo.description) {
+      throw new Error('WalletAuthenticator cannot work without appInfo.description');
+    }
+    if (!appInfo.icon) {
+      throw new Error('WalletAuthenticator cannot work without appInfo.icon');
+    }
+
+    if (!appInfo.path) {
+      appInfo.path = 'https://abtwallet.io/i/';
+    }
+
+    if (!appInfo.publisher) {
+      appInfo.publisher = `did:abt:${wallet.address}`;
+    }
+
+    return appInfo;
+  }
+
+  _validateChainInfo(chainInfo) {
+    if (!chainInfo) {
+      throw new Error('WalletAuthenticator cannot work without chainInfo');
+    }
+    if (!chainInfo.host) {
+      throw new Error('WalletAuthenticator cannot work without chainInfo.host');
+    }
+    if (!chainInfo.id) {
+      throw new Error('WalletAuthenticator cannot work without chainInfo.id');
+    }
+
+    return chainInfo;
+  }
+
+  _isValidChainInfo(x) {
+    return x && x.id && x.host;
   }
 }
 

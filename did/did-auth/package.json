@@ -22,11 +22,16 @@
     "@arcblock/mcrypto": "^0.40.9",
     "@arcblock/swap-retriever": "^0.40.9",
     "@arcblock/tx-util": "^0.40.9",
+    "axios": "^0.19.0",
     "debug": "^4.1.1",
     "json-stable-stringify": "^1.0.1",
     "lodash.get": "^4.4.2"
   },
   "devDependencies": {
+    "@arcblock/did-agent-storage-memory": "^0.40.9",
+    "@arcblock/did-auth-storage-memory": "^0.40.9",
+    "@arcblock/swap-storage-memory": "^0.40.9",
+    "create-test-server": "^3.0.1",
     "jest": "^24.8.0",
     "remark-cli": "^5.0.0",
     "remark-preset-github": "^0.0.9"
@@ -64,7 +69,7 @@
     "lint:fix": "eslint --fix lib tests",
     "docs": "yarn generate-dts && yarn generate-docs && yarn cleanup-docs && yarn format-docs",
     "cleanup-docs": "node ../../tools/cleanup-docs.js docs/README.md $npm_package_name",
-    "generate-docs": "jsdoc2md lib/**/*.js > docs/README.md",
+    "generate-docs": "jsdoc2md lib/**/*.js lib/**/**/*.js > docs/README.md",
     "generate-dts": "j2d lib/index.js",
     "format-docs": "remark . -o",
     "precommit": "CI=1 yarn test",

@@ -27,6 +27,12 @@ class AtomicSwapHandlers {
    * @param {number} config.offerLocktime - num of blocks that will be locked before app chain swap can be revoked
    * @param {number} config.demandLocktime - num of blocks that will be locked before asset chain swap can be revoked
    * @param {function} [config.onPreAuth=noop] - function called before each auth request send back to app, used to check for permission, throw error to halt the auth process
+   * @param {string} [config.options.prefix='/api/swap'] - url prefix for this group endpoints
+   * @param {string} [config.options.sessionDidKey='user.did'] - key path to extract session user did from request object
+   * @param {string} [config.options.tokenKey='_t_'] - query param key for `token`
+   * @param {string} [config.options.checksumKey='_cs_'] - query param key for `checksum`
+   * @param {boolean|string|did} [config.options.authPrincipal=true] - whether should we do auth principal claim first
+   * @param {boolean} [config.options.signedResponse=false] - whether should we return signed response
    */
   constructor({
     authenticator,
@@ -40,6 +46,7 @@ class AtomicSwapHandlers {
     offerLocktime = 28800,
     demandLocktime = 57600,
     onPreAuth = noop,
+    options = {},
   }) {
     if (!offerChainHost || !offerChainId) {
       throw new Error('Swap handlers require valid offerChain host');
@@ -72,6 +79,19 @@ class AtomicSwapHandlers {
     } else {
       this.onPreAuth = noop;
     }
+
+    this.options = Object.assign(
+      {
+        prefix: '/api/did',
+        sessionDidKey: 'user.did',
+        swapKey: 'traceId',
+        tokenKey: '_t_',
+        checksumKey: '_cs_',
+        authPrincipal: true,
+        signedResponse: true,
+      },
+      options
+    );
   }
 
   /**
@@ -146,12 +166,6 @@ class AtomicSwapHandlers {
    * @param {function} [config.onComplete=noop] - callback when the whole auth process is done, action token is removed
    * @param {function} [config.onExpire=noop] - callback when the action token expired
    * @param {function} [config.onError=console.error] - callback when there are some errors
-   * @param {string} [config.prefix='/api/swap'] - url prefix for this group endpoints
-   * @param {string} [config.sessionDidKey='user.did'] - key path to extract session user did from request object
-   * @param {string} [config.tokenKey='_t_'] - query param key for `token`
-   * @param {string} [config.checksumKey='_cs_'] - query param key for `checksum`
-   * @param {boolean|string|did} [config.authPrincipal=true] - whether should we do auth principal claim first
-   * @param {boolean} [config.signedResponse=false] - whether should we return signed response
    * @returns void
    */
   attach({
@@ -163,13 +177,6 @@ class AtomicSwapHandlers {
     onExpire = noop,
     // eslint-disable-next-line no-console
     onError = console.error,
-    prefix = '/api/did',
-    sessionDidKey = 'user.did',
-    swapKey = 'traceId',
-    tokenKey = '_t_',
-    checksumKey = '_cs_',
-    authPrincipal = true,
-    signedResponse = false,
   }) {
     if (typeof onAuth !== 'function') {
       throw new Error('onAuth callback is required to attach did auth handlers');
@@ -178,6 +185,8 @@ class AtomicSwapHandlers {
       throw new Error('onComplete callback is required to attach did auth handlers');
     }
 
+    const { prefix, swapKey, signedResponse } = this.options;
+
     // pathname for abt wallet, which will be included for authenticator signing
     const authPath = `${prefix}/${action}/auth`;
     const retrievePath = `${prefix}/${action}/retrieve`;
@@ -185,7 +194,8 @@ class AtomicSwapHandlers {
 
     // Shared middleware that ensure a valid swap id exists in the url
     const ensureSwap = async (req, res, next) => {
-      const traceId = req.query.traceId || req.query[swapKey];
+      const traceId =
+        req.query.traceId || req.query[swapKey] || req.params.traceId || req.params[swapKey];
 
       if (!traceId) {
         return res.json({ error: 'Swap ID is required to start' });
@@ -196,7 +206,7 @@ class AtomicSwapHandlers {
         return res.json({ error: 'Swap not found' });
       }
 
-      req.traceId = req.traceId;
+      req.traceId = traceId;
       req.swap = swap;
 
       return next();
@@ -248,21 +258,19 @@ class AtomicSwapHandlers {
       onComplete,
       onExpire,
       onError,
-      sessionDidKey,
-      tokenKey,
-      checksumKey,
+      options: this.options,
       onPreAuth: this.onPreAuth,
       tokenGenerator: this.tokenGenerator,
       tokenStorage: this.tokenStorage,
       authenticator: this.authenticator,
-      authPrincipal,
     });
 
     const ensureWeb = ensureRequester('web');
     const ensureWallet = ensureRequester('wallet');
     const ensureSignedRes = ensureSignedJson(!signedResponse);
 
-    // 0. create an empty swap data row
+    // 0. create swap or retrieve swap
+    app.get('/api/swap/:traceId', ensureSwap, async (req, res) => res.jsonp(req.swap));
     app.post('/api/swap', async (req, res) => {
       const swap = await this.start(req.body);
       return res.jsonp(swap);
@@ -283,7 +291,7 @@ class AtomicSwapHandlers {
     // 5. Wallet: submit auth response
     app.post(authPath, ensureWallet, ensureSignedRes, ensureSwap, ensureContext, onAuthResponse);
 
-    // 6. Wallet: simple auth principal stub that used for wallet to retrieve
+    // 6. Wallet: simple auth principal stub that used for wallet to pickup retrieve
     app.get(
       retrievePath,
       ensureWallet,

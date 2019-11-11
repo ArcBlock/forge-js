@@ -1,6 +1,16 @@
 // Generate by [js2dts@0.3.3](https://github.com/whxaxes/js2dts#readme)
 
 import { EventEmitter } from 'events';
+/**
+ * Defines the interface of DID-Auth Token Storage
+ * Which is used during the DID-Auth process in an typical application
+ *
+ * @class AuthStorage
+ * @see @arcblock/did-auth-storage-firebase
+ * @see @arcblock/did-auth-storage-mongo
+ * @see @arcblock/did-auth-storage-keystone
+ * @extends {EventEmitter}
+ */
 declare class AuthStorage extends EventEmitter {
   /**
    * Creates an instance of AuthStorage.

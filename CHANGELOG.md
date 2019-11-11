@@ -1,3 +1,25 @@
+## 0.40.10 (November 09, 2019)
+
+- fix: did-agent-storage mongo test case
+- fix: did-agent-storage memory impmentation
+- chore: rename app-agent-storage => did-agent-storage
+- fix: cleanup abt-did-js repo reference
+- chore: update docs
+- chore: implement basic authorized wallet handler
+- chore: draft wallet agent handler
+- chore: support authorized authenticator
+- chore: add app-agent-storage and its memory implementaion
+- chore: improve test case
+- chore: refactor authenticator and handler options
+- fix: grpc-client test case
+- chore: update docs for grpc-client
+- chore: add test case for did-auth and atomic-swap handlers
+- chore: add memory storage for atomic-swap to easy test
+- chore: add memory storage for did-auth-storage to easy test
+- chore: test coverage for did-auth-authenticators
+- chore: test coverage for did-auth-storage
+- update readme
+
 ## 0.40.9 (November 08, 2019)
 
 - feat: support delegator in atomic-swap and better hash connecting

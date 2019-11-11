@@ -1,10 +1,8 @@
 const { fromRandom } = require('@arcblock/forge-wallet');
 const { fromTokenToUnit } = require('@arcblock/forge-util');
-const { toAssetAddress } = require('@arcblock/did-util');
 const GRpcClient = require('..');
 
 const client = new GRpcClient('tcp://127.0.0.1:28210');
-const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
 
 describe('#getRpcMethods', () => {
   test('should be function', () => {
@@ -92,12 +90,8 @@ describe('#magicMethods', () => {
 
     test('should support declare account', async () => {
       const wallet = fromRandom();
-      const hash = await client.sendDeclareTx({
-        tx: {
-          itx: {
-            moniker: `graphql_client_test_${Math.round(Math.random() * 10000)}`,
-          },
-        },
+      const hash = await client.declare({
+        moniker: `graphql_client_test_${Math.round(Math.random() * 10000)}`,
         wallet,
       });
 
@@ -107,12 +101,8 @@ describe('#magicMethods', () => {
     test('should support detailed error message', async () => {
       const wallet = fromRandom();
       try {
-        await client.sendDeclareTx({
-          tx: {
-            itx: {
-              moniker: 'abc',
-            },
-          },
+        await client.declare({
+          moniker: 'abc',
           wallet,
         });
       } catch (err) {
@@ -143,27 +133,14 @@ describe('#magicMethods', () => {
         const receiver = fromRandom();
 
         // 1. declare sender
-        await client.sendDeclareTx({
-          tx: {
-            itx: {
-              moniker: 'sender',
-            },
-          },
-          wallet: sender,
-        });
+        await client.declare({ moniker: 'sender', wallet: sender });
 
         // 2. declare receiver
-        await client.sendDeclareTx({
-          tx: {
-            itx: {
-              moniker: 'receiver',
-            },
-          },
-          wallet: receiver,
-        });
+        await client.declare({ moniker: 'receiver', wallet: receiver });
+        await client.checkin({ wallet: receiver });
 
         // 3. create asset for sender
-        const asset = {
+        const [, assetAddress] = await client.createAsset({
           moniker: 'asset',
           readonly: true,
           transferrable: true,
@@ -174,44 +151,31 @@ describe('#magicMethods', () => {
               sn: Math.random(),
             },
           },
-        };
-        const assetAddress = toAssetAddress(asset);
-        asset.address = assetAddress;
-        await client.sendCreateAssetTx({
-          tx: { itx: asset },
           wallet: sender,
         });
 
-        // assemble exchange tx: multisig
-        const exchange = {
-          itx: {
-            to: receiver.toAddress(),
-            sender: {
-              assets: [assetAddress],
-            },
-            receiver: {
-              value: fromTokenToUnit(0),
-            },
-          },
-        };
-
         // 4.1 Sender: encode and sign the transaction
-        const encoded1 = await client.signExchangeTx({ tx: exchange, wallet: sender });
+        const encoded1 = await client.prepareExchange({
+          to: receiver.toAddress(),
+          offerAssets: [assetAddress],
+          demandToken: fromTokenToUnit(5),
+          wallet: sender,
+        });
 
         // 4.2 Receiver: do the multi sig
-        const encoded2 = await client.multiSignExchangeTx({
-          tx: Object.assign(encoded1, exchange),
+        const encoded2 = await client.finalizeExchange({
+          tx: encoded1,
           wallet: receiver,
         });
 
         // 4.3 Send the exchange tx
-        await sleep(3000);
-        await client.sendExchangeTx({
+        await client.exchange({
           tx: encoded2,
           wallet: sender,
-          signature: encoded1.signature,
         });
       } catch (err) {
+        // eslint-disable-next-line no-console
+        console.error(err);
         expect(err).toBeFalsy();
       }
     }, 10000);
