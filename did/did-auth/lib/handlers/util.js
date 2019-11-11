@@ -88,6 +88,17 @@ module.exports = function createHandlers({
         }, {})
     );
 
+  const onProcessError = ({ req, res, stage, err }) => {
+    const { token, store } = req.context || {};
+    if (store) {
+      debug('error', token);
+      tokenStorage.update(token, { status: STATUS_ERROR, error: err.message });
+    }
+
+    res.json({ error: err.message });
+    onError({ stage, err });
+  };
+
   // For web app
   const generateActionToken = async (req, res) => {
     try {
@@ -111,8 +122,7 @@ module.exports = function createHandlers({
         }),
       });
     } catch (err) {
-      res.json({ error: err.message });
-      onError({ stage: 'generate-token', err });
+      onProcessError({ req, res, stage: 'generate-token', err });
     }
   };
 
@@ -157,8 +167,7 @@ module.exports = function createHandlers({
         res.status(404).json({ error: errors.token404[locale] });
       }
     } catch (err) {
-      res.json({ error: err.message });
-      onError({ stage: 'check-token-status', err });
+      onProcessError({ req, res, stage: 'check-token-status', err });
     }
   };
 
@@ -179,8 +188,7 @@ module.exports = function createHandlers({
       }
       res.status(200).json({ token });
     } catch (err) {
-      res.json({ error: err.message });
-      onError({ stage: 'token-timeout', err });
+      onProcessError({ req, res, stage: 'mark-token-timeout', err });
     }
   };
 
@@ -229,15 +237,7 @@ module.exports = function createHandlers({
         )
       );
     } catch (err) {
-      if (store) {
-        await tokenStorage.update(token, {
-          did: userDid,
-          status: STATUS_ERROR,
-          error: err.message,
-        });
-      }
-      res.json({ error: err.message });
-      onError({ stage: 'auth-response', err });
+      onProcessError({ req, res, stage: 'send-auth-claim', err });
     }
   };
 
@@ -281,8 +281,9 @@ module.exports = function createHandlers({
           const nextStep = store.currentStep + 1;
           await tokenStorage.update(token, { currentStep: nextStep });
           const signParams = await getSignParams(req);
-          return res.jsonp(
-            await authenticator.sign(
+
+          try {
+            const nextSignedClaim = await authenticator.sign(
               Object.assign(signParams, {
                 token,
                 userDid,
@@ -291,8 +292,11 @@ module.exports = function createHandlers({
                 pathname: getPathName(pathname, req),
                 extraParams: createExtraParams(locale, req.query),
               })
-            )
-          );
+            );
+            return res.jsonp(nextSignedClaim);
+          } catch (err) {
+            return onProcessError({ req, res, stage: 'next-auth-claim', err });
+          }
         }
 
         // If we have a invalid token
@@ -303,13 +307,7 @@ module.exports = function createHandlers({
       const result = await onAuth(cbParams);
       res.json(Object.assign({}, result || {}));
     } catch (err) {
-      if (store) {
-        debug('verify.error', token);
-        await tokenStorage.update(token, { status: STATUS_ERROR, error: err.message });
-      }
-
-      res.json({ error: err.message });
-      onError({ stage: 'auth-request', err });
+      onProcessError({ req, res, stage: 'verify-auth-claim', err });
     }
   };
 
