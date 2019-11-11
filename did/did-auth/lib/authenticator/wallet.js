@@ -14,7 +14,6 @@ const BaseAuthenticator = require('./base');
 // eslint-disable-next-line
 const debug = require('debug')(`${require('../../package.json').name}:authenticator:wallet`);
 
-// FIXME: description fields should not exist here
 class WalletAuthenticator extends BaseAuthenticator {
   /**
    * @typedef ApplicationInfo
@@ -249,7 +248,7 @@ class WalletAuthenticator extends BaseAuthenticator {
 
   // 要求用户信息
   async profile({ claim, userDid, userPk, extraParams }) {
-    const { fields, description } = await this.getClaimInfo({
+    const { fields, description, meta = {} } = await this.getClaimInfo({
       claim,
       userDid,
       userPk,
@@ -258,9 +257,8 @@ class WalletAuthenticator extends BaseAuthenticator {
     return {
       type: 'profile',
       items: fields || ['fullName'],
-      meta: {
-        description: description || 'Please provide your profile information.',
-      },
+      description: description || 'Please provide your profile information.',
+      meta,
     };
   }
 
@@ -312,10 +310,7 @@ class WalletAuthenticator extends BaseAuthenticator {
         origin: toBase58(txBuffer),
         sig: '',
         chainInfo,
-        meta: Object.assign(meta, {
-          description,
-          typeUrl: 'fg:t:transaction',
-        }),
+        meta,
       };
     }
 
@@ -330,15 +325,12 @@ class WalletAuthenticator extends BaseAuthenticator {
         origin: toBase58(data),
         sig: '',
         chainInfo,
-        meta: Object.assign(meta, {
-          description,
-          typeUrl: 'fg:t:transaction',
-        }),
+        meta,
       };
     }
 
     // If we are ask user to sign anything
-    // TODO: https://github.com/ArcBlock/ABT-DID-Protocol/issues/46
+    // TODO: add whitelist here https://github.com/ArcBlock/ABT-DID-Protocol/issues/46
     return {
       type: 'signature',
       data: toBase58(data),
@@ -348,10 +340,7 @@ class WalletAuthenticator extends BaseAuthenticator {
       origin: toBase58(data),
       sig: '',
       chainInfo,
-      meta: Object.assign(meta, {
-        description: desc || 'Sign this message to continue.',
-        typeUrl: type,
-      }),
+      meta,
     };
   }
 
