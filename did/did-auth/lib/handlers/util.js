@@ -303,7 +303,6 @@ module.exports = function createHandlers({
       const result = await onAuth(cbParams);
       res.json(Object.assign({}, result || {}));
     } catch (err) {
-      console.error(err);
       if (store) {
         debug('verify.error', token);
         await tokenStorage.update(token, { status: STATUS_ERROR, error: err.message });

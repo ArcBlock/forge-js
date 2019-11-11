@@ -26,12 +26,24 @@ const assetChainHost = 'http://182.92.167.126:8210/api';
 const assetChainId = 'play-asset-chain';
 const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
 
-describe('#WalletHandlers', () => {
+describe('#SwapHandlers', () => {
   let server;
 
   beforeEach(async () => {
     server = await createTestServer();
   });
+
+  test('should be a function', () => {
+    expect(typeof SwapHandlers).toEqual('function');
+  });
+
+  afterEach(async () => {
+    await server.close();
+  });
+
+  if (process.env.CI) {
+    return;
+  }
 
   test('should handle atomic swap as expected', async () => {
     const tokenStorage = new MemoryAuthStorage();
@@ -266,8 +278,4 @@ describe('#WalletHandlers', () => {
     // expect(swap.demandUserAddress).toEqual(user.toAddress());
     // expect(swap.demandRetrieveHash).toBeTruthy();
   }, 20000);
-
-  afterEach(async () => {
-    await server.close();
-  });
 });
