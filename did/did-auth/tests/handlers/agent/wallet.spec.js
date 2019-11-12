@@ -126,6 +126,12 @@ describe('#WalletHandlers', () => {
     expect(authInfo1.iss).toEqual(`did:abt:${authorizer.toAddress()}`);
     expect(authInfo1.agentDid).toEqual(agent.toAddress());
     expect(authInfo1.agentPk).toEqual(toBase58(agent.publicKey));
+    expect(Array.isArray(authInfo1.verifiableClaims)).toEqual(true);
+    const [claim] = authInfo1.verifiableClaims;
+    expect(claim).toBeTruthy();
+    expect(claim.type).toEqual('certificate');
+    expect(claim.content).toEqual(content);
+    expect(claim.sig).toEqual(sig);
 
     // Submit auth principal
     const { data: info5 } = await axios.post(authInfo1.url, {
