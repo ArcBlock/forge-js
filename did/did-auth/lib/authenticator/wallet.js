@@ -230,7 +230,7 @@ class WalletAuthenticator extends BaseAuthenticator {
 
   // 要求同意协议
   async agreement({ claim, userDid, userPk, extraParams }) {
-    const { uri, hash, description, meta = {} } = await this.getClaimInfo({
+    const { uri, hash, description, chainInfo, meta = {} } = await this.getClaimInfo({
       claim,
       userDid,
       userPk,
@@ -242,13 +242,14 @@ class WalletAuthenticator extends BaseAuthenticator {
       description: description || 'Confirm your agreement to the document',
       uri,
       hash,
+      chainInfo,
       meta,
     };
   }
 
   // 要求用户信息
   async profile({ claim, userDid, userPk, extraParams }) {
-    const { fields, description, meta = {} } = await this.getClaimInfo({
+    const { fields, description, chainInfo, meta = {} } = await this.getClaimInfo({
       claim,
       userDid,
       userPk,
@@ -258,6 +259,7 @@ class WalletAuthenticator extends BaseAuthenticator {
       type: 'profile',
       items: fields || ['fullName'],
       description: description || 'Please provide your profile information.',
+      chainInfo,
       meta,
     };
   }
@@ -346,7 +348,7 @@ class WalletAuthenticator extends BaseAuthenticator {
 
   // 资产持有证明
   async holdingOfAsset({ claim, userDid, userPk, extraParams }) {
-    const { assetDid, description } = await this.getClaimInfo({
+    const { assetDid, description, meta = {}, chainInfo } = await this.getClaimInfo({
       claim,
       userDid,
       userPk,
@@ -355,15 +357,16 @@ class WalletAuthenticator extends BaseAuthenticator {
     return {
       type: 'asset',
       description: description || 'Please prove that you hold the asset',
-      meta: {
+      chainInfo,
+      meta: Object.assign(meta, {
         id: assetDid,
-      },
+      }),
     };
   }
 
   // 选择 DID
   async authPrincipal({ claim, userDid, userPk, extraParams }) {
-    const { target, description, meta = {} } = await this.getClaimInfo({
+    const { target, description, chainInfo, meta = {} } = await this.getClaimInfo({
       claim,
       userDid,
       userPk,
@@ -375,6 +378,7 @@ class WalletAuthenticator extends BaseAuthenticator {
       description: description || 'Please set the authentication principal',
       meta,
       target,
+      chainInfo,
     };
   }
 

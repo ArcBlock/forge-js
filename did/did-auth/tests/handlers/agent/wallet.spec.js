@@ -121,9 +121,11 @@ describe('#WalletHandlers', () => {
     expect(info4.currentStep).toEqual(0);
 
     const authInfo1 = Jwt.decode(info3.authInfo);
+    // console.log('authInfo1', authInfo1);
     expect(authInfo1.status).toEqual('ok');
     expect(authInfo1.iss).toEqual(`did:abt:${authorizer.toAddress()}`);
-    // console.log('authInfo1', authInfo1);
+    expect(authInfo1.agentDid).toEqual(agent.toAddress());
+    expect(authInfo1.agentPk).toEqual(toBase58(agent.publicKey));
 
     // Submit auth principal
     const { data: info5 } = await axios.post(authInfo1.url, {

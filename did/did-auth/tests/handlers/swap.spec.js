@@ -29,7 +29,7 @@ const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
 describe('#SwapHandlers', () => {
   let server;
 
-  beforeEach(async () => {
+  beforeAll(async () => {
     server = await createTestServer();
   });
 
@@ -37,7 +37,7 @@ describe('#SwapHandlers', () => {
     expect(typeof SwapHandlers).toEqual('function');
   });
 
-  afterEach(async () => {
+  afterAll(async () => {
     await server.close();
   });
 
