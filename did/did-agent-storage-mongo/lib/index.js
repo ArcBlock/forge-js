@@ -130,12 +130,15 @@ module.exports = class MongoAgentStorage extends StorageInterface {
 
   update(authorizeId, updates) {
     return this.collectionReady()
-      .then(collection =>
-        collection.updateOne(
-          { authorizeId },
-          { $set: Object.assign({ updatedAt: new Date() }, updates) },
-          { upsert: true }
-        )) // prettier-ignore
+      .then(
+        collection =>
+          collection.updateOne(
+            { authorizeId },
+            { $set: Object.assign({ updatedAt: new Date() }, updates) },
+            { upsert: true }
+          )
+        // eslint-disable-next-line function-paren-newline
+      )
       .then(rawResponse => {
         if (rawResponse.result) {
           rawResponse = rawResponse.result;
@@ -162,12 +165,19 @@ module.exports = class MongoAgentStorage extends StorageInterface {
     return this.collectionReady().then(collection => collection.drop());
   }
 
+  // TODO: add pagination for this
   listByOwner(ownerDid) {
-    return this.collectionReady().then(collection => collection.find({ ownerDid }));
+    return this.collectionReady().then(collection => collection.find({ ownerDid }).toArray());
   }
 
+  // TODO: add pagination for this
   listByApp(appDid) {
-    return this.collectionReady().then(collection => collection.find({ appDid }));
+    return this.collectionReady().then(collection => collection.find({ appDid }).toArray());
+  }
+
+  // TODO: add pagination for this
+  listByAgent(agentDid) {
+    return this.collectionReady().then(collection => collection.find({ agentDid }).toArray());
   }
 
   close() {

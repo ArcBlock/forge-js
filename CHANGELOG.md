@@ -1,3 +1,10 @@
+## 0.40.11 (November 12, 2019)
+
+- fix: mongo storage list methods should call toArray
+- chore: merge defaults when creating wallet_types
+- chore: improve error handling when signing claims
+- update readme
+
 ## 0.40.10 (November 09, 2019)
 
 - fix: did-agent-storage mongo test case

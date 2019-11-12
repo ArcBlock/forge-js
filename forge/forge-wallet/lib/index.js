@@ -52,7 +52,7 @@ const defaultWalletType = {
  * });
  */
 function WalletType(type = defaultWalletType) {
-  const { role, pk, hash } = type;
+  const { role, pk, hash } = Object.assign({}, defaultWalletType, type);
   Object.keys(type).forEach(x => {
     const key = upperFirst(`${mapping[x] || x}Type`);
     if (Object.values(types[key]).includes(type[x]) === false) {

@@ -46,6 +46,10 @@ class DidAgentStorage extends EventEmitter {
   listByApp(appDid) {
     throw new Error('DidAgentStorage.listByApp must be implemented in child class');
   }
+
+  listByAgent(agentDid) {
+    throw new Error('DidAgentStorage.listByAgent must be implemented in child class');
+  }
 }
 
 module.exports = DidAgentStorage;

@@ -216,7 +216,7 @@ class MongoSwapStorage extends StorageInterface {
    * TODO: add pagination for this
    */
   listByStatus(status) {
-    return this.collectionReady().then(collection => collection.find({ status }));
+    return this.collectionReady().then(collection => collection.find({ status }).toArray());
   }
 
   /**
@@ -233,7 +233,7 @@ class MongoSwapStorage extends StorageInterface {
     if (status) {
       conditions.status = status;
     }
-    return this.collectionReady().then(collection => collection.find(conditions));
+    return this.collectionReady().then(collection => collection.find(conditions).toArray());
   }
 
   /**
@@ -250,7 +250,7 @@ class MongoSwapStorage extends StorageInterface {
     if (status) {
       conditions.status = status;
     }
-    return this.collectionReady().then(collection => collection.find(conditions));
+    return this.collectionReady().then(collection => collection.find(conditions).toArray());
   }
 
   // purge(ttl = 24 * 60 * 60 * 1000) {
