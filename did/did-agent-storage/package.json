@@ -1,7 +1,7 @@
 {
   "name": "@arcblock/did-agent-storage",
   "description": "Storage interface for delegated did-auth between application and wallet",
-  "version": "0.40.11",
+  "version": "0.41.0",
   "author": "wangshijun <shijun@arcblock.io> (https://ocap.arcblock.io)",
   "bugs": {
     "url": "https://github.com/ArcBlock/forge-js/issues",

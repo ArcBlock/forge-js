@@ -1,7 +1,7 @@
 {
   "name": "@arcblock/swap-storage",
   "description": "Storage interface for atomic-swap",
-  "version": "0.40.10",
+  "version": "0.41.0",
   "author": "wangshijun <shijun@arcblock.io> (https://ocap.arcblock.io)",
   "bugs": {
     "url": "https://github.com/ArcBlock/forge-js/issues",
