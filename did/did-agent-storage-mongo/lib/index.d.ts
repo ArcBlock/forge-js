@@ -25,6 +25,7 @@ declare class DidAgentStorage extends EventEmitter {
   delete(authorizeId: any): void;
   listByOwner(ownerDid: any): void;
   listByApp(appDid: any): void;
+  listByAgent(agentDid: any): void;
 }
 declare class MongoAgentStorage extends DidAgentStorage {
   collectionName: string;
@@ -51,6 +52,7 @@ declare class MongoAgentStorage extends DidAgentStorage {
   clear(): any;
   listByOwner(ownerDid: any): any;
   listByApp(appDid: any): any;
+  listByAgent(agentDid: any): any;
   close(): void;
 }
 declare const _Lib: typeof MongoAgentStorage;
