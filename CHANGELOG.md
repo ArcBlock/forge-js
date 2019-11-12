@@ -1,6 +1,7 @@
 ## 1.0.0 (November 12, 2019)
 
 - chore: get ready for forge 1.0 release
+- chore: make delegated did-auth work in wallet
 - update readme
 
 ## 0.41.0 (November 12, 2019)
