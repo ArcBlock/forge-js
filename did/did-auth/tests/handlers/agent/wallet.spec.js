@@ -58,12 +58,14 @@ describe('#WalletHandlers', () => {
     });
     const [, content, sig] = authorization.split('.');
     agentStorage.create(authorizeId, {
+      agentDid: agent.toAddress(),
       ownerDid: user.toAddress(),
       appDid: authorizeId,
       appPk: authorizer.publicKey,
       appName: 'ABT Wallet Demo',
       appDescription: 'Demo application to show the potential of ABT Wallet',
       appIcon: 'https://arcblock.oss-cn-beijing.aliyuncs.com/images/wallet-round.png',
+      chainHost,
       certificateContent: content,
       certificateSignature: sig,
     });

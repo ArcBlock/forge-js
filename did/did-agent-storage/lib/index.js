@@ -21,9 +21,22 @@ class DidAgentStorage extends EventEmitter {
    */
   constructor(options) {
     super(options);
+
+    this.requiredFields = [
+      'ownerDid',
+      'agentDid',
+      'appDid',
+      'appPk',
+      'appName',
+      'appDescription',
+      'appIcon',
+      'chainHost',
+      'certificateContent',
+      'certificateSignature',
+    ];
   }
 
-  create(authorizeId) {
+  create(authorizeId, payload) {
     throw new Error('DidAgentStorage.create must be implemented in child class');
   }
 

@@ -19,17 +19,6 @@ module.exports = class MongoAgentStorage extends StorageInterface {
 
     this.collectionName = options.collection || 'app-agent-authorizations';
     this.options = options;
-    this.requiredFields = [
-      'ownerDid',
-      'agentDid',
-      'appDid',
-      'appPk',
-      'appName',
-      'appDescription',
-      'appIcon',
-      'certificateContent',
-      'certificateSignature',
-    ];
 
     this.changeState('init');
 
