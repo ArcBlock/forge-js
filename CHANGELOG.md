@@ -1,3 +1,11 @@
+## 0.41.0 (November 12, 2019)
+
+- chore: update docs
+- chore: update docs for each package
+- chore: remove engines field in package.json
+- fix: support custome chainInfo on all claim types
+- update readme
+
 ## 0.40.11 (November 12, 2019)
 
 - fix: mongo storage list methods should call toArray
