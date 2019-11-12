@@ -54,12 +54,10 @@ class AgentAuthenticator extends WalletAuthenticator {
     const tmp = claimsInfo.find(x => this._isValidChainInfo(x.chainInfo));
 
     const payload = {
-      status: 'ok',
       action: 'responseAuth',
       appInfo,
       iss: toDid(authorizer.did),
-      agentPk: this.appPk,
-      agentDid: this.wallet.address,
+      agentDid: toDid(this.wallet.address),
       chainInfo: tmp ? tmp.chainInfo : this.chainInfo,
       verifiableClaims,
       requestedClaims: claimsInfo.map(x => {
@@ -71,11 +69,14 @@ class AgentAuthenticator extends WalletAuthenticator {
       )}`,
     };
 
-    debug('responseAuth.sign', { token, userDid, payload, extraParams });
-    return {
+    const signed = {
       appPk: toBase58(authorizer.pk),
+      agentPk: this.appPk,
       authInfo: Jwt.sign(this.wallet.address, this.wallet.sk, payload),
     };
+
+    debug('responseAuth.sign', { token, userDid, extraParams, payload, signed });
+    return signed;
   }
 
   _verifyClaims(claims) {

@@ -103,7 +103,6 @@ class AgentWalletHandlers extends WalletHandlers {
         appName,
         appDescription,
         appIcon,
-        certificateSignature,
         certificateContent,
       } = req.authorization;
 
@@ -114,7 +113,6 @@ class AgentWalletHandlers extends WalletHandlers {
           {
             type: 'certificate',
             content: certificateContent,
-            sig: certificateSignature,
           },
         ],
       };

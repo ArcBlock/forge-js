@@ -7,12 +7,14 @@
 
 ## Table of Contents
 
-* [Motivation & Spec](#motivation--spec)
-  * [Fields](#fields)
-  * [APIs](#apis)
-* [Install](#install)
-* [Usage](#usage)
-* [Contributors](#contributors)
+- [**@arcblock/did-agent-storage**](#arcblockdid-agent-storage)
+  - [Table of Contents](#table-of-contents)
+  - [Motivation & Spec](#motivation--spec)
+    - [Fields](#fields)
+    - [APIs](#apis)
+  - [Install](#install)
+  - [Usage](#usage)
+  - [Contributors](#contributors)
 
 
 ## Motivation & Spec
@@ -30,8 +32,6 @@ Possible fields to exist in a did-agent storage record
 * `appDescription`: Application description
 * `appIcon`: Application logo/icon
 * `certificateContent`: Application authorize content
-* `certificateSignature`: Application authorize signature
-* `certificateContentSigned`: Application authorize signed
 
 ### APIs
 

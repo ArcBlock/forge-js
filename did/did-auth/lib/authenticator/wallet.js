@@ -154,7 +154,6 @@ class WalletAuthenticator extends BaseAuthenticator {
     const tmp = claimsInfo.find(x => this._isValidChainInfo(x.chainInfo));
 
     const payload = {
-      status: 'ok',
       action: 'responseAuth',
       appInfo: this.appInfo,
       chainInfo: tmp ? tmp.chainInfo : this.chainInfo,
