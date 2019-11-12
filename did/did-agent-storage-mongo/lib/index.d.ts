@@ -12,6 +12,7 @@ import { EventEmitter } from 'events';
  * @extends {EventEmitter}
  */
 declare class DidAgentStorage extends EventEmitter {
+  requiredFields: string[];
   /**
    * Creates an instance of DidAgentStorage.
    *
@@ -19,7 +20,7 @@ declare class DidAgentStorage extends EventEmitter {
    * @param {object} options
    */
   constructor(options: any);
-  create(authorizeId: any): void;
+  create(authorizeId: any, payload: any): void;
   update(authorizeId: any, updates: any): void;
   read(authorizeId: any): void;
   delete(authorizeId: any): void;
@@ -30,7 +31,6 @@ declare class DidAgentStorage extends EventEmitter {
 declare class MongoAgentStorage extends DidAgentStorage {
   collectionName: string;
   options: _Lib.T100;
-  requiredFields: string[];
   /**
    * Creates an instance of MongoAgentStorage.
    *

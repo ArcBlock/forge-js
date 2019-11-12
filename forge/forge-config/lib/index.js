@@ -16,8 +16,8 @@ const camelize = require('camelize');
  * @returns {object}
  * @throws Error when file not found
  * @example
-const { parseConfig } = require('@arcblock/forge-config');
-const config = parseConfig('./forge.toml');
+const { parse } = require('@arcblock/forge-config');
+const config = parse('./forge.toml');
  */
 function parse(configPath) {
   if (!fs.existsSync(configPath)) {

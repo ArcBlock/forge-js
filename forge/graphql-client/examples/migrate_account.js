@@ -30,7 +30,7 @@ const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
     await sleep(3000);
 
     // 2. migrate: with from's pk/sk
-    hash = await client.accountMigrate({
+    hash = await client.migrateAccount({
       from: migrateFrom,
       to: migrateTo,
     });
