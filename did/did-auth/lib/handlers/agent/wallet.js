@@ -23,7 +23,6 @@ class AgentWalletHandlers extends WalletHandlers {
    * @param {string} [config.options.sessionDidKey='user.did'] - key path to extract session user did from request object
    * @param {string} [config.options.tokenKey='_t_'] - query param key for `token`
    * @param {string} [config.options.checksumKey='_cs_'] - query param key for `checksum`
-   * @param {boolean|string|did} [config.options.authPrincipal=true] - whether should we do auth principal claim first
    */
   constructor({
     tokenGenerator,
@@ -60,6 +59,7 @@ class AgentWalletHandlers extends WalletHandlers {
    * @param {function} [config.onComplete=noop] - callback when the whole auth process is done, action token is removed
    * @param {function} [config.onExpire=noop] - callback when the action token expired
    * @param {function} [config.onError=console.error] - callback when there are some errors
+   * @param {boolean|string|did} [config.authPrincipal=true] - whether should we do auth principal claim first
    * @return void
    */
   attach({
@@ -71,6 +71,7 @@ class AgentWalletHandlers extends WalletHandlers {
     onExpire = noop,
     // eslint-disable-next-line no-console
     onError = console.error,
+    authPrincipal = true,
   }) {
     if (typeof onAuth !== 'function') {
       throw new Error('onAuth callback is required to attach did auth handlers');
@@ -103,7 +104,7 @@ class AgentWalletHandlers extends WalletHandlers {
         appDescription,
         appIcon,
         certificateSignature,
-        certificateContentSigned,
+        certificateContent,
       } = req.authorization;
 
       return {
@@ -111,7 +112,8 @@ class AgentWalletHandlers extends WalletHandlers {
         appInfo: { name: appName, description: appDescription, icon: appIcon },
         verifiableClaims: [
           {
-            content: certificateContentSigned,
+            type: 'certificate',
+            content: certificateContent,
             sig: certificateSignature,
           },
         ],
@@ -157,6 +159,7 @@ class AgentWalletHandlers extends WalletHandlers {
       onError,
       getSignParams,
       getPathName: (url, req) => url.replace('/:authorizeId/', `/${req.authorizeId}/`),
+      authPrincipal,
       options: this.options,
       onPreAuth: this.onPreAuth,
       tokenGenerator: this.tokenGenerator,

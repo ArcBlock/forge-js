@@ -25,6 +25,7 @@ declare class DidAgentStorage extends EventEmitter {
   delete(authorizeId: any): void;
   listByOwner(ownerDid: any): void;
   listByApp(appDid: any): void;
+  listByAgent(agentDid: any): void;
 }
 declare class MemoryAgentStorage extends DidAgentStorage {
   read(authorizeId: any): any;

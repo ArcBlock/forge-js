@@ -31,7 +31,6 @@ class AtomicSwapHandlers {
    * @param {string} [config.options.sessionDidKey='user.did'] - key path to extract session user did from request object
    * @param {string} [config.options.tokenKey='_t_'] - query param key for `token`
    * @param {string} [config.options.checksumKey='_cs_'] - query param key for `checksum`
-   * @param {boolean|string|did} [config.options.authPrincipal=true] - whether should we do auth principal claim first
    * @param {boolean} [config.options.signedResponse=false] - whether should we return signed response
    */
   constructor({
@@ -87,7 +86,6 @@ class AtomicSwapHandlers {
         swapKey: 'traceId',
         tokenKey: '_t_',
         checksumKey: '_cs_',
-        authPrincipal: true,
         signedResponse: true,
       },
       options
@@ -166,6 +164,7 @@ class AtomicSwapHandlers {
    * @param {function} [config.onComplete=noop] - callback when the whole auth process is done, action token is removed
    * @param {function} [config.onExpire=noop] - callback when the action token expired
    * @param {function} [config.onError=console.error] - callback when there are some errors
+   * @param {boolean|string|did} [config.authPrincipal=true] - whether should we do auth principal claim first
    * @returns void
    */
   attach({
@@ -177,6 +176,7 @@ class AtomicSwapHandlers {
     onExpire = noop,
     // eslint-disable-next-line no-console
     onError = console.error,
+    authPrincipal = true,
   }) {
     if (typeof onAuth !== 'function') {
       throw new Error('onAuth callback is required to attach did auth handlers');
@@ -258,6 +258,7 @@ class AtomicSwapHandlers {
       onComplete,
       onExpire,
       onError,
+      authPrincipal,
       options: this.options,
       onPreAuth: this.onPreAuth,
       tokenGenerator: this.tokenGenerator,

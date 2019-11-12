@@ -1,7 +1,9 @@
+/* eslint-disable no-underscore-dangle */
+/* eslint-disable prefer-destructuring */
 /* eslint-disable object-curly-newline */
 const get = require('lodash.get');
 const Mcrypto = require('@arcblock/mcrypto');
-const { toAddress, isValid } = require('@arcblock/did');
+const { toAddress, isValid: isValidDid } = require('@arcblock/did');
 // eslint-disable-next-line
 const debug = require('debug')(`${require('../../package.json').name}:handlers:did`);
 
@@ -52,27 +54,52 @@ module.exports = function createHandlers({
   tokenGenerator,
   tokenStorage,
   authenticator,
+  authPrincipal,
   getSignParams = noop,
   getPathName = noTouch,
   options,
 }) {
-  const { sessionDidKey, tokenKey, checksumKey, authPrincipal } = options;
+  const { sessionDidKey, tokenKey, checksumKey } = options;
 
   // if user want to do multiple-step did-auth
   const steps = Array.isArray(claims) ? claims : [claims];
 
   // Prepend auth principal claim by default
   if (authPrincipal) {
-    // If auth principal is provided as a did
-    const target = isValid(authPrincipal.toString()) ? authPrincipal.toString() : '';
-    // If auth principal is provided as a string
-    const description = !isValid(authPrincipal.toString())
-      ? authPrincipal.toString()
-      : 'Please select authentication principal';
+    let target = '';
+    let description = 'Please select authentication principal';
+    let chainInfo;
+
+    if (typeof authPrincipal === 'string') {
+      if (isValidDid(authPrincipal)) {
+        // If auth principal is provided as a did
+        target = authPrincipal;
+      } else {
+        // If auth principal is provided as a string
+        description = authPrincipal;
+      }
+    }
+    if (typeof authPrincipal === 'object') {
+      if (authPrincipal.target) {
+        target = authPrincipal.target;
+      }
+      if (authPrincipal.description) {
+        description = authPrincipal.description;
+      }
+      // If provided a chainInfo
+      if (authPrincipal.chainInfo && authenticator._isValidChainInfo(authPrincipal.chainInfo)) {
+        chainInfo = authPrincipal.chainInfo;
+      }
+      if (authenticator._isValidChainInfo(authPrincipal)) {
+        chainInfo = authPrincipal;
+      }
+    }
+
     steps.unshift({
       authPrincipal: () => ({
         description,
         target,
+        chainInfo,
       }),
     });
   }

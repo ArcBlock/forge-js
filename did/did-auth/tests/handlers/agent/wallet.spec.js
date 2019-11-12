@@ -58,12 +58,14 @@ describe('#WalletHandlers', () => {
     });
     const [, content, sig] = authorization.split('.');
     agentStorage.create(authorizeId, {
+      agentDid: agent.toAddress(),
       ownerDid: user.toAddress(),
       appDid: authorizeId,
       appPk: authorizer.publicKey,
       appName: 'ABT Wallet Demo',
       appDescription: 'Demo application to show the potential of ABT Wallet',
       appIcon: 'https://arcblock.oss-cn-beijing.aliyuncs.com/images/wallet-round.png',
+      chainHost,
       certificateContent: content,
       certificateSignature: sig,
     });
@@ -121,9 +123,17 @@ describe('#WalletHandlers', () => {
     expect(info4.currentStep).toEqual(0);
 
     const authInfo1 = Jwt.decode(info3.authInfo);
+    // console.log('authInfo1', authInfo1);
     expect(authInfo1.status).toEqual('ok');
     expect(authInfo1.iss).toEqual(`did:abt:${authorizer.toAddress()}`);
-    // console.log('authInfo1', authInfo1);
+    expect(authInfo1.agentDid).toEqual(agent.toAddress());
+    expect(authInfo1.agentPk).toEqual(toBase58(agent.publicKey));
+    expect(Array.isArray(authInfo1.verifiableClaims)).toEqual(true);
+    const [claim] = authInfo1.verifiableClaims;
+    expect(claim).toBeTruthy();
+    expect(claim.type).toEqual('certificate');
+    expect(claim.content).toEqual(content);
+    expect(claim.sig).toEqual(sig);
 
     // Submit auth principal
     const { data: info5 } = await axios.post(authInfo1.url, {

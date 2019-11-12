@@ -8,6 +8,11 @@ module.exports = class MemoryAgentStorage extends StorageInterface {
   }
 
   create(authorizeId, payload = {}) {
+    this.requiredFields.forEach(x => {
+      if (!payload[x]) {
+        throw new Error(`${x} field is required to create agent authorization record`);
+      }
+    });
     storage[authorizeId] = Object.assign({ authorizeId }, payload);
     return this.read(authorizeId);
   }

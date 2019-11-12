@@ -7,10 +7,6 @@
     "email": "shijun@arcblock.io",
     "url": "https://github.com/wangshijun"
   },
-  "engines": {
-    "node": ">=0.10.0",
-    "forge": ">=0.11.1"
-  },
   "bugs": {
     "url": "https://github.com/ArcBlock/forge-js/issues",
     "email": "shijun@arcblock.io"
