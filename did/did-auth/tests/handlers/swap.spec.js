@@ -175,7 +175,6 @@ describe('#SwapHandlers', () => {
     expect(info4.currentStep).toEqual(0);
 
     const authInfo1 = Jwt.decode(info3.authInfo);
-    expect(authInfo1.status).toEqual('ok');
     expect(authInfo1.iss).toEqual(`did:abt:${app.toAddress()}`);
     // console.log('authInfo1', authInfo1);
 
@@ -187,7 +186,6 @@ describe('#SwapHandlers', () => {
     const authInfo2 = Jwt.decode(info5.authInfo);
     const [claim] = authInfo2.requestedClaims;
     // console.log('authInfo2', authInfo2);
-    expect(authInfo2.status).toEqual('ok');
     expect(claim.receiver).toEqual(app.toAddress());
     expect(claim.swapId).toEqual(traceId);
     expect(claim.offerToken).toEqual(offerToken);
@@ -227,7 +225,6 @@ describe('#SwapHandlers', () => {
       }),
     });
     const authInfo3 = Jwt.decode(info7.authInfo);
-    expect(authInfo3.status).toEqual('ok');
     expect(authInfo3.response).toBeTruthy();
     expect(authInfo3.response.callback).toBeTruthy();
     // console.log('authInfo3', authInfo3);
@@ -248,7 +245,6 @@ describe('#SwapHandlers', () => {
     });
     const authInfo4 = Jwt.decode(info9.authInfo);
     // console.log('authInfo4', authInfo4);
-    expect(authInfo4.status).toEqual('ok');
     expect(authInfo4.response).toBeTruthy();
     expect(authInfo4.response.swapAddress).toBeTruthy();
 

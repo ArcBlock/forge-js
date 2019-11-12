@@ -6,7 +6,7 @@ const MemoryAuthStorage = require('@arcblock/did-auth-storage-memory');
 const MemoryAgentStorage = require('@arcblock/did-agent-storage-memory');
 const createTestServer = require('create-test-server');
 const { fromRandom, WalletType } = require('@arcblock/forge-wallet');
-const { toBase58 } = require('@arcblock/forge-util');
+const { toBase58, toDid } = require('@arcblock/forge-util');
 
 const { AgentWalletHandlers, AgentAuthenticator } = require('../../../lib');
 const Jwt = require('../../../lib/jwt');
@@ -50,13 +50,12 @@ describe('#WalletHandlers', () => {
 
     // Create an authorization record
     const authorizeId = authorizer.toAddress();
-    const authorization = Jwt.sign(authorizeId, authorizer.secretKey, {
-      sub: agent.toAddress(),
+    const token = Jwt.sign(authorizeId, authorizer.secretKey, {
+      agentDid: toDid(agent.toAddress()),
       ops: {
         profile: ['fullName', 'mobilePhone', 'mailingAddress'],
       },
     });
-    const [, content, sig] = authorization.split('.');
     agentStorage.create(authorizeId, {
       agentDid: agent.toAddress(),
       ownerDid: user.toAddress(),
@@ -66,8 +65,7 @@ describe('#WalletHandlers', () => {
       appDescription: 'Demo application to show the potential of ABT Wallet',
       appIcon: 'https://arcblock.oss-cn-beijing.aliyuncs.com/images/wallet-round.png',
       chainHost,
-      certificateContent: content,
-      certificateSignature: sig,
+      certificateContent: token,
     });
 
     handlers.attach({
@@ -114,6 +112,7 @@ describe('#WalletHandlers', () => {
     // Simulate wallet scan
     const { data: info3 } = await axios.get(authUrl);
     expect(info3.appPk).toEqual(toBase58(authorizer.publicKey));
+    expect(info3.agentPk).toEqual(toBase58(agent.publicKey));
     expect(Jwt.verify(info3.authInfo, agent.publicKey, { signerKey: 'agentDid' })).toEqual(true);
 
     // Check token status
@@ -124,16 +123,14 @@ describe('#WalletHandlers', () => {
 
     const authInfo1 = Jwt.decode(info3.authInfo);
     // console.log('authInfo1', authInfo1);
-    expect(authInfo1.status).toEqual('ok');
+    expect(authInfo1.status).toEqual(undefined);
     expect(authInfo1.iss).toEqual(`did:abt:${authorizer.toAddress()}`);
-    expect(authInfo1.agentDid).toEqual(agent.toAddress());
-    expect(authInfo1.agentPk).toEqual(toBase58(agent.publicKey));
+    expect(authInfo1.agentDid).toEqual(toDid(agent.toAddress()));
     expect(Array.isArray(authInfo1.verifiableClaims)).toEqual(true);
     const [claim] = authInfo1.verifiableClaims;
     expect(claim).toBeTruthy();
     expect(claim.type).toEqual('certificate');
-    expect(claim.content).toEqual(content);
-    expect(claim.sig).toEqual(sig);
+    expect(claim.content).toEqual(token);
 
     // Submit auth principal
     const { data: info5 } = await axios.post(authInfo1.url, {
@@ -141,7 +138,7 @@ describe('#WalletHandlers', () => {
       userInfo: Jwt.sign(user.toAddress(), user.secretKey, { requestedClaims: [] }),
     });
     const authInfo2 = Jwt.decode(info5.authInfo);
-    expect(authInfo2.status).toEqual('ok');
+    expect(authInfo2.status).toEqual(undefined);
     // console.log('authInfo2', authInfo2);
 
     // Check store status: scanned

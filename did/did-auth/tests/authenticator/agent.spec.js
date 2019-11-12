@@ -49,13 +49,12 @@ describe('#AgentAuthenticator', () => {
       }),
     };
 
-    const authorization = Jwt.sign(authorizer.toAddress(), authorizer.secretKey, {
+    const token = Jwt.sign(authorizer.toAddress(), authorizer.secretKey, {
       sub: agent.address,
       ops: {
         profile: ['fullName', 'mobilePhone', 'mailingAddress'],
       },
     });
-    const [, content, sig] = authorization.split('.');
 
     const signed = await auth.sign({
       token: '123',
@@ -68,12 +67,12 @@ describe('#AgentAuthenticator', () => {
         icon: 'https://arcblock.oss-cn-beijing.aliyuncs.com/images/wallet-round.png',
       },
       authorizer: { pk: authorizer.publicKey, did: authorizer.toAddress() },
-      verifiableClaims: [{ content, sig }],
+      verifiableClaims: [{ type: 'certificate', content: token }],
     });
     expect(signed.appPk).toEqual(toBase58(authorizer.publicKey));
+    expect(signed.agentPk).toEqual(toBase58(agent.pk));
     const decoded = Jwt.decode(signed.authInfo);
-    expect(decoded.agentDid).toEqual(agent.address);
-    expect(decoded.agentPk).toEqual(toBase58(agent.pk));
+    expect(decoded.agentDid).toEqual(toDid(agent.address));
     expect(decoded.iss).toEqual(toDid(authorizer.toAddress()));
     expect(decoded.appInfo.publisher).toEqual(toDid(authorizer.toAddress()));
     expect(decoded.appInfo.name).toEqual('ABT Wallet Demo');

@@ -31,7 +31,6 @@ class DidAgentStorage extends EventEmitter {
       'appIcon',
       'chainHost',
       'certificateContent',
-      'certificateSignature',
     ];
   }
 

@@ -90,7 +90,6 @@ describe('#WalletHandlers', () => {
     expect(info4.currentStep).toEqual(0);
 
     const authInfo1 = Jwt.decode(info3.authInfo);
-    expect(authInfo1.status).toEqual('ok');
     expect(authInfo1.iss).toEqual(`did:abt:${app.toAddress()}`);
     // console.log('authInfo1', authInfo1);
 
@@ -100,7 +99,6 @@ describe('#WalletHandlers', () => {
       userInfo: Jwt.sign(user.toAddress(), user.secretKey, { requestedClaims: [] }),
     });
     const authInfo2 = Jwt.decode(info5.authInfo);
-    expect(authInfo2.status).toEqual('ok');
     // console.log('authInfo2', authInfo2);
 
     // Check store status: scanned
@@ -117,8 +115,8 @@ describe('#WalletHandlers', () => {
       }),
     });
     const authInfo3 = Jwt.decode(info7.authInfo);
-    expect(authInfo3.status).toEqual('ok');
-    // console.log('authInfo3', authInfo3);
+    // eslint-disable-next-line no-console
+    console.log('authInfo3', authInfo3);
 
     // Check store status: succeed
     const { data: info8 } = await getTokenState();
@@ -194,7 +192,6 @@ describe('#WalletHandlers', () => {
     expect(info4.currentStep).toEqual(0);
 
     const authInfo1 = Jwt.decode(info3.authInfo);
-    expect(authInfo1.status).toEqual('ok');
     expect(authInfo1.iss).toEqual(`did:abt:${app.toAddress()}`);
     expect(authInfo1.chainInfo).toEqual(chainInfo);
   });
