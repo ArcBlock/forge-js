@@ -60,7 +60,7 @@ const fromPublicKeyHash = (buffer, type) => {
   const typeHex = fromTypeInfo(type);
   const checksum = stripHexPrefix(hashFn(`0x${typeHex}${pkHash}`, 1)).slice(0, 8); // 4 bytes
   const didHash = `0x${typeHex}${pkHash}${checksum}`;
-  debug('fromPublicKeyHash', { pkHash, typeHex, checksum, didHash });
+  // debug('fromPublicKeyHash', { pkHash, typeHex, checksum, didHash });
 
   return toBase58(didHash);
 };
@@ -97,7 +97,7 @@ const fromHash = (hash, role) => {
     type.hash = types.HashType.SHA2;
   }
 
-  debug('fromHash', { hash, role, type });
+  // debug('fromHash', { hash, role, type });
   return fromPublicKeyHash(hash, type);
 };
 
@@ -185,8 +185,7 @@ const toTypeInfo = (did, returnString = false) => {
 
     return returnString ? typeStr : type;
   } catch (err) {
-    debug('AbtDid.toTypeInfo.decodeError');
-    debug(err);
+    debug('AbtDid.toTypeInfo.decodeError', err);
     return {};
   }
 };

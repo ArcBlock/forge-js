@@ -1,3 +1,9 @@
+## 1.0.1 (November 14, 2019)
+
+- fix: delegator check logic error in atomic-swap auth handlers
+- chore: disable redundant debug in did package
+- update readme
+
 ## 1.0.0 (November 12, 2019)
 
 - chore: make delegated did-auth work in wallet
