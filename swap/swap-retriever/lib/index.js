@@ -201,11 +201,14 @@ const verifyUserSwap = (swapState, swapStore) => {
 
   if (swapState.sender !== demandUser) {
     const delegator = get(swapState, 'context.genesisTx.tx.delegator', '');
-    if (delegator && delegator !== demandUser) {
-      throw new Error(`User swap ${address} not delegated by ${demandUser}`);
+    // debug('verifyUserSwap', { offerUser, demandUser, delegator, swapState, swapStore });
+    if (delegator) {
+      if (delegator !== demandUser) {
+        throw new Error(`User swap ${address} not delegated by ${demandUser}`);
+      }
+    } else {
+      throw new Error(`User swap ${address} not setup by ${demandUser}`);
     }
-
-    throw new Error(`User swap ${address} not setup by ${demandUser}`);
   }
 
   if (swapState.receiver !== offerUser) {
