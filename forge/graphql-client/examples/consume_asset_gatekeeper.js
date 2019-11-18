@@ -4,7 +4,7 @@
 /**
  * This script demonstrates the whole workflow of consume assets with graphql-client
  *
- * Run script with: `DEBUG=@arcblock/graphql-client node examples/consume_asset.js`
+ * Run script with: `DEBUG=@arcblock/graphql-client node examples/consume_asset_gatekeeper.js`
  */
 
 const GraphQLClient = require('@arcblock/graphql-client');
