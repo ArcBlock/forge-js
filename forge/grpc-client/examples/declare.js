@@ -19,19 +19,14 @@ const client = new GRpcClient({ endpoint: 'tcp://127.0.0.1:28210' });
   try {
     // Send directly: GrpcClient will sign
     const wallet = fromRandom();
-    const res = await client.sendDeclareTx({
-      tx: {
-        nonce: 0,
-        itx: {
-          moniker: `grpc_user_${Math.round(Math.random() * 10000)}`,
-        },
-      },
+    let hash = await client.declare({
+      moniker: `grpc_user_${Math.round(Math.random() * 10000)}`,
       wallet,
     });
     console.log('view account', `${endpoint}/node/explorer/accounts/${wallet.toAddress()}`);
-    console.log('view account tx', `${endpoint}/node/explorer/txs/${res}`);
+    console.log('view account tx', `${endpoint}/node/explorer/txs/${hash}`);
 
-    // Sign and then send: sendDeclareTx
+    // Sign and then send: declare
     const user2 = fromRandom();
     const signed = await client.signDeclareTx({
       tx: {
@@ -41,9 +36,9 @@ const client = new GRpcClient({ endpoint: 'tcp://127.0.0.1:28210' });
       },
       wallet: user2,
     });
-    const hash2 = await client.sendDeclareTx({ tx: signed, wallet: user2 });
+    hash = await client.sendDeclareTx({ tx: signed, wallet: user2 });
     console.log('view user2 account', `${endpoint}/node/explorer/accounts/${user2.toAddress()}`);
-    console.log('view user2 tx', `${endpoint}/node/explorer/txs/${hash2}`);
+    console.log('view user2 tx', `${endpoint}/node/explorer/txs/${hash}`);
 
     // Declare an application
     const type = WalletType({
@@ -52,12 +47,8 @@ const client = new GRpcClient({ endpoint: 'tcp://127.0.0.1:28210' });
       hash: Mcrypto.types.HashType.SHA3,
     });
     const application = fromRandom(type);
-    const hash = await client.sendDeclareTx({
-      tx: {
-        itx: {
-          moniker: `application_${Math.round(Math.random() * 10000)}`,
-        },
-      },
+    hash = await client.declare({
+      moniker: `application_${Math.round(Math.random() * 10000)}`,
       wallet,
     });
     console.log(

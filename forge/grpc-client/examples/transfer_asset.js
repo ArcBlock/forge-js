@@ -8,7 +8,6 @@
  */
 
 const GRpcClient = require('@arcblock/grpc-client');
-const { toAssetAddress } = require('@arcblock/did-util');
 const { fromRandom } = require('@arcblock/forge-wallet');
 
 const endpoint = process.env.FORGE_API_HOST || 'http://127.0.0.1:8210'; // testnet
@@ -20,39 +19,27 @@ const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
     const sender = fromRandom();
     const receiver = fromRandom();
     console.log({
-      sender: sender.toJSON(),
-      receiver: receiver.toJSON(),
+      sender: sender.toAddress(),
+      receiver: receiver.toAddress(),
     });
 
     // 1. declare sender
-    let res = await client.sendDeclareTx({
-      tx: {
-        itx: {
-          moniker: 'sender',
-        },
-      },
-      wallet: sender,
-    });
+    let hash = await client.declare({ moniker: 'sender', wallet: sender });
     console.log('view sender account', `${endpoint}/node/explorer/accounts/${sender.toAddress()}`);
-    console.log('view sender tx', `${endpoint}/node/explorer/txs/${res}`);
+    console.log('view sender tx', `${endpoint}/node/explorer/txs/${hash}`);
 
     // 2. declare receiver
-    res = await client.sendDeclareTx({
-      tx: {
-        itx: {
-          moniker: 'receiver',
-        },
-      },
-      wallet: receiver,
-    });
+    hash = await client.declare({ moniker: 'receiver', wallet: receiver });
     console.log(
       'view receiver account',
       `${endpoint}/node/explorer/accounts/${receiver.toAddress()}`
     );
-    console.log('view receiver tx', `${endpoint}/node/explorer/txs/${res}`);
+    console.log('view receiver tx', `${endpoint}/node/explorer/txs/${hash}`);
 
     // 3. create asset for sender
-    const asset = {
+    let assetAddress;
+    // eslint-disable-next-line prefer-const
+    [hash, assetAddress] = await client.createAsset({
       moniker: 'asset_to_be_transferred',
       readonly: true,
       transferrable: true,
@@ -62,28 +49,19 @@ const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
           value: 'something valuable',
         },
       },
-    };
-    const assetAddress = toAssetAddress(asset);
-    asset.address = assetAddress;
-    res = await client.sendCreateAssetTx({
-      tx: { itx: asset },
       wallet: sender,
     });
     console.log('created asset', `${endpoint}/node/explorer/assets/${assetAddress}`);
-    console.log('created asset tx', `${endpoint}/node/explorer/txs/${res}`);
+    console.log('created asset tx', `${endpoint}/node/explorer/txs/${hash}`);
 
     // 4. transfer asset to receiver
     await sleep(3000);
-    res = await client.sendTransferTx({
-      tx: {
-        itx: {
-          to: receiver.toAddress(),
-          assets: [assetAddress],
-        },
-      },
+    hash = await client.transfer({
+      to: receiver.toAddress(),
+      assets: [assetAddress],
       wallet: sender,
     });
-    console.log('view transfer tx', `${endpoint}/node/explorer/txs/${res}`);
+    console.log('view transfer tx', `${endpoint}/node/explorer/txs/${hash}`);
   } catch (err) {
     console.error(err);
     console.log(JSON.stringify(err.errors));

@@ -4,7 +4,7 @@
 /**
  * This script demonstrates how to do delegate tx with graphql-client
  *
- * Run script with: `DEBUG=@arcblock/graphql-client node examples/delegate.js`
+ * Run script with: `DEBUG=@arcblock/graphql-client node examples/delegate_transfer.js`
  */
 
 const GRpcClient = require('@arcblock/grpc-client');
@@ -20,9 +20,9 @@ const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
     const bob = fromRandom();
     const betty = fromRandom();
     console.log({
-      alice: alice.toAddress(),
-      bob: bob.toAddress(),
-      betty: betty.toAddress(),
+      alice: alice.toJSON(),
+      bob: bob.toJSON(),
+      betty: betty.toJSON(),
     });
 
     const declare = async (wallet, moniker) => {
@@ -53,7 +53,7 @@ const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
     // await checkin(betty, 'betty');
 
     // delegate from alice to betty
-    const [hash, delegateAddress] = await client.delegate({
+    const [hash] = await client.delegate({
       from: alice,
       to: betty,
       privileges: [
@@ -64,7 +64,6 @@ const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
       ],
     });
     console.log('alice.delegate.hash', hash);
-    console.log('alice.delegate.address', delegateAddress);
 
     // transfer from alice to bob by betty
     const hash2 = await client.transfer({
