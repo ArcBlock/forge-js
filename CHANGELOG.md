@@ -1,3 +1,9 @@
+## 1.0.2 (November 18, 2019)
+
+- chore: update examples for grpc-client
+- chore: add simple and gatekeeper asset consume example
+- update readme
+
 ## 1.0.1 (November 14, 2019)
 
 - fix: delegator check logic error in atomic-swap auth handlers
