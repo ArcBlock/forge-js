@@ -347,19 +347,19 @@ class WalletAuthenticator extends BaseAuthenticator {
 
   // 资产持有证明
   async holdingOfAsset({ claim, userDid, userPk, extraParams }) {
-    const { assetDid, description, meta = {}, chainInfo } = await this.getClaimInfo({
+    const { target, description, meta = {}, chainInfo } = await this.getClaimInfo({
       claim,
       userDid,
       userPk,
       extraParams,
     });
+
     return {
       type: 'asset',
       description: description || 'Please prove that you hold the asset',
       chainInfo,
-      meta: Object.assign(meta, {
-        id: assetDid,
-      }),
+      target,
+      meta,
     };
   }
 
