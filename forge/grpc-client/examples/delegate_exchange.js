@@ -4,7 +4,7 @@
 /**
  * This script demonstrates how to do delegate tx with graphql-client
  *
- * Run script with: `DEBUG=@arcblock/graphql-client node examples/delegate.js`
+ * Run script with: `DEBUG=@arcblock/graphql-client node examples/delegate_exchange.js`
  */
 
 const GRpcClient = require('@arcblock/grpc-client');
@@ -20,9 +20,9 @@ const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
     const bob = fromRandom();
     const betty = fromRandom();
     console.log({
-      alice: alice.toAddress(),
-      bob: bob.toAddress(),
-      betty: betty.toAddress(),
+      alice: alice.toJSON(),
+      bob: bob.toJSON(),
+      betty: betty.toJSON(),
     });
 
     const declare = async (wallet, moniker) => {
@@ -50,30 +50,61 @@ const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
     // checkin accounts
     await checkin(alice, 'alice');
     await checkin(bob, 'bob');
-    // await checkin(betty, 'betty');
+    await sleep(3000);
 
     // delegate from alice to betty
-    const [hash, delegateAddress] = await client.delegate({
+    const hash = await client.delegate({
       from: alice,
       to: betty,
       privileges: [
         {
-          typeUrl: 'fg:t:transfer',
+          typeUrl: 'fg:t:exchange',
           rules: [],
         },
       ],
     });
     console.log('alice.delegate.hash', hash);
-    console.log('alice.delegate.address', delegateAddress);
 
-    // transfer from alice to bob by betty
-    const hash2 = await client.transfer({
-      to: bob.toAddress(),
-      token: 1,
-      delegator: alice.toAddress(),
-      wallet: betty,
+    // 3. create asset for sender
+    // eslint-disable-next-line prefer-const
+    let [, assetAddress] = await client.createAsset({
+      moniker: 'asset',
+      data: {
+        typeUrl: 'json',
+        value: {
+          key: 'value2',
+          sn: Math.random(),
+        },
+      },
+      wallet: bob,
     });
-    console.log('betty.transfer.hash', hash2);
+    console.log('create_asset.result', hash, assetAddress);
+    console.log('view asset', `${endpoint}/node/explorer/assets/${assetAddress}`);
+    await sleep(3000);
+
+    // 4.1 Sender: encode and sign the transaction
+    const tx1 = await client.prepareExchange({
+      receiver: bob.toAddress(),
+      offerToken: 5,
+      demandAssets: [assetAddress],
+      wallet: betty,
+      delegator: alice.toAddress(),
+    });
+
+    // 4.2 Receiver: do the multi sig
+    const tx2 = await client.finalizeExchange({
+      tx: tx1,
+      wallet: bob,
+    });
+
+    // 4.3 Send the exchange tx
+    const hashExchange = await client.exchange({
+      tx: tx2,
+      wallet: bob,
+    });
+
+    console.log('exchange hash', hashExchange);
+    console.log('view exchange', `${endpoint}/node/explorer/txs/${hashExchange}`);
   } catch (err) {
     console.error(err);
     console.log(JSON.stringify(err.errors));

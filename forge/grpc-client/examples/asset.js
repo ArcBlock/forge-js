@@ -8,7 +8,6 @@
  */
 
 const GRpcClient = require('@arcblock/grpc-client');
-const { toAssetAddress } = require('@arcblock/did-util');
 const { fromRandom } = require('@arcblock/forge-wallet');
 
 const endpoint = process.env.FORGE_API_HOST || 'http://127.0.0.1:8210'; // testnet
@@ -18,22 +17,17 @@ const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
 (async () => {
   try {
     const owner = fromRandom();
-    console.log({ owner: owner.toJSON() });
+    console.log({ owner: owner.toAddress() });
 
     // 1. declare owner
-    let res = await client.sendDeclareTx({
-      tx: {
-        itx: {
-          moniker: 'owner',
-        },
-      },
-      wallet: owner,
-    });
-    console.log('declare.owner.result', res);
+    let hash = await client.declare({ moniker: 'owner', wallet: owner });
+    console.log('declare.owner.result', hash);
     console.log('view owner account', `${endpoint}/node/explorer/accounts/${owner.toAddress()}`);
 
     // 2. create asset for owner
-    const asset = {
+    let assetAddress;
+    // eslint-disable-next-line prefer-const
+    [hash, assetAddress] = await client.createAsset({
       moniker: 'asset',
       readonly: false, // if we want to update the asset, we should set this to false
       transferrable: false,
@@ -43,12 +37,10 @@ const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
           key: 'value',
         },
       },
-    };
-    const assetAddress = toAssetAddress(asset);
-    asset.address = assetAddress;
-    res = await client.sendCreateAssetTx({ tx: { itx: asset }, wallet: owner });
+      wallet: owner,
+    });
     console.log('view asset state', `${endpoint}/node/explorer/assets/${assetAddress}`);
-    console.log('create asset tx', `${endpoint}/node/explorer/txs/${res}`);
+    console.log('create asset tx', `${endpoint}/node/explorer/txs/${hash}`);
 
     // wait for asset state consolidates
     await sleep(5000);
@@ -58,23 +50,19 @@ const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
     console.log('asset state', state);
 
     // 4. update asset
-    res = await client.sendUpdateAssetTx({
-      tx: {
-        itx: {
-          moniker: 'asset_updated',
-          address: assetAddress,
-          data: {
-            typeUrl: 'json',
-            value: {
-              key: 'value updated',
-            },
-          },
+    hash = await client.updateAsset({
+      moniker: 'asset_updated',
+      address: assetAddress,
+      data: {
+        typeUrl: 'json',
+        value: {
+          key: 'value updated',
         },
       },
       wallet: owner,
     });
     console.log('view asset state', `${endpoint}/node/explorer/assets/${assetAddress}`);
-    console.log('update asset tx', `${endpoint}/node/explorer/txs/${res}`);
+    console.log('update asset tx', `${endpoint}/node/explorer/txs/${hash}`);
   } catch (err) {
     console.error(err);
     console.log(JSON.stringify(err.errors));

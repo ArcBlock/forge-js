@@ -20,7 +20,7 @@ const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
     const user = fromRandom();
 
     // 1. declare user
-    let res = await client.sendDeclareTx({
+    let hash = await client.declare({
       tx: {
         itx: {
           moniker: `stake_user_${Math.round(Math.random() * 10000)}`,
@@ -30,10 +30,10 @@ const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
     });
 
     console.log('user account', `${endpoint}/node/explorer/accounts/${user.toAddress()}`);
-    console.log('user declare tx', `${endpoint}/node/explorer/txs/${res}`);
+    console.log('user declare tx', `${endpoint}/node/explorer/txs/${hash}`);
 
     // 2. get free tokens to stake
-    res = await client.sendPokeTx({
+    hash = await client.checkin({
       tx: {
         nonce: 0,
         itx: {
@@ -45,7 +45,7 @@ const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
       },
       wallet: user,
     });
-    console.log('user poke tx', `${endpoint}/node/explorer/txs/${res}`);
+    console.log('user poke tx', `${endpoint}/node/explorer/txs/${hash}`);
     await sleep(3000);
 
     // 3. get node address
@@ -53,7 +53,7 @@ const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
     const nodeAddress = info.address;
 
     // 4. stake for the node
-    res = await client.sendStakeTx({
+    hash = await client.sendStakeTx({
       tx: {
         itx: {
           to: nodeAddress,
@@ -67,7 +67,7 @@ const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
       },
       wallet: user,
     });
-    console.log('user stake tx', `${endpoint}/node/explorer/txs/${res}`);
+    console.log('user stake tx', `${endpoint}/node/explorer/txs/${hash}`);
     console.log('user stake to', `${endpoint}/node/explorer/accounts/${nodeAddress}`);
   } catch (err) {
     console.error(err);
