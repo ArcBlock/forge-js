@@ -1,7 +1,7 @@
 {
   "name": "@arcblock/grpc-client",
   "description": "gRPC client to read/write data on forge powered blockchain",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "author": {
     "name": "wangshijun",
     "email": "shijun@arcblock.io",
