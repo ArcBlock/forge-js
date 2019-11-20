@@ -20,6 +20,10 @@ const user = fromRandom();
 const app = fromRandom(type);
 const chainHost = 'http://47.104.23.85:8213/api';
 const chainId = 'playground';
+const noop = () => {};
+const headers = {
+  'User-Agent': 'ArcWallet/1.3.29 iPhone12,3 iOS/13.0 CFNetwork/1098.7 Darwin/19.0.0',
+};
 
 describe('#WalletHandlers', () => {
   let server;
@@ -49,15 +53,25 @@ describe('#WalletHandlers', () => {
       app: server,
       action: 'login',
       claims: {
-        profile: () => ({
-          fields: ['fullName', 'email'],
-          description: 'test',
-        }),
+        profile: ({ userDid, walletOS, walletVersion }) => {
+          expect(userDid).toEqual(user.toAddress());
+          expect(walletOS).toEqual('ios');
+          expect(walletVersion).toEqual('1.3.29');
+          return {
+            fields: ['fullName', 'email'],
+            description: 'test',
+          };
+        },
       },
-      onAuth: async ({ claims }) => {
+      onAuth: async ({ claims, walletOS, walletVersion }) => {
         const profile = claims.find(x => x.type === 'profile');
         // eslint-disable-next-line no-console
-        console.log('profile.onAuth', profile);
+        console.log({ profile, walletOS, walletVersion });
+        expect(profile).toBeTruthy();
+        expect(profile.email).toEqual('shijun@arcblock.io');
+        expect(profile.fullName).toEqual('wangshijun');
+        expect(walletOS).toEqual('ios');
+        expect(walletVersion).toEqual('1.3.29');
       },
     });
 
@@ -79,7 +93,7 @@ describe('#WalletHandlers', () => {
     expect(info2.currentStep).toEqual(0);
 
     // Simulate wallet scan
-    const { data: info3 } = await axios.get(authUrl);
+    const { data: info3 } = await axios.get(authUrl, { headers });
     expect(info3.appPk).toEqual(toBase58(app.publicKey));
     expect(Jwt.verify(info3.authInfo, info3.appPk)).toEqual(true);
 
@@ -94,10 +108,14 @@ describe('#WalletHandlers', () => {
     // console.log('authInfo1', authInfo1);
 
     // Submit auth principal
-    const { data: info5 } = await axios.post(authInfo1.url, {
-      userPk: toBase58(user.publicKey),
-      userInfo: Jwt.sign(user.toAddress(), user.secretKey, { requestedClaims: [] }),
-    });
+    const { data: info5 } = await axios.post(
+      authInfo1.url,
+      {
+        userPk: toBase58(user.publicKey),
+        userInfo: Jwt.sign(user.toAddress(), user.secretKey, { requestedClaims: [] }),
+      },
+      { headers }
+    );
     const authInfo2 = Jwt.decode(info5.authInfo);
     // console.log('authInfo2', authInfo2);
 
@@ -108,12 +126,18 @@ describe('#WalletHandlers', () => {
     expect(info6.currentStep).toEqual(1);
 
     // Submit profile claim
-    const { data: info7 } = await axios.post(authInfo2.url, {
-      userPk: toBase58(user.publicKey),
-      userInfo: Jwt.sign(user.toAddress(), user.secretKey, {
-        requestedClaims: [{ type: 'profile', email: 'shijun@arcblock.io', fullName: 'wangshijun' }],
-      }),
-    });
+    const { data: info7 } = await axios.post(
+      authInfo2.url,
+      {
+        userPk: toBase58(user.publicKey),
+        userInfo: Jwt.sign(user.toAddress(), user.secretKey, {
+          requestedClaims: [
+            { type: 'profile', email: 'shijun@arcblock.io', fullName: 'wangshijun' },
+          ],
+        }),
+      },
+      { headers }
+    );
     const authInfo3 = Jwt.decode(info7.authInfo);
     // eslint-disable-next-line no-console
     console.log('authInfo3', authInfo3);
@@ -156,11 +180,7 @@ describe('#WalletHandlers', () => {
           description: 'test',
         }),
       },
-      onAuth: async ({ claims }) => {
-        const profile = claims.find(x => x.type === 'profile');
-        // eslint-disable-next-line no-console
-        console.log('profile.onAuth', profile);
-      },
+      onAuth: noop,
     });
 
     // Test api endpoint
@@ -181,7 +201,7 @@ describe('#WalletHandlers', () => {
     expect(info2.currentStep).toEqual(0);
 
     // Simulate wallet scan
-    const { data: info3 } = await axios.get(authUrl);
+    const { data: info3 } = await axios.get(authUrl, { headers });
     expect(info3.appPk).toEqual(toBase58(app.publicKey));
     expect(Jwt.verify(info3.authInfo, info3.appPk)).toEqual(true);
 
