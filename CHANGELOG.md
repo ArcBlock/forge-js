@@ -1,3 +1,9 @@
+## 1.0.3 (November 20, 2019)
+
+- feat: support extracting wallet os/version in did-auth #406
+- fix: prevent double spent of atomic-swap #405
+- update readme
+
 ## 1.0.2 (November 18, 2019)
 
 - chore: update examples for grpc-client
