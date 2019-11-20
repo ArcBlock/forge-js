@@ -1,3 +1,8 @@
+## 1.0.4 (November 20, 2019)
+
+- chore: update docs
+- update readme
+
 ## 1.0.3 (November 20, 2019)
 
 - feat: support extracting wallet os/version in did-auth #406
