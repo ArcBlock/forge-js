@@ -26,9 +26,8 @@ tags:
 **Extends**: `EventEmitter`  
 **See**
 
-* [**@arcblock/did-auth-storage-firebase**](https://github.com/arcblock/did-auth-storage-firebase)
-* [**@arcblock/did-auth-storage-mongo**](https://github.com/arcblock/did-auth-storage-mongo)
-* [**@arcblock/did-auth-storage-keystone**](https://github.com/arcblock/did-auth-storage-keystone)
+* [**@arcblock/did-agent-storage-memory**](https://github.com/arcblock/did-agent-storage-memory)
+* [**@arcblock/did-agent-storage-mongo**](https://github.com/arcblock/did-agent-storage-mongo)
 
 
 * [DidAgentStorage](#DidAgentStorage) ⇐ `EventEmitter`
@@ -37,8 +36,8 @@ tags:
 
 ### new DidAgentStorage()
 
-Defines the interface of DID-Auth Token Storage
-Which is used during the DID-Auth process in an typical application
+Defines the interface of authorized did auth storage
+Which is used when building an centralized service that do did-auth on behalf of many applications
 
 ### new DidAgentStorage(options)
 
@@ -59,8 +58,8 @@ Creates an instance of DidAgentStorage.
 
 ### new DidAgentStorage()
 
-Defines the interface of DID-Auth Token Storage
-Which is used during the DID-Auth process in an typical application
+Defines the interface of authorized did auth storage
+Which is used when building an centralized service that do did-auth on behalf of many applications
 
 ### new DidAgentStorage(options)
 

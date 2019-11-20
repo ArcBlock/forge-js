@@ -9,8 +9,8 @@
  * @returns {object}
  * @throws Error when file not found
  * @example
- const { parseConfig } = require('@arcblock/forge-config');
- const config = parseConfig('./forge.toml');
+ const { parse } = require('@arcblock/forge-config');
+ const config = parse('./forge.toml');
  */
 declare function parse(configPath: string): any;
 declare const _Lib: _Lib.T100;

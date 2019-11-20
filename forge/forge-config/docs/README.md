@@ -21,6 +21,6 @@ Parse config from a standard forge release configuration file
 **Example**  
 
 ```js
-const { parseConfig } = require('@arcblock/forge-config');
-const config = parseConfig('./forge.toml');
+const { parse } = require('@arcblock/forge-config');
+const config = parse('./forge.toml');
 ```

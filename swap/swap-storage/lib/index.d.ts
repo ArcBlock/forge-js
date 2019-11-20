@@ -3,9 +3,10 @@
 import { EventEmitter } from 'events';
 /**
  * Defines the interface of atomic-swap storage
- * Which should be implemented to use in dapps that uses atomic-swap capability
+ * Which should be implemented to use in dApps that uses atomic-swap capability
  *
  * @class SwapStorage
+ * @see @arcblock/swap-storage-memory
  * @see @arcblock/swap-storage-mongo
  * @extends {EventEmitter}
  */

@@ -92,6 +92,8 @@ declare class WalletAuthenticator extends BaseAuthenticator {
    * @param {string} params.token - action token
    * @param {string} params.userDid - decoded from req.query, base58
    * @param {string} params.userPk - decoded from req.query, base58
+   * @param {string} params.walletOS - wallet os from user-agent
+   * @param {string} params.walletVersion - wallet version from user-agent
    * @param {object} params.claims - info required by application to complete the auth
    * @param {object} params.extraParams - extra query params and locale
    * @returns {object} { appPk, authInfo }
@@ -360,6 +362,8 @@ declare namespace _Lib {
     token: string;
     userDid: string;
     userPk: string;
+    walletOS: string;
+    walletVersion: string;
     claims: any;
     extraParams: any;
   }
@@ -367,12 +371,16 @@ declare namespace _Lib {
     claims: any;
     userDid: any;
     userPk: any;
+    walletOS: any;
+    walletVersion: any;
     extraParams: any;
   }
   export interface T111 {
     claim: any;
     userDid: any;
     userPk: any;
+    walletOS: any;
+    walletVersion: any;
     extraParams: any;
   }
   export interface T113 {
@@ -405,6 +413,7 @@ declare namespace _Lib {
     type: string;
     description: any;
     chainInfo: any;
+    target: any;
     meta: any;
   }
   export interface T121 {

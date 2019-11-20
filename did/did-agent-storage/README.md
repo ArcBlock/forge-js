@@ -7,14 +7,12 @@
 
 ## Table of Contents
 
-- [**@arcblock/did-agent-storage**](#arcblockdid-agent-storage)
-  - [Table of Contents](#table-of-contents)
-  - [Motivation & Spec](#motivation--spec)
-    - [Fields](#fields)
-    - [APIs](#apis)
-  - [Install](#install)
-  - [Usage](#usage)
-  - [Contributors](#contributors)
+* [Motivation & Spec](#motivation--spec)
+  * [Fields](#fields)
+  * [APIs](#apis)
+* [Install](#install)
+* [Usage](#usage)
+* [Contributors](#contributors)
 
 
 ## Motivation & Spec

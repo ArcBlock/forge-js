@@ -13,7 +13,11 @@
 
 **Kind**: global class  
 **Extends**: `EventEmitter`  
-**See**: [**@arcblock/swap-storage-mongo**](https://github.com/arcblock/swap-storage-mongo)  
+**See**
+
+* [**@arcblock/swap-storage-memory**](https://github.com/arcblock/swap-storage-memory)
+* [**@arcblock/swap-storage-mongo**](https://github.com/arcblock/swap-storage-mongo)
+
 
 * [SwapStorage](#SwapStorage) ⇐ `EventEmitter`
   * [new SwapStorage()](#new_SwapStorage_new)
@@ -30,7 +34,7 @@
 ### new SwapStorage()
 
 Defines the interface of atomic-swap storage
-Which should be implemented to use in dapps that uses atomic-swap capability
+Which should be implemented to use in dApps that uses atomic-swap capability
 
 ### new SwapStorage(options)
 
@@ -150,7 +154,7 @@ Delete atomic swap order by traceId
 ### new SwapStorage()
 
 Defines the interface of atomic-swap storage
-Which should be implemented to use in dapps that uses atomic-swap capability
+Which should be implemented to use in dApps that uses atomic-swap capability
 
 ### new SwapStorage(options)
 

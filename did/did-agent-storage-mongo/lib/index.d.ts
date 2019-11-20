@@ -2,13 +2,12 @@
 
 import { EventEmitter } from 'events';
 /**
- * Defines the interface of DID-Auth Token Storage
- * Which is used during the DID-Auth process in an typical application
+ * Defines the interface of authorized did auth storage
+ * Which is used when building an centralized service that do did-auth on behalf of many applications
  *
  * @class DidAgentStorage
- * @see @arcblock/did-auth-storage-firebase
- * @see @arcblock/did-auth-storage-mongo
- * @see @arcblock/did-auth-storage-keystone
+ * @see @arcblock/did-agent-storage-memory
+ * @see @arcblock/did-agent-storage-mongo
  * @extends {EventEmitter}
  */
 declare class DidAgentStorage extends EventEmitter {

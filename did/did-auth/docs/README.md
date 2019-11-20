@@ -252,14 +252,16 @@ Sign a auth response that returned to wallet: tell the wallet the appInfo/chainI
 **Kind**: instance method of [`WalletAuthenticator`](#WalletAuthenticator)  
 **Returns**: `object` - { appPk, authInfo }  
 
-| Param              | Type     | Description                                       |
-| ------------------ | -------- | ------------------------------------------------- |
-| params             | `object` |                                                   |
-| params.token       | `string` | action token                                      |
-| params.userDid     | `string` | decoded from req.query, base58                    |
-| params.userPk      | `string` | decoded from req.query, base58                    |
-| params.claims      | `object` | info required by application to complete the auth |
-| params.extraParams | `object` | extra query params and locale                     |
+| Param                | Type     | Description                                       |
+| -------------------- | -------- | ------------------------------------------------- |
+| params               | `object` |                                                   |
+| params.token         | `string` | action token                                      |
+| params.userDid       | `string` | decoded from req.query, base58                    |
+| params.userPk        | `string` | decoded from req.query, base58                    |
+| params.walletOS      | `string` | wallet os from user-agent                         |
+| params.walletVersion | `string` | wallet version from user-agent                    |
+| params.claims        | `object` | info required by application to complete the auth |
+| params.extraParams   | `object` | extra query params and locale                     |
 
 ### walletAuthenticator.verify(data, [locale], [enforceTimestamp]) ⇒
 
