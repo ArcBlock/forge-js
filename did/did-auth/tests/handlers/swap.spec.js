@@ -237,41 +237,70 @@ describe('#SwapHandlers', () => {
 
     // Trigger server setup
     const retrieveUrl = authInfo3.response.callback;
-    const { data: info9 } = await axios.post(retrieveUrl, {
+    const payload = {
       userPk: toBase58(user.publicKey),
       userInfo: Jwt.sign(user.toAddress(), user.secretKey, {
         requestedClaims: [Object.assign({ address: swapAddress }, claim)],
       }),
-    });
-    const authInfo4 = Jwt.decode(info9.authInfo);
-    // console.log('authInfo4', authInfo4);
-    expect(authInfo4.response).toBeTruthy();
-    expect(authInfo4.response.swapAddress).toBeTruthy();
+    };
 
-    // User retrieve
-    const hash8 = await ForgeSDK.retrieveSwap(
-      {
-        address: authInfo4.response.swapAddress,
-        hashkey,
-        wallet: user,
-      },
-      { conn: chainId }
-    );
-    expect(hash8).toBeTruthy();
-    await sleep(3000);
+    const doRetrieve = () =>
+      new Promise(resolve => {
+        axios.post(retrieveUrl, payload).then(async res => {
+          const { data: info9 } = res;
+          const authInfo4 = Jwt.decode(info9.authInfo);
+          // console.log('authInfo4', authInfo4);
+          expect(authInfo4.response).toBeTruthy();
+          expect(authInfo4.response.swapAddress).toBeTruthy();
 
-    // Check swap status
-    const swap = await getSwapState();
-    // expect(swap.status).toEqual('both_retrieve');
-    expect(swap.offerToken).toEqual(offerToken);
-    expect(swap.offerSetupHash).toBeTruthy();
-    expect(swap.offerSwapAddress).toBeTruthy();
-    // expect(swap.offerRetrieveHash).toEqual(hash8);
+          // User retrieve
+          // eslint-disable-next-line no-unreachable
+          const hash8 = await ForgeSDK.retrieveSwap(
+            {
+              address: authInfo4.response.swapAddress,
+              hashkey,
+              wallet: user,
+            },
+            { conn: chainId }
+          );
+          expect(hash8).toBeTruthy();
+          await sleep(3000);
 
-    expect(swap.demandToken).toEqual(demandToken);
-    expect(swap.demandSetupHash).toEqual(hash7);
-    expect(swap.demandSwapAddress).toEqual(swapAddress);
-    // expect(swap.demandUserAddress).toEqual(user.toAddress());
-    // expect(swap.demandRetrieveHash).toBeTruthy();
+          // Check swap status
+          const swap = await getSwapState();
+          // expect(swap.status).toEqual('both_retrieve');
+          expect(swap.offerToken).toEqual(offerToken);
+          expect(swap.offerSetupHash).toBeTruthy();
+          expect(swap.offerSwapAddress).toBeTruthy();
+          // expect(swap.offerRetrieveHash).toEqual(hash8);
+
+          expect(swap.demandToken).toEqual(demandToken);
+          expect(swap.demandSetupHash).toEqual(hash7);
+          expect(swap.demandSwapAddress).toEqual(swapAddress);
+          // expect(swap.demandUserAddress).toEqual(user.toAddress());
+          // expect(swap.demandRetrieveHash).toBeTruthy();
+
+          resolve();
+        });
+      });
+
+    const doRetrieveAgain = () =>
+      new Promise(async resolve => {
+        await sleep(100);
+
+        // Simulator duplicate retrieve
+        axios.post(retrieveUrl, payload).then(res => {
+          const { data: info9 } = res;
+          const authInfo4 = Jwt.decode(info9.authInfo);
+          expect(authInfo4.status).toEqual('error');
+          expect(authInfo4.errorMessage).toEqual(
+            'A retrieve is in progress, please retry if that retrieve failed'
+          );
+
+          resolve();
+        });
+      });
+
+    await Promise.all([doRetrieve(), doRetrieveAgain()]);
   }, 20000);
 });

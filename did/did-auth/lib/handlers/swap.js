@@ -349,7 +349,36 @@ class AtomicSwapHandlers {
         debug('retrieve.verify', { userDid, token, claims: claimResponse, swap: req.swap });
 
         if (req.swap.offerSetupHash && req.swap.offerSwapAddress) {
-          res.json({ status: 0, response: { swapAddress: req.swap.offerSwapAddress } });
+          res.json({ swapAddress: req.swap.offerSwapAddress });
+          return;
+        }
+
+        // Prevent duplicate setup_swap in case user is retrying
+        if (req.swap.status === 'seller_setup') {
+          res.json({ error: 'A retrieve is in progress, please retry if that retrieve failed' });
+          return;
+        }
+        await this.swapStorage.update(traceId, { status: 'seller_setup' });
+
+        // Prevent retrieve on edge cases
+        if (req.swap.status === 'user_retrieve') {
+          res.json({ error: 'You have already retrieved this swap' });
+          return;
+        }
+        if (req.swap.status === 'both_retrieve') {
+          res.json({ error: 'The swap already completed successfully' });
+          return;
+        }
+        if (req.swap.status === 'user_revoke') {
+          res.json({ error: 'You have revoked the swap, so retrieve is forbidden' });
+          return;
+        }
+        if (req.swap.status === 'seller_revoke') {
+          res.json({ error: 'Seller have revoked the swap, so retrieve is forbidden' });
+          return;
+        }
+        if (req.swap.status === 'both_revoke') {
+          res.json({ error: 'Both have revoked the swap, so retrieve is forbidden' });
           return;
         }
 
@@ -420,7 +449,7 @@ class AtomicSwapHandlers {
             offerSwapAddress: address,
           });
 
-          res.json({ status: 0, response: { swapAddress: address } });
+          res.json({ swapAddress: address });
 
           const retriever = createRetriever({
             traceId,
@@ -441,9 +470,7 @@ class AtomicSwapHandlers {
           retriever.on('error', async args => {
             console.error('swap.retrieve.error', args);
             try {
-              await this.swapStorage.update(traceId, {
-                status: 'error',
-              });
+              await this.swapStorage.update(traceId, { status: 'error' });
             } catch (err) {
               // Do something
             }
@@ -473,13 +500,17 @@ class AtomicSwapHandlers {
             }
           });
         } catch (err) {
+          let errorMessage = err.message;
+
           if (Array.isArray(err.errors)) {
             console.error('swap.setup.error', JSON.stringify(err.errors));
-            res.json({ error: err.errors.map(x => x.message).join(';') });
+            errorMessage = err.errors.map(x => x.message).join(';');
           } else {
             console.error('swap.setup.error', err);
-            res.json({ error: err.message });
           }
+
+          res.json({ error: errorMessage });
+          await this.swapStorage.update(traceId, { status: 'error', errorMessage });
           onError({ stage: 'offer-setup-swap', err });
         }
       }
