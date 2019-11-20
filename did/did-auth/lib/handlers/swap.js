@@ -300,7 +300,7 @@ class AtomicSwapHandlers {
       ensureSwap,
       ensureContext,
       async (req, res) => {
-        const { locale, token, params } = req.context;
+        const { locale, token, params, wallet } = req.context;
         const { userDid, userPk } = params;
 
         debug('retrieve.sign.input', params, req.swap);
@@ -317,6 +317,8 @@ class AtomicSwapHandlers {
                 description: 'Please provided the address to complete swap',
               }),
             },
+            walletVersion: wallet.version,
+            walletOS: wallet.os,
             pathname: retrievePath,
             extraParams: createExtraParams(locale, req.query),
           });

@@ -221,7 +221,7 @@ module.exports = function createHandlers({
 
   // eslint-disable-next-line consistent-return
   const onAuthRequest = async (req, res) => {
-    const { locale, token, store, params, isAuthPrincipalStep } = req.context;
+    const { locale, token, store, params, wallet, isAuthPrincipalStep } = req.context;
     const { userDid, userPk, [checksumKey]: checksum } = params;
 
     // Only check userDid and userPk if we have done auth principal
@@ -257,6 +257,8 @@ module.exports = function createHandlers({
             token,
             userDid,
             userPk,
+            walletVersion: wallet.version,
+            walletOS: wallet.os,
             claims: store ? steps[store.currentStep] : steps[0],
             pathname: getPathName(pathname, req),
             extraParams: createExtraParams(locale, req.query),
@@ -270,7 +272,7 @@ module.exports = function createHandlers({
 
   // eslint-disable-next-line consistent-return
   const onAuthResponse = async (req, res) => {
-    const { locale, token, store, params } = req.context;
+    const { locale, token, store, params, wallet } = req.context;
 
     try {
       const { userDid, userPk, claims: claimResponse } = await authenticator.verify(params, locale);
@@ -283,6 +285,8 @@ module.exports = function createHandlers({
         userPk,
         token,
         claims: claimResponse,
+        walletVersion: wallet.version,
+        walletOS: wallet.os,
         storage: tokenStorage,
         extraParams: createExtraParams(locale, req.query),
       };
@@ -315,6 +319,8 @@ module.exports = function createHandlers({
                 token,
                 userDid,
                 userPk,
+                walletVersion: wallet.version,
+                walletOS: wallet.os,
                 claims: steps[nextStep],
                 pathname: getPathName(pathname, req),
                 extraParams: createExtraParams(locale, req.query),
@@ -339,6 +345,20 @@ module.exports = function createHandlers({
   };
 
   const ensureContext = async (req, res, next) => {
+    // Parse wallet os/version from user-agent
+    const wallet = { os: '', version: '' };
+    const ua = (req.headers['user-agent'] || '').toLowerCase();
+    if (ua.indexOf('android')) {
+      wallet.os = 'android';
+    }
+    if (ua.indexOf('darwin')) {
+      wallet.os = 'ios';
+    }
+    const match = ua.match(/ArcWallet\/(\d+\.\d+.\d+)/i);
+    if (match) {
+      wallet.version = match[1];
+    }
+
     const params = Object.assign({}, req.body, req.query, req.params);
     const token = params[tokenKey];
     const locale = getLocale(req);
@@ -350,7 +370,7 @@ module.exports = function createHandlers({
       isAuthPrincipalStep = store.currentStep === 0;
     }
 
-    req.context = { locale, token, params, store, isAuthPrincipalStep };
+    req.context = { locale, token, wallet, params, store, isAuthPrincipalStep };
     return next();
   };
 

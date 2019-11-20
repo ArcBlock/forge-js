@@ -144,12 +144,30 @@ class WalletAuthenticator extends BaseAuthenticator {
    * @param {string} params.token - action token
    * @param {string} params.userDid - decoded from req.query, base58
    * @param {string} params.userPk - decoded from req.query, base58
+   * @param {string} params.walletOS - wallet os from user-agent
+   * @param {string} params.walletVersion - wallet version from user-agent
    * @param {object} params.claims - info required by application to complete the auth
    * @param {object} params.extraParams - extra query params and locale
    * @returns {object} { appPk, authInfo }
    */
-  async sign({ token = '', userDid, userPk, claims, pathname = '', extraParams = {} }) {
-    const claimsInfo = await this.genRequestedClaims({ claims, userDid, userPk, extraParams });
+  async sign({
+    token = '',
+    userDid,
+    userPk,
+    walletOS,
+    walletVersion,
+    claims,
+    pathname = '',
+    extraParams = {},
+  }) {
+    const claimsInfo = await this.genRequestedClaims({
+      claims,
+      userDid,
+      userPk,
+      walletOS,
+      walletVersion,
+      extraParams,
+    });
     // FIXME: this maybe buggy if user provided multiple claims
     const tmp = claimsInfo.find(x => this._isValidChainInfo(x.chainInfo));
 
@@ -208,18 +226,21 @@ class WalletAuthenticator extends BaseAuthenticator {
   // ---------------------------------------
   // Request claim related methods
   // ---------------------------------------
-  genRequestedClaims({ claims, userDid, userPk, extraParams }) {
+  genRequestedClaims({ claims, userDid, userPk, walletOS, walletVersion, extraParams }) {
     return Promise.all(
-      Object.keys(claims).map(x => this[x]({ claim: claims[x], userDid, userPk, extraParams }))
+      Object.keys(claims).map(x =>
+        this[x]({ claim: claims[x], userDid, userPk, walletOS, walletVersion, extraParams })) // prettier-ignore
     );
   }
 
-  async getClaimInfo({ claim, userDid, userPk, extraParams }) {
+  async getClaimInfo({ claim, userDid, userPk, walletOS, walletVersion, extraParams }) {
     const result =
       typeof claim === 'function'
         ? await claim({
             userDid: userDid ? toAddress(userDid) : '',
             userPk: userPk || '',
+            walletOS,
+            walletVersion,
             extraParams,
           })
         : claim;
@@ -228,11 +249,13 @@ class WalletAuthenticator extends BaseAuthenticator {
   }
 
   // 要求同意协议
-  async agreement({ claim, userDid, userPk, extraParams }) {
+  async agreement({ claim, userDid, userPk, walletOS, walletVersion, extraParams }) {
     const { uri, hash, description, chainInfo, meta = {} } = await this.getClaimInfo({
       claim,
       userDid,
       userPk,
+      walletOS,
+      walletVersion,
       extraParams,
     });
 
@@ -247,11 +270,13 @@ class WalletAuthenticator extends BaseAuthenticator {
   }
 
   // 要求用户信息
-  async profile({ claim, userDid, userPk, extraParams }) {
+  async profile({ claim, userDid, userPk, walletOS, walletVersion, extraParams }) {
     const { fields, description, chainInfo, meta = {} } = await this.getClaimInfo({
       claim,
       userDid,
       userPk,
+      walletOS,
+      walletVersion,
       extraParams,
     });
     return {
@@ -264,7 +289,7 @@ class WalletAuthenticator extends BaseAuthenticator {
   }
 
   // 要求签名，可以是前 transaction 或者任意类型的消息
-  async signature({ claim, userDid, userPk, extraParams }) {
+  async signature({ claim, userDid, userPk, walletOS, walletVersion, extraParams }) {
     const {
       data,
       type = 'walletkit::signature',
@@ -277,6 +302,8 @@ class WalletAuthenticator extends BaseAuthenticator {
       claim,
       userDid,
       userPk,
+      walletOS,
+      walletVersion,
       extraParams,
     });
 
@@ -346,11 +373,13 @@ class WalletAuthenticator extends BaseAuthenticator {
   }
 
   // 资产持有证明
-  async holdingOfAsset({ claim, userDid, userPk, extraParams }) {
+  async holdingOfAsset({ claim, userDid, userPk, walletOS, walletVersion, extraParams }) {
     const { assetDid, description, meta = {}, chainInfo } = await this.getClaimInfo({
       claim,
       userDid,
       userPk,
+      walletOS,
+      walletVersion,
       extraParams,
     });
     return {
@@ -364,11 +393,13 @@ class WalletAuthenticator extends BaseAuthenticator {
   }
 
   // 选择 DID
-  async authPrincipal({ claim, userDid, userPk, extraParams }) {
+  async authPrincipal({ claim, userDid, userPk, walletOS, walletVersion, extraParams }) {
     const { target, description, chainInfo, meta = {} } = await this.getClaimInfo({
       claim,
       userDid,
       userPk,
+      walletOS,
+      walletVersion,
       extraParams,
     });
 
@@ -382,7 +413,7 @@ class WalletAuthenticator extends BaseAuthenticator {
   }
 
   // 要求 setup swap，做同构链的跨链
-  async swap({ claim, userDid, userPk, extraParams }) {
+  async swap({ claim, userDid, userPk, walletOS, walletVersion, extraParams }) {
     const {
       swapId,
       description,
@@ -398,6 +429,8 @@ class WalletAuthenticator extends BaseAuthenticator {
       claim,
       userDid,
       userPk,
+      walletOS,
+      walletVersion,
       extraParams,
     });
 
