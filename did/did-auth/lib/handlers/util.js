@@ -42,6 +42,29 @@ const STATUS_ERROR = 'error';
 const STATUS_SCANNED = 'scanned';
 const STATUS_FORBIDDEN = 'forbidden';
 
+const parseWalletUA = (userAgent = '') => {
+  const ua = userAgent.toLocaleLowerCase();
+  let os = '';
+  let version = '';
+  if (ua.indexOf('android') > -1) {
+    os = 'android';
+  }
+
+  if (ua.indexOf('darwin') > -1) {
+    os = 'ios';
+  }
+
+  const match = ua.split(/\s+/).find(x => x.startsWith('arcwallet'));
+  if (match) {
+    const tmp = match.split('/');
+    if (tmp.length > 1) {
+      version = tmp[1];
+    }
+  }
+
+  return { os, version };
+};
+
 module.exports = function createHandlers({
   action,
   pathname,
@@ -345,20 +368,7 @@ module.exports = function createHandlers({
   };
 
   const ensureContext = async (req, res, next) => {
-    // Parse wallet os/version from user-agent
-    const wallet = { os: '', version: '' };
-    const ua = (req.headers['user-agent'] || '').toLowerCase();
-    if (ua.indexOf('android')) {
-      wallet.os = 'android';
-    }
-    if (ua.indexOf('darwin')) {
-      wallet.os = 'ios';
-    }
-    const match = ua.match(/ArcWallet\/(\d+\.\d+.\d+)/i);
-    if (match) {
-      wallet.version = match[1];
-    }
-
+    const wallet = parseWalletUA(req.headers['user-agent']);
     const params = Object.assign({}, req.body, req.query, req.params);
     const token = params[tokenKey];
     const locale = getLocale(req);
@@ -414,3 +424,5 @@ module.exports = function createHandlers({
     createExtraParams,
   };
 };
+
+module.exports.parseWalletUA = parseWalletUA;
