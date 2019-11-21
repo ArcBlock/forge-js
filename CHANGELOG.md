@@ -1,3 +1,8 @@
+## 1.0.5 (November 21, 2019)
+
+- fix parse wallet user-agent bug
+- update readme
+
 ## 1.0.4 (November 20, 2019)
 
 - chore: update docs
