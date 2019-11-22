@@ -1,3 +1,8 @@
+## 1.0.6 (November 22, 2019)
+
+- fix: enforce session user and scan user not match checking
+- update readme
+
 ## 1.0.5 (November 21, 2019)
 
 - fix parse wallet user-agent bug
