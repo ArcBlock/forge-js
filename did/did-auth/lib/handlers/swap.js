@@ -250,6 +250,7 @@ class AtomicSwapHandlers {
       ensureRequester,
       createExtraParams,
       ensureSignedJson,
+      checkUser,
     } = createHandlers({
       action,
       pathname: authPath,
@@ -343,12 +344,18 @@ class AtomicSwapHandlers {
         const { traceId } = params;
 
         // FIXME: enforceTimestamp is turned off for now
-        const { userDid, claims: claimResponse } = await this.authenticator.verify(
+        const { userDid, userPk, claims: claimResponse } = await this.authenticator.verify(
           params,
           locale,
           false
         );
         debug('retrieve.verify', { userDid, token, claims: claimResponse, swap: req.swap });
+
+        const result = await checkUser({ context: req.context, params, userDid, userPk });
+        if (result) {
+          res.json({ error: result });
+          return;
+        }
 
         if (req.swap.offerSetupHash && req.swap.offerSwapAddress) {
           res.json({ swapAddress: req.swap.offerSwapAddress });

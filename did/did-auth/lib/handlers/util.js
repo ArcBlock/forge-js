@@ -242,26 +242,39 @@ module.exports = function createHandlers({
     }
   };
 
-  // eslint-disable-next-line consistent-return
-  const onAuthRequest = async (req, res) => {
-    const { locale, token, store, params, wallet, isAuthPrincipalStep } = req.context;
-    const { userDid, userPk, [checksumKey]: checksum } = params;
+  // Only check userDid and userPk if we have done auth principal
+  const checkUser = async ({ context, params, userDid, userPk }) => {
+    const { locale, token, isAuthPrincipalStep } = context;
+    const { [checksumKey]: checksum } = params;
 
     // Only check userDid and userPk if we have done auth principal
     if (isAuthPrincipalStep === false) {
       if (!userDid) {
-        return res.json({ error: errors.didMissing[locale] });
+        return errors.didMissing[locale];
       }
       if (!userPk) {
-        return res.json({ error: errors.pkMissing[locale] });
+        return errors.pkMissing[locale];
       }
 
       // check userDid mismatch
       const didChecksum = getDidCheckSum(userDid);
       if (didChecksum && checksum && didChecksum !== checksum) {
         await tokenStorage.update(token, { status: STATUS_FORBIDDEN });
-        return res.json({ error: errors.didMismatch[locale] });
+        return errors.didMismatch[locale];
       }
+    }
+
+    return false;
+  };
+
+  // eslint-disable-next-line consistent-return
+  const onAuthRequest = async (req, res) => {
+    const { locale, token, store, params, wallet } = req.context;
+    const { userDid, userPk } = params;
+
+    const error = await checkUser({ context: req.context, params, userDid, userPk });
+    if (error) {
+      return res.json({ error });
     }
 
     try {
@@ -300,6 +313,11 @@ module.exports = function createHandlers({
     try {
       const { userDid, userPk, claims: claimResponse } = await authenticator.verify(params, locale);
       debug('verify', { userDid, token, claims: claimResponse });
+
+      const error = await checkUser({ context: req.context, params, userDid, userPk });
+      if (error) {
+        return res.json({ error });
+      }
 
       const cbParams = {
         step: store ? store.currentStep : 0,
@@ -422,6 +440,7 @@ module.exports = function createHandlers({
     ensureRequester,
     ensureSignedJson,
     createExtraParams,
+    checkUser,
   };
 };
 
