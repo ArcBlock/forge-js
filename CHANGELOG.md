@@ -1,3 +1,14 @@
+## 1.0.7 (November 28, 2019)
+
+- chore: update grpc examples
+- chore: add validation for delegate tx
+- chore: update docs
+- chore: upgrade forge-sdk with forge 1.0.1
+- chore: upgrade graphql-client with forge 1.0.1
+- chore: upgrade grpc-client with forge 1.0.1
+- chore: upgrade forge-proto with forge 1.0.1
+- update readme
+
 ## 1.0.6 (November 22, 2019)
 
 - fix: enforce session user and scan user not match checking
