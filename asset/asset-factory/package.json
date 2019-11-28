@@ -1,7 +1,7 @@
 {
   "name": "@arcblock/asset-factory",
   "description": "Utility to create standard asset on forge powered blockchain",
-  "version": "1.0.4",
+  "version": "1.0.7",
   "author": {
     "name": "wangshijun",
     "email": "shijun@arcblock.io",
@@ -15,7 +15,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@arcblock/forge-sdk": "^1.0.4",
+    "@arcblock/forge-sdk": "^1.0.7",
     "@arcblock/forge-wallet": "^1.0.4",
     "debug": "^4.1.1",
     "json-stable-stringify": "^1.0.1",
