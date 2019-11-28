@@ -67,6 +67,10 @@
             "invalid_chain_type": 67,
             "invalid_time": 68,
             "invalid_subscribe": 69,
+            "invalid_did_type": 70,
+            "invalid_candidate_state": 71,
+            "validator_not_found": 72,
+            "validator_not_changed": 73,
             "forbidden": 403,
             "internal": 500,
             "timeout": 504,
@@ -937,10 +941,7 @@
         "RequestGetForgeStats": {
           "oneofs": {
             "value": {
-              "oneof": [
-                "dayInfo",
-                "date"
-              ]
+              "oneof": ["dayInfo", "date"]
             }
           },
           "fields": {
@@ -3957,6 +3958,18 @@
             "address": {
               "type": "string",
               "id": 2
+            },
+            "data": {
+              "type": "google.protobuf.Any",
+              "id": 15
+            }
+          }
+        },
+        "RefuelTx": {
+          "fields": {
+            "date": {
+              "type": "string",
+              "id": 1
             },
             "data": {
               "type": "google.protobuf.Any",

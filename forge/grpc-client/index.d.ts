@@ -94,6 +94,10 @@ export enum StatusCode {
   INVALID_CHAIN_TYPE = 67,
   INVALID_TIME = 68,
   INVALID_SUBSCRIBE = 69,
+  INVALID_DID_TYPE = 70,
+  INVALID_CANDIDATE_STATE = 71,
+  VALIDATOR_NOT_FOUND = 72,
+  VALIDATOR_NOT_CHANGED = 73,
   FORBIDDEN = 403,
   INTERNAL = 500,
   TIMEOUT = 504,
@@ -1404,6 +1408,11 @@ export interface ExchangeTx {
 export interface PokeTx {
   date: string;
   address: string;
+  data: google.protobuf.Any;
+}
+
+export interface RefuelTx {
+  date: string;
   data: google.protobuf.Any;
 }
 

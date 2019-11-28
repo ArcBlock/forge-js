@@ -109,5 +109,9 @@
   "forbidden": "Operation is not permitted with current authorization.",
   "internal": "Internal error occurred - mainly a server implementation issue.",
   "timeout": "Operation is timeout.",
-  "invalid_delegation_type_url": "The type_url you want to delegate is not allowed in your forge config"
+  "invalid_delegation_type_url": "The type_url you want to delegate is not allowed in your forge config",
+  "invalid_did_type": "DID type is not valid for the current transaction",
+  "invalid_candidate_state": "candidate address shall be declared before using update_validator tx",
+  "validator_not_found": "trying to delete a validator, however it is not in current validator list",
+  "validator_not_changed": "the update_validator has no side effect to the current validator list"
 }

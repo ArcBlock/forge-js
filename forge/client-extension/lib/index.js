@@ -6,7 +6,7 @@ const padStart = require('lodash/padStart');
 const errorCodes = require('@arcblock/forge-proto/lib/status_code.json');
 const { isValid: isValidDID } = require('@arcblock/did');
 const { toDelegateAddress, toSwapAddress, toAssetAddress } = require('@arcblock/did-util');
-const { transactions, multiSignTxs } = require('@arcblock/forge-proto/lite');
+const { transactions, typeUrls, multiSignTxs } = require('@arcblock/forge-proto/lite');
 const { createMessage, getMessageType, decodeAny } = require('@arcblock/forge-message/lite');
 const {
   bytesToHex,
@@ -454,7 +454,6 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
    * @returns {Promise} the `[transactionHash, delegateAddress]` once resolved
    */
   client.delegate = async ({ from, to, privileges }, extra) => {
-    // TODO: add whitelist for delegation privileges
     let ops = Array.isArray(privileges) ? privileges : [privileges];
     ops = ops.map(x => {
       if (x.typeUrl && Array.isArray(x.rules)) {
@@ -463,6 +462,11 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
 
       return { typeUrl: x.typeUrl, rules: [] };
     });
+
+    const txTypes = Object.values(typeUrls).filter(x => x.startsWith('fg:t:'));
+    if (ops.some(x => txTypes.includes(x.typeUrl) === false)) {
+      throw new Error('Invalid type url provided for delegation');
+    }
 
     const address = toDelegateAddress(from.toAddress(), to.toAddress());
     const hash = await client.sendDelegateTx(
@@ -1110,7 +1114,7 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
   client.exchange = ({ tx, wallet }, extra) => client.sendExchangeTx({ tx, wallet }, extra);
 
   /**
-   * Send an poke transaction to get some token for free
+   * Send a poke transaction to get some token for free
    *
    * @memberof GraphQLClient
    * @name GraphQLClient#checkin
@@ -1132,6 +1136,38 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
           itx: {
             date: `${year}-${padStart(month, 2, '0')}-${padStart(day, 2, '0')}`,
             address: 'zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz',
+          },
+        },
+        wallet,
+      },
+      extra
+    );
+  };
+
+  /**
+   * Send a refuel transaction to get some gas
+   *
+   * @memberof GraphQLClient
+   * @name GraphQLClient#refuel
+   * @param {object} params
+   * @param {WalletObject} params.wallet - the wallet to sign the transaction, also who will get the token
+   * @param {object} params.data - extra data to put in itx
+   * @param {object} extra - other param to underlying client implementation
+   * @returns {Promise} the `transactionHash` once resolved
+   */
+  client.refuel = ({ wallet, data }, extra) => {
+    const date = new Date();
+    const year = date.getUTCFullYear();
+    const month = date.getUTCMonth() + 1;
+    const day = date.getUTCDate();
+
+    return client.sendRefuelTx(
+      {
+        tx: {
+          nonce: 0,
+          itx: {
+            date: `${year}-${padStart(month, 2, '0')}-${padStart(day, 2, '0')}`,
+            data,
           },
         },
         wallet,

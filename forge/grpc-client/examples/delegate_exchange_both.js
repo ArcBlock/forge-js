@@ -21,10 +21,10 @@ const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
     const betty = fromRandom();
     const lily = fromRandom();
     console.log({
-      alice: alice.toJSON(),
-      bob: bob.toJSON(),
-      betty: betty.toJSON(),
-      lily: lily.toJSON(),
+      alice: alice.toAddress(),
+      bob: bob.toAddress(),
+      betty: betty.toAddress(),
+      lily: lily.toAddress(),
     });
 
     const declare = async (wallet, moniker) => {
