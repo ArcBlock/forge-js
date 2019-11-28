@@ -1114,7 +1114,7 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
   client.exchange = ({ tx, wallet }, extra) => client.sendExchangeTx({ tx, wallet }, extra);
 
   /**
-   * Send an poke transaction to get some token for free
+   * Send a poke transaction to get some token for free
    *
    * @memberof GraphQLClient
    * @name GraphQLClient#checkin
@@ -1136,6 +1136,38 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
           itx: {
             date: `${year}-${padStart(month, 2, '0')}-${padStart(day, 2, '0')}`,
             address: 'zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz',
+          },
+        },
+        wallet,
+      },
+      extra
+    );
+  };
+
+  /**
+   * Send a refuel transaction to get some gas
+   *
+   * @memberof GraphQLClient
+   * @name GraphQLClient#refuel
+   * @param {object} params
+   * @param {WalletObject} params.wallet - the wallet to sign the transaction, also who will get the token
+   * @param {object} params.data - extra data to put in itx
+   * @param {object} extra - other param to underlying client implementation
+   * @returns {Promise} the `transactionHash` once resolved
+   */
+  client.refuel = ({ wallet, data }, extra) => {
+    const date = new Date();
+    const year = date.getUTCFullYear();
+    const month = date.getUTCMonth() + 1;
+    const day = date.getUTCDate();
+
+    return client.sendRefuelTx(
+      {
+        tx: {
+          nonce: 0,
+          itx: {
+            date: `${year}-${padStart(month, 2, '0')}-${padStart(day, 2, '0')}`,
+            data,
           },
         },
         wallet,
