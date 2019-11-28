@@ -6,7 +6,7 @@ const padStart = require('lodash/padStart');
 const errorCodes = require('@arcblock/forge-proto/lib/status_code.json');
 const { isValid: isValidDID } = require('@arcblock/did');
 const { toDelegateAddress, toSwapAddress, toAssetAddress } = require('@arcblock/did-util');
-const { transactions, multiSignTxs } = require('@arcblock/forge-proto/lite');
+const { transactions, typeUrls, multiSignTxs } = require('@arcblock/forge-proto/lite');
 const { createMessage, getMessageType, decodeAny } = require('@arcblock/forge-message/lite');
 const {
   bytesToHex,
@@ -454,7 +454,6 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
    * @returns {Promise} the `[transactionHash, delegateAddress]` once resolved
    */
   client.delegate = async ({ from, to, privileges }, extra) => {
-    // TODO: add whitelist for delegation privileges
     let ops = Array.isArray(privileges) ? privileges : [privileges];
     ops = ops.map(x => {
       if (x.typeUrl && Array.isArray(x.rules)) {
@@ -463,6 +462,11 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
 
       return { typeUrl: x.typeUrl, rules: [] };
     });
+
+    const txTypes = Object.values(typeUrls).filter(x => x.startsWith('fg:t:'));
+    if (ops.some(x => txTypes.includes(x.typeUrl) === false)) {
+      throw new Error('Invalid type url provided for delegation');
+    }
 
     const address = toDelegateAddress(from.toAddress(), to.toAddress());
     const hash = await client.sendDelegateTx(
