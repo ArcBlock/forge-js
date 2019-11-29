@@ -227,6 +227,10 @@ class AtomicSwapHandlers {
           { conn: this.demandChainId }
         );
 
+        if (!state) {
+          throw new Error('The swap address does not exist on demand chain');
+        }
+
         await this.swapStorage.update(traceId, {
           status: 'user_setup',
           demandSetupHash: state.hash,
