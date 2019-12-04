@@ -229,7 +229,7 @@ class MongoSwapStorage extends StorageInterface {
    * TODO: add pagination for this
    */
   listByOfferAddress(address, status = '') {
-    const conditions = { offerAddress: address };
+    const conditions = { offerUserAddress: address };
     if (status) {
       conditions.status = status;
     }
@@ -246,7 +246,7 @@ class MongoSwapStorage extends StorageInterface {
    * TODO: add pagination for this
    */
   listByDemandAddress(address, status = '') {
-    const conditions = { demandAddress: address };
+    const conditions = { demandUserAddress: address };
     if (status) {
       conditions.status = status;
     }
