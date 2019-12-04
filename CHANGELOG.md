@@ -1,3 +1,10 @@
+## 1.0.8 (December 04, 2019)
+
+- chore: change default swap lock time to 1hour
+- fix: swap storage list apis
+- fix: should verify swap state before update swap storage
+- update readme
+
 ## 1.0.7 (November 28, 2019)
 
 - chore: update grpc examples
