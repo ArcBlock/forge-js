@@ -42,8 +42,8 @@ class AtomicSwapHandlers {
     offerChainId,
     demandChainHost,
     demandChainId,
-    offerLocktime = 28800,
-    demandLocktime = 57600,
+    offerLocktime = 1200,
+    demandLocktime = 2400,
     onPreAuth = noop,
     options = {},
   }) {
@@ -226,6 +226,10 @@ class AtomicSwapHandlers {
           { address: swap.address },
           { conn: this.demandChainId }
         );
+
+        if (!state) {
+          throw new Error('The swap address does not exist on demand chain');
+        }
 
         await this.swapStorage.update(traceId, {
           status: 'user_setup',
