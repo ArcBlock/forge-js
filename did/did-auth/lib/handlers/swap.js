@@ -42,8 +42,8 @@ class AtomicSwapHandlers {
     offerChainId,
     demandChainHost,
     demandChainId,
-    offerLocktime = 28800,
-    demandLocktime = 57600,
+    offerLocktime = 1200,
+    demandLocktime = 2400,
     onPreAuth = noop,
     options = {},
   }) {
