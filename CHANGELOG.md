@@ -1,3 +1,8 @@
+## 1.0.9 (December 04, 2019)
+
+- fix: doc link 404 issue #356
+- update readme
+
 ## 1.0.8 (December 04, 2019)
 
 - chore: change default swap lock time to 1hour
