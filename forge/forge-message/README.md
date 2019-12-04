@@ -49,7 +49,7 @@ const buffer = message.serializeBinary();
 
 ## Documentation
 
-For full documentation, checkout [README.md](./docs/README.md).
+For full documentation, checkout [https://forge-js.netlify.com](https://forge-js.netlify.com/)
 
 
 ## Contributors

@@ -47,4 +47,4 @@ Checkout [lib/index.d.ts](./lib/index.d.ts) for more API.
 
 ## Documentation
 
-For full documentation, checkout [README.md](./docs/README.md).
+For full documentation, checkout [https://forge-js.netlify.com](https://forge-js.netlify.com/)
