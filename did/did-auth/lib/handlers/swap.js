@@ -224,7 +224,7 @@ class AtomicSwapHandlers {
 
         const { state } = await ForgeSDK.getSwapState(
           { address: swap.address },
-          { conn: swap.demandChainId }
+          { conn: swap.demandChain }
         );
 
         if (!state) {
