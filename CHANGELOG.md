@@ -1,3 +1,8 @@
+## 1.0.11 (December 06, 2019)
+
+- fix: not using correct field as demandChainId from swap claim
+- update readme
+
 ## 1.0.10 (December 06, 2019)
 
 - Merge 'origin/dependabot/npm_and_yarn/mixin-deep-1.3.2' into chore/improve-swap
