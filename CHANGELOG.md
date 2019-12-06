@@ -1,3 +1,12 @@
+## 1.0.10 (December 06, 2019)
+
+- Merge 'origin/dependabot/npm_and_yarn/mixin-deep-1.3.2' into chore/improve-swap
+- chore: support update demand and offer chain when finalize
+- fix: use offerChain and demandChain from swap-strage after created swap
+- feat: support custom offerChain in swap claim
+- update readme
+- Bump mixin-deep from 1.3.1 to 1.3.2
+
 ## 1.0.9 (December 04, 2019)
 
 - fix: doc link 404 issue #356
