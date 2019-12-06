@@ -419,6 +419,7 @@ class WalletAuthenticator extends BaseAuthenticator {
       description,
       offerAssets,
       offerToken,
+      offerChainId,
       demandAssets,
       demandToken,
       demandLocktime,
@@ -445,6 +446,7 @@ class WalletAuthenticator extends BaseAuthenticator {
       demandLocktime,
       receiver,
       demandChain: demandChainId,
+      offerChain: offerChainId,
       meta,
     };
   }

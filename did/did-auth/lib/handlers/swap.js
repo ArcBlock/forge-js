@@ -224,7 +224,7 @@ class AtomicSwapHandlers {
 
         const { state } = await ForgeSDK.getSwapState(
           { address: swap.address },
-          { conn: this.demandChainId }
+          { conn: swap.demandChainId }
         );
 
         if (!state) {
@@ -401,7 +401,7 @@ class AtomicSwapHandlers {
             new Promise(async (resolve, reject) => {
               const { state } = await ForgeSDK.getSwapState(
                 { address: req.swap.demandSwapAddress },
-                { conn: this.demandChainId }
+                { conn: req.swap.demandChainId }
               );
 
               try {
@@ -415,7 +415,7 @@ class AtomicSwapHandlers {
                 const [hash, address] = await ForgeSDK.setupSwap(
                   {
                     token: await ForgeSDK.fromUnitToToken(req.swap.offerToken, {
-                      conn: this.offerChainId,
+                      conn: req.swap.offerChainId,
                     }),
                     assets: req.swap.offerAssets,
                     receiver: req.swap.demandUserAddress,
@@ -423,14 +423,14 @@ class AtomicSwapHandlers {
                     locktime: this.offerLocktime,
                     wallet: ForgeSDK.Wallet.fromJSON(this.authenticator.wallet),
                   },
-                  { conn: this.offerChainId }
+                  { conn: req.swap.offerChainId }
                 );
 
                 // Check tx status
                 const verifier = createVerifier({
                   hash,
-                  chainHost: this.offerChainHost,
-                  chainId: this.offerChainId,
+                  chainHost: req.swap.offerChainHost,
+                  chainId: req.swap.offerChainId,
                 });
 
                 verifier.on('error', err => {
@@ -444,7 +444,7 @@ class AtomicSwapHandlers {
                   // eslint-disable-next-line no-shadow
                   const { state } = await ForgeSDK.getSwapState(
                     { address },
-                    { conn: this.offerChainId }
+                    { conn: req.swap.offerChainId }
                   );
                   resolve({ hash, locktime: state.locktime, address });
                 });
@@ -470,10 +470,10 @@ class AtomicSwapHandlers {
             offerUserAddress: req.swap.offerUserAddress,
             demandSwapAddress: req.swap.demandSwapAddress,
             demandUserAddress: req.swap.demandUserAddress,
-            offerChainHost: this.offerChainHost,
-            offerChainId: this.offerChainId,
-            demandChainHost: this.demandChainHost,
-            demandChainId: this.demandChainId,
+            offerChainHost: req.swap.offerChainHost,
+            offerChainId: req.swap.offerChainId,
+            demandChainHost: req.swap.demandChainHost,
+            demandChainId: req.swap.demandChainId,
             retrieveWallet: this.authenticator.wallet,
             checkInterval: 2000,
             autoStart: true,

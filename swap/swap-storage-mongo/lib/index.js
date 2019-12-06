@@ -114,7 +114,7 @@ class MongoSwapStorage extends StorageInterface {
    * @returns {Promise<object>}
    */
   create(traceId, initialAttributes = {}) {
-    return this.update(traceId, initialAttributes);
+    return this._save(traceId, initialAttributes, true);
   }
 
   /**
@@ -170,9 +170,12 @@ class MongoSwapStorage extends StorageInterface {
     });
 
     updates.updatedAt = new Date();
+    return this._save(traceId, updates, false);
+  }
 
+  _save(traceId, updates, upsert = false) {
     return this.collectionReady()
-      .then(collection => collection.updateOne({ traceId }, { $set: updates }, { upsert: true }))
+      .then(collection => collection.updateOne({ traceId }, { $set: updates }, { upsert }))
       .then(rawResponse => {
         if (rawResponse.result) {
           rawResponse = rawResponse.result;

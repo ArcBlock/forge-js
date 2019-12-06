@@ -20,9 +20,15 @@ class SwapStorage extends EventEmitter {
   constructor(options) {
     super(options);
     this.payloadFields = [
+      'offerChainId',
+      'offerChainHost',
       'offerAssets',
       'offerToken',
       'offerUserAddress',
+      'offerUserAddress',
+
+      'demandChainId',
+      'demandChainHost',
       'demandAssets',
       'demandToken',
       'demandUserAddress',
