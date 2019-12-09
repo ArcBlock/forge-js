@@ -1,7 +1,6 @@
 // Generate by [js2dts@0.3.3](https://github.com/whxaxes/js2dts#readme)
 
-declare class BaseAuthenticator {
-}
+declare class BaseAuthenticator {}
 declare class WalletAuthenticator extends BaseAuthenticator {
   wallet: any;
   appInfo: any;
@@ -435,6 +434,7 @@ declare namespace _Lib {
     demandLocktime: any;
     receiver: any;
     demandChain: any;
+    offerChain: any;
     meta: any;
   }
   export interface T125 {
