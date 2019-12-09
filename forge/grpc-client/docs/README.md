@@ -6,16 +6,45 @@ An grpc client that can read/write data to a forge powered blockchain node, can 
 Please note that, due to internal implementation of google-protobuf, all `repeated fields` names are suffixed with `List`
 
 **Kind**: global class  
-**See**
-
-* GRpcClient.getRpcMethods
-* GRpcClient.getTxSendMethods
-
+**See**: GRpcClient.getRpcMethods  
 
 * [GRpcClient](#GRpcClient)
   * [new GRpcClient(config)](#new_GRpcClient_new)
     * _instance_
       * [getRpcMethods()](#GRpcClient+getRpcMethods) ⇒ `object`
+      * [fromUnitToToken(value)](#GRpcClient+fromUnitToToken) ⇒ `string`
+      * [fromTokenToUnit(amount)](#GRpcClient+fromTokenToUnit) ⇒ `BN`
+      * [toLocktime(number, \[options\])](#GRpcClient+toLocktime) ⇒ `number`
+      * [getTxSendMethods()](#GRpcClient+getTxSendMethods) ⇒ `Array.<string>`
+      * [getTxEncodeMethods()](#GRpcClient+getTxEncodeMethods) ⇒ `Array.<string>`
+      * [getTxSignMethods()](#GRpcClient+getTxSignMethods) ⇒ `Array.<string>`
+      * [getTxMultiSignMethods()](#GRpcClient+getTxMultiSignMethods) ⇒ `Array.<string>`
+      * [getType(x)](#GRpcClient+getType) ⇒ `class` \| `null`
+      * [decodeTx(input)](#GRpcClient+decodeTx) ⇒ `object`
+      * [declare(params, extra)](#GRpcClient+declare) ⇒ `Promise`
+      * [migrateAccount(params, extra)](#GRpcClient+migrateAccount) ⇒ `Promise`
+      * [delegate(params, extra)](#GRpcClient+delegate) ⇒ `Promise`
+      * [revokeDelegate(params, extra)](#GRpcClient+revokeDelegate) ⇒ `Promise`
+      * [createAsset(params, extra)](#GRpcClient+createAsset) ⇒ `Promise`
+      * [updateAsset(params, extra)](#GRpcClient+updateAsset) ⇒ `Promise`
+      * [prepareConsumeAsset(params, extra)](#GRpcClient+prepareConsumeAsset) ⇒ `Promise`
+      * [finalizeConsumeAsset(params, extra)](#GRpcClient+finalizeConsumeAsset) ⇒ `Promise`
+      * [consumeAsset(params, extra)](#GRpcClient+consumeAsset) ⇒ `Promise`
+      * [createAssetFactory(params, extra)](#GRpcClient+createAssetFactory) ⇒ `Promise`
+      * [acquireAsset(params, extra)](#GRpcClient+acquireAsset) ⇒ `Promise`
+      * [upgradeNode(params, extra)](#GRpcClient+upgradeNode) ⇒ `Promise`
+      * [deployContract(params, extra)](#GRpcClient+deployContract) ⇒ `Promise`
+      * [activateContract(params, extra)](#GRpcClient+activateContract) ⇒ `Promise`
+      * [deactivateContract(params, extra)](#GRpcClient+deactivateContract) ⇒ `Promise`
+      * [setupSwap(params, extra)](#GRpcClient+setupSwap) ⇒ `Promise`
+      * [retrieveSwap(params, extra)](#GRpcClient+retrieveSwap) ⇒ `Promise`
+      * [revokeSwap(params, extra)](#GRpcClient+revokeSwap) ⇒ `Promise`
+      * [transfer(params, extra)](#GRpcClient+transfer) ⇒ `Promise`
+      * [prepareExchange(params, extra)](#GRpcClient+prepareExchange) ⇒ `Promise`
+      * [finalizeExchange(params, extra)](#GRpcClient+finalizeExchange) ⇒ `Promise`
+      * [exchange(params, extra)](#GRpcClient+exchange) ⇒ `Promise`
+      * [checkin(params, extra)](#GRpcClient+checkin) ⇒ `Promise`
+      * [refuel(params, extra)](#GRpcClient+refuel) ⇒ `Promise`
       * [sendTx(params)](#GRpcClient+sendTx) ⇒ [`Promise.<ResponseSendTx>`](#GRpcClient.ResponseSendTx)
       * [getTx(params)](#GRpcClient+getTx) ⇒ `EventEmitter`
       * [getBlock(params)](#GRpcClient+getBlock) ⇒ `EventEmitter`
@@ -347,6 +376,483 @@ Creates an instance of GRpcClient, and generate transaction sending and receivin
 List standard rpc methods
 
 **Kind**: instance method of [`GRpcClient`](#GRpcClient)  
+
+### gRpcClient.fromUnitToToken(value) ⇒ `string`
+
+Format big number presentation amount to token number
+
+**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
+
+| Param | Type     |
+| ----- | -------- |
+| value | `string` |
+
+### gRpcClient.fromTokenToUnit(amount) ⇒ `BN`
+
+Encode amount to corresponding token big number presentation
+
+**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
+
+| Param  | Type     |
+| ------ | -------- |
+| amount | `number` |
+
+### gRpcClient.toLocktime(number, [options]) ⇒ `number`
+
+Converts a relative locktime to absolute locktime
+
+**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
+
+| Param     | Type     | Default | Description                   |
+| --------- | -------- | ------- | ----------------------------- |
+| number    | `number` |         | number of blocks want to lock |
+| [options] | `object` | `{}`    | options to underlying methods |
+
+### gRpcClient.getTxSendMethods() ⇒ `Array.<string>`
+
+List all transaction send methods
+Each method can send one kind of transactions supported by forge core, such as `DeclareTx`, `PokeTx`
+
+**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
+**Returns**: `Array.<string>` - method name list  
+
+### gRpcClient.getTxEncodeMethods() ⇒ `Array.<string>`
+
+List all transaction encode methods, each method can be used to encode transaction to buffer and object
+
+**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
+**Returns**: `Array.<string>` - method name list  
+
+### gRpcClient.getTxSignMethods() ⇒ `Array.<string>`
+
+List all transaction sign methods, each method can be used to sign transaction to an object
+
+**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
+**Returns**: `Array.<string>` - method name list  
+
+### gRpcClient.getTxMultiSignMethods() ⇒ `Array.<string>`
+
+List all transaction multi sign methods, each method can be used to do multi sign a transaction
+
+**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
+**Returns**: `Array.<string>` - method name list  
+
+### gRpcClient.getType(x) ⇒ `class` \| `null`
+
+Get protobuf message class by name, only supports forge-built-in types
+
+**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
+**Returns**: `class` \| `null` - message type  
+
+| Param | Type     |
+| ----- | -------- |
+| x     | `string` |
+
+### gRpcClient.decodeTx(input) ⇒ `object`
+
+Decode transaction buffer/base64/base58 to an object
+
+**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
+**Returns**: `object` - transaction object  
+
+| Param | Type                                      |
+| ----- | ----------------------------------------- |
+| input | `buffer` \| `hex` \| `base48` \| `base64` |
+
+### gRpcClient.declare(params, extra) ⇒ `Promise`
+
+Declare an DID and it's public key on chain
+
+**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
+**Returns**: `Promise` - the transaction hash once resolved  
+
+| Param           | Type           | Default                      | Description                                     |
+| --------------- | -------------- | ---------------------------- | ----------------------------------------------- |
+| params          | `object`       |                              |                                                 |
+| params.moniker  | `string`       |                              | user nickname                                   |
+| [params.issuer] | `string`       | `&quot;\&quot;\&quot;&quot;` | who issued the account                          |
+| [params.data]   | `object`       |                              | who issued the account                          |
+| params.wallet   | `WalletObject` |                              | wallet to sign the tx                           |
+| extra           | `object`       |                              | other param to underlying client implementation |
+
+### gRpcClient.migrateAccount(params, extra) ⇒ `Promise`
+
+Migrate current account to a new account
+
+**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
+**Returns**: `Promise` - the transaction hash once resolved  
+
+| Param       | Type           | Description                                     |
+| ----------- | -------------- | ----------------------------------------------- |
+| params      | `object`       |                                                 |
+| params.from | `WalletObject` | which account to migrate from                   |
+| params.to   | `WalletObject` | which account to migrate to                     |
+| extra       | `object`       | other param to underlying client implementation |
+
+### gRpcClient.delegate(params, extra) ⇒ `Promise`
+
+Delegate some privileges to another account
+So that that account can send transactions on behalf of the delegator
+
+**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
+**Returns**: `Promise` - the `[transactionHash, delegateAddress]` once resolved  
+
+| Param             | Type           | Description                                           |
+| ----------------- | -------------- | ----------------------------------------------------- |
+| params            | `object`       |                                                       |
+| params.from       | `WalletObject` | the delegator, who grants the privilege to others     |
+| params.to         | `WalletObject` | the delegatee, who is authorized to send transactions |
+| params.privileges | `Array`        | the privilege settings                                |
+| extra             | `object`       | other param to underlying client implementation       |
+
+### gRpcClient.revokeDelegate(params, extra) ⇒ `Promise`
+
+Revoke a previous delegation
+
+**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
+**Returns**: `Promise` - the transaction hash once resolved  
+
+| Param             | Type           | Description                                           |
+| ----------------- | -------------- | ----------------------------------------------------- |
+| params            | `object`       |                                                       |
+| params.from       | `WalletObject` | the delegator, who grants the privilege to others     |
+| params.to         | `WalletObject` | the delegatee, who is authorized to send transactions |
+| params.privileges | `Array`        | the privilege settings                                |
+| extra             | `object`       | other param to underlying client implementation       |
+
+### gRpcClient.createAsset(params, extra) ⇒ `Promise`
+
+Create an new asset (non-fungible-token)
+
+**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
+**Returns**: `Promise` - the `[transactionHash, assetAddress]` once resolved  
+
+| Param                | Type           | Description                                             |
+| -------------------- | -------------- | ------------------------------------------------------- |
+| params               | `object`       |                                                         |
+| params.moniker       | `string`       | asset name                                              |
+| params.parent        | `string`       | asset parent                                            |
+| params.data          | `object`       | asset data payload                                      |
+| params.ttl           | `number`       | ttl after first consumption                             |
+| params.readonly      | `boolean`      | whether the asset can be updated after creation         |
+| params.transferrable | `boolean`      | whether the asset can be transferred to another account |
+| params.delegator     | `string`       | who authorized this transaction                         |
+| params.wallet        | `WalletObject` | the initial owner of the asset                          |
+| extra                | `object`       | other param to underlying client implementation         |
+
+### gRpcClient.updateAsset(params, extra) ⇒ `Promise`
+
+Update an existing asset (non-fungible-token)
+
+**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
+**Returns**: `Promise` - the `transactionHash` once resolved  
+
+| Param            | Type           | Description                                     |
+| ---------------- | -------------- | ----------------------------------------------- |
+| params           | `object`       |                                                 |
+| params.address   | `string`       | asset address                                   |
+| params.moniker   | `string`       | asset name                                      |
+| params.data      | `object`       | asset data payload                              |
+| params.delegator | `string`       | who authorized this transaction                 |
+| params.wallet    | `WalletObject` | the wallet to sign the transaction              |
+| extra            | `object`       | other param to underlying client implementation |
+
+### gRpcClient.prepareConsumeAsset(params, extra) ⇒ `Promise`
+
+Prepare a transaction that consumes an asset (non-fungible-token)
+
+**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
+**Returns**: `Promise` - the `transactionHash` once resolved  
+
+| Param            | Type           | Description                                     |
+| ---------------- | -------------- | ----------------------------------------------- |
+| params           | `object`       |                                                 |
+| params.issuer    | `string`       | issuer address                                  |
+| params.address   | `string`       | parent address                                  |
+| params.data      | `object`       | extra data payload                              |
+| params.delegator | `string`       | who authorized this transaction                 |
+| params.wallet    | `WalletObject` | the wallet to sign the transaction              |
+| extra            | `object`       | other param to underlying client implementation |
+
+### gRpcClient.finalizeConsumeAsset(params, extra) ⇒ `Promise`
+
+Prepare a transaction that consumes an asset (non-fungible-token)
+
+**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
+**Returns**: `Promise` - the `transactionHash` once resolved  
+
+| Param            | Type           | Description                                                          |
+| ---------------- | -------------- | -------------------------------------------------------------------- |
+| params           | `object`       |                                                                      |
+| params.tx        | `object`       | transaction to finalize, should be result from `prepareConsumeAsset` |
+| params.address   | `string`       | asset address to be consumed                                         |
+| params.delegator | `string`       | who authorized this transaction                                      |
+| params.wallet    | `WalletObject` | the wallet to sign the transaction                                   |
+| extra            | `object`       | other param to underlying client implementation                      |
+
+### gRpcClient.consumeAsset(params, extra) ⇒ `Promise`
+
+Send a transaction that consumes an asset (non-fungible-token)
+
+**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
+**Returns**: `Promise` - the `transactionHash` once resolved  
+
+| Param         | Type           | Description                                                       |
+| ------------- | -------------- | ----------------------------------------------------------------- |
+| params        | `object`       |                                                                   |
+| params.tx     | `object`       | transaction to send, should be result from `finalizeConsumeAsset` |
+| params.wallet | `WalletObject` | the wallet to sign the transaction                                |
+| extra         | `object`       | other param to underlying client implementation                   |
+
+### gRpcClient.createAssetFactory(params, extra) ⇒ `Promise`
+
+Create an asset factory that can be used to produce multiple assets in a transaction
+
+**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
+**Returns**: `Promise` - the `[transactionHash, factoryAddress]` once resolved  
+
+| Param                            | Type           | Description                                                        |
+| -------------------------------- | -------------- | ------------------------------------------------------------------ |
+| params                           | `object`       |                                                                    |
+| params.moniker                   | `string`       | asset name                                                         |
+| params.factory                   | `object`       | asset factory attributes                                           |
+| params.factory.description       | `string`       | asset factory name                                                 |
+| params.factory.limit             | `number`       | how many assets can be generated from this factory                 |
+| params.factory.price             | `price`        | how much should charge user when acquire asset                     |
+| params.factory.template          | `string`       | mustache compatible                                                |
+| params.factory.templateVariables | `Array`        | list of allowed template variables                                 |
+| params.factory.assetName         | `string`       | protobuf type known to forge that can be used to create this asset |
+| params.factory.attributes        | `string`       | attributes for assets that are generated from this factory         |
+| params.readonly                  | `boolean`      | whether the asset can be updated after creation                    |
+| params.transferrable             | `boolean`      | whether the asset can be transferred to another account            |
+| params.delegator                 | `string`       | who authorized this transaction                                    |
+| params.wallet                    | `WalletObject` | the initial owner of the asset                                     |
+| extra                            | `object`       | other param to underlying client implementation                    |
+
+### gRpcClient.acquireAsset(params, extra) ⇒ `Promise`
+
+Acquire an asset from factory
+
+**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
+**Returns**: `Promise` - the `[transactionHash, [assetAddress]]` once resolved  
+
+| Param                 | Type           | Description                                                                            |
+| --------------------- | -------------- | -------------------------------------------------------------------------------------- |
+| params                | `object`       |                                                                                        |
+| params.assetFactory   | `string`       | Asset factory address                                                                  |
+| params.assetVariables | `Array`        | list of asset variables that can be populated into asset factory template              |
+| params.readonly       | `boolean`      | whether the asset can be updated after creation, should match factory settings         |
+| params.transferrable  | `boolean`      | whether the asset can be transferred to another account, should match factory settings |
+| params.ttl            | `number`       | asset expire                                                                           |
+| params.delegator      | `string`       | who authorized this transaction                                                        |
+| params.wallet         | `WalletObject` | the initial owner of the asset                                                         |
+| extra                 | `object`       | other param to underlying client implementation                                        |
+
+### gRpcClient.upgradeNode(params, extra) ⇒ `Promise`
+
+Do an on-chain upgrade, should be used with forge-cli
+
+**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
+**Returns**: `Promise` - the `transactionHash` once resolved  
+
+| Param            | Type           | Description                                                  |
+| ---------------- | -------------- | ------------------------------------------------------------ |
+| params           | `object`       |                                                              |
+| params.height    | `number`       | at which height should the chain stop to perform the upgrade |
+| params.version   | `string`       | to which version should upgrade to                           |
+| params.delegator | `string`       | who authorized this transaction                              |
+| params.wallet    | `WalletObject` | the wallet to sign the transaction                           |
+| extra            | `object`       | other param to underlying client implementation              |
+
+### gRpcClient.deployContract(params, extra) ⇒ `Promise`
+
+Deploy a contract to a running chain node, requires moderator privilege
+
+**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
+**Returns**: `Promise` - the `transactionHash` once resolved  
+
+| Param            | Type           | Description                                                 |
+| ---------------- | -------------- | ----------------------------------------------------------- |
+| params           | `object`       |                                                             |
+| params.payload   | `object`       | the contract payload, usually from `forge contract:compile` |
+| params.delegator | `string`       | who authorized this transaction                             |
+| params.wallet    | `WalletObject` | the wallet to sign the transaction                          |
+| extra            | `object`       | other param to underlying client implementation             |
+
+### gRpcClient.activateContract(params, extra) ⇒ `Promise`
+
+Activate an previously paused/disabled contract
+
+**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
+**Returns**: `Promise` - the `transactionHash` once resolved  
+
+| Param            | Type           | Description                                     |
+| ---------------- | -------------- | ----------------------------------------------- |
+| params           | `object`       |                                                 |
+| params.address   | `string`       | the contract address to activate                |
+| params.delegator | `string`       | who authorized this transaction                 |
+| params.wallet    | `WalletObject` | the wallet to sign the transaction              |
+| extra            | `object`       | other param to underlying client implementation |
+
+### gRpcClient.deactivateContract(params, extra) ⇒ `Promise`
+
+Deactivate an previously running/enabled contract
+
+**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
+**Returns**: `Promise` - the `transactionHash` once resolved  
+
+| Param            | Type           | Description                                     |
+| ---------------- | -------------- | ----------------------------------------------- |
+| params           | `object`       |                                                 |
+| params.address   | `string`       | the contract address to deactivate              |
+| params.delegator | `string`       | who authorized this transaction                 |
+| params.wallet    | `WalletObject` | the wallet to sign the transaction              |
+| extra            | `object`       | other param to underlying client implementation |
+
+### gRpcClient.setupSwap(params, extra) ⇒ `Promise`
+
+Setup a swap that's used to accomplish cross-chain operations
+
+**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
+**Returns**: `Promise` - the `[transactionHash, swapAddress]` once resolved  
+
+| Param             | Type           | Default | Description                                                     |
+| ----------------- | -------------- | ------- | --------------------------------------------------------------- |
+| params            | `object`       |         |                                                                 |
+| params.token      | `number`       |         | how much token to offer                                         |
+| params.assets     | `Array`        |         | how much assets to offer                                        |
+| params.receiver   | `string`       |         | who can retrieve this swap                                      |
+| params.hashlock   | `string`       |         | sha3 from hashkey                                               |
+| params.delegator  | `string`       |         | who authorized this transaction                                 |
+| [params.locktime] | `number`       | `1000`  | how much block height to lock the swap before it can be revoked |
+| params.wallet     | `WalletObject` |         | the wallet to sign the transaction                              |
+| extra             | `object`       |         | other param to underlying client implementation                 |
+
+### gRpcClient.retrieveSwap(params, extra) ⇒ `Promise`
+
+Retrieve a swap during an atomic-swap process
+
+**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
+**Returns**: `Promise` - the `transactionHash` once resolved  
+
+| Param            | Type           | Description                                     |
+| ---------------- | -------------- | ----------------------------------------------- |
+| params           | `object`       |                                                 |
+| params.address   | `string`       | the swap address to retrieve                    |
+| params.hashkey   | `string`       | the hashkey to unlock the swap                  |
+| params.delegator | `string`       | who authorized this transaction                 |
+| params.wallet    | `WalletObject` | the wallet to sign the transaction              |
+| extra            | `object`       | other param to underlying client implementation |
+
+### gRpcClient.revokeSwap(params, extra) ⇒ `Promise`
+
+Revoke a swap during an atomic-swap process
+
+**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
+**Returns**: `Promise` - the `transactionHash` once resolved  
+
+| Param            | Type           | Description                                     |
+| ---------------- | -------------- | ----------------------------------------------- |
+| params           | `object`       |                                                 |
+| params.address   | `string`       | the swap address to revoke                      |
+| params.delegator | `string`       | who authorized this transaction                 |
+| params.wallet    | `WalletObject` | the wallet to sign the transaction              |
+| extra            | `object`       | other param to underlying client implementation |
+
+### gRpcClient.transfer(params, extra) ⇒ `Promise`
+
+Transfer token or assets to another account
+
+**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
+**Returns**: `Promise` - the `transactionHash` once resolved  
+
+| Param            | Type           | Description                                     |
+| ---------------- | -------------- | ----------------------------------------------- |
+| params           | `object`       |                                                 |
+| params.token     | `number`       | how much token can be transferred               |
+| params.assets    | `Array`        | which assets should be transferred              |
+| params.to        | `string`       | who receive the transfer                        |
+| params.memo      | `string`       | transaction note                                |
+| params.delegator | `string`       | who authorized this transaction                 |
+| params.wallet    | `WalletObject` | the wallet to sign the transaction              |
+| extra            | `object`       | other param to underlying client implementation |
+
+### gRpcClient.prepareExchange(params, extra) ⇒ `Promise`
+
+Prepare an exchange transaction between multiple accounts
+
+**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
+**Returns**: `Promise` - the `transaction` object once resolved  
+
+| Param               | Type           | Description                                     |
+| ------------------- | -------------- | ----------------------------------------------- |
+| params              | `object`       |                                                 |
+| params.offerToken   | `number`       | how much token can be sent                      |
+| params.offerAssets  | `Array`        | which assets should be sent                     |
+| params.demandToken  | `number`       | how much token can be received                  |
+| params.demandAssets | `Array`        | which assets should be received                 |
+| params.receiver     | `string`       | who receive the transfer                        |
+| params.memo         | `string`       | transaction note                                |
+| params.delegator    | `string`       | which assets should be transferred              |
+| params.wallet       | `WalletObject` | the wallet who is the offerer                   |
+| extra               | `object`       | other param to underlying client implementation |
+
+### gRpcClient.finalizeExchange(params, extra) ⇒ `Promise`
+
+Finalize an exchange transaction between multiple accounts
+
+**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
+**Returns**: `Promise` - the `transaction` object once resolved  
+
+| Param            | Type           | Description                                     |
+| ---------------- | -------------- | ----------------------------------------------- |
+| params           | `object`       |                                                 |
+| params.tx        | `object`       | the transaction object from `prepareExchange`   |
+| params.delegator | `string`       | who authorized this transaction                 |
+| params.data      | `object`       | extra data in the multi sig                     |
+| params.wallet    | `WalletObject` | the wallet who is the demander                  |
+| extra            | `object`       | other param to underlying client implementation |
+
+### gRpcClient.exchange(params, extra) ⇒ `Promise`
+
+Send an exchange transaction
+
+**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
+**Returns**: `Promise` - the `transactionHash` once resolved  
+
+| Param         | Type           | Description                                     |
+| ------------- | -------------- | ----------------------------------------------- |
+| params        | `object`       |                                                 |
+| params.tx     | `object`       | the transaction object from `finalizeExchange`  |
+| params.wallet | `WalletObject` | the wallet to sign the transaction              |
+| extra         | `object`       | other param to underlying client implementation |
+
+### gRpcClient.checkin(params, extra) ⇒ `Promise`
+
+Send a poke transaction to get some token for free
+
+**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
+**Returns**: `Promise` - the `transactionHash` once resolved  
+
+| Param         | Type           | Description                                                     |
+| ------------- | -------------- | --------------------------------------------------------------- |
+| params        | `object`       |                                                                 |
+| params.wallet | `WalletObject` | the wallet to sign the transaction, also who will get the token |
+| extra         | `object`       | other param to underlying client implementation                 |
+
+### gRpcClient.refuel(params, extra) ⇒ `Promise`
+
+Send a refuel transaction to get some gas
+
+**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
+**Returns**: `Promise` - the `transactionHash` once resolved  
+
+| Param         | Type           | Description                                                     |
+| ------------- | -------------- | --------------------------------------------------------------- |
+| params        | `object`       |                                                                 |
+| params.wallet | `WalletObject` | the wallet to sign the transaction, also who will get the token |
+| params.data   | `object`       | extra data to put in itx                                        |
+| extra         | `object`       | other param to underlying client implementation                 |
 
 ### gRpcClient.sendTx(params) ⇒ [`Promise.<ResponseSendTx>`](#GRpcClient.ResponseSendTx)
 

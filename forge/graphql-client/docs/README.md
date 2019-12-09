@@ -18,6 +18,39 @@ Please note that, due to internal implementation of google-protobuf, all `repeat
 * [GraphQLClient](#GraphQLClient)
   * [new GraphQLClient(config)](#new_GraphQLClient_new)
     * _instance_
+      * [fromUnitToToken(value)](#GraphQLClient+fromUnitToToken) ⇒ `string`
+      * [fromTokenToUnit(amount)](#GraphQLClient+fromTokenToUnit) ⇒ `BN`
+      * [toLocktime(number, \[options\])](#GraphQLClient+toLocktime) ⇒ `number`
+      * [getTxSendMethods()](#GraphQLClient+getTxSendMethods) ⇒ `Array.<string>`
+      * [getTxEncodeMethods()](#GraphQLClient+getTxEncodeMethods) ⇒ `Array.<string>`
+      * [getTxSignMethods()](#GraphQLClient+getTxSignMethods) ⇒ `Array.<string>`
+      * [getTxMultiSignMethods()](#GraphQLClient+getTxMultiSignMethods) ⇒ `Array.<string>`
+      * [getType(x)](#GraphQLClient+getType) ⇒ `class` \| `null`
+      * [decodeTx(input)](#GraphQLClient+decodeTx) ⇒ `object`
+      * [declare(params, extra)](#GraphQLClient+declare) ⇒ `Promise`
+      * [migrateAccount(params, extra)](#GraphQLClient+migrateAccount) ⇒ `Promise`
+      * [delegate(params, extra)](#GraphQLClient+delegate) ⇒ `Promise`
+      * [revokeDelegate(params, extra)](#GraphQLClient+revokeDelegate) ⇒ `Promise`
+      * [createAsset(params, extra)](#GraphQLClient+createAsset) ⇒ `Promise`
+      * [updateAsset(params, extra)](#GraphQLClient+updateAsset) ⇒ `Promise`
+      * [prepareConsumeAsset(params, extra)](#GraphQLClient+prepareConsumeAsset) ⇒ `Promise`
+      * [finalizeConsumeAsset(params, extra)](#GraphQLClient+finalizeConsumeAsset) ⇒ `Promise`
+      * [consumeAsset(params, extra)](#GraphQLClient+consumeAsset) ⇒ `Promise`
+      * [createAssetFactory(params, extra)](#GraphQLClient+createAssetFactory) ⇒ `Promise`
+      * [acquireAsset(params, extra)](#GraphQLClient+acquireAsset) ⇒ `Promise`
+      * [upgradeNode(params, extra)](#GraphQLClient+upgradeNode) ⇒ `Promise`
+      * [deployContract(params, extra)](#GraphQLClient+deployContract) ⇒ `Promise`
+      * [activateContract(params, extra)](#GraphQLClient+activateContract) ⇒ `Promise`
+      * [deactivateContract(params, extra)](#GraphQLClient+deactivateContract) ⇒ `Promise`
+      * [setupSwap(params, extra)](#GraphQLClient+setupSwap) ⇒ `Promise`
+      * [retrieveSwap(params, extra)](#GraphQLClient+retrieveSwap) ⇒ `Promise`
+      * [revokeSwap(params, extra)](#GraphQLClient+revokeSwap) ⇒ `Promise`
+      * [transfer(params, extra)](#GraphQLClient+transfer) ⇒ `Promise`
+      * [prepareExchange(params, extra)](#GraphQLClient+prepareExchange) ⇒ `Promise`
+      * [finalizeExchange(params, extra)](#GraphQLClient+finalizeExchange) ⇒ `Promise`
+      * [exchange(params, extra)](#GraphQLClient+exchange) ⇒ `Promise`
+      * [checkin(params, extra)](#GraphQLClient+checkin) ⇒ `Promise`
+      * [refuel(params, extra)](#GraphQLClient+refuel) ⇒ `Promise`
       * [getQueries()](#GraphQLClient+getQueries) ⇒ `Array.<string>`
       * [getMutations()](#GraphQLClient+getMutations) ⇒ `Array.<string>`
       * [getSubscription()](#GraphQLClient+getSubscription) ⇒ `Array.<string>`
@@ -315,6 +348,483 @@ const client = new GraphQLClient('https://argon.abtnetwork.io/api');
 
 const res = await client.getChainInfo();
 ```
+
+### graphQLClient.fromUnitToToken(value) ⇒ `string`
+
+Format big number presentation amount to token number
+
+**Kind**: instance method of [`GraphQLClient`](#GraphQLClient)  
+
+| Param | Type     |
+| ----- | -------- |
+| value | `string` |
+
+### graphQLClient.fromTokenToUnit(amount) ⇒ `BN`
+
+Encode amount to corresponding token big number presentation
+
+**Kind**: instance method of [`GraphQLClient`](#GraphQLClient)  
+
+| Param  | Type     |
+| ------ | -------- |
+| amount | `number` |
+
+### graphQLClient.toLocktime(number, [options]) ⇒ `number`
+
+Converts a relative locktime to absolute locktime
+
+**Kind**: instance method of [`GraphQLClient`](#GraphQLClient)  
+
+| Param     | Type     | Default | Description                   |
+| --------- | -------- | ------- | ----------------------------- |
+| number    | `number` |         | number of blocks want to lock |
+| [options] | `object` | `{}`    | options to underlying methods |
+
+### graphQLClient.getTxSendMethods() ⇒ `Array.<string>`
+
+List all transaction send methods
+Each method can send one kind of transactions supported by forge core, such as `DeclareTx`, `PokeTx`
+
+**Kind**: instance method of [`GraphQLClient`](#GraphQLClient)  
+**Returns**: `Array.<string>` - method name list  
+
+### graphQLClient.getTxEncodeMethods() ⇒ `Array.<string>`
+
+List all transaction encode methods, each method can be used to encode transaction to buffer and object
+
+**Kind**: instance method of [`GraphQLClient`](#GraphQLClient)  
+**Returns**: `Array.<string>` - method name list  
+
+### graphQLClient.getTxSignMethods() ⇒ `Array.<string>`
+
+List all transaction sign methods, each method can be used to sign transaction to an object
+
+**Kind**: instance method of [`GraphQLClient`](#GraphQLClient)  
+**Returns**: `Array.<string>` - method name list  
+
+### graphQLClient.getTxMultiSignMethods() ⇒ `Array.<string>`
+
+List all transaction multi sign methods, each method can be used to do multi sign a transaction
+
+**Kind**: instance method of [`GraphQLClient`](#GraphQLClient)  
+**Returns**: `Array.<string>` - method name list  
+
+### graphQLClient.getType(x) ⇒ `class` \| `null`
+
+Get protobuf message class by name, only supports forge-built-in types
+
+**Kind**: instance method of [`GraphQLClient`](#GraphQLClient)  
+**Returns**: `class` \| `null` - message type  
+
+| Param | Type     |
+| ----- | -------- |
+| x     | `string` |
+
+### graphQLClient.decodeTx(input) ⇒ `object`
+
+Decode transaction buffer/base64/base58 to an object
+
+**Kind**: instance method of [`GraphQLClient`](#GraphQLClient)  
+**Returns**: `object` - transaction object  
+
+| Param | Type                                      |
+| ----- | ----------------------------------------- |
+| input | `buffer` \| `hex` \| `base48` \| `base64` |
+
+### graphQLClient.declare(params, extra) ⇒ `Promise`
+
+Declare an DID and it's public key on chain
+
+**Kind**: instance method of [`GraphQLClient`](#GraphQLClient)  
+**Returns**: `Promise` - the transaction hash once resolved  
+
+| Param           | Type           | Default                      | Description                                     |
+| --------------- | -------------- | ---------------------------- | ----------------------------------------------- |
+| params          | `object`       |                              |                                                 |
+| params.moniker  | `string`       |                              | user nickname                                   |
+| [params.issuer] | `string`       | `&quot;\&quot;\&quot;&quot;` | who issued the account                          |
+| [params.data]   | `object`       |                              | who issued the account                          |
+| params.wallet   | `WalletObject` |                              | wallet to sign the tx                           |
+| extra           | `object`       |                              | other param to underlying client implementation |
+
+### graphQLClient.migrateAccount(params, extra) ⇒ `Promise`
+
+Migrate current account to a new account
+
+**Kind**: instance method of [`GraphQLClient`](#GraphQLClient)  
+**Returns**: `Promise` - the transaction hash once resolved  
+
+| Param       | Type           | Description                                     |
+| ----------- | -------------- | ----------------------------------------------- |
+| params      | `object`       |                                                 |
+| params.from | `WalletObject` | which account to migrate from                   |
+| params.to   | `WalletObject` | which account to migrate to                     |
+| extra       | `object`       | other param to underlying client implementation |
+
+### graphQLClient.delegate(params, extra) ⇒ `Promise`
+
+Delegate some privileges to another account
+So that that account can send transactions on behalf of the delegator
+
+**Kind**: instance method of [`GraphQLClient`](#GraphQLClient)  
+**Returns**: `Promise` - the `[transactionHash, delegateAddress]` once resolved  
+
+| Param             | Type           | Description                                           |
+| ----------------- | -------------- | ----------------------------------------------------- |
+| params            | `object`       |                                                       |
+| params.from       | `WalletObject` | the delegator, who grants the privilege to others     |
+| params.to         | `WalletObject` | the delegatee, who is authorized to send transactions |
+| params.privileges | `Array`        | the privilege settings                                |
+| extra             | `object`       | other param to underlying client implementation       |
+
+### graphQLClient.revokeDelegate(params, extra) ⇒ `Promise`
+
+Revoke a previous delegation
+
+**Kind**: instance method of [`GraphQLClient`](#GraphQLClient)  
+**Returns**: `Promise` - the transaction hash once resolved  
+
+| Param             | Type           | Description                                           |
+| ----------------- | -------------- | ----------------------------------------------------- |
+| params            | `object`       |                                                       |
+| params.from       | `WalletObject` | the delegator, who grants the privilege to others     |
+| params.to         | `WalletObject` | the delegatee, who is authorized to send transactions |
+| params.privileges | `Array`        | the privilege settings                                |
+| extra             | `object`       | other param to underlying client implementation       |
+
+### graphQLClient.createAsset(params, extra) ⇒ `Promise`
+
+Create an new asset (non-fungible-token)
+
+**Kind**: instance method of [`GraphQLClient`](#GraphQLClient)  
+**Returns**: `Promise` - the `[transactionHash, assetAddress]` once resolved  
+
+| Param                | Type           | Description                                             |
+| -------------------- | -------------- | ------------------------------------------------------- |
+| params               | `object`       |                                                         |
+| params.moniker       | `string`       | asset name                                              |
+| params.parent        | `string`       | asset parent                                            |
+| params.data          | `object`       | asset data payload                                      |
+| params.ttl           | `number`       | ttl after first consumption                             |
+| params.readonly      | `boolean`      | whether the asset can be updated after creation         |
+| params.transferrable | `boolean`      | whether the asset can be transferred to another account |
+| params.delegator     | `string`       | who authorized this transaction                         |
+| params.wallet        | `WalletObject` | the initial owner of the asset                          |
+| extra                | `object`       | other param to underlying client implementation         |
+
+### graphQLClient.updateAsset(params, extra) ⇒ `Promise`
+
+Update an existing asset (non-fungible-token)
+
+**Kind**: instance method of [`GraphQLClient`](#GraphQLClient)  
+**Returns**: `Promise` - the `transactionHash` once resolved  
+
+| Param            | Type           | Description                                     |
+| ---------------- | -------------- | ----------------------------------------------- |
+| params           | `object`       |                                                 |
+| params.address   | `string`       | asset address                                   |
+| params.moniker   | `string`       | asset name                                      |
+| params.data      | `object`       | asset data payload                              |
+| params.delegator | `string`       | who authorized this transaction                 |
+| params.wallet    | `WalletObject` | the wallet to sign the transaction              |
+| extra            | `object`       | other param to underlying client implementation |
+
+### graphQLClient.prepareConsumeAsset(params, extra) ⇒ `Promise`
+
+Prepare a transaction that consumes an asset (non-fungible-token)
+
+**Kind**: instance method of [`GraphQLClient`](#GraphQLClient)  
+**Returns**: `Promise` - the `transactionHash` once resolved  
+
+| Param            | Type           | Description                                     |
+| ---------------- | -------------- | ----------------------------------------------- |
+| params           | `object`       |                                                 |
+| params.issuer    | `string`       | issuer address                                  |
+| params.address   | `string`       | parent address                                  |
+| params.data      | `object`       | extra data payload                              |
+| params.delegator | `string`       | who authorized this transaction                 |
+| params.wallet    | `WalletObject` | the wallet to sign the transaction              |
+| extra            | `object`       | other param to underlying client implementation |
+
+### graphQLClient.finalizeConsumeAsset(params, extra) ⇒ `Promise`
+
+Prepare a transaction that consumes an asset (non-fungible-token)
+
+**Kind**: instance method of [`GraphQLClient`](#GraphQLClient)  
+**Returns**: `Promise` - the `transactionHash` once resolved  
+
+| Param            | Type           | Description                                                          |
+| ---------------- | -------------- | -------------------------------------------------------------------- |
+| params           | `object`       |                                                                      |
+| params.tx        | `object`       | transaction to finalize, should be result from `prepareConsumeAsset` |
+| params.address   | `string`       | asset address to be consumed                                         |
+| params.delegator | `string`       | who authorized this transaction                                      |
+| params.wallet    | `WalletObject` | the wallet to sign the transaction                                   |
+| extra            | `object`       | other param to underlying client implementation                      |
+
+### graphQLClient.consumeAsset(params, extra) ⇒ `Promise`
+
+Send a transaction that consumes an asset (non-fungible-token)
+
+**Kind**: instance method of [`GraphQLClient`](#GraphQLClient)  
+**Returns**: `Promise` - the `transactionHash` once resolved  
+
+| Param         | Type           | Description                                                       |
+| ------------- | -------------- | ----------------------------------------------------------------- |
+| params        | `object`       |                                                                   |
+| params.tx     | `object`       | transaction to send, should be result from `finalizeConsumeAsset` |
+| params.wallet | `WalletObject` | the wallet to sign the transaction                                |
+| extra         | `object`       | other param to underlying client implementation                   |
+
+### graphQLClient.createAssetFactory(params, extra) ⇒ `Promise`
+
+Create an asset factory that can be used to produce multiple assets in a transaction
+
+**Kind**: instance method of [`GraphQLClient`](#GraphQLClient)  
+**Returns**: `Promise` - the `[transactionHash, factoryAddress]` once resolved  
+
+| Param                            | Type           | Description                                                        |
+| -------------------------------- | -------------- | ------------------------------------------------------------------ |
+| params                           | `object`       |                                                                    |
+| params.moniker                   | `string`       | asset name                                                         |
+| params.factory                   | `object`       | asset factory attributes                                           |
+| params.factory.description       | `string`       | asset factory name                                                 |
+| params.factory.limit             | `number`       | how many assets can be generated from this factory                 |
+| params.factory.price             | `price`        | how much should charge user when acquire asset                     |
+| params.factory.template          | `string`       | mustache compatible                                                |
+| params.factory.templateVariables | `Array`        | list of allowed template variables                                 |
+| params.factory.assetName         | `string`       | protobuf type known to forge that can be used to create this asset |
+| params.factory.attributes        | `string`       | attributes for assets that are generated from this factory         |
+| params.readonly                  | `boolean`      | whether the asset can be updated after creation                    |
+| params.transferrable             | `boolean`      | whether the asset can be transferred to another account            |
+| params.delegator                 | `string`       | who authorized this transaction                                    |
+| params.wallet                    | `WalletObject` | the initial owner of the asset                                     |
+| extra                            | `object`       | other param to underlying client implementation                    |
+
+### graphQLClient.acquireAsset(params, extra) ⇒ `Promise`
+
+Acquire an asset from factory
+
+**Kind**: instance method of [`GraphQLClient`](#GraphQLClient)  
+**Returns**: `Promise` - the `[transactionHash, [assetAddress]]` once resolved  
+
+| Param                 | Type           | Description                                                                            |
+| --------------------- | -------------- | -------------------------------------------------------------------------------------- |
+| params                | `object`       |                                                                                        |
+| params.assetFactory   | `string`       | Asset factory address                                                                  |
+| params.assetVariables | `Array`        | list of asset variables that can be populated into asset factory template              |
+| params.readonly       | `boolean`      | whether the asset can be updated after creation, should match factory settings         |
+| params.transferrable  | `boolean`      | whether the asset can be transferred to another account, should match factory settings |
+| params.ttl            | `number`       | asset expire                                                                           |
+| params.delegator      | `string`       | who authorized this transaction                                                        |
+| params.wallet         | `WalletObject` | the initial owner of the asset                                                         |
+| extra                 | `object`       | other param to underlying client implementation                                        |
+
+### graphQLClient.upgradeNode(params, extra) ⇒ `Promise`
+
+Do an on-chain upgrade, should be used with forge-cli
+
+**Kind**: instance method of [`GraphQLClient`](#GraphQLClient)  
+**Returns**: `Promise` - the `transactionHash` once resolved  
+
+| Param            | Type           | Description                                                  |
+| ---------------- | -------------- | ------------------------------------------------------------ |
+| params           | `object`       |                                                              |
+| params.height    | `number`       | at which height should the chain stop to perform the upgrade |
+| params.version   | `string`       | to which version should upgrade to                           |
+| params.delegator | `string`       | who authorized this transaction                              |
+| params.wallet    | `WalletObject` | the wallet to sign the transaction                           |
+| extra            | `object`       | other param to underlying client implementation              |
+
+### graphQLClient.deployContract(params, extra) ⇒ `Promise`
+
+Deploy a contract to a running chain node, requires moderator privilege
+
+**Kind**: instance method of [`GraphQLClient`](#GraphQLClient)  
+**Returns**: `Promise` - the `transactionHash` once resolved  
+
+| Param            | Type           | Description                                                 |
+| ---------------- | -------------- | ----------------------------------------------------------- |
+| params           | `object`       |                                                             |
+| params.payload   | `object`       | the contract payload, usually from `forge contract:compile` |
+| params.delegator | `string`       | who authorized this transaction                             |
+| params.wallet    | `WalletObject` | the wallet to sign the transaction                          |
+| extra            | `object`       | other param to underlying client implementation             |
+
+### graphQLClient.activateContract(params, extra) ⇒ `Promise`
+
+Activate an previously paused/disabled contract
+
+**Kind**: instance method of [`GraphQLClient`](#GraphQLClient)  
+**Returns**: `Promise` - the `transactionHash` once resolved  
+
+| Param            | Type           | Description                                     |
+| ---------------- | -------------- | ----------------------------------------------- |
+| params           | `object`       |                                                 |
+| params.address   | `string`       | the contract address to activate                |
+| params.delegator | `string`       | who authorized this transaction                 |
+| params.wallet    | `WalletObject` | the wallet to sign the transaction              |
+| extra            | `object`       | other param to underlying client implementation |
+
+### graphQLClient.deactivateContract(params, extra) ⇒ `Promise`
+
+Deactivate an previously running/enabled contract
+
+**Kind**: instance method of [`GraphQLClient`](#GraphQLClient)  
+**Returns**: `Promise` - the `transactionHash` once resolved  
+
+| Param            | Type           | Description                                     |
+| ---------------- | -------------- | ----------------------------------------------- |
+| params           | `object`       |                                                 |
+| params.address   | `string`       | the contract address to deactivate              |
+| params.delegator | `string`       | who authorized this transaction                 |
+| params.wallet    | `WalletObject` | the wallet to sign the transaction              |
+| extra            | `object`       | other param to underlying client implementation |
+
+### graphQLClient.setupSwap(params, extra) ⇒ `Promise`
+
+Setup a swap that's used to accomplish cross-chain operations
+
+**Kind**: instance method of [`GraphQLClient`](#GraphQLClient)  
+**Returns**: `Promise` - the `[transactionHash, swapAddress]` once resolved  
+
+| Param             | Type           | Default | Description                                                     |
+| ----------------- | -------------- | ------- | --------------------------------------------------------------- |
+| params            | `object`       |         |                                                                 |
+| params.token      | `number`       |         | how much token to offer                                         |
+| params.assets     | `Array`        |         | how much assets to offer                                        |
+| params.receiver   | `string`       |         | who can retrieve this swap                                      |
+| params.hashlock   | `string`       |         | sha3 from hashkey                                               |
+| params.delegator  | `string`       |         | who authorized this transaction                                 |
+| [params.locktime] | `number`       | `1000`  | how much block height to lock the swap before it can be revoked |
+| params.wallet     | `WalletObject` |         | the wallet to sign the transaction                              |
+| extra             | `object`       |         | other param to underlying client implementation                 |
+
+### graphQLClient.retrieveSwap(params, extra) ⇒ `Promise`
+
+Retrieve a swap during an atomic-swap process
+
+**Kind**: instance method of [`GraphQLClient`](#GraphQLClient)  
+**Returns**: `Promise` - the `transactionHash` once resolved  
+
+| Param            | Type           | Description                                     |
+| ---------------- | -------------- | ----------------------------------------------- |
+| params           | `object`       |                                                 |
+| params.address   | `string`       | the swap address to retrieve                    |
+| params.hashkey   | `string`       | the hashkey to unlock the swap                  |
+| params.delegator | `string`       | who authorized this transaction                 |
+| params.wallet    | `WalletObject` | the wallet to sign the transaction              |
+| extra            | `object`       | other param to underlying client implementation |
+
+### graphQLClient.revokeSwap(params, extra) ⇒ `Promise`
+
+Revoke a swap during an atomic-swap process
+
+**Kind**: instance method of [`GraphQLClient`](#GraphQLClient)  
+**Returns**: `Promise` - the `transactionHash` once resolved  
+
+| Param            | Type           | Description                                     |
+| ---------------- | -------------- | ----------------------------------------------- |
+| params           | `object`       |                                                 |
+| params.address   | `string`       | the swap address to revoke                      |
+| params.delegator | `string`       | who authorized this transaction                 |
+| params.wallet    | `WalletObject` | the wallet to sign the transaction              |
+| extra            | `object`       | other param to underlying client implementation |
+
+### graphQLClient.transfer(params, extra) ⇒ `Promise`
+
+Transfer token or assets to another account
+
+**Kind**: instance method of [`GraphQLClient`](#GraphQLClient)  
+**Returns**: `Promise` - the `transactionHash` once resolved  
+
+| Param            | Type           | Description                                     |
+| ---------------- | -------------- | ----------------------------------------------- |
+| params           | `object`       |                                                 |
+| params.token     | `number`       | how much token can be transferred               |
+| params.assets    | `Array`        | which assets should be transferred              |
+| params.to        | `string`       | who receive the transfer                        |
+| params.memo      | `string`       | transaction note                                |
+| params.delegator | `string`       | who authorized this transaction                 |
+| params.wallet    | `WalletObject` | the wallet to sign the transaction              |
+| extra            | `object`       | other param to underlying client implementation |
+
+### graphQLClient.prepareExchange(params, extra) ⇒ `Promise`
+
+Prepare an exchange transaction between multiple accounts
+
+**Kind**: instance method of [`GraphQLClient`](#GraphQLClient)  
+**Returns**: `Promise` - the `transaction` object once resolved  
+
+| Param               | Type           | Description                                     |
+| ------------------- | -------------- | ----------------------------------------------- |
+| params              | `object`       |                                                 |
+| params.offerToken   | `number`       | how much token can be sent                      |
+| params.offerAssets  | `Array`        | which assets should be sent                     |
+| params.demandToken  | `number`       | how much token can be received                  |
+| params.demandAssets | `Array`        | which assets should be received                 |
+| params.receiver     | `string`       | who receive the transfer                        |
+| params.memo         | `string`       | transaction note                                |
+| params.delegator    | `string`       | which assets should be transferred              |
+| params.wallet       | `WalletObject` | the wallet who is the offerer                   |
+| extra               | `object`       | other param to underlying client implementation |
+
+### graphQLClient.finalizeExchange(params, extra) ⇒ `Promise`
+
+Finalize an exchange transaction between multiple accounts
+
+**Kind**: instance method of [`GraphQLClient`](#GraphQLClient)  
+**Returns**: `Promise` - the `transaction` object once resolved  
+
+| Param            | Type           | Description                                     |
+| ---------------- | -------------- | ----------------------------------------------- |
+| params           | `object`       |                                                 |
+| params.tx        | `object`       | the transaction object from `prepareExchange`   |
+| params.delegator | `string`       | who authorized this transaction                 |
+| params.data      | `object`       | extra data in the multi sig                     |
+| params.wallet    | `WalletObject` | the wallet who is the demander                  |
+| extra            | `object`       | other param to underlying client implementation |
+
+### graphQLClient.exchange(params, extra) ⇒ `Promise`
+
+Send an exchange transaction
+
+**Kind**: instance method of [`GraphQLClient`](#GraphQLClient)  
+**Returns**: `Promise` - the `transactionHash` once resolved  
+
+| Param         | Type           | Description                                     |
+| ------------- | -------------- | ----------------------------------------------- |
+| params        | `object`       |                                                 |
+| params.tx     | `object`       | the transaction object from `finalizeExchange`  |
+| params.wallet | `WalletObject` | the wallet to sign the transaction              |
+| extra         | `object`       | other param to underlying client implementation |
+
+### graphQLClient.checkin(params, extra) ⇒ `Promise`
+
+Send a poke transaction to get some token for free
+
+**Kind**: instance method of [`GraphQLClient`](#GraphQLClient)  
+**Returns**: `Promise` - the `transactionHash` once resolved  
+
+| Param         | Type           | Description                                                     |
+| ------------- | -------------- | --------------------------------------------------------------- |
+| params        | `object`       |                                                                 |
+| params.wallet | `WalletObject` | the wallet to sign the transaction, also who will get the token |
+| extra         | `object`       | other param to underlying client implementation                 |
+
+### graphQLClient.refuel(params, extra) ⇒ `Promise`
+
+Send a refuel transaction to get some gas
+
+**Kind**: instance method of [`GraphQLClient`](#GraphQLClient)  
+**Returns**: `Promise` - the `transactionHash` once resolved  
+
+| Param         | Type           | Description                                                     |
+| ------------- | -------------- | --------------------------------------------------------------- |
+| params        | `object`       |                                                                 |
+| params.wallet | `WalletObject` | the wallet to sign the transaction, also who will get the token |
+| params.data   | `object`       | extra data to put in itx                                        |
+| extra         | `object`       | other param to underlying client implementation                 |
 
 ### graphQLClient.getQueries() ⇒ `Array.<string>`
 

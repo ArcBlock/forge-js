@@ -65,7 +65,7 @@
     "lint:fix": "eslint --fix lib index.js tests examples",
     "upgrade": "yarn generate-types && yarn generate-apis && yarn generate-docs && yarn format-docs && yarn generate-dts && yarn lint:fix",
     "generate-apis": "node tools/generate-apis.js",
-    "generate-docs": "jsdoc2md lib/client.js lib/types.js > docs/README.md",
+    "generate-docs": "jsdoc2md lib/client.js lib/methods.js lib/types.js > docs/README.md",
     "generate-types": "node tools/generate-types.js",
     "format-docs": "remark . -o",
     "generate-dts": "j2d index.js && ./tools/patch-dts.sh && node tools/generate-dts.js",

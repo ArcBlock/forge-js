@@ -127,14 +127,48 @@ declare class GraphQLClient {
   getMutations(): string[];
 
   /**
-   * Send raw query to ocap and return results
+   * Send raw query to forge and return results
    *
    * @param {*} query
-   * @memberof BaseClient
+   * @memberof GraphQLClient
    * @return Promise
    */
   doRawQuery(query: any, requestOptions?: any): Promise<any>;
   doRawSubscription(query: any): Promise<any>;
+
+  fromUnitToToken(value: string): Promise<string>;
+  fromTokenToUnit(amount: number): Promise<BN>;
+  toLocktime(number: number, options: any): Promise<number>;
+  getTxSendMethods(): Array<string>;
+  getTxSendMethods(): Array<string>;
+  getTxSignMethods(): Array.<string>;
+  getTxMultiSignMethods(): Array.<string>;
+  getType(x: string): Object;
+  decodeTx(input: string|buffer): object;
+  declare(params: object, extra: any): Promise<string>;
+  migrateAccount(params: object, extra: any): Promise<string>;
+  delegate(params: object, extra: any): Promise<string>;
+  revokeDelegate(params: object, extra: any): Promise<string>;
+  createAsset(params: object, extra: any):  Promise<string>;
+  updateAsset(params: object, extra: any):  Promise<string>;
+  prepareConsumeAsset(params: object, extra: any): Promise<string>;
+  finalizeConsumeAsset(params: object, extra: any): Promise<string>;
+  consumeAsset(params: object, extra: any): Promise<string>;
+  createAssetFactory(params: object, extra: any): Promise<string>;
+  acquireAsset(params: object, extra: any): Promise<string>;
+  upgradeNode(params: object, extra: any): Promise<string>;
+  deployContract(params: object, extra: any): Promise<string>;
+  activateContract(params: object, extra: any): Promise<string>;
+  deactivateContract(params: object, extra: any): Promise<string>;
+  setupSwap(params: object, extra: any): Promise<string>;
+  retrieveSwap(params: object, extra: any): Promise<string>;
+  revokeSwap(params: object, extra: any): Promise<string>;
+  transfer(params: object, extra: any): Promise<string>;
+  prepareExchange(params: object, extra: any): Promise<string>;
+  finalizeExchange(params: object, extra: any): Promise<string>;
+  exchange(params: object, extra: any): Promise<string>;
+  checkin(params: object, extra: any): Promise<string>;
+  refuel(params: object, extra: any): Promise<string>;
 
   generateQueryFns(): void;
   generateSubscriptionFns(): void;
