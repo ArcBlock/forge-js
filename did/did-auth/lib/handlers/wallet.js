@@ -1,4 +1,6 @@
 /* eslint-disable object-curly-newline */
+const { EventEmitter } = require('events');
+
 // eslint-disable-next-line
 const debug = require('debug')(`${require('../../package.json').name}:handlers:wallet`);
 
@@ -6,7 +8,17 @@ const createHandlers = require('./util');
 
 const noop = () => {};
 
-class WalletHandlers {
+/**
+ * Events that are emitted during an did-auth process
+ *
+ *  - scanned: when the qrcode is scanned by wallet
+ *  - succeed: when authentication complete
+ *  - error: when something goes wrong
+ *
+ * @class WalletHandlers
+ * @extends {EventEmitter}
+ */
+class WalletHandlers extends EventEmitter {
   /**
    * Creates an instance of DID Auth Handlers.
    *
@@ -23,6 +35,8 @@ class WalletHandlers {
    * @param {string} [config.options.checksumKey='_cs_'] - query param key for `checksum`
    */
   constructor({ tokenGenerator, tokenStorage, authenticator, onPreAuth = noop, options = {} }) {
+    super();
+
     this.authenticator = authenticator;
     if (typeof tokenGenerator === 'function') {
       this.tokenGenerator = tokenGenerator;
@@ -31,6 +45,14 @@ class WalletHandlers {
     }
 
     this.tokenStorage = tokenStorage;
+
+    this.tokenStorage.on('create', data => this.emit('created', data));
+    this.tokenStorage.on('scanned', data => this.emit('scanned', data));
+    this.tokenStorage.on('succeed', data => this.emit('succeed', data));
+    this.tokenStorage.on('forbidden', data => this.emit('error', data));
+    this.tokenStorage.on('error', data => this.emit('error', data));
+    this.tokenStorage.on('destroy', token => this.emit('destroy', { token }));
+
     if (typeof onPreAuth === 'function') {
       this.onPreAuth = onPreAuth;
     } else {
