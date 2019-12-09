@@ -31,6 +31,7 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
    * Format big number presentation amount to token number
    *
    * @memberof GraphQLClient
+   * @function
    * @name GraphQLClient#fromUnitToToken
    * @param {string} value
    * @returns {string}
@@ -44,6 +45,7 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
    * Encode amount to corresponding token big number presentation
    *
    * @memberof GraphQLClient
+   * @function
    * @name GraphQLClient#fromTokenToUnit
    * @param {number} amount
    * @returns {BN}
@@ -57,6 +59,7 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
    * Converts a relative locktime to absolute locktime
    *
    * @memberof GraphQLClient
+   * @function
    * @name GraphQLClient#toLocktime
    * @param {number} number - number of blocks want to lock
    * @param {object} [options={}] - options to underlying methods
@@ -72,6 +75,7 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
    * Each method can send one kind of transactions supported by forge core, such as `DeclareTx`, `PokeTx`
    *
    * @memberof GraphQLClient
+   * @function
    * @name GraphQLClient#getTxSendMethods
    * @returns {Array<string>} method name list
    */
@@ -81,6 +85,7 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
    * List all transaction encode methods, each method can be used to encode transaction to buffer and object
    *
    * @memberof GraphQLClient
+   * @function
    * @name GraphQLClient#getTxEncodeMethods
    * @returns {Array<string>} method name list
    */
@@ -90,6 +95,7 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
    * List all transaction sign methods, each method can be used to sign transaction to an object
    *
    * @memberof GraphQLClient
+   * @function
    * @name GraphQLClient#getTxSignMethods
    * @returns {Array<string>} method name list
    */
@@ -99,6 +105,7 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
    * List all transaction multi sign methods, each method can be used to do multi sign a transaction
    *
    * @memberof GraphQLClient
+   * @function
    * @name GraphQLClient#getTxMultiSignMethods
    * @returns {Array<string>} method name list
    */
@@ -108,6 +115,7 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
    * Get protobuf message class by name, only supports forge-built-in types
    *
    * @memberof GraphQLClient
+   * @function
    * @name GraphQLClient#getType
    * @param {string} x
    * @returns {class|null} message type
@@ -118,6 +126,7 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
    * Decode transaction buffer/base64/base58 to an object
    *
    * @memberof GraphQLClient
+   * @function
    * @name GraphQLClient#decodeTx
    * @param {buffer|hex|base48|base64} input
    * @returns {object} transaction object
@@ -394,6 +403,7 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
    * Declare an DID and it's public key on chain
    *
    * @memberof GraphQLClient
+   * @function
    * @name GraphQLClient#declare
    * @param {object} params
    * @param {string} params.moniker - user nickname
@@ -418,6 +428,7 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
    * Migrate current account to a new account
    *
    * @memberof GraphQLClient
+   * @function
    * @name GraphQLClient#migrateAccount
    * @param {object} params
    * @param {WalletObject} params.from - which account to migrate from
@@ -445,6 +456,7 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
    * So that that account can send transactions on behalf of the delegator
    *
    * @memberof GraphQLClient
+   * @function
    * @name GraphQLClient#delegate
    * @param {object} params
    * @param {WalletObject} params.from - the delegator, who grants the privilege to others
@@ -490,6 +502,7 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
    * Revoke a previous delegation
    *
    * @memberof GraphQLClient
+   * @function
    * @name GraphQLClient#revokeDelegate
    * @param {object} params
    * @param {WalletObject} params.from - the delegator, who grants the privilege to others
@@ -517,6 +530,7 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
    * Create an new asset (non-fungible-token)
    *
    * @memberof GraphQLClient
+   * @function
    * @name GraphQLClient#createAsset
    * @param {object} params
    * @param {string} params.moniker - asset name
@@ -561,6 +575,7 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
    * Update an existing asset (non-fungible-token)
    *
    * @memberof GraphQLClient
+   * @function
    * @name GraphQLClient#updateAsset
    * @param {object} params
    * @param {string} params.address - asset address
@@ -591,6 +606,7 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
    * Prepare a transaction that consumes an asset (non-fungible-token)
    *
    * @memberof GraphQLClient
+   * @function
    * @name GraphQLClient#prepareConsumeAsset
    * @param {object} params
    * @param {string} params.issuer - issuer address
@@ -624,6 +640,7 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
    * Prepare a transaction that consumes an asset (non-fungible-token)
    *
    * @memberof GraphQLClient
+   * @function
    * @name GraphQLClient#finalizeConsumeAsset
    * @param {object} params
    * @param {object} params.tx - transaction to finalize, should be result from `prepareConsumeAsset`
@@ -656,6 +673,7 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
    * Send a transaction that consumes an asset (non-fungible-token)
    *
    * @memberof GraphQLClient
+   * @function
    * @name GraphQLClient#consumeAsset
    * @param {object} params
    * @param {object} params.tx - transaction to send, should be result from `finalizeConsumeAsset`
@@ -669,6 +687,7 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
    * Create an asset factory that can be used to produce multiple assets in a transaction
    *
    * @memberof GraphQLClient
+   * @function
    * @name GraphQLClient#createAssetFactory
    * @param {object} params
    * @param {string} params.moniker - asset name
@@ -728,6 +747,7 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
    * Acquire an asset from factory
    *
    * @memberof GraphQLClient
+   * @function
    * @name GraphQLClient#acquireAsset
    * @param {object} params
    * @param {string} params.assetFactory - Asset factory address
@@ -799,6 +819,7 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
    * Do an on-chain upgrade, should be used with forge-cli
    *
    * @memberof GraphQLClient
+   * @function
    * @name GraphQLClient#upgradeNode
    * @param {object} params
    * @param {number} params.height - at which height should the chain stop to perform the upgrade
@@ -822,6 +843,7 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
    * Deploy a contract to a running chain node, requires moderator privilege
    *
    * @memberof GraphQLClient
+   * @function
    * @name GraphQLClient#deployContract
    * @param {object} params
    * @param {object} params.payload - the contract payload, usually from `forge contract:compile`
@@ -844,6 +866,7 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
    * Activate an previously paused/disabled contract
    *
    * @memberof GraphQLClient
+   * @function
    * @name GraphQLClient#activateContract
    * @param {object} params
    * @param {string} params.address - the contract address to activate
@@ -866,6 +889,7 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
    * Deactivate an previously running/enabled contract
    *
    * @memberof GraphQLClient
+   * @function
    * @name GraphQLClient#deactivateContract
    * @param {object} params
    * @param {string} params.address - the contract address to deactivate
@@ -888,6 +912,7 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
    * Setup a swap that's used to accomplish cross-chain operations
    *
    * @memberof GraphQLClient
+   * @function
    * @name GraphQLClient#setupSwap
    * @param {object} params
    * @param {number} params.token - how much token to offer
@@ -942,6 +967,7 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
    * Retrieve a swap during an atomic-swap process
    *
    * @memberof GraphQLClient
+   * @function
    * @name GraphQLClient#retrieveSwap
    * @param {object} params
    * @param {string} params.address - the swap address to retrieve
@@ -965,6 +991,7 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
    * Revoke a swap during an atomic-swap process
    *
    * @memberof GraphQLClient
+   * @function
    * @name GraphQLClient#revokeSwap
    * @param {object} params
    * @param {string} params.address - the swap address to revoke
@@ -987,6 +1014,7 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
    * Transfer token or assets to another account
    *
    * @memberof GraphQLClient
+   * @function
    * @name GraphQLClient#transfer
    * @param {object} params
    * @param {number} params.token - how much token can be transferred
@@ -1025,6 +1053,7 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
    * Prepare an exchange transaction between multiple accounts
    *
    * @memberof GraphQLClient
+   * @function
    * @name GraphQLClient#prepareExchange
    * @param {object} params
    * @param {number} params.offerToken - how much token can be sent
@@ -1080,6 +1109,7 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
    * Finalize an exchange transaction between multiple accounts
    *
    * @memberof GraphQLClient
+   * @function
    * @name GraphQLClient#finalizeExchange
    * @param {object} params
    * @param {object} params.tx - the transaction object from `prepareExchange`
@@ -1104,6 +1134,7 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
    * Send an exchange transaction
    *
    * @memberof GraphQLClient
+   * @function
    * @name GraphQLClient#exchange
    * @param {object} params
    * @param {object} params.tx - the transaction object from `finalizeExchange`
@@ -1117,6 +1148,7 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
    * Send a poke transaction to get some token for free
    *
    * @memberof GraphQLClient
+   * @function
    * @name GraphQLClient#checkin
    * @param {object} params
    * @param {WalletObject} params.wallet - the wallet to sign the transaction, also who will get the token
@@ -1148,6 +1180,7 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
    * Send a refuel transaction to get some gas
    *
    * @memberof GraphQLClient
+   * @function
    * @name GraphQLClient#refuel
    * @param {object} params
    * @param {WalletObject} params.wallet - the wallet to sign the transaction, also who will get the token
