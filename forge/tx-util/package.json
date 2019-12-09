@@ -1,7 +1,7 @@
 {
   "name": "@arcblock/tx-util",
   "description": "Utility to work with forge transactions",
-  "version": "1.0.9",
+  "version": "1.0.12",
   "author": {
     "name": "wangshijun",
     "email": "shijun@arcblock.io",
@@ -15,7 +15,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@arcblock/forge-sdk": "^1.0.9",
+    "@arcblock/forge-sdk": "^1.0.12",
     "debug": "^4.1.1"
   },
   "devDependencies": {
