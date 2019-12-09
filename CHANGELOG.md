@@ -1,3 +1,13 @@
+## 1.0.12 (December 09, 2019)
+
+- chore: update docs
+- chore: support extract shortcut methods from client-extension source
+- chore: update docs
+- chore: upgrade graphql-client with forge 1.0.2
+- chore: upgrade grpc-client with forge 1.0.2
+- chore: upgrade forge-proto with forge 1.0.2
+- update readme
+
 ## 1.0.11 (December 06, 2019)
 
 - fix: not using correct field as demandChainId from swap claim

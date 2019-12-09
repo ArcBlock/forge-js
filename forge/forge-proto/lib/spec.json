@@ -1659,6 +1659,10 @@
             "hierarchy": {
               "type": "uint32",
               "id": 2
+            },
+            "cost": {
+              "type": "BigUint",
+              "id": 3
             }
           }
         },
@@ -4093,6 +4097,19 @@
             "moniker": {
               "type": "string",
               "id": 2
+            },
+            "data": {
+              "type": "google.protobuf.Any",
+              "id": 15
+            }
+          }
+        },
+        "UpdateValidatorTx": {
+          "fields": {
+            "candidates": {
+              "rule": "repeated",
+              "type": "forge_abi.Validator",
+              "id": 1
             },
             "data": {
               "type": "google.protobuf.Any",

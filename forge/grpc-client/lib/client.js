@@ -31,7 +31,6 @@ class GRpcClient {
    * @param {string} [config.endpoint="tcp://127.0.0.1:28210"] - grpc endpoint the client can connect to
    * @param {string} [config.chainId=""] - chainId used to construct transaction
    * @see GRpcClient.getRpcMethods
-   * @see GRpcClient.getTxSendMethods
    */
   constructor(config = 'tcp://127.0.0.1:28210') {
     let endpoint = '';

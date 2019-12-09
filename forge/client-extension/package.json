@@ -26,6 +26,7 @@
     "lodash": "^4.17.14"
   },
   "devDependencies": {
+    "esprima-extract-comments": "^1.1.0",
     "jest": "^24.8.0",
     "remark-cli": "^5.0.0",
     "remark-preset-github": "^0.0.9"

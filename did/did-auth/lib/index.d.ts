@@ -435,6 +435,7 @@ declare namespace _Lib {
     demandLocktime: any;
     receiver: any;
     demandChain: any;
+    offerChain: any;
     meta: any;
   }
   export interface T125 {
