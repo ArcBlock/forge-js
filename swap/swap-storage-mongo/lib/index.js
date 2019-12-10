@@ -185,8 +185,6 @@ class MongoSwapStorage extends StorageInterface {
 
         if (rawResponse && rawResponse.upserted) {
           this.emit('create', payload);
-        } else if (updates.status && updates.status !== 'not_started') {
-          this.emit(updates.status, payload);
         } else {
           this.emit('update', payload);
         }

@@ -14,16 +14,19 @@ module.exports = class MemoryAgentStorage extends StorageInterface {
       }
     });
     storage[authorizeId] = Object.assign({ authorizeId }, payload);
+    this.emit('create', storage[authorizeId]);
     return this.read(authorizeId);
   }
 
   update(authorizeId, updates) {
     delete updates.authorizeId;
     storage[authorizeId] = Object.assign(storage[authorizeId], updates);
+    this.emit('update', storage[authorizeId]);
     return storage[authorizeId];
   }
 
   delete(authorizeId) {
+    this.emit('destroy', storage[authorizeId]);
     delete storage[authorizeId];
   }
 
