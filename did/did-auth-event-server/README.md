@@ -1,39 +1,33 @@
-![did-auth](https://www.arcblock.io/.netlify/functions/badge/?text=did-auth)
+![did-auth-event-server](https://www.arcblock.io/.netlify/functions/badge/?text=did-auth-event-server)
 
 [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 [![docs](https://img.shields.io/badge/powered%20by-arcblock-green.svg)](https://docs.arcblock.io)
 [![Gitter](https://badges.gitter.im/ArcBlock/community.svg)](https://gitter.im/ArcBlock/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
-This library aims to ease the process of handling `Did-Auth` process between different parts, its implemented according to [ABT-DID-Protocol](https://github.com/ArcBlock/abt-did-spec), and can eliminate the threat of middle-man attach if properly used, there are typically 2 use case for the library:
-
-* `dApp <--> dApp`: for inter application communication, we provide `AppAuthenticator` and `AppHandlers`
-* `dApp <--> ABT Wallet`: for application and wallet communication, we provide `WalletAuthenticator` and `WalletHandlers`
-
+Use this package to attach enhance the did-auth process with a websocket server, which accepts sockets connections from browsers and dispatch topic messages to those clients.
 
 ## Table of Contents
 
-* [Install](#install)
-* [Usage](#usage)
-  * [Between dApp and ABT Wallet](#between-dapp-and-abt-wallet)
-  * [Between dApp and dApp](#between-dapp-and-dapp)
-
+- [Table of Contents](#table-of-contents)
+- [Install](#install)
+- [Usage](#usage)
+  - [Init Authenticator and Handlers](#init-authenticator-and-handlers)
+  - [Create Express Server](#create-express-server)
+  - [Then on the client](#then-on-the-client)
 
 ## Install
 
 ```sh
-npm install @arcblock/did-auth
+npm install @arcblock/did-auth-event-server
 // or
-yarn add @arcblock/did-auth
+yarn add @arcblock/did-auth-event-server
 ```
-
 
 ## Usage
 
-### Between dApp and ABT Wallet
+### Init Authenticator and Handlers
 
-`WalletAuthenticator` and `WalletHandlers` should be used together with [@arcblock/react-forge](https://www.npmjs.com/package/@arcblock/react-forge).
-
-```js
+```javascript
 const ForgeSDK = require('@arcblock/forge-sdk');
 const { WalletAuthenticator, WalletHandlers } = require('@arcblock/did-auth');
 
@@ -46,40 +40,40 @@ const authenticator = new WalletAuthenticator({
     description: 'Starter projects to develop web application on forge',
     icon: '/images/logo@2x.png',
     name: 'Forge Web Starter',
-    path: 'https://arcwallet.io/i/',
-    publisher: `did:abt:${wallet.address}`,
-    subtitle: 'Starter projects to develop web application on forge',
   },
   chainInfo: {
-    chainHost: 'http://did-workshop.arcblock.co:8210/api',
-    chainId: 'forge',
-    chainToken: 'TBA',
-    decimals: 16,
-  },
-
-  // Should be set when the application need to do Cross-Chain transactions
-  crossChainInfo: {
-    chainHost: 'http://did-workshop.arcblock.co:8210/api',
-    chainId: 'forge',
-    chainToken: 'TBA',
-    decimals: 16,
+    host: 'http://did-workshop.arcblock.co:8210/api',
+    id: 'forge',
   },
 });
 
 const handlers = new WalletHandlers({
   authenticator,
-  tokenGenerator: () => Date.now().toString(),
-  tokenStorage: new MongoStorage({
-    url: process.env.MONGO_URI,
-  }),
+  tokenStorage: new MongoStorage({ url: process.env.MONGO_URI }),
 });
 
+module.exports = {
+  authenticator,
+  handlers,
+};
+```
+
+### Create Express Server
+
+```javascript
 // Then attach handler to express server
+const http = require('http');
 const express = require('express');
+const EventServer = require('@arcblock/did-auth-event-server');
 const app = express();
 
+const server = http.createServer(app);
+const eventServer = new EventServer(server, ['auth']);
+
+handlers.on('scanned', data => eventServer.dispatch('auth', data));
+handlers.on('succeed', data => eventServer.dispatch('auth', data));
+
 handlers.attach({
-  prefix: '/api/did',
   action: 'login',
   claims: {
     profile: () => ({
@@ -96,65 +90,10 @@ handlers.attach({
     }
   },
 });
-
-// Then your app will have 5 api endpoints that can be consumed by AuthComponent
-// - `GET /api/did/login/token` create new token
-// - `GET /api/did/login/status` check for token status
-// - `GET /api/did/login/timeout` expire a token
-// - `GET /api/did/login/auth` create auth response
-// - `POST /api/did/login/auth` process login request
 ```
 
-### Between dApp and dApp
+### Then on the client
 
-Please note that `AppAuthenticator` and `AppHandlers` should be used to sign and verify the message sent between dApps, so there must are both a client and a server.
+```javascript
 
-#### Initialize authenticator and handlers
-
-```js
-const ForgeSDK = require('@arcblock/forge-sdk');
-const { AppAuthenticator, AppHandlers } = require('@arcblock/did-auth');
-
-// First setup authenticator and handler factory
-const wallet = ForgeSDK.Wallet.fromRandom().toJSON();
-const authenticator = new AppAuthenticator(wallet);
-const handlers = new AppHandlers(authenticator);
-```
-
-#### For the server
-
-```js
-const express = require('express');
-const app = express();
-
-app.post('/api/endpoint', handlers.attach(), (req, res) => {
-  console.log('client.appPk', req.appPk);
-  console.log('verified payload', req.payload);
-
-  // Sent signed response: sensitive info should not be here
-  res.jsonSecure({
-    key: 'value',
-  });
-});
-```
-
-#### For the client
-
-```js
-const axios = require('axios');
-
-const signedPayload = authenticator.sign({
-  amount,
-  depositorDid,
-  depositorPk,
-  withdrawer: appAuth.wallet.address,
-  merchantId: process.env.MERCHANT_ID,
-});
-
-const res = await axios.post('http://example.com/api/endpoint', signedPayload);
-const payload = await authenticator.verify(res.data);
-if (payload.error) {
-  throw new Error(payload.error);
-}
-// Do something with the payload
 ```

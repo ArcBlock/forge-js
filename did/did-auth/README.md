@@ -6,17 +6,19 @@
 
 This library aims to ease the process of handling `Did-Auth` process between different parts, its implemented according to [ABT-DID-Protocol](https://github.com/ArcBlock/abt-did-spec), and can eliminate the threat of middle-man attach if properly used, there are typically 2 use case for the library:
 
-* `dApp <--> dApp`: for inter application communication, we provide `AppAuthenticator` and `AppHandlers`
-* `dApp <--> ABT Wallet`: for application and wallet communication, we provide `WalletAuthenticator` and `WalletHandlers`
-
+- `dApp <--> dApp`: for inter application communication, we provide `AppAuthenticator` and `AppHandlers`
+- `dApp <--> ABT Wallet`: for application and wallet communication, we provide `WalletAuthenticator` and `WalletHandlers`
 
 ## Table of Contents
 
-* [Install](#install)
-* [Usage](#usage)
-  * [Between dApp and ABT Wallet](#between-dapp-and-abt-wallet)
-  * [Between dApp and dApp](#between-dapp-and-dapp)
-
+- [Table of Contents](#table-of-contents)
+- [Install](#install)
+- [Usage](#usage)
+  - [Between dApp and ABT Wallet](#between-dapp-and-abt-wallet)
+  - [Between dApp and dApp](#between-dapp-and-dapp)
+    - [Initialize authenticator and handlers](#initialize-authenticator-and-handlers)
+    - [For the server](#for-the-server)
+    - [For the client](#for-the-client)
 
 ## Install
 
@@ -25,7 +27,6 @@ npm install @arcblock/did-auth
 // or
 yarn add @arcblock/did-auth
 ```
-
 
 ## Usage
 
@@ -46,32 +47,16 @@ const authenticator = new WalletAuthenticator({
     description: 'Starter projects to develop web application on forge',
     icon: '/images/logo@2x.png',
     name: 'Forge Web Starter',
-    path: 'https://arcwallet.io/i/',
-    publisher: `did:abt:${wallet.address}`,
-    subtitle: 'Starter projects to develop web application on forge',
   },
   chainInfo: {
-    chainHost: 'http://did-workshop.arcblock.co:8210/api',
-    chainId: 'forge',
-    chainToken: 'TBA',
-    decimals: 16,
-  },
-
-  // Should be set when the application need to do Cross-Chain transactions
-  crossChainInfo: {
-    chainHost: 'http://did-workshop.arcblock.co:8210/api',
-    chainId: 'forge',
-    chainToken: 'TBA',
-    decimals: 16,
+    host: 'http://did-workshop.arcblock.co:8210/api',
+    id: 'forge',
   },
 });
 
 const handlers = new WalletHandlers({
   authenticator,
-  tokenGenerator: () => Date.now().toString(),
-  tokenStorage: new MongoStorage({
-    url: process.env.MONGO_URI,
-  }),
+  tokenStorage: new MongoStorage({ url: process.env.MONGO_URI }),
 });
 
 // Then attach handler to express server

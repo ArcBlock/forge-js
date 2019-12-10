@@ -46,12 +46,21 @@ class WalletHandlers extends EventEmitter {
 
     this.tokenStorage = tokenStorage;
 
+    // Handle events from Auth Token Storage
     this.tokenStorage.on('create', data => this.emit('created', data));
-    this.tokenStorage.on('scanned', data => this.emit('scanned', data));
-    this.tokenStorage.on('succeed', data => this.emit('succeed', data));
-    this.tokenStorage.on('forbidden', data => this.emit('error', data));
-    this.tokenStorage.on('error', data => this.emit('error', data));
     this.tokenStorage.on('destroy', token => this.emit('destroy', { token }));
+    this.tokenStorage.on('update', data => {
+      const events = {
+        scanned: 'scanned',
+        succeed: 'succeed',
+        forbidden: 'error',
+        error: 'error',
+      };
+
+      if (events[data.status]) {
+        this.emit(events[data.status], data);
+      }
+    });
 
     if (typeof onPreAuth === 'function') {
       this.onPreAuth = onPreAuth;

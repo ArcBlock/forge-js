@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 const WebSocket = require('ws');
 const uuid = require('uuid');
 
@@ -5,82 +6,23 @@ const uuid = require('uuid');
 const debug = require('debug')(require('../package.json').name);
 
 class EventServer {
-  constructor(topics = []) {
+  /**
+   * Creates an instance of EventServer.
+   *
+   * @param {HttpServer} server - to which server to attach the websocket handlers
+   * @param {Array} [topics=['auth']] - which topics to support
+   * @memberof EventServer
+   */
+  constructor(server, topics = ['auth']) {
     this.topics = topics;
 
     this.wss = new WebSocket.Server({ noServer: true });
+    this.wss.on('connection', socket => this._onConnection(socket));
 
-    this.wss.on('connection', socket => {
-      socket.id = uuid.v4();
-      socket.tokens = [];
-
-      debug('onConnection: ', socket.id);
-
-      // eslint-disable-next-line consistent-return
-      socket.on('message', message => {
-        debug('onMessage: ', message);
-
-        try {
-          const data = JSON.parse(message);
-          if (!data.topic || !data.event) {
-            throw new Error('Invalid message format, topic/event fields are required');
-          }
-
-          const reply = response =>
-            socket.send(
-              JSON.stringify({
-                topic: data.topic,
-                event: `chan_reply_${data.ref}`,
-                payload: { status: 'ok', response },
-              })
-            );
-
-          let [topic, subTopic] = data.topic.split(':');
-          if (topic === 'phoenix' && data.event === 'heartbeat') {
-            return reply(socket.id);
-          }
-
-          if (this.topics.includes(topic) === false) {
-            throw new Error(`Unsupported topic ${topic}`);
-          }
-
-          if (subTopic === 'control') {
-            if (data.event === 'phx_join') {
-              return reply(socket.id);
-            }
-
-            if (data.event === 'phx_leave') {
-              setTimeout(() => {
-                socket.close();
-              }, 10);
-              return reply(socket.id);
-            }
-          }
-
-          [topic, subTopic] = data.event.split(':');
-          if (data.payload && data.payload.token) {
-            if (subTopic === 'subscribe') {
-              if (!socket.tokens.includes(data.payload.token)) {
-                socket.tokens.push(data.payload.token);
-              }
-              return reply({ token: data.payload.token, sid: socket.id });
-            }
-            if (subTopic === 'unsubscribe') {
-              socket.tokens = socket.tokens.filter(x => x !== data.payload.token);
-              return reply({ token: data.payload.token, sid: socket.id });
-            }
-          }
-
-          throw new Error('Should not be here');
-        } catch (err) {
-          // eslint-disable-next-line no-console
-          console.error('Error processing message', socket.id, err);
-          socket.close();
-        }
+    server.on('upgrade', (request, socket, head) => {
+      this.wss.handleUpgrade(request, socket, head, sock => {
+        this.wss.emit('connection', sock, request);
       });
-
-      socket.on('error', e => debug('onError', socket.id, e));
-      socket.on('close', e => debug('onClose', socket.id, e));
     });
   }
 
@@ -98,22 +40,19 @@ class EventServer {
     });
   }
 
-  attach(server) {
-    server.on('upgrade', (request, socket, head) => {
-      this.wss.handleUpgrade(request, socket, head, sock => {
-        this.wss.emit('connection', sock, request);
-      });
-    });
-  }
-
+  /**
+   * Dispatch a message to all clients that are subscribed to the topic
+   *
+   * @param {string} topic - which topic to dispatch, must exist in the list of topics
+   * @param {object|string} message - The message to send to clients
+   * @memberof EventServer
+   */
   dispatch(topic, message) {
     debug('dispatch.call', topic, message);
 
     if (this.topics.includes(topic) === false) {
       return;
     }
-
-    console.log(this.wss.clients);
 
     this.wss.clients.forEach(socket => {
       if (socket.tokens.includes(message.token) === false) {
@@ -130,6 +69,86 @@ class EventServer {
         })
       );
     });
+  }
+
+  /**
+   * Handle new connection: assign id and initialize token list
+   *
+   * @param {Socket} socket
+   * @memberof EventServer
+   */
+  _onConnection(socket) {
+    socket.id = uuid.v4();
+    socket.tokens = [];
+
+    debug('onConnection: ', socket.id);
+
+    socket.on('message', message => this._onMessage(message, socket));
+    socket.on('error', e => debug('onError', socket.id, e));
+    socket.on('close', e => debug('onClose', socket.id, e));
+  }
+
+  // eslint-disable-next-line consistent-return
+  _onMessage(message, socket) {
+    debug('onMessage: ', message);
+
+    try {
+      const data = JSON.parse(message);
+      if (!data.topic || !data.event) {
+        throw new Error('Invalid message format, topic/event fields are required');
+      }
+
+      const reply = response =>
+        socket.send(
+          JSON.stringify({
+            topic: data.topic,
+            event: `chan_reply_${data.ref}`,
+            payload: { status: 'ok', response },
+          })
+        );
+
+      let [topic, subTopic] = data.topic.split(':');
+      if (topic === 'phoenix' && data.event === 'heartbeat') {
+        return reply(socket.id);
+      }
+
+      if (this.topics.includes(topic) === false) {
+        throw new Error(`Unsupported topic ${topic}`);
+      }
+
+      if (subTopic === 'control') {
+        if (data.event === 'phx_join') {
+          return reply(socket.id);
+        }
+
+        if (data.event === 'phx_leave') {
+          setTimeout(() => {
+            socket.close();
+          }, 10);
+          return reply(socket.id);
+        }
+      }
+
+      [topic, subTopic] = data.event.split(':');
+      if (data.payload && data.payload.token) {
+        if (subTopic === 'subscribe') {
+          if (!socket.tokens.includes(data.payload.token)) {
+            socket.tokens.push(data.payload.token);
+          }
+          return reply({ token: data.payload.token, sid: socket.id });
+        }
+        if (subTopic === 'unsubscribe') {
+          socket.tokens = socket.tokens.filter(x => x !== data.payload.token);
+          return reply({ token: data.payload.token, sid: socket.id });
+        }
+      }
+
+      throw new Error('Should not be here');
+    } catch (err) {
+      // eslint-disable-next-line no-console
+      console.error('Error processing message', socket.id, err);
+      socket.close();
+    }
   }
 }
 

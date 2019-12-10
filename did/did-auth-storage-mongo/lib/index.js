@@ -132,9 +132,6 @@ module.exports = class MongoAuthStorage extends StorageInterface {
         if (rawResponse && rawResponse.upserted) {
           this.emit('create', data);
           debug('emit.create', { token, updates });
-        } else if (updates.status && updates.status !== 'created') {
-          debug('emit.status', { token, updates });
-          this.emit(updates.status, data);
         } else {
           this.emit('update', data);
           debug('emit.update', { token, updates });
