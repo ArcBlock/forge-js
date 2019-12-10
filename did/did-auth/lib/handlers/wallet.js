@@ -1,10 +1,9 @@
 /* eslint-disable object-curly-newline */
-const { EventEmitter } = require('events');
-
 // eslint-disable-next-line
 const debug = require('debug')(`${require('../../package.json').name}:handlers:wallet`);
 
 const createHandlers = require('./util');
+const BaseHandler = require('./base');
 
 const noop = () => {};
 
@@ -18,7 +17,7 @@ const noop = () => {};
  * @class WalletHandlers
  * @extends {EventEmitter}
  */
-class WalletHandlers extends EventEmitter {
+class WalletHandlers extends BaseHandler {
   /**
    * Creates an instance of DID Auth Handlers.
    *
@@ -35,39 +34,7 @@ class WalletHandlers extends EventEmitter {
    * @param {string} [config.options.checksumKey='_cs_'] - query param key for `checksum`
    */
   constructor({ tokenGenerator, tokenStorage, authenticator, onPreAuth = noop, options = {} }) {
-    super();
-
-    this.authenticator = authenticator;
-    if (typeof tokenGenerator === 'function') {
-      this.tokenGenerator = tokenGenerator;
-    } else {
-      this.tokenGenerator = () => Date.now().toString();
-    }
-
-    this.tokenStorage = tokenStorage;
-
-    // Handle events from Auth Token Storage
-    this.tokenStorage.on('create', data => this.emit('created', data));
-    this.tokenStorage.on('destroy', token => this.emit('destroy', { token }));
-    this.tokenStorage.on('update', async data => {
-      const events = {
-        scanned: 'scanned',
-        succeed: 'succeed',
-        forbidden: 'failed',
-        error: 'failed',
-      };
-
-      if (events[data.status]) {
-        const payload = await this.tokenStorage.read(data.token);
-        this.emit(events[data.status], payload);
-      }
-    });
-
-    if (typeof onPreAuth === 'function') {
-      this.onPreAuth = onPreAuth;
-    } else {
-      this.onPreAuth = noop;
-    }
+    super({ tokenGenerator, tokenStorage, authenticator, onPreAuth });
 
     this.options = Object.assign(
       {

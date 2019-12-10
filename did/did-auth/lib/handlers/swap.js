@@ -1,17 +1,17 @@
 /* eslint-disable no-console */
 /* eslint-disable object-curly-newline */
 const ForgeSDK = require('@arcblock/forge-sdk');
-const { EventEmitter } = require('events');
 const { createVerifier } = require('@arcblock/tx-util');
 const { createRetriever, verifyUserSwap } = require('@arcblock/swap-retriever');
 
 // eslint-disable-next-line
 const debug = require('debug')(`${require('../../package.json').name}:handlers:swap`);
 const createHandlers = require('./util');
+const BaseHandler = require('./base');
 
 const noop = () => {};
 
-class AtomicSwapHandlers extends EventEmitter {
+class AtomicSwapHandlers extends BaseHandler {
   /**
    * Creates an instance of atomic swap handlers.
    *
@@ -48,7 +48,7 @@ class AtomicSwapHandlers extends EventEmitter {
     onPreAuth = noop,
     options = {},
   }) {
-    super();
+    super({ tokenGenerator, tokenStorage, authenticator, onPreAuth });
 
     if (!offerChainHost || !offerChainId) {
       throw new Error('Swap handlers require valid offerChain host');
@@ -57,9 +57,7 @@ class AtomicSwapHandlers extends EventEmitter {
       throw new Error('Swap handlers require valid demandChain host');
     }
 
-    this.authenticator = authenticator;
     this.swapStorage = swapStorage;
-    this.tokenStorage = tokenStorage;
     this.offerChainHost = offerChainHost;
     this.offerChainId = offerChainId;
     this.demandChainHost = demandChainHost;
@@ -70,17 +68,28 @@ class AtomicSwapHandlers extends EventEmitter {
     ForgeSDK.connect(offerChainHost, { chainId: offerChainId, name: offerChainId });
     ForgeSDK.connect(demandChainHost, { chainId: demandChainId, name: demandChainId });
 
-    if (typeof tokenGenerator === 'function') {
-      this.tokenGenerator = tokenGenerator;
-    } else {
-      this.tokenGenerator = () => Date.now().toString();
-    }
+    // Handle events from Swap Storage
+    this.swapStorage.on('create', data => this.emit('swap.created', data));
+    this.swapStorage.on('destroy', token => this.emit('swap.deleted', { token }));
+    this.swapStorage.on('update', async data => {
+      const events = {
+        user_setup: 'swap.user_setup',
+        both_setup: 'swap.both_setup',
+        user_retrieve: 'swap.user_retrieve',
+        seller_retrieve: 'swap.seller_retrieve',
+        both_retrieve: 'swap.both_retrieve',
+        user_revoke: 'swap.user_revoke',
+        seller_revoke: 'swap.seller_revoke',
+        both_revoke: 'swap.both_revoke',
+        error: 'swap.failed',
+        expire: 'swap.expired',
+      };
 
-    if (typeof onPreAuth === 'function') {
-      this.onPreAuth = onPreAuth;
-    } else {
-      this.onPreAuth = noop;
-    }
+      if (events[data.status]) {
+        const payload = await this.swapStorage.read(data.token);
+        this.emit(events[data.status], payload);
+      }
+    });
 
     this.options = Object.assign(
       {
