@@ -1,4 +1,4 @@
-![did-auth-event-server](https://www.arcblock.io/.netlify/functions/badge/?text=did-auth-event-server)
+![event-server](https://www.arcblock.io/.netlify/functions/badge/?text=event-server)
 
 [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 [![docs](https://img.shields.io/badge/powered%20by-arcblock-green.svg)](https://docs.arcblock.io)
@@ -18,9 +18,9 @@ Use this package to attach enhance the did-auth process with a websocket server,
 ## Install
 
 ```sh
-npm install @arcblock/did-auth-event-server
+npm install @arcblock/event-server
 // or
-yarn add @arcblock/did-auth-event-server
+yarn add @arcblock/event-server
 ```
 
 ## Usage
@@ -64,7 +64,7 @@ module.exports = {
 // Then attach handler to express server
 const http = require('http');
 const express = require('express');
-const EventServer = require('@arcblock/did-auth-event-server');
+const EventServer = require('@arcblock/event-server');
 const app = express();
 
 const server = http.createServer(app);

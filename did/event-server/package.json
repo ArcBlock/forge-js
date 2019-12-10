@@ -1,6 +1,6 @@
 {
-  "name": "@arcblock/did-auth-event-server",
-  "description": "Helper function to setup DID authentication support on a node.js web server",
+  "name": "@arcblock/event-server",
+  "description": "Helper library to attach a websocket server to any express app",
   "version": "1.0.11",
   "author": {
     "name": "wangshijun",
@@ -37,7 +37,7 @@
       ]
     ]
   },
-  "homepage": "https://github.com/ArcBlock/forge-js/tree/master/did/did-auth-event-server",
+  "homepage": "https://github.com/ArcBlock/forge-js/tree/master/did/event-server",
   "keywords": [
     "forge",
     "blockchain",
@@ -52,7 +52,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/ArcBlock/forge-js/tree/master/did/did-auth-event-server"
+    "url": "https://github.com/ArcBlock/forge-js/tree/master/did/event-server"
   },
   "scripts": {
     "lint": "eslint lib tests",

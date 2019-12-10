@@ -3,7 +3,7 @@ const WebSocket = require('ws');
 const uuid = require('uuid');
 
 // eslint-disable-next-line global-require
-const debug = require('debug')(require('../package.json').name);
+const debug = require('debug')(require('../package.json.js').name);
 
 class EventServer {
   /**
