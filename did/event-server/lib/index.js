@@ -44,14 +44,18 @@ class EventServer {
    * Dispatch a message to all clients that are subscribed to the channel
    *
    * @param {string} channel - which channel to dispatch, must exist in the list of channels
-   * @param {object|string} message - The message to send to clients
+   * @param {object} message - The message to send to clients, must contain a token prop
    * @memberof EventServer
    */
   dispatch(channel, message) {
     debug('dispatch.call', channel, message);
 
+    if (!message.token) {
+      throw new Error('Message to be dispatched must contain a token prop');
+    }
+
     if (this.channels.includes(channel) === false) {
-      return;
+      throw new Error('Channel not registered, please call server.addChannel first');
     }
 
     this.wss.clients.forEach(socket => {
@@ -103,13 +107,13 @@ class EventServer {
       socket.joinRef = joinRef;
       socket.ref = ref;
 
-      const reply = result => {
+      const reply = (result, status = 'ok') => {
         const response = JSON.stringify([
           joinRef,
           ref,
           topic,
           `chan_reply_${ref}`,
-          { status: 'ok', response: result },
+          { status, response: result },
         ]);
 
         debug('onReply', response);
@@ -122,7 +126,7 @@ class EventServer {
       }
 
       if (this.channels.includes(channel) === false) {
-        throw new Error(`Unsupported channel ${channel}`);
+        return reply(`Unsupported channel ${channel}`, 'error');
       }
 
       if (command === 'control') {
@@ -152,7 +156,7 @@ class EventServer {
         }
       }
 
-      throw new Error('Should not be here');
+      return reply(`Unsupported command ${command}`, 'error');
     } catch (err) {
       // eslint-disable-next-line no-console
       console.error('Error processing message', socket.id, err);

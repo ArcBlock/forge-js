@@ -20,7 +20,7 @@
     "ws": "^7.2.0"
   },
   "devDependencies": {
-    "@arcblock/did-auth-storage-memory": "^1.0.0",
+    "@arcblock/event-client": "^1.0.11",
     "create-test-server": "^3.0.1",
     "jest": "^24.8.0",
     "remark-cli": "^5.0.0",

@@ -15,14 +15,13 @@
     "access": "public"
   },
   "dependencies": {
-    "wolfy87-eventemitter": "^5.2.5",
+    "debug": "^4.1.1",
     "isomorphic-ws": "^4.0.1",
-    "ws": "^7.2.0",
     "phoenix": "^1.4.11",
-    "debug": "^4.1.1"
+    "wolfy87-eventemitter": "^5.2.5",
+    "ws": "^7.2.0"
   },
   "devDependencies": {
-    "@arcblock/did-auth-storage-memory": "^1.0.0",
     "create-test-server": "^3.0.1",
     "jest": "^24.8.0",
     "remark-cli": "^5.0.0",

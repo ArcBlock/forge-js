@@ -14,41 +14,70 @@ class EventClient {
   }
 
   subscribe(topic, token) {
-    debug('doSubscription.token', token);
-    if (this.subscriptions[token]) {
-      return Promise.resolve(this.subscriptions[token]);
+    const cacheKey = `${topic}-${token}`;
+    if (this.subscriptions[cacheKey]) {
+      debug('subscribe.cached', { topic, token });
+      return Promise.resolve(this.subscriptions[cacheKey]);
     }
 
+    debug('subscribe.do', { topic, token });
     return new Promise((resolve, reject) => {
       this._ensureChanel(topic)
         .then(channel => {
           channel
             .push(`${topic}:subscribe`, { token })
             .receive('ok', res => {
-              debug('subscription success', { token, res });
+              debug('subscribe success', { token, res });
 
-              this.subscriptions[token] = new EventEmitter();
-              this.subscriptions[token].token = res.token;
+              this.subscriptions[cacheKey] = new EventEmitter();
+              this.subscriptions[cacheKey].id = cacheKey;
 
               this.socket.onMessage(({ event, payload }) => {
                 if (event === `${topic}:data` && payload && payload.token) {
                   debug(`socket.onMessage.${topic}`, { event, payload });
-                  const subscription = this.subscriptions[payload.token];
+                  const subscription = this.subscriptions[cacheKey];
                   if (subscription) {
                     subscription.emit('data', payload);
                   }
                 }
               });
 
-              resolve(this.subscriptions[token]);
+              resolve(this.subscriptions[cacheKey]);
             })
             .receive('error', err => {
-              debug('subscription error', err);
+              debug('subscribe error: push', err);
               reject(err);
             });
         })
         .catch(err => {
-          debug('subscription error', err);
+          debug('subscribe error: channel', err);
+          reject(err);
+        });
+    });
+  }
+
+  unsubscribe(topic, token) {
+    const cacheKey = `${topic}-${token}`;
+    if (!this.subscriptions[cacheKey]) {
+      return Promise.resolve(true);
+    }
+
+    debug('unsubscribe.do', { topic, token });
+    return new Promise((resolve, reject) => {
+      this._ensureChanel(topic)
+        .then(channel => {
+          channel
+            .push(`${topic}:unsubscribe`, { token })
+            .receive('ok', () => {
+              resolve(true);
+            })
+            .receive('error', err => {
+              debug('unsubscribe error: push', err);
+              reject(err);
+            });
+        })
+        .catch(err => {
+          debug('unsubscribe error: channel', err);
           reject(err);
         });
     });
@@ -57,7 +86,7 @@ class EventClient {
   _ensureChanel(topic) {
     let channel = this.channels[topic];
     if (channel && channel.isJoined()) {
-      return Promise.resolve(this.channel);
+      return Promise.resolve(channel);
     }
 
     this._ensureSocket();
