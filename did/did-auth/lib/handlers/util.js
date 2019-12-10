@@ -272,6 +272,8 @@ module.exports = function createHandlers({
     const { locale, token, store, params, wallet } = req.context;
     const { userDid, userPk } = params;
 
+    debug('onAuthRequest.context', req.context);
+
     const error = await checkUser({ context: req.context, params, userDid, userPk });
     if (error) {
       return res.json({ error });
@@ -282,7 +284,7 @@ module.exports = function createHandlers({
         return res.json({ error: errors.didMismatch[locale] });
       }
 
-      if (store) {
+      if (store && store.status !== STATUS_SCANNED) {
         await tokenStorage.update(token, { did: userDid, status: STATUS_SCANNED });
       }
 
@@ -312,8 +314,9 @@ module.exports = function createHandlers({
 
     try {
       const { userDid, userPk, claims: claimResponse } = await authenticator.verify(params, locale);
-      debug('verify', { userDid, token, claims: claimResponse });
+      debug('onAuthResponse.verify', { userDid, token, claims: claimResponse });
 
+      await tokenStorage.update(token, { did: userDid });
       const error = await checkUser({ context: req.context, params, userDid, userPk });
       if (error) {
         return res.json({ error });
