@@ -9,11 +9,12 @@ Use this package to attach enhance the did-auth process with a websocket server,
 
 ## Table of Contents
 
-* [Install](#install)
-* [Usage](#usage)
-  * [Init Authenticator and Handlers](#init-authenticator-and-handlers)
-  * [Configure Express Server](#configure-express-server)
-  * [Then on the client](#then-on-the-client)
+- [Table of Contents](#table-of-contents)
+- [Install](#install)
+- [Usage](#usage)
+  - [Init Authenticator and Handlers](#init-authenticator-and-handlers)
+  - [Configure Express Server](#configure-express-server)
+  - [Then on the client](#then-on-the-client)
 
 
 ## Install
@@ -74,6 +75,7 @@ const eventServer = new EventServer(server, ['auth']);
 
 handlers.on('scanned', data => eventServer.dispatch('auth', data));
 handlers.on('succeed', data => eventServer.dispatch('auth', data));
+handlers.on('failed', data => eventServer.dispatch('auth', data));
 
 handlers.attach({
   action: 'login',

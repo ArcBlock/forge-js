@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 /* eslint-disable object-curly-newline */
 const ForgeSDK = require('@arcblock/forge-sdk');
+const { EventEmitter } = require('events');
 const { createVerifier } = require('@arcblock/tx-util');
 const { createRetriever, verifyUserSwap } = require('@arcblock/swap-retriever');
 
@@ -10,7 +11,7 @@ const createHandlers = require('./util');
 
 const noop = () => {};
 
-class AtomicSwapHandlers {
+class AtomicSwapHandlers extends EventEmitter {
   /**
    * Creates an instance of atomic swap handlers.
    *
@@ -47,6 +48,8 @@ class AtomicSwapHandlers {
     onPreAuth = noop,
     options = {},
   }) {
+    super();
+
     if (!offerChainHost || !offerChainId) {
       throw new Error('Swap handlers require valid offerChain host');
     }

@@ -53,8 +53,8 @@ class WalletHandlers extends EventEmitter {
       const events = {
         scanned: 'scanned',
         succeed: 'succeed',
-        forbidden: 'error',
-        error: 'error',
+        forbidden: 'failed',
+        error: 'failed',
       };
 
       if (events[data.status]) {
