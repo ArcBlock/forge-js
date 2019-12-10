@@ -49,7 +49,7 @@ class WalletHandlers extends EventEmitter {
     // Handle events from Auth Token Storage
     this.tokenStorage.on('create', data => this.emit('created', data));
     this.tokenStorage.on('destroy', token => this.emit('destroy', { token }));
-    this.tokenStorage.on('update', data => {
+    this.tokenStorage.on('update', async data => {
       const events = {
         scanned: 'scanned',
         succeed: 'succeed',
@@ -58,7 +58,8 @@ class WalletHandlers extends EventEmitter {
       };
 
       if (events[data.status]) {
-        this.emit(events[data.status], data);
+        const payload = await this.tokenStorage.read(data.token);
+        this.emit(events[data.status], payload);
       }
     });
 

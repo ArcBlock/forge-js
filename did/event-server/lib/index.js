@@ -3,18 +3,18 @@ const WebSocket = require('ws');
 const uuid = require('uuid');
 
 // eslint-disable-next-line global-require
-const debug = require('debug')(require('../package.json.js').name);
+const debug = require('debug')(require('../package.json').name);
 
 class EventServer {
   /**
    * Creates an instance of EventServer.
    *
    * @param {HttpServer} server - to which server to attach the websocket handlers
-   * @param {Array} [topics=['auth']] - which topics to support
+   * @param {Array} [channels=['auth']] - which channels to support
    * @memberof EventServer
    */
-  constructor(server, topics = ['auth']) {
-    this.topics = topics;
+  constructor(server, channels = ['auth']) {
+    this.channels = channels;
 
     this.wss = new WebSocket.Server({ noServer: true });
     this.wss.on('connection', socket => this._onConnection(socket));
@@ -26,31 +26,31 @@ class EventServer {
     });
   }
 
-  addTopic(...topics) {
-    topics.forEach(topic => {
-      if (this.topics.includes(topic) === false) {
-        this.topics.push(topic);
+  addChannel(...channels) {
+    channels.forEach(channel => {
+      if (this.channels.includes(channel) === false) {
+        this.channels.push(channel);
       }
     });
   }
 
-  removeTopic(...topics) {
-    topics.forEach(topic => {
-      this.topics = this.topics.filter(x => x !== topic);
+  removeChannel(...channels) {
+    channels.forEach(channel => {
+      this.channels = this.channels.filter(x => x !== channel);
     });
   }
 
   /**
-   * Dispatch a message to all clients that are subscribed to the topic
+   * Dispatch a message to all clients that are subscribed to the channel
    *
-   * @param {string} topic - which topic to dispatch, must exist in the list of topics
+   * @param {string} channel - which channel to dispatch, must exist in the list of channels
    * @param {object|string} message - The message to send to clients
    * @memberof EventServer
    */
-  dispatch(topic, message) {
-    debug('dispatch.call', topic, message);
+  dispatch(channel, message) {
+    debug('dispatch.call', channel, message);
 
-    if (this.topics.includes(topic) === false) {
+    if (this.channels.includes(channel) === false) {
       return;
     }
 
@@ -59,14 +59,16 @@ class EventServer {
         return;
       }
 
-      debug('dispatch.do', socket.id, topic, message);
+      debug('dispatch.do', socket.id, channel, message);
 
       socket.send(
-        JSON.stringify({
-          topic: `${topic}:control`,
-          event: `${topic}:data`,
-          payload: { status: 'ok', response: message },
-        })
+        JSON.stringify([
+          socket.joinRef,
+          socket.ref,
+          `${channel}:control`,
+          `${channel}:data`,
+          message,
+        ])
       );
     });
   }
@@ -81,7 +83,7 @@ class EventServer {
     socket.id = uuid.v4();
     socket.tokens = [];
 
-    debug('onConnection: ', socket.id);
+    debug('onConnection', socket.id);
 
     socket.on('message', message => this._onMessage(message, socket));
     socket.on('error', e => debug('onError', socket.id, e));
@@ -90,38 +92,45 @@ class EventServer {
 
   // eslint-disable-next-line consistent-return
   _onMessage(message, socket) {
-    debug('onMessage: ', message);
+    debug('onMessage', message);
 
     try {
-      const data = JSON.parse(message);
-      if (!data.topic || !data.event) {
+      const [joinRef, ref, topic, event, payload] = JSON.parse(message);
+      if (!topic || !event) {
         throw new Error('Invalid message format, topic/event fields are required');
       }
 
-      const reply = response =>
-        socket.send(
-          JSON.stringify({
-            topic: data.topic,
-            event: `chan_reply_${data.ref}`,
-            payload: { status: 'ok', response },
-          })
-        );
+      socket.joinRef = joinRef;
+      socket.ref = ref;
 
-      let [topic, subTopic] = data.topic.split(':');
-      if (topic === 'phoenix' && data.event === 'heartbeat') {
+      const reply = result => {
+        const response = JSON.stringify([
+          joinRef,
+          ref,
+          topic,
+          `chan_reply_${ref}`,
+          { status: 'ok', response: result },
+        ]);
+
+        debug('onReply', response);
+        socket.send(response);
+      };
+
+      let [channel, command] = topic.split(':');
+      if (topic === 'phoenix' && event === 'heartbeat') {
         return reply(socket.id);
       }
 
-      if (this.topics.includes(topic) === false) {
-        throw new Error(`Unsupported topic ${topic}`);
+      if (this.channels.includes(channel) === false) {
+        throw new Error(`Unsupported channel ${channel}`);
       }
 
-      if (subTopic === 'control') {
-        if (data.event === 'phx_join') {
+      if (command === 'control') {
+        if (event === 'phx_join') {
           return reply(socket.id);
         }
 
-        if (data.event === 'phx_leave') {
+        if (event === 'phx_leave') {
           setTimeout(() => {
             socket.close();
           }, 10);
@@ -129,17 +138,17 @@ class EventServer {
         }
       }
 
-      [topic, subTopic] = data.event.split(':');
-      if (data.payload && data.payload.token) {
-        if (subTopic === 'subscribe') {
-          if (!socket.tokens.includes(data.payload.token)) {
-            socket.tokens.push(data.payload.token);
+      [channel, command] = event.split(':');
+      if (payload && payload.token) {
+        if (command === 'subscribe') {
+          if (!socket.tokens.includes(payload.token)) {
+            socket.tokens.push(payload.token);
           }
-          return reply({ token: data.payload.token, sid: socket.id });
+          return reply({ token: payload.token, sid: socket.id });
         }
-        if (subTopic === 'unsubscribe') {
-          socket.tokens = socket.tokens.filter(x => x !== data.payload.token);
-          return reply({ token: data.payload.token, sid: socket.id });
+        if (command === 'unsubscribe') {
+          socket.tokens = socket.tokens.filter(x => x !== payload.token);
+          return reply({ token: payload.token, sid: socket.id });
         }
       }
 

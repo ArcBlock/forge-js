@@ -6,14 +6,15 @@
 
 Use this package to attach enhance the did-auth process with a websocket server, which accepts sockets connections from browsers and dispatch topic messages to those clients.
 
+
 ## Table of Contents
 
-- [Table of Contents](#table-of-contents)
-- [Install](#install)
-- [Usage](#usage)
-  - [Init Authenticator and Handlers](#init-authenticator-and-handlers)
-  - [Create Express Server](#create-express-server)
-  - [Then on the client](#then-on-the-client)
+* [Install](#install)
+* [Usage](#usage)
+  * [Init Authenticator and Handlers](#init-authenticator-and-handlers)
+  * [Configure Express Server](#configure-express-server)
+  * [Then on the client](#then-on-the-client)
+
 
 ## Install
 
@@ -22,6 +23,7 @@ npm install @arcblock/event-server
 // or
 yarn add @arcblock/event-server
 ```
+
 
 ## Usage
 
@@ -58,7 +60,7 @@ module.exports = {
 };
 ```
 
-### Create Express Server
+### Configure Express Server
 
 ```javascript
 // Then attach handler to express server
@@ -90,10 +92,23 @@ handlers.attach({
     }
   },
 });
+
+server.listen(() => {
+  console.log('server started');
+});
 ```
 
 ### Then on the client
 
 ```javascript
+const EventClient = require('@arcblock/event-client');
 
+const endpoint = 'ws://192.168.43.94:3030';
+
+(async () => {
+  const hub = new EventClient(endpoint);
+  const subscription = await hub.subscribe('auth', '2c6e68c5');
+  const subscription = await hub.subscribe('swap', 'abcd1234');
+  subscription.on('data', data => console.log('token.update', data));
+})();
 ```
