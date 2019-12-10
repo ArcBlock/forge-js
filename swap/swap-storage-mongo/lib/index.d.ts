@@ -3,7 +3,7 @@
 import { EventEmitter } from 'events';
 /**
  * Defines the interface of atomic-swap storage
- * Which should be implemented to use in dApps that uses atomic-swap capability
+ * Which should be implemented to enable dApps to handle atomic-swap
  *
  * @class SwapStorage
  * @see @arcblock/swap-storage-memory
@@ -101,7 +101,7 @@ declare class MongoSwapStorage extends SwapStorage {
    * @class
    * @param {Object} options { collection, url }
    * @param {string} options.url - mongodb connection string
-   * @param {string} [options.collection='abt_forge_swaps'] - which collection to store the swap records
+   * @param {string} [options.collection='forge_swap_orders'] - which collection to store the swap records
    */
   constructor(options: _Lib.T100);
   connectionFailed(err: any): void;

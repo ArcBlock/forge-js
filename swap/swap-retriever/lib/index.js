@@ -16,7 +16,6 @@ const printError = err => {
 
 /**
  * Generate a atomic swap retriever
- * Please make sure ForgeSDK is connected to the chains
  *
  * Will emit following events during retrieving
  *  - error: any error occurs

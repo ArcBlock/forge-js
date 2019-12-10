@@ -21,7 +21,11 @@ tags:
 <dd></dd>
 <dt><a href="#AppHandlers">AppHandlers</a></dt>
 <dd></dd>
+<dt><a href="#BaseHandler">BaseHandler</a></dt>
+<dd></dd>
 <dt><a href="#AtomicSwapHandlers">AtomicSwapHandlers</a></dt>
+<dd></dd>
+<dt><a href="#WalletHandlers">WalletHandlers</a> ⇐ `EventEmitter`</dt>
 <dd></dd>
 <dt><a href="#WalletHandlers">WalletHandlers</a></dt>
 <dd></dd>
@@ -301,6 +305,23 @@ Creates an instance of Application DID Auth handler
 | authenticator | [`AppAuthenticator`](#AppAuthenticator) | wallet instance {[**@see**](https://github.com/see) [**@arcblock/forge-wallet**](https://github.com/arcblock/forge-wallet)} |
 
 
+## BaseHandler
+
+**Kind**: global class  
+
+### new BaseHandler(config)
+
+Creates an instance of DID Auth Handlers.
+
+| Param                 | Type       | Default | Description                                                                                                                   |
+| --------------------- | ---------- | ------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| config                | `object`   |         |                                                                                                                               |
+| config.tokenGenerator | `function` |         | function to generate action token                                                                                             |
+| config.tokenStorage   | `object`   |         | function to generate action token                                                                                             |
+| config.authenticator  | `object`   |         | Authenticator instance that can to jwt sign/verify                                                                            |
+| [config.onPreAuth]    | `function` | `noop`  | function called before each auth request send back to app, used to check for permission, throw error to halt the auth process |
+
+
 ## AtomicSwapHandlers
 
 **Kind**: global class  
@@ -375,13 +396,84 @@ Browser
 | [config.authPrincipal] | `boolean` \| `string` \| `did` | `true`          | whether should we do auth principal claim first                       |
 
 
+## WalletHandlers ⇐ `EventEmitter`
+
+**Kind**: global class  
+**Extends**: `EventEmitter`  
+
+* [WalletHandlers](#WalletHandlers) ⇐ `EventEmitter`
+  * [new WalletHandlers()](#new_WalletHandlers_new)
+  * [new WalletHandlers(config)](#new_WalletHandlers_new)
+  * [attach(config)](#WalletHandlers+attach) ⇒
+
+### new WalletHandlers()
+
+Events that are emitted during an did-auth process
+
+* scanned: when the qrcode is scanned by wallet
+* succeed: when authentication complete
+* error: when something goes wrong
+
+### new WalletHandlers(config)
+
+Creates an instance of DID Auth Handlers.
+
+| Param                          | Type       | Default                            | Description                                                                                                                   |
+| ------------------------------ | ---------- | ---------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| config                         | `object`   |                                    |                                                                                                                               |
+| config.tokenGenerator          | `function` |                                    | function to generate action token                                                                                             |
+| config.tokenStorage            | `object`   |                                    | function to generate action token                                                                                             |
+| config.authenticator           | `object`   |                                    | Authenticator instance that can to jwt sign/verify                                                                            |
+| [config.onPreAuth]             | `function` | `noop`                             | function called before each auth request send back to app, used to check for permission, throw error to halt the auth process |
+| [config.options]               | `object`   | `{}`                               | custom options to define all handlers attached                                                                                |
+| [config.options.prefix]        | `string`   | `&quot;&#x27;/api/did&#x27;&quot;` | url prefix for this group endpoints                                                                                           |
+| [config.options.sessionDidKey] | `string`   | `&quot;&#x27;user.did&#x27;&quot;` | key path to extract session user did from request object                                                                      |
+| [config.options.tokenKey]      | `string`   | `&quot;&#x27;_t_&#x27;&quot;`      | query param key for `token`                                                                                                   |
+| [config.options.checksumKey]   | `string`   | `&quot;&#x27;_cs_&#x27;&quot;`     | query param key for `checksum`                                                                                                |
+
+### walletHandlers.attach(config) ⇒
+
+Attach routes and handlers for authenticator
+Now express app have route handlers attached to the following url
+
+* `GET /api/did/{action}/token` create new token
+* `GET /api/did/{action}/status` check for token status
+* `GET /api/did/{action}/timeout` expire a token
+* `GET /api/did/{action}/auth` create auth response
+* `POST /api/did/{action}/auth` process payment request
+
+**Kind**: instance method of [`WalletHandlers`](#WalletHandlers)  
+**Returns**: void  
+
+| Param                  | Type                           | Default         | Description                                                           |
+| ---------------------- | ------------------------------ | --------------- | --------------------------------------------------------------------- |
+| config                 | `object`                       |                 |                                                                       |
+| config.app             | `object`                       |                 | express instance to attach routes to                                  |
+| config.claims          | `object`                       |                 | claims for this request                                               |
+| config.action          | `string`                       |                 | action of this group of routes                                        |
+| config.onAuth          | `function`                     |                 | callback when user completed auth in abt wallet, and data posted back |
+| [config.onComplete]    | `function`                     | `noop`          | callback when the whole auth process is done, action token is removed |
+| [config.onExpire]      | `function`                     | `noop`          | callback when the action token expired                                |
+| [config.onError]       | `function`                     | `console.error` | callback when there are some errors                                   |
+| [config.authPrincipal] | `boolean` \| `string` \| `did` | `true`          | whether should we do auth principal claim first                       |
+
+
 ## WalletHandlers
 
 **Kind**: global class  
 
 * [WalletHandlers](#WalletHandlers)
+  * [new WalletHandlers()](#new_WalletHandlers_new)
   * [new WalletHandlers(config)](#new_WalletHandlers_new)
   * [attach(config)](#WalletHandlers+attach) ⇒
+
+### new WalletHandlers()
+
+Events that are emitted during an did-auth process
+
+* scanned: when the qrcode is scanned by wallet
+* succeed: when authentication complete
+* error: when something goes wrong
 
 ### new WalletHandlers(config)
 

@@ -17,7 +17,7 @@ declare class EventServer {
    * Dispatch a message to all clients that are subscribed to the channel
    *
    * @param {string} channel - which channel to dispatch, must exist in the list of channels
-   * @param {object|string} message - The message to send to clients
+   * @param {object} message - The message to send to clients, must contain a token prop
    * @memberof EventServer
    */
   dispatch(channel: string, message: any): void;

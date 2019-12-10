@@ -4,6 +4,7 @@ import { EventEmitter } from 'events';
 /**
  * Defines the interface of authorized did auth storage
  * Which is used when building an centralized service that do did-auth on behalf of many applications
+ * The service can implement a version of itself
  *
  * @class DidAgentStorage
  * @see @arcblock/did-agent-storage-memory

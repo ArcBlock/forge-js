@@ -23,7 +23,7 @@ const zero = new BN(0);
 const negative1 = new BN(-1);
 
 /**
- * Returns a `boolean` on whether or not the a `string` starts with '0x'
+ * Returns a `boolean` on whether or not the `string` starts with '0x'
  *
  * @public
  * @static

@@ -7,6 +7,7 @@ declare class EventClient {
   channels: _Lib.T100;
   constructor(endpoint: any);
   subscribe(topic: any, token: any): Promise<any>;
+  unsubscribe(topic: any, token: any): Promise<any>;
 }
 declare const _Lib: typeof EventClient;
 declare namespace _Lib {
