@@ -449,6 +449,7 @@ class AtomicSwapHandlers extends BaseHandler {
                   const error = new Error(
                     `SetupSwap tx verify failed: ${hash}: ${JSON.stringify(err)}`
                   );
+                  this.swapStorage.update(traceId, { status: 'user_setup' });
                   reject(error);
                 });
                 verifier.on('done', async () => {
@@ -458,10 +459,12 @@ class AtomicSwapHandlers extends BaseHandler {
                     { address },
                     { conn: req.swap.offerChainId }
                   );
+                  this.swapStorage.update(traceId, { status: 'both_setup' });
                   resolve({ hash, locktime: state.locktime, address });
                 });
               } catch (err) {
                 debug('swap.setup.error', { traceId, errors: err.errors });
+                this.swapStorage.update(traceId, { status: 'user_setup' });
                 reject(err);
               }
             });
