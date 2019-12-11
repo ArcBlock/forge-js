@@ -207,7 +207,7 @@ module.exports = function createProvider(proto, json, urls = {}) {
     messages,
 
     transactions: enums.SupportedTxs,
-    multiSignTxs: ['ExchangeTx', 'ConsumeAssetTx'].filter(x => enums.SupportedTxs.includes(x)),
+    multiSignTxs: ['ExchangeTx', 'ConsumeAssetTx', 'DeclareTx', 'DeclareNodeTx'].filter(x => enums.SupportedTxs.includes(x)), // prettier-ignore
 
     stakes: enums.SupportedStakes,
     rpcs: Object.keys(clients).reduce((acc, x) => {

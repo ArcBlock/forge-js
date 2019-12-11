@@ -425,6 +425,61 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
     );
 
   /**
+   * Prepare an declare transaction when the chain has enabled restricted declare
+   *
+   * @memberof GraphQLClient
+   * @function
+   * @name GraphQLClient#prepareDeclare
+   * @param {object} params
+   * @param {string} params.moniker - account moniker
+   * @param {string} params.issuer - issuer address
+   * @param {string} params.delegator - the delegator address
+   * @param {WalletObject} params.wallet - the wallet that want to do the declare
+   * @param {object} extra - other param to underlying client implementation
+   * @returns {Promise} the `transaction` object once resolved
+   */
+  client.prepareDeclare = async ({ moniker, issuer, wallet, data, delegator = '' }, extra) =>
+    client.signDeclareTx(
+      {
+        tx: {
+          itx: {
+            moniker,
+            issuer,
+            data,
+          },
+        },
+        delegator,
+        wallet,
+      },
+      extra
+    );
+
+  /**
+   * Finalize an declare transaction using the issuer's account
+   *
+   * @memberof GraphQLClient
+   * @function
+   * @name GraphQLClient#finalizeExchange
+   * @param {object} params
+   * @param {object} params.tx - the transaction object from `prepareExchange`
+   * @param {string} params.delegator - who authorized this transaction
+   * @param {object} params.data - extra data in the multi sig
+   * @param {WalletObject} params.wallet - issuer's wallet
+   * @param {object} extra - other param to underlying client implementation
+   * @returns {Promise} the `transaction` object once resolved
+   */
+  client.finalizeDeclare = ({ tx, delegator = '', data, wallet }, extra) =>
+    client.multiSignDeclareTx(
+      {
+        tx,
+        delegator,
+        data,
+        wallet,
+      },
+      extra
+    );
+
+  /**
    * Migrate current account to a new account
    *
    * @memberof GraphQLClient

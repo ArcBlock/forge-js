@@ -1,0 +1,61 @@
+/* eslint-disable import/no-extraneous-dependencies */
+/* eslint no-console:"off" */
+
+/**
+ * This script demonstrates how to declare an identity on the blockchain
+ *
+ * In real world, identities may belong to different entities: application, user, node, device
+ *
+ * Run script with: `DEBUG=@arcblock/graphql-client node examples/declare_account.js`
+ */
+const GraphqlClient = require('@arcblock/graphql-client');
+const { fromRandom } = require('@arcblock/forge-wallet');
+
+const endpoint = process.env.FORGE_API_HOST || 'http://127.0.0.1:8210'; // testnet
+
+const client = new GraphqlClient(`${endpoint}/api`);
+
+(async () => {
+  try {
+    const issuer = fromRandom();
+    let hash = await client.declare({
+      moniker: 'issuer',
+      wallet: issuer,
+    });
+
+    console.log('view user1 account', `${endpoint}/node/explorer/accounts/${user1.toAddress()}`);
+    console.log('view user1 tx', `${endpoint}/node/explorer/txs/${hash1}`);
+
+    // Sign and then send: sendDeclareTx
+    const user2 = fromRandom();
+    const signed = await client.signDeclareTx({
+      tx: {
+        itx: {
+          moniker: 'sign_and_send',
+        },
+      },
+      wallet: user2,
+    });
+    const hash2 = await client.sendDeclareTx({ tx: signed, wallet: user2 });
+    console.log('view user2 account', `${endpoint}/node/explorer/accounts/${user2.toAddress()}`);
+    console.log('view user2 tx', `${endpoint}/node/explorer/txs/${hash2}`);
+
+    // Sign and then send: sendTx
+    const user3 = fromRandom();
+    const signed3 = await client.signDeclareTx({
+      tx: {
+        itx: {
+          moniker: 'sign_and_send',
+        },
+      },
+      wallet: user3,
+      encoding: 'base64',
+    });
+    const hash3 = await client.sendTx({ tx: signed3 });
+    console.log('view user3 account', `${endpoint}/node/explorer/accounts/${user3.toAddress()}`);
+    console.log('view user3 tx', `${endpoint}/node/explorer/txs/${hash3.hash}`);
+  } catch (err) {
+    console.error(err);
+    console.log(JSON.stringify(err.errors));
+  }
+})();
