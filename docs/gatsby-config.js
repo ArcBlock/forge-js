@@ -11,6 +11,9 @@ const version = fs
 module.exports = {
   plugins: [
     {
+      resolve: require.resolve('@arcblock/www'),
+    },
+    {
       resolve: require.resolve('@arcblock/gatsby-theme-docs'),
       options: {
         version: `v${version}`,
