@@ -1,7 +1,7 @@
 {
   "name": "@arcblock/did-auth",
   "description": "Helper function to setup DID authentication support on a node.js web server",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "author": {
     "name": "wangshijun",
     "email": "shijun@arcblock.io",
@@ -15,22 +15,22 @@
     "access": "public"
   },
   "dependencies": {
-    "@arcblock/did": "^1.0.9",
-    "@arcblock/forge-sdk": "^1.0.12",
-    "@arcblock/forge-util": "^1.0.9",
-    "@arcblock/forge-wallet": "^1.0.9",
-    "@arcblock/mcrypto": "^1.0.9",
-    "@arcblock/swap-retriever": "^1.0.12",
-    "@arcblock/tx-util": "^1.0.12",
+    "@arcblock/did": "^1.0.13",
+    "@arcblock/forge-sdk": "^1.0.13",
+    "@arcblock/forge-util": "^1.0.13",
+    "@arcblock/forge-wallet": "^1.0.13",
+    "@arcblock/mcrypto": "^1.0.13",
+    "@arcblock/swap-retriever": "^1.0.13",
+    "@arcblock/tx-util": "^1.0.13",
     "axios": "^0.19.0",
     "debug": "^4.1.1",
     "json-stable-stringify": "^1.0.1",
     "lodash.get": "^4.4.2"
   },
   "devDependencies": {
-    "@arcblock/did-agent-storage-memory": "^1.0.4",
-    "@arcblock/did-auth-storage-memory": "^1.0.0",
-    "@arcblock/swap-storage-memory": "^1.0.10",
+    "@arcblock/did-agent-storage-memory": "^1.0.13",
+    "@arcblock/did-auth-storage-memory": "^1.0.13",
+    "@arcblock/swap-storage-memory": "^1.0.13",
     "create-test-server": "^3.0.1",
     "jest": "^24.8.0",
     "remark-cli": "^5.0.0",
