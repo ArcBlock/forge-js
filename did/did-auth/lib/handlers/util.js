@@ -86,12 +86,18 @@ module.exports = function createHandlers({
 
   // if user want to do multiple-step did-auth
   const steps = Array.isArray(claims) ? claims : [claims];
+  if (steps.some(x => x.authPrincipal)) {
+    // eslint-disable-next-line no-console
+    console.warn('Setting authPrincipal in claims object is not recommended, and may break things');
+  }
 
   // Prepend auth principal claim by default
   if (authPrincipal) {
     let target = '';
     let description = 'Please select authentication principal';
     let chainInfo;
+    let targetType = {};
+    let declareParams = {};
 
     if (typeof authPrincipal === 'string') {
       if (isValidDid(authPrincipal)) {
@@ -103,12 +109,11 @@ module.exports = function createHandlers({
       }
     }
     if (typeof authPrincipal === 'object') {
-      if (authPrincipal.target) {
-        target = authPrincipal.target;
-      }
-      if (authPrincipal.description) {
-        description = authPrincipal.description;
-      }
+      target = get(authPrincipal, 'target');
+      description = get(authPrincipal, 'description');
+      targetType = get(authPrincipal, 'targetType');
+      declareParams = get(authPrincipal, 'declareParams');
+
       // If provided a chainInfo
       if (authPrincipal.chainInfo && authenticator._isValidChainInfo(authPrincipal.chainInfo)) {
         chainInfo = authPrincipal.chainInfo;
@@ -123,6 +128,8 @@ module.exports = function createHandlers({
         description,
         target,
         chainInfo,
+        targetType,
+        declareParams,
       }),
     });
   }
@@ -394,12 +401,7 @@ module.exports = function createHandlers({
     const token = params[tokenKey];
     const locale = getLocale(req);
     const store = token ? await tokenStorage.read(token) : null;
-
-    // If we are doing our first step
-    let isAuthPrincipalStep = false;
-    if (store && authPrincipal) {
-      isAuthPrincipalStep = store.currentStep === 0;
-    }
+    const isAuthPrincipalStep = store ? store.currentStep === 0 : false;
 
     req.context = { locale, token, wallet, params, store, isAuthPrincipalStep };
     return next();
