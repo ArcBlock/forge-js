@@ -91,6 +91,8 @@ module.exports = function createHandlers({
     console.warn('Setting authPrincipal in claims object is not recommended, and may break things');
   }
 
+  let shouldCheckUser = true;
+
   // Prepend auth principal claim by default
   if (authPrincipal) {
     let target = '';
@@ -121,6 +123,10 @@ module.exports = function createHandlers({
       if (authenticator._isValidChainInfo(authPrincipal)) {
         chainInfo = authPrincipal;
       }
+    }
+
+    if (target || targetType) {
+      shouldCheckUser = false;
     }
 
     steps.unshift({
@@ -251,6 +257,10 @@ module.exports = function createHandlers({
 
   // Only check userDid and userPk if we have done auth principal
   const checkUser = async ({ context, params, userDid, userPk }) => {
+    if (shouldCheckUser === false) {
+      return false;
+    }
+
     const { locale, token, isAuthPrincipalStep } = context;
     const { [checksumKey]: checksum } = params;
 
