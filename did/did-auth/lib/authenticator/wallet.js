@@ -394,7 +394,14 @@ class WalletAuthenticator extends BaseAuthenticator {
 
   // 选择 DID
   async authPrincipal({ claim, userDid, userPk, walletOS, walletVersion, extraParams }) {
-    const { target, description, chainInfo, meta = {} } = await this.getClaimInfo({
+    const {
+      target,
+      targetType,
+      declareParams,
+      description,
+      chainInfo,
+      meta = {},
+    } = await this.getClaimInfo({
       claim,
       userDid,
       userPk,
@@ -408,6 +415,8 @@ class WalletAuthenticator extends BaseAuthenticator {
       description: description || 'Please set the authentication principal',
       meta,
       target,
+      targetType,
+      declareParams,
       chainInfo,
     };
   }
