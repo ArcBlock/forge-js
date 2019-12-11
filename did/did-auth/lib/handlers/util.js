@@ -98,8 +98,8 @@ module.exports = function createHandlers({
     let target = '';
     let description = 'Please select authentication principal';
     let chainInfo;
-    let targetType = {};
-    let declareParams = {};
+    let targetType;
+    let declareParams;
 
     if (typeof authPrincipal === 'string') {
       if (isValidDid(authPrincipal)) {
@@ -111,10 +111,10 @@ module.exports = function createHandlers({
       }
     }
     if (typeof authPrincipal === 'object') {
-      target = get(authPrincipal, 'target');
-      description = get(authPrincipal, 'description');
-      targetType = get(authPrincipal, 'targetType');
-      declareParams = get(authPrincipal, 'declareParams');
+      target = get(authPrincipal, 'target', target);
+      description = get(authPrincipal, 'description', description);
+      targetType = get(authPrincipal, 'targetType', targetType);
+      declareParams = get(authPrincipal, 'declareParams', declareParams);
 
       // If provided a chainInfo
       if (authPrincipal.chainInfo && authenticator._isValidChainInfo(authPrincipal.chainInfo)) {
@@ -125,7 +125,7 @@ module.exports = function createHandlers({
       }
     }
 
-    if (target || targetType) {
+    if (target || (targetType && targetType.role)) {
       shouldCheckUser = false;
     }
 
@@ -169,13 +169,14 @@ module.exports = function createHandlers({
         .replace(/^0x/, '')
         .slice(0, 8);
 
-      await tokenStorage.create(token, STATUS_CREATED);
       // Always set currentStep to 0 when generate a new token
+      await tokenStorage.create(token, STATUS_CREATED);
       await tokenStorage.update(token, { currentStep: 0 });
-      debug('generate token', { action, pathname, token });
 
       const sessionDid = get(req, sessionDidKey);
       const checksum = sessionDid ? getDidCheckSum(sessionDid) : '';
+      debug('generate token', { action, pathname, token, sessionDid, checksum });
+
       res.json({
         token,
         url: authenticator.uri({
@@ -275,6 +276,7 @@ module.exports = function createHandlers({
 
       // check userDid mismatch
       const didChecksum = getDidCheckSum(userDid);
+      debug('check did checksum', { session: checksum, current: didChecksum });
       if (didChecksum && checksum && didChecksum !== checksum) {
         await tokenStorage.update(token, { status: STATUS_FORBIDDEN });
         return errors.didMismatch[locale];
@@ -333,7 +335,13 @@ module.exports = function createHandlers({
       const { userDid, userPk, claims: claimResponse } = await authenticator.verify(params, locale);
       debug('onAuthResponse.verify', { userDid, token, claims: claimResponse });
 
-      await tokenStorage.update(token, { did: userDid });
+      // Since we can only get userDid after authPrincipal
+      // So we update userDid in the token storage here
+      // But we just need to update the did once
+      if (!store.did) {
+        await tokenStorage.update(token, { did: userDid });
+      }
+
       const error = await checkUser({ context: req.context, params, userDid, userPk });
       if (error) {
         return res.json({ error });
