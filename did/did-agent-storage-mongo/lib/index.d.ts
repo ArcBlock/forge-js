@@ -4,6 +4,7 @@ import { EventEmitter } from 'events';
 /**
  * Defines the interface of authorized did auth storage
  * Which is used when building an centralized service that do did-auth on behalf of many applications
+ * The service can implement a version of itself
  *
  * @class DidAgentStorage
  * @see @arcblock/did-agent-storage-memory
@@ -36,7 +37,7 @@ declare class MongoAgentStorage extends DidAgentStorage {
    * @class
    * @param {Object} options { collection, url }
    * @param {string} options.url - mongodb connection string
-   * @param {string} [options.collection='app-agent-authorizations'] - which collection to store agent authorizations
+   * @param {string} [options.collection='did_agent_authorizations'] - which collection to store agent authorizations
    */
   constructor(options: _Lib.T100);
   connectionFailed(err: any): void;

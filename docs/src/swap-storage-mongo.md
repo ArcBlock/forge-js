@@ -29,11 +29,11 @@ tags:
 
 Creates an instance of MongoSwapStorage.
 
-| Param                | Type     | Default                                   | Description                                |
-| -------------------- | -------- | ----------------------------------------- | ------------------------------------------ |
-| options              | `Object` |                                           | { collection, url }                        |
-| options.url          | `string` |                                           | mongodb connection string                  |
-| [options.collection] | `string` | `&quot;&#x27;abt_forge_swaps&#x27;&quot;` | which collection to store the swap records |
+| Param                | Type     | Default                                     | Description                                |
+| -------------------- | -------- | ------------------------------------------- | ------------------------------------------ |
+| options              | `Object` |                                             | { collection, url }                        |
+| options.url          | `string` |                                             | mongodb connection string                  |
+| [options.collection] | `string` | `&quot;&#x27;forge_swap_orders&#x27;&quot;` | which collection to store the swap records |
 
 ### mongoSwapStorage.create(traceId, initialAttributes) ⇒ `Promise.<object>`
 

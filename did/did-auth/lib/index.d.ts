@@ -1,5 +1,6 @@
 // Generate by [js2dts@0.3.3](https://github.com/whxaxes/js2dts#readme)
 
+import { EventEmitter } from 'events';
 declare class BaseAuthenticator {
 }
 declare class WalletAuthenticator extends BaseAuthenticator {
@@ -149,12 +150,35 @@ declare class AppAuthenticator extends BaseAuthenticator {
    */
   verify(data: any, locale?: string, enforceTimestamp?: boolean): Promise<any>;
 }
-declare class WalletHandlers {
+declare class BaseHandler extends EventEmitter {
   authenticator: any;
-  tokenGenerator(...args: any[]): any;
   tokenStorage: any;
+  tokenGenerator(...args: any[]): any;
   onPreAuth(...args: any[]): any;
-  options: _Lib.T127 & _Lib.T125;
+  /**
+   * Creates an instance of DID Auth Handlers.
+   *
+   * @class
+   * @param {object} config
+   * @param {function} config.tokenGenerator - function to generate action token
+   * @param {object} config.tokenStorage - function to generate action token
+   * @param {object} config.authenticator - Authenticator instance that can to jwt sign/verify
+   * @param {function} [config.onPreAuth=noop] - function called before each auth request send back to app, used to check for permission, throw error to halt the auth process
+   */
+  constructor(T124: _Lib.T125);
+}
+/**
+ * Events that are emitted during an did-auth process
+ *
+ *  - scanned: when the qrcode is scanned by wallet
+ *  - succeed: when authentication complete
+ *  - error: when something goes wrong
+ *
+ * @class WalletHandlers
+ * @extends {EventEmitter}
+ */
+declare class WalletHandlers extends BaseHandler {
+  options: _Lib.T129 & _Lib.T127;
   /**
    * Creates an instance of DID Auth Handlers.
    *
@@ -170,7 +194,7 @@ declare class WalletHandlers {
    * @param {string} [config.options.tokenKey='_t_'] - query param key for `token`
    * @param {string} [config.options.checksumKey='_cs_'] - query param key for `checksum`
    */
-  constructor(T124: _Lib.T126);
+  constructor(T126: _Lib.T128);
   /**
    * Attach routes and handlers for authenticator
    * Now express app have route handlers attached to the following url
@@ -192,20 +216,16 @@ declare class WalletHandlers {
    * @param {boolean|string|did} [config.authPrincipal=true] - whether should we do auth principal claim first
    * @return void
    */
-  attach(T128: _Lib.T129): void;
+  attach(T130: _Lib.T131): void;
 }
-declare class AtomicSwapHandlers {
-  authenticator: any;
+declare class AtomicSwapHandlers extends BaseHandler {
   swapStorage: any;
-  tokenStorage: any;
   offerChainHost: string;
   offerChainId: string;
   demandChainHost: string;
   demandChainId: string;
   offerLocktime: number;
   demandLocktime: number;
-  tokenGenerator(...args: any[]): any;
-  onPreAuth(...args: any[]): any;
   options: any;
   /**
    * Creates an instance of atomic swap handlers.
@@ -229,7 +249,7 @@ declare class AtomicSwapHandlers {
    * @param {string} [config.options.checksumKey='_cs_'] - query param key for `checksum`
    * @param {boolean} [config.options.signedResponse=false] - whether should we return signed response
    */
-  constructor(T130: _Lib.T131);
+  constructor(T132: _Lib.T133);
   /**
    * Create an swap placeholder, which must be finalized before actually doing the swap
    *
@@ -263,7 +283,7 @@ declare class AtomicSwapHandlers {
    * @param {boolean|string|did} [config.authPrincipal=true] - whether should we do auth principal claim first
    * @returns void
    */
-  attach(T132: _Lib.T129): void;
+  attach(T134: _Lib.T131): void;
 }
 declare class AppHandlers {
   authenticator: any;
@@ -301,7 +321,7 @@ declare class AgentAuthenticator extends WalletAuthenticator {
    * @param {object} params.extraParams - extra query params and locale
    * @returns {object} { appPk, authInfo }
    */
-  sign(T133: _Lib.T134): any;
+  sign(T135: _Lib.T136): any;
 }
 declare class AgentWalletHandlers extends WalletHandlers {
   agentStorage: any;
@@ -321,7 +341,7 @@ declare class AgentWalletHandlers extends WalletHandlers {
    * @param {string} [config.options.tokenKey='_t_'] - query param key for `token`
    * @param {string} [config.options.checksumKey='_cs_'] - query param key for `checksum`
    */
-  constructor(T135: _Lib.T136);
+  constructor(T137: _Lib.T138);
   /**
    * Attach routes and handlers for authenticator
    * Now express app have route handlers attached to the following url
@@ -343,9 +363,9 @@ declare class AgentWalletHandlers extends WalletHandlers {
    * @param {boolean|string|did} [config.authPrincipal=true] - whether should we do auth principal claim first
    * @return void
    */
-  attach(T137: _Lib.T129): void;
+  attach(T139: _Lib.T131): void;
 }
-declare const _Lib: _Lib.T141;
+declare const _Lib: _Lib.T143;
 declare namespace _Lib {
   export interface T101 {
     wallet: any;
@@ -439,25 +459,31 @@ declare namespace _Lib {
     meta: any;
   }
   export interface T125 {
+    tokenGenerator: (...args: any[]) => any;
+    tokenStorage: any;
+    authenticator: any;
+    onPreAuth?: (...args: any[]) => any;
+  }
+  export interface T127 {
     prefix?: string;
     sessionDidKey?: string;
     tokenKey?: string;
     checksumKey?: string;
   }
-  export interface T126 {
+  export interface T128 {
     tokenGenerator: (...args: any[]) => any;
     tokenStorage: any;
     authenticator: any;
     onPreAuth?: (...args: any[]) => any;
-    options?: _Lib.T125;
+    options?: _Lib.T127;
   }
-  export interface T127 {
+  export interface T129 {
     prefix: string;
     sessionDidKey: string;
     tokenKey: string;
     checksumKey: string;
   }
-  export interface T129 {
+  export interface T131 {
     app: any;
     claims: any;
     action: string;
@@ -467,7 +493,7 @@ declare namespace _Lib {
     onError?: (...args: any[]) => any;
     authPrincipal?: any;
   }
-  export interface T131 {
+  export interface T133 {
     authenticator: any;
     tokenGenerator: (...args: any[]) => any;
     swapStorage: any;
@@ -480,7 +506,7 @@ declare namespace _Lib {
     demandLocktime: number;
     onPreAuth?: (...args: any[]) => any;
   }
-  export interface T134 {
+  export interface T136 {
     token: string;
     userDid: string;
     userPk: string;
@@ -490,25 +516,25 @@ declare namespace _Lib {
     verifiableClaims: any;
     extraParams: any;
   }
-  export interface T136 {
+  export interface T138 {
     tokenGenerator: (...args: any[]) => any;
     tokenStorage: any;
     agentStorage: any;
     authenticator: any;
     onPreAuth?: (...args: any[]) => any;
-    options?: _Lib.T125;
+    options?: _Lib.T127;
   }
-  export interface T139 {
+  export interface T141 {
     tolerance?: number;
     enforceTimestamp?: boolean;
     signerKey?: string;
   }
-  export interface T140 {
+  export interface T142 {
     sign: (signer: string, sk: string, payload?: any) => string;
-    verify: (token: string, signerPk: string, T138?: _Lib.T139) => boolean;
+    verify: (token: string, signerPk: string, T140?: _Lib.T141) => boolean;
     decode: (token: string, payloadOnly?: boolean) => any;
   }
-  export interface T141 {
+  export interface T143 {
     WalletAuthenticator: typeof WalletAuthenticator;
     AppAuthenticator: typeof AppAuthenticator;
     WalletHandlers: typeof WalletHandlers;
@@ -516,7 +542,7 @@ declare namespace _Lib {
     AppHandlers: typeof AppHandlers;
     AgentAuthenticator: typeof AgentAuthenticator;
     AgentWalletHandlers: typeof AgentWalletHandlers;
-    JWT: _Lib.T140;
+    JWT: _Lib.T142;
   }
 }
 export = _Lib;

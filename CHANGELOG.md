@@ -1,3 +1,16 @@
+## 1.0.13 (December 10, 2019)
+
+- chore: add test case for event client and event server
+- fix: error events are handled properly
+- fix: did not updated correctly in token storage
+- chore: emit meaningful events from memory storage
+- refactor: emit standard storage events from storage, make event server code cleaner
+- chore: update default mongo storage collection names to underscore case
+- chore: basic event socket server implementation
+- chore: basic event socket client implementation
+- chore: make wallet handlers emit correct events
+- update readme
+
 ## 1.0.12 (December 09, 2019)
 
 - chore: update docs

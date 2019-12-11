@@ -3,7 +3,7 @@
 import { EventEmitter } from 'events';
 /**
  * Defines the interface of DID-Auth Token Storage
- * Which is used during the DID-Auth process in an typical application
+ * Which is used during the DID-Auth process in a dApp
  *
  * @class AuthStorage
  * @see @arcblock/did-auth-storage-firebase
@@ -44,7 +44,7 @@ declare class MongoAuthStorage extends AuthStorage {
   collectionReady(): any;
   read(token: any): any;
   create(token: any, status?: string): any;
-  update(token: any, updates: any): any;
+  update(token: any, updates: any, upsert?: boolean): any;
   delete(token: any): any;
   exist(token: any, did: any): any;
   clear(): any;

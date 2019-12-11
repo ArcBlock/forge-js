@@ -1,0 +1,71 @@
+{
+  "name": "@arcblock/event-server",
+  "description": "Helper library to attach a websocket server to any express app",
+  "version": "1.0.11",
+  "author": {
+    "name": "wangshijun",
+    "email": "shijun@arcblock.io",
+    "url": "https://github.com/wangshijun"
+  },
+  "bugs": {
+    "url": "https://github.com/ArcBlock/forge-js/issues",
+    "email": "shijun@arcblock.io"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "debug": "^4.1.1",
+    "uuid": "^3.3.3",
+    "ws": "^7.2.0"
+  },
+  "devDependencies": {
+    "@arcblock/event-client": "^1.0.11",
+    "create-test-server": "^3.0.1",
+    "jest": "^24.8.0",
+    "remark-cli": "^5.0.0",
+    "remark-preset-github": "^0.0.9"
+  },
+  "remarkConfig": {
+    "plugins": [
+      "preset-github",
+      [
+        "validate-links",
+        {
+          "repository": "ArcBlock/forge-js"
+        }
+      ]
+    ]
+  },
+  "homepage": "https://github.com/ArcBlock/forge-js/tree/master/did/event-server",
+  "keywords": [
+    "forge",
+    "blockchain",
+    "arcblock",
+    "sdk",
+    "nodejs"
+  ],
+  "license": "Apache-2.0",
+  "main": "./lib/index.js",
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ArcBlock/forge-js/tree/master/did/event-server"
+  },
+  "scripts": {
+    "lint": "eslint lib tests",
+    "lint:fix": "eslint --fix lib tests",
+    "docs": "yarn generate-dts && yarn generate-docs && yarn cleanup-docs && yarn format-docs",
+    "cleanup-docs": "node ../../tools/cleanup-docs.js docs/README.md $npm_package_name",
+    "generate-docs": "jsdoc2md lib/**/*.js lib/**/**/*.js > docs/README.md",
+    "generate-dts": "j2d lib/index.js",
+    "format-docs": "remark . -o",
+    "precommit": "CI=1 yarn test",
+    "prepush": "CI=1 yarn test",
+    "test": "yarn lint && node tools/jest.js",
+    "coverage": "yarn lint && yarn test -- --coverage"
+  },
+  "gitHead": "87990c8b5e215107fc587c1ced0d6b3e2cd2483e"
+}

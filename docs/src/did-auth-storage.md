@@ -38,7 +38,7 @@ tags:
 ### new AuthStorage()
 
 Defines the interface of DID-Auth Token Storage
-Which is used during the DID-Auth process in an typical application
+Which is used during the DID-Auth process in a dApp
 
 ### new AuthStorage(options)
 
@@ -60,7 +60,7 @@ Creates an instance of AuthStorage.
 ### new AuthStorage()
 
 Defines the interface of DID-Auth Token Storage
-Which is used during the DID-Auth process in an typical application
+Which is used during the DID-Auth process in a dApp
 
 ### new AuthStorage(options)
 

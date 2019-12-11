@@ -39,7 +39,7 @@ yarn add @arcblock/forge-util
 
 ### isHexPrefixed(str) ⇒ `Boolean`
 
-Returns a `boolean` on whether or not the a `string` starts with '0x'
+Returns a `boolean` on whether or not the `string` starts with '0x'
 
 **Kind**: static method  
 **Returns**: `Boolean` - a boolean if it is or is not hex prefixed  

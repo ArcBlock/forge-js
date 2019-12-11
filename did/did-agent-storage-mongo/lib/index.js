@@ -10,14 +10,14 @@ module.exports = class MongoAgentStorage extends StorageInterface {
    * @class
    * @param {Object} options { collection, url }
    * @param {string} options.url - mongodb connection string
-   * @param {string} [options.collection='app-agent-authorizations'] - which collection to store agent authorizations
+   * @param {string} [options.collection='did_agent_authorizations'] - which collection to store agent authorizations
    */
   constructor(options) {
     options = options || {};
 
     super(options);
 
-    this.collectionName = options.collection || 'app-agent-authorizations';
+    this.collectionName = options.collection || 'did_agent_authorizations';
     this.options = options;
 
     this.changeState('init');

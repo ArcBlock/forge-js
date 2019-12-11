@@ -11,14 +11,14 @@ class MongoSwapStorage extends StorageInterface {
    * @class
    * @param {Object} options { collection, url }
    * @param {string} options.url - mongodb connection string
-   * @param {string} [options.collection='abt_forge_swaps'] - which collection to store the swap records
+   * @param {string} [options.collection='forge_swap_orders'] - which collection to store the swap records
    */
   constructor(options) {
     options = options || {};
 
     super(options);
 
-    this.collectionName = options.collection || 'abt_forge_swaps';
+    this.collectionName = options.collection || 'forge_swap_orders';
     this.options = options;
 
     this.changeState('init');
@@ -180,17 +180,13 @@ class MongoSwapStorage extends StorageInterface {
         if (rawResponse.result) {
           rawResponse = rawResponse.result;
         }
-        if (rawResponse && rawResponse.upserted) {
-          this.emit('create', traceId);
-        } else {
-          this.emit('update', traceId);
-        }
 
         const payload = Object.assign({ traceId }, updates);
 
-        // Allow external code to hook into events
-        if (updates.status) {
-          this.emit(updates.status, payload);
+        if (rawResponse && rawResponse.upserted) {
+          this.emit('create', payload);
+        } else {
+          this.emit('update', payload);
         }
 
         return payload;

@@ -3,10 +3,21 @@
 const debug = require('debug')(`${require('../../package.json').name}:handlers:wallet`);
 
 const createHandlers = require('./util');
+const BaseHandler = require('./base');
 
 const noop = () => {};
 
-class WalletHandlers {
+/**
+ * Events that are emitted during an did-auth process
+ *
+ *  - scanned: when the qrcode is scanned by wallet
+ *  - succeed: when authentication complete
+ *  - error: when something goes wrong
+ *
+ * @class WalletHandlers
+ * @extends {EventEmitter}
+ */
+class WalletHandlers extends BaseHandler {
   /**
    * Creates an instance of DID Auth Handlers.
    *
@@ -23,19 +34,7 @@ class WalletHandlers {
    * @param {string} [config.options.checksumKey='_cs_'] - query param key for `checksum`
    */
   constructor({ tokenGenerator, tokenStorage, authenticator, onPreAuth = noop, options = {} }) {
-    this.authenticator = authenticator;
-    if (typeof tokenGenerator === 'function') {
-      this.tokenGenerator = tokenGenerator;
-    } else {
-      this.tokenGenerator = () => Date.now().toString();
-    }
-
-    this.tokenStorage = tokenStorage;
-    if (typeof onPreAuth === 'function') {
-      this.onPreAuth = onPreAuth;
-    } else {
-      this.onPreAuth = noop;
-    }
+    super({ tokenGenerator, tokenStorage, authenticator, onPreAuth });
 
     this.options = Object.assign(
       {

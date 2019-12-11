@@ -3,6 +3,8 @@
 const MongoClient = require('mongodb');
 const StorageInterface = require('@arcblock/did-auth-storage');
 
+const debug = require('debug')(require('../package.json').name);
+
 module.exports = class MongoAuthStorage extends StorageInterface {
   /**
    * Creates an instance of MongoAuthStorage.
@@ -109,25 +111,33 @@ module.exports = class MongoAuthStorage extends StorageInterface {
   }
 
   create(token, status = 'created') {
-    return this.update(token, { status });
+    return this.update(token, { status }, true);
   }
 
-  update(token, updates) {
+  update(token, updates, upsert = false) {
+    if (!updates.updatedAt) {
+      updates.updatedAt = new Date();
+    }
+
+    debug('update', { token, updates });
+
     return this.collectionReady()
-      .then(collection => collection.updateOne({ token }, { $set: updates }, { upsert: true }))
+      .then(collection => collection.updateOne({ token }, { $set: updates }, { upsert }))
       .then(rawResponse => {
         if (rawResponse.result) {
           rawResponse = rawResponse.result;
         }
+        const data = Object.assign({ token }, updates);
+
         if (rawResponse && rawResponse.upserted) {
-          this.emit('create', token);
+          this.emit('create', data);
+          debug('emit.create', { token, updates });
         } else {
-          this.emit('update', token);
+          this.emit('update', data);
+          debug('emit.update', { token, updates });
         }
 
-        this.emit('set', token);
-
-        return Object.assign({ token }, updates);
+        return data;
       });
   }
 

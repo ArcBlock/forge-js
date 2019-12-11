@@ -3,7 +3,7 @@ const { EventEmitter } = require('events');
 
 /**
  * Defines the interface of atomic-swap storage
- * Which should be implemented to use in dApps that uses atomic-swap capability
+ * Which should be implemented to enable dApps to handle atomic-swap
  *
  * @class SwapStorage
  * @see @arcblock/swap-storage-memory

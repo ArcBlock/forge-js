@@ -46,32 +46,16 @@ const authenticator = new WalletAuthenticator({
     description: 'Starter projects to develop web application on forge',
     icon: '/images/logo@2x.png',
     name: 'Forge Web Starter',
-    path: 'https://arcwallet.io/i/',
-    publisher: `did:abt:${wallet.address}`,
-    subtitle: 'Starter projects to develop web application on forge',
   },
   chainInfo: {
-    chainHost: 'http://did-workshop.arcblock.co:8210/api',
-    chainId: 'forge',
-    chainToken: 'TBA',
-    decimals: 16,
-  },
-
-  // Should be set when the application need to do Cross-Chain transactions
-  crossChainInfo: {
-    chainHost: 'http://did-workshop.arcblock.co:8210/api',
-    chainId: 'forge',
-    chainToken: 'TBA',
-    decimals: 16,
+    host: 'http://did-workshop.arcblock.co:8210/api',
+    id: 'forge',
   },
 });
 
 const handlers = new WalletHandlers({
   authenticator,
-  tokenGenerator: () => Date.now().toString(),
-  tokenStorage: new MongoStorage({
-    url: process.env.MONGO_URI,
-  }),
+  tokenStorage: new MongoStorage({ url: process.env.MONGO_URI }),
 });
 
 // Then attach handler to express server

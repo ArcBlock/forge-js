@@ -3,8 +3,7 @@
 
 <dl>
 <dt><a href="#createRetriever">createRetriever(params)</a> ⇒ `EventEmitter`</dt>
-<dd><p>Generate a atomic swap retriever
-Please make sure ForgeSDK is connected to the chains</p>
+<dd><p>Generate a atomic swap retriever</p>
 <p>Will emit following events during retrieving</p>
 <ul>
 <li>error: any error occurs</li>
@@ -21,7 +20,6 @@ Please make sure ForgeSDK is connected to the chains</p>
 ## createRetriever(params) ⇒ `EventEmitter`
 
 Generate a atomic swap retriever
-Please make sure ForgeSDK is connected to the chains
 
 Will emit following events during retrieving
 
