@@ -6,54 +6,42 @@
  *
  * In real world, identities may belong to different entities: application, user, node, device
  *
- * Run script with: `DEBUG=@arcblock/graphql-client node examples/declare_account.js`
+ * Run script with: `DEBUG=@arcblock/graphql-client node examples/declare.js`
  */
 const GraphqlClient = require('@arcblock/graphql-client');
-const { fromRandom } = require('@arcblock/forge-wallet');
+const Mcrypto = require('@arcblock/mcrypto');
+const { fromRandom, fromSecretKey, WalletType } = require('@arcblock/forge-wallet');
 
 const endpoint = process.env.FORGE_API_HOST || 'http://127.0.0.1:8210'; // testnet
 
 const client = new GraphqlClient(`${endpoint}/api`);
+// change this to your chain moderator sk before run the script
+const sk = '<YOUR MODERATOR SK HERE>';
 
 (async () => {
   try {
-    const issuer = fromRandom();
-    let hash = await client.declare({
-      moniker: 'issuer',
+    const issuer = fromSecretKey(sk, WalletType({ role: Mcrypto.types.RoleType.ROLE_ACCOUNT }));
+    console.log(issuer.toJSON());
+
+    console.log('issuer', `${endpoint}/node/explorer/accounts/${issuer.toAddress()}`);
+
+    // Sign and then send: sendDeclareTx
+    const user = fromRandom();
+    const tx1 = await client.prepareDeclare({
+      issuer: issuer.toAddress(),
+      moniker: 'user',
+      wallet: user,
+    });
+    const tx2 = await client.finalizeDeclare({
+      tx: tx1,
       wallet: issuer,
     });
 
-    console.log('view user1 account', `${endpoint}/node/explorer/accounts/${user1.toAddress()}`);
-    console.log('view user1 tx', `${endpoint}/node/explorer/txs/${hash1}`);
+    console.log(tx1, tx2);
 
-    // Sign and then send: sendDeclareTx
-    const user2 = fromRandom();
-    const signed = await client.signDeclareTx({
-      tx: {
-        itx: {
-          moniker: 'sign_and_send',
-        },
-      },
-      wallet: user2,
-    });
-    const hash2 = await client.sendDeclareTx({ tx: signed, wallet: user2 });
-    console.log('view user2 account', `${endpoint}/node/explorer/accounts/${user2.toAddress()}`);
-    console.log('view user2 tx', `${endpoint}/node/explorer/txs/${hash2}`);
-
-    // Sign and then send: sendTx
-    const user3 = fromRandom();
-    const signed3 = await client.signDeclareTx({
-      tx: {
-        itx: {
-          moniker: 'sign_and_send',
-        },
-      },
-      wallet: user3,
-      encoding: 'base64',
-    });
-    const hash3 = await client.sendTx({ tx: signed3 });
-    console.log('view user3 account', `${endpoint}/node/explorer/accounts/${user3.toAddress()}`);
-    console.log('view user3 tx', `${endpoint}/node/explorer/txs/${hash3.hash}`);
+    const hash = await client.sendDeclareTx({ tx: tx2, wallet: issuer });
+    console.log('user', `${endpoint}/node/explorer/accounts/${user.toAddress()}`);
+    console.log('tx', `${endpoint}/node/explorer/txs/${hash}`);
   } catch (err) {
     console.error(err);
     console.log(JSON.stringify(err.errors));
