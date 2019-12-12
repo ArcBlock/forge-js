@@ -755,6 +755,7 @@ signDepositTokenTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRp
 signSetupSwapTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.Transaction>;
 multiSignExchangeTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.Transaction>;
 multiSignConsumeAssetTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.Transaction>;
+multiSignDeclareTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.Transaction>;
 
 }
 
@@ -2546,6 +2547,7 @@ signAcquireAssetTx(param: GraphQLClient.TxParam<GraphQLClient.AcquireAssetTx>): 
 signRefuelTx(param: GraphQLClient.TxParam<GraphQLClient.RefuelTx>): Promise<GraphQLClient.Transaction>;
   multiSignExchangeTx(param: GraphQLClient.TxParam<GraphQLClient.ExchangeTx>): Promise<GraphQLClient.Transaction>;
 multiSignConsumeAssetTx(param: GraphQLClient.TxParam<GraphQLClient.ConsumeAssetTx>): Promise<GraphQLClient.Transaction>;
+multiSignDeclareTx(param: GraphQLClient.TxParam<GraphQLClient.DeclareTx>): Promise<GraphQLClient.Transaction>;
   getAccountState(params: GraphQLClient.GetAccountStateParams): GraphQLClient.QueryResult<GraphQLClient.ResponseGetAccountState>
 getAssetState(params: GraphQLClient.GetAssetStateParams): GraphQLClient.QueryResult<GraphQLClient.ResponseGetAssetState>
 getBlock(params: GraphQLClient.GetBlockParams): GraphQLClient.QueryResult<GraphQLClient.ResponseGetBlock>

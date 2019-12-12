@@ -172,6 +172,7 @@ signDepositTokenTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRp
 signSetupSwapTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.Transaction>;
 multiSignExchangeTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.Transaction>;
 multiSignConsumeAssetTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.Transaction>;
+multiSignDeclareTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.Transaction>;
 
 }
 declare const GRpcClient: typeof GRpcClient;

@@ -91,13 +91,14 @@ declare class WalletAuthenticator extends BaseAuthenticator {
    *
    * @method
    * @param {object} params
-   * @param {string} params.token - action token
-   * @param {string} params.userDid - decoded from req.query, base58
-   * @param {string} params.userPk - decoded from req.query, base58
-   * @param {string} params.walletOS - wallet os from user-agent
-   * @param {string} params.walletVersion - wallet version from user-agent
    * @param {object} params.claims - info required by application to complete the auth
    * @param {object} params.extraParams - extra query params and locale
+   * @param {string} params.context.token - action token
+   * @param {string} params.context.userDid - decoded from req.query, base58
+   * @param {string} params.context.userPk - decoded from req.query, base58
+   * @param {string} params.context.walletOS - wallet os from user-agent
+   * @param {string} params.context.walletVersion - wallet version from user-agent
+   * @param {string} params.context.sessionDid - did of logged-in user
    * @returns {object} { appPk, authInfo }
    */
   sign(T106: _Lib.T107): any;
@@ -311,9 +312,12 @@ declare class AgentAuthenticator extends WalletAuthenticator {
    *
    * @method
    * @param {object} params
-   * @param {string} params.token - action token
-   * @param {string} params.userDid - decoded from req.query, base58
-   * @param {string} params.userPk - decoded from req.query, base58
+   * @param {string} params.context.token - action token
+   * @param {string} params.context.userDid - decoded from req.query, base58
+   * @param {string} params.context.userPk - decoded from req.query, base58
+   * @param {string} params.context.walletOS - wallet os from user-agent
+   * @param {string} params.context.walletVersion - wallet version from user-agent
+   * @param {string} params.context.sessionDid - did of logged-in user
    * @param {object} params.claims - info required by application to complete the auth
    * @param {object} params.appInfo - which application authorized me to sign
    * @param {object} params.authorizer - application pk and did
@@ -321,7 +325,7 @@ declare class AgentAuthenticator extends WalletAuthenticator {
    * @param {object} params.extraParams - extra query params and locale
    * @returns {object} { appPk, authInfo }
    */
-  sign(T135: _Lib.T136): any;
+  sign(T135: any): any;
 }
 declare class AgentWalletHandlers extends WalletHandlers {
   agentStorage: any;
@@ -341,7 +345,7 @@ declare class AgentWalletHandlers extends WalletHandlers {
    * @param {string} [config.options.tokenKey='_t_'] - query param key for `token`
    * @param {string} [config.options.checksumKey='_cs_'] - query param key for `checksum`
    */
-  constructor(T137: _Lib.T138);
+  constructor(T136: _Lib.T137);
   /**
    * Attach routes and handlers for authenticator
    * Now express app have route handlers attached to the following url
@@ -363,9 +367,9 @@ declare class AgentWalletHandlers extends WalletHandlers {
    * @param {boolean|string|did} [config.authPrincipal=true] - whether should we do auth principal claim first
    * @return void
    */
-  attach(T139: _Lib.T131): void;
+  attach(T138: _Lib.T131): void;
 }
-declare const _Lib: _Lib.T143;
+declare const _Lib: _Lib.T142;
 declare namespace _Lib {
   export interface T101 {
     wallet: any;
@@ -380,28 +384,17 @@ declare namespace _Lib {
     error: string;
   }
   export interface T107 {
-    token: string;
-    userDid: string;
-    userPk: string;
-    walletOS: string;
-    walletVersion: string;
     claims: any;
     extraParams: any;
   }
   export interface T109 {
     claims: any;
-    userDid: any;
-    userPk: any;
-    walletOS: any;
-    walletVersion: any;
+    context: any;
     extraParams: any;
   }
   export interface T111 {
     claim: any;
-    userDid: any;
-    userPk: any;
-    walletOS: any;
-    walletVersion: any;
+    context: any;
     extraParams: any;
   }
   export interface T113 {
@@ -442,6 +435,8 @@ declare namespace _Lib {
     description: any;
     meta: any;
     target: any;
+    targetType: any;
+    declareParams: any;
     chainInfo: any;
   }
   export interface T123 {
@@ -506,17 +501,7 @@ declare namespace _Lib {
     demandLocktime: number;
     onPreAuth?: (...args: any[]) => any;
   }
-  export interface T136 {
-    token: string;
-    userDid: string;
-    userPk: string;
-    claims: any;
-    appInfo: any;
-    authorizer: any;
-    verifiableClaims: any;
-    extraParams: any;
-  }
-  export interface T138 {
+  export interface T137 {
     tokenGenerator: (...args: any[]) => any;
     tokenStorage: any;
     agentStorage: any;
@@ -524,17 +509,17 @@ declare namespace _Lib {
     onPreAuth?: (...args: any[]) => any;
     options?: _Lib.T127;
   }
-  export interface T141 {
+  export interface T140 {
     tolerance?: number;
     enforceTimestamp?: boolean;
     signerKey?: string;
   }
-  export interface T142 {
+  export interface T141 {
     sign: (signer: string, sk: string, payload?: any) => string;
-    verify: (token: string, signerPk: string, T140?: _Lib.T141) => boolean;
+    verify: (token: string, signerPk: string, T139?: _Lib.T140) => boolean;
     decode: (token: string, payloadOnly?: boolean) => any;
   }
-  export interface T143 {
+  export interface T142 {
     WalletAuthenticator: typeof WalletAuthenticator;
     AppAuthenticator: typeof AppAuthenticator;
     WalletHandlers: typeof WalletHandlers;
@@ -542,7 +527,7 @@ declare namespace _Lib {
     AppHandlers: typeof AppHandlers;
     AgentAuthenticator: typeof AgentAuthenticator;
     AgentWalletHandlers: typeof AgentWalletHandlers;
-    JWT: _Lib.T142;
+    JWT: _Lib.T141;
   }
 }
 export = _Lib;
