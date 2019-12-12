@@ -57,9 +57,9 @@ describe('GraphQLClient', () => {
     expect(typeof type.deserializeBinary).toEqual('function');
   });
 
-  client = new GraphQLClient('http://182.92.167.126:8210/api');
-  // client = new GraphQLClient('https://zinc.abtnetwork.io/api');
-  // client = new GraphQLClient('http://47.104.23.85:8211/api');
+  // client = new GraphQLClient('http://182.92.167.126:8210/api');
+  client = new GraphQLClient('https://zinc.abtnetwork.io/api');
+  client = new GraphQLClient('https://playground.network.arcblockio.cn/api');
   test('should support getBlock', async () => {
     try {
       const res = await client.getBlock(
