@@ -157,7 +157,7 @@
       }
     ],
     "code": 0,
-    "time": "2019-12-09T03:23:43.497Z"
+    "time": "2019-12-12T08:18:13.585Z"
   }
 }
 ```
@@ -191,7 +191,7 @@
   "block": {
     "height": 5,
     "numTxs": 2,
-    "time": "2019-12-09T03:23:43.492Z",
+    "time": "2019-12-12T08:18:13.575Z",
     "appHash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
     "proposer": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
     "txs": [
@@ -245,7 +245,7 @@
           }
         ],
         "code": 0,
-        "time": "2019-12-09T03:23:43.492Z"
+        "time": "2019-12-12T08:18:13.575Z"
       },
       {
         "tx": {
@@ -297,7 +297,7 @@
           }
         ],
         "code": 0,
-        "time": "2019-12-09T03:23:43.492Z"
+        "time": "2019-12-12T08:18:13.575Z"
       }
     ],
     "totalTxs": 5,
@@ -352,7 +352,7 @@
           }
         ],
         "code": 0,
-        "time": "2019-12-09T03:23:43.492Z"
+        "time": "2019-12-12T08:18:13.575Z"
       },
       {
         "tx": {
@@ -404,7 +404,7 @@
           }
         ],
         "code": 0,
-        "time": "2019-12-09T03:23:43.492Z"
+        "time": "2019-12-12T08:18:13.576Z"
       }
     ],
     "txsHashes": [
@@ -491,7 +491,7 @@
     {
       "height": 5,
       "numTxs": 2,
-      "time": "2019-12-09T03:23:43.492Z",
+      "time": "2019-12-12T08:18:13.576Z",
       "appHash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
       "proposer": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
       "totalTxs": 5,
@@ -524,7 +524,7 @@
     {
       "height": 5,
       "numTxs": 2,
-      "time": "2019-12-09T03:23:43.492Z",
+      "time": "2019-12-12T08:18:13.576Z",
       "appHash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
       "proposer": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
       "totalTxs": 5,
@@ -570,13 +570,15 @@
  *
 ```javascript
 {
-  "validator": true
+  "validator": true,
+  "issuer": "arcblock"
 }
 ```
  *
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.RequestDeclareNode
  * @prop {boolean} validator
+ * @prop {string} issuer
  */
 
 /**
@@ -595,6 +597,41 @@
     "sk": {},
     "pk": {},
     "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55"
+  },
+  "tx": {
+    "from": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+    "nonce": 5,
+    "chainId": "arcblock",
+    "pk": {},
+    "gas": 2,
+    "delegator": "arcblock",
+    "signature": {},
+    "signatures": [
+      {
+        "signer": "arcblock",
+        "pk": {},
+        "signature": {},
+        "delegator": "arcblock",
+        "data": {
+          "type": "string",
+          "value": "ABCD 1234"
+        }
+      },
+      {
+        "signer": "arcblock",
+        "pk": {},
+        "signature": {},
+        "delegator": "arcblock",
+        "data": {
+          "type": "string",
+          "value": "ABCD 1234"
+        }
+      }
+    ],
+    "itx": {
+      "type": "string",
+      "value": "ABCD 1234"
+    }
   }
 }
 ```
@@ -603,6 +640,7 @@
  * @typedef {object} GRpcClient.ResponseDeclareNode
  * @prop {GRpcClient.StatusCode} code
  * @prop {GRpcClient.WalletInfo} wallet
+ * @prop {GRpcClient.Transaction} tx
  */
 
 /**
@@ -647,8 +685,8 @@
     "context": {
       "genesisTx": "arcblock",
       "renaissanceTx": "arcblock",
-      "genesisTime": "2019-12-09T03:23:43.494Z",
-      "renaissanceTime": "2019-12-09T03:23:43.494Z"
+      "genesisTime": "2019-12-12T08:18:13.578Z",
+      "renaissanceTime": "2019-12-12T08:18:13.578Z"
     },
     "issuer": "arcblock",
     "migratedTo": [
@@ -751,7 +789,7 @@
     "readonly": true,
     "transferrable": true,
     "ttl": 2,
-    "consumedTime": "2019-12-09T03:23:43.494Z",
+    "consumedTime": "2019-12-12T08:18:13.578Z",
     "issuer": "arcblock",
     "parent": "arcblock",
     "stake": {
@@ -779,8 +817,8 @@
     "context": {
       "genesisTx": "arcblock",
       "renaissanceTx": "arcblock",
-      "genesisTime": "2019-12-09T03:23:43.494Z",
-      "renaissanceTime": "2019-12-09T03:23:43.494Z"
+      "genesisTime": "2019-12-12T08:18:13.578Z",
+      "renaissanceTime": "2019-12-12T08:18:13.578Z"
     },
     "data": {
       "type": "string",
@@ -879,8 +917,8 @@
     "context": {
       "genesisTx": "arcblock",
       "renaissanceTx": "arcblock",
-      "genesisTime": "2019-12-09T03:23:43.494Z",
-      "renaissanceTime": "2019-12-09T03:23:43.494Z"
+      "genesisTime": "2019-12-12T08:18:13.579Z",
+      "renaissanceTime": "2019-12-12T08:18:13.580Z"
     },
     "data": {
       "type": "string",
@@ -931,8 +969,8 @@
     "context": {
       "genesisTx": "arcblock",
       "renaissanceTx": "arcblock",
-      "genesisTime": "2019-12-09T03:23:43.495Z",
-      "renaissanceTime": "2019-12-09T03:23:43.495Z"
+      "genesisTime": "2019-12-12T08:18:13.580Z",
+      "renaissanceTime": "2019-12-12T08:18:13.580Z"
     },
     "data": {
       "type": "string",
@@ -1024,8 +1062,8 @@
         "context": {
           "genesisTx": "arcblock",
           "renaissanceTx": "arcblock",
-          "genesisTime": "2019-12-09T03:23:43.494Z",
-          "renaissanceTime": "2019-12-09T03:23:43.494Z"
+          "genesisTime": "2019-12-12T08:18:13.579Z",
+          "renaissanceTime": "2019-12-12T08:18:13.579Z"
         }
       }
     },
@@ -1152,8 +1190,8 @@
     "context": {
       "genesisTx": "arcblock",
       "renaissanceTx": "arcblock",
-      "genesisTime": "2019-12-09T03:23:43.495Z",
-      "renaissanceTime": "2019-12-09T03:23:43.495Z"
+      "genesisTime": "2019-12-12T08:18:13.580Z",
+      "renaissanceTime": "2019-12-12T08:18:13.580Z"
     }
   }
 }
@@ -1204,8 +1242,8 @@
     "context": {
       "genesisTx": "arcblock",
       "renaissanceTx": "arcblock",
-      "genesisTime": "2019-12-09T03:23:43.495Z",
-      "renaissanceTime": "2019-12-09T03:23:43.495Z"
+      "genesisTime": "2019-12-12T08:18:13.580Z",
+      "renaissanceTime": "2019-12-12T08:18:13.580Z"
     },
     "data": {
       "type": "string",
@@ -1336,7 +1374,7 @@
     "appHash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
     "blockHash": {},
     "blockHeight": 5,
-    "blockTime": "2019-12-09T03:23:43.493Z",
+    "blockTime": "2019-12-12T08:18:13.577Z",
     "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
     "votingPower": 5,
     "totalTxs": 5,
@@ -1385,7 +1423,7 @@
     "appHash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
     "blockHash": {},
     "blockHeight": 5,
-    "blockTime": "2019-12-09T03:23:43.493Z",
+    "blockTime": "2019-12-12T08:18:13.577Z",
     "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
     "votingPower": 5,
     "totalTxs": 5,
@@ -1488,7 +1526,7 @@
         }
       ],
       "code": 0,
-      "time": "2019-12-09T03:23:43.493Z"
+      "time": "2019-12-12T08:18:13.577Z"
     },
     {
       "tx": {
@@ -1540,7 +1578,7 @@
         }
       ],
       "code": 0,
-      "time": "2019-12-09T03:23:43.493Z"
+      "time": "2019-12-12T08:18:13.577Z"
     }
   ]
 }
@@ -2781,8 +2819,8 @@
       "context": {
         "genesisTx": "arcblock",
         "renaissanceTx": "arcblock",
-        "genesisTime": "2019-12-09T03:23:43.496Z",
-        "renaissanceTime": "2019-12-09T03:23:43.496Z"
+        "genesisTime": "2019-12-12T08:18:13.583Z",
+        "renaissanceTime": "2019-12-12T08:18:13.583Z"
       }
     },
     {
@@ -2800,8 +2838,8 @@
       "context": {
         "genesisTx": "arcblock",
         "renaissanceTx": "arcblock",
-        "genesisTime": "2019-12-09T03:23:43.496Z",
-        "renaissanceTime": "2019-12-09T03:23:43.496Z"
+        "genesisTime": "2019-12-12T08:18:13.583Z",
+        "renaissanceTime": "2019-12-12T08:18:13.583Z"
       }
     }
   ]
@@ -4297,7 +4335,7 @@
       "arcblock"
     ]
   },
-  "expiredAt": "2019-12-09T03:23:43.499Z",
+  "expiredAt": "2019-12-12T08:18:13.588Z",
   "data": {
     "type": "string",
     "value": "ABCD 1234"
@@ -4563,7 +4601,7 @@
   "to": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
   "chainType": "arcblock",
   "chainId": "arcblock",
-  "ttl": "2019-12-09T03:23:43.500Z"
+  "ttl": "2019-12-12T08:18:13.588Z"
 }
 ```
  *

@@ -110,9 +110,7 @@ class GRpcClient {
     } else if (requestStream && responseStream === false) {
       fn = params =>
         new Promise((resolve, reject) => {
-          const stream = rpc(
-            this._createResponseHandler({ method, resolve, reject, responseType })
-          );
+          const stream = rpc(this._createResponseHandler({ method, resolve, reject, responseType }));
           (Array.isArray(params) ? params : [params]).forEach(x => {
             const request = this._createRequest(requestType, x);
             stream.write(request);
@@ -248,6 +246,61 @@ class GRpcClient {
     error.errno = status;
     return error;
   }
+
+  /**
+   * Prepare an declare transaction when the chain has enabled restricted declare
+   *
+   * @memberof GRpcClient
+   * @function
+   * @param {object} params
+   * @param {string} params.moniker - account moniker
+   * @param {string} params.issuer - issuer address
+   * @param {string} params.delegator - the delegator address
+   * @param {WalletObject} params.wallet - the wallet that want to do the declare
+   * @param {object} extra - other param to underlying client implementation
+   * @returns {Promise} the `transaction` object once resolved
+   */
+  // prepareDeclareNode({ moniker, issuer, wallet, data, delegator = '' }, extra) {
+  //   return this.signDeclareTx(
+  //     {
+  //       tx: {
+  //         itx: {
+  //           moniker,
+  //           issuer,
+  //           data,
+  //         },
+  //       },
+  //       delegator,
+  //       wallet,
+  //     },
+  //     extra
+  //   );
+  // }
+
+  /**
+   * Finalize an declare transaction using the issuer's account
+   *
+   * @memberof GRpcClient
+   * @function
+   * @param {object} params
+   * @param {object} params.tx - the transaction object from `prepareExchange`
+   * @param {string} params.delegator - who authorized this transaction
+   * @param {object} params.data - extra data in the multi sig
+   * @param {WalletObject} params.wallet - issuer's wallet
+   * @param {object} extra - other param to underlying client implementation
+   * @returns {Promise} the `transaction` object once resolved
+   */
+  // finalizeDeclareNode({ tx, delegator = '', data, wallet }, extra) {
+  //   return this.multiSignDeclareTx(
+  //     {
+  //       tx,
+  //       delegator,
+  //       data,
+  //       wallet,
+  //     },
+  //     extra
+  //   );
+  // }
 }
 
 module.exports = GRpcClient;

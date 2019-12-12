@@ -561,11 +561,7 @@ proto.forge_abi.WalletType.prototype.setHash = function(value) {
  * @return {!proto.forge_abi.EncodingType}
  */
 proto.forge_abi.WalletType.prototype.getAddress = function() {
-  return /** @type {!proto.forge_abi.EncodingType} */ (jspb.Message.getFieldWithDefault(
-    this,
-    3,
-    0
-  ));
+  return /** @type {!proto.forge_abi.EncodingType} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
 };
 
 /** @param {!proto.forge_abi.EncodingType} value */
@@ -736,11 +732,7 @@ proto.forge_abi.WalletInfo.serializeBinaryToWriter = function(message, writer) {
  * @return {?proto.forge_abi.WalletType}
  */
 proto.forge_abi.WalletInfo.prototype.getType = function() {
-  return /** @type{?proto.forge_abi.WalletType} */ (jspb.Message.getWrapperField(
-    this,
-    proto.forge_abi.WalletType,
-    1
-  ));
+  return /** @type{?proto.forge_abi.WalletType} */ (jspb.Message.getWrapperField(this, proto.forge_abi.WalletType, 1));
 };
 
 /** @param {?proto.forge_abi.WalletType|undefined} value */
@@ -898,16 +890,12 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
         appHash: msg.getAppHash(),
         blockHash: msg.getBlockHash(),
         blockHeight: jspb.Message.getFieldWithDefault(msg, 8, 0),
-        blockTime:
-          (f = msg.getBlockTime()) &&
-          google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+        blockTime: (f = msg.getBlockTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
         address: jspb.Message.getFieldWithDefault(msg, 10, ''),
         votingPower: jspb.Message.getFieldWithDefault(msg, 11, 0),
         totalTxs: jspb.Message.getFieldWithDefault(msg, 12, 0),
         version: jspb.Message.getFieldWithDefault(msg, 13, ''),
-        forgeAppsVersionMap: (f = msg.getForgeAppsVersionMap())
-          ? f.toObject(includeInstance, undefined)
-          : [],
+        forgeAppsVersionMap: (f = msg.getForgeAppsVersionMap()) ? f.toObject(includeInstance, undefined) : [],
         supportedTxsList: jspb.Message.getRepeatedField(msg, 16),
       };
 
@@ -977,10 +965,7 @@ proto.forge_abi.ChainInfo.deserializeBinaryFromReader = function(msg, reader) {
         break;
       case 9:
         var value = new google_protobuf_timestamp_pb.Timestamp();
-        reader.readMessage(
-          value,
-          google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader
-        );
+        reader.readMessage(value, google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
         msg.setBlockTime(value);
         break;
       case 10:
@@ -1097,12 +1082,7 @@ proto.forge_abi.ChainInfo.serializeBinaryToWriter = function(message, writer) {
   }
   f = message.getForgeAppsVersionMap(true);
   if (f && f.getLength() > 0) {
-    f.serializeBinary(
-      15,
-      writer,
-      jspb.BinaryWriter.prototype.writeString,
-      jspb.BinaryWriter.prototype.writeString
-    );
+    f.serializeBinary(15, writer, jspb.BinaryWriter.prototype.writeString, jspb.BinaryWriter.prototype.writeString);
   }
   f = message.getSupportedTxsList();
   if (f.length > 0) {
@@ -1344,12 +1324,7 @@ proto.forge_abi.ChainInfo.prototype.setVersion = function(value) {
  * @return {!jspb.Map<string,string>}
  */
 proto.forge_abi.ChainInfo.prototype.getForgeAppsVersionMap = function(opt_noLazyCreate) {
-  return /** @type {!jspb.Map<string,string>} */ (jspb.Message.getMapField(
-    this,
-    15,
-    opt_noLazyCreate,
-    null
-  ));
+  return /** @type {!jspb.Map<string,string>} */ (jspb.Message.getMapField(this, 15, opt_noLazyCreate, null));
 };
 
 proto.forge_abi.ChainInfo.prototype.clearForgeAppsVersionMap = function() {
@@ -1440,16 +1415,12 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
         appHash: msg.getAppHash(),
         blockHash: msg.getBlockHash(),
         blockHeight: jspb.Message.getFieldWithDefault(msg, 8, 0),
-        blockTime:
-          (f = msg.getBlockTime()) &&
-          google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+        blockTime: (f = msg.getBlockTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
         address: jspb.Message.getFieldWithDefault(msg, 10, ''),
         votingPower: jspb.Message.getFieldWithDefault(msg, 11, 0),
         totalTxs: jspb.Message.getFieldWithDefault(msg, 12, 0),
         version: jspb.Message.getFieldWithDefault(msg, 13, ''),
-        forgeAppsVersionMap: (f = msg.getForgeAppsVersionMap())
-          ? f.toObject(includeInstance, undefined)
-          : [],
+        forgeAppsVersionMap: (f = msg.getForgeAppsVersionMap()) ? f.toObject(includeInstance, undefined) : [],
         supportedTxsList: jspb.Message.getRepeatedField(msg, 16),
         ip: jspb.Message.getFieldWithDefault(msg, 17, ''),
         geoInfo: (f = msg.getGeoInfo()) && proto.forge_abi.GeoInfo.toObject(includeInstance, f),
@@ -1522,10 +1493,7 @@ proto.forge_abi.NodeInfo.deserializeBinaryFromReader = function(msg, reader) {
         break;
       case 9:
         var value = new google_protobuf_timestamp_pb.Timestamp();
-        reader.readMessage(
-          value,
-          google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader
-        );
+        reader.readMessage(value, google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
         msg.setBlockTime(value);
         break;
       case 10:
@@ -1655,12 +1623,7 @@ proto.forge_abi.NodeInfo.serializeBinaryToWriter = function(message, writer) {
   }
   f = message.getForgeAppsVersionMap(true);
   if (f && f.getLength() > 0) {
-    f.serializeBinary(
-      15,
-      writer,
-      jspb.BinaryWriter.prototype.writeString,
-      jspb.BinaryWriter.prototype.writeString
-    );
+    f.serializeBinary(15, writer, jspb.BinaryWriter.prototype.writeString, jspb.BinaryWriter.prototype.writeString);
   }
   f = message.getSupportedTxsList();
   if (f.length > 0) {
@@ -1914,12 +1877,7 @@ proto.forge_abi.NodeInfo.prototype.setVersion = function(value) {
  * @return {!jspb.Map<string,string>}
  */
 proto.forge_abi.NodeInfo.prototype.getForgeAppsVersionMap = function(opt_noLazyCreate) {
-  return /** @type {!jspb.Map<string,string>} */ (jspb.Message.getMapField(
-    this,
-    15,
-    opt_noLazyCreate,
-    null
-  ));
+  return /** @type {!jspb.Map<string,string>} */ (jspb.Message.getMapField(this, 15, opt_noLazyCreate, null));
 };
 
 proto.forge_abi.NodeInfo.prototype.clearForgeAppsVersionMap = function() {
@@ -1969,11 +1927,7 @@ proto.forge_abi.NodeInfo.prototype.setIp = function(value) {
  * @return {?proto.forge_abi.GeoInfo}
  */
 proto.forge_abi.NodeInfo.prototype.getGeoInfo = function() {
-  return /** @type{?proto.forge_abi.GeoInfo} */ (jspb.Message.getWrapperField(
-    this,
-    proto.forge_abi.GeoInfo,
-    18
-  ));
+  return /** @type{?proto.forge_abi.GeoInfo} */ (jspb.Message.getWrapperField(this, proto.forge_abi.GeoInfo, 18));
 };
 
 /** @param {?proto.forge_abi.GeoInfo|undefined} value */
@@ -2169,14 +2123,7 @@ proto.forge_abi.Validator.prototype.setPower = function(value) {
  * @constructor
  */
 proto.forge_abi.ConsensusParams = function(opt_data) {
-  jspb.Message.initialize(
-    this,
-    opt_data,
-    0,
-    -1,
-    proto.forge_abi.ConsensusParams.repeatedFields_,
-    null
-  );
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.forge_abi.ConsensusParams.repeatedFields_, null);
 };
 goog.inherits(proto.forge_abi.ConsensusParams, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -2456,13 +2403,7 @@ proto.forge_abi.ConsensusParams.prototype.setValidatorsList = function(value) {
  * @return {!proto.forge_abi.Validator}
  */
 proto.forge_abi.ConsensusParams.prototype.addValidators = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(
-    this,
-    6,
-    opt_value,
-    proto.forge_abi.Validator,
-    opt_index
-  );
+  return jspb.Message.addToRepeatedWrapperField(this, 6, opt_value, proto.forge_abi.Validator, opt_index);
 };
 
 proto.forge_abi.ConsensusParams.prototype.clearValidatorsList = function() {
@@ -2671,10 +2612,7 @@ proto.forge_abi.UpgradeTask.prototype.setDataHash = function(value) {
  * @return {!Array<!proto.forge_abi.UpgradeAction>}
  */
 proto.forge_abi.UpgradeTask.prototype.getActionsList = function() {
-  return /** @type {!Array<!proto.forge_abi.UpgradeAction>} */ (jspb.Message.getRepeatedField(
-    this,
-    4
-  ));
+  return /** @type {!Array<!proto.forge_abi.UpgradeAction>} */ (jspb.Message.getRepeatedField(this, 4));
 };
 
 /** @param {!Array<!proto.forge_abi.UpgradeAction>} value */
@@ -2705,14 +2643,7 @@ proto.forge_abi.UpgradeTask.prototype.clearActionsList = function() {
  * @constructor
  */
 proto.forge_abi.UpgradeTasks = function(opt_data) {
-  jspb.Message.initialize(
-    this,
-    opt_data,
-    0,
-    -1,
-    proto.forge_abi.UpgradeTasks.repeatedFields_,
-    null
-  );
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.forge_abi.UpgradeTasks.repeatedFields_, null);
 };
 goog.inherits(proto.forge_abi.UpgradeTasks, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -2752,11 +2683,7 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
   proto.forge_abi.UpgradeTasks.toObject = function(includeInstance, msg) {
     var f,
       obj = {
-        itemList: jspb.Message.toObjectList(
-          msg.getItemList(),
-          proto.forge_abi.UpgradeTask.toObject,
-          includeInstance
-        ),
+        itemList: jspb.Message.toObjectList(msg.getItemList(), proto.forge_abi.UpgradeTask.toObject, includeInstance),
       };
 
     if (includeInstance) {
@@ -2852,13 +2779,7 @@ proto.forge_abi.UpgradeTasks.prototype.setItemList = function(value) {
  * @return {!proto.forge_abi.UpgradeTask}
  */
 proto.forge_abi.UpgradeTasks.prototype.addItem = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(
-    this,
-    1,
-    opt_value,
-    proto.forge_abi.UpgradeTask,
-    opt_index
-  );
+  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.forge_abi.UpgradeTask, opt_index);
 };
 
 proto.forge_abi.UpgradeTasks.prototype.clearItemList = function() {
@@ -2912,16 +2833,12 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
       obj = {
         txHash: jspb.Message.getFieldWithDefault(msg, 1, ''),
         blockHeight: jspb.Message.getFieldWithDefault(msg, 2, 0),
-        blockTime:
-          (f = msg.getBlockTime()) &&
-          google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+        blockTime: (f = msg.getBlockTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
         totalTxs: jspb.Message.getFieldWithDefault(msg, 4, 0),
-        txStatistics:
-          (f = msg.getTxStatistics()) && proto.forge_abi.TxStatistics.toObject(includeInstance, f),
+        txStatistics: (f = msg.getTxStatistics()) && proto.forge_abi.TxStatistics.toObject(includeInstance, f),
         txIndex: jspb.Message.getFieldWithDefault(msg, 6, 0),
         lastBlockTime:
-          (f = msg.getLastBlockTime()) &&
-          google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+          (f = msg.getLastBlockTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
       };
 
     if (includeInstance) {
@@ -2966,10 +2883,7 @@ proto.forge_abi.AbciContext.deserializeBinaryFromReader = function(msg, reader) 
         break;
       case 3:
         var value = new google_protobuf_timestamp_pb.Timestamp();
-        reader.readMessage(
-          value,
-          google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader
-        );
+        reader.readMessage(value, google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
         msg.setBlockTime(value);
         break;
       case 4:
@@ -2987,10 +2901,7 @@ proto.forge_abi.AbciContext.deserializeBinaryFromReader = function(msg, reader) 
         break;
       case 7:
         var value = new google_protobuf_timestamp_pb.Timestamp();
-        reader.readMessage(
-          value,
-          google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader
-        );
+        reader.readMessage(value, google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
         msg.setLastBlockTime(value);
         break;
       default:
@@ -3440,11 +3351,7 @@ proto.forge_abi.Multisig.prototype.setDelegator = function(value) {
  * @return {?proto.google.protobuf.Any}
  */
 proto.forge_abi.Multisig.prototype.getData = function() {
-  return /** @type{?proto.google.protobuf.Any} */ (jspb.Message.getWrapperField(
-    this,
-    google_protobuf_any_pb.Any,
-    15
-  ));
+  return /** @type{?proto.google.protobuf.Any} */ (jspb.Message.getWrapperField(this, google_protobuf_any_pb.Any, 15));
 };
 
 /** @param {?proto.google.protobuf.Any|undefined} value */
@@ -3819,13 +3726,7 @@ proto.forge_abi.Transaction.prototype.setSignaturesList = function(value) {
  * @return {!proto.forge_abi.Multisig}
  */
 proto.forge_abi.Transaction.prototype.addSignatures = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(
-    this,
-    14,
-    opt_value,
-    proto.forge_abi.Multisig,
-    opt_index
-  );
+  return jspb.Message.addToRepeatedWrapperField(this, 14, opt_value, proto.forge_abi.Multisig, opt_index);
 };
 
 proto.forge_abi.Transaction.prototype.clearSignaturesList = function() {
@@ -3837,11 +3738,7 @@ proto.forge_abi.Transaction.prototype.clearSignaturesList = function() {
  * @return {?proto.google.protobuf.Any}
  */
 proto.forge_abi.Transaction.prototype.getItx = function() {
-  return /** @type{?proto.google.protobuf.Any} */ (jspb.Message.getWrapperField(
-    this,
-    google_protobuf_any_pb.Any,
-    15
-  ));
+  return /** @type{?proto.google.protobuf.Any} */ (jspb.Message.getWrapperField(this, google_protobuf_any_pb.Any, 15));
 };
 
 /** @param {?proto.google.protobuf.Any|undefined} value */
@@ -3872,14 +3769,7 @@ proto.forge_abi.Transaction.prototype.hasItx = function() {
  * @constructor
  */
 proto.forge_abi.TransactionInfo = function(opt_data) {
-  jspb.Message.initialize(
-    this,
-    opt_data,
-    0,
-    -1,
-    proto.forge_abi.TransactionInfo.repeatedFields_,
-    null
-  );
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.forge_abi.TransactionInfo.repeatedFields_, null);
 };
 goog.inherits(proto.forge_abi.TransactionInfo, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -3923,15 +3813,9 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
         height: jspb.Message.getFieldWithDefault(msg, 2, 0),
         index: jspb.Message.getFieldWithDefault(msg, 3, 0),
         hash: jspb.Message.getFieldWithDefault(msg, 4, ''),
-        tagsList: jspb.Message.toObjectList(
-          msg.getTagsList(),
-          vendor_pb.KVPair.toObject,
-          includeInstance
-        ),
+        tagsList: jspb.Message.toObjectList(msg.getTagsList(), vendor_pb.KVPair.toObject, includeInstance),
         code: jspb.Message.getFieldWithDefault(msg, 6, 0),
-        time:
-          (f = msg.getTime()) &&
-          google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+        time: (f = msg.getTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
       };
 
     if (includeInstance) {
@@ -3994,10 +3878,7 @@ proto.forge_abi.TransactionInfo.deserializeBinaryFromReader = function(msg, read
         break;
       case 7:
         var value = new google_protobuf_timestamp_pb.Timestamp();
-        reader.readMessage(
-          value,
-          google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader
-        );
+        reader.readMessage(value, google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
         msg.setTime(value);
         break;
       default:
@@ -4148,13 +4029,7 @@ proto.forge_abi.TransactionInfo.prototype.setTagsList = function(value) {
  * @return {!proto.abci_vendor.KVPair}
  */
 proto.forge_abi.TransactionInfo.prototype.addTags = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(
-    this,
-    5,
-    opt_value,
-    proto.abci_vendor.KVPair,
-    opt_index
-  );
+  return jspb.Message.addToRepeatedWrapperField(this, 5, opt_value, proto.abci_vendor.KVPair, opt_index);
 };
 
 proto.forge_abi.TransactionInfo.prototype.clearTagsList = function() {
@@ -4372,11 +4247,7 @@ proto.forge_abi.DeclareConfig.prototype.setHierarchy = function(value) {
  * @return {?proto.forge_abi.BigUint}
  */
 proto.forge_abi.DeclareConfig.prototype.getCost = function() {
-  return /** @type{?proto.forge_abi.BigUint} */ (jspb.Message.getWrapperField(
-    this,
-    proto.forge_abi.BigUint,
-    3
-  ));
+  return /** @type{?proto.forge_abi.BigUint} */ (jspb.Message.getWrapperField(this, proto.forge_abi.BigUint, 3));
 };
 
 /** @param {?proto.forge_abi.BigUint|undefined} value */
@@ -4407,14 +4278,7 @@ proto.forge_abi.DeclareConfig.prototype.hasCost = function() {
  * @constructor
  */
 proto.forge_abi.DelegateConfig = function(opt_data) {
-  jspb.Message.initialize(
-    this,
-    opt_data,
-    0,
-    -1,
-    proto.forge_abi.DelegateConfig.repeatedFields_,
-    null
-  );
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.forge_abi.DelegateConfig.repeatedFields_, null);
 };
 goog.inherits(proto.forge_abi.DelegateConfig, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -4622,10 +4486,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
         maxListSize: jspb.Message.getFieldWithDefault(msg, 2, 0),
         maxMultisig: jspb.Message.getFieldWithDefault(msg, 3, 0),
         minimumStake: jspb.Message.getFieldWithDefault(msg, 4, 0),
-        declare:
-          (f = msg.getDeclare()) && proto.forge_abi.DeclareConfig.toObject(includeInstance, f),
-        delegate:
-          (f = msg.getDelegate()) && proto.forge_abi.DelegateConfig.toObject(includeInstance, f),
+        declare: (f = msg.getDeclare()) && proto.forge_abi.DeclareConfig.toObject(includeInstance, f),
+        delegate: (f = msg.getDelegate()) && proto.forge_abi.DelegateConfig.toObject(includeInstance, f),
         poke: (f = msg.getPoke()) && proto.forge_abi.PokeConfig.toObject(includeInstance, f),
         stake: (f = msg.getStake()) && proto.forge_abi.StakeConfig.toObject(includeInstance, f),
       };
@@ -4874,11 +4736,7 @@ proto.forge_abi.TransactionConfig.prototype.hasDelegate = function() {
  * @return {?proto.forge_abi.PokeConfig}
  */
 proto.forge_abi.TransactionConfig.prototype.getPoke = function() {
-  return /** @type{?proto.forge_abi.PokeConfig} */ (jspb.Message.getWrapperField(
-    this,
-    proto.forge_abi.PokeConfig,
-    7
-  ));
+  return /** @type{?proto.forge_abi.PokeConfig} */ (jspb.Message.getWrapperField(this, proto.forge_abi.PokeConfig, 7));
 };
 
 /** @param {?proto.forge_abi.PokeConfig|undefined} value */
@@ -4980,16 +4838,10 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
       obj = {
         height: jspb.Message.getFieldWithDefault(msg, 1, 0),
         numTxs: jspb.Message.getFieldWithDefault(msg, 2, 0),
-        time:
-          (f = msg.getTime()) &&
-          google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+        time: (f = msg.getTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
         appHash: msg.getAppHash(),
         proposer: msg.getProposer(),
-        txsList: jspb.Message.toObjectList(
-          msg.getTxsList(),
-          proto.forge_abi.TransactionInfo.toObject,
-          includeInstance
-        ),
+        txsList: jspb.Message.toObjectList(msg.getTxsList(), proto.forge_abi.TransactionInfo.toObject, includeInstance),
         totalTxs: jspb.Message.getFieldWithDefault(msg, 7, 0),
         invalidTxsList: jspb.Message.toObjectList(
           msg.getInvalidTxsList(),
@@ -5051,10 +4903,7 @@ proto.forge_abi.BlockInfo.deserializeBinaryFromReader = function(msg, reader) {
         break;
       case 3:
         var value = new google_protobuf_timestamp_pb.Timestamp();
-        reader.readMessage(
-          value,
-          google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader
-        );
+        reader.readMessage(value, google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
         msg.setTime(value);
         break;
       case 4:
@@ -5374,13 +5223,7 @@ proto.forge_abi.BlockInfo.prototype.setTxsList = function(value) {
  * @return {!proto.forge_abi.TransactionInfo}
  */
 proto.forge_abi.BlockInfo.prototype.addTxs = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(
-    this,
-    6,
-    opt_value,
-    proto.forge_abi.TransactionInfo,
-    opt_index
-  );
+  return jspb.Message.addToRepeatedWrapperField(this, 6, opt_value, proto.forge_abi.TransactionInfo, opt_index);
 };
 
 proto.forge_abi.BlockInfo.prototype.clearTxsList = function() {
@@ -5423,13 +5266,7 @@ proto.forge_abi.BlockInfo.prototype.setInvalidTxsList = function(value) {
  * @return {!proto.forge_abi.TransactionInfo}
  */
 proto.forge_abi.BlockInfo.prototype.addInvalidTxs = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(
-    this,
-    8,
-    opt_value,
-    proto.forge_abi.TransactionInfo,
-    opt_index
-  );
+  return jspb.Message.addToRepeatedWrapperField(this, 8, opt_value, proto.forge_abi.TransactionInfo, opt_index);
 };
 
 proto.forge_abi.BlockInfo.prototype.clearInvalidTxsList = function() {
@@ -5722,11 +5559,7 @@ proto.forge_abi.BlockInfo.prototype.setValidatorsHash = function(value) {
  * @return {?proto.abci_vendor.Version}
  */
 proto.forge_abi.BlockInfo.prototype.getVersion = function() {
-  return /** @type{?proto.abci_vendor.Version} */ (jspb.Message.getWrapperField(
-    this,
-    vendor_pb.Version,
-    18
-  ));
+  return /** @type{?proto.abci_vendor.Version} */ (jspb.Message.getWrapperField(this, vendor_pb.Version, 18));
 };
 
 /** @param {?proto.abci_vendor.Version|undefined} value */
@@ -5751,11 +5584,7 @@ proto.forge_abi.BlockInfo.prototype.hasVersion = function() {
  * @return {?proto.abci_vendor.BlockID}
  */
 proto.forge_abi.BlockInfo.prototype.getLastBlockId = function() {
-  return /** @type{?proto.abci_vendor.BlockID} */ (jspb.Message.getWrapperField(
-    this,
-    vendor_pb.BlockID,
-    19
-  ));
+  return /** @type{?proto.abci_vendor.BlockID} */ (jspb.Message.getWrapperField(this, vendor_pb.BlockID, 19));
 };
 
 /** @param {?proto.abci_vendor.BlockID|undefined} value */
@@ -5786,14 +5615,7 @@ proto.forge_abi.BlockInfo.prototype.hasLastBlockId = function() {
  * @constructor
  */
 proto.forge_abi.BlockInfoSimple = function(opt_data) {
-  jspb.Message.initialize(
-    this,
-    opt_data,
-    0,
-    -1,
-    proto.forge_abi.BlockInfoSimple.repeatedFields_,
-    null
-  );
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.forge_abi.BlockInfoSimple.repeatedFields_, null);
 };
 goog.inherits(proto.forge_abi.BlockInfoSimple, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -5835,9 +5657,7 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
       obj = {
         height: jspb.Message.getFieldWithDefault(msg, 1, 0),
         numTxs: jspb.Message.getFieldWithDefault(msg, 2, 0),
-        time:
-          (f = msg.getTime()) &&
-          google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+        time: (f = msg.getTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
         appHash: msg.getAppHash(),
         proposer: msg.getProposer(),
         totalTxs: jspb.Message.getFieldWithDefault(msg, 6, 0),
@@ -5896,10 +5716,7 @@ proto.forge_abi.BlockInfoSimple.deserializeBinaryFromReader = function(msg, read
         break;
       case 3:
         var value = new google_protobuf_timestamp_pb.Timestamp();
-        reader.readMessage(
-          value,
-          google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader
-        );
+        reader.readMessage(value, google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
         msg.setTime(value);
         break;
       case 4:
@@ -6477,11 +6294,7 @@ proto.forge_abi.BlockInfoSimple.prototype.setValidatorsHash = function(value) {
  * @return {?proto.abci_vendor.Version}
  */
 proto.forge_abi.BlockInfoSimple.prototype.getVersion = function() {
-  return /** @type{?proto.abci_vendor.Version} */ (jspb.Message.getWrapperField(
-    this,
-    vendor_pb.Version,
-    16
-  ));
+  return /** @type{?proto.abci_vendor.Version} */ (jspb.Message.getWrapperField(this, vendor_pb.Version, 16));
 };
 
 /** @param {?proto.abci_vendor.Version|undefined} value */
@@ -6506,11 +6319,7 @@ proto.forge_abi.BlockInfoSimple.prototype.hasVersion = function() {
  * @return {?proto.abci_vendor.BlockID}
  */
 proto.forge_abi.BlockInfoSimple.prototype.getLastBlockId = function() {
-  return /** @type{?proto.abci_vendor.BlockID} */ (jspb.Message.getWrapperField(
-    this,
-    vendor_pb.BlockID,
-    17
-  ));
+  return /** @type{?proto.abci_vendor.BlockID} */ (jspb.Message.getWrapperField(this, vendor_pb.BlockID, 17));
 };
 
 /** @param {?proto.abci_vendor.BlockID|undefined} value */
@@ -6693,14 +6502,7 @@ proto.forge_abi.TxStatus.prototype.setHash = function(value) {
  * @constructor
  */
 proto.forge_abi.CircularQueue = function(opt_data) {
-  jspb.Message.initialize(
-    this,
-    opt_data,
-    0,
-    -1,
-    proto.forge_abi.CircularQueue.repeatedFields_,
-    null
-  );
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.forge_abi.CircularQueue.repeatedFields_, null);
 };
 goog.inherits(proto.forge_abi.CircularQueue, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -6853,10 +6655,7 @@ proto.forge_abi.CircularQueue.serializeBinaryToWriter = function(message, writer
  * @return {!(Array<!Uint8Array>|Array<string>)}
  */
 proto.forge_abi.CircularQueue.prototype.getItemsList = function() {
-  return /** @type {!(Array<!Uint8Array>|Array<string>)} */ (jspb.Message.getRepeatedField(
-    this,
-    1
-  ));
+  return /** @type {!(Array<!Uint8Array>|Array<string>)} */ (jspb.Message.getRepeatedField(this, 1));
 };
 
 /**
@@ -6999,12 +6798,9 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
       obj = {
         genesisTx: jspb.Message.getFieldWithDefault(msg, 1, ''),
         renaissanceTx: jspb.Message.getFieldWithDefault(msg, 2, ''),
-        genesisTime:
-          (f = msg.getGenesisTime()) &&
-          google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+        genesisTime: (f = msg.getGenesisTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
         renaissanceTime:
-          (f = msg.getRenaissanceTime()) &&
-          google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+          (f = msg.getRenaissanceTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
       };
 
     if (includeInstance) {
@@ -7049,18 +6845,12 @@ proto.forge_abi.StateContext.deserializeBinaryFromReader = function(msg, reader)
         break;
       case 3:
         var value = new google_protobuf_timestamp_pb.Timestamp();
-        reader.readMessage(
-          value,
-          google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader
-        );
+        reader.readMessage(value, google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
         msg.setGenesisTime(value);
         break;
       case 4:
         var value = new google_protobuf_timestamp_pb.Timestamp();
-        reader.readMessage(
-          value,
-          google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader
-        );
+        reader.readMessage(value, google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
         msg.setRenaissanceTime(value);
         break;
       default:
@@ -7237,18 +7027,12 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
   proto.forge_abi.StakeContext.toObject = function(includeInstance, msg) {
     var f,
       obj = {
-        totalStakes:
-          (f = msg.getTotalStakes()) && proto.forge_abi.BigUint.toObject(includeInstance, f),
-        totalUnstakes:
-          (f = msg.getTotalUnstakes()) && proto.forge_abi.BigUint.toObject(includeInstance, f),
-        totalReceivedStakes:
-          (f = msg.getTotalReceivedStakes()) &&
-          proto.forge_abi.BigUint.toObject(includeInstance, f),
-        recentStakes:
-          (f = msg.getRecentStakes()) && proto.forge_abi.CircularQueue.toObject(includeInstance, f),
+        totalStakes: (f = msg.getTotalStakes()) && proto.forge_abi.BigUint.toObject(includeInstance, f),
+        totalUnstakes: (f = msg.getTotalUnstakes()) && proto.forge_abi.BigUint.toObject(includeInstance, f),
+        totalReceivedStakes: (f = msg.getTotalReceivedStakes()) && proto.forge_abi.BigUint.toObject(includeInstance, f),
+        recentStakes: (f = msg.getRecentStakes()) && proto.forge_abi.CircularQueue.toObject(includeInstance, f),
         recentReceivedStakes:
-          (f = msg.getRecentReceivedStakes()) &&
-          proto.forge_abi.CircularQueue.toObject(includeInstance, f),
+          (f = msg.getRecentReceivedStakes()) && proto.forge_abi.CircularQueue.toObject(includeInstance, f),
       };
 
     if (includeInstance) {
@@ -7362,11 +7146,7 @@ proto.forge_abi.StakeContext.serializeBinaryToWriter = function(message, writer)
  * @return {?proto.forge_abi.BigUint}
  */
 proto.forge_abi.StakeContext.prototype.getTotalStakes = function() {
-  return /** @type{?proto.forge_abi.BigUint} */ (jspb.Message.getWrapperField(
-    this,
-    proto.forge_abi.BigUint,
-    1
-  ));
+  return /** @type{?proto.forge_abi.BigUint} */ (jspb.Message.getWrapperField(this, proto.forge_abi.BigUint, 1));
 };
 
 /** @param {?proto.forge_abi.BigUint|undefined} value */
@@ -7391,11 +7171,7 @@ proto.forge_abi.StakeContext.prototype.hasTotalStakes = function() {
  * @return {?proto.forge_abi.BigUint}
  */
 proto.forge_abi.StakeContext.prototype.getTotalUnstakes = function() {
-  return /** @type{?proto.forge_abi.BigUint} */ (jspb.Message.getWrapperField(
-    this,
-    proto.forge_abi.BigUint,
-    2
-  ));
+  return /** @type{?proto.forge_abi.BigUint} */ (jspb.Message.getWrapperField(this, proto.forge_abi.BigUint, 2));
 };
 
 /** @param {?proto.forge_abi.BigUint|undefined} value */
@@ -7420,11 +7196,7 @@ proto.forge_abi.StakeContext.prototype.hasTotalUnstakes = function() {
  * @return {?proto.forge_abi.BigUint}
  */
 proto.forge_abi.StakeContext.prototype.getTotalReceivedStakes = function() {
-  return /** @type{?proto.forge_abi.BigUint} */ (jspb.Message.getWrapperField(
-    this,
-    proto.forge_abi.BigUint,
-    3
-  ));
+  return /** @type{?proto.forge_abi.BigUint} */ (jspb.Message.getWrapperField(this, proto.forge_abi.BigUint, 3));
 };
 
 /** @param {?proto.forge_abi.BigUint|undefined} value */
@@ -7547,12 +7319,9 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
   proto.forge_abi.StakeSummary.toObject = function(includeInstance, msg) {
     var f,
       obj = {
-        totalStakes:
-          (f = msg.getTotalStakes()) && proto.forge_abi.BigUint.toObject(includeInstance, f),
-        totalUnstakes:
-          (f = msg.getTotalUnstakes()) && proto.forge_abi.BigUint.toObject(includeInstance, f),
-        context:
-          (f = msg.getContext()) && proto.forge_abi.StateContext.toObject(includeInstance, f),
+        totalStakes: (f = msg.getTotalStakes()) && proto.forge_abi.BigUint.toObject(includeInstance, f),
+        totalUnstakes: (f = msg.getTotalUnstakes()) && proto.forge_abi.BigUint.toObject(includeInstance, f),
+        context: (f = msg.getContext()) && proto.forge_abi.StateContext.toObject(includeInstance, f),
       };
 
     if (includeInstance) {
@@ -7648,11 +7417,7 @@ proto.forge_abi.StakeSummary.serializeBinaryToWriter = function(message, writer)
  * @return {?proto.forge_abi.BigUint}
  */
 proto.forge_abi.StakeSummary.prototype.getTotalStakes = function() {
-  return /** @type{?proto.forge_abi.BigUint} */ (jspb.Message.getWrapperField(
-    this,
-    proto.forge_abi.BigUint,
-    1
-  ));
+  return /** @type{?proto.forge_abi.BigUint} */ (jspb.Message.getWrapperField(this, proto.forge_abi.BigUint, 1));
 };
 
 /** @param {?proto.forge_abi.BigUint|undefined} value */
@@ -7677,11 +7442,7 @@ proto.forge_abi.StakeSummary.prototype.hasTotalStakes = function() {
  * @return {?proto.forge_abi.BigUint}
  */
 proto.forge_abi.StakeSummary.prototype.getTotalUnstakes = function() {
-  return /** @type{?proto.forge_abi.BigUint} */ (jspb.Message.getWrapperField(
-    this,
-    proto.forge_abi.BigUint,
-    2
-  ));
+  return /** @type{?proto.forge_abi.BigUint} */ (jspb.Message.getWrapperField(this, proto.forge_abi.BigUint, 2));
 };
 
 /** @param {?proto.forge_abi.BigUint|undefined} value */
@@ -7893,14 +7654,7 @@ proto.forge_abi.StakeConfig.prototype.setTimeoutStakeForNode = function(value) {
  * @constructor
  */
 proto.forge_abi.UnconfirmedTxs = function(opt_data) {
-  jspb.Message.initialize(
-    this,
-    opt_data,
-    0,
-    -1,
-    proto.forge_abi.UnconfirmedTxs.repeatedFields_,
-    null
-  );
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.forge_abi.UnconfirmedTxs.repeatedFields_, null);
 };
 goog.inherits(proto.forge_abi.UnconfirmedTxs, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -7941,11 +7695,7 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
     var f,
       obj = {
         nTxs: jspb.Message.getFieldWithDefault(msg, 1, 0),
-        txsList: jspb.Message.toObjectList(
-          msg.getTxsList(),
-          proto.forge_abi.Transaction.toObject,
-          includeInstance
-        ),
+        txsList: jspb.Message.toObjectList(msg.getTxsList(), proto.forge_abi.Transaction.toObject, includeInstance),
       };
 
     if (includeInstance) {
@@ -8062,13 +7812,7 @@ proto.forge_abi.UnconfirmedTxs.prototype.setTxsList = function(value) {
  * @return {!proto.forge_abi.Transaction}
  */
 proto.forge_abi.UnconfirmedTxs.prototype.addTxs = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(
-    this,
-    2,
-    opt_value,
-    proto.forge_abi.Transaction,
-    opt_index
-  );
+  return jspb.Message.addToRepeatedWrapperField(this, 2, opt_value, proto.forge_abi.Transaction, opt_index);
 };
 
 proto.forge_abi.UnconfirmedTxs.prototype.clearTxsList = function() {
@@ -8129,11 +7873,7 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
         listening: jspb.Message.getFieldWithDefault(msg, 1, false),
         listenersList: jspb.Message.getRepeatedField(msg, 2),
         nPeers: jspb.Message.getFieldWithDefault(msg, 3, 0),
-        peersList: jspb.Message.toObjectList(
-          msg.getPeersList(),
-          proto.forge_abi.PeerInfo.toObject,
-          includeInstance
-        ),
+        peersList: jspb.Message.toObjectList(msg.getPeersList(), proto.forge_abi.PeerInfo.toObject, includeInstance),
       };
 
     if (includeInstance) {
@@ -8306,13 +8046,7 @@ proto.forge_abi.NetInfo.prototype.setPeersList = function(value) {
  * @return {!proto.forge_abi.PeerInfo}
  */
 proto.forge_abi.NetInfo.prototype.addPeers = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(
-    this,
-    4,
-    opt_value,
-    proto.forge_abi.PeerInfo,
-    opt_index
-  );
+  return jspb.Message.addToRepeatedWrapperField(this, 4, opt_value, proto.forge_abi.PeerInfo, opt_index);
 };
 
 proto.forge_abi.NetInfo.prototype.clearPeersList = function() {
@@ -8748,11 +8482,7 @@ proto.forge_abi.PeerInfo.prototype.setIp = function(value) {
  * @return {?proto.forge_abi.GeoInfo}
  */
 proto.forge_abi.PeerInfo.prototype.getGeoInfo = function() {
-  return /** @type{?proto.forge_abi.GeoInfo} */ (jspb.Message.getWrapperField(
-    this,
-    proto.forge_abi.GeoInfo,
-    6
-  ));
+  return /** @type{?proto.forge_abi.GeoInfo} */ (jspb.Message.getWrapperField(this, proto.forge_abi.GeoInfo, 6));
 };
 
 /** @param {?proto.forge_abi.GeoInfo|undefined} value */
@@ -8783,14 +8513,7 @@ proto.forge_abi.PeerInfo.prototype.hasGeoInfo = function() {
  * @constructor
  */
 proto.forge_abi.ValidatorsInfo = function(opt_data) {
-  jspb.Message.initialize(
-    this,
-    opt_data,
-    0,
-    -1,
-    proto.forge_abi.ValidatorsInfo.repeatedFields_,
-    null
-  );
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.forge_abi.ValidatorsInfo.repeatedFields_, null);
 };
 goog.inherits(proto.forge_abi.ValidatorsInfo, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -8952,13 +8675,7 @@ proto.forge_abi.ValidatorsInfo.prototype.setValidatorsList = function(value) {
  * @return {!proto.forge_abi.ValidatorInfo}
  */
 proto.forge_abi.ValidatorsInfo.prototype.addValidators = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(
-    this,
-    2,
-    opt_value,
-    proto.forge_abi.ValidatorInfo,
-    opt_index
-  );
+  return jspb.Message.addToRepeatedWrapperField(this, 2, opt_value, proto.forge_abi.ValidatorInfo, opt_index);
 };
 
 proto.forge_abi.ValidatorsInfo.prototype.clearValidatorsList = function() {
@@ -9147,11 +8864,7 @@ proto.forge_abi.ValidatorInfo.prototype.setAddress = function(value) {
  * @return {?proto.abci_vendor.PubKey}
  */
 proto.forge_abi.ValidatorInfo.prototype.getPubKey = function() {
-  return /** @type{?proto.abci_vendor.PubKey} */ (jspb.Message.getWrapperField(
-    this,
-    vendor_pb.PubKey,
-    2
-  ));
+  return /** @type{?proto.abci_vendor.PubKey} */ (jspb.Message.getWrapperField(this, vendor_pb.PubKey, 2));
 };
 
 /** @param {?proto.abci_vendor.PubKey|undefined} value */
@@ -9215,11 +8928,7 @@ proto.forge_abi.ValidatorInfo.prototype.setName = function(value) {
  * @return {?proto.forge_abi.GeoInfo}
  */
 proto.forge_abi.ValidatorInfo.prototype.getGeoInfo = function() {
-  return /** @type{?proto.forge_abi.GeoInfo} */ (jspb.Message.getWrapperField(
-    this,
-    proto.forge_abi.GeoInfo,
-    6
-  ));
+  return /** @type{?proto.forge_abi.GeoInfo} */ (jspb.Message.getWrapperField(this, proto.forge_abi.GeoInfo, 6));
 };
 
 /** @param {?proto.forge_abi.GeoInfo|undefined} value */
@@ -9292,8 +9001,7 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
       obj = {
         genesisTime: jspb.Message.getFieldWithDefault(msg, 1, ''),
         chainId: jspb.Message.getFieldWithDefault(msg, 2, ''),
-        consensusParams:
-          (f = msg.getConsensusParams()) && vendor_pb.ConsensusParams.toObject(includeInstance, f),
+        consensusParams: (f = msg.getConsensusParams()) && vendor_pb.ConsensusParams.toObject(includeInstance, f),
         validatorsList: jspb.Message.toObjectList(
           msg.getValidatorsList(),
           proto.forge_abi.ValidatorInfo.toObject,
@@ -9483,13 +9191,7 @@ proto.forge_abi.GenesisInfo.prototype.setValidatorsList = function(value) {
  * @return {!proto.forge_abi.ValidatorInfo}
  */
 proto.forge_abi.GenesisInfo.prototype.addValidators = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(
-    this,
-    4,
-    opt_value,
-    proto.forge_abi.ValidatorInfo,
-    opt_index
-  );
+  return jspb.Message.addToRepeatedWrapperField(this, 4, opt_value, proto.forge_abi.ValidatorInfo, opt_index);
 };
 
 proto.forge_abi.GenesisInfo.prototype.clearValidatorsList = function() {
@@ -9531,25 +9233,7 @@ if (goog.DEBUG && !COMPILED) {
  * @private {!Array<number>}
  * @const
  */
-proto.forge_abi.ForgeStats.repeatedFields_ = [
-  1,
-  2,
-  3,
-  4,
-  5,
-  6,
-  7,
-  8,
-  9,
-  10,
-  11,
-  12,
-  13,
-  14,
-  15,
-  16,
-  17,
-];
+proto.forge_abi.ForgeStats.repeatedFields_ = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17];
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
   /**
@@ -9899,13 +9583,7 @@ proto.forge_abi.ForgeStats.prototype.setNumStakesList = function(value) {
  * @return {!proto.forge_abi.BigUint}
  */
 proto.forge_abi.ForgeStats.prototype.addNumStakes = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(
-    this,
-    3,
-    opt_value,
-    proto.forge_abi.BigUint,
-    opt_index
-  );
+  return jspb.Message.addToRepeatedWrapperField(this, 3, opt_value, proto.forge_abi.BigUint, opt_index);
 };
 
 proto.forge_abi.ForgeStats.prototype.clearNumStakesList = function() {
@@ -11044,8 +10722,7 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
   proto.forge_abi.PokeInfo.toObject = function(includeInstance, msg) {
     var f,
       obj = {
-        dailyLimit:
-          (f = msg.getDailyLimit()) && proto.forge_abi.BigUint.toObject(includeInstance, f),
+        dailyLimit: (f = msg.getDailyLimit()) && proto.forge_abi.BigUint.toObject(includeInstance, f),
         leftover: (f = msg.getLeftover()) && proto.forge_abi.BigUint.toObject(includeInstance, f),
         amount: (f = msg.getAmount()) && proto.forge_abi.BigUint.toObject(includeInstance, f),
       };
@@ -11143,11 +10820,7 @@ proto.forge_abi.PokeInfo.serializeBinaryToWriter = function(message, writer) {
  * @return {?proto.forge_abi.BigUint}
  */
 proto.forge_abi.PokeInfo.prototype.getDailyLimit = function() {
-  return /** @type{?proto.forge_abi.BigUint} */ (jspb.Message.getWrapperField(
-    this,
-    proto.forge_abi.BigUint,
-    1
-  ));
+  return /** @type{?proto.forge_abi.BigUint} */ (jspb.Message.getWrapperField(this, proto.forge_abi.BigUint, 1));
 };
 
 /** @param {?proto.forge_abi.BigUint|undefined} value */
@@ -11172,11 +10845,7 @@ proto.forge_abi.PokeInfo.prototype.hasDailyLimit = function() {
  * @return {?proto.forge_abi.BigUint}
  */
 proto.forge_abi.PokeInfo.prototype.getLeftover = function() {
-  return /** @type{?proto.forge_abi.BigUint} */ (jspb.Message.getWrapperField(
-    this,
-    proto.forge_abi.BigUint,
-    2
-  ));
+  return /** @type{?proto.forge_abi.BigUint} */ (jspb.Message.getWrapperField(this, proto.forge_abi.BigUint, 2));
 };
 
 /** @param {?proto.forge_abi.BigUint|undefined} value */
@@ -11201,11 +10870,7 @@ proto.forge_abi.PokeInfo.prototype.hasLeftover = function() {
  * @return {?proto.forge_abi.BigUint}
  */
 proto.forge_abi.PokeInfo.prototype.getAmount = function() {
-  return /** @type{?proto.forge_abi.BigUint} */ (jspb.Message.getWrapperField(
-    this,
-    proto.forge_abi.BigUint,
-    3
-  ));
+  return /** @type{?proto.forge_abi.BigUint} */ (jspb.Message.getWrapperField(this, proto.forge_abi.BigUint, 3));
 };
 
 /** @param {?proto.forge_abi.BigUint|undefined} value */
@@ -11698,11 +11363,7 @@ proto.forge_abi.WithdrawItem.prototype.setHash = function(value) {
  * @return {?proto.forge_abi.BigUint}
  */
 proto.forge_abi.WithdrawItem.prototype.getValue = function() {
-  return /** @type{?proto.forge_abi.BigUint} */ (jspb.Message.getWrapperField(
-    this,
-    proto.forge_abi.BigUint,
-    2
-  ));
+  return /** @type{?proto.forge_abi.BigUint} */ (jspb.Message.getWrapperField(this, proto.forge_abi.BigUint, 2));
 };
 
 /** @param {?proto.forge_abi.BigUint|undefined} value */
@@ -11909,11 +11570,7 @@ proto.forge_abi.AccountConfig.prototype.setPk = function(value) {
  * @return {?proto.forge_abi.BigUint}
  */
 proto.forge_abi.AccountConfig.prototype.getBalance = function() {
-  return /** @type{?proto.forge_abi.BigUint} */ (jspb.Message.getWrapperField(
-    this,
-    proto.forge_abi.BigUint,
-    3
-  ));
+  return /** @type{?proto.forge_abi.BigUint} */ (jspb.Message.getWrapperField(this, proto.forge_abi.BigUint, 3));
 };
 
 /** @param {?proto.forge_abi.BigUint|undefined} value */
@@ -11980,8 +11637,7 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
       obj = {
         commissionHolderAddress: jspb.Message.getFieldWithDefault(msg, 1, ''),
         withdrawInterval: jspb.Message.getFieldWithDefault(msg, 2, 0),
-        commission:
-          (f = msg.getCommission()) && proto.forge_abi.BigUint.toObject(includeInstance, f),
+        commission: (f = msg.getCommission()) && proto.forge_abi.BigUint.toObject(includeInstance, f),
         commissionRate: jspb.Message.getFieldWithDefault(msg, 4, 0),
         revokeCommission: jspb.Message.getFieldWithDefault(msg, 5, 0),
       };
@@ -12119,11 +11775,7 @@ proto.forge_abi.TokenSwapConfig.prototype.setWithdrawInterval = function(value) 
  * @return {?proto.forge_abi.BigUint}
  */
 proto.forge_abi.TokenSwapConfig.prototype.getCommission = function() {
-  return /** @type{?proto.forge_abi.BigUint} */ (jspb.Message.getWrapperField(
-    this,
-    proto.forge_abi.BigUint,
-    3
-  ));
+  return /** @type{?proto.forge_abi.BigUint} */ (jspb.Message.getWrapperField(this, proto.forge_abi.BigUint, 3));
 };
 
 /** @param {?proto.forge_abi.BigUint|undefined} value */

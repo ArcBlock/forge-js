@@ -28,14 +28,7 @@ goog.exportSymbol('proto.forge_abi.UpdateValidatorTx', null, global);
  * @constructor
  */
 proto.forge_abi.UpdateValidatorTx = function(opt_data) {
-  jspb.Message.initialize(
-    this,
-    opt_data,
-    0,
-    -1,
-    proto.forge_abi.UpdateValidatorTx.repeatedFields_,
-    null
-  );
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.forge_abi.UpdateValidatorTx.repeatedFields_, null);
 };
 goog.inherits(proto.forge_abi.UpdateValidatorTx, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -75,11 +68,7 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
   proto.forge_abi.UpdateValidatorTx.toObject = function(includeInstance, msg) {
     var f,
       obj = {
-        candidatesList: jspb.Message.toObjectList(
-          msg.getCandidatesList(),
-          type_pb.Validator.toObject,
-          includeInstance
-        ),
+        candidatesList: jspb.Message.toObjectList(msg.getCandidatesList(), type_pb.Validator.toObject, includeInstance),
         data: (f = msg.getData()) && google_protobuf_any_pb.Any.toObject(includeInstance, f),
       };
 
@@ -185,13 +174,7 @@ proto.forge_abi.UpdateValidatorTx.prototype.setCandidatesList = function(value) 
  * @return {!proto.forge_abi.Validator}
  */
 proto.forge_abi.UpdateValidatorTx.prototype.addCandidates = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(
-    this,
-    1,
-    opt_value,
-    proto.forge_abi.Validator,
-    opt_index
-  );
+  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.forge_abi.Validator, opt_index);
 };
 
 proto.forge_abi.UpdateValidatorTx.prototype.clearCandidatesList = function() {
@@ -203,11 +186,7 @@ proto.forge_abi.UpdateValidatorTx.prototype.clearCandidatesList = function() {
  * @return {?proto.google.protobuf.Any}
  */
 proto.forge_abi.UpdateValidatorTx.prototype.getData = function() {
-  return /** @type{?proto.google.protobuf.Any} */ (jspb.Message.getWrapperField(
-    this,
-    google_protobuf_any_pb.Any,
-    15
-  ));
+  return /** @type{?proto.google.protobuf.Any} */ (jspb.Message.getWrapperField(this, google_protobuf_any_pb.Any, 15));
 };
 
 /** @param {?proto.google.protobuf.Any|undefined} value */

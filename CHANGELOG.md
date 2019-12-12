@@ -1,3 +1,20 @@
+## 1.0.15 (December 12, 2019)
+
+- chore: update docs
+- chore: add stub to declare node
+- chore: upgrade grpc-client with forge 1.0.2
+- chore: upgrade forge-proto with forge 1.0.2
+- chore: improve check user logic
+- chore: update docs
+- chore: add script to do forge-web powered restricted declare
+- chore: refactor authenticator.sign
+- fix: should check user also applies to api for browser
+- chore: make restricted declare work
+- Merge branch 'master' into feat/restricted-declare
+- chore: make restricted declare work
+- v1.0.14
+- feat: support restricted declare tx
+
 ## 1.0.14 (December 11, 2019)
 
 - fix: do not check did when a special target is specified in authPrincipal

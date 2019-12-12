@@ -160,11 +160,7 @@ proto.forge_abi.RefuelTx.prototype.setDate = function(value) {
  * @return {?proto.google.protobuf.Any}
  */
 proto.forge_abi.RefuelTx.prototype.getData = function() {
-  return /** @type{?proto.google.protobuf.Any} */ (jspb.Message.getWrapperField(
-    this,
-    google_protobuf_any_pb.Any,
-    15
-  ));
+  return /** @type{?proto.google.protobuf.Any} */ (jspb.Message.getWrapperField(this, google_protobuf_any_pb.Any, 15));
 };
 
 /** @param {?proto.google.protobuf.Any|undefined} value */

@@ -206,8 +206,7 @@ class AtomicSwapHandlers extends BaseHandler {
 
     // Shared middleware that ensure a valid swap id exists in the url
     const ensureSwap = async (req, res, next) => {
-      const traceId =
-        req.query.traceId || req.query[swapKey] || req.params.traceId || req.params[swapKey];
+      const traceId = req.query.traceId || req.query[swapKey] || req.params.traceId || req.params[swapKey];
 
       if (!traceId) {
         return res.json({ error: 'Swap ID is required to start' });
@@ -234,10 +233,7 @@ class AtomicSwapHandlers extends BaseHandler {
       if (swap && traceId) {
         debug('swap.onUserSetup', { traceId, swap });
 
-        const { state } = await ForgeSDK.getSwapState(
-          { address: swap.address },
-          { conn: swap.demandChain }
-        );
+        const { state } = await ForgeSDK.getSwapState({ address: swap.address }, { conn: swap.demandChain });
 
         if (!state) {
           throw new Error('The swap address does not exist on demand chain');
@@ -310,239 +306,219 @@ class AtomicSwapHandlers extends BaseHandler {
     app.post(authPath, ensureWallet, ensureSignedRes, ensureSwap, ensureContext, onAuthResponse);
 
     // 6. Wallet: simple auth principal stub that used for wallet to pickup retrieve
-    app.get(
-      retrievePath,
-      ensureWallet,
-      ensureSignedRes,
-      ensureSwap,
-      ensureContext,
-      async (req, res) => {
-        const { locale, token, params, wallet } = req.context;
-        const { userDid, userPk } = params;
+    app.get(retrievePath, ensureWallet, ensureSignedRes, ensureSwap, ensureContext, async (req, res) => {
+      const { locale, token, params, wallet, store } = req.context;
+      const { userDid, userPk } = params;
 
-        debug('retrieve.sign.input', params, req.swap);
+      debug('retrieve.sign.input', params, req.swap);
 
-        try {
-          const authInfo = await this.authenticator.sign({
+      try {
+        const authInfo = await this.authenticator.sign({
+          context: {
             token,
             userDid,
             userPk,
-            claims: {
-              authPrincipal: () => ({
-                target: req.swap.demandUserAddress,
-                // TODO: add i18n for this message
-                description: 'Please provided the address to complete swap',
-              }),
-            },
+            sessionDid: store ? store.sessionDid : '',
             walletVersion: wallet.version,
             walletOS: wallet.os,
-            pathname: retrievePath,
-            extraParams: createExtraParams(locale, req.query),
-          });
+          },
+          claims: {
+            authPrincipal: () => ({
+              target: req.swap.demandUserAddress,
+              // TODO: add i18n for this message
+              description: 'Please provided the address to complete swap',
+            }),
+          },
+          pathname: retrievePath,
+          extraParams: createExtraParams(locale, req.query),
+        });
 
-          res.jsonp(authInfo);
-        } catch (err) {
-          res.json({ error: err.message });
-          onError({ stage: 'retrieve-response', err });
-        }
+        res.jsonp(authInfo);
+      } catch (err) {
+        res.json({ error: err.message });
+        onError({ stage: 'retrieve-response', err });
       }
-    );
+    });
 
     // 7. Wallet: setup seller swap and start retriever
-    app.post(
-      retrievePath,
-      ensureWallet,
-      ensureSignedRes,
-      ensureSwap,
-      ensureContext,
-      async (req, res) => {
-        const { locale, token, params } = req.context;
-        const { traceId } = params;
+    app.post(retrievePath, ensureWallet, ensureSignedRes, ensureSwap, ensureContext, async (req, res) => {
+      const { locale, token, params } = req.context;
+      const { traceId } = params;
 
-        // FIXME: enforceTimestamp is turned off for now
-        const { userDid, userPk, claims: claimResponse } = await this.authenticator.verify(
-          params,
-          locale,
-          false
-        );
-        debug('retrieve.verify', { userDid, token, claims: claimResponse, swap: req.swap });
+      // FIXME: enforceTimestamp is turned off for now
+      const { userDid, userPk, claims: claimResponse } = await this.authenticator.verify(params, locale, false);
+      debug('retrieve.verify', { userDid, token, claims: claimResponse, swap: req.swap });
 
-        const result = await checkUser({ context: req.context, params, userDid, userPk });
-        if (result) {
-          res.json({ error: result });
-          return;
-        }
+      const result = await checkUser({ context: req.context, params, userDid, userPk });
+      if (result) {
+        res.json({ error: result });
+        return;
+      }
 
-        if (req.swap.offerSetupHash && req.swap.offerSwapAddress) {
-          res.json({ swapAddress: req.swap.offerSwapAddress });
-          return;
-        }
+      if (req.swap.offerSetupHash && req.swap.offerSwapAddress) {
+        res.json({ swapAddress: req.swap.offerSwapAddress });
+        return;
+      }
 
-        // Prevent duplicate setup_swap in case user is retrying
-        if (req.swap.status === 'seller_setup') {
-          res.json({ error: 'A retrieve is in progress, please retry if that retrieve failed' });
-          return;
-        }
-        await this.swapStorage.update(traceId, { status: 'seller_setup' });
+      // Prevent duplicate setup_swap in case user is retrying
+      if (req.swap.status === 'seller_setup') {
+        res.json({ error: 'A retrieve is in progress, please retry if that retrieve failed' });
+        return;
+      }
+      await this.swapStorage.update(traceId, { status: 'seller_setup' });
 
-        // Prevent retrieve on edge cases
-        if (req.swap.status === 'user_retrieve') {
-          res.json({ error: 'You have already retrieved this swap' });
-          return;
-        }
-        if (req.swap.status === 'both_retrieve') {
-          res.json({ error: 'The swap already completed successfully' });
-          return;
-        }
-        if (req.swap.status === 'user_revoke') {
-          res.json({ error: 'You have revoked the swap, so retrieve is forbidden' });
-          return;
-        }
-        if (req.swap.status === 'seller_revoke') {
-          res.json({ error: 'Seller have revoked the swap, so retrieve is forbidden' });
-          return;
-        }
-        if (req.swap.status === 'both_revoke') {
-          res.json({ error: 'Both have revoked the swap, so retrieve is forbidden' });
-          return;
-        }
+      // Prevent retrieve on edge cases
+      if (req.swap.status === 'user_retrieve') {
+        res.json({ error: 'You have already retrieved this swap' });
+        return;
+      }
+      if (req.swap.status === 'both_retrieve') {
+        res.json({ error: 'The swap already completed successfully' });
+        return;
+      }
+      if (req.swap.status === 'user_revoke') {
+        res.json({ error: 'You have revoked the swap, so retrieve is forbidden' });
+        return;
+      }
+      if (req.swap.status === 'seller_revoke') {
+        res.json({ error: 'Seller have revoked the swap, so retrieve is forbidden' });
+        return;
+      }
+      if (req.swap.status === 'both_revoke') {
+        res.json({ error: 'Both have revoked the swap, so retrieve is forbidden' });
+        return;
+      }
 
-        try {
-          const doSetup = async () =>
-            // eslint-disable-next-line consistent-return
-            new Promise(async (resolve, reject) => {
-              const { state } = await ForgeSDK.getSwapState(
-                { address: req.swap.demandSwapAddress },
-                { conn: req.swap.demandChainId }
+      try {
+        const doSetup = async () =>
+          // eslint-disable-next-line consistent-return
+          new Promise(async (resolve, reject) => {
+            const { state } = await ForgeSDK.getSwapState(
+              { address: req.swap.demandSwapAddress },
+              { conn: req.swap.demandChainId }
+            );
+
+            try {
+              verifyUserSwap(state, req.swap);
+            } catch (err) {
+              return reject(err);
+            }
+
+            // Then setup swap for user
+            try {
+              const [hash, address] = await ForgeSDK.setupSwap(
+                {
+                  token: await ForgeSDK.fromUnitToToken(req.swap.offerToken, {
+                    conn: req.swap.offerChainId,
+                  }),
+                  assets: req.swap.offerAssets,
+                  receiver: req.swap.demandUserAddress,
+                  hashlock: `0x${state.hashlock}`,
+                  locktime: this.offerLocktime,
+                  wallet: ForgeSDK.Wallet.fromJSON(this.authenticator.wallet),
+                },
+                { conn: req.swap.offerChainId }
               );
 
-              try {
-                verifyUserSwap(state, req.swap);
-              } catch (err) {
-                return reject(err);
-              }
+              // Check tx status
+              const verifier = createVerifier({
+                hash,
+                chainHost: req.swap.offerChainHost,
+                chainId: req.swap.offerChainId,
+              });
 
-              // Then setup swap for user
-              try {
-                const [hash, address] = await ForgeSDK.setupSwap(
-                  {
-                    token: await ForgeSDK.fromUnitToToken(req.swap.offerToken, {
-                      conn: req.swap.offerChainId,
-                    }),
-                    assets: req.swap.offerAssets,
-                    receiver: req.swap.demandUserAddress,
-                    hashlock: `0x${state.hashlock}`,
-                    locktime: this.offerLocktime,
-                    wallet: ForgeSDK.Wallet.fromJSON(this.authenticator.wallet),
-                  },
-                  { conn: req.swap.offerChainId }
-                );
-
-                // Check tx status
-                const verifier = createVerifier({
-                  hash,
-                  chainHost: req.swap.offerChainHost,
-                  chainId: req.swap.offerChainId,
-                });
-
-                verifier.on('error', err => {
-                  const error = new Error(
-                    `SetupSwap tx verify failed: ${hash}: ${JSON.stringify(err)}`
-                  );
-                  this.swapStorage.update(traceId, { status: 'user_setup' });
-                  reject(error);
-                });
-                verifier.on('done', async () => {
-                  debug('swap.setup.done.both', { traceId, hash });
-                  // eslint-disable-next-line no-shadow
-                  const { state } = await ForgeSDK.getSwapState(
-                    { address },
-                    { conn: req.swap.offerChainId }
-                  );
-                  this.swapStorage.update(traceId, { status: 'both_setup' });
-                  resolve({ hash, locktime: state.locktime, address });
-                });
-              } catch (err) {
-                debug('swap.setup.error', { traceId, errors: err.errors });
+              verifier.on('error', err => {
+                const error = new Error(`SetupSwap tx verify failed: ${hash}: ${JSON.stringify(err)}`);
                 this.swapStorage.update(traceId, { status: 'user_setup' });
-                reject(err);
-              }
-            });
-
-          const { hash, locktime, address } = await doSetup();
-          await this.swapStorage.update(traceId, {
-            status: 'both_setup',
-            offerLocktime: locktime,
-            offerSetupHash: hash,
-            offerSwapAddress: address,
-          });
-
-          res.json({ swapAddress: address });
-
-          const retriever = createRetriever({
-            traceId,
-            offerSwapAddress: address,
-            offerUserAddress: req.swap.offerUserAddress,
-            demandSwapAddress: req.swap.demandSwapAddress,
-            demandUserAddress: req.swap.demandUserAddress,
-            offerChainHost: req.swap.offerChainHost,
-            offerChainId: req.swap.offerChainId,
-            demandChainHost: req.swap.demandChainHost,
-            demandChainId: req.swap.demandChainId,
-            retrieveWallet: this.authenticator.wallet,
-            checkInterval: 2000,
-            autoStart: true,
-            maxRetry: 60,
-          });
-
-          retriever.on('error', async args => {
-            console.error('swap.retrieve.error', args);
-            try {
-              await this.swapStorage.update(traceId, { status: 'error' });
-            } catch (err) {
-              // Do something
-            }
-          });
-
-          // eslint-disable-next-line no-shadow
-          retriever.on('retrieved.user', async ({ hash }) => {
-            try {
-              await this.swapStorage.update(traceId, {
-                status: 'user_retrieve',
-                offerRetrieveHash: hash,
+                reject(error);
+              });
+              verifier.on('done', async () => {
+                debug('swap.setup.done.both', { traceId, hash });
+                // eslint-disable-next-line no-shadow
+                const { state } = await ForgeSDK.getSwapState({ address }, { conn: req.swap.offerChainId });
+                this.swapStorage.update(traceId, { status: 'both_setup' });
+                resolve({ hash, locktime: state.locktime, address });
               });
             } catch (err) {
-              // Do something
+              debug('swap.setup.error', { traceId, errors: err.errors });
+              this.swapStorage.update(traceId, { status: 'user_setup' });
+              reject(err);
             }
           });
 
-          // eslint-disable-next-line no-shadow
-          retriever.on('retrieved.both', async ({ hash }) => {
-            try {
-              await this.swapStorage.update(traceId, {
-                status: 'both_retrieve',
-                demandRetrieveHash: hash,
-              });
-            } catch (err) {
-              // Do something
-            }
-          });
-        } catch (err) {
-          let errorMessage = err.message;
+        const { hash, locktime, address } = await doSetup();
+        await this.swapStorage.update(traceId, {
+          status: 'both_setup',
+          offerLocktime: locktime,
+          offerSetupHash: hash,
+          offerSwapAddress: address,
+        });
 
-          if (Array.isArray(err.errors)) {
-            console.error('swap.setup.error', JSON.stringify(err.errors));
-            errorMessage = err.errors.map(x => x.message).join(';');
-          } else {
-            console.error('swap.setup.error', err);
+        res.json({ swapAddress: address });
+
+        const retriever = createRetriever({
+          traceId,
+          offerSwapAddress: address,
+          offerUserAddress: req.swap.offerUserAddress,
+          demandSwapAddress: req.swap.demandSwapAddress,
+          demandUserAddress: req.swap.demandUserAddress,
+          offerChainHost: req.swap.offerChainHost,
+          offerChainId: req.swap.offerChainId,
+          demandChainHost: req.swap.demandChainHost,
+          demandChainId: req.swap.demandChainId,
+          retrieveWallet: this.authenticator.wallet,
+          checkInterval: 2000,
+          autoStart: true,
+          maxRetry: 60,
+        });
+
+        retriever.on('error', async args => {
+          console.error('swap.retrieve.error', args);
+          try {
+            await this.swapStorage.update(traceId, { status: 'error' });
+          } catch (err) {
+            // Do something
           }
+        });
 
-          res.json({ error: errorMessage });
-          await this.swapStorage.update(traceId, { status: 'error', errorMessage });
-          onError({ stage: 'offer-setup-swap', err });
+        // eslint-disable-next-line no-shadow
+        retriever.on('retrieved.user', async ({ hash }) => {
+          try {
+            await this.swapStorage.update(traceId, {
+              status: 'user_retrieve',
+              offerRetrieveHash: hash,
+            });
+          } catch (err) {
+            // Do something
+          }
+        });
+
+        // eslint-disable-next-line no-shadow
+        retriever.on('retrieved.both', async ({ hash }) => {
+          try {
+            await this.swapStorage.update(traceId, {
+              status: 'both_retrieve',
+              demandRetrieveHash: hash,
+            });
+          } catch (err) {
+            // Do something
+          }
+        });
+      } catch (err) {
+        let errorMessage = err.message;
+
+        if (Array.isArray(err.errors)) {
+          console.error('swap.setup.error', JSON.stringify(err.errors));
+          errorMessage = err.errors.map(x => x.message).join(';');
+        } else {
+          console.error('swap.setup.error', err);
         }
+
+        res.json({ error: errorMessage });
+        await this.swapStorage.update(traceId, { status: 'error', errorMessage });
+        onError({ stage: 'offer-setup-swap', err });
       }
-    );
+    });
   }
 }
 

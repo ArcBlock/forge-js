@@ -24,9 +24,12 @@ class AgentAuthenticator extends WalletAuthenticator {
    *
    * @method
    * @param {object} params
-   * @param {string} params.token - action token
-   * @param {string} params.userDid - decoded from req.query, base58
-   * @param {string} params.userPk - decoded from req.query, base58
+   * @param {string} params.context.token - action token
+   * @param {string} params.context.userDid - decoded from req.query, base58
+   * @param {string} params.context.userPk - decoded from req.query, base58
+   * @param {string} params.context.walletOS - wallet os from user-agent
+   * @param {string} params.context.walletVersion - wallet version from user-agent
+   * @param {string} params.context.sessionDid - did of logged-in user
    * @param {object} params.claims - info required by application to complete the auth
    * @param {object} params.appInfo - which application authorized me to sign
    * @param {object} params.authorizer - application pk and did
@@ -36,8 +39,7 @@ class AgentAuthenticator extends WalletAuthenticator {
    */
   async sign({
     token = '',
-    userDid,
-    userPk,
+    context,
     claims,
     appInfo,
     authorizer,
@@ -49,7 +51,7 @@ class AgentAuthenticator extends WalletAuthenticator {
     this._verifyAuthorizer(authorizer);
     this._validateAppInfo(appInfo, { address: authorizer.did });
 
-    const claimsInfo = await this.genRequestedClaims({ claims, userDid, userPk, extraParams });
+    const claimsInfo = await this.genRequestedClaims({ claims, context, extraParams });
     // FIXME: this maybe buggy if user provided multiple claims
     const tmp = claimsInfo.find(x => this._isValidChainInfo(x.chainInfo));
 
@@ -64,9 +66,7 @@ class AgentAuthenticator extends WalletAuthenticator {
         delete x.chainInfo;
         return x;
       }),
-      url: `${this.baseUrl}${pathname}?${qs.stringify(
-        Object.assign({ [this.tokenKey]: token }, extraParams)
-      )}`,
+      url: `${this.baseUrl}${pathname}?${qs.stringify(Object.assign({ [this.tokenKey]: token }, extraParams))}`,
     };
 
     const signed = {
@@ -75,7 +75,7 @@ class AgentAuthenticator extends WalletAuthenticator {
       authInfo: Jwt.sign(this.wallet.address, this.wallet.sk, payload),
     };
 
-    debug('responseAuth.sign', { token, userDid, extraParams, payload, signed });
+    debug('responseAuth.sign', { context, extraParams, payload, signed });
     return signed;
   }
 

@@ -111,11 +111,7 @@ const decode = (token, payloadOnly = true) => {
  * @param {string} [options.signerKey='iss'] - which field should be used to pick the signer
  * @returns {boolean}
  */
-const verify = (
-  token,
-  signerPk,
-  { tolerance = 5, enforceTimestamp = true, signerKey = 'iss' } = {}
-) => {
+const verify = (token, signerPk, { tolerance = 5, enforceTimestamp = true, signerKey = 'iss' } = {}) => {
   try {
     const [headerB64, bodyB64] = token.split('.');
     const { header, body, signature } = decode(token, false);
