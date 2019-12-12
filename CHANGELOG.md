@@ -1,3 +1,9 @@
+## 1.0.14 (December 11, 2019)
+
+- fix: do not check did when a special target is specified in authPrincipal
+- fix: seller_setup status is not reset after succeed
+- update readme
+
 ## 1.0.13 (December 10, 2019)
 
 - chore: add test case for event client and event server
