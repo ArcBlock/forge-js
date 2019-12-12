@@ -165,15 +165,18 @@ module.exports = function createHandlers({
   // For web app
   const generateActionToken = async (req, res) => {
     try {
+      const sessionDid = get(req, sessionDidKey);
       const token = sha3(tokenGenerator({ req, action, pathname }))
         .replace(/^0x/, '')
         .slice(0, 8);
 
-      // Always set currentStep to 0 when generate a new token
       await tokenStorage.create(token, STATUS_CREATED);
-      await tokenStorage.update(token, { currentStep: 0 });
 
-      const sessionDid = get(req, sessionDidKey);
+      // Always set currentStep to 0 when generate a new token
+      // Since the did of logged in user may be different of the auth did
+      // We should store the sessionDid in token storage for possible usage
+      await tokenStorage.update(token, { currentStep: 0, sessionDid });
+
       const checksum = sessionDid ? getDidCheckSum(sessionDid) : '';
       debug('generate token', { action, pathname, token, sessionDid, checksum });
 
@@ -223,6 +226,7 @@ module.exports = function createHandlers({
             req,
             action,
             token,
+            sessionDid: store.sessionDid,
             userDid: store.did,
             extraParams: createExtraParams(locale, req.query),
           });
@@ -313,11 +317,14 @@ module.exports = function createHandlers({
       res.jsonp(
         await authenticator.sign(
           Object.assign(signParams, {
-            token,
-            userDid,
-            userPk,
-            walletVersion: wallet.version,
-            walletOS: wallet.os,
+            context: {
+              token,
+              userDid,
+              userPk,
+              sessionDid: store ? store.sessionDid : '',
+              walletVersion: wallet.version,
+              walletOS: wallet.os,
+            },
             claims: store ? steps[store.currentStep] : steps[0],
             pathname: getPathName(pathname, req),
             extraParams: createExtraParams(locale, req.query),
@@ -355,9 +362,10 @@ module.exports = function createHandlers({
         userDid,
         userPk,
         token,
-        claims: claimResponse,
+        sessionDid: store ? store.sessionDid : '',
         walletVersion: wallet.version,
         walletOS: wallet.os,
+        claims: claimResponse,
         storage: tokenStorage,
         extraParams: createExtraParams(locale, req.query),
       };
@@ -387,11 +395,14 @@ module.exports = function createHandlers({
           try {
             const nextSignedClaim = await authenticator.sign(
               Object.assign(signParams, {
-                token,
-                userDid,
-                userPk,
-                walletVersion: wallet.version,
-                walletOS: wallet.os,
+                context: {
+                  token,
+                  userDid,
+                  userPk,
+                  sessionDid: store ? store.sessionDid : '',
+                  walletVersion: wallet.version,
+                  walletOS: wallet.os,
+                },
                 claims: steps[nextStep],
                 pathname: getPathName(pathname, req),
                 extraParams: createExtraParams(locale, req.query),

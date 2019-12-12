@@ -57,9 +57,11 @@ describe('#AgentAuthenticator', () => {
     });
 
     const signed = await auth.sign({
-      token: '123',
-      userPk,
-      userDid,
+      context: {
+        token: '123',
+        userPk,
+        userDid,
+      },
       claims,
       appInfo: {
         name: 'ABT Wallet Demo',

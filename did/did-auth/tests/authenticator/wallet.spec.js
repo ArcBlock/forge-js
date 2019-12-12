@@ -117,7 +117,7 @@ describe('#WalletAuthenticator', () => {
       }),
     };
 
-    const signed = await auth.sign({ token: '123', userPk, userDid, claims });
+    const signed = await auth.sign({ context: { token: '123', userPk, userDid }, claims });
     expect(signed.appPk).toEqual(toBase58(wallet.pk));
     expect(Jwt.verify(signed.authInfo, wallet.pk)).toBeTruthy();
   });
@@ -134,7 +134,7 @@ describe('#WalletAuthenticator', () => {
       }),
     };
 
-    const signed = await auth.sign({ token: '123', userPk, userDid, claims });
+    const signed = await auth.sign({ context: { token: '123', userPk, userDid }, claims });
     const clientSigned = { userPk: signed.appPk, userInfo: signed.authInfo, token: '123' };
     expect(await auth.verify(clientSigned)).toBeTruthy();
   });
