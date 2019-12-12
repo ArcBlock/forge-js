@@ -34,6 +34,10 @@ const errors = {
     en: 'userPk is required to start auth',
     zh: 'userPk 参数缺失',
   },
+  authClaim: {
+    en: 'authPrincipal claim is not configured correctly',
+    zh: 'authPrincipal 声明配置不正确',
+  },
 };
 
 const STATUS_CREATED = 'created';
@@ -91,8 +95,6 @@ module.exports = function createHandlers({
     console.warn('Setting authPrincipal in claims object is not recommended, and may break things');
   }
 
-  let shouldCheckUser = true;
-
   // Prepend auth principal claim by default
   if (authPrincipal) {
     let target = '';
@@ -123,10 +125,6 @@ module.exports = function createHandlers({
       if (authenticator._isValidChainInfo(authPrincipal)) {
         chainInfo = authPrincipal;
       }
-    }
-
-    if (target || (targetType && targetType.role)) {
-      shouldCheckUser = false;
     }
 
     steps.unshift({
@@ -196,7 +194,7 @@ module.exports = function createHandlers({
   // For web app
   const checkActionToken = async (req, res) => {
     try {
-      const { locale, token, store } = req.context;
+      const { locale, token, store, shouldCheckUser } = req.context;
       if (!token) {
         res.status(400).json({ error: errors.tokenMissing[locale] });
         return;
@@ -264,15 +262,11 @@ module.exports = function createHandlers({
 
   // Only check userDid and userPk if we have done auth principal
   const checkUser = async ({ context, params, userDid, userPk }) => {
-    if (shouldCheckUser === false) {
-      return false;
-    }
-
-    const { locale, token, isAuthPrincipalStep } = context;
+    const { locale, token, shouldCheckUser } = context;
     const { [checksumKey]: checksum } = params;
 
     // Only check userDid and userPk if we have done auth principal
-    if (isAuthPrincipalStep === false) {
+    if (shouldCheckUser) {
       if (!userDid) {
         return errors.didMissing[locale];
       }
@@ -305,10 +299,6 @@ module.exports = function createHandlers({
     }
 
     try {
-      if (store && store.status === STATUS_FORBIDDEN) {
-        return res.json({ error: errors.didMismatch[locale] });
-      }
-
       if (store && store.status !== STATUS_SCANNED) {
         await tokenStorage.update(token, { did: userDid, status: STATUS_SCANNED });
       }
@@ -432,9 +422,30 @@ module.exports = function createHandlers({
     const token = params[tokenKey];
     const locale = getLocale(req);
     const store = token ? await tokenStorage.read(token) : null;
-    const isAuthPrincipalStep = store ? store.currentStep === 0 : false;
 
-    req.context = { locale, token, wallet, params, store, isAuthPrincipalStep };
+    // If we are doing auth principal, do not check user DID match here
+    // Otherwise we need to make sure user DID does match
+    // But if we are specifying another DID, just ignore the check
+    let shouldCheckUser = store ? !steps[store.currentStep].authPrincipal : true;
+    try {
+      const claim = await authenticator.getClaimInfo({
+        claim: steps[0].authPrincipal,
+        context: { sessionDid: store.sessionDid },
+        extraParams: {},
+      });
+
+      if (!claim) {
+        return res.json({ error: errors.authClaim[locale] });
+      }
+
+      if (claim.target || (claim.targetType && claim.targetType.role)) {
+        shouldCheckUser = false;
+      }
+    } catch (err) {
+      // Do nothing
+    }
+
+    req.context = { locale, token, wallet, params, store, shouldCheckUser };
     return next();
   };
 
