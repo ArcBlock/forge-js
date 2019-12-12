@@ -37,8 +37,6 @@ const sk = '<YOUR MODERATOR SK HERE>';
       wallet: issuer,
     });
 
-    console.log(tx1, tx2);
-
     const hash = await client.sendDeclareTx({ tx: tx2, wallet: issuer });
     console.log('user', `${endpoint}/node/explorer/accounts/${user.toAddress()}`);
     console.log('tx', `${endpoint}/node/explorer/txs/${hash}`);
