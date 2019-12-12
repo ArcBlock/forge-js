@@ -1,4 +1,4 @@
-// Auto generated code (2019-12-09T03:09:15.832Z), DO NOT EDIT
+// Auto generated code (2019-12-12T08:10:28.319Z), DO NOT EDIT
 const typePb = require('./lib/type_pb.js');
 const enumPb = require('./lib/enum_pb.js');
 const revokeDelegateTxPb = require('./lib/revoke_delegate_tx_pb.js');

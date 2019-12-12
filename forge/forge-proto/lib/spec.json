@@ -179,11 +179,17 @@
             },
             "wallet": {
               "type": "WalletInfo",
-              "id": 2
+              "id": 2,
+              "options": {
+                "deprecated": true
+              }
             },
             "token": {
               "type": "string",
-              "id": 3
+              "id": 3,
+              "options": {
+                "deprecated": true
+              }
             },
             "commit": {
               "type": "bool",
@@ -281,6 +287,10 @@
             "validator": {
               "type": "bool",
               "id": 1
+            },
+            "issuer": {
+              "type": "string",
+              "id": 2
             }
           }
         },
@@ -293,6 +303,10 @@
             "wallet": {
               "type": "WalletInfo",
               "id": 3
+            },
+            "tx": {
+              "type": "Transaction",
+              "id": 4
             }
           }
         },
