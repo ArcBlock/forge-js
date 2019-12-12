@@ -70,17 +70,20 @@ Sign a auth response that returned to wallet: tell the wallet the appInfo/chainI
 **Overrides**: [`sign`](#WalletAuthenticator+sign)  
 **Returns**: `object` - { appPk, authInfo }  
 
-| Param                   | Type     | Description                                                 |
-| ----------------------- | -------- | ----------------------------------------------------------- |
-| params                  | `object` |                                                             |
-| params.token            | `string` | action token                                                |
-| params.userDid          | `string` | decoded from req.query, base58                              |
-| params.userPk           | `string` | decoded from req.query, base58                              |
-| params.claims           | `object` | info required by application to complete the auth           |
-| params.appInfo          | `object` | which application authorized me to sign                     |
-| params.authorizer       | `object` | application pk and did                                      |
-| params.verifiableClaims | `object` | what did the application authorized me to request from user |
-| params.extraParams      | `object` | extra query params and locale                               |
+| Param                        | Type     | Description                                                 |
+| ---------------------------- | -------- | ----------------------------------------------------------- |
+| params                       | `object` |                                                             |
+| params.context.token         | `string` | action token                                                |
+| params.context.userDid       | `string` | decoded from req.query, base58                              |
+| params.context.userPk        | `string` | decoded from req.query, base58                              |
+| params.context.walletOS      | `string` | wallet os from user-agent                                   |
+| params.context.walletVersion | `string` | wallet version from user-agent                              |
+| params.context.sessionDid    | `string` | did of logged-in user                                       |
+| params.claims                | `object` | info required by application to complete the auth           |
+| params.appInfo               | `object` | which application authorized me to sign                     |
+| params.authorizer            | `object` | application pk and did                                      |
+| params.verifiableClaims      | `object` | what did the application authorized me to request from user |
+| params.extraParams           | `object` | extra query params and locale                               |
 
 ### agentAuthenticator.uri(params) ⇒ `string`
 
@@ -267,16 +270,17 @@ Sign a auth response that returned to wallet: tell the wallet the appInfo/chainI
 **Kind**: instance method of [`WalletAuthenticator`](#WalletAuthenticator)  
 **Returns**: `object` - { appPk, authInfo }  
 
-| Param                | Type     | Description                                       |
-| -------------------- | -------- | ------------------------------------------------- |
-| params               | `object` |                                                   |
-| params.token         | `string` | action token                                      |
-| params.userDid       | `string` | decoded from req.query, base58                    |
-| params.userPk        | `string` | decoded from req.query, base58                    |
-| params.walletOS      | `string` | wallet os from user-agent                         |
-| params.walletVersion | `string` | wallet version from user-agent                    |
-| params.claims        | `object` | info required by application to complete the auth |
-| params.extraParams   | `object` | extra query params and locale                     |
+| Param                        | Type     | Description                                       |
+| ---------------------------- | -------- | ------------------------------------------------- |
+| params                       | `object` |                                                   |
+| params.claims                | `object` | info required by application to complete the auth |
+| params.extraParams           | `object` | extra query params and locale                     |
+| params.context.token         | `string` | action token                                      |
+| params.context.userDid       | `string` | decoded from req.query, base58                    |
+| params.context.userPk        | `string` | decoded from req.query, base58                    |
+| params.context.walletOS      | `string` | wallet os from user-agent                         |
+| params.context.walletVersion | `string` | wallet version from user-agent                    |
+| params.context.sessionDid    | `string` | did of logged-in user                             |
 
 ### walletAuthenticator.verify(data, [locale], [enforceTimestamp]) ⇒
 
