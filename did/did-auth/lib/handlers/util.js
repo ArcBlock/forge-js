@@ -207,12 +207,14 @@ module.exports = function createHandlers({
 
         // Force client logout if the did of session user and wallet user mismatch
         // Set token status to forbidden, so that wallet auth request will be rejected
-        const sessionDid = get(req, sessionDidKey);
-        if (sessionDid && store.did && sessionDid !== store.did) {
-          debug('did mismatch', { sessionDid, store });
-          res.status(403).json({ error: errors.didMismatch[locale] });
-          await tokenStorage.update(token, { status: STATUS_FORBIDDEN });
-          return;
+        if (shouldCheckUser) {
+          const sessionDid = get(req, sessionDidKey);
+          if (sessionDid && store.did && sessionDid !== store.did) {
+            debug('did mismatch', { sessionDid, store });
+            res.status(403).json({ error: errors.didMismatch[locale] });
+            await tokenStorage.update(token, { status: STATUS_FORBIDDEN });
+            return;
+          }
         }
 
         if (store.status === STATUS_SUCCEED) {
