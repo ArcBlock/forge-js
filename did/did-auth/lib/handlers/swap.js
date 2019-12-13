@@ -330,7 +330,7 @@ class AtomicSwapHandlers extends BaseHandler {
             }),
           },
           pathname: retrievePath,
-          extraParams: createExtraParams(locale, req.query),
+          extraParams: createExtraParams(locale, params),
         });
 
         res.jsonp(authInfo);

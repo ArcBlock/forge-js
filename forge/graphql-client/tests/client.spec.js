@@ -11,7 +11,10 @@ describe('GraphQLClient', () => {
     expect(typeof GraphQLClient).toEqual('function');
   });
 
-  let client = new GraphQLClient('http://127.0.0.1:8214/api');
+  let client = new GraphQLClient('https://playground.network.arcblockio.cn/api');
+  if (process.env.CI) {
+    client = new GraphQLClient('https://zinc.abtnetwork.io/api');
+  }
   test('should have alias methods', () => {
     expect(typeof client.checkin).toEqual('function');
     expect(typeof client.transfer).toEqual('function');
@@ -57,15 +60,9 @@ describe('GraphQLClient', () => {
     expect(typeof type.deserializeBinary).toEqual('function');
   });
 
-  // client = new GraphQLClient('http://182.92.167.126:8210/api');
-  client = new GraphQLClient('https://zinc.abtnetwork.io/api');
-  client = new GraphQLClient('https://playground.network.arcblockio.cn/api');
   test('should support getBlock', async () => {
     try {
-      const res = await client.getBlock(
-        { height: 1000 },
-        { ignoreFields: ['block.invalidTxs', 'block.txs'] }
-      );
+      const res = await client.getBlock({ height: 1000 }, { ignoreFields: ['block.invalidTxs', 'block.txs'] });
       expect(res.code).toEqual('OK');
       expect(res.block.height).toEqual('1000');
     } catch (err) {
@@ -81,11 +78,19 @@ describe('GraphQLClient', () => {
     expect(typeof client.fromUnitToToken).toEqual('function');
     expect(typeof client.fromTokenToUnit).toEqual('function');
 
-    const amount = await client.fromUnitToToken('18000000000000000000');
-    expect(amount.toString()).toEqual('18');
+    if (process.env.CI) {
+      const amount = await client.fromUnitToToken('180000000000000000');
+      expect(amount.toString()).toEqual('18');
 
-    const amount2 = await client.fromTokenToUnit(0.18);
-    expect(amount2.toString()).toEqual('180000000000000000');
+      const amount2 = await client.fromTokenToUnit(0.18);
+      expect(amount2.toString()).toEqual('1800000000000000');
+    } else {
+      const amount = await client.fromUnitToToken('18000000000000000000');
+      expect(amount.toString()).toEqual('18');
+
+      const amount2 = await client.fromTokenToUnit(0.18);
+      expect(amount2.toString()).toEqual('180000000000000000');
+    }
   });
 
   const wallet = fromRandom();
@@ -148,11 +153,16 @@ describe('GraphQLClient', () => {
       const receiver = fromRandom();
 
       // 1. declare sender
-      await client.declare({ moniker: 'sender', wallet: sender });
+      let hash = await client.declare({ moniker: 'sender', wallet: sender });
+      expect(hash).toBeTruthy();
 
       // 2. declare receiver
-      await client.declare({ moniker: 'receiver', wallet: receiver });
-      await client.checkin({ wallet: receiver });
+      hash = await client.declare({ moniker: 'receiver', wallet: receiver });
+      expect(hash).toBeTruthy();
+      await sleep(3000);
+
+      hash = await client.checkin({ wallet: receiver });
+      expect(hash).toBeTruthy();
 
       // 3. create asset for sender
       const [, assetAddress] = await client.createAsset({
@@ -169,6 +179,12 @@ describe('GraphQLClient', () => {
         wallet: sender,
       });
       await sleep(3000);
+      expect(assetAddress).toBeTruthy();
+
+      const { state: senderState } = await client.getAccountState({ address: sender.toAddress() });
+      const { state: receiverState } = await client.getAccountState({ address: receiver.toAddress() });
+      expect(senderState).toBeTruthy();
+      expect(receiverState).toBeTruthy();
 
       // assemble exchange tx: multisig
       const exchange = {

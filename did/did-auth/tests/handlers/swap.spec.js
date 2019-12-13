@@ -22,7 +22,7 @@ const user = fromRandom();
 const app = fromRandom(type);
 const chainHost = 'http://47.104.23.85:8213/api';
 const chainId = 'playground';
-const assetChainHost = 'http://182.92.167.126:8210/api';
+const assetChainHost = 'http://182.92.167.126:8211/api';
 const assetChainId = 'play-asset-chain';
 const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
 
@@ -87,7 +87,7 @@ describe('#SwapHandlers', () => {
               demandAssets: [],
               demandToken,
               demandUserAddress: userDid, // 买家地址
-              demandLocktime: await ForgeSDK.toLocktime(57600, { conn: assetChainId }),
+              demandLocktime: await ForgeSDK.toLocktime(2400, { conn: assetChainId }),
             };
 
             const swap = await swapStorage.finalize(traceId, payload);
@@ -114,14 +114,8 @@ describe('#SwapHandlers', () => {
     // Declare account on-chain
     const hash1 = await ForgeSDK.declare({ moniker: 'user', wallet: user }, { conn: chainId });
     const hash2 = await ForgeSDK.declare({ moniker: 'user', wallet: user }, { conn: assetChainId });
-    const hash3 = await ForgeSDK.declare(
-      { moniker: 'application', wallet: app },
-      { conn: chainId }
-    );
-    const hash4 = await ForgeSDK.declare(
-      { moniker: 'application', wallet: app },
-      { conn: assetChainId }
-    );
+    const hash3 = await ForgeSDK.declare({ moniker: 'application', wallet: app }, { conn: chainId });
+    const hash4 = await ForgeSDK.declare({ moniker: 'application', wallet: app }, { conn: assetChainId });
     expect(hash1).toBeTruthy();
     expect(hash2).toBeTruthy();
     expect(hash3).toBeTruthy();
@@ -147,8 +141,7 @@ describe('#SwapHandlers', () => {
     expect(info.token).toBeTruthy();
     expect(info.url.indexOf(info.token) > 0).toBeTruthy();
 
-    const getTokenState = () =>
-      axios.get(`${server.url}/api/did/swap/status?_t_=${info.token}&traceId=${traceId}`);
+    const getTokenState = () => axios.get(`${server.url}/api/did/swap/status?_t_=${info.token}&traceId=${traceId}`);
     const getSwapState = () => swapStorage.read(traceId);
 
     // Parse auth url from wallet
@@ -293,9 +286,7 @@ describe('#SwapHandlers', () => {
           const { data: info9 } = res;
           const authInfo4 = Jwt.decode(info9.authInfo);
           expect(authInfo4.status).toEqual('error');
-          expect(authInfo4.errorMessage).toEqual(
-            'A retrieve is in progress, please retry if that retrieve failed'
-          );
+          expect(authInfo4.errorMessage).toEqual('A retrieve is in progress, please retry if that retrieve failed');
 
           resolve();
         });

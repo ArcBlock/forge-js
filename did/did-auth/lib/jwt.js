@@ -18,9 +18,10 @@ const { types, getSigner } = Mcrypto;
  * @param {string} signer - address string
  * @param {string} sk - hex encoded secret key
  * @param {object} [payload={}] - data to be included before signing
+ * @param {boolean} [doSign=true] - do we need to sign the payload or just return the content to be signed
  * @returns {string} hex encoded signature
  */
-const sign = (signer, sk, payload = {}) => {
+const sign = (signer, sk, payload = {}, doSign = true) => {
   if (isValid(signer) === false) {
     throw new Error('Cannot do sign with invalid signer');
   }
@@ -69,6 +70,11 @@ const sign = (signer, sk, payload = {}) => {
 
   const bodyB64 = toBase64(stringify(body));
   debug('sign.body', body);
+
+  // istanbul ignore if
+  if (!doSign) {
+    return `${headerB64}.${bodyB64}`;
+  }
 
   // make signature
   const msgHex = toHex(`${headerB64}.${bodyB64}`);

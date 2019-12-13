@@ -138,13 +138,13 @@ module.exports = function createHandlers({
     });
   }
 
-  const createExtraParams = (locale, query) =>
+  const createExtraParams = (locale, params) =>
     Object.assign(
       { locale, action },
-      Object.keys(query)
-        .filter(x => !['userDid', 'userPk', 'token'].includes(x))
+      Object.keys(params)
+        .filter(x => !['userDid', 'userInfo', 'userPk', 'token'].includes(x))
         .reduce((obj, x) => {
-          obj[x] = query[x];
+          obj[x] = params[x];
           return obj;
         }, {})
     );
@@ -194,7 +194,7 @@ module.exports = function createHandlers({
   // For web app
   const checkActionToken = async (req, res) => {
     try {
-      const { locale, token, store, shouldCheckUser } = req.context;
+      const { locale, token, store, params, shouldCheckUser } = req.context;
       if (!token) {
         res.status(400).json({ error: errors.tokenMissing[locale] });
         return;
@@ -226,7 +226,7 @@ module.exports = function createHandlers({
             token,
             sessionDid: store.sessionDid,
             userDid: store.did,
-            extraParams: createExtraParams(locale, req.query),
+            extraParams: createExtraParams(locale, params),
           });
         }
 
@@ -317,7 +317,7 @@ module.exports = function createHandlers({
             },
             claims: store ? steps[store.currentStep] : steps[0],
             pathname: getPathName(pathname, req),
-            extraParams: createExtraParams(locale, req.query),
+            extraParams: createExtraParams(locale, params),
           })
         )
       );
@@ -357,7 +357,7 @@ module.exports = function createHandlers({
         walletOS: wallet.os,
         claims: claimResponse,
         storage: tokenStorage,
-        extraParams: createExtraParams(locale, req.query),
+        extraParams: createExtraParams(locale, params),
       };
 
       if (token && store && store.status === STATUS_FORBIDDEN) {
@@ -395,7 +395,7 @@ module.exports = function createHandlers({
                 },
                 claims: steps[nextStep],
                 pathname: getPathName(pathname, req),
-                extraParams: createExtraParams(locale, req.query),
+                extraParams: createExtraParams(locale, params),
               })
             );
             return res.jsonp(nextSignedClaim);

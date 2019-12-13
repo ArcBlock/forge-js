@@ -1,3 +1,10 @@
+## 1.0.16 (December 13, 2019)
+
+- feat: Jwt.sign can return the `header.payload`
+- fix: test case of graphql-client
+- feat: pack all posible paramas into extraParams in did-auth
+- update readme
+
 ## 1.0.15 (December 12, 2019)
 
 - chore: update docs
