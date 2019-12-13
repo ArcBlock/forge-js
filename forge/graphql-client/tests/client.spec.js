@@ -11,7 +11,10 @@ describe('GraphQLClient', () => {
     expect(typeof GraphQLClient).toEqual('function');
   });
 
-  const client = new GraphQLClient('https://playground.network.arcblockio.cn/api');
+  let client = new GraphQLClient('https://playground.network.arcblockio.cn/api');
+  if (process.env.CI) {
+    client = new GraphQLClient('https://zinc.abtnetwork.io/api');
+  }
   test('should have alias methods', () => {
     expect(typeof client.checkin).toEqual('function');
     expect(typeof client.transfer).toEqual('function');
