@@ -21,6 +21,35 @@ const mapping = {
 };
 
 /**
+ * Make a type info complete
+ *
+ * @param {object} info - { pk, role, hash }
+ * @returns {object}
+ */
+const toCompleteType = info => {
+  const type = Object.assign(
+    {
+      pk: types.KeyType.ED25519,
+      role: types.RoleType.ROLE_ACCOUNT,
+      hash: types.HashType.SHA3,
+    },
+    info || {}
+  );
+
+  const sha2Roles = [
+    types.RoleType.ROLE_NODE,
+    types.RoleType.ROLE_VALIDATOR,
+    types.RoleType.ROLE_TETHER,
+    types.RoleType.ROLE_SWAP,
+  ];
+  if (sha2Roles.includes(type.role)) {
+    type.hash = types.HashType.SHA2;
+  }
+
+  return type;
+};
+
+/**
  * Gen DID from private key and type config
  *
  * Spec: https://github.com/ArcBlock/ABT-DID-Protocol#create-did
@@ -32,9 +61,10 @@ const mapping = {
  * @returns {string} DID string
  */
 const fromSecretKey = (sk, type) => {
-  const { pk = types.KeyType.ED25519 } = type || {};
-  const pub = getSigner(pk).getPublicKey(sk);
-  return fromPublicKey(pub.indexOf('0x') === 0 ? pub : `0x${pub}`, type);
+  const info = toCompleteType(type || {});
+  const pub = getSigner(info.pk).getPublicKey(sk);
+  debug('fromSecretKey', pub);
+  return fromPublicKey(pub.indexOf('0x') === 0 ? pub : `0x${pub}`, info);
 };
 
 /**
@@ -47,20 +77,21 @@ const fromSecretKey = (sk, type) => {
  * @returns {string} DID string
  */
 const fromPublicKey = (pk, type) => {
-  const { hash = types.HashType.SHA3 } = type || {};
-  const hashFn = getHasher(hash);
-  const pkHash = hashFn(pk);
-  return fromPublicKeyHash(pkHash, type);
+  const info = toCompleteType(type || {});
+  const hashFn = getHasher(info.hash);
+  const pkHash = hashFn(pk, 1);
+  debug('fromPublicKey', pkHash);
+  return fromPublicKeyHash(pkHash, info);
 };
 
 const fromPublicKeyHash = (buffer, type) => {
-  const { hash = types.HashType.SHA3 } = type || {};
+  const info = toCompleteType(type || {});
   const pkHash = stripHexPrefix(buffer).slice(0, 40); // 20 bytes
-  const hashFn = getHasher(hash);
-  const typeHex = fromTypeInfo(type);
+  const hashFn = getHasher(info.hash);
+  const typeHex = fromTypeInfo(info);
   const checksum = stripHexPrefix(hashFn(`0x${typeHex}${pkHash}`, 1)).slice(0, 8); // 4 bytes
   const didHash = `0x${typeHex}${pkHash}${checksum}`;
-  // debug('fromPublicKeyHash', { pkHash, typeHex, checksum, didHash });
+  debug('fromPublicKeyHash', { info, pkHash, typeHex, checksum, didHash });
 
   return toBase58(didHash);
 };
@@ -74,28 +105,16 @@ const fromPublicKeyHash = (buffer, type) => {
  * @param {enum} role - role type, {@see @arcblock/mcrypto#types}
  * @returns {string} DID string
  */
-const fromHash = (hash, role) => {
+const fromHash = (hash, role = types.RoleType.ROLE_ACCOUNT) => {
   const roleKeys = Object.keys(types.RoleType);
   const roleValues = Object.values(types.RoleType);
   if (roleValues.indexOf(role) === -1) {
     throw new Error(`Unsupported role type ${role} when gen ddi from hash`);
   }
 
-  const type = {
+  const type = toCompleteType({
     role: types.RoleType[roleKeys[roleValues.indexOf(role)]],
-    pk: types.KeyType.ED25519,
-    hash: types.HashType.SHA3,
-  };
-
-  const sha2Roles = [
-    types.RoleType.ROLE_NODE,
-    types.RoleType.ROLE_VALIDATOR,
-    types.RoleType.ROLE_TETHER,
-    types.RoleType.ROLE_SWAP,
-  ];
-  if (sha2Roles.includes(role)) {
-    type.hash = types.HashType.SHA2;
-  }
+  });
 
   // debug('fromHash', { hash, role, type });
   return fromPublicKeyHash(hash, type);
@@ -131,17 +150,14 @@ const isFromPublicKey = (did, pk) => {
  * @returns string
  */
 const fromTypeInfo = type => {
-  const {
-    role = types.RoleType.ROLE_ACCOUNT,
-    pk = types.KeyType.ED25519,
-    hash = types.HashType.SHA3,
-  } = type || {};
+  const info = toCompleteType(type || {});
 
-  const roleBits = toBits(role, 6);
-  const keyBits = toBits(pk, 5);
-  const hashBits = toBits(hash, 5);
+  const roleBits = toBits(info.role, 6);
+  const keyBits = toBits(info.pk, 5);
+  const hashBits = toBits(info.hash, 5);
   const infoBits = `${roleBits}${keyBits}${hashBits}`;
   const infoHex = stripHexPrefix(numberToHex(parseInt(infoBits, 2)));
+  debug('fromTypeInfo', info, roleBits, hashBits, infoBits, infoHex);
   return toStrictHex(infoHex, 4);
 };
 
@@ -223,6 +239,7 @@ module.exports = {
   toTypeInfo,
   toAddress,
   toDid,
+  toCompleteType,
   fromTypeInfo,
   isFromPublicKey,
   isValid,

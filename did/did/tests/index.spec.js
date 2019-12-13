@@ -103,12 +103,21 @@ describe('@arcblock/did', () => {
     expect(isFromPublicKey('abc', pk)).toEqual(false);
   });
 
-  test('should match elixir did test case', () => {
-    expect(
-      fromSecretKey(
-        '0x3E0F9A313300226D51E33D5D98A126E86396956122E97E32D31CEE2277380B83FF47B3022FA503EAA1E9FA4B20FA8B16694EA56096F3A2E9109714062B3486D9'
-      )
-    ).toEqual('z1ioGHFYiEemfLa3hQjk4JTwWTQPu1g2YxP');
+  test.only('should match elixir did test case', () => {
+    const sk1 = '0x3E0F9A313300226D51E33D5D98A126E86396956122E97E32D31CEE2277380B83FF47B3022FA503EAA1E9FA4B20FA8B16694EA56096F3A2E9109714062B3486D9'; // prettier-ignore
+    expect(fromSecretKey(sk1)).toEqual('z1ioGHFYiEemfLa3hQjk4JTwWTQPu1g2YxP');
+    expect(fromSecretKey(sk1, { role: types.RoleType.ROLE_NODE })).toEqual('z89nF4GRYvgw5mqk8NqVVC7NeZLWKbcbQY7V');
+    expect(fromSecretKey(sk1, { role: types.RoleType.ROLE_VALIDATOR })).toEqual('zyt2vg6n8424c9xdXLGj1g27finM77ZN5KQL');
+
+    const pk1 = '0xFF47B3022FA503EAA1E9FA4B20FA8B16694EA56096F3A2E9109714062B3486D9';
+    expect(fromPublicKey(pk1)).toEqual('z1ioGHFYiEemfLa3hQjk4JTwWTQPu1g2YxP');
+    expect(fromPublicKey(pk1, { role: types.RoleType.ROLE_NODE })).toEqual('z89nF4GRYvgw5mqk8NqVVC7NeZLWKbcbQY7V');
+    expect(fromPublicKey(pk1, { role: types.RoleType.ROLE_VALIDATOR })).toEqual('zyt2vg6n8424c9xdXLGj1g27finM77ZN5KQL');
+
+    // const hash1 = '0xD1B287B1ACB71A980568C99A3AB32A8ED1D9C1BB';
+    // expect(fromPublicKeyHash(hash1)).toEqual('z1ioGHFYiEemfLa3hQjk4JTwWTQPu1g2YxP');
+    // expect(fromPublicKeyHash(hash1, { role: types.RoleType.ROLE_NODE })).toEqual('z89nF4GRYvgw5mqk8NqVVC7NeZLWKbcbQY7V');
+    // expect(fromPublicKeyHash(hash1, { role: types.RoleType.ROLE_VALIDATOR })).toEqual('zyt2vg6n8424c9xdXLGj1g27finM77ZN5KQL');
 
     expect(
       fromSecretKey('0x26954E19E8781905E2CF91A18AE4F36A954C142176EE1BC27C2635520C49BC55', {
@@ -125,20 +134,12 @@ describe('@arcblock/did', () => {
 
 describe('toDid & toAddress', () => {
   test('should remove prefix', () => {
-    expect(toDid('did:abt:z1muQ3xqHQK2uiACHyChikobsiY5kLqtShA')).toEqual(
-      'did:abt:z1muQ3xqHQK2uiACHyChikobsiY5kLqtShA'
-    );
-    expect(toDid('z1muQ3xqHQK2uiACHyChikobsiY5kLqtShA')).toEqual(
-      'did:abt:z1muQ3xqHQK2uiACHyChikobsiY5kLqtShA'
-    );
+    expect(toDid('did:abt:z1muQ3xqHQK2uiACHyChikobsiY5kLqtShA')).toEqual('did:abt:z1muQ3xqHQK2uiACHyChikobsiY5kLqtShA');
+    expect(toDid('z1muQ3xqHQK2uiACHyChikobsiY5kLqtShA')).toEqual('did:abt:z1muQ3xqHQK2uiACHyChikobsiY5kLqtShA');
   });
 
   test('should prepend prefix', () => {
-    expect(toAddress('did:abt:z1muQ3xqHQK2uiACHyChikobsiY5kLqtShA')).toEqual(
-      'z1muQ3xqHQK2uiACHyChikobsiY5kLqtShA'
-    );
-    expect(toAddress('z1muQ3xqHQK2uiACHyChikobsiY5kLqtShA')).toEqual(
-      'z1muQ3xqHQK2uiACHyChikobsiY5kLqtShA'
-    );
+    expect(toAddress('did:abt:z1muQ3xqHQK2uiACHyChikobsiY5kLqtShA')).toEqual('z1muQ3xqHQK2uiACHyChikobsiY5kLqtShA');
+    expect(toAddress('z1muQ3xqHQK2uiACHyChikobsiY5kLqtShA')).toEqual('z1muQ3xqHQK2uiACHyChikobsiY5kLqtShA');
   });
 });
