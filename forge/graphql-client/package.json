@@ -28,7 +28,7 @@
     "lib"
   ],
   "dependencies": {
-    "@arcblock/client-extension": "^1.0.15",
+    "@arcblock/client-extension": "^1.0.16",
     "@arcblock/sdk-util": "^0.24.0",
     "blueimp-md5": "^2.10.0",
     "debug": "^4.1.1",
@@ -39,9 +39,9 @@
     "wolfy87-eventemitter": "^5.2.5"
   },
   "devDependencies": {
-    "@arcblock/did-util": "^1.0.15",
+    "@arcblock/did-util": "^1.0.16",
     "@arcblock/forge-util": "^1.0.13",
-    "@arcblock/forge-wallet": "^1.0.13",
+    "@arcblock/forge-wallet": "^1.0.16",
     "axios": "^0.19.0",
     "axios-mock-adapter": "^1.15.0",
     "babel-cli": "^6.26.0",
