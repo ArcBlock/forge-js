@@ -1,3 +1,11 @@
+## 1.0.17 (December 14, 2019)
+
+- update readme
+- update readme
+- v1.0.16
+- fix: did and crypto related issues when handling node/validator related workflow (#419)
+- update readme
+
 ## 1.0.16 (December 13, 2019)
 
 - feat: Jwt.sign can return the `header.payload`
