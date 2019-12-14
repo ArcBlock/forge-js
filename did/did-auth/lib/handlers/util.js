@@ -431,7 +431,7 @@ module.exports = function createHandlers({
       const claim = await authenticator.getClaimInfo({
         claim: steps[0].authPrincipal,
         context: { sessionDid: store.sessionDid },
-        extraParams: {},
+        extraParams: createExtraParams(locale, params),
       });
 
       if (!claim) {

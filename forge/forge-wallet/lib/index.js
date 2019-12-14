@@ -120,7 +120,7 @@ function Wallet(keyPair, type = defaultWalletType) {
       if (!keyPair.sk) {
         throw new Error('Cannot sign data without a secretKey');
       }
-      const hash = hasher(data);
+      const hash = hasher(data, 1);
       // console.log('sign.hash', hash.replace(/^0x/i, '').toUpperCase());
       return signer.sign(hash, keyPair.sk);
     },
@@ -128,7 +128,7 @@ function Wallet(keyPair, type = defaultWalletType) {
       if (!keyPair.pk) {
         throw new Error('Cannot verify data without a publicKey');
       }
-      const hash = hasher(data);
+      const hash = hasher(data, 1);
       // console.log('verify.hash', hash.replace(/^0x/i, '').toUpperCase());
       return signer.verify(hash, signature, keyPair.pk);
     },

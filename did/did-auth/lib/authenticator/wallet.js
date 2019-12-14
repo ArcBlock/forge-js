@@ -336,7 +336,6 @@ class WalletAuthenticator extends BaseAuthenticator {
       description: desc || 'Sign this message to continue.',
       typeUrl: type,
       method: 'sha3',
-      origin: toBase58(data),
       sig: '',
       chainInfo,
       meta,
