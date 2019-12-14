@@ -224,7 +224,7 @@ const isValid = did => {
   const bytes = toBytes(did);
   const bytesHex = toStrictHex(Buffer.from(bytes.slice(0, 22)).toString('hex'));
   const didChecksum = toStrictHex(Buffer.from(bytes.slice(22, 26)).toString('hex'));
-  const checksum = stripHexPrefix(hashFn(`0x${bytesHex}`)).slice(0, 8);
+  const checksum = stripHexPrefix(hashFn(`0x${bytesHex}`, 1)).slice(0, 8);
 
   return didChecksum === checksum;
 };
