@@ -2,7 +2,6 @@
 /* eslint-disable indent */
 /* eslint-disable object-curly-newline */
 const qs = require('querystring');
-const Mcrypto = require('@arcblock/mcrypto');
 const ForgeSDK = require('@arcblock/forge-sdk');
 const { toBase58 } = require('@arcblock/forge-util');
 const { fromAddress } = require('@arcblock/forge-wallet');
