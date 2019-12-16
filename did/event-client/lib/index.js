@@ -126,7 +126,7 @@ class EventClient {
       });
 
       if (this.connectionRetry >= this.options.maxConnectionRetry) {
-        console.log('connection retry reached');
+        debug('connection retry reached');
         return;
       }
 

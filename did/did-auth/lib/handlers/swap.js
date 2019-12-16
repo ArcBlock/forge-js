@@ -31,7 +31,6 @@ class AtomicSwapHandlers extends BaseHandler {
    * @param {string} [config.options.prefix='/api/swap'] - url prefix for this group endpoints
    * @param {string} [config.options.sessionDidKey='user.did'] - key path to extract session user did from request object
    * @param {string} [config.options.tokenKey='_t_'] - query param key for `token`
-   * @param {string} [config.options.checksumKey='_cs_'] - query param key for `checksum`
    * @param {boolean} [config.options.signedResponse=false] - whether should we return signed response
    */
   constructor({
@@ -97,7 +96,6 @@ class AtomicSwapHandlers extends BaseHandler {
         sessionDidKey: 'user.did',
         swapKey: 'traceId',
         tokenKey: '_t_',
-        checksumKey: '_cs_',
         signedResponse: true,
       },
       options
