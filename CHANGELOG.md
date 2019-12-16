@@ -1,3 +1,8 @@
+## 1.0.19 (December 16, 2019)
+
+- chore: remove console.log
+- update readme
+
 ## 1.0.18 (December 16, 2019)
 
 - fix: correct handling of multiple claim with same type in a batch
