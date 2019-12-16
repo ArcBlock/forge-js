@@ -347,7 +347,7 @@ module.exports = function createHandlers({
       }
 
       const cbParams = {
-        step: store ? store.currentStep : 0,
+        step: store ? store.currentStep : null,
         req,
         userDid,
         userPk,
@@ -369,12 +369,15 @@ module.exports = function createHandlers({
 
       if (token) {
         if (store) {
-          // Only return if we are walked through all steps
-          if (store.currentStep === steps.length - 1) {
-            // onAuth: send the tx/do the transfer, etc.
+          if (store.currentStep > 0 && store.currentStep < steps.length) {
+            // Call onAuth on each step, since we do not hold all results until complete
             const result = await onAuth(cbParams);
-            await tokenStorage.update(token, { status: STATUS_SUCCEED });
-            return res.json(Object.assign({}, result || {}));
+
+            // Only return if we are walked through all steps
+            if (store.currentStep === steps.length - 1) {
+              await tokenStorage.update(token, { status: STATUS_SUCCEED });
+              return res.json(Object.assign({}, result || {}));
+            }
           }
 
           // Move to next step: nextStep is persisted here to avoid an memory storage error
