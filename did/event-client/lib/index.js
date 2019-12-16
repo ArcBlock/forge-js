@@ -6,11 +6,13 @@ const WebSocket = require('isomorphic-ws');
 const debug = require('debug')(require('../package.json').name);
 
 class EventClient {
-  constructor(endpoint) {
+  constructor(endpoint, options = {}) {
     this.endpoint = endpoint;
     this.socket = null;
     this.subscriptions = {};
     this.channels = {};
+    this.options = Object.assign({ maxConnectionRetry: 4 }, options);
+    this.connectionRetry = 0;
   }
 
   subscribe(topic, token) {
@@ -122,6 +124,13 @@ class EventClient {
       Object.keys(this.subscriptions).forEach(token => {
         this.subscriptions[token].emit('error', err);
       });
+
+      if (this.connectionRetry >= this.options.maxConnectionRetry) {
+        console.log('connection retry reached');
+        return;
+      }
+
+      this.connectionRetry += 1;
       setTimeout(() => {
         this.socket.connect();
       }, 1000);
