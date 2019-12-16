@@ -214,7 +214,6 @@ class WalletAuthenticator extends BaseAuthenticator {
           [name, claim] = claims[x];
         }
 
-        console.log('getRequestedClaims', { key: x, name, claim });
         if (typeof this[name] === 'function') {
           return this[name]({ claim, context, extraParams });
         }
