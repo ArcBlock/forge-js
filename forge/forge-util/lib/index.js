@@ -64,8 +64,7 @@ const stripHexPrefix = str => {
  * @param {Object} object
  * @returns {Boolean}
  */
-const isBN = object =>
-  object instanceof BN || (object && object.constructor && object.constructor.name === 'BN');
+const isBN = object => object instanceof BN || (object && object.constructor && object.constructor.name === 'BN');
 
 /**
  * Returns true if object is BigNumber, otherwise false
@@ -76,8 +75,7 @@ const isBN = object =>
  * @param {Object} object
  * @returns {Boolean}
  */
-const isBigNumber = object =>
-  object && object.constructor && object.constructor.name === 'BigNumber';
+const isBigNumber = object => object && object.constructor && object.constructor.name === 'BigNumber';
 
 /**
  * Check if string is HEX, requires a 0x in front
@@ -218,7 +216,7 @@ const hexToNumber = value => {
 };
 
 /**
- * Converts value to it's hex representation
+ * Converts value to hex representation
  *
  * @public
  * @static
@@ -363,9 +361,7 @@ const numberToString = arg => {
     return arg.toString(10);
   }
 
-  throw new Error(
-    `while converting number to string, invalid number value '${arg}' type ${typeof arg}.`
-  );
+  throw new Error(`while converting number to string, invalid number value '${arg}' type ${typeof arg}.`);
 };
 
 /**
