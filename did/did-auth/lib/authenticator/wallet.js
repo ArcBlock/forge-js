@@ -206,8 +206,21 @@ class WalletAuthenticator extends BaseAuthenticator {
   // ---------------------------------------
   genRequestedClaims({ claims, context, extraParams }) {
     return Promise.all(
-      Object.keys(claims).map(x =>
-        this[x]({ claim: claims[x], context, extraParams })) // prettier-ignore
+      Object.keys(claims).map(x => {
+        let name = x;
+        let claim = claims[x];
+
+        if (Array.isArray(claims[x])) {
+          [name, claim] = claims[x];
+        }
+
+        console.log('getRequestedClaims', { key: x, name, claim });
+        if (typeof this[name] === 'function') {
+          return this[name]({ claim, context, extraParams });
+        }
+
+        throw new Error(`Unsupported claim type ${name}`);
+      })
     );
   }
 
