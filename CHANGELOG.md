@@ -1,3 +1,10 @@
+## 1.0.18 (December 16, 2019)
+
+- fix: correct handling of multiple claim with same type in a batch
+- fix: we need to call onAuth on each step when we have a multi step auth
+- chore: do not connect on error for event-client
+- update readme
+
 ## 1.0.17 (December 14, 2019)
 
 - update readme
