@@ -1,3 +1,8 @@
+## 1.0.20 (December 16, 2019)
+
+- fix: unified interface of did-auth signature claim
+- update readme
+
 ## 1.0.19 (December 16, 2019)
 
 - chore: remove console.log
