@@ -1,3 +1,8 @@
+## 1.0.22 (December 17, 2019)
+
+- chore: improve debug statements in did-auth
+- update readme
+
 ## 1.0.21 (December 17, 2019)
 
 - chore: cleanup signature claim types and support only digest
