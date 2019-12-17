@@ -1,3 +1,8 @@
+## 1.0.21 (December 17, 2019)
+
+- chore: cleanup signature claim types and support only digest
+- update readme
+
 ## 1.0.20 (December 16, 2019)
 
 - fix: unified interface of did-auth signature claim
