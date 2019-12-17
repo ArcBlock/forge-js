@@ -31,7 +31,6 @@ class WalletHandlers extends BaseHandler {
    * @param {string} [config.options.prefix='/api/did'] - url prefix for this group endpoints
    * @param {string} [config.options.sessionDidKey='user.did'] - key path to extract session user did from request object
    * @param {string} [config.options.tokenKey='_t_'] - query param key for `token`
-   * @param {string} [config.options.checksumKey='_cs_'] - query param key for `checksum`
    */
   constructor({ tokenGenerator, tokenStorage, authenticator, onPreAuth = noop, options = {} }) {
     super({ tokenGenerator, tokenStorage, authenticator, onPreAuth });
@@ -41,7 +40,6 @@ class WalletHandlers extends BaseHandler {
         prefix: '/api/did',
         sessionDidKey: 'user.did',
         tokenKey: '_t_',
-        checksumKey: '_cs_',
       },
       options
     );

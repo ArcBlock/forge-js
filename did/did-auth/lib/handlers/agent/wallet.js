@@ -22,16 +22,8 @@ class AgentWalletHandlers extends WalletHandlers {
    * @param {string} [config.options.prefix='/api/agent/:authorizeId'] - url prefix for this group endpoints
    * @param {string} [config.options.sessionDidKey='user.did'] - key path to extract session user did from request object
    * @param {string} [config.options.tokenKey='_t_'] - query param key for `token`
-   * @param {string} [config.options.checksumKey='_cs_'] - query param key for `checksum`
    */
-  constructor({
-    tokenGenerator,
-    tokenStorage,
-    agentStorage,
-    authenticator,
-    onPreAuth = noop,
-    options = {},
-  }) {
+  constructor({ tokenGenerator, tokenStorage, agentStorage, authenticator, onPreAuth = noop, options = {} }) {
     if (options && !options.prefix) {
       options.prefix = '/api/agent/:authorizeId';
     }
@@ -92,19 +84,10 @@ class AgentWalletHandlers extends WalletHandlers {
     // Extract extra signature params from `req.authorization`
     const getSignParams = req => {
       if (!req.authorization) {
-        throw new Error(
-          'AgentWalletHandlers require valid req.authorization to compose sign params'
-        );
+        throw new Error('AgentWalletHandlers require valid req.authorization to compose sign params');
       }
 
-      const {
-        appPk,
-        appDid,
-        appName,
-        appDescription,
-        appIcon,
-        certificateContent,
-      } = req.authorization;
+      const { appPk, appDid, appName, appDescription, appIcon, certificateContent } = req.authorization;
 
       return {
         authorizer: { pk: appPk, did: appDid },
@@ -120,8 +103,7 @@ class AgentWalletHandlers extends WalletHandlers {
 
     // Shared middleware that ensure a valid authorization id exists in the url
     const ensureAuthorization = async (req, res, next) => {
-      const authorizeId =
-        req.query.authorizeId || req.query[appKey] || req.params.authorizeId || req.params[appKey];
+      const authorizeId = req.query.authorizeId || req.query[appKey] || req.params.authorizeId || req.params[appKey];
 
       if (!authorizeId) {
         return res.json({ error: 'App ID is required to start' });
@@ -173,42 +155,16 @@ class AgentWalletHandlers extends WalletHandlers {
     app.get(`${prefix}/${action}/token`, ensureAuthorization, ensureWeb, generateActionToken);
 
     // 2. WEB: check for token status
-    app.get(
-      `${prefix}/${action}/status`,
-      ensureAuthorization,
-      ensureWeb,
-      ensureContext,
-      checkActionToken
-    );
+    app.get(`${prefix}/${action}/status`, ensureAuthorization, ensureWeb, ensureContext, checkActionToken);
 
     // 3. WEB: to expire old token
-    app.get(
-      `${prefix}/${action}/timeout`,
-      ensureAuthorization,
-      ensureWeb,
-      ensureContext,
-      expireActionToken
-    );
+    app.get(`${prefix}/${action}/timeout`, ensureAuthorization, ensureWeb, ensureContext, expireActionToken);
 
     // 4. Wallet: fetch auth request
-    app.get(
-      pathname,
-      ensureAuthorization,
-      ensureWallet,
-      ensureContext,
-      ensureSignedRes,
-      onAuthRequest
-    );
+    app.get(pathname, ensureAuthorization, ensureWallet, ensureContext, ensureSignedRes, onAuthRequest);
 
     // 5. Wallet: submit auth response
-    app.post(
-      pathname,
-      ensureAuthorization,
-      ensureWallet,
-      ensureContext,
-      ensureSignedRes,
-      onAuthResponse
-    );
+    app.post(pathname, ensureAuthorization, ensureWallet, ensureContext, ensureSignedRes, onAuthResponse);
   }
 }
 

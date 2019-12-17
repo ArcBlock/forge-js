@@ -2,7 +2,6 @@
 /* eslint-disable indent */
 /* eslint-disable object-curly-newline */
 const qs = require('querystring');
-const Mcrypto = require('@arcblock/mcrypto');
 const ForgeSDK = require('@arcblock/forge-sdk');
 const { toBase58 } = require('@arcblock/forge-util');
 const { fromAddress } = require('@arcblock/forge-wallet');
@@ -314,11 +313,11 @@ class WalletAuthenticator extends BaseAuthenticator {
 
       return {
         type: 'signature',
-        data: toBase58(Mcrypto.Hasher.SHA3.hash256(txBuffer)),
         description,
         typeUrl: 'fg:t:transaction',
-        method: 'sha3',
         origin: toBase58(txBuffer),
+        method: 'sha3',
+        digest: '',
         sig: '',
         chainInfo,
         meta,
@@ -329,25 +328,26 @@ class WalletAuthenticator extends BaseAuthenticator {
     if (type === 'fg:t:transaction') {
       return {
         type: 'signature',
-        data: toBase58(Mcrypto.Hasher.SHA3.hash256(data)),
         description,
         typeUrl: 'fg:t:transaction',
-        method: 'sha3',
         origin: toBase58(data),
+        method: 'sha3',
+        digest: '',
         sig: '',
         chainInfo,
         meta,
       };
     }
 
-    // If we are ask user to sign anything
-    // TODO: add whitelist here https://github.com/ArcBlock/ABT-DID-Protocol/issues/46
+    // If we are ask user to sign anything just pass the data
+    // Wallet should not hash the data if `method` is empty
     return {
       type: 'signature',
-      data: toBase58(data),
       description: desc || 'Sign this message to continue.',
+      origin: toBase58(data),
       typeUrl: type,
       method: 'sha3',
+      digest: '',
       sig: '',
       chainInfo,
       meta,

@@ -3,13 +3,12 @@
 /* eslint-disable object-curly-newline */
 const get = require('lodash.get');
 const Mcrypto = require('@arcblock/mcrypto');
-const { toAddress, isValid: isValidDid } = require('@arcblock/did');
+const { isValid: isValidDid } = require('@arcblock/did');
 // eslint-disable-next-line
-const debug = require('debug')(`${require('../../package.json').name}:handlers:did`);
+const debug = require('debug')(`${require('../../package.json').name}:handlers:util`);
 
 const sha3 = Mcrypto.Hasher.SHA3.hash256;
 const getLocale = req => (req.acceptsLanguages('en-US', 'zh-CN') || 'en-US').split('-').shift();
-const getDidCheckSum = did => sha3(toAddress(did)).slice(2, 8);
 const noop = () => ({});
 const noTouch = x => x;
 
@@ -86,7 +85,7 @@ module.exports = function createHandlers({
   getPathName = noTouch,
   options,
 }) {
-  const { sessionDidKey, tokenKey, checksumKey } = options;
+  const { sessionDidKey, tokenKey } = options;
 
   // if user want to do multiple-step did-auth
   const steps = Array.isArray(claims) ? claims : [claims];
@@ -174,16 +173,14 @@ module.exports = function createHandlers({
       // Since the did of logged in user may be different of the auth did
       // We should store the sessionDid in token storage for possible usage
       await tokenStorage.update(token, { currentStep: 0, sessionDid });
-
-      const checksum = sessionDid ? getDidCheckSum(sessionDid) : '';
-      debug('generate token', { action, pathname, token, sessionDid, checksum });
+      // debug('generate token', { action, pathname, token, sessionDid });
 
       res.json({
         token,
         url: authenticator.uri({
           token,
           pathname: getPathName(pathname, req),
-          query: Object.assign({ [checksumKey]: checksum }, req.query),
+          query: req.query,
         }),
       });
     } catch (err) {
@@ -211,7 +208,7 @@ module.exports = function createHandlers({
         if (shouldCheckUser) {
           const sessionDid = get(req, sessionDidKey);
           if (sessionDid && store.did && sessionDid !== store.did) {
-            debug('did mismatch', { sessionDid, store });
+            // debug('did mismatch', { sessionDid, store });
             res.status(403).json({ error: errors.didMismatch[locale] });
             await tokenStorage.update(token, { status: STATUS_FORBIDDEN });
             return;
@@ -261,9 +258,9 @@ module.exports = function createHandlers({
   };
 
   // Only check userDid and userPk if we have done auth principal
-  const checkUser = async ({ context, params, userDid, userPk }) => {
-    const { locale, token, shouldCheckUser } = context;
-    const { [checksumKey]: checksum } = params;
+  const checkUser = async ({ context, userDid, userPk }) => {
+    const { locale, token, store, shouldCheckUser } = context;
+    debug('checkUser', { userDid, userPk, store, shouldCheckUser });
 
     // Only check userDid and userPk if we have done auth principal
     if (shouldCheckUser) {
@@ -275,9 +272,7 @@ module.exports = function createHandlers({
       }
 
       // check userDid mismatch
-      const didChecksum = getDidCheckSum(userDid);
-      debug('check did checksum', { session: checksum, current: didChecksum });
-      if (didChecksum && checksum && didChecksum !== checksum) {
+      if (store.sessionDid && userDid && store.sessionDid !== userDid) {
         await tokenStorage.update(token, { status: STATUS_FORBIDDEN });
         return errors.didMismatch[locale];
       }
@@ -290,10 +285,9 @@ module.exports = function createHandlers({
   const onAuthRequest = async (req, res) => {
     const { locale, token, store, params, wallet } = req.context;
     const { userDid, userPk } = params;
+    // debug('onAuthRequest.context', req.context);
 
-    debug('onAuthRequest.context', req.context);
-
-    const error = await checkUser({ context: req.context, params, userDid, userPk });
+    const error = await checkUser({ context: req.context, userDid, userPk });
     if (error) {
       return res.json({ error });
     }
@@ -332,7 +326,7 @@ module.exports = function createHandlers({
 
     try {
       const { userDid, userPk, claims: claimResponse } = await authenticator.verify(params, locale);
-      debug('onAuthResponse.verify', { userDid, token, claims: claimResponse });
+      // debug('onAuthResponse.verify', { userDid, token, claims: claimResponse });
 
       // Since we can only get userDid after authPrincipal
       // So we update userDid in the token storage here
@@ -341,7 +335,7 @@ module.exports = function createHandlers({
         await tokenStorage.update(token, { did: userDid });
       }
 
-      const error = await checkUser({ context: req.context, params, userDid, userPk });
+      const error = await checkUser({ context: req.context, userDid, userPk });
       if (error) {
         return res.json({ error });
       }
@@ -359,10 +353,6 @@ module.exports = function createHandlers({
         storage: tokenStorage,
         extraParams: createExtraParams(locale, params),
       };
-
-      if (token && store && store.status === STATUS_FORBIDDEN) {
-        return res.json({ error: errors.didMismatch[locale] });
-      }
 
       // onPreAuth: error thrown from this callback will halt the auth process
       await onPreAuth(cbParams);
@@ -426,26 +416,35 @@ module.exports = function createHandlers({
     const locale = getLocale(req);
     const store = token ? await tokenStorage.read(token) : null;
 
+    let shouldCheckUser = true;
+
     // If we are doing auth principal, do not check user DID match here
-    // Otherwise we need to make sure user DID does match
-    // But if we are specifying another DID, just ignore the check
-    let shouldCheckUser = store ? !steps[store.currentStep].authPrincipal : true;
-    try {
-      const claim = await authenticator.getClaimInfo({
-        claim: steps[0].authPrincipal,
-        context: { sessionDid: store.sessionDid },
-        extraParams: createExtraParams(locale, params),
-      });
-
-      if (!claim) {
-        return res.json({ error: errors.authClaim[locale] });
-      }
-
-      if (claim.target || (claim.targetType && claim.targetType.role)) {
+    if (req.method === 'GET') {
+      if (store && steps[store.currentStep].authPrincipal) {
         shouldCheckUser = false;
       }
-    } catch (err) {
-      // Do nothing
+    }
+
+    // Otherwise we need to make sure user DID does match
+    // But if we are specifying another DID, just ignore the check
+    if (shouldCheckUser) {
+      try {
+        const claim = await authenticator.getClaimInfo({
+          claim: steps[0].authPrincipal,
+          context: { sessionDid: store.sessionDid },
+          extraParams: createExtraParams(locale, params),
+        });
+
+        if (!claim) {
+          return res.json({ error: errors.authClaim[locale] });
+        }
+
+        if (claim.target || (claim.targetType && claim.targetType.role)) {
+          shouldCheckUser = false;
+        }
+      } catch (err) {
+        // Do nothing
+      }
     }
 
     req.context = { locale, token, wallet, params, store, shouldCheckUser };
