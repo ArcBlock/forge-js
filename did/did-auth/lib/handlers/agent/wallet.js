@@ -1,6 +1,6 @@
 /* eslint-disable object-curly-newline */
 // eslint-disable-next-line
-const debug = require('debug')(`${require('../../../package.json').name}:handlers:wallet`);
+const debug = require('debug')(`${require('../../../package.json').name}:handlers:agent`);
 
 const WalletHandlers = require('../wallet');
 const createHandlers = require('../util');
