@@ -1,8 +1,7 @@
 // Generate by [js2dts@0.3.3](https://github.com/whxaxes/js2dts#readme)
 
 import { EventEmitter } from 'events';
-declare class BaseAuthenticator {
-}
+declare class BaseAuthenticator {}
 declare class WalletAuthenticator extends BaseAuthenticator {
   wallet: any;
   appInfo: any;
@@ -193,7 +192,6 @@ declare class WalletHandlers extends BaseHandler {
    * @param {string} [config.options.prefix='/api/did'] - url prefix for this group endpoints
    * @param {string} [config.options.sessionDidKey='user.did'] - key path to extract session user did from request object
    * @param {string} [config.options.tokenKey='_t_'] - query param key for `token`
-   * @param {string} [config.options.checksumKey='_cs_'] - query param key for `checksum`
    */
   constructor(T126: _Lib.T128);
   /**
@@ -247,7 +245,6 @@ declare class AtomicSwapHandlers extends BaseHandler {
    * @param {string} [config.options.prefix='/api/swap'] - url prefix for this group endpoints
    * @param {string} [config.options.sessionDidKey='user.did'] - key path to extract session user did from request object
    * @param {string} [config.options.tokenKey='_t_'] - query param key for `token`
-   * @param {string} [config.options.checksumKey='_cs_'] - query param key for `checksum`
    * @param {boolean} [config.options.signedResponse=false] - whether should we return signed response
    */
   constructor(T132: _Lib.T133);
@@ -343,7 +340,6 @@ declare class AgentWalletHandlers extends WalletHandlers {
    * @param {string} [config.options.prefix='/api/agent/:authorizeId'] - url prefix for this group endpoints
    * @param {string} [config.options.sessionDidKey='user.did'] - key path to extract session user did from request object
    * @param {string} [config.options.tokenKey='_t_'] - query param key for `token`
-   * @param {string} [config.options.checksumKey='_cs_'] - query param key for `checksum`
    */
   constructor(T136: _Lib.T137);
   /**
@@ -414,11 +410,11 @@ declare namespace _Lib {
   }
   export interface T117 {
     type: string;
-    data: string;
     description: any;
+    origin: string;
     typeUrl: any;
     method: string;
-    origin: string;
+    digest: any;
     sig: string;
     chainInfo: any;
     meta: any;
@@ -463,7 +459,6 @@ declare namespace _Lib {
     prefix?: string;
     sessionDidKey?: string;
     tokenKey?: string;
-    checksumKey?: string;
   }
   export interface T128 {
     tokenGenerator: (...args: any[]) => any;
@@ -476,7 +471,6 @@ declare namespace _Lib {
     prefix: string;
     sessionDidKey: string;
     tokenKey: string;
-    checksumKey: string;
   }
   export interface T131 {
     app: any;
@@ -515,7 +509,7 @@ declare namespace _Lib {
     signerKey?: string;
   }
   export interface T141 {
-    sign: (signer: string, sk: string, payload?: any) => string;
+    sign: (signer: string, sk: string, payload?: any, doSign?: boolean) => string;
     verify: (token: string, signerPk: string, T139?: _Lib.T140) => boolean;
     decode: (token: string, payloadOnly?: boolean) => any;
   }

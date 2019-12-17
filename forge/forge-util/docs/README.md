@@ -158,7 +158,7 @@ Converts value to it's number representation
 
 ### numberToHex(value) ⇒ `String`
 
-Converts value to it's hex representation
+Converts value to hex representation
 
 **Kind**: static method  
 **Access**: public  

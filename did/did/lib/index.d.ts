@@ -26,10 +26,11 @@ declare namespace _Lib {
     fromSecretKey: (sk: string, type: any) => string;
     fromPublicKey: (pk: string, type: any) => string;
     fromPublicKeyHash: (buffer: any, type: any) => string;
-    fromHash: (hash: string, role: any) => string;
+    fromHash: (hash: string, role?: any) => string;
     toTypeInfo: (did: string, returnString?: boolean) => any;
     toAddress: typeof toAddress;
     toDid: typeof toDid;
+    toCompleteType: (info: any) => any;
     fromTypeInfo: (type: any) => string;
     isFromPublicKey: (did: string, pk: string) => boolean;
     isValid: (did: string) => boolean;

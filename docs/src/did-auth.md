@@ -356,7 +356,6 @@ Creates an instance of atomic swap handlers.
 | [config.options.prefix]         | `string`   | `&quot;&#x27;/api/swap&#x27;&quot;` | url prefix for this group endpoints                                                                                           |
 | [config.options.sessionDidKey]  | `string`   | `&quot;&#x27;user.did&#x27;&quot;`  | key path to extract session user did from request object                                                                      |
 | [config.options.tokenKey]       | `string`   | `&quot;&#x27;_t_&#x27;&quot;`       | query param key for `token`                                                                                                   |
-| [config.options.checksumKey]    | `string`   | `&quot;&#x27;_cs_&#x27;&quot;`      | query param key for `checksum`                                                                                                |
 | [config.options.signedResponse] | `boolean`  | `false`                             | whether should we return signed response                                                                                      |
 
 ### atomicSwapHandlers.start(payload) ⇒ `Promise.<object>`
@@ -433,7 +432,6 @@ Creates an instance of DID Auth Handlers.
 | [config.options.prefix]        | `string`   | `&quot;&#x27;/api/did&#x27;&quot;` | url prefix for this group endpoints                                                                                           |
 | [config.options.sessionDidKey] | `string`   | `&quot;&#x27;user.did&#x27;&quot;` | key path to extract session user did from request object                                                                      |
 | [config.options.tokenKey]      | `string`   | `&quot;&#x27;_t_&#x27;&quot;`      | query param key for `token`                                                                                                   |
-| [config.options.checksumKey]   | `string`   | `&quot;&#x27;_cs_&#x27;&quot;`     | query param key for `checksum`                                                                                                |
 
 ### walletHandlers.attach(config) ⇒
 
@@ -494,7 +492,6 @@ Creates an instance of DID Auth Handlers.
 | [config.options.prefix]        | `string`   | `&quot;&#x27;/api/did&#x27;&quot;` | url prefix for this group endpoints                                                                                           |
 | [config.options.sessionDidKey] | `string`   | `&quot;&#x27;user.did&#x27;&quot;` | key path to extract session user did from request object                                                                      |
 | [config.options.tokenKey]      | `string`   | `&quot;&#x27;_t_&#x27;&quot;`      | query param key for `token`                                                                                                   |
-| [config.options.checksumKey]   | `string`   | `&quot;&#x27;_cs_&#x27;&quot;`     | query param key for `checksum`                                                                                                |
 
 ### walletHandlers.attach(config) ⇒
 
@@ -547,7 +544,6 @@ Creates an instance of DID Auth Handlers.
 | [config.options.prefix]        | `string`   | `&quot;&#x27;/api/agent/:authorizeId&#x27;&quot;` | url prefix for this group endpoints                                                                                           |
 | [config.options.sessionDidKey] | `string`   | `&quot;&#x27;user.did&#x27;&quot;`                | key path to extract session user did from request object                                                                      |
 | [config.options.tokenKey]      | `string`   | `&quot;&#x27;_t_&#x27;&quot;`                     | query param key for `token`                                                                                                   |
-| [config.options.checksumKey]   | `string`   | `&quot;&#x27;_cs_&#x27;&quot;`                    | query param key for `checksum`                                                                                                |
 
 ### agentWalletHandlers.attach(config) ⇒
 

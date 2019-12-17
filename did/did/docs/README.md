@@ -5,13 +5,18 @@ Utility functions to create/inspect did, and do did-based auth, an implementatio
 
 **Requires**: `module:@arcblock/mcrypto`, `module:@arcblock/forge-util`  
 
-* [fromSecretKey(sk, type)](#fromSecretKey) ⇒ `string`
-* [fromPublicKey(pk, type)](#fromPublicKey) ⇒ `string`
-* [fromHash(hash, role)](#fromHash) ⇒ `string`
-* [isFromPublicKey(did, pk)](#isFromPublicKey) ⇒ `boolean`
-* [fromTypeInfo(type)](#fromTypeInfo) ⇒
-* [toTypeInfo(did, \[returnString\])](#toTypeInfo) ⇒ `object`
-* [isValid(did)](#isValid) ⇒ `boolean`
+```
+* _static_
+  * [fromSecretKey(sk, type)](#fromSecretKey) ⇒ `string`
+  * [fromPublicKey(pk, type)](#fromPublicKey) ⇒ `string`
+  * [fromHash(hash, role)](#fromHash) ⇒ `string`
+  * [isFromPublicKey(did, pk)](#isFromPublicKey) ⇒ `boolean`
+  * [fromTypeInfo(type)](#fromTypeInfo) ⇒
+  * [toTypeInfo(did, [returnString])](#toTypeInfo) ⇒ `object`
+  * [isValid(did)](#isValid) ⇒ `boolean`
+* _inner_
+  * [~toCompleteType(info)](#.toCompleteType) ⇒ `object`
+```
 
 ### fromSecretKey(sk, type) ⇒ `string`
 
@@ -101,3 +106,13 @@ Check if a DID string is valid
 | Param | Type     | Description    |
 | ----- | -------- | -------------- |
 | did   | `string` | address string |
+
+### [**@arcblock/did**](https://github.com/arcblock/did)~toCompleteType(info) ⇒ `object`
+
+Make a type info complete
+
+**Kind**: inner method   
+
+| Param | Type     | Description        |
+| ----- | -------- | ------------------ |
+| info  | `object` | { pk, role, hash } |
