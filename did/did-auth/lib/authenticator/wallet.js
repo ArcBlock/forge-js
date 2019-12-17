@@ -273,11 +273,12 @@ class WalletAuthenticator extends BaseAuthenticator {
     };
   }
 
-  // 要求签名，可以是前 transaction 或者任意类型的消息
+  // Request wallet to sign something: transaction/text/html/image
   async signature({ claim, context, extraParams }) {
     const {
       data,
-      type = 'walletkit::signature',
+      type = 'mime:text/plain',
+      digest = '',
       wallet,
       sender,
       description: desc,
@@ -289,7 +290,11 @@ class WalletAuthenticator extends BaseAuthenticator {
       extraParams,
     });
 
-    debug('getClaim.signature', { data, type, sender, context });
+    debug('getClaim.signature', { data, digest, type, sender, context });
+
+    if (!data && !digest) {
+      throw new Error('Signature claim requires either data or digest to be provided');
+    }
 
     const description = desc || 'Sign this transaction to continue.';
 
@@ -341,13 +346,15 @@ class WalletAuthenticator extends BaseAuthenticator {
 
     // If we are ask user to sign anything just pass the data
     // Wallet should not hash the data if `method` is empty
+    // If we are asking user to sign a very large piece of data
+    // Just hash the data and show him the digest
     return {
       type: 'signature',
       description: desc || 'Sign this message to continue.',
-      origin: toBase58(data),
+      origin: data ? toBase58(data) : null,
       typeUrl: type,
       method: 'sha3',
-      digest: '',
+      digest,
       sig: '',
       chainInfo,
       meta,
@@ -357,6 +364,10 @@ class WalletAuthenticator extends BaseAuthenticator {
   // 资产持有证明
   async holdingOfAsset({ claim, context, extraParams }) {
     const { target, description, meta = {}, chainInfo } = await this.getClaimInfo({ claim, context, extraParams });
+
+    if (!target) {
+      throw new Error('Holding of asset claim requires a target asset DID');
+    }
 
     return {
       type: 'asset',
