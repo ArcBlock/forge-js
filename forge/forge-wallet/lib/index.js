@@ -124,11 +124,11 @@ function Wallet(keyPair, type = defaultWalletType) {
       // console.log('sign.hash', hash.replace(/^0x/i, '').toUpperCase());
       return signer.sign(hash, keyPair.sk);
     },
-    verify(data, signature) {
+    verify(data, signature, hashBeforeVerify = true) {
       if (!keyPair.pk) {
         throw new Error('Cannot verify data without a publicKey');
       }
-      const hash = hasher(data, 1);
+      const hash = hashBeforeVerify ? hasher(data, 1) : data;
       // console.log('verify.hash', hash.replace(/^0x/i, '').toUpperCase());
       return signer.verify(hash, signature, keyPair.pk);
     },
