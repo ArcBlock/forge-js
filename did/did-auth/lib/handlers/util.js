@@ -260,7 +260,7 @@ module.exports = function createHandlers({
   // Only check userDid and userPk if we have done auth principal
   const checkUser = async ({ context, userDid, userPk }) => {
     const { locale, token, store, shouldCheckUser } = context;
-    debug('checkUser', { userDid, userPk, store, shouldCheckUser });
+    // debug('checkUser', { userDid, userPk, store, shouldCheckUser });
 
     // Only check userDid and userPk if we have done auth principal
     if (shouldCheckUser) {

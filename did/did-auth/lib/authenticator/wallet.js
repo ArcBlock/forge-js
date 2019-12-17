@@ -95,7 +95,7 @@ class WalletAuthenticator extends BaseAuthenticator {
     };
 
     const uri = `${this.appInfo.path}?${qs.stringify(payload)}`;
-    debug('requestAuth.uri', { token, pathname, uri, params, payload });
+    debug('uri', { token, pathname, uri, params, payload });
     return uri;
   }
 
@@ -128,7 +128,7 @@ class WalletAuthenticator extends BaseAuthenticator {
       response,
     };
 
-    debug('signResponse', { response, error });
+    // debug('signResponse', { response, error });
     return {
       appPk: this.appPk,
       authInfo: Jwt.sign(this.wallet.address, this.wallet.sk, payload),
@@ -167,7 +167,10 @@ class WalletAuthenticator extends BaseAuthenticator {
       url: `${this.baseUrl}${pathname}?${qs.stringify(Object.assign({ [this.tokenKey]: context.token }, extraParams))}`,
     };
 
-    debug('responseAuth.sign', { context, payload, extraParams });
+    debug('sign.context', context);
+    debug('sign.params', extraParams);
+    debug('sign.payload', payload);
+
     return {
       appPk: this.appPk,
       authInfo: Jwt.sign(this.wallet.address, this.wallet.sk, payload),
@@ -194,6 +197,9 @@ class WalletAuthenticator extends BaseAuthenticator {
           userPk: data.userPk,
           claims: requestedClaims,
         });
+
+        debug('verify.context', { userPk: data.userPk, userDid: toAddress(iss) });
+        debug('verify.claims', requestedClaims);
       } catch (err) {
         reject(err);
       }
@@ -290,7 +296,7 @@ class WalletAuthenticator extends BaseAuthenticator {
       extraParams,
     });
 
-    debug('getClaim.signature', { data, digest, type, sender, context });
+    debug('claim.signature', { data, digest, type, sender, context });
 
     if (!data && !digest) {
       throw new Error('Signature claim requires either data or digest to be provided');
