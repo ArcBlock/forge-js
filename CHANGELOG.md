@@ -1,3 +1,10 @@
+## 1.0.23 (December 17, 2019)
+
+- chore: [did-auth] update debug statements
+- chore: update docs
+- feat: [forge-wallet] support verify without hashing the data
+- update readme
+
 ## 1.0.22 (December 17, 2019)
 
 - chore: improve debug statements in did-auth
