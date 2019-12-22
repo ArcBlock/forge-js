@@ -31,7 +31,6 @@ class AtomicSwapHandlers extends BaseHandler {
    * @param {string} [config.options.prefix='/api/swap'] - url prefix for this group endpoints
    * @param {string} [config.options.sessionDidKey='user.did'] - key path to extract session user did from request object
    * @param {string} [config.options.tokenKey='_t_'] - query param key for `token`
-   * @param {boolean} [config.options.signedResponse=false] - whether should we return signed response
    */
   constructor({
     authenticator,
@@ -96,7 +95,6 @@ class AtomicSwapHandlers extends BaseHandler {
         sessionDidKey: 'user.did',
         swapKey: 'traceId',
         tokenKey: '_t_',
-        signedResponse: true,
       },
       options
     );
@@ -195,7 +193,7 @@ class AtomicSwapHandlers extends BaseHandler {
       throw new Error('onComplete callback is required to attach did auth handlers');
     }
 
-    const { prefix, swapKey, signedResponse } = this.options;
+    const { prefix, swapKey } = this.options;
 
     // pathname for abt wallet, which will be included for authenticator signing
     const authPath = `${prefix}/${action}/auth`;
@@ -279,7 +277,6 @@ class AtomicSwapHandlers extends BaseHandler {
 
     const ensureWeb = ensureRequester('web');
     const ensureWallet = ensureRequester('wallet');
-    const ensureSignedRes = ensureSignedJson(!signedResponse);
 
     // 0. create swap or retrieve swap
     app.get('/api/swap/:traceId', ensureSwap, async (req, res) => res.jsonp(req.swap));
@@ -298,13 +295,13 @@ class AtomicSwapHandlers extends BaseHandler {
     app.get(`${prefix}/${action}/timeout`, ensureWeb, ensureSwap, ensureContext, expireActionToken);
 
     // 4. Wallet: fetch auth request
-    app.get(authPath, ensureWallet, ensureSignedRes, ensureSwap, ensureContext, onAuthRequest);
+    app.get(authPath, ensureWallet, ensureSignedJson, ensureSwap, ensureContext, onAuthRequest);
 
     // 5. Wallet: submit auth response
-    app.post(authPath, ensureWallet, ensureSignedRes, ensureSwap, ensureContext, onAuthResponse);
+    app.post(authPath, ensureWallet, ensureSignedJson, ensureSwap, ensureContext, onAuthResponse);
 
     // 6. Wallet: simple auth principal stub that used for wallet to pickup retrieve
-    app.get(retrievePath, ensureWallet, ensureSignedRes, ensureSwap, ensureContext, async (req, res) => {
+    app.get(retrievePath, ensureWallet, ensureSignedJson, ensureSwap, ensureContext, async (req, res) => {
       const { locale, token, params, wallet, store } = req.context;
       const { userDid, userPk } = params;
 
@@ -339,7 +336,7 @@ class AtomicSwapHandlers extends BaseHandler {
     });
 
     // 7. Wallet: setup seller swap and start retriever
-    app.post(retrievePath, ensureWallet, ensureSignedRes, ensureSwap, ensureContext, async (req, res) => {
+    app.post(retrievePath, ensureWallet, ensureSignedJson, ensureSwap, ensureContext, async (req, res) => {
       const { locale, token, params } = req.context;
       const { traceId } = params;
 

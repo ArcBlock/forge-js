@@ -1,7 +1,8 @@
 // Generate by [js2dts@0.3.3](https://github.com/whxaxes/js2dts#readme)
 
 import { EventEmitter } from 'events';
-declare class BaseAuthenticator {}
+declare class BaseAuthenticator {
+}
 declare class WalletAuthenticator extends BaseAuthenticator {
   wallet: any;
   appInfo: any;
@@ -14,7 +15,8 @@ declare class WalletAuthenticator extends BaseAuthenticator {
    * @prop {string} name - application name
    * @prop {string} description - application description
    * @prop {string} icon - application icon/logo url
-   * @prop {string} path - application icon/logo url
+   * @prop {string} link - application home page, with which user can return application from wallet
+   * @prop {string} path - deep link url
    * @prop {string} publisher - application did with `did:abt:` prefix
    */
 
@@ -22,6 +24,7 @@ declare class WalletAuthenticator extends BaseAuthenticator {
    * @typedef ChainInfo
    * @prop {string} id - application chain id
    * @prop {string} host - graphql endpoint of the application chain
+   * @prop {boolean} restrictedDeclare - whether the declaration is restricted
    */
 
   /**
@@ -31,7 +34,7 @@ declare class WalletAuthenticator extends BaseAuthenticator {
    * @param {object} config
    * @param {Wallet} config.wallet - wallet instance {@see @arcblock/forge-wallet}
    * @param {ApplicationInfo} config.appInfo - application basic info
-   * @param {ChainInfo} config.chainInfo - application chain info
+   * @param {ChainInfo|Function} config.chainInfo - application chain info
    * @param {object} config.baseUrl - url to assemble wallet request uri
    * @param {string} [config.tokenKey='_t_'] - query param key for `token`
    * @example
@@ -101,6 +104,15 @@ declare class WalletAuthenticator extends BaseAuthenticator {
    * @returns {object} { appPk, authInfo }
    */
   sign(T106: _Lib.T107): any;
+  /**
+   * Determine chainInfo on the fly
+   *
+   * @param {object} params - contains the context of this request
+   * @param {object|undefined} info - chain info object or function
+   * @returns {ChainInfo}
+   * @memberof WalletAuthenticator
+   */
+  getChainInfo(params: any, info: any): ChainInfo;
   /**
    * Verify a DID auth response sent from ABT Wallet
    *
@@ -245,7 +257,6 @@ declare class AtomicSwapHandlers extends BaseHandler {
    * @param {string} [config.options.prefix='/api/swap'] - url prefix for this group endpoints
    * @param {string} [config.options.sessionDidKey='user.did'] - key path to extract session user did from request object
    * @param {string} [config.options.tokenKey='_t_'] - query param key for `token`
-   * @param {boolean} [config.options.signedResponse=false] - whether should we return signed response
    */
   constructor(T132: _Lib.T133);
   /**
@@ -382,6 +393,11 @@ declare namespace _Lib {
   export interface T107 {
     claims: any;
     extraParams: any;
+  }
+  export interface ChainInfo {
+    id: string;
+    host: string;
+    restrictedDeclare: boolean;
   }
   export interface T109 {
     claims: any;
