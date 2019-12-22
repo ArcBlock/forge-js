@@ -19,7 +19,8 @@ class WalletAuthenticator extends BaseAuthenticator {
    * @prop {string} name - application name
    * @prop {string} description - application description
    * @prop {string} icon - application icon/logo url
-   * @prop {string} path - application icon/logo url
+   * @prop {string} link - application home page, with which user can return application from wallet
+   * @prop {string} path - deep link url
    * @prop {string} publisher - application did with `did:abt:` prefix
    */
 
@@ -27,6 +28,7 @@ class WalletAuthenticator extends BaseAuthenticator {
    * @typedef ChainInfo
    * @prop {string} id - application chain id
    * @prop {string} host - graphql endpoint of the application chain
+   * @prop {boolean} restrictedDeclare - whether the declaration is restricted
    */
 
   /**
@@ -36,7 +38,7 @@ class WalletAuthenticator extends BaseAuthenticator {
    * @param {object} config
    * @param {Wallet} config.wallet - wallet instance {@see @arcblock/forge-wallet}
    * @param {ApplicationInfo} config.appInfo - application basic info
-   * @param {ChainInfo} config.chainInfo - application chain info
+   * @param {ChainInfo|Function} config.chainInfo - application chain info
    * @param {object} config.baseUrl - url to assemble wallet request uri
    * @param {string} [config.tokenKey='_t_'] - query param key for `token`
    * @example
@@ -73,6 +75,10 @@ class WalletAuthenticator extends BaseAuthenticator {
     this.baseUrl = baseUrl;
     this.tokenKey = tokenKey;
     this.appPk = toBase58(wallet.pk);
+
+    if (!this.appInfo.link) {
+      this.appInfo.link = this.baseUrl;
+    }
 
     ForgeSDK.connect(chainInfo.host, { chainId: chainInfo.id, name: chainInfo.id });
   }
