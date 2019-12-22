@@ -352,23 +352,23 @@ Creates an instance of DID Auth Handlers.
 
 Creates an instance of atomic swap handlers.
 
-| Param                          | Type       | Default                             | Description                                                                                                                   |
-| ------------------------------ | ---------- | ----------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
-| config                         | `object`   |                                     |                                                                                                                               |
-| config.authenticator           | `object`   |                                     | Authenticator instance that can to jwt sign/verify                                                                            |
-| config.tokenGenerator          | `function` |                                     | function to generate action token                                                                                             |
-| config.swapStorage             | `object`   |                                     | storage that contains swap information                                                                                        |
-| config.tokenStorage            | `object`   |                                     | storage that contains action token information                                                                                |
-| config.offerChainHost          | `string`   |                                     | offer chain endpoint                                                                                                          |
-| config.demandChainHost         | `string`   |                                     | demand chain endpoint                                                                                                         |
-| config.offerChainId            | `string`   |                                     | offer chain endpoint                                                                                                          |
-| config.demandChainId           | `string`   |                                     | demand chain endpoint                                                                                                         |
-| config.offerLocktime           | `number`   |                                     | num of blocks that will be locked before app chain swap can be revoked                                                        |
-| config.demandLocktime          | `number`   |                                     | num of blocks that will be locked before asset chain swap can be revoked                                                      |
-| [config.onPreAuth]             | `function` | `noop`                              | function called before each auth request send back to app, used to check for permission, throw error to halt the auth process |
-| [config.options.prefix]        | `string`   | `&quot;&#x27;/api/swap&#x27;&quot;` | url prefix for this group endpoints                                                                                           |
-| [config.options.sessionDidKey] | `string`   | `&quot;&#x27;user.did&#x27;&quot;`  | key path to extract session user did from request object                                                                      |
-| [config.options.tokenKey]      | `string`   | `&quot;&#x27;_t_&#x27;&quot;`       | query param key for `token`                                                                                                   |
+| Param                              | Type       | Default                             | Description                                                                                                                   |
+| ---------------------------------- | ---------- | ----------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| config                             | `object`   |                                     |                                                                                                                               |
+| config.authenticator               | `object`   |                                     | Authenticator instance that can to jwt sign/verify                                                                            |
+| config.tokenGenerator              | `function` |                                     | function to generate action token                                                                                             |
+| config.swapStorage                 | `object`   |                                     | storage that contains swap information                                                                                        |
+| config.tokenStorage                | `object`   |                                     | storage that contains action token information                                                                                |
+| config.swapContext.offerChainHost  | `string`   |                                     | offer chain endpoint                                                                                                          |
+| config.swapContext.offerChainId    | `string`   |                                     | offer chain endpoint                                                                                                          |
+| config.swapContext.offerLocktime   | `number`   |                                     | num of blocks that will be locked before app chain swap can be revoked                                                        |
+| config.swapContext.demandChainHost | `string`   |                                     | demand chain endpoint                                                                                                         |
+| config.swapContext.demandChainId   | `string`   |                                     | demand chain endpoint                                                                                                         |
+| config.swapContext.demandLocktime  | `number`   |                                     | num of blocks that will be locked before asset chain swap can be revoked                                                      |
+| [config.onPreAuth]                 | `function` | `noop`                              | function called before each auth request send back to app, used to check for permission, throw error to halt the auth process |
+| [config.options.prefix]            | `string`   | `&quot;&#x27;/api/swap&#x27;&quot;` | url prefix for this group endpoints                                                                                           |
+| [config.options.sessionDidKey]     | `string`   | `&quot;&#x27;user.did&#x27;&quot;`  | key path to extract session user did from request object                                                                      |
+| [config.options.tokenKey]          | `string`   | `&quot;&#x27;_t_&#x27;&quot;`       | query param key for `token`                                                                                                   |
 
 ### atomicSwapHandlers.start(payload) ⇒ `Promise.<object>`
 

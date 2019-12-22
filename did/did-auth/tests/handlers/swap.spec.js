@@ -63,13 +63,15 @@ describe('#SwapHandlers', () => {
       },
     });
     const handlers = new SwapHandlers({
+      authenticator,
       tokenStorage,
       swapStorage,
-      authenticator,
-      offerChainHost: chainHost,
-      offerChainId: chainId,
-      demandChainHost: assetChainHost,
-      demandChainId: assetChainId,
+      swapContext: {
+        offerChainHost: chainHost,
+        offerChainId: chainId,
+        demandChainHost: assetChainHost,
+        demandChainId: assetChainId,
+      },
     });
 
     const offerToken = (await ForgeSDK.fromTokenToUnit(5, { conn: chainId })).toString();

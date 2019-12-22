@@ -231,12 +231,7 @@ declare class WalletHandlers extends BaseHandler {
 }
 declare class AtomicSwapHandlers extends BaseHandler {
   swapStorage: any;
-  offerChainHost: string;
-  offerChainId: string;
-  demandChainHost: string;
-  demandChainId: string;
-  offerLocktime: number;
-  demandLocktime: number;
+  swapContext: any;
   options: any;
   /**
    * Creates an instance of atomic swap handlers.
@@ -247,12 +242,12 @@ declare class AtomicSwapHandlers extends BaseHandler {
    * @param {function} config.tokenGenerator - function to generate action token
    * @param {object} config.swapStorage - storage that contains swap information
    * @param {object} config.tokenStorage - storage that contains action token information
-   * @param {string} config.offerChainHost - offer chain endpoint
-   * @param {string} config.demandChainHost - demand chain endpoint
-   * @param {string} config.offerChainId - offer chain endpoint
-   * @param {string} config.demandChainId - demand chain endpoint
-   * @param {number} config.offerLocktime - num of blocks that will be locked before app chain swap can be revoked
-   * @param {number} config.demandLocktime - num of blocks that will be locked before asset chain swap can be revoked
+   * @param {string} config.swapContext.offerChainHost - offer chain endpoint
+   * @param {string} config.swapContext.offerChainId - offer chain endpoint
+   * @param {number} config.swapContext.offerLocktime - num of blocks that will be locked before app chain swap can be revoked
+   * @param {string} config.swapContext.demandChainHost - demand chain endpoint
+   * @param {string} config.swapContext.demandChainId - demand chain endpoint
+   * @param {number} config.swapContext.demandLocktime - num of blocks that will be locked before asset chain swap can be revoked
    * @param {function} [config.onPreAuth=noop] - function called before each auth request send back to app, used to check for permission, throw error to halt the auth process
    * @param {string} [config.options.prefix='/api/swap'] - url prefix for this group endpoints
    * @param {string} [config.options.sessionDidKey='user.did'] - key path to extract session user did from request object
@@ -503,13 +498,6 @@ declare namespace _Lib {
     tokenGenerator: (...args: any[]) => any;
     swapStorage: any;
     tokenStorage: any;
-    offerChainHost: string;
-    demandChainHost: string;
-    offerChainId: string;
-    demandChainId: string;
-    offerLocktime: number;
-    demandLocktime: number;
-    onPreAuth?: (...args: any[]) => any;
   }
   export interface T137 {
     tokenGenerator: (...args: any[]) => any;
