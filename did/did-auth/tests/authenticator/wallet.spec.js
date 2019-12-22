@@ -88,19 +88,19 @@ describe('#WalletAuthenticator', () => {
   });
 
   test('should generate correct chainInfo', () => {
-    auth.chainInfo = ({ extraParams }) => {
-      if (extraParams.locale === 'en') {
+    auth.chainInfo = ({ locale }) => {
+      if (locale === 'en') {
         return { host: 'https://www.arcblock.io', id: 123 };
       }
 
       return { host: 'https://www.arcblockio.cn', id: 456 };
     };
 
-    const enChainInfo = auth.getChainInfo({ extraParams: { locale: 'en' } });
+    const enChainInfo = auth.getChainInfo({ locale: 'en' });
     expect(enChainInfo.host).toEqual('https://www.arcblock.io');
     expect(enChainInfo.id).toEqual(123);
 
-    const zhChainInfo = auth.getChainInfo({ extraParams: { locale: 'zh' } });
+    const zhChainInfo = auth.getChainInfo({ locale: 'zh' });
     expect(zhChainInfo.host).toEqual('https://www.arcblockio.cn');
     expect(zhChainInfo.id).toEqual(456);
   });

@@ -158,14 +158,15 @@ class WalletAuthenticator extends BaseAuthenticator {
    */
   async sign({ context, claims, pathname = '', extraParams = {} }) {
     const claimsInfo = await this.genRequestedClaims({ claims, context, extraParams });
+    const chainInfoParams = Object.assign({}, context, extraParams);
 
     // FIXME: this maybe buggy if user provided multiple claims
-    const tmp = claimsInfo.find(x => this.getChainInfo({ context, extraParams }, x.chainInfo || {}));
+    const tmp = claimsInfo.find(x => this.getChainInfo(chainInfoParams, x.chainInfo || {}));
 
     const payload = {
       action: 'responseAuth',
       appInfo: this.appInfo,
-      chainInfo: this.getChainInfo({ context, extraParams }, tmp ? tmp.chainInfo : undefined),
+      chainInfo: this.getChainInfo(chainInfoParams, tmp ? tmp.chainInfo : undefined),
       requestedClaims: claimsInfo.map(x => {
         delete x.chainInfo;
         return x;
@@ -183,13 +184,25 @@ class WalletAuthenticator extends BaseAuthenticator {
     };
   }
 
-  getChainInfo({ context, extraParams }, info) {
+  /**
+   * Determine chainInfo on the fly
+   *
+   * @param {object} params - contains the context of this request
+   * @param {object|undefined} info - chain info object or function
+   * @returns {ChainInfo}
+   * @memberof WalletAuthenticator
+   */
+  getChainInfo(params, info) {
     if (info) {
       return this._isValidChainInfo(info) ? info : null;
     }
 
     if (typeof this.chainInfo === 'function') {
-      return this.chainInfo({ context, extraParams });
+      const result = this.chainInfo(params);
+      if (this._validateChainInfo(result)) {
+        return result;
+      }
+      throw new Error('Invalid chainInfo function provided');
     }
 
     return this.chainInfo;
