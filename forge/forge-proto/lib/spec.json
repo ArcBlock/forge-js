@@ -955,7 +955,10 @@
         "RequestGetForgeStats": {
           "oneofs": {
             "value": {
-              "oneof": ["dayInfo", "date"]
+              "oneof": [
+                "dayInfo",
+                "date"
+              ]
             }
           },
           "fields": {
@@ -1233,6 +1236,26 @@
               "rule": "repeated",
               "type": "SwapState",
               "id": 3
+            }
+          }
+        },
+        "RequestGetSwapStatistics": {
+          "fields": {
+            "address": {
+              "type": "string",
+              "id": 1
+            }
+          }
+        },
+        "ResponseGetSwapStatistics": {
+          "fields": {
+            "code": {
+              "type": "StatusCode",
+              "id": 1
+            },
+            "statistics": {
+              "type": "SwapStatistics",
+              "id": 2
             }
           }
         },
@@ -2852,6 +2875,30 @@
             }
           }
         },
+        "SwapStatistics": {
+          "fields": {
+            "address": {
+              "type": "string",
+              "id": 1
+            },
+            "lockedValueOut": {
+              "type": "BigUint",
+              "id": 2
+            },
+            "lockedValueIn": {
+              "type": "BigUint",
+              "id": 3
+            },
+            "lockedAssetsOut": {
+              "type": "uint32",
+              "id": 4
+            },
+            "lockedAssetsIn": {
+              "type": "uint32",
+              "id": 5
+            }
+          }
+        },
         "DelegateOpState": {
           "fields": {
             "rule": {
@@ -3635,6 +3682,10 @@
             "list_swap": {
               "requestType": "RequestListSwap",
               "responseType": "ResponseListSwap"
+            },
+            "get_swap_statistics": {
+              "requestType": "RequestGetSwapStatistics",
+              "responseType": "ResponseGetSwapStatistics"
             }
           }
         },
@@ -4164,10 +4215,6 @@
             "chainId": {
               "type": "string",
               "id": 4
-            },
-            "ttl": {
-              "type": "google.protobuf.Timestamp",
-              "id": 5
             }
           }
         }
