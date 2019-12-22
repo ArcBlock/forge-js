@@ -272,7 +272,7 @@ module.exports = function createHandlers({
       }
 
       // check userDid mismatch
-      if (store.sessionDid && userDid && store.sessionDid !== userDid) {
+      if (store && store.sessionDid && userDid && store.sessionDid !== userDid) {
         await tokenStorage.update(token, { status: STATUS_FORBIDDEN });
         return errors.didMismatch[locale];
       }
