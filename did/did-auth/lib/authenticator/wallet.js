@@ -154,12 +154,12 @@ class WalletAuthenticator extends BaseAuthenticator {
     const claimsInfo = await this.genRequestedClaims({ claims, context, extraParams });
 
     // FIXME: this maybe buggy if user provided multiple claims
-    const tmp = claimsInfo.find(x => this._isValidChainInfo(x.chainInfo));
+    const tmp = claimsInfo.find(x => this.getChainInfo({ context, extraParams }, x.chainInfo || {}));
 
     const payload = {
       action: 'responseAuth',
       appInfo: this.appInfo,
-      chainInfo: tmp ? tmp.chainInfo : this.chainInfo,
+      chainInfo: this.getChainInfo({ context, extraParams }, tmp ? tmp.chainInfo : undefined),
       requestedClaims: claimsInfo.map(x => {
         delete x.chainInfo;
         return x;
@@ -175,6 +175,18 @@ class WalletAuthenticator extends BaseAuthenticator {
       appPk: this.appPk,
       authInfo: Jwt.sign(this.wallet.address, this.wallet.sk, payload),
     };
+  }
+
+  getChainInfo({ context, extraParams }, info) {
+    if (info) {
+      return this._isValidChainInfo(info) ? info : null;
+    }
+
+    if (typeof this.chainInfo === 'function') {
+      return this.chainInfo({ context, extraParams });
+    }
+
+    return this.chainInfo;
   }
 
   /**
@@ -453,6 +465,11 @@ class WalletAuthenticator extends BaseAuthenticator {
       throw new Error('WalletAuthenticator cannot work without appInfo.icon');
     }
 
+    if (!appInfo.link) {
+      // eslint-disable-next-line no-console
+      console.warn('It\'s recommended that you set appInfo.link to allow users to return to your dapp easily.'); // prettier-ignore
+    }
+
     if (!appInfo.path) {
       appInfo.path = 'https://abtwallet.io/i/';
     }
@@ -465,6 +482,10 @@ class WalletAuthenticator extends BaseAuthenticator {
   }
 
   _validateChainInfo(chainInfo) {
+    if (typeof x === 'function') {
+      return true;
+    }
+
     if (!chainInfo) {
       throw new Error('WalletAuthenticator cannot work without chainInfo');
     }

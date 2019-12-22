@@ -22,8 +22,8 @@ const user = fromRandom();
 const app = fromRandom(type);
 const chainHost = 'http://47.104.23.85:8213/api';
 const chainId = 'playground';
-const assetChainHost = 'http://182.92.167.126:8211/api';
-const assetChainId = 'play-asset-chain';
+const assetChainHost = 'http://47.104.23.85:8213/api';
+const assetChainId = 'playground';
 const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
 
 describe('#SwapHandlers', () => {
@@ -121,6 +121,7 @@ describe('#SwapHandlers', () => {
     expect(hash3).toBeTruthy();
     expect(hash4).toBeTruthy();
     // console.log('declare', { hash1, hash2, hash3, hash4 });
+    await sleep(3000);
 
     // Poke on chain
     const hash5 = await ForgeSDK.checkin({ wallet: user }, { conn: assetChainId });
@@ -128,6 +129,7 @@ describe('#SwapHandlers', () => {
     expect(hash5).toBeTruthy();
     expect(hash6).toBeTruthy();
     // console.log('checkin', { hash5, hash6 });
+    await sleep(3000);
 
     // Init new swap placeholder
     const {
