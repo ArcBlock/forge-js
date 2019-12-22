@@ -22,8 +22,8 @@ const user = fromRandom();
 const app = fromRandom(type);
 const chainHost = 'http://47.104.23.85:8213/api';
 const chainId = 'playground';
-const assetChainHost = 'http://182.92.167.126:8211/api';
-const assetChainId = 'play-asset-chain';
+const assetChainHost = 'https://zinc.network.arcblockio.cn/api';
+const assetChainId = 'zinc-2019-05-17';
 const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
 
 describe('#SwapHandlers', () => {
@@ -38,6 +38,7 @@ describe('#SwapHandlers', () => {
   });
 
   afterAll(async () => {
+    await sleep(2000);
     await server.close();
   });
 
@@ -62,13 +63,15 @@ describe('#SwapHandlers', () => {
       },
     });
     const handlers = new SwapHandlers({
+      authenticator,
       tokenStorage,
       swapStorage,
-      authenticator,
-      offerChainHost: chainHost,
-      offerChainId: chainId,
-      demandChainHost: assetChainHost,
-      demandChainId: assetChainId,
+      swapContext: {
+        offerChainHost: chainHost,
+        offerChainId: chainId,
+        demandChainHost: assetChainHost,
+        demandChainId: assetChainId,
+      },
     });
 
     const offerToken = (await ForgeSDK.fromTokenToUnit(5, { conn: chainId })).toString();

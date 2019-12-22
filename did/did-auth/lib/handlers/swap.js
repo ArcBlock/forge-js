@@ -21,53 +21,30 @@ class AtomicSwapHandlers extends BaseHandler {
    * @param {function} config.tokenGenerator - function to generate action token
    * @param {object} config.swapStorage - storage that contains swap information
    * @param {object} config.tokenStorage - storage that contains action token information
-   * @param {string} config.offerChainHost - offer chain endpoint
-   * @param {string} config.demandChainHost - demand chain endpoint
-   * @param {string} config.offerChainId - offer chain endpoint
-   * @param {string} config.demandChainId - demand chain endpoint
-   * @param {number} config.offerLocktime - num of blocks that will be locked before app chain swap can be revoked
-   * @param {number} config.demandLocktime - num of blocks that will be locked before asset chain swap can be revoked
+   * @param {string} config.swapContext.offerChainHost - offer chain endpoint
+   * @param {string} config.swapContext.offerChainId - offer chain endpoint
+   * @param {number} config.swapContext.offerLocktime - num of blocks that will be locked before app chain swap can be revoked
+   * @param {string} config.swapContext.demandChainHost - demand chain endpoint
+   * @param {string} config.swapContext.demandChainId - demand chain endpoint
+   * @param {number} config.swapContext.demandLocktime - num of blocks that will be locked before asset chain swap can be revoked
    * @param {function} [config.onPreAuth=noop] - function called before each auth request send back to app, used to check for permission, throw error to halt the auth process
    * @param {string} [config.options.prefix='/api/swap'] - url prefix for this group endpoints
    * @param {string} [config.options.sessionDidKey='user.did'] - key path to extract session user did from request object
    * @param {string} [config.options.tokenKey='_t_'] - query param key for `token`
-   * @param {boolean} [config.options.signedResponse=false] - whether should we return signed response
    */
   constructor({
     authenticator,
     tokenGenerator,
     swapStorage,
+    swapContext,
     tokenStorage,
-    offerChainHost,
-    offerChainId,
-    demandChainHost,
-    demandChainId,
-    offerLocktime = 1200,
-    demandLocktime = 2400,
     onPreAuth = noop,
     options = {},
   }) {
     super({ tokenGenerator, tokenStorage, authenticator, onPreAuth });
 
-    if (!offerChainHost || !offerChainId) {
-      throw new Error('Swap handlers require valid offerChain host');
-    }
-    if (!demandChainHost || !demandChainId) {
-      throw new Error('Swap handlers require valid demandChain host');
-    }
-
-    this.swapStorage = swapStorage;
-    this.offerChainHost = offerChainHost;
-    this.offerChainId = offerChainId;
-    this.demandChainHost = demandChainHost;
-    this.demandChainId = demandChainId;
-    this.offerLocktime = offerLocktime;
-    this.demandLocktime = demandLocktime;
-
-    ForgeSDK.connect(offerChainHost, { chainId: offerChainId, name: offerChainId });
-    ForgeSDK.connect(demandChainHost, { chainId: demandChainId, name: demandChainId });
-
     // Handle events from Swap Storage
+    this.swapStorage = swapStorage;
     this.swapStorage.on('create', data => this.emit('swap.created', data));
     this.swapStorage.on('destroy', token => this.emit('swap.deleted', { token }));
     this.swapStorage.on('update', async data => {
@@ -90,13 +67,22 @@ class AtomicSwapHandlers extends BaseHandler {
       }
     });
 
+    // Setup swap context
+    this.swapContext = Object.assign({ offerLocktime: 1200, demandLocktime: 2400 }, swapContext || {});
+    const { offerChainHost = '', offerChainId = '', demandChainHost = '', demandChainId = '' } = this.swapContext;
+    if (offerChainId && offerChainHost) {
+      ForgeSDK.connect(offerChainHost, { chainId: offerChainId, name: offerChainId });
+    }
+    if (demandChainId && demandChainHost) {
+      ForgeSDK.connect(demandChainHost, { chainId: demandChainId, name: demandChainId });
+    }
+
     this.options = Object.assign(
       {
         prefix: '/api/did',
         sessionDidKey: 'user.did',
         swapKey: 'traceId',
         tokenKey: '_t_',
-        signedResponse: true,
       },
       options
     );
@@ -120,6 +106,8 @@ class AtomicSwapHandlers extends BaseHandler {
       demandToken = '0',
     } = payload;
 
+    const { offerChainHost = '', offerChainId = '', demandChainHost = '', demandChainId = '' } = this.swapContext;
+
     const traceId = ForgeSDK.Util.UUID();
     const updates = {
       traceId,
@@ -128,8 +116,8 @@ class AtomicSwapHandlers extends BaseHandler {
       offerAssets,
       offerToken,
       offerLocktime: 0,
-      offerChainId: this.offerChainId,
-      offerChainHost: this.offerChainHost,
+      offerChainId,
+      offerChainHost,
       offerSetupHash: '', // 卖家 setup_swap 的 hash
       offerSwapAddress: '', // 卖家 setup_swap 的地址
       offerRetrieveHash: '', // 卖家 retrieve_swap 的 hash
@@ -139,8 +127,8 @@ class AtomicSwapHandlers extends BaseHandler {
       demandAssets,
       demandToken,
       demandLocktime: 0,
-      demandChainHost: this.demandChainHost,
-      demandChainId: this.demandChainId,
+      demandChainHost,
+      demandChainId,
       demandSetupHash: '', // 买家 setup_swap 的 hash
       demandSwapAddress: '', // 买家 setup_swap 的地址
       demandRetrieveHash: '', // 买家 retrieve_swap 的 hash
@@ -195,7 +183,7 @@ class AtomicSwapHandlers extends BaseHandler {
       throw new Error('onComplete callback is required to attach did auth handlers');
     }
 
-    const { prefix, swapKey, signedResponse } = this.options;
+    const { prefix, swapKey } = this.options;
 
     // pathname for abt wallet, which will be included for authenticator signing
     const authPath = `${prefix}/${action}/auth`;
@@ -279,7 +267,6 @@ class AtomicSwapHandlers extends BaseHandler {
 
     const ensureWeb = ensureRequester('web');
     const ensureWallet = ensureRequester('wallet');
-    const ensureSignedRes = ensureSignedJson(!signedResponse);
 
     // 0. create swap or retrieve swap
     app.get('/api/swap/:traceId', ensureSwap, async (req, res) => res.jsonp(req.swap));
@@ -292,19 +279,19 @@ class AtomicSwapHandlers extends BaseHandler {
     app.get(`${prefix}/${action}/token`, ensureWeb, ensureSwap, generateActionToken);
 
     // 2. WEB: check for token status
-    app.get(`${prefix}/${action}/status`, ensureWeb, ensureSwap, ensureContext, checkActionToken);
+    app.get(`${prefix}/${action}/status`, ensureWeb, ensureContext, ensureSwap, checkActionToken);
 
     // 3. WEB: to expire old token
-    app.get(`${prefix}/${action}/timeout`, ensureWeb, ensureSwap, ensureContext, expireActionToken);
+    app.get(`${prefix}/${action}/timeout`, ensureWeb, ensureContext, ensureSwap, expireActionToken);
 
     // 4. Wallet: fetch auth request
-    app.get(authPath, ensureWallet, ensureSignedRes, ensureSwap, ensureContext, onAuthRequest);
+    app.get(authPath, ensureWallet, ensureSignedJson, ensureContext, ensureSwap, onAuthRequest);
 
     // 5. Wallet: submit auth response
-    app.post(authPath, ensureWallet, ensureSignedRes, ensureSwap, ensureContext, onAuthResponse);
+    app.post(authPath, ensureWallet, ensureSignedJson, ensureContext, ensureSwap, onAuthResponse);
 
     // 6. Wallet: simple auth principal stub that used for wallet to pickup retrieve
-    app.get(retrievePath, ensureWallet, ensureSignedRes, ensureSwap, ensureContext, async (req, res) => {
+    app.get(retrievePath, ensureWallet, ensureSignedJson, ensureContext, ensureSwap, async (req, res) => {
       const { locale, token, params, wallet, store } = req.context;
       const { userDid, userPk } = params;
 
@@ -339,7 +326,7 @@ class AtomicSwapHandlers extends BaseHandler {
     });
 
     // 7. Wallet: setup seller swap and start retriever
-    app.post(retrievePath, ensureWallet, ensureSignedRes, ensureSwap, ensureContext, async (req, res) => {
+    app.post(retrievePath, ensureWallet, ensureSignedJson, ensureContext, ensureSwap, async (req, res) => {
       const { locale, token, params } = req.context;
       const { traceId } = params;
 
@@ -412,7 +399,7 @@ class AtomicSwapHandlers extends BaseHandler {
                   assets: req.swap.offerAssets,
                   receiver: req.swap.demandUserAddress,
                   hashlock: `0x${state.hashlock}`,
-                  locktime: this.offerLocktime,
+                  locktime: this.swapContext.offerLocktime,
                   wallet: ForgeSDK.Wallet.fromJSON(this.authenticator.wallet),
                 },
                 { conn: req.swap.offerChainId }

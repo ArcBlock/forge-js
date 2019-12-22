@@ -180,6 +180,17 @@ function deserialize_forge_abi_RequestGetSwapState(buffer_arg) {
   return rpc_pb.RequestGetSwapState.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_forge_abi_RequestGetSwapStatistics(arg) {
+  if (!(arg instanceof rpc_pb.RequestGetSwapStatistics)) {
+    throw new Error('Expected argument of type forge_abi.RequestGetSwapStatistics');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_forge_abi_RequestGetSwapStatistics(buffer_arg) {
+  return rpc_pb.RequestGetSwapStatistics.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_forge_abi_RequestGetTx(arg) {
   if (!(arg instanceof rpc_pb.RequestGetTx)) {
     throw new Error('Expected argument of type forge_abi.RequestGetTx');
@@ -552,6 +563,17 @@ function serialize_forge_abi_ResponseGetSwapState(arg) {
 
 function deserialize_forge_abi_ResponseGetSwapState(buffer_arg) {
   return rpc_pb.ResponseGetSwapState.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_forge_abi_ResponseGetSwapStatistics(arg) {
+  if (!(arg instanceof rpc_pb.ResponseGetSwapStatistics)) {
+    throw new Error('Expected argument of type forge_abi.ResponseGetSwapStatistics');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_forge_abi_ResponseGetSwapStatistics(buffer_arg) {
+  return rpc_pb.ResponseGetSwapStatistics.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_forge_abi_ResponseGetTx(arg) {
@@ -1159,6 +1181,17 @@ var StatsRpcService = exports.StatsRpcService = {
     requestDeserialize: deserialize_forge_abi_RequestListSwap,
     responseSerialize: serialize_forge_abi_ResponseListSwap,
     responseDeserialize: deserialize_forge_abi_ResponseListSwap,
+  },
+  get_swap_statistics: {
+    path: '/forge_abi.StatsRpc/get_swap_statistics',
+    requestStream: false,
+    responseStream: false,
+    requestType: rpc_pb.RequestGetSwapStatistics,
+    responseType: rpc_pb.ResponseGetSwapStatistics,
+    requestSerialize: serialize_forge_abi_RequestGetSwapStatistics,
+    requestDeserialize: deserialize_forge_abi_RequestGetSwapStatistics,
+    responseSerialize: serialize_forge_abi_ResponseGetSwapStatistics,
+    responseDeserialize: deserialize_forge_abi_ResponseGetSwapStatistics,
   },
 };
 

@@ -66,8 +66,7 @@ proto.forge_abi.WithdrawTokenTx.toObject = function(includeInstance, msg) {
     value: (f = msg.getValue()) && type_pb.BigUint.toObject(includeInstance, f),
     to: jspb.Message.getFieldWithDefault(msg, 2, ""),
     chainType: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    chainId: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    ttl: (f = msg.getTtl()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
+    chainId: jspb.Message.getFieldWithDefault(msg, 4, "")
   };
 
   if (includeInstance) {
@@ -120,11 +119,6 @@ proto.forge_abi.WithdrawTokenTx.deserializeBinaryFromReader = function(msg, read
     case 4:
       var value = /** @type {string} */ (reader.readString());
       msg.setChainId(value);
-      break;
-    case 5:
-      var value = new google_protobuf_timestamp_pb.Timestamp;
-      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
-      msg.setTtl(value);
       break;
     default:
       reader.skipField();
@@ -182,14 +176,6 @@ proto.forge_abi.WithdrawTokenTx.serializeBinaryToWriter = function(message, writ
     writer.writeString(
       4,
       f
-    );
-  }
-  f = message.getTtl();
-  if (f != null) {
-    writer.writeMessage(
-      5,
-      f,
-      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
     );
   }
 };
@@ -267,36 +253,6 @@ proto.forge_abi.WithdrawTokenTx.prototype.getChainId = function() {
 /** @param {string} value */
 proto.forge_abi.WithdrawTokenTx.prototype.setChainId = function(value) {
   jspb.Message.setProto3StringField(this, 4, value);
-};
-
-
-/**
- * optional google.protobuf.Timestamp ttl = 5;
- * @return {?proto.google.protobuf.Timestamp}
- */
-proto.forge_abi.WithdrawTokenTx.prototype.getTtl = function() {
-  return /** @type{?proto.google.protobuf.Timestamp} */ (
-    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 5));
-};
-
-
-/** @param {?proto.google.protobuf.Timestamp|undefined} value */
-proto.forge_abi.WithdrawTokenTx.prototype.setTtl = function(value) {
-  jspb.Message.setWrapperField(this, 5, value);
-};
-
-
-proto.forge_abi.WithdrawTokenTx.prototype.clearTtl = function() {
-  this.setTtl(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.forge_abi.WithdrawTokenTx.prototype.hasTtl = function() {
-  return jspb.Message.getField(this, 5) != null;
 };
 
 

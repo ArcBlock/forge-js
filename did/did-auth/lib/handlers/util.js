@@ -272,7 +272,7 @@ module.exports = function createHandlers({
       }
 
       // check userDid mismatch
-      if (store.sessionDid && userDid && store.sessionDid !== userDid) {
+      if (store && store.sessionDid && userDid && store.sessionDid !== userDid) {
         await tokenStorage.update(token, { status: STATUS_FORBIDDEN });
         return errors.didMismatch[locale];
       }
@@ -451,8 +451,8 @@ module.exports = function createHandlers({
     return next();
   };
 
-  const ensureSignedJson = (isSwap = false) => (req, res, next) => {
-    if (isSwap === false && req.ensureSignedJson === undefined) {
+  const ensureSignedJson = (req, res, next) => {
+    if (req.ensureSignedJson === undefined) {
       req.ensureSignedJson = true;
       const originJson = res.json;
       res.json = payload => {

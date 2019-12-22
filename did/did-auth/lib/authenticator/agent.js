@@ -52,15 +52,16 @@ class AgentAuthenticator extends WalletAuthenticator {
     this._validateAppInfo(appInfo, { address: authorizer.did });
 
     const claimsInfo = await this.genRequestedClaims({ claims, context, extraParams });
+    const chainInfoParams = Object.assign({}, context, extraParams);
     // FIXME: this maybe buggy if user provided multiple claims
-    const tmp = claimsInfo.find(x => this._isValidChainInfo(x.chainInfo));
+    const tmp = claimsInfo.find(x => this.getChainInfo(chainInfoParams, x.chainInfo || {}));
 
     const payload = {
       action: 'responseAuth',
       appInfo,
       iss: toDid(authorizer.did),
       agentDid: toDid(this.wallet.address),
-      chainInfo: tmp ? tmp.chainInfo : this.chainInfo,
+      chainInfo: this.getChainInfo(chainInfoParams, tmp ? tmp.chainInfo : undefined),
       verifiableClaims,
       requestedClaims: claimsInfo.map(x => {
         delete x.chainInfo;

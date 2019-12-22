@@ -19,7 +19,8 @@ class WalletAuthenticator extends BaseAuthenticator {
    * @prop {string} name - application name
    * @prop {string} description - application description
    * @prop {string} icon - application icon/logo url
-   * @prop {string} path - application icon/logo url
+   * @prop {string} link - application home page, with which user can return application from wallet
+   * @prop {string} path - deep link url
    * @prop {string} publisher - application did with `did:abt:` prefix
    */
 
@@ -27,6 +28,7 @@ class WalletAuthenticator extends BaseAuthenticator {
    * @typedef ChainInfo
    * @prop {string} id - application chain id
    * @prop {string} host - graphql endpoint of the application chain
+   * @prop {boolean} restrictedDeclare - whether the declaration is restricted
    */
 
   /**
@@ -36,7 +38,7 @@ class WalletAuthenticator extends BaseAuthenticator {
    * @param {object} config
    * @param {Wallet} config.wallet - wallet instance {@see @arcblock/forge-wallet}
    * @param {ApplicationInfo} config.appInfo - application basic info
-   * @param {ChainInfo} config.chainInfo - application chain info
+   * @param {ChainInfo|Function} config.chainInfo - application chain info
    * @param {object} config.baseUrl - url to assemble wallet request uri
    * @param {string} [config.tokenKey='_t_'] - query param key for `token`
    * @example
@@ -73,6 +75,10 @@ class WalletAuthenticator extends BaseAuthenticator {
     this.baseUrl = baseUrl;
     this.tokenKey = tokenKey;
     this.appPk = toBase58(wallet.pk);
+
+    if (!this.appInfo.link) {
+      this.appInfo.link = this.baseUrl;
+    }
 
     ForgeSDK.connect(chainInfo.host, { chainId: chainInfo.id, name: chainInfo.id });
   }
@@ -152,14 +158,15 @@ class WalletAuthenticator extends BaseAuthenticator {
    */
   async sign({ context, claims, pathname = '', extraParams = {} }) {
     const claimsInfo = await this.genRequestedClaims({ claims, context, extraParams });
+    const chainInfoParams = Object.assign({}, context, extraParams);
 
     // FIXME: this maybe buggy if user provided multiple claims
-    const tmp = claimsInfo.find(x => this._isValidChainInfo(x.chainInfo));
+    const tmp = claimsInfo.find(x => this.getChainInfo(chainInfoParams, x.chainInfo || {}));
 
     const payload = {
       action: 'responseAuth',
       appInfo: this.appInfo,
-      chainInfo: tmp ? tmp.chainInfo : this.chainInfo,
+      chainInfo: this.getChainInfo(chainInfoParams, tmp ? tmp.chainInfo : undefined),
       requestedClaims: claimsInfo.map(x => {
         delete x.chainInfo;
         return x;
@@ -175,6 +182,30 @@ class WalletAuthenticator extends BaseAuthenticator {
       appPk: this.appPk,
       authInfo: Jwt.sign(this.wallet.address, this.wallet.sk, payload),
     };
+  }
+
+  /**
+   * Determine chainInfo on the fly
+   *
+   * @param {object} params - contains the context of this request
+   * @param {object|undefined} info - chain info object or function
+   * @returns {ChainInfo}
+   * @memberof WalletAuthenticator
+   */
+  getChainInfo(params, info) {
+    if (info) {
+      return this._isValidChainInfo(info) ? info : null;
+    }
+
+    if (typeof this.chainInfo === 'function') {
+      const result = this.chainInfo(params);
+      if (this._validateChainInfo(result)) {
+        return result;
+      }
+      throw new Error('Invalid chainInfo function provided');
+    }
+
+    return this.chainInfo;
   }
 
   /**
@@ -453,6 +484,11 @@ class WalletAuthenticator extends BaseAuthenticator {
       throw new Error('WalletAuthenticator cannot work without appInfo.icon');
     }
 
+    if (!appInfo.link) {
+      // eslint-disable-next-line no-console
+      console.warn('It\'s recommended that you set appInfo.link to allow users to return to your dapp easily.'); // prettier-ignore
+    }
+
     if (!appInfo.path) {
       appInfo.path = 'https://abtwallet.io/i/';
     }
@@ -465,6 +501,10 @@ class WalletAuthenticator extends BaseAuthenticator {
   }
 
   _validateChainInfo(chainInfo) {
+    if (typeof x === 'function') {
+      return true;
+    }
+
     if (!chainInfo) {
       throw new Error('WalletAuthenticator cannot work without chainInfo');
     }

@@ -44,6 +44,7 @@
   * [uri(params)](#WalletAuthenticator+uri) ⇒ `string`
   * [getPublicUrl(pathname, params)](#WalletAuthenticator+getPublicUrl) ⇒ `string`
   * [signResponse(params)](#WalletAuthenticator+signResponse) ⇒ `object`
+  * [getChainInfo(params, info)](#WalletAuthenticator+getChainInfo) ⇒ [`ChainInfo`](#ChainInfo)
   * [verify(data, \[locale\], \[enforceTimestamp\])](#WalletAuthenticator+verify) ⇒
 
 ### new AgentAuthenticator()
@@ -111,6 +112,17 @@ Sign a plain response, usually on auth success or error
 | params.response | `object` | response      |
 | params.error    | `string` | error message |
 
+### agentAuthenticator.getChainInfo(params, info) ⇒ [`ChainInfo`](#ChainInfo)
+
+Determine chainInfo on the fly
+
+**Kind**: instance method of [`AgentAuthenticator`](#AgentAuthenticator)  
+
+| Param  | Type                    | Description                          |
+| ------ | ----------------------- | ------------------------------------ |
+| params | `object`                | contains the context of this request |
+| info   | `object` \| `undefined` | chain info object or function        |
+
 ### agentAuthenticator.verify(data, [locale], [enforceTimestamp]) ⇒
 
 Verify a DID auth response sent from ABT Wallet
@@ -177,20 +189,21 @@ Verify a jwt token signed by another application, used for inter-application com
   * [getPublicUrl(pathname, params)](#WalletAuthenticator+getPublicUrl) ⇒ `string`
   * [signResponse(params)](#WalletAuthenticator+signResponse) ⇒ `object`
   * [sign(params)](#WalletAuthenticator+sign) ⇒ `object`
+  * [getChainInfo(params, info)](#WalletAuthenticator+getChainInfo) ⇒ [`ChainInfo`](#ChainInfo)
   * [verify(data, \[locale\], \[enforceTimestamp\])](#WalletAuthenticator+verify) ⇒
 
 ### new WalletAuthenticator(config)
 
 Creates an instance of DID Authenticator.
 
-| Param             | Type                                  | Default                       | Description                                                                                                                 |
-| ----------------- | ------------------------------------- | ----------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
-| config            | `object`                              |                               |                                                                                                                             |
-| config.wallet     | `Wallet`                              |                               | wallet instance {[**@see**](https://github.com/see) [**@arcblock/forge-wallet**](https://github.com/arcblock/forge-wallet)} |
-| config.appInfo    | [`ApplicationInfo`](#ApplicationInfo) |                               | application basic info                                                                                                      |
-| config.chainInfo  | [`ChainInfo`](#ChainInfo)             |                               | application chain info                                                                                                      |
-| config.baseUrl    | `object`                              |                               | url to assemble wallet request uri                                                                                          |
-| [config.tokenKey] | `string`                              | `&quot;&#x27;_t_&#x27;&quot;` | query param key for `token`                                                                                                 |
+| Param             | Type                                    | Default                       | Description                                                                                                                 |
+| ----------------- | --------------------------------------- | ----------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| config            | `object`                                |                               |                                                                                                                             |
+| config.wallet     | `Wallet`                                |                               | wallet instance {[**@see**](https://github.com/see) [**@arcblock/forge-wallet**](https://github.com/arcblock/forge-wallet)} |
+| config.appInfo    | [`ApplicationInfo`](#ApplicationInfo)   |                               | application basic info                                                                                                      |
+| config.chainInfo  | [`ChainInfo`](#ChainInfo) \| `function` |                               | application chain info                                                                                                      |
+| config.baseUrl    | `object`                                |                               | url to assemble wallet request uri                                                                                          |
+| [config.tokenKey] | `string`                                | `&quot;&#x27;_t_&#x27;&quot;` | query param key for `token`                                                                                                 |
 
 **Example**  
 
@@ -271,6 +284,17 @@ Sign a auth response that returned to wallet: tell the wallet the appInfo/chainI
 | params.context.walletVersion | `string` | wallet version from user-agent                    |
 | params.context.sessionDid    | `string` | did of logged-in user                             |
 
+### walletAuthenticator.getChainInfo(params, info) ⇒ [`ChainInfo`](#ChainInfo)
+
+Determine chainInfo on the fly
+
+**Kind**: instance method of [`WalletAuthenticator`](#WalletAuthenticator)  
+
+| Param  | Type                    | Description                          |
+| ------ | ----------------------- | ------------------------------------ |
+| params | `object`                | contains the context of this request |
+| info   | `object` \| `undefined` | chain info object or function        |
+
 ### walletAuthenticator.verify(data, [locale], [enforceTimestamp]) ⇒
 
 Verify a DID auth response sent from ABT Wallet
@@ -328,24 +352,23 @@ Creates an instance of DID Auth Handlers.
 
 Creates an instance of atomic swap handlers.
 
-| Param                           | Type       | Default                             | Description                                                                                                                   |
-| ------------------------------- | ---------- | ----------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
-| config                          | `object`   |                                     |                                                                                                                               |
-| config.authenticator            | `object`   |                                     | Authenticator instance that can to jwt sign/verify                                                                            |
-| config.tokenGenerator           | `function` |                                     | function to generate action token                                                                                             |
-| config.swapStorage              | `object`   |                                     | storage that contains swap information                                                                                        |
-| config.tokenStorage             | `object`   |                                     | storage that contains action token information                                                                                |
-| config.offerChainHost           | `string`   |                                     | offer chain endpoint                                                                                                          |
-| config.demandChainHost          | `string`   |                                     | demand chain endpoint                                                                                                         |
-| config.offerChainId             | `string`   |                                     | offer chain endpoint                                                                                                          |
-| config.demandChainId            | `string`   |                                     | demand chain endpoint                                                                                                         |
-| config.offerLocktime            | `number`   |                                     | num of blocks that will be locked before app chain swap can be revoked                                                        |
-| config.demandLocktime           | `number`   |                                     | num of blocks that will be locked before asset chain swap can be revoked                                                      |
-| [config.onPreAuth]              | `function` | `noop`                              | function called before each auth request send back to app, used to check for permission, throw error to halt the auth process |
-| [config.options.prefix]         | `string`   | `&quot;&#x27;/api/swap&#x27;&quot;` | url prefix for this group endpoints                                                                                           |
-| [config.options.sessionDidKey]  | `string`   | `&quot;&#x27;user.did&#x27;&quot;`  | key path to extract session user did from request object                                                                      |
-| [config.options.tokenKey]       | `string`   | `&quot;&#x27;_t_&#x27;&quot;`       | query param key for `token`                                                                                                   |
-| [config.options.signedResponse] | `boolean`  | `false`                             | whether should we return signed response                                                                                      |
+| Param                              | Type       | Default                             | Description                                                                                                                   |
+| ---------------------------------- | ---------- | ----------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| config                             | `object`   |                                     |                                                                                                                               |
+| config.authenticator               | `object`   |                                     | Authenticator instance that can to jwt sign/verify                                                                            |
+| config.tokenGenerator              | `function` |                                     | function to generate action token                                                                                             |
+| config.swapStorage                 | `object`   |                                     | storage that contains swap information                                                                                        |
+| config.tokenStorage                | `object`   |                                     | storage that contains action token information                                                                                |
+| config.swapContext.offerChainHost  | `string`   |                                     | offer chain endpoint                                                                                                          |
+| config.swapContext.offerChainId    | `string`   |                                     | offer chain endpoint                                                                                                          |
+| config.swapContext.offerLocktime   | `number`   |                                     | num of blocks that will be locked before app chain swap can be revoked                                                        |
+| config.swapContext.demandChainHost | `string`   |                                     | demand chain endpoint                                                                                                         |
+| config.swapContext.demandChainId   | `string`   |                                     | demand chain endpoint                                                                                                         |
+| config.swapContext.demandLocktime  | `number`   |                                     | num of blocks that will be locked before asset chain swap can be revoked                                                      |
+| [config.onPreAuth]                 | `function` | `noop`                              | function called before each auth request send back to app, used to check for permission, throw error to halt the auth process |
+| [config.options.prefix]            | `string`   | `&quot;&#x27;/api/swap&#x27;&quot;` | url prefix for this group endpoints                                                                                           |
+| [config.options.sessionDidKey]     | `string`   | `&quot;&#x27;user.did&#x27;&quot;`  | key path to extract session user did from request object                                                                      |
+| [config.options.tokenKey]          | `string`   | `&quot;&#x27;_t_&#x27;&quot;`       | query param key for `token`                                                                                                   |
 
 ### atomicSwapHandlers.start(payload) ⇒ `Promise.<object>`
 
@@ -566,13 +589,14 @@ Now express app have route handlers attached to the following url
 **Kind**: global typedef  
 **Properties**
 
-| Name        | Type     | Description                            |
-| ----------- | -------- | -------------------------------------- |
-| name        | `string` | application name                       |
-| description | `string` | application description                |
-| icon        | `string` | application icon/logo url              |
-| path        | `string` | application icon/logo url              |
-| publisher   | `string` | application did with `did:abt:` prefix |
+| Name        | Type     | Description                                                               |
+| ----------- | -------- | ------------------------------------------------------------------------- |
+| name        | `string` | application name                                                          |
+| description | `string` | application description                                                   |
+| icon        | `string` | application icon/logo url                                                 |
+| link        | `string` | application home page, with which user can return application from wallet |
+| path        | `string` | deep link url                                                             |
+| publisher   | `string` | application did with `did:abt:` prefix                                    |
 
 
 ## ChainInfo
@@ -580,7 +604,8 @@ Now express app have route handlers attached to the following url
 **Kind**: global typedef  
 **Properties**
 
-| Name | Type     | Description                               |
-| ---- | -------- | ----------------------------------------- |
-| id   | `string` | application chain id                      |
-| host | `string` | graphql endpoint of the application chain |
+| Name              | Type      | Description                               |
+| ----------------- | --------- | ----------------------------------------- |
+| id                | `string`  | application chain id                      |
+| host              | `string`  | graphql endpoint of the application chain |
+| restrictedDeclare | `boolean` | whether the declaration is restricted     |

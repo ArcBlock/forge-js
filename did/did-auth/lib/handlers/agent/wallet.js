@@ -149,7 +149,6 @@ class AgentWalletHandlers extends WalletHandlers {
 
     const ensureWeb = ensureRequester('web');
     const ensureWallet = ensureRequester('wallet');
-    const ensureSignedRes = ensureSignedJson(false);
 
     // 1. WEB: to generate new token
     app.get(`${prefix}/${action}/token`, ensureAuthorization, ensureWeb, generateActionToken);
@@ -161,10 +160,10 @@ class AgentWalletHandlers extends WalletHandlers {
     app.get(`${prefix}/${action}/timeout`, ensureAuthorization, ensureWeb, ensureContext, expireActionToken);
 
     // 4. Wallet: fetch auth request
-    app.get(pathname, ensureAuthorization, ensureWallet, ensureContext, ensureSignedRes, onAuthRequest);
+    app.get(pathname, ensureAuthorization, ensureWallet, ensureContext, ensureSignedJson, onAuthRequest);
 
     // 5. Wallet: submit auth response
-    app.post(pathname, ensureAuthorization, ensureWallet, ensureContext, ensureSignedRes, onAuthResponse);
+    app.post(pathname, ensureAuthorization, ensureWallet, ensureContext, ensureSignedJson, onAuthResponse);
   }
 }
 
