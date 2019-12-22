@@ -1,3 +1,10 @@
+## 1.0.24 (December 22, 2019)
+
+- chore: [did-auth] polish chainInfo params format
+- feat: [did-auth] use baseUrl as default application link
+- fix: [did-auth] test case in swap-handlers
+- feat: [did-auth] support function as chainInfo
+
 ## 1.0.23 (December 17, 2019)
 
 - chore: [did-auth] update debug statements
