@@ -1,3 +1,8 @@
+## 1.0.25 (December 23, 2019)
+
+- fix: [did-auth] wallet authenticator should use custom chainInfo on claim
+- update readme
+
 ## 1.0.24 (December 22, 2019)
 
 - chore: [did-auth] polish chainInfo params format
