@@ -70,7 +70,7 @@ class WalletAuthenticator extends BaseAuthenticator {
 
     this.wallet = this._validateWallet(wallet);
     this.appInfo = this._validateAppInfo(appInfo, wallet);
-    this.chainInfo = this._validateChainInfo(chainInfo);
+    this.chainInfo = chainInfo;
 
     this.baseUrl = baseUrl;
     this.tokenKey = tokenKey;
@@ -79,8 +79,6 @@ class WalletAuthenticator extends BaseAuthenticator {
     if (!this.appInfo.link) {
       this.appInfo.link = this.baseUrl;
     }
-
-    ForgeSDK.connect(chainInfo.host, { chainId: chainInfo.id, name: chainInfo.id });
   }
 
   /**
@@ -273,6 +271,12 @@ class WalletAuthenticator extends BaseAuthenticator {
           })
         : claim;
 
+    const chainInfoParams = Object.assign({}, context, extraParams);
+    const chainInfo = this.getChainInfo(chainInfoParams, result.chainInfo || undefined);
+    ForgeSDK.connect(chainInfo.host, { chainId: chainInfo.id, name: chainInfo.id });
+
+    result.chainInfo = chainInfo;
+
     return result;
   }
 
@@ -350,7 +354,7 @@ class WalletAuthenticator extends BaseAuthenticator {
           tx: data,
           wallet: wallet || fromAddress(sender || context.userDid),
         },
-        { conn: chainInfo ? chainInfo.id : this.chainInfo.id }
+        { conn: chainInfo.id }
       );
 
       return {
@@ -501,7 +505,7 @@ class WalletAuthenticator extends BaseAuthenticator {
   }
 
   _validateChainInfo(chainInfo) {
-    if (typeof x === 'function') {
+    if (typeof chainInfo === 'function') {
       return true;
     }
 
