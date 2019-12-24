@@ -56,7 +56,6 @@
     "lint:fix": "lerna run lint:fix",
     "build": "lerna run clean && lerna run build",
     "clean": "lerna clean",
-    "test": "CI=1 lerna run test",
     "coverage": "CI=1 lerna run coverage"
   },
   "dependencies": {
