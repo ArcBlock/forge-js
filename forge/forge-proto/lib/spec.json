@@ -955,10 +955,7 @@
         "RequestGetForgeStats": {
           "oneofs": {
             "value": {
-              "oneof": [
-                "dayInfo",
-                "date"
-              ]
+              "oneof": ["dayInfo", "date"]
             }
           },
           "fields": {
@@ -2439,6 +2436,22 @@
               "type": "string",
               "id": 1
             },
+            "commissionRate": {
+              "type": "uint32",
+              "id": 4
+            },
+            "revokeCommissionRate": {
+              "type": "uint32",
+              "id": 5
+            },
+            "minCommission": {
+              "type": "BigUint",
+              "id": 6
+            },
+            "maxCommission": {
+              "type": "BigUint",
+              "id": 7
+            },
             "withdrawInterval": {
               "type": "uint32",
               "id": 2
@@ -2446,10 +2459,6 @@
             "commission": {
               "type": "BigUint",
               "id": 3
-            },
-            "commissionRate": {
-              "type": "uint32",
-              "id": 4
             },
             "revokeCommission": {
               "type": "uint32",
@@ -4215,6 +4224,10 @@
             "chainId": {
               "type": "string",
               "id": 4
+            },
+            "ttl": {
+              "type": "google.protobuf.Timestamp",
+              "id": 5
             }
           }
         }

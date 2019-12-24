@@ -1,4 +1,3 @@
-
 /**
  * Structure of GRpcClient.TxEncodeOutput
  *
@@ -7,7 +6,6 @@
  * @property {object} object - the transaction object, human readable
  * @property {buffer} buffer - the transaction binary presentation, can be used to signing, encoding to other formats
  */
-
 
 /**
  * Structure of GRpcClient.RequestSendTx
@@ -159,7 +157,7 @@
       }
     ],
     "code": 0,
-    "time": "2019-12-22T08:40:02.466Z"
+    "time": "2019-12-24T06:36:38.955Z"
   }
 }
 ```
@@ -193,7 +191,7 @@
   "block": {
     "height": 5,
     "numTxs": 2,
-    "time": "2019-12-22T08:40:02.460Z",
+    "time": "2019-12-24T06:36:38.950Z",
     "appHash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
     "proposer": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
     "txs": [
@@ -247,7 +245,7 @@
           }
         ],
         "code": 0,
-        "time": "2019-12-22T08:40:02.460Z"
+        "time": "2019-12-24T06:36:38.950Z"
       },
       {
         "tx": {
@@ -299,7 +297,7 @@
           }
         ],
         "code": 0,
-        "time": "2019-12-22T08:40:02.461Z"
+        "time": "2019-12-24T06:36:38.950Z"
       }
     ],
     "totalTxs": 5,
@@ -354,7 +352,7 @@
           }
         ],
         "code": 0,
-        "time": "2019-12-22T08:40:02.461Z"
+        "time": "2019-12-24T06:36:38.951Z"
       },
       {
         "tx": {
@@ -406,7 +404,7 @@
           }
         ],
         "code": 0,
-        "time": "2019-12-22T08:40:02.461Z"
+        "time": "2019-12-24T06:36:38.951Z"
       }
     ],
     "txsHashes": [
@@ -493,7 +491,7 @@
     {
       "height": 5,
       "numTxs": 2,
-      "time": "2019-12-22T08:40:02.461Z",
+      "time": "2019-12-24T06:36:38.951Z",
       "appHash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
       "proposer": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
       "totalTxs": 5,
@@ -526,7 +524,7 @@
     {
       "height": 5,
       "numTxs": 2,
-      "time": "2019-12-22T08:40:02.461Z",
+      "time": "2019-12-24T06:36:38.951Z",
       "appHash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
       "proposer": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
       "totalTxs": 5,
@@ -687,8 +685,8 @@
     "context": {
       "genesisTx": "arcblock",
       "renaissanceTx": "arcblock",
-      "genesisTime": "2019-12-22T08:40:02.462Z",
-      "renaissanceTime": "2019-12-22T08:40:02.462Z"
+      "genesisTime": "2019-12-24T06:36:38.952Z",
+      "renaissanceTime": "2019-12-24T06:36:38.952Z"
     },
     "issuer": "arcblock",
     "migratedTo": [
@@ -791,7 +789,7 @@
     "readonly": true,
     "transferrable": true,
     "ttl": 2,
-    "consumedTime": "2019-12-22T08:40:02.462Z",
+    "consumedTime": "2019-12-24T06:36:38.952Z",
     "issuer": "arcblock",
     "parent": "arcblock",
     "stake": {
@@ -819,8 +817,8 @@
     "context": {
       "genesisTx": "arcblock",
       "renaissanceTx": "arcblock",
-      "genesisTime": "2019-12-22T08:40:02.462Z",
-      "renaissanceTime": "2019-12-22T08:40:02.462Z"
+      "genesisTime": "2019-12-24T06:36:38.952Z",
+      "renaissanceTime": "2019-12-24T06:36:38.952Z"
     },
     "data": {
       "type": "string",
@@ -919,8 +917,8 @@
     "context": {
       "genesisTx": "arcblock",
       "renaissanceTx": "arcblock",
-      "genesisTime": "2019-12-22T08:40:02.463Z",
-      "renaissanceTime": "2019-12-22T08:40:02.463Z"
+      "genesisTime": "2019-12-24T06:36:38.953Z",
+      "renaissanceTime": "2019-12-24T06:36:38.953Z"
     },
     "data": {
       "type": "string",
@@ -971,8 +969,8 @@
     "context": {
       "genesisTx": "arcblock",
       "renaissanceTx": "arcblock",
-      "genesisTime": "2019-12-22T08:40:02.463Z",
-      "renaissanceTime": "2019-12-22T08:40:02.463Z"
+      "genesisTime": "2019-12-24T06:36:38.953Z",
+      "renaissanceTime": "2019-12-24T06:36:38.953Z"
     },
     "data": {
       "type": "string",
@@ -1064,8 +1062,8 @@
         "context": {
           "genesisTx": "arcblock",
           "renaissanceTx": "arcblock",
-          "genesisTime": "2019-12-22T08:40:02.463Z",
-          "renaissanceTime": "2019-12-22T08:40:02.463Z"
+          "genesisTime": "2019-12-24T06:36:38.952Z",
+          "renaissanceTime": "2019-12-24T06:36:38.952Z"
         }
       }
     },
@@ -1132,8 +1130,9 @@
     },
     "tokenSwapConfig": {
       "commissionHolderAddress": "arcblock",
-      "withdrawInterval": 2,
       "commissionRate": 2,
+      "revokeCommissionRate": 2,
+      "withdrawInterval": 2,
       "revokeCommission": 2
     },
     "data": {
@@ -1192,8 +1191,8 @@
     "context": {
       "genesisTx": "arcblock",
       "renaissanceTx": "arcblock",
-      "genesisTime": "2019-12-22T08:40:02.463Z",
-      "renaissanceTime": "2019-12-22T08:40:02.463Z"
+      "genesisTime": "2019-12-24T06:36:38.953Z",
+      "renaissanceTime": "2019-12-24T06:36:38.953Z"
     }
   }
 }
@@ -1244,8 +1243,8 @@
     "context": {
       "genesisTx": "arcblock",
       "renaissanceTx": "arcblock",
-      "genesisTime": "2019-12-22T08:40:02.463Z",
-      "renaissanceTime": "2019-12-22T08:40:02.463Z"
+      "genesisTime": "2019-12-24T06:36:38.953Z",
+      "renaissanceTime": "2019-12-24T06:36:38.953Z"
     },
     "data": {
       "type": "string",
@@ -1376,7 +1375,7 @@
     "appHash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
     "blockHash": {},
     "blockHeight": 5,
-    "blockTime": "2019-12-22T08:40:02.461Z",
+    "blockTime": "2019-12-24T06:36:38.951Z",
     "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
     "votingPower": 5,
     "totalTxs": 5,
@@ -1425,7 +1424,7 @@
     "appHash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
     "blockHash": {},
     "blockHeight": 5,
-    "blockTime": "2019-12-22T08:40:02.461Z",
+    "blockTime": "2019-12-24T06:36:38.951Z",
     "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
     "votingPower": 5,
     "totalTxs": 5,
@@ -1528,7 +1527,7 @@
         }
       ],
       "code": 0,
-      "time": "2019-12-22T08:40:02.462Z"
+      "time": "2019-12-24T06:36:38.951Z"
     },
     {
       "tx": {
@@ -1580,7 +1579,7 @@
         }
       ],
       "code": 0,
-      "time": "2019-12-22T08:40:02.462Z"
+      "time": "2019-12-24T06:36:38.951Z"
     }
   ]
 }
@@ -2821,8 +2820,8 @@
       "context": {
         "genesisTx": "arcblock",
         "renaissanceTx": "arcblock",
-        "genesisTime": "2019-12-22T08:40:02.465Z",
-        "renaissanceTime": "2019-12-22T08:40:02.465Z"
+        "genesisTime": "2019-12-24T06:36:38.954Z",
+        "renaissanceTime": "2019-12-24T06:36:38.954Z"
       }
     },
     {
@@ -2840,8 +2839,8 @@
       "context": {
         "genesisTx": "arcblock",
         "renaissanceTx": "arcblock",
-        "genesisTime": "2019-12-22T08:40:02.465Z",
-        "renaissanceTime": "2019-12-22T08:40:02.465Z"
+        "genesisTime": "2019-12-24T06:36:38.954Z",
+        "renaissanceTime": "2019-12-24T06:36:38.954Z"
       }
     }
   ]
@@ -3470,9 +3469,12 @@
  * @memberof GRpcClient
  * @typedef {object} GRpcClient.TokenSwapConfig
  * @prop {string} commissionHolderAddress
+ * @prop {number} commissionRate
+ * @prop {number} revokeCommissionRate
+ * @prop {GRpcClient.BigUint} minCommission
+ * @prop {GRpcClient.BigUint} maxCommission
  * @prop {number} withdrawInterval
  * @prop {GRpcClient.BigUint} commission
- * @prop {number} commissionRate
  * @prop {number} revokeCommission
  */
 
@@ -3859,7 +3861,6 @@
  * @prop {string} endDateTime
  */
 
-
 /**
  * Structure of GRpcClient.AddressFilter
  *
@@ -4032,7 +4033,6 @@
  * @prop {string} abciInfo
  */
 
-
 /**
  * Structure of GRpcClient.ValidityFilter
  *
@@ -4049,7 +4049,6 @@
  * @prop {number} from
  * @prop {number} to
  */
-
 
 /**
  * Structure of GRpcClient.AccountMigrateTx
@@ -4386,7 +4385,7 @@
       "arcblock"
     ]
   },
-  "expiredAt": "2019-12-22T08:40:02.468Z",
+  "expiredAt": "2019-12-24T06:36:38.957Z",
   "data": {
     "type": "string",
     "value": "ABCD 1234"
@@ -4651,7 +4650,8 @@
 {
   "to": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
   "chainType": "arcblock",
-  "chainId": "arcblock"
+  "chainId": "arcblock",
+  "ttl": "2019-12-24T06:36:38.957Z"
 }
 ```
  *
@@ -4661,6 +4661,7 @@
  * @prop {string} to
  * @prop {string} chainType
  * @prop {string} chainId
+ * @prop {GRpcClient.Timestamp} ttl
  */
 
 /**
@@ -5315,7 +5316,6 @@
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
 
-
 /**
  * @memberof GRpcClient
  * @typedef {Object} GRpcClient.sendDeployProtocolTxInput
@@ -5341,7 +5341,6 @@
  * @param {GRpcClient.sendDeployProtocolTxInput} params
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
-
 
 /**
  * @memberof GRpcClient
@@ -5369,7 +5368,6 @@
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
 
-
 /**
  * @memberof GRpcClient
  * @typedef {Object} GRpcClient.sendAccountMigrateTxInput
@@ -5395,7 +5393,6 @@
  * @param {GRpcClient.sendAccountMigrateTxInput} params
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
-
 
 /**
  * @memberof GRpcClient
@@ -5423,7 +5420,6 @@
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
 
-
 /**
  * @memberof GRpcClient
  * @typedef {Object} GRpcClient.sendActivateProtocolTxInput
@@ -5449,7 +5445,6 @@
  * @param {GRpcClient.sendActivateProtocolTxInput} params
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
-
 
 /**
  * @memberof GRpcClient
@@ -5477,7 +5472,6 @@
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
 
-
 /**
  * @memberof GRpcClient
  * @typedef {Object} GRpcClient.sendConsumeAssetTxInput
@@ -5503,7 +5497,6 @@
  * @param {GRpcClient.sendConsumeAssetTxInput} params
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
-
 
 /**
  * @memberof GRpcClient
@@ -5531,7 +5524,6 @@
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
 
-
 /**
  * @memberof GRpcClient
  * @typedef {Object} GRpcClient.sendDeactivateProtocolTxInput
@@ -5557,7 +5549,6 @@
  * @param {GRpcClient.sendDeactivateProtocolTxInput} params
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
-
 
 /**
  * @memberof GRpcClient
@@ -5585,7 +5576,6 @@
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
 
-
 /**
  * @memberof GRpcClient
  * @typedef {Object} GRpcClient.sendDelegateTxInput
@@ -5611,7 +5601,6 @@
  * @param {GRpcClient.sendDelegateTxInput} params
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
-
 
 /**
  * @memberof GRpcClient
@@ -5639,7 +5628,6 @@
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
 
-
 /**
  * @memberof GRpcClient
  * @typedef {Object} GRpcClient.sendExchangeTxInput
@@ -5665,7 +5653,6 @@
  * @param {GRpcClient.sendExchangeTxInput} params
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
-
 
 /**
  * @memberof GRpcClient
@@ -5693,7 +5680,6 @@
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
 
-
 /**
  * @memberof GRpcClient
  * @typedef {Object} GRpcClient.sendRefuelTxInput
@@ -5719,7 +5705,6 @@
  * @param {GRpcClient.sendRefuelTxInput} params
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
-
 
 /**
  * @memberof GRpcClient
@@ -5747,7 +5732,6 @@
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
 
-
 /**
  * @memberof GRpcClient
  * @typedef {Object} GRpcClient.sendRevokeDelegateTxInput
@@ -5773,7 +5757,6 @@
  * @param {GRpcClient.sendRevokeDelegateTxInput} params
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
-
 
 /**
  * @memberof GRpcClient
@@ -5801,7 +5784,6 @@
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
 
-
 /**
  * @memberof GRpcClient
  * @typedef {Object} GRpcClient.sendRevokeWithdrawTxInput
@@ -5827,7 +5809,6 @@
  * @param {GRpcClient.sendRevokeWithdrawTxInput} params
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
-
 
 /**
  * @memberof GRpcClient
@@ -5855,7 +5836,6 @@
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
 
-
 /**
  * @memberof GRpcClient
  * @typedef {Object} GRpcClient.sendTransferTxInput
@@ -5881,7 +5861,6 @@
  * @param {GRpcClient.sendTransferTxInput} params
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
-
 
 /**
  * @memberof GRpcClient
@@ -5909,7 +5888,6 @@
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
 
-
 /**
  * @memberof GRpcClient
  * @typedef {Object} GRpcClient.sendUpdateValidatorTxInput
@@ -5935,7 +5913,6 @@
  * @param {GRpcClient.sendUpdateValidatorTxInput} params
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
-
 
 /**
  * @memberof GRpcClient
@@ -5963,7 +5940,6 @@
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
 
-
 /**
  * @memberof GRpcClient
  * @typedef {Object} GRpcClient.sendWithdrawTokenTxInput
@@ -5990,7 +5966,6 @@
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
 
-
 /**
  * Encode a encodeConsensusUpgradeTx transaction for later use
  *
@@ -6000,7 +5975,6 @@
  * @param {GRpcClient.encodeConsensusUpgradeTxInput} params
  * @returns {Promise<GRpcClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
-
 
 /**
  * Encode a encodeDeployProtocolTx transaction for later use
@@ -6012,7 +5986,6 @@
  * @returns {Promise<GRpcClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
 
-
 /**
  * Encode a encodeSysUpgradeTx transaction for later use
  *
@@ -6022,7 +5995,6 @@
  * @param {GRpcClient.encodeSysUpgradeTxInput} params
  * @returns {Promise<GRpcClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
-
 
 /**
  * Encode a encodeAccountMigrateTx transaction for later use
@@ -6034,7 +6006,6 @@
  * @returns {Promise<GRpcClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
 
-
 /**
  * Encode a encodeAcquireAssetTx transaction for later use
  *
@@ -6044,7 +6015,6 @@
  * @param {GRpcClient.encodeAcquireAssetTxInput} params
  * @returns {Promise<GRpcClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
-
 
 /**
  * Encode a encodeActivateProtocolTx transaction for later use
@@ -6056,7 +6026,6 @@
  * @returns {Promise<GRpcClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
 
-
 /**
  * Encode a encodeApproveWithdrawTx transaction for later use
  *
@@ -6066,7 +6035,6 @@
  * @param {GRpcClient.encodeApproveWithdrawTxInput} params
  * @returns {Promise<GRpcClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
-
 
 /**
  * Encode a encodeConsumeAssetTx transaction for later use
@@ -6078,7 +6046,6 @@
  * @returns {Promise<GRpcClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
 
-
 /**
  * Encode a encodeCreateAssetTx transaction for later use
  *
@@ -6088,7 +6055,6 @@
  * @param {GRpcClient.encodeCreateAssetTxInput} params
  * @returns {Promise<GRpcClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
-
 
 /**
  * Encode a encodeDeactivateProtocolTx transaction for later use
@@ -6100,7 +6066,6 @@
  * @returns {Promise<GRpcClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
 
-
 /**
  * Encode a encodeDeclareTx transaction for later use
  *
@@ -6110,7 +6075,6 @@
  * @param {GRpcClient.encodeDeclareTxInput} params
  * @returns {Promise<GRpcClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
-
 
 /**
  * Encode a encodeDelegateTx transaction for later use
@@ -6122,7 +6086,6 @@
  * @returns {Promise<GRpcClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
 
-
 /**
  * Encode a encodeDepositTokenTx transaction for later use
  *
@@ -6132,7 +6095,6 @@
  * @param {GRpcClient.encodeDepositTokenTxInput} params
  * @returns {Promise<GRpcClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
-
 
 /**
  * Encode a encodeExchangeTx transaction for later use
@@ -6144,7 +6106,6 @@
  * @returns {Promise<GRpcClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
 
-
 /**
  * Encode a encodePokeTx transaction for later use
  *
@@ -6154,7 +6115,6 @@
  * @param {GRpcClient.encodePokeTxInput} params
  * @returns {Promise<GRpcClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
-
 
 /**
  * Encode a encodeRefuelTx transaction for later use
@@ -6166,7 +6126,6 @@
  * @returns {Promise<GRpcClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
 
-
 /**
  * Encode a encodeRetrieveSwapTx transaction for later use
  *
@@ -6176,7 +6135,6 @@
  * @param {GRpcClient.encodeRetrieveSwapTxInput} params
  * @returns {Promise<GRpcClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
-
 
 /**
  * Encode a encodeRevokeDelegateTx transaction for later use
@@ -6188,7 +6146,6 @@
  * @returns {Promise<GRpcClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
 
-
 /**
  * Encode a encodeRevokeSwapTx transaction for later use
  *
@@ -6198,7 +6155,6 @@
  * @param {GRpcClient.encodeRevokeSwapTxInput} params
  * @returns {Promise<GRpcClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
-
 
 /**
  * Encode a encodeRevokeWithdrawTx transaction for later use
@@ -6210,7 +6166,6 @@
  * @returns {Promise<GRpcClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
 
-
 /**
  * Encode a encodeSetupSwapTx transaction for later use
  *
@@ -6220,7 +6175,6 @@
  * @param {GRpcClient.encodeSetupSwapTxInput} params
  * @returns {Promise<GRpcClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
-
 
 /**
  * Encode a encodeTransferTx transaction for later use
@@ -6232,7 +6186,6 @@
  * @returns {Promise<GRpcClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
 
-
 /**
  * Encode a encodeUpdateAssetTx transaction for later use
  *
@@ -6242,7 +6195,6 @@
  * @param {GRpcClient.encodeUpdateAssetTxInput} params
  * @returns {Promise<GRpcClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
-
 
 /**
  * Encode a encodeUpdateValidatorTx transaction for later use
@@ -6254,7 +6206,6 @@
  * @returns {Promise<GRpcClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
 
-
 /**
  * Encode a encodeUpgradeNodeTx transaction for later use
  *
@@ -6264,7 +6215,6 @@
  * @param {GRpcClient.encodeUpgradeNodeTxInput} params
  * @returns {Promise<GRpcClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
-
 
 /**
  * Encode a encodeWithdrawTokenTx transaction for later use

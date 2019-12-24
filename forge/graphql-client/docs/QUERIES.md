@@ -1,6 +1,6 @@
 # Forge GraphQL API List
 
-> Updated on 2019-12-09T03:34:22.146Z
+> Updated on 2019-12-24T06:37:19.134Z
 
 
 ## Table of Contents
@@ -25,6 +25,7 @@
   * [getSimulatorStatus](#getsimulatorstatus)
   * [getStakeState](#getstakestate)
   * [getSwapState](#getswapstate)
+  * [getSwapStatistics](#getswapstatistics)
   * [getTx](#gettx)
   * [getUnconfirmedTxs](#getunconfirmedtxs)
   * [getValidatorsInfo](#getvalidatorsinfo)
@@ -162,6 +163,13 @@
           maxItems
           typeUrl
         }
+      }
+      withdrawItems {
+        circular
+        fifo
+        items
+        maxItems
+        typeUrl
       }
     }
   }
@@ -713,11 +721,11 @@ No arguments
         unit
       }
       tokenSwapConfig {
-        commission
         commissionHolderAddress
         commissionRate
-        revokeCommission
-        withdrawInterval
+        maxCommission
+        minCommission
+        revokeCommissionRate
       }
       txConfig {
         maxAssetSize
@@ -725,6 +733,7 @@ No arguments
         maxMultisig
         minimumStake
         declare {
+          cost
           hierarchy
           restricted
         }
@@ -1344,6 +1353,29 @@ No arguments
           }
         }
       }
+    }
+  }
+}
+```
+
+### getSwapStatistics
+
+#### Arguments
+
+* **address**, optional, 
+
+#### Result Format
+
+```graphql
+{
+  getSwapStatistics(address: "abc") {
+    code
+    statistics {
+      address
+      lockedAssetsIn
+      lockedAssetsOut
+      lockedValueIn
+      lockedValueOut
     }
   }
 }
@@ -1971,6 +2003,13 @@ subscription {
           typeUrl
         }
       }
+      withdrawItems {
+        circular
+        fifo
+        items
+        maxItems
+        typeUrl
+      }
     }
     acquireAsset {
       chainId
@@ -2557,11 +2596,11 @@ subscription {
         unit
       }
       tokenSwapConfig {
-        commission
         commissionHolderAddress
         commissionRate
-        revokeCommission
-        withdrawInterval
+        maxCommission
+        minCommission
+        revokeCommissionRate
       }
       txConfig {
         maxAssetSize
@@ -2569,6 +2608,7 @@ subscription {
         maxMultisig
         minimumStake
         declare {
+          cost
           hierarchy
           restricted
         }
