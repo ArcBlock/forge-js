@@ -1,3 +1,8 @@
+## 1.0.26 (December 24, 2019)
+
+- chore: update forge-proto/grpc-client/graphql-client to latest forge
+- update readme
+
 ## 1.0.25 (December 23, 2019)
 
 - fix: [did-auth] wallet authenticator should use custom chainInfo on claim
