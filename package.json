@@ -61,5 +61,11 @@
   },
   "dependencies": {
     "axios": "^0.19.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged && lerna run precommit",
+      "pre-push": "lint-staged && lerna run prepush"
+    }
   }
 }
