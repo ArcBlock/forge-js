@@ -1,3 +1,7 @@
+## 1.0.28 (December 25, 2019)
+
+- fix: lerna patch publish script
+
 ## 1.0.27 (December 25, 2019)
 
 - chore: add script to publish alpha patch releases
