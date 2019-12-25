@@ -13,9 +13,9 @@ lerna publish prepatch --yes
 node tools/post-publish.js
 
 # update readme
-node tools/update-readme.js
-git commit -nam 'update readme'
-git push origin master --no-verify
+# node tools/update-readme.js
+# git commit -nam 'update readme'
+# git push origin master --no-verify
 
 # restore git hooks
 mv .git/hooks/pre-commit.bak .git/hooks/pre-commit
