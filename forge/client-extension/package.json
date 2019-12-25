@@ -1,7 +1,7 @@
 {
   "name": "@arcblock/client-extension",
   "description": "Utility to generate methods on GraphQLClient or GRpcClient",
-  "version": "1.0.26",
+  "version": "1.0.27-alpha.0",
   "author": {
     "name": "wangshijun",
     "email": "shijun@arcblock.io",
@@ -15,13 +15,13 @@
     "access": "public"
   },
   "dependencies": {
-    "@arcblock/did": "^1.0.23",
-    "@arcblock/did-util": "^1.0.26",
-    "@arcblock/forge-message": "^1.0.26",
+    "@arcblock/did": "^1.0.27-alpha.0",
+    "@arcblock/did-util": "^1.0.27-alpha.0",
+    "@arcblock/forge-message": "^1.0.27-alpha.0",
     "@arcblock/forge-proto": "^1.0.26",
-    "@arcblock/forge-util": "^1.0.23",
-    "@arcblock/forge-wallet": "^1.0.23",
-    "@arcblock/mcrypto": "^1.0.23",
+    "@arcblock/forge-util": "^1.0.27-alpha.0",
+    "@arcblock/forge-wallet": "^1.0.27-alpha.0",
+    "@arcblock/mcrypto": "^1.0.27-alpha.0",
     "debug": "^4.1.1",
     "lodash": "^4.17.14"
   },
