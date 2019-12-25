@@ -7,6 +7,11 @@ Contains utility functions to help developers manipulate encoding/decoding/forma
 
 ```js
 yarn add @arcblock/forge-util
+
+const Util = require('@arcblock/forge-util');
+console.log(Util.fromTokenToUnit(100)); // 100_0000_0000_0000_0000
+console.log(Util.fromUnitToToken('1000000000000000000')); // 100
+console.log(Util.isStrictHex('0x123abc')); // true
 ```
 
 * [isHexPrefixed(str)](#isHexPrefixed) ⇒ `Boolean`
