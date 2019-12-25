@@ -122,7 +122,7 @@ declare namespace _Lib {
     bytesToHex: (bytes: any[]) => string;
     toHex: (value: any, returnType: boolean) => string;
     numberToString: (arg: any) => any;
-    fromUnitToToken: (input: string | number, decimal?: number, optionsInput: any) => string;
+    fromUnitToToken: (input: string | number, decimal?: number, optionsInput?: any) => string;
     fromTokenToUnit: (input: string, decimal?: number) => any;
     toBN: (number: any) => any;
     toUint8Array: typeof toUint8Array;

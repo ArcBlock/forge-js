@@ -212,6 +212,7 @@ Please note that, due to internal implementation of google-protobuf, all `repeat
       * [Protocol](#GraphQLClient.Protocol) : `object`
       * [ProtocolState](#GraphQLClient.ProtocolState) : `object`
       * [PubKey](#GraphQLClient.PubKey) : `object`
+      * [QueueItem](#GraphQLClient.QueueItem) : `object`
       * [RequestBeginBlock](#GraphQLClient.RequestBeginBlock) : `object`
       * [RequestEndBlock](#GraphQLClient.RequestEndBlock) : `object`
       * [ResponseGetAccountState](#GraphQLClient.ResponseGetAccountState) : `object`
@@ -2223,13 +2224,13 @@ Structure of GraphQLClient.CircularQueue
 **Kind**: static typedef of [`GraphQLClient`](#GraphQLClient)  
 **Properties**
 
-| Name     | Type                              |
-| -------- | --------------------------------- |
-| circular | `boolean`                         |
-| fifo     | `boolean`                         |
-| items    | `Array.<...GraphQLClient.string>` |
-| maxItems | `number`                          |
-| typeUrl  | `string`                          |
+| Name     | Type                                 |
+| -------- | ------------------------------------ |
+| circular | `boolean`                            |
+| fifo     | `boolean`                            |
+| items    | `Array.<...GraphQLClient.QueueItem>` |
+| maxItems | `number`                             |
+| typeUrl  | `string`                             |
 
 ### GraphQLClient.CodeInfo : `object`
 
@@ -3154,6 +3155,18 @@ Structure of GraphQLClient.PubKey
 | data | `string` |
 | type | `string` |
 
+### GraphQLClient.QueueItem : `object`
+
+Structure of GraphQLClient.QueueItem
+
+**Kind**: static typedef of [`GraphQLClient`](#GraphQLClient)  
+**Properties**
+
+| Name  | Type     |
+| ----- | -------- |
+| hash  | `string` |
+| value | `string` |
+
 ### GraphQLClient.RequestBeginBlock : `object`
 
 Structure of GraphQLClient.RequestBeginBlock
@@ -3251,14 +3264,14 @@ Checkout the following snippet for the format of ResponseGetAccountState:
 
 ```json
 {
-  "code": "INVALID_RECEIVER_STATE",
+  "code": "INVALID_FORGE_STATE",
   "state": {
     "address": "abc",
     "balance": "abc",
     "context": {
       "genesisTime": "2019-04-29T00:00:00.000Z",
       "genesisTx": {
-        "code": "INVALID_RECEIVER_STATE",
+        "code": "INVALID_FORGE_STATE",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -3292,7 +3305,7 @@ Checkout the following snippet for the format of ResponseGetAccountState:
       },
       "renaissanceTime": "2019-04-29T00:00:00.000Z",
       "renaissanceTx": {
-        "code": "INVALID_RECEIVER_STATE",
+        "code": "INVALID_FORGE_STATE",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -3351,7 +3364,10 @@ Checkout the following snippet for the format of ResponseGetAccountState:
         "circular": true,
         "fifo": true,
         "items": [
-          "abc"
+          {
+            "hash": "abc",
+            "value": "abc"
+          }
         ],
         "maxItems": 123,
         "typeUrl": "abc"
@@ -3360,7 +3376,10 @@ Checkout the following snippet for the format of ResponseGetAccountState:
         "circular": true,
         "fifo": true,
         "items": [
-          "abc"
+          {
+            "hash": "abc",
+            "value": "abc"
+          }
         ],
         "maxItems": 123,
         "typeUrl": "abc"
@@ -3379,7 +3398,10 @@ Checkout the following snippet for the format of ResponseGetAccountState:
       "circular": true,
       "fifo": true,
       "items": [
-        "abc"
+        {
+          "hash": "abc",
+          "value": "abc"
+        }
       ],
       "maxItems": 123,
       "typeUrl": "abc"
@@ -3404,14 +3426,14 @@ Checkout the following snippet for the format of ResponseGetAssetState:
 
 ```json
 {
-  "code": "INVALID_RECEIVER_STATE",
+  "code": "INVALID_FORGE_STATE",
   "state": {
     "address": "abc",
     "consumedTime": "2019-04-29T00:00:00.000Z",
     "context": {
       "genesisTime": "2019-04-29T00:00:00.000Z",
       "genesisTx": {
-        "code": "INVALID_RECEIVER_STATE",
+        "code": "INVALID_FORGE_STATE",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -3445,7 +3467,7 @@ Checkout the following snippet for the format of ResponseGetAssetState:
       },
       "renaissanceTime": "2019-04-29T00:00:00.000Z",
       "renaissanceTx": {
-        "code": "INVALID_RECEIVER_STATE",
+        "code": "INVALID_FORGE_STATE",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -3492,7 +3514,10 @@ Checkout the following snippet for the format of ResponseGetAssetState:
         "circular": true,
         "fifo": true,
         "items": [
-          "abc"
+          {
+            "hash": "abc",
+            "value": "abc"
+          }
         ],
         "maxItems": 123,
         "typeUrl": "abc"
@@ -3501,7 +3526,10 @@ Checkout the following snippet for the format of ResponseGetAssetState:
         "circular": true,
         "fifo": true,
         "items": [
-          "abc"
+          {
+            "hash": "abc",
+            "value": "abc"
+          }
         ],
         "maxItems": 123,
         "typeUrl": "abc"
@@ -3540,7 +3568,7 @@ Checkout the following snippet for the format of ResponseGetBlock:
     "height": "abc",
     "invalidTxs": [
       {
-        "code": "INVALID_RECEIVER_STATE",
+        "code": "INVALID_FORGE_STATE",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -3592,7 +3620,7 @@ Checkout the following snippet for the format of ResponseGetBlock:
     "totalTxs": "abc",
     "txs": [
       {
-        "code": "INVALID_RECEIVER_STATE",
+        "code": "INVALID_FORGE_STATE",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -3634,7 +3662,7 @@ Checkout the following snippet for the format of ResponseGetBlock:
       "block": "abc"
     }
   },
-  "code": "INVALID_RECEIVER_STATE"
+  "code": "INVALID_FORGE_STATE"
 }
 ```
 
@@ -3688,7 +3716,7 @@ Checkout the following snippet for the format of ResponseGetBlocks:
       }
     }
   ],
-  "code": "INVALID_RECEIVER_STATE",
+  "code": "INVALID_FORGE_STATE",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -3714,7 +3742,7 @@ Checkout the following snippet for the format of ResponseGetChainInfo:
 
 ```json
 {
-  "code": "INVALID_RECEIVER_STATE",
+  "code": "INVALID_FORGE_STATE",
   "info": {
     "address": "abc",
     "appHash": "abc",
@@ -3758,7 +3786,7 @@ Checkout the following snippet for the format of ResponseGetConfig:
 
 ```json
 {
-  "code": "INVALID_RECEIVER_STATE",
+  "code": "INVALID_FORGE_STATE",
   "config": "abc"
 }
 ```
@@ -3779,13 +3807,13 @@ Checkout the following snippet for the format of ResponseGetDelegateState:
 
 ```json
 {
-  "code": "INVALID_RECEIVER_STATE",
+  "code": "INVALID_FORGE_STATE",
   "state": {
     "address": "abc",
     "context": {
       "genesisTime": "2019-04-29T00:00:00.000Z",
       "genesisTx": {
-        "code": "INVALID_RECEIVER_STATE",
+        "code": "INVALID_FORGE_STATE",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -3819,7 +3847,7 @@ Checkout the following snippet for the format of ResponseGetDelegateState:
       },
       "renaissanceTime": "2019-04-29T00:00:00.000Z",
       "renaissanceTx": {
-        "code": "INVALID_RECEIVER_STATE",
+        "code": "INVALID_FORGE_STATE",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -3888,7 +3916,7 @@ Checkout the following snippet for the format of ResponseGetForgeState:
 
 ```json
 {
-  "code": "INVALID_RECEIVER_STATE",
+  "code": "INVALID_FORGE_STATE",
   "state": {
     "accountConfig": [
       {
@@ -3941,7 +3969,7 @@ Checkout the following snippet for the format of ResponseGetForgeState:
           "context": {
             "genesisTime": "2019-04-29T00:00:00.000Z",
             "genesisTx": {
-              "code": "INVALID_RECEIVER_STATE",
+              "code": "INVALID_FORGE_STATE",
               "hash": "abc",
               "height": "abc",
               "index": 123,
@@ -3975,7 +4003,7 @@ Checkout the following snippet for the format of ResponseGetForgeState:
             },
             "renaissanceTime": "2019-04-29T00:00:00.000Z",
             "renaissanceTx": {
-              "code": "INVALID_RECEIVER_STATE",
+              "code": "INVALID_FORGE_STATE",
               "hash": "abc",
               "height": "abc",
               "index": 123,
@@ -4096,7 +4124,7 @@ Checkout the following snippet for the format of ResponseGetForgeStats:
 
 ```json
 {
-  "code": "INVALID_RECEIVER_STATE",
+  "code": "INVALID_FORGE_STATE",
   "forgeStats": {
     "avgBlockTime": 123,
     "avgTps": 123,
@@ -4172,7 +4200,7 @@ Checkout the following snippet for the format of ResponseGetHealthStatus:
 
 ```json
 {
-  "code": "INVALID_RECEIVER_STATE",
+  "code": "INVALID_FORGE_STATE",
   "healthStatus": {
     "consensus": {
       "blockHeight": "abc",
@@ -4221,7 +4249,7 @@ Checkout the following snippet for the format of ResponseGetNetInfo:
 
 ```json
 {
-  "code": "INVALID_RECEIVER_STATE",
+  "code": "INVALID_FORGE_STATE",
   "netInfo": {
     "listeners": [
       "abc"
@@ -4263,7 +4291,7 @@ Checkout the following snippet for the format of ResponseGetNodeInfo:
 
 ```json
 {
-  "code": "INVALID_RECEIVER_STATE",
+  "code": "INVALID_FORGE_STATE",
   "info": {
     "address": "abc",
     "appHash": "abc",
@@ -4315,13 +4343,13 @@ Checkout the following snippet for the format of ResponseGetProtocolState:
 
 ```json
 {
-  "code": "INVALID_RECEIVER_STATE",
+  "code": "INVALID_FORGE_STATE",
   "state": {
     "address": "abc",
     "context": {
       "genesisTime": "2019-04-29T00:00:00.000Z",
       "genesisTx": {
-        "code": "INVALID_RECEIVER_STATE",
+        "code": "INVALID_FORGE_STATE",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -4355,7 +4383,7 @@ Checkout the following snippet for the format of ResponseGetProtocolState:
       },
       "renaissanceTime": "2019-04-29T00:00:00.000Z",
       "renaissanceTx": {
-        "code": "INVALID_RECEIVER_STATE",
+        "code": "INVALID_FORGE_STATE",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -4452,7 +4480,7 @@ Checkout the following snippet for the format of ResponseGetProtocols:
 
 ```json
 {
-  "code": "INVALID_RECEIVER_STATE",
+  "code": "INVALID_FORGE_STATE",
   "protocols": [
     {
       "address": "abc",
@@ -4504,7 +4532,7 @@ Checkout the following snippet for the format of ResponseGetSimulatorStatus:
 
 ```json
 {
-  "code": "INVALID_RECEIVER_STATE",
+  "code": "INVALID_FORGE_STATE",
   "result": "abc"
 }
 ```
@@ -4525,14 +4553,14 @@ Checkout the following snippet for the format of ResponseGetStakeState:
 
 ```json
 {
-  "code": "INVALID_RECEIVER_STATE",
+  "code": "INVALID_FORGE_STATE",
   "state": {
     "address": "abc",
     "balance": "abc",
     "context": {
       "genesisTime": "2019-04-29T00:00:00.000Z",
       "genesisTx": {
-        "code": "INVALID_RECEIVER_STATE",
+        "code": "INVALID_FORGE_STATE",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -4566,7 +4594,7 @@ Checkout the following snippet for the format of ResponseGetStakeState:
       },
       "renaissanceTime": "2019-04-29T00:00:00.000Z",
       "renaissanceTx": {
-        "code": "INVALID_RECEIVER_STATE",
+        "code": "INVALID_FORGE_STATE",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -4626,7 +4654,7 @@ Checkout the following snippet for the format of ResponseGetSwapState:
 
 ```json
 {
-  "code": "INVALID_RECEIVER_STATE",
+  "code": "INVALID_FORGE_STATE",
   "state": {
     "address": "abc",
     "assets": [
@@ -4635,7 +4663,7 @@ Checkout the following snippet for the format of ResponseGetSwapState:
     "context": {
       "genesisTime": "2019-04-29T00:00:00.000Z",
       "genesisTx": {
-        "code": "INVALID_RECEIVER_STATE",
+        "code": "INVALID_FORGE_STATE",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -4669,7 +4697,7 @@ Checkout the following snippet for the format of ResponseGetSwapState:
       },
       "renaissanceTime": "2019-04-29T00:00:00.000Z",
       "renaissanceTx": {
-        "code": "INVALID_RECEIVER_STATE",
+        "code": "INVALID_FORGE_STATE",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -4729,7 +4757,7 @@ Checkout the following snippet for the format of ResponseGetSwapStatistics:
 
 ```json
 {
-  "code": "INVALID_RECEIVER_STATE",
+  "code": "INVALID_FORGE_STATE",
   "statistics": {
     "address": "abc",
     "lockedAssetsIn": 123,
@@ -4756,9 +4784,9 @@ Checkout the following snippet for the format of ResponseGetTx:
 
 ```json
 {
-  "code": "INVALID_RECEIVER_STATE",
+  "code": "INVALID_FORGE_STATE",
   "info": {
-    "code": "INVALID_RECEIVER_STATE",
+    "code": "INVALID_FORGE_STATE",
     "hash": "abc",
     "height": "abc",
     "index": 123,
@@ -4809,7 +4837,7 @@ Checkout the following snippet for the format of ResponseGetUnconfirmedTxs:
 
 ```json
 {
-  "code": "INVALID_RECEIVER_STATE",
+  "code": "INVALID_FORGE_STATE",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -4860,7 +4888,7 @@ Checkout the following snippet for the format of ResponseGetValidatorsInfo:
 
 ```json
 {
-  "code": "INVALID_RECEIVER_STATE",
+  "code": "INVALID_FORGE_STATE",
   "validatorsInfo": {
     "blockHeight": "abc",
     "validators": [
@@ -4901,7 +4929,7 @@ Checkout the following snippet for the format of ResponseListAssetTransactions:
 
 ```json
 {
-  "code": "INVALID_RECEIVER_STATE",
+  "code": "INVALID_FORGE_STATE",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -4909,7 +4937,7 @@ Checkout the following snippet for the format of ResponseListAssetTransactions:
   },
   "transactions": [
     {
-      "code": "INVALID_RECEIVER_STATE",
+      "code": "INVALID_FORGE_STATE",
       "hash": "abc",
       "receiver": "abc",
       "sender": "abc",
@@ -4995,7 +5023,7 @@ Checkout the following snippet for the format of ResponseListAssets:
       "ttl": "abc"
     }
   ],
-  "code": "INVALID_RECEIVER_STATE",
+  "code": "INVALID_FORGE_STATE",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -5031,7 +5059,7 @@ Checkout the following snippet for the format of ResponseListBlocks:
       "time": "abc"
     }
   ],
-  "code": "INVALID_RECEIVER_STATE",
+  "code": "INVALID_FORGE_STATE",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -5057,7 +5085,7 @@ Checkout the following snippet for the format of ResponseListStakes:
 
 ```json
 {
-  "code": "INVALID_RECEIVER_STATE",
+  "code": "INVALID_FORGE_STATE",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -5095,7 +5123,7 @@ Checkout the following snippet for the format of ResponseListSwap:
 
 ```json
 {
-  "code": "INVALID_RECEIVER_STATE",
+  "code": "INVALID_FORGE_STATE",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -5110,7 +5138,7 @@ Checkout the following snippet for the format of ResponseListSwap:
       "context": {
         "genesisTime": "2019-04-29T00:00:00.000Z",
         "genesisTx": {
-          "code": "INVALID_RECEIVER_STATE",
+          "code": "INVALID_FORGE_STATE",
           "hash": "abc",
           "height": "abc",
           "index": 123,
@@ -5144,7 +5172,7 @@ Checkout the following snippet for the format of ResponseListSwap:
         },
         "renaissanceTime": "2019-04-29T00:00:00.000Z",
         "renaissanceTx": {
-          "code": "INVALID_RECEIVER_STATE",
+          "code": "INVALID_FORGE_STATE",
           "hash": "abc",
           "height": "abc",
           "index": 123,
@@ -5226,7 +5254,7 @@ Checkout the following snippet for the format of ResponseListTopAccounts:
       "totalUnstakes": "abc"
     }
   ],
-  "code": "INVALID_RECEIVER_STATE",
+  "code": "INVALID_FORGE_STATE",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -5252,7 +5280,7 @@ Checkout the following snippet for the format of ResponseListTransactions:
 
 ```json
 {
-  "code": "INVALID_RECEIVER_STATE",
+  "code": "INVALID_FORGE_STATE",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -5260,7 +5288,7 @@ Checkout the following snippet for the format of ResponseListTransactions:
   },
   "transactions": [
     {
-      "code": "INVALID_RECEIVER_STATE",
+      "code": "INVALID_FORGE_STATE",
       "hash": "abc",
       "receiver": "abc",
       "sender": "abc",
@@ -5309,7 +5337,7 @@ Checkout the following snippet for the format of ResponseSendTx:
 
 ```json
 {
-  "code": "INVALID_RECEIVER_STATE",
+  "code": "INVALID_FORGE_STATE",
   "hash": "abc"
 }
 ```
@@ -5330,7 +5358,7 @@ Checkout the following snippet for the format of ResponseStartSimulator:
 
 ```json
 {
-  "code": "INVALID_RECEIVER_STATE"
+  "code": "INVALID_FORGE_STATE"
 }
 ```
 
@@ -5349,7 +5377,7 @@ Checkout the following snippet for the format of ResponseStopSimulator:
 
 ```json
 {
-  "code": "INVALID_RECEIVER_STATE"
+  "code": "INVALID_FORGE_STATE"
 }
 ```
 
@@ -5368,10 +5396,47 @@ Checkout the following snippet for the format of ResponseSubscribe:
 
 ```json
 {
-  "endBlock": {
-    "height": "abc"
+  "deployProtocol": {
+    "chainId": "abc",
+    "delegator": "abc",
+    "from": "abc",
+    "nonce": "abc",
+    "pk": "abc",
+    "signature": "abc",
+    "signatures": [
+      {
+        "data": {
+          "typeUrl": "abc",
+          "value": "abc"
+        },
+        "delegator": "abc",
+        "pk": "abc",
+        "signature": "abc",
+        "signer": "abc"
+      }
+    ]
   },
-  "createAsset": {
+  "consumeAsset": {
+    "chainId": "abc",
+    "delegator": "abc",
+    "from": "abc",
+    "nonce": "abc",
+    "pk": "abc",
+    "signature": "abc",
+    "signatures": [
+      {
+        "data": {
+          "typeUrl": "abc",
+          "value": "abc"
+        },
+        "delegator": "abc",
+        "pk": "abc",
+        "signature": "abc",
+        "signer": "abc"
+      }
+    ]
+  },
+  "retrieveSwap": {
     "chainId": "abc",
     "delegator": "abc",
     "from": "abc",
@@ -5399,7 +5464,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
     "context": {
       "genesisTime": "2019-04-29T00:00:00.000Z",
       "genesisTx": {
-        "code": "INVALID_RECEIVER_STATE",
+        "code": "INVALID_FORGE_STATE",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -5433,7 +5498,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
       },
       "renaissanceTime": "2019-04-29T00:00:00.000Z",
       "renaissanceTx": {
-        "code": "INVALID_RECEIVER_STATE",
+        "code": "INVALID_FORGE_STATE",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -5474,7 +5539,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
     "sender": "abc",
     "value": "abc"
   },
-  "revokeDelegate": {
+  "acquireAsset": {
     "chainId": "abc",
     "delegator": "abc",
     "from": "abc",
@@ -5494,7 +5559,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
       }
     ]
   },
-  "withdrawToken": {
+  "delegate": {
     "chainId": "abc",
     "delegator": "abc",
     "from": "abc",
@@ -5514,73 +5579,13 @@ Checkout the following snippet for the format of ResponseSubscribe:
       }
     ]
   },
-  "accountMigrate": {
-    "chainId": "abc",
-    "delegator": "abc",
-    "from": "abc",
-    "nonce": "abc",
-    "pk": "abc",
-    "signature": "abc",
-    "signatures": [
-      {
-        "data": {
-          "typeUrl": "abc",
-          "value": "abc"
-        },
-        "delegator": "abc",
-        "pk": "abc",
-        "signature": "abc",
-        "signer": "abc"
-      }
-    ]
-  },
-  "revokeSwap": {
-    "chainId": "abc",
-    "delegator": "abc",
-    "from": "abc",
-    "nonce": "abc",
-    "pk": "abc",
-    "signature": "abc",
-    "signatures": [
-      {
-        "data": {
-          "typeUrl": "abc",
-          "value": "abc"
-        },
-        "delegator": "abc",
-        "pk": "abc",
-        "signature": "abc",
-        "signer": "abc"
-      }
-    ]
-  },
-  "activateProtocol": {
-    "chainId": "abc",
-    "delegator": "abc",
-    "from": "abc",
-    "nonce": "abc",
-    "pk": "abc",
-    "signature": "abc",
-    "signatures": [
-      {
-        "data": {
-          "typeUrl": "abc",
-          "value": "abc"
-        },
-        "delegator": "abc",
-        "pk": "abc",
-        "signature": "abc",
-        "signer": "abc"
-      }
-    ]
-  },
-  "accountState": {
+  "stakeState": {
     "address": "abc",
     "balance": "abc",
     "context": {
       "genesisTime": "2019-04-29T00:00:00.000Z",
       "genesisTx": {
-        "code": "INVALID_RECEIVER_STATE",
+        "code": "INVALID_FORGE_STATE",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -5614,7 +5619,250 @@ Checkout the following snippet for the format of ResponseSubscribe:
       },
       "renaissanceTime": "2019-04-29T00:00:00.000Z",
       "renaissanceTx": {
-        "code": "INVALID_RECEIVER_STATE",
+        "code": "INVALID_FORGE_STATE",
+        "hash": "abc",
+        "height": "abc",
+        "index": 123,
+        "tags": [
+          {
+            "key": "abc",
+            "value": "abc"
+          }
+        ],
+        "time": "2019-04-29T00:00:00.000Z",
+        "tx": {
+          "chainId": "abc",
+          "delegator": "abc",
+          "from": "abc",
+          "nonce": "abc",
+          "pk": "abc",
+          "signature": "abc",
+          "signatures": [
+            {
+              "data": {
+                "typeUrl": "abc",
+                "value": "abc"
+              },
+              "delegator": "abc",
+              "pk": "abc",
+              "signature": "abc",
+              "signer": "abc"
+            }
+          ]
+        }
+      }
+    },
+    "data": {
+      "typeUrl": "abc",
+      "value": "abc"
+    },
+    "from": "abc",
+    "message": "abc",
+    "to": "abc"
+  },
+  "sysUpgrade": {
+    "chainId": "abc",
+    "delegator": "abc",
+    "from": "abc",
+    "nonce": "abc",
+    "pk": "abc",
+    "signature": "abc",
+    "signatures": [
+      {
+        "data": {
+          "typeUrl": "abc",
+          "value": "abc"
+        },
+        "delegator": "abc",
+        "pk": "abc",
+        "signature": "abc",
+        "signer": "abc"
+      }
+    ]
+  },
+  "topic": "abc",
+  "code": "INVALID_FORGE_STATE",
+  "activateProtocol": {
+    "chainId": "abc",
+    "delegator": "abc",
+    "from": "abc",
+    "nonce": "abc",
+    "pk": "abc",
+    "signature": "abc",
+    "signatures": [
+      {
+        "data": {
+          "typeUrl": "abc",
+          "value": "abc"
+        },
+        "delegator": "abc",
+        "pk": "abc",
+        "signature": "abc",
+        "signer": "abc"
+      }
+    ]
+  },
+  "revokeDelegate": {
+    "chainId": "abc",
+    "delegator": "abc",
+    "from": "abc",
+    "nonce": "abc",
+    "pk": "abc",
+    "signature": "abc",
+    "signatures": [
+      {
+        "data": {
+          "typeUrl": "abc",
+          "value": "abc"
+        },
+        "delegator": "abc",
+        "pk": "abc",
+        "signature": "abc",
+        "signer": "abc"
+      }
+    ]
+  },
+  "stake": {
+    "chainId": "abc",
+    "delegator": "abc",
+    "from": "abc",
+    "nonce": "abc",
+    "pk": "abc",
+    "signature": "abc",
+    "signatures": [
+      {
+        "data": {
+          "typeUrl": "abc",
+          "value": "abc"
+        },
+        "delegator": "abc",
+        "pk": "abc",
+        "signature": "abc",
+        "signer": "abc"
+      }
+    ]
+  },
+  "consensusUpgrade": {
+    "chainId": "abc",
+    "delegator": "abc",
+    "from": "abc",
+    "nonce": "abc",
+    "pk": "abc",
+    "signature": "abc",
+    "signatures": [
+      {
+        "data": {
+          "typeUrl": "abc",
+          "value": "abc"
+        },
+        "delegator": "abc",
+        "pk": "abc",
+        "signature": "abc",
+        "signer": "abc"
+      }
+    ]
+  },
+  "upgradeNode": {
+    "chainId": "abc",
+    "delegator": "abc",
+    "from": "abc",
+    "nonce": "abc",
+    "pk": "abc",
+    "signature": "abc",
+    "signatures": [
+      {
+        "data": {
+          "typeUrl": "abc",
+          "value": "abc"
+        },
+        "delegator": "abc",
+        "pk": "abc",
+        "signature": "abc",
+        "signer": "abc"
+      }
+    ]
+  },
+  "revokeWithdraw": {
+    "chainId": "abc",
+    "delegator": "abc",
+    "from": "abc",
+    "nonce": "abc",
+    "pk": "abc",
+    "signature": "abc",
+    "signatures": [
+      {
+        "data": {
+          "typeUrl": "abc",
+          "value": "abc"
+        },
+        "delegator": "abc",
+        "pk": "abc",
+        "signature": "abc",
+        "signer": "abc"
+      }
+    ]
+  },
+  "revoke": {
+    "chainId": "abc",
+    "delegator": "abc",
+    "from": "abc",
+    "nonce": "abc",
+    "pk": "abc",
+    "signature": "abc",
+    "signatures": [
+      {
+        "data": {
+          "typeUrl": "abc",
+          "value": "abc"
+        },
+        "delegator": "abc",
+        "pk": "abc",
+        "signature": "abc",
+        "signer": "abc"
+      }
+    ]
+  },
+  "accountState": {
+    "address": "abc",
+    "balance": "abc",
+    "context": {
+      "genesisTime": "2019-04-29T00:00:00.000Z",
+      "genesisTx": {
+        "code": "INVALID_FORGE_STATE",
+        "hash": "abc",
+        "height": "abc",
+        "index": 123,
+        "tags": [
+          {
+            "key": "abc",
+            "value": "abc"
+          }
+        ],
+        "time": "2019-04-29T00:00:00.000Z",
+        "tx": {
+          "chainId": "abc",
+          "delegator": "abc",
+          "from": "abc",
+          "nonce": "abc",
+          "pk": "abc",
+          "signature": "abc",
+          "signatures": [
+            {
+              "data": {
+                "typeUrl": "abc",
+                "value": "abc"
+              },
+              "delegator": "abc",
+              "pk": "abc",
+              "signature": "abc",
+              "signer": "abc"
+            }
+          ]
+        }
+      },
+      "renaissanceTime": "2019-04-29T00:00:00.000Z",
+      "renaissanceTx": {
+        "code": "INVALID_FORGE_STATE",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -5673,7 +5921,10 @@ Checkout the following snippet for the format of ResponseSubscribe:
         "circular": true,
         "fifo": true,
         "items": [
-          "abc"
+          {
+            "hash": "abc",
+            "value": "abc"
+          }
         ],
         "maxItems": 123,
         "typeUrl": "abc"
@@ -5682,7 +5933,10 @@ Checkout the following snippet for the format of ResponseSubscribe:
         "circular": true,
         "fifo": true,
         "items": [
-          "abc"
+          {
+            "hash": "abc",
+            "value": "abc"
+          }
         ],
         "maxItems": 123,
         "typeUrl": "abc"
@@ -5701,18 +5955,104 @@ Checkout the following snippet for the format of ResponseSubscribe:
       "circular": true,
       "fifo": true,
       "items": [
-        "abc"
+        {
+          "hash": "abc",
+          "value": "abc"
+        }
       ],
       "maxItems": 123,
       "typeUrl": "abc"
     }
+  },
+  "endBlock": {
+    "height": "abc"
+  },
+  "revokeSwap": {
+    "chainId": "abc",
+    "delegator": "abc",
+    "from": "abc",
+    "nonce": "abc",
+    "pk": "abc",
+    "signature": "abc",
+    "signatures": [
+      {
+        "data": {
+          "typeUrl": "abc",
+          "value": "abc"
+        },
+        "delegator": "abc",
+        "pk": "abc",
+        "signature": "abc",
+        "signer": "abc"
+      }
+    ]
+  },
+  "poke": {
+    "chainId": "abc",
+    "delegator": "abc",
+    "from": "abc",
+    "nonce": "abc",
+    "pk": "abc",
+    "signature": "abc",
+    "signatures": [
+      {
+        "data": {
+          "typeUrl": "abc",
+          "value": "abc"
+        },
+        "delegator": "abc",
+        "pk": "abc",
+        "signature": "abc",
+        "signer": "abc"
+      }
+    ]
+  },
+  "declareFile": {
+    "chainId": "abc",
+    "delegator": "abc",
+    "from": "abc",
+    "nonce": "abc",
+    "pk": "abc",
+    "signature": "abc",
+    "signatures": [
+      {
+        "data": {
+          "typeUrl": "abc",
+          "value": "abc"
+        },
+        "delegator": "abc",
+        "pk": "abc",
+        "signature": "abc",
+        "signer": "abc"
+      }
+    ]
+  },
+  "exchange": {
+    "chainId": "abc",
+    "delegator": "abc",
+    "from": "abc",
+    "nonce": "abc",
+    "pk": "abc",
+    "signature": "abc",
+    "signatures": [
+      {
+        "data": {
+          "typeUrl": "abc",
+          "value": "abc"
+        },
+        "delegator": "abc",
+        "pk": "abc",
+        "signature": "abc",
+        "signer": "abc"
+      }
+    ]
   },
   "protocolState": {
     "address": "abc",
     "context": {
       "genesisTime": "2019-04-29T00:00:00.000Z",
       "genesisTx": {
-        "code": "INVALID_RECEIVER_STATE",
+        "code": "INVALID_FORGE_STATE",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -5746,7 +6086,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
       },
       "renaissanceTime": "2019-04-29T00:00:00.000Z",
       "renaissanceTx": {
-        "code": "INVALID_RECEIVER_STATE",
+        "code": "INVALID_FORGE_STATE",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -5824,7 +6164,147 @@ Checkout the following snippet for the format of ResponseSubscribe:
     "rootHash": "abc",
     "status": "abc"
   },
-  "depositToken": {
+  "createAsset": {
+    "chainId": "abc",
+    "delegator": "abc",
+    "from": "abc",
+    "nonce": "abc",
+    "pk": "abc",
+    "signature": "abc",
+    "signatures": [
+      {
+        "data": {
+          "typeUrl": "abc",
+          "value": "abc"
+        },
+        "delegator": "abc",
+        "pk": "abc",
+        "signature": "abc",
+        "signer": "abc"
+      }
+    ]
+  },
+  "transfer": {
+    "chainId": "abc",
+    "delegator": "abc",
+    "from": "abc",
+    "nonce": "abc",
+    "pk": "abc",
+    "signature": "abc",
+    "signatures": [
+      {
+        "data": {
+          "typeUrl": "abc",
+          "value": "abc"
+        },
+        "delegator": "abc",
+        "pk": "abc",
+        "signature": "abc",
+        "signer": "abc"
+      }
+    ]
+  },
+  "accountMigrate": {
+    "chainId": "abc",
+    "delegator": "abc",
+    "from": "abc",
+    "nonce": "abc",
+    "pk": "abc",
+    "signature": "abc",
+    "signatures": [
+      {
+        "data": {
+          "typeUrl": "abc",
+          "value": "abc"
+        },
+        "delegator": "abc",
+        "pk": "abc",
+        "signature": "abc",
+        "signer": "abc"
+      }
+    ]
+  },
+  "setupSwap": {
+    "chainId": "abc",
+    "delegator": "abc",
+    "from": "abc",
+    "nonce": "abc",
+    "pk": "abc",
+    "signature": "abc",
+    "signatures": [
+      {
+        "data": {
+          "typeUrl": "abc",
+          "value": "abc"
+        },
+        "delegator": "abc",
+        "pk": "abc",
+        "signature": "abc",
+        "signer": "abc"
+      }
+    ]
+  },
+  "withdrawToken": {
+    "chainId": "abc",
+    "delegator": "abc",
+    "from": "abc",
+    "nonce": "abc",
+    "pk": "abc",
+    "signature": "abc",
+    "signatures": [
+      {
+        "data": {
+          "typeUrl": "abc",
+          "value": "abc"
+        },
+        "delegator": "abc",
+        "pk": "abc",
+        "signature": "abc",
+        "signer": "abc"
+      }
+    ]
+  },
+  "confirm": {
+    "chainId": "abc",
+    "delegator": "abc",
+    "from": "abc",
+    "nonce": "abc",
+    "pk": "abc",
+    "signature": "abc",
+    "signatures": [
+      {
+        "data": {
+          "typeUrl": "abc",
+          "value": "abc"
+        },
+        "delegator": "abc",
+        "pk": "abc",
+        "signature": "abc",
+        "signer": "abc"
+      }
+    ]
+  },
+  "declare": {
+    "chainId": "abc",
+    "delegator": "abc",
+    "from": "abc",
+    "nonce": "abc",
+    "pk": "abc",
+    "signature": "abc",
+    "signatures": [
+      {
+        "data": {
+          "typeUrl": "abc",
+          "value": "abc"
+        },
+        "delegator": "abc",
+        "pk": "abc",
+        "signature": "abc",
+        "signer": "abc"
+      }
+    ]
+  },
+  "approveWithdraw": {
     "chainId": "abc",
     "delegator": "abc",
     "from": "abc",
@@ -5895,13 +6375,52 @@ Checkout the following snippet for the format of ResponseSubscribe:
       ]
     }
   },
-  "code": "INVALID_RECEIVER_STATE",
+  "deactivateProtocol": {
+    "chainId": "abc",
+    "delegator": "abc",
+    "from": "abc",
+    "nonce": "abc",
+    "pk": "abc",
+    "signature": "abc",
+    "signatures": [
+      {
+        "data": {
+          "typeUrl": "abc",
+          "value": "abc"
+        },
+        "delegator": "abc",
+        "pk": "abc",
+        "signature": "abc",
+        "signer": "abc"
+      }
+    ]
+  },
+  "depositToken": {
+    "chainId": "abc",
+    "delegator": "abc",
+    "from": "abc",
+    "nonce": "abc",
+    "pk": "abc",
+    "signature": "abc",
+    "signatures": [
+      {
+        "data": {
+          "typeUrl": "abc",
+          "value": "abc"
+        },
+        "delegator": "abc",
+        "pk": "abc",
+        "signature": "abc",
+        "signer": "abc"
+      }
+    ]
+  },
   "delegateState": {
     "address": "abc",
     "context": {
       "genesisTime": "2019-04-29T00:00:00.000Z",
       "genesisTx": {
-        "code": "INVALID_RECEIVER_STATE",
+        "code": "INVALID_FORGE_STATE",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -5935,7 +6454,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
       },
       "renaissanceTime": "2019-04-29T00:00:00.000Z",
       "renaissanceTx": {
-        "code": "INVALID_RECEIVER_STATE",
+        "code": "INVALID_FORGE_STATE",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -5982,488 +6501,6 @@ Checkout the following snippet for the format of ResponseSubscribe:
           "numTxsDelta": "abc",
           "rule": "abc"
         }
-      }
-    ]
-  },
-  "retrieveSwap": {
-    "chainId": "abc",
-    "delegator": "abc",
-    "from": "abc",
-    "nonce": "abc",
-    "pk": "abc",
-    "signature": "abc",
-    "signatures": [
-      {
-        "data": {
-          "typeUrl": "abc",
-          "value": "abc"
-        },
-        "delegator": "abc",
-        "pk": "abc",
-        "signature": "abc",
-        "signer": "abc"
-      }
-    ]
-  },
-  "updateAsset": {
-    "chainId": "abc",
-    "delegator": "abc",
-    "from": "abc",
-    "nonce": "abc",
-    "pk": "abc",
-    "signature": "abc",
-    "signatures": [
-      {
-        "data": {
-          "typeUrl": "abc",
-          "value": "abc"
-        },
-        "delegator": "abc",
-        "pk": "abc",
-        "signature": "abc",
-        "signer": "abc"
-      }
-    ]
-  },
-  "acquireAsset": {
-    "chainId": "abc",
-    "delegator": "abc",
-    "from": "abc",
-    "nonce": "abc",
-    "pk": "abc",
-    "signature": "abc",
-    "signatures": [
-      {
-        "data": {
-          "typeUrl": "abc",
-          "value": "abc"
-        },
-        "delegator": "abc",
-        "pk": "abc",
-        "signature": "abc",
-        "signer": "abc"
-      }
-    ]
-  },
-  "revokeWithdraw": {
-    "chainId": "abc",
-    "delegator": "abc",
-    "from": "abc",
-    "nonce": "abc",
-    "pk": "abc",
-    "signature": "abc",
-    "signatures": [
-      {
-        "data": {
-          "typeUrl": "abc",
-          "value": "abc"
-        },
-        "delegator": "abc",
-        "pk": "abc",
-        "signature": "abc",
-        "signer": "abc"
-      }
-    ]
-  },
-  "declare": {
-    "chainId": "abc",
-    "delegator": "abc",
-    "from": "abc",
-    "nonce": "abc",
-    "pk": "abc",
-    "signature": "abc",
-    "signatures": [
-      {
-        "data": {
-          "typeUrl": "abc",
-          "value": "abc"
-        },
-        "delegator": "abc",
-        "pk": "abc",
-        "signature": "abc",
-        "signer": "abc"
-      }
-    ]
-  },
-  "revoke": {
-    "chainId": "abc",
-    "delegator": "abc",
-    "from": "abc",
-    "nonce": "abc",
-    "pk": "abc",
-    "signature": "abc",
-    "signatures": [
-      {
-        "data": {
-          "typeUrl": "abc",
-          "value": "abc"
-        },
-        "delegator": "abc",
-        "pk": "abc",
-        "signature": "abc",
-        "signer": "abc"
-      }
-    ]
-  },
-  "sysUpgrade": {
-    "chainId": "abc",
-    "delegator": "abc",
-    "from": "abc",
-    "nonce": "abc",
-    "pk": "abc",
-    "signature": "abc",
-    "signatures": [
-      {
-        "data": {
-          "typeUrl": "abc",
-          "value": "abc"
-        },
-        "delegator": "abc",
-        "pk": "abc",
-        "signature": "abc",
-        "signer": "abc"
-      }
-    ]
-  },
-  "approveWithdraw": {
-    "chainId": "abc",
-    "delegator": "abc",
-    "from": "abc",
-    "nonce": "abc",
-    "pk": "abc",
-    "signature": "abc",
-    "signatures": [
-      {
-        "data": {
-          "typeUrl": "abc",
-          "value": "abc"
-        },
-        "delegator": "abc",
-        "pk": "abc",
-        "signature": "abc",
-        "signer": "abc"
-      }
-    ]
-  },
-  "deployProtocol": {
-    "chainId": "abc",
-    "delegator": "abc",
-    "from": "abc",
-    "nonce": "abc",
-    "pk": "abc",
-    "signature": "abc",
-    "signatures": [
-      {
-        "data": {
-          "typeUrl": "abc",
-          "value": "abc"
-        },
-        "delegator": "abc",
-        "pk": "abc",
-        "signature": "abc",
-        "signer": "abc"
-      }
-    ]
-  },
-  "consensusUpgrade": {
-    "chainId": "abc",
-    "delegator": "abc",
-    "from": "abc",
-    "nonce": "abc",
-    "pk": "abc",
-    "signature": "abc",
-    "signatures": [
-      {
-        "data": {
-          "typeUrl": "abc",
-          "value": "abc"
-        },
-        "delegator": "abc",
-        "pk": "abc",
-        "signature": "abc",
-        "signer": "abc"
-      }
-    ]
-  },
-  "exchange": {
-    "chainId": "abc",
-    "delegator": "abc",
-    "from": "abc",
-    "nonce": "abc",
-    "pk": "abc",
-    "signature": "abc",
-    "signatures": [
-      {
-        "data": {
-          "typeUrl": "abc",
-          "value": "abc"
-        },
-        "delegator": "abc",
-        "pk": "abc",
-        "signature": "abc",
-        "signer": "abc"
-      }
-    ]
-  },
-  "declareFile": {
-    "chainId": "abc",
-    "delegator": "abc",
-    "from": "abc",
-    "nonce": "abc",
-    "pk": "abc",
-    "signature": "abc",
-    "signatures": [
-      {
-        "data": {
-          "typeUrl": "abc",
-          "value": "abc"
-        },
-        "delegator": "abc",
-        "pk": "abc",
-        "signature": "abc",
-        "signer": "abc"
-      }
-    ]
-  },
-  "topic": "abc",
-  "stakeState": {
-    "address": "abc",
-    "balance": "abc",
-    "context": {
-      "genesisTime": "2019-04-29T00:00:00.000Z",
-      "genesisTx": {
-        "code": "INVALID_RECEIVER_STATE",
-        "hash": "abc",
-        "height": "abc",
-        "index": 123,
-        "tags": [
-          {
-            "key": "abc",
-            "value": "abc"
-          }
-        ],
-        "time": "2019-04-29T00:00:00.000Z",
-        "tx": {
-          "chainId": "abc",
-          "delegator": "abc",
-          "from": "abc",
-          "nonce": "abc",
-          "pk": "abc",
-          "signature": "abc",
-          "signatures": [
-            {
-              "data": {
-                "typeUrl": "abc",
-                "value": "abc"
-              },
-              "delegator": "abc",
-              "pk": "abc",
-              "signature": "abc",
-              "signer": "abc"
-            }
-          ]
-        }
-      },
-      "renaissanceTime": "2019-04-29T00:00:00.000Z",
-      "renaissanceTx": {
-        "code": "INVALID_RECEIVER_STATE",
-        "hash": "abc",
-        "height": "abc",
-        "index": 123,
-        "tags": [
-          {
-            "key": "abc",
-            "value": "abc"
-          }
-        ],
-        "time": "2019-04-29T00:00:00.000Z",
-        "tx": {
-          "chainId": "abc",
-          "delegator": "abc",
-          "from": "abc",
-          "nonce": "abc",
-          "pk": "abc",
-          "signature": "abc",
-          "signatures": [
-            {
-              "data": {
-                "typeUrl": "abc",
-                "value": "abc"
-              },
-              "delegator": "abc",
-              "pk": "abc",
-              "signature": "abc",
-              "signer": "abc"
-            }
-          ]
-        }
-      }
-    },
-    "data": {
-      "typeUrl": "abc",
-      "value": "abc"
-    },
-    "from": "abc",
-    "message": "abc",
-    "to": "abc"
-  },
-  "deactivateProtocol": {
-    "chainId": "abc",
-    "delegator": "abc",
-    "from": "abc",
-    "nonce": "abc",
-    "pk": "abc",
-    "signature": "abc",
-    "signatures": [
-      {
-        "data": {
-          "typeUrl": "abc",
-          "value": "abc"
-        },
-        "delegator": "abc",
-        "pk": "abc",
-        "signature": "abc",
-        "signer": "abc"
-      }
-    ]
-  },
-  "upgradeNode": {
-    "chainId": "abc",
-    "delegator": "abc",
-    "from": "abc",
-    "nonce": "abc",
-    "pk": "abc",
-    "signature": "abc",
-    "signatures": [
-      {
-        "data": {
-          "typeUrl": "abc",
-          "value": "abc"
-        },
-        "delegator": "abc",
-        "pk": "abc",
-        "signature": "abc",
-        "signer": "abc"
-      }
-    ]
-  },
-  "stake": {
-    "chainId": "abc",
-    "delegator": "abc",
-    "from": "abc",
-    "nonce": "abc",
-    "pk": "abc",
-    "signature": "abc",
-    "signatures": [
-      {
-        "data": {
-          "typeUrl": "abc",
-          "value": "abc"
-        },
-        "delegator": "abc",
-        "pk": "abc",
-        "signature": "abc",
-        "signer": "abc"
-      }
-    ]
-  },
-  "delegate": {
-    "chainId": "abc",
-    "delegator": "abc",
-    "from": "abc",
-    "nonce": "abc",
-    "pk": "abc",
-    "signature": "abc",
-    "signatures": [
-      {
-        "data": {
-          "typeUrl": "abc",
-          "value": "abc"
-        },
-        "delegator": "abc",
-        "pk": "abc",
-        "signature": "abc",
-        "signer": "abc"
-      }
-    ]
-  },
-  "transfer": {
-    "chainId": "abc",
-    "delegator": "abc",
-    "from": "abc",
-    "nonce": "abc",
-    "pk": "abc",
-    "signature": "abc",
-    "signatures": [
-      {
-        "data": {
-          "typeUrl": "abc",
-          "value": "abc"
-        },
-        "delegator": "abc",
-        "pk": "abc",
-        "signature": "abc",
-        "signer": "abc"
-      }
-    ]
-  },
-  "confirm": {
-    "chainId": "abc",
-    "delegator": "abc",
-    "from": "abc",
-    "nonce": "abc",
-    "pk": "abc",
-    "signature": "abc",
-    "signatures": [
-      {
-        "data": {
-          "typeUrl": "abc",
-          "value": "abc"
-        },
-        "delegator": "abc",
-        "pk": "abc",
-        "signature": "abc",
-        "signer": "abc"
-      }
-    ]
-  },
-  "setupSwap": {
-    "chainId": "abc",
-    "delegator": "abc",
-    "from": "abc",
-    "nonce": "abc",
-    "pk": "abc",
-    "signature": "abc",
-    "signatures": [
-      {
-        "data": {
-          "typeUrl": "abc",
-          "value": "abc"
-        },
-        "delegator": "abc",
-        "pk": "abc",
-        "signature": "abc",
-        "signer": "abc"
-      }
-    ]
-  },
-  "consumeAsset": {
-    "chainId": "abc",
-    "delegator": "abc",
-    "from": "abc",
-    "nonce": "abc",
-    "pk": "abc",
-    "signature": "abc",
-    "signatures": [
-      {
-        "data": {
-          "typeUrl": "abc",
-          "value": "abc"
-        },
-        "delegator": "abc",
-        "pk": "abc",
-        "signature": "abc",
-        "signer": "abc"
       }
     ]
   },
@@ -6519,7 +6556,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
           "context": {
             "genesisTime": "2019-04-29T00:00:00.000Z",
             "genesisTx": {
-              "code": "INVALID_RECEIVER_STATE",
+              "code": "INVALID_FORGE_STATE",
               "hash": "abc",
               "height": "abc",
               "index": 123,
@@ -6553,7 +6590,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
             },
             "renaissanceTime": "2019-04-29T00:00:00.000Z",
             "renaissanceTx": {
-              "code": "INVALID_RECEIVER_STATE",
+              "code": "INVALID_FORGE_STATE",
               "hash": "abc",
               "height": "abc",
               "index": 123,
@@ -6655,13 +6692,33 @@ Checkout the following snippet for the format of ResponseSubscribe:
     },
     "version": "abc"
   },
+  "updateAsset": {
+    "chainId": "abc",
+    "delegator": "abc",
+    "from": "abc",
+    "nonce": "abc",
+    "pk": "abc",
+    "signature": "abc",
+    "signatures": [
+      {
+        "data": {
+          "typeUrl": "abc",
+          "value": "abc"
+        },
+        "delegator": "abc",
+        "pk": "abc",
+        "signature": "abc",
+        "signer": "abc"
+      }
+    ]
+  },
   "assetState": {
     "address": "abc",
     "consumedTime": "2019-04-29T00:00:00.000Z",
     "context": {
       "genesisTime": "2019-04-29T00:00:00.000Z",
       "genesisTx": {
-        "code": "INVALID_RECEIVER_STATE",
+        "code": "INVALID_FORGE_STATE",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -6695,7 +6752,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
       },
       "renaissanceTime": "2019-04-29T00:00:00.000Z",
       "renaissanceTx": {
-        "code": "INVALID_RECEIVER_STATE",
+        "code": "INVALID_FORGE_STATE",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -6742,7 +6799,10 @@ Checkout the following snippet for the format of ResponseSubscribe:
         "circular": true,
         "fifo": true,
         "items": [
-          "abc"
+          {
+            "hash": "abc",
+            "value": "abc"
+          }
         ],
         "maxItems": 123,
         "typeUrl": "abc"
@@ -6751,7 +6811,10 @@ Checkout the following snippet for the format of ResponseSubscribe:
         "circular": true,
         "fifo": true,
         "items": [
-          "abc"
+          {
+            "hash": "abc",
+            "value": "abc"
+          }
         ],
         "maxItems": 123,
         "typeUrl": "abc"
@@ -6762,26 +6825,6 @@ Checkout the following snippet for the format of ResponseSubscribe:
     },
     "transferrable": true,
     "ttl": 123
-  },
-  "poke": {
-    "chainId": "abc",
-    "delegator": "abc",
-    "from": "abc",
-    "nonce": "abc",
-    "pk": "abc",
-    "signature": "abc",
-    "signatures": [
-      {
-        "data": {
-          "typeUrl": "abc",
-          "value": "abc"
-        },
-        "delegator": "abc",
-        "pk": "abc",
-        "signature": "abc",
-        "signer": "abc"
-      }
-    ]
   }
 }
 ```
@@ -6791,45 +6834,45 @@ Checkout the following snippet for the format of ResponseSubscribe:
 
 | Name                  | Type                                                    |
 | --------------------- | ------------------------------------------------------- |
-| ...endBlock           | [`RequestEndBlock`](#GraphQLClient.RequestEndBlock)     |
-| ...createAsset        | [`Transaction`](#GraphQLClient.Transaction)             |
-| ...swapState          | [`SwapState`](#GraphQLClient.SwapState)                 |
-| ...revokeDelegate     | [`Transaction`](#GraphQLClient.Transaction)             |
-| ...withdrawToken      | [`Transaction`](#GraphQLClient.Transaction)             |
-| ...accountMigrate     | [`Transaction`](#GraphQLClient.Transaction)             |
-| ...revokeSwap         | [`Transaction`](#GraphQLClient.Transaction)             |
-| ...activateProtocol   | [`Transaction`](#GraphQLClient.Transaction)             |
-| ...accountState       | [`AccountState`](#GraphQLClient.AccountState)           |
-| ...protocolState      | [`ProtocolState`](#GraphQLClient.ProtocolState)         |
-| ...depositToken       | [`Transaction`](#GraphQLClient.Transaction)             |
-| ...beginBlock         | [`RequestBeginBlock`](#GraphQLClient.RequestBeginBlock) |
-| ...code               | `GraphQLClient.StatusCode`                              |
-| ...delegateState      | [`DelegateState`](#GraphQLClient.DelegateState)         |
-| ...retrieveSwap       | [`Transaction`](#GraphQLClient.Transaction)             |
-| ...updateAsset        | [`Transaction`](#GraphQLClient.Transaction)             |
-| ...acquireAsset       | [`Transaction`](#GraphQLClient.Transaction)             |
-| ...revokeWithdraw     | [`Transaction`](#GraphQLClient.Transaction)             |
-| ...declare            | [`Transaction`](#GraphQLClient.Transaction)             |
-| ...revoke             | [`Transaction`](#GraphQLClient.Transaction)             |
-| ...sysUpgrade         | [`Transaction`](#GraphQLClient.Transaction)             |
-| ...approveWithdraw    | [`Transaction`](#GraphQLClient.Transaction)             |
 | ...deployProtocol     | [`Transaction`](#GraphQLClient.Transaction)             |
-| ...consensusUpgrade   | [`Transaction`](#GraphQLClient.Transaction)             |
-| ...exchange           | [`Transaction`](#GraphQLClient.Transaction)             |
-| ...declareFile        | [`Transaction`](#GraphQLClient.Transaction)             |
-| topic                 | `string`                                                |
-| ...stakeState         | [`StakeState`](#GraphQLClient.StakeState)               |
-| ...deactivateProtocol | [`Transaction`](#GraphQLClient.Transaction)             |
-| ...upgradeNode        | [`Transaction`](#GraphQLClient.Transaction)             |
-| ...stake              | [`Transaction`](#GraphQLClient.Transaction)             |
-| ...delegate           | [`Transaction`](#GraphQLClient.Transaction)             |
-| ...transfer           | [`Transaction`](#GraphQLClient.Transaction)             |
-| ...confirm            | [`Transaction`](#GraphQLClient.Transaction)             |
-| ...setupSwap          | [`Transaction`](#GraphQLClient.Transaction)             |
 | ...consumeAsset       | [`Transaction`](#GraphQLClient.Transaction)             |
-| ...forgeState         | [`ForgeState`](#GraphQLClient.ForgeState)               |
-| ...assetState         | [`AssetState`](#GraphQLClient.AssetState)               |
+| ...retrieveSwap       | [`Transaction`](#GraphQLClient.Transaction)             |
+| ...swapState          | [`SwapState`](#GraphQLClient.SwapState)                 |
+| ...acquireAsset       | [`Transaction`](#GraphQLClient.Transaction)             |
+| ...delegate           | [`Transaction`](#GraphQLClient.Transaction)             |
+| ...stakeState         | [`StakeState`](#GraphQLClient.StakeState)               |
+| ...sysUpgrade         | [`Transaction`](#GraphQLClient.Transaction)             |
+| topic                 | `string`                                                |
+| ...code               | `GraphQLClient.StatusCode`                              |
+| ...activateProtocol   | [`Transaction`](#GraphQLClient.Transaction)             |
+| ...revokeDelegate     | [`Transaction`](#GraphQLClient.Transaction)             |
+| ...stake              | [`Transaction`](#GraphQLClient.Transaction)             |
+| ...consensusUpgrade   | [`Transaction`](#GraphQLClient.Transaction)             |
+| ...upgradeNode        | [`Transaction`](#GraphQLClient.Transaction)             |
+| ...revokeWithdraw     | [`Transaction`](#GraphQLClient.Transaction)             |
+| ...revoke             | [`Transaction`](#GraphQLClient.Transaction)             |
+| ...accountState       | [`AccountState`](#GraphQLClient.AccountState)           |
+| ...endBlock           | [`RequestEndBlock`](#GraphQLClient.RequestEndBlock)     |
+| ...revokeSwap         | [`Transaction`](#GraphQLClient.Transaction)             |
 | ...poke               | [`Transaction`](#GraphQLClient.Transaction)             |
+| ...declareFile        | [`Transaction`](#GraphQLClient.Transaction)             |
+| ...exchange           | [`Transaction`](#GraphQLClient.Transaction)             |
+| ...protocolState      | [`ProtocolState`](#GraphQLClient.ProtocolState)         |
+| ...createAsset        | [`Transaction`](#GraphQLClient.Transaction)             |
+| ...transfer           | [`Transaction`](#GraphQLClient.Transaction)             |
+| ...accountMigrate     | [`Transaction`](#GraphQLClient.Transaction)             |
+| ...setupSwap          | [`Transaction`](#GraphQLClient.Transaction)             |
+| ...withdrawToken      | [`Transaction`](#GraphQLClient.Transaction)             |
+| ...confirm            | [`Transaction`](#GraphQLClient.Transaction)             |
+| ...declare            | [`Transaction`](#GraphQLClient.Transaction)             |
+| ...approveWithdraw    | [`Transaction`](#GraphQLClient.Transaction)             |
+| ...beginBlock         | [`RequestBeginBlock`](#GraphQLClient.RequestBeginBlock) |
+| ...deactivateProtocol | [`Transaction`](#GraphQLClient.Transaction)             |
+| ...depositToken       | [`Transaction`](#GraphQLClient.Transaction)             |
+| ...delegateState      | [`DelegateState`](#GraphQLClient.DelegateState)         |
+| ...forgeState         | [`ForgeState`](#GraphQLClient.ForgeState)               |
+| ...updateAsset        | [`Transaction`](#GraphQLClient.Transaction)             |
+| ...assetState         | [`AssetState`](#GraphQLClient.AssetState)               |
 
 ### GraphQLClient.ResponseUnsubscribe : `object`
 
@@ -6839,7 +6882,7 @@ Checkout the following snippet for the format of ResponseUnsubscribe:
 
 ```json
 {
-  "code": "INVALID_RECEIVER_STATE"
+  "code": "INVALID_FORGE_STATE"
 }
 ```
 

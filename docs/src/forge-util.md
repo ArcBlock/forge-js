@@ -34,8 +34,8 @@ yarn add @arcblock/forge-util
 * [bytesToHex(bytes)](#bytesToHex) ⇒ `String`
 * [hexToBytes(hex)](#hexToBytes) ⇒ `Array`
 * [toHex(value, returnType)](#toHex) ⇒ `String`
-* [fromUnitToToken(input, \[decimal\], optionsInput)](#fromUnitToToken) ⇒ `string`
-* [fromTokenToUnit(input, \[decimal\])](#fromTokenToUnit) ⇒
+* [fromUnitToToken(input, \[decimal\], \[optionsInput\])](#fromUnitToToken) ⇒ `string`
+* [fromTokenToUnit(input, \[decimal\])](#fromTokenToUnit) ⇒ `BN`
 * [isUint8Array(value)](#isUint8Array) ⇒ `Boolean`
 * [UUID()](#UUID) ⇒ `string`
 * [isUUID(str)](#isUUID) ⇒ `boolean`
@@ -181,7 +181,6 @@ Converts value to hex representation
 ### bytesToHex(bytes) ⇒ `String`
 
 Convert a byte array to a hex string
-
 Note: Implementation from crypto-js
 
 **Kind**: static method  
@@ -195,7 +194,6 @@ Note: Implementation from crypto-js
 ### hexToBytes(hex) ⇒ `Array`
 
 Convert a hex string to a byte array
-
 Note: Implementation from crypto-js
 
 **Kind**: static method  
@@ -209,7 +207,7 @@ Note: Implementation from crypto-js
 ### toHex(value, returnType) ⇒ `String`
 
 Auto converts any given value into it's hex representation.
-And even stringifys objects before.
+And even stringify objects before.
 
 **Kind**: static method  
 **Access**: public  
@@ -219,25 +217,24 @@ And even stringifys objects before.
 | value      | `String` \| `Number` \| `BN` \| `Object` \| `TypedArray` \| `Buffer` |
 | returnType | `Boolean`                                                            |
 
-### fromUnitToToken(input, [decimal], optionsInput) ⇒ `string`
+### fromUnitToToken(input, [decimal], [optionsInput]) ⇒ `string`
 
 Format a big number to human readable number, such as 1_0000_0000_0000_000 => 1 Token
 
 **Kind**: static method  
 **Access**: public  
 
-| Param        | Type                 | Default |
-| ------------ | -------------------- | ------- |
-| input        | `string` \| `number` |         |
-| [decimal]    | `number`             | `18`    |
-| optionsInput | `\*`                 |         |
+| Param          | Type                 | Default |
+| -------------- | -------------------- | ------- |
+| input          | `string` \| `number` |         |
+| [decimal]      | `number`             | `18`    |
+| [optionsInput] | `object`             |         |
 
-### fromTokenToUnit(input, [decimal]) ⇒
+### fromTokenToUnit(input, [decimal]) ⇒ `BN`
 
 Convert human readable token number to big number instance
 
 **Kind**: static method  
-**Returns**: BN  
 **Access**: public  
 
 | Param     | Type     | Default |

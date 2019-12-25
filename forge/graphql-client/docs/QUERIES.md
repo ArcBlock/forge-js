@@ -1,6 +1,6 @@
 # Forge GraphQL API List
 
-> Updated on 2019-12-24T06:37:19.134Z
+> Updated on 2019-12-25T02:25:05.889Z
 
 
 ## Table of Contents
@@ -152,24 +152,33 @@
         recentReceivedStakes {
           circular
           fifo
-          items
           maxItems
           typeUrl
+          items {
+            hash
+            value
+          }
         }
         recentStakes {
           circular
           fifo
-          items
           maxItems
           typeUrl
+          items {
+            hash
+            value
+          }
         }
       }
       withdrawItems {
         circular
         fifo
-        items
         maxItems
         typeUrl
+        items {
+          hash
+          value
+        }
       }
     }
   }
@@ -275,16 +284,22 @@
         recentReceivedStakes {
           circular
           fifo
-          items
           maxItems
           typeUrl
+          items {
+            hash
+            value
+          }
         }
         recentStakes {
           circular
           fifo
-          items
           maxItems
           typeUrl
+          items {
+            hash
+            value
+          }
         }
       }
     }
@@ -1991,24 +2006,33 @@ subscription {
         recentReceivedStakes {
           circular
           fifo
-          items
           maxItems
           typeUrl
+          items {
+            hash
+            value
+          }
         }
         recentStakes {
           circular
           fifo
-          items
           maxItems
           typeUrl
+          items {
+            hash
+            value
+          }
         }
       }
       withdrawItems {
         circular
         fifo
-        items
         maxItems
         typeUrl
+        items {
+          hash
+          value
+        }
       }
     }
     acquireAsset {
@@ -2153,16 +2177,22 @@ subscription {
         recentReceivedStakes {
           circular
           fifo
-          items
           maxItems
           typeUrl
+          items {
+            hash
+            value
+          }
         }
         recentStakes {
           circular
           fifo
-          items
           maxItems
           typeUrl
+          items {
+            hash
+            value
+          }
         }
       }
     }

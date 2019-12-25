@@ -242,7 +242,6 @@ const numberToHex = value => {
 
 /**
  * Convert a byte array to a hex string
- *
  * Note: Implementation from crypto-js
  *
  * @public
@@ -264,7 +263,6 @@ const bytesToHex = bytes => {
 
 /**
  * Convert a hex string to a byte array
- *
  * Note: Implementation from crypto-js
  *
  * @public
@@ -293,7 +291,7 @@ const hexToBytes = hex => {
 
 /**
  * Auto converts any given value into it's hex representation.
- * And even stringifys objects before.
+ * And even stringify objects before.
  *
  * @public
  * @static
@@ -372,7 +370,7 @@ const numberToString = arg => {
  * @method fromUnitToToken
  * @param {string|number} input
  * @param {number} [decimal=18]
- * @param {*} optionsInput
+ * @param {object} [optionsInput=undefined]
  * @returns {string}
  */
 const fromUnitToToken = (input, decimal = 18, optionsInput) => {
@@ -416,7 +414,7 @@ const fromUnitToToken = (input, decimal = 18, optionsInput) => {
  * @static
  * @param {string} input
  * @param {number} [decimal=18]
- * @returns BN
+ * @returns {BN}
  */
 const fromTokenToUnit = (input, decimal = 18) => {
   let token = numberToString(input);
