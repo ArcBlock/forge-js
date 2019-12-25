@@ -2707,76 +2707,76 @@ export enum RoleType {
 }
 
 export enum StatusCode {
-  INVALID_FORGE_STATE,
-  RPC_CONNECTION_ERROR,
-  INVALID_CUSTODIAN,
-  INVALID_REQUEST,
-  UNTRANSFERRABLE_ASSET,
-  INVALID_SENDER_STATE,
-  INVALID_STAKE_STATE,
-  VALIDATOR_NOT_FOUND,
-  INVALID_SWAP,
-  INSUFFICIENT_DELEGATION,
-  PROTOCOL_NOT_RUNNING,
-  INVALID_CHAIN_TYPE,
-  STORAGE_RPC_ERROR,
-  INVALID_ASSET,
-  INVALID_DELEGATION,
-  INVALID_DID_TYPE,
-  INVALID_EXPIRY_DATE,
-  INVALID_DELEGATION_TYPE_URL,
-  INVALID_MULTISIG,
-  INSUFFICIENT_GAS,
-  INSUFFICIENT_STAKE,
-  BANNED_UNSTAKE,
-  SENDER_NOT_AUTHORIZED,
-  INVALID_DELEGATION_RULE,
-  TOO_MANY_TXS,
-  INVALID_HASHKEY,
-  INVALID_TIME,
-  INVALID_NONCE,
-  INVALID_DEPOSIT_VALUE,
-  PROTOCOL_NOT_ACTIVATED,
-  INVALID_WITHDRAWER,
-  INVALID_LOCK_STATUS,
-  EXCEED_DEPOSIT_CAP,
-  INVALID_CANDIDATE_STATE,
-  INTERNAL,
-  VALIDATOR_NOT_CHANGED,
-  INVALID_TX_SIZE,
-  INVALID_WITHDRAW_TX,
-  EXPIRED_ASSET,
-  INVALID_WALLET,
-  INSUFFICIENT_FUND,
-  FORBIDDEN,
   INVALID_RECEIVER_STATE,
   UNSUPPORTED_TX,
-  ACCOUNT_MIGRATED,
-  INVALID_DEACTIVATION,
-  INVALID_DEPOSIT,
-  CONSENSUS_RPC_ERROR,
-  UNSUPPORTED_STAKE,
-  READONLY_ASSET,
   SENDER_WITHDRAW_ITEMS_FULL,
-  INVALID_DEPOSIT_TARGET,
-  PROTOCOL_NOT_PAUSED,
-  INVALID_DEPOSITOR,
-  TIMEOUT,
-  INVALID_SUBSCRIBE,
-  EXPIRED_WALLET_TOKEN,
-  WITHDRAW_ITEM_MISSING,
-  NOENT,
+  SENDER_NOT_AUTHORIZED,
   EXPIRED_TX,
+  INVALID_FORGE_STATE,
+  INVALID_DEPOSIT_TARGET,
   INVALID_SIGNER_STATE,
-  CONSUMED_ASSET,
-  INVALID_PASSPHRASE,
-  INSUFFICIENT_DATA,
+  INVALID_DELEGATION_RULE,
+  INVALID_CANDIDATE_STATE,
   INVALID_MONIKER,
-  INVALID_CHAIN_ID,
-  INVALID_OWNER,
+  INVALID_DELEGATION,
+  PROTOCOL_NOT_RUNNING,
+  INVALID_DEPOSIT_VALUE,
+  INVALID_MULTISIG,
+  INSUFFICIENT_DELEGATION,
+  INVALID_LOCK_STATUS,
+  INVALID_NONCE,
+  INVALID_SWAP,
+  INVALID_CHAIN_TYPE,
+  INVALID_STAKE_STATE,
+  INSUFFICIENT_GAS,
+  VALIDATOR_NOT_CHANGED,
+  INVALID_SUBSCRIBE,
+  EXPIRED_ASSET,
+  TOO_MANY_TXS,
+  INVALID_WITHDRAW_TX,
+  NOENT,
+  INSUFFICIENT_DATA,
+  INVALID_TX_SIZE,
   INVALID_SIGNATURE,
-  OK,
+  INVALID_DELEGATION_TYPE_URL,
+  WITHDRAW_ITEM_MISSING,
+  UNTRANSFERRABLE_ASSET,
+  CONSUMED_ASSET,
+  INVALID_TIME,
+  INVALID_DEPOSITOR,
+  EXCEED_DEPOSIT_CAP,
+  INVALID_OWNER,
+  READONLY_ASSET,
+  INVALID_HASHKEY,
+  INTERNAL,
+  INVALID_ASSET,
+  INSUFFICIENT_FUND,
+  ACCOUNT_MIGRATED,
+  FORBIDDEN,
+  BANNED_UNSTAKE,
+  UNSUPPORTED_STAKE,
+  CONSENSUS_RPC_ERROR,
+  PROTOCOL_NOT_PAUSED,
+  INVALID_WALLET,
+  VALIDATOR_NOT_FOUND,
+  INVALID_DID_TYPE,
+  INVALID_SENDER_STATE,
+  INVALID_DEPOSIT,
+  TIMEOUT,
   INVALID_TX,
+  INVALID_EXPIRY_DATE,
+  INVALID_DEACTIVATION,
+  EXPIRED_WALLET_TOKEN,
+  INVALID_CHAIN_ID,
+  INVALID_REQUEST,
+  INVALID_CUSTODIAN,
+  PROTOCOL_NOT_ACTIVATED,
+  STORAGE_RPC_ERROR,
+  RPC_CONNECTION_ERROR,
+  INVALID_WITHDRAWER,
+  INSUFFICIENT_STAKE,
+  OK,
+  INVALID_PASSPHRASE,
 }
 
 export enum UpgradeAction {
@@ -2982,7 +2982,7 @@ export interface ChainInfo {
 export interface CircularQueue {
   circular: boolean;
   fifo: boolean;
-  items: Array<QueueItem>;
+  items: Array<string>;
   maxItems: number;
   typeUrl: string;
 }
@@ -3406,11 +3406,6 @@ export interface PubKey {
   type: string;
 }
 
-export interface QueueItem {
-  hash: string;
-  value: string;
-}
-
 export interface RequestBeginBlock {
   byzantineValidators: Array<Evidence>;
   hash: string;
@@ -3585,45 +3580,45 @@ export interface ResponseStopSimulator {
 }
 
 export interface ResponseSubscribe {
-  deployProtocol: GraphQLClient.Transaction;
-  consumeAsset: GraphQLClient.Transaction;
-  retrieveSwap: GraphQLClient.Transaction;
-  swapState: GraphQLClient.SwapState;
-  acquireAsset: GraphQLClient.Transaction;
-  delegate: GraphQLClient.Transaction;
-  stakeState: GraphQLClient.StakeState;
-  sysUpgrade: GraphQLClient.Transaction;
-  topic: string;
-  code: GraphQLClient.StatusCode;
-  activateProtocol: GraphQLClient.Transaction;
-  revokeDelegate: GraphQLClient.Transaction;
-  stake: GraphQLClient.Transaction;
-  consensusUpgrade: GraphQLClient.Transaction;
-  upgradeNode: GraphQLClient.Transaction;
-  revokeWithdraw: GraphQLClient.Transaction;
-  revoke: GraphQLClient.Transaction;
-  accountState: GraphQLClient.AccountState;
   endBlock: GraphQLClient.RequestEndBlock;
-  revokeSwap: GraphQLClient.Transaction;
-  poke: GraphQLClient.Transaction;
-  declareFile: GraphQLClient.Transaction;
-  exchange: GraphQLClient.Transaction;
-  protocolState: GraphQLClient.ProtocolState;
   createAsset: GraphQLClient.Transaction;
-  transfer: GraphQLClient.Transaction;
-  accountMigrate: GraphQLClient.Transaction;
-  setupSwap: GraphQLClient.Transaction;
+  swapState: GraphQLClient.SwapState;
+  revokeDelegate: GraphQLClient.Transaction;
   withdrawToken: GraphQLClient.Transaction;
-  confirm: GraphQLClient.Transaction;
-  declare: GraphQLClient.Transaction;
-  approveWithdraw: GraphQLClient.Transaction;
-  beginBlock: GraphQLClient.RequestBeginBlock;
-  deactivateProtocol: GraphQLClient.Transaction;
+  accountMigrate: GraphQLClient.Transaction;
+  revokeSwap: GraphQLClient.Transaction;
+  activateProtocol: GraphQLClient.Transaction;
+  accountState: GraphQLClient.AccountState;
+  protocolState: GraphQLClient.ProtocolState;
   depositToken: GraphQLClient.Transaction;
+  beginBlock: GraphQLClient.RequestBeginBlock;
+  code: GraphQLClient.StatusCode;
   delegateState: GraphQLClient.DelegateState;
-  forgeState: GraphQLClient.ForgeState;
+  retrieveSwap: GraphQLClient.Transaction;
   updateAsset: GraphQLClient.Transaction;
+  acquireAsset: GraphQLClient.Transaction;
+  revokeWithdraw: GraphQLClient.Transaction;
+  declare: GraphQLClient.Transaction;
+  revoke: GraphQLClient.Transaction;
+  sysUpgrade: GraphQLClient.Transaction;
+  approveWithdraw: GraphQLClient.Transaction;
+  deployProtocol: GraphQLClient.Transaction;
+  consensusUpgrade: GraphQLClient.Transaction;
+  exchange: GraphQLClient.Transaction;
+  declareFile: GraphQLClient.Transaction;
+  topic: string;
+  stakeState: GraphQLClient.StakeState;
+  deactivateProtocol: GraphQLClient.Transaction;
+  upgradeNode: GraphQLClient.Transaction;
+  stake: GraphQLClient.Transaction;
+  delegate: GraphQLClient.Transaction;
+  transfer: GraphQLClient.Transaction;
+  confirm: GraphQLClient.Transaction;
+  setupSwap: GraphQLClient.Transaction;
+  consumeAsset: GraphQLClient.Transaction;
+  forgeState: GraphQLClient.ForgeState;
   assetState: GraphQLClient.AssetState;
+  poke: GraphQLClient.Transaction;
 }
 
 export interface ResponseUnsubscribe {

@@ -1,3 +1,12 @@
+## 1.0.28 (December 25, 2019)
+
+- fix: lerna patch publish script
+
+## 1.0.27 (December 25, 2019)
+
+- chore: add script to publish alpha patch releases
+- update readme
+
 ## 1.0.26 (December 24, 2019)
 
 - chore: update forge-proto/grpc-client/graphql-client to latest forge
