@@ -1,3 +1,7 @@
+## 1.0.29 (January 06, 2020)
+
+
+
 ## 1.0.28 (December 25, 2019)
 
 - fix: lerna patch publish script
