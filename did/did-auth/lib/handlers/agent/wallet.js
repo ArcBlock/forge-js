@@ -87,11 +87,11 @@ class AgentWalletHandlers extends WalletHandlers {
         throw new Error('AgentWalletHandlers require valid req.authorization to compose sign params');
       }
 
-      const { appPk, appDid, appName, appDescription, appIcon, certificateContent } = req.authorization;
+      const { appPk, appDid, appName, appLink, appDescription, appIcon, certificateContent } = req.authorization;
 
       return {
         authorizer: { pk: appPk, did: appDid },
-        appInfo: { name: appName, description: appDescription, icon: appIcon },
+        appInfo: { name: appName, description: appDescription, icon: appIcon, link: appLink || '' },
         verifiableClaims: [
           {
             type: 'certificate',
