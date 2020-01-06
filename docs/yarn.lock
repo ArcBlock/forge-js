@@ -2,26 +2,38 @@
 # yarn lockfile v1
 
 
-"@arcblock/did-connect@^0.50.0":
-  version "0.50.0"
-  resolved "https://registry.npm.taobao.org/@arcblock/did-connect/download/@arcblock/did-connect-0.50.0.tgz#4c44e8a75779f65ec2c3878f64cf6c8c5d182387"
-  integrity sha1-TETop1d59l7Cw4ePZM9sjF0YI4c=
+"@arcblock/did-connect@^0.57.0":
+  version "0.57.0"
+  resolved "https://registry.npm.taobao.org/@arcblock/did-connect/download/@arcblock/did-connect-0.57.0.tgz#67d10a61c44d90f0b3fcd41f62aa0fb3ff2c6c00"
+  integrity sha1-Z9EKYcRNkPCz/NQfYqoPs/8sbAA=
   dependencies:
-    "@arcblock/did-react" "^0.50.0"
-    "@arcblock/ux" "^0.50.0"
+    "@arcblock/did-react" "^0.57.0"
+    "@arcblock/ux" "^0.57.0"
     axios "^0.19.0"
     react-use "^13.8.0"
 
-"@arcblock/did-react@^0.50.0":
-  version "0.50.0"
-  resolved "https://registry.npm.taobao.org/@arcblock/did-react/download/@arcblock/did-react-0.50.0.tgz#1e5260778f66afc5bbde6186ee594fb93990cbe4"
-  integrity sha1-HlJgd49mr8W73mGG7llPuTmQy+Q=
+"@arcblock/did-react@^0.57.0":
+  version "0.57.0"
+  resolved "https://registry.npm.taobao.org/@arcblock/did-react/download/@arcblock/did-react-0.57.0.tgz#55d617545c40582fc7fe2d8e5b2af4b686b067c4"
+  integrity sha1-VdYXVFxAWC/H/i2OWyr0toawZ8Q=
   dependencies:
-    "@arcblock/react-hooks" "^0.50.0"
-    "@arcblock/ux" "^0.50.0"
+    "@arcblock/event-client" "^1.0.13"
+    "@arcblock/react-hooks" "^0.57.0"
+    "@arcblock/ux" "^0.57.0"
     ismobilejs "^0.5.2"
     qrcode.react "^0.9.3"
     react-load-script "^0.0.6"
+
+"@arcblock/event-client@^1.0.13":
+  version "1.0.23"
+  resolved "https://registry.npm.taobao.org/@arcblock/event-client/download/@arcblock/event-client-1.0.23.tgz#9f59c0aa50a39af5e6320f4e040bbdb7dd34dfe3"
+  integrity sha1-n1nAqlCjmvXmMg9OBAu9t9003+M=
+  dependencies:
+    debug "^4.1.1"
+    isomorphic-ws "^4.0.1"
+    phoenix "^1.4.11"
+    wolfy87-eventemitter "^5.2.5"
+    ws "^7.2.0"
 
 "@arcblock/gatsby-awesome-pagination@^0.3.4":
   version "0.3.4"
@@ -40,18 +52,18 @@
     remark-containers "^1.1.0"
     remark-generic-extensions "^1.4.0"
 
-"@arcblock/gatsby-theme-docs@^6.62.0":
-  version "6.62.0"
-  resolved "https://registry.npm.taobao.org/@arcblock/gatsby-theme-docs/download/@arcblock/gatsby-theme-docs-6.62.0.tgz#dfce394d834ce42bf1e02e24282a600683541d8c"
-  integrity sha1-3845TYNM5Cvx4C4kKCpgBoNUHYw=
+"@arcblock/gatsby-theme-docs@^6.67.0":
+  version "6.67.0"
+  resolved "https://registry.npm.taobao.org/@arcblock/gatsby-theme-docs/download/@arcblock/gatsby-theme-docs-6.67.0.tgz#048b277debdc277a83cf03e9de370edfa1d0cccd"
+  integrity sha1-BIsnfevcJ3qDzwPp3jcO36HQzM0=
   dependencies:
     "@arcblock/gatsby-awesome-pagination" "^0.3.4"
     "@arcblock/gatsby-remark-extensions" "^6.28.0"
     "@arcblock/gatsby-transformer-remark" "^6.28.0"
     "@arcblock/gatsby-transformer-terminal-recording" "^6.29.0"
     "@arcblock/remark-include" "^6.28.0"
-    "@arcblock/ux" "^0.50.0"
-    "@arcblock/www" "^6.61.0"
+    "@arcblock/ux" "^0.57.0"
+    "@arcblock/www" "^6.67.0"
     "@material-ui/core" "^4.6.1"
     "@material-ui/icons" "^4.5.1"
     "@mdx-js/mdx" "^1.1.0"
@@ -148,10 +160,10 @@
     lodash "^4.17.15"
     unist-util-select "^1.5.0"
 
-"@arcblock/react-hooks@^0.50.0":
-  version "0.50.0"
-  resolved "https://registry.npm.taobao.org/@arcblock/react-hooks/download/@arcblock/react-hooks-0.50.0.tgz#81c9b4266f3f0eee53f78389c2901279333d6ca0"
-  integrity sha1-gcm0Jm8/Du5T94OJwpASeTM9bKA=
+"@arcblock/react-hooks@^0.57.0":
+  version "0.57.0"
+  resolved "https://registry.npm.taobao.org/@arcblock/react-hooks/download/@arcblock/react-hooks-0.57.0.tgz#484018ac0df59ca99d560d63ec89e2e52dfdf61e"
+  integrity sha1-SEAYrA31nKmdVg1j7Ini5S399h4=
   dependencies:
     event-target-shim "^5.0.1"
     qrcode.react "^0.9.3"
@@ -164,12 +176,12 @@
   dependencies:
     vfile "^2.0.0"
 
-"@arcblock/ux@^0.50.0":
-  version "0.50.0"
-  resolved "https://registry.npm.taobao.org/@arcblock/ux/download/@arcblock/ux-0.50.0.tgz#5cef50a1b00444814cf11ac7bf9361cd32122f6f"
-  integrity sha1-XO9QobAERIFM8RrHv5NhzTISL28=
+"@arcblock/ux@^0.57.0":
+  version "0.57.0"
+  resolved "https://registry.npm.taobao.org/@arcblock/ux/download/@arcblock/ux-0.57.0.tgz#352c981331bfceb4ef3fb687cc70fa1cf7dc7bd5"
+  integrity sha1-NSyYEzG/zrTvP7aHzHD6HPfce9U=
   dependencies:
-    "@arcblock/react-hooks" "^0.50.0"
+    "@arcblock/react-hooks" "^0.57.0"
     "@babel/plugin-syntax-dynamic-import" "^7.2.0"
     copy-to-clipboard "^3.2.0"
     d3-geo "^1.11.6"
@@ -189,13 +201,13 @@
     xterm-addon-fit "^0.2.1"
     xterm-addon-web-links "^0.2.1"
 
-"@arcblock/www@^6.61.0":
-  version "6.61.0"
-  resolved "https://registry.npm.taobao.org/@arcblock/www/download/@arcblock/www-6.61.0.tgz#f9f0cacbd749738098a3796549b979f57a76a1db"
-  integrity sha1-+fDKy9dJc4CYo3llSbl59Xp2ods=
+"@arcblock/www@^6.67.0":
+  version "6.67.0"
+  resolved "https://registry.npm.taobao.org/@arcblock/www/download/@arcblock/www-6.67.0.tgz#0398e21296206401fbf4c9fd348540f2dc6002f5"
+  integrity sha1-A5jiEpYgZAH79Mn9NIVA8txgAvU=
   dependencies:
-    "@arcblock/did-connect" "^0.50.0"
-    "@arcblock/ux" "^0.50.0"
+    "@arcblock/did-connect" "^0.57.0"
+    "@arcblock/ux" "^0.57.0"
     "@material-ui/core" "^4.6.1"
     "@material-ui/icons" "^4.5.1"
     axios "^0.19.0"
@@ -6764,6 +6776,14 @@ gatsby-core-utils@^1.0.0, gatsby-core-utils@^1.0.19, gatsby-core-utils@^1.0.22, 
     ci-info "2.0.0"
     node-object-hash "^2.0.0"
 
+gatsby-core-utils@^1.0.25:
+  version "1.0.25"
+  resolved "https://registry.npm.taobao.org/gatsby-core-utils/download/gatsby-core-utils-1.0.25.tgz#8cc8e76a79063c43ac06d9b72100b7c6f1fb5b60"
+  integrity sha1-jMjnankGPEOsBtm3IQC3xvH7W2A=
+  dependencies:
+    ci-info "2.0.0"
+    node-object-hash "^2.0.0"
+
 gatsby-graphiql-explorer@^0.2.28, gatsby-graphiql-explorer@^0.2.31:
   version "0.2.31"
   resolved "https://registry.npm.taobao.org/gatsby-graphiql-explorer/download/gatsby-graphiql-explorer-0.2.31.tgz#cb7a7ed2749085a28612f11ef37a35de54809710"
@@ -6799,6 +6819,20 @@ gatsby-page-utils@^0.0.33:
     chokidar "3.3.0"
     fs-exists-cached "^1.0.0"
     gatsby-core-utils "^1.0.22"
+    glob "^7.1.6"
+    lodash "^4.17.15"
+    micromatch "^3.1.10"
+
+gatsby-page-utils@^0.0.36:
+  version "0.0.36"
+  resolved "https://registry.npm.taobao.org/gatsby-page-utils/download/gatsby-page-utils-0.0.36.tgz#348e5e30dfbbad8273dbd4a9705a57624520175e"
+  integrity sha1-NI5eMN+7rYJz29SpcFpXYkUgF14=
+  dependencies:
+    "@babel/runtime" "^7.7.6"
+    bluebird "^3.7.2"
+    chokidar "3.3.0"
+    fs-exists-cached "^1.0.0"
+    gatsby-core-utils "^1.0.25"
     glob "^7.1.6"
     lodash "^4.17.15"
     micromatch "^3.1.10"
@@ -6885,7 +6919,7 @@ gatsby-plugin-nprogress@^2.1.14:
     "@babel/runtime" "^7.7.6"
     nprogress "^0.2.0"
 
-gatsby-plugin-page-creator@^2.1.30, gatsby-plugin-page-creator@^2.1.36:
+gatsby-plugin-page-creator@^2.1.30:
   version "2.1.34"
   resolved "https://registry.npm.taobao.org/gatsby-plugin-page-creator/download/gatsby-plugin-page-creator-2.1.34.tgz#5585f334bbf8f1f7cb8421c0c715dd07b50ad2d4"
   integrity sha1-VYXzNLv48ffLhCHAxxXdB7UK0tQ=
@@ -6894,6 +6928,19 @@ gatsby-plugin-page-creator@^2.1.30, gatsby-plugin-page-creator@^2.1.36:
     bluebird "^3.7.1"
     fs-exists-cached "^1.0.0"
     gatsby-page-utils "^0.0.33"
+    glob "^7.1.6"
+    lodash "^4.17.15"
+    micromatch "^3.1.10"
+
+gatsby-plugin-page-creator@^2.1.36:
+  version "2.1.37"
+  resolved "https://registry.npm.taobao.org/gatsby-plugin-page-creator/download/gatsby-plugin-page-creator-2.1.37.tgz#cfdcbbbe6cb9e347a0063714646be156e5959e44"
+  integrity sha1-z9y7vmy540egBjcUZGvhVuWVnkQ=
+  dependencies:
+    "@babel/runtime" "^7.7.6"
+    bluebird "^3.7.2"
+    fs-exists-cached "^1.0.0"
+    gatsby-page-utils "^0.0.36"
     glob "^7.1.6"
     lodash "^4.17.15"
     micromatch "^3.1.10"
@@ -9410,6 +9457,11 @@ isomorphic-fetch@^2.1.1:
     node-fetch "^1.0.1"
     whatwg-fetch ">=0.10.0"
 
+isomorphic-ws@^4.0.1:
+  version "4.0.1"
+  resolved "https://registry.npm.taobao.org/isomorphic-ws/download/isomorphic-ws-4.0.1.tgz#55fd4cd6c5e6491e76dc125938dd863f5cd4f2dc"
+  integrity sha1-Vf1M1sXmSR523BJZON2GP1zU8tw=
+
 isstream@~0.1.2:
   version "0.1.2"
   resolved "https://registry.npm.taobao.org/isstream/download/isstream-0.1.2.tgz#47e63f7af55afa6f92e1500e690eb8b8529c099a"
@@ -11906,6 +11958,11 @@ phin@^2.9.1:
   version "2.9.3"
   resolved "https://registry.npm.taobao.org/phin/download/phin-2.9.3.tgz#f9b6ac10a035636fb65dfc576aaaa17b8743125c"
   integrity sha1-+basEKA1Y2+2XfxXaqqhe4dDElw=
+
+phoenix@^1.4.11:
+  version "1.4.11"
+  resolved "https://registry.npm.taobao.org/phoenix/download/phoenix-1.4.11.tgz#3e70cd2461600ef3b0d4308e8fef7d2005fe000a"
+  integrity sha1-PnDNJGFgDvOw1DCOj+99IAX+AAo=
 
 physical-cpu-count@^2.0.0:
   version "2.0.0"
@@ -16237,6 +16294,11 @@ with-open-file@^0.1.6:
     p-try "^2.1.0"
     pify "^4.0.1"
 
+wolfy87-eventemitter@^5.2.5:
+  version "5.2.8"
+  resolved "https://registry.npm.taobao.org/wolfy87-eventemitter/download/wolfy87-eventemitter-5.2.8.tgz#fb7fff095cb972aa2a246b25e15b2764688c18a7"
+  integrity sha1-+3//CVy5cqoqJGsl4VsnZGiMGKc=
+
 word-wrap@~1.2.3:
   version "1.2.3"
   resolved "https://registry.npm.taobao.org/word-wrap/download/word-wrap-1.2.3.tgz#610636f6b1f703891bd34771ccb17fb93b47079c"
@@ -16319,6 +16381,11 @@ ws@^7.1.2:
   integrity sha1-Qi7ajAKktdundEumbuu9hLzvDsc=
   dependencies:
     async-limiter "^1.0.0"
+
+ws@^7.2.0:
+  version "7.2.1"
+  resolved "https://registry.npm.taobao.org/ws/download/ws-7.2.1.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fws%2Fdownload%2Fws-7.2.1.tgz#03ed52423cd744084b2cf42ed197c8b65a936b8e"
+  integrity sha1-A+1SQjzXRAhLLPQu0ZfItlqTa44=
 
 ws@~6.1.0:
   version "6.1.4"
