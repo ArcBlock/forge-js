@@ -577,7 +577,7 @@ function toBase58(v) {
  */
 function fromBase58(v) {
   if (!multibase.isEncoded(v) === 'base58btc') {
-    throw new Error('fromBase58 expect strict base58 encoded string format');
+    throw new Error('fromBase58 expect strict base58 encoded string as input');
   }
 
   return multibase.decode(v);
