@@ -37,6 +37,10 @@ const errors = {
     en: 'authPrincipal claim is not configured correctly',
     zh: 'authPrincipal 声明配置不正确',
   },
+  userDeclined: {
+    en: 'You have declined the authentication request',
+    zh: '授权请求被拒绝',
+  },
 };
 
 const STATUS_CREATED = 'created';
@@ -74,6 +78,7 @@ module.exports = function createHandlers({
   claims,
   onPreAuth,
   onAuth,
+  onDecline,
   onComplete,
   onExpire,
   onError,
@@ -325,20 +330,7 @@ module.exports = function createHandlers({
     const { locale, token, store, params, wallet } = req.context;
 
     try {
-      const { userDid, userPk, claims: claimResponse } = await authenticator.verify(params, locale);
-      // debug('onAuthResponse.verify', { userDid, token, claims: claimResponse });
-
-      // Since we can only get userDid after authPrincipal
-      // So we update userDid in the token storage here
-      // But we just need to update the did once
-      if (!store.did) {
-        await tokenStorage.update(token, { did: userDid });
-      }
-
-      const error = await checkUser({ context: req.context, userDid, userPk });
-      if (error) {
-        return res.json({ error });
-      }
+      const { userDid, userPk, action: userAction, claims: claimResponse } = await authenticator.verify(params, locale);
 
       const cbParams = {
         step: store ? store.currentStep : null,
@@ -353,6 +345,33 @@ module.exports = function createHandlers({
         storage: tokenStorage,
         extraParams: createExtraParams(locale, params),
       };
+
+      if (userAction === 'declineAuth') {
+        if (token) {
+          await tokenStorage.update(token, {
+            status: STATUS_ERROR,
+            error: errors.userDeclined[locale],
+            currentStep: steps.length - 1,
+          });
+        }
+
+        const result = await onDecline(cbParams);
+        return res.json(Object.assign({}, result || {}));
+      }
+
+      // debug('onAuthResponse.verify', { userDid, token, claims: claimResponse });
+
+      // Since we can only get userDid after authPrincipal
+      // So we update userDid in the token storage here
+      // But we just need to update the did once
+      if (!store.did) {
+        await tokenStorage.update(token, { did: userDid });
+      }
+
+      const error = await checkUser({ context: req.context, userDid, userPk });
+      if (error) {
+        return res.json({ error });
+      }
 
       // onPreAuth: error thrown from this callback will halt the auth process
       await onPreAuth(cbParams);

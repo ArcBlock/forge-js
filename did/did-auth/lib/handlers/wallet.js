@@ -60,6 +60,7 @@ class WalletHandlers extends BaseHandler {
    * @param {object} config.claims - claims for this request
    * @param {string} config.action - action of this group of routes
    * @param {function} config.onAuth - callback when user completed auth in abt wallet, and data posted back
+   * @param {function} [config.onDecline=noop] - callback when user has declined in wallet
    * @param {function} [config.onComplete=noop] - callback when the whole auth process is done, action token is removed
    * @param {function} [config.onExpire=noop] - callback when the action token expired
    * @param {function} [config.onError=console.error] - callback when there are some errors
@@ -71,6 +72,7 @@ class WalletHandlers extends BaseHandler {
     action,
     claims,
     onAuth,
+    onDecline = noop,
     onComplete = noop,
     onExpire = noop,
     // eslint-disable-next-line no-console
@@ -79,6 +81,9 @@ class WalletHandlers extends BaseHandler {
   }) {
     if (typeof onAuth !== 'function') {
       throw new Error('onAuth callback is required to attach did auth handlers');
+    }
+    if (typeof onDecline !== 'function') {
+      throw new Error('onDecline callback is required to attach did auth handlers');
     }
     if (typeof onComplete !== 'function') {
       throw new Error('onComplete callback is required to attach did auth handlers');
@@ -107,6 +112,7 @@ class WalletHandlers extends BaseHandler {
       pathname,
       claims,
       onAuth,
+      onDecline,
       onComplete,
       onExpire,
       onError,

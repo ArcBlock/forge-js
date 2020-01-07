@@ -218,16 +218,23 @@ class WalletAuthenticator extends BaseAuthenticator {
   verify(data, locale = 'en', enforceTimestamp = true) {
     return new Promise(async (resolve, reject) => {
       try {
-        const { iss, requestedClaims } = await this._verify(data, 'userPk', 'userInfo', locale, enforceTimestamp);
+        const { iss, action = 'responseAuth', requestedClaims } = await this._verify(
+          data,
+          'userPk',
+          'userInfo',
+          locale,
+          enforceTimestamp
+        );
 
         resolve({
           token: data.token,
           userDid: toAddress(iss),
           userPk: data.userPk,
           claims: requestedClaims,
+          action,
         });
 
-        debug('verify.context', { userPk: data.userPk, userDid: toAddress(iss) });
+        debug('verify.context', { userPk: data.userPk, userDid: toAddress(iss), action });
         debug('verify.claims', requestedClaims);
       } catch (err) {
         reject(err);

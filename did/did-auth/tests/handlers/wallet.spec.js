@@ -41,6 +41,7 @@ describe('#WalletHandlers', () => {
         name: 'ABT Wallet Demo',
         description: 'Demo application to show the potential of ABT Wallet',
         icon: 'https://arcblock.oss-cn-beijing.aliyuncs.com/images/wallet-round.png',
+        link: 'https://arcblock.oss-cn-beijing.aliyuncs.com',
       },
       chainInfo: {
         host: chainHost,
@@ -131,9 +132,7 @@ describe('#WalletHandlers', () => {
       {
         userPk: toBase58(user.publicKey),
         userInfo: Jwt.sign(user.toAddress(), user.secretKey, {
-          requestedClaims: [
-            { type: 'profile', email: 'shijun@arcblock.io', fullName: 'wangshijun' },
-          ],
+          requestedClaims: [{ type: 'profile', email: 'shijun@arcblock.io', fullName: 'wangshijun' }],
         }),
       },
       { headers }

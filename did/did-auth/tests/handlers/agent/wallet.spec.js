@@ -40,6 +40,7 @@ describe('#WalletHandlers', () => {
         name: 'Connect Service',
         description: 'Connect Service',
         icon: 'https://arcblock.oss-cn-beijing.aliyuncs.com/images/wallet-round.png',
+        link: 'https://arcblock.oss-cn-beijing.aliyuncs.com',
       },
       chainInfo: {
         host: chainHost,
@@ -93,8 +94,7 @@ describe('#WalletHandlers', () => {
 
     // Test api endpoint
     const { data: info } = await axios.get(`${server.url}/api/agent/${authorizeId}/login/token`);
-    const getTokenState = () =>
-      axios.get(`${server.url}/api/agent/${authorizeId}/login/status?_t_=${info.token}`);
+    const getTokenState = () => axios.get(`${server.url}/api/agent/${authorizeId}/login/status?_t_=${info.token}`);
     expect(info.token).toBeTruthy();
 
     // Parse auth url from wallet

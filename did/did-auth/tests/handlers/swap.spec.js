@@ -56,6 +56,7 @@ describe('#SwapHandlers', () => {
         name: 'ABT Wallet Demo',
         description: 'Demo application to show the potential of ABT Wallet',
         icon: 'https://arcblock.oss-cn-beijing.aliyuncs.com/images/wallet-round.png',
+        link: 'https://arcblock.oss-cn-beijing.aliyuncs.com',
       },
       chainInfo: {
         host: chainHost,
