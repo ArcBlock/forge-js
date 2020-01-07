@@ -1,6 +1,7 @@
 ## 1.0.29 (January 06, 2020)
 
-
+- feat: [did-auth] support decline auth from wallet through action
+- feat: [did-auth] support customize applink for agent authorization
 
 ## 1.0.28 (December 25, 2019)
 
