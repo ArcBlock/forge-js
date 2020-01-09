@@ -1,3 +1,8 @@
+## 1.0.31 (January 09, 2020)
+
+- fix: clientExtension.toLocktime
+- update readme
+
 ## 1.0.30 (January 09, 2020)
 
 - fix: [client-extension] make sdk work with more forge versions
