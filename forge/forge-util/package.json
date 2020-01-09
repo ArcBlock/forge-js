@@ -1,6 +1,6 @@
 {
   "name": "@arcblock/forge-util",
-  "version": "1.0.30",
+  "version": "1.0.31",
   "description": "utils shared across mutlipe forge js libs, works in both node.js and browser",
   "keywords": [
     "forge",
