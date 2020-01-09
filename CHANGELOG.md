@@ -1,3 +1,7 @@
+## 1.0.30 (January 09, 2020)
+
+- fix: [client-extension] make sdk work with more forge versions
+
 ## 1.0.29 (January 06, 2020)
 
 - feat: [did-auth] support decline auth from wallet through action
