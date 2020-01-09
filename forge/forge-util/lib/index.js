@@ -612,7 +612,7 @@ function fromBase64(v) {
 }
 
 /**
- * Convert did to address: remove `did:abt:` prefix if exists
+ * Convert did to address: remove `did:abt:` prefix
  *
  * @public
  * @static

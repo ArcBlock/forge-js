@@ -67,7 +67,7 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
    * @returns {number}
    */
   client.toLocktime = async number => {
-    const { info } = await client.doRawQuery(`{
+    const result = await client.doRawQuery(`{
       getChainInfo {
         code
         info {
@@ -76,7 +76,7 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
       }
     }`);
 
-    return +get(info, 'getChainInfo.info.blockHeight', 0) + number;
+    return +get(result, 'getChainInfo.info.blockHeight', 0) + number;
   };
 
   /**
