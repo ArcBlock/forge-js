@@ -1,5 +1,6 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable object-curly-newline */
+const get = require('lodash/get');
 const camelCase = require('lodash/camelCase');
 const snakeCase = require('lodash/snakeCase');
 const padStart = require('lodash/padStart');
@@ -66,8 +67,16 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
    * @returns {number}
    */
   client.toLocktime = async number => {
-    const { info } = await client.getChainInfo();
-    return +info.blockHeight + number;
+    const { info } = await client.doRawQuery(`{
+      getChainInfo {
+        code
+        info {
+          blockHeight
+        }
+      }
+    }`);
+
+    return +get(info, 'getChainInfo.info.blockHeight', 0) + number;
   };
 
   /**
@@ -156,16 +165,45 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
    */
   client._ensureContext = async () => {
     if (!client.context) {
-      const [{ state }, { info }] = await Promise.all([
-        client.getForgeState(),
-        client.getChainInfo(),
-      ]);
+      if (encodeTxAsBase64) {
+        const result = await client.doRawQuery(`{
+          getChainInfo {
+            code
+            info {
+              network
+            }
+          }
+          getForgeState {
+            code
+            state {
+              token {
+                decimal
+                symbol
+              }
+              txConfig {
+                poke {
+                  amount
+                  dailyLimit
+                  enabled
+                }
+              }
+            }
+          }
+        }`);
 
-      client.context = {
-        token: state.token,
-        poke: state.txConfig.poke,
-        chainId: info.network,
-      };
+        client.context = {
+          chainId: get(result, 'getChainInfo.info.network'),
+          token: get(result, 'getForgeState.state.token'),
+          poke: get(result, 'getForgeState.state.txConfig.poke'),
+        };
+      } else {
+        const [{ state }, { info }] = await Promise.all([client.getForgeState(), client.getChainInfo()]);
+        client.context = {
+          chainId: info.network,
+          token: state.token,
+          poke: state.txConfig.poke,
+        };
+      }
     }
 
     return client.context;
@@ -600,16 +638,7 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
    * @returns {Promise} the `[transactionHash, assetAddress]` once resolved
    */
   client.createAsset = async (
-    {
-      moniker,
-      parent = '',
-      ttl = 0,
-      data,
-      readonly = false,
-      transferrable = true,
-      delegator = '',
-      wallet,
-    },
+    { moniker, parent = '', ttl = 0, data, readonly = false, transferrable = true, delegator = '', wallet },
     extra
   ) => {
     const payload = { moniker, parent, ttl, readonly, transferrable, data };
@@ -672,10 +701,7 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
    * @param {object} extra - other param to underlying client implementation
    * @returns {Promise} the `transactionHash` once resolved
    */
-  client.prepareConsumeAsset = (
-    { issuer = '', address = '', delegator = '', data, wallet },
-    extra
-  ) =>
+  client.prepareConsumeAsset = ({ issuer = '', address = '', delegator = '', data, wallet }, extra) =>
     client.signConsumeAssetTx(
       {
         tx: {
@@ -1081,10 +1107,7 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
    * @param {object} extra - other param to underlying client implementation
    * @returns {Promise} the `transactionHash` once resolved
    */
-  client.transfer = async (
-    { token = 0, assets = [], to = '', memo = '', delegator = '', wallet },
-    extra
-  ) =>
+  client.transfer = async ({ token = 0, assets = [], to = '', memo = '', delegator = '', wallet }, extra) =>
     client.sendTransferTx(
       {
         tx: {

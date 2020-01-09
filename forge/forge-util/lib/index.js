@@ -343,9 +343,7 @@ const toHex = (value, returnType) => {
 const numberToString = arg => {
   if (typeof arg === 'string') {
     if (!arg.match(/^-?[0-9.]+$/)) {
-      throw new Error(
-        `while converting number to string, invalid number value '${arg}', should be a number matching (^-?[0-9.]+).`
-      );
+      throw new Error(`Invalid value '${arg}' while converting to string, should be a number matching (^-?[0-9.]+).`);
     }
     return arg;
   }

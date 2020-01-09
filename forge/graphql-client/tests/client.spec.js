@@ -181,8 +181,9 @@ describe('GraphQLClient', () => {
       await sleep(3000);
       expect(assetAddress).toBeTruthy();
 
-      const { state: senderState } = await client.getAccountState({ address: sender.toAddress() });
-      const { state: receiverState } = await client.getAccountState({ address: receiver.toAddress() });
+      const options = { ignoreFields: [/\.withdrawItems/, /\.items/] };
+      const { state: senderState } = await client.getAccountState({ address: sender.toAddress() }, options);
+      const { state: receiverState } = await client.getAccountState({ address: receiver.toAddress() }, options);
       expect(senderState).toBeTruthy();
       expect(receiverState).toBeTruthy();
 
